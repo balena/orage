@@ -381,9 +381,12 @@ CalWin *create_mainWin(void)
 			    FALSE);
   gtk_window_set_destroy_with_parent (GTK_WINDOW (xfcal->mWindow), 
 				      TRUE);
-  gtk_window_set_icon(GTK_WINDOW (xfcal->mWindow), 
-		      xfcalendar_logo);
-  g_object_unref(xfcalendar_logo);
+
+  if(xfcalendar_logo != NULL){
+    gtk_window_set_icon(GTK_WINDOW (xfcal->mWindow), 
+			xfcalendar_logo);
+    g_object_unref(xfcalendar_logo);
+  }
 
   /* Build the vertical box */
   xfcal->mVbox = gtk_vbox_new (FALSE, 0);
