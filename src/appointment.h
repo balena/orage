@@ -111,12 +111,13 @@ typedef struct
   GtkWidget *appClose;
 
   gchar *xf_uid;
+  GtkWidget *wAppointment; /* event-list window */
 
 } appt_win;
 
 void fill_appt_window(appt_win *appt, char *action, char *par);
 
-appt_win *create_appt_win(char *action, char *par);
+appt_win *create_appt_win(char *action, char *par, GtkWidget *wAppointment);
 
 
 

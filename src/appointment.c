@@ -41,7 +41,9 @@
 #include <libxfcegui4/libxfcegui4.h>
 #include <libxfce4mcs/mcs-client.h>
 
+#include "mainbox.h"
 #include "appointment.h"
+#include "event-list.h"
 #include "ical-code.h"
 
 #define DATE_SEPARATOR "-"
@@ -194,6 +196,10 @@ on_appClose_clicked_cb(GtkButton *button, gpointer user_data)
      xfical_file_close();
   }
 
+  if (apptw->wAppointment != NULL) {
+     recreate_wAppointment(apptw->wAppointment);
+  }
+
   gtk_widget_destroy(apptw->appWindow);
 
 }
@@ -208,6 +214,11 @@ on_appRemove_clicked_cb(GtkButton *button, gpointer user_data)
      xfical_app_del(apptw->xf_uid);
      xfical_file_close();
   }
+
+  if (apptw->wAppointment != NULL) {
+    recreate_wAppointment(apptw->wAppointment);
+  }
+
   gtk_widget_destroy(apptw->appWindow);
 
 }
@@ -365,18 +376,16 @@ void fill_appt_window(appt_win *appt_w, char *action, char *par)
         xfical_file_close();
 }
 
-appt_win *create_appt_win(char *action, char *par)
+appt_win *create_appt_win(char *action, char *par, GtkWidget *wAppointment)
 {
   appt_win *appt = g_new(appt_win, 1);
 
   appt->xf_uid = NULL;
+  appt->wAppointment = wAppointment;
 
-  appt->appWindow = gtk_window_new (GTK_WINDOW_TOPLEVEL);
-  /*
-  gtk_window_set_title (GTK_WINDOW (appt->appWindow), appt_date);
-  */
-
-  gtk_window_set_default_size (GTK_WINDOW (appt->appWindow), 450, 325);
+  appt->appWindow = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+  gtk_window_set_default_size(GTK_WINDOW(appt->appWindow), 450, 325);
+  gtk_window_set_destroy_with_parent(GTK_WINDOW(appt->appWindow), TRUE);
 
   appt->appVBox1 = gtk_vbox_new (FALSE, 0);
   gtk_widget_show (appt->appVBox1);
