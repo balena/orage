@@ -1,20 +1,67 @@
-2003-07-04
-        Mickael:
-	- fix sigsev when saving appointment in another month than the current one
-	- clearing an appointment doesn't destroy the appointment window anymore, but leave it open with an empty text area.
-	- function remark_appointments: use of gtk_calendar_clear_marks
-	-change type for on_wInfo_delete_event and on_wAppointment_delete_event
-	Edscott:
-	-Fixed segv condition when opening different appointments at the same time
-	-save all appointments in single dbh file to enable alarm and date marking
-	-enabled a alarm which will go off when a day with appointment is reached
-	-mark dates which have appointments.
+2003-07-06 15:34  xfce
 
-	The alarm is a text written to stdout. It should be a pretty window with bells and whistles but I don't have time for it so I'll leave that up to someone else. All you have to do is fill in the "pretty_window(char *text)" function, where text is already set to the appointment text.
-2003-07-02
-	Thanks to Benedikt Meurer for all his help.
-	Version number increased: 0.1.1
-2003-07-01
-	Adding the ability to clear the day open from any appointment and to remove the assiociated file.
-2003-06-29
-	Replacement of install-sh, depcomp, missing, mkinstalldirs, COPYING and INSTALL, which were links to automake-1.7, by copies of the ones provided with xffm.
+	* Makefile.in, aclocal.m4, configure, ltconfig: libtool update
+
+2003-07-06 10:21  bmeurer
+
+	* Makefile.in, aclocal.m4, config.h.in, configure, configure.ac,
+	ltcf-c.sh, ltconfig, ltmain.sh, po/de.po, po/xfcalendar.pot,
+	src/Makefile.in, src/callbacks.c, src/main.c: Added session client
+	code.
+
+2003-07-06 09:40  korbinus
+
+	* src/: callbacks.c, interface.c, support.c, support.h: fixed a
+	gettext-macro conflict between support.h and libxfce4util/i18n.h
+
+2003-07-05 03:49  edscott
+
+	* src/callbacks.c: put in missing #ifdef DEBUG directive
+
+2003-07-05 00:33  korbinus
+
+	* ChangeLog, src/callbacks.c, src/callbacks.h: Fixed segv when
+	saving in another month and some interface stuff
+
+2003-07-04 20:19  edscott
+
+	* Makefile.in, aclocal.m4, config.h.in, configure, configure.ac,
+	ltcf-c.sh, ltconfig, ltmain.sh, xfcalendar.glade, src/Makefile.am,
+	src/Makefile.in, src/callbacks.c, src/interface.c, src/main.c:
+	added dbh support to enable marking of days with appointments and
+	to enable an alarm to popup a window when a day with appointment is
+	reached. Fixed Segv conditions when opening different appointments
+	at the same time.
+
+2003-07-03 12:40  bmeurer
+
+	* configure, configure.ac: Fixed typo in configure.ac :-)
+
+2003-07-03 12:30  bmeurer
+
+	* xfcalendar.glade, xfcalendar.gladep, config.guess, config.sub,
+	autogen.sh, ltconfig, AUTHORS, ChangeLog, Makefile.am, NEWS,
+	README, ltcf-c.sh, ltmain.sh, stamp-h.in, COPYING, aclocal.m4,
+	config.h.in, depcomp, install-sh, missing, mkinstalldirs, INSTALL,
+	Makefile.in, compile, configure.ac, configure, m4/debug.m4,
+	m4/depends.m4, m4/i18n.m4, po/ChangeLog, po/Makefile.in.in,
+	po/POTFILES.in, po/de.gmo, po/de.po, po/xfcalendar.pot,
+	src/Makefile.am, src/Makefile.in, src/callbacks.c, src/callbacks.h,
+	src/interface.c, src/interface.h, src/main.c, src/support.c,
+	src/support.h: Initial import of xfcalendar to xfce4-extras.
+	Xfcalendar is a small time- management application written by
+	Mickael Graf.
+
+2003-07-03 12:30  bmeurer
+
+	* xfcalendar.glade, xfcalendar.gladep, config.guess, config.sub,
+	autogen.sh, ltconfig, AUTHORS, ChangeLog, Makefile.am, NEWS,
+	README, ltcf-c.sh, ltmain.sh, stamp-h.in, COPYING, aclocal.m4,
+	config.h.in, depcomp, install-sh, missing, mkinstalldirs, INSTALL,
+	Makefile.in, compile, configure.ac, configure, m4/debug.m4,
+	m4/depends.m4, m4/i18n.m4, po/ChangeLog, po/Makefile.in.in,
+	po/POTFILES.in, po/de.gmo, po/de.po, po/xfcalendar.pot,
+	src/Makefile.am, src/Makefile.in, src/callbacks.c, src/callbacks.h,
+	src/interface.c, src/interface.h, src/main.c, src/support.c,
+	src/support.h: Initial revision
+
