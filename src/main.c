@@ -38,6 +38,7 @@
 
 #include <libxfce4util/i18n.h>
 #include <libxfce4util/util.h>
+#include <libxfce4util/debug.h>
 #include <libxfcegui4/libxfcegui4.h>
 #include <libxfcegui4/netk-trayicon.h>
 #include <libxfce4mcs/mcs-client.h>
@@ -85,30 +86,99 @@ createRCDir(void)
   g_free(calpath);
 }
 
-/*
- */
-static GdkFilterReturn
-selection_filter(GdkXEvent *xevent, GdkEvent *event, gpointer data)
+static gboolean
+client_message_received (GtkWidget * widget, GdkEventClient * event,
+			 gpointer user_data)
 {
-  XClientMessageEvent *xev;
+    TRACE ("client message received");
 
-  xev = (XClientMessageEvent *)xevent;
+    if (event->message_type ==
+	gdk_atom_intern ("_XFCE_CALENDAR_RAISE", FALSE))
+    {
+	if (normalmode)
+	    gtk_window_set_decorated (GTK_WINDOW (mainWindow), TRUE);
 
-  switch (xev->type) {
-  case ClientMessage:
-    if (xev->message_type == XInternAtom(GDK_DISPLAY(),
-					 "_XFCE_CALENDAR_RAISE", False)) {
-      g_print("RAISING...\n");
-      gtk_widget_show(mainWindow);
-      gtk_window_stick(GTK_WINDOW(mainWindow));
-      gdk_window_raise(mainWindow->window);
-      gdk_window_focus(mainWindow->window, GDK_CURRENT_TIME);
-      return(GDK_FILTER_REMOVE);
+	DBG ("RAISING...\n");
+	gtk_widget_show (mainWindow);
+	gtk_window_stick (GTK_WINDOW (mainWindow));
+
+	return TRUE;
     }
-    break;
-  }
+    else if (event->message_type ==
+	     gdk_atom_intern ("_XFCE_CALENDAR_TOGGLE_HERE", FALSE))
+    {
+	int x, y, w, h;
+	GtkRequisition req;
+	int len;
+	char message[21];
+	char direction[21];
+	long xid;
+	GdkWindow *win;
 
-  return(GDK_FILTER_CONTINUE);
+	DBG ("TOGGLE\n");
+
+	if (GTK_WIDGET_VISIBLE (mainWindow))
+	{
+	    gtk_widget_hide (mainWindow);
+	    return TRUE;
+	}
+
+	/* Don't use decorations when we are called like this */
+	gtk_window_set_decorated (GTK_WINDOW(mainWindow), FALSE);
+	
+	gtk_widget_size_request (mainWindow, &req);
+
+	strncpy (message, event->data.b, 20);
+	message[20] = '\0';
+
+	if (sscanf (message, "%lx:%s", &xid, &direction) < 0)
+	    return FALSE;
+
+	if (!(win = gdk_window_lookup (xid)))
+	    win = gdk_window_foreign_new (xid);
+
+	gdk_drawable_get_size (GDK_DRAWABLE (win), &w, &h);
+	gdk_window_get_origin (win, &x, &y);
+
+	if (strcmp ("up", direction) == 0)
+	{
+	    x -= (req.width / 2 - w / 2);
+	    y -= req.height;
+	}
+	else if (strcmp ("down", direction) == 0)
+	{
+	    x -= (req.width / 2 - w / 2);
+	    y += h;
+	}
+	else if (strcmp ("left", direction) == 0)
+	{
+	    x -= req.width;
+	}
+	else if (strcmp ("right", direction) == 0)
+	{
+	    x += w;
+	}
+	else
+	{
+	    return FALSE;
+	}
+
+	if (x + w > gdk_screen_width ())
+	    x = gdk_screen_width () - w;
+	if (x < 0)
+	    x = 0;
+
+	if (y + h > gdk_screen_height ())
+	    y = gdk_screen_height () - h;
+	if (y < 0)
+	    y = 0;
+	
+	gtk_window_move (GTK_WINDOW (mainWindow), x, y);
+	gtk_widget_show (mainWindow);
+	gtk_window_stick (GTK_WINDOW (mainWindow));
+    }
+
+    return FALSE;
 }
 
 int
@@ -179,8 +249,10 @@ main(int argc, char *argv[])
    */
   hidden = gtk_invisible_new();
   gtk_widget_show(hidden);
-  gdk_window_add_filter(hidden->window, (GdkFilterFunc)selection_filter,
-			NULL);
+  
+  g_signal_connect (hidden, "client-event",
+		    G_CALLBACK (client_message_received), NULL);
+
   if (!gdk_selection_owner_set(hidden->window, atom,
 			       gdk_x11_get_server_time(hidden->window),
 			       FALSE)) {
