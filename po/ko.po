@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: XFCalender\n"
-"POT-Creation-Date: 2003-07-13 16:37+0200\n"
+"POT-Creation-Date: 2003-11-17 21:16+0100\n"
 "PO-Revision-Date: 2003-10-14 00:28:+0900\n"
 "Last-Translator: ByungHyun Choi<byunghyunchoi@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,58 +15,88 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/main.c:222 src/interface.c:298
-msgid "About XFCalendar"
-msgstr "XFCalender에 대하여"
+#: src/main.c:209
+msgid "Cannot create MCS client channel"
+msgstr ""
 
-#: src/interface.c:53 src/interface.c:307
+#: src/interface.c:65 src/interface.c:375 plugin/xfcalendar_plugin.c:172
+#: plugin/xfcalendar_plugin.c:183 plugin/xfcalendar_plugin.c:305
 msgid "XFCalendar"
 msgstr ""
 
-#: src/interface.c:68
+#: src/interface.c:80
 msgid "_File"
 msgstr "화일(_F)"
 
-#: src/interface.c:79
+#: src/interface.c:87
+msgid "Close window"
+msgstr ""
+
+#.
+#: src/interface.c:100
+msgid "Settings"
+msgstr ""
+
+#: src/interface.c:107 src/interface.c:571
+msgid "Preferences"
+msgstr ""
+
+#: src/interface.c:115
+#, fuzzy
+msgid "Select Today"
+msgstr "다음 날"
+
+#.
+#: src/interface.c:120
 msgid "_Help"
 msgstr "도움말(_H)"
 
-#: src/interface.c:86
+#: src/interface.c:127
 msgid "_About"
 msgstr "소개(_A)"
 
-#: src/interface.c:151
+#: src/interface.c:210
 msgid "Appointment"
 msgstr "약속"
 
-#: src/interface.c:173
-msgid "Save"
-msgstr "저장"
+#: src/interface.c:232
+msgid "Save (Ctrl+s)"
+msgstr ""
 
-#: src/interface.c:185
-msgid "Previous day"
+#: src/interface.c:245
+#, fuzzy
+msgid "Previous day (Ctrl+p)"
 msgstr "전날"
 
-#: src/interface.c:195
-msgid "Today"
-msgstr "오늘"
+#: src/interface.c:256
+msgid "Today (Alt+Home)"
+msgstr ""
 
-#: src/interface.c:205
-msgid "Next day"
+#: src/interface.c:268
+#, fuzzy
+msgid "Next day (Ctrl+n)"
 msgstr "다음 날"
 
-#: src/interface.c:217
-msgid "Close"
-msgstr "닫기"
+#: src/interface.c:281
+msgid "Close (Ctrl+w)"
+msgstr ""
 
-#: src/interface.c:226 src/interface.c:227
+#: src/interface.c:291
 msgid "Clear"
 msgstr "지우기"
 
-#: src/interface.c:318
+#: src/interface.c:292
+msgid "Clear (Ctrl+l)"
+msgstr ""
+
+#: src/interface.c:366 src/interface.c:580
+msgid "About XFCalendar"
+msgstr "XFCalender에 대하여"
+
+#: src/interface.c:386
 msgid ""
 "XFCalendar\n"
-"v. 0.1.3\n"
+"v. 0.1.4\n"
 "\n"
 "Manage your time with XFce4\n"
 "\n"
@@ -83,22 +113,64 @@ msgid ""
 "XFce4 is (c) Olivier Fourdan"
 msgstr ""
 
-#: src/interface.c:366
+#: src/interface.c:434
 msgid "Warning"
 msgstr "경고"
 
-#: src/interface.c:382
+#: src/interface.c:450
 msgid ""
 "You will remove all information \n"
 "associated with this date."
-msgstr "이 날짜와 연관된 \n"
+msgstr ""
+"이 날짜와 연관된 \n"
 "모든 정보를 삭제하게 됩니다."
 
-#: src/interface.c:431 src/interface.c:439
+#: src/interface.c:499 src/interface.c:507
 msgid "Reminder"
 msgstr "알리미"
+
+#: src/interface.c:561
+msgid "Today"
+msgstr "오늘"
+
+#: src/callbacks.c:768
+msgid "This should not happen"
+msgstr ""
 
 #: src/support.c:91 src/support.c:115
 #, c-format
 msgid "Couldn't find pixmap file: %s"
 msgstr "pixmap %s 화일을 찾을 수 없군요"
+
+#.
+#: plugin/xfcalendar_plugin.c:199
+msgid "Week starts with..."
+msgstr ""
+
+#: plugin/xfcalendar_plugin.c:207
+msgid "Sunday"
+msgstr ""
+
+#: plugin/xfcalendar_plugin.c:214
+#, fuzzy
+msgid "Monday"
+msgstr "오늘"
+
+#.
+#: plugin/xfcalendar_plugin.c:222
+msgid "Mode"
+msgstr ""
+
+#: plugin/xfcalendar_plugin.c:230
+msgid "Normal"
+msgstr ""
+
+#: plugin/xfcalendar_plugin.c:237
+msgid "Compact"
+msgstr ""
+
+#~ msgid "Save"
+#~ msgstr "저장"
+
+#~ msgid "Close"
+#~ msgstr "닫기"
