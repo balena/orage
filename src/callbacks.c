@@ -112,20 +112,6 @@ void init_settings(GtkWidget *w)
 	calsets.showCal = TRUE; /* default */
 	gtk_widget_show(w);
       }
-    /* The code below is deprecated
-     *    fgets(buf, LEN_BUFFER, fp); // [Start Monday]
-     *    fgets(buf, LEN_BUFFER, fp);
-     *    if(strstr(buf, "false"))
-     *      { 
-     *	calsets.startMonday = FALSE; 
-     *	gtk_calendar_display_options (GTK_CALENDAR (cal), calsets.dispOptions);
-     *      }
-     *    else 
-     *      {
-     *	calsets.startMonday = TRUE;
-     *	gtk_calendar_display_options (GTK_CALENDAR (cal), calsets.dispOptions|GTK_CALENDAR_WEEK_START_MONDAY);
-     *      }
-     */
   }
 }
 
@@ -159,11 +145,6 @@ void apply_settings()
   }else {
     fprintf(fp, "[Session Visibility]\n");
     if(calsets.showCal) fprintf(fp, "show\n"); else fprintf(fp, "hide\n");
-
-    /* The code below is deprecated 
-     *    fprintf(fp, "[Start Monday]\n");
-     *    if(calsets.startMonday) fprintf(fp, "true\n"); else fprintf(fp, "false\n");
-     */
 
     fclose(fp);
   }
