@@ -130,7 +130,6 @@ xfcalendar_alarm_clock(gpointer user_data)
     static guint previous_year=0, previous_month=0, previous_day=0;
     guint selected_year=0, selected_month=0, selected_day=0;
     guint current_year=0, current_month=0, current_day=0;
-    appt_type *app;
     GList *alarm_l;
     alarm_struct *cur_alarm;
     gboolean alarm_raised=FALSE;

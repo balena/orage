@@ -46,6 +46,7 @@
 #include <gdk/gdkkeysyms.h>
 #include <gdk/gdk.h>
 #include <gtk/gtk.h>
+#include <glib/gprintf.h>
 
 #include "event-list.h"
 #include "support.h"
@@ -230,6 +231,8 @@ recreate_wAppointment (GtkWidget *appointment)
     gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolledwindow1)
             , GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
     GLADE_HOOKUP_OBJECT (wAppointment, scrolledwindow1, "scrolledwindow1");
+
+    return wAppointment;
 }
                                                                                 
 GtkWidget*
@@ -411,14 +414,14 @@ void manageAppointment(GtkCalendar *calendar, GtkWidget *appwin)
 
     if (xfical_file_open()){
         g_sprintf(a_day, XF_APP_DATE_FORMAT, year, month+1, day);
-        if (app = getnext_ical_app_on_day(a_day, a_time)) {
+        if ((app = getnext_ical_app_on_day(a_day, a_time))) {
             list = gtk_list_store_new(NUM_COLS
                 , G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
             view = gtk_tree_view_new();
             addAppointment_init(view);
             do
                 addAppointment(list, a_time, app->note, app->title, app->uid);
-            while (app = getnext_ical_app_on_day(a_day, a_time));
+            while ((app = getnext_ical_app_on_day(a_day, a_time)));
             sort = GTK_TREE_SORTABLE(list);
             gtk_tree_sortable_set_sort_func(sort, COL_TIME
                 , sortAppointment_comp, GINT_TO_POINTER(COL_TIME), NULL);
@@ -608,9 +611,6 @@ on_cancelbutton1_clicked(GtkButton *button, gpointer user_data)
 void
 on_okbutton2_clicked(GtkButton *button, gpointer user_data)
 {
-	GtkTextView *tv;
-	GtkTextBuffer *tb;
-	GtkTextIter start, end;
     char a_day[10];
     GtkWidget *a;
     char *title;

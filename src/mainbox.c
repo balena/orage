@@ -68,7 +68,7 @@ xfcalendar_mark_appointments (CalWin *xfcal)
     if (xfical_file_open()){
         day = -1;
         gtk_calendar_freeze(GTK_CALENDAR(xfcal->mCalendar));
-        while (day = getnextday_ical_app(year, month+1, day)){
+        while ((day = getnextday_ical_app(year, month+1, day))) {
             gtk_calendar_mark_day(cal, day);
         }
         gtk_calendar_thaw(GTK_CALENDAR(xfcal->mCalendar));

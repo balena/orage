@@ -350,9 +350,6 @@ main(int argc, char *argv[])
   GdkAtom atom;
   Display *dpy;
   int scr;
-  struct tm *t;
-  time_t tt;
-
 
   xfce_textdomain(GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8");
 

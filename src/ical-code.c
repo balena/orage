@@ -125,7 +125,9 @@ struct icaltimetype ical_get_current_local_time()
     time_t t;
     struct tm *tm;
     struct icaltimetype ctime;
+    /*
     char koe[200];
+    */
 
     t=time(NULL);
     tm=localtime(&t);
@@ -178,7 +180,6 @@ char *xfical_app_add(appt_type *app)
     struct icaltimetype ctime;
     static gchar xf_uid[1000];
     gchar xf_host[501];
-    icalproperty_transp xf_transp;
     struct icaltriggertype trg;
     gint duration=0;
     icalattach *attach;
@@ -572,12 +573,12 @@ void build_ical_alarm_list()
     struct icaltimetype event_dtstart, alarm_time, cur_time;
     icalcomponent *c, *ca;
     icalproperty *p;
-    icalproperty_status stat;
+    icalproperty_status stat=ICAL_ACTION_DISPLAY;
     struct icaltriggertype trg;
-    char *s, *suid, *ssummary, *sdescription, *saction;
+    char *s, *suid, *ssummary, *sdescription;
     gboolean trg_found;
     alarm_struct *new_alarm;
-    icalattach *attach;
+    icalattach *attach=NULL;
 
     cur_time = ical_get_current_local_time();
     /* read all alarms and build a list */

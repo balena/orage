@@ -29,6 +29,7 @@
 #include <time.h>
 #include <string.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
@@ -112,8 +113,6 @@ on_appClose_clicked_cb(GtkButton *button, gpointer user_data)
     EndMinutes_value;
 
   G_CONST_RETURN gchar *winTitle;
-
-  gchar *Note_value;
 
   char a_day[10];
 
@@ -231,9 +230,8 @@ void fill_appt_window(appt_win *appt_w, char *action, char *par)
   char title[11], 
     start_yy[5], start_mm[3], start_dd[3], start_hh[3], start_mi[3], 
     end_yy[5], end_mm[3], end_dd[3], end_hh[3], end_mi[3];
-  gint i, j;
   GtkTextBuffer *tb;
-  appt_type *appt_data;
+  appt_type *appt_data=NULL;
   struct tm *t;
   time_t tt;
 
