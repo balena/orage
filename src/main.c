@@ -74,7 +74,11 @@ static gboolean
 client_message_received (GtkWidget * widget, GdkEventClient * event,
 			 gpointer user_data)
 {
+    GdkScreen *screen;
+
     TRACE ("client message received");
+
+    screen = xfce_gdk_display_locate_monitor_with_pointer (NULL, NULL);
 
     if (event->message_type ==
 	gdk_atom_intern ("_XFCE_CALENDAR_RAISE", FALSE))
@@ -83,6 +87,7 @@ client_message_received (GtkWidget * widget, GdkEventClient * event,
 	    gtk_window_set_decorated (GTK_WINDOW (mainWindow), TRUE);
 
 	DBG ("RAISING...\n");
+	gtk_window_set_screen (GTK_WINDOW (mainWindow), screen ? screen : gdk_screen_get_default ());
 	gtk_widget_show (mainWindow);
 	gtk_window_stick (GTK_WINDOW (mainWindow));
 
@@ -97,7 +102,6 @@ client_message_received (GtkWidget * widget, GdkEventClient * event,
 	char direction[21];
 	long xid;
 	GdkWindow *win;
-	GdkScreen *screen;
 
 	DBG ("TOGGLE\n");
 
@@ -157,7 +161,6 @@ client_message_received (GtkWidget * widget, GdkEventClient * event,
 	if (y < 0)
 	    y = 0;
 	
-	screen = xfce_gdk_display_locate_monitor_with_pointer (NULL, NULL);
 	gtk_window_set_screen (GTK_WINDOW (mainWindow), screen ? screen : gdk_screen_get_default ());
 	gtk_window_move (GTK_WINDOW (mainWindow), x, y);
 	gtk_widget_show (mainWindow);

@@ -353,14 +353,19 @@ xfcalendar_toggle_visible (CalWin *xfcal)
     }
   else
     {
+      GdkScreen *screen;
+
       gtk_window_set_decorated (GTK_WINDOW(xfcal->mWindow), normalmode);
+      screen = xfce_gdk_display_locate_monitor_with_pointer (NULL, NULL);
 
       if (!normalmode)
 	gtk_widget_hide(xfcal->mMenubar);
       else
 	gtk_widget_show(xfcal->mMenubar);
-
+      
       xfcal->show_Calendar = TRUE;
+
+      gtk_window_set_screen (GTK_WINDOW (xfcal->mWindow), screen ? screen : gdk_screen_get_default ());
       gtk_widget_show(xfcal->mWindow);
 
     }
