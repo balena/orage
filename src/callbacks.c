@@ -42,6 +42,7 @@
 
 #include <libxfce4util/util.h>
 #include <libxfce4util/i18n.h>
+#include <gdk/gdk.h>
 #include <gtk/gtk.h>
 #include <dbh.h>
 
@@ -498,4 +499,35 @@ on_btOkReminder_clicked(GtkButton *button, gpointer user_data)
 {
   GtkWidget *a=lookup_widget((GtkWidget *)button,"wReminder");
   gtk_widget_destroy(a); /* destroy the specific appointment window */
+}
+
+void
+on_calendar1_scroll                    (GtkCalendar     *calendar,
+					GdkEventScroll *event)
+{
+  guint year, month, day;
+  gtk_calendar_get_date(cal, &year, &month, &day);
+
+  switch(event->direction)
+    {
+	case GDK_SCROLL_UP:
+ 	    g_print("UP!!\n");
+	    if(--month == 0){
+	      month = 12;
+	      --year;
+	    }
+	    gtk_calendar_select_month(cal, month, year);
+	    break;
+	case GDK_SCROLL_DOWN:
+ 	    g_print("DOWN!!\n");
+	    if(++month == 11){
+	      month = 0;
+	      ++year;
+	    }
+	    gtk_calendar_select_month(cal, month, year);
+	    break;
+	default: /* We don't care about left and right...  Yet. */
+	  g_print("get scroll event!!!");
+    }
+
 }

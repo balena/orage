@@ -105,6 +105,9 @@ create_XFCalendar (void)
   g_signal_connect ((gpointer) about1, "activate",
                     G_CALLBACK (on_about1_activate),
                     NULL);
+  g_signal_connect((gpointer) calendar1, "scroll_event",
+		   G_CALLBACK (on_calendar1_scroll),
+		   NULL);
   g_signal_connect ((gpointer) calendar1, "day_selected_double_click",
                     G_CALLBACK (on_calendar1_day_selected_double_click),
                     NULL);
@@ -312,7 +315,7 @@ create_wInfo (void)
   gtk_box_pack_start (GTK_BOX (vbInfo), swInfo, TRUE, TRUE, 5);
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW(swInfo), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
 
-  textInfo = _("XFCalendar\nv. 0.1.2\n\nManage your time with XFce4\n\nThis software is released under\nthe General Public Licence.\n\n(c) 2003 Mickael Graf\n\nContributors:\n  - Mickael Graf\n  - Benedikt Meurer\n  - Edscott Wilson Garcia\n\nXFce4 is (c) Olivier Fourdan");
+  textInfo = _("XFCalendar\nv. 0.1.3\n\nManage your time with XFce4\n\nThis software is released under\nthe General Public Licence.\n\n(c) 2003 Mickael Graf\n\nContributors:\n  - Mickael Graf\n  - Benedikt Meurer\n  - Edscott Wilson Garcia\n\nXFce4 is (c) Olivier Fourdan");
   tbInfo = gtk_text_buffer_new(NULL);
   gtk_text_buffer_set_text(tbInfo, textInfo, strlen(textInfo));
 

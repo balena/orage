@@ -1,4 +1,5 @@
 #include <gtk/gtk.h>
+#include <gdk/gdk.h>
 
 void set_cal(GtkWidget *w);
 
@@ -58,7 +59,9 @@ on_XFCalendar_delete_event             (GtkWidget       *widget,
 void
 on_calendar1_day_selected_double_click (GtkCalendar     *calendar,
                                         gpointer         user_data);
-
+void
+on_calendar1_scroll                    (GtkCalendar     *calendar,
+					GdkEventScroll *event);
 void
 on_btClose_clicked                     (GtkButton       *button,
                                         gpointer         user_data);
