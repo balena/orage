@@ -29,7 +29,7 @@ AC_CHECK_HEADERS([errno.h])
 
 dnl Check for i18n support
 BM_I18N([xfcalendar], [ar az be bg ca cs de en_GB es et eu fa fi fr gu he hi \
-                       it ja ko lt ms nl nb_NO pa pl pt_BR pt_PT ro ru sk sv \
+                       it ja ko lt ms nl nb_NO pa pl pt_BR pt_PT ro ru sk \
                        ta tr uk vi zh_CN zh_TW])
 
 dnl Check for required packages
