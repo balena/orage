@@ -402,7 +402,7 @@ appt_win *create_appt_win(char *action, char *par)
 
   appt->appHBox1 = gtk_hbox_new (FALSE, 0);
   gtk_widget_show (appt->appHBox1);
-  gtk_box_pack_start (GTK_BOX (appt->appVBox1), appt->appHBox1, TRUE, TRUE, 0);
+  gtk_box_pack_start (GTK_BOX (appt->appVBox1), appt->appHBox1, FALSE, TRUE, 0);
 
   appt->appRemove = gtk_button_new_from_stock ("gtk-remove");
   gtk_widget_show (appt->appRemove);
