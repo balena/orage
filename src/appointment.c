@@ -127,8 +127,11 @@ on_appClose_clicked_cb(GtkButton *button, gpointer user_data)
 
      g_warning("Date: %s\n", a_day);
 
+     g_warning("Removing :%s \n", apptw->appt_data->uid);
+     xf_del_ical_app(apptw->appt_data->uid);
      new_uid = xf_add_ical_app(appt);
      g_warning("New ical uid: %s \n", new_uid);
+
      close_ical_file();
   }
 
@@ -139,9 +142,10 @@ on_appClose_clicked_cb(GtkButton *button, gpointer user_data)
 void fill_appt_window(appt_win *appt, char *action, char *par)
 {
   char appt_date[12], start_hh[3], start_mi[3], end_hh[3], end_mi[3];
-  appt_type *appt_data;
   gint i, j;
   GtkTextBuffer *tb;
+
+  appt->appt_data = xf_alloc_ical_app();
 
     if (strcmp(action, "NEW") == 0) {
     /* par contains XF_APP_DATE_FORMAT (yyyymmdd) date for new appointment */
@@ -159,28 +163,31 @@ void fill_appt_window(appt_win *appt, char *action, char *par)
             g_warning("ical file open failed\n");
             return;
         }
-        if ((appt_data = xf_get_ical_app(par)) == NULL) {
+        if ((appt->appt_data = xf_get_ical_app(par)) == NULL) {
             g_warning("appointment not found\n");
             return;
         }
+
+	g_warning("id: %s \n", appt->appt_data->uid);
+
         for (i = 0, j = 0; i <= 9; i++) { /* yyyymmdd -> yyyy-mm-dd */
             if ((i == 4) || (i == 7))
                 appt_date[i] = '-';
             else
-                appt_date[i] = appt_data->starttime[j++];
+                appt_date[i] = appt->appt_data->starttime[j++];
         }
         appt_date[10] = '\0';
         gtk_window_set_title (GTK_WINDOW (appt->appWindow), appt_date);
-        if (appt_data->title)
-            gtk_entry_set_text(GTK_ENTRY(appt->appTitle_entry), appt_data->title);
-        if (appt_data->location)
-            gtk_entry_set_text(GTK_ENTRY(appt->appLocation_entry), appt_data->location);
-        if (strlen( appt_data->starttime) > 6 ) {
-            start_hh[0]= appt_data->starttime[9];
-            start_hh[1]= appt_data->starttime[10];
+        if (appt->appt_data->title)
+            gtk_entry_set_text(GTK_ENTRY(appt->appTitle_entry), appt->appt_data->title);
+        if (appt->appt_data->location)
+            gtk_entry_set_text(GTK_ENTRY(appt->appLocation_entry), appt->appt_data->location);
+        if (strlen( appt->appt_data->starttime) > 6 ) {
+            start_hh[0]= appt->appt_data->starttime[9];
+            start_hh[1]= appt->appt_data->starttime[10];
             start_hh[2]= '\0';
-            start_mi[0]= appt_data->starttime[11];
-            start_mi[1]= appt_data->starttime[12];
+            start_mi[0]= appt->appt_data->starttime[11];
+            start_mi[1]= appt->appt_data->starttime[12];
             start_mi[2]= '\0';
             gtk_spin_button_set_value(
                       GTK_SPIN_BUTTON(appt->appStartHour_spinbutton)
@@ -189,12 +196,12 @@ void fill_appt_window(appt_win *appt, char *action, char *par)
                       GTK_SPIN_BUTTON(appt->appStartMinutes_spinbutton)
                     , (gdouble) atoi(start_mi));
         }
-        if (strlen( appt_data->endtime) > 6 ) {
-            end_hh[0]= appt_data->endtime[9];
-            end_hh[1]= appt_data->endtime[10];
+        if (strlen( appt->appt_data->endtime) > 6 ) {
+            end_hh[0]= appt->appt_data->endtime[9];
+            end_hh[1]= appt->appt_data->endtime[10];
             end_hh[2]= '\0';
-            end_mi[0]= appt_data->endtime[11];
-            end_mi[1]= appt_data->endtime[12];
+            end_mi[0]= appt->appt_data->endtime[11];
+            end_mi[1]= appt->appt_data->endtime[12];
             end_mi[2]= '\0';
             gtk_spin_button_set_value(
                       GTK_SPIN_BUTTON(appt->appEndHour_spinbutton)
@@ -203,9 +210,9 @@ void fill_appt_window(appt_win *appt, char *action, char *par)
                       GTK_SPIN_BUTTON(appt->appEndMinutes_spinbutton)
                     , (gdouble) atoi(end_mi));
         }
-	if (appt_data->note){
+	if (appt->appt_data->note){
 	  tb = gtk_text_view_get_buffer((GtkTextView *)appt->appNote_textview);
-	  gtk_text_buffer_set_text(tb, (const gchar *) appt_data->note, -1);
+	  gtk_text_buffer_set_text(tb, (const gchar *) appt->appt_data->note, -1);
 	}
         close_ical_file();
     }

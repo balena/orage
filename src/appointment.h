@@ -93,6 +93,8 @@ typedef struct
   GtkWidget *appRemove;
   GtkWidget *appBottom_fixed;
   GtkWidget *appClose;
+
+  appt_type *appt_data;
 } appt_win;
 
 void fill_appt_window(appt_win *appt, char *action, char *par);
