@@ -72,7 +72,6 @@ static gboolean showpager = TRUE;
 /* MCS client */
 McsClient        *client = NULL;
 
-static GtkWidget *info;
 static GtkWidget *clearwarn;
 static GtkCalendar *cal;
 static GtkWidget *mainWindow;
@@ -320,10 +319,6 @@ on_weekMonday_activate                 (GtkMenuItem     *menuitem,
 void
 on_about1_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
-  /*
-  info = create_wInfo();
-  gtk_widget_show(info);
-  */
   create_wAbout((GtkWidget *)menuitem, user_data);
 }
 
@@ -587,20 +582,6 @@ on_btSave_clicked(GtkButton *button, gpointer user_data)
 	g_print("Procedure on_btSave_clicked finished\n");
 #endif
 }
-
-void
-on_btOkInfo_clicked(GtkButton *button, gpointer user_data)
-{
-	gtk_widget_destroy(info);
-}
-
-gboolean
-on_wInfo_delete_event(GtkWidget *widget, GdkEvent *event, gpointer user_data)
-{
-	gtk_widget_destroy(widget);
-	return(FALSE);
-}
-
 
 void
 on_btDelete_clicked(GtkButton *button, gpointer user_data)
