@@ -19,7 +19,6 @@
 #include <libxfcegui4/netk-trayicon.h>
 #include <libxfcegui4/libxfcegui4.h>
 
-#include "calendar-icon.h"
 #include "callbacks.h"
 #include "interface.h"
 #include "support.h"
@@ -593,7 +592,7 @@ create_TrayIcon (GtkWidget *window)
   /*
    * Create the tray icon
    */
-  pixbuf = inline_icon_at_size(calendar_icon_data, 16, 16);
+  pixbuf = inline_icon_at_size(xfcalendar_icon, 16, 16);
   trayIcon = xfce_tray_icon_new_with_menu_from_pixbuf(trayMenu, pixbuf);
   g_object_unref(pixbuf);
   g_signal_connect_swapped(G_OBJECT(trayIcon), "clicked",

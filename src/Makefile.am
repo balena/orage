@@ -1,7 +1,7 @@
 bin_PROGRAMS = xfcalendar
 
 xfcalendar_SOURCES =							\
-	calendar-icon.h							\
+	xfcalendar-inline-icon.h					\
 	callbacks.c							\
 	callbacks.h							\
 	interface.c							\
@@ -26,12 +26,13 @@ xfcalendar_LDADD =							\
 	@LIBXFCE4MCS_CLIENT_LIBS@
 	$(INTLLIBS)
 
-calendar-icon.h: $(srcdir)/xfcalendar.png
+xfcalendar-icon-inline.h: Makefile $(srcdir)/xfcalendar.png
 	gdk-pixbuf-csource --raw --build-list				\
-	calendar_icon_data $(srcdir)/xfcalendar.png > calendar-icon.h
+	xfcalendar_icon $(srcdir)/xfcalendar.png > xfcalendar-icon-inline.h
 
 noinst_DATA =								\
-	calendar-icon.h
+	xfcalendar-icon-inline.h
 
 EXTRA_DIST =								\
+	xfcalendar-icon-inline.h					\
 	xfcalendar.png

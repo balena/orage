@@ -46,7 +46,6 @@
 #include <gtk/gtk.h>
 #include <gdk/gdk.h>
 
-#include "calendar-icon.h"
 #include "callbacks.h"
 #include "interface.h"
 #include "support.h"
