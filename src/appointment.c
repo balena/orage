@@ -164,6 +164,9 @@ on_appClose_clicked_cb(GtkButton *button, gpointer user_data)
 			     &start, 
 			     &end);
   appt->note = gtk_text_iter_get_text(&start, &end);
+  appt->allDay = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(apptw->appAllDay_checkbutton));
+  appt->sound = "/usr/local/kde/share/sounds/KDE_Beep_ClassicBeep.wav";
+
 
 #ifdef DEBUG
   g_warning("Title: %s\n", appt->title);
@@ -203,33 +206,45 @@ on_appRemove_clicked_cb(GtkButton *button, gpointer user_data)
   appt_win *apptw = (appt_win *)user_data;
 
   if (open_ical_file()){
-    xf_del_ical_app(apptw->xf_uid);
+     xf_del_ical_app(apptw->xf_uid);
      close_ical_file();
   }
   gtk_widget_destroy(apptw->appWindow);
 
 }
 
-void fill_appt_window(appt_win *appt, char *action, char *par)
+void ical_to_title(char *ical, char *title)
 {
-  char appt_date[12], 
+    gint i, j;
+
+    for (i = 0, j = 0; i <= 9; i++) { /* yyyymmdd -> yyyy-mm-dd */
+        if ((i == 4) || (i == 7))
+            title[i] = '-';
+        else
+            title[i] = ical[j++];
+    }
+    title[10] = '\0';
+}
+
+void fill_appt_window(appt_win *appt_w, char *action, char *par)
+{
+  char title[11], 
     start_yy[5], start_mm[3], start_dd[3], start_hh[3], start_mi[3], 
     end_yy[5], end_mm[3], end_dd[3], end_hh[3], end_mi[3];
   gint i, j;
   GtkTextBuffer *tb;
   appt_type *appt_data;
-
-  appt_data = xf_alloc_ical_app();
+  struct tm *t;
+  time_t tt;
 
     if (strcmp(action, "NEW") == 0) {
+        appt_data = xf_alloc_ical_app();
     /* par contains XF_APP_DATE_FORMAT (yyyymmdd) date for new appointment */
-        for (i = 0, j = 0; i <= 10; i++) { /* yyyymmdd -> yyyy-mm-dd */
-            if ((i == 4) || (i == 7))
-                appt_date[i] = '-';
-            else
-                appt_date[i] = par[j++];
-        }
-        gtk_window_set_title (GTK_WINDOW (appt->appWindow), appt_date);
+        tt=time(NULL);
+        t=localtime(&tt);
+        g_sprintf(appt_data->starttime,"%sT%02d%02d00"
+                    , par, t->tm_hour, t->tm_min);
+        strcpy(appt_data->endtime, appt_data->starttime);
     }
     else if (strcmp(action, "UPDATE") == 0) {
     /* par contains ical uid */
@@ -241,116 +256,115 @@ void fill_appt_window(appt_win *appt, char *action, char *par)
             g_warning("appointment not found\n");
             return;
         }
+    }
+    else
+        g_error("unknown parameter\n");
 
-	appt->xf_uid = g_strdup(appt_data->uid);
+	appt_w->xf_uid = g_strdup(appt_data->uid);
 #ifdef DEBUG
-	g_warning("id: %s \n", appt->xf_uid);
+	g_warning("id: %s \n", appt_w->xf_uid);
 #endif
 
-        for (i = 0, j = 0; i <= 9; i++) { /* yyyymmdd -> yyyy-mm-dd */
-            if ((i == 4) || (i == 7))
-                appt_date[i] = '-';
-            else
-                appt_date[i] = appt_data->starttime[j++];
-        }
-        appt_date[10] = '\0';
-        gtk_window_set_title (GTK_WINDOW (appt->appWindow), appt_date);
-        if (appt_data->title)
-            gtk_entry_set_text(GTK_ENTRY(appt->appTitle_entry), appt_data->title);
-        if (appt_data->location)
-            gtk_entry_set_text(GTK_ENTRY(appt->appLocation_entry), appt_data->location);
-        if (strlen( appt_data->starttime) > 6 ) {
-            g_warning("starttime: %s\n", appt_data->starttime);
-            start_yy[0]= appt_data->starttime[0];
-            start_yy[1]= appt_data->starttime[1];
-            start_yy[2]= appt_data->starttime[2];
-            start_yy[3]= appt_data->starttime[3];
-            start_yy[4]= '\0';
-            start_mm[0]= appt_data->starttime[4];
-            start_mm[1]= appt_data->starttime[5];
-            start_mm[2]= '\0';
-            start_dd[0]= appt_data->starttime[6];
-            start_dd[1]= appt_data->starttime[7];
-            start_dd[2]= '\0';
-            start_hh[0]= appt_data->starttime[9];
-            start_hh[1]= appt_data->starttime[10];
-            start_hh[2]= '\0';
-            start_mi[0]= appt_data->starttime[11];
-            start_mi[1]= appt_data->starttime[12];
-            start_mi[2]= '\0';
-            gtk_spin_button_set_value(
-                      GTK_SPIN_BUTTON(appt->appStartYear_spinbutton)
-                    , (gdouble) atoi(start_yy));
-            gtk_spin_button_set_value(
-                      GTK_SPIN_BUTTON(appt->appStartMonth_spinbutton)
-                    , (gdouble) atoi(start_mm));
-            gtk_spin_button_set_value(
-                      GTK_SPIN_BUTTON(appt->appStartDay_spinbutton)
-                    , (gdouble) atoi(start_dd));
-            gtk_spin_button_set_value(
-                      GTK_SPIN_BUTTON(appt->appStartHour_spinbutton)
-                    , (gdouble) atoi(start_hh));
-            gtk_spin_button_set_value(
-                      GTK_SPIN_BUTTON(appt->appStartMinutes_spinbutton)
-                    , (gdouble) atoi(start_mi));
-        }
-        if (strlen( appt_data->endtime) > 6 ) {
-            g_warning("endtime: %s\n", appt_data->endtime);
-            end_yy[0]= appt_data->endtime[0];
-            end_yy[1]= appt_data->endtime[1];
-            end_yy[2]= appt_data->endtime[2];
-            end_yy[3]= appt_data->endtime[3];
-            end_yy[4]= '\0';
-            end_mm[0]= appt_data->endtime[4];
-            end_mm[1]= appt_data->endtime[5];
-            end_mm[2]= '\0';
-            end_dd[0]= appt_data->endtime[6];
-            end_dd[1]= appt_data->endtime[7];
-            end_dd[2]= '\0';
-            end_hh[0]= appt_data->endtime[9];
-            end_hh[1]= appt_data->endtime[10];
-            end_hh[2]= '\0';
-            end_mi[0]= appt_data->endtime[11];
-            end_mi[1]= appt_data->endtime[12];
-            end_mi[2]= '\0';
-            gtk_spin_button_set_value(
-                      GTK_SPIN_BUTTON(appt->appEndYear_spinbutton)
-                    , (gdouble) atoi(end_yy));
-            gtk_spin_button_set_value(
-                      GTK_SPIN_BUTTON(appt->appEndMonth_spinbutton)
-                    , (gdouble) atoi(end_mm));
-            gtk_spin_button_set_value(
-                      GTK_SPIN_BUTTON(appt->appEndDay_spinbutton)
-                    , (gdouble) atoi(end_dd));
-            gtk_spin_button_set_value(
-                      GTK_SPIN_BUTTON(appt->appEndHour_spinbutton)
-                    , (gdouble) atoi(end_hh));
-            gtk_spin_button_set_value(
-                      GTK_SPIN_BUTTON(appt->appEndMinutes_spinbutton)
-                    , (gdouble) atoi(end_mi));
-        }
+    ical_to_title(appt_data->starttime, title);
+    gtk_window_set_title (GTK_WINDOW (appt_w->appWindow), title);
+    if (appt_data->title)
+        gtk_entry_set_text(GTK_ENTRY(appt_w->appTitle_entry), appt_data->title);
+    if (appt_data->location)
+        gtk_entry_set_text(GTK_ENTRY(appt_w->appLocation_entry), appt_data->location);
+    if (strlen(appt_data->starttime) > 6 ) {
+        g_warning("starttime: %s\n", appt_data->starttime);
+        start_yy[0]= appt_data->starttime[0];
+        start_yy[1]= appt_data->starttime[1];
+        start_yy[2]= appt_data->starttime[2];
+        start_yy[3]= appt_data->starttime[3];
+        start_yy[4]= '\0';
+        start_mm[0]= appt_data->starttime[4];
+        start_mm[1]= appt_data->starttime[5];
+        start_mm[2]= '\0';
+        start_dd[0]= appt_data->starttime[6];
+        start_dd[1]= appt_data->starttime[7];
+        start_dd[2]= '\0';
+        start_hh[0]= appt_data->starttime[9];
+        start_hh[1]= appt_data->starttime[10];
+        start_hh[2]= '\0';
+        start_mi[0]= appt_data->starttime[11];
+        start_mi[1]= appt_data->starttime[12];
+        start_mi[2]= '\0';
+        gtk_spin_button_set_value(
+                  GTK_SPIN_BUTTON(appt_w->appStartYear_spinbutton)
+                , (gdouble) atoi(start_yy));
+        gtk_spin_button_set_value(
+                  GTK_SPIN_BUTTON(appt_w->appStartMonth_spinbutton)
+                , (gdouble) atoi(start_mm));
+        gtk_spin_button_set_value(
+                  GTK_SPIN_BUTTON(appt_w->appStartDay_spinbutton)
+                , (gdouble) atoi(start_dd));
+        gtk_spin_button_set_value(
+                  GTK_SPIN_BUTTON(appt_w->appStartHour_spinbutton)
+                , (gdouble) atoi(start_hh));
+        gtk_spin_button_set_value(
+                  GTK_SPIN_BUTTON(appt_w->appStartMinutes_spinbutton)
+                , (gdouble) atoi(start_mi));
+    }
+    if (strlen( appt_data->endtime) > 6 ) {
+        g_warning("endtime: %s\n", appt_data->endtime);
+        end_yy[0]= appt_data->endtime[0];
+        end_yy[1]= appt_data->endtime[1];
+        end_yy[2]= appt_data->endtime[2];
+        end_yy[3]= appt_data->endtime[3];
+        end_yy[4]= '\0';
+        end_mm[0]= appt_data->endtime[4];
+        end_mm[1]= appt_data->endtime[5];
+        end_mm[2]= '\0';
+        end_dd[0]= appt_data->endtime[6];
+        end_dd[1]= appt_data->endtime[7];
+        end_dd[2]= '\0';
+        end_hh[0]= appt_data->endtime[9];
+        end_hh[1]= appt_data->endtime[10];
+        end_hh[2]= '\0';
+        end_mi[0]= appt_data->endtime[11];
+        end_mi[1]= appt_data->endtime[12];
+        end_mi[2]= '\0';
+        gtk_spin_button_set_value(
+                  GTK_SPIN_BUTTON(appt_w->appEndYear_spinbutton)
+                , (gdouble) atoi(end_yy));
+        gtk_spin_button_set_value(
+                  GTK_SPIN_BUTTON(appt_w->appEndMonth_spinbutton)
+                , (gdouble) atoi(end_mm));
+        gtk_spin_button_set_value(
+                  GTK_SPIN_BUTTON(appt_w->appEndDay_spinbutton)
+                , (gdouble) atoi(end_dd));
+        gtk_spin_button_set_value(
+                  GTK_SPIN_BUTTON(appt_w->appEndHour_spinbutton)
+                , (gdouble) atoi(end_hh));
+        gtk_spin_button_set_value(
+                  GTK_SPIN_BUTTON(appt_w->appEndMinutes_spinbutton)
+                , (gdouble) atoi(end_mi));
+    }
 	if (appt_data->alarm){
 	  gtk_spin_button_set_value(
-				    GTK_SPIN_BUTTON(appt->appAlarm_spinbutton)
+				    GTK_SPIN_BUTTON(appt_w->appAlarm_spinbutton)
 				    , (gdouble) appt_data->alarm);
 	}
 	if (appt_data->alarmTimeType != -1){
-	  gtk_combo_box_set_active(GTK_COMBO_BOX(appt->appAlarmTimeType_combobox)
+	  gtk_combo_box_set_active(GTK_COMBO_BOX(appt_w->appAlarmTimeType_combobox)
 				   , appt_data->alarmTimeType);
 	}
 	if (appt_data->availability != -1){
-	  gtk_combo_box_set_active(GTK_COMBO_BOX(appt->appAvailability_cb)
+	  gtk_combo_box_set_active(GTK_COMBO_BOX(appt_w->appAvailability_cb)
 				   , appt_data->availability);
 	}
 	if (appt_data->note){
-	  tb = gtk_text_view_get_buffer((GtkTextView *)appt->appNote_textview);
+	  tb = gtk_text_view_get_buffer((GtkTextView *)appt_w->appNote_textview);
 	  gtk_text_buffer_set_text(tb, (const gchar *) appt_data->note, -1);
 	}
-        close_ical_file();
-    }
-    else
-    g_error("unknown parameter\n");
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(appt_w->appAllDay_checkbutton), appt_data->allDay);
 
+    if (strcmp(action, "NEW") == 0) {
+        g_free(appt_data);
+	}
+    else
+        close_ical_file();
 }
 
 appt_win *create_appt_win(char *action, char *par)
@@ -507,7 +521,7 @@ appt_win *create_appt_win(char *action, char *par)
   gtk_box_pack_start (GTK_BOX (appt->appStartTime_hbox), appt->appStartColumn_label, FALSE, FALSE, 0);
   gtk_misc_set_alignment (GTK_MISC (appt->appStartColumn_label), 0.5, 0.43);
 
-  appt->appStartMinutes_spinbutton_adj = gtk_adjustment_new (0, 0, 45, 15, 10, 10);
+  appt->appStartMinutes_spinbutton_adj = gtk_adjustment_new (0, 0, 59, 15, 10, 10);
   appt->appStartMinutes_spinbutton = gtk_spin_button_new (GTK_ADJUSTMENT (appt->appStartMinutes_spinbutton_adj), 1, 0);
   gtk_widget_show (appt->appStartMinutes_spinbutton);
   gtk_box_pack_start (GTK_BOX (appt->appStartTime_hbox), appt->appStartMinutes_spinbutton, FALSE, TRUE, 0);
@@ -562,7 +576,7 @@ appt_win *create_appt_win(char *action, char *par)
   gtk_box_pack_start (GTK_BOX (appt->appEndTime_hbox), appt->appEndColumn_label, FALSE, FALSE, 0);
   gtk_misc_set_alignment (GTK_MISC (appt->appEndColumn_label), 0.5, 0.43);
 
-  appt->appEndMinutes_spinbutton_adj = gtk_adjustment_new (0, 0, 45, 15, 10, 10);
+  appt->appEndMinutes_spinbutton_adj = gtk_adjustment_new (0, 0, 59, 15, 10, 10);
   appt->appEndMinutes_spinbutton = gtk_spin_button_new (GTK_ADJUSTMENT (appt->appEndMinutes_spinbutton_adj), 1, 0);
   gtk_widget_show (appt->appEndMinutes_spinbutton);
   gtk_box_pack_start (GTK_BOX (appt->appEndTime_hbox), appt->appEndMinutes_spinbutton, FALSE, TRUE, 0);

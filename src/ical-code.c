@@ -159,6 +159,9 @@ appt_type *xf_alloc_ical_app()
     appt_type *temp;
 
     temp = g_new0(appt_type, 1);
+    temp->alarm = -1;
+    temp->alarmTimeType = 0;
+    temp->availability = 1;
     return(temp);
 }
 
@@ -178,7 +181,6 @@ char *xf_add_ical_app(appt_type *app)
     icalproperty_transp xf_transp;
     struct icaltriggertype trg;
     gint duration=0;
-    char * def_sound="/usr/local/kde/share/sounds/KDE_Beep_ClassicBeep.wav";
     icalattach *attach;
 
     ctime = ical_get_current_local_time();

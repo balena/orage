@@ -80,8 +80,7 @@ create_wReminder(char *title, char *text)
   wReminder = gtk_dialog_new ();
   gtk_widget_set_size_request (wReminder, 300, 250);
   strcpy(heading,  _("Reminder"));
-  strncat(heading, title, 50);
-  gtk_window_set_title (GTK_WINDOW (wReminder), heading);
+  gtk_window_set_title (GTK_WINDOW (wReminder),  heading);
   gtk_window_set_position (GTK_WINDOW (wReminder), GTK_WIN_POS_CENTER);
   gtk_window_set_modal (GTK_WINDOW (wReminder), FALSE);
   gtk_window_set_resizable (GTK_WINDOW (wReminder), TRUE);
@@ -89,7 +88,8 @@ create_wReminder(char *title, char *text)
   vbReminder = GTK_DIALOG (wReminder)->vbox;
   gtk_widget_show (vbReminder);
 
-  hdReminder = xfce_create_header(NULL, _("Reminder"));
+  strncat(heading, title, 50);
+  hdReminder = xfce_create_header(NULL, heading);
   gtk_widget_show(hdReminder);
   gtk_box_pack_start (GTK_BOX (vbReminder), hdReminder, FALSE, TRUE, 0);
 

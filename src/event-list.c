@@ -613,7 +613,7 @@ on_okbutton2_clicked(GtkButton *button, gpointer user_data)
 	GtkTextIter start, end;
     char a_day[10];
     GtkWidget *a;
-    char *key;
+    char *title;
     guint day;
 	
 	gtk_widget_destroy(clearwarn);
@@ -624,12 +624,8 @@ on_okbutton2_clicked(GtkButton *button, gpointer user_data)
 
     if (open_ical_file()){
 		a=lookup_widget((GtkWidget *)user_data,"wAppointment");
-		key = (char*)gtk_window_get_title(GTK_WINDOW (a));
-        a_day[0]=key[0]; a_day[1]=key[1];           /* yy   */
-                a_day[2]=key[2]; a_day[3]=key[3];   /*   yy */
-        a_day[4]=key[5]; a_day[5]=key[6];           /* mm */
-        a_day[6]=key[8]; a_day[7]=key[9];           /* dd */
-        a_day[8]=key[10];                           /* \0 */
+		title = (char*)gtk_window_get_title(GTK_WINDOW (a));
+        title_to_ical(title, a_day);
         rmday_ical_app(a_day);
         close_ical_file();
 
