@@ -47,7 +47,7 @@
 #include <gtk/gtk.h>
 #include <gdk/gdk.h>
 
-#include "calendar-icon.h"
+#include "xfcalendar-icon-inline.h"
 #include "callbacks.h"
 #include "interface.h"
 #include "support.h"
@@ -273,7 +273,7 @@ main(int argc, char *argv[])
 	/*
 	 * Create the tray icon
 	 */
-	pixbuf = inline_icon_at_size(calendar_icon_data, 16, 16);
+	pixbuf = inline_icon_at_size(xfcalendar_icon, 16, 16);
 	trayIcon = xfce_tray_icon_new_with_menu_from_pixbuf(trayMenu, pixbuf);
 	g_object_unref(pixbuf);
 	g_signal_connect_swapped(G_OBJECT(trayIcon), "clicked",

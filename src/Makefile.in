@@ -166,7 +166,7 @@ target_alias = @target_alias@
 bin_PROGRAMS = xfcalendar
 
 xfcalendar_SOURCES = \
-	calendar-icon.h							\
+	xfcalendar-icon-inline.h					\
 	callbacks.c							\
 	callbacks.h							\
 	interface.c							\
@@ -193,10 +193,11 @@ xfcalendar_LDADD = \
 
 
 noinst_DATA = \
-	calendar-icon.h
+	xfcalendar-icon-inline.h
 
 
 EXTRA_DIST = \
+	xfcalendar-icon-inline.h					\
 	xfcalendar.png
 
 subdir = src
@@ -675,9 +676,9 @@ uninstall-am: uninstall-binPROGRAMS uninstall-info-am
 
 	$(INTLLIBS)
 
-calendar-icon.h: $(srcdir)/xfcalendar.png
+xfcalendar-icon-inline.h: Makefile $(srcdir)/xfcalendar.png
 	gdk-pixbuf-csource --raw --build-list				\
-	calendar_icon_data $(srcdir)/xfcalendar.png > calendar-icon.h
+	xfcalendar_icon $(srcdir)/xfcalendar.png > xfcalendar-icon-inline.h
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:
