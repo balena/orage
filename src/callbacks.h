@@ -1,5 +1,6 @@
 #include <gtk/gtk.h>
 
+void set_cal(GtkWidget *w);
 
 void
 on_new1_activate                       (GtkMenuItem     *menuitem,
@@ -65,6 +66,16 @@ on_btClose_clicked                     (GtkButton       *button,
 void
 on_btSave_clicked                      (GtkButton       *button,
                                         gpointer         user_data);
+void
+on_btPrevious_clicked                  (GtkButton       *button, 
+                                        gpointer user_data);
+void
+on_btToday_clicked                     (GtkButton       *button, 
+                                        gpointer user_data);
+
+void
+on_btNext_clicked                  (GtkButton       *button, 
+                                        gpointer user_data);
 
 void
 on_btClose_clicked                     (GtkButton       *button,
@@ -117,3 +128,8 @@ on_okbutton2_clicked                   (GtkButton       *button,
 void
 on_btOkReminder_clicked                  (GtkButton       *button,
                                         gpointer         user_data);
+gboolean
+bisextile(guint year);
+
+void
+manageAppointment(GtkCalendar *calendar, GtkWidget *appointment);

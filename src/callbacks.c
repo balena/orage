@@ -55,6 +55,10 @@ static GtkWidget *info;
 static GtkWidget *clearwarn;
 static GtkCalendar *cal;
 
+void set_cal(GtkWidget *w){
+  //We define it once, there will be only one calendar
+  cal=(GtkCalendar *)lookup_widget(w,"calendar1");
+}
 
 void markit(DBHashTable *f){
 	char *text=(char *)DBH_DATA(f);
@@ -75,7 +79,6 @@ int mark_appointments(GtkWidget *w){
 	DBHashTable *fapp;
 	char *fpath = xfce_get_userfile("xfcalendar", "appointments.dbh", NULL);
 	if ((fapp = DBH_open(fpath)) == NULL) return FALSE;
-	cal=(GtkCalendar *)lookup_widget(w,"calendar1");
 	gtk_calendar_get_date(cal, &year, &month, &day);
 	g_snprintf(key, 8, "%03d%02d%02d", year-1900, month, day);
 	DBH_sweep(fapp,markit,key,NULL,5);
@@ -128,7 +131,6 @@ void remark_appointments (GtkCalendar *calendar,gpointer user_data){
 
 
 void setup_signals(GtkWidget *w){
-	cal=(GtkCalendar *)lookup_widget(w,"calendar1");
 	g_signal_connect ((gpointer) cal, "month-changed",
                     G_CALLBACK (remark_appointments),
                    NULL);
@@ -180,6 +182,14 @@ void
 on_calendar1_day_selected_double_click (GtkCalendar *calendar,
                                         gpointer user_data)
 {
+  GtkWidget *appointment;
+  appointment = create_wAppointment();
+  manageAppointment(calendar, appointment);
+  gtk_widget_show(appointment);
+}
+
+void manageAppointment(GtkCalendar *calendar, GtkWidget *appointment)
+{
 	guint year, month, day;
 	char title[12], *text;
 	gchar *fpath;
@@ -189,12 +199,10 @@ on_calendar1_day_selected_double_click (GtkCalendar *calendar,
 	GtkTextIter *end;
 	GtkTextIter ctl_start, ctl_end;
 	char *ctl_text;
-	GtkWidget *appointment;
   
 	gtk_calendar_get_date(calendar, &year, &month, &day);
 	g_snprintf(title, 12, "%d-%02d-%02d", year, month+1, day);
 	fpath = xfce_get_userfile("xfcalendar", "appointments.dbh", NULL);
-	appointment = create_wAppointment();
 
 	tv = GTK_TEXT_VIEW(lookup_widget(GTK_WIDGET(appointment),"textview1"));
 
@@ -244,9 +252,9 @@ on_calendar1_day_selected_double_click (GtkCalendar *calendar,
 	
 	gtk_text_view_set_buffer(tv, tb);
 	gtk_window_set_title (GTK_WINDOW (appointment), _(title));
-	gtk_widget_show(appointment);
 
 	g_free(fpath);
+
 }
 
 void
@@ -262,6 +270,80 @@ on_wAppointment_delete_event(GtkWidget *widget, GdkEvent *event,
 {
 	gtk_widget_destroy(widget); /* destroy the appointment window */
 	return(FALSE);
+}
+
+void
+on_btPrevious_clicked(GtkButton *button, gpointer user_data)
+{
+  guint year, month, day;
+  guint monthdays[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+  GtkWidget *appointment; 
+	
+  appointment = lookup_widget(GTK_WIDGET(button),"wAppointment");
+
+  gtk_calendar_get_date(cal, &year, &month, &day);
+
+  if(bisextile(year)){
+    ++monthdays[1];
+  }
+  if(--day == 0){
+    if(--month == -1){
+      --year;
+      month = 11;
+    }
+    gtk_calendar_select_month(cal, month, year);
+    day = monthdays[month];
+  }
+  gtk_calendar_select_day(cal, day);
+  manageAppointment(cal, appointment);
+}
+
+void
+on_btToday_clicked(GtkButton *button, gpointer user_data)
+{
+  struct tm *t;
+  time_t tt;
+  GtkWidget *appointment; 
+	
+  appointment = lookup_widget(GTK_WIDGET(button),"wAppointment");
+
+  tt=time(NULL);
+  t=localtime(&tt);
+  gtk_calendar_select_month(cal, t->tm_mon, t->tm_year+1900);
+  gtk_calendar_select_day(cal, t->tm_mday);
+  manageAppointment(cal, appointment);
+}
+
+void
+on_btNext_clicked(GtkButton *button, gpointer user_data)
+{
+  guint year, month, day;
+  guint monthdays[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+  GtkWidget *appointment; 
+	
+  appointment = lookup_widget(GTK_WIDGET(button),"wAppointment");
+
+  gtk_calendar_get_date(cal, &year, &month, &day);
+
+  if(bisextile(year)){
+    ++monthdays[1];
+  }
+  if(++day == (monthdays[month]+1)){
+    if(++month == 12){
+      ++year;
+      month = 0;
+    }
+    gtk_calendar_select_month(cal, month, year);
+    day = 1;
+  }
+  gtk_calendar_select_day(cal, day);
+  manageAppointment(cal, appointment);
+}
+
+gboolean
+bisextile(guint year)
+{
+  return ((year%4)==0)&&(((year%100)!=0)||((year%400)==0));
 }
 
 void
@@ -307,25 +389,13 @@ on_btSave_clicked(GtkButton *button, gpointer user_data)
 			printf("DBG:key=%s\n",key);
 #endif
 			g_strlcpy(save_text,text,MAX_APP_LENGTH-1);
-#ifdef DEBUG
-			g_print("g_strlcpy passed\n");
-#endif
 			save_text[MAX_APP_LENGTH-1]=0;
 			/* since record length is variable,this is crucial: */
 			DBH_set_recordsize(fapp,strlen(save_text)+1);
-#ifdef DEBUG
-			g_print("DBH_set_recordsize passed; size: %d\n", strlen(save_text)+1);
-#endif
 			/* set the key */
 			strncpy((char *)fapp->key,key,8); fapp->key[7]=0;
-#ifdef DEBUG
-			g_print("key set\n");
-#endif
 			/* update the DBHashtable: */
 			DBH_update(fapp);
-#ifdef DEBUG
-			g_print("DBH_update passed\n");
-#endif
 			day=atoi((char *)(fapp->key+5));
 			if (strlen(save_text)) gtk_calendar_mark_day(cal,day);
 			else gtk_calendar_unmark_day(cal,day);

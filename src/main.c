@@ -71,6 +71,7 @@ int mark_appointments(GtkWidget *w);
 int setup_signals(GtkWidget *w);
 gint alarm_clock(gpointer p);
 void keep_tidy(void);
+void set_cal();
 extern void on_about1_activate(GtkMenuItem *, gpointer);
 
 /*
@@ -156,6 +157,7 @@ main(int argc, char *argv[])
 	 * want shown initially.
 	 */
 	mainWindow = create_XFCalendar();
+	set_cal(mainWindow);
 	mark_appointments(mainWindow);
 	setup_signals(mainWindow);
 	gtk_widget_show(mainWindow);
