@@ -162,6 +162,8 @@ xfcalendar_SOURCES = \
 	interface.c							\
 	interface.h							\
 	main.c								\
+	reminder.h							\
+	reminder.c							\
 	support.c							\
 	support.h							\
 	xfce_trayicon.c							\
@@ -200,8 +202,8 @@ PROGRAMS = $(bin_PROGRAMS)
 
 am_xfcalendar_OBJECTS = xfcalendar-about-xfcalendar.$(OBJEXT) \
 	xfcalendar-callbacks.$(OBJEXT) xfcalendar-interface.$(OBJEXT) \
-	xfcalendar-main.$(OBJEXT) xfcalendar-support.$(OBJEXT) \
-	xfcalendar-xfce_trayicon.$(OBJEXT)
+	xfcalendar-main.$(OBJEXT) xfcalendar-reminder.$(OBJEXT) \
+	xfcalendar-support.$(OBJEXT) xfcalendar-xfce_trayicon.$(OBJEXT)
 xfcalendar_OBJECTS = $(am_xfcalendar_OBJECTS)
 xfcalendar_DEPENDENCIES =
 xfcalendar_LDFLAGS =
@@ -213,6 +215,7 @@ am__depfiles_maybe = depfiles
 @AMDEP_TRUE@	./$(DEPDIR)/xfcalendar-callbacks.Po \
 @AMDEP_TRUE@	./$(DEPDIR)/xfcalendar-interface.Po \
 @AMDEP_TRUE@	./$(DEPDIR)/xfcalendar-main.Po \
+@AMDEP_TRUE@	./$(DEPDIR)/xfcalendar-reminder.Po \
 @AMDEP_TRUE@	./$(DEPDIR)/xfcalendar-support.Po \
 @AMDEP_TRUE@	./$(DEPDIR)/xfcalendar-xfce_trayicon.Po
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
@@ -280,6 +283,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/xfcalendar-callbacks.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/xfcalendar-interface.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/xfcalendar-main.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/xfcalendar-reminder.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/xfcalendar-support.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/xfcalendar-xfce_trayicon.Po@am__quote@
 
@@ -447,6 +451,39 @@ xfcalendar-main.lo: main.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	depfile='$(DEPDIR)/xfcalendar-main.Plo' tmpdepfile='$(DEPDIR)/xfcalendar-main.TPlo' @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(xfcalendar_CFLAGS) $(CFLAGS) -c -o xfcalendar-main.lo `test -f 'main.c' || echo '$(srcdir)/'`main.c
+
+xfcalendar-reminder.o: reminder.c
+@am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(xfcalendar_CFLAGS) $(CFLAGS) -MT xfcalendar-reminder.o -MD -MP -MF "$(DEPDIR)/xfcalendar-reminder.Tpo" \
+@am__fastdepCC_TRUE@	  -c -o xfcalendar-reminder.o `test -f 'reminder.c' || echo '$(srcdir)/'`reminder.c; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/xfcalendar-reminder.Tpo" "$(DEPDIR)/xfcalendar-reminder.Po"; \
+@am__fastdepCC_TRUE@	else rm -f "$(DEPDIR)/xfcalendar-reminder.Tpo"; exit 1; \
+@am__fastdepCC_TRUE@	fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='reminder.c' object='xfcalendar-reminder.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	depfile='$(DEPDIR)/xfcalendar-reminder.Po' tmpdepfile='$(DEPDIR)/xfcalendar-reminder.TPo' @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(xfcalendar_CFLAGS) $(CFLAGS) -c -o xfcalendar-reminder.o `test -f 'reminder.c' || echo '$(srcdir)/'`reminder.c
+
+xfcalendar-reminder.obj: reminder.c
+@am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(xfcalendar_CFLAGS) $(CFLAGS) -MT xfcalendar-reminder.obj -MD -MP -MF "$(DEPDIR)/xfcalendar-reminder.Tpo" \
+@am__fastdepCC_TRUE@	  -c -o xfcalendar-reminder.obj `if test -f 'reminder.c'; then $(CYGPATH_W) 'reminder.c'; else $(CYGPATH_W) '$(srcdir)/reminder.c'; fi`; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/xfcalendar-reminder.Tpo" "$(DEPDIR)/xfcalendar-reminder.Po"; \
+@am__fastdepCC_TRUE@	else rm -f "$(DEPDIR)/xfcalendar-reminder.Tpo"; exit 1; \
+@am__fastdepCC_TRUE@	fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='reminder.c' object='xfcalendar-reminder.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	depfile='$(DEPDIR)/xfcalendar-reminder.Po' tmpdepfile='$(DEPDIR)/xfcalendar-reminder.TPo' @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(xfcalendar_CFLAGS) $(CFLAGS) -c -o xfcalendar-reminder.obj `if test -f 'reminder.c'; then $(CYGPATH_W) 'reminder.c'; else $(CYGPATH_W) '$(srcdir)/reminder.c'; fi`
+
+xfcalendar-reminder.lo: reminder.c
+@am__fastdepCC_TRUE@	if $(LIBTOOL) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(xfcalendar_CFLAGS) $(CFLAGS) -MT xfcalendar-reminder.lo -MD -MP -MF "$(DEPDIR)/xfcalendar-reminder.Tpo" \
+@am__fastdepCC_TRUE@	  -c -o xfcalendar-reminder.lo `test -f 'reminder.c' || echo '$(srcdir)/'`reminder.c; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/xfcalendar-reminder.Tpo" "$(DEPDIR)/xfcalendar-reminder.Plo"; \
+@am__fastdepCC_TRUE@	else rm -f "$(DEPDIR)/xfcalendar-reminder.Tpo"; exit 1; \
+@am__fastdepCC_TRUE@	fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='reminder.c' object='xfcalendar-reminder.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	depfile='$(DEPDIR)/xfcalendar-reminder.Plo' tmpdepfile='$(DEPDIR)/xfcalendar-reminder.TPlo' @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(xfcalendar_CFLAGS) $(CFLAGS) -c -o xfcalendar-reminder.lo `test -f 'reminder.c' || echo '$(srcdir)/'`reminder.c
 
 xfcalendar-support.o: support.c
 @am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(xfcalendar_CFLAGS) $(CFLAGS) -MT xfcalendar-support.o -MD -MP -MF "$(DEPDIR)/xfcalendar-support.Tpo" \

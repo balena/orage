@@ -51,6 +51,7 @@
 #include "callbacks.h"
 #include "interface.h"
 #include "support.h"
+#include "reminder.h"
 #include "about-xfcalendar.h"
 
 #define MAX_APP_LENGTH 4096
@@ -648,13 +649,6 @@ on_okbutton2_clicked(GtkButton *button, gpointer user_data)
 	}
 #endif
 	g_free(fpath);
-}
-
-void
-on_btOkReminder_clicked(GtkButton *button, gpointer user_data)
-{
-  GtkWidget *a=lookup_widget((GtkWidget *)button,"wReminder");
-  gtk_widget_destroy(a); /* destroy the specific appointment window */
 }
 
 void

@@ -9,6 +9,8 @@ xfcalendar_SOURCES =							\
 	interface.c							\
 	interface.h							\
 	main.c								\
+	reminder.h							\
+	reminder.c							\
 	support.c							\
 	support.h							\
 	xfce_trayicon.c							\
