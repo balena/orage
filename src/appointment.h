@@ -45,9 +45,6 @@ typedef struct
 #define XF_APP_TIME_FORMAT "%04d%02d%02dT%02d%02d%02d"
 #define XF_APP_DATE_FORMAT "%04d%02d%02d"
 
-/* typedef struct _appointment appointment; */
-
-
 typedef struct
 {
   GtkWidget *appWindow;
@@ -94,7 +91,6 @@ typedef struct
   GtkWidget *appClose;
 
   gchar *xf_uid;
-  //appt_type *appt_data;
 
 } appt_win;
 

@@ -140,6 +140,20 @@ on_appClose_clicked_cb(GtkButton *button, gpointer user_data)
 
 }
 
+void
+on_appRemove_clicked_cb(GtkButton *button, gpointer user_data)
+{
+
+  appt_win *apptw = (appt_win *)user_data;
+
+  if (open_ical_file()){
+    xf_del_ical_app(apptw->xf_uid);
+     close_ical_file();
+  }
+  gtk_widget_destroy(apptw->appWindow);
+
+}
+
 void fill_appt_window(appt_win *appt, char *action, char *par)
 {
   char appt_date[12], start_hh[3], start_mi[3], end_hh[3], end_mi[3];
@@ -170,8 +184,8 @@ void fill_appt_window(appt_win *appt, char *action, char *par)
             return;
         }
 
-	g_warning("id: %s \n", appt_data->uid);
-	appt->xf_uid = appt_data->uid;
+	appt->xf_uid = g_strdup(appt_data->uid);
+	g_warning("id: %s \n", appt->xf_uid);
 
         for (i = 0, j = 0; i <= 9; i++) { /* yyyymmdd -> yyyy-mm-dd */
             if ((i == 4) || (i == 7))
@@ -213,6 +227,19 @@ void fill_appt_window(appt_win *appt, char *action, char *par)
                       GTK_SPIN_BUTTON(appt->appEndMinutes_spinbutton)
                     , (gdouble) atoi(end_mi));
         }
+	if (appt_data->alarm){
+	  gtk_spin_button_set_value(
+				    GTK_SPIN_BUTTON(appt->appAlarm_spinbutton)
+				    , (gdouble) appt_data->alarm);
+	}
+	if (appt_data->alarmTimeType){
+	  gtk_combo_box_set_active(GTK_COMBO_BOX(appt->appAlarmTimeType_combobox)
+				   , appt_data->alarmTimeType);
+	}
+	if (appt_data->availability){
+	  gtk_combo_box_set_active(GTK_COMBO_BOX(appt->appAvailability_cb)
+				   , appt_data->availability);
+	}
 	if (appt_data->note){
 	  tb = gtk_text_view_get_buffer((GtkTextView *)appt->appNote_textview);
 	  gtk_text_buffer_set_text(tb, (const gchar *) appt_data->note, -1);
@@ -221,6 +248,7 @@ void fill_appt_window(appt_win *appt, char *action, char *par)
     }
     else
     g_error("unknown parameter\n");
+
 }
 
 appt_win *create_appt_win(char *action, char *par)
@@ -458,6 +486,10 @@ appt_win *create_appt_win(char *action, char *par)
 
   g_signal_connect ((gpointer) appt->appClose, "clicked",
 		    G_CALLBACK (on_appClose_clicked_cb),
+		    appt);
+
+  g_signal_connect ((gpointer) appt->appRemove, "clicked",
+		    G_CALLBACK (on_appRemove_clicked_cb),
 		    appt);
 
     fill_appt_window(appt, action, par);
