@@ -21,27 +21,26 @@
 
 typedef struct
 {
-  gchar *title,
-    *location;
+    gchar *title,
+        *location;
 
-  gint alarm,
-    alarmTimeType,
-    availability;
+    gint alarmtime,
+        availability;
 
-  gboolean allDay;
+    gboolean allDay;
 
-  gchar *note;
-  gchar *sound;
-  gchar *uid;
+    gchar *note;
+    gchar *sound;
+    gchar *uid;
 
         /* time format must be:
          * yyyymmdd[Thhmiss[Z]] = %04d%02d%02dT%02d%02d%02d
          * T means it has also time part
          * Z means it is in UTC format
          */
-  gchar 
-    starttime[17],
-    endtime[17];
+    gchar 
+        starttime[17],
+        endtime[17];
 
 } appt_type;
 
@@ -50,31 +49,26 @@ typedef struct
 
 typedef struct
 {
-  GtkWidget *appWindow;
-  GtkWidget *appVBox1;
-  GtkWidget *appTable;
-  GtkWidget *appTitle_label;
-  GtkWidget *appLocation_label;
-  GtkWidget *appStart;
-  GtkWidget *appEnd;
-  GtkWidget *appPrivate;
-  GtkWidget *appAlarm;
-  GtkWidget *appRecurrence;
-  GtkWidget *appNote;
-  GtkWidget *appAvailability;
-  GtkWidget *appTitle_entry;
-  GtkWidget *appLocation_entry;
-  GtkWidget *appPrivate_check;
-  GtkWidget *appNote_Scrolledwindow;
-  GtkWidget *appNote_textview;
-  GtkWidget *appAvailability_cb;
-  GtkWidget *appAlarm_hbox;
-  GtkObject *appAlarm_spinbutton_adj;
-  GtkWidget *appAlarm_spinbutton;
-  GtkWidget *appAlarm_fixed_1;
-  GtkWidget *appAlarmTimeType_combobox;
-  GtkWidget *appAlarm_fixed_2;
-  GtkWidget *appAllDay_checkbutton;
+    GtkWidget *appWindow;
+    GtkWidget *appVBox1;
+    GtkWidget *appTable;
+    GtkWidget *appTitle_label;
+    GtkWidget *appLocation_label;
+    GtkWidget *appStart;
+    GtkWidget *appEnd;
+    GtkWidget *appPrivate;
+    GtkWidget *appAlarm;
+    GtkWidget *appRecurrence;
+    GtkWidget *appNote;
+    GtkWidget *appAvailability;
+    GtkWidget *appTitle_entry;
+    GtkWidget *appLocation_entry;
+    GtkWidget *appPrivate_check;
+    GtkWidget *appNote_Scrolledwindow;
+    GtkWidget *appNote_textview;
+    GtkWidget *appAvailability_cb;
+    GtkWidget *appAlarm_combobox;
+    GtkWidget *appAllDay_checkbutton;
     GtkObject *appStartYear_spinbutton_adj;
     GtkWidget *appStartYear_spinbutton;
     GtkWidget *appStartSlash1_label;
@@ -83,13 +77,13 @@ typedef struct
     GtkWidget *appStartSlash2_label;
     GtkObject *appStartDay_spinbutton_adj;
     GtkWidget *appStartDay_spinbutton;
-  GtkWidget *appStartTime_hbox;
-  GtkObject *appStartHour_spinbutton_adj;
-  GtkWidget *appStartHour_spinbutton;
-  GtkWidget *appStartColumn_label;
-  GtkObject *appStartMinutes_spinbutton_adj;
-  GtkWidget *appStartMinutes_spinbutton;
-  GtkWidget *appStartTime_fixed;
+    GtkWidget *appStartTime_hbox;
+    GtkObject *appStartHour_spinbutton_adj;
+    GtkWidget *appStartHour_spinbutton;
+    GtkWidget *appStartColumn_label;
+    GtkObject *appStartMinutes_spinbutton_adj;
+    GtkWidget *appStartMinutes_spinbutton;
+    GtkWidget *appStartTime_fixed;
     GtkObject *appEndYear_spinbutton_adj;
     GtkWidget *appEndYear_spinbutton;
     GtkWidget *appEndSlash1_label;
@@ -98,20 +92,21 @@ typedef struct
     GtkWidget *appEndSlash2_label;
     GtkObject *appEndDay_spinbutton_adj;
     GtkWidget *appEndDay_spinbutton;
-  GtkWidget *appEndTime_hbox;
-  GtkObject *appEndHour_spinbutton_adj;
-  GtkWidget *appEndHour_spinbutton;
-  GtkWidget *appEndColumn_label;
-  GtkObject *appEndMinutes_spinbutton_adj;
-  GtkWidget *appEndMinutes_spinbutton;
-  GtkWidget *appEndTime_fixed;
-  GtkWidget *appHBox1;
-  GtkWidget *appRemove;
-  GtkWidget *appBottom_fixed;
-  GtkWidget *appClose;
+    GtkWidget *appEndTime_hbox;
+    GtkObject *appEndHour_spinbutton_adj;
+    GtkWidget *appEndHour_spinbutton;
+    GtkWidget *appEndColumn_label;
+    GtkObject *appEndMinutes_spinbutton_adj;
+    GtkWidget *appEndMinutes_spinbutton;
+    GtkWidget *appEndTime_fixed;
+    GtkWidget *appSound_chooserbutton;
+    GtkWidget *appHBox1;
+    GtkWidget *appRemove;
+    GtkWidget *appBottom_fixed;
+    GtkWidget *appClose;
 
-  gchar *xf_uid;
-  GtkWidget *wAppointment; /* event-list window */
+    gchar *xf_uid;
+    GtkWidget *wAppointment; /* event-list window */
 
 } appt_win;
 

@@ -94,8 +94,11 @@ on_appAllDay_clicked_cb(GtkCheckButton *checkbutton, gpointer user_data)
     gtk_widget_set_sensitive(apptw->appEndDay_spinbutton, FALSE);
     gtk_widget_set_sensitive(apptw->appEndHour_spinbutton, FALSE);
     gtk_widget_set_sensitive(apptw->appEndMinutes_spinbutton, FALSE);
+/*
     gtk_widget_set_sensitive(apptw->appAlarm_spinbutton, FALSE);
     gtk_widget_set_sensitive(apptw->appAlarmTimeType_combobox, FALSE);
+*/
+    gtk_widget_set_sensitive(apptw->appAlarm_combobox, FALSE);
   } else {
 #ifdef DEBUG
     g_warning("All day unchecked!\n");
@@ -110,8 +113,11 @@ on_appAllDay_clicked_cb(GtkCheckButton *checkbutton, gpointer user_data)
     gtk_widget_set_sensitive(apptw->appEndDay_spinbutton, TRUE);
     gtk_widget_set_sensitive(apptw->appEndHour_spinbutton, TRUE);
     gtk_widget_set_sensitive(apptw->appEndMinutes_spinbutton, TRUE);
+/*
     gtk_widget_set_sensitive(apptw->appAlarm_spinbutton, TRUE);
     gtk_widget_set_sensitive(apptw->appAlarmTimeType_combobox, TRUE);
+*/
+    gtk_widget_set_sensitive(apptw->appAlarm_combobox, TRUE);
   }
 }
 
@@ -166,9 +172,12 @@ on_appClose_clicked_cb(GtkButton *button, gpointer user_data)
 	    , EndYear_value, EndMonth_value, EndDay_value
         , EndHour_value, EndMinutes_value, 0);
 
+/*
   appt->alarm = gtk_spin_button_get_value_as_int((GtkSpinButton *)apptw->appAlarm_spinbutton);
 
   appt->alarmTimeType = gtk_combo_box_get_active((GtkComboBox *)apptw->appAlarmTimeType_combobox);
+*/
+    appt->alarmtime = gtk_combo_box_get_active((GtkComboBox *)apptw->appAlarm_combobox);
 
   appt->availability = gtk_combo_box_get_active((GtkComboBox *)apptw->appAvailability_cb);
 
@@ -354,14 +363,9 @@ void fill_appt_window(appt_win *appt_w, char *action, char *par)
                   GTK_SPIN_BUTTON(appt_w->appEndMinutes_spinbutton)
                 , (gdouble) atoi(end_mi));
     }
-	if (appt_data->alarm){
-	  gtk_spin_button_set_value(
-				    GTK_SPIN_BUTTON(appt_w->appAlarm_spinbutton)
-				    , (gdouble) appt_data->alarm);
-	}
-	if (appt_data->alarmTimeType != -1){
-	  gtk_combo_box_set_active(GTK_COMBO_BOX(appt_w->appAlarmTimeType_combobox)
-				   , appt_data->alarmTimeType);
+	if (appt_data->alarmtime != -1){
+	  gtk_combo_box_set_active(GTK_COMBO_BOX(appt_w->appAlarm_combobox)
+				   , appt_data->alarmtime);
 	}
 	if (appt_data->availability != -1){
 	  gtk_combo_box_set_active(GTK_COMBO_BOX(appt_w->appAvailability_cb)
@@ -399,7 +403,7 @@ appt_win *create_appt_win(char *action, char *par, GtkWidget *wAppointment)
   gtk_widget_show (appt->appVBox1);
   gtk_container_add (GTK_CONTAINER (appt->appWindow), appt->appVBox1);
 
-  appt->appTable = gtk_table_new (10, 2, FALSE); /* Korbinus 20050323: 10 rows now, including all day appointment */
+  appt->appTable = gtk_table_new (11, 2, FALSE); /* Korbinus 20050330: 11 rows now, including button for choosing sound to play */
   gtk_widget_show (appt->appTable);
   gtk_box_pack_start (GTK_BOX (appt->appVBox1), appt->appTable, TRUE, TRUE, 0);
   gtk_container_set_border_width (GTK_CONTAINER (appt->appTable), 10);
@@ -461,14 +465,14 @@ appt_win *create_appt_win(char *action, char *par, GtkWidget *wAppointment)
 
   appt->appAvailability = gtk_label_new (_("Availability"));
   gtk_widget_show (appt->appAvailability);
-  gtk_table_attach (GTK_TABLE (appt->appTable), appt->appAvailability, 0, 1, 8, 9,
+  gtk_table_attach (GTK_TABLE (appt->appTable), appt->appAvailability, 0, 1, 9, 10,
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
   gtk_misc_set_alignment (GTK_MISC (appt->appAvailability), 0, 0.5);
 
   appt->appNote = gtk_label_new (_("Note"));
   gtk_widget_show (appt->appNote);
-  gtk_table_attach (GTK_TABLE (appt->appTable), appt->appNote, 0, 1, 9, 10,
+  gtk_table_attach (GTK_TABLE (appt->appTable), appt->appNote, 0, 1, 10, 11,
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
   gtk_misc_set_alignment (GTK_MISC (appt->appNote), 0, 0.5);
@@ -609,37 +613,30 @@ appt_win *create_appt_win(char *action, char *par, GtkWidget *wAppointment)
                     (GtkAttachOptions) (0), 0, 0);
   */
 
-  appt->appAlarm_hbox = gtk_hbox_new (FALSE, 0);
-  gtk_widget_show (appt->appAlarm_hbox);
-  gtk_table_attach (GTK_TABLE (appt->appTable), appt->appAlarm_hbox, 1, 2, 6, 7,
-                    (GtkAttachOptions) (GTK_FILL),
-                    (GtkAttachOptions) (GTK_FILL), 0, 0);
+    appt->appAlarm_combobox = gtk_combo_box_new_text ();
+    gtk_widget_show (appt->appAlarm_combobox);
+    gtk_table_attach (GTK_TABLE (appt->appTable), appt->appAlarm_combobox, 1, 2, 6, 7,
+                        (GtkAttachOptions) (GTK_FILL),
+                        (GtkAttachOptions) (GTK_FILL), 0, 0);
+    gtk_combo_box_append_text (GTK_COMBO_BOX (appt->appAlarm_combobox), _("None"));
+    gtk_combo_box_append_text (GTK_COMBO_BOX (appt->appAlarm_combobox), _("5 minutes"));
+    gtk_combo_box_append_text (GTK_COMBO_BOX (appt->appAlarm_combobox), _("15 minutes"));
+    gtk_combo_box_append_text (GTK_COMBO_BOX (appt->appAlarm_combobox), _("30 minutes"));
+    gtk_combo_box_append_text (GTK_COMBO_BOX (appt->appAlarm_combobox), _("45 minutes"));
+    gtk_combo_box_append_text (GTK_COMBO_BOX (appt->appAlarm_combobox), _("1 hour"));
+    gtk_combo_box_append_text (GTK_COMBO_BOX (appt->appAlarm_combobox), _("2 hours"));
+    gtk_combo_box_append_text (GTK_COMBO_BOX (appt->appAlarm_combobox), _("4 hours"));
+    gtk_combo_box_append_text (GTK_COMBO_BOX (appt->appAlarm_combobox), _("8 hours"));
+    gtk_combo_box_append_text (GTK_COMBO_BOX (appt->appAlarm_combobox), _("1 day"));
+    gtk_combo_box_append_text (GTK_COMBO_BOX (appt->appAlarm_combobox), _("2 days"));
 
-  appt->appAlarm_spinbutton_adj = gtk_adjustment_new (0, 0, 100, 1, 10, 10);
-  appt->appAlarm_spinbutton = gtk_spin_button_new (GTK_ADJUSTMENT (appt->appAlarm_spinbutton_adj), 1, 0);
-  gtk_widget_show (appt->appAlarm_spinbutton);
-  gtk_box_pack_start (GTK_BOX (appt->appAlarm_hbox), appt->appAlarm_spinbutton, TRUE, TRUE, 0);
-  gtk_spin_button_set_numeric (GTK_SPIN_BUTTON (appt->appAlarm_spinbutton), TRUE);
-
-  appt->appAlarm_fixed_1 = gtk_fixed_new ();
-  gtk_widget_show (appt->appAlarm_fixed_1);
-  gtk_box_pack_start (GTK_BOX (appt->appAlarm_hbox), appt->appAlarm_fixed_1, FALSE, TRUE, 0);
-  gtk_container_set_border_width (GTK_CONTAINER (appt->appAlarm_fixed_1), 10);
-
-  appt->appAlarmTimeType_combobox = gtk_combo_box_new_text ();
-  gtk_widget_show (appt->appAlarmTimeType_combobox);
-  gtk_box_pack_start (GTK_BOX (appt->appAlarm_hbox), appt->appAlarmTimeType_combobox, TRUE, TRUE, 0);
-  gtk_combo_box_append_text (GTK_COMBO_BOX (appt->appAlarmTimeType_combobox), _("minute(s)"));
-  gtk_combo_box_append_text (GTK_COMBO_BOX (appt->appAlarmTimeType_combobox), _("hour(s)"));
-  gtk_combo_box_append_text (GTK_COMBO_BOX (appt->appAlarmTimeType_combobox), _("day(s)"));
-
-  appt->appAlarm_fixed_2 = gtk_fixed_new ();
-  gtk_widget_show (appt->appAlarm_fixed_2);
-  gtk_box_pack_start (GTK_BOX (appt->appAlarm_hbox), appt->appAlarm_fixed_2, TRUE, TRUE, 0);
+/*
+    appt->appSound_chooserbutton = gtk_file_choose_button_new_with_dialog((GtkWidget *)filechooser);
+*/
 
   appt->appAvailability_cb = gtk_combo_box_new_text ();
   gtk_widget_show (appt->appAvailability_cb);
-  gtk_table_attach (GTK_TABLE (appt->appTable), appt->appAvailability_cb, 1, 2, 8, 9,
+  gtk_table_attach (GTK_TABLE (appt->appTable), appt->appAvailability_cb, 1, 2, 9, 10,
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (GTK_FILL), 0, 0);
   gtk_combo_box_append_text (GTK_COMBO_BOX (appt->appAvailability_cb), _("Free"));
@@ -647,7 +644,7 @@ appt_win *create_appt_win(char *action, char *par, GtkWidget *wAppointment)
 
   appt->appNote_Scrolledwindow = gtk_scrolled_window_new (NULL, NULL);
   gtk_widget_show (appt->appNote_Scrolledwindow);
-  gtk_table_attach (GTK_TABLE (appt->appTable), appt->appNote_Scrolledwindow, 1, 2, 9, 10,
+  gtk_table_attach (GTK_TABLE (appt->appTable), appt->appNote_Scrolledwindow, 1, 2, 10, 11,
                     (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
                     (GtkAttachOptions) (GTK_EXPAND | GTK_FILL), 0, 0);
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (appt->appNote_Scrolledwindow), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);

@@ -1,7 +1,7 @@
 /* ical-code.c
  *
  * Copyright (C) 2005 Juha Kautto <juha@xfce.org>
- *                    Mickaël Graf <korbinus@lunar-linux.org>
+ *                    Mickaël Graf <korbinus@xfce.org>
  *
  * This program is free software; you can redistribute it and/or modify it 
  * under the terms of the GNU General Public License as published by the
@@ -161,8 +161,7 @@ appt_type *xfical_app_alloc()
     appt_type *temp;
 
     temp = g_new0(appt_type, 1);
-    temp->alarm = -1;
-    temp->alarmTimeType = 0;
+    temp->alarmtime = 0;
     temp->availability = 1;
     return(temp);
 }
@@ -222,15 +221,42 @@ char *xfical_app_add(appt_type *app)
     if XFICAL_STR_EXISTS(app->endtime)
         icalcomponent_add_property(ievent
            , icalproperty_new_dtend(icaltime_from_string(app->endtime)));
-    if (!app->allDay  && app->alarm != 0)  {
-        if (app->alarmTimeType == 0) 
-            duration = app->alarm * 60;
-        else if (app->alarmTimeType == 1) 
-            duration = app->alarm * 60 * 60;
-        else if (app->alarmTimeType == 2) 
-            duration = app->alarm * 60 * 60 * 24;
-        else 
-            duration = app->alarm; /* secs */
+    if (!app->allDay  && app->alarmtime != 0)  {
+        switch (app->alarmtime) {
+            case 0:
+                duration = 0;
+                break;
+            case 1:
+                duration = 5 * 60;
+                break;
+            case 2:
+                duration = 15 * 60;
+                break;
+            case 3:
+                duration = 30 * 60;
+                break;
+            case 4:
+                duration = 45 * 60;
+                break;
+            case 5:
+                duration = 1 * 3600;
+                break;
+            case 6:
+                duration = 2 * 3600;
+                break;
+            case 7:
+                duration = 4 * 3600;
+                break;
+            case 8:
+                duration = 8 * 3600;
+                break;
+            case 9:
+                duration = 24 * 3600;
+                break;
+            case 10:
+                duration = 48 * 3600;
+                break;
+        }
         trg.time = icaltime_null_time();
         trg.duration =  icaldurationtype_from_int(-duration);
     /********** DISPLAY **********/
@@ -304,8 +330,7 @@ appt_type *xfical_app_get(char *ical_uid)
             app.sound = NULL;
             app.uid = NULL;
             app.allDay = FALSE;
-            app.alarm = -1;
-            app.alarmTimeType = -1;
+            app.alarmtime = 0;
             app.availability = -1;
             strcpy(app.starttime, "");
             strcpy(app.endtime, "");
@@ -362,22 +387,41 @@ appt_type *xfical_app_get(char *ical_uid)
                     if (strcmp(text, "TRIGGER") == 0) {
                         trg = icalproperty_get_trigger(p);
                         if (icaltime_is_null_time(trg.time)) {
-                            mins = icaldurationtype_as_int(trg.duration)/-60;
-                            if (trg.duration.minutes == mins) {
-                                app.alarm = mins;
-                                app.alarmTimeType = 0;
-                            }
-                            else if (trg.duration.hours * 60 == mins) {
-                                app.alarm = mins/60;
-                                app.alarmTimeType = 1;
-                            }
-                            else if (trg.duration.days * 60 * 24 == mins) {
-                                app.alarm = mins/60/24;
-                                app.alarmTimeType = 2;
-                            }
-                            else {
-                                app.alarm = mins;
-                                app.alarmTimeType = 0;
+                            mins = icaldurationtype_as_int(trg.duration) * -1;
+                            switch (mins) {
+                                case 0:
+                                    app.alarmtime = 0;
+                                    break;
+                                case 5 * 60:
+                                    app.alarmtime = 1;
+                                    break;
+                                case 15 * 60:
+                                    app.alarmtime = 2;
+                                    break;
+                                case 30 * 60:
+                                    app.alarmtime = 3;
+                                    break;
+                                case 45 * 60:
+                                    app.alarmtime = 4;
+                                    break;
+                                case 1 * 3600:
+                                    app.alarmtime = 5;
+                                    break;
+                                case 2 * 3600:
+                                    app.alarmtime = 6;
+                                    break;
+                                case 4 * 3600:
+                                     app.alarmtime = 7;
+                                     break;
+                                case 8 * 3600:
+                                    app.alarmtime = 8;
+                                    break;
+                                case 24 * 3600:
+                                    app.alarmtime = 9;
+                                    break;
+                                case 48 * 3600:
+                                    app.alarmtime = 10;
+                                    break;
                             }
                         }
                         else
@@ -455,7 +499,7 @@ appt_type *getnext_ical_app_on_day(char *a_day, char *hh_mm)
             app.note     = (char *)icalcomponent_get_description(c);
             app.uid      = (char *)icalcomponent_get_uid(c);
             app.allDay   = FALSE;
-            app.alarm    = -1;
+            app.alarmtime = 0;
             text  = (char *)icaltime_as_ical_string(sdate);
             strcpy(app.starttime, text);
             edate = icalcomponent_get_dtend(c);

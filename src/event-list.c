@@ -120,7 +120,16 @@ create_wAppointment (void)
   gtk_widget_show(toolbar1);
   gtk_container_add(GTK_CONTAINER(handlebox1), toolbar1);
   gtk_toolbar_set_style(GTK_TOOLBAR(toolbar1), GTK_TOOLBAR_ICONS);
-                                                                                
+                                                                  
+  tmp_toolbar_icon = gtk_image_new_from_stock("gtk-new", gtk_toolbar_get_icon_size(GTK_TOOLBAR(toolbar1)));
+  btCreate = gtk_toolbar_append_element(GTK_TOOLBAR(toolbar1),
+                                GTK_TOOLBAR_CHILD_BUTTON, NULL,
+                                "btCreate", _("Add (Ctrl+a)"), NULL,
+                                tmp_toolbar_icon, NULL, NULL);
+  gtk_label_set_use_underline(GTK_LABEL(((GtkToolbarChild*)(g_list_last(GTK_TOOLBAR(toolbar1)->children)->data))->label), TRUE);
+  gtk_widget_show(btCreate);
+  gtk_widget_add_accelerator(btCreate, "clicked", accel_group, GDK_a, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
+                                                                                              
   tmp_toolbar_icon = gtk_image_new_from_stock("gtk-go-back", gtk_toolbar_get_icon_size(GTK_TOOLBAR(toolbar1)));
   btPrevious = gtk_toolbar_append_element(GTK_TOOLBAR(toolbar1),
                                 GTK_TOOLBAR_CHILD_BUTTON, NULL,
@@ -168,15 +177,6 @@ create_wAppointment (void)
   gtk_label_set_use_underline(GTK_LABEL(((GtkToolbarChild*)(g_list_last(GTK_TOOLBAR(toolbar1)->children)->data))->label), TRUE);
   gtk_widget_show(btDelete);
   gtk_widget_add_accelerator(btDelete, "clicked", accel_group, GDK_l, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
-                                                                                
-  tmp_toolbar_icon = gtk_image_new_from_stock("gtk-new", gtk_toolbar_get_icon_size(GTK_TOOLBAR(toolbar1)));
-  btCreate = gtk_toolbar_append_element(GTK_TOOLBAR(toolbar1),
-                                GTK_TOOLBAR_CHILD_BUTTON, NULL,
-                                "btCreate", _("Add (Ctrl+a)"), NULL,
-                                tmp_toolbar_icon, NULL, NULL);
-  gtk_label_set_use_underline(GTK_LABEL(((GtkToolbarChild*)(g_list_last(GTK_TOOLBAR(toolbar1)->children)->data))->label), TRUE);
-  gtk_widget_show(btCreate);
-  gtk_widget_add_accelerator(btCreate, "clicked", accel_group, GDK_l, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
                                                                                 
   scrolledwindow1 = gtk_scrolled_window_new(NULL, NULL);
   gtk_widget_show(scrolledwindow1);
