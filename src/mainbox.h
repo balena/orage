@@ -49,4 +49,4 @@ struct _CalWin
 };
 
 CalWin *create_mainWin(void);
-void xfcalendar_toggle_visible (CalWin *xfcal);
+void xfcalendar_toggle_visible ();

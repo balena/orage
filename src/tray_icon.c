@@ -73,10 +73,10 @@ on_about_activate(GtkMenuItem *menuitem, gpointer user_data)
 }
 
 void 
-toggle_visible_cb (CalWin *xfcal)
+toggle_visible_cb ()
 {
 
-  xfcalendar_toggle_visible (xfcal);
+  xfcalendar_toggle_visible ();
 
 }
 

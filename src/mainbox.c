@@ -104,7 +104,7 @@ mWindow_delete_event_cb(GtkWidget *widget, GdkEvent *event,
   CalWin *xfcal = (CalWin *)user_data;
 
   xfcal->show_Calendar = FALSE;
-  gtk_widget_hide(xfcal->mWindow);
+  xfcalendar_toggle_visible(xfcal);
 
   return(TRUE);
 
@@ -344,7 +344,7 @@ xfcalendar_alarm_clock(gpointer user_data)
 }
 
 void
-xfcalendar_toggle_visible (CalWin *xfcal)
+xfcalendar_toggle_visible ()
 {
 
   GdkEventClient gev;

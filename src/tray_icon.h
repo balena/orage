@@ -1,6 +1,6 @@
 /* tray_icon.h
  *
- * (C) 2004 Mickaël Graf
+ * (C) 2004-2005 Mickaël Graf
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -19,8 +19,6 @@
  */
 
 #include "xfce_trayicon.h"
-//#include "mainbox.h"
 
 XfceTrayIcon*
 create_TrayIcon (CalWin *xfcal);
-//create_TrayIcon (GtkWidget *window);
