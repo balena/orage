@@ -507,26 +507,32 @@ on_calendar1_scroll                    (GtkCalendar     *calendar,
 {
   guint year, month, day;
   gtk_calendar_get_date(cal, &year, &month, &day);
-
+#ifdef DEBUG
+  g_print("Year: %d, month: %d, day: %d\n", year, month, day);
+#endif
   switch(event->direction)
     {
 	case GDK_SCROLL_UP:
- 	    g_print("UP!!\n");
-	    if(--month == 0){
-	      month = 12;
+	    if(--month == -1){
+#ifdef DEBUG
+	      g_print("Up!! Year: %d, month: %d, day: %d\n", year, month, day);
+#endif
+	      month = 11;
 	      --year;
 	    }
 	    gtk_calendar_select_month(cal, month, year);
 	    break;
 	case GDK_SCROLL_DOWN:
- 	    g_print("DOWN!!\n");
-	    if(++month == 11){
+	    if(++month == 12){
+#ifdef DEBUG
+	      g_print("Down!! Year: %d, month: %d, day: %d\n", year, month, day);
+#endif	      
 	      month = 0;
 	      ++year;
 	    }
 	    gtk_calendar_select_month(cal, month, year);
 	    break;
-	default: /* We don't care about left and right...  Yet. */
+	default:
 	  g_print("get scroll event!!!");
     }
 
