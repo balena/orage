@@ -62,7 +62,7 @@ static SessionClient	*session_client = NULL;
 static GtkWidget	*mainWindow = NULL;
 
 /* MCS client */
-extern McsClient        *client;;
+extern McsClient        *client;
 
 /* tray icon */
 XfceTrayIcon 		*trayIcon = NULL;
@@ -216,6 +216,7 @@ main(int argc, char *argv[])
 	 * want shown initially.
 	 */
 	mainWindow = create_XFCalendar();
+	set_mainWin(mainWindow);
 	set_cal(mainWindow);
 	init_settings(mainWindow);
 	mark_appointments(mainWindow);

@@ -62,13 +62,17 @@
 settings calsets;
 
 static gboolean startday = SUNDAY;
+static gboolean showtaskbar = TRUE;
+static gboolean showpager = TRUE;
 
 /* MCS client */
 McsClient        *client = NULL;
 
+
 static GtkWidget *info;
 static GtkWidget *clearwarn;
 static GtkCalendar *cal;
+static GtkWidget *mainWindow;
 
 /* Direction for changing day to look at */
 enum{
@@ -87,6 +91,7 @@ void init_settings(GtkWidget *w)
   /* default */
   calsets.showCal = TRUE;
   calsets.showTaskbar = TRUE;
+  calsets.showPager = TRUE;
   calsets.startMonday = FALSE;
   calsets.dispOptions = GTK_CALENDAR_SHOW_HEADING | GTK_CALENDAR_SHOW_DAY_NAMES | GTK_CALENDAR_SHOW_WEEK_NUMBERS;
 
@@ -165,6 +170,11 @@ void apply_settings()
 void settings_set_showCal(GtkWidget *w)
 {
   calsets.showCal = GTK_WIDGET_VISIBLE(w);
+}
+
+void set_mainWin(GtkWidget *w)
+{
+  mainWindow=w;
 }
 
 void set_cal(GtkWidget *w)
@@ -755,16 +765,56 @@ notify_cb(const char *name, const char *channel_name, McsAction action, McsSetti
 		  //I'll look later if I can clean that...
 		  if(startday == SUNDAY) 
 		    {
-		    calsets.startMonday = FALSE;
-		    g_message("Monday false");
+		      calsets.startMonday = FALSE;
+#ifdef debug
+		      g_message("Monday false");
+#endif
 		    }
 		  else
 		    {
-		    calsets.startMonday = TRUE;
-		    g_message("Monday true");
+		      calsets.startMonday = TRUE;
+#ifdef debug
+		      g_message("Monday true");
+#endif
 		    }
 		  apply_settings();
                 }
+		if(!strcmp(name, "XFCalendar/TaskBar"))
+		{
+		  showtaskbar = setting->data.v_int ? TRUE: FALSE;
+		  if(showtaskbar)
+		    {
+		      gtk_window_set_skip_taskbar_hint((GtkWindow*)mainWindow, FALSE);
+#ifdef debug
+		      g_message("Show in taskbar");
+#endif
+		    }
+		  else
+		    {
+		      gtk_window_set_skip_taskbar_hint((GtkWindow*)mainWindow, TRUE);
+#ifdef debug
+		      g_message("Don't show in taskbar");
+#endif
+		    }
+		}
+		if(!strcmp(name, "XFCalendar/Pager"))
+		{
+		  showpager = setting->data.v_int ? TRUE: FALSE;
+		  if(showpager)
+		    {
+		      gtk_window_set_skip_pager_hint((GtkWindow*)mainWindow, FALSE);
+#ifdef debug
+		      g_message("Show in pager");
+#endif
+		    }
+		  else
+		    {
+		      gtk_window_set_skip_pager_hint((GtkWindow*)mainWindow, TRUE);
+#ifdef debug
+		      g_message("Don't show in pager");
+#endif
+		    }
+		}
             }
             break;
         case MCS_ACTION_DELETED:

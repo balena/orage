@@ -6,6 +6,7 @@ typedef struct
 {
   gboolean showCal;
   gboolean showTaskbar;
+  gboolean showPager;
   gboolean startMonday;
   GtkCalendarDisplayOptions dispOptions; 
 } settings;
@@ -15,6 +16,8 @@ void init_settings(GtkWidget *w);
 void apply_settings();
 
 void settings_set_showCal(GtkWidget *w);
+
+void set_mainWin(GtkWidget *w);
 
 void set_cal(GtkWidget *w);
 
