@@ -142,7 +142,7 @@ Itf *create_xfcalendar_dialog(McsPlugin * mcs_plugin)
 
     icon = inline_icon_at_size(calendar_icon_data, 32, 32);
     dialog->xfcalendar_dialog = gtk_dialog_new();
-    gtk_widget_set_size_request (dialog->xfcalendar_dialog, 300, 200);
+    gtk_window_set_default_size (GTK_WINDOW(dialog->xfcalendar_dialog), 300, 200);
     gtk_window_set_title (GTK_WINDOW (dialog->xfcalendar_dialog), _("XFCalendar"));
     gtk_window_set_position (GTK_WINDOW (dialog->xfcalendar_dialog), GTK_WIN_POS_CENTER);
     gtk_window_set_modal (GTK_WINDOW (dialog->xfcalendar_dialog), FALSE);
