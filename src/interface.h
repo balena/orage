@@ -6,3 +6,4 @@ GtkWidget* create_XFCalendar (void);
 GtkWidget* create_wAppointment (void);
 GtkWidget* create_wInfo (void);
 GtkWidget* create_wClearWarn (void);
+GtkWidget* create_wReminder (char *text);

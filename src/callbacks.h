@@ -114,3 +114,6 @@ on_cancelbutton1_clicked               (GtkButton       *button,
 void
 on_okbutton2_clicked                   (GtkButton       *button,
                                         gpointer         user_data);
+void
+on_btOkReminder_clicked                  (GtkButton       *button,
+                                        gpointer         user_data);

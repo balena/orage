@@ -82,8 +82,9 @@ int mark_appointments(GtkWidget *w){
 }
 
 void pretty_window(char *text){
-	printf("FIXME: alarmclock!! (function pretty_window())\n"); 
-	printf("FIXME: Draw a pretty window (noneditable) with the text:\n%s\n",text); 
+	GtkWidget *reminder;
+	reminder = create_wReminder(text);
+	gtk_widget_show(reminder);
 }
 
 gint alarm_clock(gpointer p){
@@ -407,4 +408,11 @@ on_okbutton2_clicked(GtkButton *button, gpointer user_data)
 	}
 #endif
 	g_free(fpath);
+}
+
+void
+on_btOkReminder_clicked(GtkButton *button, gpointer user_data)
+{
+  GtkWidget *a=lookup_widget((GtkWidget *)button,"wReminder");
+  gtk_widget_destroy(a); /* destroy the specific appointment window */
 }
