@@ -5,12 +5,10 @@ xfcalendar_SOURCES =							\
 	about-xfcalendar.h						\
 	appointment.c							\
 	appointment.h							\
-	callbacks.c							\
-	callbacks.h							\
+	event-list.c							\
+	event-list.h							\
 	ical-code.c							\
 	ical-code.h							\
-	interface.c							\
-	interface.h							\
 	main.c								\
 	mainbox.c                                                       \
 	mainbox.h                                                       \

@@ -46,9 +46,8 @@
 #include <gtk/gtk.h>
 #include <gdk/gdk.h>
 
-#include "callbacks.h"
 #include "mainbox.h"
-#include "interface.h"
+#include "event-list.h"
 #include "support.h"
 #include "tray_icon.h"
 #include "xfce_trayicon.h"
@@ -64,7 +63,7 @@ GtkWidget	*mainWindow = NULL;
 CalWin *xfcal;
 
 /* MCS client */
-extern McsClient        *client;
+McsClient        *client = NULL;
 
 /* tray icon */
 XfceTrayIcon 		*trayIcon = NULL;
@@ -83,6 +82,30 @@ raise_window()
         gtk_window_move (GTK_WINDOW (mainWindow), pos_x, pos_y);
     gtk_window_stick (GTK_WINDOW (mainWindow));
     gtk_widget_show (mainWindow);
+}
+
+void apply_settings()
+{
+  gchar *fpath;
+  FILE *fp;
+                                                                                
+  xfce_textdomain(GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8");
+                                                                                
+  gtk_calendar_display_options (GTK_CALENDAR (xfcal->mCalendar), xfcal->display_Options);
+                                                                                
+  /* Save settings here */
+  /* I know, it's bad(tm) */
+  fpath = xfce_resource_save_location(XFCE_RESOURCE_CONFIG,
+                RCDIR G_DIR_SEPARATOR_S "xfcalendarrc", FALSE);
+  if ((fp = fopen(fpath, "w")) == NULL){
+    g_warning("Unable to open RC file.");
+  }else {
+    fprintf(fp, "[Window Position]\n");
+    gtk_window_get_position(GTK_WINDOW(xfcal->mWindow), &pos_x, &pos_y);
+    fprintf(fp, "X=%i, Y=%i\n", pos_x, pos_y);
+    fclose(fp);
+  }
+  g_free(fpath);
 }
 
 static gboolean
@@ -114,6 +137,12 @@ client_message_received (GtkWidget * widget, GdkEventClient * event,
     }
 
     return FALSE;
+}
+
+int keep_tidy(void){
+    /* we could move old appointment to other file to keep the active
+       calendar file smaller and faster */
+    return TRUE;
 }
 
 void 
@@ -186,6 +215,14 @@ notify_cb(const char *name, const char *channel_name, McsAction action, McsSetti
     }
 }
 
+GdkFilterReturn
+client_event_filter(GdkXEvent *xevent, GdkEvent *event, gpointer data)
+{
+    if(mcs_client_process_event(client, (XEvent *) xevent))
+        return GDK_FILTER_REMOVE;
+    else
+        return GDK_FILTER_CONTINUE;
+}
 
 void
 watch_cb(Window window, Bool is_start, long mask, void *cb_data)

@@ -29,10 +29,7 @@
 #include <libxfcegui4/netk-trayicon.h>
 #include <libxfce4mcs/mcs-client.h>
 
-/* temporary */
-#include "interface.h"
-#include "callbacks.h"
-/* */
+#include "event-list.h"
 #include "support.h"
 #include "mainbox.h"
 #include "xfce_trayicon.h"

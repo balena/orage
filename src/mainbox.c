@@ -45,9 +45,9 @@
 #include "xfce_trayicon.h"
 #include "about-xfcalendar.h"
 #include "appointment.h"
-#include "interface.h"
-#include "callbacks.h"
+#include "event-list.h"
 #include "ical-code.h"
+#include "reminder.h"
 
 
 #define LEN_BUFFER 1024
@@ -243,6 +243,12 @@ xfcalendar_init_settings (CalWin *xfcal)
   }
 }
 
+void pretty_window(char *text){
+    GtkWidget *reminder;
+    reminder = create_wReminder(text);
+    gtk_widget_show(reminder);
+}
+
 gboolean
 xfcalendar_alarm_clock(gpointer user_data)
 {
@@ -301,7 +307,8 @@ xfcalendar_alarm_clock(gpointer user_data)
             sprintf(a_day, XF_APP_DATE_FORMAT
                     , t->tm_year+1900, t->tm_mon+1, t->tm_mday);
             if (app = getnext_ical_app_on_day(a_day, a_time)){ /* data found */
-                if (app->note != NULL && app->note[0] != '\0') pretty_window(app->note);
+                if (app->note != NULL && app->note[0] != '\0') 
+                    pretty_window(app->note);
             }
             close_ical_file();
         }
