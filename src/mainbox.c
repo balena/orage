@@ -58,8 +58,6 @@ extern gboolean normalmode;
 extern gint pos_x, pos_y;
 static GtkCalendar *cal;
 
-char today[8];
-
 gboolean
 xfcalendar_mark_appointments (CalWin *xfcal)
 {
@@ -91,12 +89,21 @@ mWindow_delete_event_cb(GtkWidget *widget, GdkEvent *event,
   return(TRUE);
 
 }
+
 void
 mFile_newApp_activate_cb(GtkMenuItem *menuitem, 
-			 gpointer user_data){
-
+			 gpointer user_data)
+{
   appt_win *app;
-  app = create_appt_win("NEW", "20050314");  
+  struct tm *t;
+  time_t tt;
+  char cur_date[9];
+
+  tt=time(NULL);
+  t=localtime(&tt);
+  g_snprintf(cur_date, 9, "%04d%02d%02d", t->tm_year+1900
+            , t->tm_mon+1, t->tm_mday);
+  app = create_appt_win("NEW", cur_date);  
   gtk_widget_show(app->appWindow);
 }
 
@@ -121,8 +128,8 @@ mFile_quit_activate_cb (GtkMenuItem *menuitem,
 }
 
 void 
-mSettings_preferences_activate_cb      (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
+mSettings_preferences_activate_cb(GtkMenuItem *menuitem,
+            gpointer user_data)
 {
 
   mcs_client_show(GDK_DISPLAY(), DefaultScreen(GDK_DISPLAY()), CHANNEL);
@@ -130,8 +137,8 @@ mSettings_preferences_activate_cb      (GtkMenuItem     *menuitem,
 }
 
 void
-mSettings_selectToday_activate_cb      (GtkMenuItem     *menuitem,
-					gpointer         user_data)
+mSettings_selectToday_activate_cb(GtkMenuItem *menuitem,
+            gpointer user_data)
 {
 
   CalWin *xfcal = (CalWin *)user_data;
@@ -243,79 +250,6 @@ xfcalendar_init_settings (CalWin *xfcal)
   }
 }
 
-void pretty_window(char *text){
-    GtkWidget *reminder;
-    reminder = create_wReminder(text);
-    gtk_widget_show(reminder);
-}
-
-gboolean
-xfcalendar_alarm_clock(gpointer user_data)
-{
-    CalWin *xfcal = (CalWin *)user_data;
-    struct tm *t;
-    char key[8], loc_date[8], selected_date[8];
-    guint year, month, day;
-    time_t tt;
-    static char start_key[8]={0,0,0,0,0,0,0,0};
-    char a_day[10];
-    char a_time[6]="";
-    appt_type *app;
-
-  tt=time(NULL);
-  t=localtime(&tt);
-  g_snprintf(key, 8, "%03d%02d%02d", t->tm_year, t->tm_mon, t->tm_mday);
-#ifdef DEBUG
-  printf("at alarm %s==%s\n",key,start_key);
-#endif
-
-  /* See if the day just changed and the former current date was selected */
-
-  /* Just for avoiding to rewrite the routine in case key has its format  
-   * changed in the future.
-   */
-  strcpy(loc_date, key);
-
-  if (strcmp (loc_date, today) != 0)
-    {
-      /* Get the selected data */
-      gtk_calendar_get_date (GTK_CALENDAR (xfcal->mCalendar),
-			     &year, &month, &day); 
-      /* build a string of it */
-      g_snprintf(selected_date, 8, "%03d%02d%02d", year-1900, month, day);
-
-      /* if the selected date is the former today variable, changed 
-       * the selected data; otherwise do nothing for keeping the date
-       * selected by the user. */
-      if (strcmp (selected_date, today) == 0)
-	{
-	  /* change today variable */
-	  strcpy(today, selected_date);
-
-	  /* select the relevant month and day in the calendar */
-	  gtk_calendar_select_month(GTK_CALENDAR(xfcal->mCalendar), 
-				    t->tm_mon, t->tm_year+1900);
-	  gtk_calendar_select_day(GTK_CALENDAR(xfcal->mCalendar), 
-				  t->tm_mday);
-	}
-    }
-
-  /* Check if any appointement for the date */
-    if (!strlen(start_key) || strcmp(start_key,key)!=0){
-        if (open_ical_file()){
-            strcpy(start_key, key);
-            sprintf(a_day, XF_APP_DATE_FORMAT
-                    , t->tm_year+1900, t->tm_mon+1, t->tm_mday);
-            if (app = getnext_ical_app_on_day(a_day, a_time)){ /* data found */
-                if (app->note != NULL && app->note[0] != '\0') 
-                    pretty_window(app->note);
-            }
-            close_ical_file();
-        }
-    }
-    return TRUE;	
-}
-
 void
 xfcalendar_toggle_visible ()
 {
@@ -340,9 +274,6 @@ xfcalendar_toggle_visible ()
 
 void create_mainWin(CalWin *xfcal)
 {
-  struct tm *t;
-  time_t tt;
-
   GdkPixbuf *xfcalendar_logo = xfce_themed_icon_load ("xfcalendar", 48);
 
   xfcal->mAccel_group = gtk_accel_group_new ();
@@ -495,17 +426,5 @@ void create_mainWin(CalWin *xfcal)
 
   cal = GTK_CALENDAR(xfcal->mCalendar); //horrible hack :(
   xfcalendar_mark_appointments (xfcal);
-
-  g_timeout_add_full(0, 
-		     5000, 
-		     (GtkFunction) xfcalendar_alarm_clock, 
-		     (gpointer) xfcal, 
-		     //(gpointer) xfcal->mWindow, 
-		     NULL);
-
-  /* Remember which day we are */
-  tt=time(NULL);
-  t=localtime(&tt);
-  g_snprintf(today, 8, "%03d%02d%02d", t->tm_year, t->tm_mon, t->tm_mday);
 
 }

@@ -1,6 +1,7 @@
 /* reminder.c
  *
- * (C) 2003-2004 Mickaël Graf
+ * (C) 2003-2005 Mickaël Graf
+ * (C) 2005      Juha Kautto 
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -26,12 +27,20 @@
 #include <unistd.h>
 #include <string.h>
 #include <stdio.h>
+#include <time.h>
 
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
 #include <libxfce4util/libxfce4util.h>
 #include <libxfcegui4/libxfcegui4.h>
 #include <libxfcegui4/dialogs.h>
+
+#include "mainbox.h"
+#include "appointment.h"
+#include "reminder.h"
+#include "ical-code.h"
+
+extern GList *alarm_list;
 
 void
 on_btOkReminder_clicked(GtkButton *button, gpointer user_data)
@@ -40,7 +49,7 @@ on_btOkReminder_clicked(GtkButton *button, gpointer user_data)
   gtk_widget_destroy(wReminder); /* destroy the specific appointment window */
 }
 
-GtkWidget*
+void
 create_wReminder(char *text)
 {
   GtkWidget *wReminder;
@@ -90,6 +99,66 @@ create_wReminder(char *text)
 		    G_CALLBACK (on_btOkReminder_clicked),
 		    wReminder);
 
-  return wReminder;
+  gtk_widget_show (wReminder);
+}
+
+gboolean
+xfcalendar_alarm_clock(gpointer user_data)
+{
+    CalWin *xfcal = (CalWin *)user_data;
+    time_t tt;
+    struct tm *t;
+    static guint previous_year=0, previous_month=0, previous_day=0;
+    guint selected_year=0, selected_month=0, selected_day=0;
+    guint current_year=0, current_month=0, current_day=0;
+    appt_type *app;
+    GList *alarm_l;
+    alarm_struct *cur_alarm;
+    gboolean alarm_raised=FALSE;
+                                                                                
+    tt=time(NULL);
+    t=localtime(&tt);
+    printf("at alarm %d==%d hour:%d min:%d sec:%d\n",previous_day,t->tm_mday,t->tm_hour, t->tm_min, t->tm_sec);
+  /* See if the day just changed and the former current date was selected */
+    if (previous_day != t->tm_mday) {
+        current_year  = t->tm_year + 1900;
+        current_month = t->tm_mon + 1;
+        current_day   = t->tm_mday;
+      /* Get the selected data from calendar */
+        gtk_calendar_get_date(GTK_CALENDAR (xfcal->mCalendar),
+                 &selected_year, &selected_month, &selected_day);
+        if (selected_year == previous_year 
+        && selected_month == previous_month 
+        && selected_day == previous_day) {
+            /* previous day was indeed selected, 
+               keep it current automatically */
+            gtk_calendar_select_month(GTK_CALENDAR(xfcal->mCalendar),
+                    current_month, current_year);
+            gtk_calendar_select_day(GTK_CALENDAR(xfcal->mCalendar),
+                    current_day);
+        }
+        previous_year  = current_year;
+        previous_month = current_month;
+        previous_day   = current_day;
+    }
+
+  /* Check if any alarms to show */
+    alarm_l=alarm_list;
+    for (alarm_l = g_list_first(alarm_l);
+         alarm_l != NULL;
+         alarm_l = g_list_next(alarm_l)) {
+        cur_alarm = (alarm_struct *)alarm_l->data;
+        g_print("alarm found %s\n", cur_alarm->alarm_time->str);
+        if (ical_alarm_passed(cur_alarm->alarm_time->str)) {
+        g_print("alarm found activated start%s\n", cur_alarm->alarm_time->str);
+            create_wReminder(cur_alarm->description->str);
+            alarm_raised = TRUE;
+        g_print("alarm found activated end\n");
+        }
+    }
+    if (alarm_raised) /* at least one alarm processed, need new list */
+        build_ical_alarm_list(); 
+
+    return TRUE;
 }
 

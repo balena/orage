@@ -50,6 +50,7 @@
 #include <icalss.h>
 
 #include "appointment.h"
+#include "reminder.h"
 #include "ical-code.h"
 
 #define MAX_APP_LENGTH 4096
@@ -61,7 +62,9 @@
 
 static icalcomponent *ical;
 static icalset* fical;
+static gboolean fical_modified=TRUE;
 
+extern GList *alarm_list;
 
 gboolean open_ical_file(void)
 {
@@ -79,7 +82,8 @@ gboolean open_ical_file(void)
     }
     else{
         /* let's find last VCALENDAR entry */
-        for (iter = icalset_get_first_component(fical); iter != 0;
+        for (iter = icalset_get_first_component(fical); 
+             iter != 0;
              iter = icalset_get_next_component(fical)){
             cnt++;
             ical = iter; /* last valid component */
@@ -107,8 +111,41 @@ gboolean open_ical_file(void)
 void close_ical_file(void)
 {
     icalset_free(fical);
+    if (fical_modified) {
+        fical_modified = FALSE;
+        build_ical_alarm_list();
+    }
 }
 
+struct icaltimetype ical_get_current_local_time()
+{
+    time_t t;
+    struct tm *tm;
+    struct icaltimetype ctime;
+    char koe[200];
+
+    t=time(NULL);
+    tm=localtime(&t);
+    
+    ctime.year        = tm->tm_year+1900;
+    ctime.month       = tm->tm_mon+1;
+    ctime.day         = tm->tm_mday;
+    ctime.hour        = tm->tm_hour;
+    ctime.minute      = tm->tm_min;
+    ctime.second      = tm->tm_sec;
+    ctime.is_utc      = 0;
+    ctime.is_date     = 0;
+    ctime.is_daylight = 0;
+    ctime.zone        = NULL;
+    /*
+    note: this gives UTC time:
+    ctime = icaltime_current_time_with_zone(NULL);
+
+    strftime(koe, 200, "%Z", tm);
+    g_print("timezone: %s\n", koe);
+    */
+    return (ctime);
+}
  /* allocates memory and initializes it for new ical_type structure
  *  returns: NULL if failed and pointer to appt_type if successfull.
  *                You must free it after not being used anymore. (g_free())
@@ -139,7 +176,7 @@ char *xf_add_ical_app(appt_type *app)
     struct icaltriggertype trg;
     gint duration=0;
 
-    ctime = icaltime_current_time_with_zone(NULL);
+    ctime = ical_get_current_local_time();
     gethostname(xf_host, 500);
     sprintf(xf_uid, "Xfcalendar-%s-%lu@%s", icaltime_as_ical_string(ctime), 
                 (long) getuid(), xf_host);
@@ -177,11 +214,9 @@ char *xf_add_ical_app(appt_type *app)
         icalcomponent_add_property(ievent
            , icalproperty_new_transp(ICAL_TRANSP_OPAQUE));
     if (app->alarm != 0)  {
-        g_print("\n#####alarm set %d\n", app->alarm);
         ialarm = icalcomponent_vanew(ICAL_VALARM_COMPONENT
            ,icalproperty_new_action(ICAL_ACTION_DISPLAY)
            ,0);
-        g_print("\n#####alarm set 2 %d\n", app->alarm);
         if ((app->note != NULL)  && (strlen(app->note) > 0)) 
             icalcomponent_add_property(ialarm
                 , icalproperty_new_description(app->note));
@@ -207,6 +242,7 @@ char *xf_add_ical_app(appt_type *app)
     }
 
     icalcomponent_add_component(ical, ievent);
+    fical_modified = TRUE;
     icalset_mark(fical);
     return(xf_uid);
 }
@@ -262,7 +298,6 @@ appt_type *xf_get_ical_app(char *ical_uid)
                 else if (strcmp(text, "UID") == 0)
                     app.uid = (char *) icalproperty_get_uid(p);
                 else if (strcmp(text, "TRANSP") == 0) {
-                g_print("\n#####transp read 1 %d\n", app.availability);
                     xf_transp = icalproperty_get_transp(p);
                     if (xf_transp == ICAL_TRANSP_TRANSPARENT)
                         app.availability = 0;
@@ -270,7 +305,6 @@ appt_type *xf_get_ical_app(char *ical_uid)
                         app.availability = 1;
                     else 
                         app.availability = -1;
-                g_print("\n#####transp read 2 %d\n", app.availability);
                 }
                 else if (strcmp(text, "DTSTART") == 0) {
                     itime = icalproperty_get_dtstart(p);
@@ -288,19 +322,16 @@ appt_type *xf_get_ical_app(char *ical_uid)
         /*********** Alarms ***********/
             for (ca = icalcomponent_get_first_component(c
                         , ICAL_VALARM_COMPONENT); 
-                ca != 0;
-                ca = icalcomponent_get_next_component(c
+                 ca != 0;
+                 ca = icalcomponent_get_next_component(c
                         , ICAL_VALARM_COMPONENT)) {
-                g_print("\n#####alarm read 1 %d\n", app.alarm);
                 for (p = icalcomponent_get_first_property(ca
                         , ICAL_ANY_PROPERTY);
-                    p != 0;
-                    p = icalcomponent_get_next_property(ca
+                     p != 0;
+                     p = icalcomponent_get_next_property(ca
                         , ICAL_ANY_PROPERTY)) {
                     text = icalproperty_get_property_name(p);
-                    g_print("\n#####alarm read 2 %s\n", text);
                     if (strcmp(text, "TRIGGER") == 0) {
-                        g_print("\n#####alarm read 3 %s\n", text);
                         trg = icalproperty_get_trigger(p);
                         if (icaltime_is_null_time(trg.time)) {
                             mins = icaldurationtype_as_int(trg.duration)/-60;
@@ -351,6 +382,7 @@ gboolean xf_del_ical_app(char *ical_uid)
         uid = (char *)icalcomponent_get_uid(c);
         if (strcmp(uid, ical_uid) == 0) {
             icalcomponent_remove_component(ical, c);
+            fical_modified = TRUE;
             icalset_mark(fical);
             return(TRUE);
         }
@@ -431,7 +463,7 @@ int getnextday_ical_app(int year, int month, int day)
         c = icalcomponent_get_first_component(ical, ICAL_VEVENT_COMPONENT); 
     }
     for ( ;
-        (c != 0) && (next_day == 0);
+         (c != 0) && (next_day == 0);
          c = icalcomponent_get_next_component(ical, ICAL_VEVENT_COMPONENT)){
         t = icalcomponent_get_dtstart(c);
         if ((t.year == year) && (t.month == month)){
@@ -461,6 +493,97 @@ void rmday_ical_app(char *a_day)
             icalcomponent_remove_component(ical, c);
         }
     } 
+    fical_modified = TRUE;
     icalset_mark(fical);
 }
 
+void free_alarm(gpointer galarm, gpointer dummy)
+{
+    g_free(galarm);
+}
+
+gint alarm_order(gconstpointer a, gconstpointer b)
+{
+    struct icaltimetype t1, t2;
+
+    t1=icaltime_from_string(((alarm_struct *)a)->alarm_time->str);
+    t2=icaltime_from_string(((alarm_struct *)b)->alarm_time->str);
+
+    return(icaltime_compare(t1, t2));
+}
+
+void build_ical_alarm_list()
+{
+    struct icaltimetype event_dtstart, alarm_time, cur_time;
+    icalcomponent *c, *ca;
+    icalproperty *p;
+    icalproperty_status stat;
+    struct icaltriggertype trg;
+    char *s, *suid, *ssummary, *sdescription, *saction;
+    gboolean trg_found;
+    alarm_struct *new_alarm;
+
+    cur_time = ical_get_current_local_time();
+    /* read all alarms and build a list */
+    g_list_foreach(alarm_list, free_alarm, NULL);
+    g_list_free(alarm_list);
+    alarm_list = NULL;
+    open_ical_file();
+    for (c = icalcomponent_get_first_component(ical, ICAL_VEVENT_COMPONENT);
+         c != 0;
+         c = icalcomponent_get_next_component(ical, ICAL_VEVENT_COMPONENT)){
+        suid = (char*)icalcomponent_get_uid(c);
+        ssummary = (char*)icalcomponent_get_summary(c);
+        sdescription = (char*)icalcomponent_get_description(c);
+        event_dtstart = icalcomponent_get_dtstart(c);
+        for (ca = icalcomponent_get_first_component(c, ICAL_VALARM_COMPONENT);
+             ca != 0;
+             ca = icalcomponent_get_next_component(c, ICAL_VALARM_COMPONENT)) {
+            trg_found=FALSE;
+            for (p = icalcomponent_get_first_property(ca, ICAL_ANY_PROPERTY);
+                 p != 0;
+                 p = icalcomponent_get_next_property(ca, ICAL_ANY_PROPERTY)) {
+                s = (char *)icalproperty_get_property_name(p);
+                if (strcmp(s, "ACTION") == 0)
+                    stat = icalproperty_get_action(p);
+                else if (strcmp(s, "DESCRIPTION") == 0)
+                    sdescription = (char*)icalproperty_get_description(p);
+                else if (strcmp(s, "TRIGGER") == 0) {
+                    trg = icalproperty_get_trigger(p);
+                    trg_found = TRUE;
+                }
+                else
+                    g_warning("Unknown property in Alarm\n");
+ 
+            } 
+            if (trg_found) {
+            /* all data available. let's pack it */
+                alarm_time = icaltime_add(event_dtstart, trg.duration);
+                if (icaltime_compare(cur_time, alarm_time) <= 0) {
+                    new_alarm = g_new(alarm_struct, 1);
+                    new_alarm->uid = g_string_new(suid);
+                    new_alarm->title = g_string_new(ssummary);
+                    new_alarm->description = g_string_new(sdescription);
+                    new_alarm->alarm_time = g_string_new(
+                        icaltime_as_ical_string(alarm_time));
+                    new_alarm->event_time = g_string_new(
+                        icaltime_as_ical_string(event_dtstart));
+                    alarm_list = g_list_append(alarm_list, new_alarm);
+                } /* active alarm */
+            } /* trg_found */
+        }  /* ALARMS */
+    }  /* EVENTS */
+    alarm_list = g_list_sort(alarm_list, alarm_order);
+    close_ical_file();
+}
+
+gboolean ical_alarm_passed(char *alarm_stime)
+{
+    struct icaltimetype alarm_time, cur_time;
+
+    cur_time = ical_get_current_local_time();
+    alarm_time = icaltime_from_string(alarm_stime);
+    if (icaltime_compare(cur_time, alarm_time) > 0)
+        return(TRUE);
+    return(FALSE);
+}

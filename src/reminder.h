@@ -1,6 +1,7 @@
 /* reminder.h
  *
- * (C) 2004 Mickaël Graf
+ * (C) 2004-2005 Mickaël Graf
+ * (C) 2005 Juha Kautto
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -18,4 +19,16 @@
  *
  */
 
-GtkWidget *create_wReminder(char *text);
+typedef struct 
+{
+    GString *uid;
+    GString *title;
+    GString *description;
+    GString *alarm_time;
+    GString *event_time;
+} alarm_struct;
+
+void create_wReminder(char *text);
+
+gboolean xfcalendar_alarm_clock(gpointer user_data);
+

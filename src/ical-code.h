@@ -23,6 +23,8 @@ gboolean open_ical_file(void);
 
 void close_ical_file(void);
 
+struct icaltimetype ical_get_current_local_time();
+
 appt_type *xf_alloc_ical_app();
 
 char *xf_add_ical_app(appt_type *app);
@@ -35,5 +37,8 @@ appt_type * getnext_ical_app_on_day(char *a_day, char *hh_mm);
 
 int getnextday_ical_app(int year, int month, int day);
 
-void rmday_ical_app(char *a_day) ;
+void rmday_ical_app(char *a_day);
 
+void build_ical_alarm_list();
+
+gboolean ical_alarm_passed(char *alarm_stime);

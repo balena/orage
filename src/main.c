@@ -37,6 +37,7 @@
 #ifdef HAVE_STRING_H
 #include <string.h>
 #endif
+#include <time.h>
 
 #include <libxfce4util/libxfce4util.h>
 #include <libxfcegui4/libxfcegui4.h>
@@ -51,6 +52,9 @@
 #include "support.h"
 #include "tray_icon.h"
 #include "xfce_trayicon.h"
+#include "reminder.h"
+#include "appointment.h"
+#include "ical-code.h"
 
 #define CHANNEL  "xfcalendar"
 #define RCDIR    "xfce4" G_DIR_SEPARATOR_S "xfcalendar"
@@ -70,6 +74,9 @@ XfceTrayIcon 		*trayIcon = NULL;
 
 /* window position */
 gint pos_x = 0, pos_y = 0;
+
+/* List of active alarms */
+GList *alarm_list=NULL;
 
 static void
 raise_window()
@@ -343,6 +350,9 @@ main(int argc, char *argv[])
   GdkAtom atom;
   Display *dpy;
   int scr;
+  struct tm *t;
+  time_t tt;
+
 
   xfce_textdomain(GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8");
 
@@ -425,6 +435,17 @@ main(int argc, char *argv[])
     {
       g_warning(_("Cannot create MCS client channel"));
     }
+
+/* start alarm monitoring timeout */
+  g_timeout_add_full(0,
+             5000,
+             (GtkFunction) xfcalendar_alarm_clock,
+             (gpointer) xfcal,
+             //(gpointer) xfcal->mWindow,
+             NULL);
+                                                                                
+/* initialize alarm list */
+  build_ical_alarm_list();
 
 	
   gtk_main();
