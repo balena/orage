@@ -109,12 +109,32 @@ void close_ical_file(void)
     icalset_free(fical);
 }
 
-void add_ical_app(appointment *app)
+ /* allocates memory and initializes it for new ical_type structure
+ *  returns: NULL if failed and pointer to appt_type if successfull.
+ *                You must free it after not being used anymore. (g_free())
+ */
+appt_type *xf_alloc_ical_app()
+{
+    appt_type *temp;
+
+    temp = g_new0(appt_type, 1);
+    return(temp);
+}
+
+
+ /* add EVENT type ical appointment to ical file
+ * app: pointer to filled appt_type structure, which is stored
+ *      You are responsible for filling and allocating and freeing it.
+ *  returns: NULL if failed and new ical id if successfully added. 
+ *           This ical id is owned by the routine. Do not deallocate it.
+ *           It will be overdriven by next invocation of this function.
+ */
+char *xf_add_ical_app(appt_type *app)
 {
     icalcomponent *ievent;
     struct icaltimetype ctime = icaltime_from_timet(time(0), 0);
     struct icaltimetype sdate, edate;
-    gchar xf_uid[1000];
+    static gchar xf_uid[1000];
     gchar xf_host[501];
 
     sdate = icaltime_from_string(app->starttime);
@@ -130,14 +150,76 @@ void add_ical_app(appointment *app)
            ,icalproperty_new_created(ctime)
            ,icalproperty_new_summary(app->title)
            ,icalproperty_new_description(app->note)
+           ,icalproperty_new_location(app->location)
            ,icalproperty_new_dtstart(sdate)
            ,icalproperty_new_dtend(edate)
            ,0);
     icalcomponent_add_component(ical, ievent);
     icalset_mark(fical);
+    return(xf_uid);
 }
 
-gboolean get_ical_app(appointment *app, char *a_day, char *hh_mm)
+ /* Read EVENT from ical datafile.
+ *ical_uid:  key of ical EVENT appointment which is to be read
+ * returns: NULL if failed and appt_type pointer to appt_type struct 
+ *          filled with data if successfull.
+ *          This appt_type struct is owned by the routine. Do not deallocate it.
+ *          It will be overdriven by next invocation of this function.
+ */
+appt_type *xf_get_ical_app(char *ical_uid)
+{
+    struct icaltimetype itime;
+    static icalcomponent *c;
+    gboolean key_found=FALSE;
+    const char *text;
+    static appt_type app;
+
+    for (c = icalcomponent_get_first_component(ical, ICAL_VEVENT_COMPONENT); 
+         (c != 0) && (!key_found);
+         c = icalcomponent_get_next_component(ical, ICAL_VEVENT_COMPONENT)) {
+        text = icalcomponent_get_uid(c);
+        if (strcmp(text, ical_uid) == 0) {
+            app.title    = (char *)icalcomponent_get_summary(c);
+            app.location = (char *)icalcomponent_get_location(c);
+            app.note     = (char *)icalcomponent_get_description(c);
+            itime = icalcomponent_get_dtstart(c);
+            text  = icaltime_as_ical_string(itime);
+            strcpy(app.starttime, text);
+            itime = icalcomponent_get_dtend(c);
+            text  = icaltime_as_ical_string(itime);
+            strcpy(app.endtime, text);
+            key_found = TRUE;
+        }
+    } 
+    if (key_found)
+        return(&app);
+    else
+        return(NULL);
+}
+
+ /* removes EVENT with ical_uid from ical file
+ * ical_uid: pointer to ical_uid to be deleted
+ * returns: TRUE is successfull, FALSE if failed
+ */
+gboolean xf_del_ical_app(char *ical_uid)
+{
+    icalcomponent *c;
+    char *uid;
+
+    for (c = icalcomponent_get_first_component(ical, ICAL_VEVENT_COMPONENT); 
+         c != 0;
+         c = icalcomponent_get_next_component(ical, ICAL_VEVENT_COMPONENT)) {
+        uid = (char *)icalcomponent_get_uid(c);
+        if (strcmp(uid, ical_uid) == 0) {
+            icalcomponent_remove_component(ical, c);
+            icalset_mark(fical);
+            return(TRUE);
+        }
+    } 
+    return(FALSE);
+}
+
+gboolean get_ical_app(appt_type *app, char *a_day, char *hh_mm)
 {
     struct icaltimetype t, sdate, edate;
     static icalcomponent *c;

@@ -22,18 +22,28 @@
 
 typedef struct
 {
-  const gchar *title,
+  gchar *title,
     *location;
 
   gint *alarm,
     *alarmTimeType,
     *availability;
 
-  gchar *note,
-    *starttime,
-    *endtime;
+  gchar *note;
 
-} appointment;
+        /* time format must be:
+         * yyyymmdd[Thhmiss[Z]] = %04d%02d%02dT%02d%02d%02d
+         * T means it has also time part
+         * Z means it is in UTC format
+         */
+  gchar 
+    starttime[17],
+    endtime[17];
+
+} appt_type;
+
+#define XF_APP_TIME_FORMAT "%04d%02d%02dT%02d%02d%02d"
+#define XF_APP_DATE_FORMAT "%04d%02d%02d"
 
 //typedef struct _appointment appointment;
 

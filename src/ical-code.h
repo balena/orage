@@ -23,9 +23,17 @@ gboolean open_ical_file(void);
 
 void close_ical_file(void);
 
-void add_ical_app(appointment *app);
+appt_type *xf_alloc_ical_app();
 
-gboolean get_ical_app(appointment *app, char *a_day, char *hh_mm);
+char *xf_add_ical_app(appt_type *app);
+
+appt_type *xf_get_ical_app(char *ical_id);
+
+gboolean xf_del_ical_app(char *ical_id);
+
+void add_ical_app(appt_type *app);
+
+gboolean get_ical_app(appt_type *app, char *a_day, char *hh_mm);
 
 int getnextday_ical_app(int year, int month, int day);
 

@@ -256,7 +256,7 @@ xfcalendar_alarm_clock(gpointer user_data)
     char a_time[6]="";
     char *text;
     char *sum;
-    appointment app;
+    appt_type app;
 
   tt=time(NULL);
   t=localtime(&tt);

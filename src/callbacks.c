@@ -189,7 +189,7 @@ void manageAppointment(GtkCalendar *calendar, GtkWidget *appwin)
 	char a_day[9];  /* yyyymmdd */
 	char a_time[12]=""; /* hh:mm-hh:mm */
     GtkWidget *vbox;
-    appointment app;
+    appt_type app;
   
 	gtk_calendar_get_date(calendar, &year, &month, &day);
 	g_snprintf(title, 12, "%d-%02d-%02d", year, month+1, day);
@@ -201,7 +201,7 @@ void manageAppointment(GtkCalendar *calendar, GtkWidget *appwin)
         app.note=NULL; app.title=NULL;
         while (get_ical_app(&app, a_day, a_time)){ 
             /* data found */
-            addAppointment(vbox, a_time, app.note, (gchar*) app.title);
+            addAppointment(vbox, a_time, app.note, app.title);
         }
         close_ical_file();
     }

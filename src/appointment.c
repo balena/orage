@@ -33,8 +33,6 @@
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
 #include <gdk/gdk.h>
-#include <ical.h>
-#include <icalss.h>
 
 #include <libxfce4util/libxfce4util.h>
 #include <libxfcegui4/netk-trayicon.h>
@@ -42,15 +40,13 @@
 #include <libxfce4mcs/mcs-client.h>
 
 #include "appointment.h"
+#include "ical-code.h"
 //#include "support.h"
 
 #define MAX_APP_LENGTH 4096
 #define RCDIR          "xfce4" G_DIR_SEPARATOR_S "xfcalendar"
-#define TIME_FORMAT    "%02d:%02d"
 #define APPOINTMENT_FILE "appointments.ics"
 
-static icalcomponent* ical;
-static icalset* fical;
 
 void
 on_appClose_clicked_cb(GtkButton *button, gpointer user_data)
@@ -58,7 +54,7 @@ on_appClose_clicked_cb(GtkButton *button, gpointer user_data)
 
   AppWin *apptw = (AppWin *)user_data;
 
-  appointment *appt = g_new(appointment, 1); 
+  appt_type *appt = g_new(appt_type, 1); 
 
   const gchar *Title_text,
     *Location_text;
@@ -96,12 +92,16 @@ on_appClose_clicked_cb(GtkButton *button, gpointer user_data)
 
   StartHour_value = gtk_spin_button_get_value_as_int((GtkSpinButton *)apptw->appStartHour_spinbutton);
   StartMinutes_value = gtk_spin_button_get_value_as_int((GtkSpinButton *)apptw->appStartMinutes_spinbutton);
-  appt->starttime = g_strdup_printf(TIME_FORMAT, StartHour_value, StartMinutes_value);
+  g_sprintf(appt->starttime, XF_APP_TIME_FORMAT
+        , 2005, 3, 11
+        , StartHour_value, StartMinutes_value, 0);
   g_warning("Start: %s\n", appt->starttime);
 
   EndHour_value = gtk_spin_button_get_value_as_int((GtkSpinButton *)apptw->appEndHour_spinbutton);
   EndMinutes_value = gtk_spin_button_get_value_as_int((GtkSpinButton *)apptw->appEndMinutes_spinbutton);
-  appt->endtime = g_strdup_printf(TIME_FORMAT, EndHour_value, EndMinutes_value);
+  g_sprintf(appt->endtime, XF_APP_TIME_FORMAT
+        , 2005, 3, 11
+        , EndHour_value, EndMinutes_value, 0);
   g_warning("End: %s\n", appt->endtime);
 
   Alarm_value = gtk_spin_button_get_value_as_int((GtkSpinButton *)apptw->appAlarm_spinbutton);
@@ -137,11 +137,6 @@ on_appClose_clicked_cb(GtkButton *button, gpointer user_data)
 
 void save_appointment()
 {
-    icalcomponent *ievent;
-    struct icaltimetype atime = icaltime_from_timet(time(0), 0);
-    struct icaltimetype adate;
-    gchar xf_uid[1000];
-    gchar xf_host[501];
 
 }
 
