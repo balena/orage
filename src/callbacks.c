@@ -137,7 +137,11 @@ void manageAppointment(GtkCalendar *calendar, GtkWidget *appointment)
 	GtkTextView *tv;
 	GtkTextBuffer *tb = gtk_text_buffer_new(NULL);
 	GtkTextIter *end;
-  
+
+#ifdef DEBUG
+	GtkTextIter ctl_start, ctl_end;
+	gchar *ctl_text;
+#endif  
 	gtk_calendar_get_date(calendar, &year, &month, &day);
 	g_snprintf(title, 12, "%d-%02d-%02d", year, month+1, day);
 	fpath = xfce_resource_save_location(XFCE_RESOURCE_CONFIG,

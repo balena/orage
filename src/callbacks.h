@@ -72,3 +72,5 @@ manageAppointment(GtkCalendar *calendar, GtkWidget *appointment);
 GdkFilterReturn
 client_event_filter(GdkXEvent *xevent, GdkEvent *event, gpointer data);
 
+gint 
+dialogWin(gpointer user_data);
