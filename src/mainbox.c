@@ -519,6 +519,10 @@ void create_mainWin(CalWin *xfcal)
 
   xfcalendar_init_settings (xfcal);
 
+  if (pos_x || pos_y)
+    gtk_window_move (GTK_WINDOW (xfcal->mWindow), pos_x, pos_y);
+  gtk_window_stick (GTK_WINDOW (xfcal->mWindow));
+
   cal = GTK_CALENDAR(xfcal->mCalendar); //horrible hack :(
   xfcalendar_mark_appointments (xfcal);
 
