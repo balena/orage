@@ -56,6 +56,11 @@ createRCDir(void)
 	g_free(calpath);
 }
 
+int mark_appointments(GtkWidget *w);
+int setup_signals(GtkWidget *w);
+gint alarm_clock(gpointer p);
+void keep_tidy(void);
+
 int
 main(int argc, char *argv[])
 {
@@ -76,8 +81,10 @@ main(int argc, char *argv[])
 	 * want shown initially.
 	 */
 	window1 = create_XFCalendar();
+	mark_appointments(window1);
+	setup_signals(window1);
 	gtk_widget_show(window1);
-
+	
 	/*
 	 * Now it's serious, the application is running, so we create the RC
 	 * directory
@@ -85,6 +92,7 @@ main(int argc, char *argv[])
 	createRCDir();
 
 	gtk_main();
+	keep_tidy();
 
 	return(EXIT_SUCCESS);
 }

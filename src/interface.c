@@ -323,9 +323,6 @@ create_wClearWarn (void)
   g_signal_connect ((gpointer) cancelbutton1, "clicked",
                     G_CALLBACK (on_cancelbutton1_clicked),
                     NULL);
-  g_signal_connect ((gpointer) okbutton2, "clicked",
-                    G_CALLBACK (on_okbutton2_clicked),
-                    NULL);
 
   /* Store pointers to all widgets, for use by lookup_widget(). */
   GLADE_HOOKUP_OBJECT_NO_REF (wClearWarn, wClearWarn, "wClearWarn");

@@ -11,11 +11,13 @@ xfcalendar_SOURCES =							\
 
 xfcalendar_CFLAGS =							\
 	@LIBXFCEGUI4_CFLAGS@						\
+	@DBH_CFLAGS@							\
 	-DPACKAGE_DATA_DIR=\""$(datadir)"\"				\
 	-DPACKAGE_LOCALE_DIR=\""$(localedir)"\"
 
 
 xfcalendar_LDADD =							\
 	@LIBXFCEGUI4_LIBS@						\
+	@DBH_LIBS@							\
 	$(INTLLIBS)
 
