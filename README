@@ -1,15 +1,13 @@
 Time-managing application for the Xfce desktop environment.
 
 Xfcalendar 4.3.0.1 uses new ical interface instead of old dbh to store and
-utilize calender appointments. You need to download and unpack the 0.24RC4 
-source code version of libical into xfcalendar/libical directory manually.
-You can find this version from:
-http://sourceforge.net/projects/freeassociation/
-or
-http://sourceforge.net/project/showfiles.php?group_id=16077
+utilize calender appointments. 
 
-And you need to copy libical-0.24.pc file into your $PKG_CONFIG_PATH 
+You need to copy libical-0.24.pc file into your $PKG_CONFIG_PATH 
 directory and possibly fix the first line to contain the correct address.
+
+You need to first go to libical subdirectory and install it:
+./configure && make && sudo make install 
 
 Note that there is no conversion routine to migrate your old data into 
 the new format, but you will loose all old appointments and start from
