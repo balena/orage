@@ -34,10 +34,14 @@
 
 #include <libxfce4util/i18n.h>
 #include <libxfce4util/util.h>
+#include <libxfcegui4/libxfcegui4.h>
 #include <gtk/gtk.h>
 
 #include "interface.h"
 #include "support.h"
+
+/* session client handler */
+static SessionClient	*session_client = NULL;
 
 void
 createRCDir(void)
@@ -61,6 +65,31 @@ int setup_signals(GtkWidget *w);
 gint alarm_clock(gpointer p);
 void keep_tidy(void);
 
+/*
+ * SaveYourself callback
+ *
+ * This is called when the session manager requests the client to save its
+ * state.
+ */
+/* ARGUSED */
+static void
+save_yourself_cb(gpointer data, int save_style, gboolean shutdown,
+                 int interact_style, gboolean fast)
+{
+	/* FIXME: Mickael, insert save code here! */
+}
+
+/*
+ * Die callback
+ *
+ * This is called when the session manager requests the client to go down.
+ */
+static void
+die_cb(gpointer data)
+{
+	gtk_main_quit();
+}
+
 int
 main(int argc, char *argv[])
 {
@@ -70,6 +99,15 @@ main(int argc, char *argv[])
 
 	gtk_set_locale();
 	gtk_init(&argc, &argv);
+
+	/* 
+	 * try to connect to the session manager
+	 */
+	session_client = client_session_new(argc, argv, NULL,
+			SESSION_RESTART_IF_RUNNING, 50);
+	session_client->save_yourself = save_yourself_cb;
+	session_client->die = die_cb;
+	(void)session_init(session_client);
 
 	add_pixmap_directory(PACKAGE_DATA_DIR G_DIR_SEPARATOR_S PACKAGE
 			G_DIR_SEPARATOR_S "pixmaps");
