@@ -224,6 +224,8 @@ gint
 dialogWin(gpointer user_data)
 {
   GtkWidget *dialog, *message;
+  gint result;
+
   dialog = gtk_dialog_new_with_buttons (_("Question"),
 					GTK_WINDOW(user_data),
 					GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
@@ -239,7 +241,7 @@ dialogWin(gpointer user_data)
   
   gtk_widget_show_all(dialog);
 
-  gint result = gtk_dialog_run (GTK_DIALOG (dialog));
+  result = gtk_dialog_run (GTK_DIALOG (dialog));
 
   gtk_widget_destroy (dialog);
 
