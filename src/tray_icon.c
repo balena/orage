@@ -35,7 +35,6 @@
 /* */
 #include "support.h"
 #include "mainbox.h"
-#include "xfcalendar-icon-inline.h"
 #include "xfce_trayicon.h"
 #include "about-xfcalendar.h"
 
@@ -129,7 +128,7 @@ create_TrayIcon (CalWin *xfcal)
   /*
    * Create the tray icon
    */
-  pixbuf = xfce_inline_icon_at_size(xfcalendar_icon, 16, 16);
+  pixbuf = xfce_themed_icon_load ("xfcalendar", 16);
   trayIcon = xfce_tray_icon_new_with_menu_from_pixbuf(trayMenu, pixbuf);
   g_object_unref(pixbuf);
 

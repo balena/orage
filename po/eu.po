@@ -6,7 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: xfcalendar.pi\n"
-"POT-Creation-Date: 2004-01-06 23:44+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-07-24 00:02+0200\n"
 "PO-Revision-Date: 2004-02-02 13:03+0100\n"
 "Last-Translator: Piarres Beobide <pi@beobide.net>\n"
 "Language-Team: Euskara <eu@li.org>\n"
@@ -15,117 +16,51 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.0.2\n"
 
-#: src/main.c:251
-msgid "Today"
-msgstr "Gaur"
+#: src/main.c:203
+msgid "This should not happen"
+msgstr "Hauez zen gertatu behar"
 
-#: src/main.c:260 src/interface.c:349
-msgid "About XFCalendar"
-msgstr "XFCalendarri buruz"
-
-#: src/main.c:296
+#: src/main.c:421
 msgid "Cannot create MCS client channel"
 msgstr "Ezin da MCS bezero kanala sortu"
 
-#: src/interface.c:60 src/interface.c:358
-msgid "XFCalendar"
-msgstr "XFCalendar"
-
-#: src/interface.c:75
-msgid "_File"
-msgstr "_Fitxategia"
-
-#: src/interface.c:82
-msgid "Close window"
-msgstr "Itxi leihoa"
-
-#.
-#: src/interface.c:95
-msgid "Settings"
-msgstr "Ezarpenak"
-
-#: src/interface.c:102
-msgid "Preferences"
-msgstr "Hobespenak"
-
-#.
-#: src/interface.c:107
-msgid "_Help"
-msgstr "_Laguntza"
-
-#: src/interface.c:114
-msgid "_About"
-msgstr "_Honi buruz"
-
-#: src/interface.c:193
+#: src/interface.c:56
 msgid "Appointment"
 msgstr "hitzordua"
 
-#: src/interface.c:215
+#: src/interface.c:78
 msgid "Save (Ctrl+s)"
 msgstr "Gorde(Ktrl+s)"
 
-#: src/interface.c:228
+#: src/interface.c:91
 msgid "Previous day (Ctrl+p)"
 msgstr "Aurreko eguna (Ktrl+p)"
 
-#: src/interface.c:239
+#: src/interface.c:102
 msgid "Today (Alt+Home)"
 msgstr "Gaur (Alt + etxe)"
 
-#: src/interface.c:251
+#: src/interface.c:114
 msgid "Next day (Ctrl+n)"
 msgstr "Hurrengo eguna (Ktrl + n)"
 
-#: src/interface.c:264
+#: src/interface.c:127
 msgid "Close (Ctrl+w)"
 msgstr "Itxi (Ktrl + w="
 
-#: src/interface.c:274
+#: src/interface.c:137
 msgid "Clear"
 msgstr "Garbitu"
 
-#: src/interface.c:275
+#: src/interface.c:138
 msgid "Clear (Ctrl+l)"
 msgstr "Garbitu (Ktrl + l)"
 
-#: src/interface.c:369
-msgid ""
-"XFCalendar\n"
-"Manage your time with XFce4\n"
-"\n"
-"This software is released under\n"
-"the General Public Licence.\n"
-"\n"
-"(c) 2003 Mickael Graf\n"
-"\n"
-"Contributors:\n"
-"  - Mickael Graf\n"
-"  - Benedikt Meurer\n"
-"  - Edscott Wilson Garcia\n"
-"\n"
-"XFce4 is (c) Olivier Fourdan"
-msgstr ""
-"XFCalendar\n"
-"Kudea ezazu zure ordua XFce4 erabiliaz\n"
-"\n"
-"Software hau \"General Public \n"
-"Licence\"-pean banatzen da\n"
-"\n"
-"(c) 2003 Mickael Graf\n"
-"\n"
-"Laguntzaileak:\n"
-"  - Mickael Graf\n"
-"  - Benedikt Meurer\n"
-"  - Edscott Wilson Garcia\n"
-"\n"
-"XFce4 is (c) Olivier Fourdan"
-
-#: src/interface.c:417
+#: src/interface.c:208
 msgid "Warning"
 msgstr "Abisua"
 
-#: src/interface.c:433
+#: src/interface.c:224
 msgid ""
 "You will remove all information \n"
 "associated with this date."
@@ -133,16 +68,95 @@ msgstr ""
 "Data honi atxikitutako informazio\n"
 "guztia ezaba dezakezu."
 
-#: src/interface.c:482 src/interface.c:490
-msgid "Reminder"
-msgstr "Gogorarazlea"
-
-#: src/callbacks.c:754
-msgid "This should not happen"
-msgstr "Hauez zen gertatu behar"
-
 #: src/support.c:91 src/support.c:115
 #, c-format
 msgid "Couldn't find pixmap file: %s"
 msgstr "Ezin da pixmap fitxategia aurkitu: %s"
 
+#: plugin/xfcalendar_plugin.c:165 plugin/xfcalendar_plugin.c:176
+#: plugin/xfcalendar_plugin.c:297
+#, fuzzy
+msgid "Xfcalendar"
+msgstr "XFCalendar"
+
+#.
+#: plugin/xfcalendar_plugin.c:191
+msgid "Week starts with..."
+msgstr ""
+
+#: plugin/xfcalendar_plugin.c:199
+msgid "Sunday"
+msgstr ""
+
+#: plugin/xfcalendar_plugin.c:206
+#, fuzzy
+msgid "Monday"
+msgstr "Gaur"
+
+#.
+#: plugin/xfcalendar_plugin.c:214
+msgid "Mode"
+msgstr ""
+
+#: plugin/xfcalendar_plugin.c:222
+msgid "Normal"
+msgstr ""
+
+#: plugin/xfcalendar_plugin.c:229
+msgid "Compact"
+msgstr ""
+
+#~ msgid "About XFCalendar"
+#~ msgstr "XFCalendarri buruz"
+
+#~ msgid "_File"
+#~ msgstr "_Fitxategia"
+
+#~ msgid "Close window"
+#~ msgstr "Itxi leihoa"
+
+#~ msgid "Settings"
+#~ msgstr "Ezarpenak"
+
+#~ msgid "Preferences"
+#~ msgstr "Hobespenak"
+
+#~ msgid "_Help"
+#~ msgstr "_Laguntza"
+
+#~ msgid "_About"
+#~ msgstr "_Honi buruz"
+
+#~ msgid ""
+#~ "XFCalendar\n"
+#~ "Manage your time with XFce4\n"
+#~ "\n"
+#~ "This software is released under\n"
+#~ "the General Public Licence.\n"
+#~ "\n"
+#~ "(c) 2003 Mickael Graf\n"
+#~ "\n"
+#~ "Contributors:\n"
+#~ "  - Mickael Graf\n"
+#~ "  - Benedikt Meurer\n"
+#~ "  - Edscott Wilson Garcia\n"
+#~ "\n"
+#~ "XFce4 is (c) Olivier Fourdan"
+#~ msgstr ""
+#~ "XFCalendar\n"
+#~ "Kudea ezazu zure ordua XFce4 erabiliaz\n"
+#~ "\n"
+#~ "Software hau \"General Public \n"
+#~ "Licence\"-pean banatzen da\n"
+#~ "\n"
+#~ "(c) 2003 Mickael Graf\n"
+#~ "\n"
+#~ "Laguntzaileak:\n"
+#~ "  - Mickael Graf\n"
+#~ "  - Benedikt Meurer\n"
+#~ "  - Edscott Wilson Garcia\n"
+#~ "\n"
+#~ "XFce4 is (c) Olivier Fourdan"
+
+#~ msgid "Reminder"
+#~ msgstr "Gogorarazlea"

@@ -22,7 +22,6 @@
 #include "callbacks.h"
 #include "interface.h"
 #include "support.h"
-#include "xfcalendar-icon-inline.h"
 #include "xfce_trayicon.h"
 
 #define GLADE_HOOKUP_OBJECT(component,widget,name) \

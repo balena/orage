@@ -25,15 +25,13 @@
 #include <libxfcegui4/libxfcegui4.h>
 
 #include "mainbox.h"
-#include "xfcalendar-icon-inline.h"
 
 
 void create_wAbout(GtkWidget *widget, gpointer user_data){
 
   CalWin *xfcal = (CalWin *)user_data;
 
-  GdkPixbuf *xfcalendar_logo 
-    = xfce_inline_icon_at_size(xfcalendar_icon, 48, 48);
+  GdkPixbuf *xfcalendar_logo = xfce_themed_icon_load ("xfcalendar", 48);
 
   XfceAboutInfo *about = xfce_about_info_new("Xfcalendar",
 			      VERSION,

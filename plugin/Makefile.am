@@ -7,8 +7,7 @@ xfcalendar_plugin_la_LDFLAGS =						\
 	-module
 
 xfcalendar_plugin_la_SOURCES =						\
-	xfcalendar_plugin.c						\
-	calendar-icon.h
+	xfcalendar_plugin.c
 
 xfcalendar_plugin_la_CFLAGS = 						\
 	@XFCE_MCS_MANAGER_CFLAGS@ 					\
@@ -16,7 +15,7 @@ xfcalendar_plugin_la_CFLAGS = 						\
 	-DSYSCONFDIR=\"$(sysconfdir)\"					\
 	-DDATADIR=\"$(pkgdatadir)\" 
 
-appsdir = $(datadir)/applications
-apps_DATA = xfce-xfcalendar-settings.desktop
+desktopdir = $(datadir)/applications
+desktop_DATA = xfce-xfcalendar-settings.desktop
 
-EXTRA_DIST = xfce-xfcalendar-settings.desktop
+EXTRA_DIST = $(desktop_DATA)

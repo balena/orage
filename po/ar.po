@@ -3,11 +3,11 @@
 # This file is distributed under the same license as the xfcalendar package.
 # saleh alhathal <hathalsal@hotmail.com>, 2004.
 #
-
 msgid ""
 msgstr ""
 "Project-Id-Version: ar\n"
-"POT-Creation-Date: 2003-12-27 14:25+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-07-24 00:02+0200\n"
 "PO-Revision-Date: 2004-2-8 8:23+0300\n"
 "Last-Translator: saleh alhathal <hathalsal@hotmail.com>\n"
 "Language-Team: arabic\n"
@@ -15,163 +15,152 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/main.c:280
+#: src/main.c:203
+msgid "This should not happen"
+msgstr "ﻻ يجب ان يحدوث هذا"
+
+#: src/main.c:421
 msgid "Cannot create MCS client channel"
 msgstr "لم أتمكن من تكوين وصلة لعميل MCS"
 
-#: src/interface.c:64 src/interface.c:374 plugin/xfcalendar_plugin.c:172
-#: plugin/xfcalendar_plugin.c:183 plugin/xfcalendar_plugin.c:305
-msgid "XFCalendar"
-msgstr "تقويم XFC"
-
-#: src/interface.c:79
-msgid "_File"
-msgstr "_ملف"
-
-#: src/interface.c:86
-msgid "Close window"
-msgstr "أغلق النافذة"
-
-#.
-#: src/interface.c:99
-msgid "Settings"
-msgstr "إعدادات"
-
-#: src/interface.c:106 src/interface.c:570
-msgid "Preferences"
-msgstr "أداء"
-
-#: src/interface.c:114
-msgid "Select Today"
-msgstr "إختر اليوم"
-
-#.
-#: src/interface.c:119
-msgid "_Help"
-msgstr "_مساعدة"
-
-#: src/interface.c:126
-msgid "_About"
-msgstr "_حول"
-
-#: src/interface.c:209
+#: src/interface.c:56
 msgid "Appointment"
 msgstr "موعد"
 
-#: src/interface.c:231
+#: src/interface.c:78
 msgid "Save (Ctrl+s)"
 msgstr "حفظ (Ctrl+s)"
 
-#: src/interface.c:244
+#: src/interface.c:91
 msgid "Previous day (Ctrl+p)"
 msgstr "اليوم السابق (Ctrl+p)"
 
-#: src/interface.c:255
+#: src/interface.c:102
 msgid "Today (Alt+Home)"
 msgstr "اليوم (Alt+Home)"
 
-#: src/interface.c:267
+#: src/interface.c:114
 msgid "Next day (Ctrl+n)"
 msgstr "اليوم التالي (Ctrl+n)"
 
-#: src/interface.c:280
+#: src/interface.c:127
 msgid "Close (Ctrl+w)"
 msgstr "إغلاق (Ctrl+w)"
 
-#: src/interface.c:290
+#: src/interface.c:137
 msgid "Clear"
 msgstr "مسح"
 
-#: src/interface.c:291
+#: src/interface.c:138
 msgid "Clear (Ctrl+l)"
 msgstr "مسح (Ctrl+l)"
 
-#: src/interface.c:365 src/interface.c:579
-msgid "About XFCalendar"
-msgstr "حول XFCalendar"
-
-#: src/interface.c:385
-msgid ""
-"XFCalendar\n"
-"Manage your time with XFce4\n"
-"\n"
-"This software is released under\n"
-"the General Public Licence.\n"
-"\n"
-"(c) 2003 Mickael Graf\n"
-"\n"
-"Contributors:\n"
-"  - Mickael Graf\n"
-"  - Benedikt Meurer\n"
-"  - Edscott Wilson Garcia\n"
-"\n"
-"XFce4 is (c) Olivier Fourdan"
-msgstr ""
-"تقويم XFC\n"
-"أدر وقتك مع XFce4\n"
-"\n"
-"هذا البرنامج تحت ترخيص\n"
-"General Public Licence.\n"
-"\n"
-"(c) 2003 Mickael Graf\n"
-"\n"
-"المساهمون:\n"
-"  - Mickael Graf\n"
-"  - Benedikt Meurer\n"
-"  - Edscott Wilson Garcia\n"
-"\n"
-"XFce4 is (c) Olivier Fourdan"
-
-#: src/interface.c:433
+#: src/interface.c:208
 msgid "Warning"
 msgstr "تحذير"
 
-#: src/interface.c:449
+#: src/interface.c:224
 msgid ""
 "You will remove all information \n"
 "associated with this date."
 msgstr ""
 "سيتم حذف كل المعلومات\n"
 "ويشمل البينات المرتبطهة بها"
-#: src/interface.c:498 src/interface.c:506
-msgid "Reminder"
-msgstr "مذكر"
-
-#: src/interface.c:560
-msgid "Today"
-msgstr "اليوم"
-
-#: src/callbacks.c:749
-msgid "This should not happen"
-msgstr "ﻻ يجب ان يحدوث هذا"
 
 #: src/support.c:91 src/support.c:115
 #, c-format
 msgid "Couldn't find pixmap file: %s"
 msgstr "لم أتمكن من إيجاد ملف الصورة: %s"
 
+#: plugin/xfcalendar_plugin.c:165 plugin/xfcalendar_plugin.c:176
+#: plugin/xfcalendar_plugin.c:297
+#, fuzzy
+msgid "Xfcalendar"
+msgstr "تقويم XFC"
+
 #.
-#: plugin/xfcalendar_plugin.c:199
+#: plugin/xfcalendar_plugin.c:191
 msgid "Week starts with..."
 msgstr "بداية اﻹسبوع في ..."
 
-#: plugin/xfcalendar_plugin.c:207
+#: plugin/xfcalendar_plugin.c:199
 msgid "Sunday"
 msgstr "الأحد"
 
-#: plugin/xfcalendar_plugin.c:214
+#: plugin/xfcalendar_plugin.c:206
 msgid "Monday"
 msgstr "الإثنين"
 
 #.
-#: plugin/xfcalendar_plugin.c:222
+#: plugin/xfcalendar_plugin.c:214
 msgid "Mode"
 msgstr "هيئة"
 
-#: plugin/xfcalendar_plugin.c:230
+#: plugin/xfcalendar_plugin.c:222
 msgid "Normal"
 msgstr "عادي"
 
-#: plugin/xfcalendar_plugin.c:237
+#: plugin/xfcalendar_plugin.c:229
 msgid "Compact"
 msgstr "مصغر"
+
+#~ msgid "_File"
+#~ msgstr "_ملف"
+
+#~ msgid "Close window"
+#~ msgstr "أغلق النافذة"
+
+#~ msgid "Settings"
+#~ msgstr "إعدادات"
+
+#~ msgid "Preferences"
+#~ msgstr "أداء"
+
+#~ msgid "Select Today"
+#~ msgstr "إختر اليوم"
+
+#~ msgid "_Help"
+#~ msgstr "_مساعدة"
+
+#~ msgid "_About"
+#~ msgstr "_حول"
+
+#~ msgid "About XFCalendar"
+#~ msgstr "حول XFCalendar"
+
+#~ msgid ""
+#~ "XFCalendar\n"
+#~ "Manage your time with XFce4\n"
+#~ "\n"
+#~ "This software is released under\n"
+#~ "the General Public Licence.\n"
+#~ "\n"
+#~ "(c) 2003 Mickael Graf\n"
+#~ "\n"
+#~ "Contributors:\n"
+#~ "  - Mickael Graf\n"
+#~ "  - Benedikt Meurer\n"
+#~ "  - Edscott Wilson Garcia\n"
+#~ "\n"
+#~ "XFce4 is (c) Olivier Fourdan"
+#~ msgstr ""
+#~ "تقويم XFC\n"
+#~ "أدر وقتك مع XFce4\n"
+#~ "\n"
+#~ "هذا البرنامج تحت ترخيص\n"
+#~ "General Public Licence.\n"
+#~ "\n"
+#~ "(c) 2003 Mickael Graf\n"
+#~ "\n"
+#~ "المساهمون:\n"
+#~ "  - Mickael Graf\n"
+#~ "  - Benedikt Meurer\n"
+#~ "  - Edscott Wilson Garcia\n"
+#~ "\n"
+#~ "XFce4 is (c) Olivier Fourdan"
+
+#~ msgid "Reminder"
+#~ msgstr "مذكر"
+
+#~ msgid "Today"
+#~ msgstr "اليوم"

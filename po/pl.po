@@ -6,7 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pl\n"
-"POT-Creation-Date: 2003-12-27 14:25+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-07-24 00:02+0200\n"
 "PO-Revision-Date: 2003-12-24 00:55+0100\n"
 "Last-Translator: Daniel 'Beorn' Mróz <beorn@alpha.pl>\n"
 "Language-Team: none <none@none>\n"
@@ -14,118 +15,51 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/main.c:280
+#: src/main.c:203
+msgid "This should not happen"
+msgstr "To nie powinno się wydarzyć"
+
+#: src/main.c:421
 msgid "Cannot create MCS client channel"
 msgstr "Nie mogę utworzyć kanału klienta MCS"
 
-#: src/interface.c:64 src/interface.c:374 plugin/xfcalendar_plugin.c:172
-#: plugin/xfcalendar_plugin.c:183 plugin/xfcalendar_plugin.c:305
-msgid "XFCalendar"
-msgstr "XFCalendar"
-
-#: src/interface.c:79
-msgid "_File"
-msgstr "_Plik"
-
-#: src/interface.c:86
-msgid "Close window"
-msgstr "Zamknij okno"
-
-#.
-#: src/interface.c:99
-msgid "Settings"
-msgstr "Ustawienia"
-
-#: src/interface.c:106 src/interface.c:570
-msgid "Preferences"
-msgstr "Preferencje"
-
-#: src/interface.c:114
-msgid "Select Today"
-msgstr "Wybierz 'dzisiaj'"
-
-#.
-#: src/interface.c:119
-msgid "_Help"
-msgstr "Po_moc"
-
-#: src/interface.c:126
-msgid "_About"
-msgstr "_O programie..."
-
-#: src/interface.c:209
+#: src/interface.c:56
 msgid "Appointment"
 msgstr "Spotkanie"
 
-#: src/interface.c:231
+#: src/interface.c:78
 msgid "Save (Ctrl+s)"
 msgstr "Zapisz (Ctrl+s)"
 
-#: src/interface.c:244
+#: src/interface.c:91
 msgid "Previous day (Ctrl+p)"
 msgstr "Poprzedni dzień (Ctrl+p)"
 
-#: src/interface.c:255
+#: src/interface.c:102
 msgid "Today (Alt+Home)"
 msgstr "Dzisiaj (Alt+Home)"
 
-#: src/interface.c:267
+#: src/interface.c:114
 msgid "Next day (Ctrl+n)"
 msgstr "Następny dzień (Ctrl+n)"
 
-#: src/interface.c:280
+#: src/interface.c:127
 msgid "Close (Ctrl+w)"
 msgstr "Zamknij (Ctrl+w)"
 
-#: src/interface.c:290
+#: src/interface.c:137
 msgid "Clear"
 msgstr "Wyczyść"
 
-#: src/interface.c:291
+#: src/interface.c:138
 msgid "Clear (Ctrl+l)"
 msgstr "Wyczyść (Ctrl+l)"
 
-#: src/interface.c:365 src/interface.c:579
-msgid "About XFCalendar"
-msgstr "O programie XFCalendar"
-
-#: src/interface.c:385
-msgid ""
-"XFCalendar\n"
-"Manage your time with XFce4\n"
-"\n"
-"This software is released under\n"
-"the General Public Licence.\n"
-"\n"
-"(c) 2003 Mickael Graf\n"
-"\n"
-"Contributors:\n"
-"  - Mickael Graf\n"
-"  - Benedikt Meurer\n"
-"  - Edscott Wilson Garcia\n"
-"\n"
-"XFce4 is (c) Olivier Fourdan"
-msgstr ""
-"XFCalendar\n"
-"Zarządzaj swoim czasem z XFce 4\n"
-"\n"
-"This software is released under\n"
-"the General Public Licence.\n"
-"\n"
-"(c) 2003 Mickl Graf\n"
-"\n"
-"Autorzy:\n"
-"  - Mickael Graf\n"
-"  - Benedikt Meurer\n"
-"  - Edscott Wilson Garcia\n"
-"\n"
-"XFce4 is (c) Olivier Fourdan"
-
-#: src/interface.c:433
+#: src/interface.c:208
 msgid "Warning"
 msgstr "Uwaga"
 
-#: src/interface.c:449
+#: src/interface.c:224
 msgid ""
 "You will remove all information \n"
 "associated with this date."
@@ -133,45 +67,100 @@ msgstr ""
 "Usuniesz wszystkie dane \n"
 "powiązane z tą datą."
 
-#: src/interface.c:498 src/interface.c:506
-msgid "Reminder"
-msgstr "Przypominacz"
-
-#: src/interface.c:560
-msgid "Today"
-msgstr "Dzisiaj"
-
-#: src/callbacks.c:749
-msgid "This should not happen"
-msgstr "To nie powinno się wydarzyć"
-
 #: src/support.c:91 src/support.c:115
 #, c-format
 msgid "Couldn't find pixmap file: %s"
 msgstr "Nie mogłem znaleźć pliku graficznego: %s"
 
+#: plugin/xfcalendar_plugin.c:165 plugin/xfcalendar_plugin.c:176
+#: plugin/xfcalendar_plugin.c:297
+#, fuzzy
+msgid "Xfcalendar"
+msgstr "XFCalendar"
+
 #.
-#: plugin/xfcalendar_plugin.c:199
+#: plugin/xfcalendar_plugin.c:191
 msgid "Week starts with..."
 msgstr "Tydzień zaczyna się od..."
 
-#: plugin/xfcalendar_plugin.c:207
+#: plugin/xfcalendar_plugin.c:199
 msgid "Sunday"
 msgstr "Niedziela"
 
-#: plugin/xfcalendar_plugin.c:214
+#: plugin/xfcalendar_plugin.c:206
 msgid "Monday"
 msgstr "Poniedziałek"
 
 #.
-#: plugin/xfcalendar_plugin.c:222
+#: plugin/xfcalendar_plugin.c:214
 msgid "Mode"
 msgstr "Tryb"
 
-#: plugin/xfcalendar_plugin.c:230
+#: plugin/xfcalendar_plugin.c:222
 msgid "Normal"
 msgstr "Normalny"
 
-#: plugin/xfcalendar_plugin.c:237
+#: plugin/xfcalendar_plugin.c:229
 msgid "Compact"
 msgstr "Kompaktowy"
+
+#~ msgid "_File"
+#~ msgstr "_Plik"
+
+#~ msgid "Close window"
+#~ msgstr "Zamknij okno"
+
+#~ msgid "Settings"
+#~ msgstr "Ustawienia"
+
+#~ msgid "Preferences"
+#~ msgstr "Preferencje"
+
+#~ msgid "Select Today"
+#~ msgstr "Wybierz 'dzisiaj'"
+
+#~ msgid "_Help"
+#~ msgstr "Po_moc"
+
+#~ msgid "_About"
+#~ msgstr "_O programie..."
+
+#~ msgid "About XFCalendar"
+#~ msgstr "O programie XFCalendar"
+
+#~ msgid ""
+#~ "XFCalendar\n"
+#~ "Manage your time with XFce4\n"
+#~ "\n"
+#~ "This software is released under\n"
+#~ "the General Public Licence.\n"
+#~ "\n"
+#~ "(c) 2003 Mickael Graf\n"
+#~ "\n"
+#~ "Contributors:\n"
+#~ "  - Mickael Graf\n"
+#~ "  - Benedikt Meurer\n"
+#~ "  - Edscott Wilson Garcia\n"
+#~ "\n"
+#~ "XFce4 is (c) Olivier Fourdan"
+#~ msgstr ""
+#~ "XFCalendar\n"
+#~ "Zarządzaj swoim czasem z XFce 4\n"
+#~ "\n"
+#~ "This software is released under\n"
+#~ "the General Public Licence.\n"
+#~ "\n"
+#~ "(c) 2003 Mickl Graf\n"
+#~ "\n"
+#~ "Autorzy:\n"
+#~ "  - Mickael Graf\n"
+#~ "  - Benedikt Meurer\n"
+#~ "  - Edscott Wilson Garcia\n"
+#~ "\n"
+#~ "XFce4 is (c) Olivier Fourdan"
+
+#~ msgid "Reminder"
+#~ msgstr "Przypominacz"
+
+#~ msgid "Today"
+#~ msgstr "Dzisiaj"

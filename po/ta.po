@@ -6,7 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Tamil XFCE4 Calander\n"
-"POT-Creation-Date: 2003-12-27 14:25+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-07-24 00:02+0200\n"
 "PO-Revision-Date: 2003-09-26 19:24-0600\n"
 "Last-Translator: Dinesh Nadarajah <dinesh_list@sbcglobal.net>\n"
 "Language-Team: Tamil <tamillinux-user@lists.sourceforge.net>\n"
@@ -14,122 +15,53 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/main.c:280
+#: src/main.c:203
+msgid "This should not happen"
+msgstr ""
+
+#: src/main.c:421
 msgid "Cannot create MCS client channel"
 msgstr ""
 
-#: src/interface.c:64 src/interface.c:374 plugin/xfcalendar_plugin.c:172
-#: plugin/xfcalendar_plugin.c:183 plugin/xfcalendar_plugin.c:305
-msgid "XFCalendar"
-msgstr "XFபஞ்சாங்கம்"
-
-#: src/interface.c:79
-msgid "_File"
-msgstr "_கோப்பு"
-
-#: src/interface.c:86
-msgid "Close window"
-msgstr ""
-
-#.
-#: src/interface.c:99
-msgid "Settings"
-msgstr ""
-
-#: src/interface.c:106 src/interface.c:570
-msgid "Preferences"
-msgstr ""
-
-#: src/interface.c:114
-#, fuzzy
-msgid "Select Today"
-msgstr "அடுத்த நால்"
-
-#.
-#: src/interface.c:119
-msgid "_Help"
-msgstr "_உதவி"
-
-#: src/interface.c:126
-msgid "_About"
-msgstr "_பற்றி"
-
-#: src/interface.c:209
+#: src/interface.c:56
 msgid "Appointment"
 msgstr "முன்னேற்பாடு"
 
-#: src/interface.c:231
+#: src/interface.c:78
 msgid "Save (Ctrl+s)"
 msgstr ""
 
-#: src/interface.c:244
+#: src/interface.c:91
 #, fuzzy
 msgid "Previous day (Ctrl+p)"
 msgstr "நேற்றைய நால்"
 
-#: src/interface.c:255
+#: src/interface.c:102
 msgid "Today (Alt+Home)"
 msgstr ""
 
-#: src/interface.c:267
+#: src/interface.c:114
 #, fuzzy
 msgid "Next day (Ctrl+n)"
 msgstr "அடுத்த நால்"
 
-#: src/interface.c:280
+#: src/interface.c:127
 msgid "Close (Ctrl+w)"
 msgstr ""
 
-#: src/interface.c:290
+#: src/interface.c:137
 msgid "Clear"
 msgstr "துப்பரவு"
 
-#: src/interface.c:291
+#: src/interface.c:138
 msgid "Clear (Ctrl+l)"
 msgstr ""
 
-#: src/interface.c:365 src/interface.c:579
-msgid "About XFCalendar"
-msgstr "XFபஞ்சாங்கம் பற்றி"
-
-#: src/interface.c:385
-#, fuzzy
-msgid ""
-"XFCalendar\n"
-"Manage your time with XFce4\n"
-"\n"
-"This software is released under\n"
-"the General Public Licence.\n"
-"\n"
-"(c) 2003 Mickael Graf\n"
-"\n"
-"Contributors:\n"
-"  - Mickael Graf\n"
-"  - Benedikt Meurer\n"
-"  - Edscott Wilson Garcia\n"
-"\n"
-"XFce4 is (c) Olivier Fourdan"
-msgstr ""
-"XFபஞ்சாங்கம்\n"
-"Manage your time with XFce4\n"
-"\n"
-"This software is released under\n"
-"the General Public Licence.\n"
-"\n"
-"(ப) 2003 மிகேல் கிராப்\n"
-"\n"
-"உதவியாலர்கள்:\n"
-"  - மிகேல் கிராப்\n"
-"  - பெனடிக்ட் மெஉரர்\n"
-"  - எட்கொட் வில்சன் கார்சியா\n"
-"\n"
-"XFce4 (ப) ஒலிவர் பொர்டான்"
-
-#: src/interface.c:433
+#: src/interface.c:208
 msgid "Warning"
 msgstr "எச்சரிக்கை"
 
-#: src/interface.c:449
+#: src/interface.c:224
 msgid ""
 "You will remove all information \n"
 "associated with this date."
@@ -137,49 +69,97 @@ msgstr ""
 "இத்திகதில் உள்ள அனைத்து  \n"
 "விபரங்களையும் அழித்துவிடுவீர்."
 
-#: src/interface.c:498 src/interface.c:506
-msgid "Reminder"
-msgstr "ஞாபகமூட்டி"
-
-#: src/interface.c:560
-msgid "Today"
-msgstr "இன்று"
-
-#: src/callbacks.c:749
-msgid "This should not happen"
-msgstr ""
-
 #: src/support.c:91 src/support.c:115
 #, c-format
 msgid "Couldn't find pixmap file: %s"
 msgstr "பிக்ஸ்படம் கோப்பு கண்டுபிடிக்க முடியவில்லை: %s"
 
+#: plugin/xfcalendar_plugin.c:165 plugin/xfcalendar_plugin.c:176
+#: plugin/xfcalendar_plugin.c:297
+#, fuzzy
+msgid "Xfcalendar"
+msgstr "XFபஞ்சாங்கம்"
+
 #.
-#: plugin/xfcalendar_plugin.c:199
+#: plugin/xfcalendar_plugin.c:191
 msgid "Week starts with..."
 msgstr ""
 
-#: plugin/xfcalendar_plugin.c:207
+#: plugin/xfcalendar_plugin.c:199
 msgid "Sunday"
 msgstr ""
 
-#: plugin/xfcalendar_plugin.c:214
+#: plugin/xfcalendar_plugin.c:206
 #, fuzzy
 msgid "Monday"
 msgstr "இன்று"
 
 #.
-#: plugin/xfcalendar_plugin.c:222
+#: plugin/xfcalendar_plugin.c:214
 msgid "Mode"
 msgstr ""
 
-#: plugin/xfcalendar_plugin.c:230
+#: plugin/xfcalendar_plugin.c:222
 msgid "Normal"
 msgstr ""
 
-#: plugin/xfcalendar_plugin.c:237
+#: plugin/xfcalendar_plugin.c:229
 msgid "Compact"
 msgstr ""
+
+#~ msgid "_File"
+#~ msgstr "_கோப்பு"
+
+#, fuzzy
+#~ msgid "Select Today"
+#~ msgstr "அடுத்த நால்"
+
+#~ msgid "_Help"
+#~ msgstr "_உதவி"
+
+#~ msgid "_About"
+#~ msgstr "_பற்றி"
+
+#~ msgid "About XFCalendar"
+#~ msgstr "XFபஞ்சாங்கம் பற்றி"
+
+#, fuzzy
+#~ msgid ""
+#~ "XFCalendar\n"
+#~ "Manage your time with XFce4\n"
+#~ "\n"
+#~ "This software is released under\n"
+#~ "the General Public Licence.\n"
+#~ "\n"
+#~ "(c) 2003 Mickael Graf\n"
+#~ "\n"
+#~ "Contributors:\n"
+#~ "  - Mickael Graf\n"
+#~ "  - Benedikt Meurer\n"
+#~ "  - Edscott Wilson Garcia\n"
+#~ "\n"
+#~ "XFce4 is (c) Olivier Fourdan"
+#~ msgstr ""
+#~ "XFபஞ்சாங்கம்\n"
+#~ "Manage your time with XFce4\n"
+#~ "\n"
+#~ "This software is released under\n"
+#~ "the General Public Licence.\n"
+#~ "\n"
+#~ "(ப) 2003 மிகேல் கிராப்\n"
+#~ "\n"
+#~ "உதவியாலர்கள்:\n"
+#~ "  - மிகேல் கிராப்\n"
+#~ "  - பெனடிக்ட் மெஉரர்\n"
+#~ "  - எட்கொட் வில்சன் கார்சியா\n"
+#~ "\n"
+#~ "XFce4 (ப) ஒலிவர் பொர்டான்"
+
+#~ msgid "Reminder"
+#~ msgstr "ஞாபகமூட்டி"
+
+#~ msgid "Today"
+#~ msgstr "இன்று"
 
 #~ msgid "Save"
 #~ msgstr "சேமிக்கவும்"

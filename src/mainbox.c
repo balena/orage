@@ -41,13 +41,11 @@
 
 #include "mainbox.h"
 #include "support.h"
-#include "xfcalendar-icon-inline.h"
 #include "xfce_trayicon.h"
 #include "about-xfcalendar.h"
 #include "interface.h"
 #include "callbacks.h"
 
-#define DEFAULT_ICON_SIZE 48
 #define LEN_BUFFER 1024
 #define CHANNEL  "xfcalendar"
 
@@ -368,10 +366,7 @@ CalWin *create_mainWin(void)
 
   CalWin *xfcal = g_new(CalWin, 1);
 
-  GdkPixbuf *xfcalendar_logo 
-    = xfce_inline_icon_at_size (xfcalendar_icon, 
-			        DEFAULT_ICON_SIZE, 
-			        DEFAULT_ICON_SIZE);
+  GdkPixbuf *xfcalendar_logo = xfce_themed_icon_load ("xfcalendar", 48);
 
   xfcal->mAccel_group = gtk_accel_group_new ();
 

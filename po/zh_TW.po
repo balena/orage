@@ -5,7 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: xfcalendar\n"
-"POT-Creation-Date: 2003-11-17 21:16+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-07-24 00:02+0200\n"
 "PO-Revision-Date: 2004-04-20 16:13+0800\n"
 "Last-Translator: umm <umm@pchome.com.tw>\n"
 "Language-Team: \n"
@@ -13,165 +14,146 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/main.c:209
+#: src/main.c:203
+msgid "This should not happen"
+msgstr "不應發生此種情況"
+
+#: src/main.c:421
 msgid "Cannot create MCS client channel"
 msgstr "無法建立 MCS 客戶端通道"
 
-#: src/interface.c:65
-#: src/interface.c:375
-#: plugin/xfcalendar_plugin.c:172
-#: plugin/xfcalendar_plugin.c:183
-#: plugin/xfcalendar_plugin.c:305
-msgid "XFCalendar"
-msgstr ""
-
-#: src/interface.c:80
-msgid "_File"
-msgstr "檔案(_F)"
-
-#: src/interface.c:87
-msgid "Close window"
-msgstr "關閉視窗"
-
-#: src/interface.c:100
-msgid "Settings"
-msgstr "設定"
-
-#: src/interface.c:107
-#: src/interface.c:571
-msgid "Preferences"
-msgstr "偏好設定"
-
-#: src/interface.c:115
-msgid "Select Today"
-msgstr "選擇今天日期"
-
-#: src/interface.c:120
-msgid "_Help"
-msgstr "說明(_H)"
-
-#: src/interface.c:127
-msgid "_About"
-msgstr "關於(_A)"
-
-#: src/interface.c:210
+#: src/interface.c:56
 msgid "Appointment"
 msgstr "約會"
 
-#: src/interface.c:232
+#: src/interface.c:78
 msgid "Save (Ctrl+s)"
 msgstr "儲存 (Ctrl+s)"
 
-#: src/interface.c:245
+#: src/interface.c:91
 msgid "Previous day (Ctrl+p)"
 msgstr "前一天 (Ctrl+p)"
 
-#: src/interface.c:256
+#: src/interface.c:102
 msgid "Today (Alt+Home)"
 msgstr "今天 (Alt+Home)"
 
-#: src/interface.c:268
+#: src/interface.c:114
 msgid "Next day (Ctrl+n)"
 msgstr "後一天 (Ctrl+n)"
 
-#: src/interface.c:281
+#: src/interface.c:127
 msgid "Close (Ctrl+w)"
 msgstr "關閉 (Ctrl+w)"
 
-#: src/interface.c:291
+#: src/interface.c:137
 msgid "Clear"
 msgstr "清除"
 
-#: src/interface.c:292
+#: src/interface.c:138
 msgid "Clear (Ctrl+l)"
 msgstr "清除 (Ctrl+l)"
 
-#: src/interface.c:366
-#: src/interface.c:580
-msgid "About XFCalendar"
-msgstr "關於 XFCalendar"
-
-#: src/interface.c:386
-msgid ""
-"XFCalendar\n"
-"Manage your time with XFce4\n"
-"\n"
-"This software is released under\n"
-"the General Public Licence.\n"
-"\n"
-"(c) 2003 Mickael Graf\n"
-"\n"
-"Contributors:\n"
-"  - Mickael Graf\n"
-"  - Benedikt Meurer\n"
-"  - Edscott Wilson Garcia\n"
-"\n"
-"XFce4 is (c) Olivier Fourdan"
-msgstr ""
-"XFCalendar\n"
-"使用 XFce4 為您管理時間\n"
-"\n"
-"此軟體已通過通用許可証(GPL)之發行方式\n"
-"\n"
-"版權所有 2003 Mickael Graf\n"
-"\n"
-"參與人：\n"
-"  - Mickael Graf\n"
-"  - Benedikt Meurer\n"
-"  - Edscott Wilson Garcia\n"
-"\n"
-"XFce4 之版權所有者為 Olivier Fourdan"
-
-#: src/interface.c:434
+#: src/interface.c:208
 msgid "Warning"
 msgstr "警告"
 
-#: src/interface.c:450
+#: src/interface.c:224
 msgid ""
 "You will remove all information \n"
 "associated with this date."
 msgstr "您將刪除與該日期有關的所有資訊。"
 
-#: src/interface.c:499
-#: src/interface.c:507
-msgid "Reminder"
-msgstr "提醒"
-
-#: src/interface.c:561
-msgid "Today"
-msgstr "今天"
-
-#: src/callbacks.c:768
-msgid "This should not happen"
-msgstr "不應發生此種情況"
-
-#: src/support.c:91
-#: src/support.c:115
+#: src/support.c:91 src/support.c:115
 #, c-format
 msgid "Couldn't find pixmap file: %s"
 msgstr "找不到圖片檔案：%s"
 
-#: plugin/xfcalendar_plugin.c:199
+#: plugin/xfcalendar_plugin.c:165 plugin/xfcalendar_plugin.c:176
+#: plugin/xfcalendar_plugin.c:297
+#, fuzzy
+msgid "Xfcalendar"
+msgstr "關於 XFCalendar"
+
+#.
+#: plugin/xfcalendar_plugin.c:191
 msgid "Week starts with..."
 msgstr "星期開始於..."
 
-#: plugin/xfcalendar_plugin.c:207
+#: plugin/xfcalendar_plugin.c:199
 msgid "Sunday"
 msgstr "星期天"
 
-#: plugin/xfcalendar_plugin.c:214
+#: plugin/xfcalendar_plugin.c:206
 msgid "Monday"
 msgstr "星期一"
 
-#: plugin/xfcalendar_plugin.c:222
+#.
+#: plugin/xfcalendar_plugin.c:214
 msgid "Mode"
 msgstr "模式"
 
-#: plugin/xfcalendar_plugin.c:230
+#: plugin/xfcalendar_plugin.c:222
 msgid "Normal"
 msgstr "正常"
 
-#: plugin/xfcalendar_plugin.c:237
+#: plugin/xfcalendar_plugin.c:229
 msgid "Compact"
 msgstr "複雜"
 
+#~ msgid "_File"
+#~ msgstr "檔案(_F)"
+
+#~ msgid "Close window"
+#~ msgstr "關閉視窗"
+
+#~ msgid "Settings"
+#~ msgstr "設定"
+
+#~ msgid "Preferences"
+#~ msgstr "偏好設定"
+
+#~ msgid "Select Today"
+#~ msgstr "選擇今天日期"
+
+#~ msgid "_Help"
+#~ msgstr "說明(_H)"
+
+#~ msgid "_About"
+#~ msgstr "關於(_A)"
+
+#~ msgid ""
+#~ "XFCalendar\n"
+#~ "Manage your time with XFce4\n"
+#~ "\n"
+#~ "This software is released under\n"
+#~ "the General Public Licence.\n"
+#~ "\n"
+#~ "(c) 2003 Mickael Graf\n"
+#~ "\n"
+#~ "Contributors:\n"
+#~ "  - Mickael Graf\n"
+#~ "  - Benedikt Meurer\n"
+#~ "  - Edscott Wilson Garcia\n"
+#~ "\n"
+#~ "XFce4 is (c) Olivier Fourdan"
+#~ msgstr ""
+#~ "XFCalendar\n"
+#~ "使用 XFce4 為您管理時間\n"
+#~ "\n"
+#~ "此軟體已通過通用許可証(GPL)之發行方式\n"
+#~ "\n"
+#~ "版權所有 2003 Mickael Graf\n"
+#~ "\n"
+#~ "參與人：\n"
+#~ "  - Mickael Graf\n"
+#~ "  - Benedikt Meurer\n"
+#~ "  - Edscott Wilson Garcia\n"
+#~ "\n"
+#~ "XFce4 之版權所有者為 Olivier Fourdan"
+
+#~ msgid "Reminder"
+#~ msgstr "提醒"
+
+#~ msgid "Today"
+#~ msgstr "今天"
