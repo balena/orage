@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfcalender 4.2.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-08-25 23:03+0200\n"
+"POT-Creation-Date: 2005-03-12 12:22+0100\n"
 "PO-Revision-Date: 2005-02-21 19:17+0100\n"
 "Last-Translator: Jesper Berth <bigsanta@berthit.dk>\n"
 "Language-Team: Danish <dansk@klid.dk>\n"
@@ -15,35 +15,77 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: plugin/xfcalendar_plugin.c:147 plugin/xfcalendar_plugin.c:158
-#: plugin/xfcalendar_plugin.c:255 src/mainbox.c:377
+#: plugin/xfcalendar_plugin.c:175 plugin/xfcalendar_plugin.c:186
+#: plugin/xfcalendar_plugin.c:300 src/mainbox.c:374
 msgid "Xfcalendar"
 msgstr "XFcalendar"
 
 #.
-#: plugin/xfcalendar_plugin.c:173
+#: plugin/xfcalendar_plugin.c:201
 msgid "Mode"
 msgstr "Tilstand"
 
-#: plugin/xfcalendar_plugin.c:181
+#: plugin/xfcalendar_plugin.c:209
 msgid "Normal"
 msgstr "Normal"
 
-#: plugin/xfcalendar_plugin.c:188
+#: plugin/xfcalendar_plugin.c:216
 msgid "Compact"
 msgstr "Kompakt"
 
-#: src/about-xfcalendar.c:38
+#.
+#: plugin/xfcalendar_plugin.c:224
+msgid "Show in..."
+msgstr ""
+
+#: plugin/xfcalendar_plugin.c:232
+msgid "Taskbar"
+msgstr ""
+
+#: plugin/xfcalendar_plugin.c:237
+msgid "Pager"
+msgstr ""
+
+#: plugin/xfcalendar_plugin.c:242
+msgid "Systray"
+msgstr ""
+
+#.
+#: plugin/xfcalendar_plugin.c:248
+msgid "Start visibility"
+msgstr ""
+
+#: plugin/xfcalendar_plugin.c:256
+msgid "Show"
+msgstr ""
+
+#: plugin/xfcalendar_plugin.c:263
+msgid "Hide"
+msgstr ""
+
+#: src/about-xfcalendar.c:39
 msgid "Manage your time with Xfce4"
 msgstr "Styr din tid med Xfce4"
 
-#: src/about-xfcalendar.c:48
+#: src/about-xfcalendar.c:49
 msgid "Core developer"
 msgstr "Hoved udvikler"
 
-#: src/about-xfcalendar.c:53 src/about-xfcalendar.c:58
+#: src/about-xfcalendar.c:54 src/about-xfcalendar.c:59
+#: src/about-xfcalendar.c:64
 msgid "Contributor"
 msgstr "Bidragsyder"
+
+#: src/callbacks.c:227
+msgid "Question"
+msgstr ""
+
+#: src/callbacks.c:236
+msgid ""
+"\n"
+"The information has been modified.\n"
+" Do you want to continue ?\n"
+msgstr ""
 
 #: src/interface.c:56
 msgid "Appointment"
@@ -69,10 +111,6 @@ msgstr "Næste dag (Ctrl+n)"
 msgid "Close (Ctrl+w)"
 msgstr "Luk (Ctrl+w)"
 
-#: src/interface.c:137
-msgid "Clear"
-msgstr "Nulstil"
-
 #: src/interface.c:138
 msgid "Clear (Ctrl+l)"
 msgstr "Nulstil (Ctrl+l)"
@@ -81,7 +119,7 @@ msgstr "Nulstil (Ctrl+l)"
 msgid "Warning"
 msgstr "Advarsel"
 
-#: src/interface.c:224
+#: src/interface.c:225
 msgid ""
 "You will remove all information \n"
 "associated with this date."
@@ -120,11 +158,11 @@ msgstr "Hjælp"
 msgid "_About"
 msgstr "Om"
 
-#: src/main.c:198
+#: src/main.c:127
 msgid "This should not happen"
 msgstr "Dette skulle ikke ske"
 
-#: src/main.c:396
+#: src/main.c:390
 msgid "Cannot create MCS client channel"
 msgstr "Kan ikke lave MCS klient kanal"
 
@@ -137,14 +175,17 @@ msgstr "Påminder"
 msgid "Couldn't find pixmap file: %s"
 msgstr "Kunne ikke finde pixmap fil: %s"
 
-#: src/tray_icon.c:96
+#: src/tray_icon.c:95
 msgid "Today"
 msgstr "Idag"
 
-#: src/tray_icon.c:106
+#: src/tray_icon.c:105
 msgid "Preferences"
 msgstr "Indstillinger"
 
-#: src/tray_icon.c:115
+#: src/tray_icon.c:114
 msgid "About Xfcalendar"
 msgstr "Om Xfcalendar"
+
+#~ msgid "Clear"
+#~ msgstr "Nulstil"
