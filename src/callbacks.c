@@ -50,7 +50,7 @@
 #include "interface.h"
 #include "support.h"
 
-#define MAX_APP_LENGTH 1024
+#define MAX_APP_LENGTH 4096
 
 static GtkWidget *info;
 static GtkWidget *clearwarn;
@@ -371,13 +371,12 @@ on_btSave_clicked(GtkButton *button, gpointer user_data)
 #endif
 	
 	fpath = xfce_get_userfile("xfcalendar","appointments.dbh", NULL);
-	
 
 	if (gtk_text_buffer_get_modified(tb)) {
-		DBH_Size(NULL,MAX_APP_LENGTH);
 		if ((fapp = DBH_open(fpath)) == NULL){
 			fapp = DBH_create(fpath,8) ;
 		}
+		DBH_Size(fapp,MAX_APP_LENGTH);
 		if (!fapp) {
 			g_warning("Cannot open file %s\n", fpath);
 		}
