@@ -64,12 +64,7 @@
 #define SUNDAY TRUE
 #define MONDAY FALSE
 
-extern gboolean normalmode;
-
-/*
-static gboolean showtaskbar = TRUE;
-static gboolean showpager = TRUE;
-*/
+extern gint pos_x, pos_y;
 
 /* MCS client */
 McsClient        *client = NULL;
@@ -100,7 +95,9 @@ void apply_settings()
   if ((fp = fopen(fpath, "w")) == NULL){
     g_warning("Unable to open RC file.");
   }else {
-    fprintf(fp, "[Session Visibility]\n");
+    fprintf(fp, "[Window Position]\n");
+    gtk_window_get_position(GTK_WINDOW(xfcal->mWindow), &pos_x, &pos_y);
+    fprintf(fp, "X=%i, Y=%i\n", pos_x, pos_y);
     fclose(fp);
   }
   g_free(fpath);

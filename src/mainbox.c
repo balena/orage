@@ -53,6 +53,7 @@
 #define RCDIR    "xfce4" G_DIR_SEPARATOR_S "xfcalendar"
 
 extern gboolean normalmode;
+extern gint pos_x, pos_y;
 static GtkCalendar *cal;
 
 char today[8];
@@ -245,16 +246,13 @@ xfcalendar_init_settings (CalWin *xfcal)
       fprintf(fp, "[Session Visibility]\n");
       fclose(fp);
     }
-  } /* else{
-    fgets(buf, LEN_BUFFER, fp); / * [Session Visibility] * /
-    fgets(buf, LEN_BUFFER, fp);
-    if(strstr(buf, "show")) 
+  }  else{
+    fgets(buf, LEN_BUFFER, fp); /* [Window Position] */
+    if (fscanf(fp, "X=%i, Y=%i", &pos_x, &pos_y) != 2)
       {
-	  xfcal->show_Calendar = TRUE;
-	  gtk_widget_show_all(xfcal->mWindow);
+      g_warning("Unable to read position from: %s", fpath);
       }
   }
-      */
 }
 
 gboolean

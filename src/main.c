@@ -60,7 +60,7 @@
 static SessionClient	*session_client = NULL;
 
 /* main window */
-static GtkWidget	*mainWindow = NULL;
+GtkWidget	*mainWindow = NULL;
 CalWin *xfcal;
 
 /* MCS client */
@@ -106,6 +106,7 @@ client_message_received (GtkWidget * widget, GdkEventClient * event,
 	DBG ("TOGGLE\n");
 	if (GTK_WIDGET_VISIBLE (mainWindow))
 	{
+      apply_settings();
 	  gtk_window_get_position(GTK_WINDOW(mainWindow), &pos_x, &pos_y);
 	  gtk_widget_hide (mainWindow);
 	  return TRUE;
