@@ -47,6 +47,7 @@ Makefile
 xfcalendar.spec
 icons/Makefile
 icons/48x48/Makefile
+icons/scalable/Makefile
 po/Makefile.in
 src/Makefile
 plugin/Makefile

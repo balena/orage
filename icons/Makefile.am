@@ -1,2 +1,3 @@
 SUBDIRS =								\
-	48x48
+	48x48								\
+	scalable
