@@ -18,9 +18,27 @@
  *
  */
 
-typedef struct _AppWin AppWin;
+//typedef struct _appointment appointment;
 
-struct _AppWin
+typedef struct
+{
+  const gchar *title,
+    *location;
+
+  gint *alarm,
+    *alarmTimeType,
+    *availability;
+
+  gchar *note,
+    *starttime,
+    *endtime;
+
+} appointment;
+
+//typedef struct _appointment appointment;
+
+
+typedef struct
 {
   GtkWidget *appWindow;
   GtkWidget *appVBox1;
@@ -64,7 +82,10 @@ struct _AppWin
   GtkWidget *appRemove;
   GtkWidget *appBottom_fixed;
   GtkWidget *appClose;
-};
+} AppWin;
 
 /* The void below is temporary */
 AppWin *create_appWin(char year[4], char month[2], char day[2]);
+
+
+

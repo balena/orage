@@ -42,25 +42,23 @@
 #include <libxfce4mcs/mcs-client.h>
 
 #include "appointment.h"
-#include "support.h"
+//#include "support.h"
 
 #define MAX_APP_LENGTH 4096
 #define RCDIR          "xfce4" G_DIR_SEPARATOR_S "xfcalendar"
 #define TIME_FORMAT    "%02d:%02d"
 #define APPOINTMENT_FILE "appointments.ics"
 
-static icalcomponent *ical;
+static icalcomponent* ical;
 static icalset* fical;
-
-/* IMPORTANT:
- * Faire une structure qui va permettre d'envoyer un seul parametre pour sauver ou nettoyer 
- */
 
 void
 on_appClose_clicked_cb(GtkButton *button, gpointer user_data)
 {
 
-  AppWin *appt = (AppWin *)user_data;
+  AppWin *apptw = (AppWin *)user_data;
+
+  appointment *appt = g_new(appointment, 1); 
 
   const gchar *Title_text,
     *Location_text;
@@ -75,47 +73,51 @@ on_appClose_clicked_cb(GtkButton *button, gpointer user_data)
 
   G_CONST_RETURN gchar *winTitle;
 
+  /*
   gchar *note,
     *starttime,
     *endtime;
+    */
+
+  gchar *Note_value;
 
   char a_day[10];
   guint day;
 
   GtkTextIter start, end;
 
-  winTitle = gtk_window_get_title(GTK_WINDOW(appt->appWindow));
+  winTitle = gtk_window_get_title(GTK_WINDOW(apptw->appWindow));
 
-  Title_text = gtk_entry_get_text((GtkEntry *)appt->appTitle_entry);
+  Title_text = gtk_entry_get_text((GtkEntry *)apptw->appTitle_entry);
   g_warning("Title: %s\n", Title_text);
 
-  Location_text = gtk_entry_get_text((GtkEntry *)appt->appLocation_entry);
+  Location_text = gtk_entry_get_text((GtkEntry *)apptw->appLocation_entry);
   g_warning("Location: %s\n", Location_text);
 
-  StartHour_value = gtk_spin_button_get_value_as_int((GtkSpinButton *)appt->appStartHour_spinbutton);
-  StartMinutes_value = gtk_spin_button_get_value_as_int((GtkSpinButton *)appt->appStartMinutes_spinbutton);
-  starttime = g_strdup_printf(TIME_FORMAT, StartHour_value, StartMinutes_value);
-  g_warning("Start: %s\n", starttime);
+  StartHour_value = gtk_spin_button_get_value_as_int((GtkSpinButton *)apptw->appStartHour_spinbutton);
+  StartMinutes_value = gtk_spin_button_get_value_as_int((GtkSpinButton *)apptw->appStartMinutes_spinbutton);
+  appt->starttime = g_strdup_printf(TIME_FORMAT, StartHour_value, StartMinutes_value);
+  g_warning("Start: %s\n", appt->starttime);
 
-  EndHour_value = gtk_spin_button_get_value_as_int((GtkSpinButton *)appt->appEndHour_spinbutton);
-  EndMinutes_value = gtk_spin_button_get_value_as_int((GtkSpinButton *)appt->appEndMinutes_spinbutton);
-  endtime = g_strdup_printf(TIME_FORMAT, EndHour_value, EndMinutes_value);
-  g_warning("End: %s\n", endtime);
+  EndHour_value = gtk_spin_button_get_value_as_int((GtkSpinButton *)apptw->appEndHour_spinbutton);
+  EndMinutes_value = gtk_spin_button_get_value_as_int((GtkSpinButton *)apptw->appEndMinutes_spinbutton);
+  appt->endtime = g_strdup_printf(TIME_FORMAT, EndHour_value, EndMinutes_value);
+  g_warning("End: %s\n", appt->endtime);
 
-  Alarm_value = gtk_spin_button_get_value_as_int((GtkSpinButton *)appt->appAlarm_spinbutton);
+  Alarm_value = gtk_spin_button_get_value_as_int((GtkSpinButton *)apptw->appAlarm_spinbutton);
   g_warning("Alarm: %d\n", Alarm_value);
 
-  AlarmTimeType_value = gtk_combo_box_get_active((GtkComboBox *)appt->appAlarmTimeType_combobox);
+  AlarmTimeType_value = gtk_combo_box_get_active((GtkComboBox *)apptw->appAlarmTimeType_combobox);
   g_warning("Time Type: %d\n", AlarmTimeType_value);
 
-  Availability_value = gtk_combo_box_get_active((GtkComboBox *)appt->appAvailability_cb);
+  Availability_value = gtk_combo_box_get_active((GtkComboBox *)apptw->appAvailability_cb);
   g_warning("Availability: %d\n", Availability_value);
 
-  gtk_text_buffer_get_bounds(gtk_text_view_get_buffer((GtkTextView *)appt->appNote_textview), 
+  gtk_text_buffer_get_bounds(gtk_text_view_get_buffer((GtkTextView *)apptw->appNote_textview), 
 			     &start, 
 			     &end);
-  note = gtk_text_iter_get_text(&start, &end);
-  g_warning("Note: %s\n", note);
+  appt->note = gtk_text_iter_get_text(&start, &end);
+  g_warning("Note: %s\n", appt->note);
 
   /* Here we try to save the event... */
   if (open_ical_file()){
@@ -129,10 +131,7 @@ on_appClose_clicked_cb(GtkButton *button, gpointer user_data)
 
   }
 
-  g_free(starttime);
-  g_free(endtime);
-
-  gtk_widget_destroy(appt->appWindow);
+  gtk_widget_destroy(apptw->appWindow);
 
 }
 
