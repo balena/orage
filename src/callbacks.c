@@ -60,9 +60,9 @@
 #define MONDAY FALSE
 
 settings calsets;
+gboolean normalmode = TRUE;
 
 static gboolean startday = SUNDAY;
-static gboolean normalmode = TRUE;
 /*
 static gboolean showtaskbar = TRUE;
 static gboolean showpager = TRUE;

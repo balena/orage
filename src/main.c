@@ -68,6 +68,7 @@ extern McsClient        *client;
 XfceTrayIcon 		*trayIcon = NULL;
 
 extern settings calsets;
+extern gboolean normalmode;
 
 void
 createRCDir(void)
@@ -123,8 +124,11 @@ toggle_visible_cb(GtkWidget *window)
     }
   else
     {
-      gtk_window_set_decorated(GTK_WINDOW(window), FALSE);
-      gtk_widget_hide((GtkWidget *)lookup_widget(window, "menubar1"));
+      gtk_window_set_decorated(GTK_WINDOW(window), normalmode);
+      if(!normalmode)
+        gtk_widget_hide((GtkWidget *)lookup_widget(window, "menubar1"));
+      else
+        gtk_widget_show((GtkWidget *)lookup_widget(window, "menubar1"));
       gtk_widget_show(window);
       gtk_window_stick(GTK_WINDOW(window));
       /* Commented until the bug is fixed :(
