@@ -232,11 +232,11 @@ void fill_appt_window(appt_win *appt, char *action, char *par)
 				    GTK_SPIN_BUTTON(appt->appAlarm_spinbutton)
 				    , (gdouble) appt_data->alarm);
 	}
-	if (appt_data->alarmTimeType){
+	if (appt_data->alarmTimeType != -1){
 	  gtk_combo_box_set_active(GTK_COMBO_BOX(appt->appAlarmTimeType_combobox)
 				   , appt_data->alarmTimeType);
 	}
-	if (appt_data->availability){
+	if (appt_data->availability != -1){
 	  gtk_combo_box_set_active(GTK_COMBO_BOX(appt->appAvailability_cb)
 				   , appt_data->availability);
 	}

@@ -131,11 +131,13 @@ appt_type *xf_alloc_ical_app()
  */
 char *xf_add_ical_app(appt_type *app)
 {
-    icalcomponent *ievent;
+    icalcomponent *ievent, *ialarm;
     struct icaltimetype ctime;
     static gchar xf_uid[1000];
     gchar xf_host[501];
     icalproperty_transp xf_transp;
+    struct icaltriggertype trg;
+    gint duration=0;
 
     ctime = icaltime_current_time_with_zone(NULL);
     gethostname(xf_host, 500);
@@ -168,16 +170,42 @@ char *xf_add_ical_app(appt_type *app)
     if (strlen(app->endtime) > 0)
         icalcomponent_add_property(ievent
            , icalproperty_new_dtend(icaltime_from_string(app->endtime)));
-    if ((app->availability == 0) || (app->availability == 1)) {
-        if (app->availability == 0)
-            xf_transp = ICAL_TRANSP_TRANSPARENT;
-        else if (app->availability == 1)
-            xf_transp = ICAL_TRANSP_OPAQUE;
-        else
-            xf_transp = ICAL_TRANSP_NONE;
+    if (app->availability == 0)
         icalcomponent_add_property(ievent
-           , icalproperty_new_transp(xf_transp));
+           , icalproperty_new_transp(ICAL_TRANSP_TRANSPARENT));
+    else if (app->availability == 1)
+        icalcomponent_add_property(ievent
+           , icalproperty_new_transp(ICAL_TRANSP_OPAQUE));
+    if (app->alarm != 0)  {
+        g_print("\n#####alarm set %d\n", app->alarm);
+        ialarm = icalcomponent_vanew(ICAL_VALARM_COMPONENT
+           ,icalproperty_new_action(ICAL_ACTION_DISPLAY)
+           ,0);
+        g_print("\n#####alarm set 2 %d\n", app->alarm);
+        if ((app->note != NULL)  && (strlen(app->note) > 0)) 
+            icalcomponent_add_property(ialarm
+                , icalproperty_new_description(app->note));
+        else if ( (app->title != NULL) && (strlen(app->title) > 0)) 
+            icalcomponent_add_property(ialarm
+                , icalproperty_new_description(app->title));
+        else
+            icalcomponent_add_property(ialarm
+                , icalproperty_new_description(_("Xfcalendar default alarm")));
+        if (app->alarmTimeType == 0) 
+            duration = app->alarm * 60;
+        else if (app->alarmTimeType == 1) 
+            duration = app->alarm * 60 * 60;
+        else if (app->alarmTimeType == 2) 
+            duration = app->alarm * 60 * 60 * 24;
+        else 
+            duration = app->alarm; /* secs */
+        trg.time = icaltime_null_time();
+        trg.duration =  icaldurationtype_from_int(-duration);
+        icalcomponent_add_property(ialarm
+             , icalproperty_new_trigger(trg));
+        icalcomponent_add_component(ievent, ialarm);
     }
+
     icalcomponent_add_component(ical, ievent);
     icalset_mark(fical);
     return(xf_uid);
@@ -193,19 +221,22 @@ char *xf_add_ical_app(appt_type *app)
   */
 appt_type *xf_get_ical_app(char *ical_uid)
 {
-    icalcomponent *c = NULL;
+    icalcomponent *c = NULL, *ca = NULL;
     icalproperty *p = NULL;
     gboolean key_found=FALSE;
     const char *text;
     static appt_type app;
     struct icaltimetype itime;
     icalproperty_transp xf_transp;
+    struct icaltriggertype trg;
+    gint mins;
 
     for (c = icalcomponent_get_first_component(ical, ICAL_VEVENT_COMPONENT); 
          (c != 0) && (!key_found);
          c = icalcomponent_get_next_component(ical, ICAL_VEVENT_COMPONENT)) {
         text = icalcomponent_get_uid(c);
         if (strcmp(text, ical_uid) == 0) {
+        /*********** Defaults ***********/
             key_found = TRUE;
             app.title = NULL;
             app.location = NULL;
@@ -214,8 +245,9 @@ appt_type *xf_get_ical_app(char *ical_uid)
             app.alarm = -1;
             app.alarmTimeType = -1;
             app.availability = -1;
-            strcpy(app.starttime, "20050101T000000");
-            strcpy(app.endtime, "20051231T235959");
+            strcpy(app.starttime, "");
+            strcpy(app.endtime, "");
+        /*********** Properties ***********/
             for (p = icalcomponent_get_first_property(c, ICAL_ANY_PROPERTY);
                  p != 0;
                  p = icalcomponent_get_next_property(c, ICAL_ANY_PROPERTY)) {
@@ -230,24 +262,68 @@ appt_type *xf_get_ical_app(char *ical_uid)
                 else if (strcmp(text, "UID") == 0)
                     app.uid = (char *) icalproperty_get_uid(p);
                 else if (strcmp(text, "TRANSP") == 0) {
+                g_print("\n#####transp read 1 %d\n", app.availability);
                     xf_transp = icalproperty_get_transp(p);
                     if (xf_transp == ICAL_TRANSP_TRANSPARENT)
                         app.availability = 0;
-                    if (xf_transp == ICAL_TRANSP_OPAQUE)
+                    else if (xf_transp == ICAL_TRANSP_OPAQUE)
                         app.availability = 1;
                     else 
                         app.availability = -1;
+                g_print("\n#####transp read 2 %d\n", app.availability);
                 }
                 else if (strcmp(text, "DTSTART") == 0) {
                     itime = icalproperty_get_dtstart(p);
                     text  = icaltime_as_ical_string(itime);
                     strcpy(app.starttime, text);
-                    strcpy(app.endtime, text);
+                    if (strlen(app.endtime))
+                        strcpy(app.endtime, text);
                 }
                 else if (strcmp(text, "DTEND") == 0) {
                     itime = icalproperty_get_dtend(p);
                     text  = icaltime_as_ical_string(itime);
                     strcpy(app.endtime, text);
+                }
+            }
+        /*********** Alarms ***********/
+            for (ca = icalcomponent_get_first_component(c
+                        , ICAL_VALARM_COMPONENT); 
+                ca != 0;
+                ca = icalcomponent_get_next_component(c
+                        , ICAL_VALARM_COMPONENT)) {
+                g_print("\n#####alarm read 1 %d\n", app.alarm);
+                for (p = icalcomponent_get_first_property(ca
+                        , ICAL_ANY_PROPERTY);
+                    p != 0;
+                    p = icalcomponent_get_next_property(ca
+                        , ICAL_ANY_PROPERTY)) {
+                    text = icalproperty_get_property_name(p);
+                    g_print("\n#####alarm read 2 %s\n", text);
+                    if (strcmp(text, "TRIGGER") == 0) {
+                        g_print("\n#####alarm read 3 %s\n", text);
+                        trg = icalproperty_get_trigger(p);
+                        if (icaltime_is_null_time(trg.time)) {
+                            mins = icaldurationtype_as_int(trg.duration)/-60;
+                            if (trg.duration.minutes == mins) {
+                                app.alarm = mins;
+                                app.alarmTimeType = 0;
+                            }
+                            else if (trg.duration.hours * 60 == mins) {
+                                app.alarm = mins/60;
+                                app.alarmTimeType = 1;
+                            }
+                            else if (trg.duration.days * 60 * 24 == mins) {
+                                app.alarm = mins/60/24;
+                                app.alarmTimeType = 2;
+                            }
+                            else {
+                                app.alarm = mins;
+                                app.alarmTimeType = 0;
+                            }
+                        }
+                        else
+                            g_warning("ical_code: Can not process time type triggers\n");
+                    }
                 }
             }
         }

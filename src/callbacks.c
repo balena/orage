@@ -199,7 +199,7 @@ void addAppointment_init(GtkWidget *view)
     gtk_tree_view_append_column(GTK_TREE_VIEW(view), col);
 
     rend = gtk_cell_renderer_text_new();
-    col = gtk_tree_view_column_new_with_attributes( _("Heading"), rend
+    col = gtk_tree_view_column_new_with_attributes( _("Title"), rend
                 , "text", COL_HEAD
                 ,NULL);
     gtk_tree_view_append_column(GTK_TREE_VIEW(view), col);
