@@ -37,7 +37,7 @@ void create_wAbout(GtkWidget *widget, gpointer user_data){
   XfceAboutInfo *about = xfce_about_info_new("Xfcalendar",
 			      VERSION,
 			      _("Manage your time with Xfce4"),
-			      XFCE_COPYRIGHT_TEXT("2003-2004", "Mickael 'Korbinus' Graf"),
+			      XFCE_COPYRIGHT_TEXT("2003-2005", "Mickael 'Korbinus' Graf"),
 			      XFCE_LICENSE_GPL);
 
   xfce_about_info_set_homepage(about, "http://www.xfce.org");
@@ -56,6 +56,11 @@ void create_wAbout(GtkWidget *widget, gpointer user_data){
   xfce_about_info_add_credit(about,
 			     "Edscott Wilson Garcia",
 			     "edscott@imp.mx",
+			     _("Contributor"));
+
+  xfce_about_info_add_credit(about,
+			     "Juha Kautto",
+			     "kautto.juha@kolumbus.fi",
 			     _("Contributor"));
 
   dialog = xfce_about_dialog_new(GTK_WINDOW(xfcal->mWindow), about,
