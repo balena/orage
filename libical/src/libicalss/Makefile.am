@@ -46,31 +46,19 @@ BDB_SOURCEFILES=
 BDB_HEADERFILES=
 endif
 
-if WITH_CXX
-cxx_lib=libicalss_cxx.la
-cxx_headers=icalspanlist_cxx.h
-else
-cxx_lib=
-cxx_headers=
-endif
-
-lib_LTLIBRARIES = libicalss.la $(cxx_lib)
+noinst_LTLIBRARIES = libicalss.la
 
 INCLUDES =			\
-	-I$(top_srcdir)/src	\
-	-I$(top_builddir)/src	\
-	-I$(top_srcdir)/src/libical	\
-	-I$(top_builddir)/libical \
+	-I$(top_srcdir)/libical/src	\
+	-I$(top_builddir)/libical/src	\
+	-I$(top_srcdir)/libical/src/libical	\
+	-I$(top_builddir)/libical/libical \
 	$(BDB_INCLUDE)
 
-libicalss_la_LDFLAGS = -version-info 0:0:0
+libicalss_la_LDFLAGS = -no-undefined
 libicalss_la_LIBADD = $(BDB_LIBFILES)
 
-if DEV
-libicalss_la_DEVSOURCES = icalsslexer.l icalssyacc.y
-else
 libicalss_la_DEVSOURCES = icalsslexer.c icalssyacc.c
-endif
 
 libicalss_la_SOURCES =		\
 	icalcalendar.c		\
@@ -98,8 +86,6 @@ libicalss_la_SOURCES =		\
 	icalmessage.h		\
 	$(BDB_SOURCEFILES)	\
 	$(libicalss_la_DEVSOURCES)
-
-libicalssincludedir = $(includedir)
 
 COMBINEDHEADERS = \
         $(srcdir)/icalgauge.h \
@@ -130,19 +116,7 @@ icalss.h: $(COMBINEDHEADERS)
 	echo '#endif'                     >> icalss.h
 
 
-if WITH_CXX
-libicalss_cxx_la_SOURCES =	\
-	$(libicalss_la_SOURCES)	\
-	icalspanlist_cxx.h	\
-	icalspanlist_cxx.cpp
-
-# c++ needs ical.h auto-generated.
-icalspanlist_cxx.lo: icalss.h
-
-endif
-
-
-libicalssinclude_HEADERS = icalss.h  icalcalendar.h icalclassify.h icalcluster.h icaldirset.h icaldirsetimpl.h icalfileset.h icalfilesetimpl.h icalgauge.h icalgaugeimpl.h icalmessage.h icalset.h icalspanlist.h icalssyacc.h $(libicalssinclude_BDBHEADERS) $(cxx_headers)
+noinst_HEADERS = icalss.h  icalcalendar.h icalclassify.h icalcluster.h icaldirset.h icaldirsetimpl.h icalfileset.h icalfilesetimpl.h icalgauge.h icalgaugeimpl.h icalmessage.h icalset.h icalspanlist.h icalssyacc.h $(libicalssinclude_BDBHEADERS)
 
 CONFIG_CLEAN_FILES = y.output
 

@@ -24,36 +24,24 @@
 # modified for xfce by Juha Kautto 04.03.2005
 
 
-DESIGNDATA = $(top_srcdir)/design-data
-ICALSCRIPTS = $(top_srcdir)/scripts
+DESIGNDATA = $(top_srcdir)/libical/design-data
+ICALSCRIPTS = $(top_srcdir)/libical/scripts
 
-if WITH_CXX
-cxx_lib=libical_cxx.la
-cxx_headers=vcomponent.h icalparameter_cxx.h icalproperty_cxx.h icalvalue_cxx.h icptrholder.h
-else
-cxx_lib=
-cxx_headers=
-endif
+noinst_LTLIBRARIES = libical.la
 
-lib_LTLIBRARIES = libical.la $(cxx_lib)
-
-noinst_LTLIBRARIES = libical-static.la
-libical_static_la_SOURCES = $(libical_la_SOURCES)
-libical_static_la_LDFLAGS = --all-static
-
-CPPFLAGS = -DPACKAGE_DATA_DIR=\""$(datadir)/$(PACKAGE)"\"
 
 # CFLAGS = -g
 
 all: ical.h
 
-INCLUDES =			\
-	-I$(top_builddir)	\
-	-I$(top_srcdir)/src	\
-	-I$(top_builddir)/src	\
-	-I$(srcdir)
+INCLUDES =				\
+	-I$(top_builddir)/libical	\
+	-I$(top_srcdir)/libical/src	\
+	-I$(top_builddir)/libical/src	\
+	-I$(srcdir)/libical		\
+	-DPACKAGE_DATA_DIR=\""$(datadir)/$(PACKAGE)"\"
 
-libical_la_LDFLAGS = -version-info 0:0:0
+libical_la_LDFLAGS = -no-undefined
 
 
 libical_la_SOURCES =		\
@@ -106,53 +94,37 @@ libical_la_SOURCES =		\
 	caldate.c \
 	astime.h 
 
-if WITH_CXX
-libical_cxx_la_SOURCES =	\
-	$(libical_la_SOURCES)	\
-	vcomponent.h		\
-	vcomponent.cpp		\
-	icalproperty_cxx.h	\
-	icalproperty_cxx.cpp	\
-	icalparameter_cxx.h	\
-	icalparameter_cxx.cpp	\
-	icalvalue_cxx.h		\
-	icalvalue_cxx.cpp       \
-	icptrholder.h
-endif
-
-libicalincludedir = $(includedir)
-
-libicalinclude_HEADERS = ical.h icalmemory.h icalerror.h $(cxx_headers)
+noinst_HEADERS = ical.h icalmemory.h icalerror.h
 
 # ORDERING OF HEADERS IS SIGNIFICANT. Don't change this ordering. It
 # is required to make the combined header ical.h properly
 # modified for xfce by Juha Kautto 04.03.2005
 COMBINEDHEADERS =					\
-	$(top_builddir)/src/libical/icalversion.h	\
-	$(top_srcdir)/src/libical/icaltime.h		\
-	$(top_srcdir)/src/libical/icalduration.h	\
-	$(top_srcdir)/src/libical/icalperiod.h		\
-	$(top_srcdir)/src/libical/icalenums.h		\
-	$(top_srcdir)/src/libical/icaltypes.h		\
-	$(top_srcdir)/src/libical/icalrecur.h		\
-	$(top_srcdir)/src/libical/icalattach.h		\
+	$(top_builddir)/libical/src/libical/icalversion.h	\
+	$(top_srcdir)/libical/src/libical/icaltime.h		\
+	$(top_srcdir)/libical/src/libical/icalduration.h	\
+	$(top_srcdir)/libical/src/libical/icalperiod.h		\
+	$(top_srcdir)/libical/src/libical/icalenums.h		\
+	$(top_srcdir)/libical/src/libical/icaltypes.h		\
+	$(top_srcdir)/libical/src/libical/icalrecur.h		\
+	$(top_srcdir)/libical/src/libical/icalattach.h		\
 	icalderivedvalue.h				\
 	icalderivedparameter.h				\
-	$(top_srcdir)/src/libical/icalvalue.h		\
-	$(top_srcdir)/src/libical/icalparameter.h	\
+	$(top_srcdir)/libical/src/libical/icalvalue.h		\
+	$(top_srcdir)/libical/src/libical/icalparameter.h	\
 	icalderivedproperty.h				\
-	$(top_srcdir)/src/libical/icalproperty.h	\
-	$(top_srcdir)/src/libical/pvl.h			\
-	$(top_srcdir)/src/libical/icalarray.h		\
-	$(top_srcdir)/src/libical/icalcomponent.h	\
-	$(top_srcdir)/src/libical/icaltimezone.h	\
-	$(top_srcdir)/src/libical/icalparser.h		\
-	$(top_srcdir)/src/libical/icalmemory.h		\
-	$(top_srcdir)/src/libical/icalerror.h		\
-	$(top_srcdir)/src/libical/icalrestriction.h	\
-	$(top_srcdir)/src/libical/sspm.h		\
-	$(top_srcdir)/src/libical/icalmime.h 		\
-	$(top_srcdir)/src/libical/icallangbind.h	
+	$(top_srcdir)/libical/src/libical/icalproperty.h	\
+	$(top_srcdir)/libical/src/libical/pvl.h			\
+	$(top_srcdir)/libical/src/libical/icalarray.h		\
+	$(top_srcdir)/libical/src/libical/icalcomponent.h	\
+	$(top_srcdir)/libical/src/libical/icaltimezone.h	\
+	$(top_srcdir)/libical/src/libical/icalparser.h		\
+	$(top_srcdir)/libical/src/libical/icalmemory.h		\
+	$(top_srcdir)/libical/src/libical/icalerror.h		\
+	$(top_srcdir)/libical/src/libical/icalrestriction.h	\
+	$(top_srcdir)/libical/src/libical/sspm.h		\
+	$(top_srcdir)/libical/src/libical/icalmime.h 		\
+	$(top_srcdir)/libical/src/libical/icallangbind.h	
 
 BUILT_COMBINEDHEADERS = 	\
 	icalderivedparameter.h	\
@@ -243,12 +215,6 @@ icalderivedvalue.h: $(VALUEDEPS)
 icalderivedvalue.c: $(VALUEDEPS) $(BUILT_COMBINEDHEADERS)
 	$(PERL)  -I$(ICALSCRIPTS) $(ICALSCRIPTS)/mkderivedvalues.pl \
 		-i $(srcdir)/icalderivedvalue.c.in -c $(DESIGNDATA)/value-types.csv > icalderivedvalue.c
-
-# c++ needs ical.h auto-generated.
-icalparameter_cxx.lo: ical.h
-icalproperty_cxx.lo: ical.h
-icalvalue_cxx.lo: ical.h
-vcomponent.lo: ical.h
 
 
 # housekeeping

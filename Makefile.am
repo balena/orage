@@ -1,5 +1,10 @@
+if INCLUDED_LIBICAL
+LIBICAL_SUBDIR=								\
+	libical
+endif
+
 SUBDIRS = 								\
-	libical								\
+	$(LIBICAL_SUBDIR)						\
 	icons								\
 	po								\
 	src								\
@@ -39,8 +44,4 @@ distcheck-bz2: distcheck
 
 distclean-local:
 	rm -rf *.cache *~ *.spec
-
-pkgconfigdir = $(libdir)/pkgconfig
-
-pkgconfig_DATA = libical-0.24.pc
 
