@@ -16,12 +16,15 @@
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
 #include <libxfce4util/i18n.h>
+#include <libxfcegui4/netk-trayicon.h>
 #include <libxfcegui4/libxfcegui4.h>
 
+#include "calendar-icon.h"
 #include "callbacks.h"
 #include "interface.h"
 #include "support.h"
 #include "xfcalendar-icon-inline.h"
+#include "xfce_trayicon.h"
 
 #define GLADE_HOOKUP_OBJECT(component,widget,name) \
   g_object_set_data_full (G_OBJECT (component), name, \
@@ -539,4 +542,61 @@ create_wReminder(char *text)
   GLADE_HOOKUP_OBJECT (wReminder, btOkReminder, "btOkReminder");
 
   return wReminder;
+}
+
+XfceTrayIcon*
+create_TrayIcon (GtkWidget *window)
+{
+  XfceTrayIcon *trayIcon = NULL;
+  //GtkWidget *trayIcon = NULL;
+  GtkWidget *menuItem;
+  GtkWidget *hidden;
+  GtkWidget *trayMenu;
+  GdkPixbuf *pixbuf;
+
+  /*
+   * Create the tray icon popup menu
+   */
+  trayMenu = gtk_menu_new();
+  menuItem = gtk_image_menu_item_new_with_mnemonic(_("Today"));
+  gtk_image_menu_item_set_image(GTK_IMAGE_MENU_ITEM(menuItem), gtk_image_new_from_stock(GTK_STOCK_HOME, GTK_ICON_SIZE_MENU));
+  g_signal_connect(menuItem, "activate", G_CALLBACK(on_Today_activate),
+		   NULL);
+  gtk_menu_shell_append(GTK_MENU_SHELL(trayMenu), menuItem);
+  gtk_widget_show_all(menuItem);
+  menuItem = gtk_separator_menu_item_new();
+  gtk_menu_shell_append(GTK_MENU_SHELL(trayMenu), menuItem);
+  gtk_widget_show(menuItem);
+  
+  menuItem = gtk_menu_item_new_with_label(_("Preferences"));
+  g_signal_connect(menuItem, "activate", G_CALLBACK(on_preferences_activate),
+		   NULL);
+  gtk_menu_shell_append(GTK_MENU_SHELL(trayMenu), menuItem);
+  gtk_widget_show(menuItem);
+  menuItem = gtk_separator_menu_item_new();
+  gtk_menu_shell_append(GTK_MENU_SHELL(trayMenu), menuItem);
+  gtk_widget_show(menuItem);
+
+  menuItem = gtk_menu_item_new_with_label(_("About XFCalendar"));
+  g_signal_connect(menuItem, "activate", G_CALLBACK(on_about1_activate),
+		   NULL);
+  gtk_menu_shell_append(GTK_MENU_SHELL(trayMenu), menuItem);
+  gtk_widget_show(menuItem);
+  menuItem = gtk_separator_menu_item_new();
+  gtk_menu_shell_append(GTK_MENU_SHELL(trayMenu), menuItem);
+  gtk_widget_show(menuItem);
+  menuItem = gtk_image_menu_item_new_from_stock(GTK_STOCK_QUIT, NULL);
+  g_signal_connect(menuItem, "activate", G_CALLBACK(gtk_main_quit), NULL);
+  gtk_menu_shell_append(GTK_MENU_SHELL(trayMenu), menuItem);
+  gtk_widget_show(menuItem);
+
+  /*
+   * Create the tray icon
+   */
+  pixbuf = inline_icon_at_size(calendar_icon_data, 16, 16);
+  trayIcon = xfce_tray_icon_new_with_menu_from_pixbuf(trayMenu, pixbuf);
+  g_object_unref(pixbuf);
+  g_signal_connect_swapped(G_OBJECT(trayIcon), "clicked",
+			   G_CALLBACK(toggle_visible_cb), window);
+  return trayIcon;
 }

@@ -186,3 +186,7 @@ watch_cb(Window window, Bool is_start, long mask, void *cb_data);
 
 void 
 notify_cb(const char *name, const char *channel_name, McsAction action, McsSetting * setting, void *data);
+
+void
+toggle_visible_cb (GtkWidget *window);
+

@@ -43,6 +43,7 @@
 #include <libxfce4util/util.h>
 #include <libxfcegui4/libxfcegui4.h>
 #include <libxfce4util/i18n.h>
+#include <libxfcegui4/netk-trayicon.h>
 #include <libxfce4mcs/mcs-client.h>
 #include <gdk/gdk.h>
 #include <gtk/gtk.h>
@@ -833,5 +834,30 @@ notify_cb(const char *name, const char *channel_name, McsAction action, McsSetti
         case MCS_ACTION_DELETED:
         default:
             break;
+    }
+}
+
+/*
+ */
+void
+toggle_visible_cb(GtkWidget *window)
+{
+  if (GTK_WIDGET_VISIBLE(window))
+    {
+      gtk_widget_hide(window);
+    }
+  else
+    {
+      gtk_window_set_decorated(GTK_WINDOW(window), normalmode);
+      if(!normalmode)
+        gtk_widget_hide((GtkWidget *)lookup_widget(window, "menubar1"));
+      else
+        gtk_widget_show((GtkWidget *)lookup_widget(window, "menubar1"));
+      gtk_widget_show(window);
+      gtk_window_stick(GTK_WINDOW(window));
+      /* Commented until the bug is fixed :(
+      gtk_window_set_skip_taskbar_hint(GTK_WINDOW(window), !calsets.showTaskbar);
+      gtk_window_set_skip_pager_hint(GTK_WINDOW(window), !calsets.showPager);
+      */
     }
 }
