@@ -27,6 +27,7 @@ struct _CalWin
   GtkWidget *mMenubar;
   GtkWidget *mFile;
   GtkWidget *mFile_menu;
+  GtkWidget *mFile_newApp;
   GtkWidget *mFile_close;
   GtkWidget *mFile_separator;
   GtkWidget *mFile_quit;

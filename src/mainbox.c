@@ -44,6 +44,7 @@
 #include "support.h"
 #include "xfce_trayicon.h"
 #include "about-xfcalendar.h"
+#include "appointment.h"
 #include "interface.h"
 #include "callbacks.h"
 
@@ -91,6 +92,14 @@ mWindow_delete_event_cb(GtkWidget *widget, GdkEvent *event,
 
   return(TRUE);
 
+}
+void
+mFile_newApp_activate_cb(GtkMenuItem *menuitem, 
+			 gpointer user_data){
+
+  AppWin *app;
+  app = create_appWin("2005", "03", "01");  
+  gtk_widget_show(app->appWindow);
 }
 
 void
@@ -363,6 +372,10 @@ void create_mainWin(CalWin *xfcal)
   xfcal->mFile_menu = gtk_menu_new ();
   gtk_menu_item_set_submenu (GTK_MENU_ITEM (xfcal->mFile), xfcal->mFile_menu);
 
+  xfcal->mFile_newApp = gtk_menu_item_new_with_mnemonic (_("_New appointment"));
+  gtk_widget_show(xfcal->mFile_newApp);
+  gtk_container_add(GTK_CONTAINER (xfcal->mFile_menu), xfcal->mFile_newApp);
+
   xfcal->mFile_close = gtk_menu_item_new_with_mnemonic (_("_Close window"));
   gtk_widget_show(xfcal->mFile_close);
   gtk_container_add(GTK_CONTAINER (xfcal->mFile_menu), xfcal->mFile_close);
@@ -426,6 +439,10 @@ void create_mainWin(CalWin *xfcal)
   /* Signals */
   g_signal_connect ((gpointer) xfcal->mWindow, "delete_event",
 		    G_CALLBACK (mWindow_delete_event_cb),
+		    (gpointer) xfcal);
+
+  g_signal_connect ((gpointer) xfcal->mFile_newApp, "activate",
+		    G_CALLBACK (mFile_newApp_activate_cb),
 		    (gpointer) xfcal);
 
   g_signal_connect ((gpointer) xfcal->mFile_close, "activate",

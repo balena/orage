@@ -185,7 +185,7 @@ AM_CONDITIONAL([WITH_BDB4], [test x"$WITH_BDB4" = x"yes"])
 dnl Check for debugging support
 BM_DEBUG_SUPPORT()
 
-AC_OUTPUT([
+AC_OUTPUT([ m4/Makefile 
 Makefile
 libical/Makefile
 libical/design-data/Makefile

@@ -3,6 +3,8 @@ bin_PROGRAMS = xfcalendar
 xfcalendar_SOURCES =							\
 	about-xfcalendar.c						\
 	about-xfcalendar.h						\
+	appointment.c							\
+	appointment.h							\
 	callbacks.c							\
 	callbacks.h							\
 	interface.c							\

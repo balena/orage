@@ -15,7 +15,7 @@ desktop_in_files = xfcalendar.desktop.in
 desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 @INTLTOOL_DESKTOP_RULE@
 
-EXTRA_DIST = 								\
+EXTRA_DIST = config.rpath mkinstalldirs  								\
 	intltool-extract.in						\
 	intltool-merge.in						\
 	intltool-update.in						\
@@ -45,3 +45,5 @@ distcheck-bz2: distcheck
 distclean-local:
 	rm -rf *.cache *~ *.spec
 
+
+ACLOCAL_AMFLAGS = -I m4
