@@ -86,32 +86,6 @@ createRCDir(void)
 }
 
 /*
- * SaveYourself callback
- *
- * This is called when the session manager requests the client to save its
- * state.
- */
-/* ARGUSED */
-static void
-save_yourself_cb(gpointer data, int save_style, gboolean shutdown,
-                 int interact_style, gboolean fast)
-{
-  settings_set_showCal(mainWindow);
-  apply_settings();
-}
-
-/*
- * Die callback
- *
- * This is called when the session manager requests the client to go down.
- */
-static void
-die_cb(gpointer data)
-{
-  gtk_main_quit();
-}
-
-/*
  */
 static GdkFilterReturn
 selection_filter(GdkXEvent *xevent, GdkEvent *event, gpointer data)

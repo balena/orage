@@ -190,3 +190,9 @@ notify_cb(const char *name, const char *channel_name, McsAction action, McsSetti
 void
 toggle_visible_cb (GtkWidget *window);
 
+void
+die_cb(gpointer data);
+
+void
+save_yourself_cb(gpointer data, int save_style, gboolean shutdown,
+                 int interact_style, gboolean fast);
