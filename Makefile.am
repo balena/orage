@@ -16,7 +16,7 @@ EXTRA_DIST = 								\
 	xfcalendar.glade						\
 	xfcalendar.gladep						\
 	xfcalendar.spec							\
-	$(desktop_DATA)
+	$(desktop_in_files)
 
 DISTCLEANFILES =							\
 	intltool-extract						\
