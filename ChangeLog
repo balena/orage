@@ -1,3 +1,12 @@
+2003-07-12 23:23  bmeurer
+
+	* ChangeLog, configure, configure.ac, src/Makefile.am,
+	src/Makefile.in, src/calendar-icon.h, src/main.c,
+	src/xfce_trayicon.c, src/xfce_trayicon.h: Updated to use new tray
+	icon wrapper class (copied from xfce4-session). This fixes the
+	problem that tray icons do not show up after the systray was
+	removed and readded.
+
 2003-07-11 15:56  huysmans
 
 	* aclocal.m4, configure, configure.ac, ltmain.sh: Hmm, chinese
