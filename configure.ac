@@ -43,6 +43,7 @@ BM_DEBUG_SUPPORT
 
 AC_OUTPUT([
 Makefile
+xfcalendar.spec
 po/Makefile.in
 src/Makefile
 plugin/Makefile

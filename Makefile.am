@@ -14,6 +14,11 @@ EXTRA_DIST = 								\
 	NEWS								\
 	README								\
 	xfcalendar.glade						\
-	xfcalendar.gladep
+	xfcalendar.gladep						\
+	xfcalendar.spec
+
+rpm: dist
+	rpmbuild -ta $(PACKAGE)-$(VERSION).tar.gz
+	@rm -f $(PACKAGE)-$(VERSION).tar.gz
 
 ACLOCAL_AMFLAGS = -I m4
