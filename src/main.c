@@ -63,6 +63,7 @@ void keep_tidy(void);
 void set_cal();
 void init_settings();
 void apply_settings();
+void settings_set_showCal();
 void on_about1_activate(GtkMenuItem *, gpointer);
 void on_Today_activate(GtkMenuItem *, gpointer);
 
@@ -94,23 +95,7 @@ static void
 save_yourself_cb(gpointer data, int save_style, gboolean shutdown,
                  int interact_style, gboolean fast)
 {
-  /*
-  gchar *fpath;
-  FILE *fp;
-
-  fpath = xfce_get_userfile("xfcalendar", "xfcalendarrc", NULL);
-  if((fp = fopen(fpath, "w")) == NULL){
-    g_warning("Unable to open RC file.");
-  }
-  if (GTK_WIDGET_VISIBLE(mainWindow) == TRUE){
-    fprintf(fp, "show");
-  } else {
-    fprintf(fp, "hide");
-  }
-  fclose(fp);
-  free(fp);
-  g_free(fpath);
-  */
+  settings_set_showCal(mainWindow);
   apply_settings();
 }
 

@@ -5,6 +5,8 @@ void init_settings();
 
 void apply_settings();
 
+void settings_set_showCal(GtkWidget *w);
+
 void set_cal(GtkWidget *w);
 
 void

@@ -96,7 +96,14 @@ void init_settings(GtkWidget *w)
     /* *very* limited set of options */
     fgets(buf, LEN_BUFFER, fp); /* [Session Visibility] */
     fgets(buf, LEN_BUFFER, fp);
-    if(strstr(buf, "hide")) calsets.showCal = FALSE; else calsets.showCal = TRUE; /* default */
+    if(strstr(buf, "hide")) 
+      calsets.showCal = FALSE; 
+    else
+      {
+	calsets.showCal = TRUE; /* default */
+	gtk_widget_show(w);
+      }
+
     fgets(buf, LEN_BUFFER, fp); /* [Start Monday] */
     fgets(buf, LEN_BUFFER, fp);
     if(strstr(buf, "false"))
@@ -140,6 +147,11 @@ void apply_settings()
     fclose(fp);
   }
   g_free(fpath);
+}
+
+void settings_set_showCal(GtkWidget *w)
+{
+  calsets.showCal = GTK_WIDGET_VISIBLE(w);
 }
 
 void set_cal(GtkWidget *w)
