@@ -2,7 +2,7 @@
  *
  * Copyright (C) 2004-2005 Mickaël Graf <korbinus@xfce.org>
  * Parts of the code below are copyright (C) 2003 Edscott Wilson Garcia <edscott@users.sourceforge.net>
- *                                       (C) 2005 Juha Kauto <kautto.juha at kolumbus.fi>
+ *                                       (C) 2005 Juha Kautto <kautto.juha at kolumbus.fi>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -230,7 +230,6 @@ xfcalendar_init_settings (CalWin *xfcal)
   xfcal->show_Calendar = FALSE;
   xfcal->show_Taskbar = TRUE;
   xfcal->show_Pager = TRUE;
-  xfcal->start_Monday = FALSE;
   xfcal->display_Options = GTK_CALENDAR_SHOW_HEADING 
     | GTK_CALENDAR_SHOW_DAY_NAMES 
     | GTK_CALENDAR_SHOW_WEEK_NUMBERS;

@@ -14,6 +14,7 @@
 	Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
         xfccalendar mcs plugin   - (c) 2003 Mickael Graf   
+        Parts of the code below  - (C) 2005 Juha Kautto <kautto.juha at kolumbus.fi>
 
  */
 
@@ -47,10 +48,9 @@ static void run_dialog(McsPlugin * mcs_plugin);
 
 static gboolean is_running = FALSE;
 static gboolean normalmode = TRUE;
-/*
 static gboolean showtaskbar = TRUE;
 static gboolean showpager = TRUE;
-*/
+static gboolean showsystray = TRUE;
 
 typedef struct _Itf Itf;
 struct _Itf
@@ -60,12 +60,11 @@ struct _Itf
   GSList *startday_radiobutton_group;
 
   GtkWidget *xfcalendar_dialog;
-  /*
   GtkWidget *show_taskbar_checkbutton;
   GtkWidget *show_pager_checkbutton;
+  GtkWidget *show_systray_checkbutton;
   GtkWidget *hbox3;
   GtkWidget *frame2;
-  */
   GtkWidget *vbox1;
   GtkWidget *dialog_header;
   GtkWidget *dialog_vbox1;
@@ -108,7 +107,6 @@ static void cb_mode_changed(GtkWidget * dialog, gpointer user_data)
     write_options(mcs_plugin);
 }
 
-/*
 static void cb_taskbar_changed(GtkWidget * dialog, gpointer user_data)
 {
     Itf *itf = (Itf *) user_data;
@@ -132,7 +130,19 @@ static void cb_pager_changed(GtkWidget * dialog, gpointer user_data)
     mcs_manager_notify(mcs_plugin->manager, CHANNEL);
     write_options(mcs_plugin);
 }
-*/
+
+static void cb_systray_changed(GtkWidget * dialog, gpointer user_data)
+{
+    Itf *itf = (Itf *) user_data;
+    McsPlugin *mcs_plugin = itf->mcs_plugin;
+
+    showsystray = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(itf->show_systray_checkbutton));
+
+    mcs_manager_set_int(mcs_plugin->manager, "XFCalendar/Systray", CHANNEL, showsystray ? 1 : 0);
+    mcs_manager_notify(mcs_plugin->manager, CHANNEL);
+    write_options(mcs_plugin);
+}
+
 Itf *create_xfcalendar_dialog(McsPlugin * mcs_plugin)
 {
     Itf *dialog;
@@ -193,7 +203,6 @@ Itf *create_xfcalendar_dialog(McsPlugin * mcs_plugin)
     dialog->mode_radiobutton_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (dialog->CompactMode_radiobutton));
     gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (dialog->CompactMode_radiobutton), !normalmode);
     
-    /* Commented until bug fixed     
     dialog->frame2 = xfce_framebox_new (_("Show in..."), TRUE);
     gtk_widget_show (dialog->frame2);
     gtk_box_pack_start (GTK_BOX (dialog->vbox1), dialog->frame2, TRUE, TRUE, 0);
@@ -211,7 +220,11 @@ Itf *create_xfcalendar_dialog(McsPlugin * mcs_plugin)
     gtk_widget_show (dialog->show_pager_checkbutton);
     gtk_box_pack_start (GTK_BOX (dialog->hbox3), dialog->show_pager_checkbutton, FALSE, FALSE, 0);
     gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (dialog->show_pager_checkbutton), showpager);
-    */
+
+    dialog->show_systray_checkbutton = gtk_check_button_new_with_mnemonic (_("Systray"));
+    gtk_widget_show (dialog->show_systray_checkbutton);
+    gtk_box_pack_start (GTK_BOX (dialog->hbox3), dialog->show_systray_checkbutton, FALSE, FALSE, 0);
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (dialog->show_systray_checkbutton), showsystray);
 
     /* */
     dialog->closebutton = gtk_button_new_from_stock ("gtk-close");
@@ -227,10 +240,10 @@ static void setup_dialog(Itf * itf)
   g_signal_connect(G_OBJECT(itf->xfcalendar_dialog), "response", G_CALLBACK(cb_dialog_response), itf->mcs_plugin);
 
   g_signal_connect(G_OBJECT(itf->NormalMode_radiobutton), "toggled", G_CALLBACK(cb_mode_changed), itf);
-/*
   g_signal_connect(G_OBJECT(itf->show_taskbar_checkbutton), "toggled", G_CALLBACK(cb_taskbar_changed), itf);
   g_signal_connect(G_OBJECT(itf->show_pager_checkbutton), "toggled", G_CALLBACK(cb_pager_changed), itf);
-*/
+  g_signal_connect(G_OBJECT(itf->show_systray_checkbutton), "toggled", G_CALLBACK(cb_systray_changed), itf);
+
   xfce_gtk_window_center_on_monitor_with_pointer (GTK_WINDOW (itf->xfcalendar_dialog));
   gtk_widget_show(itf->xfcalendar_dialog);
 }
@@ -278,7 +291,6 @@ static void create_channel(McsPlugin * mcs_plugin)
         normalmode = TRUE;
         mcs_manager_set_int(mcs_plugin->manager, "XFCalendar/NormalMode", CHANNEL, normalmode ? 1 : 0);
     }
-    /*
     setting = mcs_manager_setting_lookup(mcs_plugin->manager, "XFCalendar/TaskBar", CHANNEL);
     if(setting)
     {
@@ -299,7 +311,16 @@ static void create_channel(McsPlugin * mcs_plugin)
       showpager = TRUE;
       mcs_manager_set_int(mcs_plugin->manager, "XFCalendar/Pager", CHANNEL, showpager ? 1 : 0);
     }
-    */
+    setting = mcs_manager_setting_lookup(mcs_plugin->manager, "XFCalendar/Systray", CHANNEL);
+    if(setting)
+    {
+      showsystray = setting->data.v_int ? TRUE: FALSE;
+    }
+    else
+    {
+      showsystray = TRUE;
+      mcs_manager_set_int(mcs_plugin->manager, "XFCalendar/Systray", CHANNEL, showsystray ? 1 : 0);
+    }
 
     write_options (mcs_plugin);
 }

@@ -91,21 +91,7 @@ void apply_settings()
 
   xfce_textdomain(GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8");
 
-  if(xfcal->start_Monday == TRUE)
-    {
-    gtk_calendar_display_options (GTK_CALENDAR (xfcal->mCalendar), 
-				  xfcal->display_Options|GTK_CALENDAR_WEEK_START_MONDAY);
-#ifdef debug
-    g_message("apply_settings(): Monday true");
-#endif
-    }
-  else
-    {
-      gtk_calendar_display_options (GTK_CALENDAR (xfcal->mCalendar), xfcal->display_Options);
-#ifdef debug
-      g_message("apply_settings(): Monday false");
-#endif
-    }
+  gtk_calendar_display_options (GTK_CALENDAR (xfcal->mCalendar), xfcal->display_Options);
 
   /* Save settings here */
   /* I know, it's bad(tm) */

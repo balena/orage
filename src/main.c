@@ -2,7 +2,7 @@
  *
  * Copyright (C) 2003-2005 Mickael Graf (korbinus@xfce.org)
  * Parts of the code below are copyright (C) 2003 Benedikt Meurer <benny@xfce.org>
- *                                       (C) 2005 Juha Kauto <kautto.juha at kolumbus.fi>
+ *                                       (C) 2005 Juha Kautto <kautto.juha at kolumbus.fi>
  *
  * This program is free software; you can redistribute it and/or modify it 
  * under the terms of the GNU General Public License as published by the
@@ -130,6 +130,7 @@ client_message_received (GtkWidget * widget, GdkEventClient * event,
 void 
 notify_cb(const char *name, const char *channel_name, McsAction action, McsSetting * setting, void *data)
 {
+    gboolean showtaskbar, showpager;
   if(g_ascii_strcasecmp(CHANNEL, channel_name))
     {
         g_message(_("This should not happen"));
@@ -154,29 +155,37 @@ notify_cb(const char *name, const char *channel_name, McsAction action, McsSetti
 
 		}
 
-	        /* Commented until the bug is fixed :(
 		if(!strcmp(name, "XFCalendar/TaskBar"))
 		{
 		  showtaskbar = setting->data.v_int ? TRUE: FALSE;
-		   * Reminder: if we want to show the calendar in the taskbar (i.e. showtaskbar is TRUE)
+		   /* Reminder: if we want to show the calendar in the taskbar (i.e. showtaskbar is TRUE)
 		   * then gtk_window_set_skip_taskbar_hint must get a FALSE value, and if we don't want
 		   * to be seen in the taskbar, then the function must eat a TRUE.
-		   *
+		   */
 		  gtk_window_set_skip_taskbar_hint((GtkWindow*)mainWindow, !showtaskbar);
 		  xfcal->show_Taskbar = showtaskbar;
 		}
 		if(!strcmp(name, "XFCalendar/Pager"))
 		{
 		  showpager = setting->data.v_int ? TRUE: FALSE;
-		   * Reminder: if we want to show the calendar in the pager (i.e. showpager is TRUE)
+		   /* Reminder: if we want to show the calendar in the pager (i.e. showpager is TRUE)
 		   * then gtk_window_set_skip_pager_hint must get a FALSE value, and if we don't want
 		   * to be seen in the pager, then the function must eat a TRUE.
-		   *
+		   */
 		  gtk_window_set_skip_pager_hint((GtkWindow*)mainWindow, !showpager);
 		  xfcal->show_Pager = showpager;
 		}
-		*/
             }
+		if(!strcmp(name, "XFCalendar/Systray"))
+		{
+		  xfcal->show_Systray = setting->data.v_int ? TRUE: FALSE;
+          if (xfcal->show_Systray) {
+            xfce_tray_icon_connect(trayIcon);
+		  }
+          else {
+            xfce_tray_icon_disconnect(trayIcon);
+		  }
+		}
             break;
         case MCS_ACTION_DELETED:
         default:
@@ -378,7 +387,6 @@ main(int argc, char *argv[])
    * Create the tray icon and its popup menu
    */
   trayIcon = create_TrayIcon(xfcal);
-  xfce_tray_icon_connect(trayIcon);
 	
   client = mcs_client_new(dpy, scr, notify_cb, watch_cb, xfcal->mWindow);
   if(client)

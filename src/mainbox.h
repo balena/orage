@@ -44,7 +44,7 @@ struct _CalWin
   gboolean show_Calendar;
   gboolean show_Taskbar;
   gboolean show_Pager;
-  gboolean start_Monday;
+  gboolean show_Systray;
   GtkCalendarDisplayOptions display_Options;
 };
 
