@@ -117,15 +117,21 @@ die_cb(gpointer data)
 static void
 toggle_visible_cb(GtkWidget *window)
 {
-	if (GTK_WIDGET_VISIBLE(window))
-        {
-		gtk_widget_hide(window);
-	}
-        else
-	{
-        	gtk_widget_show(window);
-		gtk_window_stick(GTK_WINDOW(mainWindow));
-        }
+  if (GTK_WIDGET_VISIBLE(window))
+    {
+      gtk_widget_hide(window);
+    }
+  else
+    {
+      gtk_window_set_decorated(GTK_WINDOW(window), FALSE);
+      gtk_widget_hide((GtkWidget *)lookup_widget(window, "menubar1"));
+      gtk_widget_show(window);
+      gtk_window_stick(GTK_WINDOW(window));
+      /* Commented until the bug is fixed :(
+      gtk_window_set_skip_taskbar_hint(GTK_WINDOW(window), !calsets.showTaskbar);
+      gtk_window_set_skip_pager_hint(GTK_WINDOW(window), !calsets.showPager);
+      */
+    }
 }
 
 /*

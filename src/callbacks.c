@@ -62,12 +62,14 @@
 settings calsets;
 
 static gboolean startday = SUNDAY;
+static gboolean normalmode = TRUE;
+/*
 static gboolean showtaskbar = TRUE;
 static gboolean showpager = TRUE;
+*/
 
 /* MCS client */
 McsClient        *client = NULL;
-
 
 static GtkWidget *info;
 static GtkWidget *clearwarn;
@@ -779,24 +781,40 @@ notify_cb(const char *name, const char *channel_name, McsAction action, McsSetti
 		    }
 		  apply_settings();
                 }
+		if(!strcmp(name, "XFCalendar/NormalMode"))
+		{
+		  normalmode = setting->data.v_int ? TRUE: FALSE;
+	          gtk_window_set_decorated(GTK_WINDOW(mainWindow), normalmode);
+		  if(!normalmode)
+		    gtk_widget_hide((GtkWidget *)lookup_widget(mainWindow, "menubar1"));
+		  else
+  	            gtk_widget_show((GtkWidget *)lookup_widget(mainWindow, "menubar1"));
+
+
+		}
+
+	        /* Commented until the bug is fixed :(
 		if(!strcmp(name, "XFCalendar/TaskBar"))
 		{
 		  showtaskbar = setting->data.v_int ? TRUE: FALSE;
-		  /* Reminder: if we want to show the calendar in the taskbar (i.e. showtaskbar is TRUE)
+		   * Reminder: if we want to show the calendar in the taskbar (i.e. showtaskbar is TRUE)
 		   * then gtk_window_set_skip_taskbar_hint must get a FALSE value, and if we don't want
 		   * to be seen in the taskbar, then the function must eat a TRUE.
-		   */
+		   *
 		  gtk_window_set_skip_taskbar_hint((GtkWindow*)mainWindow, !showtaskbar);
+		  calsets.showTaskbar = showtaskbar;
 		}
 		if(!strcmp(name, "XFCalendar/Pager"))
 		{
 		  showpager = setting->data.v_int ? TRUE: FALSE;
-		  /* Reminder: if we want to show the calendar in the pager (i.e. showpager is TRUE)
+		   * Reminder: if we want to show the calendar in the pager (i.e. showpager is TRUE)
 		   * then gtk_window_set_skip_pager_hint must get a FALSE value, and if we don't want
 		   * to be seen in the pager, then the function must eat a TRUE.
-		   */
+		   *
 		  gtk_window_set_skip_pager_hint((GtkWindow*)mainWindow, !showpager);
+		  calsets.showPager = showpager;
 		}
+		*/
             }
             break;
         case MCS_ACTION_DELETED:

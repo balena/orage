@@ -54,8 +54,11 @@ static void run_dialog(McsPlugin * mcs_plugin);
 
 static gboolean is_running = FALSE;
 static gboolean startday = SUNDAY;
+static gboolean normalmode = TRUE;
+/*
 static gboolean showtaskbar = TRUE;
 static gboolean showpager = TRUE;
+*/
 
 typedef struct _Itf Itf;
 struct _Itf
@@ -67,16 +70,25 @@ struct _Itf
   GtkWidget *xfcalendar_dialog;
   GtkWidget *start_monday_radiobutton;
   GtkWidget *start_sunday_radiobutton;
+/*
   GtkWidget *show_taskbar_checkbutton;
   GtkWidget *show_pager_checkbutton;
+  GtkWidget *hbox3;
+  GtkWidget *frame2;
+  */
   GtkWidget *vbox1;
   GtkWidget *dialog_header;
   GtkWidget *dialog_vbox1;
   GtkWidget *frame1;
-  GtkWidget *frame2;
   GtkWidget *hbox1;
   GtkWidget *hbox2;
-  GtkWidget *hbox3;
+  /* Mode normal or compact */
+  GSList    *mode_radiobutton_group;
+  GtkWidget *hboxMode;
+  GtkWidget *frameMode;
+  GtkWidget *CompactMode_radiobutton;
+  GtkWidget *NormalMode_radiobutton;
+  /* */
   GtkWidget *closebutton;
   GtkWidget *dialog_action_area1;
 };
@@ -106,6 +118,19 @@ static void cb_startday_changed(GtkWidget * dialog, gpointer user_data)
     write_options(mcs_plugin);
 }
 
+static void cb_mode_changed(GtkWidget * dialog, gpointer user_data)
+{
+    Itf *itf = (Itf *) user_data;
+    McsPlugin *mcs_plugin = itf->mcs_plugin;
+
+    normalmode = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(itf->NormalMode_radiobutton));
+
+    mcs_manager_set_int(mcs_plugin->manager, "XFCalendar/NormalMode", CHANNEL, normalmode ? 1 : 0);
+    mcs_manager_notify(mcs_plugin->manager, CHANNEL);
+    write_options(mcs_plugin);
+}
+
+/*
 static void cb_taskbar_changed(GtkWidget * dialog, gpointer user_data)
 {
     Itf *itf = (Itf *) user_data;
@@ -129,7 +154,7 @@ static void cb_pager_changed(GtkWidget * dialog, gpointer user_data)
     mcs_manager_notify(mcs_plugin->manager, CHANNEL);
     write_options(mcs_plugin);
 }
-
+*/
 Itf *create_xfcalendar_dialog(McsPlugin * mcs_plugin)
 {
     Itf *dialog;
@@ -139,6 +164,7 @@ Itf *create_xfcalendar_dialog(McsPlugin * mcs_plugin)
 
     dialog->mcs_plugin = mcs_plugin;
     dialog->startday_radiobutton_group = NULL;
+    dialog->mode_radiobutton_group = NULL;
 
     icon = inline_icon_at_size(calendar_icon_data, 32, 32);
     dialog->xfcalendar_dialog = gtk_dialog_new();
@@ -146,7 +172,7 @@ Itf *create_xfcalendar_dialog(McsPlugin * mcs_plugin)
     gtk_window_set_title (GTK_WINDOW (dialog->xfcalendar_dialog), _("XFCalendar"));
     gtk_window_set_position (GTK_WINDOW (dialog->xfcalendar_dialog), GTK_WIN_POS_CENTER);
     gtk_window_set_modal (GTK_WINDOW (dialog->xfcalendar_dialog), FALSE);
-    gtk_window_set_resizable (GTK_WINDOW (dialog->xfcalendar_dialog), TRUE);
+    gtk_window_set_resizable (GTK_WINDOW (dialog->xfcalendar_dialog), FALSE);
     gtk_window_set_icon(GTK_WINDOW(dialog->xfcalendar_dialog), icon);
 
     gtk_dialog_set_has_separator (GTK_DIALOG (dialog->xfcalendar_dialog), FALSE);
@@ -191,8 +217,31 @@ Itf *create_xfcalendar_dialog(McsPlugin * mcs_plugin)
     gtk_radio_button_set_group (GTK_RADIO_BUTTON (dialog->start_monday_radiobutton), dialog->startday_radiobutton_group);
     dialog->startday_radiobutton_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (dialog->start_monday_radiobutton));
     gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (dialog->start_monday_radiobutton), !startday);
+    
+    /* */
+    dialog->frameMode = xfce_framebox_new (_("Mode"), TRUE);
+    gtk_widget_show (dialog->frameMode);
+    gtk_box_pack_start (GTK_BOX (dialog->vbox1), dialog->frameMode, TRUE, TRUE, 0);
+    
+    dialog->hboxMode = gtk_hbox_new(TRUE, 0);
+    gtk_widget_show (dialog->hboxMode);
+    xfce_framebox_add (XFCE_FRAMEBOX (dialog->frameMode), dialog->hboxMode);
 
-    /* */    
+    dialog->NormalMode_radiobutton = gtk_radio_button_new_with_mnemonic (NULL, _("Normal"));
+    gtk_widget_show (dialog->NormalMode_radiobutton);
+    gtk_box_pack_start (GTK_BOX (dialog->hboxMode), dialog->NormalMode_radiobutton, FALSE, FALSE, 0);
+    gtk_radio_button_set_group (GTK_RADIO_BUTTON (dialog->NormalMode_radiobutton), dialog->mode_radiobutton_group);
+    dialog->mode_radiobutton_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (dialog->NormalMode_radiobutton));
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (dialog->NormalMode_radiobutton), normalmode);
+
+    dialog->CompactMode_radiobutton = gtk_radio_button_new_with_mnemonic (NULL, _("Compact"));
+    gtk_widget_show (dialog->CompactMode_radiobutton);
+    gtk_box_pack_start (GTK_BOX (dialog->hboxMode), dialog->CompactMode_radiobutton, FALSE, FALSE, 0);
+    gtk_radio_button_set_group (GTK_RADIO_BUTTON (dialog->CompactMode_radiobutton), dialog->mode_radiobutton_group);
+    dialog->mode_radiobutton_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (dialog->CompactMode_radiobutton));
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (dialog->CompactMode_radiobutton), !normalmode);
+    
+    /* Commented until bug fixed     
     dialog->frame2 = xfce_framebox_new (_("Show in..."), TRUE);
     gtk_widget_show (dialog->frame2);
     gtk_box_pack_start (GTK_BOX (dialog->vbox1), dialog->frame2, TRUE, TRUE, 0);
@@ -210,6 +259,7 @@ Itf *create_xfcalendar_dialog(McsPlugin * mcs_plugin)
     gtk_widget_show (dialog->show_pager_checkbutton);
     gtk_box_pack_start (GTK_BOX (dialog->hbox3), dialog->show_pager_checkbutton, FALSE, FALSE, 0);
     gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (dialog->show_pager_checkbutton), showpager);
+    */
 
     /* */
     dialog->closebutton = gtk_button_new_from_stock ("gtk-close");
@@ -225,9 +275,11 @@ static void setup_dialog(Itf * itf)
   g_signal_connect(G_OBJECT(itf->xfcalendar_dialog), "response", G_CALLBACK(cb_dialog_response), itf->mcs_plugin);
 
   g_signal_connect(G_OBJECT(itf->start_sunday_radiobutton), "toggled", G_CALLBACK(cb_startday_changed), itf);
+  g_signal_connect(G_OBJECT(itf->NormalMode_radiobutton), "toggled", G_CALLBACK(cb_mode_changed), itf);
+/*
   g_signal_connect(G_OBJECT(itf->show_taskbar_checkbutton), "toggled", G_CALLBACK(cb_taskbar_changed), itf);
   g_signal_connect(G_OBJECT(itf->show_pager_checkbutton), "toggled", G_CALLBACK(cb_pager_changed), itf);
-
+*/
   gtk_window_set_position (GTK_WINDOW (itf->xfcalendar_dialog), GTK_WIN_POS_CENTER);
   gtk_widget_show(itf->xfcalendar_dialog);
 }
@@ -278,6 +330,17 @@ static void create_channel(McsPlugin * mcs_plugin)
         startday = SUNDAY;
         mcs_manager_set_int(mcs_plugin->manager, "XFCalendar/StartDay", CHANNEL, startday ? 0 : 1);
     }
+    setting = mcs_manager_setting_lookup(mcs_plugin->manager, "XFCalendar/NormalMode", CHANNEL);
+    if(setting)
+    {
+        normalmode = setting->data.v_int ? TRUE: FALSE;
+    }
+    else
+    {
+        normalmode = TRUE;
+        mcs_manager_set_int(mcs_plugin->manager, "XFCalendar/NormalMode", CHANNEL, startday ? 1 : 0);
+    }
+    /*
     setting = mcs_manager_setting_lookup(mcs_plugin->manager, "XFCalendar/TaskBar", CHANNEL);
     if(setting)
     {
@@ -298,6 +361,7 @@ static void create_channel(McsPlugin * mcs_plugin)
       showpager = TRUE;
       mcs_manager_set_int(mcs_plugin->manager, "XFCalendar/Pager", CHANNEL, showpager ? 1 : 0);
     }
+    */
 }
 
 static gboolean write_options(McsPlugin * mcs_plugin)
