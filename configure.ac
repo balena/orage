@@ -28,7 +28,7 @@ AC_HEADER_STDC
 AC_CHECK_HEADERS([errno.h])
 
 dnl Check for i18n support
-BM_I18N([xfcalendar], [ar az be bg ca cs de es et eu fa fr gu he hi it ja
+BM_I18N([xfcalendar], [ar az be bg ca cs de es et eu fa fi fr gu he hi it ja
                        ko lt ms nl no pa pl pt_BR pt_PT ru sk sv ta tr vi zh_CN
 		       zh_TW])
 
