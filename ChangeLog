@@ -1,7 +1,137 @@
+2003-09-27 14:36  huysmans
+
+	* configure, configure.ac, po/ta.gmo, po/ta.po: Update tamil
+	  translation
+
+2003-09-07 01:56  korbinus
+
+	* src/: callbacks.c, main.c: Fixed compact mode/tray icon bug
+
+2003-09-07 01:44  korbinus
+
+	* plugin/xfcalendar_plugin.c, src/callbacks.c, src/main.c: Added
+	  compact mode. Removed ability to hide from taskbar/panel.
+
+2003-09-03 00:59  korbinus
+
+	* src/callbacks.c: Few code cleaning
+
+2003-09-03 00:38  korbinus
+
+	* plugin/xfcalendar_plugin.c: Corrected window size problem in mcs
+	  plugin
+
+2003-09-03 00:14  korbinus
+
+	* plugin/xfcalendar_plugin.c: Changed mcs plugin from modal window
+	  to normal window
+
+2003-09-02 23:09  korbinus
+
+	* plugin/xfcalendar_plugin.c, src/callbacks.c, src/callbacks.h,
+	  src/main.c: Added options for showing/hiding the calendar in
+	  taskbar/pager
+
+2003-09-02 09:16  huysmans
+
+	* Makefile.in, aclocal.m4, config.guess, config.sub, configure,
+	  configure.ac, install-sh, ltmain.sh, plugin/Makefile.in,
+	  po/ms.gmo, po/ms.po, src/Makefile.in: Add malaysian translations
+
+2003-09-01 21:50  korbinus
+
+	* src/: callbacks.c, callbacks.h, interface.c: Added a Close Window
+	  menu item in the main window
+
+2003-08-31 23:00  xfce
+
+	* src/: callbacks.c, interface.c, main.c: Make the close button and
+	  the Quit entry from the calendar window close the window instead
+	  of real quit (which was very desapointing from a user
+	  standpoint...)
+
+2003-08-31 00:06  korbinus
+
+	* src/Makefile.in: Adding MCS support
+
+2003-08-30 23:49  korbinus
+
+	* src/: Makefile.am, callbacks.c, callbacks.h, interface.c, main.c:
+	  Adding MCS support
+
+2003-08-30 23:30  korbinus
+
+	* Makefile.am, Makefile.in, aclocal.m4, config.guess, config.sub,
+	  configure, configure.ac, install-sh, ltmain.sh, m4/depends.m4,
+	  plugin/Makefile.am, plugin/Makefile.in, plugin/calendar-icon.h,
+	  plugin/xfcalendar_plugin.c: Adding MCS support
+
+2003-08-24 18:26  xfce
+
+	* Makefile.in, aclocal.m4, config.guess, config.sub, configure,
+	  install-sh, ltmain.sh, src/Makefile.in: Resync with CVS.
+
+2003-08-19 00:56  korbinus
+
+	* po/: fr.gmo, fr.po: Add french translation
+
+2003-08-19 00:38  korbinus
+
+	* Makefile.in, aclocal.m4, config.guess, config.sub, configure,
+	  configure.ac, install-sh, ltmain.sh, src/Makefile.in: Add french
+	  translation
+
+2003-08-10 21:54  huysmans
+
+	* po/: zh_CN.gmo, zh_CN.po: Update chinese translations
+
+2003-08-07 23:57  huysmans
+
+	* po/: ca.gmo, ca.po: Update catalan translations
+
+2003-07-30 08:08  huysmans
+
+	* configure, configure.ac, po/ru.gmo, po/ru.po: Add russian
+	  translations
+
+2003-07-19 02:09  korbinus
+
+	* src/: callbacks.c, callbacks.h, main.c: Session management: the
+	  main window show up again at startup
+
+2003-07-19 01:34  korbinus
+
+	* src/main.c: Correction of a setting bug I found 2 minutes after
+	  my last commit(as usual)
+
+2003-07-19 01:25  korbinus
+
+	* src/: callbacks.c, callbacks.h, interface.c, main.c: Basic
+	  setting (ie quick and dirty) management
+
+2003-07-18 09:46  huysmans
+
+	* configure, configure.ac, po/nl.gmo, po/nl.po, po/tr.gmo,
+	  po/tr.po: Update turkish translations
+
+2003-07-18 00:20  korbinus
+
+	* src/interface.c: Adding Keybindings to Appointment window
+
+2003-07-17 23:39  korbinus
+
+	* src/: callbacks.c, callbacks.h, main.c: Minor changes and few
+	  code improvements
+
+2003-07-16 00:09  bmeurer
+
+	* ChangeLog, NEWS, src/main.c, src/xfce_trayicon.c: Upgrade to
+	  latest XfceTrayIcon (see NEWS for details).
+
 2003-07-15 18:31  bmeurer
 
 	* src/: xfce_trayicon.c, xfce_trayicon.h: Update to latest
-	XfceTrayIcon
+	  XfceTrayIcon
 
 2003-07-14 15:32  bmeurer
 
@@ -14,7 +144,7 @@
 2003-07-14 10:26  korbinus
 
 	* src/: callbacks.c, callbacks.h, main.c: Tray menu for showing
-	today appointment window
+	  today appointment window
 
 2003-07-14 09:34  korbinus
 
@@ -27,18 +157,18 @@
 2003-07-13 17:10  bmeurer
 
 	* po/: de.gmo, de.po: Updated german translation. Thanks to Moritz
-	Heiber.
+	  Heiber.
 
 2003-07-13 16:39  bmeurer
 
 	* ChangeLog, po/ca.gmo, po/ca.po, po/de.gmo, po/de.po,
-	po/xfcalendar.pot, po/zh_CN.gmo, po/zh_CN.po, src/interface.c:
-	Fixed i18n weirdness, pointed out by Moritz Heiber
+	  po/xfcalendar.pot, po/zh_CN.gmo, po/zh_CN.po, src/interface.c:
+	  Fixed i18n weirdness, pointed out by Moritz Heiber
 
 2003-07-13 11:30  bmeurer
 
 	* configure, configure.ac, po/xfcalendar.pot, src/main.c: Even more
-	gtk+-2.0 fixes.
+	  gtk+-2.0 fixes.
 
 2003-07-13 10:43  huysmans
 
@@ -51,17 +181,17 @@
 2003-07-12 23:23  bmeurer
 
 	* ChangeLog, configure, configure.ac, src/Makefile.am,
-	src/Makefile.in, src/calendar-icon.h, src/main.c,
-	src/xfce_trayicon.c, src/xfce_trayicon.h: Updated to use new tray
-	icon wrapper class (copied from xfce4-session). This fixes the
-	problem that tray icons do not show up after the systray was
-	removed and readded.
+	  src/Makefile.in, src/calendar-icon.h, src/main.c,
+	  src/xfce_trayicon.c, src/xfce_trayicon.h: Updated to use new tray
+	  icon wrapper class (copied from xfce4-session). This fixes the
+	  problem that tray icons do not show up after the systray was
+	  removed and readded.
 
 2003-07-11 15:56  huysmans
 
 	* aclocal.m4, configure, configure.ac, ltmain.sh: Hmm, chinese
-	translation updates that didn't get picked up by my previous
-	commit. Should have been in rc1, sorry.
+	  translation updates that didn't get picked up by my previous
+	  commit. Should have been in rc1, sorry.
 
 2003-07-11 09:33  huysmans
 
@@ -82,34 +212,34 @@
 2003-07-09 23:32  korbinus
 
 	* src/: callbacks.c, callbacks.h, interface.c: Added wheelmouse
-	support in calendar
+	  support in calendar
 
 2003-07-08 22:55  xfce
 
 	* po/Makefile.in.in: Don't perform an update-po on make dist as it
-	causes far too much trouble
+	  causes far too much trouble
 
 2003-07-08 18:38  korbinus
 
 	* src/: callbacks.c, callbacks.h, interface.c, main.c: Adding
-	navigation buttons and callbacks for appointment window.
+	  navigation buttons and callbacks for appointment window.
 
 2003-07-08 10:37  korbinus
 
 	* src/: callbacks.c, callbacks.h, interface.c,
-	xfcalendar-icon-inline.h, xfcalendar.png: Fixed a
-	DBH_update-related segfault, changed window positionning, new about
-	box and application icon.
+	  xfcalendar-icon-inline.h, xfcalendar.png: Fixed a
+	  DBH_update-related segfault, changed window positionning, new
+	  about box and application icon.
 
 2003-07-07 23:22  huysmans
 
 	* po/ca.gmo, po/ca.po, configure, configure.ac: Update catalan
-	translations
+	  translations
 
 2003-07-07 03:31  korbinus
 
 	* po/de.gmo, src/callbacks.c, src/callbacks.h, src/interface.c,
-	src/interface.h: Adding the reminder window (the pretty one ;-))
+	  src/interface.h: Adding the reminder window (the pretty one ;-))
 
 2003-07-07 00:38  bmeurer
 
@@ -118,7 +248,7 @@
 2003-07-07 00:27  bmeurer
 
 	* aclocal.m4, configure, src/main.c: Added a tray icon with popup
-	menu.
+	  menu.
 
 2003-07-06 22:14  huysmans
 
@@ -131,14 +261,14 @@
 2003-07-06 10:21  bmeurer
 
 	* Makefile.in, aclocal.m4, config.h.in, configure, configure.ac,
-	ltcf-c.sh, ltconfig, ltmain.sh, po/de.po, po/xfcalendar.pot,
-	src/Makefile.in, src/callbacks.c, src/main.c: Added session client
-	code.
+	  ltcf-c.sh, ltconfig, ltmain.sh, po/de.po, po/xfcalendar.pot,
+	  src/Makefile.in, src/callbacks.c, src/main.c: Added session
+	  client code.
 
 2003-07-06 09:40  korbinus
 
 	* src/: callbacks.c, interface.c, support.c, support.h: fixed a
-	gettext-macro conflict between support.h and libxfce4util/i18n.h
+	  gettext-macro conflict between support.h and libxfce4util/i18n.h
 
 2003-07-05 03:49  edscott
 
@@ -147,17 +277,17 @@
 2003-07-05 00:33  korbinus
 
 	* ChangeLog, src/callbacks.c, src/callbacks.h: Fixed segv when
-	saving in another month and some interface stuff
+	  saving in another month and some interface stuff
 
 2003-07-04 20:19  edscott
 
 	* Makefile.in, aclocal.m4, config.h.in, configure, configure.ac,
-	ltcf-c.sh, ltconfig, ltmain.sh, xfcalendar.glade, src/Makefile.am,
-	src/Makefile.in, src/callbacks.c, src/interface.c, src/main.c:
-	added dbh support to enable marking of days with appointments and
-	to enable an alarm to popup a window when a day with appointment is
-	reached. Fixed Segv conditions when opening different appointments
-	at the same time.
+	  ltcf-c.sh, ltconfig, ltmain.sh, xfcalendar.glade,
+	  src/Makefile.am, src/Makefile.in, src/callbacks.c,
+	  src/interface.c, src/main.c: added dbh support to enable marking
+	  of days with appointments and to enable an alarm to popup a
+	  window when a day with appointment is reached. Fixed Segv
+	  conditions when opening different appointments at the same time.
 
 2003-07-03 12:40  bmeurer
 
@@ -166,28 +296,14 @@
 2003-07-03 12:30  bmeurer
 
 	* xfcalendar.glade, xfcalendar.gladep, config.guess, config.sub,
-	autogen.sh, ltconfig, AUTHORS, ChangeLog, Makefile.am, NEWS,
-	README, ltcf-c.sh, ltmain.sh, stamp-h.in, COPYING, aclocal.m4,
-	config.h.in, depcomp, install-sh, missing, mkinstalldirs, INSTALL,
-	Makefile.in, compile, configure.ac, configure, m4/debug.m4,
-	m4/depends.m4, m4/i18n.m4, po/ChangeLog, po/Makefile.in.in,
-	po/POTFILES.in, po/de.gmo, po/de.po, po/xfcalendar.pot,
-	src/Makefile.am, src/Makefile.in, src/callbacks.c, src/callbacks.h,
-	src/interface.c, src/interface.h, src/main.c, src/support.c,
-	src/support.h: Initial import of xfcalendar to xfce4-extras.
-	Xfcalendar is a small time- management application written by
-	Mickael Graf.
-
-2003-07-03 12:30  bmeurer
-
-	* xfcalendar.glade, xfcalendar.gladep, config.guess, config.sub,
-	autogen.sh, ltconfig, AUTHORS, ChangeLog, Makefile.am, NEWS,
-	README, ltcf-c.sh, ltmain.sh, stamp-h.in, COPYING, aclocal.m4,
-	config.h.in, depcomp, install-sh, missing, mkinstalldirs, INSTALL,
-	Makefile.in, compile, configure.ac, configure, m4/debug.m4,
-	m4/depends.m4, m4/i18n.m4, po/ChangeLog, po/Makefile.in.in,
-	po/POTFILES.in, po/de.gmo, po/de.po, po/xfcalendar.pot,
-	src/Makefile.am, src/Makefile.in, src/callbacks.c, src/callbacks.h,
-	src/interface.c, src/interface.h, src/main.c, src/support.c,
-	src/support.h: Initial revision
+	  autogen.sh, ltconfig, AUTHORS, ChangeLog, Makefile.am, NEWS,
+	  README, ltcf-c.sh, ltmain.sh, stamp-h.in, COPYING, aclocal.m4,
+	  config.h.in, depcomp, install-sh, missing, mkinstalldirs,
+	  INSTALL, Makefile.in, compile, configure.ac, configure,
+	  m4/debug.m4, m4/depends.m4, m4/i18n.m4, po/ChangeLog,
+	  po/Makefile.in.in, po/POTFILES.in, po/de.gmo, po/de.po,
+	  po/xfcalendar.pot, src/Makefile.am, src/Makefile.in,
+	  src/callbacks.c, src/callbacks.h, src/interface.c,
+	  src/interface.h, src/main.c, src/support.c, src/support.h:
+	  Initial revision
 
