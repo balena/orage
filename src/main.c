@@ -282,6 +282,7 @@ main(int argc, char *argv[])
 	g_object_unref(pixbuf);
 	g_signal_connect_swapped(G_OBJECT(trayIcon), "clicked",
 			G_CALLBACK(toggle_visible_cb), mainWindow);
+	xfce_tray_icon_connect(trayIcon);
 	
 	/*
 	 * Now it's serious, the application is running, so we create the RC
