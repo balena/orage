@@ -9,7 +9,7 @@ AC_INIT([configure])
 
 AM_CONFIG_HEADER([config.h])
 
-AM_INIT_AUTOMAKE([xfcalendar], [0.1.8])
+AM_INIT_AUTOMAKE([xfcalendar], [0.1.9])
 
 AM_MAINTAINER_MODE
 
@@ -29,7 +29,7 @@ AC_CHECK_HEADERS([errno.h])
 
 dnl Check for i18n support
 BM_I18N([xfcalendar], [ar az bg ca cs de es fa_IR fr hi it ko ms nl no pl pt_BR ru sv
-	 ta tr zh_CN])
+	 ta tr zh_CN zh_TW])
          
 dnl Check for required packages
 BM_DEPEND([LIBXFCE4MCS_CLIENT], [libxfce4mcs-client-1.0], [4.0.0])
