@@ -28,7 +28,8 @@ AC_HEADER_STDC
 AC_CHECK_HEADERS([errno.h])
 
 dnl Check for i18n support
-BM_I18N([xfcalendar], [az ca cs de fr hi it ko ms nl no pl ru sv ta tr zh_CN])
+BM_I18N([xfcalendar], [az ca cs de es fa_IR fr hi it ja ko ms nl no pl pt_BR
+	 ru sv ta tr zh_CN])
 
 dnl Check for required packages
 BM_DEPEND([LIBXFCE4MCS_CLIENT], [libxfce4mcs-client-1.0], [4.0.0])
