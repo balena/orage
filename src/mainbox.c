@@ -60,6 +60,7 @@ mWindow_delete_event_cb(GtkWidget *widget, GdkEvent *event,
 
   CalWin *xfcal = (CalWin *)user_data;
 
+  xfcal->show_Calendar = FALSE;
   gtk_widget_hide(xfcal->mWindow);
 
   return(TRUE);
