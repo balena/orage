@@ -80,9 +80,6 @@ XDT_CHECK_PACKAGE([LIBXFCEGUI4], [libxfcegui4-1.0], [4.2.0])
 dnl configure the mcs plugin
 XDT_XFCE_MCS_PLUGIN([XFCE_MCS_MANAGER], [4.2.0])
 
-dnl Check for debugging support
-BM_DEBUG_SUPPORT()
-
 dnl the ical magic
 XDT_CHECK_PACKAGE([ICAL], [libical-0.24], [0.24],
 [
@@ -184,6 +181,9 @@ XDT_CHECK_PACKAGE([ICAL], [libical-0.24], [0.24],
 AM_CONDITIONAL([INCLUDED_LIBICAL], [test x"$ac_INCLUDED_LIBICAL" = x"yes"])
 AM_CONDITIONAL([HAVE_PTHREAD], [test x"$have_pthread" = x"yes"])
 AM_CONDITIONAL([WITH_BDB4], [test x"$WITH_BDB4" = x"yes"])
+
+dnl Check for debugging support
+BM_DEBUG_SUPPORT()
 
 AC_OUTPUT([
 Makefile
