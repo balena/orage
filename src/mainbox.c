@@ -1,6 +1,6 @@
 /* mainbox.c
  *
- * Copyright (C) 2004-2005 Mickaël Graf <korbinus@xfce.org>
+ * Copyright (C) 2004-2005 MickaÃ«l Graf <korbinus@xfce.org>
  * Parts of the code below are copyright (C) 2003 Edscott Wilson Garcia <edscott@users.sourceforge.net>
  *                                       (C) 2005 Juha Kautto <kautto.juha at kolumbus.fi>
  *
@@ -35,7 +35,6 @@
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
 #include <gdk/gdk.h>
-#include <dbh.h>
 #include <libxfce4util/libxfce4util.h>
 #include <libxfcegui4/netk-trayicon.h>
 #include <libxfcegui4/libxfcegui4.h>
@@ -48,6 +47,10 @@
 #include "interface.h"
 #include "callbacks.h"
 
+extern gboolean open_ical_file(void);
+extern void close_ical_file(void);
+extern int getnextday_ical_app(int year, int month, int day);
+
 #define LEN_BUFFER 1024
 #define CHANNEL  "xfcalendar"
 #define RCDIR    "xfce4" G_DIR_SEPARATOR_S "xfcalendar"
@@ -58,43 +61,22 @@ static GtkCalendar *cal;
 
 char today[8];
 
-void 
-xfcalendar_markit(DBHashTable *f)
-{
-  char *text=(char *)DBH_DATA(f);
-  if (strlen(text)){
-    guint day=atoi((char *)(f->key+5));
-    if (day > 0 && day < 32){
-#ifdef DEBUG
-      printf("marking %u\n",day);
-#endif
-      gtk_calendar_mark_day(cal,day);
-    }
-  }
-}
-
 gboolean
 xfcalendar_mark_appointments (CalWin *xfcal)
 {
+    guint year, month, day;
 
-  guint year, month, day;
-  char key[8];
-  DBHashTable *fapp;
-  char *fpath = xfce_resource_save_location(XFCE_RESOURCE_CONFIG,
-                        RCDIR G_DIR_SEPARATOR_S "appointments.dbh", FALSE);
+    gtk_calendar_get_date(GTK_CALENDAR(xfcal->mCalendar), &year, &month, &day);
 
-  if ((fapp = DBH_open(fpath)) == NULL) 
-    return FALSE;
+    if (open_ical_file()){
+        day = -1;
+        while (day = getnextday_ical_app(year, month+1, day)){
+            gtk_calendar_mark_day(cal, day);
+        }
+        close_ical_file();
+    }
 
-  gtk_calendar_get_date(GTK_CALENDAR(xfcal->mCalendar), &year, &month, &day);
-
-  g_snprintf(key, 8, "%03d%02d%02d", year-1900, month, day);
-
-  DBH_sweep(fapp,xfcalendar_markit,key,NULL,5);
-  DBH_close(fapp);
-
-  return TRUE;
-
+    return TRUE;
 }
 
 gboolean
@@ -136,8 +118,7 @@ mSettings_preferences_activate_cb      (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
 
-  mcs_client_show (GDK_DISPLAY (), DefaultScreen (GDK_DISPLAY ()),
-		   CHANNEL);
+  mcs_client_show(GDK_DISPLAY(), DefaultScreen(GDK_DISPLAY()), CHANNEL);
 
 }
 
@@ -228,7 +209,7 @@ xfcalendar_init_settings (CalWin *xfcal)
   xfce_textdomain(GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8");
 
   /* default */
-  xfcal->show_Calendar = FALSE;
+  xfcal->show_Calendar = TRUE;
   xfcal->show_Taskbar = TRUE;
   xfcal->show_Pager = TRUE;
   xfcal->display_Options = GTK_CALENDAR_SHOW_HEADING 
@@ -258,14 +239,14 @@ xfcalendar_init_settings (CalWin *xfcal)
 gboolean
 xfcalendar_alarm_clock(gpointer user_data)
 {
-
-  CalWin *xfcal = (CalWin *)user_data;
-
-  struct tm *t;
-  char key[8], loc_date[8], selected_date[8];
-  guint year, month, day;
-  time_t tt;
-  static char start_key[8]={0,0,0,0,0,0,0,0};
+    CalWin *xfcal = (CalWin *)user_data;
+    struct tm *t;
+    char key[8], loc_date[8], selected_date[8];
+    guint year, month, day;
+    time_t tt;
+    static char start_key[8]={0,0,0,0,0,0,0,0};
+    char a_day[10];
+    char *text;
 
   tt=time(NULL);
   t=localtime(&tt);
@@ -283,13 +264,9 @@ xfcalendar_alarm_clock(gpointer user_data)
 
   if (strcmp (loc_date, today) != 0)
     {
-
       /* Get the selected data */
       gtk_calendar_get_date (GTK_CALENDAR (xfcal->mCalendar),
-			     &year,
-			     &month,
-			     &day);
-
+			     &year, &month, &day); 
       /* build a string of it */
       g_snprintf(selected_date, 8, "%03d%02d%02d", year-1900, month, day);
 
@@ -298,45 +275,29 @@ xfcalendar_alarm_clock(gpointer user_data)
        * selected by the user. */
       if (strcmp (selected_date, today) == 0)
 	{
-
 	  /* change today variable */
 	  strcpy(today, selected_date);
 
 	  /* select the relevant month and day in the calendar */
 	  gtk_calendar_select_month(GTK_CALENDAR(xfcal->mCalendar), 
-				    t->tm_mon, 
-				    t->tm_year+1900);
-
+				    t->tm_mon, t->tm_year+1900);
 	  gtk_calendar_select_day(GTK_CALENDAR(xfcal->mCalendar), 
 				  t->tm_mday);
-
 	}
-      
     }
 
   /* Check if any appointement for the date */
-  if (!strlen(start_key) || strcmp(start_key,key)!=0){
-    /* buzzz */
-    DBHashTable *fapp;
-    char *fpath = xfce_resource_save_location(XFCE_RESOURCE_CONFIG,
-                        RCDIR G_DIR_SEPARATOR_S "appointments.dbh", FALSE);
-
-    if ((fapp = DBH_open(fpath)) == NULL) 
-      return FALSE;
-
-    strcpy(start_key, key);
-    strcpy((char *)(fapp->key),key);
-
-    if (DBH_load(fapp)){
-      char *text=(char *)DBH_DATA(fapp);
-      if (strlen(text)) pretty_window(text);
+    if (!strlen(start_key) || strcmp(start_key,key)!=0){
+        if (open_ical_file()){
+            strcpy(start_key, key);
+            sprintf(a_day, "%04d%02d%02d", t->tm_year+1900, t->tm_mon+1, t->tm_mday);
+            if (get_ical_app(&text, a_day)){ /* data found */
+                if (strlen(text)) pretty_window(text);
+            }
+            close_ical_file();
+        }
     }
-
-    DBH_close(fapp);
-    g_free(fpath);
-
-  }
-  return TRUE;	
+    return TRUE;	
 }
 
 void
@@ -370,26 +331,20 @@ void create_mainWin(CalWin *xfcal)
 
   xfcal->mAccel_group = gtk_accel_group_new ();
 
-  gtk_window_set_title (GTK_WINDOW(xfcal->mWindow),
-			_("Xfcalendar"));
-  gtk_window_set_position (GTK_WINDOW (xfcal->mWindow), 
-			   GTK_WIN_POS_NONE);
-  gtk_window_set_resizable (GTK_WINDOW (xfcal->mWindow), 
-			    FALSE);
-  gtk_window_set_destroy_with_parent (GTK_WINDOW (xfcal->mWindow), 
-				      TRUE);
+  gtk_window_set_title (GTK_WINDOW(xfcal->mWindow), _("Xfcalendar"));
+  gtk_window_set_position (GTK_WINDOW (xfcal->mWindow), GTK_WIN_POS_NONE);
+  gtk_window_set_resizable (GTK_WINDOW (xfcal->mWindow), FALSE);
+  gtk_window_set_destroy_with_parent (GTK_WINDOW (xfcal->mWindow), TRUE);
 
   if(xfcalendar_logo != NULL){
-    gtk_window_set_icon(GTK_WINDOW (xfcal->mWindow), 
-			xfcalendar_logo);
+    gtk_window_set_icon(GTK_WINDOW (xfcal->mWindow), xfcalendar_logo);
     g_object_unref(xfcalendar_logo);
   }
 
   /* Build the vertical box */
   xfcal->mVbox = gtk_vbox_new (FALSE, 0);
   gtk_widget_show (xfcal->mVbox);
-  gtk_container_add (GTK_CONTAINER (xfcal->mWindow),
-		     xfcal->mVbox);
+  gtk_container_add (GTK_CONTAINER (xfcal->mWindow), xfcal->mVbox);
 
   /* Build the menu */
   xfcal->mMenubar = gtk_menu_bar_new ();
@@ -403,34 +358,28 @@ void create_mainWin(CalWin *xfcal)
   /* File menu */
   xfcal->mFile = gtk_menu_item_new_with_mnemonic (_("_File"));
   gtk_widget_show (xfcal->mFile);
-  gtk_container_add (GTK_CONTAINER (xfcal->mMenubar), 
-		     xfcal->mFile);
+  gtk_container_add (GTK_CONTAINER (xfcal->mMenubar), xfcal->mFile);
 
   xfcal->mFile_menu = gtk_menu_new ();
-  gtk_menu_item_set_submenu (GTK_MENU_ITEM (xfcal->mFile),
-			     xfcal->mFile_menu);
+  gtk_menu_item_set_submenu (GTK_MENU_ITEM (xfcal->mFile), xfcal->mFile_menu);
 
   xfcal->mFile_close = gtk_menu_item_new_with_mnemonic (_("_Close window"));
   gtk_widget_show(xfcal->mFile_close);
-  gtk_container_add(GTK_CONTAINER (xfcal->mFile_menu), 
-		    xfcal->mFile_close);
+  gtk_container_add(GTK_CONTAINER (xfcal->mFile_menu), xfcal->mFile_close);
 
   xfcal->mFile_separator = gtk_separator_menu_item_new ();
   gtk_widget_show (xfcal->mFile_separator);
-  gtk_container_add (GTK_CONTAINER (xfcal->mFile_menu),
-		     xfcal->mFile_separator);
+  gtk_container_add (GTK_CONTAINER (xfcal->mFile_menu), xfcal->mFile_separator);
 
   xfcal->mFile_quit =  gtk_image_menu_item_new_from_stock ("gtk-quit", 
 							   xfcal->mAccel_group);
   gtk_widget_show (xfcal->mFile_quit);
-  gtk_container_add (GTK_CONTAINER (xfcal->mFile_menu), 
-		     xfcal->mFile_quit);
+  gtk_container_add (GTK_CONTAINER (xfcal->mFile_menu), xfcal->mFile_quit);
 
   /* Settings menu */
   xfcal->mSettings =  gtk_menu_item_new_with_mnemonic(_("_Settings"));
   gtk_widget_show (xfcal->mSettings);
-  gtk_container_add (GTK_CONTAINER (xfcal->mMenubar),
-		     xfcal->mSettings);
+  gtk_container_add (GTK_CONTAINER (xfcal->mMenubar), xfcal->mSettings);
 
   xfcal->mSettings_menu = gtk_menu_new();
   gtk_menu_item_set_submenu(GTK_MENU_ITEM(xfcal->mSettings), 
@@ -456,17 +405,14 @@ void create_mainWin(CalWin *xfcal)
 
   xfcal->mHelp = gtk_menu_item_new_with_mnemonic (_("_Help"));
   gtk_widget_show (xfcal->mHelp);
-  gtk_container_add (GTK_CONTAINER (xfcal->mMenubar), 
-		     xfcal->mHelp);
+  gtk_container_add (GTK_CONTAINER (xfcal->mMenubar), xfcal->mHelp);
 
   xfcal->mHelp_menu = gtk_menu_new ();
-  gtk_menu_item_set_submenu (GTK_MENU_ITEM (xfcal->mHelp), 
-			     xfcal->mHelp_menu);
+  gtk_menu_item_set_submenu (GTK_MENU_ITEM (xfcal->mHelp), xfcal->mHelp_menu);
 
   xfcal->mHelp_about = gtk_menu_item_new_with_mnemonic (_("_About"));
   gtk_widget_show (xfcal->mHelp_about);
-  gtk_container_add (GTK_CONTAINER (xfcal->mHelp_menu), 
-		     xfcal->mHelp_about);
+  gtk_container_add (GTK_CONTAINER (xfcal->mHelp_menu), xfcal->mHelp_about);
 
   /* Build the calendar */
   xfcal->mCalendar = gtk_calendar_new ();

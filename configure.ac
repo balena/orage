@@ -12,7 +12,7 @@ dnl Version information
 m4_define([xfcalendar_version_major], [4])
 m4_define([xfcalendar_version_minor], [3])
 m4_define([xfcalendar_version_micro], [0])
-m4_define([xfcalendar_version_nano], [])  dnl leave this empty to have no nano version
+m4_define([xfcalendar_version_nano], [1])  dnl leave this empty to have no nano version
 m4_define([xfcalendar_version_tag], [cvs])
 m4_define([xfcalendar_version], [xfcalendar_version_major().xfcalendar_version_minor().xfcalendar_version_micro()ifelse(xfcalendar_version_nano(), [], [], [.xfcalendar_version_nano()])xfcalendar_version_tag()])
 
@@ -60,6 +60,7 @@ dnl Check for required packages
 XDT_CHECK_PACKAGE([LIBXFCE4MCS_CLIENT], [libxfce4mcs-client-1.0], [4.2.0])
 XDT_CHECK_PACKAGE([LIBXFCEGUI4], [libxfcegui4-1.0], [4.2.0])
 XDT_CHECK_PACKAGE([DBH], [dbh-1.0], [1.0])
+XDT_CHECK_PACKAGE([ICAL], [libical-0.24], [0.24])
 
 dnl configure the mcs plugin
 XDT_XFCE_MCS_PLUGIN([XFCE_MCS_MANAGER], [4.2.0])
@@ -67,6 +68,7 @@ XDT_XFCE_MCS_PLUGIN([XFCE_MCS_MANAGER], [4.2.0])
 dnl Check for debugging support
 BM_DEBUG_SUPPORT()
 
+AC_CONFIG_SUBDIRS([libical])
 AC_OUTPUT([
 Makefile
 xfcalendar.spec

@@ -69,8 +69,6 @@ extern McsClient        *client;
 /* tray icon */
 XfceTrayIcon 		*trayIcon = NULL;
 
-gboolean normalmode = TRUE;
-
 /* window position */
 gint pos_x = 0, pos_y = 0;
 
@@ -121,8 +119,9 @@ client_message_received (GtkWidget * widget, GdkEventClient * event,
 void 
 notify_cb(const char *name, const char *channel_name, McsAction action, McsSetting * setting, void *data)
 {
-    gboolean showtaskbar, showpager, showcalendar;
-  if(g_ascii_strcasecmp(CHANNEL, channel_name))
+    gboolean showtaskbar, showpager, showcalendar, normalmode;
+
+    if(g_ascii_strcasecmp(CHANNEL, channel_name))
     {
         g_message(_("This should not happen"));
         return;
@@ -315,7 +314,7 @@ main(int argc, char *argv[])
   dpy = GDK_DISPLAY();
   scr = DefaultScreen(dpy);
 
-    xfcal = g_new(CalWin, 1);
+  xfcal = g_new(CalWin, 1);
 /* Build the main window */
   xfcal->mWindow = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   hidden = gtk_invisible_new();

@@ -46,7 +46,8 @@
 #include <libxfce4mcs/mcs-client.h>
 #include <gdk/gdk.h>
 #include <gtk/gtk.h>
-#include <dbh.h>
+#include <ical.h>
+#include <icalss.h>
 
 #include "callbacks.h"
 #include "interface.h"
@@ -57,12 +58,9 @@
 
 #define MAX_APP_LENGTH 4096
 #define LEN_BUFFER 1024
-/* FIXME: check if we can remove this */
 #define CHANNEL  "xfcalendar"
 #define RCDIR    "xfce4" G_DIR_SEPARATOR_S "xfcalendar"
-
-#define SUNDAY TRUE
-#define MONDAY FALSE
+#define APPOINTMENT_FILE "appointments.ics"
 
 extern gint pos_x, pos_y;
 
@@ -72,6 +70,9 @@ McsClient        *client = NULL;
 static GtkWidget *clearwarn;
 
 extern CalWin *xfcal;
+
+static icalcomponent *ical;
+static icalset* fical;
 
 /* Direction for changing day to look at */
 enum{
@@ -110,90 +111,164 @@ void pretty_window(char *text){
 }
 
 int keep_tidy(void){
-	/* keep a tidy DBHashTable */
-	DBHashTable *fapp;
-	char *fpath = xfce_resource_save_location(XFCE_RESOURCE_CONFIG,
-                RCDIR G_DIR_SEPARATOR_S "appointments.dbh", FALSE);
-	if ((fapp = DBH_open(fpath)) != NULL){
-		char *wd = g_path_get_dirname (fpath);
-#ifdef DEBUG
-		printf("wd=%s\n",wd);
-#endif
-		chdir(wd);
-		fapp=DBH_regen(fapp);
-		DBH_close(fapp);
-		g_free(wd);
-	}
-	g_free(fpath);
+    /* we could move old appointment to other file to keep the active
+       calendar file smaller and faster */
 	return TRUE;	
+}
+
+gboolean open_ical_file(void)
+{
+	gchar *ficalpath; 
+    icalcomponent *iter;
+    gint cnt=0;
+
+	ficalpath = xfce_resource_save_location(XFCE_RESOURCE_CONFIG,
+                        RCDIR G_DIR_SEPARATOR_S APPOINTMENT_FILE, FALSE);
+    if ((fical = icalset_new_file(ficalpath)) == NULL){
+        if(icalerrno != ICAL_NO_ERROR){
+            g_warning("open_ical_file, ical-Error: %s\n",icalerror_strerror(icalerrno));
+        g_error("open_ical_file, Error: Could not open ical file \"%s\" \n", ficalpath);
+        }
+    }
+    else{
+        /* let's find last VCALENDAR entry */
+        for (iter = icalset_get_first_component(fical); iter != 0;
+             iter = icalset_get_next_component(fical)){
+            cnt++;
+            ical = iter; /* last valid component */
+        }
+        if (cnt == 0){
+        /* calendar missing, need to add one. 
+           Note: According to standard rfc2445 calendar always needs to
+                 contain at least one other component. So strictly speaking
+                 this is not valid entry before adding an event */
+            ical = icalcomponent_vanew(ICAL_VCALENDAR_COMPONENT
+                   ,icalproperty_new_version("1.0")
+                   ,icalproperty_new_prodid("-//Xfce//Xfcalendar//EN")
+                   ,0);
+            icalset_add_component(fical, icalcomponent_new_clone(ical));
+            icalset_commit(fical);
+        }
+        else if (cnt > 1){
+            g_warning("open_ical_file, Too many top level components in calendar file\n");
+        }
+    }
+	g_free(ficalpath);
+    return(TRUE);
+}
+
+void close_ical_file(void)
+{
+    icalset_free(fical);
+}
+
+static void add_ical_app(char *text, char *a_day)
+{
+    icalcomponent *ievent;
+    struct icaltimetype atime = icaltime_from_timet(time(0), 0);
+    struct icaltimetype adate;
+    gchar xf_uid[1000];
+    gchar xf_host[501];
+
+    adate = icaltime_from_string(a_day);
+    gethostname(xf_host, 500);
+    sprintf(xf_uid, "Xfcalendar-%s-%lu@%s", icaltime_as_ical_string(atime), 
+                (long) getuid(), xf_host);
+    ievent = icalcomponent_vanew(ICAL_VEVENT_COMPONENT
+           ,icalproperty_new_uid(xf_uid)
+           ,icalproperty_new_categories("XFCALNOTE")
+           ,icalproperty_new_class(ICAL_CLASS_PUBLIC)
+           ,icalproperty_new_dtstamp(atime)
+           ,icalproperty_new_created(atime)
+           ,icalproperty_new_description(text)
+           ,icalproperty_new_dtstart(adate)
+           ,0);
+    icalcomponent_add_component(ical, ievent);
+}
+
+gboolean get_ical_app(char **text, char *a_day)
+{
+    struct icaltimetype t, adate;
+    icalcomponent *c;
+    gboolean date_found=FALSE;
+
+    adate = icaltime_from_string(a_day);
+    for (c = icalcomponent_get_first_component(ical, ICAL_VEVENT_COMPONENT); 
+         c != 0;
+         c = icalcomponent_get_next_component(ical, ICAL_VEVENT_COMPONENT)){
+        t = icalcomponent_get_dtstart(c);
+        if (icaltime_compare(t, adate) == 0){
+            date_found = TRUE;
+            *text = (char *)icalcomponent_get_description(c);
+        }
+    } 
+    return(date_found);
+}
+
+int getnextday_ical_app(int year, int month, int day)
+{
+    struct icaltimetype t;
+    static icalcomponent *c;
+    int next_day = 0;
+
+    if (day == -1){ /* start */
+        c = icalcomponent_get_first_component(ical, ICAL_VEVENT_COMPONENT); 
+    }
+    for ( ;
+        (c != 0) && (next_day == 0);
+         c = icalcomponent_get_next_component(ical, ICAL_VEVENT_COMPONENT)){
+        t = icalcomponent_get_dtstart(c);
+        if ((t.year == year) && (t.month == month) && (t.is_date == 1)){
+            next_day = t.day;
+        }
+    } 
+    return(next_day);
+}
+
+static void rm_ical_app(char *a_day)
+{
+    struct icaltimetype t, adate;
+    icalcomponent *c, *c2;
+
+/* Note: remove moves the "c" pointer to next item, so we need to store it 
+         first to process all of them or we end up skipping entries */
+    adate = icaltime_from_string(a_day);
+    for (c = icalcomponent_get_first_component(ical, ICAL_VEVENT_COMPONENT); 
+         c != 0;
+         c = c2){
+        c2 = icalcomponent_get_next_component(ical, ICAL_VEVENT_COMPONENT);
+        t = icalcomponent_get_dtstart(c);
+        if (icaltime_compare(t, adate) == 0){
+            icalcomponent_remove_component(ical, c);
+        }
+    } 
 }
 
 void manageAppointment(GtkCalendar *calendar, GtkWidget *appointment)
 {
 	guint year, month, day;
 	char title[12], *text;
-	gchar *fpath;
-	DBHashTable *fapp;
 	GtkTextView *tv;
 	GtkTextBuffer *tb = gtk_text_buffer_new(NULL);
-	GtkTextIter *end;
+	GtkTextIter end;
+	char a_day[10];
   
+    g_print("manageAppointment start\n");
 	gtk_calendar_get_date(calendar, &year, &month, &day);
 	g_snprintf(title, 12, "%d-%02d-%02d", year, month+1, day);
-	fpath = xfce_resource_save_location(XFCE_RESOURCE_CONFIG,
-                        RCDIR G_DIR_SEPARATOR_S "appointments.dbh", FALSE);
 	tv = GTK_TEXT_VIEW(lookup_widget(GTK_WIDGET(appointment),"textview1"));
 
-	/* Tell DBH that we will work with records of MAX_APP_LENGTH maximum
-	 * size (the DBH default is 1024) */
-	DBH_Size(NULL,MAX_APP_LENGTH);
-	
-	/* DBH key should have year,month,day format to permit sweep of
-	 * year,month branch to get list of marked days:
-	 * YYYMMDD keylength=7, but let's throw in a \0 so that we
-	 * can use string functions on the key */
-	if ((fapp = DBH_open(fpath)) == NULL){
-		fapp = DBH_create(fpath,8) ;
-	}
-	if (fapp) {
-		gchar *key=g_strdup("YYYMMDD");
-		end = g_new0(GtkTextIter, 1);
-		/* create the proper key: */
-		g_snprintf(key, 8, "%03d%02d%02d", year-1900, month, day);
-#ifdef DEBUG
-		printf("DBG:key=%s\n",key);
-#endif
-		strcpy((char *)fapp->key,key);
-		/* associate the key to the widget */
-		g_object_set_data_full (G_OBJECT (appointment),"key",key,g_free); 
-	        /* load the record, if any */
-		if (DBH_load(fapp)) {	
-			/* use the DBH data buffer directly: */
-			text =  (char *)DBH_DATA (fapp);
-#ifdef DEBUG
-			g_print("Appointment content: %s\n", text);
-#endif
-			gtk_text_buffer_get_end_iter(tb, end);
-			gtk_text_buffer_insert(tb, end, text, strlen(text));
-		} 
-		DBH_close(fapp);	
-		gtk_window_set_title (GTK_WINDOW (appointment), _(title));
-#ifdef DEBUG
-		gtk_text_buffer_get_bounds(tb, &ctl_start, &ctl_end);
-		ctl_text = gtk_text_iter_get_text(&ctl_start, &ctl_end);
-		g_print("Content from GtkTextBuffer: %s\n", ctl_text);
-#endif
-	}
-	else {
-		g_warning("Cannot open file %s.\n", fpath);
-	}
-	
+    if (open_ical_file()){
+        sprintf(a_day, "%04d%02d%02d", year, month+1, day);
+        if (get_ical_app(&text, a_day)){ /* data found */
+			gtk_text_buffer_get_end_iter(tb, &end);
+			gtk_text_buffer_insert(tb, &end, text, strlen(text));
+        }
+        close_ical_file();
+    }
 	gtk_text_view_set_buffer(tv, tb);
 	gtk_text_buffer_set_modified(tb, FALSE);
 	gtk_window_set_title (GTK_WINDOW (appointment), _(title));
-
-	g_free(fpath);
-
 }
 
 void
@@ -201,23 +276,20 @@ on_btClose_clicked(GtkButton *button, gpointer user_data)
 {
   GtkTextView *tv;
   GtkTextBuffer *tb;
-
+  gint result;
   GtkWidget *a=lookup_widget((GtkWidget *)button,"wAppointment");
 
   tv = GTK_TEXT_VIEW(lookup_widget(GTK_WIDGET(button),"textview1"));
   tb = gtk_text_view_get_buffer(tv);
 
-  if(gtk_text_buffer_get_modified(tb))
-    {
-      gint result =
-	dialogWin(a);
-      if(result == GTK_RESPONSE_ACCEPT)
-	{
+  if(gtk_text_buffer_get_modified(tb)) {
+      result = dialogWin(a);
+      if(result == GTK_RESPONSE_ACCEPT) {
 	  gtk_widget_destroy(a); /* destroy the specific appointment window */
-	}
-    }
+      }
+  }
   else
-    gtk_widget_destroy(a); /* destroy the specific appointment window */
+      gtk_widget_destroy(a); /* destroy the specific appointment window */
 }
 
 gint 
@@ -236,15 +308,11 @@ dialogWin(gpointer user_data)
   message = gtk_label_new(_("\nThe information has been modified.\n Do you want to continue ?\n"));
 
   gtk_container_add (GTK_CONTAINER (GTK_DIALOG(dialog)->vbox), message);
-  
   gtk_widget_show_all(dialog);
-
   gint result = gtk_dialog_run (GTK_DIALOG (dialog));
-
   gtk_widget_destroy (dialog);
 
   return result;
-
 }
 
 gboolean 
@@ -260,6 +328,7 @@ on_btPrevious_clicked(GtkButton *button, gpointer user_data)
 {
   GtkTextView *tv;
   GtkTextBuffer *tb;
+  gint result;
 
   GtkWidget *a=lookup_widget((GtkWidget *)button,"wAppointment");
 
@@ -268,8 +337,7 @@ on_btPrevious_clicked(GtkButton *button, gpointer user_data)
 
   if(gtk_text_buffer_get_modified(tb))
     {
-      gint result =
-	dialogWin(a);
+      result = dialogWin(a);
       if(result == GTK_RESPONSE_ACCEPT)
 	{
 	  changeSelectedDate(button, PREVIOUS);
@@ -277,7 +345,6 @@ on_btPrevious_clicked(GtkButton *button, gpointer user_data)
     }
   else
     changeSelectedDate(button, PREVIOUS);
-
 }
 
 void
@@ -288,6 +355,7 @@ on_btToday_clicked(GtkButton *button, gpointer user_data)
   GtkWidget *appointment; 
   GtkTextView *tv;
   GtkTextBuffer *tb;
+  gint result;
 	
   appointment = lookup_widget(GTK_WIDGET(button),"wAppointment");
 
@@ -299,8 +367,7 @@ on_btToday_clicked(GtkButton *button, gpointer user_data)
 
   if(gtk_text_buffer_get_modified(tb))
     {
-      gint result =
-	dialogWin(appointment);
+      result = dialogWin(appointment);
       if(result == GTK_RESPONSE_ACCEPT)
 	{
 	  gtk_calendar_select_month(GTK_CALENDAR(xfcal->mCalendar), t->tm_mon, t->tm_year+1900);
@@ -321,7 +388,7 @@ on_btNext_clicked(GtkButton *button, gpointer user_data)
 {
   GtkTextView *tv;
   GtkTextBuffer *tb;
-
+  gint result;
   GtkWidget *a=lookup_widget((GtkWidget *)button,"wAppointment");
 
   tv = GTK_TEXT_VIEW(lookup_widget(GTK_WIDGET(button),"textview1"));
@@ -329,8 +396,7 @@ on_btNext_clicked(GtkButton *button, gpointer user_data)
 
   if(gtk_text_buffer_get_modified(tb))
     {
-      gint result =
-	dialogWin(a);
+      result = dialogWin(a);
       if(result == GTK_RESPONSE_ACCEPT)
 	{
 	  changeSelectedDate(button, NEXT);
@@ -390,15 +456,15 @@ bisextile(guint year)
 void
 on_btSave_clicked(GtkButton *button, gpointer user_data)
 {
-	gchar *fpath;
-	DBHashTable *fapp;
 	GtkTextView *tv;
 	GtkTextBuffer *tb;
 	GtkTextIter start, end;
 	char *text;
 	G_CONST_RETURN gchar *title;
 	GtkWidget *appointment; 
-	
+    char a_day[10];
+    guint day;
+
 	tv = GTK_TEXT_VIEW(lookup_widget(GTK_WIDGET(button),"textview1"));
 	appointment = lookup_widget(GTK_WIDGET(button),"wAppointment");
 	tb = gtk_text_view_get_buffer(tv);
@@ -409,52 +475,25 @@ on_btSave_clicked(GtkButton *button, gpointer user_data)
 	g_print("Appointment content: %s\n", text);
 	g_print("Date created: %s\n", title);
 #endif
-	
-	fpath = xfce_resource_save_location(XFCE_RESOURCE_CONFIG,
-                        RCDIR G_DIR_SEPARATOR_S "appointments.dbh", FALSE);
-
 	if (gtk_text_buffer_get_modified(tb)) {
-		if ((fapp = DBH_open(fpath)) == NULL){
-			fapp = DBH_create(fpath,8) ;
-		}
-		DBH_Size(fapp,MAX_APP_LENGTH);
-		if (!fapp) {
-			g_warning("Cannot open file %s\n", fpath);
-		}
-		else {
-			char *save_text=(char *)DBH_DATA(fapp);
-			guint day;
-			GtkWidget *a=lookup_widget((GtkWidget *)button,"wAppointment");
-			char *key=g_object_get_data(G_OBJECT (a),"key");
-#ifdef DEBUG
-			printf("DBG:key=%s\n",key);
-#endif
-			g_strlcpy(save_text,text,MAX_APP_LENGTH-1);
-			save_text[MAX_APP_LENGTH-1]=0;
-			/* since record length is variable,this is crucial: */
-			DBH_set_recordsize(fapp,strlen(save_text)+1);
-			/* set the key */
-			strncpy((char *)fapp->key,key,8); fapp->key[7]=0;
-			/* update the DBHashtable: */
-			DBH_update(fapp);
-			day=atoi((char *)(fapp->key+5));
-			/*
-			if (strlen(save_text)) gtk_calendar_mark_day(cal,day);
-			else gtk_calendar_unmark_day(cal,day);
-			*/
-
-			if (strlen(save_text)) 
-			  gtk_calendar_mark_day (GTK_CALENDAR (xfcal->mCalendar), day);
+        if (open_ical_file()){
+            a_day[0]=title[0]; a_day[1]=title[1];           /* yy   */
+                    a_day[2]=title[2]; a_day[3]=title[3];   /*   yy */
+            a_day[4]=title[5]; a_day[5]=title[6];           /* mm */
+            a_day[6]=title[8]; a_day[7]=title[9];           /* dd */
+            a_day[8]=title[10];                             /* \0 */
+            rm_ical_app(a_day);
+            add_ical_app(text, a_day);
+            icalset_mark(fical);
+            close_ical_file();
+			day = atoi(a_day+6); /* dd happens to be last */
+			if (strlen(text)) 
+                gtk_calendar_mark_day (GTK_CALENDAR (xfcal->mCalendar), day);
 			else 
-			  gtk_calendar_unmark_day (GTK_CALENDAR (xfcal->mCalendar), day);
-
-			DBH_close(fapp);	
+                gtk_calendar_unmark_day (GTK_CALENDAR (xfcal->mCalendar), day);
 			gtk_text_buffer_set_modified(tb, FALSE);
-		}
+        }
 	}
-
-	g_free(fpath);
-
 #ifdef DEBUG 
 	g_print("Procedure on_btSave_clicked finished\n");
 #endif
@@ -475,7 +514,6 @@ on_btDelete_clicked(GtkButton *button, gpointer user_data)
                     G_CALLBACK (on_okbutton2_clicked),
                     (gpointer)button);
 	gtk_widget_show(clearwarn);
-
 }
 
 void
@@ -491,11 +529,13 @@ on_cancelbutton1_clicked(GtkButton *button, gpointer user_data)
 void
 on_okbutton2_clicked(GtkButton *button, gpointer user_data)
 {
-	gchar *fpath;
-	DBHashTable *fapp;
 	GtkTextView *tv;
 	GtkTextBuffer *tb;
 	GtkTextIter start, end;
+    char a_day[10];
+    GtkWidget *a;
+    char *key;
+    guint day;
 	
 	gtk_widget_destroy(clearwarn);
 	
@@ -503,33 +543,26 @@ on_okbutton2_clicked(GtkButton *button, gpointer user_data)
 	g_print("Clear textbuffer chosen (oops!)\n");
 #endif
 
-	fpath = xfce_resource_save_location(XFCE_RESOURCE_CONFIG,
-                        RCDIR G_DIR_SEPARATOR_S "appointments.dbh", FALSE);
-	if ((fapp = DBH_open(fpath)) != NULL){
-		char *save_text=(char *)DBH_DATA(fapp);
-		GtkWidget *a=lookup_widget((GtkWidget *)user_data,"wAppointment");
-		char *key=g_object_get_data(G_OBJECT (a),"key");
-		guint day=atoi(key+5);
-		save_text[0]=0;
-		DBH_set_recordsize(fapp,1);
-		strncpy((char *)fapp->key,key,8); fapp->key[7]=0;
-		DBH_update(fapp);
-		DBH_close(fapp);	
+    if (open_ical_file()){
+		a=lookup_widget((GtkWidget *)user_data,"wAppointment");
+		key = (char*)gtk_window_get_title(GTK_WINDOW (a));
+        a_day[0]=key[0]; a_day[1]=key[1];           /* yy   */
+                a_day[2]=key[2]; a_day[3]=key[3];   /*   yy */
+        a_day[4]=key[5]; a_day[5]=key[6];           /* mm */
+        a_day[6]=key[8]; a_day[7]=key[9];           /* dd */
+        a_day[8]=key[10];                           /* \0 */
+        rm_ical_app(a_day);
+        icalset_mark(fical);
+        close_ical_file();
+
 		tv = GTK_TEXT_VIEW(lookup_widget(a,"textview1"));
 		tb = gtk_text_view_get_buffer(tv);
 		gtk_text_buffer_get_bounds(tb, &start, &end);
-
 		gtk_text_buffer_delete(tb, &start, &end);
 		gtk_text_buffer_set_modified(tb, FALSE);
+        day = atoi(a_day+6);
 		gtk_calendar_unmark_day(GTK_CALENDAR(xfcal->mCalendar), day);
-		
-	}
-#ifdef DEBUG
-	else {
-		g_print("error: cannot open %s\n", fpath);
-	}
-#endif
-	g_free(fpath);
+    }
 }
 
 GdkFilterReturn
