@@ -128,16 +128,16 @@ void editAppointment(GtkTreeView *view, GtkTreePath *path
     appt_win *app;
     GtkTreeModel *model;
     GtkTreeIter   iter;
-    gchar *time;
+    gchar *time, *uid = NULL;
 
-    g_print("editAppointment\n");
     model = gtk_tree_view_get_model(view);
     if (gtk_tree_model_get_iter(model, &iter, path)) {
         gtk_tree_model_get(model, &iter, COL_TIME, &time, -1);
-        g_print("editAppointment 1 %s\n", time);
+        gtk_tree_model_get(model, &iter, COL_UID, &uid, -1);
         g_free(time);
     }
-    app = create_appt_win("2005", "03", "13");
+    app = create_appt_win("UPDATE", uid);
+    if (uid) g_free(uid);
     gtk_widget_show(app->appWindow);
 }
 
@@ -157,7 +157,7 @@ gint sortAppointment_comp(GtkTreeModel *model
 }
 
 void addAppointment(GtkListStore    *list1
-            ,gchar *xftime, gchar *xftext, gchar *xfsum)
+            ,gchar *xftime, gchar *xftext, gchar *xfsum, gchar *xfuid)
 {
     GtkTreeIter     iter1;
     gchar           *text;
@@ -177,7 +177,7 @@ void addAppointment(GtkListStore    *list1
     gtk_list_store_set(list1, &iter1
                 , COL_TIME, xftime
                 , COL_HEAD, text
-                , COL_UID, "piilotettu " 
+                , COL_UID, xfuid
                 ,-1);
     g_free(text);
 }
@@ -238,7 +238,7 @@ void manageAppointment(GtkCalendar *calendar, GtkWidget *appwin)
             view = gtk_tree_view_new();
             addAppointment_init(view);
             do
-                addAppointment(list, a_time, app->note, app->title);
+                addAppointment(list, a_time, app->note, app->title, app->uid);
             while (app = getnext_ical_app_on_day(a_day, a_time));
             sort = GTK_TREE_SORTABLE(list);
             gtk_tree_sortable_set_sort_func(sort, COL_TIME
@@ -393,8 +393,19 @@ void
 on_btCreate_clicked(GtkButton *button, gpointer user_data)
 {
     appt_win *app;
+	GtkWidget *appointment; 
+    char *key;
+    char a_day[10];
+	
+	appointment = lookup_widget(GTK_WIDGET(button),"wAppointment");
+    key = (char*)gtk_window_get_title(GTK_WINDOW (appointment));
+    a_day[0]=key[0]; a_day[1]=key[1];           /* yy   */
+    a_day[2]=key[2]; a_day[3]=key[3];   /*   yy */
+    a_day[4]=key[5]; a_day[5]=key[6];           /* mm */
+    a_day[6]=key[8]; a_day[7]=key[9];           /* dd */
+    a_day[8]=key[10];                           /* \0 */
 
-    app = create_appt_win("2005", "03", "10");
+    app = create_appt_win("NEW", a_day);
     gtk_widget_show(app->appWindow);
 }
 

@@ -170,11 +170,12 @@ char *xf_add_ical_app(appt_type *app)
 appt_type *xf_get_ical_app(char *ical_uid)
 {
     struct icaltimetype itime;
-    icalcomponent *c;
+    icalcomponent *c = NULL;
     gboolean key_found=FALSE;
     const char *text;
     static appt_type app;
 
+    c = icalcomponent_get_first_component(ical, ICAL_VEVENT_COMPONENT); 
     for (c = icalcomponent_get_first_component(ical, ICAL_VEVENT_COMPONENT); 
          (c != 0) && (!key_found);
          c = icalcomponent_get_next_component(ical, ICAL_VEVENT_COMPONENT)) {
@@ -184,6 +185,7 @@ appt_type *xf_get_ical_app(char *ical_uid)
             app.title    = (char *)icalcomponent_get_summary(c);
             app.location = (char *)icalcomponent_get_location(c);
             app.note     = (char *)icalcomponent_get_description(c);
+            app.uid      = (char *)icalcomponent_get_uid(c);
             itime = icalcomponent_get_dtstart(c);
             text  = icaltime_as_ical_string(itime);
             strcpy(app.starttime, text);
@@ -252,6 +254,7 @@ appt_type *getnext_ical_app_on_day(char *a_day, char *hh_mm)
             app.title    = (char *)icalcomponent_get_summary(c);
             app.location = (char *)icalcomponent_get_location(c);
             app.note     = (char *)icalcomponent_get_description(c);
+            app.uid      = (char *)icalcomponent_get_uid(c);
             text  = (char *)icaltime_as_ical_string(sdate);
             strcpy(app.starttime, text);
             edate = icalcomponent_get_dtend(c);

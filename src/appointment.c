@@ -55,6 +55,7 @@ on_appClose_clicked_cb(GtkButton *button, gpointer user_data)
   appt_win *apptw = (appt_win *)user_data;
 
   appt_type *appt = g_new(appt_type, 1); 
+  gchar *new_uid;
 
   gint StartHour_value,
     StartMinutes_value,
@@ -117,6 +118,9 @@ on_appClose_clicked_cb(GtkButton *button, gpointer user_data)
 
      g_warning("Date: %s\n", a_day);
 
+     new_uid = xf_add_ical_app(appt);
+     g_warning("New ical uid: %s \n", new_uid);
+     close_ical_file();
   }
 
   gtk_widget_destroy(apptw->appWindow);
@@ -128,15 +132,72 @@ void save_appointment()
 
 }
 
-appt_win *create_appt_win(char year[4], char month[2], char day[2])
+void fill_appt_window(appt_win *appt, char *action, char *par)
+{
+  char appt_date[12], start_hh[3], start_mi[3];
+  appt_type *appt_data;
+  gint i, j;
+
+    if (strcmp(action, "NEW") == 0) {
+    /* par contains XF_APP_DATE_FORMAT (yyyymmdd) date for new appointment */
+        for (i = 0, j = 0; i <= 10; i++) { /* yyyymmdd -> yyyy-mm-dd */
+            if ((i == 4) || (i == 7))
+                appt_date[i] = '-';
+            else
+                appt_date[i] = par[j++];
+        }
+        gtk_window_set_title (GTK_WINDOW (appt->appWindow), appt_date);
+    }
+    else if (strcmp(action, "UPDATE") == 0) {
+    /* par contains ical uid */
+        if (!open_ical_file()) {
+            g_warning("ical file open failed\n");
+            return;
+        }
+        if ((appt_data = xf_get_ical_app(par)) == NULL) {
+            g_warning("appointment not found\n");
+            return;
+        }
+        for (i = 0, j = 0; i <= 9; i++) { /* yyyymmdd -> yyyy-mm-dd */
+            if ((i == 4) || (i == 7))
+                appt_date[i] = '-';
+            else
+                appt_date[i] = appt_data->starttime[j++];
+        }
+        appt_date[10] = '\0';
+        gtk_window_set_title (GTK_WINDOW (appt->appWindow), appt_date);
+        if (appt_data->title)
+            gtk_entry_set_text(GTK_ENTRY(appt->appTitle_entry), appt_data->title);
+        if (appt_data->location)
+            gtk_entry_set_text(GTK_ENTRY(appt->appLocation_entry), appt_data->location);
+        if (strlen( appt_data->starttime) > 6 ) {
+            start_hh[0]= appt_data->starttime[9];
+            start_hh[1]= appt_data->starttime[10];
+            start_hh[2]= '\0';
+            start_mi[0]= appt_data->starttime[11];
+            start_mi[1]= appt_data->starttime[12];
+            start_mi[2]= '\0';
+            gtk_spin_button_set_value(
+                      GTK_SPIN_BUTTON(appt->appStartHour_spinbutton)
+                    , (gdouble) atoi(start_hh));
+            gtk_spin_button_set_value(
+                      GTK_SPIN_BUTTON(appt->appStartMinutes_spinbutton)
+                    , (gdouble) atoi(start_mi));
+        }
+        close_ical_file();
+    }
+    else
+    g_error("unknown parameter\n");
+}
+
+appt_win *create_appt_win(char *action, char *par)
 {
   appt_win *appt = g_new(appt_win, 1);
-  char appt_date[12];
-
-  g_snprintf(appt_date, 12, "%s-%s-%s", year, month, day);
 
   appt->appWindow = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+  /*
   gtk_window_set_title (GTK_WINDOW (appt->appWindow), appt_date);
+  */
   gtk_window_set_default_size (GTK_WINDOW (appt->appWindow), 450, 325);
 
   appt->appVBox1 = gtk_vbox_new (FALSE, 0);
@@ -203,19 +264,19 @@ appt_win *create_appt_win(char year[4], char month[2], char day[2])
   gtk_misc_set_alignment (GTK_MISC (appt->appRecurrence), 0, 0.5);
   */
 
-  appt->appNote = gtk_label_new (_("Note"));
-  gtk_widget_show (appt->appNote);
-  gtk_table_attach (GTK_TABLE (appt->appTable), appt->appNote, 0, 1, 8, 9,
-                    (GtkAttachOptions) (GTK_FILL),
-                    (GtkAttachOptions) (0), 0, 0);
-  gtk_misc_set_alignment (GTK_MISC (appt->appNote), 0, 0.5);
-
   appt->appAvailability = gtk_label_new (_("Availability"));
   gtk_widget_show (appt->appAvailability);
   gtk_table_attach (GTK_TABLE (appt->appTable), appt->appAvailability, 0, 1, 7, 8,
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
   gtk_misc_set_alignment (GTK_MISC (appt->appAvailability), 0, 0.5);
+
+  appt->appNote = gtk_label_new (_("Note"));
+  gtk_widget_show (appt->appNote);
+  gtk_table_attach (GTK_TABLE (appt->appTable), appt->appNote, 0, 1, 8, 9,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+  gtk_misc_set_alignment (GTK_MISC (appt->appNote), 0, 0.5);
 
   appt->appTitle_entry = gtk_entry_new ();
   gtk_widget_show (appt->appTitle_entry);
@@ -363,6 +424,9 @@ appt_win *create_appt_win(char year[4], char month[2], char day[2])
   g_signal_connect ((gpointer) appt->appClose, "clicked",
 		    G_CALLBACK (on_appClose_clicked_cb),
 		    appt);
+
+    fill_appt_window(appt, action, par);
+
 
   return appt;
 }

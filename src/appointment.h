@@ -30,6 +30,7 @@ typedef struct
     *availability;
 
   gchar *note;
+  gchar *uid;
 
         /* time format must be:
          * yyyymmdd[Thhmiss[Z]] = %04d%02d%02dT%02d%02d%02d
@@ -45,7 +46,7 @@ typedef struct
 #define XF_APP_TIME_FORMAT "%04d%02d%02dT%02d%02d%02d"
 #define XF_APP_DATE_FORMAT "%04d%02d%02d"
 
-//typedef struct _appointment appointment;
+/* typedef struct _appointment appointment; */
 
 
 typedef struct
@@ -94,7 +95,9 @@ typedef struct
   GtkWidget *appClose;
 } appt_win;
 
-appt_win *create_appt_win(char year[4], char month[2], char day[2]);
+void fill_appt_window(appt_win *appt, char *action, char *par);
+
+appt_win *create_appt_win(char *action, char *par);
 
 
 
