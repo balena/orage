@@ -97,6 +97,7 @@ client_message_received (GtkWidget * widget, GdkEventClient * event,
 	char direction[21];
 	long xid;
 	GdkWindow *win;
+	GdkScreen *screen;
 
 	DBG ("TOGGLE\n");
 
@@ -156,6 +157,8 @@ client_message_received (GtkWidget * widget, GdkEventClient * event,
 	if (y < 0)
 	    y = 0;
 	
+	screen = xfce_gdk_display_locate_monitor_with_pointer (NULL, NULL);
+	gtk_window_set_screen (GTK_WINDOW (mainWindow), screen ? screen : gdk_screen_get_default ());
 	gtk_window_move (GTK_WINDOW (mainWindow), x, y);
 	gtk_widget_show (mainWindow);
 	gtk_window_stick (GTK_WINDOW (mainWindow));
