@@ -119,12 +119,12 @@ int keep_tidy(void){
 void editAppointment(GtkWidget *widget, GdkEventButton *event
             , GtkWidget *control)
 {
-    AppWin *app;
+    appt_win *app;
 
     /*
     if (event->button == 1)
     */
-    app = create_appWin("2005", "03", "10");
+    app = create_appt_win("2005", "03", "10");
     gtk_widget_show(app->appWindow);
 }
 
@@ -343,9 +343,9 @@ on_btDelete_clicked(GtkButton *button, gpointer user_data)
 void
 on_btCreate_clicked(GtkButton *button, gpointer user_data)
 {
-    AppWin *app;
+    appt_win *app;
 
-    app = create_appWin("2005", "03", "10");
+    app = create_appt_win("2005", "03", "10");
     gtk_widget_show(app->appWindow);
 }
 

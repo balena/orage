@@ -52,7 +52,7 @@ void
 on_appClose_clicked_cb(GtkButton *button, gpointer user_data)
 {
 
-  AppWin *apptw = (AppWin *)user_data;
+  appt_win *apptw = (appt_win *)user_data;
 
   appt_type *appt = g_new(appt_type, 1); 
 
@@ -140,9 +140,9 @@ void save_appointment()
 
 }
 
-AppWin *create_appWin(char year[4], char month[2], char day[2])
+appt_win *create_appt_win(char year[4], char month[2], char day[2])
 {
-  AppWin *appt = g_new(AppWin, 1);
+  appt_win *appt = g_new(appt_win, 1);
   char appt_date[12];
 
   g_snprintf(appt_date, 12, "%s-%s-%s", year, month, day);

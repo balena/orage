@@ -92,10 +92,9 @@ typedef struct
   GtkWidget *appRemove;
   GtkWidget *appBottom_fixed;
   GtkWidget *appClose;
-} AppWin;
+} appt_win;
 
-/* The void below is temporary */
-AppWin *create_appWin(char year[4], char month[2], char day[2]);
+appt_win *create_appt_win(char year[4], char month[2], char day[2]);
 
 
 

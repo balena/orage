@@ -95,8 +95,8 @@ void
 mFile_newApp_activate_cb(GtkMenuItem *menuitem, 
 			 gpointer user_data){
 
-  AppWin *app;
-  app = create_appWin("2005", "03", "01");  
+  appt_win *app;
+  app = create_appt_win("2005", "03", "01");  
   gtk_widget_show(app->appWindow);
 }
 
