@@ -18,9 +18,7 @@
  *
  */
 
-typedef struct _CalWin CalWin;
-
-struct _CalWin
+typedef struct _CalWin
 {
   GtkWidget *mWindow;
   GtkWidget *mVbox;
@@ -42,12 +40,7 @@ struct _CalWin
   GtkWidget *mCalendar;
   GtkAccelGroup *mAccel_group;
 
-  gboolean show_Calendar;
-  gboolean show_Taskbar;
-  gboolean show_Pager;
-  gboolean show_Systray;
-  GtkCalendarDisplayOptions display_Options;
-};
+} CalWin;
 
 void create_mainWin(CalWin *);
-void xfcalendar_toggle_visible ();
+void xfcalendar_toggle_visible();

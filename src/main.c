@@ -63,7 +63,6 @@
 static SessionClient	*session_client = NULL;
 
 /* main window */
-GtkWidget	*mainWindow = NULL;
 CalWin *xfcal;
 
 /* MCS client */
@@ -83,12 +82,13 @@ raise_window()
 {
   GdkScreen *screen;
 
-    screen = xfce_gdk_display_locate_monitor_with_pointer (NULL, NULL);
-    gtk_window_set_screen (GTK_WINDOW (mainWindow), screen ? screen : gdk_screen_get_default ());
+    screen = xfce_gdk_display_locate_monitor_with_pointer(NULL, NULL);
+    gtk_window_set_screen(GTK_WINDOW(xfcal->mWindow)
+                , screen ? screen : gdk_screen_get_default ());
     if (pos_x || pos_y)
-        gtk_window_move (GTK_WINDOW (mainWindow), pos_x, pos_y);
-    gtk_window_stick (GTK_WINDOW (mainWindow));
-    gtk_widget_show (mainWindow);
+        gtk_window_move(GTK_WINDOW(xfcal->mWindow), pos_x, pos_y);
+    gtk_window_stick(GTK_WINDOW(xfcal->mWindow));
+    gtk_widget_show(xfcal->mWindow);
 }
 
 void apply_settings()
@@ -98,7 +98,9 @@ void apply_settings()
                                                                                 
   xfce_textdomain(GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8");
                                                                                 
-  gtk_calendar_display_options (GTK_CALENDAR (xfcal->mCalendar), xfcal->display_Options);
+  /*
+  gtk_calendar_display_options(GTK_CALENDAR(xfcal->mCalendar), xfcal->display_Options);
+  */
                                                                                 
   /* Save settings here */
   /* I know, it's bad(tm) */
@@ -116,31 +118,30 @@ void apply_settings()
 }
 
 static gboolean
-client_message_received (GtkWidget * widget, GdkEventClient * event,
+client_message_received(GtkWidget * widget, GdkEventClient * event,
 			 gpointer user_data)
 {
-    TRACE ("client message received");
+    TRACE("client message received");
 
     if (event->message_type ==
-	gdk_atom_intern ("_XFCE_CALENDAR_RAISE", FALSE))
-    {
-	DBG ("RAISING...\n");
-	raise_window();
-	return TRUE;
+        gdk_atom_intern("_XFCE_CALENDAR_RAISE", FALSE)) {
+        DBG("RAISING...\n");
+        raise_window();
+        return TRUE;
     }
     else if (event->message_type ==
-	     gdk_atom_intern ("_XFCE_CALENDAR_TOGGLE_HERE", FALSE))
-    {
-	DBG ("TOGGLE\n");
-	if (GTK_WIDGET_VISIBLE (mainWindow))
-	{
-      apply_settings();
-	  gtk_window_get_position(GTK_WINDOW(mainWindow), &pos_x, &pos_y);
-	  gtk_widget_hide (mainWindow);
-	  return TRUE;
-	}
-	raise_window();
-	return TRUE;
+        gdk_atom_intern ("_XFCE_CALENDAR_TOGGLE_HERE", FALSE)) {
+        DBG("TOGGLE\n");
+        if (GTK_WIDGET_VISIBLE(xfcal->mWindow)) {
+            apply_settings();
+            gtk_window_get_position(GTK_WINDOW(xfcal->mWindow), &pos_x, &pos_y);
+            gtk_widget_hide(xfcal->mWindow);
+            return TRUE;
+        }
+        else {
+            raise_window();
+            return TRUE;
+        }
     }
 
     return FALSE;
@@ -153,67 +154,71 @@ int keep_tidy(void){
 }
 
 void 
-notify_cb(const char *name, const char *channel_name, McsAction action, McsSetting * setting, void *data)
+notify_cb(const char *name, const char *channel_name
+        , McsAction action, McsSetting * setting, void *data)
 {
-    gboolean showtaskbar, showpager, showcalendar, normalmode;
+    gboolean normalmode
+           , showtaskbar, showpager, showsystray
+           , showstart, hidestart, ministart
+           ;
 
-    if(g_ascii_strcasecmp(CHANNEL, channel_name))
-    {
+    if (g_ascii_strcasecmp(CHANNEL, channel_name)) {
         g_message(_("This should not happen"));
         return;
     }
 
-    switch (action)
-    {
+    switch (action) {
         case MCS_ACTION_NEW:
-            if(!strcmp(name, "XFCalendar/ShowStart"))
-            {
-              showcalendar = setting->data.v_int ? TRUE: FALSE;
-              if(showcalendar)
-                gtk_widget_show_all(xfcal->mWindow);
-              xfcal->show_Calendar = showcalendar;
+            if (!strcmp(name, "XFCalendar/ShowStart")) {
+                showstart = (setting->data.v_int == 1) ? TRUE : FALSE;
+                hidestart = (setting->data.v_int == 0) ? TRUE : FALSE;
+                ministart = (setting->data.v_int == 2) ? TRUE : FALSE;
+                if (showstart)
+                    gtk_widget_show_all(xfcal->mWindow);
+                else if (ministart) {
+                    gtk_window_iconify(GTK_WINDOW(xfcal->mWindow));
+                    gtk_widget_show_all(xfcal->mWindow);
+                }
             }
          /* note that break is missing, we want to do also CHANGED actions */
         case MCS_ACTION_CHANGED:
-            if(setting->type == MCS_TYPE_INT)
-            {
-		if(!strcmp(name, "XFCalendar/NormalMode"))
-		{
-		  normalmode = setting->data.v_int ? TRUE: FALSE;
-	          gtk_window_set_decorated(GTK_WINDOW(mainWindow), normalmode);
-		  if(!normalmode)
-		    gtk_widget_hide(xfcal->mMenubar);
-		  else
-		    gtk_widget_show(xfcal->mMenubar);
-		}
-		else if(!strcmp(name, "XFCalendar/TaskBar"))
-		{
-		  showtaskbar = setting->data.v_int ? TRUE: FALSE;
-		   /* Reminder: if we want to show the calendar in the taskbar (i.e. showtaskbar is TRUE)
-		   * then gtk_window_set_skip_taskbar_hint must get a FALSE value, and if we don't want
-		   * to be seen in the taskbar, then the function must eat a TRUE.
-		   */
-		  gtk_window_set_skip_taskbar_hint((GtkWindow*)mainWindow, !showtaskbar);
-		  xfcal->show_Taskbar = showtaskbar;
-		}
-		else if(!strcmp(name, "XFCalendar/Pager"))
-		{
-		  showpager = setting->data.v_int ? TRUE: FALSE;
-		   /* Reminder: if we want to show the calendar in the pager (i.e. showpager is TRUE)
-		   * then gtk_window_set_skip_pager_hint must get a FALSE value, and if we don't want
-		   * to be seen in the pager, then the function must eat a TRUE.
-		   */
-		  gtk_window_set_skip_pager_hint((GtkWindow*)mainWindow, !showpager);
-		  xfcal->show_Pager = showpager;
-		}
-		else if(!strcmp(name, "XFCalendar/Systray"))
-		{
-		  xfcal->show_Systray = setting->data.v_int ? TRUE: FALSE;
-                  if (xfcal->show_Systray)
-                    xfce_tray_icon_connect(trayIcon);
-                  else
-                    xfce_tray_icon_disconnect(trayIcon);
-		}
+            if (setting->type == MCS_TYPE_INT) {
+                if (!strcmp(name, "XFCalendar/NormalMode")) {
+                    normalmode = setting->data.v_int ? TRUE : FALSE;
+                    gtk_window_set_decorated(GTK_WINDOW(xfcal->mWindow)
+                            , normalmode);
+                    if (!normalmode)
+                        gtk_widget_hide(xfcal->mMenubar);
+                    else
+                        gtk_widget_show(xfcal->mMenubar);
+                }
+                else if (!strcmp(name, "XFCalendar/TaskBar")) {
+                    showtaskbar = setting->data.v_int ? TRUE : FALSE;
+		   /* Reminder: if we want to show the calendar in the taskbar 
+            * (i.e. showtaskbar is TRUE) then gtk_window_set_skip_taskbar_hint 
+            * must get a FALSE value, and if we don't want to be seen in 
+            * the taskbar, then the function must eat a TRUE.
+		    */
+		            gtk_window_set_skip_taskbar_hint(GTK_WINDOW(xfcal->mWindow)
+                            , !showtaskbar);
+                }
+                else if(!strcmp(name, "XFCalendar/Pager")) {
+                    showpager = setting->data.v_int ? TRUE : FALSE;
+		   /* Reminder: if we want to show the calendar in the pager 
+            * (i.e. showpager is TRUE) then gtk_window_set_skip_pager_hint
+            * must get a FALSE value, and if we don't want to be seen in 
+            * the pager, then the function must eat a TRUE.
+		    */
+                    gtk_window_set_skip_pager_hint(GTK_WINDOW(xfcal->mWindow)
+                            , !showpager);
+                }
+                else if(!strcmp(name, "XFCalendar/Systray")) {
+                    showsystray = setting->data.v_int ? TRUE : FALSE;
+                    if (showsystray)
+                        xfce_tray_icon_connect(trayIcon);
+                    else
+                        xfce_tray_icon_disconnect(trayIcon);
+                }
             }
             break;
         case MCS_ACTION_DELETED:
@@ -416,7 +421,6 @@ main(int argc, char *argv[])
    * Create the Xfcalendar.
    */
   create_mainWin(xfcal);
-  mainWindow = xfcal->mWindow;           /*FIXME: hack avoiding some warnings while running */
 
   /*
    * Create the tray icon and its popup menu
@@ -424,14 +428,12 @@ main(int argc, char *argv[])
   trayIcon = create_TrayIcon(xfcal);
 	
   client = mcs_client_new(dpy, scr, notify_cb, watch_cb, xfcal->mWindow);
-  if(client)
-    {
+  if(client) {
       mcs_client_add_channel(client, CHANNEL);
-    }
-  else
-    {
+  }
+  else {
       g_warning(_("Cannot create MCS client channel"));
-    }
+  }
 
 /* start alarm monitoring timeout */
   g_timeout_add_full(0,
@@ -443,7 +445,6 @@ main(int argc, char *argv[])
 /* initialize alarm list */
   build_ical_alarm_list(TRUE);
 
-	
   gtk_main();
   keep_tidy();
 

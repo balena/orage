@@ -52,6 +52,8 @@ static gboolean showtaskbar = TRUE;
 static gboolean showpager = TRUE;
 static gboolean showsystray = TRUE;
 static gboolean showstart = TRUE;
+static gboolean hidestart = FALSE;
+static gboolean ministart = FALSE;
 
 typedef struct _Itf Itf;
 struct _Itf
@@ -79,8 +81,9 @@ struct _Itf
   GSList    *start_radiobutton_group;
   GtkWidget *hboxStart;
   GtkWidget *frameStart;
-  GtkWidget *HideStart_radiobutton;
   GtkWidget *ShowStart_radiobutton;
+  GtkWidget *HideStart_radiobutton;
+  GtkWidget *MiniStart_radiobutton;
   /* */
   GtkWidget *closebutton;
   GtkWidget *dialog_action_area1;
@@ -152,10 +155,11 @@ static void cb_start_changed(GtkWidget * dialog, gpointer user_data)
     Itf *itf = (Itf *) user_data;
     McsPlugin *mcs_plugin = itf->mcs_plugin;
 
-g_print("cb_start_changed\n");
     showstart = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(itf->ShowStart_radiobutton));
+    hidestart = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(itf->HideStart_radiobutton));
+    ministart = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(itf->MiniStart_radiobutton));
 
-    mcs_manager_set_int(mcs_plugin->manager, "XFCalendar/ShowStart", CHANNEL, showstart ? 1 : 0);
+    mcs_manager_set_int(mcs_plugin->manager, "XFCalendar/ShowStart", CHANNEL, showstart ? 1 : (hidestart ? 0 : 2));
     mcs_manager_notify(mcs_plugin->manager, CHANNEL);
     write_options(mcs_plugin);
 }
@@ -171,101 +175,108 @@ Itf *create_xfcalendar_dialog(McsPlugin * mcs_plugin)
     dialog->start_radiobutton_group = NULL;
 
     dialog->xfcalendar_dialog = gtk_dialog_new();
-    gtk_window_set_default_size (GTK_WINDOW(dialog->xfcalendar_dialog), 300, 200);
-    gtk_window_set_title (GTK_WINDOW (dialog->xfcalendar_dialog), _("Xfcalendar"));
-    gtk_window_set_position (GTK_WINDOW (dialog->xfcalendar_dialog), GTK_WIN_POS_CENTER);
-    gtk_window_set_modal (GTK_WINDOW (dialog->xfcalendar_dialog), FALSE);
-    gtk_window_set_resizable (GTK_WINDOW (dialog->xfcalendar_dialog), FALSE);
+    gtk_window_set_default_size(GTK_WINDOW(dialog->xfcalendar_dialog), 300, 200);
+    gtk_window_set_title(GTK_WINDOW(dialog->xfcalendar_dialog), _("Xfcalendar"));
+    gtk_window_set_position(GTK_WINDOW(dialog->xfcalendar_dialog), GTK_WIN_POS_CENTER);
+    gtk_window_set_modal(GTK_WINDOW(dialog->xfcalendar_dialog), FALSE);
+    gtk_window_set_resizable(GTK_WINDOW(dialog->xfcalendar_dialog), FALSE);
     gtk_window_set_icon(GTK_WINDOW(dialog->xfcalendar_dialog), mcs_plugin->icon);
 
-    gtk_dialog_set_has_separator (GTK_DIALOG (dialog->xfcalendar_dialog), FALSE);
+    gtk_dialog_set_has_separator(GTK_DIALOG(dialog->xfcalendar_dialog), FALSE);
 
-    dialog->dialog_vbox1 = GTK_DIALOG (dialog->xfcalendar_dialog)->vbox;
-    gtk_widget_show (dialog->dialog_vbox1);
+    dialog->dialog_vbox1 = GTK_DIALOG(dialog->xfcalendar_dialog)->vbox;
+    gtk_widget_show(dialog->dialog_vbox1);
 
     dialog->dialog_header = xfce_create_header(mcs_plugin->icon, _("Xfcalendar"));
     gtk_widget_show(dialog->dialog_header);
     gtk_box_pack_start(GTK_BOX(dialog->dialog_vbox1), dialog->dialog_header, FALSE, TRUE, 0);
 
-    dialog->hbox1 = gtk_hbox_new (TRUE, 0);
-    gtk_container_set_border_width (GTK_CONTAINER (dialog->hbox1), BORDER + 1);
-    gtk_widget_show (dialog->hbox1);
-    gtk_box_pack_start (GTK_BOX (dialog->dialog_vbox1), dialog->hbox1, TRUE, TRUE, 0);
+    dialog->hbox1 = gtk_hbox_new(TRUE, 0);
+    gtk_container_set_border_width(GTK_CONTAINER (dialog->hbox1), BORDER + 1);
+    gtk_widget_show(dialog->hbox1);
+    gtk_box_pack_start(GTK_BOX(dialog->dialog_vbox1), dialog->hbox1, TRUE, TRUE, 0);
     
-    dialog->vbox1 = gtk_vbox_new (FALSE, 0);
-    gtk_container_set_border_width (GTK_CONTAINER (dialog->vbox1), BORDER);
-    gtk_widget_show (dialog->vbox1);
-    gtk_box_pack_start (GTK_BOX (dialog->hbox1), dialog->vbox1, TRUE, TRUE, 0);
+    dialog->vbox1 = gtk_vbox_new(FALSE, 0);
+    gtk_container_set_border_width(GTK_CONTAINER(dialog->vbox1), BORDER);
+    gtk_widget_show(dialog->vbox1);
+    gtk_box_pack_start(GTK_BOX(dialog->hbox1), dialog->vbox1, TRUE, TRUE, 0);
 
     /* */
-    dialog->frameMode = xfce_framebox_new (_("Mode"), TRUE);
-    gtk_widget_show (dialog->frameMode);
-    gtk_box_pack_start (GTK_BOX (dialog->vbox1), dialog->frameMode, TRUE, TRUE, 0);
+    dialog->frameMode = xfce_framebox_new(_("Mode"), TRUE);
+    gtk_widget_show(dialog->frameMode);
+    gtk_box_pack_start(GTK_BOX(dialog->vbox1), dialog->frameMode, TRUE, TRUE, 0);
     
     dialog->hboxMode = gtk_hbox_new(TRUE, 0);
-    gtk_widget_show (dialog->hboxMode);
-    xfce_framebox_add (XFCE_FRAMEBOX (dialog->frameMode), dialog->hboxMode);
+    gtk_widget_show(dialog->hboxMode);
+    xfce_framebox_add(XFCE_FRAMEBOX(dialog->frameMode), dialog->hboxMode);
 
-    dialog->NormalMode_radiobutton = gtk_radio_button_new_with_mnemonic (NULL, _("Normal"));
-    gtk_widget_show (dialog->NormalMode_radiobutton);
-    gtk_box_pack_start (GTK_BOX (dialog->hboxMode), dialog->NormalMode_radiobutton, FALSE, FALSE, 0);
-    gtk_radio_button_set_group (GTK_RADIO_BUTTON (dialog->NormalMode_radiobutton), dialog->mode_radiobutton_group);
-    dialog->mode_radiobutton_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (dialog->NormalMode_radiobutton));
-    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (dialog->NormalMode_radiobutton), normalmode);
+    dialog->NormalMode_radiobutton = gtk_radio_button_new_with_mnemonic(NULL, _("Normal"));
+    gtk_widget_show(dialog->NormalMode_radiobutton);
+    gtk_box_pack_start(GTK_BOX(dialog->hboxMode), dialog->NormalMode_radiobutton, FALSE, FALSE, 0);
+    gtk_radio_button_set_group(GTK_RADIO_BUTTON(dialog->NormalMode_radiobutton), dialog->mode_radiobutton_group);
+    dialog->mode_radiobutton_group = gtk_radio_button_get_group(GTK_RADIO_BUTTON (dialog->NormalMode_radiobutton));
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(dialog->NormalMode_radiobutton), normalmode);
 
-    dialog->CompactMode_radiobutton = gtk_radio_button_new_with_mnemonic (NULL, _("Compact"));
-    gtk_widget_show (dialog->CompactMode_radiobutton);
-    gtk_box_pack_start (GTK_BOX (dialog->hboxMode), dialog->CompactMode_radiobutton, FALSE, FALSE, 0);
-    gtk_radio_button_set_group (GTK_RADIO_BUTTON (dialog->CompactMode_radiobutton), dialog->mode_radiobutton_group);
-    dialog->mode_radiobutton_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (dialog->CompactMode_radiobutton));
-    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (dialog->CompactMode_radiobutton), !normalmode);
+    dialog->CompactMode_radiobutton = gtk_radio_button_new_with_mnemonic(NULL, _("Compact"));
+    gtk_widget_show(dialog->CompactMode_radiobutton);
+    gtk_box_pack_start(GTK_BOX(dialog->hboxMode), dialog->CompactMode_radiobutton, FALSE, FALSE, 0);
+    gtk_radio_button_set_group(GTK_RADIO_BUTTON(dialog->CompactMode_radiobutton), dialog->mode_radiobutton_group);
+    dialog->mode_radiobutton_group = gtk_radio_button_get_group(GTK_RADIO_BUTTON (dialog->CompactMode_radiobutton));
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(dialog->CompactMode_radiobutton), !normalmode);
     
     /* */
-    dialog->frameShow = xfce_framebox_new (_("Show in..."), TRUE);
-    gtk_widget_show (dialog->frameShow);
-    gtk_box_pack_start (GTK_BOX (dialog->vbox1), dialog->frameShow, TRUE, TRUE, 0);
+    dialog->frameShow = xfce_framebox_new(_("Show in..."), TRUE);
+    gtk_widget_show(dialog->frameShow);
+    gtk_box_pack_start(GTK_BOX(dialog->vbox1), dialog->frameShow, TRUE, TRUE, 0);
     
-    dialog->hboxShow = gtk_hbox_new (TRUE, 0);
-    gtk_widget_show (dialog->hboxShow);
-    xfce_framebox_add (XFCE_FRAMEBOX (dialog->frameShow), dialog->hboxShow);
+    dialog->hboxShow = gtk_hbox_new(TRUE, 0);
+    gtk_widget_show(dialog->hboxShow);
+    xfce_framebox_add(XFCE_FRAMEBOX(dialog->frameShow), dialog->hboxShow);
 
-    dialog->show_taskbar_checkbutton = gtk_check_button_new_with_mnemonic (_("Taskbar"));
-    gtk_widget_show (dialog->show_taskbar_checkbutton);
-    gtk_box_pack_start (GTK_BOX (dialog->hboxShow), dialog->show_taskbar_checkbutton, FALSE, FALSE, 0);
-    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (dialog->show_taskbar_checkbutton), showtaskbar);
+    dialog->show_taskbar_checkbutton = gtk_check_button_new_with_mnemonic(_("Taskbar"));
+    gtk_widget_show(dialog->show_taskbar_checkbutton);
+    gtk_box_pack_start(GTK_BOX(dialog->hboxShow), dialog->show_taskbar_checkbutton, FALSE, FALSE, 0);
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(dialog->show_taskbar_checkbutton), showtaskbar);
 
-    dialog->show_pager_checkbutton = gtk_check_button_new_with_mnemonic (_("Pager"));
-    gtk_widget_show (dialog->show_pager_checkbutton);
-    gtk_box_pack_start (GTK_BOX (dialog->hboxShow), dialog->show_pager_checkbutton, FALSE, FALSE, 0);
-    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (dialog->show_pager_checkbutton), showpager);
+    dialog->show_pager_checkbutton = gtk_check_button_new_with_mnemonic(_("Pager"));
+    gtk_widget_show(dialog->show_pager_checkbutton);
+    gtk_box_pack_start(GTK_BOX(dialog->hboxShow), dialog->show_pager_checkbutton, FALSE, FALSE, 0);
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON (dialog->show_pager_checkbutton), showpager);
 
-    dialog->show_systray_checkbutton = gtk_check_button_new_with_mnemonic (_("Systray"));
-    gtk_widget_show (dialog->show_systray_checkbutton);
-    gtk_box_pack_start (GTK_BOX (dialog->hboxShow), dialog->show_systray_checkbutton, FALSE, FALSE, 0);
-    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (dialog->show_systray_checkbutton), showsystray);
+    dialog->show_systray_checkbutton = gtk_check_button_new_with_mnemonic(_("Systray"));
+    gtk_widget_show(dialog->show_systray_checkbutton);
+    gtk_box_pack_start(GTK_BOX(dialog->hboxShow), dialog->show_systray_checkbutton, FALSE, FALSE, 0);
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(dialog->show_systray_checkbutton), showsystray);
 
     /* */
-    dialog->frameStart = xfce_framebox_new (_("Start visibility"), TRUE);
-    gtk_widget_show (dialog->frameStart);
-    gtk_box_pack_start (GTK_BOX (dialog->vbox1), dialog->frameStart, TRUE, TRUE, 0);
+    dialog->frameStart = xfce_framebox_new(_("Start visibility"), TRUE);
+    gtk_widget_show(dialog->frameStart);
+    gtk_box_pack_start(GTK_BOX(dialog->vbox1), dialog->frameStart, TRUE, TRUE, 0);
     
     dialog->hboxStart = gtk_hbox_new(TRUE, 0);
-    gtk_widget_show (dialog->hboxStart);
-    xfce_framebox_add (XFCE_FRAMEBOX (dialog->frameStart), dialog->hboxStart);
+    gtk_widget_show(dialog->hboxStart);
+    xfce_framebox_add(XFCE_FRAMEBOX(dialog->frameStart), dialog->hboxStart);
 
-    dialog->ShowStart_radiobutton = gtk_radio_button_new_with_mnemonic (NULL, _("Show"));
-    gtk_widget_show (dialog->ShowStart_radiobutton);
-    gtk_box_pack_start (GTK_BOX (dialog->hboxStart), dialog->ShowStart_radiobutton, FALSE, FALSE, 0);
-    gtk_radio_button_set_group (GTK_RADIO_BUTTON (dialog->ShowStart_radiobutton), dialog->start_radiobutton_group);
-    dialog->start_radiobutton_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (dialog->ShowStart_radiobutton));
-    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (dialog->ShowStart_radiobutton), showstart);
+    dialog->ShowStart_radiobutton = gtk_radio_button_new_with_mnemonic(NULL, _("Show"));
+    gtk_widget_show(dialog->ShowStart_radiobutton);
+    gtk_box_pack_start(GTK_BOX(dialog->hboxStart), dialog->ShowStart_radiobutton, FALSE, FALSE, 0);
+    gtk_radio_button_set_group(GTK_RADIO_BUTTON(dialog->ShowStart_radiobutton), dialog->start_radiobutton_group);
+    dialog->start_radiobutton_group = gtk_radio_button_get_group(GTK_RADIO_BUTTON(dialog->ShowStart_radiobutton));
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(dialog->ShowStart_radiobutton), showstart);
 
-    dialog->HideStart_radiobutton = gtk_radio_button_new_with_mnemonic (NULL, _("Hide"));
-    gtk_widget_show (dialog->HideStart_radiobutton);
-    gtk_box_pack_start (GTK_BOX (dialog->hboxStart), dialog->HideStart_radiobutton, FALSE, FALSE, 0);
-    gtk_radio_button_set_group (GTK_RADIO_BUTTON (dialog->HideStart_radiobutton), dialog->start_radiobutton_group);
-    dialog->start_radiobutton_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (dialog->HideStart_radiobutton));
-    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (dialog->HideStart_radiobutton), !showstart);
+    dialog->HideStart_radiobutton = gtk_radio_button_new_with_mnemonic(NULL, _("Hide"));
+    gtk_widget_show(dialog->HideStart_radiobutton);
+    gtk_box_pack_start(GTK_BOX(dialog->hboxStart), dialog->HideStart_radiobutton, FALSE, FALSE, 0);
+    gtk_radio_button_set_group(GTK_RADIO_BUTTON(dialog->HideStart_radiobutton), dialog->start_radiobutton_group);
+    dialog->start_radiobutton_group = gtk_radio_button_get_group(GTK_RADIO_BUTTON(dialog->HideStart_radiobutton));
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(dialog->HideStart_radiobutton), hidestart);
+
+    dialog->MiniStart_radiobutton = gtk_radio_button_new_with_mnemonic(NULL, _("Minimized"));
+    gtk_widget_show(dialog->MiniStart_radiobutton);
+    gtk_box_pack_start(GTK_BOX(dialog->hboxStart), dialog->MiniStart_radiobutton, FALSE, FALSE, 0);
+    gtk_radio_button_set_group(GTK_RADIO_BUTTON(dialog->MiniStart_radiobutton), dialog->start_radiobutton_group);
+    dialog->start_radiobutton_group = gtk_radio_button_get_group(GTK_RADIO_BUTTON(dialog->MiniStart_radiobutton));
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(dialog->MiniStart_radiobutton), ministart);
     
     /* */
     dialog->closebutton = gtk_button_new_from_stock ("gtk-close");
@@ -285,8 +296,9 @@ static void setup_dialog(Itf * itf)
   g_signal_connect(G_OBJECT(itf->show_pager_checkbutton), "toggled", G_CALLBACK(cb_pager_changed), itf);
   g_signal_connect(G_OBJECT(itf->show_systray_checkbutton), "toggled", G_CALLBACK(cb_systray_changed), itf);
   g_signal_connect(G_OBJECT(itf->ShowStart_radiobutton), "toggled", G_CALLBACK(cb_start_changed), itf);
+  g_signal_connect(G_OBJECT(itf->MiniStart_radiobutton), "toggled", G_CALLBACK(cb_start_changed), itf);
 
-  xfce_gtk_window_center_on_monitor_with_pointer (GTK_WINDOW (itf->xfcalendar_dialog));
+  xfce_gtk_window_center_on_monitor_with_pointer(GTK_WINDOW(itf->xfcalendar_dialog));
   gtk_widget_show(itf->xfcalendar_dialog);
 }
 
@@ -368,12 +380,21 @@ static void create_channel(McsPlugin * mcs_plugin)
     setting = mcs_manager_setting_lookup(mcs_plugin->manager, "XFCalendar/ShowStart", CHANNEL);
     if(setting)
     {
+        showstart = FALSE;
+        hidestart = FALSE;
+        ministart = FALSE;
+        switch (setting->data.v_int) {
+            case 0: hidestart = TRUE; break;
+            case 1: showstart = TRUE; break;
+            case 2: ministart = TRUE; break;
+            default: showstart = TRUE;
+        }
         showstart = setting->data.v_int ? TRUE: FALSE;
     }
     else
     {
         showstart = TRUE;
-        mcs_manager_set_int(mcs_plugin->manager, "XFCalendar/ShowStart", CHANNEL, showstart ? 1 : 0);
+        mcs_manager_set_int(mcs_plugin->manager, "XFCalendar/ShowStart", CHANNEL, 1);
     }
 
     write_options (mcs_plugin);

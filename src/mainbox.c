@@ -56,10 +56,9 @@
 
 extern gboolean normalmode;
 extern gint pos_x, pos_y;
-static GtkCalendar *cal;
 
 gboolean
-xfcalendar_mark_appointments (CalWin *xfcal)
+xfcalendar_mark_appointments(CalWin *xfcal)
 {
     guint year, month, day;
 
@@ -69,7 +68,7 @@ xfcalendar_mark_appointments (CalWin *xfcal)
         day = -1;
         gtk_calendar_freeze(GTK_CALENDAR(xfcal->mCalendar));
         while ((day = getnextday_ical_app(year, month+1, day))) {
-            gtk_calendar_mark_day(cal, day);
+            gtk_calendar_mark_day(GTK_CALENDAR(xfcal->mCalendar), day);
         }
         gtk_calendar_thaw(GTK_CALENDAR(xfcal->mCalendar));
         xfical_file_close();
@@ -85,11 +84,9 @@ mWindow_delete_event_cb(GtkWidget *widget, GdkEvent *event,
 
   CalWin *xfcal = (CalWin *)user_data;
 
-  xfcal->show_Calendar = FALSE;
   xfcalendar_toggle_visible(xfcal);
 
   return(TRUE);
-
 }
 
 void
@@ -113,36 +110,29 @@ void
 mFile_close_activate_cb (GtkMenuItem *menuitem, 
 			 gpointer user_data)
 {
-
   CalWin *xfcal = (CalWin *)user_data;
 
   gtk_widget_hide(xfcal->mWindow);
-
 }
 
 void
 mFile_quit_activate_cb (GtkMenuItem *menuitem, 
 			gpointer user_data)
 {
-
   gtk_main_quit();
-
 }
 
 void 
 mSettings_preferences_activate_cb(GtkMenuItem *menuitem,
             gpointer user_data)
 {
-
   mcs_client_show(GDK_DISPLAY(), DefaultScreen(GDK_DISPLAY()), CHANNEL);
-
 }
 
 void
 mSettings_selectToday_activate_cb(GtkMenuItem *menuitem,
             gpointer user_data)
 {
-
   CalWin *xfcal = (CalWin *)user_data;
   struct tm *t;
   time_t tt;
@@ -152,7 +142,6 @@ mSettings_selectToday_activate_cb(GtkMenuItem *menuitem,
 
   gtk_calendar_select_month(GTK_CALENDAR(xfcal->mCalendar), t->tm_mon, t->tm_year+1900);
   gtk_calendar_select_day(GTK_CALENDAR(xfcal->mCalendar), t->tm_mday);
-
 }
 
 void
@@ -166,7 +155,6 @@ void
 mCalendar_sroll_event_cb (GtkWidget     *calendar,
 			  GdkEventScroll *event)
 {
-
   guint year, month, day;
   gtk_calendar_get_date(GTK_CALENDAR(calendar), &year, &month, &day);
 
@@ -189,26 +177,23 @@ mCalendar_sroll_event_cb (GtkWidget     *calendar,
 	default:
 	  g_print("get scroll event!!!");
     }
-
 }
 
 void
-mCalendar_day_selected_double_click_cb (GtkCalendar *calendar,
+mCalendar_day_selected_double_click_cb(GtkCalendar *calendar,
                                         gpointer user_data)
 {
+  GtkWidget *wAppointment;
 
-  GtkWidget *appointment;
-  appointment = create_wAppointment();
-  manageAppointment(calendar, appointment);
-  gtk_widget_show(appointment);
-
+  wAppointment = create_wAppointment();
+  manageAppointment(calendar, wAppointment);
+  gtk_widget_show(wAppointment);
 }
 
 void
-mCalendar_month_changed_cb (GtkCalendar *calendar,
+mCalendar_month_changed_cb(GtkCalendar *calendar,
 			    gpointer user_data)
 {
-
   CalWin *xfcal = (CalWin *)user_data;
 
   gtk_calendar_clear_marks(GTK_CALENDAR(xfcal->mCalendar));
@@ -216,40 +201,32 @@ mCalendar_month_changed_cb (GtkCalendar *calendar,
 }
 
 void 
-xfcalendar_init_settings (CalWin *xfcal)
+xfcalendar_init_settings(CalWin *xfcal)
 {
   gchar *fpath;
   FILE *fp;
   char buf[LEN_BUFFER];
 
-  xfce_textdomain(GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8");
+    xfce_textdomain(GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8");
 
-  /* default */
-  xfcal->show_Calendar = TRUE;
-  xfcal->show_Taskbar = TRUE;
-  xfcal->show_Pager = TRUE;
-  xfcal->display_Options = GTK_CALENDAR_SHOW_HEADING 
-    | GTK_CALENDAR_SHOW_DAY_NAMES 
-    | GTK_CALENDAR_SHOW_WEEK_NUMBERS;
-
-  fpath = xfce_resource_save_location(XFCE_RESOURCE_CONFIG,
+    fpath = xfce_resource_save_location(XFCE_RESOURCE_CONFIG,
                         RCDIR G_DIR_SEPARATOR_S "xfcalendarrc", FALSE);
 
-  if ((fp = fopen(fpath, "r")) == NULL){
-    fp = fopen(fpath, "w");
-    if (fp == NULL)
-      g_warning("Unable to create %s", fpath);
+    if ((fp = fopen(fpath, "r")) == NULL) {
+        fp = fopen(fpath, "w");
+        if (fp == NULL)
+            g_warning("Unable to create %s", fpath);
+        else {
+            fprintf(fp, "[Session Visibility]\n");
+            fclose(fp);
+        }
+    }  
     else {
-      fprintf(fp, "[Session Visibility]\n");
-      fclose(fp);
+        fgets(buf, LEN_BUFFER, fp); /* [Window Position] */
+        if (fscanf(fp, "X=%i, Y=%i", &pos_x, &pos_y) != 2) {
+            g_warning("Unable to read position from: %s", fpath);
+        }
     }
-  }  else{
-    fgets(buf, LEN_BUFFER, fp); /* [Window Position] */
-    if (fscanf(fp, "X=%i, Y=%i", &pos_x, &pos_y) != 2)
-      {
-      g_warning("Unable to read position from: %s", fpath);
-      }
-  }
 }
 
 void
@@ -371,7 +348,7 @@ void create_mainWin(CalWin *xfcal)
   xfcal->mCalendar = gtk_calendar_new ();
   gtk_widget_show (xfcal->mCalendar);
   gtk_box_pack_start (GTK_BOX (xfcal->mVbox), xfcal->mCalendar, TRUE, TRUE, 0);
-  gtk_calendar_display_options (GTK_CALENDAR (xfcal->mCalendar),
+  gtk_calendar_set_display_options (GTK_CALENDAR (xfcal->mCalendar),
                                 GTK_CALENDAR_SHOW_HEADING
                                 | GTK_CALENDAR_SHOW_DAY_NAMES
                                 | GTK_CALENDAR_SHOW_WEEK_NUMBERS);
@@ -426,7 +403,6 @@ void create_mainWin(CalWin *xfcal)
       gtk_window_move (GTK_WINDOW (xfcal->mWindow), pos_x, pos_y);
   gtk_window_stick (GTK_WINDOW (xfcal->mWindow));
 
-  cal = GTK_CALENDAR(xfcal->mCalendar); /* horrible hack :( */
   xfcalendar_mark_appointments (xfcal);
 
 }
