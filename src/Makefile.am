@@ -30,5 +30,5 @@ xfcalendar_CFLAGS =							\
 xfcalendar_LDADD =							\
 	@LIBXFCEGUI4_LIBS@						\
 	@DBH_LIBS@							\
-	@LIBXFCE4MCS_CLIENT_LIBS@
+	@LIBXFCE4MCS_CLIENT_LIBS@					\
 	$(INTLLIBS)
