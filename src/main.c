@@ -31,6 +31,9 @@
 #ifdef HAVE_STDLIB_H
 #include <stdlib.h>
 #endif
+#ifdef HAVE_STRING_H
+#include <string.h>
+#endif
 
 #include <libxfce4util/i18n.h>
 #include <libxfce4util/util.h>
@@ -112,30 +115,6 @@ toggle_visible_cb(GtkWidget *window)
 		gtk_widget_show(window);
 }
 
-#if 0
-/*
- */
-static void
-icon_button_press_cb(GtkWidget *icon, GdkEventButton *event, gpointer user_data)
-{
-	if (event->button == 1 && event->type == GDK_2BUTTON_PRESS) {
-	}
-	else if (event->button == 3) {
-		gtk_menu_popup(GTK_MENU(trayMenu), NULL, NULL, NULL, NULL,
-				event->button, gtk_get_current_event_time());
-	}
-}
-
-/*
- */
-static void
-icon_popup_menu_cb(GtkWidget *icon, gpointer user_data)
-{
-	gtk_menu_popup(GTK_MENU(trayMenu), NULL, NULL, NULL, NULL,
-			0, gtk_get_current_event_time());
-}
-#endif
-
 /*
  */
 static GdkFilterReturn
@@ -165,7 +144,6 @@ int
 main(int argc, char *argv[])
 {
 	GtkWidget *menuItem;
-	GdkWindow *window;
 	GtkWidget *hidden;
 	GtkWidget *trayMenu;
 	GdkPixbuf *pixbuf;
@@ -184,19 +162,19 @@ main(int argc, char *argv[])
 	 */
 	if ((xwindow = XGetSelectionOwner(GDK_DISPLAY(),
 				gdk_x11_atom_to_xatom(atom))) != NULL) {
-		GdkEventClient *event;
+		XClientMessageEvent xev;
 
-		window = gdk_window_foreign_new(xwindow);
+		memset(&xev, 0, sizeof(xev));
 
-		event = (GdkEventClient *)gdk_event_new(GDK_CLIENT_EVENT);
-		event->window = window;
-		event->message_type = gdk_atom_intern("_XFCE_CALENDAR_RAISE",
-				FALSE);
-		event->data_format = 32;
+		xev.type = ClientMessage;
+		xev.window = xwindow;
+		xev.message_type = XInternAtom(GDK_DISPLAY(),
+				"_XFCE_CALENDAR_RAISE", FALSE);
+		xev.format = 32;
 
-		gdk_event_send_client_message((GdkEvent *)event, 
-				GDK_WINDOW_XWINDOW(window));
-		gdk_flush();
+		XSendEvent(GDK_DISPLAY(), xwindow, False, NoEventMask,
+				(XEvent *)&xev);
+		XSync(GDK_DISPLAY(), False);
 
 		return(EXIT_SUCCESS);
 	}
