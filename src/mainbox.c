@@ -209,7 +209,7 @@ xfcalendar_init_settings (CalWin *xfcal)
     if(strstr(buf, "show")) 
       {
 	  xfcal->show_Calendar = TRUE;
-	  gtk_widget_show(xfcal->mWindow);
+	  gtk_widget_show_all(xfcal->mWindow);
       }
   }
 }

@@ -310,7 +310,6 @@ void
 save_yourself_cb(gpointer data, int save_style, gboolean shutdown,
                  int interact_style, gboolean fast)
 {
-  //settings_set_showCal(mainWindow);
   settings_set_showCal(xfcal->mWindow);
   apply_settings();
 }
@@ -383,7 +382,6 @@ main(int argc, char *argv[])
    * Create the Xfcalendar.
    */
   xfcal = create_mainWin();
-  gtk_widget_show_all (xfcal->mWindow);
   mainWindow = xfcal->mWindow;           //FIXME: hack avoiding some warnings while running
 
   /*
