@@ -40,9 +40,8 @@
 #include <unistd.h>
 #include <time.h>
 
-#include <libxfce4util/util.h>
+#include <libxfce4util/libxfce4util.h>
 #include <libxfcegui4/libxfcegui4.h>
-#include <libxfce4util/i18n.h>
 #include <libxfcegui4/netk-trayicon.h>
 #include <libxfce4mcs/mcs-client.h>
 #include <gdk/gdk.h>
@@ -100,7 +99,14 @@ void init_settings(GtkWidget *w)
 
   fpath = xfce_get_userfile("xfcalendar", "xfcalendarrc", NULL);
   if ((fp = fopen(fpath, "r")) == NULL){
-    g_warning("Unable to open RC file.");
+    fp = fopen(fpath, "w");
+    if (fp == NULL)
+      g_warning("Unable to create %s", fpath);
+    else {
+      fprintf(fp, "[Session Visibility]\n");
+      if(calsets.showCal) fprintf(fp, "show\n"); else fprintf(fp, "hide\n");
+      fclose(fp);
+    }
   }else{
     /* *very* limited set of options */
     fgets(buf, LEN_BUFFER, fp); /* [Session Visibility] */
@@ -109,10 +115,6 @@ void init_settings(GtkWidget *w)
       {
 	  calsets.showCal = TRUE;
 	  gtk_widget_show(w);
-      }
-    else
-      {
-          calsets.showCal = FALSE;  /* default */
       }
   }
 }

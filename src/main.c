@@ -36,9 +36,7 @@
 #include <string.h>
 #endif
 
-#include <libxfce4util/i18n.h>
-#include <libxfce4util/util.h>
-#include <libxfce4util/debug.h>
+#include <libxfce4util/libxfce4util.h>
 #include <libxfcegui4/libxfcegui4.h>
 #include <libxfcegui4/netk-trayicon.h>
 #include <libxfce4mcs/mcs-client.h>
@@ -71,15 +69,25 @@ extern gboolean normalmode;
 void
 createRCDir(void)
 {
+  GError *error = NULL;
   gchar *calpath;
 
   calpath = xfce_get_userfile("xfcalendar", NULL);
 
   if (!g_file_test(calpath, G_FILE_TEST_IS_DIR)) {
+#if 0
     if (mkdir(calpath, 0755) < 0) {
       g_error("Unable to create directory %s: %s",
 	      calpath, g_strerror(errno));
     }
+#else
+    if (!xfce_mkdirhier (calpath, 0755, &error)) {
+      fprintf (stderr, "xfcalendar: Unable to create directory %s: %s\n",
+               calpath, error->message);
+      g_error_free (error);
+      exit (EXIT_FAILURE);
+    }
+#endif
   }
 
   g_free(calpath);

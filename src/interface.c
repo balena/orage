@@ -15,7 +15,7 @@
 
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
-#include <libxfce4util/i18n.h>
+#include <libxfce4util/libxfce4util.h>
 #include <libxfcegui4/netk-trayicon.h>
 #include <libxfcegui4/libxfcegui4.h>
 
