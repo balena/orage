@@ -6,7 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: xfcalendar\n"
-"POT-Creation-Date: 2003-12-27 14:25+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-08-25 23:03+0200\n"
 "PO-Revision-Date: 2004-07-13 13:09+0300\n"
 "Last-Translator: Yuval Tanny <yuvaltanny@walla.co.il>\n"
 "Language-Team: Yuval Tanny <en@li.org>\n"
@@ -15,116 +16,74 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.3.1\n"
 
-#: src/main.c:280
-msgid "Cannot create MCS client channel"
-msgstr "אין אפשרות ליצור ערוץ לקוח MCS"
-
-#: src/interface.c:64 src/interface.c:374 plugin/xfcalendar_plugin.c:172
-#: plugin/xfcalendar_plugin.c:183 plugin/xfcalendar_plugin.c:305
-msgid "XFCalendar"
+#: plugin/xfcalendar_plugin.c:147 plugin/xfcalendar_plugin.c:158
+#: plugin/xfcalendar_plugin.c:255 src/mainbox.c:377
+#, fuzzy
+msgid "Xfcalendar"
 msgstr "XFCalendar"
 
-#: src/interface.c:79
-msgid "_File"
-msgstr "_קובץ"
-
-#: src/interface.c:86
-msgid "Close window"
-msgstr "סגור חלון"
-
 #.
-#: src/interface.c:99
-msgid "Settings"
-msgstr "הגדרות"
+#: plugin/xfcalendar_plugin.c:173
+msgid "Mode"
+msgstr "מצב"
 
-#: src/interface.c:106 src/interface.c:570
-msgid "Preferences"
-msgstr "העדפות"
+#: plugin/xfcalendar_plugin.c:181
+msgid "Normal"
+msgstr "רגיל"
 
-#: src/interface.c:114
-msgid "Select Today"
-msgstr "בחר היום"
+#: plugin/xfcalendar_plugin.c:188
+msgid "Compact"
+msgstr "מכווץ"
 
-#.
-#: src/interface.c:119
-msgid "_Help"
-msgstr "_עזרה"
+#: src/about-xfcalendar.c:38
+msgid "Manage your time with Xfce4"
+msgstr ""
 
-#: src/interface.c:126
-msgid "_About"
-msgstr "_אודות"
+#: src/about-xfcalendar.c:48
+msgid "Core developer"
+msgstr ""
 
-#: src/interface.c:209
+#: src/about-xfcalendar.c:53 src/about-xfcalendar.c:58
+msgid "Contributor"
+msgstr ""
+
+#: src/interface.c:56
 msgid "Appointment"
 msgstr "פגישה"
 
-#: src/interface.c:231
+#: src/interface.c:78
 msgid "Save (Ctrl+s)"
 msgstr "שמור (Ctrl+s)"
 
-#: src/interface.c:244
+#: src/interface.c:91
 msgid "Previous day (Ctrl+p)"
 msgstr "יום קודם (Ctrl+p("
 
-#: src/interface.c:255
+#: src/interface.c:102
 msgid "Today (Alt+Home)"
 msgstr "היום (Alt+Home)"
 
-#: src/interface.c:267
+#: src/interface.c:114
 msgid "Next day (Ctrl+n)"
 msgstr "יום הבא (Ctrl+n("
 
-#: src/interface.c:280
+#: src/interface.c:127
 msgid "Close (Ctrl+w)"
 msgstr "סגור (Ctrl+w)"
 
-#: src/interface.c:290
+#: src/interface.c:137
 msgid "Clear"
 msgstr "נקה"
 
-#: src/interface.c:291
+#: src/interface.c:138
 msgid "Clear (Ctrl+l)"
 msgstr "נקה (Ctrl+l)"
 
-#: src/interface.c:365 src/interface.c:579
-msgid "About XFCalendar"
-msgstr "אודות XFCalendar"
-
-#: src/interface.c:385
-msgid ""
-"XFCalendar\n"
-"Manage your time with XFce4\n"
-"\n"
-"This software is released under\n"
-"the General Public Licence.\n"
-"\n"
-"(c) 2003 Mickael Graf\n"
-"\n"
-"Contributors:\n"
-"  - Mickael Graf\n"
-"  - Benedikt Meurer\n"
-"  - Edscott Wilson Garcia\n"
-"\n"
-"XFce4 is (c) Olivier Fourdan"
-msgstr ""
-"XFCalendar\n"
-"מארגן את זמנך עם XFce4\n"
-"תכנה זאת משוחררת תחת הרשיון General Public Licence.\n"
-"\n"
-"(c) 2003 Mickael Graf\n"
-"\n"
-"תורמים:\n"
-"  - Mickael Graf\n"
-"  - Benedikt Meurer\n"
-"  - Edscott Wilson Garcia\n"
-"\n"
-"XFce4 is (c) Olivier Fourdan"
-
-#: src/interface.c:433
+#: src/interface.c:208
 msgid "Warning"
 msgstr "אזהרה"
 
-#: src/interface.c:449
+#: src/interface.c:224
 msgid ""
 "You will remove all information \n"
 "associated with this date."
@@ -132,46 +91,105 @@ msgstr ""
 "אתה תסיר את כל המידע \n"
 "השייך לתאריך זה."
 
-#: src/interface.c:498 src/interface.c:506
-msgid "Reminder"
-msgstr "תזכורת"
+#. File menu
+#: src/mainbox.c:404
+msgid "_File"
+msgstr "_קובץ"
 
-#: src/interface.c:560
-msgid "Today"
-msgstr "היום"
+#: src/mainbox.c:413
+#, fuzzy
+msgid "_Close window"
+msgstr "סגור חלון"
 
-#: src/callbacks.c:749
+#. Settings menu
+#: src/mainbox.c:430
+#, fuzzy
+msgid "_Settings"
+msgstr "הגדרות"
+
+#: src/mainbox.c:439
+#, fuzzy
+msgid "_Preferences"
+msgstr "העדפות"
+
+#: src/mainbox.c:450
+#, fuzzy
+msgid "Select _Today"
+msgstr "בחר היום"
+
+#. Help menu
+#: src/mainbox.c:457
+msgid "_Help"
+msgstr "_עזרה"
+
+#: src/mainbox.c:466
+msgid "_About"
+msgstr "_אודות"
+
+#: src/main.c:198
 msgid "This should not happen"
 msgstr "זה לא צריך לקרות"
+
+#: src/main.c:396
+msgid "Cannot create MCS client channel"
+msgstr "אין אפשרות ליצור ערוץ לקוח MCS"
+
+#: src/reminder.c:56 src/reminder.c:64
+msgid "Reminder"
+msgstr "תזכורת"
 
 #: src/support.c:91 src/support.c:115
 #, c-format
 msgid "Couldn't find pixmap file: %s"
 msgstr "אין אפשרות למצוא קובץ תמונה: %s"
 
-#.
-#: plugin/xfcalendar_plugin.c:199
-msgid "Week starts with..."
-msgstr "שבוע מתחיל ב..."
+#: src/tray_icon.c:96
+msgid "Today"
+msgstr "היום"
 
-#: plugin/xfcalendar_plugin.c:207
-msgid "Sunday"
-msgstr "יום ראשון"
+#: src/tray_icon.c:106
+msgid "Preferences"
+msgstr "העדפות"
 
-#: plugin/xfcalendar_plugin.c:214
-msgid "Monday"
-msgstr "יום שני"
+#: src/tray_icon.c:115
+#, fuzzy
+msgid "About Xfcalendar"
+msgstr "אודות XFCalendar"
 
-#.
-#: plugin/xfcalendar_plugin.c:222
-msgid "Mode"
-msgstr "מצב"
+#~ msgid ""
+#~ "XFCalendar\n"
+#~ "Manage your time with XFce4\n"
+#~ "\n"
+#~ "This software is released under\n"
+#~ "the General Public Licence.\n"
+#~ "\n"
+#~ "(c) 2003 Mickael Graf\n"
+#~ "\n"
+#~ "Contributors:\n"
+#~ "  - Mickael Graf\n"
+#~ "  - Benedikt Meurer\n"
+#~ "  - Edscott Wilson Garcia\n"
+#~ "\n"
+#~ "XFce4 is (c) Olivier Fourdan"
+#~ msgstr ""
+#~ "XFCalendar\n"
+#~ "מארגן את זמנך עם XFce4\n"
+#~ "תכנה זאת משוחררת תחת הרשיון General Public Licence.\n"
+#~ "\n"
+#~ "(c) 2003 Mickael Graf\n"
+#~ "\n"
+#~ "תורמים:\n"
+#~ "  - Mickael Graf\n"
+#~ "  - Benedikt Meurer\n"
+#~ "  - Edscott Wilson Garcia\n"
+#~ "\n"
+#~ "XFce4 is (c) Olivier Fourdan"
 
-#: plugin/xfcalendar_plugin.c:230
-msgid "Normal"
-msgstr "רגיל"
+#~ msgid "Week starts with..."
+#~ msgstr "שבוע מתחיל ב..."
 
-#: plugin/xfcalendar_plugin.c:237
-msgid "Compact"
-msgstr "מכווץ"
+#~ msgid "Sunday"
+#~ msgstr "יום ראשון"
 
+#~ msgid "Monday"
+#~ msgstr "יום שני"

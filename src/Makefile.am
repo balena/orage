@@ -3,6 +3,7 @@ bin_PROGRAMS = xfcalendar
 xfcalendar_SOURCES =							\
 	about-xfcalendar.c						\
 	about-xfcalendar.h						\
+	xfcalendar-icon-inline.h					\
 	callbacks.c							\
 	callbacks.h							\
 	interface.c							\
@@ -32,3 +33,5 @@ xfcalendar_LDADD =							\
 	@DBH_LIBS@							\
 	@LIBXFCE4MCS_CLIENT_LIBS@
 	$(INTLLIBS)
+
+EXTRA_DIST = xfcalendar-icon-inline.h
