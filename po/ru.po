@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-02 10:57+0100\n"
+"POT-Creation-Date: 2005-01-21 21:23+0100\n"
 "PO-Revision-Date: 2004-08-23 19:25+0600\n"
 "Last-Translator: Anthony Ivanoff <a-i@bk.ru>\n"
 "Language-Team: Russian\n"
@@ -20,7 +20,7 @@ msgstr ""
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: plugin/xfcalendar_plugin.c:148 plugin/xfcalendar_plugin.c:159
-#: plugin/xfcalendar_plugin.c:245 src/mainbox.c:384
+#: plugin/xfcalendar_plugin.c:245 src/mainbox.c:383
 msgid "Xfcalendar"
 msgstr "Xfcalendar"
 
@@ -49,6 +49,17 @@ msgstr "Главный разработчик"
 msgid "Contributor"
 msgstr "Помощник"
 
+#: src/callbacks.c:251
+msgid "Question"
+msgstr ""
+
+#: src/callbacks.c:260
+msgid ""
+"\n"
+"The information has been modified.\n"
+" Do you want to continue ?\n"
+msgstr ""
+
 #: src/interface.c:56
 msgid "Appointment"
 msgstr "Встреча"
@@ -73,10 +84,6 @@ msgstr "Следующий день (Ctrl+n)"
 msgid "Close (Ctrl+w)"
 msgstr "Закрыть (Ctrl+w)"
 
-#: src/interface.c:137
-msgid "Clear"
-msgstr "Очистить"
-
 #: src/interface.c:138
 msgid "Clear (Ctrl+l)"
 msgstr "Очистить (Ctrl+l)"
@@ -85,7 +92,7 @@ msgstr "Очистить (Ctrl+l)"
 msgid "Warning"
 msgstr "Предупреждение"
 
-#: src/interface.c:224
+#: src/interface.c:225
 msgid ""
 "You will remove all information \n"
 "associated with this date."
@@ -94,41 +101,41 @@ msgstr ""
 "будет удалена."
 
 #. File menu
-#: src/mainbox.c:414
+#: src/mainbox.c:413
 msgid "_File"
 msgstr "Файл"
 
-#: src/mainbox.c:423
+#: src/mainbox.c:422
 msgid "_Close window"
 msgstr "Закрыть окно"
 
 #. Settings menu
-#: src/mainbox.c:440
+#: src/mainbox.c:439
 msgid "_Settings"
 msgstr "Настройки"
 
-#: src/mainbox.c:449
+#: src/mainbox.c:448
 msgid "_Preferences"
 msgstr "Параметры"
 
-#: src/mainbox.c:460
+#: src/mainbox.c:459
 msgid "Select _Today"
 msgstr "Перейти к сегодняшнему дню"
 
 #. Help menu
-#: src/mainbox.c:467
+#: src/mainbox.c:466
 msgid "_Help"
 msgstr "Помощь"
 
-#: src/mainbox.c:476
+#: src/mainbox.c:475
 msgid "_About"
 msgstr "О программе"
 
-#: src/main.c:175
+#: src/main.c:135
 msgid "This should not happen"
 msgstr "Этого не должно происходить"
 
-#: src/main.c:430
+#: src/main.c:390
 msgid "Cannot create MCS client channel"
 msgstr "Невозможно создать канал клиента настроек"
 
@@ -152,6 +159,9 @@ msgstr "Настройки"
 #: src/tray_icon.c:114
 msgid "About Xfcalendar"
 msgstr "О программе Xfcalendar"
+
+#~ msgid "Clear"
+#~ msgstr "Очистить"
 
 #~ msgid "Week starts with..."
 #~ msgstr "Неделя начинается с..."

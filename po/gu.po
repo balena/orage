@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfcalendar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-10-01 07:55+0200\n"
+"POT-Creation-Date: 2005-01-21 21:23+0100\n"
 "PO-Revision-Date: 2004-09-22 15:46+0530\n"
 "Last-Translator: Ankit Patel <ankit@redhat.com>\n"
 "Language-Team: Gujarati\n"
@@ -19,7 +19,7 @@ msgstr ""
 "\n"
 
 #: plugin/xfcalendar_plugin.c:148 plugin/xfcalendar_plugin.c:159
-#: plugin/xfcalendar_plugin.c:245 src/mainbox.c:384
+#: plugin/xfcalendar_plugin.c:245 src/mainbox.c:383
 msgid "Xfcalendar"
 msgstr "Xfકેલેન્ડર"
 
@@ -48,6 +48,17 @@ msgstr "મુખ્ય વિકાસકાર"
 msgid "Contributor"
 msgstr "ફાળો આપનાર"
 
+#: src/callbacks.c:251
+msgid "Question"
+msgstr ""
+
+#: src/callbacks.c:260
+msgid ""
+"\n"
+"The information has been modified.\n"
+" Do you want to continue ?\n"
+msgstr ""
+
 #: src/interface.c:56
 msgid "Appointment"
 msgstr "મુલાકાત"
@@ -72,10 +83,6 @@ msgstr "પછીનો દિવસ (Ctrl+n)"
 msgid "Close (Ctrl+w)"
 msgstr "બંધ કરો (Ctrl+w)"
 
-#: src/interface.c:137
-msgid "Clear"
-msgstr "સાફ કરો"
-
 #: src/interface.c:138
 msgid "Clear (Ctrl+l)"
 msgstr "સાફ કરો (Ctrl+l)"
@@ -84,7 +91,7 @@ msgstr "સાફ કરો (Ctrl+l)"
 msgid "Warning"
 msgstr "ચેતવણી"
 
-#: src/interface.c:224
+#: src/interface.c:225
 msgid ""
 "You will remove all information \n"
 "associated with this date."
@@ -93,41 +100,41 @@ msgstr ""
 "તમે દૂર કરી શકો છો."
 
 #. File menu
-#: src/mainbox.c:414
+#: src/mainbox.c:413
 msgid "_File"
 msgstr "ફાઈલ (_F)"
 
-#: src/mainbox.c:423
+#: src/mainbox.c:422
 msgid "_Close window"
 msgstr "વિન્ડો બંધ કરો (_C)"
 
 #. Settings menu
-#: src/mainbox.c:440
+#: src/mainbox.c:439
 msgid "_Settings"
 msgstr "સુયોજનો (_S)"
 
-#: src/mainbox.c:449
+#: src/mainbox.c:448
 msgid "_Preferences"
 msgstr "પસંદગીઓ (_P)"
 
-#: src/mainbox.c:460
+#: src/mainbox.c:459
 msgid "Select _Today"
 msgstr "આજનો દિવસ પસંદ કરો (_T)"
 
 #. Help menu
-#: src/mainbox.c:467
+#: src/mainbox.c:466
 msgid "_Help"
 msgstr "મદદ (_H)"
 
-#: src/mainbox.c:476
+#: src/mainbox.c:475
 msgid "_About"
 msgstr "વિશે (_A)"
 
-#: src/main.c:172
+#: src/main.c:135
 msgid "This should not happen"
 msgstr "આ બનવું જોઈએ નહિં"
 
-#: src/main.c:427
+#: src/main.c:390
 msgid "Cannot create MCS client channel"
 msgstr "MCS ક્લાઈન્ટ ચેનલ બનાવી શકતા નથી"
 
@@ -140,14 +147,17 @@ msgstr "યાદ અપાવનાર"
 msgid "Couldn't find pixmap file: %s"
 msgstr "pixmap ફાઈલ શોધી શકતા નથી: %s"
 
-#: src/tray_icon.c:96
+#: src/tray_icon.c:95
 msgid "Today"
 msgstr "આજે"
 
-#: src/tray_icon.c:106
+#: src/tray_icon.c:105
 msgid "Preferences"
 msgstr "પસંદગીઓ"
 
-#: src/tray_icon.c:115
+#: src/tray_icon.c:114
 msgid "About Xfcalendar"
 msgstr "Xfકેલેન્ડર વિશે"
+
+#~ msgid "Clear"
+#~ msgstr "સાફ કરો"

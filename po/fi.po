@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfcalendar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-10-12 08:23+0200\n"
+"POT-Creation-Date: 2005-01-21 21:23+0100\n"
 "PO-Revision-Date: 2004-10-11 23:00+0100\n"
 "Last-Translator: Juha Kautto <kautto.juha@kolumbus.fi>\n"
 "Language-Team: \n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: plugin/xfcalendar_plugin.c:148 plugin/xfcalendar_plugin.c:159
-#: plugin/xfcalendar_plugin.c:245 src/mainbox.c:382
+#: plugin/xfcalendar_plugin.c:245 src/mainbox.c:383
 msgid "Xfcalendar"
 msgstr "Xf-kalenteri"
 
@@ -33,17 +33,28 @@ msgstr "Normaali"
 msgid "Compact"
 msgstr "Tiivistetty"
 
-#: src/about-xfcalendar.c:38
+#: src/about-xfcalendar.c:39
 msgid "Manage your time with Xfce4"
 msgstr "Hallitse kalenterisi Xfce4:n avulla"
 
-#: src/about-xfcalendar.c:48
+#: src/about-xfcalendar.c:49
 msgid "Core developer"
 msgstr "Pääkehittäjä"
 
-#: src/about-xfcalendar.c:53 src/about-xfcalendar.c:58
+#: src/about-xfcalendar.c:54 src/about-xfcalendar.c:59
 msgid "Contributor"
 msgstr "Avustaja"
+
+#: src/callbacks.c:251
+msgid "Question"
+msgstr ""
+
+#: src/callbacks.c:260
+msgid ""
+"\n"
+"The information has been modified.\n"
+" Do you want to continue ?\n"
+msgstr ""
 
 #: src/interface.c:56
 msgid "Appointment"
@@ -69,10 +80,6 @@ msgstr "Seuraava päivä (Ctrl+n)"
 msgid "Close (Ctrl+w)"
 msgstr "Lopeta (Ctrl+w)"
 
-#: src/interface.c:137
-msgid "Clear"
-msgstr "Tyhjennä"
-
 #: src/interface.c:138
 msgid "Clear (Ctrl+l)"
 msgstr "Tyhjennä (Ctrl+l)"
@@ -81,7 +88,7 @@ msgstr "Tyhjennä (Ctrl+l)"
 msgid "Warning"
 msgstr "Varoitus"
 
-#: src/interface.c:224
+#: src/interface.c:225
 msgid ""
 "You will remove all information \n"
 "associated with this date."
@@ -90,41 +97,41 @@ msgstr ""
 "tältä päivältä."
 
 #. File menu
-#: src/mainbox.c:412
+#: src/mainbox.c:413
 msgid "_File"
 msgstr "_Tiedosto"
 
-#: src/mainbox.c:421
+#: src/mainbox.c:422
 msgid "_Close window"
 msgstr "_Sulje ikkuna"
 
 #. Settings menu
-#: src/mainbox.c:438
+#: src/mainbox.c:439
 msgid "_Settings"
 msgstr "_Asetukset"
 
-#: src/mainbox.c:447
+#: src/mainbox.c:448
 msgid "_Preferences"
 msgstr "_Parametrit"
 
-#: src/mainbox.c:458
+#: src/mainbox.c:459
 msgid "Select _Today"
 msgstr "_Valitse tämä päivä"
 
 #. Help menu
-#: src/mainbox.c:465
+#: src/mainbox.c:466
 msgid "_Help"
 msgstr "_Ohjeet"
 
-#: src/mainbox.c:474
+#: src/mainbox.c:475
 msgid "_About"
 msgstr "T_ietoja"
 
-#: src/main.c:172
+#: src/main.c:135
 msgid "This should not happen"
 msgstr "Näin ei pitäisi tapahtua"
 
-#: src/main.c:427
+#: src/main.c:390
 msgid "Cannot create MCS client channel"
 msgstr "MCS yhteyskanavan luonti epäonnistui"
 
@@ -137,14 +144,17 @@ msgstr "Muistutus"
 msgid "Couldn't find pixmap file: %s"
 msgstr "Kuvatiedostoa %s ei löytynyt"
 
-#: src/tray_icon.c:96
+#: src/tray_icon.c:95
 msgid "Today"
 msgstr "Tänään"
 
-#: src/tray_icon.c:106
+#: src/tray_icon.c:105
 msgid "Preferences"
 msgstr "Asetukset"
 
-#: src/tray_icon.c:115
+#: src/tray_icon.c:114
 msgid "About Xfcalendar"
 msgstr "Tietoja Xf-kalenterista:sta"
+
+#~ msgid "Clear"
+#~ msgstr "Tyhjennä"

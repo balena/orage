@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfcalendar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-10-01 07:55+0200\n"
+"POT-Creation-Date: 2005-01-21 21:23+0100\n"
 "PO-Revision-Date: 2003-11-24 23:33+0100\n"
 "Last-Translator: Johan Hammar <johan.hammar@swipnet.se>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: plugin/xfcalendar_plugin.c:148 plugin/xfcalendar_plugin.c:159
-#: plugin/xfcalendar_plugin.c:245 src/mainbox.c:384
+#: plugin/xfcalendar_plugin.c:245 src/mainbox.c:383
 #, fuzzy
 msgid "Xfcalendar"
 msgstr "XFCalendar"
@@ -45,6 +45,17 @@ msgstr ""
 msgid "Contributor"
 msgstr ""
 
+#: src/callbacks.c:251
+msgid "Question"
+msgstr ""
+
+#: src/callbacks.c:260
+msgid ""
+"\n"
+"The information has been modified.\n"
+" Do you want to continue ?\n"
+msgstr ""
+
 #: src/interface.c:56
 msgid "Appointment"
 msgstr "MC6te"
@@ -69,10 +80,6 @@ msgstr "NC$sta dag (Ctrl+n)"
 msgid "Close (Ctrl+w)"
 msgstr "StC$ng (Ctrl+w)"
 
-#: src/interface.c:137
-msgid "Clear"
-msgstr "TC6m"
-
 #: src/interface.c:138
 msgid "Clear (Ctrl+l)"
 msgstr "TC6m (Ctrl+l)"
@@ -81,7 +88,7 @@ msgstr "TC6m (Ctrl+l)"
 msgid "Warning"
 msgstr "Varning"
 
-#: src/interface.c:224
+#: src/interface.c:225
 msgid ""
 "You will remove all information \n"
 "associated with this date."
@@ -90,45 +97,45 @@ msgstr ""
 "som hC6r till det hC$r datumet."
 
 #. File menu
-#: src/mainbox.c:414
+#: src/mainbox.c:413
 msgid "_File"
 msgstr "_Fil"
 
-#: src/mainbox.c:423
+#: src/mainbox.c:422
 #, fuzzy
 msgid "_Close window"
 msgstr "StC$ng fC6nster"
 
 #. Settings menu
-#: src/mainbox.c:440
+#: src/mainbox.c:439
 #, fuzzy
 msgid "_Settings"
 msgstr "InstC$llningar"
 
-#: src/mainbox.c:449
+#: src/mainbox.c:448
 #, fuzzy
 msgid "_Preferences"
 msgstr "InstC$llningar"
 
-#: src/mainbox.c:460
+#: src/mainbox.c:459
 #, fuzzy
 msgid "Select _Today"
 msgstr "VC$lj idag"
 
 #. Help menu
-#: src/mainbox.c:467
+#: src/mainbox.c:466
 msgid "_Help"
 msgstr "_HjC$lp"
 
-#: src/mainbox.c:476
+#: src/mainbox.c:475
 msgid "_About"
 msgstr "_Om"
 
-#: src/main.c:172
+#: src/main.c:135
 msgid "This should not happen"
 msgstr "Detta ska inte hC$nda"
 
-#: src/main.c:427
+#: src/main.c:390
 msgid "Cannot create MCS client channel"
 msgstr "Kan inte skapa MCS-klientkanal"
 
@@ -141,18 +148,21 @@ msgstr "PC%minnelse"
 msgid "Couldn't find pixmap file: %s"
 msgstr "Kunde inte hitta pixmap-fil: %s"
 
-#: src/tray_icon.c:96
+#: src/tray_icon.c:95
 msgid "Today"
 msgstr "Idag"
 
-#: src/tray_icon.c:106
+#: src/tray_icon.c:105
 msgid "Preferences"
 msgstr "InstC$llningar"
 
-#: src/tray_icon.c:115
+#: src/tray_icon.c:114
 #, fuzzy
 msgid "About Xfcalendar"
 msgstr "Om XFCalendar"
+
+#~ msgid "Clear"
+#~ msgstr "TC6m"
 
 #~ msgid "Week starts with..."
 #~ msgstr "Vecka bC6rjar med..."

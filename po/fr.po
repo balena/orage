@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: XFCalendar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-10-01 07:55+0200\n"
+"POT-Creation-Date: 2005-01-21 21:23+0100\n"
 "PO-Revision-Date: 2004-08-08 20:10+0200\n"
 "Last-Translator: Mickal Graf <korbinus@linux.se>\n"
 "Language-Team: none <none@none.org>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: plugin/xfcalendar_plugin.c:148 plugin/xfcalendar_plugin.c:159
-#: plugin/xfcalendar_plugin.c:245 src/mainbox.c:384
+#: plugin/xfcalendar_plugin.c:245 src/mainbox.c:383
 msgid "Xfcalendar"
 msgstr "XfCalendar"
 
@@ -43,6 +43,17 @@ msgstr "Développeur principal"
 msgid "Contributor"
 msgstr "Contributeur"
 
+#: src/callbacks.c:251
+msgid "Question"
+msgstr ""
+
+#: src/callbacks.c:260
+msgid ""
+"\n"
+"The information has been modified.\n"
+" Do you want to continue ?\n"
+msgstr ""
+
 #: src/interface.c:56
 msgid "Appointment"
 msgstr "Rendez-vous"
@@ -67,10 +78,6 @@ msgstr "Jour suivant (Ctrl+n)"
 msgid "Close (Ctrl+w)"
 msgstr "Fermer (Ctrl+w)"
 
-#: src/interface.c:137
-msgid "Clear"
-msgstr "Effacer"
-
 #: src/interface.c:138
 msgid "Clear (Ctrl+l)"
 msgstr "Effacer (Ctrl+l)"
@@ -79,7 +86,7 @@ msgstr "Effacer (Ctrl+l)"
 msgid "Warning"
 msgstr "Attention"
 
-#: src/interface.c:224
+#: src/interface.c:225
 msgid ""
 "You will remove all information \n"
 "associated with this date."
@@ -88,41 +95,41 @@ msgstr ""
 "associée à cette date."
 
 #. File menu
-#: src/mainbox.c:414
+#: src/mainbox.c:413
 msgid "_File"
 msgstr "_Fichier"
 
-#: src/mainbox.c:423
+#: src/mainbox.c:422
 msgid "_Close window"
 msgstr "_Fermer la fenêtre"
 
 #. Settings menu
-#: src/mainbox.c:440
+#: src/mainbox.c:439
 msgid "_Settings"
 msgstr "_Paramètres"
 
-#: src/mainbox.c:449
+#: src/mainbox.c:448
 msgid "_Preferences"
 msgstr "_Préférences"
 
-#: src/mainbox.c:460
+#: src/mainbox.c:459
 msgid "Select _Today"
 msgstr "Selectionner _Aujourd'hui"
 
 #. Help menu
-#: src/mainbox.c:467
+#: src/mainbox.c:466
 msgid "_Help"
 msgstr "_Aide"
 
-#: src/mainbox.c:476
+#: src/mainbox.c:475
 msgid "_About"
 msgstr "À _propos"
 
-#: src/main.c:172
+#: src/main.c:135
 msgid "This should not happen"
 msgstr "Cela ne devrait pas arriver."
 
-#: src/main.c:427
+#: src/main.c:390
 msgid "Cannot create MCS client channel"
 msgstr "Impossible de créer un canal client MCS"
 
@@ -135,17 +142,20 @@ msgstr "Rappel"
 msgid "Couldn't find pixmap file: %s"
 msgstr "Fichier pixmap introuvable: %s"
 
-#: src/tray_icon.c:96
+#: src/tray_icon.c:95
 msgid "Today"
 msgstr "Aujourd'hui"
 
-#: src/tray_icon.c:106
+#: src/tray_icon.c:105
 msgid "Preferences"
 msgstr "Préférences"
 
-#: src/tray_icon.c:115
+#: src/tray_icon.c:114
 msgid "About Xfcalendar"
 msgstr "À propos de Xfcalendar"
+
+#~ msgid "Clear"
+#~ msgstr "Effacer"
 
 #~ msgid "Week starts with..."
 #~ msgstr "La semaine débute avec..."

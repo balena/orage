@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-10-01 07:55+0200\n"
+"POT-Creation-Date: 2005-01-21 21:23+0100\n"
 "PO-Revision-Date: 2004-03-09 18:41+0200\n"
 "Last-Translator: Miroslav Yordanov <miordanov@i-space.org>\n"
 "Language-Team: Bulgarian <bg@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: plugin/xfcalendar_plugin.c:148 plugin/xfcalendar_plugin.c:159
-#: plugin/xfcalendar_plugin.c:245 src/mainbox.c:384
+#: plugin/xfcalendar_plugin.c:245 src/mainbox.c:383
 #, fuzzy
 msgid "Xfcalendar"
 msgstr "XFCalendar"
@@ -48,6 +48,17 @@ msgstr ""
 msgid "Contributor"
 msgstr ""
 
+#: src/callbacks.c:251
+msgid "Question"
+msgstr ""
+
+#: src/callbacks.c:260
+msgid ""
+"\n"
+"The information has been modified.\n"
+" Do you want to continue ?\n"
+msgstr ""
+
 #: src/interface.c:56
 msgid "Appointment"
 msgstr "Среща"
@@ -72,10 +83,6 @@ msgstr "Следващ ден·(Ctrl+n)"
 msgid "Close (Ctrl+w)"
 msgstr "Затваря·(Ctrl+w)"
 
-#: src/interface.c:137
-msgid "Clear"
-msgstr "Изчиства"
-
 #: src/interface.c:138
 msgid "Clear (Ctrl+l)"
 msgstr "Изчиства·(Ctrl+l)"
@@ -84,7 +91,7 @@ msgstr "Изчиства·(Ctrl+l)"
 msgid "Warning"
 msgstr "Внимание"
 
-#: src/interface.c:224
+#: src/interface.c:225
 msgid ""
 "You will remove all information \n"
 "associated with this date."
@@ -93,44 +100,44 @@ msgstr ""
 "асоциирана с тази дата."
 
 #. File menu
-#: src/mainbox.c:414
+#: src/mainbox.c:413
 msgid "_File"
 msgstr "_Файл"
 
-#: src/mainbox.c:423
+#: src/mainbox.c:422
 #, fuzzy
 msgid "_Close window"
 msgstr "Затваряне на прозореца"
 
 #. Settings menu
-#: src/mainbox.c:440
+#: src/mainbox.c:439
 #, fuzzy
 msgid "_Settings"
 msgstr "Настройки"
 
-#: src/mainbox.c:449
+#: src/mainbox.c:448
 #, fuzzy
 msgid "_Preferences"
 msgstr "Предпочитания"
 
-#: src/mainbox.c:460
+#: src/mainbox.c:459
 msgid "Select _Today"
 msgstr ""
 
 #. Help menu
-#: src/mainbox.c:467
+#: src/mainbox.c:466
 msgid "_Help"
 msgstr "_Помощ"
 
-#: src/mainbox.c:476
+#: src/mainbox.c:475
 msgid "_About"
 msgstr "_Относно"
 
-#: src/main.c:172
+#: src/main.c:135
 msgid "This should not happen"
 msgstr "Това не трябва да се случва"
 
-#: src/main.c:427
+#: src/main.c:390
 msgid "Cannot create MCS client channel"
 msgstr "Не мога да създам MCS канал"
 
@@ -143,19 +150,22 @@ msgstr "Напомня"
 msgid "Couldn't find pixmap file: %s"
 msgstr "Не мога да открия файла с картинка:·%s"
 
-#: src/tray_icon.c:96
+#: src/tray_icon.c:95
 #, fuzzy
 msgid "Today"
 msgstr "Днес"
 
-#: src/tray_icon.c:106
+#: src/tray_icon.c:105
 msgid "Preferences"
 msgstr "Предпочитания"
 
-#: src/tray_icon.c:115
+#: src/tray_icon.c:114
 #, fuzzy
 msgid "About Xfcalendar"
 msgstr "Относно XFCalendar"
+
+#~ msgid "Clear"
+#~ msgstr "Изчиства"
 
 #, fuzzy
 #~ msgid "Monday"
