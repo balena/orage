@@ -1,0 +1,33 @@
+Summary: 	Time-managing application for xfce4.
+Name: 		xfcalendar
+Version: 	@VERSION@
+Release: 	1
+License:	GPL
+URL: 		http://www.xfce.org/
+Source0: 	%{name}-%{version}.tar.gz
+Group: 		User Interface/Desktops
+BuildRoot: 	%{_tmppath}/%{name}-root
+
+%description
+Time-managing application for xfce4
+
+%prep
+%setup -q
+
+%build
+%configure
+make
+
+%install
+rm -rf $RPM_BUILD_ROOT
+make install DESTDIR=$RPM_BUILD_ROOT mandir=%{_mandir}
+
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+%files
+%defattr(-,root,root)
+%doc README ChangeLog INSTALL COPYING AUTHORS
+%{_bindir}/*
+%{_libdir}/*
+%{_datadir}/*

@@ -1,7 +1,7 @@
 bin_PROGRAMS = xfcalendar
 
 xfcalendar_SOURCES =							\
-	xfcalendar-inline-icon.h					\
+	xfcalendar-icon-inline.h					\
 	callbacks.c							\
 	callbacks.h							\
 	interface.c							\

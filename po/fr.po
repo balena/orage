@@ -1,10 +1,10 @@
 # XFCalendar french translation
-# Copyright (C) Micka�l Graf
-# Micka�l Graf <korbinus@linux.se>, 2003.
+# Copyright (C) Mickaël Graf
+# Mickaël Graf <korbinus@linux.se>, 2003.
 msgid ""
 msgstr ""
-"Project-Id-Version: XFCalendar 0.1.4\n"
-"POT-Creation-Date: 2003-11-17 21:16+0100\n"
+"Project-Id-Version: XFCalendar\n"
+"POT-Creation-Date: 2003-12-27 14:25+0100\n"
 "PO-Revision-Date: 2003-07-19 23:58+0200\n"
 "Last-Translator: Mickal Graf <korbinus@linux.se>\n"
 "Language-Team: none <none@none.org>\n"
@@ -12,86 +12,84 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/main.c:209
+#: src/main.c:280
 msgid "Cannot create MCS client channel"
-msgstr "Impossible de cr\303\251er un canal client MCS"
+msgstr "Impossible de créer un canal client MCS"
 
-#: src/interface.c:65 src/interface.c:375 plugin/xfcalendar_plugin.c:172
+#: src/interface.c:64 src/interface.c:374 plugin/xfcalendar_plugin.c:172
 #: plugin/xfcalendar_plugin.c:183 plugin/xfcalendar_plugin.c:305
 msgid "XFCalendar"
 msgstr "XFCalendar"
 
-#: src/interface.c:80
+#: src/interface.c:79
 msgid "_File"
 msgstr "_Fichier"
 
-#: src/interface.c:87
+#: src/interface.c:86
 msgid "Close window"
-msgstr "Fermer la fen\303\252tre"
+msgstr "Fermer la fenêtre"
 
 #.
-#: src/interface.c:100
+#: src/interface.c:99
 msgid "Settings"
-msgstr "_Param\303\250tres"
+msgstr "_Paramètres"
 
-#: src/interface.c:107 src/interface.c:571
+#: src/interface.c:106 src/interface.c:570
 msgid "Preferences"
-msgstr "Pr\303\251f\303\251rences"
+msgstr "Préférences"
 
-#: src/interface.c:115
+#: src/interface.c:114
 msgid "Select Today"
 msgstr "Selectionner Aujourd'hui"
 
 #.
-#: src/interface.c:120
+#: src/interface.c:119
 msgid "_Help"
 msgstr "_Aide"
 
-#: src/interface.c:127
+#: src/interface.c:126
 msgid "_About"
 msgstr "A _propos"
 
-#: src/interface.c:210
+#: src/interface.c:209
 msgid "Appointment"
 msgstr "Rendez-vous"
 
-#: src/interface.c:232
+#: src/interface.c:231
 msgid "Save (Ctrl+s)"
 msgstr "Enregistrer (Ctrl+s)"
 
-#: src/interface.c:245
+#: src/interface.c:244
 msgid "Previous day (Ctrl+p)"
-msgstr "Jour pr\303\251c\303\251dent (Ctrl+p)"
+msgstr "Jour précédent (Ctrl+p)"
 
-#: src/interface.c:256
+#: src/interface.c:255
 msgid "Today (Alt+Home)"
 msgstr "Aujourd'hui (Alt+Home)"
 
-#: src/interface.c:268
+#: src/interface.c:267
 msgid "Next day (Ctrl+n)"
 msgstr "Jour suivant (Ctrl+n)"
 
-#: src/interface.c:281
+#: src/interface.c:280
 msgid "Close (Ctrl+w)"
 msgstr "Fermer (Ctrl+w)"
 
-#: src/interface.c:291
+#: src/interface.c:290
 msgid "Clear"
 msgstr "Effacer"
 
-#: src/interface.c:292
+#: src/interface.c:291
 msgid "Clear (Ctrl+l)"
 msgstr "Effacer (Ctrl+l)"
 
-#: src/interface.c:366 src/interface.c:580
+#: src/interface.c:365 src/interface.c:579
 msgid "About XFCalendar"
 msgstr "A propos de XFCalendar"
 
-#: src/interface.c:386
+#: src/interface.c:385
 msgid ""
 "XFCalendar\n"
-"v. 0.1.4\n"
-"\n"
 "Manage your time with XFce4\n"
 "\n"
 "This software is released under\n"
@@ -107,41 +105,39 @@ msgid ""
 "XFce4 is (c) Olivier Fourdan"
 msgstr ""
 "XFCalendar\n"
-"v. 0.1.4\n"
+"Gérez votre temps avec XFce4\n"
 "\n"
-"G\303\251rez votre temps avec XFce4\n"
-"\n"
-"Ce logiciel est publi\303\251 sous\n"
+"Ce logiciel est publié sous\n"
 "la General Public Licence.\n"
 "\n"
 "Contributeurs:\n"
-"  - Micka\303\253l Graf\n"
+"  - Mickaël Graf\n"
 "  - Benedikt Meurer\n"
 "  - Edscott Wilson Garcia\n"
 "\n"
 "XFce4 est (c) Olivier Fourdan"
 
-#: src/interface.c:434
+#: src/interface.c:433
 msgid "Warning"
 msgstr "Attention"
 
-#: src/interface.c:450
+#: src/interface.c:449
 msgid ""
 "You will remove all information \n"
 "associated with this date."
 msgstr ""
 "Vous allez effacer toute l'information \n"
-"associ\303\251e \303\240 cette date."
+"associée à cette date."
 
-#: src/interface.c:499 src/interface.c:507
+#: src/interface.c:498 src/interface.c:506
 msgid "Reminder"
 msgstr "Rappel"
 
-#: src/interface.c:561
+#: src/interface.c:560
 msgid "Today"
 msgstr "Aujourd'hui"
 
-#: src/callbacks.c:768
+#: src/callbacks.c:749
 msgid "This should not happen"
 msgstr "Cela ne doit pas arriver."
 
@@ -153,7 +149,7 @@ msgstr "Fichier pixmap introuvable: %s"
 #.
 #: plugin/xfcalendar_plugin.c:199
 msgid "Week starts with..."
-msgstr "La semaine d\303\251bute avec..."
+msgstr "La semaine débute avec..."
 
 #: plugin/xfcalendar_plugin.c:207
 msgid "Sunday"
