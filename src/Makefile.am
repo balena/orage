@@ -40,6 +40,9 @@ xfcalendar_CFLAGS +=							\
 	-I$(top_srcdir)/libical/src/libicalss
 
 xfcalendar_LDADD +=							\
+	$(PTHREAD_LIBS)							\
 	$(top_builddir)/libical/src/libical/libical.la			\
 	$(top_builddir)/libical/src/libicalss/libicalss.la
 endif
+
+# vi:set ts=8 sw=8 noet ai:

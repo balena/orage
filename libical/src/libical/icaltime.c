@@ -286,7 +286,7 @@ time_t icaltime_as_timet_with_zone(const struct icaltimetype _tt,
     }
 
     if (zone != NULL) {
-	tt = icaltime_convert_to_zone(_tt, zone);
+	tt = icaltime_convert_to_zone(_tt, (icaltimezone *)zone);
     }
 
     /* Copy the icaltimetype to a struct tm. */
@@ -853,7 +853,7 @@ struct icaltimetype icaltime_convert_to_zone(const struct icaltimetype tt,
 
 	/* If it's a floating time we don't want to adjust the time */
 	if (tt.zone != NULL) {
-		icaltimezone_convert_time(&ret, tt.zone, zone);
+		icaltimezone_convert_time(&ret, (icaltimezone *)tt.zone, zone);
 	}
 
 	ret.zone = zone;
@@ -876,7 +876,7 @@ char *
 icaltime_get_tzid(const struct icaltimetype t) {
 
 	if (t.zone != NULL) {
-		return icaltimezone_get_tzid(t.zone);
+		return icaltimezone_get_tzid((icaltimezone *)t.zone);
 	} else {
 		return NULL;
 	}

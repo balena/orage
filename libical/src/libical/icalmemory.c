@@ -83,7 +83,9 @@ typedef struct {
 void icalmemory_free_tmp_buffer (void* buf);
 void icalmemory_free_ring_byval(buffer_ring *br);
 
+#ifndef HAVE_PTHREAD
 static buffer_ring* global_buffer_ring = 0;
+#endif
 
 #ifdef HAVE_PTHREAD
 #include <pthread.h>
@@ -133,12 +135,14 @@ static buffer_ring* get_buffer_ring_pthread(void) {
 #endif
 
 /* get buffer ring via a single global for a non-threaded program */
+#ifndef HAVE_PTHREAD
 static buffer_ring* get_buffer_ring_global(void) {
     if (global_buffer_ring == 0) {
 	global_buffer_ring = buffer_ring_new();
     }
     return(global_buffer_ring);
 }
+#endif
 
 static buffer_ring *get_buffer_ring(void) {
 #ifdef HAVE_PTHREAD

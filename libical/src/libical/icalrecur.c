@@ -689,6 +689,7 @@ static int icalrecur_one_byrule(icalrecur_iterator* impl,enum byrule one)
     return passes;
 } 
 
+#if 0
 static int count_byrules(icalrecur_iterator* impl)
 {
     int count = 0;
@@ -702,6 +703,7 @@ static int count_byrules(icalrecur_iterator* impl)
 
     return count;
 }
+#endif
 
 
 static void setup_defaults(icalrecur_iterator* impl, 
@@ -1321,6 +1323,7 @@ static int next_day(icalrecur_iterator* impl)
 }
 
 
+#if 0
 static int next_yearday(icalrecur_iterator* impl)
 {
 
@@ -1353,6 +1356,7 @@ static int next_yearday(icalrecur_iterator* impl)
   return end_of_data;
 
 }
+#endif
 
 
 /* Returns the day of the month for the current month of t that is the
