@@ -14,6 +14,7 @@
 
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
+#include <libxfce4util/i18n.h>
 
 #include "callbacks.h"
 #include "interface.h"

@@ -41,6 +41,7 @@
 #include <time.h>
 
 #include <libxfce4util/util.h>
+#include <libxfce4util/i18n.h>
 #include <gtk/gtk.h>
 #include <dbh.h>
 
@@ -390,13 +391,12 @@ on_okbutton2_clicked(GtkButton *button, gpointer user_data)
 		strncpy((char *)fapp->key,key,8); fapp->key[7]=0;
 		DBH_update(fapp);
 		DBH_close(fapp);	
-		//		gtk_widget_destroy(a);
-	tv = GTK_TEXT_VIEW(lookup_widget(a,"textview1"));
-	tb = gtk_text_view_get_buffer(tv);
-	gtk_text_buffer_get_bounds(tb, &start, &end);
+		tv = GTK_TEXT_VIEW(lookup_widget(a,"textview1"));
+		tb = gtk_text_view_get_buffer(tv);
+		gtk_text_buffer_get_bounds(tb, &start, &end);
 
-	gtk_text_buffer_delete(tb, &start, &end);
-	gtk_text_buffer_set_modified(tb, FALSE);
+		gtk_text_buffer_delete(tb, &start, &end);
+		gtk_text_buffer_set_modified(tb, FALSE);
 		gtk_calendar_unmark_day(cal,day);
 		
 	}

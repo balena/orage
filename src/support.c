@@ -13,6 +13,7 @@
 #include <stdio.h>
 
 #include <gtk/gtk.h>
+#include <libxfce4util/i18n.h>
 
 #include "support.h"
 
