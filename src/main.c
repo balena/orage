@@ -373,7 +373,7 @@ main(int argc, char *argv[])
    * Create the Xfcalendar.
    */
   create_mainWin(xfcal);
-  mainWindow = xfcal->mWindow;           //FIXME: hack avoiding some warnings while running
+  mainWindow = xfcal->mWindow;           /* FIXME: hack avoiding some warnings while running */
 
   /*
    * Create the tray icon and its popup menu

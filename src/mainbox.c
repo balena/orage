@@ -523,14 +523,14 @@ void create_mainWin(CalWin *xfcal)
     gtk_window_move (GTK_WINDOW (xfcal->mWindow), pos_x, pos_y);
   gtk_window_stick (GTK_WINDOW (xfcal->mWindow));
 
-  cal = GTK_CALENDAR(xfcal->mCalendar); //horrible hack :(
+  cal = GTK_CALENDAR(xfcal->mCalendar); /* horrible hack :( */
   xfcalendar_mark_appointments (xfcal);
 
   g_timeout_add_full(0, 
 		     5000, 
 		     (GtkFunction) xfcalendar_alarm_clock, 
 		     (gpointer) xfcal, 
-		     //(gpointer) xfcal->mWindow, 
+		     /* (gpointer) xfcal->mWindow, */
 		     NULL);
 
   /* Remember which day we are */
