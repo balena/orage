@@ -41,6 +41,11 @@ create_XFCalendar (void)
   GtkWidget *quit1;
   GtkWidget *menuitem7;
   GtkWidget *menuitem7_menu;
+  /* */
+  GtkWidget *menuitemSet;
+  GtkWidget *menuitemSet_menu;
+  GtkWidget *weekMonday;
+  /* */
   GtkWidget *about1;
   GtkWidget *calendar1;
   GtkAccelGroup *accel_group;
@@ -76,6 +81,19 @@ create_XFCalendar (void)
   gtk_widget_show (quit1);
   gtk_container_add (GTK_CONTAINER (menuitem4_menu), quit1);
 
+  /* */
+  menuitemSet = gtk_menu_item_new_with_mnemonic(_("Settings"));
+  gtk_widget_show(menuitemSet);
+  gtk_container_add(GTK_CONTAINER (menubar1), menuitemSet);
+
+  menuitemSet_menu = gtk_menu_new();
+  gtk_menu_item_set_submenu(GTK_MENU_ITEM(menuitemSet), menuitemSet_menu);
+
+  weekMonday = gtk_check_menu_item_new_with_mnemonic(_("Weeks start on Mondays"));
+  gtk_widget_show(weekMonday);
+  gtk_container_add(GTK_CONTAINER(menuitemSet_menu), weekMonday);
+
+  /* */
   menuitem7 = gtk_menu_item_new_with_mnemonic (_("_Help"));
   gtk_widget_show (menuitem7);
   gtk_container_add (GTK_CONTAINER (menubar1), menuitem7);
@@ -93,8 +111,7 @@ create_XFCalendar (void)
   gtk_calendar_display_options (GTK_CALENDAR (calendar1),
                                 GTK_CALENDAR_SHOW_HEADING
                                 | GTK_CALENDAR_SHOW_DAY_NAMES
-                                | GTK_CALENDAR_SHOW_WEEK_NUMBERS
-                                | GTK_CALENDAR_WEEK_START_MONDAY);
+                                | GTK_CALENDAR_SHOW_WEEK_NUMBERS);
 
   g_signal_connect ((gpointer) XFCalendar, "delete_event",
                     G_CALLBACK (on_XFCalendar_delete_event),
@@ -105,6 +122,9 @@ create_XFCalendar (void)
   g_signal_connect ((gpointer) about1, "activate",
                     G_CALLBACK (on_about1_activate),
                     NULL);
+  g_signal_connect((gpointer) weekMonday, "activate",
+		   G_CALLBACK(on_weekMonday_activate),
+		   NULL);
   g_signal_connect((gpointer) calendar1, "scroll_event",
 		   G_CALLBACK (on_calendar1_scroll),
 		   NULL);
@@ -119,6 +139,11 @@ create_XFCalendar (void)
   GLADE_HOOKUP_OBJECT (XFCalendar, menuitem4, "menuitem4");
   GLADE_HOOKUP_OBJECT (XFCalendar, menuitem4_menu, "menuitem4_menu");
   GLADE_HOOKUP_OBJECT (XFCalendar, quit1, "quit1");
+  /* */
+  GLADE_HOOKUP_OBJECT(XFCalendar, menuitemSet, "menuitemSet");
+  GLADE_HOOKUP_OBJECT(XFCalendar, menuitemSet_menu, "menuitemSet_menu");
+  GLADE_HOOKUP_OBJECT(XFCalendar, weekMonday, "weekMonday");
+  /* */
   GLADE_HOOKUP_OBJECT (XFCalendar, menuitem7, "menuitem7");
   GLADE_HOOKUP_OBJECT (XFCalendar, menuitem7_menu, "menuitem7_menu");
   GLADE_HOOKUP_OBJECT (XFCalendar, about1, "about1");
@@ -327,7 +352,7 @@ create_wInfo (void)
   gtk_box_pack_start (GTK_BOX (vbInfo), swInfo, TRUE, TRUE, 5);
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW(swInfo), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
 
-  textInfo = _("XFCalendar\nv. 0.1.3\n\nManage your time with XFce4\n\nThis software is released under\nthe General Public Licence.\n\n(c) 2003 Mickael Graf\n\nContributors:\n  - Mickael Graf\n  - Benedikt Meurer\n  - Edscott Wilson Garcia\n\nXFce4 is (c) Olivier Fourdan");
+  textInfo = _("XFCalendar\nv. 0.1.4\n\nManage your time with XFce4\n\nThis software is released under\nthe General Public Licence.\n\n(c) 2003 Mickael Graf\n\nContributors:\n  - Mickael Graf\n  - Benedikt Meurer\n  - Edscott Wilson Garcia\n\nXFce4 is (c) Olivier Fourdan");
   tbInfo = gtk_text_buffer_new(NULL);
   gtk_text_buffer_set_text(tbInfo, textInfo, strlen(textInfo));
 

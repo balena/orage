@@ -1,6 +1,10 @@
 #include <gtk/gtk.h>
 #include <gdk/gdk.h>
 
+void init_settings();
+
+void apply_settings();
+
 void set_cal(GtkWidget *w);
 
 void
@@ -21,6 +25,10 @@ on_save_as1_activate                   (GtkMenuItem     *menuitem,
 
 void
 on_quit1_activate                      (GtkMenuItem     *menuitem,
+                                        gpointer         user_data);
+
+void
+on_weekMonday_activate                 (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
 
 void

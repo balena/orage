@@ -51,7 +51,17 @@
 #include "support.h"
 
 #define MAX_APP_LENGTH 4096
+#define LEN_BUFFER 1024
 
+typedef struct
+{
+  gboolean showCal;
+  gboolean showTaskbar;
+  gboolean startMonday;
+  GtkCalendarDisplayOptions dispOptions; 
+} settings;
+
+static settings calsets;
 static GtkWidget *info;
 static GtkWidget *clearwarn;
 static GtkCalendar *cal;
@@ -62,7 +72,78 @@ enum{
     NEXT
     };
 
-void set_cal(GtkWidget *w){
+void init_settings(GtkWidget *w)
+{
+  gchar *fpath;
+  FILE *fp;
+  char buf[LEN_BUFFER];
+  GtkWidget *menuMonday;
+
+  xfce_textdomain(GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8");
+
+  menuMonday = lookup_widget(w, "weekMonday");
+
+  /* default */
+  calsets.showCal = TRUE;
+  calsets.showTaskbar = TRUE;
+  calsets.startMonday = FALSE;
+  calsets.dispOptions = GTK_CALENDAR_SHOW_HEADING | GTK_CALENDAR_SHOW_DAY_NAMES | GTK_CALENDAR_SHOW_WEEK_NUMBERS;
+
+  fpath = xfce_get_userfile("xfcalendar", "xfcalendarrc", NULL);
+  if ((fp = fopen(fpath, "r")) == NULL){
+    g_warning("Unable to open RC file.");
+  }else{
+    /* *very* limited set of options */
+    fgets(buf, LEN_BUFFER, fp); /* [Session Visibility] */
+    fgets(buf, LEN_BUFFER, fp);
+    if(strstr(buf, "hide")) calsets.showCal = FALSE; else calsets.showCal = TRUE; /* default */
+    fgets(buf, LEN_BUFFER, fp); /* [Start Monday] */
+    fgets(buf, LEN_BUFFER, fp);
+    if(strstr(buf, "false"))
+      { 
+	calsets.startMonday = FALSE; 
+	gtk_calendar_display_options (GTK_CALENDAR (cal), calsets.dispOptions);
+      }
+    else 
+      {
+	calsets.startMonday = TRUE;
+	gtk_calendar_display_options (GTK_CALENDAR (cal), calsets.dispOptions|GTK_CALENDAR_WEEK_START_MONDAY);
+	gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(menuMonday), TRUE);
+      }
+  }
+}
+
+void apply_settings()
+{
+  gchar *fpath;
+  FILE *fp;
+
+  xfce_textdomain(GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8");
+
+  if(calsets.startMonday)
+    gtk_calendar_display_options (GTK_CALENDAR (cal), calsets.dispOptions|GTK_CALENDAR_WEEK_START_MONDAY);
+  else
+    gtk_calendar_display_options (GTK_CALENDAR (cal), calsets.dispOptions);
+
+  /* Save settings here */
+  /* I know, it's bad(tm) */
+  fpath = xfce_get_userfile("xfcalendar", "xfcalendarrc", NULL);
+  if ((fp = fopen(fpath, "w")) == NULL){
+    g_warning("Unable to open RC file.");
+  }else {
+    fprintf(fp, "[Session Visibility]\n");
+    if(calsets.showCal) fprintf(fp, "show\n"); else fprintf(fp, "hide\n");
+
+    fprintf(fp, "[Start Monday]\n");
+    if(calsets.startMonday) fprintf(fp, "true\n"); else fprintf(fp, "false\n");
+
+    fclose(fp);
+  }
+  g_free(fpath);
+}
+
+void set_cal(GtkWidget *w)
+{
   //We define it once, there will be only one calendar
   cal=(GtkCalendar *)lookup_widget(w,"calendar1");
 }
@@ -167,22 +248,33 @@ int keep_tidy(void){
 void
 on_quit1_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
-	gtk_main_quit();
+  gtk_main_quit();
+}
+
+void
+on_weekMonday_activate                 (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+  if(gtk_check_menu_item_get_active(GTK_CHECK_MENU_ITEM(menuitem))) 
+    calsets.startMonday = TRUE; 
+  else
+    calsets.startMonday = FALSE;
+  apply_settings();
 }
 
 void
 on_about1_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
-	info = create_wInfo();
-	gtk_widget_show(info);
+  info = create_wInfo();
+  gtk_widget_show(info);
 }
 
 gboolean
 on_XFCalendar_delete_event(GtkWidget *widget, GdkEvent *event,
                            gpointer user_data)
 {
-	gtk_main_quit();
-	return(FALSE);
+  gtk_main_quit();
+  return(FALSE);
 }
 
 void

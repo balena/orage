@@ -56,6 +56,15 @@ static GtkWidget	*mainWindow = NULL;
 /* tray icon */
 XfceTrayIcon 		*trayIcon = NULL;
 
+int mark_appointments(GtkWidget *w);
+int setup_signals(GtkWidget *w);
+gint alarm_clock(gpointer p);
+void keep_tidy(void);
+void set_cal();
+void init_settings();
+void on_about1_activate(GtkMenuItem *, gpointer);
+void on_Today_activate(GtkMenuItem *, gpointer);
+
 void
 createRCDir(void)
 {
@@ -73,13 +82,6 @@ createRCDir(void)
 	g_free(calpath);
 }
 
-int mark_appointments(GtkWidget *w);
-int setup_signals(GtkWidget *w);
-gint alarm_clock(gpointer p);
-void keep_tidy(void);
-void set_cal();
-extern void on_about1_activate(GtkMenuItem *, gpointer);
-extern void on_Today_activate(GtkMenuItem *, gpointer);
 /*
  * SaveYourself callback
  *
@@ -164,9 +166,6 @@ main(int argc, char *argv[])
 	GdkPixbuf *pixbuf;
 	Window xwindow;
 	GdkAtom atom;
-	gchar *fpath;
-	FILE *fp;
-	char text[10];
 
 	xfce_textdomain(GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8");
 
@@ -217,25 +216,9 @@ main(int argc, char *argv[])
 	 */
 	mainWindow = create_XFCalendar();
 	set_cal(mainWindow);
+	init_settings();
 	mark_appointments(mainWindow);
 	setup_signals(mainWindow);
-
-	fpath = xfce_get_userfile("xfcalendar", "xfcalendarrc", NULL);
-	if ((fp = fopen(fpath, "r")) == NULL){
-	  g_warning("Unable to open RC file.");
-	  gtk_widget_show(mainWindow);
-	} else {
-	  fgets(text, sizeof(text), fp);
-	  if(strcmp(text, "show")==0){
-	    gtk_widget_show(mainWindow);
-	  }
-	  else{
-	    gtk_widget_hide(mainWindow);
-	  }
-	  fclose(fp);
-	}
-	g_free(fpath);
-
 
 	/*
 	 */
