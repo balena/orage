@@ -441,7 +441,7 @@ main(int argc, char *argv[])
              NULL);
                                                                                 
 /* initialize alarm list */
-  build_ical_alarm_list();
+  build_ical_alarm_list(TRUE);
 
 	
   gtk_main();

@@ -116,7 +116,7 @@ void xfical_file_close(void)
     icalset_free(fical);
     if (fical_modified) {
         fical_modified = FALSE;
-        build_ical_alarm_list();
+        build_ical_alarm_list(FALSE);
     }
 }
 
@@ -568,7 +568,7 @@ gint alarm_order(gconstpointer a, gconstpointer b)
     return(icaltime_compare(t1, t2));
 }
 
-void build_ical_alarm_list()
+void build_ical_alarm_list(gboolean first_list_today)
 {
     struct icaltimetype event_dtstart, alarm_time, cur_time;
     icalcomponent *c, *ca;
@@ -581,7 +581,6 @@ void build_ical_alarm_list()
     icalattach *attach=NULL;
 
     cur_time = ical_get_current_local_time();
-    /* read all alarms and build a list */
     g_list_foreach(alarm_list, free_alarm, NULL);
     g_list_free(alarm_list);
     alarm_list = NULL;
@@ -593,6 +592,19 @@ void build_ical_alarm_list()
         ssummary = (char*)icalcomponent_get_summary(c);
         sdescription = (char*)icalcomponent_get_description(c);
         event_dtstart = icalcomponent_get_dtstart(c);
+        if (first_list_today && icaltime_is_date(event_dtstart)
+        && (icaltime_compare_date_only(event_dtstart, cur_time) == 0)) {
+            new_alarm = g_new(alarm_struct, 1);
+            new_alarm->uid = g_string_new(suid);
+            new_alarm->action = g_string_new("DISPLAY");
+            new_alarm->title = g_string_new(ssummary);
+            new_alarm->description = g_string_new(sdescription);
+            new_alarm->alarm_time = g_string_new(
+                icaltime_as_ical_string(event_dtstart));
+            new_alarm->event_time = g_string_new(
+                icaltime_as_ical_string(event_dtstart));
+            alarm_list = g_list_append(alarm_list, new_alarm);
+        }
         for (ca = icalcomponent_get_first_component(c, ICAL_VALARM_COMPONENT);
              ca != 0;
              ca = icalcomponent_get_next_component(c, ICAL_VALARM_COMPONENT)) {

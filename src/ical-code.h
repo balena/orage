@@ -39,6 +39,6 @@ int getnextday_ical_app(int year, int month, int day);
 
 void rmday_ical_app(char *a_day);
 
-void build_ical_alarm_list();
+void build_ical_alarm_list(gboolean first_list_today);
 
 gboolean ical_alarm_passed(char *alarm_stime);

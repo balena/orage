@@ -50,12 +50,9 @@ create_soundReminder(char *sound)
     char play_cmd[1000]="play ";
 
     strcat(play_cmd, sound);
-    g_print("create_soundReminder %s (%s)\n", play_cmd, sound);
     status=xfce_exec(play_cmd, FALSE, FALSE, &error);
-    if (status)
-        g_print("TRUE\n");
-    else
-        g_print("FALSE\n");
+    if (!status)
+        g_warning("play failed\n");
 }
 
 void
@@ -79,7 +76,7 @@ create_wReminder(char *title, char *text)
 
   wReminder = gtk_dialog_new ();
   gtk_widget_set_size_request (wReminder, 300, 250);
-  strcpy(heading,  _("Reminder"));
+  strcpy(heading,  _("Reminder "));
   gtk_window_set_title (GTK_WINDOW (wReminder),  heading);
   gtk_window_set_position (GTK_WINDOW (wReminder), GTK_WIN_POS_CENTER);
   gtk_window_set_modal (GTK_WINDOW (wReminder), FALSE);
@@ -157,6 +154,7 @@ xfcalendar_alarm_clock(gpointer user_data)
         previous_year  = current_year;
         previous_month = current_month;
         previous_day   = current_day;
+        build_ical_alarm_list(TRUE);  /* new alarm list when date changed */
     }
 
   /* Check if there are any alarms to show */
@@ -166,7 +164,6 @@ xfcalendar_alarm_clock(gpointer user_data)
          alarm_l = g_list_next(alarm_l)) {
         cur_alarm = (alarm_struct *)alarm_l->data;
         if (ical_alarm_passed(cur_alarm->alarm_time->str)) {
-        g_print ("ALARM found\n");
             if (strcmp(cur_alarm->action->str, "DISPLAY") == 0)
                 create_wReminder(cur_alarm->title->str
                                 ,cur_alarm->description->str);
@@ -179,7 +176,7 @@ xfcalendar_alarm_clock(gpointer user_data)
         }
     }
     if (alarm_raised) /* at least one alarm processed, need new list */
-        build_ical_alarm_list(); 
+        build_ical_alarm_list(FALSE); 
 
     return TRUE;
 }
