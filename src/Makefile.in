@@ -216,7 +216,6 @@ target_alias = @target_alias@
 xfcalendar_SOURCES = \
 	about-xfcalendar.c						\
 	about-xfcalendar.h						\
-	xfcalendar-icon-inline.h					\
 	callbacks.c							\
 	callbacks.h							\
 	interface.c							\
@@ -245,7 +244,6 @@ xfcalendar_LDADD = \
 	@DBH_LIBS@							\
 	@LIBXFCE4MCS_CLIENT_LIBS@
 
-EXTRA_DIST = xfcalendar-icon-inline.h
 all: all-am
 
 .SUFFIXES:
