@@ -257,6 +257,16 @@ main(int argc, char *argv[])
 	menuItem = gtk_separator_menu_item_new();
 	gtk_menu_shell_append(GTK_MENU_SHELL(trayMenu), menuItem);
 	gtk_widget_show(menuItem);
+
+	menuItem = gtk_menu_item_new_with_label(_("Preferences"));
+	g_signal_connect(menuItem, "activate", G_CALLBACK(on_preferences_activate),
+			NULL);
+	gtk_menu_shell_append(GTK_MENU_SHELL(trayMenu), menuItem);
+	gtk_widget_show(menuItem);
+	menuItem = gtk_separator_menu_item_new();
+	gtk_menu_shell_append(GTK_MENU_SHELL(trayMenu), menuItem);
+	gtk_widget_show(menuItem);
+
 	menuItem = gtk_menu_item_new_with_label(_("About XFCalendar"));
 	g_signal_connect(menuItem, "activate", G_CALLBACK(on_about1_activate),
 			NULL);
