@@ -38,17 +38,19 @@
 #include <libxfcegui4/netk-trayicon.h>
 #include <gtk/gtk.h>
 
+#include "calendar-icon.h"
 #include "interface.h"
 #include "support.h"
+#include "xfce_trayicon.h"
 
 /* session client handler */
 static SessionClient	*session_client = NULL;
 
-/* tray icon popup menu */
-static GtkWidget	*trayMenu = NULL;
-
 /* main window */
 static GtkWidget	*mainWindow = NULL;
+
+/* tray icon */
+XfceTrayIcon 		*trayIcon = NULL;
 
 void
 createRCDir(void)
@@ -102,13 +104,21 @@ die_cb(gpointer data)
 /*
  */
 static void
+toggle_visible_cb(GtkWidget *window)
+{
+	if (GTK_WIDGET_VISIBLE(window))
+		gtk_widget_hide(window);
+	else
+		gtk_widget_show(window);
+}
+
+#if 0
+/*
+ */
+static void
 icon_button_press_cb(GtkWidget *icon, GdkEventButton *event, gpointer user_data)
 {
 	if (event->button == 1 && event->type == GDK_2BUTTON_PRESS) {
-		if (GTK_WIDGET_VISIBLE(mainWindow))
-			gtk_widget_hide(mainWindow);
-		else
-			gtk_widget_show(mainWindow);
 	}
 	else if (event->button == 3) {
 		gtk_menu_popup(GTK_MENU(trayMenu), NULL, NULL, NULL, NULL,
@@ -124,19 +134,72 @@ icon_popup_menu_cb(GtkWidget *icon, gpointer user_data)
 	gtk_menu_popup(GTK_MENU(trayMenu), NULL, NULL, NULL, NULL,
 			0, gtk_get_current_event_time());
 }
+#endif
+
+/*
+ */
+static GdkFilterReturn
+selection_filter(GdkXEvent *xevent, GdkEvent *event, gpointer data)
+{
+	XClientMessageEvent *xev;
+
+	xev = (XClientMessageEvent *)xevent;
+
+	switch (xev->type) {
+	case ClientMessage:
+		if (xev->message_type == XInternAtom(GDK_DISPLAY(),
+					"_XFCE_CALENDAR_RAISE", False)) {
+			g_print("RAISING...\n");
+			gtk_widget_show(mainWindow);
+			gdk_window_raise(mainWindow->window);
+			gdk_window_focus(mainWindow->window, GDK_CURRENT_TIME);
+			return(GDK_FILTER_REMOVE);
+		}
+		break;
+	}
+
+	return(GDK_FILTER_CONTINUE);
+}
 
 int
 main(int argc, char *argv[])
 {
-	GtkWidget *trayicon;
-	GtkWidget *image;
-	GtkWidget *eventbox;
 	GtkWidget *menuItem;
+	GdkWindow *window;
+	GtkWidget *hidden;
+	GtkWidget *trayMenu;
+	GdkPixbuf *pixbuf;
+	Window xwindow;
+	GdkAtom atom;
 
 	xfce_textdomain(GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8");
 
 	gtk_set_locale();
 	gtk_init(&argc, &argv);
+
+	atom = gdk_atom_intern("_XFCE_CALENDAR_RUNNING", FALSE);
+
+	/*
+	 * Check if xfcalendar is already running on the display
+	 */
+	if ((xwindow = XGetSelectionOwner(GDK_DISPLAY(),
+				gdk_x11_atom_to_xatom(atom))) != NULL) {
+		GdkEventClient *event;
+
+		window = gdk_window_foreign_new(xwindow);
+
+		event = (GdkEventClient *)gdk_event_new(GDK_CLIENT_EVENT);
+		event->window = window;
+		event->message_type = gdk_atom_intern("_XFCE_CALENDAR_RAISE",
+				FALSE);
+		event->data_format = 32;
+
+		gdk_event_send_client_message((GdkEvent *)event, 
+				GDK_WINDOW_XWINDOW(window));
+		gdk_flush();
+
+		return(EXIT_SUCCESS);
+	}
 
 	/* 
 	 * try to connect to the session manager
@@ -163,6 +226,18 @@ main(int argc, char *argv[])
 	gtk_widget_show(mainWindow);
 
 	/*
+	 */
+	hidden = gtk_invisible_new();
+	gtk_widget_show(hidden);
+	gdk_window_add_filter(hidden->window, (GdkFilterFunc)selection_filter,
+			NULL);
+	if (!gdk_selection_owner_set(hidden->window, atom,
+			gdk_x11_get_server_time(hidden->window),
+			FALSE)) {
+		g_warning("Unable acquire ownership of selection");
+	}
+
+	/*
 	 * Create the tray icon popup menu
 	 */
 	trayMenu = gtk_menu_new();
@@ -182,19 +257,11 @@ main(int argc, char *argv[])
 	/*
 	 * Create the tray icon
 	 */
-	trayicon = netk_tray_icon_new(GDK_SCREEN_XSCREEN(
-				gdk_screen_get_default()));
-	eventbox = gtk_event_box_new();
-	image = gtk_image_new_from_stock(GTK_STOCK_INDEX, GTK_ICON_SIZE_MENU);
-	gtk_container_add(GTK_CONTAINER(eventbox), image);
-	gtk_container_add(GTK_CONTAINER(trayicon), eventbox);
-	gtk_widget_add_events(trayicon, GDK_BUTTON_PRESS_MASK |
-			GDK_FOCUS_CHANGE_MASK);
-	g_signal_connect(trayicon, "button_press_event",
-			G_CALLBACK(icon_button_press_cb), NULL);
-	g_signal_connect(trayicon, "popup_menu",
-			G_CALLBACK(icon_popup_menu_cb), NULL);
-	gtk_widget_show_all(trayicon);
+	pixbuf = inline_icon_at_size(calendar_icon_data, 16, 16);
+	trayIcon = xfce_tray_icon_new_with_menu_from_pixbuf(trayMenu, pixbuf);
+	g_object_unref(pixbuf);
+	g_signal_connect_swapped(G_OBJECT(trayIcon), "clicked",
+			G_CALLBACK(toggle_visible_cb), mainWindow);
 	
 	/*
 	 * Now it's serious, the application is running, so we create the RC

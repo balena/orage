@@ -159,13 +159,16 @@ target_alias = @target_alias@
 bin_PROGRAMS = xfcalendar
 
 xfcalendar_SOURCES = \
+	calendar-icon.h							\
 	callbacks.c							\
 	callbacks.h							\
 	interface.c							\
 	interface.h							\
 	main.c								\
 	support.c							\
-	support.h
+	support.h							\
+	xfce_trayicon.c							\
+	xfce_trayicon.h
 
 
 xfcalendar_CFLAGS = \
@@ -180,6 +183,14 @@ xfcalendar_LDADD = \
 	@DBH_LIBS@							\
 	$(INTLLIBS)
 
+
+noinst_DATA = \
+	calendar-icon.h
+
+
+EXTRA_DIST = \
+	xfcalendar.png
+
 subdir = src
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
@@ -190,7 +201,7 @@ PROGRAMS = $(bin_PROGRAMS)
 
 am_xfcalendar_OBJECTS = xfcalendar-callbacks.$(OBJEXT) \
 	xfcalendar-interface.$(OBJEXT) xfcalendar-main.$(OBJEXT) \
-	xfcalendar-support.$(OBJEXT)
+	xfcalendar-support.$(OBJEXT) xfcalendar-xfce_trayicon.$(OBJEXT)
 xfcalendar_OBJECTS = $(am_xfcalendar_OBJECTS)
 xfcalendar_DEPENDENCIES =
 xfcalendar_LDFLAGS =
@@ -201,7 +212,8 @@ am__depfiles_maybe = depfiles
 @AMDEP_TRUE@DEP_FILES = ./$(DEPDIR)/xfcalendar-callbacks.Po \
 @AMDEP_TRUE@	./$(DEPDIR)/xfcalendar-interface.Po \
 @AMDEP_TRUE@	./$(DEPDIR)/xfcalendar-main.Po \
-@AMDEP_TRUE@	./$(DEPDIR)/xfcalendar-support.Po
+@AMDEP_TRUE@	./$(DEPDIR)/xfcalendar-support.Po \
+@AMDEP_TRUE@	./$(DEPDIR)/xfcalendar-xfce_trayicon.Po
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
 LTCOMPILE = $(LIBTOOL) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) \
@@ -210,6 +222,8 @@ CCLD = $(CC)
 LINK = $(LIBTOOL) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
 	$(AM_LDFLAGS) $(LDFLAGS) -o $@
 DIST_SOURCES = $(xfcalendar_SOURCES)
+DATA = $(noinst_DATA)
+
 DIST_COMMON = Makefile.am Makefile.in
 SOURCES = $(xfcalendar_SOURCES)
 
@@ -265,6 +279,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/xfcalendar-interface.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/xfcalendar-main.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/xfcalendar-support.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/xfcalendar-xfce_trayicon.Po@am__quote@
 
 distclean-depend:
 	-rm -rf ./$(DEPDIR)
@@ -434,6 +449,39 @@ xfcalendar-support.lo: support.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(xfcalendar_CFLAGS) $(CFLAGS) -c -o xfcalendar-support.lo `test -f 'support.c' || echo '$(srcdir)/'`support.c
 
+xfcalendar-xfce_trayicon.o: xfce_trayicon.c
+@am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(xfcalendar_CFLAGS) $(CFLAGS) -MT xfcalendar-xfce_trayicon.o -MD -MP -MF "$(DEPDIR)/xfcalendar-xfce_trayicon.Tpo" \
+@am__fastdepCC_TRUE@	  -c -o xfcalendar-xfce_trayicon.o `test -f 'xfce_trayicon.c' || echo '$(srcdir)/'`xfce_trayicon.c; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/xfcalendar-xfce_trayicon.Tpo" "$(DEPDIR)/xfcalendar-xfce_trayicon.Po"; \
+@am__fastdepCC_TRUE@	else rm -f "$(DEPDIR)/xfcalendar-xfce_trayicon.Tpo"; exit 1; \
+@am__fastdepCC_TRUE@	fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='xfce_trayicon.c' object='xfcalendar-xfce_trayicon.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	depfile='$(DEPDIR)/xfcalendar-xfce_trayicon.Po' tmpdepfile='$(DEPDIR)/xfcalendar-xfce_trayicon.TPo' @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(xfcalendar_CFLAGS) $(CFLAGS) -c -o xfcalendar-xfce_trayicon.o `test -f 'xfce_trayicon.c' || echo '$(srcdir)/'`xfce_trayicon.c
+
+xfcalendar-xfce_trayicon.obj: xfce_trayicon.c
+@am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(xfcalendar_CFLAGS) $(CFLAGS) -MT xfcalendar-xfce_trayicon.obj -MD -MP -MF "$(DEPDIR)/xfcalendar-xfce_trayicon.Tpo" \
+@am__fastdepCC_TRUE@	  -c -o xfcalendar-xfce_trayicon.obj `if test -f 'xfce_trayicon.c'; then $(CYGPATH_W) 'xfce_trayicon.c'; else $(CYGPATH_W) '$(srcdir)/xfce_trayicon.c'; fi`; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/xfcalendar-xfce_trayicon.Tpo" "$(DEPDIR)/xfcalendar-xfce_trayicon.Po"; \
+@am__fastdepCC_TRUE@	else rm -f "$(DEPDIR)/xfcalendar-xfce_trayicon.Tpo"; exit 1; \
+@am__fastdepCC_TRUE@	fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='xfce_trayicon.c' object='xfcalendar-xfce_trayicon.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	depfile='$(DEPDIR)/xfcalendar-xfce_trayicon.Po' tmpdepfile='$(DEPDIR)/xfcalendar-xfce_trayicon.TPo' @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(xfcalendar_CFLAGS) $(CFLAGS) -c -o xfcalendar-xfce_trayicon.obj `if test -f 'xfce_trayicon.c'; then $(CYGPATH_W) 'xfce_trayicon.c'; else $(CYGPATH_W) '$(srcdir)/xfce_trayicon.c'; fi`
+
+xfcalendar-xfce_trayicon.lo: xfce_trayicon.c
+@am__fastdepCC_TRUE@	if $(LIBTOOL) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(xfcalendar_CFLAGS) $(CFLAGS) -MT xfcalendar-xfce_trayicon.lo -MD -MP -MF "$(DEPDIR)/xfcalendar-xfce_trayicon.Tpo" \
+@am__fastdepCC_TRUE@	  -c -o xfcalendar-xfce_trayicon.lo `test -f 'xfce_trayicon.c' || echo '$(srcdir)/'`xfce_trayicon.c; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/xfcalendar-xfce_trayicon.Tpo" "$(DEPDIR)/xfcalendar-xfce_trayicon.Plo"; \
+@am__fastdepCC_TRUE@	else rm -f "$(DEPDIR)/xfcalendar-xfce_trayicon.Tpo"; exit 1; \
+@am__fastdepCC_TRUE@	fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='xfce_trayicon.c' object='xfcalendar-xfce_trayicon.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	depfile='$(DEPDIR)/xfcalendar-xfce_trayicon.Plo' tmpdepfile='$(DEPDIR)/xfcalendar-xfce_trayicon.TPlo' @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(xfcalendar_CFLAGS) $(CFLAGS) -c -o xfcalendar-xfce_trayicon.lo `test -f 'xfce_trayicon.c' || echo '$(srcdir)/'`xfce_trayicon.c
+
 mostlyclean-libtool:
 	-rm -f *.lo
 
@@ -531,7 +579,7 @@ distdir: $(DISTFILES)
 	done
 check-am: all-am
 check: check-am
-all-am: Makefile $(PROGRAMS)
+all-am: Makefile $(PROGRAMS) $(DATA)
 
 installdirs:
 	$(mkinstalldirs) $(DESTDIR)$(bindir)
@@ -617,6 +665,10 @@ uninstall-am: uninstall-binPROGRAMS uninstall-info-am
 	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
 	uninstall-am uninstall-binPROGRAMS uninstall-info-am
 
+
+calendar-icon.h: $(srcdir)/xfcalendar.png
+	gdk-pixbuf-csource --raw --build-list				\
+	calendar_icon_data $(srcdir)/xfcalendar.png > calendar-icon.h
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:
