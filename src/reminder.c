@@ -36,7 +36,7 @@
 void
 on_btOkReminder_clicked(GtkButton *button, gpointer user_data)
 {
-  GtkWidget *wReminder = (GtkWidget *)wReminder;
+  GtkWidget *wReminder = (GtkWidget *)user_data;
   gtk_widget_destroy(wReminder); /* destroy the specific appointment window */
 }
 

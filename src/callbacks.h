@@ -2,6 +2,8 @@
 #include <gtk/gtk.h>
 #include <gdk/gdk.h>
 
+void pretty_window (char *text);
+
 void apply_settings();
 
 void settings_set_showCal(GtkWidget *w);

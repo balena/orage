@@ -26,6 +26,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <unistd.h>
+#include <stdlib.h>
 #include <time.h>
 #include <string.h>
 #include <stdio.h>
@@ -48,11 +49,51 @@
 
 #define LEN_BUFFER 1024
 #define CHANNEL  "xfcalendar"
+#define RCDIR    "xfce4" G_DIR_SEPARATOR_S "xfcalendar"
 
 extern gboolean normalmode;
 static GtkCalendar *cal;
 
 char today[8];
+
+void 
+xfcalendar_markit(DBHashTable *f)
+{
+  char *text=(char *)DBH_DATA(f);
+  if (strlen(text)){
+    guint day=atoi((char *)(f->key+5));
+    if (day > 0 && day < 32){
+#ifdef DEBUG
+      printf("marking %u\n",day);
+#endif
+      gtk_calendar_mark_day(cal,day);
+    }
+  }
+}
+
+gboolean
+xfcalendar_mark_appointments (CalWin *xfcal)
+{
+
+  guint year, month, day;
+  char key[8];
+  DBHashTable *fapp;
+  char *fpath = xfce_resource_save_location(XFCE_RESOURCE_CONFIG,
+                        RCDIR G_DIR_SEPARATOR_S "appointments.dbh", FALSE);
+
+  if ((fapp = DBH_open(fpath)) == NULL) 
+    return FALSE;
+
+  gtk_calendar_get_date(GTK_CALENDAR(xfcal->mCalendar), &year, &month, &day);
+
+  g_snprintf(key, 8, "%03d%02d%02d", year-1900, month, day);
+
+  DBH_sweep(fapp,xfcalendar_markit,key,NULL,5);
+  DBH_close(fapp);
+
+  return TRUE;
+
+}
 
 gboolean
 mWindow_delete_event_cb(GtkWidget *widget, GdkEvent *event,
@@ -193,7 +234,8 @@ xfcalendar_init_settings (CalWin *xfcal)
     | GTK_CALENDAR_SHOW_DAY_NAMES 
     | GTK_CALENDAR_SHOW_WEEK_NUMBERS;
 
-  fpath = xfce_get_userfile("xfcalendar", "xfcalendarrc", NULL);
+  fpath = xfce_resource_save_location(XFCE_RESOURCE_CONFIG,
+                        RCDIR G_DIR_SEPARATOR_S "xfcalendarrc", FALSE);
 
   if ((fp = fopen(fpath, "r")) == NULL){
     fp = fopen(fpath, "w");
@@ -214,44 +256,6 @@ xfcalendar_init_settings (CalWin *xfcal)
 	  gtk_widget_show_all(xfcal->mWindow);
       }
   }
-}
-
-void 
-xfcalendar_markit(DBHashTable *f)
-{
-  char *text=(char *)DBH_DATA(f);
-  if (strlen(text)){
-    guint day=atoi((char *)(f->key+5));
-    if (day > 0 && day < 32){
-#ifdef DEBUG
-      printf("marking %u\n",day);
-#endif
-      gtk_calendar_mark_day(cal,day);
-    }
-  }
-}
-
-gboolean
-xfcalendar_mark_appointments (CalWin *xfcal)
-{
-
-  guint year, month, day;
-  char key[8];
-  DBHashTable *fapp;
-  char *fpath = xfce_get_userfile("xfcalendar", "appointments.dbh", NULL);
-
-  if ((fapp = DBH_open(fpath)) == NULL) 
-    return FALSE;
-
-  gtk_calendar_get_date(GTK_CALENDAR(xfcal->mCalendar), &year, &month, &day);
-
-  g_snprintf(key, 8, "%03d%02d%02d", year-1900, month, day);
-
-  DBH_sweep(fapp,xfcalendar_markit,key,NULL,5);
-  DBH_close(fapp);
-
-  return TRUE;
-
 }
 
 gboolean
@@ -317,7 +321,8 @@ xfcalendar_alarm_clock(gpointer user_data)
   if (!strlen(start_key) || strcmp(start_key,key)!=0){
     /* buzzz */
     DBHashTable *fapp;
-    char *fpath = xfce_get_userfile("xfcalendar", "appointments.dbh", NULL);
+    char *fpath = xfce_resource_save_location(XFCE_RESOURCE_CONFIG,
+                        RCDIR G_DIR_SEPARATOR_S "appointments.dbh", FALSE);
 
     if ((fapp = DBH_open(fpath)) == NULL) 
       return FALSE;

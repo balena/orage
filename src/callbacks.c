@@ -59,13 +59,13 @@
 #define LEN_BUFFER 1024
 /* FIXME: check if we can remove this */
 #define CHANNEL  "xfcalendar"
+#define RCDIR    "xfce4" G_DIR_SEPARATOR_S "xfcalendar"
 
 #define SUNDAY TRUE
 #define MONDAY FALSE
 
 extern gboolean normalmode;
 
-static gboolean startday = SUNDAY;
 /*
 static gboolean showtaskbar = TRUE;
 static gboolean showpager = TRUE;
@@ -75,8 +75,6 @@ static gboolean showpager = TRUE;
 McsClient        *client = NULL;
 
 static GtkWidget *clearwarn;
-static GtkCalendar *cal;
-static GtkWidget *mainWindow;
 
 extern CalWin *xfcal;
 
@@ -111,7 +109,8 @@ void apply_settings()
 
   /* Save settings here */
   /* I know, it's bad(tm) */
-  fpath = xfce_get_userfile("xfcalendar", "xfcalendarrc", NULL);
+  fpath = xfce_resource_save_location(XFCE_RESOURCE_CONFIG,
+                RCDIR G_DIR_SEPARATOR_S "xfcalendarrc", FALSE);
   if ((fp = fopen(fpath, "w")) == NULL){
     g_warning("Unable to open RC file.");
   }else {
@@ -137,9 +136,10 @@ void pretty_window(char *text){
 int keep_tidy(void){
 	/* keep a tidy DBHashTable */
 	DBHashTable *fapp;
-	char *fpath = xfce_get_userfile("xfcalendar", "appointments.dbh", NULL);
+	char *fpath = xfce_resource_save_location(XFCE_RESOURCE_CONFIG,
+                RCDIR G_DIR_SEPARATOR_S "appointments.dbh", FALSE);
 	if ((fapp = DBH_open(fpath)) != NULL){
-		char *wd = xfce_get_userfile("xfcalendar", NULL);
+		char *wd = g_path_get_dirname (fpath);
 #ifdef DEBUG
 		printf("wd=%s\n",wd);
 #endif
@@ -161,13 +161,11 @@ void manageAppointment(GtkCalendar *calendar, GtkWidget *appointment)
 	GtkTextView *tv;
 	GtkTextBuffer *tb = gtk_text_buffer_new(NULL);
 	GtkTextIter *end;
-	GtkTextIter ctl_start, ctl_end;
-	char *ctl_text;
   
 	gtk_calendar_get_date(calendar, &year, &month, &day);
 	g_snprintf(title, 12, "%d-%02d-%02d", year, month+1, day);
-	fpath = xfce_get_userfile("xfcalendar", "appointments.dbh", NULL);
-
+	fpath = xfce_resource_save_location(XFCE_RESOURCE_CONFIG,
+                        RCDIR G_DIR_SEPARATOR_S "appointments.dbh", FALSE);
 	tv = GTK_TEXT_VIEW(lookup_widget(GTK_WIDGET(appointment),"textview1"));
 
 	/* Tell DBH that we will work with records of MAX_APP_LENGTH maximum
@@ -334,7 +332,8 @@ on_btSave_clicked(GtkButton *button, gpointer user_data)
 	g_print("Date created: %s\n", title);
 #endif
 	
-	fpath = xfce_get_userfile("xfcalendar","appointments.dbh", NULL);
+	fpath = xfce_resource_save_location(XFCE_RESOURCE_CONFIG,
+                        RCDIR G_DIR_SEPARATOR_S "appointments.dbh", FALSE);
 
 	if (gtk_text_buffer_get_modified(tb)) {
 		if ((fapp = DBH_open(fpath)) == NULL){
@@ -422,7 +421,8 @@ on_okbutton2_clicked(GtkButton *button, gpointer user_data)
 	g_print("Clear textbuffer chosen (oops!)\n");
 #endif
 
-	fpath = xfce_get_userfile("xfcalendar", "appointments.dbh", NULL);
+	fpath = xfce_resource_save_location(XFCE_RESOURCE_CONFIG,
+                        RCDIR G_DIR_SEPARATOR_S "appointments.dbh", FALSE);
 	if ((fapp = DBH_open(fpath)) != NULL){
 		char *save_text=(char *)DBH_DATA(fapp);
 		GtkWidget *a=lookup_widget((GtkWidget *)user_data,"wAppointment");

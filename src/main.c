@@ -53,6 +53,7 @@
 #include "xfce_trayicon.h"
 
 #define CHANNEL  "xfcalendar"
+#define RCDIR    "xfce4" G_DIR_SEPARATOR_S "xfcalendar"
 
 /* session client handler */
 static SessionClient	*session_client = NULL;
@@ -68,33 +69,6 @@ extern McsClient        *client;
 XfceTrayIcon 		*trayIcon = NULL;
 
 gboolean normalmode = TRUE;
-
-void
-createRCDir(void)
-{
-  GError *error = NULL;
-  gchar *calpath;
-
-  calpath = xfce_get_userfile("xfcalendar", NULL);
-
-  if (!g_file_test(calpath, G_FILE_TEST_IS_DIR)) {
-#if 0
-    if (mkdir(calpath, 0755) < 0) {
-      g_error("Unable to create directory %s: %s",
-	      calpath, g_strerror(errno));
-    }
-#else
-    if (!xfce_mkdirhier (calpath, 0755, &error)) {
-      fprintf (stderr, "xfcalendar: Unable to create directory %s: %s\n",
-               calpath, error->message);
-      g_error_free (error);
-      exit (EXIT_FAILURE);
-    }
-#endif
-  }
-
-  g_free(calpath);
-}
 
 static gboolean
 client_message_received (GtkWidget * widget, GdkEventClient * event,
@@ -302,6 +276,63 @@ die_cb(gpointer data)
   gtk_main_quit();
 }
 
+static void
+ensure_basedir_spec (void)
+{
+  char *newdir, *olddir;
+  GError *error = NULL;
+  GDir *gdir;
+
+  newdir = xfce_resource_save_location (XFCE_RESOURCE_CONFIG,
+                                        RCDIR, FALSE);
+
+  /* if new directory exist, assume old config has been copied */
+  if (g_file_test (newdir, G_FILE_TEST_IS_DIR)) {
+    g_free (newdir);
+    return;
+  }
+
+  if (!xfce_mkdirhier (newdir, 0700, &error)) {
+    g_critical("Cannot create directory %s: %s", newdir, error->message);
+    g_error_free (error);
+    g_free (newdir);
+    exit (EXIT_FAILURE);
+  }
+
+  olddir = xfce_get_userfile ("xfcalendar", NULL);
+
+  if ((gdir = g_dir_open (olddir, 0, NULL)) != NULL) {
+    const char *name;
+    
+    while ((name = g_dir_read_name (gdir)) != NULL) {
+      FILE *r, *w;
+      char *path;
+
+      path = g_build_filename (olddir, name, NULL);
+      r = fopen (path, "r");
+      g_free (path);
+
+      path = g_build_filename (newdir, name, NULL);
+      w = fopen (path, "w");
+      g_free (path);
+
+      if (r && w) {
+        char c;
+
+        while ((c = getc(r)) != EOF)
+          putc (c, w);
+      }
+
+      if (r)
+        fclose (r);
+      if (w)
+        fclose (w);
+    }
+  }
+
+  g_free (newdir);
+  g_free (olddir);
+}
 
 int
 main(int argc, char *argv[])
@@ -355,6 +386,12 @@ main(int argc, char *argv[])
 		       G_DIR_SEPARATOR_S "pixmaps");
 
   /*
+   * Now it's serious, the application is running, so we create the RC
+   * directory and check for config files in old location.
+   */
+  ensure_basedir_spec();
+
+  /*
    * Create the Xfcalendar.
    */
   xfcal = create_mainWin();
@@ -380,12 +417,6 @@ main(int argc, char *argv[])
   trayIcon = create_TrayIcon(xfcal);
   xfce_tray_icon_connect(trayIcon);
 	
-  /*
-   * Now it's serious, the application is running, so we create the RC
-   * directory
-   */
-  createRCDir();
-
   client = mcs_client_new(dpy, scr, notify_cb, watch_cb, xfcal->mWindow);
   if(client)
     {
