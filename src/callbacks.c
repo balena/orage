@@ -115,92 +115,141 @@ int keep_tidy(void){
 	return TRUE;	
 }
 
+enum {
+    COL_TIME = 0
+   ,COL_HEAD
+   ,COL_UID
+   ,NUM_COLS
+};
 
-void editAppointment(GtkWidget *widget, GdkEventButton *event
-            , GtkWidget *control)
+void editAppointment(GtkTreeView *view, GtkTreePath *path
+                   , GtkTreeViewColumn *col, gpointer data)
 {
     appt_win *app;
+    GtkTreeModel *model;
+    GtkTreeIter   iter;
+    gchar *time;
 
-    /*
-    if (event->button == 1)
-    */
-    app = create_appt_win("2005", "03", "10");
+    g_print("editAppointment\n");
+    model = gtk_tree_view_get_model(view);
+    if (gtk_tree_model_get_iter(model, &iter, path)) {
+        gtk_tree_model_get(model, &iter, COL_TIME, &time, -1);
+        g_print("editAppointment 1 %s\n", time);
+        g_free(time);
+    }
+    app = create_appt_win("2005", "03", "13");
     gtk_widget_show(app->appWindow);
 }
 
-void addAppointment(GtkWidget *vbox, gchar *xftime, gchar *xftext
-        , gchar *xfsum)
+gint sortAppointment_comp(GtkTreeModel *model
+        , GtkTreeIter *i1, GtkTreeIter *i2, gpointer data)
 {
-    GtkWidget *hseparator;
-    GtkWidget *hbox;
-    GtkWidget *label;
-    GtkWidget *ebox;
-    GtkTooltips *event_tooltips;
-    int len=-1;
-    gchar *text;
+    gint col = GPOINTER_TO_INT(data);
+    gint ret;
+    gchar *text1, *text2;
 
-    hseparator = gtk_hseparator_new();
-    gtk_widget_show(hseparator);
-    gtk_box_pack_start(GTK_BOX(vbox), hseparator, FALSE, FALSE, 0);
-                                                                                
-    ebox = gtk_event_box_new();
-    gtk_event_box_set_visible_window(GTK_EVENT_BOX(ebox), FALSE);
-    gtk_box_pack_start(GTK_BOX(vbox), ebox, FALSE, FALSE, 0);
-    gtk_widget_show(ebox);
-                                                                                
-    hbox = gtk_hbox_new(FALSE, 5);
-    gtk_widget_show(hbox);
-    gtk_container_add(GTK_CONTAINER(ebox), hbox);
+    gtk_tree_model_get(model, i1, col, &text1, -1);
+    gtk_tree_model_get(model, i2, col, &text2, -1);
+    ret = g_utf8_collate(text1, text2);
+    g_free(text1);
+    g_free(text2);
+    return(ret);
+}
 
-    text = g_strconcat("<b>",xftime,"</b>",NULL);
-    label = gtk_label_new(NULL);
-    gtk_label_set_markup(GTK_LABEL(label), text);
-    gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 0);
-    gtk_widget_show(label);
-    g_free(text);
+void addAppointment(GtkListStore    *list1
+            ,gchar *xftime, gchar *xftext, gchar *xfsum)
+{
+    GtkTreeIter     iter1;
+    gchar           *text;
+    gint            len = 50;
 
     if (xfsum != NULL)
-        text = xfsum;
-    else { /* let's take first line from the text */
+        text = g_strdup(xfsum);
+    else { /* let's take len chars of the first line from the text */
         if ((text = g_strstr_len(xftext, strlen(xftext), "\n")) != NULL) {
-            len=strlen(xftext)-strlen(text);
-            text = g_strndup(xftext, len);
+            if ((strlen(xftext)-strlen(text)) < len)
+                len=strlen(xftext)-strlen(text);
         }
-        else
-            text=xftext;
+        text = g_strndup(xftext, len);
     }
-    label = gtk_label_new(text);
-    gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 0);
-    gtk_widget_show(label);
-    if (len != -1) 
-        g_free(text);
 
-    event_tooltips = gtk_tooltips_new();
-    gtk_tooltips_set_tip(event_tooltips, ebox, xftext, NULL);
+    gtk_list_store_append(list1, &iter1);
+    gtk_list_store_set(list1, &iter1
+                , COL_TIME, xftime
+                , COL_HEAD, text
+                , COL_UID, "piilotettu " 
+                ,-1);
+    g_free(text);
+}
 
-    g_signal_connect (ebox, "button-press-event",
+void addAppointment_init(GtkWidget *view)
+{
+    GtkTreeViewColumn   *col;
+    GtkCellRenderer     *rend;
+
+    rend = gtk_cell_renderer_text_new();
+    col = gtk_tree_view_column_new_with_attributes( _("Time"), rend
+                , "text", COL_TIME
+                ,NULL);
+    g_object_set(rend 
+            , "weight", PANGO_WEIGHT_BOLD
+            , "weight-set", TRUE
+            , NULL);
+    gtk_tree_view_append_column(GTK_TREE_VIEW(view), col);
+
+    rend = gtk_cell_renderer_text_new();
+    col = gtk_tree_view_column_new_with_attributes( _("Heading"), rend
+                , "text", COL_HEAD
+                ,NULL);
+    gtk_tree_view_append_column(GTK_TREE_VIEW(view), col);
+
+    rend = gtk_cell_renderer_text_new();
+    col = gtk_tree_view_column_new_with_attributes( _("uid"), rend
+                , "text", COL_UID
+                ,NULL);
+    gtk_tree_view_append_column(GTK_TREE_VIEW(view), col);
+    gtk_tree_view_column_set_visible(col, FALSE);
+
+    g_signal_connect (view, "row-activated",
             G_CALLBACK(editAppointment), NULL);
 }
 
 void manageAppointment(GtkCalendar *calendar, GtkWidget *appwin)
 {
 	guint year, month, day;
-	char title[12];
-	char a_day[9];  /* yyyymmdd */
-	char a_time[12]=""; /* hh:mm-hh:mm */
-    GtkWidget *vbox;
-    appt_type *app;
+	char            title[12];
+	char            a_day[9];  /* yyyymmdd */
+	char            a_time[12]=""; /* hh:mm-hh:mm */
+    GtkWidget       *swin;
+    appt_type       *app;
+    GtkWidget       *view;
+    GtkListStore    *list;
+    GtkTreeSortable *sort;
   
 	gtk_calendar_get_date(calendar, &year, &month, &day);
 	g_sprintf(title, "%04d-%02d-%02d", year, month+1, day);
 	gtk_window_set_title(GTK_WINDOW(appwin), _(title));
-	vbox = lookup_widget(GTK_WIDGET(appwin), "vbox3");
 
     if (open_ical_file()){
         g_sprintf(a_day, XF_APP_DATE_FORMAT, year, month+1, day);
-        while (app = getnext_ical_app_on_day(a_day, a_time)){ 
-            /* data found */
-            addAppointment(vbox, a_time, app->note, app->title);
+        if (app = getnext_ical_app_on_day(a_day, a_time)) {
+            list = gtk_list_store_new(NUM_COLS
+                , G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
+            view = gtk_tree_view_new();
+            addAppointment_init(view);
+            do
+                addAppointment(list, a_time, app->note, app->title);
+            while (app = getnext_ical_app_on_day(a_day, a_time));
+            sort = GTK_TREE_SORTABLE(list);
+            gtk_tree_sortable_set_sort_func(sort, COL_TIME
+                , sortAppointment_comp, GINT_TO_POINTER(COL_TIME), NULL);
+            gtk_tree_sortable_set_sort_column_id(sort
+                , COL_TIME, GTK_SORT_ASCENDING);
+            gtk_tree_view_set_model(GTK_TREE_VIEW(view),  GTK_TREE_MODEL(list));
+            g_object_unref(list); /* model is destroyed together with view*/
+	        swin = lookup_widget(GTK_WIDGET(appwin), "scrolledwindow1");
+            gtk_container_add(GTK_CONTAINER(swin), view);
+            gtk_widget_show(view);
         }
         close_ical_file();
     }
