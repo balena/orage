@@ -29,13 +29,15 @@ char *xfical_app_add(appt_type *app);
 
 appt_type *xfical_app_get(char *ical_id);
 
+gboolean xfical_app_mod(char *ical_id, appt_type *app);
+
 gboolean xfical_app_del(char *ical_id);
 
 struct icaltimetype ical_get_current_local_time();
 
 appt_type * xfical_app_get_next_on_day(char *a_day, gboolean first);
 
-int getnextday_ical_app(int year, int month, int day);
+void xfical_mark_calendar(GtkCalendar *gtkcal, int year, int month);
 
 void rmday_ical_app(char *a_day);
 

@@ -21,6 +21,12 @@
 #define XFICAL_APP_TIME_FORMAT "%04d%02d%02dT%02d%02d%02d"
 #define XFICAL_APP_DATE_FORMAT "%04d%02d%02d"
 
+typedef enum {
+     XFICAL_FREQ_NONE = 0
+    ,XFICAL_FREQ_DAILY
+    ,XFICAL_FREQ_WEEKLY
+    ,XFICAL_FREQ_MONTHLY
+} xfical_freq;
 
 typedef struct
 {
@@ -45,6 +51,7 @@ typedef struct
         starttime[17],
         endtime[17];
 
+    xfical_freq freq;
 } appt_type;
 
 typedef struct
@@ -62,11 +69,13 @@ typedef struct
     GtkWidget *appRecurrence;
     GtkWidget *appNote;
     GtkWidget *appAvailability;
+    GtkWidget *appRecurrency;
     GtkWidget *appTitle_entry;
     GtkWidget *appLocation_entry;
     GtkWidget *appPrivate_check;
     GtkWidget *appNote_Scrolledwindow;
     GtkWidget *appNote_textview;
+    GtkWidget *appRecurrency_cb;
     GtkWidget *appAvailability_cb;
     GtkWidget *appAlarm_combobox;
     GtkWidget *appAllDay_checkbutton;
@@ -106,11 +115,13 @@ typedef struct
     GtkWidget *appSound_button;
     GtkWidget *appHBox1;
     GtkWidget *appRemove;
+    GtkWidget *appAdd;
     GtkWidget *appBottom_fixed;
     GtkWidget *appClose;
 
     gchar *xf_uid;
     GtkWidget *wAppointment; /* event-list window */
+    gboolean add_appointment;
 
 } appt_win;
 

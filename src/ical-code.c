@@ -161,39 +161,43 @@ appt_type *xfical_app_alloc()
     appt_type *temp;
 
     temp = g_new0(appt_type, 1);
-    temp->alarmtime = 0;
     temp->availability = 1;
     return(temp);
 }
 
- /* add EVENT type ical appointment to ical file
- * app: pointer to filled appt_type structure, which is stored
- *      Caller is responsible for filling and allocating and freeing it.
- *  returns: NULL if failed and new ical id if successfully added. 
- *           This ical id is owned by the routine. Do not deallocate it.
- *           It will be overdriven by next invocation of this function.
- */
-char *xfical_app_add(appt_type *app)
+char *app_add_int(appt_type *app, gboolean add, char *uid
+        , struct icaltimetype cre_time)
 {
     icalcomponent *ievent, *ialarm;
-    struct icaltimetype ctime;
+    struct icaltimetype ctime, create_time;
     static gchar xf_uid[1000];
     gchar xf_host[501];
     struct icaltriggertype trg;
     gint duration=0;
     icalattach *attach;
+    struct icalrecurrencetype rrule;
 
     ctime = ical_get_current_local_time();
-    gethostname(xf_host, 500);
-    sprintf(xf_uid, "Xfcalendar-%s-%lu@%s", icaltime_as_ical_string(ctime), 
+    if (add) {
+        gethostname(xf_host, 500);
+        sprintf(xf_uid, "Xfcalendar-%s-%lu@%s", icaltime_as_ical_string(ctime), 
                 (long) getuid(), xf_host);
+        create_time = ctime;
+    }
+    else { /* mod */
+        strcpy(xf_uid, uid);
+        if (icaltime_is_null_time(cre_time))
+            create_time = ctime;
+        else
+            create_time = cre_time;
+    }
 
     ievent = icalcomponent_vanew(ICAL_VEVENT_COMPONENT
            ,icalproperty_new_uid(xf_uid)
            ,icalproperty_new_categories("XFCALNOTE")
            ,icalproperty_new_class(ICAL_CLASS_PUBLIC)
            ,icalproperty_new_dtstamp(ctime)
-           ,icalproperty_new_created(ctime)
+           ,icalproperty_new_created(create_time)
            ,0);
 
     if XFICAL_STR_EXISTS(app->title)
@@ -221,6 +225,24 @@ char *xfical_app_add(appt_type *app)
     if XFICAL_STR_EXISTS(app->endtime)
         icalcomponent_add_property(ievent
            , icalproperty_new_dtend(icaltime_from_string(app->endtime)));
+    if (app->freq != XFICAL_FREQ_NONE) {
+        switch(app->freq) {
+            case XFICAL_FREQ_DAILY:
+                rrule = icalrecurrencetype_from_string("FREQ=DAILY");
+                break;
+            case XFICAL_FREQ_WEEKLY:
+                rrule = icalrecurrencetype_from_string("FREQ=WEEKLY");
+                break;
+            case XFICAL_FREQ_MONTHLY:
+                rrule = icalrecurrencetype_from_string("FREQ=MONTHLY");
+                break;
+            default:
+                g_warning("ical-code: Unsupported freq\n");
+                icalrecurrencetype_clear(&rrule);
+        }
+        icalcomponent_add_property(ievent
+           , icalproperty_new_rrule(rrule));
+    }
     if (!app->allDay  && app->alarmtime != 0)  {
         switch (app->alarmtime) {
             case 0:
@@ -296,6 +318,18 @@ char *xfical_app_add(appt_type *app)
     return(xf_uid);
 }
 
+ /* add EVENT type ical appointment to ical file
+ * app: pointer to filled appt_type structure, which is stored
+ *      Caller is responsible for filling and allocating and freeing it.
+ *  returns: NULL if failed and new ical id if successfully added. 
+ *           This ical id is owned by the routine. Do not deallocate it.
+ *           It will be overdriven by next invocation of this function.
+ */
+char *xfical_app_add(appt_type *app)
+{
+    return(app_add_int(app, TRUE, NULL, icaltime_null_time()));
+}
+
  /* Read EVENT from ical datafile.
   *ical_uid:  key of ical EVENT appointment which is to be read
   * returns: NULL if failed and appt_type pointer to appt_type struct 
@@ -316,6 +350,7 @@ appt_type *xfical_app_get(char *ical_uid)
     struct icaltriggertype trg;
     gint mins;
     icalattach *attach;
+    struct icalrecurrencetype rrule;
 
     for (c = icalcomponent_get_first_component(ical, ICAL_VEVENT_COMPONENT); 
          (c != 0) && (!key_found);
@@ -332,6 +367,7 @@ appt_type *xfical_app_get(char *ical_uid)
             app.allDay = FALSE;
             app.alarmtime = 0;
             app.availability = -1;
+            app.freq = XFICAL_FREQ_NONE;
             strcpy(app.starttime, "");
             strcpy(app.endtime, "");
         /*********** Properties ***********/
@@ -371,6 +407,26 @@ appt_type *xfical_app_get(char *ical_uid)
                     text  = icaltime_as_ical_string(itime);
                     strcpy(app.endtime, text);
                 }
+                else if (strcmp(text, "RRULE") == 0) {
+                    rrule = icalproperty_get_rrule(p);
+                    switch ( rrule.freq) {
+                        case ICAL_DAILY_RECURRENCE:
+                            app.freq = XFICAL_FREQ_DAILY;
+                            break;
+                        case ICAL_WEEKLY_RECURRENCE:
+                            app.freq = XFICAL_FREQ_WEEKLY;
+                            break;
+                        case ICAL_MONTHLY_RECURRENCE:
+                            app.freq = XFICAL_FREQ_MONTHLY;
+                            break;
+                        default:
+                            app.freq = XFICAL_FREQ_NONE;
+                    }
+                }
+                /*
+                else
+                    g_warning("ical-code: Unprocessed property (%s)\n", text);
+                    */
             }
         /*********** Alarms ***********/
             for (ca = icalcomponent_get_first_component(c
@@ -441,6 +497,41 @@ appt_type *xfical_app_get(char *ical_uid)
         return(NULL);
 }
 
+ /* modify EVENT type ical appointment in ical file
+ * key: char pointer to ical key to modify
+ * app: pointer to filled appt_type structure, which is stored
+ *      Caller is responsible for filling and allocating and freeing it.
+  * returns: TRUE is successfull, FALSE if failed
+ */
+gboolean xfical_app_mod(char *ical_uid, appt_type *app)
+{
+    icalcomponent *c;
+    char *uid;
+    const char *text;
+    icalproperty *p = NULL;
+    gboolean key_found = FALSE;
+    struct icaltimetype create_time = icaltime_null_time();
+
+    if (ical_uid == NULL)
+        return(FALSE);
+    for (c = icalcomponent_get_first_component(ical, ICAL_VEVENT_COMPONENT); 
+         c != 0 && !key_found;
+         c = icalcomponent_get_next_component(ical, ICAL_VEVENT_COMPONENT)) {
+        uid = (char *)icalcomponent_get_uid(c);
+        if (strcmp(uid, ical_uid) == 0) {
+            if ((p = icalcomponent_get_first_property(c,ICAL_CREATED_PROPERTY)))
+                    create_time = icalproperty_get_created(p);
+            icalcomponent_remove_component(ical, c);
+            key_found = TRUE;
+        }
+    } 
+    if (!key_found)
+        return(FALSE);
+
+    app_add_int(app, FALSE, ical_uid, create_time);
+    return(TRUE);
+}
+
  /* removes EVENT with ical_uid from ical file
   * ical_uid: pointer to ical_uid to be deleted
   * returns: TRUE is successfull, FALSE if failed
@@ -477,12 +568,15 @@ gboolean xfical_app_del(char *ical_uid)
   */
 appt_type *xfical_app_get_next_on_day(char *a_day, gboolean first)
 {
-    struct icaltimetype adate, sdate, edate;
+    struct icaltimetype adate, sdate, edate, ndate;
     icalcomponent *c;
     static icalcompiter ci;
     gboolean date_found=FALSE;
     char *uid;
     appt_type *app;
+    struct icalrecurrencetype rrule;
+    icalrecur_iterator* ri;
+    icalproperty *p = NULL;
 
 /* FIXME: does not find events which start on earlier dates and continues
           to this date */
@@ -495,42 +589,67 @@ appt_type *xfical_app_get_next_on_day(char *a_day, gboolean first)
         c = icalcompiter_deref(&ci);
         sdate = icalcomponent_get_dtstart(c);
         edate = icalcomponent_get_dtend(c);
-        if (icaltime_compare_date_only(adate, sdate) == 0){
+        if (icaltime_compare_date_only(adate, sdate) == 0) {
             date_found = TRUE;
-            uid        = (char *)icalcomponent_get_uid(c);
-            app        = xfical_app_get(uid);
+        }
+        else if ((p = icalcomponent_get_first_property(c, ICAL_RRULE_PROPERTY))
+                 != 0) { /* need to check recurring EVENTs */
+            rrule = icalproperty_get_rrule(p);
+            ri = icalrecur_iterator_new(rrule, sdate);
+            ndate = icaltime_null_time();
+            for (ndate = icalrecur_iterator_next(ri);
+                 (!icaltime_is_null_time(ndate))
+                 && (icaltime_compare_date_only(adate, ndate) > 0) ;
+                 ndate = icalrecur_iterator_next(ri)) {
+            }
+            if (icaltime_compare_date_only(adate, ndate) == 0) {
+                date_found = TRUE;
+            } 
         }
     } 
-    if (date_found)
+    if (date_found) {
+        uid = (char *)icalcomponent_get_uid(c);
+        app = xfical_app_get(uid);
         return(app);
+    }
     else
         return(0);
 }
 
- /* find next day in this year and month where any EVENTs start
+ /* Mark days with appointments into calendar
   * year: Year to be searched
   * month: Month to be searched
-  * day: -1 means start search from day 1. other values continue search
-  * returns: day number of next day having EVENT. 0=no more EVENTs found
   */
-int getnextday_ical_app(int year, int month, int day)
+void xfical_mark_calendar(GtkCalendar *gtkcal, int year, int month)
 {
-    struct icaltimetype t;
+    struct icaltimetype sdate, ndate;
     static icalcomponent *c;
-    int next_day = 0;
+    struct icalrecurrencetype rrule;
+    icalrecur_iterator* ri;
+    icalproperty *p = NULL;
 
-    if (day == -1){ /* start */
-        c = icalcomponent_get_first_component(ical, ICAL_VEVENT_COMPONENT); 
-    }
-    for ( ;
-         (c != 0) && (next_day == 0);
-         c = icalcomponent_get_next_component(ical, ICAL_VEVENT_COMPONENT)){
-        t = icalcomponent_get_dtstart(c);
-        if ((t.year == year) && (t.month == month)){
-            next_day = t.day;
+    for (c = icalcomponent_get_first_component(ical, ICAL_VEVENT_COMPONENT);
+         c != 0; 
+         c = icalcomponent_get_next_component(ical, ICAL_VEVENT_COMPONENT)) {
+        sdate = icalcomponent_get_dtstart(c);
+        if ((sdate.year == year) && (sdate.month == month)) {
+            gtk_calendar_mark_day(gtkcal, sdate.day);
         }
+        if ((p = icalcomponent_get_first_property(c, ICAL_RRULE_PROPERTY))
+                 != 0) { /* need to check recurring EVENTs */
+            rrule = icalproperty_get_rrule(p);
+            ri = icalrecur_iterator_new(rrule, sdate);
+            ndate = icaltime_null_time();
+            for (ndate = icalrecur_iterator_next(ri);
+                 (!icaltime_is_null_time(ndate))
+                 && (ndate.year <= year) && (ndate.month <= month);
+                 ndate = icalrecur_iterator_next(ri)) {
+                if ((ndate.year == year) && (ndate.month == month)) {
+                    gtk_calendar_mark_day(gtkcal, ndate.day);
+                }
+            }
+        } 
     } 
-    return(next_day);
 }
 
  /* remove all EVENTs starting this day
@@ -673,14 +792,16 @@ void build_ical_alarm_list(gboolean first_list_today)
                                     */
                                     icalattach_get_url(attach));
                     }
+                    /*
                     else if (stat == ICAL_ACTION_EMAIL) {
                         new_alarm->action = g_string_new("EMAIL");
                     }
                     else if (stat == ICAL_ACTION_PROCEDURE) {
                         new_alarm->action = g_string_new("PROCEDURE");
                     }
+                    */
                     else
-                        g_warning("Unknown VALARM ACTION %d\n", stat);
+                        g_warning("Not implemented VALARM ACTION %d\n", stat);
                     new_alarm->alarm_time = g_string_new(
                         icaltime_as_ical_string(alarm_time));
                     new_alarm->event_time = g_string_new(

@@ -161,14 +161,8 @@ on_appAllDay_clicked_cb(GtkCheckButton *checkbutton, gpointer user_data)
 }
 
 void
-on_appClose_clicked_cb(GtkButton *button, gpointer user_data)
+fill_appt(appt_type *appt, appt_win *apptw)
 {
-
-    appt_win *apptw = (appt_win *)user_data;
-
-    appt_type *appt = g_new(appt_type, 1); 
-    gchar *new_uid;
-
     gint StartYear_value,
       StartMonth_value,
       StartDay_value,
@@ -179,14 +173,6 @@ on_appClose_clicked_cb(GtkButton *button, gpointer user_data)
       EndDay_value,
       EndHour_value,
       EndMinutes_value;
-
-    G_CONST_RETURN gchar *winTitle;
-
-    char a_day[10];
-
-    char *cyear, *cmonth, *cday;
-    int iyear, imonth, iday;
-
     GtkTextIter start, end;
 
     appt->title = (gchar *) gtk_entry_get_text((GtkEntry *)apptw->appTitle_entry);
@@ -213,6 +199,8 @@ on_appClose_clicked_cb(GtkButton *button, gpointer user_data)
 
     appt->alarmtime = gtk_combo_box_get_active((GtkComboBox *)apptw->appAlarm_combobox);
 
+    appt->freq = gtk_combo_box_get_active((GtkComboBox *)apptw->appRecurrency_cb);
+
     appt->availability = gtk_combo_box_get_active((GtkComboBox *)apptw->appAvailability_cb);
 
     gtk_text_buffer_get_bounds(gtk_text_view_get_buffer((GtkTextView *)apptw->appNote_textview), 
@@ -224,6 +212,19 @@ on_appClose_clicked_cb(GtkButton *button, gpointer user_data)
     appt->allDay = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(apptw->appAllDay_checkbutton));
 
     appt->sound = (gchar *) gtk_entry_get_text((GtkEntry *)apptw->appSound_entry);
+
+}
+
+void
+on_appClose_clicked_cb(GtkButton *button, gpointer user_data)
+{
+
+    appt_win *apptw = (appt_win *)user_data;
+
+    appt_type *appt = g_new(appt_type, 1); 
+    gchar *new_uid;
+
+    fill_appt(appt, apptw);
 
 #ifdef DEBUG
     g_warning("Title: %s\n", appt->title);
@@ -238,12 +239,14 @@ on_appClose_clicked_cb(GtkButton *button, gpointer user_data)
 
   /* Here we try to save the event... */
   if (xfical_file_open()){
-
-     xfical_app_del(apptw->xf_uid);
-     g_warning("Removed :%s \n", apptw->xf_uid);
-     new_uid = xfical_app_add(appt);
-     g_warning("New ical uid: %s \n", new_uid);
-
+     if (apptw->add_appointment) {
+        new_uid = xfical_app_add(appt);
+        g_warning("New ical uid: %s \n", new_uid);
+     }
+     else {
+        xfical_app_mod(apptw->xf_uid, appt);
+        g_warning("Modified :%s \n", apptw->xf_uid);
+     }
      xfical_file_close();
   }
 
@@ -274,6 +277,26 @@ on_appRemove_clicked_cb(GtkButton *button, gpointer user_data)
 
 }
 
+void
+on_appAdd_clicked_cb(GtkButton *button, gpointer user_data)
+{
+    appt_win *apptw = (appt_win *)user_data;
+    appt_type *appt = xfical_app_alloc();
+    gchar *new_uid;
+
+    fill_appt(appt, apptw);
+    if (xfical_file_open()){
+        g_free(apptw->xf_uid);
+        apptw->xf_uid = g_strdup(xfical_app_add(appt));
+        g_warning("Added ical uid: %s \n", apptw->xf_uid);
+        xfical_file_close();
+    }
+
+    if (apptw->wAppointment != NULL) {
+        recreate_wAppointment(apptw->wAppointment);
+    }
+}
+
 void ical_to_title(char *ical, char *title)
 {
     gint i, j;
@@ -297,6 +320,7 @@ void fill_appt_window(appt_win *appt_w, char *action, char *par)
   time_t tt;
 
     if (strcmp(action, "NEW") == 0) {
+        appt_w->add_appointment = TRUE;
         appt_data = xfical_app_alloc();
   /* par contains XFICAL_APP_DATE_FORMAT (yyyymmdd) date for new appointment */
         tt=time(NULL);
@@ -306,6 +330,7 @@ void fill_appt_window(appt_win *appt_w, char *action, char *par)
         strcpy(appt_data->endtime, appt_data->starttime);
     }
     else if (strcmp(action, "UPDATE") == 0) {
+        appt_w->add_appointment = FALSE;
     /* par contains ical uid */
         if (!xfical_file_open()) {
             g_warning("ical file open failed\n");
@@ -405,6 +430,8 @@ void fill_appt_window(appt_win *appt_w, char *action, char *par)
       gtk_combo_box_set_active(GTK_COMBO_BOX(appt_w->appAlarm_combobox)
                    , appt_data->alarmtime);
     }
+	gtk_combo_box_set_active(GTK_COMBO_BOX(appt_w->appRecurrency_cb)
+				   , appt_data->freq);
 	if (appt_data->availability != -1){
 	  gtk_combo_box_set_active(GTK_COMBO_BOX(appt_w->appAvailability_cb)
 				   , appt_data->availability);
@@ -445,7 +472,7 @@ appt_win *create_appt_win(char *action, char *par, GtkWidget *wAppointment)
     gtk_widget_show (appt->appHeader);
     gtk_box_pack_start (GTK_BOX (appt->appVBox1), appt->appHeader, TRUE, TRUE, 0);
 
-  appt->appTable = gtk_table_new (11, 2, FALSE); /* Korbinus 20050330: 11 rows now, including button for choosing sound to play */
+  appt->appTable = gtk_table_new (12, 2, FALSE); /* Juha 20050404: 12 rows now, including combobox for choosing recurrancy type */
   gtk_widget_show (appt->appTable);
   gtk_box_pack_start (GTK_BOX (appt->appVBox1), appt->appTable, TRUE, TRUE, 0);
   gtk_container_set_border_width (GTK_CONTAINER (appt->appTable), 10);
@@ -512,16 +539,23 @@ appt_win *create_appt_win(char *action, char *par, GtkWidget *wAppointment)
                         (GtkAttachOptions) (0), 0, 0);
     gtk_misc_set_alignment (GTK_MISC (appt->appSound_label), 0, 0.5);
 
+  appt->appRecurrency = gtk_label_new (_("Recurrency"));
+  gtk_widget_show (appt->appRecurrency);
+  gtk_table_attach (GTK_TABLE (appt->appTable), appt->appRecurrency, 0, 1, 9, 10,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+  gtk_misc_set_alignment (GTK_MISC (appt->appRecurrency), 0, 0.5);
+
   appt->appAvailability = gtk_label_new (_("Availability"));
   gtk_widget_show (appt->appAvailability);
-  gtk_table_attach (GTK_TABLE (appt->appTable), appt->appAvailability, 0, 1, 9, 10,
+  gtk_table_attach (GTK_TABLE (appt->appTable), appt->appAvailability, 0, 1, 10, 11,
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
   gtk_misc_set_alignment (GTK_MISC (appt->appAvailability), 0, 0.5);
 
   appt->appNote = gtk_label_new (_("Note"));
   gtk_widget_show (appt->appNote);
-  gtk_table_attach (GTK_TABLE (appt->appTable), appt->appNote, 0, 1, 10, 11,
+  gtk_table_attach (GTK_TABLE (appt->appTable), appt->appNote, 0, 1, 11, 12,
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
   gtk_misc_set_alignment (GTK_MISC (appt->appNote), 0, 0.5);
@@ -694,9 +728,19 @@ appt_win *create_appt_win(char *action, char *par, GtkWidget *wAppointment)
     gtk_widget_show (appt->appSound_button);
     gtk_box_pack_start (GTK_BOX (appt->appSound_hbox), appt->appSound_button, FALSE, TRUE, 0);
 
+  appt->appRecurrency_cb = gtk_combo_box_new_text ();
+  gtk_widget_show (appt->appRecurrency_cb);
+  gtk_table_attach (GTK_TABLE (appt->appTable), appt->appRecurrency_cb, 1, 2, 9, 10,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (GTK_FILL), 0, 0);
+  gtk_combo_box_append_text (GTK_COMBO_BOX (appt->appRecurrency_cb), _("None"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (appt->appRecurrency_cb), _("Daily"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (appt->appRecurrency_cb), _("Weekly"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (appt->appRecurrency_cb), _("Monthly"));
+
   appt->appAvailability_cb = gtk_combo_box_new_text ();
   gtk_widget_show (appt->appAvailability_cb);
-  gtk_table_attach (GTK_TABLE (appt->appTable), appt->appAvailability_cb, 1, 2, 9, 10,
+  gtk_table_attach (GTK_TABLE (appt->appTable), appt->appAvailability_cb, 1, 2, 10, 11,
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (GTK_FILL), 0, 0);
   gtk_combo_box_append_text (GTK_COMBO_BOX (appt->appAvailability_cb), _("Free"));
@@ -704,7 +748,7 @@ appt_win *create_appt_win(char *action, char *par, GtkWidget *wAppointment)
 
   appt->appNote_Scrolledwindow = gtk_scrolled_window_new (NULL, NULL);
   gtk_widget_show (appt->appNote_Scrolledwindow);
-  gtk_table_attach (GTK_TABLE (appt->appTable), appt->appNote_Scrolledwindow, 1, 2, 10, 11,
+  gtk_table_attach (GTK_TABLE (appt->appTable), appt->appNote_Scrolledwindow, 1, 2, 11, 12,
                     (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
                     (GtkAttachOptions) (GTK_EXPAND | GTK_FILL), 0, 0);
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (appt->appNote_Scrolledwindow), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
@@ -722,6 +766,11 @@ appt_win *create_appt_win(char *action, char *par, GtkWidget *wAppointment)
   gtk_widget_show (appt->appRemove);
   gtk_box_pack_start (GTK_BOX (appt->appHBox1), appt->appRemove, FALSE, FALSE, 0);
   gtk_container_set_border_width (GTK_CONTAINER (appt->appRemove), 10);
+
+  appt->appAdd = gtk_button_new_from_stock ("gtk-add");
+  gtk_widget_show (appt->appAdd);
+  gtk_box_pack_start (GTK_BOX (appt->appHBox1), appt->appAdd, FALSE, FALSE, 0);
+  gtk_container_set_border_width (GTK_CONTAINER (appt->appAdd), 10);
 
   appt->appBottom_fixed = gtk_fixed_new ();
   gtk_widget_show (appt->appBottom_fixed);
@@ -749,6 +798,10 @@ appt_win *create_appt_win(char *action, char *par, GtkWidget *wAppointment)
 
   g_signal_connect ((gpointer) appt->appRemove, "clicked",
 		    G_CALLBACK (on_appRemove_clicked_cb),
+		    appt);
+
+  g_signal_connect ((gpointer) appt->appAdd, "clicked",
+		    G_CALLBACK (on_appAdd_clicked_cb),
 		    appt);
 
     /* Take care of the title entry to build the appointment window title 
