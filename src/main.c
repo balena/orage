@@ -62,6 +62,7 @@ gint alarm_clock(gpointer p);
 void keep_tidy(void);
 void set_cal();
 void init_settings();
+void apply_settings();
 void on_about1_activate(GtkMenuItem *, gpointer);
 void on_Today_activate(GtkMenuItem *, gpointer);
 
@@ -93,6 +94,7 @@ static void
 save_yourself_cb(gpointer data, int save_style, gboolean shutdown,
                  int interact_style, gboolean fast)
 {
+  /*
   gchar *fpath;
   FILE *fp;
 
@@ -108,6 +110,8 @@ save_yourself_cb(gpointer data, int save_style, gboolean shutdown,
   fclose(fp);
   free(fp);
   g_free(fpath);
+  */
+  apply_settings();
 }
 
 /*
