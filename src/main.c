@@ -253,11 +253,12 @@ main(int argc, char *argv[])
 	 * Create the tray icon popup menu
 	 */
 	trayMenu = gtk_menu_new();
-	menuItem = gtk_menu_item_new_with_label(_("Today"));
+	menuItem = gtk_image_menu_item_new_with_mnemonic(_("Today"));
+	gtk_image_menu_item_set_image(GTK_IMAGE_MENU_ITEM(menuItem), gtk_image_new_from_stock(GTK_STOCK_HOME, GTK_ICON_SIZE_MENU));
 	g_signal_connect(menuItem, "activate", G_CALLBACK(on_Today_activate),
 			NULL);
 	gtk_menu_shell_append(GTK_MENU_SHELL(trayMenu), menuItem);
-	gtk_widget_show(menuItem);
+	gtk_widget_show_all(menuItem);
 	menuItem = gtk_separator_menu_item_new();
 	gtk_menu_shell_append(GTK_MENU_SHELL(trayMenu), menuItem);
 	gtk_widget_show(menuItem);

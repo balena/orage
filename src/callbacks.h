@@ -81,8 +81,11 @@ on_btToday_clicked                     (GtkButton       *button,
                                         gpointer user_data);
 
 void
-on_btNext_clicked                  (GtkButton       *button, 
+on_btNext_clicked                      (GtkButton       *button, 
                                         gpointer user_data);
+void
+changeSelectedDate                     (GtkButton       *button, 
+                                        gint direction);
 
 void
 on_btClose_clicked                     (GtkButton       *button,

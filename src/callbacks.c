@@ -56,6 +56,12 @@ static GtkWidget *info;
 static GtkWidget *clearwarn;
 static GtkCalendar *cal;
 
+/* Direction for changing day to look at */
+enum{
+  PREVIOUS,
+    NEXT
+    };
+
 void set_cal(GtkWidget *w){
   //We define it once, there will be only one calendar
   cal=(GtkCalendar *)lookup_widget(w,"calendar1");
@@ -258,9 +264,9 @@ void manageAppointment(GtkCalendar *calendar, GtkWidget *appointment)
 		} 
 		DBH_close(fapp);	
 		gtk_window_set_title (GTK_WINDOW (appointment), _(title));
+#ifdef DEBUG
 		gtk_text_buffer_get_bounds(tb, &ctl_start, &ctl_end);
 		ctl_text = gtk_text_iter_get_text(&ctl_start, &ctl_end);
-#ifdef DEBUG
 		g_print("Content from GtkTextBuffer: %s\n", ctl_text);
 #endif
 	}
@@ -278,42 +284,22 @@ void manageAppointment(GtkCalendar *calendar, GtkWidget *appointment)
 void
 on_btClose_clicked(GtkButton *button, gpointer user_data)
 {
-	GtkWidget *a=lookup_widget((GtkWidget *)button,"wAppointment");
-	gtk_widget_destroy(a); /* destroy the specific appointment window */
+  GtkWidget *a=lookup_widget((GtkWidget *)button,"wAppointment");
+  gtk_widget_destroy(a); /* destroy the specific appointment window */
 }
 
 gboolean 
 on_wAppointment_delete_event(GtkWidget *widget, GdkEvent *event,
                              gpointer user_data)
 {
-	gtk_widget_destroy(widget); /* destroy the appointment window */
-	return(FALSE);
+  gtk_widget_destroy(widget); /* destroy the appointment window */
+  return(FALSE);
 }
 
 void
 on_btPrevious_clicked(GtkButton *button, gpointer user_data)
 {
-  guint year, month, day;
-  guint monthdays[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-  GtkWidget *appointment; 
-	
-  appointment = lookup_widget(GTK_WIDGET(button),"wAppointment");
-
-  gtk_calendar_get_date(cal, &year, &month, &day);
-
-  if(bisextile(year)){
-    ++monthdays[1];
-  }
-  if(--day == 0){
-    if(--month == -1){
-      --year;
-      month = 11;
-    }
-    gtk_calendar_select_month(cal, month, year);
-    day = monthdays[month];
-  }
-  gtk_calendar_select_day(cal, day);
-  manageAppointment(cal, appointment);
+  changeSelectedDate(button, PREVIOUS);
 }
 
 void
@@ -335,6 +321,11 @@ on_btToday_clicked(GtkButton *button, gpointer user_data)
 void
 on_btNext_clicked(GtkButton *button, gpointer user_data)
 {
+  changeSelectedDate(button, NEXT);
+}
+
+void
+changeSelectedDate(GtkButton *button, gint direction){
   guint year, month, day;
   guint monthdays[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
   GtkWidget *appointment; 
@@ -346,13 +337,29 @@ on_btNext_clicked(GtkButton *button, gpointer user_data)
   if(bisextile(year)){
     ++monthdays[1];
   }
-  if(++day == (monthdays[month]+1)){
-    if(++month == 12){
-      ++year;
-      month = 0;
+  switch(direction){
+  case PREVIOUS:
+    if(--day == 0){
+      if(--month == -1){
+	--year;
+	month = 11;
+      }
+      gtk_calendar_select_month(cal, month, year);
+      day = monthdays[month];
     }
-    gtk_calendar_select_month(cal, month, year);
-    day = 1;
+    break;
+  case NEXT:
+    if(++day == (monthdays[month]+1)){
+      if(++month == 12){
+	++year;
+	month = 0;
+      }
+      gtk_calendar_select_month(cal, month, year);
+      day = 1;
+    }
+    break;
+  default:
+    break;
   }
   gtk_calendar_select_day(cal, day);
   manageAppointment(cal, appointment);
