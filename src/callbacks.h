@@ -58,6 +58,10 @@ on_preferences_activate                (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
 
 void
+on_selectToday_activate                (GtkMenuItem     *menuitem,
+					gpointer         user_data);
+
+void
 on_weekMonday_activate                 (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
 

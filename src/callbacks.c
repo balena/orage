@@ -305,6 +305,19 @@ on_preferences_activate                (GtkMenuItem     *menuitem,
 }
 
 void
+on_selectToday_activate                (GtkMenuItem     *menuitem,
+					gpointer         user_data)
+{
+  struct tm *t;
+  time_t tt;
+  tt=time(NULL);
+  t=localtime(&tt);
+  gtk_calendar_select_month(cal, t->tm_mon, t->tm_year+1900);
+  gtk_calendar_select_day(cal, t->tm_mday);
+}
+
+
+void
 on_weekMonday_activate                 (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {

@@ -40,6 +40,7 @@ create_XFCalendar (void)
   GtkWidget *menuitem4_menu;
   GtkWidget *close1;
   GtkWidget *separator1;
+  GtkWidget *separator2;
   GtkWidget *quit1;
   GtkWidget *menuitem7;
   GtkWidget *menuitem7_menu;
@@ -47,6 +48,7 @@ create_XFCalendar (void)
   GtkWidget *menuitemSet;
   GtkWidget *menuitemSet_menu;
   GtkWidget *preferences;
+  GtkWidget *selectToday;
   /* */
   GtkWidget *about1;
   GtkWidget *calendar1;
@@ -102,7 +104,15 @@ create_XFCalendar (void)
   preferences = gtk_menu_item_new_with_mnemonic(_("Preferences"));
   gtk_widget_show(preferences);
   gtk_container_add(GTK_CONTAINER(menuitemSet_menu), preferences);
-
+   
+  separator2 = gtk_separator_menu_item_new();
+  gtk_widget_show(separator2);
+  gtk_container_add (GTK_CONTAINER (menuitemSet_menu), separator2);
+  
+  selectToday = gtk_menu_item_new_with_mnemonic(_("Select Today"));
+  gtk_widget_show(selectToday);
+  gtk_container_add(GTK_CONTAINER(menuitemSet_menu), selectToday);
+  
   /* */
   menuitem7 = gtk_menu_item_new_with_mnemonic (_("_Help"));
   gtk_widget_show (menuitem7);
@@ -138,6 +148,9 @@ create_XFCalendar (void)
   g_signal_connect((gpointer) preferences, "activate",
 		   G_CALLBACK(on_preferences_activate),
 		   NULL);
+  g_signal_connect((gpointer) selectToday, "activate",
+		   G_CALLBACK(on_selectToday_activate),
+		   NULL);
   g_signal_connect((gpointer) calendar1, "scroll_event",
 		   G_CALLBACK (on_calendar1_scroll),
 		   NULL);
@@ -156,7 +169,8 @@ create_XFCalendar (void)
   /* */
   GLADE_HOOKUP_OBJECT(XFCalendar, menuitemSet, "menuitemSet");
   GLADE_HOOKUP_OBJECT(XFCalendar, menuitemSet_menu, "menuitemSet_menu");
-  GLADE_HOOKUP_OBJECT(XFCalendar, preferences, "prefernces");
+  GLADE_HOOKUP_OBJECT(XFCalendar, preferences, "preferences");
+  GLADE_HOOKUP_OBJECT(XFCalendar, selectToday, "selectToday");
   /* */
   GLADE_HOOKUP_OBJECT (XFCalendar, menuitem7, "menuitem7");
   GLADE_HOOKUP_OBJECT (XFCalendar, menuitem7_menu, "menuitem7_menu");
