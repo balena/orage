@@ -43,6 +43,7 @@
 #include "ical-code.h"
 //#include "support.h"
 
+#define DATE_SEPARATOR "-"
 #define MAX_APP_LENGTH 4096
 #define RCDIR          "xfce4" G_DIR_SEPARATOR_S "xfcalendar"
 #define APPOINTMENT_FILE "appointments.ics"
@@ -67,11 +68,21 @@ on_appClose_clicked_cb(GtkButton *button, gpointer user_data)
   gchar *Note_value;
 
   char a_day[10];
-  guint day;
+
+  char *cyear, *cmonth, *cday;
+  int iyear, imonth, iday;
 
   GtkTextIter start, end;
 
   winTitle = gtk_window_get_title(GTK_WINDOW(apptw->appWindow));
+
+  cyear   = strtok ((char *) winTitle, DATE_SEPARATOR);
+  cmonth  = strtok (NULL, DATE_SEPARATOR);
+  cday    = strtok (NULL, DATE_SEPARATOR);
+
+  iyear = atoi(cyear);
+  imonth = atoi(cmonth);
+  iday = atoi(cday);
 
   appt->title = (gchar *) gtk_entry_get_text((GtkEntry *)apptw->appTitle_entry);
   g_warning("Title: %s\n", appt->title);
@@ -82,14 +93,14 @@ on_appClose_clicked_cb(GtkButton *button, gpointer user_data)
   StartHour_value = gtk_spin_button_get_value_as_int((GtkSpinButton *)apptw->appStartHour_spinbutton);
   StartMinutes_value = gtk_spin_button_get_value_as_int((GtkSpinButton *)apptw->appStartMinutes_spinbutton);
   g_sprintf(appt->starttime, XF_APP_TIME_FORMAT
-        , 2005, 3, 11
+	    , iyear, imonth, iday
         , StartHour_value, StartMinutes_value, 0);
   g_warning("Start: %s\n", appt->starttime);
 
   EndHour_value = gtk_spin_button_get_value_as_int((GtkSpinButton *)apptw->appEndHour_spinbutton);
   EndMinutes_value = gtk_spin_button_get_value_as_int((GtkSpinButton *)apptw->appEndMinutes_spinbutton);
   g_sprintf(appt->endtime, XF_APP_TIME_FORMAT
-        , 2005, 3, 11
+	    , iyear, imonth, iday
         , EndHour_value, EndMinutes_value, 0);
   g_warning("End: %s\n", appt->endtime);
 
@@ -110,11 +121,9 @@ on_appClose_clicked_cb(GtkButton *button, gpointer user_data)
 
   /* Here we try to save the event... */
   if (open_ical_file()){
-     a_day[0]=winTitle[0]; a_day[1]=winTitle[1];           /* yy   */
-     a_day[2]=winTitle[2]; a_day[3]=winTitle[3];   /*   yy */
-     a_day[4]=winTitle[5]; a_day[5]=winTitle[6];           /* mm */
-     a_day[6]=winTitle[8]; a_day[7]=winTitle[9];           /* dd */
-     a_day[8]=winTitle[10];                             /* \0 */
+
+     g_sprintf(a_day, XF_APP_DATE_FORMAT
+	       , iyear, imonth, iday);
 
      g_warning("Date: %s\n", a_day);
 
@@ -127,16 +136,12 @@ on_appClose_clicked_cb(GtkButton *button, gpointer user_data)
 
 }
 
-void save_appointment()
-{
-
-}
-
 void fill_appt_window(appt_win *appt, char *action, char *par)
 {
-  char appt_date[12], start_hh[3], start_mi[3];
+  char appt_date[12], start_hh[3], start_mi[3], end_hh[3], end_mi[3];
   appt_type *appt_data;
   gint i, j;
+  GtkTextBuffer *tb;
 
     if (strcmp(action, "NEW") == 0) {
     /* par contains XF_APP_DATE_FORMAT (yyyymmdd) date for new appointment */
@@ -184,6 +189,24 @@ void fill_appt_window(appt_win *appt, char *action, char *par)
                       GTK_SPIN_BUTTON(appt->appStartMinutes_spinbutton)
                     , (gdouble) atoi(start_mi));
         }
+        if (strlen( appt_data->endtime) > 6 ) {
+            end_hh[0]= appt_data->endtime[9];
+            end_hh[1]= appt_data->endtime[10];
+            end_hh[2]= '\0';
+            end_mi[0]= appt_data->endtime[11];
+            end_mi[1]= appt_data->endtime[12];
+            end_mi[2]= '\0';
+            gtk_spin_button_set_value(
+                      GTK_SPIN_BUTTON(appt->appEndHour_spinbutton)
+                    , (gdouble) atoi(end_hh));
+            gtk_spin_button_set_value(
+                      GTK_SPIN_BUTTON(appt->appEndMinutes_spinbutton)
+                    , (gdouble) atoi(end_mi));
+        }
+	if (appt_data->note){
+	  tb = gtk_text_view_get_buffer((GtkTextView *)appt->appNote_textview);
+	  gtk_text_buffer_set_text(tb, (const gchar *) appt_data->note, -1);
+	}
         close_ical_file();
     }
     else
