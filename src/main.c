@@ -78,7 +78,6 @@ gint alarm_clock(gpointer p);
 void keep_tidy(void);
 void set_cal();
 extern void on_about1_activate(GtkMenuItem *, gpointer);
-
 /*
  * SaveYourself callback
  *
@@ -91,6 +90,21 @@ save_yourself_cb(gpointer data, int save_style, gboolean shutdown,
                  int interact_style, gboolean fast)
 {
 	/* FIXME: Mickael, insert save code here! */
+  gchar *fpath;
+  FILE *fp;
+
+  fpath = xfce_get_userfile("xfcalendar", "xfcalendarrc", NULL);
+  if((fp = fopen(fpath, "w")) == NULL){
+    g_warning("Unable to open RC file.");
+  }
+  if (GTK_WIDGET_VISIBLE(mainWindow) == TRUE){
+    fprintf(fp, "show");
+  } else {
+    fprintf(fp, "hide");
+  }
+  fclose(fp);
+  free(fp);
+  g_free(fpath);
 }
 
 /*
@@ -149,6 +163,9 @@ main(int argc, char *argv[])
 	GdkPixbuf *pixbuf;
 	Window xwindow;
 	GdkAtom atom;
+	gchar *fpath;
+	FILE *fp;
+	char text[10];
 
 	xfce_textdomain(GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8");
 
@@ -161,7 +178,7 @@ main(int argc, char *argv[])
 	 * Check if xfcalendar is already running on the display
 	 */
 	if ((xwindow = XGetSelectionOwner(GDK_DISPLAY(),
-				gdk_x11_atom_to_xatom(atom))) != NULL) {
+				gdk_x11_atom_to_xatom(atom))) != None) {
 		XClientMessageEvent xev;
 
 		memset(&xev, 0, sizeof(xev));
@@ -201,7 +218,23 @@ main(int argc, char *argv[])
 	set_cal(mainWindow);
 	mark_appointments(mainWindow);
 	setup_signals(mainWindow);
-	gtk_widget_show(mainWindow);
+
+	fpath = xfce_get_userfile("xfcalendar", "xfcalendarrc", NULL);
+	if ((fp = fopen(fpath, "r")) == NULL){
+	  g_warning("Unable to open RC file.");
+	  gtk_widget_show(mainWindow);
+	} else {
+	  fgets(text, sizeof(text), fp);
+	  if(strcmp(text, "show")==0){
+	    gtk_widget_show(mainWindow);
+	  }
+	  else{
+	    gtk_widget_hide(mainWindow);
+	  }
+	  fclose(fp);
+	}
+	g_free(fpath);
+
 
 	/*
 	 */
