@@ -52,6 +52,27 @@
 #define APPOINTMENT_FILE "appointments.ics"
 
 void
+on_appTitle_entry_changed_cb(GtkEditable *entry, gpointer user_data)
+{
+    gchar *title, *application_name;
+    const gchar *appointment_name;
+
+    appt_win *apptw = (appt_win *)user_data;
+
+    appointment_name = gtk_entry_get_text((GtkEntry *)apptw->appTitle_entry);
+    application_name = _("Xfcalendar");
+
+    if(strlen((char *)appointment_name) > 0)
+        title = g_strdup_printf("%s - %s", gtk_entry_get_text((GtkEntry *)apptw->appTitle_entry), application_name);
+    else
+        title = g_strdup_printf("%s", application_name);
+
+    gtk_window_set_title (GTK_WINDOW (apptw->appWindow), (const gchar *)title);
+
+    g_free(title);
+}
+
+void
 on_appAllDay_clicked_cb(GtkCheckButton *checkbutton, gpointer user_data)
 {
   gboolean check_status;
@@ -123,16 +144,6 @@ on_appClose_clicked_cb(GtkButton *button, gpointer user_data)
 
   GtkTextIter start, end;
 
-  winTitle = gtk_window_get_title(GTK_WINDOW(apptw->appWindow));
-
-  cyear   = strtok ((char *) winTitle, DATE_SEPARATOR);
-  cmonth  = strtok (NULL, DATE_SEPARATOR);
-  cday    = strtok (NULL, DATE_SEPARATOR);
-
-  iyear = atoi(cyear);
-  imonth = atoi(cmonth);
-  iday = atoi(cday);
-
   appt->title = (gchar *) gtk_entry_get_text((GtkEntry *)apptw->appTitle_entry);
 
   appt->location = (gchar *) gtk_entry_get_text((GtkEntry *)apptw->appLocation_entry);
@@ -182,11 +193,6 @@ on_appClose_clicked_cb(GtkButton *button, gpointer user_data)
 
   /* Here we try to save the event... */
   if (xfical_file_open()){
-
-     g_sprintf(a_day, XF_APP_DATE_FORMAT
-	       , iyear, imonth, iday);
-
-     g_warning("Date: %s\n", a_day);
 
      xfical_app_del(apptw->xf_uid);
      g_warning("Removed :%s \n", apptw->xf_uid);
@@ -238,8 +244,7 @@ void ical_to_title(char *ical, char *title)
 
 void fill_appt_window(appt_win *appt_w, char *action, char *par)
 {
-  char title[11], 
-    start_yy[5], start_mm[3], start_dd[3], start_hh[3], start_mi[3], 
+  char start_yy[5], start_mm[3], start_dd[3], start_hh[3], start_mi[3], 
     end_yy[5], end_mm[3], end_dd[3], end_hh[3], end_mi[3];
   GtkTextBuffer *tb;
   appt_type *appt_data=NULL;
@@ -274,8 +279,7 @@ void fill_appt_window(appt_win *appt_w, char *action, char *par)
 	g_warning("id: %s \n", appt_w->xf_uid);
 #endif
 
-    ical_to_title(appt_data->starttime, title);
-    gtk_window_set_title (GTK_WINDOW (appt_w->appWindow), title);
+    gtk_window_set_title (GTK_WINDOW (appt_w->appWindow), _("New appointment - Xfcalendar"));
     if (appt_data->title)
         gtk_entry_set_text(GTK_ENTRY(appt_w->appTitle_entry), appt_data->title);
     if (appt_data->location)
@@ -686,9 +690,15 @@ appt_win *create_appt_win(char *action, char *par, GtkWidget *wAppointment)
 		    G_CALLBACK (on_appRemove_clicked_cb),
 		    appt);
 
+    /* Take care of the title entry to build the appointment window title 
+     * Beware: we are not using appt->appTitle_entry as a GtkEntry here 
+     * but as an interface GtkEditable instead.
+     */
+    g_signal_connect_after ((gpointer) appt->appTitle_entry, "changed",
+            G_CALLBACK (on_appTitle_entry_changed_cb),
+            appt);
   fill_appt_window(appt, action, par);
 
 
   return appt;
 }
-
