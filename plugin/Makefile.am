@@ -18,3 +18,5 @@ xfcalendar_plugin_la_CFLAGS = 						\
 
 appsdir = $(datadir)/applications
 apps_DATA = xfce-xfcalendar-settings.desktop
+
+EXTRA_DIST = xfce-xfcalendar-settings.desktop
