@@ -21,6 +21,7 @@
 #  
 #
 #======================================================================
+# modified for xfce by Juha Kautto 04.03.2005
 
 
 DESIGNDATA = $(top_srcdir)/design-data
@@ -125,8 +126,8 @@ libicalinclude_HEADERS = ical.h icalmemory.h icalerror.h $(cxx_headers)
 
 # ORDERING OF HEADERS IS SIGNIFICANT. Don't change this ordering. It
 # is required to make the combined header ical.h properly
+# modified for xfce by Juha Kautto 04.03.2005
 COMBINEDHEADERS =					\
-        $(top_builddir)/config.h                        \
 	$(top_builddir)/src/libical/icalversion.h	\
 	$(top_srcdir)/src/libical/icaltime.h		\
 	$(top_srcdir)/src/libical/icalduration.h	\
