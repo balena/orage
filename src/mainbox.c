@@ -1,7 +1,8 @@
 /* mainbox.c
  *
- * Copyright (C) 2004 Mickaël Graf <korbinus@lunar-linux.org>
+ * Copyright (C) 2004-2005 Mickaël Graf <korbinus@xfce.org>
  * Parts of the code below are copyright (C) 2003 Edscott Wilson Garcia <edscott@users.sourceforge.net>
+ *                                       (C) 2005 Juha Kautto <kautto.juha at kolumbus.fi>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -52,6 +53,7 @@
 #define RCDIR    "xfce4" G_DIR_SEPARATOR_S "xfcalendar"
 
 extern gboolean normalmode;
+extern gint pos_x, pos_y;
 static GtkCalendar *cal;
 
 char today[8];
@@ -103,7 +105,7 @@ mWindow_delete_event_cb(GtkWidget *widget, GdkEvent *event,
   CalWin *xfcal = (CalWin *)user_data;
 
   xfcal->show_Calendar = FALSE;
-  gtk_widget_hide(xfcal->mWindow);
+  xfcalendar_toggle_visible(xfcal);
 
   return(TRUE);
 
@@ -229,7 +231,6 @@ xfcalendar_init_settings (CalWin *xfcal)
   xfcal->show_Calendar = FALSE;
   xfcal->show_Taskbar = TRUE;
   xfcal->show_Pager = TRUE;
-  xfcal->start_Monday = FALSE;
   xfcal->display_Options = GTK_CALENDAR_SHOW_HEADING 
     | GTK_CALENDAR_SHOW_DAY_NAMES 
     | GTK_CALENDAR_SHOW_WEEK_NUMBERS;
@@ -243,17 +244,13 @@ xfcalendar_init_settings (CalWin *xfcal)
       g_warning("Unable to create %s", fpath);
     else {
       fprintf(fp, "[Session Visibility]\n");
-      if(xfcal->show_Calendar) fprintf(fp, "show\n"); else fprintf(fp, "hide\n");
       fclose(fp);
     }
-  }else{
-    /* *very* limited set of options */
-    fgets(buf, LEN_BUFFER, fp); /* [Session Visibility] */
-    fgets(buf, LEN_BUFFER, fp);
-    if(strstr(buf, "show")) 
+  }  else{
+    fgets(buf, LEN_BUFFER, fp); /* [Window Position] */
+    if (fscanf(fp, "X=%i, Y=%i", &pos_x, &pos_y) != 2)
       {
-	  xfcal->show_Calendar = TRUE;
-	  gtk_widget_show_all(xfcal->mWindow);
+      g_warning("Unable to read position from: %s", fpath);
       }
   }
 }
@@ -343,42 +340,35 @@ xfcalendar_alarm_clock(gpointer user_data)
 }
 
 void
-xfcalendar_toggle_visible (CalWin *xfcal)
+xfcalendar_toggle_visible ()
 {
 
-  if(xfcal->show_Calendar)
-    {
-      xfcal->show_Calendar = FALSE;
-      gtk_widget_hide(xfcal->mWindow);
-    }
-  else
-    {
-      gtk_window_set_decorated (GTK_WINDOW(xfcal->mWindow), normalmode);
+  GdkEventClient gev;
+  Window xwindow;
+  GdkAtom atom;
+                                                                                
+  memset(&gev, 0, sizeof(gev));
+                                                                                
+  atom = gdk_atom_intern("_XFCE_CALENDAR_RUNNING", FALSE);
+  xwindow = XGetSelectionOwner(GDK_DISPLAY(), gdk_x11_atom_to_xatom(atom));
 
-      if (!normalmode)
-	gtk_widget_hide(xfcal->mMenubar);
-      else
-	gtk_widget_show(xfcal->mMenubar);
-
-      xfcal->show_Calendar = TRUE;
-      gtk_widget_show(xfcal->mWindow);
-
-    }
+  gev.type = GDK_CLIENT_EVENT;
+  gev.window = NULL;
+  gev.send_event = TRUE;
+  gev.message_type = gdk_atom_intern("_XFCE_CALENDAR_TOGGLE_HERE", FALSE);
+  gev.data_format = 8;
+                                                                                
+  gdk_event_send_client_message((GdkEvent *)&gev, (GdkNativeWindow)xwindow);
 }
 
-CalWin *create_mainWin(void)
+void create_mainWin(CalWin *xfcal)
 {
   struct tm *t;
   time_t tt;
 
-  CalWin *xfcal = g_new(CalWin, 1);
-
   GdkPixbuf *xfcalendar_logo = xfce_themed_icon_load ("xfcalendar", 48);
 
   xfcal->mAccel_group = gtk_accel_group_new ();
-
-  /* Build the main window */
-  xfcal->mWindow = gtk_window_new (GTK_WINDOW_TOPLEVEL);
 
   gtk_window_set_title (GTK_WINDOW(xfcal->mWindow),
 			_("Xfcalendar"));
@@ -544,5 +534,4 @@ CalWin *create_mainWin(void)
   t=localtime(&tt);
   g_snprintf(today, 8, "%03d%02d%02d", t->tm_year, t->tm_mon, t->tm_mday);
 
-  return xfcal;
 }

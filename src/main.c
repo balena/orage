@@ -1,7 +1,8 @@
 /* xfcalendar
  *
- * Copyright (C) 2003 Mickael Graf (korbinus@linux.se)
- * Parts of the code below are copyright (C) 2003 Benedikt Meurer <benny@xfce.orgt>
+ * Copyright (C) 2003-2005 Mickael Graf (korbinus@xfce.org)
+ * Parts of the code below are copyright (C) 2003 Benedikt Meurer <benny@xfce.org>
+ *                                       (C) 2005 Juha Kautto <kautto.juha at kolumbus.fi>
  *
  * This program is free software; you can redistribute it and/or modify it 
  * under the terms of the GNU General Public License as published by the
@@ -59,7 +60,7 @@
 static SessionClient	*session_client = NULL;
 
 /* main window */
-static GtkWidget	*mainWindow = NULL;
+GtkWidget	*mainWindow = NULL;
 CalWin *xfcal;
 
 /* MCS client */
@@ -70,6 +71,22 @@ XfceTrayIcon 		*trayIcon = NULL;
 
 gboolean normalmode = TRUE;
 
+/* window position */
+gint pos_x = 0, pos_y = 0;
+
+static void
+raise_window()
+{
+  GdkScreen *screen;
+
+    screen = xfce_gdk_display_locate_monitor_with_pointer (NULL, NULL);
+    gtk_window_set_screen (GTK_WINDOW (mainWindow), screen ? screen : gdk_screen_get_default ());
+    if (pos_x || pos_y)
+        gtk_window_move (GTK_WINDOW (mainWindow), pos_x, pos_y);
+    gtk_window_stick (GTK_WINDOW (mainWindow));
+    gtk_widget_show (mainWindow);
+}
+
 static gboolean
 client_message_received (GtkWidget * widget, GdkEventClient * event,
 			 gpointer user_data)
@@ -79,89 +96,23 @@ client_message_received (GtkWidget * widget, GdkEventClient * event,
     if (event->message_type ==
 	gdk_atom_intern ("_XFCE_CALENDAR_RAISE", FALSE))
     {
-	if (normalmode)
-	    gtk_window_set_decorated (GTK_WINDOW (mainWindow), TRUE);
-
 	DBG ("RAISING...\n");
-	gtk_widget_show (mainWindow);
-	gtk_window_stick (GTK_WINDOW (mainWindow));
-
+	raise_window();
 	return TRUE;
     }
     else if (event->message_type ==
 	     gdk_atom_intern ("_XFCE_CALENDAR_TOGGLE_HERE", FALSE))
     {
-	int x, y, w, h;
-	GtkRequisition req;
-	char message[21];
-	char direction[21];
-	long xid;
-	GdkWindow *win;
-	GdkScreen *screen;
-
 	DBG ("TOGGLE\n");
-
 	if (GTK_WIDGET_VISIBLE (mainWindow))
 	{
-	    gtk_widget_hide (mainWindow);
-	    return TRUE;
+      apply_settings();
+	  gtk_window_get_position(GTK_WINDOW(mainWindow), &pos_x, &pos_y);
+	  gtk_widget_hide (mainWindow);
+	  return TRUE;
 	}
-
-	/* Don't use decorations when we are called like this */
-	gtk_window_set_decorated (GTK_WINDOW(mainWindow), FALSE);
-	
-	gtk_widget_size_request (mainWindow, &req);
-
-	strncpy (message, event->data.b, 20);
-	message[20] = '\0';
-
-	if (sscanf (message, "%lx:%s", &xid, direction) < 0)
-	    return FALSE;
-
-	if (!(win = gdk_window_lookup (xid)))
-	    win = gdk_window_foreign_new (xid);
-
-	gdk_drawable_get_size (GDK_DRAWABLE (win), &w, &h);
-	gdk_window_get_origin (win, &x, &y);
-
-	if (strcmp ("up", direction) == 0)
-	{
-	    x -= (req.width / 2 - w / 2);
-	    y -= req.height;
-	}
-	else if (strcmp ("down", direction) == 0)
-	{
-	    x -= (req.width / 2 - w / 2);
-	    y += h;
-	}
-	else if (strcmp ("left", direction) == 0)
-	{
-	    x -= req.width;
-	}
-	else if (strcmp ("right", direction) == 0)
-	{
-	    x += w;
-	}
-	else
-	{
-	    return FALSE;
-	}
-
-	if (x + w > gdk_screen_width ())
-	    x = gdk_screen_width () - w;
-	if (x < 0)
-	    x = 0;
-
-	if (y + h > gdk_screen_height ())
-	    y = gdk_screen_height () - h;
-	if (y < 0)
-	    y = 0;
-	
-	screen = xfce_gdk_display_locate_monitor_with_pointer (NULL, NULL);
-	gtk_window_set_screen (GTK_WINDOW (mainWindow), screen ? screen : gdk_screen_get_default ());
-	gtk_window_move (GTK_WINDOW (mainWindow), x, y);
-	gtk_widget_show (mainWindow);
-	gtk_window_stick (GTK_WINDOW (mainWindow));
+	raise_window();
+	return TRUE;
     }
 
     return FALSE;
@@ -170,6 +121,7 @@ client_message_received (GtkWidget * widget, GdkEventClient * event,
 void 
 notify_cb(const char *name, const char *channel_name, McsAction action, McsSetting * setting, void *data)
 {
+    gboolean showtaskbar, showpager, showcalendar;
   if(g_ascii_strcasecmp(CHANNEL, channel_name))
     {
         g_message(_("This should not happen"));
@@ -179,6 +131,14 @@ notify_cb(const char *name, const char *channel_name, McsAction action, McsSetti
     switch (action)
     {
         case MCS_ACTION_NEW:
+            if(!strcmp(name, "XFCalendar/ShowStart"))
+            {
+              showcalendar = setting->data.v_int ? TRUE: FALSE;
+              if(showcalendar)
+                gtk_widget_show_all(xfcal->mWindow);
+              xfcal->show_Calendar = showcalendar;
+            }
+         /* note that break is missing, we want to do also CHANGED actions */
         case MCS_ACTION_CHANGED:
             if(setting->type == MCS_TYPE_INT)
             {
@@ -190,32 +150,35 @@ notify_cb(const char *name, const char *channel_name, McsAction action, McsSetti
 		    gtk_widget_hide(xfcal->mMenubar);
 		  else
 		    gtk_widget_show(xfcal->mMenubar);
-
-
 		}
-
-	        /* Commented until the bug is fixed :(
-		if(!strcmp(name, "XFCalendar/TaskBar"))
+		else if(!strcmp(name, "XFCalendar/TaskBar"))
 		{
 		  showtaskbar = setting->data.v_int ? TRUE: FALSE;
-		   * Reminder: if we want to show the calendar in the taskbar (i.e. showtaskbar is TRUE)
+		   /* Reminder: if we want to show the calendar in the taskbar (i.e. showtaskbar is TRUE)
 		   * then gtk_window_set_skip_taskbar_hint must get a FALSE value, and if we don't want
 		   * to be seen in the taskbar, then the function must eat a TRUE.
-		   *
+		   */
 		  gtk_window_set_skip_taskbar_hint((GtkWindow*)mainWindow, !showtaskbar);
 		  xfcal->show_Taskbar = showtaskbar;
 		}
-		if(!strcmp(name, "XFCalendar/Pager"))
+		else if(!strcmp(name, "XFCalendar/Pager"))
 		{
 		  showpager = setting->data.v_int ? TRUE: FALSE;
-		   * Reminder: if we want to show the calendar in the pager (i.e. showpager is TRUE)
+		   /* Reminder: if we want to show the calendar in the pager (i.e. showpager is TRUE)
 		   * then gtk_window_set_skip_pager_hint must get a FALSE value, and if we don't want
 		   * to be seen in the pager, then the function must eat a TRUE.
-		   *
+		   */
 		  gtk_window_set_skip_pager_hint((GtkWindow*)mainWindow, !showpager);
 		  xfcal->show_Pager = showpager;
 		}
-		*/
+		else if(!strcmp(name, "XFCalendar/Systray"))
+		{
+		  xfcal->show_Systray = setting->data.v_int ? TRUE: FALSE;
+                  if (xfcal->show_Systray)
+                    xfce_tray_icon_connect(trayIcon);
+                  else
+                    xfce_tray_icon_disconnect(trayIcon);
+		}
             }
             break;
         case MCS_ACTION_DELETED:
@@ -263,7 +226,6 @@ void
 save_yourself_cb(gpointer data, int save_style, gboolean shutdown,
                  int interact_style, gboolean fast)
 {
-  settings_set_showCal(xfcal->mWindow);
   apply_settings();
 }
 
@@ -353,6 +315,14 @@ main(int argc, char *argv[])
   dpy = GDK_DISPLAY();
   scr = DefaultScreen(dpy);
 
+    xfcal = g_new(CalWin, 1);
+/* Build the main window */
+  xfcal->mWindow = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+  hidden = gtk_invisible_new();
+  gtk_widget_show(hidden);
+  g_signal_connect (hidden, "client-event",
+		    G_CALLBACK (client_message_received), NULL);
+
   atom = gdk_atom_intern("_XFCE_CALENDAR_RUNNING", FALSE);
 
   /*
@@ -374,6 +344,11 @@ main(int argc, char *argv[])
     XSync(GDK_DISPLAY(), False);
 
     return(EXIT_SUCCESS);
+  }
+  if (!gdk_selection_owner_set(hidden->window, atom,
+			       gdk_x11_get_server_time(hidden->window),
+			       FALSE)) {
+    g_warning("Unable acquire ownership of selection");
   }
 
   /* 
@@ -397,28 +372,13 @@ main(int argc, char *argv[])
   /*
    * Create the Xfcalendar.
    */
-  xfcal = create_mainWin();
+  create_mainWin(xfcal);
   mainWindow = xfcal->mWindow;           //FIXME: hack avoiding some warnings while running
-
-  /*
-   */
-  hidden = gtk_invisible_new();
-  gtk_widget_show(hidden);
-  
-  g_signal_connect (hidden, "client-event",
-		    G_CALLBACK (client_message_received), NULL);
-
-  if (!gdk_selection_owner_set(hidden->window, atom,
-			       gdk_x11_get_server_time(hidden->window),
-			       FALSE)) {
-    g_warning("Unable acquire ownership of selection");
-  }
 
   /*
    * Create the tray icon and its popup menu
    */
   trayIcon = create_TrayIcon(xfcal);
-  xfce_tray_icon_connect(trayIcon);
 	
   client = mcs_client_new(dpy, scr, notify_cb, watch_cb, xfcal->mWindow);
   if(client)

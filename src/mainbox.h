@@ -44,9 +44,9 @@ struct _CalWin
   gboolean show_Calendar;
   gboolean show_Taskbar;
   gboolean show_Pager;
-  gboolean start_Monday;
+  gboolean show_Systray;
   GtkCalendarDisplayOptions display_Options;
 };
 
-CalWin *create_mainWin(void);
-void xfcalendar_toggle_visible (CalWin *xfcal);
+void create_mainWin(CalWin *);
+void xfcalendar_toggle_visible ();
