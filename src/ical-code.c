@@ -209,7 +209,7 @@ char *xf_add_ical_app(appt_type *app)
     else if (app->availability == 1)
         icalcomponent_add_property(ievent
            , icalproperty_new_transp(ICAL_TRANSP_OPAQUE));
-    if (app->allday) {
+    if (app->allDay) {
         app->starttime[8] = 0;
         app->endtime[8] = 0;
     }
@@ -219,7 +219,7 @@ char *xf_add_ical_app(appt_type *app)
     if XFICAL_STR_EXISTS(app->endtime)
         icalcomponent_add_property(ievent
            , icalproperty_new_dtend(icaltime_from_string(app->endtime)));
-    if (!app->allday  && app->alarm != 0)  {
+    if (!app->allDay  && app->alarm != 0)  {
         if (app->alarmTimeType == 0) 
             duration = app->alarm * 60;
         else if (app->alarmTimeType == 1) 
@@ -382,7 +382,7 @@ appt_type *xf_get_ical_app(char *ical_uid)
                     }
                     else if (strcmp(text, "ATTACH") == 0) {
                         attach = icalproperty_get_attach(p);
-                        app.sound = (char *)calattach_get_url(attach);
+                        app.sound = (char *)icalattach_get_url(attach);
                     }
                 }
             }
