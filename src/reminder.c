@@ -136,7 +136,7 @@ xfcalendar_alarm_clock(gpointer user_data)
   /* See if the day just changed and the former current date was selected */
     if (previous_day != t->tm_mday) {
         current_year  = t->tm_year + 1900;
-        current_month = t->tm_mon + 1;
+        current_month = t->tm_mon;
         current_day   = t->tm_mday;
       /* Get the selected data from calendar */
         gtk_calendar_get_date(GTK_CALENDAR (xfcal->mCalendar),

@@ -222,15 +222,16 @@ recreate_wAppointment(GtkWidget *appointment)
     GtkWidget *scrolledwindow1;
     GtkWidget *vbox2;
                                                                                 
-    if ((wAppointment = lookup_widget(GTK_WIDGET(appointment), "wAppointment")) == NULL)
-        return (NULL);;
+    if ((wAppointment = lookup_widget(GTK_WIDGET(appointment), "wAppointment"))
+            == NULL)
+        return (NULL);
     vbox2 = lookup_widget(GTK_WIDGET(wAppointment), "vbox2");
     scrolledwindow1 = lookup_widget(GTK_WIDGET(wAppointment), "scrolledwindow1");    
     gtk_widget_destroy(scrolledwindow1);
     scrolledwindow1 = gtk_scrolled_window_new(NULL, NULL);
     gtk_widget_show (scrolledwindow1);
-    gtk_box_pack_start (GTK_BOX (vbox2), scrolledwindow1, TRUE, TRUE, 0);
-    gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolledwindow1)
+    gtk_box_pack_start(GTK_BOX (vbox2), scrolledwindow1, TRUE, TRUE, 0);
+    gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW (scrolledwindow1)
             , GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
     GLADE_HOOKUP_OBJECT(wAppointment, scrolledwindow1, "scrolledwindow1");
 
@@ -437,7 +438,10 @@ void manageAppointment(GtkCalendar *calendar, GtkWidget *wAppointment)
 	        swin = lookup_widget(GTK_WIDGET(wAppointment), "scrolledwindow1");
             gtk_container_add(GTK_CONTAINER(swin), view);
             gtk_widget_show(view);
+		    gtk_calendar_mark_day(GTK_CALENDAR(xfcal->mCalendar), day);
         }
+        else
+		    gtk_calendar_unmark_day(GTK_CALENDAR(xfcal->mCalendar), day);
         xfical_file_close();
     }
 }
