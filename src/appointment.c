@@ -50,6 +50,9 @@
 #define MAX_APP_LENGTH 4096
 #define RCDIR          "xfce4" G_DIR_SEPARATOR_S "xfcalendar"
 #define APPOINTMENT_FILE "appointments.ics"
+#define FILETYPE_SIZE 38
+
+static gchar *last_sound_dir;
 
 void
 on_appTitle_entry_changed_cb(GtkEditable *entry, gpointer user_data)
@@ -78,6 +81,13 @@ on_appSound_button_clicked_cb(GtkButton *button, gpointer user_data)
     GtkWidget *file_chooser;
 	XfceFileFilter *filter;
 
+    const gchar * filetype[FILETYPE_SIZE] = {"*.aiff", "*.al", "*.alsa", "*.au", "*.auto", "*.avr",
+                                             "*.cdr", "*.cvs", "*.dat", "*.vms", "*.gsm", "*.hcom", 
+                                             "*.la", "*.lu", "*.maud", "*.mp3", "*.nul", "*.ogg", "*.ossdsp",
+                                             "*.prc", "*.raw", "*.sb", "*.sf", "*.sl", "*.smp", "*.sndt", 
+                                             "*.sph", "*.8svx", "*.sw", "*.txw", "*.ub", "*.ul", "*.uw",
+                                             "*.voc", "*.vorbis", "*.vox", "*.wav", "*.wve"};
+
     appt_win *apptw = (appt_win *)user_data;
 
     file_chooser = xfce_file_chooser_new (_("Select a file..."),
@@ -88,18 +98,36 @@ on_appSound_button_clicked_cb(GtkButton *button, gpointer user_data)
                                             NULL);
 
     filter = xfce_file_filter_new ();
+	xfce_file_filter_set_name(filter, _("Sound Files"));
+    int i;
+    for(i = 0; i<FILETYPE_SIZE; i++){
+        xfce_file_filter_add_pattern(filter, filetype[i]);
+    }
+	xfce_file_chooser_add_filter(XFCE_FILE_CHOOSER(file_chooser), filter);
+	filter = xfce_file_filter_new ();
 	xfce_file_filter_set_name(filter, _("All Files"));
 	xfce_file_filter_add_pattern(filter, "*");
 	xfce_file_chooser_add_filter(XFCE_FILE_CHOOSER(file_chooser), filter);
-	filter = xfce_file_filter_new();
-	xfce_file_filter_set_name(filter, _("Sound Files"));
-	xfce_file_filter_add_pattern(filter, "*.wav");
-	xfce_file_chooser_add_filter(XFCE_FILE_CHOOSER(file_chooser), filter);
 
+    xfce_file_chooser_add_shortcut_folder(XFCE_FILE_CHOOSER(file_chooser), PACKAGE_DATA_DIR "/xfcalendar/sounds", NULL);
+
+    /* FIXME: file_chooser never find the file given in appSound_entry
+    if(apptw->appSound_entry){
+        g_warning("File: %s\n", (gchar *) gtk_entry_get_text((GtkEntry *)apptw->appSound_entry));
+        xfce_file_chooser_set_current_name(XFCE_FILE_CHOOSER(file_chooser), 
+                                          (const gchar *) gtk_entry_get_text((GtkEntry *)apptw->appSound_entry));
+    }
+    else
+    */
+        if(last_sound_dir)
+            xfce_file_chooser_set_current_folder(XFCE_FILE_CHOOSER(file_chooser), last_sound_dir);
+        else
+            xfce_file_chooser_set_current_folder(XFCE_FILE_CHOOSER(file_chooser), PACKAGE_DATA_DIR "/xfcalendar/sounds");
 
 	if(gtk_dialog_run(GTK_DIALOG(file_chooser)) == GTK_RESPONSE_ACCEPT) {
         gchar *sound_file;
 		sound_file = xfce_file_chooser_get_filename(XFCE_FILE_CHOOSER(file_chooser));
+        last_sound_dir = xfce_file_chooser_get_current_folder(XFCE_FILE_CHOOSER(file_chooser));
 
         if(sound_file){
 			gtk_entry_set_text(GTK_ENTRY(apptw->appSound_entry), sound_file);
@@ -210,6 +238,8 @@ fill_appt(appt_type *appt, appt_win *apptw)
     appt->note = gtk_text_iter_get_text(&start, &end);
 
     appt->allDay = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(apptw->appAllDay_checkbutton));
+
+    appt->alarmrepeat = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(apptw->appSoundRepeat_checkbutton));
 
     appt->sound = (gchar *) gtk_entry_get_text((GtkEntry *)apptw->appSound_entry);
 
@@ -442,6 +472,8 @@ void fill_appt_window(appt_win *appt_w, char *action, char *par)
 	}
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(appt_w->appAllDay_checkbutton), appt_data->allDay);
 
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(appt_w->appSoundRepeat_checkbutton), appt_data->alarmrepeat);
+
     if (strcmp(action, "NEW") == 0) {
         g_free(appt_data);
 	}
@@ -472,7 +504,7 @@ appt_win *create_appt_win(char *action, char *par, GtkWidget *wAppointment)
     gtk_widget_show (appt->appHeader);
     gtk_box_pack_start (GTK_BOX (appt->appVBox1), appt->appHeader, TRUE, TRUE, 0);
 
-  appt->appTable = gtk_table_new (12, 2, FALSE); /* Juha 20050404: 12 rows now, including combobox for choosing recurrancy type */
+  appt->appTable = gtk_table_new (13, 2, FALSE); /* Juha 20050404: 12 rows now, including combobox for choosing recurrancy type */
   gtk_widget_show (appt->appTable);
   gtk_box_pack_start (GTK_BOX (appt->appVBox1), appt->appTable, TRUE, TRUE, 0);
   gtk_container_set_border_width (GTK_CONTAINER (appt->appTable), 10);
@@ -541,21 +573,21 @@ appt_win *create_appt_win(char *action, char *par, GtkWidget *wAppointment)
 
   appt->appRecurrency = gtk_label_new (_("Recurrency"));
   gtk_widget_show (appt->appRecurrency);
-  gtk_table_attach (GTK_TABLE (appt->appTable), appt->appRecurrency, 0, 1, 9, 10,
+  gtk_table_attach (GTK_TABLE (appt->appTable), appt->appRecurrency, 0, 1, 10, 11,
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
   gtk_misc_set_alignment (GTK_MISC (appt->appRecurrency), 0, 0.5);
 
   appt->appAvailability = gtk_label_new (_("Availability"));
   gtk_widget_show (appt->appAvailability);
-  gtk_table_attach (GTK_TABLE (appt->appTable), appt->appAvailability, 0, 1, 10, 11,
+  gtk_table_attach (GTK_TABLE (appt->appTable), appt->appAvailability, 0, 1, 11, 12,
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
   gtk_misc_set_alignment (GTK_MISC (appt->appAvailability), 0, 0.5);
 
   appt->appNote = gtk_label_new (_("Note"));
   gtk_widget_show (appt->appNote);
-  gtk_table_attach (GTK_TABLE (appt->appTable), appt->appNote, 0, 1, 11, 12,
+  gtk_table_attach (GTK_TABLE (appt->appTable), appt->appNote, 0, 1, 12, 13,
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
   gtk_misc_set_alignment (GTK_MISC (appt->appNote), 0, 0.5);
@@ -728,9 +760,15 @@ appt_win *create_appt_win(char *action, char *par, GtkWidget *wAppointment)
     gtk_widget_show (appt->appSound_button);
     gtk_box_pack_start (GTK_BOX (appt->appSound_hbox), appt->appSound_button, FALSE, TRUE, 0);
 
+    appt->appSoundRepeat_checkbutton = gtk_check_button_new_with_mnemonic (_("Repeat alarm sound"));
+    gtk_widget_show (appt->appSoundRepeat_checkbutton);
+    gtk_table_attach (GTK_TABLE (appt->appTable), appt->appSoundRepeat_checkbutton, 1, 2, 9, 10,
+                    (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
+                    (GtkAttachOptions) (0), 0, 0);
+
   appt->appRecurrency_cb = gtk_combo_box_new_text ();
   gtk_widget_show (appt->appRecurrency_cb);
-  gtk_table_attach (GTK_TABLE (appt->appTable), appt->appRecurrency_cb, 1, 2, 9, 10,
+  gtk_table_attach (GTK_TABLE (appt->appTable), appt->appRecurrency_cb, 1, 2, 10, 11,
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (GTK_FILL), 0, 0);
   gtk_combo_box_append_text (GTK_COMBO_BOX (appt->appRecurrency_cb), _("None"));
@@ -740,7 +778,7 @@ appt_win *create_appt_win(char *action, char *par, GtkWidget *wAppointment)
 
   appt->appAvailability_cb = gtk_combo_box_new_text ();
   gtk_widget_show (appt->appAvailability_cb);
-  gtk_table_attach (GTK_TABLE (appt->appTable), appt->appAvailability_cb, 1, 2, 10, 11,
+  gtk_table_attach (GTK_TABLE (appt->appTable), appt->appAvailability_cb, 1, 2, 11, 12,
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (GTK_FILL), 0, 0);
   gtk_combo_box_append_text (GTK_COMBO_BOX (appt->appAvailability_cb), _("Free"));
@@ -748,7 +786,7 @@ appt_win *create_appt_win(char *action, char *par, GtkWidget *wAppointment)
 
   appt->appNote_Scrolledwindow = gtk_scrolled_window_new (NULL, NULL);
   gtk_widget_show (appt->appNote_Scrolledwindow);
-  gtk_table_attach (GTK_TABLE (appt->appTable), appt->appNote_Scrolledwindow, 1, 2, 11, 12,
+  gtk_table_attach (GTK_TABLE (appt->appTable), appt->appNote_Scrolledwindow, 1, 2, 12, 13,
                     (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
                     (GtkAttachOptions) (GTK_EXPAND | GTK_FILL), 0, 0);
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (appt->appNote_Scrolledwindow), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
@@ -784,25 +822,25 @@ appt_win *create_appt_win(char *action, char *par, GtkWidget *wAppointment)
 
   gtk_widget_grab_default (appt->appClose);
 
-  g_signal_connect ((gpointer) appt->appAllDay_checkbutton, "clicked",
-		    G_CALLBACK (on_appAllDay_clicked_cb),
-		    appt);
+    g_signal_connect ((gpointer) appt->appAllDay_checkbutton, "clicked",
+            G_CALLBACK (on_appAllDay_clicked_cb),
+            appt);
 
-  g_signal_connect ((gpointer) appt->appSound_button, "clicked",
-		    G_CALLBACK (on_appSound_button_clicked_cb),
-		    appt);
+    g_signal_connect ((gpointer) appt->appSound_button, "clicked",
+            G_CALLBACK (on_appSound_button_clicked_cb),
+            appt);
 
-  g_signal_connect ((gpointer) appt->appClose, "clicked",
-		    G_CALLBACK (on_appClose_clicked_cb),
-		    appt);
+    g_signal_connect ((gpointer) appt->appClose, "clicked",
+            G_CALLBACK (on_appClose_clicked_cb),
+            appt);
 
-  g_signal_connect ((gpointer) appt->appRemove, "clicked",
-		    G_CALLBACK (on_appRemove_clicked_cb),
-		    appt);
+    g_signal_connect ((gpointer) appt->appRemove, "clicked",
+            G_CALLBACK (on_appRemove_clicked_cb),
+            appt);
 
-  g_signal_connect ((gpointer) appt->appAdd, "clicked",
-		    G_CALLBACK (on_appAdd_clicked_cb),
-		    appt);
+    g_signal_connect ((gpointer) appt->appAdd, "clicked",
+            G_CALLBACK (on_appAdd_clicked_cb),
+            appt);
 
     /* Take care of the title entry to build the appointment window title 
      * Beware: we are not using appt->appTitle_entry as a GtkEntry here 
@@ -811,8 +849,8 @@ appt_win *create_appt_win(char *action, char *par, GtkWidget *wAppointment)
     g_signal_connect_after ((gpointer) appt->appTitle_entry, "changed",
             G_CALLBACK (on_appTitle_entry_changed_cb),
             appt);
-  fill_appt_window(appt, action, par);
 
+  fill_appt_window(appt, action, par);
 
   return appt;
 }

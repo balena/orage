@@ -25,7 +25,7 @@ dnl Initialize autoconf
 AC_COPYRIGHT([Copyright (c) 2003-2005
         The Xfce development team. All rights reserved.
 
-Written for Xfce by Mickael Graf <korbinus@linux.se>.])
+Written for Xfce by Mickael Graf <korbinus@xfce.org>.])
 AC_INIT([xfcalendar], [xfcalendar_version()], [xfce4-dev@xfce.org])
 AC_CANONICAL_SYSTEM()
 AC_PREREQ([2.50])
@@ -201,6 +201,7 @@ icons/Makefile
 icons/48x48/Makefile
 icons/scalable/Makefile
 po/Makefile.in
+sounds/Makefile
 src/Makefile
 plugin/Makefile
 ])

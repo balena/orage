@@ -7,6 +7,7 @@ SUBDIRS = 								\
 	$(LIBICAL_SUBDIR)						\
 	icons								\
 	po								\
+    sounds                          \
 	src								\
 	plugin
 

@@ -36,7 +36,8 @@ typedef struct
     gint alarmtime,
         availability;
 
-    gboolean allDay;
+    gboolean allDay,
+        alarmrepeat;
 
     gchar *note;
     gchar *sound;
@@ -113,6 +114,7 @@ typedef struct
     GtkWidget *appSound_hbox;
     GtkWidget *appSound_entry;
     GtkWidget *appSound_button;
+    GtkWidget *appSoundRepeat_checkbutton;
     GtkWidget *appHBox1;
     GtkWidget *appRemove;
     GtkWidget *appAdd;

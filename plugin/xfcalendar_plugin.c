@@ -54,39 +54,41 @@ static gboolean showsystray = TRUE;
 static gboolean showstart = TRUE;
 static gboolean hidestart = FALSE;
 static gboolean ministart = FALSE;
+static gboolean repeatSoundYes = FALSE;
+static gboolean repeatSoundNo = TRUE;
 
 typedef struct _Itf Itf;
 struct _Itf
 {
-  McsPlugin *mcs_plugin;
+    McsPlugin *mcs_plugin;
 
-  GtkWidget *xfcalendar_dialog;
-  GtkWidget *dialog_header;
-  GtkWidget *dialog_vbox1;
-  GtkWidget *hbox1;
-  GtkWidget *vbox1;
-  /* Mode normal or compact */
-  GSList    *mode_radiobutton_group;
-  GtkWidget *hboxMode;
-  GtkWidget *frameMode;
-  GtkWidget *CompactMode_radiobutton;
-  GtkWidget *NormalMode_radiobutton;
-  /* Show in... taskbar pager systray */
-  GtkWidget *show_taskbar_checkbutton;
-  GtkWidget *show_pager_checkbutton;
-  GtkWidget *show_systray_checkbutton;
-  GtkWidget *hboxShow;
-  GtkWidget *frameShow;
-  /* Start visibity show or hide */
-  GSList    *start_radiobutton_group;
-  GtkWidget *hboxStart;
-  GtkWidget *frameStart;
-  GtkWidget *ShowStart_radiobutton;
-  GtkWidget *HideStart_radiobutton;
-  GtkWidget *MiniStart_radiobutton;
-  /* */
-  GtkWidget *closebutton;
-  GtkWidget *dialog_action_area1;
+    GtkWidget *xfcalendar_dialog;
+    GtkWidget *dialog_header;
+    GtkWidget *dialog_vbox1;
+    GtkWidget *hbox1;
+    GtkWidget *vbox1;
+    /* Mode normal or compact */
+    GSList    *mode_radiobutton_group;
+    GtkWidget *hboxMode;
+    GtkWidget *frameMode;
+    GtkWidget *CompactMode_radiobutton;
+    GtkWidget *NormalMode_radiobutton;
+    /* Show in... taskbar pager systray */
+    GtkWidget *show_taskbar_checkbutton;
+    GtkWidget *show_pager_checkbutton;
+    GtkWidget *show_systray_checkbutton;
+    GtkWidget *hboxShow;
+    GtkWidget *frameShow;
+    /* Start visibity show or hide */
+    GSList    *start_radiobutton_group;
+    GtkWidget *hboxStart;
+    GtkWidget *frameStart;
+    GtkWidget *ShowStart_radiobutton;
+    GtkWidget *HideStart_radiobutton;
+    GtkWidget *MiniStart_radiobutton;
+    /* */
+    GtkWidget *closebutton;
+    GtkWidget *dialog_action_area1;
 };
 
 static void cb_dialog_response(GtkWidget * dialog, gint response_id)
@@ -277,7 +279,7 @@ Itf *create_xfcalendar_dialog(McsPlugin * mcs_plugin)
     gtk_radio_button_set_group(GTK_RADIO_BUTTON(dialog->MiniStart_radiobutton), dialog->start_radiobutton_group);
     dialog->start_radiobutton_group = gtk_radio_button_get_group(GTK_RADIO_BUTTON(dialog->MiniStart_radiobutton));
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(dialog->MiniStart_radiobutton), ministart);
-    
+
     /* */
     dialog->closebutton = gtk_button_new_from_stock ("gtk-close");
     gtk_widget_show (dialog->closebutton);

@@ -63,12 +63,20 @@ on_btOkReminder_clicked(GtkButton *button, gpointer user_data)
 }
 
 void
+on_btOpenReminder_clicked(GtkButton *button, gpointer user_data)
+{
+  GtkWidget *wReminder = (GtkWidget *)user_data;
+  gtk_widget_destroy(wReminder); /* destroy the specific appointment window */
+}
+
+void
 create_wReminder(char *title, char *text)
 {
   GtkWidget *wReminder;
   GtkWidget *vbReminder;
   GtkWidget *lbReminder;
   GtkWidget *daaReminder;
+  GtkWidget *btOpenReminder;
   GtkWidget *btOkReminder;
   GtkWidget *swReminder;
   GtkWidget *hdReminder;
@@ -106,10 +114,20 @@ create_wReminder(char *title, char *text)
   gtk_widget_show (daaReminder);
   gtk_button_box_set_layout (GTK_BUTTON_BOX (daaReminder), GTK_BUTTONBOX_END);
 
+/*
+  btOpenReminder = gtk_button_new_from_stock ("gtk-open");
+  gtk_widget_show (btOpenReminder);
+  gtk_dialog_add_action_widget (GTK_DIALOG (wReminder), btOpenReminder, GTK_RESPONSE_OK);
+*/
+
   btOkReminder = gtk_button_new_from_stock ("gtk-close");
   gtk_widget_show (btOkReminder);
   gtk_dialog_add_action_widget (GTK_DIALOG (wReminder), btOkReminder, GTK_RESPONSE_OK);
   GTK_WIDGET_SET_FLAGS (btOkReminder, GTK_CAN_DEFAULT);
+
+  g_signal_connect((gpointer) btOpenReminder, "clicked",
+            G_CALLBACK (on_btOpenReminder_clicked),
+            wReminder);
 
   g_signal_connect ((gpointer) btOkReminder, "clicked",
 		    G_CALLBACK (on_btOkReminder_clicked),
