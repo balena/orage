@@ -1,0 +1,11 @@
+prefix=/usr/local/xfce4
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: libical
+Description: ical calendar interface
+Requires:
+Version: 0.24
+Libs:  -lical -licalss -lpthread
+Cflags: -I${includedir}
