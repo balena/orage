@@ -92,7 +92,7 @@ void init_settings(GtkWidget *w)
   xfce_textdomain(GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8");
 
   /* default */
-  calsets.showCal = TRUE;
+  calsets.showCal = FALSE;
   calsets.showTaskbar = TRUE;
   calsets.showPager = TRUE;
   calsets.startMonday = FALSE;
@@ -105,12 +105,14 @@ void init_settings(GtkWidget *w)
     /* *very* limited set of options */
     fgets(buf, LEN_BUFFER, fp); /* [Session Visibility] */
     fgets(buf, LEN_BUFFER, fp);
-    if(strstr(buf, "hide")) 
-      calsets.showCal = FALSE; 
+    if(strstr(buf, "show")) 
+      {
+	  calsets.showCal = TRUE;
+	  gtk_widget_show(w);
+      }
     else
       {
-	calsets.showCal = TRUE; /* default */
-	gtk_widget_show(w);
+          calsets.showCal = FALSE;  /* default */
       }
   }
 }
@@ -835,7 +837,7 @@ toggle_visible_cb(GtkWidget *window)
       else
         gtk_widget_show((GtkWidget *)lookup_widget(window, "menubar1"));
       gtk_widget_show(window);
-      gtk_window_stick(GTK_WINDOW(window));
+      /* gtk_window_stick(GTK_WINDOW(window)); */
       /* Commented until the bug is fixed :(
       gtk_window_set_skip_taskbar_hint(GTK_WINDOW(window), !calsets.showTaskbar);
       gtk_window_set_skip_pager_hint(GTK_WINDOW(window), !calsets.showPager);
