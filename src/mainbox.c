@@ -301,7 +301,7 @@ xfcalendar_alarm_clock(gpointer user_data)
             sprintf(a_day, XF_APP_DATE_FORMAT
                     , t->tm_year+1900, t->tm_mon+1, t->tm_mday);
             if (app = getnext_ical_app_on_day(a_day, a_time)){ /* data found */
-                if (strlen(app->note)) pretty_window(app->note);
+                if (app->note != NULL && app->note[0] != '\0') pretty_window(app->note);
             }
             close_ical_file();
         }
