@@ -47,10 +47,8 @@
 #include "appointment.h"
 #include "interface.h"
 #include "callbacks.h"
+#include "ical-code.h"
 
-extern gboolean open_ical_file(void);
-extern void close_ical_file(void);
-extern int getnextday_ical_app(int year, int month, int day);
 
 #define LEN_BUFFER 1024
 #define CHANNEL  "xfcalendar"

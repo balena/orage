@@ -46,8 +46,6 @@
 #include <libxfce4mcs/mcs-client.h>
 #include <gdk/gdk.h>
 #include <gtk/gtk.h>
-#include <ical.h>
-#include <icalss.h>
 
 #include "callbacks.h"
 #include "interface.h"
@@ -56,6 +54,7 @@
 #include "about-xfcalendar.h"
 #include "mainbox.h"
 #include "appointment.h"
+#include "ical-code.h"
 
 
 #define MAX_APP_LENGTH 4096
@@ -73,8 +72,6 @@ static GtkWidget *clearwarn;
 
 extern CalWin *xfcal;
 
-static icalcomponent *ical;
-static icalset* fical;
 
 /* Direction for changing day to look at */
 enum{
@@ -118,148 +115,6 @@ int keep_tidy(void){
 	return TRUE;	
 }
 
-gboolean open_ical_file(void)
-{
-	gchar *ficalpath; 
-    icalcomponent *iter;
-    gint cnt=0;
-
-	ficalpath = xfce_resource_save_location(XFCE_RESOURCE_CONFIG,
-                        RCDIR G_DIR_SEPARATOR_S APPOINTMENT_FILE, FALSE);
-    if ((fical = icalset_new_file(ficalpath)) == NULL){
-        if(icalerrno != ICAL_NO_ERROR){
-            g_warning("open_ical_file, ical-Error: %s\n",icalerror_strerror(icalerrno));
-        g_error("open_ical_file, Error: Could not open ical file \"%s\" \n", ficalpath);
-        }
-    }
-    else{
-        /* let's find last VCALENDAR entry */
-        for (iter = icalset_get_first_component(fical); iter != 0;
-             iter = icalset_get_next_component(fical)){
-            cnt++;
-            ical = iter; /* last valid component */
-        }
-        if (cnt == 0){
-        /* calendar missing, need to add one. 
-           Note: According to standard rfc2445 calendar always needs to
-                 contain at least one other component. So strictly speaking
-                 this is not valid entry before adding an event */
-            ical = icalcomponent_vanew(ICAL_VCALENDAR_COMPONENT
-                   ,icalproperty_new_version("1.0")
-                   ,icalproperty_new_prodid("-//Xfce//Xfcalendar//EN")
-                   ,0);
-            icalset_add_component(fical, icalcomponent_new_clone(ical));
-            icalset_commit(fical);
-        }
-        else if (cnt > 1){
-            g_warning("open_ical_file, Too many top level components in calendar file\n");
-        }
-    }
-	g_free(ficalpath);
-    return(TRUE);
-}
-
-void close_ical_file(void)
-{
-    icalset_free(fical);
-}
-
-static void add_ical_app(char *text, char *a_day)
-{
-    icalcomponent *ievent;
-    struct icaltimetype atime = icaltime_from_timet(time(0), 0);
-    struct icaltimetype adate;
-    gchar xf_uid[1000];
-    gchar xf_host[501];
-
-    adate = icaltime_from_string(a_day);
-    gethostname(xf_host, 500);
-    sprintf(xf_uid, "Xfcalendar-%s-%lu@%s", icaltime_as_ical_string(atime), 
-                (long) getuid(), xf_host);
-    ievent = icalcomponent_vanew(ICAL_VEVENT_COMPONENT
-           ,icalproperty_new_uid(xf_uid)
-           ,icalproperty_new_categories("XFCALNOTE")
-           ,icalproperty_new_class(ICAL_CLASS_PUBLIC)
-           ,icalproperty_new_dtstamp(atime)
-           ,icalproperty_new_created(atime)
-           ,icalproperty_new_description(text)
-           ,icalproperty_new_dtstart(adate)
-           ,0);
-    icalcomponent_add_component(ical, ievent);
-}
-
-gboolean get_ical_app(char **desc, char **sum, char *a_day, char *hh_mm)
-{
-    struct icaltimetype t, adate, edate;
-    static icalcomponent *c;
-    gboolean date_found=FALSE;
-
-    adate = icaltime_from_string(a_day);
-    if (strlen(hh_mm) == 0){ /* start */
-        c = icalcomponent_get_first_component(ical, ICAL_VEVENT_COMPONENT); 
-    }
-    for ( ; 
-         (c != 0) && (!date_found);
-         c = icalcomponent_get_next_component(ical, ICAL_VEVENT_COMPONENT)){
-        t = icalcomponent_get_dtstart(c);
-        if (icaltime_compare_date_only(t, adate) == 0){
-            date_found = TRUE;
-            *desc = (char *)icalcomponent_get_description(c);
-            *sum = (char *)icalcomponent_get_summary(c);
-            edate = icalcomponent_get_dtend(c);
-            if (icaltime_is_date(t))
-                strcpy(hh_mm, "xx:xx-xx:xx");
-            else {
-                if (icaltime_is_null_time(edate)) {
-                    edate.hour = t.hour;
-                    edate.minute = t.minute;
-                }
-                sprintf(hh_mm, "%02d:%02d-%02d:%02d", t.hour, t.minute
-                        , edate.hour, edate.minute);
-            }
-        }
-    } 
-    return(date_found);
-}
-
-int getnextday_ical_app(int year, int month, int day)
-{
-    struct icaltimetype t;
-    static icalcomponent *c;
-    int next_day = 0;
-
-    if (day == -1){ /* start */
-        c = icalcomponent_get_first_component(ical, ICAL_VEVENT_COMPONENT); 
-    }
-    for ( ;
-        (c != 0) && (next_day == 0);
-         c = icalcomponent_get_next_component(ical, ICAL_VEVENT_COMPONENT)){
-        t = icalcomponent_get_dtstart(c);
-        if ((t.year == year) && (t.month == month)){
-            next_day = t.day;
-        }
-    } 
-    return(next_day);
-}
-
-static void rm_ical_app(char *a_day)
-{
-    struct icaltimetype t, adate;
-    icalcomponent *c, *c2;
-
-/* Note: remove moves the "c" pointer to next item, so we need to store it 
-         first to process all of them or we end up skipping entries */
-    adate = icaltime_from_string(a_day);
-    for (c = icalcomponent_get_first_component(ical, ICAL_VEVENT_COMPONENT); 
-         c != 0;
-         c = c2){
-        c2 = icalcomponent_get_next_component(ical, ICAL_VEVENT_COMPONENT);
-        t = icalcomponent_get_dtstart(c);
-        if (icaltime_compare_date_only(t, adate) == 0){
-            icalcomponent_remove_component(ical, c);
-        }
-    } 
-}
 
 void editAppointment(GtkWidget *widget, GdkEventButton *event
             , GtkWidget *control)
@@ -687,7 +542,6 @@ on_okbutton2_clicked(GtkButton *button, gpointer user_data)
         a_day[6]=key[8]; a_day[7]=key[9];           /* dd */
         a_day[8]=key[10];                           /* \0 */
         rm_ical_app(a_day);
-        icalset_mark(fical);
         close_ical_file();
 
         /*
