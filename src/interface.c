@@ -549,7 +549,6 @@ create_TrayIcon (GtkWidget *window)
   XfceTrayIcon *trayIcon = NULL;
   //GtkWidget *trayIcon = NULL;
   GtkWidget *menuItem;
-  GtkWidget *hidden;
   GtkWidget *trayMenu;
   GdkPixbuf *pixbuf;
 

@@ -108,7 +108,6 @@ client_message_received (GtkWidget * widget, GdkEventClient * event,
     {
 	int x, y, w, h;
 	GtkRequisition req;
-	int len;
 	char message[21];
 	char direction[21];
 	long xid;
@@ -130,7 +129,7 @@ client_message_received (GtkWidget * widget, GdkEventClient * event,
 	strncpy (message, event->data.b, 20);
 	message[20] = '\0';
 
-	if (sscanf (message, "%lx:%s", &xid, &direction) < 0)
+	if (sscanf (message, "%lx:%s", &xid, direction) < 0)
 	    return FALSE;
 
 	if (!(win = gdk_window_lookup (xid)))
@@ -183,10 +182,7 @@ client_message_received (GtkWidget * widget, GdkEventClient * event,
 int
 main(int argc, char *argv[])
 {
-  GtkWidget *menuItem;
   GtkWidget *hidden;
-  GtkWidget *trayMenu;
-  GdkPixbuf *pixbuf;
   Window xwindow;
   GdkAtom atom;
   Display *dpy;
