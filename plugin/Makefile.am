@@ -15,3 +15,6 @@ xfcalendar_plugin_la_CFLAGS = 						\
 	-DPACKAGE_LOCALE_DIR=\"$(localedir)\"				\
 	-DSYSCONFDIR=\"$(sysconfdir)\"					\
 	-DDATADIR=\"$(pkgdatadir)\" 
+
+appsdir = $(datadir)/applications
+apps_DATA = xfce-xfcalendar-settings.desktop
