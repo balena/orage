@@ -78,6 +78,7 @@ enum{
 
 enum {
     COL_TIME = 0
+   ,COL_ALARM
    ,COL_HEAD
    ,COL_UID
    ,NUM_COLS
@@ -120,7 +121,7 @@ create_wAppointment (void)
   gtk_widget_show(toolbar1);
   gtk_container_add(GTK_CONTAINER(handlebox1), toolbar1);
   gtk_toolbar_set_style(GTK_TOOLBAR(toolbar1), GTK_TOOLBAR_ICONS);
-                                                                  
+                                                                                
   tmp_toolbar_icon = gtk_image_new_from_stock("gtk-new", gtk_toolbar_get_icon_size(GTK_TOOLBAR(toolbar1)));
   btCreate = gtk_toolbar_append_element(GTK_TOOLBAR(toolbar1),
                                 GTK_TOOLBAR_CHILD_BUTTON, NULL,
@@ -128,8 +129,8 @@ create_wAppointment (void)
                                 tmp_toolbar_icon, NULL, NULL);
   gtk_label_set_use_underline(GTK_LABEL(((GtkToolbarChild*)(g_list_last(GTK_TOOLBAR(toolbar1)->children)->data))->label), TRUE);
   gtk_widget_show(btCreate);
-  gtk_widget_add_accelerator(btCreate, "clicked", accel_group, GDK_a, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
-                                                                                              
+  gtk_widget_add_accelerator(btCreate, "clicked", accel_group, GDK_l, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
+                                                                                
   tmp_toolbar_icon = gtk_image_new_from_stock("gtk-go-back", gtk_toolbar_get_icon_size(GTK_TOOLBAR(toolbar1)));
   btPrevious = gtk_toolbar_append_element(GTK_TOOLBAR(toolbar1),
                                 GTK_TOOLBAR_CHILD_BUTTON, NULL,
@@ -198,16 +199,9 @@ create_wAppointment (void)
   g_signal_connect((gpointer) btCreate, "clicked",
                     G_CALLBACK(on_btCreate_clicked), NULL);
                                                                                 
-  /* Store pointers to all widgets, for use by lookup_widget(). */
+  /* Store pointers to widgets, for use by lookup_widget(). */
   GLADE_HOOKUP_OBJECT_NO_REF(wAppointment, wAppointment, "wAppointment");
   GLADE_HOOKUP_OBJECT(wAppointment, vbox2, "vbox2");
-  GLADE_HOOKUP_OBJECT(wAppointment, handlebox1, "handlebox1");
-  GLADE_HOOKUP_OBJECT(wAppointment, toolbar1, "toolbar1");
-  GLADE_HOOKUP_OBJECT(wAppointment, btPrevious, "btPrevious");
-  GLADE_HOOKUP_OBJECT(wAppointment, btToday, "btToday");
-  GLADE_HOOKUP_OBJECT(wAppointment, btNext, "btNext");
-  GLADE_HOOKUP_OBJECT(wAppointment, btClose, "btClose");
-  GLADE_HOOKUP_OBJECT(wAppointment, btDelete, "btDelete");
   GLADE_HOOKUP_OBJECT(wAppointment, scrolledwindow1, "scrolledwindow1");
                                                                                 
   gtk_window_add_accel_group(GTK_WINDOW(wAppointment), accel_group);
@@ -227,8 +221,8 @@ recreate_wAppointment(GtkWidget *appointment)
     scrolledwindow1 = lookup_widget(GTK_WIDGET(wAppointment), "scrolledwindow1");    
     gtk_widget_destroy(scrolledwindow1);
     scrolledwindow1 = gtk_scrolled_window_new(NULL, NULL);
-    gtk_widget_show (scrolledwindow1);
-    gtk_box_pack_start(GTK_BOX (vbox2), scrolledwindow1, TRUE, TRUE, 0);
+    gtk_widget_show(scrolledwindow1);
+    gtk_box_pack_start(GTK_BOX(vbox2), scrolledwindow1, TRUE, TRUE, 0);
     gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW (scrolledwindow1)
             , GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
     GLADE_HOOKUP_OBJECT(wAppointment, scrolledwindow1, "scrolledwindow1");
@@ -292,16 +286,9 @@ create_wClearWarn (GtkWidget *parent)
                     G_CALLBACK (on_cancelbutton1_clicked),
                     NULL);
                                                                                 
-  /* Store pointers to all widgets, for use by lookup_widget(). */
   GLADE_HOOKUP_OBJECT_NO_REF (wClearWarn, wClearWarn, "wClearWarn");
-  GLADE_HOOKUP_OBJECT_NO_REF (wClearWarn, dialog_vbox2, "dialog_vbox2");
-  GLADE_HOOKUP_OBJECT (wClearWarn, hbox1, "hbox1");
-  GLADE_HOOKUP_OBJECT (wClearWarn, image1, "image1");
-  GLADE_HOOKUP_OBJECT (wClearWarn, lbClearWarn, "lbClearWarn");
-  GLADE_HOOKUP_OBJECT_NO_REF (wClearWarn, dialog_action_area2, "dialog_action_area2");
-  GLADE_HOOKUP_OBJECT (wClearWarn, cancelbutton1, "cancelbutton1");
   GLADE_HOOKUP_OBJECT (wClearWarn, okbutton2, "okbutton2");
-                                                                                
+
   return wClearWarn;
 }
 
@@ -312,13 +299,11 @@ void editAppointment(GtkTreeView *view, GtkTreePath *path
     appt_win *app;
     GtkTreeModel *model;
     GtkTreeIter   iter;
-    gchar *time, *uid = NULL;
+    gchar *uid = NULL;
 
     model = gtk_tree_view_get_model(view);
     if (gtk_tree_model_get_iter(model, &iter, path)) {
-        gtk_tree_model_get(model, &iter, COL_TIME, &time, -1);
         gtk_tree_model_get(model, &iter, COL_UID, &uid, -1);
-        g_free(time);
     }
     app = create_appt_win("UPDATE", uid, GTK_WIDGET(wAppointment));
     if (uid) 
@@ -341,31 +326,64 @@ gint sortAppointment_comp(GtkTreeModel *model
     return(ret);
 }
 
-void addAppointment(GtkListStore    *list1
-            ,gchar *xftime, gchar *xftext, gchar *xfsum, gchar *xfuid)
+char *format_time(char *start_ical_time, char *end_ical_time)
+{
+    static char result[18];
+
+    if (start_ical_time[8] == 'T') {
+        result[0] = start_ical_time[9];
+        result[1] = start_ical_time[10];
+        result[2] = ':';
+        result[3] = start_ical_time[11];
+        result[4] = start_ical_time[12];
+        result[5] = '-';
+        result[6] = end_ical_time[9];
+        result[7] = end_ical_time[10];
+        result[8] = ':';
+        result[9] = end_ical_time[11];
+        result[10] = end_ical_time[12];
+        result[11] = '\0';
+    }
+    else
+        strcpy(result, _("today"));
+
+    return(result);
+}
+
+void addAppointment(GtkListStore *list1, appt_type *app)
 {
     GtkTreeIter     iter1;
-    gchar           *text = NULL;
+    gchar           *title = NULL;
+    gchar           alarm[11]; /* nnn min/hour/day */
+    gchar           stime[18]; /* yyyy.mm.dd hh:mm */
     gint            len = 50;
 
-    if (xfsum != NULL)
-        text = g_strdup(xfsum);
-    else if (xftext != NULL) { 
+    strcpy(stime, format_time(app->starttime, app->endtime));
+
+    if (app->alarmtime != 0)
+        sprintf(alarm, _("SET"));
+    else
+        sprintf(alarm, _("not set"));
+
+    if (app->title != NULL)
+        title = g_strdup(app->title);
+    else if (app->note != NULL) { 
     /* let's take len chars of the first line from the text */
-        if ((text = g_strstr_len(xftext, strlen(xftext), "\n")) != NULL) {
-            if ((strlen(xftext)-strlen(text)) < len)
-                len=strlen(xftext)-strlen(text);
+        if ((title = g_strstr_len(app->note, strlen(app->note), "\n")) != NULL){
+            if ((strlen(app->note)-strlen(title)) < len)
+                len=strlen(app->note)-strlen(title);
         }
-        text = g_strndup(xftext, len);
+        title = g_strndup(app->note, len);
     }
 
     gtk_list_store_append(list1, &iter1);
     gtk_list_store_set(list1, &iter1
-                , COL_TIME, xftime
-                , COL_HEAD, text
-                , COL_UID, xfuid
-                ,-1);
-    g_free(text);
+                , COL_TIME,  stime
+                , COL_ALARM, alarm
+                , COL_HEAD,  title
+                , COL_UID,   app->uid
+                , -1);
+    g_free(title);
 }
 
 void addAppointment_init(GtkWidget *view, GtkWidget *wAppointment)
@@ -376,7 +394,7 @@ void addAppointment_init(GtkWidget *view, GtkWidget *wAppointment)
     rend = gtk_cell_renderer_text_new();
     col = gtk_tree_view_column_new_with_attributes( _("Time"), rend
                 , "text", COL_TIME
-                ,NULL);
+                , NULL);
     g_object_set(rend 
             , "weight", PANGO_WEIGHT_BOLD
             , "weight-set", TRUE
@@ -384,15 +402,21 @@ void addAppointment_init(GtkWidget *view, GtkWidget *wAppointment)
     gtk_tree_view_append_column(GTK_TREE_VIEW(view), col);
 
     rend = gtk_cell_renderer_text_new();
+    col = gtk_tree_view_column_new_with_attributes( _("Alarm"), rend
+                , "text", COL_ALARM
+                , NULL);
+    gtk_tree_view_append_column(GTK_TREE_VIEW(view), col);
+
+    rend = gtk_cell_renderer_text_new();
     col = gtk_tree_view_column_new_with_attributes( _("Title"), rend
                 , "text", COL_HEAD
-                ,NULL);
+                , NULL);
     gtk_tree_view_append_column(GTK_TREE_VIEW(view), col);
 
     rend = gtk_cell_renderer_text_new();
     col = gtk_tree_view_column_new_with_attributes( _("uid"), rend
                 , "text", COL_UID
-                ,NULL);
+                , NULL);
     gtk_tree_view_append_column(GTK_TREE_VIEW(view), col);
     gtk_tree_view_column_set_visible(col, FALSE);
 
@@ -405,7 +429,6 @@ void manageAppointment(GtkCalendar *calendar, GtkWidget *wAppointment)
 	guint year, month, day;
 	char            title[12];
 	char            a_day[9];  /* yyyymmdd */
-	char            a_time[12]=""; /* hh:mm-hh:mm */
     GtkWidget       *swin;
     appt_type       *app;
     GtkWidget       *view;
@@ -417,22 +440,22 @@ void manageAppointment(GtkCalendar *calendar, GtkWidget *wAppointment)
 	gtk_window_set_title(GTK_WINDOW(wAppointment), _(title));
 
     if (xfical_file_open()){
-        g_sprintf(a_day, XF_APP_DATE_FORMAT, year, month+1, day);
-        if ((app = getnext_ical_app_on_day(a_day, a_time))) {
+        g_sprintf(a_day, XFICAL_APP_DATE_FORMAT, year, month+1, day);
+        if ((app = xfical_app_get_next_on_day(a_day, TRUE))) {
             list = gtk_list_store_new(NUM_COLS
-                , G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
+                , G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
             view = gtk_tree_view_new();
             addAppointment_init(view, wAppointment);
             do
-                addAppointment(list, a_time, app->note, app->title, app->uid);
-            while ((app = getnext_ical_app_on_day(a_day, a_time)));
+                addAppointment(list, app);
+            while ((app = xfical_app_get_next_on_day(a_day, FALSE)));
             sort = GTK_TREE_SORTABLE(list);
             gtk_tree_sortable_set_sort_func(sort, COL_TIME
                 , sortAppointment_comp, GINT_TO_POINTER(COL_TIME), NULL);
             gtk_tree_sortable_set_sort_column_id(sort
                 , COL_TIME, GTK_SORT_ASCENDING);
             gtk_tree_view_set_model(GTK_TREE_VIEW(view),  GTK_TREE_MODEL(list));
-            g_object_unref(list); /* model is destroyed together with view*/
+            g_object_unref(list); /* model is destroyed together with view */
 	        swin = lookup_widget(GTK_WIDGET(wAppointment), "scrolledwindow1");
             gtk_container_add(GTK_CONTAINER(swin), view);
             gtk_widget_show(view);

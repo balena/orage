@@ -33,7 +33,7 @@ gboolean xfical_app_del(char *ical_id);
 
 struct icaltimetype ical_get_current_local_time();
 
-appt_type * getnext_ical_app_on_day(char *a_day, char *hh_mm);
+appt_type * xfical_app_get_next_on_day(char *a_day, gboolean first);
 
 int getnextday_ical_app(int year, int month, int day);
 

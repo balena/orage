@@ -159,7 +159,7 @@ on_appClose_clicked_cb(GtkButton *button, gpointer user_data)
     StartDay_value = gtk_spin_button_get_value_as_int((GtkSpinButton *)apptw->appStartDay_spinbutton);
   StartHour_value = gtk_spin_button_get_value_as_int((GtkSpinButton *)apptw->appStartHour_spinbutton);
   StartMinutes_value = gtk_spin_button_get_value_as_int((GtkSpinButton *)apptw->appStartMinutes_spinbutton);
-  g_sprintf(appt->starttime, XF_APP_TIME_FORMAT
+  g_sprintf(appt->starttime, XFICAL_APP_TIME_FORMAT
 	    , StartYear_value, StartMonth_value, StartDay_value
         , StartHour_value, StartMinutes_value, 0);
 
@@ -168,7 +168,7 @@ on_appClose_clicked_cb(GtkButton *button, gpointer user_data)
     EndDay_value = gtk_spin_button_get_value_as_int((GtkSpinButton *)apptw->appEndDay_spinbutton);
   EndHour_value = gtk_spin_button_get_value_as_int((GtkSpinButton *)apptw->appEndHour_spinbutton);
   EndMinutes_value = gtk_spin_button_get_value_as_int((GtkSpinButton *)apptw->appEndMinutes_spinbutton);
-  g_sprintf(appt->endtime, XF_APP_TIME_FORMAT
+  g_sprintf(appt->endtime, XFICAL_APP_TIME_FORMAT
 	    , EndYear_value, EndMonth_value, EndDay_value
         , EndHour_value, EndMinutes_value, 0);
 
@@ -262,7 +262,7 @@ void fill_appt_window(appt_win *appt_w, char *action, char *par)
 
     if (strcmp(action, "NEW") == 0) {
         appt_data = xfical_app_alloc();
-    /* par contains XF_APP_DATE_FORMAT (yyyymmdd) date for new appointment */
+  /* par contains XFICAL_APP_DATE_FORMAT (yyyymmdd) date for new appointment */
         tt=time(NULL);
         t=localtime(&tt);
         g_sprintf(appt_data->starttime,"%sT%02d%02d00"
@@ -363,10 +363,10 @@ void fill_appt_window(appt_win *appt_w, char *action, char *par)
                   GTK_SPIN_BUTTON(appt_w->appEndMinutes_spinbutton)
                 , (gdouble) atoi(end_mi));
     }
-	if (appt_data->alarmtime != -1){
-	  gtk_combo_box_set_active(GTK_COMBO_BOX(appt_w->appAlarm_combobox)
-				   , appt_data->alarmtime);
-	}
+    if (appt_data->alarmtime != -1){
+      gtk_combo_box_set_active(GTK_COMBO_BOX(appt_w->appAlarm_combobox)
+                   , appt_data->alarmtime);
+    }
 	if (appt_data->availability != -1){
 	  gtk_combo_box_set_active(GTK_COMBO_BOX(appt_w->appAvailability_cb)
 				   , appt_data->availability);

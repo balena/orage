@@ -18,6 +18,9 @@
  *
  */
 
+#define XFICAL_APP_TIME_FORMAT "%04d%02d%02dT%02d%02d%02d"
+#define XFICAL_APP_DATE_FORMAT "%04d%02d%02d"
+
 
 typedef struct
 {
@@ -43,9 +46,6 @@ typedef struct
         endtime[17];
 
 } appt_type;
-
-#define XF_APP_TIME_FORMAT "%04d%02d%02dT%02d%02d%02d"
-#define XF_APP_DATE_FORMAT "%04d%02d%02d"
 
 typedef struct
 {

@@ -1,7 +1,7 @@
 /* ical-code.c
  *
  * Copyright (C) 2005 Juha Kautto <juha@xfce.org>
- *                    Mickaël Graf <korbinus@xfce.org>
+ *                    Mickaël Graf <korbinus@lunar-linux.org>
  *
  * This program is free software; you can redistribute it and/or modify it 
  * under the terms of the GNU General Public License as published by the
@@ -475,53 +475,34 @@ gboolean xfical_app_del(char *ical_uid)
   *          Do not deallocate it.
   *          It will be overdriven by next invocation of this function.
   */
-appt_type *getnext_ical_app_on_day(char *a_day, char *hh_mm)
+appt_type *xfical_app_get_next_on_day(char *a_day, gboolean first)
 {
     struct icaltimetype adate, sdate, edate;
-    static icalcomponent *c;
+    icalcomponent *c;
+    static icalcompiter ci;
     gboolean date_found=FALSE;
-    char *text;
-    static appt_type app;
+    char *uid;
+    appt_type *app;
 
 /* FIXME: does not find events which start on earlier dates and continues
           to this date */
     adate = icaltime_from_string(a_day);
-    if (strlen(hh_mm) == 0){ /* start */
-        c = icalcomponent_get_first_component(ical, ICAL_VEVENT_COMPONENT); 
-    }
+    if (first)
+        ci = icalcomponent_begin_component(ical, ICAL_VEVENT_COMPONENT);
     for ( ; 
-         (c != 0) && (!date_found);
-         c = icalcomponent_get_next_component(ical, ICAL_VEVENT_COMPONENT)){
+         (icalcompiter_deref(&ci) != 0) && (!date_found);
+          icalcompiter_next(&ci)) {
+        c = icalcompiter_deref(&ci);
         sdate = icalcomponent_get_dtstart(c);
+        edate = icalcomponent_get_dtend(c);
         if (icaltime_compare_date_only(adate, sdate) == 0){
             date_found = TRUE;
-            app.title    = (char *)icalcomponent_get_summary(c);
-            app.note     = (char *)icalcomponent_get_description(c);
-            app.uid      = (char *)icalcomponent_get_uid(c);
-            app.allDay   = FALSE;
-            app.alarmtime = 0;
-            text  = (char *)icaltime_as_ical_string(sdate);
-            strcpy(app.starttime, text);
-            edate = icalcomponent_get_dtend(c);
-            text  = (char *)icaltime_as_ical_string(edate);
-            strcpy(app.endtime, text);
-
-            if (icaltime_is_date(sdate)) {
-                strcpy(hh_mm, "xx:xx-xx:xx");
-                app.allDay = TRUE;
-            }
-            else {
-                if (icaltime_is_null_time(edate)) {
-                    edate.hour = sdate.hour;
-                    edate.minute = sdate.minute;
-                }
-                sprintf(hh_mm, "%02d:%02d-%02d:%02d", sdate.hour, sdate.minute
-                        , edate.hour, edate.minute);
-            }
+            uid        = (char *)icalcomponent_get_uid(c);
+            app        = xfical_app_get(uid);
         }
     } 
     if (date_found)
-        return(&app);
+        return(app);
     else
         return(0);
 }
