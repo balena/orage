@@ -67,12 +67,7 @@ extern McsClient        *client;
 /* tray icon */
 XfceTrayIcon 		*trayIcon = NULL;
 
-#define SUNDAY TRUE
-#define MONDAY FALSE
-
 gboolean normalmode = TRUE;
-
-static gboolean startday = SUNDAY;
 
 void
 createRCDir(void)
@@ -210,26 +205,6 @@ notify_cb(const char *name, const char *channel_name, McsAction action, McsSetti
         case MCS_ACTION_CHANGED:
             if(setting->type == MCS_TYPE_INT)
             {
-                if (!strcmp(name, "XFCalendar/StartDay"))
-                {
-		  startday = setting->data.v_int ? SUNDAY: MONDAY;
-		  //I'll look later if I can clean that...
-		  if(startday == SUNDAY) 
-		    {
-		      xfcal->start_Monday = FALSE;
-#ifdef debug
-		      g_message("Monday false");
-#endif
-		    }
-		  else
-		    {
-		      xfcal->start_Monday = TRUE;
-#ifdef debug
-		      g_message("Monday true");
-#endif
-		    }
-		  apply_settings();
-                }
 		if(!strcmp(name, "XFCalendar/NormalMode"))
 		{
 		  normalmode = setting->data.v_int ? TRUE: FALSE;

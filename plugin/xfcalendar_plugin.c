@@ -40,15 +40,11 @@
 #define RCFILE   "xfcalendar.xml"
 #define PLUGIN_NAME "xfcalendar"
 
-#define SUNDAY TRUE
-#define MONDAY FALSE
-
 static void create_channel(McsPlugin * mcs_plugin);
 static gboolean write_options(McsPlugin * mcs_plugin);
 static void run_dialog(McsPlugin * mcs_plugin);
 
 static gboolean is_running = FALSE;
-static gboolean startday = SUNDAY;
 static gboolean normalmode = TRUE;
 /*
 static gboolean showtaskbar = TRUE;
@@ -63,9 +59,7 @@ struct _Itf
   GSList *startday_radiobutton_group;
 
   GtkWidget *xfcalendar_dialog;
-  GtkWidget *start_monday_radiobutton;
-  GtkWidget *start_sunday_radiobutton;
-/*
+  /*
   GtkWidget *show_taskbar_checkbutton;
   GtkWidget *show_pager_checkbutton;
   GtkWidget *hbox3;
@@ -99,18 +93,6 @@ static void cb_dialog_response(GtkWidget * dialog, gint response_id)
         is_running = FALSE;
         gtk_widget_destroy(dialog);
     }
-}
-
-static void cb_startday_changed(GtkWidget * dialog, gpointer user_data)
-{
-    Itf *itf = (Itf *) user_data;
-    McsPlugin *mcs_plugin = itf->mcs_plugin;
-
-    startday = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(itf->start_sunday_radiobutton));
-
-    mcs_manager_set_int(mcs_plugin->manager, "XFCalendar/StartDay", CHANNEL, startday ? 1 : 0);
-    mcs_manager_notify(mcs_plugin->manager, CHANNEL);
-    write_options(mcs_plugin);
 }
 
 static void cb_mode_changed(GtkWidget * dialog, gpointer user_data)
@@ -187,29 +169,6 @@ Itf *create_xfcalendar_dialog(McsPlugin * mcs_plugin)
     gtk_widget_show (dialog->vbox1);
     gtk_box_pack_start (GTK_BOX (dialog->hbox1), dialog->vbox1, TRUE, TRUE, 0);
 
-    /* */    
-    dialog->frame1 = xfce_framebox_new (_("Week starts with..."), TRUE);
-    gtk_widget_show (dialog->frame1);
-    gtk_box_pack_start (GTK_BOX (dialog->vbox1), dialog->frame1, TRUE, TRUE, 0);
-    
-    dialog->hbox2 = gtk_hbox_new (TRUE, 0);
-    gtk_widget_show (dialog->hbox2);
-    xfce_framebox_add (XFCE_FRAMEBOX (dialog->frame1), dialog->hbox2);
-    
-    dialog->start_sunday_radiobutton = gtk_radio_button_new_with_mnemonic (NULL, _("Sunday"));
-    gtk_widget_show (dialog->start_sunday_radiobutton);
-    gtk_box_pack_start (GTK_BOX (dialog->hbox2), dialog->start_sunday_radiobutton, FALSE, FALSE, 0);
-    gtk_radio_button_set_group (GTK_RADIO_BUTTON (dialog->start_sunday_radiobutton), dialog->startday_radiobutton_group);
-    dialog->startday_radiobutton_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (dialog->start_sunday_radiobutton));
-    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (dialog->start_sunday_radiobutton), startday);
-
-    dialog->start_monday_radiobutton = gtk_radio_button_new_with_mnemonic (NULL, _("Monday"));
-    gtk_widget_show (dialog->start_monday_radiobutton);
-    gtk_box_pack_start (GTK_BOX (dialog->hbox2), dialog->start_monday_radiobutton, FALSE, FALSE, 0);
-    gtk_radio_button_set_group (GTK_RADIO_BUTTON (dialog->start_monday_radiobutton), dialog->startday_radiobutton_group);
-    dialog->startday_radiobutton_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (dialog->start_monday_radiobutton));
-    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (dialog->start_monday_radiobutton), !startday);
-    
     /* */
     dialog->frameMode = xfce_framebox_new (_("Mode"), TRUE);
     gtk_widget_show (dialog->frameMode);
@@ -266,7 +225,6 @@ static void setup_dialog(Itf * itf)
 {
   g_signal_connect(G_OBJECT(itf->xfcalendar_dialog), "response", G_CALLBACK(cb_dialog_response), itf->mcs_plugin);
 
-  g_signal_connect(G_OBJECT(itf->start_sunday_radiobutton), "toggled", G_CALLBACK(cb_startday_changed), itf);
   g_signal_connect(G_OBJECT(itf->NormalMode_radiobutton), "toggled", G_CALLBACK(cb_mode_changed), itf);
 /*
   g_signal_connect(G_OBJECT(itf->show_taskbar_checkbutton), "toggled", G_CALLBACK(cb_taskbar_changed), itf);
@@ -312,16 +270,6 @@ static void create_channel(McsPlugin * mcs_plugin)
     mcs_manager_add_channel_from_file(mcs_plugin->manager, CHANNEL, rcfile);
     g_free(rcfile);
 
-    setting = mcs_manager_setting_lookup(mcs_plugin->manager, "XFCalendar/StartDay", CHANNEL);
-    if(setting)
-    {
-        startday = setting->data.v_int ? SUNDAY: MONDAY;
-    }
-    else
-    {
-        startday = SUNDAY;
-        mcs_manager_set_int(mcs_plugin->manager, "XFCalendar/StartDay", CHANNEL, startday ? 0 : 1);
-    }
     setting = mcs_manager_setting_lookup(mcs_plugin->manager, "XFCalendar/NormalMode", CHANNEL);
     if(setting)
     {
@@ -330,7 +278,7 @@ static void create_channel(McsPlugin * mcs_plugin)
     else
     {
         normalmode = TRUE;
-        mcs_manager_set_int(mcs_plugin->manager, "XFCalendar/NormalMode", CHANNEL, startday ? 1 : 0);
+        mcs_manager_set_int(mcs_plugin->manager, "XFCalendar/NormalMode", CHANNEL, normalmode ? 1 : 0);
     }
     /*
     setting = mcs_manager_setting_lookup(mcs_plugin->manager, "XFCalendar/TaskBar", CHANNEL);
