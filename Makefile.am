@@ -1,6 +1,7 @@
 SUBDIRS = 								\
 	po								\
-	src
+	src								\
+	plugin
 
 distclean-local:
 	rm -rf *.cache *~ *.spec

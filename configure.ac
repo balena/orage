@@ -31,8 +31,12 @@ dnl Check for i18n support
 BM_I18N([xfcalendar], [ca de fr nl ru tr zh_CN])
 
 dnl Check for required packages
-BM_DEPEND([LIBXFCEGUI4], [libxfcegui4-1.0], [3.91.0])
+BM_DEPEND([LIBXFCE4MCS_CLIENT], [libxfce4mcs-client-1.0], [3.99.3])
+BM_DEPEND([LIBXFCEGUI4], [libxfcegui4-1.0], [3.99.3])
 BM_DEPEND([DBH], [dbh-1.0], [1.0])
+
+dnl configure the mcs plugin
+XFCE_MCS_PLUGIN([XFCE_MCS_MANAGER], [3.99.3])
 
 dnl Check for debugging support
 BM_DEBUG_SUPPORT
@@ -41,4 +45,5 @@ AC_OUTPUT([
 Makefile
 po/Makefile.in
 src/Makefile
+plugin/Makefile
 ])
