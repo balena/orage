@@ -104,13 +104,13 @@ on_appClose_clicked_cb(GtkButton *button, gpointer user_data)
         , EndHour_value, EndMinutes_value, 0);
   g_warning("End: %s\n", appt->endtime);
 
-  appt->alarm = (gint *) gtk_spin_button_get_value_as_int((GtkSpinButton *)apptw->appAlarm_spinbutton);
+  appt->alarm = gtk_spin_button_get_value_as_int((GtkSpinButton *)apptw->appAlarm_spinbutton);
   g_warning("Alarm: %d\n", appt->alarm);
 
-  appt->alarmTimeType = (gint *) gtk_combo_box_get_active((GtkComboBox *)apptw->appAlarmTimeType_combobox);
+  appt->alarmTimeType = gtk_combo_box_get_active((GtkComboBox *)apptw->appAlarmTimeType_combobox);
   g_warning("Time Type: %d\n", appt->alarmTimeType);
 
-  appt->availability = (gint *) gtk_combo_box_get_active((GtkComboBox *)apptw->appAvailability_cb);
+  appt->availability = gtk_combo_box_get_active((GtkComboBox *)apptw->appAvailability_cb);
   g_warning("Availability: %d\n", appt->availability);
 
   gtk_text_buffer_get_bounds(gtk_text_view_get_buffer((GtkTextView *)apptw->appNote_textview), 

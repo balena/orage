@@ -90,7 +90,7 @@ gboolean open_ical_file(void)
                  contain at least one other component. So strictly speaking
                  this is not valid entry before adding an event */
             ical = icalcomponent_vanew(ICAL_VCALENDAR_COMPONENT
-                   ,icalproperty_new_version("1.0")
+                   ,icalproperty_new_version("2.0")
                    ,icalproperty_new_prodid("-//Xfce//Xfcalendar//EN")
                    ,0);
             icalset_add_component(fical, icalcomponent_new_clone(ical));
@@ -132,28 +132,52 @@ appt_type *xf_alloc_ical_app()
 char *xf_add_ical_app(appt_type *app)
 {
     icalcomponent *ievent;
-    struct icaltimetype ctime = icaltime_from_timet(time(0), 0);
-    struct icaltimetype sdate, edate;
+    struct icaltimetype ctime;
     static gchar xf_uid[1000];
     gchar xf_host[501];
+    icalproperty_transp xf_transp;
 
-    sdate = icaltime_from_string(app->starttime);
-    edate = icaltime_from_string(app->endtime);
+    ctime = icaltime_current_time_with_zone(NULL);
     gethostname(xf_host, 500);
     sprintf(xf_uid, "Xfcalendar-%s-%lu@%s", icaltime_as_ical_string(ctime), 
                 (long) getuid(), xf_host);
+
     ievent = icalcomponent_vanew(ICAL_VEVENT_COMPONENT
            ,icalproperty_new_uid(xf_uid)
            ,icalproperty_new_categories("XFCALNOTE")
            ,icalproperty_new_class(ICAL_CLASS_PUBLIC)
            ,icalproperty_new_dtstamp(ctime)
            ,icalproperty_new_created(ctime)
-           ,icalproperty_new_summary(app->title)
-           ,icalproperty_new_description(app->note)
-           ,icalproperty_new_location(app->location)
-           ,icalproperty_new_dtstart(sdate)
-           ,icalproperty_new_dtend(edate)
            ,0);
+
+    if (app->title != NULL)
+        if (strlen(app->title) > 0)
+            icalcomponent_add_property(ievent
+                , icalproperty_new_summary(app->title));
+    if (app->note != NULL)
+        if (strlen(app->note) > 0)
+            icalcomponent_add_property(ievent
+                , icalproperty_new_description(app->note));
+    if (app->location != NULL)
+        if (strlen(app->location) > 0)
+            icalcomponent_add_property(ievent
+                , icalproperty_new_location(app->location));
+    if (strlen(app->starttime) > 0)
+        icalcomponent_add_property(ievent
+           , icalproperty_new_dtstart(icaltime_from_string(app->starttime)));
+    if (strlen(app->endtime) > 0)
+        icalcomponent_add_property(ievent
+           , icalproperty_new_dtend(icaltime_from_string(app->endtime)));
+    if ((app->availability == 0) || (app->availability == 1)) {
+        if (app->availability == 0)
+            xf_transp = ICAL_TRANSP_TRANSPARENT;
+        else if (app->availability == 1)
+            xf_transp = ICAL_TRANSP_OPAQUE;
+        else
+            xf_transp = ICAL_TRANSP_NONE;
+        icalcomponent_add_property(ievent
+           , icalproperty_new_transp(xf_transp));
+    }
     icalcomponent_add_component(ical, ievent);
     icalset_mark(fical);
     return(xf_uid);
@@ -169,29 +193,63 @@ char *xf_add_ical_app(appt_type *app)
   */
 appt_type *xf_get_ical_app(char *ical_uid)
 {
-    struct icaltimetype itime;
     icalcomponent *c = NULL;
+    icalproperty *p = NULL;
     gboolean key_found=FALSE;
     const char *text;
     static appt_type app;
+    struct icaltimetype itime;
+    icalproperty_transp xf_transp;
 
-    c = icalcomponent_get_first_component(ical, ICAL_VEVENT_COMPONENT); 
     for (c = icalcomponent_get_first_component(ical, ICAL_VEVENT_COMPONENT); 
          (c != 0) && (!key_found);
          c = icalcomponent_get_next_component(ical, ICAL_VEVENT_COMPONENT)) {
         text = icalcomponent_get_uid(c);
         if (strcmp(text, ical_uid) == 0) {
             key_found = TRUE;
-            app.title    = (char *)icalcomponent_get_summary(c);
-            app.location = (char *)icalcomponent_get_location(c);
-            app.note     = (char *)icalcomponent_get_description(c);
-            app.uid      = (char *)icalcomponent_get_uid(c);
-            itime = icalcomponent_get_dtstart(c);
-            text  = icaltime_as_ical_string(itime);
-            strcpy(app.starttime, text);
-            itime = icalcomponent_get_dtend(c);
-            text  = icaltime_as_ical_string(itime);
-            strcpy(app.endtime, text);
+            app.title = NULL;
+            app.location = NULL;
+            app.note = NULL;
+            app.uid = NULL;
+            app.alarm = -1;
+            app.alarmTimeType = -1;
+            app.availability = -1;
+            strcpy(app.starttime, "20050101T000000");
+            strcpy(app.endtime, "20051231T235959");
+            for (p = icalcomponent_get_first_property(c, ICAL_ANY_PROPERTY);
+                 p != 0;
+                 p = icalcomponent_get_next_property(c, ICAL_ANY_PROPERTY)) {
+                text = icalproperty_get_property_name(p);
+                /* these are in icalderivedproperty.h */
+                if (strcmp(text, "SUMMARY") == 0)
+                    app.title = (char *) icalproperty_get_summary(p);
+                else if (strcmp(text, "LOCATION") == 0)
+                    app.location = (char *) icalproperty_get_location(p);
+                else if (strcmp(text, "DESCRIPTION") == 0)
+                    app.note = (char *) icalproperty_get_description(p);
+                else if (strcmp(text, "UID") == 0)
+                    app.uid = (char *) icalproperty_get_uid(p);
+                else if (strcmp(text, "TRANSP") == 0) {
+                    xf_transp = icalproperty_get_transp(p);
+                    if (xf_transp == ICAL_TRANSP_TRANSPARENT)
+                        app.availability = 0;
+                    if (xf_transp == ICAL_TRANSP_OPAQUE)
+                        app.availability = 1;
+                    else 
+                        app.availability = -1;
+                }
+                else if (strcmp(text, "DTSTART") == 0) {
+                    itime = icalproperty_get_dtstart(p);
+                    text  = icaltime_as_ical_string(itime);
+                    strcpy(app.starttime, text);
+                    strcpy(app.endtime, text);
+                }
+                else if (strcmp(text, "DTEND") == 0) {
+                    itime = icalproperty_get_dtend(p);
+                    text  = icaltime_as_ical_string(itime);
+                    strcpy(app.endtime, text);
+                }
+            }
         }
     } 
     if (key_found)

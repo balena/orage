@@ -18,16 +18,15 @@
  *
  */
 
-//typedef struct _appointment appointment;
 
 typedef struct
 {
   gchar *title,
     *location;
 
-  gint *alarm,
-    *alarmTimeType,
-    *availability;
+  gint alarm,
+    alarmTimeType,
+    availability;
 
   gchar *note;
   gchar *uid;

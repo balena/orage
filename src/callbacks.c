@@ -79,6 +79,13 @@ enum{
     NEXT
     };
 
+enum {
+    COL_TIME = 0
+   ,COL_HEAD
+   ,COL_UID
+   ,NUM_COLS
+};
+
 void apply_settings()
 {
   gchar *fpath;
@@ -114,13 +121,6 @@ int keep_tidy(void){
        calendar file smaller and faster */
 	return TRUE;	
 }
-
-enum {
-    COL_TIME = 0
-   ,COL_HEAD
-   ,COL_UID
-   ,NUM_COLS
-};
 
 void editAppointment(GtkTreeView *view, GtkTreePath *path
                    , GtkTreeViewColumn *col, gpointer data)
@@ -389,21 +389,28 @@ on_btDelete_clicked(GtkButton *button, gpointer user_data)
 	gtk_widget_show(clearwarn);
 }
 
+void title_to_ical(char *title, char *ical)
+{ /* yyyy-mm-dd\0 -> yyyymmdd\0 */
+    gint i, j;
+
+    for (i = 0, j = 0; i <= 8; i++) {
+        if ((i == 4) || (i == 6))
+            j++;
+        ical[i] = title[j++];
+    }
+}
+
 void
 on_btCreate_clicked(GtkButton *button, gpointer user_data)
 {
     appt_win *app;
 	GtkWidget *appointment; 
-    char *key;
+    char *title;
     char a_day[10];
 	
 	appointment = lookup_widget(GTK_WIDGET(button),"wAppointment");
-    key = (char*)gtk_window_get_title(GTK_WINDOW (appointment));
-    a_day[0]=key[0]; a_day[1]=key[1];           /* yy   */
-    a_day[2]=key[2]; a_day[3]=key[3];   /*   yy */
-    a_day[4]=key[5]; a_day[5]=key[6];           /* mm */
-    a_day[6]=key[8]; a_day[7]=key[9];           /* dd */
-    a_day[8]=key[10];                           /* \0 */
+    title = (char*)gtk_window_get_title(GTK_WINDOW (appointment));
+    title_to_ical(title, a_day);
 
     app = create_appt_win("NEW", a_day);
     gtk_widget_show(app->appWindow);
