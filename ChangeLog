@@ -1,3 +1,16 @@
+2003-07-04
+        Mickael:
+	- fix sigsev when saving appointment in another month than the current one
+	- clearing an appointment doesn't destroy the appointment window anymore, but leave it open with an empty text area.
+	- function remark_appointments: use of gtk_calendar_clear_marks
+	-change type for on_wInfo_delete_event and on_wAppointment_delete_event
+	Edscott:
+	-Fixed segv condition when opening different appointments at the same time
+	-save all appointments in single dbh file to enable alarm and date marking
+	-enabled a alarm which will go off when a day with appointment is reached
+	-mark dates which have appointments.
+
+	The alarm is a text written to stdout. It should be a pretty window with bells and whistles but I don't have time for it so I'll leave that up to someone else. All you have to do is fill in the "pretty_window(char *text)" function, where text is already set to the appointment text.
 2003-07-02
 	Thanks to Benedikt Meurer for all his help.
 	Version number increased: 0.1.1

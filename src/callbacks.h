@@ -70,10 +70,7 @@ void
 on_btClose_clicked                     (GtkButton       *button,
                                         gpointer         user_data);
 
-/* Glade put a gboolean here, causing problems, but I just want to hide the window, so
- * I changed it to void.
- */
-void 
+gboolean 
 on_wAppointment_delete_event           (GtkWidget       *widget,
                                         GdkEvent        *event,
                                         gpointer         user_data);
@@ -101,10 +98,7 @@ void
 on_okbutton1_clicked                   (GtkButton       *button,
                                         gpointer         user_data);
 
-/* Glade put a gboolean here, causing problems, but I just want to hide the window, so
- * I changed it to void.
- */
-void
+gboolean
 on_wInfo_delete_event                  (GtkWidget       *widget,
                                         GdkEvent        *event,
                                         gpointer         user_data);

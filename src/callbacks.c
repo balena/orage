@@ -37,6 +37,7 @@
 #include <string.h>
 #endif
 
+#include <unistd.h>
 #include <time.h>
 
 #include <libxfce4util/util.h>
@@ -113,11 +114,10 @@ gint alarm_clock(gpointer p){
 }
 
 void remark_appointments (GtkCalendar *calendar,gpointer user_data){
-	guint day;
 #ifdef DEBUG
 	printf("remark_appointments...\n");
 #endif
-	for (day=1;day<32;day++) gtk_calendar_unmark_day(cal,day);
+	gtk_calendar_clear_marks(calendar);
 	mark_appointments((GtkWidget *)calendar);
 }
 
@@ -251,15 +251,12 @@ on_btClose_clicked(GtkButton *button, gpointer user_data)
 	gtk_widget_destroy(a); /* destroy the specific appointment window */
 }
 
-/*
- * Glade put a gboolean here, causing problems, but I just want to hide the
- * window, so I changed it to void. <- FIXME: Thats not a solution!
- */
-void 
+gboolean 
 on_wAppointment_delete_event(GtkWidget *widget, GdkEvent *event,
                              gpointer user_data)
 {
-	gtk_widget_destroy(widget); /* destroy the particular appointment window */
+	gtk_widget_destroy(widget); /* destroy the appointment window */
+	return(FALSE);
 }
 
 void
@@ -304,7 +301,7 @@ on_btSave_clicked(GtkButton *button, gpointer user_data)
 #ifdef DEBUG
 			printf("DBG:key=%s\n",key);
 #endif
-			strncpy(save_text,text,MAX_APP_LENGTH-1);
+			g_strlcpy(save_text,text,MAX_APP_LENGTH-1);
 			save_text[MAX_APP_LENGTH-1]=0;
 			/* since record length is variable,this is crucial: */
 			DBH_set_recordsize(fapp,strlen(save_text)+1);
@@ -334,10 +331,10 @@ on_okbutton1_clicked(GtkButton *button, gpointer user_data)
 	gtk_widget_destroy(info);
 }
 
-void
+gboolean
 on_wInfo_delete_event(GtkWidget *widget, GdkEvent *event, gpointer user_data)
 {
-	gtk_widget_destroy(info);
+	gtk_widget_destroy(widget);
 }
 
 
@@ -370,11 +367,14 @@ on_okbutton2_clicked(GtkButton *button, gpointer user_data)
 {
 	gchar *fpath;
 	DBHashTable *fapp;
+	GtkTextView *tv;
+	GtkTextBuffer *tb;
+	GtkTextIter start, end;
 	
 	gtk_widget_destroy(clearwarn);
 	
 #ifdef DEBUG
-	g_print("Clear textbuffer chosen (oops!) 0x%x\n");
+	g_print("Clear textbuffer chosen (oops!)\n");
 #endif
 
 	fpath = xfce_get_userfile("xfcalendar", "appointments.dbh", NULL);
@@ -388,7 +388,13 @@ on_okbutton2_clicked(GtkButton *button, gpointer user_data)
 		strncpy((char *)fapp->key,key,8); fapp->key[7]=0;
 		DBH_update(fapp);
 		DBH_close(fapp);	
-		gtk_widget_destroy(a);
+		//		gtk_widget_destroy(a);
+	tv = GTK_TEXT_VIEW(lookup_widget(a,"textview1"));
+	tb = gtk_text_view_get_buffer(tv);
+	gtk_text_buffer_get_bounds(tb, &start, &end);
+
+	gtk_text_buffer_delete(tb, &start, &end);
+	gtk_text_buffer_set_modified(tb, FALSE);
 		gtk_calendar_unmark_day(cal,day);
 		
 	}
