@@ -1,6 +1,6 @@
 /* appointment.h
  *
- * Copyright (C) 2004 Mickaël Graf <korbinus@lunar-linux.org>
+ * Copyright (C) 2004 MickaÃ«l Graf <korbinus@lunar-linux.org>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -50,6 +50,7 @@ typedef struct
 typedef struct
 {
     GtkWidget *appWindow;
+    GtkWidget *appHeader;
     GtkWidget *appVBox1;
     GtkWidget *appTable;
     GtkWidget *appTitle_label;
@@ -99,7 +100,10 @@ typedef struct
     GtkObject *appEndMinutes_spinbutton_adj;
     GtkWidget *appEndMinutes_spinbutton;
     GtkWidget *appEndTime_fixed;
-    GtkWidget *appSound_chooserbutton;
+    GtkWidget *appSound_label;
+    GtkWidget *appSound_hbox;
+    GtkWidget *appSound_entry;
+    GtkWidget *appSound_button;
     GtkWidget *appHBox1;
     GtkWidget *appRemove;
     GtkWidget *appBottom_fixed;
@@ -113,6 +117,3 @@ typedef struct
 void fill_appt_window(appt_win *appt, char *action, char *par);
 
 appt_win *create_appt_win(char *action, char *par, GtkWidget *wAppointment);
-
-
-

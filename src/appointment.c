@@ -1,6 +1,6 @@
 /* appointment.c
  *
- * Copyright (C) 2004-2005 Mickaël Graf <korbinus at xfce.org>
+ * Copyright (C) 2004-2005 MickaÃ«l Graf <korbinus at xfce.org>
  * Parts of the code below are copyright (C) 2005 Juha Kautto <kautto.juha at kolumbus.fi>
  *
  *  This program is free software; you can redistribute it and/or modify
@@ -70,6 +70,22 @@ on_appTitle_entry_changed_cb(GtkEditable *entry, gpointer user_data)
     gtk_window_set_title (GTK_WINDOW (apptw->appWindow), (const gchar *)title);
 
     g_free(title);
+}
+
+void
+on_appSound_button_clicked_cb(GtkButton *button, gpointer user_data)
+{
+    GtkWidget *file_chooser;
+    appt_win *apptw = (appt_win *)user_data;
+
+    file_chooser = xfce_file_chooser_new (_("Select a file..."),
+                                            (GtkWindow *) apptw->appWindow,
+                                            XFCE_FILE_CHOOSER_ACTION_OPEN,
+                                            GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
+                                            GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT,
+                                            NULL);
+
+    gtk_widget_destroy(file_chooser);
 }
 
 void
@@ -172,11 +188,6 @@ on_appClose_clicked_cb(GtkButton *button, gpointer user_data)
 	    , EndYear_value, EndMonth_value, EndDay_value
         , EndHour_value, EndMinutes_value, 0);
 
-/*
-  appt->alarm = gtk_spin_button_get_value_as_int((GtkSpinButton *)apptw->appAlarm_spinbutton);
-
-  appt->alarmTimeType = gtk_combo_box_get_active((GtkComboBox *)apptw->appAlarmTimeType_combobox);
-*/
     appt->alarmtime = gtk_combo_box_get_active((GtkComboBox *)apptw->appAlarm_combobox);
 
   appt->availability = gtk_combo_box_get_active((GtkComboBox *)apptw->appAvailability_cb);
@@ -186,18 +197,22 @@ on_appClose_clicked_cb(GtkButton *button, gpointer user_data)
 			     &end);
   appt->note = gtk_text_iter_get_text(&start, &end);
   appt->allDay = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(apptw->appAllDay_checkbutton));
+
+    appt->sound = (gchar *) gtk_entry_get_text((GtkEntry *)apptw->appSound_entry);
+/*
   appt->sound = "/usr/local/kde/share/sounds/KDE_Beep_ClassicBeep.wav";
+*/
 
 
 #ifdef DEBUG
-  g_warning("Title: %s\n", appt->title);
-  g_warning("Location: %s\n", appt->location);
-  g_warning("Start: %s\n", appt->starttime);
-  g_warning("End: %s\n", appt->endtime);
-  g_warning("Alarm: %d\n", appt->alarm);
-  g_warning("Time Type: %d\n", appt->alarmTimeType);
-  g_warning("Availability: %d\n", appt->availability);
-  g_warning("Note: %s\n", appt->note);
+    g_warning("Title: %s\n", appt->title);
+    g_warning("Location: %s\n", appt->location);
+    g_warning("Start: %s\n", appt->starttime);
+    g_warning("End: %s\n", appt->endtime);
+    g_warning("Alarm: %d\n", appt->alarm);
+    g_warning("Time Type: %d\n", appt->alarmTimeType);
+    g_warning("Availability: %d\n", appt->availability);
+    g_warning("Note: %s\n", appt->note);
 #endif
 
   /* Here we try to save the event... */
@@ -403,6 +418,10 @@ appt_win *create_appt_win(char *action, char *par, GtkWidget *wAppointment)
   gtk_widget_show (appt->appVBox1);
   gtk_container_add (GTK_CONTAINER (appt->appWindow), appt->appVBox1);
 
+    appt->appHeader = xfce_create_header(NULL, _("Appointment "));
+    gtk_widget_show (appt->appHeader);
+    gtk_box_pack_start (GTK_BOX (appt->appVBox1), appt->appHeader, TRUE, TRUE, 0);
+
   appt->appTable = gtk_table_new (11, 2, FALSE); /* Korbinus 20050330: 11 rows now, including button for choosing sound to play */
   gtk_widget_show (appt->appTable);
   gtk_box_pack_start (GTK_BOX (appt->appVBox1), appt->appTable, TRUE, TRUE, 0);
@@ -462,6 +481,13 @@ appt_win *create_appt_win(char *action, char *par, GtkWidget *wAppointment)
                     (GtkAttachOptions) (0), 0, 0);
   gtk_misc_set_alignment (GTK_MISC (appt->appRecurrence), 0, 0.5);
   */
+
+    appt->appSound_label = gtk_label_new (_("Sound"));
+    gtk_widget_show (appt->appSound_label);
+    gtk_table_attach (GTK_TABLE (appt->appTable), appt->appSound_label, 0, 1, 8, 9,
+                        (GtkAttachOptions) (GTK_FILL),
+                        (GtkAttachOptions) (0), 0, 0);
+    gtk_misc_set_alignment (GTK_MISC (appt->appSound_label), 0, 0.5);
 
   appt->appAvailability = gtk_label_new (_("Availability"));
   gtk_widget_show (appt->appAvailability);
@@ -630,9 +656,20 @@ appt_win *create_appt_win(char *action, char *par, GtkWidget *wAppointment)
     gtk_combo_box_append_text (GTK_COMBO_BOX (appt->appAlarm_combobox), _("1 day"));
     gtk_combo_box_append_text (GTK_COMBO_BOX (appt->appAlarm_combobox), _("2 days"));
 
-/*
-    appt->appSound_chooserbutton = gtk_file_choose_button_new_with_dialog((GtkWidget *)filechooser);
-*/
+    appt->appSound_hbox = gtk_hbox_new (FALSE, 0);
+    gtk_box_set_spacing(GTK_BOX (appt->appSound_hbox), 6);
+    gtk_widget_show (appt->appSound_hbox);
+    gtk_table_attach (GTK_TABLE (appt->appTable), appt->appSound_hbox, 1, 2, 8, 9,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (GTK_FILL), 0, 0);
+
+    appt->appSound_entry = gtk_entry_new ();
+    gtk_widget_show (appt->appSound_entry);
+    gtk_box_pack_start (GTK_BOX (appt->appSound_hbox), appt->appSound_entry, TRUE, TRUE, 0);
+
+    appt->appSound_button = gtk_button_new_from_stock("gtk-find");
+    gtk_widget_show (appt->appSound_button);
+    gtk_box_pack_start (GTK_BOX (appt->appSound_hbox), appt->appSound_button, FALSE, TRUE, 0);
 
   appt->appAvailability_cb = gtk_combo_box_new_text ();
   gtk_widget_show (appt->appAvailability_cb);
@@ -677,6 +714,10 @@ appt_win *create_appt_win(char *action, char *par, GtkWidget *wAppointment)
 
   g_signal_connect ((gpointer) appt->appAllDay_checkbutton, "clicked",
 		    G_CALLBACK (on_appAllDay_clicked_cb),
+		    appt);
+
+  g_signal_connect ((gpointer) appt->appSound_button, "clicked",
+		    G_CALLBACK (on_appSound_button_clicked_cb),
 		    appt);
 
   g_signal_connect ((gpointer) appt->appClose, "clicked",
