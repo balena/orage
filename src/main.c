@@ -35,6 +35,7 @@
 #include <libxfce4util/i18n.h>
 #include <libxfce4util/util.h>
 #include <libxfcegui4/libxfcegui4.h>
+#include <libxfcegui4/netk-trayicon.h>
 #include <gtk/gtk.h>
 
 #include "interface.h"
@@ -42,6 +43,12 @@
 
 /* session client handler */
 static SessionClient	*session_client = NULL;
+
+/* tray icon popup menu */
+static GtkWidget	*trayMenu = NULL;
+
+/* main window */
+static GtkWidget	*mainWindow = NULL;
 
 void
 createRCDir(void)
@@ -64,6 +71,7 @@ int mark_appointments(GtkWidget *w);
 int setup_signals(GtkWidget *w);
 gint alarm_clock(gpointer p);
 void keep_tidy(void);
+extern void on_about1_activate(GtkMenuItem *, gpointer);
 
 /*
  * SaveYourself callback
@@ -90,10 +98,39 @@ die_cb(gpointer data)
 	gtk_main_quit();
 }
 
+/*
+ */
+static void
+icon_button_press_cb(GtkWidget *icon, GdkEventButton *event, gpointer user_data)
+{
+	if (event->button == 1 && event->type == GDK_2BUTTON_PRESS) {
+		if (GTK_WIDGET_VISIBLE(mainWindow))
+			gtk_widget_hide(mainWindow);
+		else
+			gtk_widget_show(mainWindow);
+	}
+	else if (event->button == 3) {
+		gtk_menu_popup(GTK_MENU(trayMenu), NULL, NULL, NULL, NULL,
+				event->button, gtk_get_current_event_time());
+	}
+}
+
+/*
+ */
+static void
+icon_popup_menu_cb(GtkWidget *icon, gpointer user_data)
+{
+	gtk_menu_popup(GTK_MENU(trayMenu), NULL, NULL, NULL, NULL,
+			0, gtk_get_current_event_time());
+}
+
 int
 main(int argc, char *argv[])
 {
-	GtkWidget *window1;
+	GtkWidget *trayicon;
+	GtkWidget *image;
+	GtkWidget *eventbox;
+	GtkWidget *menuItem;
 
 	xfce_textdomain(GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8");
 
@@ -118,10 +155,44 @@ main(int argc, char *argv[])
 	 * after building the project. Delete any components that you don't
 	 * want shown initially.
 	 */
-	window1 = create_XFCalendar();
-	mark_appointments(window1);
-	setup_signals(window1);
-	gtk_widget_show(window1);
+	mainWindow = create_XFCalendar();
+	mark_appointments(mainWindow);
+	setup_signals(mainWindow);
+	gtk_widget_show(mainWindow);
+
+	/*
+	 * Create the tray icon popup menu
+	 */
+	trayMenu = gtk_menu_new();
+	menuItem = gtk_menu_item_new_with_label(_("About XFCalendar"));
+	g_signal_connect(menuItem, "activate", G_CALLBACK(on_about1_activate),
+			NULL);
+	gtk_menu_shell_append(GTK_MENU_SHELL(trayMenu), menuItem);
+	gtk_widget_show(menuItem);
+	menuItem = gtk_separator_menu_item_new();
+	gtk_menu_shell_append(GTK_MENU_SHELL(trayMenu), menuItem);
+	gtk_widget_show(menuItem);
+	menuItem = gtk_image_menu_item_new_from_stock(GTK_STOCK_QUIT, NULL);
+	g_signal_connect(menuItem, "activate", G_CALLBACK(gtk_main_quit), NULL);
+	gtk_menu_shell_append(GTK_MENU_SHELL(trayMenu), menuItem);
+	gtk_widget_show(menuItem);
+
+	/*
+	 * Create the tray icon
+	 */
+	trayicon = netk_tray_icon_new(GDK_SCREEN_XSCREEN(
+				gdk_screen_get_default()));
+	eventbox = gtk_event_box_new();
+	image = gtk_image_new_from_stock(GTK_STOCK_INDEX, GTK_ICON_SIZE_MENU);
+	gtk_container_add(GTK_CONTAINER(eventbox), image);
+	gtk_container_add(GTK_CONTAINER(trayicon), eventbox);
+	gtk_widget_add_events(trayicon, GDK_BUTTON_PRESS_MASK |
+			GDK_FOCUS_CHANGE_MASK);
+	g_signal_connect(trayicon, "button_press_event",
+			G_CALLBACK(icon_button_press_cb), NULL);
+	g_signal_connect(trayicon, "popup_menu",
+			G_CALLBACK(icon_popup_menu_cb), NULL);
+	gtk_widget_show_all(trayicon);
 	
 	/*
 	 * Now it's serious, the application is running, so we create the RC
