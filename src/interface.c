@@ -40,7 +40,9 @@ create_wAppointment (void)
   GtkWidget *handlebox1;
   GtkWidget *toolbar1;
   GtkWidget *tmp_toolbar_icon;
+  /*
   GtkWidget *btSave;
+  */
   GtkWidget *btClose;
   GtkWidget *btDelete;
   GtkWidget *btCreate;
@@ -77,6 +79,7 @@ create_wAppointment (void)
   gtk_container_add (GTK_CONTAINER (handlebox1), toolbar1);
   gtk_toolbar_set_style (GTK_TOOLBAR (toolbar1), GTK_TOOLBAR_ICONS);
 
+  /*
   tmp_toolbar_icon = gtk_image_new_from_stock ("gtk-save", gtk_toolbar_get_icon_size (GTK_TOOLBAR (toolbar1)));
   btSave = gtk_toolbar_append_element (GTK_TOOLBAR (toolbar1),
                                 GTK_TOOLBAR_CHILD_BUTTON, NULL,
@@ -87,6 +90,7 @@ create_wAppointment (void)
   gtk_widget_add_accelerator(btSave, "clicked", accel_group, GDK_s, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
 
   gtk_toolbar_append_space(GTK_TOOLBAR (toolbar1));
+  */
 
   tmp_toolbar_icon = gtk_image_new_from_stock ("gtk-go-back", gtk_toolbar_get_icon_size (GTK_TOOLBAR (toolbar1)));
   btPrevious = gtk_toolbar_append_element (GTK_TOOLBAR (toolbar1),
@@ -175,8 +179,10 @@ create_wAppointment (void)
 
   g_signal_connect ((gpointer) wAppointment, "delete_event",
                     G_CALLBACK (on_wAppointment_delete_event), NULL);
+  /*
   g_signal_connect ((gpointer) btSave, "clicked",
                     G_CALLBACK (on_btSave_clicked), NULL);
+                    */
   g_signal_connect ((gpointer) btPrevious, "clicked",
                     G_CALLBACK (on_btPrevious_clicked), NULL);
   g_signal_connect ((gpointer) btToday, "clicked",
@@ -195,7 +201,9 @@ create_wAppointment (void)
   GLADE_HOOKUP_OBJECT (wAppointment, vbox2, "vbox2");
   GLADE_HOOKUP_OBJECT (wAppointment, handlebox1, "handlebox1");
   GLADE_HOOKUP_OBJECT (wAppointment, toolbar1, "toolbar1");
+  /*
   GLADE_HOOKUP_OBJECT (wAppointment, btSave, "btSave");
+  */
   GLADE_HOOKUP_OBJECT (wAppointment, btPrevious, "btPrevious");
   GLADE_HOOKUP_OBJECT (wAppointment, btToday, "btToday");
   GLADE_HOOKUP_OBJECT (wAppointment, btNext, "btNext");

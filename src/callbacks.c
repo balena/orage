@@ -55,6 +55,8 @@
 #include "reminder.h"
 #include "about-xfcalendar.h"
 #include "mainbox.h"
+#include "appointment.h"
+
 
 #define MAX_APP_LENGTH 4096
 #define LEN_BUFFER 1024
@@ -259,35 +261,54 @@ static void rm_ical_app(char *a_day)
     } 
 }
 
+void editAppointment(GtkWidget *widget, GdkEventButton *event
+            , GtkWidget *control)
+{
+    AppWin *app;
+
+    /*
+    if (event->button == 1)
+    */
+    app = create_appWin("2005", "03", "10");
+    gtk_widget_show(app->appWindow);
+}
+
 void addAppointment(GtkWidget *vbox, gchar *xftime, gchar *xftext, gchar *xfsum)
 {
     GtkWidget *hseparator;
     GtkWidget *hbox;
     GtkWidget *label;
     GtkWidget *entry;
+    GtkWidget *ebox;
     GtkTooltips *event_tooltips;
-    int len, max_len=40;
-    gchar *eolstr, *text;
+    int len=-1;
+    gchar *text;
 
     hseparator = gtk_hseparator_new();
     gtk_widget_show(hseparator);
     gtk_box_pack_start(GTK_BOX(vbox), hseparator, FALSE, FALSE, 0);
                                                                                 
-    hbox = gtk_hbox_new(FALSE, 0);
-    gtk_widget_show(hbox);
-    gtk_box_pack_start(GTK_BOX (vbox), hbox, TRUE, TRUE, 0);
+    ebox = gtk_event_box_new();
+    gtk_event_box_set_visible_window(GTK_EVENT_BOX(ebox), FALSE);
+    gtk_box_pack_start(GTK_BOX(vbox), ebox, FALSE, FALSE, 0);
+    gtk_widget_show(ebox);
                                                                                 
-    label = gtk_label_new(xftime);
+    hbox = gtk_hbox_new(FALSE, 5);
+    gtk_widget_show(hbox);
+    gtk_container_add(GTK_CONTAINER(ebox), hbox);
+
+    text = g_strconcat("<b>",xftime,"</b>",NULL);
+    label = gtk_label_new(NULL);
+    gtk_label_set_markup(GTK_LABEL(label), text);
     gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 0);
     gtk_widget_show(label);
+    g_free(text);
 
+    /*
     entry = gtk_entry_new();
-    if (xfsum == NULL) { /* let's take first line from the text */
-        if ((eolstr = g_strstr_len(xftext, strlen(xftext), "\n")) == NULL) {
-            len=max_len;
-        }
-        else {
-            len=strlen(xftext)-strlen(eolstr);
+    if (xfsum == NULL) { / * let's take first line from the text * /
+        if ((text = g_strstr_len(xftext, strlen(xftext), "\n")) != NULL) {
+            len=strlen(xftext)-strlen(text);
             gtk_entry_set_max_length(GTK_ENTRY(entry), len);
         }
         text=xftext;
@@ -297,10 +318,29 @@ void addAppointment(GtkWidget *vbox, gchar *xftime, gchar *xftext, gchar *xfsum)
     gtk_entry_set_text(GTK_ENTRY(entry), text);
     gtk_box_pack_start(GTK_BOX(hbox), entry, TRUE, TRUE, 0);
     gtk_widget_show(entry);
+    */
+
+    if (xfsum != NULL)
+        text = xfsum;
+    else { /* let's take first line from the text */
+        if ((text = g_strstr_len(xftext, strlen(xftext), "\n")) != NULL) {
+            len=strlen(xftext)-strlen(text);
+            text = g_strndup(xftext, len);
+        }
+        else
+            text=xftext;
+    }
+    label = gtk_label_new(text);
+    gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 0);
+    gtk_widget_show(label);
+    if (len != -1) 
+        g_free(text);
 
     event_tooltips = gtk_tooltips_new();
-    gtk_tooltips_set_tip(event_tooltips, entry, xftext, NULL);
-                                                                                
+    gtk_tooltips_set_tip(event_tooltips, ebox, xftext, NULL);
+
+    g_signal_connect (ebox, "button-press-event",
+            G_CALLBACK(editAppointment), NULL);
 }
 
 void manageAppointment(GtkCalendar *calendar, GtkWidget *appointment)
@@ -605,12 +645,10 @@ on_btDelete_clicked(GtkButton *button, gpointer user_data)
 void
 on_btCreate_clicked(GtkButton *button, gpointer user_data)
 {
-	GtkWidget *w;
-	GtkWidget *vbox; 
-	
-	vbox = lookup_widget(GTK_WIDGET(button),"vbox3");
+    AppWin *app;
 
-    addAppointment(vbox, _("<New>"), _("This is just a place holder.\nClick it to create a real appointmen"), _("<click to modify>"));
+    app = create_appWin("2005", "03", "10");
+    gtk_widget_show(app->appWindow);
 }
 
 void
