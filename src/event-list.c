@@ -222,9 +222,7 @@ recreate_wAppointment(GtkWidget *appointment)
     GtkWidget *scrolledwindow1;
     GtkWidget *vbox2;
                                                                                 
-    if ((wAppointment = lookup_widget(GTK_WIDGET(appointment), "wAppointment"))
-            == NULL)
-        return (NULL);
+    wAppointment = lookup_widget(GTK_WIDGET(appointment), "wAppointment");
     vbox2 = lookup_widget(GTK_WIDGET(wAppointment), "vbox2");
     scrolledwindow1 = lookup_widget(GTK_WIDGET(wAppointment), "scrolledwindow1");    
     gtk_widget_destroy(scrolledwindow1);

@@ -385,7 +385,11 @@ appt_win *create_appt_win(char *action, char *par, GtkWidget *wAppointment)
 
   appt->appWindow = gtk_window_new(GTK_WINDOW_TOPLEVEL);
   gtk_window_set_default_size(GTK_WINDOW(appt->appWindow), 450, 325);
-  gtk_window_set_destroy_with_parent(GTK_WINDOW(appt->appWindow), TRUE);
+  if (appt->wAppointment != NULL) {
+    gtk_window_set_transient_for(GTK_WINDOW(appt->appWindow)
+            , GTK_WINDOW(appt->wAppointment));
+    gtk_window_set_destroy_with_parent(GTK_WINDOW(appt->appWindow), TRUE);
+  }
 
   appt->appVBox1 = gtk_vbox_new (FALSE, 0);
   gtk_widget_show (appt->appVBox1);
