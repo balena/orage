@@ -5,3 +5,4 @@
 
 GtkWidget* create_wAppointment (void);
 GtkWidget* create_wClearWarn (GtkWidget *parent);
+GtkWidget* recreate_wAppointment (GtkWidget *appointment);
