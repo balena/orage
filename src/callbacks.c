@@ -189,6 +189,16 @@ on_calendar1_day_selected_double_click (GtkCalendar *calendar,
   gtk_widget_show(appointment);
 }
 
+void
+on_Today_activate                      (GtkMenuItem *menuitem,
+                                        gpointer user_data)
+{
+  GtkWidget *appointment;
+  appointment = create_wAppointment();
+  manageAppointment(cal, appointment);
+  gtk_widget_show(appointment);
+}
+
 void manageAppointment(GtkCalendar *calendar, GtkWidget *appointment)
 {
 	guint year, month, day;

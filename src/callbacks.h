@@ -57,6 +57,10 @@ on_XFCalendar_delete_event             (GtkWidget       *widget,
                                         gpointer         user_data);
 
 void
+on_Today_activate (GtkMenuItem *menuitem,
+				    gpointer user_data);
+
+void
 on_calendar1_day_selected_double_click (GtkCalendar     *calendar,
                                         gpointer         user_data);
 void

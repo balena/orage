@@ -78,6 +78,7 @@ gint alarm_clock(gpointer p);
 void keep_tidy(void);
 void set_cal();
 extern void on_about1_activate(GtkMenuItem *, gpointer);
+extern void on_Today_activate(GtkMenuItem *, gpointer);
 /*
  * SaveYourself callback
  *
@@ -89,7 +90,6 @@ static void
 save_yourself_cb(gpointer data, int save_style, gboolean shutdown,
                  int interact_style, gboolean fast)
 {
-	/* FIXME: Mickael, insert save code here! */
   gchar *fpath;
   FILE *fp;
 
@@ -252,6 +252,14 @@ main(int argc, char *argv[])
 	 * Create the tray icon popup menu
 	 */
 	trayMenu = gtk_menu_new();
+	menuItem = gtk_menu_item_new_with_label(_("Today"));
+	g_signal_connect(menuItem, "activate", G_CALLBACK(on_Today_activate),
+			NULL);
+	gtk_menu_shell_append(GTK_MENU_SHELL(trayMenu), menuItem);
+	gtk_widget_show(menuItem);
+	menuItem = gtk_separator_menu_item_new();
+	gtk_menu_shell_append(GTK_MENU_SHELL(trayMenu), menuItem);
+	gtk_widget_show(menuItem);
 	menuItem = gtk_menu_item_new_with_label(_("About XFCalendar"));
 	g_signal_connect(menuItem, "activate", G_CALLBACK(on_about1_activate),
 			NULL);
