@@ -101,16 +101,9 @@ void apply_settings()
     g_warning("Unable to open RC file.");
   }else {
     fprintf(fp, "[Session Visibility]\n");
-    if(xfcal->show_Calendar) fprintf(fp, "show\n"); else fprintf(fp, "hide\n");
-
     fclose(fp);
   }
   g_free(fpath);
-}
-
-void settings_set_showCal(GtkWidget *w)
-{
-  xfcal->show_Calendar = GTK_WIDGET_VISIBLE(w);
 }
 
 void pretty_window(char *text){

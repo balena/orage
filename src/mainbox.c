@@ -243,12 +243,10 @@ xfcalendar_init_settings (CalWin *xfcal)
       g_warning("Unable to create %s", fpath);
     else {
       fprintf(fp, "[Session Visibility]\n");
-      if(xfcal->show_Calendar) fprintf(fp, "show\n"); else fprintf(fp, "hide\n");
       fclose(fp);
     }
-  }else{
-    /* *very* limited set of options */
-    fgets(buf, LEN_BUFFER, fp); /* [Session Visibility] */
+  } /* else{
+    fgets(buf, LEN_BUFFER, fp); / * [Session Visibility] * /
     fgets(buf, LEN_BUFFER, fp);
     if(strstr(buf, "show")) 
       {
@@ -256,6 +254,7 @@ xfcalendar_init_settings (CalWin *xfcal)
 	  gtk_widget_show_all(xfcal->mWindow);
       }
   }
+      */
 }
 
 gboolean

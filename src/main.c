@@ -74,54 +74,44 @@ gboolean normalmode = TRUE;
 /* window position */
 gint pos_x = 0, pos_y = 0;
 
+static void
+raise_window()
+{
+  GdkScreen *screen;
+
+    screen = xfce_gdk_display_locate_monitor_with_pointer (NULL, NULL);
+    gtk_window_set_screen (GTK_WINDOW (mainWindow), screen ? screen : gdk_screen_get_default ());
+    if (pos_x || pos_y)
+        gtk_window_move (GTK_WINDOW (mainWindow), pos_x, pos_y);
+    gtk_window_stick (GTK_WINDOW (mainWindow));
+    gtk_widget_show (mainWindow);
+}
+
 static gboolean
 client_message_received (GtkWidget * widget, GdkEventClient * event,
 			 gpointer user_data)
 {
-  int x, y, w, h;
-  GtkRequisition req;
-  char message[21];
-  char direction[21];
-  long xid;
-  GdkWindow *win;
-  GdkScreen *screen;
-
     TRACE ("client message received");
 
     if (event->message_type ==
 	gdk_atom_intern ("_XFCE_CALENDAR_RAISE", FALSE))
     {
-
 	DBG ("RAISING...\n");
-	gtk_window_set_screen (GTK_WINDOW (mainWindow), screen ? screen : gdk_screen_get_default ());
-	gtk_widget_show (mainWindow);
-	gtk_window_stick (GTK_WINDOW (mainWindow));
-
+	raise_window();
 	return TRUE;
     }
     else if (event->message_type ==
 	     gdk_atom_intern ("_XFCE_CALENDAR_TOGGLE_HERE", FALSE))
     {
-
 	DBG ("TOGGLE\n");
-
 	if (GTK_WIDGET_VISIBLE (mainWindow))
 	{
 	  gtk_window_get_position(GTK_WINDOW(mainWindow), &pos_x, &pos_y);
 	  gtk_widget_hide (mainWindow);
 	  return TRUE;
 	}
-
- 	screen = xfce_gdk_display_locate_monitor_with_pointer (NULL, NULL);
-
-	gtk_window_set_screen (GTK_WINDOW (mainWindow), screen ? screen : gdk_screen_get_default ());
-
-        if (pos_x || pos_y)
-	  gtk_window_move (GTK_WINDOW (mainWindow), pos_x, pos_y);
-
-	gtk_window_stick (GTK_WINDOW (mainWindow));
-
-	gtk_widget_show (mainWindow);
+	raise_window();
+	return TRUE;
     }
 
     return FALSE;
@@ -130,7 +120,7 @@ client_message_received (GtkWidget * widget, GdkEventClient * event,
 void 
 notify_cb(const char *name, const char *channel_name, McsAction action, McsSetting * setting, void *data)
 {
-    gboolean showtaskbar, showpager;
+    gboolean showtaskbar, showpager, showcalendar;
   if(g_ascii_strcasecmp(CHANNEL, channel_name))
     {
         g_message(_("This should not happen"));
@@ -140,6 +130,14 @@ notify_cb(const char *name, const char *channel_name, McsAction action, McsSetti
     switch (action)
     {
         case MCS_ACTION_NEW:
+            if(!strcmp(name, "XFCalendar/ShowStart"))
+            {
+              showcalendar = setting->data.v_int ? TRUE: FALSE;
+              if(showcalendar)
+                gtk_widget_show_all(xfcal->mWindow);
+              xfcal->show_Calendar = showcalendar;
+            }
+         /* note that break is missing, we want to do also CHANGED actions */
         case MCS_ACTION_CHANGED:
             if(setting->type == MCS_TYPE_INT)
             {
@@ -151,11 +149,8 @@ notify_cb(const char *name, const char *channel_name, McsAction action, McsSetti
 		    gtk_widget_hide(xfcal->mMenubar);
 		  else
 		    gtk_widget_show(xfcal->mMenubar);
-
-
 		}
-
-		if(!strcmp(name, "XFCalendar/TaskBar"))
+		else if(!strcmp(name, "XFCalendar/TaskBar"))
 		{
 		  showtaskbar = setting->data.v_int ? TRUE: FALSE;
 		   /* Reminder: if we want to show the calendar in the taskbar (i.e. showtaskbar is TRUE)
@@ -165,7 +160,7 @@ notify_cb(const char *name, const char *channel_name, McsAction action, McsSetti
 		  gtk_window_set_skip_taskbar_hint((GtkWindow*)mainWindow, !showtaskbar);
 		  xfcal->show_Taskbar = showtaskbar;
 		}
-		if(!strcmp(name, "XFCalendar/Pager"))
+		else if(!strcmp(name, "XFCalendar/Pager"))
 		{
 		  showpager = setting->data.v_int ? TRUE: FALSE;
 		   /* Reminder: if we want to show the calendar in the pager (i.e. showpager is TRUE)
@@ -175,17 +170,15 @@ notify_cb(const char *name, const char *channel_name, McsAction action, McsSetti
 		  gtk_window_set_skip_pager_hint((GtkWindow*)mainWindow, !showpager);
 		  xfcal->show_Pager = showpager;
 		}
-            }
-		if(!strcmp(name, "XFCalendar/Systray"))
+		else if(!strcmp(name, "XFCalendar/Systray"))
 		{
 		  xfcal->show_Systray = setting->data.v_int ? TRUE: FALSE;
-          if (xfcal->show_Systray) {
-            xfce_tray_icon_connect(trayIcon);
-		  }
-          else {
-            xfce_tray_icon_disconnect(trayIcon);
-		  }
+                  if (xfcal->show_Systray)
+                    xfce_tray_icon_connect(trayIcon);
+                  else
+                    xfce_tray_icon_disconnect(trayIcon);
 		}
+            }
             break;
         case MCS_ACTION_DELETED:
         default:
@@ -232,7 +225,6 @@ void
 save_yourself_cb(gpointer data, int save_style, gboolean shutdown,
                  int interact_style, gboolean fast)
 {
-  settings_set_showCal(xfcal->mWindow);
   apply_settings();
 }
 
