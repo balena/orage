@@ -267,6 +267,8 @@ gboolean xf_del_ical_app(char *ical_uid)
     icalcomponent *c;
     char *uid;
 
+    if (ical_uid == NULL)
+        return(FALSE);
     for (c = icalcomponent_get_first_component(ical, ICAL_VEVENT_COMPONENT); 
          c != 0;
          c = icalcomponent_get_next_component(ical, ICAL_VEVENT_COMPONENT)) {

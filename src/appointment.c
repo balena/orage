@@ -129,6 +129,7 @@ on_appClose_clicked_cb(GtkButton *button, gpointer user_data)
 
      g_warning("Removing :%s \n", apptw->appt_data->uid);
      xf_del_ical_app(apptw->appt_data->uid);
+     g_warning("Removed :%s \n", apptw->appt_data->uid);
      new_uid = xf_add_ical_app(appt);
      g_warning("New ical uid: %s \n", new_uid);
 

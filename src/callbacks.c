@@ -160,12 +160,13 @@ void addAppointment(GtkListStore    *list1
             ,gchar *xftime, gchar *xftext, gchar *xfsum, gchar *xfuid)
 {
     GtkTreeIter     iter1;
-    gchar           *text;
+    gchar           *text = NULL;
     gint            len = 50;
 
     if (xfsum != NULL)
         text = g_strdup(xfsum);
-    else { /* let's take len chars of the first line from the text */
+    else if (xftext != NULL) { 
+    /* let's take len chars of the first line from the text */
         if ((text = g_strstr_len(xftext, strlen(xftext), "\n")) != NULL) {
             if ((strlen(xftext)-strlen(text)) < len)
                 len=strlen(xftext)-strlen(text);
