@@ -1,7 +1,7 @@
 /* xfcalendar
  *
  * Copyright (C) 2002 Mickael Graf (korbinus@linux.se)
- * Copyright (C) 2003 edscott wilson garcia <edscott@user.sourceforge.net>
+ * Copyright (C) 2003 edscott wilson garcia <edscott@users.sourceforge.net>
  *
  * This program is free software; you can redistribute it and/or modify it 
  * under the terms of the GNU General Public License as published by the
@@ -139,7 +139,9 @@ int keep_tidy(void){
 	char *fpath = xfce_get_userfile("xfcalendar", "appointments.dbh", NULL);
 	if ((fapp = DBH_open(fpath)) != NULL){
 		char *wd = xfce_get_userfile("xfcalendar", NULL);
+#ifdef DEBUG
 		printf("wd=%s\n",wd);
+#endif
 		chdir(wd);
 		fapp=DBH_regen(fapp);
 		DBH_close(fapp);
@@ -200,7 +202,7 @@ on_calendar1_day_selected_double_click (GtkCalendar *calendar,
 	/* DBH key should have year,month,day format to permit sweep of
 	 * year,month branch to get list of marked days:
 	 * YYYMMDD keylength=7, but let's throw in a \0 so that we
-	 * can use string funtions on the key */
+	 * can use string functions on the key */
 	if ((fapp = DBH_open(fpath)) == NULL){
 		fapp = DBH_create(fpath,8) ;
 	}
