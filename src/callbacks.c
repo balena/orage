@@ -271,11 +271,17 @@ int keep_tidy(void){
 }
 
 void
-on_quit1_activate(GtkMenuItem *menuitem, gpointer user_data)
+on_close1_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
   GtkWidget *window = GTK_WIDGET(user_data);
   
   gtk_widget_hide(window);
+}
+
+void
+on_quit1_activate(GtkMenuItem *menuitem, gpointer user_data)
+{
+  gtk_main_quit();
 }
 
 void 
@@ -290,6 +296,7 @@ void
 on_weekMonday_activate                 (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
+  /* Deprecated */
   if(gtk_check_menu_item_get_active(GTK_CHECK_MENU_ITEM(menuitem))) 
     calsets.startMonday = TRUE; 
   else

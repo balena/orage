@@ -38,13 +38,14 @@ create_XFCalendar (void)
   GtkWidget *menubar1;
   GtkWidget *menuitem4;
   GtkWidget *menuitem4_menu;
+  GtkWidget *close1;
+  GtkWidget *separator1;
   GtkWidget *quit1;
   GtkWidget *menuitem7;
   GtkWidget *menuitem7_menu;
   /* */
   GtkWidget *menuitemSet;
   GtkWidget *menuitemSet_menu;
-  //  GtkWidget *weekMonday;
   GtkWidget *preferences;
   /* */
   GtkWidget *about1;
@@ -78,6 +79,14 @@ create_XFCalendar (void)
   menuitem4_menu = gtk_menu_new ();
   gtk_menu_item_set_submenu (GTK_MENU_ITEM (menuitem4), menuitem4_menu);
 
+  close1 = gtk_menu_item_new_with_mnemonic(_("Close window"));
+  gtk_widget_show(close1);
+  gtk_container_add(GTK_CONTAINER(menuitem4_menu), close1);
+
+  separator1 = gtk_separator_menu_item_new();
+  gtk_widget_show(separator1);
+  gtk_container_add (GTK_CONTAINER (menuitem4_menu), separator1);
+
   quit1 = gtk_image_menu_item_new_from_stock ("gtk-quit", accel_group);
   gtk_widget_show (quit1);
   gtk_container_add (GTK_CONTAINER (menuitem4_menu), quit1);
@@ -89,13 +98,6 @@ create_XFCalendar (void)
 
   menuitemSet_menu = gtk_menu_new();
   gtk_menu_item_set_submenu(GTK_MENU_ITEM(menuitemSet), menuitemSet_menu);
-
-  /* Below is deprecated, it's soon kicked outfrom the code
-   *
-   *  weekMonday = gtk_check_menu_item_new_with_mnemonic(_("Weeks start on Mondays"));
-   *  gtk_widget_show(weekMonday);
-   *  gtk_container_add(GTK_CONTAINER(menuitemSet_menu), weekMonday);
-   */
 
   preferences = gtk_menu_item_new_with_mnemonic(_("Preferences"));
   gtk_widget_show(preferences);
@@ -124,18 +126,15 @@ create_XFCalendar (void)
   g_signal_connect ((gpointer) XFCalendar, "delete_event",
                     G_CALLBACK (on_XFCalendar_delete_event),
                     GTK_WIDGET(XFCalendar));
+  g_signal_connect ((gpointer) close1, "activate",
+                    G_CALLBACK (on_close1_activate),
+                    GTK_WIDGET(XFCalendar));
   g_signal_connect ((gpointer) quit1, "activate",
                     G_CALLBACK (on_quit1_activate),
                     GTK_WIDGET(XFCalendar));
   g_signal_connect ((gpointer) about1, "activate",
                     G_CALLBACK (on_about1_activate),
                     NULL);
-  /* Deprecated
-   *
-   *  g_signal_connect((gpointer) weekMonday, "activate",
-   *		   G_CALLBACK(on_weekMonday_activate),
-   *		   NULL);
-  */
   g_signal_connect((gpointer) preferences, "activate",
 		   G_CALLBACK(on_preferences_activate),
 		   NULL);
@@ -152,11 +151,11 @@ create_XFCalendar (void)
   GLADE_HOOKUP_OBJECT (XFCalendar, menubar1, "menubar1");
   GLADE_HOOKUP_OBJECT (XFCalendar, menuitem4, "menuitem4");
   GLADE_HOOKUP_OBJECT (XFCalendar, menuitem4_menu, "menuitem4_menu");
+  GLADE_HOOKUP_OBJECT (XFCalendar, close1, "close1");
   GLADE_HOOKUP_OBJECT (XFCalendar, quit1, "quit1");
   /* */
   GLADE_HOOKUP_OBJECT(XFCalendar, menuitemSet, "menuitemSet");
   GLADE_HOOKUP_OBJECT(XFCalendar, menuitemSet_menu, "menuitemSet_menu");
-  //  GLADE_HOOKUP_OBJECT(XFCalendar, weekMonday, "weekMonday");
   GLADE_HOOKUP_OBJECT(XFCalendar, preferences, "prefernces");
   /* */
   GLADE_HOOKUP_OBJECT (XFCalendar, menuitem7, "menuitem7");

@@ -43,6 +43,10 @@ on_save_as1_activate                   (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
 
 void
+on_close1_activate                     (GtkMenuItem     *menuitem, 
+                                        gpointer        user_data);
+
+void
 on_quit1_activate                      (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
 
@@ -72,10 +76,6 @@ on_delete1_activate                    (GtkMenuItem     *menuitem,
 
 void
 on_about1_activate                     (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
-
-void
-on_quit1_activate                      (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
 
 gboolean
