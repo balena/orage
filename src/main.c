@@ -314,6 +314,14 @@ main(int argc, char *argv[])
   dpy = GDK_DISPLAY();
   scr = DefaultScreen(dpy);
 
+    xfcal = g_new(CalWin, 1);
+/* Build the main window */
+  xfcal->mWindow = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+  hidden = gtk_invisible_new();
+  gtk_widget_show(hidden);
+  g_signal_connect (hidden, "client-event",
+		    G_CALLBACK (client_message_received), NULL);
+
   atom = gdk_atom_intern("_XFCE_CALENDAR_RUNNING", FALSE);
 
   /*
@@ -335,6 +343,11 @@ main(int argc, char *argv[])
     XSync(GDK_DISPLAY(), False);
 
     return(EXIT_SUCCESS);
+  }
+  if (!gdk_selection_owner_set(hidden->window, atom,
+			       gdk_x11_get_server_time(hidden->window),
+			       FALSE)) {
+    g_warning("Unable acquire ownership of selection");
   }
 
   /* 
@@ -358,22 +371,8 @@ main(int argc, char *argv[])
   /*
    * Create the Xfcalendar.
    */
-  xfcal = create_mainWin();
+  create_mainWin(xfcal);
   mainWindow = xfcal->mWindow;           //FIXME: hack avoiding some warnings while running
-
-  /*
-   */
-  hidden = gtk_invisible_new();
-  gtk_widget_show(hidden);
-  
-  g_signal_connect (hidden, "client-event",
-		    G_CALLBACK (client_message_received), NULL);
-
-  if (!gdk_selection_owner_set(hidden->window, atom,
-			       gdk_x11_get_server_time(hidden->window),
-			       FALSE)) {
-    g_warning("Unable acquire ownership of selection");
-  }
 
   /*
    * Create the tray icon and its popup menu

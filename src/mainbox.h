@@ -48,5 +48,5 @@ struct _CalWin
   GtkCalendarDisplayOptions display_Options;
 };
 
-CalWin *create_mainWin(void);
+void create_mainWin(CalWin *);
 void xfcalendar_toggle_visible ();

@@ -363,19 +363,14 @@ xfcalendar_toggle_visible ()
   gdk_event_send_client_message((GdkEvent *)&gev, (GdkNativeWindow)xwindow);
 }
 
-CalWin *create_mainWin(void)
+void create_mainWin(CalWin *xfcal)
 {
   struct tm *t;
   time_t tt;
 
-  CalWin *xfcal = g_new(CalWin, 1);
-
   GdkPixbuf *xfcalendar_logo = xfce_themed_icon_load ("xfcalendar", 48);
 
   xfcal->mAccel_group = gtk_accel_group_new ();
-
-  /* Build the main window */
-  xfcal->mWindow = gtk_window_new (GTK_WINDOW_TOPLEVEL);
 
   gtk_window_set_title (GTK_WINDOW(xfcal->mWindow),
 			_("Xfcalendar"));
@@ -541,5 +536,4 @@ CalWin *create_mainWin(void)
   t=localtime(&tt);
   g_snprintf(today, 8, "%03d%02d%02d", t->tm_year, t->tm_mon, t->tm_mday);
 
-  return xfcal;
 }
