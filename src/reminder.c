@@ -31,6 +31,7 @@
 #include <gtk/gtk.h>
 #include <libxfce4util/libxfce4util.h>
 #include <libxfcegui4/libxfcegui4.h>
+#include <libxfcegui4/dialogs.h>
 
 void
 on_btOkReminder_clicked(GtkButton *button, gpointer user_data)
@@ -60,7 +61,7 @@ create_wReminder(char *text)
   vbReminder = GTK_DIALOG (wReminder)->vbox;
   gtk_widget_show (vbReminder);
 
-  hdReminder = create_header(NULL, _("Reminder"));
+  hdReminder = xfce_create_header(NULL, _("Reminder"));
   gtk_widget_show(hdReminder);
   gtk_box_pack_start (GTK_BOX (vbReminder), hdReminder, FALSE, TRUE, 0);
 

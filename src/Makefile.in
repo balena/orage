@@ -166,6 +166,8 @@ xfcalendar_SOURCES = \
 	reminder.c							\
 	support.c							\
 	support.h							\
+	tray_icon.c                                                     \
+	tray_icon.h                                                     \
 	xfce_trayicon.c							\
 	xfce_trayicon.h
 
@@ -203,7 +205,8 @@ PROGRAMS = $(bin_PROGRAMS)
 am_xfcalendar_OBJECTS = xfcalendar-about-xfcalendar.$(OBJEXT) \
 	xfcalendar-callbacks.$(OBJEXT) xfcalendar-interface.$(OBJEXT) \
 	xfcalendar-main.$(OBJEXT) xfcalendar-reminder.$(OBJEXT) \
-	xfcalendar-support.$(OBJEXT) xfcalendar-xfce_trayicon.$(OBJEXT)
+	xfcalendar-support.$(OBJEXT) xfcalendar-tray_icon.$(OBJEXT) \
+	xfcalendar-xfce_trayicon.$(OBJEXT)
 xfcalendar_OBJECTS = $(am_xfcalendar_OBJECTS)
 xfcalendar_DEPENDENCIES =
 xfcalendar_LDFLAGS =
@@ -217,6 +220,7 @@ am__depfiles_maybe = depfiles
 @AMDEP_TRUE@	./$(DEPDIR)/xfcalendar-main.Po \
 @AMDEP_TRUE@	./$(DEPDIR)/xfcalendar-reminder.Po \
 @AMDEP_TRUE@	./$(DEPDIR)/xfcalendar-support.Po \
+@AMDEP_TRUE@	./$(DEPDIR)/xfcalendar-tray_icon.Po \
 @AMDEP_TRUE@	./$(DEPDIR)/xfcalendar-xfce_trayicon.Po
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
@@ -237,7 +241,7 @@ all: all-am
 .SUFFIXES: .c .lo .o .obj
 $(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ Makefile.am  $(top_srcdir)/configure.ac $(ACLOCAL_M4)
 	cd $(top_srcdir) && \
-	  $(AUTOMAKE) --foreign  src/Makefile
+	  $(AUTOMAKE) --gnu  src/Makefile
 Makefile: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.in  $(top_builddir)/config.status
 	cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@ $(am__depfiles_maybe)
 binPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
@@ -285,6 +289,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/xfcalendar-main.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/xfcalendar-reminder.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/xfcalendar-support.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/xfcalendar-tray_icon.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/xfcalendar-xfce_trayicon.Po@am__quote@
 
 .c.o:
@@ -517,6 +522,39 @@ xfcalendar-support.lo: support.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	depfile='$(DEPDIR)/xfcalendar-support.Plo' tmpdepfile='$(DEPDIR)/xfcalendar-support.TPlo' @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(xfcalendar_CFLAGS) $(CFLAGS) -c -o xfcalendar-support.lo `test -f 'support.c' || echo '$(srcdir)/'`support.c
+
+xfcalendar-tray_icon.o: tray_icon.c
+@am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(xfcalendar_CFLAGS) $(CFLAGS) -MT xfcalendar-tray_icon.o -MD -MP -MF "$(DEPDIR)/xfcalendar-tray_icon.Tpo" \
+@am__fastdepCC_TRUE@	  -c -o xfcalendar-tray_icon.o `test -f 'tray_icon.c' || echo '$(srcdir)/'`tray_icon.c; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/xfcalendar-tray_icon.Tpo" "$(DEPDIR)/xfcalendar-tray_icon.Po"; \
+@am__fastdepCC_TRUE@	else rm -f "$(DEPDIR)/xfcalendar-tray_icon.Tpo"; exit 1; \
+@am__fastdepCC_TRUE@	fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='tray_icon.c' object='xfcalendar-tray_icon.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	depfile='$(DEPDIR)/xfcalendar-tray_icon.Po' tmpdepfile='$(DEPDIR)/xfcalendar-tray_icon.TPo' @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(xfcalendar_CFLAGS) $(CFLAGS) -c -o xfcalendar-tray_icon.o `test -f 'tray_icon.c' || echo '$(srcdir)/'`tray_icon.c
+
+xfcalendar-tray_icon.obj: tray_icon.c
+@am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(xfcalendar_CFLAGS) $(CFLAGS) -MT xfcalendar-tray_icon.obj -MD -MP -MF "$(DEPDIR)/xfcalendar-tray_icon.Tpo" \
+@am__fastdepCC_TRUE@	  -c -o xfcalendar-tray_icon.obj `if test -f 'tray_icon.c'; then $(CYGPATH_W) 'tray_icon.c'; else $(CYGPATH_W) '$(srcdir)/tray_icon.c'; fi`; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/xfcalendar-tray_icon.Tpo" "$(DEPDIR)/xfcalendar-tray_icon.Po"; \
+@am__fastdepCC_TRUE@	else rm -f "$(DEPDIR)/xfcalendar-tray_icon.Tpo"; exit 1; \
+@am__fastdepCC_TRUE@	fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='tray_icon.c' object='xfcalendar-tray_icon.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	depfile='$(DEPDIR)/xfcalendar-tray_icon.Po' tmpdepfile='$(DEPDIR)/xfcalendar-tray_icon.TPo' @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(xfcalendar_CFLAGS) $(CFLAGS) -c -o xfcalendar-tray_icon.obj `if test -f 'tray_icon.c'; then $(CYGPATH_W) 'tray_icon.c'; else $(CYGPATH_W) '$(srcdir)/tray_icon.c'; fi`
+
+xfcalendar-tray_icon.lo: tray_icon.c
+@am__fastdepCC_TRUE@	if $(LIBTOOL) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(xfcalendar_CFLAGS) $(CFLAGS) -MT xfcalendar-tray_icon.lo -MD -MP -MF "$(DEPDIR)/xfcalendar-tray_icon.Tpo" \
+@am__fastdepCC_TRUE@	  -c -o xfcalendar-tray_icon.lo `test -f 'tray_icon.c' || echo '$(srcdir)/'`tray_icon.c; \
+@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/xfcalendar-tray_icon.Tpo" "$(DEPDIR)/xfcalendar-tray_icon.Plo"; \
+@am__fastdepCC_TRUE@	else rm -f "$(DEPDIR)/xfcalendar-tray_icon.Tpo"; exit 1; \
+@am__fastdepCC_TRUE@	fi
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='tray_icon.c' object='xfcalendar-tray_icon.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	depfile='$(DEPDIR)/xfcalendar-tray_icon.Plo' tmpdepfile='$(DEPDIR)/xfcalendar-tray_icon.TPlo' @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(xfcalendar_CFLAGS) $(CFLAGS) -c -o xfcalendar-tray_icon.lo `test -f 'tray_icon.c' || echo '$(srcdir)/'`tray_icon.c
 
 xfcalendar-xfce_trayicon.o: xfce_trayicon.c
 @am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(xfcalendar_CFLAGS) $(CFLAGS) -MT xfcalendar-xfce_trayicon.o -MD -MP -MF "$(DEPDIR)/xfcalendar-xfce_trayicon.Tpo" \

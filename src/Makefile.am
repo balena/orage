@@ -13,6 +13,8 @@ xfcalendar_SOURCES =							\
 	reminder.c							\
 	support.c							\
 	support.h							\
+	tray_icon.c                                                     \
+	tray_icon.h                                                     \
 	xfce_trayicon.c							\
 	xfce_trayicon.h
 

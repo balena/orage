@@ -47,6 +47,7 @@
 #include "callbacks.h"
 #include "interface.h"
 #include "support.h"
+#include "tray_icon.h"
 #include "xfce_trayicon.h"
 
 #define CHANNEL  "xfcalendar"

@@ -30,7 +30,7 @@ static GtkWidget *mainWindow;
 void create_wAbout(GtkWidget *widget, gpointer user_data){
 
   GdkPixbuf *xfcalendar_logo 
-    = inline_icon_at_size(xfcalendar_icon, 48, 48);
+    = xfce_inline_icon_at_size(xfcalendar_icon, 48, 48);
 
   XfceAboutInfo *about = xfce_about_info_new("Xfcalendar",
 			      VERSION,

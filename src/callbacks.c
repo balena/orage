@@ -56,6 +56,7 @@
 
 #define MAX_APP_LENGTH 4096
 #define LEN_BUFFER 1024
+/* FIXME: check if we can remove this */
 #define CHANNEL  "xfcalendar"
 
 #define SUNDAY TRUE
@@ -283,14 +284,6 @@ on_quit1_activate(GtkMenuItem *menuitem, gpointer user_data)
   gtk_main_quit();
 }
 
-void 
-on_preferences_activate                (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-  mcs_client_show (GDK_DISPLAY (), DefaultScreen (GDK_DISPLAY ()),
-		   CHANNEL);
-}
-
 void
 on_selectToday_activate                (GtkMenuItem     *menuitem,
 					gpointer         user_data)
@@ -340,23 +333,6 @@ on_calendar1_day_selected_double_click (GtkCalendar *calendar,
   GtkWidget *appointment;
   appointment = create_wAppointment();
   manageAppointment(calendar, appointment);
-  gtk_widget_show(appointment);
-}
-
-void
-on_Today_activate                      (GtkMenuItem *menuitem,
-                                        gpointer user_data)
-{
-  struct tm *t;
-  time_t tt;
-  GtkWidget *appointment;
-
-  appointment = create_wAppointment();
-  tt=time(NULL);
-  t=localtime(&tt);
-  gtk_calendar_select_month(cal, t->tm_mon, t->tm_year+1900);
-  gtk_calendar_select_day(cal, t->tm_mday);
-  manageAppointment(cal, appointment);
   gtk_widget_show(appointment);
 }
 

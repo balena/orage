@@ -31,7 +31,7 @@
 #include <libxfce4mcs/mcs-common.h>
 #include <libxfce4mcs/mcs-manager.h>
 #include <libxfce4util/i18n.h>
-#include <libxfce4util/util.h>
+#include <libxfce4util/libxfce4util.h>
 #include <libxfcegui4/libxfcegui4.h>
 #include <xfce-mcs-manager/manager-plugin.h>
 #include "calendar-icon.h"
@@ -166,7 +166,7 @@ Itf *create_xfcalendar_dialog(McsPlugin * mcs_plugin)
     dialog->startday_radiobutton_group = NULL;
     dialog->mode_radiobutton_group = NULL;
 
-    icon = inline_icon_at_size(calendar_icon_data, 32, 32);
+    icon = xfce_inline_icon_at_size(calendar_icon_data, 32, 32);
     dialog->xfcalendar_dialog = gtk_dialog_new();
     gtk_window_set_default_size (GTK_WINDOW(dialog->xfcalendar_dialog), 300, 200);
     gtk_window_set_title (GTK_WINDOW (dialog->xfcalendar_dialog), _("XFCalendar"));
@@ -180,7 +180,7 @@ Itf *create_xfcalendar_dialog(McsPlugin * mcs_plugin)
     dialog->dialog_vbox1 = GTK_DIALOG (dialog->xfcalendar_dialog)->vbox;
     gtk_widget_show (dialog->dialog_vbox1);
 
-    dialog->dialog_header = create_header(icon, _("XFCalendar"));
+    dialog->dialog_header = xfce_create_header(icon, _("XFCalendar"));
     gtk_widget_show(dialog->dialog_header);
     g_object_unref(icon);
     gtk_box_pack_start(GTK_BOX(dialog->dialog_vbox1), dialog->dialog_header, FALSE, TRUE, 0);
@@ -304,7 +304,7 @@ McsPluginInitResult mcs_plugin_init(McsPlugin * mcs_plugin)
     mcs_plugin->plugin_name = g_strdup(PLUGIN_NAME);
     mcs_plugin->caption = g_strdup(_("XFCalendar"));
     mcs_plugin->run_dialog = run_dialog;
-    mcs_plugin->icon = inline_icon_at_size(calendar_icon_data, DEFAULT_ICON_SIZE, DEFAULT_ICON_SIZE);
+    mcs_plugin->icon = xfce_inline_icon_at_size(calendar_icon_data, DEFAULT_ICON_SIZE, DEFAULT_ICON_SIZE);
     mcs_manager_notify(mcs_plugin->manager, CHANNEL);
 
     return (MCS_PLUGIN_INIT_OK);
