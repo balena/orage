@@ -54,6 +54,8 @@
 extern gboolean normalmode;
 static GtkCalendar *cal;
 
+char today[8];
+
 gboolean
 mWindow_delete_event_cb(GtkWidget *widget, GdkEvent *event,
 			gpointer user_data)
@@ -255,10 +257,14 @@ xfcalendar_mark_appointments (CalWin *xfcal)
 }
 
 gboolean
-xfcalendar_alarm_clock(gpointer p)
+xfcalendar_alarm_clock(gpointer user_data)
 {
+
+  CalWin *xfcal = (CalWin *)user_data;
+
   struct tm *t;
-  char key[8];
+  char key[8], loc_date[8], selected_date[8];
+  guint year, month, day;
   time_t tt;
   static char start_key[8]={0,0,0,0,0,0,0,0};
 
@@ -269,6 +275,47 @@ xfcalendar_alarm_clock(gpointer p)
   printf("at alarm %s==%s\n",key,start_key);
 #endif
 
+  /* See if the day just changed and the former current date was selected */
+
+  /* Just for avoiding to rewrite the routine in case key has its format  
+   * changed in the future.
+   */
+  strcpy(loc_date, key);
+
+  if (strcmp (loc_date, today) != 0)
+    {
+
+      /* Get the selected data */
+      gtk_calendar_get_date (GTK_CALENDAR (xfcal->mCalendar),
+			     &year,
+			     &month,
+			     &day);
+
+      /* build a string of it */
+      g_snprintf(selected_date, 8, "%03d%02d%02d", year-1900, month, day);
+
+      /* if the selected date is the former today variable, changed 
+       * the selected data; otherwise do nothing for keeping the date
+       * selected by the user. */
+      if (strcmp (selected_date, today) == 0)
+	{
+
+	  /* change today variable */
+	  strcpy(today, selected_date);
+
+	  /* select the relevant month and day in the calendar */
+	  gtk_calendar_select_month(GTK_CALENDAR(xfcal->mCalendar), 
+				    t->tm_mon, 
+				    t->tm_year+1900);
+
+	  gtk_calendar_select_day(GTK_CALENDAR(xfcal->mCalendar), 
+				  t->tm_mday);
+
+	}
+      
+    }
+
+  /* Check if any appointement for the date */
   if (!strlen(start_key) || strcmp(start_key,key)!=0){
     /* buzzz */
     DBHashTable *fapp;
@@ -483,8 +530,17 @@ CalWin *create_mainWin(void)
   g_timeout_add_full(0, 
 		     5000, 
 		     (GtkFunction) xfcalendar_alarm_clock, 
-		     (gpointer) xfcal->mWindow, 
+		     (gpointer) xfcal, 
+		     //(gpointer) xfcal->mWindow, 
 		     NULL);
+
+  /* Remember which day we are */
+  struct tm *t;
+  time_t tt;
+
+  tt=time(NULL);
+  t=localtime(&tt);
+  g_snprintf(today, 8, "%03d%02d%02d", t->tm_year, t->tm_mon, t->tm_mday);
 
   return xfcal;
 }
