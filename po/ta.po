@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Tamil XFCE4 Calander\n"
-"POT-Creation-Date: 2003-07-13 16:37+0200\n"
+"POT-Creation-Date: 2004-01-06 23:44+0100\n"
 "PO-Revision-Date: 2003-09-26 19:24-0600\n"
 "Last-Translator: Dinesh Nadarajah <dinesh_list@sbcglobal.net>\n"
 "Language-Team: Tamil <tamillinux-user@lists.sourceforge.net>\n"
@@ -14,62 +14,86 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/main.c:222
-#: src/interface.c:298
-msgid "About XFCalendar"
-msgstr "XFபஞ்சாங்கம் பற்றி"
-
-#: src/interface.c:53
-#: src/interface.c:307
-msgid "XFCalendar"
-msgstr "XFபஞ்சாங்கம்"
-
-#: src/interface.c:68
-msgid "_File"
-msgstr "_கோப்பு"
-
-#: src/interface.c:79
-msgid "_Help"
-msgstr "_உதவி"
-
-#: src/interface.c:86
-msgid "_About"
-msgstr "_பற்றி"
-
-#: src/interface.c:151
-msgid "Appointment"
-msgstr "முன்னேற்பாடு"
-
-#: src/interface.c:173
-msgid "Save"
-msgstr "சேமிக்கவும்"
-
-#: src/interface.c:185
-msgid "Previous day"
-msgstr "நேற்றைய நால்"
-
-#: src/interface.c:195
+#: src/main.c:251
 msgid "Today"
 msgstr "இன்று"
 
-#: src/interface.c:205
-msgid "Next day"
+#: src/main.c:260 src/interface.c:349
+msgid "About XFCalendar"
+msgstr "XFபஞ்சாங்கம் பற்றி"
+
+#: src/main.c:296
+msgid "Cannot create MCS client channel"
+msgstr ""
+
+#: src/interface.c:60 src/interface.c:358
+msgid "XFCalendar"
+msgstr "XFபஞ்சாங்கம்"
+
+#: src/interface.c:75
+msgid "_File"
+msgstr "_கோப்பு"
+
+#: src/interface.c:82
+msgid "Close window"
+msgstr ""
+
+#.
+#: src/interface.c:95
+msgid "Settings"
+msgstr ""
+
+#: src/interface.c:102
+msgid "Preferences"
+msgstr ""
+
+#.
+#: src/interface.c:107
+msgid "_Help"
+msgstr "_உதவி"
+
+#: src/interface.c:114
+msgid "_About"
+msgstr "_பற்றி"
+
+#: src/interface.c:193
+msgid "Appointment"
+msgstr "முன்னேற்பாடு"
+
+#: src/interface.c:215
+msgid "Save (Ctrl+s)"
+msgstr ""
+
+#: src/interface.c:228
+#, fuzzy
+msgid "Previous day (Ctrl+p)"
+msgstr "நேற்றைய நால்"
+
+#: src/interface.c:239
+msgid "Today (Alt+Home)"
+msgstr ""
+
+#: src/interface.c:251
+#, fuzzy
+msgid "Next day (Ctrl+n)"
 msgstr "அடுத்த நால்"
 
-#: src/interface.c:217
-msgid "Close"
-msgstr "மூடுக"
+#: src/interface.c:264
+msgid "Close (Ctrl+w)"
+msgstr ""
 
-#: src/interface.c:226
-#: src/interface.c:227
+#: src/interface.c:274
 msgid "Clear"
 msgstr "துப்பரவு"
 
-#: src/interface.c:318
+#: src/interface.c:275
+msgid "Clear (Ctrl+l)"
+msgstr ""
+
+#: src/interface.c:369
+#, fuzzy
 msgid ""
 "XFCalendar\n"
-"v. 0.1.3\n"
-"\n"
 "Manage your time with XFce4\n"
 "\n"
 "This software is released under\n"
@@ -101,11 +125,11 @@ msgstr ""
 "\n"
 "XFce4 (ப) ஒலிவர் பொர்டான்"
 
-#: src/interface.c:366
+#: src/interface.c:417
 msgid "Warning"
 msgstr "எச்சரிக்கை"
 
-#: src/interface.c:382
+#: src/interface.c:433
 msgid ""
 "You will remove all information \n"
 "associated with this date."
@@ -113,14 +137,21 @@ msgstr ""
 "இத்திகதில் உள்ள அனைத்து  \n"
 "விபரங்களையும் அழித்துவிடுவீர்."
 
-#: src/interface.c:431
-#: src/interface.c:439
+#: src/interface.c:482 src/interface.c:490
 msgid "Reminder"
 msgstr "ஞாபகமூட்டி"
 
-#: src/support.c:91
-#: src/support.c:115
+#: src/callbacks.c:754
+msgid "This should not happen"
+msgstr ""
+
+#: src/support.c:91 src/support.c:115
 #, c-format
 msgid "Couldn't find pixmap file: %s"
 msgstr "பிக்ஸ்படம் கோப்பு கண்டுபிடிக்க முடியவில்லை: %s"
 
+#~ msgid "Save"
+#~ msgstr "சேமிக்கவும்"
+
+#~ msgid "Close"
+#~ msgstr "மூடுக"
