@@ -169,7 +169,7 @@ create_wAppointment (void)
   btSave = gtk_toolbar_append_element (GTK_TOOLBAR (toolbar1),
                                 GTK_TOOLBAR_CHILD_BUTTON,
                                 NULL,
-                                _("btSave"),
+                                "btSave",
                                 _("Save"), NULL,
                                 tmp_toolbar_icon, NULL, NULL);
   gtk_label_set_use_underline (GTK_LABEL (((GtkToolbarChild*) (g_list_last (GTK_TOOLBAR (toolbar1)->children)->data))->label), TRUE);
@@ -181,7 +181,7 @@ create_wAppointment (void)
   btPrevious = gtk_toolbar_append_element (GTK_TOOLBAR (toolbar1),
                                 GTK_TOOLBAR_CHILD_BUTTON,
                                 NULL,
-                                _("btPrevious"),
+                                "btPrevious",
                                 _("Previous day"), NULL,
                                 tmp_toolbar_icon, NULL, NULL);
   gtk_label_set_use_underline (GTK_LABEL (((GtkToolbarChild*) (g_list_last (GTK_TOOLBAR (toolbar1)->children)->data))->label), TRUE);
@@ -191,7 +191,7 @@ create_wAppointment (void)
   btToday = gtk_toolbar_append_element (GTK_TOOLBAR (toolbar1),
                                 GTK_TOOLBAR_CHILD_BUTTON,
                                 NULL,
-                                _("btToday"),
+                                "btToday",
                                 _("Today"), NULL,
                                 tmp_toolbar_icon, NULL, NULL);
   gtk_label_set_use_underline (GTK_LABEL (((GtkToolbarChild*) (g_list_last (GTK_TOOLBAR (toolbar1)->children)->data))->label), TRUE);
@@ -201,7 +201,7 @@ create_wAppointment (void)
   btNext = gtk_toolbar_append_element (GTK_TOOLBAR (toolbar1),
                                 GTK_TOOLBAR_CHILD_BUTTON,
                                 NULL,
-                                _("btNext"),
+                                "btNext",
                                 _("Next day"), NULL,
                                 tmp_toolbar_icon, NULL, NULL);
   gtk_label_set_use_underline (GTK_LABEL (((GtkToolbarChild*) (g_list_last (GTK_TOOLBAR (toolbar1)->children)->data))->label), TRUE);
@@ -213,7 +213,7 @@ create_wAppointment (void)
   btClose = gtk_toolbar_append_element (GTK_TOOLBAR (toolbar1),
                                 GTK_TOOLBAR_CHILD_BUTTON,
                                 NULL,
-                                _("btClose"),
+                                "btClose",
                                 _("Close"), NULL,
                                 tmp_toolbar_icon, NULL, NULL);
   gtk_label_set_use_underline (GTK_LABEL (((GtkToolbarChild*) (g_list_last (GTK_TOOLBAR (toolbar1)->children)->data))->label), TRUE);
