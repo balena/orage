@@ -182,7 +182,7 @@ XDT_CHECK_PACKAGE([ICAL], [libical-0.24], [0.24],
   AC_SUBST([PTHREAD_LIBS])
 ])
 AM_CONDITIONAL([INCLUDED_LIBICAL], [test x"$ac_INCLUDED_LIBICAL" = x"yes"])
-AM_CONDITIONAL([HAVE_PTHREAD], [test "$have_pthread" = "yes"])
+AM_CONDITIONAL([HAVE_PTHREAD], [test x"$have_pthread" = x"yes"])
 AM_CONDITIONAL([WITH_BDB4], [test x"$WITH_BDB4" = x"yes"])
 
 AC_OUTPUT([
