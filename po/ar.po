@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-10-01 07:55+0200\n"
+"POT-Creation-Date: 2005-03-06 01:55+0200\n"
 "PO-Revision-Date: 2004-2-8 8:23+0300\n"
 "Last-Translator: saleh alhathal <hathalsal@hotmail.com>\n"
 "Language-Team: arabic\n"
@@ -15,24 +15,54 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: plugin/xfcalendar_plugin.c:148 plugin/xfcalendar_plugin.c:159
-#: plugin/xfcalendar_plugin.c:245 src/mainbox.c:384
+#: plugin/xfcalendar_plugin.c:175 plugin/xfcalendar_plugin.c:186
+#: plugin/xfcalendar_plugin.c:300 src/mainbox.c:374
 #, fuzzy
 msgid "Xfcalendar"
 msgstr "تقويم XFC"
 
 #.
-#: plugin/xfcalendar_plugin.c:174
+#: plugin/xfcalendar_plugin.c:201
 msgid "Mode"
 msgstr "هيئة"
 
-#: plugin/xfcalendar_plugin.c:182
+#: plugin/xfcalendar_plugin.c:209
 msgid "Normal"
 msgstr "عادي"
 
-#: plugin/xfcalendar_plugin.c:189
+#: plugin/xfcalendar_plugin.c:216
 msgid "Compact"
 msgstr "مصغر"
+
+#.
+#: plugin/xfcalendar_plugin.c:224
+msgid "Show in..."
+msgstr ""
+
+#: plugin/xfcalendar_plugin.c:232
+msgid "Taskbar"
+msgstr ""
+
+#: plugin/xfcalendar_plugin.c:237
+msgid "Pager"
+msgstr ""
+
+#: plugin/xfcalendar_plugin.c:242
+msgid "Systray"
+msgstr ""
+
+#.
+#: plugin/xfcalendar_plugin.c:248
+msgid "Start visibility"
+msgstr ""
+
+#: plugin/xfcalendar_plugin.c:256
+msgid "Show"
+msgstr ""
+
+#: plugin/xfcalendar_plugin.c:263
+msgid "Hide"
+msgstr ""
 
 #: src/about-xfcalendar.c:39
 msgid "Manage your time with Xfce4"
@@ -43,7 +73,19 @@ msgid "Core developer"
 msgstr ""
 
 #: src/about-xfcalendar.c:54 src/about-xfcalendar.c:59
+#: src/about-xfcalendar.c:64
 msgid "Contributor"
+msgstr ""
+
+#: src/callbacks.c:227
+msgid "Question"
+msgstr ""
+
+#: src/callbacks.c:236
+msgid ""
+"\n"
+"The information has been modified.\n"
+" Do you want to continue ?\n"
 msgstr ""
 
 #: src/interface.c:56
@@ -70,10 +112,6 @@ msgstr "اليوم التالي (Ctrl+n)"
 msgid "Close (Ctrl+w)"
 msgstr "إغلاق (Ctrl+w)"
 
-#: src/interface.c:137
-msgid "Clear"
-msgstr "مسح"
-
 #: src/interface.c:138
 msgid "Clear (Ctrl+l)"
 msgstr "مسح (Ctrl+l)"
@@ -82,7 +120,7 @@ msgstr "مسح (Ctrl+l)"
 msgid "Warning"
 msgstr "تحذير"
 
-#: src/interface.c:224
+#: src/interface.c:225
 msgid ""
 "You will remove all information \n"
 "associated with this date."
@@ -91,45 +129,45 @@ msgstr ""
 "ويشمل البينات المرتبطهة بها"
 
 #. File menu
-#: src/mainbox.c:414
+#: src/mainbox.c:404
 msgid "_File"
 msgstr "_ملف"
 
-#: src/mainbox.c:423
+#: src/mainbox.c:413
 #, fuzzy
 msgid "_Close window"
 msgstr "أغلق النافذة"
 
 #. Settings menu
-#: src/mainbox.c:440
+#: src/mainbox.c:430
 #, fuzzy
 msgid "_Settings"
 msgstr "إعدادات"
 
-#: src/mainbox.c:449
+#: src/mainbox.c:439
 #, fuzzy
 msgid "_Preferences"
 msgstr "أداء"
 
-#: src/mainbox.c:460
+#: src/mainbox.c:450
 #, fuzzy
 msgid "Select _Today"
 msgstr "إختر اليوم"
 
 #. Help menu
-#: src/mainbox.c:467
+#: src/mainbox.c:457
 msgid "_Help"
 msgstr "_مساعدة"
 
-#: src/mainbox.c:476
+#: src/mainbox.c:466
 msgid "_About"
 msgstr "_حول"
 
-#: src/main.c:172
+#: src/main.c:127
 msgid "This should not happen"
 msgstr "ﻻ يجب ان يحدوث هذا"
 
-#: src/main.c:427
+#: src/main.c:390
 msgid "Cannot create MCS client channel"
 msgstr "لم أتمكن من تكوين وصلة لعميل MCS"
 
@@ -142,18 +180,21 @@ msgstr "مذكر"
 msgid "Couldn't find pixmap file: %s"
 msgstr "لم أتمكن من إيجاد ملف الصورة: %s"
 
-#: src/tray_icon.c:96
+#: src/tray_icon.c:95
 msgid "Today"
 msgstr "اليوم"
 
-#: src/tray_icon.c:106
+#: src/tray_icon.c:105
 msgid "Preferences"
 msgstr "أداء"
 
-#: src/tray_icon.c:115
+#: src/tray_icon.c:114
 #, fuzzy
 msgid "About Xfcalendar"
 msgstr "حول XFCalendar"
+
+#~ msgid "Clear"
+#~ msgstr "مسح"
 
 #~ msgid "Week starts with..."
 #~ msgstr "بداية اﻹسبوع في ..."

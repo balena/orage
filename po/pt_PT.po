@@ -8,43 +8,85 @@ msgid ""
 msgstr ""
 "Project-Id-Version: XFCalendar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-09-20 08:23+0200\n"
+"POT-Creation-Date: 2005-03-06 01:55+0200\n"
 "PO-Revision-Date: 2004-10-09 21:31+0100\n"
 "Last-Translator: Nuno Donato <nunodonato@gmail.com>\n"
 "Language-Team: Portuguese <pt@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit"
+"Content-Transfer-Encoding: 8bit\n"
 
-#: plugin/xfcalendar_plugin.c:148 plugin/xfcalendar_plugin.c:159
-#: plugin/xfcalendar_plugin.c:245 src/mainbox.c:382
+#: plugin/xfcalendar_plugin.c:175 plugin/xfcalendar_plugin.c:186
+#: plugin/xfcalendar_plugin.c:300 src/mainbox.c:374
 msgid "Xfcalendar"
 msgstr "Xfcalendar"
 
 #.
-#: plugin/xfcalendar_plugin.c:174
+#: plugin/xfcalendar_plugin.c:201
 msgid "Mode"
 msgstr "Modo"
 
-#: plugin/xfcalendar_plugin.c:182
+#: plugin/xfcalendar_plugin.c:209
 msgid "Normal"
 msgstr "Normal"
 
-#: plugin/xfcalendar_plugin.c:189
+#: plugin/xfcalendar_plugin.c:216
 msgid "Compact"
 msgstr "Compacto"
 
-#: src/about-xfcalendar.c:38
+#.
+#: plugin/xfcalendar_plugin.c:224
+msgid "Show in..."
+msgstr ""
+
+#: plugin/xfcalendar_plugin.c:232
+msgid "Taskbar"
+msgstr ""
+
+#: plugin/xfcalendar_plugin.c:237
+msgid "Pager"
+msgstr ""
+
+#: plugin/xfcalendar_plugin.c:242
+msgid "Systray"
+msgstr ""
+
+#.
+#: plugin/xfcalendar_plugin.c:248
+msgid "Start visibility"
+msgstr ""
+
+#: plugin/xfcalendar_plugin.c:256
+msgid "Show"
+msgstr ""
+
+#: plugin/xfcalendar_plugin.c:263
+msgid "Hide"
+msgstr ""
+
+#: src/about-xfcalendar.c:39
 msgid "Manage your time with Xfce4"
 msgstr "Faça a gestão do seu tempo com o Xfce4"
 
-#: src/about-xfcalendar.c:48
+#: src/about-xfcalendar.c:49
 msgid "Core developer"
 msgstr "Programador principal"
 
-#: src/about-xfcalendar.c:53 src/about-xfcalendar.c:58
+#: src/about-xfcalendar.c:54 src/about-xfcalendar.c:59
+#: src/about-xfcalendar.c:64
 msgid "Contributor"
 msgstr "Contribuidor"
+
+#: src/callbacks.c:227
+msgid "Question"
+msgstr ""
+
+#: src/callbacks.c:236
+msgid ""
+"\n"
+"The information has been modified.\n"
+" Do you want to continue ?\n"
+msgstr ""
 
 #: src/interface.c:56
 msgid "Appointment"
@@ -70,10 +112,6 @@ msgstr "Dia Seguinte (Ctrl+n)"
 msgid "Close (Ctrl+w)"
 msgstr "Fechar (Ctrl+w)"
 
-#: src/interface.c:137
-msgid "Clear"
-msgstr "Limpar"
-
 #: src/interface.c:138
 msgid "Clear (Ctrl+l)"
 msgstr "Limpar (Ctrl+I)"
@@ -82,49 +120,50 @@ msgstr "Limpar (Ctrl+I)"
 msgid "Warning"
 msgstr "Aviso"
 
-#: src/interface.c:224
+#: src/interface.c:225
 msgid ""
 "You will remove all information \n"
 "associated with this date."
-msgstr "Vai remover todas as informações \n"
+msgstr ""
+"Vai remover todas as informações \n"
 "associadas a esta data."
 
 #. File menu
-#: src/mainbox.c:412
+#: src/mainbox.c:404
 msgid "_File"
 msgstr "_Ficheiro"
 
-#: src/mainbox.c:421
+#: src/mainbox.c:413
 msgid "_Close window"
 msgstr "_Fechar janela"
 
 #. Settings menu
-#: src/mainbox.c:438
+#: src/mainbox.c:430
 msgid "_Settings"
 msgstr "_Definições"
 
-#: src/mainbox.c:447
+#: src/mainbox.c:439
 msgid "_Preferences"
 msgstr "_Preferências"
 
-#: src/mainbox.c:458
+#: src/mainbox.c:450
 msgid "Select _Today"
 msgstr "Seleccionar hoje"
 
 #. Help menu
-#: src/mainbox.c:465
+#: src/mainbox.c:457
 msgid "_Help"
 msgstr "_Ajuda"
 
-#: src/mainbox.c:474
+#: src/mainbox.c:466
 msgid "_About"
 msgstr "_Sobre"
 
-#: src/main.c:172
+#: src/main.c:127
 msgid "This should not happen"
 msgstr "Isto não deveria acontecer"
 
-#: src/main.c:427
+#: src/main.c:390
 msgid "Cannot create MCS client channel"
 msgstr "O canal cliente MCS não pôde ser criado"
 
@@ -137,17 +176,20 @@ msgstr "Relembrar"
 msgid "Couldn't find pixmap file: %s"
 msgstr "Não foi possível encontrar o pximap: %s"
 
-#: src/tray_icon.c:96
+#: src/tray_icon.c:95
 msgid "Today"
 msgstr "Hoje"
 
-#: src/tray_icon.c:106
+#: src/tray_icon.c:105
 msgid "Preferences"
 msgstr "Preferências"
 
-#: src/tray_icon.c:115
+#: src/tray_icon.c:114
 msgid "About Xfcalendar"
 msgstr "Sobre o Xfcalendar"
+
+#~ msgid "Clear"
+#~ msgstr "Limpar"
 
 #~ msgid "Week starts with..."
 #~ msgstr "Semana começa com..."

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfcalender 4.2.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-02-17 22:39+0900\n"
+"POT-Creation-Date: 2005-03-06 01:55+0200\n"
 "PO-Revision-Date: 2005-02-22 01:58+0900\n"
 "Last-Translator: Daichi Kawahata <daichik@users.sourceforge.net>\n"
 "Language-Team: xfce-users-jp <xfce-users-jp@ml.fdiary.net>\n"
@@ -16,23 +16,53 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: plugin/xfcalendar_plugin.c:148 plugin/xfcalendar_plugin.c:159
-#: plugin/xfcalendar_plugin.c:245 src/mainbox.c:384
+#: plugin/xfcalendar_plugin.c:175 plugin/xfcalendar_plugin.c:186
+#: plugin/xfcalendar_plugin.c:300 src/mainbox.c:374
 msgid "Xfcalendar"
 msgstr "Xfcalendar"
 
 #.
-#: plugin/xfcalendar_plugin.c:174
+#: plugin/xfcalendar_plugin.c:201
 msgid "Mode"
 msgstr "モード"
 
-#: plugin/xfcalendar_plugin.c:182
+#: plugin/xfcalendar_plugin.c:209
 msgid "Normal"
 msgstr "通常"
 
-#: plugin/xfcalendar_plugin.c:189
+#: plugin/xfcalendar_plugin.c:216
 msgid "Compact"
 msgstr "軽量"
+
+#.
+#: plugin/xfcalendar_plugin.c:224
+msgid "Show in..."
+msgstr ""
+
+#: plugin/xfcalendar_plugin.c:232
+msgid "Taskbar"
+msgstr ""
+
+#: plugin/xfcalendar_plugin.c:237
+msgid "Pager"
+msgstr ""
+
+#: plugin/xfcalendar_plugin.c:242
+msgid "Systray"
+msgstr ""
+
+#.
+#: plugin/xfcalendar_plugin.c:248
+msgid "Start visibility"
+msgstr ""
+
+#: plugin/xfcalendar_plugin.c:256
+msgid "Show"
+msgstr ""
+
+#: plugin/xfcalendar_plugin.c:263
+msgid "Hide"
+msgstr ""
 
 #: src/about-xfcalendar.c:39
 msgid "Manage your time with Xfce4"
@@ -43,8 +73,20 @@ msgid "Core developer"
 msgstr "中心開発者"
 
 #: src/about-xfcalendar.c:54 src/about-xfcalendar.c:59
+#: src/about-xfcalendar.c:64
 msgid "Contributor"
 msgstr "貢献者"
+
+#: src/callbacks.c:227
+msgid "Question"
+msgstr ""
+
+#: src/callbacks.c:236
+msgid ""
+"\n"
+"The information has been modified.\n"
+" Do you want to continue ?\n"
+msgstr ""
 
 #: src/interface.c:56
 msgid "Appointment"
@@ -70,10 +112,6 @@ msgstr "明日 (Ctrl+n)"
 msgid "Close (Ctrl+w)"
 msgstr "閉じる (Ctrl+w)"
 
-#: src/interface.c:137
-msgid "Clear"
-msgstr "消去"
-
 #: src/interface.c:138
 msgid "Clear (Ctrl+l)"
 msgstr "消去 (Ctrl+l)"
@@ -82,7 +120,7 @@ msgstr "消去 (Ctrl+l)"
 msgid "Warning"
 msgstr "警告"
 
-#: src/interface.c:224
+#: src/interface.c:225
 msgid ""
 "You will remove all information \n"
 "associated with this date."
@@ -91,41 +129,41 @@ msgstr ""
 "情報を削除します。"
 
 #. File menu
-#: src/mainbox.c:414
+#: src/mainbox.c:404
 msgid "_File"
 msgstr "ファイル(_F)"
 
-#: src/mainbox.c:423
+#: src/mainbox.c:413
 msgid "_Close window"
 msgstr "ウィンドウを閉じる(_C)"
 
 #. Settings menu
-#: src/mainbox.c:440
+#: src/mainbox.c:430
 msgid "_Settings"
 msgstr "設定(_S)"
 
-#: src/mainbox.c:449
+#: src/mainbox.c:439
 msgid "_Preferences"
 msgstr "環境設定(_P)"
 
-#: src/mainbox.c:460
+#: src/mainbox.c:450
 msgid "Select _Today"
 msgstr "今日の日付を選択(_T)"
 
 #. Help menu
-#: src/mainbox.c:467
+#: src/mainbox.c:457
 msgid "_Help"
 msgstr "ヘルプ(_H)"
 
-#: src/mainbox.c:476
+#: src/mainbox.c:466
 msgid "_About"
 msgstr "このプログラムについて(_A)"
 
-#: src/main.c:175
+#: src/main.c:127
 msgid "This should not happen"
 msgstr "想定外の事が起こりました"
 
-#: src/main.c:430
+#: src/main.c:390
 msgid "Cannot create MCS client channel"
 msgstr "MCS クライアントのチャンネルを作成できません"
 
@@ -149,3 +187,6 @@ msgstr "環境設定"
 #: src/tray_icon.c:114
 msgid "About Xfcalendar"
 msgstr "Xfcalendar について"
+
+#~ msgid "Clear"
+#~ msgstr "消去"

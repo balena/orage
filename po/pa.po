@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfcalendar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-10-01 07:55+0200\n"
+"POT-Creation-Date: 2005-03-06 01:55+0200\n"
 "PO-Revision-Date: 2004-09-23 15:29+0530\n"
 "Last-Translator: Amanpreet Singh Alam <aalam@redhat.com>\n"
 "Language-Team: Punjabi <fedora-trans-pa@redhat.com>\n"
@@ -18,23 +18,53 @@ msgstr ""
 "Plural-Forms: Plural-Forms: Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "\n"
 
-#: plugin/xfcalendar_plugin.c:148 plugin/xfcalendar_plugin.c:159
-#: plugin/xfcalendar_plugin.c:245 src/mainbox.c:384
+#: plugin/xfcalendar_plugin.c:175 plugin/xfcalendar_plugin.c:186
+#: plugin/xfcalendar_plugin.c:300 src/mainbox.c:374
 msgid "Xfcalendar"
 msgstr "ਐਕਸ-ਕੈਲੰਡਰ"
 
 #.
-#: plugin/xfcalendar_plugin.c:174
+#: plugin/xfcalendar_plugin.c:201
 msgid "Mode"
 msgstr "ਢੰਗ"
 
-#: plugin/xfcalendar_plugin.c:182
+#: plugin/xfcalendar_plugin.c:209
 msgid "Normal"
 msgstr "ਸਧਾਰਨ"
 
-#: plugin/xfcalendar_plugin.c:189
+#: plugin/xfcalendar_plugin.c:216
 msgid "Compact"
 msgstr "ਸਮੂਹ"
+
+#.
+#: plugin/xfcalendar_plugin.c:224
+msgid "Show in..."
+msgstr ""
+
+#: plugin/xfcalendar_plugin.c:232
+msgid "Taskbar"
+msgstr ""
+
+#: plugin/xfcalendar_plugin.c:237
+msgid "Pager"
+msgstr ""
+
+#: plugin/xfcalendar_plugin.c:242
+msgid "Systray"
+msgstr ""
+
+#.
+#: plugin/xfcalendar_plugin.c:248
+msgid "Start visibility"
+msgstr ""
+
+#: plugin/xfcalendar_plugin.c:256
+msgid "Show"
+msgstr ""
+
+#: plugin/xfcalendar_plugin.c:263
+msgid "Hide"
+msgstr ""
 
 #: src/about-xfcalendar.c:39
 msgid "Manage your time with Xfce4"
@@ -45,8 +75,20 @@ msgid "Core developer"
 msgstr "ਮੂਲ ਵਿਕਾਸ-ਕਰਤਾ"
 
 #: src/about-xfcalendar.c:54 src/about-xfcalendar.c:59
+#: src/about-xfcalendar.c:64
 msgid "Contributor"
 msgstr "ਯੋਗਦਾਨੀ"
+
+#: src/callbacks.c:227
+msgid "Question"
+msgstr ""
+
+#: src/callbacks.c:236
+msgid ""
+"\n"
+"The information has been modified.\n"
+" Do you want to continue ?\n"
+msgstr ""
 
 #: src/interface.c:56
 msgid "Appointment"
@@ -72,10 +114,6 @@ msgstr "ਅਗਲਾ ਦਿਨ (Ctrl+n)"
 msgid "Close (Ctrl+w)"
 msgstr "ਬੰਦ (Ctrl+w)"
 
-#: src/interface.c:137
-msgid "Clear"
-msgstr "ਸਾਫ"
-
 #: src/interface.c:138
 msgid "Clear (Ctrl+l)"
 msgstr "ਸਾਫ਼ (Ctrl+l)"
@@ -84,7 +122,7 @@ msgstr "ਸਾਫ਼ (Ctrl+l)"
 msgid "Warning"
 msgstr "ਚੇਤਾਵਨੀ"
 
-#: src/interface.c:224
+#: src/interface.c:225
 msgid ""
 "You will remove all information \n"
 "associated with this date."
@@ -93,41 +131,41 @@ msgstr ""
 "ਹਟਾ ਦੇਵੋਗੇ।"
 
 #. File menu
-#: src/mainbox.c:414
+#: src/mainbox.c:404
 msgid "_File"
 msgstr "ਫਾਇ_ਲ"
 
-#: src/mainbox.c:423
+#: src/mainbox.c:413
 msgid "_Close window"
 msgstr "ਝਰੋਖਾ _ਬੰਦ"
 
 #. Settings menu
-#: src/mainbox.c:440
+#: src/mainbox.c:430
 msgid "_Settings"
 msgstr "_ਵਿਵਸਥਾ"
 
-#: src/mainbox.c:449
+#: src/mainbox.c:439
 msgid "_Preferences"
 msgstr "_ਮੇਰੀ ਪਸੰਦ"
 
-#: src/mainbox.c:460
+#: src/mainbox.c:450
 msgid "Select _Today"
 msgstr "_ਅੱਜ ਚੁਣੋ"
 
 #. Help menu
-#: src/mainbox.c:467
+#: src/mainbox.c:457
 msgid "_Help"
 msgstr "_ਸਹਾਇਤਾ"
 
-#: src/mainbox.c:476
+#: src/mainbox.c:466
 msgid "_About"
 msgstr "_ਇਸ ਬਾਰੇ"
 
-#: src/main.c:172
+#: src/main.c:127
 msgid "This should not happen"
 msgstr "ਇਹ ਹੋ ਹੀ ਨਹੀਂ ਸਕਦਾ ਹੈ"
 
-#: src/main.c:427
+#: src/main.c:390
 msgid "Cannot create MCS client channel"
 msgstr "MCS ਕਲਾਂਇਟ ਚੈਨਲ ਬਣਾਇਆ ਨਹੀਂ ਜਾ ਸਕਦਾ ਹੈ"
 
@@ -140,14 +178,17 @@ msgstr "ਯਾਦ-ਪੱਤਰ"
 msgid "Couldn't find pixmap file: %s"
 msgstr "ਪੈਕਸ-ਚਿੱਤਰ ਫਾਇਲ ਲੱਭੀ ਨਹੀਂ ਜਾ ਸਕੀ: %s"
 
-#: src/tray_icon.c:96
+#: src/tray_icon.c:95
 msgid "Today"
 msgstr "ਅੱਜ"
 
-#: src/tray_icon.c:106
+#: src/tray_icon.c:105
 msgid "Preferences"
 msgstr "ਮੇਰੀ ਪਸੰਦ"
 
-#: src/tray_icon.c:115
+#: src/tray_icon.c:114
 msgid "About Xfcalendar"
 msgstr "ਐਕਸਐਫ-ਕੈਲੰਡਰ ਬਾਰੇ"
+
+#~ msgid "Clear"
+#~ msgstr "ਸਾਫ"
