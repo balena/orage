@@ -23,11 +23,14 @@
 #endif
 
 #include <libxfcegui4/libxfcegui4.h>
+
+#include "mainbox.h"
 #include "xfcalendar-icon-inline.h"
 
-static GtkWidget *mainWindow;
 
 void create_wAbout(GtkWidget *widget, gpointer user_data){
+
+  CalWin *xfcal = (CalWin *)user_data;
 
   GdkPixbuf *xfcalendar_logo 
     = xfce_inline_icon_at_size(xfcalendar_icon, 48, 48);
@@ -56,7 +59,7 @@ void create_wAbout(GtkWidget *widget, gpointer user_data){
 			     "edscott@imp.mx",
 			     _("Contributor"));
 
-  GtkWidget *dialog = xfce_about_dialog_new(GTK_WINDOW(mainWindow),
+  GtkWidget *dialog = xfce_about_dialog_new(GTK_WINDOW(xfcal->mWindow),
 						       about,
 						       xfcalendar_logo);
 

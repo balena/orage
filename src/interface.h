@@ -3,6 +3,5 @@
  */
 #include "xfce_trayicon.h"
 
-GtkWidget* create_XFCalendar (void);
 GtkWidget* create_wAppointment (void);
 GtkWidget* create_wClearWarn (void);

@@ -34,6 +34,7 @@
 #include "callbacks.h"
 /* */
 #include "support.h"
+#include "mainbox.h"
 #include "xfcalendar-icon-inline.h"
 #include "xfce_trayicon.h"
 #include "about-xfcalendar.h"
@@ -73,12 +74,18 @@ on_about_activate(GtkMenuItem *menuitem, gpointer user_data)
   create_wAbout((GtkWidget *)menuitem, user_data);
 }
 
+void 
+toggle_visible_cb (CalWin *xfcal)
+{
+
+  xfcalendar_toggle_visible (xfcal);
+
+}
 
 XfceTrayIcon*
-create_TrayIcon (GtkWidget *window)
+create_TrayIcon (CalWin *xfcal)
 {
   XfceTrayIcon *trayIcon = NULL;
-  //GtkWidget *trayIcon = NULL;
   GtkWidget *menuItem;
   GtkWidget *trayMenu;
   GdkPixbuf *pixbuf;
@@ -108,7 +115,7 @@ create_TrayIcon (GtkWidget *window)
 
   menuItem = gtk_menu_item_new_with_label(_("About XFCalendar"));
   g_signal_connect(menuItem, "activate", G_CALLBACK(on_about_activate),
-		   NULL);
+		   xfcal);
   gtk_menu_shell_append(GTK_MENU_SHELL(trayMenu), menuItem);
   gtk_widget_show(menuItem);
   menuItem = gtk_separator_menu_item_new();
@@ -125,7 +132,8 @@ create_TrayIcon (GtkWidget *window)
   pixbuf = xfce_inline_icon_at_size(xfcalendar_icon, 16, 16);
   trayIcon = xfce_tray_icon_new_with_menu_from_pixbuf(trayMenu, pixbuf);
   g_object_unref(pixbuf);
+
   g_signal_connect_swapped(G_OBJECT(trayIcon), "clicked",
-			   G_CALLBACK(toggle_visible_cb), window);
+			   G_CALLBACK(toggle_visible_cb), xfcal);
   return trayIcon;
 }

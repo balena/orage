@@ -1,4 +1,4 @@
-/* tray_icon.h
+/* mainbox.h
  *
  * (C) 2004 Mickaël Graf
  *
@@ -18,9 +18,35 @@
  *
  */
 
-#include "xfce_trayicon.h"
-//#include "mainbox.h"
+typedef struct _CalWin CalWin;
 
-XfceTrayIcon*
-create_TrayIcon (CalWin *xfcal);
-//create_TrayIcon (GtkWidget *window);
+struct _CalWin
+{
+  GtkWidget *mWindow;
+  GtkWidget *mVbox;
+  GtkWidget *mMenubar;
+  GtkWidget *mFile;
+  GtkWidget *mFile_menu;
+  GtkWidget *mFile_close;
+  GtkWidget *mFile_separator;
+  GtkWidget *mFile_quit;
+  GtkWidget *mSettings;
+  GtkWidget *mSettings_menu;
+  GtkWidget *mSettings_preferences;
+  GtkWidget *mSettings_separator;
+  GtkWidget *mSettings_selectToday;
+  GtkWidget *mHelp;
+  GtkWidget *mHelp_menu;
+  GtkWidget *mHelp_about;
+  GtkWidget *mCalendar;
+  GtkAccelGroup *mAccel_group;
+
+  gboolean show_Calendar;
+  gboolean show_Taskbar;
+  gboolean show_Pager;
+  gboolean start_Monday;
+  GtkCalendarDisplayOptions display_Options;
+};
+
+CalWin *create_mainWin(void);
+void xfcalendar_toggle_visible (CalWin *xfcal);

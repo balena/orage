@@ -53,6 +53,7 @@
 #include "support.h"
 #include "reminder.h"
 #include "about-xfcalendar.h"
+#include "mainbox.h"
 
 #define MAX_APP_LENGTH 4096
 #define LEN_BUFFER 1024
@@ -62,8 +63,7 @@
 #define SUNDAY TRUE
 #define MONDAY FALSE
 
-settings calsets;
-gboolean normalmode = TRUE;
+extern gboolean normalmode;
 
 static gboolean startday = SUNDAY;
 /*
@@ -78,48 +78,13 @@ static GtkWidget *clearwarn;
 static GtkCalendar *cal;
 static GtkWidget *mainWindow;
 
+extern CalWin *xfcal;
+
 /* Direction for changing day to look at */
 enum{
   PREVIOUS,
     NEXT
     };
-
-void init_settings(GtkWidget *w)
-{
-  gchar *fpath;
-  FILE *fp;
-  char buf[LEN_BUFFER];
-
-  xfce_textdomain(GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8");
-
-  /* default */
-  calsets.showCal = FALSE;
-  calsets.showTaskbar = TRUE;
-  calsets.showPager = TRUE;
-  calsets.startMonday = FALSE;
-  calsets.dispOptions = GTK_CALENDAR_SHOW_HEADING | GTK_CALENDAR_SHOW_DAY_NAMES | GTK_CALENDAR_SHOW_WEEK_NUMBERS;
-
-  fpath = xfce_get_userfile("xfcalendar", "xfcalendarrc", NULL);
-  if ((fp = fopen(fpath, "r")) == NULL){
-    fp = fopen(fpath, "w");
-    if (fp == NULL)
-      g_warning("Unable to create %s", fpath);
-    else {
-      fprintf(fp, "[Session Visibility]\n");
-      if(calsets.showCal) fprintf(fp, "show\n"); else fprintf(fp, "hide\n");
-      fclose(fp);
-    }
-  }else{
-    /* *very* limited set of options */
-    fgets(buf, LEN_BUFFER, fp); /* [Session Visibility] */
-    fgets(buf, LEN_BUFFER, fp);
-    if(strstr(buf, "show")) 
-      {
-	  calsets.showCal = TRUE;
-	  gtk_widget_show(w);
-      }
-  }
-}
 
 void apply_settings()
 {
@@ -128,18 +93,19 @@ void apply_settings()
 
   xfce_textdomain(GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8");
 
-  if(calsets.startMonday==TRUE)
+  if(xfcal->start_Monday == TRUE)
     {
-    gtk_calendar_display_options (GTK_CALENDAR (cal), calsets.dispOptions|GTK_CALENDAR_WEEK_START_MONDAY);
+    gtk_calendar_display_options (GTK_CALENDAR (xfcal->mCalendar), 
+				  xfcal->display_Options|GTK_CALENDAR_WEEK_START_MONDAY);
 #ifdef debug
     g_message("apply_settings(): Monday true");
 #endif
     }
   else
     {
-    gtk_calendar_display_options (GTK_CALENDAR (cal), calsets.dispOptions);
+      gtk_calendar_display_options (GTK_CALENDAR (xfcal->mCalendar), xfcal->display_Options);
 #ifdef debug
-    g_message("apply_settings(): Monday false");
+      g_message("apply_settings(): Monday false");
 #endif
     }
 
@@ -150,7 +116,7 @@ void apply_settings()
     g_warning("Unable to open RC file.");
   }else {
     fprintf(fp, "[Session Visibility]\n");
-    if(calsets.showCal) fprintf(fp, "show\n"); else fprintf(fp, "hide\n");
+    if(xfcal->show_Calendar) fprintf(fp, "show\n"); else fprintf(fp, "hide\n");
 
     fclose(fp);
   }
@@ -159,44 +125,7 @@ void apply_settings()
 
 void settings_set_showCal(GtkWidget *w)
 {
-  calsets.showCal = GTK_WIDGET_VISIBLE(w);
-}
-
-void set_mainWin(GtkWidget *w)
-{
-  mainWindow=w;
-}
-
-void set_cal(GtkWidget *w)
-{
-  //We define it once, there will be only one calendar
-  cal=(GtkCalendar *)lookup_widget(w,"calendar1");
-}
-
-void markit(DBHashTable *f){
-	char *text=(char *)DBH_DATA(f);
-	if (strlen(text)){
-		guint day=atoi((char *)(f->key+5));
-		if (day > 0 && day < 32){
-#ifdef DEBUG
-			printf("marking %u\n",day);
-#endif
-			gtk_calendar_mark_day(cal,day);
-		}
-	}
-}
-
-int mark_appointments(GtkWidget *w){
-	guint year, month, day;
-	char key[8];
-	DBHashTable *fapp;
-	char *fpath = xfce_get_userfile("xfcalendar", "appointments.dbh", NULL);
-	if ((fapp = DBH_open(fpath)) == NULL) return FALSE;
-	gtk_calendar_get_date(cal, &year, &month, &day);
-	g_snprintf(key, 8, "%03d%02d%02d", year-1900, month, day);
-	DBH_sweep(fapp,markit,key,NULL,5);
-	DBH_close(fapp);
-	return TRUE;	
+  xfcal->show_Calendar = GTK_WIDGET_VISIBLE(w);
 }
 
 void pretty_window(char *text){
@@ -204,53 +133,6 @@ void pretty_window(char *text){
 	reminder = create_wReminder(text);
 	gtk_widget_show(reminder);
 }
-
-gint alarm_clock(gpointer p){
-	struct tm *t;
-	char key[8];
-	time_t tt;
-	static char start_key[8]={0,0,0,0,0,0,0,0};
-	tt=time(NULL);
-	t=localtime(&tt);
-	g_snprintf(key, 8, "%03d%02d%02d", t->tm_year, t->tm_mon, t->tm_mday);
-#ifdef DEBUG
-	printf("at alarm %s==%s\n",key,start_key);
-#endif
-	if (!strlen(start_key) || strcmp(start_key,key)!=0){
-		/* buzzz */
-		DBHashTable *fapp;
-		char *fpath = xfce_get_userfile("xfcalendar", "appointments.dbh", NULL);
-		if ((fapp = DBH_open(fpath)) == NULL) return FALSE;
-		strcpy(start_key,key);
-		strcpy((char *)(fapp->key),key);
-		if (DBH_load(fapp)){
-			char *text=(char *)DBH_DATA(fapp);
-			if (strlen(text)) pretty_window(text);
-		}
-		DBH_close(fapp);
-		g_free(fpath);
-	}
-	return TRUE;	
-}
-
-void remark_appointments (GtkCalendar *calendar,gpointer user_data){
-#ifdef DEBUG
-	printf("remark_appointments...\n");
-#endif
-	gtk_calendar_clear_marks(calendar);
-	mark_appointments((GtkWidget *)calendar);
-}
-
-
-
-void setup_signals(GtkWidget *w){
-	g_signal_connect ((gpointer) cal, "month-changed",
-                    G_CALLBACK (remark_appointments),
-                   NULL);
-	/* the alarm callback: */		    
- 	g_timeout_add_full(0, 5000, (GtkFunction) alarm_clock, (gpointer) w, NULL);
-}
-
 
 int keep_tidy(void){
 	/* keep a tidy DBHashTable */
@@ -268,72 +150,6 @@ int keep_tidy(void){
 	}
 	g_free(fpath);
 	return TRUE;	
-}
-
-void
-on_close1_activate(GtkMenuItem *menuitem, gpointer user_data)
-{
-  GtkWidget *window = GTK_WIDGET(user_data);
-  
-  gtk_widget_hide(window);
-}
-
-void
-on_quit1_activate(GtkMenuItem *menuitem, gpointer user_data)
-{
-  gtk_main_quit();
-}
-
-void
-on_selectToday_activate                (GtkMenuItem     *menuitem,
-					gpointer         user_data)
-{
-  struct tm *t;
-  time_t tt;
-  tt=time(NULL);
-  t=localtime(&tt);
-  gtk_calendar_select_month(cal, t->tm_mon, t->tm_year+1900);
-  gtk_calendar_select_day(cal, t->tm_mday);
-}
-
-
-void
-on_weekMonday_activate                 (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
-{
-  /* Deprecated */
-  if(gtk_check_menu_item_get_active(GTK_CHECK_MENU_ITEM(menuitem))) 
-    calsets.startMonday = TRUE; 
-  else
-    calsets.startMonday = FALSE;
-  apply_settings();
-  
-}
-
-void
-on_about1_activate(GtkMenuItem *menuitem, gpointer user_data)
-{
-  create_wAbout((GtkWidget *)menuitem, user_data);
-}
-
-gboolean
-on_XFCalendar_delete_event(GtkWidget *widget, GdkEvent *event,
-                           gpointer user_data)
-{
-  GtkWidget *window = GTK_WIDGET(user_data);
-  
-  gtk_widget_hide(window);
-  return(TRUE);
-}
-
-void
-on_calendar1_day_selected_double_click (GtkCalendar *calendar,
-                                        gpointer user_data)
-{
-  GtkWidget *appointment;
-  appointment = create_wAppointment();
-  manageAppointment(calendar, appointment);
-  gtk_widget_show(appointment);
 }
 
 void manageAppointment(GtkCalendar *calendar, GtkWidget *appointment)
@@ -437,9 +253,9 @@ on_btToday_clicked(GtkButton *button, gpointer user_data)
 
   tt=time(NULL);
   t=localtime(&tt);
-  gtk_calendar_select_month(cal, t->tm_mon, t->tm_year+1900);
-  gtk_calendar_select_day(cal, t->tm_mday);
-  manageAppointment(cal, appointment);
+  gtk_calendar_select_month(GTK_CALENDAR(xfcal->mCalendar), t->tm_mon, t->tm_year+1900);
+  gtk_calendar_select_day(GTK_CALENDAR(xfcal->mCalendar), t->tm_mday);
+  manageAppointment(GTK_CALENDAR(xfcal->mCalendar), appointment);
 }
 
 void
@@ -456,7 +272,7 @@ changeSelectedDate(GtkButton *button, gint direction){
 	
   appointment = lookup_widget(GTK_WIDGET(button),"wAppointment");
 
-  gtk_calendar_get_date(cal, &year, &month, &day);
+  gtk_calendar_get_date(GTK_CALENDAR(xfcal->mCalendar), &year, &month, &day);
 
   if(bisextile(year)){
     ++monthdays[1];
@@ -468,7 +284,7 @@ changeSelectedDate(GtkButton *button, gint direction){
 	--year;
 	month = 11;
       }
-      gtk_calendar_select_month(cal, month, year);
+      gtk_calendar_select_month(GTK_CALENDAR(xfcal->mCalendar), month, year);
       day = monthdays[month];
     }
     break;
@@ -478,15 +294,15 @@ changeSelectedDate(GtkButton *button, gint direction){
 	++year;
 	month = 0;
       }
-      gtk_calendar_select_month(cal, month, year);
+      gtk_calendar_select_month(GTK_CALENDAR(xfcal->mCalendar), month, year);
       day = 1;
     }
     break;
   default:
     break;
   }
-  gtk_calendar_select_day(cal, day);
-  manageAppointment(cal, appointment);
+  gtk_calendar_select_day(GTK_CALENDAR(xfcal->mCalendar), day);
+  manageAppointment(GTK_CALENDAR(xfcal->mCalendar), appointment);
 }
 
 gboolean
@@ -545,8 +361,15 @@ on_btSave_clicked(GtkButton *button, gpointer user_data)
 			/* update the DBHashtable: */
 			DBH_update(fapp);
 			day=atoi((char *)(fapp->key+5));
+			/*
 			if (strlen(save_text)) gtk_calendar_mark_day(cal,day);
 			else gtk_calendar_unmark_day(cal,day);
+			*/
+
+			if (strlen(save_text)) 
+			  gtk_calendar_mark_day (GTK_CALENDAR (xfcal->mCalendar), day);
+			else 
+			  gtk_calendar_unmark_day (GTK_CALENDAR (xfcal->mCalendar), day);
 
 			DBH_close(fapp);	
 			gtk_text_buffer_set_modified(tb, FALSE);
@@ -616,7 +439,7 @@ on_okbutton2_clicked(GtkButton *button, gpointer user_data)
 
 		gtk_text_buffer_delete(tb, &start, &end);
 		gtk_text_buffer_set_modified(tb, FALSE);
-		gtk_calendar_unmark_day(cal,day);
+		gtk_calendar_unmark_day(GTK_CALENDAR(xfcal->mCalendar), day);
 		
 	}
 #ifdef DEBUG
@@ -625,43 +448,6 @@ on_okbutton2_clicked(GtkButton *button, gpointer user_data)
 	}
 #endif
 	g_free(fpath);
-}
-
-void
-on_calendar1_scroll                    (GtkCalendar     *calendar,
-					GdkEventScroll *event)
-{
-  guint year, month, day;
-  gtk_calendar_get_date(cal, &year, &month, &day);
-#ifdef DEBUG
-  g_print("Year: %d, month: %d, day: %d\n", year, month, day);
-#endif
-  switch(event->direction)
-    {
-	case GDK_SCROLL_UP:
-	    if(--month == -1){
-#ifdef DEBUG
-	      g_print("Up!! Year: %d, month: %d, day: %d\n", year, month, day);
-#endif
-	      month = 11;
-	      --year;
-	    }
-	    gtk_calendar_select_month(cal, month, year);
-	    break;
-	case GDK_SCROLL_DOWN:
-	    if(++month == 12){
-#ifdef DEBUG
-	      g_print("Down!! Year: %d, month: %d, day: %d\n", year, month, day);
-#endif	      
-	      month = 0;
-	      ++year;
-	    }
-	    gtk_calendar_select_month(cal, month, year);
-	    break;
-	default:
-	  g_print("get scroll event!!!");
-    }
-
 }
 
 GdkFilterReturn
@@ -673,158 +459,3 @@ client_event_filter(GdkXEvent *xevent, GdkEvent *event, gpointer data)
         return GDK_FILTER_CONTINUE;
 }
 
-void
-watch_cb(Window window, Bool is_start, long mask, void *cb_data)
-{
-    GdkWindow *gdkwin;
-
-    gdkwin = gdk_window_lookup(window);
-
-    if(is_start)
-    {
-        if(!gdkwin)
-        {
-            gdkwin = gdk_window_foreign_new(window);
-        }
-        else
-        {
-            g_object_ref(gdkwin);
-        }
-        gdk_window_add_filter(gdkwin, client_event_filter, cb_data);
-    }
-    else
-    {
-        g_assert(gdkwin);
-        gdk_window_remove_filter(gdkwin, client_event_filter, cb_data);
-        g_object_unref(gdkwin);
-    }
-}
-
-void 
-notify_cb(const char *name, const char *channel_name, McsAction action, McsSetting * setting, void *data)
-{
-  if(g_ascii_strcasecmp(CHANNEL, channel_name))
-    {
-        g_message(_("This should not happen"));
-        return;
-    }
-
-    switch (action)
-    {
-        case MCS_ACTION_NEW:
-        case MCS_ACTION_CHANGED:
-            if(setting->type == MCS_TYPE_INT)
-            {
-                if (!strcmp(name, "XFCalendar/StartDay"))
-                {
-		  startday = setting->data.v_int ? SUNDAY: MONDAY;
-		  //I'll look later if I can clean that...
-		  if(startday == SUNDAY) 
-		    {
-		      calsets.startMonday = FALSE;
-#ifdef debug
-		      g_message("Monday false");
-#endif
-		    }
-		  else
-		    {
-		      calsets.startMonday = TRUE;
-#ifdef debug
-		      g_message("Monday true");
-#endif
-		    }
-		  apply_settings();
-                }
-		if(!strcmp(name, "XFCalendar/NormalMode"))
-		{
-		  normalmode = setting->data.v_int ? TRUE: FALSE;
-	          gtk_window_set_decorated(GTK_WINDOW(mainWindow), normalmode);
-		  if(!normalmode)
-		    gtk_widget_hide((GtkWidget *)lookup_widget(mainWindow, "menubar1"));
-		  else
-  	            gtk_widget_show((GtkWidget *)lookup_widget(mainWindow, "menubar1"));
-
-
-		}
-
-	        /* Commented until the bug is fixed :(
-		if(!strcmp(name, "XFCalendar/TaskBar"))
-		{
-		  showtaskbar = setting->data.v_int ? TRUE: FALSE;
-		   * Reminder: if we want to show the calendar in the taskbar (i.e. showtaskbar is TRUE)
-		   * then gtk_window_set_skip_taskbar_hint must get a FALSE value, and if we don't want
-		   * to be seen in the taskbar, then the function must eat a TRUE.
-		   *
-		  gtk_window_set_skip_taskbar_hint((GtkWindow*)mainWindow, !showtaskbar);
-		  calsets.showTaskbar = showtaskbar;
-		}
-		if(!strcmp(name, "XFCalendar/Pager"))
-		{
-		  showpager = setting->data.v_int ? TRUE: FALSE;
-		   * Reminder: if we want to show the calendar in the pager (i.e. showpager is TRUE)
-		   * then gtk_window_set_skip_pager_hint must get a FALSE value, and if we don't want
-		   * to be seen in the pager, then the function must eat a TRUE.
-		   *
-		  gtk_window_set_skip_pager_hint((GtkWindow*)mainWindow, !showpager);
-		  calsets.showPager = showpager;
-		}
-		*/
-            }
-            break;
-        case MCS_ACTION_DELETED:
-        default:
-            break;
-    }
-}
-
-/*
- */
-void
-toggle_visible_cb(GtkWidget *window)
-{
-  if (GTK_WIDGET_VISIBLE(window))
-    {
-      gtk_widget_hide(window);
-    }
-  else
-    {
-      gtk_window_set_decorated(GTK_WINDOW(window), normalmode);
-      if(!normalmode)
-        gtk_widget_hide((GtkWidget *)lookup_widget(window, "menubar1"));
-      else
-        gtk_widget_show((GtkWidget *)lookup_widget(window, "menubar1"));
-      gtk_widget_show(window);
-      /* gtk_window_stick(GTK_WINDOW(window)); */
-      /* Commented until the bug is fixed :(
-      gtk_window_set_skip_taskbar_hint(GTK_WINDOW(window), !calsets.showTaskbar);
-      gtk_window_set_skip_pager_hint(GTK_WINDOW(window), !calsets.showPager);
-      */
-    }
-}
-
-/*
- * Die callback
- *
- * This is called when the session manager requests the client to go down.
- */
-
-void
-die_cb(gpointer data)
-{
-  gtk_main_quit();
-}
-
-/*
- * SaveYourself callback
- *
- * This is called when the session manager requests the client to save its
- * state.
- */
-/* ARGUSED */
-void
-save_yourself_cb(gpointer data, int save_style, gboolean shutdown,
-                 int interact_style, gboolean fast)
-{
-  settings_set_showCal(mainWindow);
-  apply_settings();
-}

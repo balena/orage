@@ -45,6 +45,7 @@
 #include <gdk/gdk.h>
 
 #include "callbacks.h"
+#include "mainbox.h"
 #include "interface.h"
 #include "support.h"
 #include "tray_icon.h"
@@ -57,6 +58,7 @@ static SessionClient	*session_client = NULL;
 
 /* main window */
 static GtkWidget	*mainWindow = NULL;
+CalWin *xfcal;
 
 /* MCS client */
 extern McsClient        *client;
@@ -64,8 +66,12 @@ extern McsClient        *client;
 /* tray icon */
 XfceTrayIcon 		*trayIcon = NULL;
 
-extern settings calsets;
-extern gboolean normalmode;
+#define SUNDAY TRUE
+#define MONDAY FALSE
+
+gboolean normalmode = TRUE;
+
+static gboolean startday = SUNDAY;
 
 void
 createRCDir(void)
@@ -188,6 +194,140 @@ client_message_received (GtkWidget * widget, GdkEventClient * event,
     return FALSE;
 }
 
+void 
+notify_cb(const char *name, const char *channel_name, McsAction action, McsSetting * setting, void *data)
+{
+  if(g_ascii_strcasecmp(CHANNEL, channel_name))
+    {
+        g_message(_("This should not happen"));
+        return;
+    }
+
+    switch (action)
+    {
+        case MCS_ACTION_NEW:
+        case MCS_ACTION_CHANGED:
+            if(setting->type == MCS_TYPE_INT)
+            {
+                if (!strcmp(name, "XFCalendar/StartDay"))
+                {
+		  startday = setting->data.v_int ? SUNDAY: MONDAY;
+		  //I'll look later if I can clean that...
+		  if(startday == SUNDAY) 
+		    {
+		      xfcal->start_Monday = FALSE;
+#ifdef debug
+		      g_message("Monday false");
+#endif
+		    }
+		  else
+		    {
+		      xfcal->start_Monday = TRUE;
+#ifdef debug
+		      g_message("Monday true");
+#endif
+		    }
+		  apply_settings();
+                }
+		if(!strcmp(name, "XFCalendar/NormalMode"))
+		{
+		  normalmode = setting->data.v_int ? TRUE: FALSE;
+	          gtk_window_set_decorated(GTK_WINDOW(mainWindow), normalmode);
+		  if(!normalmode)
+		    gtk_widget_hide(xfcal->mMenubar);
+		  else
+		    gtk_widget_show(xfcal->mMenubar);
+
+
+		}
+
+	        /* Commented until the bug is fixed :(
+		if(!strcmp(name, "XFCalendar/TaskBar"))
+		{
+		  showtaskbar = setting->data.v_int ? TRUE: FALSE;
+		   * Reminder: if we want to show the calendar in the taskbar (i.e. showtaskbar is TRUE)
+		   * then gtk_window_set_skip_taskbar_hint must get a FALSE value, and if we don't want
+		   * to be seen in the taskbar, then the function must eat a TRUE.
+		   *
+		  gtk_window_set_skip_taskbar_hint((GtkWindow*)mainWindow, !showtaskbar);
+		  xfcal->show_Taskbar = showtaskbar;
+		}
+		if(!strcmp(name, "XFCalendar/Pager"))
+		{
+		  showpager = setting->data.v_int ? TRUE: FALSE;
+		   * Reminder: if we want to show the calendar in the pager (i.e. showpager is TRUE)
+		   * then gtk_window_set_skip_pager_hint must get a FALSE value, and if we don't want
+		   * to be seen in the pager, then the function must eat a TRUE.
+		   *
+		  gtk_window_set_skip_pager_hint((GtkWindow*)mainWindow, !showpager);
+		  xfcal->show_Pager = showpager;
+		}
+		*/
+            }
+            break;
+        case MCS_ACTION_DELETED:
+        default:
+            break;
+    }
+}
+
+
+void
+watch_cb(Window window, Bool is_start, long mask, void *cb_data)
+{
+    GdkWindow *gdkwin;
+
+    gdkwin = gdk_window_lookup(window);
+
+    if(is_start)
+    {
+        if(!gdkwin)
+        {
+            gdkwin = gdk_window_foreign_new(window);
+        }
+        else
+        {
+            g_object_ref(gdkwin);
+        }
+        gdk_window_add_filter(gdkwin, client_event_filter, cb_data);
+    }
+    else
+    {
+        g_assert(gdkwin);
+        gdk_window_remove_filter(gdkwin, client_event_filter, cb_data);
+        g_object_unref(gdkwin);
+    }
+}
+
+/*
+ * SaveYourself callback
+ *
+ * This is called when the session manager requests the client to save its
+ * state.
+ */
+/* ARGUSED */
+void
+save_yourself_cb(gpointer data, int save_style, gboolean shutdown,
+                 int interact_style, gboolean fast)
+{
+  //settings_set_showCal(mainWindow);
+  settings_set_showCal(xfcal->mWindow);
+  apply_settings();
+}
+
+/*
+ * Die callback
+ *
+ * This is called when the session manager requests the client to go down.
+ */
+
+void
+die_cb(gpointer data)
+{
+  gtk_main_quit();
+}
+
+
 int
 main(int argc, char *argv[])
 {
@@ -240,14 +380,11 @@ main(int argc, char *argv[])
 		       G_DIR_SEPARATOR_S "pixmaps");
 
   /*
-   * Create the XFCalendar.
+   * Create the Xfcalendar.
    */
-  mainWindow = create_XFCalendar();
-  set_mainWin(mainWindow);
-  set_cal(mainWindow);
-  init_settings(mainWindow);
-  mark_appointments(mainWindow);
-  setup_signals(mainWindow);
+  xfcal = create_mainWin();
+  gtk_widget_show_all (xfcal->mWindow);
+  mainWindow = xfcal->mWindow;           //FIXME: hack avoiding some warnings while running
 
   /*
    */
@@ -266,7 +403,7 @@ main(int argc, char *argv[])
   /*
    * Create the tray icon and its popup menu
    */
-  trayIcon = create_TrayIcon(mainWindow);
+  trayIcon = create_TrayIcon(xfcal);
   xfce_tray_icon_connect(trayIcon);
 	
   /*
@@ -275,7 +412,7 @@ main(int argc, char *argv[])
    */
   createRCDir();
 
-  client = mcs_client_new(dpy, scr, notify_cb, watch_cb, mainWindow);
+  client = mcs_client_new(dpy, scr, notify_cb, watch_cb, xfcal->mWindow);
   if(client)
     {
       mcs_client_add_channel(client, CHANNEL);
@@ -284,6 +421,7 @@ main(int argc, char *argv[])
     {
       g_warning(_("Cannot create MCS client channel"));
     }
+
 	
   gtk_main();
   keep_tidy();

@@ -9,8 +9,10 @@ xfcalendar_SOURCES =							\
 	interface.c							\
 	interface.h							\
 	main.c								\
-	reminder.h							\
+	mainbox.c                                                       \
+	mainbox.h                                                       \
 	reminder.c							\
+	reminder.h							\
 	support.c							\
 	support.h							\
 	tray_icon.c                                                     \

@@ -169,7 +169,7 @@ Itf *create_xfcalendar_dialog(McsPlugin * mcs_plugin)
     icon = xfce_inline_icon_at_size(calendar_icon_data, 32, 32);
     dialog->xfcalendar_dialog = gtk_dialog_new();
     gtk_window_set_default_size (GTK_WINDOW(dialog->xfcalendar_dialog), 300, 200);
-    gtk_window_set_title (GTK_WINDOW (dialog->xfcalendar_dialog), _("XFCalendar"));
+    gtk_window_set_title (GTK_WINDOW (dialog->xfcalendar_dialog), _("Xfcalendar"));
     gtk_window_set_position (GTK_WINDOW (dialog->xfcalendar_dialog), GTK_WIN_POS_CENTER);
     gtk_window_set_modal (GTK_WINDOW (dialog->xfcalendar_dialog), FALSE);
     gtk_window_set_resizable (GTK_WINDOW (dialog->xfcalendar_dialog), FALSE);
@@ -180,7 +180,7 @@ Itf *create_xfcalendar_dialog(McsPlugin * mcs_plugin)
     dialog->dialog_vbox1 = GTK_DIALOG (dialog->xfcalendar_dialog)->vbox;
     gtk_widget_show (dialog->dialog_vbox1);
 
-    dialog->dialog_header = xfce_create_header(icon, _("XFCalendar"));
+    dialog->dialog_header = xfce_create_header(icon, _("Xfcalendar"));
     gtk_widget_show(dialog->dialog_header);
     g_object_unref(icon);
     gtk_box_pack_start(GTK_BOX(dialog->dialog_vbox1), dialog->dialog_header, FALSE, TRUE, 0);
@@ -302,7 +302,7 @@ McsPluginInitResult mcs_plugin_init(McsPlugin * mcs_plugin)
 
     create_channel(mcs_plugin);
     mcs_plugin->plugin_name = g_strdup(PLUGIN_NAME);
-    mcs_plugin->caption = g_strdup(_("XFCalendar"));
+    mcs_plugin->caption = g_strdup(_("Xfcalendar"));
     mcs_plugin->run_dialog = run_dialog;
     mcs_plugin->icon = xfce_inline_icon_at_size(calendar_icon_data, DEFAULT_ICON_SIZE, DEFAULT_ICON_SIZE);
     mcs_manager_notify(mcs_plugin->manager, CHANNEL);
