@@ -49,6 +49,8 @@
 #include <ical.h>
 #include <icalss.h>
 
+#include "appointment.h"
+#include "ical-code.h"
 
 #define MAX_APP_LENGTH 4096
 #define LEN_BUFFER 1024
@@ -107,37 +109,44 @@ void close_ical_file(void)
     icalset_free(fical);
 }
 
-void add_ical_app(char *text, char *a_day)
+void add_ical_app(appointment *app)
 {
     icalcomponent *ievent;
-    struct icaltimetype atime = icaltime_from_timet(time(0), 0);
-    struct icaltimetype adate;
+    struct icaltimetype ctime = icaltime_from_timet(time(0), 0);
+    struct icaltimetype sdate, edate;
     gchar xf_uid[1000];
     gchar xf_host[501];
 
-    adate = icaltime_from_string(a_day);
+    sdate = icaltime_from_string(app->starttime);
+    edate = icaltime_from_string(app->endtime);
     gethostname(xf_host, 500);
-    sprintf(xf_uid, "Xfcalendar-%s-%lu@%s", icaltime_as_ical_string(atime), 
+    sprintf(xf_uid, "Xfcalendar-%s-%lu@%s", icaltime_as_ical_string(ctime), 
                 (long) getuid(), xf_host);
     ievent = icalcomponent_vanew(ICAL_VEVENT_COMPONENT
            ,icalproperty_new_uid(xf_uid)
            ,icalproperty_new_categories("XFCALNOTE")
            ,icalproperty_new_class(ICAL_CLASS_PUBLIC)
-           ,icalproperty_new_dtstamp(atime)
-           ,icalproperty_new_created(atime)
-           ,icalproperty_new_description(text)
-           ,icalproperty_new_dtstart(adate)
+           ,icalproperty_new_dtstamp(ctime)
+           ,icalproperty_new_created(ctime)
+           ,icalproperty_new_summary(app->title)
+           ,icalproperty_new_description(app->note)
+           ,icalproperty_new_dtstart(sdate)
+           ,icalproperty_new_dtend(edate)
            ,0);
     icalcomponent_add_component(ical, ievent);
+    icalset_mark(fical);
 }
 
-gboolean get_ical_app(char **desc, char **sum, char *a_day, char *hh_mm)
+gboolean get_ical_app(appointment *app, char *a_day, char *hh_mm)
 {
-    struct icaltimetype t, adate, edate;
+    struct icaltimetype t, sdate, edate;
     static icalcomponent *c;
     gboolean date_found=FALSE;
+    char *text;
 
-    adate = icaltime_from_string(a_day);
+/* FIXME: does not find events which start on earlier dates and continues
+          to this date */
+    sdate = icaltime_from_string(a_day);
     if (strlen(hh_mm) == 0){ /* start */
         c = icalcomponent_get_first_component(ical, ICAL_VEVENT_COMPONENT); 
     }
@@ -145,10 +154,24 @@ gboolean get_ical_app(char **desc, char **sum, char *a_day, char *hh_mm)
          (c != 0) && (!date_found);
          c = icalcomponent_get_next_component(ical, ICAL_VEVENT_COMPONENT)){
         t = icalcomponent_get_dtstart(c);
-        if (icaltime_compare_date_only(t, adate) == 0){
+        if (icaltime_compare_date_only(t, sdate) == 0){
             date_found = TRUE;
-            *desc = (char *)icalcomponent_get_description(c);
-            *sum = (char *)icalcomponent_get_summary(c);
+            if ((text = (char *)icalcomponent_get_description(c)) == NULL) {
+                app->note = g_realloc(app->note, 0);
+            }
+            else {
+                app->note = g_realloc(app->note, strlen(text)+1);
+                strcpy(app->note, text);
+            }
+
+            if ((text = (char *)icalcomponent_get_summary(c)) == NULL) {
+                app->title = g_realloc((char *)app->title, 0);
+            }
+            else {
+                app->title = g_realloc((char *)app->title, strlen(text)+1);
+                strcpy((char *)app->title, text);
+            }
+
             edate = icalcomponent_get_dtend(c);
             if (icaltime_is_date(t))
                 strcpy(hh_mm, "xx:xx-xx:xx");

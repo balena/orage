@@ -128,12 +128,12 @@ void editAppointment(GtkWidget *widget, GdkEventButton *event
     gtk_widget_show(app->appWindow);
 }
 
-void addAppointment(GtkWidget *vbox, gchar *xftime, gchar *xftext, gchar *xfsum)
+void addAppointment(GtkWidget *vbox, gchar *xftime, gchar *xftext
+        , gchar *xfsum)
 {
     GtkWidget *hseparator;
     GtkWidget *hbox;
     GtkWidget *label;
-    GtkWidget *entry;
     GtkWidget *ebox;
     GtkTooltips *event_tooltips;
     int len=-1;
@@ -159,22 +159,6 @@ void addAppointment(GtkWidget *vbox, gchar *xftime, gchar *xftext, gchar *xfsum)
     gtk_widget_show(label);
     g_free(text);
 
-    /*
-    entry = gtk_entry_new();
-    if (xfsum == NULL) { / * let's take first line from the text * /
-        if ((text = g_strstr_len(xftext, strlen(xftext), "\n")) != NULL) {
-            len=strlen(xftext)-strlen(text);
-            gtk_entry_set_max_length(GTK_ENTRY(entry), len);
-        }
-        text=xftext;
-    }
-    else
-        text=xfsum;
-    gtk_entry_set_text(GTK_ENTRY(entry), text);
-    gtk_box_pack_start(GTK_BOX(hbox), entry, TRUE, TRUE, 0);
-    gtk_widget_show(entry);
-    */
-
     if (xfsum != NULL)
         text = xfsum;
     else { /* let's take first line from the text */
@@ -198,62 +182,37 @@ void addAppointment(GtkWidget *vbox, gchar *xftime, gchar *xftext, gchar *xfsum)
             G_CALLBACK(editAppointment), NULL);
 }
 
-void manageAppointment(GtkCalendar *calendar, GtkWidget *appointment)
+void manageAppointment(GtkCalendar *calendar, GtkWidget *appwin)
 {
 	guint year, month, day;
-	char title[12], *description, *summary;
+	char title[12];
 	char a_day[9];  /* yyyymmdd */
 	char a_time[12]=""; /* hh:mm-hh:mm */
     GtkWidget *vbox;
-    int i;
-    char kello[20];
-
+    appointment app;
   
 	gtk_calendar_get_date(calendar, &year, &month, &day);
 	g_snprintf(title, 12, "%d-%02d-%02d", year, month+1, day);
-	gtk_window_set_title(GTK_WINDOW(appointment), _(title));
-	vbox = lookup_widget(GTK_WIDGET(appointment), "vbox3");
+	gtk_window_set_title(GTK_WINDOW(appwin), _(title));
+	vbox = lookup_widget(GTK_WIDGET(appwin), "vbox3");
 
     if (open_ical_file()){
         g_snprintf(a_day, 9, "%04d%02d%02d", year, month+1, day);
-        while (get_ical_app(&description, &summary, a_day, a_time)){ 
+        app.note=NULL; app.title=NULL;
+        while (get_ical_app(&app, a_day, a_time)){ 
             /* data found */
-            addAppointment(vbox, a_time, description, summary);
+            addAppointment(vbox, a_time, app.note, (gchar*) app.title);
         }
         close_ical_file();
     }
-    /*
-    for (i=1; i<5; i++){
-        sprintf(kello, "%02d:00-%02d:%02d", 7+i, 11+i, 2*i);
-        addAppointment(vbox, kello, "koe\n eli pitkä testi.", "summary");
-    }
-    addAppointment(vbox, _("<New>"), _("This is just a place holder.\nClick it to create a real appointmen"), _("<click to modify>"));
-    */
 }
 
 void
 on_btClose_clicked(GtkButton *button, gpointer user_data)
 {
-  GtkTextView *tv;
-  GtkTextBuffer *tb;
-  gint result;
   GtkWidget *a=lookup_widget((GtkWidget *)button,"wAppointment");
 
-  recreate_wAppointment(button);
-
-  /* FIXME: need to decide if it is possible to do updates....
-  tv = GTK_TEXT_VIEW(lookup_widget(GTK_WIDGET(button),"textview1"));
-  tb = gtk_text_view_get_buffer(tv);
-
-  if(gtk_text_buffer_get_modified(tb)) {
-      result = dialogWin(a);
-      if(result == GTK_RESPONSE_ACCEPT) {
-	  gtk_widget_destroy(a); 
-      }
-  }
-  else
-  */
-      gtk_widget_destroy(a); /* destroy the specific appointment window */
+  gtk_widget_destroy(a); /* destroy the specific appointment window */
 }
 
 gint 
@@ -290,29 +249,7 @@ on_wAppointment_delete_event(GtkWidget *widget, GdkEvent *event,
 void
 on_btPrevious_clicked(GtkButton *button, gpointer user_data)
 {
-  GtkTextView *tv;
-  GtkTextBuffer *tb;
-  gint result;
-
-  GtkWidget *a=lookup_widget((GtkWidget *)button,"wAppointment");
-
-  recreate_wAppointment(button);
-
-  /* FIXME: need to decide if it is possible to do updates....
-  tv = GTK_TEXT_VIEW(lookup_widget(GTK_WIDGET(button),"textview1"));
-  tb = gtk_text_view_get_buffer(tv);
-
-  if(gtk_text_buffer_get_modified(tb))
-    {
-      result = dialogWin(a);
-      if(result == GTK_RESPONSE_ACCEPT)
-	{
-	  changeSelectedDate(button, PREVIOUS);
-	}
-    }
-  else
-  */
-    changeSelectedDate(button, PREVIOUS);
+  changeSelectedDate(button, PREVIOUS);
 }
 
 void
@@ -321,65 +258,22 @@ on_btToday_clicked(GtkButton *button, gpointer user_data)
   struct tm *t;
   time_t tt;
   GtkWidget *appointment; 
-  GtkTextView *tv;
-  GtkTextBuffer *tb;
-  gint result;
 	
+  recreate_wAppointment(GTK_WIDGET(button));
   appointment = lookup_widget(GTK_WIDGET(button),"wAppointment");
-
-  recreate_wAppointment(button);
 
   tt=time(NULL);
   t=localtime(&tt);
 
-  /* FIXME: need to decide if it is possible to do updates....
-  tv = GTK_TEXT_VIEW(lookup_widget(GTK_WIDGET(button),"textview1"));
-  tb = gtk_text_view_get_buffer(tv);
-
-  if(gtk_text_buffer_get_modified(tb))
-    {
-      result = dialogWin(appointment);
-      if(result == GTK_RESPONSE_ACCEPT)
-	{
-	  gtk_calendar_select_month(GTK_CALENDAR(xfcal->mCalendar), t->tm_mon, t->tm_year+1900);
-	  gtk_calendar_select_day(GTK_CALENDAR(xfcal->mCalendar), t->tm_mday);
-	  manageAppointment(GTK_CALENDAR(xfcal->mCalendar), appointment);
-	}
-    }
-  else
-  */
-    {
-      gtk_calendar_select_month(GTK_CALENDAR(xfcal->mCalendar), t->tm_mon, t->tm_year+1900);
-      gtk_calendar_select_day(GTK_CALENDAR(xfcal->mCalendar), t->tm_mday);
-      manageAppointment(GTK_CALENDAR(xfcal->mCalendar), appointment);
-    }
+  gtk_calendar_select_month(GTK_CALENDAR(xfcal->mCalendar), t->tm_mon, t->tm_year+1900);
+  gtk_calendar_select_day(GTK_CALENDAR(xfcal->mCalendar), t->tm_mday);
+  manageAppointment(GTK_CALENDAR(xfcal->mCalendar), appointment);
 }
 
 void
 on_btNext_clicked(GtkButton *button, gpointer user_data)
 {
-  GtkTextView *tv;
-  GtkTextBuffer *tb;
-  gint result;
-  GtkWidget *a=lookup_widget((GtkWidget *)button,"wAppointment");
-
-  recreate_wAppointment(button);
-
-  /* FIXME: need to decide if it is possible to do updates....
-  tv = GTK_TEXT_VIEW(lookup_widget(GTK_WIDGET(button),"textview1"));
-  tb = gtk_text_view_get_buffer(tv);
-
-  if(gtk_text_buffer_get_modified(tb))
-    {
-      result = dialogWin(a);
-      if(result == GTK_RESPONSE_ACCEPT)
-	{
-	  changeSelectedDate(button, NEXT);
-	}
-    }
-  else
-  */
-    changeSelectedDate(button, NEXT);
+  changeSelectedDate(button, NEXT);
 }
 
 void
@@ -388,6 +282,7 @@ changeSelectedDate(GtkButton *button, gint direction){
   guint monthdays[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
   GtkWidget *appointment; 
 	
+  recreate_wAppointment(GTK_WIDGET(button));
   appointment = lookup_widget(GTK_WIDGET(button),"wAppointment");
 
   gtk_calendar_get_date(GTK_CALENDAR(xfcal->mCalendar), &year, &month, &day);
@@ -427,57 +322,6 @@ gboolean
 bisextile(guint year)
 {
   return ((year%4)==0)&&(((year%100)!=0)||((year%400)==0));
-}
-
-void
-on_btSave_clicked(GtkButton *button, gpointer user_data)
-{
-	GtkTextView *tv;
-	GtkTextBuffer *tb;
-	GtkTextIter start, end;
-	char *text;
-	G_CONST_RETURN gchar *title;
-	GtkWidget *appointment; 
-	GtkWidget *vbox; 
-    char a_day[10];
-    guint day;
-
-	vbox = lookup_widget(GTK_WIDGET(button),"vbox3");
-    addAppointment(vbox, "<??:??>", "not decided how this is supposed to work.\nBe patient.", "<Not Yet Implemented>");
-    /*
-	tv = GTK_TEXT_VIEW(lookup_widget(GTK_WIDGET(button),"textview1"));
-	appointment = lookup_widget(GTK_WIDGET(button),"wAppointment");
-	tb = gtk_text_view_get_buffer(tv);
-	gtk_text_buffer_get_bounds(tb, &start, &end);
-	text = gtk_text_iter_get_text(&start, &end);
-	title = gtk_window_get_title(GTK_WINDOW(appointment));
-#ifdef DEBUG
-	g_print("Appointment content: %s\n", text);
-	g_print("Date created: %s\n", title);
-#endif
-	if (gtk_text_buffer_get_modified(tb)) {
-        if (open_ical_file()){
-            a_day[0]=title[0]; a_day[1]=title[1];     
-                    a_day[2]=title[2]; a_day[3]=title[3];
-            a_day[4]=title[5]; a_day[5]=title[6];       
-            a_day[6]=title[8]; a_day[7]=title[9];      
-            a_day[8]=title[10];                       
-            rm_ical_app(a_day);
-            add_ical_app(text, a_day);
-            icalset_mark(fical);
-            close_ical_file();
-			day = atoi(a_day+6); 
-			if (strlen(text)) 
-                gtk_calendar_mark_day (GTK_CALENDAR (xfcal->mCalendar), day);
-			else 
-                gtk_calendar_unmark_day (GTK_CALENDAR (xfcal->mCalendar), day);
-			gtk_text_buffer_set_modified(tb, FALSE);
-        }
-	}
-    */
-#ifdef DEBUG 
-	g_print("Procedure on_btSave_clicked finished\n");
-#endif
 }
 
 void
@@ -544,13 +388,6 @@ on_okbutton2_clicked(GtkButton *button, gpointer user_data)
         rm_ical_app(a_day);
         close_ical_file();
 
-        /*
-		tv = GTK_TEXT_VIEW(lookup_widget(a,"textview1"));
-		tb = gtk_text_view_get_buffer(tv);
-		gtk_text_buffer_get_bounds(tb, &start, &end);
-		gtk_text_buffer_delete(tb, &start, &end);
-		gtk_text_buffer_set_modified(tb, FALSE);
-        */
         day = atoi(a_day+6);
 		gtk_calendar_unmark_day(GTK_CALENDAR(xfcal->mCalendar), day);
         recreate_wAppointment(user_data);
