@@ -1,7 +1,8 @@
 /* xfcalendar
  *
- * Copyright (C) 2003 Mickael Graf (korbinus@linux.se)
- * Parts of the code below are copyright (C) 2003 Benedikt Meurer <benny@xfce.orgt>
+ * Copyright (C) 2003-2005 Mickael Graf (korbinus@xfce.org)
+ * Parts of the code below are copyright (C) 2003 Benedikt Meurer <benny@xfce.org>
+ *                                       (C) 2005 Juha Kauto <kautto.juha at kolumbus.fi>
  *
  * This program is free software; you can redistribute it and/or modify it 
  * under the terms of the GNU General Public License as published by the
@@ -70,21 +71,26 @@ XfceTrayIcon 		*trayIcon = NULL;
 
 gboolean normalmode = TRUE;
 
+/* window position */
+gint pos_x = 0, pos_y = 0;
+
 static gboolean
 client_message_received (GtkWidget * widget, GdkEventClient * event,
 			 gpointer user_data)
 {
-    GdkScreen *screen;
+  int x, y, w, h;
+  GtkRequisition req;
+  char message[21];
+  char direction[21];
+  long xid;
+  GdkWindow *win;
+  GdkScreen *screen;
 
     TRACE ("client message received");
-
-    screen = xfce_gdk_display_locate_monitor_with_pointer (NULL, NULL);
 
     if (event->message_type ==
 	gdk_atom_intern ("_XFCE_CALENDAR_RAISE", FALSE))
     {
-	if (normalmode)
-	    gtk_window_set_decorated (GTK_WINDOW (mainWindow), TRUE);
 
 	DBG ("RAISING...\n");
 	gtk_window_set_screen (GTK_WINDOW (mainWindow), screen ? screen : gdk_screen_get_default ());
@@ -96,75 +102,26 @@ client_message_received (GtkWidget * widget, GdkEventClient * event,
     else if (event->message_type ==
 	     gdk_atom_intern ("_XFCE_CALENDAR_TOGGLE_HERE", FALSE))
     {
-	int x, y, w, h;
-	GtkRequisition req;
-	char message[21];
-	char direction[21];
-	long xid;
-	GdkWindow *win;
 
 	DBG ("TOGGLE\n");
 
 	if (GTK_WIDGET_VISIBLE (mainWindow))
 	{
-	    gtk_widget_hide (mainWindow);
-	    return TRUE;
+	  gtk_window_get_position(GTK_WINDOW(mainWindow), &pos_x, &pos_y);
+	  gtk_widget_hide (mainWindow);
+	  return TRUE;
 	}
 
-	/* Don't use decorations when we are called like this */
-	gtk_window_set_decorated (GTK_WINDOW(mainWindow), FALSE);
-	
-	gtk_widget_size_request (mainWindow, &req);
+ 	screen = xfce_gdk_display_locate_monitor_with_pointer (NULL, NULL);
 
-	strncpy (message, event->data.b, 20);
-	message[20] = '\0';
-
-	if (sscanf (message, "%lx:%s", &xid, direction) < 0)
-	    return FALSE;
-
-	if (!(win = gdk_window_lookup (xid)))
-	    win = gdk_window_foreign_new (xid);
-
-	gdk_drawable_get_size (GDK_DRAWABLE (win), &w, &h);
-	gdk_window_get_origin (win, &x, &y);
-
-	if (strcmp ("up", direction) == 0)
-	{
-	    x -= (req.width / 2 - w / 2);
-	    y -= req.height;
-	}
-	else if (strcmp ("down", direction) == 0)
-	{
-	    x -= (req.width / 2 - w / 2);
-	    y += h;
-	}
-	else if (strcmp ("left", direction) == 0)
-	{
-	    x -= req.width;
-	}
-	else if (strcmp ("right", direction) == 0)
-	{
-	    x += w;
-	}
-	else
-	{
-	    return FALSE;
-	}
-
-	if (x + w > gdk_screen_width ())
-	    x = gdk_screen_width () - w;
-	if (x < 0)
-	    x = 0;
-
-	if (y + h > gdk_screen_height ())
-	    y = gdk_screen_height () - h;
-	if (y < 0)
-	    y = 0;
-	
 	gtk_window_set_screen (GTK_WINDOW (mainWindow), screen ? screen : gdk_screen_get_default ());
-	gtk_window_move (GTK_WINDOW (mainWindow), x, y);
-	gtk_widget_show (mainWindow);
+
+        if (pos_x || pos_y)
+	  gtk_window_move (GTK_WINDOW (mainWindow), pos_x, pos_y);
+
 	gtk_window_stick (GTK_WINDOW (mainWindow));
+
+	gtk_widget_show (mainWindow);
     }
 
     return FALSE;

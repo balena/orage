@@ -1,7 +1,8 @@
 /* mainbox.c
  *
- * Copyright (C) 2004 Mickaël Graf <korbinus@lunar-linux.org>
+ * Copyright (C) 2004-2005 Mickaël Graf <korbinus@xfce.org>
  * Parts of the code below are copyright (C) 2003 Edscott Wilson Garcia <edscott@users.sourceforge.net>
+ *                                       (C) 2005 Juha Kauto <kautto.juha at kolumbus.fi>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -346,29 +347,22 @@ void
 xfcalendar_toggle_visible (CalWin *xfcal)
 {
 
-  if(xfcal->show_Calendar)
-    {
-      xfcal->show_Calendar = FALSE;
-      gtk_widget_hide(xfcal->mWindow);
-    }
-  else
-    {
-      GdkScreen *screen;
+  GdkEventClient gev;
+  Window xwindow;
+  GdkAtom atom;
+                                                                                
+  memset(&gev, 0, sizeof(gev));
+                                                                                
+  atom = gdk_atom_intern("_XFCE_CALENDAR_RUNNING", FALSE);
+  xwindow = XGetSelectionOwner(GDK_DISPLAY(), gdk_x11_atom_to_xatom(atom));
 
-      gtk_window_set_decorated (GTK_WINDOW(xfcal->mWindow), normalmode);
-      screen = xfce_gdk_display_locate_monitor_with_pointer (NULL, NULL);
-
-      if (!normalmode)
-	gtk_widget_hide(xfcal->mMenubar);
-      else
-	gtk_widget_show(xfcal->mMenubar);
-      
-      xfcal->show_Calendar = TRUE;
-
-      gtk_window_set_screen (GTK_WINDOW (xfcal->mWindow), screen ? screen : gdk_screen_get_default ());
-      gtk_widget_show(xfcal->mWindow);
-
-    }
+  gev.type = GDK_CLIENT_EVENT;
+  gev.window = NULL;
+  gev.send_event = TRUE;
+  gev.message_type = gdk_atom_intern("_XFCE_CALENDAR_TOGGLE_HERE", FALSE);
+  gev.data_format = 8;
+                                                                                
+  gdk_event_send_client_message((GdkEvent *)&gev, (GdkNativeWindow)xwindow);
 }
 
 CalWin *create_mainWin(void)
