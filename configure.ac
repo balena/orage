@@ -28,7 +28,7 @@ AC_HEADER_STDC
 AC_CHECK_HEADERS([errno.h])
 
 dnl Check for i18n support
-BM_I18N([xfcalendar], [ca de])
+BM_I18N([xfcalendar], [ca de zh_CN])
 
 dnl Check for required packages
 BM_DEPEND([LIBXFCEGUI4], [libxfcegui4-1.0], [3.91.0])
