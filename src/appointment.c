@@ -1,7 +1,7 @@
 /* appointment.c
  *
  * Copyright (C) 2004-2005 Mickaël Graf <korbinus at xfce.org>
- * Parts of the code below are copyright (C) 2005 Juha Kautto <kautto.juha at kolumbus.fi>
+ * Copyright (C) 2005 Juha Kautto <kautto.juha at kolumbus.fi>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -76,14 +76,37 @@ void
 on_appSound_button_clicked_cb(GtkButton *button, gpointer user_data)
 {
     GtkWidget *file_chooser;
+	XfceFileFilter *filter;
+
     appt_win *apptw = (appt_win *)user_data;
 
     file_chooser = xfce_file_chooser_new (_("Select a file..."),
-                                            (GtkWindow *) apptw->appWindow,
+                                            GTK_WINDOW (apptw->appWindow),
                                             XFCE_FILE_CHOOSER_ACTION_OPEN,
                                             GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
                                             GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT,
                                             NULL);
+
+    filter = xfce_file_filter_new ();
+	xfce_file_filter_set_name(filter, _("All Files"));
+	xfce_file_filter_add_pattern(filter, "*");
+	xfce_file_chooser_add_filter(XFCE_FILE_CHOOSER(file_chooser), filter);
+	filter = xfce_file_filter_new();
+	xfce_file_filter_set_name(filter, _("Sound Files"));
+	xfce_file_filter_add_pattern(filter, "*.wav");
+	xfce_file_chooser_add_filter(XFCE_FILE_CHOOSER(file_chooser), filter);
+
+
+	if(gtk_dialog_run(GTK_DIALOG(file_chooser)) == GTK_RESPONSE_ACCEPT) {
+        gchar *sound_file;
+		sound_file = xfce_file_chooser_get_filename(XFCE_FILE_CHOOSER(file_chooser));
+
+        if(sound_file){
+			gtk_entry_set_text(GTK_ENTRY(apptw->appSound_entry), sound_file);
+			gtk_editable_set_position(GTK_EDITABLE(apptw->appSound_entry), -1);
+        }
+    }
+    gtk_widget_show(file_chooser);
 
     gtk_widget_destroy(file_chooser);
 }
@@ -141,68 +164,66 @@ void
 on_appClose_clicked_cb(GtkButton *button, gpointer user_data)
 {
 
-  appt_win *apptw = (appt_win *)user_data;
+    appt_win *apptw = (appt_win *)user_data;
 
-  appt_type *appt = g_new(appt_type, 1); 
-  gchar *new_uid;
+    appt_type *appt = g_new(appt_type, 1); 
+    gchar *new_uid;
 
-  gint StartYear_value,
-    StartMonth_value,
-    StartDay_value,
-    StartHour_value,
-    StartMinutes_value,
-    EndYear_value,
-    EndMonth_value,
-    EndDay_value,
-    EndHour_value,
-    EndMinutes_value;
+    gint StartYear_value,
+      StartMonth_value,
+      StartDay_value,
+      StartHour_value,
+      StartMinutes_value,
+      EndYear_value,
+      EndMonth_value,
+      EndDay_value,
+      EndHour_value,
+      EndMinutes_value;
 
-  G_CONST_RETURN gchar *winTitle;
+    G_CONST_RETURN gchar *winTitle;
 
-  char a_day[10];
+    char a_day[10];
 
-  char *cyear, *cmonth, *cday;
-  int iyear, imonth, iday;
+    char *cyear, *cmonth, *cday;
+    int iyear, imonth, iday;
 
-  GtkTextIter start, end;
+    GtkTextIter start, end;
 
-  appt->title = (gchar *) gtk_entry_get_text((GtkEntry *)apptw->appTitle_entry);
+    appt->title = (gchar *) gtk_entry_get_text((GtkEntry *)apptw->appTitle_entry);
 
-  appt->location = (gchar *) gtk_entry_get_text((GtkEntry *)apptw->appLocation_entry);
+    appt->location = (gchar *) gtk_entry_get_text((GtkEntry *)apptw->appLocation_entry);
 
     StartYear_value = gtk_spin_button_get_value_as_int((GtkSpinButton *)apptw->appStartYear_spinbutton);
     StartMonth_value = gtk_spin_button_get_value_as_int((GtkSpinButton *)apptw->appStartMonth_spinbutton);
     StartDay_value = gtk_spin_button_get_value_as_int((GtkSpinButton *)apptw->appStartDay_spinbutton);
-  StartHour_value = gtk_spin_button_get_value_as_int((GtkSpinButton *)apptw->appStartHour_spinbutton);
-  StartMinutes_value = gtk_spin_button_get_value_as_int((GtkSpinButton *)apptw->appStartMinutes_spinbutton);
-  g_sprintf(appt->starttime, XFICAL_APP_TIME_FORMAT
-	    , StartYear_value, StartMonth_value, StartDay_value
-        , StartHour_value, StartMinutes_value, 0);
+    StartHour_value = gtk_spin_button_get_value_as_int((GtkSpinButton *)apptw->appStartHour_spinbutton);
+    StartMinutes_value = gtk_spin_button_get_value_as_int((GtkSpinButton *)apptw->appStartMinutes_spinbutton);
+    g_sprintf(appt->starttime, XFICAL_APP_TIME_FORMAT
+            , StartYear_value, StartMonth_value, StartDay_value
+            , StartHour_value, StartMinutes_value, 0);
 
     EndYear_value = gtk_spin_button_get_value_as_int((GtkSpinButton *)apptw->appEndYear_spinbutton);
     EndMonth_value = gtk_spin_button_get_value_as_int((GtkSpinButton *)apptw->appEndMonth_spinbutton);
     EndDay_value = gtk_spin_button_get_value_as_int((GtkSpinButton *)apptw->appEndDay_spinbutton);
-  EndHour_value = gtk_spin_button_get_value_as_int((GtkSpinButton *)apptw->appEndHour_spinbutton);
-  EndMinutes_value = gtk_spin_button_get_value_as_int((GtkSpinButton *)apptw->appEndMinutes_spinbutton);
-  g_sprintf(appt->endtime, XFICAL_APP_TIME_FORMAT
-	    , EndYear_value, EndMonth_value, EndDay_value
-        , EndHour_value, EndMinutes_value, 0);
+    EndHour_value = gtk_spin_button_get_value_as_int((GtkSpinButton *)apptw->appEndHour_spinbutton);
+    EndMinutes_value = gtk_spin_button_get_value_as_int((GtkSpinButton *)apptw->appEndMinutes_spinbutton);
+    g_sprintf(appt->endtime, XFICAL_APP_TIME_FORMAT
+            , EndYear_value, EndMonth_value, EndDay_value
+            , EndHour_value, EndMinutes_value, 0);
 
     appt->alarmtime = gtk_combo_box_get_active((GtkComboBox *)apptw->appAlarm_combobox);
 
-  appt->availability = gtk_combo_box_get_active((GtkComboBox *)apptw->appAvailability_cb);
+    appt->availability = gtk_combo_box_get_active((GtkComboBox *)apptw->appAvailability_cb);
 
-  gtk_text_buffer_get_bounds(gtk_text_view_get_buffer((GtkTextView *)apptw->appNote_textview), 
-			     &start, 
-			     &end);
-  appt->note = gtk_text_iter_get_text(&start, &end);
-  appt->allDay = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(apptw->appAllDay_checkbutton));
+    gtk_text_buffer_get_bounds(gtk_text_view_get_buffer((GtkTextView *)apptw->appNote_textview), 
+                                &start, 
+                                &end);
+
+    appt->note = gtk_text_iter_get_text(&start, &end);
+
+    appt->allDay = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(apptw->appAllDay_checkbutton));
 
     appt->sound = (gchar *) gtk_entry_get_text((GtkEntry *)apptw->appSound_entry);
-/*
-  appt->sound = "/usr/local/kde/share/sounds/KDE_Beep_ClassicBeep.wav";
-*/
-
 
 #ifdef DEBUG
     g_warning("Title: %s\n", appt->title);
@@ -210,7 +231,7 @@ on_appClose_clicked_cb(GtkButton *button, gpointer user_data)
     g_warning("Start: %s\n", appt->starttime);
     g_warning("End: %s\n", appt->endtime);
     g_warning("Alarm: %d\n", appt->alarm);
-    g_warning("Time Type: %d\n", appt->alarmTimeType);
+    g_warning("Sound file: %s\n", appt->sound);
     g_warning("Availability: %d\n", appt->availability);
     g_warning("Note: %s\n", appt->note);
 #endif
@@ -378,6 +399,8 @@ void fill_appt_window(appt_win *appt_w, char *action, char *par)
                   GTK_SPIN_BUTTON(appt_w->appEndMinutes_spinbutton)
                 , (gdouble) atoi(end_mi));
     }
+    if (appt_data->sound)
+        gtk_entry_set_text(GTK_ENTRY(appt_w->appSound_entry), appt_data->sound);
     if (appt_data->alarmtime != -1){
       gtk_combo_box_set_active(GTK_COMBO_BOX(appt_w->appAlarm_combobox)
                    , appt_data->alarmtime);
