@@ -67,7 +67,7 @@ static gboolean fical_modified=TRUE;
 
 extern GList *alarm_list;
 
-gboolean open_ical_file(void)
+gboolean xfical_file_open(void)
 {
 	gchar *ficalpath; 
     icalcomponent *iter;
@@ -77,9 +77,9 @@ gboolean open_ical_file(void)
                         RCDIR G_DIR_SEPARATOR_S APPOINTMENT_FILE, FALSE);
     if ((fical = icalset_new_file(ficalpath)) == NULL){
         if(icalerrno != ICAL_NO_ERROR){
-            g_warning("open_ical_file, ical-Error: %s\n"
+            g_warning("xfical_file_open, ical-Error: %s\n"
                         , icalerror_strerror(icalerrno));
-        g_error("open_ical_file, Error: Could not open ical file \"%s\" \n"
+        g_error("xfical_file_open, Error: Could not open ical file \"%s\" \n"
                         , ficalpath);
         }
     }
@@ -104,14 +104,14 @@ gboolean open_ical_file(void)
             icalset_commit(fical);
         }
         else if (cnt > 1){
-            g_warning("open_ical_file, Too many top level components in calendar file\n");
+            g_warning("xfical_file_open, Too many top level components in calendar file\n");
         }
     }
 	g_free(ficalpath);
     return(TRUE);
 }
 
-void close_ical_file(void)
+void xfical_file_close(void)
 {
     icalset_free(fical);
     if (fical_modified) {
@@ -154,7 +154,7 @@ struct icaltimetype ical_get_current_local_time()
  *  returns: NULL if failed and pointer to appt_type if successfull.
  *          You must free it after not being used anymore. (g_free())
  */
-appt_type *xf_alloc_ical_app()
+appt_type *xfical_app_alloc()
 {
     appt_type *temp;
 
@@ -172,7 +172,7 @@ appt_type *xf_alloc_ical_app()
  *           This ical id is owned by the routine. Do not deallocate it.
  *           It will be overdriven by next invocation of this function.
  */
-char *xf_add_ical_app(appt_type *app)
+char *xfical_app_add(appt_type *app)
 {
     icalcomponent *ievent, *ialarm;
     struct icaltimetype ctime;
@@ -277,7 +277,7 @@ char *xf_add_ical_app(appt_type *app)
   *          Do not deallocate it.
   *          It will be overdriven by next invocation of this function.
   */
-appt_type *xf_get_ical_app(char *ical_uid)
+appt_type *xfical_app_get(char *ical_uid)
 {
     icalcomponent *c = NULL, *ca = NULL;
     icalproperty *p = NULL;
@@ -400,7 +400,7 @@ appt_type *xf_get_ical_app(char *ical_uid)
   * ical_uid: pointer to ical_uid to be deleted
   * returns: TRUE is successfull, FALSE if failed
   */
-gboolean xf_del_ical_app(char *ical_uid)
+gboolean xfical_app_del(char *ical_uid)
 {
     icalcomponent *c;
     char *uid;
@@ -584,7 +584,7 @@ void build_ical_alarm_list()
     g_list_foreach(alarm_list, free_alarm, NULL);
     g_list_free(alarm_list);
     alarm_list = NULL;
-    open_ical_file();
+    xfical_file_open();
     for (c = icalcomponent_get_first_component(ical, ICAL_VEVENT_COMPONENT);
          c != 0;
          c = icalcomponent_get_next_component(ical, ICAL_VEVENT_COMPONENT)){
@@ -653,7 +653,7 @@ void build_ical_alarm_list()
         }  /* ALARMS */
     }  /* EVENTS */
     alarm_list = g_list_sort(alarm_list, alarm_order);
-    close_ical_file();
+    xfical_file_close();
 }
 
 gboolean ical_alarm_passed(char *alarm_stime)

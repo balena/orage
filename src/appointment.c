@@ -180,19 +180,19 @@ on_appClose_clicked_cb(GtkButton *button, gpointer user_data)
 #endif
 
   /* Here we try to save the event... */
-  if (open_ical_file()){
+  if (xfical_file_open()){
 
      g_sprintf(a_day, XF_APP_DATE_FORMAT
 	       , iyear, imonth, iday);
 
      g_warning("Date: %s\n", a_day);
 
-     xf_del_ical_app(apptw->xf_uid);
+     xfical_app_del(apptw->xf_uid);
      g_warning("Removed :%s \n", apptw->xf_uid);
-     new_uid = xf_add_ical_app(appt);
+     new_uid = xfical_app_add(appt);
      g_warning("New ical uid: %s \n", new_uid);
 
-     close_ical_file();
+     xfical_file_close();
   }
 
   gtk_widget_destroy(apptw->appWindow);
@@ -205,9 +205,9 @@ on_appRemove_clicked_cb(GtkButton *button, gpointer user_data)
 
   appt_win *apptw = (appt_win *)user_data;
 
-  if (open_ical_file()){
-     xf_del_ical_app(apptw->xf_uid);
-     close_ical_file();
+  if (xfical_file_open()){
+     xfical_app_del(apptw->xf_uid);
+     xfical_file_close();
   }
   gtk_widget_destroy(apptw->appWindow);
 
@@ -238,7 +238,7 @@ void fill_appt_window(appt_win *appt_w, char *action, char *par)
   time_t tt;
 
     if (strcmp(action, "NEW") == 0) {
-        appt_data = xf_alloc_ical_app();
+        appt_data = xfical_app_alloc();
     /* par contains XF_APP_DATE_FORMAT (yyyymmdd) date for new appointment */
         tt=time(NULL);
         t=localtime(&tt);
@@ -248,11 +248,11 @@ void fill_appt_window(appt_win *appt_w, char *action, char *par)
     }
     else if (strcmp(action, "UPDATE") == 0) {
     /* par contains ical uid */
-        if (!open_ical_file()) {
+        if (!xfical_file_open()) {
             g_warning("ical file open failed\n");
             return;
         }
-        if ((appt_data = xf_get_ical_app(par)) == NULL) {
+        if ((appt_data = xfical_app_get(par)) == NULL) {
             g_warning("appointment not found\n");
             return;
         }
@@ -364,7 +364,7 @@ void fill_appt_window(appt_win *appt_w, char *action, char *par)
         g_free(appt_data);
 	}
     else
-        close_ical_file();
+        xfical_file_close();
 }
 
 appt_win *create_appt_win(char *action, char *par)

@@ -409,7 +409,7 @@ void manageAppointment(GtkCalendar *calendar, GtkWidget *appwin)
 	g_sprintf(title, "%04d-%02d-%02d", year, month+1, day);
 	gtk_window_set_title(GTK_WINDOW(appwin), _(title));
 
-    if (open_ical_file()){
+    if (xfical_file_open()){
         g_sprintf(a_day, XF_APP_DATE_FORMAT, year, month+1, day);
         if (app = getnext_ical_app_on_day(a_day, a_time)) {
             list = gtk_list_store_new(NUM_COLS
@@ -430,7 +430,7 @@ void manageAppointment(GtkCalendar *calendar, GtkWidget *appwin)
             gtk_container_add(GTK_CONTAINER(swin), view);
             gtk_widget_show(view);
         }
-        close_ical_file();
+        xfical_file_close();
     }
 }
 
@@ -622,12 +622,12 @@ on_okbutton2_clicked(GtkButton *button, gpointer user_data)
 	g_print("Clear textbuffer chosen (oops!)\n");
 #endif
 
-    if (open_ical_file()){
+    if (xfical_file_open()){
 		a=lookup_widget((GtkWidget *)user_data,"wAppointment");
 		title = (char*)gtk_window_get_title(GTK_WINDOW (a));
         title_to_ical(title, a_day);
         rmday_ical_app(a_day);
-        close_ical_file();
+        xfical_file_close();
 
         day = atoi(a_day+6);
 		gtk_calendar_unmark_day(GTK_CALENDAR(xfcal->mCalendar), day);

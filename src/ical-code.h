@@ -19,19 +19,19 @@
  *
  */
 
-gboolean open_ical_file(void);
+gboolean xfical_file_open(void);
 
-void close_ical_file(void);
+void xfical_file_close(void);
+
+appt_type *xfical_app_alloc();
+
+char *xfical_app_add(appt_type *app);
+
+appt_type *xfical_app_get(char *ical_id);
+
+gboolean xfical_app_del(char *ical_id);
 
 struct icaltimetype ical_get_current_local_time();
-
-appt_type *xf_alloc_ical_app();
-
-char *xf_add_ical_app(appt_type *app);
-
-appt_type *xf_get_ical_app(char *ical_id);
-
-gboolean xf_del_ical_app(char *ical_id);
 
 appt_type * getnext_ical_app_on_day(char *a_day, char *hh_mm);
 
