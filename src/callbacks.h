@@ -95,7 +95,7 @@ on_textview1_paste_clipboard           (GtkTextView     *textview,
                                         gpointer         user_data);
 
 void
-on_okbutton1_clicked                   (GtkButton       *button,
+on_btOkInfo_clicked                   (GtkButton       *button,
                                         gpointer         user_data);
 
 gboolean

@@ -49,6 +49,8 @@
 #include "interface.h"
 #include "support.h"
 
+#define MAX_APP_LENGTH 1024
+
 static GtkWidget *info;
 static GtkWidget *clearwarn;
 static GtkCalendar *cal;
@@ -174,7 +176,6 @@ on_XFCalendar_delete_event(GtkWidget *widget, GdkEvent *event,
 	return(FALSE);
 }
 
-#define MAX_APP_LENGTH 4096
 void
 on_calendar1_day_selected_double_click (GtkCalendar *calendar,
                                         gpointer user_data)
@@ -306,13 +307,25 @@ on_btSave_clicked(GtkButton *button, gpointer user_data)
 			printf("DBG:key=%s\n",key);
 #endif
 			g_strlcpy(save_text,text,MAX_APP_LENGTH-1);
+#ifdef DEBUG
+			g_print("g_strlcpy passed\n");
+#endif
 			save_text[MAX_APP_LENGTH-1]=0;
 			/* since record length is variable,this is crucial: */
 			DBH_set_recordsize(fapp,strlen(save_text)+1);
+#ifdef DEBUG
+			g_print("DBH_set_recordsize passed; size: %d\n", strlen(save_text)+1);
+#endif
 			/* set the key */
 			strncpy((char *)fapp->key,key,8); fapp->key[7]=0;
+#ifdef DEBUG
+			g_print("key set\n");
+#endif
 			/* update the DBHashtable: */
 			DBH_update(fapp);
+#ifdef DEBUG
+			g_print("DBH_update passed\n");
+#endif
 			day=atoi((char *)(fapp->key+5));
 			if (strlen(save_text)) gtk_calendar_mark_day(cal,day);
 			else gtk_calendar_unmark_day(cal,day);
@@ -330,7 +343,7 @@ on_btSave_clicked(GtkButton *button, gpointer user_data)
 }
 
 void
-on_okbutton1_clicked(GtkButton *button, gpointer user_data)
+on_btOkInfo_clicked(GtkButton *button, gpointer user_data)
 {
 	gtk_widget_destroy(info);
 }
