@@ -1,6 +1,7 @@
 /* mainbox.c
  *
- * (C) 2004 Mickaël Graf
+ * Copyright (C) 2004 Mickaël Graf <korbinus@lunar-linux.org>
+ * Parts of the code below are copyright (C) 2003 Edscott Wilson Garcia <edscott@users.sourceforge.net>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by

@@ -113,7 +113,7 @@ create_TrayIcon (CalWin *xfcal)
   gtk_menu_shell_append(GTK_MENU_SHELL(trayMenu), menuItem);
   gtk_widget_show(menuItem);
 
-  menuItem = gtk_menu_item_new_with_label(_("About XFCalendar"));
+  menuItem = gtk_menu_item_new_with_label(_("About Xfcalendar"));
   g_signal_connect(menuItem, "activate", G_CALLBACK(on_about_activate),
 		   xfcal);
   gtk_menu_shell_append(GTK_MENU_SHELL(trayMenu), menuItem);
