@@ -658,8 +658,8 @@ on_okbutton2_clicked(GtkButton *button, gpointer user_data)
 		gtk_text_buffer_get_bounds(tb, &start, &end);
 		gtk_text_buffer_delete(tb, &start, &end);
 		gtk_text_buffer_set_modified(tb, FALSE);
-        day = atoi(a_day+6);
         */
+        day = atoi(a_day+6);
 		gtk_calendar_unmark_day(GTK_CALENDAR(xfcal->mCalendar), day);
         recreate_wAppointment(user_data);
     }
