@@ -255,7 +255,9 @@ xfcalendar_alarm_clock(gpointer user_data)
     time_t tt;
     static char start_key[8]={0,0,0,0,0,0,0,0};
     char a_day[10];
+    char a_time[6]="";
     char *text;
+    char *sum;
 
   tt=time(NULL);
   t=localtime(&tt);
@@ -300,7 +302,7 @@ xfcalendar_alarm_clock(gpointer user_data)
         if (open_ical_file()){
             strcpy(start_key, key);
             sprintf(a_day, "%04d%02d%02d", t->tm_year+1900, t->tm_mon+1, t->tm_mday);
-            if (get_ical_app(&text, a_day)){ /* data found */
+            if (get_ical_app(&text, &sum, a_day, a_time)){ /* data found */
                 if (strlen(text)) pretty_window(text);
             }
             close_ical_file();
@@ -481,6 +483,10 @@ void create_mainWin(CalWin *xfcal)
 
 
   xfcalendar_init_settings (xfcal);
+                                                                                
+  if (pos_x || pos_y)
+      gtk_window_move (GTK_WINDOW (xfcal->mWindow), pos_x, pos_y);
+  gtk_window_stick (GTK_WINDOW (xfcal->mWindow));
 
   cal = GTK_CALENDAR(xfcal->mCalendar); //horrible hack :(
   xfcalendar_mark_appointments (xfcal);

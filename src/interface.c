@@ -31,6 +31,7 @@
 #define GLADE_HOOKUP_OBJECT_NO_REF(component,widget,name) \
   g_object_set_data (G_OBJECT (component), name, widget)
 
+
 GtkWidget*
 create_wAppointment (void)
 {
@@ -42,11 +43,17 @@ create_wAppointment (void)
   GtkWidget *btSave;
   GtkWidget *btClose;
   GtkWidget *btDelete;
+  GtkWidget *btCreate;
   GtkWidget *btPrevious;
   GtkWidget *btToday;
   GtkWidget *btNext;
   GtkWidget *scrolledwindow1;
+  GtkWidget *vbox3;
+  /*
+  GtkWidget *hbox1;
+  GtkWidget *label1;
   GtkWidget *textview1;
+  */
   GtkAccelGroup *accel_group;
 
   accel_group = gtk_accel_group_new ();
@@ -72,10 +79,8 @@ create_wAppointment (void)
 
   tmp_toolbar_icon = gtk_image_new_from_stock ("gtk-save", gtk_toolbar_get_icon_size (GTK_TOOLBAR (toolbar1)));
   btSave = gtk_toolbar_append_element (GTK_TOOLBAR (toolbar1),
-                                GTK_TOOLBAR_CHILD_BUTTON,
-                                NULL,
-                                "btSave",
-                                _("Save (Ctrl+s)"), NULL,
+                                GTK_TOOLBAR_CHILD_BUTTON, NULL,
+                                "btSave", _("Save (Ctrl+s)"), NULL,
                                 tmp_toolbar_icon, NULL, NULL);
   gtk_label_set_use_underline (GTK_LABEL (((GtkToolbarChild*) (g_list_last (GTK_TOOLBAR (toolbar1)->children)->data))->label), TRUE);
   gtk_widget_show (btSave);
@@ -85,10 +90,8 @@ create_wAppointment (void)
 
   tmp_toolbar_icon = gtk_image_new_from_stock ("gtk-go-back", gtk_toolbar_get_icon_size (GTK_TOOLBAR (toolbar1)));
   btPrevious = gtk_toolbar_append_element (GTK_TOOLBAR (toolbar1),
-                                GTK_TOOLBAR_CHILD_BUTTON,
-                                NULL,
-                                "btPrevious",
-                                _("Previous day (Ctrl+p)"), NULL,
+                                GTK_TOOLBAR_CHILD_BUTTON, NULL,
+                                "btPrevious", _("Previous day (Ctrl+p)"), NULL,
                                 tmp_toolbar_icon, NULL, NULL);
   gtk_label_set_use_underline (GTK_LABEL (((GtkToolbarChild*) (g_list_last (GTK_TOOLBAR (toolbar1)->children)->data))->label), TRUE);
   gtk_widget_show (btPrevious);
@@ -96,10 +99,8 @@ create_wAppointment (void)
 
   tmp_toolbar_icon = gtk_image_new_from_stock ("gtk-home", gtk_toolbar_get_icon_size (GTK_TOOLBAR (toolbar1)));
   btToday = gtk_toolbar_append_element (GTK_TOOLBAR (toolbar1),
-                                GTK_TOOLBAR_CHILD_BUTTON,
-                                NULL,
-                                "btToday",
-                                _("Today (Alt+Home)"), NULL,
+                                GTK_TOOLBAR_CHILD_BUTTON, NULL,
+                                "btToday", _("Today (Alt+Home)"), NULL,
                                 tmp_toolbar_icon, NULL, NULL);
   gtk_label_set_use_underline (GTK_LABEL (((GtkToolbarChild*) (g_list_last (GTK_TOOLBAR (toolbar1)->children)->data))->label), TRUE);
   gtk_widget_show (btToday);
@@ -108,10 +109,8 @@ create_wAppointment (void)
 
   tmp_toolbar_icon = gtk_image_new_from_stock ("gtk-go-forward", gtk_toolbar_get_icon_size (GTK_TOOLBAR (toolbar1)));
   btNext = gtk_toolbar_append_element (GTK_TOOLBAR (toolbar1),
-                                GTK_TOOLBAR_CHILD_BUTTON,
-                                NULL,
-                                "btNext",
-                                _("Next day (Ctrl+n)"), NULL,
+                                GTK_TOOLBAR_CHILD_BUTTON, NULL,
+                                "btNext", _("Next day (Ctrl+n)"), NULL,
                                 tmp_toolbar_icon, NULL, NULL);
   gtk_label_set_use_underline (GTK_LABEL (((GtkToolbarChild*) (g_list_last (GTK_TOOLBAR (toolbar1)->children)->data))->label), TRUE);
   gtk_widget_show (btNext);
@@ -121,10 +120,8 @@ create_wAppointment (void)
 
   tmp_toolbar_icon = gtk_image_new_from_stock ("gtk-close", gtk_toolbar_get_icon_size (GTK_TOOLBAR (toolbar1)));
   btClose = gtk_toolbar_append_element (GTK_TOOLBAR (toolbar1),
-                                GTK_TOOLBAR_CHILD_BUTTON,
-                                NULL,
-                                "btClose",
-                                _("Close (Ctrl+w)"), NULL,
+                                GTK_TOOLBAR_CHILD_BUTTON, NULL,
+                                "btClose", _("Close (Ctrl+w)"), NULL,
                                 tmp_toolbar_icon, NULL, NULL);
   gtk_label_set_use_underline (GTK_LABEL (((GtkToolbarChild*) (g_list_last (GTK_TOOLBAR (toolbar1)->children)->data))->label), TRUE);
   gtk_widget_show (btClose);
@@ -132,45 +129,66 @@ create_wAppointment (void)
 
   tmp_toolbar_icon = gtk_image_new_from_stock ("gtk-clear", gtk_toolbar_get_icon_size (GTK_TOOLBAR (toolbar1)));
   btDelete = gtk_toolbar_append_element (GTK_TOOLBAR (toolbar1),
-                                GTK_TOOLBAR_CHILD_BUTTON,
-                                NULL,
-				"btDelete",
-                                _("Clear (Ctrl+l)"), NULL,
+                                GTK_TOOLBAR_CHILD_BUTTON, NULL,
+                                "btDelete", _("Clear (Ctrl+l)"), NULL,
                                 tmp_toolbar_icon, NULL, NULL);
   gtk_label_set_use_underline (GTK_LABEL (((GtkToolbarChild*) (g_list_last (GTK_TOOLBAR (toolbar1)->children)->data))->label), TRUE);
   gtk_widget_show (btDelete);
   gtk_widget_add_accelerator(btDelete, "clicked", accel_group, GDK_l, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
+
+  tmp_toolbar_icon = gtk_image_new_from_stock ("gtk-new", gtk_toolbar_get_icon_size (GTK_TOOLBAR (toolbar1)));
+  btCreate = gtk_toolbar_append_element (GTK_TOOLBAR (toolbar1),
+                                GTK_TOOLBAR_CHILD_BUTTON, NULL,
+                                "btCreate", _("Add (Ctrl+a)"), NULL,
+                                tmp_toolbar_icon, NULL, NULL);
+  gtk_label_set_use_underline (GTK_LABEL (((GtkToolbarChild*) (g_list_last (GTK_TOOLBAR (toolbar1)->children)->data))->label), TRUE);
+  gtk_widget_show (btCreate);
+  gtk_widget_add_accelerator(btCreate, "clicked", accel_group, GDK_l, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
 
   scrolledwindow1 = gtk_scrolled_window_new (NULL, NULL);
   gtk_widget_show (scrolledwindow1);
   gtk_box_pack_start (GTK_BOX (vbox2), scrolledwindow1, TRUE, TRUE, 0);
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolledwindow1), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
 
+  vbox3 = gtk_vbox_new(FALSE, 0);
+  gtk_widget_show(vbox3);
+  gtk_scrolled_window_add_with_viewport(GTK_SCROLLED_WINDOW(scrolledwindow1), vbox3);
+
+  /*
+  hbox1 = gtk_hbox_new (FALSE, 0);
+  gtk_widget_show (hbox1);
+  gtk_box_pack_start (GTK_BOX (vbox2), hbox1, TRUE, TRUE, 0);
+
+  label1 = gtk_label_new ("00:00-00:00");
+  gtk_widget_show (label1);
+  gtk_box_pack_start (GTK_BOX (hbox1), label1, FALSE, FALSE, 0);
+
+  scrolledwindow1 = gtk_scrolled_window_new (NULL, NULL);
+  gtk_widget_show (scrolledwindow1);
+  gtk_box_pack_start (GTK_BOX (hbox1), scrolledwindow1, TRUE, TRUE, 0);
+  gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolledwindow1), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
+
   textview1 = gtk_text_view_new ();
   gtk_widget_show (textview1);
   gtk_container_add (GTK_CONTAINER (scrolledwindow1), textview1);
+  */
 
   g_signal_connect ((gpointer) wAppointment, "delete_event",
-                    G_CALLBACK (on_wAppointment_delete_event),
-                    NULL);
+                    G_CALLBACK (on_wAppointment_delete_event), NULL);
   g_signal_connect ((gpointer) btSave, "clicked",
-                    G_CALLBACK (on_btSave_clicked),
-                    NULL);
+                    G_CALLBACK (on_btSave_clicked), NULL);
   g_signal_connect ((gpointer) btPrevious, "clicked",
-                    G_CALLBACK (on_btPrevious_clicked),
-                    NULL);
+                    G_CALLBACK (on_btPrevious_clicked), NULL);
   g_signal_connect ((gpointer) btToday, "clicked",
-                    G_CALLBACK (on_btToday_clicked),
-                    NULL);
+                    G_CALLBACK (on_btToday_clicked), NULL);
   g_signal_connect ((gpointer) btNext, "clicked",
-                    G_CALLBACK (on_btNext_clicked),
-                    NULL);
+                    G_CALLBACK (on_btNext_clicked), NULL);
   g_signal_connect ((gpointer) btClose, "clicked",
-                    G_CALLBACK (on_btClose_clicked),
-                    NULL);
+                    G_CALLBACK (on_btClose_clicked), NULL);
   g_signal_connect ((gpointer) btDelete, "clicked",
-                    G_CALLBACK (on_btDelete_clicked),
-                    NULL);
+                    G_CALLBACK (on_btDelete_clicked), NULL);
+  g_signal_connect ((gpointer) btCreate, "clicked",
+                    G_CALLBACK (on_btCreate_clicked), NULL);
 
   /* Store pointers to all widgets, for use by lookup_widget(). */
   GLADE_HOOKUP_OBJECT_NO_REF (wAppointment, wAppointment, "wAppointment");
@@ -184,11 +202,32 @@ create_wAppointment (void)
   GLADE_HOOKUP_OBJECT (wAppointment, btClose, "btClose");
   GLADE_HOOKUP_OBJECT (wAppointment, btDelete, "btDelete");
   GLADE_HOOKUP_OBJECT (wAppointment, scrolledwindow1, "scrolledwindow1");
+  GLADE_HOOKUP_OBJECT (wAppointment, vbox3, "vbox3");
+  /*
   GLADE_HOOKUP_OBJECT (wAppointment, textview1, "textview1");
+  */
 
   gtk_window_add_accel_group (GTK_WINDOW (wAppointment), accel_group);
 
   return wAppointment;
+}
+
+GtkWidget*
+recreate_wAppointment (GtkWidget *appointment)
+{
+    GtkWidget *wAppointment;
+    GtkWidget *scrolledwindow1;
+    GtkWidget *vbox3;
+
+    wAppointment = lookup_widget(GTK_WIDGET(appointment), "wAppointment");
+    scrolledwindow1 = lookup_widget(GTK_WIDGET(appointment), "scrolledwindow1");
+    vbox3 = lookup_widget(GTK_WIDGET(appointment), "vbox3");
+    gtk_widget_destroy(vbox3);
+
+    vbox3 = gtk_vbox_new(FALSE, 0);
+    gtk_widget_show(vbox3);
+    gtk_scrolled_window_add_with_viewport(GTK_SCROLLED_WINDOW(scrolledwindow1), vbox3);
+    GLADE_HOOKUP_OBJECT(wAppointment, vbox3, "vbox3");
 }
 
 GtkWidget*

@@ -186,20 +186,35 @@ static void add_ical_app(char *text, char *a_day)
     icalcomponent_add_component(ical, ievent);
 }
 
-gboolean get_ical_app(char **text, char *a_day)
+gboolean get_ical_app(char **desc, char **sum, char *a_day, char *hh_mm)
 {
-    struct icaltimetype t, adate;
-    icalcomponent *c;
+    struct icaltimetype t, adate, edate;
+    static icalcomponent *c;
     gboolean date_found=FALSE;
 
     adate = icaltime_from_string(a_day);
-    for (c = icalcomponent_get_first_component(ical, ICAL_VEVENT_COMPONENT); 
-         c != 0;
+    if (strlen(hh_mm) == 0){ /* start */
+        c = icalcomponent_get_first_component(ical, ICAL_VEVENT_COMPONENT); 
+    }
+    for ( ; 
+         (c != 0) && (!date_found);
          c = icalcomponent_get_next_component(ical, ICAL_VEVENT_COMPONENT)){
         t = icalcomponent_get_dtstart(c);
-        if (icaltime_compare(t, adate) == 0){
+        if (icaltime_compare_date_only(t, adate) == 0){
             date_found = TRUE;
-            *text = (char *)icalcomponent_get_description(c);
+            *desc = (char *)icalcomponent_get_description(c);
+            *sum = (char *)icalcomponent_get_summary(c);
+            edate = icalcomponent_get_dtend(c);
+            if (icaltime_is_date(t))
+                strcpy(hh_mm, "xx:xx-xx:xx");
+            else {
+                if (icaltime_is_null_time(edate)) {
+                    edate.hour = t.hour;
+                    edate.minute = t.minute;
+                }
+                sprintf(hh_mm, "%02d:%02d-%02d:%02d", t.hour, t.minute
+                        , edate.hour, edate.minute);
+            }
         }
     } 
     return(date_found);
@@ -218,7 +233,7 @@ int getnextday_ical_app(int year, int month, int day)
         (c != 0) && (next_day == 0);
          c = icalcomponent_get_next_component(ical, ICAL_VEVENT_COMPONENT)){
         t = icalcomponent_get_dtstart(c);
-        if ((t.year == year) && (t.month == month) && (t.is_date == 1)){
+        if ((t.year == year) && (t.month == month)){
             next_day = t.day;
         }
     } 
@@ -238,37 +253,87 @@ static void rm_ical_app(char *a_day)
          c = c2){
         c2 = icalcomponent_get_next_component(ical, ICAL_VEVENT_COMPONENT);
         t = icalcomponent_get_dtstart(c);
-        if (icaltime_compare(t, adate) == 0){
+        if (icaltime_compare_date_only(t, adate) == 0){
             icalcomponent_remove_component(ical, c);
         }
     } 
 }
 
+void addAppointment(GtkWidget *vbox, gchar *xftime, gchar *xftext, gchar *xfsum)
+{
+    GtkWidget *hseparator;
+    GtkWidget *hbox;
+    GtkWidget *label;
+    GtkWidget *entry;
+    GtkTooltips *event_tooltips;
+    int len, max_len=40;
+    gchar *eolstr, *text;
+
+    hseparator = gtk_hseparator_new();
+    gtk_widget_show(hseparator);
+    gtk_box_pack_start(GTK_BOX(vbox), hseparator, FALSE, FALSE, 0);
+                                                                                
+    hbox = gtk_hbox_new(FALSE, 0);
+    gtk_widget_show(hbox);
+    gtk_box_pack_start(GTK_BOX (vbox), hbox, TRUE, TRUE, 0);
+                                                                                
+    label = gtk_label_new(xftime);
+    gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 0);
+    gtk_widget_show(label);
+
+    entry = gtk_entry_new();
+    if (xfsum == NULL) { /* let's take first line from the text */
+        if ((eolstr = g_strstr_len(xftext, strlen(xftext), "\n")) == NULL) {
+            len=max_len;
+        }
+        else {
+            len=strlen(xftext)-strlen(eolstr);
+            gtk_entry_set_max_length(GTK_ENTRY(entry), len);
+        }
+        text=xftext;
+    }
+    else
+        text=xfsum;
+    gtk_entry_set_text(GTK_ENTRY(entry), text);
+    gtk_box_pack_start(GTK_BOX(hbox), entry, TRUE, TRUE, 0);
+    gtk_widget_show(entry);
+
+    event_tooltips = gtk_tooltips_new();
+    gtk_tooltips_set_tip(event_tooltips, entry, xftext, NULL);
+                                                                                
+}
+
 void manageAppointment(GtkCalendar *calendar, GtkWidget *appointment)
 {
 	guint year, month, day;
-	char title[12], *text;
-	GtkTextView *tv;
-	GtkTextBuffer *tb = gtk_text_buffer_new(NULL);
-	GtkTextIter end;
-	char a_day[10];
+	char title[12], *description, *summary;
+	char a_day[9];  /* yyyymmdd */
+	char a_time[12]=""; /* hh:mm-hh:mm */
+    GtkWidget *vbox;
+    int i;
+    char kello[20];
+
   
-    g_print("manageAppointment start\n");
 	gtk_calendar_get_date(calendar, &year, &month, &day);
 	g_snprintf(title, 12, "%d-%02d-%02d", year, month+1, day);
-	tv = GTK_TEXT_VIEW(lookup_widget(GTK_WIDGET(appointment),"textview1"));
+	gtk_window_set_title(GTK_WINDOW(appointment), _(title));
+	vbox = lookup_widget(GTK_WIDGET(appointment), "vbox3");
 
     if (open_ical_file()){
-        sprintf(a_day, "%04d%02d%02d", year, month+1, day);
-        if (get_ical_app(&text, a_day)){ /* data found */
-			gtk_text_buffer_get_end_iter(tb, &end);
-			gtk_text_buffer_insert(tb, &end, text, strlen(text));
+        g_snprintf(a_day, 9, "%04d%02d%02d", year, month+1, day);
+        while (get_ical_app(&description, &summary, a_day, a_time)){ 
+            /* data found */
+            addAppointment(vbox, a_time, description, summary);
         }
         close_ical_file();
     }
-	gtk_text_view_set_buffer(tv, tb);
-	gtk_text_buffer_set_modified(tb, FALSE);
-	gtk_window_set_title (GTK_WINDOW (appointment), _(title));
+    /*
+    for (i=1; i<5; i++){
+        sprintf(kello, "%02d:00-%02d:%02d", 7+i, 11+i, 2*i);
+        addAppointment(vbox, kello, "koe\n eli pitkä testi.", "summary");
+    }
+    addAppointment(vbox, _("<New>"), _("This is just a place holder.\nClick it to create a real appointmen"), _("<click to modify>"));
+    */
 }
 
 void
@@ -279,16 +344,20 @@ on_btClose_clicked(GtkButton *button, gpointer user_data)
   gint result;
   GtkWidget *a=lookup_widget((GtkWidget *)button,"wAppointment");
 
+  recreate_wAppointment(button);
+
+  /* FIXME: need to decide if it is possible to do updates....
   tv = GTK_TEXT_VIEW(lookup_widget(GTK_WIDGET(button),"textview1"));
   tb = gtk_text_view_get_buffer(tv);
 
   if(gtk_text_buffer_get_modified(tb)) {
       result = dialogWin(a);
       if(result == GTK_RESPONSE_ACCEPT) {
-	  gtk_widget_destroy(a); /* destroy the specific appointment window */
+	  gtk_widget_destroy(a); 
       }
   }
   else
+  */
       gtk_widget_destroy(a); /* destroy the specific appointment window */
 }
 
@@ -332,6 +401,9 @@ on_btPrevious_clicked(GtkButton *button, gpointer user_data)
 
   GtkWidget *a=lookup_widget((GtkWidget *)button,"wAppointment");
 
+  recreate_wAppointment(button);
+
+  /* FIXME: need to decide if it is possible to do updates....
   tv = GTK_TEXT_VIEW(lookup_widget(GTK_WIDGET(button),"textview1"));
   tb = gtk_text_view_get_buffer(tv);
 
@@ -344,6 +416,7 @@ on_btPrevious_clicked(GtkButton *button, gpointer user_data)
 	}
     }
   else
+  */
     changeSelectedDate(button, PREVIOUS);
 }
 
@@ -359,9 +432,12 @@ on_btToday_clicked(GtkButton *button, gpointer user_data)
 	
   appointment = lookup_widget(GTK_WIDGET(button),"wAppointment");
 
+  recreate_wAppointment(button);
+
   tt=time(NULL);
   t=localtime(&tt);
 
+  /* FIXME: need to decide if it is possible to do updates....
   tv = GTK_TEXT_VIEW(lookup_widget(GTK_WIDGET(button),"textview1"));
   tb = gtk_text_view_get_buffer(tv);
 
@@ -376,6 +452,7 @@ on_btToday_clicked(GtkButton *button, gpointer user_data)
 	}
     }
   else
+  */
     {
       gtk_calendar_select_month(GTK_CALENDAR(xfcal->mCalendar), t->tm_mon, t->tm_year+1900);
       gtk_calendar_select_day(GTK_CALENDAR(xfcal->mCalendar), t->tm_mday);
@@ -391,6 +468,9 @@ on_btNext_clicked(GtkButton *button, gpointer user_data)
   gint result;
   GtkWidget *a=lookup_widget((GtkWidget *)button,"wAppointment");
 
+  recreate_wAppointment(button);
+
+  /* FIXME: need to decide if it is possible to do updates....
   tv = GTK_TEXT_VIEW(lookup_widget(GTK_WIDGET(button),"textview1"));
   tb = gtk_text_view_get_buffer(tv);
 
@@ -403,6 +483,7 @@ on_btNext_clicked(GtkButton *button, gpointer user_data)
 	}
     }
   else
+  */
     changeSelectedDate(button, NEXT);
 }
 
@@ -462,9 +543,13 @@ on_btSave_clicked(GtkButton *button, gpointer user_data)
 	char *text;
 	G_CONST_RETURN gchar *title;
 	GtkWidget *appointment; 
+	GtkWidget *vbox; 
     char a_day[10];
     guint day;
 
+	vbox = lookup_widget(GTK_WIDGET(button),"vbox3");
+    addAppointment(vbox, "<??:??>", "not decided how this is supposed to work.\nBe patient.", "<Not Yet Implemented>");
+    /*
 	tv = GTK_TEXT_VIEW(lookup_widget(GTK_WIDGET(button),"textview1"));
 	appointment = lookup_widget(GTK_WIDGET(button),"wAppointment");
 	tb = gtk_text_view_get_buffer(tv);
@@ -477,16 +562,16 @@ on_btSave_clicked(GtkButton *button, gpointer user_data)
 #endif
 	if (gtk_text_buffer_get_modified(tb)) {
         if (open_ical_file()){
-            a_day[0]=title[0]; a_day[1]=title[1];           /* yy   */
-                    a_day[2]=title[2]; a_day[3]=title[3];   /*   yy */
-            a_day[4]=title[5]; a_day[5]=title[6];           /* mm */
-            a_day[6]=title[8]; a_day[7]=title[9];           /* dd */
-            a_day[8]=title[10];                             /* \0 */
+            a_day[0]=title[0]; a_day[1]=title[1];     
+                    a_day[2]=title[2]; a_day[3]=title[3];
+            a_day[4]=title[5]; a_day[5]=title[6];       
+            a_day[6]=title[8]; a_day[7]=title[9];      
+            a_day[8]=title[10];                       
             rm_ical_app(a_day);
             add_ical_app(text, a_day);
             icalset_mark(fical);
             close_ical_file();
-			day = atoi(a_day+6); /* dd happens to be last */
+			day = atoi(a_day+6); 
 			if (strlen(text)) 
                 gtk_calendar_mark_day (GTK_CALENDAR (xfcal->mCalendar), day);
 			else 
@@ -494,6 +579,7 @@ on_btSave_clicked(GtkButton *button, gpointer user_data)
 			gtk_text_buffer_set_modified(tb, FALSE);
         }
 	}
+    */
 #ifdef DEBUG 
 	g_print("Procedure on_btSave_clicked finished\n");
 #endif
@@ -514,6 +600,17 @@ on_btDelete_clicked(GtkButton *button, gpointer user_data)
                     G_CALLBACK (on_okbutton2_clicked),
                     (gpointer)button);
 	gtk_widget_show(clearwarn);
+}
+
+void
+on_btCreate_clicked(GtkButton *button, gpointer user_data)
+{
+	GtkWidget *w;
+	GtkWidget *vbox; 
+	
+	vbox = lookup_widget(GTK_WIDGET(button),"vbox3");
+
+    addAppointment(vbox, _("<New>"), _("This is just a place holder.\nClick it to create a real appointmen"), _("<click to modify>"));
 }
 
 void
@@ -555,13 +652,16 @@ on_okbutton2_clicked(GtkButton *button, gpointer user_data)
         icalset_mark(fical);
         close_ical_file();
 
+        /*
 		tv = GTK_TEXT_VIEW(lookup_widget(a,"textview1"));
 		tb = gtk_text_view_get_buffer(tv);
 		gtk_text_buffer_get_bounds(tb, &start, &end);
 		gtk_text_buffer_delete(tb, &start, &end);
 		gtk_text_buffer_set_modified(tb, FALSE);
         day = atoi(a_day+6);
+        */
 		gtk_calendar_unmark_day(GTK_CALENDAR(xfcal->mCalendar), day);
+        recreate_wAppointment(user_data);
     }
 }
 

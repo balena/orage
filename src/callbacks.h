@@ -54,6 +54,10 @@ on_btDelete_clicked                    (GtkButton       *button,
                                         gpointer         user_data);
 
 void
+on_btCreate_clicked                    (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
 on_cancelbutton1_clicked               (GtkButton       *button,
                                         gpointer         user_data);
 
