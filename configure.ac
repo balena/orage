@@ -9,7 +9,7 @@ AC_INIT([configure])
 
 AM_CONFIG_HEADER([config.h])
 
-AM_INIT_AUTOMAKE([xfcalendar], [0.1.6])
+AM_INIT_AUTOMAKE([xfcalendar], [0.1.7])
 
 AM_MAINTAINER_MODE
 
@@ -28,7 +28,7 @@ AC_HEADER_STDC
 AC_CHECK_HEADERS([errno.h])
 
 dnl Check for i18n support
-BM_I18N([xfcalendar], [az ca cs de es fa_IR fr hi ko ms nl no pl pt_BR ru sv
+BM_I18N([xfcalendar], [ar az bg ca cs de es fa_IR fr hi it ko ms nl no pl pt_BR ru sv
 	 ta tr zh_CN])
          
 dnl Check for required packages
