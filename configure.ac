@@ -9,7 +9,7 @@ AC_INIT([configure])
 
 AM_CONFIG_HEADER([config.h])
 
-AM_INIT_AUTOMAKE([xfcalendar], [4.1.99.1])
+AM_INIT_AUTOMAKE([xfcalendar], [4.1.99.2])
 
 AM_MAINTAINER_MODE
 
@@ -33,12 +33,12 @@ BM_I18N([xfcalendar], [ar az be bg ca cs de es et eu fa fi fr gu he hi it ja
 		       zh_TW])
 
 dnl Check for required packages
-BM_DEPEND([LIBXFCE4MCS_CLIENT], [libxfce4mcs-client-1.0], [4.0.0])
-BM_DEPEND([LIBXFCEGUI4], [libxfcegui4-1.0], [4.1.0])
+BM_DEPEND([LIBXFCE4MCS_CLIENT], [libxfce4mcs-client-1.0], [4.1.99])
+BM_DEPEND([LIBXFCEGUI4], [libxfcegui4-1.0], [4.1.99])
 BM_DEPEND([DBH], [dbh-1.0], [1.0])
 
 dnl configure the mcs plugin
-XFCE_MCS_PLUGIN([XFCE_MCS_MANAGER], [4.0.0])
+XFCE_MCS_PLUGIN([XFCE_MCS_MANAGER], [4.1.99])
 
 dnl Check for debugging support
 BM_DEBUG_SUPPORT
