@@ -350,12 +350,63 @@ char *format_time(char *start_ical_time, char *end_ical_time)
     return(result);
 }
 
+void start_time_data_func(GtkTreeViewColumn *col, GtkCellRenderer *rend,
+                          GtkTreeModel      *model, GtkTreeIter   *iter, 
+                          gpointer           user_data) 
+{
+    gchar *stime, *etime;
+    struct tm *t;
+    time_t tt;
+    gchar time_now[6];
+
+    tt = time(NULL);
+    t  = localtime(&tt);
+    sprintf(time_now, "%02d:%02d", t->tm_hour, t->tm_min);
+
+    gtk_tree_model_get(model, iter, COL_TIME, &stime, -1);
+    etime = stime + 6;
+    if (stime[2] != ':') { /* catch "today" */
+        g_object_set(rend
+                 , "foreground-set",    FALSE
+                 , "strikethrough-set", FALSE
+                 , "weight-set",        FALSE
+                 , NULL); 
+    }
+    else if (strncmp(etime, time_now, 5) < 0) { /* gone */
+        g_object_set(rend
+                 , "foreground-set",    FALSE
+                 , "strikethrough",     TRUE
+                 , "strikethrough-set", TRUE
+                 , "weight",            PANGO_WEIGHT_LIGHT
+                 , "weight-set",        TRUE
+                 , NULL);
+    }
+    else if (strncmp(stime, time_now, 5) <= 0 
+          && strncmp(etime, time_now, 5) >= 0) { /* current */
+        g_object_set(rend
+                 , "foreground",        "Red"
+                 , "foreground-set",    TRUE
+                 , "strikethrough-set", FALSE
+                 , "weight",            PANGO_WEIGHT_BOLD
+                 , "weight-set",        TRUE
+                 , NULL);
+    }
+    else { /* future */
+        g_object_set(rend
+                 , "foreground-set",    FALSE
+                 , "strikethrough-set", FALSE
+                 , "weight",            PANGO_WEIGHT_BOLD
+                 , "weight-set",        TRUE
+                 , NULL);
+    }
+}
+
 void addAppointment(GtkListStore *list1, appt_type *app)
 {
     GtkTreeIter     iter1;
     gchar           *title = NULL;
-    gchar           alarm[11]; /* nnn min/hour/day */
-    gchar           stime[18]; /* yyyy.mm.dd hh:mm */
+    gchar           alarm[11]; 
+    gchar           stime[12]; /* hh:mm-hh:mm */
     gint            len = 50;
 
     strcpy(stime, format_time(app->starttime, app->endtime));
@@ -386,7 +437,8 @@ void addAppointment(GtkListStore *list1, appt_type *app)
     g_free(title);
 }
 
-void addAppointment_init(GtkWidget *view, GtkWidget *wAppointment)
+void addAppointment_init(GtkWidget *view, GtkWidget *wAppointment
+            , gboolean today)
 {
     GtkTreeViewColumn   *col;
     GtkCellRenderer     *rend;
@@ -395,10 +447,15 @@ void addAppointment_init(GtkWidget *view, GtkWidget *wAppointment)
     col = gtk_tree_view_column_new_with_attributes( _("Time"), rend
                 , "text", COL_TIME
                 , NULL);
+    /*
     g_object_set(rend 
             , "weight", PANGO_WEIGHT_BOLD
             , "weight-set", TRUE
             , NULL);
+            */
+    if (today)
+        gtk_tree_view_column_set_cell_data_func(col, rend, start_time_data_func
+                , NULL, NULL);
     gtk_tree_view_append_column(GTK_TREE_VIEW(view), col);
 
     rend = gtk_cell_renderer_text_new();
@@ -434,7 +491,10 @@ void manageAppointment(GtkCalendar *calendar, GtkWidget *wAppointment)
     GtkWidget       *view;
     GtkListStore    *list;
     GtkTreeSortable *sort;
-  
+    struct tm *t;
+    time_t tt;
+    gboolean today;
+
 	gtk_calendar_get_date(calendar, &year, &month, &day);
 	g_sprintf(title, "%04d-%02d-%02d", year, month+1, day);
 	gtk_window_set_title(GTK_WINDOW(wAppointment), _(title));
@@ -442,10 +502,19 @@ void manageAppointment(GtkCalendar *calendar, GtkWidget *wAppointment)
     if (xfical_file_open()){
         g_sprintf(a_day, XFICAL_APP_DATE_FORMAT, year, month+1, day);
         if ((app = xfical_app_get_next_on_day(a_day, TRUE))) {
+            tt = time(NULL);
+            t  = localtime(&tt);
+            if (year  == t->tm_year + 1900 
+            &&  month == t->tm_mon 
+            &&  day   == t->tm_mday)
+                today = TRUE;
+            else
+                today = FALSE;
+  
             list = gtk_list_store_new(NUM_COLS
                 , G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
             view = gtk_tree_view_new();
-            addAppointment_init(view, wAppointment);
+            addAppointment_init(view, wAppointment, today);
             do
                 addAppointment(list, app);
             while ((app = xfical_app_get_next_on_day(a_day, FALSE)));
