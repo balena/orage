@@ -40,22 +40,21 @@
 
 #define CHANNEL  "xfcalendar"
 
-static GtkCalendar *cal;
-
 void
 on_Today_activate                      (GtkMenuItem *menuitem,
                                         gpointer user_data)
 {
   struct tm *t;
   time_t tt;
+  CalWin *xfcal = (CalWin *)user_data;
   GtkWidget *appointment;
 
   appointment = create_wAppointment();
   tt=time(NULL);
   t=localtime(&tt);
-  gtk_calendar_select_month(cal, t->tm_mon, t->tm_year+1900);
-  gtk_calendar_select_day(cal, t->tm_mday);
-  manageAppointment(cal, appointment);
+  gtk_calendar_select_month(GTK_CALENDAR(xfcal->mCalendar), t->tm_mon, t->tm_year+1900);
+  gtk_calendar_select_day(GTK_CALENDAR(xfcal->mCalendar), t->tm_mday);
+  manageAppointment(GTK_CALENDAR(xfcal->mCalendar), appointment);
   gtk_widget_show(appointment);
 }
 
@@ -96,7 +95,7 @@ create_TrayIcon (CalWin *xfcal)
   menuItem = gtk_image_menu_item_new_with_mnemonic(_("Today"));
   gtk_image_menu_item_set_image(GTK_IMAGE_MENU_ITEM(menuItem), gtk_image_new_from_stock(GTK_STOCK_HOME, GTK_ICON_SIZE_MENU));
   g_signal_connect(menuItem, "activate", G_CALLBACK(on_Today_activate),
-		   NULL);
+		   xfcal);
   gtk_menu_shell_append(GTK_MENU_SHELL(trayMenu), menuItem);
   gtk_widget_show_all(menuItem);
   menuItem = gtk_separator_menu_item_new();
