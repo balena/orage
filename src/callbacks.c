@@ -189,19 +189,18 @@ void manageAppointment(GtkCalendar *calendar, GtkWidget *appwin)
 	char a_day[9];  /* yyyymmdd */
 	char a_time[12]=""; /* hh:mm-hh:mm */
     GtkWidget *vbox;
-    appt_type app;
+    appt_type *app;
   
 	gtk_calendar_get_date(calendar, &year, &month, &day);
-	g_snprintf(title, 12, "%d-%02d-%02d", year, month+1, day);
+	g_sprintf(title, "%04d-%02d-%02d", year, month+1, day);
 	gtk_window_set_title(GTK_WINDOW(appwin), _(title));
 	vbox = lookup_widget(GTK_WIDGET(appwin), "vbox3");
 
     if (open_ical_file()){
-        g_snprintf(a_day, 9, "%04d%02d%02d", year, month+1, day);
-        app.note=NULL; app.title=NULL;
-        while (get_ical_app(&app, a_day, a_time)){ 
+        g_sprintf(a_day, XF_APP_DATE_FORMAT, year, month+1, day);
+        while (app = getnext_ical_app_on_day(a_day, a_time)){ 
             /* data found */
-            addAppointment(vbox, a_time, app.note, app.title);
+            addAppointment(vbox, a_time, app->note, app->title);
         }
         close_ical_file();
     }
@@ -385,7 +384,7 @@ on_okbutton2_clicked(GtkButton *button, gpointer user_data)
         a_day[4]=key[5]; a_day[5]=key[6];           /* mm */
         a_day[6]=key[8]; a_day[7]=key[9];           /* dd */
         a_day[8]=key[10];                           /* \0 */
-        rm_ical_app(a_day);
+        rmday_ical_app(a_day);
         close_ical_file();
 
         day = atoi(a_day+6);

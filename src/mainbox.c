@@ -254,9 +254,7 @@ xfcalendar_alarm_clock(gpointer user_data)
     static char start_key[8]={0,0,0,0,0,0,0,0};
     char a_day[10];
     char a_time[6]="";
-    char *text;
-    char *sum;
-    appt_type app;
+    appt_type *app;
 
   tt=time(NULL);
   t=localtime(&tt);
@@ -300,10 +298,10 @@ xfcalendar_alarm_clock(gpointer user_data)
     if (!strlen(start_key) || strcmp(start_key,key)!=0){
         if (open_ical_file()){
             strcpy(start_key, key);
-            sprintf(a_day, "%04d%02d%02d", t->tm_year+1900, t->tm_mon+1, t->tm_mday);
-            app.note=NULL; app.title=NULL;
-            if (get_ical_app(&app, a_day, a_time)){ /* data found */
-                if (strlen(app.note)) pretty_window(app.note);
+            sprintf(a_day, XF_APP_DATE_FORMAT
+                    , t->tm_year+1900, t->tm_mon+1, t->tm_mday);
+            if (app = getnext_ical_app_on_day(a_day, a_time)){ /* data found */
+                if (strlen(app->note)) pretty_window(app->note);
             }
             close_ical_file();
         }

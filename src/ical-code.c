@@ -160,16 +160,17 @@ char *xf_add_ical_app(appt_type *app)
 }
 
  /* Read EVENT from ical datafile.
- *ical_uid:  key of ical EVENT appointment which is to be read
- * returns: NULL if failed and appt_type pointer to appt_type struct 
- *          filled with data if successfull.
- *          This appt_type struct is owned by the routine. Do not deallocate it.
- *          It will be overdriven by next invocation of this function.
- */
+  *ical_uid:  key of ical EVENT appointment which is to be read
+  * returns: NULL if failed and appt_type pointer to appt_type struct 
+  *          filled with data if successfull.
+  *          This appt_type struct is owned by the routine. 
+  *          Do not deallocate it.
+  *          It will be overdriven by next invocation of this function.
+  */
 appt_type *xf_get_ical_app(char *ical_uid)
 {
     struct icaltimetype itime;
-    static icalcomponent *c;
+    icalcomponent *c;
     gboolean key_found=FALSE;
     const char *text;
     static appt_type app;
@@ -179,6 +180,7 @@ appt_type *xf_get_ical_app(char *ical_uid)
          c = icalcomponent_get_next_component(ical, ICAL_VEVENT_COMPONENT)) {
         text = icalcomponent_get_uid(c);
         if (strcmp(text, ical_uid) == 0) {
+            key_found = TRUE;
             app.title    = (char *)icalcomponent_get_summary(c);
             app.location = (char *)icalcomponent_get_location(c);
             app.note     = (char *)icalcomponent_get_description(c);
@@ -188,7 +190,6 @@ appt_type *xf_get_ical_app(char *ical_uid)
             itime = icalcomponent_get_dtend(c);
             text  = icaltime_as_ical_string(itime);
             strcpy(app.endtime, text);
-            key_found = TRUE;
         }
     } 
     if (key_found)
@@ -198,9 +199,9 @@ appt_type *xf_get_ical_app(char *ical_uid)
 }
 
  /* removes EVENT with ical_uid from ical file
- * ical_uid: pointer to ical_uid to be deleted
- * returns: TRUE is successfull, FALSE if failed
- */
+  * ical_uid: pointer to ical_uid to be deleted
+  * returns: TRUE is successfull, FALSE if failed
+  */
 gboolean xf_del_ical_app(char *ical_uid)
 {
     icalcomponent *c;
@@ -219,57 +220,68 @@ gboolean xf_del_ical_app(char *ical_uid)
     return(FALSE);
 }
 
-gboolean get_ical_app(appt_type *app, char *a_day, char *hh_mm)
+ /* Read next EVENT on the specified date from ical datafile.
+  * a_day:  start date of ical EVENT appointment which is to be read
+  * hh_mm:  return the start and end time of EVENT. NULL=start from 00
+  * returns: NULL if failed and appt_type pointer to appt_type struct 
+  *          filled with data if successfull.
+  *          This appt_type struct is owned by the routine. 
+  *          Do not deallocate it.
+  *          It will be overdriven by next invocation of this function.
+  */
+appt_type *getnext_ical_app_on_day(char *a_day, char *hh_mm)
 {
-    struct icaltimetype t, sdate, edate;
+    struct icaltimetype adate, sdate, edate;
     static icalcomponent *c;
     gboolean date_found=FALSE;
     char *text;
+    static appt_type app;
 
 /* FIXME: does not find events which start on earlier dates and continues
           to this date */
-    sdate = icaltime_from_string(a_day);
+    adate = icaltime_from_string(a_day);
     if (strlen(hh_mm) == 0){ /* start */
         c = icalcomponent_get_first_component(ical, ICAL_VEVENT_COMPONENT); 
     }
     for ( ; 
          (c != 0) && (!date_found);
          c = icalcomponent_get_next_component(ical, ICAL_VEVENT_COMPONENT)){
-        t = icalcomponent_get_dtstart(c);
-        if (icaltime_compare_date_only(t, sdate) == 0){
+        sdate = icalcomponent_get_dtstart(c);
+        if (icaltime_compare_date_only(adate, sdate) == 0){
             date_found = TRUE;
-            if ((text = (char *)icalcomponent_get_description(c)) == NULL) {
-                app->note = g_realloc(app->note, 0);
-            }
-            else {
-                app->note = g_realloc(app->note, strlen(text)+1);
-                strcpy(app->note, text);
-            }
-
-            if ((text = (char *)icalcomponent_get_summary(c)) == NULL) {
-                app->title = g_realloc((char *)app->title, 0);
-            }
-            else {
-                app->title = g_realloc((char *)app->title, strlen(text)+1);
-                strcpy((char *)app->title, text);
-            }
-
+            app.title    = (char *)icalcomponent_get_summary(c);
+            app.location = (char *)icalcomponent_get_location(c);
+            app.note     = (char *)icalcomponent_get_description(c);
+            text  = (char *)icaltime_as_ical_string(sdate);
+            strcpy(app.starttime, text);
             edate = icalcomponent_get_dtend(c);
-            if (icaltime_is_date(t))
+            text  = (char *)icaltime_as_ical_string(edate);
+            strcpy(app.endtime, text);
+
+            if (icaltime_is_date(sdate))
                 strcpy(hh_mm, "xx:xx-xx:xx");
             else {
                 if (icaltime_is_null_time(edate)) {
-                    edate.hour = t.hour;
-                    edate.minute = t.minute;
+                    edate.hour = sdate.hour;
+                    edate.minute = sdate.minute;
                 }
-                sprintf(hh_mm, "%02d:%02d-%02d:%02d", t.hour, t.minute
+                sprintf(hh_mm, "%02d:%02d-%02d:%02d", sdate.hour, sdate.minute
                         , edate.hour, edate.minute);
             }
         }
     } 
-    return(date_found);
+    if (date_found)
+        return(&app);
+    else
+        return(0);
 }
 
+ /* find next day in this year and month where any EVENTs start
+  * year: Year to be searched
+  * month: Month to be searched
+  * day: -1 means start search from day 1. other values continue search
+  * returns: day number of next day having EVENT. 0=no more EVENTs found
+  */
 int getnextday_ical_app(int year, int month, int day)
 {
     struct icaltimetype t;
@@ -290,7 +302,10 @@ int getnextday_ical_app(int year, int month, int day)
     return(next_day);
 }
 
-void rm_ical_app(char *a_day)
+ /* remove all EVENTs starting this day
+  * a_day: date to clear (yyyymmdd format)
+  */
+void rmday_ical_app(char *a_day)
 {
     struct icaltimetype t, adate;
     icalcomponent *c, *c2;

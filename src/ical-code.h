@@ -31,11 +31,9 @@ appt_type *xf_get_ical_app(char *ical_id);
 
 gboolean xf_del_ical_app(char *ical_id);
 
-void add_ical_app(appt_type *app);
-
-gboolean get_ical_app(appt_type *app, char *a_day, char *hh_mm);
+appt_type * getnext_ical_app_on_day(char *a_day, char *hh_mm);
 
 int getnextday_ical_app(int year, int month, int day);
 
-void rm_ical_app(char *a_day) ;
+void rmday_ical_app(char *a_day) ;
 
