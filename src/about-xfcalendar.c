@@ -29,6 +29,7 @@
 
 void create_wAbout(GtkWidget *widget, gpointer user_data){
 
+  GtkWidget *dialog;
   CalWin *xfcal = (CalWin *)user_data;
 
   GdkPixbuf *xfcalendar_logo = xfce_themed_icon_load ("xfcalendar", 48);
@@ -57,9 +58,8 @@ void create_wAbout(GtkWidget *widget, gpointer user_data){
 			     "edscott@imp.mx",
 			     _("Contributor"));
 
-  GtkWidget *dialog = xfce_about_dialog_new(GTK_WINDOW(xfcal->mWindow),
-						       about,
-						       xfcalendar_logo);
+  dialog = xfce_about_dialog_new(GTK_WINDOW(xfcal->mWindow), about,
+                                 xfcalendar_logo);
 
   gtk_window_set_default_size(GTK_WINDOW(dialog), 500, 400);
   xfce_about_info_free(about);

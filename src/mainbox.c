@@ -368,6 +368,8 @@ xfcalendar_toggle_visible (CalWin *xfcal)
 
 CalWin *create_mainWin(void)
 {
+  struct tm *t;
+  time_t tt;
 
   CalWin *xfcal = g_new(CalWin, 1);
 
@@ -538,9 +540,6 @@ CalWin *create_mainWin(void)
 		     NULL);
 
   /* Remember which day we are */
-  struct tm *t;
-  time_t tt;
-
   tt=time(NULL);
   t=localtime(&tt);
   g_snprintf(today, 8, "%03d%02d%02d", t->tm_year, t->tm_mon, t->tm_mday);
