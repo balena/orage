@@ -9,7 +9,7 @@ AC_INIT([configure])
 
 AM_CONFIG_HEADER([config.h])
 
-AM_INIT_AUTOMAKE([xfcalendar], [0.1.7])
+AM_INIT_AUTOMAKE([xfcalendar], [0.1.8])
 
 AM_MAINTAINER_MODE
 

@@ -89,7 +89,7 @@ static gboolean
 client_message_received (GtkWidget * widget, GdkEventClient * event,
 			 gpointer user_data)
 {
-    TRACE ("client message received");
+    printf ("client message received\n");
 
     if (event->message_type ==
 	gdk_atom_intern ("_XFCE_CALENDAR_RAISE", FALSE))
