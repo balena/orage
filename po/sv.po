@@ -5,22 +5,58 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: xfcalendar\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-24 00:02+0200\n"
+"POT-Creation-Date: 2004-08-08 20:06+0200\n"
 "PO-Revision-Date: 2003-11-24 23:33+0100\n"
 "Last-Translator: Johan Hammar <johan.hammar@swipnet.se>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Report-Msgid-Bugs-To: \n"
 
-#: src/main.c:203
-msgid "This should not happen"
-msgstr "Detta ska inte hC$nda"
+#: plugin/xfcalendar_plugin.c:165 plugin/xfcalendar_plugin.c:176
+#: plugin/xfcalendar_plugin.c:297 src/mainbox.c:377
+#, fuzzy
+msgid "Xfcalendar"
+msgstr "XFCalendar"
 
-#: src/main.c:421
-msgid "Cannot create MCS client channel"
-msgstr "Kan inte skapa MCS-klientkanal"
+#.
+#: plugin/xfcalendar_plugin.c:191
+msgid "Week starts with..."
+msgstr "Vecka bC6rjar med..."
+
+#: plugin/xfcalendar_plugin.c:199
+msgid "Sunday"
+msgstr "SC6ndag"
+
+#: plugin/xfcalendar_plugin.c:206
+msgid "Monday"
+msgstr "MC%ndag"
+
+#.
+#: plugin/xfcalendar_plugin.c:214
+msgid "Mode"
+msgstr "LC$ge"
+
+#: plugin/xfcalendar_plugin.c:222
+msgid "Normal"
+msgstr "Normal"
+
+#: plugin/xfcalendar_plugin.c:229
+msgid "Compact"
+msgstr "Kompakt"
+
+#: src/about-xfcalendar.c:38
+msgid "Manage your time with Xfce4"
+msgstr ""
+
+#: src/about-xfcalendar.c:48
+msgid "Core developer"
+msgstr ""
+
+#: src/about-xfcalendar.c:53 src/about-xfcalendar.c:58
+msgid "Contributor"
+msgstr ""
 
 #: src/interface.c:56
 msgid "Appointment"
@@ -66,66 +102,70 @@ msgstr ""
 "Du kommer att ta bort all information \n"
 "som hC6r till det hC$r datumet."
 
+#. File menu
+#: src/mainbox.c:404
+msgid "_File"
+msgstr "_Fil"
+
+#: src/mainbox.c:413
+#, fuzzy
+msgid "_Close window"
+msgstr "StC$ng fC6nster"
+
+#. Settings menu
+#: src/mainbox.c:430
+#, fuzzy
+msgid "_Settings"
+msgstr "InstC$llningar"
+
+#: src/mainbox.c:439
+#, fuzzy
+msgid "_Preferences"
+msgstr "InstC$llningar"
+
+#: src/mainbox.c:450
+#, fuzzy
+msgid "Select _Today"
+msgstr "VC$lj idag"
+
+#. Help menu
+#: src/mainbox.c:457
+msgid "_Help"
+msgstr "_HjC$lp"
+
+#: src/mainbox.c:466
+msgid "_About"
+msgstr "_Om"
+
+#: src/main.c:203
+msgid "This should not happen"
+msgstr "Detta ska inte hC$nda"
+
+#: src/main.c:421
+msgid "Cannot create MCS client channel"
+msgstr "Kan inte skapa MCS-klientkanal"
+
+#: src/reminder.c:56 src/reminder.c:64
+msgid "Reminder"
+msgstr "PC%minnelse"
+
 #: src/support.c:91 src/support.c:115
 #, c-format
 msgid "Couldn't find pixmap file: %s"
 msgstr "Kunde inte hitta pixmap-fil: %s"
 
-#: plugin/xfcalendar_plugin.c:165 plugin/xfcalendar_plugin.c:176
-#: plugin/xfcalendar_plugin.c:297
+#: src/tray_icon.c:96
+msgid "Today"
+msgstr "Idag"
+
+#: src/tray_icon.c:106
+msgid "Preferences"
+msgstr "InstC$llningar"
+
+#: src/tray_icon.c:115
 #, fuzzy
-msgid "Xfcalendar"
-msgstr "XFCalendar"
-
-#.
-#: plugin/xfcalendar_plugin.c:191
-msgid "Week starts with..."
-msgstr "Vecka bC6rjar med..."
-
-#: plugin/xfcalendar_plugin.c:199
-msgid "Sunday"
-msgstr "SC6ndag"
-
-#: plugin/xfcalendar_plugin.c:206
-msgid "Monday"
-msgstr "MC%ndag"
-
-#.
-#: plugin/xfcalendar_plugin.c:214
-msgid "Mode"
-msgstr "LC$ge"
-
-#: plugin/xfcalendar_plugin.c:222
-msgid "Normal"
-msgstr "Normal"
-
-#: plugin/xfcalendar_plugin.c:229
-msgid "Compact"
-msgstr "Kompakt"
-
-#~ msgid "_File"
-#~ msgstr "_Fil"
-
-#~ msgid "Close window"
-#~ msgstr "StC$ng fC6nster"
-
-#~ msgid "Settings"
-#~ msgstr "InstC$llningar"
-
-#~ msgid "Preferences"
-#~ msgstr "InstC$llningar"
-
-#~ msgid "Select Today"
-#~ msgstr "VC$lj idag"
-
-#~ msgid "_Help"
-#~ msgstr "_HjC$lp"
-
-#~ msgid "_About"
-#~ msgstr "_Om"
-
-#~ msgid "About XFCalendar"
-#~ msgstr "Om XFCalendar"
+msgid "About Xfcalendar"
+msgstr "Om XFCalendar"
 
 #~ msgid ""
 #~ "XFCalendar\n"
@@ -157,9 +197,3 @@ msgstr "Kompakt"
 #~ "  - Edscott Wilson Garcia\n"
 #~ "\n"
 #~ "XFce4 C$r B) Olivier Fourdan"
-
-#~ msgid "Reminder"
-#~ msgstr "PC%minnelse"
-
-#~ msgid "Today"
-#~ msgstr "Idag"

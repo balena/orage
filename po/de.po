@@ -4,21 +4,58 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: XFcalendar\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-24 00:02+0200\n"
+"POT-Creation-Date: 2004-08-08 20:06+0200\n"
 "PO-Revision-Date: 2003-11-14 16:46+0100\n"
 "Last-Translator: Moritz Heiber <moe@lunar-linux.org>\n"
 "Language-Team: none <none@none>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Report-Msgid-Bugs-To: \n"
 
-#: src/main.c:203
-msgid "This should not happen"
+#: plugin/xfcalendar_plugin.c:165 plugin/xfcalendar_plugin.c:176
+#: plugin/xfcalendar_plugin.c:297 src/mainbox.c:377
+#, fuzzy
+msgid "Xfcalendar"
+msgstr "XFKalendar"
+
+#.
+#: plugin/xfcalendar_plugin.c:191
+msgid "Week starts with..."
 msgstr ""
 
-#: src/main.c:421
-msgid "Cannot create MCS client channel"
+#: plugin/xfcalendar_plugin.c:199
+msgid "Sunday"
+msgstr ""
+
+#: plugin/xfcalendar_plugin.c:206
+#, fuzzy
+msgid "Monday"
+msgstr "Heute"
+
+#.
+#: plugin/xfcalendar_plugin.c:214
+msgid "Mode"
+msgstr ""
+
+#: plugin/xfcalendar_plugin.c:222
+msgid "Normal"
+msgstr ""
+
+#: plugin/xfcalendar_plugin.c:229
+msgid "Compact"
+msgstr ""
+
+#: src/about-xfcalendar.c:38
+msgid "Manage your time with Xfce4"
+msgstr ""
+
+#: src/about-xfcalendar.c:48
+msgid "Core developer"
+msgstr ""
+
+#: src/about-xfcalendar.c:53 src/about-xfcalendar.c:58
+msgid "Contributor"
 msgstr ""
 
 #: src/interface.c:56
@@ -67,59 +104,67 @@ msgstr ""
 "Alle Informationen zu diesem\n"
 "Datum gehen verloren."
 
+#. File menu
+#: src/mainbox.c:404
+msgid "_File"
+msgstr "_Datei"
+
+#: src/mainbox.c:413
+msgid "_Close window"
+msgstr ""
+
+#. Settings menu
+#: src/mainbox.c:430
+msgid "_Settings"
+msgstr ""
+
+#: src/mainbox.c:439
+msgid "_Preferences"
+msgstr ""
+
+#: src/mainbox.c:450
+#, fuzzy
+msgid "Select _Today"
+msgstr "Nächster Tag"
+
+#. Help menu
+#: src/mainbox.c:457
+msgid "_Help"
+msgstr "_Hilfe"
+
+#: src/mainbox.c:466
+msgid "_About"
+msgstr "_Über"
+
+#: src/main.c:203
+msgid "This should not happen"
+msgstr ""
+
+#: src/main.c:421
+msgid "Cannot create MCS client channel"
+msgstr ""
+
+#: src/reminder.c:56 src/reminder.c:64
+msgid "Reminder"
+msgstr "Erinnerung"
+
 #: src/support.c:91 src/support.c:115
 #, c-format
 msgid "Couldn't find pixmap file: %s"
 msgstr "Konnte Pixmap %s nicht finden"
 
-#: plugin/xfcalendar_plugin.c:165 plugin/xfcalendar_plugin.c:176
-#: plugin/xfcalendar_plugin.c:297
-#, fuzzy
-msgid "Xfcalendar"
-msgstr "XFKalendar"
-
-#.
-#: plugin/xfcalendar_plugin.c:191
-msgid "Week starts with..."
-msgstr ""
-
-#: plugin/xfcalendar_plugin.c:199
-msgid "Sunday"
-msgstr ""
-
-#: plugin/xfcalendar_plugin.c:206
-#, fuzzy
-msgid "Monday"
+#: src/tray_icon.c:96
+msgid "Today"
 msgstr "Heute"
 
-#.
-#: plugin/xfcalendar_plugin.c:214
-msgid "Mode"
+#: src/tray_icon.c:106
+msgid "Preferences"
 msgstr ""
 
-#: plugin/xfcalendar_plugin.c:222
-msgid "Normal"
-msgstr ""
-
-#: plugin/xfcalendar_plugin.c:229
-msgid "Compact"
-msgstr ""
-
-#~ msgid "_File"
-#~ msgstr "_Datei"
-
+#: src/tray_icon.c:115
 #, fuzzy
-#~ msgid "Select Today"
-#~ msgstr "Nächster Tag"
-
-#~ msgid "_Help"
-#~ msgstr "_Hilfe"
-
-#~ msgid "_About"
-#~ msgstr "_Über"
-
-#~ msgid "About XFCalendar"
-#~ msgstr "Über XFKalendar"
+msgid "About Xfcalendar"
+msgstr "Über XFKalendar"
 
 #, fuzzy
 #~ msgid ""
@@ -152,12 +197,6 @@ msgstr ""
 #~ " - Edscott Wilson Garcia\n"
 #~ "\n"
 #~ "XFce4 is (c) Olivier Fourdan"
-
-#~ msgid "Reminder"
-#~ msgstr "Erinnerung"
-
-#~ msgid "Today"
-#~ msgstr "Heute"
 
 #~ msgid "Save"
 #~ msgstr "Speichern"

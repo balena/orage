@@ -6,22 +6,58 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pl\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-24 00:02+0200\n"
+"POT-Creation-Date: 2004-08-08 20:06+0200\n"
 "PO-Revision-Date: 2003-12-24 00:55+0100\n"
 "Last-Translator: Daniel 'Beorn' Mróz <beorn@alpha.pl>\n"
 "Language-Team: none <none@none>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Report-Msgid-Bugs-To: \n"
 
-#: src/main.c:203
-msgid "This should not happen"
-msgstr "To nie powinno się wydarzyć"
+#: plugin/xfcalendar_plugin.c:165 plugin/xfcalendar_plugin.c:176
+#: plugin/xfcalendar_plugin.c:297 src/mainbox.c:377
+#, fuzzy
+msgid "Xfcalendar"
+msgstr "XFCalendar"
 
-#: src/main.c:421
-msgid "Cannot create MCS client channel"
-msgstr "Nie mogę utworzyć kanału klienta MCS"
+#.
+#: plugin/xfcalendar_plugin.c:191
+msgid "Week starts with..."
+msgstr "Tydzień zaczyna się od..."
+
+#: plugin/xfcalendar_plugin.c:199
+msgid "Sunday"
+msgstr "Niedziela"
+
+#: plugin/xfcalendar_plugin.c:206
+msgid "Monday"
+msgstr "Poniedziałek"
+
+#.
+#: plugin/xfcalendar_plugin.c:214
+msgid "Mode"
+msgstr "Tryb"
+
+#: plugin/xfcalendar_plugin.c:222
+msgid "Normal"
+msgstr "Normalny"
+
+#: plugin/xfcalendar_plugin.c:229
+msgid "Compact"
+msgstr "Kompaktowy"
+
+#: src/about-xfcalendar.c:38
+msgid "Manage your time with Xfce4"
+msgstr ""
+
+#: src/about-xfcalendar.c:48
+msgid "Core developer"
+msgstr ""
+
+#: src/about-xfcalendar.c:53 src/about-xfcalendar.c:58
+msgid "Contributor"
+msgstr ""
 
 #: src/interface.c:56
 msgid "Appointment"
@@ -67,66 +103,70 @@ msgstr ""
 "Usuniesz wszystkie dane \n"
 "powiązane z tą datą."
 
+#. File menu
+#: src/mainbox.c:404
+msgid "_File"
+msgstr "_Plik"
+
+#: src/mainbox.c:413
+#, fuzzy
+msgid "_Close window"
+msgstr "Zamknij okno"
+
+#. Settings menu
+#: src/mainbox.c:430
+#, fuzzy
+msgid "_Settings"
+msgstr "Ustawienia"
+
+#: src/mainbox.c:439
+#, fuzzy
+msgid "_Preferences"
+msgstr "Preferencje"
+
+#: src/mainbox.c:450
+#, fuzzy
+msgid "Select _Today"
+msgstr "Wybierz 'dzisiaj'"
+
+#. Help menu
+#: src/mainbox.c:457
+msgid "_Help"
+msgstr "Po_moc"
+
+#: src/mainbox.c:466
+msgid "_About"
+msgstr "_O programie..."
+
+#: src/main.c:203
+msgid "This should not happen"
+msgstr "To nie powinno się wydarzyć"
+
+#: src/main.c:421
+msgid "Cannot create MCS client channel"
+msgstr "Nie mogę utworzyć kanału klienta MCS"
+
+#: src/reminder.c:56 src/reminder.c:64
+msgid "Reminder"
+msgstr "Przypominacz"
+
 #: src/support.c:91 src/support.c:115
 #, c-format
 msgid "Couldn't find pixmap file: %s"
 msgstr "Nie mogłem znaleźć pliku graficznego: %s"
 
-#: plugin/xfcalendar_plugin.c:165 plugin/xfcalendar_plugin.c:176
-#: plugin/xfcalendar_plugin.c:297
+#: src/tray_icon.c:96
+msgid "Today"
+msgstr "Dzisiaj"
+
+#: src/tray_icon.c:106
+msgid "Preferences"
+msgstr "Preferencje"
+
+#: src/tray_icon.c:115
 #, fuzzy
-msgid "Xfcalendar"
-msgstr "XFCalendar"
-
-#.
-#: plugin/xfcalendar_plugin.c:191
-msgid "Week starts with..."
-msgstr "Tydzień zaczyna się od..."
-
-#: plugin/xfcalendar_plugin.c:199
-msgid "Sunday"
-msgstr "Niedziela"
-
-#: plugin/xfcalendar_plugin.c:206
-msgid "Monday"
-msgstr "Poniedziałek"
-
-#.
-#: plugin/xfcalendar_plugin.c:214
-msgid "Mode"
-msgstr "Tryb"
-
-#: plugin/xfcalendar_plugin.c:222
-msgid "Normal"
-msgstr "Normalny"
-
-#: plugin/xfcalendar_plugin.c:229
-msgid "Compact"
-msgstr "Kompaktowy"
-
-#~ msgid "_File"
-#~ msgstr "_Plik"
-
-#~ msgid "Close window"
-#~ msgstr "Zamknij okno"
-
-#~ msgid "Settings"
-#~ msgstr "Ustawienia"
-
-#~ msgid "Preferences"
-#~ msgstr "Preferencje"
-
-#~ msgid "Select Today"
-#~ msgstr "Wybierz 'dzisiaj'"
-
-#~ msgid "_Help"
-#~ msgstr "Po_moc"
-
-#~ msgid "_About"
-#~ msgstr "_O programie..."
-
-#~ msgid "About XFCalendar"
-#~ msgstr "O programie XFCalendar"
+msgid "About Xfcalendar"
+msgstr "O programie XFCalendar"
 
 #~ msgid ""
 #~ "XFCalendar\n"
@@ -158,9 +198,3 @@ msgstr "Kompaktowy"
 #~ "  - Edscott Wilson Garcia\n"
 #~ "\n"
 #~ "XFce4 is (c) Olivier Fourdan"
-
-#~ msgid "Reminder"
-#~ msgstr "Przypominacz"
-
-#~ msgid "Today"
-#~ msgstr "Dzisiaj"

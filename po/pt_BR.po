@@ -6,22 +6,58 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: XFCalendar\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-24 00:02+0200\n"
+"POT-Creation-Date: 2004-08-08 20:06+0200\n"
 "PO-Revision-Date: 2004-01-18 12:19-0200\n"
 "Last-Translator: Felix da Silva Costa <felix@online.eti.br>\n"
 "Language-Team: pt_BR <felix@online.eti.br>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Report-Msgid-Bugs-To: \n"
 
-#: src/main.c:203
-msgid "This should not happen"
-msgstr "Isto não deveria acontecer"
+#: plugin/xfcalendar_plugin.c:165 plugin/xfcalendar_plugin.c:176
+#: plugin/xfcalendar_plugin.c:297 src/mainbox.c:377
+#, fuzzy
+msgid "Xfcalendar"
+msgstr "XFCalendar"
 
-#: src/main.c:421
-msgid "Cannot create MCS client channel"
-msgstr "O canal MCS client não pôde ser criado"
+#.
+#: plugin/xfcalendar_plugin.c:191
+msgid "Week starts with..."
+msgstr "Semana começa com..."
+
+#: plugin/xfcalendar_plugin.c:199
+msgid "Sunday"
+msgstr "Domingo"
+
+#: plugin/xfcalendar_plugin.c:206
+msgid "Monday"
+msgstr "Segunda-Feira"
+
+#.
+#: plugin/xfcalendar_plugin.c:214
+msgid "Mode"
+msgstr "Modo"
+
+#: plugin/xfcalendar_plugin.c:222
+msgid "Normal"
+msgstr "Normal"
+
+#: plugin/xfcalendar_plugin.c:229
+msgid "Compact"
+msgstr "Compacto"
+
+#: src/about-xfcalendar.c:38
+msgid "Manage your time with Xfce4"
+msgstr ""
+
+#: src/about-xfcalendar.c:48
+msgid "Core developer"
+msgstr ""
+
+#: src/about-xfcalendar.c:53 src/about-xfcalendar.c:58
+msgid "Contributor"
+msgstr ""
 
 #: src/interface.c:56
 msgid "Appointment"
@@ -65,66 +101,70 @@ msgid ""
 "associated with this date."
 msgstr "Você removerá todas as informações associadas a esta data"
 
+#. File menu
+#: src/mainbox.c:404
+msgid "_File"
+msgstr "_Arquivo"
+
+#: src/mainbox.c:413
+#, fuzzy
+msgid "_Close window"
+msgstr "Fechar janela"
+
+#. Settings menu
+#: src/mainbox.c:430
+#, fuzzy
+msgid "_Settings"
+msgstr "Configurações"
+
+#: src/mainbox.c:439
+#, fuzzy
+msgid "_Preferences"
+msgstr "Preferências"
+
+#: src/mainbox.c:450
+#, fuzzy
+msgid "Select _Today"
+msgstr "Selecionar hoje"
+
+#. Help menu
+#: src/mainbox.c:457
+msgid "_Help"
+msgstr "A_juda"
+
+#: src/mainbox.c:466
+msgid "_About"
+msgstr "_Sobre"
+
+#: src/main.c:203
+msgid "This should not happen"
+msgstr "Isto não deveria acontecer"
+
+#: src/main.c:421
+msgid "Cannot create MCS client channel"
+msgstr "O canal MCS client não pôde ser criado"
+
+#: src/reminder.c:56 src/reminder.c:64
+msgid "Reminder"
+msgstr "Relembrar"
+
 #: src/support.c:91 src/support.c:115
 #, c-format
 msgid "Couldn't find pixmap file: %s"
 msgstr "Pixmap não encontrado file: %s"
 
-#: plugin/xfcalendar_plugin.c:165 plugin/xfcalendar_plugin.c:176
-#: plugin/xfcalendar_plugin.c:297
+#: src/tray_icon.c:96
+msgid "Today"
+msgstr "Hoje"
+
+#: src/tray_icon.c:106
+msgid "Preferences"
+msgstr "Preferências"
+
+#: src/tray_icon.c:115
 #, fuzzy
-msgid "Xfcalendar"
-msgstr "XFCalendar"
-
-#.
-#: plugin/xfcalendar_plugin.c:191
-msgid "Week starts with..."
-msgstr "Semana começa com..."
-
-#: plugin/xfcalendar_plugin.c:199
-msgid "Sunday"
-msgstr "Domingo"
-
-#: plugin/xfcalendar_plugin.c:206
-msgid "Monday"
-msgstr "Segunda-Feira"
-
-#.
-#: plugin/xfcalendar_plugin.c:214
-msgid "Mode"
-msgstr "Modo"
-
-#: plugin/xfcalendar_plugin.c:222
-msgid "Normal"
-msgstr "Normal"
-
-#: plugin/xfcalendar_plugin.c:229
-msgid "Compact"
-msgstr "Compacto"
-
-#~ msgid "_File"
-#~ msgstr "_Arquivo"
-
-#~ msgid "Close window"
-#~ msgstr "Fechar janela"
-
-#~ msgid "Settings"
-#~ msgstr "Configurações"
-
-#~ msgid "Preferences"
-#~ msgstr "Preferências"
-
-#~ msgid "Select Today"
-#~ msgstr "Selecionar hoje"
-
-#~ msgid "_Help"
-#~ msgstr "A_juda"
-
-#~ msgid "_About"
-#~ msgstr "_Sobre"
-
-#~ msgid "About XFCalendar"
-#~ msgstr "Sobre XFCalendar"
+msgid "About Xfcalendar"
+msgstr "Sobre XFCalendar"
 
 #~ msgid ""
 #~ "XFCalendar\n"
@@ -158,9 +198,3 @@ msgstr "Compacto"
 #~ "  - Benedikt Meurer\n"
 #~ "  - Edscott Wilson Garcia\n"
 #~ "XFce4 is (c) Olivier Fourdan"
-
-#~ msgid "Reminder"
-#~ msgstr "Relembrar"
-
-#~ msgid "Today"
-#~ msgstr "Hoje"

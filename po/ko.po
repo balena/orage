@@ -7,21 +7,58 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: XFCalender\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-24 00:02+0200\n"
+"POT-Creation-Date: 2004-08-08 20:06+0200\n"
 "PO-Revision-Date: 2003-10-14 00:28:+0900\n"
 "Last-Translator: ByungHyun Choi<byunghyunchoi@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Report-Msgid-Bugs-To: \n"
 
-#: src/main.c:203
-msgid "This should not happen"
-msgstr "이런 일은 생길 수 없어요."
+#: plugin/xfcalendar_plugin.c:165 plugin/xfcalendar_plugin.c:176
+#: plugin/xfcalendar_plugin.c:297 src/mainbox.c:377
+#, fuzzy
+msgid "Xfcalendar"
+msgstr "XFCalender에 대하여"
 
-#: src/main.c:421
-msgid "Cannot create MCS client channel"
+#.
+#: plugin/xfcalendar_plugin.c:191
+msgid "Week starts with..."
+msgstr "한 주의 시작은..."
+
+#: plugin/xfcalendar_plugin.c:199
+msgid "Sunday"
+msgstr "일요일"
+
+#: plugin/xfcalendar_plugin.c:206
+#, fuzzy
+msgid "Monday"
+msgstr "월요일"
+
+#.
+#: plugin/xfcalendar_plugin.c:214
+msgid "Mode"
+msgstr "모드"
+
+#: plugin/xfcalendar_plugin.c:222
+msgid "Normal"
+msgstr "일반"
+
+#: plugin/xfcalendar_plugin.c:229
+msgid "Compact"
+msgstr "작게"
+
+#: src/about-xfcalendar.c:38
+msgid "Manage your time with Xfce4"
+msgstr ""
+
+#: src/about-xfcalendar.c:48
+msgid "Core developer"
+msgstr ""
+
+#: src/about-xfcalendar.c:53 src/about-xfcalendar.c:58
+msgid "Contributor"
 msgstr ""
 
 #: src/interface.c:56
@@ -70,71 +107,70 @@ msgstr ""
 "이 날짜와 연관된 \n"
 "모든 정보를 삭제하게 됩니다."
 
+#. File menu
+#: src/mainbox.c:404
+msgid "_File"
+msgstr "화일(_F)"
+
+#: src/mainbox.c:413
+#, fuzzy
+msgid "_Close window"
+msgstr "창 닫기"
+
+#. Settings menu
+#: src/mainbox.c:430
+#, fuzzy
+msgid "_Settings"
+msgstr "설정"
+
+#: src/mainbox.c:439
+#, fuzzy
+msgid "_Preferences"
+msgstr "속성"
+
+#: src/mainbox.c:450
+#, fuzzy
+msgid "Select _Today"
+msgstr "다음 날"
+
+#. Help menu
+#: src/mainbox.c:457
+msgid "_Help"
+msgstr "도움말(_H)"
+
+#: src/mainbox.c:466
+msgid "_About"
+msgstr "소개(_A)"
+
+#: src/main.c:203
+msgid "This should not happen"
+msgstr "이런 일은 생길 수 없어요."
+
+#: src/main.c:421
+msgid "Cannot create MCS client channel"
+msgstr ""
+
+#: src/reminder.c:56 src/reminder.c:64
+msgid "Reminder"
+msgstr "알리미"
+
 #: src/support.c:91 src/support.c:115
 #, c-format
 msgid "Couldn't find pixmap file: %s"
 msgstr "pixmap %s 화일을 찾을 수 없군요."
 
-#: plugin/xfcalendar_plugin.c:165 plugin/xfcalendar_plugin.c:176
-#: plugin/xfcalendar_plugin.c:297
+#: src/tray_icon.c:96
+msgid "Today"
+msgstr "오늘"
+
+#: src/tray_icon.c:106
+msgid "Preferences"
+msgstr "속성"
+
+#: src/tray_icon.c:115
 #, fuzzy
-msgid "Xfcalendar"
+msgid "About Xfcalendar"
 msgstr "XFCalender에 대하여"
-
-#.
-#: plugin/xfcalendar_plugin.c:191
-msgid "Week starts with..."
-msgstr "한 주의 시작은..."
-
-#: plugin/xfcalendar_plugin.c:199
-msgid "Sunday"
-msgstr "일요일"
-
-#: plugin/xfcalendar_plugin.c:206
-#, fuzzy
-msgid "Monday"
-msgstr "월요일"
-
-#.
-#: plugin/xfcalendar_plugin.c:214
-msgid "Mode"
-msgstr "모드"
-
-#: plugin/xfcalendar_plugin.c:222
-msgid "Normal"
-msgstr "일반"
-
-#: plugin/xfcalendar_plugin.c:229
-msgid "Compact"
-msgstr "작게"
-
-#~ msgid "_File"
-#~ msgstr "화일(_F)"
-
-#~ msgid "Close window"
-#~ msgstr "창 닫기"
-
-#~ msgid "Settings"
-#~ msgstr "설정"
-
-#~ msgid "Preferences"
-#~ msgstr "속성"
-
-#, fuzzy
-#~ msgid "Select Today"
-#~ msgstr "다음 날"
-
-#~ msgid "_Help"
-#~ msgstr "도움말(_H)"
-
-#~ msgid "_About"
-#~ msgstr "소개(_A)"
-
-#~ msgid "Reminder"
-#~ msgstr "알리미"
-
-#~ msgid "Today"
-#~ msgstr "오늘"
 
 #~ msgid "Save"
 #~ msgstr "저장"

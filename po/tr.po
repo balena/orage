@@ -6,22 +6,58 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: xfcalendar\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-24 00:02+0200\n"
+"POT-Creation-Date: 2004-08-08 20:06+0200\n"
 "PO-Revision-Date: 2003-12-13 19:55+0200\n"
 "Last-Translator: Erçin EKER <erc.caldera@gmx.net>\n"
 "Language-Team: Turkish <tr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Report-Msgid-Bugs-To: \n"
 
-#: src/main.c:203
-msgid "This should not happen"
-msgstr "Bu olmamalı"
+#: plugin/xfcalendar_plugin.c:165 plugin/xfcalendar_plugin.c:176
+#: plugin/xfcalendar_plugin.c:297 src/mainbox.c:377
+#, fuzzy
+msgid "Xfcalendar"
+msgstr "XFCalendar"
 
-#: src/main.c:421
-msgid "Cannot create MCS client channel"
-msgstr "MCS istemci kanalı oluşturulamıyor"
+#.
+#: plugin/xfcalendar_plugin.c:191
+msgid "Week starts with..."
+msgstr "Hafta başlangıcı..."
+
+#: plugin/xfcalendar_plugin.c:199
+msgid "Sunday"
+msgstr "Pazar"
+
+#: plugin/xfcalendar_plugin.c:206
+msgid "Monday"
+msgstr "Pazartesi"
+
+#.
+#: plugin/xfcalendar_plugin.c:214
+msgid "Mode"
+msgstr "Kip"
+
+#: plugin/xfcalendar_plugin.c:222
+msgid "Normal"
+msgstr "Normal"
+
+#: plugin/xfcalendar_plugin.c:229
+msgid "Compact"
+msgstr "Basit"
+
+#: src/about-xfcalendar.c:38
+msgid "Manage your time with Xfce4"
+msgstr ""
+
+#: src/about-xfcalendar.c:48
+msgid "Core developer"
+msgstr ""
+
+#: src/about-xfcalendar.c:53 src/about-xfcalendar.c:58
+msgid "Contributor"
+msgstr ""
 
 #: src/interface.c:56
 msgid "Appointment"
@@ -67,66 +103,70 @@ msgstr ""
 "Bu tarikle ilgili tüm \n"
 "bilgileri silmek üzeresiniz."
 
+#. File menu
+#: src/mainbox.c:404
+msgid "_File"
+msgstr "_Dosya"
+
+#: src/mainbox.c:413
+#, fuzzy
+msgid "_Close window"
+msgstr "Pencereyi kapat"
+
+#. Settings menu
+#: src/mainbox.c:430
+#, fuzzy
+msgid "_Settings"
+msgstr "Ayarlar"
+
+#: src/mainbox.c:439
+#, fuzzy
+msgid "_Preferences"
+msgstr "Tercihler"
+
+#: src/mainbox.c:450
+#, fuzzy
+msgid "Select _Today"
+msgstr "Yarını Seç"
+
+#. Help menu
+#: src/mainbox.c:457
+msgid "_Help"
+msgstr "_Yardım"
+
+#: src/mainbox.c:466
+msgid "_About"
+msgstr "_Hakkında"
+
+#: src/main.c:203
+msgid "This should not happen"
+msgstr "Bu olmamalı"
+
+#: src/main.c:421
+msgid "Cannot create MCS client channel"
+msgstr "MCS istemci kanalı oluşturulamıyor"
+
+#: src/reminder.c:56 src/reminder.c:64
+msgid "Reminder"
+msgstr "Hatırlatıcı"
+
 #: src/support.c:91 src/support.c:115
 #, c-format
 msgid "Couldn't find pixmap file: %s"
 msgstr "Pixmap dosyası bulunamıyor: %s"
 
-#: plugin/xfcalendar_plugin.c:165 plugin/xfcalendar_plugin.c:176
-#: plugin/xfcalendar_plugin.c:297
+#: src/tray_icon.c:96
+msgid "Today"
+msgstr "Bugün"
+
+#: src/tray_icon.c:106
+msgid "Preferences"
+msgstr "Tercihler"
+
+#: src/tray_icon.c:115
 #, fuzzy
-msgid "Xfcalendar"
-msgstr "XFCalendar"
-
-#.
-#: plugin/xfcalendar_plugin.c:191
-msgid "Week starts with..."
-msgstr "Hafta başlangıcı..."
-
-#: plugin/xfcalendar_plugin.c:199
-msgid "Sunday"
-msgstr "Pazar"
-
-#: plugin/xfcalendar_plugin.c:206
-msgid "Monday"
-msgstr "Pazartesi"
-
-#.
-#: plugin/xfcalendar_plugin.c:214
-msgid "Mode"
-msgstr "Kip"
-
-#: plugin/xfcalendar_plugin.c:222
-msgid "Normal"
-msgstr "Normal"
-
-#: plugin/xfcalendar_plugin.c:229
-msgid "Compact"
-msgstr "Basit"
-
-#~ msgid "_File"
-#~ msgstr "_Dosya"
-
-#~ msgid "Close window"
-#~ msgstr "Pencereyi kapat"
-
-#~ msgid "Settings"
-#~ msgstr "Ayarlar"
-
-#~ msgid "Preferences"
-#~ msgstr "Tercihler"
-
-#~ msgid "Select Today"
-#~ msgstr "Yarını Seç"
-
-#~ msgid "_Help"
-#~ msgstr "_Yardım"
-
-#~ msgid "_About"
-#~ msgstr "_Hakkında"
-
-#~ msgid "About XFCalendar"
-#~ msgstr "XFCalendar hakkında"
+msgid "About Xfcalendar"
+msgstr "XFCalendar hakkında"
 
 #~ msgid ""
 #~ "XFCalendar\n"
@@ -158,12 +198,6 @@ msgstr "Basit"
 #~ "  - Edscott Wilson Garcia\n"
 #~ "\n"
 #~ "XFce4 (c) Oliver Fourdan"
-
-#~ msgid "Reminder"
-#~ msgstr "Hatırlatıcı"
-
-#~ msgid "Today"
-#~ msgstr "Bugün"
 
 #~ msgid "Save"
 #~ msgstr "Kaydet"

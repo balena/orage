@@ -6,21 +6,58 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: xfcalendar 4\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2004-07-24 00:02+0200\n"
+"POT-Creation-Date: 2004-08-08 20:06+0200\n"
 "PO-Revision-Date: 2003-11-01 18:11+0530\n"
 "Last-Translator: Ravishankar Shrivastava <raviratlami@yahoo.com>\n"
 "Language-Team: Hindi <indlinux-group@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Report-Msgid-Bugs-To: \n"
 
-#: src/main.c:203
-msgid "This should not happen"
+#: plugin/xfcalendar_plugin.c:165 plugin/xfcalendar_plugin.c:176
+#: plugin/xfcalendar_plugin.c:297 src/mainbox.c:377
+#, fuzzy
+msgid "Xfcalendar"
+msgstr "एक्सएफ पंचांग (कैलेंडर)"
+
+#.
+#: plugin/xfcalendar_plugin.c:191
+msgid "Week starts with..."
 msgstr ""
 
-#: src/main.c:421
-msgid "Cannot create MCS client channel"
+#: plugin/xfcalendar_plugin.c:199
+msgid "Sunday"
+msgstr ""
+
+#: plugin/xfcalendar_plugin.c:206
+#, fuzzy
+msgid "Monday"
+msgstr "आज"
+
+#.
+#: plugin/xfcalendar_plugin.c:214
+msgid "Mode"
+msgstr ""
+
+#: plugin/xfcalendar_plugin.c:222
+msgid "Normal"
+msgstr ""
+
+#: plugin/xfcalendar_plugin.c:229
+msgid "Compact"
+msgstr ""
+
+#: src/about-xfcalendar.c:38
+msgid "Manage your time with Xfce4"
+msgstr ""
+
+#: src/about-xfcalendar.c:48
+msgid "Core developer"
+msgstr ""
+
+#: src/about-xfcalendar.c:53 src/about-xfcalendar.c:58
+msgid "Contributor"
 msgstr ""
 
 #: src/interface.c:56
@@ -71,59 +108,67 @@ msgstr ""
 "आपको सभी जानकारी मिटाना होंगी \n"
 "जो इस दिनांक से सम्बद्ध हैं."
 
+#. File menu
+#: src/mainbox.c:404
+msgid "_File"
+msgstr "फाइल (_F)"
+
+#: src/mainbox.c:413
+msgid "_Close window"
+msgstr ""
+
+#. Settings menu
+#: src/mainbox.c:430
+msgid "_Settings"
+msgstr ""
+
+#: src/mainbox.c:439
+msgid "_Preferences"
+msgstr ""
+
+#: src/mainbox.c:450
+#, fuzzy
+msgid "Select _Today"
+msgstr "अगला दिन"
+
+#. Help menu
+#: src/mainbox.c:457
+msgid "_Help"
+msgstr "सहायता (_H)"
+
+#: src/mainbox.c:466
+msgid "_About"
+msgstr "के बारे में (_A)"
+
+#: src/main.c:203
+msgid "This should not happen"
+msgstr ""
+
+#: src/main.c:421
+msgid "Cannot create MCS client channel"
+msgstr ""
+
+#: src/reminder.c:56 src/reminder.c:64
+msgid "Reminder"
+msgstr "स्मरण"
+
 #: src/support.c:91 src/support.c:115
 #, c-format
 msgid "Couldn't find pixmap file: %s"
 msgstr "पिक्समेप फाइल: %s नही मिला"
 
-#: plugin/xfcalendar_plugin.c:165 plugin/xfcalendar_plugin.c:176
-#: plugin/xfcalendar_plugin.c:297
-#, fuzzy
-msgid "Xfcalendar"
-msgstr "एक्सएफ पंचांग (कैलेंडर)"
-
-#.
-#: plugin/xfcalendar_plugin.c:191
-msgid "Week starts with..."
-msgstr ""
-
-#: plugin/xfcalendar_plugin.c:199
-msgid "Sunday"
-msgstr ""
-
-#: plugin/xfcalendar_plugin.c:206
-#, fuzzy
-msgid "Monday"
+#: src/tray_icon.c:96
+msgid "Today"
 msgstr "आज"
 
-#.
-#: plugin/xfcalendar_plugin.c:214
-msgid "Mode"
+#: src/tray_icon.c:106
+msgid "Preferences"
 msgstr ""
 
-#: plugin/xfcalendar_plugin.c:222
-msgid "Normal"
-msgstr ""
-
-#: plugin/xfcalendar_plugin.c:229
-msgid "Compact"
-msgstr ""
-
-#~ msgid "_File"
-#~ msgstr "फाइल (_F)"
-
+#: src/tray_icon.c:115
 #, fuzzy
-#~ msgid "Select Today"
-#~ msgstr "अगला दिन"
-
-#~ msgid "_Help"
-#~ msgstr "सहायता (_H)"
-
-#~ msgid "_About"
-#~ msgstr "के बारे में (_A)"
-
-#~ msgid "About XFCalendar"
-#~ msgstr "एक्सएफ पंचांग (कैलेण्डर) के बारे में "
+msgid "About Xfcalendar"
+msgstr "एक्सएफ पंचांग (कैलेण्डर) के बारे में "
 
 #, fuzzy
 #~ msgid ""
@@ -156,12 +201,6 @@ msgstr ""
 #~ "  - एडस्कॉट विल्सन गर्सिया\n"
 #~ "\n"
 #~ "एक्सएफसीई4 (XFce4)  है (c) ओलिविएर फोरदन"
-
-#~ msgid "Reminder"
-#~ msgstr "स्मरण"
-
-#~ msgid "Today"
-#~ msgstr "आज"
 
 #~ msgid "Save"
 #~ msgstr "संचित करें"
