@@ -58,6 +58,10 @@ on_preferences_activate                (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
 
 void
+on_selectToday_activate                (GtkMenuItem     *menuitem,
+					gpointer         user_data);
+
+void
 on_weekMonday_activate                 (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
 
@@ -182,3 +186,13 @@ watch_cb(Window window, Bool is_start, long mask, void *cb_data);
 
 void 
 notify_cb(const char *name, const char *channel_name, McsAction action, McsSetting * setting, void *data);
+
+void
+toggle_visible_cb (GtkWidget *window);
+
+void
+die_cb(gpointer data);
+
+void
+save_yourself_cb(gpointer data, int save_style, gboolean shutdown,
+                 int interact_style, gboolean fast);

@@ -6,7 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: XFce4\n"
-"POT-Creation-Date: 2003-12-27 14:25+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-03-21 23:07+0100\n"
 "PO-Revision-Date: 2004-03-11 12:40+0100\n"
 "Last-Translator: Alex Dupre <ale@FreeBSD.org>\n"
 "Language-Team: GUFI <traduzioni@gufi.org>\n"
@@ -14,83 +15,82 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/main.c:251
-msgid "Today"
-msgstr "Oggi"
-
-#: src/main.c:260
-#: src/interface.c:349
-msgid "About XFCalendar"
-msgstr "Info su XFCalendar"
-
-#: src/main.c:296
+#: src/main.c:276
 msgid "Cannot create MCS client channel"
 msgstr "Impossibile creare il canale del client MCS"
 
-#: src/interface.c:60
-#: src/interface.c:358
+#: src/interface.c:64 src/interface.c:374 plugin/xfcalendar_plugin.c:172
+#: plugin/xfcalendar_plugin.c:183 plugin/xfcalendar_plugin.c:305
 msgid "XFCalendar"
 msgstr "XFCalendar"
 
-#: src/interface.c:75
+#: src/interface.c:79
 msgid "_File"
 msgstr "_File"
 
-#: src/interface.c:82
+#: src/interface.c:86
 msgid "Close window"
 msgstr "Chiudi finestra"
 
 #.
-#: src/interface.c:95
+#: src/interface.c:99
 msgid "Settings"
 msgstr "Impostazioni"
 
-#: src/interface.c:102
+#: src/interface.c:106 src/interface.c:569
 msgid "Preferences"
 msgstr "Preferenze"
 
+#: src/interface.c:114
+msgid "Select Today"
+msgstr ""
+
 #.
-#: src/interface.c:107
+#: src/interface.c:119
 msgid "_Help"
 msgstr "_Aiuto"
 
-#: src/interface.c:114
+#: src/interface.c:126
 msgid "_About"
 msgstr "_Informazioni"
 
-#: src/interface.c:193
+#: src/interface.c:209
 msgid "Appointment"
 msgstr "Appuntamento"
 
-#: src/interface.c:215
+#: src/interface.c:231
 msgid "Save (Ctrl+s)"
 msgstr "Salva (Ctrl+s)"
 
-#: src/interface.c:228
+#: src/interface.c:244
 msgid "Previous day (Ctrl+p)"
 msgstr "Giorno precedente (Ctrl+p)"
 
-#: src/interface.c:239
+#: src/interface.c:255
 msgid "Today (Alt+Home)"
 msgstr "Oggi (Alt+Home)"
 
-#: src/interface.c:251
+#: src/interface.c:267
 msgid "Next day (Ctrl+n)"
 msgstr "Giorno successivo (Ctrl+n)"
 
-#: src/interface.c:264
+#: src/interface.c:280
 msgid "Close (Ctrl+w)"
 msgstr "Chiudi (Ctrl+w)"
 
-#: src/interface.c:274
+#: src/interface.c:290
 msgid "Clear"
 msgstr "Pulisci"
 
-#: src/interface.c:275
+#: src/interface.c:291
 msgid "Clear (Ctrl+l)"
 msgstr "Pulisci (Ctrl+l)"
 
-#: src/interface.c:369
+#: src/interface.c:365 src/interface.c:578
+msgid "About XFCalendar"
+msgstr "Info su XFCalendar"
+
+#: src/interface.c:385
 msgid ""
 "XFCalendar\n"
 "Manage your time with XFce4\n"
@@ -120,11 +120,11 @@ msgstr ""
 "  - Edscott Wilson Garcia\n"
 "XFce4 è (c) Olivier Fourdan"
 
-#: src/interface.c:417
+#: src/interface.c:433
 msgid "Warning"
 msgstr "Avviso"
 
-#: src/interface.c:433
+#: src/interface.c:449
 msgid ""
 "You will remove all information \n"
 "associated with this date."
@@ -132,18 +132,46 @@ msgstr ""
 "Rimuoverai ogni informazione \n"
 "associata a questa data."
 
-#: src/interface.c:482
-#: src/interface.c:490
+#: src/interface.c:498 src/interface.c:506
 msgid "Reminder"
 msgstr "Promemoria"
 
-#: src/callbacks.c:754
+#: src/interface.c:559
+msgid "Today"
+msgstr "Oggi"
+
+#: src/callbacks.c:749
 msgid "This should not happen"
 msgstr "Questo non dovrebbe succedere"
 
-#: src/support.c:91
-#: src/support.c:115
+#: src/support.c:91 src/support.c:115
 #, c-format
 msgid "Couldn't find pixmap file: %s"
 msgstr "Impossibile trovare il file pixmap: %s"
 
+#.
+#: plugin/xfcalendar_plugin.c:199
+msgid "Week starts with..."
+msgstr ""
+
+#: plugin/xfcalendar_plugin.c:207
+msgid "Sunday"
+msgstr ""
+
+#: plugin/xfcalendar_plugin.c:214
+#, fuzzy
+msgid "Monday"
+msgstr "Oggi"
+
+#.
+#: plugin/xfcalendar_plugin.c:222
+msgid "Mode"
+msgstr ""
+
+#: plugin/xfcalendar_plugin.c:230
+msgid "Normal"
+msgstr ""
+
+#: plugin/xfcalendar_plugin.c:237
+msgid "Compact"
+msgstr ""

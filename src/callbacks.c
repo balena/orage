@@ -43,6 +43,7 @@
 #include <libxfce4util/util.h>
 #include <libxfcegui4/libxfcegui4.h>
 #include <libxfce4util/i18n.h>
+#include <libxfcegui4/netk-trayicon.h>
 #include <libxfce4mcs/mcs-client.h>
 #include <gdk/gdk.h>
 #include <gtk/gtk.h>
@@ -111,20 +112,6 @@ void init_settings(GtkWidget *w)
 	calsets.showCal = TRUE; /* default */
 	gtk_widget_show(w);
       }
-    /* The code below is deprecated
-     *    fgets(buf, LEN_BUFFER, fp); // [Start Monday]
-     *    fgets(buf, LEN_BUFFER, fp);
-     *    if(strstr(buf, "false"))
-     *      { 
-     *	calsets.startMonday = FALSE; 
-     *	gtk_calendar_display_options (GTK_CALENDAR (cal), calsets.dispOptions);
-     *      }
-     *    else 
-     *      {
-     *	calsets.startMonday = TRUE;
-     *	gtk_calendar_display_options (GTK_CALENDAR (cal), calsets.dispOptions|GTK_CALENDAR_WEEK_START_MONDAY);
-     *      }
-     */
   }
 }
 
@@ -158,11 +145,6 @@ void apply_settings()
   }else {
     fprintf(fp, "[Session Visibility]\n");
     if(calsets.showCal) fprintf(fp, "show\n"); else fprintf(fp, "hide\n");
-
-    /* The code below is deprecated 
-     *    fprintf(fp, "[Start Monday]\n");
-     *    if(calsets.startMonday) fprintf(fp, "true\n"); else fprintf(fp, "false\n");
-     */
 
     fclose(fp);
   }
@@ -303,6 +285,19 @@ on_preferences_activate                (GtkMenuItem     *menuitem,
   mcs_client_show (GDK_DISPLAY (), DefaultScreen (GDK_DISPLAY ()),
 		   CHANNEL);
 }
+
+void
+on_selectToday_activate                (GtkMenuItem     *menuitem,
+					gpointer         user_data)
+{
+  struct tm *t;
+  time_t tt;
+  tt=time(NULL);
+  t=localtime(&tt);
+  gtk_calendar_select_month(cal, t->tm_mon, t->tm_year+1900);
+  gtk_calendar_select_day(cal, t->tm_mday);
+}
+
 
 void
 on_weekMonday_activate                 (GtkMenuItem     *menuitem,
@@ -821,4 +816,56 @@ notify_cb(const char *name, const char *channel_name, McsAction action, McsSetti
         default:
             break;
     }
+}
+
+/*
+ */
+void
+toggle_visible_cb(GtkWidget *window)
+{
+  if (GTK_WIDGET_VISIBLE(window))
+    {
+      gtk_widget_hide(window);
+    }
+  else
+    {
+      gtk_window_set_decorated(GTK_WINDOW(window), normalmode);
+      if(!normalmode)
+        gtk_widget_hide((GtkWidget *)lookup_widget(window, "menubar1"));
+      else
+        gtk_widget_show((GtkWidget *)lookup_widget(window, "menubar1"));
+      gtk_widget_show(window);
+      gtk_window_stick(GTK_WINDOW(window));
+      /* Commented until the bug is fixed :(
+      gtk_window_set_skip_taskbar_hint(GTK_WINDOW(window), !calsets.showTaskbar);
+      gtk_window_set_skip_pager_hint(GTK_WINDOW(window), !calsets.showPager);
+      */
+    }
+}
+
+/*
+ * Die callback
+ *
+ * This is called when the session manager requests the client to go down.
+ */
+
+void
+die_cb(gpointer data)
+{
+  gtk_main_quit();
+}
+
+/*
+ * SaveYourself callback
+ *
+ * This is called when the session manager requests the client to save its
+ * state.
+ */
+/* ARGUSED */
+void
+save_yourself_cb(gpointer data, int save_style, gboolean shutdown,
+                 int interact_style, gboolean fast)
+{
+  settings_set_showCal(mainWindow);
+  apply_settings();
 }

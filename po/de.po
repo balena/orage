@@ -1,95 +1,98 @@
 # XFCalendar German translation
 # Copyright (C) 2003 Free Software Foundation, Inc.
-# Moritz Heiber <moritz-heiber@arcor.de>, 2003.
+# Moritz Heiber <moe@lunar-linux.org>, 2003.
 msgid ""
 msgstr ""
-"Project-Id-Version: XFcalendar 0.1.3\n"
-"POT-Creation-Date: 2004-01-06 23:44+0100\n"
-"PO-Revision-Date: 2003-07-13 16:46+0200\n"
-"Last-Translator: Moritz Heiber <moritz-heiber@arcor.de>\n"
+"Project-Id-Version: XFcalendar\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-03-21 23:07+0100\n"
+"PO-Revision-Date: 2003-11-14 16:46+0100\n"
+"Last-Translator: Moritz Heiber <moe@lunar-linux.org>\n"
 "Language-Team: none <none@none>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/main.c:251
-msgid "Today"
-msgstr "Heute"
-
-#: src/main.c:260 src/interface.c:349
-msgid "About XFCalendar"
-msgstr "Über XFKalendar"
-
-#: src/main.c:296
+#: src/main.c:276
 msgid "Cannot create MCS client channel"
 msgstr ""
 
-#: src/interface.c:60 src/interface.c:358
+#: src/interface.c:64 src/interface.c:374 plugin/xfcalendar_plugin.c:172
+#: plugin/xfcalendar_plugin.c:183 plugin/xfcalendar_plugin.c:305
 #, fuzzy
 msgid "XFCalendar"
 msgstr "XFKalendar"
 
-#: src/interface.c:75
+#: src/interface.c:79
 msgid "_File"
 msgstr "_Datei"
 
-#: src/interface.c:82
+#: src/interface.c:86
 msgid "Close window"
 msgstr ""
 
 #.
-#: src/interface.c:95
+#: src/interface.c:99
 msgid "Settings"
 msgstr ""
 
-#: src/interface.c:102
+#: src/interface.c:106 src/interface.c:569
 msgid "Preferences"
 msgstr ""
 
+#: src/interface.c:114
+#, fuzzy
+msgid "Select Today"
+msgstr "Nächster Tag"
+
 #.
-#: src/interface.c:107
+#: src/interface.c:119
 msgid "_Help"
 msgstr "_Hilfe"
 
-#: src/interface.c:114
+#: src/interface.c:126
 msgid "_About"
 msgstr "_Über"
 
-#: src/interface.c:193
+#: src/interface.c:209
 msgid "Appointment"
 msgstr "Termin"
 
-#: src/interface.c:215
+#: src/interface.c:231
 msgid "Save (Ctrl+s)"
 msgstr ""
 
-#: src/interface.c:228
+#: src/interface.c:244
 #, fuzzy
 msgid "Previous day (Ctrl+p)"
 msgstr "Letzter Tag"
 
-#: src/interface.c:239
+#: src/interface.c:255
 msgid "Today (Alt+Home)"
 msgstr ""
 
-#: src/interface.c:251
+#: src/interface.c:267
 #, fuzzy
 msgid "Next day (Ctrl+n)"
 msgstr "Nächster Tag"
 
-#: src/interface.c:264
+#: src/interface.c:280
 msgid "Close (Ctrl+w)"
 msgstr ""
 
-#: src/interface.c:274
+#: src/interface.c:290
 msgid "Clear"
 msgstr "Löschen"
 
-#: src/interface.c:275
+#: src/interface.c:291
 msgid "Clear (Ctrl+l)"
 msgstr ""
 
-#: src/interface.c:369
+#: src/interface.c:365 src/interface.c:578
+msgid "About XFCalendar"
+msgstr "Über XFKalendar"
+
+#: src/interface.c:385
 #, fuzzy
 msgid ""
 "XFCalendar\n"
@@ -108,8 +111,6 @@ msgid ""
 "XFce4 is (c) Olivier Fourdan"
 msgstr ""
 "XFKalendar\n"
-"v. 0.1.3\n"
-"\n"
 "Zeitorganisation mit XFce4\n"
 "\n"
 "Diese Software steht unter\n"
@@ -124,11 +125,11 @@ msgstr ""
 "\n"
 "XFce4 is (c) Olivier Fourdan"
 
-#: src/interface.c:417
+#: src/interface.c:433
 msgid "Warning"
 msgstr "Warnung"
 
-#: src/interface.c:433
+#: src/interface.c:449
 msgid ""
 "You will remove all information \n"
 "associated with this date."
@@ -136,11 +137,15 @@ msgstr ""
 "Alle Informationen zu diesem\n"
 "Datum gehen verloren."
 
-#: src/interface.c:482 src/interface.c:490
+#: src/interface.c:498 src/interface.c:506
 msgid "Reminder"
 msgstr "Erinnerung"
 
-#: src/callbacks.c:754
+#: src/interface.c:559
+msgid "Today"
+msgstr "Heute"
+
+#: src/callbacks.c:749
 msgid "This should not happen"
 msgstr ""
 
@@ -148,6 +153,33 @@ msgstr ""
 #, c-format
 msgid "Couldn't find pixmap file: %s"
 msgstr "Konnte Pixmap %s nicht finden"
+
+#.
+#: plugin/xfcalendar_plugin.c:199
+msgid "Week starts with..."
+msgstr ""
+
+#: plugin/xfcalendar_plugin.c:207
+msgid "Sunday"
+msgstr ""
+
+#: plugin/xfcalendar_plugin.c:214
+#, fuzzy
+msgid "Monday"
+msgstr "Heute"
+
+#.
+#: plugin/xfcalendar_plugin.c:222
+msgid "Mode"
+msgstr ""
+
+#: plugin/xfcalendar_plugin.c:230
+msgid "Normal"
+msgstr ""
+
+#: plugin/xfcalendar_plugin.c:237
+msgid "Compact"
+msgstr ""
 
 #~ msgid "Save"
 #~ msgstr "Speichern"
