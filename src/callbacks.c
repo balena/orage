@@ -51,6 +51,7 @@
 #include "callbacks.h"
 #include "interface.h"
 #include "support.h"
+#include "about-xfcalendar.h"
 
 #define MAX_APP_LENGTH 4096
 #define LEN_BUFFER 1024
@@ -319,8 +320,11 @@ on_weekMonday_activate                 (GtkMenuItem     *menuitem,
 void
 on_about1_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
+  /*
   info = create_wInfo();
   gtk_widget_show(info);
+  */
+  create_wAbout((GtkWidget *)menuitem, user_data);
 }
 
 gboolean
