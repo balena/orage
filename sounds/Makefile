@@ -242,57 +242,8 @@ target_vendor = pc
 EXTRA_DIST = $(sounds_DATA)
 soundsdir = $(datadir)/xfcalendar/sounds
 sounds_DATA = \
- alert01.wav \
- beep01.wav \
- beep02.wav \
- beep03.wav \
- beep04.wav \
- beep05.wav \
- beep06.wav \
- beep07.wav \
- beep08.wav \
- beep09.wav \
- beep10.wav \
- beep11.wav \
- beep12.wav \
- bell01.wav \
- bell02.wav \
- bell03.wav \
- bell04.wav \
- bong01.wav \
- bong02.wav \
- bong03.wav \
- bong04.wav \
- bong05.wav \
- bong06.wav \
- bong07.wav \
- bong08.wav \
- bong09.wav \
- bong10.wav \
- bong11.wav \
- bong12.wav \
- crash01.wav \
- crash02.wav \
- crash04.wav \
- crash05.wav \
- crash06.wav \
- logon01.wav \
- logon02.wav \
- logout01.wav \
- ping01.wav \
- ping02.wav \
- ping03.wav \
- ping04.wav \
- pop01.wav \
- pop02.wav \
- sink01.wav \
- slide01.wav \
- slide02.wav \
- space01.wav \
- zap01.wav \
- zap02.wav \
- zap03.wav \
- zap04.wav
+ KDE_Beep_Digital_1.ogg \
+ KDE_Beep_Digital_2.ogg
 
 all: all-am
 
