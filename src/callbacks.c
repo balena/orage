@@ -1,6 +1,6 @@
 /* xfcalendar
  *
- * Copyright (C) 2002 Mickael Graf (korbinus@linux.se)
+ * Copyright (C) 2003 Mickael Graf (korbinus@linux.se)
  * Copyright (C) 2003 edscott wilson garcia <edscott@users.sourceforge.net>
  *
  * This program is free software; you can redistribute it and/or modify it 
@@ -41,7 +41,9 @@
 #include <time.h>
 
 #include <libxfce4util/util.h>
+#include <libxfcegui4/libxfcegui4.h>
 #include <libxfce4util/i18n.h>
+#include <libxfce4mcs/mcs-client.h>
 #include <gdk/gdk.h>
 #include <gtk/gtk.h>
 #include <dbh.h>
@@ -52,16 +54,18 @@
 
 #define MAX_APP_LENGTH 4096
 #define LEN_BUFFER 1024
+#define CHANNEL  "xfcalendar"
 
-typedef struct
-{
-  gboolean showCal;
-  gboolean showTaskbar;
-  gboolean startMonday;
-  GtkCalendarDisplayOptions dispOptions; 
-} settings;
+#define SUNDAY TRUE
+#define MONDAY FALSE
 
-static settings calsets;
+settings calsets;
+
+static gboolean startday = SUNDAY;
+
+/* MCS client */
+McsClient        *client = NULL;
+
 static GtkWidget *info;
 static GtkWidget *clearwarn;
 static GtkCalendar *cal;
@@ -77,11 +81,8 @@ void init_settings(GtkWidget *w)
   gchar *fpath;
   FILE *fp;
   char buf[LEN_BUFFER];
-  GtkWidget *menuMonday;
 
   xfce_textdomain(GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8");
-
-  menuMonday = lookup_widget(w, "weekMonday");
 
   /* default */
   calsets.showCal = TRUE;
@@ -103,20 +104,20 @@ void init_settings(GtkWidget *w)
 	calsets.showCal = TRUE; /* default */
 	gtk_widget_show(w);
       }
-
-    fgets(buf, LEN_BUFFER, fp); /* [Start Monday] */
-    fgets(buf, LEN_BUFFER, fp);
-    if(strstr(buf, "false"))
-      { 
-	calsets.startMonday = FALSE; 
-	gtk_calendar_display_options (GTK_CALENDAR (cal), calsets.dispOptions);
-      }
-    else 
-      {
-	calsets.startMonday = TRUE;
-	gtk_calendar_display_options (GTK_CALENDAR (cal), calsets.dispOptions|GTK_CALENDAR_WEEK_START_MONDAY);
-	gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(menuMonday), TRUE);
-      }
+    /* The code below is deprecated
+     *    fgets(buf, LEN_BUFFER, fp); // [Start Monday]
+     *    fgets(buf, LEN_BUFFER, fp);
+     *    if(strstr(buf, "false"))
+     *      { 
+     *	calsets.startMonday = FALSE; 
+     *	gtk_calendar_display_options (GTK_CALENDAR (cal), calsets.dispOptions);
+     *      }
+     *    else 
+     *      {
+     *	calsets.startMonday = TRUE;
+     *	gtk_calendar_display_options (GTK_CALENDAR (cal), calsets.dispOptions|GTK_CALENDAR_WEEK_START_MONDAY);
+     *      }
+     */
   }
 }
 
@@ -127,10 +128,20 @@ void apply_settings()
 
   xfce_textdomain(GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8");
 
-  if(calsets.startMonday)
+  if(calsets.startMonday==TRUE)
+    {
     gtk_calendar_display_options (GTK_CALENDAR (cal), calsets.dispOptions|GTK_CALENDAR_WEEK_START_MONDAY);
+#ifdef debug
+    g_message("apply_settings(): Monday true");
+#endif
+    }
   else
+    {
     gtk_calendar_display_options (GTK_CALENDAR (cal), calsets.dispOptions);
+#ifdef debug
+    g_message("apply_settings(): Monday false");
+#endif
+    }
 
   /* Save settings here */
   /* I know, it's bad(tm) */
@@ -141,8 +152,10 @@ void apply_settings()
     fprintf(fp, "[Session Visibility]\n");
     if(calsets.showCal) fprintf(fp, "show\n"); else fprintf(fp, "hide\n");
 
-    fprintf(fp, "[Start Monday]\n");
-    if(calsets.startMonday) fprintf(fp, "true\n"); else fprintf(fp, "false\n");
+    /* The code below is deprecated 
+     *    fprintf(fp, "[Start Monday]\n");
+     *    if(calsets.startMonday) fprintf(fp, "true\n"); else fprintf(fp, "false\n");
+     */
 
     fclose(fp);
   }
@@ -263,6 +276,14 @@ on_quit1_activate(GtkMenuItem *menuitem, gpointer user_data)
   gtk_main_quit();
 }
 
+void 
+on_preferences_activate                (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+  mcs_client_show (GDK_DISPLAY (), DefaultScreen (GDK_DISPLAY ()),
+		   CHANNEL);
+}
+
 void
 on_weekMonday_activate                 (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
@@ -272,6 +293,7 @@ on_weekMonday_activate                 (GtkMenuItem     *menuitem,
   else
     calsets.startMonday = FALSE;
   apply_settings();
+  
 }
 
 void
@@ -663,4 +685,79 @@ on_calendar1_scroll                    (GtkCalendar     *calendar,
 	  g_print("get scroll event!!!");
     }
 
+}
+
+GdkFilterReturn
+client_event_filter(GdkXEvent *xevent, GdkEvent *event, gpointer data)
+{
+    if(mcs_client_process_event(client, (XEvent *) xevent))
+        return GDK_FILTER_REMOVE;
+    else
+        return GDK_FILTER_CONTINUE;
+}
+
+void
+watch_cb(Window window, Bool is_start, long mask, void *cb_data)
+{
+    GdkWindow *gdkwin;
+
+    gdkwin = gdk_window_lookup(window);
+
+    if(is_start)
+    {
+        if(!gdkwin)
+        {
+            gdkwin = gdk_window_foreign_new(window);
+        }
+        else
+        {
+            g_object_ref(gdkwin);
+        }
+        gdk_window_add_filter(gdkwin, client_event_filter, cb_data);
+    }
+    else
+    {
+        g_assert(gdkwin);
+        gdk_window_remove_filter(gdkwin, client_event_filter, cb_data);
+        g_object_unref(gdkwin);
+    }
+}
+
+void 
+notify_cb(const char *name, const char *channel_name, McsAction action, McsSetting * setting, void *data)
+{
+  if(g_ascii_strcasecmp(CHANNEL, channel_name))
+    {
+        g_message(_("This should not happen"));
+        return;
+    }
+
+    switch (action)
+    {
+        case MCS_ACTION_NEW:
+        case MCS_ACTION_CHANGED:
+            if(setting->type == MCS_TYPE_INT)
+            {
+                if (!strcmp(name, "XFCalendar/StartDay"))
+                {
+		  startday = setting->data.v_int ? SUNDAY: MONDAY;
+		  //I'll look later if I can clean that...
+		  if(startday == SUNDAY) 
+		    {
+		    calsets.startMonday = FALSE;
+		    g_message("Monday false");
+		    }
+		  else
+		    {
+		    calsets.startMonday = TRUE;
+		    g_message("Monday true");
+		    }
+		  apply_settings();
+                }
+            }
+            break;
+        case MCS_ACTION_DELETED:
+        default:
+            break;
+    }
 }

@@ -15,6 +15,7 @@ xfcalendar_SOURCES =							\
 xfcalendar_CFLAGS =							\
 	@LIBXFCEGUI4_CFLAGS@						\
 	@DBH_CFLAGS@							\
+	@LIBXFCE4MCS_CLIENT_CFLAGS@					\
 	-DPACKAGE_DATA_DIR=\""$(datadir)"\"				\
 	-DPACKAGE_LOCALE_DIR=\""$(localedir)"\"
 
@@ -22,6 +23,7 @@ xfcalendar_CFLAGS =							\
 xfcalendar_LDADD =							\
 	@LIBXFCEGUI4_LIBS@						\
 	@DBH_LIBS@							\
+	@LIBXFCE4MCS_CLIENT_LIBS@
 	$(INTLLIBS)
 
 calendar-icon.h: $(srcdir)/xfcalendar.png

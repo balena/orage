@@ -44,7 +44,8 @@ create_XFCalendar (void)
   /* */
   GtkWidget *menuitemSet;
   GtkWidget *menuitemSet_menu;
-  GtkWidget *weekMonday;
+  //  GtkWidget *weekMonday;
+  GtkWidget *preferences;
   /* */
   GtkWidget *about1;
   GtkWidget *calendar1;
@@ -89,9 +90,16 @@ create_XFCalendar (void)
   menuitemSet_menu = gtk_menu_new();
   gtk_menu_item_set_submenu(GTK_MENU_ITEM(menuitemSet), menuitemSet_menu);
 
-  weekMonday = gtk_check_menu_item_new_with_mnemonic(_("Weeks start on Mondays"));
-  gtk_widget_show(weekMonday);
-  gtk_container_add(GTK_CONTAINER(menuitemSet_menu), weekMonday);
+  /* Below is deprecated, it's soon kicked outfrom the code
+   *
+   *  weekMonday = gtk_check_menu_item_new_with_mnemonic(_("Weeks start on Mondays"));
+   *  gtk_widget_show(weekMonday);
+   *  gtk_container_add(GTK_CONTAINER(menuitemSet_menu), weekMonday);
+   */
+
+  preferences = gtk_menu_item_new_with_mnemonic(_("Preferences"));
+  gtk_widget_show(preferences);
+  gtk_container_add(GTK_CONTAINER(menuitemSet_menu), preferences);
 
   /* */
   menuitem7 = gtk_menu_item_new_with_mnemonic (_("_Help"));
@@ -122,8 +130,14 @@ create_XFCalendar (void)
   g_signal_connect ((gpointer) about1, "activate",
                     G_CALLBACK (on_about1_activate),
                     NULL);
-  g_signal_connect((gpointer) weekMonday, "activate",
-		   G_CALLBACK(on_weekMonday_activate),
+  /* Deprecated
+   *
+   *  g_signal_connect((gpointer) weekMonday, "activate",
+   *		   G_CALLBACK(on_weekMonday_activate),
+   *		   NULL);
+  */
+  g_signal_connect((gpointer) preferences, "activate",
+		   G_CALLBACK(on_preferences_activate),
 		   NULL);
   g_signal_connect((gpointer) calendar1, "scroll_event",
 		   G_CALLBACK (on_calendar1_scroll),
@@ -142,7 +156,8 @@ create_XFCalendar (void)
   /* */
   GLADE_HOOKUP_OBJECT(XFCalendar, menuitemSet, "menuitemSet");
   GLADE_HOOKUP_OBJECT(XFCalendar, menuitemSet_menu, "menuitemSet_menu");
-  GLADE_HOOKUP_OBJECT(XFCalendar, weekMonday, "weekMonday");
+  //  GLADE_HOOKUP_OBJECT(XFCalendar, weekMonday, "weekMonday");
+  GLADE_HOOKUP_OBJECT(XFCalendar, preferences, "prefernces");
   /* */
   GLADE_HOOKUP_OBJECT (XFCalendar, menuitem7, "menuitem7");
   GLADE_HOOKUP_OBJECT (XFCalendar, menuitem7_menu, "menuitem7_menu");

@@ -1,6 +1,6 @@
 /* xfcalendar
  *
- * Copyright (C) 2002 Mickael Graf (korbinus@linux.se)
+ * Copyright (C) 2003 Mickael Graf (korbinus@linux.se)
  *
  * This program is free software; you can redistribute it and/or modify it 
  * under the terms of the GNU General Public License as published by the
@@ -36,16 +36,24 @@
 #include <string.h>
 #endif
 
+//#include <X11/Xlib.h>
+
 #include <libxfce4util/i18n.h>
 #include <libxfce4util/util.h>
 #include <libxfcegui4/libxfcegui4.h>
 #include <libxfcegui4/netk-trayicon.h>
+#include <libxfce4mcs/mcs-client.h>
+
 #include <gtk/gtk.h>
+#include <gdk/gdk.h>
 
 #include "calendar-icon.h"
+#include "callbacks.h"
 #include "interface.h"
 #include "support.h"
 #include "xfce_trayicon.h"
+
+#define CHANNEL  "xfcalendar"
 
 /* session client handler */
 static SessionClient	*session_client = NULL;
@@ -53,19 +61,13 @@ static SessionClient	*session_client = NULL;
 /* main window */
 static GtkWidget	*mainWindow = NULL;
 
+/* MCS client */
+extern McsClient        *client;;
+
 /* tray icon */
 XfceTrayIcon 		*trayIcon = NULL;
 
-int mark_appointments(GtkWidget *w);
-int setup_signals(GtkWidget *w);
-gint alarm_clock(gpointer p);
-void keep_tidy(void);
-void set_cal();
-void init_settings();
-void apply_settings();
-void settings_set_showCal();
-void on_about1_activate(GtkMenuItem *, gpointer);
-void on_Today_activate(GtkMenuItem *, gpointer);
+extern settings calsets;
 
 void
 createRCDir(void)
@@ -155,11 +157,15 @@ main(int argc, char *argv[])
 	GdkPixbuf *pixbuf;
 	Window xwindow;
 	GdkAtom atom;
+	Display *dpy;
+	int scr;
 
 	xfce_textdomain(GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8");
 
-	gtk_set_locale();
 	gtk_init(&argc, &argv);
+
+	dpy = GDK_DISPLAY();
+	scr = DefaultScreen(dpy);
 
 	atom = gdk_atom_intern("_XFCE_CALENDAR_RUNNING", FALSE);
 
@@ -205,7 +211,7 @@ main(int argc, char *argv[])
 	 */
 	mainWindow = create_XFCalendar();
 	set_cal(mainWindow);
-	init_settings();
+	init_settings(mainWindow);
 	mark_appointments(mainWindow);
 	setup_signals(mainWindow);
 
@@ -263,6 +269,16 @@ main(int argc, char *argv[])
 	 */
 	createRCDir();
 
+	client = mcs_client_new(dpy, scr, notify_cb, watch_cb, mainWindow);
+	if(client)
+	  {
+	    mcs_client_add_channel(client, CHANNEL);
+	  }
+	else
+	  {
+	    g_warning(_("Cannot create MCS client channel"));
+	  }
+	
 	gtk_main();
 	keep_tidy();
 

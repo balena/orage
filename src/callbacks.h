@@ -1,13 +1,30 @@
+#include <libxfce4mcs/mcs-client.h>
 #include <gtk/gtk.h>
 #include <gdk/gdk.h>
 
-void init_settings();
+typedef struct
+{
+  gboolean showCal;
+  gboolean showTaskbar;
+  gboolean startMonday;
+  GtkCalendarDisplayOptions dispOptions; 
+} settings;
+
+void init_settings(GtkWidget *w);
 
 void apply_settings();
 
 void settings_set_showCal(GtkWidget *w);
 
 void set_cal(GtkWidget *w);
+
+int mark_appointments(GtkWidget *w);
+
+void setup_signals(GtkWidget *w);
+
+int keep_tidy(void);
+
+gint alarm_clock(gpointer p);
 
 void
 on_new1_activate                       (GtkMenuItem     *menuitem,
@@ -27,6 +44,10 @@ on_save_as1_activate                   (GtkMenuItem     *menuitem,
 
 void
 on_quit1_activate                      (GtkMenuItem     *menuitem,
+                                        gpointer         user_data);
+
+void 
+on_preferences_activate                (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
 
 void
@@ -51,10 +72,6 @@ on_delete1_activate                    (GtkMenuItem     *menuitem,
 
 void
 on_about1_activate                     (GtkMenuItem     *menuitem,
-                                        gpointer         user_data);
-
-void
-on_quit1_activate                      (GtkMenuItem     *menuitem,
                                         gpointer         user_data);
 
 void
@@ -153,3 +170,12 @@ bisextile(guint year);
 
 void
 manageAppointment(GtkCalendar *calendar, GtkWidget *appointment);
+
+GdkFilterReturn
+client_event_filter(GdkXEvent *xevent, GdkEvent *event, gpointer data);
+
+void
+watch_cb(Window window, Bool is_start, long mask, void *cb_data);
+
+void 
+notify_cb(const char *name, const char *channel_name, McsAction action, McsSetting * setting, void *data);
