@@ -31,6 +31,7 @@ typedef struct
   gboolean allDay;
 
   gchar *note;
+  gchar *sound;
   gchar *uid;
 
         /* time format must be:

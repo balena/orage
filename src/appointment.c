@@ -42,7 +42,6 @@
 
 #include "appointment.h"
 #include "ical-code.h"
-//#include "support.h"
 
 #define DATE_SEPARATOR "-"
 #define MAX_APP_LENGTH 4096

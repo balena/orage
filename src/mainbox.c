@@ -67,9 +67,11 @@ xfcalendar_mark_appointments (CalWin *xfcal)
 
     if (open_ical_file()){
         day = -1;
+        gtk_calendar_freeze(GTK_CALENDAR(xfcal->mCalendar));
         while (day = getnextday_ical_app(year, month+1, day)){
             gtk_calendar_mark_day(cal, day);
         }
+        gtk_calendar_thaw(GTK_CALENDAR(xfcal->mCalendar));
         close_ical_file();
     }
 
@@ -424,7 +426,7 @@ void create_mainWin(CalWin *xfcal)
       gtk_window_move (GTK_WINDOW (xfcal->mWindow), pos_x, pos_y);
   gtk_window_stick (GTK_WINDOW (xfcal->mWindow));
 
-  cal = GTK_CALENDAR(xfcal->mCalendar); //horrible hack :(
+  cal = GTK_CALENDAR(xfcal->mCalendar); /* horrible hack :( */
   xfcalendar_mark_appointments (xfcal);
 
 }

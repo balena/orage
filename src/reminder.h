@@ -22,13 +22,15 @@
 typedef struct 
 {
     GString *uid;
+    GString *action;
     GString *title;
     GString *description;
+    GString *sound;
     GString *alarm_time;
     GString *event_time;
 } alarm_struct;
 
-void create_wReminder(char *text);
+void create_wReminder(char *title, char *text);
 
 gboolean xfcalendar_alarm_clock(gpointer user_data);
 

@@ -419,7 +419,7 @@ main(int argc, char *argv[])
    * Create the Xfcalendar.
    */
   create_mainWin(xfcal);
-  mainWindow = xfcal->mWindow;           //FIXME: hack avoiding some warnings while running
+  mainWindow = xfcal->mWindow;           /*FIXME: hack avoiding some warnings while running */
 
   /*
    * Create the tray icon and its popup menu
@@ -441,7 +441,6 @@ main(int argc, char *argv[])
              5000,
              (GtkFunction) xfcalendar_alarm_clock,
              (gpointer) xfcal,
-             //(gpointer) xfcal->mWindow,
              NULL);
                                                                                 
 /* initialize alarm list */

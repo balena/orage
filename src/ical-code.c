@@ -59,6 +59,7 @@
 #define RCDIR    "xfce4" G_DIR_SEPARATOR_S "xfcalendar"
 #define APPOINTMENT_FILE "appointments.ics"
 
+#define XFICAL_STR_EXISTS(str) ((str != NULL) && (str[0] != 0))
 
 static icalcomponent *ical;
 static icalset* fical;
@@ -76,8 +77,10 @@ gboolean open_ical_file(void)
                         RCDIR G_DIR_SEPARATOR_S APPOINTMENT_FILE, FALSE);
     if ((fical = icalset_new_file(ficalpath)) == NULL){
         if(icalerrno != ICAL_NO_ERROR){
-            g_warning("open_ical_file, ical-Error: %s\n",icalerror_strerror(icalerrno));
-        g_error("open_ical_file, Error: Could not open ical file \"%s\" \n", ficalpath);
+            g_warning("open_ical_file, ical-Error: %s\n"
+                        , icalerror_strerror(icalerrno));
+        g_error("open_ical_file, Error: Could not open ical file \"%s\" \n"
+                        , ficalpath);
         }
     }
     else{
@@ -146,9 +149,10 @@ struct icaltimetype ical_get_current_local_time()
     */
     return (ctime);
 }
+
  /* allocates memory and initializes it for new ical_type structure
  *  returns: NULL if failed and pointer to appt_type if successfull.
- *                You must free it after not being used anymore. (g_free())
+ *          You must free it after not being used anymore. (g_free())
  */
 appt_type *xf_alloc_ical_app()
 {
@@ -158,10 +162,9 @@ appt_type *xf_alloc_ical_app()
     return(temp);
 }
 
-
  /* add EVENT type ical appointment to ical file
  * app: pointer to filled appt_type structure, which is stored
- *      You are responsible for filling and allocating and freeing it.
+ *      Caller is responsible for filling and allocating and freeing it.
  *  returns: NULL if failed and new ical id if successfully added. 
  *           This ical id is owned by the routine. Do not deallocate it.
  *           It will be overdriven by next invocation of this function.
@@ -175,6 +178,8 @@ char *xf_add_ical_app(appt_type *app)
     icalproperty_transp xf_transp;
     struct icaltriggertype trg;
     gint duration=0;
+    char * def_sound="/usr/local/kde/share/sounds/KDE_Beep_ClassicBeep.wav";
+    icalattach *attach;
 
     ctime = ical_get_current_local_time();
     gethostname(xf_host, 500);
@@ -189,43 +194,32 @@ char *xf_add_ical_app(appt_type *app)
            ,icalproperty_new_created(ctime)
            ,0);
 
-    if (app->title != NULL)
-        if (strlen(app->title) > 0)
-            icalcomponent_add_property(ievent
+    if XFICAL_STR_EXISTS(app->title)
+        icalcomponent_add_property(ievent
                 , icalproperty_new_summary(app->title));
-    if (app->note != NULL)
-        if (strlen(app->note) > 0)
-            icalcomponent_add_property(ievent
+    if XFICAL_STR_EXISTS(app->note)
+        icalcomponent_add_property(ievent
                 , icalproperty_new_description(app->note));
-    if (app->location != NULL)
-        if (strlen(app->location) > 0)
-            icalcomponent_add_property(ievent
+    if XFICAL_STR_EXISTS(app->location)
+        icalcomponent_add_property(ievent
                 , icalproperty_new_location(app->location));
-    if (strlen(app->starttime) > 0)
-        icalcomponent_add_property(ievent
-           , icalproperty_new_dtstart(icaltime_from_string(app->starttime)));
-    if (strlen(app->endtime) > 0)
-        icalcomponent_add_property(ievent
-           , icalproperty_new_dtend(icaltime_from_string(app->endtime)));
     if (app->availability == 0)
         icalcomponent_add_property(ievent
            , icalproperty_new_transp(ICAL_TRANSP_TRANSPARENT));
     else if (app->availability == 1)
         icalcomponent_add_property(ievent
            , icalproperty_new_transp(ICAL_TRANSP_OPAQUE));
-    if (app->alarm != 0)  {
-        ialarm = icalcomponent_vanew(ICAL_VALARM_COMPONENT
-           ,icalproperty_new_action(ICAL_ACTION_DISPLAY)
-           ,0);
-        if ((app->note != NULL)  && (strlen(app->note) > 0)) 
-            icalcomponent_add_property(ialarm
-                , icalproperty_new_description(app->note));
-        else if ( (app->title != NULL) && (strlen(app->title) > 0)) 
-            icalcomponent_add_property(ialarm
-                , icalproperty_new_description(app->title));
-        else
-            icalcomponent_add_property(ialarm
-                , icalproperty_new_description(_("Xfcalendar default alarm")));
+    if (app->allday) {
+        app->starttime[8] = 0;
+        app->endtime[8] = 0;
+    }
+    if XFICAL_STR_EXISTS(app->starttime)
+        icalcomponent_add_property(ievent
+           , icalproperty_new_dtstart(icaltime_from_string(app->starttime)));
+    if XFICAL_STR_EXISTS(app->endtime)
+        icalcomponent_add_property(ievent
+           , icalproperty_new_dtend(icaltime_from_string(app->endtime)));
+    if (!app->allday  && app->alarm != 0)  {
         if (app->alarmTimeType == 0) 
             duration = app->alarm * 60;
         else if (app->alarmTimeType == 1) 
@@ -236,9 +230,35 @@ char *xf_add_ical_app(appt_type *app)
             duration = app->alarm; /* secs */
         trg.time = icaltime_null_time();
         trg.duration =  icaldurationtype_from_int(-duration);
+    /********** DISPLAY **********/
+        ialarm = icalcomponent_vanew(ICAL_VALARM_COMPONENT
+           ,icalproperty_new_action(ICAL_ACTION_DISPLAY)
+           ,0);
         icalcomponent_add_property(ialarm
              , icalproperty_new_trigger(trg));
+        if XFICAL_STR_EXISTS(app->note)
+            icalcomponent_add_property(ialarm
+                , icalproperty_new_description(app->note));
+        else if XFICAL_STR_EXISTS(app->title)
+            icalcomponent_add_property(ialarm
+                , icalproperty_new_description(app->title));
+        else
+            icalcomponent_add_property(ialarm
+                , icalproperty_new_description(_("Xfcalendar default alarm")));
         icalcomponent_add_component(ievent, ialarm);
+
+    /********** AUDIO **********/
+        if XFICAL_STR_EXISTS(app->sound) {
+            ialarm = icalcomponent_vanew(ICAL_VALARM_COMPONENT
+                ,icalproperty_new_action(ICAL_ACTION_AUDIO)
+                ,0);
+            icalcomponent_add_property(ialarm
+                , icalproperty_new_trigger(trg));
+            attach = icalattach_new_from_url(app->sound);
+            icalcomponent_add_property(ialarm
+                , icalproperty_new_attach(attach));
+            icalcomponent_add_component(ievent, ialarm);
+        }
     }
 
     icalcomponent_add_component(ical, ievent);
@@ -266,6 +286,7 @@ appt_type *xf_get_ical_app(char *ical_uid)
     icalproperty_transp xf_transp;
     struct icaltriggertype trg;
     gint mins;
+    icalattach *attach;
 
     for (c = icalcomponent_get_first_component(ical, ICAL_VEVENT_COMPONENT); 
          (c != 0) && (!key_found);
@@ -277,7 +298,9 @@ appt_type *xf_get_ical_app(char *ical_uid)
             app.title = NULL;
             app.location = NULL;
             app.note = NULL;
+            app.sound = NULL;
             app.uid = NULL;
+            app.allDay = FALSE;
             app.alarm = -1;
             app.alarmTimeType = -1;
             app.availability = -1;
@@ -310,6 +333,8 @@ appt_type *xf_get_ical_app(char *ical_uid)
                     itime = icalproperty_get_dtstart(p);
                     text  = icaltime_as_ical_string(itime);
                     strcpy(app.starttime, text);
+                    if (icaltime_is_date(itime))
+                        app.allDay = TRUE;
                     if (strlen(app.endtime))
                         strcpy(app.endtime, text);
                 }
@@ -354,6 +379,10 @@ appt_type *xf_get_ical_app(char *ical_uid)
                         }
                         else
                             g_warning("ical_code: Can not process time type triggers\n");
+                    }
+                    else if (strcmp(text, "ATTACH") == 0) {
+                        attach = icalproperty_get_attach(p);
+                        app.sound = (char *)calattach_get_url(attach);
                     }
                 }
             }
@@ -420,17 +449,20 @@ appt_type *getnext_ical_app_on_day(char *a_day, char *hh_mm)
         if (icaltime_compare_date_only(adate, sdate) == 0){
             date_found = TRUE;
             app.title    = (char *)icalcomponent_get_summary(c);
-            app.location = (char *)icalcomponent_get_location(c);
             app.note     = (char *)icalcomponent_get_description(c);
             app.uid      = (char *)icalcomponent_get_uid(c);
+            app.allDay   = FALSE;
+            app.alarm    = -1;
             text  = (char *)icaltime_as_ical_string(sdate);
             strcpy(app.starttime, text);
             edate = icalcomponent_get_dtend(c);
             text  = (char *)icaltime_as_ical_string(edate);
             strcpy(app.endtime, text);
 
-            if (icaltime_is_date(sdate))
+            if (icaltime_is_date(sdate)) {
                 strcpy(hh_mm, "xx:xx-xx:xx");
+                app.allDay = TRUE;
+            }
             else {
                 if (icaltime_is_null_time(edate)) {
                     edate.hour = sdate.hour;
@@ -499,7 +531,28 @@ void rmday_ical_app(char *a_day)
 
 void free_alarm(gpointer galarm, gpointer dummy)
 {
-    g_free(galarm);
+    alarm_struct *alarm;
+
+    alarm = (alarm_struct *)galarm;
+
+    if (strcmp(alarm->action->str, "DISPLAY") == 0) {
+        g_string_free(alarm->title, TRUE);
+        g_string_free(alarm->description, TRUE);
+    }
+    else if (strcmp(alarm->action->str, "AUDIO") == 0) {
+        g_string_free(alarm->sound, TRUE);
+    }
+    /*
+    else if (strcmp(alarm->action->str, "EMAIL") == 0) {
+    }
+    else if (strcmp(alarm->action->str, "PROCEDURE") == 0) {
+    }
+    */
+    g_string_free(alarm->uid, TRUE);
+    g_string_free(alarm->action, TRUE);
+    g_string_free(alarm->alarm_time, TRUE);
+    g_string_free(alarm->event_time, TRUE);
+    g_free(alarm);
 }
 
 gint alarm_order(gconstpointer a, gconstpointer b)
@@ -522,6 +575,7 @@ void build_ical_alarm_list()
     char *s, *suid, *ssummary, *sdescription, *saction;
     gboolean trg_found;
     alarm_struct *new_alarm;
+    icalattach *attach;
 
     cur_time = ical_get_current_local_time();
     /* read all alarms and build a list */
@@ -548,6 +602,9 @@ void build_ical_alarm_list()
                     stat = icalproperty_get_action(p);
                 else if (strcmp(s, "DESCRIPTION") == 0)
                     sdescription = (char*)icalproperty_get_description(p);
+                else if (strcmp(s, "ATTACH") == 0) {
+                    attach = icalproperty_get_attach(p);
+                }
                 else if (strcmp(s, "TRIGGER") == 0) {
                     trg = icalproperty_get_trigger(p);
                     trg_found = TRUE;
@@ -557,13 +614,33 @@ void build_ical_alarm_list()
  
             } 
             if (trg_found) {
-            /* all data available. let's pack it */
+            /* all data available. let's pack it if alarm is still active */
                 alarm_time = icaltime_add(event_dtstart, trg.duration);
-                if (icaltime_compare(cur_time, alarm_time) <= 0) {
+                if (icaltime_compare(cur_time, alarm_time) <= 0) { /* active */
                     new_alarm = g_new(alarm_struct, 1);
                     new_alarm->uid = g_string_new(suid);
-                    new_alarm->title = g_string_new(ssummary);
-                    new_alarm->description = g_string_new(sdescription);
+                    if (stat == ICAL_ACTION_DISPLAY) {
+                        new_alarm->action = g_string_new("DISPLAY");
+                        new_alarm->title = g_string_new(ssummary);
+                        new_alarm->description = g_string_new(sdescription);
+                    }
+                    else if (stat == ICAL_ACTION_AUDIO) {
+                        new_alarm->action = g_string_new("AUDIO");
+                        new_alarm->sound = g_string_new(
+                                    /*
+                                    ical has not implemeneted data type attach
+                                    icalattach_get_data(attach));
+                                    */
+                                    icalattach_get_url(attach));
+                    }
+                    else if (stat == ICAL_ACTION_EMAIL) {
+                        new_alarm->action = g_string_new("EMAIL");
+                    }
+                    else if (stat == ICAL_ACTION_PROCEDURE) {
+                        new_alarm->action = g_string_new("PROCEDURE");
+                    }
+                    else
+                        g_warning("Unknown VALARM ACTION %d\n", stat);
                     new_alarm->alarm_time = g_string_new(
                         icaltime_as_ical_string(alarm_time));
                     new_alarm->event_time = g_string_new(

@@ -43,6 +43,22 @@
 extern GList *alarm_list;
 
 void
+create_soundReminder(char *sound)
+{
+    GError *error;
+    gboolean status;
+    char play_cmd[1000]="play ";
+
+    strcat(play_cmd, sound);
+    g_print("create_soundReminder %s (%s)\n", play_cmd, sound);
+    status=xfce_exec(play_cmd, FALSE, FALSE, &error);
+    if (status)
+        g_print("TRUE\n");
+    else
+        g_print("FALSE\n");
+}
+
+void
 on_btOkReminder_clicked(GtkButton *button, gpointer user_data)
 {
   GtkWidget *wReminder = (GtkWidget *)user_data;
@@ -50,7 +66,7 @@ on_btOkReminder_clicked(GtkButton *button, gpointer user_data)
 }
 
 void
-create_wReminder(char *text)
+create_wReminder(char *title, char *text)
 {
   GtkWidget *wReminder;
   GtkWidget *vbReminder;
@@ -59,10 +75,13 @@ create_wReminder(char *text)
   GtkWidget *btOkReminder;
   GtkWidget *swReminder;
   GtkWidget *hdReminder;
+  char heading[200];
 
   wReminder = gtk_dialog_new ();
   gtk_widget_set_size_request (wReminder, 300, 250);
-  gtk_window_set_title (GTK_WINDOW (wReminder), _("Reminder"));
+  strcpy(heading,  _("Reminder"));
+  strncat(heading, title, 50);
+  gtk_window_set_title (GTK_WINDOW (wReminder), heading);
   gtk_window_set_position (GTK_WINDOW (wReminder), GTK_WIN_POS_CENTER);
   gtk_window_set_modal (GTK_WINDOW (wReminder), FALSE);
   gtk_window_set_resizable (GTK_WINDOW (wReminder), TRUE);
@@ -118,7 +137,6 @@ xfcalendar_alarm_clock(gpointer user_data)
                                                                                 
     tt=time(NULL);
     t=localtime(&tt);
-    printf("at alarm %d==%d hour:%d min:%d sec:%d\n",previous_day,t->tm_mday,t->tm_hour, t->tm_min, t->tm_sec);
   /* See if the day just changed and the former current date was selected */
     if (previous_day != t->tm_mday) {
         current_year  = t->tm_year + 1900;
@@ -142,18 +160,23 @@ xfcalendar_alarm_clock(gpointer user_data)
         previous_day   = current_day;
     }
 
-  /* Check if any alarms to show */
+  /* Check if there are any alarms to show */
     alarm_l=alarm_list;
     for (alarm_l = g_list_first(alarm_l);
          alarm_l != NULL;
          alarm_l = g_list_next(alarm_l)) {
         cur_alarm = (alarm_struct *)alarm_l->data;
-        g_print("alarm found %s\n", cur_alarm->alarm_time->str);
         if (ical_alarm_passed(cur_alarm->alarm_time->str)) {
-        g_print("alarm found activated start%s\n", cur_alarm->alarm_time->str);
-            create_wReminder(cur_alarm->description->str);
+        g_print ("ALARM found\n");
+            if (strcmp(cur_alarm->action->str, "DISPLAY") == 0)
+                create_wReminder(cur_alarm->title->str
+                                ,cur_alarm->description->str);
+            else if (strcmp(cur_alarm->action->str, "AUDIO") == 0)
+                create_soundReminder(cur_alarm->sound->str);
+            else
+                g_warning("Unsupported VALARM ACTION: %s in: %s\n"
+                        , cur_alarm->action->str, cur_alarm->uid->str);
             alarm_raised = TRUE;
-        g_print("alarm found activated end\n");
         }
     }
     if (alarm_raised) /* at least one alarm processed, need new list */
