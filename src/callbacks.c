@@ -213,6 +213,7 @@ void manageAppointment(GtkCalendar *calendar, GtkWidget *appointment)
 	}
 	
 	gtk_text_view_set_buffer(tv, tb);
+	gtk_text_buffer_set_modified(tb, FALSE);
 	gtk_window_set_title (GTK_WINDOW (appointment), _(title));
 
 	g_free(fpath);
@@ -222,8 +223,52 @@ void manageAppointment(GtkCalendar *calendar, GtkWidget *appointment)
 void
 on_btClose_clicked(GtkButton *button, gpointer user_data)
 {
+  GtkTextView *tv;
+  GtkTextBuffer *tb;
+
   GtkWidget *a=lookup_widget((GtkWidget *)button,"wAppointment");
-  gtk_widget_destroy(a); /* destroy the specific appointment window */
+
+  tv = GTK_TEXT_VIEW(lookup_widget(GTK_WIDGET(button),"textview1"));
+  tb = gtk_text_view_get_buffer(tv);
+
+  if(gtk_text_buffer_get_modified(tb))
+    {
+      gint result =
+	dialogWin(a);
+      if(result == GTK_RESPONSE_ACCEPT)
+	{
+	  gtk_widget_destroy(a); /* destroy the specific appointment window */
+	}
+    }
+  else
+    gtk_widget_destroy(a); /* destroy the specific appointment window */
+}
+
+gint 
+dialogWin(gpointer user_data)
+{
+  GtkWidget *dialog, *message;
+  dialog = gtk_dialog_new_with_buttons (_("Question"),
+					GTK_WINDOW(user_data),
+					GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
+					GTK_STOCK_NO,
+					GTK_RESPONSE_REJECT,
+					GTK_STOCK_YES,
+					GTK_RESPONSE_ACCEPT,
+					NULL);
+
+  message = gtk_label_new(_("\nThe information has been modified.\n Do you want to continue ?\n"));
+
+  gtk_container_add (GTK_CONTAINER (GTK_DIALOG(dialog)->vbox), message);
+  
+  gtk_widget_show_all(dialog);
+
+  gint result = gtk_dialog_run (GTK_DIALOG (dialog));
+
+  gtk_widget_destroy (dialog);
+
+  return result;
+
 }
 
 gboolean 
@@ -237,7 +282,26 @@ on_wAppointment_delete_event(GtkWidget *widget, GdkEvent *event,
 void
 on_btPrevious_clicked(GtkButton *button, gpointer user_data)
 {
-  changeSelectedDate(button, PREVIOUS);
+  GtkTextView *tv;
+  GtkTextBuffer *tb;
+
+  GtkWidget *a=lookup_widget((GtkWidget *)button,"wAppointment");
+
+  tv = GTK_TEXT_VIEW(lookup_widget(GTK_WIDGET(button),"textview1"));
+  tb = gtk_text_view_get_buffer(tv);
+
+  if(gtk_text_buffer_get_modified(tb))
+    {
+      gint result =
+	dialogWin(a);
+      if(result == GTK_RESPONSE_ACCEPT)
+	{
+	  changeSelectedDate(button, PREVIOUS);
+	}
+    }
+  else
+    changeSelectedDate(button, PREVIOUS);
+
 }
 
 void
@@ -246,20 +310,58 @@ on_btToday_clicked(GtkButton *button, gpointer user_data)
   struct tm *t;
   time_t tt;
   GtkWidget *appointment; 
+  GtkTextView *tv;
+  GtkTextBuffer *tb;
 	
   appointment = lookup_widget(GTK_WIDGET(button),"wAppointment");
 
   tt=time(NULL);
   t=localtime(&tt);
-  gtk_calendar_select_month(GTK_CALENDAR(xfcal->mCalendar), t->tm_mon, t->tm_year+1900);
-  gtk_calendar_select_day(GTK_CALENDAR(xfcal->mCalendar), t->tm_mday);
-  manageAppointment(GTK_CALENDAR(xfcal->mCalendar), appointment);
+
+  tv = GTK_TEXT_VIEW(lookup_widget(GTK_WIDGET(button),"textview1"));
+  tb = gtk_text_view_get_buffer(tv);
+
+  if(gtk_text_buffer_get_modified(tb))
+    {
+      gint result =
+	dialogWin(appointment);
+      if(result == GTK_RESPONSE_ACCEPT)
+	{
+	  gtk_calendar_select_month(GTK_CALENDAR(xfcal->mCalendar), t->tm_mon, t->tm_year+1900);
+	  gtk_calendar_select_day(GTK_CALENDAR(xfcal->mCalendar), t->tm_mday);
+	  manageAppointment(GTK_CALENDAR(xfcal->mCalendar), appointment);
+	}
+    }
+  else
+    {
+      gtk_calendar_select_month(GTK_CALENDAR(xfcal->mCalendar), t->tm_mon, t->tm_year+1900);
+      gtk_calendar_select_day(GTK_CALENDAR(xfcal->mCalendar), t->tm_mday);
+      manageAppointment(GTK_CALENDAR(xfcal->mCalendar), appointment);
+    }
 }
 
 void
 on_btNext_clicked(GtkButton *button, gpointer user_data)
 {
-  changeSelectedDate(button, NEXT);
+  GtkTextView *tv;
+  GtkTextBuffer *tb;
+
+  GtkWidget *a=lookup_widget((GtkWidget *)button,"wAppointment");
+
+  tv = GTK_TEXT_VIEW(lookup_widget(GTK_WIDGET(button),"textview1"));
+  tb = gtk_text_view_get_buffer(tv);
+
+  if(gtk_text_buffer_get_modified(tb))
+    {
+      gint result =
+	dialogWin(a);
+      if(result == GTK_RESPONSE_ACCEPT)
+	{
+	  changeSelectedDate(button, NEXT);
+	}
+    }
+  else
+    changeSelectedDate(button, NEXT);
 }
 
 void
@@ -386,7 +488,11 @@ void
 on_btDelete_clicked(GtkButton *button, gpointer user_data)
 {
 	GtkWidget *w;
-	clearwarn = create_wClearWarn();
+	GtkWidget *appointment; 
+	
+	appointment = lookup_widget(GTK_WIDGET(button),"wAppointment");
+
+	clearwarn = create_wClearWarn(appointment);
 	w=lookup_widget(clearwarn,"okbutton2");
 	/* we connect here instead of in glade to pass the data field */
 	g_signal_connect ((gpointer) w, "clicked",

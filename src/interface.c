@@ -134,7 +134,7 @@ create_wAppointment (void)
   btDelete = gtk_toolbar_append_element (GTK_TOOLBAR (toolbar1),
                                 GTK_TOOLBAR_CHILD_BUTTON,
                                 NULL,
-                                _("Clear"),
+				"btDelete",
                                 _("Clear (Ctrl+l)"), NULL,
                                 tmp_toolbar_icon, NULL, NULL);
   gtk_label_set_use_underline (GTK_LABEL (((GtkToolbarChild*) (g_list_last (GTK_TOOLBAR (toolbar1)->children)->data))->label), TRUE);
@@ -192,7 +192,7 @@ create_wAppointment (void)
 }
 
 GtkWidget*
-create_wClearWarn (void)
+create_wClearWarn (GtkWidget *parent)
 {
   GtkWidget *wClearWarn;
   GtkWidget *dialog_vbox2;
@@ -206,7 +206,8 @@ create_wClearWarn (void)
   wClearWarn = gtk_dialog_new ();
   gtk_widget_set_size_request (wClearWarn, 250, 120);
   gtk_window_set_title (GTK_WINDOW (wClearWarn), _("Warning"));
-  gtk_window_set_position (GTK_WINDOW (wClearWarn), GTK_WIN_POS_CENTER);
+  gtk_window_set_transient_for(GTK_WINDOW (wClearWarn), GTK_WINDOW(parent));
+  gtk_window_set_position (GTK_WINDOW (wClearWarn), GTK_WIN_POS_CENTER_ON_PARENT);
   gtk_window_set_modal (GTK_WINDOW (wClearWarn), TRUE);
   gtk_window_set_resizable (GTK_WINDOW (wClearWarn), FALSE);
 

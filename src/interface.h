@@ -4,4 +4,4 @@
 #include "xfce_trayicon.h"
 
 GtkWidget* create_wAppointment (void);
-GtkWidget* create_wClearWarn (void);
+GtkWidget* create_wClearWarn (GtkWidget *parent);
