@@ -1,64 +1,109 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Japanese translation for xfcalender
+# Copyright (C) 2003-2005 Free Software Foundation, Inc..
+# This file is distributed under the same license as the xfcalender package.
+# Zhao Ji <zhao-ji@awz.ne.jp>, 2003-2004.
+# Daichi Kawahata <daichik@users.sourceforge.net>, 2005.
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-27 13:15+0100\n"
-"PO-Revision-Date: 2003-12-08 15:30+0900\n"
-"Last-Translator: Zhao Ji <zhao-ji@awz.ne.jp>\n"
-"Language-Team: xfce-users-jp <xfce-users-jp@ml.fdiary.net>\n"
+"Project-Id-Version: xfcalender 4.3.0\n"
+"Report-Msgid-Bugs-To: xfce-i18n@xfce.org\n"
+"POT-Creation-Date: 2005-02-16 08:35+0900\n"
+"PO-Revision-Date: 2005-02-17 21:31+0900\n"
+"Last-Translator: Daichi Kawahata <daichik@users.sourceforge.net>\n"
+"Language-Team: Japanese <xfce-i18n@xfce.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: plugin/xfcalendar_plugin.c:148 plugin/xfcalendar_plugin.c:159
-#: plugin/xfcalendar_plugin.c:245 src/mainbox.c:383
-#, fuzzy
+#: plugin/xfcalendar_plugin.c:175 plugin/xfcalendar_plugin.c:186
+#: plugin/xfcalendar_plugin.c:300 src/mainbox.c:374
 msgid "Xfcalendar"
-msgstr "XFCalenderについて"
+msgstr "Xfcalendar"
 
 #.
-#: plugin/xfcalendar_plugin.c:174
+#: plugin/xfcalendar_plugin.c:201
 msgid "Mode"
 msgstr "モード"
 
-#: plugin/xfcalendar_plugin.c:182
+#: plugin/xfcalendar_plugin.c:209
 msgid "Normal"
 msgstr "通常"
 
-#: plugin/xfcalendar_plugin.c:189
+#: plugin/xfcalendar_plugin.c:216
 msgid "Compact"
-msgstr "コンパクト"
+msgstr "軽量"
+
+#.
+#: plugin/xfcalendar_plugin.c:224
+msgid "Show in..."
+msgstr "表示場所..."
+
+#: plugin/xfcalendar_plugin.c:232
+msgid "Taskbar"
+msgstr "タスクバー"
+
+#: plugin/xfcalendar_plugin.c:237
+msgid "Pager"
+msgstr "ページャ"
+
+#: plugin/xfcalendar_plugin.c:242
+msgid "Systray"
+msgstr "システムトレイ"
+
+#.
+#: plugin/xfcalendar_plugin.c:248
+msgid "Start visibility"
+msgstr "起動時の表示"
+
+#: plugin/xfcalendar_plugin.c:256
+msgid "Show"
+msgstr "表示する"
+
+#: plugin/xfcalendar_plugin.c:263
+msgid "Hide"
+msgstr "表示しない"
+
+#: plugin/xfce-xfcalendar-settings.desktop.in.h:1
+msgid "Calendar Settings"
+msgstr "カレンダー設定"
+
+#: plugin/xfce-xfcalendar-settings.desktop.in.h:2
+msgid "Settings for the Xfce 4 Calendar Application"
+msgstr "Xfce 4 カレンダーアプリケーションの設定"
+
+#: plugin/xfce-xfcalendar-settings.desktop.in.h:3
+msgid "Xfce 4 Calendar Settings"
+msgstr "Xfce 4 カレンダー設定"
 
 #: src/about-xfcalendar.c:39
 msgid "Manage your time with Xfce4"
-msgstr ""
+msgstr "Xfce4 であなたの予定を管理します"
 
 #: src/about-xfcalendar.c:49
 msgid "Core developer"
-msgstr ""
+msgstr "中心開発者"
 
 #: src/about-xfcalendar.c:54 src/about-xfcalendar.c:59
+#: src/about-xfcalendar.c:64
 msgid "Contributor"
-msgstr ""
+msgstr "貢献者"
 
-#: src/callbacks.c:251
+#: src/callbacks.c:227
 msgid "Question"
-msgstr ""
+msgstr "質問"
 
-#: src/callbacks.c:260
+#: src/callbacks.c:236
 msgid ""
 "\n"
 "The information has been modified.\n"
 " Do you want to continue ?\n"
 msgstr ""
+"\n"
+"情報が変更されています。\n"
+"続行しますか?\n"
 
-#: src/interface.c:56
+#: src/interface.c:56 xfcalendar.glade.h:2
 msgid "Appointment"
 msgstr "約束"
 
@@ -72,11 +117,11 @@ msgstr "前日 (Ctrl+p)"
 
 #: src/interface.c:102
 msgid "Today (Alt+Home)"
-msgstr "本日 (Alt+Home)"
+msgstr "今日 (Alt+Home)"
 
 #: src/interface.c:114
 msgid "Next day (Ctrl+n)"
-msgstr "翌日 (Ctrl+n)"
+msgstr "明日 (Ctrl+n)"
 
 #: src/interface.c:127
 msgid "Close (Ctrl+w)"
@@ -86,155 +131,138 @@ msgstr "閉じる (Ctrl+w)"
 msgid "Clear (Ctrl+l)"
 msgstr "消去 (Ctrl+l)"
 
-#: src/interface.c:208
+#: src/interface.c:208 xfcalendar.glade.h:6
 msgid "Warning"
 msgstr "警告"
 
-#: src/interface.c:225
+#: src/interface.c:225 xfcalendar.glade.h:18
 msgid ""
 "You will remove all information \n"
 "associated with this date."
 msgstr ""
-"この日付に関する情報を\n"
-"全て削除します。"
+"この日付に関する全ての\n"
+"情報を削除します。"
 
-#. File menu
-#: src/mainbox.c:413
-msgid "_File"
-msgstr "ファイル(_F)"
-
-#: src/mainbox.c:422
-#, fuzzy
-msgid "_Close window"
-msgstr "窓を閉じる"
-
-#. Settings menu
-#: src/mainbox.c:439
-#, fuzzy
-msgid "_Settings"
-msgstr "設定"
-
-#: src/mainbox.c:448
-#, fuzzy
-msgid "_Preferences"
-msgstr "好み"
-
-#: src/mainbox.c:459
-#, fuzzy
-msgid "Select _Today"
-msgstr "本日選択"
-
-#. Help menu
-#: src/mainbox.c:466
-msgid "_Help"
-msgstr "ヘルプ(_H)"
-
-#: src/mainbox.c:475
-msgid "_About"
-msgstr "アバウト(_A)"
-
-#: src/main.c:135
+#: src/main.c:127
 msgid "This should not happen"
-msgstr "これは、起こるべきではありません"
+msgstr "想定外の事が起こりました"
 
 #: src/main.c:390
 msgid "Cannot create MCS client channel"
-msgstr "MCSクライアントのチャネルを作成出来ません"
+msgstr "MCS クライアントのチャンネルを作成できません"
+
+#. File menu
+#: src/mainbox.c:404 xfcalendar.glade.h:21
+msgid "_File"
+msgstr "ファイル(_F)"
+
+#: src/mainbox.c:413
+msgid "_Close window"
+msgstr "ウィンドウを閉じる(_C)"
+
+#. Settings menu
+#: src/mainbox.c:430
+msgid "_Settings"
+msgstr "設定(_S)"
+
+#: src/mainbox.c:439
+msgid "_Preferences"
+msgstr "環境設定(_P)"
+
+#: src/mainbox.c:450
+msgid "Select _Today"
+msgstr "今日の日付を選択(_T)"
+
+#. Help menu
+#: src/mainbox.c:457 xfcalendar.glade.h:22
+msgid "_Help"
+msgstr "ヘルプ(_H)"
+
+#: src/mainbox.c:466 xfcalendar.glade.h:20
+msgid "_About"
+msgstr "このプログラムについて(_A)"
 
 #: src/reminder.c:56 src/reminder.c:64
 msgid "Reminder"
-msgstr "注意"
+msgstr "備忘録"
 
 #: src/support.c:91 src/support.c:115
 #, c-format
 msgid "Couldn't find pixmap file: %s"
-msgstr "pixmap: %s を見付ける事が出来ません"
+msgstr "pixmap ファイルを見つけられませんでした: %s"
 
 #: src/tray_icon.c:95
 msgid "Today"
-msgstr "本日"
+msgstr "今日"
 
 #: src/tray_icon.c:105
 msgid "Preferences"
-msgstr "好み"
+msgstr "環境設定"
 
 #: src/tray_icon.c:114
-#, fuzzy
 msgid "About Xfcalendar"
-msgstr "XFCalenderについて"
+msgstr "Xfcalendar について"
 
 #: xfcalendar.desktop.in.h:1
-#, fuzzy
 msgid "Calendar"
-msgstr "XFCalenderについて"
+msgstr "カレンダー"
 
 #: xfcalendar.desktop.in.h:2
-#, fuzzy
 msgid "Desktop calendar"
-msgstr "XFCalenderについて"
+msgstr "デスクトップカレンダー"
 
 #: xfcalendar.desktop.in.h:3
-#, fuzzy
 msgid "Xfce Calendar"
-msgstr "XFCalenderについて"
+msgstr "Xfce カレンダー"
 
-#: plugin/xfce-xfcalendar-settings.desktop.in.h:1
-#, fuzzy
-msgid "Calendar Settings"
-msgstr "設定"
+#: xfcalendar.glade.h:1
+msgid "About..."
+msgstr "このプログラムについて..."
 
-#: plugin/xfce-xfcalendar-settings.desktop.in.h:2
-msgid "Settings for the Xfce 4 Calendar Application"
+#: xfcalendar.glade.h:3
+msgid "Clear"
+msgstr "カレンダー"
+
+#: xfcalendar.glade.h:4
+msgid "Close"
+msgstr "閉じる"
+
+#: xfcalendar.glade.h:5
+msgid "Save"
+msgstr "保存"
+
+#: xfcalendar.glade.h:7
+msgid "XFCalendar"
+msgstr "XFCalender"
+
+#: xfcalendar.glade.h:8
+msgid ""
+"XFCalendar\n"
+"v. 0.1.1\n"
+"\n"
+"Manage your time with XFce 4\n"
+"(c) 2003 Mickaël Graf\n"
+"\n"
+"This software is Released under the \n"
+"General Public Licence.\n"
+"\n"
+"XFce 4 is (c) Olivier Fourdan"
 msgstr ""
+"XFCalender\n"
+"v. 0.1.1\n"
+"\n"
+"Xfce 4 であなたの予定を管理します\n"
+"(c) 2003 Mickaël Graf\n"
+"\n"
+"このソフトウェアは GPL の下で\n"
+"配布されています。\n"
+"\n"
+"Xfce 4 (C) Olivier Fourdan"
 
-#: plugin/xfce-xfcalendar-settings.desktop.in.h:3
-msgid "Xfce 4 Calendar Settings"
-msgstr ""
+#: xfcalendar.glade.h:23
+msgid "btClose"
+msgstr "btClose"
 
-#~ msgid "Clear"
-#~ msgstr "消去"
-
-#~ msgid "Week starts with..."
-#~ msgstr "週の開始..."
-
-#~ msgid "Sunday"
-#~ msgstr "日曜日"
-
-#~ msgid "Monday"
-#~ msgstr "月曜日"
-
-#~ msgid ""
-#~ "XFCalendar\n"
-#~ "v. 0.1.4\n"
-#~ "\n"
-#~ "Manage your time with XFce4\n"
-#~ "\n"
-#~ "This software is released under\n"
-#~ "the General Public Licence.\n"
-#~ "\n"
-#~ "(c) 2003 Mickael Graf\n"
-#~ "\n"
-#~ "Contributors:\n"
-#~ "  - Mickael Graf\n"
-#~ "  - Benedikt Meurer\n"
-#~ "  - Edscott Wilson Garcia\n"
-#~ "\n"
-#~ "XFce4 is (c) Olivier Fourdan"
-#~ msgstr ""
-#~ "XFCalendar\n"
-#~ "v. 0.1.4\n"
-#~ "\n"
-#~ "XFce4であなたの時間を管理します\n"
-#~ "\n"
-#~ "このソフトウェアは、\n"
-#~ "General Public Licence の元に\n"
-#~ "リリースされました。\n"
-#~ "\n"
-#~ "(c) 2003 Mickael Graf\n"
-#~ "\n"
-#~ "Contributors:\n"
-#~ "  - Mickael Graf\n"
-#~ "  - Benedikt Meurer\n"
-#~ "  - Edscott Wilson Garcia\n"
-#~ "\n"
-#~ "XFce4 is (c) Olivier Fourdan"
+#: xfcalendar.glade.h:24
+msgid "btSave"
+msgstr "btSave"
