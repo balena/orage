@@ -28,6 +28,8 @@ typedef struct
     alarmTimeType,
     availability;
 
+  gboolean allDay;
+
   gchar *note;
   gchar *uid;
 
@@ -71,6 +73,15 @@ typedef struct
   GtkWidget *appAlarm_fixed_1;
   GtkWidget *appAlarmTimeType_combobox;
   GtkWidget *appAlarm_fixed_2;
+  GtkWidget *appAllDay_checkbutton;
+    GtkObject *appStartYear_spinbutton_adj;
+    GtkWidget *appStartYear_spinbutton;
+    GtkWidget *appStartSlash1_label;
+    GtkObject *appStartMonth_spinbutton_adj;
+    GtkWidget *appStartMonth_spinbutton;
+    GtkWidget *appStartSlash2_label;
+    GtkObject *appStartDay_spinbutton_adj;
+    GtkWidget *appStartDay_spinbutton;
   GtkWidget *appStartTime_hbox;
   GtkObject *appStartHour_spinbutton_adj;
   GtkWidget *appStartHour_spinbutton;
@@ -78,6 +89,14 @@ typedef struct
   GtkObject *appStartMinutes_spinbutton_adj;
   GtkWidget *appStartMinutes_spinbutton;
   GtkWidget *appStartTime_fixed;
+    GtkObject *appEndYear_spinbutton_adj;
+    GtkWidget *appEndYear_spinbutton;
+    GtkWidget *appEndSlash1_label;
+    GtkObject *appEndMonth_spinbutton_adj;
+    GtkWidget *appEndMonth_spinbutton;
+    GtkWidget *appEndSlash2_label;
+    GtkObject *appEndDay_spinbutton_adj;
+    GtkWidget *appEndDay_spinbutton;
   GtkWidget *appEndTime_hbox;
   GtkObject *appEndHour_spinbutton_adj;
   GtkWidget *appEndHour_spinbutton;
