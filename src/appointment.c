@@ -56,24 +56,12 @@ on_appClose_clicked_cb(GtkButton *button, gpointer user_data)
 
   appt_type *appt = g_new(appt_type, 1); 
 
-  const gchar *Title_text,
-    *Location_text;
-
   gint StartHour_value,
     StartMinutes_value,
     EndHour_value,
-    EndMinutes_value,
-    Alarm_value,
-    AlarmTimeType_value,
-    Availability_value;
+    EndMinutes_value;
 
   G_CONST_RETURN gchar *winTitle;
-
-  /*
-  gchar *note,
-    *starttime,
-    *endtime;
-    */
 
   gchar *Note_value;
 
@@ -84,11 +72,11 @@ on_appClose_clicked_cb(GtkButton *button, gpointer user_data)
 
   winTitle = gtk_window_get_title(GTK_WINDOW(apptw->appWindow));
 
-  Title_text = gtk_entry_get_text((GtkEntry *)apptw->appTitle_entry);
-  g_warning("Title: %s\n", Title_text);
+  appt->title = (gchar *) gtk_entry_get_text((GtkEntry *)apptw->appTitle_entry);
+  g_warning("Title: %s\n", appt->title);
 
-  Location_text = gtk_entry_get_text((GtkEntry *)apptw->appLocation_entry);
-  g_warning("Location: %s\n", Location_text);
+  appt->location = (gchar *) gtk_entry_get_text((GtkEntry *)apptw->appLocation_entry);
+  g_warning("Location: %s\n", appt->location);
 
   StartHour_value = gtk_spin_button_get_value_as_int((GtkSpinButton *)apptw->appStartHour_spinbutton);
   StartMinutes_value = gtk_spin_button_get_value_as_int((GtkSpinButton *)apptw->appStartMinutes_spinbutton);
@@ -104,14 +92,14 @@ on_appClose_clicked_cb(GtkButton *button, gpointer user_data)
         , EndHour_value, EndMinutes_value, 0);
   g_warning("End: %s\n", appt->endtime);
 
-  Alarm_value = gtk_spin_button_get_value_as_int((GtkSpinButton *)apptw->appAlarm_spinbutton);
-  g_warning("Alarm: %d\n", Alarm_value);
+  appt->alarm = (gint *) gtk_spin_button_get_value_as_int((GtkSpinButton *)apptw->appAlarm_spinbutton);
+  g_warning("Alarm: %d\n", appt->alarm);
 
-  AlarmTimeType_value = gtk_combo_box_get_active((GtkComboBox *)apptw->appAlarmTimeType_combobox);
-  g_warning("Time Type: %d\n", AlarmTimeType_value);
+  appt->alarmTimeType = (gint *) gtk_combo_box_get_active((GtkComboBox *)apptw->appAlarmTimeType_combobox);
+  g_warning("Time Type: %d\n", appt->alarmTimeType);
 
-  Availability_value = gtk_combo_box_get_active((GtkComboBox *)apptw->appAvailability_cb);
-  g_warning("Availability: %d\n", Availability_value);
+  appt->availability = (gint *) gtk_combo_box_get_active((GtkComboBox *)apptw->appAvailability_cb);
+  g_warning("Availability: %d\n", appt->availability);
 
   gtk_text_buffer_get_bounds(gtk_text_view_get_buffer((GtkTextView *)apptw->appNote_textview), 
 			     &start, 
