@@ -782,38 +782,20 @@ notify_cb(const char *name, const char *channel_name, McsAction action, McsSetti
 		if(!strcmp(name, "XFCalendar/TaskBar"))
 		{
 		  showtaskbar = setting->data.v_int ? TRUE: FALSE;
-		  if(showtaskbar)
-		    {
-		      gtk_window_set_skip_taskbar_hint((GtkWindow*)mainWindow, FALSE);
-#ifdef debug
-		      g_message("Show in taskbar");
-#endif
-		    }
-		  else
-		    {
-		      gtk_window_set_skip_taskbar_hint((GtkWindow*)mainWindow, TRUE);
-#ifdef debug
-		      g_message("Don't show in taskbar");
-#endif
-		    }
+		  /* Reminder: if we want to show the calendar in the taskbar (i.e. showtaskbar is TRUE)
+		   * then gtk_window_set_skip_taskbar_hint must get a FALSE value, and if we don't want
+		   * to be seen in the taskbar, then the function must eat a TRUE.
+		   */
+		  gtk_window_set_skip_taskbar_hint((GtkWindow*)mainWindow, !showtaskbar);
 		}
 		if(!strcmp(name, "XFCalendar/Pager"))
 		{
 		  showpager = setting->data.v_int ? TRUE: FALSE;
-		  if(showpager)
-		    {
-		      gtk_window_set_skip_pager_hint((GtkWindow*)mainWindow, FALSE);
-#ifdef debug
-		      g_message("Show in pager");
-#endif
-		    }
-		  else
-		    {
-		      gtk_window_set_skip_pager_hint((GtkWindow*)mainWindow, TRUE);
-#ifdef debug
-		      g_message("Don't show in pager");
-#endif
-		    }
+		  /* Reminder: if we want to show the calendar in the pager (i.e. showpager is TRUE)
+		   * then gtk_window_set_skip_pager_hint must get a FALSE value, and if we don't want
+		   * to be seen in the pager, then the function must eat a TRUE.
+		   */
+		  gtk_window_set_skip_pager_hint((GtkWindow*)mainWindow, !showpager);
 		}
             }
             break;
