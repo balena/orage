@@ -123,10 +123,10 @@ create_XFCalendar (void)
 
   g_signal_connect ((gpointer) XFCalendar, "delete_event",
                     G_CALLBACK (on_XFCalendar_delete_event),
-                    NULL);
+                    GTK_WIDGET(XFCalendar));
   g_signal_connect ((gpointer) quit1, "activate",
                     G_CALLBACK (on_quit1_activate),
-                    NULL);
+                    GTK_WIDGET(XFCalendar));
   g_signal_connect ((gpointer) about1, "activate",
                     G_CALLBACK (on_about1_activate),
                     NULL);

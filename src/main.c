@@ -118,9 +118,14 @@ static void
 toggle_visible_cb(GtkWidget *window)
 {
 	if (GTK_WIDGET_VISIBLE(window))
+        {
 		gtk_widget_hide(window);
-	else
-		gtk_widget_show(window);
+	}
+        else
+	{
+        	gtk_widget_show(window);
+		gtk_window_stick(GTK_WINDOW(mainWindow));
+        }
 }
 
 /*
@@ -138,6 +143,7 @@ selection_filter(GdkXEvent *xevent, GdkEvent *event, gpointer data)
 					"_XFCE_CALENDAR_RAISE", False)) {
 			g_print("RAISING...\n");
 			gtk_widget_show(mainWindow);
+			gtk_window_stick(GTK_WINDOW(mainWindow));
 			gdk_window_raise(mainWindow->window);
 			gdk_window_focus(mainWindow->window, GDK_CURRENT_TIME);
 			return(GDK_FILTER_REMOVE);

@@ -273,7 +273,9 @@ int keep_tidy(void){
 void
 on_quit1_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
-  gtk_main_quit();
+  GtkWidget *window = GTK_WIDGET(user_data);
+  
+  gtk_widget_hide(window);
 }
 
 void 
@@ -307,8 +309,10 @@ gboolean
 on_XFCalendar_delete_event(GtkWidget *widget, GdkEvent *event,
                            gpointer user_data)
 {
-  gtk_main_quit();
-  return(FALSE);
+  GtkWidget *window = GTK_WIDGET(user_data);
+  
+  gtk_widget_hide(window);
+  return(TRUE);
 }
 
 void
