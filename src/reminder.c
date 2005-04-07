@@ -181,7 +181,7 @@ xfcalendar_alarm_clock(gpointer user_data)
          alarm_l != NULL;
          alarm_l = g_list_next(alarm_l)) {
         cur_alarm = (alarm_struct *)alarm_l->data;
-        if (ical_alarm_passed(cur_alarm->alarm_time->str)) {
+        if (xfical_alarm_passed(cur_alarm->alarm_time->str)) {
             if (strcmp(cur_alarm->action->str, "DISPLAY") == 0)
                 create_wReminder(cur_alarm->title->str
                                 ,cur_alarm->description->str);

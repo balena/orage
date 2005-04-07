@@ -483,6 +483,8 @@ appt_type *xfical_app_get(char *ical_uid)
                                 case 48 * 3600:
                                     app.alarmtime = 10;
                                     break;
+                                default:
+                                    app.alarmtime = 1;
                             }
                         }
                         else
@@ -491,6 +493,10 @@ appt_type *xfical_app_get(char *ical_uid)
                     else if (strcmp(text, "ATTACH") == 0) {
                         attach = icalproperty_get_attach(p);
                         app.sound = (char *)icalattach_get_url(attach);
+                    }
+                    else if (app.note == NULL
+                            && strcmp(text, "DESCRIPTION") == 0) {
+                        app.note = (char *) icalproperty_get_description(p);
                     }
                 }
             }
@@ -762,7 +768,7 @@ void xfical_alarm_build_list(gboolean first_list_today)
     struct icaltriggertype trg;
     char *s, *suid, *ssummary, *sdescription, *ssound;
     gboolean trg_found;
-    icalattach *attach=NULL;
+    icalattach *attach = NULL;
     struct icalrecurrencetype rrule;
     icalrecur_iterator* ri;
 
@@ -807,7 +813,7 @@ void xfical_alarm_build_list(gboolean first_list_today)
         for (ca = icalcomponent_get_first_component(c, ICAL_VALARM_COMPONENT);
              ca != 0;
              ca = icalcomponent_get_next_component(c, ICAL_VALARM_COMPONENT)) {
-            trg_found=FALSE;
+            trg_found = FALSE;
             sdescription = NULL;
             ssound = NULL;
             for (p = icalcomponent_get_first_property(ca, ICAL_ANY_PROPERTY);
@@ -858,7 +864,7 @@ void xfical_alarm_build_list(gboolean first_list_today)
     xfical_file_close();
 }
 
-gboolean ical_alarm_passed(char *alarm_stime)
+gboolean xfical_alarm_passed(char *alarm_stime)
 {
     struct icaltimetype alarm_time, cur_time;
 

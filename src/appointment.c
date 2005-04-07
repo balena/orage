@@ -314,6 +314,7 @@ on_appCopy_clicked_cb(GtkButton *button, gpointer user_data)
     appt_win *app;
     appt_type *appt = xfical_app_alloc();
     gchar *new_uid;
+    gint x, y;
 
     fill_appt(appt, apptw);
     if (xfical_file_open()){
@@ -326,6 +327,8 @@ on_appCopy_clicked_cb(GtkButton *button, gpointer user_data)
         recreate_wAppointment(apptw->wAppointment);
     }
     app = create_appt_win("UPDATE", new_uid, apptw->wAppointment);
+    gtk_window_get_position(GTK_WINDOW(apptw->appWindow), &x, &y);
+    gtk_window_move(GTK_WINDOW(app->appWindow), x+20, y+20);
     gtk_widget_show(app->appWindow);
 }
 
