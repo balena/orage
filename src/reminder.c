@@ -42,17 +42,49 @@
 
 extern GList *alarm_list;
 
-void
-create_soundReminder(char *sound)
+gboolean
+xfcalendar_sound_alarm(gpointer data)
 {
     GError *error;
     gboolean status;
-    char play_cmd[1000]="play ";
+    xfce_audio_alarm_type *audio_alarm = (xfce_audio_alarm_type *) data;
 
-    strcat(play_cmd, sound);
-    status=xfce_exec(play_cmd, FALSE, FALSE, &error);
+    g_print("****** xfcalendar_sound_alarm start (%d)\n", audio_alarm->cnt);
+    status=xfce_exec(audio_alarm->play_cmd, FALSE, FALSE, &error);
     if (!status)
         g_warning("play failed\n");
+
+    /* note: -1 loops forever */
+    status = TRUE;
+    if (audio_alarm->cnt > 0)
+        audio_alarm->cnt--;
+    else if (audio_alarm->cnt == 0) {
+        g_free(audio_alarm->play_cmd);
+        g_free(data);
+        return(FALSE);
+    }
+    g_print("****** xfcalendar_sound_alarm start (%d)\n", audio_alarm->cnt);
+        
+    return(status);
+}
+
+xfce_audio_alarm_type *
+create_soundReminder(alarm_struct *alarm)
+{
+    xfce_audio_alarm_type *audio_alarm;
+
+    g_print("****** create_soundReminder start (%d)\n", alarm->repeat_delay);
+    audio_alarm =  g_new(xfce_audio_alarm_type, 1);
+    audio_alarm->play_cmd = g_strconcat("play ", alarm->sound->str, NULL);
+    audio_alarm->cnt = alarm->repeat_cnt;
+    audio_alarm->delay = alarm->repeat_delay;
+
+    g_timeout_add(alarm->repeat_delay*1000
+        , (GtkFunction) xfcalendar_sound_alarm
+        , (gpointer) audio_alarm);
+
+    g_print("****** create_soundReminder end (%d)\n", alarm->repeat_delay);
+    return(audio_alarm);
 }
 
 void
@@ -63,6 +95,13 @@ on_btOkReminder_clicked(GtkButton *button, gpointer user_data)
 }
 
 void
+on_btStopNoiseReminder_clicked(GtkButton *button, gpointer user_data)
+{
+  xfce_audio_alarm_type *audio_alarm = (xfce_audio_alarm_type *)user_data;
+  audio_alarm->cnt = 0;
+}
+
+void
 on_btOpenReminder_clicked(GtkButton *button, gpointer user_data)
 {
   GtkWidget *wReminder = (GtkWidget *)user_data;
@@ -70,17 +109,19 @@ on_btOpenReminder_clicked(GtkButton *button, gpointer user_data)
 }
 
 void
-create_wReminder(char *title, char *text)
+create_wReminder(alarm_struct *alarm)
 {
   GtkWidget *wReminder;
   GtkWidget *vbReminder;
   GtkWidget *lbReminder;
   GtkWidget *daaReminder;
   GtkWidget *btOpenReminder;
+  GtkWidget *btStopNoiseReminder;
   GtkWidget *btOkReminder;
   GtkWidget *swReminder;
   GtkWidget *hdReminder;
   char heading[200];
+  xfce_audio_alarm_type *audio_alarm;
 
   wReminder = gtk_dialog_new ();
   gtk_widget_set_size_request (wReminder, 300, 250);
@@ -93,7 +134,7 @@ create_wReminder(char *title, char *text)
   vbReminder = GTK_DIALOG (wReminder)->vbox;
   gtk_widget_show (vbReminder);
 
-  strncat(heading, title, 50);
+  strncat(heading, alarm->title->str, 50);
   hdReminder = xfce_create_header(NULL, heading);
   gtk_widget_show(hdReminder);
   gtk_box_pack_start (GTK_BOX (vbReminder), hdReminder, FALSE, TRUE, 0);
@@ -104,7 +145,7 @@ create_wReminder(char *title, char *text)
   gtk_box_pack_start (GTK_BOX (vbReminder), swReminder, TRUE, TRUE, 5);
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW(swReminder), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
 
-  lbReminder = gtk_label_new (_(text));
+  lbReminder = gtk_label_new (_(alarm->description->str));
   gtk_label_set_line_wrap(GTK_LABEL(lbReminder), TRUE);
   gtk_widget_show (lbReminder);
   gtk_scrolled_window_add_with_viewport(GTK_SCROLLED_WINDOW(swReminder), lbReminder);
@@ -114,11 +155,9 @@ create_wReminder(char *title, char *text)
   gtk_widget_show (daaReminder);
   gtk_button_box_set_layout (GTK_BUTTON_BOX (daaReminder), GTK_BUTTONBOX_END);
 
-/*
   btOpenReminder = gtk_button_new_from_stock ("gtk-open");
   gtk_widget_show (btOpenReminder);
   gtk_dialog_add_action_widget (GTK_DIALOG (wReminder), btOpenReminder, GTK_RESPONSE_OK);
-*/
 
   btOkReminder = gtk_button_new_from_stock ("gtk-close");
   gtk_widget_show (btOkReminder);
@@ -132,6 +171,19 @@ create_wReminder(char *title, char *text)
   g_signal_connect ((gpointer) btOkReminder, "clicked",
 		    G_CALLBACK (on_btOkReminder_clicked),
 		    wReminder);
+
+  if (alarm->audio) {
+    audio_alarm = create_soundReminder(alarm);
+    if (alarm->repeat_cnt != 0) {
+        btStopNoiseReminder = gtk_button_new_from_stock ("gtk-no");
+        gtk_widget_show (btStopNoiseReminder);
+        gtk_dialog_add_action_widget (GTK_DIALOG (wReminder), btStopNoiseReminder, GTK_RESPONSE_OK);
+
+        g_signal_connect ((gpointer) btStopNoiseReminder, "clicked",
+		    G_CALLBACK (on_btStopNoiseReminder_clicked),
+		    audio_alarm);
+    }
+  }
 
   gtk_widget_show (wReminder);
 }
@@ -149,6 +201,7 @@ xfcalendar_alarm_clock(gpointer user_data)
     alarm_struct *cur_alarm;
     gboolean alarm_raised=FALSE;
                                                                                 
+    g_print("*** xfcalendar_alarm_clock start\n");
     tt=time(NULL);
     t=localtime(&tt);
   /* See if the day just changed and the former current date was selected */
@@ -181,21 +234,17 @@ xfcalendar_alarm_clock(gpointer user_data)
          alarm_l != NULL;
          alarm_l = g_list_next(alarm_l)) {
         cur_alarm = (alarm_struct *)alarm_l->data;
+    g_print("*** xfcalendar_alarm_clock alarm (%s)\n", cur_alarm->uid->str);
         if (xfical_alarm_passed(cur_alarm->alarm_time->str)) {
-            if (strcmp(cur_alarm->action->str, "DISPLAY") == 0)
-                create_wReminder(cur_alarm->title->str
-                                ,cur_alarm->description->str);
-            else if (strcmp(cur_alarm->action->str, "AUDIO") == 0)
-                create_soundReminder(cur_alarm->sound->str);
-            else
-                g_warning("Unsupported VALARM ACTION: %s in: %s\n"
-                        , cur_alarm->action->str, cur_alarm->uid->str);
+    g_print("*** xfcalendar_alarm_clock alarm active(%s)\n", cur_alarm->uid->str);
+            create_wReminder(cur_alarm);
             alarm_raised = TRUE;
         }
     }
     if (alarm_raised) /* at least one alarm processed, need new list */
         xfical_alarm_build_list(FALSE); 
 
+    g_print("*** xfcalendar_alarm_clock end\n");
     return TRUE;
 }
 
