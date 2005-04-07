@@ -308,23 +308,25 @@ on_appRemove_clicked_cb(GtkButton *button, gpointer user_data)
 }
 
 void
-on_appAdd_clicked_cb(GtkButton *button, gpointer user_data)
+on_appCopy_clicked_cb(GtkButton *button, gpointer user_data)
 {
     appt_win *apptw = (appt_win *)user_data;
+    appt_win *app;
     appt_type *appt = xfical_app_alloc();
     gchar *new_uid;
 
     fill_appt(appt, apptw);
     if (xfical_file_open()){
-        g_free(apptw->xf_uid);
-        apptw->xf_uid = g_strdup(xfical_app_add(appt));
-        g_warning("Added ical uid: %s \n", apptw->xf_uid);
+        new_uid = g_strdup(xfical_app_add(appt));
+        g_warning("Added ical uid: %s \n", new_uid);
         xfical_file_close();
     }
 
     if (apptw->wAppointment != NULL) {
         recreate_wAppointment(apptw->wAppointment);
     }
+    app = create_appt_win("UPDATE", new_uid, apptw->wAppointment);
+    gtk_widget_show(app->appWindow);
 }
 
 void ical_to_title(char *ical, char *title)
@@ -358,6 +360,7 @@ void fill_appt_window(appt_win *appt_w, char *action, char *par)
         g_sprintf(appt_data->starttime,"%sT%02d%02d00"
                     , par, t->tm_hour, t->tm_min);
         strcpy(appt_data->endtime, appt_data->starttime);
+        g_warning("Building new ical uid: %s \n", appt_data->uid);
     }
     else if (strcmp(action, "UPDATE") == 0) {
         appt_w->add_appointment = FALSE;
@@ -370,6 +373,7 @@ void fill_appt_window(appt_win *appt_w, char *action, char *par)
             g_warning("appointment not found\n");
             return;
         }
+        g_warning("Editing ical uid: %s \n", appt_data->uid);
     }
     else
         g_error("unknown parameter\n");
@@ -504,7 +508,7 @@ appt_win *create_appt_win(char *action, char *par, GtkWidget *wAppointment)
     gtk_widget_show (appt->appHeader);
     gtk_box_pack_start (GTK_BOX (appt->appVBox1), appt->appHeader, TRUE, TRUE, 0);
 
-  appt->appTable = gtk_table_new (13, 2, FALSE); /* Juha 20050404: 12 rows now, including combobox for choosing recurrancy type */
+  appt->appTable = gtk_table_new (13, 2, FALSE); 
   gtk_widget_show (appt->appTable);
   gtk_box_pack_start (GTK_BOX (appt->appVBox1), appt->appTable, TRUE, TRUE, 0);
   gtk_container_set_border_width (GTK_CONTAINER (appt->appTable), 10);
@@ -805,7 +809,7 @@ appt_win *create_appt_win(char *action, char *par, GtkWidget *wAppointment)
   gtk_box_pack_start (GTK_BOX (appt->appHBox1), appt->appRemove, FALSE, FALSE, 0);
   gtk_container_set_border_width (GTK_CONTAINER (appt->appRemove), 10);
 
-  appt->appAdd = gtk_button_new_from_stock ("gtk-add");
+  appt->appAdd = gtk_button_new_from_stock ("gtk-copy");
   gtk_widget_show (appt->appAdd);
   gtk_box_pack_start (GTK_BOX (appt->appHBox1), appt->appAdd, FALSE, FALSE, 0);
   gtk_container_set_border_width (GTK_CONTAINER (appt->appAdd), 10);
@@ -839,7 +843,7 @@ appt_win *create_appt_win(char *action, char *par, GtkWidget *wAppointment)
             appt);
 
     g_signal_connect ((gpointer) appt->appAdd, "clicked",
-            G_CALLBACK (on_appAdd_clicked_cb),
+            G_CALLBACK (on_appCopy_clicked_cb),
             appt);
 
     /* Take care of the title entry to build the appointment window title 
