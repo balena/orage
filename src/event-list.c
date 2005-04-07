@@ -78,7 +78,7 @@ enum{
 
 enum {
     COL_TIME = 0
-   ,COL_ALARM
+   ,COL_FLAGS
    ,COL_HEAD
    ,COL_UID
    ,NUM_COLS
@@ -405,16 +405,34 @@ void addAppointment(GtkListStore *list1, appt_type *app)
 {
     GtkTreeIter     iter1;
     gchar           *title = NULL;
-    gchar           alarm[11]; 
+    gchar           flags[4]; 
     gchar           stime[12]; /* hh:mm-hh:mm */
     gint            len = 50;
 
     strcpy(stime, format_time(app->starttime, app->endtime));
 
     if (app->alarmtime != 0)
-        sprintf(alarm, _("SET"));
+        if (app->sound != NULL)
+            flags[0] = 'S';
+        else
+            flags[0] = 'A';
     else
-        sprintf(alarm, _("not set"));
+        flags[0] = 'n';
+    if (app->freq == XFICAL_FREQ_NONE)
+        flags[1] = 'n';
+    else if (app->freq == XFICAL_FREQ_DAILY)
+        flags[1] = 'D';
+    else if (app->freq == XFICAL_FREQ_WEEKLY)
+        flags[1] = 'W';
+    else if (app->freq == XFICAL_FREQ_MONTHLY)
+        flags[1] = 'M';
+    else
+        flags[1] = 'n';
+    if (app->availability != 0)
+        flags[2] = 'B';
+    else
+        flags[2] = 'f';
+    flags[3] = '\0';
 
     if (app->title != NULL)
         title = g_strdup(app->title);
@@ -430,7 +448,7 @@ void addAppointment(GtkListStore *list1, appt_type *app)
     gtk_list_store_append(list1, &iter1);
     gtk_list_store_set(list1, &iter1
                 , COL_TIME,  stime
-                , COL_ALARM, alarm
+                , COL_FLAGS, flags
                 , COL_HEAD,  title
                 , COL_UID,   app->uid
                 , -1);
@@ -459,8 +477,8 @@ void addAppointment_init(GtkWidget *view, GtkWidget *wAppointment
     gtk_tree_view_append_column(GTK_TREE_VIEW(view), col);
 
     rend = gtk_cell_renderer_text_new();
-    col = gtk_tree_view_column_new_with_attributes( _("Alarm"), rend
-                , "text", COL_ALARM
+    col = gtk_tree_view_column_new_with_attributes( _("Flags"), rend
+                , "text", COL_FLAGS
                 , NULL);
     gtk_tree_view_append_column(GTK_TREE_VIEW(view), col);
 
