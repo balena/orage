@@ -51,6 +51,7 @@
 
 #include "appointment.h"
 #include "reminder.h"
+#include "mainbox.h"
 #include "ical-code.h"
 
 #define MAX_APP_LENGTH 4096
@@ -62,7 +63,7 @@
 #define XFICAL_STR_EXISTS(str) ((str != NULL) && (str[0] != 0))
 
 static icalcomponent *ical;
-static icalset* fical;
+static icalset* fical = NULL;
 static gboolean fical_modified=TRUE;
 
 extern GList *alarm_list;
@@ -73,6 +74,8 @@ gboolean xfical_file_open(void)
     icalcomponent *iter;
     gint cnt=0;
 
+    if (fical != NULL)
+        g_warning("ical-code:xfical_file_open: fical already open\n");
 	ficalpath = xfce_resource_save_location(XFCE_RESOURCE_CONFIG,
                         RCDIR G_DIR_SEPARATOR_S APPOINTMENT_FILE, FALSE);
     if ((fical = icalset_new_file(ficalpath)) == NULL){
@@ -114,9 +117,11 @@ gboolean xfical_file_open(void)
 void xfical_file_close(void)
 {
     icalset_free(fical);
+    fical = NULL;
     if (fical_modified) {
         fical_modified = FALSE;
-        build_ical_alarm_list(FALSE);
+        xfical_alarm_build_list(FALSE);
+        xfcalendar_mark_appointments();
     }
 }
 
@@ -628,6 +633,8 @@ void xfical_mark_calendar(GtkCalendar *gtkcal, int year, int month)
     icalrecur_iterator* ri;
     icalproperty *p = NULL;
 
+    gtk_calendar_freeze(gtkcal);
+    gtk_calendar_clear_marks(gtkcal);
     for (c = icalcomponent_get_first_component(ical, ICAL_VEVENT_COMPONENT);
          c != 0; 
          c = icalcomponent_get_next_component(ical, ICAL_VEVENT_COMPONENT)) {
@@ -650,6 +657,7 @@ void xfical_mark_calendar(GtkCalendar *gtkcal, int year, int month)
             }
         } 
     } 
+    gtk_calendar_thaw(gtkcal);
 }
 
  /* remove all EVENTs starting this day
@@ -676,15 +684,17 @@ void rmday_ical_app(char *a_day)
     icalset_mark(fical);
 }
 
-void free_alarm(gpointer galarm, gpointer dummy)
+void alarm_free(gpointer galarm, gpointer dummy)
 {
     alarm_struct *alarm;
 
     alarm = (alarm_struct *)galarm;
 
     if (strcmp(alarm->action->str, "DISPLAY") == 0) {
-        g_string_free(alarm->title, TRUE);
-        g_string_free(alarm->description, TRUE);
+        if (alarm->title != NULL)
+            g_string_free(alarm->title, TRUE);
+        if (alarm->description != NULL)
+            g_string_free(alarm->description, TRUE);
     }
     else if (strcmp(alarm->action->str, "AUDIO") == 0) {
         g_string_free(alarm->sound, TRUE);
@@ -712,23 +722,56 @@ gint alarm_order(gconstpointer a, gconstpointer b)
     return(icaltime_compare(t1, t2));
 }
 
-void build_ical_alarm_list(gboolean first_list_today)
+void alarm_add(icalproperty_status action
+             , char *uid, char *title, char *description, char *sound
+             , struct icaltimetype alarm_time, struct icaltimetype event_time)
 {
-    struct icaltimetype event_dtstart, alarm_time, cur_time;
+    alarm_struct *new_alarm;
+                                                                                
+    new_alarm = g_new(alarm_struct, 1);
+    if (action == ICAL_ACTION_DISPLAY) {
+        new_alarm->action = g_string_new("DISPLAY");
+        new_alarm->title = g_string_new(title);
+        new_alarm->description = g_string_new(description);
+        new_alarm->sound = NULL;
+    }
+    else if (action == ICAL_ACTION_AUDIO) {
+        new_alarm->action = g_string_new("AUDIO");
+        new_alarm->title = NULL;
+        new_alarm->description = NULL;
+        new_alarm->sound = g_string_new(sound);
+    }
+    else {
+        g_warning("Unsupported ALARM action type (%d)\n",  new_alarm->action);
+        return;
+    }
+    new_alarm->uid = g_string_new(uid);
+    new_alarm->alarm_time = g_string_new(
+        icaltime_as_ical_string(alarm_time));
+    new_alarm->event_time = g_string_new(
+        icaltime_as_ical_string(event_time));
+    alarm_list = g_list_append(alarm_list, new_alarm);
+}
+
+void xfical_alarm_build_list(gboolean first_list_today)
+{
+    struct icaltimetype event_dtstart, alarm_time, cur_time, next_date;
     icalcomponent *c, *ca;
     icalproperty *p;
     icalproperty_status stat=ICAL_ACTION_DISPLAY;
     struct icaltriggertype trg;
-    char *s, *suid, *ssummary, *sdescription;
+    char *s, *suid, *ssummary, *sdescription, *ssound;
     gboolean trg_found;
-    alarm_struct *new_alarm;
     icalattach *attach=NULL;
+    struct icalrecurrencetype rrule;
+    icalrecur_iterator* ri;
 
     cur_time = ical_get_current_local_time();
-    g_list_foreach(alarm_list, free_alarm, NULL);
+    g_list_foreach(alarm_list, alarm_free, NULL);
     g_list_free(alarm_list);
     alarm_list = NULL;
     xfical_file_open();
+
     for (c = icalcomponent_get_first_component(ical, ICAL_VEVENT_COMPONENT);
          c != 0;
          c = icalcomponent_get_next_component(ical, ICAL_VEVENT_COMPONENT)){
@@ -736,23 +779,37 @@ void build_ical_alarm_list(gboolean first_list_today)
         ssummary = (char*)icalcomponent_get_summary(c);
         sdescription = (char*)icalcomponent_get_description(c);
         event_dtstart = icalcomponent_get_dtstart(c);
-        if (first_list_today && icaltime_is_date(event_dtstart)
-        && (icaltime_compare_date_only(event_dtstart, cur_time) == 0)) {
-            new_alarm = g_new(alarm_struct, 1);
-            new_alarm->uid = g_string_new(suid);
-            new_alarm->action = g_string_new("DISPLAY");
-            new_alarm->title = g_string_new(ssummary);
-            new_alarm->description = g_string_new(sdescription);
-            new_alarm->alarm_time = g_string_new(
-                icaltime_as_ical_string(event_dtstart));
-            new_alarm->event_time = g_string_new(
-                icaltime_as_ical_string(event_dtstart));
-            alarm_list = g_list_append(alarm_list, new_alarm);
+        if (first_list_today && icaltime_is_date(event_dtstart)) {
+        /* this is special pre 4.3 xfcalendar compatibility alarm:
+           Send alarm window always for date type events. */
+            if (icaltime_compare_date_only(event_dtstart, cur_time) == 0) {
+                alarm_add(ICAL_ACTION_DISPLAY
+                        , suid, ssummary, sdescription, NULL
+                        , event_dtstart, event_dtstart);
+            }
+            else if ((p = icalcomponent_get_first_property(c
+                , ICAL_RRULE_PROPERTY)) != 0) { /* check recurring EVENTs */
+                rrule = icalproperty_get_rrule(p);
+                ri = icalrecur_iterator_new(rrule, event_dtstart);
+                next_date = icaltime_null_time();
+                for (next_date = icalrecur_iterator_next(ri);
+                    (!icaltime_is_null_time(next_date))
+                    && (icaltime_compare_date_only(cur_time, next_date) > 0) ;
+                    next_date = icalrecur_iterator_next(ri)) {
+                }
+                if (icaltime_compare_date_only(next_date, cur_time) == 0) {
+                    alarm_add(ICAL_ACTION_DISPLAY
+                            , suid, ssummary, sdescription,NULL
+                            , next_date, event_dtstart);
+                }
+            }
         }
         for (ca = icalcomponent_get_first_component(c, ICAL_VALARM_COMPONENT);
              ca != 0;
              ca = icalcomponent_get_next_component(c, ICAL_VALARM_COMPONENT)) {
             trg_found=FALSE;
+            sdescription = NULL;
+            ssound = NULL;
             for (p = icalcomponent_get_first_property(ca, ICAL_ANY_PROPERTY);
                  p != 0;
                  p = icalcomponent_get_next_property(ca, ICAL_ANY_PROPERTY)) {
@@ -763,51 +820,37 @@ void build_ical_alarm_list(gboolean first_list_today)
                     sdescription = (char*)icalproperty_get_description(p);
                 else if (strcmp(s, "ATTACH") == 0) {
                     attach = icalproperty_get_attach(p);
+                    ssound = (char *)icalattach_get_url(attach);
                 }
                 else if (strcmp(s, "TRIGGER") == 0) {
                     trg = icalproperty_get_trigger(p);
                     trg_found = TRUE;
                 }
                 else
-                    g_warning("Unknown property in Alarm\n");
- 
+                    g_warning("ical-code: Unknown property (%s) in Alarm\n",s);
             } 
             if (trg_found) {
             /* all data available. let's pack it if alarm is still active */
                 alarm_time = icaltime_add(event_dtstart, trg.duration);
                 if (icaltime_compare(cur_time, alarm_time) <= 0) { /* active */
-                    new_alarm = g_new(alarm_struct, 1);
-                    new_alarm->uid = g_string_new(suid);
-                    if (stat == ICAL_ACTION_DISPLAY) {
-                        new_alarm->action = g_string_new("DISPLAY");
-                        new_alarm->title = g_string_new(ssummary);
-                        new_alarm->description = g_string_new(sdescription);
-                    }
-                    else if (stat == ICAL_ACTION_AUDIO) {
-                        new_alarm->action = g_string_new("AUDIO");
-                        new_alarm->sound = g_string_new(
-                                    /*
-                                    ical has not implemeneted data type attach
-                                    icalattach_get_data(attach));
-                                    */
-                                    icalattach_get_url(attach));
-                    }
-                    /*
-                    else if (stat == ICAL_ACTION_EMAIL) {
-                        new_alarm->action = g_string_new("EMAIL");
-                    }
-                    else if (stat == ICAL_ACTION_PROCEDURE) {
-                        new_alarm->action = g_string_new("PROCEDURE");
-                    }
-                    */
-                    else
-                        g_warning("Not implemented VALARM ACTION %d\n", stat);
-                    new_alarm->alarm_time = g_string_new(
-                        icaltime_as_ical_string(alarm_time));
-                    new_alarm->event_time = g_string_new(
-                        icaltime_as_ical_string(event_dtstart));
-                    alarm_list = g_list_append(alarm_list, new_alarm);
+                    alarm_add(stat, suid, ssummary, sdescription, ssound
+                            , alarm_time, event_dtstart);
                 } /* active alarm */
+                else if ((p = icalcomponent_get_first_property(c
+                    , ICAL_RRULE_PROPERTY)) != 0) { /* check recurring EVENTs */                    rrule = icalproperty_get_rrule(p);
+                    ri = icalrecur_iterator_new(rrule, event_dtstart);
+                    next_date = icaltime_null_time();
+                    for (next_date = icalrecur_iterator_next(ri);
+                        (!icaltime_is_null_time(next_date))
+                        && (icaltime_compare_date_only(cur_time, next_date) > 0) ;
+                        next_date = icalrecur_iterator_next(ri)) {
+                    }
+                    alarm_time = icaltime_add(next_date, trg.duration);
+                    if (icaltime_compare(cur_time, alarm_time) <= 0) {
+                        alarm_add(stat, suid, ssummary, sdescription, ssound
+                            , alarm_time, event_dtstart);
+                    }
+                }
             } /* trg_found */
         }  /* ALARMS */
     }  /* EVENTS */

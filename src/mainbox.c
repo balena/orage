@@ -54,20 +54,19 @@
 #define CHANNEL  "xfcalendar"
 #define RCDIR    "xfce4" G_DIR_SEPARATOR_S "xfcalendar"
 
+extern CalWin *xfcal;
 extern gboolean normalmode;
 extern gint pos_x, pos_y;
 
 gboolean
-xfcalendar_mark_appointments(CalWin *xfcal)
+xfcalendar_mark_appointments()
 {
     guint year, month, day;
 
-    gtk_calendar_get_date(GTK_CALENDAR(xfcal->mCalendar), &year, &month, &day);
-
     if (xfical_file_open()){
-        gtk_calendar_freeze(GTK_CALENDAR(xfcal->mCalendar));
+        gtk_calendar_get_date(GTK_CALENDAR(xfcal->mCalendar), &year, &month
+                            , &day);
         xfical_mark_calendar(GTK_CALENDAR(xfcal->mCalendar), year, month+1); 
-        gtk_calendar_thaw(GTK_CALENDAR(xfcal->mCalendar));
         xfical_file_close();
     }
 
@@ -191,10 +190,11 @@ void
 mCalendar_month_changed_cb(GtkCalendar *calendar,
 			    gpointer user_data)
 {
+  /*
   CalWin *xfcal = (CalWin *)user_data;
+  */
 
-  gtk_calendar_clear_marks(GTK_CALENDAR(xfcal->mCalendar));
-  xfcalendar_mark_appointments(xfcal);
+  xfcalendar_mark_appointments();
 }
 
 void 
@@ -248,7 +248,7 @@ xfcalendar_toggle_visible ()
   gdk_event_send_client_message((GdkEvent *)&gev, (GdkNativeWindow)xwindow);
 }
 
-void create_mainWin(CalWin *xfcal)
+void create_mainWin()
 {
   GdkPixbuf *xfcalendar_logo = xfce_themed_icon_load ("xfcalendar", 48);
 
@@ -400,6 +400,6 @@ void create_mainWin(CalWin *xfcal)
       gtk_window_move (GTK_WINDOW (xfcal->mWindow), pos_x, pos_y);
   gtk_window_stick (GTK_WINDOW (xfcal->mWindow));
 
-  xfcalendar_mark_appointments (xfcal);
+  xfcalendar_mark_appointments();
 
 }

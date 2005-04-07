@@ -41,6 +41,6 @@ void xfical_mark_calendar(GtkCalendar *gtkcal, int year, int month);
 
 void rmday_ical_app(char *a_day);
 
-void build_ical_alarm_list(gboolean first_list_today);
+void xfical_alarm_build_list(gboolean first_list_today);
 
-gboolean ical_alarm_passed(char *alarm_stime);
+gboolean xfical_alarm_passed(char *alarm_stime);

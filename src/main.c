@@ -420,7 +420,7 @@ main(int argc, char *argv[])
   /*
    * Create the Xfcalendar.
    */
-  create_mainWin(xfcal);
+  create_mainWin();
 
   /*
    * Create the tray icon and its popup menu
@@ -443,7 +443,7 @@ main(int argc, char *argv[])
              NULL);
                                                                                 
 /* initialize alarm list */
-  build_ical_alarm_list(TRUE);
+  xfical_alarm_build_list(TRUE);
 
   gtk_main();
   keep_tidy();

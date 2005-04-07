@@ -172,7 +172,7 @@ xfcalendar_alarm_clock(gpointer user_data)
         previous_year  = current_year;
         previous_month = current_month;
         previous_day   = current_day;
-        build_ical_alarm_list(TRUE);  /* new alarm list when date changed */
+        xfical_alarm_build_list(TRUE);  /* new alarm list when date changed */
     }
 
   /* Check if there are any alarms to show */
@@ -194,7 +194,7 @@ xfcalendar_alarm_clock(gpointer user_data)
         }
     }
     if (alarm_raised) /* at least one alarm processed, need new list */
-        build_ical_alarm_list(FALSE); 
+        xfical_alarm_build_list(FALSE); 
 
     return TRUE;
 }

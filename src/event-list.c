@@ -528,10 +528,7 @@ void manageAppointment(GtkCalendar *calendar, GtkWidget *wAppointment)
 	        swin = lookup_widget(GTK_WIDGET(wAppointment), "scrolledwindow1");
             gtk_container_add(GTK_CONTAINER(swin), view);
             gtk_widget_show(view);
-		    gtk_calendar_mark_day(GTK_CALENDAR(xfcal->mCalendar), day);
         }
-        else
-		    gtk_calendar_unmark_day(GTK_CALENDAR(xfcal->mCalendar), day);
         xfical_file_close();
     }
 }

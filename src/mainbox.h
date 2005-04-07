@@ -42,5 +42,6 @@ typedef struct _CalWin
 
 } CalWin;
 
-void create_mainWin(CalWin *);
+void create_mainWin();
 void xfcalendar_toggle_visible();
+gboolean xfcalendar_mark_appointments();
