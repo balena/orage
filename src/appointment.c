@@ -261,7 +261,6 @@ on_appClose_clicked_cb(GtkButton *button, gpointer user_data)
     g_warning("Location: %s\n", appt->location);
     g_warning("Start: %s\n", appt->starttime);
     g_warning("End: %s\n", appt->endtime);
-    g_warning("Alarm: %d\n", appt->alarm);
     g_warning("Sound file: %s\n", appt->sound);
     g_warning("Availability: %d\n", appt->availability);
     g_warning("Note: %s\n", appt->note);
