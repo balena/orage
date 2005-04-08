@@ -314,8 +314,9 @@ char *app_add_int(appt_type *app, gboolean add, char *uid
             icalcomponent_add_property(ialarm
                 , icalproperty_new_attach(attach));
             if (app->alarmrepeat) {
+               /* loop 500 times with 2 secs interval */
                 icalcomponent_add_property(ialarm
-                    , icalproperty_new_repeat(100));
+                    , icalproperty_new_repeat(500));
                 icalcomponent_add_property(ialarm
                     , icalproperty_new_duration(icaldurationtype_from_int(2)));
             }

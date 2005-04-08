@@ -48,42 +48,48 @@ xfcalendar_sound_alarm(gpointer data)
     GError *error;
     gboolean status;
     xfce_audio_alarm_type *audio_alarm = (xfce_audio_alarm_type *) data;
-
-    g_print("****** xfcalendar_sound_alarm start (%d)\n", audio_alarm->cnt);
-    status=xfce_exec(audio_alarm->play_cmd, FALSE, FALSE, &error);
-    if (!status)
-        g_warning("play failed\n");
+    GtkWidget *wReminder;
+    GtkWidget *stop;
 
     /* note: -1 loops forever */
-    status = TRUE;
-    if (audio_alarm->cnt > 0)
-        audio_alarm->cnt--;
-    else if (audio_alarm->cnt == 0) {
+    if (audio_alarm->cnt != 0) {
+        status = xfce_exec(audio_alarm->play_cmd, FALSE, FALSE, &error);
+        if (!status)
+            g_warning("play failed\n");
+        if (audio_alarm->cnt > 0)
+            audio_alarm->cnt--;
+    }
+    else { /* cnt == 0 */
+        if ((wReminder = audio_alarm->wReminder) != NULL) {
+            g_object_steal_data(G_OBJECT(wReminder), "AUDIO ACTIVE");
+            stop = g_object_get_data(G_OBJECT(wReminder), "AUDIO STOP");
+            gtk_widget_set_sensitive(GTK_WIDGET(stop), FALSE);
+        }
         g_free(audio_alarm->play_cmd);
         g_free(data);
-        return(FALSE);
+        status = FALSE; /* no more alarms */
     }
-    g_print("****** xfcalendar_sound_alarm start (%d)\n", audio_alarm->cnt);
         
     return(status);
 }
 
 xfce_audio_alarm_type *
-create_soundReminder(alarm_struct *alarm)
+create_soundReminder(alarm_struct *alarm, GtkWidget *wReminder)
 {
     xfce_audio_alarm_type *audio_alarm;
 
-    g_print("****** create_soundReminder start (%d)\n", alarm->repeat_delay);
     audio_alarm =  g_new(xfce_audio_alarm_type, 1);
     audio_alarm->play_cmd = g_strconcat("play ", alarm->sound->str, NULL);
-    audio_alarm->cnt = alarm->repeat_cnt;
+    if ((audio_alarm->cnt = alarm->repeat_cnt) == 0)
+        audio_alarm->cnt++;
     audio_alarm->delay = alarm->repeat_delay;
+    audio_alarm->wReminder = wReminder;
+    g_object_set_data(G_OBJECT(wReminder), "AUDIO ACTIVE", audio_alarm);
 
     g_timeout_add(alarm->repeat_delay*1000
         , (GtkFunction) xfcalendar_sound_alarm
         , (gpointer) audio_alarm);
 
-    g_print("****** create_soundReminder end (%d)\n", alarm->repeat_delay);
     return(audio_alarm);
 }
 
@@ -91,6 +97,7 @@ void
 on_btOkReminder_clicked(GtkButton *button, gpointer user_data)
 {
   GtkWidget *wReminder = (GtkWidget *)user_data;
+
   gtk_widget_destroy(wReminder); /* destroy the specific appointment window */
 }
 
@@ -98,14 +105,28 @@ void
 on_btStopNoiseReminder_clicked(GtkButton *button, gpointer user_data)
 {
   xfce_audio_alarm_type *audio_alarm = (xfce_audio_alarm_type *)user_data;
+
   audio_alarm->cnt = 0;
+  gtk_widget_set_sensitive(GTK_WIDGET(button), FALSE);
 }
 
 void
 on_btOpenReminder_clicked(GtkButton *button, gpointer user_data)
 {
   GtkWidget *wReminder = (GtkWidget *)user_data;
+
   gtk_widget_destroy(wReminder); /* destroy the specific appointment window */
+}
+
+void
+on_destroy(GtkWidget *wReminder, gpointer user_data)
+{
+    xfce_audio_alarm_type *audio_alarm = (xfce_audio_alarm_type *)user_data;
+
+    if (g_object_get_data(G_OBJECT(wReminder), "AUDIO ACTIVE") != NULL) {
+        audio_alarm->cnt = 0;
+        audio_alarm->wReminder = NULL; /* window is being distroyed */
+    }
 }
 
 void
@@ -173,14 +194,19 @@ create_wReminder(alarm_struct *alarm)
 		    wReminder);
 
   if (alarm->audio) {
-    audio_alarm = create_soundReminder(alarm);
+    audio_alarm = create_soundReminder(alarm, wReminder);
     if (alarm->repeat_cnt != 0) {
         btStopNoiseReminder = gtk_button_new_from_stock ("gtk-no");
         gtk_widget_show (btStopNoiseReminder);
         gtk_dialog_add_action_widget (GTK_DIALOG (wReminder), btStopNoiseReminder, GTK_RESPONSE_OK);
+        g_object_set_data(G_OBJECT(wReminder), "AUDIO STOP", btStopNoiseReminder);
 
         g_signal_connect ((gpointer) btStopNoiseReminder, "clicked",
 		    G_CALLBACK (on_btStopNoiseReminder_clicked),
+		    audio_alarm);
+
+        g_signal_connect (G_OBJECT(wReminder), "destroy",
+		    G_CALLBACK (on_destroy),
 		    audio_alarm);
     }
   }
@@ -201,7 +227,6 @@ xfcalendar_alarm_clock(gpointer user_data)
     alarm_struct *cur_alarm;
     gboolean alarm_raised=FALSE;
                                                                                 
-    g_print("*** xfcalendar_alarm_clock start\n");
     tt=time(NULL);
     t=localtime(&tt);
   /* See if the day just changed and the former current date was selected */
@@ -234,9 +259,7 @@ xfcalendar_alarm_clock(gpointer user_data)
          alarm_l != NULL;
          alarm_l = g_list_next(alarm_l)) {
         cur_alarm = (alarm_struct *)alarm_l->data;
-    g_print("*** xfcalendar_alarm_clock alarm (%s)\n", cur_alarm->uid->str);
         if (xfical_alarm_passed(cur_alarm->alarm_time->str)) {
-    g_print("*** xfcalendar_alarm_clock alarm active(%s)\n", cur_alarm->uid->str);
             create_wReminder(cur_alarm);
             alarm_raised = TRUE;
         }
@@ -244,7 +267,6 @@ xfcalendar_alarm_clock(gpointer user_data)
     if (alarm_raised) /* at least one alarm processed, need new list */
         xfical_alarm_build_list(FALSE); 
 
-    g_print("*** xfcalendar_alarm_clock end\n");
     return TRUE;
 }
 

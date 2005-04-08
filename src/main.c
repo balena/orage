@@ -442,9 +442,6 @@ main(int argc, char *argv[])
              (gpointer) xfcal,
              NULL);
                                                                                 
-/* initialize alarm list */
-  xfical_alarm_build_list(TRUE);
-
   gtk_main();
   keep_tidy();
 

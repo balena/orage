@@ -37,6 +37,7 @@ typedef struct {
     gchar *play_cmd;
     gint cnt;
     gint delay;
+    GtkWidget *wReminder; /* needed for callbacks when stopping timer */
 } xfce_audio_alarm_type;
 
 
