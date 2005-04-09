@@ -23,7 +23,8 @@ void
 on_btNext_clicked                      (GtkButton       *button, 
                                         gpointer user_data);
 void
-changeSelectedDate                     (GtkButton       *button, 
+changeSelectedDate                     (GtkButton       *button,
+                                        gpointer        user_data,
                                         gint direction);
 
 void

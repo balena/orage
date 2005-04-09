@@ -119,7 +119,7 @@ create_wAppointment (void)
                                 tmp_toolbar_icon, NULL, NULL);
   gtk_label_set_use_underline(GTK_LABEL(((GtkToolbarChild*)(g_list_last(GTK_TOOLBAR(toolbar1)->children)->data))->label), TRUE);
   gtk_widget_show(btCreate);
-  gtk_widget_add_accelerator(btCreate, "clicked", accel_group, GDK_l, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
+  gtk_widget_add_accelerator(btCreate, "clicked", accel_group, GDK_a, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
                                                                                 
   tmp_toolbar_icon = gtk_image_new_from_stock("gtk-go-back", gtk_toolbar_get_icon_size(GTK_TOOLBAR(toolbar1)));
   btPrevious = gtk_toolbar_append_element(GTK_TOOLBAR(toolbar1),
@@ -177,17 +177,23 @@ create_wAppointment (void)
   g_signal_connect((gpointer) wAppointment, "delete_event",
                     G_CALLBACK(on_wAppointment_delete_event), NULL);
   g_signal_connect((gpointer) btPrevious, "clicked",
-                    G_CALLBACK(on_btPrevious_clicked), NULL);
+                    G_CALLBACK(on_btPrevious_clicked),
+                    (gpointer) wAppointment);
   g_signal_connect((gpointer) btToday, "clicked",
-                    G_CALLBACK(on_btToday_clicked), NULL);
+                    G_CALLBACK(on_btToday_clicked),
+                    (gpointer) wAppointment);
   g_signal_connect((gpointer) btNext, "clicked",
-                    G_CALLBACK(on_btNext_clicked), NULL);
+                    G_CALLBACK(on_btNext_clicked),
+                    (gpointer) wAppointment);
   g_signal_connect((gpointer) btClose, "clicked",
-                    G_CALLBACK(on_btClose_clicked), NULL);
+                    G_CALLBACK(on_btClose_clicked),
+                    (gpointer) wAppointment);
   g_signal_connect((gpointer) btDelete, "clicked",
-                    G_CALLBACK(on_btDelete_clicked), NULL);
+                    G_CALLBACK(on_btDelete_clicked),
+                    (gpointer) wAppointment);
   g_signal_connect((gpointer) btCreate, "clicked",
-                    G_CALLBACK(on_btCreate_clicked), NULL);
+                    G_CALLBACK(on_btCreate_clicked),
+                    (gpointer) wAppointment);
                                                                                 
   /* Store pointers to widgets, for later use */
   g_object_set_data(G_OBJECT(wAppointment), "wAppointment", wAppointment);
@@ -545,9 +551,11 @@ void manageAppointment(GtkCalendar *calendar, GtkWidget *wAppointment)
 void
 on_btClose_clicked(GtkButton *button, gpointer user_data)
 {
-  GtkWidget *a=(GtkWidget*) g_object_get_data (G_OBJECT (button),"wAppointment");
+    GtkWidget *a;
 
-  gtk_widget_destroy(a); /* destroy the specific appointment window */
+    a = (GtkWidget *) user_data;
+
+    gtk_widget_destroy(a); /* destroy the specific appointment window */
 }
 
 gint 
@@ -584,7 +592,7 @@ on_wAppointment_delete_event(GtkWidget *widget, GdkEvent *event,
 void
 on_btPrevious_clicked(GtkButton *button, gpointer user_data)
 {
-  changeSelectedDate(button, PREVIOUS);
+  changeSelectedDate(button, user_data, PREVIOUS);
 }
 
 void
@@ -601,14 +609,14 @@ on_btToday_clicked(GtkButton *button, gpointer user_data)
   gtk_calendar_select_month(GTK_CALENDAR(xfcal->mCalendar), t->tm_mon, t->tm_year+1900);
   gtk_calendar_select_day(GTK_CALENDAR(xfcal->mCalendar), t->tm_mday);
 
-  wAppointment = (GtkWidget*) g_object_get_data (G_OBJECT(button),"wAppointment");
+  wAppointment = (GtkWidget*) user_data;
   recreate_wAppointment(wAppointment);
 }
 
 void
 on_btNext_clicked(GtkButton *button, gpointer user_data)
 {
-  changeSelectedDate(button, NEXT);
+  changeSelectedDate(button, user_data, NEXT);
 }
 
 gboolean
@@ -618,7 +626,7 @@ bisextile(guint year)
 }
 
 void
-changeSelectedDate(GtkButton *button, gint direction)
+changeSelectedDate(GtkButton *button, gpointer user_data, gint direction)
 {
   guint year, month, day;
   guint monthdays[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
@@ -656,7 +664,8 @@ changeSelectedDate(GtkButton *button, gint direction)
   }
   gtk_calendar_select_day(GTK_CALENDAR(xfcal->mCalendar), day);
 
-  wAppointment = (GtkWidget*) g_object_get_data (G_OBJECT(button),"wAppointment");
+  wAppointment = (GtkWidget*) user_data;
+
   recreate_wAppointment(wAppointment);
 }
 
@@ -666,14 +675,14 @@ on_btDelete_clicked(GtkButton *button, gpointer user_data)
 	GtkWidget *w;
 	GtkWidget *wAppointment; 
 	
-	wAppointment = (GtkWidget*) g_object_get_data (G_OBJECT(button),"wAppointment");
+    wAppointment = (GtkWidget *) user_data;
 
 	clearwarn = create_wClearWarn(wAppointment);
 	w=(GtkWidget*) g_object_get_data (G_OBJECT(clearwarn),"okbutton2");
 	/* we connect here instead of in glade to pass the data field */
 	g_signal_connect ((gpointer) w, "clicked",
                     G_CALLBACK (on_okbutton2_clicked),
-                    (gpointer)button);
+                    (gpointer)wAppointment);
 	gtk_widget_show(clearwarn);
 }
 
@@ -695,8 +704,8 @@ on_btCreate_clicked(GtkButton *button, gpointer user_data)
 	GtkWidget *wAppointment; 
     char *title;
     char a_day[10];
-	
-	wAppointment = (GtkWidget*) g_object_get_data(G_OBJECT(button),"wAppointment");
+
+    wAppointment = (GtkWidget*) user_data;
     title = (char*)gtk_window_get_title(GTK_WINDOW(wAppointment));
     title_to_ical(title, a_day);
 
@@ -722,8 +731,11 @@ on_okbutton2_clicked(GtkButton *button, gpointer user_data)
 	gtk_widget_destroy(clearwarn);
 	
     if (xfical_file_open()){
-		wAppointment = (GtkWidget*) g_object_get_data(G_OBJECT (user_data),"wAppointment");
+        wAppointment = (GtkWidget *) user_data;
+
 		title = (char*)gtk_window_get_title(GTK_WINDOW (wAppointment));
+
+        g_warning("Title to look at: %s\n", title);
         title_to_ical(title, a_day);
         rmday_ical_app(a_day);
         xfical_file_close();
