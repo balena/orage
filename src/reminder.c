@@ -80,11 +80,15 @@ create_soundReminder(alarm_struct *alarm, GtkWidget *wReminder)
 
     audio_alarm =  g_new(xfce_audio_alarm_type, 1);
     audio_alarm->play_cmd = g_strconcat("play ", alarm->sound->str, NULL);
-    if ((audio_alarm->cnt = alarm->repeat_cnt) == 0)
-        audio_alarm->cnt++;
     audio_alarm->delay = alarm->repeat_delay;
-    audio_alarm->wReminder = wReminder;
-    g_object_set_data(G_OBJECT(wReminder), "AUDIO ACTIVE", audio_alarm);
+    if ((audio_alarm->cnt = alarm->repeat_cnt) == 0) {
+        audio_alarm->cnt++;
+        audio_alarm->wReminder = NULL;
+    }
+    else { /* repeat alarm */
+        audio_alarm->wReminder = wReminder;
+        g_object_set_data(G_OBJECT(wReminder), "AUDIO ACTIVE", audio_alarm);
+    }
 
     g_timeout_add(alarm->repeat_delay*1000
         , (GtkFunction) xfcalendar_sound_alarm

@@ -254,11 +254,11 @@ on_appClose_clicked_cb(GtkButton *button, gpointer user_data)
   if (xfical_file_open()){
      if (apptw->add_appointment) {
         new_uid = xfical_app_add(appt);
-        g_warning("New ical uid: %s \n", new_uid);
+        g_message("New ical uid: %s \n", new_uid);
      }
      else {
         xfical_app_mod(apptw->xf_uid, appt);
-        g_warning("Modified :%s \n", apptw->xf_uid);
+        g_message("Modified :%s \n", apptw->xf_uid);
      }
      xfical_file_close();
   }
@@ -302,7 +302,7 @@ on_appCopy_clicked_cb(GtkButton *button, gpointer user_data)
     fill_appt(appt, apptw);
     if (xfical_file_open()){
         new_uid = g_strdup(xfical_app_add(appt));
-        g_warning("Added ical uid: %s \n", new_uid);
+        g_message("Added ical uid: %s \n", new_uid);
         xfical_file_close();
     }
 
@@ -346,20 +346,20 @@ void fill_appt_window(appt_win *appt_w, char *action, char *par)
         g_sprintf(appt_data->starttime,"%sT%02d%02d00"
                     , par, t->tm_hour, t->tm_min);
         strcpy(appt_data->endtime, appt_data->starttime);
-        g_warning("Building new ical uid: %s \n", appt_data->uid);
+        g_message("Building new ical uid: %s \n", appt_data->uid);
     }
     else if (strcmp(action, "UPDATE") == 0) {
         appt_w->add_appointment = FALSE;
     /* par contains ical uid */
         if (!xfical_file_open()) {
-            g_warning("ical file open failed\n");
+            g_message("ical file open failed\n");
             return;
         }
         if ((appt_data = xfical_app_get(par)) == NULL) {
-            g_warning("appointment not found\n");
+            g_message("appointment not found\n");
             return;
         }
-        g_warning("Editing ical uid: %s \n", appt_data->uid);
+        g_message("Editing ical uid: %s \n", appt_data->uid);
     }
     else
         g_error("unknown parameter\n");
@@ -372,7 +372,7 @@ void fill_appt_window(appt_win *appt_w, char *action, char *par)
     if (appt_data->location)
         gtk_entry_set_text(GTK_ENTRY(appt_w->appLocation_entry), appt_data->location);
     if (strlen(appt_data->starttime) > 6 ) {
-        g_warning("starttime: %s\n", appt_data->starttime);
+        g_message("starttime: %s\n", appt_data->starttime);
         start_yy[0]= appt_data->starttime[0];
         start_yy[1]= appt_data->starttime[1];
         start_yy[2]= appt_data->starttime[2];
@@ -407,7 +407,7 @@ void fill_appt_window(appt_win *appt_w, char *action, char *par)
                 , (gdouble) atoi(start_mi));
     }
     if (strlen( appt_data->endtime) > 6 ) {
-        g_warning("endtime: %s\n", appt_data->endtime);
+        g_message("endtime: %s\n", appt_data->endtime);
         end_yy[0]= appt_data->endtime[0];
         end_yy[1]= appt_data->endtime[1];
         end_yy[2]= appt_data->endtime[2];

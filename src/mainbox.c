@@ -41,7 +41,6 @@
 #include <libxfce4mcs/mcs-client.h>
 
 #include "mainbox.h"
-#include "support.h"
 #include "xfce_trayicon.h"
 #include "about-xfcalendar.h"
 #include "appointment.h"

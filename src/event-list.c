@@ -49,7 +49,6 @@
 #include <glib/gprintf.h>
 
 #include "event-list.h"
-#include "support.h"
 #include "reminder.h"
 #include "about-xfcalendar.h"
 #include "mainbox.h"
@@ -60,16 +59,7 @@
 static GtkWidget *clearwarn;
 
 extern CalWin *xfcal;
-
                                                           
-#define GLADE_HOOKUP_OBJECT(component,widget,name) \
-  g_object_set_data_full (G_OBJECT (component), name, \
-    gtk_widget_ref (widget), (GDestroyNotify) gtk_widget_unref)
-                                                                                
-#define GLADE_HOOKUP_OBJECT_NO_REF(component,widget,name) \
-  g_object_set_data (G_OBJECT (component), name, widget)
-                                                                                
-
 /* Direction for changing day to look at */
 enum{
   PREVIOUS,
@@ -199,10 +189,10 @@ create_wAppointment (void)
   g_signal_connect((gpointer) btCreate, "clicked",
                     G_CALLBACK(on_btCreate_clicked), NULL);
                                                                                 
-  /* Store pointers to widgets, for use by lookup_widget(). */
-  GLADE_HOOKUP_OBJECT_NO_REF(wAppointment, wAppointment, "wAppointment");
-  GLADE_HOOKUP_OBJECT(wAppointment, vbox2, "vbox2");
-  GLADE_HOOKUP_OBJECT(wAppointment, scrolledwindow1, "scrolledwindow1");
+  /* Store pointers to widgets, for later use */
+  g_object_set_data(G_OBJECT(wAppointment), "wAppointment", wAppointment);
+  g_object_set_data(G_OBJECT(wAppointment), "vbox2", vbox2);
+  g_object_set_data(G_OBJECT(wAppointment), "scrolledwindow1", scrolledwindow1);
                                                                                 
   gtk_window_add_accel_group(GTK_WINDOW(wAppointment), accel_group);
                                                                                 
@@ -216,16 +206,17 @@ recreate_wAppointment(GtkWidget *appointment)
     GtkWidget *scrolledwindow1;
     GtkWidget *vbox2;
                                                                                 
-    wAppointment = lookup_widget(GTK_WIDGET(appointment), "wAppointment");
-    vbox2 = lookup_widget(GTK_WIDGET(wAppointment), "vbox2");
-    scrolledwindow1 = lookup_widget(GTK_WIDGET(wAppointment), "scrolledwindow1");    
+    wAppointment = (GtkWidget*) g_object_get_data(G_OBJECT(appointment), "wAppointment");
+    g_print("recreate_wAppointment (%lu)(%lu)\n", (unsigned long)wAppointment, (unsigned long)appointment);
+    vbox2 = (GtkWidget*) g_object_get_data(G_OBJECT(wAppointment), "vbox2");
+    scrolledwindow1 = (GtkWidget*) g_object_get_data(G_OBJECT(wAppointment), "scrolledwindow1");    
     gtk_widget_destroy(scrolledwindow1);
     scrolledwindow1 = gtk_scrolled_window_new(NULL, NULL);
     gtk_widget_show(scrolledwindow1);
     gtk_box_pack_start(GTK_BOX(vbox2), scrolledwindow1, TRUE, TRUE, 0);
     gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW (scrolledwindow1)
             , GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
-    GLADE_HOOKUP_OBJECT(wAppointment, scrolledwindow1, "scrolledwindow1");
+    g_object_set_data(G_OBJECT(wAppointment),"scrolledwindow1",scrolledwindow1);
 
     manageAppointment(GTK_CALENDAR(xfcal->mCalendar), wAppointment);
 
@@ -286,8 +277,8 @@ create_wClearWarn (GtkWidget *parent)
                     G_CALLBACK (on_cancelbutton1_clicked),
                     NULL);
                                                                                 
-  GLADE_HOOKUP_OBJECT_NO_REF (wClearWarn, wClearWarn, "wClearWarn");
-  GLADE_HOOKUP_OBJECT (wClearWarn, okbutton2, "okbutton2");
+  g_object_set_data(G_OBJECT(wClearWarn), "wClearWarn", wClearWarn);
+  g_object_set_data(G_OBJECT(wClearWarn), "okbutton2", okbutton2);
 
   return wClearWarn;
 }
@@ -543,7 +534,7 @@ void manageAppointment(GtkCalendar *calendar, GtkWidget *wAppointment)
                 , COL_TIME, GTK_SORT_ASCENDING);
             gtk_tree_view_set_model(GTK_TREE_VIEW(view),  GTK_TREE_MODEL(list));
             g_object_unref(list); /* model is destroyed together with view */
-	        swin = lookup_widget(GTK_WIDGET(wAppointment), "scrolledwindow1");
+	        swin = (GtkWidget*) g_object_get_data (G_OBJECT(wAppointment), "scrolledwindow1");
             gtk_container_add(GTK_CONTAINER(swin), view);
             gtk_widget_show(view);
         }
@@ -554,7 +545,7 @@ void manageAppointment(GtkCalendar *calendar, GtkWidget *wAppointment)
 void
 on_btClose_clicked(GtkButton *button, gpointer user_data)
 {
-  GtkWidget *a=lookup_widget((GtkWidget *)button,"wAppointment");
+  GtkWidget *a=(GtkWidget*) g_object_get_data (G_OBJECT (button),"wAppointment");
 
   gtk_widget_destroy(a); /* destroy the specific appointment window */
 }
@@ -610,7 +601,7 @@ on_btToday_clicked(GtkButton *button, gpointer user_data)
   gtk_calendar_select_month(GTK_CALENDAR(xfcal->mCalendar), t->tm_mon, t->tm_year+1900);
   gtk_calendar_select_day(GTK_CALENDAR(xfcal->mCalendar), t->tm_mday);
 
-  wAppointment = lookup_widget(GTK_WIDGET(button),"wAppointment");
+  wAppointment = (GtkWidget*) g_object_get_data (G_OBJECT(button),"wAppointment");
   recreate_wAppointment(wAppointment);
 }
 
@@ -665,7 +656,7 @@ changeSelectedDate(GtkButton *button, gint direction)
   }
   gtk_calendar_select_day(GTK_CALENDAR(xfcal->mCalendar), day);
 
-  wAppointment = lookup_widget(GTK_WIDGET(button),"wAppointment");
+  wAppointment = (GtkWidget*) g_object_get_data (G_OBJECT(button),"wAppointment");
   recreate_wAppointment(wAppointment);
 }
 
@@ -675,10 +666,10 @@ on_btDelete_clicked(GtkButton *button, gpointer user_data)
 	GtkWidget *w;
 	GtkWidget *wAppointment; 
 	
-	wAppointment = lookup_widget(GTK_WIDGET(button),"wAppointment");
+	wAppointment = (GtkWidget*) g_object_get_data (G_OBJECT(button),"wAppointment");
 
 	clearwarn = create_wClearWarn(wAppointment);
-	w=lookup_widget(clearwarn,"okbutton2");
+	w=(GtkWidget*) g_object_get_data (G_OBJECT(clearwarn),"okbutton2");
 	/* we connect here instead of in glade to pass the data field */
 	g_signal_connect ((gpointer) w, "clicked",
                     G_CALLBACK (on_okbutton2_clicked),
@@ -705,7 +696,7 @@ on_btCreate_clicked(GtkButton *button, gpointer user_data)
     char *title;
     char a_day[10];
 	
-	wAppointment = lookup_widget(GTK_WIDGET(button),"wAppointment");
+	wAppointment = (GtkWidget*) g_object_get_data(G_OBJECT(button),"wAppointment");
     title = (char*)gtk_window_get_title(GTK_WINDOW(wAppointment));
     title_to_ical(title, a_day);
 
@@ -716,9 +707,6 @@ on_btCreate_clicked(GtkButton *button, gpointer user_data)
 void
 on_cancelbutton1_clicked(GtkButton *button, gpointer user_data)
 {
-#ifdef DEBUG
-	g_print("Clear textbuffer not chosen (pffiou!)\n");
-#endif
 	gtk_widget_destroy(clearwarn);
 }
 
@@ -733,12 +721,8 @@ on_okbutton2_clicked(GtkButton *button, gpointer user_data)
 	
 	gtk_widget_destroy(clearwarn);
 	
-#ifdef DEBUG
-	g_print("Clear textbuffer chosen (oops!)\n");
-#endif
-
     if (xfical_file_open()){
-		wAppointment = lookup_widget((GtkWidget *)user_data,"wAppointment");
+		wAppointment = (GtkWidget*) g_object_get_data(G_OBJECT (user_data),"wAppointment");
 		title = (char*)gtk_window_get_title(GTK_WINDOW (wAppointment));
         title_to_ical(title, a_day);
         rmday_ical_app(a_day);

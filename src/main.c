@@ -49,7 +49,6 @@
 
 #include "mainbox.h"
 #include "event-list.h"
-#include "support.h"
 #include "tray_icon.h"
 #include "xfce_trayicon.h"
 #include "reminder.h"
@@ -407,9 +406,6 @@ main(int argc, char *argv[])
   session_client->save_yourself = save_yourself_cb;
   session_client->die = die_cb;
   (void)session_init(session_client);
-
-  add_pixmap_directory(PACKAGE_DATA_DIR G_DIR_SEPARATOR_S PACKAGE
-		       G_DIR_SEPARATOR_S "pixmaps");
 
   /*
    * Now it's serious, the application is running, so we create the RC
