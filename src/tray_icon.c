@@ -30,7 +30,6 @@
 #include <libxfce4mcs/mcs-client.h>
 
 #include "event-list.h"
-#include "support.h"
 #include "mainbox.h"
 #include "xfce_trayicon.h"
 #include "about-xfcalendar.h"
