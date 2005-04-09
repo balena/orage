@@ -148,9 +148,6 @@ on_appAllDay_clicked_cb(GtkCheckButton *checkbutton, gpointer user_data)
   check_status = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(apptw->appAllDay_checkbutton));
 
   if(check_status){
-#ifdef DEBUG
-    g_warning("All day checked!\n");
-#endif
     gtk_widget_set_sensitive(apptw->appStartYear_spinbutton, FALSE);
     gtk_widget_set_sensitive(apptw->appStartMonth_spinbutton, FALSE);
     gtk_widget_set_sensitive(apptw->appStartDay_spinbutton, FALSE);
@@ -167,9 +164,6 @@ on_appAllDay_clicked_cb(GtkCheckButton *checkbutton, gpointer user_data)
 */
     gtk_widget_set_sensitive(apptw->appAlarm_combobox, FALSE);
   } else {
-#ifdef DEBUG
-    g_warning("All day unchecked!\n");
-#endif
     gtk_widget_set_sensitive(apptw->appStartYear_spinbutton, TRUE);
     gtk_widget_set_sensitive(apptw->appStartMonth_spinbutton, TRUE);
     gtk_widget_set_sensitive(apptw->appStartDay_spinbutton, TRUE);
@@ -255,16 +249,6 @@ on_appClose_clicked_cb(GtkButton *button, gpointer user_data)
     gchar *new_uid;
 
     fill_appt(appt, apptw);
-
-#ifdef DEBUG
-    g_warning("Title: %s\n", appt->title);
-    g_warning("Location: %s\n", appt->location);
-    g_warning("Start: %s\n", appt->starttime);
-    g_warning("End: %s\n", appt->endtime);
-    g_warning("Sound file: %s\n", appt->sound);
-    g_warning("Availability: %d\n", appt->availability);
-    g_warning("Note: %s\n", appt->note);
-#endif
 
   /* Here we try to save the event... */
   if (xfical_file_open()){
@@ -381,9 +365,6 @@ void fill_appt_window(appt_win *appt_w, char *action, char *par)
         g_error("unknown parameter\n");
 
 	appt_w->xf_uid = g_strdup(appt_data->uid);
-#ifdef DEBUG
-	g_warning("id: %s \n", appt_w->xf_uid);
-#endif
 
     gtk_window_set_title (GTK_WINDOW (appt_w->appWindow), _("New appointment - Xfcalendar"));
     if (appt_data->title)
