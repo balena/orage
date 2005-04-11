@@ -506,6 +506,7 @@ void manageAppointment(GtkCalendar *calendar, GtkWidget *wAppointment)
     struct tm *t;
     time_t tt;
     gboolean today;
+    GtkTooltips *tooltips = gtk_tooltips_new();
 
 	gtk_calendar_get_date(calendar, &year, &month, &day);
 	g_sprintf(title, "%04d-%02d-%02d", year, month+1, day);
@@ -537,8 +538,10 @@ void manageAppointment(GtkCalendar *calendar, GtkWidget *wAppointment)
                 , COL_TIME, GTK_SORT_ASCENDING);
             gtk_tree_view_set_model(GTK_TREE_VIEW(view),  GTK_TREE_MODEL(list));
             g_object_unref(list); /* model is destroyed together with view */
-	        swin = (GtkWidget*) g_object_get_data (G_OBJECT(wAppointment), "scrolledwindow1");
+	        swin = (GtkWidget*)g_object_get_data(G_OBJECT(wAppointment)
+                , "scrolledwindow1");
             gtk_container_add(GTK_CONTAINER(swin), view);
+            gtk_tooltips_set_tip(tooltips, view, "Click line to edit it.\n\nFlags in order:\n\t 1. Alarm: n=no alarm\n\t\tA=visual Alarm S=also Sound alarm\n\t 2. Recurrency: n=no recurrency\n\t\t D=Daily W=Weekly M=Monthly\n\t 3. Type: f=free B=Busy", NULL);
             gtk_widget_show(view);
         }
         xfical_file_close();
