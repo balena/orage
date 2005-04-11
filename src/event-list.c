@@ -206,14 +206,11 @@ create_wAppointment (void)
 }
                                                                                 
 GtkWidget*
-recreate_wAppointment(GtkWidget *appointment)
+recreate_wAppointment(GtkWidget *wAppointment)
 {
-    GtkWidget *wAppointment;
     GtkWidget *scrolledwindow1;
     GtkWidget *vbox2;
                                                                                 
-    wAppointment = (GtkWidget*) g_object_get_data(G_OBJECT(appointment), "wAppointment");
-    g_print("recreate_wAppointment (%lu)(%lu)\n", (unsigned long)wAppointment, (unsigned long)appointment);
     vbox2 = (GtkWidget*) g_object_get_data(G_OBJECT(wAppointment), "vbox2");
     scrolledwindow1 = (GtkWidget*) g_object_get_data(G_OBJECT(wAppointment), "scrolledwindow1");    
     gtk_widget_destroy(scrolledwindow1);
@@ -530,9 +527,9 @@ void manageAppointment(GtkCalendar *calendar, GtkWidget *wAppointment)
                 , G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
             view = gtk_tree_view_new();
             addAppointment_init(view, wAppointment, today);
-            do
+            do {
                 addAppointment(list, app);
-            while ((app = xfical_app_get_next_on_day(a_day, FALSE)));
+            } while ((app = xfical_app_get_next_on_day(a_day, FALSE)));
             sort = GTK_TREE_SORTABLE(list);
             gtk_tree_sortable_set_sort_func(sort, COL_TIME
                 , sortAppointment_comp, GINT_TO_POINTER(COL_TIME), NULL);
@@ -735,7 +732,6 @@ on_okbutton2_clicked(GtkButton *button, gpointer user_data)
 
 		title = (char*)gtk_window_get_title(GTK_WINDOW (wAppointment));
 
-        g_warning("Title to look at: %s\n", title);
         title_to_ical(title, a_day);
         rmday_ical_app(a_day);
         xfical_file_close();
