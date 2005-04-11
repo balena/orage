@@ -70,44 +70,40 @@ extern GList *alarm_list;
 
 gboolean xfical_file_open(void)
 {
-	gchar *ficalpath; 
+    gchar *ficalpath; 
     icalcomponent *iter;
     gint cnt=0;
 
     if (fical != NULL)
-        g_warning("ical-code:xfical_file_open: fical already open\n");
+        g_warning("xfical_file_open: fical already open\n");
 	ficalpath = xfce_resource_save_location(XFCE_RESOURCE_CONFIG,
                         RCDIR G_DIR_SEPARATOR_S APPOINTMENT_FILE, FALSE);
-    if ((fical = icalset_new_file(ficalpath)) == NULL){
-        if(icalerrno != ICAL_NO_ERROR){
-            g_warning("xfical_file_open, ical-Error: %s\n"
-                        , icalerror_strerror(icalerrno));
-        g_error("xfical_file_open, Error: Could not open ical file \"%s\" \n"
-                        , ficalpath);
-        }
+    if ((fical = icalset_new_file(ficalpath)) == NULL) {
+        g_error("xfical_file_open: Could not open ical file (%s) %s\n"
+                , ficalpath, icalerror_strerror(icalerrno));
     }
-    else{
-        /* let's find last VCALENDAR entry */
+    else { /* let's find last VCALENDAR entry */
         for (iter = icalset_get_first_component(fical); 
              iter != 0;
-             iter = icalset_get_next_component(fical)){
+             iter = icalset_get_next_component(fical)) {
             cnt++;
             ical = iter; /* last valid component */
         }
-        if (cnt == 0){
+        if (cnt == 0) {
         /* calendar missing, need to add one. 
-           Note: According to standard rfc2445 calendar always needs to
-                 contain at least one other component. So strictly speaking
-                 this is not valid entry before adding an event */
+         * Note: According to standard rfc2445 calendar always needs to
+         *       contain at least one other component. So strictly speaking
+         *       this is not valid entry before adding an event 
+         */
             ical = icalcomponent_vanew(ICAL_VCALENDAR_COMPONENT
-                   ,icalproperty_new_version("2.0")
-                   ,icalproperty_new_prodid("-//Xfce//Xfcalendar//EN")
-                   ,0);
+                   , icalproperty_new_version("2.0")
+                   , icalproperty_new_prodid("-//Xfce//Xfcalendar//EN")
+                   , 0);
             icalset_add_component(fical, icalcomponent_new_clone(ical));
             icalset_commit(fical);
         }
-        else if (cnt > 1){
-            g_warning("xfical_file_open, Too many top level components in calendar file\n");
+        else if (cnt > 1) {
+            g_warning("xfical_file_open: Too many top level components in calendar file\n");
         }
     }
 	g_free(ficalpath);
@@ -158,9 +154,9 @@ struct icaltimetype ical_get_current_local_time()
 }
 
  /* allocates memory and initializes it for new ical_type structure
- *  returns: NULL if failed and pointer to appt_type if successfull.
- *          You must free it after not being used anymore. (g_free())
- */
+  * returns: NULL if failed and pointer to appt_type if successfull.
+  *         You must free it after not being used anymore. (g_free())
+  */
 appt_type *xfical_app_alloc()
 {
     appt_type *temp;
@@ -170,23 +166,100 @@ appt_type *xfical_app_alloc()
     return(temp);
 }
 
-char *app_add_int(appt_type *app, gboolean add, char *uid
+void app_add_alarm_internal(appt_type *app, icalcomponent *ievent)
+{
+    icalcomponent *ialarm;
+    gint duration=0;
+    struct icaltriggertype trg;
+    icalattach *attach;
+
+    switch (app->alarmtime) {
+        case 0:
+            duration = 0;
+            break;
+        case 1:
+            duration = 5 * 60;
+            break;
+        case 2:
+            duration = 15 * 60;
+            break;
+        case 3:
+            duration = 30 * 60;
+            break;
+        case 4:
+            duration = 45 * 60;
+            break;
+        case 5:
+            duration = 1 * 3600;
+            break;
+        case 6:
+            duration = 2 * 3600;
+            break;
+        case 7:
+            duration = 4 * 3600;
+            break;
+        case 8:
+            duration = 8 * 3600;
+            break;
+        case 9:
+            duration = 24 * 3600;
+            break;
+        case 10:
+            duration = 48 * 3600;
+            break;
+    }
+    trg.time = icaltime_null_time();
+    trg.duration = icaldurationtype_from_int(-duration);
+    /********** DISPLAY **********/
+    ialarm = icalcomponent_vanew(ICAL_VALARM_COMPONENT
+        , icalproperty_new_action(ICAL_ACTION_DISPLAY)
+        , icalproperty_new_trigger(trg)
+        , 0);
+    if XFICAL_STR_EXISTS(app->note)
+        icalcomponent_add_property(ialarm
+            , icalproperty_new_description(app->note));
+    else if XFICAL_STR_EXISTS(app->title)
+        icalcomponent_add_property(ialarm
+            , icalproperty_new_description(app->title));
+    else
+        icalcomponent_add_property(ialarm
+            , icalproperty_new_description(_("Xfcalendar default alarm")));
+    icalcomponent_add_component(ievent, ialarm);
+    /********** AUDIO **********/
+    if XFICAL_STR_EXISTS(app->sound) {
+        ialarm = icalcomponent_vanew(ICAL_VALARM_COMPONENT
+            , icalproperty_new_action(ICAL_ACTION_AUDIO)
+            , icalproperty_new_trigger(trg)
+            , 0);
+        attach = icalattach_new_from_url(app->sound);
+        icalcomponent_add_property(ialarm
+            , icalproperty_new_attach(attach));
+        if (app->alarmrepeat) {
+           /* loop 500 times with 2 secs interval */
+            icalcomponent_add_property(ialarm
+                , icalproperty_new_repeat(500));
+            icalcomponent_add_property(ialarm
+                , icalproperty_new_duration(icaldurationtype_from_int(2)));
+        }
+        icalcomponent_add_component(ievent, ialarm);
+    }
+}
+
+char *app_add_internal(appt_type *app, gboolean add, char *uid
         , struct icaltimetype cre_time)
 {
-    icalcomponent *ievent, *ialarm;
+    icalcomponent *ievent;;
     struct icaltimetype ctime, create_time;
-    static gchar xf_uid[1000];
+    static gchar xf_uid[1001];
     gchar xf_host[501];
-    struct icaltriggertype trg;
-    gint duration=0;
-    icalattach *attach;
     struct icalrecurrencetype rrule;
 
     ctime = ical_get_current_local_time();
     if (add) {
         gethostname(xf_host, 500);
-        sprintf(xf_uid, "Xfcalendar-%s-%lu@%s", icaltime_as_ical_string(ctime), 
-                (long) getuid(), xf_host);
+        xf_host[500] = '\0';
+        g_snprintf(xf_uid, 1000, "Xfcalendar-%s-%lu@%s"
+                , icaltime_as_ical_string(ctime), (long) getuid(), xf_host);
         create_time = ctime;
     }
     else { /* mod */
@@ -198,12 +271,12 @@ char *app_add_int(appt_type *app, gboolean add, char *uid
     }
 
     ievent = icalcomponent_vanew(ICAL_VEVENT_COMPONENT
-           ,icalproperty_new_uid(xf_uid)
-           ,icalproperty_new_categories("XFCALNOTE")
-           ,icalproperty_new_class(ICAL_CLASS_PUBLIC)
-           ,icalproperty_new_dtstamp(ctime)
-           ,icalproperty_new_created(create_time)
-           ,0);
+           , icalproperty_new_uid(xf_uid)
+           , icalproperty_new_categories("XFCALNOTE")
+           , icalproperty_new_class(ICAL_CLASS_PUBLIC)
+           , icalproperty_new_dtstamp(ctime)
+           , icalproperty_new_created(create_time)
+           , 0);
 
     if XFICAL_STR_EXISTS(app->title)
         icalcomponent_add_property(ievent
@@ -220,9 +293,9 @@ char *app_add_int(appt_type *app, gboolean add, char *uid
     else if (app->availability == 1)
         icalcomponent_add_property(ievent
            , icalproperty_new_transp(ICAL_TRANSP_OPAQUE));
-    if (app->allDay) {
-        app->starttime[8] = 0;
-        app->endtime[8] = 0;
+    if (app->allDay) { /* cut the string after Date: yyyymmdd */
+        app->starttime[8] = '\0';
+        app->endtime[8] = '\0';
     }
     if XFICAL_STR_EXISTS(app->starttime)
         icalcomponent_add_property(ievent
@@ -242,86 +315,14 @@ char *app_add_int(appt_type *app, gboolean add, char *uid
                 rrule = icalrecurrencetype_from_string("FREQ=MONTHLY");
                 break;
             default:
-                g_warning("ical-code: Unsupported freq\n");
+                g_warning("ical-code: app_add_internal: Unsupported freq\n");
                 icalrecurrencetype_clear(&rrule);
         }
         icalcomponent_add_property(ievent
            , icalproperty_new_rrule(rrule));
     }
-    if (!app->allDay  && app->alarmtime != 0)  {
-        switch (app->alarmtime) {
-            case 0:
-                duration = 0;
-                break;
-            case 1:
-                duration = 5 * 60;
-                break;
-            case 2:
-                duration = 15 * 60;
-                break;
-            case 3:
-                duration = 30 * 60;
-                break;
-            case 4:
-                duration = 45 * 60;
-                break;
-            case 5:
-                duration = 1 * 3600;
-                break;
-            case 6:
-                duration = 2 * 3600;
-                break;
-            case 7:
-                duration = 4 * 3600;
-                break;
-            case 8:
-                duration = 8 * 3600;
-                break;
-            case 9:
-                duration = 24 * 3600;
-                break;
-            case 10:
-                duration = 48 * 3600;
-                break;
-        }
-        trg.time = icaltime_null_time();
-        trg.duration =  icaldurationtype_from_int(-duration);
-    /********** DISPLAY **********/
-        ialarm = icalcomponent_vanew(ICAL_VALARM_COMPONENT
-           ,icalproperty_new_action(ICAL_ACTION_DISPLAY)
-           ,0);
-        icalcomponent_add_property(ialarm
-             , icalproperty_new_trigger(trg));
-        if XFICAL_STR_EXISTS(app->note)
-            icalcomponent_add_property(ialarm
-                , icalproperty_new_description(app->note));
-        else if XFICAL_STR_EXISTS(app->title)
-            icalcomponent_add_property(ialarm
-                , icalproperty_new_description(app->title));
-        else
-            icalcomponent_add_property(ialarm
-                , icalproperty_new_description(_("Xfcalendar default alarm")));
-        icalcomponent_add_component(ievent, ialarm);
-
-    /********** AUDIO **********/
-        if XFICAL_STR_EXISTS(app->sound) {
-            ialarm = icalcomponent_vanew(ICAL_VALARM_COMPONENT
-                ,icalproperty_new_action(ICAL_ACTION_AUDIO)
-                ,0);
-            icalcomponent_add_property(ialarm
-                , icalproperty_new_trigger(trg));
-            attach = icalattach_new_from_url(app->sound);
-            icalcomponent_add_property(ialarm
-                , icalproperty_new_attach(attach));
-            if (app->alarmrepeat) {
-               /* loop 500 times with 2 secs interval */
-                icalcomponent_add_property(ialarm
-                    , icalproperty_new_repeat(500));
-                icalcomponent_add_property(ialarm
-                    , icalproperty_new_duration(icaldurationtype_from_int(2)));
-            }
-            icalcomponent_add_component(ievent, ialarm);
-        }
+    if (!app->allDay && app->alarmtime != 0) {
+        app_add_alarm_internal(app, ievent);
     }
 
     icalcomponent_add_component(ical, ievent);
@@ -331,19 +332,100 @@ char *app_add_int(appt_type *app, gboolean add, char *uid
 }
 
  /* add EVENT type ical appointment to ical file
- * app: pointer to filled appt_type structure, which is stored
- *      Caller is responsible for filling and allocating and freeing it.
- *  returns: NULL if failed and new ical id if successfully added. 
- *           This ical id is owned by the routine. Do not deallocate it.
- *           It will be overdriven by next invocation of this function.
- */
+  * app: pointer to filled appt_type structure, which is stored
+  *      Caller is responsible for filling and allocating and freeing it.
+  *  returns: NULL if failed and new ical id if successfully added. 
+  *           This ical id is owned by the routine. Do not deallocate it.
+  *           It will be overwrittewritten by next invocation of this function.
+  */
 char *xfical_app_add(appt_type *app)
 {
-    return(app_add_int(app, TRUE, NULL, icaltime_null_time()));
+    return(app_add_internal(app, TRUE, NULL, icaltime_null_time()));
+}
+
+void ical_app_get_alarm_internal(icalcomponent *c,  appt_type *app)
+{
+    icalcomponent *ca = NULL;
+    icalproperty *p = NULL;
+    const char *text;
+    gint seconds;
+    struct icaltriggertype trg;
+    icalattach *attach;
+
+    for (ca = icalcomponent_get_first_component(c, ICAL_VALARM_COMPONENT); 
+         ca != 0;
+         ca = icalcomponent_get_next_component(c, ICAL_VALARM_COMPONENT)) {
+        for (p = icalcomponent_get_first_property(ca, ICAL_ANY_PROPERTY);
+             p != 0;
+             p = icalcomponent_get_next_property(ca, ICAL_ANY_PROPERTY)) {
+            switch (icalproperty_isa(p)) {
+                case ICAL_TRIGGER_PROPERTY:
+                    trg = icalproperty_get_trigger(p);
+                    if (icaltime_is_null_time(trg.time)) {
+                        seconds = icaldurationtype_as_int(trg.duration) * -1;
+                        switch (seconds) {
+                            case 0:
+                                app->alarmtime = 0;
+                                break;
+                            case 5 * 60:
+                                app->alarmtime = 1;
+                                break;
+                            case 15 * 60:
+                                app->alarmtime = 2;
+                                break;
+                            case 30 * 60:
+                                app->alarmtime = 3;
+                                break;
+                            case 45 * 60:
+                                app->alarmtime = 4;
+                                break;
+                            case 1 * 3600:
+                                app->alarmtime = 5;
+                                break;
+                            case 2 * 3600:
+                                app->alarmtime = 6;
+                                break;
+                            case 4 * 3600:
+                                 app->alarmtime = 7;
+                                 break;
+                            case 8 * 3600:
+                                app->alarmtime = 8;
+                                break;
+                            case 24 * 3600:
+                                app->alarmtime = 9;
+                                break;
+                            case 48 * 3600:
+                                app->alarmtime = 10;
+                                break;
+                            default:
+                                app->alarmtime = 1;
+                                break;
+                        }
+                    }
+                    else
+                        g_warning("ical_code: Can not process time triggers\n");
+                    break;
+                case ICAL_ATTACH_PROPERTY:
+                    attach = icalproperty_get_attach(p);
+                    app->sound = (char *)icalattach_get_url(attach);
+                    break;
+                case ICAL_REPEAT_PROPERTY:
+                    app->alarmrepeat = TRUE;
+                    break;
+                case ICAL_DURATION_PROPERTY:
+                /* no actions defined */
+                    break;
+                case ICAL_DESCRIPTION_PROPERTY:
+                    if (app->note == NULL)
+                        app->note = (char *) icalproperty_get_description(p);
+                    break;
+            }
+        }
+    }
 }
 
  /* Read EVENT from ical datafile.
-  *ical_uid:  key of ical EVENT appointment which is to be read
+  *ical_uid:  key of ical EVENT app-> is to be read
   * returns: NULL if failed and appt_type pointer to appt_type struct 
   *          filled with data if successfull.
   *          This appt_type struct is owned by the routine. 
@@ -352,20 +434,17 @@ char *xfical_app_add(appt_type *app)
   */
 appt_type *xfical_app_get(char *ical_uid)
 {
-    icalcomponent *c = NULL, *ca = NULL;
-    icalproperty *p = NULL;
-    gboolean key_found=FALSE;
-    const char *text;
     static appt_type app;
+    icalcomponent *c = NULL;
+    icalproperty *p = NULL;
+    gboolean key_found = FALSE;
+    const char *text;
     struct icaltimetype itime;
     icalproperty_transp xf_transp;
-    struct icaltriggertype trg;
-    gint mins;
-    icalattach *attach;
     struct icalrecurrencetype rrule;
 
     for (c = icalcomponent_get_first_component(ical, ICAL_VEVENT_COMPONENT); 
-         (c != 0) && (!key_found);
+         c != 0 && !key_found;
          c = icalcomponent_get_next_component(ical, ICAL_VEVENT_COMPONENT)) {
         text = icalcomponent_get_uid(c);
         if (strcmp(text, ical_uid) == 0) {
@@ -373,147 +452,77 @@ appt_type *xfical_app_get(char *ical_uid)
             key_found = TRUE;
             app.title = NULL;
             app.location = NULL;
+            app.alarmtime = 0;
+            app.availability = -1;
+            app.allDay = FALSE;
+            app.alarmrepeat = FALSE;
             app.note = NULL;
             app.sound = NULL;
             app.uid = NULL;
-            app.allDay = FALSE;
-            app.alarmrepeat = FALSE;
-            app.alarmtime = 0;
-            app.availability = -1;
+            app.starttime[0] = '\0';
+            app.endtime[0] = '\0';
             app.freq = XFICAL_FREQ_NONE;
-            strcpy(app.starttime, "");
-            strcpy(app.endtime, "");
         /*********** Properties ***********/
             for (p = icalcomponent_get_first_property(c, ICAL_ANY_PROPERTY);
                  p != 0;
                  p = icalcomponent_get_next_property(c, ICAL_ANY_PROPERTY)) {
-                text = icalproperty_get_property_name(p);
                 /* these are in icalderivedproperty.h */
-                if (strcmp(text, "SUMMARY") == 0)
-                    app.title = (char *) icalproperty_get_summary(p);
-                else if (strcmp(text, "LOCATION") == 0)
-                    app.location = (char *) icalproperty_get_location(p);
-                else if (strcmp(text, "DESCRIPTION") == 0)
-                    app.note = (char *) icalproperty_get_description(p);
-                else if (strcmp(text, "UID") == 0)
-                    app.uid = (char *) icalproperty_get_uid(p);
-                else if (strcmp(text, "TRANSP") == 0) {
-                    xf_transp = icalproperty_get_transp(p);
-                    if (xf_transp == ICAL_TRANSP_TRANSPARENT)
-                        app.availability = 0;
-                    else if (xf_transp == ICAL_TRANSP_OPAQUE)
-                        app.availability = 1;
-                    else 
-                        app.availability = -1;
-                }
-                else if (strcmp(text, "DTSTART") == 0) {
-                    itime = icalproperty_get_dtstart(p);
-                    text  = icaltime_as_ical_string(itime);
-                    strcpy(app.starttime, text);
-                    if (icaltime_is_date(itime))
-                        app.allDay = TRUE;
-                    if (strlen(app.endtime))
-                        strcpy(app.endtime, text);
-                }
-                else if (strcmp(text, "DTEND") == 0) {
-                    itime = icalproperty_get_dtend(p);
-                    text  = icaltime_as_ical_string(itime);
-                    strcpy(app.endtime, text);
-                }
-                else if (strcmp(text, "RRULE") == 0) {
-                    rrule = icalproperty_get_rrule(p);
-                    switch ( rrule.freq) {
-                        case ICAL_DAILY_RECURRENCE:
-                            app.freq = XFICAL_FREQ_DAILY;
-                            break;
-                        case ICAL_WEEKLY_RECURRENCE:
-                            app.freq = XFICAL_FREQ_WEEKLY;
-                            break;
-                        case ICAL_MONTHLY_RECURRENCE:
-                            app.freq = XFICAL_FREQ_MONTHLY;
-                            break;
-                        default:
-                            app.freq = XFICAL_FREQ_NONE;
-                    }
-                }
-                /*
-                else
-                    g_warning("ical-code: Unprocessed property (%s)\n", text);
-                    */
-            }
-        /*********** Alarms ***********/
-            for (ca = icalcomponent_get_first_component(c
-                        , ICAL_VALARM_COMPONENT); 
-                 ca != 0;
-                 ca = icalcomponent_get_next_component(c
-                        , ICAL_VALARM_COMPONENT)) {
-                for (p = icalcomponent_get_first_property(ca
-                        , ICAL_ANY_PROPERTY);
-                     p != 0;
-                     p = icalcomponent_get_next_property(ca
-                        , ICAL_ANY_PROPERTY)) {
-                    text = icalproperty_get_property_name(p);
-                    if (strcmp(text, "TRIGGER") == 0) {
-                        trg = icalproperty_get_trigger(p);
-                        if (icaltime_is_null_time(trg.time)) {
-                            mins = icaldurationtype_as_int(trg.duration) * -1;
-                            switch (mins) {
-                                case 0:
-                                    app.alarmtime = 0;
-                                    break;
-                                case 5 * 60:
-                                    app.alarmtime = 1;
-                                    break;
-                                case 15 * 60:
-                                    app.alarmtime = 2;
-                                    break;
-                                case 30 * 60:
-                                    app.alarmtime = 3;
-                                    break;
-                                case 45 * 60:
-                                    app.alarmtime = 4;
-                                    break;
-                                case 1 * 3600:
-                                    app.alarmtime = 5;
-                                    break;
-                                case 2 * 3600:
-                                    app.alarmtime = 6;
-                                    break;
-                                case 4 * 3600:
-                                     app.alarmtime = 7;
-                                     break;
-                                case 8 * 3600:
-                                    app.alarmtime = 8;
-                                    break;
-                                case 24 * 3600:
-                                    app.alarmtime = 9;
-                                    break;
-                                case 48 * 3600:
-                                    app.alarmtime = 10;
-                                    break;
-                                default:
-                                    app.alarmtime = 1;
-                            }
-                        }
-                        else
-                            g_warning("ical_code: Can not process time type triggers\n");
-                    }
-                    else if (strcmp(text, "ATTACH") == 0) {
-                        attach = icalproperty_get_attach(p);
-                        app.sound = (char *)icalattach_get_url(attach);
-                    }
-                    else if (strcmp(text, "REPEAT") == 0) {
-                        app.alarmrepeat = TRUE;
-                    }
-                    else if (strcmp(text, "DURATION") == 0) {
-                    /* no actions defined */
-                    }
-                    else if (app.note == NULL
-                            && strcmp(text, "DESCRIPTION") == 0) {
+                switch (icalproperty_isa(p)) {
+                    case ICAL_SUMMARY_PROPERTY:
+                        app.title = (char *) icalproperty_get_summary(p);
+                        break;
+                    case ICAL_LOCATION_PROPERTY:
+                        app.location = (char *) icalproperty_get_location(p);
+                        break;
+                    case ICAL_DESCRIPTION_PROPERTY:
                         app.note = (char *) icalproperty_get_description(p);
-                    }
+                        break;
+                    case ICAL_UID_PROPERTY:
+                        app.uid = (char *) icalproperty_get_uid(p);
+                        break;
+                    case ICAL_TRANSP_PROPERTY:
+                        xf_transp = icalproperty_get_transp(p);
+                        if (xf_transp == ICAL_TRANSP_TRANSPARENT)
+                            app.availability = 0;
+                        else if (xf_transp == ICAL_TRANSP_OPAQUE)
+                            app.availability = 1;
+                        else 
+                            app.availability = -1;
+                        break;
+                    case ICAL_DTSTART_PROPERTY:
+                        itime = icalproperty_get_dtstart(p);
+                        text  = icaltime_as_ical_string(itime);
+                        g_strlcpy(app.starttime, text, 17);
+                        if (icaltime_is_date(itime))
+                            app.allDay = TRUE;
+                        if (app.endtime[0] == '\0')
+                            g_strlcpy(app.endtime, text, 17);
+                        break;
+                    case ICAL_DTEND_PROPERTY:
+                        itime = icalproperty_get_dtend(p);
+                        text  = icaltime_as_ical_string(itime);
+                        g_strlcpy(app.endtime, text, 17);
+                        break;
+                    case ICAL_RRULE_PROPERTY:
+                        rrule = icalproperty_get_rrule(p);
+                        switch ( rrule.freq) {
+                            case ICAL_DAILY_RECURRENCE:
+                                app.freq = XFICAL_FREQ_DAILY;
+                                break;
+                            case ICAL_WEEKLY_RECURRENCE:
+                                app.freq = XFICAL_FREQ_WEEKLY;
+                                break;
+                            case ICAL_MONTHLY_RECURRENCE:
+                                app.freq = XFICAL_FREQ_MONTHLY;
+                                break;
+                            default:
+                                app.freq = XFICAL_FREQ_NONE;
+                                break;
+                        }
+                        break;
                 }
             }
+        ical_app_get_alarm_internal(c, &app);
         }
     } 
     if (key_found)
@@ -523,11 +532,11 @@ appt_type *xfical_app_get(char *ical_uid)
 }
 
  /* modify EVENT type ical appointment in ical file
- * key: char pointer to ical key to modify
- * app: pointer to filled appt_type structure, which is stored
- *      Caller is responsible for filling and allocating and freeing it.
+  * ical_uid: char pointer to ical ical_uid to modify
+  * app: pointer to filled appt_type structure, which is stored
+  *      Caller is responsible for filling and allocating and freeing it.
   * returns: TRUE is successfull, FALSE if failed
- */
+  */
 gboolean xfical_app_mod(char *ical_uid, appt_type *app)
 {
     icalcomponent *c;
@@ -553,7 +562,7 @@ gboolean xfical_app_mod(char *ical_uid, appt_type *app)
     if (!key_found)
         return(FALSE);
 
-    app_add_int(app, FALSE, ical_uid, create_time);
+    app_add_internal(app, FALSE, ical_uid, create_time);
     return(TRUE);
 }
 
@@ -584,7 +593,7 @@ gboolean xfical_app_del(char *ical_uid)
 
  /* Read next EVENT on the specified date from ical datafile.
   * a_day:  start date of ical EVENT appointment which is to be read
-  * hh_mm:  return the start and end time of EVENT. NULL=start from 00
+  * first:  get first appointment is TRUE, if not get next.
   * returns: NULL if failed and appt_type pointer to appt_type struct 
   *          filled with data if successfull.
   *          This appt_type struct is owned by the routine. 
@@ -623,8 +632,8 @@ appt_type *xfical_app_get_next_on_day(char *a_day, gboolean first)
             ri = icalrecur_iterator_new(rrule, sdate);
             ndate = icaltime_null_time();
             for (ndate = icalrecur_iterator_next(ri);
-                 (!icaltime_is_null_time(ndate))
-                 && (icaltime_compare_date_only(adate, ndate) > 0) ;
+                 !icaltime_is_null_time(ndate)
+                 && icaltime_compare_date_only(adate, ndate) > 0;
                  ndate = icalrecur_iterator_next(ri)) {
             }
             if (icaltime_compare_date_only(adate, ndate) == 0) {
@@ -668,10 +677,10 @@ void xfical_mark_calendar(GtkCalendar *gtkcal, int year, int month)
             ri = icalrecur_iterator_new(rrule, sdate);
             ndate = icaltime_null_time();
             for (ndate = icalrecur_iterator_next(ri);
-                 (!icaltime_is_null_time(ndate))
-                 && (ndate.year <= year) && (ndate.month <= month);
+                 !icaltime_is_null_time(ndate)
+                 && ndate.year <= year && ndate.month <= month;
                  ndate = icalrecur_iterator_next(ri)) {
-                if ((ndate.year == year) && (ndate.month == month)) {
+                if (ndate.year == year && ndate.month == month) {
                     gtk_calendar_mark_day(gtkcal, ndate.day);
                 }
             }
@@ -696,7 +705,7 @@ void rmday_ical_app(char *a_day)
          c = c2){
         c2 = icalcomponent_get_next_component(ical, ICAL_VEVENT_COMPONENT);
         t = icalcomponent_get_dtstart(c);
-        if (icaltime_compare_date_only(t, adate) == 0){
+        if (icaltime_compare_date_only(t, adate) == 0) {
             icalcomponent_remove_component(ical, c);
         }
     } 
@@ -887,4 +896,4 @@ gboolean xfical_alarm_passed(char *alarm_stime)
     if (icaltime_compare(cur_time, alarm_time) > 0)
         return(TRUE);
     return(FALSE);
-}
+ }
