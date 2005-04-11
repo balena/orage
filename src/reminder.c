@@ -45,7 +45,7 @@ extern GList *alarm_list;
 gboolean
 xfcalendar_sound_alarm(gpointer data)
 {
-    GError *error;
+    GError *error = NULL;
     gboolean status;
     xfce_audio_alarm_type *audio_alarm = (xfce_audio_alarm_type *) data;
     GtkWidget *wReminder;
