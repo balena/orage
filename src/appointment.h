@@ -1,6 +1,7 @@
 /* appointment.h
  *
- * Copyright (C) 2004 Mickaël Graf <korbinus@lunar-linux.org>
+ * Copyright (C) 2004 Mickaël Graf <korbinus at xfce.org>
+ * Copyright (C) 2005 Juha Kautto <kautto.juha at kolumbus.fi>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -60,7 +61,14 @@ typedef struct
     GtkWidget *appWindow;
     GtkWidget *appHeader;
     GtkWidget *appVBox1;
+    GtkWidget *appNotebook;
+    GtkWidget *appGeneral_notebook_page;
+    GtkWidget *appGeneral_tab_label;
+    GtkWidget *appAlarm_notebook_page;
+    GtkWidget *appAlarm_tab_label;
+    /* FIXME: rename appTable appTableGeneral */
     GtkWidget *appTable;
+    GtkWidget *appTableAlarm;
     GtkWidget *appTitle_label;
     GtkWidget *appLocation_label;
     GtkWidget *appStart;
@@ -127,6 +135,8 @@ typedef struct
 
 } appt_win;
 
-void fill_appt_window(appt_win *appt, char *action, char *par);
+void 
+fill_appt_window(appt_win *appt, char *action, char *par);
 
-appt_win *create_appt_win(char *action, char *par, GtkWidget *wAppointment);
+appt_win 
+*create_appt_win(char *action, char *par, GtkWidget *wAppointment);
