@@ -244,7 +244,7 @@ on_appClose_clicked_cb(GtkButton *button, gpointer user_data)
 {
 
     appt_win *apptw = (appt_win *)user_data;
-
+    gboolean ok = FALSE;
     appt_type *appt = g_new(appt_type, 1); 
     gchar *new_uid;
 
@@ -254,16 +254,17 @@ on_appClose_clicked_cb(GtkButton *button, gpointer user_data)
   if (xfical_file_open()){
      if (apptw->add_appointment) {
         new_uid = xfical_app_add(appt);
+        ok = TRUE;
         g_message("New ical uid: %s \n", new_uid);
      }
      else {
-        xfical_app_mod(apptw->xf_uid, appt);
+        ok = xfical_app_mod(apptw->xf_uid, appt);
         g_message("Modified :%s \n", apptw->xf_uid);
      }
      xfical_file_close();
   }
 
-  if (apptw->wAppointment != NULL) {
+  if (ok && apptw->wAppointment != NULL) {
      recreate_wAppointment(apptw->wAppointment);
   }
 
@@ -281,6 +282,8 @@ on_appRemove_clicked_cb(GtkButton *button, gpointer user_data)
      xfical_app_del(apptw->xf_uid);
      xfical_file_close();
   }
+
+  g_message("Removed ical uid: %s \n", apptw->xf_uid);
 
   if (apptw->wAppointment != NULL) {
     recreate_wAppointment(apptw->wAppointment);
@@ -349,6 +352,7 @@ void fill_appt_window(appt_win *appt_w, char *action, char *par)
         g_message("Building new ical uid: %s \n", appt_data->uid);
     }
     else if (strcmp(action, "UPDATE") == 0) {
+        g_message("Editing ical uid: %s \n", par);
         appt_w->add_appointment = FALSE;
     /* par contains ical uid */
         if (!xfical_file_open()) {
@@ -357,9 +361,9 @@ void fill_appt_window(appt_win *appt_w, char *action, char *par)
         }
         if ((appt_data = xfical_app_get(par)) == NULL) {
             g_message("appointment not found\n");
+            xfical_file_close();
             return;
         }
-        g_message("Editing ical uid: %s \n", appt_data->uid);
     }
     else
         g_error("unknown parameter\n");
@@ -507,7 +511,7 @@ appt_win
                             , appt->appGeneral_notebook_page
                             , appt->appGeneral_tab_label);
 
-    appt->appTable = gtk_table_new (8, 2, FALSE); 
+    appt->appTable = gtk_table_new (8, 2, FALSE);
     gtk_widget_show (appt->appTable);
     xfce_framebox_add(XFCE_FRAMEBOX(appt->appGeneral_notebook_page), appt->appTable);
     gtk_container_set_border_width (GTK_CONTAINER (appt->appTable), 10);
@@ -748,7 +752,7 @@ appt_win
                             , appt->appAlarm_notebook_page
                             , appt->appAlarm_tab_label);
 
-    appt->appTableAlarm = gtk_table_new (3, 2, FALSE); 
+    appt->appTableAlarm = gtk_table_new (3, 2, FALSE);
     gtk_widget_show (appt->appTableAlarm);
     xfce_framebox_add(XFCE_FRAMEBOX(appt->appAlarm_notebook_page), appt->appTableAlarm);
     gtk_container_set_border_width (GTK_CONTAINER (appt->appTableAlarm), 10);

@@ -117,9 +117,15 @@ on_btStopNoiseReminder_clicked(GtkButton *button, gpointer user_data)
 void
 on_btOpenReminder_clicked(GtkButton *button, gpointer user_data)
 {
-  GtkWidget *wReminder = (GtkWidget *)user_data;
-
-  gtk_widget_destroy(wReminder); /* destroy the specific appointment window */
+    GtkWidget *wReminder = (GtkWidget *)user_data;
+    gchar *uid;
+    appt_win *app;
+                                                                                
+    if ((uid = (gchar *)g_object_get_data(G_OBJECT(wReminder), "ALARM_UID"))
+        != NULL) {
+        app = create_appt_win("UPDATE", uid, NULL);
+        gtk_widget_show(app->appWindow);
+    }
 }
 
 void
@@ -131,6 +137,7 @@ on_destroy(GtkWidget *wReminder, gpointer user_data)
         audio_alarm->cnt = 0;
         audio_alarm->wReminder = NULL; /* window is being distroyed */
     }
+    g_free(g_object_get_data(G_OBJECT(wReminder), "ALARM_UID")); /* free uid */
 }
 
 void
@@ -147,6 +154,7 @@ create_wReminder(alarm_struct *alarm)
   GtkWidget *hdReminder;
   char heading[200];
   xfce_audio_alarm_type *audio_alarm;
+  gchar *alarm_uid;
 
   wReminder = gtk_dialog_new ();
   gtk_widget_set_size_request (wReminder, 300, 250);
@@ -189,6 +197,8 @@ create_wReminder(alarm_struct *alarm)
   gtk_dialog_add_action_widget (GTK_DIALOG (wReminder), btOkReminder, GTK_RESPONSE_OK);
   GTK_WIDGET_SET_FLAGS (btOkReminder, GTK_CAN_DEFAULT);
 
+  alarm_uid = g_strdup(alarm->uid->str);
+  g_object_set_data(G_OBJECT(wReminder), "ALARM_UID", alarm_uid);
   g_signal_connect((gpointer) btOpenReminder, "clicked",
             G_CALLBACK (on_btOpenReminder_clicked),
             wReminder);

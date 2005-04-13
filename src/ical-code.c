@@ -546,8 +546,10 @@ gboolean xfical_app_mod(char *ical_uid, appt_type *app)
     gboolean key_found = FALSE;
     struct icaltimetype create_time = icaltime_null_time();
 
-    if (ical_uid == NULL)
+    if (ical_uid == NULL) {
+        g_warning("xfical_app_mod: Got NULL uid. doing nothing\n");
         return(FALSE);
+    }
     for (c = icalcomponent_get_first_component(ical, ICAL_VEVENT_COMPONENT); 
          c != 0 && !key_found;
          c = icalcomponent_get_next_component(ical, ICAL_VEVENT_COMPONENT)) {
@@ -559,8 +561,10 @@ gboolean xfical_app_mod(char *ical_uid, appt_type *app)
             key_found = TRUE;
         }
     } 
-    if (!key_found)
+    if (!key_found) {
+        g_warning("xfical_app_mod: uid not found. doing nothing\n");
         return(FALSE);
+    }
 
     app_add_internal(app, FALSE, ical_uid, create_time);
     return(TRUE);
