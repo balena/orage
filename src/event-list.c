@@ -398,7 +398,7 @@ void start_time_data_func(GtkTreeViewColumn *col, GtkCellRenderer *rend,
     sprintf(time_now, "%02d:%02d", t->tm_hour, t->tm_min);
 
     gtk_tree_model_get(model, iter, COL_TIME, &stime, -1);
-    if (stime[0] = '+')
+    if (stime[0] == '+')
         stime++;
     etime = stime + 6;
     if (stime[2] != ':') { /* catch "today" */
