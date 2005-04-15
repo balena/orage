@@ -61,13 +61,14 @@ typedef struct
     GtkWidget *appWindow;
     GtkWidget *appHeader;
     GtkWidget *appVBox1;
+    GtkWidget *appHandleBox;
+    GtkWidget *appToolbar;
     GtkWidget *appNotebook;
     GtkWidget *appGeneral_notebook_page;
     GtkWidget *appGeneral_tab_label;
     GtkWidget *appAlarm_notebook_page;
     GtkWidget *appAlarm_tab_label;
-    /* FIXME: rename appTable appTableGeneral */
-    GtkWidget *appTable;
+    GtkWidget *appTableGeneral;
     GtkWidget *appTableAlarm;
     GtkWidget *appTitle_label;
     GtkWidget *appLocation_label;
@@ -124,10 +125,10 @@ typedef struct
     GtkWidget *appSound_button;
     GtkWidget *appSoundRepeat_checkbutton;
     GtkWidget *appHBox1;
-    GtkWidget *appRemove;
-    GtkWidget *appAdd;
-    GtkWidget *appBottom_fixed;
-    GtkWidget *appClose;
+    GtkWidget *appDelete;
+    GtkWidget *appDuplicate;
+    GtkWidget *appSave;
+    GtkWidget *appSaveClose;
 
     gchar *xf_uid;
     GtkWidget *wAppointment; /* event-list window */
