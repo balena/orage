@@ -20,25 +20,28 @@
 
 typedef struct _CalWin
 {
-  GtkWidget *mWindow;
-  GtkWidget *mVbox;
-  GtkWidget *mMenubar;
-  GtkWidget *mFile;
-  GtkWidget *mFile_menu;
-  GtkWidget *mFile_newApp;
-  GtkWidget *mFile_close;
-  GtkWidget *mFile_separator;
-  GtkWidget *mFile_quit;
-  GtkWidget *mSettings;
-  GtkWidget *mSettings_menu;
-  GtkWidget *mSettings_preferences;
-  GtkWidget *mSettings_separator;
-  GtkWidget *mSettings_selectToday;
-  GtkWidget *mHelp;
-  GtkWidget *mHelp_menu;
-  GtkWidget *mHelp_about;
-  GtkWidget *mCalendar;
-  GtkAccelGroup *mAccel_group;
+    GtkWidget *mWindow;
+    GtkWidget *mVbox;
+    GtkWidget *mMenubar;
+    GtkWidget *mFile;
+    GtkWidget *mFile_menu;
+    GtkWidget *mFile_newApp;
+    GtkWidget *mFile_close;
+    GtkWidget *mFile_separator;
+    GtkWidget *mFile_quit;
+    GtkWidget *mEdit;
+    GtkWidget *mEdit_menu;
+    GtkWidget *mEdit_preferences;
+    GtkWidget *mView;
+    GtkWidget *mView_menu;
+    GtkWidget *mView_ViewSelectedDate;
+    GtkWidget *mView_separator;
+    GtkWidget *mView_selectToday;
+    GtkWidget *mHelp;
+    GtkWidget *mHelp_menu;
+    GtkWidget *mHelp_about;
+    GtkWidget *mCalendar;
+    GtkAccelGroup *mAccel_group;
 
 } CalWin;
 

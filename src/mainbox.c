@@ -1,8 +1,8 @@
 /* mainbox.c
  *
- * Copyright (C) 2004-2005 Mickaël Graf <korbinus@xfce.org>
- * Parts of the code below are copyright (C) 2003 Edscott Wilson Garcia <edscott@users.sourceforge.net>
- *                                       (C) 2005 Juha Kautto <kautto.juha at kolumbus.fi>
+ * Copyright (C) 2004-2005 Mickaël Graf <korbinus at xfce.org>
+ * (C) 2003 Edscott Wilson Garcia <edscott at users.sourceforge.net>
+ * (C) 2005 Juha Kautto <kautto.juha at kolumbus.fi>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -118,14 +118,26 @@ mFile_quit_activate_cb (GtkMenuItem *menuitem,
 }
 
 void 
-mSettings_preferences_activate_cb(GtkMenuItem *menuitem,
+mEdit_preferences_activate_cb(GtkMenuItem *menuitem,
             gpointer user_data)
 {
   mcs_client_show(GDK_DISPLAY(), DefaultScreen(GDK_DISPLAY()), CHANNEL);
 }
 
 void
-mSettings_selectToday_activate_cb(GtkMenuItem *menuitem,
+mView_ViewSelectedDate_activate_cb(GtkMenuItem *menuitem,
+            gpointer user_data)
+{
+    CalWin *xfcal = (CalWin *) user_data;
+    GtkWidget *wAppointment;
+
+    wAppointment = create_wAppointment();
+    manageAppointment(GTK_CALENDAR(xfcal->mCalendar), wAppointment);
+    gtk_widget_show(wAppointment);
+}
+
+void
+mView_selectToday_activate_cb(GtkMenuItem *menuitem,
             gpointer user_data)
 {
   CalWin *xfcal = (CalWin *)user_data;
@@ -289,43 +301,57 @@ void create_mainWin()
   gtk_widget_show(xfcal->mFile_newApp);
   gtk_container_add(GTK_CONTAINER (xfcal->mFile_menu), xfcal->mFile_newApp);
 
-  xfcal->mFile_close = gtk_menu_item_new_with_mnemonic (_("_Close window"));
-  gtk_widget_show(xfcal->mFile_close);
-  gtk_container_add(GTK_CONTAINER (xfcal->mFile_menu), xfcal->mFile_close);
-
   xfcal->mFile_separator = gtk_separator_menu_item_new ();
   gtk_widget_show (xfcal->mFile_separator);
   gtk_container_add (GTK_CONTAINER (xfcal->mFile_menu), xfcal->mFile_separator);
+
+  xfcal->mFile_close =  gtk_image_menu_item_new_from_stock ("gtk-close", 
+                                                            xfcal->mAccel_group);
+  gtk_widget_show(xfcal->mFile_close);
+  gtk_container_add(GTK_CONTAINER (xfcal->mFile_menu), xfcal->mFile_close);
 
   xfcal->mFile_quit =  gtk_image_menu_item_new_from_stock ("gtk-quit", 
 							   xfcal->mAccel_group);
   gtk_widget_show (xfcal->mFile_quit);
   gtk_container_add (GTK_CONTAINER (xfcal->mFile_menu), xfcal->mFile_quit);
 
-  /* Settings menu */
-  xfcal->mSettings =  gtk_menu_item_new_with_mnemonic(_("_Settings"));
-  gtk_widget_show (xfcal->mSettings);
-  gtk_container_add (GTK_CONTAINER (xfcal->mMenubar), xfcal->mSettings);
+  /* Edit menu */
+    xfcal->mEdit = gtk_menu_item_new_with_mnemonic(_("_Edit"));
+    gtk_widget_show (xfcal->mEdit);
+    gtk_container_add (GTK_CONTAINER (xfcal->mMenubar), xfcal->mEdit);
 
-  xfcal->mSettings_menu = gtk_menu_new();
-  gtk_menu_item_set_submenu(GTK_MENU_ITEM(xfcal->mSettings), 
-			    xfcal->mSettings_menu);
+    xfcal->mEdit_menu = gtk_menu_new();
+    gtk_menu_item_set_submenu (GTK_MENU_ITEM(xfcal->mEdit),
+                               xfcal->mEdit_menu);
 
-  xfcal->mSettings_preferences = gtk_menu_item_new_with_mnemonic(_("_Preferences"));
-  gtk_widget_show (xfcal->mSettings_preferences);
-  gtk_container_add (GTK_CONTAINER (xfcal->mSettings_menu), 
-		     xfcal->mSettings_preferences);
+    xfcal->mEdit_preferences = gtk_image_menu_item_new_from_stock ("gtk-preferences",
+                                                                   xfcal->mAccel_group);
+    gtk_widget_show (xfcal->mEdit_preferences);
+    gtk_container_add (GTK_CONTAINER (xfcal->mEdit_menu), 
+                       xfcal->mEdit_preferences);
 
-  xfcal->mSettings_separator = gtk_separator_menu_item_new();
-  gtk_widget_show (xfcal->mSettings_separator);
-  gtk_container_add (GTK_CONTAINER (xfcal->mSettings_menu), 
-		     xfcal->mSettings_separator);
+  /* View menu */
+  xfcal->mView =  gtk_menu_item_new_with_mnemonic(_("_View"));
+  gtk_widget_show (xfcal->mView);
+  gtk_container_add (GTK_CONTAINER (xfcal->mMenubar), xfcal->mView);
 
+  xfcal->mView_menu = gtk_menu_new();
+  gtk_menu_item_set_submenu(GTK_MENU_ITEM(xfcal->mView), 
+			    xfcal->mView_menu);
 
-  xfcal->mSettings_selectToday = gtk_menu_item_new_with_mnemonic(_("Select _Today"));
-  gtk_widget_show (xfcal->mSettings_selectToday);
-  gtk_container_add (GTK_CONTAINER (xfcal->mSettings_menu), 
-		     xfcal->mSettings_selectToday);
+  xfcal->mView_ViewSelectedDate = gtk_menu_item_new_with_mnemonic(_("View selected _date"));
+  gtk_widget_show (xfcal->mView_ViewSelectedDate);
+  gtk_container_add (GTK_CONTAINER (xfcal->mView_menu),
+                     xfcal->mView_ViewSelectedDate);
+
+  xfcal->mView_separator = gtk_separator_menu_item_new ();
+  gtk_widget_show (xfcal->mView_separator);
+  gtk_container_add (GTK_CONTAINER (xfcal->mView_menu), xfcal->mView_separator);
+
+  xfcal->mView_selectToday = gtk_menu_item_new_with_mnemonic(_("Select _Today"));
+  gtk_widget_show (xfcal->mView_selectToday);
+  gtk_container_add (GTK_CONTAINER (xfcal->mView_menu), 
+		     xfcal->mView_selectToday);
 
   /* Help menu */
 
@@ -336,7 +362,8 @@ void create_mainWin()
   xfcal->mHelp_menu = gtk_menu_new ();
   gtk_menu_item_set_submenu (GTK_MENU_ITEM (xfcal->mHelp), xfcal->mHelp_menu);
 
-  xfcal->mHelp_about = gtk_menu_item_new_with_mnemonic (_("_About"));
+  xfcal->mHelp_about =  gtk_image_menu_item_new_from_stock ("gtk-about", 
+                                                            xfcal->mAccel_group);
   gtk_widget_show (xfcal->mHelp_about);
   gtk_container_add (GTK_CONTAINER (xfcal->mHelp_menu), xfcal->mHelp_about);
 
@@ -366,12 +393,16 @@ void create_mainWin()
 		    G_CALLBACK (mFile_quit_activate_cb),
 		    (gpointer) xfcal);
 
-  g_signal_connect ((gpointer) xfcal->mSettings_preferences, "activate",
-		    G_CALLBACK (mSettings_preferences_activate_cb),
+  g_signal_connect ((gpointer) xfcal->mEdit_preferences, "activate",
+		    G_CALLBACK (mEdit_preferences_activate_cb),
 		    NULL);
 
-  g_signal_connect ((gpointer) xfcal->mSettings_selectToday, "activate",
-		    G_CALLBACK (mSettings_selectToday_activate_cb),
+  g_signal_connect ((gpointer) xfcal->mView_ViewSelectedDate, "activate",
+		    G_CALLBACK (mView_ViewSelectedDate_activate_cb),
+		    (gpointer) xfcal);
+
+  g_signal_connect ((gpointer) xfcal->mView_selectToday, "activate",
+		    G_CALLBACK (mView_selectToday_activate_cb),
 		    (gpointer) xfcal);
 
   g_signal_connect ((gpointer) xfcal->mHelp_about, "activate",

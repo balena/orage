@@ -210,7 +210,7 @@ create_wReminder(alarm_struct *alarm)
   if (alarm->audio) {
     audio_alarm = create_soundReminder(alarm, wReminder);
     if (alarm->repeat_cnt != 0) {
-        btStopNoiseReminder = gtk_button_new_from_stock ("gtk-no");
+        btStopNoiseReminder = gtk_button_new_from_stock ("gtk-stop");
         gtk_widget_show (btStopNoiseReminder);
         gtk_dialog_add_action_widget (GTK_DIALOG (wReminder), btStopNoiseReminder, GTK_RESPONSE_OK);
         g_object_set_data(G_OBJECT(wReminder), "AUDIO STOP", btStopNoiseReminder);
