@@ -76,7 +76,7 @@ gboolean xfical_file_open(void)
 
     if (fical != NULL)
         g_warning("xfical_file_open: fical already open\n");
-	ficalpath = xfce_resource_save_location(XFCE_RESOURCE_CONFIG,
+    ficalpath = xfce_resource_save_location(XFCE_RESOURCE_CONFIG,
                         RCDIR G_DIR_SEPARATOR_S APPOINTMENT_FILE, FALSE);
     if ((fical = icalset_new_file(ficalpath)) == NULL) {
         g_error("xfical_file_open: Could not open ical file (%s) %s\n"
@@ -106,7 +106,7 @@ gboolean xfical_file_open(void)
             g_warning("xfical_file_open: Too many top level components in calendar file\n");
         }
     }
-	g_free(ficalpath);
+    g_free(ficalpath);
     return(TRUE);
 }
 
@@ -425,10 +425,12 @@ void ical_app_get_alarm_internal(icalcomponent *c,  appt_type *app)
 }
 
  /* Read EVENT from ical datafile.
-  *ical_uid:  key of ical EVENT app-> is to be read
-  * returns: NULL if failed and appt_type pointer to appt_type struct 
+  * ical_uid:  key of ical EVENT app-> is to be read
+  * returns: NULL if failed and appt_type pointer to appt_type struct
   *          filled with data if successfull.
-  *          This appt_type struct is owned by the routine. 
+  *          NOTE: This routine does not fill starttimecur nor endtimecur,
+  *          Those are alwasy initialized to null string
+  *          This appt_type struct is owned by the routine.
   *          Do not deallocate it.
   *          It will be overdriven by next invocation of this function.
   */
@@ -461,6 +463,8 @@ appt_type *xfical_app_get(char *ical_uid)
             app.uid = NULL;
             app.starttime[0] = '\0';
             app.endtime[0] = '\0';
+            app.starttimecur[0] = '\0';
+            app.endtimecur[0] = '\0';
             app.freq = XFICAL_FREQ_NONE;
         /*********** Properties ***********/
             for (p = icalcomponent_get_first_property(c, ICAL_ANY_PROPERTY);
@@ -541,7 +545,6 @@ gboolean xfical_app_mod(char *ical_uid, appt_type *app)
 {
     icalcomponent *c;
     char *uid;
-    const char *text;
     icalproperty *p = NULL;
     gboolean key_found = FALSE;
     struct icaltimetype create_time = icaltime_null_time();
@@ -579,8 +582,10 @@ gboolean xfical_app_del(char *ical_uid)
     icalcomponent *c;
     char *uid;
 
-    if (ical_uid == NULL)
+    if (ical_uid == NULL) {
+        g_warning("xfical_app_del: Got NULL uid. doing nothing\n");
         return(FALSE);
+     }
     for (c = icalcomponent_get_first_component(ical, ICAL_VEVENT_COMPONENT); 
          c != 0;
          c = icalcomponent_get_next_component(ical, ICAL_VEVENT_COMPONENT)) {
@@ -592,6 +597,7 @@ gboolean xfical_app_del(char *ical_uid)
             return(TRUE);
         }
     } 
+    g_warning("xfical_app_del: uid not found. doing nothing\n");
     return(FALSE);
 }
 
@@ -606,48 +612,64 @@ gboolean xfical_app_del(char *ical_uid)
   */
 appt_type *xfical_app_get_next_on_day(char *a_day, gboolean first)
 {
-    struct icaltimetype adate, sdate, edate, ndate;
+    struct icaltimetype adate, sdate, edate, nsdate, nedate;
     icalcomponent *c;
     static icalcompiter ci;
     gboolean date_found=FALSE;
+    gboolean date_rec_found=FALSE;
     char *uid;
     appt_type *app;
     struct icalrecurrencetype rrule;
     icalrecur_iterator* ri;
     icalproperty *p = NULL;
+    struct icaldurationtype duration;
 
-/* FIXME: does not find events which start on earlier dates and continues
-          to this date */
     adate = icaltime_from_string(a_day);
     if (first)
         ci = icalcomponent_begin_component(ical, ICAL_VEVENT_COMPONENT);
     for ( ; 
-         (icalcompiter_deref(&ci) != 0) && (!date_found);
-          icalcompiter_next(&ci)) {
+         icalcompiter_deref(&ci) != 0 && !date_found;
+         icalcompiter_next(&ci)) {
         c = icalcompiter_deref(&ci);
         sdate = icalcomponent_get_dtstart(c);
         edate = icalcomponent_get_dtend(c);
-        if (icaltime_compare_date_only(adate, sdate) == 0) {
+        if (icaltime_is_null_time(edate))
+            edate = sdate;
+        if (icaltime_compare_date_only(sdate, adate) <= 0
+            && icaltime_compare_date_only(adate, edate) <= 0) {
             date_found = TRUE;
         }
         else if ((p = icalcomponent_get_first_property(c, ICAL_RRULE_PROPERTY))
                  != 0) { /* need to check recurring EVENTs */
+            duration = icaltime_subtract(edate, sdate);
             rrule = icalproperty_get_rrule(p);
             ri = icalrecur_iterator_new(rrule, sdate);
-            ndate = icaltime_null_time();
-            for (ndate = icalrecur_iterator_next(ri);
-                 !icaltime_is_null_time(ndate)
-                 && icaltime_compare_date_only(adate, ndate) > 0;
-                 ndate = icalrecur_iterator_next(ri)) {
+            nsdate = icaltime_null_time();
+            for (nsdate = icalrecur_iterator_next(ri),
+                    nedate = icaltime_add(nsdate, duration);
+                 !icaltime_is_null_time(nsdate)
+                    && icaltime_compare_date_only(nedate, adate) < 0;
+                 nsdate = icalrecur_iterator_next(ri),
+                    nedate = icaltime_add(nsdate, duration)) {
             }
-            if (icaltime_compare_date_only(adate, ndate) == 0) {
+            if (icaltime_compare_date_only(nsdate, adate) <= 0
+                && icaltime_compare_date_only(adate, nedate) <= 0) {
                 date_found = TRUE;
-            } 
+                date_rec_found = TRUE;
+            }
         }
-    } 
+    }
     if (date_found) {
         uid = (char *)icalcomponent_get_uid(c);
         app = xfical_app_get(uid);
+        if (date_rec_found) {
+            g_strlcpy(app->starttimecur, icaltime_as_ical_string(nsdate), 17);
+            g_strlcpy(app->endtimecur, icaltime_as_ical_string(nedate), 17);
+        }
+        else {
+            g_strlcpy(app->starttimecur, app->starttime, 17);
+            g_strlcpy(app->endtimecur, app->endtime, 17);
+        }
         return(app);
     }
     else
@@ -660,33 +682,78 @@ appt_type *xfical_app_get_next_on_day(char *a_day, gboolean first)
   */
 void xfical_mark_calendar(GtkCalendar *gtkcal, int year, int month)
 {
-    struct icaltimetype sdate, ndate;
+    struct icaltimetype sdate, edate, nsdate, nedate;
     static icalcomponent *c;
     struct icalrecurrencetype rrule;
     icalrecur_iterator* ri;
     icalproperty *p = NULL;
+    struct icaldurationtype duration;
+    gint start_day, day_cnt, end_day;
 
     gtk_calendar_freeze(gtkcal);
     gtk_calendar_clear_marks(gtkcal);
     for (c = icalcomponent_get_first_component(ical, ICAL_VEVENT_COMPONENT);
-         c != 0; 
+         c != 0;
          c = icalcomponent_get_next_component(ical, ICAL_VEVENT_COMPONENT)) {
         sdate = icalcomponent_get_dtstart(c);
-        if ((sdate.year == year) && (sdate.month == month)) {
-            gtk_calendar_mark_day(gtkcal, sdate.day);
+        edate = icalcomponent_get_dtend(c);
+        if (icaltime_is_null_time(edate))
+            edate = sdate;
+        if ((sdate.year*12+sdate.month) <= (year*12+month)
+                && (year*12+month) <= (edate.year*12+edate.month)) {
+                /* event is in our year+month = visible in calendar */
+            if ((sdate.year == year) && (sdate.month == month)) {
+                start_day = sdate.day;
+            }
+            else {
+                start_day = 1;
+            }
+            if ((edate.year == year) && (edate.month == month)) {
+                end_day = edate.day;
+            }
+            else {
+                end_day = 31;
+            }
+            for (day_cnt = start_day; day_cnt <= end_day; day_cnt++) {
+                gtk_calendar_mark_day(gtkcal, day_cnt);
+            }
         }
         if ((p = icalcomponent_get_first_property(c, ICAL_RRULE_PROPERTY))
                  != 0) { /* need to check recurring EVENTs */
+            duration = icaltime_subtract(edate, sdate);
             rrule = icalproperty_get_rrule(p);
             ri = icalrecur_iterator_new(rrule, sdate);
-            ndate = icaltime_null_time();
-            for (ndate = icalrecur_iterator_next(ri);
-                 !icaltime_is_null_time(ndate)
-                 && ndate.year <= year && ndate.month <= month;
-                 ndate = icalrecur_iterator_next(ri)) {
-                if (ndate.year == year && ndate.month == month) {
-                    gtk_calendar_mark_day(gtkcal, ndate.day);
+            nsdate = icaltime_null_time();
+            for (nsdate = icalrecur_iterator_next(ri),
+                    nedate = icaltime_add(nsdate, duration);
+                 !icaltime_is_null_time(nsdate)
+                    && (nsdate.year*12+nsdate.month) <= (year*12+month);
+                 nsdate = icalrecur_iterator_next(ri),
+                    nedate = icaltime_add(nsdate, duration)) {
+                if ((nsdate.year*12+nsdate.month) <= (year*12+month)
+                        && (year*12+month) <= (nedate.year*12+nedate.month)) {
+                        /* event is in our year+month = visible in calendar */
+                    if ((nsdate.year == year) && (nsdate.month == month)) {
+                        start_day = nsdate.day;
+                    }
+                    else {
+                        start_day = 1;
+                    }
+                    if ((nedate.year == year) && (nedate.month == month)) {
+                        end_day = nedate.day;
+                    }
+                    else {
+                        end_day = 31;
+                    }
+                    for (day_cnt = start_day; day_cnt <= end_day; day_cnt++) {
+                        gtk_calendar_mark_day(gtkcal, day_cnt);
+                    }
                 }
+                /*
+                if (nsdate.year == year && nsdate.month == month) {
+                    gtk_calendar_mark_day(gtkcal, nsdate.day);
+                }
+                */
             }
         } 
     } 

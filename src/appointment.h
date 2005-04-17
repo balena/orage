@@ -51,7 +51,12 @@ typedef struct
          */
     gchar 
         starttime[17],
-        endtime[17];
+        endtime[17],
+        /* for repeating events cur times show current repeating event.
+         * normal times are always the real (=first) start and end times 
+         */
+        starttimecur[17], 
+        endtimecur[17];
 
     xfical_freq freq;
 } appt_type;

@@ -332,7 +332,7 @@ gint sortAppointment_comp(GtkTreeModel *model
 char *format_time(char *start_ical_time, char *end_ical_time, char *title)
 {
     static char result[20];
-    char today_ical_date[10];
+    char title_ical_date[10];
     int i = 0;
 
     if (start_ical_time[8] == 'T') { /* time part available */
@@ -352,8 +352,8 @@ char *format_time(char *start_ical_time, char *end_ical_time, char *title)
             result[i++] = '\0';
         }
         else { /* also date is needed */
-            title_to_ical(title, today_ical_date);
-            if (strncmp(start_ical_time, today_ical_date, 8) < 0) {
+            title_to_ical(title, title_ical_date);
+            if (strncmp(start_ical_time, title_ical_date, 8) < 0) {
                 strcpy(result, "+00:00-");
                 i = 7;
             }
@@ -365,7 +365,7 @@ char *format_time(char *start_ical_time, char *end_ical_time, char *title)
                 result[i++] = start_ical_time[12];
                 result[i++] = '-';
             }
-            if (strncmp(today_ical_date, end_ical_time , 8) < 0) {
+            if (strncmp(title_ical_date, end_ical_time , 8) < 0) {
                 strcpy(result+i, "24:00+");
             }
             else {
@@ -446,7 +446,7 @@ void addAppointment(GtkListStore *list1, appt_type *app, char *header)
                                  [+]hh:mm-hh:mm[+]+<null> */
     gint            len = 50;
 
-    g_strlcpy(stime, format_time(app->starttime, app->endtime, header), 34);
+    g_strlcpy(stime, format_time(app->starttimecur, app->endtimecur, header), 20);
 
     if (app->alarmtime != 0)
         if (app->sound != NULL)
@@ -538,9 +538,9 @@ void addAppointment_init(GtkWidget *view, GtkWidget *wAppointment
 
 void manageAppointment(GtkCalendar *calendar, GtkWidget *wAppointment)
 {
-	guint year, month, day;
-	char            title[12];
-	char            a_day[9];  /* yyyymmdd */
+    guint year, month, day;
+    char            title[12];
+    char            a_day[9];  /* yyyymmdd */
     GtkWidget       *swin;
     appt_type       *app;
     GtkWidget       *view;
@@ -551,9 +551,9 @@ void manageAppointment(GtkCalendar *calendar, GtkWidget *wAppointment)
     gboolean today;
     GtkTooltips *tooltips = gtk_tooltips_new();
 
-	gtk_calendar_get_date(calendar, &year, &month, &day);
-	g_sprintf(title, "%04d-%02d-%02d", year, month+1, day);
-	gtk_window_set_title(GTK_WINDOW(wAppointment), _(title));
+    gtk_calendar_get_date(calendar, &year, &month, &day);
+    g_sprintf(title, "%04d-%02d-%02d", year, month+1, day);
+    gtk_window_set_title(GTK_WINDOW(wAppointment), _(title));
 
     if (xfical_file_open()){
         g_sprintf(a_day, XFICAL_APP_DATE_FORMAT, year, month+1, day);
@@ -581,7 +581,7 @@ void manageAppointment(GtkCalendar *calendar, GtkWidget *wAppointment)
                 , COL_TIME, GTK_SORT_ASCENDING);
             gtk_tree_view_set_model(GTK_TREE_VIEW(view),  GTK_TREE_MODEL(list));
             g_object_unref(list); /* model is destroyed together with view */
-	        swin = (GtkWidget*)g_object_get_data(G_OBJECT(wAppointment)
+            swin = (GtkWidget*)g_object_get_data(G_OBJECT(wAppointment)
                 , "scrolledwindow1");
             gtk_container_add(GTK_CONTAINER(swin), view);
             gtk_tooltips_set_tip(tooltips, view, "Click line to edit it.\n\nFlags in order:\n\t 1. Alarm: n=no alarm\n\t\tA=visual Alarm S=also Sound alarm\n\t 2. Recurrency: n=no recurrency\n\t\t D=Daily W=Weekly M=Monthly\n\t 3. Type: f=free B=Busy", NULL);
@@ -606,13 +606,13 @@ dialogWin(gpointer user_data)
 {
   GtkWidget *dialog, *message;
   dialog = gtk_dialog_new_with_buttons (_("Question"),
-					GTK_WINDOW(user_data),
-					GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
-					GTK_STOCK_NO,
-					GTK_RESPONSE_REJECT,
-					GTK_STOCK_YES,
-					GTK_RESPONSE_ACCEPT,
-					NULL);
+                    GTK_WINDOW(user_data),
+                    GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
+                    GTK_STOCK_NO,
+                    GTK_RESPONSE_REJECT,
+                    GTK_STOCK_YES,
+                    GTK_RESPONSE_ACCEPT,
+                    NULL);
 
   message = gtk_label_new(_("\nThe information has been modified.\n Do you want to continue ?\n"));
 
@@ -644,7 +644,6 @@ on_btToday_clicked(GtkButton *button, gpointer user_data)
   struct tm *t;
   time_t tt;
   GtkWidget *wAppointment; 
-	
 
   tt=time(NULL);
   t=localtime(&tt);
@@ -674,7 +673,6 @@ changeSelectedDate(GtkButton *button, gpointer user_data, gint direction)
   guint year, month, day;
   guint monthdays[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
   GtkWidget *wAppointment; 
-	
 
   gtk_calendar_get_date(GTK_CALENDAR(xfcal->mCalendar), &year, &month, &day);
 
@@ -685,8 +683,8 @@ changeSelectedDate(GtkButton *button, gpointer user_data, gint direction)
   case PREVIOUS:
     if(--day == 0){
       if(--month == -1){
-	--year;
-	month = 11;
+        --year;
+        month = 11;
       }
       gtk_calendar_select_month(GTK_CALENDAR(xfcal->mCalendar), month, year);
       day = monthdays[month];
@@ -695,8 +693,8 @@ changeSelectedDate(GtkButton *button, gpointer user_data, gint direction)
   case NEXT:
     if(++day == (monthdays[month]+1)){
       if(++month == 12){
-	++year;
-	month = 0;
+        ++year;
+        month = 0;
       }
       gtk_calendar_select_month(GTK_CALENDAR(xfcal->mCalendar), month, year);
       day = 1;
@@ -715,25 +713,25 @@ changeSelectedDate(GtkButton *button, gpointer user_data, gint direction)
 void
 on_btDelete_clicked(GtkButton *button, gpointer user_data)
 {
-	GtkWidget *w;
-	GtkWidget *wAppointment; 
-	
+    GtkWidget *w;
+    GtkWidget *wAppointment; 
+    
     wAppointment = (GtkWidget *) user_data;
 
-	clearwarn = create_wClearWarn(wAppointment);
-	w=(GtkWidget*) g_object_get_data (G_OBJECT(clearwarn),"okbutton2");
-	/* we connect here instead of in glade to pass the data field */
-	g_signal_connect ((gpointer) w, "clicked",
+    clearwarn = create_wClearWarn(wAppointment);
+    w=(GtkWidget*) g_object_get_data (G_OBJECT(clearwarn),"okbutton2");
+    /* we connect here instead of in glade to pass the data field */
+    g_signal_connect ((gpointer) w, "clicked",
                     G_CALLBACK (on_okbutton2_clicked),
                     (gpointer)wAppointment);
-	gtk_widget_show(clearwarn);
+    gtk_widget_show(clearwarn);
 }
 
 void
 on_btCreate_clicked(GtkButton *button, gpointer user_data)
 {
     appt_win *app;
-	GtkWidget *wAppointment; 
+    GtkWidget *wAppointment; 
     char *title;
     char a_day[10];
 
@@ -748,9 +746,8 @@ on_btCreate_clicked(GtkButton *button, gpointer user_data)
 void
 on_cancelbutton1_clicked(GtkButton *button, gpointer user_data)
 {
-	gtk_widget_destroy(clearwarn);
+    gtk_widget_destroy(clearwarn);
 }
-
 
 void
 on_okbutton2_clicked(GtkButton *button, gpointer user_data)
@@ -759,20 +756,17 @@ on_okbutton2_clicked(GtkButton *button, gpointer user_data)
     GtkWidget *wAppointment;
     char *title;
     guint day;
-	
-	gtk_widget_destroy(clearwarn);
-	
+
+    gtk_widget_destroy(clearwarn);
+
     if (xfical_file_open()){
         wAppointment = (GtkWidget *) user_data;
-
-		title = (char*)gtk_window_get_title(GTK_WINDOW (wAppointment));
-
+        title = (char*)gtk_window_get_title(GTK_WINDOW (wAppointment));
         title_to_ical(title, a_day);
         rmday_ical_app(a_day);
         xfical_file_close();
-
         day = atoi(a_day+6);
-		gtk_calendar_unmark_day(GTK_CALENDAR(xfcal->mCalendar), day);
+        gtk_calendar_unmark_day(GTK_CALENDAR(xfcal->mCalendar), day);
         recreate_wAppointment(wAppointment);
     }
 }
