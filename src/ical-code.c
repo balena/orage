@@ -639,8 +639,8 @@ appt_type *xfical_app_get_next_on_day(char *a_day, gboolean first)
             && icaltime_compare_date_only(adate, edate) <= 0) {
             date_found = TRUE;
         }
-        else if ((p = icalcomponent_get_first_property(c, ICAL_RRULE_PROPERTY))
-                 != 0) { /* need to check recurring EVENTs */
+        else if ((p = icalcomponent_get_first_property(c
+                , ICAL_RRULE_PROPERTY)) != 0) { /* check recurring EVENTs */
             duration = icaltime_subtract(edate, sdate);
             rrule = icalproperty_get_rrule(p);
             ri = icalrecur_iterator_new(rrule, sdate);
@@ -702,24 +702,19 @@ void xfical_mark_calendar(GtkCalendar *gtkcal, int year, int month)
         if ((sdate.year*12+sdate.month) <= (year*12+month)
                 && (year*12+month) <= (edate.year*12+edate.month)) {
                 /* event is in our year+month = visible in calendar */
-            if ((sdate.year == year) && (sdate.month == month)) {
+            if (sdate.year == year && sdate.month == month)
                 start_day = sdate.day;
-            }
-            else {
+            else
                 start_day = 1;
-            }
-            if ((edate.year == year) && (edate.month == month)) {
+            if (edate.year == year && edate.month == month)
                 end_day = edate.day;
-            }
-            else {
+            else
                 end_day = 31;
-            }
-            for (day_cnt = start_day; day_cnt <= end_day; day_cnt++) {
+            for (day_cnt = start_day; day_cnt <= end_day; day_cnt++)
                 gtk_calendar_mark_day(gtkcal, day_cnt);
-            }
         }
-        if ((p = icalcomponent_get_first_property(c, ICAL_RRULE_PROPERTY))
-                 != 0) { /* need to check recurring EVENTs */
+        if ((p = icalcomponent_get_first_property(c
+                , ICAL_RRULE_PROPERTY)) != 0) { /* check recurring EVENTs */
             duration = icaltime_subtract(edate, sdate);
             rrule = icalproperty_get_rrule(p);
             ri = icalrecur_iterator_new(rrule, sdate);
@@ -733,27 +728,17 @@ void xfical_mark_calendar(GtkCalendar *gtkcal, int year, int month)
                 if ((nsdate.year*12+nsdate.month) <= (year*12+month)
                         && (year*12+month) <= (nedate.year*12+nedate.month)) {
                         /* event is in our year+month = visible in calendar */
-                    if ((nsdate.year == year) && (nsdate.month == month)) {
+                    if (nsdate.year == year && nsdate.month == month)
                         start_day = nsdate.day;
-                    }
-                    else {
+                    else
                         start_day = 1;
-                    }
-                    if ((nedate.year == year) && (nedate.month == month)) {
+                    if (nedate.year == year && nedate.month == month)
                         end_day = nedate.day;
-                    }
-                    else {
+                    else
                         end_day = 31;
-                    }
-                    for (day_cnt = start_day; day_cnt <= end_day; day_cnt++) {
+                    for (day_cnt = start_day; day_cnt <= end_day; day_cnt++)
                         gtk_calendar_mark_day(gtkcal, day_cnt);
-                    }
                 }
-                /*
-                if (nsdate.year == year && nsdate.month == month) {
-                    gtk_calendar_mark_day(gtkcal, nsdate.day);
-                }
-                */
             }
         } 
     } 
@@ -883,8 +868,8 @@ void xfical_alarm_build_list(gboolean first_list_today)
                 ri = icalrecur_iterator_new(rrule, event_dtstart);
                 next_date = icaltime_null_time();
                 for (next_date = icalrecur_iterator_next(ri);
-                    (!icaltime_is_null_time(next_date))
-                    && (icaltime_compare_date_only(cur_time, next_date) > 0) ;
+                    !icaltime_is_null_time(next_date)
+                        && icaltime_compare_date_only(cur_time, next_date) > 0;
                     next_date = icalrecur_iterator_next(ri)) {
                 }
                 if (icaltime_compare_date_only(next_date, cur_time) == 0) {
@@ -917,9 +902,8 @@ void xfical_alarm_build_list(gboolean first_list_today)
                     trg = icalproperty_get_trigger(p);
                     trg_found = TRUE;
                 }
-                else if (strcmp(s, "REPEAT") == 0) {
+                else if (strcmp(s, "REPEAT") == 0)
                     repeat_cnt = icalproperty_get_repeat(p);
-                }
                 else if (strcmp(s, "DURATION") == 0) {
                     duration = icalproperty_get_duration(p);
                     repeat_delay = icaldurationtype_as_int(duration);
@@ -931,11 +915,10 @@ void xfical_alarm_build_list(gboolean first_list_today)
         if (trg_found) {
         /* all data available. let's pack it if alarm is still active */
             alarm_time = icaltime_add(event_dtstart, trg.duration);
-            if (icaltime_compare(cur_time, alarm_time) <= 0) { /* active */
+            if (icaltime_compare(cur_time, alarm_time) <= 0) /* active */
                 alarm_add(stat, suid, ssummary, sdescription
                         , ssound, repeat_cnt, repeat_delay
                         , alarm_time, event_dtstart);
-            } /* active alarm */
             else if ((p = icalcomponent_get_first_property(c
                 , ICAL_RRULE_PROPERTY)) != 0) { /* check recurring EVENTs */                    rrule = icalproperty_get_rrule(p);
                 ri = icalrecur_iterator_new(rrule, event_dtstart);
@@ -946,11 +929,10 @@ void xfical_alarm_build_list(gboolean first_list_today)
                     next_date = icalrecur_iterator_next(ri)) {
                 }
                 alarm_time = icaltime_add(next_date, trg.duration);
-                if (icaltime_compare(cur_time, alarm_time) <= 0) {
+                if (icaltime_compare(cur_time, alarm_time) <= 0)
                     alarm_add(stat, suid, ssummary, sdescription
                         , ssound, repeat_cnt, repeat_delay
                         , alarm_time, event_dtstart);
-                }
             }
         } /* trg_found */
     }  /* EVENTS */
