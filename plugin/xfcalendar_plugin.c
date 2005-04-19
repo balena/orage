@@ -56,6 +56,7 @@ static gboolean hidestart = FALSE;
 static gboolean ministart = FALSE;
 static gboolean repeatSoundYes = FALSE;
 static gboolean repeatSoundNo = TRUE;
+static const gchar *soundAppl = "play";
 
 typedef struct _Itf Itf;
 struct _Itf
@@ -86,6 +87,11 @@ struct _Itf
     GtkWidget *ShowStart_radiobutton;
     GtkWidget *HideStart_radiobutton;
     GtkWidget *MiniStart_radiobutton;
+    /* Choose the sound application for reminders */
+    GtkWidget *hboxSoundApplication;
+    GtkWidget *frameSoundApplication;
+    GtkWidget *labelSoundApplication;
+    GtkWidget *entrySoundApplication;
     /* */
     GtkWidget *closebutton;
     GtkWidget *dialog_action_area1;
@@ -102,6 +108,18 @@ static void cb_dialog_response(GtkWidget * dialog, gint response_id)
         is_running = FALSE;
         gtk_widget_destroy(dialog);
     }
+}
+
+static void cb_SoundApplication_changed(GtkWidget * dialog, gpointer user_data)
+{
+    Itf *itf = (Itf *) user_data;
+    McsPlugin *mcs_plugin = itf->mcs_plugin;
+    
+    soundAppl = gtk_entry_get_text(GTK_ENTRY(itf->entrySoundApplication));
+    
+    mcs_manager_set_string(mcs_plugin->manager, "XFcalendar/SoundApplication", CHANNEL, soundAppl);
+    mcs_manager_notify(mcs_plugin->manager, CHANNEL);
+    write_options(mcs_plugin);
 }
 
 static void cb_mode_changed(GtkWidget * dialog, gpointer user_data)
@@ -177,8 +195,8 @@ Itf *create_xfcalendar_dialog(McsPlugin * mcs_plugin)
     dialog->start_radiobutton_group = NULL;
 
     dialog->xfcalendar_dialog = gtk_dialog_new();
-    gtk_window_set_default_size(GTK_WINDOW(dialog->xfcalendar_dialog), 300, 200);
-    gtk_window_set_title(GTK_WINDOW(dialog->xfcalendar_dialog), _("Xfcalendar"));
+    gtk_window_set_default_size(GTK_WINDOW(dialog->xfcalendar_dialog), 400, 350);
+    gtk_window_set_title(GTK_WINDOW(dialog->xfcalendar_dialog), _("Xfcalendar Preferences"));
     gtk_window_set_position(GTK_WINDOW(dialog->xfcalendar_dialog), GTK_WIN_POS_CENTER);
     gtk_window_set_modal(GTK_WINDOW(dialog->xfcalendar_dialog), FALSE);
     gtk_window_set_resizable(GTK_WINDOW(dialog->xfcalendar_dialog), FALSE);
@@ -189,7 +207,7 @@ Itf *create_xfcalendar_dialog(McsPlugin * mcs_plugin)
     dialog->dialog_vbox1 = GTK_DIALOG(dialog->xfcalendar_dialog)->vbox;
     gtk_widget_show(dialog->dialog_vbox1);
 
-    dialog->dialog_header = xfce_create_header(mcs_plugin->icon, _("Xfcalendar"));
+    dialog->dialog_header = xfce_create_header(mcs_plugin->icon, _("Xfcalendar Preferences"));
     gtk_widget_show(dialog->dialog_header);
     gtk_box_pack_start(GTK_BOX(dialog->dialog_vbox1), dialog->dialog_header, FALSE, TRUE, 0);
 
@@ -227,9 +245,10 @@ Itf *create_xfcalendar_dialog(McsPlugin * mcs_plugin)
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(dialog->CompactMode_radiobutton), !normalmode);
     
     /* */
-    dialog->frameShow = xfce_framebox_new(_("Show in..."), TRUE);
+    dialog->frameShow = xfce_framebox_new(_("Show the calendar window in..."), TRUE);
     gtk_widget_show(dialog->frameShow);
-    gtk_box_pack_start(GTK_BOX(dialog->vbox1), dialog->frameShow, TRUE, TRUE, 0);
+    gtk_frame_set_shadow_type(GTK_FRAME(dialog->frameShow), GTK_SHADOW_ETCHED_IN);
+    gtk_box_pack_start(GTK_BOX(dialog->vbox1), dialog->frameShow, TRUE, TRUE, 5);
     
     dialog->hboxShow = gtk_hbox_new(TRUE, 0);
     gtk_widget_show(dialog->hboxShow);
@@ -251,9 +270,10 @@ Itf *create_xfcalendar_dialog(McsPlugin * mcs_plugin)
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(dialog->show_systray_checkbutton), showsystray);
 
     /* */
-    dialog->frameStart = xfce_framebox_new(_("Start visibility"), TRUE);
+    dialog->frameStart = xfce_framebox_new(_("Visibility when starting..."), TRUE);
     gtk_widget_show(dialog->frameStart);
-    gtk_box_pack_start(GTK_BOX(dialog->vbox1), dialog->frameStart, TRUE, TRUE, 0);
+    gtk_frame_set_shadow_type(GTK_FRAME(dialog->frameStart), GTK_SHADOW_ETCHED_IN);
+    gtk_box_pack_start(GTK_BOX(dialog->vbox1), dialog->frameStart, TRUE, TRUE, 5);
     
     dialog->hboxStart = gtk_hbox_new(TRUE, 0);
     gtk_widget_show(dialog->hboxStart);
@@ -280,6 +300,24 @@ Itf *create_xfcalendar_dialog(McsPlugin * mcs_plugin)
     dialog->start_radiobutton_group = gtk_radio_button_get_group(GTK_RADIO_BUTTON(dialog->MiniStart_radiobutton));
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(dialog->MiniStart_radiobutton), ministart);
 
+    /* Choose a sound application for reminders */
+    dialog->frameSoundApplication = xfce_framebox_new(_("Play sounds with..."), TRUE);
+    gtk_widget_show(dialog->frameSoundApplication);
+    gtk_frame_set_shadow_type(GTK_FRAME(dialog->frameSoundApplication), GTK_SHADOW_ETCHED_IN);
+    gtk_box_pack_start(GTK_BOX(dialog->vbox1), dialog->frameSoundApplication, TRUE, TRUE, 5);
+    
+    dialog->hboxSoundApplication = gtk_hbox_new(TRUE, 0);
+    gtk_widget_show(dialog->hboxSoundApplication);
+    xfce_framebox_add(XFCE_FRAMEBOX(dialog->frameSoundApplication), dialog->hboxSoundApplication);
+    
+    dialog->labelSoundApplication = gtk_label_new(_("Application"));
+    gtk_widget_show(dialog->labelSoundApplication);
+    gtk_box_pack_start(GTK_BOX(dialog->hboxSoundApplication), dialog->labelSoundApplication, FALSE, FALSE, 0);
+    
+    dialog->entrySoundApplication = gtk_entry_new();
+    gtk_widget_show(dialog->entrySoundApplication);
+    gtk_box_pack_start(GTK_BOX(dialog->hboxSoundApplication), dialog->entrySoundApplication, FALSE, FALSE, 0);
+    gtk_entry_set_text(GTK_ENTRY(dialog->entrySoundApplication), soundAppl);
     /* */
     dialog->closebutton = gtk_button_new_from_stock ("gtk-close");
     gtk_widget_show (dialog->closebutton);
@@ -299,6 +337,7 @@ static void setup_dialog(Itf * itf)
   g_signal_connect(G_OBJECT(itf->show_systray_checkbutton), "toggled", G_CALLBACK(cb_systray_changed), itf);
   g_signal_connect(G_OBJECT(itf->ShowStart_radiobutton), "toggled", G_CALLBACK(cb_start_changed), itf);
   g_signal_connect(G_OBJECT(itf->MiniStart_radiobutton), "toggled", G_CALLBACK(cb_start_changed), itf);
+  g_signal_connect(G_OBJECT(itf->entrySoundApplication), "changed", G_CALLBACK(cb_SoundApplication_changed), itf);
 
   xfce_gtk_window_center_on_monitor_with_pointer(GTK_WINDOW(itf->xfcalendar_dialog));
   gtk_widget_show(itf->xfcalendar_dialog);
@@ -399,6 +438,10 @@ static void create_channel(McsPlugin * mcs_plugin)
         mcs_manager_set_int(mcs_plugin->manager, "XFCalendar/ShowStart", CHANNEL, 1);
     }
 
+    if(setting = mcs_manager_setting_lookup(mcs_plugin->manager, "XFcalendar/SoundApplication", CHANNEL))
+    {
+        soundAppl = setting->data.v_string;
+    }
     write_options (mcs_plugin);
 }
 
