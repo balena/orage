@@ -54,9 +54,11 @@ xfcalendar_sound_alarm(gpointer data)
     /* note: -1 loops forever */
     if (audio_alarm->cnt != 0) {
         status = xfce_exec(audio_alarm->play_cmd, FALSE, FALSE, &error);
-        if (!status)
+        if (!status) {
             g_warning("play failed\n");
-        if (audio_alarm->cnt > 0)
+            audio_alarm->cnt = 0; /* one warning is enough */
+        }
+        else if (audio_alarm->cnt > 0)
             audio_alarm->cnt--;
     }
     else { /* cnt == 0 */
