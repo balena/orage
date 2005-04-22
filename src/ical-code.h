@@ -35,7 +35,7 @@ gboolean xfical_app_del(char *ical_id);
 
 struct icaltimetype ical_get_current_local_time();
 
-appt_type * xfical_app_get_next_on_day(char *a_day, gboolean first);
+appt_type * xfical_app_get_next_on_day(char *a_day, gboolean first, gint days);
 
 void xfical_mark_calendar(GtkCalendar *gtkcal, int year, int month);
 

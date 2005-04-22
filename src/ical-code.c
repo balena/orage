@@ -604,15 +604,19 @@ gboolean xfical_app_del(char *ical_uid)
  /* Read next EVENT on the specified date from ical datafile.
   * a_day:  start date of ical EVENT appointment which is to be read
   * first:  get first appointment is TRUE, if not get next.
+  * days:   how many more days to check forward. 0 = only one day
   * returns: NULL if failed and appt_type pointer to appt_type struct 
   *          filled with data if successfull.
   *          This appt_type struct is owned by the routine. 
   *          Do not deallocate it.
   *          It will be overdriven by next invocation of this function.
   */
-appt_type *xfical_app_get_next_on_day(char *a_day, gboolean first)
+appt_type *xfical_app_get_next_on_day(char *a_day, gboolean first, gint days)
 {
-    struct icaltimetype adate, sdate, edate, nsdate, nedate;
+    struct icaltimetype 
+              asdate, aedate    /* period to check */
+            , sdate, edate      /* event start and end times */
+            , nsdate, nedate;   /* repeating event occurrency start and end */
     icalcomponent *c;
     static icalcompiter ci;
     gboolean date_found=FALSE;
@@ -624,7 +628,14 @@ appt_type *xfical_app_get_next_on_day(char *a_day, gboolean first)
     icalproperty *p = NULL;
     struct icaldurationtype duration;
 
-    adate = icaltime_from_string(a_day);
+    asdate = icaltime_from_string(a_day);
+    if (days) { /* more that one day to check */
+        duration = icaldurationtype_null_duration();
+        duration.days = days;
+        aedate = icaltime_add(asdate, duration);
+    }
+    else /* only one day */
+        aedate = asdate;
     if (first)
         ci = icalcomponent_begin_component(ical, ICAL_VEVENT_COMPONENT);
     for ( ; 
@@ -635,8 +646,8 @@ appt_type *xfical_app_get_next_on_day(char *a_day, gboolean first)
         edate = icalcomponent_get_dtend(c);
         if (icaltime_is_null_time(edate))
             edate = sdate;
-        if (icaltime_compare_date_only(sdate, adate) <= 0
-            && icaltime_compare_date_only(adate, edate) <= 0) {
+        if (icaltime_compare_date_only(sdate, aedate) <= 0
+            && icaltime_compare_date_only(asdate, edate) <= 0) {
             date_found = TRUE;
         }
         else if ((p = icalcomponent_get_first_property(c
@@ -648,12 +659,12 @@ appt_type *xfical_app_get_next_on_day(char *a_day, gboolean first)
             for (nsdate = icalrecur_iterator_next(ri),
                     nedate = icaltime_add(nsdate, duration);
                  !icaltime_is_null_time(nsdate)
-                    && icaltime_compare_date_only(nedate, adate) < 0;
+                    && icaltime_compare_date_only(nedate, asdate) < 0;
                  nsdate = icalrecur_iterator_next(ri),
                     nedate = icaltime_add(nsdate, duration)) {
             }
-            if (icaltime_compare_date_only(nsdate, adate) <= 0
-                && icaltime_compare_date_only(adate, nedate) <= 0) {
+            if (icaltime_compare_date_only(nsdate, aedate) <= 0
+                && icaltime_compare_date_only(asdate, nedate) <= 0) {
                 date_found = TRUE;
                 date_rec_found = TRUE;
             }

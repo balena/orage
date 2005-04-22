@@ -52,11 +52,13 @@ on_btDelete_clicked                    (GtkButton       *button,
 void
 on_btCreate_clicked                    (GtkButton       *button,
                                         gpointer         user_data);
+void
+on_btspin_changed                      (GtkSpinButton   *button,
+                                        gpointer         user_data);
 
 void
 on_cancelbutton1_clicked               (GtkButton       *button,
                                         gpointer         user_data);
-
 void
 on_okbutton2_clicked                   (GtkButton       *button,
                                         gpointer         user_data);
