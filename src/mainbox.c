@@ -56,6 +56,7 @@
 extern CalWin *xfcal;
 extern gboolean normalmode;
 extern gint pos_x, pos_y;
+extern gint event_win_size_x, event_win_size_y;
 
 gboolean
 xfcalendar_mark_appointments()
@@ -225,14 +226,21 @@ xfcalendar_init_settings(CalWin *xfcal)
         if (fp == NULL)
             g_warning("Unable to create %s", fpath);
         else {
-            fprintf(fp, "[Session Visibility]\n");
             fclose(fp);
+            apply_settings();
         }
     }  
     else {
-        fgets(buf, LEN_BUFFER, fp); /* [Window Position] */
-        if (fscanf(fp, "X=%i, Y=%i", &pos_x, &pos_y) != 2) {
+        fgets(buf, LEN_BUFFER, fp); /* [Main Window Position] */
+        fgets(buf, LEN_BUFFER, fp); 
+        if (sscanf(buf, "X=%i, Y=%i", &pos_x, &pos_y) != 2) {
             g_warning("Unable to read position from: %s", fpath);
+        }
+        fgets(buf, LEN_BUFFER, fp); /* [Event Window Size] */
+        fgets(buf, LEN_BUFFER, fp); 
+        if (sscanf(buf, "X=%i, Y=%i", &event_win_size_x, &event_win_size_y) 
+            != 2) {
+            g_warning("Unable to read size from: %s", fpath);
         }
     }
 }

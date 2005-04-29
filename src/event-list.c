@@ -59,6 +59,7 @@
 static GtkWidget *clearwarn;
 
 extern CalWin *xfcal;
+extern gint event_win_size_x, event_win_size_y;
 
 /* Direction for changing day to look at */
 enum{
@@ -106,8 +107,11 @@ create_wAppointment (void)
   accel_group = gtk_accel_group_new();
 
   wAppointment = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-  gtk_widget_set_size_request(wAppointment, 400, 200);
+  gtk_window_set_default_size(GTK_WINDOW(wAppointment)
+        , event_win_size_x, event_win_size_y);
+  /*
   gtk_window_set_position(GTK_WINDOW(wAppointment), GTK_WIN_POS_NONE);
+  */
 
   vbox2 = gtk_vbox_new(FALSE, 0);
   gtk_widget_show(vbox2);
@@ -651,11 +655,14 @@ void manageAppointment(GtkCalendar *calendar, GtkWidget *wAppointment)
 void
 on_btClose_clicked(GtkButton *button, gpointer user_data)
 {
-    GtkWidget *a;
+    GtkWidget *wAppointment;
 
-    a = (GtkWidget *) user_data;
+    wAppointment = (GtkWidget *) user_data;
+    gtk_window_get_size(GTK_WINDOW(wAppointment)
+        , &event_win_size_x, &event_win_size_y);
+    apply_settings();
 
-    gtk_widget_destroy(a); /* destroy the specific appointment window */
+    gtk_widget_destroy(wAppointment); /* destroy the appointment window */
 }
 
 gint 
@@ -685,6 +692,8 @@ gboolean
 on_wAppointment_delete_event(GtkWidget *widget, GdkEvent *event,
                              gpointer user_data)
 {
+  gtk_window_get_size(GTK_WINDOW(widget), &event_win_size_x, &event_win_size_y);
+  apply_settings();
   gtk_widget_destroy(widget); /* destroy the appointment window */
   return(FALSE);
 }

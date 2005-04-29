@@ -70,8 +70,10 @@ McsClient        *client = NULL;
 /* tray icon */
 XfceTrayIcon 		*trayIcon = NULL;
 
-/* window position */
-gint pos_x = 0, pos_y = 0;
+/* main calendar window position */
+gint pos_x = 0, pos_y = 0; 
+/* latest event-list window size */
+gint event_win_size_x = 400, event_win_size_y = 200;
 
 /* List of active alarms */
 GList *alarm_list=NULL;
@@ -97,10 +99,6 @@ void apply_settings()
                                                                                 
   xfce_textdomain(GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8");
                                                                                 
-  /*
-  gtk_calendar_display_options(GTK_CALENDAR(xfcal->mCalendar), xfcal->display_Options);
-  */
-                                                                                
   /* Save settings here */
   /* I know, it's bad(tm) */
   fpath = xfce_resource_save_location(XFCE_RESOURCE_CONFIG,
@@ -108,9 +106,11 @@ void apply_settings()
   if ((fp = fopen(fpath, "w")) == NULL){
     g_warning("Unable to open RC file.");
   }else {
-    fprintf(fp, "[Window Position]\n");
+    fprintf(fp, "[Main Window Position]\n");
     gtk_window_get_position(GTK_WINDOW(xfcal->mWindow), &pos_x, &pos_y);
     fprintf(fp, "X=%i, Y=%i\n", pos_x, pos_y);
+    fprintf(fp, "[Event Window Size]\n");
+    fprintf(fp, "X=%i, Y=%i\n", event_win_size_x, event_win_size_y);
     fclose(fp);
   }
   g_free(fpath);
