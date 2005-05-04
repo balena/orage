@@ -1,198 +1,860 @@
-2004-07-09 09:53  olivier
+2004-09-10 21:45  pollux
 
-	* ChangeLog: Update ChangeLogs for 4.0.6
+	* xfcalendar/branches/xfce_4_0/configure,
+	  xfcalendar/branches/xfce_4_0/configure.ac,
+	  xfcalendar/branches/xfce_4_0/ltmain.sh,
+	  xfcalendar/branches/xfce_4_0/po/he.gmo,
+	  xfcalendar/branches/xfce_4_0/po/he.po: add HE translations from
+	  Yuval Tanny <tanai@int.gov.il>
 
-2004-07-08 21:53  olivier
+2004-09-10 20:49  
 
-	* ltmain.sh: Update tree for 4.0.6 release
+	* xfcalendar/branches/xfce_4_0/po/he.gmo,
+	  xfcalendar/branches/xfce_4_0/po/he.po: This commit was
+	  manufactured by cvs2svn to create branch 'xfce_4_0'.
 
-2004-07-06 17:57  pollux
+2004-07-09 09:32  olivier
 
-	* configure, configure.ac, po/eu.gmo, po/eu.po: add basque
-	  translation from ^pi^ <pi@beobide.net>
+	* xfcalendar/branches/xfce_4_0/ChangeLog: Update ChangeLog
 
-2004-06-27 23:18  pollux
+2004-07-09 07:53  olivier
 
-	* po/: ru.gmo, ru.po: russian translations update from Anthony
-	  Ivanoff
+	* xfcalendar/branches/xfce_4_0/ChangeLog: Update ChangeLogs for
+	  4.0.6
 
-2004-06-11 12:37  pollux
+2004-07-08 19:53  olivier
 
-	* po/: et.gmo, et.po: oups i forgot to add the translations
+	* xfcalendar/branches/xfce_4_0/ltmain.sh: Update tree for 4.0.6
+	  release
 
-2004-06-11 12:25  pollux
+2004-07-06 15:57  pollux
 
-	* configure, configure.ac, ltmain.sh: Estonian translation added,
-	  my first commit as translations maintainer
+	* xfcalendar/branches/xfce_4_0/configure,
+	  xfcalendar/branches/xfce_4_0/configure.ac,
+	  xfcalendar/branches/xfce_4_0/po/eu.gmo,
+	  xfcalendar/branches/xfce_4_0/po/eu.po: add basque translation from
+	  ^pi^ <pi@beobide.net>
 
-2004-05-04 00:13  olivier
+2004-06-27 21:18  pollux
 
-	* Makefile.in, aclocal.m4, config.guess, config.sub, configure,
-	  configure.ac, install-sh, ltmain.sh, mkinstalldirs,
-	  plugin/Makefile.in, po/xfcalendar.pot, po/zh_TW.gmo, po/zh_TW.po,
-	  src/Makefile.in: Update zh_TW translations by umm
-	  <umm@pchome.com.tw>
+	* xfcalendar/branches/xfce_4_0/po/ru.gmo,
+	  xfcalendar/branches/xfce_4_0/po/ru.po: russian translations update
+	  from Anthony Ivanoff
 
-2004-03-24 22:01  olivier
+2004-06-11 10:37  pollux
 
-	* src/main.c: Forgot a trace
-
-2004-03-24 21:50  olivier
-
-	* configure, configure.ac, po/ar.gmo, po/az.gmo, po/bg.gmo,
-	  po/ca.gmo, po/cs.gmo, po/de.gmo, po/es.gmo, po/fa_IR.gmo,
-	  po/fr.gmo, po/hi.gmo, po/it.gmo, po/ko.gmo, po/ms.gmo, po/nl.gmo,
-	  po/no.gmo, po/pl.gmo, po/pt_BR.gmo, po/ru.gmo, po/sv.gmo,
-	  po/ta.gmo, po/tr.gmo, po/zh_CN.gmo, src/callbacks.c, src/main.c:
-	  Do not show calendar by default at first run
-
-2004-03-21 23:10  olivier
-
-	* po/POTFILES.in, po/ar.gmo, po/ar.po, po/az.gmo, po/az.po,
-	  po/bg.gmo, po/bg.po, po/ca.gmo, po/ca.po, po/cs.gmo, po/cs.po,
-	  po/de.gmo, po/de.po, po/es.gmo, po/es.po, po/fa_IR.gmo,
-	  po/fa_IR.po, po/fr.gmo, po/fr.po, po/hi.gmo, po/hi.po, po/it.gmo,
-	  po/it.po, po/ko.gmo, po/ko.po, po/ms.gmo, po/ms.po, po/nl.gmo,
-	  po/nl.po, po/no.gmo, po/no.po, po/pl.gmo, po/pl.po, po/pt_BR.gmo,
-	  po/pt_BR.po, po/ru.gmo, po/ru.po, po/sv.gmo, po/sv.po, po/ta.gmo,
-	  po/ta.po, po/tr.gmo, po/tr.po, po/xfcalendar.pot, po/zh_CN.gmo,
-	  po/zh_CN.po, src/callbacks.c, src/callbacks.h, src/interface.c,
-	  src/interface.h, src/main.c: Backport changes from HEAD
-
-2004-03-15 00:25  olivier
-
-	* aclocal.m4, configure, configure.ac, po/ar.gmo, po/ar.po,
-	  po/bg.gmo, po/bg.po, po/it.gmo, po/it.po: Add/update i18n for:
-	  Bulgarian from Miroslav Yordanov <miordanov@i-space.org> and
-	  Peter Slavov <peshka@i-space.org> Italian from Alex Dupre
-	  <ale@FreeBSD.org> Arabic from Saleh Hathal
-	  <hathalsal@hotmail.com>
-
-2004-02-28 18:23  olivier
-
-	* ltmain.sh: sync for 4.0.4 release
-
-2004-01-30 08:06  jasper
-
-	* configure, configure.ac, ltmain.sh, po/es.gmo, po/es.po,
-	  po/fa_IR.gmo, po/fa_IR.po, po/pt_BR.gmo, po/pt_BR.po,
-	  po/zh_CN.gmo, po/zh_CN.po: Update translations for spanish,
-	  persian, brasilian and chinese
-
-2004-01-25 01:09  olivier
-
-	* Makefile.in, aclocal.m4, compile, config.guess, config.sub,
-	  configure, configure.ac, depcomp, install-sh, ltmain.sh, missing,
-	  mkinstalldirs, plugin/Makefile.in, po/fa_IR.gmo, po/fa_IR.po,
-	  src/Makefile.in: Update libtool and other automake, autoconf and
-	  gettext.
-
-2004-01-07 21:38  olivier
-
-	* ChangeLog, po/ChangeLog: Huge update before 4.0.3 release,
-	  mainly: ChangeLog update, Version number updates.
-
-2004-01-07 19:58  olivier
-
-	* xfcalendar.spec.in: Fix spec files so that debug files aren't
-	  include on Red Hat 9 and later
-
-2004-01-07 00:44  olivier
-
-	* po/: fr.gmo, fr.po: Fix french locale
-
-2004-01-06 23:47  olivier
-
-	* po/az.gmo, po/az.po, po/ca.gmo, po/ca.po, po/cs.gmo, po/cs.po,
-	  po/de.gmo, po/de.po, po/fr.gmo, po/fr.po, po/hi.gmo, po/hi.po,
-	  po/ko.gmo, po/ko.po, po/ms.gmo, po/ms.po, po/nl.gmo, po/nl.po,
-	  po/no.gmo, po/no.po, po/pl.gmo, po/pl.po, po/ru.gmo, po/ru.po,
-	  po/sv.gmo, po/sv.po, po/ta.gmo, po/ta.po, po/tr.gmo, po/tr.po,
-	  po/xfcalendar.pot, po/zh_CN.gmo, po/zh_CN.po, src/interface.c:
-	  Putting a (wrong) version number in locale is evil
-
-2004-01-06 22:59  olivier
-
-	* xfcalendar.spec.in: Referenced files missing
-
-2004-01-06 22:26  olivier
-
-	* Makefile.am, Makefile.in, configure, configure.ac,
-	  xfcalendar.spec.in: Argh! xfcalendar was missing a spec file
-
-2003-12-29 16:19  olivier
-
-	* ChangeLog, po/nl.gmo, po/nl.po, po/no.gmo, po/no.po: Update
-	  version number, Update ChangeLog Fix missing CHARSET in potfiles
-
-2003-12-29 13:16  jasper
-
-	* configure, configure.ac, po/no.gmo, po/no.po, po/tr.gmo,
-	  po/tr.po: Update Norwegian and Turkish translations
-
-2003-12-27 22:52  jasper
-
-	* configure, configure.ac, po/pl.gmo, po/pl.po: Update Polish
+	* xfcalendar/branches/xfce_4_0/po/et.gmo,
+	  xfcalendar/branches/xfce_4_0/po/et.po: oups i forgot to add the
 	  translations
 
-2003-12-27 15:19  jasper
+2004-06-11 10:25  pollux
 
-	* configure, configure.ac, po/xfcalendar.pot, src/Makefile.am,
-	  src/Makefile.in, src/main.c, src/xfcalendar-icon-inline.h: Fix
+	* xfcalendar/branches/xfce_4_0/configure,
+	  xfcalendar/branches/xfce_4_0/configure.ac,
+	  xfcalendar/branches/xfce_4_0/ltmain.sh: Estonian translation
+	  added, my first commit as translations maintainer
+
+2004-05-03 22:13  olivier
+
+	* xfcalendar/branches/xfce_4_0/Makefile.in,
+	  xfcalendar/branches/xfce_4_0/aclocal.m4,
+	  xfcalendar/branches/xfce_4_0/config.guess,
+	  xfcalendar/branches/xfce_4_0/config.sub,
+	  xfcalendar/branches/xfce_4_0/configure,
+	  xfcalendar/branches/xfce_4_0/configure.ac,
+	  xfcalendar/branches/xfce_4_0/install-sh,
+	  xfcalendar/branches/xfce_4_0/ltmain.sh,
+	  xfcalendar/branches/xfce_4_0/mkinstalldirs,
+	  xfcalendar/branches/xfce_4_0/plugin/Makefile.in,
+	  xfcalendar/branches/xfce_4_0/po/xfcalendar.pot,
+	  xfcalendar/branches/xfce_4_0/po/zh_TW.gmo,
+	  xfcalendar/branches/xfce_4_0/po/zh_TW.po,
+	  xfcalendar/branches/xfce_4_0/src/Makefile.in: Update zh_TW
+	  translations by umm <umm@pchome.com.tw>
+
+2004-05-03 22:13  
+
+	* xfcalendar/branches/xfce_4_0/po/eu.gmo,
+	  xfcalendar/branches/xfce_4_0/po/eu.po,
+	  xfcalendar/branches/xfce_4_0/po/zh_TW.gmo,
+	  xfcalendar/branches/xfce_4_0/po/zh_TW.po: This commit was
+	  manufactured by cvs2svn to create branch 'xfce_4_0'.
+
+2004-03-24 21:01  olivier
+
+	* xfcalendar/branches/xfce_4_0/src/main.c: Forgot a trace
+
+2004-03-24 20:50  olivier
+
+	* xfcalendar/branches/xfce_4_0/configure,
+	  xfcalendar/branches/xfce_4_0/configure.ac,
+	  xfcalendar/branches/xfce_4_0/po/ar.gmo,
+	  xfcalendar/branches/xfce_4_0/po/az.gmo,
+	  xfcalendar/branches/xfce_4_0/po/bg.gmo,
+	  xfcalendar/branches/xfce_4_0/po/ca.gmo,
+	  xfcalendar/branches/xfce_4_0/po/cs.gmo,
+	  xfcalendar/branches/xfce_4_0/po/de.gmo,
+	  xfcalendar/branches/xfce_4_0/po/es.gmo,
+	  xfcalendar/branches/xfce_4_0/po/fa_IR.gmo,
+	  xfcalendar/branches/xfce_4_0/po/fr.gmo,
+	  xfcalendar/branches/xfce_4_0/po/hi.gmo,
+	  xfcalendar/branches/xfce_4_0/po/it.gmo,
+	  xfcalendar/branches/xfce_4_0/po/ko.gmo,
+	  xfcalendar/branches/xfce_4_0/po/ms.gmo,
+	  xfcalendar/branches/xfce_4_0/po/nl.gmo,
+	  xfcalendar/branches/xfce_4_0/po/no.gmo,
+	  xfcalendar/branches/xfce_4_0/po/pl.gmo,
+	  xfcalendar/branches/xfce_4_0/po/pt_BR.gmo,
+	  xfcalendar/branches/xfce_4_0/po/ru.gmo,
+	  xfcalendar/branches/xfce_4_0/po/sv.gmo,
+	  xfcalendar/branches/xfce_4_0/po/ta.gmo,
+	  xfcalendar/branches/xfce_4_0/po/tr.gmo,
+	  xfcalendar/branches/xfce_4_0/po/zh_CN.gmo,
+	  xfcalendar/branches/xfce_4_0/src/callbacks.c,
+	  xfcalendar/branches/xfce_4_0/src/main.c: Do not show calendar by
+	  default at first run
+
+2004-03-21 22:10  olivier
+
+	* xfcalendar/branches/xfce_4_0/po/POTFILES.in,
+	  xfcalendar/branches/xfce_4_0/po/ar.gmo,
+	  xfcalendar/branches/xfce_4_0/po/ar.po,
+	  xfcalendar/branches/xfce_4_0/po/az.gmo,
+	  xfcalendar/branches/xfce_4_0/po/az.po,
+	  xfcalendar/branches/xfce_4_0/po/bg.gmo,
+	  xfcalendar/branches/xfce_4_0/po/bg.po,
+	  xfcalendar/branches/xfce_4_0/po/ca.gmo,
+	  xfcalendar/branches/xfce_4_0/po/ca.po,
+	  xfcalendar/branches/xfce_4_0/po/cs.gmo,
+	  xfcalendar/branches/xfce_4_0/po/cs.po,
+	  xfcalendar/branches/xfce_4_0/po/de.gmo,
+	  xfcalendar/branches/xfce_4_0/po/de.po,
+	  xfcalendar/branches/xfce_4_0/po/es.gmo,
+	  xfcalendar/branches/xfce_4_0/po/es.po,
+	  xfcalendar/branches/xfce_4_0/po/fa_IR.gmo,
+	  xfcalendar/branches/xfce_4_0/po/fa_IR.po,
+	  xfcalendar/branches/xfce_4_0/po/fr.gmo,
+	  xfcalendar/branches/xfce_4_0/po/fr.po,
+	  xfcalendar/branches/xfce_4_0/po/hi.gmo,
+	  xfcalendar/branches/xfce_4_0/po/hi.po,
+	  xfcalendar/branches/xfce_4_0/po/it.gmo,
+	  xfcalendar/branches/xfce_4_0/po/it.po,
+	  xfcalendar/branches/xfce_4_0/po/ko.gmo,
+	  xfcalendar/branches/xfce_4_0/po/ko.po,
+	  xfcalendar/branches/xfce_4_0/po/ms.gmo,
+	  xfcalendar/branches/xfce_4_0/po/ms.po,
+	  xfcalendar/branches/xfce_4_0/po/nl.gmo,
+	  xfcalendar/branches/xfce_4_0/po/nl.po,
+	  xfcalendar/branches/xfce_4_0/po/no.gmo,
+	  xfcalendar/branches/xfce_4_0/po/no.po,
+	  xfcalendar/branches/xfce_4_0/po/pl.gmo,
+	  xfcalendar/branches/xfce_4_0/po/pl.po,
+	  xfcalendar/branches/xfce_4_0/po/pt_BR.gmo,
+	  xfcalendar/branches/xfce_4_0/po/pt_BR.po,
+	  xfcalendar/branches/xfce_4_0/po/ru.gmo,
+	  xfcalendar/branches/xfce_4_0/po/ru.po,
+	  xfcalendar/branches/xfce_4_0/po/sv.gmo,
+	  xfcalendar/branches/xfce_4_0/po/sv.po,
+	  xfcalendar/branches/xfce_4_0/po/ta.gmo,
+	  xfcalendar/branches/xfce_4_0/po/ta.po,
+	  xfcalendar/branches/xfce_4_0/po/tr.gmo,
+	  xfcalendar/branches/xfce_4_0/po/tr.po,
+	  xfcalendar/branches/xfce_4_0/po/xfcalendar.pot,
+	  xfcalendar/branches/xfce_4_0/po/zh_CN.gmo,
+	  xfcalendar/branches/xfce_4_0/po/zh_CN.po,
+	  xfcalendar/branches/xfce_4_0/src/callbacks.c,
+	  xfcalendar/branches/xfce_4_0/src/callbacks.h,
+	  xfcalendar/branches/xfce_4_0/src/interface.c,
+	  xfcalendar/branches/xfce_4_0/src/interface.h,
+	  xfcalendar/branches/xfce_4_0/src/main.c: Backport changes from
+	  HEAD
+
+2004-03-14 23:25  olivier
+
+	* xfcalendar/branches/xfce_4_0/aclocal.m4,
+	  xfcalendar/branches/xfce_4_0/configure,
+	  xfcalendar/branches/xfce_4_0/configure.ac,
+	  xfcalendar/branches/xfce_4_0/po/ar.gmo,
+	  xfcalendar/branches/xfce_4_0/po/ar.po,
+	  xfcalendar/branches/xfce_4_0/po/bg.gmo,
+	  xfcalendar/branches/xfce_4_0/po/bg.po,
+	  xfcalendar/branches/xfce_4_0/po/it.gmo,
+	  xfcalendar/branches/xfce_4_0/po/it.po: Add/update i18n for:
+	  Bulgarian from Miroslav Yordanov <miordanov@i-space.org> and Peter
+	  Slavov <peshka@i-space.org> Italian from Alex Dupre
+	  <ale@FreeBSD.org> Arabic from Saleh Hathal <hathalsal@hotmail.com>
+
+2004-02-28 17:23  olivier
+
+	* xfcalendar/branches/xfce_4_0/ltmain.sh: sync for 4.0.4 release
+
+2004-01-30 07:06  jasper
+
+	* xfcalendar/branches/xfce_4_0/configure,
+	  xfcalendar/branches/xfce_4_0/configure.ac,
+	  xfcalendar/branches/xfce_4_0/ltmain.sh,
+	  xfcalendar/branches/xfce_4_0/po/es.gmo,
+	  xfcalendar/branches/xfce_4_0/po/es.po,
+	  xfcalendar/branches/xfce_4_0/po/fa_IR.gmo,
+	  xfcalendar/branches/xfce_4_0/po/fa_IR.po,
+	  xfcalendar/branches/xfce_4_0/po/pt_BR.gmo,
+	  xfcalendar/branches/xfce_4_0/po/pt_BR.po,
+	  xfcalendar/branches/xfce_4_0/po/zh_CN.gmo,
+	  xfcalendar/branches/xfce_4_0/po/zh_CN.po: Update translations for
+	  spanish, persian, brasilian and chinese
+
+2004-01-25 00:10  olivier
+
+	* xfcalendar/branches/xfce_4_0/Makefile.in,
+	  xfcalendar/branches/xfce_4_0/aclocal.m4,
+	  xfcalendar/branches/xfce_4_0/compile,
+	  xfcalendar/branches/xfce_4_0/config.guess,
+	  xfcalendar/branches/xfce_4_0/config.sub,
+	  xfcalendar/branches/xfce_4_0/configure,
+	  xfcalendar/branches/xfce_4_0/configure.ac,
+	  xfcalendar/branches/xfce_4_0/depcomp,
+	  xfcalendar/branches/xfce_4_0/install-sh,
+	  xfcalendar/branches/xfce_4_0/ltmain.sh,
+	  xfcalendar/branches/xfce_4_0/missing,
+	  xfcalendar/branches/xfce_4_0/mkinstalldirs,
+	  xfcalendar/branches/xfce_4_0/plugin/Makefile.in,
+	  xfcalendar/branches/xfce_4_0/po/fa_IR.gmo,
+	  xfcalendar/branches/xfce_4_0/po/fa_IR.po,
+	  xfcalendar/branches/xfce_4_0/src/Makefile.in: Update libtool and
+	  other automake, autoconf and gettext.
+
+2004-01-25 00:10  
+
+	* xfcalendar/branches/xfce_4_0/po/es.gmo,
+	  xfcalendar/branches/xfce_4_0/po/es.po,
+	  xfcalendar/branches/xfce_4_0/po/fa_IR.gmo,
+	  xfcalendar/branches/xfce_4_0/po/fa_IR.po,
+	  xfcalendar/branches/xfce_4_0/po/it.gmo,
+	  xfcalendar/branches/xfce_4_0/po/it.po,
+	  xfcalendar/branches/xfce_4_0/po/pt_BR.gmo,
+	  xfcalendar/branches/xfce_4_0/po/pt_BR.po: This commit was
+	  manufactured by cvs2svn to create branch 'xfce_4_0'.
+
+2004-01-07 20:38  olivier
+
+	* xfcalendar/branches/xfce_4_0/ChangeLog,
+	  xfcalendar/branches/xfce_4_0/po/ChangeLog: Huge update before
+	  4.0.3 release, mainly: ChangeLog update, Version number updates.
+
+2004-01-07 18:58  olivier
+
+	* xfcalendar/branches/xfce_4_0/xfcalendar.spec.in: Fix spec files so
+	  that debug files aren't include on Red Hat 9 and later
+
+2004-01-06 23:44  olivier
+
+	* xfcalendar/branches/xfce_4_0/po/fr.gmo,
+	  xfcalendar/branches/xfce_4_0/po/fr.po: Fix french locale
+
+2004-01-06 22:47  olivier
+
+	* xfcalendar/branches/xfce_4_0/po/az.gmo,
+	  xfcalendar/branches/xfce_4_0/po/az.po,
+	  xfcalendar/branches/xfce_4_0/po/ca.gmo,
+	  xfcalendar/branches/xfce_4_0/po/ca.po,
+	  xfcalendar/branches/xfce_4_0/po/cs.gmo,
+	  xfcalendar/branches/xfce_4_0/po/cs.po,
+	  xfcalendar/branches/xfce_4_0/po/de.gmo,
+	  xfcalendar/branches/xfce_4_0/po/de.po,
+	  xfcalendar/branches/xfce_4_0/po/fr.gmo,
+	  xfcalendar/branches/xfce_4_0/po/fr.po,
+	  xfcalendar/branches/xfce_4_0/po/hi.gmo,
+	  xfcalendar/branches/xfce_4_0/po/hi.po,
+	  xfcalendar/branches/xfce_4_0/po/ko.gmo,
+	  xfcalendar/branches/xfce_4_0/po/ko.po,
+	  xfcalendar/branches/xfce_4_0/po/ms.gmo,
+	  xfcalendar/branches/xfce_4_0/po/ms.po,
+	  xfcalendar/branches/xfce_4_0/po/nl.gmo,
+	  xfcalendar/branches/xfce_4_0/po/nl.po,
+	  xfcalendar/branches/xfce_4_0/po/no.gmo,
+	  xfcalendar/branches/xfce_4_0/po/no.po,
+	  xfcalendar/branches/xfce_4_0/po/pl.gmo,
+	  xfcalendar/branches/xfce_4_0/po/pl.po,
+	  xfcalendar/branches/xfce_4_0/po/ru.gmo,
+	  xfcalendar/branches/xfce_4_0/po/ru.po,
+	  xfcalendar/branches/xfce_4_0/po/sv.gmo,
+	  xfcalendar/branches/xfce_4_0/po/sv.po,
+	  xfcalendar/branches/xfce_4_0/po/ta.gmo,
+	  xfcalendar/branches/xfce_4_0/po/ta.po,
+	  xfcalendar/branches/xfce_4_0/po/tr.gmo,
+	  xfcalendar/branches/xfce_4_0/po/tr.po,
+	  xfcalendar/branches/xfce_4_0/po/xfcalendar.pot,
+	  xfcalendar/branches/xfce_4_0/po/zh_CN.gmo,
+	  xfcalendar/branches/xfce_4_0/po/zh_CN.po,
+	  xfcalendar/branches/xfce_4_0/src/interface.c: Putting a (wrong)
+	  version number in locale is evil
+
+2004-01-06 21:59  olivier
+
+	* xfcalendar/branches/xfce_4_0/xfcalendar.spec.in: Referenced files
+	  missing
+
+2004-01-06 21:26  olivier
+
+	* xfcalendar/branches/xfce_4_0/Makefile.am,
+	  xfcalendar/branches/xfce_4_0/Makefile.in,
+	  xfcalendar/branches/xfce_4_0/configure,
+	  xfcalendar/branches/xfce_4_0/configure.ac,
+	  xfcalendar/branches/xfce_4_0/xfcalendar.spec.in: Argh! xfcalendar
+	  was missing a spec file
+
+2003-12-29 15:19  olivier
+
+	* xfcalendar/branches/xfce_4_0/ChangeLog,
+	  xfcalendar/branches/xfce_4_0/po/nl.gmo,
+	  xfcalendar/branches/xfce_4_0/po/nl.po,
+	  xfcalendar/branches/xfce_4_0/po/no.gmo,
+	  xfcalendar/branches/xfce_4_0/po/no.po: Update version number,
+	  Update ChangeLog Fix missing CHARSET in potfiles
+
+2003-12-29 12:16  jasper
+
+	* xfcalendar/branches/xfce_4_0/configure,
+	  xfcalendar/branches/xfce_4_0/configure.ac,
+	  xfcalendar/branches/xfce_4_0/po/no.gmo,
+	  xfcalendar/branches/xfce_4_0/po/no.po,
+	  xfcalendar/branches/xfce_4_0/po/tr.gmo,
+	  xfcalendar/branches/xfce_4_0/po/tr.po: Update Norwegian and
+	  Turkish translations
+
+2003-12-29 12:16  
+
+	* xfcalendar/branches/xfce_4_0/po/no.gmo,
+	  xfcalendar/branches/xfce_4_0/po/no.po: This commit was
+	  manufactured by cvs2svn to create branch 'xfce_4_0'.
+
+2003-12-27 21:52  jasper
+
+	* xfcalendar/branches/xfce_4_0/configure,
+	  xfcalendar/branches/xfce_4_0/configure.ac,
+	  xfcalendar/branches/xfce_4_0/po/pl.gmo,
+	  xfcalendar/branches/xfce_4_0/po/pl.po: Update Polish translations
+
+2003-12-27 21:52  
+
+	* xfcalendar/branches/xfce_4_0/po/pl.gmo,
+	  xfcalendar/branches/xfce_4_0/po/pl.po: This commit was
+	  manufactured by cvs2svn to create branch 'xfce_4_0'.
+
+2003-12-27 14:19  jasper
+
+	* xfcalendar/branches/xfce_4_0/configure,
+	  xfcalendar/branches/xfce_4_0/configure.ac,
+	  xfcalendar/branches/xfce_4_0/po/xfcalendar.pot,
+	  xfcalendar/branches/xfce_4_0/src/Makefile.am,
+	  xfcalendar/branches/xfce_4_0/src/Makefile.in,
+	  xfcalendar/branches/xfce_4_0/src/main.c,
+	  xfcalendar/branches/xfce_4_0/src/xfcalendar-icon-inline.h: Fix
 	  icon header file issues
 
-2003-12-18 00:00  olivier
+2003-12-17 23:00  olivier
 
-	* ChangeLog: Update ChangeLog(s)
+	* xfcalendar/branches/xfce_4_0/ChangeLog: Update ChangeLog(s)
 
-2003-12-16 15:38  jasper
+2003-12-16 14:38  jasper
 
-	* po/ca.gmo: Add missing po files
+	* xfcalendar/branches/xfce_4_0/po/ca.gmo: Add missing po files
 
-2003-12-15 22:35  jasper
+2003-12-15 21:35  jasper
 
-	* configure, configure.ac, po/az.gmo, po/az.po: Add Azerbaijani
+	* xfcalendar/branches/xfce_4_0/configure,
+	  xfcalendar/branches/xfce_4_0/configure.ac,
+	  xfcalendar/branches/xfce_4_0/po/az.gmo,
+	  xfcalendar/branches/xfce_4_0/po/az.po: Add Azerbaijani
 	  translations
 
-2003-12-01 12:03  jasper
+2003-12-15 21:35  
 
-	* po/ca.po: Update catalan translations
+	* xfcalendar/branches/xfce_4_0/po/az.gmo,
+	  xfcalendar/branches/xfce_4_0/po/az.po: This commit was
+	  manufactured by cvs2svn to create branch 'xfce_4_0'.
 
-2003-11-10 21:54  jasper
+2003-12-01 11:03  jasper
 
-	* configure, configure.ac, po/se.gmo, po/se.po, po/sv.gmo,
-	  po/sv.po: Oops, swedish is sv ...
+	* xfcalendar/branches/xfce_4_0/po/ca.po: Update catalan translations
 
-2003-11-10 20:28  jasper
+2003-11-10 20:54  jasper
 
-	* configure, configure.ac, po/se.gmo, po/se.po: Add swedish
-	  translations
+	* xfcalendar/branches/xfce_4_0/configure,
+	  xfcalendar/branches/xfce_4_0/configure.ac,
+	  xfcalendar/branches/xfce_4_0/po/se.gmo,
+	  xfcalendar/branches/xfce_4_0/po/se.po,
+	  xfcalendar/branches/xfce_4_0/po/sv.gmo,
+	  xfcalendar/branches/xfce_4_0/po/sv.po: Oops, swedish is sv ...
 
-2003-11-09 20:09  jasper
+2003-11-10 19:28  jasper
 
-	* configure, configure.ac, po/cs.gmo, po/cs.po: Add Check
-	  translations
+	* xfcalendar/branches/xfce_4_0/configure,
+	  xfcalendar/branches/xfce_4_0/configure.ac,
+	  xfcalendar/branches/xfce_4_0/po/se.gmo,
+	  xfcalendar/branches/xfce_4_0/po/se.po: Add swedish translations
 
-2003-11-02 00:28  olivier
+2003-11-09 19:09  jasper
 
-	* configure, configure.ac, po/hi.gmo, po/hi.po: Add Hindi
+	* xfcalendar/branches/xfce_4_0/configure,
+	  xfcalendar/branches/xfce_4_0/configure.ac,
+	  xfcalendar/branches/xfce_4_0/po/cs.gmo,
+	  xfcalendar/branches/xfce_4_0/po/cs.po: Add Check translations
+
+2003-11-01 23:28  olivier
+
+	* xfcalendar/branches/xfce_4_0/configure,
+	  xfcalendar/branches/xfce_4_0/configure.ac,
+	  xfcalendar/branches/xfce_4_0/po/hi.gmo,
+	  xfcalendar/branches/xfce_4_0/po/hi.po: Add Hindi translation
+
+2003-10-15 11:33  jasper
+
+	* xfcalendar/branches/xfce_4_0/configure,
+	  xfcalendar/branches/xfce_4_0/configure.ac: Update configure files
+	  as well
+
+2003-10-15 11:24  jasper
+
+	* xfcalendar/branches/xfce_4_0/po/ko.gmo,
+	  xfcalendar/branches/xfce_4_0/po/ko.po: Add missing ko.po
+
+2003-10-15 11:24  
+
+	* xfcalendar/branches/xfce_4_0/po/ko.gmo,
+	  xfcalendar/branches/xfce_4_0/po/ko.po: This commit was
+	  manufactured by cvs2svn to create branch 'xfce_4_0'.
+
+2003-10-13 18:30  jasper
+
+	* xfcalendar/branches/xfce_4_0/ChangeLog: Update ChangeLog's after
+	  syncing with SF. Everything should now be up-to-date.
+
+2003-09-27 11:18  huysmans
+
+	* xfcalendar/branches/xfce_4_0/configure,
+	  xfcalendar/branches/xfce_4_0/configure.ac,
+	  xfcalendar/branches/xfce_4_0/po/ta.gmo,
+	  xfcalendar/branches/xfce_4_0/po/ta.po: Update tamil translations
+
+2003-09-27 11:18  
+
+	* xfcalendar/branches/xfce_4_0,
+	  xfcalendar/branches/xfce_4_0/AUTHORS,
+	  xfcalendar/branches/xfce_4_0/COPYING,
+	  xfcalendar/branches/xfce_4_0/INSTALL,
+	  xfcalendar/branches/xfce_4_0/README,
+	  xfcalendar/branches/xfce_4_0/autogen.sh,
+	  xfcalendar/branches/xfce_4_0/compile,
+	  xfcalendar/branches/xfce_4_0/depcomp,
+	  xfcalendar/branches/xfce_4_0/m4,
+	  xfcalendar/branches/xfce_4_0/m4/depends.m4,
+	  xfcalendar/branches/xfce_4_0/missing,
+	  xfcalendar/branches/xfce_4_0/mkinstalldirs,
+	  xfcalendar/branches/xfce_4_0/po/ChangeLog,
+	  xfcalendar/branches/xfce_4_0/po/POTFILES.in,
+	  xfcalendar/branches/xfce_4_0/stamp-h.in,
+	  xfcalendar/branches/xfce_4_0/xfcalendar.gladep: This commit was
+	  manufactured by cvs2svn to create branch 'xfce_4_0'.
+
+2003-09-06 23:56  korbinus
+
+	* xfcalendar/trunk/src/callbacks.c, xfcalendar/trunk/src/main.c:
+	  Fixed compact mode/tray icon bug
+
+2003-09-06 23:44  korbinus
+
+	* xfcalendar/trunk/plugin/xfcalendar_plugin.c,
+	  xfcalendar/trunk/src/callbacks.c, xfcalendar/trunk/src/main.c:
+	  Added compact mode. Removed ability to hide from taskbar/panel.
+
+2003-09-02 22:59  korbinus
+
+	* xfcalendar/trunk/src/callbacks.c: Few code cleaning
+
+2003-09-02 22:38  korbinus
+
+	* xfcalendar/trunk/plugin/xfcalendar_plugin.c: Corrected window size
+	  problem in mcs plugin
+
+2003-09-02 22:14  korbinus
+
+	* xfcalendar/trunk/plugin/xfcalendar_plugin.c: Changed mcs plugin
+	  from modal window to normal window
+
+2003-09-02 21:10  korbinus
+
+	* xfcalendar/trunk/plugin/xfcalendar_plugin.c,
+	  xfcalendar/trunk/src/callbacks.c,
+	  xfcalendar/trunk/src/callbacks.h, xfcalendar/trunk/src/main.c:
+	  Added options for showing/hiding the calendar in taskbar/pager
+
+2003-09-02 07:17  huysmans
+
+	* xfcalendar/trunk/Makefile.in, xfcalendar/trunk/aclocal.m4,
+	  xfcalendar/trunk/config.guess, xfcalendar/trunk/config.sub,
+	  xfcalendar/trunk/configure, xfcalendar/trunk/configure.ac,
+	  xfcalendar/trunk/install-sh, xfcalendar/trunk/ltmain.sh,
+	  xfcalendar/trunk/plugin/Makefile.in, xfcalendar/trunk/po/ms.gmo,
+	  xfcalendar/trunk/po/ms.po, xfcalendar/trunk/src/Makefile.in: Add
+	  malaysian translations
+
+2003-09-01 19:50  korbinus
+
+	* xfcalendar/trunk/src/callbacks.c,
+	  xfcalendar/trunk/src/callbacks.h,
+	  xfcalendar/trunk/src/interface.c: Added a Close Window menu item
+	  in the main window
+
+2003-08-31 21:00  xfce
+
+	* xfcalendar/trunk/src/callbacks.c,
+	  xfcalendar/trunk/src/interface.c, xfcalendar/trunk/src/main.c:
+	  Make the close button and the Quit entry from the calendar window
+	  close the window instead of real quit (which was very desapointing
+	  from a user standpoint...)
+
+2003-08-30 22:06  korbinus
+
+	* xfcalendar/trunk/src/Makefile.in: Adding MCS support
+
+2003-08-30 21:49  korbinus
+
+	* xfcalendar/trunk/src/Makefile.am,
+	  xfcalendar/trunk/src/callbacks.c,
+	  xfcalendar/trunk/src/callbacks.h,
+	  xfcalendar/trunk/src/interface.c, xfcalendar/trunk/src/main.c:
+	  Adding MCS support
+
+2003-08-30 21:31  korbinus
+
+	* xfcalendar/trunk/Makefile.am, xfcalendar/trunk/Makefile.in,
+	  xfcalendar/trunk/aclocal.m4, xfcalendar/trunk/config.guess,
+	  xfcalendar/trunk/config.sub, xfcalendar/trunk/configure,
+	  xfcalendar/trunk/configure.ac, xfcalendar/trunk/install-sh,
+	  xfcalendar/trunk/ltmain.sh, xfcalendar/trunk/m4/depends.m4,
+	  xfcalendar/trunk/plugin, xfcalendar/trunk/plugin/Makefile.am,
+	  xfcalendar/trunk/plugin/Makefile.in,
+	  xfcalendar/trunk/plugin/calendar-icon.h,
+	  xfcalendar/trunk/plugin/xfcalendar_plugin.c: Adding MCS support
+
+2003-08-24 16:26  xfce
+
+	* xfcalendar/trunk/Makefile.in, xfcalendar/trunk/aclocal.m4,
+	  xfcalendar/trunk/config.guess, xfcalendar/trunk/config.sub,
+	  xfcalendar/trunk/configure, xfcalendar/trunk/install-sh,
+	  xfcalendar/trunk/ltmain.sh, xfcalendar/trunk/src/Makefile.in:
+	  Resync with CVS.
+
+2003-08-18 22:56  korbinus
+
+	* xfcalendar/trunk/po/fr.gmo, xfcalendar/trunk/po/fr.po: Add french
 	  translation
 
-2003-10-15 13:33  jasper
+2003-08-18 22:38  korbinus
 
-	* configure, configure.ac: Update configure files as well
+	* xfcalendar/trunk/Makefile.in, xfcalendar/trunk/aclocal.m4,
+	  xfcalendar/trunk/config.guess, xfcalendar/trunk/config.sub,
+	  xfcalendar/trunk/configure, xfcalendar/trunk/configure.ac,
+	  xfcalendar/trunk/install-sh, xfcalendar/trunk/ltmain.sh,
+	  xfcalendar/trunk/src/Makefile.in: Add french translation
 
-2003-10-15 13:24  jasper
+2003-08-10 19:54  huysmans
 
-	* po/: ko.gmo, ko.po: Add missing ko.po
+	* xfcalendar/trunk/po/zh_CN.gmo, xfcalendar/trunk/po/zh_CN.po:
+	  Update chinese translations
 
-2003-10-13 20:30  jasper
+2003-08-07 21:57  huysmans
 
-	* ChangeLog: Update ChangeLog's after syncing with SF. Everything
-	  should now be up-to-date.
+	* xfcalendar/trunk/po/ca.gmo, xfcalendar/trunk/po/ca.po: Update
+	  catalan translations
 
-2003-09-27 13:18  huysmans
+2003-07-30 06:08  huysmans
 
-	* configure, configure.ac, po/ta.gmo, po/ta.po: Update tamil
+	* xfcalendar/trunk/configure, xfcalendar/trunk/configure.ac,
+	  xfcalendar/trunk/po/ru.gmo, xfcalendar/trunk/po/ru.po: Add russian
 	  translations
+
+2003-07-19 00:09  korbinus
+
+	* xfcalendar/trunk/src/callbacks.c,
+	  xfcalendar/trunk/src/callbacks.h, xfcalendar/trunk/src/main.c:
+	  Session management: the main window show up again at startup
+
+2003-07-18 23:34  korbinus
+
+	* xfcalendar/trunk/src/main.c: Correction of a setting bug I found 2
+	  minutes after my last commit(as usual)
+
+2003-07-18 23:25  korbinus
+
+	* xfcalendar/trunk/src/callbacks.c,
+	  xfcalendar/trunk/src/callbacks.h,
+	  xfcalendar/trunk/src/interface.c, xfcalendar/trunk/src/main.c:
+	  Basic setting (ie quick and dirty) management
+
+2003-07-18 07:46  huysmans
+
+	* xfcalendar/trunk/configure, xfcalendar/trunk/configure.ac,
+	  xfcalendar/trunk/po/nl.gmo, xfcalendar/trunk/po/nl.po,
+	  xfcalendar/trunk/po/tr.gmo, xfcalendar/trunk/po/tr.po: Update
+	  turkish translations
+
+2003-07-17 22:20  korbinus
+
+	* xfcalendar/trunk/src/interface.c: Adding Keybindings to
+	  Appointment window
+
+2003-07-17 21:39  korbinus
+
+	* xfcalendar/trunk/src/callbacks.c,
+	  xfcalendar/trunk/src/callbacks.h, xfcalendar/trunk/src/main.c:
+	  Minor changes and few code improvements
+
+2003-07-15 22:09  bmeurer
+
+	* xfcalendar/trunk/ChangeLog, xfcalendar/trunk/NEWS,
+	  xfcalendar/trunk/src/main.c, xfcalendar/trunk/src/xfce_trayicon.c:
+	  Upgrade to latest XfceTrayIcon (see NEWS for details).
+
+2003-07-15 16:31  bmeurer
+
+	* xfcalendar/trunk/src/xfce_trayicon.c,
+	  xfcalendar/trunk/src/xfce_trayicon.h: Update to latest
+	  XfceTrayIcon
+
+2003-07-14 13:32  bmeurer
+
+	* xfcalendar/trunk/src/main.c: Fix missing stdio.h include.
+
+2003-07-14 08:56  korbinus
+
+	* xfcalendar/trunk/src/callbacks.c: Fixed little bug in Today tray
+	  menu stuff
+
+2003-07-14 08:26  korbinus
+
+	* xfcalendar/trunk/src/callbacks.c,
+	  xfcalendar/trunk/src/callbacks.h, xfcalendar/trunk/src/main.c:
+	  Tray menu for showing today appointment window
+
+2003-07-14 07:34  korbinus
+
+	* xfcalendar/trunk/src/main.c: Very basic session management support
+
+2003-07-13 22:29  korbinus
+
+	* xfcalendar/trunk/src/callbacks.c: Applied Edscott's patch fixing
+	  bug with DBH
+
+2003-07-13 15:10  bmeurer
+
+	* xfcalendar/trunk/po/de.gmo, xfcalendar/trunk/po/de.po: Updated
+	  german translation. Thanks to Moritz Heiber.
+
+2003-07-13 14:39  bmeurer
+
+	* xfcalendar/trunk/ChangeLog, xfcalendar/trunk/po/ca.gmo,
+	  xfcalendar/trunk/po/ca.po, xfcalendar/trunk/po/de.gmo,
+	  xfcalendar/trunk/po/de.po, xfcalendar/trunk/po/xfcalendar.pot,
+	  xfcalendar/trunk/po/zh_CN.gmo, xfcalendar/trunk/po/zh_CN.po,
+	  xfcalendar/trunk/src/interface.c: Fixed i18n weirdness, pointed
+	  out by Moritz Heiber
+
+2003-07-13 09:30  bmeurer
+
+	* xfcalendar/trunk/configure, xfcalendar/trunk/configure.ac,
+	  xfcalendar/trunk/po/xfcalendar.pot, xfcalendar/trunk/src/main.c:
+	  Even more gtk+-2.0 fixes.
+
+2003-07-13 08:43  huysmans
+
+	* xfcalendar/trunk/ChangeLog: Update ChangeLogs for release
+
+2003-07-13 08:21  bmeurer
+
+	* xfcalendar/trunk/ChangeLog, xfcalendar/trunk/src/xfce_trayicon.c:
+	  Gtk2.0 compatibility fixes.
+
+2003-07-12 21:23  bmeurer
+
+	* xfcalendar/trunk/ChangeLog, xfcalendar/trunk/configure,
+	  xfcalendar/trunk/configure.ac, xfcalendar/trunk/src/Makefile.am,
+	  xfcalendar/trunk/src/Makefile.in,
+	  xfcalendar/trunk/src/calendar-icon.h, xfcalendar/trunk/src/main.c,
+	  xfcalendar/trunk/src/xfce_trayicon.c,
+	  xfcalendar/trunk/src/xfce_trayicon.h: Updated to use new tray icon
+	  wrapper class (copied from xfce4-session). This fixes the problem
+	  that tray icons do not show up after the systray was removed and
+	  readded.
+
+2003-07-11 13:56  huysmans
+
+	* xfcalendar/trunk/aclocal.m4, xfcalendar/trunk/configure,
+	  xfcalendar/trunk/configure.ac, xfcalendar/trunk/ltmain.sh: Hmm,
+	  chinese translation updates that didn't get picked up by my
+	  previous commit. Should have been in rc1, sorry.
+
+2003-07-11 07:33  huysmans
+
+	* xfcalendar/trunk/ChangeLog: Update ChangeLog's for release
+
+2003-07-11 07:18  huysmans
+
+	* xfcalendar/trunk/po/zh_CN.gmo, xfcalendar/trunk/po/zh_CN.po:
+	  Update Chinese translations (2)
+
+2003-07-10 09:56  huysmans
+
+	* xfcalendar/trunk/ChangeLog: Update ChangeLog's for release
+
+2003-07-09 23:01  korbinus
+
+	* xfcalendar/trunk/src/callbacks.c: Bug correction in wheelmouse
+	  management
+
+2003-07-09 21:32  korbinus
+
+	* xfcalendar/trunk/src/callbacks.c,
+	  xfcalendar/trunk/src/callbacks.h,
+	  xfcalendar/trunk/src/interface.c: Added wheelmouse support in
+	  calendar
+
+2003-07-08 20:55  xfce
+
+	* xfcalendar/trunk/po/Makefile.in.in: Don't perform an update-po on
+	  make dist as it causes far too much trouble
+
+2003-07-08 16:38  korbinus
+
+	* xfcalendar/trunk/src/callbacks.c,
+	  xfcalendar/trunk/src/callbacks.h,
+	  xfcalendar/trunk/src/interface.c, xfcalendar/trunk/src/main.c:
+	  Adding navigation buttons and callbacks for appointment window.
+
+2003-07-08 08:37  korbinus
+
+	* xfcalendar/trunk/src/callbacks.c,
+	  xfcalendar/trunk/src/callbacks.h,
+	  xfcalendar/trunk/src/interface.c,
+	  xfcalendar/trunk/src/xfcalendar-icon-inline.h,
+	  xfcalendar/trunk/src/xfcalendar.png: Fixed a DBH_update-related
+	  segfault, changed window positionning, new about box and
+	  application icon.
+
+2003-07-07 21:22  huysmans
+
+	* xfcalendar/trunk/configure, xfcalendar/trunk/configure.ac,
+	  xfcalendar/trunk/po/ca.gmo, xfcalendar/trunk/po/ca.po: Update
+	  catalan translations
+
+2003-07-07 01:32  korbinus
+
+	* xfcalendar/trunk/po/de.gmo, xfcalendar/trunk/src/callbacks.c,
+	  xfcalendar/trunk/src/callbacks.h,
+	  xfcalendar/trunk/src/interface.c,
+	  xfcalendar/trunk/src/interface.h: Adding the reminder window (the
+	  pretty one ;-))
+
+2003-07-06 22:38  bmeurer
+
+	* xfcalendar/trunk/ChangeLog: Updated ChangeLog.
+
+2003-07-06 22:27  bmeurer
+
+	* xfcalendar/trunk/aclocal.m4, xfcalendar/trunk/configure,
+	  xfcalendar/trunk/src/main.c: Added a tray icon with popup menu.
+
+2003-07-06 20:14  huysmans
+
+	* xfcalendar/trunk/ChangeLog: Update ChangeLogs
+
+2003-07-06 13:34  xfce
+
+	* xfcalendar/trunk/Makefile.in, xfcalendar/trunk/aclocal.m4,
+	  xfcalendar/trunk/configure, xfcalendar/trunk/ltconfig: libtool
+	  update
+
+2003-07-06 08:21  bmeurer
+
+	* xfcalendar/trunk/Makefile.in, xfcalendar/trunk/aclocal.m4,
+	  xfcalendar/trunk/config.h.in, xfcalendar/trunk/configure,
+	  xfcalendar/trunk/configure.ac, xfcalendar/trunk/ltcf-c.sh,
+	  xfcalendar/trunk/ltconfig, xfcalendar/trunk/ltmain.sh,
+	  xfcalendar/trunk/po/de.po, xfcalendar/trunk/po/xfcalendar.pot,
+	  xfcalendar/trunk/src/Makefile.in,
+	  xfcalendar/trunk/src/callbacks.c, xfcalendar/trunk/src/main.c:
+	  Added session client code.
+
+2003-07-06 07:40  korbinus
+
+	* xfcalendar/trunk/src/callbacks.c,
+	  xfcalendar/trunk/src/interface.c, xfcalendar/trunk/src/support.c,
+	  xfcalendar/trunk/src/support.h: fixed a gettext-macro conflict
+	  between support.h and libxfce4util/i18n.h
+
+2003-07-05 01:49  edscott
+
+	* xfcalendar/trunk/src/callbacks.c: put in missing #ifdef DEBUG
+	  directive
+
+2003-07-04 22:33  korbinus
+
+	* xfcalendar/trunk/ChangeLog, xfcalendar/trunk/src/callbacks.c,
+	  xfcalendar/trunk/src/callbacks.h: Fixed segv when saving in
+	  another month and some interface stuff
+
+2003-07-04 18:19  edscott
+
+	* xfcalendar/trunk/Makefile.in, xfcalendar/trunk/aclocal.m4,
+	  xfcalendar/trunk/config.h.in, xfcalendar/trunk/configure,
+	  xfcalendar/trunk/configure.ac, xfcalendar/trunk/ltcf-c.sh,
+	  xfcalendar/trunk/ltconfig, xfcalendar/trunk/ltmain.sh,
+	  xfcalendar/trunk/src/Makefile.am,
+	  xfcalendar/trunk/src/Makefile.in,
+	  xfcalendar/trunk/src/callbacks.c,
+	  xfcalendar/trunk/src/interface.c, xfcalendar/trunk/src/main.c,
+	  xfcalendar/trunk/xfcalendar.glade: added dbh support to enable
+	  marking of days with appointments and to enable an alarm to popup
+	  a window when a day with appointment is reached. Fixed Segv
+	  conditions when opening different appointments at the same time.
+
+2003-07-03 10:40  bmeurer
+
+	* xfcalendar/trunk/configure, xfcalendar/trunk/configure.ac: Fixed
+	  typo in configure.ac :-)
+
+2003-07-03 10:30  bmeurer
+
+	* xfcalendar/trunk/AUTHORS, xfcalendar/trunk/COPYING,
+	  xfcalendar/trunk/ChangeLog, xfcalendar/trunk/INSTALL,
+	  xfcalendar/trunk/Makefile.am, xfcalendar/trunk/Makefile.in,
+	  xfcalendar/trunk/NEWS, xfcalendar/trunk/README,
+	  xfcalendar/trunk/aclocal.m4, xfcalendar/trunk/autogen.sh,
+	  xfcalendar/trunk/compile, xfcalendar/trunk/config.guess,
+	  xfcalendar/trunk/config.h.in, xfcalendar/trunk/config.sub,
+	  xfcalendar/trunk/configure, xfcalendar/trunk/configure.ac,
+	  xfcalendar/trunk/depcomp, xfcalendar/trunk/install-sh,
+	  xfcalendar/trunk/ltcf-c.sh, xfcalendar/trunk/ltconfig,
+	  xfcalendar/trunk/ltmain.sh, xfcalendar/trunk/m4,
+	  xfcalendar/trunk/m4/debug.m4, xfcalendar/trunk/m4/depends.m4,
+	  xfcalendar/trunk/m4/i18n.m4, xfcalendar/trunk/missing,
+	  xfcalendar/trunk/mkinstalldirs, xfcalendar/trunk/po,
+	  xfcalendar/trunk/po/ChangeLog, xfcalendar/trunk/po/Makefile.in.in,
+	  xfcalendar/trunk/po/POTFILES.in, xfcalendar/trunk/po/de.gmo,
+	  xfcalendar/trunk/po/de.po, xfcalendar/trunk/po/xfcalendar.pot,
+	  xfcalendar/trunk/src, xfcalendar/trunk/src/Makefile.am,
+	  xfcalendar/trunk/src/Makefile.in,
+	  xfcalendar/trunk/src/callbacks.c,
+	  xfcalendar/trunk/src/callbacks.h,
+	  xfcalendar/trunk/src/interface.c,
+	  xfcalendar/trunk/src/interface.h, xfcalendar/trunk/src/main.c,
+	  xfcalendar/trunk/src/support.c, xfcalendar/trunk/src/support.h,
+	  xfcalendar/trunk/stamp-h.in, xfcalendar/trunk/xfcalendar.glade,
+	  xfcalendar/trunk/xfcalendar.gladep: Initial revision
+
+2003-07-03 10:30  
+
+	* xfcalendar/branches, xfcalendar/tags, xfcalendar/trunk: New
+	  repository initialized by cvs2svn.
 
