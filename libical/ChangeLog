@@ -1,811 +1,761 @@
-2002-07-09  Andrea Campi  <a.campi@inet.it>
-
-	* src/libical/icalcomponent.c
-	* src/libical/icalcomponent.h: Added a check for valid component kind
-	before instancing a new one.
-
-2002-07-08  Andrea Campi  <a.campi@inet.it>
-
-	* src/python/Gauge.py
-	* src/python/LibicalWrap.i
-	* src/python/Property.py
-	* src/python/Store.py
-	* src/python/Time.py
-	* src/python/python-binding.txt
-	* src/python/test.py: Updated the python bindings to match the C API
-	changes.
-	Obtained from: Mark Tearle
-
-2002-07-04  Andrea Campi  <a.campi@inet.it>
-
-	* src/libical/icalderivedproperty.c.in
-	* src/libical/icalproperty.c
-	* src/libical/icalproperty.h: Added a check for valid property kind
-	before instancing a new one.
-
-	* src/libical/icalvalue.c: Fixed icalvalue_new_clone to properly clone
-	X- properties.
-
-2002-06-28  Andrea Campi  <a.campi@inet.it>
-
-	* design-data/parameters.csv
-	* src/libicalss/icalgauge.c
-	* src/libicalss/icalgaugeimpl.h
-	* src/libicalss/icalsslexer.c
-	* src/libicalss/icalsslexer.l
-	* src/libicalss/icalssyacc.c
-	* src/libicalss/icalssyacc.h
-	* src/libicalss/icalssyacc.y: Added IS NULL to icalgauge
-	syntax.
-	Obtained from: Paul Lindner
-
-	* src/libical/icallexer.c
-	* src/libical/icallexer.l
-	* src/libical/icalyacc.c
-	* src/libical/icalyacc.h
-	* src/libical/icalyacc.y: Sent lex/yacc code to Attic.
-
-	* src/libical/icalparameter.c: Changed icalparameter_as_ical_string
-	to also quote the param value if it contains a , (comma), as per RFC2445.
-
-	* src/libicalss/icalset.c
-	* src/libicalss/icalset.h: Added experimental code to support
-	dynamic loading of icalset derived classes.
-
-	* src/libicalss/Makefile.am
-	* src/libicalss/icalspanlist_cxx.cpp
-	* src/libicalss/icalspanlist_cxx.h: Added C++ binding for libicalss.
-	Obtained from: Paul Lindner
-
-2002-06-28  Eric Busboom  <eric@softwarestudio.org>
-
-	* src/libical/Makefile.am
-	* src/libical/icalduration.c
-	* src/libical/icalparser.c
-	* src/libical/icalvalue.c
-	* src/libical/icalyacc.c
-	* src/libical/icalyacc.h: removed lex and yacc by writing
-	code to parse UTC-OFFSET
-
-2002-06-27  Andrea Campi  <a.campi@inet.it>
-
-	* src/libical/icalcomponent.c
-	* src/libical/icalcomponent.h: Added icalcomponent_foreach_recurrence
-	as a better way of handling recurrences; deprecated
-	icalcomponent_get_span
-	Obtained from: Paul Lindner
-
-	* src/libical/icalderivedvalue.c.in
-	* src/libical/icalvalue.c
-	* src/libical/icalvalue.h: Added a check for valid value kind before
-	instancing a new one.
-	Obtained from: Paul Lindner
-
-	* src/libical/icalproperty.c
-	* src/libical/icalproperty.h: Deprecated icalproperty_remove_parameter,
-	added 3 new functions to do the same in a safer way (wrt X- params).
-	Obtained from: Paul Lindner
-
-	* src/libical/icaltime.c
-	* src/libical/icaltime.h: Added functions to work with time spans.
-	Obtained from: Paul Lindner
-
-2002-06-26  Andrea Campi  <a.campi@inet.it>
-
-	* src/libical/icalduration.c: Fixed icaldurationtype_from_int to
-	generate valid RFC2445 durations (it used to mix weeks and other
-	time units).
-
-2002-06-13  Andrea Campi  <a.campi@inet.it>
-
-	* src/libical/icalvalue.c: Fixed escaping of TEXT values and
-	formatting of UTCOFFSET values to more closely match RFC2445.
-
-	* configure.in
-	* src/libical/Makefile.am
-	* src/libical/icalparameter_cxx.cpp
-	* src/libical/icalparameter_cxx.h
-	* src/libical/icalproperty_cxx.cpp
-	* src/libical/icalproperty_cxx.h
-	* src/libical/icalvalue_cxx.cpp
-	* src/libical/icalvalue_cxx.h
-	* src/libical/vcomponent.cpp
-	* src/libical/vcomponent.h
-	* src/libicalss/icalbdbset_cxx.h: Added C++ binding.
-	Obtained from: Paul Lindner
-
-	* configure.in
-	* src/libicalss/Makefile.am
-	* src/libicalss/icalbdbset.c
-	* src/libicalss/icalbdbset.h
-	* src/libicalss/icalbdbset.h
-	* src/libicalss/icalbdbsetimpl.h
-	* src/test/Makefile.am
-	* src/test/storage.c: Added BerkeleyDB 4.0 icalset implementation.
-	Obtained from: Paul Lindner
-
-2002-06-11  Andrea Campi  <a.campi@inet.it>
-
-	* src/test/Makefile.am
-	* src/test/regression-classify.c
-	* src/test/regression-component.c
-	* src/test/regression-recur.c
-	* src/test/regression-utils.c
-	* src/test/regression.c
-	* src/test/regression.h
-	* src/test/test_fileset.ics: New regression test suite
-	Obtained from: Paul Lindner
-
-	* src/libical/icalcomponent.c
-	* src/libical/icalproperty.c
-	* src/libical/icalproperty.h
-	* src/python/test.py
-	* src/test/regression.c: Improved X- parameter handling.
-	Obtained from: Mark Tearle
-
-2002-06-07  Andrea Campi  <a.campi@inet.it>
-
-	* configure.in
-	* src/libical/Makefile.am
-	* src/libical/icallexer.l
-	* src/libical/icalparser.c
-	* src/libical/icalparser.h
-	* src/libical/icalyacc.y
-	* src/libicalss/Makefile.am
-	* src/libicalss/icalgauge.c
-	* src/libicalss/icalsslexer.c
-	* src/libicalss/icalsslexer.l
-	* src/libicalss/icalssyacc.c
-	* src/libicalss/icalssyacc.h
-	* src/libicalss/icalssyacc.y: Made parser fully reentrant using
-	recent versions of flex/bison. Also committed the generated files
-	so that the library can be compiled even without those tools.
-	Obtained from: Paul Lindner
-
-	* src/python/LibicalWrap.i
-	* src/python/Property.py
-	* src/python/test.py: Support X- properties in the Python wrapper.
-	Obtained from: Mark Tearle
-
-2002-06-04  Andrea Campi  <a.campi@inet.it>
-
-	* *: Constifed a lot of functions, also made a few of them static
-	Obtained from: Paul Lindner <lindner@inuus.com>
-
-2002-06-03  Andrea Campi  <a.campi@inet.it>
-	* src/libical/icallangbind.c
-	* src/python/Component.py
-	* src/python/Gauge.py
-	* src/python/Libical.py
-	* src/python/LibicalWrap.i
-	* src/python/Store.py
-	* src/python/test.py: Fully implemented FileStore and Gauge
-	in the python bindings.
-	Obtained from: Mark Tearle <mtearle@tearle.com>
-
-2002-05-28  Andrea Campi  <a.campi@inet.it>
-
-	* src/libical/icalattach.c
-	* src/libical/icalattach.h
-	* src/libical/icalattachimpl.h
-	* src/libical/icalderivedproperty.c.in
-	* src/libical/icalderivedvalue.c.in
-	* src/libical/icalderivedvalue.h.in
-	* src/libical/icaltypes.c
-	* src/libical/icaltypes.h
-	* src/libical/icalvalue.c
-	* src/libical/icalvalueimpl.h: Changed ATTACH to be an opaque type
-
-2002-05-27  Eric Busboom  <eric@softwarestudio.org>
-
-	* scripts/mkderivedparameters.pl
-	* scripts/mkderivedproperties.pl
-	* scripts/mkderivedvalues.pl
-	* src/libical/icalderivedparameter.c.in
-	* src/libical/icalderivedparameter.h.in
-	* src/libical/icalderivedproperty.c.in
-	* src/libical/icalderivedproperty.h.in
-	* src/libical/icalderivedvalue.c.in
-	* src/libical/icalderivedvalue.h.in: changed the auto generated
-	files and scripts so that the generated code is inserted into the
-	middle of the template (.in) file, instead of the end. This means
-	we could get rid of the declaration for the maps.
-
-2002-05-27  Andrea Campi  <a.campi@inet.it>
-
-	* src/libical/icaltimezone.c: Worked around Outlook/Exchange brokenness.
-	Obtained from: evolution CVS repository
-
-2002-05-24  Andrea Campi  <a.campi@inet.it>
-
-	* src/libical/icalproperty.c: Implemented proper RFC2445 folding.
-	Obtained from: evolution CVS repository
-
-	* src/libical/icalrecur.c: Worked around Outlook/Exchange brokenness.
-	Obtained from: evolution CVS repository
-
-
-2002-05-21  Andrea Campi  <a.campi@inet.it>
-
-	* src/libical/*: Removed void * in favor of opaque typedef types.
-	This helped uncover a few bugs and made debugging easier.
-	Obtained from: Paul Lindner
-
-2002-05-10  Andrea Campi  <a.campi@inet.it>
-
-	* src/libical/icalmemory.c: Made the memory allocator threadsafe.
-	This code is currently conditional on USE_THREAD, but it might
-	become the default in the future.
-	Obtained from: Paul Lindner
-
-	* src/libical/icaltime.c: Implemented icaltime_is_date(), with the
-	intent of removing all direct accesses to is_date.
-
-2002-05-09  Andrea Campi  <a.campi@inet.it>
-
-	* icaltime.c Rewrote and documented icaltime API, with the goal of
-	keeping it stable until release 1.0. Some functions and internal
-	implementation details are now declared obsolete and removed from
-	the documentation; they will be removed at a later time.
-
-2001-12-12  Eric Busboom  <eric@softwarestudio.org>
-
-	* icalrecur.c implemented recurrence rule for "FREQ=YEARLY",
-	with no BY rules.
-
-2001-12-11  Eric Busboom  <eric@softwarestudio.org>
-
-	* icalrecur.c Fixed bug in next_month for MONTHLY rules that have
-	only BYDAY rules. The code would miss valid dates that fell on the
-	first of the month. created new routine is_day_in_byday()
-
-	* icaltime.c Fixed icaltime_from_day_of_year to correctly handle 
-	negative and over-range day-of-years
-
-	* icaltime.c collected all instances of leap year code into
-	icaltime_is_leap_year
-
-	* icaltime.c icaltime_day_of_year. Changed an assert into code
-	that advances the year when the day of year is lager than the
-	number of days in the given year
-
-	* icalerrno.c,h Added the function version
-	icalerror_set_errno. Only the define verson existed.
-
-	* icaltime.c Moved all of the getenv/putenv operations into icaltimegm()
-	
-2001-06-29  Eric Busboom  <eric@softwarestudio.org>
-
-	* icalderivedproperties.h,c Changed the signature if the CLASS
-	property from TEXT to CLASS. ( enum icalproperty_class) 
-
-2001-06-22  Eric Busboom  <eric@softwarestudio.org>
-
-	* icaltypes.c Fixed bug in icaltriggertype_new_from_string htat
-	caused it to fail.
-
-2001-04-12  Eric Busboom  <eric@softwarestudio.org>
-
-	* icalvalue.c Added quoting to apostrophies ("'") in text
- 	values. This is not required by the spec, but it is necessary in
- 	icallangbind_property_eval_string, since ' is special in both perl
- 	and python.
-
-2001-04-10  Eric Busboom  <eric@softwarestudio.org>
-
-	* icalvalue.c Added routine icalvalue_reset_kind. This routine is
- 	now called by all autogenerated icalvalue_set_*
- 	routines. icalvalue_reset_kind() will change the kind of the value
- 	based on the data in the value. Currently, it will set a value to
- 	either DATETIME or DATE based on the is_date flag of icaltimetype.
-
-2001-04-09  Eric Busboom  <eric@softwarestudio.org>
-
-	* icalproperty.h Converted REQUEST-STATUS to use the struct
- 	icalreqstat structure instead of a string
-
-2001-04-01  Eric Busboom  <eric@softwarestudio.org>
-
-	* icalcomponent.h Changed meaning of
- 	icalcomponent_new_from_string. It used to create a new component
- 	given the text name of the component type to create. Now it calls
- 	icalparser_parse_string to create a new component from the
- 	complete iCalendar text representation of the component.
-
-2001-03-31  Eric Busboom  <eric@softwarestudio.org>
-
-	* icalvalue Changed ACTION properties to take an ACTION value
- 	instead of TEXT. The ACTION value is enumerated.
-
-2001-03-26  Eric Busboom  <eric@softwarestudio.org>
-
-	* icalparameter.h icalparameter_rsvp_* routines now take, return
- 	ICAL_RSVP_TRUE and ICAL_RSVP_FALSE, not 0 and 1
-
-2001-03-25  Eric Busboom  <eric@softwarestudio.org>
-
-	* icalrecur.c Many changes to get YEARLY rules working and fix
- 	other errors. Recurrences are stil broken, but more types of rue
- 	now work.
-
-2001-03-16  Eric Busboom  <eric@softwarestudio.org>
-
-	* icalparameter.c Changed icalparameter_new_from_string() to
- 	icalparameter_new_from_value_string(). Created new
- 	icalparameter_new_from_string() that takes strings of
- 	form"PARAMNAME=PARAMVALUE"
-
-	* *_XNAME changes all _XNAME enumerations to _X
-
-	* derived props, values, parameters. Seperated out derived
- 	proeprties, parameters and values into their own files. This makes
- 	it easier to auto generate all of the enumerations for values,
- 	parameters and proeprties.
-
-	* icalenum.h Major changes to icalenum. Movel all of the
- 	icalenum_* values to other modules, and changed the names. Look
- 	for #defines in icalenum.h tying the old name to the new
- 	name. Also moved all of the enumerations into other files.
-
-	
-	
-2001-02-26  Eric Busboom  <eric@softwarestudio.org>
-
-	* src/libical/icalproperty.c Added
- 	icalproperty_set_parameter_from_string and
- 	icalproperty_set_value_from_string to aid in binding to Python 
-
-2001-02-15  Eric Busboom  <eric@softwarestudio.org>
-
-	* design-data/prop-to-value.txt Made a new CSV file,
- 	properties.cvs That collects property-to-value and default value
- 	information
-
-	* src/libical/icalproperty.{c,h}.in Moved auto generated code into
- 	icalderivedproperty.{c,h} and created icalderivedproperty.{c,h}.in
-
-	
-
-2001-02-14  JP Rosevear  <jpr@ximian.com>
-
-	* src/libical/Makefile.am: Sigh, automake is dumber than i thought
-
-2001-02-12  JP Rosevear  <jpr@ximian.com>
-
-	* src/test/Makefile.am: link with the static versions
-
-	* src/python/Makefile.am: use include dir discovered in configure checks
-
-	* src/python/.cvsignore: shush
-
-	* src/libical/icalrestriction.c: remove autogenerated file
-	
-	* src/libical/Makefile.am: the generated files are now disted so
-	look for them in the source dir rather than the build dir
-
-	* src/Makefile.am: Only build the python dir if all the configure
-	stuff checked out
-
-	* configure.in: Remove shared library disabling and add a python
-	check and allow for the python bindings to not be built
-
-2001-02-11  Eric Busboom  <eric@softwarestudio.org>
-
-	* src/python/Makefile.am Tweaked makefile to use automake more,
- 	but it stil isn't quie right.
-
-2001-02-09  JP Rosevear  <jpr@ximian.com>
-
-	* Shush cvs
-	
-2001-02-09  JP Rosevear  <jpr@ximian.com>
-
-	* src/libical/Makefile.am: Slightly over zealous during the merge
-	
-2001-02-09  JP Rosevear  <jpr@ximian.com>
-
-	* src/libical/Makefile.am: Correct typo
-
-	* Removal of more auto generated files
-	
-2001-02-09  JP Rosevear  <jpr@ximian.com>
-
-	* Removal of various auto generated files
-	
-2001-02-09  JP Rosevear  <jpr@ximian.com>
-
-	* src/libical/icalparameter.c.in (icalparameter_new_from_string):
-	its NEEDS-ACTION rather than NEEDSACTION
-	(icalparameter_as_ical_string): ditto
-
-2001-02-09  Eric Busboom  <eric@softwarestudio.org>
-
-	* python Added src/python directory. Inserted SWIG wrapper files,
- 	and a simple interface to Component, Time, Duration, Period and
- 	Store.
-
-	* icallangbind.c More experimental work
-
-	* icalduration.{c,h}, icalperiod.{c,h} Broke out period and
- 	duration types into their own files
-
-2001-02-06  Christopher James Lahey  <clahey@ximian.com>
-
-	* src/libical/icallangbind.c: Added a missing #include here.
-
-	* src/libical/icalrecur.c (icalrecur_add_bydayrules): Copy the
-	passed in const vals since we change it.
-	
-2001-02-06  Eric Busboom  <eric@softwarestudio.org>
-
-	* icaltime.c Changed icaltime_from_day_of_year to run mktime in
- 	the UTC timezone. This fixed a bug where it would return one day
- 	eariler for some timezones.
-
-2001-02-05  Ettore Perazzoli  <ettore@ximian.com>
-
-	* src/libical/Makefile.am (COMBINEDHEADERS): `icalvalue.h',
-	`icalparameter.h', `icalproperty.h' and `icalrestriction.h' are
-	created in the builddir so they shouldn't be prefixed with
-	`$(top_builddir)/src/libical'.
-	
-2001-01-26  Eric Busboom  <eric@softwarestudio.org>
-
-	* icalproperty.c.in Improved icalproperty_as_ical_string() to
- 	eliminate the possibility of having a VALUE parameter that does
- 	not match the actual kind of value.
-
-	* icalvalue.c.in made icalvalue_*_trigger() and
- 	icalvalue_*_datetimeperiod non-autogenerated. These routines were
- 	for combined value type -- non standard values that can have more
- 	than on standard value type. These non-standard types now delegate
- 	to stadard types.
-
-2001-01-24  Eric Busboom  <eric@softwarestudio.org>
-
-	* icalfileset.c fixed icalfileset_read-from_file so it will handle
- 	lines longer than 80 char properly.
-
-2001-01-23  JP Rosevear  <jpr@ximian.com>
-
-	* configure.in: Don't AC_INIT on an autogenerated file that does not
-	exist beforehand
-	
-2001-01-23  Eric Busboom  <eric@softwarestudio.org>
-
-	* icltime.c Removed all of the _local_ routines and simplified
- 	icaltime_utc_offset and icaltime_as_timet
-
-	* regression.c Added tests for triggers and improvements to icaltime.c
-
-	* icaltypes.c Addedd icaltriggertype_from_string and changed
- 	icaltriggertype to be a struct
-
-2001-01-22  Eric Busboom  <eric@softwarestudio.org>
-
-	* icaltime.c implemented icaldurationtype_from_string to parse the
- 	string it self, rather than use lex/yacc
-
-2001-01-15  Eric Busboom  <eric@softwarestudio.org>
-
-	* icalfileset.c Many improvements. File locking now works, and so
- 	does searching with icalfileset_select()
-
-2001-01-08  Eric Busboom  <eric@softwarestudio.org>
-
-	* Makefile.am Remove spaces after -I in several 
-	Makefile.am routines. 
-
-	* icalset.c removed return statements from some void functions.
-
-	* icalparameter.c.in Added break to default: case that had no
- 	body. Compilers on Solaris and Tru64 UNIX complained.
-
-2001-01-02  Eric Busboom  <eric@softwarestudio.org>
-
-	* icaltime.c Changed icaldurationtype_from_time and _as_timet to
- 	_from_int and _as_int. This is a change interface that may break
- 	some code.
-
-	* icalgauge.c icalgaugeimpl.h, icalgauge.h., Rewrote gauge code to
- 	use pvl-lists directly, instead of trying to reuse icalcomponent.
-
-2000-12-13  Ettore Perazzoli  <ettore@helixcode.com>
-
-	* src/libicalvcal/Makefile.am (INCLUDES): Add
-	`$(top_builddir)/src/libical' to the include directory list.
-
-	* src/libical/Makefile.am (icalparameter.h): Use `$(srcdir)'.
-	(icalparameter.c): Likewise.
-	(icalproperty.h): Likewise.
-	(icalproperty.c): Likewise.
-	(icalvalue.h): Likewise.
-	(icalvalue.c): Likewise.
-	(icalrestriction.c): Likewise.
-	(COMBINEDHEADERS): `icalvalue.h', `icalparameter.h' and
-	`icalproperty.h' are in builddir, not srcdir, so fix the list to
-	use `$(top_builddir)' instead of `$(top_srcdir)'.
-	(all): Removed.
-	(BUILT_SOURCES): Move `ical.h' here instead.
-	(ical.h): Don't depend on `(BUILT_SOURCES)'; this a built source
-	itself.
-	
-2000-12-12  Eric Busboom  <eric@softwarestudio.org>
-
-	* icalparser.c Addedd support for x-parameters. 
-
-	* icalenum.c Fixed icalenum_parameter_type_to_string and
- 	icalenum_property_type_to_string to property identify X- parameers
- 	and properties.
-
-	* icalparameter.c Fixed icalparameter_as_ical_string to property
- 	write out X-Parameters.
-
-	
-2000-12-11  Eric Busboom  <eric@softwarestudio.org>
-
-	* icalcstp.c added empty bodies to prep_* routines so that shared
- 	libraries would build.
-
-2000-12-11  JP Rosevear  <jpr@helixcode.com>
-
-	* src/libical/icaltime.c (icaltime_compare_date_only): New
-	function that compares only the dates, not the times as well.
-
-	* src/libical/icaltime.h: Add prototype for the function above.
-
-	* src/libical/icalrecur.h (struct icalrecurrencetype): Correct
-	header documentation.
-
-	* src/libical/icaltypes.c: No longer include <limits.h>.
-
-	* src/libical/icalrecur.c: Likewise.
-
-	* src/libical/icalvalue.c: Likewise.
-
-	* src/libical/icalyacc.y: Likewise.
-
-2000-12-11  Federico Mena Quintero  <federico@helixcode.com>
-
-	* configure.in (AC_OUTPUT): Fixed order of generated files to make
-	"make distcheck" work.  Turn on AM_MAINTAINER_MODE.
-
-	* src/libical/Makefile.am (EXTRA_DIST): Add icalversion.h.in.
-	(COMBINEDHEADERS): Added paths to make "make distcheck" work.
-	(libical_la_SOURCES): Added headers for distribution in our weird
-	setup.
-
-2000-12-06  Eric Busboom  <eric@softwarestudio.org>
-
-	* icaltime.c added icaltime_as_local to convert a UTC time to a
- 	local time
-
-	* icaltime.h icaltime.c Removed is_utc argument from
- 	icaltime_from_timet
-
-	
-2000-11-29  Eric Busboom  <eric@softwarestudio.org>
-
-	* icalrecur.c More testing and bug fixes. Many more of the rules
- 	in recur.txt work correctly.
-
-2000-11-28  Eric Busboom  <eric@softwarestudio.org>
-
-	* icalrecur.c Several changes to extract icalrecur.c from
- 	libical. I'd like to make it into a reference impl for recurrence
- 	rules. CHanges include moving all of the recurrence type and
- 	recurrence enums from icalenum and icaltypes into icalrecur, and
- 	adding code to parse recurrence rule strings.
-
-	* icaltime.c Changed icaltime_from_string to parse the string
- 	directly. Now icaltime.c has no dependency on icalvalue.c
-
-2000-11-21  Eric Busboom  <eric@softwarestudio.org>
-
-	* icalrecur.c Fixed a bug in the increment_* routines that made
- 	incrementing by more then 1 insensible. Thanks to Martin Neimeier
-
-2000-11-20  Eric Busboom  <eric@softwarestudio.org>
-
-	* icalmessage.c Many routines to create new ical messages. 
-
-	* icalspanlist.c Code to generate a list of the busy time f the
- 	VEVENTS in a set. Also includes routiens to generate free and busy
- 	lists from the spanlist, and to find the next free time after a
- 	given time.
-
-	* icalvalue.c The STATUS property now has its own value type,
- 	STATUS, which holds the enumeration icalproperty_status.
-
-	* icalrestriction.c Added more restrictions. Now handles mutual
- 	and exclusive consitions, and checks for the reight values in
- 	STATUS properties
-	
-
-2000-11-10  Eric Busboom  <eric@softwarestudio.org>
-
-	* icaltypes.c Added routine to create durationtype from string:
- 	icaldurationtype_from_string
-
-2000-11-09  Eric Busboom  <eric@softwarestudio.org>
-
-	* icalcomponet.c Add sever get/set convienience routines to access
- 	and manipulate common component propoerties from the component
- 	interface. This eliminates the need to create a lot of temporary
- 	variables if you just want to change the start time of and event.
-
-2000-11-06 Eric Busboom    <eric@softwarestudio.org>
-
-	* icalcomponent.c Added new routines to icalcomponent:
-	_get_span -- returns the start and end times of the event in UTC
-	_get_first_real_component -- return ref to VTODO, VEVENT or VJOURNAL
-
-	* icalspanlist.c Added new class, icalspanlist, that generates a
- 	list of alternating busy and free times from an icalset. The class
- 	includes routines to gnerate rfc2445 busy and free lists, and to
- 	get the next avaliable busy or free time after a given time.
-
-2000-11-06  Federico Mena Quintero  <federico@helixcode.com>
- 
-	* src/libical/icalvalue.c (icalvalue_recur_as_ical_string): Handle
-	both the position and weekday in the by_day field.
-
-2000-10-20  Eric Busboom  <eric@agony.busboom.org>
-
-	* Const correctness. Added 'const' all over everywhere. 
-
-2000-10-19  Eric Busboom  <eric@agony.busboom.org>
-
-	* icalproperty, icalparameter, icalvalue .c, .h Changed most
-	instances of char* to const char*
-
-	* icalclassify.h Added multiple include protection
-
-	* icalset.h and others, got rid of parameter named "new"
-	
-2000-10-15 Eric Busboom   <eric@softwarestudio.org>
-	
-	* icalcomponent Added convienience functions for constructing
- 	components: icalcomponent_new_vcalendar(), etc.
-
-	* Makefile.am Incorporated build system patch from Federico
- 	Quintero. Misc small fixes and cleanup
-
-	* scripts Incorporated auto-gen patch from Frederico. Generated
- 	code in libical now uses icalproperty.c.in (etc) instead of
- 	editing file icalparoperty.c in place.
-
-	* libical. Changed flex/bison to use the -P/-p options to set
- 	ical_yy as a prefix. Removed prefix redefinition from icalyacc.y
-	
-2000-10-12 Eric Busboom    <eric@softwarestudio.org>
-
-	* icalproperty.c Fixed icalproperty_get_{first,next}_parameter to
- 	honor the parameter kind argument
-
-	* icalparameter.c Added, but did not complete, a new version of
- 	icalparameters_from_string that does not use the hairy nested
- 	case/switch statements of the previous version
-	
-	
-2000-10-02 Eric Busboom  <eric@softwarestudio.org>
-
-	* ical.h ical.h and icalss.h now are concatenations of all of the
- 	public headers for their respective libraries. Thus, only ical.h,
- 	icalss.h and icalvcal.h need to be installed.
-
-2000-09-11  Eric Busboom  <eric@softwarestudio.org>
-
-	* icalvcal.c Added more comments 
-	
-2000-08-31  JP Rosevear  <jpr@helixcode.com>
-
-	* configure.in: Don't list config.h in AC_OUTPUT
-	
-2000-08-26  Ettore Perazzoli  <ettore@helixcode.com>
-
-	* examples/Makefile.am (INCLUDES): More `$(srcdir)' loving.
-
-	* src/libicalvcal/Makefile.am (INCLUDES): Add `-I
-	$(srcdir)/../libical' for builddir != srcdir loving.
-
-2000-08-25  Christopher James Lahey  <clahey@helixcode.com>
-
-	* examples/access_properties_and_parameters.c,
-	src/libicalvcal/vcc.y: Got rid of some warnings.
-
-	* src/libicalvcal/vcc.c: Checking in generated C file.
-
-2000-08-25  Christopher James Lahey  <clahey@helixcode.com>
-
-	* src/libical/icalcomponent.c: Fixed an incorrect struct name.
-
-2000-08-25  Peter Williams  <peterw@helixcode.com>
-
-	* src/libical/icalcomponent.c (icalcomponent_end_component): Compile fix;
-	use icalerror_check_arg_re so we can return an valid icalcompiter.
-	(icalcomponent_begin_component): Same.
-
-2000-08-24  Federico Mena Quintero  <federico@helixcode.com>
-
-	* src/test/Makefile.am: Make it work.
-	
-2000-08-04  Eric Busboom  <eric@softwarestudio.org>
-
-	* stow.c Changed stow to write data to a file ( icalfileset) not a
- 	calendar. Also added MIME parsing capability
-
-	* sspm.c Core of the mime processor. Now handles quoted-printable
- 	and base64 encodings
-
-	* icalmime.h New file that parses mime data and returns an
- 	icalcomponent that includes all of the parts.
-
-	
-2000-07-26   Eric Busboom   <eric@softwarestudio.org>
-
-	* icaldirset.h misc bug fixes to get deleting components to work
-
-	* icalcomponent.h Eliminated internal use of _get_first_component
- 	and _get_next_component, since these will reset the interal
- 	iterators.
-
-2000-07-23   Eric Busboom   <eric@softwarestudio.org>
-
-	* icalcomponent.h Added external iterators to icalcomponent for
- 	subcomponents: icalcompiter. These are still experimental, but they
- 	seem to work OK and have a nice syntax
-
-2000-07-18   Eric Busboom   <eric@softwarestudio.org>
-
-	* icalset This is a new "superclass" for icalstore, icalcluster,
- 	and others. It merges the interfaces of the old icalstore and
- 	icalcluster
-
-	* icalstore.{c,h} CHanged name to icaldirset
-
-	* icalcluster.{c,h} Changed name to icalfileset
-	
-
-2000-06-12  Eric Busboom  <eric@softwarestudio.org>
-
-	* icalstow.c misc improvements and bug fixes to make it useful.
-
-2000-06-09  Eric Busboom  <eric@softwarestudio.org>
-
-	* icalrecur.c More extensive code changes for recurrence rule.
-
-	* icalyacc.y Added support for integers in by day lists
-
-2000-06-01  Eric Busboom  <eric@softwarestudio.org>
-
-	* icalrecur.c moved recur code into new files
-
-2000-05-30  Eric Busboom  <eric@softwarestudio.org>
-
-	* icaltypes.c Extensive work on code to expand recurences
-
-	* icaltypes.h Changed signature icaltimetype_from_timet to include
- 	is_utc flag.
-	
-
-2000-03-17  Eric Busboom  <eric@softwarestudio.org>
-
-	* icalstore.c Vastly improved icalstore_test. 
-
-2000-03-16  Eric Busboom  <eric@softwarestudio.org>
-
-	* icalcluster.c Added compile flag (ICAL_SAFESAVES) to switch how
- 	icalcluster saves files during commits. When the flag is define,
- 	it will write the data to a temorar file and rename the file to
- 	the target file.
-
-	* storage.c Added seterate test suite for sotage components
-
-	* icalparser.c Created parser object, implemented line-oriented
- 	parsering, and made message oriented parsing work in terms f line
- 	oriented parsing.
-
-	* icalparser.c Fixed icalparser_get_line to remove \r in input.
-	
+2005-04-06 07:34  perldude
+
+	* xfcalendar/trunk/.cvsignore, xfcalendar/trunk/icons/.cvsignore,
+	  xfcalendar/trunk/icons/48x48/.cvsignore,
+	  xfcalendar/trunk/icons/scalable/.cvsignore,
+	  xfcalendar/trunk/libical/.cvsignore,
+	  xfcalendar/trunk/libical/design-data/.cvsignore,
+	  xfcalendar/trunk/libical/doc/.cvsignore,
+	  xfcalendar/trunk/libical/scripts/.cvsignore,
+	  xfcalendar/trunk/libical/src/.cvsignore,
+	  xfcalendar/trunk/libical/src/libical/.cvsignore,
+	  xfcalendar/trunk/libical/src/libicalss/.cvsignore,
+	  xfcalendar/trunk/libical/zoneinfo/.cvsignore,
+	  xfcalendar/trunk/plugin/.cvsignore,
+	  xfcalendar/trunk/po/.cvsignore, xfcalendar/trunk/src/.cvsignore:
+	  remove .cvsignore cruft
+
+2005-03-05 15:09  benny
+
+	* xfcalendar/trunk/icons, xfcalendar/trunk/icons/.cvsignore,
+	  xfcalendar/trunk/icons/48x48,
+	  xfcalendar/trunk/icons/48x48/.cvsignore,
+	  xfcalendar/trunk/icons/scalable,
+	  xfcalendar/trunk/icons/scalable/.cvsignore,
+	  xfcalendar/trunk/libical, xfcalendar/trunk/libical/.cvsignore,
+	  xfcalendar/trunk/libical/design-data,
+	  xfcalendar/trunk/libical/design-data/.cvsignore,
+	  xfcalendar/trunk/libical/doc,
+	  xfcalendar/trunk/libical/doc/.cvsignore,
+	  xfcalendar/trunk/libical/scripts,
+	  xfcalendar/trunk/libical/scripts/.cvsignore,
+	  xfcalendar/trunk/libical/src,
+	  xfcalendar/trunk/libical/src/.cvsignore,
+	  xfcalendar/trunk/libical/src/libical,
+	  xfcalendar/trunk/libical/src/libical/.cvsignore,
+	  xfcalendar/trunk/libical/src/libical/icalerror.c,
+	  xfcalendar/trunk/libical/src/libical/icalmemory.c,
+	  xfcalendar/trunk/libical/src/libical/icalmime.c,
+	  xfcalendar/trunk/libical/src/libical/icalrecur.c,
+	  xfcalendar/trunk/libical/src/libical/icaltime.c,
+	  xfcalendar/trunk/libical/src/libical/icaltypes.c,
+	  xfcalendar/trunk/libical/src/libicalss,
+	  xfcalendar/trunk/libical/src/libicalss/.cvsignore,
+	  xfcalendar/trunk/libical/src/libicalss/icalfileset.c,
+	  xfcalendar/trunk/libical/src/libicalss/icalgauge.c,
+	  xfcalendar/trunk/libical/zoneinfo,
+	  xfcalendar/trunk/libical/zoneinfo/.cvsignore,
+	  xfcalendar/trunk/src/Makefile.am: Fix pthread issue with
+	  statically linked ical. Make the compiler happy with libical. Add
+	  more .cvsignore files.
+
+2005-03-04 15:29  benny
+
+	* xfcalendar/trunk/configure.ac,
+	  xfcalendar/trunk/libical/src/libical/ical.h,
+	  xfcalendar/trunk/libical/src/libical/icalversion.h: Ditch
+	  autogenerated files. Fix another conditional bug.
+
+2005-03-04 15:25  benny
+
+	* xfcalendar/trunk, xfcalendar/trunk/.cvsignore,
+	  xfcalendar/trunk/Makefile.am, xfcalendar/trunk/configure.ac,
+	  xfcalendar/trunk/libical-0.24.pc,
+	  xfcalendar/trunk/libical/Makefile.am,
+	  xfcalendar/trunk/libical/Makefile.in,
+	  xfcalendar/trunk/libical/TEST, xfcalendar/trunk/libical/TODO,
+	  xfcalendar/trunk/libical/aclocal.m4,
+	  xfcalendar/trunk/libical/config.guess,
+	  xfcalendar/trunk/libical/config.h.in,
+	  xfcalendar/trunk/libical/config.sub,
+	  xfcalendar/trunk/libical/configure,
+	  xfcalendar/trunk/libical/configure.in,
+	  xfcalendar/trunk/libical/depcomp,
+	  xfcalendar/trunk/libical/design-data/Makefile.in,
+	  xfcalendar/trunk/libical/doc/Makefile.in,
+	  xfcalendar/trunk/libical/examples,
+	  xfcalendar/trunk/libical/install-sh,
+	  xfcalendar/trunk/libical/ltconfig,
+	  xfcalendar/trunk/libical/ltmain.sh,
+	  xfcalendar/trunk/libical/missing,
+	  xfcalendar/trunk/libical/mkinstalldirs,
+	  xfcalendar/trunk/libical/scripts/Makefile.in,
+	  xfcalendar/trunk/libical/src/Makefile.am,
+	  xfcalendar/trunk/libical/src/Makefile.in,
+	  xfcalendar/trunk/libical/src/java,
+	  xfcalendar/trunk/libical/src/libical/Makefile.am,
+	  xfcalendar/trunk/libical/src/libical/Makefile.in,
+	  xfcalendar/trunk/libical/src/libical/ical.h,
+	  xfcalendar/trunk/libical/src/libical/icalversion.h,
+	  xfcalendar/trunk/libical/src/libicalss/Makefile.am,
+	  xfcalendar/trunk/libical/src/libicalss/Makefile.in,
+	  xfcalendar/trunk/libical/src/libicalvcal,
+	  xfcalendar/trunk/libical/src/python,
+	  xfcalendar/trunk/libical/src/test,
+	  xfcalendar/trunk/libical/stamp-h.in,
+	  xfcalendar/trunk/libical/test-data,
+	  xfcalendar/trunk/libical/ylwrap,
+	  xfcalendar/trunk/libical/zoneinfo/Makefile.in,
+	  xfcalendar/trunk/po/xfcalendar.pot,
+	  xfcalendar/trunk/src/Makefile.am: Integrate libical with the
+	  xfcalendar build process. The included copy of libical is only
+	  used if libical isn't detected on the target system. The
+	  additional files installed by xfcalendar then (the zoneinfo files)
+	  are installed in $(datadir)/xfcalendar/zoneinfo/ to avoid
+	  conflicts with a probably installed version of libical.
+
+2005-03-04 12:59  juha
+
+	* xfcalendar/trunk/libical/src/libical/Makefile.in: making libical
+	  compatible with xfce linking
+
+2005-03-04 12:34  juha
+
+	* xfcalendar/trunk/README,
+	  xfcalendar/trunk/libical/src/libical/ical.h: modifying libical for
+	  xfce
+
+2005-03-04 12:23  juha
+
+	* xfcalendar/trunk/libical/configure,
+	  xfcalendar/trunk/libical/src/libical/Makefile.am,
+	  xfcalendar/trunk/src/Makefile.am: making libical compatible with
+	  xfce linking
+
+2005-03-04 09:43  korbinus
+
+	* xfcalendar/trunk/libical, xfcalendar/trunk/libical/AUTHORS,
+	  xfcalendar/trunk/libical/COPYING,
+	  xfcalendar/trunk/libical/ChangeLog,
+	  xfcalendar/trunk/libical/INSTALL,
+	  xfcalendar/trunk/libical/Makefile.am,
+	  xfcalendar/trunk/libical/Makefile.in,
+	  xfcalendar/trunk/libical/NEWS, xfcalendar/trunk/libical/README,
+	  xfcalendar/trunk/libical/TEST, xfcalendar/trunk/libical/THANKS,
+	  xfcalendar/trunk/libical/TODO,
+	  xfcalendar/trunk/libical/aclocal.m4,
+	  xfcalendar/trunk/libical/config.guess,
+	  xfcalendar/trunk/libical/config.h.in,
+	  xfcalendar/trunk/libical/config.sub,
+	  xfcalendar/trunk/libical/configure,
+	  xfcalendar/trunk/libical/configure.in,
+	  xfcalendar/trunk/libical/depcomp,
+	  xfcalendar/trunk/libical/design-data,
+	  xfcalendar/trunk/libical/design-data/Makefile.am,
+	  xfcalendar/trunk/libical/design-data/Makefile.in,
+	  xfcalendar/trunk/libical/design-data/parameters.csv,
+	  xfcalendar/trunk/libical/design-data/properties.csv,
+	  xfcalendar/trunk/libical/design-data/restrictions.csv,
+	  xfcalendar/trunk/libical/design-data/status.txt,
+	  xfcalendar/trunk/libical/design-data/value-types.csv,
+	  xfcalendar/trunk/libical/doc,
+	  xfcalendar/trunk/libical/doc/Makefile.am,
+	  xfcalendar/trunk/libical/doc/Makefile.in,
+	  xfcalendar/trunk/libical/doc/UsingLibical.lyx,
+	  xfcalendar/trunk/libical/doc/UsingLibical.ps,
+	  xfcalendar/trunk/libical/doc/UsingLibical.txt,
+	  xfcalendar/trunk/libical/examples,
+	  xfcalendar/trunk/libical/examples/Makefile.am,
+	  xfcalendar/trunk/libical/examples/Makefile.in,
+	  xfcalendar/trunk/libical/examples/access_components.c,
+	  xfcalendar/trunk/libical/examples/access_properties_and_parameters.c,
+	  xfcalendar/trunk/libical/examples/errors.c,
+	  xfcalendar/trunk/libical/examples/main.c,
+	  xfcalendar/trunk/libical/examples/parse_text.c,
+	  xfcalendar/trunk/libical/install-sh,
+	  xfcalendar/trunk/libical/ltconfig,
+	  xfcalendar/trunk/libical/ltmain.sh,
+	  xfcalendar/trunk/libical/missing,
+	  xfcalendar/trunk/libical/mkinstalldirs,
+	  xfcalendar/trunk/libical/scripts,
+	  xfcalendar/trunk/libical/scripts/Makefile.am,
+	  xfcalendar/trunk/libical/scripts/Makefile.in,
+	  xfcalendar/trunk/libical/scripts/mkderivedcomponents.pl,
+	  xfcalendar/trunk/libical/scripts/mkderivedparameters.pl,
+	  xfcalendar/trunk/libical/scripts/mkderivedproperties.pl,
+	  xfcalendar/trunk/libical/scripts/mkderivedvalues.pl,
+	  xfcalendar/trunk/libical/scripts/mkparameterrestrictions.pl,
+	  xfcalendar/trunk/libical/scripts/mkrestrictionrecords.pl,
+	  xfcalendar/trunk/libical/scripts/mkrestrictiontable.pl,
+	  xfcalendar/trunk/libical/scripts/readvaluesfile.pl,
+	  xfcalendar/trunk/libical/src,
+	  xfcalendar/trunk/libical/src/Makefile.am,
+	  xfcalendar/trunk/libical/src/Makefile.in,
+	  xfcalendar/trunk/libical/src/java,
+	  xfcalendar/trunk/libical/src/java/Makefile.am,
+	  xfcalendar/trunk/libical/src/java/Makefile.in,
+	  xfcalendar/trunk/libical/src/java/jlibical_consts_cxx.h,
+	  xfcalendar/trunk/libical/src/java/jlibical_utils_cxx.cpp,
+	  xfcalendar/trunk/libical/src/java/jlibical_utils_cxx.h,
+	  xfcalendar/trunk/libical/src/java/jniICalDurationType_cxx.cpp,
+	  xfcalendar/trunk/libical/src/java/jniICalDurationType_cxx.h,
+	  xfcalendar/trunk/libical/src/java/jniICalPeriodType_cxx.cpp,
+	  xfcalendar/trunk/libical/src/java/jniICalPeriodType_cxx.h,
+	  xfcalendar/trunk/libical/src/java/jniICalRecurrenceType_cxx.cpp,
+	  xfcalendar/trunk/libical/src/java/jniICalRecurrenceType_cxx.h,
+	  xfcalendar/trunk/libical/src/java/jniICalTimeType_cxx.cpp,
+	  xfcalendar/trunk/libical/src/java/jniICalTimeType_cxx.h,
+	  xfcalendar/trunk/libical/src/java/jniICalTriggerType_cxx.cpp,
+	  xfcalendar/trunk/libical/src/java/jniICalTriggerType_cxx.h,
+	  xfcalendar/trunk/libical/src/java/net_cp_jlibical_ICalParameter_cxx.cpp,
+	  xfcalendar/trunk/libical/src/java/net_cp_jlibical_ICalParameter_cxx.h,
+	  xfcalendar/trunk/libical/src/java/net_cp_jlibical_ICalProperty_cxx.cpp,
+	  xfcalendar/trunk/libical/src/java/net_cp_jlibical_ICalProperty_cxx.h,
+	  xfcalendar/trunk/libical/src/java/net_cp_jlibical_ICalValue_cxx.cpp,
+	  xfcalendar/trunk/libical/src/java/net_cp_jlibical_ICalValue_cxx.h,
+	  xfcalendar/trunk/libical/src/java/net_cp_jlibical_VComponent_cxx.cpp,
+	  xfcalendar/trunk/libical/src/java/net_cp_jlibical_VComponent_cxx.h,
+	  xfcalendar/trunk/libical/src/libical,
+	  xfcalendar/trunk/libical/src/libical/Makefile.am,
+	  xfcalendar/trunk/libical/src/libical/Makefile.in,
+	  xfcalendar/trunk/libical/src/libical/astime.h,
+	  xfcalendar/trunk/libical/src/libical/caldate.c,
+	  xfcalendar/trunk/libical/src/libical/ical.h,
+	  xfcalendar/trunk/libical/src/libical/icalarray.c,
+	  xfcalendar/trunk/libical/src/libical/icalarray.h,
+	  xfcalendar/trunk/libical/src/libical/icalattach.c,
+	  xfcalendar/trunk/libical/src/libical/icalattach.h,
+	  xfcalendar/trunk/libical/src/libical/icalattachimpl.h,
+	  xfcalendar/trunk/libical/src/libical/icalcomponent.c,
+	  xfcalendar/trunk/libical/src/libical/icalcomponent.h,
+	  xfcalendar/trunk/libical/src/libical/icalderivedparameter.c.in,
+	  xfcalendar/trunk/libical/src/libical/icalderivedparameter.h.in,
+	  xfcalendar/trunk/libical/src/libical/icalderivedproperty.c.in,
+	  xfcalendar/trunk/libical/src/libical/icalderivedproperty.h.in,
+	  xfcalendar/trunk/libical/src/libical/icalderivedvalue.c.in,
+	  xfcalendar/trunk/libical/src/libical/icalderivedvalue.h.in,
+	  xfcalendar/trunk/libical/src/libical/icalduration.c,
+	  xfcalendar/trunk/libical/src/libical/icalduration.h,
+	  xfcalendar/trunk/libical/src/libical/icalenums.c,
+	  xfcalendar/trunk/libical/src/libical/icalenums.h,
+	  xfcalendar/trunk/libical/src/libical/icalerror.c,
+	  xfcalendar/trunk/libical/src/libical/icalerror.h,
+	  xfcalendar/trunk/libical/src/libical/icallangbind.c,
+	  xfcalendar/trunk/libical/src/libical/icallangbind.h,
+	  xfcalendar/trunk/libical/src/libical/icalmemory.c,
+	  xfcalendar/trunk/libical/src/libical/icalmemory.h,
+	  xfcalendar/trunk/libical/src/libical/icalmime.c,
+	  xfcalendar/trunk/libical/src/libical/icalmime.h,
+	  xfcalendar/trunk/libical/src/libical/icalparameter.c,
+	  xfcalendar/trunk/libical/src/libical/icalparameter.h,
+	  xfcalendar/trunk/libical/src/libical/icalparameterimpl.h,
+	  xfcalendar/trunk/libical/src/libical/icalparser.c,
+	  xfcalendar/trunk/libical/src/libical/icalparser.h,
+	  xfcalendar/trunk/libical/src/libical/icalperiod.c,
+	  xfcalendar/trunk/libical/src/libical/icalperiod.h,
+	  xfcalendar/trunk/libical/src/libical/icalproperty.c,
+	  xfcalendar/trunk/libical/src/libical/icalproperty.h,
+	  xfcalendar/trunk/libical/src/libical/icalrecur.c,
+	  xfcalendar/trunk/libical/src/libical/icalrecur.h,
+	  xfcalendar/trunk/libical/src/libical/icalrestriction.c.in,
+	  xfcalendar/trunk/libical/src/libical/icalrestriction.h,
+	  xfcalendar/trunk/libical/src/libical/icaltime.c,
+	  xfcalendar/trunk/libical/src/libical/icaltime.h,
+	  xfcalendar/trunk/libical/src/libical/icaltimezone.c,
+	  xfcalendar/trunk/libical/src/libical/icaltimezone.h,
+	  xfcalendar/trunk/libical/src/libical/icaltypes.c,
+	  xfcalendar/trunk/libical/src/libical/icaltypes.h,
+	  xfcalendar/trunk/libical/src/libical/icalvalue.c,
+	  xfcalendar/trunk/libical/src/libical/icalvalue.h,
+	  xfcalendar/trunk/libical/src/libical/icalvalueimpl.h,
+	  xfcalendar/trunk/libical/src/libical/icalversion.h,
+	  xfcalendar/trunk/libical/src/libical/icalversion.h.in,
+	  xfcalendar/trunk/libical/src/libical/pvl.c,
+	  xfcalendar/trunk/libical/src/libical/pvl.h,
+	  xfcalendar/trunk/libical/src/libical/sspm.c,
+	  xfcalendar/trunk/libical/src/libical/sspm.h,
+	  xfcalendar/trunk/libical/src/libical/vsnprintf.c,
+	  xfcalendar/trunk/libical/src/libicalss,
+	  xfcalendar/trunk/libical/src/libicalss/Makefile.am,
+	  xfcalendar/trunk/libical/src/libicalss/Makefile.in,
+	  xfcalendar/trunk/libical/src/libicalss/icalcalendar.c,
+	  xfcalendar/trunk/libical/src/libicalss/icalcalendar.h,
+	  xfcalendar/trunk/libical/src/libicalss/icalclassify.c,
+	  xfcalendar/trunk/libical/src/libicalss/icalclassify.h,
+	  xfcalendar/trunk/libical/src/libicalss/icalcluster.c,
+	  xfcalendar/trunk/libical/src/libicalss/icalcluster.h,
+	  xfcalendar/trunk/libical/src/libicalss/icalclusterimpl.h,
+	  xfcalendar/trunk/libical/src/libicalss/icaldirset.c,
+	  xfcalendar/trunk/libical/src/libicalss/icaldirset.h,
+	  xfcalendar/trunk/libical/src/libicalss/icaldirsetimpl.h,
+	  xfcalendar/trunk/libical/src/libicalss/icalfileset.c,
+	  xfcalendar/trunk/libical/src/libicalss/icalfileset.h,
+	  xfcalendar/trunk/libical/src/libicalss/icalfilesetimpl.h,
+	  xfcalendar/trunk/libical/src/libicalss/icalgauge.c,
+	  xfcalendar/trunk/libical/src/libicalss/icalgauge.h,
+	  xfcalendar/trunk/libical/src/libicalss/icalgaugeimpl.h,
+	  xfcalendar/trunk/libical/src/libicalss/icalmessage.c,
+	  xfcalendar/trunk/libical/src/libicalss/icalmessage.h,
+	  xfcalendar/trunk/libical/src/libicalss/icalset.c,
+	  xfcalendar/trunk/libical/src/libicalss/icalset.h,
+	  xfcalendar/trunk/libical/src/libicalss/icalspanlist.c,
+	  xfcalendar/trunk/libical/src/libicalss/icalspanlist.h,
+	  xfcalendar/trunk/libical/src/libicalss/icalss.h,
+	  xfcalendar/trunk/libical/src/libicalss/icalsslexer.c,
+	  xfcalendar/trunk/libical/src/libicalss/icalssyacc.c,
+	  xfcalendar/trunk/libical/src/libicalss/icalssyacc.h,
+	  xfcalendar/trunk/libical/src/libicalvcal,
+	  xfcalendar/trunk/libical/src/libicalvcal/Makefile.am,
+	  xfcalendar/trunk/libical/src/libicalvcal/Makefile.in,
+	  xfcalendar/trunk/libical/src/libicalvcal/README.TXT,
+	  xfcalendar/trunk/libical/src/libicalvcal/icalvcal.c,
+	  xfcalendar/trunk/libical/src/libicalvcal/icalvcal.h,
+	  xfcalendar/trunk/libical/src/libicalvcal/port.h,
+	  xfcalendar/trunk/libical/src/libicalvcal/vcaltest.c,
+	  xfcalendar/trunk/libical/src/libicalvcal/vcaltmp.c,
+	  xfcalendar/trunk/libical/src/libicalvcal/vcaltmp.h,
+	  xfcalendar/trunk/libical/src/libicalvcal/vcc.c,
+	  xfcalendar/trunk/libical/src/libicalvcal/vcc.h,
+	  xfcalendar/trunk/libical/src/libicalvcal/vctest.c,
+	  xfcalendar/trunk/libical/src/libicalvcal/vobject.c,
+	  xfcalendar/trunk/libical/src/libicalvcal/vobject.h,
+	  xfcalendar/trunk/libical/src/python,
+	  xfcalendar/trunk/libical/src/python/Attendee.py,
+	  xfcalendar/trunk/libical/src/python/ChangeLog,
+	  xfcalendar/trunk/libical/src/python/Collection.py,
+	  xfcalendar/trunk/libical/src/python/Component.py,
+	  xfcalendar/trunk/libical/src/python/DerivedProperties.py,
+	  xfcalendar/trunk/libical/src/python/Libical.py,
+	  xfcalendar/trunk/libical/src/python/LibicalWrap.i,
+	  xfcalendar/trunk/libical/src/python/Makefile.am,
+	  xfcalendar/trunk/libical/src/python/Makefile.in,
+	  xfcalendar/trunk/libical/src/python/Property.py,
+	  xfcalendar/trunk/libical/src/python/Store.py,
+	  xfcalendar/trunk/libical/src/python/python-binding.txt,
+	  xfcalendar/trunk/libical/src/python/test.py,
+	  xfcalendar/trunk/libical/src/test,
+	  xfcalendar/trunk/libical/src/test/Makefile.am,
+	  xfcalendar/trunk/libical/src/test/Makefile.in,
+	  xfcalendar/trunk/libical/src/test/copycluster.c,
+	  xfcalendar/trunk/libical/src/test/icaltestparser.c,
+	  xfcalendar/trunk/libical/src/test/process.c,
+	  xfcalendar/trunk/libical/src/test/recur.c,
+	  xfcalendar/trunk/libical/src/test/regression-classify.c,
+	  xfcalendar/trunk/libical/src/test/regression-component.c,
+	  xfcalendar/trunk/libical/src/test/regression-recur.c,
+	  xfcalendar/trunk/libical/src/test/regression-storage.c,
+	  xfcalendar/trunk/libical/src/test/regression-utils.c,
+	  xfcalendar/trunk/libical/src/test/regression.c,
+	  xfcalendar/trunk/libical/src/test/regression.h,
+	  xfcalendar/trunk/libical/src/test/stow.c,
+	  xfcalendar/trunk/libical/src/test/testmime.c,
+	  xfcalendar/trunk/libical/src/test/testvcal.c,
+	  xfcalendar/trunk/libical/stamp-h.in,
+	  xfcalendar/trunk/libical/test-data,
+	  xfcalendar/trunk/libical/test-data/0,
+	  xfcalendar/trunk/libical/test-data/1,
+	  xfcalendar/trunk/libical/test-data/1.1,
+	  xfcalendar/trunk/libical/test-data/2,
+	  xfcalendar/trunk/libical/test-data/2445.ics,
+	  xfcalendar/trunk/libical/test-data/2446.ics,
+	  xfcalendar/trunk/libical/test-data/3,
+	  xfcalendar/trunk/libical/test-data/4,
+	  xfcalendar/trunk/libical/test-data/5,
+	  xfcalendar/trunk/libical/test-data/6,
+	  xfcalendar/trunk/libical/test-data/7,
+	  xfcalendar/trunk/libical/test-data/Makefile.am,
+	  xfcalendar/trunk/libical/test-data/Makefile.in,
+	  xfcalendar/trunk/libical/test-data/calendar.ics,
+	  xfcalendar/trunk/libical/test-data/classify.ics,
+	  xfcalendar/trunk/libical/test-data/complex-mime.txt,
+	  xfcalendar/trunk/libical/test-data/incoming.ics,
+	  xfcalendar/trunk/libical/test-data/overlaps.ics,
+	  xfcalendar/trunk/libical/test-data/process-incoming.ics,
+	  xfcalendar/trunk/libical/test-data/recur.txt,
+	  xfcalendar/trunk/libical/test-data/restriction.ics,
+	  xfcalendar/trunk/libical/test-data/simple-mime.txt,
+	  xfcalendar/trunk/libical/test-data/smallcluster.ics,
+	  xfcalendar/trunk/libical/test-data/spanlist.ics,
+	  xfcalendar/trunk/libical/test-data/stresstest.ics,
+	  xfcalendar/trunk/libical/test-data/user-cal.vcf,
+	  xfcalendar/trunk/libical/ylwrap,
+	  xfcalendar/trunk/libical/zoneinfo,
+	  xfcalendar/trunk/libical/zoneinfo/Africa,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Abidjan.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Accra.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Addis_Ababa.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Algiers.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Asmera.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Bamako.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Bangui.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Banjul.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Bissau.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Blantyre.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Brazzaville.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Bujumbura.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Cairo.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Casablanca.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Ceuta.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Conakry.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Dakar.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Dar_es_Salaam.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Djibouti.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Douala.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/El_Aaiun.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Freetown.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Gaborone.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Harare.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Johannesburg.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Kampala.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Khartoum.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Kigali.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Kinshasa.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Lagos.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Libreville.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Lome.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Luanda.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Lubumbashi.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Lusaka.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Malabo.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Maputo.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Maseru.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Mbabane.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Mogadishu.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Monrovia.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Nairobi.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Ndjamena.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Niamey.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Nouakchott.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Ouagadougou.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Porto-Novo.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Sao_Tome.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Timbuktu.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Tripoli.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Tunis.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Windhoek.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America,
+	  xfcalendar/trunk/libical/zoneinfo/America/Adak.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Anchorage.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Anguilla.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Antigua.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Araguaina.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Aruba.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Asuncion.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Barbados.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Belem.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Belize.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Boa_Vista.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Bogota.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Boise.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Buenos_Aires.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Cambridge_Bay.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Cancun.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Caracas.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Catamarca.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Cayenne.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Cayman.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Chicago.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Chihuahua.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Cordoba.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Costa_Rica.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Cuiaba.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Curacao.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Dawson.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Dawson_Creek.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Denver.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Detroit.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Dominica.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Edmonton.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Eirunepe.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/El_Salvador.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Fortaleza.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Glace_Bay.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Godthab.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Goose_Bay.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Grand_Turk.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Grenada.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Guadeloupe.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Guatemala.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Guayaquil.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Guyana.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Halifax.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Havana.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Hermosillo.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Indiana,
+	  xfcalendar/trunk/libical/zoneinfo/America/Indiana/Indianapolis.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Indiana/Knox.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Indiana/Marengo.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Indiana/Vevay.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Indianapolis.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Inuvik.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Iqaluit.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Jamaica.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Jujuy.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Juneau.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Kentucky,
+	  xfcalendar/trunk/libical/zoneinfo/America/Kentucky/Louisville.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Kentucky/Monticello.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/La_Paz.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Lima.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Los_Angeles.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Louisville.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Maceio.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Managua.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Manaus.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Martinique.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Mazatlan.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Mendoza.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Menominee.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Merida.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Mexico_City.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Miquelon.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Monterrey.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Montevideo.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Montreal.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Montserrat.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Nassau.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/New_York.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Nipigon.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Nome.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Noronha.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Panama.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Pangnirtung.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Paramaribo.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Phoenix.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Port-au-Prince.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Port_of_Spain.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Porto_Velho.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Puerto_Rico.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Rainy_River.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Rankin_Inlet.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Recife.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Regina.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Rio_Branco.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Rosario.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Santiago.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Santo_Domingo.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Sao_Paulo.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Scoresbysund.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Shiprock.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/St_Johns.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/St_Kitts.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/St_Lucia.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/St_Thomas.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/St_Vincent.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Swift_Current.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Tegucigalpa.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Thule.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Thunder_Bay.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Tijuana.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Tortola.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Vancouver.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Whitehorse.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Winnipeg.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Yakutat.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Yellowknife.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Antarctica,
+	  xfcalendar/trunk/libical/zoneinfo/Antarctica/Casey.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Antarctica/Davis.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Antarctica/DumontDUrville.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Antarctica/Mawson.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Antarctica/McMurdo.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Antarctica/Palmer.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Antarctica/South_Pole.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Antarctica/Syowa.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Antarctica/Vostok.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Arctic,
+	  xfcalendar/trunk/libical/zoneinfo/Arctic/Longyearbyen.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Aden.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Almaty.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Amman.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Anadyr.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Aqtau.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Aqtobe.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Ashgabat.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Baghdad.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Bahrain.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Baku.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Bangkok.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Beirut.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Bishkek.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Brunei.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Calcutta.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Chungking.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Colombo.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Damascus.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Dhaka.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Dili.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Dubai.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Dushanbe.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Gaza.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Harbin.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Hong_Kong.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Hovd.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Irkutsk.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Istanbul.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Jakarta.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Jayapura.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Jerusalem.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Kabul.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Kamchatka.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Karachi.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Kashgar.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Katmandu.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Krasnoyarsk.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Kuala_Lumpur.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Kuching.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Kuwait.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Macao.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Magadan.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Manila.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Muscat.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Nicosia.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Novosibirsk.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Omsk.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Phnom_Penh.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Pontianak.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Pyongyang.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Qatar.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Rangoon.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Riyadh.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Saigon.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Samarkand.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Seoul.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Shanghai.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Singapore.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Taipei.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Tashkent.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Tbilisi.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Tehran.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Thimphu.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Tokyo.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Ujung_Pandang.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Ulaanbaatar.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Urumqi.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Vientiane.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Vladivostok.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Yakutsk.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Yekaterinburg.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Yerevan.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Atlantic,
+	  xfcalendar/trunk/libical/zoneinfo/Atlantic/Azores.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Atlantic/Bermuda.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Atlantic/Canary.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Atlantic/Cape_Verde.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Atlantic/Faeroe.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Atlantic/Jan_Mayen.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Atlantic/Madeira.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Atlantic/Reykjavik.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Atlantic/South_Georgia.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Atlantic/St_Helena.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Atlantic/Stanley.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Australia,
+	  xfcalendar/trunk/libical/zoneinfo/Australia/Adelaide.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Australia/Brisbane.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Australia/Broken_Hill.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Australia/Darwin.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Australia/Hobart.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Australia/Lindeman.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Australia/Lord_Howe.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Australia/Melbourne.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Australia/Perth.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Australia/Sydney.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Amsterdam.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Andorra.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Athens.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Belfast.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Belgrade.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Berlin.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Bratislava.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Brussels.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Bucharest.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Budapest.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Chisinau.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Copenhagen.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Dublin.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Gibraltar.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Helsinki.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Istanbul.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Kaliningrad.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Kiev.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Lisbon.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Ljubljana.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/London.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Luxembourg.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Madrid.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Malta.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Minsk.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Monaco.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Moscow.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Nicosia.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Oslo.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Paris.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Prague.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Riga.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Rome.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Samara.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/San_Marino.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Sarajevo.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Simferopol.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Skopje.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Sofia.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Stockholm.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Tallinn.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Tirane.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Uzhgorod.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Vaduz.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Vatican.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Vienna.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Vilnius.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Warsaw.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Zagreb.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Zaporozhye.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Zurich.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Indian,
+	  xfcalendar/trunk/libical/zoneinfo/Indian/Antananarivo.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Indian/Chagos.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Indian/Christmas.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Indian/Cocos.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Indian/Comoro.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Indian/Kerguelen.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Indian/Mahe.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Indian/Maldives.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Indian/Mauritius.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Indian/Mayotte.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Indian/Reunion.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Makefile.am,
+	  xfcalendar/trunk/libical/zoneinfo/Makefile.in,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Apia.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Auckland.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Chatham.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Easter.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Efate.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Enderbury.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Fakaofo.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Fiji.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Funafuti.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Galapagos.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Gambier.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Guadalcanal.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Guam.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Honolulu.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Johnston.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Kiritimati.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Kosrae.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Kwajalein.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Majuro.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Marquesas.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Midway.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Nauru.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Niue.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Norfolk.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Noumea.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Pago_Pago.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Palau.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Pitcairn.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Ponape.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Port_Moresby.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Rarotonga.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Saipan.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Tahiti.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Tarawa.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Tongatapu.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Truk.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Wake.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Wallis.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Yap.ics,
+	  xfcalendar/trunk/libical/zoneinfo/zones.tab: Initial revision
 
