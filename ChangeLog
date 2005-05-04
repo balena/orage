@@ -1,1096 +1,3193 @@
-2005-03-07  gettextize  <bug-gnu-gettext@gnu.org>
+2005-04-29 08:48  juha
 
-	* Makefile.am (ACLOCAL_AMFLAGS): New variable.
-	(EXTRA_DIST): Add config.rpath mkinstalldirs.
-	* configure.ac (AC_OUTPUT): Add m4/Makefile.
+	* xfcalendar/trunk/src/event-list.c, xfcalendar/trunk/src/main.c,
+	  xfcalendar/trunk/src/mainbox.c: store event-list window size into
+	  rc parameter file, so that it stays as user has it set.
 
-2004-12-29 20:43  pollux
+2005-04-22 06:39  juha
 
-	* src/main.c: fix #616
+	* xfcalendar/trunk/configure.ac, xfcalendar/trunk/src/event-list.c,
+	  xfcalendar/trunk/src/event-list.h,
+	  xfcalendar/trunk/src/ical-code.c,
+	  xfcalendar/trunk/src/ical-code.h: added spin button to event
+	  window to show more days. (Need to do some cleaning later)
 
-2004-12-27 20:05  pollux
+2005-04-19 20:54  juha
 
-	* plugin/xfcalendar_plugin.c: mcs-plugins now appear on the mouse
-	  pointer screen
+	* xfcalendar/trunk/src/reminder.c: give only one error when play
+	  fails. (Instead of looping and giving error each 2 seconds and
+	  filling logs...)
 
-2004-12-25 21:33  kelnos
+2005-04-19 04:07  korbinus
 
-	* Makefile.am: fix distcheck-bz2
+	* xfcalendar/trunk/plugin/xfcalendar_plugin.c: Added entry in MCS
+	  setting for choosing sound application; conflict with pango with
+	  non utf8 string
 
-2004-12-24 01:03  kelnos
+2005-04-18 22:12  juha
 
-	* Makefile.am: add dist-bz2 and distcheck-bz2 targets
+	* xfcalendar/trunk/src/event-list.c: Fix bug when many event windows
+	  were active and next/prev was pressed, it caused a jump instead of
+	  going to the next/previous day.
 
-2004-12-23 22:24  pollux
+2005-04-18 12:30  juha
 
-	* xfcalendar.desktop, plugin/xfce-xfcalendar-settings.desktop,
-	  po/et.gmo, po/et.po: update ET translations
+	* xfcalendar/trunk/src/ical-code.c: minor code cleaning for
+	  recurring EVENTs
 
-2004-12-22 21:28  benny
+2005-04-17 23:05  juha
 
-	* ChangeLog, autogen.sh, plugin/Makefile.am, plugin/Makefile.in,
-	  po/cs.gmo: Update ChangeLog. Fix make distcheck.
+	* xfcalendar/trunk/configure.ac, xfcalendar/trunk/src/appointment.h,
+	  xfcalendar/trunk/src/event-list.c,
+	  xfcalendar/trunk/src/ical-code.c: Multiday recurring EVENTs works
+	  now.
 
-2004-12-21 10:03  kelnos
+2005-04-16 08:59  korbinus
 
-	* po/cs.po: add/update czech translations
+	* xfcalendar/trunk/src/mainbox.c, xfcalendar/trunk/src/mainbox.h,
+	  xfcalendar/trunk/src/reminder.c: Changed the menus of the calendar
+	  window, added the possibility to open the event list from the menu
+	  for the selected date; change to icon of the stop button in the
+	  reminder window.
 
-2004-12-20 22:32  pollux
+2005-04-15 03:12  korbinus
 
-	* configure, configure.ac, po/nb_NO.gmo, po/nb_NO.po, po/no.gmo,
-	  po/no.po: rename NO pofiles to no_NB
+	* xfcalendar/trunk/src/appointment.c,
+	  xfcalendar/trunk/src/appointment.h: Changed the appointment
+	  interface: use toolbar with buttons instead of buttons at the
+	  bottom of the appointment window.
 
-2004-12-20 22:00  jasper
+2005-04-14 21:00  juha
 
-	* ChangeLog, configure, configure.ac: Update versions and ChangeLog
+	* xfcalendar/trunk/src/event-list.c: fixing stupid error == instead
+	  of =
 
-2004-12-15 19:39  pollux
+2005-04-14 20:32  juha
 
-	* po/: zh_TW.gmo, zh_TW.po: update ZH_TW translations
+	* xfcalendar/trunk/src/event-list.c: event-list.c shows correctly
+	  "many day" events
 
-2004-12-14 21:33  pollux
+2005-04-13 18:56  juha
 
-	* configure, configure.ac, po/ko.gmo, po/ro.gmo, po/ro.po: add RO
+	* xfcalendar/trunk/configure.ac, xfcalendar/trunk/src/appointment.c,
+	  xfcalendar/trunk/src/ical-code.c, xfcalendar/trunk/src/reminder.c:
+	  Added Open appointment into alarm window.
+
+2005-04-12 19:18  korbinus
+
+	* xfcalendar/trunk/src/appointment.c,
+	  xfcalendar/trunk/src/appointment.h: Changed appointment.c: split
+	  the interface into tabs. Code cleaning. Oh yeah.
+
+2005-04-11 22:45  juha
+
+	* xfcalendar/trunk/src/event-list.c: Tooltip to explain flags.
+
+2005-04-11 22:21  juha
+
+	* xfcalendar/trunk/src/ical-code.c: Restructure of code: better
+	  guality and clearer. Easier maintenance.
+
+2005-04-11 22:19  juha
+
+	* xfcalendar/trunk/src/event-list.c: cleaning
+
+2005-04-11 22:15  juha
+
+	* xfcalendar/trunk/src/reminder.c: Fixed GError not equal NULL
+
+2005-04-09 23:06  korbinus
+
+	* xfcalendar/trunk/src/event-list.c,
+	  xfcalendar/trunk/src/event-list.h: Changing way of handling window
+	  information because of several segmentation fault; Ctrl+a now for
+	  creating a new appointment.
+
+2005-04-09 21:14  juha
+
+	* xfcalendar/trunk/src/tray_icon.c: forgot to remove support.h from
+	  tray_icon.c
+
+2005-04-09 20:27  juha
+
+	* xfcalendar/trunk/configure.ac, xfcalendar/trunk/src/Makefile.am,
+	  xfcalendar/trunk/src/appointment.c,
+	  xfcalendar/trunk/src/event-list.c, xfcalendar/trunk/src/main.c,
+	  xfcalendar/trunk/src/mainbox.c, xfcalendar/trunk/src/reminder.c,
+	  xfcalendar/trunk/src/support.c, xfcalendar/trunk/src/support.h,
+	  xfcalendar/trunk/xfcalendar.glade,
+	  xfcalendar/trunk/xfcalendar.gladep: Removed glade dependencies and
+	  cleaned g_warning and DEBUG statements
+
+2005-04-09 19:00  korbinus
+
+	* xfcalendar/trunk/src/appointment.c: Removing DEBUG stuff
+
+2005-04-08 16:06  korbinus
+
+	* xfcalendar/trunk/src/appointment.c: Fixing some debug stuff
+
+2005-04-08 10:28  juha
+
+	* xfcalendar/trunk/configure.ac, xfcalendar/trunk/src/ical-code.c,
+	  xfcalendar/trunk/src/main.c, xfcalendar/trunk/src/reminder.c,
+	  xfcalendar/trunk/src/reminder.h: Fully functioning sound with
+	  repeat and stop button. (would need better looking buttons though
+	  - from gtk 2.6)
+
+2005-04-08 05:27  korbinus
+
+	* xfcalendar/trunk/sounds/CVS, xfcalendar/trunk/sounds/Makefile,
+	  xfcalendar/trunk/sounds/Makefile.in: Removing CVS and Makefile
+
+2005-04-07 21:49  juha
+
+	* xfcalendar/trunk/src/ical-code.c, xfcalendar/trunk/src/reminder.c,
+	  xfcalendar/trunk/src/reminder.h: not complete repeating sound fix.
+	  missing stopping it after closing window.
+
+2005-04-07 11:43  juha
+
+	* xfcalendar/trunk/src/appointment.c,
+	  xfcalendar/trunk/src/ical-code.c, xfcalendar/trunk/src/reminder.c:
+	  move appointment window a little when copying. add some defaults
+	  to ical code
+
+2005-04-07 07:28  juha
+
+	* xfcalendar/trunk/src/event-list.c: replaced Alarm column by Flags
+	  column in event-window: Byte1: A=Alarm set S=Alarm+Sound set n=no
+	  alarm set Byte2: D=Daily reoccurring event W= Weekly... M=
+	  Monthly... n=not recurring Byte3: B=Busy time f=free time
+
+2005-04-07 07:21  juha
+
+	* xfcalendar/trunk/src/appointment.c: changed add to be copy and
+	  start a new editing window for new copied appointment.
+
+2005-04-07 07:07  juha
+
+	* xfcalendar/trunk/configure.ac, xfcalendar/trunk/src/event-list.c,
+	  xfcalendar/trunk/src/ical-code.c,
+	  xfcalendar/trunk/src/ical-code.h, xfcalendar/trunk/src/main.c,
+	  xfcalendar/trunk/src/mainbox.c, xfcalendar/trunk/src/mainbox.h,
+	  xfcalendar/trunk/src/reminder.c: Recurring ALARMS works now. Also
+	  syncronising windows. Adding/changing recurring alarm updates main
+	  window and event list window.
+
+2005-04-06 21:54  korbinus
+
+	* xfcalendar/trunk/icons/48x48/xfcalendar.png: Replacing b0rked
+	  Xfcalendar icon in trunk/icon/48x48
+
+2005-04-06 21:14  korbinus
+
+	* xfcalendar/trunk/sounds/Makefile,
+	  xfcalendar/trunk/sounds/Makefile.am,
+	  xfcalendar/trunk/sounds/Makefile.in: Works better with an accurate
+	  sounds/Makefile.am :-p
+
+2005-04-06 21:03  korbinus
+
+	* xfcalendar/trunk/sounds/KDE_Beep_Digital_1.ogg,
+	  xfcalendar/trunk/sounds/KDE_Beep_Digital_2.ogg,
+	  xfcalendar/trunk/sounds/alert01.wav,
+	  xfcalendar/trunk/sounds/beep01.wav,
+	  xfcalendar/trunk/sounds/beep02.wav,
+	  xfcalendar/trunk/sounds/beep03.wav,
+	  xfcalendar/trunk/sounds/beep04.wav,
+	  xfcalendar/trunk/sounds/beep05.wav,
+	  xfcalendar/trunk/sounds/beep06.wav,
+	  xfcalendar/trunk/sounds/beep07.wav,
+	  xfcalendar/trunk/sounds/beep08.wav,
+	  xfcalendar/trunk/sounds/beep09.wav,
+	  xfcalendar/trunk/sounds/beep10.wav,
+	  xfcalendar/trunk/sounds/beep11.wav,
+	  xfcalendar/trunk/sounds/beep12.wav,
+	  xfcalendar/trunk/sounds/bell01.wav,
+	  xfcalendar/trunk/sounds/bell02.wav,
+	  xfcalendar/trunk/sounds/bell03.wav,
+	  xfcalendar/trunk/sounds/bell04.wav,
+	  xfcalendar/trunk/sounds/bong01.wav,
+	  xfcalendar/trunk/sounds/bong02.wav,
+	  xfcalendar/trunk/sounds/bong03.wav,
+	  xfcalendar/trunk/sounds/bong04.wav,
+	  xfcalendar/trunk/sounds/bong05.wav,
+	  xfcalendar/trunk/sounds/bong06.wav,
+	  xfcalendar/trunk/sounds/bong07.wav,
+	  xfcalendar/trunk/sounds/bong08.wav,
+	  xfcalendar/trunk/sounds/bong09.wav,
+	  xfcalendar/trunk/sounds/bong10.wav,
+	  xfcalendar/trunk/sounds/bong11.wav,
+	  xfcalendar/trunk/sounds/bong12.wav,
+	  xfcalendar/trunk/sounds/crash01.wav,
+	  xfcalendar/trunk/sounds/crash02.wav,
+	  xfcalendar/trunk/sounds/crash04.wav,
+	  xfcalendar/trunk/sounds/crash05.wav,
+	  xfcalendar/trunk/sounds/crash06.wav,
+	  xfcalendar/trunk/sounds/logon01.wav,
+	  xfcalendar/trunk/sounds/logon02.wav,
+	  xfcalendar/trunk/sounds/logout01.wav,
+	  xfcalendar/trunk/sounds/ping01.wav,
+	  xfcalendar/trunk/sounds/ping02.wav,
+	  xfcalendar/trunk/sounds/ping03.wav,
+	  xfcalendar/trunk/sounds/ping04.wav,
+	  xfcalendar/trunk/sounds/pop01.wav,
+	  xfcalendar/trunk/sounds/pop02.wav,
+	  xfcalendar/trunk/sounds/sink01.wav,
+	  xfcalendar/trunk/sounds/slide01.wav,
+	  xfcalendar/trunk/sounds/slide02.wav,
+	  xfcalendar/trunk/sounds/space01.wav,
+	  xfcalendar/trunk/sounds/zap01.wav,
+	  xfcalendar/trunk/sounds/zap02.wav,
+	  xfcalendar/trunk/sounds/zap03.wav,
+	  xfcalendar/trunk/sounds/zap04.wav: Removing bulk of old sounds for
+	  copyright uncertainty, adding some from KDE for the time being.
+
+2005-04-06 20:35  korbinus
+
+	* xfcalendar/trunk/Makefile.am, xfcalendar/trunk/configure.ac,
+	  xfcalendar/trunk/plugin/xfcalendar_plugin.c,
+	  xfcalendar/trunk/sounds, xfcalendar/trunk/sounds/CVS,
+	  xfcalendar/trunk/sounds/CVS/Entries,
+	  xfcalendar/trunk/sounds/CVS/Repository,
+	  xfcalendar/trunk/sounds/CVS/Root,
+	  xfcalendar/trunk/sounds/Makefile,
+	  xfcalendar/trunk/sounds/Makefile.am,
+	  xfcalendar/trunk/sounds/Makefile.in,
+	  xfcalendar/trunk/sounds/alert01.wav,
+	  xfcalendar/trunk/sounds/beep01.wav,
+	  xfcalendar/trunk/sounds/beep02.wav,
+	  xfcalendar/trunk/sounds/beep03.wav,
+	  xfcalendar/trunk/sounds/beep04.wav,
+	  xfcalendar/trunk/sounds/beep05.wav,
+	  xfcalendar/trunk/sounds/beep06.wav,
+	  xfcalendar/trunk/sounds/beep07.wav,
+	  xfcalendar/trunk/sounds/beep08.wav,
+	  xfcalendar/trunk/sounds/beep09.wav,
+	  xfcalendar/trunk/sounds/beep10.wav,
+	  xfcalendar/trunk/sounds/beep11.wav,
+	  xfcalendar/trunk/sounds/beep12.wav,
+	  xfcalendar/trunk/sounds/bell01.wav,
+	  xfcalendar/trunk/sounds/bell02.wav,
+	  xfcalendar/trunk/sounds/bell03.wav,
+	  xfcalendar/trunk/sounds/bell04.wav,
+	  xfcalendar/trunk/sounds/bong01.wav,
+	  xfcalendar/trunk/sounds/bong02.wav,
+	  xfcalendar/trunk/sounds/bong03.wav,
+	  xfcalendar/trunk/sounds/bong04.wav,
+	  xfcalendar/trunk/sounds/bong05.wav,
+	  xfcalendar/trunk/sounds/bong06.wav,
+	  xfcalendar/trunk/sounds/bong07.wav,
+	  xfcalendar/trunk/sounds/bong08.wav,
+	  xfcalendar/trunk/sounds/bong09.wav,
+	  xfcalendar/trunk/sounds/bong10.wav,
+	  xfcalendar/trunk/sounds/bong11.wav,
+	  xfcalendar/trunk/sounds/bong12.wav,
+	  xfcalendar/trunk/sounds/crash01.wav,
+	  xfcalendar/trunk/sounds/crash02.wav,
+	  xfcalendar/trunk/sounds/crash04.wav,
+	  xfcalendar/trunk/sounds/crash05.wav,
+	  xfcalendar/trunk/sounds/crash06.wav,
+	  xfcalendar/trunk/sounds/logon01.wav,
+	  xfcalendar/trunk/sounds/logon02.wav,
+	  xfcalendar/trunk/sounds/logout01.wav,
+	  xfcalendar/trunk/sounds/ping01.wav,
+	  xfcalendar/trunk/sounds/ping02.wav,
+	  xfcalendar/trunk/sounds/ping03.wav,
+	  xfcalendar/trunk/sounds/ping04.wav,
+	  xfcalendar/trunk/sounds/pop01.wav,
+	  xfcalendar/trunk/sounds/pop02.wav,
+	  xfcalendar/trunk/sounds/sink01.wav,
+	  xfcalendar/trunk/sounds/slide01.wav,
+	  xfcalendar/trunk/sounds/slide02.wav,
+	  xfcalendar/trunk/sounds/space01.wav,
+	  xfcalendar/trunk/sounds/zap01.wav,
+	  xfcalendar/trunk/sounds/zap02.wav,
+	  xfcalendar/trunk/sounds/zap03.wav,
+	  xfcalendar/trunk/sounds/zap04.wav,
+	  xfcalendar/trunk/src/appointment.c,
+	  xfcalendar/trunk/src/appointment.h,
+	  xfcalendar/trunk/src/reminder.c: Adding sounds folder, changing
+	  configure.ac and Makefile.am, better filechooser opening default
+	  folder, and adding interface for repeating alarm sound-
+
+2005-04-06 07:34  perldude
+
+	* xfcalendar/trunk/.cvsignore, xfcalendar/trunk/icons/.cvsignore,
+	  xfcalendar/trunk/icons/48x48/.cvsignore,
+	  xfcalendar/trunk/icons/scalable/.cvsignore,
+	  xfcalendar/trunk/libical/.cvsignore,
+	  xfcalendar/trunk/libical/design-data/.cvsignore,
+	  xfcalendar/trunk/libical/doc/.cvsignore,
+	  xfcalendar/trunk/libical/scripts/.cvsignore,
+	  xfcalendar/trunk/libical/src/.cvsignore,
+	  xfcalendar/trunk/libical/src/libical/.cvsignore,
+	  xfcalendar/trunk/libical/src/libicalss/.cvsignore,
+	  xfcalendar/trunk/libical/zoneinfo/.cvsignore,
+	  xfcalendar/trunk/plugin/.cvsignore,
+	  xfcalendar/trunk/po/.cvsignore, xfcalendar/trunk/src/.cvsignore:
+	  remove .cvsignore cruft
+
+2005-04-06 07:32  juha
+
+	* xfcalendar/trunk/README: 
+
+2005-04-04 10:02  juha
+
+	* xfcalendar/trunk/src/appointment.c,
+	  xfcalendar/trunk/src/appointment.h,
+	  xfcalendar/trunk/src/ical-code.c,
+	  xfcalendar/trunk/src/ical-code.h, xfcalendar/trunk/src/mainbox.c:
+	  added Recurrent events. Note that they do nto yet work in alarms.
+
+2005-04-01 16:55  korbinus
+
+	* xfcalendar/trunk/src/appointment.c: Theres's a file chooser that
+	  works now (yes yes, it's not a poisson d'avril)
+
+2005-03-31 22:48  juha
+
+	* xfcalendar/trunk/configure.ac, xfcalendar/trunk/src/event-list.c:
+	  added highlights for todays appointment: old, current, future are
+	  now shown differently
+
+2005-03-31 22:11  korbinus
+
+	* xfcalendar/trunk/src/appointment.c,
+	  xfcalendar/trunk/src/appointment.h: Adding GtkEntry and button for
+	  setting a sound file but clicking on the button doesn't trigger
+	  the file chooser yet (bug ?)
+
+2005-03-31 19:41  juha
+
+	* xfcalendar/trunk/src/appointment.c,
+	  xfcalendar/trunk/src/appointment.h,
+	  xfcalendar/trunk/src/event-list.c,
+	  xfcalendar/trunk/src/ical-code.c,
+	  xfcalendar/trunk/src/ical-code.h: minor internal code formatting
+	  and alarm visible to event window.
+
+2005-03-30 17:07  korbinus
+
+	* xfcalendar/trunk/AUTHORS, xfcalendar/trunk/src/appointment.c,
+	  xfcalendar/trunk/src/appointment.h,
+	  xfcalendar/trunk/src/event-list.c,
+	  xfcalendar/trunk/src/ical-code.c: Changing the alarm widget in
+	  appointment.c; moving the Add button to the left of the toolbar in
+	  the event window and fixing the accel keys (Ctrl+a works now)
+
+2005-03-29 20:22  korbinus
+
+	* xfcalendar/trunk/src/appointment.c: Removed the date of the chosen
+	  day as the appointment window title; build the window title from
+	  the title field instead.
+
+2005-03-29 09:09  juha
+
+	* xfcalendar/trunk/configure.ac, xfcalendar/trunk/src/appointment.c,
+	  xfcalendar/trunk/src/event-list.c: fixed appointment window crash
+	  problem when event-list windows had been deleted. now appointment
+	  is transient to event lista and deleted when event list is
+	  deleted.
+
+2005-03-28 23:29  juha
+
+	* xfcalendar/trunk/src/event-list.c,
+	  xfcalendar/trunk/src/reminder.c: fixed 1) date change day
+	  autoselect 2) calendar window synchronisation
+
+2005-03-28 22:48  juha
+
+	* xfcalendar/trunk/plugin/xfcalendar_plugin.c,
+	  xfcalendar/trunk/src/main.c, xfcalendar/trunk/src/mainbox.c,
+	  xfcalendar/trunk/src/mainbox.h: Added parameter to start minimized
+	  (iconified) and cleanded mcs code.
+
+2005-03-28 09:02  juha
+
+	* xfcalendar/trunk/configure.ac, xfcalendar/trunk/src/appointment.c,
+	  xfcalendar/trunk/src/appointment.h,
+	  xfcalendar/trunk/src/event-list.c, xfcalendar/trunk/src/mainbox.c:
+	  syncronising event window with appointment window and calendar
+	  window.
+
+2005-03-27 18:24  fleclainche
+
+	* xfcalendar/trunk/icons/48x48/xfcalendar.png,
+	  xfcalendar/trunk/icons/scalable/xfcalendar.svg: Icon update
+
+2005-03-27 17:22  juha
+
+	* xfcalendar/trunk/src/ical-code.c,
+	  xfcalendar/trunk/src/ical-code.h, xfcalendar/trunk/src/main.c,
+	  xfcalendar/trunk/src/reminder.c: date only alarm
+
+2005-03-27 16:14  juha
+
+	* xfcalendar/trunk/src/appointment.c,
+	  xfcalendar/trunk/src/event-list.c,
+	  xfcalendar/trunk/src/ical-code.c, xfcalendar/trunk/src/main.c,
+	  xfcalendar/trunk/src/mainbox.c, xfcalendar/trunk/src/reminder.c:
+	  "--enable-debug=full" fixes
+
+2005-03-27 08:59  juha
+
+	* xfcalendar/trunk/src/appointment.c,
+	  xfcalendar/trunk/src/event-list.c,
+	  xfcalendar/trunk/src/ical-code.c,
+	  xfcalendar/trunk/src/ical-code.h, xfcalendar/trunk/src/mainbox.c:
+	  renamed xfce specific ical calls.
+
+2005-03-27 00:14  juha
+
+	* xfcalendar/trunk/src/appointment.c,
+	  xfcalendar/trunk/src/event-list.c,
+	  xfcalendar/trunk/src/ical-code.c, xfcalendar/trunk/src/reminder.c:
+	  more parameters and default values passed to appointment window.
+
+2005-03-26 21:11  juha
+
+	* xfcalendar/trunk/src/ical-code.c: fixed typing errors
+
+2005-03-26 20:33  juha
+
+	* xfcalendar/trunk/src/callbacks.c,
+	  xfcalendar/trunk/src/callbacks.h,
+	  xfcalendar/trunk/src/interface.c,
+	  xfcalendar/trunk/src/interface.h: physically removed obsoleted
+	  files: callbacks.c callbacks.h interface.c interface.h
+
+2005-03-26 20:25  juha
+
+	* xfcalendar/trunk/configure.ac, xfcalendar/trunk/src/appointment.c,
+	  xfcalendar/trunk/src/appointment.h,
+	  xfcalendar/trunk/src/ical-code.c, xfcalendar/trunk/src/main.c,
+	  xfcalendar/trunk/src/mainbox.c, xfcalendar/trunk/src/reminder.c,
+	  xfcalendar/trunk/src/reminder.h: sound alarm support in ical code
+	  and reminder. date type times support in ical.
+
+2005-03-25 05:37  korbinus
+
+	* xfcalendar/trunk/src/appointment.c,
+	  xfcalendar/trunk/src/appointment.h: Adding start date and end date
+	  for appointments spanning several days; adding an All Day Event
+	  check button which so far simply make date and time related
+	  controls insensitive, but doesn't impact the value saved.
+
+2005-03-23 17:57  juha
+
+	* xfcalendar/trunk/configure.ac, xfcalendar/trunk/src/ical-code.c,
+	  xfcalendar/trunk/src/ical-code.h, xfcalendar/trunk/src/main.c,
+	  xfcalendar/trunk/src/mainbox.c, xfcalendar/trunk/src/reminder.c,
+	  xfcalendar/trunk/src/reminder.h: first version where alarms work
+	  and show the alarm window: 4.3.1.5
+
+2005-03-20 21:20  juha
+
+	* xfcalendar/trunk/configure.ac, xfcalendar/trunk/src/Makefile.am,
+	  xfcalendar/trunk/src/callbacks.c,
+	  xfcalendar/trunk/src/callbacks.h,
+	  xfcalendar/trunk/src/event-list.c,
+	  xfcalendar/trunk/src/event-list.h,
+	  xfcalendar/trunk/src/interface.c,
+	  xfcalendar/trunk/src/interface.h, xfcalendar/trunk/src/main.c,
+	  xfcalendar/trunk/src/mainbox.c, xfcalendar/trunk/src/tray_icon.c:
+	  4.3.1.4: Removed code from callbacks.c/callbacks.h and
+	  interface.c/interface.h and added it to other source files, mainly
+	  to new event-list.c/event-list.h.
+
+2005-03-20 19:27  juha
+
+	* xfcalendar/trunk/configure.ac: 4.3.1.3 store and retrieve alarms
+
+2005-03-20 19:04  juha
+
+	* xfcalendar/trunk/src/appointment.c,
+	  xfcalendar/trunk/src/callbacks.c,
+	  xfcalendar/trunk/src/ical-code.c: alarm store and retreive from
+	  ical calendar file
+
+2005-03-19 23:28  korbinus
+
+	* xfcalendar/trunk/src/callbacks.h: Declare dialogWin() *shame*
+
+2005-03-18 00:11  korbinus
+
+	* xfcalendar/trunk/src/appointment.c,
+	  xfcalendar/trunk/src/appointment.h: Update now works (thanks
+	  Benny), possibility to remove an appointment.
+
+2005-03-17 00:21  korbinus
+
+	* xfcalendar/trunk/src/appointment.c,
+	  xfcalendar/trunk/src/appointment.h: Replacing appt_type structure
+	  in appt_win structure by a single uid, and eventually change the
+	  code back to what Juha did. Still impossible to update an
+	  appointment.
+
+2005-03-16 22:25  benny
+
+	* xfcalendar/trunk/src/mainbox.c: Fix crash.
+
+2005-03-15 22:38  juha
+
+	* xfcalendar/trunk/src/appointment.c,
+	  xfcalendar/trunk/src/callbacks.c,
+	  xfcalendar/trunk/src/ical-code.c: NULL pointer errors fixed.
+
+2005-03-15 22:04  juha
+
+	* xfcalendar/trunk/configure.ac: new level ical codes. version
+	  4.3.1.2
+
+2005-03-15 22:02  juha
+
+	* xfcalendar/trunk/src/appointment.c,
+	  xfcalendar/trunk/src/appointment.h,
+	  xfcalendar/trunk/src/callbacks.c,
+	  xfcalendar/trunk/src/ical-code.c: Changed ical code to use generic
+	  loop instead of hardcoded values. also now only store strings if
+	  they are real to prevent ical errors. also changed appointment.h
+	  gint * pointers to gint.
+
+2005-03-15 16:31  korbinus
+
+	* xfcalendar/trunk/src/appointment.c,
+	  xfcalendar/trunk/src/appointment.h: Adding an appt_type variable
+	  to struct appt_win and eventually replacing appt_data in
+	  fill_appt_window by apptw->appt_data
+
+2005-03-15 00:31  korbinus
+
+	* xfcalendar/trunk/src/appointment.c: some code improvements,
+	  editing saved appointments; only Alarm and Availability remain to
+	  fix.
+
+2005-03-14 22:27  korbinus
+
+	* xfcalendar/trunk/src/appointment.c: Fix a glitch in the
+	  appointment interface
+
+2005-03-14 19:10  juha
+
+	* xfcalendar/trunk/src/appointment.c,
+	  xfcalendar/trunk/src/appointment.h,
+	  xfcalendar/trunk/src/callbacks.c,
+	  xfcalendar/trunk/src/ical-code.c, xfcalendar/trunk/src/mainbox.c:
+	  xf_ical code fixes and example usage in appointment.c
+
+2005-03-13 20:00  juha
+
+	* xfcalendar/trunk/configure.ac, xfcalendar/trunk/src/callbacks.c,
+	  xfcalendar/trunk/src/interface.c: changed event window to use
+	  GtkTreeView and ordered it ascending on time.
+
+2005-03-12 02:02  korbinus
+
+	* xfcalendar/trunk/src/appointment.c: *** empty log message ***
+
+2005-03-12 01:11  korbinus
+
+	* xfcalendar/trunk/src/appointment.c,
+	  xfcalendar/trunk/src/appointment.h,
+	  xfcalendar/trunk/src/callbacks.c, xfcalendar/trunk/src/mainbox.c:
+	  Correcting type name
+
+2005-03-11 22:46  juha
+
+	* xfcalendar/trunk/src/callbacks.c,
+	  xfcalendar/trunk/src/ical-code.c,
+	  xfcalendar/trunk/src/ical-code.h, xfcalendar/trunk/src/mainbox.c:
+	  formatting and cleaning
+
+2005-03-11 21:49  juha
+
+	* xfcalendar/trunk/src/appointment.c,
+	  xfcalendar/trunk/src/appointment.h,
+	  xfcalendar/trunk/src/callbacks.c,
+	  xfcalendar/trunk/src/ical-code.c,
+	  xfcalendar/trunk/src/ical-code.h, xfcalendar/trunk/src/mainbox.c:
+	  new parameter format and new ical procedures
+
+2005-03-11 16:14  juha
+
+	* xfcalendar/trunk/src/interface.h: missing function.
+
+2005-03-11 12:38  juha
+
+	* xfcalendar/trunk/src/callbacks.c,
+	  xfcalendar/trunk/src/ical-code.c,
+	  xfcalendar/trunk/src/ical-code.h, xfcalendar/trunk/src/mainbox.c:
+	  use new appointment struct in parameter passing
+
+2005-03-11 06:55  korbinus
+
+	* xfcalendar/trunk/src/appointment.c,
+	  xfcalendar/trunk/src/appointment.h: Save appointment structure
+
+2005-03-10 20:08  juha
+
+	* xfcalendar/trunk/src/Makefile.am: added file ical-code.c and
+	  ical-code.h
+
+2005-03-10 20:04  juha
+
+	* xfcalendar/trunk/ical-code.c, xfcalendar/trunk/ical-code.h:
+	  removing files from wrong place
+
+2005-03-10 20:02  juha
+
+	* xfcalendar/trunk/src/callbacks.c, xfcalendar/trunk/src/mainbox.c:
+	  split of ical into its own file
+
+2005-03-10 20:00  juha
+
+	* xfcalendar/trunk/ical-code.c, xfcalendar/trunk/ical-code.h,
+	  xfcalendar/trunk/src/ical-code.c,
+	  xfcalendar/trunk/src/ical-code.h: split ical code into its own
+	  file
+
+2005-03-10 19:56  juha
+
+	* xfcalendar/trunk/README: instructions for libical library usage
+
+2005-03-10 16:22  juha
+
+	* xfcalendar/trunk/src/callbacks.c,
+	  xfcalendar/trunk/src/interface.c: added calls to new appointment
+	  window and restructured event windown
+
+2005-03-10 11:39  juha
+
+	* xfcalendar/trunk/src/callbacks.c: fix calendar unmark in delete
+	  appointment (on_btDelete_clicked)
+
+2005-03-09 22:21  juha
+
+	* xfcalendar/trunk/src/callbacks.c,
+	  xfcalendar/trunk/src/callbacks.h,
+	  xfcalendar/trunk/src/interface.c, xfcalendar/trunk/src/mainbox.c:
+	  new event window with multiple appointment support
+
+2005-03-09 19:48  jasper
+
+	* xfcalendar/trunk/configure.ac: m4/Makefile no longer present
+
+2005-03-09 09:46  korbinus
+
+	* xfcalendar/trunk/ChangeLog, xfcalendar/trunk/Makefile.am,
+	  xfcalendar/trunk/configure.ac, xfcalendar/trunk/po/ChangeLog,
+	  xfcalendar/trunk/src/Makefile.am,
+	  xfcalendar/trunk/src/appointment.c,
+	  xfcalendar/trunk/src/appointment.h,
+	  xfcalendar/trunk/src/mainbox.c, xfcalendar/trunk/src/mainbox.h:
+	  Adding appointment edition window: not usable yet
+
+2005-03-07 22:42  edscott
+
+	* xfcalendar/trunk/po/es.po: translation gaps
+
+2005-03-07 09:06  pollux
+
+	* xfcalendar/trunk/po/gu.po: update GU translations
+
+2005-03-05 15:12  benny
+
+	* xfcalendar/trunk/configure.ac: Place BM_DEBUG_SUPPORT() last,
+	  since it may modify CFLAGS.
+
+2005-03-05 15:09  benny
+
+	* xfcalendar/trunk/icons, xfcalendar/trunk/icons/.cvsignore,
+	  xfcalendar/trunk/icons/48x48,
+	  xfcalendar/trunk/icons/48x48/.cvsignore,
+	  xfcalendar/trunk/icons/scalable,
+	  xfcalendar/trunk/icons/scalable/.cvsignore,
+	  xfcalendar/trunk/libical, xfcalendar/trunk/libical/.cvsignore,
+	  xfcalendar/trunk/libical/design-data,
+	  xfcalendar/trunk/libical/design-data/.cvsignore,
+	  xfcalendar/trunk/libical/doc,
+	  xfcalendar/trunk/libical/doc/.cvsignore,
+	  xfcalendar/trunk/libical/scripts,
+	  xfcalendar/trunk/libical/scripts/.cvsignore,
+	  xfcalendar/trunk/libical/src,
+	  xfcalendar/trunk/libical/src/.cvsignore,
+	  xfcalendar/trunk/libical/src/libical,
+	  xfcalendar/trunk/libical/src/libical/.cvsignore,
+	  xfcalendar/trunk/libical/src/libical/icalerror.c,
+	  xfcalendar/trunk/libical/src/libical/icalmemory.c,
+	  xfcalendar/trunk/libical/src/libical/icalmime.c,
+	  xfcalendar/trunk/libical/src/libical/icalrecur.c,
+	  xfcalendar/trunk/libical/src/libical/icaltime.c,
+	  xfcalendar/trunk/libical/src/libical/icaltypes.c,
+	  xfcalendar/trunk/libical/src/libicalss,
+	  xfcalendar/trunk/libical/src/libicalss/.cvsignore,
+	  xfcalendar/trunk/libical/src/libicalss/icalfileset.c,
+	  xfcalendar/trunk/libical/src/libicalss/icalgauge.c,
+	  xfcalendar/trunk/libical/zoneinfo,
+	  xfcalendar/trunk/libical/zoneinfo/.cvsignore,
+	  xfcalendar/trunk/src/Makefile.am: Fix pthread issue with
+	  statically linked ical. Make the compiler happy with libical. Add
+	  more .cvsignore files.
+
+2005-03-05 14:16  benny
+
+	* xfcalendar/trunk/plugin, xfcalendar/trunk/plugin/.cvsignore,
+	  xfcalendar/trunk/po, xfcalendar/trunk/po/.cvsignore,
+	  xfcalendar/trunk/src, xfcalendar/trunk/src/.cvsignore: Add more
+	  files here.
+
+2005-03-05 12:23  pollux
+
+	* xfcalendar/trunk/po/pl.po: update PL translations
+
+2005-03-04 15:29  benny
+
+	* xfcalendar/trunk, xfcalendar/trunk/.cvsignore: Add more files.
+
+2005-03-04 15:29  benny
+
+	* xfcalendar/trunk/configure.ac,
+	  xfcalendar/trunk/libical/src/libical/ical.h,
+	  xfcalendar/trunk/libical/src/libical/icalversion.h: Ditch
+	  autogenerated files. Fix another conditional bug.
+
+2005-03-04 15:25  benny
+
+	* xfcalendar/trunk, xfcalendar/trunk/.cvsignore,
+	  xfcalendar/trunk/Makefile.am, xfcalendar/trunk/configure.ac,
+	  xfcalendar/trunk/libical-0.24.pc,
+	  xfcalendar/trunk/libical/Makefile.am,
+	  xfcalendar/trunk/libical/Makefile.in,
+	  xfcalendar/trunk/libical/TEST, xfcalendar/trunk/libical/TODO,
+	  xfcalendar/trunk/libical/aclocal.m4,
+	  xfcalendar/trunk/libical/config.guess,
+	  xfcalendar/trunk/libical/config.h.in,
+	  xfcalendar/trunk/libical/config.sub,
+	  xfcalendar/trunk/libical/configure,
+	  xfcalendar/trunk/libical/configure.in,
+	  xfcalendar/trunk/libical/depcomp,
+	  xfcalendar/trunk/libical/design-data/Makefile.in,
+	  xfcalendar/trunk/libical/doc/Makefile.in,
+	  xfcalendar/trunk/libical/examples,
+	  xfcalendar/trunk/libical/install-sh,
+	  xfcalendar/trunk/libical/ltconfig,
+	  xfcalendar/trunk/libical/ltmain.sh,
+	  xfcalendar/trunk/libical/missing,
+	  xfcalendar/trunk/libical/mkinstalldirs,
+	  xfcalendar/trunk/libical/scripts/Makefile.in,
+	  xfcalendar/trunk/libical/src/Makefile.am,
+	  xfcalendar/trunk/libical/src/Makefile.in,
+	  xfcalendar/trunk/libical/src/java,
+	  xfcalendar/trunk/libical/src/libical/Makefile.am,
+	  xfcalendar/trunk/libical/src/libical/Makefile.in,
+	  xfcalendar/trunk/libical/src/libical/ical.h,
+	  xfcalendar/trunk/libical/src/libical/icalversion.h,
+	  xfcalendar/trunk/libical/src/libicalss/Makefile.am,
+	  xfcalendar/trunk/libical/src/libicalss/Makefile.in,
+	  xfcalendar/trunk/libical/src/libicalvcal,
+	  xfcalendar/trunk/libical/src/python,
+	  xfcalendar/trunk/libical/src/test,
+	  xfcalendar/trunk/libical/stamp-h.in,
+	  xfcalendar/trunk/libical/test-data,
+	  xfcalendar/trunk/libical/ylwrap,
+	  xfcalendar/trunk/libical/zoneinfo/Makefile.in,
+	  xfcalendar/trunk/po/xfcalendar.pot,
+	  xfcalendar/trunk/src/Makefile.am: Integrate libical with the
+	  xfcalendar build process. The included copy of libical is only
+	  used if libical isn't detected on the target system. The
+	  additional files installed by xfcalendar then (the zoneinfo files)
+	  are installed in $(datadir)/xfcalendar/zoneinfo/ to avoid
+	  conflicts with a probably installed version of libical.
+
+2005-03-04 12:59  juha
+
+	* xfcalendar/trunk/libical/src/libical/Makefile.in: making libical
+	  compatible with xfce linking
+
+2005-03-04 12:34  juha
+
+	* xfcalendar/trunk/README,
+	  xfcalendar/trunk/libical/src/libical/ical.h: modifying libical for
+	  xfce
+
+2005-03-04 12:23  juha
+
+	* xfcalendar/trunk/libical/configure,
+	  xfcalendar/trunk/libical/src/libical/Makefile.am,
+	  xfcalendar/trunk/src/Makefile.am: making libical compatible with
+	  xfce linking
+
+2005-03-04 09:43  korbinus
+
+	* xfcalendar/trunk/libical, xfcalendar/trunk/libical/AUTHORS,
+	  xfcalendar/trunk/libical/COPYING,
+	  xfcalendar/trunk/libical/ChangeLog,
+	  xfcalendar/trunk/libical/INSTALL,
+	  xfcalendar/trunk/libical/Makefile.am,
+	  xfcalendar/trunk/libical/Makefile.in,
+	  xfcalendar/trunk/libical/NEWS, xfcalendar/trunk/libical/README,
+	  xfcalendar/trunk/libical/TEST, xfcalendar/trunk/libical/THANKS,
+	  xfcalendar/trunk/libical/TODO,
+	  xfcalendar/trunk/libical/aclocal.m4,
+	  xfcalendar/trunk/libical/config.guess,
+	  xfcalendar/trunk/libical/config.h.in,
+	  xfcalendar/trunk/libical/config.sub,
+	  xfcalendar/trunk/libical/configure,
+	  xfcalendar/trunk/libical/configure.in,
+	  xfcalendar/trunk/libical/depcomp,
+	  xfcalendar/trunk/libical/design-data,
+	  xfcalendar/trunk/libical/design-data/Makefile.am,
+	  xfcalendar/trunk/libical/design-data/Makefile.in,
+	  xfcalendar/trunk/libical/design-data/parameters.csv,
+	  xfcalendar/trunk/libical/design-data/properties.csv,
+	  xfcalendar/trunk/libical/design-data/restrictions.csv,
+	  xfcalendar/trunk/libical/design-data/status.txt,
+	  xfcalendar/trunk/libical/design-data/value-types.csv,
+	  xfcalendar/trunk/libical/doc,
+	  xfcalendar/trunk/libical/doc/Makefile.am,
+	  xfcalendar/trunk/libical/doc/Makefile.in,
+	  xfcalendar/trunk/libical/doc/UsingLibical.lyx,
+	  xfcalendar/trunk/libical/doc/UsingLibical.ps,
+	  xfcalendar/trunk/libical/doc/UsingLibical.txt,
+	  xfcalendar/trunk/libical/examples,
+	  xfcalendar/trunk/libical/examples/Makefile.am,
+	  xfcalendar/trunk/libical/examples/Makefile.in,
+	  xfcalendar/trunk/libical/examples/access_components.c,
+	  xfcalendar/trunk/libical/examples/access_properties_and_parameters.c,
+	  xfcalendar/trunk/libical/examples/errors.c,
+	  xfcalendar/trunk/libical/examples/main.c,
+	  xfcalendar/trunk/libical/examples/parse_text.c,
+	  xfcalendar/trunk/libical/install-sh,
+	  xfcalendar/trunk/libical/ltconfig,
+	  xfcalendar/trunk/libical/ltmain.sh,
+	  xfcalendar/trunk/libical/missing,
+	  xfcalendar/trunk/libical/mkinstalldirs,
+	  xfcalendar/trunk/libical/scripts,
+	  xfcalendar/trunk/libical/scripts/Makefile.am,
+	  xfcalendar/trunk/libical/scripts/Makefile.in,
+	  xfcalendar/trunk/libical/scripts/mkderivedcomponents.pl,
+	  xfcalendar/trunk/libical/scripts/mkderivedparameters.pl,
+	  xfcalendar/trunk/libical/scripts/mkderivedproperties.pl,
+	  xfcalendar/trunk/libical/scripts/mkderivedvalues.pl,
+	  xfcalendar/trunk/libical/scripts/mkparameterrestrictions.pl,
+	  xfcalendar/trunk/libical/scripts/mkrestrictionrecords.pl,
+	  xfcalendar/trunk/libical/scripts/mkrestrictiontable.pl,
+	  xfcalendar/trunk/libical/scripts/readvaluesfile.pl,
+	  xfcalendar/trunk/libical/src,
+	  xfcalendar/trunk/libical/src/Makefile.am,
+	  xfcalendar/trunk/libical/src/Makefile.in,
+	  xfcalendar/trunk/libical/src/java,
+	  xfcalendar/trunk/libical/src/java/Makefile.am,
+	  xfcalendar/trunk/libical/src/java/Makefile.in,
+	  xfcalendar/trunk/libical/src/java/jlibical_consts_cxx.h,
+	  xfcalendar/trunk/libical/src/java/jlibical_utils_cxx.cpp,
+	  xfcalendar/trunk/libical/src/java/jlibical_utils_cxx.h,
+	  xfcalendar/trunk/libical/src/java/jniICalDurationType_cxx.cpp,
+	  xfcalendar/trunk/libical/src/java/jniICalDurationType_cxx.h,
+	  xfcalendar/trunk/libical/src/java/jniICalPeriodType_cxx.cpp,
+	  xfcalendar/trunk/libical/src/java/jniICalPeriodType_cxx.h,
+	  xfcalendar/trunk/libical/src/java/jniICalRecurrenceType_cxx.cpp,
+	  xfcalendar/trunk/libical/src/java/jniICalRecurrenceType_cxx.h,
+	  xfcalendar/trunk/libical/src/java/jniICalTimeType_cxx.cpp,
+	  xfcalendar/trunk/libical/src/java/jniICalTimeType_cxx.h,
+	  xfcalendar/trunk/libical/src/java/jniICalTriggerType_cxx.cpp,
+	  xfcalendar/trunk/libical/src/java/jniICalTriggerType_cxx.h,
+	  xfcalendar/trunk/libical/src/java/net_cp_jlibical_ICalParameter_cxx.cpp,
+	  xfcalendar/trunk/libical/src/java/net_cp_jlibical_ICalParameter_cxx.h,
+	  xfcalendar/trunk/libical/src/java/net_cp_jlibical_ICalProperty_cxx.cpp,
+	  xfcalendar/trunk/libical/src/java/net_cp_jlibical_ICalProperty_cxx.h,
+	  xfcalendar/trunk/libical/src/java/net_cp_jlibical_ICalValue_cxx.cpp,
+	  xfcalendar/trunk/libical/src/java/net_cp_jlibical_ICalValue_cxx.h,
+	  xfcalendar/trunk/libical/src/java/net_cp_jlibical_VComponent_cxx.cpp,
+	  xfcalendar/trunk/libical/src/java/net_cp_jlibical_VComponent_cxx.h,
+	  xfcalendar/trunk/libical/src/libical,
+	  xfcalendar/trunk/libical/src/libical/Makefile.am,
+	  xfcalendar/trunk/libical/src/libical/Makefile.in,
+	  xfcalendar/trunk/libical/src/libical/astime.h,
+	  xfcalendar/trunk/libical/src/libical/caldate.c,
+	  xfcalendar/trunk/libical/src/libical/ical.h,
+	  xfcalendar/trunk/libical/src/libical/icalarray.c,
+	  xfcalendar/trunk/libical/src/libical/icalarray.h,
+	  xfcalendar/trunk/libical/src/libical/icalattach.c,
+	  xfcalendar/trunk/libical/src/libical/icalattach.h,
+	  xfcalendar/trunk/libical/src/libical/icalattachimpl.h,
+	  xfcalendar/trunk/libical/src/libical/icalcomponent.c,
+	  xfcalendar/trunk/libical/src/libical/icalcomponent.h,
+	  xfcalendar/trunk/libical/src/libical/icalderivedparameter.c.in,
+	  xfcalendar/trunk/libical/src/libical/icalderivedparameter.h.in,
+	  xfcalendar/trunk/libical/src/libical/icalderivedproperty.c.in,
+	  xfcalendar/trunk/libical/src/libical/icalderivedproperty.h.in,
+	  xfcalendar/trunk/libical/src/libical/icalderivedvalue.c.in,
+	  xfcalendar/trunk/libical/src/libical/icalderivedvalue.h.in,
+	  xfcalendar/trunk/libical/src/libical/icalduration.c,
+	  xfcalendar/trunk/libical/src/libical/icalduration.h,
+	  xfcalendar/trunk/libical/src/libical/icalenums.c,
+	  xfcalendar/trunk/libical/src/libical/icalenums.h,
+	  xfcalendar/trunk/libical/src/libical/icalerror.c,
+	  xfcalendar/trunk/libical/src/libical/icalerror.h,
+	  xfcalendar/trunk/libical/src/libical/icallangbind.c,
+	  xfcalendar/trunk/libical/src/libical/icallangbind.h,
+	  xfcalendar/trunk/libical/src/libical/icalmemory.c,
+	  xfcalendar/trunk/libical/src/libical/icalmemory.h,
+	  xfcalendar/trunk/libical/src/libical/icalmime.c,
+	  xfcalendar/trunk/libical/src/libical/icalmime.h,
+	  xfcalendar/trunk/libical/src/libical/icalparameter.c,
+	  xfcalendar/trunk/libical/src/libical/icalparameter.h,
+	  xfcalendar/trunk/libical/src/libical/icalparameterimpl.h,
+	  xfcalendar/trunk/libical/src/libical/icalparser.c,
+	  xfcalendar/trunk/libical/src/libical/icalparser.h,
+	  xfcalendar/trunk/libical/src/libical/icalperiod.c,
+	  xfcalendar/trunk/libical/src/libical/icalperiod.h,
+	  xfcalendar/trunk/libical/src/libical/icalproperty.c,
+	  xfcalendar/trunk/libical/src/libical/icalproperty.h,
+	  xfcalendar/trunk/libical/src/libical/icalrecur.c,
+	  xfcalendar/trunk/libical/src/libical/icalrecur.h,
+	  xfcalendar/trunk/libical/src/libical/icalrestriction.c.in,
+	  xfcalendar/trunk/libical/src/libical/icalrestriction.h,
+	  xfcalendar/trunk/libical/src/libical/icaltime.c,
+	  xfcalendar/trunk/libical/src/libical/icaltime.h,
+	  xfcalendar/trunk/libical/src/libical/icaltimezone.c,
+	  xfcalendar/trunk/libical/src/libical/icaltimezone.h,
+	  xfcalendar/trunk/libical/src/libical/icaltypes.c,
+	  xfcalendar/trunk/libical/src/libical/icaltypes.h,
+	  xfcalendar/trunk/libical/src/libical/icalvalue.c,
+	  xfcalendar/trunk/libical/src/libical/icalvalue.h,
+	  xfcalendar/trunk/libical/src/libical/icalvalueimpl.h,
+	  xfcalendar/trunk/libical/src/libical/icalversion.h,
+	  xfcalendar/trunk/libical/src/libical/icalversion.h.in,
+	  xfcalendar/trunk/libical/src/libical/pvl.c,
+	  xfcalendar/trunk/libical/src/libical/pvl.h,
+	  xfcalendar/trunk/libical/src/libical/sspm.c,
+	  xfcalendar/trunk/libical/src/libical/sspm.h,
+	  xfcalendar/trunk/libical/src/libical/vsnprintf.c,
+	  xfcalendar/trunk/libical/src/libicalss,
+	  xfcalendar/trunk/libical/src/libicalss/Makefile.am,
+	  xfcalendar/trunk/libical/src/libicalss/Makefile.in,
+	  xfcalendar/trunk/libical/src/libicalss/icalcalendar.c,
+	  xfcalendar/trunk/libical/src/libicalss/icalcalendar.h,
+	  xfcalendar/trunk/libical/src/libicalss/icalclassify.c,
+	  xfcalendar/trunk/libical/src/libicalss/icalclassify.h,
+	  xfcalendar/trunk/libical/src/libicalss/icalcluster.c,
+	  xfcalendar/trunk/libical/src/libicalss/icalcluster.h,
+	  xfcalendar/trunk/libical/src/libicalss/icalclusterimpl.h,
+	  xfcalendar/trunk/libical/src/libicalss/icaldirset.c,
+	  xfcalendar/trunk/libical/src/libicalss/icaldirset.h,
+	  xfcalendar/trunk/libical/src/libicalss/icaldirsetimpl.h,
+	  xfcalendar/trunk/libical/src/libicalss/icalfileset.c,
+	  xfcalendar/trunk/libical/src/libicalss/icalfileset.h,
+	  xfcalendar/trunk/libical/src/libicalss/icalfilesetimpl.h,
+	  xfcalendar/trunk/libical/src/libicalss/icalgauge.c,
+	  xfcalendar/trunk/libical/src/libicalss/icalgauge.h,
+	  xfcalendar/trunk/libical/src/libicalss/icalgaugeimpl.h,
+	  xfcalendar/trunk/libical/src/libicalss/icalmessage.c,
+	  xfcalendar/trunk/libical/src/libicalss/icalmessage.h,
+	  xfcalendar/trunk/libical/src/libicalss/icalset.c,
+	  xfcalendar/trunk/libical/src/libicalss/icalset.h,
+	  xfcalendar/trunk/libical/src/libicalss/icalspanlist.c,
+	  xfcalendar/trunk/libical/src/libicalss/icalspanlist.h,
+	  xfcalendar/trunk/libical/src/libicalss/icalss.h,
+	  xfcalendar/trunk/libical/src/libicalss/icalsslexer.c,
+	  xfcalendar/trunk/libical/src/libicalss/icalssyacc.c,
+	  xfcalendar/trunk/libical/src/libicalss/icalssyacc.h,
+	  xfcalendar/trunk/libical/src/libicalvcal,
+	  xfcalendar/trunk/libical/src/libicalvcal/Makefile.am,
+	  xfcalendar/trunk/libical/src/libicalvcal/Makefile.in,
+	  xfcalendar/trunk/libical/src/libicalvcal/README.TXT,
+	  xfcalendar/trunk/libical/src/libicalvcal/icalvcal.c,
+	  xfcalendar/trunk/libical/src/libicalvcal/icalvcal.h,
+	  xfcalendar/trunk/libical/src/libicalvcal/port.h,
+	  xfcalendar/trunk/libical/src/libicalvcal/vcaltest.c,
+	  xfcalendar/trunk/libical/src/libicalvcal/vcaltmp.c,
+	  xfcalendar/trunk/libical/src/libicalvcal/vcaltmp.h,
+	  xfcalendar/trunk/libical/src/libicalvcal/vcc.c,
+	  xfcalendar/trunk/libical/src/libicalvcal/vcc.h,
+	  xfcalendar/trunk/libical/src/libicalvcal/vctest.c,
+	  xfcalendar/trunk/libical/src/libicalvcal/vobject.c,
+	  xfcalendar/trunk/libical/src/libicalvcal/vobject.h,
+	  xfcalendar/trunk/libical/src/python,
+	  xfcalendar/trunk/libical/src/python/Attendee.py,
+	  xfcalendar/trunk/libical/src/python/ChangeLog,
+	  xfcalendar/trunk/libical/src/python/Collection.py,
+	  xfcalendar/trunk/libical/src/python/Component.py,
+	  xfcalendar/trunk/libical/src/python/DerivedProperties.py,
+	  xfcalendar/trunk/libical/src/python/Libical.py,
+	  xfcalendar/trunk/libical/src/python/LibicalWrap.i,
+	  xfcalendar/trunk/libical/src/python/Makefile.am,
+	  xfcalendar/trunk/libical/src/python/Makefile.in,
+	  xfcalendar/trunk/libical/src/python/Property.py,
+	  xfcalendar/trunk/libical/src/python/Store.py,
+	  xfcalendar/trunk/libical/src/python/python-binding.txt,
+	  xfcalendar/trunk/libical/src/python/test.py,
+	  xfcalendar/trunk/libical/src/test,
+	  xfcalendar/trunk/libical/src/test/Makefile.am,
+	  xfcalendar/trunk/libical/src/test/Makefile.in,
+	  xfcalendar/trunk/libical/src/test/copycluster.c,
+	  xfcalendar/trunk/libical/src/test/icaltestparser.c,
+	  xfcalendar/trunk/libical/src/test/process.c,
+	  xfcalendar/trunk/libical/src/test/recur.c,
+	  xfcalendar/trunk/libical/src/test/regression-classify.c,
+	  xfcalendar/trunk/libical/src/test/regression-component.c,
+	  xfcalendar/trunk/libical/src/test/regression-recur.c,
+	  xfcalendar/trunk/libical/src/test/regression-storage.c,
+	  xfcalendar/trunk/libical/src/test/regression-utils.c,
+	  xfcalendar/trunk/libical/src/test/regression.c,
+	  xfcalendar/trunk/libical/src/test/regression.h,
+	  xfcalendar/trunk/libical/src/test/stow.c,
+	  xfcalendar/trunk/libical/src/test/testmime.c,
+	  xfcalendar/trunk/libical/src/test/testvcal.c,
+	  xfcalendar/trunk/libical/stamp-h.in,
+	  xfcalendar/trunk/libical/test-data,
+	  xfcalendar/trunk/libical/test-data/0,
+	  xfcalendar/trunk/libical/test-data/1,
+	  xfcalendar/trunk/libical/test-data/1.1,
+	  xfcalendar/trunk/libical/test-data/2,
+	  xfcalendar/trunk/libical/test-data/2445.ics,
+	  xfcalendar/trunk/libical/test-data/2446.ics,
+	  xfcalendar/trunk/libical/test-data/3,
+	  xfcalendar/trunk/libical/test-data/4,
+	  xfcalendar/trunk/libical/test-data/5,
+	  xfcalendar/trunk/libical/test-data/6,
+	  xfcalendar/trunk/libical/test-data/7,
+	  xfcalendar/trunk/libical/test-data/Makefile.am,
+	  xfcalendar/trunk/libical/test-data/Makefile.in,
+	  xfcalendar/trunk/libical/test-data/calendar.ics,
+	  xfcalendar/trunk/libical/test-data/classify.ics,
+	  xfcalendar/trunk/libical/test-data/complex-mime.txt,
+	  xfcalendar/trunk/libical/test-data/incoming.ics,
+	  xfcalendar/trunk/libical/test-data/overlaps.ics,
+	  xfcalendar/trunk/libical/test-data/process-incoming.ics,
+	  xfcalendar/trunk/libical/test-data/recur.txt,
+	  xfcalendar/trunk/libical/test-data/restriction.ics,
+	  xfcalendar/trunk/libical/test-data/simple-mime.txt,
+	  xfcalendar/trunk/libical/test-data/smallcluster.ics,
+	  xfcalendar/trunk/libical/test-data/spanlist.ics,
+	  xfcalendar/trunk/libical/test-data/stresstest.ics,
+	  xfcalendar/trunk/libical/test-data/user-cal.vcf,
+	  xfcalendar/trunk/libical/ylwrap,
+	  xfcalendar/trunk/libical/zoneinfo,
+	  xfcalendar/trunk/libical/zoneinfo/Africa,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Abidjan.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Accra.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Addis_Ababa.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Algiers.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Asmera.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Bamako.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Bangui.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Banjul.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Bissau.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Blantyre.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Brazzaville.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Bujumbura.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Cairo.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Casablanca.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Ceuta.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Conakry.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Dakar.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Dar_es_Salaam.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Djibouti.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Douala.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/El_Aaiun.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Freetown.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Gaborone.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Harare.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Johannesburg.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Kampala.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Khartoum.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Kigali.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Kinshasa.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Lagos.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Libreville.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Lome.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Luanda.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Lubumbashi.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Lusaka.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Malabo.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Maputo.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Maseru.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Mbabane.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Mogadishu.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Monrovia.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Nairobi.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Ndjamena.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Niamey.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Nouakchott.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Ouagadougou.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Porto-Novo.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Sao_Tome.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Timbuktu.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Tripoli.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Tunis.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Africa/Windhoek.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America,
+	  xfcalendar/trunk/libical/zoneinfo/America/Adak.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Anchorage.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Anguilla.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Antigua.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Araguaina.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Aruba.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Asuncion.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Barbados.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Belem.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Belize.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Boa_Vista.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Bogota.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Boise.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Buenos_Aires.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Cambridge_Bay.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Cancun.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Caracas.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Catamarca.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Cayenne.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Cayman.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Chicago.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Chihuahua.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Cordoba.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Costa_Rica.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Cuiaba.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Curacao.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Dawson.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Dawson_Creek.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Denver.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Detroit.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Dominica.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Edmonton.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Eirunepe.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/El_Salvador.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Fortaleza.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Glace_Bay.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Godthab.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Goose_Bay.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Grand_Turk.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Grenada.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Guadeloupe.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Guatemala.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Guayaquil.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Guyana.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Halifax.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Havana.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Hermosillo.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Indiana,
+	  xfcalendar/trunk/libical/zoneinfo/America/Indiana/Indianapolis.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Indiana/Knox.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Indiana/Marengo.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Indiana/Vevay.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Indianapolis.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Inuvik.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Iqaluit.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Jamaica.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Jujuy.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Juneau.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Kentucky,
+	  xfcalendar/trunk/libical/zoneinfo/America/Kentucky/Louisville.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Kentucky/Monticello.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/La_Paz.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Lima.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Los_Angeles.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Louisville.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Maceio.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Managua.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Manaus.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Martinique.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Mazatlan.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Mendoza.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Menominee.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Merida.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Mexico_City.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Miquelon.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Monterrey.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Montevideo.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Montreal.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Montserrat.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Nassau.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/New_York.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Nipigon.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Nome.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Noronha.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Panama.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Pangnirtung.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Paramaribo.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Phoenix.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Port-au-Prince.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Port_of_Spain.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Porto_Velho.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Puerto_Rico.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Rainy_River.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Rankin_Inlet.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Recife.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Regina.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Rio_Branco.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Rosario.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Santiago.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Santo_Domingo.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Sao_Paulo.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Scoresbysund.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Shiprock.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/St_Johns.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/St_Kitts.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/St_Lucia.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/St_Thomas.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/St_Vincent.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Swift_Current.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Tegucigalpa.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Thule.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Thunder_Bay.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Tijuana.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Tortola.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Vancouver.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Whitehorse.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Winnipeg.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Yakutat.ics,
+	  xfcalendar/trunk/libical/zoneinfo/America/Yellowknife.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Antarctica,
+	  xfcalendar/trunk/libical/zoneinfo/Antarctica/Casey.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Antarctica/Davis.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Antarctica/DumontDUrville.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Antarctica/Mawson.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Antarctica/McMurdo.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Antarctica/Palmer.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Antarctica/South_Pole.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Antarctica/Syowa.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Antarctica/Vostok.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Arctic,
+	  xfcalendar/trunk/libical/zoneinfo/Arctic/Longyearbyen.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Aden.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Almaty.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Amman.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Anadyr.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Aqtau.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Aqtobe.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Ashgabat.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Baghdad.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Bahrain.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Baku.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Bangkok.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Beirut.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Bishkek.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Brunei.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Calcutta.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Chungking.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Colombo.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Damascus.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Dhaka.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Dili.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Dubai.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Dushanbe.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Gaza.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Harbin.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Hong_Kong.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Hovd.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Irkutsk.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Istanbul.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Jakarta.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Jayapura.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Jerusalem.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Kabul.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Kamchatka.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Karachi.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Kashgar.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Katmandu.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Krasnoyarsk.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Kuala_Lumpur.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Kuching.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Kuwait.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Macao.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Magadan.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Manila.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Muscat.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Nicosia.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Novosibirsk.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Omsk.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Phnom_Penh.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Pontianak.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Pyongyang.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Qatar.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Rangoon.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Riyadh.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Saigon.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Samarkand.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Seoul.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Shanghai.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Singapore.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Taipei.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Tashkent.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Tbilisi.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Tehran.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Thimphu.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Tokyo.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Ujung_Pandang.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Ulaanbaatar.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Urumqi.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Vientiane.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Vladivostok.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Yakutsk.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Yekaterinburg.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Asia/Yerevan.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Atlantic,
+	  xfcalendar/trunk/libical/zoneinfo/Atlantic/Azores.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Atlantic/Bermuda.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Atlantic/Canary.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Atlantic/Cape_Verde.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Atlantic/Faeroe.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Atlantic/Jan_Mayen.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Atlantic/Madeira.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Atlantic/Reykjavik.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Atlantic/South_Georgia.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Atlantic/St_Helena.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Atlantic/Stanley.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Australia,
+	  xfcalendar/trunk/libical/zoneinfo/Australia/Adelaide.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Australia/Brisbane.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Australia/Broken_Hill.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Australia/Darwin.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Australia/Hobart.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Australia/Lindeman.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Australia/Lord_Howe.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Australia/Melbourne.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Australia/Perth.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Australia/Sydney.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Amsterdam.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Andorra.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Athens.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Belfast.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Belgrade.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Berlin.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Bratislava.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Brussels.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Bucharest.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Budapest.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Chisinau.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Copenhagen.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Dublin.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Gibraltar.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Helsinki.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Istanbul.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Kaliningrad.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Kiev.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Lisbon.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Ljubljana.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/London.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Luxembourg.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Madrid.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Malta.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Minsk.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Monaco.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Moscow.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Nicosia.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Oslo.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Paris.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Prague.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Riga.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Rome.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Samara.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/San_Marino.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Sarajevo.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Simferopol.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Skopje.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Sofia.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Stockholm.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Tallinn.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Tirane.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Uzhgorod.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Vaduz.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Vatican.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Vienna.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Vilnius.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Warsaw.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Zagreb.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Zaporozhye.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Europe/Zurich.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Indian,
+	  xfcalendar/trunk/libical/zoneinfo/Indian/Antananarivo.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Indian/Chagos.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Indian/Christmas.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Indian/Cocos.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Indian/Comoro.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Indian/Kerguelen.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Indian/Mahe.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Indian/Maldives.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Indian/Mauritius.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Indian/Mayotte.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Indian/Reunion.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Makefile.am,
+	  xfcalendar/trunk/libical/zoneinfo/Makefile.in,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Apia.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Auckland.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Chatham.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Easter.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Efate.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Enderbury.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Fakaofo.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Fiji.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Funafuti.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Galapagos.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Gambier.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Guadalcanal.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Guam.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Honolulu.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Johnston.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Kiritimati.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Kosrae.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Kwajalein.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Majuro.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Marquesas.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Midway.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Nauru.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Niue.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Norfolk.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Noumea.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Pago_Pago.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Palau.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Pitcairn.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Ponape.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Port_Moresby.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Rarotonga.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Saipan.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Tahiti.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Tarawa.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Tongatapu.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Truk.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Wake.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Wallis.ics,
+	  xfcalendar/trunk/libical/zoneinfo/Pacific/Yap.ics,
+	  xfcalendar/trunk/libical/zoneinfo/zones.tab: Initial revision
+
+2005-03-02 21:43  juha
+
+	* xfcalendar/trunk/libical-0.24.pc: 4.3.0.1: missing file added
+
+2005-03-02 20:59  juha
+
+	* xfcalendar/trunk/Makefile.am, xfcalendar/trunk/NEWS,
+	  xfcalendar/trunk/README, xfcalendar/trunk/configure.ac,
+	  xfcalendar/trunk/src/callbacks.c, xfcalendar/trunk/src/main.c,
+	  xfcalendar/trunk/src/mainbox.c: 4.3.0.1: use libical
+
+2005-02-25 08:13  juha
+
+	* xfcalendar/trunk/NEWS: minor formatting
+
+2005-02-21 08:39  pollux
+
+	* xfcalendar/trunk/po/ja.po: update JA translations
+
+2005-02-13 20:41  juha
+
+	* xfcalendar/trunk/AUTHORS, xfcalendar/trunk/NEWS: Added myself to
+	  AUTHORS file.
+
+2005-02-13 12:38  pollux
+
+	* xfcalendar/trunk/po/ko.po: update KO translations (with a big
+	  delay)
+
+2005-02-05 18:08  juha
+
+	* xfcalendar/trunk/src/callbacks.c, xfcalendar/trunk/src/main.c,
+	  xfcalendar/trunk/src/mainbox.c: Store position into xfcalendarrc.
+	  Start xfcalender where it was when used last time.
+
+2005-02-02 22:21  juha
+
+	* xfcalendar/trunk/src/main.c, xfcalendar/trunk/src/mainbox.c,
+	  xfcalendar/trunk/src/mainbox.h: Fixing the check if xfcalendar is
+	  already running by making the registration happen much faster
+	  after the check. It is still possible to start more than one
+	  xfcalendar programs, but it happens now much less seldom than
+	  before; the timewindow is now smaller.
+
+2005-02-02 13:23  juha
+
+	* xfcalendar/trunk/plugin/xfcalendar_plugin.c,
+	  xfcalendar/trunk/src/callbacks.c, xfcalendar/trunk/src/main.c,
+	  xfcalendar/trunk/src/mainbox.c: Moved Hide/Show paremeter from
+	  hidden rc file into user visible mcs option. Also some minor
+	  cleaning.
+
+2005-02-01 12:22  juha
+
+	* xfcalendar/trunk/src/about-xfcalendar.c: Added myself to the about
+	  box :)
+
+2005-02-01 11:45  pollux
+
+	* xfcalendar/trunk/po/zh_CN.po: update zh_CN translations
+
+2005-01-31 21:21  juha
+
+	* xfcalendar/trunk/plugin/xfcalendar_plugin.c,
+	  xfcalendar/trunk/src/callbacks.c, xfcalendar/trunk/src/main.c,
+	  xfcalendar/trunk/src/mainbox.c, xfcalendar/trunk/src/mainbox.h:
+	  Added "Show in" parameter to control availability in taskbar,
+	  pager and systray (bug 719). (also minor cleanup of obsoleted
+	  start week day Monday).
+
+2005-01-27 17:23  benny
+
+	* xfcalendar/trunk/Makefile.am: Distribute .desktop.in files, not
+	  the .desktop files.
+
+2005-01-27 13:07  benny
+
+	* xfcalendar/trunk, xfcalendar/trunk/.cvsignore,
+	  xfcalendar/trunk/Makefile.am, xfcalendar/trunk/Makefile.in,
+	  xfcalendar/trunk/aclocal.m4, xfcalendar/trunk/autogen.sh,
+	  xfcalendar/trunk/compile, xfcalendar/trunk/config.guess,
+	  xfcalendar/trunk/config.h.in, xfcalendar/trunk/config.sub,
+	  xfcalendar/trunk/configure, xfcalendar/trunk/configure.ac,
+	  xfcalendar/trunk/depcomp,
+	  xfcalendar/trunk/icons/48x48/Makefile.in,
+	  xfcalendar/trunk/icons/Makefile.in,
+	  xfcalendar/trunk/icons/scalable/Makefile.in,
+	  xfcalendar/trunk/install-sh, xfcalendar/trunk/ltcf-c.sh,
+	  xfcalendar/trunk/ltmain.sh, xfcalendar/trunk/m4,
+	  xfcalendar/trunk/missing, xfcalendar/trunk/mkinstalldirs,
+	  xfcalendar/trunk/plugin, xfcalendar/trunk/plugin/.cvsignore,
+	  xfcalendar/trunk/plugin/Makefile.am,
+	  xfcalendar/trunk/plugin/Makefile.in,
+	  xfcalendar/trunk/plugin/xfce-xfcalendar-settings.desktop,
+	  xfcalendar/trunk/plugin/xfce-xfcalendar-settings.desktop.in,
+	  xfcalendar/trunk/po/ChangeLog, xfcalendar/trunk/po/Makefile.in.in,
+	  xfcalendar/trunk/po/POTFILES.in, xfcalendar/trunk/po/ar.gmo,
+	  xfcalendar/trunk/po/ar.po, xfcalendar/trunk/po/az.gmo,
+	  xfcalendar/trunk/po/az.po, xfcalendar/trunk/po/be.gmo,
+	  xfcalendar/trunk/po/be.po, xfcalendar/trunk/po/bg.gmo,
+	  xfcalendar/trunk/po/bg.po, xfcalendar/trunk/po/ca.gmo,
+	  xfcalendar/trunk/po/ca.po, xfcalendar/trunk/po/cs.gmo,
+	  xfcalendar/trunk/po/cs.po, xfcalendar/trunk/po/de.gmo,
+	  xfcalendar/trunk/po/de.po, xfcalendar/trunk/po/en_GB.gmo,
+	  xfcalendar/trunk/po/en_GB.po, xfcalendar/trunk/po/es.gmo,
+	  xfcalendar/trunk/po/es.po, xfcalendar/trunk/po/et.gmo,
+	  xfcalendar/trunk/po/et.po, xfcalendar/trunk/po/eu.gmo,
+	  xfcalendar/trunk/po/eu.po, xfcalendar/trunk/po/fa.gmo,
+	  xfcalendar/trunk/po/fa.po, xfcalendar/trunk/po/fi.gmo,
+	  xfcalendar/trunk/po/fi.po, xfcalendar/trunk/po/fr.gmo,
+	  xfcalendar/trunk/po/fr.po, xfcalendar/trunk/po/gu.gmo,
+	  xfcalendar/trunk/po/gu.po, xfcalendar/trunk/po/he.gmo,
+	  xfcalendar/trunk/po/he.po, xfcalendar/trunk/po/hi.gmo,
+	  xfcalendar/trunk/po/hi.po, xfcalendar/trunk/po/it.gmo,
+	  xfcalendar/trunk/po/it.po, xfcalendar/trunk/po/ja.gmo,
+	  xfcalendar/trunk/po/ja.po, xfcalendar/trunk/po/ko.gmo,
+	  xfcalendar/trunk/po/ko.po, xfcalendar/trunk/po/lt.gmo,
+	  xfcalendar/trunk/po/lt.po, xfcalendar/trunk/po/ms.gmo,
+	  xfcalendar/trunk/po/ms.po, xfcalendar/trunk/po/nb_NO.gmo,
+	  xfcalendar/trunk/po/nb_NO.po, xfcalendar/trunk/po/nl.gmo,
+	  xfcalendar/trunk/po/nl.po, xfcalendar/trunk/po/pa.gmo,
+	  xfcalendar/trunk/po/pa.po, xfcalendar/trunk/po/pl.gmo,
+	  xfcalendar/trunk/po/pl.po, xfcalendar/trunk/po/pt_BR.gmo,
+	  xfcalendar/trunk/po/pt_BR.po, xfcalendar/trunk/po/pt_PT.gmo,
+	  xfcalendar/trunk/po/pt_PT.po, xfcalendar/trunk/po/ro.gmo,
+	  xfcalendar/trunk/po/ro.po, xfcalendar/trunk/po/ru.gmo,
+	  xfcalendar/trunk/po/ru.po, xfcalendar/trunk/po/sk.gmo,
+	  xfcalendar/trunk/po/sk.po, xfcalendar/trunk/po/sv.gmo,
+	  xfcalendar/trunk/po/sv.po, xfcalendar/trunk/po/ta.gmo,
+	  xfcalendar/trunk/po/ta.po, xfcalendar/trunk/po/tr.gmo,
+	  xfcalendar/trunk/po/tr.po, xfcalendar/trunk/po/uk.gmo,
+	  xfcalendar/trunk/po/uk.po, xfcalendar/trunk/po/vi.gmo,
+	  xfcalendar/trunk/po/vi.po, xfcalendar/trunk/po/xfcalendar.pot,
+	  xfcalendar/trunk/po/zh_CN.gmo, xfcalendar/trunk/po/zh_CN.po,
+	  xfcalendar/trunk/po/zh_TW.gmo, xfcalendar/trunk/po/zh_TW.po,
+	  xfcalendar/trunk/src/Makefile.am,
+	  xfcalendar/trunk/src/Makefile.in, xfcalendar/trunk/stamp-h.in,
+	  xfcalendar/trunk/xfcalendar.desktop,
+	  xfcalendar/trunk/xfcalendar.desktop.in,
+	  xfcalendar/trunk/xfcalendar.spec.in: Removed auto-generated files.
+	  Use xfce4-dev-tools. Use intltool for the .desktop files
+	  translations.
+
+2005-01-22 12:21  pollux
+
+	* xfcalendar/trunk/po/ar.gmo, xfcalendar/trunk/po/az.gmo,
+	  xfcalendar/trunk/po/be.gmo, xfcalendar/trunk/po/bg.gmo,
+	  xfcalendar/trunk/po/ca.gmo, xfcalendar/trunk/po/cs.gmo,
+	  xfcalendar/trunk/po/de.gmo, xfcalendar/trunk/po/en_GB.gmo,
+	  xfcalendar/trunk/po/es.gmo, xfcalendar/trunk/po/et.gmo,
+	  xfcalendar/trunk/po/eu.gmo, xfcalendar/trunk/po/fa.gmo,
+	  xfcalendar/trunk/po/fi.gmo, xfcalendar/trunk/po/fi.po,
+	  xfcalendar/trunk/po/fr.gmo, xfcalendar/trunk/po/gu.gmo,
+	  xfcalendar/trunk/po/he.gmo, xfcalendar/trunk/po/hi.gmo,
+	  xfcalendar/trunk/po/it.gmo, xfcalendar/trunk/po/ja.gmo,
+	  xfcalendar/trunk/po/ko.gmo, xfcalendar/trunk/po/lt.gmo,
+	  xfcalendar/trunk/po/ms.gmo, xfcalendar/trunk/po/nb_NO.gmo,
+	  xfcalendar/trunk/po/nl.gmo, xfcalendar/trunk/po/pa.gmo,
+	  xfcalendar/trunk/po/pl.gmo, xfcalendar/trunk/po/pt_BR.gmo,
+	  xfcalendar/trunk/po/pt_PT.gmo, xfcalendar/trunk/po/ro.gmo,
+	  xfcalendar/trunk/po/ru.gmo, xfcalendar/trunk/po/sk.gmo,
+	  xfcalendar/trunk/po/sv.gmo, xfcalendar/trunk/po/ta.gmo,
+	  xfcalendar/trunk/po/tr.gmo, xfcalendar/trunk/po/uk.gmo,
+	  xfcalendar/trunk/po/vi.gmo, xfcalendar/trunk/po/zh_CN.gmo,
+	  xfcalendar/trunk/po/zh_TW.gmo: update FI translations
+
+2005-01-21 20:24  korbinus
+
+	* xfcalendar/trunk/po/ar.po, xfcalendar/trunk/po/az.po,
+	  xfcalendar/trunk/po/be.po, xfcalendar/trunk/po/bg.po,
+	  xfcalendar/trunk/po/ca.po, xfcalendar/trunk/po/cs.po,
+	  xfcalendar/trunk/po/de.po, xfcalendar/trunk/po/en_GB.po,
+	  xfcalendar/trunk/po/es.po, xfcalendar/trunk/po/et.po,
+	  xfcalendar/trunk/po/eu.po, xfcalendar/trunk/po/fa.po,
+	  xfcalendar/trunk/po/fi.po, xfcalendar/trunk/po/fr.po,
+	  xfcalendar/trunk/po/gu.po, xfcalendar/trunk/po/he.po,
+	  xfcalendar/trunk/po/hi.po, xfcalendar/trunk/po/it.po,
+	  xfcalendar/trunk/po/ja.po, xfcalendar/trunk/po/ko.po,
+	  xfcalendar/trunk/po/lt.po, xfcalendar/trunk/po/ms.po,
+	  xfcalendar/trunk/po/nb_NO.po, xfcalendar/trunk/po/nl.po,
+	  xfcalendar/trunk/po/pa.po, xfcalendar/trunk/po/pl.po,
+	  xfcalendar/trunk/po/pt_BR.po, xfcalendar/trunk/po/pt_PT.po,
+	  xfcalendar/trunk/po/ro.po, xfcalendar/trunk/po/ru.po,
+	  xfcalendar/trunk/po/sk.po, xfcalendar/trunk/po/sv.po,
+	  xfcalendar/trunk/po/ta.po, xfcalendar/trunk/po/tr.po,
+	  xfcalendar/trunk/po/uk.po, xfcalendar/trunk/po/vi.po,
+	  xfcalendar/trunk/po/xfcalendar.pot, xfcalendar/trunk/po/zh_CN.po,
+	  xfcalendar/trunk/po/zh_TW.po: Updating xfcalendar.pot
+
+2005-01-21 20:01  korbinus
+
+	* xfcalendar/trunk/src/mainbox.c, xfcalendar/trunk/src/mainbox.h,
+	  xfcalendar/trunk/src/tray_icon.c,
+	  xfcalendar/trunk/src/tray_icon.h: Fixing a small detail concerning
+	  positioning of the calendar window. Small code cleaning, also.
+
+2005-01-21 14:54  korbinus
+
+	* xfcalendar/trunk/src/main.c, xfcalendar/trunk/src/mainbox.c:
+	  Fixing bugs #679 and #691. Thanks to Juha Kautto for his patch.
+
+2005-01-21 08:29  korbinus
+
+	* xfcalendar/trunk/src/callbacks.c,
+	  xfcalendar/trunk/src/interface.c,
+	  xfcalendar/trunk/src/interface.h: Adding dialog box for preventing
+	  changes to be lost; warning window for removing information in now
+	  transcient
+
+2005-01-08 15:04  pollux
+
+	* xfcalendar/trunk/plugin/xfce-xfcalendar-settings.desktop,
+	  xfcalendar/trunk/po/ru.gmo, xfcalendar/trunk/po/ru.po,
+	  xfcalendar/trunk/xfcalendar.desktop: update RU translations
+
+2005-01-06 19:24  pollux
+
+	* xfcalendar/trunk/configure, xfcalendar/trunk/configure.ac,
+	  xfcalendar/trunk/ltmain.sh, xfcalendar/trunk/po/uk.gmo,
+	  xfcalendar/trunk/po/uk.po: update UK translations
+
+2005-01-05 16:01  pollux
+
+	* xfcalendar/trunk/po/he.gmo, xfcalendar/trunk/po/he.po,
+	  xfcalendar/trunk/src/main.c, xfcalendar/trunk/src/mainbox.c:
+	  update HE translations
+
+2005-01-02 12:51  olivier
+
+	* xfcalendar/trunk/ChangeLog, xfcalendar/trunk/Makefile.in,
+	  xfcalendar/trunk/configure, xfcalendar/trunk/configure.ac,
+	  xfcalendar/trunk/ltmain.sh, xfcalendar/trunk/po/xfcalendar.pot:
+	  Update version and changelog
+
+2004-12-29 19:43  pollux
+
+	* xfcalendar/trunk/src/main.c: fix #616
+
+2004-12-27 19:05  pollux
+
+	* xfcalendar/trunk/plugin/xfcalendar_plugin.c: mcs-plugins now
+	  appear on the mouse pointer screen
+
+2004-12-25 20:33  kelnos
+
+	* xfcalendar/trunk/Makefile.am: fix distcheck-bz2
+
+2004-12-24 00:03  kelnos
+
+	* xfcalendar/trunk/Makefile.am: add dist-bz2 and distcheck-bz2
+	  targets
+
+2004-12-23 21:24  pollux
+
+	* xfcalendar/trunk/plugin/xfce-xfcalendar-settings.desktop,
+	  xfcalendar/trunk/po/et.gmo, xfcalendar/trunk/po/et.po,
+	  xfcalendar/trunk/xfcalendar.desktop: update ET translations
+
+2004-12-22 20:28  benny
+
+	* xfcalendar/trunk/ChangeLog, xfcalendar/trunk/autogen.sh,
+	  xfcalendar/trunk/plugin/Makefile.am,
+	  xfcalendar/trunk/plugin/Makefile.in, xfcalendar/trunk/po/cs.gmo:
+	  Update ChangeLog. Fix make distcheck.
+
+2004-12-21 09:03  kelnos
+
+	* xfcalendar/trunk/po/cs.po: add/update czech translations
+
+2004-12-20 21:32  pollux
+
+	* xfcalendar/trunk/configure, xfcalendar/trunk/configure.ac,
+	  xfcalendar/trunk/po/nb_NO.gmo, xfcalendar/trunk/po/nb_NO.po,
+	  xfcalendar/trunk/po/no.gmo, xfcalendar/trunk/po/no.po: rename NO
+	  pofiles to no_NB
+
+2004-12-20 21:00  jasper
+
+	* xfcalendar/trunk/ChangeLog, xfcalendar/trunk/configure,
+	  xfcalendar/trunk/configure.ac: Update versions and ChangeLog
+
+2004-12-15 18:39  pollux
+
+	* xfcalendar/trunk/po/zh_TW.gmo, xfcalendar/trunk/po/zh_TW.po:
+	  update ZH_TW translations
+
+2004-12-14 20:33  pollux
+
+	* xfcalendar/trunk/configure, xfcalendar/trunk/configure.ac,
+	  xfcalendar/trunk/po/ko.gmo, xfcalendar/trunk/po/ro.gmo,
+	  xfcalendar/trunk/po/ro.po: add RO translations
+
+2004-12-13 22:08  pollux
+
+	* xfcalendar/trunk/po/ko.po: update KO translations
+
+2004-12-05 21:20  pollux
+
+	* xfcalendar/trunk/configure, xfcalendar/trunk/configure.ac,
+	  xfcalendar/trunk/po/en_GB.gmo, xfcalendar/trunk/po/en_GB.po: add
+	  en_GB translations
+
+2004-12-05 20:50  pollux
+
+	* xfcalendar/trunk/po/ko.gmo, xfcalendar/trunk/po/ko.po,
+	  xfcalendar/trunk/xfcalendar.desktop: update KO translations and
+	  add screenshots in xfprint doc
+
+2004-12-04 16:41  benny
+
+	* xfcalendar/trunk/ChangeLog, xfcalendar/trunk/configure,
+	  xfcalendar/trunk/configure.ac, xfcalendar/trunk/ltmain.sh: Update
+	  version and ChangeLog.
+
+2004-11-28 18:01  pollux
+
+	* xfcalendar/trunk/po/tr.gmo, xfcalendar/trunk/po/tr.po: update TR
 	  translations
 
-2004-12-13 23:08  pollux
+2004-11-26 19:06  pollux
 
-	* po/ko.po: update KO translations
-
-2004-12-05 22:20  pollux
-
-	* configure, configure.ac, po/en_GB.gmo, po/en_GB.po: add en_GB
+	* xfcalendar/trunk/po/ko.gmo, xfcalendar/trunk/po/ko.po: update KO
 	  translations
 
-2004-12-05 21:50  pollux
+2004-11-13 18:01  olivier
 
-	* xfcalendar.desktop, po/ko.gmo, po/ko.po: update KO translations
-	  and add screenshots in xfprint doc
+	* xfcalendar/trunk/ChangeLog: Update ChangeLog
 
-2004-12-04 17:41  benny
+2004-11-12 19:36  pollux
 
-	* ChangeLog, configure, configure.ac, ltmain.sh: Update version and
-	  ChangeLog.
+	* xfcalendar/trunk/plugin/xfce-xfcalendar-settings.desktop,
+	  xfcalendar/trunk/po/pt_BR.gmo, xfcalendar/trunk/po/pt_BR.po,
+	  xfcalendar/trunk/xfcalendar.desktop: update pt_BR translations
 
-2004-11-28 19:01  pollux
+2004-11-06 16:23  olivier
 
-	* po/: tr.gmo, tr.po: update TR translations
-
-2004-11-26 20:06  pollux
-
-	* po/: ko.gmo, ko.po: update KO translations
-
-2004-11-13 19:01  olivier
-
-	* ChangeLog: Update ChangeLog
-
-2004-11-12 20:36  pollux
-
-	* xfcalendar.desktop, plugin/xfce-xfcalendar-settings.desktop,
-	  po/pt_BR.gmo, po/pt_BR.po: update pt_BR translations
-
-2004-11-06 17:23  olivier
-
-	* ChangeLog, Makefile.in, aclocal.m4, compile, config.guess,
-	  config.sub, configure, configure.ac, depcomp, install-sh,
-	  missing, icons/Makefile.in, icons/48x48/Makefile.in,
-	  icons/scalable/Makefile.in, plugin/Makefile.in, src/Makefile.in:
-	  Update automake/autoconf/libtool/gettext versions to generate the
+	* xfcalendar/trunk/ChangeLog, xfcalendar/trunk/Makefile.in,
+	  xfcalendar/trunk/aclocal.m4, xfcalendar/trunk/compile,
+	  xfcalendar/trunk/config.guess, xfcalendar/trunk/config.sub,
+	  xfcalendar/trunk/configure, xfcalendar/trunk/configure.ac,
+	  xfcalendar/trunk/depcomp,
+	  xfcalendar/trunk/icons/48x48/Makefile.in,
+	  xfcalendar/trunk/icons/Makefile.in,
+	  xfcalendar/trunk/icons/scalable/Makefile.in,
+	  xfcalendar/trunk/install-sh, xfcalendar/trunk/missing,
+	  xfcalendar/trunk/plugin/Makefile.in,
+	  xfcalendar/trunk/src/Makefile.in: Update
+	  automake/autoconf/libtool/gettext versions to generate the
 	  configure scripts and Makefiles, Update versions of all packages
 	  to 4.1.99.1 (ie 4.2 RC1), Update ChangeLogs.
 
-2004-11-05 16:18  pollux
+2004-11-05 15:18  pollux
 
-	* po/: fi.gmo, fi.po: update FI translations
-
-2004-11-03 00:11  pollux
-
-	* po/: ta.gmo, ta.po: update TA translations
-
-2004-10-30 21:03  olivier
-
-	* ChangeLog, po/xfcalendar.pot: Global update for 4.1.91 (Xfce 4.2
-	  beta 2)
-
-2004-10-30 16:42  jasper
-
-	* po/: nl.gmo, nl.po: Update a few nl translations
-
-2004-10-30 16:00  pollux
-
-	* po/: lt.gmo, lt.po: update LT translations
-
-2004-10-28 13:55  pollux
-
-	* xfcalendar.desktop, plugin/xfce-xfcalendar-settings.desktop,
-	  po/he.gmo, po/he.po: update HE translations
-
-2004-10-23 16:45  olivier
-
-	* ChangeLog: Update ChangeLog
-
-2004-10-22 22:38  olivier
-
-	* ChangeLog, configure, configure.ac, ltmain.sh: Updated versions
-	  and change logs
-
-2004-10-22 21:33  olivier
-
-	* plugin/xfce-xfcalendar-settings.desktop: Theme fixes update
-	  locale [fr] for desktop files
-
-2004-10-13 11:59  pollux
-
-	* configure, configure.ac, xfcalendar.desktop,
-	  plugin/xfce-xfcalendar-settings.desktop, po/ar.gmo, po/az.gmo,
-	  po/be.gmo, po/bg.gmo, po/ca.gmo, po/cs.gmo, po/de.gmo, po/es.gmo,
-	  po/et.gmo, po/eu.gmo, po/fi.gmo, po/fi.po, po/fr.gmo, po/gu.gmo,
-	  po/he.gmo, po/hi.gmo, po/it.gmo, po/ja.gmo, po/ko.gmo, po/lt.gmo,
-	  po/ms.gmo, po/nl.gmo, po/no.gmo, po/pa.gmo, po/pl.gmo,
-	  po/pt_BR.gmo, po/ru.gmo, po/sk.gmo, po/sv.gmo, po/ta.gmo,
-	  po/tr.gmo, po/vi.gmo, po/zh_CN.gmo, po/zh_TW.gmo: update FI
+	* xfcalendar/trunk/po/fi.gmo, xfcalendar/trunk/po/fi.po: update FI
 	  translations
 
-2004-10-11 18:30  benny
+2004-11-02 23:11  pollux
 
-	* po/: ar.po, az.po, be.po, bg.po, ca.po, cs.po, de.po, es.po,
-	  et.po, eu.po, fr.po, gu.po, he.po, hi.po, it.po, ja.po, ko.po,
-	  lt.po, ms.po, nl.po, no.po, pa.po, pl.po, pt_BR.po, ru.po, sk.po,
-	  sv.po, ta.po, tr.po, vi.po, zh_CN.po, zh_TW.po: update-po for
-	  Moe.
-
-2004-10-10 13:52  pollux
-
-	* configure, configure.ac, po/pt_PT.gmo, po/pt_PT.po: update pt_PT
+	* xfcalendar/trunk/po/ta.gmo, xfcalendar/trunk/po/ta.po: update TA
 	  translations
 
-2004-10-09 16:20  pollux
+2004-10-30 19:03  olivier
 
-	* configure, configure.ac, po/fa.gmo, po/fa.po, po/fa_IR.gmo,
-	  po/fa_IR.po: update FA translations
+	* xfcalendar/trunk/ChangeLog, xfcalendar/trunk/po/xfcalendar.pot:
+	  Global update for 4.1.91 (Xfce 4.2 beta 2)
 
-2004-10-09 15:48  pollux
+2004-10-30 14:42  jasper
 
-	* po/es.gmo: Punjabi translations update from
+	* xfcalendar/trunk/po/nl.gmo, xfcalendar/trunk/po/nl.po: Update a
+	  few nl translations
+
+2004-10-30 14:00  pollux
+
+	* xfcalendar/trunk/po/lt.gmo, xfcalendar/trunk/po/lt.po: update LT
+	  translations
+
+2004-10-28 11:55  pollux
+
+	* xfcalendar/trunk/plugin/xfce-xfcalendar-settings.desktop,
+	  xfcalendar/trunk/po/he.gmo, xfcalendar/trunk/po/he.po,
+	  xfcalendar/trunk/xfcalendar.desktop: update HE translations
+
+2004-10-23 14:45  olivier
+
+	* xfcalendar/trunk/ChangeLog: Update ChangeLog
+
+2004-10-22 20:38  olivier
+
+	* xfcalendar/trunk/ChangeLog, xfcalendar/trunk/configure,
+	  xfcalendar/trunk/configure.ac, xfcalendar/trunk/ltmain.sh: Updated
+	  versions and change logs
+
+2004-10-22 19:33  olivier
+
+	* xfcalendar/trunk/plugin/xfce-xfcalendar-settings.desktop: Theme
+	  fixes update locale [fr] for desktop files
+
+2004-10-13 09:59  pollux
+
+	* xfcalendar/trunk/configure, xfcalendar/trunk/configure.ac,
+	  xfcalendar/trunk/plugin/xfce-xfcalendar-settings.desktop,
+	  xfcalendar/trunk/po/ar.gmo, xfcalendar/trunk/po/az.gmo,
+	  xfcalendar/trunk/po/be.gmo, xfcalendar/trunk/po/bg.gmo,
+	  xfcalendar/trunk/po/ca.gmo, xfcalendar/trunk/po/cs.gmo,
+	  xfcalendar/trunk/po/de.gmo, xfcalendar/trunk/po/es.gmo,
+	  xfcalendar/trunk/po/et.gmo, xfcalendar/trunk/po/eu.gmo,
+	  xfcalendar/trunk/po/fi.gmo, xfcalendar/trunk/po/fi.po,
+	  xfcalendar/trunk/po/fr.gmo, xfcalendar/trunk/po/gu.gmo,
+	  xfcalendar/trunk/po/he.gmo, xfcalendar/trunk/po/hi.gmo,
+	  xfcalendar/trunk/po/it.gmo, xfcalendar/trunk/po/ja.gmo,
+	  xfcalendar/trunk/po/ko.gmo, xfcalendar/trunk/po/lt.gmo,
+	  xfcalendar/trunk/po/ms.gmo, xfcalendar/trunk/po/nl.gmo,
+	  xfcalendar/trunk/po/no.gmo, xfcalendar/trunk/po/pa.gmo,
+	  xfcalendar/trunk/po/pl.gmo, xfcalendar/trunk/po/pt_BR.gmo,
+	  xfcalendar/trunk/po/ru.gmo, xfcalendar/trunk/po/sk.gmo,
+	  xfcalendar/trunk/po/sv.gmo, xfcalendar/trunk/po/ta.gmo,
+	  xfcalendar/trunk/po/tr.gmo, xfcalendar/trunk/po/vi.gmo,
+	  xfcalendar/trunk/po/zh_CN.gmo, xfcalendar/trunk/po/zh_TW.gmo,
+	  xfcalendar/trunk/xfcalendar.desktop: update FI translations
+
+2004-10-11 16:30  benny
+
+	* xfcalendar/trunk/po/ar.po, xfcalendar/trunk/po/az.po,
+	  xfcalendar/trunk/po/be.po, xfcalendar/trunk/po/bg.po,
+	  xfcalendar/trunk/po/ca.po, xfcalendar/trunk/po/cs.po,
+	  xfcalendar/trunk/po/de.po, xfcalendar/trunk/po/es.po,
+	  xfcalendar/trunk/po/et.po, xfcalendar/trunk/po/eu.po,
+	  xfcalendar/trunk/po/fr.po, xfcalendar/trunk/po/gu.po,
+	  xfcalendar/trunk/po/he.po, xfcalendar/trunk/po/hi.po,
+	  xfcalendar/trunk/po/it.po, xfcalendar/trunk/po/ja.po,
+	  xfcalendar/trunk/po/ko.po, xfcalendar/trunk/po/lt.po,
+	  xfcalendar/trunk/po/ms.po, xfcalendar/trunk/po/nl.po,
+	  xfcalendar/trunk/po/no.po, xfcalendar/trunk/po/pa.po,
+	  xfcalendar/trunk/po/pl.po, xfcalendar/trunk/po/pt_BR.po,
+	  xfcalendar/trunk/po/ru.po, xfcalendar/trunk/po/sk.po,
+	  xfcalendar/trunk/po/sv.po, xfcalendar/trunk/po/ta.po,
+	  xfcalendar/trunk/po/tr.po, xfcalendar/trunk/po/vi.po,
+	  xfcalendar/trunk/po/zh_CN.po, xfcalendar/trunk/po/zh_TW.po:
+	  update-po for Moe.
+
+2004-10-10 11:52  pollux
+
+	* xfcalendar/trunk/configure, xfcalendar/trunk/configure.ac,
+	  xfcalendar/trunk/po/pt_PT.gmo, xfcalendar/trunk/po/pt_PT.po:
+	  update pt_PT translations
+
+2004-10-09 14:20  pollux
+
+	* xfcalendar/trunk/configure, xfcalendar/trunk/configure.ac,
+	  xfcalendar/trunk/po/fa.gmo, xfcalendar/trunk/po/fa.po,
+	  xfcalendar/trunk/po/fa_IR.gmo, xfcalendar/trunk/po/fa_IR.po:
+	  update FA translations
+
+2004-10-09 13:48  pollux
+
+	* xfcalendar/trunk/po/es.gmo: Punjabi translations update from
 	  jaswinderlinux@netscape.net
 
-2004-10-08 15:43  edscott
+2004-10-08 13:43  edscott
 
-	* po/es.po: translation updates.
+	* xfcalendar/trunk/po/es.po: translation updates.
 
-2004-10-07 22:35  benny
+2004-10-07 20:35  benny
 
-	* Makefile.in, aclocal.m4, config.guess, config.sub, configure,
-	  depcomp, install-sh, ltmain.sh, icons/Makefile.in,
-	  icons/48x48/Makefile.in, icons/scalable/Makefile.in, m4/debug.m4,
-	  m4/glib-gettext.m4, m4/pkg.m4, plugin/Makefile.in,
-	  src/Makefile.in: Added --enable-final (-O1 for GNU ld) as per
-	  Jaspers request. Added missing m4 files.
+	* xfcalendar/trunk/Makefile.in, xfcalendar/trunk/aclocal.m4,
+	  xfcalendar/trunk/config.guess, xfcalendar/trunk/config.sub,
+	  xfcalendar/trunk/configure, xfcalendar/trunk/depcomp,
+	  xfcalendar/trunk/icons/48x48/Makefile.in,
+	  xfcalendar/trunk/icons/Makefile.in,
+	  xfcalendar/trunk/icons/scalable/Makefile.in,
+	  xfcalendar/trunk/install-sh, xfcalendar/trunk/ltmain.sh,
+	  xfcalendar/trunk/m4/debug.m4, xfcalendar/trunk/m4/glib-gettext.m4,
+	  xfcalendar/trunk/m4/pkg.m4, xfcalendar/trunk/plugin/Makefile.in,
+	  xfcalendar/trunk/src/Makefile.in: Added --enable-final (-O1 for
+	  GNU ld) as per Jaspers request. Added missing m4 files.
 
-2004-10-05 23:22  korbinus
+2004-10-05 21:22  korbinus
 
-	* Makefile.in, aclocal.m4, config.guess, config.sub, configure,
-	  depcomp, install-sh, ltmain.sh, icons/Makefile.in,
-	  icons/48x48/Makefile.in, icons/scalable/Makefile.in,
-	  plugin/Makefile.in, src/Makefile.in, src/tray_icon.c: Fix bug
-	  #352
+	* xfcalendar/trunk/Makefile.in, xfcalendar/trunk/aclocal.m4,
+	  xfcalendar/trunk/config.guess, xfcalendar/trunk/config.sub,
+	  xfcalendar/trunk/configure, xfcalendar/trunk/depcomp,
+	  xfcalendar/trunk/icons/48x48/Makefile.in,
+	  xfcalendar/trunk/icons/Makefile.in,
+	  xfcalendar/trunk/icons/scalable/Makefile.in,
+	  xfcalendar/trunk/install-sh, xfcalendar/trunk/ltmain.sh,
+	  xfcalendar/trunk/plugin/Makefile.in,
+	  xfcalendar/trunk/src/Makefile.in,
+	  xfcalendar/trunk/src/tray_icon.c: Fix bug #352
 
-2004-10-03 18:14  pollux
+2004-10-03 16:14  pollux
 
-	* configure, configure.ac, ltmain.sh, po/pa.gmo, po/pa.po: Punjabi
-	  translations (PA) from jaswinderlinux@netscape.net
+	* xfcalendar/trunk/configure, xfcalendar/trunk/configure.ac,
+	  xfcalendar/trunk/ltmain.sh, xfcalendar/trunk/po/pa.gmo,
+	  xfcalendar/trunk/po/pa.po: Punjabi translations (PA) from
+	  jaswinderlinux@netscape.net
 
-2004-10-03 17:43  pollux
+2004-10-03 15:43  pollux
 
-	* xfcalendar.desktop, plugin/xfce-xfcalendar-settings.desktop:
-	  zh_TW translations of desktop files from Ambrose Li
-	  <acli@ada.dhs.org>
+	* xfcalendar/trunk/plugin/xfce-xfcalendar-settings.desktop,
+	  xfcalendar/trunk/xfcalendar.desktop: zh_TW translations of desktop
+	  files from Ambrose Li <acli@ada.dhs.org>
 
-2004-10-02 15:28  olivier
+2004-10-02 13:28  olivier
 
-	* ChangeLog, configure, configure.ac, ltmain.sh, po/xfcalendar.pot:
-	  Update all files for 4.2 beta 1
+	* xfcalendar/trunk/ChangeLog, xfcalendar/trunk/configure,
+	  xfcalendar/trunk/configure.ac, xfcalendar/trunk/ltmain.sh,
+	  xfcalendar/trunk/po/xfcalendar.pot: Update all files for 4.2 beta
+	  1
 
-2004-09-30 17:48  pollux
+2004-09-30 15:48  pollux
 
-	* po/: it.gmo, it.po: updated Italian translations from Luca
-	  Marrocco <buildup@libero.it>
+	* xfcalendar/trunk/po/it.gmo, xfcalendar/trunk/po/it.po: updated
+	  Italian translations from Luca Marrocco <buildup@libero.it>
 
-2004-09-29 10:22  pollux
+2004-09-29 08:22  pollux
 
-	* po/: zh_TW.gmo, zh_TW.po: updated zh_TW translations from Ambrose
-	  Li <acli@ada.dhs.org>
+	* xfcalendar/trunk/po/zh_TW.gmo, xfcalendar/trunk/po/zh_TW.po:
+	  updated zh_TW translations from Ambrose Li <acli@ada.dhs.org>
 
-2004-09-29 09:59  pollux
+2004-09-29 07:59  pollux
 
-	* po/: zh_CN.gmo, zh_CN.po: updated zh_CN translations from yongtao
-	  yang <yongtao.yang@gmail.com>
+	* xfcalendar/trunk/po/zh_CN.gmo, xfcalendar/trunk/po/zh_CN.po:
+	  updated zh_CN translations from yongtao yang
+	  <yongtao.yang@gmail.com>
 
-2004-09-26 10:57  jasper
+2004-09-26 08:57  jasper
 
-	* src/: about-xfcalendar.c, mainbox.c: Fix C99-isms
+	* xfcalendar/trunk/src/about-xfcalendar.c,
+	  xfcalendar/trunk/src/mainbox.c: Fix C99-isms
 
-2004-09-23 23:36  pollux
+2004-09-23 21:36  pollux
 
-	* configure, configure.ac, ltmain.sh, po/gu.gmo, po/gu.po,
-	  po/nl.gmo: add Gujarati translations (GU) from Ankit Patel
-	  <ankit@redhat.com>
+	* xfcalendar/trunk/configure, xfcalendar/trunk/configure.ac,
+	  xfcalendar/trunk/ltmain.sh, xfcalendar/trunk/po/gu.gmo,
+	  xfcalendar/trunk/po/gu.po, xfcalendar/trunk/po/nl.gmo: add
+	  Gujarati translations (GU) from Ankit Patel <ankit@redhat.com>
 
-2004-09-23 11:09  jasper
+2004-09-23 09:09  jasper
 
-	* plugin/xfce-xfcalendar-settings.desktop, po/nl.po: Better
-	  translation
+	* xfcalendar/trunk/plugin/xfce-xfcalendar-settings.desktop,
+	  xfcalendar/trunk/po/nl.po: Better translation
 
-2004-09-23 10:22  jasper
+2004-09-23 08:22  jasper
 
-	* xfcalendar.desktop, plugin/xfce-xfcalendar-settings.desktop: Add
-	  nl translations
+	* xfcalendar/trunk/plugin/xfce-xfcalendar-settings.desktop,
+	  xfcalendar/trunk/xfcalendar.desktop: Add nl translations
 
-2004-09-22 05:18  kelnos
+2004-09-22 03:18  kelnos
 
-	* xfcalendar.desktop, plugin/xfce-xfcalendar-settings.desktop: add
-	  GenericName tags to settings .desktop files
+	* xfcalendar/trunk/plugin/xfce-xfcalendar-settings.desktop,
+	  xfcalendar/trunk/xfcalendar.desktop: add GenericName tags to
+	  settings .desktop files
 
-2004-09-21 13:51  jasper
+2004-09-21 11:51  jasper
 
-	* po/: ar.gmo, ar.po, az.gmo, az.po, be.gmo, be.po, bg.gmo, bg.po,
-	  ca.gmo, ca.po, cs.gmo, cs.po, de.gmo, de.po, es.gmo, es.po,
-	  et.gmo, et.po, eu.gmo, eu.po, fa_IR.gmo, fa_IR.po, fr.gmo, fr.po,
-	  he.gmo, he.po, hi.gmo, hi.po, it.gmo, it.po, ja.gmo, ja.po,
-	  ko.gmo, ko.po, lt.gmo, lt.po, ms.gmo, ms.po, nl.gmo, nl.po,
-	  no.gmo, no.po, pl.gmo, pl.po, pt_BR.gmo, pt_BR.po, ru.gmo, ru.po,
-	  sk.gmo, sk.po, sv.gmo, sv.po, ta.gmo, ta.po, tr.gmo, tr.po,
-	  vi.gmo, vi.po, zh_CN.gmo, zh_CN.po, zh_TW.gmo, zh_TW.po: Run make
-	  update-po at Moe's request.
+	* xfcalendar/trunk/po/ar.gmo, xfcalendar/trunk/po/ar.po,
+	  xfcalendar/trunk/po/az.gmo, xfcalendar/trunk/po/az.po,
+	  xfcalendar/trunk/po/be.gmo, xfcalendar/trunk/po/be.po,
+	  xfcalendar/trunk/po/bg.gmo, xfcalendar/trunk/po/bg.po,
+	  xfcalendar/trunk/po/ca.gmo, xfcalendar/trunk/po/ca.po,
+	  xfcalendar/trunk/po/cs.gmo, xfcalendar/trunk/po/cs.po,
+	  xfcalendar/trunk/po/de.gmo, xfcalendar/trunk/po/de.po,
+	  xfcalendar/trunk/po/es.gmo, xfcalendar/trunk/po/es.po,
+	  xfcalendar/trunk/po/et.gmo, xfcalendar/trunk/po/et.po,
+	  xfcalendar/trunk/po/eu.gmo, xfcalendar/trunk/po/eu.po,
+	  xfcalendar/trunk/po/fa_IR.gmo, xfcalendar/trunk/po/fa_IR.po,
+	  xfcalendar/trunk/po/fr.gmo, xfcalendar/trunk/po/fr.po,
+	  xfcalendar/trunk/po/he.gmo, xfcalendar/trunk/po/he.po,
+	  xfcalendar/trunk/po/hi.gmo, xfcalendar/trunk/po/hi.po,
+	  xfcalendar/trunk/po/it.gmo, xfcalendar/trunk/po/it.po,
+	  xfcalendar/trunk/po/ja.gmo, xfcalendar/trunk/po/ja.po,
+	  xfcalendar/trunk/po/ko.gmo, xfcalendar/trunk/po/ko.po,
+	  xfcalendar/trunk/po/lt.gmo, xfcalendar/trunk/po/lt.po,
+	  xfcalendar/trunk/po/ms.gmo, xfcalendar/trunk/po/ms.po,
+	  xfcalendar/trunk/po/nl.gmo, xfcalendar/trunk/po/nl.po,
+	  xfcalendar/trunk/po/no.gmo, xfcalendar/trunk/po/no.po,
+	  xfcalendar/trunk/po/pl.gmo, xfcalendar/trunk/po/pl.po,
+	  xfcalendar/trunk/po/pt_BR.gmo, xfcalendar/trunk/po/pt_BR.po,
+	  xfcalendar/trunk/po/ru.gmo, xfcalendar/trunk/po/ru.po,
+	  xfcalendar/trunk/po/sk.gmo, xfcalendar/trunk/po/sk.po,
+	  xfcalendar/trunk/po/sv.gmo, xfcalendar/trunk/po/sv.po,
+	  xfcalendar/trunk/po/ta.gmo, xfcalendar/trunk/po/ta.po,
+	  xfcalendar/trunk/po/tr.gmo, xfcalendar/trunk/po/tr.po,
+	  xfcalendar/trunk/po/vi.gmo, xfcalendar/trunk/po/vi.po,
+	  xfcalendar/trunk/po/zh_CN.gmo, xfcalendar/trunk/po/zh_CN.po,
+	  xfcalendar/trunk/po/zh_TW.gmo, xfcalendar/trunk/po/zh_TW.po: Run
+	  make update-po at Moe's request.
 
-2004-09-21 00:22  olivier
+2004-09-20 22:22  olivier
 
-	* ChangeLog: Update all ChangeLogs
+	* xfcalendar/trunk/ChangeLog: Update all ChangeLogs
 
-2004-09-20 23:55  olivier
+2004-09-20 21:55  olivier
 
-	* ltmain.sh, po/de.gmo, po/xfcalendar.pot, src/Makefile.am,
-	  src/Makefile.in: Fix make dist
+	* xfcalendar/trunk/ltmain.sh, xfcalendar/trunk/po/de.gmo,
+	  xfcalendar/trunk/po/xfcalendar.pot,
+	  xfcalendar/trunk/src/Makefile.am,
+	  xfcalendar/trunk/src/Makefile.in: Fix make dist
 
-2004-09-18 23:23  moe
+2004-09-18 21:23  moe
 
-	* po/de.po: Translation fixes
+	* xfcalendar/trunk/po/de.po: Translation fixes
 
-2004-09-18 22:50  jasper
+2004-09-18 20:50  jasper
 
-	* plugin/xfcalendar_plugin.c: Fix translations for mcs plugins
+	* xfcalendar/trunk/plugin/xfcalendar_plugin.c: Fix translations for
+	  mcs plugins
 
-2004-09-18 20:27  jasper
+2004-09-18 18:27  jasper
 
-	* plugin/xfcalendar_plugin.c: autogen for Maarten + basedir tweaks
+	* xfcalendar/trunk/plugin/xfcalendar_plugin.c: autogen for Maarten +
+	  basedir tweaks
 
-2004-09-18 19:18  moe
+2004-09-18 17:18  moe
 
-	* po/de.po: Slightly modified
+	* xfcalendar/trunk/po/de.po: Slightly modified
 
-2004-09-18 18:41  pollux
+2004-09-18 16:41  pollux
 
-	* po/: de.gmo, eu.gmo, eu.po: update EU translations
+	* xfcalendar/trunk/po/de.gmo, xfcalendar/trunk/po/eu.gmo,
+	  xfcalendar/trunk/po/eu.po: update EU translations
 
-2004-09-18 12:09  moe
+2004-09-18 10:09  moe
 
-	* po/de.po: Got ya!
+	* xfcalendar/trunk/po/de.po: Got ya!
 
-2004-09-18 02:02  moe
+2004-09-18 00:02  moe
 
-	* po/de.po: Updating these for alpha release. Not yet finished ..
-	  but I'm just too tired to continue. Needs extensive spell
-	  checking and approvement (Note to myself: Write mail to the
-	  list!).
+	* xfcalendar/trunk/po/de.po: Updating these for alpha release. Not
+	  yet finished .. but I'm just too tired to continue. Needs
+	  extensive spell checking and approvement (Note to myself: Write
+	  mail to the list!).
 
-2004-09-17 00:10  pollux
+2004-09-16 22:10  pollux
 
-	* configure, configure.ac, po/be.gmo, po/be.po: add BE translations
-	  from Ales Nyakhaychyk <nab@mail.by>
+	* xfcalendar/trunk/configure, xfcalendar/trunk/configure.ac,
+	  xfcalendar/trunk/po/be.gmo, xfcalendar/trunk/po/be.po: add BE
+	  translations from Ales Nyakhaychyk <nab@mail.by>
 
-2004-09-15 22:54  jasper
+2004-09-15 20:54  jasper
 
-	* plugin/xfcalendar_plugin.c, src/callbacks.c, src/callbacks.h,
-	  src/main.c, src/mainbox.c, src/reminder.c: Basedir spec changes +
-	  fix for crash when dismissing reminder
+	* xfcalendar/trunk/plugin/xfcalendar_plugin.c,
+	  xfcalendar/trunk/src/callbacks.c,
+	  xfcalendar/trunk/src/callbacks.h, xfcalendar/trunk/src/main.c,
+	  xfcalendar/trunk/src/mainbox.c, xfcalendar/trunk/src/reminder.c:
+	  Basedir spec changes + fix for crash when dismissing reminder
 
-2004-09-10 22:49  pollux
+2004-09-10 20:49  pollux
 
-	* po/: he.gmo, he.po: HE translations update from Yuval Tanny
-	  <tanai@int.gov.il>
+	* xfcalendar/trunk/po/he.gmo, xfcalendar/trunk/po/he.po: HE
+	  translations update from Yuval Tanny <tanai@int.gov.il>
 
-2004-09-09 20:51  pollux
+2004-09-09 18:51  pollux
 
-	* configure, configure.ac, po/vi.gmo, po/vi.po: update VI
+	* xfcalendar/trunk/configure, xfcalendar/trunk/configure.ac,
+	  xfcalendar/trunk/po/vi.gmo, xfcalendar/trunk/po/vi.po: update VI
 	  translations
 
-2004-09-06 16:08  pollux
+2004-09-06 14:08  pollux
 
-	* Makefile.in, aclocal.m4, config.guess, config.sub, configure,
-	  configure.ac, depcomp, install-sh, ltmain.sh, icons/Makefile.in,
-	  icons/48x48/Makefile.in, icons/scalable/Makefile.in,
-	  plugin/Makefile.in, po/et.gmo, po/et.po, src/Makefile.in: ET
+	* xfcalendar/trunk/Makefile.in, xfcalendar/trunk/aclocal.m4,
+	  xfcalendar/trunk/config.guess, xfcalendar/trunk/config.sub,
+	  xfcalendar/trunk/configure, xfcalendar/trunk/configure.ac,
+	  xfcalendar/trunk/depcomp,
+	  xfcalendar/trunk/icons/48x48/Makefile.in,
+	  xfcalendar/trunk/icons/Makefile.in,
+	  xfcalendar/trunk/icons/scalable/Makefile.in,
+	  xfcalendar/trunk/install-sh, xfcalendar/trunk/ltmain.sh,
+	  xfcalendar/trunk/plugin/Makefile.in, xfcalendar/trunk/po/et.gmo,
+	  xfcalendar/trunk/po/et.po, xfcalendar/trunk/src/Makefile.in: ET
 	  translations from Peeter Vois <Peeter.Vois@proekspert.ee>
 
-2004-08-29 23:51  korbinus
+2004-08-29 21:51  korbinus
 
-	* Makefile.in, aclocal.m4, config.guess, config.sub, configure,
-	  depcomp, install-sh, ltmain.sh, icons/Makefile.in,
-	  icons/48x48/Makefile.in, icons/scalable/Makefile.in,
-	  plugin/Makefile.in, src/Makefile.in, src/mainbox.c: Try to fix
-	  g_object_unref bug. Thanks to Benny.
+	* xfcalendar/trunk/Makefile.in, xfcalendar/trunk/aclocal.m4,
+	  xfcalendar/trunk/config.guess, xfcalendar/trunk/config.sub,
+	  xfcalendar/trunk/configure, xfcalendar/trunk/depcomp,
+	  xfcalendar/trunk/icons/48x48/Makefile.in,
+	  xfcalendar/trunk/icons/Makefile.in,
+	  xfcalendar/trunk/icons/scalable/Makefile.in,
+	  xfcalendar/trunk/install-sh, xfcalendar/trunk/ltmain.sh,
+	  xfcalendar/trunk/plugin/Makefile.in,
+	  xfcalendar/trunk/src/Makefile.in, xfcalendar/trunk/src/mainbox.c:
+	  Try to fix g_object_unref bug. Thanks to Benny.
 
-2004-08-29 18:03  pollux
+2004-08-29 16:03  pollux
 
-	* po/: az.gmo, az.po: AZ translations update from Metin Amiroff
-	  <metin@karegen.com>
+	* xfcalendar/trunk/po/az.gmo, xfcalendar/trunk/po/az.po: AZ
+	  translations update from Metin Amiroff <metin@karegen.com>
 
-2004-08-28 21:20  pollux
+2004-08-28 19:20  pollux
 
-	* Makefile.in, aclocal.m4, config.guess, config.sub, configure,
-	  configure.ac, depcomp, install-sh, ltmain.sh, icons/Makefile.in,
-	  icons/48x48/Makefile.in, icons/scalable/Makefile.in,
-	  plugin/Makefile.in, po/sk.gmo, po/sk.po, src/Makefile.in: add
+	* xfcalendar/trunk/Makefile.in, xfcalendar/trunk/aclocal.m4,
+	  xfcalendar/trunk/config.guess, xfcalendar/trunk/config.sub,
+	  xfcalendar/trunk/configure, xfcalendar/trunk/configure.ac,
+	  xfcalendar/trunk/depcomp,
+	  xfcalendar/trunk/icons/48x48/Makefile.in,
+	  xfcalendar/trunk/icons/Makefile.in,
+	  xfcalendar/trunk/icons/scalable/Makefile.in,
+	  xfcalendar/trunk/install-sh, xfcalendar/trunk/ltmain.sh,
+	  xfcalendar/trunk/plugin/Makefile.in, xfcalendar/trunk/po/sk.gmo,
+	  xfcalendar/trunk/po/sk.po, xfcalendar/trunk/src/Makefile.in: add
 	  Slovak translations from Juraj Brosz <Juraj.Brosz@pobox.sk>
 
-2004-08-25 23:04  olivier
+2004-08-25 21:04  olivier
 
-	* po/POTFILES.in, po/ar.gmo, po/ar.po, po/az.gmo, po/az.po,
-	  po/bg.gmo, po/bg.po, po/ca.gmo, po/ca.po, po/cs.gmo, po/cs.po,
-	  po/de.gmo, po/de.po, po/es.gmo, po/es.po, po/eu.gmo, po/eu.po,
-	  po/fa_IR.gmo, po/fa_IR.po, po/fr.gmo, po/fr.po, po/he.gmo,
-	  po/he.po, po/hi.gmo, po/hi.po, po/it.gmo, po/it.po, po/ja.gmo,
-	  po/ja.po, po/ko.gmo, po/ko.po, po/lt.gmo, po/lt.po, po/ms.gmo,
-	  po/ms.po, po/nl.gmo, po/nl.po, po/no.gmo, po/no.po, po/pl.gmo,
-	  po/pl.po, po/pt_BR.gmo, po/pt_BR.po, po/ru.gmo, po/ru.po,
-	  po/sv.gmo, po/sv.po, po/ta.gmo, po/ta.po, po/tr.gmo, po/tr.po,
-	  po/xfcalendar.pot, po/zh_CN.gmo, po/zh_CN.po, po/zh_TW.gmo,
-	  po/zh_TW.po, src/Makefile.am: Fix "make dist"
+	* xfcalendar/trunk/po/POTFILES.in, xfcalendar/trunk/po/ar.gmo,
+	  xfcalendar/trunk/po/ar.po, xfcalendar/trunk/po/az.gmo,
+	  xfcalendar/trunk/po/az.po, xfcalendar/trunk/po/bg.gmo,
+	  xfcalendar/trunk/po/bg.po, xfcalendar/trunk/po/ca.gmo,
+	  xfcalendar/trunk/po/ca.po, xfcalendar/trunk/po/cs.gmo,
+	  xfcalendar/trunk/po/cs.po, xfcalendar/trunk/po/de.gmo,
+	  xfcalendar/trunk/po/de.po, xfcalendar/trunk/po/es.gmo,
+	  xfcalendar/trunk/po/es.po, xfcalendar/trunk/po/eu.gmo,
+	  xfcalendar/trunk/po/eu.po, xfcalendar/trunk/po/fa_IR.gmo,
+	  xfcalendar/trunk/po/fa_IR.po, xfcalendar/trunk/po/fr.gmo,
+	  xfcalendar/trunk/po/fr.po, xfcalendar/trunk/po/he.gmo,
+	  xfcalendar/trunk/po/he.po, xfcalendar/trunk/po/hi.gmo,
+	  xfcalendar/trunk/po/hi.po, xfcalendar/trunk/po/it.gmo,
+	  xfcalendar/trunk/po/it.po, xfcalendar/trunk/po/ja.gmo,
+	  xfcalendar/trunk/po/ja.po, xfcalendar/trunk/po/ko.gmo,
+	  xfcalendar/trunk/po/ko.po, xfcalendar/trunk/po/lt.gmo,
+	  xfcalendar/trunk/po/lt.po, xfcalendar/trunk/po/ms.gmo,
+	  xfcalendar/trunk/po/ms.po, xfcalendar/trunk/po/nl.gmo,
+	  xfcalendar/trunk/po/nl.po, xfcalendar/trunk/po/no.gmo,
+	  xfcalendar/trunk/po/no.po, xfcalendar/trunk/po/pl.gmo,
+	  xfcalendar/trunk/po/pl.po, xfcalendar/trunk/po/pt_BR.gmo,
+	  xfcalendar/trunk/po/pt_BR.po, xfcalendar/trunk/po/ru.gmo,
+	  xfcalendar/trunk/po/ru.po, xfcalendar/trunk/po/sv.gmo,
+	  xfcalendar/trunk/po/sv.po, xfcalendar/trunk/po/ta.gmo,
+	  xfcalendar/trunk/po/ta.po, xfcalendar/trunk/po/tr.gmo,
+	  xfcalendar/trunk/po/tr.po, xfcalendar/trunk/po/xfcalendar.pot,
+	  xfcalendar/trunk/po/zh_CN.gmo, xfcalendar/trunk/po/zh_CN.po,
+	  xfcalendar/trunk/po/zh_TW.gmo, xfcalendar/trunk/po/zh_TW.po,
+	  xfcalendar/trunk/src/Makefile.am: Fix "make dist"
 
-2004-08-25 20:34  jasper
+2004-08-25 18:34  jasper
 
-	* po/nl.po: Update dutch translations, only po files for now
+	* xfcalendar/trunk/po/nl.po: Update dutch translations, only po
+	  files for now
 
-2004-08-24 12:04  pollux
+2004-08-24 10:04  pollux
 
-	* po/: ru.gmo, ru.po: RU translations update from Anthony Ivanoff
-	  <a-i@bk.ru>
+	* xfcalendar/trunk/po/ru.gmo, xfcalendar/trunk/po/ru.po: RU
+	  translations update from Anthony Ivanoff <a-i@bk.ru>
 
-2004-08-15 21:39  olivier
+2004-08-15 19:39  olivier
 
-	* xfcalendar.desktop, plugin/xfce-xfcalendar-settings.desktop,
-	  po/POTFILES.in, po/ar.gmo, po/ar.po, po/az.gmo, po/az.po,
-	  po/bg.gmo, po/bg.po, po/ca.gmo, po/ca.po, po/cs.gmo, po/cs.po,
-	  po/de.gmo, po/de.po, po/es.gmo, po/es.po, po/eu.gmo, po/eu.po,
-	  po/fa_IR.gmo, po/fa_IR.po, po/fr.gmo, po/fr.po, po/hi.gmo,
-	  po/hi.po, po/it.gmo, po/it.po, po/ja.gmo, po/ja.po, po/ko.gmo,
-	  po/ko.po, po/lt.gmo, po/lt.po, po/ms.gmo, po/ms.po, po/nl.gmo,
-	  po/nl.po, po/no.gmo, po/no.po, po/pl.gmo, po/pl.po, po/pt_BR.gmo,
-	  po/pt_BR.po, po/ru.gmo, po/ru.po, po/sv.gmo, po/sv.po, po/ta.gmo,
-	  po/ta.po, po/tr.gmo, po/tr.po, po/xfcalendar.pot, po/zh_CN.gmo,
-	  po/zh_CN.po, po/zh_TW.gmo, po/zh_TW.po: Resync with repository,
-	  most notably: - libxfcegui4 fixes with gtk 2.2 - xfwm4 updates -
+	* xfcalendar/trunk/plugin/xfce-xfcalendar-settings.desktop,
+	  xfcalendar/trunk/po/POTFILES.in, xfcalendar/trunk/po/ar.gmo,
+	  xfcalendar/trunk/po/ar.po, xfcalendar/trunk/po/az.gmo,
+	  xfcalendar/trunk/po/az.po, xfcalendar/trunk/po/bg.gmo,
+	  xfcalendar/trunk/po/bg.po, xfcalendar/trunk/po/ca.gmo,
+	  xfcalendar/trunk/po/ca.po, xfcalendar/trunk/po/cs.gmo,
+	  xfcalendar/trunk/po/cs.po, xfcalendar/trunk/po/de.gmo,
+	  xfcalendar/trunk/po/de.po, xfcalendar/trunk/po/es.gmo,
+	  xfcalendar/trunk/po/es.po, xfcalendar/trunk/po/eu.gmo,
+	  xfcalendar/trunk/po/eu.po, xfcalendar/trunk/po/fa_IR.gmo,
+	  xfcalendar/trunk/po/fa_IR.po, xfcalendar/trunk/po/fr.gmo,
+	  xfcalendar/trunk/po/fr.po, xfcalendar/trunk/po/hi.gmo,
+	  xfcalendar/trunk/po/hi.po, xfcalendar/trunk/po/it.gmo,
+	  xfcalendar/trunk/po/it.po, xfcalendar/trunk/po/ja.gmo,
+	  xfcalendar/trunk/po/ja.po, xfcalendar/trunk/po/ko.gmo,
+	  xfcalendar/trunk/po/ko.po, xfcalendar/trunk/po/lt.gmo,
+	  xfcalendar/trunk/po/lt.po, xfcalendar/trunk/po/ms.gmo,
+	  xfcalendar/trunk/po/ms.po, xfcalendar/trunk/po/nl.gmo,
+	  xfcalendar/trunk/po/nl.po, xfcalendar/trunk/po/no.gmo,
+	  xfcalendar/trunk/po/no.po, xfcalendar/trunk/po/pl.gmo,
+	  xfcalendar/trunk/po/pl.po, xfcalendar/trunk/po/pt_BR.gmo,
+	  xfcalendar/trunk/po/pt_BR.po, xfcalendar/trunk/po/ru.gmo,
+	  xfcalendar/trunk/po/ru.po, xfcalendar/trunk/po/sv.gmo,
+	  xfcalendar/trunk/po/sv.po, xfcalendar/trunk/po/ta.gmo,
+	  xfcalendar/trunk/po/ta.po, xfcalendar/trunk/po/tr.gmo,
+	  xfcalendar/trunk/po/tr.po, xfcalendar/trunk/po/xfcalendar.pot,
+	  xfcalendar/trunk/po/zh_CN.gmo, xfcalendar/trunk/po/zh_CN.po,
+	  xfcalendar/trunk/po/zh_TW.gmo, xfcalendar/trunk/po/zh_TW.po,
+	  xfcalendar/trunk/xfcalendar.desktop: Resync with repository, most
+	  notably: - libxfcegui4 fixes with gtk 2.2 - xfwm4 updates -
 	  Present panel plugins in alphabetical order - Fix add plugin
 	  dialog being placed over the panel when using SM - French po
 	  updates - Other various small bug fixes
 
-2004-08-15 15:58  korbinus
+2004-08-15 13:58  korbinus
 
-	* Makefile.in, aclocal.m4, config.guess, config.sub, configure,
-	  depcomp, install-sh, ltmain.sh, icons/Makefile.in,
-	  icons/48x48/Makefile.in, icons/scalable/Makefile.in,
-	  plugin/Makefile.in, plugin/xfcalendar_plugin.c, src/Makefile.in,
-	  src/main.c: Removing option for choosing first day of week,
-	  because not supported in GTK 2.4
+	* xfcalendar/trunk/Makefile.in, xfcalendar/trunk/aclocal.m4,
+	  xfcalendar/trunk/config.guess, xfcalendar/trunk/config.sub,
+	  xfcalendar/trunk/configure, xfcalendar/trunk/depcomp,
+	  xfcalendar/trunk/icons/48x48/Makefile.in,
+	  xfcalendar/trunk/icons/Makefile.in,
+	  xfcalendar/trunk/icons/scalable/Makefile.in,
+	  xfcalendar/trunk/install-sh, xfcalendar/trunk/ltmain.sh,
+	  xfcalendar/trunk/plugin/Makefile.in,
+	  xfcalendar/trunk/plugin/xfcalendar_plugin.c,
+	  xfcalendar/trunk/src/Makefile.in, xfcalendar/trunk/src/main.c:
+	  Removing option for choosing first day of week, because not
+	  supported in GTK 2.4
 
-2004-08-14 21:40  pollux
+2004-08-14 19:40  pollux
 
-	* configure, configure.ac, po/he.gmo, po/he.po: Hebrew translations
-	  from Yuval Tanny <tanai@int.gov.il>
+	* xfcalendar/trunk/configure, xfcalendar/trunk/configure.ac,
+	  xfcalendar/trunk/po/he.gmo, xfcalendar/trunk/po/he.po: Hebrew
+	  translations from Yuval Tanny <tanai@int.gov.il>
 
-2004-07-28 23:22  benny
+2004-07-28 21:22  benny
 
-	* m4/depends.m4: Fixed (module)_FOUND bug reported by brian.
-	  Hopefully nothing else broke this time.
+	* xfcalendar/trunk/m4/depends.m4: Fixed (module)_FOUND bug reported
+	  by brian. Hopefully nothing else broke this time.
 
-2004-07-28 19:32  kelnos
+2004-07-28 17:32  kelnos
 
-	* plugin/xfce-xfcalendar-settings.desktop: "Xfce 4 Xfcalendar"
-	  looks silly: -> "Xfce 4 Calendar"
+	* xfcalendar/trunk/plugin/xfce-xfcalendar-settings.desktop: "Xfce 4
+	  Xfcalendar" looks silly: -> "Xfce 4 Calendar"
 
-2004-07-27 21:41  benny
+2004-07-27 19:41  benny
 
-	* configure, configure.ac, icons/Makefile.am, icons/Makefile.in,
-	  icons/48x48/xfcalendar.png, icons/scalable/Makefile.am,
-	  icons/scalable/Makefile.in, icons/scalable/xfcalendar.svg: Added
-	  icons from Francois.
+	* xfcalendar/trunk/configure, xfcalendar/trunk/configure.ac,
+	  xfcalendar/trunk/icons/48x48/xfcalendar.png,
+	  xfcalendar/trunk/icons/Makefile.am,
+	  xfcalendar/trunk/icons/Makefile.in,
+	  xfcalendar/trunk/icons/scalable,
+	  xfcalendar/trunk/icons/scalable/Makefile.am,
+	  xfcalendar/trunk/icons/scalable/Makefile.in,
+	  xfcalendar/trunk/icons/scalable/xfcalendar.svg: Added icons from
+	  Francois.
 
-2004-07-25 15:31  pollux
+2004-07-25 13:31  pollux
 
-	* aclocal.m4: fix Makefile borkage by benny ;)
+	* xfcalendar/trunk/aclocal.m4: fix Makefile borkage by benny ;)
 
-2004-07-24 20:52  benny
+2004-07-24 18:52  benny
 
-	* m4/depends.m4: Readded XFCE_MCS_PLUGIN() again, dunno how I
-	  manage to remove it everytime I edit depends.m4!
+	* xfcalendar/trunk/m4/depends.m4: Readded XFCE_MCS_PLUGIN() again,
+	  dunno how I manage to remove it everytime I edit depends.m4!
 
-2004-07-24 19:30  benny
+2004-07-24 17:30  benny
 
-	* m4/depends.m4: XFCE_PANEL_PLUGIN had wrong panel version for the
-	  threaded test.
+	* xfcalendar/trunk/m4/depends.m4: XFCE_PANEL_PLUGIN had wrong panel
+	  version for the threaded test.
 
-2004-07-24 19:28  benny
+2004-07-24 17:28  benny
 
-	* m4/depends.m4: Extended the XFCE_PANEL_PLUGIN macro to include
-	  some magic for threaded panels.
+	* xfcalendar/trunk/m4/depends.m4: Extended the XFCE_PANEL_PLUGIN
+	  macro to include some magic for threaded panels.
 
-2004-07-24 00:07  benny
+2004-07-23 22:07  benny
 
-	* AUTHORS, COPYING, Makefile.am, Makefile.in, README, aclocal.m4,
-	  compile, config.guess, config.sub, configure, configure.ac,
-	  depcomp, install-sh, ltmain.sh, missing, mkinstalldirs,
-	  xfcalendar.desktop, icons/Makefile.am, icons/Makefile.in,
-	  icons/48x48/Makefile.am, icons/48x48/Makefile.in,
-	  icons/48x48/xfcalendar.png, plugin/Makefile.am,
-	  plugin/Makefile.in, plugin/calendar-icon.h,
-	  plugin/xfcalendar_plugin.c,
-	  plugin/xfce-xfcalendar-settings.desktop, po/ar.gmo, po/ar.po,
-	  po/az.gmo, po/az.po, po/bg.gmo, po/bg.po, po/ca.gmo, po/ca.po,
-	  po/cs.gmo, po/cs.po, po/de.gmo, po/de.po, po/es.gmo, po/es.po,
-	  po/eu.gmo, po/eu.po, po/fa_IR.gmo, po/fa_IR.po, po/fr.gmo,
-	  po/fr.po, po/hi.gmo, po/hi.po, po/it.gmo, po/it.po, po/ja.gmo,
-	  po/ja.po, po/ko.gmo, po/ko.po, po/lt.gmo, po/lt.po, po/ms.gmo,
-	  po/ms.po, po/nl.gmo, po/nl.po, po/no.gmo, po/no.po, po/pl.gmo,
-	  po/pl.po, po/pt_BR.gmo, po/pt_BR.po, po/ru.gmo, po/ru.po,
-	  po/sv.gmo, po/sv.po, po/ta.gmo, po/ta.po, po/tr.gmo, po/tr.po,
-	  po/xfcalendar.pot, po/zh_CN.gmo, po/zh_CN.po, po/zh_TW.gmo,
-	  po/zh_TW.po, src/Makefile.am, src/Makefile.in,
-	  src/about-xfcalendar.c, src/interface.c, src/mainbox.c,
-	  src/tray_icon.c, src/xfcalendar-icon-inline.h,
-	  src/xfcalendar.png: update-po. Make icon themable. Added .desktop
-	  file.
+	* xfcalendar/trunk/AUTHORS, xfcalendar/trunk/COPYING,
+	  xfcalendar/trunk/Makefile.am, xfcalendar/trunk/Makefile.in,
+	  xfcalendar/trunk/README, xfcalendar/trunk/aclocal.m4,
+	  xfcalendar/trunk/compile, xfcalendar/trunk/config.guess,
+	  xfcalendar/trunk/config.sub, xfcalendar/trunk/configure,
+	  xfcalendar/trunk/configure.ac, xfcalendar/trunk/depcomp,
+	  xfcalendar/trunk/icons, xfcalendar/trunk/icons/48x48,
+	  xfcalendar/trunk/icons/48x48/Makefile.am,
+	  xfcalendar/trunk/icons/48x48/Makefile.in,
+	  xfcalendar/trunk/icons/48x48/xfcalendar.png,
+	  xfcalendar/trunk/icons/Makefile.am,
+	  xfcalendar/trunk/icons/Makefile.in, xfcalendar/trunk/install-sh,
+	  xfcalendar/trunk/ltmain.sh, xfcalendar/trunk/missing,
+	  xfcalendar/trunk/mkinstalldirs,
+	  xfcalendar/trunk/plugin/Makefile.am,
+	  xfcalendar/trunk/plugin/Makefile.in,
+	  xfcalendar/trunk/plugin/calendar-icon.h,
+	  xfcalendar/trunk/plugin/xfcalendar_plugin.c,
+	  xfcalendar/trunk/plugin/xfce-xfcalendar-settings.desktop,
+	  xfcalendar/trunk/po/ar.gmo, xfcalendar/trunk/po/ar.po,
+	  xfcalendar/trunk/po/az.gmo, xfcalendar/trunk/po/az.po,
+	  xfcalendar/trunk/po/bg.gmo, xfcalendar/trunk/po/bg.po,
+	  xfcalendar/trunk/po/ca.gmo, xfcalendar/trunk/po/ca.po,
+	  xfcalendar/trunk/po/cs.gmo, xfcalendar/trunk/po/cs.po,
+	  xfcalendar/trunk/po/de.gmo, xfcalendar/trunk/po/de.po,
+	  xfcalendar/trunk/po/es.gmo, xfcalendar/trunk/po/es.po,
+	  xfcalendar/trunk/po/eu.gmo, xfcalendar/trunk/po/eu.po,
+	  xfcalendar/trunk/po/fa_IR.gmo, xfcalendar/trunk/po/fa_IR.po,
+	  xfcalendar/trunk/po/fr.gmo, xfcalendar/trunk/po/fr.po,
+	  xfcalendar/trunk/po/hi.gmo, xfcalendar/trunk/po/hi.po,
+	  xfcalendar/trunk/po/it.gmo, xfcalendar/trunk/po/it.po,
+	  xfcalendar/trunk/po/ja.gmo, xfcalendar/trunk/po/ja.po,
+	  xfcalendar/trunk/po/ko.gmo, xfcalendar/trunk/po/ko.po,
+	  xfcalendar/trunk/po/lt.gmo, xfcalendar/trunk/po/lt.po,
+	  xfcalendar/trunk/po/ms.gmo, xfcalendar/trunk/po/ms.po,
+	  xfcalendar/trunk/po/nl.gmo, xfcalendar/trunk/po/nl.po,
+	  xfcalendar/trunk/po/no.gmo, xfcalendar/trunk/po/no.po,
+	  xfcalendar/trunk/po/pl.gmo, xfcalendar/trunk/po/pl.po,
+	  xfcalendar/trunk/po/pt_BR.gmo, xfcalendar/trunk/po/pt_BR.po,
+	  xfcalendar/trunk/po/ru.gmo, xfcalendar/trunk/po/ru.po,
+	  xfcalendar/trunk/po/sv.gmo, xfcalendar/trunk/po/sv.po,
+	  xfcalendar/trunk/po/ta.gmo, xfcalendar/trunk/po/ta.po,
+	  xfcalendar/trunk/po/tr.gmo, xfcalendar/trunk/po/tr.po,
+	  xfcalendar/trunk/po/xfcalendar.pot, xfcalendar/trunk/po/zh_CN.gmo,
+	  xfcalendar/trunk/po/zh_CN.po, xfcalendar/trunk/po/zh_TW.gmo,
+	  xfcalendar/trunk/po/zh_TW.po, xfcalendar/trunk/src/Makefile.am,
+	  xfcalendar/trunk/src/Makefile.in,
+	  xfcalendar/trunk/src/about-xfcalendar.c,
+	  xfcalendar/trunk/src/interface.c, xfcalendar/trunk/src/mainbox.c,
+	  xfcalendar/trunk/src/tray_icon.c,
+	  xfcalendar/trunk/src/xfcalendar-icon-inline.h,
+	  xfcalendar/trunk/src/xfcalendar.png,
+	  xfcalendar/trunk/xfcalendar.desktop: update-po. Make icon
+	  themable. Added .desktop file.
 
-2004-07-22 01:00  benny
+2004-07-21 23:00  benny
 
-	* m4/depends.m4: Readded the XFCE_MCS_PLUGIN macro. I didn't ment
-	  to remove it, tho.
+	* xfcalendar/trunk/m4/depends.m4: Readded the XFCE_MCS_PLUGIN macro.
+	  I didn't ment to remove it, tho.
 
-2004-07-20 22:58  benny
+2004-07-20 20:58  benny
 
-	* m4/depends.m4: Modifed panel plugin check, so one (the installer)
-	  can choose to install into a different plugin dir.
+	* xfcalendar/trunk/m4/depends.m4: Modifed panel plugin check, so one
+	  (the installer) can choose to install into a different plugin dir.
 
-2004-07-18 08:58  korbinus
+2004-07-18 06:58  korbinus
 
-	* src/mainbox.c: Update the selected date in the calendar when
-	  system date is changed after 00:00
+	* xfcalendar/trunk/src/mainbox.c: Update the selected date in the
+	  calendar when system date is changed after 00:00
 
-2004-07-17 11:19  korbinus
+2004-07-17 09:19  korbinus
 
-	* src/: main.c, mainbox.c, tray_icon.c: Adding relevant copyrights;
+	* xfcalendar/trunk/src/main.c, xfcalendar/trunk/src/mainbox.c,
+	  xfcalendar/trunk/src/tray_icon.c: Adding relevant copyrights;
 	  about menu changed in tray_icon.c
 
-2004-07-17 03:30  korbinus
+2004-07-17 01:30  korbinus
 
-	* src/mainbox.c: Fixing show/hide bug related to session management
-	  in mainbox.h
+	* xfcalendar/trunk/src/mainbox.c: Fixing show/hide bug related to
+	  session management in mainbox.h
 
-2004-07-17 03:13  korbinus
+2004-07-17 01:13  korbinus
 
-	* src/: main.c, mainbox.c: Fixing show/hide bug related to session
-	  management in mainbox.h
+	* xfcalendar/trunk/src/main.c, xfcalendar/trunk/src/mainbox.c:
+	  Fixing show/hide bug related to session management in mainbox.h
 
-2004-07-17 01:45  korbinus
+2004-07-16 23:45  korbinus
 
-	* Makefile.in, plugin/Makefile.in, plugin/xfcalendar_plugin.c,
-	  src/Makefile.am, src/Makefile.in, src/about-xfcalendar.c,
-	  src/callbacks.c, src/callbacks.h, src/interface.c,
-	  src/interface.h, src/main.c, src/mainbox.c, src/mainbox.h,
-	  src/tray_icon.c, src/tray_icon.h: Code cleaning: adding file
+	* xfcalendar/trunk/Makefile.in, xfcalendar/trunk/plugin/Makefile.in,
+	  xfcalendar/trunk/plugin/xfcalendar_plugin.c,
+	  xfcalendar/trunk/src/Makefile.am,
+	  xfcalendar/trunk/src/Makefile.in,
+	  xfcalendar/trunk/src/about-xfcalendar.c,
+	  xfcalendar/trunk/src/callbacks.c,
+	  xfcalendar/trunk/src/callbacks.h,
+	  xfcalendar/trunk/src/interface.c,
+	  xfcalendar/trunk/src/interface.h, xfcalendar/trunk/src/main.c,
+	  xfcalendar/trunk/src/mainbox.c, xfcalendar/trunk/src/mainbox.h,
+	  xfcalendar/trunk/src/tray_icon.c,
+	  xfcalendar/trunk/src/tray_icon.h: Code cleaning: adding file
 	  mainbox.c and mainbox.h for main window with moving of relevant
-	  functions; minor corrections for the interface and the mcs
-	  plugin.
+	  functions; minor corrections for the interface and the mcs plugin.
 
-2004-07-08 21:16  korbinus
+2004-07-08 19:16  korbinus
 
-	* src/: tray_icon.c, tray_icon.h: Code cleaning: on my way to
+	* xfcalendar/trunk/src/tray_icon.c,
+	  xfcalendar/trunk/src/tray_icon.h: Code cleaning: on my way to
 	  remove all the Glade stuff
 
-2004-07-08 17:56  korbinus
+2004-07-08 15:56  korbinus
 
-	* Makefile.in, plugin/Makefile.in, plugin/xfcalendar_plugin.c,
-	  src/Makefile.am, src/Makefile.in, src/about-xfcalendar.c,
-	  src/callbacks.c, src/interface.c, src/interface.h, src/main.c,
-	  src/reminder.c: Code cleaning: on my way to remove all the Glade
-	  stuff
+	* xfcalendar/trunk/Makefile.in, xfcalendar/trunk/plugin/Makefile.in,
+	  xfcalendar/trunk/plugin/xfcalendar_plugin.c,
+	  xfcalendar/trunk/src/Makefile.am,
+	  xfcalendar/trunk/src/Makefile.in,
+	  xfcalendar/trunk/src/about-xfcalendar.c,
+	  xfcalendar/trunk/src/callbacks.c,
+	  xfcalendar/trunk/src/interface.c,
+	  xfcalendar/trunk/src/interface.h, xfcalendar/trunk/src/main.c,
+	  xfcalendar/trunk/src/reminder.c: Code cleaning: on my way to
+	  remove all the Glade stuff
 
-2004-06-27 21:34  korbinus
+2004-06-27 19:34  korbinus
 
-	* src/: Makefile.am, Makefile.in, callbacks.c, interface.c,
-	  reminder.c, reminder.h: Code cleaning: creating a file for
-	  reminder window
+	* xfcalendar/trunk/src/Makefile.am,
+	  xfcalendar/trunk/src/Makefile.in,
+	  xfcalendar/trunk/src/callbacks.c,
+	  xfcalendar/trunk/src/interface.c, xfcalendar/trunk/src/reminder.c,
+	  xfcalendar/trunk/src/reminder.h: Code cleaning: creating a file
+	  for reminder window
 
-2004-06-27 20:23  korbinus
+2004-06-27 18:23  korbinus
 
-	* src/: callbacks.c, interface.c: Code cleaning
+	* xfcalendar/trunk/src/callbacks.c,
+	  xfcalendar/trunk/src/interface.c: Code cleaning
 
-2004-06-27 00:20  korbinus
+2004-06-26 22:20  korbinus
 
-	* Makefile.in, aclocal.m4, compile, config.guess, config.sub,
-	  configure, configure.ac, depcomp, install-sh, ltmain.sh, missing,
-	  mkinstalldirs, plugin/Makefile.in, src/Makefile.am,
-	  src/Makefile.in, src/about-xfcalendar.c, src/about-xfcalendar.h,
-	  src/callbacks.c: Standard About box; code cleaning needs to be
-	  done
+	* xfcalendar/trunk/Makefile.in, xfcalendar/trunk/aclocal.m4,
+	  xfcalendar/trunk/compile, xfcalendar/trunk/config.guess,
+	  xfcalendar/trunk/config.sub, xfcalendar/trunk/configure,
+	  xfcalendar/trunk/configure.ac, xfcalendar/trunk/depcomp,
+	  xfcalendar/trunk/install-sh, xfcalendar/trunk/ltmain.sh,
+	  xfcalendar/trunk/missing, xfcalendar/trunk/mkinstalldirs,
+	  xfcalendar/trunk/plugin/Makefile.in,
+	  xfcalendar/trunk/src/Makefile.am,
+	  xfcalendar/trunk/src/Makefile.in,
+	  xfcalendar/trunk/src/about-xfcalendar.c,
+	  xfcalendar/trunk/src/about-xfcalendar.h,
+	  xfcalendar/trunk/src/callbacks.c: Standard About box; code
+	  cleaning needs to be done
 
-2004-06-13 23:18  pollux
+2004-06-13 21:18  pollux
 
-	* configure, configure.ac, ltmain.sh, po/lt.gmo, po/lt.po: Updated
-	  lt translations from Mantas Zapolskas
+	* xfcalendar/trunk/configure, xfcalendar/trunk/configure.ac,
+	  xfcalendar/trunk/ltmain.sh, xfcalendar/trunk/po/lt.gmo,
+	  xfcalendar/trunk/po/lt.po: Updated lt translations from Mantas
+	  Zapolskas
 
-2004-05-20 00:08  benny
+2004-05-19 22:08  benny
 
-	* src/: callbacks.c, interface.c, main.c: Fix #182 creating the
-	  ~/.xfce4/xfcalendar/ directory using xfce_mkdirhier() if not
-	  present and also creating the xfcalendarrc on-demand.
+	* xfcalendar/trunk/src/callbacks.c,
+	  xfcalendar/trunk/src/interface.c, xfcalendar/trunk/src/main.c: Fix
+	  #182 creating the ~/.xfce4/xfcalendar/ directory using
+	  xfce_mkdirhier() if not present and also creating the xfcalendarrc
+	  on-demand.
 
-2004-05-03 23:44  olivier
+2004-05-03 21:44  olivier
 
-	* Makefile.in, aclocal.m4, config.guess, config.sub, configure,
-	  configure.ac, install-sh, ltmain.sh, mkinstalldirs, po/zh_TW.gmo,
-	  po/zh_TW.po, src/Makefile.in: Update zh_TW translations from umm
-	  <umm@pchome.com.tw>
+	* xfcalendar/trunk/Makefile.in, xfcalendar/trunk/aclocal.m4,
+	  xfcalendar/trunk/config.guess, xfcalendar/trunk/config.sub,
+	  xfcalendar/trunk/configure, xfcalendar/trunk/configure.ac,
+	  xfcalendar/trunk/install-sh, xfcalendar/trunk/ltmain.sh,
+	  xfcalendar/trunk/mkinstalldirs, xfcalendar/trunk/po/zh_TW.gmo,
+	  xfcalendar/trunk/po/zh_TW.po, xfcalendar/trunk/src/Makefile.in:
+	  Update zh_TW translations from umm <umm@pchome.com.tw>
 
-2004-05-03 21:57  kelnos
+2004-05-03 19:57  kelnos
 
-	* plugin/: Makefile.am, Makefile.in: EXTRA_DIST
+	* xfcalendar/trunk/plugin/Makefile.am,
+	  xfcalendar/trunk/plugin/Makefile.in: EXTRA_DIST
 
-2004-04-30 05:00  kelnos
+2004-04-30 03:00  kelnos
 
-	* plugin/: Makefile.am, Makefile.in,
-	  xfce-xfcalendar-settings.desktop: add .desktop file for
-	  xfcalendar settings
+	* xfcalendar/trunk/plugin/Makefile.am,
+	  xfcalendar/trunk/plugin/Makefile.in,
+	  xfcalendar/trunk/plugin/xfce-xfcalendar-settings.desktop: add
+	  .desktop file for xfcalendar settings
 
-2004-04-12 15:55  dannym
+2004-04-12 13:55  dannym
 
-	* po/: ca.gmo, ca.po: Update catalan translations by Carles Muñoz
-	  Gorriz
+	* xfcalendar/trunk/po/ca.gmo, xfcalendar/trunk/po/ca.po: Update
+	  catalan translations by Carles Mu&#65533;&#65533;oz Gorriz
 
-2004-03-24 22:07  olivier
+2004-03-24 21:07  olivier
 
-	* configure, configure.ac, src/callbacks.c: Resync with xfce_4_0
+	* xfcalendar/trunk/configure, xfcalendar/trunk/configure.ac,
+	  xfcalendar/trunk/src/callbacks.c: Resync with xfce_4_0
 
-2004-03-15 08:35  olivier
+2004-03-15 07:35  olivier
 
-	* aclocal.m4, configure, configure.ac, ltmain.sh, po/ar.gmo,
-	  po/ar.po, po/bg.gmo, po/bg.po, po/it.gmo, po/it.po: Add/update
-	  i18n for: Bulgarian from Miroslav Yordanov
-	  <miordanov@i-space.org> and Peter Slavov <peshka@i-space.org>
-	  Italian from Alex Dupre <ale@FreeBSD.org> Arabic from Saleh
-	  Hathal <hathalsal@hotmail.com>
+	* xfcalendar/trunk/aclocal.m4, xfcalendar/trunk/configure,
+	  xfcalendar/trunk/configure.ac, xfcalendar/trunk/ltmain.sh,
+	  xfcalendar/trunk/po/ar.gmo, xfcalendar/trunk/po/ar.po,
+	  xfcalendar/trunk/po/bg.gmo, xfcalendar/trunk/po/bg.po,
+	  xfcalendar/trunk/po/it.gmo, xfcalendar/trunk/po/it.po: Add/update
+	  i18n for: Bulgarian from Miroslav Yordanov <miordanov@i-space.org>
+	  and Peter Slavov <peshka@i-space.org> Italian from Alex Dupre
+	  <ale@FreeBSD.org> Arabic from Saleh Hathal <hathalsal@hotmail.com>
 
-2004-03-11 00:13  benny
+2004-03-10 23:13  benny
 
-	* aclocal.m4, configure, plugin/Makefile.am, plugin/Makefile.in:
-	  Removed unneccesary lib depends from the mcs plugins, as
-	  xfce-mcs-manager provides them.
+	* xfcalendar/trunk/aclocal.m4, xfcalendar/trunk/configure,
+	  xfcalendar/trunk/plugin/Makefile.am,
+	  xfcalendar/trunk/plugin/Makefile.in: Removed unneccesary lib
+	  depends from the mcs plugins, as xfce-mcs-manager provides them.
 
-2004-03-01 22:09  benny
+2004-03-01 21:09  benny
 
-	* m4/debug.m4: Added --enable-gcov to compile xfce with support for
-	  coverage tests. Very useful.
+	* xfcalendar/trunk/m4/debug.m4: Added --enable-gcov to compile xfce
+	  with support for coverage tests. Very useful.
 
-2004-02-17 20:36  jasper
+2004-02-17 19:36  jasper
 
-	* configure.ac, po/ms.gmo, po/ms.po: Update Malay translations
+	* xfcalendar/trunk/configure.ac, xfcalendar/trunk/po/ms.gmo,
+	  xfcalendar/trunk/po/ms.po: Update Malay translations
 
-2004-02-11 21:44  jasper
+2004-02-11 20:44  jasper
 
-	* configure, ltmain.sh, po/eu.gmo, po/eu.po: Add Basque (eu)
-	  translations
+	* xfcalendar/trunk/configure, xfcalendar/trunk/ltmain.sh,
+	  xfcalendar/trunk/po/eu.gmo, xfcalendar/trunk/po/eu.po: Add Basque
+	  (eu) translations
 
-2004-01-29 16:51  jasper
+2004-01-29 15:51  jasper
 
-	* po/: fa_IR.gmo, fa_IR.po: Update Persian translations
+	* xfcalendar/trunk/po/fa_IR.gmo, xfcalendar/trunk/po/fa_IR.po:
+	  Update Persian translations
 
-2004-01-25 01:07  olivier
+2004-01-25 00:07  olivier
 
-	* Makefile.in, aclocal.m4, compile, config.guess, config.sub,
-	  configure, depcomp, install-sh, ltmain.sh, missing,
-	  mkinstalldirs, plugin/Makefile.in, po/fa_IR.gmo, src/Makefile.in:
+	* xfcalendar/trunk/Makefile.in, xfcalendar/trunk/aclocal.m4,
+	  xfcalendar/trunk/compile, xfcalendar/trunk/config.guess,
+	  xfcalendar/trunk/config.sub, xfcalendar/trunk/configure,
+	  xfcalendar/trunk/depcomp, xfcalendar/trunk/install-sh,
+	  xfcalendar/trunk/ltmain.sh, xfcalendar/trunk/missing,
+	  xfcalendar/trunk/mkinstalldirs,
+	  xfcalendar/trunk/plugin/Makefile.in,
+	  xfcalendar/trunk/po/fa_IR.gmo, xfcalendar/trunk/src/Makefile.in:
 	  Update libtool and other automake, autoconf and gettext packages
 
-2004-01-21 14:43  jasper
+2004-01-21 13:44  jasper
 
-	* configure, configure.ac, po/es.gmo, po/es.po, po/fa_IR.gmo,
-	  po/fa_IR.po, po/ja.gmo, po/ja.po, po/ko.gmo, po/ko.po,
-	  po/pt_BR.gmo, po/pt_BR.po, po/zh_CN.gmo, po/zh_CN.po:
-	  Translations added/updated for spanish, persian, japanese,
-	  korean, brasilian and chinese
+	* xfcalendar/trunk/configure, xfcalendar/trunk/configure.ac,
+	  xfcalendar/trunk/po/es.gmo, xfcalendar/trunk/po/es.po,
+	  xfcalendar/trunk/po/fa_IR.gmo, xfcalendar/trunk/po/fa_IR.po,
+	  xfcalendar/trunk/po/ja.gmo, xfcalendar/trunk/po/ja.po,
+	  xfcalendar/trunk/po/ko.gmo, xfcalendar/trunk/po/ko.po,
+	  xfcalendar/trunk/po/pt_BR.gmo, xfcalendar/trunk/po/pt_BR.po,
+	  xfcalendar/trunk/po/zh_CN.gmo, xfcalendar/trunk/po/zh_CN.po:
+	  Translations added/updated for spanish, persian, japanese, korean,
+	  brasilian and chinese
 
-2004-01-13 20:22  benny
+2004-01-13 19:22  benny
 
-	* src/: interface.c, main.c: Bugfixes: sscanf() Parameter was wrong
-	  and some unused variables (just to make cc happy).
+	* xfcalendar/trunk/src/interface.c, xfcalendar/trunk/src/main.c:
+	  Bugfixes: sscanf() Parameter was wrong and some unused variables
+	  (just to make cc happy).
 
-2004-01-07 00:36  olivier
+2004-01-06 23:36  olivier
 
-	* Makefile.am, Makefile.in, configure, configure.ac,
-	  xfcalendar.spec.in, po/az.gmo, po/az.po, po/ca.gmo, po/ca.po,
-	  po/cs.gmo, po/cs.po, po/de.gmo, po/de.po, po/fr.gmo, po/fr.po,
-	  po/hi.gmo, po/hi.po, po/it.gmo, po/it.po, po/ko.gmo, po/ko.po,
-	  po/ms.gmo, po/ms.po, po/nl.gmo, po/nl.po, po/no.gmo, po/no.po,
-	  po/pl.gmo, po/pl.po, po/ru.gmo, po/ru.po, po/sv.gmo, po/sv.po,
-	  po/ta.gmo, po/ta.po, po/tr.gmo, po/tr.po, po/xfcalendar.pot,
-	  po/zh_CN.gmo, po/zh_CN.po, po/zh_TW.po, src/Makefile.am,
-	  src/Makefile.in, src/interface.c: Clean-up a bit of the mess in
+	* xfcalendar/trunk/Makefile.am, xfcalendar/trunk/Makefile.in,
+	  xfcalendar/trunk/configure, xfcalendar/trunk/configure.ac,
+	  xfcalendar/trunk/po/az.gmo, xfcalendar/trunk/po/az.po,
+	  xfcalendar/trunk/po/ca.gmo, xfcalendar/trunk/po/ca.po,
+	  xfcalendar/trunk/po/cs.gmo, xfcalendar/trunk/po/cs.po,
+	  xfcalendar/trunk/po/de.gmo, xfcalendar/trunk/po/de.po,
+	  xfcalendar/trunk/po/fr.gmo, xfcalendar/trunk/po/fr.po,
+	  xfcalendar/trunk/po/hi.gmo, xfcalendar/trunk/po/hi.po,
+	  xfcalendar/trunk/po/it.gmo, xfcalendar/trunk/po/it.po,
+	  xfcalendar/trunk/po/ko.gmo, xfcalendar/trunk/po/ko.po,
+	  xfcalendar/trunk/po/ms.gmo, xfcalendar/trunk/po/ms.po,
+	  xfcalendar/trunk/po/nl.gmo, xfcalendar/trunk/po/nl.po,
+	  xfcalendar/trunk/po/no.gmo, xfcalendar/trunk/po/no.po,
+	  xfcalendar/trunk/po/pl.gmo, xfcalendar/trunk/po/pl.po,
+	  xfcalendar/trunk/po/ru.gmo, xfcalendar/trunk/po/ru.po,
+	  xfcalendar/trunk/po/sv.gmo, xfcalendar/trunk/po/sv.po,
+	  xfcalendar/trunk/po/ta.gmo, xfcalendar/trunk/po/ta.po,
+	  xfcalendar/trunk/po/tr.gmo, xfcalendar/trunk/po/tr.po,
+	  xfcalendar/trunk/po/xfcalendar.pot, xfcalendar/trunk/po/zh_CN.gmo,
+	  xfcalendar/trunk/po/zh_CN.po, xfcalendar/trunk/po/zh_TW.po,
+	  xfcalendar/trunk/src/Makefile.am,
+	  xfcalendar/trunk/src/Makefile.in,
+	  xfcalendar/trunk/src/interface.c,
+	  xfcalendar/trunk/xfcalendar.spec.in: Clean-up a bit of the mess in
 	  head
 
-2004-01-04 00:26  korbinus
+2004-01-03 23:26  korbinus
 
-	* po/: pl.gmo, pl.po: Update Polish translations
+	* xfcalendar/trunk/po/pl.gmo, xfcalendar/trunk/po/pl.po: Update
+	  Polish translations
 
-2003-12-29 16:18  olivier
+2003-12-29 15:18  olivier
 
-	* po/: nl.gmo, nl.po, no.gmo, no.po: Fix missing CHARSET in
-	  potfiles
+	* xfcalendar/trunk/po/nl.gmo, xfcalendar/trunk/po/nl.po,
+	  xfcalendar/trunk/po/no.gmo, xfcalendar/trunk/po/no.po: Fix missing
+	  CHARSET in potfiles
 
-2003-12-29 11:56  jasper
+2003-12-29 10:56  jasper
 
-	* configure, configure.ac, po/no.gmo, po/no.po, po/tr.gmo,
-	  po/tr.po: Update Norwegian and Turkish translations
+	* xfcalendar/trunk/configure, xfcalendar/trunk/configure.ac,
+	  xfcalendar/trunk/po/no.gmo, xfcalendar/trunk/po/no.po,
+	  xfcalendar/trunk/po/tr.gmo, xfcalendar/trunk/po/tr.po: Update
+	  Norwegian and Turkish translations
 
-2003-12-27 20:46  jasper
+2003-12-27 19:46  jasper
 
-	* configure, configure.ac, po/pl.gmo, po/pl.po: Update Polish
-	  translations
+	* xfcalendar/trunk/configure, xfcalendar/trunk/configure.ac,
+	  xfcalendar/trunk/po/pl.gmo, xfcalendar/trunk/po/pl.po: Update
+	  Polish translations
 
-2003-12-27 14:30  jasper
+2003-12-27 13:30  jasper
 
-	* Makefile.in, aclocal.m4, config.guess, config.sub, configure,
-	  configure.ac, install-sh, ltmain.sh, plugin/Makefile.in,
-	  po/xfcalendar.pot, src/Makefile.am, src/Makefile.in,
-	  src/calendar-icon.h, src/interface.c, src/main.c,
-	  src/xfcalendar-icon-inline.h: Fix icon header file issues
+	* xfcalendar/trunk/Makefile.in, xfcalendar/trunk/aclocal.m4,
+	  xfcalendar/trunk/config.guess, xfcalendar/trunk/config.sub,
+	  xfcalendar/trunk/configure, xfcalendar/trunk/configure.ac,
+	  xfcalendar/trunk/install-sh, xfcalendar/trunk/ltmain.sh,
+	  xfcalendar/trunk/plugin/Makefile.in,
+	  xfcalendar/trunk/po/xfcalendar.pot,
+	  xfcalendar/trunk/src/Makefile.am,
+	  xfcalendar/trunk/src/Makefile.in,
+	  xfcalendar/trunk/src/calendar-icon.h,
+	  xfcalendar/trunk/src/interface.c, xfcalendar/trunk/src/main.c,
+	  xfcalendar/trunk/src/xfcalendar-icon-inline.h: Fix icon header
+	  file issues
 
-2003-12-15 21:56  jasper
+2003-12-15 20:56  jasper
 
-	* configure, configure.ac, po/az.gmo, po/az.po: Add Azerbaijani
-	  translations
+	* xfcalendar/trunk/configure, xfcalendar/trunk/configure.ac,
+	  xfcalendar/trunk/po/az.gmo, xfcalendar/trunk/po/az.po: Add
+	  Azerbaijani translations
 
-2003-12-06 14:30  jasper
+2003-12-06 13:30  jasper
 
-	* po/ca.gmo, src/main.c: Add support to popup the calendar next to
-	  the panel clock
+	* xfcalendar/trunk/po/ca.gmo, xfcalendar/trunk/src/main.c: Add
+	  support to popup the calendar next to the panel clock
 
-2003-12-01 21:29  korbinus
+2003-12-01 20:29  korbinus
 
-	* po/: it.gmo, it.po: Add italian translation (yepee)
+	* xfcalendar/trunk/po/it.gmo, xfcalendar/trunk/po/it.po: Add italian
+	  translation (yepee)
 
-2003-12-01 21:17  korbinus
+2003-12-01 20:17  korbinus
 
-	* Makefile.in, aclocal.m4, config.guess, config.sub, configure,
-	  configure.ac, install-sh, ltmain.sh, plugin/Makefile.in,
-	  src/Makefile.in: Add italian translation
+	* xfcalendar/trunk/Makefile.in, xfcalendar/trunk/aclocal.m4,
+	  xfcalendar/trunk/config.guess, xfcalendar/trunk/config.sub,
+	  xfcalendar/trunk/configure, xfcalendar/trunk/configure.ac,
+	  xfcalendar/trunk/install-sh, xfcalendar/trunk/ltmain.sh,
+	  xfcalendar/trunk/plugin/Makefile.in,
+	  xfcalendar/trunk/src/Makefile.in: Add italian translation
 
-2003-12-01 12:03  jasper
+2003-12-01 11:03  jasper
 
-	* po/ca.po: Update catalan translations
+	* xfcalendar/trunk/po/ca.po: Update catalan translations
 
-2003-11-25 22:59  korbinus
+2003-11-25 21:59  korbinus
 
-	* po/sv.gmo, src/callbacks.c: Remove deprecated code
+	* xfcalendar/trunk/po/sv.gmo, xfcalendar/trunk/src/callbacks.c:
+	  Remove deprecated code
 
-2003-11-25 20:43  korbinus
+2003-11-25 19:43  korbinus
 
-	* po/sv.po: Swedish translation updated
+	* xfcalendar/trunk/po/sv.po: Swedish translation updated
 
-2003-11-17 22:38  korbinus
+2003-11-17 21:38  korbinus
 
-	* po/: fr.gmo, fr.po: French translation updated
+	* xfcalendar/trunk/po/fr.gmo, xfcalendar/trunk/po/fr.po: French
+	  translation updated
 
-2003-11-17 22:10  korbinus
+2003-11-17 21:10  korbinus
 
-	* po/: fr.gmo, fr.po: French translation updated
+	* xfcalendar/trunk/po/fr.gmo, xfcalendar/trunk/po/fr.po: French
+	  translation updated
 
-2003-11-17 21:37  korbinus
+2003-11-17 20:37  korbinus
 
-	* po/: POTFILES.in, ca.gmo, ca.po, cs.gmo, cs.po, de.gmo, de.po,
-	  fr.gmo, fr.po, hi.gmo, hi.po, ko.gmo, ko.po, ms.gmo, ms.po,
-	  nl.gmo, nl.po, ru.gmo, ru.po, sv.gmo, sv.po, ta.gmo, ta.po,
-	  tr.gmo, tr.po, xfcalendar.pot, zh_CN.gmo, zh_CN.po, zh_TW.gmo,
-	  zh_TW.po: Update of translated files
+	* xfcalendar/trunk/po/POTFILES.in, xfcalendar/trunk/po/ca.gmo,
+	  xfcalendar/trunk/po/ca.po, xfcalendar/trunk/po/cs.gmo,
+	  xfcalendar/trunk/po/cs.po, xfcalendar/trunk/po/de.gmo,
+	  xfcalendar/trunk/po/de.po, xfcalendar/trunk/po/fr.gmo,
+	  xfcalendar/trunk/po/fr.po, xfcalendar/trunk/po/hi.gmo,
+	  xfcalendar/trunk/po/hi.po, xfcalendar/trunk/po/ko.gmo,
+	  xfcalendar/trunk/po/ko.po, xfcalendar/trunk/po/ms.gmo,
+	  xfcalendar/trunk/po/ms.po, xfcalendar/trunk/po/nl.gmo,
+	  xfcalendar/trunk/po/nl.po, xfcalendar/trunk/po/ru.gmo,
+	  xfcalendar/trunk/po/ru.po, xfcalendar/trunk/po/sv.gmo,
+	  xfcalendar/trunk/po/sv.po, xfcalendar/trunk/po/ta.gmo,
+	  xfcalendar/trunk/po/ta.po, xfcalendar/trunk/po/tr.gmo,
+	  xfcalendar/trunk/po/tr.po, xfcalendar/trunk/po/xfcalendar.pot,
+	  xfcalendar/trunk/po/zh_CN.gmo, xfcalendar/trunk/po/zh_CN.po,
+	  xfcalendar/trunk/po/zh_TW.gmo, xfcalendar/trunk/po/zh_TW.po:
+	  Update of translated files
 
-2003-11-14 17:47  moe
+2003-11-14 16:47  moe
 
-	* po/de.po: Here we go for the German translation update afternoon
-	  ;-)
+	* xfcalendar/trunk/po/de.po: Here we go for the German translation
+	  update afternoon ;-)
 
-2003-11-14 16:28  korbinus
+2003-11-14 15:28  korbinus
 
-	* src/: callbacks.c, callbacks.h, main.c: Code cleaning again
+	* xfcalendar/trunk/src/callbacks.c,
+	  xfcalendar/trunk/src/callbacks.h, xfcalendar/trunk/src/main.c:
+	  Code cleaning again
 
-2003-11-14 14:44  korbinus
+2003-11-14 13:44  korbinus
 
-	* src/: callbacks.c, callbacks.h, interface.c, interface.h, main.c:
+	* xfcalendar/trunk/src/callbacks.c,
+	  xfcalendar/trunk/src/callbacks.h,
+	  xfcalendar/trunk/src/interface.c,
+	  xfcalendar/trunk/src/interface.h, xfcalendar/trunk/src/main.c:
 	  Code cleaning
 
-2003-11-10 22:02  jasper
+2003-11-10 21:02  jasper
 
-	* configure, configure.ac, po/se.gmo, po/se.po, po/sv.gmo,
-	  po/sv.po: Oops, swedish is sv ...
+	* xfcalendar/trunk/configure, xfcalendar/trunk/configure.ac,
+	  xfcalendar/trunk/po/se.gmo, xfcalendar/trunk/po/se.po,
+	  xfcalendar/trunk/po/sv.gmo, xfcalendar/trunk/po/sv.po: Oops,
+	  swedish is sv ...
 
-2003-11-10 20:28  jasper
+2003-11-10 19:30  jasper
 
-	* configure, configure.ac, po/se.gmo, po/se.po: Add swedish
+	* xfcalendar/trunk/configure, xfcalendar/trunk/configure.ac,
+	  xfcalendar/trunk/po/se.gmo, xfcalendar/trunk/po/se.po: Add swedish
 	  translations
 
-2003-11-09 20:22  jasper
+2003-11-09 19:22  jasper
 
-	* configure, configure.ac, po/cs.gmo, po/cs.po: Add Check
+	* xfcalendar/trunk/configure, xfcalendar/trunk/configure.ac,
+	  xfcalendar/trunk/po/cs.gmo, xfcalendar/trunk/po/cs.po: Add Check
 	  translations
 
-2003-11-03 23:42  korbinus
+2003-11-03 22:42  korbinus
 
-	* src/: callbacks.c, callbacks.h, interface.c: Add option for
-	  retrieving the current day
+	* xfcalendar/trunk/src/callbacks.c,
+	  xfcalendar/trunk/src/callbacks.h,
+	  xfcalendar/trunk/src/interface.c: Add option for retrieving the
+	  current day
 
-2003-11-02 09:22  olivier
+2003-11-02 08:22  olivier
 
-	* configure, configure.ac, po/hi.gmo, po/hi.po: Add hi.po
+	* xfcalendar/trunk/configure, xfcalendar/trunk/configure.ac,
+	  xfcalendar/trunk/po/hi.gmo, xfcalendar/trunk/po/hi.po: Add hi.po
 
-2003-10-22 09:49  jasper
+2003-10-22 07:49  jasper
 
-	* po/: zh_TW.gmo, zh_TW.po: Add missing po/gmo files
+	* xfcalendar/trunk/po/zh_TW.gmo, xfcalendar/trunk/po/zh_TW.po: Add
+	  missing po/gmo files
 
-2003-10-22 09:47  jasper
+2003-10-22 07:47  jasper
 
-	* configure, configure.ac: Update tamil and chinese traditional
-	  translations
+	* xfcalendar/trunk/configure, xfcalendar/trunk/configure.ac: Update
+	  tamil and chinese traditional translations
 
-2003-10-16 22:56  korbinus
+2003-10-16 20:56  korbinus
 
-	* src/main.c: Added settings in the systray icon contextual menu
+	* xfcalendar/trunk/src/main.c: Added settings in the systray icon
+	  contextual menu
 
-2003-10-15 13:30  jasper
+2003-10-15 11:30  jasper
 
-	* configure, configure.ac: Update configure files as well
+	* xfcalendar/trunk/configure, xfcalendar/trunk/configure.ac: Update
+	  configure files as well
 
-2003-10-15 13:24  jasper
+2003-10-15 11:24  jasper
 
-	* po/: ko.gmo, ko.po: Add missing ko.po
+	* xfcalendar/trunk/po/ko.gmo, xfcalendar/trunk/po/ko.po: Add missing
+	  ko.po
 
-2003-10-13 20:51  jasper
+2003-10-13 18:51  jasper
 
-	* ChangeLog: Update ChangeLog's after syncing with SF. Everything
-	  should now be up-to-date.
+	* xfcalendar/trunk/ChangeLog: Update ChangeLog's after syncing with
+	  SF. Everything should now be up-to-date.
 
-2003-09-27 14:36  huysmans
+2003-09-27 12:36  huysmans
 
-	* configure, configure.ac, po/ta.gmo, po/ta.po: Update tamil
-	  translation
+	* xfcalendar/trunk/configure, xfcalendar/trunk/configure.ac,
+	  xfcalendar/trunk/po/ta.gmo, xfcalendar/trunk/po/ta.po: Update
+	  tamil translation
 
-2003-09-07 01:56  korbinus
+2003-09-06 23:56  korbinus
 
-	* src/: callbacks.c, main.c: Fixed compact mode/tray icon bug
+	* xfcalendar/trunk/src/callbacks.c, xfcalendar/trunk/src/main.c:
+	  Fixed compact mode/tray icon bug
 
-2003-09-07 01:44  korbinus
+2003-09-06 23:44  korbinus
 
-	* plugin/xfcalendar_plugin.c, src/callbacks.c, src/main.c: Added
-	  compact mode. Removed ability to hide from taskbar/panel.
+	* xfcalendar/trunk/plugin/xfcalendar_plugin.c,
+	  xfcalendar/trunk/src/callbacks.c, xfcalendar/trunk/src/main.c:
+	  Added compact mode. Removed ability to hide from taskbar/panel.
 
-2003-09-03 00:59  korbinus
+2003-09-02 22:59  korbinus
 
-	* src/callbacks.c: Few code cleaning
+	* xfcalendar/trunk/src/callbacks.c: Few code cleaning
 
-2003-09-03 00:38  korbinus
+2003-09-02 22:38  korbinus
 
-	* plugin/xfcalendar_plugin.c: Corrected window size problem in mcs
-	  plugin
+	* xfcalendar/trunk/plugin/xfcalendar_plugin.c: Corrected window size
+	  problem in mcs plugin
 
-2003-09-03 00:14  korbinus
+2003-09-02 22:14  korbinus
 
-	* plugin/xfcalendar_plugin.c: Changed mcs plugin from modal window
-	  to normal window
+	* xfcalendar/trunk/plugin/xfcalendar_plugin.c: Changed mcs plugin
+	  from modal window to normal window
 
-2003-09-02 23:09  korbinus
+2003-09-02 21:10  korbinus
 
-	* plugin/xfcalendar_plugin.c, src/callbacks.c, src/callbacks.h,
-	  src/main.c: Added options for showing/hiding the calendar in
-	  taskbar/pager
+	* xfcalendar/trunk/plugin/xfcalendar_plugin.c,
+	  xfcalendar/trunk/src/callbacks.c,
+	  xfcalendar/trunk/src/callbacks.h, xfcalendar/trunk/src/main.c:
+	  Added options for showing/hiding the calendar in taskbar/pager
 
-2003-09-02 09:16  huysmans
+2003-09-02 07:17  huysmans
 
-	* Makefile.in, aclocal.m4, config.guess, config.sub, configure,
-	  configure.ac, install-sh, ltmain.sh, plugin/Makefile.in,
-	  po/ms.gmo, po/ms.po, src/Makefile.in: Add malaysian translations
+	* xfcalendar/trunk/Makefile.in, xfcalendar/trunk/aclocal.m4,
+	  xfcalendar/trunk/config.guess, xfcalendar/trunk/config.sub,
+	  xfcalendar/trunk/configure, xfcalendar/trunk/configure.ac,
+	  xfcalendar/trunk/install-sh, xfcalendar/trunk/ltmain.sh,
+	  xfcalendar/trunk/plugin/Makefile.in, xfcalendar/trunk/po/ms.gmo,
+	  xfcalendar/trunk/po/ms.po, xfcalendar/trunk/src/Makefile.in: Add
+	  malaysian translations
 
-2003-09-01 21:50  korbinus
+2003-09-01 19:50  korbinus
 
-	* src/: callbacks.c, callbacks.h, interface.c: Added a Close Window
-	  menu item in the main window
+	* xfcalendar/trunk/src/callbacks.c,
+	  xfcalendar/trunk/src/callbacks.h,
+	  xfcalendar/trunk/src/interface.c: Added a Close Window menu item
+	  in the main window
 
-2003-08-31 23:00  xfce
+2003-08-31 21:00  xfce
 
-	* src/: callbacks.c, interface.c, main.c: Make the close button and
-	  the Quit entry from the calendar window close the window instead
-	  of real quit (which was very desapointing from a user
-	  standpoint...)
+	* xfcalendar/trunk/src/callbacks.c,
+	  xfcalendar/trunk/src/interface.c, xfcalendar/trunk/src/main.c:
+	  Make the close button and the Quit entry from the calendar window
+	  close the window instead of real quit (which was very desapointing
+	  from a user standpoint...)
 
-2003-08-31 00:06  korbinus
+2003-08-30 22:06  korbinus
 
-	* src/Makefile.in: Adding MCS support
+	* xfcalendar/trunk/src/Makefile.in: Adding MCS support
 
-2003-08-30 23:49  korbinus
+2003-08-30 21:49  korbinus
 
-	* src/: Makefile.am, callbacks.c, callbacks.h, interface.c, main.c:
+	* xfcalendar/trunk/src/Makefile.am,
+	  xfcalendar/trunk/src/callbacks.c,
+	  xfcalendar/trunk/src/callbacks.h,
+	  xfcalendar/trunk/src/interface.c, xfcalendar/trunk/src/main.c:
 	  Adding MCS support
 
-2003-08-30 23:30  korbinus
+2003-08-30 21:31  korbinus
 
-	* Makefile.am, Makefile.in, aclocal.m4, config.guess, config.sub,
-	  configure, configure.ac, install-sh, ltmain.sh, m4/depends.m4,
-	  plugin/Makefile.am, plugin/Makefile.in, plugin/calendar-icon.h,
-	  plugin/xfcalendar_plugin.c: Adding MCS support
+	* xfcalendar/trunk/Makefile.am, xfcalendar/trunk/Makefile.in,
+	  xfcalendar/trunk/aclocal.m4, xfcalendar/trunk/config.guess,
+	  xfcalendar/trunk/config.sub, xfcalendar/trunk/configure,
+	  xfcalendar/trunk/configure.ac, xfcalendar/trunk/install-sh,
+	  xfcalendar/trunk/ltmain.sh, xfcalendar/trunk/m4/depends.m4,
+	  xfcalendar/trunk/plugin, xfcalendar/trunk/plugin/Makefile.am,
+	  xfcalendar/trunk/plugin/Makefile.in,
+	  xfcalendar/trunk/plugin/calendar-icon.h,
+	  xfcalendar/trunk/plugin/xfcalendar_plugin.c: Adding MCS support
 
-2003-08-24 18:26  xfce
+2003-08-24 16:26  xfce
 
-	* Makefile.in, aclocal.m4, config.guess, config.sub, configure,
-	  install-sh, ltmain.sh, src/Makefile.in: Resync with CVS.
+	* xfcalendar/trunk/Makefile.in, xfcalendar/trunk/aclocal.m4,
+	  xfcalendar/trunk/config.guess, xfcalendar/trunk/config.sub,
+	  xfcalendar/trunk/configure, xfcalendar/trunk/install-sh,
+	  xfcalendar/trunk/ltmain.sh, xfcalendar/trunk/src/Makefile.in:
+	  Resync with CVS.
 
-2003-08-19 00:56  korbinus
+2003-08-18 22:56  korbinus
 
-	* po/: fr.gmo, fr.po: Add french translation
-
-2003-08-19 00:38  korbinus
-
-	* Makefile.in, aclocal.m4, config.guess, config.sub, configure,
-	  configure.ac, install-sh, ltmain.sh, src/Makefile.in: Add french
+	* xfcalendar/trunk/po/fr.gmo, xfcalendar/trunk/po/fr.po: Add french
 	  translation
 
-2003-08-10 21:54  huysmans
+2003-08-18 22:38  korbinus
 
-	* po/: zh_CN.gmo, zh_CN.po: Update chinese translations
+	* xfcalendar/trunk/Makefile.in, xfcalendar/trunk/aclocal.m4,
+	  xfcalendar/trunk/config.guess, xfcalendar/trunk/config.sub,
+	  xfcalendar/trunk/configure, xfcalendar/trunk/configure.ac,
+	  xfcalendar/trunk/install-sh, xfcalendar/trunk/ltmain.sh,
+	  xfcalendar/trunk/src/Makefile.in: Add french translation
 
-2003-08-07 23:57  huysmans
+2003-08-10 19:54  huysmans
 
-	* po/: ca.gmo, ca.po: Update catalan translations
+	* xfcalendar/trunk/po/zh_CN.gmo, xfcalendar/trunk/po/zh_CN.po:
+	  Update chinese translations
 
-2003-07-30 08:08  huysmans
+2003-08-07 21:57  huysmans
 
-	* configure, configure.ac, po/ru.gmo, po/ru.po: Add russian
+	* xfcalendar/trunk/po/ca.gmo, xfcalendar/trunk/po/ca.po: Update
+	  catalan translations
+
+2003-07-30 06:08  huysmans
+
+	* xfcalendar/trunk/configure, xfcalendar/trunk/configure.ac,
+	  xfcalendar/trunk/po/ru.gmo, xfcalendar/trunk/po/ru.po: Add russian
 	  translations
 
-2003-07-19 02:09  korbinus
+2003-07-19 00:09  korbinus
 
-	* src/: callbacks.c, callbacks.h, main.c: Session management: the
-	  main window show up again at startup
+	* xfcalendar/trunk/src/callbacks.c,
+	  xfcalendar/trunk/src/callbacks.h, xfcalendar/trunk/src/main.c:
+	  Session management: the main window show up again at startup
 
-2003-07-19 01:34  korbinus
+2003-07-18 23:34  korbinus
 
-	* src/main.c: Correction of a setting bug I found 2 minutes after
-	  my last commit(as usual)
+	* xfcalendar/trunk/src/main.c: Correction of a setting bug I found 2
+	  minutes after my last commit(as usual)
 
-2003-07-19 01:25  korbinus
+2003-07-18 23:25  korbinus
 
-	* src/: callbacks.c, callbacks.h, interface.c, main.c: Basic
-	  setting (ie quick and dirty) management
+	* xfcalendar/trunk/src/callbacks.c,
+	  xfcalendar/trunk/src/callbacks.h,
+	  xfcalendar/trunk/src/interface.c, xfcalendar/trunk/src/main.c:
+	  Basic setting (ie quick and dirty) management
 
-2003-07-18 09:46  huysmans
+2003-07-18 07:46  huysmans
 
-	* configure, configure.ac, po/nl.gmo, po/nl.po, po/tr.gmo,
-	  po/tr.po: Update turkish translations
+	* xfcalendar/trunk/configure, xfcalendar/trunk/configure.ac,
+	  xfcalendar/trunk/po/nl.gmo, xfcalendar/trunk/po/nl.po,
+	  xfcalendar/trunk/po/tr.gmo, xfcalendar/trunk/po/tr.po: Update
+	  turkish translations
 
-2003-07-18 00:20  korbinus
+2003-07-17 22:20  korbinus
 
-	* src/interface.c: Adding Keybindings to Appointment window
+	* xfcalendar/trunk/src/interface.c: Adding Keybindings to
+	  Appointment window
 
-2003-07-17 23:39  korbinus
+2003-07-17 21:39  korbinus
 
-	* src/: callbacks.c, callbacks.h, main.c: Minor changes and few
-	  code improvements
+	* xfcalendar/trunk/src/callbacks.c,
+	  xfcalendar/trunk/src/callbacks.h, xfcalendar/trunk/src/main.c:
+	  Minor changes and few code improvements
 
-2003-07-16 00:09  bmeurer
+2003-07-15 22:09  bmeurer
 
-	* ChangeLog, NEWS, src/main.c, src/xfce_trayicon.c: Upgrade to
-	  latest XfceTrayIcon (see NEWS for details).
+	* xfcalendar/trunk/ChangeLog, xfcalendar/trunk/NEWS,
+	  xfcalendar/trunk/src/main.c, xfcalendar/trunk/src/xfce_trayicon.c:
+	  Upgrade to latest XfceTrayIcon (see NEWS for details).
 
-2003-07-15 18:31  bmeurer
+2003-07-15 16:31  bmeurer
 
-	* src/: xfce_trayicon.c, xfce_trayicon.h: Update to latest
+	* xfcalendar/trunk/src/xfce_trayicon.c,
+	  xfcalendar/trunk/src/xfce_trayicon.h: Update to latest
 	  XfceTrayIcon
 
-2003-07-14 15:32  bmeurer
+2003-07-14 13:32  bmeurer
 
-	* src/main.c: Fix missing stdio.h include.
+	* xfcalendar/trunk/src/main.c: Fix missing stdio.h include.
 
-2003-07-14 10:56  korbinus
+2003-07-14 08:56  korbinus
 
-	* src/callbacks.c: Fixed little bug in Today tray menu stuff
+	* xfcalendar/trunk/src/callbacks.c: Fixed little bug in Today tray
+	  menu stuff
 
-2003-07-14 10:26  korbinus
+2003-07-14 08:26  korbinus
 
-	* src/: callbacks.c, callbacks.h, main.c: Tray menu for showing
-	  today appointment window
+	* xfcalendar/trunk/src/callbacks.c,
+	  xfcalendar/trunk/src/callbacks.h, xfcalendar/trunk/src/main.c:
+	  Tray menu for showing today appointment window
 
-2003-07-14 09:34  korbinus
+2003-07-14 07:34  korbinus
 
-	* src/main.c: Very basic session management support
+	* xfcalendar/trunk/src/main.c: Very basic session management support
 
-2003-07-14 00:29  korbinus
+2003-07-13 22:29  korbinus
 
-	* src/callbacks.c: Applied Edscott's patch fixing bug with DBH
+	* xfcalendar/trunk/src/callbacks.c: Applied Edscott's patch fixing
+	  bug with DBH
 
-2003-07-13 17:10  bmeurer
+2003-07-13 15:10  bmeurer
 
-	* po/: de.gmo, de.po: Updated german translation. Thanks to Moritz
-	  Heiber.
+	* xfcalendar/trunk/po/de.gmo, xfcalendar/trunk/po/de.po: Updated
+	  german translation. Thanks to Moritz Heiber.
 
-2003-07-13 16:39  bmeurer
+2003-07-13 14:39  bmeurer
 
-	* ChangeLog, po/ca.gmo, po/ca.po, po/de.gmo, po/de.po,
-	  po/xfcalendar.pot, po/zh_CN.gmo, po/zh_CN.po, src/interface.c:
-	  Fixed i18n weirdness, pointed out by Moritz Heiber
+	* xfcalendar/trunk/ChangeLog, xfcalendar/trunk/po/ca.gmo,
+	  xfcalendar/trunk/po/ca.po, xfcalendar/trunk/po/de.gmo,
+	  xfcalendar/trunk/po/de.po, xfcalendar/trunk/po/xfcalendar.pot,
+	  xfcalendar/trunk/po/zh_CN.gmo, xfcalendar/trunk/po/zh_CN.po,
+	  xfcalendar/trunk/src/interface.c: Fixed i18n weirdness, pointed
+	  out by Moritz Heiber
 
-2003-07-13 11:30  bmeurer
+2003-07-13 09:30  bmeurer
 
-	* configure, configure.ac, po/xfcalendar.pot, src/main.c: Even more
-	  gtk+-2.0 fixes.
+	* xfcalendar/trunk/configure, xfcalendar/trunk/configure.ac,
+	  xfcalendar/trunk/po/xfcalendar.pot, xfcalendar/trunk/src/main.c:
+	  Even more gtk+-2.0 fixes.
 
-2003-07-13 10:43  huysmans
+2003-07-13 08:43  huysmans
 
-	* ChangeLog: Update ChangeLogs for release
+	* xfcalendar/trunk/ChangeLog: Update ChangeLogs for release
 
-2003-07-13 10:21  bmeurer
+2003-07-13 08:21  bmeurer
 
-	* ChangeLog, src/xfce_trayicon.c: Gtk2.0 compatibility fixes.
+	* xfcalendar/trunk/ChangeLog, xfcalendar/trunk/src/xfce_trayicon.c:
+	  Gtk2.0 compatibility fixes.
 
-2003-07-12 23:23  bmeurer
+2003-07-12 21:23  bmeurer
 
-	* ChangeLog, configure, configure.ac, src/Makefile.am,
-	  src/Makefile.in, src/calendar-icon.h, src/main.c,
-	  src/xfce_trayicon.c, src/xfce_trayicon.h: Updated to use new tray
-	  icon wrapper class (copied from xfce4-session). This fixes the
-	  problem that tray icons do not show up after the systray was
-	  removed and readded.
+	* xfcalendar/trunk/ChangeLog, xfcalendar/trunk/configure,
+	  xfcalendar/trunk/configure.ac, xfcalendar/trunk/src/Makefile.am,
+	  xfcalendar/trunk/src/Makefile.in,
+	  xfcalendar/trunk/src/calendar-icon.h, xfcalendar/trunk/src/main.c,
+	  xfcalendar/trunk/src/xfce_trayicon.c,
+	  xfcalendar/trunk/src/xfce_trayicon.h: Updated to use new tray icon
+	  wrapper class (copied from xfce4-session). This fixes the problem
+	  that tray icons do not show up after the systray was removed and
+	  readded.
 
-2003-07-11 15:56  huysmans
+2003-07-11 13:56  huysmans
 
-	* aclocal.m4, configure, configure.ac, ltmain.sh: Hmm, chinese
-	  translation updates that didn't get picked up by my previous
-	  commit. Should have been in rc1, sorry.
+	* xfcalendar/trunk/aclocal.m4, xfcalendar/trunk/configure,
+	  xfcalendar/trunk/configure.ac, xfcalendar/trunk/ltmain.sh: Hmm,
+	  chinese translation updates that didn't get picked up by my
+	  previous commit. Should have been in rc1, sorry.
 
-2003-07-11 09:33  huysmans
+2003-07-11 07:33  huysmans
 
-	* ChangeLog: Update ChangeLog's for release
+	* xfcalendar/trunk/ChangeLog: Update ChangeLog's for release
 
-2003-07-11 09:18  huysmans
+2003-07-11 07:18  huysmans
 
-	* po/: zh_CN.gmo, zh_CN.po: Update Chinese translations (2)
+	* xfcalendar/trunk/po/zh_CN.gmo, xfcalendar/trunk/po/zh_CN.po:
+	  Update Chinese translations (2)
 
-2003-07-10 11:56  huysmans
+2003-07-10 09:56  huysmans
 
-	* ChangeLog: Update ChangeLog's for release
+	* xfcalendar/trunk/ChangeLog: Update ChangeLog's for release
 
-2003-07-10 01:01  korbinus
+2003-07-09 23:01  korbinus
 
-	* src/callbacks.c: Bug correction in wheelmouse management
+	* xfcalendar/trunk/src/callbacks.c: Bug correction in wheelmouse
+	  management
 
-2003-07-09 23:32  korbinus
+2003-07-09 21:32  korbinus
 
-	* src/: callbacks.c, callbacks.h, interface.c: Added wheelmouse
-	  support in calendar
+	* xfcalendar/trunk/src/callbacks.c,
+	  xfcalendar/trunk/src/callbacks.h,
+	  xfcalendar/trunk/src/interface.c: Added wheelmouse support in
+	  calendar
 
-2003-07-08 22:55  xfce
+2003-07-08 20:55  xfce
 
-	* po/Makefile.in.in: Don't perform an update-po on make dist as it
-	  causes far too much trouble
+	* xfcalendar/trunk/po/Makefile.in.in: Don't perform an update-po on
+	  make dist as it causes far too much trouble
 
-2003-07-08 18:38  korbinus
+2003-07-08 16:38  korbinus
 
-	* src/: callbacks.c, callbacks.h, interface.c, main.c: Adding
-	  navigation buttons and callbacks for appointment window.
+	* xfcalendar/trunk/src/callbacks.c,
+	  xfcalendar/trunk/src/callbacks.h,
+	  xfcalendar/trunk/src/interface.c, xfcalendar/trunk/src/main.c:
+	  Adding navigation buttons and callbacks for appointment window.
 
-2003-07-08 10:37  korbinus
+2003-07-08 08:37  korbinus
 
-	* src/: callbacks.c, callbacks.h, interface.c,
-	  xfcalendar-icon-inline.h, xfcalendar.png: Fixed a
-	  DBH_update-related segfault, changed window positionning, new
-	  about box and application icon.
+	* xfcalendar/trunk/src/callbacks.c,
+	  xfcalendar/trunk/src/callbacks.h,
+	  xfcalendar/trunk/src/interface.c,
+	  xfcalendar/trunk/src/xfcalendar-icon-inline.h,
+	  xfcalendar/trunk/src/xfcalendar.png: Fixed a DBH_update-related
+	  segfault, changed window positionning, new about box and
+	  application icon.
 
-2003-07-07 23:22  huysmans
+2003-07-07 21:22  huysmans
 
-	* po/ca.gmo, po/ca.po, configure, configure.ac: Update catalan
-	  translations
+	* xfcalendar/trunk/configure, xfcalendar/trunk/configure.ac,
+	  xfcalendar/trunk/po/ca.gmo, xfcalendar/trunk/po/ca.po: Update
+	  catalan translations
 
-2003-07-07 03:31  korbinus
+2003-07-07 01:32  korbinus
 
-	* po/de.gmo, src/callbacks.c, src/callbacks.h, src/interface.c,
-	  src/interface.h: Adding the reminder window (the pretty one ;-))
+	* xfcalendar/trunk/po/de.gmo, xfcalendar/trunk/src/callbacks.c,
+	  xfcalendar/trunk/src/callbacks.h,
+	  xfcalendar/trunk/src/interface.c,
+	  xfcalendar/trunk/src/interface.h: Adding the reminder window (the
+	  pretty one ;-))
 
-2003-07-07 00:38  bmeurer
+2003-07-06 22:38  bmeurer
 
-	* ChangeLog: Updated ChangeLog.
+	* xfcalendar/trunk/ChangeLog: Updated ChangeLog.
 
-2003-07-07 00:27  bmeurer
+2003-07-06 22:27  bmeurer
 
-	* aclocal.m4, configure, src/main.c: Added a tray icon with popup
-	  menu.
+	* xfcalendar/trunk/aclocal.m4, xfcalendar/trunk/configure,
+	  xfcalendar/trunk/src/main.c: Added a tray icon with popup menu.
 
-2003-07-06 22:14  huysmans
+2003-07-06 20:14  huysmans
 
-	* ChangeLog: Update ChangeLogs
+	* xfcalendar/trunk/ChangeLog: Update ChangeLogs
 
-2003-07-06 15:34  xfce
+2003-07-06 13:34  xfce
 
-	* Makefile.in, aclocal.m4, configure, ltconfig: libtool update
+	* xfcalendar/trunk/Makefile.in, xfcalendar/trunk/aclocal.m4,
+	  xfcalendar/trunk/configure, xfcalendar/trunk/ltconfig: libtool
+	  update
 
-2003-07-06 10:21  bmeurer
+2003-07-06 08:21  bmeurer
 
-	* Makefile.in, aclocal.m4, config.h.in, configure, configure.ac,
-	  ltcf-c.sh, ltconfig, ltmain.sh, po/de.po, po/xfcalendar.pot,
-	  src/Makefile.in, src/callbacks.c, src/main.c: Added session
-	  client code.
+	* xfcalendar/trunk/Makefile.in, xfcalendar/trunk/aclocal.m4,
+	  xfcalendar/trunk/config.h.in, xfcalendar/trunk/configure,
+	  xfcalendar/trunk/configure.ac, xfcalendar/trunk/ltcf-c.sh,
+	  xfcalendar/trunk/ltconfig, xfcalendar/trunk/ltmain.sh,
+	  xfcalendar/trunk/po/de.po, xfcalendar/trunk/po/xfcalendar.pot,
+	  xfcalendar/trunk/src/Makefile.in,
+	  xfcalendar/trunk/src/callbacks.c, xfcalendar/trunk/src/main.c:
+	  Added session client code.
 
-2003-07-06 09:40  korbinus
+2003-07-06 07:40  korbinus
 
-	* src/: callbacks.c, interface.c, support.c, support.h: fixed a
-	  gettext-macro conflict between support.h and libxfce4util/i18n.h
+	* xfcalendar/trunk/src/callbacks.c,
+	  xfcalendar/trunk/src/interface.c, xfcalendar/trunk/src/support.c,
+	  xfcalendar/trunk/src/support.h: fixed a gettext-macro conflict
+	  between support.h and libxfce4util/i18n.h
 
-2003-07-05 03:49  edscott
+2003-07-05 01:49  edscott
 
-	* src/callbacks.c: put in missing #ifdef DEBUG directive
+	* xfcalendar/trunk/src/callbacks.c: put in missing #ifdef DEBUG
+	  directive
 
-2003-07-05 00:33  korbinus
+2003-07-04 22:33  korbinus
 
-	* ChangeLog, src/callbacks.c, src/callbacks.h: Fixed segv when
-	  saving in another month and some interface stuff
+	* xfcalendar/trunk/ChangeLog, xfcalendar/trunk/src/callbacks.c,
+	  xfcalendar/trunk/src/callbacks.h: Fixed segv when saving in
+	  another month and some interface stuff
 
-2003-07-04 20:19  edscott
+2003-07-04 18:19  edscott
 
-	* Makefile.in, aclocal.m4, config.h.in, configure, configure.ac,
-	  ltcf-c.sh, ltconfig, ltmain.sh, xfcalendar.glade,
-	  src/Makefile.am, src/Makefile.in, src/callbacks.c,
-	  src/interface.c, src/main.c: added dbh support to enable marking
-	  of days with appointments and to enable an alarm to popup a
-	  window when a day with appointment is reached. Fixed Segv
+	* xfcalendar/trunk/Makefile.in, xfcalendar/trunk/aclocal.m4,
+	  xfcalendar/trunk/config.h.in, xfcalendar/trunk/configure,
+	  xfcalendar/trunk/configure.ac, xfcalendar/trunk/ltcf-c.sh,
+	  xfcalendar/trunk/ltconfig, xfcalendar/trunk/ltmain.sh,
+	  xfcalendar/trunk/src/Makefile.am,
+	  xfcalendar/trunk/src/Makefile.in,
+	  xfcalendar/trunk/src/callbacks.c,
+	  xfcalendar/trunk/src/interface.c, xfcalendar/trunk/src/main.c,
+	  xfcalendar/trunk/xfcalendar.glade: added dbh support to enable
+	  marking of days with appointments and to enable an alarm to popup
+	  a window when a day with appointment is reached. Fixed Segv
 	  conditions when opening different appointments at the same time.
 
-2003-07-03 12:40  bmeurer
+2003-07-03 10:40  bmeurer
 
-	* configure, configure.ac: Fixed typo in configure.ac :-)
+	* xfcalendar/trunk/configure, xfcalendar/trunk/configure.ac: Fixed
+	  typo in configure.ac :-)
 
-2003-07-03 12:30  bmeurer
+2003-07-03 10:30  bmeurer
 
-	* xfcalendar.glade, xfcalendar.gladep, config.guess, config.sub,
-	  autogen.sh, ltconfig, AUTHORS, ChangeLog, Makefile.am, NEWS,
-	  README, ltcf-c.sh, ltmain.sh, stamp-h.in, COPYING, aclocal.m4,
-	  config.h.in, depcomp, install-sh, missing, mkinstalldirs,
-	  INSTALL, Makefile.in, compile, configure.ac, configure,
-	  m4/debug.m4, m4/depends.m4, m4/i18n.m4, po/ChangeLog,
-	  po/Makefile.in.in, po/POTFILES.in, po/de.gmo, po/de.po,
-	  po/xfcalendar.pot, src/Makefile.am, src/Makefile.in,
-	  src/callbacks.c, src/callbacks.h, src/interface.c,
-	  src/interface.h, src/main.c, src/support.c, src/support.h:
-	  Initial revision
+	* xfcalendar/trunk/AUTHORS, xfcalendar/trunk/COPYING,
+	  xfcalendar/trunk/ChangeLog, xfcalendar/trunk/INSTALL,
+	  xfcalendar/trunk/Makefile.am, xfcalendar/trunk/Makefile.in,
+	  xfcalendar/trunk/NEWS, xfcalendar/trunk/README,
+	  xfcalendar/trunk/aclocal.m4, xfcalendar/trunk/autogen.sh,
+	  xfcalendar/trunk/compile, xfcalendar/trunk/config.guess,
+	  xfcalendar/trunk/config.h.in, xfcalendar/trunk/config.sub,
+	  xfcalendar/trunk/configure, xfcalendar/trunk/configure.ac,
+	  xfcalendar/trunk/depcomp, xfcalendar/trunk/install-sh,
+	  xfcalendar/trunk/ltcf-c.sh, xfcalendar/trunk/ltconfig,
+	  xfcalendar/trunk/ltmain.sh, xfcalendar/trunk/m4,
+	  xfcalendar/trunk/m4/debug.m4, xfcalendar/trunk/m4/depends.m4,
+	  xfcalendar/trunk/m4/i18n.m4, xfcalendar/trunk/missing,
+	  xfcalendar/trunk/mkinstalldirs, xfcalendar/trunk/po,
+	  xfcalendar/trunk/po/ChangeLog, xfcalendar/trunk/po/Makefile.in.in,
+	  xfcalendar/trunk/po/POTFILES.in, xfcalendar/trunk/po/de.gmo,
+	  xfcalendar/trunk/po/de.po, xfcalendar/trunk/po/xfcalendar.pot,
+	  xfcalendar/trunk/src, xfcalendar/trunk/src/Makefile.am,
+	  xfcalendar/trunk/src/Makefile.in,
+	  xfcalendar/trunk/src/callbacks.c,
+	  xfcalendar/trunk/src/callbacks.h,
+	  xfcalendar/trunk/src/interface.c,
+	  xfcalendar/trunk/src/interface.h, xfcalendar/trunk/src/main.c,
+	  xfcalendar/trunk/src/support.c, xfcalendar/trunk/src/support.h,
+	  xfcalendar/trunk/stamp-h.in, xfcalendar/trunk/xfcalendar.glade,
+	  xfcalendar/trunk/xfcalendar.gladep: Initial revision
+
+2003-07-03 10:30  
+
+	* xfcalendar/branches, xfcalendar/tags, xfcalendar/trunk: New
+	  repository initialized by cvs2svn.
 
