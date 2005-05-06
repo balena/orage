@@ -69,8 +69,8 @@ dnl Checks for library functions (libical)
 AC_CHECK_FUNCS([gmtime_r iswspace strdup snprintf])
 
 dnl Check for i18n support
-XDT_I18N([ar az be bg ca cs de en_GB es et eu fa fi fr gu he hi \
-          it ja ko lt ms nl nb_NO pa pl pt_BR pt_PT ro ru sk sv ta \
+XDT_I18N([ar az be bg bn_IN ca cs de en_GB es et eu fa fi fr gu he hi \
+          it ja ko lt mr ms nl nb_NO pa pl pt_BR pt_PT ro ru sk sv ta \
           tr uk vi zh_CN zh_TW])
 
 dnl Check for required packages
