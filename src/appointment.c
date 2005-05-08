@@ -453,7 +453,6 @@ on_appStartEndDate_clicked_cb (GtkWidget *button, gpointer *user_data)
     gtk_button_set_label(GTK_BUTTON(button), (const gchar *)date_to_display);
     free(date_to_display);
     gtk_widget_destroy(selDate_Window_dialog);
-    g_free(selDate_Window_dialog);
 }
 
 void fill_appt_window(appt_win *appt_w, char *action, char *par)
