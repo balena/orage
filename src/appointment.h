@@ -94,6 +94,7 @@ typedef struct
     GtkWidget *appAvailability_cb;
     GtkWidget *appAlarm_combobox;
     GtkWidget *appAllDay_checkbutton;
+    GtkWidget *appStartDate_button;
     GtkObject *appStartYear_spinbutton_adj;
     GtkWidget *appStartYear_spinbutton;
     GtkWidget *appStartSlash1_label;
@@ -109,6 +110,7 @@ typedef struct
     GtkObject *appStartMinutes_spinbutton_adj;
     GtkWidget *appStartMinutes_spinbutton;
     GtkWidget *appStartTime_fixed;
+    GtkWidget *appEndDate_button;
     GtkObject *appEndYear_spinbutton_adj;
     GtkWidget *appEndYear_spinbutton;
     GtkWidget *appEndSlash1_label;

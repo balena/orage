@@ -160,7 +160,7 @@ mHelp_about_activate_cb (GtkMenuItem *menuitem,
 }
 
 void
-mCalendar_sroll_event_cb (GtkWidget     *calendar,
+mCalendar_scroll_event_cb (GtkWidget     *calendar,
 			  GdkEventScroll *event)
 {
   guint year, month, day;
@@ -418,7 +418,7 @@ void create_mainWin()
 		    (gpointer) xfcal);
 
   g_signal_connect ((gpointer) xfcal->mCalendar, "scroll_event",
-		    G_CALLBACK (mCalendar_sroll_event_cb),
+		    G_CALLBACK (mCalendar_scroll_event_cb),
 		    NULL);
 
   g_signal_connect ((gpointer) xfcal->mCalendar, "day_selected_double_click",
