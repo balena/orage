@@ -449,6 +449,9 @@ on_appStartEndDate_clicked_cb (GtkWidget *button, gpointer *user_data)
             t=localtime(&tt);
             year_month_day_to_display(t->tm_year + 1900, t->tm_mon + 1, t->tm_mday, date_to_display);
             break;
+        case GTK_RESPONSE_DELETE_EVENT:
+            date_to_display = (char *)g_strdup(gtk_button_get_label(GTK_BUTTON(button)));
+            break;
     }
     gtk_button_set_label(GTK_BUTTON(button), (const gchar *)date_to_display);
     free(date_to_display);

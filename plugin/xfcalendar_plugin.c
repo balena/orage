@@ -56,8 +56,8 @@ static gboolean hidestart = FALSE;
 static gboolean ministart = FALSE;
 static gboolean repeatSoundYes = FALSE;
 static gboolean repeatSoundNo = TRUE;
-static const gchar *soundAppl = "play";
-//static gchar *soundAppl = "play";
+//static const gchar *soundAppl;
+static gchar *soundAppl;
 
 typedef struct _Itf Itf;
 struct _Itf
@@ -116,7 +116,7 @@ static void cb_SoundApplication_changed(GtkWidget * dialog, gpointer user_data)
     Itf *itf = (Itf *) user_data;
     McsPlugin *mcs_plugin = itf->mcs_plugin;
     
-    soundAppl = gtk_entry_get_text(GTK_ENTRY(itf->entrySoundApplication));
+    soundAppl = g_strdup(gtk_entry_get_text(GTK_ENTRY(itf->entrySoundApplication)));
     mcs_manager_set_string(mcs_plugin->manager, "XFcalendar/SoundApplication", CHANNEL, soundAppl);
     mcs_manager_notify(mcs_plugin->manager, CHANNEL);
     write_options(mcs_plugin);
@@ -318,7 +318,7 @@ Itf *create_xfcalendar_dialog(McsPlugin * mcs_plugin)
     gtk_widget_show(dialog->entrySoundApplication);
     gtk_box_pack_start(GTK_BOX(dialog->hboxSoundApplication), dialog->entrySoundApplication, FALSE, FALSE, 0);
     g_warning("Sound application to be displayed: %s\n", soundAppl);
-    gtk_entry_set_text(GTK_ENTRY(dialog->entrySoundApplication), soundAppl);
+    gtk_entry_set_text(GTK_ENTRY(dialog->entrySoundApplication), (const gchar *)soundAppl);
     /* */
     dialog->closebutton = gtk_button_new_from_stock ("gtk-close");
     gtk_widget_show (dialog->closebutton);
@@ -442,8 +442,11 @@ static void create_channel(McsPlugin * mcs_plugin)
     setting = mcs_manager_setting_lookup(mcs_plugin->manager, "XFcalendar/SoundApplication", CHANNEL);
     if(setting)
     {
-        soundAppl = setting->data.v_string;
-	g_warning("Sound application read from file: %s\n", soundAppl);
+        soundAppl = (gchar*)malloc(255);
+        if(!(soundAppl = setting->data.v_string)){
+            soundAppl = "play";
+        }
+    	g_warning("Sound application read from file: %s\n", soundAppl);
     }
     write_options (mcs_plugin);
 }
