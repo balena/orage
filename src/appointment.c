@@ -93,7 +93,6 @@ gboolean ical_to_year_month_day(char *ical, int *year, int *month, int *day){
         *year = atoi(cyear);
         *month = atoi(cmonth);
         *day = atoi(cday);
-        //g_warning("%s => %d-%d-%d\n", ical, year, month, day);
 
         return TRUE;
     }
@@ -473,9 +472,18 @@ void fill_appt_window(appt_win *appt_w, char *action, char *par)
   /* par contains XFICAL_APP_DATE_FORMAT (yyyymmdd) date for new appointment */
         tt=time(NULL);
         t=localtime(&tt);
-        g_sprintf(appt_data->starttime,"%sT%02d%02d00"
-                    , par, t->tm_hour, t->tm_min);
-        strcpy(appt_data->endtime, appt_data->starttime);
+        if(t->tm_min <= 30){
+            g_sprintf(appt_data->starttime,"%sT%02d%02d00"
+                        , par, t->tm_hour, 30);
+            g_sprintf(appt_data->endtime,"%sT%02d%02d00"
+                        , par, t->tm_hour + 1, 00);
+        }
+        else{
+            g_sprintf(appt_data->starttime,"%sT%02d%02d00"
+                        , par, t->tm_hour + 1, 00);
+            g_sprintf(appt_data->endtime,"%sT%02d%02d00"
+                        , par, t->tm_hour + 1, 30);
+        }
         g_message("Building new ical uid: %s \n", appt_data->uid);
         g_message("Starttime address: %d\n", &appt_data->starttime);
         g_message("Endtime address: %d\n", &appt_data->endtime);
@@ -668,7 +676,7 @@ appt_win
     gtk_table_set_row_spacings (GTK_TABLE (appt->appTableGeneral), 6);
     gtk_table_set_col_spacings (GTK_TABLE (appt->appTableGeneral), 6);
 
-    appt->appTitle_label = gtk_label_new (_("Title "));
+    appt->appTitle_label = gtk_label_new (_("_Title "));
     gtk_widget_show (appt->appTitle_label);
     gtk_table_attach (GTK_TABLE (appt->appTableGeneral), appt->appTitle_label, 0, 1, 0, 1,
                       (GtkAttachOptions) (GTK_FILL),
@@ -754,6 +762,11 @@ appt_win
     gtk_widget_show(appt->appStartDate_button);
     gtk_box_pack_start (GTK_BOX (appt->appStartTime_hbox), appt->appStartDate_button, TRUE, TRUE, 0);
 
+    appt->appStartSpace_label = gtk_label_new (_("  "));
+    gtk_widget_show (appt->appStartSpace_label);
+    gtk_box_pack_start (GTK_BOX (appt->appStartTime_hbox), appt->appStartSpace_label, FALSE, FALSE, 0);
+    gtk_misc_set_alignment (GTK_MISC (appt->appStartSpace_label), 0.5, 0.43);
+
     appt->appStartHour_spinbutton_adj = gtk_adjustment_new (0, 0, 23, 1, 10, 10);
     appt->appStartHour_spinbutton = gtk_spin_button_new (GTK_ADJUSTMENT (appt->appStartHour_spinbutton_adj), 1, 0);
     gtk_widget_show (appt->appStartHour_spinbutton);
@@ -784,6 +797,11 @@ appt_win
     appt->appEndDate_button = gtk_button_new();
     gtk_widget_show(appt->appEndDate_button);
     gtk_box_pack_start (GTK_BOX (appt->appEndTime_hbox), appt->appEndDate_button, TRUE, TRUE, 0);
+
+    appt->appEndSpace_label = gtk_label_new (_("  "));
+    gtk_widget_show (appt->appEndSpace_label);
+    gtk_box_pack_start (GTK_BOX (appt->appEndTime_hbox), appt->appEndSpace_label, FALSE, FALSE, 0);
+    gtk_misc_set_alignment (GTK_MISC (appt->appEndSpace_label), 0.5, 0.43);
 
     appt->appEndHour_spinbutton_adj = gtk_adjustment_new (0, 0, 23, 1, 10, 10);
     appt->appEndHour_spinbutton = gtk_spin_button_new (GTK_ADJUSTMENT (appt->appEndHour_spinbutton_adj), 1, 0);
