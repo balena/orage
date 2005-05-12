@@ -55,7 +55,6 @@
 #define APPOINTMENT_FILE "appointments.ics"
 #define FILETYPE_SIZE 38
 
-static gchar *last_sound_dir;
 static GtkWidget *selDate_Window_dialog;
 
 void ical_to_label(char *ical, char *label)
@@ -149,6 +148,8 @@ on_appSound_button_clicked_cb(GtkButton *button, gpointer user_data)
     GtkWidget *file_chooser;
 	XfceFileFilter *filter;
 
+    gchar *appSound_entry_filename;
+
     const gchar * filetype[FILETYPE_SIZE] = {"*.aiff", "*.al", "*.alsa", "*.au", "*.auto", "*.avr",
                                              "*.cdr", "*.cvs", "*.dat", "*.vms", "*.gsm", "*.hcom", 
                                              "*.la", "*.lu", "*.maud", "*.mp3", "*.nul", "*.ogg", "*.ossdsp",
@@ -157,6 +158,7 @@ on_appSound_button_clicked_cb(GtkButton *button, gpointer user_data)
                                              "*.voc", "*.vorbis", "*.vox", "*.wav", "*.wve"};
 
     appt_win *apptw = (appt_win *)user_data;
+    appSound_entry_filename = g_strdup(gtk_entry_get_text((GtkEntry *)apptw->appSound_entry));
 
     file_chooser = xfce_file_chooser_new (_("Select a file..."),
                                             GTK_WINDOW (apptw->appWindow),
@@ -179,23 +181,17 @@ on_appSound_button_clicked_cb(GtkButton *button, gpointer user_data)
 
     xfce_file_chooser_add_shortcut_folder(XFCE_FILE_CHOOSER(file_chooser), PACKAGE_DATA_DIR "/xfcalendar/sounds", NULL);
 
-    /* FIXME: file_chooser never find the file given in appSound_entry
-    if(apptw->appSound_entry){
-        g_warning("File: %s\n", (gchar *) gtk_entry_get_text((GtkEntry *)apptw->appSound_entry));
-        xfce_file_chooser_set_current_name(XFCE_FILE_CHOOSER(file_chooser), 
-                                          (const gchar *) gtk_entry_get_text((GtkEntry *)apptw->appSound_entry));
+    if(strlen(appSound_entry_filename) > 0){
+        g_warning("File: %s\n", appSound_entry_filename);
+        xfce_file_chooser_set_filename(XFCE_FILE_CHOOSER(file_chooser), 
+                                       (const gchar *) appSound_entry_filename);
     }
     else
-    */
-        if(last_sound_dir)
-            xfce_file_chooser_set_current_folder(XFCE_FILE_CHOOSER(file_chooser), last_sound_dir);
-        else
-            xfce_file_chooser_set_current_folder(XFCE_FILE_CHOOSER(file_chooser), PACKAGE_DATA_DIR "/xfcalendar/sounds");
+        xfce_file_chooser_set_current_folder(XFCE_FILE_CHOOSER(file_chooser), PACKAGE_DATA_DIR "/xfcalendar/sounds");
 
 	if(gtk_dialog_run(GTK_DIALOG(file_chooser)) == GTK_RESPONSE_ACCEPT) {
         gchar *sound_file;
 		sound_file = xfce_file_chooser_get_filename(XFCE_FILE_CHOOSER(file_chooser));
-        last_sound_dir = xfce_file_chooser_get_current_folder(XFCE_FILE_CHOOSER(file_chooser));
 
         if(sound_file){
 			gtk_entry_set_text(GTK_ENTRY(apptw->appSound_entry), sound_file);
@@ -205,6 +201,7 @@ on_appSound_button_clicked_cb(GtkButton *button, gpointer user_data)
     gtk_widget_show(file_chooser);
 
     gtk_widget_destroy(file_chooser);
+    g_free(appSound_entry_filename);
 }
 
 void
