@@ -676,7 +676,7 @@ appt_win
     gtk_table_set_row_spacings (GTK_TABLE (appt->appTableGeneral), 6);
     gtk_table_set_col_spacings (GTK_TABLE (appt->appTableGeneral), 6);
 
-    appt->appTitle_label = gtk_label_new (_("_Title "));
+    appt->appTitle_label = gtk_label_new (_("Title "));
     gtk_widget_show (appt->appTitle_label);
     gtk_table_attach (GTK_TABLE (appt->appTableGeneral), appt->appTitle_label, 0, 1, 0, 1,
                       (GtkAttachOptions) (GTK_FILL),
