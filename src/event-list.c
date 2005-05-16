@@ -1,7 +1,7 @@
 /* xfcalendar
  *
- * Copyright (C) 2003-2005 Mickael Graf (korbinus@linux.se)
- * Copyright (C) 2005 Juha Kautto (juha@xfce.org)
+ * Copyright (C) 2003-2005 Mickael Graf (korbinus at xfce.org)
+ * Copyright (C) 2005 Juha Kautto (juha at xfce.org)
  *
  * This program is free software; you can redistribute it and/or modify it 
  * under the terms of the GNU General Public License as published by the

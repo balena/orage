@@ -30,6 +30,7 @@
 #include <unistd.h>
 #include <locale.h>
 #include <time.h>
+#include <math.h>
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -57,22 +58,9 @@
 
 static GtkWidget *selDate_Window_dialog;
 
-void ical_to_label(char *ical, char *label)
-{
-    gint i, j;
-
-    for (i = 0, j = 0; i <= 9; i++) { /* yyyymmdd -> yyyy-mm-dd */
-        if ((i == 4) || (i == 7))
-            label[i] = '-';
-        else
-            label[i] = ical[j++];
-    }
-    label[10] = '\0';
-}
-
-gboolean ical_to_year_month_day(char *ical, int *year, int *month, int *day){
+gboolean ical_to_year_month_day_hours_minutes(char *ical, int *year, int *month, int *day, int *hours, int *minutes){
     int i, j;
-    char cyear[5], cmonth[3], cday[3];
+    char cyear[5], cmonth[3], cday[3], chours[3], cminutes[3];
 
     if(strlen(ical) >= 8){
        for (i = 0, j = 0; i < 4; i++){
@@ -80,24 +68,40 @@ gboolean ical_to_year_month_day(char *ical, int *year, int *month, int *day){
         }
         cyear[4] = '\0';
 
-        for(i = 4, j = 0; i < 6; i++){
-            cmonth[j++] = ical[i];
-        }
+        cmonth[0] = ical[4];
+        cmonth[1] = ical[5];
         cmonth[2] = '\0';
 
-        for(i = 6, j = 0; i < 8; i++){
-            cday[j++] = ical[i];
-        }
+        cday[0] = ical[6];
+        cday[1] = ical[7];
         cday[2] = '\0';
 
         *year = atoi(cyear);
         *month = atoi(cmonth);
         *day = atoi(cday);
 
+        if(strlen(ical) >= 13){
+            chours[0] = ical[9];
+            chours[1] = ical[10];
+            chours[2] = '\0';
+
+            cminutes[0] = ical[11];
+            cminutes[1] = ical[12];
+            cminutes[2] = '\0';
+
+            *hours = atoi(chours);
+            *minutes = atoi(cminutes);
+
+        }
+        else{
+            *hours = -1;
+            *minutes = -1;
+        }
+
         return TRUE;
     }
     else{
-        g_warning("ical string uncopmplete\n");
+        g_warning("ical string uncomplete\n");
         return FALSE;
     }
 }
@@ -212,52 +216,46 @@ on_appAllDay_clicked_cb(GtkCheckButton *checkbutton, gpointer user_data)
   check_status = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(apptw->appAllDay_checkbutton));
 
   if(check_status){
-    gtk_widget_set_sensitive(apptw->appStartHour_spinbutton, FALSE);
-    gtk_widget_set_sensitive(apptw->appStartMinutes_spinbutton, FALSE);
-    gtk_widget_set_sensitive(apptw->appEndHour_spinbutton, FALSE);
-    gtk_widget_set_sensitive(apptw->appEndMinutes_spinbutton, FALSE);
-    gtk_widget_set_sensitive(apptw->appAlarm_combobox, FALSE);
+    gtk_widget_hide(apptw->appStartTime_comboboxentry);
+    gtk_widget_hide(apptw->appEndTime_comboboxentry);
   } else {
-    gtk_widget_set_sensitive(apptw->appStartHour_spinbutton, TRUE);
-    gtk_widget_set_sensitive(apptw->appStartMinutes_spinbutton, TRUE);
-    gtk_widget_set_sensitive(apptw->appEndHour_spinbutton, TRUE);
-    gtk_widget_set_sensitive(apptw->appEndMinutes_spinbutton, TRUE);
-    gtk_widget_set_sensitive(apptw->appAlarm_combobox, TRUE);
+    gtk_widget_show(apptw->appStartTime_comboboxentry);
+    gtk_widget_show(apptw->appEndTime_comboboxentry);
   }
 }
 
 void
 fill_appt(appt_type *appt, appt_win *apptw)
 {
-    gint StartHour_value,
-      StartMinutes_value,
-      EndHour_value,
-      EndMinutes_value;
     GtkTextIter start, end;
-    const char *date_format;
+    const char *date_format, *time_format;
     struct tm current_t;
     char *returned_by_strptime;
+    int dummy1, dummy2;
 
     appt->title = (gchar *) gtk_entry_get_text((GtkEntry *)apptw->appTitle_entry);
 
     appt->location = (gchar *) gtk_entry_get_text((GtkEntry *)apptw->appLocation_entry);
 
     date_format = _("%m/%d/%Y");
-    returned_by_strptime = strptime(gtk_button_get_label(GTK_BUTTON(apptw->appStartDate_button)), date_format, &current_t);
+    time_format = "%H:%M";
 
-    StartHour_value = gtk_spin_button_get_value_as_int((GtkSpinButton *)apptw->appStartHour_spinbutton);
-    StartMinutes_value = gtk_spin_button_get_value_as_int((GtkSpinButton *)apptw->appStartMinutes_spinbutton);
+/* Line to remember when building a check for data entry
+    if(g_strdup(gtk_entry_get_text(GTK_ENTRY(GTK_BIN(apptw->appStartTime_comboboxentry)->child)))[2] != ':')
+        g_warning("Bingo!");
+*/
+    returned_by_strptime = strptime(gtk_button_get_label(GTK_BUTTON(apptw->appStartDate_button)), date_format, &current_t);
+    returned_by_strptime = strptime(gtk_entry_get_text(GTK_ENTRY(GTK_BIN(apptw->appStartTime_comboboxentry)->child)), time_format, &current_t);
+
     g_sprintf(appt->starttime, XFICAL_APP_TIME_FORMAT
             , current_t.tm_year + 1900, current_t.tm_mon + 1, current_t.tm_mday
-            , StartHour_value, StartMinutes_value, 0);
+            , current_t.tm_hour, current_t.tm_min, 0);
 
     returned_by_strptime = strptime(gtk_button_get_label(GTK_BUTTON(apptw->appEndDate_button)), date_format, &current_t);
-
-    EndHour_value = gtk_spin_button_get_value_as_int((GtkSpinButton *)apptw->appEndHour_spinbutton);
-    EndMinutes_value = gtk_spin_button_get_value_as_int((GtkSpinButton *)apptw->appEndMinutes_spinbutton);
+    returned_by_strptime = strptime(gtk_entry_get_text(GTK_ENTRY(GTK_BIN(apptw->appEndTime_comboboxentry)->child)), time_format, &current_t);
     g_sprintf(appt->endtime, XFICAL_APP_TIME_FORMAT
             , current_t.tm_year + 1900, current_t.tm_mon + 1, current_t.tm_mday
-            , EndHour_value, EndMinutes_value, 0);
+            , current_t.tm_hour, current_t.tm_min, 0);
 
     appt->alarmtime = gtk_combo_box_get_active((GtkComboBox *)apptw->appAlarm_combobox);
 
@@ -282,6 +280,7 @@ fill_appt(appt_type *appt, appt_win *apptw)
 void
 on_appSave_clicked_cb(GtkButton *button, gpointer user_data)
 {
+    gint result;
 
     appt_win *apptw = (appt_win *)user_data;
     gboolean ok = FALSE;
@@ -290,31 +289,37 @@ on_appSave_clicked_cb(GtkButton *button, gpointer user_data)
 
     fill_appt(appt, apptw);
 
-  /* Here we try to save the event... */
-  if (xfical_file_open()){
-     if (apptw->add_appointment) {
-/*
-        new_uid = xfical_app_add(appt);
-        ok = TRUE;
-        apptw->add_appointment = FALSE;
-        g_message("New ical uid: %s \n", new_uid);
-*/
-        apptw->xf_uid = xfical_app_add(appt);
-        apptw->add_appointment = FALSE;
-        ok = TRUE;
-        g_message("New ical uid: %s \n", apptw->xf_uid);
-     }
-     else {
-        ok = xfical_app_mod(apptw->xf_uid, appt);
-        g_message("Modified :%s \n", apptw->xf_uid);
-     }
-     xfical_file_close();
-  }
+    if(g_ascii_strcasecmp(appt->endtime, appt->starttime) < 0){
+        result = xfce_message_dialog(GTK_WINDOW(apptw->appWindow),
+                                     _("Warning"),
+                                     GTK_STOCK_DIALOG_WARNING,
+                                     _("The end of this appointment is earlier than the beginning."),
+                                     NULL,
+                                     GTK_STOCK_OK,
+                                     GTK_RESPONSE_ACCEPT,
+                                     NULL);
 
-  if (ok && apptw->wAppointment != NULL) {
-     recreate_wAppointment(apptw->wAppointment);
-  }
+    }
+    else{
+        /* Here we try to save the event... */
+        if (xfical_file_open()){
+            if (apptw->add_appointment) {
+                apptw->xf_uid = xfical_app_add(appt);
+                apptw->add_appointment = FALSE;
+                ok = TRUE;
+                g_message("New ical uid: %s \n", apptw->xf_uid);
+            }
+            else {
+                ok = xfical_app_mod(apptw->xf_uid, appt);
+                g_message("Modified :%s \n", apptw->xf_uid);
+            }
+            xfical_file_close();
+        }
 
+        if (ok && apptw->wAppointment != NULL) {
+            recreate_wAppointment(apptw->wAppointment);
+        }
+    }
 }
 
 void
@@ -352,22 +357,34 @@ on_appSaveClose_clicked_cb(GtkButton *button, gpointer user_data)
 void
 on_appDelete_clicked_cb(GtkButton *button, gpointer user_data)
 {
+    gint result;
+    appt_win *apptw = (appt_win *)user_data;
 
-  appt_win *apptw = (appt_win *)user_data;
+    result = xfce_message_dialog(GTK_WINDOW(apptw->appWindow),
+                                 _("Warning"),
+                                 GTK_STOCK_DIALOG_WARNING,
+                                 _("This appointment will be permanently removed."),
+                                 _("Do you want to continue?"),
+                                 GTK_STOCK_YES,
+                                 GTK_RESPONSE_ACCEPT,
+                                 GTK_STOCK_NO,
+                                 GTK_RESPONSE_REJECT,
+                                 NULL);
+                                 
+    if (result == GTK_RESPONSE_ACCEPT){
+        if (xfical_file_open()){
+            xfical_app_del(apptw->xf_uid);
+            xfical_file_close();
+        }
 
-  if (xfical_file_open()){
-     xfical_app_del(apptw->xf_uid);
-     xfical_file_close();
-  }
+        g_message("Removed ical uid: %s \n", apptw->xf_uid);
 
-  g_message("Removed ical uid: %s \n", apptw->xf_uid);
+        if (apptw->wAppointment != NULL) {
+            recreate_wAppointment(apptw->wAppointment);
+        }
 
-  if (apptw->wAppointment != NULL) {
-    recreate_wAppointment(apptw->wAppointment);
-  }
-
-  gtk_widget_destroy(apptw->appWindow);
-
+        gtk_widget_destroy(apptw->appWindow);
+    }
 }
 
 void
@@ -426,13 +443,13 @@ on_appStartEndDate_clicked_cb (GtkWidget *button, gpointer *user_data)
                                                         GTK_STOCK_OK,
                                                         GTK_RESPONSE_ACCEPT,
                                                         NULL);
-    gtk_widget_show(selDate_Window_dialog);
 
     selDate_Calendar_calendar = gtk_calendar_new();
-    gtk_widget_show(selDate_Calendar_calendar);
     gtk_container_add(GTK_CONTAINER(GTK_DIALOG(selDate_Window_dialog)->vbox), selDate_Calendar_calendar);
     gtk_calendar_select_month(GTK_CALENDAR(selDate_Calendar_calendar), current_t.tm_mon, current_t.tm_year + 1900);
     gtk_calendar_select_day(GTK_CALENDAR(selDate_Calendar_calendar), current_t.tm_mday);
+
+    gtk_widget_show_all(selDate_Window_dialog);
 
     result = gtk_dialog_run(GTK_DIALOG(selDate_Window_dialog));
     switch(result){
@@ -459,8 +476,9 @@ void fill_appt_window(appt_win *appt_w, char *action, char *par)
   char start_hh[3], start_mi[3], 
     end_hh[3], end_mi[3];
     char start_date[11], end_date[11];
-    char *startdate_to_display, *enddate_to_display;
-    int year, month, day;
+    char *startdate_to_display, *enddate_to_display,
+         *starttime_to_display, *endtime_to_display;
+    int year, month, day, hours, minutes;
     GtkTextBuffer *tb;
     appt_type *appt_data=NULL;
     struct tm *t;
@@ -514,14 +532,7 @@ void fill_appt_window(appt_win *appt_w, char *action, char *par)
         gtk_entry_set_text(GTK_ENTRY(appt_w->appLocation_entry), appt_data->location);
     if (strlen(appt_data->starttime) > 6 ) {
         g_message("starttime: %s\n", appt_data->starttime);
-        start_hh[0] = appt_data->starttime[9];
-        start_hh[1] = appt_data->starttime[10];
-        start_hh[2] = '\0';
-
-        start_mi[0] = appt_data->starttime[11];
-        start_mi[1] = appt_data->starttime[12];
-        start_mi[2] = '\0';
-        ical_to_year_month_day(appt_data->starttime, &year, &month, &day);
+        ical_to_year_month_day_hours_minutes(appt_data->starttime, &year, &month, &day, &hours, &minutes);
 
         startdate_to_display = (char *)malloc(11);
         if(!startdate_to_display){
@@ -531,19 +542,20 @@ void fill_appt_window(appt_win *appt_w, char *action, char *par)
         gtk_button_set_label(GTK_BUTTON(appt_w->appStartDate_button), (const gchar *)startdate_to_display);
         free(startdate_to_display);
 
-        gtk_spin_button_set_value(GTK_SPIN_BUTTON(appt_w->appStartHour_spinbutton), atoi(start_hh));
-        gtk_spin_button_set_value(GTK_SPIN_BUTTON(appt_w->appStartMinutes_spinbutton), atoi(start_mi));
+        starttime_to_display = (char *)malloc(6);
+        if(!starttime_to_display){
+            g_warning("Memory allocation failure!\n");
+        }
+        if(hours > -1 && minutes > -1){
+            g_warning("%02d:%02d", hours, minutes);
+            sprintf(starttime_to_display, "%02d:%02d", hours, minutes);
+            gtk_entry_set_text(GTK_ENTRY(GTK_BIN(appt_w->appStartTime_comboboxentry)->child), (const gchar *)starttime_to_display);
+        }
+        free(starttime_to_display);
     }
     if (strlen( appt_data->endtime) > 6 ) {
         g_message("endtime: %s\n", appt_data->endtime);
-        end_hh[0] = appt_data->endtime[9];
-        end_hh[1] = appt_data->endtime[10];
-        end_hh[2] = '\0';
-
-        end_mi[0] = appt_data->endtime[11];
-        end_mi[1] = appt_data->endtime[12];
-        end_mi[2] = '\0';
-        ical_to_year_month_day(appt_data->endtime, &year, &month, &day);
+        ical_to_year_month_day_hours_minutes(appt_data->endtime, &year, &month, &day, &hours, &minutes);
 
         enddate_to_display = (char *)malloc(11);
         if(!enddate_to_display){
@@ -553,8 +565,16 @@ void fill_appt_window(appt_win *appt_w, char *action, char *par)
         gtk_button_set_label(GTK_BUTTON(appt_w->appEndDate_button), (const gchar *)enddate_to_display);
         free(enddate_to_display);
 
-        gtk_spin_button_set_value(GTK_SPIN_BUTTON(appt_w->appEndHour_spinbutton), atoi(end_hh));
-        gtk_spin_button_set_value(GTK_SPIN_BUTTON(appt_w->appEndMinutes_spinbutton), atoi(end_mi));
+        endtime_to_display = (char *)malloc(6);
+        if(!endtime_to_display){
+            g_warning("Memory allocation failure!\n");
+        }
+        if(hours > -1 && minutes > -1){
+            g_warning("%02d:%02d", hours, minutes);
+            sprintf(endtime_to_display, "%02d:%02d", hours, minutes);
+            gtk_entry_set_text(GTK_ENTRY(GTK_BIN(appt_w->appEndTime_comboboxentry)->child), (const gchar *)endtime_to_display);
+        }
+        free(endtime_to_display);
     }
     if (appt_data->sound)
         gtk_entry_set_text(GTK_ENTRY(appt_w->appSound_entry), appt_data->sound);
@@ -586,7 +606,19 @@ void fill_appt_window(appt_win *appt_w, char *action, char *par)
 appt_win 
 *create_appt_win(char *action, char *par, GtkWidget *wAppointment)
 {
+    int i;
+    char * hours[48];
     GtkWidget *tmp_toolbar_icon;
+
+    for(i = 0; i < 48 ; i += 2){
+        hours[i] = (char *)calloc(6, sizeof(gchar));
+        sprintf(hours[i], "%02d:00", (int)(i/2));
+    }
+    for(i = 1; i < 48 ; i += 2){
+        hours[i] = (char *)calloc(6, sizeof(gchar));
+        sprintf(hours[i], "%02d:30", (int)(i/2));
+    }
+
     appt_win *appt = g_new(appt_win, 1);
 
     appt->xf_uid = NULL;
@@ -767,22 +799,13 @@ appt_win
     gtk_box_pack_start (GTK_BOX (appt->appStartTime_hbox), appt->appStartSpace_label, FALSE, FALSE, 0);
     gtk_misc_set_alignment (GTK_MISC (appt->appStartSpace_label), 0.5, 0.43);
 
-    appt->appStartHour_spinbutton_adj = gtk_adjustment_new (0, 0, 23, 1, 10, 10);
-    appt->appStartHour_spinbutton = gtk_spin_button_new (GTK_ADJUSTMENT (appt->appStartHour_spinbutton_adj), 1, 0);
-    gtk_widget_show (appt->appStartHour_spinbutton);
-    gtk_box_pack_start (GTK_BOX (appt->appStartTime_hbox), appt->appStartHour_spinbutton, FALSE, TRUE, 0);
-    gtk_spin_button_set_numeric (GTK_SPIN_BUTTON (appt->appStartHour_spinbutton), TRUE);
-
-    appt->appStartColumn_label = gtk_label_new (_(" : "));
-    gtk_widget_show (appt->appStartColumn_label);
-    gtk_box_pack_start (GTK_BOX (appt->appStartTime_hbox), appt->appStartColumn_label, FALSE, FALSE, 0);
-    gtk_misc_set_alignment (GTK_MISC (appt->appStartColumn_label), 0.5, 0.43);
-
-    appt->appStartMinutes_spinbutton_adj = gtk_adjustment_new (0, 0, 59, 15, 10, 10);
-    appt->appStartMinutes_spinbutton = gtk_spin_button_new (GTK_ADJUSTMENT (appt->appStartMinutes_spinbutton_adj), 1, 0);
-    gtk_widget_show (appt->appStartMinutes_spinbutton);
-    gtk_box_pack_start (GTK_BOX (appt->appStartTime_hbox), appt->appStartMinutes_spinbutton, FALSE, TRUE, 0);
-    gtk_spin_button_set_numeric (GTK_SPIN_BUTTON (appt->appStartMinutes_spinbutton), TRUE);
+    appt->appStartTime_comboboxentry = gtk_combo_box_entry_new_text();
+    for(i = 0; i < 48; i++){
+        gtk_combo_box_append_text(GTK_COMBO_BOX(appt->appStartTime_comboboxentry),
+                (const gchar *)hours[i]);
+    }
+    gtk_widget_show(appt->appStartTime_comboboxentry);
+    gtk_box_pack_start (GTK_BOX (appt->appStartTime_hbox), appt->appStartTime_comboboxentry, FALSE, TRUE, 0);
 
     appt->appStartTime_fixed = gtk_fixed_new ();
     gtk_widget_show (appt->appStartTime_fixed);
@@ -803,22 +826,13 @@ appt_win
     gtk_box_pack_start (GTK_BOX (appt->appEndTime_hbox), appt->appEndSpace_label, FALSE, FALSE, 0);
     gtk_misc_set_alignment (GTK_MISC (appt->appEndSpace_label), 0.5, 0.43);
 
-    appt->appEndHour_spinbutton_adj = gtk_adjustment_new (0, 0, 23, 1, 10, 10);
-    appt->appEndHour_spinbutton = gtk_spin_button_new (GTK_ADJUSTMENT (appt->appEndHour_spinbutton_adj), 1, 0);
-    gtk_widget_show (appt->appEndHour_spinbutton);
-    gtk_box_pack_start (GTK_BOX (appt->appEndTime_hbox), appt->appEndHour_spinbutton, FALSE, TRUE, 0);
-    gtk_spin_button_set_numeric (GTK_SPIN_BUTTON (appt->appEndHour_spinbutton), TRUE);
-
-    appt->appEndColumn_label = gtk_label_new (_(" : "));
-    gtk_widget_show (appt->appEndColumn_label);
-    gtk_box_pack_start (GTK_BOX (appt->appEndTime_hbox), appt->appEndColumn_label, FALSE, FALSE, 0);
-    gtk_misc_set_alignment (GTK_MISC (appt->appEndColumn_label), 0.5, 0.43);
-
-    appt->appEndMinutes_spinbutton_adj = gtk_adjustment_new (0, 0, 59, 15, 10, 10);
-    appt->appEndMinutes_spinbutton = gtk_spin_button_new (GTK_ADJUSTMENT (appt->appEndMinutes_spinbutton_adj), 1, 0);
-    gtk_widget_show (appt->appEndMinutes_spinbutton);
-    gtk_box_pack_start (GTK_BOX (appt->appEndTime_hbox), appt->appEndMinutes_spinbutton, FALSE, TRUE, 0);
-    gtk_spin_button_set_numeric (GTK_SPIN_BUTTON (appt->appEndMinutes_spinbutton), TRUE);
+    appt->appEndTime_comboboxentry = gtk_combo_box_entry_new_text();
+    for(i = 0; i < 48; i++){
+        gtk_combo_box_append_text(GTK_COMBO_BOX(appt->appEndTime_comboboxentry),
+                (const gchar *)hours[i]);
+    }
+    gtk_widget_show(appt->appEndTime_comboboxentry);
+    gtk_box_pack_start (GTK_BOX (appt->appEndTime_hbox), appt->appEndTime_comboboxentry, FALSE, TRUE, 0);
 
     appt->appEndTime_fixed = gtk_fixed_new ();
     gtk_widget_show (appt->appEndTime_fixed);
@@ -971,6 +985,10 @@ appt_win
     g_signal_connect_after ((gpointer) appt->appTitle_entry, "changed",
             G_CALLBACK (on_appTitle_entry_changed_cb),
             appt);
+
+    for( i = 0; i < 48; i++){
+        free(hours[i]);
+    }
 
     fill_appt_window(appt, action, par);
 
