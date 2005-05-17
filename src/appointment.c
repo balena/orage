@@ -316,8 +316,8 @@ on_appSave_clicked_cb(GtkButton *button, gpointer user_data)
             xfical_file_close();
         }
 
-        if (ok && apptw->wAppointment != NULL) {
-            recreate_wAppointment(apptw->wAppointment);
+        if (ok && apptw->wEventlist != NULL) {
+            recreate_wEventlist(apptw->wEventlist);
         }
     }
 }
@@ -346,8 +346,8 @@ on_appSaveClose_clicked_cb(GtkButton *button, gpointer user_data)
      xfical_file_close();
   }
 
-  if (ok && apptw->wAppointment != NULL) {
-     recreate_wAppointment(apptw->wAppointment);
+  if (ok && apptw->wEventlist != NULL) {
+     recreate_wEventlist(apptw->wEventlist);
   }
 
     gtk_widget_destroy(apptw->appWindow);
@@ -379,8 +379,8 @@ on_appDelete_clicked_cb(GtkButton *button, gpointer user_data)
 
         g_message("Removed ical uid: %s \n", apptw->xf_uid);
 
-        if (apptw->wAppointment != NULL) {
-            recreate_wAppointment(apptw->wAppointment);
+        if (apptw->wEventlist != NULL) {
+            recreate_wEventlist(apptw->wEventlist);
         }
 
         gtk_widget_destroy(apptw->appWindow);
@@ -403,10 +403,10 @@ on_appDuplicate_clicked_cb(GtkButton *button, gpointer user_data)
         xfical_file_close();
     }
 
-    if (apptw->wAppointment != NULL) {
-        recreate_wAppointment(apptw->wAppointment);
+    if (apptw->wEventlist != NULL) {
+        recreate_wEventlist(apptw->wEventlist);
     }
-    app = create_appt_win("UPDATE", new_uid, apptw->wAppointment);
+    app = create_appt_win("UPDATE", new_uid, apptw->wEventlist);
     gtk_window_get_position(GTK_WINDOW(apptw->appWindow), &x, &y);
     gtk_window_move(GTK_WINDOW(app->appWindow), x+20, y+20);
     gtk_widget_show(app->appWindow);
@@ -604,7 +604,7 @@ void fill_appt_window(appt_win *appt_w, char *action, char *par)
 }
 
 appt_win 
-*create_appt_win(char *action, char *par, GtkWidget *wAppointment)
+*create_appt_win(char *action, char *par, GtkWidget *wEventlist)
 {
     int i;
     char * hours[48];
@@ -622,13 +622,13 @@ appt_win
     appt_win *appt = g_new(appt_win, 1);
 
     appt->xf_uid = NULL;
-    appt->wAppointment = wAppointment;
+    appt->wEventlist = wEventlist;
 
     appt->appWindow = gtk_window_new(GTK_WINDOW_TOPLEVEL);
     gtk_window_set_default_size(GTK_WINDOW(appt->appWindow), 450, 325);
-    if (appt->wAppointment != NULL) {
+    if (appt->wEventlist != NULL) {
       gtk_window_set_transient_for(GTK_WINDOW(appt->appWindow)
-              , GTK_WINDOW(appt->wAppointment));
+              , GTK_WINDOW(appt->wEventlist));
       gtk_window_set_destroy_with_parent(GTK_WINDOW(appt->appWindow), TRUE);
     }
 

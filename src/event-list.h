@@ -1,9 +1,9 @@
 #include <gtk/gtk.h>
 #include <gdk/gdk.h>
 
-GtkWidget* create_wAppointment (void);
-GtkWidget* create_wClearWarn (GtkWidget *parent);
-GtkWidget* recreate_wAppointment (GtkWidget *appointment);
+GtkWidget* create_wEventlist(void);
+GtkWidget* create_wClearWarn(GtkWidget *parent);
+void recreate_wEventlist(GtkWidget *wEventlist);
 
 void
 on_btClose_clicked                     (GtkButton       *button,
@@ -32,7 +32,7 @@ on_btClose_clicked                     (GtkButton       *button,
                                         gpointer         user_data);
 
 gboolean 
-on_wAppointment_delete_event           (GtkWidget       *widget,
+on_wEventlist_delete_event             (GtkWidget       *widget,
                                         GdkEvent        *event,
                                         gpointer         user_data);
 
@@ -69,7 +69,4 @@ gboolean
 bisextile(guint year);
 
 void
-manageAppointment(GtkCalendar *calendar, GtkWidget *appointment);
-
-gint 
-dialogWin(gpointer user_data);
+manage_wEventlist(GtkCalendar *calendar, GtkWidget *wEventlist);

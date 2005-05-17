@@ -65,10 +65,10 @@ static SessionClient	*session_client = NULL;
 CalWin *xfcal;
 
 /* MCS client */
-McsClient        *client = NULL;
+McsClient *client = NULL;
 
 /* tray icon */
-XfceTrayIcon 		*trayIcon = NULL;
+XfceTrayIcon *trayIcon = NULL;
 
 /* main calendar window position */
 gint pos_x = 0, pos_y = 0; 
@@ -118,7 +118,7 @@ void apply_settings()
 
 static gboolean
 client_message_received(GtkWidget * widget, GdkEventClient * event,
-			 gpointer user_data)
+    gpointer user_data)
 {
     TRACE("client message received");
 
@@ -193,21 +193,21 @@ notify_cb(const char *name, const char *channel_name
                 }
                 else if (!strcmp(name, "XFCalendar/TaskBar")) {
                     showtaskbar = setting->data.v_int ? TRUE : FALSE;
-		   /* Reminder: if we want to show the calendar in the taskbar 
-            * (i.e. showtaskbar is TRUE) then gtk_window_set_skip_taskbar_hint 
-            * must get a FALSE value, and if we don't want to be seen in 
+           /* Reminder: if we want to show the calendar in the taskbar
+            * (i.e. showtaskbar is TRUE) then gtk_window_set_skip_taskbar_hint
+            * must get a FALSE value, and if we don't want to be seen in
             * the taskbar, then the function must eat a TRUE.
-		    */
-		            gtk_window_set_skip_taskbar_hint(GTK_WINDOW(xfcal->mWindow)
+            */
+            gtk_window_set_skip_taskbar_hint(GTK_WINDOW(xfcal->mWindow)
                             , !showtaskbar);
                 }
                 else if(!strcmp(name, "XFCalendar/Pager")) {
                     showpager = setting->data.v_int ? TRUE : FALSE;
-		   /* Reminder: if we want to show the calendar in the pager 
+           /* Reminder: if we want to show the calendar in the pager
             * (i.e. showpager is TRUE) then gtk_window_set_skip_pager_hint
-            * must get a FALSE value, and if we don't want to be seen in 
+            * must get a FALSE value, and if we don't want to be seen in
             * the pager, then the function must eat a TRUE.
-		    */
+            */
                     gtk_window_set_skip_pager_hint(GTK_WINDOW(xfcal->mWindow)
                             , !showpager);
                 }
@@ -368,7 +368,7 @@ main(int argc, char *argv[])
   hidden = gtk_invisible_new();
   gtk_widget_show(hidden);
   g_signal_connect (hidden, "client-event",
-		    G_CALLBACK (client_message_received), NULL);
+        G_CALLBACK (client_message_received), NULL);
 
   atom = gdk_atom_intern("_XFCE_CALENDAR_RUNNING", FALSE);
 
@@ -376,7 +376,7 @@ main(int argc, char *argv[])
    * Check if xfcalendar is already running on the display
    */
   if ((xwindow = XGetSelectionOwner(GDK_DISPLAY(),
-				    gdk_x11_atom_to_xatom(atom))) != None) {
+        gdk_x11_atom_to_xatom(atom))) != None) {
     XClientMessageEvent xev;
 
     memset(&xev, 0, sizeof(xev));
@@ -393,8 +393,8 @@ main(int argc, char *argv[])
     return(EXIT_SUCCESS);
   }
   if (!gdk_selection_owner_set(hidden->window, atom,
-			       gdk_x11_get_server_time(hidden->window),
-			       FALSE)) {
+       gdk_x11_get_server_time(hidden->window),
+       FALSE)) {
     g_warning("Unable acquire ownership of selection");
   }
 
@@ -402,7 +402,7 @@ main(int argc, char *argv[])
    * try to connect to the session manager
    */
   session_client = client_session_new(argc, argv, NULL,
-				      SESSION_RESTART_IF_RUNNING, 50);
+      SESSION_RESTART_IF_RUNNING, 50);
   session_client->save_yourself = save_yourself_cb;
   session_client->die = die_cb;
   (void)session_init(session_client);
@@ -422,7 +422,7 @@ main(int argc, char *argv[])
    * Create the tray icon and its popup menu
    */
   trayIcon = create_TrayIcon(xfcal);
-	
+
   client = mcs_client_new(dpy, scr, notify_cb, watch_cb, xfcal->mWindow);
   if(client) {
       mcs_client_add_channel(client, CHANNEL);

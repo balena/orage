@@ -130,11 +130,11 @@ mView_ViewSelectedDate_activate_cb(GtkMenuItem *menuitem,
             gpointer user_data)
 {
     CalWin *xfcal = (CalWin *) user_data;
-    GtkWidget *wAppointment;
+    GtkWidget *wEventlist;
 
-    wAppointment = create_wAppointment();
-    manageAppointment(GTK_CALENDAR(xfcal->mCalendar), wAppointment);
-    gtk_widget_show(wAppointment);
+    wEventlist = create_wEventlist();
+    manage_wEventlist(GTK_CALENDAR(xfcal->mCalendar), wEventlist);
+    gtk_widget_show(wEventlist);
 }
 
 void
@@ -191,11 +191,11 @@ void
 mCalendar_day_selected_double_click_cb(GtkCalendar *calendar,
                                         gpointer user_data)
 {
-  GtkWidget *wAppointment;
+  GtkWidget *wEventlist;
 
-  wAppointment = create_wAppointment();
-  manageAppointment(calendar, wAppointment);
-  gtk_widget_show(wAppointment);
+  wEventlist = create_wEventlist();
+  manage_wEventlist(calendar, wEventlist);
+  gtk_widget_show(wEventlist);
 }
 
 void
