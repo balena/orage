@@ -502,7 +502,7 @@ void fill_appt_window(appt_win *appt_w, char *action, char *par)
             g_sprintf(appt_data->endtime,"%sT%02d%02d00"
                         , par, t->tm_hour + 1, 30);
         }
-        g_message("Building new ical uid: %s \n", appt_data->uid);
+        g_message("Building NEW ical uid\n");
         g_message("Starttime address: %d\n", &appt_data->starttime);
         g_message("Endtime address: %d\n", &appt_data->endtime);
     }
