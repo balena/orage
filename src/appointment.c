@@ -161,6 +161,8 @@ on_appSound_button_clicked_cb(GtkButton *button, gpointer user_data)
                                              "*.sph", "*.8svx", "*.sw", "*.txw", "*.ub", "*.ul", "*.uw",
                                              "*.voc", "*.vorbis", "*.vox", "*.wav", "*.wve"};
 
+    int i;
+
     appt_win *apptw = (appt_win *)user_data;
     appSound_entry_filename = g_strdup(gtk_entry_get_text((GtkEntry *)apptw->appSound_entry));
 
@@ -173,7 +175,6 @@ on_appSound_button_clicked_cb(GtkButton *button, gpointer user_data)
 
     filter = xfce_file_filter_new ();
 	xfce_file_filter_set_name(filter, _("Sound Files"));
-    int i;
     for(i = 0; i<FILETYPE_SIZE; i++){
         xfce_file_filter_add_pattern(filter, filetype[i]);
     }
@@ -739,13 +740,12 @@ appt_win
     int i;
     char * hours[48];
     GtkWidget *tmp_toolbar_icon;
+    appt_win *appt = g_new(appt_win, 1);
 
     for(i = 0; i < 48 ; i++){
         hours[i] = (char *)calloc(6, sizeof(gchar));
         sprintf(hours[i], "%02d:%02d", (int)(i/2), (i%2)*30);
     }
-
-    appt_win *appt = g_new(appt_win, 1);
 
     appt->xf_uid = NULL;
     appt->wEventlist = wEventlist;

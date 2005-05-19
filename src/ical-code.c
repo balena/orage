@@ -248,7 +248,7 @@ void app_add_alarm_internal(appt_type *app, icalcomponent *ievent)
 char *app_add_internal(appt_type *app, gboolean add, char *uid
         , struct icaltimetype cre_time)
 {
-    icalcomponent *ievent;;
+    icalcomponent *ievent;
     struct icaltimetype ctime, create_time;
     static gchar xf_uid[1001];
     gchar xf_host[501];
