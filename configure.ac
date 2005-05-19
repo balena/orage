@@ -5,7 +5,7 @@ dnl
 dnl Copyright (c) 2003-2005
 dnl         The Xfce development team. All rights reserved.
 dnl
-dnl Written for Xfce by Mickael Graf <korbinus@linux.se>.
+dnl Written for Xfce by Mickael Graf <korbinus@xfce.org>.
 dnl
 
 dnl Version information
