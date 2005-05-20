@@ -86,129 +86,6 @@ void title_to_ical(char *title, char *ical)
     }
 }
 
-GtkWidget*
-create_wEventlist(void)
-{
-  GtkWidget *wEventlist;
-  GtkWidget *vbox;
-  GtkWidget *toolbar1;
-  GtkWidget *tmp_toolbar_icon;
-  GtkWidget *btClose;
-  GtkWidget *btDelete;
-  GtkWidget *btCreate;
-  GtkWidget *btPrevious;
-  GtkWidget *btToday;
-  GtkWidget *btNext;
-  GtkWidget *wScroll;
-  GtkAccelGroup *accel_group;
-  GtkWidget *spin1, *spin2;
-
-  accel_group = gtk_accel_group_new();
-
-  wEventlist = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-  gtk_window_set_default_size(GTK_WINDOW(wEventlist)
-        , event_win_size_x, event_win_size_y);
-
-  vbox = gtk_vbox_new(FALSE, 0);
-  gtk_widget_show(vbox);
-  gtk_container_add(GTK_CONTAINER(wEventlist), vbox);
-
-  toolbar1 = gtk_toolbar_new();
-  gtk_widget_show(toolbar1);
-  gtk_box_pack_start(GTK_BOX(vbox), toolbar1, FALSE, FALSE, 0);
-  gtk_toolbar_set_style(GTK_TOOLBAR(toolbar1), GTK_TOOLBAR_ICONS);
-
-  tmp_toolbar_icon = gtk_image_new_from_stock("gtk-new", gtk_toolbar_get_icon_size(GTK_TOOLBAR(toolbar1)));
-  btCreate = gtk_toolbar_append_element(GTK_TOOLBAR(toolbar1),
-                                GTK_TOOLBAR_CHILD_BUTTON, NULL,
-                                "btCreate", _("Add (Ctrl+a)"), NULL,
-                                tmp_toolbar_icon, NULL, NULL);
-  gtk_widget_show(btCreate);
-  gtk_widget_add_accelerator(btCreate, "clicked", accel_group, GDK_a, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
-
-  tmp_toolbar_icon = gtk_image_new_from_stock("gtk-go-back", gtk_toolbar_get_icon_size(GTK_TOOLBAR(toolbar1)));
-  btPrevious = gtk_toolbar_append_element(GTK_TOOLBAR(toolbar1),
-                                GTK_TOOLBAR_CHILD_BUTTON, NULL,
-                                "btPrevious", _("Previous day (Ctrl+p)"), NULL,
-                                tmp_toolbar_icon, NULL, NULL);
-  gtk_widget_show(btPrevious);
-  gtk_widget_add_accelerator(btPrevious, "clicked", accel_group, GDK_p, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
-
-  tmp_toolbar_icon = gtk_image_new_from_stock("gtk-home", gtk_toolbar_get_icon_size(GTK_TOOLBAR(toolbar1)));
-  btToday = gtk_toolbar_append_element(GTK_TOOLBAR(toolbar1),
-                                GTK_TOOLBAR_CHILD_BUTTON, NULL,
-                                "btToday", _("Today (Alt+Home)"), NULL,
-                                tmp_toolbar_icon, NULL, NULL);
-  gtk_widget_show(btToday);
-  gtk_widget_add_accelerator(btToday, "clicked", accel_group, GDK_Home, GDK_MOD1_MASK, GTK_ACCEL_VISIBLE);
-  gtk_widget_add_accelerator(btToday, "clicked", accel_group, GDK_h, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
-
-  tmp_toolbar_icon = gtk_image_new_from_stock("gtk-go-forward", gtk_toolbar_get_icon_size(GTK_TOOLBAR(toolbar1)));
-  btNext = gtk_toolbar_append_element(GTK_TOOLBAR(toolbar1),
-                                GTK_TOOLBAR_CHILD_BUTTON, NULL,
-                                "btNext", _("Next day (Ctrl+n)"), NULL,
-                                tmp_toolbar_icon, NULL, NULL);
-  gtk_widget_show(btNext);
-  gtk_widget_add_accelerator(btNext, "clicked", accel_group, GDK_n, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
-
-  gtk_toolbar_append_space(GTK_TOOLBAR(toolbar1));
-
-  tmp_toolbar_icon = gtk_image_new_from_stock("gtk-close", gtk_toolbar_get_icon_size(GTK_TOOLBAR(toolbar1)));
-  btClose = gtk_toolbar_append_element(GTK_TOOLBAR(toolbar1),
-                                GTK_TOOLBAR_CHILD_BUTTON, NULL,
-                                "btClose", _("Close (Ctrl+w)"), NULL,
-                                tmp_toolbar_icon, NULL, NULL);
-  gtk_widget_show(btClose);
-  gtk_widget_add_accelerator(btClose, "clicked", accel_group, GDK_w, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
-
-  tmp_toolbar_icon = gtk_image_new_from_stock("gtk-clear", gtk_toolbar_get_icon_size(GTK_TOOLBAR(toolbar1)));
-  btDelete = gtk_toolbar_append_element(GTK_TOOLBAR(toolbar1),
-                                GTK_TOOLBAR_CHILD_BUTTON, NULL,
-                                "btDelete", _("Clear (Ctrl+l)"), NULL,
-                                tmp_toolbar_icon, NULL, NULL);
-  gtk_widget_show(btDelete);
-  gtk_widget_add_accelerator(btDelete, "clicked", accel_group, GDK_l, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
-
-  spin1 = gtk_spin_button_new_with_range(0, 31, 1);
-  spin2 = gtk_toolbar_append_element(GTK_TOOLBAR(toolbar1),
-                                GTK_TOOLBAR_CHILD_WIDGET, spin1,
-                                "spin", _("Show more days"), NULL,
-                                NULL, NULL, NULL);
-  gtk_widget_show(spin1);
-
-  wScroll = gtk_scrolled_window_new(NULL, NULL);
-  gtk_widget_show(wScroll);
-  gtk_box_pack_start(GTK_BOX(vbox), wScroll, TRUE, TRUE, 0);
-  gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(wScroll), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
-
-  g_signal_connect((gpointer)wEventlist, "delete_event",
-                    G_CALLBACK(on_wEventlist_delete_event), NULL);
-  g_signal_connect((gpointer)btPrevious, "clicked",
-                    G_CALLBACK(on_btPrevious_clicked), (gpointer)wEventlist);
-  g_signal_connect((gpointer)btToday, "clicked",
-                    G_CALLBACK(on_btToday_clicked), (gpointer)wEventlist);
-  g_signal_connect((gpointer)btNext, "clicked",
-                    G_CALLBACK(on_btNext_clicked), (gpointer)wEventlist);
-  g_signal_connect((gpointer)btClose, "clicked",
-                    G_CALLBACK(on_btClose_clicked), (gpointer)wEventlist);
-  g_signal_connect((gpointer)btDelete, "clicked",
-                    G_CALLBACK(on_btDelete_clicked), (gpointer)wEventlist);
-  g_signal_connect((gpointer)btCreate, "clicked",
-                    G_CALLBACK(on_btCreate_clicked), (gpointer)wEventlist);
-  g_signal_connect((gpointer)spin1, "value-changed",
-                    G_CALLBACK(on_btspin_changed), (gpointer)wEventlist);
-
-  /* Store pointers to widgets, for later use */
-  g_object_set_data(G_OBJECT(wEventlist), "wEventlist", wEventlist);
-  g_object_set_data(G_OBJECT(wEventlist), "vbox", vbox);
-  g_object_set_data(G_OBJECT(wEventlist), "wScroll", wScroll);
-  g_object_set_data(G_OBJECT(wEventlist), "spin1", spin1);
-
-  gtk_window_add_accel_group(GTK_WINDOW(wEventlist), accel_group);
-
-  return wEventlist;
-}
-
 void
 recreate_wEventlist(GtkWidget *wEventlist)
 {
@@ -226,66 +103,6 @@ recreate_wEventlist(GtkWidget *wEventlist)
     g_object_set_data(G_OBJECT(wEventlist), "wScroll", wScroll);
 
     manage_wEventlist(GTK_CALENDAR(xfcal->mCalendar), wEventlist);
-}
-
-GtkWidget*
-create_wClearWarn (GtkWidget *parent)
-{
-  GtkWidget *wClearWarn;
-  GtkWidget *dialog_vbox;
-  GtkWidget *hbox1;
-  GtkWidget *image1;
-  GtkWidget *lbClearWarn;
-  GtkWidget *dialog_action_area2;
-  GtkWidget *cancelbutton1;
-  GtkWidget *okbutton2;
-
-  wClearWarn = gtk_dialog_new ();
-  gtk_widget_set_size_request (wClearWarn, 250, 120);
-  gtk_window_set_title (GTK_WINDOW (wClearWarn), _("Warning"));
-  gtk_window_set_transient_for(GTK_WINDOW (wClearWarn), GTK_WINDOW(parent));
-  gtk_window_set_position (GTK_WINDOW (wClearWarn), GTK_WIN_POS_CENTER_ON_PARENT);
-  gtk_window_set_modal (GTK_WINDOW (wClearWarn), TRUE);
-  gtk_window_set_resizable (GTK_WINDOW (wClearWarn), FALSE);
-
-  dialog_vbox = GTK_DIALOG (wClearWarn)->vbox;
-  gtk_widget_show (dialog_vbox);
-
-  hbox1 = gtk_hbox_new (FALSE, 0);
-  gtk_widget_show (hbox1);
-  gtk_box_pack_start (GTK_BOX (dialog_vbox), hbox1, TRUE, TRUE, 0);
-
-  image1 = gtk_image_new_from_stock ("gtk-dialog-warning", GTK_ICON_SIZE_DIALOG);
-  gtk_widget_show (image1);
-  gtk_box_pack_start (GTK_BOX (hbox1), image1, TRUE, TRUE, 0);
-
-  lbClearWarn = gtk_label_new (_("You will remove all information \nassociated with this date."));
-  gtk_widget_show (lbClearWarn);
-  gtk_box_pack_start (GTK_BOX (hbox1), lbClearWarn, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (lbClearWarn), GTK_JUSTIFY_LEFT);
-
-  dialog_action_area2 = GTK_DIALOG (wClearWarn)->action_area;
-  gtk_widget_show (dialog_action_area2);
-  gtk_button_box_set_layout (GTK_BUTTON_BOX (dialog_action_area2), GTK_BUTTONBOX_END);
-
-  cancelbutton1 = gtk_button_new_from_stock ("gtk-cancel");
-  gtk_widget_show (cancelbutton1);
-  gtk_dialog_add_action_widget (GTK_DIALOG (wClearWarn), cancelbutton1, GTK_RESPONSE_CANCEL);
-  GTK_WIDGET_SET_FLAGS (cancelbutton1, GTK_CAN_DEFAULT);
-
-  okbutton2 = gtk_button_new_from_stock ("gtk-ok");
-  gtk_widget_show (okbutton2);
-  gtk_dialog_add_action_widget (GTK_DIALOG (wClearWarn), okbutton2, GTK_RESPONSE_OK);
-  GTK_WIDGET_SET_FLAGS (okbutton2, GTK_CAN_DEFAULT);
-
-  g_signal_connect ((gpointer) cancelbutton1, "clicked",
-                    G_CALLBACK (on_cancelbutton1_clicked),
-                    NULL);
-
-  g_object_set_data(G_OBJECT(wClearWarn), "wClearWarn", wClearWarn);
-  g_object_set_data(G_OBJECT(wClearWarn), "okbutton2", okbutton2);
-
-  return wClearWarn;
 }
 
 void editEvent(GtkTreeView *view, GtkTreePath *path
@@ -564,6 +381,7 @@ void manage_wEventlist(GtkCalendar *calendar, GtkWidget *wEventlist)
     GtkWidget       *wScroll;
     appt_type       *app;
     GtkWidget       *view;
+    GtkTreeSelection *sel;
     GtkListStore    *list;
     GtkTreeSortable *sort;
     struct tm       *t;
@@ -594,6 +412,9 @@ void manage_wEventlist(GtkCalendar *calendar, GtkWidget *wEventlist)
             list = gtk_list_store_new(NUM_COLS
                 , G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
             view = gtk_tree_view_new();
+            g_object_set_data(G_OBJECT(wEventlist), "view", view);
+            sel = gtk_tree_view_get_selection(GTK_TREE_VIEW(view));
+            gtk_tree_selection_set_mode(sel, GTK_SELECTION_BROWSE);
             addEventlist_init(view, wEventlist, today, days);
             do {
                 addEvent(list, app, title, days);
@@ -608,11 +429,36 @@ void manage_wEventlist(GtkCalendar *calendar, GtkWidget *wEventlist)
             wScroll = (GtkWidget*)g_object_get_data(G_OBJECT(wEventlist)
                 , "wScroll");
             gtk_container_add(GTK_CONTAINER(wScroll), view);
-            gtk_tooltips_set_tip(tooltips, view, "Click line to edit it.\n\nFlags in order:\n\t 1. Alarm: n=no alarm\n\t\tA=visual Alarm S=also Sound alarm\n\t 2. Recurrency: n=no recurrency\n\t\t D=Daily W=Weekly M=Monthly\n\t 3. Type: f=free B=Busy", NULL);
+            gtk_tooltips_set_tip(tooltips, view, "Double click line to edit it.\n\nFlags in order:\n\t 1. Alarm: n=no alarm\n\t\tA=visual Alarm S=also Sound alarm\n\t 2. Recurrency: n=no recurrency\n\t\t D=Daily W=Weekly M=Monthly\n\t 3. Type: f=free B=Busy", NULL);
             gtk_widget_show(view);
         }
         xfical_file_close();
     }
+}
+
+void
+on_btCopy_clicked(GtkButton *button, gpointer user_data)
+{
+    GtkWidget *wEventlist;
+    GtkWidget *view;
+    GtkTreeSelection *sel;
+    GtkTreeModel     *model;
+    GtkTreeIter       iter;
+    gchar *uid = NULL;
+    appt_win *wApp;
+
+    wEventlist = (GtkWidget *) user_data;
+    view = (GtkWidget*)g_object_get_data(G_OBJECT(wEventlist), "view");
+    sel = gtk_tree_view_get_selection(GTK_TREE_VIEW(view));
+    if (gtk_tree_selection_get_selected(sel, &model, &iter)) {
+         gtk_tree_model_get(model, &iter, COL_UID, &uid, -1);
+         wApp = create_appt_win("COPY", uid, GTK_WIDGET(wEventlist));
+         gtk_widget_show(wApp->appWindow);
+         g_free(uid);
+
+    }
+    else
+        g_warning("Copy: No row selected\n");
 }
 
 void
@@ -638,41 +484,6 @@ on_wEventlist_delete_event(GtkWidget *widget, GdkEvent *event, gpointer data)
 }
 
 void
-on_btPrevious_clicked(GtkButton *button, gpointer user_data)
-{
-  changeSelectedDate(button, user_data, PREVIOUS);
-}
-
-void
-on_btToday_clicked(GtkButton *button, gpointer user_data)
-{
-  struct tm *t;
-  time_t tt;
-  GtkWidget *wEventlist; 
-
-  tt = time(NULL);
-  t = localtime(&tt);
-
-  gtk_calendar_select_month(GTK_CALENDAR(xfcal->mCalendar), t->tm_mon, t->tm_year+1900);
-  gtk_calendar_select_day(GTK_CALENDAR(xfcal->mCalendar), t->tm_mday);
-
-  wEventlist = (GtkWidget*)user_data;
-  recreate_wEventlist(wEventlist);
-}
-
-void
-on_btNext_clicked(GtkButton *button, gpointer user_data)
-{
-  changeSelectedDate(button, user_data, NEXT);
-}
-
-gboolean
-bisextile(guint year)
-{
-  return ((year%4)==0)&&(((year%100)!=0)||((year%400)==0));
-}
-
-void
 changeSelectedDate(GtkButton *button, gpointer user_data, gint direction)
 {
     guint year, month, day;
@@ -685,7 +496,7 @@ changeSelectedDate(GtkButton *button, gpointer user_data, gint direction)
     if (sscanf(title, "%d-%d-%d", &year, &month, &day) != 3)
         g_warning("changeSelectedDate: title conversion error\n");
     month--; /* gtk calendar starts from 0  month */
-    if(bisextile(year))
+    if (((year%4)==0)&&(((year%100)!=0)||((year%400)==0)))
         ++monthdays[1];
 
     switch(direction){
@@ -717,19 +528,32 @@ changeSelectedDate(GtkButton *button, gpointer user_data, gint direction)
 }
 
 void
-on_btDelete_clicked(GtkButton *button, gpointer user_data)
+on_btPrevious_clicked(GtkButton *button, gpointer user_data)
 {
-    GtkWidget *w;
-    GtkWidget *wEventlist; 
-    
-    wEventlist = (GtkWidget *)user_data;
+  changeSelectedDate(button, user_data, PREVIOUS);
+}
 
-    clearwarn = create_wClearWarn(wEventlist);
-    w=(GtkWidget*) g_object_get_data (G_OBJECT(clearwarn),"okbutton2");
-    g_signal_connect ((gpointer) w, "clicked",
-                    G_CALLBACK (on_okbutton2_clicked),
-                    (gpointer)wEventlist);
-    gtk_widget_show(clearwarn);
+void
+on_btToday_clicked(GtkButton *button, gpointer user_data)
+{
+  struct tm *t;
+  time_t tt;
+  GtkWidget *wEventlist; 
+
+  tt = time(NULL);
+  t = localtime(&tt);
+
+  gtk_calendar_select_month(GTK_CALENDAR(xfcal->mCalendar), t->tm_mon, t->tm_year+1900);
+  gtk_calendar_select_day(GTK_CALENDAR(xfcal->mCalendar), t->tm_mday);
+
+  wEventlist = (GtkWidget*)user_data;
+  recreate_wEventlist(wEventlist);
+}
+
+void
+on_btNext_clicked(GtkButton *button, gpointer user_data)
+{
+  changeSelectedDate(button, user_data, NEXT);
 }
 
 void
@@ -783,4 +607,215 @@ on_okbutton2_clicked(GtkButton *button, gpointer user_data)
         gtk_calendar_unmark_day(GTK_CALENDAR(xfcal->mCalendar), day);
         recreate_wEventlist(wEventlist);
     }
+}
+
+GtkWidget*
+create_wClearWarn (GtkWidget *parent)
+{
+  GtkWidget *wClearWarn;
+  GtkWidget *dialog_vbox;
+  GtkWidget *hbox1;
+  GtkWidget *image1;
+  GtkWidget *lbClearWarn;
+  GtkWidget *dialog_action_area2;
+  GtkWidget *cancelbutton1;
+  GtkWidget *okbutton2;
+
+  wClearWarn = gtk_dialog_new ();
+  gtk_widget_set_size_request (wClearWarn, 250, 120);
+  gtk_window_set_title (GTK_WINDOW (wClearWarn), _("Warning"));
+  gtk_window_set_transient_for(GTK_WINDOW (wClearWarn), GTK_WINDOW(parent));
+  gtk_window_set_position (GTK_WINDOW (wClearWarn), GTK_WIN_POS_CENTER_ON_PARENT);
+  gtk_window_set_modal (GTK_WINDOW (wClearWarn), TRUE);
+  gtk_window_set_resizable (GTK_WINDOW (wClearWarn), FALSE);
+
+  dialog_vbox = GTK_DIALOG (wClearWarn)->vbox;
+  gtk_widget_show (dialog_vbox);
+
+  hbox1 = gtk_hbox_new (FALSE, 0);
+  gtk_widget_show (hbox1);
+  gtk_box_pack_start (GTK_BOX (dialog_vbox), hbox1, TRUE, TRUE, 0);
+
+  image1 = gtk_image_new_from_stock ("gtk-dialog-warning", GTK_ICON_SIZE_DIALOG);
+  gtk_widget_show (image1);
+  gtk_box_pack_start (GTK_BOX (hbox1), image1, TRUE, TRUE, 0);
+
+  lbClearWarn = gtk_label_new (_("You will remove all information \nassociated with this date."));
+  gtk_widget_show (lbClearWarn);
+  gtk_box_pack_start (GTK_BOX (hbox1), lbClearWarn, FALSE, FALSE, 0);
+  gtk_label_set_justify (GTK_LABEL (lbClearWarn), GTK_JUSTIFY_LEFT);
+
+  dialog_action_area2 = GTK_DIALOG (wClearWarn)->action_area;
+  gtk_widget_show (dialog_action_area2);
+  gtk_button_box_set_layout (GTK_BUTTON_BOX (dialog_action_area2), GTK_BUTTONBOX_END);
+
+  cancelbutton1 = gtk_button_new_from_stock ("gtk-cancel");
+  gtk_widget_show (cancelbutton1);
+  gtk_dialog_add_action_widget (GTK_DIALOG (wClearWarn), cancelbutton1, GTK_RESPONSE_CANCEL);
+  GTK_WIDGET_SET_FLAGS (cancelbutton1, GTK_CAN_DEFAULT);
+
+  okbutton2 = gtk_button_new_from_stock ("gtk-ok");
+  gtk_widget_show (okbutton2);
+  gtk_dialog_add_action_widget (GTK_DIALOG (wClearWarn), okbutton2, GTK_RESPONSE_OK);
+  GTK_WIDGET_SET_FLAGS (okbutton2, GTK_CAN_DEFAULT);
+
+  g_signal_connect ((gpointer) cancelbutton1, "clicked",
+                    G_CALLBACK (on_cancelbutton1_clicked),
+                    NULL);
+
+  g_object_set_data(G_OBJECT(wClearWarn), "wClearWarn", wClearWarn);
+  g_object_set_data(G_OBJECT(wClearWarn), "okbutton2", okbutton2);
+
+  return wClearWarn;
+}
+
+void
+on_btDelete_clicked(GtkButton *button, gpointer user_data)
+{
+    GtkWidget *w;
+    GtkWidget *wEventlist; 
+    
+    wEventlist = (GtkWidget *)user_data;
+
+    clearwarn = create_wClearWarn(wEventlist);
+    w=(GtkWidget*) g_object_get_data (G_OBJECT(clearwarn),"okbutton2");
+    g_signal_connect ((gpointer) w, "clicked",
+                    G_CALLBACK (on_okbutton2_clicked),
+                    (gpointer)wEventlist);
+    gtk_widget_show(clearwarn);
+}
+
+GtkWidget*
+create_wEventlist(void)
+{
+  GtkWidget *wEventlist;
+  GtkWidget *vbox;
+  GtkWidget *toolbar1;
+  GtkWidget *tmp_toolbar_icon;
+  GtkWidget *btCreate;
+  GtkWidget *btPrevious;
+  GtkWidget *btToday;
+  GtkWidget *btNext;
+  GtkWidget *btCopy;
+  GtkWidget *btClose;
+  GtkWidget *btDelete;
+  GtkWidget *wScroll;
+  GtkAccelGroup *accel_group;
+  GtkWidget *spin1, *spin2;
+
+  accel_group = gtk_accel_group_new();
+
+  wEventlist = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+  g_print("create_wEventlist: x, y: %d, %d\n", event_win_size_x,event_win_size_y);
+  gtk_window_set_default_size(GTK_WINDOW(wEventlist)
+        , event_win_size_x, event_win_size_y);
+
+  vbox = gtk_vbox_new(FALSE, 0);
+  gtk_widget_show(vbox);
+  gtk_container_add(GTK_CONTAINER(wEventlist), vbox);
+
+  toolbar1 = gtk_toolbar_new();
+  gtk_widget_show(toolbar1);
+  gtk_box_pack_start(GTK_BOX(vbox), toolbar1, FALSE, FALSE, 0);
+  gtk_toolbar_set_style(GTK_TOOLBAR(toolbar1), GTK_TOOLBAR_ICONS);
+
+  tmp_toolbar_icon = gtk_image_new_from_stock("gtk-new", gtk_toolbar_get_icon_size(GTK_TOOLBAR(toolbar1)));
+  btCreate = gtk_toolbar_append_element(GTK_TOOLBAR(toolbar1),
+                                GTK_TOOLBAR_CHILD_BUTTON, NULL,
+                                "btCreate", _("Add (Ctrl+a)"), NULL,
+                                tmp_toolbar_icon, NULL, NULL);
+  gtk_widget_show(btCreate);
+  gtk_widget_add_accelerator(btCreate, "clicked", accel_group, GDK_a, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
+
+  tmp_toolbar_icon = gtk_image_new_from_stock("gtk-go-back", gtk_toolbar_get_icon_size(GTK_TOOLBAR(toolbar1)));
+  btPrevious = gtk_toolbar_append_element(GTK_TOOLBAR(toolbar1),
+                                GTK_TOOLBAR_CHILD_BUTTON, NULL,
+                                "btPrevious", _("Previous day (Ctrl+p)"), NULL,
+                                tmp_toolbar_icon, NULL, NULL);
+  gtk_widget_show(btPrevious);
+  gtk_widget_add_accelerator(btPrevious, "clicked", accel_group, GDK_p, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
+
+  tmp_toolbar_icon = gtk_image_new_from_stock("gtk-home", gtk_toolbar_get_icon_size(GTK_TOOLBAR(toolbar1)));
+  btToday = gtk_toolbar_append_element(GTK_TOOLBAR(toolbar1),
+                                GTK_TOOLBAR_CHILD_BUTTON, NULL,
+                                "btToday", _("Today (Alt+Home)"), NULL,
+                                tmp_toolbar_icon, NULL, NULL);
+  gtk_widget_show(btToday);
+  gtk_widget_add_accelerator(btToday, "clicked", accel_group, GDK_Home, GDK_MOD1_MASK, GTK_ACCEL_VISIBLE);
+  gtk_widget_add_accelerator(btToday, "clicked", accel_group, GDK_h, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
+
+  tmp_toolbar_icon = gtk_image_new_from_stock("gtk-go-forward", gtk_toolbar_get_icon_size(GTK_TOOLBAR(toolbar1)));
+  btNext = gtk_toolbar_append_element(GTK_TOOLBAR(toolbar1),
+                                GTK_TOOLBAR_CHILD_BUTTON, NULL,
+                                "btNext", _("Next day (Ctrl+n)"), NULL,
+                                tmp_toolbar_icon, NULL, NULL);
+  gtk_widget_show(btNext);
+  gtk_widget_add_accelerator(btNext, "clicked", accel_group, GDK_n, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
+
+  gtk_toolbar_append_space(GTK_TOOLBAR(toolbar1));
+
+  tmp_toolbar_icon = gtk_image_new_from_stock("gtk-copy", gtk_toolbar_get_icon_size(GTK_TOOLBAR(toolbar1)));
+  btCopy = gtk_toolbar_append_element(GTK_TOOLBAR(toolbar1),
+                                GTK_TOOLBAR_CHILD_BUTTON, NULL,
+                                "btCopy", _("Copy (Ctrl+c)"), NULL,
+                                tmp_toolbar_icon, NULL, NULL);
+  gtk_widget_show(btCopy);
+  gtk_widget_add_accelerator(btCopy, "clicked", accel_group, GDK_c, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
+
+  tmp_toolbar_icon = gtk_image_new_from_stock("gtk-close", gtk_toolbar_get_icon_size(GTK_TOOLBAR(toolbar1)));
+  btClose = gtk_toolbar_append_element(GTK_TOOLBAR(toolbar1),
+                                GTK_TOOLBAR_CHILD_BUTTON, NULL,
+                                "btClose", _("Close (Ctrl+w)"), NULL,
+                                tmp_toolbar_icon, NULL, NULL);
+  gtk_widget_show(btClose);
+  gtk_widget_add_accelerator(btClose, "clicked", accel_group, GDK_w, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
+
+  tmp_toolbar_icon = gtk_image_new_from_stock("gtk-clear", gtk_toolbar_get_icon_size(GTK_TOOLBAR(toolbar1)));
+  btDelete = gtk_toolbar_append_element(GTK_TOOLBAR(toolbar1),
+                                GTK_TOOLBAR_CHILD_BUTTON, NULL,
+                                "btDelete", _("Clear (Ctrl+l)"), NULL,
+                                tmp_toolbar_icon, NULL, NULL);
+  gtk_widget_show(btDelete);
+  gtk_widget_add_accelerator(btDelete, "clicked", accel_group, GDK_l, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
+
+  spin1 = gtk_spin_button_new_with_range(0, 31, 1);
+  spin2 = gtk_toolbar_append_element(GTK_TOOLBAR(toolbar1),
+                                GTK_TOOLBAR_CHILD_WIDGET, spin1,
+                                "spin", _("Show more days"), NULL,
+                                NULL, NULL, NULL);
+  gtk_widget_show(spin1);
+
+  wScroll = gtk_scrolled_window_new(NULL, NULL);
+  gtk_widget_show(wScroll);
+  gtk_box_pack_start(GTK_BOX(vbox), wScroll, TRUE, TRUE, 0);
+  gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(wScroll), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
+
+  g_signal_connect((gpointer)wEventlist, "delete_event",
+                    G_CALLBACK(on_wEventlist_delete_event), NULL);
+  g_signal_connect((gpointer)btCreate, "clicked",
+                    G_CALLBACK(on_btCreate_clicked), (gpointer)wEventlist);
+  g_signal_connect((gpointer)btPrevious, "clicked",
+                    G_CALLBACK(on_btPrevious_clicked), (gpointer)wEventlist);
+  g_signal_connect((gpointer)btToday, "clicked",
+                    G_CALLBACK(on_btToday_clicked), (gpointer)wEventlist);
+  g_signal_connect((gpointer)btNext, "clicked",
+                    G_CALLBACK(on_btNext_clicked), (gpointer)wEventlist);
+  g_signal_connect((gpointer)btCopy, "clicked",
+                    G_CALLBACK(on_btCopy_clicked), (gpointer)wEventlist);
+  g_signal_connect((gpointer)btClose, "clicked",
+                    G_CALLBACK(on_btClose_clicked), (gpointer)wEventlist);
+  g_signal_connect((gpointer)btDelete, "clicked",
+                    G_CALLBACK(on_btDelete_clicked), (gpointer)wEventlist);
+  g_signal_connect((gpointer)spin1, "value-changed",
+                    G_CALLBACK(on_btspin_changed), (gpointer)wEventlist);
+
+  /* Store pointers to widgets, for later use */
+  g_object_set_data(G_OBJECT(wEventlist), "wEventlist", wEventlist);
+  g_object_set_data(G_OBJECT(wEventlist), "vbox", vbox);
+  g_object_set_data(G_OBJECT(wEventlist), "wScroll", wScroll);
+  g_object_set_data(G_OBJECT(wEventlist), "spin1", spin1);
+
+  gtk_window_add_accel_group(GTK_WINDOW(wEventlist), accel_group);
+
+  return wEventlist;
 }

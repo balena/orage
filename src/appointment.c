@@ -379,10 +379,11 @@ on_appSave_clicked_cb(GtkButton *button, gpointer user_data)
         /* Here we try to save the event... */
         if (xfical_file_open()){
             if (apptw->add_appointment) {
-                apptw->xf_uid = xfical_app_add(appt);
+                apptw->xf_uid =  g_strdup(xfical_app_add(appt));
                 apptw->add_appointment = FALSE;
                 ok = TRUE;
                 g_message("New ical uid: %s \n", apptw->xf_uid);
+                gtk_widget_set_sensitive(apptw->appDuplicate, TRUE);
             }
             else {
                 ok = xfical_app_mod(apptw->xf_uid, appt);
@@ -469,27 +470,26 @@ on_appDelete_clicked_cb(GtkButton *button, gpointer user_data)
     appt_win *apptw = (appt_win *)user_data;
 
     result = xfce_message_dialog(GTK_WINDOW(apptw->appWindow),
-                                 _("Warning"),
-                                 GTK_STOCK_DIALOG_WARNING,
-                                 _("This appointment will be permanently removed."),
-                                 _("Do you want to continue?"),
-                                 GTK_STOCK_YES,
-                                 GTK_RESPONSE_ACCEPT,
-                                 GTK_STOCK_NO,
-                                 GTK_RESPONSE_REJECT,
-                                 NULL);
+                         _("Warning"),
+                         GTK_STOCK_DIALOG_WARNING,
+                         _("This appointment will be permanently removed."),
+                         _("Do you want to continue?"),
+                         GTK_STOCK_YES,
+                         GTK_RESPONSE_ACCEPT,
+                         GTK_STOCK_NO,
+                         GTK_RESPONSE_REJECT,
+                         NULL);
                                  
     if (result == GTK_RESPONSE_ACCEPT){
-        if (xfical_file_open()){
-            xfical_app_del(apptw->xf_uid);
-            xfical_file_close();
-        }
+        if (!apptw->add_appointment)
+            if (xfical_file_open()){
+                xfical_app_del(apptw->xf_uid);
+                xfical_file_close();
+                g_message("Removed ical uid: %s \n", apptw->xf_uid);
+            }
 
-        g_message("Removed ical uid: %s \n", apptw->xf_uid);
-
-        if (apptw->wEventlist != NULL) {
+        if (apptw->wEventlist != NULL)
             recreate_wEventlist(apptw->wEventlist);
-        }
 
         gtk_widget_destroy(apptw->appWindow);
     }
@@ -499,10 +499,11 @@ void
 on_appDuplicate_clicked_cb(GtkButton *button, gpointer user_data)
 {
     appt_win *apptw = (appt_win *)user_data;
+    gint x, y;
     appt_win *app;
+    /*
     appt_type *appt = xfical_app_alloc();
     gchar *new_uid;
-    gint x, y;
 
     fill_appt(appt, apptw);
     if (xfical_file_open()){
@@ -514,7 +515,9 @@ on_appDuplicate_clicked_cb(GtkButton *button, gpointer user_data)
     if (apptw->wEventlist != NULL) {
         recreate_wEventlist(apptw->wEventlist);
     }
-    app = create_appt_win("UPDATE", new_uid, apptw->wEventlist);
+    */
+
+    app = create_appt_win("COPY", apptw->xf_uid, apptw->wEventlist);
     gtk_window_get_position(GTK_WINDOW(apptw->appWindow), &x, &y);
     gtk_window_move(GTK_WINDOW(app->appWindow), x+20, y+20);
     gtk_widget_show(app->appWindow);
@@ -610,6 +613,7 @@ void fill_appt_window(appt_win *appt_w, char *action, char *par)
             g_sprintf(appt_data->endtime,"%sT%02d%02d00"
                         , par, t->tm_hour + 1, 30);
         }
+        gtk_widget_set_sensitive(appt_w->appDuplicate, FALSE);
         g_message("Building NEW ical uid\n");
         g_message("Starttime address: %d\n", &appt_data->starttime);
         g_message("Endtime address: %d\n", &appt_data->endtime);
@@ -627,6 +631,21 @@ void fill_appt_window(appt_win *appt_w, char *action, char *par)
             xfical_file_close();
             return;
         }
+    }
+    else if (strcmp(action, "COPY") == 0) {
+        g_print("Copying uid %s \n", par);
+        appt_w->add_appointment = TRUE;
+    /* par contains ical uid */
+        if (!xfical_file_open()) {
+            g_message("ical file open failed\n");
+            return;
+        }
+        if ((appt_data = xfical_app_get(par)) == NULL) {
+            g_message("appointment not found\n");
+            xfical_file_close();
+            return;
+        }
+        gtk_widget_set_sensitive(appt_w->appDuplicate, FALSE);
     }
     else
         g_error("unknown parameter\n");
