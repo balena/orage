@@ -34,7 +34,6 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <regex.h>
 
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
@@ -57,6 +56,9 @@
 #define APPOINTMENT_FILE "appointments.ics"
 #define FILETYPE_SIZE 38
 
+#define AVAILABILITY_ARRAY_DIM 2
+#define RECURRENCY_ARRAY_DIM 4
+#define ALARM_ARRAY_DIM 11
 static GtkWidget *selDate_Window_dialog;
 
 gboolean ical_to_year_month_day_hours_minutes(char *ical, int *year, int *month, int *day, int *hours, int *minutes){
@@ -225,12 +227,12 @@ on_appAllDay_clicked_cb(GtkCheckButton *checkbutton, gpointer user_data)
     gtk_widget_set_sensitive(apptw->appStartTime_comboboxentry, FALSE);
     gtk_widget_set_sensitive(apptw->appEndTime_comboboxentry, FALSE);
   } else {
+    gtk_widget_set_sensitive(apptw->appStartTime_comboboxentry, TRUE);
+    gtk_widget_set_sensitive(apptw->appEndTime_comboboxentry, TRUE);
 /*
     gtk_widget_show(apptw->appStartTime_comboboxentry);
     gtk_widget_show(apptw->appEndTime_comboboxentry);
 */
-    gtk_widget_set_sensitive(apptw->appStartTime_comboboxentry, TRUE);
-    gtk_widget_set_sensitive(apptw->appEndTime_comboboxentry, TRUE);
   }
 }
 
@@ -728,46 +730,111 @@ void fill_appt_window(appt_win *appt_w, char *action, char *par)
         xfical_file_close();
 }
 
-GtkWidget *appt_win_toolbar_append_button(GtkWidget *toolbar, 
-                                    const gchar *stock_id, const char *text, const char *tooltip_text){
-    GtkWidget *tmp_toolbar_icon;
+GtkWidget *xfcalendar_toolbar_append_button (GtkWidget *toolbar, 
+                                             const gchar *stock_id, const char *text, GtkTooltips *tooltips, 
+                                             const char *tooltip_text, gint pos){
+
     GtkWidget *button;
 
-    tmp_toolbar_icon = gtk_image_new_from_stock(stock_id, gtk_toolbar_get_icon_size(GTK_TOOLBAR(toolbar)));
-    button = gtk_toolbar_append_element(GTK_TOOLBAR(toolbar),
-                                GTK_TOOLBAR_CHILD_BUTTON, NULL,
-                                text, tooltip_text, NULL,
-                                tmp_toolbar_icon, NULL, NULL);
-    gtk_label_set_use_underline(GTK_LABEL(((GtkToolbarChild*)(g_list_last(GTK_TOOLBAR(toolbar)->children)->data))->label), TRUE);
-    gtk_widget_show(button);
-
+    button = (GtkWidget *) gtk_tool_button_new_from_stock (stock_id);
+    gtk_tool_button_set_label (GTK_TOOL_BUTTON (button), (const gchar *) text);
+    gtk_tool_button_set_use_underline (GTK_TOOL_BUTTON (button), TRUE);
+    gtk_tool_item_set_tooltip (GTK_TOOL_ITEM (button), tooltips, (const gchar *) tooltip_text, NULL);
+    gtk_toolbar_insert(GTK_TOOLBAR(toolbar), GTK_TOOL_ITEM(button), pos);
     return button;
 }
 
-void appt_win_table_attach_label (GtkWidget *table, GtkWidget *label, 
-                                  guint left_attach, guint right_attach, guint top_attach, guint bottom_attach){
-    gtk_widget_show (label);
-    gtk_table_attach (GTK_TABLE (table), label, left_attach, right_attach, top_attach, bottom_attach,
-                      (GtkAttachOptions) (GTK_FILL),
-                      (GtkAttachOptions) (0), 0, 0);
-    gtk_misc_set_alignment (GTK_MISC (label), 0, 0.5);
+GtkWidget *xfcalendar_table_new (guint rows, guint columns){
+
+    GtkWidget *table;
+
+    table = gtk_table_new (rows, columns, FALSE);
+    gtk_container_set_border_width (GTK_CONTAINER (table), 10);
+    gtk_table_set_row_spacings (GTK_TABLE (table), 6);
+    gtk_table_set_col_spacings (GTK_TABLE (table), 6);
+
+    return table;
 }
 
-appt_win 
-*create_appt_win(char *action, char *par, GtkWidget *wEventlist)
-{
+void xfcalendar_combo_box_append_array (GtkWidget *combo_box, char *text[], int size){
     int i;
-    char * hours[48];
-    GtkWidget *tmp_toolbar_icon;
-    appt_win *appt = g_new(appt_win, 1);
+    for(i = 0; i < size; i++){
+        gtk_combo_box_append_text(GTK_COMBO_BOX(combo_box),
+                (const gchar *)text[i]);
+    }
+}
+
+GtkWidget *xfcalendar_datetime_hbox_new (GtkWidget *date_button, GtkWidget *time_comboboxentry){
+
+    GtkWidget *hbox, *space_label, *fixed;
+    char *hours[48];
+    int i;
 
     for(i = 0; i < 48 ; i++){
         hours[i] = (char *)calloc(6, sizeof(gchar));
         sprintf(hours[i], "%02d:%02d", (int)(i/2), (i%2)*30);
     }
 
+    hbox = gtk_hbox_new (FALSE, 0);
+    gtk_box_pack_start (GTK_BOX (hbox), date_button, TRUE, TRUE, 0);
+
+    space_label = gtk_label_new (_("  "));
+    gtk_box_pack_start (GTK_BOX (hbox), space_label, FALSE, FALSE, 0);
+    gtk_misc_set_alignment (GTK_MISC (space_label), 0.5, 0.43);
+
+    xfcalendar_combo_box_append_array(time_comboboxentry, hours, 48);
+    gtk_box_pack_start (GTK_BOX (hbox), time_comboboxentry, FALSE, TRUE, 0);
+
+    fixed = gtk_fixed_new ();
+    gtk_box_pack_start (GTK_BOX (hbox), fixed, TRUE, TRUE, 0);
+
+    for( i = 0; i < 48; i++){
+        free(hours[i]);
+    }
+
+    return hbox;
+}
+
+void appt_win_table_attach_label (GtkWidget *table, GtkWidget *label, 
+                                  guint left_attach, guint right_attach, guint top_attach, guint bottom_attach){
+    gtk_table_attach (GTK_TABLE (table), label, left_attach, right_attach, top_attach, bottom_attach,
+                      (GtkAttachOptions) (GTK_FILL),
+                      (GtkAttachOptions) (0), 0, 0);
+    gtk_misc_set_alignment (GTK_MISC (label), 0, 0.5);
+}
+
+void xfcalendar_table_add_row (GtkWidget *table, GtkWidget *label, GtkWidget *input, guint row,
+                               GtkAttachOptions input_x_option, GtkAttachOptions input_y_option){
+    if (label){
+        gtk_table_attach (GTK_TABLE (table), label, 0, 1, row, row+1,
+                          (GtkAttachOptions) (GTK_FILL),
+                          (GtkAttachOptions) (0), 0, 0);
+        gtk_misc_set_alignment (GTK_MISC (label), 0, 0.5);
+    }
+
+    if (input){
+        gtk_table_attach (GTK_TABLE (table), input, 1, 2, row, row+1,
+                          input_x_option, input_y_option, 0, 0);
+    }
+}
+
+appt_win 
+*create_appt_win(char *action, char *par, GtkWidget *wEventlist)
+{
+    int i;
+    GtkWidget *tmp_toolbar_icon;
+    char *availability_array[AVAILABILITY_ARRAY_DIM] = {_("Free"), _("Busy")},
+         *recurrency_array[RECURRENCY_ARRAY_DIM] = {_("None"), _("Daily"), _("Weekly"), _("Monthly")},
+         *alarm_array[ALARM_ARRAY_DIM] = {_("None"), _("5 minutes"), _("15 minutes"), _("30 minutes"),
+                                          _("45 minutes"), _("1 hour"), _("2 hours"), _("4 hours"),
+                                          _("8 hours"), _("1 day"), _("2 days")};
+
+    appt_win *appt = g_new(appt_win, 1);
+
     appt->xf_uid = NULL;
     appt->wEventlist = wEventlist;
+
+    appt->appTooltips = gtk_tooltips_new();
 
     appt->appWindow = gtk_window_new(GTK_WINDOW_TOPLEVEL);
     gtk_window_set_default_size(GTK_WINDOW(appt->appWindow), 450, 325);
@@ -778,65 +845,99 @@ appt_win
     }
 
     appt->appVBox1 = gtk_vbox_new (FALSE, 0);
-    gtk_widget_show (appt->appVBox1);
     gtk_container_add (GTK_CONTAINER (appt->appWindow), appt->appVBox1);
 
     appt->appHeader = xfce_create_header(NULL, _("Appointment "));
-    gtk_widget_show (appt->appHeader);
     gtk_box_pack_start (GTK_BOX (appt->appVBox1), appt->appHeader, FALSE, TRUE, 0);
 
     appt->appHandleBox = gtk_handle_box_new();
-    gtk_widget_show (appt->appHandleBox);
     gtk_box_pack_start (GTK_BOX (appt->appVBox1), appt->appHandleBox, FALSE, FALSE, 0);
 
     appt->appToolbar = gtk_toolbar_new();
-    gtk_widget_show (appt->appToolbar);
     gtk_container_add (GTK_CONTAINER (appt->appHandleBox), appt->appToolbar);
 
     /* Add buttons to the toolbar */
-    appt->appSave = appt_win_toolbar_append_button(appt->appToolbar, "gtk-save", _("_Save"), _("Save"));
-    appt->appSaveClose = appt_win_toolbar_append_button(appt->appToolbar, "gtk-close", _("Save and _close"), _("Save and close"));
-    gtk_toolbar_append_space(GTK_TOOLBAR(appt->appToolbar));
-    appt->appDuplicate = appt_win_toolbar_append_button(appt->appToolbar, "gtk-copy", _("D_uplicate"), _("Duplicate"));
-/*
-    gtk_widget_add_accelerator(appt->appDuplicate, "clicked", accel_group, GDK_u, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
-*/
-    gtk_toolbar_append_space(GTK_TOOLBAR(appt->appToolbar));
-    appt->appDelete = appt_win_toolbar_append_button(appt->appToolbar, "gtk-delete", _("_Delete"), _("Delete"));
+    appt->appSave = xfcalendar_toolbar_append_button (appt->appToolbar, "gtk-save", _("_Save"), 
+                                                      appt->appTooltips, _("Save"), 0);
+    appt->appSaveClose = xfcalendar_toolbar_append_button (appt->appToolbar, "gtk-close", _("Save and _close"), 
+                                                           appt->appTooltips, _("Save and close"), 1);
+    appt->appDuplicate = xfcalendar_toolbar_append_button (appt->appToolbar, "gtk-copy", _("D_uplicate"), 
+                                                           appt->appTooltips, _("Duplicate"), 2);
+    appt->appDelete = xfcalendar_toolbar_append_button (appt->appToolbar, "gtk-delete", _("_Delete"), 
+                                                        appt->appTooltips, _("Delete"), 3);
 
     appt->appNotebook = gtk_notebook_new();
-    gtk_widget_show (appt->appNotebook);
     gtk_container_add (GTK_CONTAINER (appt->appVBox1), appt->appNotebook);
     gtk_container_set_border_width(GTK_CONTAINER (appt->appNotebook), 5);
 
     /* Here begins the General tab */
     appt->appGeneral_notebook_page = xfce_framebox_new(NULL, FALSE);
-    gtk_widget_show(appt->appGeneral_notebook_page);
     appt->appGeneral_tab_label = gtk_label_new(_("General"));
-    gtk_widget_show(appt->appGeneral_tab_label);
 
     gtk_notebook_append_page(GTK_NOTEBOOK(appt->appNotebook)
                             , appt->appGeneral_notebook_page
                             , appt->appGeneral_tab_label);
 
-    appt->appTableGeneral = gtk_table_new (8, 2, FALSE);
-    gtk_widget_show (appt->appTableGeneral);
+    appt->appTableGeneral = xfcalendar_table_new (8, 2);
     xfce_framebox_add(XFCE_FRAMEBOX(appt->appGeneral_notebook_page), appt->appTableGeneral);
-    gtk_container_set_border_width (GTK_CONTAINER (appt->appTableGeneral), 10);
-    gtk_table_set_row_spacings (GTK_TABLE (appt->appTableGeneral), 6);
-    gtk_table_set_col_spacings (GTK_TABLE (appt->appTableGeneral), 6);
 
     appt->appTitle_label = gtk_label_new (_("Title "));
-    appt_win_table_attach_label(appt->appTableGeneral, appt->appTitle_label, 0, 1, 0, 1);
+    appt->appTitle_entry = gtk_entry_new ();
+    xfcalendar_table_add_row (appt->appTableGeneral, appt->appTitle_label, appt->appTitle_entry, 0,
+                   (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
+                   (GtkAttachOptions) (0));
 
     appt->appLocation_label = gtk_label_new (_("Location"));
-    appt_win_table_attach_label(appt->appTableGeneral, appt->appLocation_label, 0, 1, 1, 2);
+    appt->appLocation_entry = gtk_entry_new ();
+    xfcalendar_table_add_row (appt->appTableGeneral, appt->appLocation_label, appt->appLocation_entry, 1,
+                   (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
+                   (GtkAttachOptions) (0));
+
+    appt->appAllDay_checkbutton = gtk_check_button_new_with_mnemonic (_("All day event"));
+    xfcalendar_table_add_row (appt->appTableGeneral, NULL, appt->appAllDay_checkbutton, 2,
+                   (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
+                   (GtkAttachOptions) (0));
 
     appt->appStart = gtk_label_new (_("Start"));
-    appt_win_table_attach_label(appt->appTableGeneral, appt->appStart, 0, 1, 3, 4);
+    appt->appStartDate_button = gtk_button_new();
+    appt->appStartTime_comboboxentry = gtk_combo_box_entry_new_text();
+    appt->appStartTime_hbox = xfcalendar_datetime_hbox_new (appt->appStartDate_button, appt->appStartTime_comboboxentry);
+    xfcalendar_table_add_row (appt->appTableGeneral, appt->appStart, appt->appStartTime_hbox, 3,
+                      (GtkAttachOptions) (GTK_SHRINK | GTK_FILL),
+                      (GtkAttachOptions) (GTK_SHRINK | GTK_FILL));
 
     appt->appEnd = gtk_label_new (_("End"));
-    appt_win_table_attach_label(appt->appTableGeneral, appt->appEnd, 0, 1, 4, 5);
+    appt->appEndDate_button = gtk_button_new();
+    appt->appEndTime_comboboxentry = gtk_combo_box_entry_new_text();
+    appt->appEndTime_hbox = xfcalendar_datetime_hbox_new (appt->appEndDate_button, appt->appEndTime_comboboxentry);
+    xfcalendar_table_add_row (appt->appTableGeneral, appt->appEnd, appt->appEndTime_hbox, 4,
+                      (GtkAttachOptions) (GTK_SHRINK | GTK_FILL),
+                      (GtkAttachOptions) (GTK_SHRINK | GTK_FILL));
+
+    appt->appRecurrency = gtk_label_new (_("Recurrency"));
+    appt->appRecurrency_cb = gtk_combo_box_new_text ();
+    xfcalendar_combo_box_append_array(appt->appRecurrency_cb, recurrency_array, RECURRENCY_ARRAY_DIM);
+    xfcalendar_table_add_row (appt->appTableGeneral, appt->appRecurrency, appt->appRecurrency_cb, 5,
+                   (GtkAttachOptions) (GTK_FILL),
+                   (GtkAttachOptions) (GTK_FILL));
+
+    appt->appAvailability = gtk_label_new (_("Availability"));
+    appt->appAvailability_cb = gtk_combo_box_new_text ();
+    xfcalendar_combo_box_append_array(appt->appAvailability_cb, availability_array, AVAILABILITY_ARRAY_DIM);
+    xfcalendar_table_add_row (appt->appTableGeneral, appt->appAvailability, appt->appAvailability_cb, 6,
+                   (GtkAttachOptions) (GTK_FILL),
+                   (GtkAttachOptions) (GTK_FILL));
+
+    appt->appNote = gtk_label_new (_("Note"));
+    appt->appNote_Scrolledwindow = gtk_scrolled_window_new (NULL, NULL);
+    gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (appt->appNote_Scrolledwindow), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
+    gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (appt->appNote_Scrolledwindow), GTK_SHADOW_IN);
+
+    appt->appNote_textview = gtk_text_view_new ();
+    gtk_container_add (GTK_CONTAINER (appt->appNote_Scrolledwindow), appt->appNote_textview);
+    xfcalendar_table_add_row (appt->appTableGeneral, appt->appNote, appt->appNote_Scrolledwindow, 7,
+                   (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
+                   (GtkAttachOptions) (GTK_EXPAND | GTK_FILL));
 
     /*
     appt->appPrivate = gtk_label_new (_("Private"));
@@ -845,90 +946,7 @@ appt_win
                       (GtkAttachOptions) (GTK_FILL),
                       (GtkAttachOptions) (0), 0, 0);
     gtk_misc_set_alignment (GTK_MISC (appt->appPrivate), 0, 0.5);
-    */
 
-    appt->appRecurrency = gtk_label_new (_("Recurrency"));
-    appt_win_table_attach_label(appt->appTableGeneral, appt->appRecurrency, 0, 1, 5, 6);
-
-    appt->appAvailability = gtk_label_new (_("Availability"));
-    appt_win_table_attach_label(appt->appTableGeneral, appt->appAvailability, 0, 1, 6, 7);
-
-    appt->appNote = gtk_label_new (_("Note"));
-    appt_win_table_attach_label(appt->appTableGeneral, appt->appNote, 0, 1, 7, 8);
-
-    appt->appTitle_entry = gtk_entry_new ();
-    gtk_widget_show (appt->appTitle_entry);
-    gtk_table_attach (GTK_TABLE (appt->appTableGeneral), appt->appTitle_entry, 1, 2, 0, 1,
-                      (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
-                      (GtkAttachOptions) (0), 0, 0);
-
-    appt->appLocation_entry = gtk_entry_new ();
-    gtk_widget_show (appt->appLocation_entry);
-    gtk_table_attach (GTK_TABLE (appt->appTableGeneral), appt->appLocation_entry, 1, 2, 1, 2,
-                      (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
-                      (GtkAttachOptions) (0), 0, 0);
-
-    appt->appAllDay_checkbutton = gtk_check_button_new_with_mnemonic (_("All day event"));
-    gtk_widget_show (appt->appAllDay_checkbutton);
-    gtk_table_attach (GTK_TABLE (appt->appTableGeneral), appt->appAllDay_checkbutton, 1, 2, 2, 3,
-                      (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
-                      (GtkAttachOptions) (0), 0, 0);
-
-    appt->appStartTime_hbox = gtk_hbox_new (FALSE, 0);
-    gtk_widget_show (appt->appStartTime_hbox);
-    gtk_table_attach (GTK_TABLE (appt->appTableGeneral), appt->appStartTime_hbox, 1, 2, 3, 4,
-                      (GtkAttachOptions) (GTK_SHRINK | GTK_FILL),
-                      (GtkAttachOptions) (GTK_SHRINK | GTK_FILL), 0, 0);
-
-    appt->appStartDate_button = gtk_button_new();
-    gtk_widget_show(appt->appStartDate_button);
-    gtk_box_pack_start (GTK_BOX (appt->appStartTime_hbox), appt->appStartDate_button, TRUE, TRUE, 0);
-
-    appt->appStartSpace_label = gtk_label_new (_("  "));
-    gtk_widget_show (appt->appStartSpace_label);
-    gtk_box_pack_start (GTK_BOX (appt->appStartTime_hbox), appt->appStartSpace_label, FALSE, FALSE, 0);
-    gtk_misc_set_alignment (GTK_MISC (appt->appStartSpace_label), 0.5, 0.43);
-
-    appt->appStartTime_comboboxentry = gtk_combo_box_entry_new_text();
-    for(i = 0; i < 48; i++){
-        gtk_combo_box_append_text(GTK_COMBO_BOX(appt->appStartTime_comboboxentry),
-                (const gchar *)hours[i]);
-    }
-    gtk_widget_show(appt->appStartTime_comboboxentry);
-    gtk_box_pack_start (GTK_BOX (appt->appStartTime_hbox), appt->appStartTime_comboboxentry, FALSE, TRUE, 0);
-
-    appt->appStartTime_fixed = gtk_fixed_new ();
-    gtk_widget_show (appt->appStartTime_fixed);
-    gtk_box_pack_start (GTK_BOX (appt->appStartTime_hbox), appt->appStartTime_fixed, TRUE, TRUE, 0);
-
-    appt->appEndTime_hbox = gtk_hbox_new (FALSE, 0);
-    gtk_widget_show (appt->appEndTime_hbox);
-    gtk_table_attach (GTK_TABLE (appt->appTableGeneral), appt->appEndTime_hbox, 1, 2, 4, 5,
-                      (GtkAttachOptions) (GTK_FILL),
-                      (GtkAttachOptions) (GTK_FILL), 0, 0);
-
-    appt->appEndDate_button = gtk_button_new();
-    gtk_widget_show(appt->appEndDate_button);
-    gtk_box_pack_start (GTK_BOX (appt->appEndTime_hbox), appt->appEndDate_button, TRUE, TRUE, 0);
-
-    appt->appEndSpace_label = gtk_label_new (_("  "));
-    gtk_widget_show (appt->appEndSpace_label);
-    gtk_box_pack_start (GTK_BOX (appt->appEndTime_hbox), appt->appEndSpace_label, FALSE, FALSE, 0);
-    gtk_misc_set_alignment (GTK_MISC (appt->appEndSpace_label), 0.5, 0.43);
-
-    appt->appEndTime_comboboxentry = gtk_combo_box_entry_new_text();
-    for(i = 0; i < 48; i++){
-        gtk_combo_box_append_text(GTK_COMBO_BOX(appt->appEndTime_comboboxentry),
-                (const gchar *)hours[i]);
-    }
-    gtk_widget_show(appt->appEndTime_comboboxentry);
-    gtk_box_pack_start (GTK_BOX (appt->appEndTime_hbox), appt->appEndTime_comboboxentry, FALSE, TRUE, 0);
-
-    appt->appEndTime_fixed = gtk_fixed_new ();
-    gtk_widget_show (appt->appEndTime_fixed);
-    gtk_box_pack_start (GTK_BOX (appt->appEndTime_hbox), appt->appEndTime_fixed, TRUE, TRUE, 0);
-
-    /*
     appt->appPrivate_check = gtk_check_button_new_with_mnemonic ("");
     gtk_widget_show (appt->appPrivate_check);
     gtk_table_attach (GTK_TABLE (appt->appTableGeneral), appt->appPrivate_check, 1, 2, 5, 6,
@@ -936,99 +954,39 @@ appt_win
                       (GtkAttachOptions) (0), 0, 0);
     */
 
-    appt->appRecurrency_cb = gtk_combo_box_new_text ();
-    gtk_widget_show (appt->appRecurrency_cb);
-    gtk_table_attach (GTK_TABLE (appt->appTableGeneral), appt->appRecurrency_cb, 1, 2, 5, 6,
-                      (GtkAttachOptions) (GTK_FILL),
-                      (GtkAttachOptions) (GTK_FILL), 0, 0);
-
-    gtk_combo_box_append_text (GTK_COMBO_BOX (appt->appRecurrency_cb), _("None"));
-    gtk_combo_box_append_text (GTK_COMBO_BOX (appt->appRecurrency_cb), _("Daily"));
-    gtk_combo_box_append_text (GTK_COMBO_BOX (appt->appRecurrency_cb), _("Weekly"));
-    gtk_combo_box_append_text (GTK_COMBO_BOX (appt->appRecurrency_cb), _("Monthly"));
-
-    appt->appAvailability_cb = gtk_combo_box_new_text ();
-    gtk_widget_show (appt->appAvailability_cb);
-    gtk_table_attach (GTK_TABLE (appt->appTableGeneral), appt->appAvailability_cb, 1, 2, 6, 7,
-                      (GtkAttachOptions) (GTK_FILL),
-                      (GtkAttachOptions) (GTK_FILL), 0, 0);
-
-    gtk_combo_box_append_text (GTK_COMBO_BOX (appt->appAvailability_cb), _("Free"));
-    gtk_combo_box_append_text (GTK_COMBO_BOX (appt->appAvailability_cb), _("Busy"));
-
-    appt->appNote_Scrolledwindow = gtk_scrolled_window_new (NULL, NULL);
-    gtk_widget_show (appt->appNote_Scrolledwindow);
-    gtk_table_attach (GTK_TABLE (appt->appTableGeneral), appt->appNote_Scrolledwindow, 1, 2, 7, 8,
-                      (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
-                      (GtkAttachOptions) (GTK_EXPAND | GTK_FILL), 0, 0);
-
-    gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (appt->appNote_Scrolledwindow), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
-    gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (appt->appNote_Scrolledwindow), GTK_SHADOW_IN);
-
-    appt->appNote_textview = gtk_text_view_new ();
-    gtk_widget_show (appt->appNote_textview);
-    gtk_container_add (GTK_CONTAINER (appt->appNote_Scrolledwindow), appt->appNote_textview);
-
     /* Here begins the Alarm tab */
     appt->appAlarm_notebook_page = xfce_framebox_new(NULL, FALSE);
-    gtk_widget_show(appt->appAlarm_notebook_page);
     appt->appAlarm_tab_label = gtk_label_new(_("Alarm"));
-    gtk_widget_show(appt->appAlarm_tab_label);
 
     gtk_notebook_append_page(GTK_NOTEBOOK(appt->appNotebook)
                             , appt->appAlarm_notebook_page
                             , appt->appAlarm_tab_label);
 
-    appt->appTableAlarm = gtk_table_new (3, 2, FALSE);
-    gtk_widget_show (appt->appTableAlarm);
+    appt->appTableAlarm = xfcalendar_table_new (3, 2);
     xfce_framebox_add(XFCE_FRAMEBOX(appt->appAlarm_notebook_page), appt->appTableAlarm);
-    gtk_container_set_border_width (GTK_CONTAINER (appt->appTableAlarm), 10);
-    gtk_table_set_row_spacings (GTK_TABLE (appt->appTableAlarm), 6);
-    gtk_table_set_col_spacings (GTK_TABLE (appt->appTableAlarm), 6);
 
     appt->appAlarm = gtk_label_new (_("Alarm"));
-    appt_win_table_attach_label(appt->appTableAlarm, appt->appAlarm, 0, 1, 0, 1);
+    appt->appAlarm_combobox = gtk_combo_box_new_text ();
+    xfcalendar_combo_box_append_array(appt->appAlarm_combobox, alarm_array, ALARM_ARRAY_DIM);
+    xfcalendar_table_add_row (appt->appTableAlarm, appt->appAlarm, appt->appAlarm_combobox, 0,
+                   (GtkAttachOptions) (GTK_FILL),
+                   (GtkAttachOptions) (GTK_FILL));
 
     appt->appSound_label = gtk_label_new (_("Sound"));
-    appt_win_table_attach_label(appt->appTableAlarm, appt->appSound_label, 0, 1, 1, 2);
-
-    appt->appAlarm_combobox = gtk_combo_box_new_text ();
-    gtk_widget_show (appt->appAlarm_combobox);
-    gtk_table_attach (GTK_TABLE (appt->appTableAlarm), appt->appAlarm_combobox, 1, 2, 0, 1,
-                        (GtkAttachOptions) (GTK_FILL),
-                        (GtkAttachOptions) (GTK_FILL), 0, 0);
-    gtk_combo_box_append_text (GTK_COMBO_BOX (appt->appAlarm_combobox), _("None"));
-    gtk_combo_box_append_text (GTK_COMBO_BOX (appt->appAlarm_combobox), _("5 minutes"));
-    gtk_combo_box_append_text (GTK_COMBO_BOX (appt->appAlarm_combobox), _("15 minutes"));
-    gtk_combo_box_append_text (GTK_COMBO_BOX (appt->appAlarm_combobox), _("30 minutes"));
-    gtk_combo_box_append_text (GTK_COMBO_BOX (appt->appAlarm_combobox), _("45 minutes"));
-    gtk_combo_box_append_text (GTK_COMBO_BOX (appt->appAlarm_combobox), _("1 hour"));
-    gtk_combo_box_append_text (GTK_COMBO_BOX (appt->appAlarm_combobox), _("2 hours"));
-    gtk_combo_box_append_text (GTK_COMBO_BOX (appt->appAlarm_combobox), _("4 hours"));
-    gtk_combo_box_append_text (GTK_COMBO_BOX (appt->appAlarm_combobox), _("8 hours"));
-    gtk_combo_box_append_text (GTK_COMBO_BOX (appt->appAlarm_combobox), _("1 day"));
-    gtk_combo_box_append_text (GTK_COMBO_BOX (appt->appAlarm_combobox), _("2 days"));
-
     appt->appSound_hbox = gtk_hbox_new (FALSE, 0);
     gtk_box_set_spacing(GTK_BOX (appt->appSound_hbox), 6);
-    gtk_widget_show (appt->appSound_hbox);
-    gtk_table_attach (GTK_TABLE (appt->appTableAlarm), appt->appSound_hbox, 1, 2, 1, 2,
-                    (GtkAttachOptions) (GTK_FILL),
-                    (GtkAttachOptions) (GTK_FILL), 0, 0);
-
     appt->appSound_entry = gtk_entry_new ();
-    gtk_widget_show (appt->appSound_entry);
     gtk_box_pack_start (GTK_BOX (appt->appSound_hbox), appt->appSound_entry, TRUE, TRUE, 0);
-
     appt->appSound_button = gtk_button_new_from_stock("gtk-find");
-    gtk_widget_show (appt->appSound_button);
     gtk_box_pack_start (GTK_BOX (appt->appSound_hbox), appt->appSound_button, FALSE, TRUE, 0);
+    xfcalendar_table_add_row (appt->appTableAlarm, appt->appSound_label, appt->appSound_hbox, 1,
+                    (GtkAttachOptions) (GTK_FILL),
+                    (GtkAttachOptions) (GTK_FILL));
 
     appt->appSoundRepeat_checkbutton = gtk_check_button_new_with_mnemonic (_("Repeat alarm sound"));
-    gtk_widget_show (appt->appSoundRepeat_checkbutton);
-    gtk_table_attach (GTK_TABLE (appt->appTableAlarm), appt->appSoundRepeat_checkbutton, 1, 2, 2, 3,
-                    (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
-                    (GtkAttachOptions) (0), 0, 0);
+    xfcalendar_table_add_row (appt->appTableAlarm, NULL, appt->appSoundRepeat_checkbutton, 2,
+                   (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
+                   (GtkAttachOptions) (0));
     /* */
 
     g_signal_connect ((gpointer) appt->appAllDay_checkbutton, "clicked",
@@ -1071,11 +1029,8 @@ appt_win
             G_CALLBACK (on_appTitle_entry_changed_cb),
             appt);
 
-    for( i = 0; i < 48; i++){
-        free(hours[i]);
-    }
-
     fill_appt_window(appt, action, par);
+    gtk_widget_show_all(appt->appWindow);
 
     return appt;
 }

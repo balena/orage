@@ -68,6 +68,7 @@ typedef struct
     GtkWidget *appVBox1;
     GtkWidget *appHandleBox;
     GtkWidget *appToolbar;
+    GtkTooltips *appTooltips;
     GtkWidget *appNotebook;
     GtkWidget *appGeneral_notebook_page;
     GtkWidget *appGeneral_tab_label;
@@ -96,14 +97,10 @@ typedef struct
     GtkWidget *appAllDay_checkbutton;
     GtkWidget *appStartDate_button;
     GtkWidget *appStartTime_hbox;
-    GtkWidget *appStartSpace_label;
     GtkWidget *appStartTime_comboboxentry;
-    GtkWidget *appStartTime_fixed;
     GtkWidget *appEndDate_button;
     GtkWidget *appEndTime_hbox;
-    GtkWidget *appEndSpace_label;
     GtkWidget *appEndTime_comboboxentry;
-    GtkWidget *appEndTime_fixed;
     GtkWidget *appSound_label;
     GtkWidget *appSound_hbox;
     GtkWidget *appSound_entry;
