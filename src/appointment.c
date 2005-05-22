@@ -291,7 +291,7 @@ fill_appt(appt_type *appt, appt_win *apptw)
 
 }
 
-gboolean validate_time(gchar *str){
+gboolean xfcalendar_validate_time(gchar *str){
     /* I tried to use regexec here but it was such a hassle that 
      * I decided to go the hard way :(
      */
@@ -341,6 +341,34 @@ gboolean validate_time(gchar *str){
 
 }
 
+gboolean xfcalendar_validate_datetime (GtkWidget *parent, gchar *startdatetime, gchar *enddatetime, 
+                            gchar *starttime, gchar *endtime){
+    gint result;
+    if(g_ascii_strcasecmp(enddatetime, startdatetime) < 0){
+        result = xfce_message_dialog(GTK_WINDOW(parent),
+                                     _("Warning"),
+                                     GTK_STOCK_DIALOG_WARNING,
+                                     _("The end of this appointment is earlier than the beginning."),
+                                     NULL,
+                                     GTK_STOCK_OK,
+                                     GTK_RESPONSE_ACCEPT,
+                                     NULL);
+        return FALSE;
+    }
+    else if(!xfcalendar_validate_time(starttime) || !xfcalendar_validate_time(endtime)){
+        result = xfce_message_dialog(GTK_WINDOW(parent),
+                                     _("Warning"),
+                                     GTK_STOCK_DIALOG_WARNING,
+                                     _("A time value is wrong."),
+                                     _("Time values must be written 'hh:mm', for instance '09:36' or '15:23'."),
+                                     GTK_STOCK_OK,
+                                     GTK_RESPONSE_ACCEPT,
+                                     NULL);
+        return FALSE;
+    }
+    else
+        return TRUE;
+}
 void
 on_appSave_clicked_cb(GtkButton *button, gpointer user_data)
 {
@@ -357,27 +385,7 @@ on_appSave_clicked_cb(GtkButton *button, gpointer user_data)
 
     fill_appt(appt, apptw);
 
-    if(g_ascii_strcasecmp(appt->endtime, appt->starttime) < 0){
-        result = xfce_message_dialog(GTK_WINDOW(apptw->appWindow),
-                                     _("Warning"),
-                                     GTK_STOCK_DIALOG_WARNING,
-                                     _("The end of this appointment is earlier than the beginning."),
-                                     NULL,
-                                     GTK_STOCK_OK,
-                                     GTK_RESPONSE_ACCEPT,
-                                     NULL);
-    }
-    else if(!validate_time(starttime) || !validate_time(endtime)){
-        result = xfce_message_dialog(GTK_WINDOW(apptw->appWindow),
-                                     _("Warning"),
-                                     GTK_STOCK_DIALOG_WARNING,
-                                     _("A time value is wrong."),
-                                     _("Time values must be written 'hh:mm', for instance '09:36' or '15:23'."),
-                                     GTK_STOCK_OK,
-                                     GTK_RESPONSE_ACCEPT,
-                                     NULL);
-    }
-    else{
+    if(xfcalendar_validate_datetime(apptw->appWindow, appt->starttime, appt->endtime, starttime, endtime)){
         /* Here we try to save the event... */
         if (xfical_file_open()){
             if (apptw->add_appointment) {
@@ -420,27 +428,7 @@ on_appSaveClose_clicked_cb(GtkButton *button, gpointer user_data)
 
     fill_appt(appt, apptw);
 
-    if(g_ascii_strcasecmp(appt->endtime, appt->starttime) < 0){
-        result = xfce_message_dialog(GTK_WINDOW(apptw->appWindow),
-                                     _("Warning"),
-                                     GTK_STOCK_DIALOG_WARNING,
-                                     _("The end of this appointment is earlier than the beginning."),
-                                     NULL,
-                                     GTK_STOCK_OK,
-                                     GTK_RESPONSE_ACCEPT,
-                                     NULL);
-    }
-    else if(!validate_time(starttime) || !validate_time(endtime)){
-        result = xfce_message_dialog(GTK_WINDOW(apptw->appWindow),
-                                     _("Warning"),
-                                     GTK_STOCK_DIALOG_WARNING,
-                                     _("A time value is wrong."),
-                                     _("Time values must be written 'hh:mm', for instance '09:36' or '15:23'."),
-                                     GTK_STOCK_OK,
-                                     GTK_RESPONSE_ACCEPT,
-                                     NULL);
-    }
-    else{
+    if(xfcalendar_validate_datetime(apptw->appWindow, appt->starttime, appt->endtime, starttime, endtime)){
         /* Here we try to save the event... */
         if (xfical_file_open()){
             if (apptw->add_appointment) {
