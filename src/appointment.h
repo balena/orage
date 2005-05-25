@@ -115,7 +115,7 @@ typedef struct
     gchar *xf_uid;
     GtkWidget *wEventlist; /* event-list window */
     gboolean add_appointment;
-
+    gboolean appointment_changed;
 } appt_win;
 
 void 

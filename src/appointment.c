@@ -112,7 +112,6 @@ gboolean ical_to_year_month_day_hours_minutes(char *ical, int *year, int *month,
 void year_month_day_to_display(int year, int month, int day, char *string_to_display){
     char cyear[5], cmonth[3], cday[3];
     const char *date_format;
-    int i;
     struct tm *d;
 
     d = (struct tm *)malloc(1*sizeof(struct tm));
@@ -139,13 +138,14 @@ on_appTitle_entry_changed_cb(GtkEditable *entry, gpointer user_data)
     application_name = _("Xfcalendar");
 
     if(strlen((char *)appointment_name) > 0)
-        title = g_strdup_printf("%s - %s", gtk_entry_get_text((GtkEntry *)apptw->appTitle_entry), application_name);
+        title = g_strdup_printf("%s - %s", appointment_name, application_name);
     else
         title = g_strdup_printf("%s", application_name);
 
     gtk_window_set_title (GTK_WINDOW (apptw->appWindow), (const gchar *)title);
 
     g_free(title);
+    apptw->appointment_changed = TRUE;
 }
 
 void
@@ -163,7 +163,7 @@ on_appSound_button_clicked_cb(GtkButton *button, gpointer user_data)
                                              "*.sph", "*.8svx", "*.sw", "*.txw", "*.ub", "*.ul", "*.uw",
                                              "*.voc", "*.vorbis", "*.vox", "*.wav", "*.wve"};
 
-    int i;
+    register int i;
 
     appt_win *apptw = (appt_win *)user_data;
     appSound_entry_filename = g_strdup(gtk_entry_get_text((GtkEntry *)apptw->appSound_entry));
@@ -177,7 +177,7 @@ on_appSound_button_clicked_cb(GtkButton *button, gpointer user_data)
 
     filter = xfce_file_filter_new ();
 	xfce_file_filter_set_name(filter, _("Sound Files"));
-    for(i = 0; i<FILETYPE_SIZE; i++){
+    for (i = 0; i < FILETYPE_SIZE; i++){
         xfce_file_filter_add_pattern(filter, filetype[i]);
     }
 	xfce_file_chooser_add_filter(XFCE_FILE_CHOOSER(file_chooser), filter);
@@ -205,7 +205,6 @@ on_appSound_button_clicked_cb(GtkButton *button, gpointer user_data)
 			gtk_editable_set_position(GTK_EDITABLE(apptw->appSound_entry), -1);
         }
     }
-    gtk_widget_show(file_chooser);
 
     gtk_widget_destroy(file_chooser);
     g_free(appSound_entry_filename);
@@ -243,7 +242,6 @@ fill_appt(appt_type *appt, appt_win *apptw)
     const char *date_format, *time_format;
     struct tm current_t;
     char *returned_by_strptime;
-    int dummy1, dummy2;
 
     appt->title = (gchar *) gtk_entry_get_text((GtkEntry *)apptw->appTitle_entry);
 
@@ -608,9 +606,12 @@ void fill_appt_window(appt_win *appt_w, char *action, char *par)
         g_message("Starttime address: %d\n", &appt_data->starttime);
         g_message("Endtime address: %d\n", &appt_data->endtime);
     }
-    else if (strcmp(action, "UPDATE") == 0) {
-        g_message("Editing ical uid: %s \n", par);
-        appt_w->add_appointment = FALSE;
+    else if ((strcmp(action, "UPDATE") == 0) || (strcmp(action, "COPY") == 0)){
+        g_message("%s uid: %s \n", action, par);
+        /* If we're making a copy here, appt_w->add_appointment must become TRUE... */
+        appt_w->add_appointment = (strcmp(action, "COPY") == 0);
+        /* but the button for duplication must be inactivated in the new appointment */
+        gtk_widget_set_sensitive(appt_w->appDuplicate, !appt_w->add_appointment);
     /* par contains ical uid */
         if (!xfical_file_open()) {
             g_message("ical file open failed\n");
@@ -621,21 +622,6 @@ void fill_appt_window(appt_win *appt_w, char *action, char *par)
             xfical_file_close();
             return;
         }
-    }
-    else if (strcmp(action, "COPY") == 0) {
-        g_print("Copying uid %s \n", par);
-        appt_w->add_appointment = TRUE;
-    /* par contains ical uid */
-        if (!xfical_file_open()) {
-            g_message("ical file open failed\n");
-            return;
-        }
-        if ((appt_data = xfical_app_get(par)) == NULL) {
-            g_message("appointment not found\n");
-            xfical_file_close();
-            return;
-        }
-        gtk_widget_set_sensitive(appt_w->appDuplicate, FALSE);
     }
     else
         g_error("unknown parameter\n");
@@ -663,6 +649,7 @@ void fill_appt_window(appt_win *appt_w, char *action, char *par)
         if(!starttime_to_display){
             g_warning("Memory allocation failure!\n");
         }
+
         if(hours > -1 && minutes > -1){
             sprintf(starttime_to_display, "%02d:%02d", hours, minutes);
             gtk_entry_set_text(GTK_ENTRY(GTK_BIN(appt_w->appStartTime_comboboxentry)->child), (const gchar *)starttime_to_display);
@@ -685,6 +672,7 @@ void fill_appt_window(appt_win *appt_w, char *action, char *par)
         if(!endtime_to_display){
             g_warning("Memory allocation failure!\n");
         }
+
         if(hours > -1 && minutes > -1){
             sprintf(endtime_to_display, "%02d:%02d", hours, minutes);
             gtk_entry_set_text(GTK_ENTRY(GTK_BIN(appt_w->appEndTime_comboboxentry)->child), (const gchar *)endtime_to_display);
@@ -745,7 +733,7 @@ GtkWidget *xfcalendar_table_new (guint rows, guint columns){
 }
 
 void xfcalendar_combo_box_append_array (GtkWidget *combo_box, char *text[], int size){
-    int i;
+    register int i;
     for(i = 0; i < size; i++){
         gtk_combo_box_append_text(GTK_COMBO_BOX(combo_box),
                 (const gchar *)text[i]);
@@ -756,7 +744,7 @@ GtkWidget *xfcalendar_datetime_hbox_new (GtkWidget *date_button, GtkWidget *time
 
     GtkWidget *hbox, *space_label, *fixed;
     char *hours[48];
-    int i;
+    register int i;
 
     for(i = 0; i < 48 ; i++){
         hours[i] = (char *)calloc(6, sizeof(gchar));
@@ -783,14 +771,6 @@ GtkWidget *xfcalendar_datetime_hbox_new (GtkWidget *date_button, GtkWidget *time
     return hbox;
 }
 
-void appt_win_table_attach_label (GtkWidget *table, GtkWidget *label, 
-                                  guint left_attach, guint right_attach, guint top_attach, guint bottom_attach){
-    gtk_table_attach (GTK_TABLE (table), label, left_attach, right_attach, top_attach, bottom_attach,
-                      (GtkAttachOptions) (GTK_FILL),
-                      (GtkAttachOptions) (0), 0, 0);
-    gtk_misc_set_alignment (GTK_MISC (label), 0, 0.5);
-}
-
 void xfcalendar_table_add_row (GtkWidget *table, GtkWidget *label, GtkWidget *input, guint row,
                                GtkAttachOptions input_x_option, GtkAttachOptions input_y_option){
     if (label){
@@ -809,7 +789,7 @@ void xfcalendar_table_add_row (GtkWidget *table, GtkWidget *label, GtkWidget *in
 appt_win 
 *create_appt_win(char *action, char *par, GtkWidget *wEventlist)
 {
-    int i;
+    register int i = 0;
     GtkWidget *tmp_toolbar_icon;
     char *availability_array[AVAILABILITY_ARRAY_DIM] = {_("Free"), _("Busy")},
          *recurrency_array[RECURRENCY_ARRAY_DIM] = {_("None"), _("Daily"), _("Weekly"), _("Monthly")},
@@ -846,13 +826,13 @@ appt_win
 
     /* Add buttons to the toolbar */
     appt->appSave = xfcalendar_toolbar_append_button (appt->appToolbar, "gtk-save", _("_Save"), 
-                                                      appt->appTooltips, _("Save"), 0);
+                                                      appt->appTooltips, _("Save"), i++);
     appt->appSaveClose = xfcalendar_toolbar_append_button (appt->appToolbar, "gtk-close", _("Save and _close"), 
-                                                           appt->appTooltips, _("Save and close"), 1);
+                                                           appt->appTooltips, _("Save and close"), i++);
     appt->appDuplicate = xfcalendar_toolbar_append_button (appt->appToolbar, "gtk-copy", _("D_uplicate"), 
-                                                           appt->appTooltips, _("Duplicate"), 2);
+                                                           appt->appTooltips, _("Duplicate"), i++);
     appt->appDelete = xfcalendar_toolbar_append_button (appt->appToolbar, "gtk-delete", _("_Delete"), 
-                                                        appt->appTooltips, _("Delete"), 3);
+                                                        appt->appTooltips, _("Delete"), i++);
 
     appt->appNotebook = gtk_notebook_new();
     gtk_container_add (GTK_CONTAINER (appt->appVBox1), appt->appNotebook);
@@ -1018,6 +998,7 @@ appt_win
             appt);
 
     fill_appt_window(appt, action, par);
+    appt->appointment_changed = FALSE;
     gtk_widget_show_all(appt->appWindow);
 
     return appt;

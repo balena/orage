@@ -143,7 +143,7 @@ char *format_time(char *start_ical_time, char *end_ical_time
 {
     static char result[40];
     char title_ical_date[10];
-    int i = 0;
+    register int i = 0;
 
     if (days) { /* date needs to be visible */
         result[i++] = start_ical_time[6];
@@ -582,107 +582,37 @@ on_btspin_changed(GtkSpinButton *button, gpointer user_data)
 }
 
 void
-on_cancelbutton1_clicked(GtkButton *button, gpointer user_data)
-{
-    gtk_widget_destroy(clearwarn);
-}
-
-void
-on_okbutton2_clicked(GtkButton *button, gpointer user_data)
-{
-    char a_day[10];
-    GtkWidget *wEventlist;
-    char *title;
-    guint day;
-
-    gtk_widget_destroy(clearwarn);
-
-    if (xfical_file_open()){
-        wEventlist = (GtkWidget *) user_data;
-        title = (char*)gtk_window_get_title(GTK_WINDOW (wEventlist));
-        title_to_ical(title, a_day);
-        rmday_ical_app(a_day);
-        xfical_file_close();
-        day = atoi(a_day+6);
-        gtk_calendar_unmark_day(GTK_CALENDAR(xfcal->mCalendar), day);
-        recreate_wEventlist(wEventlist);
-    }
-}
-
-GtkWidget*
-create_wClearWarn (GtkWidget *parent)
-{
-  GtkWidget *wClearWarn;
-  GtkWidget *dialog_vbox;
-  GtkWidget *hbox1;
-  GtkWidget *image1;
-  GtkWidget *lbClearWarn;
-  GtkWidget *dialog_action_area2;
-  GtkWidget *cancelbutton1;
-  GtkWidget *okbutton2;
-
-  wClearWarn = gtk_dialog_new ();
-  gtk_widget_set_size_request (wClearWarn, 250, 120);
-  gtk_window_set_title (GTK_WINDOW (wClearWarn), _("Warning"));
-  gtk_window_set_transient_for(GTK_WINDOW (wClearWarn), GTK_WINDOW(parent));
-  gtk_window_set_position (GTK_WINDOW (wClearWarn), GTK_WIN_POS_CENTER_ON_PARENT);
-  gtk_window_set_modal (GTK_WINDOW (wClearWarn), TRUE);
-  gtk_window_set_resizable (GTK_WINDOW (wClearWarn), FALSE);
-
-  dialog_vbox = GTK_DIALOG (wClearWarn)->vbox;
-  gtk_widget_show (dialog_vbox);
-
-  hbox1 = gtk_hbox_new (FALSE, 0);
-  gtk_widget_show (hbox1);
-  gtk_box_pack_start (GTK_BOX (dialog_vbox), hbox1, TRUE, TRUE, 0);
-
-  image1 = gtk_image_new_from_stock ("gtk-dialog-warning", GTK_ICON_SIZE_DIALOG);
-  gtk_widget_show (image1);
-  gtk_box_pack_start (GTK_BOX (hbox1), image1, TRUE, TRUE, 0);
-
-  lbClearWarn = gtk_label_new (_("You will remove all information \nassociated with this date."));
-  gtk_widget_show (lbClearWarn);
-  gtk_box_pack_start (GTK_BOX (hbox1), lbClearWarn, FALSE, FALSE, 0);
-  gtk_label_set_justify (GTK_LABEL (lbClearWarn), GTK_JUSTIFY_LEFT);
-
-  dialog_action_area2 = GTK_DIALOG (wClearWarn)->action_area;
-  gtk_widget_show (dialog_action_area2);
-  gtk_button_box_set_layout (GTK_BUTTON_BOX (dialog_action_area2), GTK_BUTTONBOX_END);
-
-  cancelbutton1 = gtk_button_new_from_stock ("gtk-cancel");
-  gtk_widget_show (cancelbutton1);
-  gtk_dialog_add_action_widget (GTK_DIALOG (wClearWarn), cancelbutton1, GTK_RESPONSE_CANCEL);
-  GTK_WIDGET_SET_FLAGS (cancelbutton1, GTK_CAN_DEFAULT);
-
-  okbutton2 = gtk_button_new_from_stock ("gtk-ok");
-  gtk_widget_show (okbutton2);
-  gtk_dialog_add_action_widget (GTK_DIALOG (wClearWarn), okbutton2, GTK_RESPONSE_OK);
-  GTK_WIDGET_SET_FLAGS (okbutton2, GTK_CAN_DEFAULT);
-
-  g_signal_connect ((gpointer) cancelbutton1, "clicked",
-                    G_CALLBACK (on_cancelbutton1_clicked),
-                    NULL);
-
-  g_object_set_data(G_OBJECT(wClearWarn), "wClearWarn", wClearWarn);
-  g_object_set_data(G_OBJECT(wClearWarn), "okbutton2", okbutton2);
-
-  return wClearWarn;
-}
-
-void
 on_btDelete_clicked(GtkButton *button, gpointer user_data)
 {
-    GtkWidget *w;
-    GtkWidget *wEventlist; 
-    
+    char a_day[10];
+    char *title;
+    guint day;
+    gint result;
+    GtkWidget *wEventlist;
     wEventlist = (GtkWidget *)user_data;
 
-    clearwarn = create_wClearWarn(wEventlist);
-    w=(GtkWidget*) g_object_get_data (G_OBJECT(clearwarn),"okbutton2");
-    g_signal_connect ((gpointer) w, "clicked",
-                    G_CALLBACK (on_okbutton2_clicked),
-                    (gpointer)wEventlist);
-    gtk_widget_show(clearwarn);
+    result = xfce_message_dialog(GTK_WINDOW(wEventlist),
+                                 _("Warning"),
+                                 GTK_STOCK_DIALOG_WARNING,
+                                 _("You will remove all information \nassociated with this date."),
+                                 _("Do you want to continue?"),
+                                 GTK_STOCK_YES,
+                                 GTK_RESPONSE_ACCEPT,
+                                 GTK_STOCK_NO,
+                                 GTK_RESPONSE_CANCEL,
+                                 NULL);
+
+    if (result == GTK_RESPONSE_ACCEPT){
+        if (xfical_file_open()){
+            title = (char*)gtk_window_get_title(GTK_WINDOW (wEventlist));
+            title_to_ical(title, a_day);
+            rmday_ical_app(a_day);
+            xfical_file_close();
+            day = atoi(a_day+6);
+            gtk_calendar_unmark_day(GTK_CALENDAR(xfcal->mCalendar), day);
+            recreate_wEventlist(wEventlist);
+        }
+    }
 }
 
 GtkWidget*
