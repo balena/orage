@@ -91,6 +91,7 @@ typedef struct
     GtkWidget *appPrivate_check;
     GtkWidget *appNote_Scrolledwindow;
     GtkWidget *appNote_textview;
+    GtkTextBuffer *appNote_buffer;
     GtkWidget *appRecurrency_cb;
     GtkWidget *appAvailability_cb;
     GtkWidget *appAlarm_combobox;
@@ -107,8 +108,11 @@ typedef struct
     GtkWidget *appSound_button;
     GtkWidget *appSoundRepeat_checkbutton;
     GtkWidget *appHBox1;
+    GtkWidget *appRevert;
     GtkWidget *appDelete;
     GtkWidget *appDuplicate;
+    GtkWidget *appSeparator1;
+    GtkWidget *appSeparator2;
     GtkWidget *appSave;
     GtkWidget *appSaveClose;
 
@@ -116,6 +120,8 @@ typedef struct
     GtkWidget *wEventlist; /* event-list window */
     gboolean add_appointment;
     gboolean appointment_changed;
+    gboolean appointment_new;
+    gchar *chosen_date;
 } appt_win;
 
 void 

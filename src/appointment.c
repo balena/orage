@@ -146,6 +146,50 @@ on_appTitle_entry_changed_cb(GtkEditable *entry, gpointer user_data)
 
     g_free(title);
     apptw->appointment_changed = TRUE;
+    gtk_widget_set_sensitive(apptw->appRevert, TRUE);
+}
+
+void
+appSoundRepeat_checkbutton_clicked_cb(GtkCheckButton *checkbutton, gpointer user_data)
+{
+    appt_win *apptw = (appt_win *)user_data;
+    apptw->appointment_changed = TRUE;
+    gtk_widget_set_sensitive(apptw->appRevert, TRUE);
+}
+
+void
+on_appNote_buffer_changed_cb(GtkTextBuffer *buffer, gpointer user_data){
+    appt_win *apptw = (appt_win *)user_data;
+    apptw->appointment_changed = TRUE;
+    gtk_widget_set_sensitive(apptw->appRevert, TRUE);
+}
+
+void
+on_appLocation_entry_changed_cb(GtkEditable *entry, gpointer user_data){
+    appt_win *apptw = (appt_win *)user_data;
+    apptw->appointment_changed = TRUE;
+    gtk_widget_set_sensitive(apptw->appRevert, TRUE);
+}
+
+void
+on_appSound_entry_changed_cb(GtkEditable *entry, gpointer user_data){
+    appt_win *apptw = (appt_win *)user_data;
+    apptw->appointment_changed = TRUE;
+    gtk_widget_set_sensitive(apptw->appRevert, TRUE);
+}
+
+void
+on_appTime_comboboxentry_changed_cb(GtkEditable *entry, gpointer user_data){
+    appt_win *apptw = (appt_win *)user_data;
+    apptw->appointment_changed = TRUE;
+    gtk_widget_set_sensitive(apptw->appRevert, TRUE);
+}
+
+void
+on_app_combobox_changed_cb(GtkComboBox *cb, gpointer user_data){
+    appt_win *apptw = (appt_win *)user_data;
+    apptw->appointment_changed = TRUE;
+    gtk_widget_set_sensitive(apptw->appRevert, TRUE);
 }
 
 void
@@ -213,26 +257,28 @@ on_appSound_button_clicked_cb(GtkButton *button, gpointer user_data)
 void
 on_appAllDay_clicked_cb(GtkCheckButton *checkbutton, gpointer user_data)
 {
-  gboolean check_status;
-  appt_win *apptw = (appt_win *)user_data;
+    gboolean check_status;
+    appt_win *apptw = (appt_win *)user_data;
 
-  check_status = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(apptw->appAllDay_checkbutton));
+    check_status = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(apptw->appAllDay_checkbutton));
 
-  if(check_status){
+    if(check_status){
 /*
-    gtk_widget_hide(apptw->appStartTime_comboboxentry);
-    gtk_widget_hide(apptw->appEndTime_comboboxentry);
+        gtk_widget_hide(apptw->appStartTime_comboboxentry);
+        gtk_widget_hide(apptw->appEndTime_comboboxentry);
 */
-    gtk_widget_set_sensitive(apptw->appStartTime_comboboxentry, FALSE);
-    gtk_widget_set_sensitive(apptw->appEndTime_comboboxentry, FALSE);
-  } else {
-    gtk_widget_set_sensitive(apptw->appStartTime_comboboxentry, TRUE);
-    gtk_widget_set_sensitive(apptw->appEndTime_comboboxentry, TRUE);
+        gtk_widget_set_sensitive(apptw->appStartTime_comboboxentry, FALSE);
+        gtk_widget_set_sensitive(apptw->appEndTime_comboboxentry, FALSE);
+    } else {
+        gtk_widget_set_sensitive(apptw->appStartTime_comboboxentry, TRUE);
+        gtk_widget_set_sensitive(apptw->appEndTime_comboboxentry, TRUE);
 /*
-    gtk_widget_show(apptw->appStartTime_comboboxentry);
-    gtk_widget_show(apptw->appEndTime_comboboxentry);
+        gtk_widget_show(apptw->appStartTime_comboboxentry);
+        gtk_widget_show(apptw->appEndTime_comboboxentry);
 */
-  }
+    }
+    apptw->appointment_changed = TRUE;
+    gtk_widget_set_sensitive(apptw->appRevert, TRUE);    
 }
 
 void
@@ -403,6 +449,7 @@ on_appSave_clicked_cb(GtkButton *button, gpointer user_data)
         if (ok && apptw->wEventlist != NULL) {
             recreate_wEventlist(apptw->wEventlist);
         }
+        apptw->appointment_new = FALSE;
     }
 
     g_free(starttime);
@@ -512,6 +559,18 @@ on_appDuplicate_clicked_cb(GtkButton *button, gpointer user_data)
 }
 
 void
+on_appRevert_clicked_cb(GtkWidget *button, gpointer *user_data)
+{
+    appt_win *apptw = (appt_win *)user_data;
+    if(!apptw->appointment_new){
+        fill_appt_window(apptw, "UPDATE", apptw->xf_uid);
+    }
+    else{
+        fill_appt_window(apptw, "NEW", apptw->chosen_date);
+    }
+}
+
+void
 on_appStartEndDate_clicked_cb (GtkWidget *button, gpointer *user_data)
 {
     GtkWidget *selDate_Window_dialog;
@@ -565,6 +624,10 @@ on_appStartEndDate_clicked_cb (GtkWidget *button, gpointer *user_data)
             date_to_display = (char *)g_strdup(gtk_button_get_label(GTK_BUTTON(button)));
             break;
     }
+    if (g_ascii_strcasecmp((gchar *)date_to_display, (gchar *)g_strdup(gtk_button_get_label(GTK_BUTTON(button)))) != 0) {
+        apptw->appointment_changed = TRUE;
+        gtk_widget_set_sensitive(apptw->appRevert, TRUE);
+    }
     gtk_button_set_label(GTK_BUTTON(button), (const gchar *)date_to_display);
     free(date_to_display);
     gtk_widget_destroy(selDate_Window_dialog);
@@ -585,6 +648,8 @@ void fill_appt_window(appt_win *appt_w, char *action, char *par)
 
     if (strcmp(action, "NEW") == 0) {
         appt_w->add_appointment = TRUE;
+        appt_w->appointment_new = TRUE;
+        appt_w->chosen_date = g_strdup((const gchar *)par);
         appt_data = xfical_app_alloc();
   /* par contains XFICAL_APP_DATE_FORMAT (yyyymmdd) date for new appointment */
         tt=time(NULL);
@@ -603,11 +668,10 @@ void fill_appt_window(appt_win *appt_w, char *action, char *par)
         }
         gtk_widget_set_sensitive(appt_w->appDuplicate, FALSE);
         g_message("Building NEW ical uid\n");
-        g_message("Starttime address: %d\n", &appt_data->starttime);
-        g_message("Endtime address: %d\n", &appt_data->endtime);
     }
     else if ((strcmp(action, "UPDATE") == 0) || (strcmp(action, "COPY") == 0)){
         g_message("%s uid: %s \n", action, par);
+        appt_w->appointment_new = FALSE;
         /* If we're making a copy here, appt_w->add_appointment must become TRUE... */
         appt_w->add_appointment = (strcmp(action, "COPY") == 0);
         /* but the button for duplication must be inactivated in the new appointment */
@@ -629,10 +693,8 @@ void fill_appt_window(appt_win *appt_w, char *action, char *par)
 	appt_w->xf_uid = g_strdup(appt_data->uid);
 
     gtk_window_set_title (GTK_WINDOW (appt_w->appWindow), _("New appointment - Xfcalendar"));
-    if (appt_data->title)
-        gtk_entry_set_text(GTK_ENTRY(appt_w->appTitle_entry), appt_data->title);
-    if (appt_data->location)
-        gtk_entry_set_text(GTK_ENTRY(appt_w->appLocation_entry), appt_data->location);
+    gtk_entry_set_text(GTK_ENTRY(appt_w->appTitle_entry), (appt_data->title ? appt_data->title : ""));
+    gtk_entry_set_text(GTK_ENTRY(appt_w->appLocation_entry), (appt_data->location ? appt_data->location : ""));
     if (strlen(appt_data->starttime) > 6 ) {
         g_message("starttime: %s\n", appt_data->starttime);
         ical_to_year_month_day_hours_minutes(appt_data->starttime, &year, &month, &day, &hours, &minutes);
@@ -679,8 +741,7 @@ void fill_appt_window(appt_win *appt_w, char *action, char *par)
         }
         free(endtime_to_display);
     }
-    if (appt_data->sound)
-        gtk_entry_set_text(GTK_ENTRY(appt_w->appSound_entry), appt_data->sound);
+    gtk_entry_set_text(GTK_ENTRY(appt_w->appSound_entry), (appt_data->sound ? appt_data->sound : ""));
     if (appt_data->alarmtime != -1){
       gtk_combo_box_set_active(GTK_COMBO_BOX(appt_w->appAlarm_combobox)
                    , appt_data->alarmtime);
@@ -695,6 +756,10 @@ void fill_appt_window(appt_win *appt_w, char *action, char *par)
 	  tb = gtk_text_view_get_buffer((GtkTextView *)appt_w->appNote_textview);
 	  gtk_text_buffer_set_text(tb, (const gchar *) appt_data->note, -1);
 	}
+    else{
+	  tb = gtk_text_view_get_buffer((GtkTextView *)appt_w->appNote_textview);
+	  gtk_text_buffer_set_text(tb, "", -1);
+    }
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(appt_w->appAllDay_checkbutton), appt_data->allDay);
 
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(appt_w->appSoundRepeat_checkbutton), appt_data->alarmrepeat);
@@ -704,6 +769,8 @@ void fill_appt_window(appt_win *appt_w, char *action, char *par)
 	}
     else
         xfical_file_close();
+    appt_w->appointment_changed = FALSE;
+    gtk_widget_set_sensitive(appt_w->appRevert, FALSE);
 }
 
 GtkWidget *xfcalendar_toolbar_append_button (GtkWidget *toolbar, 
@@ -829,10 +896,18 @@ appt_win
                                                       appt->appTooltips, _("Save"), i++);
     appt->appSaveClose = xfcalendar_toolbar_append_button (appt->appToolbar, "gtk-close", _("Save and _close"), 
                                                            appt->appTooltips, _("Save and close"), i++);
+    appt->appSeparator1 = (GtkWidget *)gtk_separator_tool_item_new();
+    gtk_toolbar_insert(GTK_TOOLBAR(appt->appToolbar), GTK_TOOL_ITEM(appt->appSeparator1), i++);
+    appt->appRevert = xfcalendar_toolbar_append_button (appt->appToolbar, "gtk-revert-to-saved", _("_Revert"),
+                                                        appt->appTooltips, _("Revert"), i++);
     appt->appDuplicate = xfcalendar_toolbar_append_button (appt->appToolbar, "gtk-copy", _("D_uplicate"), 
                                                            appt->appTooltips, _("Duplicate"), i++);
+    appt->appSeparator2 = (GtkWidget *)gtk_separator_tool_item_new();
+    gtk_toolbar_insert(GTK_TOOLBAR(appt->appToolbar), GTK_TOOL_ITEM(appt->appSeparator2), i++);
     appt->appDelete = xfcalendar_toolbar_append_button (appt->appToolbar, "gtk-delete", _("_Delete"), 
                                                         appt->appTooltips, _("Delete"), i++);
+
+    gtk_widget_set_sensitive(appt->appRevert, FALSE);
 
     appt->appNotebook = gtk_notebook_new();
     gtk_container_add (GTK_CONTAINER (appt->appVBox1), appt->appNotebook);
@@ -901,7 +976,11 @@ appt_win
     gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (appt->appNote_Scrolledwindow), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
     gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (appt->appNote_Scrolledwindow), GTK_SHADOW_IN);
 
+    appt->appNote_buffer = gtk_text_buffer_new(NULL);
+    appt->appNote_textview = gtk_text_view_new_with_buffer(GTK_TEXT_BUFFER(appt->appNote_buffer));
+/*
     appt->appNote_textview = gtk_text_view_new ();
+*/
     gtk_container_add (GTK_CONTAINER (appt->appNote_Scrolledwindow), appt->appNote_textview);
     xfcalendar_table_add_row (appt->appTableGeneral, appt->appNote, appt->appNote_Scrolledwindow, 7,
                    (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
@@ -981,6 +1060,10 @@ appt_win
             G_CALLBACK (on_appDuplicate_clicked_cb),
             appt);
 
+    g_signal_connect ((gpointer) appt->appRevert, "clicked",
+            G_CALLBACK (on_appRevert_clicked_cb),
+            appt);
+
     g_signal_connect ((gpointer) appt->appStartDate_button, "clicked",
             G_CALLBACK (on_appStartEndDate_clicked_cb),
             appt);
@@ -995,6 +1078,42 @@ appt_win
      */
     g_signal_connect_after ((gpointer) appt->appTitle_entry, "changed",
             G_CALLBACK (on_appTitle_entry_changed_cb),
+            appt);
+
+    g_signal_connect_after ((gpointer) appt->appLocation_entry, "changed",
+            G_CALLBACK (on_appLocation_entry_changed_cb),
+            appt);
+
+    g_signal_connect ((gpointer) appt->appSoundRepeat_checkbutton, "clicked",
+            G_CALLBACK (appSoundRepeat_checkbutton_clicked_cb),
+            appt);
+
+    g_signal_connect_after ((gpointer) appt->appStartTime_comboboxentry, "changed",
+            G_CALLBACK (on_appTime_comboboxentry_changed_cb),
+            appt);
+
+    g_signal_connect_after ((gpointer) appt->appEndTime_comboboxentry, "changed",
+            G_CALLBACK (on_appTime_comboboxentry_changed_cb),
+            appt);
+
+    g_signal_connect_after ((gpointer) appt->appRecurrency_cb, "changed",
+            G_CALLBACK (on_app_combobox_changed_cb),
+            appt);
+
+    g_signal_connect_after ((gpointer) appt->appAvailability_cb, "changed",
+            G_CALLBACK (on_app_combobox_changed_cb),
+            appt);
+
+    g_signal_connect_after ((gpointer) appt->appAlarm_combobox, "changed",
+            G_CALLBACK (on_app_combobox_changed_cb),
+            appt);
+
+    g_signal_connect_after ((gpointer) appt->appNote_buffer, "changed",
+            G_CALLBACK (on_appNote_buffer_changed_cb),
+            appt);
+
+    g_signal_connect_after ((gpointer) appt->appSound_entry, "changed",
+            G_CALLBACK (on_appSound_entry_changed_cb),
             appt);
 
     fill_appt_window(appt, action, par);
