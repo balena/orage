@@ -281,6 +281,29 @@ on_appAllDay_clicked_cb(GtkCheckButton *checkbutton, gpointer user_data)
     gtk_widget_set_sensitive(apptw->appRevert, TRUE);    
 }
 
+gboolean
+on_appWindow_delete_event_cb(GtkWidget *widget, GdkEvent *event, gpointer user_data){
+    gint result;
+    appt_win *apptw = (appt_win *)user_data;
+
+    if(apptw->appointment_changed){
+        result = xfce_message_dialog(GTK_WINDOW(apptw->appWindow),
+                                     _("Warning"),
+                                     GTK_STOCK_DIALOG_WARNING,
+                                     _("The appointment information has been modified."),
+                                     _("Do you want to continue?"),
+                                     GTK_STOCK_YES,
+                                     GTK_RESPONSE_ACCEPT,
+                                     GTK_STOCK_NO,
+                                     GTK_RESPONSE_CANCEL,
+                                     NULL);
+
+        if(result == GTK_RESPONSE_ACCEPT){
+            gtk_widget_destroy(apptw->appWindow);
+        }
+    }
+}
+
 void
 fill_appt(appt_type *appt, appt_win *apptw)
 {
@@ -890,6 +913,7 @@ appt_win
 
     appt->appToolbar = gtk_toolbar_new();
     gtk_container_add (GTK_CONTAINER (appt->appHandleBox), appt->appToolbar);
+    gtk_toolbar_set_tooltips (GTK_TOOLBAR(appt->appToolbar), TRUE);
 
     /* Add buttons to the toolbar */
     appt->appSave = xfcalendar_toolbar_append_button (appt->appToolbar, "gtk-save", _("_Save"), 
@@ -908,6 +932,12 @@ appt_win
                                                         appt->appTooltips, _("Delete"), i++);
 
     gtk_widget_set_sensitive(appt->appRevert, FALSE);
+
+/* FIXME: doesn't work at all!!
+    appt->appAccelgroup = gtk_accel_group_new();
+    gtk_window_add_accel_group (GTK_WINDOW(appt->appWindow), appt->appAccelgroup);
+    gtk_accel_group_connect (appt->appAccelgroup, GDK_s, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE,
+*/
 
     appt->appNotebook = gtk_notebook_new();
     gtk_container_add (GTK_CONTAINER (appt->appVBox1), appt->appNotebook);
@@ -1072,6 +1102,9 @@ appt_win
             G_CALLBACK (on_appStartEndDate_clicked_cb),
             appt);
 
+    g_signal_connect ((gpointer) appt->appWindow, "delete-event",
+            G_CALLBACK (on_appWindow_delete_event_cb),
+            appt);
     /* Take care of the title entry to build the appointment window title 
      * Beware: we are not using appt->appTitle_entry as a GtkEntry here 
      * but as an interface GtkEditable instead.

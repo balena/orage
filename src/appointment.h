@@ -64,6 +64,7 @@ typedef struct
 typedef struct
 {
     GtkWidget *appWindow;
+    GtkAccelGroup *appAccelgroup;
     GtkWidget *appHeader;
     GtkWidget *appVBox1;
     GtkWidget *appHandleBox;
