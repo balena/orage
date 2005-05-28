@@ -796,15 +796,13 @@ void fill_appt_window(appt_win *appt_w, char *action, char *par)
     gtk_widget_set_sensitive(appt_w->appRevert, FALSE);
 }
 
-GtkWidget *xfcalendar_toolbar_append_button (GtkWidget *toolbar, 
-                                             const gchar *stock_id, const char *text, GtkTooltips *tooltips, 
-                                             const char *tooltip_text, gint pos){
+GtkWidget *xfcalendar_toolbar_append_button (GtkWidget *toolbar, const gchar *stock_id, 
+                                             GtkTooltips *tooltips, const char *tooltip_text, 
+                                             gint pos){
 
     GtkWidget *button;
 
     button = (GtkWidget *) gtk_tool_button_new_from_stock (stock_id);
-    gtk_tool_button_set_label (GTK_TOOL_BUTTON (button), (const gchar *) text);
-    gtk_tool_button_set_use_underline (GTK_TOOL_BUTTON (button), TRUE);
     gtk_tool_item_set_tooltip (GTK_TOOL_ITEM (button), tooltips, (const gchar *) tooltip_text, NULL);
     gtk_toolbar_insert(GTK_TOOLBAR(toolbar), GTK_TOOL_ITEM(button), pos);
     return button;
@@ -818,7 +816,6 @@ GtkWidget *xfcalendar_table_new (guint rows, guint columns){
     gtk_container_set_border_width (GTK_CONTAINER (table), 10);
     gtk_table_set_row_spacings (GTK_TABLE (table), 6);
     gtk_table_set_col_spacings (GTK_TABLE (table), 6);
-
     return table;
 }
 
@@ -916,20 +913,24 @@ appt_win
     gtk_toolbar_set_tooltips (GTK_TOOLBAR(appt->appToolbar), TRUE);
 
     /* Add buttons to the toolbar */
-    appt->appSave = xfcalendar_toolbar_append_button (appt->appToolbar, "gtk-save", _("_Save"), 
-                                                      appt->appTooltips, _("Save"), i++);
-    appt->appSaveClose = xfcalendar_toolbar_append_button (appt->appToolbar, "gtk-close", _("Save and _close"), 
-                                                           appt->appTooltips, _("Save and close"), i++);
+    appt->appSave = xfcalendar_toolbar_append_button (appt->appToolbar, "gtk-save", appt->appTooltips, _("Save"), i++);
+
+    appt->appSaveClose = xfcalendar_toolbar_append_button (appt->appToolbar, "gtk-close", appt->appTooltips, _("Save and close"), i++);
+    gtk_tool_button_set_label (GTK_TOOL_BUTTON (appt->appSaveClose), _("Save and close"));
+
     appt->appSeparator1 = (GtkWidget *)gtk_separator_tool_item_new();
     gtk_toolbar_insert(GTK_TOOLBAR(appt->appToolbar), GTK_TOOL_ITEM(appt->appSeparator1), i++);
-    appt->appRevert = xfcalendar_toolbar_append_button (appt->appToolbar, "gtk-revert-to-saved", _("_Revert"),
-                                                        appt->appTooltips, _("Revert"), i++);
-    appt->appDuplicate = xfcalendar_toolbar_append_button (appt->appToolbar, "gtk-copy", _("D_uplicate"), 
-                                                           appt->appTooltips, _("Duplicate"), i++);
+
+    appt->appRevert = xfcalendar_toolbar_append_button (appt->appToolbar, "gtk-revert-to-saved", appt->appTooltips, _("Revert"), i++);
+
+    appt->appDuplicate = xfcalendar_toolbar_append_button (appt->appToolbar, "gtk-copy", appt->appTooltips, _("Duplicate"), i++);
+    gtk_tool_button_set_label (GTK_TOOL_BUTTON (appt->appDuplicate), _("Duplicate"));
+
     appt->appSeparator2 = (GtkWidget *)gtk_separator_tool_item_new();
     gtk_toolbar_insert(GTK_TOOLBAR(appt->appToolbar), GTK_TOOL_ITEM(appt->appSeparator2), i++);
-    appt->appDelete = xfcalendar_toolbar_append_button (appt->appToolbar, "gtk-delete", _("_Delete"), 
-                                                        appt->appTooltips, _("Delete"), i++);
+
+    appt->appDelete = xfcalendar_toolbar_append_button (appt->appToolbar, "gtk-delete", appt->appTooltips, _("Delete"), i++);
+
 
     gtk_widget_set_sensitive(appt->appRevert, FALSE);
 
