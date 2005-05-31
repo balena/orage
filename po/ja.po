@@ -1,141 +1,335 @@
-# Japanese translation for xfcalender
-# Copyright (C) 2003-2005 Free Software Foundation, Inc..
+# Japanese translations for xfcalender package.
+# Copyright (C) 2003-2005 The Xfce development team.
 # This file is distributed under the same license as the xfcalender package.
 # Zhao Ji <zhao-ji@awz.ne.jp>, 2003-2004.
 # Daichi Kawahata <daichik@users.sourceforge.net>, 2005.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: xfcalender 4.3.0\n"
-"Report-Msgid-Bugs-To: xfce-i18n@xfce.org\n"
-"POT-Creation-Date: 2005-02-16 08:35+0900\n"
-"PO-Revision-Date: 2005-02-17 21:31+0900\n"
+"Project-Id-Version: xfcalender 4.3.1.16svn\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2005-05-23 19:49+0900\n"
+"PO-Revision-Date: 2005-05-23 21:36+0900\n"
 "Last-Translator: Daichi Kawahata <daichik@users.sourceforge.net>\n"
-"Language-Team: Japanese <xfce-i18n@xfce.org>\n"
+"Language-Team: xfce-users-jp <xfce-users-jp@ml.fdiary.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: plugin/xfcalendar_plugin.c:175 plugin/xfcalendar_plugin.c:186
-#: plugin/xfcalendar_plugin.c:300 src/mainbox.c:374
-msgid "Xfcalendar"
-msgstr "Xfcalendar"
+#: ../plugin/xfcalendar_plugin.c:199 ../plugin/xfcalendar_plugin.c:210
+msgid "Xfcalendar Preferences"
+msgstr "Xfcalendar 環境設定"
 
 #.
-#: plugin/xfcalendar_plugin.c:201
+#: ../plugin/xfcalendar_plugin.c:225
 msgid "Mode"
 msgstr "モード"
 
-#: plugin/xfcalendar_plugin.c:209
+#: ../plugin/xfcalendar_plugin.c:233
 msgid "Normal"
-msgstr "通常"
+msgstr "通常モード"
 
-#: plugin/xfcalendar_plugin.c:216
+#: ../plugin/xfcalendar_plugin.c:240
 msgid "Compact"
-msgstr "軽量"
+msgstr "簡易モード"
 
 #.
-#: plugin/xfcalendar_plugin.c:224
-msgid "Show in..."
-msgstr "表示場所..."
+#: ../plugin/xfcalendar_plugin.c:248
+msgid "Show the calendar window in..."
+msgstr "カレンダー・ウィンドウの表示場所..."
 
-#: plugin/xfcalendar_plugin.c:232
+#: ../plugin/xfcalendar_plugin.c:257
 msgid "Taskbar"
 msgstr "タスクバー"
 
-#: plugin/xfcalendar_plugin.c:237
+#: ../plugin/xfcalendar_plugin.c:262
 msgid "Pager"
 msgstr "ページャ"
 
-#: plugin/xfcalendar_plugin.c:242
+#: ../plugin/xfcalendar_plugin.c:267
 msgid "Systray"
 msgstr "システムトレイ"
 
 #.
-#: plugin/xfcalendar_plugin.c:248
-msgid "Start visibility"
-msgstr "起動時の表示"
+#: ../plugin/xfcalendar_plugin.c:273
+msgid "Visibility when starting..."
+msgstr "起動時の表示のされ方..."
 
-#: plugin/xfcalendar_plugin.c:256
+#: ../plugin/xfcalendar_plugin.c:282
 msgid "Show"
 msgstr "表示する"
 
-#: plugin/xfcalendar_plugin.c:263
+#: ../plugin/xfcalendar_plugin.c:289
 msgid "Hide"
 msgstr "表示しない"
 
-#: plugin/xfce-xfcalendar-settings.desktop.in.h:1
+#: ../plugin/xfcalendar_plugin.c:296
+msgid "Minimized"
+msgstr "最小化"
+
+#. Choose a sound application for reminders
+#: ../plugin/xfcalendar_plugin.c:304
+msgid "Play sounds with..."
+msgstr "サウンドを鳴らす..."
+
+#: ../plugin/xfcalendar_plugin.c:313
+msgid "Application"
+msgstr "アプリケーション"
+
+#: ../plugin/xfcalendar_plugin.c:354 ../src/appointment.c:139
+#: ../src/mainbox.c:276
+msgid "Xfcalendar"
+msgstr "Xfcalendar"
+
+#: ../plugin/xfce-xfcalendar-settings.desktop.in.h:1
 msgid "Calendar Settings"
 msgstr "カレンダー設定"
 
-#: plugin/xfce-xfcalendar-settings.desktop.in.h:2
+#: ../plugin/xfce-xfcalendar-settings.desktop.in.h:2
 msgid "Settings for the Xfce 4 Calendar Application"
 msgstr "Xfce 4 カレンダーアプリケーションの設定"
 
-#: plugin/xfce-xfcalendar-settings.desktop.in.h:3
+#: ../plugin/xfce-xfcalendar-settings.desktop.in.h:3
 msgid "Xfce 4 Calendar Settings"
 msgstr "Xfce 4 カレンダー設定"
 
-#: src/about-xfcalendar.c:39
+#: ../src/about-xfcalendar.c:39
 msgid "Manage your time with Xfce4"
 msgstr "Xfce4 であなたの予定を管理します"
 
-#: src/about-xfcalendar.c:49
+#: ../src/about-xfcalendar.c:49
 msgid "Core developer"
 msgstr "中心開発者"
 
-#: src/about-xfcalendar.c:54 src/about-xfcalendar.c:59
-#: src/about-xfcalendar.c:64
+#: ../src/about-xfcalendar.c:54 ../src/about-xfcalendar.c:59
+#: ../src/about-xfcalendar.c:64
 msgid "Contributor"
 msgstr "貢献者"
 
-#: src/callbacks.c:227
-msgid "Question"
-msgstr "質問"
+#: ../src/appointment.c:120 ../src/appointment.c:252 ../src/appointment.c:537
+msgid "%m/%d/%Y"
+msgstr "%Y-%m-%d"
 
-#: src/callbacks.c:236
-msgid ""
-"\n"
-"The information has been modified.\n"
-" Do you want to continue ?\n"
-msgstr ""
-"\n"
-"情報が変更されています。\n"
-"続行しますか?\n"
+#: ../src/appointment.c:171
+msgid "Select a file..."
+msgstr "ファイルを選択して下さい..."
 
-#: src/interface.c:56 xfcalendar.glade.h:2
-msgid "Appointment"
-msgstr "約束"
+#: ../src/appointment.c:179
+msgid "Sound Files"
+msgstr "サウンドファイル"
 
-#: src/interface.c:78
-msgid "Save (Ctrl+s)"
-msgstr "保存 (Ctrl+s)"
+#: ../src/appointment.c:185
+msgid "All Files"
+msgstr "全てのファイル"
 
-#: src/interface.c:91
-msgid "Previous day (Ctrl+p)"
-msgstr "前日 (Ctrl+p)"
-
-#: src/interface.c:102
-msgid "Today (Alt+Home)"
-msgstr "今日 (Alt+Home)"
-
-#: src/interface.c:114
-msgid "Next day (Ctrl+n)"
-msgstr "明日 (Ctrl+n)"
-
-#: src/interface.c:127
-msgid "Close (Ctrl+w)"
-msgstr "閉じる (Ctrl+w)"
-
-#: src/interface.c:138
-msgid "Clear (Ctrl+l)"
-msgstr "消去 (Ctrl+l)"
-
-#: src/interface.c:208 xfcalendar.glade.h:6
+#: ../src/appointment.c:349 ../src/appointment.c:360 ../src/appointment.c:463
+#: ../src/event-list.c:626
 msgid "Warning"
 msgstr "警告"
 
-#: src/interface.c:225 xfcalendar.glade.h:18
+#: ../src/appointment.c:351
+msgid "The end of this appointment is earlier than the beginning."
+msgstr "この約束時刻の終わりが開始時刻よりも早くなっています。"
+
+#: ../src/appointment.c:362
+msgid "A time value is wrong."
+msgstr "時間が間違っています。"
+
+#: ../src/appointment.c:363
+msgid "Time values must be written 'hh:mm', for instance '09:36' or '15:23'."
+msgstr "時間は必ず 'hh:mm' の形式で書いて下さい (例 '09:36 または 15:23)。"
+
+#: ../src/appointment.c:465
+msgid "This appointment will be permanently removed."
+msgstr "この約束は恒久的に削除されます。"
+
+#: ../src/appointment.c:466
+msgid "Do you want to continue?"
+msgstr "続行しますか？"
+
+#: ../src/appointment.c:542 ../src/tray_icon.c:91
+msgid "Today"
+msgstr "今日"
+
+#: ../src/appointment.c:645
+msgid "New appointment - Xfcalendar"
+msgstr "新しい約束 - Xfcalendar"
+
+#: ../src/appointment.c:769
+msgid "  "
+msgstr "  "
+
+#: ../src/appointment.c:814
+msgid "Free"
+msgstr "休憩中"
+
+#: ../src/appointment.c:814
+msgid "Busy"
+msgstr "仕事中"
+
+#: ../src/appointment.c:815 ../src/appointment.c:816
+msgid "None"
+msgstr "なし"
+
+#: ../src/appointment.c:815
+msgid "Daily"
+msgstr "毎日"
+
+#: ../src/appointment.c:815
+msgid "Weekly"
+msgstr "毎週"
+
+#: ../src/appointment.c:815
+msgid "Monthly"
+msgstr "毎月"
+
+#: ../src/appointment.c:816
+msgid "5 minutes"
+msgstr "5分"
+
+#: ../src/appointment.c:816
+msgid "15 minutes"
+msgstr "15分"
+
+#: ../src/appointment.c:816
+msgid "30 minutes"
+msgstr "30分"
+
+#: ../src/appointment.c:817
+msgid "45 minutes"
+msgstr "45分"
+
+#: ../src/appointment.c:817
+msgid "1 hour"
+msgstr "1時間"
+
+#: ../src/appointment.c:817
+msgid "2 hours"
+msgstr "2時間"
+
+#: ../src/appointment.c:817
+msgid "4 hours"
+msgstr "4時間"
+
+#: ../src/appointment.c:818
+msgid "8 hours"
+msgstr "8時間"
+
+#: ../src/appointment.c:818
+msgid "1 day"
+msgstr "1日"
+
+#: ../src/appointment.c:818
+msgid "2 days"
+msgstr "2日"
+
+#: ../src/appointment.c:838
+msgid "Appointment "
+msgstr "約束 "
+
+#. Add buttons to the toolbar
+#: ../src/appointment.c:848
+msgid "_Save"
+msgstr "保存(_S)"
+
+#: ../src/appointment.c:849
+msgid "Save"
+msgstr "保存します"
+
+#: ../src/appointment.c:850
+msgid "Save and _close"
+msgstr "保存して閉じる(_C)"
+
+#: ../src/appointment.c:851
+msgid "Save and close"
+msgstr "保存して閉じます"
+
+#: ../src/appointment.c:852
+msgid "D_uplicate"
+msgstr "複製(_U)"
+
+#: ../src/appointment.c:853
+msgid "Duplicate"
+msgstr "複製を作成します"
+
+#: ../src/appointment.c:854
+msgid "_Delete"
+msgstr "削除(_D)"
+
+#: ../src/appointment.c:855
+msgid "Delete"
+msgstr "削除します"
+
+#: ../src/appointment.c:863
+msgid "General"
+msgstr "一般"
+
+#: ../src/appointment.c:872
+msgid "Title "
+msgstr "件名 "
+
+#: ../src/appointment.c:878
+msgid "Location"
+msgstr "場所"
+
+#: ../src/appointment.c:884
+msgid "All day event"
+msgstr "一日中の出来事"
+
+#: ../src/appointment.c:889
+msgid "Start"
+msgstr "開始時刻"
+
+#: ../src/appointment.c:897
+msgid "End"
+msgstr "終了時刻"
+
+#: ../src/appointment.c:905
+msgid "Recurrency"
+msgstr "繰り返す"
+
+#: ../src/appointment.c:912
+msgid "Availability"
+msgstr "時間の都合"
+
+#: ../src/appointment.c:919
+msgid "Note"
+msgstr "備考"
+
+#: ../src/appointment.c:947 ../src/appointment.c:956
+msgid "Alarm"
+msgstr "アラーム"
+
+#: ../src/appointment.c:963
+msgid "Sound"
+msgstr "サウンド"
+
+#: ../src/appointment.c:974
+msgid "Repeat alarm sound"
+msgstr "アラート音を繰返す"
+
+#. date only appointment
+#: ../src/event-list.c:219
+msgid "today"
+msgstr "今日"
+
+#: ../src/event-list.c:339
+msgid "Time"
+msgstr "時間"
+
+#: ../src/event-list.c:354
+msgid "Flags"
+msgstr "フラッグ"
+
+#: ../src/event-list.c:360
+msgid "Title"
+msgstr "件名"
+
+#: ../src/event-list.c:366
+msgid "uid"
+msgstr "UID"
+
+#: ../src/event-list.c:643
 msgid ""
 "You will remove all information \n"
 "associated with this date."
@@ -143,126 +337,102 @@ msgstr ""
 "この日付に関する全ての\n"
 "情報を削除します。"
 
-#: src/main.c:127
+#: ../src/event-list.c:725
+msgid "Add (Ctrl+a)"
+msgstr "追加 (Ctrl+a)"
+
+#: ../src/event-list.c:733
+msgid "Previous day (Ctrl+p)"
+msgstr "前日 (Ctrl+p)"
+
+#: ../src/event-list.c:741
+msgid "Today (Alt+Home)"
+msgstr "今日 (Alt+Home)"
+
+#: ../src/event-list.c:750
+msgid "Next day (Ctrl+n)"
+msgstr "明日 (Ctrl+n)"
+
+#: ../src/event-list.c:760
+msgid "Copy (Ctrl+c)"
+msgstr "コピー (Ctrl+c)"
+
+#: ../src/event-list.c:768
+msgid "Close (Ctrl+w)"
+msgstr "閉じる (Ctrl+w)"
+
+#: ../src/event-list.c:776
+msgid "Clear (Ctrl+l)"
+msgstr "消去 (Ctrl+l)"
+
+#: ../src/event-list.c:784
+msgid "Show more days"
+msgstr "もっと多くの日付を表示"
+
+#: ../src/ical-code.c:226
+msgid "Xfcalendar default alarm"
+msgstr "Xfcalendar の標準のアラーム"
+
+#: ../src/main.c:165
 msgid "This should not happen"
 msgstr "想定外の事が起こりました"
 
-#: src/main.c:390
+#: ../src/main.c:431
 msgid "Cannot create MCS client channel"
 msgstr "MCS クライアントのチャンネルを作成できません"
 
 #. File menu
-#: src/mainbox.c:404 xfcalendar.glade.h:21
+#: ../src/mainbox.c:301
 msgid "_File"
 msgstr "ファイル(_F)"
 
-#: src/mainbox.c:413
-msgid "_Close window"
-msgstr "ウィンドウを閉じる(_C)"
+#: ../src/mainbox.c:308
+msgid "_New appointment"
+msgstr "新しい約束(_N)"
 
-#. Settings menu
-#: src/mainbox.c:430
-msgid "_Settings"
-msgstr "設定(_S)"
+#. Edit menu
+#: ../src/mainbox.c:327
+msgid "_Edit"
+msgstr "編集(_E)"
 
-#: src/mainbox.c:439
-msgid "_Preferences"
-msgstr "環境設定(_P)"
+#. View menu
+#: ../src/mainbox.c:342
+msgid "_View"
+msgstr "表示(_V)"
 
-#: src/mainbox.c:450
+#: ../src/mainbox.c:350
+msgid "View selected _date"
+msgstr "選択した日付を表示(_D)"
+
+#: ../src/mainbox.c:359
 msgid "Select _Today"
 msgstr "今日の日付を選択(_T)"
 
 #. Help menu
-#: src/mainbox.c:457 xfcalendar.glade.h:22
+#: ../src/mainbox.c:366
 msgid "_Help"
 msgstr "ヘルプ(_H)"
 
-#: src/mainbox.c:466 xfcalendar.glade.h:20
-msgid "_About"
-msgstr "このプログラムについて(_A)"
+#: ../src/reminder.c:163
+msgid "Reminder "
+msgstr "備忘録 "
 
-#: src/reminder.c:56 src/reminder.c:64
-msgid "Reminder"
-msgstr "備忘録"
-
-#: src/support.c:91 src/support.c:115
-#, c-format
-msgid "Couldn't find pixmap file: %s"
-msgstr "pixmap ファイルを見つけられませんでした: %s"
-
-#: src/tray_icon.c:95
-msgid "Today"
-msgstr "今日"
-
-#: src/tray_icon.c:105
+#: ../src/tray_icon.c:101
 msgid "Preferences"
 msgstr "環境設定"
 
-#: src/tray_icon.c:114
+#: ../src/tray_icon.c:110
 msgid "About Xfcalendar"
 msgstr "Xfcalendar について"
 
-#: xfcalendar.desktop.in.h:1
+#: ../xfcalendar.desktop.in.h:1
 msgid "Calendar"
 msgstr "カレンダー"
 
-#: xfcalendar.desktop.in.h:2
+#: ../xfcalendar.desktop.in.h:2
 msgid "Desktop calendar"
 msgstr "デスクトップカレンダー"
 
-#: xfcalendar.desktop.in.h:3
+#: ../xfcalendar.desktop.in.h:3
 msgid "Xfce Calendar"
 msgstr "Xfce カレンダー"
-
-#: xfcalendar.glade.h:1
-msgid "About..."
-msgstr "このプログラムについて..."
-
-#: xfcalendar.glade.h:3
-msgid "Clear"
-msgstr "カレンダー"
-
-#: xfcalendar.glade.h:4
-msgid "Close"
-msgstr "閉じる"
-
-#: xfcalendar.glade.h:5
-msgid "Save"
-msgstr "保存"
-
-#: xfcalendar.glade.h:7
-msgid "XFCalendar"
-msgstr "XFCalender"
-
-#: xfcalendar.glade.h:8
-msgid ""
-"XFCalendar\n"
-"v. 0.1.1\n"
-"\n"
-"Manage your time with XFce 4\n"
-"(c) 2003 Mickaël Graf\n"
-"\n"
-"This software is Released under the \n"
-"General Public Licence.\n"
-"\n"
-"XFce 4 is (c) Olivier Fourdan"
-msgstr ""
-"XFCalender\n"
-"v. 0.1.1\n"
-"\n"
-"Xfce 4 であなたの予定を管理します\n"
-"(c) 2003 Mickaël Graf\n"
-"\n"
-"このソフトウェアは GPL の下で\n"
-"配布されています。\n"
-"\n"
-"Xfce 4 (C) Olivier Fourdan"
-
-#: xfcalendar.glade.h:23
-msgid "btClose"
-msgstr "btClose"
-
-#: xfcalendar.glade.h:24
-msgid "btSave"
-msgstr "btSave"
