@@ -201,9 +201,9 @@ char *format_time(char *start_ical_time, char *end_ical_time
     return(result);
 }
 
-void start_time_data_func_(GtkTreeViewColumn *col, GtkCellRenderer *rend,
-                           GtkTreeModel      *model, GtkTreeIter   *iter,
-                           gpointer           user_data)
+void start_time_data_func(GtkTreeViewColumn *col, GtkCellRenderer *rend,
+                          GtkTreeModel      *model, GtkTreeIter   *iter,
+                          gpointer           user_data)
 {
     gchar *stime, *etime;
     struct tm *t;
@@ -274,7 +274,7 @@ recreate_eventlist_win(eventlist_win *el)
     col = gtk_tree_view_column_new_with_attributes( _("Time"), rend
                 , "text", COL_TIME
                 , NULL);
-    gtk_tree_view_column_set_cell_data_func(col, rend, start_time_data_func_
+    gtk_tree_view_column_set_cell_data_func(col, rend, start_time_data_func
                 , el, NULL);
     gtk_tree_view_insert_column(GTK_TREE_VIEW(el->elTreeView), col, 0);
     manage_eventlist_win(GTK_CALENDAR(xfcal->mCalendar), el);
@@ -416,7 +416,7 @@ on_elWindow_delete_event(GtkWidget *widget, GdkEvent *event, gpointer data)
 }
 
 void
-changeSelectedDate_(GtkButton *button, gpointer user_data, gint direction)
+changeSelectedDate(GtkButton *button, gpointer user_data, gint direction)
 {
     guint year, month, day;
     guint monthdays[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
@@ -462,7 +462,7 @@ changeSelectedDate_(GtkButton *button, gpointer user_data, gint direction)
 void
 on_elPrevious_clicked(GtkButton *button, gpointer user_data)
 {
-  changeSelectedDate_(button, user_data, PREVIOUS);
+  changeSelectedDate(button, user_data, PREVIOUS);
 }
 
 void
@@ -483,7 +483,7 @@ on_elToday_clicked(GtkButton *button, gpointer user_data)
 void
 on_elNext_clicked(GtkButton *button, gpointer user_data)
 {
-  changeSelectedDate_(button, user_data, NEXT);
+  changeSelectedDate(button, user_data, NEXT);
 }
 
 void
@@ -646,7 +646,7 @@ eventlist_win
     col = gtk_tree_view_column_new_with_attributes( _("Time"), rend
                 , "text", COL_TIME
                 , NULL);
-    gtk_tree_view_column_set_cell_data_func(col, rend, start_time_data_func_
+    gtk_tree_view_column_set_cell_data_func(col, rend, start_time_data_func
                 , el, NULL);
     gtk_tree_view_append_column(GTK_TREE_VIEW(el->elTreeView), col);
 
