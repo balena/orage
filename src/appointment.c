@@ -300,6 +300,7 @@ on_appWindow_delete_event_cb(GtkWidget *widget, GdkEvent *event, gpointer user_d
 
         if(result == GTK_RESPONSE_ACCEPT){
             gtk_widget_destroy(apptw->appWindow);
+            g_free(apptw);
         }
     }
 }
@@ -469,8 +470,8 @@ on_appSave_clicked_cb(GtkButton *button, gpointer user_data)
             xfical_file_close();
         }
 
-        if (ok && apptw->wEventlist != NULL) {
-            recreate_wEventlist(apptw->wEventlist);
+        if (ok && apptw->eventlist != NULL) {
+            recreate_eventlist_win((eventlist_win *)apptw->eventlist);
         }
         apptw->appointment_new = FALSE;
     }
@@ -510,10 +511,12 @@ on_appSaveClose_clicked_cb(GtkButton *button, gpointer user_data)
             }
             xfical_file_close();
         }
-        if (ok && apptw->wEventlist != NULL) {
-            recreate_wEventlist(apptw->wEventlist);
+
+        if (ok && apptw->eventlist != NULL) {
+            recreate_eventlist_win((eventlist_win *)apptw->eventlist);
         }
         gtk_widget_destroy(apptw->appWindow);
+        g_free(apptw);
     }
 
     g_free(starttime);
@@ -546,8 +549,8 @@ on_appDelete_clicked_cb(GtkButton *button, gpointer user_data)
                 g_message("Removed ical uid: %s \n", apptw->xf_uid);
             }
 
-        if (apptw->wEventlist != NULL)
-            recreate_wEventlist(apptw->wEventlist);
+        if (apptw->eventlist != NULL)
+            recreate_eventlist_win((eventlist_win *)apptw->eventlist);
 
         gtk_widget_destroy(apptw->appWindow);
     }
@@ -569,13 +572,9 @@ on_appDuplicate_clicked_cb(GtkButton *button, gpointer user_data)
         g_message("Added ical uid: %s \n", new_uid);
         xfical_file_close();
     }
-
-    if (apptw->wEventlist != NULL) {
-        recreate_wEventlist(apptw->wEventlist);
-    }
     */
 
-    app = create_appt_win("COPY", apptw->xf_uid, apptw->wEventlist);
+    app = create_appt_win("COPY", apptw->xf_uid, apptw->eventlist);
     gtk_window_get_position(GTK_WINDOW(apptw->appWindow), &x, &y);
     gtk_window_move(GTK_WINDOW(app->appWindow), x+20, y+20);
     gtk_widget_show(app->appWindow);
@@ -874,8 +873,9 @@ void xfcalendar_table_add_row (GtkWidget *table, GtkWidget *label, GtkWidget *in
 }
 
 appt_win 
-*create_appt_win(char *action, char *par, GtkWidget *wEventlist)
+*create_appt_win(char *action, char *par, gpointer el)
 {
+    eventlist_win *event_list;
     register int i = 0;
     GtkWidget *tmp_toolbar_icon;
     char *availability_array[AVAILABILITY_ARRAY_DIM] = {_("Free"), _("Busy")},
@@ -887,18 +887,21 @@ appt_win
     appt_win *appt = g_new(appt_win, 1);
 
     appt->xf_uid = NULL;
-    appt->wEventlist = wEventlist;
+
+    appt->eventlist = el;                /* Keep memory of the parent, if any */
+    event_list = (eventlist_win *) el;
 
     appt->appTooltips = gtk_tooltips_new();
 
     appt->appWindow = gtk_window_new(GTK_WINDOW_TOPLEVEL);
     gtk_window_set_default_size(GTK_WINDOW(appt->appWindow), 450, 325);
-    if (appt->wEventlist != NULL) {
+
+    if (appt->eventlist != NULL) {
       gtk_window_set_transient_for(GTK_WINDOW(appt->appWindow)
-              , GTK_WINDOW(appt->wEventlist));
+              , GTK_WINDOW(event_list->elWindow));
       gtk_window_set_destroy_with_parent(GTK_WINDOW(appt->appWindow), TRUE);
     }
-
+    
     appt->appVBox1 = gtk_vbox_new (FALSE, 0);
     gtk_container_add (GTK_CONTAINER (appt->appWindow), appt->appVBox1);
 

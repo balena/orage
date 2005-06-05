@@ -118,7 +118,7 @@ typedef struct
     GtkWidget *appSaveClose;
 
     gchar *xf_uid;
-    GtkWidget *wEventlist; /* event-list window */
+    gpointer eventlist; /* event-list window: the gpointer here is an awful hack coz gcc complained about a 'include "event-list.h"' */
     gboolean add_appointment;
     gboolean appointment_changed;
     gboolean appointment_new;
@@ -129,4 +129,4 @@ void
 fill_appt_window(appt_win *appt, char *action, char *par);
 
 appt_win 
-*create_appt_win(char *action, char *par, GtkWidget *wEventlist);
+*create_appt_win(char *action, char *par, gpointer el);

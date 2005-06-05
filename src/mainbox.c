@@ -130,11 +130,10 @@ mView_ViewSelectedDate_activate_cb(GtkMenuItem *menuitem,
             gpointer user_data)
 {
     CalWin *xfcal = (CalWin *) user_data;
-    GtkWidget *wEventlist;
+    eventlist_win *el;
 
-    wEventlist = create_wEventlist();
-    manage_wEventlist(GTK_CALENDAR(xfcal->mCalendar), wEventlist);
-    gtk_widget_show(wEventlist);
+    el = create_eventlist_win();
+    manage_eventlist_win(GTK_CALENDAR(xfcal->mCalendar), el);
 }
 
 void
@@ -191,11 +190,11 @@ void
 mCalendar_day_selected_double_click_cb(GtkCalendar *calendar,
                                         gpointer user_data)
 {
-  GtkWidget *wEventlist;
+    CalWin *xfcal = (CalWin *) user_data;
+    eventlist_win *el;
 
-  wEventlist = create_wEventlist();
-  manage_wEventlist(calendar, wEventlist);
-  gtk_widget_show(wEventlist);
+    el = create_eventlist_win();
+    manage_eventlist_win(GTK_CALENDAR(xfcal->mCalendar), el);
 }
 
 void
@@ -423,7 +422,7 @@ void create_mainWin()
 
   g_signal_connect ((gpointer) xfcal->mCalendar, "day_selected_double_click",
 		    G_CALLBACK (mCalendar_day_selected_double_click_cb),
-		    NULL);
+            (gpointer) xfcal);
 
   g_signal_connect ((gpointer) xfcal->mCalendar, "month-changed",
 		    G_CALLBACK (mCalendar_month_changed_cb),
