@@ -1,0 +1,27 @@
+List of things we should do when (if) we have time:
+
+1) VTODO handling
+
+2) Import (Export ?) data from external calendar sources
+    Read valid ical files and add VEVENTS into xfcalendar format.
+
+3) Timezone handling
+    This is actually needed only if we want to syncronize several 
+    xfcalendar files and search for example common free time for 
+    meetings.
+    But some of the code is in fact using old ical calls due to missing
+    timezone data, which is native to the new version of ical.
+
+4) Exchange data between different xfcalendar users
+    To build group meetings.
+
+5) History files
+    Keep expired events in history file and remove them from the main
+    xfcalendar file. This would also make the active file smaller and
+    faster.
+    We need some kind of cleaning function anyway ? so this would be handy
+    feature to do both.
+
+6) WEB interface to show xfcalendar appointments in the internet
+
+
