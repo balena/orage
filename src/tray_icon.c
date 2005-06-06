@@ -30,6 +30,7 @@
 #include <libxfce4mcs/mcs-client.h>
 
 #include "event-list.h"
+#include "appointment.h"
 #include "mainbox.h"
 #include "xfce_trayicon.h"
 #include "about-xfcalendar.h"
@@ -59,6 +60,22 @@ on_preferences_activate                (GtkMenuItem     *menuitem,
 {
   mcs_client_show (GDK_DISPLAY (), DefaultScreen (GDK_DISPLAY ()),
 		   CHANNEL);
+}
+
+void
+on_new_appointment_activate            (GtkMenuItem     *menuitem,
+                                        gpointer         user_data)
+{
+    appt_win *app;
+    struct tm *t;
+    time_t tt;
+    char cur_date[9];
+
+    tt=time(NULL);
+    t=localtime(&tt);
+    g_snprintf(cur_date, 9, "%04d%02d%02d", t->tm_year+1900
+               , t->tm_mon+1, t->tm_mday);
+    app = create_appt_win("NEW", cur_date, NULL);  
 }
 
 void
@@ -93,6 +110,15 @@ create_TrayIcon (CalWin *xfcal)
 		   xfcal);
   gtk_menu_shell_append(GTK_MENU_SHELL(trayMenu), menuItem);
   gtk_widget_show_all(menuItem);
+  menuItem = gtk_separator_menu_item_new();
+  gtk_menu_shell_append(GTK_MENU_SHELL(trayMenu), menuItem);
+  gtk_widget_show(menuItem);
+
+  menuItem = gtk_menu_item_new_with_label(_("New appointment"));
+  g_signal_connect(menuItem, "activate", G_CALLBACK(on_new_appointment_activate),
+		   NULL);
+  gtk_menu_shell_append(GTK_MENU_SHELL(trayMenu), menuItem);
+  gtk_widget_show(menuItem);
   menuItem = gtk_separator_menu_item_new();
   gtk_menu_shell_append(GTK_MENU_SHELL(trayMenu), menuItem);
   gtk_widget_show(menuItem);

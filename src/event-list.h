@@ -31,6 +31,7 @@ typedef struct
     GtkWidget *elPrevious_toolbutton;
     GtkWidget *elToday_toolbutton;
     GtkWidget *elNext_toolbutton;
+    GtkWidget *elRefresh_toolbutton;
     GtkWidget *elCopy_toolbutton;
     GtkWidget *elClose_toolbutton;
     GtkWidget *elDelete_toolbutton;

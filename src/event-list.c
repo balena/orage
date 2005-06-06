@@ -416,6 +416,12 @@ on_elWindow_delete_event(GtkWidget *widget, GdkEvent *event, gpointer data)
 }
 
 void
+on_elRefresh_clicked(GtkButton *button, gpointer user_data)
+{
+    recreate_eventlist_win((eventlist_win*)user_data);
+}
+
+void
 changeSelectedDate(GtkButton *button, gpointer user_data, gint direction)
 {
     guint year, month, day;
@@ -570,6 +576,8 @@ eventlist_win
                                                          tmp_toolbar_icon, NULL, NULL);
     gtk_widget_add_accelerator(el->elCreate_toolbutton, "clicked", el->accel_group, GDK_a, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
 
+    gtk_toolbar_append_space(GTK_TOOLBAR(el->elToolbar));
+
     tmp_toolbar_icon = gtk_image_new_from_stock("gtk-go-back", gtk_toolbar_get_icon_size(GTK_TOOLBAR(el->elToolbar)));
     el->elPrevious_toolbutton = gtk_toolbar_append_element(GTK_TOOLBAR(el->elToolbar),
                                                            GTK_TOOLBAR_CHILD_BUTTON, NULL,
@@ -593,6 +601,13 @@ eventlist_win
     gtk_widget_add_accelerator(el->elNext_toolbutton, "clicked", el->accel_group, GDK_n, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
 
     gtk_toolbar_append_space(GTK_TOOLBAR(el->elToolbar));
+
+    tmp_toolbar_icon = gtk_image_new_from_stock("gtk-refresh", gtk_toolbar_get_icon_size(GTK_TOOLBAR(el->elToolbar)));
+    el->elRefresh_toolbutton = gtk_toolbar_append_element(GTK_TOOLBAR(el->elToolbar),
+                                                          GTK_TOOLBAR_CHILD_BUTTON, NULL,
+                                                          _("Refresh"), _("Refresh (Ctrl+r)"), NULL,
+                                                          tmp_toolbar_icon, NULL, NULL);
+    gtk_widget_add_accelerator(el->elRefresh_toolbutton, "clicked", el->accel_group, GDK_r, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
 
     tmp_toolbar_icon = gtk_image_new_from_stock("gtk-copy", gtk_toolbar_get_icon_size(GTK_TOOLBAR(el->elToolbar)));
     el->elCopy_toolbutton = gtk_toolbar_append_element(GTK_TOOLBAR(el->elToolbar),
@@ -629,6 +644,7 @@ eventlist_win
     el->elListStore = gtk_list_store_new(NUM_COLS
                 , G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
     el->elTreeView = gtk_tree_view_new();
+    gtk_tree_view_set_rules_hint(GTK_TREE_VIEW(el->elTreeView), TRUE);
 
     el->elTreeSelection = gtk_tree_view_get_selection(GTK_TREE_VIEW(el->elTreeView)); /* Might be useless here... */
     gtk_tree_selection_set_mode(el->elTreeSelection, GTK_SELECTION_BROWSE);
@@ -684,6 +700,8 @@ eventlist_win
                     G_CALLBACK(on_elToday_clicked), el);
   g_signal_connect((gpointer)el->elNext_toolbutton, "clicked",
                     G_CALLBACK(on_elNext_clicked), el);
+  g_signal_connect((gpointer)el->elRefresh_toolbutton, "clicked",
+                    G_CALLBACK(on_elRefresh_clicked), el);
   g_signal_connect((gpointer)el->elCopy_toolbutton, "clicked",
                     G_CALLBACK(on_elCopy_clicked), el);
   g_signal_connect((gpointer)el->elClose_toolbutton, "clicked",
