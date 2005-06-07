@@ -384,7 +384,7 @@ on_elCopy_clicked(GtkButton *button, gpointer user_data)
     sel = gtk_tree_view_get_selection(GTK_TREE_VIEW(el->elTreeView));
     if (gtk_tree_selection_get_selected(sel, &model, &iter)) {
          gtk_tree_model_get(model, &iter, COL_UID, &uid, -1);
-         wApp = create_appt_win("COPY", uid, GTK_WIDGET(el->elWindow));
+         wApp = create_appt_win("COPY", uid, el);
          gtk_widget_show(wApp->appWindow);
          g_free(uid);
 
