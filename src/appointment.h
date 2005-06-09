@@ -65,8 +65,17 @@ typedef struct
 {
     GtkWidget *appWindow;
     GtkAccelGroup *appAccelgroup;
-    GtkWidget *appHeader;
+/*    GtkWidget *appHeader;*/
     GtkWidget *appVBox1;
+    GtkWidget *appMenubar;
+    GtkWidget *appFile_menu;
+    GtkWidget *appFile_menuitem;
+    GtkWidget *appFileSave_menuitem;
+    GtkWidget *appFileSaveClose_menuitem;
+    GtkWidget *appFileRevert_menuitem;
+    GtkWidget *appFileDuplicate_menuitem;
+    GtkWidget *appFileDelete_menuitem;
+    GtkWidget *appFileClose_menuitem;
     GtkWidget *appHandleBox;
     GtkWidget *appToolbar;
     GtkTooltips *appTooltips;
