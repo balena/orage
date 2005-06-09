@@ -60,6 +60,9 @@
 #define AVAILABILITY_ARRAY_DIM 2
 #define RECURRENCY_ARRAY_DIM 4
 #define ALARM_ARRAY_DIM 11
+
+void delete_xfical_from_appt_win (appt_win *apptw);
+
 static GtkWidget *selDate_Window_dialog;
 
 gboolean ical_to_year_month_day_hours_minutes(char *ical, int *year, int *month, int *day, int *hours, int *minutes){
@@ -553,52 +556,21 @@ void
 on_appSaveClose_clicked_cb(GtkButton *button, gpointer user_data)
 {
     save_xfical_from_appt_win_and_close ((appt_win *)user_data);
-/*
-    gint result;
-    gchar *starttime, *endtime;
-
-    appt_win *apptw = (appt_win *)user_data;
-    gboolean ok = FALSE;
-    appt_type *appt = g_new(appt_type, 1); 
-    gchar *new_uid;
-
-    starttime = g_strdup(gtk_entry_get_text(GTK_ENTRY(GTK_BIN(apptw->appStartTime_comboboxentry)->child)));
-    endtime = g_strdup(gtk_entry_get_text(GTK_ENTRY(GTK_BIN(apptw->appEndTime_comboboxentry)->child)));
-
-    fill_appt(appt, apptw);
-
-    if(xfcalendar_validate_datetime(apptw->appWindow, appt->starttime, appt->endtime, starttime, endtime)){
-        /* Here we try to save the event... * /
-        if (xfical_file_open()){
-            if (apptw->add_appointment) {
-                new_uid = xfical_app_add(appt);
-                ok = TRUE;
-                g_message("New ical uid: %s \n", new_uid);
-            }
-            else {
-                ok = xfical_app_mod(apptw->xf_uid, appt);
-                g_message("Modified :%s \n", apptw->xf_uid);
-            }
-            xfical_file_close();
-        }
-
-        if (ok && apptw->eventlist != NULL) {
-            recreate_eventlist_win((eventlist_win *)apptw->eventlist);
-        }
-        gtk_widget_destroy(apptw->appWindow);
-        g_free(apptw);
-    }
-
-    g_free(starttime);
-    g_free(endtime);
-*/
 }
 
 void
 on_appDelete_clicked_cb(GtkButton *button, gpointer user_data)
 {
+    delete_xfical_from_appt_win ((appt_win *) user_data);
+}
+
+void
+on_appFileDelete_menu_activate_cb (GtkMenuItem *menuitem, gpointer user_data){
+    delete_xfical_from_appt_win ((appt_win *) user_data);
+}
+
+void delete_xfical_from_appt_win (appt_win *apptw){
     gint result;
-    appt_win *apptw = (appt_win *)user_data;
 
     result = xfce_message_dialog(GTK_WINDOW(apptw->appWindow),
                          _("Warning"),
@@ -623,27 +595,13 @@ on_appDelete_clicked_cb(GtkButton *button, gpointer user_data)
             recreate_eventlist_win((eventlist_win *)apptw->eventlist);
 
         gtk_widget_destroy(apptw->appWindow);
+        g_free(apptw);
     }
 }
 
-void
-on_appDuplicate_clicked_cb(GtkButton *button, gpointer user_data)
-{
-    appt_win *apptw = (appt_win *)user_data;
+void duplicate_xfical_from_appt_win (appt_win *apptw){
     gint x, y;
     appt_win *app;
-    /*
-    appt_type *appt = xfical_app_alloc();
-    gchar *new_uid;
-
-    fill_appt(appt, apptw);
-    if (xfical_file_open()){
-        new_uid = g_strdup(xfical_app_add(appt));
-        g_message("Added ical uid: %s \n", new_uid);
-        xfical_file_close();
-    }
-    */
-
     app = create_appt_win("COPY", apptw->xf_uid, apptw->eventlist);
     gtk_window_get_position(GTK_WINDOW(apptw->appWindow), &x, &y);
     gtk_window_move(GTK_WINDOW(app->appWindow), x+20, y+20);
@@ -651,15 +609,35 @@ on_appDuplicate_clicked_cb(GtkButton *button, gpointer user_data)
 }
 
 void
-on_appRevert_clicked_cb(GtkWidget *button, gpointer *user_data)
+on_appFileDuplicate_menu_activate_cb (GtkMenuItem *menuitem, gpointer user_data){
+    duplicate_xfical_from_appt_win ((appt_win *)user_data);
+}
+
+void
+on_appDuplicate_clicked_cb (GtkButton *button, gpointer user_data)
 {
-    appt_win *apptw = (appt_win *)user_data;
+    duplicate_xfical_from_appt_win ((appt_win *)user_data);
+}
+
+void
+revert_xfical_to_last_saved (appt_win *apptw){
     if(!apptw->appointment_new){
         fill_appt_window(apptw, "UPDATE", apptw->xf_uid);
     }
     else{
         fill_appt_window(apptw, "NEW", apptw->chosen_date);
     }
+}
+
+void
+on_appFileRevert_menu_activate_cb (GtkMenuItem *menuitem, gpointer user_data){
+    revert_xfical_to_last_saved ((appt_win *) user_data);
+}
+
+void
+on_appRevert_clicked_cb(GtkWidget *button, gpointer *user_data)
+{
+    revert_xfical_to_last_saved ((appt_win *) user_data);
 }
 
 void
@@ -915,14 +893,14 @@ appt_win
 
     appt->appFileSave_menuitem = xfcalendar_image_menu_item_new_from_stock ("gtk-save", appt->appFile_menu, appt->appAccelgroup);
 
-    appt->appFileSaveClose_menuitem = xfcalendar_menu_item_new_with_mnemonic (_("Save and c_lose"), appt->appFile_menu);
+    appt->appFileSaveClose_menuitem = xfcalendar_menu_item_new_with_mnemonic (_("Sav_e and close"), appt->appFile_menu);
     gtk_widget_add_accelerator(appt->appFileSaveClose_menuitem, "activate", appt->appAccelgroup, GDK_l, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
 
     menu_separator = xfcalendar_separator_menu_item_new (appt->appFile_menu);
 
     appt->appFileRevert_menuitem = xfcalendar_image_menu_item_new_from_stock ("gtk-revert-to-saved", appt->appFile_menu, appt->appAccelgroup);
 
-    appt->appFileDuplicate_menuitem = xfcalendar_menu_item_new_with_mnemonic (_("_Duplicate"), appt->appFile_menu);
+    appt->appFileDuplicate_menuitem = xfcalendar_menu_item_new_with_mnemonic (_("D_uplicate"), appt->appFile_menu);
     gtk_widget_add_accelerator(appt->appFileDuplicate_menuitem, "activate", appt->appAccelgroup, GDK_d, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
 
     menu_separator = xfcalendar_separator_menu_item_new(appt->appFile_menu);
@@ -1093,6 +1071,18 @@ appt_win
 
     g_signal_connect((gpointer) appt->appFileSaveClose_menuitem, "activate",
             G_CALLBACK (on_appFileSaveClose_menu_activate_cb),
+            appt);
+
+    g_signal_connect((gpointer) appt->appFileDuplicate_menuitem, "activate",
+            G_CALLBACK (on_appFileDuplicate_menu_activate_cb),
+            appt);
+
+    g_signal_connect((gpointer) appt->appFileRevert_menuitem, "activate",
+            G_CALLBACK (on_appFileRevert_menu_activate_cb),
+            appt);
+
+    g_signal_connect((gpointer) appt->appFileDelete_menuitem, "activate",
+            G_CALLBACK (on_appFileDelete_menu_activate_cb),
             appt);
 
     g_signal_connect((gpointer) appt->appFileClose_menuitem, "activate",

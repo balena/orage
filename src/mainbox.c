@@ -41,6 +41,7 @@
 #include <libxfce4mcs/mcs-client.h>
 
 #include "mainbox.h"
+#include "functions.h"
 #include "xfce_trayicon.h"
 #include "about-xfcalendar.h"
 #include "appointment.h"
@@ -268,6 +269,7 @@ xfcalendar_toggle_visible ()
 
 void create_mainWin()
 {
+    GtkWidget *menu_separator;
   GdkPixbuf *xfcalendar_logo = xfce_themed_icon_load ("xfcalendar", 48);
 
   xfcal->mAccel_group = gtk_accel_group_new ();
@@ -296,83 +298,35 @@ void create_mainWin()
 		      FALSE,
 		      0);
 
-  /* File menu */
-  xfcal->mFile = gtk_menu_item_new_with_mnemonic (_("_File"));
-  gtk_widget_show (xfcal->mFile);
-  gtk_container_add (GTK_CONTAINER (xfcal->mMenubar), xfcal->mFile);
+    /* File menu */
+    xfcal->mFile_menu = xfcalendar_menu_new(_("_File"), xfcal->mMenubar);
 
-  xfcal->mFile_menu = gtk_menu_new ();
-  gtk_menu_item_set_submenu (GTK_MENU_ITEM (xfcal->mFile), xfcal->mFile_menu);
+    xfcal->mFile_newApp = xfcalendar_menu_item_new_with_mnemonic(_("_New appointment"), xfcal->mFile_menu);
 
-  xfcal->mFile_newApp = gtk_menu_item_new_with_mnemonic (_("_New appointment"));
-  gtk_widget_show(xfcal->mFile_newApp);
-  gtk_container_add(GTK_CONTAINER (xfcal->mFile_menu), xfcal->mFile_newApp);
+    menu_separator = xfcalendar_separator_menu_item_new (xfcal->mFile_menu);
 
-  xfcal->mFile_separator = gtk_separator_menu_item_new ();
-  gtk_widget_show (xfcal->mFile_separator);
-  gtk_container_add (GTK_CONTAINER (xfcal->mFile_menu), xfcal->mFile_separator);
+    xfcal->mFile_close = xfcalendar_image_menu_item_new_from_stock ("gtk-close", xfcal->mFile_menu, xfcal->mAccel_group);
 
-  xfcal->mFile_close =  gtk_image_menu_item_new_from_stock ("gtk-close", 
-                                                            xfcal->mAccel_group);
-  gtk_widget_show(xfcal->mFile_close);
-  gtk_container_add(GTK_CONTAINER (xfcal->mFile_menu), xfcal->mFile_close);
+    xfcal->mFile_quit = xfcalendar_image_menu_item_new_from_stock ("gtk-quit", xfcal->mFile_menu, xfcal->mAccel_group);
 
-  xfcal->mFile_quit =  gtk_image_menu_item_new_from_stock ("gtk-quit", 
-							   xfcal->mAccel_group);
-  gtk_widget_show (xfcal->mFile_quit);
-  gtk_container_add (GTK_CONTAINER (xfcal->mFile_menu), xfcal->mFile_quit);
+    /* Edit menu */
+    xfcal->mEdit_menu = xfcalendar_menu_new(_("_Edit"), xfcal->mMenubar);
 
-  /* Edit menu */
-    xfcal->mEdit = gtk_menu_item_new_with_mnemonic(_("_Edit"));
-    gtk_widget_show (xfcal->mEdit);
-    gtk_container_add (GTK_CONTAINER (xfcal->mMenubar), xfcal->mEdit);
+    xfcal->mEdit_preferences = xfcalendar_image_menu_item_new_from_stock("gtk-preferences", xfcal->mEdit_menu, xfcal->mAccel_group);
 
-    xfcal->mEdit_menu = gtk_menu_new();
-    gtk_menu_item_set_submenu (GTK_MENU_ITEM(xfcal->mEdit),
-                               xfcal->mEdit_menu);
+    /* View menu */
+    xfcal->mView_menu = xfcalendar_menu_new (_("_View"), xfcal->mMenubar);
 
-    xfcal->mEdit_preferences = gtk_image_menu_item_new_from_stock ("gtk-preferences",
-                                                                   xfcal->mAccel_group);
-    gtk_widget_show (xfcal->mEdit_preferences);
-    gtk_container_add (GTK_CONTAINER (xfcal->mEdit_menu), 
-                       xfcal->mEdit_preferences);
+    xfcal->mView_ViewSelectedDate = xfcalendar_menu_item_new_with_mnemonic (_("View selected _date"), xfcal->mView_menu);
 
-  /* View menu */
-  xfcal->mView =  gtk_menu_item_new_with_mnemonic(_("_View"));
-  gtk_widget_show (xfcal->mView);
-  gtk_container_add (GTK_CONTAINER (xfcal->mMenubar), xfcal->mView);
+    menu_separator = xfcalendar_separator_menu_item_new (xfcal->mView_menu);
 
-  xfcal->mView_menu = gtk_menu_new();
-  gtk_menu_item_set_submenu(GTK_MENU_ITEM(xfcal->mView), 
-			    xfcal->mView_menu);
+    xfcal->mView_selectToday = xfcalendar_menu_item_new_with_mnemonic(_("Select _Today"), xfcal->mView_menu);
 
-  xfcal->mView_ViewSelectedDate = gtk_menu_item_new_with_mnemonic(_("View selected _date"));
-  gtk_widget_show (xfcal->mView_ViewSelectedDate);
-  gtk_container_add (GTK_CONTAINER (xfcal->mView_menu),
-                     xfcal->mView_ViewSelectedDate);
+    /* Help menu */
+    xfcal->mHelp_menu = xfcalendar_menu_new(_("_Help"), xfcal->mMenubar);
 
-  xfcal->mView_separator = gtk_separator_menu_item_new ();
-  gtk_widget_show (xfcal->mView_separator);
-  gtk_container_add (GTK_CONTAINER (xfcal->mView_menu), xfcal->mView_separator);
-
-  xfcal->mView_selectToday = gtk_menu_item_new_with_mnemonic(_("Select _Today"));
-  gtk_widget_show (xfcal->mView_selectToday);
-  gtk_container_add (GTK_CONTAINER (xfcal->mView_menu), 
-		     xfcal->mView_selectToday);
-
-  /* Help menu */
-
-  xfcal->mHelp = gtk_menu_item_new_with_mnemonic (_("_Help"));
-  gtk_widget_show (xfcal->mHelp);
-  gtk_container_add (GTK_CONTAINER (xfcal->mMenubar), xfcal->mHelp);
-
-  xfcal->mHelp_menu = gtk_menu_new ();
-  gtk_menu_item_set_submenu (GTK_MENU_ITEM (xfcal->mHelp), xfcal->mHelp_menu);
-
-  xfcal->mHelp_about =  gtk_image_menu_item_new_from_stock ("gtk-about", 
-                                                            xfcal->mAccel_group);
-  gtk_widget_show (xfcal->mHelp_about);
-  gtk_container_add (GTK_CONTAINER (xfcal->mHelp_menu), xfcal->mHelp_about);
+    xfcal->mHelp_about = xfcalendar_image_menu_item_new_from_stock ("gtk-about", xfcal->mHelp_menu, xfcal->mAccel_group);
 
   /* Build the calendar */
   xfcal->mCalendar = gtk_calendar_new ();
