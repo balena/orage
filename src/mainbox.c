@@ -286,12 +286,10 @@ void create_mainWin()
 
   /* Build the vertical box */
   xfcal->mVbox = gtk_vbox_new (FALSE, 0);
-  gtk_widget_show (xfcal->mVbox);
   gtk_container_add (GTK_CONTAINER (xfcal->mWindow), xfcal->mVbox);
 
   /* Build the menu */
   xfcal->mMenubar = gtk_menu_bar_new ();
-  gtk_widget_show (xfcal->mMenubar);
   gtk_box_pack_start (GTK_BOX (xfcal->mVbox),
 		      xfcal->mMenubar,
 		      FALSE,
@@ -330,7 +328,6 @@ void create_mainWin()
 
   /* Build the calendar */
   xfcal->mCalendar = gtk_calendar_new ();
-  gtk_widget_show (xfcal->mCalendar);
   gtk_box_pack_start (GTK_BOX (xfcal->mVbox), xfcal->mCalendar, TRUE, TRUE, 0);
   gtk_calendar_set_display_options (GTK_CALENDAR (xfcal->mCalendar),
                                 GTK_CALENDAR_SHOW_HEADING
@@ -392,5 +389,7 @@ void create_mainWin()
   gtk_window_stick (GTK_WINDOW (xfcal->mWindow));
 
   xfcalendar_mark_appointments();
+
+    gtk_widget_show_all(xfcal->mWindow);
 
 }
