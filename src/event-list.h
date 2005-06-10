@@ -46,6 +46,7 @@ typedef struct
     GtkTreeViewColumn *elTime_treeviewcolumn;
 
     gboolean elToday;
+    int elNumber_of_days_to_show;
 } eventlist_win;
 
 eventlist_win* create_eventlist_win(void);

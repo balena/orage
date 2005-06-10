@@ -847,9 +847,13 @@ appt_win
 *create_appt_win(char *action, char *par, gpointer el)
 {
     eventlist_win *event_list;
+
     register int i = 0;
+
     GtkWidget *tmp_toolbar_icon,
-              *menu_separator;
+              *menu_separator,
+              *toolbar_separator;
+
     char *availability_array[AVAILABILITY_ARRAY_DIM] = {_("Free"), _("Busy")},
          *recurrency_array[RECURRENCY_ARRAY_DIM] = {_("None"), _("Daily"), _("Weekly"), _("Monthly")},
          *alarm_array[ALARM_ARRAY_DIM] = {_("None"), _("5 minutes"), _("15 minutes"), _("30 minutes"),
@@ -922,16 +926,14 @@ appt_win
     /* Add buttons to the toolbar */
     appt->appSave = xfcalendar_toolbar_append_button (appt->appToolbar, "gtk-save", appt->appTooltips, _("Save"), i++);
 
-    appt->appSeparator1 = (GtkWidget *)gtk_separator_tool_item_new();
-    gtk_toolbar_insert(GTK_TOOLBAR(appt->appToolbar), GTK_TOOL_ITEM(appt->appSeparator1), i++);
+    toolbar_separator = xfcalendar_toolbar_append_separator (appt->appToolbar, i++);
 
     appt->appRevert = xfcalendar_toolbar_append_button (appt->appToolbar, "gtk-revert-to-saved", appt->appTooltips, _("Revert"), i++);
 
     appt->appDuplicate = xfcalendar_toolbar_append_button (appt->appToolbar, "gtk-copy", appt->appTooltips, _("Duplicate"), i++);
     gtk_tool_button_set_label (GTK_TOOL_BUTTON (appt->appDuplicate), _("Duplicate"));
 
-    appt->appSeparator2 = (GtkWidget *)gtk_separator_tool_item_new();
-    gtk_toolbar_insert(GTK_TOOLBAR(appt->appToolbar), GTK_TOOL_ITEM(appt->appSeparator2), i++);
+    toolbar_separator = xfcalendar_toolbar_append_separator (appt->appToolbar, i++);
 
     appt->appDelete = xfcalendar_toolbar_append_button (appt->appToolbar, "gtk-delete", appt->appTooltips, _("Delete"), i++);
 

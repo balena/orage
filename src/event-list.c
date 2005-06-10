@@ -49,6 +49,7 @@
 #include <glib/gprintf.h>
 
 #include "event-list.h"
+#include "functions.h"
 #include "reminder.h"
 #include "about-xfcalendar.h"
 #include "mainbox.h"
@@ -348,6 +349,7 @@ void manage_eventlist_win(GtkCalendar *calendar, eventlist_win *el)
     gtk_calendar_get_date(calendar, &year, &month, &day);
     g_sprintf(title, "%04d-%02d-%02d", year, month+1, day);
     gtk_window_set_title(GTK_WINDOW(el->elWindow), (const gchar*)title);
+
     days = gtk_spin_button_get_value(GTK_SPIN_BUTTON(el->elSpin1));
 
     if (xfical_file_open()){
@@ -368,6 +370,26 @@ void manage_eventlist_win(GtkCalendar *calendar, eventlist_win *el)
         }
         xfical_file_close();
     }
+/*
+    if (xfical_file_open()){
+        g_sprintf(a_day, XFICAL_APP_DATE_FORMAT, year, month+1, day);
+        if ((app = xfical_app_get_next_on_day(a_day, TRUE, el->elNumber_of_days_to_show))) {
+            tt = time(NULL);
+            t  = localtime(&tt);
+            if (   year  == t->tm_year + 1900
+                && month == t->tm_mon
+                && day   == t->tm_mday)
+                el->elToday = TRUE;
+            else
+                el->elToday = FALSE; 
+
+            do {
+                addEvent(el->elListStore, app, title, el->elNumber_of_days_to_show);
+            } while ((app = xfical_app_get_next_on_day(a_day, FALSE, el->elNumber_of_days_to_show)));
+        }
+        xfical_file_close();
+    }
+*/
 }
 
 void
@@ -549,14 +571,18 @@ on_elDelete_clicked(GtkButton *button, gpointer user_data)
 eventlist_win
 *create_eventlist_win(void)
 {
-    GtkWidget *tmp_toolbar_icon;
+    GtkWidget *tmp_toolbar_icon, *toolbar_separator;
     GtkCellRenderer *rend;
     GtkTreeViewColumn *col;
+
+    register int i = 0;
 
     eventlist_win *el = g_new(eventlist_win, 1);
     el->elToday = FALSE;
     el->elTooltips = gtk_tooltips_new();
     el->accel_group = gtk_accel_group_new();
+
+    el->elNumber_of_days_to_show = 0;
 
     el->elWindow = gtk_window_new(GTK_WINDOW_TOPLEVEL);
     g_print("create_eventlist_win (ze niou oane): x, y: %d, %d\n", event_win_size_x,event_win_size_y);
@@ -567,76 +593,37 @@ eventlist_win
 
     el->elToolbar = gtk_toolbar_new();
     gtk_box_pack_start(GTK_BOX(el->elVbox), el->elToolbar, FALSE, FALSE, 0);
-    /* gtk_toolbar_set_style(GTK_TOOLBAR(el->elToolbar), GTK_TOOLBAR_ICONS);*/
 
-    tmp_toolbar_icon = gtk_image_new_from_stock("gtk-new", gtk_toolbar_get_icon_size(GTK_TOOLBAR(el->elToolbar)));
-    el->elCreate_toolbutton = gtk_toolbar_append_element(GTK_TOOLBAR(el->elToolbar),
-                                                         GTK_TOOLBAR_CHILD_BUTTON, NULL,
-                                                         _("Add"), _("Add (Ctrl+a)"), NULL,
-                                                         tmp_toolbar_icon, NULL, NULL);
-    gtk_widget_add_accelerator(el->elCreate_toolbutton, "clicked", el->accel_group, GDK_a, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
+    /* Menu stuff */
 
-    gtk_toolbar_append_space(GTK_TOOLBAR(el->elToolbar));
+    /* Toolbar stuff */
+    el->elCreate_toolbutton = xfcalendar_toolbar_append_button (el->elToolbar, "gtk-new", el->elTooltips, _("New"), i++);
 
-    tmp_toolbar_icon = gtk_image_new_from_stock("gtk-go-back", gtk_toolbar_get_icon_size(GTK_TOOLBAR(el->elToolbar)));
-    el->elPrevious_toolbutton = gtk_toolbar_append_element(GTK_TOOLBAR(el->elToolbar),
-                                                           GTK_TOOLBAR_CHILD_BUTTON, NULL,
-                                                           _("Previous"), _("Previous day (Ctrl+p)"), NULL,
-                                                           tmp_toolbar_icon, NULL, NULL);
-    gtk_widget_add_accelerator(el->elPrevious_toolbutton, "clicked", el->accel_group, GDK_p, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
+    toolbar_separator = xfcalendar_toolbar_append_separator (el->elToolbar, i++);
 
-    tmp_toolbar_icon = gtk_image_new_from_stock("gtk-home", gtk_toolbar_get_icon_size(GTK_TOOLBAR(el->elToolbar)));
-    el->elToday_toolbutton = gtk_toolbar_append_element(GTK_TOOLBAR(el->elToolbar),
-                                                        GTK_TOOLBAR_CHILD_BUTTON, NULL,
-                                                        _("Today"), _("Today (Alt+Home)"), NULL,
-                                                        tmp_toolbar_icon, NULL, NULL);
-    gtk_widget_add_accelerator(el->elToday_toolbutton, "clicked", el->accel_group, GDK_Home, GDK_MOD1_MASK, GTK_ACCEL_VISIBLE);
-    gtk_widget_add_accelerator(el->elToday_toolbutton, "clicked", el->accel_group, GDK_h, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
+    el->elPrevious_toolbutton = xfcalendar_toolbar_append_button (el->elToolbar, "gtk-go-back", el->elTooltips, _("Previous"), i++);
 
-    tmp_toolbar_icon = gtk_image_new_from_stock("gtk-go-forward", gtk_toolbar_get_icon_size(GTK_TOOLBAR(el->elToolbar)));
-    el->elNext_toolbutton = gtk_toolbar_append_element(GTK_TOOLBAR(el->elToolbar),
-                                                       GTK_TOOLBAR_CHILD_BUTTON, NULL,
-                                                       _("Next"), _("Next day (Ctrl+n)"), NULL,
-                                                       tmp_toolbar_icon, NULL, NULL);
-    gtk_widget_add_accelerator(el->elNext_toolbutton, "clicked", el->accel_group, GDK_n, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
+    el->elToday_toolbutton = xfcalendar_toolbar_append_button (el->elToolbar, "gtk-home", el->elTooltips, _("Today"), i++);
 
-    gtk_toolbar_append_space(GTK_TOOLBAR(el->elToolbar));
+    el->elNext_toolbutton = xfcalendar_toolbar_append_button (el->elToolbar, "gtk-go-forward", el->elTooltips, _("Next"), i++);
 
-    tmp_toolbar_icon = gtk_image_new_from_stock("gtk-refresh", gtk_toolbar_get_icon_size(GTK_TOOLBAR(el->elToolbar)));
-    el->elRefresh_toolbutton = gtk_toolbar_append_element(GTK_TOOLBAR(el->elToolbar),
-                                                          GTK_TOOLBAR_CHILD_BUTTON, NULL,
-                                                          _("Refresh"), _("Refresh (Ctrl+r)"), NULL,
-                                                          tmp_toolbar_icon, NULL, NULL);
-    gtk_widget_add_accelerator(el->elRefresh_toolbutton, "clicked", el->accel_group, GDK_r, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
+    el->elRefresh_toolbutton = xfcalendar_toolbar_append_button (el->elToolbar, "gtk-refresh", el->elTooltips, _("Refresh"), i++);
 
-    tmp_toolbar_icon = gtk_image_new_from_stock("gtk-copy", gtk_toolbar_get_icon_size(GTK_TOOLBAR(el->elToolbar)));
-    el->elCopy_toolbutton = gtk_toolbar_append_element(GTK_TOOLBAR(el->elToolbar),
-                                                       GTK_TOOLBAR_CHILD_BUTTON, NULL,
-                                                      _("Duplicate"), _("Copy (Ctrl+c)"), NULL,
-                                                      tmp_toolbar_icon, NULL, NULL);
-    gtk_widget_add_accelerator(el->elCopy_toolbutton, "clicked", el->accel_group, GDK_c, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
+    toolbar_separator = xfcalendar_toolbar_append_separator (el->elToolbar, i++);
 
-    tmp_toolbar_icon = gtk_image_new_from_stock("gtk-close", gtk_toolbar_get_icon_size(GTK_TOOLBAR(el->elToolbar)));
-    el->elClose_toolbutton = gtk_toolbar_append_element(GTK_TOOLBAR(el->elToolbar),
-                                                        GTK_TOOLBAR_CHILD_BUTTON, NULL,
-                                                        _("Close"), _("Close (Ctrl+w)"), NULL,
-                                                        tmp_toolbar_icon, NULL, NULL);
-    gtk_widget_add_accelerator(el->elClose_toolbutton, "clicked", el->accel_group, GDK_w, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
+    el->elCopy_toolbutton = xfcalendar_toolbar_append_button (el->elToolbar, "gtk-copy", el->elTooltips, _("Duplicate"), i++);
 
-    tmp_toolbar_icon = gtk_image_new_from_stock("gtk-clear", gtk_toolbar_get_icon_size(GTK_TOOLBAR(el->elToolbar)));
-    el->elDelete_toolbutton = gtk_toolbar_append_element(GTK_TOOLBAR(el->elToolbar),
-                                                         GTK_TOOLBAR_CHILD_BUTTON, NULL,
-                                                         _("Clear"), _("Clear (Ctrl+l)"), NULL,
-                                                         tmp_toolbar_icon, NULL, NULL);
-    gtk_widget_add_accelerator(el->elDelete_toolbutton, "clicked", el->accel_group, GDK_l, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
+    el->elClose_toolbutton = xfcalendar_toolbar_append_button (el->elToolbar, "gtk-close", el->elTooltips, _("Close"), i++);
 
+    el->elDelete_toolbutton = xfcalendar_toolbar_append_button (el->elToolbar, "gtk-clear", el->elTooltips, _("Clear"), i++);
 
+    GtkToolItem *tool_item;
+    tool_item = gtk_tool_item_new();
     el->elSpin1 = gtk_spin_button_new_with_range(0, 31, 1);
-    el->elSpin2 = gtk_toolbar_append_element(GTK_TOOLBAR(el->elToolbar),
-                                             GTK_TOOLBAR_CHILD_WIDGET, el->elSpin1,
-                                             "spin", _("Show more days"), NULL,
-                                             NULL, NULL, NULL);
-
+    gtk_container_add (GTK_CONTAINER (tool_item), el->elSpin1);
+    gtk_toolbar_insert (GTK_TOOLBAR (el->elToolbar), GTK_TOOL_ITEM (tool_item), i++);
+    
+    /* Scrolled window */
     el->elScrolledWindow = gtk_scrolled_window_new(NULL, NULL);
     gtk_box_pack_start(GTK_BOX(el->elVbox), el->elScrolledWindow, TRUE, TRUE, 0);
     gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(el->elScrolledWindow), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);

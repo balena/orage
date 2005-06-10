@@ -26,6 +26,8 @@ GtkWidget *xfcalendar_toolbar_append_button (GtkWidget *toolbar, const gchar *st
                                              GtkTooltips *tooltips, const char *tooltip_text, 
                                              gint pos);
 
+GtkWidget *xfcalendar_toolbar_append_separator (GtkWidget *toolbar, gint pos);
+
 void xfcalendar_combo_box_append_array (GtkWidget *combo_box, char *text[], int size);
 
 GtkWidget *xfcalendar_datetime_hbox_new (GtkWidget *date_button, GtkWidget *time_comboboxentry);

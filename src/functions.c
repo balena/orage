@@ -41,6 +41,15 @@ GtkWidget *xfcalendar_toolbar_append_button (GtkWidget *toolbar, const gchar *st
     return button;
 }
 
+GtkWidget *xfcalendar_toolbar_append_separator (GtkWidget *toolbar, gint pos){
+    GtkWidget *separator;
+
+    separator = (GtkWidget *)gtk_separator_tool_item_new();
+    gtk_toolbar_insert(GTK_TOOLBAR(toolbar), GTK_TOOL_ITEM(separator), pos);
+
+    return separator;
+}
+
 void xfcalendar_combo_box_append_array (GtkWidget *combo_box, char *text[], int size){
     register int i;
     for(i = 0; i < size; i++){

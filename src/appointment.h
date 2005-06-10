@@ -69,7 +69,6 @@ typedef struct
     GtkWidget *appVBox1;
     GtkWidget *appMenubar;
     GtkWidget *appFile_menu;
-    GtkWidget *appFile_menuitem;
     GtkWidget *appFileSave_menuitem;
     GtkWidget *appFileSaveClose_menuitem;
     GtkWidget *appFileRevert_menuitem;
@@ -121,8 +120,6 @@ typedef struct
     GtkWidget *appRevert;
     GtkWidget *appDelete;
     GtkWidget *appDuplicate;
-    GtkWidget *appSeparator1;
-    GtkWidget *appSeparator2;
     GtkWidget *appSave;
     GtkWidget *appSaveClose;
 
