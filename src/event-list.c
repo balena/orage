@@ -370,26 +370,6 @@ void manage_eventlist_win(GtkCalendar *calendar, eventlist_win *el)
         }
         xfical_file_close();
     }
-/*
-    if (xfical_file_open()){
-        g_sprintf(a_day, XFICAL_APP_DATE_FORMAT, year, month+1, day);
-        if ((app = xfical_app_get_next_on_day(a_day, TRUE, el->elNumber_of_days_to_show))) {
-            tt = time(NULL);
-            t  = localtime(&tt);
-            if (   year  == t->tm_year + 1900
-                && month == t->tm_mon
-                && day   == t->tm_mday)
-                el->elToday = TRUE;
-            else
-                el->elToday = FALSE; 
-
-            do {
-                addEvent(el->elListStore, app, title, el->elNumber_of_days_to_show);
-            } while ((app = xfical_app_get_next_on_day(a_day, FALSE, el->elNumber_of_days_to_show)));
-        }
-        xfical_file_close();
-    }
-*/
 }
 
 void
