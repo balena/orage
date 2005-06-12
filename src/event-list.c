@@ -554,6 +554,7 @@ eventlist_win
     GtkWidget *tmp_toolbar_icon, *toolbar_separator;
     GtkCellRenderer *rend;
     GtkTreeViewColumn *col;
+    GtkToolItem *tool_item;
 
     register int i = 0;
 
@@ -597,7 +598,6 @@ eventlist_win
 
     el->elDelete_toolbutton = xfcalendar_toolbar_append_button (el->elToolbar, "gtk-clear", el->elTooltips, _("Clear"), i++);
 
-    GtkToolItem *tool_item;
     tool_item = gtk_tool_item_new();
     el->elSpin1 = gtk_spin_button_new_with_range(0, 31, 1);
     gtk_container_add (GTK_CONTAINER (tool_item), el->elSpin1);
