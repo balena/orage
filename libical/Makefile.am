@@ -1,9 +1,7 @@
 
 EXTRA_DIST = \
 	ChangeLog \
-	README \
-	TEST \
-	TODO
+	README
 
 SUBDIRS = design-data doc scripts src zoneinfo
 

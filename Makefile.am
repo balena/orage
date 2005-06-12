@@ -16,12 +16,10 @@ desktop_in_files = xfcalendar.desktop.in
 desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 @INTLTOOL_DESKTOP_RULE@
 
-EXTRA_DIST = config.rpath mkinstalldirs  								\
+EXTRA_DIST = mkinstalldirs  								\
 	intltool-extract.in						\
 	intltool-merge.in						\
 	intltool-update.in						\
-	xfcalendar.glade						\
-	xfcalendar.gladep						\
 	xfcalendar.spec							\
 	$(desktop_in_files)
 

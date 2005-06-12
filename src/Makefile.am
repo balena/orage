@@ -7,8 +7,8 @@ xfcalendar_SOURCES =							\
 	appointment.h							\
 	event-list.c							\
 	event-list.h							\
-    functions.c                             \
-    functions.h                             \
+	functions.c							\
+	functions.h							\
 	ical-code.c							\
 	ical-code.h							\
 	main.c								\

@@ -34,29 +34,15 @@ $(srcdir)/icalgauge.c: icalssyacc.h
 $(srcdir)/icalsslexer.c: icalssyacc.h 
 
 
-if WITH_BDB4
-BDB_INCLUDE=-I@BDB_DIR_INCLUDE@ -DWITH_BDB4
-BDB_SOURCEFILES=icalbdbset.c icalbdbset.h icalbdbsetimpl.h
-BDB_HEADERFILES=$(srcdir)/icalbdbset.h
-libicalssinclude_BDBHEADERS=icalbdbset.h icalbdbsetimpl.h
-BDB_LIBFILES=@BDB_DIR_LIB@/@BDB_LIB@
-else
-BDB_INCLUDE=
-BDB_SOURCEFILES=
-BDB_HEADERFILES=
-endif
-
 noinst_LTLIBRARIES = libicalss.la
 
 INCLUDES =			\
 	-I$(top_srcdir)/libical/src	\
 	-I$(top_builddir)/libical/src	\
 	-I$(top_srcdir)/libical/src/libical	\
-	-I$(top_builddir)/libical/libical \
-	$(BDB_INCLUDE)
+	-I$(top_builddir)/libical/libical
 
 libicalss_la_LDFLAGS = -no-undefined
-libicalss_la_LIBADD = $(BDB_LIBFILES)
 
 libicalss_la_DEVSOURCES = icalsslexer.c icalssyacc.c
 
@@ -84,18 +70,16 @@ libicalss_la_SOURCES =		\
 	icalspanlist.h		\
 	icalmessage.c		\
 	icalmessage.h		\
-	$(BDB_SOURCEFILES)	\
 	$(libicalss_la_DEVSOURCES)
 
 COMBINEDHEADERS = \
-        $(srcdir)/icalgauge.h \
-        $(srcdir)/icalset.h \
-        $(srcdir)/icalcluster.h \
-        $(srcdir)/icalfileset.h \
-        $(srcdir)/icaldirset.h \
-	$(BDB_HEADERFILES) \
-        $(srcdir)/icalcalendar.h  \
-        $(srcdir)/icalclassify.h \
+	$(srcdir)/icalgauge.h \
+	$(srcdir)/icalset.h \
+	$(srcdir)/icalcluster.h \
+	$(srcdir)/icalfileset.h \
+	$(srcdir)/icaldirset.h \
+	$(srcdir)/icalcalendar.h  \
+	$(srcdir)/icalclassify.h \
 	$(srcdir)/icalspanlist.h	\
 	$(srcdir)/icalmessage.h
 

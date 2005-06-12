@@ -12,7 +12,7 @@ dnl Version information
 m4_define([xfcalendar_version_major], [4])
 m4_define([xfcalendar_version_minor], [3])
 m4_define([xfcalendar_version_micro], [1])
-m4_define([xfcalendar_version_nano], [16])  dnl leave this empty to have no nano version
+m4_define([xfcalendar_version_nano], [17])  dnl leave this empty to have no nano version
 m4_define([xfcalendar_version_tag], [svn])
 m4_define([xfcalendar_version], [xfcalendar_version_major().xfcalendar_version_minor().xfcalendar_version_micro()ifelse(xfcalendar_version_nano(), [], [], [.xfcalendar_version_nano()])xfcalendar_version_tag()])
 
