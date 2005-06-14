@@ -29,6 +29,8 @@ typedef struct
     GtkWidget *elMenubar;
     GtkWidget *elFile_menu;
     GtkWidget *elFile_newApp_menuitem;
+    GtkWidget *elFile_duplicate_menuitem;
+    GtkWidget *elFile_delete_menuitem;
     GtkWidget *elFile_close_menuitem;
     GtkWidget *elView_menu;
     GtkWidget *elView_refresh_menuitem;

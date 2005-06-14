@@ -373,16 +373,14 @@ void manage_eventlist_win(GtkCalendar *calendar, eventlist_win *el)
 }
 
 void
-on_elCopy_clicked(GtkButton *button, gpointer user_data)
+duplicate_appointment(eventlist_win *el)
 {
-    eventlist_win *el;
     GtkTreeSelection *sel;
     GtkTreeModel     *model;
     GtkTreeIter       iter;
     gchar *uid = NULL;
     appt_win *wApp;
 
-    el = (eventlist_win *) user_data;
     sel = gtk_tree_view_get_selection(GTK_TREE_VIEW(el->elTreeView));
     if (gtk_tree_selection_get_selected(sel, &model, &iter)) {
          gtk_tree_model_get(model, &iter, COL_UID, &uid, -1);
@@ -393,6 +391,19 @@ on_elCopy_clicked(GtkButton *button, gpointer user_data)
     }
     else
         g_warning("Copy: No row selected\n");
+
+}
+
+void
+on_elCopy_clicked(GtkButton *button, gpointer user_data)
+{
+    duplicate_appointment((eventlist_win *)user_data);
+}
+
+void
+on_elFile_duplicate_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
+{
+    duplicate_appointment((eventlist_win *)user_data);
 }
 
 void
@@ -564,8 +575,41 @@ on_elSpin1_changed(GtkSpinButton *button, gpointer user_data)
 }
 
 void
+clear_eventlist_win(eventlist_win *el)
+{
+    char a_day[10];
+    char *title;
+    guint day;
+    gint result;
+
+    result = xfce_message_dialog(GTK_WINDOW(el->elWindow),
+                                 _("Warning"),
+                                 GTK_STOCK_DIALOG_WARNING,
+                                 _("You will remove all information \nassociated with this date."),
+                                 _("Do you want to continue?"),
+                                 GTK_STOCK_YES,
+                                 GTK_RESPONSE_ACCEPT,
+                                 GTK_STOCK_NO,
+                                 GTK_RESPONSE_CANCEL,
+                                 NULL);
+
+    if (result == GTK_RESPONSE_ACCEPT){
+        if (xfical_file_open()){
+            title = (char*)gtk_window_get_title(GTK_WINDOW (el->elWindow));
+            title_to_ical(title, a_day);
+            rmday_ical_app(a_day);
+            xfical_file_close();
+            day = atoi(a_day+6);
+            gtk_calendar_unmark_day(GTK_CALENDAR(xfcal->mCalendar), day);
+            recreate_eventlist_win(el);
+        }
+    }
+}
+
+void
 on_elDelete_clicked(GtkButton *button, gpointer user_data)
 {
+/*
     char a_day[10];
     char *title;
     guint day;
@@ -594,6 +638,14 @@ on_elDelete_clicked(GtkButton *button, gpointer user_data)
             recreate_eventlist_win(el);
         }
     }
+*/
+    clear_eventlist_win((eventlist_win *)user_data);
+}
+
+void
+on_elFile_delete_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
+{
+    clear_eventlist_win((eventlist_win *)user_data);
 }
 
 eventlist_win
@@ -634,7 +686,16 @@ eventlist_win
     el->elFile_menu = xfcalendar_menu_new(_("_File"), el->elMenubar);
     el->elFile_newApp_menuitem = xfcalendar_image_menu_item_new_from_stock ("gtk-new", el->elFile_menu, el->accel_group);
 
+    menu_separator = xfcalendar_separator_menu_item_new (el->elFile_menu);
+
     /* add event copying and day cleaning */
+    el->elFile_duplicate_menuitem = xfcalendar_menu_item_new_with_mnemonic (_("D_uplicate"), el->elFile_menu);
+    gtk_widget_add_accelerator(el->elFile_duplicate_menuitem, "activate", el->accel_group, GDK_d, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
+
+    menu_separator = xfcalendar_separator_menu_item_new (el->elFile_menu);
+
+    el->elFile_delete_menuitem = xfcalendar_image_menu_item_new_from_stock ("gtk-clear", el->elFile_menu, el->accel_group);
+    gtk_widget_add_accelerator(el->elFile_delete_menuitem, "activate", el->accel_group, GDK_l, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
 
     menu_separator = xfcalendar_separator_menu_item_new (el->elFile_menu);
 
@@ -643,12 +704,16 @@ eventlist_win
     /* View menu */
     el->elView_menu = xfcalendar_menu_new(_("_View"), el->elMenubar);
     el->elView_refresh_menuitem = xfcalendar_image_menu_item_new_from_stock ("gtk-refresh", el->elView_menu, el->accel_group);
+    gtk_widget_add_accelerator(el->elView_refresh_menuitem, "activate", el->accel_group, GDK_r, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
 
     /* Go menu   */
     el->elGo_menu = xfcalendar_menu_new(_("_Go"), el->elMenubar);
     el->elGo_today_menuitem = xfcalendar_image_menu_item_new_from_stock ("gtk-home", el->elGo_menu, el->accel_group);
+    gtk_widget_add_accelerator(el->elGo_today_menuitem, "activate", el->accel_group, GDK_Home, GDK_MOD1_MASK, GTK_ACCEL_VISIBLE);
     el->elGo_previous_menuitem = xfcalendar_image_menu_item_new_from_stock ("gtk-go-back", el->elGo_menu, el->accel_group);
+    gtk_widget_add_accelerator(el->elGo_previous_menuitem, "activate", el->accel_group, GDK_b, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
     el->elGo_next_menuitem = xfcalendar_image_menu_item_new_from_stock ("gtk-go-forward", el->elGo_menu, el->accel_group);
+    gtk_widget_add_accelerator(el->elGo_next_menuitem, "activate", el->accel_group, GDK_f, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
 
     /* Help menu */
     /*el->elHelp_menu = xfcalendar_menu_new(_("_Help"), el->elMenubar);*/
@@ -661,11 +726,11 @@ eventlist_win
 
     toolbar_separator = xfcalendar_toolbar_append_separator (el->elToolbar, i++);
 
-    el->elPrevious_toolbutton = xfcalendar_toolbar_append_button (el->elToolbar, "gtk-go-back", el->elTooltips, _("Previous"), i++);
+    el->elPrevious_toolbutton = xfcalendar_toolbar_append_button (el->elToolbar, "gtk-go-back", el->elTooltips, _("Back"), i++);
 
     el->elToday_toolbutton = xfcalendar_toolbar_append_button (el->elToolbar, "gtk-home", el->elTooltips, _("Today"), i++);
 
-    el->elNext_toolbutton = xfcalendar_toolbar_append_button (el->elToolbar, "gtk-go-forward", el->elTooltips, _("Next"), i++);
+    el->elNext_toolbutton = xfcalendar_toolbar_append_button (el->elToolbar, "gtk-go-forward", el->elTooltips, _("Forward"), i++);
 
     el->elRefresh_toolbutton = xfcalendar_toolbar_append_button (el->elToolbar, "gtk-refresh", el->elTooltips, _("Refresh"), i++);
 
@@ -759,6 +824,10 @@ eventlist_win
 
     g_signal_connect((gpointer)el->elFile_newApp_menuitem, "activate",
                       G_CALLBACK(on_elFile_newApp_activate_cb), el);
+    g_signal_connect((gpointer)el->elFile_duplicate_menuitem, "activate",
+                      G_CALLBACK(on_elFile_duplicate_activate_cb), el);
+    g_signal_connect((gpointer)el->elFile_delete_menuitem, "activate",
+                      G_CALLBACK(on_elFile_delete_activate_cb), el);
     g_signal_connect((gpointer)el->elFile_close_menuitem, "activate",
                       G_CALLBACK(on_elFile_close_activate_cb), el);
     g_signal_connect((gpointer)el->elView_refresh_menuitem, "activate",

@@ -898,7 +898,7 @@ appt_win
     appt->appFileSave_menuitem = xfcalendar_image_menu_item_new_from_stock ("gtk-save", appt->appFile_menu, appt->appAccelgroup);
 
     appt->appFileSaveClose_menuitem = xfcalendar_menu_item_new_with_mnemonic (_("Sav_e and close"), appt->appFile_menu);
-    gtk_widget_add_accelerator(appt->appFileSaveClose_menuitem, "activate", appt->appAccelgroup, GDK_l, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
+    gtk_widget_add_accelerator(appt->appFileSaveClose_menuitem, "activate", appt->appAccelgroup, GDK_w, GDK_MOD1_MASK, GTK_ACCEL_VISIBLE);
 
     menu_separator = xfcalendar_separator_menu_item_new (appt->appFile_menu);
 
@@ -925,6 +925,10 @@ appt_win
 
     /* Add buttons to the toolbar */
     appt->appSave = xfcalendar_toolbar_append_button (appt->appToolbar, "gtk-save", appt->appTooltips, _("Save"), i++);
+
+    appt->appSaveClose = xfcalendar_toolbar_append_button (appt->appToolbar, "gtk-close", appt->appTooltips, _("Save and close"), i++);
+    gtk_tool_button_set_label (GTK_TOOL_BUTTON (appt->appSaveClose), _("Save and close"));
+    gtk_tool_item_set_is_important (GTK_TOOL_ITEM(appt->appSaveClose), TRUE);
 
     toolbar_separator = xfcalendar_toolbar_append_separator (appt->appToolbar, i++);
 
@@ -1102,11 +1106,11 @@ appt_win
     g_signal_connect ((gpointer) appt->appSave, "clicked",
             G_CALLBACK (on_appSave_clicked_cb),
             appt);
-/*
+
     g_signal_connect ((gpointer) appt->appSaveClose, "clicked",
             G_CALLBACK (on_appSaveClose_clicked_cb),
             appt);
-*/
+
     g_signal_connect ((gpointer) appt->appDelete, "clicked",
             G_CALLBACK (on_appDelete_clicked_cb),
             appt);
