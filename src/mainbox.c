@@ -299,7 +299,8 @@ void create_mainWin()
     /* File menu */
     xfcal->mFile_menu = xfcalendar_menu_new(_("_File"), xfcal->mMenubar);
 
-    xfcal->mFile_newApp = xfcalendar_menu_item_new_with_mnemonic(_("_New appointment"), xfcal->mFile_menu);
+    /*xfcal->mFile_newApp = xfcalendar_menu_item_new_with_mnemonic(_("_New appointment"), xfcal->mFile_menu);*/
+    xfcal->mFile_newApp = xfcalendar_image_menu_item_new_from_stock ("gtk-new", xfcal->mFile_menu, xfcal->mAccel_group);
 
     menu_separator = xfcalendar_separator_menu_item_new (xfcal->mFile_menu);
 

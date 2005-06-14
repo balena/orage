@@ -26,6 +26,17 @@ typedef struct
 {
     GtkWidget *elWindow;
     GtkWidget *elVbox;
+    GtkWidget *elMenubar;
+    GtkWidget *elFile_menu;
+    GtkWidget *elFile_newApp_menuitem;
+    GtkWidget *elFile_close_menuitem;
+    GtkWidget *elView_menu;
+    GtkWidget *elView_refresh_menuitem;
+    GtkWidget *elGo_menu;
+    GtkWidget *elGo_today_menuitem;
+    GtkWidget *elGo_previous_menuitem;
+    GtkWidget *elGo_next_menuitem;
+    /*GtkWidget *elHelp_menu;*/
     GtkWidget *elToolbar;
     GtkWidget *elCreate_toolbutton;
     GtkWidget *elPrevious_toolbutton;

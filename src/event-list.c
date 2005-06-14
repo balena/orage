@@ -396,9 +396,7 @@ on_elCopy_clicked(GtkButton *button, gpointer user_data)
 }
 
 void
-on_elClose_clicked(GtkButton *button, gpointer user_data)
-{
-    eventlist_win *el = (eventlist_win *) user_data;
+close_eventlist_window(eventlist_win *el){
     gtk_window_get_size(GTK_WINDOW(el->elWindow)
         , &event_win_size_x, &event_win_size_y);
     apply_settings();
@@ -407,13 +405,22 @@ on_elClose_clicked(GtkButton *button, gpointer user_data)
     g_free(el);
 }
 
-gboolean 
-on_elWindow_delete_event(GtkWidget *widget, GdkEvent *event, gpointer data)
+void
+on_elClose_clicked(GtkButton *button, gpointer user_data)
 {
-    gtk_window_get_size(GTK_WINDOW(widget), &event_win_size_x, &event_win_size_y);
-    apply_settings();
-    gtk_widget_destroy(widget); /* destroy the eventlist window */
-    g_free(data);
+    close_eventlist_window((eventlist_win *)user_data);
+}
+
+void
+on_elFile_close_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
+{
+    close_eventlist_window((eventlist_win *)user_data);
+}
+
+gboolean 
+on_elWindow_delete_event(GtkWidget *widget, GdkEvent *event, gpointer user_data)
+{
+    close_eventlist_window((eventlist_win *)user_data);
     return(FALSE);
 }
 
@@ -424,7 +431,14 @@ on_elRefresh_clicked(GtkButton *button, gpointer user_data)
 }
 
 void
-changeSelectedDate(GtkButton *button, gpointer user_data, gint direction)
+on_elView_refresh_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
+{
+    recreate_eventlist_win((eventlist_win*)user_data);
+}
+
+void
+changeSelectedDate(gpointer user_data, gint direction)
+/*changeSelectedDate(GtkButton *button, gpointer user_data, gint direction)*/
 {
     guint year, month, day;
     guint monthdays[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
@@ -470,11 +484,17 @@ changeSelectedDate(GtkButton *button, gpointer user_data, gint direction)
 void
 on_elPrevious_clicked(GtkButton *button, gpointer user_data)
 {
-  changeSelectedDate(button, user_data, PREVIOUS);
+  changeSelectedDate(user_data, PREVIOUS);
 }
 
 void
-on_elToday_clicked(GtkButton *button, gpointer user_data)
+on_elGo_previous_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
+{
+  changeSelectedDate(user_data, PREVIOUS);
+}
+
+void 
+go_to_today(eventlist_win *el)
 {
   struct tm *t;
   time_t tt;
@@ -485,20 +505,37 @@ on_elToday_clicked(GtkButton *button, gpointer user_data)
   gtk_calendar_select_month(GTK_CALENDAR(xfcal->mCalendar), t->tm_mon, t->tm_year+1900);
   gtk_calendar_select_day(GTK_CALENDAR(xfcal->mCalendar), t->tm_mday);
 
-  recreate_eventlist_win((eventlist_win*)user_data);
+  recreate_eventlist_win(el);
+}
+
+void
+on_elToday_clicked(GtkButton *button, gpointer user_data)
+{
+    go_to_today((eventlist_win *)user_data);
+}
+
+void
+on_elGo_today_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
+{
+    go_to_today((eventlist_win *)user_data);
 }
 
 void
 on_elNext_clicked(GtkButton *button, gpointer user_data)
 {
-  changeSelectedDate(button, user_data, NEXT);
+  changeSelectedDate(user_data, NEXT);
 }
 
 void
-on_elCreate_toolbutton_clicked_cb(GtkButton *button, gpointer user_data)
+on_elGo_next_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
+{
+  changeSelectedDate(user_data, NEXT);
+}
+
+void
+create_new_appointment(eventlist_win *el)
 {
     appt_win *app;
-    eventlist_win *el = (eventlist_win *)user_data;
     char *title;
     char a_day[10];
 
@@ -507,6 +544,18 @@ on_elCreate_toolbutton_clicked_cb(GtkButton *button, gpointer user_data)
 
     app = create_appt_win("NEW", a_day, el);
     gtk_widget_show(app->appWindow);
+}
+
+void
+on_elFile_newApp_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
+{
+    create_new_appointment((eventlist_win *)user_data);
+}
+
+void
+on_elCreate_toolbutton_clicked_cb(GtkButton *button, gpointer user_data)
+{
+    create_new_appointment((eventlist_win *)user_data);
 }
 
 void
@@ -551,7 +600,9 @@ on_elDelete_clicked(GtkButton *button, gpointer user_data)
 eventlist_win
 *create_eventlist_win(void)
 {
-    GtkWidget *tmp_toolbar_icon, *toolbar_separator;
+    GtkWidget *tmp_toolbar_icon, 
+        *toolbar_separator, 
+        *menu_separator;
     GtkCellRenderer *rend;
     GtkTreeViewColumn *col;
     GtkToolItem *tool_item;
@@ -572,12 +623,41 @@ eventlist_win
     el->elVbox = gtk_vbox_new(FALSE, 0);
     gtk_container_add(GTK_CONTAINER(el->elWindow), el->elVbox);
 
+    /* Menu bar */
+    el->elMenubar = gtk_menu_bar_new ();
+    gtk_box_pack_start (GTK_BOX (el->elVbox),
+                el->elMenubar,
+                FALSE,
+                FALSE,
+                0);
+
+    /* File menu */
+    el->elFile_menu = xfcalendar_menu_new(_("_File"), el->elMenubar);
+    el->elFile_newApp_menuitem = xfcalendar_image_menu_item_new_from_stock ("gtk-new", el->elFile_menu, el->accel_group);
+
+    /* add event copying and day cleaning */
+
+    menu_separator = xfcalendar_separator_menu_item_new (el->elFile_menu);
+
+    el->elFile_close_menuitem = xfcalendar_image_menu_item_new_from_stock ("gtk-close", el->elFile_menu, el->accel_group);
+
+    /* View menu */
+    el->elView_menu = xfcalendar_menu_new(_("_View"), el->elMenubar);
+    el->elView_refresh_menuitem = xfcalendar_image_menu_item_new_from_stock ("gtk-refresh", el->elView_menu, el->accel_group);
+
+    /* Go menu   */
+    el->elGo_menu = xfcalendar_menu_new(_("_Go"), el->elMenubar);
+    el->elGo_today_menuitem = xfcalendar_image_menu_item_new_from_stock ("gtk-home", el->elGo_menu, el->accel_group);
+    el->elGo_previous_menuitem = xfcalendar_image_menu_item_new_from_stock ("gtk-go-back", el->elGo_menu, el->accel_group);
+    el->elGo_next_menuitem = xfcalendar_image_menu_item_new_from_stock ("gtk-go-forward", el->elGo_menu, el->accel_group);
+
+    /* Help menu */
+    /*el->elHelp_menu = xfcalendar_menu_new(_("_Help"), el->elMenubar);*/
+
+    /* Toolbar stuff */
     el->elToolbar = gtk_toolbar_new();
     gtk_box_pack_start(GTK_BOX(el->elVbox), el->elToolbar, FALSE, FALSE, 0);
 
-    /* Menu stuff */
-
-    /* Toolbar stuff */
     el->elCreate_toolbutton = xfcalendar_toolbar_append_button (el->elToolbar, "gtk-new", el->elTooltips, _("New"), i++);
 
     toolbar_separator = xfcalendar_toolbar_append_separator (el->elToolbar, i++);
@@ -657,26 +737,39 @@ eventlist_win
 
     gtk_tooltips_set_tip(el->elTooltips, el->elTreeView, "Double click line to edit it.\n\nFlags in order:\n\t 1. Alarm: n=no alarm\n\t\tA=visual Alarm S=also Sound alarm\n\t 2. Recurrency: n=no recurrency\n\t\t D=Daily W=Weekly M=Monthly\n\t 3. Type: f=free B=Busy", NULL);
 
-  g_signal_connect((gpointer)el->elWindow, "delete_event",
-                    G_CALLBACK(on_elWindow_delete_event), el);
-  g_signal_connect((gpointer)el->elCreate_toolbutton, "clicked",
-                    G_CALLBACK(on_elCreate_toolbutton_clicked_cb), el);
-  g_signal_connect((gpointer)el->elPrevious_toolbutton, "clicked",
-                    G_CALLBACK(on_elPrevious_clicked), el);
-  g_signal_connect((gpointer)el->elToday_toolbutton, "clicked",
-                    G_CALLBACK(on_elToday_clicked), el);
-  g_signal_connect((gpointer)el->elNext_toolbutton, "clicked",
-                    G_CALLBACK(on_elNext_clicked), el);
-  g_signal_connect((gpointer)el->elRefresh_toolbutton, "clicked",
-                    G_CALLBACK(on_elRefresh_clicked), el);
-  g_signal_connect((gpointer)el->elCopy_toolbutton, "clicked",
-                    G_CALLBACK(on_elCopy_clicked), el);
-  g_signal_connect((gpointer)el->elClose_toolbutton, "clicked",
-                    G_CALLBACK(on_elClose_clicked), el);
-  g_signal_connect((gpointer)el->elDelete_toolbutton, "clicked",
-                    G_CALLBACK(on_elDelete_clicked), el);
-  g_signal_connect((gpointer)el->elSpin1, "value-changed",
-                    G_CALLBACK(on_elSpin1_changed), el);
+    g_signal_connect((gpointer)el->elWindow, "delete_event",
+                      G_CALLBACK(on_elWindow_delete_event), el);
+    g_signal_connect((gpointer)el->elCreate_toolbutton, "clicked",
+                      G_CALLBACK(on_elCreate_toolbutton_clicked_cb), el);
+    g_signal_connect((gpointer)el->elPrevious_toolbutton, "clicked",
+                      G_CALLBACK(on_elPrevious_clicked), el);
+    g_signal_connect((gpointer)el->elToday_toolbutton, "clicked",
+                      G_CALLBACK(on_elToday_clicked), el);
+    g_signal_connect((gpointer)el->elNext_toolbutton, "clicked",
+                      G_CALLBACK(on_elNext_clicked), el);
+    g_signal_connect((gpointer)el->elRefresh_toolbutton, "clicked",
+                      G_CALLBACK(on_elRefresh_clicked), el);
+    g_signal_connect((gpointer)el->elCopy_toolbutton, "clicked",
+                      G_CALLBACK(on_elCopy_clicked), el);
+    g_signal_connect((gpointer)el->elClose_toolbutton, "clicked",
+                      G_CALLBACK(on_elClose_clicked), el);
+    g_signal_connect((gpointer)el->elDelete_toolbutton, "clicked",
+                      G_CALLBACK(on_elDelete_clicked), el);
+    g_signal_connect((gpointer)el->elSpin1, "value-changed",
+                      G_CALLBACK(on_elSpin1_changed), el);
+
+    g_signal_connect((gpointer)el->elFile_newApp_menuitem, "activate",
+                      G_CALLBACK(on_elFile_newApp_activate_cb), el);
+    g_signal_connect((gpointer)el->elFile_close_menuitem, "activate",
+                      G_CALLBACK(on_elFile_close_activate_cb), el);
+    g_signal_connect((gpointer)el->elView_refresh_menuitem, "activate",
+                      G_CALLBACK(on_elView_refresh_activate_cb), el);
+    g_signal_connect((gpointer)el->elGo_today_menuitem, "activate",
+                      G_CALLBACK(on_elGo_today_activate_cb), el);
+    g_signal_connect((gpointer)el->elGo_previous_menuitem, "activate",
+                      G_CALLBACK(on_elGo_previous_activate_cb), el);
+    g_signal_connect((gpointer)el->elGo_next_menuitem, "activate",
+                      G_CALLBACK(on_elGo_next_activate_cb), el);
 
     gtk_window_add_accel_group(GTK_WINDOW(el->elWindow), el->accel_group);
 
