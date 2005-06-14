@@ -438,7 +438,6 @@ on_elView_refresh_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
 
 void
 changeSelectedDate(gpointer user_data, gint direction)
-/*changeSelectedDate(GtkButton *button, gpointer user_data, gint direction)*/
 {
     guint year, month, day;
     guint monthdays[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
