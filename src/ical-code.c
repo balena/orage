@@ -63,29 +63,34 @@
 #define XFICAL_STR_EXISTS(str) ((str != NULL) && (str[0] != 0))
 
 static icalcomponent *ical;
-static icalset* fical = NULL;
-static gboolean fical_modified=TRUE;
+static icalset* fical = NULL,
+              * aical = NULL;
+static gboolean fical_modified = TRUE,
+                aical_modified = TRUE;
 
 extern GList *alarm_list;
 
-gboolean xfical_file_open(void)
+icalset *xfical_internal_file_open(icalset *file_ical)
 {
-    gchar *ficalpath; 
+    gchar *file_icalpath; 
     icalcomponent *iter;
-    gint cnt=0;
+    register gint cnt=0;
 
-    if (fical != NULL)
-        g_warning("xfical_file_open: fical already open\n");
-    ficalpath = xfce_resource_save_location(XFCE_RESOURCE_CONFIG,
+    if (file_ical != NULL)
+        g_warning("xfical_file_open: file_ical already open\n");
+    file_icalpath = xfce_resource_save_location(XFCE_RESOURCE_CONFIG,
                         RCDIR G_DIR_SEPARATOR_S APPOINTMENT_FILE, FALSE);
-    if ((fical = icalset_new_file(ficalpath)) == NULL) {
+    if ((file_ical = icalset_new_file(file_icalpath)) == NULL) {
         g_error("xfical_file_open: Could not open ical file (%s) %s\n"
-                , ficalpath, icalerror_strerror(icalerrno));
+                , file_icalpath, icalerror_strerror(icalerrno));
     }
     else { /* let's find last VCALENDAR entry */
-        for (iter = icalset_get_first_component(fical); 
+        if(file_ical !=NULL)
+            g_warning("xfical_file_open: file_ical is now open\n");
+
+        for (iter = icalset_get_first_component(file_ical); 
              iter != 0;
-             iter = icalset_get_next_component(fical)) {
+             iter = icalset_get_next_component(file_ical)) {
             cnt++;
             ical = iter; /* last valid component */
         }
@@ -99,24 +104,50 @@ gboolean xfical_file_open(void)
                    , icalproperty_new_version("2.0")
                    , icalproperty_new_prodid("-//Xfce//Xfcalendar//EN")
                    , 0);
-            icalset_add_component(fical, icalcomponent_new_clone(ical));
-            icalset_commit(fical);
+            icalset_add_component(file_ical, icalcomponent_new_clone(ical));
+            icalset_commit(file_ical);
         }
         else if (cnt > 1) {
             g_warning("xfical_file_open: Too many top level components in calendar file\n");
         }
     }
-    g_free(ficalpath);
-    return(TRUE);
+    g_free(file_icalpath);
+    return file_ical;
+}
+
+gboolean xfical_file_open (void)
+{
+    fical = xfical_internal_file_open (fical);
+    return (TRUE);
+}
+
+gboolean xfical_archive_open (void)
+{
+    aical = xfical_internal_file_open (aical);
+    return (TRUE);
 }
 
 void xfical_file_close(void)
 {
+    if(fical == NULL)
+        g_warning("xfical_file_close: fical is NULL\n");
     icalset_free(fical);
     fical = NULL;
     if (fical_modified) {
         fical_modified = FALSE;
         xfical_alarm_build_list(FALSE);
+        xfcalendar_mark_appointments();
+    }
+}
+
+void xfical_archive_close(void)
+{
+    if(aical == NULL)
+        g_warning("xfical_file_close: aical is NULL\n");
+    icalset_free(aical);
+    aical = NULL;
+    if (aical_modified) {
+        aical_modified = FALSE;
         xfcalendar_mark_appointments();
     }
 }
