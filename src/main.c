@@ -439,7 +439,7 @@ main(int argc, char *argv[])
              NULL);
                                                                                 
   gtk_main();
-  keep_tidy();
+  xfical_keep_tidy();
 
   return(EXIT_SUCCESS);
 }

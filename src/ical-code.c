@@ -59,6 +59,7 @@
 #define CHANNEL  "xfcalendar"
 #define RCDIR    "xfce4" G_DIR_SEPARATOR_S "xfcalendar"
 #define APPOINTMENT_FILE "appointments.ics"
+#define ARCHIVE_FILE "archdev.ics"
 
 #define XFICAL_STR_EXISTS(str) ((str != NULL) && (str[0] != 0))
 
@@ -70,16 +71,14 @@ static gboolean fical_modified = TRUE,
 
 extern GList *alarm_list;
 
-icalset *xfical_internal_file_open(icalset *file_ical)
+icalset *xfical_internal_file_open(icalset *file_ical, gchar *file_icalpath)
 {
-    gchar *file_icalpath; 
     icalcomponent *iter;
     register gint cnt=0;
 
-    if (file_ical != NULL)
+    if (file_ical != NULL) {
         g_warning("xfical_file_open: file_ical already open\n");
-    file_icalpath = xfce_resource_save_location(XFCE_RESOURCE_CONFIG,
-                        RCDIR G_DIR_SEPARATOR_S APPOINTMENT_FILE, FALSE);
+    }
     if ((file_ical = icalset_new_file(file_icalpath)) == NULL) {
         g_error("xfical_file_open: Could not open ical file (%s) %s\n"
                 , file_icalpath, icalerror_strerror(icalerrno));
@@ -111,19 +110,28 @@ icalset *xfical_internal_file_open(icalset *file_ical)
             g_warning("xfical_file_open: Too many top level components in calendar file\n");
         }
     }
-    g_free(file_icalpath);
     return file_ical;
 }
 
 gboolean xfical_file_open (void)
 {
-    fical = xfical_internal_file_open (fical);
+    gchar *file_path;
+    file_path = xfce_resource_save_location(XFCE_RESOURCE_CONFIG,
+                    RCDIR G_DIR_SEPARATOR_S APPOINTMENT_FILE, FALSE);
+
+    fical = xfical_internal_file_open (fical, file_path);
+    g_free (file_path);
     return (TRUE);
 }
 
 gboolean xfical_archive_open (void)
 {
-    aical = xfical_internal_file_open (aical);
+    gchar *file_path;
+    file_path = xfce_resource_save_location(XFCE_RESOURCE_CONFIG,
+                    RCDIR G_DIR_SEPARATOR_S APPOINTMENT_FILE, FALSE);
+
+    aical = xfical_internal_file_open (aical, file_path);
+    g_free (file_path);
     return (TRUE);
 }
 
@@ -992,3 +1000,53 @@ gboolean xfical_alarm_passed(char *alarm_stime)
         return(TRUE);
     return(FALSE);
  }
+
+gboolean xfical_keep_tidy(void)
+{
+    struct icaltimetype sdate, edate, nsdate, nedate;
+    static icalcomponent *c;
+    struct icalrecurrencetype rrule;
+    icalrecur_iterator* ri;
+    icalproperty *p = NULL;
+    struct icaldurationtype duration;
+    gint start_day, day_cnt, end_day;
+    struct tm *threshold;
+    time_t t;
+
+    if (   xfical_file_open ()
+        && xfical_archive_open ()){
+
+        t = time (NULL);
+        threshold = localtime (&t);
+
+        /* Parse appointment file for looking for items older than the threshold */
+        for (c = icalcomponent_get_first_component(ical, ICAL_VEVENT_COMPONENT);
+             c != 0;
+             c = icalcomponent_get_next_component(ical, ICAL_VEVENT_COMPONENT)) {
+            sdate = icalcomponent_get_dtstart (c);
+            edate = icalcomponent_get_dtend (c);
+            if (icaltime_is_null_time (edate)) {
+                edate = sdate;
+            }
+            /* Items with startdate and endate before theshold => archived */
+            if ((edate.year*12 + edate.month) < ((threshold->tm_year+1900)*12 + (threshold->tm_mon+1))) {
+            }
+                
+
+            /* Items with startdate before threshold but enddate after 
+             * => archive the first part but keep a copy of the second part 
+             * in the current file.
+             * (Don't forget to merge next time their is archiving)
+             */
+            /* Recurring items => the ones before the threshold => archived
+             * the other remains in the current file.
+             * (Don't forget to merge next time their is archiving)
+             */
+
+        /* Copy old items to the archive file */
+
+        /* Remove old items from the appointment file */
+        }
+
+    }
+}

@@ -609,36 +609,6 @@ clear_eventlist_win(eventlist_win *el)
 void
 on_elDelete_clicked(GtkButton *button, gpointer user_data)
 {
-/*
-    char a_day[10];
-    char *title;
-    guint day;
-    gint result;
-    eventlist_win *el = (eventlist_win *) user_data;
-
-    result = xfce_message_dialog(GTK_WINDOW(el->elWindow),
-                                 _("Warning"),
-                                 GTK_STOCK_DIALOG_WARNING,
-                                 _("You will remove all information \nassociated with this date."),
-                                 _("Do you want to continue?"),
-                                 GTK_STOCK_YES,
-                                 GTK_RESPONSE_ACCEPT,
-                                 GTK_STOCK_NO,
-                                 GTK_RESPONSE_CANCEL,
-                                 NULL);
-
-    if (result == GTK_RESPONSE_ACCEPT){
-        if (xfical_file_open()){
-            title = (char*)gtk_window_get_title(GTK_WINDOW (el->elWindow));
-            title_to_ical(title, a_day);
-            rmday_ical_app(a_day);
-            xfical_file_close();
-            day = atoi(a_day+6);
-            gtk_calendar_unmark_day(GTK_CALENDAR(xfcal->mCalendar), day);
-            recreate_eventlist_win(el);
-        }
-    }
-*/
     clear_eventlist_win((eventlist_win *)user_data);
 }
 
