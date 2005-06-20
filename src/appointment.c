@@ -876,8 +876,6 @@ appt_win
     gtk_window_add_accel_group (GTK_WINDOW(appt->appWindow), appt->appAccelgroup);
 
     if (appt->eventlist != NULL) {
-      gtk_window_set_transient_for(GTK_WINDOW(appt->appWindow)
-              , GTK_WINDOW(event_list->elWindow));
       gtk_window_set_destroy_with_parent(GTK_WINDOW(appt->appWindow), TRUE);
     }
     
