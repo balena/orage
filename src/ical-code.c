@@ -63,7 +63,8 @@
 
 #define XFICAL_STR_EXISTS(str) ((str != NULL) && (str[0] != 0))
 
-static icalcomponent *ical;
+static icalcomponent *ical,
+                     *a_ical;
 static icalset* fical = NULL,
               * aical = NULL;
 static gboolean fical_modified = TRUE,
@@ -71,6 +72,88 @@ static gboolean fical_modified = TRUE,
 
 extern GList *alarm_list;
 
+typedef struct
+{
+    icalcomponent *component;
+    icalset *file;
+    gboolean file_modified;
+} xfical_struct;
+
+xfical_struct *xfical_internal_file_open(xfical_struct *lical, gchar *file_icalpath)
+{
+    icalcomponent *iter;
+    register gint cnt=0;
+
+    if (lical->file != NULL) {
+        g_warning("xfical_internal_file_open: lical->file already open\n");
+    }
+    if ((lical->file = icalset_new_file(file_icalpath)) == NULL) {
+        g_error("xfical_file_open: Could not open ical file (%s) %s\n"
+                , file_icalpath, icalerror_strerror(icalerrno));
+    }
+    else { /* let's find last VCALENDAR entry */
+        if(lical->file !=NULL)
+            g_warning("xfical_file_open: lical->file is now open\n");
+
+        for (iter = icalset_get_first_component(lical->file); 
+             iter != 0;
+             iter = icalset_get_next_component(lical->file)) {
+            cnt++;
+            lical->component = iter; /* last valid component */
+        }
+        if (cnt == 0) {
+        /* calendar missing, need to add one. 
+         * Note: According to standard rfc2445 calendar always needs to
+         *       contain at least one other component. So strictly speaking
+         *       this is not valid entry before adding an event 
+         */
+            lical->component = icalcomponent_vanew(ICAL_VCALENDAR_COMPONENT
+                   , icalproperty_new_version("2.0")
+                   , icalproperty_new_prodid("-//Xfce//Xfcalendar//EN")
+                   , 0);
+            icalset_add_component(lical->file, icalcomponent_new_clone(lical->component));
+            icalset_commit(lical->file);
+        }
+        else if (cnt > 1) {
+            g_warning("xfical_file_open: Too many top level components in calendar file\n");
+        }
+    }
+    return lical;
+}
+
+gboolean xfical_file_open (void)
+{
+    xfical_struct *ical_struct;
+    gchar *file_path;
+    file_path = xfce_resource_save_location(XFCE_RESOURCE_CONFIG,
+                    RCDIR G_DIR_SEPARATOR_S APPOINTMENT_FILE, FALSE);
+
+    ical_struct = g_new(xfical_struct, 1);
+
+    ical_struct = xfical_internal_file_open (ical_struct, file_path);
+    g_free (file_path);
+    ical = ical_struct->component;
+    fical = ical_struct->file;
+    return (TRUE);
+}
+
+gboolean xfical_archive_open (void)
+{
+    xfical_struct *ical_struct;
+    gchar *file_path;
+    file_path = xfce_resource_save_location(XFCE_RESOURCE_CONFIG,
+                    RCDIR G_DIR_SEPARATOR_S ARCHIVE_FILE, FALSE);
+
+    ical_struct = g_new(xfical_struct, 1);
+
+    ical_struct = xfical_internal_file_open (ical_struct, file_path);
+    g_free (file_path);
+    a_ical = ical_struct->component;
+    aical = ical_struct->file;
+    return (TRUE);
+}
+
+/*
 icalset *xfical_internal_file_open(icalset *file_ical, gchar *file_icalpath)
 {
     icalcomponent *iter;
@@ -83,7 +166,7 @@ icalset *xfical_internal_file_open(icalset *file_ical, gchar *file_icalpath)
         g_error("xfical_file_open: Could not open ical file (%s) %s\n"
                 , file_icalpath, icalerror_strerror(icalerrno));
     }
-    else { /* let's find last VCALENDAR entry */
+    else { /* let's find last VCALENDAR entry * /
         if(file_ical !=NULL)
             g_warning("xfical_file_open: file_ical is now open\n");
 
@@ -91,14 +174,14 @@ icalset *xfical_internal_file_open(icalset *file_ical, gchar *file_icalpath)
              iter != 0;
              iter = icalset_get_next_component(file_ical)) {
             cnt++;
-            ical = iter; /* last valid component */
+            ical = iter; /* last valid component * /
         }
         if (cnt == 0) {
         /* calendar missing, need to add one. 
          * Note: According to standard rfc2445 calendar always needs to
          *       contain at least one other component. So strictly speaking
          *       this is not valid entry before adding an event 
-         */
+         * /
             ical = icalcomponent_vanew(ICAL_VCALENDAR_COMPONENT
                    , icalproperty_new_version("2.0")
                    , icalproperty_new_prodid("-//Xfce//Xfcalendar//EN")
@@ -134,7 +217,7 @@ gboolean xfical_archive_open (void)
     g_free (file_path);
     return (TRUE);
 }
-
+*/
 void xfical_file_close(void)
 {
     if(fical == NULL)
@@ -1001,17 +1084,65 @@ gboolean xfical_alarm_passed(char *alarm_stime)
     return(FALSE);
  }
 
+void xfical_icalcomponent_get_first_occurence_after_threshold (struct tm *threshold, icalcomponent *c)
+{
+    struct tm *foccurence;
+    struct icaltimetype sdate, edate, nsdate, nedate;
+    struct icalrecurrencetype rrule;
+    struct icaldurationtype duration;
+    icalrecur_iterator* ri;
+    icalproperty *p = NULL;
+    gint start_day, day_cnt, end_day;
+    int year, month;
+
+    if ((p = icalcomponent_get_first_property(c
+           , ICAL_RRULE_PROPERTY)) != 0) { /* check recurring EVENTs */
+
+        sdate = icalcomponent_get_dtstart (c);
+        edate = icalcomponent_get_dtend (c);
+
+        duration = icaltime_subtract(edate, sdate);
+        rrule = icalproperty_get_rrule(p);
+        ri = icalrecur_iterator_new(rrule, sdate);
+        nsdate = icaltime_null_time();
+
+        /* We must do a loop for finding the first occurence after the threshold */
+        for (nsdate = icalrecur_iterator_next (ri),
+                nedate = icaltime_add (nsdate,  duration);
+             !icaltime_is_null_time (nsdate)
+                && (nedate.year*12 + nedate.month) <= ((threshold->tm_year + 1900)*12 + threshold->tm_mon);
+             nsdate = icalrecur_iterator_next(ri),
+                nedate = icaltime_add (nsdate, duration)){
+        }
+    } 
+
+    /* Here I should change the values of the icalcomponent we received */
+    icalcomponent_set_dtstart (c, nsdate);
+    icalcomponent_set_dtend (c, nedate);
+}
+
 gboolean xfical_keep_tidy(void)
 {
     struct icaltimetype sdate, edate, nsdate, nedate;
-    static icalcomponent *c;
+    static icalcomponent *c, *d, *e;
     struct icalrecurrencetype rrule;
     icalrecur_iterator* ri;
     icalproperty *p = NULL;
     struct icaldurationtype duration;
     gint start_day, day_cnt, end_day;
-    struct tm *threshold;
+    struct tm *threshold, *test;
     time_t t;
+    appt_type *appt;
+    char a_day[9];
+    int lookback; /* number of months we want to keep */
+    gboolean recurrence;
+
+    lookback = 1; /* For development purpose; will be taken from MCS in the future */
+
+    xfical_archive_open(); /* Create the file ?*/
+    xfical_archive_close(); /* Close it, so we may have the file ready to use. Ugly isn't it? FIXME */
+
+    e = NULL;
 
     if (   xfical_file_open ()
         && xfical_archive_open ()){
@@ -1019,10 +1150,47 @@ gboolean xfical_keep_tidy(void)
         t = time (NULL);
         threshold = localtime (&t);
 
+        g_message("Current date: %04d-%02d-%02d", threshold->tm_year+1900, threshold->tm_mon+1, threshold->tm_mday);
+
+        threshold->tm_mday = 1;
+        if (threshold->tm_mon > lookback) {
+            threshold->tm_mon -= lookback;
+        }
+        else {
+            threshold->tm_mon += (12 - lookback);
+            threshold->tm_year--;
+        }
+
+        g_message("Threshold: %d month(s)", lookback);
+        g_message("Archiving before: %04d-%02d-%02d", threshold->tm_year+1900, threshold->tm_mon+1, threshold->tm_mday);
+
         /* Parse appointment file for looking for items older than the threshold */
         for (c = icalcomponent_get_first_component(ical, ICAL_VEVENT_COMPONENT);
              c != 0;
              c = icalcomponent_get_next_component(ical, ICAL_VEVENT_COMPONENT)) {
+
+            if (e) {
+                /* Add to the archive file */
+                d = icalcomponent_new_clone (e);
+                icalcomponent_add_component(a_ical, d);
+                /* Look for recurrence */
+                for (p = icalcomponent_get_first_property(e, ICAL_ANY_PROPERTY);
+                     p != 0;
+                     p = icalcomponent_get_next_property(e, ICAL_ANY_PROPERTY)) {
+                    /* these are in icalderivedproperty.h */
+                    if (icalproperty_isa (p) == ICAL_RRULE_PROPERTY) {
+                        g_message("Hello1");
+                        recurrence = TRUE;
+    				}
+    			}
+                /* If it's not a recurring appointment we remove it purely and simply */
+                if (!recurrence)
+                    icalcomponent_remove_component(ical, e);
+                else
+                /* Otherwise we update it's next occurence */
+                    xfical_icalcomponent_get_first_occurence_after_threshold (threshold, e);
+            }
+            recurrence = FALSE;
             sdate = icalcomponent_get_dtstart (c);
             edate = icalcomponent_get_dtend (c);
             if (icaltime_is_null_time (edate)) {
@@ -1030,6 +1198,17 @@ gboolean xfical_keep_tidy(void)
             }
             /* Items with startdate and endate before theshold => archived */
             if ((edate.year*12 + edate.month) < ((threshold->tm_year+1900)*12 + (threshold->tm_mon+1))) {
+                /* Read from appointment files and copy into archive file */
+                /* HERE MUST WE CHECK THERE'S *** NO RULE *** */
+                g_message("End year: %04d", edate.year);
+                g_message("End month: %02d", edate.month);
+                g_message("End day: %02d", edate.day);
+                g_message("We found something dude!");
+
+                g_sprintf(a_day, XFICAL_APP_DATE_FORMAT, edate.year, edate.month, edate.day);
+                e = c;
+
+                /*icalcomponent_add_component(a_ical, e);*/
             }
                 
 
@@ -1042,11 +1221,32 @@ gboolean xfical_keep_tidy(void)
              * the other remains in the current file.
              * (Don't forget to merge next time their is archiving)
              */
-
-        /* Copy old items to the archive file */
-
-        /* Remove old items from the appointment file */
         }
 
+        if (e) {
+                /* Add to the archive file */
+                d = icalcomponent_new_clone (e);
+                icalcomponent_add_component(a_ical, d);
+                /* Look for recurrence */
+                for (p = icalcomponent_get_first_property(e, ICAL_ANY_PROPERTY);
+                     p != 0;
+                     p = icalcomponent_get_next_property(e, ICAL_ANY_PROPERTY)) {
+                    /* these are in icalderivedproperty.h */
+                    if (icalproperty_isa (p) == ICAL_RRULE_PROPERTY) {
+                        g_message("Hello2");
+                        recurrence = TRUE;
+    				}
+    			}
+                /* If it's not a recurring appointment we remove it purely and simply */
+                if (!recurrence)
+                    icalcomponent_remove_component(ical, e);
+                else
+                /* Otherwise we update it's next occurence */
+                    xfical_icalcomponent_get_first_occurence_after_threshold (threshold, e);
+        }
+        icalset_mark (fical);
+        icalset_mark (aical);
+        icalset_commit (aical);
+        icalset_commit (fical);
     }
 }

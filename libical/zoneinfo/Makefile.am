@@ -28,10 +28,10 @@ install-data-local:
 	done
 
 uninstall-local:
-    @$(NORMAL_UNINSTALL)
-    for dir in $(DIRS); do \
-      rm -fr $(DESTDIR)$(datadir)/$(PACKAGE)/zoneinfo/$$dir; \
-    done
+	@$(NORMAL_UNINSTALL)
+	for dir in $(DIRS); do \
+	  rm -fr $(DESTDIR)$(datadir)/$(PACKAGE)/zoneinfo/$$dir; \
+	done
 
 dist-hook:
 	for dir in $(DIRS); do \
