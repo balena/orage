@@ -1121,19 +1121,46 @@ void xfical_icalcomponent_get_first_occurence_after_threshold (struct tm *thresh
     icalcomponent_set_dtend (c, nedate);
 }
 
+void xfical_icalcomponent_archive (icalcomponent *e, struct tm *threshold) 
+{
+    icalcomponent *d;
+    icalproperty *p = NULL;
+    gboolean recurrence;
+
+    recurrence = FALSE;
+    /* Add to the archive file */
+    d = icalcomponent_new_clone (e);
+    icalcomponent_add_component(a_ical, d);
+    /* Look for recurrence */
+    for (p = icalcomponent_get_first_property(e, ICAL_ANY_PROPERTY);
+        p != 0;
+        p = icalcomponent_get_next_property(e, ICAL_ANY_PROPERTY)) {
+        /* these are in icalderivedproperty.h */
+        if (icalproperty_isa (p) == ICAL_RRULE_PROPERTY) {
+            recurrence = TRUE;
+            break; /* Leave the boat here */
+        }
+    }
+    /* If it's not a recurring appointment we remove it purely and simply */
+    if (!recurrence)
+        icalcomponent_remove_component(ical, e);
+    else
+    /* Otherwise we update its next occurence */
+        xfical_icalcomponent_get_first_occurence_after_threshold (threshold, e);
+}
+
 gboolean xfical_keep_tidy(void)
 {
+
+    /* Comment the line below for developping. */
+    return FALSE; 
+
     struct icaltimetype sdate, edate, nsdate, nedate;
     static icalcomponent *c, *d, *e;
-    struct icalrecurrencetype rrule;
-    icalrecur_iterator* ri;
     icalproperty *p = NULL;
-    struct icaldurationtype duration;
-    gint start_day, day_cnt, end_day;
-    struct tm *threshold, *test;
+    struct tm *threshold;
     time_t t;
     appt_type *appt;
-    char a_day[9];
     int lookback; /* number of months we want to keep */
     gboolean recurrence;
 
@@ -1170,25 +1197,7 @@ gboolean xfical_keep_tidy(void)
              c = icalcomponent_get_next_component(ical, ICAL_VEVENT_COMPONENT)) {
 
             if (e) {
-                /* Add to the archive file */
-                d = icalcomponent_new_clone (e);
-                icalcomponent_add_component(a_ical, d);
-                /* Look for recurrence */
-                for (p = icalcomponent_get_first_property(e, ICAL_ANY_PROPERTY);
-                     p != 0;
-                     p = icalcomponent_get_next_property(e, ICAL_ANY_PROPERTY)) {
-                    /* these are in icalderivedproperty.h */
-                    if (icalproperty_isa (p) == ICAL_RRULE_PROPERTY) {
-                        g_message("Hello1");
-                        recurrence = TRUE;
-    				}
-    			}
-                /* If it's not a recurring appointment we remove it purely and simply */
-                if (!recurrence)
-                    icalcomponent_remove_component(ical, e);
-                else
-                /* Otherwise we update it's next occurence */
-                    xfical_icalcomponent_get_first_occurence_after_threshold (threshold, e);
+                xfical_icalcomponent_archive (e, threshold);
             }
             recurrence = FALSE;
             sdate = icalcomponent_get_dtstart (c);
@@ -1196,53 +1205,23 @@ gboolean xfical_keep_tidy(void)
             if (icaltime_is_null_time (edate)) {
                 edate = sdate;
             }
-            /* Items with startdate and endate before theshold => archived */
+            /* Items with startdate and endate before theshold => archived.
+             * Recurring items are duplicated in the archive file, and they are 
+             * also updated in the current appointment file with a new startdate and enddate.
+             * Items sitting on the threshold are kept as they are.
+             */
             if ((edate.year*12 + edate.month) < ((threshold->tm_year+1900)*12 + (threshold->tm_mon+1))) {
                 /* Read from appointment files and copy into archive file */
-                /* HERE MUST WE CHECK THERE'S *** NO RULE *** */
                 g_message("End year: %04d", edate.year);
                 g_message("End month: %02d", edate.month);
                 g_message("End day: %02d", edate.day);
                 g_message("We found something dude!");
-
-                g_sprintf(a_day, XFICAL_APP_DATE_FORMAT, edate.year, edate.month, edate.day);
                 e = c;
-
-                /*icalcomponent_add_component(a_ical, e);*/
             }
-                
-
-            /* Items with startdate before threshold but enddate after 
-             * => archive the first part but keep a copy of the second part 
-             * in the current file.
-             * (Don't forget to merge next time their is archiving)
-             */
-            /* Recurring items => the ones before the threshold => archived
-             * the other remains in the current file.
-             * (Don't forget to merge next time their is archiving)
-             */
         }
 
         if (e) {
-                /* Add to the archive file */
-                d = icalcomponent_new_clone (e);
-                icalcomponent_add_component(a_ical, d);
-                /* Look for recurrence */
-                for (p = icalcomponent_get_first_property(e, ICAL_ANY_PROPERTY);
-                     p != 0;
-                     p = icalcomponent_get_next_property(e, ICAL_ANY_PROPERTY)) {
-                    /* these are in icalderivedproperty.h */
-                    if (icalproperty_isa (p) == ICAL_RRULE_PROPERTY) {
-                        g_message("Hello2");
-                        recurrence = TRUE;
-    				}
-    			}
-                /* If it's not a recurring appointment we remove it purely and simply */
-                if (!recurrence)
-                    icalcomponent_remove_component(ical, e);
-                else
-                /* Otherwise we update it's next occurence */
-                    xfical_icalcomponent_get_first_occurence_after_threshold (threshold, e);
+            xfical_icalcomponent_archive (e, threshold);
         }
         icalset_mark (fical);
         icalset_mark (aical);
