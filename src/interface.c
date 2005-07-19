@@ -147,6 +147,8 @@ create_wAppointment (void)
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (scrolledwindow1), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
 
   textview1 = gtk_text_view_new ();
+  gtk_text_view_set_left_margin (GTK_TEXT_VIEW (textview1), 12);
+  gtk_text_view_set_right_margin (GTK_TEXT_VIEW (textview1), 12);
   gtk_widget_show (textview1);
   gtk_container_add (GTK_CONTAINER (scrolledwindow1), textview1);
 
