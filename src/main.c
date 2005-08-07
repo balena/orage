@@ -413,6 +413,9 @@ main(int argc, char *argv[])
    */
   ensure_basedir_spec();
 
+    /* Test */
+    set_default_ical_path();
+
   /*
    * Create the Xfcalendar.
    */

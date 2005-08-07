@@ -70,6 +70,8 @@ static icalset* fical = NULL,
 static gboolean fical_modified = TRUE,
                 aical_modified = TRUE;
 
+static gchar *ical_path;
+
 extern GList *alarm_list;
 
 typedef struct
@@ -78,6 +80,15 @@ typedef struct
     icalset *file;
     gboolean file_modified;
 } xfical_struct;
+
+void set_default_ical_path (void)
+{
+    if (ical_path)
+        g_free (ical_path);
+
+    ical_path = xfce_resource_save_location(XFCE_RESOURCE_CONFIG,
+                    RCDIR G_DIR_SEPARATOR_S APPOINTMENT_FILE, FALSE);
+}
 
 xfical_struct *xfical_internal_file_open(xfical_struct *lical, gchar *file_icalpath)
 {
@@ -124,14 +135,10 @@ xfical_struct *xfical_internal_file_open(xfical_struct *lical, gchar *file_icalp
 gboolean xfical_file_open (void)
 {
     xfical_struct *ical_struct;
-    gchar *file_path;
-    file_path = xfce_resource_save_location(XFCE_RESOURCE_CONFIG,
-                    RCDIR G_DIR_SEPARATOR_S APPOINTMENT_FILE, FALSE);
 
     ical_struct = g_new(xfical_struct, 1);
 
-    ical_struct = xfical_internal_file_open (ical_struct, file_path);
-    g_free (file_path);
+    ical_struct = xfical_internal_file_open (ical_struct, ical_path);
     ical = ical_struct->component;
     fical = ical_struct->file;
     return (TRUE);

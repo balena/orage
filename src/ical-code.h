@@ -19,6 +19,8 @@
  *
  */
 
+void set_default_ical_path (void);
+
 gboolean xfical_file_open(void);
 
 void xfical_file_close(void);
