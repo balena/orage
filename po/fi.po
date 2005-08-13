@@ -1,97 +1,307 @@
 # translation of xfcalendar to Finnish
-# This file is distributed under the same license as the PACKAGE package.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER.
+# This file is distributed under the same license as the xfcalendar package.
+# Copyright (C) 2003-2005 The Xfce Development Team.
 # Juha Kautto <kautto.juha@kolumbus.fi>, 2004.
+# Jari Rahkonen <jari.rahkonen@pp1.inet.fi>, 2005
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfcalendar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-27 13:15+0100\n"
-"PO-Revision-Date: 2005-01-22 11:45+0200\n"
+"POT-Creation-Date: 2005-07-08 19:00+0200\n"
+"PO-Revision-Date: 2005-08-11 11:25+0200\n"
 "Last-Translator: Jari Rahkonen <jari.rahkonen@pp1.inet.fi>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: plugin/xfcalendar_plugin.c:148 plugin/xfcalendar_plugin.c:159
-#: plugin/xfcalendar_plugin.c:245 src/mainbox.c:383
-msgid "Xfcalendar"
-msgstr "Xf-kalenteri"
+#: ../plugin/xfcalendar_plugin.c:198 ../plugin/xfcalendar_plugin.c:209
+msgid "Xfcalendar Preferences"
+msgstr "Xfkalenterin valinnat"
 
-#.
-#: plugin/xfcalendar_plugin.c:174
+#: ../plugin/xfcalendar_plugin.c:224
 msgid "Mode"
 msgstr "Muoto"
 
-#: plugin/xfcalendar_plugin.c:182
+#: ../plugin/xfcalendar_plugin.c:232
 msgid "Normal"
 msgstr "Normaali"
 
-#: plugin/xfcalendar_plugin.c:189
+#: ../plugin/xfcalendar_plugin.c:239
 msgid "Compact"
 msgstr "Tiivistetty"
 
-#: src/about-xfcalendar.c:39
-msgid "Manage your time with Xfce4"
-msgstr "Hallitse ajankäyttösi Xfce4:n avulla"
+#: ../plugin/xfcalendar_plugin.c:247
+msgid "Show the calendar window in..."
+msgstr "Näytä kalenteri-ikkuna..."
 
-#: src/about-xfcalendar.c:49
+#: ../plugin/xfcalendar_plugin.c:256
+msgid "Taskbar"
+msgstr "Tehtäväpalkissa"
+
+#: ../plugin/xfcalendar_plugin.c:261
+msgid "Pager"
+msgstr "Työpöydänvaihtajassa"
+
+#: ../plugin/xfcalendar_plugin.c:266
+msgid "Systray"
+msgstr "Järjestelmälokerossa"
+
+#: ../plugin/xfcalendar_plugin.c:272
+msgid "Visibility when starting..."
+msgstr "Näkyvyys käynnistettäessä"
+
+#: ../plugin/xfcalendar_plugin.c:281
+msgid "Show"
+msgstr "Näytä"
+
+#: ../plugin/xfcalendar_plugin.c:288
+msgid "Hide"
+msgstr "Piilota"
+
+#: ../plugin/xfcalendar_plugin.c:295
+msgid "Minimized"
+msgstr "Pienennä"
+
+#. Choose a sound application for reminders
+#: ../plugin/xfcalendar_plugin.c:303
+msgid "Play sounds with..."
+msgstr "Soita äänet käyttäen..."
+
+#: ../plugin/xfcalendar_plugin.c:312
+msgid "Application"
+msgstr "Sovellus"
+
+#: ../plugin/xfcalendar_plugin.c:353 ../src/appointment.c:142
+#: ../src/mainbox.c:277
+msgid "Xfcalendar"
+msgstr "Xfkalenteri"
+
+#: ../src/about-xfcalendar.c:39
+msgid "Manage your time with Xfce4"
+msgstr "Hallitse ajankäyttöäsi Xfce4:n avulla"
+
+#: ../src/about-xfcalendar.c:49
 msgid "Core developer"
 msgstr "Pääkehittäjä"
 
-#: src/about-xfcalendar.c:54 src/about-xfcalendar.c:59
+#: ../src/about-xfcalendar.c:54 ../src/about-xfcalendar.c:59
+#: ../src/about-xfcalendar.c:64
 msgid "Contributor"
 msgstr "Avustava kehittäjä"
 
-#: src/callbacks.c:251
-msgid "Question"
-msgstr "Kysymys"
+#: ../src/appointment.c:123 ../src/appointment.c:331 ../src/appointment.c:664
+msgid "%m/%d/%Y"
+msgstr "%d.%m.%Y"
 
-#: src/callbacks.c:260
-msgid ""
-"\n"
-"The information has been modified.\n"
-" Do you want to continue ?\n"
-msgstr ""
-"\n"
-"Tiedot ovat muuttuneet.\n"
-" Haluatko jatkaa?\n"
+#: ../src/appointment.c:219
+msgid "Select a file..."
+msgstr "Valitse tiedosto..."
 
-#: src/interface.c:56
-msgid "Appointment"
-msgstr "Merkintä"
+#: ../src/appointment.c:227
+msgid "Sound Files"
+msgstr "Äänitiedostot"
 
-#: src/interface.c:78
-msgid "Save (Ctrl+s)"
-msgstr "Tallenna (Ctrl+s)"
+#: ../src/appointment.c:233
+msgid "All Files"
+msgstr "Kaikki tiedostot"
 
-#: src/interface.c:91
-msgid "Previous day (Ctrl+p)"
-msgstr "Edellinen päivä (Ctrl+p)"
-
-#: src/interface.c:102
-msgid "Today (Alt+Home)"
-msgstr "Tämä päivä (Alt+Home)"
-
-#: src/interface.c:114
-msgid "Next day (Ctrl+n)"
-msgstr "Seuraava päivä (Ctrl+n)"
-
-#: src/interface.c:127
-msgid "Close (Ctrl+w)"
-msgstr "Lopeta (Ctrl+w)"
-
-#: src/interface.c:138
-msgid "Clear (Ctrl+l)"
-msgstr "Tyhjennä (Ctrl+l)"
-
-#: src/interface.c:208
+#: ../src/appointment.c:292 ../src/appointment.c:428 ../src/appointment.c:439
+#: ../src/appointment.c:576 ../src/event-list.c:586
 msgid "Warning"
 msgstr "Varoitus"
 
-#: src/interface.c:225
+#: ../src/appointment.c:294
+msgid "The appointment information has been modified."
+msgstr "Tapahtumatiedot ovat muuttuneet."
+
+#: ../src/appointment.c:295 ../src/appointment.c:579 ../src/event-list.c:589
+msgid "Do you want to continue?"
+msgstr "Haluatko jatkaa?"
+
+#: ../src/appointment.c:430
+msgid "The end of this appointment is earlier than the beginning."
+msgstr "Tapahtuman päättymisaika on ennen alkamisaikaa."
+
+#: ../src/appointment.c:441
+msgid "A time value is wrong."
+msgstr "Virheellinen aika."
+
+#: ../src/appointment.c:442
+msgid "Time values must be written 'hh:mm', for instance '09:36' or '15:23'."
+msgstr "Aika täytyy merkitä muodossa 'hh:mm', esimerkiksi '09:36' tai '15:23'."
+
+#: ../src/appointment.c:578
+msgid "This appointment will be permanently removed."
+msgstr "Tapahtuma poistetaan pysyvästi."
+
+#: ../src/appointment.c:669 ../src/event-list.c:701 ../src/tray_icon.c:107
+msgid "Today"
+msgstr "Tämä päivä"
+
+#: ../src/appointment.c:765
+msgid "New appointment - Xfcalendar"
+msgstr "Uusi tapahtuma - Xfkalenteri"
+
+#: ../src/appointment.c:857
+msgid "Free"
+msgstr "Vapaa"
+
+#: ../src/appointment.c:857
+msgid "Busy"
+msgstr "Varattu"
+
+#: ../src/appointment.c:858 ../src/appointment.c:859
+msgid "None"
+msgstr "Ei mitään"
+
+#: ../src/appointment.c:858
+msgid "Daily"
+msgstr "Päivittäin"
+
+#: ../src/appointment.c:858
+msgid "Weekly"
+msgstr "Viikoittain"
+
+#: ../src/appointment.c:858
+msgid "Monthly"
+msgstr "Kuukausittain"
+
+#: ../src/appointment.c:859
+msgid "5 minutes"
+msgstr "5 minuuttia"
+
+#: ../src/appointment.c:859
+msgid "15 minutes"
+msgstr "15 minuuttia"
+
+#: ../src/appointment.c:859
+msgid "30 minutes"
+msgstr "30 minuuttia"
+
+#: ../src/appointment.c:860
+msgid "45 minutes"
+msgstr "45 minuuttia"
+
+#: ../src/appointment.c:860
+msgid "1 hour"
+msgstr "1 tunti"
+
+#: ../src/appointment.c:860
+msgid "2 hours"
+msgstr "2 tuntia"
+
+#: ../src/appointment.c:860
+msgid "4 hours"
+msgstr "4 tuntia"
+
+#: ../src/appointment.c:861
+msgid "8 hours"
+msgstr "8 tuntia"
+
+#: ../src/appointment.c:861
+msgid "1 day"
+msgstr "1 päivä"
+
+#: ../src/appointment.c:861
+msgid "2 days"
+msgstr "2 päivää"
+
+#. File menu stuff
+#. File menu
+#: ../src/appointment.c:894 ../src/event-list.c:656 ../src/mainbox.c:300
+msgid "_File"
+msgstr "_Tiedosto"
+
+#: ../src/appointment.c:898
+msgid "Sav_e and close"
+msgstr "Ta_llenna ja sulje"
+
+#. add event copying and day cleaning
+#: ../src/appointment.c:905 ../src/event-list.c:662
+msgid "D_uplicate"
+msgstr "K_opioi"
+
+#. Add buttons to the toolbar
+#: ../src/appointment.c:925
+msgid "Save"
+msgstr "Tallenna"
+
+#: ../src/appointment.c:927 ../src/appointment.c:928
+msgid "Save and close"
+msgstr "Tallenna ja sulje"
+
+#: ../src/appointment.c:933
+msgid "Revert"
+msgstr "Palauta"
+
+#: ../src/appointment.c:935 ../src/appointment.c:936 ../src/event-list.c:709
+msgid "Duplicate"
+msgstr "Kopioi"
+
+#: ../src/appointment.c:940
+msgid "Delete"
+msgstr "Poista"
+
+#: ../src/appointment.c:951
+msgid "General"
+msgstr "Yleiset"
+
+#: ../src/appointment.c:960
+msgid "Title "
+msgstr "Nimi "
+
+#: ../src/appointment.c:966
+msgid "Location"
+msgstr "Paikka"
+
+#: ../src/appointment.c:972
+msgid "All day event"
+msgstr "Kokopäiväinen tapahtuma"
+
+#: ../src/appointment.c:977
+msgid "Start"
+msgstr "Alkaa"
+
+#: ../src/appointment.c:985
+msgid "End"
+msgstr "Päättyy"
+
+#: ../src/appointment.c:993
+msgid "Recurrency"
+msgstr "Toisto"
+
+#: ../src/appointment.c:1000
+msgid "Availability"
+msgstr "Saatavuus"
+
+#: ../src/appointment.c:1007
+msgid "Note"
+msgstr "Huomioitavaa"
+
+#: ../src/appointment.c:1039 ../src/appointment.c:1048
+msgid "Alarm"
+msgstr "Hälytys"
+
+#: ../src/appointment.c:1055
+msgid "Sound"
+msgstr "Ääni"
+
+#: ../src/appointment.c:1066
+msgid "Repeat alarm sound"
+msgstr "Toista hälytysääntä"
+
+#. date only appointment
+#: ../src/event-list.c:200
+msgid "today"
+msgstr "tämä päivä"
+
+#: ../src/event-list.c:275 ../src/event-list.c:743
+msgid "Time"
+msgstr "Aika"
+
+#: ../src/event-list.c:588
 msgid ""
 "You will remove all information \n"
 "associated with this date."
@@ -99,86 +309,122 @@ msgstr ""
 "Olet poistamassa kaikki tiedot \n"
 "tältä päivämäärältä."
 
-#. File menu
-#: src/mainbox.c:413
-msgid "_File"
-msgstr "_Tiedosto"
+#. View menu
+#: ../src/event-list.c:675 ../src/mainbox.c:317
+msgid "_View"
+msgstr "_Näytä"
 
-#: src/mainbox.c:422
-msgid "_Close window"
-msgstr "_Sulje ikkuna"
+#. Go menu
+#: ../src/event-list.c:680
+msgid "_Go"
+msgstr "_Siirry"
 
-#. Settings menu
-#: src/mainbox.c:439
-msgid "_Settings"
-msgstr "_Asetukset"
+#: ../src/event-list.c:695
+msgid "New"
+msgstr "Uusi"
 
-#: src/mainbox.c:448
-msgid "_Preferences"
-msgstr "_Valinnat"
+#: ../src/event-list.c:699
+msgid "Back"
+msgstr "Edellinen"
 
-#: src/mainbox.c:459
+#: ../src/event-list.c:703
+msgid "Forward"
+msgstr "Seuraava"
+
+#: ../src/event-list.c:705
+msgid "Refresh"
+msgstr "Virkistä"
+
+#: ../src/event-list.c:711
+msgid "Close"
+msgstr "Sulje"
+
+#: ../src/event-list.c:713
+msgid "Clear"
+msgstr "Tyhjennä"
+
+#: ../src/event-list.c:751
+msgid "Flags"
+msgstr "Liput"
+
+#: ../src/event-list.c:757
+msgid "Title"
+msgstr "Nimi"
+
+#: ../src/event-list.c:763
+msgid "uid"
+msgstr "uid"
+
+#: ../src/functions.c:75
+msgid "  "
+msgstr "  "
+
+#: ../src/ical-code.c:348
+msgid "Xfcalendar default alarm"
+msgstr "Xfkalenterin oletushälytys"
+
+#. Edit menu
+#: ../src/mainbox.c:312
+msgid "_Edit"
+msgstr "_Muokkaa"
+
+#: ../src/mainbox.c:319
+msgid "View selected _date"
+msgstr "Näytä valittu _päivämäärä"
+
+#: ../src/mainbox.c:323
 msgid "Select _Today"
 msgstr "_Valitse tämä päivä"
 
 #. Help menu
-#: src/mainbox.c:466
+#: ../src/mainbox.c:326
 msgid "_Help"
 msgstr "_Ohje"
 
-#: src/mainbox.c:475
-msgid "_About"
-msgstr "T_ietoja"
-
-#: src/main.c:135
+#: ../src/main.c:165
 msgid "This should not happen"
 msgstr "Näin ei pitäisi tapahtua"
 
-#: src/main.c:390
+#: ../src/main.c:431
 msgid "Cannot create MCS client channel"
 msgstr "MCS-asiakaskanavan luonti epäonnistui"
 
-#: src/reminder.c:56 src/reminder.c:64
-msgid "Reminder"
-msgstr "Muistutus"
+#: ../src/reminder.c:163
+msgid "Reminder "
+msgstr "Muistutus "
 
-#: src/support.c:91 src/support.c:115
-#, c-format
-msgid "Couldn't find pixmap file: %s"
-msgstr "Kuvatiedostoa %s ei löytynyt"
+#: ../src/tray_icon.c:117
+msgid "New appointment"
+msgstr "Uusi tapahtuma"
 
-#: src/tray_icon.c:95
-msgid "Today"
-msgstr "Tänään"
-
-#: src/tray_icon.c:105
+#: ../src/tray_icon.c:126
 msgid "Preferences"
 msgstr "Valinnat"
 
-#: src/tray_icon.c:114
+#: ../src/tray_icon.c:135
 msgid "About Xfcalendar"
-msgstr "Tietoja Xf-kalenterista"
+msgstr "Tietoja Xfkalenterista"
 
-#: xfcalendar.desktop.in.h:1
+#: ../xfcalendar.desktop.in.h:1
 msgid "Calendar"
 msgstr "Kalenteri"
 
-#: xfcalendar.desktop.in.h:2
+#: ../xfcalendar.desktop.in.h:2
 msgid "Desktop calendar"
-msgstr "Kalenteri sovellus"
+msgstr "Työpöytäkalenteri"
 
-#: xfcalendar.desktop.in.h:3
+#: ../xfcalendar.desktop.in.h:3
 msgid "Xfce Calendar"
-msgstr "Xfce Kalenteri"
+msgstr "Xfce kalenteri"
 
-#: plugin/xfce-xfcalendar-settings.desktop.in.h:1
+#: ../plugin/xfce-xfcalendar-settings.desktop.in.h:1
 msgid "Calendar Settings"
 msgstr "Kalenterin asetukset"
 
-#: plugin/xfce-xfcalendar-settings.desktop.in.h:2
+#: ../plugin/xfce-xfcalendar-settings.desktop.in.h:2
 msgid "Settings for the Xfce 4 Calendar Application"
 msgstr "Xfce 4 kalenterisovelluksen asetukset"
 
-#: plugin/xfce-xfcalendar-settings.desktop.in.h:3
+#: ../plugin/xfce-xfcalendar-settings.desktop.in.h:3
 msgid "Xfce 4 Calendar Settings"
-msgstr "Xfce 4 kalenteri asetukset"
+msgstr "Xfce 4 kalenterin asetukset"
