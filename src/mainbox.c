@@ -391,6 +391,4 @@ void create_mainWin()
 
   xfcalendar_mark_appointments();
 
-    gtk_widget_show_all(xfcal->mWindow);
-
 }

@@ -89,7 +89,7 @@ raise_window()
     if (pos_x || pos_y)
         gtk_window_move(GTK_WINDOW(xfcal->mWindow), pos_x, pos_y);
     gtk_window_stick(GTK_WINDOW(xfcal->mWindow));
-    gtk_widget_show(xfcal->mWindow);
+    gtk_widget_show_all(xfcal->mWindow);
 }
 
 void apply_settings()
