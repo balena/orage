@@ -1,7 +1,7 @@
 /* ical-code.h
  *
  * Copyright (C) 2005 Juha Kautto <juha@xfce.org>
- *                    Mickaël Graf <korbinus@lunar-linux.org>
+ *                    Mickaël Graf <korbinus@xfce.org>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -20,6 +20,8 @@
  */
 
 void set_default_ical_path (void);
+
+void set_ical_path (gchar *path);
 
 gboolean xfical_file_open(void);
 
@@ -46,3 +48,5 @@ void rmday_ical_app(char *a_day);
 void xfical_alarm_build_list(gboolean first_list_today);
 
 gboolean xfical_alarm_passed(char *alarm_stime);
+
+gboolean xfical_keep_tidy(void);

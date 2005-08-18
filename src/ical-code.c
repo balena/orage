@@ -90,6 +90,14 @@ void set_default_ical_path (void)
                     RCDIR G_DIR_SEPARATOR_S APPOINTMENT_FILE, FALSE);
 }
 
+void set_ical_path (gchar *path)
+{
+    if (ical_path)
+        g_free (ical_path);
+
+    ical_path = path;
+}
+
 xfical_struct *xfical_internal_file_open(xfical_struct *lical, gchar *file_icalpath)
 {
     icalcomponent *iter;
@@ -1161,6 +1169,7 @@ gboolean xfical_keep_tidy(void)
 
     /* Comment the line below for developping. */
     return FALSE; 
+    
 
     struct icaltimetype sdate, edate, nsdate, nedate;
     static icalcomponent *c, *d, *e;
