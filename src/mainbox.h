@@ -25,6 +25,8 @@ typedef struct _CalWin
     GtkWidget *mMenubar;
     GtkWidget *mFile_menu;
     GtkWidget *mFile_newApp;
+    GtkWidget *mFile_openArchive;
+    GtkWidget *mFile_closeArchive;
     GtkWidget *mFile_close;
     GtkWidget *mFile_quit;
     GtkWidget *mEdit_menu;

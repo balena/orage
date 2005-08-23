@@ -104,6 +104,51 @@ mFile_newApp_activate_cb(GtkMenuItem *menuitem,
 }
 
 void
+mFile_openArchive_activate_cb (GtkMenuItem *menuitem,
+            gpointer user_data)
+{
+    CalWin *xfcal = (CalWin *) user_data;
+    GtkWidget *file_chooser;
+    XfceFileFilter *filter;
+    gchar *archive_path;
+
+    /* Create file chooser */
+    file_chooser = xfce_file_chooser_new (_("Select a file..."),
+                                            GTK_WINDOW (xfcal->mWindow),
+                                            XFCE_FILE_CHOOSER_ACTION_OPEN,
+                                            GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
+                                            GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT,
+                                            NULL);
+    /* Add filters */
+    filter = xfce_file_filter_new ();
+	xfce_file_filter_set_name(filter, _("Calendar files"));
+	xfce_file_filter_add_pattern(filter, "*.ics");
+	xfce_file_chooser_add_filter(XFCE_FILE_CHOOSER(file_chooser), filter);
+	xfce_file_filter_set_name(filter, _("All Files"));
+	xfce_file_filter_add_pattern(filter, "*");
+	xfce_file_chooser_add_filter(XFCE_FILE_CHOOSER(file_chooser), filter);
+
+	if(gtk_dialog_run(GTK_DIALOG(file_chooser)) == GTK_RESPONSE_ACCEPT) {
+		archive_path = xfce_file_chooser_get_filename(XFCE_FILE_CHOOSER(file_chooser));
+
+        if(archive_path){
+            set_ical_path (archive_path);
+            /* FIXME: synchronize the calendar with the new source */
+        }
+    }
+
+    gtk_widget_destroy(file_chooser);
+
+}
+
+void
+mFile_closeArchive_activate_cb (GtkMenuItem *menuitem,
+            gpointer user_data)
+{
+    set_default_ical_path ();
+}
+
+void
 mFile_close_activate_cb (GtkMenuItem *menuitem, 
 			 gpointer user_data)
 {
@@ -270,37 +315,42 @@ xfcalendar_toggle_visible ()
 void create_mainWin()
 {
     GtkWidget *menu_separator;
-  GdkPixbuf *xfcalendar_logo = xfce_themed_icon_load ("xfcalendar", 48);
+    GdkPixbuf *xfcalendar_logo = xfce_themed_icon_load ("xfcalendar", 48);
 
-  xfcal->mAccel_group = gtk_accel_group_new ();
+    xfcal->mAccel_group = gtk_accel_group_new ();
 
-  gtk_window_set_title (GTK_WINDOW(xfcal->mWindow), _("Xfcalendar"));
-  gtk_window_set_position (GTK_WINDOW (xfcal->mWindow), GTK_WIN_POS_NONE);
-  gtk_window_set_resizable (GTK_WINDOW (xfcal->mWindow), FALSE);
-  gtk_window_set_destroy_with_parent (GTK_WINDOW (xfcal->mWindow), TRUE);
+    gtk_window_set_title (GTK_WINDOW(xfcal->mWindow), _("Xfcalendar"));
+    gtk_window_set_position (GTK_WINDOW (xfcal->mWindow), GTK_WIN_POS_NONE);
+    gtk_window_set_resizable (GTK_WINDOW (xfcal->mWindow), FALSE);
+    gtk_window_set_destroy_with_parent (GTK_WINDOW (xfcal->mWindow), TRUE);
 
-  if(xfcalendar_logo != NULL){
-    gtk_window_set_icon(GTK_WINDOW (xfcal->mWindow), xfcalendar_logo);
-    g_object_unref(xfcalendar_logo);
-  }
+    if (xfcalendar_logo != NULL) {
+      gtk_window_set_icon (GTK_WINDOW (xfcal->mWindow), xfcalendar_logo);
+      g_object_unref (xfcalendar_logo);
+    }
 
-  /* Build the vertical box */
-  xfcal->mVbox = gtk_vbox_new (FALSE, 0);
-  gtk_container_add (GTK_CONTAINER (xfcal->mWindow), xfcal->mVbox);
+    /* Build the vertical box */
+    xfcal->mVbox = gtk_vbox_new (FALSE, 0);
+    gtk_container_add (GTK_CONTAINER (xfcal->mWindow), xfcal->mVbox);
 
-  /* Build the menu */
-  xfcal->mMenubar = gtk_menu_bar_new ();
-  gtk_box_pack_start (GTK_BOX (xfcal->mVbox),
-		      xfcal->mMenubar,
-		      FALSE,
-		      FALSE,
-		      0);
+    /* Build the menu */
+    xfcal->mMenubar = gtk_menu_bar_new ();
+    gtk_box_pack_start (GTK_BOX (xfcal->mVbox),
+                        xfcal->mMenubar,
+                        FALSE,
+                        FALSE,
+                        0);
 
     /* File menu */
     xfcal->mFile_menu = xfcalendar_menu_new(_("_File"), xfcal->mMenubar);
 
     /*xfcal->mFile_newApp = xfcalendar_menu_item_new_with_mnemonic(_("_New appointment"), xfcal->mFile_menu);*/
     xfcal->mFile_newApp = xfcalendar_image_menu_item_new_from_stock ("gtk-new", xfcal->mFile_menu, xfcal->mAccel_group);
+
+    menu_separator = xfcalendar_separator_menu_item_new (xfcal->mFile_menu);
+ 
+    xfcal->mFile_openArchive = xfcalendar_menu_item_new_with_mnemonic (_("Open archive file..."), xfcal->mFile_menu);
+    xfcal->mFile_closeArchive = xfcalendar_menu_item_new_with_mnemonic (_("Close archive file"), xfcal->mFile_menu);
 
     menu_separator = xfcalendar_separator_menu_item_new (xfcal->mFile_menu);
 
@@ -327,68 +377,76 @@ void create_mainWin()
 
     xfcal->mHelp_about = xfcalendar_image_menu_item_new_from_stock ("gtk-about", xfcal->mHelp_menu, xfcal->mAccel_group);
 
-  /* Build the calendar */
-  xfcal->mCalendar = gtk_calendar_new ();
-  gtk_box_pack_start (GTK_BOX (xfcal->mVbox), xfcal->mCalendar, TRUE, TRUE, 0);
-  gtk_calendar_set_display_options (GTK_CALENDAR (xfcal->mCalendar),
-                                GTK_CALENDAR_SHOW_HEADING
-                                | GTK_CALENDAR_SHOW_DAY_NAMES
-                                | GTK_CALENDAR_SHOW_WEEK_NUMBERS);
+    /* Build the calendar */
+    xfcal->mCalendar = gtk_calendar_new ();
+    gtk_box_pack_start (GTK_BOX (xfcal->mVbox), xfcal->mCalendar, TRUE, TRUE, 0);
+    gtk_calendar_set_display_options (GTK_CALENDAR (xfcal->mCalendar),
+                                  GTK_CALENDAR_SHOW_HEADING
+                                  | GTK_CALENDAR_SHOW_DAY_NAMES
+                                  | GTK_CALENDAR_SHOW_WEEK_NUMBERS);
 
-  /* Signals */
-  g_signal_connect ((gpointer) xfcal->mWindow, "delete_event",
-		    G_CALLBACK (mWindow_delete_event_cb),
+    /* Signals */
+    g_signal_connect ((gpointer) xfcal->mWindow, "delete_event",
+	  	    G_CALLBACK (mWindow_delete_event_cb),
 		    (gpointer) xfcal);
 
-  g_signal_connect ((gpointer) xfcal->mFile_newApp, "activate",
+    g_signal_connect ((gpointer) xfcal->mFile_newApp, "activate",
 		    G_CALLBACK (mFile_newApp_activate_cb),
 		    (gpointer) xfcal);
 
-  g_signal_connect ((gpointer) xfcal->mFile_close, "activate",
+    g_signal_connect ((gpointer) xfcal->mFile_openArchive, "activate",
+            G_CALLBACK (mFile_openArchive_activate_cb),
+            (gpointer) xfcal);
+
+    g_signal_connect ((gpointer) xfcal->mFile_closeArchive, "activate",
+            G_CALLBACK (mFile_closeArchive_activate_cb),
+            (gpointer) xfcal);
+
+    g_signal_connect ((gpointer) xfcal->mFile_close, "activate",
 		    G_CALLBACK (mFile_close_activate_cb),
 		    (gpointer) xfcal);
 
-  g_signal_connect ((gpointer) xfcal->mFile_quit, "activate",
+    g_signal_connect ((gpointer) xfcal->mFile_quit, "activate",
 		    G_CALLBACK (mFile_quit_activate_cb),
 		    (gpointer) xfcal);
 
-  g_signal_connect ((gpointer) xfcal->mEdit_preferences, "activate",
+    g_signal_connect ((gpointer) xfcal->mEdit_preferences, "activate",
 		    G_CALLBACK (mEdit_preferences_activate_cb),
 		    NULL);
 
-  g_signal_connect ((gpointer) xfcal->mView_ViewSelectedDate, "activate",
+    g_signal_connect ((gpointer) xfcal->mView_ViewSelectedDate, "activate",
 		    G_CALLBACK (mView_ViewSelectedDate_activate_cb),
 		    (gpointer) xfcal);
 
-  g_signal_connect ((gpointer) xfcal->mView_selectToday, "activate",
+    g_signal_connect ((gpointer) xfcal->mView_selectToday, "activate",
 		    G_CALLBACK (mView_selectToday_activate_cb),
 		    (gpointer) xfcal);
 
-  g_signal_connect ((gpointer) xfcal->mHelp_about, "activate",
+    g_signal_connect ((gpointer) xfcal->mHelp_about, "activate",
 		    G_CALLBACK (mHelp_about_activate_cb),
 		    (gpointer) xfcal);
 
-  g_signal_connect ((gpointer) xfcal->mCalendar, "scroll_event",
+    g_signal_connect ((gpointer) xfcal->mCalendar, "scroll_event",
 		    G_CALLBACK (mCalendar_scroll_event_cb),
 		    NULL);
 
-  g_signal_connect ((gpointer) xfcal->mCalendar, "day_selected_double_click",
+    g_signal_connect ((gpointer) xfcal->mCalendar, "day_selected_double_click",
 		    G_CALLBACK (mCalendar_day_selected_double_click_cb),
             (gpointer) xfcal);
 
-  g_signal_connect ((gpointer) xfcal->mCalendar, "month-changed",
+    g_signal_connect ((gpointer) xfcal->mCalendar, "month-changed",
 		    G_CALLBACK (mCalendar_month_changed_cb),
 		    (gpointer) xfcal);
 
-  gtk_window_add_accel_group (GTK_WINDOW (xfcal->mWindow), xfcal->mAccel_group);
+    gtk_window_add_accel_group (GTK_WINDOW (xfcal->mWindow), xfcal->mAccel_group);
 
 
-  xfcalendar_init_settings (xfcal);
+    xfcalendar_init_settings (xfcal);
                                                                                 
-  if (pos_x || pos_y)
-      gtk_window_move (GTK_WINDOW (xfcal->mWindow), pos_x, pos_y);
-  gtk_window_stick (GTK_WINDOW (xfcal->mWindow));
+    if (pos_x || pos_y)
+        gtk_window_move (GTK_WINDOW (xfcal->mWindow), pos_x, pos_y);
+    gtk_window_stick (GTK_WINDOW (xfcal->mWindow));
 
-  xfcalendar_mark_appointments();
+    xfcalendar_mark_appointments();
 
 }
