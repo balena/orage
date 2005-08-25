@@ -56,7 +56,7 @@
 #include "appointment.h"
 #include "ical-code.h"
 
-static GtkWidget *clearwarn;
+void apply_settings(void);
 
 extern CalWin *xfcal;
 extern gint event_win_size_x, event_win_size_y;
@@ -621,7 +621,7 @@ on_elFile_delete_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
 eventlist_win
 *create_eventlist_win(void)
 {
-    GtkWidget *tmp_toolbar_icon, 
+    GtkWidget
         *toolbar_separator, 
         *menu_separator;
     GtkCellRenderer *rend;
@@ -695,7 +695,6 @@ eventlist_win
     el->elCreate_toolbutton = xfcalendar_toolbar_append_button (el->elToolbar, "gtk-new", el->elTooltips, _("New"), i++);
 
     toolbar_separator = xfcalendar_toolbar_append_separator (el->elToolbar, i++);
-
     el->elPrevious_toolbutton = xfcalendar_toolbar_append_button (el->elToolbar, "gtk-go-back", el->elTooltips, _("Back"), i++);
 
     el->elToday_toolbutton = xfcalendar_toolbar_append_button (el->elToolbar, "gtk-home", el->elTooltips, _("Today"), i++);

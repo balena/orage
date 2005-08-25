@@ -181,7 +181,7 @@ icalset *xfical_internal_file_open(icalset *file_ical, gchar *file_icalpath)
         g_error("xfical_file_open: Could not open ical file (%s) %s\n"
                 , file_icalpath, icalerror_strerror(icalerrno));
     }
-    else { /* let's find last VCALENDAR entry * /
+    else { / * let's find last VCALENDAR entry * /
         if(file_ical !=NULL)
             g_warning("xfical_file_open: file_ical is now open\n");
 
@@ -189,10 +189,10 @@ icalset *xfical_internal_file_open(icalset *file_ical, gchar *file_icalpath)
              iter != 0;
              iter = icalset_get_next_component(file_ical)) {
             cnt++;
-            ical = iter; /* last valid component * /
+            ical = iter; / * last valid component * /
         }
         if (cnt == 0) {
-        /* calendar missing, need to add one. 
+        / * calendar missing, need to add one. 
          * Note: According to standard rfc2445 calendar always needs to
          *       contain at least one other component. So strictly speaking
          *       this is not valid entry before adding an event 
@@ -484,7 +484,6 @@ void ical_app_get_alarm_internal(icalcomponent *c,  appt_type *app)
 {
     icalcomponent *ca = NULL;
     icalproperty *p = NULL;
-    const char *text;
     gint seconds;
     struct icaltriggertype trg;
     icalattach *attach;
@@ -555,6 +554,9 @@ void ical_app_get_alarm_internal(icalcomponent *c,  appt_type *app)
                 case ICAL_DESCRIPTION_PROPERTY:
                     if (app->note == NULL)
                         app->note = (char *) icalproperty_get_description(p);
+                    break;
+                default:
+                    g_warning("ical_code: unknown property\n");
                     break;
             }
         }
@@ -661,6 +663,9 @@ appt_type *xfical_app_get(char *ical_uid)
                                 break;
                         }
                         break;
+                    default:
+                        g_warning("ical-code: unknown property\n");
+                        break;
                 }
             }
         ical_app_get_alarm_internal(c, &app);
@@ -754,7 +759,7 @@ appt_type *xfical_app_get_next_on_day(char *a_day, gboolean first, gint days)
               asdate, aedate    /* period to check */
             , sdate, edate      /* event start and end times */
             , nsdate, nedate;   /* repeating event occurrency start and end */
-    icalcomponent *c;
+    icalcomponent *c=NULL;
     static icalcompiter ci;
     gboolean date_found=FALSE;
     gboolean date_rec_found=FALSE;
@@ -982,7 +987,7 @@ void xfical_alarm_build_list(gboolean first_list_today)
     icalproperty_status stat=ICAL_ACTION_DISPLAY;
     struct icaltriggertype trg;
     char *s, *suid, *ssummary, *sdescription, *ssound;
-    gboolean trg_found, alarmrepeat;
+    gboolean trg_found;
     icalattach *attach = NULL;
     struct icalrecurrencetype rrule;
     icalrecur_iterator* ri;
@@ -1101,14 +1106,11 @@ gboolean xfical_alarm_passed(char *alarm_stime)
 
 void xfical_icalcomponent_get_first_occurence_after_threshold (struct tm *threshold, icalcomponent *c)
 {
-    struct tm *foccurence;
     struct icaltimetype sdate, edate, nsdate, nedate;
     struct icalrecurrencetype rrule;
     struct icaldurationtype duration;
     icalrecur_iterator* ri;
     icalproperty *p = NULL;
-    gint start_day, day_cnt, end_day;
-    int year, month;
 
     if ((p = icalcomponent_get_first_property(c
            , ICAL_RRULE_PROPERTY)) != 0) { /* check recurring EVENTs */
@@ -1171,12 +1173,10 @@ gboolean xfical_keep_tidy(void)
     return FALSE; 
     
 
-    struct icaltimetype sdate, edate, nsdate, nedate;
-    static icalcomponent *c, *d, *e;
-    icalproperty *p = NULL;
+    struct icaltimetype sdate, edate;
+    static icalcomponent *c, *e;
     struct tm *threshold;
     time_t t;
-    appt_type *appt;
     int lookback; /* number of months we want to keep */
     gboolean recurrence;
 

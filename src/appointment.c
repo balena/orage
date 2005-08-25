@@ -1,7 +1,7 @@
 /* appointment.c
  *
  * Copyright (C) 2004-2005 Mickaël Graf <korbinus at xfce.org>
- * Copyright (C) 2005 Juha Kautto <kautto.juha at kolumbus.fi>
+ * Copyright (C) 2005 Juha Kautto <juha at xfce.org>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -34,6 +34,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
 
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
@@ -51,19 +52,13 @@
 #include "ical-code.h"
 #include "functions.h"
 
-#define DATE_SEPARATOR "/"
-#define MAX_APP_LENGTH 4096
-#define RCDIR          "xfce4" G_DIR_SEPARATOR_S "xfcalendar"
-#define APPOINTMENT_FILE "appointments.ics"
-#define FILETYPE_SIZE 38
-
 #define AVAILABILITY_ARRAY_DIM 2
 #define RECURRENCY_ARRAY_DIM 4
 #define ALARM_ARRAY_DIM 11
+#define FILETYPE_SIZE 38
+
 
 void delete_xfical_from_appt_win (appt_win *apptw);
-
-static GtkWidget *selDate_Window_dialog;
 
 gboolean ical_to_year_month_day_hours_minutes(char *ical, int *year, int *month, int *day, int *hours, int *minutes){
     int i, j;
@@ -114,7 +109,6 @@ gboolean ical_to_year_month_day_hours_minutes(char *ical, int *year, int *month,
 }
 
 void year_month_day_to_display(int year, int month, int day, char *string_to_display){
-    char cyear[5], cmonth[3], cday[3];
     const char *date_format;
     struct tm *d;
 
@@ -267,19 +261,11 @@ on_appAllDay_clicked_cb(GtkCheckButton *checkbutton, gpointer user_data)
     check_status = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(apptw->appAllDay_checkbutton));
 
     if(check_status){
-/*
-        gtk_widget_hide(apptw->appStartTime_comboboxentry);
-        gtk_widget_hide(apptw->appEndTime_comboboxentry);
-*/
         gtk_widget_set_sensitive(apptw->appStartTime_comboboxentry, FALSE);
         gtk_widget_set_sensitive(apptw->appEndTime_comboboxentry, FALSE);
     } else {
         gtk_widget_set_sensitive(apptw->appStartTime_comboboxentry, TRUE);
         gtk_widget_set_sensitive(apptw->appEndTime_comboboxentry, TRUE);
-/*
-        gtk_widget_show(apptw->appStartTime_comboboxentry);
-        gtk_widget_show(apptw->appEndTime_comboboxentry);
-*/
     }
     apptw->appointment_changed = TRUE;
     gtk_widget_set_sensitive(apptw->appRevert, TRUE);    
@@ -460,7 +446,6 @@ void save_xfical_from_appt_win (appt_win *apptw){
 
     gboolean ok = FALSE;
     appt_type *appt = g_new(appt_type, 1); 
-    gchar *new_uid;
 
     starttime = g_strdup(gtk_entry_get_text(GTK_ENTRY(GTK_BIN(apptw->appStartTime_comboboxentry)->child)));
     endtime = g_strdup(gtk_entry_get_text(GTK_ENTRY(GTK_BIN(apptw->appEndTime_comboboxentry)->child)));
@@ -705,9 +690,6 @@ on_appStartEndDate_clicked_cb (GtkWidget *button, gpointer *user_data)
 
 void fill_appt_window(appt_win *appt_w, char *action, char *par)
 {
-  char start_hh[3], start_mi[3], 
-    end_hh[3], end_mi[3];
-    char start_date[11], end_date[11];
     char *startdate_to_display, *enddate_to_display,
          *starttime_to_display, *endtime_to_display;
     int year, month, day, hours, minutes;
@@ -850,7 +832,7 @@ appt_win
 
     register int i = 0;
 
-    GtkWidget *tmp_toolbar_icon,
+    GtkWidget 
               *menu_separator,
               *toolbar_separator;
 

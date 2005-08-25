@@ -54,6 +54,8 @@
 #define CHANNEL  "xfcalendar"
 #define RCDIR    "xfce4" G_DIR_SEPARATOR_S "xfcalendar"
 
+void apply_settings(void);
+
 extern CalWin *xfcal;
 extern gboolean normalmode;
 extern gint pos_x, pos_y;

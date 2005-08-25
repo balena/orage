@@ -75,6 +75,8 @@
 #define yyextra ((struct icalgauge_impl*)ssget_extra(yy_globals))
 
 
+struct icalgauge_impl*  ssget_extra (void *);
+
 static void ssyacc_add_where(struct icalgauge_impl* impl, char* prop, 
 			icalgaugecompare compare , char* value);
 static void ssyacc_add_select(struct icalgauge_impl* impl, char* str1);
@@ -437,6 +439,25 @@ while (0)
 # endif /* !YYLSP_NEEDED */
 #else /* !YYPURE */
 # define YYLEX			yylex ()
+#endif /* !YYPURE */
+
+/* Prevent warning if -Wstrict-prototypes.  */
+#if YYPURE
+# if YYLSP_NEEDED
+#  ifdef YYLEX_PARAM
+int yylex (YYSTYPE *, YYLTYPE *, void *);
+#  else
+int yylex (YYSTYPE *, YYLTYPE *);
+#  endif
+# else /* !YYLSP_NEEDED */
+#  ifdef YYLEX_PARAM
+int yylex (YYSTYPE *, void *);
+#  else
+int yylex (YYSTYPE *);
+#  endif
+# endif /* !YYLSP_NEEDED */
+#else /* !YYPURE */
+int yylex (void);
 #endif /* !YYPURE */
 
 

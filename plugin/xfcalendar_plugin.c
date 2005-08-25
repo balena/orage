@@ -54,8 +54,6 @@ static gboolean showsystray = TRUE;
 static gboolean showstart = TRUE;
 static gboolean hidestart = FALSE;
 static gboolean ministart = FALSE;
-static gboolean repeatSoundYes = FALSE;
-static gboolean repeatSoundNo = TRUE;
 static gchar *soundAppl;
 
 typedef struct _Itf Itf;
