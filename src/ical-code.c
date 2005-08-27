@@ -72,6 +72,8 @@ static gboolean fical_modified = TRUE,
 
 static gchar *ical_path;
 
+static int lookback;
+
 extern GList *alarm_list;
 
 typedef struct
@@ -96,6 +98,10 @@ void set_ical_path (gchar *path)
         g_free (ical_path);
 
     ical_path = path;
+}
+
+void set_lookback (int i) {
+    lookback = i;
 }
 
 xfical_struct *xfical_internal_file_open(xfical_struct *lical, gchar *file_icalpath)
@@ -1177,7 +1183,7 @@ gboolean xfical_keep_tidy(void)
     static icalcomponent *c, *e;
     struct tm *threshold;
     time_t t;
-    int lookback; /* number of months we want to keep */
+    /*int lookback; /* number of months we want to keep */
     gboolean recurrence;
 
     lookback = 1; /* For development purpose; will be taken from MCS in the future */

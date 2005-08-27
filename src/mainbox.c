@@ -140,7 +140,7 @@ mFile_openArchive_activate_cb (GtkMenuItem *menuitem,
     }
 
     gtk_widget_destroy(file_chooser);
-
+    xfcalendar_mark_appointments();
 }
 
 void
@@ -148,6 +148,7 @@ mFile_closeArchive_activate_cb (GtkMenuItem *menuitem,
             gpointer user_data)
 {
     set_default_ical_path ();
+    xfcalendar_mark_appointments();
 }
 
 void

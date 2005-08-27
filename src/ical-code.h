@@ -23,6 +23,8 @@ void set_default_ical_path (void);
 
 void set_ical_path (gchar *path);
 
+void set_lookback (int i);
+
 gboolean xfical_file_open(void);
 
 void xfical_file_close(void);

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-07-08 19:00+0200\n"
+"POT-Creation-Date: 2005-08-27 22:18+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,68 +16,93 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../plugin/xfcalendar_plugin.c:198 ../plugin/xfcalendar_plugin.c:209
+#: ../plugin/xfcalendar_plugin.c:208 ../plugin/xfcalendar_plugin.c:219
 msgid "Xfcalendar Preferences"
 msgstr ""
 
-#.
-#: ../plugin/xfcalendar_plugin.c:224
+#. Mode normal or compact
+#: ../plugin/xfcalendar_plugin.c:234
 msgid "Mode"
 msgstr ""
 
-#: ../plugin/xfcalendar_plugin.c:232
+#: ../plugin/xfcalendar_plugin.c:242
 msgid "Normal"
 msgstr ""
 
-#: ../plugin/xfcalendar_plugin.c:239
+#: ../plugin/xfcalendar_plugin.c:249
 msgid "Compact"
 msgstr ""
 
-#.
-#: ../plugin/xfcalendar_plugin.c:247
+#. Show in... taskbar pager systray
+#: ../plugin/xfcalendar_plugin.c:257
 msgid "Show the calendar window in..."
 msgstr ""
 
-#: ../plugin/xfcalendar_plugin.c:256
+#: ../plugin/xfcalendar_plugin.c:266
 msgid "Taskbar"
 msgstr ""
 
-#: ../plugin/xfcalendar_plugin.c:261
+#: ../plugin/xfcalendar_plugin.c:271
 msgid "Pager"
 msgstr ""
 
-#: ../plugin/xfcalendar_plugin.c:266
+#: ../plugin/xfcalendar_plugin.c:276
 msgid "Systray"
 msgstr ""
 
 #.
-#: ../plugin/xfcalendar_plugin.c:272
+#: ../plugin/xfcalendar_plugin.c:282
 msgid "Visibility when starting..."
 msgstr ""
 
-#: ../plugin/xfcalendar_plugin.c:281
+#: ../plugin/xfcalendar_plugin.c:291
 msgid "Show"
 msgstr ""
 
-#: ../plugin/xfcalendar_plugin.c:288
+#: ../plugin/xfcalendar_plugin.c:298
 msgid "Hide"
 msgstr ""
 
-#: ../plugin/xfcalendar_plugin.c:295
+#: ../plugin/xfcalendar_plugin.c:305
 msgid "Minimized"
 msgstr ""
 
+#. Archive file and periodicity
+#: ../plugin/xfcalendar_plugin.c:313
+msgid "Archiving..."
+msgstr ""
+
+#: ../plugin/xfcalendar_plugin.c:326
+msgid "Archive file"
+msgstr ""
+
+#: ../plugin/xfcalendar_plugin.c:330
+msgid "Archive items older than"
+msgstr ""
+
+#: ../plugin/xfcalendar_plugin.c:355
+msgid "3 months"
+msgstr ""
+
+#: ../plugin/xfcalendar_plugin.c:356
+msgid "6 months"
+msgstr ""
+
+#: ../plugin/xfcalendar_plugin.c:357
+msgid "1 year"
+msgstr ""
+
 #. Choose a sound application for reminders
-#: ../plugin/xfcalendar_plugin.c:303
+#: ../plugin/xfcalendar_plugin.c:363
 msgid "Play sounds with..."
 msgstr ""
 
-#: ../plugin/xfcalendar_plugin.c:312
+#: ../plugin/xfcalendar_plugin.c:372
 msgid "Application"
 msgstr ""
 
-#: ../plugin/xfcalendar_plugin.c:353 ../src/appointment.c:142
-#: ../src/mainbox.c:277
+#: ../plugin/xfcalendar_plugin.c:413 ../src/appointment.c:136
+#: ../src/mainbox.c:325
 msgid "Xfcalendar"
 msgstr ""
 
@@ -94,204 +119,205 @@ msgstr ""
 msgid "Contributor"
 msgstr ""
 
-#: ../src/appointment.c:123 ../src/appointment.c:331 ../src/appointment.c:664
+#: ../src/appointment.c:117 ../src/appointment.c:317 ../src/appointment.c:649
 msgid "%m/%d/%Y"
 msgstr ""
 
-#: ../src/appointment.c:219
+#. Create file chooser
+#: ../src/appointment.c:213 ../src/mainbox.c:118
 msgid "Select a file..."
 msgstr ""
 
-#: ../src/appointment.c:227
+#: ../src/appointment.c:221
 msgid "Sound Files"
 msgstr ""
 
-#: ../src/appointment.c:233
+#: ../src/appointment.c:227 ../src/mainbox.c:129
 msgid "All Files"
 msgstr ""
 
-#: ../src/appointment.c:292 ../src/appointment.c:428 ../src/appointment.c:439
-#: ../src/appointment.c:576 ../src/event-list.c:586
+#: ../src/appointment.c:278 ../src/appointment.c:414 ../src/appointment.c:425
+#: ../src/appointment.c:561 ../src/event-list.c:586
 msgid "Warning"
 msgstr ""
 
-#: ../src/appointment.c:294
+#: ../src/appointment.c:280
 msgid "The appointment information has been modified."
 msgstr ""
 
-#: ../src/appointment.c:295 ../src/appointment.c:579 ../src/event-list.c:589
+#: ../src/appointment.c:281 ../src/appointment.c:564 ../src/event-list.c:589
 msgid "Do you want to continue?"
 msgstr ""
 
-#: ../src/appointment.c:430
+#: ../src/appointment.c:416
 msgid "The end of this appointment is earlier than the beginning."
 msgstr ""
 
-#: ../src/appointment.c:441
+#: ../src/appointment.c:427
 msgid "A time value is wrong."
 msgstr ""
 
-#: ../src/appointment.c:442
+#: ../src/appointment.c:428
 msgid "Time values must be written 'hh:mm', for instance '09:36' or '15:23'."
 msgstr ""
 
-#: ../src/appointment.c:578
+#: ../src/appointment.c:563
 msgid "This appointment will be permanently removed."
 msgstr ""
 
-#: ../src/appointment.c:669 ../src/event-list.c:701 ../src/tray_icon.c:107
+#: ../src/appointment.c:654 ../src/event-list.c:700 ../src/tray_icon.c:107
 msgid "Today"
 msgstr ""
 
-#: ../src/appointment.c:765
+#: ../src/appointment.c:747
 msgid "New appointment - Xfcalendar"
 msgstr ""
 
-#: ../src/appointment.c:857
+#: ../src/appointment.c:839
 msgid "Free"
 msgstr ""
 
-#: ../src/appointment.c:857
+#: ../src/appointment.c:839
 msgid "Busy"
 msgstr ""
 
-#: ../src/appointment.c:858 ../src/appointment.c:859
+#: ../src/appointment.c:840 ../src/appointment.c:841
 msgid "None"
 msgstr ""
 
-#: ../src/appointment.c:858
+#: ../src/appointment.c:840
 msgid "Daily"
 msgstr ""
 
-#: ../src/appointment.c:858
+#: ../src/appointment.c:840
 msgid "Weekly"
 msgstr ""
 
-#: ../src/appointment.c:858
+#: ../src/appointment.c:840
 msgid "Monthly"
 msgstr ""
 
-#: ../src/appointment.c:859
+#: ../src/appointment.c:841
 msgid "5 minutes"
 msgstr ""
 
-#: ../src/appointment.c:859
+#: ../src/appointment.c:841
 msgid "15 minutes"
 msgstr ""
 
-#: ../src/appointment.c:859
+#: ../src/appointment.c:841
 msgid "30 minutes"
 msgstr ""
 
-#: ../src/appointment.c:860
+#: ../src/appointment.c:842
 msgid "45 minutes"
 msgstr ""
 
-#: ../src/appointment.c:860
+#: ../src/appointment.c:842
 msgid "1 hour"
 msgstr ""
 
-#: ../src/appointment.c:860
+#: ../src/appointment.c:842
 msgid "2 hours"
 msgstr ""
 
-#: ../src/appointment.c:860
+#: ../src/appointment.c:842
 msgid "4 hours"
 msgstr ""
 
-#: ../src/appointment.c:861
+#: ../src/appointment.c:843
 msgid "8 hours"
 msgstr ""
 
-#: ../src/appointment.c:861
+#: ../src/appointment.c:843
 msgid "1 day"
 msgstr ""
 
-#: ../src/appointment.c:861
+#: ../src/appointment.c:843
 msgid "2 days"
 msgstr ""
 
 #. File menu stuff
 #. File menu
-#: ../src/appointment.c:894 ../src/event-list.c:656 ../src/mainbox.c:300
+#: ../src/appointment.c:876 ../src/event-list.c:656 ../src/mainbox.c:348
 msgid "_File"
 msgstr ""
 
-#: ../src/appointment.c:898
+#: ../src/appointment.c:880
 msgid "Sav_e and close"
 msgstr ""
 
 #. add event copying and day cleaning
-#: ../src/appointment.c:905 ../src/event-list.c:662
+#: ../src/appointment.c:887 ../src/event-list.c:662
 msgid "D_uplicate"
 msgstr ""
 
 #. Add buttons to the toolbar
-#: ../src/appointment.c:925
+#: ../src/appointment.c:907
 msgid "Save"
 msgstr ""
 
-#: ../src/appointment.c:927 ../src/appointment.c:928
+#: ../src/appointment.c:909 ../src/appointment.c:910
 msgid "Save and close"
 msgstr ""
 
-#: ../src/appointment.c:933
+#: ../src/appointment.c:915
 msgid "Revert"
 msgstr ""
 
-#: ../src/appointment.c:935 ../src/appointment.c:936 ../src/event-list.c:709
+#: ../src/appointment.c:917 ../src/appointment.c:918 ../src/event-list.c:708
 msgid "Duplicate"
 msgstr ""
 
-#: ../src/appointment.c:940
+#: ../src/appointment.c:922
 msgid "Delete"
 msgstr ""
 
-#: ../src/appointment.c:951
+#: ../src/appointment.c:933
 msgid "General"
 msgstr ""
 
-#: ../src/appointment.c:960
+#: ../src/appointment.c:942
 msgid "Title "
 msgstr ""
 
-#: ../src/appointment.c:966
+#: ../src/appointment.c:948
 msgid "Location"
 msgstr ""
 
-#: ../src/appointment.c:972
+#: ../src/appointment.c:954
 msgid "All day event"
 msgstr ""
 
-#: ../src/appointment.c:977
+#: ../src/appointment.c:959
 msgid "Start"
 msgstr ""
 
-#: ../src/appointment.c:985
+#: ../src/appointment.c:967
 msgid "End"
 msgstr ""
 
-#: ../src/appointment.c:993
+#: ../src/appointment.c:975
 msgid "Recurrency"
 msgstr ""
 
-#: ../src/appointment.c:1000
+#: ../src/appointment.c:982
 msgid "Availability"
 msgstr ""
 
-#: ../src/appointment.c:1007
+#: ../src/appointment.c:989
 msgid "Note"
 msgstr ""
 
-#: ../src/appointment.c:1039 ../src/appointment.c:1048
+#: ../src/appointment.c:1021 ../src/appointment.c:1030
 msgid "Alarm"
 msgstr ""
 
-#: ../src/appointment.c:1055
+#: ../src/appointment.c:1037
 msgid "Sound"
 msgstr ""
 
-#: ../src/appointment.c:1066
+#: ../src/appointment.c:1048
 msgid "Repeat alarm sound"
 msgstr ""
 
@@ -300,7 +326,7 @@ msgstr ""
 msgid "today"
 msgstr ""
 
-#: ../src/event-list.c:275 ../src/event-list.c:743
+#: ../src/event-list.c:275 ../src/event-list.c:742
 msgid "Time"
 msgstr ""
 
@@ -311,7 +337,7 @@ msgid ""
 msgstr ""
 
 #. View menu
-#: ../src/event-list.c:675 ../src/mainbox.c:317
+#: ../src/event-list.c:675 ../src/mainbox.c:370
 msgid "_View"
 msgstr ""
 
@@ -324,61 +350,73 @@ msgstr ""
 msgid "New"
 msgstr ""
 
-#: ../src/event-list.c:699
+#: ../src/event-list.c:698
 msgid "Back"
 msgstr ""
 
-#: ../src/event-list.c:703
+#: ../src/event-list.c:702
 msgid "Forward"
 msgstr ""
 
-#: ../src/event-list.c:705
+#: ../src/event-list.c:704
 msgid "Refresh"
 msgstr ""
 
-#: ../src/event-list.c:711
+#: ../src/event-list.c:710
 msgid "Close"
 msgstr ""
 
-#: ../src/event-list.c:713
+#: ../src/event-list.c:712
 msgid "Clear"
 msgstr ""
 
-#: ../src/event-list.c:751
+#: ../src/event-list.c:750
 msgid "Flags"
 msgstr ""
 
-#: ../src/event-list.c:757
+#: ../src/event-list.c:756
 msgid "Title"
 msgstr ""
 
-#: ../src/event-list.c:763
+#: ../src/event-list.c:762
 msgid "uid"
 msgstr ""
 
-#: ../src/functions.c:75
+#: ../src/functions.c:76
 msgid "  "
 msgstr ""
 
-#: ../src/ical-code.c:348
+#: ../src/ical-code.c:369
 msgid "Xfcalendar default alarm"
 msgstr ""
 
+#: ../src/mainbox.c:126
+msgid "Calendar files"
+msgstr ""
+
+#: ../src/mainbox.c:355
+msgid "Open archive file..."
+msgstr ""
+
+#: ../src/mainbox.c:356
+msgid "Close archive file"
+msgstr ""
+
 #. Edit menu
-#: ../src/mainbox.c:312
+#: ../src/mainbox.c:365
 msgid "_Edit"
 msgstr ""
 
-#: ../src/mainbox.c:319
+#: ../src/mainbox.c:372
 msgid "View selected _date"
 msgstr ""
 
-#: ../src/mainbox.c:323
+#: ../src/mainbox.c:376
 msgid "Select _Today"
 msgstr ""
 
 #. Help menu
-#: ../src/mainbox.c:326
+#: ../src/mainbox.c:379
 msgid "_Help"
 msgstr ""
 
@@ -386,7 +424,7 @@ msgstr ""
 msgid "This should not happen"
 msgstr ""
 
-#: ../src/main.c:431
+#: ../src/main.c:434
 msgid "Cannot create MCS client channel"
 msgstr ""
 

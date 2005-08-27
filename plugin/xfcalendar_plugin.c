@@ -13,7 +13,7 @@
 	along with this program; if not, write to the Free Software
 	Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
-        xfccalendar mcs plugin   - (c) 2003 Mickael Graf   
+        xfccalendar mcs plugin   - (c) 2003-2005 Mickael Graf <korbinus at xfce.org>
         Parts of the code below  - (C) 2005 Juha Kautto <kautto.juha at kolumbus.fi>
 
  */
@@ -85,6 +85,19 @@ struct _Itf
     GtkWidget *ShowStart_radiobutton;
     GtkWidget *HideStart_radiobutton;
     GtkWidget *MiniStart_radiobutton;
+    /* Archive file and periodicity */
+    GtkWidget *labelTopArchive;
+    GtkWidget *labelBottomArchive;
+    GtkWidget *frameArchive;
+    GtkWidget *tableArchive;
+    GtkWidget *hboxArchive;
+    GtkWidget *hboxFileArchive;
+    GtkWidget *hboxPeriodicityArchive;
+    GtkWidget *leftVboxArchive;
+    GtkWidget *rightVboxArchive;
+    GtkWidget *entryArchive;
+    GtkWidget *buttonArchive;
+    GtkWidget *comboboxArchive;
     /* Choose the sound application for reminders */
     GtkWidget *hboxSoundApplication;
     GtkWidget *frameSoundApplication;
@@ -218,7 +231,7 @@ Itf *create_xfcalendar_dialog(McsPlugin * mcs_plugin)
     gtk_widget_show(dialog->vbox1);
     gtk_box_pack_start(GTK_BOX(dialog->hbox1), dialog->vbox1, TRUE, TRUE, 0);
 
-    /* */
+    /* Mode normal or compact */
     dialog->frameMode = xfce_framebox_new(_("Mode"), TRUE);
     gtk_widget_show(dialog->frameMode);
     gtk_box_pack_start(GTK_BOX(dialog->vbox1), dialog->frameMode, TRUE, TRUE, 0);
@@ -241,7 +254,7 @@ Itf *create_xfcalendar_dialog(McsPlugin * mcs_plugin)
     dialog->mode_radiobutton_group = gtk_radio_button_get_group(GTK_RADIO_BUTTON (dialog->CompactMode_radiobutton));
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(dialog->CompactMode_radiobutton), !normalmode);
     
-    /* */
+    /* Show in... taskbar pager systray */
     dialog->frameShow = xfce_framebox_new(_("Show the calendar window in..."), TRUE);
     gtk_widget_show(dialog->frameShow);
     gtk_frame_set_shadow_type(GTK_FRAME(dialog->frameShow), GTK_SHADOW_ETCHED_IN);
@@ -296,6 +309,56 @@ Itf *create_xfcalendar_dialog(McsPlugin * mcs_plugin)
     gtk_radio_button_set_group(GTK_RADIO_BUTTON(dialog->MiniStart_radiobutton), dialog->start_radiobutton_group);
     dialog->start_radiobutton_group = gtk_radio_button_get_group(GTK_RADIO_BUTTON(dialog->MiniStart_radiobutton));
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(dialog->MiniStart_radiobutton), ministart);
+
+    /* Archive file and periodicity */
+    dialog->frameArchive = xfce_framebox_new (_("Archiving..."), TRUE);
+    gtk_widget_show (dialog->frameArchive);
+    gtk_frame_set_shadow_type (GTK_FRAME (dialog->frameArchive), GTK_SHADOW_ETCHED_IN);
+    gtk_box_pack_start (GTK_BOX (dialog->vbox1), dialog->frameArchive, TRUE, TRUE, 5);
+
+    dialog->tableArchive = gtk_table_new (2, 3, FALSE);
+    gtk_widget_show (dialog->tableArchive);
+    gtk_container_set_border_width (GTK_CONTAINER (dialog->tableArchive), 10);
+    gtk_table_set_row_spacings (GTK_TABLE (dialog->tableArchive), 6);
+    gtk_table_set_col_spacings (GTK_TABLE (dialog->tableArchive), 6);
+    xfce_framebox_add (XFCE_FRAMEBOX (dialog->frameArchive), dialog->tableArchive);
+
+    dialog->labelTopArchive = gtk_label_new (_("Archive file"));
+    gtk_widget_show (dialog->labelTopArchive);
+    gtk_table_attach (GTK_TABLE (dialog->tableArchive), dialog->labelTopArchive, 0, 1, 0, 1,
+                        (GtkAttachOptions) (GTK_FILL),
+                        (GtkAttachOptions) (0), 0, 0);
+    gtk_misc_set_alignment (GTK_MISC (dialog->labelTopArchive), 0, 0.5);
+
+    dialog->entryArchive = gtk_entry_new ();
+    gtk_widget_show (dialog->entryArchive);
+    gtk_table_attach (GTK_TABLE (dialog->tableArchive), dialog->entryArchive, 1, 2, 0, 1,
+                        (GtkAttachOptions) (GTK_FILL),
+                        (GtkAttachOptions) (0), 0, 0);
+
+    dialog->buttonArchive = gtk_button_new_from_stock("gtk-open");
+    gtk_widget_show (dialog->buttonArchive);
+    gtk_table_attach (GTK_TABLE (dialog->tableArchive), dialog->buttonArchive, 2, 3, 0, 1,
+                        (GtkAttachOptions) (GTK_FILL),
+                        (GtkAttachOptions) (0), 0, 0);
+
+    dialog->labelBottomArchive = gtk_label_new (_("Archive items older than"));
+    gtk_widget_show (dialog->labelBottomArchive);
+    gtk_table_attach (GTK_TABLE (dialog->tableArchive), dialog->labelBottomArchive, 0, 1, 1, 2,
+                        (GtkAttachOptions) (GTK_FILL),
+                        (GtkAttachOptions) (0), 0, 0);
+    gtk_misc_set_alignment (GTK_MISC (dialog->labelBottomArchive), 0, 0.5);
+
+    dialog->comboboxArchive = gtk_combo_box_new_text ();
+    gtk_combo_box_append_text (GTK_COMBO_BOX (dialog->comboboxArchive), _("3 months"));
+    gtk_combo_box_append_text (GTK_COMBO_BOX (dialog->comboboxArchive), _("6 months"));
+    gtk_combo_box_append_text (GTK_COMBO_BOX (dialog->comboboxArchive), _("1 year"));
+    gtk_combo_box_set_active (GTK_COMBO_BOX (dialog->comboboxArchive), 0); /* Default value */
+    gtk_widget_show (dialog->comboboxArchive);
+
+    gtk_table_attach (GTK_TABLE (dialog->tableArchive), dialog->comboboxArchive, 1, 2, 1, 2,
+                        (GtkAttachOptions) (GTK_FILL),
+                        (GtkAttachOptions) (0), 0, 0);
 
     /* Choose a sound application for reminders */
     dialog->frameSoundApplication = xfce_framebox_new(_("Play sounds with..."), TRUE);
