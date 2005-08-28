@@ -55,6 +55,7 @@ static gboolean showstart = TRUE;
 static gboolean hidestart = FALSE;
 static gboolean ministart = FALSE;
 static gchar *soundAppl;
+static gchar *archivePath;
 
 typedef struct _Itf Itf;
 struct _Itf
@@ -130,6 +131,17 @@ static void cb_SoundApplication_changed(GtkWidget * dialog, gpointer user_data)
     mcs_manager_set_string(mcs_plugin->manager, "XFcalendar/SoundApplication", CHANNEL, soundAppl);
     mcs_manager_notify(mcs_plugin->manager, CHANNEL);
     write_options(mcs_plugin);
+}
+
+void static cb_entryArchive_changed (GtkWidget * dialog, gpointer user_data)
+{
+    Itf *itf = (Itf *) user_data;
+    McsPlugin *mcs_plugin = itf->mcs_plugin;
+
+    archivePath = g_strdup (gtk_entry_get_text (GTK_ENTRY (itf->entryArchive)));
+    mcs_manager_set_string (mcs_plugin->manager, "XFcalendar/ArchiveFile", CHANNEL, archivePath);
+    mcs_manager_notify (mcs_plugin->manager, CHANNEL);
+    write_options (mcs_plugin);
 }
 
 static void cb_mode_changed(GtkWidget * dialog, gpointer user_data)
@@ -226,6 +238,11 @@ static void cb_buttonArchive_clicked (GtkButton *button, gpointer user_data)
     }
 
     gtk_widget_destroy (file_chooser);
+}
+
+static void cb_comboboxArchive_changed (GtkComboBox *cb, gpointer user_data)
+{
+    g_warning("Something will happen here soon :-)");
 }
 
 Itf *create_xfcalendar_dialog(McsPlugin * mcs_plugin)
@@ -369,6 +386,7 @@ Itf *create_xfcalendar_dialog(McsPlugin * mcs_plugin)
     gtk_table_attach (GTK_TABLE (dialog->tableArchive), dialog->entryArchive, 1, 2, 0, 1,
                         (GtkAttachOptions) (GTK_FILL),
                         (GtkAttachOptions) (0), 0, 0);
+    gtk_entry_set_text(GTK_ENTRY(dialog->entryArchive), (const gchar *) archivePath);
 
     dialog->buttonArchive = gtk_button_new_from_stock("gtk-open");
     gtk_widget_show (dialog->buttonArchive);
@@ -434,6 +452,8 @@ static void setup_dialog(Itf * itf)
   g_signal_connect(G_OBJECT(itf->MiniStart_radiobutton), "toggled", G_CALLBACK(cb_start_changed), itf);
   g_signal_connect(G_OBJECT(itf->entrySoundApplication), "changed", G_CALLBACK(cb_SoundApplication_changed), itf);
   g_signal_connect(G_OBJECT(itf->buttonArchive), "clicked", G_CALLBACK(cb_buttonArchive_clicked), itf);
+  g_signal_connect(G_OBJECT(itf->entryArchive), "changed", G_CALLBACK(cb_entryArchive_changed), itf);
+  g_signal_connect(G_OBJECT(itf->comboboxArchive), "changed", G_CALLBACK(cb_comboboxArchive_changed), itf);
 
   xfce_gtk_window_center_on_monitor_with_pointer(GTK_WINDOW(itf->xfcalendar_dialog));
   gtk_widget_show(itf->xfcalendar_dialog);
@@ -532,6 +552,16 @@ static void create_channel(McsPlugin * mcs_plugin)
     {
         showstart = TRUE;
         mcs_manager_set_int(mcs_plugin->manager, "XFCalendar/ShowStart", CHANNEL, 1);
+    }
+
+    setting = mcs_manager_setting_lookup (mcs_plugin->manager, "XFcalendar/ArchiveFile", CHANNEL);
+    if (setting)
+    {
+        archivePath = (gchar *)malloc(255);
+        archivePath = NULL;
+        if (archivePath = setting->data.v_string) {
+        	g_warning("Archive file: %s\n", archivePath);
+        }
     }
 
     setting = mcs_manager_setting_lookup(mcs_plugin->manager, "XFcalendar/SoundApplication", CHANNEL);
