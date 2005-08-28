@@ -194,6 +194,40 @@ static void cb_start_changed(GtkWidget * dialog, gpointer user_data)
     write_options(mcs_plugin);
 }
 
+static void cb_buttonArchive_clicked (GtkButton *button, gpointer user_data)
+{
+    Itf *itf = (Itf *) user_data;
+    GtkWidget *file_chooser;
+	XfceFileFilter *filter;
+    gchar *archive_path;
+
+    /* Create file chooser */
+    file_chooser = xfce_file_chooser_new (_("Select a file..."),
+                                            GTK_WINDOW (itf->xfcalendar_dialog),
+                                            XFCE_FILE_CHOOSER_ACTION_SAVE,
+                                            GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
+                                            GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT,
+                                            NULL);
+    /* Add filters */
+    filter = xfce_file_filter_new ();
+	xfce_file_filter_set_name(filter, _("Calendar files"));
+	xfce_file_filter_add_pattern(filter, "*.ics");
+	xfce_file_chooser_add_filter(XFCE_FILE_CHOOSER(file_chooser), filter);
+	xfce_file_filter_set_name(filter, _("All Files"));
+	xfce_file_filter_add_pattern(filter, "*");
+	xfce_file_chooser_add_filter(XFCE_FILE_CHOOSER(file_chooser), filter);
+
+	if(gtk_dialog_run(GTK_DIALOG(file_chooser)) == GTK_RESPONSE_ACCEPT) {
+		archive_path = xfce_file_chooser_get_filename(XFCE_FILE_CHOOSER(file_chooser));
+
+        if(archive_path){
+            gtk_entry_set_text (GTK_ENTRY (itf->entryArchive), (const gchar*) archive_path);
+        }
+    }
+
+    gtk_widget_destroy (file_chooser);
+}
+
 Itf *create_xfcalendar_dialog(McsPlugin * mcs_plugin)
 {
     Itf *dialog;
@@ -399,6 +433,7 @@ static void setup_dialog(Itf * itf)
   g_signal_connect(G_OBJECT(itf->ShowStart_radiobutton), "toggled", G_CALLBACK(cb_start_changed), itf);
   g_signal_connect(G_OBJECT(itf->MiniStart_radiobutton), "toggled", G_CALLBACK(cb_start_changed), itf);
   g_signal_connect(G_OBJECT(itf->entrySoundApplication), "changed", G_CALLBACK(cb_SoundApplication_changed), itf);
+  g_signal_connect(G_OBJECT(itf->buttonArchive), "clicked", G_CALLBACK(cb_buttonArchive_clicked), itf);
 
   xfce_gtk_window_center_on_monitor_with_pointer(GTK_WINDOW(itf->xfcalendar_dialog));
   gtk_widget_show(itf->xfcalendar_dialog);

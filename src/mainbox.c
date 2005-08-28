@@ -135,7 +135,6 @@ mFile_openArchive_activate_cb (GtkMenuItem *menuitem,
 
         if(archive_path){
             set_ical_path (archive_path);
-            /* FIXME: synchronize the calendar with the new source */
         }
     }
 
