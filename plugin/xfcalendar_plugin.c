@@ -56,6 +56,7 @@ static gboolean hidestart = FALSE;
 static gboolean ministart = FALSE;
 static gchar *soundAppl;
 static gchar *archivePath;
+static int archiveLookback;
 
 typedef struct _Itf Itf;
 struct _Itf
@@ -242,7 +243,31 @@ static void cb_buttonArchive_clicked (GtkButton *button, gpointer user_data)
 
 static void cb_comboboxArchive_changed (GtkComboBox *cb, gpointer user_data)
 {
-    g_warning("Something will happen here soon :-)");
+
+    Itf *itf = (Itf *) user_data;
+    McsPlugin *mcs_plugin = itf->mcs_plugin;
+    int index;
+
+    index = gtk_combo_box_get_active (GTK_COMBO_BOX (itf->comboboxArchive));
+    switch (index) {
+        case 0: archiveLookback = 3;
+                break;
+        case 1: archiveLookback = 6;
+                break;
+        case 2: archiveLookback = 12;
+                break;
+    }
+/*
+    if (index == 0)
+        archiveLookback = 3;
+    if (index == 1)
+        archiveLookback = 6;
+    if (index == 2)
+        archiveLookback = 12;
+*/
+    mcs_manager_set_int (mcs_plugin->manager, "XFcalendar/Lookback", CHANNEL, archiveLookback);
+    mcs_manager_notify (mcs_plugin->manager, CHANNEL);
+    write_options (mcs_plugin);
 }
 
 Itf *create_xfcalendar_dialog(McsPlugin * mcs_plugin)
@@ -405,7 +430,13 @@ Itf *create_xfcalendar_dialog(McsPlugin * mcs_plugin)
     gtk_combo_box_append_text (GTK_COMBO_BOX (dialog->comboboxArchive), _("3 months"));
     gtk_combo_box_append_text (GTK_COMBO_BOX (dialog->comboboxArchive), _("6 months"));
     gtk_combo_box_append_text (GTK_COMBO_BOX (dialog->comboboxArchive), _("1 year"));
-    gtk_combo_box_set_active (GTK_COMBO_BOX (dialog->comboboxArchive), 0); /* Default value */
+    switch (archiveLookback) {
+            case 6: gtk_combo_box_set_active (GTK_COMBO_BOX (dialog->comboboxArchive), 1);
+                    break;
+            case 12:gtk_combo_box_set_active (GTK_COMBO_BOX (dialog->comboboxArchive), 2);
+                    break;
+            default:gtk_combo_box_set_active (GTK_COMBO_BOX (dialog->comboboxArchive), 0);
+    }
     gtk_widget_show (dialog->comboboxArchive);
 
     gtk_table_attach (GTK_TABLE (dialog->tableArchive), dialog->comboboxArchive, 1, 2, 1, 2,
@@ -440,23 +471,23 @@ Itf *create_xfcalendar_dialog(McsPlugin * mcs_plugin)
     return dialog;
 }
 
-static void setup_dialog(Itf * itf)
+static void setup_dialog (Itf * itf)
 {
-  g_signal_connect(G_OBJECT(itf->xfcalendar_dialog), "response", G_CALLBACK(cb_dialog_response), itf->mcs_plugin);
+    g_signal_connect (G_OBJECT (itf->xfcalendar_dialog), "response", G_CALLBACK (cb_dialog_response), itf->mcs_plugin);
 
-  g_signal_connect(G_OBJECT(itf->NormalMode_radiobutton), "toggled", G_CALLBACK(cb_mode_changed), itf);
-  g_signal_connect(G_OBJECT(itf->show_taskbar_checkbutton), "toggled", G_CALLBACK(cb_taskbar_changed), itf);
-  g_signal_connect(G_OBJECT(itf->show_pager_checkbutton), "toggled", G_CALLBACK(cb_pager_changed), itf);
-  g_signal_connect(G_OBJECT(itf->show_systray_checkbutton), "toggled", G_CALLBACK(cb_systray_changed), itf);
-  g_signal_connect(G_OBJECT(itf->ShowStart_radiobutton), "toggled", G_CALLBACK(cb_start_changed), itf);
-  g_signal_connect(G_OBJECT(itf->MiniStart_radiobutton), "toggled", G_CALLBACK(cb_start_changed), itf);
-  g_signal_connect(G_OBJECT(itf->entrySoundApplication), "changed", G_CALLBACK(cb_SoundApplication_changed), itf);
-  g_signal_connect(G_OBJECT(itf->buttonArchive), "clicked", G_CALLBACK(cb_buttonArchive_clicked), itf);
-  g_signal_connect(G_OBJECT(itf->entryArchive), "changed", G_CALLBACK(cb_entryArchive_changed), itf);
-  g_signal_connect(G_OBJECT(itf->comboboxArchive), "changed", G_CALLBACK(cb_comboboxArchive_changed), itf);
+    g_signal_connect (G_OBJECT (itf->NormalMode_radiobutton), "toggled", G_CALLBACK (cb_mode_changed), itf);
+    g_signal_connect (G_OBJECT (itf->show_taskbar_checkbutton), "toggled", G_CALLBACK (cb_taskbar_changed), itf);
+    g_signal_connect (G_OBJECT (itf->show_pager_checkbutton), "toggled", G_CALLBACK (cb_pager_changed), itf);
+    g_signal_connect (G_OBJECT (itf->show_systray_checkbutton), "toggled", G_CALLBACK (cb_systray_changed), itf);
+    g_signal_connect (G_OBJECT (itf->ShowStart_radiobutton), "toggled", G_CALLBACK (cb_start_changed), itf);
+    g_signal_connect (G_OBJECT (itf->MiniStart_radiobutton), "toggled", G_CALLBACK (cb_start_changed), itf);
+    g_signal_connect (G_OBJECT (itf->entrySoundApplication), "changed", G_CALLBACK (cb_SoundApplication_changed), itf);
+    g_signal_connect (G_OBJECT (itf->buttonArchive), "clicked", G_CALLBACK (cb_buttonArchive_clicked), itf);
+    g_signal_connect (G_OBJECT (itf->entryArchive), "changed", G_CALLBACK (cb_entryArchive_changed), itf);
+    g_signal_connect (G_OBJECT (itf->comboboxArchive), "changed", G_CALLBACK (cb_comboboxArchive_changed), itf);
 
-  xfce_gtk_window_center_on_monitor_with_pointer(GTK_WINDOW(itf->xfcalendar_dialog));
-  gtk_widget_show(itf->xfcalendar_dialog);
+    xfce_gtk_window_center_on_monitor_with_pointer (GTK_WINDOW (itf->xfcalendar_dialog));
+    gtk_widget_show (itf->xfcalendar_dialog);
 }
 
 McsPluginInitResult mcs_plugin_init(McsPlugin * mcs_plugin)
@@ -562,6 +593,18 @@ static void create_channel(McsPlugin * mcs_plugin)
         if (archivePath = setting->data.v_string) {
         	g_warning("Archive file: %s\n", archivePath);
         }
+    }
+
+    setting = mcs_manager_setting_lookup (mcs_plugin->manager, "XFcalendar/Lookback", CHANNEL);
+    if (setting)
+    {
+        switch (setting->data.v_int) {
+            case 6: archiveLookback = 6;
+                    break;
+            case 12: archiveLookback = 12;
+                    break;
+            default:archiveLookback = 3;
+        }      
     }
 
     setting = mcs_manager_setting_lookup(mcs_plugin->manager, "XFcalendar/SoundApplication", CHANNEL);
