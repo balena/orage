@@ -40,7 +40,7 @@ INCLUDES =			\
 	-I$(top_srcdir)/libical/src	\
 	-I$(top_builddir)/libical/src	\
 	-I$(top_srcdir)/libical/src/libical	\
-	-I$(top_builddir)/libical/libical
+	-I$(top_builddir)/libical/src/libical
 
 libicalss_la_LDFLAGS = -no-undefined
 
