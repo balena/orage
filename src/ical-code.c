@@ -70,7 +70,8 @@ static icalset* fical = NULL,
 static gboolean fical_modified = TRUE,
                 aical_modified = TRUE;
 
-static gchar *ical_path;
+static gchar *ical_path,
+             *aical_path;
 
 static int lookback;
 
@@ -98,6 +99,14 @@ void set_ical_path (gchar *path)
         g_free (ical_path);
 
     ical_path = path;
+}
+
+void set_aical_path (gchar *path)
+{
+    if (aical_path)
+        g_free (aical_path);
+
+    aical_path = path;
 }
 
 void set_lookback (int i) {
@@ -161,84 +170,19 @@ gboolean xfical_file_open (void)
 gboolean xfical_archive_open (void)
 {
     xfical_struct *ical_struct;
-    gchar *file_path;
-    file_path = xfce_resource_save_location(XFCE_RESOURCE_CONFIG,
-                    RCDIR G_DIR_SEPARATOR_S ARCHIVE_FILE, FALSE);
+
+    if (!aical_path)
+        return (FALSE);
 
     ical_struct = g_new(xfical_struct, 1);
 
-    ical_struct = xfical_internal_file_open (ical_struct, file_path);
-    g_free (file_path);
+    ical_struct = xfical_internal_file_open (ical_struct, aical_path);
+
     a_ical = ical_struct->component;
     aical = ical_struct->file;
     return (TRUE);
 }
 
-/*
-icalset *xfical_internal_file_open(icalset *file_ical, gchar *file_icalpath)
-{
-    icalcomponent *iter;
-    register gint cnt=0;
-
-    if (file_ical != NULL) {
-        g_warning("xfical_file_open: file_ical already open\n");
-    }
-    if ((file_ical = icalset_new_file(file_icalpath)) == NULL) {
-        g_error("xfical_file_open: Could not open ical file (%s) %s\n"
-                , file_icalpath, icalerror_strerror(icalerrno));
-    }
-    else { / * let's find last VCALENDAR entry * /
-        if(file_ical !=NULL)
-            g_warning("xfical_file_open: file_ical is now open\n");
-
-        for (iter = icalset_get_first_component(file_ical); 
-             iter != 0;
-             iter = icalset_get_next_component(file_ical)) {
-            cnt++;
-            ical = iter; / * last valid component * /
-        }
-        if (cnt == 0) {
-        / * calendar missing, need to add one. 
-         * Note: According to standard rfc2445 calendar always needs to
-         *       contain at least one other component. So strictly speaking
-         *       this is not valid entry before adding an event 
-         * /
-            ical = icalcomponent_vanew(ICAL_VCALENDAR_COMPONENT
-                   , icalproperty_new_version("2.0")
-                   , icalproperty_new_prodid("-//Xfce//Xfcalendar//EN")
-                   , 0);
-            icalset_add_component(file_ical, icalcomponent_new_clone(ical));
-            icalset_commit(file_ical);
-        }
-        else if (cnt > 1) {
-            g_warning("xfical_file_open: Too many top level components in calendar file\n");
-        }
-    }
-    return file_ical;
-}
-
-gboolean xfical_file_open (void)
-{
-    gchar *file_path;
-    file_path = xfce_resource_save_location(XFCE_RESOURCE_CONFIG,
-                    RCDIR G_DIR_SEPARATOR_S APPOINTMENT_FILE, FALSE);
-
-    fical = xfical_internal_file_open (fical, file_path);
-    g_free (file_path);
-    return (TRUE);
-}
-
-gboolean xfical_archive_open (void)
-{
-    gchar *file_path;
-    file_path = xfce_resource_save_location(XFCE_RESOURCE_CONFIG,
-                    RCDIR G_DIR_SEPARATOR_S APPOINTMENT_FILE, FALSE);
-
-    aical = xfical_internal_file_open (aical, file_path);
-    g_free (file_path);
-    return (TRUE);
-}
-*/
 void xfical_file_close(void)
 {
     if(fical == NULL)
@@ -254,6 +198,10 @@ void xfical_file_close(void)
 
 void xfical_archive_close(void)
 {
+
+    if (!aical_path)
+        return;
+
     if(aical == NULL)
         g_warning("xfical_file_close: aical is NULL\n");
     icalset_free(aical);
@@ -1175,18 +1123,12 @@ void xfical_icalcomponent_archive (icalcomponent *e, struct tm *threshold)
 gboolean xfical_keep_tidy(void)
 {
 
-    /* Comment the line below for developping. */
-    return FALSE; 
-    
-
     struct icaltimetype sdate, edate;
     static icalcomponent *c, *e;
     struct tm *threshold;
     time_t t;
-    /*int lookback; /* number of months we want to keep */
-    gboolean recurrence;
 
-    lookback = 1; /* For development purpose; will be taken from MCS in the future */
+    gboolean recurrence;
 
     xfical_archive_open(); /* Create the file ?*/
     xfical_archive_close(); /* Close it, so we may have the file ready to use. Ugly isn't it? FIXME */

@@ -697,6 +697,7 @@ void fill_appt_window(appt_win *appt_w, char *action, char *par)
     appt_type *appt_data=NULL;
     struct tm *t;
     time_t tt;
+    gchar *today;
 
     if (strcmp(action, "NEW") == 0) {
         appt_w->add_appointment = TRUE;
@@ -706,17 +707,25 @@ void fill_appt_window(appt_win *appt_w, char *action, char *par)
   /* par contains XFICAL_APP_DATE_FORMAT (yyyymmdd) date for new appointment */
         tt=time(NULL);
         t=localtime(&tt);
-        if(t->tm_min <= 30){
-            g_sprintf(appt_data->starttime,"%sT%02d%02d00"
-                        , par, t->tm_hour, 30);
-            g_sprintf(appt_data->endtime,"%sT%02d%02d00"
-                        , par, t->tm_hour + 1, 00);
+        today = (gchar *)malloc(9);
+        g_sprintf (today, "%04d%02d%02d", t->tm_year+1900, t->tm_mon+1, t->tm_mday);
+        if (strcmp (appt_w->chosen_date, today) == 0) {
+            if(t->tm_min <= 30){
+                g_sprintf(appt_data->starttime,"%sT%02d%02d00"
+                            , par, t->tm_hour, 30);
+                g_sprintf(appt_data->endtime,"%sT%02d%02d00"
+                            , par, t->tm_hour + 1, 00);
+            }
+            else{
+                g_sprintf(appt_data->starttime,"%sT%02d%02d00"
+                            , par, t->tm_hour + 1, 00);
+                g_sprintf(appt_data->endtime,"%sT%02d%02d00"
+                            , par, t->tm_hour + 1, 30);
+            }
         }
-        else{
-            g_sprintf(appt_data->starttime,"%sT%02d%02d00"
-                        , par, t->tm_hour + 1, 00);
-            g_sprintf(appt_data->endtime,"%sT%02d%02d00"
-                        , par, t->tm_hour + 1, 30);
+        else {
+            g_sprintf(appt_data->starttime,"%sT090000", par);
+            g_sprintf(appt_data->endtime,"%sT093000", par);
         }
         gtk_widget_set_sensitive(appt_w->appDuplicate, FALSE);
         g_message("Building NEW ical uid\n");

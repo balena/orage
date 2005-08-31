@@ -129,7 +129,7 @@ static void cb_SoundApplication_changed(GtkWidget * dialog, gpointer user_data)
     McsPlugin *mcs_plugin = itf->mcs_plugin;
     
     soundAppl = g_strdup(gtk_entry_get_text(GTK_ENTRY(itf->entrySoundApplication)));
-    mcs_manager_set_string(mcs_plugin->manager, "XFcalendar/SoundApplication", CHANNEL, soundAppl);
+    mcs_manager_set_string(mcs_plugin->manager, "XFCalendar/SoundApplication", CHANNEL, soundAppl);
     mcs_manager_notify(mcs_plugin->manager, CHANNEL);
     write_options(mcs_plugin);
 }
@@ -140,7 +140,7 @@ void static cb_entryArchive_changed (GtkWidget * dialog, gpointer user_data)
     McsPlugin *mcs_plugin = itf->mcs_plugin;
 
     archivePath = g_strdup (gtk_entry_get_text (GTK_ENTRY (itf->entryArchive)));
-    mcs_manager_set_string (mcs_plugin->manager, "XFcalendar/ArchiveFile", CHANNEL, archivePath);
+    mcs_manager_set_string (mcs_plugin->manager, "XFCalendar/ArchiveFile", CHANNEL, archivePath);
     mcs_manager_notify (mcs_plugin->manager, CHANNEL);
     write_options (mcs_plugin);
 }
@@ -265,7 +265,7 @@ static void cb_comboboxArchive_changed (GtkComboBox *cb, gpointer user_data)
     if (index == 2)
         archiveLookback = 12;
 */
-    mcs_manager_set_int (mcs_plugin->manager, "XFcalendar/Lookback", CHANNEL, archiveLookback);
+    mcs_manager_set_int (mcs_plugin->manager, "XFCalendar/Lookback", CHANNEL, archiveLookback);
     mcs_manager_notify (mcs_plugin->manager, CHANNEL);
     write_options (mcs_plugin);
 }
@@ -585,7 +585,7 @@ static void create_channel(McsPlugin * mcs_plugin)
         mcs_manager_set_int(mcs_plugin->manager, "XFCalendar/ShowStart", CHANNEL, 1);
     }
 
-    setting = mcs_manager_setting_lookup (mcs_plugin->manager, "XFcalendar/ArchiveFile", CHANNEL);
+    setting = mcs_manager_setting_lookup (mcs_plugin->manager, "XFCalendar/ArchiveFile", CHANNEL);
     if (setting)
     {
         archivePath = (gchar *)malloc(255);
@@ -595,7 +595,7 @@ static void create_channel(McsPlugin * mcs_plugin)
         }
     }
 
-    setting = mcs_manager_setting_lookup (mcs_plugin->manager, "XFcalendar/Lookback", CHANNEL);
+    setting = mcs_manager_setting_lookup (mcs_plugin->manager, "XFCalendar/Lookback", CHANNEL);
     if (setting)
     {
         switch (setting->data.v_int) {
@@ -607,7 +607,7 @@ static void create_channel(McsPlugin * mcs_plugin)
         }      
     }
 
-    setting = mcs_manager_setting_lookup(mcs_plugin->manager, "XFcalendar/SoundApplication", CHANNEL);
+    setting = mcs_manager_setting_lookup(mcs_plugin->manager, "XFCalendar/SoundApplication", CHANNEL);
     if(setting)
     {
         soundAppl = (gchar*)malloc(255);
