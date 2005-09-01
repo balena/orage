@@ -94,8 +94,6 @@ libical_la_SOURCES =		\
 	caldate.c \
 	astime.h 
 
-noinst_HEADERS = ical.h icalmemory.h icalerror.h
-
 # ORDERING OF HEADERS IS SIGNIFICANT. Don't change this ordering. It
 # is required to make the combined header ical.h properly
 # modified for xfce by Juha Kautto 04.03.2005
@@ -129,6 +127,8 @@ COMBINEDHEADERS =					\
 BUILT_COMBINEDHEADERS = 	\
 	icalderivedparameter.h	\
 	icalderivedproperty.h	\
+	icalversion.h		\
+	ical.h			\
 	icalderivedvalue.h
 
 BUILT_SOURCES =			\
@@ -224,16 +224,15 @@ CLEANFILES = $(BUILT_SOURCES) $(BUILT_COMBINEDHEADERS)
 
 dist-hook:
 	cd $(distdir); rm -f $(BUILT_SOURCES)
-	cd $(distdir); rm -f ical.h icalversion.h 
 
-EXTRA_DIST =			\
-	icalderivedparameter.c.in \
-	icalderivedparameter.h.in \
-	icalderivedproperty.c.in \
-	icalderivedproperty.h.in \
-	icalrestriction.c.in	\
-	icalderivedvalue.c.in	\
-	icalderivedvalue.h.in	\
+EXTRA_DIST =				\
+	icalderivedparameter.c.in	\
+	icalderivedparameter.h.in	\
+	icalderivedproperty.c.in	\
+	icalderivedproperty.h.in	\
+	icalrestriction.c.in		\
+	icalderivedvalue.c.in		\
+	icalderivedvalue.h.in		\
 	icalversion.h.in
 
 $(srcdir)/icalcomponent.c: icalderivedvalue.h icalderivedproperty.h icalderivedparameter.h
