@@ -1192,4 +1192,5 @@ gboolean xfical_keep_tidy(void)
         icalset_commit (aical);
         icalset_commit (fical);
     }
+    return(TRUE);
 }
