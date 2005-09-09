@@ -51,7 +51,7 @@
 
 
 #define LEN_BUFFER 1024
-#define CHANNEL  "xfcalendar"
+#define CHANNEL  "orage"
 #define RCDIR    "xfce4" G_DIR_SEPARATOR_S "xfcalendar"
 
 void apply_settings(void);
@@ -321,7 +321,7 @@ void create_mainWin()
 
     xfcal->mAccel_group = gtk_accel_group_new ();
 
-    gtk_window_set_title (GTK_WINDOW(xfcal->mWindow), _("Xfcalendar"));
+    gtk_window_set_title (GTK_WINDOW(xfcal->mWindow), _("Orage"));
     gtk_window_set_position (GTK_WINDOW (xfcal->mWindow), GTK_WIN_POS_NONE);
     gtk_window_set_resizable (GTK_WINDOW (xfcal->mWindow), FALSE);
     gtk_window_set_destroy_with_parent (GTK_WINDOW (xfcal->mWindow), TRUE);

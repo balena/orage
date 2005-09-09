@@ -10,6 +10,7 @@ extern "C" {
  CREATOR: eric 23 December 1999
 
 
+ $Locker$
 
  (C) COPYRIGHT 2000, Eric Busboom, http://www.softwarestudio.org
 
@@ -79,6 +80,7 @@ icalcomponent* icalgauge_new_clone(icalgauge* g, icalcomponent* comp);
 **/
 
 /*
+ $Locker$
 
  (C) COPYRIGHT 2000, Eric Busboom, http://www.softwarestudio.org
 
@@ -249,6 +251,7 @@ icalcomponent* icalsetiter_to_prior(icalset* set, icalsetiter* i);
  CREATOR: eric 23 December 1999
 
 
+ $Locker$
 
  (C) COPYRIGHT 2000, Eric Busboom, http://www.softwarestudio.org
 
@@ -306,6 +309,7 @@ icalcomponent* icalcluster_get_next_component(icalcluster* cluster);
  CREATOR: eric 23 December 1999
 
 
+ $Locker$
 
  (C) COPYRIGHT 2000, Eric Busboom, http://www.softwarestudio.org
 
@@ -434,6 +438,7 @@ extern icalfileset_options icalfileset_options_default;
  CREATOR: eric 28 November 1999
 
 
+ $Locker$
 
  (C) COPYRIGHT 2000, Eric Busboom, http://www.softwarestudio.org
 
@@ -526,6 +531,7 @@ typedef struct icaldirset_options {
  CREATOR: eric 23 December 1999
 
 
+ $Locker$
 
  (C) COPYRIGHT 2000, Eric Busboom, http://www.softwarestudio.org
 
@@ -589,6 +595,7 @@ icalset* icalcalendar_get_freebusy(icalcalendar* calendar);
  CREATOR: eric 21 Aug 2000
 
 
+ $Locker$
 
  (C) COPYRIGHT 2000, Eric Busboom, http://www.softwarestudio.org
 
@@ -630,6 +637,7 @@ char* icalclassify_class_to_string(icalproperty_xlicclass c);
  CREATOR: eric 21 Aug 2000
 
 
+ $Locker$
 
  (C) COPYRIGHT 2000, Eric Busboom, http://www.softwarestudio.org
 
@@ -703,6 +711,7 @@ icalspanlist *icalspanlist_from_vfreebusy(icalcomponent* c);
  CREATOR: eric 07 Nov 2000
 
 
+ $Locker$
 
  (C) COPYRIGHT 2000, Eric Busboom, http://www.softwarestudio.org
 

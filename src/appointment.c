@@ -753,7 +753,7 @@ void fill_appt_window(appt_win *appt_w, char *action, char *par)
 
 	appt_w->xf_uid = g_strdup(appt_data->uid);
 
-    gtk_window_set_title (GTK_WINDOW (appt_w->appWindow), _("New appointment - Xfcalendar"));
+    gtk_window_set_title (GTK_WINDOW (appt_w->appWindow), _("New appointment - Orage"));
     gtk_entry_set_text(GTK_ENTRY(appt_w->appTitle_entry), (appt_data->title ? appt_data->title : ""));
     gtk_entry_set_text(GTK_ENTRY(appt_w->appLocation_entry), (appt_data->location ? appt_data->location : ""));
     if (strlen(appt_data->starttime) > 6 ) {

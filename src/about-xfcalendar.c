@@ -34,7 +34,7 @@ void create_wAbout(GtkWidget *widget, gpointer user_data){
 
   GdkPixbuf *xfcalendar_logo = xfce_themed_icon_load ("xfcalendar", 48);
 
-  XfceAboutInfo *about = xfce_about_info_new("Xfcalendar",
+  XfceAboutInfo *about = xfce_about_info_new("Orage",
 			      VERSION,
 			      _("Manage your time with Xfce4"),
 			      XFCE_COPYRIGHT_TEXT("2003-2005", "Mickael 'Korbinus' Graf"),
@@ -45,7 +45,7 @@ void create_wAbout(GtkWidget *widget, gpointer user_data){
   /* Credits */
   xfce_about_info_add_credit(about,
 			     "Mickael 'Korbinus' Graf",
-			     "korbinus@lunar-linux.org",
+			     "korbinus@xfce.org",
 			     _("Core developer"));
 
   xfce_about_info_add_credit(about,
@@ -66,7 +66,7 @@ void create_wAbout(GtkWidget *widget, gpointer user_data){
   dialog = xfce_about_dialog_new(GTK_WINDOW(xfcal->mWindow), about,
                                  xfcalendar_logo);
 
-  gtk_window_set_default_size(GTK_WINDOW(dialog), 500, 400);
+  gtk_window_set_default_size(GTK_WINDOW(dialog), 400, 400);
   xfce_about_info_free(about);
 
   gtk_dialog_run(GTK_DIALOG(dialog));

@@ -1,6 +1,6 @@
 dnl $Id$
 dnl
-dnl xfcalendar - Calendar application for Xfce
+dnl Orage - Calendar application for Xfce
 dnl
 dnl Copyright (c) 2003-2005
 dnl         The Xfce development team. All rights reserved.
@@ -9,12 +9,12 @@ dnl Written for Xfce by Mickael Graf <korbinus@xfce.org>.
 dnl
 
 dnl Version information
-m4_define([xfcalendar_version_major], [4])
-m4_define([xfcalendar_version_minor], [3])
-m4_define([xfcalendar_version_micro], [1])
-m4_define([xfcalendar_version_nano], [19])  dnl leave this empty to have no nano version
-m4_define([xfcalendar_version_tag], [svn])
-m4_define([xfcalendar_version], [xfcalendar_version_major().xfcalendar_version_minor().xfcalendar_version_micro()ifelse(xfcalendar_version_nano(), [], [], [.xfcalendar_version_nano()])xfcalendar_version_tag()])
+m4_define([orage_version_major], [4])
+m4_define([orage_version_minor], [3])
+m4_define([orage_version_micro], [1])
+m4_define([orage_version_nano], [19])  dnl leave this empty to have no nano version
+m4_define([orage_version_tag], [svn])
+m4_define([orage_version], [orage_version_major().orage_version_minor().orage_version_micro()ifelse(orage_version_nano(), [], [], [.orage_version_nano()])orage_version_tag()])
 
 
 dnl # DO NOT MODIFY ANYTHING BELOW THIS LINE, UNLESS YOU KNOW WHAT
@@ -26,14 +26,14 @@ AC_COPYRIGHT([Copyright (c) 2003-2005
         The Xfce development team. All rights reserved.
 
 Written for Xfce by Mickael Graf <korbinus@xfce.org>.])
-AC_INIT([xfcalendar], [xfcalendar_version()], [xfce4-dev@xfce.org])
+AC_INIT([orage], [orage_version()], [xfce4-dev@xfce.org])
 AC_CANONICAL_SYSTEM()
 AC_PREREQ([2.50])
 AC_REVISION([$Id$])
 
 dnl Initialize automake
-XFCALENDAR_VERSION=xfcalendar_version()
-AM_INIT_AUTOMAKE([xfcalendar], [$XFCALENDAR_VERSION])
+ORAGE_VERSION=orage_version()
+AM_INIT_AUTOMAKE([orage], [$ORAGE_VERSION])
 AM_CONFIG_HEADER([config.h])
 AM_MAINTAINER_MODE()
 
