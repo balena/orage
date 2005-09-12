@@ -133,7 +133,7 @@ on_appTitle_entry_changed_cb(GtkEditable *entry, gpointer user_data)
     appt_win *apptw = (appt_win *)user_data;
 
     appointment_name = gtk_entry_get_text((GtkEntry *)apptw->appTitle_entry);
-    application_name = _("Xfcalendar");
+    application_name = _("Orage");
 
     if(strlen((char *)appointment_name) > 0)
         title = g_strdup_printf("%s - %s", appointment_name, application_name);
