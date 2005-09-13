@@ -981,7 +981,7 @@ appt_win
                       (GtkAttachOptions) (GTK_SHRINK | GTK_FILL),
                       (GtkAttachOptions) (GTK_SHRINK | GTK_FILL));
 
-    appt->appRecurrency = gtk_label_new (_("Recurrency"));
+    appt->appRecurrency = gtk_label_new (_("Recurrence"));
     appt->appRecurrency_cb = gtk_combo_box_new_text ();
     xfcalendar_combo_box_append_array(appt->appRecurrency_cb, recurrency_array, RECURRENCY_ARRAY_DIM);
     xfcalendar_table_add_row (appt->appTableGeneral, appt->appRecurrency, appt->appRecurrency_cb, 5,

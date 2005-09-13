@@ -768,7 +768,7 @@ eventlist_win
     g_signal_connect (el->elTreeView, "row-activated",
             G_CALLBACK(editEvent), el);
 
-    gtk_tooltips_set_tip(el->elTooltips, el->elTreeView, "Double click line to edit it.\n\nFlags in order:\n\t 1. Alarm: n=no alarm\n\t\tA=visual Alarm S=also Sound alarm\n\t 2. Recurrency: n=no recurrency\n\t\t D=Daily W=Weekly M=Monthly\n\t 3. Type: f=free B=Busy", NULL);
+    gtk_tooltips_set_tip(el->elTooltips, el->elTreeView, "Double click line to edit it.\n\nFlags in order:\n\t 1. Alarm: n=no alarm\n\t\tA=visual Alarm S=also Sound alarm\n\t 2. Recurrence: n=no recurrence\n\t\t D=Daily W=Weekly M=Monthly\n\t 3. Type: f=free B=Busy", NULL);
 
     g_signal_connect((gpointer)el->elWindow, "delete_event",
                       G_CALLBACK(on_elWindow_delete_event), el);
