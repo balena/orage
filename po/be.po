@@ -1,94 +1,345 @@
-# translation of xfcalendar.po to Belarusian
-# This file is distributed under the same license as the PACKAGE package.
-# Copyright (C) 2004 THE PACKAGE'S COPYRIGHT HOLDER.
+# translation of orage.po to Belarusian.
+# Copyright (C) 2003-2005 The Xfce development team.
+# This file is distributed under the same license as the orage package.
 # Ales Nyakhaychyk <nab@mail.by>, 2004.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: xfcalendar\n"
+"Project-Id-Version: orage 4.3.1.20svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-27 13:15+0100\n"
-"PO-Revision-Date: 2004-09-12 03:05+0300\n"
+"POT-Creation-Date: 2005-09-14 05:10+0900\n"
+"PO-Revision-Date: 2005-09-14 01:39+0900\n"
 "Last-Translator: Ales Nyakhaychyk <nab@mail.by>\n"
 "Language-Team: Belarusian <i18n@mova.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: plugin/xfcalendar_plugin.c:148 plugin/xfcalendar_plugin.c:159
-#: plugin/xfcalendar_plugin.c:245 src/mainbox.c:383
-msgid "Xfcalendar"
+#. Create file chooser
+#: ../plugin/xfcalendar_plugin.c:218 ../src/appointment.c:213
+#: ../src/mainbox.c:118
+msgid "Select a file..."
+msgstr ""
+
+#: ../plugin/xfcalendar_plugin.c:226 ../src/mainbox.c:126
+#, fuzzy
+msgid "Calendar files"
 msgstr "Каляндар"
 
-#.
-#: plugin/xfcalendar_plugin.c:174
+#: ../plugin/xfcalendar_plugin.c:229 ../src/appointment.c:227
+#: ../src/mainbox.c:129
+msgid "All Files"
+msgstr ""
+
+#: ../plugin/xfcalendar_plugin.c:285 ../plugin/xfcalendar_plugin.c:296
+#, fuzzy
+msgid "Orage Preferences"
+msgstr "Перавагі"
+
+#. Mode normal or compact
+#: ../plugin/xfcalendar_plugin.c:311
 msgid "Mode"
 msgstr "Рэжым"
 
-#: plugin/xfcalendar_plugin.c:182
+#: ../plugin/xfcalendar_plugin.c:319
 msgid "Normal"
 msgstr "Звычайны"
 
-#: plugin/xfcalendar_plugin.c:189
+#: ../plugin/xfcalendar_plugin.c:326
 msgid "Compact"
 msgstr "Сьціснуты"
 
-#: src/about-xfcalendar.c:39
+#. Show in... taskbar pager systray
+#: ../plugin/xfcalendar_plugin.c:334
+msgid "Show the calendar window in..."
+msgstr ""
+
+#: ../plugin/xfcalendar_plugin.c:343
+msgid "Taskbar"
+msgstr ""
+
+#: ../plugin/xfcalendar_plugin.c:348
+msgid "Pager"
+msgstr ""
+
+#: ../plugin/xfcalendar_plugin.c:353
+msgid "Systray"
+msgstr ""
+
+#.
+#: ../plugin/xfcalendar_plugin.c:359
+msgid "Visibility when starting..."
+msgstr ""
+
+#: ../plugin/xfcalendar_plugin.c:368
+msgid "Show"
+msgstr ""
+
+#: ../plugin/xfcalendar_plugin.c:375
+msgid "Hide"
+msgstr ""
+
+#: ../plugin/xfcalendar_plugin.c:382
+msgid "Minimized"
+msgstr ""
+
+#. Archive file and periodicity
+#: ../plugin/xfcalendar_plugin.c:390
+msgid "Archiving..."
+msgstr ""
+
+#: ../plugin/xfcalendar_plugin.c:402
+msgid "Archive file"
+msgstr ""
+
+#: ../plugin/xfcalendar_plugin.c:422
+msgid "Archive items older than"
+msgstr ""
+
+#: ../plugin/xfcalendar_plugin.c:430
+msgid "3 months"
+msgstr ""
+
+#: ../plugin/xfcalendar_plugin.c:431
+msgid "6 months"
+msgstr ""
+
+#: ../plugin/xfcalendar_plugin.c:432
+msgid "1 year"
+msgstr ""
+
+#. Choose a sound application for reminders
+#: ../plugin/xfcalendar_plugin.c:447
+msgid "Play sounds with..."
+msgstr ""
+
+#: ../plugin/xfcalendar_plugin.c:456
+msgid "Application"
+msgstr ""
+
+#: ../plugin/xfcalendar_plugin.c:500 ../src/appointment.c:136
+#: ../src/mainbox.c:324
+msgid "Orage"
+msgstr ""
+
+#: ../src/about-xfcalendar.c:39
 msgid "Manage your time with Xfce4"
 msgstr "Кіруйце вашым часам разам з Xfce4"
 
-#: src/about-xfcalendar.c:49
+#: ../src/about-xfcalendar.c:49
 msgid "Core developer"
 msgstr "Асноўны распрацоўнік"
 
-#: src/about-xfcalendar.c:54 src/about-xfcalendar.c:59
+#: ../src/about-xfcalendar.c:54 ../src/about-xfcalendar.c:59
+#: ../src/about-xfcalendar.c:64
 msgid "Contributor"
 msgstr "Укладальнік"
 
-#: src/callbacks.c:251
-msgid "Question"
+#: ../src/appointment.c:117 ../src/appointment.c:317 ../src/appointment.c:649
+msgid "%m/%d/%Y"
 msgstr ""
 
-#: src/callbacks.c:260
-msgid ""
-"\n"
-"The information has been modified.\n"
-" Do you want to continue ?\n"
+#: ../src/appointment.c:221
+msgid "Sound Files"
 msgstr ""
 
-#: src/interface.c:56
-msgid "Appointment"
-msgstr "Прызначэньне"
-
-#: src/interface.c:78
-msgid "Save (Ctrl+s)"
-msgstr "Захаваць (Ctrl+s)"
-
-#: src/interface.c:91
-msgid "Previous day (Ctrl+p)"
-msgstr "Папярэдні дзень (Ctrl+p)"
-
-#: src/interface.c:102
-msgid "Today (Alt+Home)"
-msgstr "Сёньня (Alt+Home)"
-
-#: src/interface.c:114
-msgid "Next day (Ctrl+n)"
-msgstr "Наступны дзень  (Ctrl+n)"
-
-#: src/interface.c:127
-msgid "Close (Ctrl+w)"
-msgstr "Зачыніць (Ctrl+w)"
-
-#: src/interface.c:138
-msgid "Clear (Ctrl+l)"
-msgstr "Ачысьціць (Ctrl+l)"
-
-#: src/interface.c:208
+#: ../src/appointment.c:278 ../src/appointment.c:414 ../src/appointment.c:425
+#: ../src/appointment.c:561 ../src/event-list.c:586
 msgid "Warning"
 msgstr "Увага"
 
-#: src/interface.c:225
+#: ../src/appointment.c:280
+msgid "The appointment information has been modified."
+msgstr ""
+
+#: ../src/appointment.c:281 ../src/appointment.c:564 ../src/event-list.c:589
+msgid "Do you want to continue?"
+msgstr ""
+
+#: ../src/appointment.c:416
+msgid "The end of this appointment is earlier than the beginning."
+msgstr ""
+
+#: ../src/appointment.c:427
+msgid "A time value is wrong."
+msgstr ""
+
+#: ../src/appointment.c:428
+msgid "Time values must be written 'hh:mm', for instance '09:36' or '15:23'."
+msgstr ""
+
+#: ../src/appointment.c:563
+msgid "This appointment will be permanently removed."
+msgstr ""
+
+#: ../src/appointment.c:654 ../src/event-list.c:700 ../src/tray_icon.c:107
+msgid "Today"
+msgstr "Сёньня"
+
+#: ../src/appointment.c:756
+#, fuzzy
+msgid "New appointment - Orage"
+msgstr "Прызначэньне"
+
+#: ../src/appointment.c:848
+msgid "Free"
+msgstr ""
+
+#: ../src/appointment.c:848
+msgid "Busy"
+msgstr ""
+
+#: ../src/appointment.c:849 ../src/appointment.c:850
+msgid "None"
+msgstr ""
+
+#: ../src/appointment.c:849
+msgid "Daily"
+msgstr ""
+
+#: ../src/appointment.c:849
+msgid "Weekly"
+msgstr ""
+
+#: ../src/appointment.c:849
+msgid "Monthly"
+msgstr ""
+
+#: ../src/appointment.c:850
+msgid "5 minutes"
+msgstr ""
+
+#: ../src/appointment.c:850
+msgid "15 minutes"
+msgstr ""
+
+#: ../src/appointment.c:850
+msgid "30 minutes"
+msgstr ""
+
+#: ../src/appointment.c:851
+msgid "45 minutes"
+msgstr ""
+
+#: ../src/appointment.c:851
+msgid "1 hour"
+msgstr ""
+
+#: ../src/appointment.c:851
+msgid "2 hours"
+msgstr ""
+
+#: ../src/appointment.c:851
+msgid "4 hours"
+msgstr ""
+
+#: ../src/appointment.c:852
+msgid "8 hours"
+msgstr ""
+
+#: ../src/appointment.c:852
+msgid "1 day"
+msgstr ""
+
+#: ../src/appointment.c:852
+msgid "2 days"
+msgstr ""
+
+#. File menu stuff
+#. File menu
+#: ../src/appointment.c:885 ../src/event-list.c:656 ../src/mainbox.c:347
+msgid "_File"
+msgstr "_Файл"
+
+#: ../src/appointment.c:889
+msgid "Sav_e and close"
+msgstr ""
+
+#. add event copying and day cleaning
+#: ../src/appointment.c:896 ../src/event-list.c:662
+msgid "D_uplicate"
+msgstr ""
+
+#. Add buttons to the toolbar
+#: ../src/appointment.c:916
+msgid "Save"
+msgstr ""
+
+#: ../src/appointment.c:918 ../src/appointment.c:919
+msgid "Save and close"
+msgstr ""
+
+#: ../src/appointment.c:924
+msgid "Revert"
+msgstr ""
+
+#: ../src/appointment.c:926 ../src/appointment.c:927 ../src/event-list.c:708
+msgid "Duplicate"
+msgstr ""
+
+#: ../src/appointment.c:931
+msgid "Delete"
+msgstr ""
+
+#: ../src/appointment.c:942
+msgid "General"
+msgstr ""
+
+#: ../src/appointment.c:951
+msgid "Title "
+msgstr ""
+
+#: ../src/appointment.c:957
+msgid "Location"
+msgstr ""
+
+#: ../src/appointment.c:963
+msgid "All day event"
+msgstr ""
+
+#: ../src/appointment.c:968
+msgid "Start"
+msgstr ""
+
+#: ../src/appointment.c:976
+msgid "End"
+msgstr ""
+
+#: ../src/appointment.c:984
+msgid "Recurrence"
+msgstr ""
+
+#: ../src/appointment.c:991
+msgid "Availability"
+msgstr ""
+
+#: ../src/appointment.c:998
+msgid "Note"
+msgstr ""
+
+#: ../src/appointment.c:1030 ../src/appointment.c:1039
+msgid "Alarm"
+msgstr ""
+
+#: ../src/appointment.c:1046
+msgid "Sound"
+msgstr ""
+
+#: ../src/appointment.c:1057
+msgid "Repeat alarm sound"
+msgstr ""
+
+#. date only appointment
+#: ../src/event-list.c:200
+#, fuzzy
+msgid "today"
+msgstr "Сёньня"
+
+#: ../src/event-list.c:275 ../src/event-list.c:742
+msgid "Time"
+msgstr ""
+
+#: ../src/event-list.c:588
 msgid ""
 "You will remove all information \n"
 "associated with this date."
@@ -96,96 +347,179 @@ msgstr ""
 "Вы выдаліце ўсе зьвесткі,\n"
 "зьвязаныя з гэтай датай."
 
-#. File menu
-#: src/mainbox.c:413
-msgid "_File"
-msgstr "_Файл"
+#. View menu
+#: ../src/event-list.c:675 ../src/mainbox.c:369
+msgid "_View"
+msgstr ""
 
-#: src/mainbox.c:422
-msgid "_Close window"
-msgstr "За_чыніць вакно"
+#. Go menu
+#: ../src/event-list.c:680
+msgid "_Go"
+msgstr ""
 
-#. Settings menu
-#: src/mainbox.c:439
-msgid "_Settings"
-msgstr "Выс_таўленьні"
+#: ../src/event-list.c:695
+msgid "New"
+msgstr ""
 
-#: src/mainbox.c:448
-msgid "_Preferences"
-msgstr "_Перавагі"
+#: ../src/event-list.c:698
+msgid "Back"
+msgstr ""
 
-#: src/mainbox.c:459
+#: ../src/event-list.c:702
+msgid "Forward"
+msgstr ""
+
+#: ../src/event-list.c:704
+msgid "Refresh"
+msgstr ""
+
+#: ../src/event-list.c:710
+msgid "Close"
+msgstr ""
+
+#: ../src/event-list.c:712
+msgid "Clear"
+msgstr "Ачысьціць"
+
+#: ../src/event-list.c:750
+msgid "Flags"
+msgstr ""
+
+#: ../src/event-list.c:756
+msgid "Title"
+msgstr ""
+
+#: ../src/event-list.c:762
+msgid "uid"
+msgstr ""
+
+#: ../src/functions.c:76
+msgid "  "
+msgstr ""
+
+#: ../src/ical-code.c:317
+msgid "Xfcalendar default alarm"
+msgstr ""
+
+#: ../src/mainbox.c:354
+msgid "Open archive file..."
+msgstr ""
+
+#: ../src/mainbox.c:355
+msgid "Close archive file"
+msgstr ""
+
+#. Edit menu
+#: ../src/mainbox.c:364
+msgid "_Edit"
+msgstr ""
+
+#: ../src/mainbox.c:371
+msgid "View selected _date"
+msgstr ""
+
+#: ../src/mainbox.c:375
 msgid "Select _Today"
 msgstr "Вылучыць _сёньня"
 
 #. Help menu
-#: src/mainbox.c:466
+#: ../src/mainbox.c:378
 msgid "_Help"
 msgstr "_Даведка"
 
-#: src/mainbox.c:475
-msgid "_About"
-msgstr "_Пра каляндар"
-
-#: src/main.c:135
+#: ../src/main.c:165
 msgid "This should not happen"
 msgstr "Гэта не павінна было здарыцца"
 
-#: src/main.c:390
+#: ../src/main.c:448
 msgid "Cannot create MCS client channel"
 msgstr "Немагчыма стварыць кліенцкі MCS канал"
 
-#: src/reminder.c:56 src/reminder.c:64
-msgid "Reminder"
+#: ../src/reminder.c:163
+#, fuzzy
+msgid "Reminder "
 msgstr "Нагадвальнік"
 
-#: src/support.c:91 src/support.c:115
-#, c-format
-msgid "Couldn't find pixmap file: %s"
-msgstr "Немагчыма адшукаць відарыс: %s"
+#: ../src/tray_icon.c:117
+#, fuzzy
+msgid "New appointment"
+msgstr "Прызначэньне"
 
-#: src/tray_icon.c:95
-msgid "Today"
-msgstr "Сёньня"
-
-#: src/tray_icon.c:105
+#: ../src/tray_icon.c:126
 msgid "Preferences"
 msgstr "Перавагі"
 
-#: src/tray_icon.c:114
+#: ../src/tray_icon.c:135
 msgid "About Xfcalendar"
 msgstr "Аб календары"
 
-#: xfcalendar.desktop.in.h:1
+#: ../xfcalendar.desktop.in.h:1
 #, fuzzy
 msgid "Calendar"
 msgstr "Каляндар"
 
-#: xfcalendar.desktop.in.h:2
+#: ../xfcalendar.desktop.in.h:2
 #, fuzzy
 msgid "Desktop calendar"
 msgstr "Аб календары"
 
-#: xfcalendar.desktop.in.h:3
+#: ../xfcalendar.desktop.in.h:3
 #, fuzzy
 msgid "Xfce Calendar"
 msgstr "Каляндар"
 
-#: plugin/xfce-xfcalendar-settings.desktop.in.h:1
+#: ../plugin/xfce-xfcalendar-settings.desktop.in.h:1
 #, fuzzy
 msgid "Calendar Settings"
 msgstr "Выс_таўленьні"
 
-#: plugin/xfce-xfcalendar-settings.desktop.in.h:2
+#: ../plugin/xfce-xfcalendar-settings.desktop.in.h:2
 msgid "Settings for the Xfce 4 Calendar Application"
 msgstr ""
 
-#: plugin/xfce-xfcalendar-settings.desktop.in.h:3
+#: ../plugin/xfce-xfcalendar-settings.desktop.in.h:3
 msgid "Xfce 4 Calendar Settings"
 msgstr ""
 
-#~ msgid "Clear"
-#~ msgstr "Ачысьціць"
+#, fuzzy
+#~ msgid "Xfcalendar Preferences"
+#~ msgstr "Перавагі"
+
+#~ msgid "Xfcalendar"
+#~ msgstr "Каляндар"
+
+#~ msgid "Save (Ctrl+s)"
+#~ msgstr "Захаваць (Ctrl+s)"
+
+#~ msgid "Previous day (Ctrl+p)"
+#~ msgstr "Папярэдні дзень (Ctrl+p)"
+
+#~ msgid "Today (Alt+Home)"
+#~ msgstr "Сёньня (Alt+Home)"
+
+#~ msgid "Next day (Ctrl+n)"
+#~ msgstr "Наступны дзень  (Ctrl+n)"
+
+#~ msgid "Close (Ctrl+w)"
+#~ msgstr "Зачыніць (Ctrl+w)"
+
+#~ msgid "Clear (Ctrl+l)"
+#~ msgstr "Ачысьціць (Ctrl+l)"
+
+#~ msgid "_Close window"
+#~ msgstr "За_чыніць вакно"
+
+#~ msgid "_Settings"
+#~ msgstr "Выс_таўленьні"
+
+#~ msgid "_Preferences"
+#~ msgstr "_Перавагі"
+
+#~ msgid "_About"
+#~ msgstr "_Пра каляндар"
+
+#~ msgid "Couldn't find pixmap file: %s"
+#~ msgstr "Немагчыма адшукаць відарыс: %s"
 
 #~ msgid ""
 #~ "XFCalendar\n"

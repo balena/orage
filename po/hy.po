@@ -1,131 +1,350 @@
-# translation of xfcalendar.hy.po to 
-# Xfce translations xfcalendar.hy.po
-# Copyright (C) 2005 Norayr Chilingaryan
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <norik@oric.org>, 2005.
+# Armenian translations for orage package.
+# Copyright (C) 2003-2005 The Xfce development team.
+# This file is distributed under the same license as the orage package.
+# Norayr Chilingaryan <norik@oric.org>, 2005.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: xfcalendar.hy\n"
-"Report-Msgid-Bugs-To: norik@oric.org\n"
-"POT-Creation-Date: 2005-03-14 19:06+0100\n"
-"PO-Revision-Date: 2005-08-04 17:28+0500\n"
-"Last-Translator: \n"
-"Language-Team:  <en@li.org>\n"
+"Project-Id-Version: orage 4.3.1.20svn\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2005-09-14 05:10+0900\n"
+"PO-Revision-Date: 2005-09-14 01:01+0900\n"
+"Last-Translator: Norayr Chilingaryan <norik@oric.org>\n"
+"Language-Team: Armenian\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.9.1\n"
 
-#: plugin/xfcalendar_plugin.c:175 plugin/xfcalendar_plugin.c:186
-#: plugin/xfcalendar_plugin.c:300 src/mainbox.c:374
-msgid "Xfcalendar"
+#. Create file chooser
+#: ../plugin/xfcalendar_plugin.c:218 ../src/appointment.c:213
+#: ../src/mainbox.c:118
+msgid "Select a file..."
+msgstr ""
+
+#: ../plugin/xfcalendar_plugin.c:226 ../src/mainbox.c:126
+#, fuzzy
+msgid "Calendar files"
 msgstr "Xfօրացույց"
 
-#.
-#: plugin/xfcalendar_plugin.c:201
+#: ../plugin/xfcalendar_plugin.c:229 ../src/appointment.c:227
+#: ../src/mainbox.c:129
+msgid "All Files"
+msgstr ""
+
+#: ../plugin/xfcalendar_plugin.c:285 ../plugin/xfcalendar_plugin.c:296
+#, fuzzy
+msgid "Orage Preferences"
+msgstr "Նախընտրանքներ"
+
+#. Mode normal or compact
+#: ../plugin/xfcalendar_plugin.c:311
 msgid "Mode"
 msgstr "ռեժիմ"
 
-#: plugin/xfcalendar_plugin.c:209
+#: ../plugin/xfcalendar_plugin.c:319
 msgid "Normal"
 msgstr "Նորմալ"
 
-#: plugin/xfcalendar_plugin.c:216
+#: ../plugin/xfcalendar_plugin.c:326
 msgid "Compact"
 msgstr "Հակիրճ"
 
-#.
-#: plugin/xfcalendar_plugin.c:224
-#, fuzzy
-msgid "Show in..."
-msgstr "Ցուցադրել"
+#. Show in... taskbar pager systray
+#: ../plugin/xfcalendar_plugin.c:334
+msgid "Show the calendar window in..."
+msgstr ""
 
-#: plugin/xfcalendar_plugin.c:232
+#: ../plugin/xfcalendar_plugin.c:343
 msgid "Taskbar"
 msgstr "Վահանակ"
 
-#: plugin/xfcalendar_plugin.c:237
+#: ../plugin/xfcalendar_plugin.c:348
 msgid "Pager"
 msgstr "Փեյջեր"
 
-#: plugin/xfcalendar_plugin.c:242
+#: ../plugin/xfcalendar_plugin.c:353
 msgid "Systray"
 msgstr "Թրեյ"
 
 #.
-#: plugin/xfcalendar_plugin.c:248
-msgid "Start visibility"
-msgstr "Միացնել տեսանելիությունը"
+#: ../plugin/xfcalendar_plugin.c:359
+msgid "Visibility when starting..."
+msgstr ""
 
-#: plugin/xfcalendar_plugin.c:256
+#: ../plugin/xfcalendar_plugin.c:368
 msgid "Show"
 msgstr "Ցուցադրել"
 
-#: plugin/xfcalendar_plugin.c:263
+#: ../plugin/xfcalendar_plugin.c:375
 msgid "Hide"
 msgstr "Թաքցնել"
 
-#: src/about-xfcalendar.c:39
+#: ../plugin/xfcalendar_plugin.c:382
+msgid "Minimized"
+msgstr ""
+
+#. Archive file and periodicity
+#: ../plugin/xfcalendar_plugin.c:390
+msgid "Archiving..."
+msgstr ""
+
+#: ../plugin/xfcalendar_plugin.c:402
+msgid "Archive file"
+msgstr ""
+
+#: ../plugin/xfcalendar_plugin.c:422
+msgid "Archive items older than"
+msgstr ""
+
+#: ../plugin/xfcalendar_plugin.c:430
+msgid "3 months"
+msgstr ""
+
+#: ../plugin/xfcalendar_plugin.c:431
+msgid "6 months"
+msgstr ""
+
+#: ../plugin/xfcalendar_plugin.c:432
+msgid "1 year"
+msgstr ""
+
+#. Choose a sound application for reminders
+#: ../plugin/xfcalendar_plugin.c:447
+msgid "Play sounds with..."
+msgstr ""
+
+#: ../plugin/xfcalendar_plugin.c:456
+msgid "Application"
+msgstr ""
+
+#: ../plugin/xfcalendar_plugin.c:500 ../src/appointment.c:136
+#: ../src/mainbox.c:324
+msgid "Orage"
+msgstr ""
+
+#: ../src/about-xfcalendar.c:39
 msgid "Manage your time with Xfce4"
 msgstr "Կառավարեք Ձեր ժամանակը Xfce4 միջավայրի օգնությամբ"
 
-#: src/about-xfcalendar.c:49
+#: ../src/about-xfcalendar.c:49
 msgid "Core developer"
 msgstr "Հիմնական մշակող"
 
-#: src/about-xfcalendar.c:54 src/about-xfcalendar.c:59
-#: src/about-xfcalendar.c:64
+#: ../src/about-xfcalendar.c:54 ../src/about-xfcalendar.c:59
+#: ../src/about-xfcalendar.c:64
 msgid "Contributor"
 msgstr "Աջակցող"
 
-#: src/callbacks.c:229
-msgid "Question"
-msgstr "Հարց"
+#: ../src/appointment.c:117 ../src/appointment.c:317 ../src/appointment.c:649
+msgid "%m/%d/%Y"
+msgstr ""
 
-#: src/callbacks.c:238
-msgid ""
-"\n"
-"The information has been modified.\n"
-" Do you want to continue ?\n"
+#: ../src/appointment.c:221
+msgid "Sound Files"
+msgstr ""
+
+#: ../src/appointment.c:278 ../src/appointment.c:414 ../src/appointment.c:425
+#: ../src/appointment.c:561 ../src/event-list.c:586
+msgid "Warning"
+msgstr "Նախազգուշացում"
+
+#: ../src/appointment.c:280
+#, fuzzy
+msgid "The appointment information has been modified."
 msgstr ""
 "\n"
 "Տեղեկությունները փոփոխվել են։\n"
 " Ցանկանու՞մ եք շարունակել\n"
 
-#: src/interface.c:56
-msgid "Appointment"
+#: ../src/appointment.c:281 ../src/appointment.c:564 ../src/event-list.c:589
+msgid "Do you want to continue?"
+msgstr ""
+
+#: ../src/appointment.c:416
+msgid "The end of this appointment is earlier than the beginning."
+msgstr ""
+
+#: ../src/appointment.c:427
+msgid "A time value is wrong."
+msgstr ""
+
+#: ../src/appointment.c:428
+msgid "Time values must be written 'hh:mm', for instance '09:36' or '15:23'."
+msgstr ""
+
+#: ../src/appointment.c:563
+msgid "This appointment will be permanently removed."
+msgstr ""
+
+#: ../src/appointment.c:654 ../src/event-list.c:700 ../src/tray_icon.c:107
+msgid "Today"
+msgstr "Այսոր"
+
+#: ../src/appointment.c:756
+#, fuzzy
+msgid "New appointment - Orage"
 msgstr "Տեսաքցություն"
 
-#: src/interface.c:78
-msgid "Save (Ctrl+s)"
-msgstr "Հիշել (Ctrl+s)"
+#: ../src/appointment.c:848
+msgid "Free"
+msgstr ""
 
-#: src/interface.c:91
-msgid "Previous day (Ctrl+p)"
-msgstr "Նախորդ օրը (Ctrl+p)"
+#: ../src/appointment.c:848
+msgid "Busy"
+msgstr ""
 
-#: src/interface.c:102
-msgid "Today (Alt+Home)"
-msgstr "Այսոր (Alt+Home)"
+#: ../src/appointment.c:849 ../src/appointment.c:850
+msgid "None"
+msgstr ""
 
-#: src/interface.c:114
-msgid "Next day (Ctrl+n)"
-msgstr "Հաջորդ օրը (Ctrl+n)"
+#: ../src/appointment.c:849
+msgid "Daily"
+msgstr ""
 
-#: src/interface.c:127
-msgid "Close (Ctrl+w)"
-msgstr "Փակել (Ctrl+w)"
+#: ../src/appointment.c:849
+msgid "Weekly"
+msgstr ""
 
-#: src/interface.c:138
-msgid "Clear (Ctrl+l)"
-msgstr "Մաքրել (Ctrl+l)"
+#: ../src/appointment.c:849
+msgid "Monthly"
+msgstr ""
 
-#: src/interface.c:208
-msgid "Warning"
-msgstr "Նախազգուշացում"
+#: ../src/appointment.c:850
+msgid "5 minutes"
+msgstr ""
 
-#: src/interface.c:225
+#: ../src/appointment.c:850
+msgid "15 minutes"
+msgstr ""
+
+#: ../src/appointment.c:850
+msgid "30 minutes"
+msgstr ""
+
+#: ../src/appointment.c:851
+msgid "45 minutes"
+msgstr ""
+
+#: ../src/appointment.c:851
+msgid "1 hour"
+msgstr ""
+
+#: ../src/appointment.c:851
+msgid "2 hours"
+msgstr ""
+
+#: ../src/appointment.c:851
+msgid "4 hours"
+msgstr ""
+
+#: ../src/appointment.c:852
+msgid "8 hours"
+msgstr ""
+
+#: ../src/appointment.c:852
+msgid "1 day"
+msgstr ""
+
+#: ../src/appointment.c:852
+msgid "2 days"
+msgstr ""
+
+#. File menu stuff
+#. File menu
+#: ../src/appointment.c:885 ../src/event-list.c:656 ../src/mainbox.c:347
+msgid "_File"
+msgstr "_Ֆայլ"
+
+#: ../src/appointment.c:889
+msgid "Sav_e and close"
+msgstr ""
+
+#. add event copying and day cleaning
+#: ../src/appointment.c:896 ../src/event-list.c:662
+msgid "D_uplicate"
+msgstr ""
+
+#. Add buttons to the toolbar
+#: ../src/appointment.c:916
+msgid "Save"
+msgstr ""
+
+#: ../src/appointment.c:918 ../src/appointment.c:919
+msgid "Save and close"
+msgstr ""
+
+#: ../src/appointment.c:924
+msgid "Revert"
+msgstr ""
+
+#: ../src/appointment.c:926 ../src/appointment.c:927 ../src/event-list.c:708
+msgid "Duplicate"
+msgstr ""
+
+#: ../src/appointment.c:931
+msgid "Delete"
+msgstr ""
+
+#: ../src/appointment.c:942
+msgid "General"
+msgstr ""
+
+#: ../src/appointment.c:951
+msgid "Title "
+msgstr ""
+
+#: ../src/appointment.c:957
+msgid "Location"
+msgstr ""
+
+#: ../src/appointment.c:963
+msgid "All day event"
+msgstr ""
+
+#: ../src/appointment.c:968
+msgid "Start"
+msgstr ""
+
+#: ../src/appointment.c:976
+msgid "End"
+msgstr ""
+
+#: ../src/appointment.c:984
+msgid "Recurrence"
+msgstr ""
+
+#: ../src/appointment.c:991
+msgid "Availability"
+msgstr ""
+
+#: ../src/appointment.c:998
+msgid "Note"
+msgstr ""
+
+#: ../src/appointment.c:1030 ../src/appointment.c:1039
+msgid "Alarm"
+msgstr ""
+
+#: ../src/appointment.c:1046
+msgid "Sound"
+msgstr ""
+
+#: ../src/appointment.c:1057
+msgid "Repeat alarm sound"
+msgstr ""
+
+#. date only appointment
+#: ../src/event-list.c:200
+#, fuzzy
+msgid "today"
+msgstr "Այսոր"
+
+#: ../src/event-list.c:275 ../src/event-list.c:742
+msgid "Time"
+msgstr ""
+
+#: ../src/event-list.c:588
 msgid ""
 "You will remove all information \n"
 "associated with this date."
@@ -133,63 +352,183 @@ msgstr ""
 "Դուք հեռացնելու եք այս  ամսաթվի հետ \n"
 "կապված բոլոր տեղեկությունները։"
 
-#. File menu
-#: src/mainbox.c:404
-msgid "_File"
-msgstr "_Ֆայլ"
+#. View menu
+#: ../src/event-list.c:675 ../src/mainbox.c:369
+msgid "_View"
+msgstr ""
 
-#: src/mainbox.c:413
-msgid "_Close window"
-msgstr "_Փակել պատուհանը"
+#. Go menu
+#: ../src/event-list.c:680
+msgid "_Go"
+msgstr ""
 
-#. Settings menu
-#: src/mainbox.c:430
-msgid "_Settings"
-msgstr "_Կարգավորումներ"
+#: ../src/event-list.c:695
+msgid "New"
+msgstr ""
 
-#: src/mainbox.c:439
-msgid "_Preferences"
-msgstr "_Նախըտրանքներ"
+#: ../src/event-list.c:698
+msgid "Back"
+msgstr ""
 
-#: src/mainbox.c:450
+#: ../src/event-list.c:702
+msgid "Forward"
+msgstr ""
+
+#: ../src/event-list.c:704
+msgid "Refresh"
+msgstr ""
+
+#: ../src/event-list.c:710
+msgid "Close"
+msgstr ""
+
+#: ../src/event-list.c:712
+msgid "Clear"
+msgstr ""
+
+#: ../src/event-list.c:750
+msgid "Flags"
+msgstr ""
+
+#: ../src/event-list.c:756
+msgid "Title"
+msgstr ""
+
+#: ../src/event-list.c:762
+msgid "uid"
+msgstr ""
+
+#: ../src/functions.c:76
+msgid "  "
+msgstr ""
+
+#: ../src/ical-code.c:317
+msgid "Xfcalendar default alarm"
+msgstr ""
+
+#: ../src/mainbox.c:354
+msgid "Open archive file..."
+msgstr ""
+
+#: ../src/mainbox.c:355
+msgid "Close archive file"
+msgstr ""
+
+#. Edit menu
+#: ../src/mainbox.c:364
+msgid "_Edit"
+msgstr ""
+
+#: ../src/mainbox.c:371
+msgid "View selected _date"
+msgstr ""
+
+#: ../src/mainbox.c:375
 msgid "Select _Today"
 msgstr "Ընտրել _Այսոր"
 
 #. Help menu
-#: src/mainbox.c:457
+#: ../src/mainbox.c:378
 msgid "_Help"
 msgstr "_Ձեռնարկ"
 
-#: src/mainbox.c:466
-msgid "_About"
-msgstr "_Ծրագրի մասին"
-
-#: src/main.c:127
+#: ../src/main.c:165
 msgid "This should not happen"
 msgstr "Դա պետք է չվիճակվի"
 
-#: src/main.c:390
+#: ../src/main.c:448
 msgid "Cannot create MCS client channel"
 msgstr "Հնարավոր չէ ստեղծել MCS հաճախորդ ուղի"
 
-#: src/reminder.c:56 src/reminder.c:64
-msgid "Reminder"
+#: ../src/reminder.c:163
+#, fuzzy
+msgid "Reminder "
 msgstr "Հուշիչ"
 
-#: src/support.c:91 src/support.c:115
-#, c-format
-msgid "Couldn't find pixmap file: %s"
-msgstr "Հնարավոր չէ գտնել փիքսմափ ֆայլը՝ %s"
+#: ../src/tray_icon.c:117
+#, fuzzy
+msgid "New appointment"
+msgstr "Տեսաքցություն"
 
-#: src/tray_icon.c:95
-msgid "Today"
-msgstr "Այսոր"
-
-#: src/tray_icon.c:105
+#: ../src/tray_icon.c:126
 msgid "Preferences"
 msgstr "Նախընտրանքներ"
 
-#: src/tray_icon.c:114
+#: ../src/tray_icon.c:135
 msgid "About Xfcalendar"
 msgstr "Xfcalendar Ծրագրի մասին"
 
+#: ../xfcalendar.desktop.in.h:1
+#, fuzzy
+msgid "Calendar"
+msgstr "Xfօրացույց"
+
+#: ../xfcalendar.desktop.in.h:2
+#, fuzzy
+msgid "Desktop calendar"
+msgstr "Xfcalendar Ծրագրի մասին"
+
+#: ../xfcalendar.desktop.in.h:3
+#, fuzzy
+msgid "Xfce Calendar"
+msgstr "Xfօրացույց"
+
+#: ../plugin/xfce-xfcalendar-settings.desktop.in.h:1
+#, fuzzy
+msgid "Calendar Settings"
+msgstr "_Կարգավորումներ"
+
+#: ../plugin/xfce-xfcalendar-settings.desktop.in.h:2
+msgid "Settings for the Xfce 4 Calendar Application"
+msgstr ""
+
+#: ../plugin/xfce-xfcalendar-settings.desktop.in.h:3
+msgid "Xfce 4 Calendar Settings"
+msgstr ""
+
+#, fuzzy
+#~ msgid "Xfcalendar Preferences"
+#~ msgstr "Նախընտրանքներ"
+
+#~ msgid "Xfcalendar"
+#~ msgstr "Xfօրացույց"
+
+#, fuzzy
+#~ msgid "Show in..."
+#~ msgstr "Ցուցադրել"
+
+#~ msgid "Start visibility"
+#~ msgstr "Միացնել տեսանելիությունը"
+
+#~ msgid "Question"
+#~ msgstr "Հարց"
+
+#~ msgid "Save (Ctrl+s)"
+#~ msgstr "Հիշել (Ctrl+s)"
+
+#~ msgid "Previous day (Ctrl+p)"
+#~ msgstr "Նախորդ օրը (Ctrl+p)"
+
+#~ msgid "Today (Alt+Home)"
+#~ msgstr "Այսոր (Alt+Home)"
+
+#~ msgid "Next day (Ctrl+n)"
+#~ msgstr "Հաջորդ օրը (Ctrl+n)"
+
+#~ msgid "Close (Ctrl+w)"
+#~ msgstr "Փակել (Ctrl+w)"
+
+#~ msgid "Clear (Ctrl+l)"
+#~ msgstr "Մաքրել (Ctrl+l)"
+
+#~ msgid "_Close window"
+#~ msgstr "_Փակել պատուհանը"
+
+#~ msgid "_Preferences"
+#~ msgstr "_Նախըտրանքներ"
+
+#~ msgid "_About"
+#~ msgstr "_Ծրագրի մասին"
+
+#~ msgid "Couldn't find pixmap file: %s"
+#~ msgstr "Հնարավոր չէ գտնել փիքսմափ ֆայլը՝ %s"
