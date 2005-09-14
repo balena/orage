@@ -194,9 +194,8 @@ mView_selectToday_activate_cb(GtkMenuItem *menuitem,
 
   tt=time(NULL);
   t=localtime(&tt);
+    xfcalendar_select_date (GTK_CALENDAR (xfcal->mCalendar), t->tm_year+1900, t->tm_mon, t->tm_mday);
 
-  gtk_calendar_select_month(GTK_CALENDAR(xfcal->mCalendar), t->tm_mon, t->tm_year+1900);
-  gtk_calendar_select_day(GTK_CALENDAR(xfcal->mCalendar), t->tm_mday);
 }
 
 void

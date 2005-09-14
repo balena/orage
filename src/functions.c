@@ -151,3 +151,8 @@ GtkWidget *xfcalendar_menu_item_new_with_mnemonic (const gchar *label, GtkWidget
     gtk_container_add (GTK_CONTAINER (menu), menu_item);
     return menu_item;
 }
+
+void xfcalendar_select_date (GtkCalendar *cal, guint year, guint month, guint day) {
+    gtk_calendar_select_month (cal, month, year);
+    gtk_calendar_select_day (cal, day);
+}

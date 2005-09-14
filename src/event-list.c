@@ -197,7 +197,7 @@ char *format_time(char *start_ical_time, char *end_ical_time
             }
         }
         else /* date only appointment */
-            strcpy(result, _("today"));
+            strcpy(result, _("All day"));
 
     return(result);
 }
@@ -485,8 +485,7 @@ changeSelectedDate(gpointer user_data, gint direction)
     default:
         break;
     }
-    gtk_calendar_select_month(GTK_CALENDAR(xfcal->mCalendar), month, year);
-    gtk_calendar_select_day(GTK_CALENDAR(xfcal->mCalendar), day);
+    xfcalendar_select_date (GTK_CALENDAR (xfcal->mCalendar), year, month, day);
 
     recreate_eventlist_win(el);
 }
@@ -511,9 +510,7 @@ go_to_today(eventlist_win *el)
 
   tt = time(NULL);
   t = localtime(&tt);
-
-  gtk_calendar_select_month(GTK_CALENDAR(xfcal->mCalendar), t->tm_mon, t->tm_year+1900);
-  gtk_calendar_select_day(GTK_CALENDAR(xfcal->mCalendar), t->tm_mday);
+    xfcalendar_select_date (GTK_CALENDAR (xfcal->mCalendar), t->tm_year+1900, t->tm_mon, t->tm_mday);
 
   recreate_eventlist_win(el);
 }

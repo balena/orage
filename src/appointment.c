@@ -659,9 +659,8 @@ on_appStartEndDate_clicked_cb (GtkWidget *button, gpointer *user_data)
 
     selDate_Calendar_calendar = gtk_calendar_new();
     gtk_container_add(GTK_CONTAINER(GTK_DIALOG(selDate_Window_dialog)->vbox), selDate_Calendar_calendar);
-    gtk_calendar_select_month(GTK_CALENDAR(selDate_Calendar_calendar), current_t.tm_mon, current_t.tm_year + 1900);
-    gtk_calendar_select_day(GTK_CALENDAR(selDate_Calendar_calendar), current_t.tm_mday);
-
+    xfcalendar_select_date (GTK_CALENDAR (selDate_Calendar_calendar), current_t.tm_year+1900, 
+                            current_t.tm_mon, current_t.tm_mday);
     gtk_widget_show_all(selDate_Window_dialog);
 
     result = gtk_dialog_run(GTK_DIALOG(selDate_Window_dialog));

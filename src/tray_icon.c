@@ -31,6 +31,7 @@
 
 #include "event-list.h"
 #include "appointment.h"
+#include "functions.h"
 #include "mainbox.h"
 #include "xfce_trayicon.h"
 #include "about-xfcalendar.h"
@@ -48,8 +49,7 @@ on_Today_activate                      (GtkMenuItem *menuitem,
 
     tt=time(NULL);
     t=localtime(&tt);
-    gtk_calendar_select_month(GTK_CALENDAR(xfcal->mCalendar), t->tm_mon, t->tm_year+1900);
-    gtk_calendar_select_day(GTK_CALENDAR(xfcal->mCalendar), t->tm_mday);
+    xfcalendar_select_date (GTK_CALENDAR (xfcal->mCalendar), t->tm_year+1900, t->tm_mon, t->tm_mday);
     el = create_eventlist_win();
     manage_eventlist_win(GTK_CALENDAR(xfcal->mCalendar), el);
 }

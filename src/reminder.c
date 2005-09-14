@@ -258,10 +258,7 @@ xfcalendar_alarm_clock(gpointer user_data)
         && selected_day == previous_day) {
             /* previous day was indeed selected, 
                keep it current automatically */
-            gtk_calendar_select_month(GTK_CALENDAR(xfcal->mCalendar),
-                    current_month, current_year);
-            gtk_calendar_select_day(GTK_CALENDAR(xfcal->mCalendar),
-                    current_day);
+            xfcalendar_select_date (GTK_CALENDAR (xfcal->mCalendar), current_year, current_month, current_day);
         }
         previous_year  = current_year;
         previous_month = current_month;
