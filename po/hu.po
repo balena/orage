@@ -1,38 +1,68 @@
 # This is the hungarian translation of xfcalendar application.
-# Copyright (C) 2004 THE xfcalendar'S COPYRIGHT HOLDER
+# Copyright (C) 2003-2005 Mickaël Graf and The Xfce development team.
 # This file is distributed under the same license as the xfcalendar package.
 # Servitore <sas@321 uh:))>, 2004.
+# SZERVÁC Attila <sas@321.hu>, 2005.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: hu\n"
+"Project-Id-Version: xfcalendar 4.2.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-01-05 23:01+0100\n"
-"PO-Revision-Date: 2005-03-10 10:54+0100\n"
+"POT-Creation-Date: 2005-09-24 18:27+0900\n"
+"PO-Revision-Date: 2005-09-24 18:44+0900\n"
 "Last-Translator: SZERVÁC Attila <sas@321.hu>\n"
 "Language-Team: hungarian <hu@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: plugin/xfcalendar_plugin.c:148
-#: plugin/xfcalendar_plugin.c:159
-#: plugin/xfcalendar_plugin.c:245
-#: src/mainbox.c:384
+#: plugin/xfcalendar_plugin.c:175 plugin/xfcalendar_plugin.c:186
+#: plugin/xfcalendar_plugin.c:300 src/mainbox.c:374
 msgid "Xfcalendar"
 msgstr "Xfcalendar"
 
-#: plugin/xfcalendar_plugin.c:174
+#.
+#: plugin/xfcalendar_plugin.c:201
 msgid "Mode"
 msgstr "Mód"
 
-#: plugin/xfcalendar_plugin.c:182
+#: plugin/xfcalendar_plugin.c:209
 msgid "Normal"
 msgstr "_Normál"
 
-#: plugin/xfcalendar_plugin.c:189
+#: plugin/xfcalendar_plugin.c:216
 msgid "Compact"
 msgstr "_Tömör"
+
+#.
+#: plugin/xfcalendar_plugin.c:224
+msgid "Show in..."
+msgstr ""
+
+#: plugin/xfcalendar_plugin.c:232
+msgid "Taskbar"
+msgstr ""
+
+#: plugin/xfcalendar_plugin.c:237
+msgid "Pager"
+msgstr ""
+
+#: plugin/xfcalendar_plugin.c:242
+msgid "Systray"
+msgstr ""
+
+#.
+#: plugin/xfcalendar_plugin.c:248
+msgid "Start visibility"
+msgstr ""
+
+#: plugin/xfcalendar_plugin.c:256
+msgid "Show"
+msgstr ""
+
+#: plugin/xfcalendar_plugin.c:263
+msgid "Hide"
+msgstr ""
 
 #: src/about-xfcalendar.c:39
 msgid "Manage your time with Xfce4"
@@ -42,10 +72,21 @@ msgstr "Oszd be az időd az Xfce4-gyel"
 msgid "Core developer"
 msgstr "Fő fejlesztő"
 
-#: src/about-xfcalendar.c:54
-#: src/about-xfcalendar.c:59
+#: src/about-xfcalendar.c:54 src/about-xfcalendar.c:59
+#: src/about-xfcalendar.c:64
 msgid "Contributor"
 msgstr "Közreműködő"
+
+#: src/callbacks.c:233
+msgid "Question"
+msgstr ""
+
+#: src/callbacks.c:242
+msgid ""
+"\n"
+"The information has been modified.\n"
+" Do you want to continue ?\n"
+msgstr ""
 
 #: src/interface.c:56
 msgid "Appointment"
@@ -71,19 +112,15 @@ msgstr "Közetkező nap (Ctrl+n)"
 msgid "Close (Ctrl+w)"
 msgstr "Bezárás (Ctrl+w)"
 
-#: src/interface.c:137
-msgid "Clear"
-msgstr "Törlés"
-
 #: src/interface.c:138
 msgid "Clear (Ctrl+l)"
 msgstr "Törlés (Ctrl+I)"
 
-#: src/interface.c:208
+#: src/interface.c:210
 msgid "Warning"
 msgstr "Figyelem"
 
-#: src/interface.c:224
+#: src/interface.c:227
 msgid ""
 "You will remove all information \n"
 "associated with this date."
@@ -92,51 +129,49 @@ msgstr ""
 "erről a napról."
 
 #. File menu
-#: src/mainbox.c:414
+#: src/mainbox.c:404
 msgid "_File"
 msgstr "_File"
 
-#: src/mainbox.c:423
+#: src/mainbox.c:413
 msgid "_Close window"
 msgstr "Ablak be_zárása"
 
 #. Settings menu
-#: src/mainbox.c:440
+#: src/mainbox.c:430
 msgid "_Settings"
 msgstr "_Beállítások"
 
-#: src/mainbox.c:449
+#: src/mainbox.c:439
 msgid "_Preferences"
 msgstr "_Tulajdonságok"
 
-#: src/mainbox.c:460
+#: src/mainbox.c:450
 msgid "Select _Today"
 msgstr "A _Mai nap kiválasztása"
 
 #. Help menu
-#: src/mainbox.c:467
+#: src/mainbox.c:457
 msgid "_Help"
 msgstr "_Súgó"
 
-#: src/mainbox.c:476
+#: src/mainbox.c:466
 msgid "_About"
 msgstr "_Névjegy"
 
-#: src/main.c:175
+#: src/main.c:127
 msgid "This should not happen"
 msgstr "Ez nem lehet"
 
-#: src/main.c:430
+#: src/main.c:390
 msgid "Cannot create MCS client channel"
 msgstr "Nem hozható létre MCS ügyfél csatorna"
 
-#: src/reminder.c:56
-#: src/reminder.c:64
+#: src/reminder.c:56 src/reminder.c:64
 msgid "Reminder"
 msgstr "Emlékeztető"
 
-#: src/support.c:91
-#: src/support.c:115
+#: src/support.c:91 src/support.c:115
 #, c-format
 msgid "Couldn't find pixmap file: %s"
 msgstr "Nem lelem a képet: %s"
@@ -153,3 +188,5 @@ msgstr "Tulajdonságok"
 msgid "About Xfcalendar"
 msgstr "Az Xfcalendar-ról"
 
+#~ msgid "Clear"
+#~ msgstr "Törlés"
