@@ -1,6 +1,6 @@
 /* reminder.h
  *
- * (C) 2004-2005 Mickaël Graf
+ * (C) 2004-2005 MickaÃ«l Graf
  * (C) 2005 Juha Kautto
  *
  *  This program is free software; you can redistribute it and/or modify

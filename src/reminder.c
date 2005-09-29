@@ -1,6 +1,6 @@
 /* reminder.c
  *
- * (C) 2003-2005 Mickaël Graf
+ * (C) 2003-2005 MickaÃ«l Graf
  * (C) 2005      Juha Kautto 
  *
  *  This program is free software; you can redistribute it and/or modify
@@ -81,7 +81,7 @@ create_soundReminder(alarm_struct *alarm, GtkWidget *wReminder)
     xfce_audio_alarm_type *audio_alarm;
 
     audio_alarm =  g_new(xfce_audio_alarm_type, 1);
-    audio_alarm->play_cmd = g_strconcat("play ", alarm->sound->str, NULL);
+    audio_alarm->play_cmd = g_strconcat("play ", "\"", alarm->sound->str, "\"", NULL);
     audio_alarm->delay = alarm->repeat_delay;
     if ((audio_alarm->cnt = alarm->repeat_cnt) == 0) {
         audio_alarm->cnt++;
