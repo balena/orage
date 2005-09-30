@@ -102,13 +102,10 @@ struct _Itf
     GtkWidget *visibility_minimized_radiobutton;
     /* Archive file and periodicity */
     GtkWidget *archive_vbox;
-    GtkWidget *archive_file_label;
     GtkWidget *archive_file_frame;
-    GtkWidget *archive_file_hbox;
     GtkWidget *archive_file_table;
     GtkWidget *archive_threshold_label;
-    GtkWidget *archive_table;
-    GtkWidget *archive_entry;
+    GtkWidget *archive_file_entry;
     GtkWidget *archive_open_file_button;
     GtkWidget *archive_threshold_frame;
     GtkWidget *archive_threshold_table;
@@ -145,12 +142,12 @@ static void cb_sound_application_changed(GtkWidget * dialog, gpointer user_data)
     write_options(mcs_plugin);
 }
 
-void static cb_archive_entry_changed (GtkWidget * dialog, gpointer user_data)
+void static cb_archive_file_entry_changed (GtkWidget * dialog, gpointer user_data)
 {
     Itf *itf = (Itf *) user_data;
     McsPlugin *mcs_plugin = itf->mcs_plugin;
 
-    archive_path = g_strdup (gtk_entry_get_text (GTK_ENTRY (itf->archive_entry)));
+    archive_path = g_strdup (gtk_entry_get_text (GTK_ENTRY (itf->archive_file_entry)));
     mcs_manager_set_string (mcs_plugin->manager, "XFCalendar/ArchiveFile", CHANNEL, archive_path);
     mcs_manager_notify (mcs_plugin->manager, CHANNEL);
     write_options (mcs_plugin);
@@ -245,7 +242,7 @@ static void cb_archive_open_file_button_clicked (GtkButton *button, gpointer use
 		archive_path = xfce_file_chooser_get_filename(XFCE_FILE_CHOOSER(file_chooser));
 
         if(archive_path){
-            gtk_entry_set_text (GTK_ENTRY (itf->archive_entry), (const gchar*) archive_path);
+            gtk_entry_set_text (GTK_ENTRY (itf->archive_file_entry), (const gchar*) archive_path);
         }
     }
 
@@ -426,12 +423,12 @@ Itf *create_xfcalendar_dialog(McsPlugin * mcs_plugin)
     xfce_framebox_add (XFCE_FRAMEBOX (dialog->archive_file_frame)
                        , dialog->archive_file_table);
 
-    dialog->archive_entry = gtk_entry_new ();
-    gtk_widget_show (dialog->archive_entry);
-    gtk_table_attach (GTK_TABLE (dialog->archive_file_table), dialog->archive_entry, 0, 1, 0, 1,
+    dialog->archive_file_entry = gtk_entry_new ();
+    gtk_widget_show (dialog->archive_file_entry);
+    gtk_table_attach (GTK_TABLE (dialog->archive_file_table), dialog->archive_file_entry, 0, 1, 0, 1,
                         (GtkAttachOptions) (GTK_FILL),
                         (GtkAttachOptions) (0), 0, 0);
-    gtk_entry_set_text(GTK_ENTRY(dialog->archive_entry), (const gchar *) archive_path);
+    gtk_entry_set_text(GTK_ENTRY(dialog->archive_file_entry), (const gchar *) archive_path);
 
     dialog->archive_open_file_button = gtk_button_new_from_stock("gtk-open");
     gtk_widget_show (dialog->archive_open_file_button);
@@ -524,7 +521,7 @@ static void setup_dialog (Itf * itf)
     g_signal_connect (G_OBJECT (itf->visibility_minimized_radiobutton), "toggled", G_CALLBACK (cb_start_changed), itf);
     g_signal_connect (G_OBJECT (itf->sound_application_entry), "changed", G_CALLBACK (cb_sound_application_changed), itf);
     g_signal_connect (G_OBJECT (itf->archive_open_file_button), "clicked", G_CALLBACK (cb_archive_open_file_button_clicked), itf);
-    g_signal_connect (G_OBJECT (itf->archive_entry), "changed", G_CALLBACK (cb_archive_entry_changed), itf);
+    g_signal_connect (G_OBJECT (itf->archive_file_entry), "changed", G_CALLBACK (cb_archive_file_entry_changed), itf);
     g_signal_connect (G_OBJECT (itf->archive_threshold_combobox), "changed", G_CALLBACK (cb_archive_threshold_combobox_changed), itf);
 
     xfce_gtk_window_center_on_monitor_with_pointer (GTK_WINDOW (itf->xfcalendar_dialog));
