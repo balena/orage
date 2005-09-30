@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.3.1.20svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-09-23 15:23+0900\n"
-"PO-Revision-Date: 2005-09-23 15:34+0900\n"
+"POT-Creation-Date: 2005-09-30 19:18+0900\n"
+"PO-Revision-Date: 2005-09-30 19:49+0900\n"
 "Last-Translator: Daichi Kawahata <daichi@xfce.org>\n"
 "Language-Team: Japanese <xfce-users-jp@ml.fdiary.net>\n"
 "MIME-Version: 1.0\n"
@@ -20,106 +20,108 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #. Create file chooser
-#: ../plugin/xfcalendar_plugin.c:218 ../src/appointment.c:213
+#: ../plugin/xfcalendar_plugin.c:224 ../src/appointment.c:213
 #: ../src/mainbox.c:118
 msgid "Select a file..."
 msgstr "ファイルを選択して下さい..."
 
-#: ../plugin/xfcalendar_plugin.c:226 ../src/mainbox.c:126
+#: ../plugin/xfcalendar_plugin.c:232 ../src/mainbox.c:126
 msgid "Calendar files"
 msgstr "カレンダーファイル"
 
-#: ../plugin/xfcalendar_plugin.c:229 ../src/appointment.c:227
+#: ../plugin/xfcalendar_plugin.c:235 ../src/appointment.c:227
 #: ../src/mainbox.c:129
 msgid "All Files"
 msgstr "全てのファイル"
 
-#: ../plugin/xfcalendar_plugin.c:285 ../plugin/xfcalendar_plugin.c:296
+#: ../plugin/xfcalendar_plugin.c:284 ../plugin/xfcalendar_plugin.c:295
 msgid "Orage Preferences"
 msgstr "Orage の環境設定"
 
-#. Mode normal or compact
 #: ../plugin/xfcalendar_plugin.c:311
-msgid "Mode"
-msgstr "モード"
+msgid "Display"
+msgstr "表示"
 
-#: ../plugin/xfcalendar_plugin.c:319
-msgid "Normal"
-msgstr "通常モード"
+#. Display calendar borders or not
+#: ../plugin/xfcalendar_plugin.c:325
+msgid "Calendar borders"
+msgstr "カレンダーの枠"
 
-#: ../plugin/xfcalendar_plugin.c:326
-msgid "Compact"
-msgstr "簡易モード"
+#: ../plugin/xfcalendar_plugin.c:332
+msgid "Displayed"
+msgstr "表示する"
+
+#: ../plugin/xfcalendar_plugin.c:339
+msgid "Hidden"
+msgstr "表示しない"
 
 #. Show in... taskbar pager systray
-#: ../plugin/xfcalendar_plugin.c:334
-msgid "Show the calendar window in..."
-msgstr "カレンダー・ウィンドウの表示場所..."
+#: ../plugin/xfcalendar_plugin.c:347
+msgid "Calendar window"
+msgstr "カレンダーウィンドウ"
 
-#: ../plugin/xfcalendar_plugin.c:343
-msgid "Taskbar"
-msgstr "タスクバー"
+#: ../plugin/xfcalendar_plugin.c:355
+msgid "Show button in taskbar"
+msgstr "タスクバーにボタンを表示する"
 
-#: ../plugin/xfcalendar_plugin.c:348
-msgid "Pager"
-msgstr "ページャ"
+#: ../plugin/xfcalendar_plugin.c:360
+msgid "Show in pager"
+msgstr "ページャーに表示する"
 
-#: ../plugin/xfcalendar_plugin.c:353
-msgid "Systray"
-msgstr "システムトレイ"
+#: ../plugin/xfcalendar_plugin.c:365
+msgid "Show icon in systray"
+msgstr "システムトレイにアイコンを表示する"
 
 #.
-#: ../plugin/xfcalendar_plugin.c:359
-msgid "Visibility when starting..."
-msgstr "起動時の表示のされ方..."
+#: ../plugin/xfcalendar_plugin.c:371
+msgid "Calendar start"
+msgstr "カレンダーの起動"
 
-#: ../plugin/xfcalendar_plugin.c:368
+#: ../plugin/xfcalendar_plugin.c:379
 msgid "Show"
 msgstr "表示する"
 
-#: ../plugin/xfcalendar_plugin.c:375
+#: ../plugin/xfcalendar_plugin.c:386
 msgid "Hide"
 msgstr "表示しない"
 
-#: ../plugin/xfcalendar_plugin.c:382
+#: ../plugin/xfcalendar_plugin.c:393
 msgid "Minimized"
 msgstr "最小化"
 
-#. Archive file and periodicity
-#: ../plugin/xfcalendar_plugin.c:390
-msgid "Archiving..."
-msgstr "書庫を作成..."
-
 #: ../plugin/xfcalendar_plugin.c:402
-msgid "Archive file"
-msgstr "書庫ファイル"
+msgid "Archives"
+msgstr "書庫"
 
-#: ../plugin/xfcalendar_plugin.c:422
-msgid "Archive items older than"
-msgstr "次より古いアイテムを書庫に入れます"
+#: ../plugin/xfcalendar_plugin.c:418
+msgid "Archive file:"
+msgstr "書庫ファイル:"
 
-#: ../plugin/xfcalendar_plugin.c:430
+#: ../plugin/xfcalendar_plugin.c:438
+msgid "Archive items older than:"
+msgstr "次より古いアイテムを書庫に入れる:"
+
+#: ../plugin/xfcalendar_plugin.c:446
 msgid "3 months"
 msgstr "3ヶ月"
 
-#: ../plugin/xfcalendar_plugin.c:431
+#: ../plugin/xfcalendar_plugin.c:447
 msgid "6 months"
 msgstr "6ヶ月"
 
-#: ../plugin/xfcalendar_plugin.c:432
+#: ../plugin/xfcalendar_plugin.c:448
 msgid "1 year"
 msgstr "1年"
 
-#. Choose a sound application for reminders
-#: ../plugin/xfcalendar_plugin.c:447
-msgid "Play sounds with..."
-msgstr "サウンドを鳴らす..."
+#: ../plugin/xfcalendar_plugin.c:464 ../src/appointment.c:1045
+msgid "Sound"
+msgstr "サウンド"
 
-#: ../plugin/xfcalendar_plugin.c:456
-msgid "Application"
-msgstr "アプリケーション"
+#: ../plugin/xfcalendar_plugin.c:480
+msgid "Application:"
+msgstr "アプリケーション:"
 
-#: ../plugin/xfcalendar_plugin.c:500 ../src/appointment.c:136
+#: ../plugin/xfcalendar_plugin.c:532 ../src/appointment.c:136
 #: ../src/mainbox.c:323
 msgid "Orage"
 msgstr "Orage"
@@ -152,7 +154,7 @@ msgstr "警告"
 
 #: ../src/appointment.c:280
 msgid "The appointment information has been modified."
-msgstr "この面会予約情報は変更されています。"
+msgstr "このアポイント情報は変更されています。"
 
 #: ../src/appointment.c:281 ../src/appointment.c:564 ../src/event-list.c:586
 msgid "Do you want to continue?"
@@ -160,7 +162,7 @@ msgstr "続行しますか？"
 
 #: ../src/appointment.c:416
 msgid "The end of this appointment is earlier than the beginning."
-msgstr "この面会予約時刻の終わりが開始時刻よりも早くなっています。"
+msgstr "このアポイントの終了時刻が開始時刻よりも早くなっています。"
 
 #: ../src/appointment.c:427
 msgid "A time value is wrong."
@@ -172,7 +174,7 @@ msgstr "時間は必ず 'hh:mm' の形式で書いて下さい (例 '09:36 ま�
 
 #: ../src/appointment.c:563
 msgid "This appointment will be permanently removed."
-msgstr "この面会予約は永久に削除されます。"
+msgstr "このアポイントは永久に削除されます。"
 
 #: ../src/appointment.c:654 ../src/event-list.c:697 ../src/tray_icon.c:107
 msgid "Today"
@@ -180,7 +182,7 @@ msgstr "今日"
 
 #: ../src/appointment.c:755
 msgid "New appointment - Orage"
-msgstr "新しい面会予定 - Orage"
+msgstr "新しいアポイント - Orage"
 
 #: ../src/appointment.c:847
 msgid "Free"
@@ -259,7 +261,7 @@ msgstr "保存して閉じる(_E)"
 #. add event copying and day cleaning
 #: ../src/appointment.c:895 ../src/event-list.c:659
 msgid "D_uplicate"
-msgstr "複製(_U)"
+msgstr "コピー(_U)"
 
 #. Add buttons to the toolbar
 #: ../src/appointment.c:915
@@ -276,7 +278,7 @@ msgstr "戻します"
 
 #: ../src/appointment.c:925 ../src/appointment.c:926 ../src/event-list.c:705
 msgid "Duplicate"
-msgstr "複製を作成します"
+msgstr "コピーを作成します"
 
 #: ../src/appointment.c:930
 msgid "Delete"
@@ -322,10 +324,6 @@ msgstr "備考"
 msgid "Alarm"
 msgstr "アラーム"
 
-#: ../src/appointment.c:1045
-msgid "Sound"
-msgstr "サウンド"
-
 #: ../src/appointment.c:1056
 msgid "Repeat alarm sound"
 msgstr "アラート音を繰返す"
@@ -359,27 +357,27 @@ msgstr "移動(_G)"
 
 #: ../src/event-list.c:692
 msgid "New"
-msgstr "新規"
+msgstr "新しいアポイントを作成します"
 
 #: ../src/event-list.c:695
 msgid "Back"
-msgstr "戻る"
+msgstr "前日に移動します"
 
 #: ../src/event-list.c:699
 msgid "Forward"
-msgstr "進む"
+msgstr "翌日に移動します"
 
 #: ../src/event-list.c:701
 msgid "Refresh"
-msgstr "更新"
+msgstr "このウィンドウを更新します"
 
 #: ../src/event-list.c:707
 msgid "Close"
-msgstr "閉じる"
+msgstr "このウィンドウを閉じます"
 
 #: ../src/event-list.c:709
 msgid "Clear"
-msgstr "クリア"
+msgstr "内容を消去します"
 
 #: ../src/event-list.c:747
 msgid "Flags"
@@ -397,9 +395,10 @@ msgstr "UID"
 msgid "  "
 msgstr "  "
 
+# FIXME: should be `Orage'
 #: ../src/ical-code.c:317
 msgid "Xfcalendar default alarm"
-msgstr "Xfcalendar の標準のアラーム"
+msgstr "Orage の標準アラーム"
 
 #: ../src/mainbox.c:353
 msgid "Open archive file..."
@@ -441,15 +440,15 @@ msgstr "備忘録 "
 
 #: ../src/tray_icon.c:117
 msgid "New appointment"
-msgstr "新しい面会予定"
+msgstr "新しいアポイント"
 
 #: ../src/tray_icon.c:126
 msgid "Preferences"
 msgstr "環境設定"
 
 #: ../src/tray_icon.c:135
-msgid "About Xfcalendar"
-msgstr "Xfcalendar について"
+msgid "About Orage"
+msgstr "Orage について"
 
 #: ../xfcalendar.desktop.in.h:1
 msgid "Calendar"
