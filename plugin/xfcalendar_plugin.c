@@ -101,18 +101,23 @@ struct _Itf
     GtkWidget *visibility_hide_radiobutton;
     GtkWidget *visibility_minimized_radiobutton;
     /* Archive file and periodicity */
+    GtkWidget *archive_vbox;
     GtkWidget *archive_file_label;
+    GtkWidget *archive_file_frame;
+    GtkWidget *archive_file_hbox;
+    GtkWidget *archive_file_table;
     GtkWidget *archive_threshold_label;
-    GtkWidget *archive_frame;
     GtkWidget *archive_table;
     GtkWidget *archive_entry;
     GtkWidget *archive_open_file_button;
+    GtkWidget *archive_threshold_frame;
+    GtkWidget *archive_threshold_table;
     GtkWidget *archive_threshold_combobox;
     /* Choose the sound application for reminders */
     GtkWidget *sound_application_label;
     GtkWidget *sound_application_entry;
     /* */
-    GtkWidget *closebutton;
+    GtkWidget *close_button;
     GtkWidget *dialog_action_area1;
 };
 
@@ -315,7 +320,6 @@ Itf *create_xfcalendar_dialog(McsPlugin * mcs_plugin)
     gtk_widget_show (dialog->display_tab);
     gtk_widget_show (dialog->display_tab_label);
 
-    
     dialog->display_vbox = gtk_vbox_new (FALSE, 0);
     gtk_widget_show (dialog->display_vbox);
     xfce_framebox_add (XFCE_FRAMEBOX (dialog->display_tab)
@@ -370,7 +374,6 @@ Itf *create_xfcalendar_dialog(McsPlugin * mcs_plugin)
     /* */
     dialog->visibility_frame = xfce_framebox_new(_("Calendar start"), TRUE);
     gtk_widget_show(dialog->visibility_frame);
-    /*gtk_frame_set_shadow_type(GTK_FRAME(dialog->visibility_frame), GTK_SHADOW_ETCHED_IN);*/
     gtk_box_pack_start(GTK_BOX(dialog->display_vbox), dialog->visibility_frame, TRUE, TRUE, 5);
     dialog->visibility_hbox = gtk_hbox_new(TRUE, 0);
     gtk_widget_show(dialog->visibility_hbox);
@@ -406,41 +409,47 @@ Itf *create_xfcalendar_dialog(McsPlugin * mcs_plugin)
     gtk_widget_show (dialog->archives_tab);
     gtk_widget_show (dialog->archives_tab_label);
 
-    /* Archive file and periodicity */
-    dialog->archive_table = gtk_table_new (2, 3, FALSE);
-    gtk_widget_show (dialog->archive_table);
-    gtk_container_set_border_width (GTK_CONTAINER (dialog->archive_table), 10);
-    gtk_table_set_row_spacings (GTK_TABLE (dialog->archive_table), 6);
-    gtk_table_set_col_spacings (GTK_TABLE (dialog->archive_table), 6);
+    dialog->archive_vbox = gtk_vbox_new (FALSE, 0);
+    gtk_widget_show (dialog->archive_vbox);
     xfce_framebox_add (XFCE_FRAMEBOX (dialog->archives_tab)
-                       , dialog->archive_table);
+                       , dialog->archive_vbox);
+    /* Archive file and periodicity */
+    dialog->archive_file_frame = xfce_framebox_new (_("Archive file"), TRUE);
+    gtk_widget_show (dialog->archive_file_frame);
+    gtk_box_pack_start (GTK_BOX (dialog->archive_vbox), dialog->archive_file_frame, TRUE, TRUE, 5);
 
-    dialog->archive_file_label = gtk_label_new (_("Archive file:"));
-    gtk_widget_show (dialog->archive_file_label);
-    gtk_table_attach (GTK_TABLE (dialog->archive_table), dialog->archive_file_label, 0, 1, 0, 1,
-                        (GtkAttachOptions) (GTK_FILL),
-                        (GtkAttachOptions) (0), 0, 0);
-    gtk_misc_set_alignment (GTK_MISC (dialog->archive_file_label), 0, 0.5);
+    dialog->archive_file_table = gtk_table_new (1, 2, FALSE);
+    gtk_widget_show (dialog->archive_file_table);
+    gtk_container_set_border_width (GTK_CONTAINER (dialog->archive_file_table), 10);
+    gtk_table_set_row_spacings (GTK_TABLE (dialog->archive_file_table), 6);
+    gtk_table_set_col_spacings (GTK_TABLE (dialog->archive_file_table), 6);
+    xfce_framebox_add (XFCE_FRAMEBOX (dialog->archive_file_frame)
+                       , dialog->archive_file_table);
 
     dialog->archive_entry = gtk_entry_new ();
     gtk_widget_show (dialog->archive_entry);
-    gtk_table_attach (GTK_TABLE (dialog->archive_table), dialog->archive_entry, 1, 2, 0, 1,
+    gtk_table_attach (GTK_TABLE (dialog->archive_file_table), dialog->archive_entry, 0, 1, 0, 1,
                         (GtkAttachOptions) (GTK_FILL),
                         (GtkAttachOptions) (0), 0, 0);
     gtk_entry_set_text(GTK_ENTRY(dialog->archive_entry), (const gchar *) archive_path);
 
     dialog->archive_open_file_button = gtk_button_new_from_stock("gtk-open");
     gtk_widget_show (dialog->archive_open_file_button);
-    gtk_table_attach (GTK_TABLE (dialog->archive_table), dialog->archive_open_file_button, 2, 3, 0, 1,
+    gtk_table_attach (GTK_TABLE (dialog->archive_file_table), dialog->archive_open_file_button, 1, 2, 0, 1,
                         (GtkAttachOptions) (GTK_FILL),
                         (GtkAttachOptions) (0), 0, 0);
 
-    dialog->archive_threshold_label = gtk_label_new (_("Archive items older than:"));
-    gtk_widget_show (dialog->archive_threshold_label);
-    gtk_table_attach (GTK_TABLE (dialog->archive_table), dialog->archive_threshold_label, 0, 1, 1, 2,
-                        (GtkAttachOptions) (GTK_FILL),
-                        (GtkAttachOptions) (0), 0, 0);
-    gtk_misc_set_alignment (GTK_MISC (dialog->archive_threshold_label), 0, 0.5);
+    dialog->archive_threshold_frame = xfce_framebox_new (_("Archive threshold"), TRUE);
+    gtk_widget_show (dialog->archive_threshold_frame);
+    gtk_box_pack_start (GTK_BOX (dialog->archive_vbox), dialog->archive_threshold_frame, TRUE, TRUE, 5);
+
+    dialog->archive_threshold_table = gtk_table_new (1, 1, FALSE);
+    gtk_widget_show (dialog->archive_threshold_table);
+    gtk_container_set_border_width (GTK_CONTAINER (dialog->archive_threshold_table), 10);
+    gtk_table_set_row_spacings (GTK_TABLE (dialog->archive_threshold_table), 6);
+    gtk_table_set_col_spacings (GTK_TABLE (dialog->archive_threshold_table), 6);
+    xfce_framebox_add (XFCE_FRAMEBOX (dialog->archive_threshold_frame)
+                       , dialog->archive_threshold_table);
 
     dialog->archive_threshold_combobox = gtk_combo_box_new_text ();
     gtk_combo_box_append_text (GTK_COMBO_BOX (dialog->archive_threshold_combobox), _("3 months"));
@@ -455,8 +464,8 @@ Itf *create_xfcalendar_dialog(McsPlugin * mcs_plugin)
     }
     gtk_widget_show (dialog->archive_threshold_combobox);
 
-    gtk_table_attach (GTK_TABLE (dialog->archive_table), dialog->archive_threshold_combobox, 1, 2, 1, 2,
-                        (GtkAttachOptions) (GTK_FILL),
+    gtk_table_attach (GTK_TABLE (dialog->archive_threshold_table), dialog->archive_threshold_combobox, 0, 1, 0, 1,
+                        (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
                         (GtkAttachOptions) (0), 0, 0);
 
     /* Here begins the sound tab */
@@ -495,10 +504,10 @@ Itf *create_xfcalendar_dialog(McsPlugin * mcs_plugin)
     g_warning("Sound application to be displayed: %s\n", sound_application);
     gtk_entry_set_text(GTK_ENTRY(dialog->sound_application_entry), (const gchar *)sound_application);
     /* */
-    dialog->closebutton = gtk_button_new_from_stock ("gtk-close");
-    gtk_widget_show (dialog->closebutton);
-    gtk_dialog_add_action_widget (GTK_DIALOG (dialog->xfcalendar_dialog), dialog->closebutton, GTK_RESPONSE_CLOSE);
-    GTK_WIDGET_SET_FLAGS (dialog->closebutton, GTK_CAN_DEFAULT);
+    dialog->close_button = gtk_button_new_from_stock ("gtk-close");
+    gtk_widget_show (dialog->close_button);
+    gtk_dialog_add_action_widget (GTK_DIALOG (dialog->xfcalendar_dialog), dialog->close_button, GTK_RESPONSE_CLOSE);
+    GTK_WIDGET_SET_FLAGS (dialog->close_button, GTK_CAN_DEFAULT);
 
     return dialog;
 }
