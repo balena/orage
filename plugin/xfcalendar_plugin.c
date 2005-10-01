@@ -498,7 +498,6 @@ Itf *create_xfcalendar_dialog(McsPlugin * mcs_plugin)
                       , (GtkAttachOptions) (GTK_EXPAND | GTK_FILL)
                       , (GtkAttachOptions) (0), 0, 0);
 
-    g_warning("Sound application to be displayed: %s\n", sound_application);
     gtk_entry_set_text(GTK_ENTRY(dialog->sound_application_entry), (const gchar *)sound_application);
     /* */
     dialog->close_button = gtk_button_new_from_stock ("gtk-close");
