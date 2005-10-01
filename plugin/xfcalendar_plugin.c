@@ -624,10 +624,10 @@ static void create_channel(McsPlugin * mcs_plugin)
     }
 
     setting = mcs_manager_setting_lookup (mcs_plugin->manager, "XFCalendar/ArchiveFile", CHANNEL);
+    archive_path = (gchar *)malloc(255);
+    archive_path = "\0";
     if (setting)
     {
-        archive_path = (gchar *)malloc(255);
-        archive_path = NULL;
         if (archive_path = setting->data.v_string) {
         	g_warning("Archive file: %s\n", archive_path);
         }
