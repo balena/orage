@@ -220,7 +220,6 @@ static void cb_archive_open_file_button_clicked (GtkButton *button, gpointer use
     Itf *itf = (Itf *) user_data;
     GtkWidget *file_chooser;
 	XfceFileFilter *filter;
-    gchar *archive_path;
 
     /* Create file chooser */
     file_chooser = xfce_file_chooser_new (_("Select a file..."),
@@ -236,7 +235,8 @@ static void cb_archive_open_file_button_clicked (GtkButton *button, gpointer use
 	xfce_file_chooser_add_filter(XFCE_FILE_CHOOSER(file_chooser), filter);
 	xfce_file_filter_set_name(filter, _("All Files"));
 	xfce_file_filter_add_pattern(filter, "*");
-	xfce_file_chooser_add_filter(XFCE_FILE_CHOOSER(file_chooser), filter);
+	xfce_file_chooser_add_filter (XFCE_FILE_CHOOSER(file_chooser), filter);
+    xfce_file_chooser_set_filename (XFCE_FILE_CHOOSER(file_chooser), archive_path);
 
 	if(gtk_dialog_run(GTK_DIALOG(file_chooser)) == GTK_RESPONSE_ACCEPT) {
 		archive_path = xfce_file_chooser_get_filename(XFCE_FILE_CHOOSER(file_chooser));
