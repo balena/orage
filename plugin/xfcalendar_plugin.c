@@ -66,17 +66,17 @@ struct _Itf
     GtkWidget *xfcalendar_dialog;
     GtkWidget *dialog_header;
     GtkWidget *dialog_vbox1;
-    GtkWidget *vbox1;
     GtkWidget *notebook;
     /* Tabs */
     GtkWidget *display_tab;
     GtkWidget *display_tab_label;
-    GtkWidget *display_tab_table;
     GtkWidget *display_vbox;
     GtkWidget *archives_tab;
     GtkWidget *archives_tab_label;
+    GtkWidget *archive_vbox;
     GtkWidget *sound_tab;
     GtkWidget *sound_tab_label;
+    GtkWidget *sound_vbox;
     GtkWidget *sound_tab_table;
     /* Mode normal or compact */
     GSList    *mode_radiobutton_group;
@@ -101,18 +101,20 @@ struct _Itf
     GtkWidget *visibility_hide_radiobutton;
     GtkWidget *visibility_minimized_radiobutton;
     /* Archive file and periodicity */
-    GtkWidget *archive_vbox;
     GtkWidget *archive_file_frame;
     GtkWidget *archive_file_table;
     GtkWidget *archive_threshold_label;
     GtkWidget *archive_file_entry;
-    GtkWidget *archive_open_file_button;
+    GtkWidget *archive_file_open_button;
     GtkWidget *archive_threshold_frame;
     GtkWidget *archive_threshold_table;
     GtkWidget *archive_threshold_combobox;
     /* Choose the sound application for reminders */
     GtkWidget *sound_application_label;
     GtkWidget *sound_application_entry;
+    GtkWidget *sound_application_frame;
+    GtkWidget *sound_application_table;
+    GtkWidget *sound_application_open_button;
     /* */
     GtkWidget *close_button;
     GtkWidget *dialog_action_area1;
@@ -215,7 +217,7 @@ static void cb_start_changed(GtkWidget * dialog, gpointer user_data)
     write_options(mcs_plugin);
 }
 
-static void cb_archive_open_file_button_clicked (GtkButton *button, gpointer user_data)
+static void cb_archive_file_open_button_clicked (GtkButton *button, gpointer user_data)
 {
     Itf *itf = (Itf *) user_data;
     GtkWidget *file_chooser;
@@ -236,6 +238,8 @@ static void cb_archive_open_file_button_clicked (GtkButton *button, gpointer use
 	xfce_file_filter_set_name(filter, _("All Files"));
 	xfce_file_filter_add_pattern(filter, "*");
 	xfce_file_chooser_add_filter (XFCE_FILE_CHOOSER(file_chooser), filter);
+
+    /* Set the archive path */
     xfce_file_chooser_set_filename (XFCE_FILE_CHOOSER(file_chooser), archive_path);
 
 	if(gtk_dialog_run(GTK_DIALOG(file_chooser)) == GTK_RESPONSE_ACCEPT) {
@@ -243,6 +247,33 @@ static void cb_archive_open_file_button_clicked (GtkButton *button, gpointer use
 
         if(archive_path){
             gtk_entry_set_text (GTK_ENTRY (itf->archive_file_entry), (const gchar*) archive_path);
+        }
+    }
+
+    gtk_widget_destroy (file_chooser);
+}
+
+static void cb_sound_application_open_button_clicked (GtkButton *button, gpointer user_data)
+{
+    Itf *itf = (Itf *) user_data;
+    GtkWidget *file_chooser;
+
+    /* Create file chooser */
+    file_chooser = xfce_file_chooser_new (_("Select a file..."),
+                                            GTK_WINDOW (itf->xfcalendar_dialog),
+                                            XFCE_FILE_CHOOSER_ACTION_SAVE,
+                                            GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
+                                            GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT,
+                                            NULL);
+
+    /* Set the archive path */
+    xfce_file_chooser_set_filename (XFCE_FILE_CHOOSER(file_chooser), sound_application);
+
+	if (gtk_dialog_run (GTK_DIALOG (file_chooser)) == GTK_RESPONSE_ACCEPT) {
+		sound_application = xfce_file_chooser_get_filename (XFCE_FILE_CHOOSER (file_chooser));
+
+        if(sound_application){
+            gtk_entry_set_text (GTK_ENTRY (itf->sound_application_entry), (const gchar*) sound_application);
         }
     }
 
@@ -292,20 +323,12 @@ Itf *create_xfcalendar_dialog(McsPlugin * mcs_plugin)
     gtk_dialog_set_has_separator(GTK_DIALOG(dialog->xfcalendar_dialog), FALSE);
 
     dialog->dialog_vbox1 = GTK_DIALOG(dialog->xfcalendar_dialog)->vbox;
-    gtk_widget_show(dialog->dialog_vbox1);
 
     dialog->dialog_header = xfce_create_header(mcs_plugin->icon, _("Orage Preferences"));
-    gtk_widget_show(dialog->dialog_header);
     gtk_box_pack_start(GTK_BOX(dialog->dialog_vbox1), dialog->dialog_header, FALSE, TRUE, 0);
 
-    dialog->vbox1 = gtk_vbox_new(FALSE, 0);
-    gtk_container_set_border_width(GTK_CONTAINER(dialog->vbox1), BORDER);
-    gtk_widget_show(dialog->vbox1);
-    gtk_box_pack_start(GTK_BOX(dialog->dialog_vbox1), dialog->vbox1, TRUE, TRUE, 0);
-
     dialog->notebook = gtk_notebook_new ();
-    gtk_widget_show (dialog->notebook);
-    gtk_container_add (GTK_CONTAINER (dialog->vbox1), dialog->notebook);
+    gtk_container_add (GTK_CONTAINER (dialog->dialog_vbox1), dialog->notebook);
     gtk_container_set_border_width (GTK_CONTAINER (dialog->notebook), 5);
 
     /* Here begins display tab */
@@ -314,31 +337,24 @@ Itf *create_xfcalendar_dialog(McsPlugin * mcs_plugin)
     gtk_notebook_append_page (GTK_NOTEBOOK (dialog->notebook)
                               , dialog->display_tab
                               , dialog->display_tab_label);
-    gtk_widget_show (dialog->display_tab);
-    gtk_widget_show (dialog->display_tab_label);
 
     dialog->display_vbox = gtk_vbox_new (FALSE, 0);
-    gtk_widget_show (dialog->display_vbox);
     xfce_framebox_add (XFCE_FRAMEBOX (dialog->display_tab)
                        , dialog->display_vbox);
 
     /* Display calendar borders or not */
     dialog->mode_frame = xfce_framebox_new (_("Calendar borders"), TRUE);
-    gtk_widget_show (dialog->mode_frame);
     gtk_box_pack_start(GTK_BOX(dialog->display_vbox), dialog->mode_frame, TRUE, TRUE, 0);
     dialog->mode_hbox = gtk_hbox_new(TRUE, 0);
-    gtk_widget_show(dialog->mode_hbox);
     xfce_framebox_add(XFCE_FRAMEBOX(dialog->mode_frame), dialog->mode_hbox);
 
     dialog->normal_mode_radiobutton = gtk_radio_button_new_with_mnemonic(NULL, _("Displayed"));
-    gtk_widget_show(dialog->normal_mode_radiobutton);
     gtk_box_pack_start(GTK_BOX(dialog->mode_hbox), dialog->normal_mode_radiobutton, FALSE, FALSE, 0);
     gtk_radio_button_set_group(GTK_RADIO_BUTTON(dialog->normal_mode_radiobutton), dialog->mode_radiobutton_group);
     dialog->mode_radiobutton_group = gtk_radio_button_get_group(GTK_RADIO_BUTTON (dialog->normal_mode_radiobutton));
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(dialog->normal_mode_radiobutton), normalmode);
 
     dialog->compact_mode_radiobutton = gtk_radio_button_new_with_mnemonic(NULL, _("Hidden"));
-    gtk_widget_show(dialog->compact_mode_radiobutton);
     gtk_box_pack_start(GTK_BOX(dialog->mode_hbox), dialog->compact_mode_radiobutton, FALSE, FALSE, 0);
     gtk_radio_button_set_group(GTK_RADIO_BUTTON(dialog->compact_mode_radiobutton), dialog->mode_radiobutton_group);
     dialog->mode_radiobutton_group = gtk_radio_button_get_group(GTK_RADIO_BUTTON (dialog->compact_mode_radiobutton));
@@ -346,52 +362,42 @@ Itf *create_xfcalendar_dialog(McsPlugin * mcs_plugin)
     
     /* Show in... taskbar pager systray */
     dialog->show_frame = xfce_framebox_new(_("Calendar window"), TRUE);
-    gtk_widget_show(dialog->show_frame);
     gtk_box_pack_start(GTK_BOX(dialog->display_vbox), dialog->show_frame, TRUE, TRUE, 5);
      
     dialog->show_vbox = gtk_vbox_new(TRUE, 0);
-    gtk_widget_show(dialog->show_vbox);
     xfce_framebox_add(XFCE_FRAMEBOX(dialog->show_frame), dialog->show_vbox);
 
     dialog->show_taskbar_checkbutton = gtk_check_button_new_with_mnemonic(_("Show button in taskbar"));
-    gtk_widget_show(dialog->show_taskbar_checkbutton);
     gtk_box_pack_start(GTK_BOX(dialog->show_vbox), dialog->show_taskbar_checkbutton, FALSE, FALSE, 0);
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(dialog->show_taskbar_checkbutton), showtaskbar);
 
     dialog->show_pager_checkbutton = gtk_check_button_new_with_mnemonic(_("Show in pager"));
-    gtk_widget_show(dialog->show_pager_checkbutton);
     gtk_box_pack_start(GTK_BOX(dialog->show_vbox), dialog->show_pager_checkbutton, FALSE, FALSE, 0);
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON (dialog->show_pager_checkbutton), showpager);
 
     dialog->show_systray_checkbutton = gtk_check_button_new_with_mnemonic(_("Show icon in systray"));
-    gtk_widget_show(dialog->show_systray_checkbutton);
     gtk_box_pack_start(GTK_BOX(dialog->show_vbox), dialog->show_systray_checkbutton, FALSE, FALSE, 0);
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(dialog->show_systray_checkbutton), showsystray);
 
     /* */
     dialog->visibility_frame = xfce_framebox_new(_("Calendar start"), TRUE);
-    gtk_widget_show(dialog->visibility_frame);
     gtk_box_pack_start(GTK_BOX(dialog->display_vbox), dialog->visibility_frame, TRUE, TRUE, 5);
     dialog->visibility_hbox = gtk_hbox_new(TRUE, 0);
-    gtk_widget_show(dialog->visibility_hbox);
     xfce_framebox_add(XFCE_FRAMEBOX(dialog->visibility_frame), dialog->visibility_hbox);
 
     dialog->visibility_show_radiobutton = gtk_radio_button_new_with_mnemonic(NULL, _("Show"));
-    gtk_widget_show(dialog->visibility_show_radiobutton);
     gtk_box_pack_start(GTK_BOX(dialog->visibility_hbox), dialog->visibility_show_radiobutton, FALSE, FALSE, 0);
     gtk_radio_button_set_group(GTK_RADIO_BUTTON(dialog->visibility_show_radiobutton), dialog->visibility_radiobutton_group);
     dialog->visibility_radiobutton_group = gtk_radio_button_get_group(GTK_RADIO_BUTTON(dialog->visibility_show_radiobutton));
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(dialog->visibility_show_radiobutton), showstart);
 
     dialog->visibility_hide_radiobutton = gtk_radio_button_new_with_mnemonic(NULL, _("Hide"));
-    gtk_widget_show(dialog->visibility_hide_radiobutton);
     gtk_box_pack_start(GTK_BOX(dialog->visibility_hbox), dialog->visibility_hide_radiobutton, FALSE, FALSE, 0);
     gtk_radio_button_set_group(GTK_RADIO_BUTTON(dialog->visibility_hide_radiobutton), dialog->visibility_radiobutton_group);
     dialog->visibility_radiobutton_group = gtk_radio_button_get_group(GTK_RADIO_BUTTON(dialog->visibility_hide_radiobutton));
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(dialog->visibility_hide_radiobutton), hidestart);
 
     dialog->visibility_minimized_radiobutton = gtk_radio_button_new_with_mnemonic(NULL, _("Minimized"));
-    gtk_widget_show(dialog->visibility_minimized_radiobutton);
     gtk_box_pack_start(GTK_BOX(dialog->visibility_hbox), dialog->visibility_minimized_radiobutton, FALSE, FALSE, 0);
     gtk_radio_button_set_group(GTK_RADIO_BUTTON(dialog->visibility_minimized_radiobutton), dialog->visibility_radiobutton_group);
     dialog->visibility_radiobutton_group = gtk_radio_button_get_group(GTK_RADIO_BUTTON(dialog->visibility_minimized_radiobutton));
@@ -403,20 +409,15 @@ Itf *create_xfcalendar_dialog(McsPlugin * mcs_plugin)
     gtk_notebook_append_page (GTK_NOTEBOOK (dialog->notebook)
                               , dialog->archives_tab
                               , dialog->archives_tab_label);
-    gtk_widget_show (dialog->archives_tab);
-    gtk_widget_show (dialog->archives_tab_label);
 
     dialog->archive_vbox = gtk_vbox_new (FALSE, 0);
-    gtk_widget_show (dialog->archive_vbox);
     xfce_framebox_add (XFCE_FRAMEBOX (dialog->archives_tab)
                        , dialog->archive_vbox);
     /* Archive file and periodicity */
     dialog->archive_file_frame = xfce_framebox_new (_("Archive file"), TRUE);
-    gtk_widget_show (dialog->archive_file_frame);
     gtk_box_pack_start (GTK_BOX (dialog->archive_vbox), dialog->archive_file_frame, TRUE, TRUE, 5);
 
     dialog->archive_file_table = gtk_table_new (1, 2, FALSE);
-    gtk_widget_show (dialog->archive_file_table);
     gtk_container_set_border_width (GTK_CONTAINER (dialog->archive_file_table), 10);
     gtk_table_set_row_spacings (GTK_TABLE (dialog->archive_file_table), 6);
     gtk_table_set_col_spacings (GTK_TABLE (dialog->archive_file_table), 6);
@@ -424,24 +425,20 @@ Itf *create_xfcalendar_dialog(McsPlugin * mcs_plugin)
                        , dialog->archive_file_table);
 
     dialog->archive_file_entry = gtk_entry_new ();
-    gtk_widget_show (dialog->archive_file_entry);
     gtk_table_attach (GTK_TABLE (dialog->archive_file_table), dialog->archive_file_entry, 0, 1, 0, 1,
                         (GtkAttachOptions) (GTK_FILL),
                         (GtkAttachOptions) (0), 0, 0);
     gtk_entry_set_text(GTK_ENTRY(dialog->archive_file_entry), (const gchar *) archive_path);
 
-    dialog->archive_open_file_button = gtk_button_new_from_stock("gtk-open");
-    gtk_widget_show (dialog->archive_open_file_button);
-    gtk_table_attach (GTK_TABLE (dialog->archive_file_table), dialog->archive_open_file_button, 1, 2, 0, 1,
+    dialog->archive_file_open_button = gtk_button_new_from_stock("gtk-open");
+    gtk_table_attach (GTK_TABLE (dialog->archive_file_table), dialog->archive_file_open_button, 1, 2, 0, 1,
                         (GtkAttachOptions) (GTK_FILL),
                         (GtkAttachOptions) (0), 0, 0);
 
     dialog->archive_threshold_frame = xfce_framebox_new (_("Archive threshold"), TRUE);
-    gtk_widget_show (dialog->archive_threshold_frame);
     gtk_box_pack_start (GTK_BOX (dialog->archive_vbox), dialog->archive_threshold_frame, TRUE, TRUE, 5);
 
     dialog->archive_threshold_table = gtk_table_new (1, 1, FALSE);
-    gtk_widget_show (dialog->archive_threshold_table);
     gtk_container_set_border_width (GTK_CONTAINER (dialog->archive_threshold_table), 10);
     gtk_table_set_row_spacings (GTK_TABLE (dialog->archive_threshold_table), 6);
     gtk_table_set_col_spacings (GTK_TABLE (dialog->archive_threshold_table), 6);
@@ -459,7 +456,6 @@ Itf *create_xfcalendar_dialog(McsPlugin * mcs_plugin)
                     break;
             default:gtk_combo_box_set_active (GTK_COMBO_BOX (dialog->archive_threshold_combobox), 0);
     }
-    gtk_widget_show (dialog->archive_threshold_combobox);
 
     gtk_table_attach (GTK_TABLE (dialog->archive_threshold_table), dialog->archive_threshold_combobox, 0, 1, 0, 1,
                         (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
@@ -471,37 +467,34 @@ Itf *create_xfcalendar_dialog(McsPlugin * mcs_plugin)
     gtk_notebook_append_page (GTK_NOTEBOOK (dialog->notebook)
                               , dialog->sound_tab
                               , dialog->sound_tab_label);
-    gtk_widget_show (dialog->sound_tab);
-    gtk_widget_show (dialog->sound_tab_label);
 
     /* Choose a sound application for reminders */
-    dialog->sound_tab_table = gtk_table_new (1, 2, FALSE); 
-    gtk_container_set_border_width (GTK_CONTAINER (dialog->sound_tab_table), 10);
-    gtk_table_set_row_spacings (GTK_TABLE (dialog->sound_tab_table), 6);
-    gtk_table_set_col_spacings (GTK_TABLE (dialog->sound_tab_table), 6);
-    gtk_widget_show (dialog->sound_tab_table);
+    dialog->sound_vbox = gtk_vbox_new (FALSE, 0);
     xfce_framebox_add (XFCE_FRAMEBOX (dialog->sound_tab)
-                       , dialog->sound_tab_table);
+                       , dialog->sound_vbox);
 
-    dialog->sound_application_label = gtk_label_new (_("Application:"));
-    gtk_widget_show (dialog->sound_application_label);
-    gtk_table_attach (GTK_TABLE (dialog->sound_tab_table)
-                      , dialog->sound_application_label, 0, 1, 0, 1
-                      , (GtkAttachOptions) (GTK_FILL)
-                      , (GtkAttachOptions) (0), 0, 0);
-    gtk_misc_set_alignment (GTK_MISC (dialog->sound_application_label), 0, 0.5);
+    dialog->sound_application_frame = xfce_framebox_new (_("Application"), TRUE);
+    gtk_box_pack_start (GTK_BOX (dialog->sound_vbox), dialog->sound_application_frame, TRUE, TRUE, 5);
+
+    dialog->sound_application_table = gtk_table_new (1, 2, FALSE);
+    gtk_container_set_border_width (GTK_CONTAINER (dialog->sound_application_table), 10);
+    gtk_table_set_row_spacings (GTK_TABLE (dialog->sound_application_table), 6);
+    gtk_table_set_col_spacings (GTK_TABLE (dialog->sound_application_table), 6);
+    xfce_framebox_add (XFCE_FRAMEBOX (dialog->sound_application_frame)
+                       , dialog->sound_application_table);
 
     dialog->sound_application_entry = gtk_entry_new();
-    gtk_widget_show(dialog->sound_application_entry);
-    gtk_table_attach (GTK_TABLE (dialog->sound_tab_table)
-                      , dialog->sound_application_entry, 1, 2, 0, 1
-                      , (GtkAttachOptions) (GTK_EXPAND | GTK_FILL)
-                      , (GtkAttachOptions) (0), 0, 0);
-
+    gtk_table_attach (GTK_TABLE (dialog->sound_application_table), dialog->sound_application_entry, 0, 1, 0, 1,
+                        (GtkAttachOptions) (GTK_FILL),
+                        (GtkAttachOptions) (0), 0, 0);
     gtk_entry_set_text(GTK_ENTRY(dialog->sound_application_entry), (const gchar *)sound_application);
+
+    dialog->sound_application_open_button = gtk_button_new_from_stock("gtk-open");
+    gtk_table_attach (GTK_TABLE (dialog->sound_application_table), dialog->sound_application_open_button, 1, 2, 0, 1,
+                        (GtkAttachOptions) (GTK_FILL),
+                        (GtkAttachOptions) (0), 0, 0);
     /* */
     dialog->close_button = gtk_button_new_from_stock ("gtk-close");
-    gtk_widget_show (dialog->close_button);
     gtk_dialog_add_action_widget (GTK_DIALOG (dialog->xfcalendar_dialog), dialog->close_button, GTK_RESPONSE_CLOSE);
     GTK_WIDGET_SET_FLAGS (dialog->close_button, GTK_CAN_DEFAULT);
 
@@ -519,12 +512,13 @@ static void setup_dialog (Itf * itf)
     g_signal_connect (G_OBJECT (itf->visibility_show_radiobutton), "toggled", G_CALLBACK (cb_start_changed), itf);
     g_signal_connect (G_OBJECT (itf->visibility_minimized_radiobutton), "toggled", G_CALLBACK (cb_start_changed), itf);
     g_signal_connect (G_OBJECT (itf->sound_application_entry), "changed", G_CALLBACK (cb_sound_application_changed), itf);
-    g_signal_connect (G_OBJECT (itf->archive_open_file_button), "clicked", G_CALLBACK (cb_archive_open_file_button_clicked), itf);
+    g_signal_connect (G_OBJECT (itf->archive_file_open_button), "clicked", G_CALLBACK (cb_archive_file_open_button_clicked), itf);
     g_signal_connect (G_OBJECT (itf->archive_file_entry), "changed", G_CALLBACK (cb_archive_file_entry_changed), itf);
     g_signal_connect (G_OBJECT (itf->archive_threshold_combobox), "changed", G_CALLBACK (cb_archive_threshold_combobox_changed), itf);
+    g_signal_connect (G_OBJECT (itf->sound_application_open_button), "clicked", G_CALLBACK (cb_sound_application_open_button_clicked), itf);
 
     xfce_gtk_window_center_on_monitor_with_pointer (GTK_WINDOW (itf->xfcalendar_dialog));
-    gtk_widget_show (itf->xfcalendar_dialog);
+    gtk_widget_show_all (itf->xfcalendar_dialog);
 }
 
 McsPluginInitResult mcs_plugin_init(McsPlugin * mcs_plugin)

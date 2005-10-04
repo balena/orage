@@ -135,6 +135,7 @@ mFile_openArchive_activate_cb (GtkMenuItem *menuitem,
 
         if(archive_path){
             set_ical_path (archive_path);
+            gtk_widget_set_sensitive (xfcal->mFile_closeArchive, TRUE);
         }
     }
 
@@ -146,7 +147,10 @@ void
 mFile_closeArchive_activate_cb (GtkMenuItem *menuitem,
             gpointer user_data)
 {
+    CalWin *xfcal = (CalWin *) user_data;
+
     set_default_ical_path ();
+    gtk_widget_set_sensitive (xfcal->mFile_closeArchive, FALSE);
     xfcalendar_mark_appointments();
 }
 
@@ -352,6 +356,7 @@ void create_mainWin()
  
     xfcal->mFile_openArchive = xfcalendar_menu_item_new_with_mnemonic (_("Open archive file..."), xfcal->mFile_menu);
     xfcal->mFile_closeArchive = xfcalendar_menu_item_new_with_mnemonic (_("Close archive file"), xfcal->mFile_menu);
+    gtk_widget_set_sensitive (xfcal->mFile_closeArchive, FALSE);
 
     menu_separator = xfcalendar_separator_menu_item_new (xfcal->mFile_menu);
 
