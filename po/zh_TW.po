@@ -7,9 +7,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: orage 4.3.1.20svn\n"
+"Project-Id-Version: orage 4.3.1.21svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-09-30 19:18+0900\n"
+"POT-Creation-Date: 2005-10-06 02:15+0900\n"
 "PO-Revision-Date: 2005-10-01 21:46+0800\n"
 "Last-Translator: Hydonsingore Cia <hydonsingore@mail.educities.edu.tw>\n"
 "Language-Team: Chinese (traditional) <zh-l10n@linux.org.tw>\n"
@@ -18,109 +18,113 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #. Create file chooser
-#: ../plugin/xfcalendar_plugin.c:224 ../src/appointment.c:213
-#: ../src/mainbox.c:118
+#: ../plugin/xfcalendar_plugin.c:227 ../plugin/xfcalendar_plugin.c:262
+#: ../src/appointment.c:213 ../src/mainbox.c:118
 msgid "Select a file..."
 msgstr "選擇一個檔案..."
 
-#: ../plugin/xfcalendar_plugin.c:232 ../src/mainbox.c:126
+#: ../plugin/xfcalendar_plugin.c:235 ../src/mainbox.c:126
 msgid "Calendar files"
 msgstr "月曆檔案"
 
-#: ../plugin/xfcalendar_plugin.c:235 ../src/appointment.c:227
+#: ../plugin/xfcalendar_plugin.c:238 ../src/appointment.c:227
 #: ../src/mainbox.c:129
 msgid "All Files"
 msgstr "所有檔案"
 
-#: ../plugin/xfcalendar_plugin.c:284 ../plugin/xfcalendar_plugin.c:295
+#: ../plugin/xfcalendar_plugin.c:317 ../plugin/xfcalendar_plugin.c:327
 msgid "Orage Preferences"
 msgstr "Orage 偏好設定"
 
-#: ../plugin/xfcalendar_plugin.c:311
+#: ../plugin/xfcalendar_plugin.c:336
 msgid "Display"
 msgstr "顯示"
 
 #. Display calendar borders or not
-#: ../plugin/xfcalendar_plugin.c:325
+#: ../plugin/xfcalendar_plugin.c:346
 msgid "Calendar borders"
 msgstr "月曆邊界"
 
-#: ../plugin/xfcalendar_plugin.c:332
+#: ../plugin/xfcalendar_plugin.c:351
 msgid "Displayed"
 msgstr "已顯示"
 
-#: ../plugin/xfcalendar_plugin.c:339
+#: ../plugin/xfcalendar_plugin.c:357
 msgid "Hidden"
 msgstr "隱藏"
 
 #. Show in... taskbar pager systray
-#: ../plugin/xfcalendar_plugin.c:347
+#: ../plugin/xfcalendar_plugin.c:364
 msgid "Calendar window"
 msgstr "月曆視窗"
 
-#: ../plugin/xfcalendar_plugin.c:355
+#: ../plugin/xfcalendar_plugin.c:370
 msgid "Show button in taskbar"
 msgstr "在工作列中顯示按鈕"
 
-#: ../plugin/xfcalendar_plugin.c:360
+#: ../plugin/xfcalendar_plugin.c:374
 msgid "Show in pager"
 msgstr "在呼叫器中顯示"
 
-#: ../plugin/xfcalendar_plugin.c:365
+#: ../plugin/xfcalendar_plugin.c:378
 msgid "Show icon in systray"
 msgstr "在系統匣中顯示圖示"
 
 #.
-#: ../plugin/xfcalendar_plugin.c:371
+#: ../plugin/xfcalendar_plugin.c:383
 msgid "Calendar start"
 msgstr "月曆啟動"
 
-#: ../plugin/xfcalendar_plugin.c:379
+#: ../plugin/xfcalendar_plugin.c:388
 msgid "Show"
 msgstr "顯示"
 
-#: ../plugin/xfcalendar_plugin.c:386
+#: ../plugin/xfcalendar_plugin.c:394
 msgid "Hide"
 msgstr "隱藏"
 
-#: ../plugin/xfcalendar_plugin.c:393
+#: ../plugin/xfcalendar_plugin.c:400
 msgid "Minimized"
 msgstr "最小化"
 
-#: ../plugin/xfcalendar_plugin.c:402
+#: ../plugin/xfcalendar_plugin.c:408
 msgid "Archives"
 msgstr "封存檔案"
 
-#: ../plugin/xfcalendar_plugin.c:418
-msgid "Archive file:"
+#. Archive file and periodicity
+#: ../plugin/xfcalendar_plugin.c:417
+#, fuzzy
+msgid "Archive file"
 msgstr "封存檔案："
 
 #: ../plugin/xfcalendar_plugin.c:438
-msgid "Archive items older than:"
+#, fuzzy
+msgid "Archive threshold"
 msgstr "封存...之前的項目："
 
-#: ../plugin/xfcalendar_plugin.c:446
+#: ../plugin/xfcalendar_plugin.c:449
 msgid "3 months"
 msgstr "3 個月"
 
-#: ../plugin/xfcalendar_plugin.c:447
+#: ../plugin/xfcalendar_plugin.c:450
 msgid "6 months"
 msgstr "6 個月"
 
-#: ../plugin/xfcalendar_plugin.c:448
+#: ../plugin/xfcalendar_plugin.c:451
 msgid "1 year"
 msgstr "1 年"
 
-#: ../plugin/xfcalendar_plugin.c:464 ../src/appointment.c:1045
+#: ../plugin/xfcalendar_plugin.c:466 ../src/appointment.c:1045
 msgid "Sound"
 msgstr "鈴聲"
 
-#: ../plugin/xfcalendar_plugin.c:480
-msgid "Application:"
+#: ../plugin/xfcalendar_plugin.c:476
+#, fuzzy
+msgid "Application"
 msgstr "應用程式"
 
-#: ../plugin/xfcalendar_plugin.c:532 ../src/appointment.c:136
-#: ../src/mainbox.c:323
+#: ../plugin/xfcalendar_plugin.c:531 ../src/appointment.c:136
+#: ../src/mainbox.c:327 ../xfcalendar.desktop.in.h:3
 msgid "Orage"
 msgstr "Orage"
 
@@ -248,7 +252,7 @@ msgstr "2 天"
 
 #. File menu stuff
 #. File menu
-#: ../src/appointment.c:884 ../src/event-list.c:653 ../src/mainbox.c:346
+#: ../src/appointment.c:884 ../src/event-list.c:653 ../src/mainbox.c:350
 msgid "_File"
 msgstr "檔案(_F)"
 
@@ -342,7 +346,7 @@ msgid ""
 msgstr "您將刪除與該日期有關的所有資訊。"
 
 #. View menu
-#: ../src/event-list.c:672 ../src/mainbox.c:368
+#: ../src/event-list.c:672 ../src/mainbox.c:373
 msgid "_View"
 msgstr "檢視(_V)"
 
@@ -395,29 +399,29 @@ msgstr "  "
 msgid "Xfcalendar default alarm"
 msgstr "Xfcalendar 預設提醒"
 
-#: ../src/mainbox.c:353
+#: ../src/mainbox.c:357
 msgid "Open archive file..."
 msgstr "開啟封存檔案..."
 
-#: ../src/mainbox.c:354
+#: ../src/mainbox.c:358
 msgid "Close archive file"
 msgstr "關閉封存檔案"
 
 #. Edit menu
-#: ../src/mainbox.c:363
+#: ../src/mainbox.c:368
 msgid "_Edit"
 msgstr "編輯(_E)"
 
-#: ../src/mainbox.c:370
+#: ../src/mainbox.c:375
 msgid "View selected _date"
 msgstr "檢視所選的日期(_D)"
 
-#: ../src/mainbox.c:374
+#: ../src/mainbox.c:379
 msgid "Select _Today"
 msgstr "選擇今天日期(_T)"
 
 #. Help menu
-#: ../src/mainbox.c:377
+#: ../src/mainbox.c:382
 msgid "_Help"
 msgstr "說明(_H)"
 
@@ -453,10 +457,6 @@ msgstr "月曆"
 msgid "Desktop calendar"
 msgstr "桌面月曆"
 
-#: ../xfcalendar.desktop.in.h:3
-msgid "Xfce Calendar"
-msgstr "Xfce 月曆"
-
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:1
 msgid "Calendar Settings"
 msgstr "月曆偏好設定"
@@ -468,6 +468,9 @@ msgstr "設定 Xfce 4 的月曆程式"
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:3
 msgid "Xfce 4 Calendar Settings"
 msgstr "Xfce 4 月曆偏好設定"
+
+#~ msgid "Xfce Calendar"
+#~ msgstr "Xfce 月曆"
 
 #~ msgid "Mode"
 #~ msgstr "模式"

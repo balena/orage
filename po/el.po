@@ -5,9 +5,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: orage 4.3.1.20svn\n"
+"Project-Id-Version: orage 4.3.1.21svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-09-30 19:18+0900\n"
+"POT-Creation-Date: 2005-10-06 02:15+0900\n"
 "PO-Revision-Date: 2005-09-14 01:45+0900\n"
 "Last-Translator: Stavros Giannouris <stavrosg2002@freemail.gr>\n"
 "Language-Team: Greek <nls@tux.hellug.gr>\n"
@@ -17,110 +17,113 @@ msgstr ""
 "X-Generator: Vim 6.x\n"
 
 #. Create file chooser
-#: ../plugin/xfcalendar_plugin.c:224 ../src/appointment.c:213
-#: ../src/mainbox.c:118
+#: ../plugin/xfcalendar_plugin.c:227 ../plugin/xfcalendar_plugin.c:262
+#: ../src/appointment.c:213 ../src/mainbox.c:118
 msgid "Select a file..."
 msgstr "Επιλογή αρχείου..."
 
-#: ../plugin/xfcalendar_plugin.c:232 ../src/mainbox.c:126
+#: ../plugin/xfcalendar_plugin.c:235 ../src/mainbox.c:126
 msgid "Calendar files"
 msgstr "Αρχεία ημερολογίου"
 
-#: ../plugin/xfcalendar_plugin.c:235 ../src/appointment.c:227
+#: ../plugin/xfcalendar_plugin.c:238 ../src/appointment.c:227
 #: ../src/mainbox.c:129
 msgid "All Files"
 msgstr "Όλα τα Αρχεία"
 
-#: ../plugin/xfcalendar_plugin.c:284 ../plugin/xfcalendar_plugin.c:295
+#: ../plugin/xfcalendar_plugin.c:317 ../plugin/xfcalendar_plugin.c:327
 msgid "Orage Preferences"
 msgstr "Προτιμήσεις Orage"
 
-#: ../plugin/xfcalendar_plugin.c:311
+#: ../plugin/xfcalendar_plugin.c:336
 msgid "Display"
 msgstr "Εμφάνιση"
 
 #. Display calendar borders or not
-#: ../plugin/xfcalendar_plugin.c:325
+#: ../plugin/xfcalendar_plugin.c:346
 msgid "Calendar borders"
 msgstr "Περιγράμματα παραθύρου"
 
-#: ../plugin/xfcalendar_plugin.c:332
+#: ../plugin/xfcalendar_plugin.c:351
 msgid "Displayed"
 msgstr "Εμφάνιση"
 
-#: ../plugin/xfcalendar_plugin.c:339
+#: ../plugin/xfcalendar_plugin.c:357
 msgid "Hidden"
 msgstr "Απόκρυψη"
 
 #. Show in... taskbar pager systray
-#: ../plugin/xfcalendar_plugin.c:347
+#: ../plugin/xfcalendar_plugin.c:364
 msgid "Calendar window"
 msgstr "Παράθυρο Ημερολογίου"
 
-#: ../plugin/xfcalendar_plugin.c:355
+#: ../plugin/xfcalendar_plugin.c:370
 msgid "Show button in taskbar"
 msgstr "Προβολή κουμπιού στη μπάρα εργασιών"
 
-#: ../plugin/xfcalendar_plugin.c:360
+#: ../plugin/xfcalendar_plugin.c:374
 msgid "Show in pager"
 msgstr "Προβολή στον ειδοποιητή"
 
-#: ../plugin/xfcalendar_plugin.c:365
+#: ../plugin/xfcalendar_plugin.c:378
 msgid "Show icon in systray"
 msgstr "Προβολή στον πίνακα συστήματος"
 
 #.
-#: ../plugin/xfcalendar_plugin.c:371
+#: ../plugin/xfcalendar_plugin.c:383
 msgid "Calendar start"
 msgstr "Εκκίνηση"
 
-#: ../plugin/xfcalendar_plugin.c:379
+#: ../plugin/xfcalendar_plugin.c:388
 msgid "Show"
 msgstr "Προβολή"
 
-#: ../plugin/xfcalendar_plugin.c:386
+#: ../plugin/xfcalendar_plugin.c:394
 msgid "Hide"
 msgstr "Απόκρυψη"
 
-#: ../plugin/xfcalendar_plugin.c:393
+#: ../plugin/xfcalendar_plugin.c:400
 msgid "Minimized"
 msgstr "Ελαχιστοποιημένο"
 
-#: ../plugin/xfcalendar_plugin.c:402
+#: ../plugin/xfcalendar_plugin.c:408
 msgid "Archives"
 msgstr "Αρχειοθέτηση"
 
-#: ../plugin/xfcalendar_plugin.c:418
+#. Archive file and periodicity
+#: ../plugin/xfcalendar_plugin.c:417
 #, fuzzy
-msgid "Archive file:"
+msgid "Archive file"
 msgstr "Όνομα αρχείου:"
 
 #: ../plugin/xfcalendar_plugin.c:438
-msgid "Archive items older than:"
+#, fuzzy
+msgid "Archive threshold"
 msgstr "Αρχειοθέτηση παλαιότερων από:"
 
-#: ../plugin/xfcalendar_plugin.c:446
+#: ../plugin/xfcalendar_plugin.c:449
 msgid "3 months"
 msgstr "3 μήνες"
 
-#: ../plugin/xfcalendar_plugin.c:447
+#: ../plugin/xfcalendar_plugin.c:450
 msgid "6 months"
 msgstr "6 μήνες"
 
-#: ../plugin/xfcalendar_plugin.c:448
+#: ../plugin/xfcalendar_plugin.c:451
 msgid "1 year"
 msgstr "1 χρόνο"
 
-#: ../plugin/xfcalendar_plugin.c:464 ../src/appointment.c:1045
+#: ../plugin/xfcalendar_plugin.c:466 ../src/appointment.c:1045
 msgid "Sound"
 msgstr "Ήχοι"
 
-#: ../plugin/xfcalendar_plugin.c:480
-msgid "Application:"
+#: ../plugin/xfcalendar_plugin.c:476
+#, fuzzy
+msgid "Application"
 msgstr "Εφαρμογή:"
 
-#: ../plugin/xfcalendar_plugin.c:532 ../src/appointment.c:136
-#: ../src/mainbox.c:323
+#: ../plugin/xfcalendar_plugin.c:531 ../src/appointment.c:136
+#: ../src/mainbox.c:327 ../xfcalendar.desktop.in.h:3
 msgid "Orage"
 msgstr "Orage"
 
@@ -168,7 +171,8 @@ msgstr "Κάποια ώρα είναι λανθασμένη"
 
 #: ../src/appointment.c:428
 msgid "Time values must be written 'hh:mm', for instance '09:36' or '15:23'."
-msgstr "Οι ώρες πρέπει να είναι στη μορφή 'ωω:λλ', για παράδειγμα '09:36' ή '15:23'."
+msgstr ""
+"Οι ώρες πρέπει να είναι στη μορφή 'ωω:λλ', για παράδειγμα '09:36' ή '15:23'."
 
 #: ../src/appointment.c:563
 msgid "This appointment will be permanently removed."
@@ -248,7 +252,7 @@ msgstr "2 ημέρες"
 
 #. File menu stuff
 #. File menu
-#: ../src/appointment.c:884 ../src/event-list.c:653 ../src/mainbox.c:346
+#: ../src/appointment.c:884 ../src/event-list.c:653 ../src/mainbox.c:350
 msgid "_File"
 msgstr "_Αρχείο"
 
@@ -344,7 +348,7 @@ msgstr ""
 "που σχετίζονται με αυτή την ημερομηνία."
 
 #. View menu
-#: ../src/event-list.c:672 ../src/mainbox.c:368
+#: ../src/event-list.c:672 ../src/mainbox.c:373
 msgid "_View"
 msgstr "_Προβολή"
 
@@ -397,29 +401,29 @@ msgstr "  "
 msgid "Xfcalendar default alarm"
 msgstr "Προκαθορισμένη ειδοποίηση"
 
-#: ../src/mainbox.c:353
+#: ../src/mainbox.c:357
 msgid "Open archive file..."
 msgstr "Επιλογή αρχείου..."
 
-#: ../src/mainbox.c:354
+#: ../src/mainbox.c:358
 msgid "Close archive file"
 msgstr "Κλείσιμο αρχείου"
 
 #. Edit menu
-#: ../src/mainbox.c:363
+#: ../src/mainbox.c:368
 msgid "_Edit"
 msgstr "_Επεξεργασία"
 
-#: ../src/mainbox.c:370
+#: ../src/mainbox.c:375
 msgid "View selected _date"
 msgstr "Προβολή της επιλεγμένης _ημερομηνίας"
 
-#: ../src/mainbox.c:374
+#: ../src/mainbox.c:379
 msgid "Select _Today"
 msgstr "Επέλεξε το _Σήμερα"
 
 #. Help menu
-#: ../src/mainbox.c:377
+#: ../src/mainbox.c:382
 msgid "_Help"
 msgstr "_Βοήθεια"
 
@@ -455,10 +459,6 @@ msgstr "Ημερολόγιο"
 msgid "Desktop calendar"
 msgstr "Ημερολόγιο Γραφείου"
 
-#: ../xfcalendar.desktop.in.h:3
-msgid "Xfce Calendar"
-msgstr "Ημερολόγιο του Xfce"
-
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:1
 msgid "Calendar Settings"
 msgstr "Ρυθμίσεις Ημερολογίου"
@@ -470,3 +470,6 @@ msgstr "Ρυθμίσεις Ημερολογίου του Xfce 4"
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:3
 msgid "Xfce 4 Calendar Settings"
 msgstr "Ρυθμίσεις Ημερολογίου του Xfce 4"
+
+#~ msgid "Xfce Calendar"
+#~ msgstr "Ημερολόγιο του Xfce"
