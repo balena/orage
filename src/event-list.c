@@ -263,22 +263,24 @@ void start_time_data_func(GtkTreeViewColumn *col, GtkCellRenderer *rend,
 }
 
 void
-recreate_eventlist_win(eventlist_win *el)
+recreate_eventlist_win (eventlist_win *el)
 {
     GtkCellRenderer *rend;
     GtkTreeViewColumn *col;
 
-    gtk_list_store_clear(el->elListStore);
-    col = gtk_tree_view_get_column(GTK_TREE_VIEW(el->elTreeView), 0);
-    gtk_tree_view_remove_column(GTK_TREE_VIEW(el->elTreeView), col);
-    rend = gtk_cell_renderer_text_new();
-    col = gtk_tree_view_column_new_with_attributes( _("Time"), rend
-                , "text", COL_TIME
-                , NULL);
-    gtk_tree_view_column_set_cell_data_func(col, rend, start_time_data_func
-                , el, NULL);
-    gtk_tree_view_insert_column(GTK_TREE_VIEW(el->elTreeView), col, 0);
-    manage_eventlist_win(GTK_CALENDAR(xfcal->mCalendar), el);
+    if (el->elWindow != NULL) {
+        gtk_list_store_clear(el->elListStore);
+        col = gtk_tree_view_get_column(GTK_TREE_VIEW(el->elTreeView), 0);
+        gtk_tree_view_remove_column(GTK_TREE_VIEW(el->elTreeView), col);
+        rend = gtk_cell_renderer_text_new();
+        col = gtk_tree_view_column_new_with_attributes( _("Time"), rend
+                                                        , "text", COL_TIME
+                                                        , NULL);
+        gtk_tree_view_column_set_cell_data_func(col, rend, start_time_data_func
+                                                , el, NULL);
+        gtk_tree_view_insert_column(GTK_TREE_VIEW(el->elTreeView), col, 0);
+        manage_eventlist_win(GTK_CALENDAR(xfcal->mCalendar), el);
+    }
 }
 
 void addEvent(GtkListStore *list1, appt_type *app, char *header, gint days)
@@ -407,13 +409,14 @@ on_elFile_duplicate_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
 }
 
 void
-close_eventlist_window(eventlist_win *el){
-    gtk_window_get_size(GTK_WINDOW(el->elWindow)
+close_eventlist_window (eventlist_win *el){
+    gtk_window_get_size (GTK_WINDOW(el->elWindow)
         , &event_win_size_x, &event_win_size_y);
-    apply_settings();
+    apply_settings ();
 
-    gtk_widget_destroy(el->elWindow); /* destroy the eventlist window */
+    gtk_widget_destroy (el->elWindow); /* destroy the eventlist window */
     g_free(el);
+    el = NULL;
 }
 
 void

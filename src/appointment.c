@@ -708,6 +708,7 @@ void fill_appt_window(appt_win *appt_w, char *action, char *par)
         t=localtime(&tt);
         today = (gchar *)malloc(9);
         g_sprintf (today, "%04d%02d%02d", t->tm_year+1900, t->tm_mon+1, t->tm_mday);
+        /* If we're today, we propose an appointment the next half-hour */
         if (strcmp (appt_w->chosen_date, today) == 0) {
             if(t->tm_min <= 30){
                 g_sprintf(appt_data->starttime,"%sT%02d%02d00"
@@ -722,6 +723,7 @@ void fill_appt_window(appt_win *appt_w, char *action, char *par)
                             , par, t->tm_hour + 1, 30);
             }
         }
+        /* otherwise we suggest it at 09:00 in the morning. */
         else {
             g_sprintf(appt_data->starttime,"%sT090000", par);
             g_sprintf(appt_data->endtime,"%sT093000", par);
@@ -736,7 +738,7 @@ void fill_appt_window(appt_win *appt_w, char *action, char *par)
         appt_w->add_appointment = (strcmp(action, "COPY") == 0);
         /* but the button for duplication must be inactivated in the new appointment */
         gtk_widget_set_sensitive(appt_w->appDuplicate, !appt_w->add_appointment);
-    /* par contains ical uid */
+        /* par contains ical uid */
         if (!xfical_file_open()) {
             g_message("ical file open failed\n");
             return;
