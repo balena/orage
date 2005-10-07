@@ -268,7 +268,9 @@ recreate_eventlist_win (eventlist_win *el)
     GtkCellRenderer *rend;
     GtkTreeViewColumn *col;
 
-    if (el->elWindow != NULL) {
+    if (el->elWindow != NULL && 
+	el->elListStore != NULL &&
+	el->elTreeView != NULL) {
         gtk_list_store_clear(el->elListStore);
         col = gtk_tree_view_get_column(GTK_TREE_VIEW(el->elTreeView), 0);
         gtk_tree_view_remove_column(GTK_TREE_VIEW(el->elTreeView), col);
