@@ -117,6 +117,7 @@ struct _Itf
     GtkWidget *sound_application_open_button;
     /* */
     GtkWidget *close_button;
+    GtkWidget *help_button;
     GtkWidget *dialog_action_area1;
 };
 
@@ -124,7 +125,7 @@ static void cb_dialog_response(GtkWidget * dialog, gint response_id)
 {
     if(response_id == GTK_RESPONSE_HELP)
     {
-        g_message("HELP: TBD");
+        xfce_exec("xfhelp4 xfce4-user-guide.html", FALSE, FALSE, NULL);
     }
     else
     {
@@ -494,6 +495,8 @@ Itf *create_xfcalendar_dialog(McsPlugin * mcs_plugin)
                         (GtkAttachOptions) (GTK_FILL),
                         (GtkAttachOptions) (0), 0, 0);
     /* */
+    dialog->help_button = gtk_button_new_from_stock ("gtk-help");
+    gtk_dialog_add_action_widget (GTK_DIALOG (dialog->xfcalendar_dialog), dialog->help_button, GTK_RESPONSE_HELP);
     dialog->close_button = gtk_button_new_from_stock ("gtk-close");
     gtk_dialog_add_action_widget (GTK_DIALOG (dialog->xfcalendar_dialog), dialog->close_button, GTK_RESPONSE_CLOSE);
     GTK_WIDGET_SET_FLAGS (dialog->close_button, GTK_CAN_DEFAULT);

@@ -203,6 +203,12 @@ mView_selectToday_activate_cb(GtkMenuItem *menuitem,
 }
 
 void
+mHelp_help_activate_cb (GtkMenuItem *menuitem, gpointer user_data)
+{
+    xfce_exec("xfhelp4 xfce4-user-guide.html", FALSE, FALSE, NULL);
+}
+
+void
 mHelp_about_activate_cb (GtkMenuItem *menuitem, 
 			 gpointer user_data)
 {
@@ -380,7 +386,7 @@ void create_mainWin()
 
     /* Help menu */
     xfcal->mHelp_menu = xfcalendar_menu_new(_("_Help"), xfcal->mMenubar);
-
+    xfcal->mHelp_help = xfcalendar_image_menu_item_new_from_stock ("gtk-help", xfcal->mHelp_menu, xfcal->mAccel_group);
     xfcal->mHelp_about = xfcalendar_image_menu_item_new_from_stock ("gtk-about", xfcal->mHelp_menu, xfcal->mAccel_group);
 
     /* Build the calendar */
@@ -427,6 +433,10 @@ void create_mainWin()
     g_signal_connect ((gpointer) xfcal->mView_selectToday, "activate",
 		    G_CALLBACK (mView_selectToday_activate_cb),
 		    (gpointer) xfcal);
+
+    g_signal_connect ((gpointer) xfcal->mHelp_help, "activate",
+                      G_CALLBACK (mHelp_help_activate_cb),
+                      NULL);
 
     g_signal_connect ((gpointer) xfcal->mHelp_about, "activate",
 		    G_CALLBACK (mHelp_about_activate_cb),

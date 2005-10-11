@@ -1,6 +1,6 @@
 /* mainbox.h
  *
- * (C) 2004 Mickaël Graf
+ * (C) 2004-2005 Mickaël Graf
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -35,6 +35,7 @@ typedef struct _CalWin
     GtkWidget *mView_ViewSelectedDate;
     GtkWidget *mView_selectToday;
     GtkWidget *mHelp_menu;
+    GtkWidget *mHelp_help;
     GtkWidget *mHelp_about;
     GtkWidget *mCalendar;
     GtkAccelGroup *mAccel_group;
