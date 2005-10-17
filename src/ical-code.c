@@ -396,21 +396,24 @@ char *app_add_internal(appt_type *app, gboolean add, char *uid
            , icalproperty_new_dtend(icaltime_from_string(app->endtime)));
     if (app->freq != XFICAL_FREQ_NONE) {
         switch(app->freq) {
-            case XFICAL_FREQ_DAILY:
-                rrule = icalrecurrencetype_from_string("FREQ=DAILY");
-                break;
-            case XFICAL_FREQ_WEEKLY:
-                rrule = icalrecurrencetype_from_string("FREQ=WEEKLY");
-                break;
-            case XFICAL_FREQ_MONTHLY:
-                rrule = icalrecurrencetype_from_string("FREQ=MONTHLY");
-                break;
-            default:
-                g_warning("ical-code: app_add_internal: Unsupported freq\n");
-                icalrecurrencetype_clear(&rrule);
+        case XFICAL_FREQ_DAILY:
+            rrule = icalrecurrencetype_from_string("FREQ=DAILY");
+            break;
+        case XFICAL_FREQ_WEEKLY:
+            rrule = icalrecurrencetype_from_string("FREQ=WEEKLY");
+            break;
+        case XFICAL_FREQ_MONTHLY:
+            rrule = icalrecurrencetype_from_string("FREQ=MONTHLY");
+            break;
+        case XFICAL_FREQ_YEARLY:
+            rrule = icalrecurrencetype_from_string("FREQ=YEARLY");
+            break;
+        default:
+            g_warning("ical-code: app_add_internal: Unsupported freq\n");
+            icalrecurrencetype_clear(&rrule);
         }
-        icalcomponent_add_property(ievent
-           , icalproperty_new_rrule(rrule));
+        icalcomponent_add_property (ievent
+                                    , icalproperty_new_rrule(rrule));
     }
     if (!app->allDay && app->alarmtime != 0) {
         app_add_alarm_internal(app, ievent);
@@ -603,18 +606,21 @@ appt_type *xfical_app_get(char *ical_uid)
                     case ICAL_RRULE_PROPERTY:
                         rrule = icalproperty_get_rrule(p);
                         switch ( rrule.freq) {
-                            case ICAL_DAILY_RECURRENCE:
-                                app.freq = XFICAL_FREQ_DAILY;
-                                break;
-                            case ICAL_WEEKLY_RECURRENCE:
-                                app.freq = XFICAL_FREQ_WEEKLY;
-                                break;
-                            case ICAL_MONTHLY_RECURRENCE:
-                                app.freq = XFICAL_FREQ_MONTHLY;
-                                break;
-                            default:
-                                app.freq = XFICAL_FREQ_NONE;
-                                break;
+                        case ICAL_DAILY_RECURRENCE:
+                            app.freq = XFICAL_FREQ_DAILY;
+                            break;
+                        case ICAL_WEEKLY_RECURRENCE:
+                            app.freq = XFICAL_FREQ_WEEKLY;
+                            break;
+                        case ICAL_MONTHLY_RECURRENCE:
+                            app.freq = XFICAL_FREQ_MONTHLY;
+                            break;
+                        case ICAL_YEARLY_RECURRENCE:
+                            app.freq = XFICAL_FREQ_YEARLY;
+                            break;
+                        default:
+                            app.freq = XFICAL_FREQ_NONE;
+                            break;
                         }
                         break;
                     default:

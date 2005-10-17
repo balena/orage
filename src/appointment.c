@@ -53,7 +53,7 @@
 #include "functions.h"
 
 #define AVAILABILITY_ARRAY_DIM 2
-#define RECURRENCY_ARRAY_DIM 4
+#define RECURRENCY_ARRAY_DIM 5
 #define ALARM_ARRAY_DIM 11
 #define FILETYPE_SIZE 38
 
@@ -302,6 +302,10 @@ on_appWindow_delete_event_cb(GtkWidget *widget, GdkEvent *event, gpointer user_d
     return appWindow_check_and_close((appt_win *) user_data);
 }
 
+/*
+ * fill_appt
+ * This function fill an appointment with the content of an appointment window
+ */
 void
 fill_appt(appt_type *appt, appt_win *apptw)
 {
@@ -310,13 +314,15 @@ fill_appt(appt_type *appt, appt_win *apptw)
     struct tm current_t;
     char *returned_by_strptime;
 
+    /*Get the title */
     appt->title = (gchar *) gtk_entry_get_text((GtkEntry *)apptw->appTitle_entry);
-
+    /* Get the location */
     appt->location = (gchar *) gtk_entry_get_text((GtkEntry *)apptw->appLocation_entry);
 
     date_format = _("%m/%d/%Y");
     time_format = "%H:%M";
 
+    /* Get the start date and time */
     current_t.tm_hour = 0;
     current_t.tm_min = 0;
 
@@ -327,6 +333,7 @@ fill_appt(appt_type *appt, appt_win *apptw)
             , current_t.tm_year + 1900, current_t.tm_mon + 1, current_t.tm_mday
             , current_t.tm_hour, current_t.tm_min, 0);
 
+    /* Get the end date and time */
     current_t.tm_hour = 0;
     current_t.tm_min = 0;
 
@@ -336,22 +343,24 @@ fill_appt(appt_type *appt, appt_win *apptw)
             , current_t.tm_year + 1900, current_t.tm_mon + 1, current_t.tm_mday
             , current_t.tm_hour, current_t.tm_min, 0);
 
+    /* Get when the reminder when the reminder will show up */
     appt->alarmtime = gtk_combo_box_get_active((GtkComboBox *)apptw->appAlarm_combobox);
 
+    /* Get the recurrence */
     appt->freq = gtk_combo_box_get_active((GtkComboBox *)apptw->appRecurrency_cb);
-
+    /* Get the availability */
     appt->availability = gtk_combo_box_get_active((GtkComboBox *)apptw->appAvailability_cb);
-
+    /* Get the notes */
     gtk_text_buffer_get_bounds(gtk_text_view_get_buffer((GtkTextView *)apptw->appNote_textview), 
                                 &start, 
                                 &end);
 
     appt->note = gtk_text_iter_get_text(&start, &end);
-
+    /* Get if the appointment is for the all day */
     appt->allDay = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(apptw->appAllDay_checkbutton));
-
+    /* Get if the alarm will repeat until someone shuts it off */
     appt->alarmrepeat = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(apptw->appSoundRepeat_checkbutton));
-
+    /* Which sound file will be played */
     appt->sound = (gchar *) gtk_entry_get_text((GtkEntry *)apptw->appSound_entry);
 
 }
@@ -847,7 +856,7 @@ appt_win
               *toolbar_separator;
 
     char *availability_array[AVAILABILITY_ARRAY_DIM] = {_("Free"), _("Busy")},
-         *recurrency_array[RECURRENCY_ARRAY_DIM] = {_("None"), _("Daily"), _("Weekly"), _("Monthly")},
+         *recurrency_array[RECURRENCY_ARRAY_DIM] = {_("None"), _("Daily"), _("Weekly"), _("Monthly"), _("Yearly")},
          *alarm_array[ALARM_ARRAY_DIM] = {_("None"), _("5 minutes"), _("15 minutes"), _("30 minutes"),
                                           _("45 minutes"), _("1 hour"), _("2 hours"), _("4 hours"),
                                           _("8 hours"), _("1 day"), _("2 days")};

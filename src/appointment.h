@@ -23,10 +23,11 @@
 #define XFICAL_APP_DATE_FORMAT "%04d%02d%02d"
 
 typedef enum {
-     XFICAL_FREQ_NONE = 0
+    XFICAL_FREQ_NONE = 0
     ,XFICAL_FREQ_DAILY
     ,XFICAL_FREQ_WEEKLY
     ,XFICAL_FREQ_MONTHLY
+    ,XFICAL_FREQ_YEARLY
 } xfical_freq;
 
 typedef struct
