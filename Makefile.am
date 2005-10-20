@@ -5,9 +5,10 @@ endif
 
 SUBDIRS = 								\
 	$(LIBICAL_SUBDIR)						\
+	doc								\
 	icons								\
 	po								\
-    sounds                          \
+	sounds								\
 	src								\
 	plugin
 
@@ -44,5 +45,7 @@ distcheck-bz2: distcheck
 distclean-local:
 	rm -rf *.cache *~ *.spec
 
+html: Makefile
+	make -C doc html
 
 ACLOCAL_AMFLAGS = -I m4

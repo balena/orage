@@ -1,0 +1,183 @@
+<?xml version='1.0'?> 
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
+          "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
+  <!ENTITY manrevision "0.1"> 
+  <!ENTITY date "Oct 2005"> 
+  <!ENTITY appversion "4.3.1"> 
+  <!ENTITY app "<application>orage</application>">
+]>
+
+<article id="orage" lang="en">
+
+<!-- Header --> 
+<articleinfo>
+
+  <title>Orage</title>
+
+  <copyright>
+    <year>2005</year> <holder>Mickaël Graf</holder>
+  </copyright>
+
+<!-- translators: uncomment this:
+
+  <copyright>
+   <year>2002</year> <holder>ME-THE-TRANSLATOR (Latin
+   translation)</holder>
+  </copyright>
+
+ -->
+
+<!-- I don't know about this
+  <legalnotice id="legalnotice">
+    <para>
+      This document is provided under the terms of the GNU GPL, version
+      2 or (at your option) any later version.
+    </para>
+  </legalnotice>
+-->
+  <authorgroup>
+
+    <author>
+      <firstname>Mickaël</firstname> <surname>Graf</surname>
+      <affiliation>
+	<address><email>korbinus@xfce.org</email></address>
+      </affiliation>
+    </author>
+
+    <author>
+      <firstname>Juha</firstname> <surname>Kautto</surname>
+      <affiliation>
+	<address><email>juha@xfce.org</email></address>
+      </affiliation>
+    </author>
+
+    <author>
+      <firstname>Benedikt</firstname> <surname>Meurer</surname>
+      <affiliation>
+	<address><email>benny@xfce.org</email></address>
+      </affiliation>
+    </author>
+
+    <author>
+      <firstname>Edscott Wilson</firstname> <surname>Garcia</surname>
+      <affiliation>
+	<address><email>edscott@xfce.org</email></address>
+      </affiliation>
+    </author>
+
+<!-- This is appropriate place for other contributors: translators,
+maintainers, etc. Commented out by default.
+
+    <othercredit role="translator">
+      <firstname>Latin</firstname> <surname>Translator 1</surname>
+      <affiliation>
+	<orgname>Latin Translation Team</orgname>
+	<address><email>translator@gnome.org</email> </address>
+      </affiliation> <contrib>Latin translation</contrib>
+    </othercredit>
+-->
+
+  </authorgroup>
+
+  <!--
+  <revhistory>
+    <revision>
+      <revnumber>0.4</revnumber> 
+      <date>May 2003</date>
+      <authorinitials>jbh</authorinitials>
+    </revision>
+    <revision>
+      <revnumber>0.3</revnumber> 
+      <date>February 2003</date>
+      <authorinitials>jbh</authorinitials>
+    </revision>
+  </revhistory>
+  -->
+
+  <releaseinfo>This manual describes &app; version &appversion;. 
+    Last updated: &date;
+  </releaseinfo>
+
+</articleinfo>
+
+  <!-- extra space -->
+  <para>&nbsp;</para>
+  
+<sect1 id="orage-intro">
+  <title>Introduction</title>
+
+  <para>
+    Orage is a time-managing application that is part of the <ulink url="http://www.xfce.org" 
+    type="html">Xfce 4 Desktop Environment</ulink> and features a calendar window, 
+    lists of events and reminders. It also provides an easy way to archive and manage your 
+    old appointments.
+  </para>
+
+</sect1>
+
+  <!-- extra space -->
+  <para>&nbsp;</para>
+  
+<sect1 id="orage-getting-started">
+  <title>Getting started</title>
+
+  <para>
+    Orage is started by writting &app; on the command line or in the run application window. 
+    You can also start it by clicking on the item &app; in the submenu "Office" from the desktop
+    menu.
+  </para>
+
+  <figure id="desktop-menuitem-fig">
+    <title>Orage menu item in the desktop menu</title>
+    <screenshot>
+      <mediaobject>
+        <imageobject>
+	  <imagedata fileref="images/orage_desktop_menuitem.png" format="PNG" />
+	</imageobject>
+	<!--
+        <imageobject>
+	  <imagedata fileref="images/orage_desktop_menuitem.eps" format="EPS" />
+	</imageobject>
+	-->
+	<textobject>
+	  <phrase>
+	    For starting Orage from the desktop menu: "Office" and then click on "Orage".
+	  </phrase>
+	</textobject>
+      </mediaobject>
+    </screenshot>
+  </figure>
+
+  <para>
+    When you run &app;, you will first see the calendar window appearing. 
+  </para>
+</sect1>
+
+<sect1 id="orage-calendar-window">
+  <title>The calendar window</title>
+
+  <figure id="default-calendar-fig">
+    <title>Default Calendar window</title>
+    <screenshot>
+      <mediaobject>
+        <imageobject>
+	  <imagedata fileref="images/default_calendar.png" format="PNG" />
+	</imageobject>
+	<!--
+        <imageobject>
+	  <imagedata fileref="images/default_calendar.eps" format="EPS" />
+	</imageobject>
+	-->
+	<textobject>
+	  <phrase>
+	    The default calendar window: a menu giving access to different functions, a nice 
+	    calendar in the middle, showing the month, the year, day names, week numbers, and
+	    in bold which days you have appointments.
+	  </phrase>
+	</textobject>
+      </mediaobject>
+    </screenshot>
+  </figure>
+</sect1>
+
+</article>
