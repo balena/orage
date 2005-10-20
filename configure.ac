@@ -206,4 +206,5 @@ src/Makefile
 plugin/Makefile
 doc/Makefile
 doc/C/Makefile
+doc/C/images/Makefile
 ])
