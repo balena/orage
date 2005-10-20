@@ -204,4 +204,6 @@ po/Makefile.in
 sounds/Makefile
 src/Makefile
 plugin/Makefile
+doc/Makefile
+doc/C/Makefile
 ])
