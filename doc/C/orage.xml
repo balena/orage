@@ -158,6 +158,7 @@ maintainers, etc. Commented out by default.
 
   <figure id="default-calendar-fig">
     <title>Default Calendar window</title>
+
     <screenshot>
       <mediaobject>
         <imageobject>
@@ -170,14 +171,62 @@ maintainers, etc. Commented out by default.
 	-->
 	<textobject>
 	  <phrase>
-	    The default calendar window: a menu giving access to different functions, a nice 
-	    calendar in the middle, showing the month, the year, day names, week numbers, and
-	    in bold which days you have appointments.
+	    The calendar window.
 	  </phrase>
 	</textobject>
       </mediaobject>
     </screenshot>
   </figure>
+
+  <para>
+    The calendar window provides you first with a menu bar giving access to different functions, a nice 
+    calendar in the middle, showing the month, the year, day names, week numbers, and in bold which days 
+    you have appointments.
+  </para>
+
+  <sect2 id="calendar-menu-bar">
+    <title>The menu bar</title>
+
+    <para>
+      The menubar contains four menus, which are the File, Edit, View, Help.
+    </para>
+
+    <sect3 id="calendar-file-menu">
+      <title>The file menu</title>
+
+      <figure id="calendar-file-menu-fig">
+        <title>File menu in the calendar window</title>
+
+	<screenshot>
+	  <mediaobject>
+	    <imageobject>
+	      <imagedata fileref="images/orage_calendar_file_menu.png" format="PNG" />
+	    </imageobject>
+	    <textobject>
+	      <phrase>
+	        The File menu in the calendar window.
+	      </phrase>
+	    </textobject>
+	  </mediaobject>
+	</screenshot>
+      </figure>
+
+      <para>
+        The file menu contains five items:
+      </para>
+
+      <itemizedlist>
+        <listitem>New: fire an appointment window (see below) for creating a new appointment;</listitem>
+        <listitem>Open archive file...: fire a file selector for opening file containing old items;</listitem>
+        <listitem>Close archive file: close the previously opened file - greyed when no file opened;</listitem>
+        <listitem>Close: close the calendar window, keeping the application running;</listitem>
+        <listitem>Quit: close the opened windows, may put old appointments in an archive file, and then close the application.</listitem>
+      </itemizedlist>
+
+    </sect3>
+
+  </sect2>
+
 </sect1>
 
 </article>
