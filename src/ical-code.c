@@ -256,10 +256,7 @@ void xfical_internal_file_open(icalcomponent **p_ical
 gboolean xfical_file_open (void)
 { 
 
-    g_warning("xfical_file_open: fical is NULL %d\n", (int)fical);
-
     xfical_internal_file_open (&ical, &fical, ical_path);
-    g_warning("xfical_file_open: fical is NULL %d\n", (int)fical);
     return (TRUE);
 }
 
@@ -268,8 +265,6 @@ gboolean xfical_archive_open (void)
 
     if (!aical_path)
         return (FALSE);
-
-    g_warning("xfical_archive_open: fical is NULL\n");
 
     xfical_internal_file_open (&aical, &afical, aical_path);
     return (TRUE);
