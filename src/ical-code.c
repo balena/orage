@@ -43,7 +43,6 @@
 #include <libxfce4util/libxfce4util.h>
 #include <libxfcegui4/libxfcegui4.h>
 #include <libxfcegui4/netk-trayicon.h>
-#include <libxfce4mcs/mcs-client.h>
 #include <gdk/gdk.h>
 #include <gtk/gtk.h>
 #include <ical.h>
@@ -56,7 +55,6 @@
 
 #define MAX_APP_LENGTH 4096
 #define LEN_BUFFER 1024
-#define CHANNEL  "xfcalendar"
 #define RCDIR    "xfce4" G_DIR_SEPARATOR_S "xfcalendar"
 #define APPOINTMENT_FILE "appointments.ics"
 #define ARCHIVE_FILE "archdev.ics"
@@ -64,25 +62,20 @@
 #define XFICAL_STR_EXISTS(str) ((str != NULL) && (str[0] != 0))
 
 static icalcomponent *ical,
-                     *a_ical;
-static icalset* fical = NULL,
-              * aical = NULL;
+                     *aical;
+static icalset *fical = NULL,
+               *afical = NULL;
 static gboolean fical_modified = TRUE,
-                aical_modified = TRUE;
-
+                afical_modified = TRUE;
 static gchar *ical_path,
              *aical_path;
+
+static icaltimezone *local_icaltimezone = NULL;
+static char *local_icaltimezone_location = NULL;
 
 static int lookback;
 
 extern GList *alarm_list;
-
-typedef struct
-{
-    icalcomponent *component;
-    icalset *file;
-    gboolean file_modified;
-} xfical_struct;
 
 void set_default_ical_path (void)
 {
@@ -109,77 +102,176 @@ void set_aical_path (gchar *path)
     aical_path = path;
 }
 
-void set_lookback (int i) {
+void set_lookback (int i) 
+{
     lookback = i;
 }
 
-xfical_struct *xfical_internal_file_open(xfical_struct *lical, gchar *file_icalpath)
+gboolean xfical_set_local_timezone(char *location)
+{
+    if (!location)
+    {
+        g_warning("xfical_set_local_timezone: no timezone defined\n");
+        return (FALSE);
+    }
+    local_icaltimezone_location=strdup(location);
+    if (!local_icaltimezone_location)
+    {
+        g_warning("xfical_set_local_timezone: Memory exhausted\n");
+        return (FALSE);
+    }
+    local_icaltimezone=icaltimezone_get_builtin_timezone(location);
+    if (!local_icaltimezone)
+    {
+        g_warning("xfical_set_local_timezone: timezone not found\n");
+        return (FALSE);
+    }
+    return (TRUE); 
+}
+
+static char*
+icaltimezone_get_location_from_vtimezone(icalcomponent *component)
+{
+/* * basically taken from libical timezone.c
+ * * Gets the LOCATION or X-LIC-LOCATION property from a VTIMEZONE. */
+    icalproperty *prop;
+    const char *location;
+    const char *name;
+                                                                                
+    prop=icalcomponent_get_first_property(component, ICAL_X_PROPERTY);
+    while (prop) {
+        name = icalproperty_get_x_name(prop);
+        if (name && !strcmp (name, "X-LIC-LOCATION")) {
+            location=icalproperty_get_x(prop);
+            if (location)
+                return strdup(location);
+        }
+        prop=icalcomponent_get_next_property(component, ICAL_X_PROPERTY);
+    }
+                                                                                
+    prop=icalcomponent_get_first_property(component, ICAL_LOCATION_PROPERTY);
+    if (prop) {
+        location=icalproperty_get_location(prop);
+        if (location)
+            return strdup(location);
+    }
+    return NULL;
+}
+
+void xfical_add_timezone(icalcomponent *p_ical
+        , icalset *p_fical
+        , char *location)
+{
+    icaltimezone *icaltz=NULL;
+    icalcomponent *itimezone=NULL;
+                                                                                
+    if (!location) {
+        g_warning("xfical_add_timezone: no location defined \n");
+        return;
+/*        g_strlcpy(tz, "Europe/Helsinki", 201); */
+    }
+    g_print("xfical_add_timezone: %s\n", location);
+                                                                                
+    icaltz=icaltimezone_get_builtin_timezone(location);
+    if (icaltz==NULL) {
+        g_warning("xfical_add_timezone: timezone not found %s\n", location);
+        return;
+    }
+    itimezone=icaltimezone_get_component(icaltz);
+    if (itimezone != NULL) {
+        icalcomponent_add_component(p_ical
+            , icalcomponent_new_clone(itimezone));
+        fical_modified = TRUE;
+        icalset_mark(p_fical);
+    }
+    else
+        g_warning("xfical_add_timezone: timezone add failed %s\na", location);
+}
+
+void xfical_internal_file_open_timezone(icalcomponent *p_ical
+        , icalset *p_fical)
+{
+    icalcomponent *iter, *iter2;
+    gint cnt=0;
+
+    for (iter = icalcomponent_get_first_component(p_ical
+                , ICAL_VTIMEZONE_COMPONENT), cnt=0, iter2=NULL;
+         iter != 0;
+         iter = icalcomponent_get_next_component(p_ical
+                , ICAL_VTIMEZONE_COMPONENT)) {
+        cnt++;
+        iter2=iter;
+    }
+    if (cnt == 0) { /* timezone missing, need to add one? */
+        xfical_add_timezone(p_ical, p_fical, local_icaltimezone_location);
+    }
+}
+
+void xfical_internal_file_open(icalcomponent **p_ical
+        , icalset **p_fical
+        , gchar *file_icalpath)
 {
     icalcomponent *iter;
-    register gint cnt=0;
+    gint cnt=0;
+    char *loc;
 
-    if (lical->file != NULL) {
-        g_warning("xfical_internal_file_open: lical->file already open\n");
+    if (*p_fical != NULL) {
+        g_warning("xfical_internal_file_open: file already open\n");
     }
-    if ((lical->file = icalset_new_file(file_icalpath)) == NULL) {
-        g_error("xfical_file_open: Could not open ical file (%s) %s\n"
+    if ((*p_fical = icalset_new_file(file_icalpath)) == NULL) {
+        g_error("xfical_internal_file_open: Could not open ical file (%s) %s\n"
                 , file_icalpath, icalerror_strerror(icalerrno));
     }
-    else { /* let's find last VCALENDAR entry */
-        if(lical->file !=NULL)
-            g_warning("xfical_file_open: lical->file is now open\n");
-
-        for (iter = icalset_get_first_component(lical->file); 
+    else { /* file open, let's find last VCALENDAR entry */
+        for (iter = icalset_get_first_component(*p_fical); 
              iter != 0;
-             iter = icalset_get_next_component(lical->file)) {
+             iter = icalset_get_next_component(*p_fical)) {
             cnt++;
-            lical->component = iter; /* last valid component */
+            *p_ical = iter; /* last valid component */
         }
         if (cnt == 0) {
-        /* calendar missing, need to add one. 
+        /* calendar missing, need to add one.  
          * Note: According to standard rfc2445 calendar always needs to
          *       contain at least one other component. So strictly speaking
          *       this is not valid entry before adding an event 
          */
-            lical->component = icalcomponent_vanew(ICAL_VCALENDAR_COMPONENT
+            *p_ical = icalcomponent_vanew(ICAL_VCALENDAR_COMPONENT
                    , icalproperty_new_version("2.0")
-                   , icalproperty_new_prodid("-//Xfce//Xfcalendar//EN")
+                   , icalproperty_new_prodid("-//Xfce//Orage//EN")
                    , 0);
-            icalset_add_component(lical->file, icalcomponent_new_clone(lical->component));
-            icalset_commit(lical->file);
+            xfical_add_timezone(*p_ical, *p_fical, local_icaltimezone_location);
+            icalset_add_component(*p_fical
+                   , icalcomponent_new_clone(*p_ical));
+            icalset_commit(*p_fical);
         }
-        else if (cnt > 1) {
-            g_warning("xfical_file_open: Too many top level components in calendar file\n");
+        else { /* VCALENDAR found, let's find VTIMEZONE */
+            if (cnt > 1) {
+                g_warning("xfical_internal_file_open: Too many top level components in calendar file %s\n", file_icalpath);
+            }
+            xfical_internal_file_open_timezone(*p_ical, *p_fical);
         }
     }
-    return lical;
 }
 
 gboolean xfical_file_open (void)
-{
-    xfical_struct *ical_struct;
+{ 
 
-    ical_struct = g_new(xfical_struct, 1);
+    g_warning("xfical_file_open: fical is NULL %d\n", (int)fical);
 
-    ical_struct = xfical_internal_file_open (ical_struct, ical_path);
-    ical = ical_struct->component;
-    fical = ical_struct->file;
+    xfical_internal_file_open (&ical, &fical, ical_path);
+    g_warning("xfical_file_open: fical is NULL %d\n", (int)fical);
     return (TRUE);
 }
 
 gboolean xfical_archive_open (void)
 {
-    xfical_struct *ical_struct;
 
     if (!aical_path)
         return (FALSE);
 
-    ical_struct = g_new(xfical_struct, 1);
+    g_warning("xfical_archive_open: fical is NULL\n");
 
-    ical_struct = xfical_internal_file_open (ical_struct, aical_path);
-
-    a_ical = ical_struct->component;
-    aical = ical_struct->file;
+    xfical_internal_file_open (&aical, &afical, aical_path);
     return (TRUE);
 }
 
@@ -202,12 +294,12 @@ void xfical_archive_close(void)
     if (!aical_path)
         return;
 
-    if(aical == NULL)
-        g_warning("xfical_file_close: aical is NULL\n");
-    icalset_free(aical);
-    aical = NULL;
-    if (aical_modified) {
-        aical_modified = FALSE;
+    if(afical == NULL)
+        g_warning("xfical_file_close: afical is NULL\n");
+    icalset_free(afical);
+    afical = NULL;
+    if (afical_modified) {
+        afical_modified = FALSE;
         xfcalendar_mark_appointments();
     }
 }
@@ -237,9 +329,10 @@ struct icaltimetype ical_get_current_local_time()
     /*
     note: this gives UTC time:
     ctime = icaltime_current_time_with_zone(NULL);
-
     strftime(koe, 200, "%Z", tm);
     g_print("timezone: %s\n", koe);
+
+    ctime = icaltime_current_time_with_zone(local_icaltimezone);
     */
     return (ctime);
 }
@@ -340,7 +433,7 @@ char *app_add_internal(appt_type *app, gboolean add, char *uid
         , struct icaltimetype cre_time)
 {
     icalcomponent *ievent;
-    struct icaltimetype ctime, create_time;
+    struct icaltimetype ctime, create_time, wtime;
     static gchar xf_uid[1001];
     gchar xf_host[501];
     struct icalrecurrencetype rrule;
@@ -349,7 +442,7 @@ char *app_add_internal(appt_type *app, gboolean add, char *uid
     if (add) {
         gethostname(xf_host, 500);
         xf_host[500] = '\0';
-        g_snprintf(xf_uid, 1000, "Xfcalendar-%s-%lu@%s"
+        g_snprintf(xf_uid, 1000, "Orage-%s-%lu@%s"
                 , icaltime_as_ical_string(ctime), (long) getuid(), xf_host);
         create_time = ctime;
     }
@@ -605,7 +698,7 @@ appt_type *xfical_app_get(char *ical_uid)
                         break;
                     case ICAL_RRULE_PROPERTY:
                         rrule = icalproperty_get_rrule(p);
-                        switch ( rrule.freq) {
+                        switch (rrule.freq) {
                         case ICAL_DAILY_RECURRENCE:
                             app.freq = XFICAL_FREQ_DAILY;
                             break;
@@ -1107,7 +1200,7 @@ void xfical_icalcomponent_archive (icalcomponent *e, struct tm *threshold)
     recurrence = FALSE;
     /* Add to the archive file */
     d = icalcomponent_new_clone (e);
-    icalcomponent_add_component(a_ical, d);
+    icalcomponent_add_component(aical, d);
     /* Look for recurrence */
     for (p = icalcomponent_get_first_property(e, ICAL_ANY_PROPERTY);
         p != 0;
@@ -1194,9 +1287,9 @@ gboolean xfical_keep_tidy(void)
             xfical_icalcomponent_archive (e, threshold);
         }
         icalset_mark (fical);
-        icalset_mark (aical);
-        icalset_commit (aical);
         icalset_commit (fical);
+        icalset_mark (afical);
+        icalset_commit (afical);
     }
     return(TRUE);
 }
