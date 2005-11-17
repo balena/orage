@@ -72,6 +72,7 @@ static gchar *ical_path,
 
 static icaltimezone *local_icaltimezone = NULL;
 static char *local_icaltimezone_location = NULL;
+static gboolean local_icaltimezone_utc = FALSE;
 
 static int lookback;
 
@@ -109,21 +110,23 @@ void set_lookback (int i)
 
 gboolean xfical_set_local_timezone(char *location)
 {
-    if (!location)
-    {
+    if (!location) {
         g_warning("xfical_set_local_timezone: no timezone defined\n");
         return (FALSE);
     }
+    if (strcmp(location,"UTC") == 0) {
+        local_icaltimezone_utc=TRUE;
+        return (TRUE);
+    }
     local_icaltimezone_location=strdup(location);
-    if (!local_icaltimezone_location)
-    {
-        g_warning("xfical_set_local_timezone: Memory exhausted\n");
+    if (!local_icaltimezone_location) {
+        g_warning("xfical_set_local_timezone: strdup memory exhausted\n");
         return (FALSE);
     }
     local_icaltimezone=icaltimezone_get_builtin_timezone(location);
-    if (!local_icaltimezone)
-    {
-        g_warning("xfical_set_local_timezone: timezone not found\n");
+    if (!local_icaltimezone) {
+        g_warning("xfical_set_local_timezone: builtin timezone %s not found\n"
+            , location);
         return (FALSE);
     }
     return (TRUE); 
@@ -171,6 +174,9 @@ void xfical_add_timezone(icalcomponent *p_ical
 /*        g_strlcpy(tz, "Europe/Helsinki", 201); */
     }
     g_print("xfical_add_timezone: %s\n", location);
+    if (strcmp(location,"UTC") == 0) {
+        return;
+    }
                                                                                 
     icaltz=icaltimezone_get_builtin_timezone(location);
     if (icaltz==NULL) {
@@ -203,11 +209,12 @@ void xfical_internal_file_open_timezone(icalcomponent *p_ical
         iter2=iter;
     }
     if (cnt == 0) { /* timezone missing, need to add one? */
-        xfical_add_timezone(p_ical, p_fical, local_icaltimezone_location);
+        if (local_icaltimezone_location)
+            xfical_add_timezone(p_ical, p_fical, local_icaltimezone_location);
     }
 }
 
-void xfical_internal_file_open(icalcomponent **p_ical
+gboolean xfical_internal_file_open(icalcomponent **p_ical
         , icalset **p_fical
         , gchar *file_icalpath)
 {
@@ -221,6 +228,7 @@ void xfical_internal_file_open(icalcomponent **p_ical
     if ((*p_fical = icalset_new_file(file_icalpath)) == NULL) {
         g_error("xfical_internal_file_open: Could not open ical file (%s) %s\n"
                 , file_icalpath, icalerror_strerror(icalerrno));
+        return(FALSE);
     }
     else { /* file open, let's find last VCALENDAR entry */
         for (iter = icalset_get_first_component(*p_fical); 
@@ -244,20 +252,22 @@ void xfical_internal_file_open(icalcomponent **p_ical
                    , icalcomponent_new_clone(*p_ical));
             icalset_commit(*p_fical);
         }
-        else { /* VCALENDAR found, let's find VTIMEZONE */
+        else { /* VCALENDAR found */
             if (cnt > 1) {
                 g_warning("xfical_internal_file_open: Too many top level components in calendar file %s\n", file_icalpath);
             }
+            /* FIXME: no need to check timezone here ??
             xfical_internal_file_open_timezone(*p_ical, *p_fical);
+            */
         }
     }
+    return(TRUE);
 }
 
 gboolean xfical_file_open (void)
 { 
 
-    xfical_internal_file_open (&ical, &fical, ical_path);
-    return (TRUE);
+    return(xfical_internal_file_open(&ical, &fical, ical_path));
 }
 
 gboolean xfical_archive_open (void)
@@ -266,8 +276,7 @@ gboolean xfical_archive_open (void)
     if (!aical_path)
         return (FALSE);
 
-    xfical_internal_file_open (&aical, &afical, aical_path);
-    return (TRUE);
+    return(xfical_internal_file_open(&aical, &afical, aical_path));
 }
 
 void xfical_file_close(void)
@@ -308,19 +317,26 @@ struct icaltimetype ical_get_current_local_time()
     char koe[200];
     */
 
-    t=time(NULL);
-    tm=localtime(&t);
-    
-    ctime.year        = tm->tm_year+1900;
-    ctime.month       = tm->tm_mon+1;
-    ctime.day         = tm->tm_mday;
-    ctime.hour        = tm->tm_hour;
-    ctime.minute      = tm->tm_min;
-    ctime.second      = tm->tm_sec;
-    ctime.is_utc      = 0;
-    ctime.is_date     = 0;
-    ctime.is_daylight = 0;
-    ctime.zone        = NULL;
+    if (local_icaltimezone_utc) {
+        ctime = icaltime_current_time_with_zone(NULL);
+    }
+    else if (local_icaltimezone_location) {
+        ctime = icaltime_current_time_with_zone(local_icaltimezone);
+    }
+    else { /* use floating time */
+        t=time(NULL);
+        tm=localtime(&t);
+        ctime.year        = tm->tm_year+1900;
+        ctime.month       = tm->tm_mon+1;
+        ctime.day         = tm->tm_mday;
+        ctime.hour        = tm->tm_hour;
+        ctime.minute      = tm->tm_min;
+        ctime.second      = tm->tm_sec;
+        ctime.is_utc      = 0;
+        ctime.is_date     = 0;
+        ctime.is_daylight = 0;
+        ctime.zone        = NULL;
+    }
     /*
     note: this gives UTC time:
     ctime = icaltime_current_time_with_zone(NULL);
