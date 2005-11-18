@@ -73,6 +73,7 @@ static gchar *ical_path,
 static icaltimezone *local_icaltimezone = NULL;
 static char *local_icaltimezone_location = NULL;
 static gboolean local_icaltimezone_utc = FALSE;
+static icaltimezone *utc_icaltimezone = NULL;
 
 static int lookback;
 
@@ -222,6 +223,8 @@ gboolean xfical_internal_file_open(icalcomponent **p_ical
     gint cnt=0;
     char *loc;
 
+    if (!utc_icaltimezone)
+        utc_icaltimezone=icaltimezone_get_utc_timezone();
     if (*p_fical != NULL) {
         g_warning("xfical_internal_file_open: file already open\n");
     }
@@ -318,7 +321,7 @@ struct icaltimetype ical_get_current_local_time()
     */
 
     if (local_icaltimezone_utc) {
-        ctime = icaltime_current_time_with_zone(NULL);
+        ctime = icaltime_current_time_with_zone(utc_icaltimezone);
     }
     else if (local_icaltimezone_location) {
         ctime = icaltime_current_time_with_zone(local_icaltimezone);
@@ -418,7 +421,7 @@ void app_add_alarm_internal(appt_type *app, icalcomponent *ievent)
             , icalproperty_new_description(app->title));
     else
         icalcomponent_add_property(ialarm
-            , icalproperty_new_description(_("Xfcalendar default alarm")));
+            , icalproperty_new_description(_("Orage default alarm")));
     icalcomponent_add_component(ievent, ialarm);
     /********** AUDIO **********/
     if XFICAL_STR_EXISTS(app->sound) {
@@ -444,17 +447,18 @@ char *app_add_internal(appt_type *app, gboolean add, char *uid
         , struct icaltimetype cre_time)
 {
     icalcomponent *ievent;
-    struct icaltimetype ctime, create_time, wtime;
+    struct icaltimetype dtstamp, ctime, create_time, wtime;
     static gchar xf_uid[1001];
     gchar xf_host[501];
     struct icalrecurrencetype rrule;
 
     ctime = ical_get_current_local_time();
+    dtstamp = icaltime_current_time_with_zone(utc_icaltimezone);
     if (add) {
         gethostname(xf_host, 500);
         xf_host[500] = '\0';
         g_snprintf(xf_uid, 1000, "Orage-%s-%lu@%s"
-                , icaltime_as_ical_string(ctime), (long) getuid(), xf_host);
+                , icaltime_as_ical_string(dtstamp), (long) getuid(), xf_host);
         create_time = ctime;
     }
     else { /* mod */
@@ -467,9 +471,9 @@ char *app_add_internal(appt_type *app, gboolean add, char *uid
 
     ievent = icalcomponent_vanew(ICAL_VEVENT_COMPONENT
            , icalproperty_new_uid(xf_uid)
-           , icalproperty_new_categories("XFCALNOTE")
+           , icalproperty_new_categories("ORAGENOTE")
            , icalproperty_new_class(ICAL_CLASS_PUBLIC)
-           , icalproperty_new_dtstamp(ctime)
+           , icalproperty_new_dtstamp(dtstamp)
            , icalproperty_new_created(create_time)
            , 0);
 
@@ -609,15 +613,16 @@ void ical_app_get_alarm_internal(icalcomponent *c,  appt_type *app)
                 case ICAL_REPEAT_PROPERTY:
                     app->alarmrepeat = TRUE;
                     break;
-                case ICAL_DURATION_PROPERTY:
-                /* no actions defined */
-                    break;
                 case ICAL_DESCRIPTION_PROPERTY:
                     if (app->note == NULL)
                         app->note = (char *) icalproperty_get_description(p);
                     break;
+                case ICAL_DURATION_PROPERTY:
+                case ICAL_ACTION_PROPERTY:
+                /* no actions defined */
+                    break;
                 default:
-                    g_warning("ical_code: unknown property\n");
+                    g_warning("ical_app_get_alarm_internal: unknown property %s\n", (char *)icalproperty_get_property_name(p));
                     break;
             }
         }
@@ -727,8 +732,13 @@ appt_type *xfical_app_get(char *ical_uid)
                             break;
                         }
                         break;
+                    case ICAL_CATEGORIES_PROPERTY:
+                    case ICAL_CLASS_PROPERTY:
+                    case ICAL_DTSTAMP_PROPERTY:
+                    case ICAL_CREATED_PROPERTY:
+                        break;
                     default:
-                        g_warning("ical-code: unknown property\n");
+                        g_warning("xfical_app_get: unknown property %s\n", (char *)icalproperty_get_property_name(p));
                         break;
                 }
             }
