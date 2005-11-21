@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.3.1.22svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-10-21 17:31+0900\n"
+"POT-Creation-Date: 2005-11-22 00:11+0900\n"
 "PO-Revision-Date: 2005-10-29 15:54+0200\n"
 "Last-Translator: Sylvain Vedrenne <gnu_sylvain@xfce.org>\n"
 "Language-Team: Esperanto <translation-team-eo@lists.sourceforge.net>\n"
@@ -168,7 +168,8 @@ msgstr "Iu tempa nombro estas malkorekta."
 
 #: ../src/appointment.c:437
 msgid "Time values must be written 'hh:mm', for instance '09:36' or '15:23'."
-msgstr "Tempaj nombroj devas esti skribitaj 'hh:mm', ekzemple '09:36' aŭ '15:23'."
+msgstr ""
+"Tempaj nombroj devas esti skribitaj 'hh:mm', ekzemple '09:36' aŭ '15:23'."
 
 #: ../src/appointment.c:572
 msgid "This appointment will be permanently removed."
@@ -397,9 +398,18 @@ msgstr "Uzantmarko (uid)"
 msgid "  "
 msgstr "  "
 
-#: ../src/ical-code.c:317
-msgid "Xfcalendar default alarm"
+#: ../src/ical-code.c:424
+#, fuzzy
+msgid "Orage default alarm"
 msgstr "Kalendara defaŭlta alarmo"
+
+#: ../src/main.c:165
+msgid "This should not happen"
+msgstr "Tio ne devus okazi"
+
+#: ../src/main.c:448
+msgid "Cannot create MCS client channel"
+msgstr "Ne povas krei MCS-an klientan kanalon"
 
 #: ../src/mainbox.c:363
 msgid "Open archive file..."
@@ -427,14 +437,6 @@ msgstr "Elektu _Hodiaŭ"
 msgid "_Help"
 msgstr "_Helpo"
 
-#: ../src/main.c:165
-msgid "This should not happen"
-msgstr "Tio ne devus okazi"
-
-#: ../src/main.c:448
-msgid "Cannot create MCS client channel"
-msgstr "Ne povas krei MCS-an klientan kanalon"
-
 #: ../src/reminder.c:163
 msgid "Reminder "
 msgstr "Memorigilo"
@@ -451,14 +453,6 @@ msgstr "Preferaĵoj"
 msgid "About Orage"
 msgstr "Pri Oraĝo"
 
-#: ../xfcalendar.desktop.in.h:1
-msgid "Calendar"
-msgstr "Kalendaro"
-
-#: ../xfcalendar.desktop.in.h:2
-msgid "Desktop calendar"
-msgstr "Labortabla kalendaro"
-
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:1
 msgid "Calendar Settings"
 msgstr "Kalendaraj parametroj"
@@ -470,3 +464,11 @@ msgstr "Parametroj por la Xfce 4 Kalendara Aplikaĵo"
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:3
 msgid "Xfce 4 Calendar Settings"
 msgstr "Xfce 4 Kalendaraj Parametroj"
+
+#: ../xfcalendar.desktop.in.h:1
+msgid "Calendar"
+msgstr "Kalendaro"
+
+#: ../xfcalendar.desktop.in.h:2
+msgid "Desktop calendar"
+msgstr "Labortabla kalendaro"

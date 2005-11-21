@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.3.1.22svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-10-21 17:31+0900\n"
+"POT-Creation-Date: 2005-11-22 00:11+0900\n"
 "PO-Revision-Date: 2005-09-14 01:26+0900\n"
 "Last-Translator: Lâm Vĩnh Niên <nienvl@yahoo.ca>\n"
 "Language-Team: Vietnamese <gnomevi-list@lists.sourceforge.net>\n"
@@ -402,9 +402,17 @@ msgstr ""
 msgid "  "
 msgstr ""
 
-#: ../src/ical-code.c:317
-msgid "Xfcalendar default alarm"
+#: ../src/ical-code.c:424
+msgid "Orage default alarm"
 msgstr ""
+
+#: ../src/main.c:165
+msgid "This should not happen"
+msgstr "Điều này không nên xảy ra"
+
+#: ../src/main.c:448
+msgid "Cannot create MCS client channel"
+msgstr "Không thể tạo kênh khách MCS"
 
 #: ../src/mainbox.c:363
 msgid "Open archive file..."
@@ -432,14 +440,6 @@ msgstr "Chọn hôm na_y"
 msgid "_Help"
 msgstr "_Giúp đỡ"
 
-#: ../src/main.c:165
-msgid "This should not happen"
-msgstr "Điều này không nên xảy ra"
-
-#: ../src/main.c:448
-msgid "Cannot create MCS client channel"
-msgstr "Không thể tạo kênh khách MCS"
-
 #: ../src/reminder.c:163
 #, fuzzy
 msgid "Reminder "
@@ -458,16 +458,6 @@ msgstr "Tuỳ thích"
 msgid "About Orage"
 msgstr ""
 
-#: ../xfcalendar.desktop.in.h:1
-#, fuzzy
-msgid "Calendar"
-msgstr "Xfcalendar"
-
-#: ../xfcalendar.desktop.in.h:2
-#, fuzzy
-msgid "Desktop calendar"
-msgstr "Về Xfcalendar"
-
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:1
 #, fuzzy
 msgid "Calendar Settings"
@@ -480,3 +470,13 @@ msgstr ""
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:3
 msgid "Xfce 4 Calendar Settings"
 msgstr ""
+
+#: ../xfcalendar.desktop.in.h:1
+#, fuzzy
+msgid "Calendar"
+msgstr "Xfcalendar"
+
+#: ../xfcalendar.desktop.in.h:2
+#, fuzzy
+msgid "Desktop calendar"
+msgstr "Về Xfcalendar"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.3.1.22svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-10-21 17:31+0900\n"
+"POT-Creation-Date: 2005-11-22 00:11+0900\n"
 "PO-Revision-Date: 2005-09-16 22:12+0100\n"
 "Last-Translator: Juraj Brosz <juro@jurajbrosz.info>\n"
 "Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
@@ -409,9 +409,18 @@ msgstr "uid"
 msgid "  "
 msgstr "  "
 
-#: ../src/ical-code.c:317
-msgid "Xfcalendar default alarm"
+#: ../src/ical-code.c:424
+#, fuzzy
+msgid "Orage default alarm"
 msgstr "Prednastavený alarm kalendára"
+
+#: ../src/main.c:165
+msgid "This should not happen"
+msgstr "Nemusí sa to podariť"
+
+#: ../src/main.c:448
+msgid "Cannot create MCS client channel"
+msgstr "Nie je možné vytvoriť kanál MCS klienta"
 
 #: ../src/mainbox.c:363
 msgid "Open archive file..."
@@ -439,14 +448,6 @@ msgstr "Vybrať _dnešný dátum"
 msgid "_Help"
 msgstr "_Pomocník"
 
-#: ../src/main.c:165
-msgid "This should not happen"
-msgstr "Nemusí sa to podariť"
-
-#: ../src/main.c:448
-msgid "Cannot create MCS client channel"
-msgstr "Nie je možné vytvoriť kanál MCS klienta"
-
 #: ../src/reminder.c:163
 msgid "Reminder "
 msgstr "Pripomienka"
@@ -463,14 +464,6 @@ msgstr "Nastavenia"
 msgid "About Orage"
 msgstr ""
 
-#: ../xfcalendar.desktop.in.h:1
-msgid "Calendar"
-msgstr "Kalendár"
-
-#: ../xfcalendar.desktop.in.h:2
-msgid "Desktop calendar"
-msgstr "Kalendár pracovnej plochy"
-
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:1
 msgid "Calendar Settings"
 msgstr "Nastavenia kalendára"
@@ -482,3 +475,11 @@ msgstr "Nastavenia pre aplikáciu Kalendár Xfce 4"
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:3
 msgid "Xfce 4 Calendar Settings"
 msgstr "Nastavenia pre Kalendár Xfce 4"
+
+#: ../xfcalendar.desktop.in.h:1
+msgid "Calendar"
+msgstr "Kalendár"
+
+#: ../xfcalendar.desktop.in.h:2
+msgid "Desktop calendar"
+msgstr "Kalendár pracovnej plochy"

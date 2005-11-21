@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.3.1.22svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-10-21 17:31+0900\n"
+"POT-Creation-Date: 2005-11-22 00:11+0900\n"
 "PO-Revision-Date: 2005-09-14 01:49+0900\n"
 "Last-Translator: Jari Rahkonen <jari.rahkonen@pp1.inet.fi>\n"
 "Language-Team: Finnish <translation-team-fi@lists.sourceforge.net>\n"
@@ -410,9 +410,18 @@ msgstr "uid"
 msgid "  "
 msgstr "  "
 
-#: ../src/ical-code.c:317
-msgid "Xfcalendar default alarm"
+#: ../src/ical-code.c:424
+#, fuzzy
+msgid "Orage default alarm"
 msgstr "Xfkalenterin oletushälytys"
+
+#: ../src/main.c:165
+msgid "This should not happen"
+msgstr "Näin ei pitäisi tapahtua"
+
+#: ../src/main.c:448
+msgid "Cannot create MCS client channel"
+msgstr "MCS-asiakaskanavan luonti epäonnistui"
 
 #: ../src/mainbox.c:363
 #, fuzzy
@@ -441,14 +450,6 @@ msgstr "_Valitse tämä päivä"
 msgid "_Help"
 msgstr "_Ohje"
 
-#: ../src/main.c:165
-msgid "This should not happen"
-msgstr "Näin ei pitäisi tapahtua"
-
-#: ../src/main.c:448
-msgid "Cannot create MCS client channel"
-msgstr "MCS-asiakaskanavan luonti epäonnistui"
-
 #: ../src/reminder.c:163
 msgid "Reminder "
 msgstr "Muistutus "
@@ -465,14 +466,6 @@ msgstr "Valinnat"
 msgid "About Orage"
 msgstr ""
 
-#: ../xfcalendar.desktop.in.h:1
-msgid "Calendar"
-msgstr "Kalenteri"
-
-#: ../xfcalendar.desktop.in.h:2
-msgid "Desktop calendar"
-msgstr "Työpöytäkalenteri"
-
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:1
 msgid "Calendar Settings"
 msgstr "Kalenterin asetukset"
@@ -484,3 +477,11 @@ msgstr "Xfce 4 kalenterisovelluksen asetukset"
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:3
 msgid "Xfce 4 Calendar Settings"
 msgstr "Xfce 4 kalenterin asetukset"
+
+#: ../xfcalendar.desktop.in.h:1
+msgid "Calendar"
+msgstr "Kalenteri"
+
+#: ../xfcalendar.desktop.in.h:2
+msgid "Desktop calendar"
+msgstr "Työpöytäkalenteri"

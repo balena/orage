@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.3.1.22svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-10-21 17:31+0900\n"
+"POT-Creation-Date: 2005-11-22 00:11+0900\n"
 "PO-Revision-Date: 2005-09-14 01:01+0900\n"
 "Last-Translator: Norayr Chilingaryan <norik@oric.org>\n"
 "Language-Team: Armenian <en@li.org>\n"
@@ -409,9 +409,17 @@ msgstr ""
 msgid "  "
 msgstr ""
 
-#: ../src/ical-code.c:317
-msgid "Xfcalendar default alarm"
+#: ../src/ical-code.c:424
+msgid "Orage default alarm"
 msgstr ""
+
+#: ../src/main.c:165
+msgid "This should not happen"
+msgstr "Դա պետք է չվիճակվի"
+
+#: ../src/main.c:448
+msgid "Cannot create MCS client channel"
+msgstr "Հնարավոր չէ ստեղծել MCS հաճախորդ ուղի"
 
 #: ../src/mainbox.c:363
 msgid "Open archive file..."
@@ -439,14 +447,6 @@ msgstr "Ընտրել _Այսոր"
 msgid "_Help"
 msgstr "_Ձեռնարկ"
 
-#: ../src/main.c:165
-msgid "This should not happen"
-msgstr "Դա պետք է չվիճակվի"
-
-#: ../src/main.c:448
-msgid "Cannot create MCS client channel"
-msgstr "Հնարավոր չէ ստեղծել MCS հաճախորդ ուղի"
-
 #: ../src/reminder.c:163
 #, fuzzy
 msgid "Reminder "
@@ -465,16 +465,6 @@ msgstr "Նախընտրանքներ"
 msgid "About Orage"
 msgstr ""
 
-#: ../xfcalendar.desktop.in.h:1
-#, fuzzy
-msgid "Calendar"
-msgstr "Xfօրացույց"
-
-#: ../xfcalendar.desktop.in.h:2
-#, fuzzy
-msgid "Desktop calendar"
-msgstr "Xfcalendar Ծրագրի մասին"
-
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:1
 #, fuzzy
 msgid "Calendar Settings"
@@ -487,3 +477,13 @@ msgstr ""
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:3
 msgid "Xfce 4 Calendar Settings"
 msgstr ""
+
+#: ../xfcalendar.desktop.in.h:1
+#, fuzzy
+msgid "Calendar"
+msgstr "Xfօրացույց"
+
+#: ../xfcalendar.desktop.in.h:2
+#, fuzzy
+msgid "Desktop calendar"
+msgstr "Xfcalendar Ծրագրի մասին"

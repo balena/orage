@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-10-21 17:31+0900\n"
+"POT-Creation-Date: 2005-11-22 00:11+0900\n"
 "PO-Revision-Date: 2005-10-23 23:30+0200\n"
 "Last-Translator: Piarres Beobide <pi@beobide.net>\n"
 "Language-Team: librezale.org <librezale@librezale.org>\n"
@@ -170,7 +170,8 @@ msgstr "Ordu balioa oker dago."
 
 #: ../src/appointment.c:437
 msgid "Time values must be written 'hh:mm', for instance '09:36' or '15:23'."
-msgstr "Ordu balioak 'oo:mm' formatuan idatzi behar dira, adib. '09:36' edo '15:23'."
+msgstr ""
+"Ordu balioak 'oo:mm' formatuan idatzi behar dira, adib. '09:36' edo '15:23'."
 
 #: ../src/appointment.c:572
 msgid "This appointment will be permanently removed."
@@ -399,9 +400,18 @@ msgstr "uid"
 msgid "  "
 msgstr "  "
 
-#: ../src/ical-code.c:317
-msgid "Xfcalendar default alarm"
+#: ../src/ical-code.c:424
+#, fuzzy
+msgid "Orage default alarm"
 msgstr "Xfcalendar lehenetsiriko abisua"
+
+#: ../src/main.c:165
+msgid "This should not happen"
+msgstr "Hauez zen gertatu behar"
+
+#: ../src/main.c:448
+msgid "Cannot create MCS client channel"
+msgstr "Ezin da MCS bezero kanala sortu"
 
 #: ../src/mainbox.c:363
 msgid "Open archive file..."
@@ -429,14 +439,6 @@ msgstr "Hautatu _Gaur"
 msgid "_Help"
 msgstr "_Laguntza"
 
-#: ../src/main.c:165
-msgid "This should not happen"
-msgstr "Hauez zen gertatu behar"
-
-#: ../src/main.c:448
-msgid "Cannot create MCS client channel"
-msgstr "Ezin da MCS bezero kanala sortu"
-
 #: ../src/reminder.c:163
 msgid "Reminder "
 msgstr "Gogorarazlea "
@@ -453,14 +455,6 @@ msgstr "Hobespenak"
 msgid "About Orage"
 msgstr "Orage-ri buruz"
 
-#: ../xfcalendar.desktop.in.h:1
-msgid "Calendar"
-msgstr "Egutegia"
-
-#: ../xfcalendar.desktop.in.h:2
-msgid "Desktop calendar"
-msgstr "Idazmahai egutegia"
-
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:1
 msgid "Calendar Settings"
 msgstr "Egutegi Ezarpenak"
@@ -473,3 +467,10 @@ msgstr "Xfce 4 Egutegi Aplikazioaren Ezarpenak"
 msgid "Xfce 4 Calendar Settings"
 msgstr "Xfce 4 Egutegi Ezarpenak"
 
+#: ../xfcalendar.desktop.in.h:1
+msgid "Calendar"
+msgstr "Egutegia"
+
+#: ../xfcalendar.desktop.in.h:2
+msgid "Desktop calendar"
+msgstr "Idazmahai egutegia"

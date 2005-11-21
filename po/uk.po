@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.3.1.22svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-10-21 17:31+0900\n"
+"POT-Creation-Date: 2005-11-22 00:11+0900\n"
 "PO-Revision-Date: 2005-09-14 01:24+0900\n"
 "Last-Translator: Maxim V. Dziumanenko <mvd@mylinux.com.ua>\n"
 "Language-Team: Ukrainian <translation-team-uk@lists.sourceforge.net>\n"
@@ -402,9 +402,17 @@ msgstr ""
 msgid "  "
 msgstr ""
 
-#: ../src/ical-code.c:317
-msgid "Xfcalendar default alarm"
+#: ../src/ical-code.c:424
+msgid "Orage default alarm"
 msgstr ""
+
+#: ../src/main.c:165
+msgid "This should not happen"
+msgstr "Це не повинно статись"
+
+#: ../src/main.c:448
+msgid "Cannot create MCS client channel"
+msgstr "Не вдається створити канал клієнта параметрів"
 
 #: ../src/mainbox.c:363
 msgid "Open archive file..."
@@ -432,14 +440,6 @@ msgstr "Перейти до _сьогоднішнього дня"
 msgid "_Help"
 msgstr "_Довідка"
 
-#: ../src/main.c:165
-msgid "This should not happen"
-msgstr "Це не повинно статись"
-
-#: ../src/main.c:448
-msgid "Cannot create MCS client channel"
-msgstr "Не вдається створити канал клієнта параметрів"
-
 #: ../src/reminder.c:163
 #, fuzzy
 msgid "Reminder "
@@ -458,16 +458,6 @@ msgstr "Уподобання"
 msgid "About Orage"
 msgstr ""
 
-#: ../xfcalendar.desktop.in.h:1
-#, fuzzy
-msgid "Calendar"
-msgstr "Xfcalendar"
-
-#: ../xfcalendar.desktop.in.h:2
-#, fuzzy
-msgid "Desktop calendar"
-msgstr "Про програму Xfcalendar"
-
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:1
 #, fuzzy
 msgid "Calendar Settings"
@@ -480,3 +470,13 @@ msgstr ""
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:3
 msgid "Xfce 4 Calendar Settings"
 msgstr ""
+
+#: ../xfcalendar.desktop.in.h:1
+#, fuzzy
+msgid "Calendar"
+msgstr "Xfcalendar"
+
+#: ../xfcalendar.desktop.in.h:2
+#, fuzzy
+msgid "Desktop calendar"
+msgstr "Про програму Xfcalendar"

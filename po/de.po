@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.3.1.22svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-10-21 17:31+0900\n"
+"POT-Creation-Date: 2005-11-22 00:11+0900\n"
 "PO-Revision-Date: 2005-10-09 19:23+0900\n"
 "Last-Translator: Fabian Nowak <timystery@arcor.de>\n"
 "Language-Team: German <de@li.org>\n"
@@ -398,9 +398,18 @@ msgstr "Nutzerkennung"
 msgid "  "
 msgstr "  "
 
-#: ../src/ical-code.c:317
-msgid "Xfcalendar default alarm"
+#: ../src/ical-code.c:424
+#, fuzzy
+msgid "Orage default alarm"
 msgstr "Xfcalendar Standard-Alarm"
+
+#: ../src/main.c:165
+msgid "This should not happen"
+msgstr "Das sollte nicht passieren"
+
+#: ../src/main.c:448
+msgid "Cannot create MCS client channel"
+msgstr "Konnte MCS Kanal nicht erzeugen"
 
 #: ../src/mainbox.c:363
 msgid "Open archive file..."
@@ -428,14 +437,6 @@ msgstr "Heutiger Tag"
 msgid "_Help"
 msgstr "_Hilfe"
 
-#: ../src/main.c:165
-msgid "This should not happen"
-msgstr "Das sollte nicht passieren"
-
-#: ../src/main.c:448
-msgid "Cannot create MCS client channel"
-msgstr "Konnte MCS Kanal nicht erzeugen"
-
 #: ../src/reminder.c:163
 msgid "Reminder "
 msgstr "Erinnerungs-Service"
@@ -452,14 +453,6 @@ msgstr "Einstellungen"
 msgid "About Orage"
 msgstr "Über Orage"
 
-#: ../xfcalendar.desktop.in.h:1
-msgid "Calendar"
-msgstr "Kalender"
-
-#: ../xfcalendar.desktop.in.h:2
-msgid "Desktop calendar"
-msgstr "Arbeitsplatz Kalender"
-
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:1
 msgid "Calendar Settings"
 msgstr "Kalandereinstellungen"
@@ -471,3 +464,11 @@ msgstr "Einstellungen für den Xfce 4 Kalender"
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:3
 msgid "Xfce 4 Calendar Settings"
 msgstr "Xfce 4 Kalendereinstellungen"
+
+#: ../xfcalendar.desktop.in.h:1
+msgid "Calendar"
+msgstr "Kalender"
+
+#: ../xfcalendar.desktop.in.h:2
+msgid "Desktop calendar"
+msgstr "Arbeitsplatz Kalender"

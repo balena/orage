@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.3.1.22svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-10-21 17:31+0900\n"
+"POT-Creation-Date: 2005-11-22 00:11+0900\n"
 "PO-Revision-Date: 2005-10-07 17:32+0900\n"
 "Last-Translator: Daichi Kawahata <daichi@xfce.org>\n"
 "Language-Team: Japanese <xfce-users-jp@ml.fdiary.net>\n"
@@ -401,9 +401,18 @@ msgid "  "
 msgstr "  "
 
 # FIXME: should be `Orage'
-#: ../src/ical-code.c:317
-msgid "Xfcalendar default alarm"
+#: ../src/ical-code.c:424
+#, fuzzy
+msgid "Orage default alarm"
 msgstr "Orage の標準アラーム"
+
+#: ../src/main.c:165
+msgid "This should not happen"
+msgstr "想定外の事が起こりました"
+
+#: ../src/main.c:448
+msgid "Cannot create MCS client channel"
+msgstr "MCS クライアントのチャンネルを作成できません"
 
 #: ../src/mainbox.c:363
 msgid "Open archive file..."
@@ -431,14 +440,6 @@ msgstr "今日の日付を選択(_T)"
 msgid "_Help"
 msgstr "ヘルプ(_H)"
 
-#: ../src/main.c:165
-msgid "This should not happen"
-msgstr "想定外の事が起こりました"
-
-#: ../src/main.c:448
-msgid "Cannot create MCS client channel"
-msgstr "MCS クライアントのチャンネルを作成できません"
-
 #: ../src/reminder.c:163
 msgid "Reminder "
 msgstr "備忘録 "
@@ -455,14 +456,6 @@ msgstr "環境設定"
 msgid "About Orage"
 msgstr "Orage について"
 
-#: ../xfcalendar.desktop.in.h:1
-msgid "Calendar"
-msgstr "カレンダー"
-
-#: ../xfcalendar.desktop.in.h:2
-msgid "Desktop calendar"
-msgstr "デスクトップカレンダー"
-
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:1
 msgid "Calendar Settings"
 msgstr "カレンダー設定"
@@ -474,3 +467,11 @@ msgstr "Xfce 4 カレンダーアプリケーションの設定"
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:3
 msgid "Xfce 4 Calendar Settings"
 msgstr "Xfce 4 カレンダー設定"
+
+#: ../xfcalendar.desktop.in.h:1
+msgid "Calendar"
+msgstr "カレンダー"
+
+#: ../xfcalendar.desktop.in.h:2
+msgid "Desktop calendar"
+msgstr "デスクトップカレンダー"

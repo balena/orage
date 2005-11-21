@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.3.1.22svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-10-21 17:31+0900\n"
+"POT-Creation-Date: 2005-11-22 00:11+0900\n"
 "PO-Revision-Date: 2005-09-14 01:47+0900\n"
 "Last-Translator: Mart Tõnso <mart.tonso@ttu.ee>\n"
 "Language-Team: Estonian <et@li.org>\n"
@@ -403,9 +403,17 @@ msgstr ""
 msgid "  "
 msgstr ""
 
-#: ../src/ical-code.c:317
-msgid "Xfcalendar default alarm"
+#: ../src/ical-code.c:424
+msgid "Orage default alarm"
 msgstr ""
+
+#: ../src/main.c:165
+msgid "This should not happen"
+msgstr "Seda ei tohiks juhtuda"
+
+#: ../src/main.c:448
+msgid "Cannot create MCS client channel"
+msgstr "Ei suuda luua MCS kliendi kanalit"
 
 #: ../src/mainbox.c:363
 msgid "Open archive file..."
@@ -433,14 +441,6 @@ msgstr "Vali tänane päev"
 msgid "_Help"
 msgstr "_Abi"
 
-#: ../src/main.c:165
-msgid "This should not happen"
-msgstr "Seda ei tohiks juhtuda"
-
-#: ../src/main.c:448
-msgid "Cannot create MCS client channel"
-msgstr "Ei suuda luua MCS kliendi kanalit"
-
 #: ../src/reminder.c:163
 #, fuzzy
 msgid "Reminder "
@@ -459,14 +459,6 @@ msgstr "Seadistus"
 msgid "About Orage"
 msgstr ""
 
-#: ../xfcalendar.desktop.in.h:1
-msgid "Calendar"
-msgstr "Kalender"
-
-#: ../xfcalendar.desktop.in.h:2
-msgid "Desktop calendar"
-msgstr "Töölaua kalender"
-
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:1
 msgid "Calendar Settings"
 msgstr "Kalendri seaded"
@@ -478,3 +470,11 @@ msgstr "Xfce 4 kalendri seaded"
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:3
 msgid "Xfce 4 Calendar Settings"
 msgstr "Xfce 4 kalendri seaded"
+
+#: ../xfcalendar.desktop.in.h:1
+msgid "Calendar"
+msgstr "Kalender"
+
+#: ../xfcalendar.desktop.in.h:2
+msgid "Desktop calendar"
+msgstr "Töölaua kalender"

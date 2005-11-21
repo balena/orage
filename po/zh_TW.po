@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.3.1.22svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-10-21 17:31+0900\n"
+"POT-Creation-Date: 2005-11-22 00:11+0900\n"
 "PO-Revision-Date: 2005-10-07 17:23+0800\n"
 "Last-Translator: Hydonsingore Cia <hydonsingore@mail.educities.edu.tw>\n"
 "Language-Team: Chinese (traditional) <zh-l10n@linux.org.tw>\n"
@@ -396,9 +396,18 @@ msgstr "uid"
 msgid "  "
 msgstr "  "
 
-#: ../src/ical-code.c:317
-msgid "Xfcalendar default alarm"
+#: ../src/ical-code.c:424
+#, fuzzy
+msgid "Orage default alarm"
 msgstr "Xfcalendar 預設提醒"
+
+#: ../src/main.c:165
+msgid "This should not happen"
+msgstr "不應發生此種情況"
+
+#: ../src/main.c:448
+msgid "Cannot create MCS client channel"
+msgstr "無法建立 MCS 客戶端通道"
 
 #: ../src/mainbox.c:363
 msgid "Open archive file..."
@@ -426,14 +435,6 @@ msgstr "選擇今天日期(_T)"
 msgid "_Help"
 msgstr "說明(_H)"
 
-#: ../src/main.c:165
-msgid "This should not happen"
-msgstr "不應發生此種情況"
-
-#: ../src/main.c:448
-msgid "Cannot create MCS client channel"
-msgstr "無法建立 MCS 客戶端通道"
-
 #: ../src/reminder.c:163
 msgid "Reminder "
 msgstr "提醒"
@@ -450,14 +451,6 @@ msgstr "偏好設定"
 msgid "About Orage"
 msgstr "關於Orage"
 
-#: ../xfcalendar.desktop.in.h:1
-msgid "Calendar"
-msgstr "月曆"
-
-#: ../xfcalendar.desktop.in.h:2
-msgid "Desktop calendar"
-msgstr "桌面月曆"
-
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:1
 msgid "Calendar Settings"
 msgstr "月曆偏好設定"
@@ -469,3 +462,11 @@ msgstr "設定 Xfce 4 的月曆程式"
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:3
 msgid "Xfce 4 Calendar Settings"
 msgstr "Xfce 4 月曆偏好設定"
+
+#: ../xfcalendar.desktop.in.h:1
+msgid "Calendar"
+msgstr "月曆"
+
+#: ../xfcalendar.desktop.in.h:2
+msgid "Desktop calendar"
+msgstr "桌面月曆"

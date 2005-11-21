@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.3.1.22svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-10-21 17:31+0900\n"
+"POT-Creation-Date: 2005-11-22 00:11+0900\n"
 "PO-Revision-Date: 2005-09-14 01:26+0900\n"
 "Last-Translator: Yongtao Yang <yongtao.yang@telia.com>\n"
 "Language-Team: Simplified Chinese <i18n-translation@lists.linux.net.cn>\n"
@@ -401,9 +401,17 @@ msgstr ""
 msgid "  "
 msgstr ""
 
-#: ../src/ical-code.c:317
-msgid "Xfcalendar default alarm"
+#: ../src/ical-code.c:424
+msgid "Orage default alarm"
 msgstr ""
+
+#: ../src/main.c:165
+msgid "This should not happen"
+msgstr "不应发生此种情况"
+
+#: ../src/main.c:448
+msgid "Cannot create MCS client channel"
+msgstr "无法创建 MCS 客户通道"
 
 #: ../src/mainbox.c:363
 msgid "Open archive file..."
@@ -431,14 +439,6 @@ msgstr "选择当天日期(_T)"
 msgid "_Help"
 msgstr "帮助(_H)"
 
-#: ../src/main.c:165
-msgid "This should not happen"
-msgstr "不应发生此种情况"
-
-#: ../src/main.c:448
-msgid "Cannot create MCS client channel"
-msgstr "无法创建 MCS 客户通道"
-
 #: ../src/reminder.c:163
 #, fuzzy
 msgid "Reminder "
@@ -457,16 +457,6 @@ msgstr "首选项"
 msgid "About Orage"
 msgstr ""
 
-#: ../xfcalendar.desktop.in.h:1
-#, fuzzy
-msgid "Calendar"
-msgstr "清除"
-
-#: ../xfcalendar.desktop.in.h:2
-#, fuzzy
-msgid "Desktop calendar"
-msgstr "关于 Xfcalendar"
-
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:1
 #, fuzzy
 msgid "Calendar Settings"
@@ -479,3 +469,13 @@ msgstr ""
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:3
 msgid "Xfce 4 Calendar Settings"
 msgstr ""
+
+#: ../xfcalendar.desktop.in.h:1
+#, fuzzy
+msgid "Calendar"
+msgstr "清除"
+
+#: ../xfcalendar.desktop.in.h:2
+#, fuzzy
+msgid "Desktop calendar"
+msgstr "关于 Xfcalendar"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.3.1.22svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-10-21 17:31+0900\n"
+"POT-Creation-Date: 2005-11-22 00:11+0900\n"
 "PO-Revision-Date: 2005-09-14 01:03+0900\n"
 "Last-Translator: ByungHyun Choi<byunghyunchoi@hotmail.com>\n"
 "Language-Team: xfce4-users-kr-i18n <xfce4-users-kr-i18n@lists.sourceforge."
@@ -408,9 +408,17 @@ msgstr ""
 msgid "  "
 msgstr ""
 
-#: ../src/ical-code.c:317
-msgid "Xfcalendar default alarm"
+#: ../src/ical-code.c:424
+msgid "Orage default alarm"
 msgstr ""
+
+#: ../src/main.c:165
+msgid "This should not happen"
+msgstr "이런 일은 생길 수 없어요."
+
+#: ../src/main.c:448
+msgid "Cannot create MCS client channel"
+msgstr "MCS 클라이언트 채널을 만들지 못 했습니다."
 
 #: ../src/mainbox.c:363
 msgid "Open archive file..."
@@ -438,14 +446,6 @@ msgstr "오늘을 선택하세요(_T)"
 msgid "_Help"
 msgstr "도움말(_H)"
 
-#: ../src/main.c:165
-msgid "This should not happen"
-msgstr "이런 일은 생길 수 없어요."
-
-#: ../src/main.c:448
-msgid "Cannot create MCS client channel"
-msgstr "MCS 클라이언트 채널을 만들지 못 했습니다."
-
 #: ../src/reminder.c:163
 #, fuzzy
 msgid "Reminder "
@@ -464,14 +464,6 @@ msgstr "속성"
 msgid "About Orage"
 msgstr ""
 
-#: ../xfcalendar.desktop.in.h:1
-msgid "Calendar"
-msgstr "달력"
-
-#: ../xfcalendar.desktop.in.h:2
-msgid "Desktop calendar"
-msgstr "작업 공간 달력"
-
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:1
 msgid "Calendar Settings"
 msgstr "달력 설정"
@@ -483,3 +475,11 @@ msgstr "Xfce 4 달력의 환경 설정"
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:3
 msgid "Xfce 4 Calendar Settings"
 msgstr "Xfce 4 달력 설정"
+
+#: ../xfcalendar.desktop.in.h:1
+msgid "Calendar"
+msgstr "달력"
+
+#: ../xfcalendar.desktop.in.h:2
+msgid "Desktop calendar"
+msgstr "작업 공간 달력"
