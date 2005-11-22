@@ -52,7 +52,9 @@ typedef struct
          */
     gchar 
         starttime[17],
+        *start_tz_loc,
         endtime[17],
+        *end_tz_loc,
         /* for repeating events cur times show current repeating event.
          * normal times are always the real (=first) start and end times 
          */

@@ -78,6 +78,10 @@ gint event_win_size_x = 400, event_win_size_y = 200;
 /* List of active alarms */
 GList *alarm_list=NULL;
 
+/* timezone handling */
+char *local_icaltimezone_location = NULL;
+gboolean local_icaltimezone_utc = FALSE;
+
 static void
 raise_window()
 {
@@ -102,7 +106,7 @@ void apply_settings()
   /* Save settings here */
   /* I know, it's bad(tm) */
   fpath = xfce_resource_save_location(XFCE_RESOURCE_CONFIG,
-                RCDIR G_DIR_SEPARATOR_S "xfcalendarrc", FALSE);
+                RCDIR G_DIR_SEPARATOR_S "oragerc", FALSE);
   if ((fp = fopen(fpath, "w")) == NULL){
     g_warning("Unable to open RC file.");
   }else {
@@ -111,6 +115,13 @@ void apply_settings()
     fprintf(fp, "X=%i, Y=%i\n", pos_x, pos_y);
     fprintf(fp, "[Event Window Size]\n");
     fprintf(fp, "X=%i, Y=%i\n", event_win_size_x, event_win_size_y);
+    fprintf(fp, "[TIMEZONE]\n");
+    if (local_icaltimezone_location)
+        fprintf(fp, "%s\n", local_icaltimezone_location);
+    else if (local_icaltimezone_utc)
+        fprintf(fp, "UTC\n");
+    else
+        fprintf(fp, "floating\n");
     fclose(fp);
   }
   g_free(fpath);

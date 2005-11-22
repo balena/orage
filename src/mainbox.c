@@ -275,7 +275,7 @@ xfcalendar_init_settings(CalWin *xfcal)
     xfce_textdomain(GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8");
 
     fpath = xfce_resource_save_location(XFCE_RESOURCE_CONFIG,
-                        RCDIR G_DIR_SEPARATOR_S "xfcalendarrc", FALSE);
+                        RCDIR G_DIR_SEPARATOR_S "oragerc", FALSE);
 
     if ((fp = fopen(fpath, "r")) == NULL) {
         fp = fopen(fpath, "w");
@@ -297,6 +297,17 @@ xfcalendar_init_settings(CalWin *xfcal)
         if (sscanf(buf, "X=%i, Y=%i", &event_win_size_x, &event_win_size_y) 
             != 2) {
             g_warning("Unable to read size from: %s", fpath);
+        }
+        fgets(buf, LEN_BUFFER, fp); /* [TIMEZONE] */
+        fgets(buf, LEN_BUFFER, fp); 
+        if (strncmp(buf, "UTC", 3) == 0) 
+            xfical_set_local_timezone("UTC");
+        else if (strncmp(buf, "floating", 8) == 0)
+            ;
+        else {/* real timezone */
+            if (strlen(buf) && buf[strlen(buf)-1] == '\n')
+                buf[strlen(buf)-1]='\0'; /* remove '\n' */
+            xfical_set_local_timezone(buf);
         }
     }
 }
