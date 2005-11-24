@@ -303,7 +303,7 @@ xfcalendar_init_settings(CalWin *xfcal)
         if (strncmp(buf, "UTC", 3) == 0) 
             xfical_set_local_timezone("UTC");
         else if (strncmp(buf, "floating", 8) == 0)
-            ;
+            xfical_set_local_timezone(NULL);
         else {/* real timezone */
             if (strlen(buf) && buf[strlen(buf)-1] == '\n')
                 buf[strlen(buf)-1]='\0'; /* remove '\n' */

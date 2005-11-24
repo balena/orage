@@ -242,6 +242,7 @@ xfcalendar_alarm_clock(gpointer user_data)
     GList *alarm_l;
     alarm_struct *cur_alarm;
     gboolean alarm_raised=FALSE;
+    gboolean more_alarms=TRUE;
                                                                                 
     tt=time(NULL);
     t=localtime(&tt);
@@ -269,13 +270,15 @@ xfcalendar_alarm_clock(gpointer user_data)
   /* Check if there are any alarms to show */
     alarm_l=alarm_list;
     for (alarm_l = g_list_first(alarm_l);
-         alarm_l != NULL;
+         alarm_l != NULL && more_alarms;
          alarm_l = g_list_next(alarm_l)) {
         cur_alarm = (alarm_struct *)alarm_l->data;
         if (xfical_alarm_passed(cur_alarm->alarm_time->str)) {
             create_wReminder(cur_alarm);
             alarm_raised = TRUE;
         }
+        else
+            more_alarms = FALSE; /* it is sorted list, so we can stop */
     }
     if (alarm_raised) /* at least one alarm processed, need new list */
         xfical_alarm_build_list(FALSE); 

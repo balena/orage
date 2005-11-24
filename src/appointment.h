@@ -132,6 +132,8 @@ typedef struct
     gboolean appointment_changed;
     gboolean appointment_new;
     gchar *chosen_date;
+    gchar *start_tz_loc; /* temporary until appointment supports timezones */
+    gchar *end_tz_loc;   /* temporary until appointment supports timezones */
 } appt_win;
 
 void 

@@ -342,6 +342,10 @@ fill_appt(appt_type *appt, appt_win *apptw)
     g_sprintf(appt->endtime, XFICAL_APP_TIME_FORMAT
             , current_t.tm_year + 1900, current_t.tm_mon + 1, current_t.tm_mday
             , current_t.tm_hour, current_t.tm_min, 0);
+    /* temporary */
+    appt->start_tz_loc = apptw->start_tz_loc;
+    appt->end_tz_loc = apptw->end_tz_loc;
+    /* temporary */
 
     /* Get when the reminder when the reminder will show up */
     appt->alarmtime = gtk_combo_box_get_active((GtkComboBox *)apptw->appAlarm_combobox);
@@ -762,6 +766,10 @@ void fill_appt_window(appt_win *appt_w, char *action, char *par)
         g_error("unknown parameter\n");
 
 	appt_w->xf_uid = g_strdup(appt_data->uid);
+    /* temporary */
+    appt_w->start_tz_loc = g_strdup(appt_data->start_tz_loc);
+    appt_w->end_tz_loc = g_strdup(appt_data->end_tz_loc);
+    /* temporary */
 
     gtk_window_set_title (GTK_WINDOW (appt_w->appWindow), _("New appointment - Orage"));
     gtk_entry_set_text(GTK_ENTRY(appt_w->appTitle_entry), (appt_data->title ? appt_data->title : ""));

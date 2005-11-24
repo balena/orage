@@ -112,24 +112,32 @@ void set_lookback (int i)
 
 gboolean xfical_set_local_timezone(char *location)
 {
-    if (!location) {
-        g_warning("xfical_set_local_timezone: no timezone defined\n");
-        return (FALSE);
-    }
-    if (strcmp(location,"UTC") == 0) {
-        local_icaltimezone_utc=TRUE;
-        return (TRUE);
-    }
-    local_icaltimezone_location=strdup(location);
-    if (!local_icaltimezone_location) {
-        g_warning("xfical_set_local_timezone: strdup memory exhausted\n");
-        return (FALSE);
-    }
-    local_icaltimezone=icaltimezone_get_builtin_timezone(location);
-    if (!local_icaltimezone) {
-        g_warning("xfical_set_local_timezone: builtin timezone %s not found\n"
-            , location);
-        return (FALSE);
+    local_icaltimezone_utc = FALSE;
+    if (!utc_icaltimezone)
+            utc_icaltimezone=icaltimezone_get_utc_timezone();
+
+    if (local_icaltimezone_location)
+        g_free(local_icaltimezone_location);
+    local_icaltimezone_location = NULL;
+    local_icaltimezone = NULL;
+
+    if XFICAL_STR_EXISTS(location) {
+        local_icaltimezone_location=strdup(location);
+        if (!local_icaltimezone_location) {
+            g_warning("xfical_set_local_timezone: strdup memory exhausted\n");
+            return (FALSE);
+        }
+        if (strcmp(location,"UTC") == 0) {
+            local_icaltimezone_utc=TRUE;
+            local_icaltimezone = utc_icaltimezone;
+        }
+        else
+            local_icaltimezone=icaltimezone_get_builtin_timezone(location);
+        if (!local_icaltimezone) {
+            g_warning("xfical_set_local_timezone: builtin timezone %s not found\n"
+                    , location);
+            return (FALSE);
+        }
     }
     return (TRUE); 
 }
@@ -174,7 +182,6 @@ void xfical_add_timezone(icalcomponent *p_ical
         g_warning("xfical_add_timezone: no location defined \n");
         return;
     }
-    g_print("xfical_add_timezone: %s\n", location);
     if (strcmp(location,"UTC") == 0) {
         return;
     }
@@ -226,8 +233,6 @@ gboolean xfical_internal_file_open(icalcomponent **p_ical
     /*
     xfical_set_local_timezone("Europe/Helsinki");
     */
-    if (!utc_icaltimezone)
-        utc_icaltimezone=icaltimezone_get_utc_timezone();
     if (*p_fical != NULL)
         g_warning("xfical_internal_file_open: file already open\n");
     if ((*p_fical = icalset_new_file(file_icalpath)) == NULL) {
@@ -246,7 +251,7 @@ gboolean xfical_internal_file_open(icalcomponent **p_ical
         /* calendar missing, need to add one.  
          * Note: According to standard rfc2445 calendar always needs to
          *       contain at least one other component. So strictly speaking
-         *       this is not valid entry before adding an event 
+         *       this is not valid entry before adding an event or timezone
          */
             *p_ical = icalcomponent_vanew(ICAL_VCALENDAR_COMPONENT
                    , icalproperty_new_version("2.0")
@@ -261,9 +266,6 @@ gboolean xfical_internal_file_open(icalcomponent **p_ical
             if (cnt > 1) {
                 g_warning("xfical_internal_file_open: Too many top level components in calendar file %s\n", file_icalpath);
             }
-            /* FIXME: no need to check timezone here ??
-            xfical_internal_file_open_timezone(*p_ical, *p_fical);
-            */
         }
     }
     return(TRUE);
@@ -317,40 +319,151 @@ struct icaltimetype ical_get_current_local_time()
 {
     time_t t;
     struct tm *tm;
-    struct icaltimetype ctime;
-    /*
-    char koe[200];
-    */
+    static struct icaltimetype ctime;
 
-    if (local_icaltimezone_utc) {
+    if (local_icaltimezone_utc)
         ctime = icaltime_current_time_with_zone(utc_icaltimezone);
-    }
-    else if (local_icaltimezone_location) {
+    else if (local_icaltimezone_location)
         ctime = icaltime_current_time_with_zone(local_icaltimezone);
-    }
     else { /* use floating time */
-        t=time(NULL);
-        tm=localtime(&t);
-        ctime.year        = tm->tm_year+1900;
-        ctime.month       = tm->tm_mon+1;
-        ctime.day         = tm->tm_mday;
-        ctime.hour        = tm->tm_hour;
-        ctime.minute      = tm->tm_min;
-        ctime.second      = tm->tm_sec;
         ctime.is_utc      = 0;
         ctime.is_date     = 0;
         ctime.is_daylight = 0;
         ctime.zone        = NULL;
     }
-    /*
-    note: this gives UTC time:
-    ctime = icaltime_current_time_with_zone(NULL);
-    strftime(koe, 200, "%Z", tm);
-    g_print("timezone: %s\n", koe);
+    /* and at the end we need to change the clock to be correct */
+    t=time(NULL);
+    tm=localtime(&t);
+    ctime.year        = tm->tm_year+1900;
+    ctime.month       = tm->tm_mon+1;
+    ctime.day         = tm->tm_mday;
+    ctime.hour        = tm->tm_hour;
+    ctime.minute      = tm->tm_min;
+    ctime.second      = tm->tm_sec;
 
-    ctime = icaltime_current_time_with_zone(local_icaltimezone);
-    */
     return (ctime);
+}
+
+struct icaltimetype get_local_time(icalcomponent *c_event
+        , icalproperty_kind p_kind) 
+{
+    icalparameter *itime_tz = NULL;
+    gchar *tz_loc = NULL;
+    struct icaltimetype wtime;
+    icaltimezone *l_icaltimezone = NULL;
+    icalproperty *p;
+    struct icaltimetype t;
+
+    p = icalcomponent_get_first_property(c_event, p_kind);
+
+    if (p == NULL)
+        return (icaltime_null_time());
+    else if (icalproperty_isa(p) == ICAL_DTSTART_PROPERTY)
+        t = icalproperty_get_dtstart(p);
+    else if (icalproperty_isa(p) == ICAL_DTEND_PROPERTY)
+        t = icalproperty_get_dtend(p);
+    else {
+        g_warning("get_local_time: wrong property %s\n"
+                , (char *)icalproperty_get_property_name(p));
+        return (icaltime_null_time());
+    }
+
+    /* now t is the time to be converted. */
+    itime_tz = icalproperty_get_first_parameter(p, ICAL_TZID_PARAMETER);
+    if (itime_tz) {
+        tz_loc = (char *) icalparameter_get_tzid(itime_tz);
+        l_icaltimezone=icaltimezone_get_builtin_timezone(tz_loc);
+        if (!l_icaltimezone) {
+            g_warning("get_local_time: builtin timezone %s not found, conversion failed.\n", tz_loc);
+            return (t);
+        }
+        t = icaltime_convert_to_zone(t, l_icaltimezone);
+    }
+    /* now t is in timezone format, ready to be converted to local time */
+    t = icaltime_convert_to_zone(t, local_icaltimezone);
+    return (t);
+}
+
+/* basically copied from icaltime_compare, which can't be used
+ * because it uses utc
+ */
+int local_compare(struct icaltimetype a, struct icaltimetype b)
+{
+    int retval = 0;
+
+    if (a.year > b.year)
+        retval = 1;
+    else if (a.year < b.year)
+        retval = -1;
+
+    else if (a.month > b.month)
+        retval = 1;
+    else if (a.month < b.month)
+        retval = -1;
+
+    else if (a.day > b.day)
+        retval = 1;
+    else if (a.day < b.day)
+        retval = -1;
+
+    /* if both are dates, we are done */
+    if (a.is_date && b.is_date)
+        return retval;
+
+    /* else, if we already found a difference, we are done */
+    else if (retval != 0)
+        return retval;
+
+    /* else, if only one is a date (and we already know the date part is equal),       then the other is greater */
+    else if (b.is_date)
+        retval = 1;
+    else if (a.is_date)
+        retval = -1;
+
+    else if (a.hour > b.hour)
+        retval = 1;
+    else if (a.hour < b.hour)
+        retval = -1;
+
+    else if (a.minute > b.minute)
+        retval = 1;
+    else if (a.minute < b.minute)
+        retval = -1;
+
+    else if (a.second > b.second)
+        retval = 1;
+    else if (a.second < b.second)
+        retval = -1;
+
+    return retval;
+}
+
+/* basically copied from icaltime_compare_date_only, which can't be used
+ * because it uses utc 
+ */
+int local_compare_date_only(struct icaltimetype a, struct icaltimetype b)
+{
+    int retval;
+                                                                                
+    if (a.year > b.year)
+        retval = 1;
+    else if (a.year < b.year)
+        retval = -1;
+                                                                                
+    else if (a.month > b.month)
+        retval = 1;
+    else if (a.month < b.month)
+        retval = -1;
+                                                                                
+    else if (a.day > b.day)
+        retval = 1;
+    else if (a.day < b.day)
+        retval = -1;
+                                                                                
+    else
+        retval = 0;
+                                                                                
+    return retval;
 }
 
  /* allocates memory and initializes it for new ical_type structure
@@ -449,13 +562,11 @@ char *app_add_internal(appt_type *app, gboolean add, char *uid
         , struct icaltimetype cre_time)
 {
     icalcomponent *ievent;
-    struct icaltimetype dtstamp, ctime, create_time, wtime, wtime2;
+    struct icaltimetype dtstamp, create_time, wtime;
     static gchar xf_uid[1001];
     gchar xf_host[501];
     struct icalrecurrencetype rrule;
-    icaltimezone *loc_icaltimezone = icaltimezone_get_builtin_timezone("Europe/Helsinki");
 
-    ctime = ical_get_current_local_time();
     dtstamp = icaltime_current_time_with_zone(utc_icaltimezone);
     if (add) {
         gethostname(xf_host, 500);
@@ -501,50 +612,43 @@ char *app_add_internal(appt_type *app, gboolean add, char *uid
     }
 
     if XFICAL_STR_EXISTS(app->starttime) {
-    /*
-    g_print ("Tässä lisätään start aikaa (%s)\n", app->starttime);
-    wtime=icaltime_from_string(app->starttime);
-    g_print ("\tperusmuoto (%s)\n", icaltime_as_ical_string(wtime));
-    wtime2=icaltime_convert_to_zone(wtime, utc_icaltimezone);
-    g_print ("\tUTC aika (%s)\n", icaltime_as_ical_string(wtime2));
-    wtime2=icaltime_convert_to_zone(wtime2, loc_icaltimezone);
-    g_print ("\ttimezone aika utc(%s)\n", icaltime_as_ical_string(wtime2));
-    wtime2=icaltime_convert_to_zone(wtime, loc_icaltimezone);
-    g_print ("\ttimezone aika local(%s)\n", icaltime_as_ical_string(wtime2));
-    */
-        if XFICAL_STR_EXISTS(app->start_tz_loc)
-            g_warning("app_add_internal: start timezones not supported yet\n");
         wtime=icaltime_from_string(app->starttime);
-        if (local_icaltimezone_location) {
-            wtime=icaltime_convert_to_zone(wtime, local_icaltimezone);
-            icalcomponent_add_property(ievent
-                , icalproperty_vanew_dtstart(wtime
-                , icalparameter_new_tzid(local_icaltimezone_location)
-                , 0));
-        }
-        else {
-            if (local_icaltimezone_utc)
+        if XFICAL_STR_EXISTS(app->start_tz_loc) {
+            if (strcmp(app->start_tz_loc, "UTC") == 0) {
                 wtime=icaltime_convert_to_zone(wtime, utc_icaltimezone);
-            icalcomponent_add_property(ievent
-                , icalproperty_new_dtstart(wtime));
+                icalcomponent_add_property(ievent
+                    , icalproperty_new_dtstart(wtime));
+            }
+            else {
+            /* FIXME: add this vtimezone to vcalendar if it is not there */
+                icalcomponent_add_property(ievent
+                    , icalproperty_vanew_dtstart(wtime
+                    , icalparameter_new_tzid(app->start_tz_loc)
+                    , 0));
+            }
+        }
+        else { /* floating time */
+            icalcomponent_add_property(ievent, icalproperty_new_dtstart(wtime));
         }
     }
     if XFICAL_STR_EXISTS(app->endtime) {
-        if XFICAL_STR_EXISTS(app->end_tz_loc)
-            g_warning("app_add_internal: end timezones not supported yet\n");
         wtime=icaltime_from_string(app->endtime);
-        if (local_icaltimezone_location) {
-            wtime=icaltime_convert_to_zone(wtime, local_icaltimezone);
-            icalcomponent_add_property(ievent
-                , icalproperty_vanew_dtend(wtime
-                , icalparameter_new_tzid(local_icaltimezone_location)
-                , 0));
+        if XFICAL_STR_EXISTS(app->end_tz_loc) {
+            if (strcmp(app->end_tz_loc, "UTC") == 0) {
+                wtime=icaltime_convert_to_zone(wtime, utc_icaltimezone);
+                icalcomponent_add_property(ievent
+                    , icalproperty_new_dtend(wtime));
+            }
+            else {
+            /* FIXME: add this vtimezone to vcalendar if it is not there */
+                icalcomponent_add_property(ievent
+                    , icalproperty_vanew_dtend(wtime
+                    , icalparameter_new_tzid(app->end_tz_loc)
+                    , 0));
+            }
         }
         else {
-            if (local_icaltimezone_utc)
-                wtime=icaltime_convert_to_zone(wtime, utc_icaltimezone);
-            icalcomponent_add_property(ievent
-                , icalproperty_new_dtend(wtime));
+            icalcomponent_add_property(ievent, icalproperty_new_dtend(wtime));
         }
     }
     if (app->freq != XFICAL_FREQ_NONE) {
@@ -761,13 +865,7 @@ appt_type *xfical_app_get(char *ical_uid)
                             if (itime_tz)
                                 app.start_tz_loc = 
                                     (char *) icalparameter_get_tzid(itime_tz);
-                            else /* use local (=default) timezone */
-                                if (local_icaltimezone_utc)
-                                    app.start_tz_loc = "UTC";
-                                else if (local_icaltimezone_location)
-                                    app.start_tz_loc = local_icaltimezone_location;
                         }
-                        g_print("\txfical_app_get: DTSTART %s (%s)\n", app.starttime, app.start_tz_loc);
                         if (app.endtime[0] == '\0') {
                             g_strlcpy(app.endtime,  app.starttime, 17);
                             app.end_tz_loc = app.start_tz_loc;
@@ -787,13 +885,7 @@ appt_type *xfical_app_get(char *ical_uid)
                             if (itime_tz)
                                 app.end_tz_loc = 
                                     (char *) icalparameter_get_tzid(itime_tz);
-                            else /* use local (=default) timezone */
-                                if (local_icaltimezone_utc)
-                                    app.end_tz_loc = "UTC";
-                                else if (local_icaltimezone_location)
-                                    app.end_tz_loc = local_icaltimezone_location;
                         }
-                        g_print("\txfical_app_get: DTEND %s (%s)\n", app.endtime, app.end_tz_loc);
                         break;
                     case ICAL_RRULE_PROPERTY:
                         rrule = icalproperty_get_rrule(p);
@@ -905,10 +997,11 @@ gboolean xfical_app_del(char *ical_uid)
   * first:  get first appointment is TRUE, if not get next.
   * days:   how many more days to check forward. 0 = only one day
   * returns: NULL if failed and appt_type pointer to appt_type struct 
-  *          filled with data if successfull.
+  *          filled with data if successfull. 
   *          This appt_type struct is owned by the routine. 
   *          Do not deallocate it.
   *          It will be overdriven by next invocation of this function.
+  * Note:   starttimecur and endtimecur are converted to local timezone
   */
 appt_type *xfical_app_get_next_on_day(char *a_day, gboolean first, gint days)
 {
@@ -917,6 +1010,7 @@ appt_type *xfical_app_get_next_on_day(char *a_day, gboolean first, gint days)
             , sdate, edate      /* event start and end times */
             , nsdate, nedate;   /* repeating event occurrency start and end */
     icalcomponent *c=NULL;
+    icalproperty *p = NULL;
     static icalcompiter ci;
     gboolean date_found=FALSE;
     gboolean date_rec_found=FALSE;
@@ -924,7 +1018,6 @@ appt_type *xfical_app_get_next_on_day(char *a_day, gboolean first, gint days)
     appt_type *app;
     struct icalrecurrencetype rrule;
     icalrecur_iterator* ri;
-    icalproperty *p = NULL;
     struct icaldurationtype duration;
 
     asdate = icaltime_from_string(a_day);
@@ -941,12 +1034,20 @@ appt_type *xfical_app_get_next_on_day(char *a_day, gboolean first, gint days)
          icalcompiter_deref(&ci) != 0 && !date_found;
          icalcompiter_next(&ci)) {
         c = icalcompiter_deref(&ci);
+        /*
         sdate = icalcomponent_get_dtstart(c);
+        p = icalcomponent_get_first_property(c, ICAL_DTSTART_PROPERTY);
+        */
+        sdate = get_local_time(c, ICAL_DTSTART_PROPERTY);
+        /*
         edate = icalcomponent_get_dtend(c);
+        p = icalcomponent_get_first_property(c, ICAL_DTEND_PROPERTY);
+        */
+        edate = get_local_time(c, ICAL_DTEND_PROPERTY);
         if (icaltime_is_null_time(edate))
             edate = sdate;
-        if (icaltime_compare_date_only(sdate, aedate) <= 0
-            && icaltime_compare_date_only(asdate, edate) <= 0) {
+        if (local_compare_date_only(sdate, aedate) <= 0
+            && local_compare_date_only(asdate, edate) <= 0) {
             date_found = TRUE;
         }
         else if ((p = icalcomponent_get_first_property(c
@@ -958,12 +1059,12 @@ appt_type *xfical_app_get_next_on_day(char *a_day, gboolean first, gint days)
             for (nsdate = icalrecur_iterator_next(ri),
                     nedate = icaltime_add(nsdate, duration);
                  !icaltime_is_null_time(nsdate)
-                    && icaltime_compare_date_only(nedate, asdate) < 0;
+                    && local_compare_date_only(nedate, asdate) < 0;
                  nsdate = icalrecur_iterator_next(ri),
                     nedate = icaltime_add(nsdate, duration)) {
             }
-            if (icaltime_compare_date_only(nsdate, aedate) <= 0
-                && icaltime_compare_date_only(asdate, nedate) <= 0) {
+            if (local_compare_date_only(nsdate, aedate) <= 0
+                && local_compare_date_only(asdate, nedate) <= 0) {
                 date_found = TRUE;
                 date_rec_found = TRUE;
             }
@@ -977,8 +1078,12 @@ appt_type *xfical_app_get_next_on_day(char *a_day, gboolean first, gint days)
             g_strlcpy(app->endtimecur, icaltime_as_ical_string(nedate), 17);
         }
         else {
+            /*
             g_strlcpy(app->starttimecur, app->starttime, 17);
             g_strlcpy(app->endtimecur, app->endtime, 17);
+            */
+            g_strlcpy(app->starttimecur, icaltime_as_ical_string(sdate), 17);
+            g_strlcpy(app->endtimecur, icaltime_as_ical_string(edate), 17);
         }
         return(app);
     }
@@ -1005,8 +1110,15 @@ void xfical_mark_calendar(GtkCalendar *gtkcal, int year, int month)
     for (c = icalcomponent_get_first_component(ical, ICAL_VEVENT_COMPONENT);
          c != 0;
          c = icalcomponent_get_next_component(ical, ICAL_VEVENT_COMPONENT)) {
+/*
         sdate = icalcomponent_get_dtstart(c);
+*/
+        sdate = get_local_time(c, ICAL_DTSTART_PROPERTY);
+/*
         edate = icalcomponent_get_dtend(c);
+*/
+        edate = get_local_time(c, ICAL_DTEND_PROPERTY);
+
         if (icaltime_is_null_time(edate))
             edate = sdate;
         if ((sdate.year*12+sdate.month) <= (year*12+month)
@@ -1070,8 +1182,11 @@ void rmday_ical_app(char *a_day)
          c != 0;
          c = c2){
         c2 = icalcomponent_get_next_component(ical, ICAL_VEVENT_COMPONENT);
+        /*
         t = icalcomponent_get_dtstart(c);
-        if (icaltime_compare_date_only(t, adate) == 0) {
+        */
+        t = get_local_time(c, ICAL_DTSTART_PROPERTY);
+        if (local_compare_date_only(t, adate) == 0) {
             icalcomponent_remove_component(ical, c);
         }
     } 
@@ -1117,10 +1232,8 @@ void alarm_add(icalproperty_status action
     new_alarm = g_new(alarm_struct, 1);
     new_alarm->uid = g_string_new(uid);
     new_alarm->title = g_string_new(title);
-    new_alarm->alarm_time = g_string_new(
-        icaltime_as_ical_string(alarm_time));
-    new_alarm->event_time = g_string_new(
-        icaltime_as_ical_string(event_time));
+    new_alarm->alarm_time = g_string_new(icaltime_as_ical_string(alarm_time));
+    new_alarm->event_time = g_string_new(icaltime_as_ical_string(event_time));
     new_alarm->description = g_string_new(description);
     new_alarm->sound = g_string_new(sound);
     new_alarm->repeat_cnt = repeat_cnt;
@@ -1163,11 +1276,14 @@ void xfical_alarm_build_list(gboolean first_list_today)
         suid = (char*)icalcomponent_get_uid(c);
         ssummary = (char*)icalcomponent_get_summary(c);
         sdescription = (char*)icalcomponent_get_description(c);
+        /*
         event_dtstart = icalcomponent_get_dtstart(c);
+        */
+        event_dtstart = get_local_time(c, ICAL_DTSTART_PROPERTY);
         if (first_list_today && icaltime_is_date(event_dtstart)) {
         /* this is special pre 4.3 xfcalendar compatibility alarm:
            Send alarm window always for date type events. */
-            if (icaltime_compare_date_only(event_dtstart, cur_time) == 0) {
+            if (local_compare_date_only(event_dtstart, cur_time) == 0) {
                 alarm_add(ICAL_ACTION_DISPLAY
                         , suid, ssummary, sdescription, NULL, 0, 0
                         , event_dtstart, event_dtstart);
@@ -1179,10 +1295,10 @@ void xfical_alarm_build_list(gboolean first_list_today)
                 next_date = icaltime_null_time();
                 for (next_date = icalrecur_iterator_next(ri);
                     !icaltime_is_null_time(next_date)
-                        && icaltime_compare_date_only(cur_time, next_date) > 0;
+                        && local_compare_date_only(cur_time, next_date) > 0;
                     next_date = icalrecur_iterator_next(ri)) {
                 }
-                if (icaltime_compare_date_only(next_date, cur_time) == 0) {
+                if (local_compare_date_only(next_date, cur_time) == 0) {
                     alarm_add(ICAL_ACTION_DISPLAY
                             , suid, ssummary, sdescription, NULL, 0, 0
                             , next_date, event_dtstart);
@@ -1199,27 +1315,33 @@ void xfical_alarm_build_list(gboolean first_list_today)
             for (p = icalcomponent_get_first_property(ca, ICAL_ANY_PROPERTY);
                  p != 0;
                  p = icalcomponent_get_next_property(ca, ICAL_ANY_PROPERTY)) {
-                s = (char *)icalproperty_get_property_name(p);
-                if (strcmp(s, "ACTION") == 0)
-                    stat = icalproperty_get_action(p);
-                else if (strcmp(s, "DESCRIPTION") == 0)
-                    sdescription = (char*)icalproperty_get_description(p);
-                else if (strcmp(s, "ATTACH") == 0) {
-                    attach = icalproperty_get_attach(p);
-                    ssound = (char *)icalattach_get_url(attach);
-                }
-                else if (strcmp(s, "TRIGGER") == 0) {
-                    trg = icalproperty_get_trigger(p);
-                    trg_found = TRUE;
-                }
-                else if (strcmp(s, "REPEAT") == 0)
-                    repeat_cnt = icalproperty_get_repeat(p);
-                else if (strcmp(s, "DURATION") == 0) {
-                    duration = icalproperty_get_duration(p);
-                    repeat_delay = icaldurationtype_as_int(duration);
-                }
-                else
-                    g_warning("ical-code: Unknown property (%s) in Alarm\n",s);
+                switch (icalproperty_isa(p)) {
+                    case ICAL_ACTION_PROPERTY:
+                        stat = icalproperty_get_action(p);
+                        break;
+                    case ICAL_DESCRIPTION_PROPERTY:
+                        sdescription = (char *)icalproperty_get_description(p);
+                        break;
+                    case ICAL_ATTACH_PROPERTY:
+                        attach = icalproperty_get_attach(p);
+                        ssound = (char *)icalattach_get_url(attach);
+                        break;
+                    case ICAL_TRIGGER_PROPERTY:
+                        trg = icalproperty_get_trigger(p);
+                        trg_found = TRUE;
+                        break;
+                    case ICAL_REPEAT_PROPERTY:
+                        repeat_cnt = icalproperty_get_repeat(p);
+                        break;
+                    case ICAL_DURATION_PROPERTY:
+                        duration = icalproperty_get_duration(p);
+                        repeat_delay = icaldurationtype_as_int(duration);
+                        break;
+                    default:
+                        g_warning("ical-code: Unknown property (%s) in Alarm\n",
+                            (char *)icalproperty_get_property_name(p));
+                        break;
+                } 
             } 
         }  /* ALARMS */
         if (trg_found) {
@@ -1235,7 +1357,7 @@ void xfical_alarm_build_list(gboolean first_list_today)
                 next_date = icaltime_null_time();
                 for (next_date = icalrecur_iterator_next(ri);
                     (!icaltime_is_null_time(next_date))
-                    && (icaltime_compare_date_only(cur_time, next_date) > 0) ;
+                    && (local_compare_date_only(cur_time, next_date) > 0) ;
                     next_date = icalrecur_iterator_next(ri)) {
                 }
                 alarm_time = icaltime_add(next_date, trg.duration);
@@ -1256,7 +1378,7 @@ gboolean xfical_alarm_passed(char *alarm_stime)
 
     cur_time = ical_get_current_local_time();
     alarm_time = icaltime_from_string(alarm_stime);
-    if (icaltime_compare(cur_time, alarm_time) > 0)
+    if (local_compare(cur_time, alarm_time) > 0)
         return(TRUE);
     return(FALSE);
  }
