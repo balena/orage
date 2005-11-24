@@ -1383,92 +1383,119 @@ gboolean xfical_alarm_passed(char *alarm_stime)
     return(FALSE);
  }
 
-void xfical_icalcomponent_get_first_occurence_after_threshold (struct tm *threshold, icalcomponent *c)
+void xfical_icalcomponent_archive_recurrent(icalcomponent *e
+        , struct tm *threshold)
 {
     struct icaltimetype sdate, edate, nsdate, nedate;
     struct icalrecurrencetype rrule;
     struct icaldurationtype duration;
     icalrecur_iterator* ri;
-    icalproperty *p = NULL;
+    icalcomponent *d, *a;
+    icalproperty *p;
+    icalparameter *itime_tz;
+    gchar *tz_loc = NULL;
+    icaltimezone *l_icaltimezone = NULL;
+    gboolean key_found = FALSE;
+    const char *text, *uid;
 
-    if ((p = icalcomponent_get_first_property(c
-           , ICAL_RRULE_PROPERTY)) != 0) { /* check recurring EVENTs */
+    /* Add to the archive file */
+    /* We must first check that this event has not yet been added.
+     * It is recurrent, so we may have added it earlier already.
+     * If it has been added, we do not have to do anything since the
+     * one in the archive file must be older than our current event.
+     */
+    uid = icalcomponent_get_uid(e);
+    for (a = icalcomponent_get_first_component(aical, ICAL_VEVENT_COMPONENT);
+         a != 0 && !key_found;
+         a = icalcomponent_get_next_component(aical, ICAL_VEVENT_COMPONENT)) {
+        text = icalcomponent_get_uid(a);
+        if (strcmp(text, uid) == 0) 
+            key_found = TRUE;
+    }
+    if (!key_found) { /* need to add it */
+        d = icalcomponent_new_clone(e);
+        icalcomponent_add_component(aical, d);
+    }
 
-        sdate = icalcomponent_get_dtstart (c);
-        edate = icalcomponent_get_dtend (c);
 
-        duration = icaltime_subtract(edate, sdate);
-        rrule = icalproperty_get_rrule(p);
-        ri = icalrecur_iterator_new(rrule, sdate);
-        nsdate = icaltime_null_time();
-
-        /* We must do a loop for finding the first occurence after the threshold */
-        for (nsdate = icalrecur_iterator_next (ri),
-                nedate = icaltime_add (nsdate,  duration);
-             !icaltime_is_null_time (nsdate)
-                && (nedate.year*12 + nedate.month) <= ((threshold->tm_year + 1900)*12 + threshold->tm_mon);
-             nsdate = icalrecur_iterator_next(ri),
-                nedate = icaltime_add (nsdate, duration)){
+    /* Update startdate and enddate in the main file */
+    /* We must not remove recurrent events, but just modify start- and
+     * enddates and actually only the date parts since time will stay.
+     * FIXME: this will not work after we add limited recurrency events
+     */
+    p = icalcomponent_get_first_property(e, ICAL_DTSTART_PROPERTY);
+    sdate = icalproperty_get_dtstart(p);
+    itime_tz = icalproperty_get_first_parameter(p, ICAL_TZID_PARAMETER);
+    if (itime_tz) {
+         tz_loc = (char *) icalparameter_get_tzid(itime_tz);
+         l_icaltimezone=icaltimezone_get_builtin_timezone(tz_loc);
+         if (!l_icaltimezone) {
+            g_warning("xfical_icalcomponent_archive_recurrent: builtin timezone %s not found, conversion failed.\n", tz_loc);
         }
-    } 
+        sdate = icaltime_convert_to_zone(sdate, l_icaltimezone);
+    }
+
+    p = icalcomponent_get_first_property(e, ICAL_DTEND_PROPERTY);
+    edate = icalproperty_get_dtend(p);
+    itime_tz = icalproperty_get_first_parameter(p, ICAL_TZID_PARAMETER);
+    if (itime_tz) {
+         tz_loc = (char *) icalparameter_get_tzid(itime_tz);
+         l_icaltimezone=icaltimezone_get_builtin_timezone(tz_loc);
+         if (!l_icaltimezone) {
+            g_warning("xfical_icalcomponent_archive_recurrent: builtin timezone %s not found, conversion failed.\n", tz_loc);
+        }
+        edate = icaltime_convert_to_zone(edate, l_icaltimezone);
+    }
+
+    p = icalcomponent_get_first_property(e, ICAL_RRULE_PROPERTY);
+    duration = icaltime_subtract(edate, sdate);
+    rrule = icalproperty_get_rrule(p);
+    ri = icalrecur_iterator_new(rrule, sdate);
+    nsdate = icaltime_null_time();
+
+    /* We must do a loop for finding the first occurence after the threshold */
+    for (nsdate = icalrecur_iterator_next(ri),
+            nedate = icaltime_add(nsdate, duration);
+         !icaltime_is_null_time(nsdate)
+         && (nedate.year*12 + nedate.month) 
+                < ((threshold->tm_year)*12 + threshold->tm_mon);
+         nsdate = icalrecur_iterator_next(ri),
+            nedate = icaltime_add(nsdate, duration)){
+    }
 
     /* Here I should change the values of the icalcomponent we received */
-    icalcomponent_set_dtstart (c, nsdate);
-    icalcomponent_set_dtend (c, nedate);
+    icalcomponent_set_dtstart(e, nsdate);
+    icalcomponent_set_dtend(e, nedate);
 }
 
-void xfical_icalcomponent_archive (icalcomponent *e, struct tm *threshold) 
+void xfical_icalcomponent_archive_normal(icalcomponent *e) 
 {
     icalcomponent *d;
-    icalproperty *p = NULL;
-    gboolean recurrence;
 
-    recurrence = FALSE;
     /* Add to the archive file */
-    d = icalcomponent_new_clone (e);
+    d = icalcomponent_new_clone(e);
     icalcomponent_add_component(aical, d);
-    /* Look for recurrence */
-    for (p = icalcomponent_get_first_property(e, ICAL_ANY_PROPERTY);
-        p != 0;
-        p = icalcomponent_get_next_property(e, ICAL_ANY_PROPERTY)) {
-        /* these are in icalderivedproperty.h */
-        if (icalproperty_isa (p) == ICAL_RRULE_PROPERTY) {
-            recurrence = TRUE;
-            break; /* Leave the boat here */
-        }
-    }
-    /* If it's not a recurring appointment we remove it purely and simply */
-    if (!recurrence)
-        icalcomponent_remove_component(ical, e);
-    else
-    /* Otherwise we update its next occurence */
-        xfical_icalcomponent_get_first_occurence_after_threshold (threshold, e);
+
+    /* Remove from the main file */
+    icalcomponent_remove_component(ical, e);
 }
 
 gboolean xfical_keep_tidy(void)
 {
-
     struct icaltimetype sdate, edate;
-    static icalcomponent *c, *e;
+    static icalcomponent *c;
+    icalproperty *p;
     struct tm *threshold;
     time_t t;
+    char *uid;
 
-    gboolean recurrence;
-
-    xfical_archive_open(); /* Create the file ?*/
-    xfical_archive_close(); /* Close it, so we may have the file ready to use. Ugly isn't it? FIXME */
-
-    e = NULL;
-
-    if (   xfical_file_open ()
-        && xfical_archive_open ()){
+    if ( xfical_file_open() && xfical_archive_open()) {
 
         t = time (NULL);
         threshold = localtime (&t);
 
-        g_message("Current date: %04d-%02d-%02d", threshold->tm_year+1900, threshold->tm_mon+1, threshold->tm_mday);
-
         threshold->tm_mday = 1;
+        threshold->tm_year += 1900;
         if (threshold->tm_mon > lookback) {
             threshold->tm_mon -= lookback;
         }
@@ -1476,42 +1503,44 @@ gboolean xfical_keep_tidy(void)
             threshold->tm_mon += (12 - lookback);
             threshold->tm_year--;
         }
+        threshold->tm_mon += 1;
 
         g_message("Threshold: %d month(s)", lookback);
-        g_message("Archiving before: %04d-%02d-%02d", threshold->tm_year+1900, threshold->tm_mon+1, threshold->tm_mday);
+        g_message("Archiving before: %04d-%02d-%02d", threshold->tm_year
+                , threshold->tm_mon, threshold->tm_mday);
 
         /* Parse appointment file for looking for items older than the threshold */
         for (c = icalcomponent_get_first_component(ical, ICAL_VEVENT_COMPONENT);
              c != 0;
              c = icalcomponent_get_next_component(ical, ICAL_VEVENT_COMPONENT)) {
-
-            if (e) {
-                xfical_icalcomponent_archive (e, threshold);
-            }
-            recurrence = FALSE;
             sdate = icalcomponent_get_dtstart (c);
             edate = icalcomponent_get_dtend (c);
+            uid = (char*)icalcomponent_get_uid (c);
             if (icaltime_is_null_time (edate)) {
                 edate = sdate;
             }
-            /* Items with startdate and endate before theshold => archived.
-             * Recurring items are duplicated in the archive file, and they are 
-             * also updated in the current appointment file with a new startdate and enddate.
+            /* Items with startdate and endate before threshold => archived.
+             * Recurring items are duplicated in the archive file, and 
+             * they are also updated in the current appointment file 
+             * with a new startdate and enddate.
              * Items sitting on the threshold are kept as they are.
              */
-            if ((edate.year*12 + edate.month) < ((threshold->tm_year+1900)*12 + (threshold->tm_mon+1))) {
-                /* Read from appointment files and copy into archive file */
+            if ((edate.year*12 + edate.month) 
+                < ((threshold->tm_year)*12 + (threshold->tm_mon))) {
+        /* Read from appointment files and copy into archive file */
+                g_message("uid: %s", uid);
                 g_message("End year: %04d", edate.year);
                 g_message("End month: %02d", edate.month);
                 g_message("End day: %02d", edate.day);
                 g_message("We found something dude!");
-                e = c;
+                p = icalcomponent_get_first_property(c, ICAL_RRULE_PROPERTY);
+                if (p)  /*  it is recurrent event */
+                    xfical_icalcomponent_archive_recurrent(c, threshold);
+                else 
+                    xfical_icalcomponent_archive_normal(c);
             }
         }
 
-        if (e) {
-            xfical_icalcomponent_archive (e, threshold);
-        }
         icalset_mark (fical);
         icalset_commit (fical);
         icalset_mark (afical);

@@ -640,7 +640,6 @@ eventlist_win
     el->elNumber_of_days_to_show = 0;
 
     el->elWindow = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-    g_print("create_eventlist_win (ze niou oane): x, y: %d, %d\n", event_win_size_x,event_win_size_y);
     gtk_window_set_default_size(GTK_WINDOW(el->elWindow), event_win_size_x, event_win_size_y);
 
     el->elVbox = gtk_vbox_new(FALSE, 0);

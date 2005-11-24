@@ -231,13 +231,10 @@ notify_cb(const char *name, const char *channel_name
                 }
                 else if (!strcmp (name, "XFCalendar/Lookback")) {
                     set_lookback (setting->data.v_int);
-                    g_warning ("Lookback value: %d", setting->data.v_int);
                 }
             }
             if (setting->type == MCS_TYPE_STRING) {
                 if (!strcmp (name, "XFCalendar/ArchiveFile")) {
-                    g_warning ("We found the archive file!");
-                    g_warning ("Archive file: %s", setting->data.v_string);
                     if (strlen (setting->data.v_string) > 0)
                         set_aical_path (setting->data.v_string);
                     else

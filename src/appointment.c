@@ -775,7 +775,6 @@ void fill_appt_window(appt_win *appt_w, char *action, char *par)
     gtk_entry_set_text(GTK_ENTRY(appt_w->appTitle_entry), (appt_data->title ? appt_data->title : ""));
     gtk_entry_set_text(GTK_ENTRY(appt_w->appLocation_entry), (appt_data->location ? appt_data->location : ""));
     if (strlen(appt_data->starttime) > 6 ) {
-        g_message("starttime: %s\n", appt_data->starttime);
         ical_to_year_month_day_hours_minutes(appt_data->starttime, &year, &month, &day, &hours, &minutes);
 
         startdate_to_display = (char *)malloc(11);
@@ -798,7 +797,6 @@ void fill_appt_window(appt_win *appt_w, char *action, char *par)
         free(starttime_to_display);
     }
     if (strlen( appt_data->endtime) > 6 ) {
-        g_message("endtime: %s\n", appt_data->endtime);
         ical_to_year_month_day_hours_minutes(appt_data->endtime, &year, &month, &day, &hours, &minutes);
 
         enddate_to_display = (char *)malloc(11);
