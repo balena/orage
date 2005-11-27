@@ -36,6 +36,7 @@
 #include <libxfcegui4/dialogs.h>
 
 #include "mainbox.h"
+#include "event-list.h"
 #include "appointment.h"
 #include "reminder.h"
 #include "ical-code.h"

@@ -32,37 +32,37 @@ typedef enum {
 
 typedef struct
 {
-    gchar *title,
-        *location;
+    gchar *title;
+    gchar *location;
 
-    gint alarmtime,
-        availability;
-
-    gboolean allDay,
-        alarmrepeat;
-
-    gchar *note;
-    gchar *sound;
-    gchar *uid;
+    gboolean allDay;
 
         /* time format must be:
          * yyyymmdd[Thhmiss[Z]] = %04d%02d%02dT%02d%02d%02d
          * T means it has also time part
          * Z means it is in UTC format
          */
-    gchar 
-        starttime[17],
-        *start_tz_loc,
-        endtime[17],
-        *end_tz_loc,
+    gchar  starttime[17];
+    gchar *start_tz_loc;
+    gchar  endtime[17];
+    gchar *end_tz_loc;
         /* for repeating events cur times show current repeating event.
          * normal times are always the real (=first) start and end times 
          */
-        starttimecur[17], 
-        endtimecur[17];
+    gchar  starttimecur[17]; 
+    gchar  endtimecur[17];
 
     xfical_freq freq;
-} appt_type;
+    gint availability;
+    gchar *note;
+
+    gint alarmtime;
+    gchar *sound;
+    gboolean alarmrepeat;
+
+    gchar *uid;
+
+} appt_data;
 
 typedef struct
 {
@@ -111,9 +111,11 @@ typedef struct
     GtkWidget *appStartDate_button;
     GtkWidget *appStartTime_hbox;
     GtkWidget *appStartTime_comboboxentry;
+GtkWidget *appStartTime_comboboxtimezone;
     GtkWidget *appEndDate_button;
     GtkWidget *appEndTime_hbox;
     GtkWidget *appEndTime_comboboxentry;
+GtkWidget *appEndTime_comboboxtimezone;
     GtkWidget *appSound_label;
     GtkWidget *appSound_hbox;
     GtkWidget *appSound_entry;
@@ -127,7 +129,7 @@ typedef struct
     GtkWidget *appSaveClose;
 
     gchar *xf_uid;
-    gpointer eventlist; /* event-list window: the gpointer here is an awful hack coz gcc complained about a 'include "event-list.h"' */
+    eventlist_win *eventlist; 
     gboolean add_appointment;
     gboolean appointment_changed;
     gboolean appointment_new;
@@ -140,4 +142,4 @@ void
 fill_appt_window(appt_win *appt, char *action, char *par);
 
 appt_win 
-*create_appt_win(char *action, char *par, gpointer el);
+*create_appt_win(char *action, char *par, eventlist_win *el);

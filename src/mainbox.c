@@ -44,8 +44,8 @@
 #include "functions.h"
 #include "xfce_trayicon.h"
 #include "about-xfcalendar.h"
-#include "appointment.h"
 #include "event-list.h"
+#include "appointment.h"
 #include "ical-code.h"
 #include "reminder.h"
 

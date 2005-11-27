@@ -285,7 +285,7 @@ recreate_eventlist_win (eventlist_win *el)
     }
 }
 
-void addEvent(GtkListStore *list1, appt_type *app, char *header, gint days)
+void addEvent(GtkListStore *list1, appt_data *app, char *header, gint days)
 {
     GtkTreeIter     iter1;
     gchar           *title = NULL;
@@ -345,7 +345,7 @@ void manage_eventlist_win(GtkCalendar *calendar, eventlist_win *el)
     guint year, month, day;
     char            title[12];
     char            a_day[9];  /* yyyymmdd */
-    appt_type       *app;
+    appt_data       *app;
     struct tm       *t;
     time_t          tt;
     gint            days = 0;

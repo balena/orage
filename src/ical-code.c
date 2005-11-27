@@ -48,6 +48,7 @@
 #include <ical.h>
 #include <icalss.h>
 
+#include "event-list.h"
 #include "appointment.h"
 #include "reminder.h"
 #include "mainbox.h"
@@ -467,19 +468,19 @@ int local_compare_date_only(struct icaltimetype a, struct icaltimetype b)
 }
 
  /* allocates memory and initializes it for new ical_type structure
-  * returns: NULL if failed and pointer to appt_type if successfull.
+  * returns: NULL if failed and pointer to appt_data if successfull.
   *         You must free it after not being used anymore. (g_free())
   */
-appt_type *xfical_app_alloc()
+appt_data *xfical_app_alloc()
 {
-    appt_type *temp;
+    appt_data *temp;
 
-    temp = g_new0(appt_type, 1);
+    temp = g_new0(appt_data, 1);
     temp->availability = 1;
     return(temp);
 }
 
-void app_add_alarm_internal(appt_type *app, icalcomponent *ievent)
+void app_add_alarm_internal(appt_data *app, icalcomponent *ievent)
 {
     icalcomponent *ialarm;
     gint duration=0;
@@ -558,7 +559,7 @@ void app_add_alarm_internal(appt_type *app, icalcomponent *ievent)
     }
 }
 
-char *app_add_internal(appt_type *app, gboolean add, char *uid
+char *app_add_internal(appt_data *app, gboolean add, char *uid
         , struct icaltimetype cre_time)
 {
     icalcomponent *ievent;
@@ -682,18 +683,18 @@ char *app_add_internal(appt_type *app, gboolean add, char *uid
 }
 
  /* add EVENT type ical appointment to ical file
-  * app: pointer to filled appt_type structure, which is stored
+  * app: pointer to filled appt_data structure, which is stored
   *      Caller is responsible for filling and allocating and freeing it.
   *  returns: NULL if failed and new ical id if successfully added. 
   *           This ical id is owned by the routine. Do not deallocate it.
   *           It will be overwrittewritten by next invocation of this function.
   */
-char *xfical_app_add(appt_type *app)
+char *xfical_app_add(appt_data *app)
 {
     return(app_add_internal(app, TRUE, NULL, icaltime_null_time()));
 }
 
-void ical_app_get_alarm_internal(icalcomponent *c,  appt_type *app)
+void ical_app_get_alarm_internal(icalcomponent *c,  appt_data *app)
 {
     icalcomponent *ca = NULL;
     icalproperty *p = NULL;
@@ -779,17 +780,17 @@ void ical_app_get_alarm_internal(icalcomponent *c,  appt_type *app)
 
  /* Read EVENT from ical datafile.
   * ical_uid:  key of ical EVENT app-> is to be read
-  * returns: NULL if failed and appt_type pointer to appt_type struct
+  * returns: NULL if failed and appt_data pointer to appt_data struct
   *          filled with data if successfull.
   *          NOTE: This routine does not fill starttimecur nor endtimecur,
   *          Those are alwasy initialized to null string
-  *          This appt_type struct is owned by the routine.
+  *          This appt_data struct is owned by the routine.
   *          Do not deallocate it.
   *          It will be overdriven by next invocation of this function.
   */
-appt_type *xfical_app_get(char *ical_uid)
+appt_data *xfical_app_get(char *ical_uid)
 {
-    static appt_type app;
+    static appt_data app;
     icalcomponent *c = NULL;
     icalproperty *p = NULL;
     gboolean key_found = FALSE;
@@ -928,11 +929,11 @@ appt_type *xfical_app_get(char *ical_uid)
 
  /* modify EVENT type ical appointment in ical file
   * ical_uid: char pointer to ical ical_uid to modify
-  * app: pointer to filled appt_type structure, which is stored
+  * app: pointer to filled appt_data structure, which is stored
   *      Caller is responsible for filling and allocating and freeing it.
   * returns: TRUE is successfull, FALSE if failed
   */
-gboolean xfical_app_mod(char *ical_uid, appt_type *app)
+gboolean xfical_app_mod(char *ical_uid, appt_data *app)
 {
     icalcomponent *c;
     char *uid;
@@ -996,14 +997,14 @@ gboolean xfical_app_del(char *ical_uid)
   * a_day:  start date of ical EVENT appointment which is to be read
   * first:  get first appointment is TRUE, if not get next.
   * days:   how many more days to check forward. 0 = only one day
-  * returns: NULL if failed and appt_type pointer to appt_type struct 
+  * returns: NULL if failed and appt_data pointer to appt_data struct 
   *          filled with data if successfull. 
-  *          This appt_type struct is owned by the routine. 
+  *          This appt_data struct is owned by the routine. 
   *          Do not deallocate it.
   *          It will be overdriven by next invocation of this function.
   * Note:   starttimecur and endtimecur are converted to local timezone
   */
-appt_type *xfical_app_get_next_on_day(char *a_day, gboolean first, gint days)
+appt_data *xfical_app_get_next_on_day(char *a_day, gboolean first, gint days)
 {
     struct icaltimetype 
               asdate, aedate    /* period to check */
@@ -1015,7 +1016,7 @@ appt_type *xfical_app_get_next_on_day(char *a_day, gboolean first, gint days)
     gboolean date_found=FALSE;
     gboolean date_rec_found=FALSE;
     char *uid;
-    appt_type *app;
+    appt_data *app;
     struct icalrecurrencetype rrule;
     icalrecur_iterator* ri;
     struct icaldurationtype duration;
