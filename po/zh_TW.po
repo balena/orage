@@ -7,9 +7,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: orage 4.3.1.22svn\n"
+"Project-Id-Version: orage 4.3.1.26svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-11-22 00:11+0900\n"
+"POT-Creation-Date: 2005-11-28 21:14+0900\n"
 "PO-Revision-Date: 2005-10-07 17:23+0800\n"
 "Last-Translator: Hydonsingore Cia <hydonsingore@mail.educities.edu.tw>\n"
 "Language-Team: Chinese (traditional) <zh-l10n@linux.org.tw>\n"
@@ -19,7 +19,7 @@ msgstr ""
 
 #. Create file chooser
 #: ../plugin/xfcalendar_plugin.c:228 ../plugin/xfcalendar_plugin.c:263
-#: ../src/appointment.c:213 ../src/mainbox.c:118
+#: ../src/appointment.c:187 ../src/mainbox.c:118
 msgid "Select a file..."
 msgstr "選擇一個檔案..."
 
@@ -27,7 +27,7 @@ msgstr "選擇一個檔案..."
 msgid "Calendar files"
 msgstr "月曆檔案"
 
-#: ../plugin/xfcalendar_plugin.c:239 ../src/appointment.c:227
+#: ../plugin/xfcalendar_plugin.c:239 ../src/appointment.c:201
 #: ../src/mainbox.c:129
 msgid "All Files"
 msgstr "所有檔案"
@@ -112,7 +112,7 @@ msgstr "6 個月"
 msgid "1 year"
 msgstr "1 年"
 
-#: ../plugin/xfcalendar_plugin.c:467 ../src/appointment.c:1056
+#: ../plugin/xfcalendar_plugin.c:467 ../src/appointment.c:977
 msgid "Sound"
 msgstr "鈴聲"
 
@@ -120,8 +120,8 @@ msgstr "鈴聲"
 msgid "Application"
 msgstr "應用程式"
 
-#: ../plugin/xfcalendar_plugin.c:534 ../src/appointment.c:136
-#: ../src/mainbox.c:333 ../xfcalendar.desktop.in.h:3
+#: ../plugin/xfcalendar_plugin.c:534 ../src/appointment.c:116
+#: ../src/mainbox.c:344 ../xfcalendar.desktop.in.h:3
 msgid "Orage"
 msgstr "Orage"
 
@@ -138,196 +138,198 @@ msgstr "核心開發者"
 msgid "Contributor"
 msgstr "參與貢獻者"
 
-#: ../src/appointment.c:117 ../src/appointment.c:322 ../src/appointment.c:658
+#. Get the start date and time
+#: ../src/appointment.c:92 ../src/appointment.c:303 ../src/appointment.c:604
 msgid "%m/%d/%Y"
 msgstr "%m/%d/%Y"
 
-#: ../src/appointment.c:221
+#: ../src/appointment.c:195
 msgid "Sound Files"
 msgstr "音效檔"
 
-#: ../src/appointment.c:278 ../src/appointment.c:423 ../src/appointment.c:434
-#: ../src/appointment.c:570 ../src/event-list.c:588
+#: ../src/appointment.c:254 ../src/appointment.c:390 ../src/appointment.c:401
+#: ../src/appointment.c:514 ../src/event-list.c:588
 msgid "Warning"
 msgstr "警告"
 
-#: ../src/appointment.c:280
+#: ../src/appointment.c:256
 msgid "The appointment information has been modified."
 msgstr "本約會資訊已經被修改"
 
-#: ../src/appointment.c:281 ../src/appointment.c:573 ../src/event-list.c:591
+#: ../src/appointment.c:257 ../src/appointment.c:517 ../src/event-list.c:591
 msgid "Do you want to continue?"
 msgstr "請問您要繼續嗎？"
 
-#: ../src/appointment.c:425
+#: ../src/appointment.c:392
 msgid "The end of this appointment is earlier than the beginning."
 msgstr "本次約會的結束時間早於開始時間。"
 
-#: ../src/appointment.c:436
+#: ../src/appointment.c:403
 msgid "A time value is wrong."
 msgstr "時間值有錯"
 
-#: ../src/appointment.c:437
+#: ../src/appointment.c:404
 msgid "Time values must be written 'hh:mm', for instance '09:36' or '15:23'."
 msgstr "時間值必須遵照'hh:mm'的格式，如 '09:36 或 '15:23' 。"
 
-#: ../src/appointment.c:572
+#: ../src/appointment.c:516
 msgid "This appointment will be permanently removed."
 msgstr "這個約會將被永遠移除。"
 
-#: ../src/appointment.c:663 ../src/event-list.c:702 ../src/tray_icon.c:107
+#: ../src/appointment.c:611 ../src/event-list.c:701 ../src/tray_icon.c:107
 msgid "Today"
 msgstr "今天"
 
-#: ../src/appointment.c:766
+#. temporary
+#: ../src/appointment.c:723
 msgid "New appointment - Orage"
 msgstr "新約會 - Orage"
 
-#: ../src/appointment.c:858
+#: ../src/appointment.c:780
 msgid "Free"
 msgstr "有閒"
 
-#: ../src/appointment.c:858
+#: ../src/appointment.c:780
 msgid "Busy"
 msgstr "無閒"
 
-#: ../src/appointment.c:859 ../src/appointment.c:860
+#: ../src/appointment.c:782 ../src/appointment.c:784
 msgid "None"
 msgstr "無"
 
-#: ../src/appointment.c:859
+#: ../src/appointment.c:782
 msgid "Daily"
 msgstr "每日"
 
-#: ../src/appointment.c:859
+#: ../src/appointment.c:782
 msgid "Weekly"
 msgstr "每星期"
 
-#: ../src/appointment.c:859
+#: ../src/appointment.c:782
 msgid "Monthly"
 msgstr "每月"
 
-#: ../src/appointment.c:859
+#: ../src/appointment.c:782
 msgid "Yearly"
 msgstr ""
 
-#: ../src/appointment.c:860
+#: ../src/appointment.c:784
 msgid "5 minutes"
 msgstr "5 分鐘"
 
-#: ../src/appointment.c:860
+#: ../src/appointment.c:784
 msgid "15 minutes"
 msgstr "15 分鐘"
 
-#: ../src/appointment.c:860
+#: ../src/appointment.c:784
 msgid "30 minutes"
 msgstr "30 分鐘"
 
-#: ../src/appointment.c:861
+#: ../src/appointment.c:785
 msgid "45 minutes"
 msgstr "45 分鐘"
 
-#: ../src/appointment.c:861
+#: ../src/appointment.c:785
 msgid "1 hour"
 msgstr "1 小時"
 
-#: ../src/appointment.c:861
+#: ../src/appointment.c:785
 msgid "2 hours"
 msgstr "2 小時"
 
-#: ../src/appointment.c:861
+#: ../src/appointment.c:785
 msgid "4 hours"
 msgstr "4 小時"
 
-#: ../src/appointment.c:862
+#: ../src/appointment.c:786
 msgid "8 hours"
 msgstr "8 小時"
 
-#: ../src/appointment.c:862
+#: ../src/appointment.c:786
 msgid "1 day"
 msgstr "1 天"
 
-#: ../src/appointment.c:862
+#: ../src/appointment.c:786
 msgid "2 days"
 msgstr "2 天"
 
 #. File menu stuff
 #. File menu
-#: ../src/appointment.c:895 ../src/event-list.c:658 ../src/mainbox.c:356
+#: ../src/appointment.c:820 ../src/event-list.c:657 ../src/mainbox.c:367
 msgid "_File"
 msgstr "檔案(_F)"
 
-#: ../src/appointment.c:899
+#: ../src/appointment.c:824
 msgid "Sav_e and close"
 msgstr "儲存並關閉(_E)"
 
 #. add event copying and day cleaning
-#: ../src/appointment.c:906 ../src/event-list.c:664
+#: ../src/appointment.c:831 ../src/event-list.c:663
 msgid "D_uplicate"
 msgstr "複製(_U)"
 
 #. Add buttons to the toolbar
-#: ../src/appointment.c:926
+#: ../src/appointment.c:851
 msgid "Save"
 msgstr "儲存"
 
-#: ../src/appointment.c:928 ../src/appointment.c:929
+#: ../src/appointment.c:853 ../src/appointment.c:854
 msgid "Save and close"
 msgstr "儲存並關閉"
 
-#: ../src/appointment.c:934
+#: ../src/appointment.c:859
 msgid "Revert"
 msgstr "還原"
 
-#: ../src/appointment.c:936 ../src/appointment.c:937 ../src/event-list.c:710
+#: ../src/appointment.c:861 ../src/appointment.c:862 ../src/event-list.c:709
 msgid "Duplicate"
 msgstr "複製"
 
-#: ../src/appointment.c:941
+#: ../src/appointment.c:866
 msgid "Delete"
 msgstr "刪除"
 
-#: ../src/appointment.c:952
+#: ../src/appointment.c:874
 msgid "General"
 msgstr "一般"
 
-#: ../src/appointment.c:961
+#: ../src/appointment.c:883
 msgid "Title "
 msgstr "標題"
 
-#: ../src/appointment.c:967
+#: ../src/appointment.c:889
 msgid "Location"
 msgstr "地點"
 
-#: ../src/appointment.c:973
+#: ../src/appointment.c:895
 msgid "All day event"
 msgstr "整天的事件"
 
-#: ../src/appointment.c:978
+#: ../src/appointment.c:900
 msgid "Start"
 msgstr "開始"
 
-#: ../src/appointment.c:986
+#: ../src/appointment.c:909
 msgid "End"
 msgstr "結束"
 
-#: ../src/appointment.c:994
+#: ../src/appointment.c:918
 msgid "Recurrence"
 msgstr "再現"
 
-#: ../src/appointment.c:1001
+#: ../src/appointment.c:925
 msgid "Availability"
 msgstr "能赴約否"
 
-#: ../src/appointment.c:1008
+#: ../src/appointment.c:932
 msgid "Note"
 msgstr "備註"
 
-#: ../src/appointment.c:1040 ../src/appointment.c:1049
+#: ../src/appointment.c:961 ../src/appointment.c:970
 msgid "Alarm"
 msgstr "提醒"
 
-#: ../src/appointment.c:1067
+#: ../src/appointment.c:988
 msgid "Repeat alarm sound"
 msgstr "重複提醒鈴聲"
 
@@ -336,7 +338,7 @@ msgstr "重複提醒鈴聲"
 msgid "All day"
 msgstr "全天"
 
-#: ../src/event-list.c:278 ../src/event-list.c:744
+#: ../src/event-list.c:278 ../src/event-list.c:743
 msgid "Time"
 msgstr "時間"
 
@@ -347,48 +349,48 @@ msgid ""
 msgstr "您將刪除與該日期有關的所有資訊。"
 
 #. View menu
-#: ../src/event-list.c:677 ../src/mainbox.c:379
+#: ../src/event-list.c:676 ../src/mainbox.c:390
 msgid "_View"
 msgstr "檢視(_V)"
 
 #. Go menu
-#: ../src/event-list.c:682
+#: ../src/event-list.c:681
 msgid "_Go"
 msgstr "前往(_G)"
 
-#: ../src/event-list.c:697
+#: ../src/event-list.c:696
 msgid "New"
 msgstr "新增"
 
-#: ../src/event-list.c:700
+#: ../src/event-list.c:699
 msgid "Back"
 msgstr "後退"
 
-#: ../src/event-list.c:704
+#: ../src/event-list.c:703
 msgid "Forward"
 msgstr "前進"
 
-#: ../src/event-list.c:706
+#: ../src/event-list.c:705
 msgid "Refresh"
 msgstr "更新"
 
-#: ../src/event-list.c:712
+#: ../src/event-list.c:711
 msgid "Close"
 msgstr "關閉"
 
-#: ../src/event-list.c:714
+#: ../src/event-list.c:713
 msgid "Clear"
 msgstr "清除"
 
-#: ../src/event-list.c:752
+#: ../src/event-list.c:751
 msgid "Flags"
 msgstr "旗標"
 
-#: ../src/event-list.c:758
+#: ../src/event-list.c:757
 msgid "Title"
 msgstr "標題"
 
-#: ../src/event-list.c:764
+#: ../src/event-list.c:763
 msgid "uid"
 msgstr "uid"
 
@@ -396,46 +398,46 @@ msgstr "uid"
 msgid "  "
 msgstr "  "
 
-#: ../src/ical-code.c:424
+#: ../src/ical-code.c:540
 #, fuzzy
 msgid "Orage default alarm"
 msgstr "Xfcalendar 預設提醒"
 
-#: ../src/main.c:165
+#: ../src/main.c:176
 msgid "This should not happen"
 msgstr "不應發生此種情況"
 
-#: ../src/main.c:448
+#: ../src/main.c:456
 msgid "Cannot create MCS client channel"
 msgstr "無法建立 MCS 客戶端通道"
 
-#: ../src/mainbox.c:363
+#: ../src/mainbox.c:374
 msgid "Open archive file..."
 msgstr "開啟封存檔案..."
 
-#: ../src/mainbox.c:364
+#: ../src/mainbox.c:375
 msgid "Close archive file"
 msgstr "關閉封存檔案"
 
 #. Edit menu
-#: ../src/mainbox.c:374
+#: ../src/mainbox.c:385
 msgid "_Edit"
 msgstr "編輯(_E)"
 
-#: ../src/mainbox.c:381
+#: ../src/mainbox.c:392
 msgid "View selected _date"
 msgstr "檢視所選的日期(_D)"
 
-#: ../src/mainbox.c:385
+#: ../src/mainbox.c:396
 msgid "Select _Today"
 msgstr "選擇今天日期(_T)"
 
 #. Help menu
-#: ../src/mainbox.c:388
+#: ../src/mainbox.c:399
 msgid "_Help"
 msgstr "說明(_H)"
 
-#: ../src/reminder.c:163
+#: ../src/reminder.c:164
 msgid "Reminder "
 msgstr "提醒"
 
