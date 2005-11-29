@@ -19,6 +19,14 @@
  *
  */
 
+typedef struct
+{
+    int    count;      /* how many timezones we have */
+    char **city;      /* pointer to timezone location name strings */
+} xfical_timezone_array;
+
+xfical_timezone_array xfical_get_timezones();
+
 void set_default_ical_path (void);
 
 void set_ical_path (gchar *path);

@@ -111,11 +111,11 @@ typedef struct
     GtkWidget *appStartDate_button;
     GtkWidget *appStartTime_hbox;
     GtkWidget *appStartTime_comboboxentry;
-GtkWidget *appStartTime_comboboxtimezone;
+    GtkWidget *appStartTime_comboboxtimezone;
     GtkWidget *appEndDate_button;
     GtkWidget *appEndTime_hbox;
     GtkWidget *appEndTime_comboboxentry;
-GtkWidget *appEndTime_comboboxtimezone;
+    GtkWidget *appEndTime_comboboxtimezone;
     GtkWidget *appSound_label;
     GtkWidget *appSound_hbox;
     GtkWidget *appSound_entry;
@@ -134,8 +134,6 @@ GtkWidget *appEndTime_comboboxtimezone;
     gboolean appointment_changed;
     gboolean appointment_new;
     gchar *chosen_date;
-    gchar *start_tz_loc; /* temporary until appointment supports timezones */
-    gchar *end_tz_loc;   /* temporary until appointment supports timezones */
 } appt_win;
 
 void 

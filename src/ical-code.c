@@ -81,6 +81,29 @@ static int lookback;
 
 extern GList *alarm_list;
 
+xfical_timezone_array xfical_get_timezones()
+{
+    static xfical_timezone_array tz={0, NULL};
+    static char tz_utc[]="UTC";
+    static char tz_floating[]="floating";
+    icalarray *tz_array;
+    icaltimezone *l_tz;
+
+    if (tz.count == 0) {
+        tz_array = icaltimezone_get_builtin_timezones();
+        tz.city = (char **)g_malloc(sizeof(char *)*(2+tz_array->num_elements));
+        for (tz.count = 0; tz.count <  tz_array->num_elements; tz.count++) {
+            l_tz = (icaltimezone *)icalarray_element_at(tz_array, tz.count);
+            /* ical timezones are static so this is safe although not
+             * exactly pretty */
+            tz.city[tz.count] = icaltimezone_get_location(l_tz);
+        }
+        tz.city[tz.count++] = tz_utc;
+        tz.city[tz.count++] = tz_floating;
+    }
+    return (tz);
+}
+
 void set_default_ical_path (void)
 {
     if (ical_path)

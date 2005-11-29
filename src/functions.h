@@ -30,7 +30,7 @@ GtkWidget *xfcalendar_toolbar_append_separator (GtkWidget *toolbar, gint pos);
 
 void xfcalendar_combo_box_append_array (GtkWidget *combo_box, char *text[], int size);
 
-GtkWidget *xfcalendar_datetime_hbox_new (GtkWidget *date_button, GtkWidget *time_comboboxentry, GtkWidget *timezone_combobox);
+GtkWidget *xfcalendar_datetime_hbox_new (GtkWidget *date_button, GtkWidget *time_comboboxentry, GtkWidget *time_comboboxtimezone, char **city, int count);
 
 GtkWidget *xfcalendar_table_new (guint rows, guint columns);
 
