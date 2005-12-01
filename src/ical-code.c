@@ -303,7 +303,6 @@ gboolean xfical_file_open (void)
 
 gboolean xfical_archive_open (void)
 {
-
     if (!aical_path)
         return (FALSE);
 
@@ -325,7 +324,6 @@ void xfical_file_close(void)
 
 void xfical_archive_close(void)
 {
-
     if (!aical_path)
         return;
 
@@ -460,6 +458,48 @@ int local_compare(struct icaltimetype a, struct icaltimetype b)
         retval = -1;
 
     return retval;
+}
+
+struct icaltimetype convert_to_zone(struct icaltimetype t, gchar *tz)
+{
+    struct icaltimetype wtime = t;
+    icaltimezone *l_icaltimezone = NULL;
+
+    if XFICAL_STR_EXISTS(tz) {
+        if (strcmp(tz, "UTC") == 0)
+            wtime=icaltime_convert_to_zone(t, utc_icaltimezone);
+        else {
+            l_icaltimezone=icaltimezone_get_builtin_timezone(tz);
+            if (!l_icaltimezone)
+                g_warning("xfical_compare_times: builtin timezone %s not found, conversion failed.\n", tz);
+            else
+                wtime = icaltime_convert_to_zone(t, l_icaltimezone);
+        }
+    }
+    else  /* floating time */
+        if (local_icaltimezone)
+            wtime=icaltime_convert_to_zone(t, local_icaltimezone);
+
+    return(wtime);
+}
+
+int xfical_compare_times(gchar *time1, gchar *tz1, gchar *time2, gchar *tz2)
+{
+    struct icaltimetype wtime1, wtime2;
+    icaltimezone *l_icaltimezone = NULL;
+
+    if (XFICAL_STR_EXISTS(time1) && XFICAL_STR_EXISTS(time2)) {
+        wtime1=icaltime_from_string(time1);
+        wtime2=icaltime_from_string(time2);
+
+        wtime1=convert_to_zone(wtime1, tz1);
+        wtime2=convert_to_zone(wtime2, tz2);
+        return (icaltime_compare(wtime1, wtime2));
+    }
+    else {
+        g_warning("xfical_compare_times: null time %s %s\n", time1, time2);
+        return(0); /* should be error ! */
+    }
 }
 
 /* basically copied from icaltime_compare_date_only, which can't be used
@@ -1058,15 +1098,7 @@ appt_data *xfical_app_get_next_on_day(char *a_day, gboolean first, gint days)
          icalcompiter_deref(&ci) != 0 && !date_found;
          icalcompiter_next(&ci)) {
         c = icalcompiter_deref(&ci);
-        /*
-        sdate = icalcomponent_get_dtstart(c);
-        p = icalcomponent_get_first_property(c, ICAL_DTSTART_PROPERTY);
-        */
         sdate = get_local_time(c, ICAL_DTSTART_PROPERTY);
-        /*
-        edate = icalcomponent_get_dtend(c);
-        p = icalcomponent_get_first_property(c, ICAL_DTEND_PROPERTY);
-        */
         edate = get_local_time(c, ICAL_DTEND_PROPERTY);
         if (icaltime_is_null_time(edate))
             edate = sdate;
@@ -1102,10 +1134,6 @@ appt_data *xfical_app_get_next_on_day(char *a_day, gboolean first, gint days)
             g_strlcpy(app->endtimecur, icaltime_as_ical_string(nedate), 17);
         }
         else {
-            /*
-            g_strlcpy(app->starttimecur, app->starttime, 17);
-            g_strlcpy(app->endtimecur, app->endtime, 17);
-            */
             g_strlcpy(app->starttimecur, icaltime_as_ical_string(sdate), 17);
             g_strlcpy(app->endtimecur, icaltime_as_ical_string(edate), 17);
         }
@@ -1206,9 +1234,6 @@ void rmday_ical_app(char *a_day)
          c != 0;
          c = c2){
         c2 = icalcomponent_get_next_component(ical, ICAL_VEVENT_COMPONENT);
-        /*
-        t = icalcomponent_get_dtstart(c);
-        */
         t = get_local_time(c, ICAL_DTSTART_PROPERTY);
         if (local_compare_date_only(t, adate) == 0) {
             icalcomponent_remove_component(ical, c);
@@ -1300,9 +1325,6 @@ void xfical_alarm_build_list(gboolean first_list_today)
         suid = (char*)icalcomponent_get_uid(c);
         ssummary = (char*)icalcomponent_get_summary(c);
         sdescription = (char*)icalcomponent_get_description(c);
-        /*
-        event_dtstart = icalcomponent_get_dtstart(c);
-        */
         event_dtstart = get_local_time(c, ICAL_DTSTART_PROPERTY);
         if (first_list_today && icaltime_is_date(event_dtstart)) {
         /* this is special pre 4.3 xfcalendar compatibility alarm:

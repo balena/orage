@@ -57,8 +57,8 @@
 #define ALARM_ARRAY_DIM 11
 #define FILETYPE_SIZE 38
 
-
-void delete_xfical_from_appt_win (appt_win *apptw);
+extern char *local_icaltimezone_location;
+extern gboolean local_icaltimezone_utc;
 
 gboolean 
 ical_to_year_month_day_hour_minute(char *ical
@@ -338,7 +338,9 @@ fill_appt(appt_data *appt, appt_win *apptw)
     else
         appt->end_tz_loc = tz.city[ind];
 
-    if(!xfcalendar_validate_datetime(apptw->appWindow, appt->starttime, appt->endtime, starttime, endtime))
+    if(!orage_validate_datetime(apptw->appWindow
+            , appt->starttime, appt->start_tz_loc, starttime
+            , appt->endtime,   appt->end_tz_loc,   endtime))
         return(FALSE);
 
     /* Get the recurrence */
@@ -387,30 +389,30 @@ orage_validate_time(gchar *str)
 }
 
 gboolean 
-xfcalendar_validate_datetime(GtkWidget *parent
-    , gchar *startdatetime, gchar *enddatetime
-    , gchar *starttime, gchar *endtime)
+orage_validate_datetime(GtkWidget *parent
+    , gchar *startdatetime, gchar *starttz, gchar *starttime
+    , gchar *enddatetime,   gchar *endtz,   gchar *endtime)
 {
-/* FIXME: this does not work after we add timezones */
     gint result;
 
-    if(g_ascii_strcasecmp(enddatetime, startdatetime) < 0){
-        result = xfce_message_dialog(GTK_WINDOW(parent),
-                                     _("Warning"),
-                                     GTK_STOCK_DIALOG_WARNING,
-                                     _("The end of this appointment is earlier than the beginning."),
-                                     NULL,
-                                     GTK_STOCK_OK,
-                                     GTK_RESPONSE_ACCEPT,
-                                     NULL);
-        return FALSE;
-    }
-    else if(!orage_validate_time(starttime) || !orage_validate_time(endtime)){
+    if (!orage_validate_time(starttime) || !orage_validate_time(endtime)) {
         result = xfce_message_dialog(GTK_WINDOW(parent),
                                      _("Warning"),
                                      GTK_STOCK_DIALOG_WARNING,
                                      _("A time value is wrong."),
                                      _("Time values must be written 'hh:mm', for instance '09:36' or '15:23'."),
+                                     GTK_STOCK_OK,
+                                     GTK_RESPONSE_ACCEPT,
+                                     NULL);
+        return FALSE;
+    }
+    else if (xfical_compare_times(startdatetime, starttz,
+                                  enddatetime,   endtz) > 0) {
+        result = xfce_message_dialog(GTK_WINDOW(parent),
+                                     _("Warning"),
+                                     GTK_STOCK_DIALOG_WARNING,
+                                     _("The end of this appointment is earlier than the beginning."),
+                                     NULL,
                                      GTK_STOCK_OK,
                                      GTK_RESPONSE_ACCEPT,
                                      NULL);
@@ -503,18 +505,6 @@ on_appSaveClose_clicked_cb(GtkButton *button, gpointer user_data)
 }
 
 void
-on_appDelete_clicked_cb(GtkButton *button, gpointer user_data)
-{
-    delete_xfical_from_appt_win((appt_win *)user_data);
-}
-
-void
-on_appFileDelete_menu_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
-{
-    delete_xfical_from_appt_win((appt_win *) user_data);
-}
-
-void
 delete_xfical_from_appt_win(appt_win *apptw)
 {
     gint result;
@@ -547,6 +537,18 @@ delete_xfical_from_appt_win(appt_win *apptw)
         gtk_widget_destroy(apptw->appWindow);
         g_free(apptw);
     }
+}
+
+void
+on_appDelete_clicked_cb(GtkButton *button, gpointer user_data)
+{
+    delete_xfical_from_appt_win((appt_win *)user_data);
+}
+
+void
+on_appFileDelete_menu_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
+{
+    delete_xfical_from_appt_win((appt_win *) user_data);
 }
 
 void 
@@ -716,6 +718,14 @@ fill_appt_window(appt_win *apptw, char *action, char *par)
         else {
             g_sprintf(appt_data->starttime,"%sT090000", par);
             g_sprintf(appt_data->endtime,"%sT093000", par);
+        }
+        if (local_icaltimezone_utc) {
+            appt_data->start_tz_loc = "UTC";
+            appt_data->end_tz_loc = "UTC";
+        }
+        else if (local_icaltimezone_location) {
+            appt_data->start_tz_loc = local_icaltimezone_location;
+            appt_data->end_tz_loc = local_icaltimezone_location;
         }
         gtk_widget_set_sensitive(apptw->appDuplicate, FALSE);
     }
