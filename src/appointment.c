@@ -60,6 +60,11 @@
 extern char *local_icaltimezone_location;
 extern gboolean local_icaltimezone_utc;
 
+enum {
+    LOCATION,
+    N_COLUMNS
+};
+
 gboolean 
 ical_to_year_month_day_hour_minute(char *ical
     , int *year, int *month, int *day, int *hour, int *minute)
@@ -290,8 +295,6 @@ fill_appt(appt_data *appt, appt_win *apptw)
     struct tm current_t;
     char *returned_by_strptime;
     const gchar *starttime, *endtime;
-    xfical_timezone_array tz;
-    int ind;
 
     /*Get the title */
     appt->title = (gchar *) gtk_entry_get_text((GtkEntry *)apptw->appTitle_entry);
@@ -305,8 +308,6 @@ fill_appt(appt_data *appt, appt_win *apptw)
     date_format = _("%m/%d/%Y");
     time_format = "%H:%M";
 
-    tz = xfical_get_timezones();
-
     current_t.tm_hour = 0;
     current_t.tm_min = 0;
 
@@ -316,11 +317,7 @@ fill_appt(appt_data *appt, appt_win *apptw)
     g_sprintf(appt->starttime, XFICAL_APP_TIME_FORMAT
             , current_t.tm_year + 1900, current_t.tm_mon + 1, current_t.tm_mday
             , current_t.tm_hour, current_t.tm_min, 0);
-    ind = gtk_combo_box_get_active((GtkComboBox *)apptw->appStartTime_comboboxtimezone);
-    if (ind == -1 || ind == tz.count-1) 
-        appt->start_tz_loc = NULL;
-    else
-        appt->start_tz_loc = tz.city[ind];
+     appt->start_tz_loc = (char *)gtk_button_get_label(GTK_BUTTON(apptw->appStartTimezone_button));
 
     /* Get the end date and time and timezone */
     current_t.tm_hour = 0;
@@ -332,11 +329,7 @@ fill_appt(appt_data *appt, appt_win *apptw)
     g_sprintf(appt->endtime, XFICAL_APP_TIME_FORMAT
             , current_t.tm_year + 1900, current_t.tm_mon + 1, current_t.tm_mday
             , current_t.tm_hour, current_t.tm_min, 0);
-    ind = gtk_combo_box_get_active((GtkComboBox *)apptw->appEndTime_comboboxtimezone);
-    if (ind == -1 || ind == tz.count-1) 
-        appt->end_tz_loc = NULL;
-    else
-        appt->end_tz_loc = tz.city[ind];
+    appt->end_tz_loc = (char *)gtk_button_get_label(GTK_BUTTON(apptw->appEndTimezone_button));
 
     if(!orage_validate_datetime(apptw->appWindow
             , appt->starttime, appt->start_tz_loc, starttime
@@ -617,7 +610,7 @@ on_appStartEndDate_clicked_cb(GtkWidget *button, gpointer *user_data)
                 , date_format, &current_t);
 
     selDate_Window_dialog = gtk_dialog_new_with_buttons(
-                            NULL, GTK_WINDOW(apptw->appWindow),
+                            _("Pick the date"), GTK_WINDOW(apptw->appWindow),
                             GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
                             _("Today"), 
                             1,
@@ -658,19 +651,96 @@ on_appStartEndDate_clicked_cb(GtkWidget *button, gpointer *user_data)
     gtk_widget_destroy(selDate_Window_dialog);
 }
 
-int
-find_timezone(xfical_timezone_array tz_arr, char *tz)
+void
+on_appStartEndTimezone_clicked_cb(GtkWidget *button, gpointer *user_data)
 {
-    int i;
+    appt_win *apptw = (appt_win *)user_data;
+    GtkTreeStore *store;
+    GtkTreeIter iter1, iter2;
+    GtkWidget *tree;
+    GtkCellRenderer *rend;
+    GtkTreeViewColumn *col;
+    GtkWidget *window;
+    GtkWidget *vbox;
+    GtkWidget *sw;
+    xfical_timezone_array tz;
+    int i, j, result;
+    char area_old[20], *area_end, *loc;
+    GtkTreeSelection *sel;
+    GtkTreeModel     *model;
+    GtkTreeIter       iter;
 
-    if (tz)
-        for (i=0; i < tz_arr.count; i++) {
-            if (strcmp(tz_arr.city[i], tz) == 0)
-                return(i);
-            else if (strcmp(tz_arr.city[i], tz) > 0) 
-                return(-1);
+    /* enter data */
+    store = gtk_tree_store_new(N_COLUMNS, G_TYPE_STRING);
+    strcpy(area_old, "S T a R T");
+    tz = xfical_get_timezones();
+    for (i=0; i < tz.count-2; i++) {
+        /* first area */
+        if (! g_str_has_prefix(tz.city[i], area_old)) {
+            for (j=0; tz.city[i][j] != '/' && j < 20; j++) {
+                area_old[j] = tz.city[i][j];
+            }
+            if (j < 20)
+                area_old[j] = 0;
+            else
+                g_warning("on_appStartEndTimezone_clicked_cb: wrong format in zones.tab %s\n", tz.city[i]);
+
+            gtk_tree_store_append(store, &iter1, NULL);
+            gtk_tree_store_set(store, &iter1, loc, area_old, -1);
         }
-    return(-1);
+        /* then city */
+        gtk_tree_store_append(store, &iter2, &iter1);
+        gtk_tree_store_set(store, &iter2, loc, tz.city[i], -1);
+    }
+         
+    /* create view */
+    tree = gtk_tree_view_new_with_model(GTK_TREE_MODEL(store));
+    rend = gtk_cell_renderer_text_new();
+    col  = gtk_tree_view_column_new_with_attributes("Location"
+                , rend, "text", loc, NULL);
+    gtk_tree_view_append_column(GTK_TREE_VIEW(tree), col);
+
+    /* show it */
+    window =  gtk_dialog_new_with_buttons(_("Pick timezone")
+            , GTK_WINDOW(apptw->appWindow)
+            , GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT
+            , _("UTC"), 1
+            , _("floating"), 2
+            , GTK_STOCK_OK, GTK_RESPONSE_ACCEPT
+            , NULL);
+    sw = gtk_scrolled_window_new(NULL, NULL);
+    gtk_container_add(GTK_CONTAINER(sw), tree);
+    gtk_box_pack_start(GTK_BOX(GTK_DIALOG(window)->vbox), sw, TRUE, TRUE, 0);
+    gtk_window_set_default_size(GTK_WINDOW(window), 300, 500);
+
+    gtk_widget_show_all(window);
+    do {
+        result = gtk_dialog_run(GTK_DIALOG(window));
+        switch (result) {
+            case GTK_RESPONSE_ACCEPT:
+                sel = gtk_tree_view_get_selection(GTK_TREE_VIEW(tree));
+                if (gtk_tree_selection_get_selected(sel, &model, &iter))
+                    if (gtk_tree_model_iter_has_child(model, &iter))
+                        result = 0;
+                    else
+                        gtk_tree_model_get(model, &iter, LOCATION, &loc, -1);
+                else
+                    loc = g_strdup(gtk_button_get_label(GTK_BUTTON(button)));
+                break;
+            case 1:
+                loc = g_strdup("UTC");
+                break;
+            case 2:
+                loc = g_strdup("floating");
+                break;
+            default:
+                loc = g_strdup(gtk_button_get_label(GTK_BUTTON(button)));
+                break;
+        }
+    } while (result == 0) ;
+    gtk_button_set_label(GTK_BUTTON(button), loc);
+    g_free(loc);
+    gtk_widget_destroy(window);
 }
 
 void 
@@ -680,12 +750,10 @@ fill_appt_window(appt_win *apptw, char *action, char *par)
          starttime_to_display[6],  endtime_to_display[6];
     int year, month, day, hours, minutes;
     GtkTextBuffer *tb;
-    appt_data *appt_data=NULL;
+    appt_data *appt=NULL;
     struct tm *t;
     time_t tt;
     gchar today[9];
-    xfical_timezone_array tz;
-    int ind;
 
     g_message("%s appointment: %s \n", action, par);
     if (strcmp(action, "NEW") == 0) {
@@ -693,7 +761,7 @@ fill_appt_window(appt_win *apptw, char *action, char *par)
         apptw->add_appointment = TRUE;
         apptw->appointment_new = TRUE;
         apptw->chosen_date = g_strdup((const gchar *)par);
-        appt_data = xfical_app_alloc();
+        appt = xfical_app_alloc();
         tt=time(NULL);
         t=localtime(&tt);
         g_sprintf(today, "%04d%02d%02d", t->tm_year+1900, t->tm_mon+1
@@ -702,30 +770,30 @@ fill_appt_window(appt_win *apptw, char *action, char *par)
         /* JK: hour 24 is wrong, we use 00 */
         if (strcmp(apptw->chosen_date, today) == 0 && t->tm_hour < 23) { 
             if(t->tm_min <= 30){
-                g_sprintf(appt_data->starttime,"%sT%02d%02d00"
+                g_sprintf(appt->starttime,"%sT%02d%02d00"
                             , par, t->tm_hour, 30);
-                g_sprintf(appt_data->endtime,"%sT%02d%02d00"
+                g_sprintf(appt->endtime,"%sT%02d%02d00"
                             , par, t->tm_hour + 1, 00);
             }
             else{
-                g_sprintf(appt_data->starttime,"%sT%02d%02d00"
+                g_sprintf(appt->starttime,"%sT%02d%02d00"
                             , par, t->tm_hour + 1, 00);
-                g_sprintf(appt_data->endtime,"%sT%02d%02d00"
+                g_sprintf(appt->endtime,"%sT%02d%02d00"
                             , par, t->tm_hour + 1, 30);
             }
         }
         /* otherwise we suggest it at 09:00 in the morning. */
         else {
-            g_sprintf(appt_data->starttime,"%sT090000", par);
-            g_sprintf(appt_data->endtime,"%sT093000", par);
+            g_sprintf(appt->starttime,"%sT090000", par);
+            g_sprintf(appt->endtime,"%sT093000", par);
         }
         if (local_icaltimezone_utc) {
-            appt_data->start_tz_loc = "UTC";
-            appt_data->end_tz_loc = "UTC";
+            appt->start_tz_loc = "UTC";
+            appt->end_tz_loc = "UTC";
         }
         else if (local_icaltimezone_location) {
-            appt_data->start_tz_loc = local_icaltimezone_location;
-            appt_data->end_tz_loc = local_icaltimezone_location;
+            appt->start_tz_loc = local_icaltimezone_location;
+            appt->end_tz_loc = local_icaltimezone_location;
         }
         gtk_widget_set_sensitive(apptw->appDuplicate, FALSE);
     }
@@ -741,7 +809,7 @@ fill_appt_window(appt_win *apptw, char *action, char *par)
             g_error("ical file open failed\n");
             return;
         }
-        if ((appt_data = xfical_app_get(par)) == NULL) {
+        if ((appt = xfical_app_get(par)) == NULL) {
             g_message("appointment not found\n");
             xfical_file_close();
             return;
@@ -750,17 +818,16 @@ fill_appt_window(appt_win *apptw, char *action, char *par)
     else
         g_error("unknown parameter\n");
 
-	apptw->xf_uid = g_strdup(appt_data->uid);
+	apptw->xf_uid = g_strdup(appt->uid);
 
     gtk_window_set_title(GTK_WINDOW(apptw->appWindow), _("New appointment - Orage"));
 
-    gtk_entry_set_text(GTK_ENTRY(apptw->appTitle_entry), (appt_data->title ? appt_data->title : ""));
-    gtk_entry_set_text(GTK_ENTRY(apptw->appLocation_entry), (appt_data->location ? appt_data->location : ""));
-    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(apptw->appAllDay_checkbutton), appt_data->allDay);
+    gtk_entry_set_text(GTK_ENTRY(apptw->appTitle_entry), (appt->title ? appt->title : ""));
+    gtk_entry_set_text(GTK_ENTRY(apptw->appLocation_entry), (appt->location ? appt->location : ""));
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(apptw->appAllDay_checkbutton), appt->allDay);
 
-    tz = xfical_get_timezones();
-    if (strlen(appt_data->starttime) > 6 ) {
-        ical_to_year_month_day_hour_minute(appt_data->starttime, &year, &month, &day, &hours, &minutes);
+    if (strlen(appt->starttime) > 6 ) {
+        ical_to_year_month_day_hour_minute(appt->starttime, &year, &month, &day, &hours, &minutes);
         year_month_day_to_display(year, month, day, startdate_to_display);
         gtk_button_set_label(GTK_BUTTON(apptw->appStartDate_button), (const gchar *)startdate_to_display);
 
@@ -768,12 +835,13 @@ fill_appt_window(appt_win *apptw, char *action, char *par)
             sprintf(starttime_to_display, "%02d:%02d", hours, minutes);
             gtk_entry_set_text(GTK_ENTRY(GTK_BIN(apptw->appStartTime_comboboxentry)->child), (const gchar *)starttime_to_display);
         }
-        if ((ind = find_timezone(tz, appt_data->start_tz_loc)) == -1)
-            ind += tz.count;
-        gtk_combo_box_set_active(GTK_COMBO_BOX(GTK_BIN(apptw->appStartTime_comboboxtimezone)), ind);
+        if (appt->start_tz_loc)
+            gtk_button_set_label(GTK_BUTTON(apptw->appStartTimezone_button), (const gchar *)appt->start_tz_loc);
+        else
+            gtk_button_set_label(GTK_BUTTON(apptw->appStartTimezone_button), "floating");
     }
-    if (strlen( appt_data->endtime) > 6 ) {
-        ical_to_year_month_day_hour_minute(appt_data->endtime, &year, &month, &day, &hours, &minutes);
+    if (strlen( appt->endtime) > 6 ) {
+        ical_to_year_month_day_hour_minute(appt->endtime, &year, &month, &day, &hours, &minutes);
 
         year_month_day_to_display(year, month, day, enddate_to_display);
         gtk_button_set_label(GTK_BUTTON(apptw->appEndDate_button), (const gchar *)enddate_to_display);
@@ -782,29 +850,30 @@ fill_appt_window(appt_win *apptw, char *action, char *par)
             sprintf(endtime_to_display, "%02d:%02d", hours, minutes);
             gtk_entry_set_text(GTK_ENTRY(GTK_BIN(apptw->appEndTime_comboboxentry)->child), (const gchar *)endtime_to_display);
         }
-        if ((ind = find_timezone(tz, appt_data->end_tz_loc)) == -1)
-            ind += tz.count;
-        gtk_combo_box_set_active(GTK_COMBO_BOX(GTK_BIN(apptw->appEndTime_comboboxtimezone)), ind);
+        if (appt->end_tz_loc)
+            gtk_button_set_label(GTK_BUTTON(apptw->appEndTimezone_button), (const gchar *)appt->end_tz_loc);
+        else
+            gtk_button_set_label(GTK_BUTTON(apptw->appEndTimezone_button), "floating");
     }
 
 	gtk_combo_box_set_active(GTK_COMBO_BOX(apptw->appRecurrency_cb)
-				   , appt_data->freq);
-	if (appt_data->availability != -1){
+				   , appt->freq);
+	if (appt->availability != -1){
 	  gtk_combo_box_set_active(GTK_COMBO_BOX(apptw->appAvailability_cb)
-				   , appt_data->availability);
+				   , appt->availability);
 	}
     tb = gtk_text_view_get_buffer((GtkTextView *)apptw->appNote_textview);
-	gtk_text_buffer_set_text(tb, (appt_data->note ? (const gchar *) appt_data->note : ""), -1);
+	gtk_text_buffer_set_text(tb, (appt->note ? (const gchar *) appt->note : ""), -1);
 
-    if (appt_data->alarmtime != -1){
+    if (appt->alarmtime != -1){
       gtk_combo_box_set_active(GTK_COMBO_BOX(apptw->appAlarm_combobox)
-                   , appt_data->alarmtime);
+                   , appt->alarmtime);
     }
-    gtk_entry_set_text(GTK_ENTRY(apptw->appSound_entry), (appt_data->sound ? appt_data->sound : ""));
-    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(apptw->appSoundRepeat_checkbutton), appt_data->alarmrepeat);
+    gtk_entry_set_text(GTK_ENTRY(apptw->appSound_entry), (appt->sound ? appt->sound : ""));
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(apptw->appSoundRepeat_checkbutton), appt->alarmrepeat);
 
     if (strcmp(action, "NEW") == 0) {
-        g_free(appt_data);
+        g_free(appt);
 	}
     else
         xfical_file_close();
@@ -828,8 +897,6 @@ appt_win
             _("8 hours"), _("1 day"), _("2 days")};
 
     appt_win *apptw = g_new(appt_win, 1);
-    xfical_timezone_array tz;
-
 
     apptw->xf_uid = NULL;
     apptw->eventlist = event_list;    /* Keep memory of the parent, if any */
@@ -941,16 +1008,14 @@ appt_win
                    (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
                    (GtkAttachOptions) (0));
 
-    tz = xfical_get_timezones();
-
     apptw->appStart = gtk_label_new(_("Start"));
     apptw->appStartDate_button = gtk_button_new();
     apptw->appStartTime_comboboxentry = gtk_combo_box_entry_new_text();
-    apptw->appStartTime_comboboxtimezone = gtk_combo_box_new_text();
+    apptw->appStartTimezone_button = gtk_button_new();
     apptw->appStartTime_hbox = xfcalendar_datetime_hbox_new(
             apptw->appStartDate_button, 
             apptw->appStartTime_comboboxentry, 
-            apptw->appStartTime_comboboxtimezone, tz.city, tz.count);
+            apptw->appStartTimezone_button);
     xfcalendar_table_add_row(apptw->appTableGeneral, apptw->appStart, apptw->appStartTime_hbox, 3,
                       (GtkAttachOptions) (GTK_SHRINK | GTK_FILL),
                       (GtkAttachOptions) (GTK_SHRINK | GTK_FILL));
@@ -958,11 +1023,11 @@ appt_win
     apptw->appEnd = gtk_label_new(_("End"));
     apptw->appEndDate_button = gtk_button_new();
     apptw->appEndTime_comboboxentry = gtk_combo_box_entry_new_text();
-    apptw->appEndTime_comboboxtimezone = gtk_combo_box_new_text();
+    apptw->appEndTimezone_button = gtk_button_new();
     apptw->appEndTime_hbox = xfcalendar_datetime_hbox_new(
             apptw->appEndDate_button, 
             apptw->appEndTime_comboboxentry, 
-            apptw->appEndTime_comboboxtimezone, tz.city, tz.count);
+            apptw->appEndTimezone_button);
     xfcalendar_table_add_row(apptw->appTableGeneral, apptw->appEnd, apptw->appEndTime_hbox, 4,
                       (GtkAttachOptions) (GTK_SHRINK | GTK_FILL),
                       (GtkAttachOptions) (GTK_SHRINK | GTK_FILL));
@@ -1101,6 +1166,14 @@ appt_win
 
     g_signal_connect((gpointer) apptw->appEndDate_button, "clicked",
             G_CALLBACK(on_appStartEndDate_clicked_cb),
+            apptw);
+
+    g_signal_connect((gpointer) apptw->appStartTimezone_button, "clicked",
+            G_CALLBACK(on_appStartEndTimezone_clicked_cb),
+            apptw);
+
+    g_signal_connect((gpointer) apptw->appEndTimezone_button, "clicked",
+            G_CALLBACK(on_appStartEndTimezone_clicked_cb),
             apptw);
 
     g_signal_connect((gpointer) apptw->appWindow, "delete-event",

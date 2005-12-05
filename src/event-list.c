@@ -62,8 +62,8 @@ extern CalWin *xfcal;
 extern gint event_win_size_x, event_win_size_y;
 
 /* Direction for changing day to look at */
-enum{
-  PREVIOUS,
+enum {
+    PREVIOUS,
     NEXT
     };
 
@@ -268,9 +268,9 @@ recreate_eventlist_win (eventlist_win *el)
     GtkCellRenderer *rend;
     GtkTreeViewColumn *col;
 
-    if (el->elWindow != NULL && 
-	el->elListStore != NULL &&
-	el->elTreeView != NULL) {
+    if (el->elWindow != NULL
+    &&  el->elListStore != NULL
+    &&  el->elTreeView != NULL) {
         gtk_list_store_clear(el->elListStore);
         col = gtk_tree_view_get_column(GTK_TREE_VIEW(el->elTreeView), 0);
         gtk_tree_view_remove_column(GTK_TREE_VIEW(el->elTreeView), col);
@@ -311,6 +311,8 @@ void addEvent(GtkListStore *list1, appt_data *app, char *header, gint days)
         flags[1] = 'W';
     else if (app->freq == XFICAL_FREQ_MONTHLY)
         flags[1] = 'M';
+    else if (app->freq == XFICAL_FREQ_YEARLY)
+        flags[1] = 'Y';
     else
         flags[1] = 'n';
     if (app->availability != 0)
@@ -769,7 +771,7 @@ eventlist_win
     g_signal_connect (el->elTreeView, "row-activated",
             G_CALLBACK(editEvent), el);
 
-    gtk_tooltips_set_tip(el->elTooltips, el->elTreeView, "Double click line to edit it.\n\nFlags in order:\n\t 1. Alarm: n=no alarm\n\t\tA=visual Alarm S=also Sound alarm\n\t 2. Recurrence: n=no recurrence\n\t\t D=Daily W=Weekly M=Monthly\n\t 3. Type: f=free B=Busy", NULL);
+    gtk_tooltips_set_tip(el->elTooltips, el->elTreeView, "Double click line to edit it.\n\nFlags in order:\n\t 1. Alarm: n=no alarm\n\t\tA=visual Alarm S=also Sound alarm\n\t 2. Recurrence: n=no recurrence\n\t\t D=Daily W=Weekly M=Monthly Y=Yearly\n\t 3. Type: f=free B=Busy", NULL);
 
     g_signal_connect((gpointer)el->elWindow, "delete_event",
                       G_CALLBACK(on_elWindow_delete_event), el);

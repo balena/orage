@@ -206,7 +206,8 @@ void xfical_add_timezone(icalcomponent *p_ical
         g_warning("xfical_add_timezone: no location defined \n");
         return;
     }
-    if (strcmp(location,"UTC") == 0) {
+    if (strcmp(location,"UTC") == 0 
+    ||  strcmp(location,"floating") == 0) {
         return;
     }
                                                                                 
@@ -466,12 +467,17 @@ struct icaltimetype convert_to_zone(struct icaltimetype t, gchar *tz)
     icaltimezone *l_icaltimezone = NULL;
 
     if XFICAL_STR_EXISTS(tz) {
-        if (strcmp(tz, "UTC") == 0)
+        if (strcmp(tz, "UTC") == 0) {
             wtime=icaltime_convert_to_zone(t, utc_icaltimezone);
+        }
+        else if (strcmp(tz, "floating") == 0) {
+            if (local_icaltimezone)
+                wtime=icaltime_convert_to_zone(t, local_icaltimezone);
+        }
         else {
             l_icaltimezone=icaltimezone_get_builtin_timezone(tz);
             if (!l_icaltimezone)
-                g_warning("xfical_compare_times: builtin timezone %s not found, conversion failed.\n", tz);
+                g_warning("convert_to_zone: builtin timezone %s not found, conversion failed.\n", tz);
             else
                 wtime = icaltime_convert_to_zone(t, l_icaltimezone);
         }
@@ -683,6 +689,9 @@ char *app_add_internal(appt_data *app, gboolean add, char *uid
                 icalcomponent_add_property(ievent
                     , icalproperty_new_dtstart(wtime));
             }
+            else if (strcmp(app->start_tz_loc, "floating") == 0) {
+                icalcomponent_add_property(ievent, icalproperty_new_dtstart(wtime));
+            }
             else {
             /* FIXME: add this vtimezone to vcalendar if it is not there */
                 icalcomponent_add_property(ievent
@@ -702,6 +711,9 @@ char *app_add_internal(appt_data *app, gboolean add, char *uid
                 wtime=icaltime_convert_to_zone(wtime, utc_icaltimezone);
                 icalcomponent_add_property(ievent
                     , icalproperty_new_dtend(wtime));
+            }
+            else if (strcmp(app->end_tz_loc, "floating") == 0) {
+                icalcomponent_add_property(ievent, icalproperty_new_dtend(wtime));
             }
             else {
             /* FIXME: add this vtimezone to vcalendar if it is not there */
@@ -938,6 +950,7 @@ appt_data *xfical_app_get(char *ical_uid)
                     case ICAL_DTEND_PROPERTY:
                         itime = icalproperty_get_dtend(p);
                         text  = icaltime_as_ical_string(itime);
+                        app.end_tz_loc = NULL;
                         g_strlcpy(app.endtime, text, 17);
                         if (app.endtime[15] == 'Z') { /* ugly... */
                             app.endtime[15] = '\0';   /* ...hack */
@@ -1162,13 +1175,7 @@ void xfical_mark_calendar(GtkCalendar *gtkcal, int year, int month)
     for (c = icalcomponent_get_first_component(ical, ICAL_VEVENT_COMPONENT);
          c != 0;
          c = icalcomponent_get_next_component(ical, ICAL_VEVENT_COMPONENT)) {
-/*
-        sdate = icalcomponent_get_dtstart(c);
-*/
         sdate = get_local_time(c, ICAL_DTSTART_PROPERTY);
-/*
-        edate = icalcomponent_get_dtend(c);
-*/
         edate = get_local_time(c, ICAL_DTEND_PROPERTY);
 
         if (icaltime_is_null_time(edate))
@@ -1555,7 +1562,7 @@ gboolean xfical_keep_tidy(void)
         g_message("Archiving before: %04d-%02d-%02d", threshold->tm_year
                 , threshold->tm_mon, threshold->tm_mday);
 
-        /* Parse appointment file for looking for items older than the threshold */
+    /* Parse appointment file for looking for items older than the threshold */
         for (c = icalcomponent_get_first_component(ical, ICAL_VEVENT_COMPONENT);
              c != 0;
              c = icalcomponent_get_next_component(ical, ICAL_VEVENT_COMPONENT)) {

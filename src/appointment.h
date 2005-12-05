@@ -111,11 +111,11 @@ typedef struct
     GtkWidget *appStartDate_button;
     GtkWidget *appStartTime_hbox;
     GtkWidget *appStartTime_comboboxentry;
-    GtkWidget *appStartTime_comboboxtimezone;
+    GtkWidget *appStartTimezone_button;
     GtkWidget *appEndDate_button;
     GtkWidget *appEndTime_hbox;
     GtkWidget *appEndTime_comboboxentry;
-    GtkWidget *appEndTime_comboboxtimezone;
+    GtkWidget *appEndTimezone_button;
     GtkWidget *appSound_label;
     GtkWidget *appSound_hbox;
     GtkWidget *appSound_entry;
