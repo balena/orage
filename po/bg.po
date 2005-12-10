@@ -5,9 +5,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: orage 4.3.1.26svn\n"
+"Project-Id-Version: orage 4.3.2.2svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-11-28 21:14+0900\n"
+"POT-Creation-Date: 2005-12-10 09:29+0900\n"
 "PO-Revision-Date: 2005-09-14 01:03+0900\n"
 "Last-Translator: Miroslav Yordanov <miordanov@i-space.org>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 
 #. Create file chooser
 #: ../plugin/xfcalendar_plugin.c:228 ../plugin/xfcalendar_plugin.c:263
-#: ../src/appointment.c:187 ../src/mainbox.c:118
+#: ../src/appointment.c:192 ../src/mainbox.c:118
 msgid "Select a file..."
 msgstr ""
 
@@ -26,7 +26,7 @@ msgstr ""
 msgid "Calendar files"
 msgstr "XFCalendar"
 
-#: ../plugin/xfcalendar_plugin.c:239 ../src/appointment.c:201
+#: ../plugin/xfcalendar_plugin.c:239 ../src/appointment.c:206
 #: ../src/mainbox.c:129
 msgid "All Files"
 msgstr ""
@@ -115,7 +115,7 @@ msgstr ""
 msgid "1 year"
 msgstr ""
 
-#: ../plugin/xfcalendar_plugin.c:467 ../src/appointment.c:977
+#: ../plugin/xfcalendar_plugin.c:467 ../src/appointment.c:1094
 msgid "Sound"
 msgstr ""
 
@@ -123,7 +123,7 @@ msgstr ""
 msgid "Application"
 msgstr ""
 
-#: ../plugin/xfcalendar_plugin.c:534 ../src/appointment.c:116
+#: ../plugin/xfcalendar_plugin.c:534 ../src/appointment.c:121
 #: ../src/mainbox.c:344 ../xfcalendar.desktop.in.h:3
 msgid "Orage"
 msgstr ""
@@ -141,201 +141,217 @@ msgstr ""
 msgid "Contributor"
 msgstr ""
 
-#. Get the start date and time
-#: ../src/appointment.c:92 ../src/appointment.c:303 ../src/appointment.c:604
+#. Get the start date and time and timezone
+#: ../src/appointment.c:97 ../src/appointment.c:308 ../src/appointment.c:608
 msgid "%m/%d/%Y"
 msgstr ""
 
-#: ../src/appointment.c:195
+#: ../src/appointment.c:200
 msgid "Sound Files"
 msgstr ""
 
-#: ../src/appointment.c:254 ../src/appointment.c:390 ../src/appointment.c:401
-#: ../src/appointment.c:514 ../src/event-list.c:588
+#: ../src/appointment.c:259 ../src/appointment.c:393 ../src/appointment.c:405
+#: ../src/appointment.c:506 ../src/event-list.c:590
 msgid "Warning"
 msgstr "Внимание"
 
-#: ../src/appointment.c:256
+#: ../src/appointment.c:261
 msgid "The appointment information has been modified."
 msgstr ""
 
-#: ../src/appointment.c:257 ../src/appointment.c:517 ../src/event-list.c:591
+#: ../src/appointment.c:262 ../src/appointment.c:509 ../src/event-list.c:593
 msgid "Do you want to continue?"
 msgstr ""
 
-#: ../src/appointment.c:392
-msgid "The end of this appointment is earlier than the beginning."
-msgstr ""
-
-#: ../src/appointment.c:403
+#: ../src/appointment.c:395
 msgid "A time value is wrong."
 msgstr ""
 
-#: ../src/appointment.c:404
+#: ../src/appointment.c:396
 msgid "Time values must be written 'hh:mm', for instance '09:36' or '15:23'."
 msgstr ""
 
-#: ../src/appointment.c:516
+#: ../src/appointment.c:407
+msgid "The end of this appointment is earlier than the beginning."
+msgstr ""
+
+#: ../src/appointment.c:508
 msgid "This appointment will be permanently removed."
 msgstr ""
 
-#: ../src/appointment.c:611 ../src/event-list.c:701 ../src/tray_icon.c:107
+#: ../src/appointment.c:613
+msgid "Pick the date"
+msgstr ""
+
+#: ../src/appointment.c:615 ../src/event-list.c:703 ../src/tray_icon.c:107
 #, fuzzy
 msgid "Today"
 msgstr "Днес"
 
-#. temporary
-#: ../src/appointment.c:723
+#. show it
+#: ../src/appointment.c:704
+msgid "Pick timezone"
+msgstr ""
+
+#: ../src/appointment.c:707
+msgid "UTC"
+msgstr ""
+
+#: ../src/appointment.c:708
+msgid "floating"
+msgstr ""
+
+#: ../src/appointment.c:823
 #, fuzzy
 msgid "New appointment - Orage"
 msgstr "Среща"
 
-#: ../src/appointment.c:780
+#: ../src/appointment.c:891
 msgid "Free"
 msgstr ""
 
-#: ../src/appointment.c:780
+#: ../src/appointment.c:891
 msgid "Busy"
 msgstr ""
 
-#: ../src/appointment.c:782 ../src/appointment.c:784
+#: ../src/appointment.c:893 ../src/appointment.c:895
 msgid "None"
 msgstr ""
 
-#: ../src/appointment.c:782
+#: ../src/appointment.c:893
 msgid "Daily"
 msgstr ""
 
-#: ../src/appointment.c:782
+#: ../src/appointment.c:893
 msgid "Weekly"
 msgstr ""
 
-#: ../src/appointment.c:782
+#: ../src/appointment.c:893
 #, fuzzy
 msgid "Monthly"
 msgstr "Днес"
 
-#: ../src/appointment.c:782
+#: ../src/appointment.c:893
 msgid "Yearly"
 msgstr ""
 
-#: ../src/appointment.c:784
+#: ../src/appointment.c:895
 msgid "5 minutes"
 msgstr ""
 
-#: ../src/appointment.c:784
+#: ../src/appointment.c:895
 msgid "15 minutes"
 msgstr ""
 
-#: ../src/appointment.c:784
+#: ../src/appointment.c:895
 msgid "30 minutes"
 msgstr ""
 
-#: ../src/appointment.c:785
+#: ../src/appointment.c:896
 msgid "45 minutes"
 msgstr ""
 
-#: ../src/appointment.c:785
+#: ../src/appointment.c:896
 msgid "1 hour"
 msgstr ""
 
-#: ../src/appointment.c:785
+#: ../src/appointment.c:896
 msgid "2 hours"
 msgstr ""
 
-#: ../src/appointment.c:785
+#: ../src/appointment.c:896
 msgid "4 hours"
 msgstr ""
 
-#: ../src/appointment.c:786
+#: ../src/appointment.c:897
 msgid "8 hours"
 msgstr ""
 
-#: ../src/appointment.c:786
+#: ../src/appointment.c:897
 msgid "1 day"
 msgstr ""
 
-#: ../src/appointment.c:786
+#: ../src/appointment.c:897
 msgid "2 days"
 msgstr ""
 
 #. File menu stuff
 #. File menu
-#: ../src/appointment.c:820 ../src/event-list.c:657 ../src/mainbox.c:367
+#: ../src/appointment.c:931 ../src/event-list.c:659 ../src/mainbox.c:367
 msgid "_File"
 msgstr "_Файл"
 
-#: ../src/appointment.c:824
+#: ../src/appointment.c:935
 msgid "Sav_e and close"
 msgstr ""
 
 #. add event copying and day cleaning
-#: ../src/appointment.c:831 ../src/event-list.c:663
+#: ../src/appointment.c:942 ../src/event-list.c:665
 msgid "D_uplicate"
 msgstr ""
 
 #. Add buttons to the toolbar
-#: ../src/appointment.c:851
+#: ../src/appointment.c:962
 msgid "Save"
 msgstr ""
 
-#: ../src/appointment.c:853 ../src/appointment.c:854
+#: ../src/appointment.c:964 ../src/appointment.c:965
 msgid "Save and close"
 msgstr ""
 
-#: ../src/appointment.c:859
+#: ../src/appointment.c:970
 msgid "Revert"
 msgstr ""
 
-#: ../src/appointment.c:861 ../src/appointment.c:862 ../src/event-list.c:709
+#: ../src/appointment.c:972 ../src/appointment.c:973 ../src/event-list.c:711
 msgid "Duplicate"
 msgstr ""
 
-#: ../src/appointment.c:866
+#: ../src/appointment.c:977
 msgid "Delete"
 msgstr ""
 
-#: ../src/appointment.c:874
+#: ../src/appointment.c:985
 msgid "General"
 msgstr ""
 
-#: ../src/appointment.c:883
+#: ../src/appointment.c:994
 msgid "Title "
 msgstr ""
 
-#: ../src/appointment.c:889
+#: ../src/appointment.c:1000
 msgid "Location"
 msgstr ""
 
-#: ../src/appointment.c:895
+#: ../src/appointment.c:1006
 msgid "All day event"
 msgstr ""
 
-#: ../src/appointment.c:900
+#: ../src/appointment.c:1011
 msgid "Start"
 msgstr ""
 
-#: ../src/appointment.c:909
+#: ../src/appointment.c:1023
 msgid "End"
 msgstr ""
 
-#: ../src/appointment.c:918
+#: ../src/appointment.c:1035
 msgid "Recurrence"
 msgstr ""
 
-#: ../src/appointment.c:925
+#: ../src/appointment.c:1042
 msgid "Availability"
 msgstr ""
 
-#: ../src/appointment.c:932
+#: ../src/appointment.c:1049
 msgid "Note"
 msgstr ""
 
-#: ../src/appointment.c:961 ../src/appointment.c:970
+#: ../src/appointment.c:1078 ../src/appointment.c:1087
 msgid "Alarm"
 msgstr ""
 
-#: ../src/appointment.c:988
+#: ../src/appointment.c:1105
 msgid "Repeat alarm sound"
 msgstr ""
 
@@ -344,11 +360,11 @@ msgstr ""
 msgid "All day"
 msgstr ""
 
-#: ../src/event-list.c:278 ../src/event-list.c:743
+#: ../src/event-list.c:278 ../src/event-list.c:745
 msgid "Time"
 msgstr ""
 
-#: ../src/event-list.c:590
+#: ../src/event-list.c:592
 msgid ""
 "You will remove all information \n"
 "associated with this date."
@@ -357,56 +373,56 @@ msgstr ""
 "асоциирана с тази дата."
 
 #. View menu
-#: ../src/event-list.c:676 ../src/mainbox.c:390
+#: ../src/event-list.c:678 ../src/mainbox.c:390
 msgid "_View"
 msgstr ""
 
 #. Go menu
-#: ../src/event-list.c:681
+#: ../src/event-list.c:683
 msgid "_Go"
 msgstr ""
 
-#: ../src/event-list.c:696
+#: ../src/event-list.c:698
 msgid "New"
 msgstr ""
 
-#: ../src/event-list.c:699
+#: ../src/event-list.c:701
 msgid "Back"
 msgstr ""
 
-#: ../src/event-list.c:703
+#: ../src/event-list.c:705
 msgid "Forward"
 msgstr ""
 
-#: ../src/event-list.c:705
+#: ../src/event-list.c:707
 msgid "Refresh"
 msgstr ""
 
-#: ../src/event-list.c:711
+#: ../src/event-list.c:713
 msgid "Close"
 msgstr ""
 
-#: ../src/event-list.c:713
+#: ../src/event-list.c:715
 msgid "Clear"
 msgstr "Изчиства"
 
-#: ../src/event-list.c:751
+#: ../src/event-list.c:753
 msgid "Flags"
 msgstr ""
 
-#: ../src/event-list.c:757
+#: ../src/event-list.c:759
 msgid "Title"
 msgstr ""
 
-#: ../src/event-list.c:763
+#: ../src/event-list.c:765
 msgid "uid"
 msgstr ""
 
-#: ../src/functions.c:76
+#: ../src/functions.c:76 ../src/functions.c:83
 msgid "  "
 msgstr ""
 
-#: ../src/ical-code.c:540
+#: ../src/ical-code.c:609
 msgid "Orage default alarm"
 msgstr ""
 
