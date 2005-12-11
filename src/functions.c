@@ -61,7 +61,7 @@ void xfcalendar_combo_box_append_array (GtkWidget *combo_box, char *text[], int 
 
 GtkWidget *xfcalendar_datetime_hbox_new (GtkWidget *date_button, GtkWidget *time_comboboxentry, GtkWidget *timezone_button){
 
-    GtkWidget *hbox, *space_label, *fixed;
+    GtkWidget *hbox, *space_label;
     char *hours[48];
     register int i;
 
@@ -71,25 +71,19 @@ GtkWidget *xfcalendar_datetime_hbox_new (GtkWidget *date_button, GtkWidget *time
     }
 
     hbox = gtk_hbox_new (FALSE, 0);
-    gtk_box_pack_start (GTK_BOX (hbox), date_button, TRUE, TRUE, 0);
+    gtk_box_pack_start (GTK_BOX (hbox), date_button, FALSE, FALSE, 0);
 
-    space_label = gtk_label_new (_("  "));
+    space_label = gtk_label_new ("  ");
     gtk_box_pack_start (GTK_BOX (hbox), space_label, FALSE, FALSE, 0);
-    gtk_misc_set_alignment (GTK_MISC (space_label), 0.5, 0.43);
 
     xfcalendar_combo_box_append_array(time_comboboxentry, hours, 48);
-    gtk_box_pack_start (GTK_BOX (hbox), time_comboboxentry, TRUE, TRUE, 0);
+    gtk_box_pack_start (GTK_BOX (hbox), time_comboboxentry, FALSE, FALSE, 0);
 
-    space_label = gtk_label_new (_("  "));
+    space_label = gtk_label_new ("  ");
     gtk_box_pack_start (GTK_BOX (hbox), space_label, FALSE, FALSE, 0);
-    gtk_misc_set_alignment (GTK_MISC (space_label), 0.5, 0.43);
 
     gtk_box_pack_start (GTK_BOX (hbox), timezone_button, TRUE, TRUE, 0);
 
-    /*
-    fixed = gtk_fixed_new ();
-    gtk_box_pack_start (GTK_BOX (hbox), fixed, TRUE, TRUE, 0);
-    */
     for( i = 0; i < 48; i++){
         free(hours[i]);
     }

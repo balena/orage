@@ -556,41 +556,7 @@ void app_add_alarm_internal(appt_data *app, icalcomponent *ievent)
     struct icaltriggertype trg;
     icalattach *attach;
 
-    switch (app->alarmtime) {
-        case 0:
-            duration = 0;
-            break;
-        case 1:
-            duration = 5 * 60;
-            break;
-        case 2:
-            duration = 15 * 60;
-            break;
-        case 3:
-            duration = 30 * 60;
-            break;
-        case 4:
-            duration = 45 * 60;
-            break;
-        case 5:
-            duration = 1 * 3600;
-            break;
-        case 6:
-            duration = 2 * 3600;
-            break;
-        case 7:
-            duration = 4 * 3600;
-            break;
-        case 8:
-            duration = 8 * 3600;
-            break;
-        case 9:
-            duration = 24 * 3600;
-            break;
-        case 10:
-            duration = 48 * 3600;
-            break;
-    }
+    duration = app->alarmtime;
     trg.time = icaltime_null_time();
     trg.duration = icaldurationtype_from_int(-duration);
     /********** DISPLAY **********/
@@ -773,7 +739,6 @@ void ical_app_get_alarm_internal(icalcomponent *c,  appt_data *app)
 {
     icalcomponent *ca = NULL;
     icalproperty *p = NULL;
-    gint seconds;
     struct icaltriggertype trg;
     icalattach *attach;
 
@@ -787,45 +752,8 @@ void ical_app_get_alarm_internal(icalcomponent *c,  appt_data *app)
                 case ICAL_TRIGGER_PROPERTY:
                     trg = icalproperty_get_trigger(p);
                     if (icaltime_is_null_time(trg.time)) {
-                        seconds = icaldurationtype_as_int(trg.duration) * -1;
-                        switch (seconds) {
-                            case 0:
-                                app->alarmtime = 0;
-                                break;
-                            case 5 * 60:
-                                app->alarmtime = 1;
-                                break;
-                            case 15 * 60:
-                                app->alarmtime = 2;
-                                break;
-                            case 30 * 60:
-                                app->alarmtime = 3;
-                                break;
-                            case 45 * 60:
-                                app->alarmtime = 4;
-                                break;
-                            case 1 * 3600:
-                                app->alarmtime = 5;
-                                break;
-                            case 2 * 3600:
-                                app->alarmtime = 6;
-                                break;
-                            case 4 * 3600:
-                                 app->alarmtime = 7;
-                                 break;
-                            case 8 * 3600:
-                                app->alarmtime = 8;
-                                break;
-                            case 24 * 3600:
-                                app->alarmtime = 9;
-                                break;
-                            case 48 * 3600:
-                                app->alarmtime = 10;
-                                break;
-                            default:
-                                app->alarmtime = 1;
-                                break;
-                        }
+                        app->alarmtime = icaldurationtype_as_int(trg.duration)
+                                            * -1;
                     }
                     else
                         g_warning("ical_app_get_alarm_internal: Can not process time triggers\n");

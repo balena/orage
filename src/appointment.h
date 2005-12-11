@@ -94,6 +94,10 @@ typedef struct
     GtkWidget *appEnd;
     GtkWidget *appPrivate;
     GtkWidget *appAlarm;
+    GtkWidget *appAlarm_hbox;
+    GtkWidget *appAlarm_spin_dd;
+    GtkWidget *appAlarm_spin_hh;
+    GtkWidget *appAlarm_spin_mm;
     GtkWidget *appRecurrence;
     GtkWidget *appNote;
     GtkWidget *appAvailability;
@@ -106,7 +110,6 @@ typedef struct
     GtkTextBuffer *appNote_buffer;
     GtkWidget *appRecurrency_cb;
     GtkWidget *appAvailability_cb;
-    GtkWidget *appAlarm_combobox;
     GtkWidget *appAllDay_checkbutton;
     GtkWidget *appStartDate_button;
     GtkWidget *appStartTime_hbox;

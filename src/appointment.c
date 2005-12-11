@@ -105,8 +105,10 @@ year_month_day_to_display(int year, int month, int day , char *display)
 void
 mark_appointment_changed(appt_win *apptw)
 {
-    apptw->appointment_changed = TRUE;
-    gtk_widget_set_sensitive(apptw->appRevert, TRUE);
+    if (!apptw->appointment_changed) {
+        apptw->appointment_changed = TRUE;
+        gtk_widget_set_sensitive(apptw->appRevert, TRUE);
+    }
 }
 
 void
@@ -164,6 +166,12 @@ on_appTime_comboboxentry_changed_cb(GtkEditable *entry, gpointer user_data)
 
 void
 on_app_combobox_changed_cb(GtkComboBox *cb, gpointer user_data)
+{
+    mark_appointment_changed((appt_win *)user_data);
+}
+
+void
+on_app_spin_button_changed_cb(GtkSpinButton *cb, gpointer user_data)
 {
     mark_appointment_changed((appt_win *)user_data);
 }
@@ -348,7 +356,13 @@ fill_appt(appt_data *appt, appt_win *apptw)
     appt->note = gtk_text_iter_get_text(&start, &end);
 
     /* Get when the reminder will show up */
-    appt->alarmtime = gtk_combo_box_get_active((GtkComboBox *)apptw->appAlarm_combobox);
+    appt->alarmtime = gtk_spin_button_get_value_as_int(
+            GTK_SPIN_BUTTON(apptw->appAlarm_spin_dd)) * 24*60*60
+                    + gtk_spin_button_get_value_as_int(
+            GTK_SPIN_BUTTON(apptw->appAlarm_spin_hh)) *    60*60
+                    + gtk_spin_button_get_value_as_int(
+            GTK_SPIN_BUTTON(apptw->appAlarm_spin_mm)) *       60
+                    ;
 
     /* Which sound file will be played */
     appt->sound = (gchar *) gtk_entry_get_text((GtkEntry *)apptw->appSound_entry);
@@ -865,10 +879,16 @@ fill_appt_window(appt_win *apptw, char *action, char *par)
     tb = gtk_text_view_get_buffer((GtkTextView *)apptw->appNote_textview);
 	gtk_text_buffer_set_text(tb, (appt->note ? (const gchar *) appt->note : ""), -1);
 
-    if (appt->alarmtime != -1){
-      gtk_combo_box_set_active(GTK_COMBO_BOX(apptw->appAlarm_combobox)
-                   , appt->alarmtime);
-    }
+    day = appt->alarmtime/(24*60*60);
+    hours = (appt->alarmtime-day*(24*60*60))/(60*60);
+    minutes = (appt->alarmtime-day*(24*60*60)-hours*(60*60))/(60);
+    gtk_spin_button_set_value(GTK_SPIN_BUTTON(apptw->appAlarm_spin_dd)
+                , (gdouble)day);
+    gtk_spin_button_set_value(GTK_SPIN_BUTTON(apptw->appAlarm_spin_hh)
+                , (gdouble)hours);
+    gtk_spin_button_set_value(GTK_SPIN_BUTTON(apptw->appAlarm_spin_mm)
+                , (gdouble)minutes);
+
     gtk_entry_set_text(GTK_ENTRY(apptw->appSound_entry), (appt->sound ? appt->sound : ""));
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(apptw->appSoundRepeat_checkbutton), appt->alarmrepeat);
 
@@ -885,16 +905,12 @@ appt_win
 *create_appt_win(char *action, char *par, eventlist_win *event_list)
 {
     register int i = 0;
-    GtkWidget *menu_separator, *toolbar_separator;
+    GtkWidget *menu_separator, *toolbar_separator, *label;
 
     char *availability_array[AVAILABILITY_ARRAY_DIM] = {
-            _("Free"), _("Busy")},
-         *recurrency_array[RECURRENCY_ARRAY_DIM] = {
-            _("None"), _("Daily"), _("Weekly"), _("Monthly"), _("Yearly")},
-         *alarm_array[ALARM_ARRAY_DIM] = {
-            _("None"), _("5 minutes"), _("15 minutes"), _("30 minutes"),
-            _("45 minutes"), _("1 hour"), _("2 hours"), _("4 hours"),
-            _("8 hours"), _("1 day"), _("2 days")};
+            _("Free"), _("Busy")};
+    char *recurrency_array[RECURRENCY_ARRAY_DIM] = {
+            _("None"), _("Daily"), _("Weekly"), _("Monthly"), _("Yearly")};
 
     appt_win *apptw = g_new(appt_win, 1);
 
@@ -1085,11 +1101,31 @@ appt_win
     xfce_framebox_add(XFCE_FRAMEBOX(apptw->appAlarm_notebook_page), apptw->appTableAlarm);
 
     apptw->appAlarm = gtk_label_new(_("Alarm"));
-    apptw->appAlarm_combobox = gtk_combo_box_new_text();
-    xfcalendar_combo_box_append_array(apptw->appAlarm_combobox, alarm_array, ALARM_ARRAY_DIM);
-    xfcalendar_table_add_row(apptw->appTableAlarm, apptw->appAlarm, apptw->appAlarm_combobox, 0,
+    apptw->appAlarm_hbox = gtk_hbox_new(FALSE, 0);
+    apptw->appAlarm_spin_dd = gtk_spin_button_new_with_range(0, 100, 1);
+    gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(apptw->appAlarm_spin_dd), TRUE);
+    gtk_box_pack_start(GTK_BOX (apptw->appAlarm_hbox), apptw->appAlarm_spin_dd, FALSE, FALSE, 0);
+    label = gtk_label_new(_("days"));
+    gtk_box_pack_start(GTK_BOX (apptw->appAlarm_hbox), label, FALSE, FALSE, 5);
+    label = gtk_label_new(" ");
+    gtk_box_pack_start(GTK_BOX (apptw->appAlarm_hbox), label, FALSE, FALSE, 10);
+
+    apptw->appAlarm_spin_hh = gtk_spin_button_new_with_range(0, 23, 1);
+    gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(apptw->appAlarm_spin_hh), TRUE);
+    gtk_box_pack_start(GTK_BOX (apptw->appAlarm_hbox), apptw->appAlarm_spin_hh, FALSE, FALSE, 0);
+    label = gtk_label_new(_("hours"));
+    gtk_box_pack_start(GTK_BOX (apptw->appAlarm_hbox), label, FALSE, FALSE, 5);
+    label = gtk_label_new(" ");
+    gtk_box_pack_start(GTK_BOX (apptw->appAlarm_hbox), label, FALSE, FALSE, 10);
+    apptw->appAlarm_spin_mm = gtk_spin_button_new_with_range(0, 59, 5);
+    gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(apptw->appAlarm_spin_mm), TRUE);
+    gtk_box_pack_start(GTK_BOX (apptw->appAlarm_hbox), apptw->appAlarm_spin_mm, FALSE, FALSE, 0);
+    label = gtk_label_new(_("mins"));
+    gtk_box_pack_start(GTK_BOX (apptw->appAlarm_hbox), label, FALSE, FALSE, 5);
+    xfcalendar_table_add_row(apptw->appTableAlarm, apptw->appAlarm, apptw->appAlarm_hbox, 1,
                    (GtkAttachOptions) (GTK_FILL),
                    (GtkAttachOptions) (GTK_FILL));
+
 
     apptw->appSound_label = gtk_label_new(_("Sound"));
     apptw->appSound_hbox = gtk_hbox_new(FALSE, 0);
@@ -1098,130 +1134,108 @@ appt_win
     gtk_box_pack_start(GTK_BOX (apptw->appSound_hbox), apptw->appSound_entry, TRUE, TRUE, 0);
     apptw->appSound_button = gtk_button_new_from_stock("gtk-find");
     gtk_box_pack_start(GTK_BOX(apptw->appSound_hbox), apptw->appSound_button, FALSE, TRUE, 0);
-    xfcalendar_table_add_row(apptw->appTableAlarm, apptw->appSound_label, apptw->appSound_hbox, 1,
+    xfcalendar_table_add_row(apptw->appTableAlarm, apptw->appSound_label, apptw->appSound_hbox, 2,
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (GTK_FILL));
 
     apptw->appSoundRepeat_checkbutton = gtk_check_button_new_with_mnemonic(_("Repeat alarm sound"));
-    xfcalendar_table_add_row(apptw->appTableAlarm, NULL, apptw->appSoundRepeat_checkbutton, 2,
+    xfcalendar_table_add_row(apptw->appTableAlarm, NULL, apptw->appSoundRepeat_checkbutton, 3,
                    (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
                    (GtkAttachOptions) (0));
     /* */
 
     g_signal_connect((gpointer) apptw->appFileSave_menuitem, "activate",
-            G_CALLBACK(on_appFileSave_menu_activate_cb),
-            apptw);
+            G_CALLBACK(on_appFileSave_menu_activate_cb), apptw);
 
     g_signal_connect((gpointer) apptw->appFileSaveClose_menuitem, "activate",
-            G_CALLBACK(on_appFileSaveClose_menu_activate_cb),
-            apptw);
+            G_CALLBACK(on_appFileSaveClose_menu_activate_cb), apptw);
 
     g_signal_connect((gpointer) apptw->appFileDuplicate_menuitem, "activate",
-            G_CALLBACK(on_appFileDuplicate_menu_activate_cb),
-            apptw);
+            G_CALLBACK(on_appFileDuplicate_menu_activate_cb), apptw);
 
     g_signal_connect((gpointer) apptw->appFileRevert_menuitem, "activate",
-            G_CALLBACK(on_appFileRevert_menu_activate_cb),
-            apptw);
+            G_CALLBACK(on_appFileRevert_menu_activate_cb), apptw);
 
     g_signal_connect((gpointer) apptw->appFileDelete_menuitem, "activate",
-            G_CALLBACK(on_appFileDelete_menu_activate_cb),
-            apptw);
+            G_CALLBACK(on_appFileDelete_menu_activate_cb), apptw);
 
     g_signal_connect((gpointer) apptw->appFileClose_menuitem, "activate",
-            G_CALLBACK(on_appFileClose_menu_activate_cb),
-            apptw);
+            G_CALLBACK(on_appFileClose_menu_activate_cb), apptw);
 
     g_signal_connect((gpointer) apptw->appAllDay_checkbutton, "clicked",
-            G_CALLBACK(on_appAllDay_clicked_cb),
-            apptw);
+            G_CALLBACK(on_appAllDay_clicked_cb), apptw);
 
     g_signal_connect((gpointer) apptw->appSound_button, "clicked",
-            G_CALLBACK(on_appSound_button_clicked_cb),
-            apptw);
+            G_CALLBACK(on_appSound_button_clicked_cb), apptw);
 
     g_signal_connect((gpointer) apptw->appSave, "clicked",
-            G_CALLBACK(on_appSave_clicked_cb),
-            apptw);
+            G_CALLBACK(on_appSave_clicked_cb), apptw);
 
     g_signal_connect((gpointer) apptw->appSaveClose, "clicked",
-            G_CALLBACK(on_appSaveClose_clicked_cb),
-            apptw);
+            G_CALLBACK(on_appSaveClose_clicked_cb), apptw);
 
     g_signal_connect((gpointer) apptw->appDelete, "clicked",
-            G_CALLBACK(on_appDelete_clicked_cb),
-            apptw);
+            G_CALLBACK(on_appDelete_clicked_cb), apptw);
 
     g_signal_connect((gpointer) apptw->appDuplicate, "clicked",
-            G_CALLBACK(on_appDuplicate_clicked_cb),
-            apptw);
+            G_CALLBACK(on_appDuplicate_clicked_cb), apptw);
 
     g_signal_connect((gpointer) apptw->appRevert, "clicked",
-            G_CALLBACK(on_appRevert_clicked_cb),
-            apptw);
+            G_CALLBACK(on_appRevert_clicked_cb), apptw);
 
     g_signal_connect((gpointer) apptw->appStartDate_button, "clicked",
-            G_CALLBACK(on_appStartEndDate_clicked_cb),
-            apptw);
+            G_CALLBACK(on_appStartEndDate_clicked_cb), apptw);
 
     g_signal_connect((gpointer) apptw->appEndDate_button, "clicked",
-            G_CALLBACK(on_appStartEndDate_clicked_cb),
-            apptw);
+            G_CALLBACK(on_appStartEndDate_clicked_cb), apptw);
 
     g_signal_connect((gpointer) apptw->appStartTimezone_button, "clicked",
-            G_CALLBACK(on_appStartEndTimezone_clicked_cb),
-            apptw);
+            G_CALLBACK(on_appStartEndTimezone_clicked_cb), apptw);
 
     g_signal_connect((gpointer) apptw->appEndTimezone_button, "clicked",
-            G_CALLBACK(on_appStartEndTimezone_clicked_cb),
-            apptw);
+            G_CALLBACK(on_appStartEndTimezone_clicked_cb), apptw);
 
     g_signal_connect((gpointer) apptw->appWindow, "delete-event",
-            G_CALLBACK(on_appWindow_delete_event_cb),
-            apptw);
+            G_CALLBACK(on_appWindow_delete_event_cb), apptw);
     /* Take care of the title entry to build the appointment window title 
      * Beware: we are not using apptw->appTitle_entry as a GtkEntry here 
      * but as an interface GtkEditable instead.
      */
     g_signal_connect_after((gpointer) apptw->appTitle_entry, "changed",
-            G_CALLBACK(on_appTitle_entry_changed_cb),
-            apptw);
+            G_CALLBACK(on_appTitle_entry_changed_cb), apptw);
 
     g_signal_connect_after((gpointer) apptw->appLocation_entry, "changed",
-            G_CALLBACK(on_appLocation_entry_changed_cb),
-            apptw);
+            G_CALLBACK(on_appLocation_entry_changed_cb), apptw);
 
     g_signal_connect((gpointer) apptw->appSoundRepeat_checkbutton, "clicked",
-            G_CALLBACK(appSoundRepeat_checkbutton_clicked_cb),
-            apptw);
+            G_CALLBACK(appSoundRepeat_checkbutton_clicked_cb), apptw);
 
     g_signal_connect_after((gpointer) apptw->appStartTime_comboboxentry, "changed",
-            G_CALLBACK(on_appTime_comboboxentry_changed_cb),
-            apptw);
+            G_CALLBACK(on_appTime_comboboxentry_changed_cb), apptw);
 
     g_signal_connect_after((gpointer) apptw->appEndTime_comboboxentry, "changed",
-            G_CALLBACK(on_appTime_comboboxentry_changed_cb),
-            apptw);
+            G_CALLBACK(on_appTime_comboboxentry_changed_cb), apptw);
 
     g_signal_connect_after((gpointer) apptw->appRecurrency_cb, "changed",
-            G_CALLBACK(on_app_combobox_changed_cb),
-            apptw);
+            G_CALLBACK(on_app_combobox_changed_cb), apptw);
 
     g_signal_connect_after((gpointer) apptw->appAvailability_cb, "changed",
-            G_CALLBACK(on_app_combobox_changed_cb),
-            apptw);
+            G_CALLBACK(on_app_combobox_changed_cb), apptw);
 
-    g_signal_connect_after((gpointer) apptw->appAlarm_combobox, "changed",
-            G_CALLBACK(on_app_combobox_changed_cb),
-            apptw);
+    g_signal_connect_after((gpointer) apptw->appAlarm_spin_dd, "value-changed",
+            G_CALLBACK(on_app_spin_button_changed_cb), apptw);
+
+    g_signal_connect_after((gpointer) apptw->appAlarm_spin_hh, "value-changed",
+            G_CALLBACK(on_app_spin_button_changed_cb), apptw);
+
+    g_signal_connect_after((gpointer) apptw->appAlarm_spin_mm, "value-changed",
+            G_CALLBACK(on_app_spin_button_changed_cb), apptw);
 
     g_signal_connect_after((gpointer) apptw->appNote_buffer, "changed",
-            G_CALLBACK(on_appNote_buffer_changed_cb),
-            apptw);
+            G_CALLBACK(on_appNote_buffer_changed_cb), apptw);
 
     g_signal_connect_after((gpointer) apptw->appSound_entry, "changed",
-            G_CALLBACK(on_appSound_entry_changed_cb),
-            apptw);
+            G_CALLBACK(on_appSound_entry_changed_cb), apptw);
 
     fill_appt_window(apptw, action, par);
     gtk_widget_show_all(apptw->appWindow);
