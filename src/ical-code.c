@@ -148,7 +148,7 @@ gboolean xfical_set_local_timezone(char *location)
     if XFICAL_STR_EXISTS(location) {
         local_icaltimezone_location=strdup(location);
         if (!local_icaltimezone_location) {
-            g_warning("xfical_set_local_timezone: strdup memory exhausted\n");
+            g_warning("xfical_set_local_timezone: strdup memory exhausted");
             return (FALSE);
         }
         if (strcmp(location,"UTC") == 0) {
@@ -158,7 +158,7 @@ gboolean xfical_set_local_timezone(char *location)
         else
             local_icaltimezone=icaltimezone_get_builtin_timezone(location);
         if (!local_icaltimezone) {
-            g_warning("xfical_set_local_timezone: builtin timezone %s not found\n"
+            g_warning("xfical_set_local_timezone: builtin timezone %s not found"
                     , location);
             return (FALSE);
         }
@@ -203,7 +203,7 @@ void xfical_add_timezone(icalcomponent *p_ical
     icalcomponent *itimezone=NULL;
                                                                                 
     if (!location) {
-        g_warning("xfical_add_timezone: no location defined \n");
+        g_warning("xfical_add_timezone: no location defined");
         return;
     }
     if (strcmp(location,"UTC") == 0 
@@ -213,7 +213,7 @@ void xfical_add_timezone(icalcomponent *p_ical
                                                                                 
     icaltz=icaltimezone_get_builtin_timezone(location);
     if (icaltz==NULL) {
-        g_warning("xfical_add_timezone: timezone not found %s\n", location);
+        g_warning("xfical_add_timezone: timezone not found %s", location);
         return;
     }
     itimezone=icaltimezone_get_component(icaltz);
@@ -224,7 +224,7 @@ void xfical_add_timezone(icalcomponent *p_ical
         icalset_mark(p_fical);
     }
     else
-        g_warning("xfical_add_timezone: timezone add failed %s\na", location);
+        g_warning("xfical_add_timezone: timezone add failed %s", location);
 }
 
 void xfical_internal_file_open_timezone(icalcomponent *p_ical
@@ -259,7 +259,7 @@ gboolean xfical_internal_file_open(icalcomponent **p_ical
     xfical_set_local_timezone("Europe/Helsinki");
     */
     if (*p_fical != NULL)
-        g_warning("xfical_internal_file_open: file already open\n");
+        g_warning("xfical_internal_file_open: file already open");
     if ((*p_fical = icalset_new_file(file_icalpath)) == NULL) {
         g_error("xfical_internal_file_open: Could not open ical file (%s) %s\n"
                 , file_icalpath, icalerror_strerror(icalerrno));
@@ -289,7 +289,7 @@ gboolean xfical_internal_file_open(icalcomponent **p_ical
         }
         else { /* VCALENDAR found */
             if (cnt > 1) {
-                g_warning("xfical_internal_file_open: Too many top level components in calendar file %s\n", file_icalpath);
+                g_warning("xfical_internal_file_open: Too many top level components in calendar file %s", file_icalpath);
             }
         }
     }
@@ -313,7 +313,7 @@ gboolean xfical_archive_open (void)
 void xfical_file_close(void)
 {
     if(fical == NULL)
-        g_warning("xfical_file_close: fical is NULL\n");
+        g_warning("xfical_file_close: fical is NULL");
     icalset_free(fical);
     fical = NULL;
     if (fical_modified) {
@@ -329,7 +329,7 @@ void xfical_archive_close(void)
         return;
 
     if(afical == NULL)
-        g_warning("xfical_file_close: afical is NULL\n");
+        g_warning("xfical_file_close: afical is NULL");
     icalset_free(afical);
     afical = NULL;
     if (afical_modified) {
@@ -386,7 +386,7 @@ struct icaltimetype get_local_time(icalcomponent *c_event
     else if (icalproperty_isa(p) == ICAL_DTEND_PROPERTY)
         t = icalproperty_get_dtend(p);
     else {
-        g_warning("get_local_time: wrong property %s\n"
+        g_warning("get_local_time: wrong property %s"
                 , (char *)icalproperty_get_property_name(p));
         return (icaltime_null_time());
     }
@@ -397,7 +397,7 @@ struct icaltimetype get_local_time(icalcomponent *c_event
         tz_loc = (char *) icalparameter_get_tzid(itime_tz);
         l_icaltimezone=icaltimezone_get_builtin_timezone(tz_loc);
         if (!l_icaltimezone) {
-            g_warning("get_local_time: builtin timezone %s not found, conversion failed.\n", tz_loc);
+            g_warning("get_local_time: builtin timezone %s not found, conversion failed.", tz_loc);
             return (t);
         }
         t = icaltime_convert_to_zone(t, l_icaltimezone);
@@ -477,7 +477,7 @@ struct icaltimetype convert_to_zone(struct icaltimetype t, gchar *tz)
         else {
             l_icaltimezone=icaltimezone_get_builtin_timezone(tz);
             if (!l_icaltimezone)
-                g_warning("convert_to_zone: builtin timezone %s not found, conversion failed.\n", tz);
+                g_warning("convert_to_zone: builtin timezone %s not found, conversion failed.", tz);
             else
                 wtime = icaltime_convert_to_zone(t, l_icaltimezone);
         }
@@ -503,7 +503,7 @@ int xfical_compare_times(gchar *time1, gchar *tz1, gchar *time2, gchar *tz2)
         return (icaltime_compare(wtime1, wtime2));
     }
     else {
-        g_warning("xfical_compare_times: null time %s %s\n", time1, time2);
+        g_warning("xfical_compare_times: null time %s %s", time1, time2);
         return(0); /* should be error ! */
     }
 }
@@ -601,6 +601,7 @@ char *app_add_internal(appt_data *app, gboolean add, char *uid
     struct icaltimetype dtstamp, create_time, wtime;
     static gchar xf_uid[1001];
     gchar xf_host[501];
+    gchar recur_str[101], *recur_p;
     struct icalrecurrencetype rrule;
 
     dtstamp = icaltime_current_time_with_zone(utc_icaltimezone);
@@ -694,23 +695,28 @@ char *app_add_internal(appt_data *app, gboolean add, char *uid
         }
     }
     if (app->freq != XFICAL_FREQ_NONE) {
+        recur_p = g_stpcpy(recur_str, "FREQ=");
         switch(app->freq) {
-        case XFICAL_FREQ_DAILY:
-            rrule = icalrecurrencetype_from_string("FREQ=DAILY");
-            break;
-        case XFICAL_FREQ_WEEKLY:
-            rrule = icalrecurrencetype_from_string("FREQ=WEEKLY");
-            break;
-        case XFICAL_FREQ_MONTHLY:
-            rrule = icalrecurrencetype_from_string("FREQ=MONTHLY");
-            break;
-        case XFICAL_FREQ_YEARLY:
-            rrule = icalrecurrencetype_from_string("FREQ=YEARLY");
-            break;
-        default:
-            g_warning("app_add_internal: Unsupported freq\n");
-            icalrecurrencetype_clear(&rrule);
+            case XFICAL_FREQ_DAILY:
+                recur_p = g_stpcpy(recur_p, "DAILY");
+                break;
+            case XFICAL_FREQ_WEEKLY:
+                recur_p = g_stpcpy(recur_p, "WEEKLY");
+                break;
+            case XFICAL_FREQ_MONTHLY:
+                recur_p = g_stpcpy(recur_p, "MONTHLY");
+                break;
+            case XFICAL_FREQ_YEARLY:
+                recur_p = g_stpcpy(recur_p, "YEARLY");
+                break;
+            default:
+                g_warning("app_add_internal: Unsupported freq");
+                icalrecurrencetype_clear(&rrule);
         }
+        if (app->recur_count) {
+            g_sprintf(recur_p, ";COUNT=%d", app->recur_count);
+        }
+        rrule = icalrecurrencetype_from_string(recur_str);
         icalcomponent_add_property (ievent, icalproperty_new_rrule(rrule));
     }
     if (!app->allDay && app->alarmtime != 0) {
@@ -756,7 +762,7 @@ void ical_app_get_alarm_internal(icalcomponent *c,  appt_data *app)
                                             * -1;
                     }
                     else
-                        g_warning("ical_app_get_alarm_internal: Can not process time triggers\n");
+                        g_warning("ical_app_get_alarm_internal: Can not process time triggers");
                     break;
                 case ICAL_ATTACH_PROPERTY:
                     attach = icalproperty_get_attach(p);
@@ -774,7 +780,7 @@ void ical_app_get_alarm_internal(icalcomponent *c,  appt_data *app)
                 /* no actions defined */
                     break;
                 default:
-                    g_warning("ical_app_get_alarm_internal: unknown property %s\n", (char *)icalproperty_get_property_name(p));
+                    g_warning("ical_app_get_alarm_internal: unknown property %s", (char *)icalproperty_get_property_name(p));
                     break;
             }
         }
@@ -826,6 +832,7 @@ appt_data *xfical_app_get(char *ical_uid)
             app.starttimecur[0] = '\0';
             app.endtimecur[0] = '\0';
             app.freq = XFICAL_FREQ_NONE;
+            app.recur_count = 0;
         /*********** Properties ***********/
             for (p = icalcomponent_get_first_property(c, ICAL_ANY_PROPERTY);
                  p != 0;
@@ -895,22 +902,23 @@ appt_data *xfical_app_get(char *ical_uid)
                     case ICAL_RRULE_PROPERTY:
                         rrule = icalproperty_get_rrule(p);
                         switch (rrule.freq) {
-                        case ICAL_DAILY_RECURRENCE:
-                            app.freq = XFICAL_FREQ_DAILY;
-                            break;
-                        case ICAL_WEEKLY_RECURRENCE:
-                            app.freq = XFICAL_FREQ_WEEKLY;
-                            break;
-                        case ICAL_MONTHLY_RECURRENCE:
-                            app.freq = XFICAL_FREQ_MONTHLY;
-                            break;
-                        case ICAL_YEARLY_RECURRENCE:
-                            app.freq = XFICAL_FREQ_YEARLY;
-                            break;
-                        default:
-                            app.freq = XFICAL_FREQ_NONE;
-                            break;
+                            case ICAL_DAILY_RECURRENCE:
+                                app.freq = XFICAL_FREQ_DAILY;
+                                break;
+                            case ICAL_WEEKLY_RECURRENCE:
+                                app.freq = XFICAL_FREQ_WEEKLY;
+                                break;
+                            case ICAL_MONTHLY_RECURRENCE:
+                                app.freq = XFICAL_FREQ_MONTHLY;
+                                break;
+                            case ICAL_YEARLY_RECURRENCE:
+                                app.freq = XFICAL_FREQ_YEARLY;
+                                break;
+                            default:
+                                app.freq = XFICAL_FREQ_NONE;
+                                break;
                         }
+                        app.recur_count = rrule.count;
                         break;
                     case ICAL_CATEGORIES_PROPERTY:
                     case ICAL_CLASS_PROPERTY:
@@ -918,7 +926,7 @@ appt_data *xfical_app_get(char *ical_uid)
                     case ICAL_CREATED_PROPERTY:
                         break;
                     default:
-                        g_warning("xfical_app_get: unknown property %s\n", (char *)icalproperty_get_property_name(p));
+                        g_warning("xfical_app_get: unknown property %s", (char *)icalproperty_get_property_name(p));
                         break;
                 }
             }
@@ -946,7 +954,7 @@ gboolean xfical_app_mod(char *ical_uid, appt_data *app)
     struct icaltimetype create_time = icaltime_null_time();
 
     if (ical_uid == NULL) {
-        g_warning("xfical_app_mod: Got NULL uid. doing nothing\n");
+        g_warning("xfical_app_mod: Got NULL uid. doing nothing");
         return(FALSE);
     }
     for (c = icalcomponent_get_first_component(ical, ICAL_VEVENT_COMPONENT); 
@@ -961,7 +969,7 @@ gboolean xfical_app_mod(char *ical_uid, appt_data *app)
         }
     } 
     if (!key_found) {
-        g_warning("xfical_app_mod: uid not found. doing nothing\n");
+        g_warning("xfical_app_mod: uid not found. doing nothing");
         return(FALSE);
     }
 
@@ -979,7 +987,7 @@ gboolean xfical_app_del(char *ical_uid)
     char *uid;
 
     if (ical_uid == NULL) {
-        g_warning("xfical_app_del: Got NULL uid. doing nothing\n");
+        g_warning("xfical_app_del: Got NULL uid. doing nothing");
         return(FALSE);
      }
     for (c = icalcomponent_get_first_component(ical, ICAL_VEVENT_COMPONENT); 
@@ -993,7 +1001,7 @@ gboolean xfical_app_del(char *ical_uid)
             return(TRUE);
         }
     } 
-    g_warning("xfical_app_del: uid not found. doing nothing\n");
+    g_warning("xfical_app_del: uid not found. doing nothing");
     return(FALSE);
 }
 
@@ -1319,7 +1327,7 @@ void xfical_alarm_build_list(gboolean first_list_today)
                         repeat_delay = icaldurationtype_as_int(duration);
                         break;
                     default:
-                        g_warning("ical-code: Unknown property (%s) in Alarm\n",
+                        g_warning("ical-code: Unknown property (%s) in Alarm",
                             (char *)icalproperty_get_property_name(p));
                         break;
                 } 
@@ -1411,7 +1419,7 @@ void xfical_icalcomponent_archive_recurrent(icalcomponent *e
          tz_loc = (char *) icalparameter_get_tzid(itime_tz);
          l_icaltimezone=icaltimezone_get_builtin_timezone(tz_loc);
          if (!l_icaltimezone) {
-            g_warning("xfical_icalcomponent_archive_recurrent: builtin timezone %s not found, conversion failed.\n", tz_loc);
+            g_warning("xfical_icalcomponent_archive_recurrent: builtin timezone %s not found, conversion failed.", tz_loc);
         }
         sdate = icaltime_convert_to_zone(sdate, l_icaltimezone);
     }
@@ -1423,7 +1431,7 @@ void xfical_icalcomponent_archive_recurrent(icalcomponent *e
          tz_loc = (char *) icalparameter_get_tzid(itime_tz);
          l_icaltimezone=icaltimezone_get_builtin_timezone(tz_loc);
          if (!l_icaltimezone) {
-            g_warning("xfical_icalcomponent_archive_recurrent: builtin timezone %s not found, conversion failed.\n", tz_loc);
+            g_warning("xfical_icalcomponent_archive_recurrent: builtin timezone %s not found, conversion failed.", tz_loc);
         }
         edate = icaltime_convert_to_zone(edate, l_icaltimezone);
     }

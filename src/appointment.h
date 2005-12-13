@@ -51,8 +51,9 @@ typedef struct
          */
     gchar  starttimecur[17]; 
     gchar  endtimecur[17];
-
     xfical_freq freq;
+    gint   recur_count;
+
     gint availability;
     gchar *note;
 
@@ -61,7 +62,6 @@ typedef struct
     gboolean alarmrepeat;
 
     gchar *uid;
-
 } appt_data;
 
 typedef struct
@@ -86,8 +86,11 @@ typedef struct
     GtkWidget *appGeneral_tab_label;
     GtkWidget *appAlarm_notebook_page;
     GtkWidget *appAlarm_tab_label;
+    GtkWidget *appRecur_notebook_page;
+    GtkWidget *appRecur_tab_label;
     GtkWidget *appTableGeneral;
     GtkWidget *appTableAlarm;
+    GtkWidget *appTableRecur;
     GtkWidget *appTitle_label;
     GtkWidget *appLocation_label;
     GtkWidget *appStart;
@@ -98,17 +101,20 @@ typedef struct
     GtkWidget *appAlarm_spin_dd;
     GtkWidget *appAlarm_spin_hh;
     GtkWidget *appAlarm_spin_mm;
-    GtkWidget *appRecurrence;
     GtkWidget *appNote;
     GtkWidget *appAvailability;
-    GtkWidget *appRecurrency;
+    GtkWidget *appRecur;
     GtkWidget *appTitle_entry;
     GtkWidget *appLocation_entry;
     GtkWidget *appPrivate_check;
     GtkWidget *appNote_Scrolledwindow;
     GtkWidget *appNote_textview;
     GtkTextBuffer *appNote_buffer;
-    GtkWidget *appRecurrency_cb;
+    GtkWidget *appRecur_cb;
+    GtkWidget *appRecur_end_repeat_rb;
+    GtkWidget *appRecur_end_count_hbox;
+    GtkWidget *appRecur_end_count_rb;
+    GtkWidget *appRecur_end_count_spin;
     GtkWidget *appAvailability_cb;
     GtkWidget *appAllDay_checkbutton;
     GtkWidget *appStartDate_button;
