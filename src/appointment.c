@@ -232,17 +232,21 @@ on_appAllDay_clicked_cb(GtkCheckButton *checkbutton, gpointer user_data)
     gboolean check_status;
     appt_win *apptw = (appt_win *)user_data;
 
-    check_status = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(apptw->appAllDay_checkbutton));
+    check_status = gtk_toggle_button_get_active(
+                        GTK_TOGGLE_BUTTON(apptw->appAllDay_checkbutton));
 
     if(check_status){
         gtk_widget_set_sensitive(apptw->appStartTime_comboboxentry, FALSE);
         gtk_widget_set_sensitive(apptw->appEndTime_comboboxentry, FALSE);
+        gtk_widget_set_sensitive(apptw->appStartTimezone_button, FALSE);
+        gtk_widget_set_sensitive(apptw->appEndTimezone_button, FALSE);
     } else {
         gtk_widget_set_sensitive(apptw->appStartTime_comboboxentry, TRUE);
         gtk_widget_set_sensitive(apptw->appEndTime_comboboxentry, TRUE);
+        gtk_widget_set_sensitive(apptw->appStartTimezone_button, TRUE);
+        gtk_widget_set_sensitive(apptw->appEndTimezone_button, TRUE);
     }
     mark_appointment_changed((appt_win *)user_data);
-
 }
 
 gboolean
@@ -1052,6 +1056,7 @@ appt_win
     apptw->appStart = gtk_label_new(_("Start"));
     apptw->appStartDate_button = gtk_button_new();
     apptw->appStartTime_comboboxentry = gtk_combo_box_entry_new_text();
+    gtk_widget_set_size_request(apptw->appStartTime_comboboxentry, 70, -1);
     apptw->appStartTimezone_button = gtk_button_new();
     apptw->appStartTime_hbox = xfcalendar_datetime_hbox_new(
             apptw->appStartDate_button, 
@@ -1064,6 +1069,7 @@ appt_win
     apptw->appEnd = gtk_label_new(_("End"));
     apptw->appEndDate_button = gtk_button_new();
     apptw->appEndTime_comboboxentry = gtk_combo_box_entry_new_text();
+    gtk_widget_set_size_request(apptw->appEndTime_comboboxentry, 70, -1);
     apptw->appEndTimezone_button = gtk_button_new();
     apptw->appEndTime_hbox = xfcalendar_datetime_hbox_new(
             apptw->appEndDate_button, 
