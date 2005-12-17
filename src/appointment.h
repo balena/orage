@@ -19,8 +19,8 @@
  *
  */
 
-#define XFICAL_APP_TIME_FORMAT "%04d%02d%02dT%02d%02d%02d"
-#define XFICAL_APP_DATE_FORMAT "%04d%02d%02d"
+#define XFICAL_APPT_TIME_FORMAT "%04d%02d%02dT%02d%02d%02d"
+#define XFICAL_APPT_DATE_FORMAT "%04d%02d%02d"
 
 typedef enum {
     XFICAL_FREQ_NONE = 0
@@ -32,6 +32,8 @@ typedef enum {
 
 typedef struct
 {
+    gchar *uid;
+
     gchar *title;
     gchar *location;
 
@@ -46,6 +48,17 @@ typedef struct
     gchar *start_tz_loc;
     gchar  endtime[17];
     gchar *end_tz_loc;
+    gboolean use_duration;
+    gint   duration; 
+
+    gint availability;
+    gchar *note;
+
+        /* alarm */
+    gint alarmtime;
+    gchar *sound;
+    gboolean alarmrepeat;
+
         /* for repeating events cur times show current repeating event.
          * normal times are always the real (=first) start and end times 
          */
@@ -53,15 +66,6 @@ typedef struct
     gchar  endtimecur[17];
     xfical_freq freq;
     gint   recur_count;
-
-    gint availability;
-    gchar *note;
-
-    gint alarmtime;
-    gchar *sound;
-    gboolean alarmrepeat;
-
-    gchar *uid;
 } appt_data;
 
 typedef struct
@@ -103,18 +107,18 @@ typedef struct
     GtkWidget *appAlarm_spin_mm;
     GtkWidget *appNote;
     GtkWidget *appAvailability;
-    GtkWidget *appRecur;
     GtkWidget *appTitle_entry;
     GtkWidget *appLocation_entry;
     GtkWidget *appPrivate_check;
     GtkWidget *appNote_Scrolledwindow;
     GtkWidget *appNote_textview;
     GtkTextBuffer *appNote_buffer;
+    GtkWidget *appRecur;
     GtkWidget *appRecur_cb;
-    GtkWidget *appRecur_end_repeat_rb;
-    GtkWidget *appRecur_end_count_hbox;
-    GtkWidget *appRecur_end_count_rb;
-    GtkWidget *appRecur_end_count_spin;
+    GtkWidget *appRecur_repeat_rb;
+    GtkWidget *appRecur_count_hbox;
+    GtkWidget *appRecur_count_rb;
+    GtkWidget *appRecur_count_spin;
     GtkWidget *appAvailability_cb;
     GtkWidget *appAllDay_checkbutton;
     GtkWidget *appStartDate_button;
@@ -125,6 +129,11 @@ typedef struct
     GtkWidget *appEndTime_hbox;
     GtkWidget *appEndTime_comboboxentry;
     GtkWidget *appEndTimezone_button;
+    GtkWidget *appDur_hbox;
+    GtkWidget *appDur_checkbutton;
+    GtkWidget *appDur_spin_dd;
+    GtkWidget *appDur_spin_hh;
+    GtkWidget *appDur_spin_mm;
     GtkWidget *appSound_label;
     GtkWidget *appSound_hbox;
     GtkWidget *appSound_entry;

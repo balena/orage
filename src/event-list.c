@@ -89,7 +89,7 @@ void title_to_ical(char *title, char *ical)
 void editEvent(GtkTreeView *view, GtkTreePath *path
              , GtkTreeViewColumn *col, gpointer eventlist)
 {
-    appt_win *wApp;
+    appt_win *apptw;
     GtkTreeModel *model;
     GtkTreeIter   iter;
     gchar *uid = NULL;
@@ -98,10 +98,10 @@ void editEvent(GtkTreeView *view, GtkTreePath *path
     if (gtk_tree_model_get_iter(model, &iter, path)) {
         gtk_tree_model_get(model, &iter, COL_UID, &uid, -1);
     }
-    wApp = create_appt_win("UPDATE", uid, eventlist);
+    apptw = create_appt_win("UPDATE", uid, eventlist);
     if (uid) 
         g_free(uid);
-    gtk_widget_show(wApp->appWindow);
+    gtk_widget_show(apptw->appWindow);
 }
 
 gint sortEvent_comp(GtkTreeModel *model
@@ -285,7 +285,7 @@ recreate_eventlist_win (eventlist_win *el)
     }
 }
 
-void addEvent(GtkListStore *list1, appt_data *app, char *header, gint days)
+void addEvent(GtkListStore *list1, appt_data *appt, char *header, gint days)
 {
     GtkTreeIter     iter1;
     gchar           *title = NULL;
@@ -293,43 +293,43 @@ void addEvent(GtkListStore *list1, appt_data *app, char *header, gint days)
     gchar           stime[40];
     gint            len = 50;
 
-    g_strlcpy(stime, format_time(app->starttimecur, app->endtimecur
+    g_strlcpy(stime, format_time(appt->starttimecur, appt->endtimecur
                                , header, days), 40);
 
-    if (app->alarmtime != 0)
-        if (app->sound != NULL)
+    if (appt->alarmtime != 0)
+        if (appt->sound != NULL)
             flags[0] = 'S';
         else
             flags[0] = 'A';
     else
         flags[0] = 'n';
-    if (app->freq == XFICAL_FREQ_NONE)
+    if (appt->freq == XFICAL_FREQ_NONE)
         flags[1] = 'n';
-    else if (app->freq == XFICAL_FREQ_DAILY)
+    else if (appt->freq == XFICAL_FREQ_DAILY)
         flags[1] = 'D';
-    else if (app->freq == XFICAL_FREQ_WEEKLY)
+    else if (appt->freq == XFICAL_FREQ_WEEKLY)
         flags[1] = 'W';
-    else if (app->freq == XFICAL_FREQ_MONTHLY)
+    else if (appt->freq == XFICAL_FREQ_MONTHLY)
         flags[1] = 'M';
-    else if (app->freq == XFICAL_FREQ_YEARLY)
+    else if (appt->freq == XFICAL_FREQ_YEARLY)
         flags[1] = 'Y';
     else
         flags[1] = 'n';
-    if (app->availability != 0)
+    if (appt->availability != 0)
         flags[2] = 'B';
     else
         flags[2] = 'f';
     flags[3] = '\0';
 
-    if (app->title != NULL)
-        title = g_strdup(app->title);
-    else if (app->note != NULL) { 
+    if (appt->title != NULL)
+        title = g_strdup(appt->title);
+    else if (appt->note != NULL) { 
     /* let's take len chars of the first line from the text */
-        if ((title = g_strstr_len(app->note, strlen(app->note), "\n")) != NULL){
-            if ((strlen(app->note)-strlen(title)) < len)
-                len=strlen(app->note)-strlen(title);
+        if ((title = g_strstr_len(appt->note, strlen(appt->note), "\n")) != NULL){
+            if ((strlen(appt->note)-strlen(title)) < len)
+                len=strlen(appt->note)-strlen(title);
         }
-        title = g_strndup(app->note, len);
+        title = g_strndup(appt->note, len);
     }
 
     gtk_list_store_append(list1, &iter1);
@@ -337,7 +337,7 @@ void addEvent(GtkListStore *list1, appt_data *app, char *header, gint days)
                 , COL_TIME,  stime
                 , COL_FLAGS, flags
                 , COL_HEAD,  title
-                , COL_UID,   app->uid
+                , COL_UID,   appt->uid
                 , -1);
     g_free(title);
 }
@@ -347,7 +347,7 @@ void manage_eventlist_win(GtkCalendar *calendar, eventlist_win *el)
     guint year, month, day;
     char            title[12];
     char            a_day[9];  /* yyyymmdd */
-    appt_data       *app;
+    appt_data       *appt;
     struct tm       *t;
     time_t          tt;
     gint            days = 0;
@@ -359,8 +359,8 @@ void manage_eventlist_win(GtkCalendar *calendar, eventlist_win *el)
     days = gtk_spin_button_get_value(GTK_SPIN_BUTTON(el->elSpin1));
 
     if (xfical_file_open()){
-        g_sprintf(a_day, XFICAL_APP_DATE_FORMAT, year, month+1, day);
-        if ((app = xfical_app_get_next_on_day(a_day, TRUE, days))) {
+        g_sprintf(a_day, XFICAL_APPT_DATE_FORMAT, year, month+1, day);
+        if ((appt = xfical_appt_get_next_on_day(a_day, TRUE, days))) {
             tt = time(NULL);
             t  = localtime(&tt);
             if (   year  == t->tm_year + 1900
@@ -371,8 +371,8 @@ void manage_eventlist_win(GtkCalendar *calendar, eventlist_win *el)
                 el->elToday = FALSE; 
 
             do {
-                addEvent(el->elListStore, app, title, days);
-            } while ((app = xfical_app_get_next_on_day(a_day, FALSE, days)));
+                addEvent(el->elListStore, appt, title, days);
+            } while ((appt = xfical_appt_get_next_on_day(a_day, FALSE, days)));
         }
         xfical_file_close();
     }
@@ -385,13 +385,13 @@ duplicate_appointment(eventlist_win *el)
     GtkTreeModel     *model;
     GtkTreeIter       iter;
     gchar *uid = NULL;
-    appt_win *wApp;
+    appt_win *apptw;
 
     sel = gtk_tree_view_get_selection(GTK_TREE_VIEW(el->elTreeView));
     if (gtk_tree_selection_get_selected(sel, &model, &iter)) {
          gtk_tree_model_get(model, &iter, COL_UID, &uid, -1);
-         wApp = create_appt_win("COPY", uid, el);
-         gtk_widget_show(wApp->appWindow);
+         apptw = create_appt_win("COPY", uid, el);
+         gtk_widget_show(apptw->appWindow);
          g_free(uid);
 
     }
@@ -549,15 +549,15 @@ on_elGo_next_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
 void
 create_new_appointment(eventlist_win *el)
 {
-    appt_win *app;
+    appt_win *apptw;
     char *title;
     char a_day[10];
 
     title = (char*)gtk_window_get_title(GTK_WINDOW(el->elWindow));
     title_to_ical(title, a_day);
 
-    app = create_appt_win("NEW", a_day, el);
-    gtk_widget_show(app->appWindow);
+    apptw = create_appt_win("NEW", a_day, el);
+    gtk_widget_show(apptw->appWindow);
 }
 
 void
@@ -601,7 +601,7 @@ clear_eventlist_win(eventlist_win *el)
         if (xfical_file_open()){
             title = (char*)gtk_window_get_title(GTK_WINDOW (el->elWindow));
             title_to_ical(title, a_day);
-            rmday_ical_app(a_day);
+            xfical_rmday(a_day);
             xfical_file_close();
             day = atoi(a_day+6);
             gtk_calendar_unmark_day(GTK_CALENDAR(xfcal->mCalendar), day);

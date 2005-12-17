@@ -39,23 +39,23 @@ gboolean xfical_file_open(void);
 
 void xfical_file_close(void);
 
-appt_data *xfical_app_alloc();
+appt_data *xfical_appt_alloc();
 
-char *xfical_app_add(appt_data *app);
+char *xfical_appt_add(appt_data *app);
 
-appt_data *xfical_app_get(char *ical_id);
+appt_data *xfical_appt_get(char *ical_id);
 
-gboolean xfical_app_mod(char *ical_id, appt_data *app);
+gboolean xfical_appt_mod(char *ical_id, appt_data *app);
 
-gboolean xfical_app_del(char *ical_id);
+gboolean xfical_appt_del(char *ical_id);
 
 struct icaltimetype ical_get_current_local_time();
 
-appt_data * xfical_app_get_next_on_day(char *a_day, gboolean first, gint days);
+appt_data * xfical_appt_get_next_on_day(char *a_day, gboolean first, gint days);
 
 void xfical_mark_calendar(GtkCalendar *gtkcal, int year, int month);
 
-void rmday_ical_app(char *a_day);
+void xfical_rmday(char *a_day);
 
 void xfical_alarm_build_list(gboolean first_list_today);
 

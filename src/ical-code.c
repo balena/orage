@@ -54,13 +54,20 @@
 #include "mainbox.h"
 #include "ical-code.h"
 
-#define MAX_APP_LENGTH 4096
+#define MAX_APPT_LENGTH 4096
 #define LEN_BUFFER 1024
 #define RCDIR    "xfce4" G_DIR_SEPARATOR_S "xfcalendar"
 #define APPOINTMENT_FILE "appointments.ics"
 #define ARCHIVE_FILE "archdev.ics"
 
 #define XFICAL_STR_EXISTS(str) ((str != NULL) && (str[0] != 0))
+
+typedef struct
+{
+    struct icaltimetype stime;
+    struct icaltimetype etime;
+    struct icaldurationtype duration;
+} xfical_period;
 
 static icalcomponent *ical,
                      *aical;
@@ -166,54 +173,24 @@ gboolean xfical_set_local_timezone(char *location)
     return (TRUE); 
 }
 
-static char*
-icaltimezone_get_location_from_vtimezone(icalcomponent *component)
-{
-/* * basically taken from libical timezone.c
- * * Gets the LOCATION or X-LIC-LOCATION property from a VTIMEZONE. */
-    icalproperty *prop;
-    const char *location;
-    const char *name;
-                                                                                
-    prop=icalcomponent_get_first_property(component, ICAL_X_PROPERTY);
-    while (prop) {
-        name = icalproperty_get_x_name(prop);
-        if (name && !strcmp (name, "X-LIC-LOCATION")) {
-            location=icalproperty_get_x(prop);
-            if (location)
-                return strdup(location);
-        }
-        prop=icalcomponent_get_next_property(component, ICAL_X_PROPERTY);
-    }
-                                                                                
-    prop=icalcomponent_get_first_property(component, ICAL_LOCATION_PROPERTY);
-    if (prop) {
-        location=icalproperty_get_location(prop);
-        if (location)
-            return strdup(location);
-    }
-    return NULL;
-}
-
-void xfical_add_timezone(icalcomponent *p_ical
-        , icalset *p_fical
-        , char *location)
+void xfical_add_timezone(icalcomponent *p_ical, icalset *p_fical, char *loc)
 {
     icaltimezone *icaltz=NULL;
     icalcomponent *itimezone=NULL;
                                                                                 
-    if (!location) {
+    g_message("adding timezone %s", loc);
+    if (!loc) {
         g_warning("xfical_add_timezone: no location defined");
         return;
     }
-    if (strcmp(location,"UTC") == 0 
-    ||  strcmp(location,"floating") == 0) {
+    if (strcmp(loc,"UTC") == 0 
+    ||  strcmp(loc,"floating") == 0) {
         return;
     }
                                                                                 
-    icaltz=icaltimezone_get_builtin_timezone(location);
+    icaltz=icaltimezone_get_builtin_timezone(loc);
     if (icaltz==NULL) {
-        g_warning("xfical_add_timezone: timezone not found %s", location);
+        g_warning("xfical_add_timezone: timezone not found %s", loc);
         return;
     }
     itimezone=icaltimezone_get_component(icaltz);
@@ -224,27 +201,7 @@ void xfical_add_timezone(icalcomponent *p_ical
         icalset_mark(p_fical);
     }
     else
-        g_warning("xfical_add_timezone: timezone add failed %s", location);
-}
-
-void xfical_internal_file_open_timezone(icalcomponent *p_ical
-        , icalset *p_fical)
-{
-    icalcomponent *iter, *iter2;
-    gint cnt=0;
-
-    for (iter = icalcomponent_get_first_component(p_ical
-                , ICAL_VTIMEZONE_COMPONENT), cnt=0, iter2=NULL;
-         iter != 0;
-         iter = icalcomponent_get_next_component(p_ical
-                , ICAL_VTIMEZONE_COMPONENT)) {
-        cnt++;
-        iter2=iter;
-    }
-    if (cnt == 0) { /* timezone missing, need to add one? */
-        if (local_icaltimezone_location)
-            xfical_add_timezone(p_ical, p_fical, local_icaltimezone_location);
-    }
+        g_warning("xfical_add_timezone: timezone add failed %s", loc);
 }
 
 gboolean xfical_internal_file_open(icalcomponent **p_ical
@@ -255,9 +212,6 @@ gboolean xfical_internal_file_open(icalcomponent **p_ical
     gint cnt=0;
     char *loc;
 
-    /*
-    xfical_set_local_timezone("Europe/Helsinki");
-    */
     if (*p_fical != NULL)
         g_warning("xfical_internal_file_open: file already open");
     if ((*p_fical = icalset_new_file(file_icalpath)) == NULL) {
@@ -367,44 +321,78 @@ struct icaltimetype ical_get_current_local_time()
     return (ctime);
 }
 
-struct icaltimetype get_local_time(icalcomponent *c_event
-        , icalproperty_kind p_kind) 
+struct icaltimetype convert_to_timezone(struct icaltimetype t, icalproperty *p)
 {
     icalparameter *itime_tz = NULL;
     gchar *tz_loc = NULL;
-    struct icaltimetype wtime;
     icaltimezone *l_icaltimezone = NULL;
-    icalproperty *p;
-    struct icaltimetype t;
+    struct icaltimetype tz;
 
-    p = icalcomponent_get_first_property(c_event, p_kind);
-
-    if (p == NULL)
-        return (icaltime_null_time());
-    else if (icalproperty_isa(p) == ICAL_DTSTART_PROPERTY)
-        t = icalproperty_get_dtstart(p);
-    else if (icalproperty_isa(p) == ICAL_DTEND_PROPERTY)
-        t = icalproperty_get_dtend(p);
-    else {
-        g_warning("get_local_time: wrong property %s"
-                , (char *)icalproperty_get_property_name(p));
-        return (icaltime_null_time());
-    }
-
-    /* now t is the time to be converted. */
     itime_tz = icalproperty_get_first_parameter(p, ICAL_TZID_PARAMETER);
     if (itime_tz) {
-        tz_loc = (char *) icalparameter_get_tzid(itime_tz);
-        l_icaltimezone=icaltimezone_get_builtin_timezone(tz_loc);
-        if (!l_icaltimezone) {
-            g_warning("get_local_time: builtin timezone %s not found, conversion failed.", tz_loc);
-            return (t);
+         tz_loc = (char *) icalparameter_get_tzid(itime_tz);
+         l_icaltimezone = icaltimezone_get_builtin_timezone(tz_loc);
+         if (!l_icaltimezone) {
+            g_warning("convert_to_timezone: builtin timezone %s not found, conversion failed.", tz_loc);
         }
-        t = icaltime_convert_to_zone(t, l_icaltimezone);
+        tz = icaltime_convert_to_zone(t, l_icaltimezone);
     }
-    /* now t is in timezone format, ready to be converted to local time */
-    t = icaltime_convert_to_zone(t, local_icaltimezone);
-    return (t);
+    else
+        tz = t;
+
+    return (tz);
+}
+
+struct icaltimetype convert_to_local_timezone(struct icaltimetype t
+            , icalproperty *p)
+{
+    struct icaltimetype tl;
+
+    tl = convert_to_timezone(t, p);
+    tl = icaltime_convert_to_zone(tl, local_icaltimezone);
+
+    return (tl);
+}
+
+xfical_period get_period(icalcomponent *c_event) 
+{
+    struct icaltimetype wtime;
+    icalproperty *p;
+    struct icaldurationtype duration;
+    xfical_period per;
+
+    /* Exactly one start time must be there */
+    p = icalcomponent_get_first_property(c_event, ICAL_DTSTART_PROPERTY);
+    if (p != NULL) {
+        per.stime = icalproperty_get_dtstart(p);
+        per.stime = convert_to_local_timezone(per.stime, p);
+    }
+    else {
+        g_warning("get_period: start time not found");
+        per.stime = icaltime_null_time();
+    } 
+
+    /* Either endtime or duration may be there. But neither is required */
+    p = icalcomponent_get_first_property(c_event, ICAL_DTEND_PROPERTY);
+    if (p != NULL) {
+        per.etime = icalproperty_get_dtend(p);
+        per.etime = convert_to_local_timezone(per.etime, p);
+        per.duration = icaltime_subtract(per.etime, per.stime);
+    }
+    else {
+        p = icalcomponent_get_first_property(c_event, ICAL_DURATION_PROPERTY);
+        if (p != NULL) {
+            per.duration = icalproperty_get_duration(p);
+            per.etime = icaltime_add(per.stime, per.duration);
+        }
+        else {
+            g_message("get_period: end time/duration not found");
+            per.etime = per.stime;
+            per.duration = icaldurationtype_null_duration();
+        } 
+    } 
+
+    return (per);
 }
 
 /* basically copied from icaltime_compare, which can't be used
@@ -461,53 +449,6 @@ int local_compare(struct icaltimetype a, struct icaltimetype b)
     return retval;
 }
 
-struct icaltimetype convert_to_zone(struct icaltimetype t, gchar *tz)
-{
-    struct icaltimetype wtime = t;
-    icaltimezone *l_icaltimezone = NULL;
-
-    if XFICAL_STR_EXISTS(tz) {
-        if (strcmp(tz, "UTC") == 0) {
-            wtime=icaltime_convert_to_zone(t, utc_icaltimezone);
-        }
-        else if (strcmp(tz, "floating") == 0) {
-            if (local_icaltimezone)
-                wtime=icaltime_convert_to_zone(t, local_icaltimezone);
-        }
-        else {
-            l_icaltimezone=icaltimezone_get_builtin_timezone(tz);
-            if (!l_icaltimezone)
-                g_warning("convert_to_zone: builtin timezone %s not found, conversion failed.", tz);
-            else
-                wtime = icaltime_convert_to_zone(t, l_icaltimezone);
-        }
-    }
-    else  /* floating time */
-        if (local_icaltimezone)
-            wtime=icaltime_convert_to_zone(t, local_icaltimezone);
-
-    return(wtime);
-}
-
-int xfical_compare_times(gchar *time1, gchar *tz1, gchar *time2, gchar *tz2)
-{
-    struct icaltimetype wtime1, wtime2;
-    icaltimezone *l_icaltimezone = NULL;
-
-    if (XFICAL_STR_EXISTS(time1) && XFICAL_STR_EXISTS(time2)) {
-        wtime1=icaltime_from_string(time1);
-        wtime2=icaltime_from_string(time2);
-
-        wtime1=convert_to_zone(wtime1, tz1);
-        wtime2=convert_to_zone(wtime2, tz2);
-        return (icaltime_compare(wtime1, wtime2));
-    }
-    else {
-        g_warning("xfical_compare_times: null time %s %s", time1, time2);
-        return(0); /* should be error ! */
-    }
-}
-
 /* basically copied from icaltime_compare_date_only, which can't be used
  * because it uses utc 
  */
@@ -536,11 +477,58 @@ int local_compare_date_only(struct icaltimetype a, struct icaltimetype b)
     return retval;
 }
 
+struct icaltimetype convert_to_zone(struct icaltimetype t, gchar *tz)
+{
+    struct icaltimetype wtime = t;
+    icaltimezone *l_icaltimezone = NULL;
+
+    if XFICAL_STR_EXISTS(tz) {
+        if (strcmp(tz, "UTC") == 0) {
+            wtime = icaltime_convert_to_zone(t, utc_icaltimezone);
+        }
+        else if (strcmp(tz, "floating") == 0) {
+            if (local_icaltimezone)
+                wtime = icaltime_convert_to_zone(t, local_icaltimezone);
+        }
+        else {
+            l_icaltimezone = icaltimezone_get_builtin_timezone(tz);
+            if (!l_icaltimezone)
+                g_warning("convert_to_zone: builtin timezone %s not found, conversion failed.", tz);
+            else
+                wtime = icaltime_convert_to_zone(t, l_icaltimezone);
+        }
+    }
+    else  /* floating time */
+        if (local_icaltimezone)
+            wtime = icaltime_convert_to_zone(t, local_icaltimezone);
+
+    return(wtime);
+}
+
+int xfical_compare_times(gchar *time1, gchar *tz1, gchar *time2, gchar *tz2)
+{
+    struct icaltimetype wtime1, wtime2;
+    icaltimezone *l_icaltimezone = NULL;
+
+    if (XFICAL_STR_EXISTS(time1) && XFICAL_STR_EXISTS(time2)) {
+        wtime1 = icaltime_from_string(time1);
+        wtime2 = icaltime_from_string(time2);
+
+        wtime1 = convert_to_zone(wtime1, tz1);
+        wtime2 = convert_to_zone(wtime2, tz2);
+        return (icaltime_compare(wtime1, wtime2));
+    }
+    else {
+        g_warning("xfical_compare_times: null time %s %s", time1, time2);
+        return(0); /* should be error ! */
+    }
+}
+
  /* allocates memory and initializes it for new ical_type structure
   * returns: NULL if failed and pointer to appt_data if successfull.
   *         You must free it after not being used anymore. (g_free())
   */
-appt_data *xfical_app_alloc()
+appt_data *xfical_appt_alloc()
 {
     appt_data *temp;
 
@@ -549,14 +537,14 @@ appt_data *xfical_app_alloc()
     return(temp);
 }
 
-void app_add_alarm_internal(appt_data *app, icalcomponent *ievent)
+void appt_add_alarm_internal(appt_data *appt, icalcomponent *ievent)
 {
     icalcomponent *ialarm;
     gint duration=0;
     struct icaltriggertype trg;
     icalattach *attach;
 
-    duration = app->alarmtime;
+    duration = appt->alarmtime;
     trg.time = icaltime_null_time();
     trg.duration = icaldurationtype_from_int(-duration);
     /********** DISPLAY **********/
@@ -564,26 +552,26 @@ void app_add_alarm_internal(appt_data *app, icalcomponent *ievent)
         , icalproperty_new_action(ICAL_ACTION_DISPLAY)
         , icalproperty_new_trigger(trg)
         , 0);
-    if XFICAL_STR_EXISTS(app->note)
+    if XFICAL_STR_EXISTS(appt->note)
         icalcomponent_add_property(ialarm
-            , icalproperty_new_description(app->note));
-    else if XFICAL_STR_EXISTS(app->title)
+            , icalproperty_new_description(appt->note));
+    else if XFICAL_STR_EXISTS(appt->title)
         icalcomponent_add_property(ialarm
-            , icalproperty_new_description(app->title));
+            , icalproperty_new_description(appt->title));
     else
         icalcomponent_add_property(ialarm
             , icalproperty_new_description(_("Orage default alarm")));
     icalcomponent_add_component(ievent, ialarm);
     /********** AUDIO **********/
-    if XFICAL_STR_EXISTS(app->sound) {
+    if XFICAL_STR_EXISTS(appt->sound) {
         ialarm = icalcomponent_vanew(ICAL_VALARM_COMPONENT
             , icalproperty_new_action(ICAL_ACTION_AUDIO)
             , icalproperty_new_trigger(trg)
             , 0);
-        attach = icalattach_new_from_url(app->sound);
+        attach = icalattach_new_from_url(appt->sound);
         icalcomponent_add_property(ialarm
             , icalproperty_new_attach(attach));
-        if (app->alarmrepeat) {
+        if (appt->alarmrepeat) {
            /* loop 500 times with 2 secs interval */
             icalcomponent_add_property(ialarm
                 , icalproperty_new_repeat(500));
@@ -594,7 +582,7 @@ void app_add_alarm_internal(appt_data *app, icalcomponent *ievent)
     }
 }
 
-char *app_add_internal(appt_data *app, gboolean add, char *uid
+char *appt_add_internal(appt_data *appt, gboolean add, char *uid
         , struct icaltimetype cre_time)
 {
     icalcomponent *ievent;
@@ -603,6 +591,7 @@ char *app_add_internal(appt_data *app, gboolean add, char *uid
     gchar xf_host[501];
     gchar recur_str[101], *recur_p;
     struct icalrecurrencetype rrule;
+    struct icaldurationtype duration;
 
     dtstamp = icaltime_current_time_with_zone(utc_icaltimezone);
     if (add) {
@@ -628,42 +617,43 @@ char *app_add_internal(appt_data *app, gboolean add, char *uid
            , icalproperty_new_created(create_time)
            , 0);
 
-    if XFICAL_STR_EXISTS(app->title)
+    if XFICAL_STR_EXISTS(appt->title)
         icalcomponent_add_property(ievent
-                , icalproperty_new_summary(app->title));
-    if XFICAL_STR_EXISTS(app->note)
+                , icalproperty_new_summary(appt->title));
+    if XFICAL_STR_EXISTS(appt->note)
         icalcomponent_add_property(ievent
-                , icalproperty_new_description(app->note));
-    if XFICAL_STR_EXISTS(app->location)
+                , icalproperty_new_description(appt->note));
+    if XFICAL_STR_EXISTS(appt->location)
         icalcomponent_add_property(ievent
-                , icalproperty_new_location(app->location));
-    if (app->availability == 0)
+                , icalproperty_new_location(appt->location));
+    if (appt->availability == 0)
         icalcomponent_add_property(ievent
            , icalproperty_new_transp(ICAL_TRANSP_TRANSPARENT));
-    else if (app->availability == 1)
+    else if (appt->availability == 1)
         icalcomponent_add_property(ievent
            , icalproperty_new_transp(ICAL_TRANSP_OPAQUE));
-    if (app->allDay) { /* cut the string after Date: yyyymmdd */
-        app->starttime[8] = '\0';
-        app->endtime[8] = '\0';
+    if (appt->allDay) { /* cut the string after Date: yyyymmdd */
+        appt->starttime[8] = '\0';
+        appt->endtime[8] = '\0';
     }
 
-    if XFICAL_STR_EXISTS(app->starttime) {
-        wtime=icaltime_from_string(app->starttime);
-        if XFICAL_STR_EXISTS(app->start_tz_loc) {
-            if (strcmp(app->start_tz_loc, "UTC") == 0) {
+    if XFICAL_STR_EXISTS(appt->starttime) {
+        wtime=icaltime_from_string(appt->starttime);
+        if XFICAL_STR_EXISTS(appt->start_tz_loc) {
+            if (strcmp(appt->start_tz_loc, "UTC") == 0) {
                 wtime=icaltime_convert_to_zone(wtime, utc_icaltimezone);
                 icalcomponent_add_property(ievent
                     , icalproperty_new_dtstart(wtime));
             }
-            else if (strcmp(app->start_tz_loc, "floating") == 0) {
-                icalcomponent_add_property(ievent, icalproperty_new_dtstart(wtime));
+            else if (strcmp(appt->start_tz_loc, "floating") == 0) {
+                icalcomponent_add_property(ievent
+                    , icalproperty_new_dtstart(wtime));
             }
             else {
             /* FIXME: add this vtimezone to vcalendar if it is not there */
                 icalcomponent_add_property(ievent
                     , icalproperty_vanew_dtstart(wtime
-                    , icalparameter_new_tzid(app->start_tz_loc)
+                    , icalparameter_new_tzid(appt->start_tz_loc)
                     , 0));
             }
         }
@@ -671,22 +661,29 @@ char *app_add_internal(appt_data *app, gboolean add, char *uid
             icalcomponent_add_property(ievent, icalproperty_new_dtstart(wtime));
         }
     }
-    if XFICAL_STR_EXISTS(app->endtime) {
-        wtime=icaltime_from_string(app->endtime);
-        if XFICAL_STR_EXISTS(app->end_tz_loc) {
-            if (strcmp(app->end_tz_loc, "UTC") == 0) {
+    if (appt->use_duration) {
+        duration = icaldurationtype_from_int(appt->duration);
+        icalcomponent_add_property(ievent
+            , icalproperty_new_duration(duration));
+    }
+    else
+    if XFICAL_STR_EXISTS(appt->endtime) {
+        wtime=icaltime_from_string(appt->endtime);
+        if XFICAL_STR_EXISTS(appt->end_tz_loc) {
+            if (strcmp(appt->end_tz_loc, "UTC") == 0) {
                 wtime=icaltime_convert_to_zone(wtime, utc_icaltimezone);
                 icalcomponent_add_property(ievent
                     , icalproperty_new_dtend(wtime));
             }
-            else if (strcmp(app->end_tz_loc, "floating") == 0) {
-                icalcomponent_add_property(ievent, icalproperty_new_dtend(wtime));
+            else if (strcmp(appt->end_tz_loc, "floating") == 0) {
+                icalcomponent_add_property(ievent
+                    , icalproperty_new_dtend(wtime));
             }
             else {
             /* FIXME: add this vtimezone to vcalendar if it is not there */
                 icalcomponent_add_property(ievent
                     , icalproperty_vanew_dtend(wtime
-                    , icalparameter_new_tzid(app->end_tz_loc)
+                    , icalparameter_new_tzid(appt->end_tz_loc)
                     , 0));
             }
         }
@@ -694,9 +691,9 @@ char *app_add_internal(appt_data *app, gboolean add, char *uid
             icalcomponent_add_property(ievent, icalproperty_new_dtend(wtime));
         }
     }
-    if (app->freq != XFICAL_FREQ_NONE) {
+    if (appt->freq != XFICAL_FREQ_NONE) {
         recur_p = g_stpcpy(recur_str, "FREQ=");
-        switch(app->freq) {
+        switch(appt->freq) {
             case XFICAL_FREQ_DAILY:
                 recur_p = g_stpcpy(recur_p, "DAILY");
                 break;
@@ -710,17 +707,17 @@ char *app_add_internal(appt_data *app, gboolean add, char *uid
                 recur_p = g_stpcpy(recur_p, "YEARLY");
                 break;
             default:
-                g_warning("app_add_internal: Unsupported freq");
+                g_warning("appt_add_internal: Unsupported freq");
                 icalrecurrencetype_clear(&rrule);
         }
-        if (app->recur_count) {
-            g_sprintf(recur_p, ";COUNT=%d", app->recur_count);
+        if (appt->recur_count) {
+            g_sprintf(recur_p, ";COUNT=%d", appt->recur_count);
         }
         rrule = icalrecurrencetype_from_string(recur_str);
-        icalcomponent_add_property (ievent, icalproperty_new_rrule(rrule));
+        icalcomponent_add_property(ievent, icalproperty_new_rrule(rrule));
     }
-    if (!app->allDay && app->alarmtime != 0) {
-        app_add_alarm_internal(app, ievent);
+    if (!appt->allDay && appt->alarmtime != 0) {
+        appt_add_alarm_internal(appt, ievent);
     }
 
     icalcomponent_add_component(ical, ievent);
@@ -736,12 +733,12 @@ char *app_add_internal(appt_data *app, gboolean add, char *uid
   *           This ical id is owned by the routine. Do not deallocate it.
   *           It will be overwrittewritten by next invocation of this function.
   */
-char *xfical_app_add(appt_data *app)
+char *xfical_appt_add(appt_data *app)
 {
-    return(app_add_internal(app, TRUE, NULL, icaltime_null_time()));
+    return(appt_add_internal(app, TRUE, NULL, icaltime_null_time()));
 }
 
-void ical_app_get_alarm_internal(icalcomponent *c,  appt_data *app)
+void ical_appt_get_alarm_internal(icalcomponent *c,  appt_data *appt)
 {
     icalcomponent *ca = NULL;
     icalproperty *p = NULL;
@@ -758,29 +755,29 @@ void ical_app_get_alarm_internal(icalcomponent *c,  appt_data *app)
                 case ICAL_TRIGGER_PROPERTY:
                     trg = icalproperty_get_trigger(p);
                     if (icaltime_is_null_time(trg.time)) {
-                        app->alarmtime = icaldurationtype_as_int(trg.duration)
+                        appt->alarmtime = icaldurationtype_as_int(trg.duration)
                                             * -1;
                     }
                     else
-                        g_warning("ical_app_get_alarm_internal: Can not process time triggers");
+                        g_warning("ical_appt_get_alarm_internal: Can not process time triggers");
                     break;
                 case ICAL_ATTACH_PROPERTY:
                     attach = icalproperty_get_attach(p);
-                    app->sound = (char *)icalattach_get_url(attach);
+                    appt->sound = (char *)icalattach_get_url(attach);
                     break;
                 case ICAL_REPEAT_PROPERTY:
-                    app->alarmrepeat = TRUE;
+                    appt->alarmrepeat = TRUE;
                     break;
                 case ICAL_DESCRIPTION_PROPERTY:
-                    if (app->note == NULL)
-                        app->note = (char *) icalproperty_get_description(p);
+                    if (appt->note == NULL)
+                        appt->note = (char *) icalproperty_get_description(p);
                     break;
                 case ICAL_DURATION_PROPERTY:
                 case ICAL_ACTION_PROPERTY:
                 /* no actions defined */
                     break;
                 default:
-                    g_warning("ical_app_get_alarm_internal: unknown property %s", (char *)icalproperty_get_property_name(p));
+                    g_warning("ical_appt_get_alarm_internal: unknown property %s", (char *)icalproperty_get_property_name(p));
                     break;
             }
         }
@@ -788,7 +785,7 @@ void ical_app_get_alarm_internal(icalcomponent *c,  appt_data *app)
 }
 
  /* Read EVENT from ical datafile.
-  * ical_uid:  key of ical EVENT app-> is to be read
+  * ical_uid:  key of ical EVENT appt-> is to be read
   * returns: NULL if failed and appt_data pointer to appt_data struct
   *          filled with data if successfull.
   *          NOTE: This routine does not fill starttimecur nor endtimecur,
@@ -797,17 +794,18 @@ void ical_app_get_alarm_internal(icalcomponent *c,  appt_data *app)
   *          Do not deallocate it.
   *          It will be overdriven by next invocation of this function.
   */
-appt_data *xfical_app_get(char *ical_uid)
+appt_data *xfical_appt_get(char *ical_uid)
 {
-    static appt_data app;
+    static appt_data appt;
     icalcomponent *c = NULL;
     icalproperty *p = NULL;
     gboolean key_found = FALSE;
     const char *text, *text2;
-    struct icaltimetype itime;
+    struct icaltimetype itime, stime, etime, sltime, eltime;
     icalparameter *itime_tz;
     icalproperty_transp xf_transp;
     struct icalrecurrencetype rrule;
+    struct icaldurationtype duration;
 
     for (c = icalcomponent_get_first_component(ical, ICAL_VEVENT_COMPONENT); 
          c != 0 && !key_found;
@@ -815,24 +813,30 @@ appt_data *xfical_app_get(char *ical_uid)
         text = icalcomponent_get_uid(c);
         if (strcmp(text, ical_uid) == 0) {
         /*********** Defaults ***********/
+            stime = icaltime_null_time();
+            sltime = icaltime_null_time();
+            eltime = icaltime_null_time();
+            duration = icaldurationtype_null_duration();
             key_found = TRUE;
-            app.title = NULL;
-            app.location = NULL;
-            app.alarmtime = 0;
-            app.availability = -1;
-            app.allDay = FALSE;
-            app.alarmrepeat = FALSE;
-            app.note = NULL;
-            app.sound = NULL;
-            app.uid = NULL;
-            app.starttime[0] = '\0';
-            app.start_tz_loc = NULL;
-            app.endtime[0] = '\0';
-            app.end_tz_loc = NULL;
-            app.starttimecur[0] = '\0';
-            app.endtimecur[0] = '\0';
-            app.freq = XFICAL_FREQ_NONE;
-            app.recur_count = 0;
+            appt.title = NULL;
+            appt.location = NULL;
+            appt.alarmtime = 0;
+            appt.availability = -1;
+            appt.allDay = FALSE;
+            appt.alarmrepeat = FALSE;
+            appt.note = NULL;
+            appt.sound = NULL;
+            appt.uid = NULL;
+            appt.starttime[0] = '\0';
+            appt.start_tz_loc = NULL;
+            appt.endtime[0] = '\0';
+            appt.end_tz_loc = NULL;
+            appt.use_duration = FALSE;
+            appt.duration = 0;
+            appt.starttimecur[0] = '\0';
+            appt.endtimecur[0] = '\0';
+            appt.freq = XFICAL_FREQ_NONE;
+            appt.recur_count = 0;
         /*********** Properties ***********/
             for (p = icalcomponent_get_first_property(c, ICAL_ANY_PROPERTY);
                  p != 0;
@@ -840,85 +844,95 @@ appt_data *xfical_app_get(char *ical_uid)
                 /* these are in icalderivedproperty.h */
                 switch (icalproperty_isa(p)) {
                     case ICAL_SUMMARY_PROPERTY:
-                        app.title = (char *) icalproperty_get_summary(p);
+                        appt.title = (char *) icalproperty_get_summary(p);
                         break;
                     case ICAL_LOCATION_PROPERTY:
-                        app.location = (char *) icalproperty_get_location(p);
+                        appt.location = (char *) icalproperty_get_location(p);
                         break;
                     case ICAL_DESCRIPTION_PROPERTY:
-                        app.note = (char *) icalproperty_get_description(p);
+                        appt.note = (char *) icalproperty_get_description(p);
                         break;
                     case ICAL_UID_PROPERTY:
-                        app.uid = (char *) icalproperty_get_uid(p);
+                        appt.uid = (char *) icalproperty_get_uid(p);
                         break;
                     case ICAL_TRANSP_PROPERTY:
                         xf_transp = icalproperty_get_transp(p);
                         if (xf_transp == ICAL_TRANSP_TRANSPARENT)
-                            app.availability = 0;
+                            appt.availability = 0;
                         else if (xf_transp == ICAL_TRANSP_OPAQUE)
-                            app.availability = 1;
+                            appt.availability = 1;
                         else 
-                            app.availability = -1;
+                            appt.availability = -1;
                         break;
                     case ICAL_DTSTART_PROPERTY:
                         itime = icalproperty_get_dtstart(p);
+                        stime = convert_to_timezone(itime, p);
+                        sltime = convert_to_local_timezone(itime, p);
                         text  = icaltime_as_ical_string(itime);
-                        g_strlcpy(app.starttime, text, 17);
+                        g_strlcpy(appt.starttime, text, 17);
                         if (icaltime_is_date(itime))
-                            app.allDay = TRUE;
-                        else if (app.starttime[15] == 'Z') { /* ugly... */
-                            app.starttime[15] = '\0';   /* ...hack */
-                            app.start_tz_loc = "UTC";
+                            appt.allDay = TRUE;
+                        else if (icaltime_is_utc(itime)) { 
+                            appt.start_tz_loc = "UTC";
                         }
                         else { /* let's check timezone */
                             itime_tz = icalproperty_get_first_parameter(p
                                     , ICAL_TZID_PARAMETER);
                             if (itime_tz)
-                                app.start_tz_loc = 
+                                appt.start_tz_loc = 
                                     (char *) icalparameter_get_tzid(itime_tz);
                         }
-                        if (app.endtime[0] == '\0') {
-                            g_strlcpy(app.endtime,  app.starttime, 17);
-                            app.end_tz_loc = app.start_tz_loc;
+                        if (appt.endtime[0] == '\0') {
+                            g_strlcpy(appt.endtime,  appt.starttime, 17);
+                            appt.end_tz_loc = appt.start_tz_loc;
+                            etime = stime;
                         }
                         break;
                     case ICAL_DTEND_PROPERTY:
                         itime = icalproperty_get_dtend(p);
+                        eltime = convert_to_local_timezone(itime, p);
                         text  = icaltime_as_ical_string(itime);
-                        app.end_tz_loc = NULL;
-                        g_strlcpy(app.endtime, text, 17);
-                        if (app.endtime[15] == 'Z') { /* ugly... */
-                            app.endtime[15] = '\0';   /* ...hack */
-                            app.end_tz_loc = "UTC";
+                        g_strlcpy(appt.endtime, text, 17);
+                        if (icaltime_is_date(itime))
+                            appt.allDay = TRUE;
+                        else if (icaltime_is_utc(itime)) { 
+                            appt.end_tz_loc = "UTC";
                         }
                         else { /* let's check timezone */
                             itime_tz = icalproperty_get_first_parameter(p
                                     , ICAL_TZID_PARAMETER);
                             if (itime_tz)
-                                app.end_tz_loc = 
+                                appt.end_tz_loc = 
                                     (char *) icalparameter_get_tzid(itime_tz);
+                            else
+                                appt.end_tz_loc = NULL;
                         }
+                        break;
+                    case ICAL_DURATION_PROPERTY:
+                        appt.use_duration = TRUE;
+                        duration = icalproperty_get_duration(p);
+                        appt.duration = icaldurationtype_as_int(duration);
                         break;
                     case ICAL_RRULE_PROPERTY:
                         rrule = icalproperty_get_rrule(p);
                         switch (rrule.freq) {
                             case ICAL_DAILY_RECURRENCE:
-                                app.freq = XFICAL_FREQ_DAILY;
+                                appt.freq = XFICAL_FREQ_DAILY;
                                 break;
                             case ICAL_WEEKLY_RECURRENCE:
-                                app.freq = XFICAL_FREQ_WEEKLY;
+                                appt.freq = XFICAL_FREQ_WEEKLY;
                                 break;
                             case ICAL_MONTHLY_RECURRENCE:
-                                app.freq = XFICAL_FREQ_MONTHLY;
+                                appt.freq = XFICAL_FREQ_MONTHLY;
                                 break;
                             case ICAL_YEARLY_RECURRENCE:
-                                app.freq = XFICAL_FREQ_YEARLY;
+                                appt.freq = XFICAL_FREQ_YEARLY;
                                 break;
                             default:
-                                app.freq = XFICAL_FREQ_NONE;
+                                appt.freq = XFICAL_FREQ_NONE;
                                 break;
                         }
-                        app.recur_count = rrule.count;
+                        appt.recur_count = rrule.count;
                         break;
                     case ICAL_CATEGORIES_PROPERTY:
                     case ICAL_CLASS_PROPERTY:
@@ -926,15 +940,27 @@ appt_data *xfical_app_get(char *ical_uid)
                     case ICAL_CREATED_PROPERTY:
                         break;
                     default:
-                        g_warning("xfical_app_get: unknown property %s", (char *)icalproperty_get_property_name(p));
+                        g_warning("xfical_appt_get: unknown property %s", (char *)icalproperty_get_property_name(p));
                         break;
                 }
             }
-        ical_app_get_alarm_internal(c, &app);
+        ical_appt_get_alarm_internal(c, &appt);
         }
     } 
+
+    /* need to set missing endtime or duration */
+    if (appt.use_duration) { 
+        etime = icaltime_add(stime, duration);
+        text  = icaltime_as_ical_string(etime);
+        g_strlcpy(appt.endtime, text, 17);
+        appt.end_tz_loc = appt.start_tz_loc;
+    }
+    else {
+        duration = icaltime_subtract(eltime, sltime);
+        appt.duration = icaldurationtype_as_int(duration);
+    }
     if (key_found)
-        return(&app);
+        return(&appt);
     else
         return(NULL);
 }
@@ -945,7 +971,7 @@ appt_data *xfical_app_get(char *ical_uid)
   *      Caller is responsible for filling and allocating and freeing it.
   * returns: TRUE is successfull, FALSE if failed
   */
-gboolean xfical_app_mod(char *ical_uid, appt_data *app)
+gboolean xfical_appt_mod(char *ical_uid, appt_data *app)
 {
     icalcomponent *c;
     char *uid;
@@ -954,7 +980,7 @@ gboolean xfical_app_mod(char *ical_uid, appt_data *app)
     struct icaltimetype create_time = icaltime_null_time();
 
     if (ical_uid == NULL) {
-        g_warning("xfical_app_mod: Got NULL uid. doing nothing");
+        g_warning("xfical_appt_mod: Got NULL uid. doing nothing");
         return(FALSE);
     }
     for (c = icalcomponent_get_first_component(ical, ICAL_VEVENT_COMPONENT); 
@@ -969,11 +995,11 @@ gboolean xfical_app_mod(char *ical_uid, appt_data *app)
         }
     } 
     if (!key_found) {
-        g_warning("xfical_app_mod: uid not found. doing nothing");
+        g_warning("xfical_appt_mod: uid not found. doing nothing");
         return(FALSE);
     }
 
-    app_add_internal(app, FALSE, ical_uid, create_time);
+    appt_add_internal(app, FALSE, ical_uid, create_time);
     return(TRUE);
 }
 
@@ -981,13 +1007,13 @@ gboolean xfical_app_mod(char *ical_uid, appt_data *app)
   * ical_uid: pointer to ical_uid to be deleted
   * returns: TRUE is successfull, FALSE if failed
   */
-gboolean xfical_app_del(char *ical_uid)
+gboolean xfical_appt_del(char *ical_uid)
 {
     icalcomponent *c;
     char *uid;
 
     if (ical_uid == NULL) {
-        g_warning("xfical_app_del: Got NULL uid. doing nothing");
+        g_warning("xfical_appt_del: Got NULL uid. doing nothing");
         return(FALSE);
      }
     for (c = icalcomponent_get_first_component(ical, ICAL_VEVENT_COMPONENT); 
@@ -1001,7 +1027,7 @@ gboolean xfical_app_del(char *ical_uid)
             return(TRUE);
         }
     } 
-    g_warning("xfical_app_del: uid not found. doing nothing");
+    g_warning("xfical_appt_del: uid not found. doing nothing");
     return(FALSE);
 }
 
@@ -1016,57 +1042,55 @@ gboolean xfical_app_del(char *ical_uid)
   *          It will be overdriven by next invocation of this function.
   * Note:   starttimecur and endtimecur are converted to local timezone
   */
-appt_data *xfical_app_get_next_on_day(char *a_day, gboolean first, gint days)
+appt_data *xfical_appt_get_next_on_day(char *a_day, gboolean first, gint days)
 {
     struct icaltimetype 
               asdate, aedate    /* period to check */
-            , sdate, edate      /* event start and end times */
             , nsdate, nedate;   /* repeating event occurrency start and end */
+    struct icaldurationtype aduration;
+    xfical_period per; /* event start and end times with duration */
     icalcomponent *c=NULL;
     icalproperty *p = NULL;
     static icalcompiter ci;
     gboolean date_found=FALSE;
     gboolean date_rec_found=FALSE;
     char *uid;
-    appt_data *app;
+    appt_data *appt;
     struct icalrecurrencetype rrule;
     icalrecur_iterator* ri;
-    struct icaldurationtype duration;
 
+    /* setup period to test */
     asdate = icaltime_from_string(a_day);
     if (days) { /* more than one day to check */
-        duration = icaldurationtype_null_duration();
-        duration.days = days;
-        aedate = icaltime_add(asdate, duration);
+        aduration = icaldurationtype_null_duration();
+        aduration.days = days;
+        aedate = icaltime_add(asdate, aduration);
     }
     else /* only one day */
         aedate = asdate;
+
     if (first)
         ci = icalcomponent_begin_component(ical, ICAL_VEVENT_COMPONENT);
     for ( ; 
          icalcompiter_deref(&ci) != 0 && !date_found;
          icalcompiter_next(&ci)) {
         c = icalcompiter_deref(&ci);
-        sdate = get_local_time(c, ICAL_DTSTART_PROPERTY);
-        edate = get_local_time(c, ICAL_DTEND_PROPERTY);
-        if (icaltime_is_null_time(edate))
-            edate = sdate;
-        if (local_compare_date_only(sdate, aedate) <= 0
-            && local_compare_date_only(asdate, edate) <= 0) {
+        per = get_period(c);
+        if (local_compare_date_only(per.stime, aedate) <= 0
+            && local_compare_date_only(asdate, per.etime) <= 0) {
             date_found = TRUE;
         }
         else if ((p = icalcomponent_get_first_property(c
                 , ICAL_RRULE_PROPERTY)) != 0) { /* check recurring EVENTs */
-            duration = icaltime_subtract(edate, sdate);
             rrule = icalproperty_get_rrule(p);
-            ri = icalrecur_iterator_new(rrule, sdate);
+            ri = icalrecur_iterator_new(rrule, per.stime);
             nsdate = icaltime_null_time();
             for (nsdate = icalrecur_iterator_next(ri),
-                    nedate = icaltime_add(nsdate, duration);
+                    nedate = icaltime_add(nsdate, per.duration);
                  !icaltime_is_null_time(nsdate)
                     && local_compare_date_only(nedate, asdate) < 0;
                  nsdate = icalrecur_iterator_next(ri),
-                    nedate = icaltime_add(nsdate, duration)) {
+                    nedate = icaltime_add(nsdate, per.duration)) {
             }
             if (local_compare_date_only(nsdate, aedate) <= 0
                 && local_compare_date_only(asdate, nedate) <= 0) {
@@ -1077,16 +1101,16 @@ appt_data *xfical_app_get_next_on_day(char *a_day, gboolean first, gint days)
     }
     if (date_found) {
         uid = (char *)icalcomponent_get_uid(c);
-        app = xfical_app_get(uid);
+        appt = xfical_appt_get(uid);
         if (date_rec_found) {
-            g_strlcpy(app->starttimecur, icaltime_as_ical_string(nsdate), 17);
-            g_strlcpy(app->endtimecur, icaltime_as_ical_string(nedate), 17);
+            g_strlcpy(appt->starttimecur, icaltime_as_ical_string(nsdate), 17);
+            g_strlcpy(appt->endtimecur, icaltime_as_ical_string(nedate), 17);
         }
         else {
-            g_strlcpy(app->starttimecur, icaltime_as_ical_string(sdate), 17);
-            g_strlcpy(app->endtimecur, icaltime_as_ical_string(edate), 17);
+            g_strlcpy(appt->starttimecur, icaltime_as_ical_string(per.stime), 17);
+            g_strlcpy(appt->endtimecur, icaltime_as_ical_string(per.etime), 17);
         }
-        return(app);
+        return(appt);
     }
     else
         return(0);
@@ -1098,12 +1122,12 @@ appt_data *xfical_app_get_next_on_day(char *a_day, gboolean first, gint days)
   */
 void xfical_mark_calendar(GtkCalendar *gtkcal, int year, int month)
 {
-    struct icaltimetype sdate, edate, nsdate, nedate;
+    xfical_period per;
+    struct icaltimetype nsdate, nedate;
     static icalcomponent *c;
     struct icalrecurrencetype rrule;
     icalrecur_iterator* ri;
     icalproperty *p = NULL;
-    struct icaldurationtype duration;
     gint start_day, day_cnt, end_day;
 
     gtk_calendar_freeze(gtkcal);
@@ -1111,20 +1135,16 @@ void xfical_mark_calendar(GtkCalendar *gtkcal, int year, int month)
     for (c = icalcomponent_get_first_component(ical, ICAL_VEVENT_COMPONENT);
          c != 0;
          c = icalcomponent_get_next_component(ical, ICAL_VEVENT_COMPONENT)) {
-        sdate = get_local_time(c, ICAL_DTSTART_PROPERTY);
-        edate = get_local_time(c, ICAL_DTEND_PROPERTY);
-
-        if (icaltime_is_null_time(edate))
-            edate = sdate;
-        if ((sdate.year*12+sdate.month) <= (year*12+month)
-                && (year*12+month) <= (edate.year*12+edate.month)) {
+        per = get_period(c);
+        if ((per.stime.year*12+per.stime.month) <= (year*12+month)
+                && (year*12+month) <= (per.etime.year*12+per.etime.month)) {
                 /* event is in our year+month = visible in calendar */
-            if (sdate.year == year && sdate.month == month)
-                start_day = sdate.day;
+            if (per.stime.year == year && per.stime.month == month)
+                start_day = per.stime.day;
             else
                 start_day = 1;
-            if (edate.year == year && edate.month == month)
-                end_day = edate.day;
+            if (per.etime.year == year && per.etime.month == month)
+                end_day = per.etime.day;
             else
                 end_day = 31;
             for (day_cnt = start_day; day_cnt <= end_day; day_cnt++)
@@ -1132,16 +1152,15 @@ void xfical_mark_calendar(GtkCalendar *gtkcal, int year, int month)
         }
         if ((p = icalcomponent_get_first_property(c
                 , ICAL_RRULE_PROPERTY)) != 0) { /* check recurring EVENTs */
-            duration = icaltime_subtract(edate, sdate);
             rrule = icalproperty_get_rrule(p);
-            ri = icalrecur_iterator_new(rrule, sdate);
+            ri = icalrecur_iterator_new(rrule, per.stime);
             nsdate = icaltime_null_time();
             for (nsdate = icalrecur_iterator_next(ri),
-                    nedate = icaltime_add(nsdate, duration);
+                    nedate = icaltime_add(nsdate, per.duration);
                  !icaltime_is_null_time(nsdate)
                     && (nsdate.year*12+nsdate.month) <= (year*12+month);
                  nsdate = icalrecur_iterator_next(ri),
-                    nedate = icaltime_add(nsdate, duration)) {
+                    nedate = icaltime_add(nsdate, per.duration)) {
                 if ((nsdate.year*12+nsdate.month) <= (year*12+month)
                         && (year*12+month) <= (nedate.year*12+nedate.month)) {
                         /* event is in our year+month = visible in calendar */
@@ -1165,9 +1184,10 @@ void xfical_mark_calendar(GtkCalendar *gtkcal, int year, int month)
  /* remove all EVENTs starting this day
   * a_day: date to clear (yyyymmdd format)
   */
-void rmday_ical_app(char *a_day)
+void xfical_rmday(char *a_day)
 {
-    struct icaltimetype t, adate;
+    xfical_period per;
+    struct icaltimetype  adate;
     icalcomponent *c, *c2;
 
 /* Note: remove moves the "c" pointer to next item, so we need to store it 
@@ -1177,8 +1197,8 @@ void rmday_ical_app(char *a_day)
          c != 0;
          c = c2){
         c2 = icalcomponent_get_next_component(ical, ICAL_VEVENT_COMPONENT);
-        t = get_local_time(c, ICAL_DTSTART_PROPERTY);
-        if (local_compare_date_only(t, adate) == 0) {
+        per = get_period(c);
+        if (local_compare_date_only(per.stime, adate) == 0) {
             icalcomponent_remove_component(ical, c);
         }
     } 
@@ -1243,7 +1263,8 @@ void alarm_add(icalproperty_status action
 
 void xfical_alarm_build_list(gboolean first_list_today)
 {
-    struct icaltimetype event_dtstart, alarm_time, cur_time, next_date;
+    xfical_period per;
+    struct icaltimetype alarm_time, cur_time, next_date;
     icalcomponent *c, *ca;
     icalproperty *p;
     icalproperty_status stat=ICAL_ACTION_DISPLAY;
@@ -1268,19 +1289,19 @@ void xfical_alarm_build_list(gboolean first_list_today)
         suid = (char*)icalcomponent_get_uid(c);
         ssummary = (char*)icalcomponent_get_summary(c);
         sdescription = (char*)icalcomponent_get_description(c);
-        event_dtstart = get_local_time(c, ICAL_DTSTART_PROPERTY);
-        if (first_list_today && icaltime_is_date(event_dtstart)) {
+        per = get_period(c);
+        if (first_list_today && icaltime_is_date(per.stime)) {
         /* this is special pre 4.3 xfcalendar compatibility alarm:
            Send alarm window always for date type events. */
-            if (local_compare_date_only(event_dtstart, cur_time) == 0) {
+            if (local_compare_date_only(per.stime, cur_time) == 0) {
                 alarm_add(ICAL_ACTION_DISPLAY
                         , suid, ssummary, sdescription, NULL, 0, 0
-                        , event_dtstart, event_dtstart);
+                        , per.stime, per.stime);
             }
             else if ((p = icalcomponent_get_first_property(c
                 , ICAL_RRULE_PROPERTY)) != 0) { /* check recurring EVENTs */
                 rrule = icalproperty_get_rrule(p);
-                ri = icalrecur_iterator_new(rrule, event_dtstart);
+                ri = icalrecur_iterator_new(rrule, per.stime);
                 next_date = icaltime_null_time();
                 for (next_date = icalrecur_iterator_next(ri);
                     !icaltime_is_null_time(next_date)
@@ -1290,7 +1311,7 @@ void xfical_alarm_build_list(gboolean first_list_today)
                 if (local_compare_date_only(next_date, cur_time) == 0) {
                     alarm_add(ICAL_ACTION_DISPLAY
                             , suid, ssummary, sdescription, NULL, 0, 0
-                            , next_date, event_dtstart);
+                            , next_date, per.stime);
                 }
             }
         }
@@ -1335,14 +1356,14 @@ void xfical_alarm_build_list(gboolean first_list_today)
         }  /* ALARMS */
         if (trg_found) {
         /* all data available. let's pack it if alarm is still active */
-            alarm_time = icaltime_add(event_dtstart, trg.duration);
+            alarm_time = icaltime_add(per.stime, trg.duration);
             if (icaltime_compare(cur_time, alarm_time) <= 0) /* active */
                 alarm_add(stat, suid, ssummary, sdescription
                         , ssound, repeat_cnt, repeat_delay
-                        , alarm_time, event_dtstart);
+                        , alarm_time, per.stime);
             else if ((p = icalcomponent_get_first_property(c
                 , ICAL_RRULE_PROPERTY)) != 0) { /* check recurring EVENTs */                    rrule = icalproperty_get_rrule(p);
-                ri = icalrecur_iterator_new(rrule, event_dtstart);
+                ri = icalrecur_iterator_new(rrule, per.stime);
                 next_date = icaltime_null_time();
                 for (next_date = icalrecur_iterator_next(ri);
                     (!icaltime_is_null_time(next_date))
@@ -1353,7 +1374,7 @@ void xfical_alarm_build_list(gboolean first_list_today)
                 if (icaltime_compare(cur_time, alarm_time) <= 0)
                     alarm_add(stat, suid, ssummary, sdescription
                         , ssound, repeat_cnt, repeat_delay
-                        , alarm_time, event_dtstart);
+                        , alarm_time, per.stime);
             }
         } /* trg_found */
     }  /* EVENTS */
