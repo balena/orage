@@ -7,9 +7,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: orage 4.3.2.2svn\n"
+"Project-Id-Version: orage 4.3.2.5svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-12-10 09:29+0900\n"
+"POT-Creation-Date: 2005-12-20 20:34+0900\n"
 "PO-Revision-Date: 2005-11-19 19:26+0900\n"
 "Last-Translator: paurullan <paurullan@bulma.net>\n"
 "Language-Team: català\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #. Create file chooser
 #: ../plugin/xfcalendar_plugin.c:228 ../plugin/xfcalendar_plugin.c:263
-#: ../src/appointment.c:192 ../src/mainbox.c:118
+#: ../src/appointment.c:251 ../src/mainbox.c:118
 #, fuzzy
 msgid "Select a file..."
 msgstr "Seleccioneu un fitxer..."
@@ -30,7 +30,7 @@ msgstr "Seleccioneu un fitxer..."
 msgid "Calendar files"
 msgstr "Fitxers de calendari"
 
-#: ../plugin/xfcalendar_plugin.c:239 ../src/appointment.c:206
+#: ../plugin/xfcalendar_plugin.c:239 ../src/appointment.c:265
 #: ../src/mainbox.c:129
 #, fuzzy
 msgid "All Files"
@@ -135,7 +135,7 @@ msgstr "6 mesos"
 msgid "1 year"
 msgstr "1 any"
 
-#: ../plugin/xfcalendar_plugin.c:467 ../src/appointment.c:1094
+#: ../plugin/xfcalendar_plugin.c:467 ../src/appointment.c:1261
 #, fuzzy
 msgid "Sound"
 msgstr "So"
@@ -145,7 +145,7 @@ msgstr "So"
 msgid "Application"
 msgstr "Aplicació"
 
-#: ../plugin/xfcalendar_plugin.c:534 ../src/appointment.c:121
+#: ../plugin/xfcalendar_plugin.c:534 ../src/appointment.c:180
 #: ../src/mainbox.c:344 ../xfcalendar.desktop.in.h:3
 msgid "Orage"
 msgstr ""
@@ -167,263 +167,248 @@ msgid "Contributor"
 msgstr "Contribuïdor"
 
 #. Get the start date and time and timezone
-#: ../src/appointment.c:97 ../src/appointment.c:308 ../src/appointment.c:608
+#: ../src/appointment.c:97 ../src/appointment.c:355 ../src/appointment.c:683
 #, fuzzy
 msgid "%m/%d/%Y"
 msgstr "%d-%m-%Y"
 
-#: ../src/appointment.c:200
+#: ../src/appointment.c:259
 #, fuzzy
 msgid "Sound Files"
 msgstr "Fitxers de so"
 
-#: ../src/appointment.c:259 ../src/appointment.c:393 ../src/appointment.c:405
-#: ../src/appointment.c:506 ../src/event-list.c:590
+#: ../src/appointment.c:306 ../src/appointment.c:469 ../src/appointment.c:481
+#: ../src/appointment.c:581 ../src/event-list.c:590
 #, fuzzy
 msgid "Warning"
 msgstr "Avís"
 
-#: ../src/appointment.c:261
+#: ../src/appointment.c:308
 #, fuzzy
 msgid "The appointment information has been modified."
 msgstr "La cita ha sigut modificada."
 
-#: ../src/appointment.c:262 ../src/appointment.c:509 ../src/event-list.c:593
+#: ../src/appointment.c:309 ../src/appointment.c:584 ../src/event-list.c:593
 #, fuzzy
 msgid "Do you want to continue?"
 msgstr "Voleu continuar?"
 
-#: ../src/appointment.c:395
+#: ../src/appointment.c:471
 #, fuzzy
 msgid "A time value is wrong."
 msgstr "Hi ha una hora mal indicada."
 
-#: ../src/appointment.c:396
+#: ../src/appointment.c:472
 #, fuzzy
 msgid "Time values must be written 'hh:mm', for instance '09:36' or '15:23'."
 msgstr ""
 "Les hores han de tenir el format 'hh:mm'. Per exemple, '09:36' ó '15:23'."
 
-#: ../src/appointment.c:407
+#: ../src/appointment.c:483
 #, fuzzy
 msgid "The end of this appointment is earlier than the beginning."
 msgstr "Aquesta cita té el final abans que el començament."
 
-#: ../src/appointment.c:508
+#: ../src/appointment.c:583
 #, fuzzy
 msgid "This appointment will be permanently removed."
 msgstr "La cità s'esborrarà permanentment."
 
-#: ../src/appointment.c:613
+#: ../src/appointment.c:688
 msgid "Pick the date"
 msgstr ""
 
-#: ../src/appointment.c:615 ../src/event-list.c:703 ../src/tray_icon.c:107
+#: ../src/appointment.c:690 ../src/event-list.c:703 ../src/tray_icon.c:107
 #, fuzzy
 msgid "Today"
 msgstr "Avui"
 
+#: ../src/appointment.c:774 ../src/appointment.c:1122
+#, fuzzy
+msgid "Location"
+msgstr "Ubicació"
+
 #. show it
-#: ../src/appointment.c:704
+#: ../src/appointment.c:779
 msgid "Pick timezone"
 msgstr ""
 
-#: ../src/appointment.c:707
+#: ../src/appointment.c:782
 msgid "UTC"
 msgstr ""
 
-#: ../src/appointment.c:708
+#: ../src/appointment.c:783
 #, fuzzy
 msgid "floating"
 msgstr "Ubicació"
 
-#: ../src/appointment.c:823
+#. window title
+#: ../src/appointment.c:904
 #, fuzzy
 msgid "New appointment - Orage"
 msgstr "Nova cita - "
 
-#: ../src/appointment.c:891
+#: ../src/appointment.c:1025
 #, fuzzy
 msgid "Free"
 msgstr "Lliure"
 
-#: ../src/appointment.c:891
+#: ../src/appointment.c:1025
 #, fuzzy
 msgid "Busy"
 msgstr "Ocupat"
 
-#: ../src/appointment.c:893 ../src/appointment.c:895
+#: ../src/appointment.c:1027
 #, fuzzy
 msgid "None"
 msgstr "Cap"
 
-#: ../src/appointment.c:893
+#: ../src/appointment.c:1027
 #, fuzzy
 msgid "Daily"
 msgstr "Diari"
 
-#: ../src/appointment.c:893
+#: ../src/appointment.c:1027
 #, fuzzy
 msgid "Weekly"
 msgstr "Setmanal"
 
-#: ../src/appointment.c:893
+#: ../src/appointment.c:1027
 #, fuzzy
 msgid "Monthly"
 msgstr "Mensual"
 
-#: ../src/appointment.c:893
+#: ../src/appointment.c:1027
 msgid "Yearly"
 msgstr ""
 
-#: ../src/appointment.c:895
-#, fuzzy
-msgid "5 minutes"
-msgstr "5 minuts"
-
-#: ../src/appointment.c:895
-#, fuzzy
-msgid "15 minutes"
-msgstr "15 minuts"
-
-#: ../src/appointment.c:895
-#, fuzzy
-msgid "30 minutes"
-msgstr "30 minuts"
-
-#: ../src/appointment.c:896
-#, fuzzy
-msgid "45 minutes"
-msgstr "45 minuts"
-
-#: ../src/appointment.c:896
-#, fuzzy
-msgid "1 hour"
-msgstr "1 hora"
-
-#: ../src/appointment.c:896
-#, fuzzy
-msgid "2 hours"
-msgstr "2 hores"
-
-#: ../src/appointment.c:896
-#, fuzzy
-msgid "4 hours"
-msgstr "4 hores"
-
-#: ../src/appointment.c:897
-#, fuzzy
-msgid "8 hours"
-msgstr "8 hores"
-
-#: ../src/appointment.c:897
-#, fuzzy
-msgid "1 day"
-msgstr "1 dia"
-
-#: ../src/appointment.c:897
-#, fuzzy
-msgid "2 days"
-msgstr "2 dies"
-
 #. File menu stuff
 #. File menu
-#: ../src/appointment.c:931 ../src/event-list.c:659 ../src/mainbox.c:367
+#: ../src/appointment.c:1053 ../src/event-list.c:659 ../src/mainbox.c:367
 #, fuzzy
 msgid "_File"
 msgstr "_Fitxer"
 
-#: ../src/appointment.c:935
+#: ../src/appointment.c:1057
 #, fuzzy
 msgid "Sav_e and close"
 msgstr "D_esa i tanca"
 
 #. add event copying and day cleaning
-#: ../src/appointment.c:942 ../src/event-list.c:665
+#: ../src/appointment.c:1064 ../src/event-list.c:665
 #, fuzzy
 msgid "D_uplicate"
 msgstr "D_uplica"
 
 #. Add buttons to the toolbar
-#: ../src/appointment.c:962
+#: ../src/appointment.c:1084
 #, fuzzy
 msgid "Save"
 msgstr "Desa"
 
-#: ../src/appointment.c:964 ../src/appointment.c:965
+#: ../src/appointment.c:1086 ../src/appointment.c:1087
 #, fuzzy
 msgid "Save and close"
 msgstr "Desa i tanca"
 
-#: ../src/appointment.c:970
+#: ../src/appointment.c:1092
 #, fuzzy
 msgid "Revert"
 msgstr "Recupera"
 
-#: ../src/appointment.c:972 ../src/appointment.c:973 ../src/event-list.c:711
+#: ../src/appointment.c:1094 ../src/appointment.c:1095 ../src/event-list.c:711
 #, fuzzy
 msgid "Duplicate"
 msgstr "Duplica"
 
-#: ../src/appointment.c:977
+#: ../src/appointment.c:1099
 #, fuzzy
 msgid "Delete"
 msgstr "Suprimeix"
 
-#: ../src/appointment.c:985
+#: ../src/appointment.c:1107
 #, fuzzy
 msgid "General"
 msgstr "General"
 
-#: ../src/appointment.c:994
+#: ../src/appointment.c:1116
 #, fuzzy
 msgid "Title "
 msgstr "Títol "
 
-#: ../src/appointment.c:1000
-#, fuzzy
-msgid "Location"
-msgstr "Ubicació"
-
-#: ../src/appointment.c:1006
+#: ../src/appointment.c:1128
 #, fuzzy
 msgid "All day event"
 msgstr "Tot el dia"
 
-#: ../src/appointment.c:1011
+#: ../src/appointment.c:1133
 #, fuzzy
 msgid "Start"
 msgstr "Inici"
 
-#: ../src/appointment.c:1023
+#: ../src/appointment.c:1146
 #, fuzzy
 msgid "End"
 msgstr "Fi"
 
-#: ../src/appointment.c:1035
+#: ../src/appointment.c:1160
 #, fuzzy
-msgid "Recurrence"
-msgstr "Periodicitat"
+msgid "Duration"
+msgstr "Ubicació"
 
-#: ../src/appointment.c:1042
+#: ../src/appointment.c:1167 ../src/appointment.c:1239
+#, fuzzy
+msgid "days"
+msgstr "2 dies"
+
+#: ../src/appointment.c:1175 ../src/appointment.c:1247
+#, fuzzy
+msgid "hours"
+msgstr "2 hores"
+
+#: ../src/appointment.c:1183 ../src/appointment.c:1254
+#, fuzzy
+msgid "mins"
+msgstr "5 minuts"
+
+#: ../src/appointment.c:1189
 #, fuzzy
 msgid "Availability"
 msgstr "Disponibilitat"
 
-#: ../src/appointment.c:1049
+#: ../src/appointment.c:1196
 #, fuzzy
 msgid "Note"
 msgstr "Nota"
 
-#: ../src/appointment.c:1078 ../src/appointment.c:1087
+#: ../src/appointment.c:1225 ../src/appointment.c:1234
 #, fuzzy
 msgid "Alarm"
 msgstr "Alarma"
 
-#: ../src/appointment.c:1105
+#: ../src/appointment.c:1272
 #, fuzzy
 msgid "Repeat alarm sound"
 msgstr "Repeteix alarma sonora"
+
+#: ../src/appointment.c:1279 ../src/appointment.c:1288
+#, fuzzy
+msgid "Recurrence"
+msgstr "Periodicitat"
+
+#: ../src/appointment.c:1296
+msgid "Repeat forever"
+msgstr ""
+
+#: ../src/appointment.c:1304
+#, fuzzy
+msgid "Repeat "
+msgstr "Recupera"
+
+#: ../src/appointment.c:1309
+#, fuzzy
+msgid "times"
+msgstr "Hora"
 
 #. date only appointment
 #: ../src/event-list.c:200
@@ -502,12 +487,7 @@ msgstr "Títol"
 msgid "uid"
 msgstr "uid"
 
-#: ../src/functions.c:76 ../src/functions.c:83
-#, fuzzy
-msgid "  "
-msgstr "  "
-
-#: ../src/ical-code.c:609
+#: ../src/ical-code.c:563
 #, fuzzy
 msgid "Orage default alarm"
 msgstr "Alarma per omisió"
@@ -598,3 +578,35 @@ msgstr "Calendari"
 #, fuzzy
 msgid "Desktop calendar"
 msgstr "Calendari d'escriptori"
+
+#, fuzzy
+#~ msgid "15 minutes"
+#~ msgstr "15 minuts"
+
+#, fuzzy
+#~ msgid "30 minutes"
+#~ msgstr "30 minuts"
+
+#, fuzzy
+#~ msgid "45 minutes"
+#~ msgstr "45 minuts"
+
+#, fuzzy
+#~ msgid "1 hour"
+#~ msgstr "1 hora"
+
+#, fuzzy
+#~ msgid "4 hours"
+#~ msgstr "4 hores"
+
+#, fuzzy
+#~ msgid "8 hours"
+#~ msgstr "8 hores"
+
+#, fuzzy
+#~ msgid "1 day"
+#~ msgstr "1 dia"
+
+#, fuzzy
+#~ msgid "  "
+#~ msgstr "  "

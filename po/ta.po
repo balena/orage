@@ -5,9 +5,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: orage 4.3.2.2svn\n"
+"Project-Id-Version: orage 4.3.2.5svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-12-10 09:29+0900\n"
+"POT-Creation-Date: 2005-12-20 20:34+0900\n"
 "PO-Revision-Date: 2005-09-14 01:22+0900\n"
 "Last-Translator: Dinesh Nadarajah <dinesh_list@sbcglobal.net>\n"
 "Language-Team: Tamil <tamillinux-user@lists.sourceforge.net>\n"
@@ -17,7 +17,7 @@ msgstr ""
 
 #. Create file chooser
 #: ../plugin/xfcalendar_plugin.c:228 ../plugin/xfcalendar_plugin.c:263
-#: ../src/appointment.c:192 ../src/mainbox.c:118
+#: ../src/appointment.c:251 ../src/mainbox.c:118
 msgid "Select a file..."
 msgstr ""
 
@@ -26,7 +26,7 @@ msgstr ""
 msgid "Calendar files"
 msgstr "XFநால்-காட்டி"
 
-#: ../plugin/xfcalendar_plugin.c:239 ../src/appointment.c:206
+#: ../plugin/xfcalendar_plugin.c:239 ../src/appointment.c:265
 #: ../src/mainbox.c:129
 msgid "All Files"
 msgstr ""
@@ -115,7 +115,7 @@ msgstr ""
 msgid "1 year"
 msgstr ""
 
-#: ../plugin/xfcalendar_plugin.c:467 ../src/appointment.c:1094
+#: ../plugin/xfcalendar_plugin.c:467 ../src/appointment.c:1261
 #, fuzzy
 msgid "Sound"
 msgstr "ஞாயிறு"
@@ -124,7 +124,7 @@ msgstr "ஞாயிறு"
 msgid "Application"
 msgstr ""
 
-#: ../plugin/xfcalendar_plugin.c:534 ../src/appointment.c:121
+#: ../plugin/xfcalendar_plugin.c:534 ../src/appointment.c:180
 #: ../src/mainbox.c:344 ../xfcalendar.desktop.in.h:3
 msgid "Orage"
 msgstr ""
@@ -143,216 +143,206 @@ msgid "Contributor"
 msgstr ""
 
 #. Get the start date and time and timezone
-#: ../src/appointment.c:97 ../src/appointment.c:308 ../src/appointment.c:608
+#: ../src/appointment.c:97 ../src/appointment.c:355 ../src/appointment.c:683
 msgid "%m/%d/%Y"
 msgstr ""
 
-#: ../src/appointment.c:200
+#: ../src/appointment.c:259
 msgid "Sound Files"
 msgstr ""
 
-#: ../src/appointment.c:259 ../src/appointment.c:393 ../src/appointment.c:405
-#: ../src/appointment.c:506 ../src/event-list.c:590
+#: ../src/appointment.c:306 ../src/appointment.c:469 ../src/appointment.c:481
+#: ../src/appointment.c:581 ../src/event-list.c:590
 msgid "Warning"
 msgstr "எச்சரிக்கை"
 
-#: ../src/appointment.c:261
+#: ../src/appointment.c:308
 msgid "The appointment information has been modified."
 msgstr ""
 
-#: ../src/appointment.c:262 ../src/appointment.c:509 ../src/event-list.c:593
+#: ../src/appointment.c:309 ../src/appointment.c:584 ../src/event-list.c:593
 msgid "Do you want to continue?"
 msgstr ""
 
-#: ../src/appointment.c:395
+#: ../src/appointment.c:471
 msgid "A time value is wrong."
 msgstr ""
 
-#: ../src/appointment.c:396
+#: ../src/appointment.c:472
 msgid "Time values must be written 'hh:mm', for instance '09:36' or '15:23'."
 msgstr ""
 
-#: ../src/appointment.c:407
+#: ../src/appointment.c:483
 msgid "The end of this appointment is earlier than the beginning."
 msgstr ""
 
-#: ../src/appointment.c:508
+#: ../src/appointment.c:583
 msgid "This appointment will be permanently removed."
 msgstr ""
 
-#: ../src/appointment.c:613
+#: ../src/appointment.c:688
 msgid "Pick the date"
 msgstr ""
 
-#: ../src/appointment.c:615 ../src/event-list.c:703 ../src/tray_icon.c:107
+#: ../src/appointment.c:690 ../src/event-list.c:703 ../src/tray_icon.c:107
 msgid "Today"
 msgstr "இன்று"
 
+#: ../src/appointment.c:774 ../src/appointment.c:1122
+msgid "Location"
+msgstr ""
+
 #. show it
-#: ../src/appointment.c:704
+#: ../src/appointment.c:779
 msgid "Pick timezone"
 msgstr ""
 
-#: ../src/appointment.c:707
+#: ../src/appointment.c:782
 msgid "UTC"
 msgstr ""
 
-#: ../src/appointment.c:708
+#: ../src/appointment.c:783
 msgid "floating"
 msgstr ""
 
-#: ../src/appointment.c:823
+#. window title
+#: ../src/appointment.c:904
 #, fuzzy
 msgid "New appointment - Orage"
 msgstr "முன்னேற்பாடு"
 
-#: ../src/appointment.c:891
+#: ../src/appointment.c:1025
 msgid "Free"
 msgstr ""
 
-#: ../src/appointment.c:891
+#: ../src/appointment.c:1025
 msgid "Busy"
 msgstr ""
 
-#: ../src/appointment.c:893 ../src/appointment.c:895
+#: ../src/appointment.c:1027
 msgid "None"
 msgstr ""
 
-#: ../src/appointment.c:893
+#: ../src/appointment.c:1027
 msgid "Daily"
 msgstr ""
 
-#: ../src/appointment.c:893
+#: ../src/appointment.c:1027
 msgid "Weekly"
 msgstr ""
 
-#: ../src/appointment.c:893
+#: ../src/appointment.c:1027
 #, fuzzy
 msgid "Monthly"
 msgstr "திங்கள்"
 
-#: ../src/appointment.c:893
+#: ../src/appointment.c:1027
 msgid "Yearly"
-msgstr ""
-
-#: ../src/appointment.c:895
-msgid "5 minutes"
-msgstr ""
-
-#: ../src/appointment.c:895
-msgid "15 minutes"
-msgstr ""
-
-#: ../src/appointment.c:895
-msgid "30 minutes"
-msgstr ""
-
-#: ../src/appointment.c:896
-msgid "45 minutes"
-msgstr ""
-
-#: ../src/appointment.c:896
-msgid "1 hour"
-msgstr ""
-
-#: ../src/appointment.c:896
-msgid "2 hours"
-msgstr ""
-
-#: ../src/appointment.c:896
-msgid "4 hours"
-msgstr ""
-
-#: ../src/appointment.c:897
-msgid "8 hours"
-msgstr ""
-
-#: ../src/appointment.c:897
-msgid "1 day"
-msgstr ""
-
-#: ../src/appointment.c:897
-msgid "2 days"
 msgstr ""
 
 #. File menu stuff
 #. File menu
-#: ../src/appointment.c:931 ../src/event-list.c:659 ../src/mainbox.c:367
+#: ../src/appointment.c:1053 ../src/event-list.c:659 ../src/mainbox.c:367
 msgid "_File"
 msgstr "_கோப்பு"
 
-#: ../src/appointment.c:935
+#: ../src/appointment.c:1057
 msgid "Sav_e and close"
 msgstr ""
 
 #. add event copying and day cleaning
-#: ../src/appointment.c:942 ../src/event-list.c:665
+#: ../src/appointment.c:1064 ../src/event-list.c:665
 msgid "D_uplicate"
 msgstr ""
 
 #. Add buttons to the toolbar
-#: ../src/appointment.c:962
+#: ../src/appointment.c:1084
 msgid "Save"
 msgstr "சேமிக்கவும்"
 
-#: ../src/appointment.c:964 ../src/appointment.c:965
+#: ../src/appointment.c:1086 ../src/appointment.c:1087
 msgid "Save and close"
 msgstr ""
 
-#: ../src/appointment.c:970
+#: ../src/appointment.c:1092
 msgid "Revert"
 msgstr ""
 
-#: ../src/appointment.c:972 ../src/appointment.c:973 ../src/event-list.c:711
+#: ../src/appointment.c:1094 ../src/appointment.c:1095 ../src/event-list.c:711
 msgid "Duplicate"
 msgstr ""
 
-#: ../src/appointment.c:977
+#: ../src/appointment.c:1099
 msgid "Delete"
 msgstr ""
 
-#: ../src/appointment.c:985
+#: ../src/appointment.c:1107
 msgid "General"
 msgstr ""
 
-#: ../src/appointment.c:994
+#: ../src/appointment.c:1116
 msgid "Title "
 msgstr ""
 
-#: ../src/appointment.c:1000
-msgid "Location"
-msgstr ""
-
-#: ../src/appointment.c:1006
+#: ../src/appointment.c:1128
 msgid "All day event"
 msgstr ""
 
-#: ../src/appointment.c:1011
+#: ../src/appointment.c:1133
 msgid "Start"
 msgstr ""
 
-#: ../src/appointment.c:1023
+#: ../src/appointment.c:1146
 msgid "End"
 msgstr ""
 
-#: ../src/appointment.c:1035
-msgid "Recurrence"
+#: ../src/appointment.c:1160
+msgid "Duration"
 msgstr ""
 
-#: ../src/appointment.c:1042
+#: ../src/appointment.c:1167 ../src/appointment.c:1239
+#, fuzzy
+msgid "days"
+msgstr "இன்று"
+
+#: ../src/appointment.c:1175 ../src/appointment.c:1247
+msgid "hours"
+msgstr ""
+
+#: ../src/appointment.c:1183 ../src/appointment.c:1254
+msgid "mins"
+msgstr ""
+
+#: ../src/appointment.c:1189
 msgid "Availability"
 msgstr ""
 
-#: ../src/appointment.c:1049
+#: ../src/appointment.c:1196
 msgid "Note"
 msgstr ""
 
-#: ../src/appointment.c:1078 ../src/appointment.c:1087
+#: ../src/appointment.c:1225 ../src/appointment.c:1234
 msgid "Alarm"
 msgstr ""
 
-#: ../src/appointment.c:1105
+#: ../src/appointment.c:1272
 msgid "Repeat alarm sound"
+msgstr ""
+
+#: ../src/appointment.c:1279 ../src/appointment.c:1288
+msgid "Recurrence"
+msgstr ""
+
+#: ../src/appointment.c:1296
+msgid "Repeat forever"
+msgstr ""
+
+#: ../src/appointment.c:1304
+msgid "Repeat "
+msgstr ""
+
+#: ../src/appointment.c:1309
+msgid "times"
 msgstr ""
 
 #. date only appointment
@@ -418,11 +408,7 @@ msgstr ""
 msgid "uid"
 msgstr ""
 
-#: ../src/functions.c:76 ../src/functions.c:83
-msgid "  "
-msgstr ""
-
-#: ../src/ical-code.c:609
+#: ../src/ical-code.c:563
 msgid "Orage default alarm"
 msgstr ""
 

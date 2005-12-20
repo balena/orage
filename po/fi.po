@@ -6,9 +6,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: orage 4.3.2.2svn\n"
+"Project-Id-Version: orage 4.3.2.5svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-12-10 09:29+0900\n"
+"POT-Creation-Date: 2005-12-20 20:34+0900\n"
 "PO-Revision-Date: 2005-09-14 01:49+0900\n"
 "Last-Translator: Jari Rahkonen <jari.rahkonen@pp1.inet.fi>\n"
 "Language-Team: Finnish <translation-team-fi@lists.sourceforge.net>\n"
@@ -18,7 +18,7 @@ msgstr ""
 
 #. Create file chooser
 #: ../plugin/xfcalendar_plugin.c:228 ../plugin/xfcalendar_plugin.c:263
-#: ../src/appointment.c:192 ../src/mainbox.c:118
+#: ../src/appointment.c:251 ../src/mainbox.c:118
 msgid "Select a file..."
 msgstr "Valitse tiedosto..."
 
@@ -27,7 +27,7 @@ msgstr "Valitse tiedosto..."
 msgid "Calendar files"
 msgstr "Kalenteri"
 
-#: ../plugin/xfcalendar_plugin.c:239 ../src/appointment.c:206
+#: ../plugin/xfcalendar_plugin.c:239 ../src/appointment.c:265
 #: ../src/mainbox.c:129
 msgid "All Files"
 msgstr "Kaikki tiedostot"
@@ -120,7 +120,7 @@ msgstr ""
 msgid "1 year"
 msgstr ""
 
-#: ../plugin/xfcalendar_plugin.c:467 ../src/appointment.c:1094
+#: ../plugin/xfcalendar_plugin.c:467 ../src/appointment.c:1261
 msgid "Sound"
 msgstr "Ääni"
 
@@ -129,7 +129,7 @@ msgstr "Ääni"
 msgid "Application"
 msgstr "Sovellus"
 
-#: ../plugin/xfcalendar_plugin.c:534 ../src/appointment.c:121
+#: ../plugin/xfcalendar_plugin.c:534 ../src/appointment.c:180
 #: ../src/mainbox.c:344 ../xfcalendar.desktop.in.h:3
 msgid "Orage"
 msgstr ""
@@ -148,218 +148,213 @@ msgid "Contributor"
 msgstr "Avustava kehittäjä"
 
 #. Get the start date and time and timezone
-#: ../src/appointment.c:97 ../src/appointment.c:308 ../src/appointment.c:608
+#: ../src/appointment.c:97 ../src/appointment.c:355 ../src/appointment.c:683
 msgid "%m/%d/%Y"
 msgstr "%d.%m.%Y"
 
-#: ../src/appointment.c:200
+#: ../src/appointment.c:259
 msgid "Sound Files"
 msgstr "Äänitiedostot"
 
-#: ../src/appointment.c:259 ../src/appointment.c:393 ../src/appointment.c:405
-#: ../src/appointment.c:506 ../src/event-list.c:590
+#: ../src/appointment.c:306 ../src/appointment.c:469 ../src/appointment.c:481
+#: ../src/appointment.c:581 ../src/event-list.c:590
 msgid "Warning"
 msgstr "Varoitus"
 
-#: ../src/appointment.c:261
+#: ../src/appointment.c:308
 msgid "The appointment information has been modified."
 msgstr "Tapahtumatiedot ovat muuttuneet."
 
-#: ../src/appointment.c:262 ../src/appointment.c:509 ../src/event-list.c:593
+#: ../src/appointment.c:309 ../src/appointment.c:584 ../src/event-list.c:593
 msgid "Do you want to continue?"
 msgstr "Haluatko jatkaa?"
 
-#: ../src/appointment.c:395
+#: ../src/appointment.c:471
 msgid "A time value is wrong."
 msgstr "Virheellinen aika."
 
-#: ../src/appointment.c:396
+#: ../src/appointment.c:472
 msgid "Time values must be written 'hh:mm', for instance '09:36' or '15:23'."
 msgstr "Aika täytyy merkitä muodossa 'hh:mm', esimerkiksi '09:36' tai '15:23'."
 
-#: ../src/appointment.c:407
+#: ../src/appointment.c:483
 msgid "The end of this appointment is earlier than the beginning."
 msgstr "Tapahtuman päättymisaika on ennen alkamisaikaa."
 
-#: ../src/appointment.c:508
+#: ../src/appointment.c:583
 msgid "This appointment will be permanently removed."
 msgstr "Tapahtuma poistetaan pysyvästi."
 
-#: ../src/appointment.c:613
+#: ../src/appointment.c:688
 msgid "Pick the date"
 msgstr ""
 
-#: ../src/appointment.c:615 ../src/event-list.c:703 ../src/tray_icon.c:107
+#: ../src/appointment.c:690 ../src/event-list.c:703 ../src/tray_icon.c:107
 msgid "Today"
 msgstr "Tämä päivä"
 
+#: ../src/appointment.c:774 ../src/appointment.c:1122
+msgid "Location"
+msgstr "Paikka"
+
 #. show it
-#: ../src/appointment.c:704
+#: ../src/appointment.c:779
 msgid "Pick timezone"
 msgstr ""
 
-#: ../src/appointment.c:707
+#: ../src/appointment.c:782
 msgid "UTC"
 msgstr ""
 
-#: ../src/appointment.c:708
+#: ../src/appointment.c:783
 #, fuzzy
 msgid "floating"
 msgstr "Paikka"
 
-#: ../src/appointment.c:823
+#. window title
+#: ../src/appointment.c:904
 #, fuzzy
 msgid "New appointment - Orage"
 msgstr "Uusi tapahtuma"
 
-#: ../src/appointment.c:891
+#: ../src/appointment.c:1025
 msgid "Free"
 msgstr "Vapaa"
 
-#: ../src/appointment.c:891
+#: ../src/appointment.c:1025
 msgid "Busy"
 msgstr "Varattu"
 
-#: ../src/appointment.c:893 ../src/appointment.c:895
+#: ../src/appointment.c:1027
 msgid "None"
 msgstr "Ei mitään"
 
-#: ../src/appointment.c:893
+#: ../src/appointment.c:1027
 msgid "Daily"
 msgstr "Päivittäin"
 
-#: ../src/appointment.c:893
+#: ../src/appointment.c:1027
 msgid "Weekly"
 msgstr "Viikoittain"
 
-#: ../src/appointment.c:893
+#: ../src/appointment.c:1027
 msgid "Monthly"
 msgstr "Kuukausittain"
 
-#: ../src/appointment.c:893
+#: ../src/appointment.c:1027
 msgid "Yearly"
 msgstr ""
 
-#: ../src/appointment.c:895
-msgid "5 minutes"
-msgstr "5 minuuttia"
-
-#: ../src/appointment.c:895
-msgid "15 minutes"
-msgstr "15 minuuttia"
-
-#: ../src/appointment.c:895
-msgid "30 minutes"
-msgstr "30 minuuttia"
-
-#: ../src/appointment.c:896
-msgid "45 minutes"
-msgstr "45 minuuttia"
-
-#: ../src/appointment.c:896
-msgid "1 hour"
-msgstr "1 tunti"
-
-#: ../src/appointment.c:896
-msgid "2 hours"
-msgstr "2 tuntia"
-
-#: ../src/appointment.c:896
-msgid "4 hours"
-msgstr "4 tuntia"
-
-#: ../src/appointment.c:897
-msgid "8 hours"
-msgstr "8 tuntia"
-
-#: ../src/appointment.c:897
-msgid "1 day"
-msgstr "1 päivä"
-
-#: ../src/appointment.c:897
-msgid "2 days"
-msgstr "2 päivää"
-
 #. File menu stuff
 #. File menu
-#: ../src/appointment.c:931 ../src/event-list.c:659 ../src/mainbox.c:367
+#: ../src/appointment.c:1053 ../src/event-list.c:659 ../src/mainbox.c:367
 msgid "_File"
 msgstr "_Tiedosto"
 
-#: ../src/appointment.c:935
+#: ../src/appointment.c:1057
 msgid "Sav_e and close"
 msgstr "Ta_llenna ja sulje"
 
 #. add event copying and day cleaning
-#: ../src/appointment.c:942 ../src/event-list.c:665
+#: ../src/appointment.c:1064 ../src/event-list.c:665
 msgid "D_uplicate"
 msgstr "K_opioi"
 
 #. Add buttons to the toolbar
-#: ../src/appointment.c:962
+#: ../src/appointment.c:1084
 msgid "Save"
 msgstr "Tallenna"
 
-#: ../src/appointment.c:964 ../src/appointment.c:965
+#: ../src/appointment.c:1086 ../src/appointment.c:1087
 msgid "Save and close"
 msgstr "Tallenna ja sulje"
 
-#: ../src/appointment.c:970
+#: ../src/appointment.c:1092
 msgid "Revert"
 msgstr "Palauta"
 
-#: ../src/appointment.c:972 ../src/appointment.c:973 ../src/event-list.c:711
+#: ../src/appointment.c:1094 ../src/appointment.c:1095 ../src/event-list.c:711
 msgid "Duplicate"
 msgstr "Kopioi"
 
-#: ../src/appointment.c:977
+#: ../src/appointment.c:1099
 msgid "Delete"
 msgstr "Poista"
 
-#: ../src/appointment.c:985
+#: ../src/appointment.c:1107
 msgid "General"
 msgstr "Yleiset"
 
-#: ../src/appointment.c:994
+#: ../src/appointment.c:1116
 msgid "Title "
 msgstr "Nimi "
 
-#: ../src/appointment.c:1000
-msgid "Location"
-msgstr "Paikka"
-
-#: ../src/appointment.c:1006
+#: ../src/appointment.c:1128
 msgid "All day event"
 msgstr "Kokopäiväinen tapahtuma"
 
-#: ../src/appointment.c:1011
+#: ../src/appointment.c:1133
 msgid "Start"
 msgstr "Alkaa"
 
-#: ../src/appointment.c:1023
+#: ../src/appointment.c:1146
 msgid "End"
 msgstr "Päättyy"
 
-#: ../src/appointment.c:1035
+#: ../src/appointment.c:1160
+#, fuzzy
+msgid "Duration"
+msgstr "Paikka"
+
+#: ../src/appointment.c:1167 ../src/appointment.c:1239
+#, fuzzy
+msgid "days"
+msgstr "2 päivää"
+
+#: ../src/appointment.c:1175 ../src/appointment.c:1247
+#, fuzzy
+msgid "hours"
+msgstr "2 tuntia"
+
+#: ../src/appointment.c:1183 ../src/appointment.c:1254
+#, fuzzy
+msgid "mins"
+msgstr "5 minuuttia"
+
+#: ../src/appointment.c:1189
+msgid "Availability"
+msgstr "Saatavuus"
+
+#: ../src/appointment.c:1196
+msgid "Note"
+msgstr "Huomioitavaa"
+
+#: ../src/appointment.c:1225 ../src/appointment.c:1234
+msgid "Alarm"
+msgstr "Hälytys"
+
+#: ../src/appointment.c:1272
+msgid "Repeat alarm sound"
+msgstr "Toista hälytysääntä"
+
+#: ../src/appointment.c:1279 ../src/appointment.c:1288
 #, fuzzy
 msgid "Recurrence"
 msgstr "Toisto"
 
-#: ../src/appointment.c:1042
-msgid "Availability"
-msgstr "Saatavuus"
+#: ../src/appointment.c:1296
+msgid "Repeat forever"
+msgstr ""
 
-#: ../src/appointment.c:1049
-msgid "Note"
-msgstr "Huomioitavaa"
+#: ../src/appointment.c:1304
+#, fuzzy
+msgid "Repeat "
+msgstr "Palauta"
 
-#: ../src/appointment.c:1078 ../src/appointment.c:1087
-msgid "Alarm"
-msgstr "Hälytys"
-
-#: ../src/appointment.c:1105
-msgid "Repeat alarm sound"
-msgstr "Toista hälytysääntä"
+#: ../src/appointment.c:1309
+#, fuzzy
+msgid "times"
+msgstr "Aika"
 
 #. date only appointment
 #: ../src/event-list.c:200
@@ -425,11 +420,7 @@ msgstr "Nimi"
 msgid "uid"
 msgstr "uid"
 
-#: ../src/functions.c:76 ../src/functions.c:83
-msgid "  "
-msgstr "  "
-
-#: ../src/ical-code.c:609
+#: ../src/ical-code.c:563
 #, fuzzy
 msgid "Orage default alarm"
 msgstr "Xfkalenterin oletushälytys"
@@ -504,3 +495,27 @@ msgstr "Kalenteri"
 #: ../xfcalendar.desktop.in.h:2
 msgid "Desktop calendar"
 msgstr "Työpöytäkalenteri"
+
+#~ msgid "15 minutes"
+#~ msgstr "15 minuuttia"
+
+#~ msgid "30 minutes"
+#~ msgstr "30 minuuttia"
+
+#~ msgid "45 minutes"
+#~ msgstr "45 minuuttia"
+
+#~ msgid "1 hour"
+#~ msgstr "1 tunti"
+
+#~ msgid "4 hours"
+#~ msgstr "4 tuntia"
+
+#~ msgid "8 hours"
+#~ msgstr "8 tuntia"
+
+#~ msgid "1 day"
+#~ msgstr "1 päivä"
+
+#~ msgid "  "
+#~ msgstr "  "

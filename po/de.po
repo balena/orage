@@ -6,9 +6,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: orage 4.3.2.2svn\n"
+"Project-Id-Version: orage 4.3.2.5svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-12-10 09:29+0900\n"
+"POT-Creation-Date: 2005-12-20 20:34+0900\n"
 "PO-Revision-Date: 2005-10-09 19:23+0900\n"
 "Last-Translator: Fabian Nowak <timystery@arcor.de>\n"
 "Language-Team: German <de@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 
 #. Create file chooser
 #: ../plugin/xfcalendar_plugin.c:228 ../plugin/xfcalendar_plugin.c:263
-#: ../src/appointment.c:192 ../src/mainbox.c:118
+#: ../src/appointment.c:251 ../src/mainbox.c:118
 msgid "Select a file..."
 msgstr "Datei auswählen..."
 
@@ -26,7 +26,7 @@ msgstr "Datei auswählen..."
 msgid "Calendar files"
 msgstr "Kalenderdateien"
 
-#: ../plugin/xfcalendar_plugin.c:239 ../src/appointment.c:206
+#: ../plugin/xfcalendar_plugin.c:239 ../src/appointment.c:265
 #: ../src/mainbox.c:129
 msgid "All Files"
 msgstr "Alle Dateien"
@@ -111,7 +111,7 @@ msgstr "6 Monate"
 msgid "1 year"
 msgstr "1 Jahr"
 
-#: ../plugin/xfcalendar_plugin.c:467 ../src/appointment.c:1094
+#: ../plugin/xfcalendar_plugin.c:467 ../src/appointment.c:1261
 msgid "Sound"
 msgstr "Klang"
 
@@ -119,7 +119,7 @@ msgstr "Klang"
 msgid "Application"
 msgstr "Anwendung"
 
-#: ../plugin/xfcalendar_plugin.c:534 ../src/appointment.c:121
+#: ../plugin/xfcalendar_plugin.c:534 ../src/appointment.c:180
 #: ../src/mainbox.c:344 ../xfcalendar.desktop.in.h:3
 msgid "Orage"
 msgstr "Orage"
@@ -138,217 +138,212 @@ msgid "Contributor"
 msgstr "Mitwirkender"
 
 #. Get the start date and time and timezone
-#: ../src/appointment.c:97 ../src/appointment.c:308 ../src/appointment.c:608
+#: ../src/appointment.c:97 ../src/appointment.c:355 ../src/appointment.c:683
 msgid "%m/%d/%Y"
 msgstr "%d. %m. %Y"
 
-#: ../src/appointment.c:200
+#: ../src/appointment.c:259
 msgid "Sound Files"
 msgstr "Klangdateien"
 
-#: ../src/appointment.c:259 ../src/appointment.c:393 ../src/appointment.c:405
-#: ../src/appointment.c:506 ../src/event-list.c:590
+#: ../src/appointment.c:306 ../src/appointment.c:469 ../src/appointment.c:481
+#: ../src/appointment.c:581 ../src/event-list.c:590
 msgid "Warning"
 msgstr "Warnung"
 
-#: ../src/appointment.c:261
+#: ../src/appointment.c:308
 msgid "The appointment information has been modified."
 msgstr "Die Termin-Information wurde geändert."
 
-#: ../src/appointment.c:262 ../src/appointment.c:509 ../src/event-list.c:593
+#: ../src/appointment.c:309 ../src/appointment.c:584 ../src/event-list.c:593
 msgid "Do you want to continue?"
 msgstr "Fortfahren?"
 
-#: ../src/appointment.c:395
+#: ../src/appointment.c:471
 msgid "A time value is wrong."
 msgstr "Ein Zeitwert ist falsch."
 
-#: ../src/appointment.c:396
+#: ../src/appointment.c:472
 msgid "Time values must be written 'hh:mm', for instance '09:36' or '15:23'."
 msgstr ""
 "Zeitwerte müssen in 'hh:mm' eingegeben werden, z.B. '09:36' oder '15:23'."
 
-#: ../src/appointment.c:407
+#: ../src/appointment.c:483
 msgid "The end of this appointment is earlier than the beginning."
 msgstr "Das Ende dieses Termins liegt vor dem Beginn."
 
-#: ../src/appointment.c:508
+#: ../src/appointment.c:583
 msgid "This appointment will be permanently removed."
 msgstr "Dieser Termin wird endgültig gelöscht."
 
-#: ../src/appointment.c:613
+#: ../src/appointment.c:688
 msgid "Pick the date"
 msgstr ""
 
-#: ../src/appointment.c:615 ../src/event-list.c:703 ../src/tray_icon.c:107
+#: ../src/appointment.c:690 ../src/event-list.c:703 ../src/tray_icon.c:107
 msgid "Today"
 msgstr "Heute"
 
+#: ../src/appointment.c:774 ../src/appointment.c:1122
+msgid "Location"
+msgstr "Ort"
+
 #. show it
-#: ../src/appointment.c:704
+#: ../src/appointment.c:779
 msgid "Pick timezone"
 msgstr ""
 
-#: ../src/appointment.c:707
+#: ../src/appointment.c:782
 msgid "UTC"
 msgstr ""
 
-#: ../src/appointment.c:708
+#: ../src/appointment.c:783
 #, fuzzy
 msgid "floating"
 msgstr "Ort"
 
-#: ../src/appointment.c:823
+#. window title
+#: ../src/appointment.c:904
 msgid "New appointment - Orage"
 msgstr "Neuer Termin - Orage"
 
-#: ../src/appointment.c:891
+#: ../src/appointment.c:1025
 msgid "Free"
 msgstr "Frei"
 
-#: ../src/appointment.c:891
+#: ../src/appointment.c:1025
 msgid "Busy"
 msgstr "Beschäftigt"
 
-#: ../src/appointment.c:893 ../src/appointment.c:895
+#: ../src/appointment.c:1027
 msgid "None"
 msgstr "Keiner"
 
-#: ../src/appointment.c:893
+#: ../src/appointment.c:1027
 msgid "Daily"
 msgstr "Täglich"
 
-#: ../src/appointment.c:893
+#: ../src/appointment.c:1027
 msgid "Weekly"
 msgstr "Wöchentlich"
 
-#: ../src/appointment.c:893
+#: ../src/appointment.c:1027
 msgid "Monthly"
 msgstr "Monatlich"
 
-#: ../src/appointment.c:893
+#: ../src/appointment.c:1027
 msgid "Yearly"
 msgstr ""
 
-#: ../src/appointment.c:895
-msgid "5 minutes"
-msgstr "5 Minuten"
-
-#: ../src/appointment.c:895
-msgid "15 minutes"
-msgstr "15 Minuten"
-
-#: ../src/appointment.c:895
-msgid "30 minutes"
-msgstr "30 Minuten"
-
-#: ../src/appointment.c:896
-msgid "45 minutes"
-msgstr "45 Minuten"
-
-#: ../src/appointment.c:896
-msgid "1 hour"
-msgstr "1 Stunde"
-
-#: ../src/appointment.c:896
-msgid "2 hours"
-msgstr "2 Stunden"
-
-#: ../src/appointment.c:896
-msgid "4 hours"
-msgstr "4 Stunden"
-
-#: ../src/appointment.c:897
-msgid "8 hours"
-msgstr "6 Stunden"
-
-#: ../src/appointment.c:897
-msgid "1 day"
-msgstr "1 Tag"
-
-#: ../src/appointment.c:897
-msgid "2 days"
-msgstr "2 Tage"
-
 #. File menu stuff
 #. File menu
-#: ../src/appointment.c:931 ../src/event-list.c:659 ../src/mainbox.c:367
+#: ../src/appointment.c:1053 ../src/event-list.c:659 ../src/mainbox.c:367
 msgid "_File"
 msgstr "_Datei"
 
-#: ../src/appointment.c:935
+#: ../src/appointment.c:1057
 msgid "Sav_e and close"
 msgstr "Sp_eichern und schließen"
 
 #. add event copying and day cleaning
-#: ../src/appointment.c:942 ../src/event-list.c:665
+#: ../src/appointment.c:1064 ../src/event-list.c:665
 msgid "D_uplicate"
 msgstr "D_uplizieren"
 
 #. Add buttons to the toolbar
-#: ../src/appointment.c:962
+#: ../src/appointment.c:1084
 msgid "Save"
 msgstr "Speichern"
 
-#: ../src/appointment.c:964 ../src/appointment.c:965
+#: ../src/appointment.c:1086 ../src/appointment.c:1087
 msgid "Save and close"
 msgstr "Speichern und schließen"
 
-#: ../src/appointment.c:970
+#: ../src/appointment.c:1092
 msgid "Revert"
 msgstr "Wiederherstellen"
 
-#: ../src/appointment.c:972 ../src/appointment.c:973 ../src/event-list.c:711
+#: ../src/appointment.c:1094 ../src/appointment.c:1095 ../src/event-list.c:711
 msgid "Duplicate"
 msgstr "Duplizieren"
 
-#: ../src/appointment.c:977
+#: ../src/appointment.c:1099
 msgid "Delete"
 msgstr "Entfernen"
 
-#: ../src/appointment.c:985
+#: ../src/appointment.c:1107
 msgid "General"
 msgstr "Allgemein"
 
-#: ../src/appointment.c:994
+#: ../src/appointment.c:1116
 msgid "Title "
 msgstr "Titel"
 
-#: ../src/appointment.c:1000
-msgid "Location"
-msgstr "Ort"
-
-#: ../src/appointment.c:1006
+#: ../src/appointment.c:1128
 msgid "All day event"
 msgstr "Ganztägige Veranstaltung"
 
-#: ../src/appointment.c:1011
+#: ../src/appointment.c:1133
 msgid "Start"
 msgstr "Beginn"
 
-#: ../src/appointment.c:1023
+#: ../src/appointment.c:1146
 msgid "End"
 msgstr "Ende"
 
-#: ../src/appointment.c:1035
-msgid "Recurrence"
-msgstr "Wiederholung"
+#: ../src/appointment.c:1160
+#, fuzzy
+msgid "Duration"
+msgstr "Ort"
 
-#: ../src/appointment.c:1042
+#: ../src/appointment.c:1167 ../src/appointment.c:1239
+#, fuzzy
+msgid "days"
+msgstr "2 Tage"
+
+#: ../src/appointment.c:1175 ../src/appointment.c:1247
+#, fuzzy
+msgid "hours"
+msgstr "2 Stunden"
+
+#: ../src/appointment.c:1183 ../src/appointment.c:1254
+#, fuzzy
+msgid "mins"
+msgstr "5 Minuten"
+
+#: ../src/appointment.c:1189
 msgid "Availability"
 msgstr "Verfügbarkeit"
 
-#: ../src/appointment.c:1049
+#: ../src/appointment.c:1196
 msgid "Note"
 msgstr "Bemerkung"
 
-#: ../src/appointment.c:1078 ../src/appointment.c:1087
+#: ../src/appointment.c:1225 ../src/appointment.c:1234
 msgid "Alarm"
 msgstr "Alarm"
 
-#: ../src/appointment.c:1105
+#: ../src/appointment.c:1272
 msgid "Repeat alarm sound"
 msgstr "Alarmklang wiederholen"
+
+#: ../src/appointment.c:1279 ../src/appointment.c:1288
+msgid "Recurrence"
+msgstr "Wiederholung"
+
+#: ../src/appointment.c:1296
+msgid "Repeat forever"
+msgstr ""
+
+#: ../src/appointment.c:1304
+#, fuzzy
+msgid "Repeat "
+msgstr "Wiederherstellen"
+
+#: ../src/appointment.c:1309
+#, fuzzy
+msgid "times"
+msgstr "Zeit"
 
 #. date only appointment
 #: ../src/event-list.c:200
@@ -413,11 +408,7 @@ msgstr "Titel"
 msgid "uid"
 msgstr "Nutzerkennung"
 
-#: ../src/functions.c:76 ../src/functions.c:83
-msgid "  "
-msgstr "  "
-
-#: ../src/ical-code.c:609
+#: ../src/ical-code.c:563
 #, fuzzy
 msgid "Orage default alarm"
 msgstr "Xfcalendar Standard-Alarm"
@@ -491,3 +482,27 @@ msgstr "Kalender"
 #: ../xfcalendar.desktop.in.h:2
 msgid "Desktop calendar"
 msgstr "Arbeitsplatz Kalender"
+
+#~ msgid "15 minutes"
+#~ msgstr "15 Minuten"
+
+#~ msgid "30 minutes"
+#~ msgstr "30 Minuten"
+
+#~ msgid "45 minutes"
+#~ msgstr "45 Minuten"
+
+#~ msgid "1 hour"
+#~ msgstr "1 Stunde"
+
+#~ msgid "4 hours"
+#~ msgstr "4 Stunden"
+
+#~ msgid "8 hours"
+#~ msgstr "6 Stunden"
+
+#~ msgid "1 day"
+#~ msgstr "1 Tag"
+
+#~ msgid "  "
+#~ msgstr "  "
