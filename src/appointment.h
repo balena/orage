@@ -154,8 +154,11 @@ typedef struct
     gchar *chosen_date;
 } appt_win;
 
+void
+fill_appt_window_times(appt_win *apptw, appt_data *appt);
+
 void 
-fill_appt_window(appt_win *appt, char *action, char *par);
+fill_appt_window(appt_win *apptw, char *action, char *par);
 
 appt_win 
 *create_appt_win(char *action, char *par, eventlist_win *el);

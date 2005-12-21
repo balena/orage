@@ -364,7 +364,7 @@ fill_appt(appt_data *appt, appt_win *apptw)
     g_sprintf(appt->starttime, XFICAL_APPT_TIME_FORMAT
             , current_t.tm_year + 1900, current_t.tm_mon + 1, current_t.tm_mday
             , current_t.tm_hour, current_t.tm_min, 0);
-     appt->start_tz_loc = (char *)gtk_button_get_label(GTK_BUTTON(apptw->appStartTimezone_button));
+     appt->start_tz_loc = (gchar *)gtk_button_get_label(GTK_BUTTON(apptw->appStartTimezone_button));
 
     /* Get the end date and time and timezone */
     current_t.tm_hour = 0;
@@ -376,12 +376,7 @@ fill_appt(appt_data *appt, appt_win *apptw)
     g_sprintf(appt->endtime, XFICAL_APPT_TIME_FORMAT
             , current_t.tm_year + 1900, current_t.tm_mon + 1, current_t.tm_mday
             , current_t.tm_hour, current_t.tm_min, 0);
-    appt->end_tz_loc = (char *)gtk_button_get_label(GTK_BUTTON(apptw->appEndTimezone_button));
-
-    if(!orage_validate_datetime(apptw->appWindow
-            , appt->starttime, appt->start_tz_loc, starttime
-            , appt->endtime,   appt->end_tz_loc,   endtime))
-        return(FALSE);
+    appt->end_tz_loc = (gchar *)gtk_button_get_label(GTK_BUTTON(apptw->appEndTimezone_button));
 
     /* Get the duration */
      appt->use_duration = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(apptw->appDur_checkbutton));
@@ -392,6 +387,9 @@ fill_appt(appt_data *appt, appt_win *apptw)
                     + gtk_spin_button_get_value_as_int(
             GTK_SPIN_BUTTON(apptw->appDur_spin_mm)) *       60
                     ;
+
+    if(!orage_validate_datetime(apptw, appt, starttime, endtime))
+        return(FALSE);
 
     /* Get the availability */
     appt->availability = gtk_combo_box_get_active((GtkComboBox *)apptw->appAvailability_cb);
@@ -458,14 +456,13 @@ orage_validate_time(gchar *str)
 }
 
 gboolean 
-orage_validate_datetime(GtkWidget *parent
-    , gchar *startdatetime, gchar *starttz, gchar *starttime
-    , gchar *enddatetime,   gchar *endtz,   gchar *endtime)
+orage_validate_datetime(appt_win *apptw, appt_data *appt
+    , gchar *starttime, gchar *endtime)
 {
     gint result;
 
     if (!orage_validate_time(starttime) || !orage_validate_time(endtime)) {
-        result = xfce_message_dialog(GTK_WINDOW(parent),
+        result = xfce_message_dialog(GTK_WINDOW(apptw->appWindow),
                                      _("Warning"),
                                      GTK_STOCK_DIALOG_WARNING,
                                      _("A time value is wrong."),
@@ -475,9 +472,8 @@ orage_validate_datetime(GtkWidget *parent
                                      NULL);
         return FALSE;
     }
-    else if (xfical_compare_times(startdatetime, starttz,
-                                  enddatetime,   endtz) > 0) {
-        result = xfce_message_dialog(GTK_WINDOW(parent),
+    if (xfical_compare_times(appt) > 0) {
+        result = xfce_message_dialog(GTK_WINDOW(apptw->appWindow),
                                      _("Warning"),
                                      GTK_STOCK_DIALOG_WARNING,
                                      _("The end of this appointment is earlier than the beginning."),
@@ -487,8 +483,10 @@ orage_validate_datetime(GtkWidget *parent
                                      NULL);
         return FALSE;
     }
-    else
+    else {
+        fill_appt_window_times(apptw, appt);
         return TRUE;
+    }
 }
 
 void
@@ -822,12 +820,84 @@ on_appStartEndTimezone_clicked_cb(GtkWidget *button, gpointer *user_data)
     gtk_widget_destroy(window);
 }
 
-void 
-fill_appt_window(appt_win *apptw, char *action, char *par)
+void
+fill_appt_window_times(appt_win *apptw, appt_data *appt)
 {
     char startdate_to_display[11], enddate_to_display[11],
          starttime_to_display[6],  endtime_to_display[6];
     int year, month, day, hours, minutes;
+    gchar *s_tz, *e_tz;
+
+    /* remember that appt->start_tz_loc points to gtl internal button label
+     * so we need to take care it does not get corrupted when we change it.
+     * and end may actually point to the same place. 
+     */
+    s_tz = g_strdup(appt->start_tz_loc);
+    e_tz = g_strdup(appt->end_tz_loc);
+    /* all day ? */
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(apptw->appAllDay_checkbutton), appt->allDay);
+
+    /* start time */
+    if (strlen(appt->starttime) > 6 ) {
+        ical_to_year_month_day_hour_minute(appt->starttime, &year, &month, &day, &hours, &minutes);
+        year_month_day_to_display(year, month, day, startdate_to_display);
+        gtk_button_set_label(GTK_BUTTON(apptw->appStartDate_button), (const gchar *)startdate_to_display);
+
+        if(hours > -1 && minutes > -1){
+            sprintf(starttime_to_display, "%02d:%02d", hours, minutes);
+            gtk_entry_set_text(GTK_ENTRY(GTK_BIN(apptw->appStartTime_comboboxentry)->child), (const gchar *)starttime_to_display);
+        }
+        if (s_tz) {
+            gtk_button_set_label(GTK_BUTTON(apptw->appStartTimezone_button), s_tz);
+            appt->start_tz_loc = (gchar *)gtk_button_get_label(GTK_BUTTON(apptw->appStartTimezone_button));
+        }
+        else
+            gtk_button_set_label(GTK_BUTTON(apptw->appStartTimezone_button), "floating");
+    }
+    else
+        g_warning("fill_appt_window: starttime wrong %s", appt->uid);
+
+    /* end time */
+    if (strlen(appt->endtime) > 6 ) {
+        ical_to_year_month_day_hour_minute(appt->endtime, &year, &month, &day, &hours, &minutes);
+
+        year_month_day_to_display(year, month, day, enddate_to_display);
+        gtk_button_set_label(GTK_BUTTON(apptw->appEndDate_button), (const gchar *)enddate_to_display);
+
+        if(hours > -1 && minutes > -1){
+            sprintf(endtime_to_display, "%02d:%02d", hours, minutes);
+            gtk_entry_set_text(GTK_ENTRY(GTK_BIN(apptw->appEndTime_comboboxentry)->child), (const gchar *)endtime_to_display);
+        }
+        if (e_tz) {
+            gtk_button_set_label(GTK_BUTTON(apptw->appEndTimezone_button), e_tz);
+            appt->end_tz_loc = (gchar *)gtk_button_get_label(GTK_BUTTON(apptw->appEndTimezone_button));
+        }
+        else
+            gtk_button_set_label(GTK_BUTTON(apptw->appEndTimezone_button), "floating");
+    }
+    else
+        g_warning("fill_appt_window: endtime wrong %s", appt->uid);
+
+    g_free(s_tz);
+    g_free(e_tz);
+
+    /* duration */
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(apptw->appDur_checkbutton), appt->use_duration);
+    day = appt->duration/(24*60*60);
+    hours = (appt->duration-day*(24*60*60))/(60*60);
+    minutes = (appt->duration-day*(24*60*60)-hours*(60*60))/(60);
+    gtk_spin_button_set_value(GTK_SPIN_BUTTON(apptw->appDur_spin_dd)
+                , (gdouble)day);
+    gtk_spin_button_set_value(GTK_SPIN_BUTTON(apptw->appDur_spin_hh)
+                , (gdouble)hours);
+    gtk_spin_button_set_value(GTK_SPIN_BUTTON(apptw->appDur_spin_mm)
+                , (gdouble)minutes);
+}
+
+void 
+fill_appt_window(appt_win *apptw, char *action, char *par)
+{
+    int day, hours, minutes;
     GtkTextBuffer *tb;
     appt_data *appt=NULL;
     struct tm *t;
@@ -909,57 +979,7 @@ fill_appt_window(appt_win *apptw, char *action, char *par)
     /* location */
     gtk_entry_set_text(GTK_ENTRY(apptw->appLocation_entry), (appt->location ? appt->location : ""));
 
-    /* all day ? */
-    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(apptw->appAllDay_checkbutton), appt->allDay);
-
-    /* start time */
-    if (strlen(appt->starttime) > 6 ) {
-        ical_to_year_month_day_hour_minute(appt->starttime, &year, &month, &day, &hours, &minutes);
-        year_month_day_to_display(year, month, day, startdate_to_display);
-        gtk_button_set_label(GTK_BUTTON(apptw->appStartDate_button), (const gchar *)startdate_to_display);
-
-        if(hours > -1 && minutes > -1){
-            sprintf(starttime_to_display, "%02d:%02d", hours, minutes);
-            gtk_entry_set_text(GTK_ENTRY(GTK_BIN(apptw->appStartTime_comboboxentry)->child), (const gchar *)starttime_to_display);
-        }
-        if (appt->start_tz_loc)
-            gtk_button_set_label(GTK_BUTTON(apptw->appStartTimezone_button), (const gchar *)appt->start_tz_loc);
-        else
-            gtk_button_set_label(GTK_BUTTON(apptw->appStartTimezone_button), "floating");
-    }
-    else
-        g_warning("fill_appt_window: starttime wrong %s", appt->uid);
-
-    /* end time */
-    if (strlen(appt->endtime) > 6 ) {
-        ical_to_year_month_day_hour_minute(appt->endtime, &year, &month, &day, &hours, &minutes);
-
-        year_month_day_to_display(year, month, day, enddate_to_display);
-        gtk_button_set_label(GTK_BUTTON(apptw->appEndDate_button), (const gchar *)enddate_to_display);
-
-        if(hours > -1 && minutes > -1){
-            sprintf(endtime_to_display, "%02d:%02d", hours, minutes);
-            gtk_entry_set_text(GTK_ENTRY(GTK_BIN(apptw->appEndTime_comboboxentry)->child), (const gchar *)endtime_to_display);
-        }
-        if (appt->end_tz_loc)
-            gtk_button_set_label(GTK_BUTTON(apptw->appEndTimezone_button), (const gchar *)appt->end_tz_loc);
-        else
-            gtk_button_set_label(GTK_BUTTON(apptw->appEndTimezone_button), "floating");
-    }
-    else
-        g_warning("fill_appt_window: endtime wrong %s", appt->uid);
-
-    /* duration */
-    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(apptw->appDur_checkbutton), appt->use_duration);
-    day = appt->duration/(24*60*60);
-    hours = (appt->duration-day*(24*60*60))/(60*60);
-    minutes = (appt->duration-day*(24*60*60)-hours*(60*60))/(60);
-    gtk_spin_button_set_value(GTK_SPIN_BUTTON(apptw->appDur_spin_dd)
-                , (gdouble)day);
-    gtk_spin_button_set_value(GTK_SPIN_BUTTON(apptw->appDur_spin_hh)
-                , (gdouble)hours);
-    gtk_spin_button_set_value(GTK_SPIN_BUTTON(apptw->appDur_spin_mm)
-                , (gdouble)minutes);
+    fill_appt_window_times(apptw, appt);
 
     /* availability */
 	if (appt->availability != -1){

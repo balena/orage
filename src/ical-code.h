@@ -62,3 +62,5 @@ void xfical_alarm_build_list(gboolean first_list_today);
 gboolean xfical_alarm_passed(char *alarm_stime);
 
 gboolean xfical_keep_tidy(void);
+
+int xfical_compare_times(appt_data *appt);

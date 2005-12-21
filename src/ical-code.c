@@ -505,22 +505,46 @@ struct icaltimetype convert_to_zone(struct icaltimetype t, gchar *tz)
     return(wtime);
 }
 
-int xfical_compare_times(gchar *time1, gchar *tz1, gchar *time2, gchar *tz2)
+int xfical_compare_times(appt_data *appt)
 {
-    struct icaltimetype wtime1, wtime2;
-    icaltimezone *l_icaltimezone = NULL;
+    struct icaltimetype stime, etime;
+    const char *text;
+    struct icaldurationtype duration;
 
-    if (XFICAL_STR_EXISTS(time1) && XFICAL_STR_EXISTS(time2)) {
-        wtime1 = icaltime_from_string(time1);
-        wtime2 = icaltime_from_string(time2);
+    if (appt->use_duration) {
+        if (! XFICAL_STR_EXISTS(appt->starttime)) {
+            g_warning("xfical_compare_times: null start time");
+            return(0); /* should be error ! */
+        }
+        stime = icaltime_from_string(appt->starttime);
+        duration = icaldurationtype_from_int(appt->duration);
+        etime = icaltime_add(stime, duration);
+        text  = icaltime_as_ical_string(etime);
+        g_strlcpy(appt->endtime, text, 17);
+        appt->end_tz_loc = appt->start_tz_loc;
+        return(0); /* ok */
 
-        wtime1 = convert_to_zone(wtime1, tz1);
-        wtime2 = convert_to_zone(wtime2, tz2);
-        return (icaltime_compare(wtime1, wtime2));
     }
     else {
-        g_warning("xfical_compare_times: null time %s %s", time1, time2);
-        return(0); /* should be error ! */
+        if (XFICAL_STR_EXISTS(appt->starttime) 
+        &&  XFICAL_STR_EXISTS(appt->endtime)) {
+            stime = icaltime_from_string(appt->starttime);
+            etime = icaltime_from_string(appt->endtime);
+
+            stime = convert_to_zone(stime, appt->start_tz_loc);
+            stime = icaltime_convert_to_zone(stime, local_icaltimezone);
+            etime = convert_to_zone(etime, appt->end_tz_loc);
+            etime = icaltime_convert_to_zone(etime, local_icaltimezone);
+
+            duration = icaltime_subtract(etime, stime);
+            appt->duration = icaldurationtype_as_int(duration);
+            return (icaltime_compare(stime, etime));
+        }
+        else {
+            g_warning("xfical_compare_times: null time %s %s"
+                    , appt->starttime, appt->endtime);
+            return(0); /* should be error ! */
+        }
     }
 }
 
@@ -733,9 +757,9 @@ char *appt_add_internal(appt_data *appt, gboolean add, char *uid
   *           This ical id is owned by the routine. Do not deallocate it.
   *           It will be overwrittewritten by next invocation of this function.
   */
-char *xfical_appt_add(appt_data *app)
+char *xfical_appt_add(appt_data *appt)
 {
-    return(appt_add_internal(app, TRUE, NULL, icaltime_null_time()));
+    return(appt_add_internal(appt, TRUE, NULL, icaltime_null_time()));
 }
 
 void ical_appt_get_alarm_internal(icalcomponent *c,  appt_data *appt)
