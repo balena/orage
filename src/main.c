@@ -63,6 +63,8 @@ static SessionClient	*session_client = NULL;
 
 /* main window */
 CalWin *xfcal;
+gboolean show_main_menu = TRUE;
+gboolean select_always_today = FALSE;
 
 /* MCS client */
 McsClient *client = NULL;
@@ -76,7 +78,7 @@ gint pos_x = 0, pos_y = 0;
 gint event_win_size_x = 400, event_win_size_y = 200;
 
 /* List of active alarms */
-GList *alarm_list=NULL;
+GList *alarm_list = NULL;
 
 /* timezone handling */
 char *local_icaltimezone_location = NULL;
@@ -85,7 +87,7 @@ gboolean local_icaltimezone_utc = FALSE;
 static void
 raise_window()
 {
-  GdkScreen *screen;
+    GdkScreen *screen;
 
     screen = xfce_gdk_display_locate_monitor_with_pointer(NULL, NULL);
     gtk_window_set_screen(GTK_WINDOW(xfcal->mWindow)
@@ -93,58 +95,66 @@ raise_window()
     if (pos_x || pos_y)
         gtk_window_move(GTK_WINDOW(xfcal->mWindow), pos_x, pos_y);
     gtk_window_stick(GTK_WINDOW(xfcal->mWindow));
+    if (select_always_today)
+        xfcalendar_select_today(GTK_CALENDAR(xfcal->mCalendar));
     gtk_widget_show_all(xfcal->mWindow);
 }
 
 void apply_settings()
 {
-  gchar *fpath;
-  FILE *fp;
+    gchar *fpath;
+    FILE *fp;
                                                                                 
-  xfce_textdomain(GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8");
+    xfce_textdomain(GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8");
                                                                                 
   /* Save settings here */
   /* I know, it's bad(tm) */
-  fpath = xfce_resource_save_location(XFCE_RESOURCE_CONFIG,
+    fpath = xfce_resource_save_location(XFCE_RESOURCE_CONFIG,
                 RCDIR G_DIR_SEPARATOR_S "oragerc", FALSE);
-  if ((fp = fopen(fpath, "w")) == NULL){
-    g_warning("Unable to open RC file.");
-  }else {
-    fprintf(fp, "[Main Window Position]\n");
-    gtk_window_get_position(GTK_WINDOW(xfcal->mWindow), &pos_x, &pos_y);
-    fprintf(fp, "X=%i, Y=%i\n", pos_x, pos_y);
-    fprintf(fp, "[Event Window Size]\n");
-    fprintf(fp, "X=%i, Y=%i\n", event_win_size_x, event_win_size_y);
-    fprintf(fp, "[TIMEZONE]\n");
-    if (local_icaltimezone_location)
-        fprintf(fp, "%s\n", local_icaltimezone_location);
-    else if (local_icaltimezone_utc)
-        fprintf(fp, "UTC\n");
-    else
-        fprintf(fp, "floating\n");
-    fclose(fp);
-  }
-  g_free(fpath);
+    if ((fp = fopen(fpath, "w")) == NULL){
+        g_warning("Unable to open RC file.");
+    }
+    else {
+        gtk_window_get_position(GTK_WINDOW(xfcal->mWindow), &pos_x, &pos_y);
+        fprintf(fp, "[Main Window Position]\n");
+        fprintf(fp, "X=%i, Y=%i\n", pos_x, pos_y);
+        fprintf(fp, "[Event Window Size]\n");
+        fprintf(fp, "X=%i, Y=%i\n", event_win_size_x, event_win_size_y);
+        fprintf(fp, "[TIMEZONE]\n");
+        if (local_icaltimezone_location)
+            fprintf(fp, "%s\n", local_icaltimezone_location);
+        else if (local_icaltimezone_utc)
+            fprintf(fp, "UTC\n");
+        else
+            fprintf(fp, "floating\n");
+        fprintf(fp, "[Show Main Window Menu]\n");
+        if (show_main_menu)
+            fprintf(fp, "1\n");
+        else
+            fprintf(fp, "0\n");
+        fprintf(fp, "[Select Always Today]\n");
+        if (select_always_today)
+            fprintf(fp, "1\n");
+        else
+            fprintf(fp, "0\n");
+        fclose(fp);
+    }
+    g_free(fpath);
 }
 
 static gboolean
 client_message_received(GtkWidget * widget, GdkEventClient * event,
     gpointer user_data)
 {
-    TRACE("client message received");
-
     if (event->message_type ==
         gdk_atom_intern("_XFCE_CALENDAR_RAISE", FALSE)) {
-        DBG("RAISING...\n");
         raise_window();
         return TRUE;
     }
     else if (event->message_type ==
-        gdk_atom_intern ("_XFCE_CALENDAR_TOGGLE_HERE", FALSE)) {
-        DBG("TOGGLE\n");
+        gdk_atom_intern("_XFCE_CALENDAR_TOGGLE_HERE", FALSE)) {
         if (GTK_WIDGET_VISIBLE(xfcal->mWindow)) {
             apply_settings();
-            gtk_window_get_position(GTK_WINDOW(xfcal->mWindow), &pos_x, &pos_y);
             gtk_widget_hide(xfcal->mWindow);
             return TRUE;
         }
@@ -169,11 +179,10 @@ notify_cb(const char *name, const char *channel_name
 {
     gboolean normalmode
            , showtaskbar, showpager, showsystray
-           , showstart, hidestart, ministart
-           ;
+           , showstart, hidestart, ministart;
 
     if (g_ascii_strcasecmp(CHANNEL, channel_name)) {
-        g_message(_("This should not happen"));
+        g_warning(_("This should not happen"));
         return;
     }
 
@@ -197,10 +206,6 @@ notify_cb(const char *name, const char *channel_name
                     normalmode = setting->data.v_int ? TRUE : FALSE;
                     gtk_window_set_decorated(GTK_WINDOW(xfcal->mWindow)
                             , normalmode);
-                    if (!normalmode)
-                        gtk_widget_hide(xfcal->mMenubar);
-                    else
-                        gtk_widget_show(xfcal->mMenubar);
                 }
                 else if (!strcmp(name, "XFCalendar/TaskBar")) {
                     showtaskbar = setting->data.v_int ? TRUE : FALSE;

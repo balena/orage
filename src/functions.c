@@ -1,6 +1,7 @@
 /* functions.c
  *
  * Copyright (C) 2005 Mickaël Graf <korbinus at xfce.org>
+ * Copyright (C) 2005 Juha Kautto <juha at xfce.org>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -20,6 +21,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 #include <glib.h>
 #include <gtk/gtk.h>
@@ -156,4 +158,14 @@ GtkWidget *xfcalendar_menu_item_new_with_mnemonic (const gchar *label, GtkWidget
 void xfcalendar_select_date (GtkCalendar *cal, guint year, guint month, guint day) {
     gtk_calendar_select_month (cal, month, year);
     gtk_calendar_select_day (cal, day);
+}
+
+void xfcalendar_select_today(GtkCalendar *cal)
+{
+    struct tm *t;
+    time_t tt;
+                                                                                        
+    tt=time(NULL);
+    t=localtime(&tt);
+    xfcalendar_select_date(cal, t->tm_year+1900, t->tm_mon, t->tm_mday);
 }

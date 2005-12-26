@@ -46,3 +46,5 @@ GtkWidget *xfcalendar_separator_menu_item_new (GtkWidget *menu);
 GtkWidget *xfcalendar_menu_item_new_with_mnemonic (const gchar *label, GtkWidget *menu);
 
 void xfcalendar_select_date (GtkCalendar *cal, guint year, guint month, guint day);
+
+void xfcalendar_select_today(GtkCalendar *cal);

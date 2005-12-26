@@ -133,7 +133,7 @@ void set_aical_path (gchar *path)
     if (aical_path)
         g_free (aical_path);
 
-    aical_path = path;
+    aical_path = g_strdup(path);
 }
 
 void set_lookback (int i) 
@@ -252,7 +252,6 @@ gboolean xfical_internal_file_open(icalcomponent **p_ical
 
 gboolean xfical_file_open (void)
 { 
-
     return(xfical_internal_file_open(&ical, &fical, ical_path));
 }
 
@@ -1523,7 +1522,7 @@ gboolean xfical_keep_tidy(void)
     time_t t;
     char *uid;
 
-    if ( xfical_file_open() && xfical_archive_open()) {
+    if (xfical_file_open() && xfical_archive_open()) {
 
         t = time (NULL);
         threshold = localtime (&t);
