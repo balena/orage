@@ -727,6 +727,7 @@ on_appStartEndDate_clicked_cb(GtkWidget *button, gpointer *user_data)
 void
 on_appStartEndTimezone_clicked_cb(GtkWidget *button, gpointer *user_data)
 {
+#define MAX_AREA_LENGTH 20
     appt_win *apptw = (appt_win *)user_data;
     GtkTreeStore *store;
     GtkTreeIter iter1, iter2;
@@ -738,7 +739,7 @@ on_appStartEndTimezone_clicked_cb(GtkWidget *button, gpointer *user_data)
     GtkWidget *sw;
     xfical_timezone_array tz;
     int i, j, result;
-    char area_old[20], *area_end, *loc;
+    char area_old[MAX_AREA_LENGTH], *loc;
     GtkTreeSelection *sel;
     GtkTreeModel     *model;
     GtkTreeIter       iter;
@@ -750,27 +751,27 @@ on_appStartEndTimezone_clicked_cb(GtkWidget *button, gpointer *user_data)
     for (i=0; i < tz.count-2; i++) {
         /* first area */
         if (! g_str_has_prefix(tz.city[i], area_old)) {
-            for (j=0; tz.city[i][j] != '/' && j < 20; j++) {
+            for (j=0; tz.city[i][j] != '/' && j < MAX_AREA_LENGTH; j++) {
                 area_old[j] = tz.city[i][j];
             }
-            if (j < 20)
+            if (j < MAX_AREA_LENGTH)
                 area_old[j] = 0;
             else
                 g_warning("on_appStartEndTimezone_clicked_cb: wrong format in zones.tab %s", tz.city[i]);
 
             gtk_tree_store_append(store, &iter1, NULL);
-            gtk_tree_store_set(store, &iter1, loc, area_old, -1);
+            gtk_tree_store_set(store, &iter1, LOCATION, area_old, -1);
         }
         /* then city */
         gtk_tree_store_append(store, &iter2, &iter1);
-        gtk_tree_store_set(store, &iter2, loc, tz.city[i], -1);
+        gtk_tree_store_set(store, &iter2, LOCATION, tz.city[i], -1);
     }
          
     /* create view */
     tree = gtk_tree_view_new_with_model(GTK_TREE_MODEL(store));
     rend = gtk_cell_renderer_text_new();
     col  = gtk_tree_view_column_new_with_attributes("Location"
-                , rend, "text", loc, NULL);
+                , rend, "text", LOCATION, NULL);
     gtk_tree_view_append_column(GTK_TREE_VIEW(tree), col);
 
     /* show it */
