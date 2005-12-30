@@ -43,8 +43,17 @@
 
 extern GList *alarm_list;
 
+static gchar *play_cmd = NULL;
+
+void set_play_command(gchar *cmd)
+{
+    if (play_cmd)
+        g_free(play_cmd);
+    play_cmd = g_strdup(cmd);
+}
+
 gboolean
-xfcalendar_sound_alarm(gpointer data)
+orage_sound_alarm(gpointer data)
 {
     GError *error = NULL;
     gboolean status;
@@ -56,7 +65,7 @@ xfcalendar_sound_alarm(gpointer data)
     if (audio_alarm->cnt != 0) {
         status = xfce_exec(audio_alarm->play_cmd, FALSE, FALSE, &error);
         if (!status) {
-            g_warning("play failed\n");
+            g_warning("reminder: play failed (%si)", audio_alarm->play_cmd);
             audio_alarm->cnt = 0; /* one warning is enough */
         }
         else if (audio_alarm->cnt > 0)
@@ -82,7 +91,7 @@ create_soundReminder(alarm_struct *alarm, GtkWidget *wReminder)
     xfce_audio_alarm_type *audio_alarm;
 
     audio_alarm =  g_new(xfce_audio_alarm_type, 1);
-    audio_alarm->play_cmd = g_strconcat("play ", "\"", alarm->sound->str, "\"", NULL);
+    audio_alarm->play_cmd = g_strconcat(play_cmd, " \"", alarm->sound->str, "\"", NULL);
     audio_alarm->delay = alarm->repeat_delay;
     if ((audio_alarm->cnt = alarm->repeat_cnt) == 0) {
         audio_alarm->cnt++;
@@ -94,7 +103,7 @@ create_soundReminder(alarm_struct *alarm, GtkWidget *wReminder)
     }
 
     g_timeout_add(alarm->repeat_delay*1000
-        , (GtkFunction) xfcalendar_sound_alarm
+        , (GtkFunction) orage_sound_alarm
         , (gpointer) audio_alarm);
 
     return(audio_alarm);
@@ -232,7 +241,7 @@ create_wReminder(alarm_struct *alarm)
 }
 
 gboolean
-xfcalendar_alarm_clock(gpointer user_data)
+orage_alarm_clock(gpointer user_data)
 {
     CalWin *xfcal = (CalWin *)user_data;
     time_t tt;

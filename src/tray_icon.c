@@ -87,9 +87,7 @@ on_about_activate(GtkMenuItem *menuitem, gpointer user_data)
 void 
 toggle_visible_cb ()
 {
-
   xfcalendar_toggle_visible ();
-
 }
 
 XfceTrayIcon*
@@ -123,7 +121,7 @@ create_TrayIcon (CalWin *xfcal)
   gtk_menu_shell_append(GTK_MENU_SHELL(trayMenu), menuItem);
   gtk_widget_show(menuItem);
   
-  menuItem = gtk_menu_item_new_with_label(_("Preferences"));
+  menuItem = gtk_image_menu_item_new_from_stock(GTK_STOCK_PREFERENCES, NULL);
   g_signal_connect(menuItem, "activate", G_CALLBACK(on_preferences_activate),
 		   NULL);
   gtk_menu_shell_append(GTK_MENU_SHELL(trayMenu), menuItem);

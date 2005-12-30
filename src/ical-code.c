@@ -56,9 +56,8 @@
 
 #define MAX_APPT_LENGTH 4096
 #define LEN_BUFFER 1024
-#define RCDIR    "xfce4" G_DIR_SEPARATOR_S "xfcalendar"
-#define APPOINTMENT_FILE "appointments.ics"
-#define ARCHIVE_FILE "archdev.ics"
+#define RCDIR    "xfce4" G_DIR_SEPARATOR_S "orage"
+#define APPOINTMENT_FILE "orage.ics"
 
 #define XFICAL_STR_EXISTS(str) ((str != NULL) && (str[0] != 0))
 
@@ -69,14 +68,14 @@ typedef struct
     struct icaldurationtype duration;
 } xfical_period;
 
-static icalcomponent *ical,
-                     *aical;
+static icalcomponent *ical = NULL,
+                     *aical = NULL;
 static icalset *fical = NULL,
                *afical = NULL;
 static gboolean fical_modified = TRUE,
                 afical_modified = TRUE;
-static gchar *ical_path,
-             *aical_path;
+static gchar *ical_path = NULL,
+             *aical_path = NULL;
 
 /* timezone handling */
 static icaltimezone *utc_icaltimezone = NULL;
@@ -84,7 +83,7 @@ static icaltimezone *local_icaltimezone = NULL;
 extern char *local_icaltimezone_location;
 extern gboolean local_icaltimezone_utc;
 
-static int lookback;
+static int lookback = 0;
 
 extern GList *alarm_list;
 
@@ -120,7 +119,7 @@ void set_default_ical_path (void)
                     RCDIR G_DIR_SEPARATOR_S APPOINTMENT_FILE, FALSE);
 }
 
-void set_ical_path (gchar *path)
+void set_ical_path(gchar *path)
 {
     if (ical_path)
         g_free (ical_path);
@@ -128,7 +127,7 @@ void set_ical_path (gchar *path)
     ical_path = path;
 }
 
-void set_aical_path (gchar *path)
+void set_aical_path(gchar *path)
 {
     if (aical_path)
         g_free (aical_path);
@@ -136,7 +135,7 @@ void set_aical_path (gchar *path)
     aical_path = g_strdup(path);
 }
 
-void set_lookback (int i) 
+void set_lookback(int i) 
 {
     lookback = i;
 }
@@ -153,17 +152,21 @@ gboolean xfical_set_local_timezone(char *location)
     local_icaltimezone = NULL;
 
     if XFICAL_STR_EXISTS(location) {
-        local_icaltimezone_location=strdup(location);
+        local_icaltimezone_location = g_strdup(location);
         if (!local_icaltimezone_location) {
             g_warning("xfical_set_local_timezone: strdup memory exhausted");
             return (FALSE);
         }
         if (strcmp(location,"UTC") == 0) {
-            local_icaltimezone_utc=TRUE;
+            local_icaltimezone_utc = TRUE;
             local_icaltimezone = utc_icaltimezone;
         }
+        else if (strcmp(location,"floating") == 0) {
+            ; /* local_icaltimezone_location = NULL */
+        }
         else
-            local_icaltimezone=icaltimezone_get_builtin_timezone(location);
+            local_icaltimezone = icaltimezone_get_builtin_timezone(location);
+
         if (!local_icaltimezone) {
             g_warning("xfical_set_local_timezone: builtin timezone %s not found"
                     , location);
@@ -257,6 +260,8 @@ gboolean xfical_file_open (void)
 
 gboolean xfical_archive_open (void)
 {
+    if (!lookback)
+        return (FALSE);
     if (!aical_path)
         return (FALSE);
 

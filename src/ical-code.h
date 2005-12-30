@@ -64,3 +64,5 @@ gboolean xfical_alarm_passed(char *alarm_stime);
 gboolean xfical_keep_tidy(void);
 
 int xfical_compare_times(appt_data *appt);
+
+gboolean xfical_set_local_timezone(char *location);

@@ -1,8 +1,8 @@
-/* xfcalendar
+/* orage
  *
  * Copyright (C) 2003-2005 Mickael Graf (korbinus@xfce.org)
  * Parts of the code below are copyright (C) 2003 Benedikt Meurer <benny@xfce.org>
- *                                       (C) 2005 Juha Kautto <kautto.juha at kolumbus.fi>
+ *           (C) 2005 Juha Kautto <kautto.juha at kolumbus.fi>
  *
  * This program is free software; you can redistribute it and/or modify it 
  * under the terms of the GNU General Public License as published by the
@@ -55,8 +55,8 @@
 #include "appointment.h"
 #include "ical-code.h"
 
-#define CHANNEL  "xfcalendar"
-#define RCDIR    "xfce4" G_DIR_SEPARATOR_S "xfcalendar"
+#define CHANNEL  "orage"
+#define RCDIR    "xfce4" G_DIR_SEPARATOR_S "orage"
 
 /* session client handler */
 static SessionClient	*session_client = NULL;
@@ -120,13 +120,6 @@ void apply_settings()
         fprintf(fp, "X=%i, Y=%i\n", pos_x, pos_y);
         fprintf(fp, "[Event Window Size]\n");
         fprintf(fp, "X=%i, Y=%i\n", event_win_size_x, event_win_size_y);
-        fprintf(fp, "[TIMEZONE]\n");
-        if (local_icaltimezone_location)
-            fprintf(fp, "%s\n", local_icaltimezone_location);
-        else if (local_icaltimezone_utc)
-            fprintf(fp, "UTC\n");
-        else
-            fprintf(fp, "floating\n");
         fprintf(fp, "[Show Main Window Menu]\n");
         if (show_main_menu)
             fprintf(fp, "1\n");
@@ -188,7 +181,7 @@ notify_cb(const char *name, const char *channel_name
 
     switch (action) {
         case MCS_ACTION_NEW:
-            if (!strcmp(name, "XFCalendar/ShowStart")) {
+            if (!strcmp(name, "orage/ShowStart")) {
                 showstart = (setting->data.v_int == 1) ? TRUE : FALSE;
                 hidestart = (setting->data.v_int == 0) ? TRUE : FALSE;
                 ministart = (setting->data.v_int == 2) ? TRUE : FALSE;
@@ -202,12 +195,12 @@ notify_cb(const char *name, const char *channel_name
          /* note that break is missing, we want to do also CHANGED actions */
         case MCS_ACTION_CHANGED:
             if (setting->type == MCS_TYPE_INT) {
-                if (!strcmp(name, "XFCalendar/NormalMode")) {
+                if (!strcmp(name, "orage/NormalMode")) {
                     normalmode = setting->data.v_int ? TRUE : FALSE;
                     gtk_window_set_decorated(GTK_WINDOW(xfcal->mWindow)
                             , normalmode);
                 }
-                else if (!strcmp(name, "XFCalendar/TaskBar")) {
+                else if (!strcmp(name, "orage/TaskBar")) {
                     showtaskbar = setting->data.v_int ? TRUE : FALSE;
            /* Reminder: if we want to show the calendar in the taskbar
             * (i.e. showtaskbar is TRUE) then gtk_window_set_skip_taskbar_hint
@@ -217,7 +210,7 @@ notify_cb(const char *name, const char *channel_name
             gtk_window_set_skip_taskbar_hint(GTK_WINDOW(xfcal->mWindow)
                             , !showtaskbar);
                 }
-                else if(!strcmp(name, "XFCalendar/Pager")) {
+                else if(!strcmp(name, "orage/Pager")) {
                     showpager = setting->data.v_int ? TRUE : FALSE;
            /* Reminder: if we want to show the calendar in the pager
             * (i.e. showpager is TRUE) then gtk_window_set_skip_pager_hint
@@ -227,23 +220,35 @@ notify_cb(const char *name, const char *channel_name
                     gtk_window_set_skip_pager_hint(GTK_WINDOW(xfcal->mWindow)
                             , !showpager);
                 }
-                else if(!strcmp(name, "XFCalendar/Systray")) {
+                else if(!strcmp(name, "orage/Systray")) {
                     showsystray = setting->data.v_int ? TRUE : FALSE;
                     if (showsystray)
                         xfce_tray_icon_connect(trayIcon);
                     else
                         xfce_tray_icon_disconnect(trayIcon);
                 }
-                else if (!strcmp (name, "XFCalendar/Lookback")) {
+                else if (!strcmp (name, "orage/Lookback")) {
                     set_lookback (setting->data.v_int);
                 }
             }
-            if (setting->type == MCS_TYPE_STRING) {
-                if (!strcmp (name, "XFCalendar/ArchiveFile")) {
-                    if (strlen (setting->data.v_string) > 0)
-                        set_aical_path (setting->data.v_string);
+            else if (setting->type == MCS_TYPE_STRING) {
+                if (!strcmp(name, "orage/ArchiveFile")) {
+                    if (strlen(setting->data.v_string) > 0)
+                        set_aical_path(setting->data.v_string);
                     else
                         set_aical_path (NULL);
+                }
+                else if (!strcmp (name, "orage/SoundApplication")) {
+                    if (strlen(setting->data.v_string) > 0)
+                        set_play_command(setting->data.v_string);
+                    else
+                        set_aical_path("play");
+                }
+                else if (!strcmp (name, "orage/Timezone")) {
+                    if (strlen(setting->data.v_string) > 0)
+                        xfical_set_local_timezone(setting->data.v_string);
+                    else
+                        xfical_set_local_timezone(NULL);
                 }
             }
             break;
@@ -400,7 +405,7 @@ main(int argc, char *argv[])
   atom = gdk_atom_intern("_XFCE_CALENDAR_RUNNING", FALSE);
 
   /*
-   * Check if xfcalendar is already running on the display
+   * Check if orage is already running on the display
    */
   if ((xwindow = XGetSelectionOwner(GDK_DISPLAY(),
         gdk_x11_atom_to_xatom(atom))) != None) {
@@ -444,7 +449,7 @@ main(int argc, char *argv[])
     set_default_ical_path();
 
   /*
-   * Create the Xfcalendar.
+   * Create the orage.
    */
   create_mainWin();
 
@@ -464,7 +469,7 @@ main(int argc, char *argv[])
 /* start alarm monitoring timeout */
   g_timeout_add_full(0,
              5000,
-             (GtkFunction) xfcalendar_alarm_clock,
+             (GtkFunction) orage_alarm_clock,
              (gpointer) xfcal,
              NULL);
                                                                                 

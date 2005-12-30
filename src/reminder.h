@@ -43,5 +43,6 @@ typedef struct {
 
 void create_wReminder(alarm_struct *alarm);
 
-gboolean xfcalendar_alarm_clock(gpointer user_data);
+gboolean orage_alarm_clock(gpointer user_data);
 
+void set_play_command(gchar *cmd);
