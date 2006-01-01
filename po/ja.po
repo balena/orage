@@ -9,121 +9,149 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: orage 4.3.2.5svn\n"
+"Project-Id-Version: orage 4.3.2.8svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2005-12-20 20:34+0900\n"
-"PO-Revision-Date: 2005-12-10 10:58+0900\n"
+"POT-Creation-Date: 2006-01-02 02:22+0900\n"
+"PO-Revision-Date: 2005-12-20 20:40+0900\n"
 "Last-Translator: Daichi Kawahata <daichi@xfce.org>\n"
 "Language-Team: Japanese <xfce-users-jp@ml.fdiary.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#. to avoid timing problems when updating entry
 #. Create file chooser
-#: ../plugin/xfcalendar_plugin.c:228 ../plugin/xfcalendar_plugin.c:263
-#: ../src/appointment.c:251 ../src/mainbox.c:118
+#: ../plugin/xfcalendar_plugin.c:252 ../plugin/xfcalendar_plugin.c:309
+#: ../src/appointment.c:251 ../src/mainbox.c:113
 msgid "Select a file..."
 msgstr "ファイルを選択して下さい..."
 
-#: ../plugin/xfcalendar_plugin.c:236 ../src/mainbox.c:126
+#: ../plugin/xfcalendar_plugin.c:260 ../src/mainbox.c:121
 msgid "Calendar files"
 msgstr "カレンダーファイル"
 
-#: ../plugin/xfcalendar_plugin.c:239 ../src/appointment.c:265
-#: ../src/mainbox.c:129
+#: ../plugin/xfcalendar_plugin.c:264 ../src/appointment.c:265
+#: ../src/mainbox.c:124
 msgid "All Files"
 msgstr "全てのファイル"
 
-#: ../plugin/xfcalendar_plugin.c:318 ../plugin/xfcalendar_plugin.c:328
+#. show it
+#: ../plugin/xfcalendar_plugin.c:407
+#, fuzzy
+msgid "Pick local timezone"
+msgstr "時間帯を選択"
+
+#: ../plugin/xfcalendar_plugin.c:410 ../src/appointment.c:781
+msgid "UTC"
+msgstr "UTC"
+
+#: ../plugin/xfcalendar_plugin.c:411 ../src/appointment.c:782
+#, fuzzy
+msgid "floating"
+msgstr "場所"
+
+#: ../plugin/xfcalendar_plugin.c:486 ../plugin/xfcalendar_plugin.c:496
 msgid "Orage Preferences"
 msgstr "Orage の環境設定"
 
-#: ../plugin/xfcalendar_plugin.c:337
+#: ../plugin/xfcalendar_plugin.c:505
 msgid "Display"
 msgstr "表示"
 
 #. Display calendar borders or not
-#: ../plugin/xfcalendar_plugin.c:347
+#: ../plugin/xfcalendar_plugin.c:515
 msgid "Calendar borders"
 msgstr "カレンダーの枠"
 
-#: ../plugin/xfcalendar_plugin.c:352
+#: ../plugin/xfcalendar_plugin.c:520
 msgid "Displayed"
 msgstr "表示する"
 
-#: ../plugin/xfcalendar_plugin.c:358
+#: ../plugin/xfcalendar_plugin.c:526
 msgid "Hidden"
 msgstr "表示しない"
 
 #. Show in... taskbar pager systray
-#: ../plugin/xfcalendar_plugin.c:365
+#: ../plugin/xfcalendar_plugin.c:533
 msgid "Calendar window"
 msgstr "カレンダーウィンドウ"
 
-#: ../plugin/xfcalendar_plugin.c:371
-msgid "Show button in taskbar"
+#: ../plugin/xfcalendar_plugin.c:539
+#, fuzzy
+msgid "Show in taskbar"
 msgstr "タスクバーにボタンを表示する"
 
-#: ../plugin/xfcalendar_plugin.c:375
+#: ../plugin/xfcalendar_plugin.c:543
 msgid "Show in pager"
 msgstr "ページャーに表示する"
 
-#: ../plugin/xfcalendar_plugin.c:379
-msgid "Show icon in systray"
+#: ../plugin/xfcalendar_plugin.c:547
+#, fuzzy
+msgid "Show in systray"
 msgstr "システムトレイにアイコンを表示する"
 
 #.
-#: ../plugin/xfcalendar_plugin.c:384
+#: ../plugin/xfcalendar_plugin.c:552
 msgid "Calendar start"
 msgstr "カレンダーの起動"
 
-#: ../plugin/xfcalendar_plugin.c:389
+#: ../plugin/xfcalendar_plugin.c:557
 msgid "Show"
 msgstr "表示する"
 
-#: ../plugin/xfcalendar_plugin.c:395
+#: ../plugin/xfcalendar_plugin.c:563
 msgid "Hide"
 msgstr "表示しない"
 
-#: ../plugin/xfcalendar_plugin.c:401
+#: ../plugin/xfcalendar_plugin.c:569
 msgid "Minimized"
 msgstr "最小化する"
 
-#: ../plugin/xfcalendar_plugin.c:409
+#: ../plugin/xfcalendar_plugin.c:577
 msgid "Archives"
 msgstr "書庫"
 
 #. Archive file and periodicity
-#: ../plugin/xfcalendar_plugin.c:418
+#: ../plugin/xfcalendar_plugin.c:586
 msgid "Archive file"
 msgstr "書庫ファイル"
 
-#: ../plugin/xfcalendar_plugin.c:439
+#: ../plugin/xfcalendar_plugin.c:608
 msgid "Archive threshold"
 msgstr "書庫に入れるまでの期間"
 
-#: ../plugin/xfcalendar_plugin.c:450
+#: ../plugin/xfcalendar_plugin.c:622
 msgid "3 months"
 msgstr "3ヶ月"
 
-#: ../plugin/xfcalendar_plugin.c:451
+#: ../plugin/xfcalendar_plugin.c:624
 msgid "6 months"
 msgstr "6ヶ月"
 
-#: ../plugin/xfcalendar_plugin.c:452
+#: ../plugin/xfcalendar_plugin.c:626
 msgid "1 year"
 msgstr "1年"
 
-#: ../plugin/xfcalendar_plugin.c:467 ../src/appointment.c:1261
+#: ../plugin/xfcalendar_plugin.c:628
+#, fuzzy
+msgid "never"
+msgstr "戻します"
+
+#: ../plugin/xfcalendar_plugin.c:654 ../src/appointment.c:1282
 msgid "Sound"
 msgstr "サウンド"
 
-#: ../plugin/xfcalendar_plugin.c:477
+#: ../plugin/xfcalendar_plugin.c:664
 msgid "Application"
 msgstr "アプリケーション"
 
-#: ../plugin/xfcalendar_plugin.c:534 ../src/appointment.c:180
-#: ../src/mainbox.c:344 ../xfcalendar.desktop.in.h:3
+#: ../plugin/xfcalendar_plugin.c:687 ../plugin/xfcalendar_plugin.c:697
+#, fuzzy
+msgid "Timezone"
+msgstr "時間帯を選択"
+
+#: ../plugin/xfcalendar_plugin.c:754 ../src/appointment.c:180
+#: ../src/mainbox.c:335 ../xfcalendar.desktop.in.h:3
 msgid "Orage"
 msgstr "Orage"
 
@@ -141,7 +169,7 @@ msgid "Contributor"
 msgstr "貢献者"
 
 #. Get the start date and time and timezone
-#: ../src/appointment.c:97 ../src/appointment.c:355 ../src/appointment.c:683
+#: ../src/appointment.c:97 ../src/appointment.c:355 ../src/appointment.c:681
 msgid "%m/%d/%Y"
 msgstr "%Y-%m-%d"
 
@@ -149,8 +177,8 @@ msgstr "%Y-%m-%d"
 msgid "Sound Files"
 msgstr "サウンドファイル"
 
-#: ../src/appointment.c:306 ../src/appointment.c:469 ../src/appointment.c:481
-#: ../src/appointment.c:581 ../src/event-list.c:590
+#: ../src/appointment.c:306 ../src/appointment.c:466 ../src/appointment.c:477
+#: ../src/appointment.c:579 ../src/event-list.c:590
 msgid "Warning"
 msgstr "警告"
 
@@ -158,196 +186,181 @@ msgstr "警告"
 msgid "The appointment information has been modified."
 msgstr "このアポイント情報は変更されています。"
 
-#: ../src/appointment.c:309 ../src/appointment.c:584 ../src/event-list.c:593
+#: ../src/appointment.c:309 ../src/appointment.c:582 ../src/event-list.c:593
 msgid "Do you want to continue?"
 msgstr "続行しますか？"
 
-#: ../src/appointment.c:471
+#: ../src/appointment.c:468
 msgid "A time value is wrong."
 msgstr "時間が間違っています。"
 
-#: ../src/appointment.c:472
+#: ../src/appointment.c:469
 msgid "Time values must be written 'hh:mm', for instance '09:36' or '15:23'."
 msgstr "時間は必ず 'hh:mm' の形式で書いて下さい (例 '09:36 または 15:23)。"
 
-#: ../src/appointment.c:483
+#: ../src/appointment.c:479
 msgid "The end of this appointment is earlier than the beginning."
 msgstr "このアポイントの終了時刻が開始時刻よりも早くなっています。"
 
-#: ../src/appointment.c:583
+#: ../src/appointment.c:581
 msgid "This appointment will be permanently removed."
 msgstr "このアポイントは永久に削除されます。"
 
-#: ../src/appointment.c:688
+#: ../src/appointment.c:686
 msgid "Pick the date"
 msgstr "日付を選択"
 
-#: ../src/appointment.c:690 ../src/event-list.c:703 ../src/tray_icon.c:107
+#: ../src/appointment.c:688 ../src/event-list.c:703 ../src/tray_icon.c:105
 msgid "Today"
 msgstr "今日"
 
-#: ../src/appointment.c:774 ../src/appointment.c:1122
+#: ../src/appointment.c:773 ../src/appointment.c:1143
 msgid "Location"
 msgstr "場所"
 
 #. show it
-#: ../src/appointment.c:779
+#: ../src/appointment.c:778
 msgid "Pick timezone"
 msgstr "時間帯を選択"
 
-#: ../src/appointment.c:782
-msgid "UTC"
-msgstr "UTC"
-
-#: ../src/appointment.c:783
-#, fuzzy
-msgid "floating"
-msgstr "場所"
-
 #. window title
-#: ../src/appointment.c:904
+#: ../src/appointment.c:975
 msgid "New appointment - Orage"
 msgstr "新しいアポイント - Orage"
 
 # FIXME:
-#: ../src/appointment.c:1025
+#: ../src/appointment.c:1046
 msgid "Free"
 msgstr "休憩中"
 
 # FIXME:
-#: ../src/appointment.c:1025
+#: ../src/appointment.c:1046
 msgid "Busy"
 msgstr "仕事中"
 
-#: ../src/appointment.c:1027
+#: ../src/appointment.c:1048
 msgid "None"
 msgstr "なし"
 
-#: ../src/appointment.c:1027
+#: ../src/appointment.c:1048
 msgid "Daily"
 msgstr "毎日"
 
-#: ../src/appointment.c:1027
+#: ../src/appointment.c:1048
 msgid "Weekly"
 msgstr "毎週"
 
-#: ../src/appointment.c:1027
+#: ../src/appointment.c:1048
 msgid "Monthly"
 msgstr "毎月"
 
-#: ../src/appointment.c:1027
+#: ../src/appointment.c:1048
 msgid "Yearly"
 msgstr "毎年"
 
 #. File menu stuff
 #. File menu
-#: ../src/appointment.c:1053 ../src/event-list.c:659 ../src/mainbox.c:367
+#: ../src/appointment.c:1074 ../src/event-list.c:659 ../src/mainbox.c:357
 msgid "_File"
 msgstr "ファイル(_F)"
 
-#: ../src/appointment.c:1057
+#: ../src/appointment.c:1078
 msgid "Sav_e and close"
 msgstr "保存して閉じる(_E)"
 
 #. add event copying and day cleaning
-#: ../src/appointment.c:1064 ../src/event-list.c:665
+#: ../src/appointment.c:1085 ../src/event-list.c:665
 msgid "D_uplicate"
 msgstr "コピー(_U)"
 
 #. Add buttons to the toolbar
-#: ../src/appointment.c:1084
+#: ../src/appointment.c:1105
 msgid "Save"
 msgstr "保存します"
 
-#: ../src/appointment.c:1086 ../src/appointment.c:1087
+#: ../src/appointment.c:1107 ../src/appointment.c:1108
 msgid "Save and close"
 msgstr "保存して閉じます"
 
-#: ../src/appointment.c:1092
+#: ../src/appointment.c:1113
 msgid "Revert"
 msgstr "戻します"
 
-#: ../src/appointment.c:1094 ../src/appointment.c:1095 ../src/event-list.c:711
+#: ../src/appointment.c:1115 ../src/appointment.c:1116 ../src/event-list.c:711
 msgid "Duplicate"
 msgstr "コピーを作成します"
 
-#: ../src/appointment.c:1099
+#: ../src/appointment.c:1120
 msgid "Delete"
 msgstr "削除します"
 
-#: ../src/appointment.c:1107
+#: ../src/appointment.c:1128
 msgid "General"
 msgstr "一般"
 
-#: ../src/appointment.c:1116
+#: ../src/appointment.c:1137
 msgid "Title "
 msgstr "件名 "
 
-#: ../src/appointment.c:1128
+#: ../src/appointment.c:1149
 msgid "All day event"
 msgstr "一日中の出来事"
 
-#: ../src/appointment.c:1133
+#: ../src/appointment.c:1154
 msgid "Start"
 msgstr "開始時刻"
 
-#: ../src/appointment.c:1146
+#: ../src/appointment.c:1167
 msgid "End"
 msgstr "終了時刻"
 
-#: ../src/appointment.c:1160
-#, fuzzy
+#: ../src/appointment.c:1181
 msgid "Duration"
-msgstr "場所"
+msgstr "期間"
 
-#: ../src/appointment.c:1167 ../src/appointment.c:1239
-#, fuzzy
+#: ../src/appointment.c:1188 ../src/appointment.c:1260
 msgid "days"
-msgstr "2日"
+msgstr "日"
 
-#: ../src/appointment.c:1175 ../src/appointment.c:1247
-#, fuzzy
+#: ../src/appointment.c:1196 ../src/appointment.c:1268
 msgid "hours"
-msgstr "2時間"
+msgstr "時間"
 
-#: ../src/appointment.c:1183 ../src/appointment.c:1254
-#, fuzzy
+#: ../src/appointment.c:1204 ../src/appointment.c:1275
 msgid "mins"
-msgstr "5分"
+msgstr "分"
 
-#: ../src/appointment.c:1189
+#: ../src/appointment.c:1210
 msgid "Availability"
 msgstr "時間の都合"
 
-#: ../src/appointment.c:1196
+#: ../src/appointment.c:1217
 msgid "Note"
 msgstr "備考"
 
-#: ../src/appointment.c:1225 ../src/appointment.c:1234
+#: ../src/appointment.c:1246 ../src/appointment.c:1255
 msgid "Alarm"
 msgstr "アラーム"
 
-#: ../src/appointment.c:1272
+#: ../src/appointment.c:1293
 msgid "Repeat alarm sound"
 msgstr "アラート音を繰返す"
 
-#: ../src/appointment.c:1279 ../src/appointment.c:1288
+#: ../src/appointment.c:1300 ../src/appointment.c:1309
 msgid "Recurrence"
-msgstr "繰り返す"
+msgstr "繰り返し"
 
-#: ../src/appointment.c:1296
+#: ../src/appointment.c:1317
 msgid "Repeat forever"
-msgstr ""
+msgstr "ずっと繰り返す"
 
-#: ../src/appointment.c:1304
-#, fuzzy
+#: ../src/appointment.c:1325
 msgid "Repeat "
-msgstr "戻します"
+msgstr " "
 
-#: ../src/appointment.c:1309
-#, fuzzy
+#: ../src/appointment.c:1330
 msgid "times"
-msgstr "時間"
+msgstr "回繰り返す"
 
 #. date only appointment
 #: ../src/event-list.c:200
@@ -367,7 +380,7 @@ msgstr ""
 "情報を削除します。"
 
 #. View menu
-#: ../src/event-list.c:678 ../src/mainbox.c:390
+#: ../src/event-list.c:678 ../src/mainbox.c:379
 msgid "_View"
 msgstr "表示(_V)"
 
@@ -413,57 +426,53 @@ msgid "uid"
 msgstr "UID"
 
 # FIXME: should be `Orage'
-#: ../src/ical-code.c:563
+#: ../src/ical-code.c:591
 msgid "Orage default alarm"
 msgstr "Orage の標準アラーム"
 
-#: ../src/main.c:176
+#: ../src/main.c:178
 msgid "This should not happen"
 msgstr "想定外の事が起こりました"
 
-#: ../src/main.c:456
+#: ../src/main.c:466
 msgid "Cannot create MCS client channel"
 msgstr "MCS クライアントのチャンネルを作成できません"
 
-#: ../src/mainbox.c:374
+#: ../src/mainbox.c:363
 msgid "Open archive file..."
 msgstr "書庫ファイルを開く..."
 
-#: ../src/mainbox.c:375
+#: ../src/mainbox.c:364
 msgid "Close archive file"
 msgstr "書庫ファイルを閉じる"
 
 #. Edit menu
-#: ../src/mainbox.c:385
+#: ../src/mainbox.c:374
 msgid "_Edit"
 msgstr "編集(_E)"
 
-#: ../src/mainbox.c:392
+#: ../src/mainbox.c:381
 msgid "View selected _date"
 msgstr "選択した日付を表示(_D)"
 
-#: ../src/mainbox.c:396
+#: ../src/mainbox.c:385
 msgid "Select _Today"
 msgstr "今日の日付を選択(_T)"
 
 #. Help menu
-#: ../src/mainbox.c:399
+#: ../src/mainbox.c:388
 msgid "_Help"
 msgstr "ヘルプ(_H)"
 
-#: ../src/reminder.c:164
+#: ../src/reminder.c:173
 msgid "Reminder "
 msgstr "備忘録 "
 
-#: ../src/tray_icon.c:117
+#: ../src/tray_icon.c:115
 msgid "New appointment"
 msgstr "新しいアポイント"
 
-#: ../src/tray_icon.c:126
-msgid "Preferences"
-msgstr "環境設定"
-
-#: ../src/tray_icon.c:135
+#: ../src/tray_icon.c:133
 msgid "About Orage"
 msgstr "Orage について"
 
@@ -489,26 +498,5 @@ msgstr "カレンダー"
 msgid "Desktop calendar"
 msgstr "シンプルな卓上カレンダーです。"
 
-#~ msgid "15 minutes"
-#~ msgstr "15分"
-
-#~ msgid "30 minutes"
-#~ msgstr "30分"
-
-#~ msgid "45 minutes"
-#~ msgstr "45分"
-
-#~ msgid "1 hour"
-#~ msgstr "1時間"
-
-#~ msgid "4 hours"
-#~ msgstr "4時間"
-
-#~ msgid "8 hours"
-#~ msgstr "8時間"
-
-#~ msgid "1 day"
-#~ msgstr "1日"
-
-#~ msgid "  "
-#~ msgstr "  "
+#~ msgid "Preferences"
+#~ msgstr "環境設定"
