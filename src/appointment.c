@@ -92,7 +92,7 @@ void
 year_month_day_to_display(int year, int month, int day , char *display)
 {
     const char *date_format;
-    struct tm d;
+    struct tm d = {0,0,0,0,0,0,0,0,0};
 
     date_format = _("%m/%d/%Y");
     d.tm_mday = day;
@@ -1050,6 +1050,7 @@ appt_win
 
     apptw->xf_uid = NULL;
     apptw->eventlist = event_list;    /* Keep memory of the parent, if any */
+    apptw->appointment_changed = FALSE;
 
     apptw->appWindow = gtk_window_new(GTK_WINDOW_TOPLEVEL);
     gtk_window_set_default_size(GTK_WINDOW(apptw->appWindow), 450, 325);

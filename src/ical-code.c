@@ -1108,9 +1108,9 @@ appt_data *xfical_appt_get_next_on_day(char *a_day, gboolean first, gint days)
         }
         else if ((p = icalcomponent_get_first_property(c
                 , ICAL_RRULE_PROPERTY)) != 0) { /* check recurring EVENTs */
+            nsdate = icaltime_null_time();
             rrule = icalproperty_get_rrule(p);
             ri = icalrecur_iterator_new(rrule, per.stime);
-            nsdate = icaltime_null_time();
             for (nsdate = icalrecur_iterator_next(ri),
                     nedate = icaltime_add(nsdate, per.duration);
                  !icaltime_is_null_time(nsdate)
@@ -1118,6 +1118,7 @@ appt_data *xfical_appt_get_next_on_day(char *a_day, gboolean first, gint days)
                  nsdate = icalrecur_iterator_next(ri),
                     nedate = icaltime_add(nsdate, per.duration)) {
             }
+            icalrecur_iterator_free(ri);
             if (local_compare_date_only(nsdate, aedate) <= 0
                 && local_compare_date_only(asdate, nedate) <= 0) {
                 date_found = TRUE;
@@ -1178,9 +1179,9 @@ void xfical_mark_calendar(GtkCalendar *gtkcal, int year, int month)
         }
         if ((p = icalcomponent_get_first_property(c
                 , ICAL_RRULE_PROPERTY)) != 0) { /* check recurring EVENTs */
+            nsdate = icaltime_null_time();
             rrule = icalproperty_get_rrule(p);
             ri = icalrecur_iterator_new(rrule, per.stime);
-            nsdate = icaltime_null_time();
             for (nsdate = icalrecur_iterator_next(ri),
                     nedate = icaltime_add(nsdate, per.duration);
                  !icaltime_is_null_time(nsdate)
@@ -1202,6 +1203,7 @@ void xfical_mark_calendar(GtkCalendar *gtkcal, int year, int month)
                         gtk_calendar_mark_day(gtkcal, day_cnt);
                 }
             }
+            icalrecur_iterator_free(ri);
         } 
     } 
     gtk_calendar_thaw(gtkcal);
@@ -1326,14 +1328,15 @@ void xfical_alarm_build_list(gboolean first_list_today)
             }
             else if ((p = icalcomponent_get_first_property(c
                 , ICAL_RRULE_PROPERTY)) != 0) { /* check recurring EVENTs */
+                next_date = icaltime_null_time();
                 rrule = icalproperty_get_rrule(p);
                 ri = icalrecur_iterator_new(rrule, per.stime);
-                next_date = icaltime_null_time();
                 for (next_date = icalrecur_iterator_next(ri);
                     !icaltime_is_null_time(next_date)
                         && local_compare_date_only(cur_time, next_date) > 0;
                     next_date = icalrecur_iterator_next(ri)) {
                 }
+                icalrecur_iterator_free(ri);
                 if (local_compare_date_only(next_date, cur_time) == 0) {
                     alarm_add(ICAL_ACTION_DISPLAY
                             , suid, ssummary, sdescription, NULL, 0, 0
@@ -1389,13 +1392,14 @@ void xfical_alarm_build_list(gboolean first_list_today)
                         , alarm_time, per.stime);
             else if ((p = icalcomponent_get_first_property(c
                 , ICAL_RRULE_PROPERTY)) != 0) { /* check recurring EVENTs */                    rrule = icalproperty_get_rrule(p);
-                ri = icalrecur_iterator_new(rrule, per.stime);
                 next_date = icaltime_null_time();
+                ri = icalrecur_iterator_new(rrule, per.stime);
                 for (next_date = icalrecur_iterator_next(ri);
                     (!icaltime_is_null_time(next_date))
                     && (local_compare_date_only(cur_time, next_date) > 0) ;
                     next_date = icalrecur_iterator_next(ri)) {
                 }
+                icalrecur_iterator_free(ri);
                 alarm_time = icaltime_add(next_date, trg.duration);
                 if (icaltime_compare(cur_time, alarm_time) <= 0)
                     alarm_add(stat, suid, ssummary, sdescription
@@ -1485,9 +1489,9 @@ void xfical_icalcomponent_archive_recurrent(icalcomponent *e
 
     p = icalcomponent_get_first_property(e, ICAL_RRULE_PROPERTY);
     duration = icaltime_subtract(edate, sdate);
+    nsdate = icaltime_null_time();
     rrule = icalproperty_get_rrule(p);
     ri = icalrecur_iterator_new(rrule, sdate);
-    nsdate = icaltime_null_time();
 
     /* We must do a loop for finding the first occurence after the threshold */
     for (nsdate = icalrecur_iterator_next(ri),
@@ -1498,6 +1502,7 @@ void xfical_icalcomponent_archive_recurrent(icalcomponent *e
          nsdate = icalrecur_iterator_next(ri),
             nedate = icaltime_add(nsdate, duration)){
     }
+    icalrecur_iterator_free(ri);
 
     /* Here I should change the values of the icalcomponent we received */
     icalcomponent_set_dtstart(e, nsdate);
