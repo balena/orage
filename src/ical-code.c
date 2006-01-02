@@ -45,6 +45,7 @@
 #include <libxfcegui4/netk-trayicon.h>
 #include <gdk/gdk.h>
 #include <gtk/gtk.h>
+#include <glib/gprintf.h>
 #include <ical.h>
 #include <icalss.h>
 
@@ -213,7 +214,6 @@ gboolean xfical_internal_file_open(icalcomponent **p_ical
 {
     icalcomponent *iter;
     gint cnt=0;
-    char *loc;
 
     if (*p_fical != NULL)
         g_warning("xfical_internal_file_open: file already open");
@@ -360,9 +360,7 @@ struct icaltimetype convert_to_local_timezone(struct icaltimetype t
 
 xfical_period get_period(icalcomponent *c_event) 
 {
-    struct icaltimetype wtime;
     icalproperty *p;
-    struct icaldurationtype duration;
     xfical_period per;
 
     /* Exactly one start time must be there */
@@ -828,7 +826,7 @@ appt_data *xfical_appt_get(char *ical_uid)
     icalcomponent *c = NULL;
     icalproperty *p = NULL;
     gboolean key_found = FALSE;
-    const char *text, *text2;
+    const char *text;
     struct icaltimetype itime, stime, etime, sltime, eltime;
     icalparameter *itime_tz;
     icalproperty_transp xf_transp;
@@ -1297,7 +1295,7 @@ void xfical_alarm_build_list(gboolean first_list_today)
     icalproperty *p;
     icalproperty_status stat=ICAL_ACTION_DISPLAY;
     struct icaltriggertype trg;
-    char *s, *suid, *ssummary, *sdescription, *ssound;
+    char *suid, *ssummary, *sdescription, *ssound;
     gboolean trg_found;
     icalattach *attach = NULL;
     struct icalrecurrencetype rrule;

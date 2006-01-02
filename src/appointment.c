@@ -330,6 +330,62 @@ on_appWindow_delete_event_cb(GtkWidget *widget, GdkEvent *event
     return appWindow_check_and_close((appt_win *) user_data);
 }
 
+gboolean 
+orage_validate_time(const gchar *str)
+{
+    int hh, mm, i;
+
+    if (strlen(str) == 0) {
+        return TRUE;
+    }
+    if (strlen(str) != 5 || str[2] != ':') {
+        g_warning("orage_validate_time: Invalid time format <%s>", str);
+        return FALSE;
+    }
+
+    i = sscanf(str, "%02d:%02d", &hh, &mm);
+    if (i != 2 || hh < 0 || hh > 23 || mm < 0 || mm > 59) {
+        g_warning("orage_validate_time: Invalid time <%s>", str);
+        return FALSE;
+    }
+
+    return TRUE;
+}
+
+gboolean 
+orage_validate_datetime(appt_win *apptw, appt_data *appt
+    , const gchar *starttime, const gchar *endtime)
+{
+    gint result;
+
+    if (!orage_validate_time(starttime) || !orage_validate_time(endtime)) {
+        result = xfce_message_dialog(GTK_WINDOW(apptw->appWindow),
+                                     _("Warning"),
+                                     GTK_STOCK_DIALOG_WARNING,
+                                     _("A time value is wrong."),
+                                     _("Time values must be written 'hh:mm', for instance '09:36' or '15:23'."),
+                                     GTK_STOCK_OK,
+                                     GTK_RESPONSE_ACCEPT,
+                                     NULL);
+        return FALSE;
+    }
+    if (xfical_compare_times(appt) > 0) {
+        result = xfce_message_dialog(GTK_WINDOW(apptw->appWindow),
+                                     _("Warning"),
+                                     GTK_STOCK_DIALOG_WARNING,
+                                     _("The end of this appointment is earlier than the beginning."),
+                                     NULL,
+                                     GTK_STOCK_OK,
+                                     GTK_RESPONSE_ACCEPT,
+                                     NULL);
+        return FALSE;
+    }
+    else {
+        fill_appt_window_times(apptw, appt);
+        return TRUE;
+    }
+}
+
 /*
  * fill_appt
  * This function fills an appointment with the content of an appointment window
@@ -431,62 +487,6 @@ fill_appt(appt_data *appt, appt_win *apptw)
         g_warning("fill_appt: coding error, illegal recurrence");
 
     return(TRUE);
-}
-
-gboolean 
-orage_validate_time(gchar *str)
-{
-    int hh, mm, i;
-
-    if (strlen(str) == 0) {
-        return TRUE;
-    }
-    if (strlen(str) != 5 || str[2] != ':') {
-        g_warning("orage_validate_time: Invalid time format <%s>", str);
-        return FALSE;
-    }
-
-    i = sscanf(str, "%02d:%02d", &hh, &mm);
-    if (i != 2 || hh < 0 || hh > 23 || mm < 0 || mm > 59) {
-        g_warning("orage_validate_time: Invalid time <%s>", str);
-        return FALSE;
-    }
-
-    return TRUE;
-}
-
-gboolean 
-orage_validate_datetime(appt_win *apptw, appt_data *appt
-    , gchar *starttime, gchar *endtime)
-{
-    gint result;
-
-    if (!orage_validate_time(starttime) || !orage_validate_time(endtime)) {
-        result = xfce_message_dialog(GTK_WINDOW(apptw->appWindow),
-                                     _("Warning"),
-                                     GTK_STOCK_DIALOG_WARNING,
-                                     _("A time value is wrong."),
-                                     _("Time values must be written 'hh:mm', for instance '09:36' or '15:23'."),
-                                     GTK_STOCK_OK,
-                                     GTK_RESPONSE_ACCEPT,
-                                     NULL);
-        return FALSE;
-    }
-    if (xfical_compare_times(appt) > 0) {
-        result = xfce_message_dialog(GTK_WINDOW(apptw->appWindow),
-                                     _("Warning"),
-                                     GTK_STOCK_DIALOG_WARNING,
-                                     _("The end of this appointment is earlier than the beginning."),
-                                     NULL,
-                                     GTK_STOCK_OK,
-                                     GTK_RESPONSE_ACCEPT,
-                                     NULL);
-        return FALSE;
-    }
-    else {
-        fill_appt_window_times(apptw, appt);
-        return TRUE;
-    }
 }
 
 void
@@ -735,7 +735,6 @@ on_appStartEndTimezone_clicked_cb(GtkWidget *button, gpointer *user_data)
     GtkCellRenderer *rend;
     GtkTreeViewColumn *col;
     GtkWidget *window;
-    GtkWidget *vbox;
     GtkWidget *sw;
     xfical_timezone_array tz;
     int i, j, result;
@@ -845,7 +844,7 @@ fill_appt_window_times(appt_win *apptw, appt_data *appt)
         gtk_button_set_label(GTK_BUTTON(apptw->appStartDate_button), (const gchar *)startdate_to_display);
 
         if(hours > -1 && minutes > -1){
-            sprintf(starttime_to_display, "%02d:%02d", hours, minutes);
+            g_sprintf(starttime_to_display, "%02d:%02d", hours, minutes);
             gtk_entry_set_text(GTK_ENTRY(GTK_BIN(apptw->appStartTime_comboboxentry)->child), (const gchar *)starttime_to_display);
         }
         if (s_tz) {
@@ -866,7 +865,7 @@ fill_appt_window_times(appt_win *apptw, appt_data *appt)
         gtk_button_set_label(GTK_BUTTON(apptw->appEndDate_button), (const gchar *)enddate_to_display);
 
         if(hours > -1 && minutes > -1){
-            sprintf(endtime_to_display, "%02d:%02d", hours, minutes);
+            g_sprintf(endtime_to_display, "%02d:%02d", hours, minutes);
             gtk_entry_set_text(GTK_ENTRY(GTK_BIN(apptw->appEndTime_comboboxentry)->child), (const gchar *)endtime_to_display);
         }
         if (e_tz) {

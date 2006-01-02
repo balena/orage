@@ -220,7 +220,7 @@ void start_time_data_func(GtkTreeViewColumn *col, GtkCellRenderer *rend,
 
     tt = time(NULL);
     t  = localtime(&tt);
-    sprintf(time_now, "%02d:%02d", t->tm_hour, t->tm_min);
+    g_sprintf(time_now, "%02d:%02d", t->tm_hour, t->tm_min);
 
     gtk_tree_model_get(model, iter, COL_TIME, &stime, -1);
     if (stime[0] == '+')

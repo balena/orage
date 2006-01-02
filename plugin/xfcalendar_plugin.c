@@ -349,7 +349,6 @@ static void cb_timezone_button_clicked (GtkButton *button, gpointer user_data)
     GtkCellRenderer *rend;
     GtkTreeViewColumn *col;
     GtkWidget *window;
-    GtkWidget *vbox;
     GtkWidget *sw;
     int j, result, latitude, longitude;
     char area_old[MAX_AREA_LENGTH], tz[MAX_BUFF_LENGTH], *loc,

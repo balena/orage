@@ -54,6 +54,7 @@
 #include "reminder.h"
 #include "appointment.h"
 #include "ical-code.h"
+#include "functions.h"
 
 #define CHANNEL  "orage"
 #define RCDIR    "xfce4" G_DIR_SEPARATOR_S "orage"
