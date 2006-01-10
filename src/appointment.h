@@ -65,7 +65,9 @@ typedef struct
     gchar  starttimecur[17]; 
     gchar  endtimecur[17];
     xfical_freq freq;
+    gint   recur_limit; /* 0 = no limit  1 = count  2 = until */
     gint   recur_count;
+    gchar  recur_until[17];
 } appt_data;
 
 typedef struct
@@ -119,6 +121,9 @@ typedef struct
     GtkWidget *appRecur_count_hbox;
     GtkWidget *appRecur_count_rb;
     GtkWidget *appRecur_count_spin;
+    GtkWidget *appRecur_until_hbox;
+    GtkWidget *appRecur_until_rb;
+    GtkWidget *appRecur_until_button;
     GtkWidget *appAvailability_cb;
     GtkWidget *appAllDay_checkbutton;
     GtkWidget *appStartDate_button;

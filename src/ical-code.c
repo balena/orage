@@ -736,8 +736,11 @@ char *appt_add_internal(appt_data *appt, gboolean add, char *uid
                 g_warning("appt_add_internal: Unsupported freq");
                 icalrecurrencetype_clear(&rrule);
         }
-        if (appt->recur_count) {
+        if (appt->recur_limit == 1) {
             g_sprintf(recur_p, ";COUNT=%d", appt->recur_count);
+        }
+        else if (appt->recur_limit == 2) { /* needs to be in UTC */
+            g_sprintf(recur_p, ";UNTIL=%sZ", appt->recur_until);
         }
         rrule = icalrecurrencetype_from_string(recur_str);
         icalcomponent_add_property(ievent, icalproperty_new_rrule(rrule));
@@ -862,7 +865,9 @@ appt_data *xfical_appt_get(char *ical_uid)
             appt.starttimecur[0] = '\0';
             appt.endtimecur[0] = '\0';
             appt.freq = XFICAL_FREQ_NONE;
+            appt.recur_limit = 0;
             appt.recur_count = 0;
+            appt.recur_until[0] = '\0';
         /*********** Properties ***********/
             for (p = icalcomponent_get_first_property(c, ICAL_ANY_PROPERTY);
                  p != 0;
@@ -958,7 +963,13 @@ appt_data *xfical_appt_get(char *ical_uid)
                                 appt.freq = XFICAL_FREQ_NONE;
                                 break;
                         }
-                        appt.recur_count = rrule.count;
+                        if (appt.recur_count = rrule.count)
+                            appt.recur_limit = 1;
+                        else if(! icaltime_is_null_time(rrule.until)) {
+                            appt.recur_limit = 2;
+                            text  = icaltime_as_ical_string(rrule.until);
+                            g_strlcpy(appt.recur_until, text, 17);
+                        }
                         break;
                     case ICAL_CATEGORIES_PROPERTY:
                     case ICAL_CLASS_PROPERTY:
