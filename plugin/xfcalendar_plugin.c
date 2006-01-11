@@ -884,8 +884,6 @@ static void create_channel(McsPlugin * mcs_plugin)
         local_timezone=g_strdup("floating");
         mcs_manager_set_string(mcs_plugin->manager, "orage/Timezone", CHANNEL, local_timezone);
     }
-
-    write_options (mcs_plugin);
 }
 
 static gboolean write_options(McsPlugin * mcs_plugin)
