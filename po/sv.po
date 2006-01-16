@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.3.2.8svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-07 17:00+0900\n"
+"POT-Creation-Date: 2006-01-16 18:53+0200\n"
 "PO-Revision-Date: 2005-09-14 01:22+0900\n"
 "Last-Translator: Johan Hammar <johan.hammar@swipnet.se>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -37,116 +37,116 @@ msgstr ""
 msgid "Pick local timezone"
 msgstr ""
 
-#: ../plugin/xfcalendar_plugin.c:409 ../src/appointment.c:780
+#: ../plugin/xfcalendar_plugin.c:409 ../src/appointment.c:796
 msgid "UTC"
 msgstr ""
 
-#: ../plugin/xfcalendar_plugin.c:410 ../src/appointment.c:781
+#: ../plugin/xfcalendar_plugin.c:410 ../src/appointment.c:797
 msgid "floating"
 msgstr ""
 
-#: ../plugin/xfcalendar_plugin.c:485 ../plugin/xfcalendar_plugin.c:495
+#: ../plugin/xfcalendar_plugin.c:486 ../plugin/xfcalendar_plugin.c:496
 #, fuzzy
 msgid "Orage Preferences"
 msgstr "InstC$llningar"
 
-#: ../plugin/xfcalendar_plugin.c:504
+#: ../plugin/xfcalendar_plugin.c:505
 msgid "Display"
 msgstr ""
 
 #. Display calendar borders or not
-#: ../plugin/xfcalendar_plugin.c:514
+#: ../plugin/xfcalendar_plugin.c:515
 #, fuzzy
 msgid "Calendar borders"
 msgstr "XFCalendar"
 
-#: ../plugin/xfcalendar_plugin.c:519
+#: ../plugin/xfcalendar_plugin.c:520
 msgid "Displayed"
 msgstr ""
 
-#: ../plugin/xfcalendar_plugin.c:525
+#: ../plugin/xfcalendar_plugin.c:526
 msgid "Hidden"
 msgstr ""
 
 #. Show in... taskbar pager systray
-#: ../plugin/xfcalendar_plugin.c:532
+#: ../plugin/xfcalendar_plugin.c:533
 #, fuzzy
 msgid "Calendar window"
 msgstr "StC$ng fC6nster"
 
-#: ../plugin/xfcalendar_plugin.c:538
+#: ../plugin/xfcalendar_plugin.c:539
 msgid "Show in taskbar"
 msgstr ""
 
-#: ../plugin/xfcalendar_plugin.c:542
+#: ../plugin/xfcalendar_plugin.c:543
 msgid "Show in pager"
 msgstr ""
 
-#: ../plugin/xfcalendar_plugin.c:546
+#: ../plugin/xfcalendar_plugin.c:547
 msgid "Show in systray"
 msgstr ""
 
 #.
-#: ../plugin/xfcalendar_plugin.c:551
+#: ../plugin/xfcalendar_plugin.c:552
 #, fuzzy
 msgid "Calendar start"
 msgstr "XFCalendar"
 
-#: ../plugin/xfcalendar_plugin.c:556
+#: ../plugin/xfcalendar_plugin.c:557
 msgid "Show"
 msgstr ""
 
-#: ../plugin/xfcalendar_plugin.c:562
+#: ../plugin/xfcalendar_plugin.c:563
 msgid "Hide"
 msgstr ""
 
-#: ../plugin/xfcalendar_plugin.c:568
+#: ../plugin/xfcalendar_plugin.c:569
 msgid "Minimized"
 msgstr ""
 
-#: ../plugin/xfcalendar_plugin.c:576
+#: ../plugin/xfcalendar_plugin.c:577
 msgid "Archives"
 msgstr ""
 
 #. Archive file and periodicity
-#: ../plugin/xfcalendar_plugin.c:585
+#: ../plugin/xfcalendar_plugin.c:586
 msgid "Archive file"
 msgstr ""
 
-#: ../plugin/xfcalendar_plugin.c:607
+#: ../plugin/xfcalendar_plugin.c:608
 msgid "Archive threshold"
 msgstr ""
 
-#: ../plugin/xfcalendar_plugin.c:621
+#: ../plugin/xfcalendar_plugin.c:622
 msgid "3 months"
 msgstr ""
 
-#: ../plugin/xfcalendar_plugin.c:623
+#: ../plugin/xfcalendar_plugin.c:624
 msgid "6 months"
 msgstr ""
 
-#: ../plugin/xfcalendar_plugin.c:625
+#: ../plugin/xfcalendar_plugin.c:626
 msgid "1 year"
 msgstr ""
 
-#: ../plugin/xfcalendar_plugin.c:627
+#: ../plugin/xfcalendar_plugin.c:628
 msgid "never"
 msgstr ""
 
-#: ../plugin/xfcalendar_plugin.c:653 ../src/appointment.c:1282
+#: ../plugin/xfcalendar_plugin.c:654 ../src/appointment.c:1326
 #, fuzzy
 msgid "Sound"
 msgstr "SC6ndag"
 
-#: ../plugin/xfcalendar_plugin.c:663
+#: ../plugin/xfcalendar_plugin.c:664
 msgid "Application"
 msgstr ""
 
-#: ../plugin/xfcalendar_plugin.c:686 ../plugin/xfcalendar_plugin.c:696
+#: ../plugin/xfcalendar_plugin.c:687 ../plugin/xfcalendar_plugin.c:697
 msgid "Timezone"
 msgstr ""
 
-#: ../plugin/xfcalendar_plugin.c:753 ../src/appointment.c:180
+#: ../plugin/xfcalendar_plugin.c:754 ../src/appointment.c:180
 #: ../src/mainbox.c:335 ../xfcalendar.desktop.in.h:3
 msgid "Orage"
 msgstr ""
@@ -165,7 +165,8 @@ msgid "Contributor"
 msgstr ""
 
 #. Get the start date and time and timezone
-#: ../src/appointment.c:97 ../src/appointment.c:411 ../src/appointment.c:681
+#. FIXME: use year_month_day_to_display() instead of doing it here
+#: ../src/appointment.c:97 ../src/appointment.c:412 ../src/appointment.c:697
 msgid "%m/%d/%Y"
 msgstr ""
 
@@ -174,7 +175,7 @@ msgid "Sound Files"
 msgstr ""
 
 #: ../src/appointment.c:306 ../src/appointment.c:363 ../src/appointment.c:374
-#: ../src/appointment.c:579 ../src/event-list.c:590
+#: ../src/appointment.c:595 ../src/event-list.c:590
 msgid "Warning"
 msgstr "Varning"
 
@@ -182,7 +183,7 @@ msgstr "Varning"
 msgid "The appointment information has been modified."
 msgstr ""
 
-#: ../src/appointment.c:309 ../src/appointment.c:582 ../src/event-list.c:593
+#: ../src/appointment.c:309 ../src/appointment.c:598 ../src/event-list.c:593
 msgid "Do you want to continue?"
 msgstr ""
 
@@ -198,165 +199,169 @@ msgstr ""
 msgid "The end of this appointment is earlier than the beginning."
 msgstr ""
 
-#: ../src/appointment.c:581
+#: ../src/appointment.c:597
 msgid "This appointment will be permanently removed."
 msgstr ""
 
-#: ../src/appointment.c:686
+#: ../src/appointment.c:702
 msgid "Pick the date"
 msgstr ""
 
-#: ../src/appointment.c:688 ../src/event-list.c:703 ../src/tray_icon.c:105
+#: ../src/appointment.c:704 ../src/event-list.c:703 ../src/tray_icon.c:105
 msgid "Today"
 msgstr "Idag"
 
-#: ../src/appointment.c:772 ../src/appointment.c:1143
-msgid "Location"
-msgstr ""
-
 #. show it
-#: ../src/appointment.c:777
+#: ../src/appointment.c:793
 msgid "Pick timezone"
 msgstr ""
 
 #. window title
-#: ../src/appointment.c:974
+#: ../src/appointment.c:991
 #, fuzzy
 msgid "New appointment - Orage"
 msgstr "MC6te"
 
-#: ../src/appointment.c:1045
+#: ../src/appointment.c:1089
 msgid "Free"
 msgstr ""
 
-#: ../src/appointment.c:1045
+#: ../src/appointment.c:1089
 msgid "Busy"
 msgstr ""
 
-#: ../src/appointment.c:1047
+#: ../src/appointment.c:1091
 msgid "None"
 msgstr ""
 
-#: ../src/appointment.c:1047
+#: ../src/appointment.c:1091
 msgid "Daily"
 msgstr ""
 
-#: ../src/appointment.c:1047
+#: ../src/appointment.c:1091
 msgid "Weekly"
 msgstr ""
 
-#: ../src/appointment.c:1047
+#: ../src/appointment.c:1091
 #, fuzzy
 msgid "Monthly"
 msgstr "MC%ndag"
 
-#: ../src/appointment.c:1047
+#: ../src/appointment.c:1091
 msgid "Yearly"
 msgstr ""
 
 #. File menu stuff
 #. File menu
-#: ../src/appointment.c:1074 ../src/event-list.c:659 ../src/mainbox.c:357
+#: ../src/appointment.c:1118 ../src/event-list.c:659 ../src/mainbox.c:357
 msgid "_File"
 msgstr "_Fil"
 
-#: ../src/appointment.c:1078
+#: ../src/appointment.c:1122
 msgid "Sav_e and close"
 msgstr ""
 
 #. add event copying and day cleaning
-#: ../src/appointment.c:1085 ../src/event-list.c:665
+#: ../src/appointment.c:1129 ../src/event-list.c:665
 msgid "D_uplicate"
 msgstr ""
 
 #. Add buttons to the toolbar
-#: ../src/appointment.c:1105
+#: ../src/appointment.c:1149
 msgid "Save"
 msgstr ""
 
-#: ../src/appointment.c:1107 ../src/appointment.c:1108
+#: ../src/appointment.c:1151 ../src/appointment.c:1152
 msgid "Save and close"
 msgstr ""
 
-#: ../src/appointment.c:1113
+#: ../src/appointment.c:1157
 msgid "Revert"
 msgstr ""
 
-#: ../src/appointment.c:1115 ../src/appointment.c:1116 ../src/event-list.c:711
+#: ../src/appointment.c:1159 ../src/appointment.c:1160 ../src/event-list.c:711
 msgid "Duplicate"
 msgstr ""
 
-#: ../src/appointment.c:1120
+#: ../src/appointment.c:1164
 msgid "Delete"
 msgstr ""
 
-#: ../src/appointment.c:1128
+#: ../src/appointment.c:1172
 msgid "General"
 msgstr ""
 
-#: ../src/appointment.c:1137
+#: ../src/appointment.c:1181
 msgid "Title "
 msgstr ""
 
-#: ../src/appointment.c:1149
+#: ../src/appointment.c:1187
+msgid "Location"
+msgstr ""
+
+#: ../src/appointment.c:1193
 msgid "All day event"
 msgstr ""
 
-#: ../src/appointment.c:1154
+#: ../src/appointment.c:1198
 msgid "Start"
 msgstr ""
 
-#: ../src/appointment.c:1167
+#: ../src/appointment.c:1211
 msgid "End"
 msgstr ""
 
-#: ../src/appointment.c:1181
+#: ../src/appointment.c:1225
 msgid "Duration"
 msgstr ""
 
-#: ../src/appointment.c:1188 ../src/appointment.c:1260
+#: ../src/appointment.c:1232 ../src/appointment.c:1304
 #, fuzzy
 msgid "days"
 msgstr "Idag"
 
-#: ../src/appointment.c:1196 ../src/appointment.c:1268
+#: ../src/appointment.c:1240 ../src/appointment.c:1312
 msgid "hours"
 msgstr ""
 
-#: ../src/appointment.c:1204 ../src/appointment.c:1275
+#: ../src/appointment.c:1248 ../src/appointment.c:1319
 msgid "mins"
 msgstr ""
 
-#: ../src/appointment.c:1210
+#: ../src/appointment.c:1254
 msgid "Availability"
 msgstr ""
 
-#: ../src/appointment.c:1217
+#: ../src/appointment.c:1261
 msgid "Note"
 msgstr ""
 
-#: ../src/appointment.c:1246 ../src/appointment.c:1255
+#: ../src/appointment.c:1290 ../src/appointment.c:1299
 msgid "Alarm"
 msgstr ""
 
-#: ../src/appointment.c:1293
+#: ../src/appointment.c:1337
 msgid "Repeat alarm sound"
 msgstr ""
 
-#: ../src/appointment.c:1300 ../src/appointment.c:1309
+#: ../src/appointment.c:1344 ../src/appointment.c:1353
 msgid "Recurrence"
 msgstr ""
 
-#: ../src/appointment.c:1317
+#: ../src/appointment.c:1361
 msgid "Repeat forever"
 msgstr ""
 
-#: ../src/appointment.c:1325
+#: ../src/appointment.c:1369
 msgid "Repeat "
 msgstr ""
 
-#: ../src/appointment.c:1330
+#: ../src/appointment.c:1374
 msgid "times"
+msgstr ""
+
+#: ../src/appointment.c:1383
+msgid "Repeat until "
 msgstr ""
 
 #. date only appointment
