@@ -398,7 +398,7 @@ static void cb_timezone_button_clicked (GtkButton *button, gpointer user_data)
     /* create view */
     tree = gtk_tree_view_new_with_model(GTK_TREE_MODEL(store));
     rend = gtk_cell_renderer_text_new();
-    col  = gtk_tree_view_column_new_with_attributes("Location"
+    col  = gtk_tree_view_column_new_with_attributes(_("Location")
                 , rend, "text", LOCATION, NULL);
     gtk_tree_view_append_column(GTK_TREE_VIEW(tree), col);
                                                                              
@@ -884,6 +884,8 @@ static void create_channel(McsPlugin * mcs_plugin)
         local_timezone=g_strdup("floating");
         mcs_manager_set_string(mcs_plugin->manager, "orage/Timezone", CHANNEL, local_timezone);
     }
+
+    write_options (mcs_plugin);
 }
 
 static gboolean write_options(McsPlugin * mcs_plugin)

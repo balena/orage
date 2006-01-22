@@ -785,7 +785,7 @@ on_appStartEndTimezone_clicked_cb(GtkWidget *button, gpointer *user_data)
     /* create view */
     tree = gtk_tree_view_new_with_model(GTK_TREE_MODEL(store));
     rend = gtk_cell_renderer_text_new();
-    col  = gtk_tree_view_column_new_with_attributes("Location"
+    col  = gtk_tree_view_column_new_with_attributes(_("Location")
                 , rend, "text", LOCATION, NULL);
     gtk_tree_view_append_column(GTK_TREE_VIEW(tree), col);
 
