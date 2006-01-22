@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.3.2.8svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-16 18:53+0200\n"
+"POT-Creation-Date: 2006-01-22 23:25+0200\n"
 "PO-Revision-Date: 2006-01-17 19:53+0100\n"
 "Last-Translator: Pau Rul·lan Ferragut <paurullan@bulma.net>\n"
 "Language-Team: catalan\n"
@@ -32,6 +32,11 @@ msgstr "Fitxers de calendari"
 msgid "All Files"
 msgstr "Tots els fitxers"
 
+#: ../plugin/xfcalendar_plugin.c:401 ../src/appointment.c:788
+#: ../src/appointment.c:1187
+msgid "Location"
+msgstr "Ubicació"
+
 #. show it
 #: ../plugin/xfcalendar_plugin.c:406
 msgid "Pick local timezone"
@@ -45,103 +50,103 @@ msgstr "UTC"
 msgid "floating"
 msgstr "cap"
 
-#: ../plugin/xfcalendar_plugin.c:486 ../plugin/xfcalendar_plugin.c:496
+#: ../plugin/xfcalendar_plugin.c:485 ../plugin/xfcalendar_plugin.c:495
 msgid "Orage Preferences"
 msgstr "Preferències Orage"
 
-#: ../plugin/xfcalendar_plugin.c:505
+#: ../plugin/xfcalendar_plugin.c:504
 msgid "Display"
 msgstr "Pantalla"
 
 #. Display calendar borders or not
-#: ../plugin/xfcalendar_plugin.c:515
+#: ../plugin/xfcalendar_plugin.c:514
 msgid "Calendar borders"
 msgstr "Vores del calendari"
 
-#: ../plugin/xfcalendar_plugin.c:520
+#: ../plugin/xfcalendar_plugin.c:519
 msgid "Displayed"
 msgstr "Mostra"
 
-#: ../plugin/xfcalendar_plugin.c:526
+#: ../plugin/xfcalendar_plugin.c:525
 msgid "Hidden"
 msgstr "Amaga"
 
 #. Show in... taskbar pager systray
-#: ../plugin/xfcalendar_plugin.c:533
+#: ../plugin/xfcalendar_plugin.c:532
 msgid "Calendar window"
 msgstr "Finestra del calendari"
 
-#: ../plugin/xfcalendar_plugin.c:539
+#: ../plugin/xfcalendar_plugin.c:538
 msgid "Show in taskbar"
 msgstr "Mostra a la barra de tasques"
 
-#: ../plugin/xfcalendar_plugin.c:543
+#: ../plugin/xfcalendar_plugin.c:542
 msgid "Show in pager"
 msgstr "Mostra al paginador"
 
-#: ../plugin/xfcalendar_plugin.c:547
+#: ../plugin/xfcalendar_plugin.c:546
 msgid "Show in systray"
 msgstr "Mostra a la safata"
 
 #.
-#: ../plugin/xfcalendar_plugin.c:552
+#: ../plugin/xfcalendar_plugin.c:551
 msgid "Calendar start"
 msgstr "Inici del calendari"
 
-#: ../plugin/xfcalendar_plugin.c:557
+#: ../plugin/xfcalendar_plugin.c:556
 msgid "Show"
 msgstr "Mostra"
 
-#: ../plugin/xfcalendar_plugin.c:563
+#: ../plugin/xfcalendar_plugin.c:562
 msgid "Hide"
 msgstr "Amaga"
 
-#: ../plugin/xfcalendar_plugin.c:569
+#: ../plugin/xfcalendar_plugin.c:568
 msgid "Minimized"
 msgstr "Minimiza"
 
-#: ../plugin/xfcalendar_plugin.c:577
+#: ../plugin/xfcalendar_plugin.c:576
 msgid "Archives"
 msgstr "Arxiu"
 
 #. Archive file and periodicity
-#: ../plugin/xfcalendar_plugin.c:586
+#: ../plugin/xfcalendar_plugin.c:585
 msgid "Archive file"
 msgstr "Fitxer d'arxiu"
 
-#: ../plugin/xfcalendar_plugin.c:608
+#: ../plugin/xfcalendar_plugin.c:607
 msgid "Archive threshold"
 msgstr "Arxiu llindar"
 
-#: ../plugin/xfcalendar_plugin.c:622
+#: ../plugin/xfcalendar_plugin.c:621
 msgid "3 months"
 msgstr "3 mesos"
 
-#: ../plugin/xfcalendar_plugin.c:624
+#: ../plugin/xfcalendar_plugin.c:623
 msgid "6 months"
 msgstr "6 mesos"
 
-#: ../plugin/xfcalendar_plugin.c:626
+#: ../plugin/xfcalendar_plugin.c:625
 msgid "1 year"
 msgstr "1 any"
 
-#: ../plugin/xfcalendar_plugin.c:628
+#: ../plugin/xfcalendar_plugin.c:627
 msgid "never"
 msgstr "mai"
 
-#: ../plugin/xfcalendar_plugin.c:654 ../src/appointment.c:1326
+#: ../plugin/xfcalendar_plugin.c:653 ../src/appointment.c:1326
 msgid "Sound"
 msgstr "So"
 
-#: ../plugin/xfcalendar_plugin.c:664
+#: ../plugin/xfcalendar_plugin.c:663
 msgid "Application"
 msgstr "Aplicació"
 
-#: ../plugin/xfcalendar_plugin.c:687 ../plugin/xfcalendar_plugin.c:697
+#: ../plugin/xfcalendar_plugin.c:686 ../plugin/xfcalendar_plugin.c:696
 msgid "Timezone"
 msgstr "Fus horari"
 
-#: ../plugin/xfcalendar_plugin.c:754 ../src/appointment.c:180
+#: ../plugin/xfcalendar_plugin.c:753 ../src/appointment.c:180
 #: ../src/mainbox.c:335 ../xfcalendar.desktop.in.h:3
 msgid "Orage"
 msgstr "Orage"
@@ -289,10 +294,6 @@ msgstr "General"
 msgid "Title "
 msgstr "Títol "
 
-#: ../src/appointment.c:1187
-msgid "Location"
-msgstr "Ubicació"
-
 #: ../src/appointment.c:1193
 msgid "All day event"
 msgstr "Tot el dia"
@@ -420,17 +421,9 @@ msgstr "Títol"
 msgid "uid"
 msgstr "uid"
 
-#: ../src/ical-code.c:589
+#: ../src/ical-code.c:591
 msgid "Orage default alarm"
 msgstr "Alarma per omisió d'Orage"
-
-#: ../src/main.c:179
-msgid "This should not happen"
-msgstr "Això no hauria de succeir"
-
-#: ../src/main.c:467
-msgid "Cannot create MCS client channel"
-msgstr "No s'ha pogut crear el client per MCS"
 
 #: ../src/mainbox.c:363
 msgid "Open archive file..."
@@ -457,6 +450,14 @@ msgstr "Seleccione_u avui"
 #: ../src/mainbox.c:388
 msgid "_Help"
 msgstr "A_juda"
+
+#: ../src/main.c:179
+msgid "This should not happen"
+msgstr "Això no hauria de succeir"
+
+#: ../src/main.c:467
+msgid "Cannot create MCS client channel"
+msgstr "No s'ha pogut crear el client per MCS"
 
 #: ../src/reminder.c:174
 msgid "Reminder "

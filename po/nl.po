@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.3.2.8svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-16 18:53+0200\n"
+"POT-Creation-Date: 2006-01-22 23:25+0200\n"
 "PO-Revision-Date: 2005-09-14 01:09+0900\n"
 "Last-Translator: Jasper Huijsmans <jasper@xfce.org>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
@@ -32,6 +32,11 @@ msgstr "Kalender"
 msgid "All Files"
 msgstr ""
 
+#: ../plugin/xfcalendar_plugin.c:401 ../src/appointment.c:788
+#: ../src/appointment.c:1187
+msgid "Location"
+msgstr ""
+
 #. show it
 #: ../plugin/xfcalendar_plugin.c:406
 msgid "Pick local timezone"
@@ -45,107 +50,107 @@ msgstr ""
 msgid "floating"
 msgstr ""
 
-#: ../plugin/xfcalendar_plugin.c:486 ../plugin/xfcalendar_plugin.c:496
+#: ../plugin/xfcalendar_plugin.c:485 ../plugin/xfcalendar_plugin.c:495
 #, fuzzy
 msgid "Orage Preferences"
 msgstr "Voorkeuren"
 
-#: ../plugin/xfcalendar_plugin.c:505
+#: ../plugin/xfcalendar_plugin.c:504
 msgid "Display"
 msgstr ""
 
 #. Display calendar borders or not
-#: ../plugin/xfcalendar_plugin.c:515
+#: ../plugin/xfcalendar_plugin.c:514
 #, fuzzy
 msgid "Calendar borders"
 msgstr "Kalender"
 
-#: ../plugin/xfcalendar_plugin.c:520
+#: ../plugin/xfcalendar_plugin.c:519
 msgid "Displayed"
 msgstr ""
 
-#: ../plugin/xfcalendar_plugin.c:526
+#: ../plugin/xfcalendar_plugin.c:525
 msgid "Hidden"
 msgstr ""
 
 #. Show in... taskbar pager systray
-#: ../plugin/xfcalendar_plugin.c:533
+#: ../plugin/xfcalendar_plugin.c:532
 #, fuzzy
 msgid "Calendar window"
 msgstr "Venster _sluiten"
 
-#: ../plugin/xfcalendar_plugin.c:539
+#: ../plugin/xfcalendar_plugin.c:538
 msgid "Show in taskbar"
 msgstr ""
 
-#: ../plugin/xfcalendar_plugin.c:543
+#: ../plugin/xfcalendar_plugin.c:542
 msgid "Show in pager"
 msgstr ""
 
-#: ../plugin/xfcalendar_plugin.c:547
+#: ../plugin/xfcalendar_plugin.c:546
 msgid "Show in systray"
 msgstr ""
 
 #.
-#: ../plugin/xfcalendar_plugin.c:552
+#: ../plugin/xfcalendar_plugin.c:551
 #, fuzzy
 msgid "Calendar start"
 msgstr "Kalender"
 
-#: ../plugin/xfcalendar_plugin.c:557
+#: ../plugin/xfcalendar_plugin.c:556
 msgid "Show"
 msgstr ""
 
-#: ../plugin/xfcalendar_plugin.c:563
+#: ../plugin/xfcalendar_plugin.c:562
 msgid "Hide"
 msgstr ""
 
-#: ../plugin/xfcalendar_plugin.c:569
+#: ../plugin/xfcalendar_plugin.c:568
 msgid "Minimized"
 msgstr ""
 
-#: ../plugin/xfcalendar_plugin.c:577
+#: ../plugin/xfcalendar_plugin.c:576
 msgid "Archives"
 msgstr ""
 
 #. Archive file and periodicity
-#: ../plugin/xfcalendar_plugin.c:586
+#: ../plugin/xfcalendar_plugin.c:585
 msgid "Archive file"
 msgstr ""
 
-#: ../plugin/xfcalendar_plugin.c:608
+#: ../plugin/xfcalendar_plugin.c:607
 msgid "Archive threshold"
 msgstr ""
 
-#: ../plugin/xfcalendar_plugin.c:622
+#: ../plugin/xfcalendar_plugin.c:621
 msgid "3 months"
 msgstr ""
 
-#: ../plugin/xfcalendar_plugin.c:624
+#: ../plugin/xfcalendar_plugin.c:623
 msgid "6 months"
 msgstr ""
 
-#: ../plugin/xfcalendar_plugin.c:626
+#: ../plugin/xfcalendar_plugin.c:625
 msgid "1 year"
 msgstr ""
 
-#: ../plugin/xfcalendar_plugin.c:628
+#: ../plugin/xfcalendar_plugin.c:627
 msgid "never"
 msgstr ""
 
-#: ../plugin/xfcalendar_plugin.c:654 ../src/appointment.c:1326
+#: ../plugin/xfcalendar_plugin.c:653 ../src/appointment.c:1326
 msgid "Sound"
 msgstr ""
 
-#: ../plugin/xfcalendar_plugin.c:664
+#: ../plugin/xfcalendar_plugin.c:663
 msgid "Application"
 msgstr ""
 
-#: ../plugin/xfcalendar_plugin.c:687 ../plugin/xfcalendar_plugin.c:697
+#: ../plugin/xfcalendar_plugin.c:686 ../plugin/xfcalendar_plugin.c:696
 msgid "Timezone"
 msgstr ""
 
-#: ../plugin/xfcalendar_plugin.c:754 ../src/appointment.c:180
+#: ../plugin/xfcalendar_plugin.c:753 ../src/appointment.c:180
 #: ../src/mainbox.c:335 ../xfcalendar.desktop.in.h:3
 msgid "Orage"
 msgstr ""
@@ -293,10 +298,6 @@ msgstr ""
 msgid "Title "
 msgstr ""
 
-#: ../src/appointment.c:1187
-msgid "Location"
-msgstr ""
-
 #: ../src/appointment.c:1193
 msgid "All day event"
 msgstr ""
@@ -425,17 +426,9 @@ msgstr ""
 msgid "uid"
 msgstr ""
 
-#: ../src/ical-code.c:589
+#: ../src/ical-code.c:591
 msgid "Orage default alarm"
 msgstr ""
-
-#: ../src/main.c:179
-msgid "This should not happen"
-msgstr "Dit hoort niet te gebeuren"
-
-#: ../src/main.c:467
-msgid "Cannot create MCS client channel"
-msgstr "Cannot create MCS client channel"
 
 #: ../src/mainbox.c:363
 msgid "Open archive file..."
@@ -462,6 +455,14 @@ msgstr "Van_daag"
 #: ../src/mainbox.c:388
 msgid "_Help"
 msgstr "_Help"
+
+#: ../src/main.c:179
+msgid "This should not happen"
+msgstr "Dit hoort niet te gebeuren"
+
+#: ../src/main.c:467
+msgid "Cannot create MCS client channel"
+msgstr "Cannot create MCS client channel"
 
 #: ../src/reminder.c:174
 #, fuzzy

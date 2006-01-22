@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-16 18:53+0200\n"
+"POT-Creation-Date: 2006-01-22 23:25+0200\n"
 "PO-Revision-Date: 2006-01-15 22:07+0100\n"
 "Last-Translator: Piarres Beobide <pi@beobide.net>\n"
 "Language-Team: librezale.org <librezale@librezale.org>\n"
@@ -33,6 +33,11 @@ msgstr "Egutegi fitxategiak"
 msgid "All Files"
 msgstr "Fitxategi Guztiak"
 
+#: ../plugin/xfcalendar_plugin.c:401 ../src/appointment.c:788
+#: ../src/appointment.c:1187
+msgid "Location"
+msgstr "Kokalekua"
+
 #. show it
 #: ../plugin/xfcalendar_plugin.c:406
 msgid "Pick local timezone"
@@ -46,103 +51,103 @@ msgstr "UTC"
 msgid "floating"
 msgstr "mugikorra"
 
-#: ../plugin/xfcalendar_plugin.c:486 ../plugin/xfcalendar_plugin.c:496
+#: ../plugin/xfcalendar_plugin.c:485 ../plugin/xfcalendar_plugin.c:495
 msgid "Orage Preferences"
 msgstr "Orage Hobespenak"
 
-#: ../plugin/xfcalendar_plugin.c:505
+#: ../plugin/xfcalendar_plugin.c:504
 msgid "Display"
 msgstr "Erakutsi"
 
 #. Display calendar borders or not
-#: ../plugin/xfcalendar_plugin.c:515
+#: ../plugin/xfcalendar_plugin.c:514
 msgid "Calendar borders"
 msgstr "Egutegi ertzak"
 
-#: ../plugin/xfcalendar_plugin.c:520
+#: ../plugin/xfcalendar_plugin.c:519
 msgid "Displayed"
 msgstr "Bistarazirik"
 
-#: ../plugin/xfcalendar_plugin.c:526
+#: ../plugin/xfcalendar_plugin.c:525
 msgid "Hidden"
 msgstr "Ezkutaturik"
 
 #. Show in... taskbar pager systray
-#: ../plugin/xfcalendar_plugin.c:533
+#: ../plugin/xfcalendar_plugin.c:532
 msgid "Calendar window"
 msgstr "Egutegi leihoa"
 
-#: ../plugin/xfcalendar_plugin.c:539
+#: ../plugin/xfcalendar_plugin.c:538
 msgid "Show in taskbar"
 msgstr "Bistarazi ataza-barran"
 
-#: ../plugin/xfcalendar_plugin.c:543
+#: ../plugin/xfcalendar_plugin.c:542
 msgid "Show in pager"
 msgstr "Paginatzailean bistarazi"
 
-#: ../plugin/xfcalendar_plugin.c:547
+#: ../plugin/xfcalendar_plugin.c:546
 msgid "Show in systray"
 msgstr "Biztarazi sistema-barran"
 
 #.
-#: ../plugin/xfcalendar_plugin.c:552
+#: ../plugin/xfcalendar_plugin.c:551
 msgid "Calendar start"
 msgstr "Egutegia abiarazi"
 
-#: ../plugin/xfcalendar_plugin.c:557
+#: ../plugin/xfcalendar_plugin.c:556
 msgid "Show"
 msgstr "Bistarazi"
 
-#: ../plugin/xfcalendar_plugin.c:563
+#: ../plugin/xfcalendar_plugin.c:562
 msgid "Hide"
 msgstr "Ezkutatu"
 
-#: ../plugin/xfcalendar_plugin.c:569
+#: ../plugin/xfcalendar_plugin.c:568
 msgid "Minimized"
 msgstr "Txikiturik"
 
-#: ../plugin/xfcalendar_plugin.c:577
+#: ../plugin/xfcalendar_plugin.c:576
 msgid "Archives"
 msgstr "Artxiboak"
 
 #. Archive file and periodicity
-#: ../plugin/xfcalendar_plugin.c:586
+#: ../plugin/xfcalendar_plugin.c:585
 msgid "Archive file"
 msgstr "Artxibo fitxategia"
 
-#: ../plugin/xfcalendar_plugin.c:608
+#: ../plugin/xfcalendar_plugin.c:607
 msgid "Archive threshold"
 msgstr "Artxibo Muga"
 
-#: ../plugin/xfcalendar_plugin.c:622
+#: ../plugin/xfcalendar_plugin.c:621
 msgid "3 months"
 msgstr "3 hilabete"
 
-#: ../plugin/xfcalendar_plugin.c:624
+#: ../plugin/xfcalendar_plugin.c:623
 msgid "6 months"
 msgstr "6 hilabete"
 
-#: ../plugin/xfcalendar_plugin.c:626
+#: ../plugin/xfcalendar_plugin.c:625
 msgid "1 year"
 msgstr "urte bete"
 
-#: ../plugin/xfcalendar_plugin.c:628
+#: ../plugin/xfcalendar_plugin.c:627
 msgid "never"
 msgstr "inoiz"
 
-#: ../plugin/xfcalendar_plugin.c:654 ../src/appointment.c:1326
+#: ../plugin/xfcalendar_plugin.c:653 ../src/appointment.c:1326
 msgid "Sound"
 msgstr "Soinua"
 
-#: ../plugin/xfcalendar_plugin.c:664
+#: ../plugin/xfcalendar_plugin.c:663
 msgid "Application"
 msgstr "Aplikazioa"
 
-#: ../plugin/xfcalendar_plugin.c:687 ../plugin/xfcalendar_plugin.c:697
+#: ../plugin/xfcalendar_plugin.c:686 ../plugin/xfcalendar_plugin.c:696
 msgid "Timezone"
 msgstr "Ordu zonaldea"
 
-#: ../plugin/xfcalendar_plugin.c:754 ../src/appointment.c:180
+#: ../plugin/xfcalendar_plugin.c:753 ../src/appointment.c:180
 #: ../src/mainbox.c:335 ../xfcalendar.desktop.in.h:3
 msgid "Orage"
 msgstr "Orage"
@@ -290,10 +295,6 @@ msgstr "Orokorra"
 msgid "Title "
 msgstr "Izenburua "
 
-#: ../src/appointment.c:1187
-msgid "Location"
-msgstr "Kokalekua"
-
 #: ../src/appointment.c:1193
 msgid "All day event"
 msgstr "Egun osoko gertaera"
@@ -422,17 +423,9 @@ msgstr "Izenburua"
 msgid "uid"
 msgstr "uid"
 
-#: ../src/ical-code.c:589
+#: ../src/ical-code.c:591
 msgid "Orage default alarm"
 msgstr "Orage lehenetsiriko abisua"
-
-#: ../src/main.c:179
-msgid "This should not happen"
-msgstr "Hauez zen gertatu behar"
-
-#: ../src/main.c:467
-msgid "Cannot create MCS client channel"
-msgstr "Ezin da MCS bezero kanala sortu"
 
 #: ../src/mainbox.c:363
 msgid "Open archive file..."
@@ -459,6 +452,14 @@ msgstr "Hautatu _Gaur"
 #: ../src/mainbox.c:388
 msgid "_Help"
 msgstr "_Laguntza"
+
+#: ../src/main.c:179
+msgid "This should not happen"
+msgstr "Hauez zen gertatu behar"
+
+#: ../src/main.c:467
+msgid "Cannot create MCS client channel"
+msgstr "Ezin da MCS bezero kanala sortu"
 
 #: ../src/reminder.c:174
 msgid "Reminder "

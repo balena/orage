@@ -1,15 +1,15 @@
 # translation of orage to Finnish
 # This file is distributed under the same license as the orage package.
 # Copyright (C) 2003-2006 The Xfce Development Team.
-# Jari Rahkonen <jari.rahkonen@pp1.inet.fi>, 2005
 # Juha Kautto <juha@xfce.org>, 2004, 2006
+# Jari Rahkonen <jari.rahkonen@pp1.inet.fi>, 2005
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.3.2.8svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-16 18:53+0200\n"
-"PO-Revision-Date: 2005-09-14 01:49+0900\n"
+"POT-Creation-Date: 2006-01-22 23:25+0200\n"
+"PO-Revision-Date: 2006-01-22 01:49+0900\n"
 "Last-Translator: Juha Kautto <juha@xfce.org>\n"
 "Language-Team: Finnish <translation-team-fi@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -32,6 +32,11 @@ msgstr "Kalenteri tiedostot"
 msgid "All Files"
 msgstr "Kaikki tiedostot"
 
+#: ../plugin/xfcalendar_plugin.c:401 ../src/appointment.c:788
+#: ../src/appointment.c:1187
+msgid "Location"
+msgstr "Paikka"
+
 #. show it
 #: ../plugin/xfcalendar_plugin.c:406
 msgid "Pick local timezone"
@@ -45,103 +50,103 @@ msgstr "UTC"
 msgid "floating"
 msgstr "vaihtuva"
 
-#: ../plugin/xfcalendar_plugin.c:486 ../plugin/xfcalendar_plugin.c:496
+#: ../plugin/xfcalendar_plugin.c:485 ../plugin/xfcalendar_plugin.c:495
 msgid "Orage Preferences"
 msgstr "Orage asetukset"
 
-#: ../plugin/xfcalendar_plugin.c:505
+#: ../plugin/xfcalendar_plugin.c:504
 msgid "Display"
 msgstr "Näkymät"
 
 #. Display calendar borders or not
-#: ../plugin/xfcalendar_plugin.c:515
+#: ../plugin/xfcalendar_plugin.c:514
 msgid "Calendar borders"
 msgstr "Kalenterin kehykset"
 
-#: ../plugin/xfcalendar_plugin.c:520
+#: ../plugin/xfcalendar_plugin.c:519
 msgid "Displayed"
 msgstr "Näytä"
 
-#: ../plugin/xfcalendar_plugin.c:526
+#: ../plugin/xfcalendar_plugin.c:525
 msgid "Hidden"
 msgstr "Piilota"
 
 #. Show in... taskbar pager systray
-#: ../plugin/xfcalendar_plugin.c:533
+#: ../plugin/xfcalendar_plugin.c:532
 msgid "Calendar window"
 msgstr "Kalenteri"
 
-#: ../plugin/xfcalendar_plugin.c:539
+#: ../plugin/xfcalendar_plugin.c:538
 msgid "Show in taskbar"
 msgstr "Näytä työlistassa"
 
-#: ../plugin/xfcalendar_plugin.c:543
+#: ../plugin/xfcalendar_plugin.c:542
 msgid "Show in pager"
 msgstr "Näytä työpöydän vaihtajassa"
 
-#: ../plugin/xfcalendar_plugin.c:547
+#: ../plugin/xfcalendar_plugin.c:546
 msgid "Show in systray"
 msgstr "Näytä työtarjottimella"
 
 #.
-#: ../plugin/xfcalendar_plugin.c:552
+#: ../plugin/xfcalendar_plugin.c:551
 msgid "Calendar start"
 msgstr "Kalenterin käynnistys"
 
-#: ../plugin/xfcalendar_plugin.c:557
+#: ../plugin/xfcalendar_plugin.c:556
 msgid "Show"
 msgstr "Näytä"
 
-#: ../plugin/xfcalendar_plugin.c:563
+#: ../plugin/xfcalendar_plugin.c:562
 msgid "Hide"
 msgstr "Piilota"
 
-#: ../plugin/xfcalendar_plugin.c:569
+#: ../plugin/xfcalendar_plugin.c:568
 msgid "Minimized"
 msgstr "Pienennä"
 
-#: ../plugin/xfcalendar_plugin.c:577
+#: ../plugin/xfcalendar_plugin.c:576
 msgid "Archives"
 msgstr "Arkisto"
 
 #. Archive file and periodicity
-#: ../plugin/xfcalendar_plugin.c:586
+#: ../plugin/xfcalendar_plugin.c:585
 msgid "Archive file"
 msgstr "Arkistointitiedosto"
 
-#: ../plugin/xfcalendar_plugin.c:608
+#: ../plugin/xfcalendar_plugin.c:607
 msgid "Archive threshold"
 msgstr "Arkistointiraja"
 
-#: ../plugin/xfcalendar_plugin.c:622
+#: ../plugin/xfcalendar_plugin.c:621
 msgid "3 months"
 msgstr "3 kuukautta"
 
-#: ../plugin/xfcalendar_plugin.c:624
+#: ../plugin/xfcalendar_plugin.c:623
 msgid "6 months"
 msgstr "6 kuukautta"
 
-#: ../plugin/xfcalendar_plugin.c:626
+#: ../plugin/xfcalendar_plugin.c:625
 msgid "1 year"
 msgstr "1 vuosi"
 
-#: ../plugin/xfcalendar_plugin.c:628
+#: ../plugin/xfcalendar_plugin.c:627
 msgid "never"
 msgstr "Ei lainkaan"
 
-#: ../plugin/xfcalendar_plugin.c:654 ../src/appointment.c:1326
+#: ../plugin/xfcalendar_plugin.c:653 ../src/appointment.c:1326
 msgid "Sound"
 msgstr "Ääni"
 
-#: ../plugin/xfcalendar_plugin.c:664
+#: ../plugin/xfcalendar_plugin.c:663
 msgid "Application"
 msgstr "Sovellus"
 
-#: ../plugin/xfcalendar_plugin.c:687 ../plugin/xfcalendar_plugin.c:697
+#: ../plugin/xfcalendar_plugin.c:686 ../plugin/xfcalendar_plugin.c:696
 msgid "Timezone"
 msgstr "Aikavyöhyke"
 
-#: ../plugin/xfcalendar_plugin.c:754 ../src/appointment.c:180
+#: ../plugin/xfcalendar_plugin.c:753 ../src/appointment.c:180
 #: ../src/mainbox.c:335 ../xfcalendar.desktop.in.h:3
 msgid "Orage"
 msgstr "Orage"
@@ -288,10 +293,6 @@ msgstr "Yleiset"
 msgid "Title "
 msgstr "Nimi "
 
-#: ../src/appointment.c:1187
-msgid "Location"
-msgstr "Paikka"
-
 #: ../src/appointment.c:1193
 msgid "All day event"
 msgstr "Kokopäiväinen tapahtuma"
@@ -419,17 +420,9 @@ msgstr "Nimi"
 msgid "uid"
 msgstr "tunnus"
 
-#: ../src/ical-code.c:589
+#: ../src/ical-code.c:591
 msgid "Orage default alarm"
 msgstr "Oragen oletushälytys"
-
-#: ../src/main.c:179
-msgid "This should not happen"
-msgstr "Näin ei pitäisi tapahtua"
-
-#: ../src/main.c:467
-msgid "Cannot create MCS client channel"
-msgstr "MCS-kanavan luonti epäonnistui"
 
 #: ../src/mainbox.c:363
 msgid "Open archive file..."
@@ -456,6 +449,14 @@ msgstr "_Valitse tämä päivä"
 #: ../src/mainbox.c:388
 msgid "_Help"
 msgstr "_Ohje"
+
+#: ../src/main.c:179
+msgid "This should not happen"
+msgstr "Näin ei pitäisi tapahtua"
+
+#: ../src/main.c:467
+msgid "Cannot create MCS client channel"
+msgstr "MCS-kanavan luonti epäonnistui"
 
 #: ../src/reminder.c:174
 msgid "Reminder "

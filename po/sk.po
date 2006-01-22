@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.3.2.8svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-16 18:53+0200\n"
+"POT-Creation-Date: 2006-01-22 23:25+0200\n"
 "PO-Revision-Date: 2005-09-16 22:12+0100\n"
 "Last-Translator: Juraj Brosz <juro@jurajbrosz.info>\n"
 "Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
@@ -31,6 +31,11 @@ msgstr "Súbory kalendára"
 msgid "All Files"
 msgstr "Všetky súbory"
 
+#: ../plugin/xfcalendar_plugin.c:401 ../src/appointment.c:788
+#: ../src/appointment.c:1187
+msgid "Location"
+msgstr "Miesto"
+
 #. show it
 #: ../plugin/xfcalendar_plugin.c:406
 msgid "Pick local timezone"
@@ -45,115 +50,115 @@ msgstr ""
 msgid "floating"
 msgstr "Miesto"
 
-#: ../plugin/xfcalendar_plugin.c:486 ../plugin/xfcalendar_plugin.c:496
+#: ../plugin/xfcalendar_plugin.c:485 ../plugin/xfcalendar_plugin.c:495
 #, fuzzy
 msgid "Orage Preferences"
 msgstr "Nastavenia"
 
-#: ../plugin/xfcalendar_plugin.c:505
+#: ../plugin/xfcalendar_plugin.c:504
 #, fuzzy
 msgid "Display"
 msgstr "Denne"
 
 #. Display calendar borders or not
-#: ../plugin/xfcalendar_plugin.c:515
+#: ../plugin/xfcalendar_plugin.c:514
 #, fuzzy
 msgid "Calendar borders"
 msgstr "Súbory kalendára"
 
-#: ../plugin/xfcalendar_plugin.c:520
+#: ../plugin/xfcalendar_plugin.c:519
 msgid "Displayed"
 msgstr ""
 
-#: ../plugin/xfcalendar_plugin.c:526
+#: ../plugin/xfcalendar_plugin.c:525
 #, fuzzy
 msgid "Hidden"
 msgstr "Skryť"
 
 #. Show in... taskbar pager systray
-#: ../plugin/xfcalendar_plugin.c:533
+#: ../plugin/xfcalendar_plugin.c:532
 #, fuzzy
 msgid "Calendar window"
 msgstr "Kalendár"
 
-#: ../plugin/xfcalendar_plugin.c:539
+#: ../plugin/xfcalendar_plugin.c:538
 msgid "Show in taskbar"
 msgstr ""
 
-#: ../plugin/xfcalendar_plugin.c:543
+#: ../plugin/xfcalendar_plugin.c:542
 msgid "Show in pager"
 msgstr ""
 
-#: ../plugin/xfcalendar_plugin.c:547
+#: ../plugin/xfcalendar_plugin.c:546
 msgid "Show in systray"
 msgstr ""
 
 #.
-#: ../plugin/xfcalendar_plugin.c:552
+#: ../plugin/xfcalendar_plugin.c:551
 #, fuzzy
 msgid "Calendar start"
 msgstr "Kalendár"
 
-#: ../plugin/xfcalendar_plugin.c:557
+#: ../plugin/xfcalendar_plugin.c:556
 msgid "Show"
 msgstr "Ukázať"
 
-#: ../plugin/xfcalendar_plugin.c:563
+#: ../plugin/xfcalendar_plugin.c:562
 msgid "Hide"
 msgstr "Skryť"
 
-#: ../plugin/xfcalendar_plugin.c:569
+#: ../plugin/xfcalendar_plugin.c:568
 msgid "Minimized"
 msgstr "Minimalizované"
 
-#: ../plugin/xfcalendar_plugin.c:577
+#: ../plugin/xfcalendar_plugin.c:576
 #, fuzzy
 msgid "Archives"
 msgstr "Archívny súbor"
 
 #. Archive file and periodicity
-#: ../plugin/xfcalendar_plugin.c:586
+#: ../plugin/xfcalendar_plugin.c:585
 #, fuzzy
 msgid "Archive file"
 msgstr "Archívny súbor"
 
-#: ../plugin/xfcalendar_plugin.c:608
+#: ../plugin/xfcalendar_plugin.c:607
 #, fuzzy
 msgid "Archive threshold"
 msgstr "Položky v archíve staršie ako"
 
-#: ../plugin/xfcalendar_plugin.c:622
+#: ../plugin/xfcalendar_plugin.c:621
 msgid "3 months"
 msgstr "3 mesiace"
 
-#: ../plugin/xfcalendar_plugin.c:624
+#: ../plugin/xfcalendar_plugin.c:623
 msgid "6 months"
 msgstr "6 mesiacov"
 
-#: ../plugin/xfcalendar_plugin.c:626
+#: ../plugin/xfcalendar_plugin.c:625
 msgid "1 year"
 msgstr "1 rok"
 
-#: ../plugin/xfcalendar_plugin.c:628
+#: ../plugin/xfcalendar_plugin.c:627
 #, fuzzy
 msgid "never"
 msgstr "Obnoviť"
 
-#: ../plugin/xfcalendar_plugin.c:654 ../src/appointment.c:1326
+#: ../plugin/xfcalendar_plugin.c:653 ../src/appointment.c:1326
 msgid "Sound"
 msgstr "Zvuk"
 
-#: ../plugin/xfcalendar_plugin.c:664
+#: ../plugin/xfcalendar_plugin.c:663
 #, fuzzy
 msgid "Application"
 msgstr "Aplikácia"
 
-#: ../plugin/xfcalendar_plugin.c:687 ../plugin/xfcalendar_plugin.c:697
+#: ../plugin/xfcalendar_plugin.c:686 ../plugin/xfcalendar_plugin.c:696
 #, fuzzy
 msgid "Timezone"
 msgstr "Čas"
 
-#: ../plugin/xfcalendar_plugin.c:754 ../src/appointment.c:180
+#: ../plugin/xfcalendar_plugin.c:753 ../src/appointment.c:180
 #: ../src/mainbox.c:335 ../xfcalendar.desktop.in.h:3
 msgid "Orage"
 msgstr ""
@@ -301,10 +306,6 @@ msgstr "Základné"
 msgid "Title "
 msgstr "Názov"
 
-#: ../src/appointment.c:1187
-msgid "Location"
-msgstr "Miesto"
-
 #: ../src/appointment.c:1193
 msgid "All day event"
 msgstr "Celodenná udalosť"
@@ -441,18 +442,10 @@ msgstr "Názov"
 msgid "uid"
 msgstr "uid"
 
-#: ../src/ical-code.c:589
+#: ../src/ical-code.c:591
 #, fuzzy
 msgid "Orage default alarm"
 msgstr "Prednastavený alarm kalendára"
-
-#: ../src/main.c:179
-msgid "This should not happen"
-msgstr "Nemusí sa to podariť"
-
-#: ../src/main.c:467
-msgid "Cannot create MCS client channel"
-msgstr "Nie je možné vytvoriť kanál MCS klienta"
 
 #: ../src/mainbox.c:363
 msgid "Open archive file..."
@@ -479,6 +472,14 @@ msgstr "Vybrať _dnešný dátum"
 #: ../src/mainbox.c:388
 msgid "_Help"
 msgstr "_Pomocník"
+
+#: ../src/main.c:179
+msgid "This should not happen"
+msgstr "Nemusí sa to podariť"
+
+#: ../src/main.c:467
+msgid "Cannot create MCS client channel"
+msgstr "Nie je možné vytvoriť kanál MCS klienta"
 
 #: ../src/reminder.c:174
 msgid "Reminder "

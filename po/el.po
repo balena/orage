@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.3.2.8svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-16 18:53+0200\n"
+"POT-Creation-Date: 2006-01-22 23:25+0200\n"
 "PO-Revision-Date: 2006-01-05 22:56+0200\n"
 "Last-Translator: Stavros Giannouris <stavrosg2002@freemail.gr>\n"
 "Language-Team: Greek <nls@tux.hellug.gr>\n"
@@ -32,6 +32,11 @@ msgstr "Αρχεία ημερολογίου"
 msgid "All Files"
 msgstr "Όλα τα Αρχεία"
 
+#: ../plugin/xfcalendar_plugin.c:401 ../src/appointment.c:788
+#: ../src/appointment.c:1187
+msgid "Location"
+msgstr "Τοποθεσία"
+
 #. show it
 #: ../plugin/xfcalendar_plugin.c:406
 msgid "Pick local timezone"
@@ -45,103 +50,103 @@ msgstr ""
 msgid "floating"
 msgstr "μετακινούμενη"
 
-#: ../plugin/xfcalendar_plugin.c:486 ../plugin/xfcalendar_plugin.c:496
+#: ../plugin/xfcalendar_plugin.c:485 ../plugin/xfcalendar_plugin.c:495
 msgid "Orage Preferences"
 msgstr "Προτιμήσεις Orage"
 
-#: ../plugin/xfcalendar_plugin.c:505
+#: ../plugin/xfcalendar_plugin.c:504
 msgid "Display"
 msgstr "Εμφάνιση"
 
 #. Display calendar borders or not
-#: ../plugin/xfcalendar_plugin.c:515
+#: ../plugin/xfcalendar_plugin.c:514
 msgid "Calendar borders"
 msgstr "Περιγράμματα παραθύρου"
 
-#: ../plugin/xfcalendar_plugin.c:520
+#: ../plugin/xfcalendar_plugin.c:519
 msgid "Displayed"
 msgstr "Εμφάνιση"
 
-#: ../plugin/xfcalendar_plugin.c:526
+#: ../plugin/xfcalendar_plugin.c:525
 msgid "Hidden"
 msgstr "Απόκρυψη"
 
 #. Show in... taskbar pager systray
-#: ../plugin/xfcalendar_plugin.c:533
+#: ../plugin/xfcalendar_plugin.c:532
 msgid "Calendar window"
 msgstr "Παράθυρο Ημερολογίου"
 
-#: ../plugin/xfcalendar_plugin.c:539
+#: ../plugin/xfcalendar_plugin.c:538
 msgid "Show in taskbar"
 msgstr "Προβολή στη μπάρα εργασιών"
 
-#: ../plugin/xfcalendar_plugin.c:543
+#: ../plugin/xfcalendar_plugin.c:542
 msgid "Show in pager"
 msgstr "Προβολή στον ειδοποιητή"
 
-#: ../plugin/xfcalendar_plugin.c:547
+#: ../plugin/xfcalendar_plugin.c:546
 msgid "Show in systray"
 msgstr "Προβολή στον πίνακα συστήματος"
 
 #.
-#: ../plugin/xfcalendar_plugin.c:552
+#: ../plugin/xfcalendar_plugin.c:551
 msgid "Calendar start"
 msgstr "Εκκίνηση"
 
-#: ../plugin/xfcalendar_plugin.c:557
+#: ../plugin/xfcalendar_plugin.c:556
 msgid "Show"
 msgstr "Προβολή"
 
-#: ../plugin/xfcalendar_plugin.c:563
+#: ../plugin/xfcalendar_plugin.c:562
 msgid "Hide"
 msgstr "Απόκρυψη"
 
-#: ../plugin/xfcalendar_plugin.c:569
+#: ../plugin/xfcalendar_plugin.c:568
 msgid "Minimized"
 msgstr "Ελαχιστοποιημένο"
 
-#: ../plugin/xfcalendar_plugin.c:577
+#: ../plugin/xfcalendar_plugin.c:576
 msgid "Archives"
 msgstr "Αρχειοθέτηση"
 
 #. Archive file and periodicity
-#: ../plugin/xfcalendar_plugin.c:586
+#: ../plugin/xfcalendar_plugin.c:585
 msgid "Archive file"
 msgstr "Όνομα αρχείου:"
 
-#: ../plugin/xfcalendar_plugin.c:608
+#: ../plugin/xfcalendar_plugin.c:607
 msgid "Archive threshold"
 msgstr "Κατώφλι αρχειοθέτησης"
 
-#: ../plugin/xfcalendar_plugin.c:622
+#: ../plugin/xfcalendar_plugin.c:621
 msgid "3 months"
 msgstr "3 μήνες"
 
-#: ../plugin/xfcalendar_plugin.c:624
+#: ../plugin/xfcalendar_plugin.c:623
 msgid "6 months"
 msgstr "6 μήνες"
 
-#: ../plugin/xfcalendar_plugin.c:626
+#: ../plugin/xfcalendar_plugin.c:625
 msgid "1 year"
 msgstr "1 χρόνο"
 
-#: ../plugin/xfcalendar_plugin.c:628
+#: ../plugin/xfcalendar_plugin.c:627
 msgid "never"
 msgstr "ποτέ"
 
-#: ../plugin/xfcalendar_plugin.c:654 ../src/appointment.c:1326
+#: ../plugin/xfcalendar_plugin.c:653 ../src/appointment.c:1326
 msgid "Sound"
 msgstr "Ήχοι"
 
-#: ../plugin/xfcalendar_plugin.c:664
+#: ../plugin/xfcalendar_plugin.c:663
 msgid "Application"
 msgstr "Εφαρμογή"
 
-#: ../plugin/xfcalendar_plugin.c:687 ../plugin/xfcalendar_plugin.c:697
+#: ../plugin/xfcalendar_plugin.c:686 ../plugin/xfcalendar_plugin.c:696
 msgid "Timezone"
 msgstr "Ζώνη ώρας"
 
-#: ../plugin/xfcalendar_plugin.c:754 ../src/appointment.c:180
+#: ../plugin/xfcalendar_plugin.c:753 ../src/appointment.c:180
 #: ../src/mainbox.c:335 ../xfcalendar.desktop.in.h:3
 msgid "Orage"
 msgstr "Orage"
@@ -289,10 +294,6 @@ msgstr "Γενικές"
 msgid "Title "
 msgstr "Τίτλος"
 
-#: ../src/appointment.c:1187
-msgid "Location"
-msgstr "Τοποθεσία"
-
 #: ../src/appointment.c:1193
 msgid "All day event"
 msgstr "Νέο γεγονός ολόκληρης της μέρας"
@@ -421,17 +422,9 @@ msgstr "Τίτλος"
 msgid "uid"
 msgstr "uid"
 
-#: ../src/ical-code.c:589
+#: ../src/ical-code.c:591
 msgid "Orage default alarm"
 msgstr "Προκαθορισμένη ειδοποίηση"
-
-#: ../src/main.c:179
-msgid "This should not happen"
-msgstr "Αυτό δεν θα έπρεπε να συμβεί"
-
-#: ../src/main.c:467
-msgid "Cannot create MCS client channel"
-msgstr "Αδύνατη η δημιουργία καναλιού πελάτη MCS"
 
 #: ../src/mainbox.c:363
 msgid "Open archive file..."
@@ -458,6 +451,14 @@ msgstr "Επέλεξε το _Σήμερα"
 #: ../src/mainbox.c:388
 msgid "_Help"
 msgstr "_Βοήθεια"
+
+#: ../src/main.c:179
+msgid "This should not happen"
+msgstr "Αυτό δεν θα έπρεπε να συμβεί"
+
+#: ../src/main.c:467
+msgid "Cannot create MCS client channel"
+msgstr "Αδύνατη η δημιουργία καναλιού πελάτη MCS"
 
 #: ../src/reminder.c:174
 msgid "Reminder "
