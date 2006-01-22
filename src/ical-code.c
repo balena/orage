@@ -182,11 +182,13 @@ void xfical_add_timezone(icalcomponent *p_ical, icalset *p_fical, char *loc)
     icaltimezone *icaltz=NULL;
     icalcomponent *itimezone=NULL;
                                                                                 
-    g_message("adding timezone %s", loc);
     if (!loc) {
         g_warning("xfical_add_timezone: no location defined");
         return;
     }
+    else
+        g_message("adding timezone %s", loc);
+
     if (strcmp(loc,"UTC") == 0 
     ||  strcmp(loc,"floating") == 0) {
         return;
