@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: orage 4.3.2.9svn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-01-26 19:58+0900\n"
-"PO-Revision-Date: 2006-01-09 00:45+0900\n"
+"PO-Revision-Date: 2006-01-29 16:12+0900\n"
 "Last-Translator: Daichi Kawahata <daichi@xfce.org>\n"
 "Language-Team: Japanese <xfce-users-jp@ml.fdiary.net>\n"
 "MIME-Version: 1.0\n"
@@ -42,7 +42,7 @@ msgstr "場所"
 #. show it
 #: ../plugin/xfcalendar_plugin.c:406
 msgid "Pick local timezone"
-msgstr "あなたの時間帯を選択して下さい"
+msgstr "時間帯を選択して下さい"
 
 #: ../plugin/xfcalendar_plugin.c:409 ../plugin/xfcalendar_plugin.c:431
 #: ../src/appointment.c:796 ../src/ical-code.c:94
@@ -95,7 +95,7 @@ msgstr "システムトレイに表示する"
 #.
 #: ../plugin/xfcalendar_plugin.c:551
 msgid "Calendar start"
-msgstr "カレンダーの起動"
+msgstr "カレンダーウィンドウの起動"
 
 #: ../plugin/xfcalendar_plugin.c:556
 msgid "Show"
@@ -157,7 +157,7 @@ msgstr "Orage"
 
 #: ../src/about-xfcalendar.c:39
 msgid "Manage your time with Xfce4"
-msgstr "Xfce4 であなたの日程を管理します。"
+msgstr "スケジュールの管理を行います"
 
 #: ../src/about-xfcalendar.c:49
 msgid "Core developer"
@@ -209,7 +209,7 @@ msgstr "このアポイントは永久に削除されます。"
 
 #: ../src/appointment.c:702
 msgid "Pick the date"
-msgstr "日付を選択"
+msgstr "日付を選択して下さい"
 
 #: ../src/appointment.c:704 ../src/event-list.c:703 ../src/tray_icon.c:105
 msgid "Today"
@@ -218,26 +218,24 @@ msgstr "今日"
 #. show it
 #: ../src/appointment.c:793
 msgid "Pick timezone"
-msgstr "時間帯を選択"
+msgstr "時間帯を選択して下さい"
 
 #. window title
 #: ../src/appointment.c:991
 msgid "New appointment - Orage"
 msgstr "新しいアポイント - Orage"
 
-# FIXME:
 #: ../src/appointment.c:1089
 msgid "Free"
 msgstr "休憩中"
 
-# FIXME:
 #: ../src/appointment.c:1089
 msgid "Busy"
 msgstr "仕事中"
 
 #: ../src/appointment.c:1091
 msgid "None"
-msgstr "なし"
+msgstr "無し"
 
 #: ../src/appointment.c:1091
 msgid "Daily"
@@ -313,7 +311,7 @@ msgstr "終了時刻"
 
 #: ../src/appointment.c:1225
 msgid "Duration"
-msgstr "期間"
+msgstr "適用期間"
 
 #: ../src/appointment.c:1232 ../src/appointment.c:1304
 msgid "days"
@@ -321,7 +319,7 @@ msgstr "日"
 
 #: ../src/appointment.c:1240 ../src/appointment.c:1312
 msgid "hours"
-msgstr "時間"
+msgstr "時"
 
 #: ../src/appointment.c:1248 ../src/appointment.c:1319
 msgid "mins"
@@ -341,7 +339,7 @@ msgstr "アラーム"
 
 #: ../src/appointment.c:1337
 msgid "Repeat alarm sound"
-msgstr "アラート音を繰返す"
+msgstr "アラート音を繰り返す"
 
 #: ../src/appointment.c:1344 ../src/appointment.c:1353
 msgid "Recurrence"
@@ -360,9 +358,8 @@ msgid "times"
 msgstr "回繰り返す"
 
 #: ../src/appointment.c:1383
-#, fuzzy
 msgid "Repeat until "
-msgstr " "
+msgstr "次まで繰り返す "
 
 #. date only appointment
 #: ../src/event-list.c:200
@@ -427,7 +424,6 @@ msgstr "件名"
 msgid "uid"
 msgstr "UID"
 
-# FIXME: should be `Orage'
 #: ../src/ical-code.c:591
 msgid "Orage default alarm"
 msgstr "Orage の標準アラーム"
@@ -482,10 +478,9 @@ msgstr "Orage について"
 msgid "Calendar Settings"
 msgstr "カレンダー"
 
-# FIXME: original string should be revised
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:2
 msgid "Settings for the Xfce 4 Calendar Application"
-msgstr "Xfce 4 カレンダーアプリケーションの設定を行います。"
+msgstr "Xfce 4 カレンダーアプリケーションの設定を行います"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:3
 msgid "Xfce 4 Calendar Settings"
@@ -495,7 +490,6 @@ msgstr "Xfce 4 カレンダーの設定"
 msgid "Calendar"
 msgstr "カレンダー"
 
-# FIXME: original string should be revised
 #: ../xfcalendar.desktop.in.h:2
 msgid "Desktop calendar"
-msgstr "シンプルな卓上カレンダーです。"
+msgstr "卓上カレンダー"
