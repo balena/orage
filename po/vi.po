@@ -1,4 +1,3 @@
-# translation of orage to Vietnamese
 # Vietnamese translations for orage package.
 # Copyright (C) 2003-2006 The Xfce development team.
 # This file is distributed under the same license as the orage package.
@@ -7,10 +6,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: orage 4.3.2.9svn\n"
+"Project-Id-Version: xfcalendar 4.3.2.9svn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-01-26 19:58+0900\n"
-"PO-Revision-Date: 2006-01-27 02:16+0300\n"
+"PO-Revision-Date: 2006-02-12 02:12+0300\n"
 "Last-Translator: Phan Vĩnh Thịnh <teppi@vnlinux.org>\n"
 "Language-Team: Vietnamese <none@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -42,18 +41,17 @@ msgstr "Vị trí"
 #. show it
 #: ../plugin/xfcalendar_plugin.c:406
 msgid "Pick local timezone"
-msgstr ""
+msgstr "Chọn múi giờ"
 
 #: ../plugin/xfcalendar_plugin.c:409 ../plugin/xfcalendar_plugin.c:431
 #: ../src/appointment.c:796 ../src/ical-code.c:94
 msgid "UTC"
-msgstr ""
+msgstr "UTC"
 
 #: ../plugin/xfcalendar_plugin.c:410 ../plugin/xfcalendar_plugin.c:434
 #: ../src/appointment.c:797 ../src/ical-code.c:95
-#, fuzzy
 msgid "floating"
-msgstr "Vị trí"
+msgstr "không cố định"
 
 #: ../plugin/xfcalendar_plugin.c:485 ../plugin/xfcalendar_plugin.c:495
 msgid "Orage Preferences"
@@ -82,18 +80,16 @@ msgid "Calendar window"
 msgstr "Cửa sổ lịch"
 
 #: ../plugin/xfcalendar_plugin.c:538
-#, fuzzy
 msgid "Show in taskbar"
-msgstr "Hiện nút trên thanh công cụ"
+msgstr "Hiện thị trên thanh công cụ"
 
 #: ../plugin/xfcalendar_plugin.c:542
 msgid "Show in pager"
 msgstr "Hiện trong chuyển trang"
 
 #: ../plugin/xfcalendar_plugin.c:546
-#, fuzzy
 msgid "Show in systray"
-msgstr "Hiện biểu tượng trong khay"
+msgstr "Hiện thị trong khay"
 
 #.
 #: ../plugin/xfcalendar_plugin.c:551
@@ -138,9 +134,8 @@ msgid "1 year"
 msgstr "1 năm"
 
 #: ../plugin/xfcalendar_plugin.c:627
-#, fuzzy
 msgid "never"
-msgstr "Quay lại"
+msgstr "không bao giờ"
 
 #: ../plugin/xfcalendar_plugin.c:653 ../src/appointment.c:1326
 msgid "Sound"
@@ -151,9 +146,8 @@ msgid "Application"
 msgstr "Ứng dụng"
 
 #: ../plugin/xfcalendar_plugin.c:686 ../plugin/xfcalendar_plugin.c:696
-#, fuzzy
 msgid "Timezone"
-msgstr "Thời gian"
+msgstr "Múi giờ"
 
 #: ../plugin/xfcalendar_plugin.c:753 ../src/appointment.c:180
 #: ../src/mainbox.c:335 ../xfcalendar.desktop.in.h:3
@@ -214,7 +208,7 @@ msgstr "Sẽ xóa cuộc hẹn này."
 
 #: ../src/appointment.c:702
 msgid "Pick the date"
-msgstr ""
+msgstr "Chọn ngày"
 
 #: ../src/appointment.c:704 ../src/event-list.c:703 ../src/tray_icon.c:105
 msgid "Today"
@@ -223,7 +217,7 @@ msgstr "Hôm nay"
 #. show it
 #: ../src/appointment.c:793
 msgid "Pick timezone"
-msgstr ""
+msgstr "Chọn múi giờ"
 
 #. window title
 #: ../src/appointment.c:991
@@ -256,7 +250,7 @@ msgstr "Hàng tháng"
 
 #: ../src/appointment.c:1091
 msgid "Yearly"
-msgstr ""
+msgstr "Hàng năm"
 
 #. File menu stuff
 #. File menu
@@ -315,24 +309,20 @@ msgid "End"
 msgstr "Kết thúc"
 
 #: ../src/appointment.c:1225
-#, fuzzy
 msgid "Duration"
-msgstr "Vị trí"
+msgstr "Khoảng thời gian"
 
 #: ../src/appointment.c:1232 ../src/appointment.c:1304
-#, fuzzy
 msgid "days"
-msgstr "2 ngày"
+msgstr "ngày"
 
 #: ../src/appointment.c:1240 ../src/appointment.c:1312
-#, fuzzy
 msgid "hours"
-msgstr "2 giờ"
+msgstr "giờ"
 
 #: ../src/appointment.c:1248 ../src/appointment.c:1319
-#, fuzzy
 msgid "mins"
-msgstr "5 phút"
+msgstr "phút"
 
 #: ../src/appointment.c:1254
 msgid "Availability"
@@ -356,21 +346,19 @@ msgstr "Lặp lại"
 
 #: ../src/appointment.c:1361
 msgid "Repeat forever"
-msgstr ""
+msgstr "Lặp lại mãi"
 
 #: ../src/appointment.c:1369
-#, fuzzy
 msgid "Repeat "
-msgstr "Quay lại"
+msgstr "Lặp lại"
 
 #: ../src/appointment.c:1374
-#, fuzzy
 msgid "times"
-msgstr "Thời gian"
+msgstr "thời gian"
 
 #: ../src/appointment.c:1383
 msgid "Repeat until "
-msgstr ""
+msgstr "Lặp lại cho đến "
 
 #. date only appointment
 #: ../src/event-list.c:200
@@ -436,9 +424,8 @@ msgid "uid"
 msgstr "uid"
 
 #: ../src/ical-code.c:591
-#, fuzzy
 msgid "Orage default alarm"
-msgstr "Báo thức mặc định của Xfcalendar"
+msgstr "Báo thức mặc định của Orage"
 
 #: ../src/mainbox.c:363
 msgid "Open archive file..."
@@ -505,3 +492,4 @@ msgstr "Lịch"
 #: ../xfcalendar.desktop.in.h:2
 msgid "Desktop calendar"
 msgstr "Lịch màn hình"
+
