@@ -740,6 +740,8 @@ static void setup_dialog (Itf *dialog)
     g_signal_connect (G_OBJECT (dialog->timezone_button), "clicked", G_CALLBACK (cb_timezone_button_clicked), dialog);
 
     xfce_gtk_window_center_on_monitor_with_pointer (GTK_WINDOW (dialog->orage_dialog));
+    gdk_x11_window_set_user_time(GTK_WIDGET (dialog->orage_dialog)->window, 
+            gdk_x11_get_server_time (GTK_WIDGET (dialog->orage_dialog)->window));
     gtk_widget_show_all (dialog->orage_dialog);
 }
 
@@ -906,15 +908,20 @@ static gboolean write_options(McsPlugin * mcs_plugin)
 
 static void run_dialog(McsPlugin * mcs_plugin)
 {
-    Itf *dialog;
-
-    if(is_running)
-        return;
-
-    is_running = TRUE;
+    static Itf *dialog = NULL;
 
     xfce_textdomain(GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8");
 
+    if (is_running)
+    {
+        if((dialog) && (dialog->orage_dialog))
+        {
+            gtk_window_present(GTK_WINDOW(dialog->orage_dialog));
+        }
+        return;
+    }
+
+    is_running = TRUE;
     dialog = create_orage_dialog(mcs_plugin);
     setup_dialog(dialog);
 }
