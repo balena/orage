@@ -1,17 +1,17 @@
 /*
-	This program is free software; you can redistribute it and/or modify
-	it under the terms of the GNU General Public License as published by
-	the Free Software Foundation; You may only use version 2 of the License,
-	you have no option to use any other version.
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; You may only use version 2 of the License,
+    you have no option to use any other version.
 
-	This program is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-	GNU General Public License for more details.
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
 
-	You should have received a copy of the GNU General Public License
-	along with this program; if not, write to the Free Software
-	Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
     orage mcs plugin   - (c) 2003-2005 Mickael Graf <korbinus at xfce.org>
                        - (c) 2005      Juha Kautto <juha at xfce.org>
@@ -63,6 +63,7 @@ static int archive_threshold = 6;
 
 enum {
     LOCATION,
+    LOCATION_ENG,
     N_COLUMNS
 };
 
@@ -351,8 +352,8 @@ static void cb_timezone_button_clicked (GtkButton *button, gpointer user_data)
     GtkWidget *window;
     GtkWidget *sw;
     int j, result, latitude, longitude;
-    char area_old[MAX_AREA_LENGTH], tz[MAX_BUFF_LENGTH], *loc,
-         buf[MAX_BUFF_LENGTH];
+    char area_old[MAX_AREA_LENGTH], tz[MAX_BUFF_LENGTH], buf[MAX_BUFF_LENGTH]
+        , *loc, *loc_eng, *loc_int;
     GtkTreeSelection *sel;
     GtkTreeModel     *model;
     GtkTreeIter       iter;
@@ -368,7 +369,7 @@ static void cb_timezone_button_clicked (GtkButton *button, gpointer user_data)
         return;
     }
  
-    store = gtk_tree_store_new(N_COLUMNS, G_TYPE_STRING);
+    store = gtk_tree_store_new(N_COLUMNS, G_TYPE_STRING, G_TYPE_STRING);
     strcpy(area_old, "S T a R T");
     while (fgets(buf, MAX_BUFF_LENGTH, fp) != NULL) {
         if (sscanf(buf, "%d %d %s", &latitude, &longitude, tz) != 3) {
@@ -387,11 +388,17 @@ static void cb_timezone_button_clicked (GtkButton *button, gpointer user_data)
             area_old[j] = 0;
                                                                              
             gtk_tree_store_append(store, &iter1, NULL);
-            gtk_tree_store_set(store, &iter1, LOCATION, area_old, -1);
+            gtk_tree_store_set(store, &iter1
+                    , LOCATION, _(area_old)
+                    , LOCATION_ENG, area_old
+                    , -1);
         }
-        /* then city */
+        /* then city translated and in base form used internally */
         gtk_tree_store_append(store, &iter2, &iter1);
-        gtk_tree_store_set(store, &iter2, LOCATION, tz, -1);
+        gtk_tree_store_set(store, &iter2
+                , LOCATION, _(tz)
+                , LOCATION_ENG, tz
+                , -1);
     }
     g_free(fpath);
                                                                              
@@ -401,6 +408,12 @@ static void cb_timezone_button_clicked (GtkButton *button, gpointer user_data)
     col  = gtk_tree_view_column_new_with_attributes(_("Location")
                 , rend, "text", LOCATION, NULL);
     gtk_tree_view_append_column(GTK_TREE_VIEW(tree), col);
+
+    rend = gtk_cell_renderer_text_new();
+    col  = gtk_tree_view_column_new_with_attributes(_("Location")
+                , rend, "text", LOCATION_ENG, NULL);
+    gtk_tree_view_append_column(GTK_TREE_VIEW(tree), col);
+    gtk_tree_view_column_set_visible(col, FALSE);
                                                                              
     /* show it */
     window =  gtk_dialog_new_with_buttons(_("Pick local timezone")
@@ -424,25 +437,41 @@ static void cb_timezone_button_clicked (GtkButton *button, gpointer user_data)
                 if (gtk_tree_selection_get_selected(sel, &model, &iter))
                     if (gtk_tree_model_iter_has_child(model, &iter))
                         result = 0;
-                    else
-                        gtk_tree_model_get(model, &iter, LOCATION, &loc, -1);                else
-                    loc = g_strdup(gtk_button_get_label(GTK_BUTTON(button)));                break;
+                    else {
+                        gtk_tree_model_get(model, &iter, LOCATION, &loc, -1); 
+                        gtk_tree_model_get(model, &iter, LOCATION_ENG, &loc_eng, -1); 
+                    }
+                else {
+                    loc = g_strdup(gtk_button_get_label(GTK_BUTTON(button)));
+                    loc_eng = g_object_get_data(G_OBJECT(button), "LOCATION_ENG");
+                }
+                break;
             case 1:
-                loc = g_strdup("UTC");
+                loc = g_strdup(_("UTC"));
+                loc_eng = g_strdup("UTC");
                 break;
             case 2:
-                loc = g_strdup("floating");
+                loc = g_strdup(_("floating"));
+                loc_eng = g_strdup("floating");
                 break;
             default:
                 loc = g_strdup(gtk_button_get_label(GTK_BUTTON(button)));
+                loc_eng = g_object_get_data(G_OBJECT(button), "LOCATION_ENG");
                 break;
         }
     } while (result == 0) ;
     gtk_button_set_label(GTK_BUTTON(button), loc);
 
-    mcs_manager_set_string(mcs_plugin->manager, "orage/Timezone", CHANNEL, loc);
+    if (loc_int = g_object_get_data(G_OBJECT(button), "LOCATION_ENG"))
+                g_free(loc_int);
+    loc_int = g_strdup(loc_eng);
+    g_object_set_data(G_OBJECT(button), "LOCATION_ENG", loc_int);
+
+    mcs_manager_set_string(mcs_plugin->manager, "orage/Timezone", CHANNEL, loc_eng);
     post_to_mcs(mcs_plugin);
+
     g_free(loc);
+    g_free(loc_eng);
     gtk_widget_destroy(window);
 }
 
@@ -703,10 +732,14 @@ Itf *create_orage_dialog(McsPlugin * mcs_plugin)
     xfce_framebox_add (XFCE_FRAMEBOX (dialog->timezone_frame)
                        , dialog->timezone_table);
     dialog->timezone_button = gtk_button_new();
-    if (local_timezone)
-        gtk_button_set_label(GTK_BUTTON(dialog->timezone_button), local_timezone);
-    else
-        gtk_button_set_label(GTK_BUTTON(dialog->timezone_button), "floating");
+    if (local_timezone) {
+        gtk_button_set_label(GTK_BUTTON(dialog->timezone_button), _(local_timezone));
+        g_object_set_data(G_OBJECT(dialog->timezone_button), "LOCATION_ENG", local_timezone);
+    }
+    else {
+        gtk_button_set_label(GTK_BUTTON(dialog->timezone_button), _("floating"));
+        g_object_set_data(G_OBJECT(dialog->timezone_button), "LOCATION_ENG", "floating");
+    }
 
     gtk_table_attach (GTK_TABLE (dialog->timezone_table), dialog->timezone_button, 0, 1, 0, 1,
                         (GtkAttachOptions) (GTK_FILL),
