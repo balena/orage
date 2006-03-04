@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: he\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-01-16 18:53+0200\n"
+"POT-Creation-Date: 2006-03-04 19:21+0900\n"
 "PO-Revision-Date: 2006-01-29 00:29+0200\n"
 "Last-Translator: Dotan Kamber <kamberd@yahoo.com>\n"
 "Language-Team: Hebrew\n"
@@ -36,118 +36,125 @@ msgstr "קבצי יומן"
 msgid "All Files"
 msgstr "כל הקבצים"
 
+#: ../plugin/xfcalendar_plugin.c:401 ../src/appointment.c:788
+#: ../src/appointment.c:1187
+msgid "Location"
+msgstr "מיקום"
+
 #. show it
 #: ../plugin/xfcalendar_plugin.c:406
 msgid "Pick local timezone"
 msgstr "בחר אזור-זמן מקומי"
 
-#: ../plugin/xfcalendar_plugin.c:409 ../src/appointment.c:796
+#: ../plugin/xfcalendar_plugin.c:409 ../plugin/xfcalendar_plugin.c:431
+#: ../src/appointment.c:796 ../src/ical-code.c:94
 msgid "UTC"
 msgstr "UTC"
 
-#: ../plugin/xfcalendar_plugin.c:410 ../src/appointment.c:797
+#: ../plugin/xfcalendar_plugin.c:410 ../plugin/xfcalendar_plugin.c:434
+#: ../src/appointment.c:797 ../src/ical-code.c:95
 #, fuzzy
 msgid "floating"
 msgstr "צף"
 
-#: ../plugin/xfcalendar_plugin.c:486 ../plugin/xfcalendar_plugin.c:496
+#: ../plugin/xfcalendar_plugin.c:485 ../plugin/xfcalendar_plugin.c:495
 msgid "Orage Preferences"
 msgstr "העדפות Orage"
 
-#: ../plugin/xfcalendar_plugin.c:505
+#: ../plugin/xfcalendar_plugin.c:504
 msgid "Display"
 msgstr "תצוגה"
 
 #. Display calendar borders or not
-#: ../plugin/xfcalendar_plugin.c:515
+#: ../plugin/xfcalendar_plugin.c:514
 msgid "Calendar borders"
 msgstr "גבולות לוח השנה"
 
-#: ../plugin/xfcalendar_plugin.c:520
+#: ../plugin/xfcalendar_plugin.c:519
 msgid "Displayed"
 msgstr "הוצג"
 
-#: ../plugin/xfcalendar_plugin.c:526
+#: ../plugin/xfcalendar_plugin.c:525
 msgid "Hidden"
 msgstr "מוסתר"
 
 #. Show in... taskbar pager systray
-#: ../plugin/xfcalendar_plugin.c:533
+#: ../plugin/xfcalendar_plugin.c:532
 msgid "Calendar window"
 msgstr "חלון לוח השנה"
 
-#: ../plugin/xfcalendar_plugin.c:539
+#: ../plugin/xfcalendar_plugin.c:538
 msgid "Show in taskbar"
 msgstr "הצג בסרגל המשימות"
 
-#: ../plugin/xfcalendar_plugin.c:543
+#: ../plugin/xfcalendar_plugin.c:542
 msgid "Show in pager"
 msgstr "הצג במחליף סביבות העבודה"
 
-#: ../plugin/xfcalendar_plugin.c:547
+#: ../plugin/xfcalendar_plugin.c:546
 msgid "Show in systray"
 msgstr "הצג במגש המערכת"
 
 #.
-#: ../plugin/xfcalendar_plugin.c:552
+#: ../plugin/xfcalendar_plugin.c:551
 #, fuzzy
 msgid "Calendar start"
 msgstr "תחילת לוח השנה"
 
-#: ../plugin/xfcalendar_plugin.c:557
+#: ../plugin/xfcalendar_plugin.c:556
 msgid "Show"
 msgstr "הצג"
 
-#: ../plugin/xfcalendar_plugin.c:563
+#: ../plugin/xfcalendar_plugin.c:562
 msgid "Hide"
 msgstr "הסתר"
 
-#: ../plugin/xfcalendar_plugin.c:569
+#: ../plugin/xfcalendar_plugin.c:568
 msgid "Minimized"
 msgstr "ממוזער"
 
-#: ../plugin/xfcalendar_plugin.c:577
+#: ../plugin/xfcalendar_plugin.c:576
 msgid "Archives"
 msgstr "ארכיבים"
 
 #. Archive file and periodicity
-#: ../plugin/xfcalendar_plugin.c:586
+#: ../plugin/xfcalendar_plugin.c:585
 msgid "Archive file"
 msgstr "קובץ ארכיב"
 
-#: ../plugin/xfcalendar_plugin.c:608
+#: ../plugin/xfcalendar_plugin.c:607
 msgid "Archive threshold"
 msgstr "סף הארכיב"
 
-#: ../plugin/xfcalendar_plugin.c:622
+#: ../plugin/xfcalendar_plugin.c:621
 msgid "3 months"
 msgstr "3 חודשים"
 
-#: ../plugin/xfcalendar_plugin.c:624
+#: ../plugin/xfcalendar_plugin.c:623
 msgid "6 months"
 msgstr "6 חודשים"
 
-#: ../plugin/xfcalendar_plugin.c:626
+#: ../plugin/xfcalendar_plugin.c:625
 msgid "1 year"
 msgstr "1 שנה"
 
-#: ../plugin/xfcalendar_plugin.c:628
+#: ../plugin/xfcalendar_plugin.c:627
 msgid "never"
 msgstr "אף פעם"
 
-#: ../plugin/xfcalendar_plugin.c:654 ../src/appointment.c:1326
+#: ../plugin/xfcalendar_plugin.c:653 ../src/appointment.c:1326
 msgid "Sound"
 msgstr "צליל"
 
-#: ../plugin/xfcalendar_plugin.c:664
+#: ../plugin/xfcalendar_plugin.c:663
 msgid "Application"
 msgstr "יישום"
 
-#: ../plugin/xfcalendar_plugin.c:687 ../plugin/xfcalendar_plugin.c:697
+#: ../plugin/xfcalendar_plugin.c:686 ../plugin/xfcalendar_plugin.c:696
 msgid "Timezone"
 msgstr "אזור-זמן"
 
-#: ../plugin/xfcalendar_plugin.c:754 ../src/appointment.c:180
+#: ../plugin/xfcalendar_plugin.c:755 ../src/appointment.c:180
 #: ../src/mainbox.c:335 ../xfcalendar.desktop.in.h:3
 msgid "Orage"
 msgstr "Orage"
@@ -296,10 +303,6 @@ msgstr "כללי"
 msgid "Title "
 msgstr "כותרת"
 
-#: ../src/appointment.c:1187
-msgid "Location"
-msgstr "מיקום"
-
 #: ../src/appointment.c:1193
 msgid "All day event"
 msgstr "אירוע כלל יומי"
@@ -427,17 +430,9 @@ msgstr "כותרת"
 msgid "uid"
 msgstr "uid"
 
-#: ../src/ical-code.c:589
+#: ../src/ical-code.c:591
 msgid "Orage default alarm"
 msgstr "התראת ברירת המחדל של Orage"
-
-#: ../src/main.c:179
-msgid "This should not happen"
-msgstr "זה לא צריך לקרות"
-
-#: ../src/main.c:467
-msgid "Cannot create MCS client channel"
-msgstr "אין אפשרות ליצור ערוץ לקוח MCS"
 
 #: ../src/mainbox.c:363
 msgid "Open archive file..."
@@ -464,6 +459,14 @@ msgstr "_בחר היום"
 #: ../src/mainbox.c:388
 msgid "_Help"
 msgstr "_עזרה"
+
+#: ../src/main.c:179
+msgid "This should not happen"
+msgstr "זה לא צריך לקרות"
+
+#: ../src/main.c:467
+msgid "Cannot create MCS client channel"
+msgstr "אין אפשרות ליצור ערוץ לקוח MCS"
 
 #: ../src/reminder.c:174
 msgid "Reminder "
@@ -496,4 +499,3 @@ msgstr "לוח שנה"
 #: ../xfcalendar.desktop.in.h:2
 msgid "Desktop calendar"
 msgstr "לוח שנה"
-
