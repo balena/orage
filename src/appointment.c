@@ -128,9 +128,9 @@ set_time_sensitivity(appt_win *apptw)
     gboolean allDay_act;
 
     dur_act = gtk_toggle_button_get_active(
-                        GTK_TOGGLE_BUTTON(apptw->appDur_checkbutton));
+                GTK_TOGGLE_BUTTON(apptw->appDur_checkbutton));
     allDay_act = gtk_toggle_button_get_active(
-                        GTK_TOGGLE_BUTTON(apptw->appAllDay_checkbutton));
+                GTK_TOGGLE_BUTTON(apptw->appAllDay_checkbutton));
 
     if (allDay_act) {
         gtk_widget_set_sensitive(apptw->appStartTime_comboboxentry, FALSE);
@@ -167,6 +167,28 @@ set_time_sensitivity(appt_win *apptw)
             gtk_widget_set_sensitive(apptw->appDur_spin_hh, FALSE);
             gtk_widget_set_sensitive(apptw->appDur_spin_mm, FALSE);
         }
+    }
+}
+
+void
+set_repeat_sensitivity(appt_win *apptw)
+{
+    gint freq;
+    
+    freq = gtk_combo_box_get_active((GtkComboBox *)apptw->appRecur_cb);
+    if (freq == XFICAL_FREQ_NONE) {
+        gtk_widget_set_sensitive(apptw->appRecur_repeat_rb, FALSE);
+        gtk_widget_set_sensitive(apptw->appRecur_count_rb, FALSE);
+        gtk_widget_set_sensitive(apptw->appRecur_count_spin, FALSE);
+        gtk_widget_set_sensitive(apptw->appRecur_until_rb, FALSE);
+        gtk_widget_set_sensitive(apptw->appRecur_until_button, FALSE);
+    }
+    else {
+        gtk_widget_set_sensitive(apptw->appRecur_repeat_rb, TRUE);
+        gtk_widget_set_sensitive(apptw->appRecur_count_rb, TRUE);
+        gtk_widget_set_sensitive(apptw->appRecur_count_spin, TRUE);
+        gtk_widget_set_sensitive(apptw->appRecur_until_rb, TRUE);
+        gtk_widget_set_sensitive(apptw->appRecur_until_button, TRUE);
     }
 }
 
@@ -219,6 +241,7 @@ on_app_entry_changed_cb(GtkEditable *entry, gpointer user_data)
 void
 on_app_combobox_changed_cb(GtkComboBox *cb, gpointer user_data)
 {
+    set_repeat_sensitivity((appt_win *)user_data);
     mark_appointment_changed((appt_win *)user_data);
 }
 
@@ -304,13 +327,13 @@ appWindow_check_and_close(appt_win *apptw)
 
     if(apptw->appointment_changed == TRUE){
         result = xfce_message_dialog(GTK_WINDOW(apptw->appWindow),
-                         _("Warning"),
-                         GTK_STOCK_DIALOG_WARNING,
-                         _("The appointment information has been modified."),
-                         _("Do you want to continue?"),
-                         GTK_STOCK_YES, GTK_RESPONSE_ACCEPT,
-                         GTK_STOCK_NO, GTK_RESPONSE_CANCEL,
-                         NULL);
+                 _("Warning"),
+                 GTK_STOCK_DIALOG_WARNING,
+                 _("The appointment information has been modified."),
+                 _("Do you want to continue?"),
+                 GTK_STOCK_YES, GTK_RESPONSE_ACCEPT,
+                 GTK_STOCK_NO, GTK_RESPONSE_CANCEL,
+                 NULL);
 
         if(result == GTK_RESPONSE_ACCEPT){
             gtk_widget_destroy(apptw->appWindow);
@@ -361,24 +384,24 @@ orage_validate_datetime(appt_win *apptw, appt_data *appt
 
     if (!orage_validate_time(starttime) || !orage_validate_time(endtime)) {
         result = xfce_message_dialog(GTK_WINDOW(apptw->appWindow),
-                                     _("Warning"),
-                                     GTK_STOCK_DIALOG_WARNING,
-                                     _("A time value is wrong."),
-                                     _("Time values must be written 'hh:mm', for instance '09:36' or '15:23'."),
-                                     GTK_STOCK_OK,
-                                     GTK_RESPONSE_ACCEPT,
-                                     NULL);
+                 _("Warning"),
+                 GTK_STOCK_DIALOG_WARNING,
+                 _("A time value is wrong."),
+                 _("Time values must be written 'hh:mm', for instance '09:36' or '15:23'."),
+                 GTK_STOCK_OK,
+                 GTK_RESPONSE_ACCEPT,
+                 NULL);
         return FALSE;
     }
     if (xfical_compare_times(appt) > 0) {
         result = xfce_message_dialog(GTK_WINDOW(apptw->appWindow),
-                                     _("Warning"),
-                                     GTK_STOCK_DIALOG_WARNING,
-                                     _("The end of this appointment is earlier than the beginning."),
-                                     NULL,
-                                     GTK_STOCK_OK,
-                                     GTK_RESPONSE_ACCEPT,
-                                     NULL);
+                 _("Warning"),
+                 GTK_STOCK_DIALOG_WARNING,
+                 _("The end of this appointment is earlier than the beginning."),
+                 NULL,
+                 GTK_STOCK_OK,
+                 GTK_RESPONSE_ACCEPT,
+                 NULL);
         return FALSE;
     }
     else {
@@ -594,15 +617,15 @@ delete_xfical_from_appt_win(appt_win *apptw)
     gint result;
 
     result = xfce_message_dialog(GTK_WINDOW(apptw->appWindow),
-                         _("Warning"),
-                         GTK_STOCK_DIALOG_WARNING,
-                         _("This appointment will be permanently removed."),
-                         _("Do you want to continue?"),
-                         GTK_STOCK_YES,
-                         GTK_RESPONSE_ACCEPT,
-                         GTK_STOCK_NO,
-                         GTK_RESPONSE_REJECT,
-                         NULL);
+             _("Warning"),
+             GTK_STOCK_DIALOG_WARNING,
+             _("This appointment will be permanently removed."),
+             _("Do you want to continue?"),
+             GTK_STOCK_YES,
+             GTK_RESPONSE_ACCEPT,
+             GTK_STOCK_NO,
+             GTK_RESPONSE_REJECT,
+             NULL);
                                  
     if (result == GTK_RESPONSE_ACCEPT) {
         if (!apptw->add_appointment)
@@ -1122,6 +1145,7 @@ fill_appt_window(appt_win *apptw, char *action, char *par)
         xfical_file_close();
 
     set_time_sensitivity(apptw);
+    set_repeat_sensitivity(apptw);
     mark_appointment_unchanged(apptw);
 }
 
