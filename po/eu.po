@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-03-04 21:51+0200\n"
+"POT-Creation-Date: 2006-03-08 22:31+0900\n"
 "PO-Revision-Date: 2006-03-06 21:26+0100\n"
 "Last-Translator: Piarres Beobide <pi@beobide.net>\n"
 "Language-Team: librezale <librezale@librezale.org>\n"
@@ -20,7 +20,7 @@ msgstr ""
 #. to avoid timing problems when updating entry
 #. Create file chooser
 #: ../plugin/xfcalendar_plugin.c:253 ../plugin/xfcalendar_plugin.c:310
-#: ../src/appointment.c:252 ../src/mainbox.c:113
+#: ../src/appointment.c:275 ../src/mainbox.c:113
 msgid "Select a file..."
 msgstr "Fitxategi bat hautatu..."
 
@@ -28,13 +28,13 @@ msgstr "Fitxategi bat hautatu..."
 msgid "Calendar files"
 msgstr "Egutegi fitxategiak"
 
-#: ../plugin/xfcalendar_plugin.c:265 ../src/appointment.c:266
+#: ../plugin/xfcalendar_plugin.c:265 ../src/appointment.c:289
 #: ../src/mainbox.c:124
 msgid "All Files"
 msgstr "Fitxategi Guztiak"
 
 #: ../plugin/xfcalendar_plugin.c:408 ../plugin/xfcalendar_plugin.c:413
-#: ../src/appointment.c:799 ../src/appointment.c:804 ../src/appointment.c:1233
+#: ../src/appointment.c:822 ../src/appointment.c:827 ../src/appointment.c:1257
 msgid "Location"
 msgstr "Kokalekua"
 
@@ -44,13 +44,13 @@ msgid "Pick local timezone"
 msgstr "Markatu ordu zonalde lokala"
 
 #: ../plugin/xfcalendar_plugin.c:422 ../plugin/xfcalendar_plugin.c:450
-#: ../src/appointment.c:813 ../src/appointment.c:841
+#: ../src/appointment.c:836 ../src/appointment.c:864
 msgid "UTC"
 msgstr "UTC"
 
 #: ../plugin/xfcalendar_plugin.c:423 ../plugin/xfcalendar_plugin.c:454
-#: ../plugin/xfcalendar_plugin.c:740 ../src/appointment.c:814
-#: ../src/appointment.c:845 ../src/appointment.c:886 ../src/appointment.c:894
+#: ../plugin/xfcalendar_plugin.c:740 ../src/appointment.c:837
+#: ../src/appointment.c:868 ../src/appointment.c:909 ../src/appointment.c:917
 msgid "floating"
 msgstr "mugikorra"
 
@@ -138,7 +138,7 @@ msgstr "urte bete"
 msgid "never"
 msgstr "inoiz"
 
-#: ../plugin/xfcalendar_plugin.c:682 ../src/appointment.c:1372
+#: ../plugin/xfcalendar_plugin.c:682 ../src/appointment.c:1396
 msgid "Sound"
 msgstr "Soinua"
 
@@ -150,7 +150,7 @@ msgstr "Aplikazioa"
 msgid "Timezone"
 msgstr "Ordu zonaldea"
 
-#: ../plugin/xfcalendar_plugin.c:788 ../src/appointment.c:181
+#: ../plugin/xfcalendar_plugin.c:788 ../src/appointment.c:203
 #: ../src/mainbox.c:335 ../xfcalendar.desktop.in.h:3
 msgid "Orage"
 msgstr "Orage"
@@ -170,194 +170,195 @@ msgstr "Laguntzailea"
 
 #. Get the start date and time and timezone
 #. FIXME: use year_month_day_to_display() instead of doing it here
-#: ../src/appointment.c:98 ../src/appointment.c:413 ../src/appointment.c:699
+#: ../src/appointment.c:98 ../src/appointment.c:436 ../src/appointment.c:722
 msgid "%m/%d/%Y"
 msgstr "%Y/%m/%d"
 
-#: ../src/appointment.c:260
+#: ../src/appointment.c:283
 msgid "Sound Files"
 msgstr "Soinu fitxategiak"
 
-#: ../src/appointment.c:307 ../src/appointment.c:364 ../src/appointment.c:375
-#: ../src/appointment.c:597 ../src/event-list.c:590
+#: ../src/appointment.c:330 ../src/appointment.c:387 ../src/appointment.c:398
+#: ../src/appointment.c:620 ../src/event-list.c:590
 msgid "Warning"
 msgstr "Abisua"
 
-#: ../src/appointment.c:309
+#: ../src/appointment.c:332
 msgid "The appointment information has been modified."
 msgstr "Hitzordu informazioa aldatua izan da."
 
-#: ../src/appointment.c:310 ../src/appointment.c:600 ../src/event-list.c:593
+#: ../src/appointment.c:333 ../src/appointment.c:623 ../src/event-list.c:593
 msgid "Do you want to continue?"
 msgstr "Aurrera jarraitu nahi al duzu?"
 
-#: ../src/appointment.c:366
+#: ../src/appointment.c:389
 msgid "A time value is wrong."
 msgstr "Ordu balioa oker dago."
 
-#: ../src/appointment.c:367
+#: ../src/appointment.c:390
 msgid "Time values must be written 'hh:mm', for instance '09:36' or '15:23'."
-msgstr "Ordu balioak 'oo:mm' formatuan idatzi behar dira, adib. '09:36' edo '15:23'."
+msgstr ""
+"Ordu balioak 'oo:mm' formatuan idatzi behar dira, adib. '09:36' edo '15:23'."
 
-#: ../src/appointment.c:377
+#: ../src/appointment.c:400
 msgid "The end of this appointment is earlier than the beginning."
 msgstr "Hitzordu honen amaiera hasiera baino lehenado da."
 
-#: ../src/appointment.c:599
+#: ../src/appointment.c:622
 msgid "This appointment will be permanently removed."
 msgstr "Hitzordua betirako ezabatua izango da."
 
-#: ../src/appointment.c:704
+#: ../src/appointment.c:727
 msgid "Pick the date"
 msgstr "Data aukeratu"
 
-#: ../src/appointment.c:706 ../src/event-list.c:703 ../src/tray_icon.c:105
+#: ../src/appointment.c:729 ../src/event-list.c:703 ../src/tray_icon.c:105
 msgid "Today"
 msgstr "Gaur"
 
 #. show it
-#: ../src/appointment.c:810
+#: ../src/appointment.c:833
 msgid "Pick timezone"
 msgstr "Ordu zonaldea aukeratu"
 
 #. window title
-#: ../src/appointment.c:1037
+#: ../src/appointment.c:1060
 msgid "New appointment - Orage"
 msgstr "Hitzordu berria - Orage"
 
-#: ../src/appointment.c:1135
+#: ../src/appointment.c:1159
 msgid "Free"
 msgstr "Libre"
 
-#: ../src/appointment.c:1135
+#: ../src/appointment.c:1159
 msgid "Busy"
 msgstr "Okupatua"
 
-#: ../src/appointment.c:1137
+#: ../src/appointment.c:1161
 msgid "None"
 msgstr "Batez"
 
-#: ../src/appointment.c:1137
+#: ../src/appointment.c:1161
 msgid "Daily"
 msgstr "Egunero"
 
-#: ../src/appointment.c:1137
+#: ../src/appointment.c:1161
 msgid "Weekly"
 msgstr "Astero"
 
-#: ../src/appointment.c:1137
+#: ../src/appointment.c:1161
 msgid "Monthly"
 msgstr "Hilabetero"
 
-#: ../src/appointment.c:1137
+#: ../src/appointment.c:1161
 msgid "Yearly"
 msgstr "Urtero"
 
 #. File menu stuff
 #. File menu
-#: ../src/appointment.c:1164 ../src/event-list.c:659 ../src/mainbox.c:357
+#: ../src/appointment.c:1188 ../src/event-list.c:659 ../src/mainbox.c:357
 msgid "_File"
 msgstr "_Fitxategia"
 
-#: ../src/appointment.c:1168
+#: ../src/appointment.c:1192
 msgid "Sav_e and close"
 msgstr "Gord_e eta itxi"
 
 #. add event copying and day cleaning
-#: ../src/appointment.c:1175 ../src/event-list.c:665
+#: ../src/appointment.c:1199 ../src/event-list.c:665
 msgid "D_uplicate"
 msgstr "B_ikouztu"
 
 #. Add buttons to the toolbar
-#: ../src/appointment.c:1195
+#: ../src/appointment.c:1219
 msgid "Save"
 msgstr "Gorde"
 
-#: ../src/appointment.c:1197 ../src/appointment.c:1198
+#: ../src/appointment.c:1221 ../src/appointment.c:1222
 msgid "Save and close"
 msgstr "Gorde eta itxi"
 
-#: ../src/appointment.c:1203
+#: ../src/appointment.c:1227
 msgid "Revert"
 msgstr "Itzuli"
 
-#: ../src/appointment.c:1205 ../src/appointment.c:1206 ../src/event-list.c:711
+#: ../src/appointment.c:1229 ../src/appointment.c:1230 ../src/event-list.c:711
 msgid "Duplicate"
 msgstr "Bikoiztu"
 
-#: ../src/appointment.c:1210
+#: ../src/appointment.c:1234
 msgid "Delete"
 msgstr "Ezabatu"
 
-#: ../src/appointment.c:1218
+#: ../src/appointment.c:1242
 msgid "General"
 msgstr "Orokorra"
 
-#: ../src/appointment.c:1227
+#: ../src/appointment.c:1251
 msgid "Title "
 msgstr "Izenburua "
 
-#: ../src/appointment.c:1239
+#: ../src/appointment.c:1263
 msgid "All day event"
 msgstr "Egun osoko gertaera"
 
-#: ../src/appointment.c:1244
+#: ../src/appointment.c:1268
 msgid "Start"
 msgstr "Hasi"
 
-#: ../src/appointment.c:1257
+#: ../src/appointment.c:1281
 msgid "End"
 msgstr "Amaitu"
 
-#: ../src/appointment.c:1271
+#: ../src/appointment.c:1295
 msgid "Duration"
 msgstr "Iraupena"
 
-#: ../src/appointment.c:1278 ../src/appointment.c:1350
+#: ../src/appointment.c:1302 ../src/appointment.c:1374
 msgid "days"
 msgstr "egun"
 
-#: ../src/appointment.c:1286 ../src/appointment.c:1358
+#: ../src/appointment.c:1310 ../src/appointment.c:1382
 msgid "hours"
 msgstr "ordu"
 
-#: ../src/appointment.c:1294 ../src/appointment.c:1365
+#: ../src/appointment.c:1318 ../src/appointment.c:1389
 msgid "mins"
 msgstr "minutu"
 
-#: ../src/appointment.c:1300
+#: ../src/appointment.c:1324
 msgid "Availability"
 msgstr "Erabilgarritasuna"
 
-#: ../src/appointment.c:1307
+#: ../src/appointment.c:1331
 msgid "Note"
 msgstr "Oharra"
 
-#: ../src/appointment.c:1336 ../src/appointment.c:1345
+#: ../src/appointment.c:1360 ../src/appointment.c:1369
 msgid "Alarm"
 msgstr "Abisua"
 
-#: ../src/appointment.c:1383
+#: ../src/appointment.c:1407
 msgid "Repeat alarm sound"
 msgstr "Errepikatu abisu soinua"
 
-#: ../src/appointment.c:1390 ../src/appointment.c:1399
+#: ../src/appointment.c:1414 ../src/appointment.c:1423
 msgid "Recurrence"
 msgstr "Errepikatzea"
 
-#: ../src/appointment.c:1407
+#: ../src/appointment.c:1431
 msgid "Repeat forever"
 msgstr "Betirako errepikatu"
 
-#: ../src/appointment.c:1415
+#: ../src/appointment.c:1439
 msgid "Repeat "
 msgstr "Errepikatu "
 
-#: ../src/appointment.c:1420
+#: ../src/appointment.c:1444
 msgid "times"
 msgstr "aldiz"
 
-#: ../src/appointment.c:1429
+#: ../src/appointment.c:1453
 msgid "Repeat until "
 msgstr "Errepikapenak: "
 
@@ -2025,4 +2026,3 @@ msgstr "Egutegia"
 #: ../xfcalendar.desktop.in.h:2
 msgid "Desktop calendar"
 msgstr "Idazmahai egutegia"
-
