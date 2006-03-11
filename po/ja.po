@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: orage 4.3.2.10svn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-03-08 22:31+0900\n"
-"PO-Revision-Date: 2006-03-10 23:25+0900\n"
+"PO-Revision-Date: 2006-03-11 20:08+0900\n"
 "Last-Translator: Daichi Kawahata <daichi@xfce.org>\n"
 "Language-Team: Japanese <xfce-users-jp@ml.fdiary.net>\n"
 "MIME-Version: 1.0\n"
@@ -37,17 +37,17 @@ msgstr "全てのファイル"
 #: ../plugin/xfcalendar_plugin.c:408 ../plugin/xfcalendar_plugin.c:413
 #: ../src/appointment.c:822 ../src/appointment.c:827 ../src/appointment.c:1257
 msgid "Location"
-msgstr "場所"
+msgstr "所在地"
 
 #. show it
 #: ../plugin/xfcalendar_plugin.c:419
 msgid "Pick local timezone"
-msgstr "時間帯を選択して下さい"
+msgstr "等時帯を選択して下さい"
 
 #: ../plugin/xfcalendar_plugin.c:422 ../plugin/xfcalendar_plugin.c:450
 #: ../src/appointment.c:836 ../src/appointment.c:864
 msgid "UTC"
-msgstr "協定世界時"
+msgstr "UTC"
 
 #: ../plugin/xfcalendar_plugin.c:423 ../plugin/xfcalendar_plugin.c:454
 #: ../plugin/xfcalendar_plugin.c:740 ../src/appointment.c:837
@@ -149,7 +149,7 @@ msgstr "アプリケーション"
 
 #: ../plugin/xfcalendar_plugin.c:715 ../plugin/xfcalendar_plugin.c:725
 msgid "Timezone"
-msgstr "時間帯"
+msgstr "等時帯"
 
 #: ../plugin/xfcalendar_plugin.c:788 ../src/appointment.c:203
 #: ../src/mainbox.c:335 ../xfcalendar.desktop.in.h:3
@@ -219,7 +219,7 @@ msgstr "今日"
 #. show it
 #: ../src/appointment.c:833
 msgid "Pick timezone"
-msgstr "時間帯を選択して下さい"
+msgstr "等時帯を選択して下さい"
 
 #. window title
 #: ../src/appointment.c:1060
@@ -228,11 +228,11 @@ msgstr "新しいアポイント - Orage"
 
 #: ../src/appointment.c:1159
 msgid "Free"
-msgstr "休憩中"
+msgstr "用事なし"
 
 #: ../src/appointment.c:1159
 msgid "Busy"
-msgstr "仕事中"
+msgstr "用事あり"
 
 #: ../src/appointment.c:1161
 msgid "None"
@@ -304,11 +304,11 @@ msgstr "終日"
 
 #: ../src/appointment.c:1268
 msgid "Start"
-msgstr "開始時刻"
+msgstr "開始"
 
 #: ../src/appointment.c:1281
 msgid "End"
-msgstr "終了時刻"
+msgstr "終了"
 
 #: ../src/appointment.c:1295
 msgid "Duration"
@@ -326,9 +326,10 @@ msgstr "時"
 msgid "mins"
 msgstr "分"
 
+# FIXME:
 #: ../src/appointment.c:1324
 msgid "Availability"
-msgstr "時間の都合"
+msgstr "都合"
 
 #: ../src/appointment.c:1331
 msgid "Note"
@@ -771,7 +772,7 @@ msgstr "アメリカ/エドモントン"
 
 #: ../src/ical-code.c:182
 msgid "America/Eirunepe"
-msgstr "アメリカ/Eirunepe"
+msgstr "アメリカ/エイルネペ"
 
 #: ../src/ical-code.c:183
 msgid "America/El_Salvador"
@@ -795,7 +796,7 @@ msgstr "アメリカ/グース・ベイ"
 
 #: ../src/ical-code.c:188
 msgid "America/Grand_Turk"
-msgstr "アメリカ/Grand_Turk"
+msgstr "アメリカ/グランド・タークス"
 
 #: ../src/ical-code.c:189
 msgid "America/Grenada"
@@ -923,7 +924,7 @@ msgstr "アメリカ/メノミニー"
 
 #: ../src/ical-code.c:220
 msgid "America/Merida"
-msgstr "アメリカ/Merida"
+msgstr "アメリカ/メリダ"
 
 #: ../src/ical-code.c:221
 msgid "America/Mexico_City"
@@ -1003,19 +1004,19 @@ msgstr "アメリカ/プエルト・リコ"
 
 #: ../src/ical-code.c:240
 msgid "America/Rainy_River"
-msgstr "アメリカ/Rainy_River"
+msgstr "アメリカ/レイニー・リバー"
 
 #: ../src/ical-code.c:241
 msgid "America/Rankin_Inlet"
-msgstr "アメリカ/Rankin_Inlet"
+msgstr "アメリカ/ランキン・インレット"
 
 #: ../src/ical-code.c:242
 msgid "America/Recife"
-msgstr "アメリカ/Recife"
+msgstr "アメリカ/レシフェ"
 
 #: ../src/ical-code.c:243
 msgid "America/Regina"
-msgstr "アメリカ/Regina"
+msgstr "アメリカ/レジーナ"
 
 #: ../src/ical-code.c:244
 msgid "America/Rio_Branco"
@@ -1047,11 +1048,11 @@ msgstr "アメリカ/シップロック"
 
 #: ../src/ical-code.c:251
 msgid "America/St_Johns"
-msgstr "アメリカ/St_Johns"
+msgstr "アメリカ/セント・ジョーンズ"
 
 #: ../src/ical-code.c:252
 msgid "America/St_Kitts"
-msgstr "アメリカ/St_Kitts"
+msgstr "アメリカ/セント・キッツ島"
 
 #: ../src/ical-code.c:253
 msgid "America/St_Lucia"
@@ -1803,7 +1804,7 @@ msgstr "太平洋"
 
 #: ../src/ical-code.c:440
 msgid "Pacific/Apia"
-msgstr "太平洋/Apia"
+msgstr "太平洋/アピア"
 
 #: ../src/ical-code.c:441
 msgid "Pacific/Auckland"
