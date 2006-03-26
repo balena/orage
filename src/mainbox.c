@@ -299,6 +299,7 @@ xfcalendar_init_settings(CalWin *xfcal)
                 select_always_today = FALSE;
         }
     }
+    g_free(fpath);
 }
 
 void

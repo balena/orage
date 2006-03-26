@@ -552,7 +552,8 @@ gboolean xfical_set_local_timezone(char *location)
             local_icaltimezone = utc_icaltimezone;
         }
         else if (strcmp(location,"floating") == 0) {
-            ; /* local_icaltimezone_location = NULL */
+            g_warning("xfical_set_local_timezone: default timezone set to floating. Do not use timezones when setting appointments, it does not make sense without proper local timezone.");
+            return(TRUE); /* local_icaltimezone_location = NULL */
         }
         else
             local_icaltimezone = icaltimezone_get_builtin_timezone(location);
@@ -695,7 +696,8 @@ struct icaltimetype ical_get_current_local_time()
 
     if (local_icaltimezone_utc)
         ctime = icaltime_current_time_with_zone(utc_icaltimezone);
-    else if (local_icaltimezone_location)
+    else if ((local_icaltimezone_location)
+        &&   (strcmp(local_icaltimezone_location, "floating") != 0))
         ctime = icaltime_current_time_with_zone(local_icaltimezone);
     else { /* use floating time */
         ctime.is_utc      = 0;
