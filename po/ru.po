@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the orage package.
 # Poul Ionkin <wizzard@nmg.lv>, 2003.
 # Anthony Ivanoff <a-i@bk.ru>, 2004.
+# Sergey Fedoseev <fedoseev.sergey@gmail.com>, 2006.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.3.2.10svn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-03-27 21:19+0900\n"
-"PO-Revision-Date: 2006-03-14 19:46+0500\n"
-"Last-Translator: Anthony Ivanoff <a-i@bk.ru>\n"
+"PO-Revision-Date: 2006-03-21 16:06+0500\n"
+"Last-Translator: Sergey Fedoseev <fedoseev.sergey@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,7 +24,7 @@ msgstr ""
 #: ../plugin/xfcalendar_plugin.c:253 ../plugin/xfcalendar_plugin.c:310
 #: ../src/appointment.c:275 ../src/mainbox.c:113
 msgid "Select a file..."
-msgstr ""
+msgstr "Выбор файла..."
 
 #: ../plugin/xfcalendar_plugin.c:261 ../src/mainbox.c:121
 #, fuzzy
@@ -33,7 +34,7 @@ msgstr "Календарь"
 #: ../plugin/xfcalendar_plugin.c:265 ../src/appointment.c:289
 #: ../src/mainbox.c:124
 msgid "All Files"
-msgstr ""
+msgstr "Все файлы"
 
 #: ../plugin/xfcalendar_plugin.c:408 ../plugin/xfcalendar_plugin.c:413
 #: ../src/appointment.c:824 ../src/appointment.c:829 ../src/appointment.c:1261
@@ -57,9 +58,8 @@ msgid "floating"
 msgstr ""
 
 #: ../plugin/xfcalendar_plugin.c:514 ../plugin/xfcalendar_plugin.c:524
-#, fuzzy
 msgid "Orage Preferences"
-msgstr "Настройки"
+msgstr "Настройки Orage"
 
 #: ../plugin/xfcalendar_plugin.c:533
 msgid "Display"
@@ -67,27 +67,26 @@ msgstr ""
 
 #. Display calendar borders or not
 #: ../plugin/xfcalendar_plugin.c:543
-#, fuzzy
 msgid "Calendar borders"
-msgstr "Календарь"
+msgstr "Рамка календаря"
 
 #: ../plugin/xfcalendar_plugin.c:548
 msgid "Displayed"
-msgstr ""
+msgstr "Показывать"
 
 #: ../plugin/xfcalendar_plugin.c:554
 msgid "Hidden"
-msgstr ""
+msgstr "Скрывать"
 
 #. Show in... taskbar pager systray
 #: ../plugin/xfcalendar_plugin.c:561
 #, fuzzy
 msgid "Calendar window"
-msgstr "Закрыть окно"
+msgstr "Окно календаря"
 
 #: ../plugin/xfcalendar_plugin.c:567
 msgid "Show in taskbar"
-msgstr ""
+msgstr "Показать в панели задач"
 
 #: ../plugin/xfcalendar_plugin.c:571
 msgid "Show in pager"
@@ -130,24 +129,23 @@ msgstr ""
 
 #: ../plugin/xfcalendar_plugin.c:650
 msgid "3 months"
-msgstr ""
+msgstr "3 месяца"
 
 #: ../plugin/xfcalendar_plugin.c:652
 msgid "6 months"
-msgstr ""
+msgstr "6 месяцев"
 
 #: ../plugin/xfcalendar_plugin.c:654
 msgid "1 year"
-msgstr ""
+msgstr "1 год"
 
 #: ../plugin/xfcalendar_plugin.c:656
 msgid "never"
-msgstr ""
+msgstr "никогда"
 
 #: ../plugin/xfcalendar_plugin.c:682 ../src/appointment.c:1400
-#, fuzzy
 msgid "Sound"
-msgstr "воскресенья"
+msgstr "Звук"
 
 #: ../plugin/xfcalendar_plugin.c:692
 msgid "Application"
@@ -160,7 +158,7 @@ msgstr ""
 #: ../plugin/xfcalendar_plugin.c:788 ../src/appointment.c:203
 #: ../src/mainbox.c:336 ../xfcalendar.desktop.in.h:3
 msgid "Orage"
-msgstr ""
+msgstr "Orage"
 
 #: ../src/about-xfcalendar.c:39
 msgid "Manage your time with Xfce4"
@@ -183,7 +181,7 @@ msgstr ""
 
 #: ../src/appointment.c:283
 msgid "Sound Files"
-msgstr ""
+msgstr "Звуковые файлы"
 
 #: ../src/appointment.c:330 ../src/appointment.c:388 ../src/appointment.c:399
 #: ../src/appointment.c:622 ../src/event-list.c:590
@@ -196,15 +194,17 @@ msgstr ""
 
 #: ../src/appointment.c:333 ../src/appointment.c:625 ../src/event-list.c:593
 msgid "Do you want to continue?"
-msgstr ""
+msgstr "Вы хотите продолжить?"
 
 #: ../src/appointment.c:390
+#, fuzzy
 msgid "A time value is wrong."
-msgstr ""
+msgstr "Значение времени некорректно."
 
 #: ../src/appointment.c:391
 msgid "Time values must be written 'hh:mm', for instance '09:36' or '15:23'."
 msgstr ""
+"Время должно быть введено в формате 'чч:мм', например, '09:36' или '15:23'."
 
 #: ../src/appointment.c:401
 msgid "The end of this appointment is earlier than the beginning."
@@ -216,7 +216,7 @@ msgstr ""
 
 #: ../src/appointment.c:729
 msgid "Pick the date"
-msgstr ""
+msgstr "Выбор даты"
 
 #: ../src/appointment.c:731 ../src/event-list.c:703 ../src/tray_icon.c:105
 msgid "Today"
@@ -235,113 +235,115 @@ msgstr "Встреча"
 
 #: ../src/appointment.c:1163
 msgid "Free"
-msgstr ""
+msgstr "Свободен"
 
 #: ../src/appointment.c:1163
 msgid "Busy"
-msgstr ""
+msgstr "Занят"
 
 #: ../src/appointment.c:1165
 msgid "None"
-msgstr ""
+msgstr "Нет"
 
 #: ../src/appointment.c:1165
 msgid "Daily"
-msgstr ""
+msgstr "Ежедневно"
 
 #: ../src/appointment.c:1165
 msgid "Weekly"
-msgstr ""
+msgstr "Еженедельно"
 
 #: ../src/appointment.c:1165
-#, fuzzy
 msgid "Monthly"
-msgstr "понедельника"
+msgstr "Ежемесячно"
 
 #: ../src/appointment.c:1165
 msgid "Yearly"
-msgstr ""
+msgstr "Ежегодно"
 
 #. File menu stuff
 #. File menu
 #: ../src/appointment.c:1192 ../src/event-list.c:659 ../src/mainbox.c:358
 msgid "_File"
-msgstr "Файл"
+msgstr "_Файл"
 
 #: ../src/appointment.c:1196
 msgid "Sav_e and close"
-msgstr ""
+msgstr "_Сохранить и закрыть"
 
 #. add event copying and day cleaning
 #: ../src/appointment.c:1203 ../src/event-list.c:665
+#, fuzzy
 msgid "D_uplicate"
-msgstr ""
+msgstr "_Дублировать"
 
 #. Add buttons to the toolbar
 #: ../src/appointment.c:1223
 msgid "Save"
-msgstr ""
+msgstr "Сохранить"
 
 #: ../src/appointment.c:1225 ../src/appointment.c:1226
 msgid "Save and close"
-msgstr ""
+msgstr "Сохранить и закрыть"
 
 #: ../src/appointment.c:1231
 msgid "Revert"
-msgstr ""
+msgstr "Восстановить"
 
 #: ../src/appointment.c:1233 ../src/appointment.c:1234 ../src/event-list.c:711
+#, fuzzy
 msgid "Duplicate"
-msgstr ""
+msgstr "Дублировать"
 
 #: ../src/appointment.c:1238
 msgid "Delete"
-msgstr ""
+msgstr "Удалить"
 
 #: ../src/appointment.c:1246
 msgid "General"
-msgstr ""
+msgstr "Основное"
 
 #: ../src/appointment.c:1255
 msgid "Title "
-msgstr ""
+msgstr "Название "
 
 #: ../src/appointment.c:1267
 msgid "All day event"
-msgstr ""
+msgstr "Событие на весь день"
 
 #: ../src/appointment.c:1272
 msgid "Start"
-msgstr ""
+msgstr "Начинается"
 
 #: ../src/appointment.c:1285
 msgid "End"
-msgstr ""
+msgstr "Заканчивается"
 
 #: ../src/appointment.c:1299
 msgid "Duration"
-msgstr ""
+msgstr "Продолжительность"
 
 #: ../src/appointment.c:1306 ../src/appointment.c:1378
-#, fuzzy
 msgid "days"
-msgstr "Сегодня"
+msgstr "дней"
 
 #: ../src/appointment.c:1314 ../src/appointment.c:1386
 msgid "hours"
-msgstr ""
+msgstr "часов"
 
 #: ../src/appointment.c:1322 ../src/appointment.c:1393
 msgid "mins"
-msgstr ""
+msgstr "минут"
 
 #: ../src/appointment.c:1328
+#, fuzzy
 msgid "Availability"
-msgstr ""
+msgstr "Доступность"
 
 #: ../src/appointment.c:1335
+#, fuzzy
 msgid "Note"
-msgstr ""
+msgstr "Примечание"
 
 #: ../src/appointment.c:1364 ../src/appointment.c:1373
 msgid "Alarm"
@@ -357,28 +359,28 @@ msgstr ""
 
 #: ../src/appointment.c:1435
 msgid "Repeat forever"
-msgstr ""
+msgstr "Повторять бесконечно"
 
 #: ../src/appointment.c:1443
 msgid "Repeat "
-msgstr ""
+msgstr "Повторять"
 
 #: ../src/appointment.c:1448
 msgid "times"
-msgstr ""
+msgstr "раз"
 
 #: ../src/appointment.c:1457
 msgid "Repeat until "
-msgstr ""
+msgstr "Повторять до"
 
 #. date only appointment
 #: ../src/event-list.c:200
 msgid "All day"
-msgstr ""
+msgstr "Весь день"
 
 #: ../src/event-list.c:278 ../src/event-list.c:745
 msgid "Time"
-msgstr ""
+msgstr "Время"
 
 #: ../src/event-list.c:592
 msgid ""
@@ -391,32 +393,32 @@ msgstr ""
 #. View menu
 #: ../src/event-list.c:678 ../src/mainbox.c:380
 msgid "_View"
-msgstr ""
+msgstr "_Вид"
 
 #. Go menu
 #: ../src/event-list.c:683
 msgid "_Go"
-msgstr ""
+msgstr "_Перейти"
 
 #: ../src/event-list.c:698
 msgid "New"
-msgstr ""
+msgstr "Создать"
 
 #: ../src/event-list.c:701
 msgid "Back"
-msgstr ""
+msgstr "Назад"
 
 #: ../src/event-list.c:705
 msgid "Forward"
-msgstr ""
+msgstr "Вперёд"
 
 #: ../src/event-list.c:707
 msgid "Refresh"
-msgstr ""
+msgstr "Обновить"
 
 #: ../src/event-list.c:713
 msgid "Close"
-msgstr ""
+msgstr "Закрыть"
 
 #: ../src/event-list.c:715
 msgid "Clear"
@@ -428,7 +430,7 @@ msgstr ""
 
 #: ../src/event-list.c:759
 msgid "Title"
-msgstr ""
+msgstr "Название"
 
 #: ../src/event-list.c:765
 msgid "uid"
@@ -1512,7 +1514,7 @@ msgstr "Австралия"
 
 #: ../src/ical-code.c:365
 msgid "Australia/Adelaide"
-msgstr ""
+msgstr "Австралия/Аделаида"
 
 #: ../src/ical-code.c:366
 msgid "Australia/Brisbane"
@@ -1560,7 +1562,7 @@ msgstr "Европа/Амстердам"
 
 #: ../src/ical-code.c:377
 msgid "Europe/Andorra"
-msgstr ""
+msgstr "Европа/Андорра"
 
 #: ../src/ical-code.c:378
 msgid "Europe/Athens"
@@ -1596,7 +1598,7 @@ msgstr "Европа/Будапешт"
 
 #: ../src/ical-code.c:386
 msgid "Europe/Chisinau"
-msgstr ""
+msgstr "Европа/Кишинёв"
 
 #: ../src/ical-code.c:387
 msgid "Europe/Copenhagen"
@@ -1664,7 +1666,7 @@ msgstr "Европа/Москва"
 
 #: ../src/ical-code.c:403
 msgid "Europe/Nicosia"
-msgstr ""
+msgstr "Европа/Никосия"
 
 #: ../src/ical-code.c:404
 msgid "Europe/Oslo"
@@ -1692,7 +1694,7 @@ msgstr "Европа/Самара"
 
 #: ../src/ical-code.c:410
 msgid "Europe/San_Marino"
-msgstr ""
+msgstr "Европа/Сан-Марино"
 
 #: ../src/ical-code.c:411
 msgid "Europe/Sarajevo"
@@ -1724,7 +1726,7 @@ msgstr "Европа/Тирана"
 
 #: ../src/ical-code.c:418
 msgid "Europe/Uzhgorod"
-msgstr ""
+msgstr "Европа/Ужгород"
 
 #: ../src/ical-code.c:419
 msgid "Europe/Vaduz"
@@ -1981,11 +1983,12 @@ msgstr ""
 #. Edit menu
 #: ../src/mainbox.c:375
 msgid "_Edit"
-msgstr ""
+msgstr "_Правка"
 
 #: ../src/mainbox.c:382
+#, fuzzy
 msgid "View selected _date"
-msgstr ""
+msgstr "Просмотреть выбранную _дату"
 
 #: ../src/mainbox.c:386
 msgid "Select _Today"
@@ -1994,7 +1997,7 @@ msgstr "Перейти к сегодняшнему дню"
 #. Help menu
 #: ../src/mainbox.c:389
 msgid "_Help"
-msgstr "Помощь"
+msgstr "_Справка"
 
 #: ../src/main.c:179
 msgid "This should not happen"
@@ -2007,7 +2010,7 @@ msgstr "Невозможно создать канал клиента настр
 #: ../src/reminder.c:174
 #, fuzzy
 msgid "Reminder "
-msgstr "Напомнить"
+msgstr "Напоминание "
 
 #: ../src/tray_icon.c:115
 #, fuzzy
