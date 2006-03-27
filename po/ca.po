@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ca\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-03-08 22:31+0900\n"
+"POT-Creation-Date: 2006-03-27 21:19+0900\n"
 "PO-Revision-Date: 2006-03-19 17:35+0100\n"
 "Last-Translator: Pau Rul·lan Ferragut <paurullan@bulma.net>\n"
 "Language-Team: Catalan\n"
@@ -35,7 +35,7 @@ msgid "All Files"
 msgstr "Tots els fitxers"
 
 #: ../plugin/xfcalendar_plugin.c:408 ../plugin/xfcalendar_plugin.c:413
-#: ../src/appointment.c:822 ../src/appointment.c:827 ../src/appointment.c:1257
+#: ../src/appointment.c:824 ../src/appointment.c:829 ../src/appointment.c:1261
 msgid "Location"
 msgstr "Ubicació"
 
@@ -45,13 +45,13 @@ msgid "Pick local timezone"
 msgstr "Seleccioneu el fus horari"
 
 #: ../plugin/xfcalendar_plugin.c:422 ../plugin/xfcalendar_plugin.c:450
-#: ../src/appointment.c:836 ../src/appointment.c:864
+#: ../src/appointment.c:838 ../src/appointment.c:866
 msgid "UTC"
 msgstr "UTC"
 
 #: ../plugin/xfcalendar_plugin.c:423 ../plugin/xfcalendar_plugin.c:454
-#: ../plugin/xfcalendar_plugin.c:740 ../src/appointment.c:837
-#: ../src/appointment.c:868 ../src/appointment.c:909 ../src/appointment.c:917
+#: ../plugin/xfcalendar_plugin.c:740 ../src/appointment.c:839
+#: ../src/appointment.c:870 ../src/appointment.c:911 ../src/appointment.c:919
 msgid "floating"
 msgstr "cap"
 
@@ -139,7 +139,7 @@ msgstr "1 any"
 msgid "never"
 msgstr "mai"
 
-#: ../plugin/xfcalendar_plugin.c:682 ../src/appointment.c:1396
+#: ../plugin/xfcalendar_plugin.c:682 ../src/appointment.c:1400
 msgid "Sound"
 msgstr "So"
 
@@ -152,7 +152,7 @@ msgid "Timezone"
 msgstr "Fus horari"
 
 #: ../plugin/xfcalendar_plugin.c:788 ../src/appointment.c:203
-#: ../src/mainbox.c:335 ../xfcalendar.desktop.in.h:3
+#: ../src/mainbox.c:336 ../xfcalendar.desktop.in.h:3
 msgid "Orage"
 msgstr "Orage"
 
@@ -171,7 +171,7 @@ msgstr "Contribuïdor"
 
 #. Get the start date and time and timezone
 #. FIXME: use year_month_day_to_display() instead of doing it here
-#: ../src/appointment.c:98 ../src/appointment.c:436 ../src/appointment.c:722
+#: ../src/appointment.c:98 ../src/appointment.c:437 ../src/appointment.c:724
 msgid "%m/%d/%Y"
 msgstr "%d/%m/%Y"
 
@@ -179,8 +179,8 @@ msgstr "%d/%m/%Y"
 msgid "Sound Files"
 msgstr "Fitxers de so"
 
-#: ../src/appointment.c:330 ../src/appointment.c:387 ../src/appointment.c:398
-#: ../src/appointment.c:620 ../src/event-list.c:590
+#: ../src/appointment.c:330 ../src/appointment.c:388 ../src/appointment.c:399
+#: ../src/appointment.c:622 ../src/event-list.c:590
 msgid "Warning"
 msgstr "Avís"
 
@@ -188,177 +188,178 @@ msgstr "Avís"
 msgid "The appointment information has been modified."
 msgstr "La cita ha sigut modificada."
 
-#: ../src/appointment.c:333 ../src/appointment.c:623 ../src/event-list.c:593
+#: ../src/appointment.c:333 ../src/appointment.c:625 ../src/event-list.c:593
 msgid "Do you want to continue?"
 msgstr "Voleu continuar?"
 
-#: ../src/appointment.c:389
+#: ../src/appointment.c:390
 msgid "A time value is wrong."
 msgstr "Hi ha una hora mal indicada."
 
-#: ../src/appointment.c:390
+#: ../src/appointment.c:391
 msgid "Time values must be written 'hh:mm', for instance '09:36' or '15:23'."
-msgstr "Les hores han de tenir el format 'hh:mm'. Per exemple, '09:36' ó '15:23'."
+msgstr ""
+"Les hores han de tenir el format 'hh:mm'. Per exemple, '09:36' ó '15:23'."
 
-#: ../src/appointment.c:400
+#: ../src/appointment.c:401
 msgid "The end of this appointment is earlier than the beginning."
 msgstr "Aquesta cita acaba abans de començar."
 
-#: ../src/appointment.c:622
+#: ../src/appointment.c:624
 msgid "This appointment will be permanently removed."
 msgstr "La cità s'esborrarà permanentment."
 
-#: ../src/appointment.c:727
+#: ../src/appointment.c:729
 msgid "Pick the date"
 msgstr "Seleccioneu una data"
 
-#: ../src/appointment.c:729 ../src/event-list.c:703 ../src/tray_icon.c:105
+#: ../src/appointment.c:731 ../src/event-list.c:703 ../src/tray_icon.c:105
 msgid "Today"
 msgstr "Avui"
 
 #. show it
-#: ../src/appointment.c:833
+#: ../src/appointment.c:835
 msgid "Pick timezone"
 msgstr "Seleccioneu fus horari"
 
 #. window title
-#: ../src/appointment.c:1060
+#: ../src/appointment.c:1064
 msgid "New appointment - Orage"
 msgstr "Nova cita - Orage"
 
-#: ../src/appointment.c:1159
+#: ../src/appointment.c:1163
 msgid "Free"
 msgstr "Lliure"
 
-#: ../src/appointment.c:1159
+#: ../src/appointment.c:1163
 msgid "Busy"
 msgstr "Ocupat"
 
-#: ../src/appointment.c:1161
+#: ../src/appointment.c:1165
 msgid "None"
 msgstr "Cap"
 
-#: ../src/appointment.c:1161
+#: ../src/appointment.c:1165
 msgid "Daily"
 msgstr "Diariament"
 
-#: ../src/appointment.c:1161
+#: ../src/appointment.c:1165
 msgid "Weekly"
 msgstr "Setmanalment"
 
-#: ../src/appointment.c:1161
+#: ../src/appointment.c:1165
 msgid "Monthly"
 msgstr "Mensualment"
 
-#: ../src/appointment.c:1161
+#: ../src/appointment.c:1165
 msgid "Yearly"
 msgstr "Anualment"
 
 #. File menu stuff
 #. File menu
-#: ../src/appointment.c:1188 ../src/event-list.c:659 ../src/mainbox.c:357
+#: ../src/appointment.c:1192 ../src/event-list.c:659 ../src/mainbox.c:358
 msgid "_File"
 msgstr "_Fitxer"
 
-#: ../src/appointment.c:1192
+#: ../src/appointment.c:1196
 msgid "Sav_e and close"
 msgstr "D_esa i tanca"
 
 #. add event copying and day cleaning
-#: ../src/appointment.c:1199 ../src/event-list.c:665
+#: ../src/appointment.c:1203 ../src/event-list.c:665
 msgid "D_uplicate"
 msgstr "D_uplica"
 
 #. Add buttons to the toolbar
-#: ../src/appointment.c:1219
+#: ../src/appointment.c:1223
 msgid "Save"
 msgstr "Desa"
 
-#: ../src/appointment.c:1221 ../src/appointment.c:1222
+#: ../src/appointment.c:1225 ../src/appointment.c:1226
 msgid "Save and close"
 msgstr "Desa i tanca"
 
-#: ../src/appointment.c:1227
+#: ../src/appointment.c:1231
 msgid "Revert"
 msgstr "Desfés"
 
-#: ../src/appointment.c:1229 ../src/appointment.c:1230 ../src/event-list.c:711
+#: ../src/appointment.c:1233 ../src/appointment.c:1234 ../src/event-list.c:711
 msgid "Duplicate"
 msgstr "Duplica"
 
-#: ../src/appointment.c:1234
+#: ../src/appointment.c:1238
 msgid "Delete"
 msgstr "Suprimeix"
 
-#: ../src/appointment.c:1242
+#: ../src/appointment.c:1246
 msgid "General"
 msgstr "General"
 
-#: ../src/appointment.c:1251
+#: ../src/appointment.c:1255
 msgid "Title "
 msgstr "Títol "
 
-#: ../src/appointment.c:1263
+#: ../src/appointment.c:1267
 msgid "All day event"
 msgstr "Tot el dia"
 
-#: ../src/appointment.c:1268
+#: ../src/appointment.c:1272
 msgid "Start"
 msgstr "Inici"
 
-#: ../src/appointment.c:1281
+#: ../src/appointment.c:1285
 msgid "End"
 msgstr "Fi"
 
-#: ../src/appointment.c:1295
+#: ../src/appointment.c:1299
 msgid "Duration"
 msgstr "Duració"
 
-#: ../src/appointment.c:1302 ../src/appointment.c:1374
+#: ../src/appointment.c:1306 ../src/appointment.c:1378
 msgid "days"
 msgstr "dies"
 
-#: ../src/appointment.c:1310 ../src/appointment.c:1382
+#: ../src/appointment.c:1314 ../src/appointment.c:1386
 msgid "hours"
 msgstr "hores"
 
-#: ../src/appointment.c:1318 ../src/appointment.c:1389
+#: ../src/appointment.c:1322 ../src/appointment.c:1393
 msgid "mins"
 msgstr "minuts"
 
-#: ../src/appointment.c:1324
+#: ../src/appointment.c:1328
 msgid "Availability"
 msgstr "Disponibilitat"
 
-#: ../src/appointment.c:1331
+#: ../src/appointment.c:1335
 msgid "Note"
 msgstr "Nota"
 
-#: ../src/appointment.c:1360 ../src/appointment.c:1369
+#: ../src/appointment.c:1364 ../src/appointment.c:1373
 msgid "Alarm"
 msgstr "Alarma"
 
-#: ../src/appointment.c:1407
+#: ../src/appointment.c:1411
 msgid "Repeat alarm sound"
 msgstr "Repeteix alarma sonora"
 
-#: ../src/appointment.c:1414 ../src/appointment.c:1423
+#: ../src/appointment.c:1418 ../src/appointment.c:1427
 msgid "Recurrence"
 msgstr "Recurrència"
 
-#: ../src/appointment.c:1431
+#: ../src/appointment.c:1435
 msgid "Repeat forever"
 msgstr "Repeteix per sempre"
 
-#: ../src/appointment.c:1439
+#: ../src/appointment.c:1443
 msgid "Repeat "
 msgstr "Repeteix"
 
-#: ../src/appointment.c:1444
+#: ../src/appointment.c:1448
 msgid "times"
 msgstr "vegades"
 
-#: ../src/appointment.c:1453
+#: ../src/appointment.c:1457
 msgid "Repeat until "
 msgstr "Repeteix fins"
 
@@ -380,7 +381,7 @@ msgstr ""
 "associada amb aquesta data."
 
 #. View menu
-#: ../src/event-list.c:678 ../src/mainbox.c:379
+#: ../src/event-list.c:678 ../src/mainbox.c:380
 msgid "_View"
 msgstr "_Visualitza"
 
@@ -2337,33 +2338,33 @@ msgstr "Pacífic/Wallis"
 msgid "Pacific/Yap"
 msgstr "Pacífic/Yap"
 
-#: ../src/ical-code.c:980
+#: ../src/ical-code.c:982
 msgid "Orage default alarm"
 msgstr "Alarma per omisió d'Orage"
 
-#: ../src/mainbox.c:363
+#: ../src/mainbox.c:364
 msgid "Open archive file..."
 msgstr "Obre fitxer..."
 
-#: ../src/mainbox.c:364
+#: ../src/mainbox.c:365
 msgid "Close archive file"
 msgstr "Tanca fitxer"
 
 #. Edit menu
-#: ../src/mainbox.c:374
+#: ../src/mainbox.c:375
 msgid "_Edit"
 msgstr "_Edita"
 
-#: ../src/mainbox.c:381
+#: ../src/mainbox.c:382
 msgid "View selected _date"
 msgstr "Visualitza la _data seleccionada"
 
-#: ../src/mainbox.c:385
+#: ../src/mainbox.c:386
 msgid "Select _Today"
 msgstr "Seleccione_u avui"
 
 #. Help menu
-#: ../src/mainbox.c:388
+#: ../src/mainbox.c:389
 msgid "_Help"
 msgstr "A_juda"
 
@@ -2406,4 +2407,3 @@ msgstr "Calendari"
 #: ../xfcalendar.desktop.in.h:2
 msgid "Desktop calendar"
 msgstr "Calendari d'escriptori"
-

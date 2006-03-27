@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.3.2.10svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-03-08 22:31+0900\n"
+"POT-Creation-Date: 2006-03-27 21:19+0900\n"
 "PO-Revision-Date: 2006-03-11 20:08+0900\n"
 "Last-Translator: Daichi Kawahata <daichi@xfce.org>\n"
 "Language-Team: Japanese <xfce-users-jp@ml.fdiary.net>\n"
@@ -35,7 +35,7 @@ msgid "All Files"
 msgstr "全てのファイル"
 
 #: ../plugin/xfcalendar_plugin.c:408 ../plugin/xfcalendar_plugin.c:413
-#: ../src/appointment.c:822 ../src/appointment.c:827 ../src/appointment.c:1257
+#: ../src/appointment.c:824 ../src/appointment.c:829 ../src/appointment.c:1261
 msgid "Location"
 msgstr "所在地"
 
@@ -45,13 +45,13 @@ msgid "Pick local timezone"
 msgstr "等時帯を選択して下さい"
 
 #: ../plugin/xfcalendar_plugin.c:422 ../plugin/xfcalendar_plugin.c:450
-#: ../src/appointment.c:836 ../src/appointment.c:864
+#: ../src/appointment.c:838 ../src/appointment.c:866
 msgid "UTC"
 msgstr "UTC"
 
 #: ../plugin/xfcalendar_plugin.c:423 ../plugin/xfcalendar_plugin.c:454
-#: ../plugin/xfcalendar_plugin.c:740 ../src/appointment.c:837
-#: ../src/appointment.c:868 ../src/appointment.c:909 ../src/appointment.c:917
+#: ../plugin/xfcalendar_plugin.c:740 ../src/appointment.c:839
+#: ../src/appointment.c:870 ../src/appointment.c:911 ../src/appointment.c:919
 msgid "floating"
 msgstr "フローティング"
 
@@ -139,7 +139,7 @@ msgstr "1年"
 msgid "never"
 msgstr "書庫には入れない"
 
-#: ../plugin/xfcalendar_plugin.c:682 ../src/appointment.c:1396
+#: ../plugin/xfcalendar_plugin.c:682 ../src/appointment.c:1400
 msgid "Sound"
 msgstr "サウンド"
 
@@ -152,7 +152,7 @@ msgid "Timezone"
 msgstr "等時帯"
 
 #: ../plugin/xfcalendar_plugin.c:788 ../src/appointment.c:203
-#: ../src/mainbox.c:335 ../xfcalendar.desktop.in.h:3
+#: ../src/mainbox.c:336 ../xfcalendar.desktop.in.h:3
 msgid "Orage"
 msgstr "Orage"
 
@@ -171,7 +171,7 @@ msgstr "貢献者"
 
 #. Get the start date and time and timezone
 #. FIXME: use year_month_day_to_display() instead of doing it here
-#: ../src/appointment.c:98 ../src/appointment.c:436 ../src/appointment.c:722
+#: ../src/appointment.c:98 ../src/appointment.c:437 ../src/appointment.c:724
 msgid "%m/%d/%Y"
 msgstr "%Y-%m-%d"
 
@@ -179,8 +179,8 @@ msgstr "%Y-%m-%d"
 msgid "Sound Files"
 msgstr "サウンドファイル"
 
-#: ../src/appointment.c:330 ../src/appointment.c:387 ../src/appointment.c:398
-#: ../src/appointment.c:620 ../src/event-list.c:590
+#: ../src/appointment.c:330 ../src/appointment.c:388 ../src/appointment.c:399
+#: ../src/appointment.c:622 ../src/event-list.c:590
 msgid "Warning"
 msgstr "警告"
 
@@ -188,178 +188,178 @@ msgstr "警告"
 msgid "The appointment information has been modified."
 msgstr "このアポイント情報は変更されています。"
 
-#: ../src/appointment.c:333 ../src/appointment.c:623 ../src/event-list.c:593
+#: ../src/appointment.c:333 ../src/appointment.c:625 ../src/event-list.c:593
 msgid "Do you want to continue?"
 msgstr "続行しますか？"
 
-#: ../src/appointment.c:389
+#: ../src/appointment.c:390
 msgid "A time value is wrong."
 msgstr "時間が間違っています。"
 
-#: ../src/appointment.c:390
+#: ../src/appointment.c:391
 msgid "Time values must be written 'hh:mm', for instance '09:36' or '15:23'."
 msgstr "時間は必ず 'hh:mm' の形式で書いて下さい (例 '09:36 または 15:23)。"
 
-#: ../src/appointment.c:400
+#: ../src/appointment.c:401
 msgid "The end of this appointment is earlier than the beginning."
 msgstr "このアポイントの終了時刻が開始時刻よりも早くなっています。"
 
-#: ../src/appointment.c:622
+#: ../src/appointment.c:624
 msgid "This appointment will be permanently removed."
 msgstr "このアポイントは永久に削除されます。"
 
-#: ../src/appointment.c:727
+#: ../src/appointment.c:729
 msgid "Pick the date"
 msgstr "日付を選択して下さい"
 
-#: ../src/appointment.c:729 ../src/event-list.c:703 ../src/tray_icon.c:105
+#: ../src/appointment.c:731 ../src/event-list.c:703 ../src/tray_icon.c:105
 msgid "Today"
 msgstr "今日"
 
 #. show it
-#: ../src/appointment.c:833
+#: ../src/appointment.c:835
 msgid "Pick timezone"
 msgstr "等時帯を選択して下さい"
 
 #. window title
-#: ../src/appointment.c:1060
+#: ../src/appointment.c:1064
 msgid "New appointment - Orage"
 msgstr "新しいアポイント - Orage"
 
-#: ../src/appointment.c:1159
+#: ../src/appointment.c:1163
 msgid "Free"
 msgstr "用事なし"
 
-#: ../src/appointment.c:1159
+#: ../src/appointment.c:1163
 msgid "Busy"
 msgstr "用事あり"
 
-#: ../src/appointment.c:1161
+#: ../src/appointment.c:1165
 msgid "None"
 msgstr "無し"
 
-#: ../src/appointment.c:1161
+#: ../src/appointment.c:1165
 msgid "Daily"
 msgstr "毎日"
 
-#: ../src/appointment.c:1161
+#: ../src/appointment.c:1165
 msgid "Weekly"
 msgstr "毎週"
 
-#: ../src/appointment.c:1161
+#: ../src/appointment.c:1165
 msgid "Monthly"
 msgstr "毎月"
 
-#: ../src/appointment.c:1161
+#: ../src/appointment.c:1165
 msgid "Yearly"
 msgstr "毎年"
 
 #. File menu stuff
 #. File menu
-#: ../src/appointment.c:1188 ../src/event-list.c:659 ../src/mainbox.c:357
+#: ../src/appointment.c:1192 ../src/event-list.c:659 ../src/mainbox.c:358
 msgid "_File"
 msgstr "ファイル(_F)"
 
-#: ../src/appointment.c:1192
+#: ../src/appointment.c:1196
 msgid "Sav_e and close"
 msgstr "保存して閉じる(_E)"
 
 #. add event copying and day cleaning
-#: ../src/appointment.c:1199 ../src/event-list.c:665
+#: ../src/appointment.c:1203 ../src/event-list.c:665
 msgid "D_uplicate"
 msgstr "コピー(_U)"
 
 #. Add buttons to the toolbar
-#: ../src/appointment.c:1219
+#: ../src/appointment.c:1223
 msgid "Save"
 msgstr "保存します"
 
-#: ../src/appointment.c:1221 ../src/appointment.c:1222
+#: ../src/appointment.c:1225 ../src/appointment.c:1226
 msgid "Save and close"
 msgstr "保存して閉じます"
 
-#: ../src/appointment.c:1227
+#: ../src/appointment.c:1231
 msgid "Revert"
 msgstr "戻します"
 
-#: ../src/appointment.c:1229 ../src/appointment.c:1230 ../src/event-list.c:711
+#: ../src/appointment.c:1233 ../src/appointment.c:1234 ../src/event-list.c:711
 msgid "Duplicate"
 msgstr "コピーを作成します"
 
-#: ../src/appointment.c:1234
+#: ../src/appointment.c:1238
 msgid "Delete"
 msgstr "削除します"
 
-#: ../src/appointment.c:1242
+#: ../src/appointment.c:1246
 msgid "General"
 msgstr "一般"
 
-#: ../src/appointment.c:1251
+#: ../src/appointment.c:1255
 msgid "Title "
 msgstr "件名 "
 
-#: ../src/appointment.c:1263
+#: ../src/appointment.c:1267
 msgid "All day event"
 msgstr "終日"
 
-#: ../src/appointment.c:1268
+#: ../src/appointment.c:1272
 msgid "Start"
 msgstr "開始"
 
-#: ../src/appointment.c:1281
+#: ../src/appointment.c:1285
 msgid "End"
 msgstr "終了"
 
-#: ../src/appointment.c:1295
+#: ../src/appointment.c:1299
 msgid "Duration"
 msgstr "適用期間"
 
-#: ../src/appointment.c:1302 ../src/appointment.c:1374
+#: ../src/appointment.c:1306 ../src/appointment.c:1378
 msgid "days"
 msgstr "日"
 
-#: ../src/appointment.c:1310 ../src/appointment.c:1382
+#: ../src/appointment.c:1314 ../src/appointment.c:1386
 msgid "hours"
 msgstr "時"
 
-#: ../src/appointment.c:1318 ../src/appointment.c:1389
+#: ../src/appointment.c:1322 ../src/appointment.c:1393
 msgid "mins"
 msgstr "分"
 
 # FIXME:
-#: ../src/appointment.c:1324
+#: ../src/appointment.c:1328
 msgid "Availability"
 msgstr "都合"
 
-#: ../src/appointment.c:1331
+#: ../src/appointment.c:1335
 msgid "Note"
 msgstr "備考"
 
-#: ../src/appointment.c:1360 ../src/appointment.c:1369
+#: ../src/appointment.c:1364 ../src/appointment.c:1373
 msgid "Alarm"
 msgstr "アラーム"
 
-#: ../src/appointment.c:1407
+#: ../src/appointment.c:1411
 msgid "Repeat alarm sound"
 msgstr "アラート音を繰り返す"
 
-#: ../src/appointment.c:1414 ../src/appointment.c:1423
+#: ../src/appointment.c:1418 ../src/appointment.c:1427
 msgid "Recurrence"
 msgstr "繰り返し"
 
-#: ../src/appointment.c:1431
+#: ../src/appointment.c:1435
 msgid "Repeat forever"
 msgstr "ずっと繰り返す"
 
-#: ../src/appointment.c:1439
+#: ../src/appointment.c:1443
 msgid "Repeat "
 msgstr " "
 
-#: ../src/appointment.c:1444
+#: ../src/appointment.c:1448
 msgid "times"
 msgstr "回繰り返す"
 
-#: ../src/appointment.c:1453
+#: ../src/appointment.c:1457
 msgid "Repeat until "
 msgstr "次まで繰り返す "
 
@@ -381,7 +381,7 @@ msgstr ""
 "情報を削除します。"
 
 #. View menu
-#: ../src/event-list.c:678 ../src/mainbox.c:379
+#: ../src/event-list.c:678 ../src/mainbox.c:380
 msgid "_View"
 msgstr "表示(_V)"
 
@@ -1958,33 +1958,33 @@ msgstr "太平洋/ウォリス・フツナ諸島"
 msgid "Pacific/Yap"
 msgstr "太平洋/ヤップ島"
 
-#: ../src/ical-code.c:980
+#: ../src/ical-code.c:982
 msgid "Orage default alarm"
 msgstr "Orage の標準アラーム"
 
-#: ../src/mainbox.c:363
+#: ../src/mainbox.c:364
 msgid "Open archive file..."
 msgstr "書庫ファイルを開く..."
 
-#: ../src/mainbox.c:364
+#: ../src/mainbox.c:365
 msgid "Close archive file"
 msgstr "書庫ファイルを閉じる"
 
 #. Edit menu
-#: ../src/mainbox.c:374
+#: ../src/mainbox.c:375
 msgid "_Edit"
 msgstr "編集(_E)"
 
-#: ../src/mainbox.c:381
+#: ../src/mainbox.c:382
 msgid "View selected _date"
 msgstr "選択した日付を表示(_D)"
 
-#: ../src/mainbox.c:385
+#: ../src/mainbox.c:386
 msgid "Select _Today"
 msgstr "今日の日付を選択(_T)"
 
 #. Help menu
-#: ../src/mainbox.c:388
+#: ../src/mainbox.c:389
 msgid "_Help"
 msgstr "ヘルプ(_H)"
 
