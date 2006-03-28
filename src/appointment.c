@@ -342,7 +342,7 @@ appWindow_check_and_close(appt_win *apptw)
     }
     else{
         gtk_widget_destroy(apptw->appWindow);
-        gtk_object_destroy(apptw->appTooltips);
+        gtk_object_destroy(GTK_OBJECT(apptw->appTooltips));
         g_free(apptw);
     }
     return TRUE;
@@ -935,7 +935,9 @@ fill_appt_window_times(appt_win *apptw, appt_data *appt)
         if (s_tz) {
             gtk_button_set_label(GTK_BUTTON(apptw->appStartTimezone_button), s_tz);
             g_object_set_data(G_OBJECT(apptw->appStartTimezone_button), "LOCATION_ENG", s_tze);
-            g_free( appt->start_tz_loc);
+            /* FIXED Muistialueen ylitys
+            g_free(appt->start_tz_loc);
+            */
             appt->start_tz_loc = s_tze;
         }
         else /* we should never get here */
@@ -958,7 +960,9 @@ fill_appt_window_times(appt_win *apptw, appt_data *appt)
         if (e_tz) {
             gtk_button_set_label(GTK_BUTTON(apptw->appEndTimezone_button), e_tz);
             g_object_set_data(G_OBJECT(apptw->appEndTimezone_button), "LOCATION_ENG", e_tze);
-            g_free( appt->end_tz_loc);
+            /* FIXED Muistialueen ylitys
+            g_free(appt->end_tz_loc);
+            */
             appt->end_tz_loc = e_tze;
         }
         else /* we should never get here */
