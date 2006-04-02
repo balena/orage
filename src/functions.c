@@ -61,16 +61,12 @@ void xfcalendar_combo_box_append_array (GtkWidget *combo_box, char *text[], int 
     }
 }
 
-GtkWidget *xfcalendar_datetime_hbox_new (GtkWidget *date_button, GtkWidget *time_comboboxentry, GtkWidget *timezone_button){
+GtkWidget *xfcalendar_datetime_hbox_new (GtkWidget *date_button
+        , GtkWidget *time_spin_hh, GtkWidget *time_spin_mm
+        , GtkWidget *timezone_button)
+{
 
     GtkWidget *hbox, *space_label;
-    char *hours[48];
-    register int i;
-
-    for(i = 0; i < 48 ; i++){
-        hours[i] = (char *)calloc(6, sizeof(gchar));
-        sprintf(hours[i], "%02d:%02d", (int)(i/2), (i%2)*30);
-    }
 
     hbox = gtk_hbox_new (FALSE, 0);
     gtk_box_pack_start (GTK_BOX (hbox), date_button, FALSE, FALSE, 0);
@@ -78,22 +74,28 @@ GtkWidget *xfcalendar_datetime_hbox_new (GtkWidget *date_button, GtkWidget *time
     space_label = gtk_label_new ("  ");
     gtk_box_pack_start (GTK_BOX (hbox), space_label, FALSE, FALSE, 0);
 
-    xfcalendar_combo_box_append_array(time_comboboxentry, hours, 48);
-    gtk_box_pack_start (GTK_BOX (hbox), time_comboboxentry, FALSE, FALSE, 0);
+    space_label = gtk_label_new ("  ");
+    gtk_box_pack_start (GTK_BOX (hbox), space_label, FALSE, FALSE, 0);
+    gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(time_spin_hh), TRUE);
+    gtk_widget_set_size_request(time_spin_hh, 40, -1);
+    gtk_box_pack_start (GTK_BOX (hbox), time_spin_hh, FALSE, FALSE, 0);
+
+    space_label = gtk_label_new (":");
+    gtk_box_pack_start (GTK_BOX (hbox), space_label, FALSE, FALSE, 0);
+    gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(time_spin_mm), TRUE);
+    gtk_widget_set_size_request(time_spin_mm, 40, -1);
+    gtk_box_pack_start (GTK_BOX (hbox), time_spin_mm, FALSE, FALSE, 0);
 
     space_label = gtk_label_new ("  ");
     gtk_box_pack_start (GTK_BOX (hbox), space_label, FALSE, FALSE, 0);
 
     gtk_box_pack_start (GTK_BOX (hbox), timezone_button, TRUE, TRUE, 0);
 
-    for( i = 0; i < 48; i++){
-        free(hours[i]);
-    }
-
     return hbox;
 }
 
-GtkWidget *xfcalendar_table_new (guint rows, guint columns){
+GtkWidget *xfcalendar_table_new (guint rows, guint columns)
+{
     GtkWidget *table;
 
     table = gtk_table_new (rows, columns, FALSE);
@@ -103,8 +105,10 @@ GtkWidget *xfcalendar_table_new (guint rows, guint columns){
     return table;
 }
 
-void xfcalendar_table_add_row (GtkWidget *table, GtkWidget *label, GtkWidget *input, guint row,
-                               GtkAttachOptions input_x_option, GtkAttachOptions input_y_option){
+void xfcalendar_table_add_row (GtkWidget *table, GtkWidget *label
+            , GtkWidget *input, guint row
+            , GtkAttachOptions input_x_option, GtkAttachOptions input_y_option)
+{
     if (label){
         gtk_table_attach (GTK_TABLE (table), label, 0, 1, row, row+1,
                           (GtkAttachOptions) (GTK_FILL),

@@ -74,7 +74,6 @@ typedef struct
 {
     GtkWidget *appWindow;
     GtkAccelGroup *appAccelgroup;
-/*    GtkWidget *appHeader;*/
     GtkWidget *appVBox1;
     GtkWidget *appMenubar;
     GtkWidget *appFile_menu;
@@ -128,11 +127,13 @@ typedef struct
     GtkWidget *appAllDay_checkbutton;
     GtkWidget *appStartDate_button;
     GtkWidget *appStartTime_hbox;
-    GtkWidget *appStartTime_comboboxentry;
+    GtkWidget *appStartTime_spin_hh;
+    GtkWidget *appStartTime_spin_mm;
     GtkWidget *appStartTimezone_button;
     GtkWidget *appEndDate_button;
     GtkWidget *appEndTime_hbox;
-    GtkWidget *appEndTime_comboboxentry;
+    GtkWidget *appEndTime_spin_hh;
+    GtkWidget *appEndTime_spin_mm;
     GtkWidget *appEndTimezone_button;
     GtkWidget *appDur_hbox;
     GtkWidget *appDur_checkbutton;
