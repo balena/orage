@@ -907,7 +907,8 @@ int xfical_compare_times(appt_data *appt)
         etime = icaltime_add(stime, duration);
         text  = icaltime_as_ical_string(etime);
         g_strlcpy(appt->endtime, text, 17);
-        appt->end_tz_loc = appt->start_tz_loc;
+        g_free(appt->end_tz_loc);
+        appt->end_tz_loc = g_strdup(appt->start_tz_loc);
         return(0); /* ok */
 
     }

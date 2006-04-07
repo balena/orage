@@ -376,10 +376,7 @@ orage_validate_datetime(appt_win *apptw, appt_data *appt)
                 NULL);
         return FALSE;
     }
-    else { /* badly wrong! we should copy from tw -> t */
-        /*
-        fill_appt_window_times(apptw, appt);
-        */
+    else {
         return TRUE;
     }
 }
@@ -398,13 +395,15 @@ fill_appt(appt_data *appt, appt_win *apptw)
     gchar starttime[6], endtime[6];
 
     /*Get the title */
-    appt->title = g_strdup(gtk_entry_get_text((GtkEntry *)apptw->appTitle_entry));
+    appt->title = g_strdup(gtk_entry_get_text(
+            (GtkEntry *)apptw->appTitle_entry));
     /* Get the location */
-    appt->location = g_strdup(gtk_entry_get_text((GtkEntry *)apptw->appLocation_entry));
+    appt->location = g_strdup(gtk_entry_get_text(
+            (GtkEntry *)apptw->appLocation_entry));
 
     /* Get if the appointment is for the all day */
-    appt->allDay = 
-            gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(apptw->appAllDay_checkbutton));
+    appt->allDay = gtk_toggle_button_get_active(
+            GTK_TOGGLE_BUTTON(apptw->appAllDay_checkbutton));
 
     /* Get the start date and time and timezone */
     /* FIXME: use year_month_day_to_display() instead of doing it here */
@@ -414,9 +413,8 @@ fill_appt(appt_data *appt, appt_win *apptw)
     current_t.tm_hour = 0;
     current_t.tm_min = 0;
 
-    returned_by_strptime = 
-            strptime(gtk_button_get_label(GTK_BUTTON(apptw->appStartDate_button))
-                    , date_format, &current_t);
+    returned_by_strptime = strptime(gtk_button_get_label(
+            GTK_BUTTON(apptw->appStartDate_button)), date_format, &current_t);
     g_sprintf(starttime, "%02d:%02d"
             , gtk_spin_button_get_value_as_int(
                     GTK_SPIN_BUTTON(apptw->appStartTime_spin_hh))
@@ -426,14 +424,15 @@ fill_appt(appt_data *appt, appt_win *apptw)
     g_sprintf(appt->starttime, XFICAL_APPT_TIME_FORMAT
             , current_t.tm_year + 1900, current_t.tm_mon + 1, current_t.tm_mday
             , current_t.tm_hour, current_t.tm_min, 0);
-    appt->start_tz_loc = g_strdup(g_object_get_data(G_OBJECT(apptw->appStartTimezone_button)
-            , "LOCATION_ENG"));
+    appt->start_tz_loc = g_strdup(g_object_get_data(
+            G_OBJECT(apptw->appStartTimezone_button), "LOCATION_ENG"));
 
     /* Get the end date and time and timezone */
     current_t.tm_hour = 0;
     current_t.tm_min = 0;
 
-    returned_by_strptime = strptime(gtk_button_get_label(GTK_BUTTON(apptw->appEndDate_button)), date_format, &current_t);
+    returned_by_strptime = strptime(gtk_button_get_label(
+            GTK_BUTTON(apptw->appEndDate_button)), date_format, &current_t);
     g_sprintf(endtime, "%02d:%02d"
             , gtk_spin_button_get_value_as_int(
                     GTK_SPIN_BUTTON(apptw->appEndTime_spin_hh))
@@ -443,11 +442,12 @@ fill_appt(appt_data *appt, appt_win *apptw)
     g_sprintf(appt->endtime, XFICAL_APPT_TIME_FORMAT
             , current_t.tm_year + 1900, current_t.tm_mon + 1, current_t.tm_mday
             , current_t.tm_hour, current_t.tm_min, 0);
-    appt->end_tz_loc = g_strdup(g_object_get_data(G_OBJECT(apptw->appEndTimezone_button)
-            , "LOCATION_ENG"));
+    appt->end_tz_loc = g_strdup(g_object_get_data(
+            G_OBJECT(apptw->appEndTimezone_button), "LOCATION_ENG"));
 
     /* Get the duration */
-     appt->use_duration = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(apptw->appDur_checkbutton));
+     appt->use_duration = gtk_toggle_button_get_active(
+            GTK_TOGGLE_BUTTON(apptw->appDur_checkbutton));
     appt->duration = gtk_spin_button_get_value_as_int(
             GTK_SPIN_BUTTON(apptw->appDur_spin_dd)) * 24*60*60
                     + gtk_spin_button_get_value_as_int(
@@ -902,8 +902,8 @@ fill_appt_window_times(appt_win *apptw, appt_data *appt)
     }
 
     /* all day ? */
-    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(apptw->appAllDay_checkbutton)
-            , appt->allDay);
+    gtk_toggle_button_set_active(
+            GTK_TOGGLE_BUTTON(apptw->appAllDay_checkbutton), appt->allDay);
 
     /* start time */
     if (strlen(appt->starttime) > 6 ) {
@@ -920,7 +920,9 @@ fill_appt_window_times(appt_win *apptw, appt_data *appt)
                 GTK_SPIN_BUTTON(apptw->appStartTime_spin_mm), (gdouble)minutes);
         }
         if (s_tz) {
-            gtk_button_set_label(GTK_BUTTON(apptw->appStartTimezone_button), s_tz);
+            gtk_button_set_label(GTK_BUTTON(apptw->appStartTimezone_button)
+                    , s_tz);
+            g_free(s_tz);
             g_object_set_data(G_OBJECT(apptw->appStartTimezone_button)
                     , "LOCATION_ENG", s_tze);
         }
@@ -947,6 +949,7 @@ fill_appt_window_times(appt_win *apptw, appt_data *appt)
         if (e_tz) {
             gtk_button_set_label(GTK_BUTTON(apptw->appEndTimezone_button)
                     , e_tz);
+            g_free(e_tz);
             g_object_set_data(G_OBJECT(apptw->appEndTimezone_button)
                     , "LOCATION_ENG", e_tze);
         }
@@ -956,18 +959,18 @@ fill_appt_window_times(appt_win *apptw, appt_data *appt)
     else
         g_warning("fill_appt_window_times: endtime wrong %s", appt->uid);
 
-    g_free(s_tz);
-    g_free(e_tz);
-
     /* duration */
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(apptw->appDur_checkbutton)
             , appt->use_duration);
     day = appt->duration/(24*60*60);
     hours = (appt->duration-day*(24*60*60))/(60*60);
     minutes = (appt->duration-day*(24*60*60)-hours*(60*60))/(60);
-    gtk_spin_button_set_value(GTK_SPIN_BUTTON(apptw->appDur_spin_dd), (gdouble)day);
-    gtk_spin_button_set_value(GTK_SPIN_BUTTON(apptw->appDur_spin_hh), (gdouble)hours);
-    gtk_spin_button_set_value(GTK_SPIN_BUTTON(apptw->appDur_spin_mm), (gdouble)minutes);
+    gtk_spin_button_set_value(GTK_SPIN_BUTTON(apptw->appDur_spin_dd)
+            , (gdouble)day);
+    gtk_spin_button_set_value(GTK_SPIN_BUTTON(apptw->appDur_spin_hh)
+            , (gdouble)hours);
+    gtk_spin_button_set_value(GTK_SPIN_BUTTON(apptw->appDur_spin_mm)
+            , (gdouble)minutes);
 }
 
 appt_data *
@@ -978,7 +981,7 @@ fill_appt_window_get_appt(char *action, char *par)
     gchar today[9];
 
     if (strcmp(action, "NEW") == 0) {
-  /* par contains XFICAL_APPT_DATE_FORMAT (yyyymmdd) date for NEW appointment */
+/* par contains XFICAL_APPT_DATE_FORMAT (yyyymmdd) date for NEW appointment */
         appt = xfical_appt_alloc();
         t = orage_localtime();
         g_sprintf(today, "%04d%02d%02d", t->tm_year+1900, t->tm_mon+1
