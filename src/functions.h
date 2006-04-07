@@ -22,31 +22,39 @@
  *  Functions for drawing interfaces  *
  **************************************/
 
-GtkWidget *xfcalendar_toolbar_append_button (GtkWidget *toolbar, const gchar *stock_id, 
-                                             GtkTooltips *tooltips, const char *tooltip_text, 
-                                             gint pos);
+GtkWidget *xfcalendar_toolbar_append_button(GtkWidget *toolbar
+        , const gchar *stock_id, GtkTooltips *tooltips
+        , const char *tooltip_text, gint pos);
 
-GtkWidget *xfcalendar_toolbar_append_separator (GtkWidget *toolbar, gint pos);
+GtkWidget *xfcalendar_toolbar_append_separator(GtkWidget *toolbar, gint pos);
 
-void xfcalendar_combo_box_append_array (GtkWidget *combo_box, char *text[], int size);
+void xfcalendar_combo_box_append_array(GtkWidget *combo_box
+        , char *text[], int size);
 
-GtkWidget *xfcalendar_datetime_hbox_new (GtkWidget *date_button
+GtkWidget *xfcalendar_datetime_hbox_new(GtkWidget *date_button
         , GtkWidget *time_spin_hh, GtkWidget *time_spin_dd
         , GtkWidget *timezone_button);
 
-GtkWidget *xfcalendar_table_new (guint rows, guint columns);
+GtkWidget *xfcalendar_table_new(guint rows, guint columns);
 
-void xfcalendar_table_add_row (GtkWidget *table, GtkWidget *label, GtkWidget *input, guint row,
-                               GtkAttachOptions input_x_option, GtkAttachOptions input_y_option);
+void xfcalendar_table_add_row(GtkWidget *table, GtkWidget *label
+        , GtkWidget *input, guint row
+        , GtkAttachOptions input_x_option, GtkAttachOptions input_y_option);
 
-GtkWidget *xfcalendar_menu_new(const gchar *menu_header_title, GtkWidget *menu_bar);
+GtkWidget *xfcalendar_menu_new(const gchar *menu_header_title
+        , GtkWidget *menu_bar);
 
-GtkWidget *xfcalendar_image_menu_item_new_from_stock (const gchar *stock_id, GtkWidget *menu, GtkAccelGroup *ag);
+GtkWidget *xfcalendar_image_menu_item_new_from_stock(const gchar *stock_id
+        , GtkWidget *menu, GtkAccelGroup *ag);
 
-GtkWidget *xfcalendar_separator_menu_item_new (GtkWidget *menu);
+GtkWidget *xfcalendar_separator_menu_item_new(GtkWidget *menu);
 
-GtkWidget *xfcalendar_menu_item_new_with_mnemonic (const gchar *label, GtkWidget *menu);
+GtkWidget *xfcalendar_menu_item_new_with_mnemonic(const gchar *label
+        , GtkWidget *menu);
 
-void xfcalendar_select_date (GtkCalendar *cal, guint year, guint month, guint day);
+struct tm *orage_localtime();
+
+void xfcalendar_select_date(GtkCalendar *cal
+        , guint year, guint month, guint day);
 
 void xfcalendar_select_today(GtkCalendar *cal);

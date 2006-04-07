@@ -83,7 +83,7 @@ typedef struct
     GtkWidget *appFileDuplicate_menuitem;
     GtkWidget *appFileDelete_menuitem;
     GtkWidget *appFileClose_menuitem;
-    GtkWidget *appHandleBox;
+    /* GtkWidget *appHandleBox; */
     GtkWidget *appToolbar;
     GtkTooltips *appTooltips;
     GtkWidget *appNotebook;
@@ -153,11 +153,13 @@ typedef struct
     GtkWidget *appSaveClose;
 
     gchar *xf_uid;
+    gchar *par;
     eventlist_win *eventlist; 
-    gboolean add_appointment;
-    gboolean appointment_changed;
-    gboolean appointment_new;
-    gchar *chosen_date;
+    gboolean appointment_add;       /* are we adding app */
+    gboolean appointment_changed;   /* has this app been modified now */
+    gboolean appointment_new;       /* is this new = no uid yet */
+    /* COPY uses old uid as base and adds new, so 
+     * add == TRUE && new == FALSE */
 } appt_win;
 
 void

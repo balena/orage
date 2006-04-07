@@ -45,6 +45,8 @@ char *xfical_appt_add(appt_data *app);
 
 appt_data *xfical_appt_get(char *ical_id);
 
+void xfical_appt_free(appt_data *appt);
+
 gboolean xfical_appt_mod(char *ical_id, appt_data *app);
 
 gboolean xfical_appt_del(char *ical_id);

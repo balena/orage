@@ -54,6 +54,7 @@
 #include "reminder.h"
 #include "mainbox.h"
 #include "ical-code.h"
+#include "functions.h"
 
 #define MAX_APPT_LENGTH 4096
 #define LEN_BUFFER 1024
@@ -73,8 +74,8 @@ static icalcomponent *ical = NULL,
                      *aical = NULL;
 static icalset *fical = NULL,
                *afical = NULL;
-static gboolean fical_modified = TRUE,
-                afical_modified = TRUE;
+static gboolean fical_modified = FALSE,
+                afical_modified = FALSE;
 static gchar *ical_path = NULL,
              *aical_path = NULL;
 
@@ -87,6 +88,7 @@ extern gboolean local_icaltimezone_utc;
 static int lookback = 0;
 
 extern GList *alarm_list;
+                                                                                
 
 /* Remember to keep this string table in sync with zones.tab
  * This is used only for translations purposes. It makes it
@@ -662,15 +664,10 @@ gboolean xfical_archive_open (void)
 
 void xfical_file_close(void)
 {
-    if(fical == NULL)
+    if (fical == NULL)
         g_warning("xfical_file_close: fical is NULL");
     icalset_free(fical);
     fical = NULL;
-    if (fical_modified) {
-        fical_modified = FALSE;
-        xfical_alarm_build_list(FALSE);
-        xfcalendar_mark_appointments();
-    }
 }
 
 void xfical_archive_close(void)
@@ -678,19 +675,14 @@ void xfical_archive_close(void)
     if (!aical_path)
         return;
 
-    if(afical == NULL)
+    if (afical == NULL)
         g_warning("xfical_file_close: afical is NULL");
     icalset_free(afical);
     afical = NULL;
-    if (afical_modified) {
-        afical_modified = FALSE;
-        xfcalendar_mark_appointments();
-    }
 }
 
 struct icaltimetype ical_get_current_local_time()
 {
-    time_t t;
     struct tm *tm;
     static struct icaltimetype ctime;
 
@@ -706,8 +698,7 @@ struct icaltimetype ical_get_current_local_time()
         ctime.zone        = NULL;
     }
     /* and at the end we need to change the clock to be correct */
-    t=time(NULL);
-    tm=localtime(&t);
+    tm = orage_localtime();
     ctime.year        = tm->tm_year+1900;
     ctime.month       = tm->tm_mon+1;
     ctime.day         = tm->tm_mday;
@@ -763,7 +754,7 @@ xfical_period get_period(icalcomponent *c_event)
         per.stime = convert_to_local_timezone(per.stime, p);
     }
     else {
-        g_warning("get_period: start time not found");
+        g_warning("get_period: start time not found (%s)", icalcomponent_get_uid(c_event));
         per.stime = icaltime_null_time();
     } 
 
@@ -1208,15 +1199,16 @@ void ical_appt_get_alarm_internal(icalcomponent *c,  appt_data *appt)
 
  /* Read EVENT from ical datafile.
   * ical_uid:  key of ical EVENT appt-> is to be read
-  * returns: NULL if failed and appt_data pointer to appt_data struct
-  *          filled with data if successfull.
+  * returns: if failed: NULL
+  *          if successfull: appt_data pointer to appt_data struct 
+  *              filled with data.
+  *              This appt_data struct is owned by the routine.
+  *              Do not deallocate it.
+  *             It will be overdriven by next invocation of this function.
   *          NOTE: This routine does not fill starttimecur nor endtimecur,
-  *          Those are alwasy initialized to null string
-  *          This appt_data struct is owned by the routine.
-  *          Do not deallocate it.
-  *          It will be overdriven by next invocation of this function.
+  *                Those are always initialized to null string
   */
-appt_data *xfical_appt_get(char *ical_uid)
+appt_data *xfical_appt_get_internal(char *ical_uid)
 {
     static appt_data appt;
     icalcomponent *c = NULL;
@@ -1395,6 +1387,43 @@ appt_data *xfical_appt_get(char *ical_uid)
         return(NULL);
 }
 
+ /* Read EVENT from ical datafile.
+  * ical_uid:  key of ical EVENT appt-> is to be read
+  * returns: if failed: NULL
+  *          if successfull: appt_data pointer to appt_data struct 
+  *             filled with data.
+  *             You must free it after not being used anymore. (g_free())
+  *          NOTE: This routine does not fill starttimecur nor endtimecur,
+  *                Those are always initialized to null string
+  */
+appt_data *xfical_appt_get(char *ical_uid)
+{
+    appt_data *appt;
+
+    appt = g_memdup(xfical_appt_get_internal(ical_uid), sizeof(appt_data));
+    appt->uid = g_strdup(appt->uid);
+    appt->title = g_strdup(appt->title);
+    appt->location = g_strdup(appt->location);
+    appt->start_tz_loc = g_strdup(appt->start_tz_loc);
+    appt->end_tz_loc = g_strdup(appt->end_tz_loc);
+    appt->note = g_strdup(appt->note);
+    appt->sound = g_strdup(appt->sound);
+
+    return(appt);
+}
+
+void xfical_appt_free(appt_data *appt)
+{
+    g_free(appt->uid);
+    g_free(appt->title);
+    g_free(appt->location);
+    g_free(appt->start_tz_loc);
+    g_free(appt->end_tz_loc);
+    g_free(appt->note);
+    g_free(appt->sound);
+    g_free(appt);
+}
+
  /* modify EVENT type ical appointment in ical file
   * ical_uid: char pointer to ical ical_uid to modify
   * app: pointer to filled appt_data structure, which is stored
@@ -1485,7 +1514,7 @@ appt_data *xfical_appt_get_next_on_day(char *a_day, gboolean first, gint days)
     gboolean date_found=FALSE;
     gboolean date_rec_found=FALSE;
     char *uid;
-    appt_data *appt;
+    static appt_data *appt;
     struct icalrecurrencetype rrule;
     icalrecur_iterator* ri;
 
@@ -1532,7 +1561,7 @@ appt_data *xfical_appt_get_next_on_day(char *a_day, gboolean first, gint days)
     }
     if (date_found) {
         uid = (char *)icalcomponent_get_uid(c);
-        appt = xfical_appt_get(uid);
+        appt = xfical_appt_get_internal(uid);
         if (date_rec_found) {
             g_strlcpy(appt->starttimecur, icaltime_as_ical_string(nsdate), 17);
             g_strlcpy(appt->endtimecur, icaltime_as_ical_string(nedate), 17);
@@ -1931,13 +1960,11 @@ gboolean xfical_keep_tidy(void)
     static icalcomponent *c;
     icalproperty *p;
     struct tm *threshold;
-    time_t t;
     char *uid;
 
     if (xfical_file_open() && xfical_archive_open()) {
 
-        t = time (NULL);
-        threshold = localtime (&t);
+        threshold = orage_localtime();
 
         threshold->tm_mday = 1;
         threshold->tm_year += 1900;

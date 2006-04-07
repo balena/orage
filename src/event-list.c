@@ -1,7 +1,7 @@
 /* xfcalendar
  *
  * Copyright (C) 2003-2005 Mickael Graf (korbinus at xfce.org)
- * Copyright (C) 2005 Juha Kautto (juha at xfce.org)
+ * Copyright (C) 2005-2006 Juha Kautto (juha at xfce.org)
  *
  * This program is free software; you can redistribute it and/or modify it 
  * under the terms of the GNU General Public License as published by the
@@ -208,18 +208,16 @@ void start_time_data_func(GtkTreeViewColumn *col, GtkCellRenderer *rend,
 {
     gchar *stime, *etime;
     struct tm *t;
-    time_t tt;
     gchar time_now[6];
     gint            days = 0;
     eventlist_win *el = (eventlist_win *)user_data;
     days = gtk_spin_button_get_value(GTK_SPIN_BUTTON(el->elSpin1));
 
-    if (!el->elToday || days != 0){
+    if (!el->elToday || days != 0) {
         return;
     }
 
-    tt = time(NULL);
-    t  = localtime(&tt);
+    t = orage_localtime();
     g_sprintf(time_now, "%02d:%02d", t->tm_hour, t->tm_min);
 
     gtk_tree_model_get(model, iter, COL_TIME, &stime, -1);
@@ -325,7 +323,8 @@ void addEvent(GtkListStore *list1, appt_data *appt, char *header, gint days)
         title = g_strdup(appt->title);
     else if (appt->note != NULL) { 
     /* let's take len chars of the first line from the text */
-        if ((title = g_strstr_len(appt->note, strlen(appt->note), "\n")) != NULL){
+        if ((title = g_strstr_len(appt->note, strlen(appt->note), "\n")) 
+            != NULL) {
             if ((strlen(appt->note)-strlen(title)) < len)
                 len=strlen(appt->note)-strlen(title);
         }
@@ -334,23 +333,22 @@ void addEvent(GtkListStore *list1, appt_data *appt, char *header, gint days)
 
     gtk_list_store_append(list1, &iter1);
     gtk_list_store_set(list1, &iter1
-                , COL_TIME,  stime
-                , COL_FLAGS, flags
-                , COL_HEAD,  title
-                , COL_UID,   appt->uid
-                , -1);
+            , COL_TIME,  stime
+            , COL_FLAGS, flags
+            , COL_HEAD,  title
+            , COL_UID,   appt->uid
+            , -1);
     g_free(title);
 }
 
 void manage_eventlist_win(GtkCalendar *calendar, eventlist_win *el)
 {
     guint year, month, day;
-    char            title[12];
-    char            a_day[9];  /* yyyymmdd */
-    appt_data       *appt;
-    struct tm       *t;
-    time_t          tt;
-    gint            days = 0;
+    char      title[12];
+    char      a_day[9];  /* yyyymmdd */
+    appt_data *appt;
+    struct tm *t;
+    gint      days = 0;
 
     gtk_calendar_get_date(calendar, &year, &month, &day);
     g_sprintf(title, "%04d-%02d-%02d", year, month+1, day);
@@ -361,8 +359,7 @@ void manage_eventlist_win(GtkCalendar *calendar, eventlist_win *el)
     if (xfical_file_open()){
         g_sprintf(a_day, XFICAL_APPT_DATE_FORMAT, year, month+1, day);
         if ((appt = xfical_appt_get_next_on_day(a_day, TRUE, days))) {
-            tt = time(NULL);
-            t  = localtime(&tt);
+            t = orage_localtime();
             if (   year  == t->tm_year + 1900
                 && month == t->tm_mon
                 && day   == t->tm_mday)
@@ -413,12 +410,13 @@ on_elFile_duplicate_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
 }
 
 void
-close_eventlist_window (eventlist_win *el){
-    gtk_window_get_size (GTK_WINDOW(el->elWindow)
+close_eventlist_window (eventlist_win *el)
+{
+    gtk_window_get_size(GTK_WINDOW(el->elWindow)
         , &event_win_size_x, &event_win_size_y);
-    apply_settings ();
+    apply_settings();
 
-    gtk_widget_destroy (el->elWindow); /* destroy the eventlist window */
+    gtk_widget_destroy(el->elWindow); /* destroy the eventlist window */
     g_free(el);
     el = NULL;
 }
@@ -512,14 +510,13 @@ on_elGo_previous_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
 void 
 go_to_today(eventlist_win *el)
 {
-  struct tm *t;
-  time_t tt;
+    struct tm *t;
 
-  tt = time(NULL);
-  t = localtime(&tt);
-    xfcalendar_select_date (GTK_CALENDAR (xfcal->mCalendar), t->tm_year+1900, t->tm_mon, t->tm_mday);
+    t = orage_localtime();
+    xfcalendar_select_date(GTK_CALENDAR(xfcal->mCalendar)
+            , t->tm_year+1900, t->tm_mon, t->tm_mday);
 
-  recreate_eventlist_win(el);
+    recreate_eventlist_win(el);
 }
 
 void
@@ -587,15 +584,15 @@ clear_eventlist_win(eventlist_win *el)
     gint result;
 
     result = xfce_message_dialog(GTK_WINDOW(el->elWindow),
-                                 _("Warning"),
-                                 GTK_STOCK_DIALOG_WARNING,
-                                 _("You will remove all information \nassociated with this date."),
-                                 _("Do you want to continue?"),
-                                 GTK_STOCK_YES,
-                                 GTK_RESPONSE_ACCEPT,
-                                 GTK_STOCK_NO,
-                                 GTK_RESPONSE_CANCEL,
-                                 NULL);
+             _("Warning"),
+             GTK_STOCK_DIALOG_WARNING,
+             _("You will remove all information \nassociated with this date."),
+             _("Do you want to continue?"),
+             GTK_STOCK_YES,
+             GTK_RESPONSE_ACCEPT,
+             GTK_STOCK_NO,
+             GTK_RESPONSE_CANCEL,
+             NULL);
 
     if (result == GTK_RESPONSE_ACCEPT){
         if (xfical_file_open()){
@@ -642,51 +639,77 @@ eventlist_win
     el->elNumber_of_days_to_show = 0;
 
     el->elWindow = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-    gtk_window_set_default_size(GTK_WINDOW(el->elWindow), event_win_size_x, event_win_size_y);
+    gtk_window_set_default_size(GTK_WINDOW(el->elWindow)
+            , event_win_size_x, event_win_size_y);
 
     el->elVbox = gtk_vbox_new(FALSE, 0);
     gtk_container_add(GTK_CONTAINER(el->elWindow), el->elVbox);
 
     /* Menu bar */
     el->elMenubar = gtk_menu_bar_new ();
-    gtk_box_pack_start (GTK_BOX (el->elVbox),
-                el->elMenubar,
-                FALSE,
-                FALSE,
-                0);
+    gtk_box_pack_start(GTK_BOX (el->elVbox), el->elMenubar,
+                FALSE, FALSE, 0);
 
     /* File menu */
     el->elFile_menu = xfcalendar_menu_new(_("_File"), el->elMenubar);
-    el->elFile_newApp_menuitem = xfcalendar_image_menu_item_new_from_stock ("gtk-new", el->elFile_menu, el->accel_group);
+    el->elFile_newApp_menuitem = 
+            xfcalendar_image_menu_item_new_from_stock("gtk-new"
+                    , el->elFile_menu, el->accel_group);
 
-    menu_separator = xfcalendar_separator_menu_item_new (el->elFile_menu);
+    menu_separator = xfcalendar_separator_menu_item_new(el->elFile_menu);
 
     /* add event copying and day cleaning */
-    el->elFile_duplicate_menuitem = xfcalendar_menu_item_new_with_mnemonic (_("D_uplicate"), el->elFile_menu);
-    gtk_widget_add_accelerator(el->elFile_duplicate_menuitem, "activate", el->accel_group, GDK_d, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
+    el->elFile_duplicate_menuitem = 
+            xfcalendar_menu_item_new_with_mnemonic(_("D_uplicate")
+                    , el->elFile_menu);
+    gtk_widget_add_accelerator(el->elFile_duplicate_menuitem
+            , "activate", el->accel_group
+            , GDK_d, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
 
-    menu_separator = xfcalendar_separator_menu_item_new (el->elFile_menu);
+    menu_separator = xfcalendar_separator_menu_item_new(el->elFile_menu);
 
-    el->elFile_delete_menuitem = xfcalendar_image_menu_item_new_from_stock ("gtk-clear", el->elFile_menu, el->accel_group);
-    gtk_widget_add_accelerator(el->elFile_delete_menuitem, "activate", el->accel_group, GDK_l, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
+    el->elFile_delete_menuitem = 
+            xfcalendar_image_menu_item_new_from_stock("gtk-clear"
+                    , el->elFile_menu, el->accel_group);
+    gtk_widget_add_accelerator(el->elFile_delete_menuitem
+            , "activate", el->accel_group
+            , GDK_l, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
 
-    menu_separator = xfcalendar_separator_menu_item_new (el->elFile_menu);
+    menu_separator = xfcalendar_separator_menu_item_new(el->elFile_menu);
 
-    el->elFile_close_menuitem = xfcalendar_image_menu_item_new_from_stock ("gtk-close", el->elFile_menu, el->accel_group);
+    el->elFile_close_menuitem = 
+            xfcalendar_image_menu_item_new_from_stock("gtk-close"
+                    , el->elFile_menu, el->accel_group);
 
     /* View menu */
     el->elView_menu = xfcalendar_menu_new(_("_View"), el->elMenubar);
-    el->elView_refresh_menuitem = xfcalendar_image_menu_item_new_from_stock ("gtk-refresh", el->elView_menu, el->accel_group);
-    gtk_widget_add_accelerator(el->elView_refresh_menuitem, "activate", el->accel_group, GDK_r, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
+    el->elView_refresh_menuitem = 
+            xfcalendar_image_menu_item_new_from_stock ("gtk-refresh"
+                    , el->elView_menu, el->accel_group);
+    gtk_widget_add_accelerator(el->elView_refresh_menuitem
+            , "activate", el->accel_group
+            , GDK_r, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
 
     /* Go menu   */
     el->elGo_menu = xfcalendar_menu_new(_("_Go"), el->elMenubar);
-    el->elGo_today_menuitem = xfcalendar_image_menu_item_new_from_stock ("gtk-home", el->elGo_menu, el->accel_group);
-    gtk_widget_add_accelerator(el->elGo_today_menuitem, "activate", el->accel_group, GDK_Home, GDK_MOD1_MASK, GTK_ACCEL_VISIBLE);
-    el->elGo_previous_menuitem = xfcalendar_image_menu_item_new_from_stock ("gtk-go-back", el->elGo_menu, el->accel_group);
-    gtk_widget_add_accelerator(el->elGo_previous_menuitem, "activate", el->accel_group, GDK_b, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
-    el->elGo_next_menuitem = xfcalendar_image_menu_item_new_from_stock ("gtk-go-forward", el->elGo_menu, el->accel_group);
-    gtk_widget_add_accelerator(el->elGo_next_menuitem, "activate", el->accel_group, GDK_f, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
+    el->elGo_today_menuitem = 
+            xfcalendar_image_menu_item_new_from_stock("gtk-home"
+                , el->elGo_menu, el->accel_group);
+    gtk_widget_add_accelerator(el->elGo_today_menuitem
+            , "activate", el->accel_group
+            , GDK_Home, GDK_MOD1_MASK, GTK_ACCEL_VISIBLE);
+    el->elGo_previous_menuitem = 
+            xfcalendar_image_menu_item_new_from_stock("gtk-go-back"
+                    , el->elGo_menu, el->accel_group);
+    gtk_widget_add_accelerator(el->elGo_previous_menuitem
+            , "activate", el->accel_group
+            , GDK_b, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
+    el->elGo_next_menuitem = 
+            xfcalendar_image_menu_item_new_from_stock("gtk-go-forward"
+                    , el->elGo_menu, el->accel_group);
+    gtk_widget_add_accelerator(el->elGo_next_menuitem
+            , "activate", el->accel_group
+            , GDK_f, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
 
     /* Help menu */
     /*el->elHelp_menu = xfcalendar_menu_new(_("_Help"), el->elMenubar);*/
@@ -695,49 +718,63 @@ eventlist_win
     el->elToolbar = gtk_toolbar_new();
     gtk_box_pack_start(GTK_BOX(el->elVbox), el->elToolbar, FALSE, FALSE, 0);
 
-    el->elCreate_toolbutton = xfcalendar_toolbar_append_button (el->elToolbar, "gtk-new", el->elTooltips, _("New"), i++);
+    el->elCreate_toolbutton = xfcalendar_toolbar_append_button(el->elToolbar, "gtk-new", el->elTooltips, _("New"), i++);
 
-    toolbar_separator = xfcalendar_toolbar_append_separator (el->elToolbar, i++);
-    el->elPrevious_toolbutton = xfcalendar_toolbar_append_button (el->elToolbar, "gtk-go-back", el->elTooltips, _("Back"), i++);
+    toolbar_separator = xfcalendar_toolbar_append_separator(el->elToolbar, i++);
+    el->elPrevious_toolbutton = xfcalendar_toolbar_append_button(el->elToolbar
+            , "gtk-go-back", el->elTooltips, _("Back"), i++);
 
-    el->elToday_toolbutton = xfcalendar_toolbar_append_button (el->elToolbar, "gtk-home", el->elTooltips, _("Today"), i++);
+    el->elToday_toolbutton = xfcalendar_toolbar_append_button(el->elToolbar
+            , "gtk-home", el->elTooltips, _("Today"), i++);
 
-    el->elNext_toolbutton = xfcalendar_toolbar_append_button (el->elToolbar, "gtk-go-forward", el->elTooltips, _("Forward"), i++);
+    el->elNext_toolbutton = xfcalendar_toolbar_append_button(el->elToolbar
+            , "gtk-go-forward", el->elTooltips, _("Forward"), i++);
 
-    el->elRefresh_toolbutton = xfcalendar_toolbar_append_button (el->elToolbar, "gtk-refresh", el->elTooltips, _("Refresh"), i++);
+    el->elRefresh_toolbutton = xfcalendar_toolbar_append_button(el->elToolbar
+            , "gtk-refresh", el->elTooltips, _("Refresh"), i++);
 
-    toolbar_separator = xfcalendar_toolbar_append_separator (el->elToolbar, i++);
+    toolbar_separator = xfcalendar_toolbar_append_separator(el->elToolbar
+            , i++);
 
-    el->elCopy_toolbutton = xfcalendar_toolbar_append_button (el->elToolbar, "gtk-copy", el->elTooltips, _("Duplicate"), i++);
+    el->elCopy_toolbutton = xfcalendar_toolbar_append_button(el->elToolbar
+            , "gtk-copy", el->elTooltips, _("Duplicate"), i++);
 
-    el->elClose_toolbutton = xfcalendar_toolbar_append_button (el->elToolbar, "gtk-close", el->elTooltips, _("Close"), i++);
+    el->elClose_toolbutton = xfcalendar_toolbar_append_button(el->elToolbar
+            , "gtk-close", el->elTooltips, _("Close"), i++);
 
-    el->elDelete_toolbutton = xfcalendar_toolbar_append_button (el->elToolbar, "gtk-clear", el->elTooltips, _("Clear"), i++);
+    el->elDelete_toolbutton = xfcalendar_toolbar_append_button(el->elToolbar
+            , "gtk-clear", el->elTooltips, _("Clear"), i++);
 
     tool_item = gtk_tool_item_new();
     el->elSpin1 = gtk_spin_button_new_with_range(0, 31, 1);
-    gtk_container_add (GTK_CONTAINER (tool_item), el->elSpin1);
-    gtk_toolbar_insert (GTK_TOOLBAR (el->elToolbar), GTK_TOOL_ITEM (tool_item), i++);
+    gtk_container_add(GTK_CONTAINER(tool_item), el->elSpin1);
+    gtk_toolbar_insert(GTK_TOOLBAR(el->elToolbar)
+            , GTK_TOOL_ITEM(tool_item), i++);
     
     /* Scrolled window */
     el->elScrolledWindow = gtk_scrolled_window_new(NULL, NULL);
-    gtk_box_pack_start(GTK_BOX(el->elVbox), el->elScrolledWindow, TRUE, TRUE, 0);
-    gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(el->elScrolledWindow), GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
+    gtk_box_pack_start(GTK_BOX(el->elVbox), el->elScrolledWindow
+            , TRUE, TRUE, 0);
+    gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(el->elScrolledWindow)
+            , GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
 
     el->elListStore = gtk_list_store_new(NUM_COLS
-                , G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
+            , G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
     el->elTreeView = gtk_tree_view_new();
     gtk_tree_view_set_rules_hint(GTK_TREE_VIEW(el->elTreeView), TRUE);
 
-    el->elTreeSelection = gtk_tree_view_get_selection(GTK_TREE_VIEW(el->elTreeView)); /* Might be useless here... */
+            /* Might be useless here... */
+    el->elTreeSelection = 
+            gtk_tree_view_get_selection(GTK_TREE_VIEW(el->elTreeView)); 
     gtk_tree_selection_set_mode(el->elTreeSelection, GTK_SELECTION_BROWSE);
 
     el->elTreeSortable = GTK_TREE_SORTABLE(el->elListStore);
     gtk_tree_sortable_set_sort_func(el->elTreeSortable, COL_TIME
-                , sortEvent_comp, GINT_TO_POINTER(COL_TIME), NULL);
+            , sortEvent_comp, GINT_TO_POINTER(COL_TIME), NULL);
     gtk_tree_sortable_set_sort_column_id(el->elTreeSortable
-                , COL_TIME, GTK_SORT_ASCENDING);
-    gtk_tree_view_set_model(GTK_TREE_VIEW(el->elTreeView), GTK_TREE_MODEL(el->elListStore));
+            , COL_TIME, GTK_SORT_ASCENDING);
+    gtk_tree_view_set_model(GTK_TREE_VIEW(el->elTreeView)
+            , GTK_TREE_MODEL(el->elListStore));
 
     gtk_container_add(GTK_CONTAINER(el->elScrolledWindow), el->elTreeView);
 

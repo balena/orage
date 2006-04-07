@@ -43,13 +43,12 @@ on_Today_activate                      (GtkMenuItem *menuitem,
                                         gpointer user_data)
 {
     struct tm *t;
-    time_t tt;
     CalWin *xfcal = (CalWin *)user_data;
     eventlist_win *el;
 
-    tt=time(NULL);
-    t=localtime(&tt);
-    xfcalendar_select_date (GTK_CALENDAR (xfcal->mCalendar), t->tm_year+1900, t->tm_mon, t->tm_mday);
+    t = orage_localtime();
+    xfcalendar_select_date(GTK_CALENDAR(xfcal->mCalendar), t->tm_year+1900
+            , t->tm_mon, t->tm_mday);
     el = create_eventlist_win();
     manage_eventlist_win(GTK_CALENDAR(xfcal->mCalendar), el);
 }
@@ -68,11 +67,9 @@ on_new_appointment_activate            (GtkMenuItem     *menuitem,
 {
     appt_win *app;
     struct tm *t;
-    time_t tt;
     char cur_date[9];
 
-    tt=time(NULL);
-    t=localtime(&tt);
+    t = orage_localtime();
     g_snprintf(cur_date, 9, "%04d%02d%02d", t->tm_year+1900
                , t->tm_mon+1, t->tm_mday);
     app = create_appt_win("NEW", cur_date, NULL);  

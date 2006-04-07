@@ -67,9 +67,9 @@ xfcalendar_mark_appointments()
 {
     guint year, month, day;
 
-    if (xfical_file_open()){
-        gtk_calendar_get_date(GTK_CALENDAR(xfcal->mCalendar), &year, &month
-                            , &day);
+    if (xfical_file_open()) {
+        gtk_calendar_get_date(GTK_CALENDAR(xfcal->mCalendar)
+                , &year, &month, &day);
         xfical_mark_calendar(GTK_CALENDAR(xfcal->mCalendar), year, month+1); 
         xfical_file_close();
     }
@@ -90,11 +90,9 @@ mFile_newApp_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
 {
     appt_win *app;
     struct tm *t;
-    time_t tt;
     char cur_date[9];
 
-    tt=time(NULL);
-    t=localtime(&tt);
+    t = orage_localtime();
     g_snprintf(cur_date, 9, "%04d%02d%02d", t->tm_year+1900
             , t->tm_mon+1, t->tm_mday);
     app = create_appt_win("NEW", cur_date, NULL);  
@@ -305,29 +303,29 @@ xfcalendar_init_settings(CalWin *xfcal)
 void
 xfcalendar_toggle_visible()
 {
+    GdkEventClient gev;
+    Window xwindow;
+    GdkAtom atom;
+                                                                                
+    memset(&gev, 0, sizeof(gev));
+                                                                                
+    atom = gdk_atom_intern("_XFCE_CALENDAR_RUNNING", FALSE);
+    xwindow = XGetSelectionOwner(GDK_DISPLAY(), gdk_x11_atom_to_xatom(atom));
 
-  GdkEventClient gev;
-  Window xwindow;
-  GdkAtom atom;
+    gev.type = GDK_CLIENT_EVENT;
+    gev.window = NULL;
+    gev.send_event = TRUE;
+    gev.message_type = gdk_atom_intern("_XFCE_CALENDAR_TOGGLE_HERE", FALSE);
+    gev.data_format = 8;
                                                                                 
-  memset(&gev, 0, sizeof(gev));
-                                                                                
-  atom = gdk_atom_intern("_XFCE_CALENDAR_RUNNING", FALSE);
-  xwindow = XGetSelectionOwner(GDK_DISPLAY(), gdk_x11_atom_to_xatom(atom));
-
-  gev.type = GDK_CLIENT_EVENT;
-  gev.window = NULL;
-  gev.send_event = TRUE;
-  gev.message_type = gdk_atom_intern("_XFCE_CALENDAR_TOGGLE_HERE", FALSE);
-  gev.data_format = 8;
-                                                                                
-  gdk_event_send_client_message((GdkEvent *)&gev, (GdkNativeWindow)xwindow);
+    gdk_event_send_client_message((GdkEvent *)&gev, (GdkNativeWindow)xwindow);
 }
 
 void create_mainWin()
 {
     GtkWidget *menu_separator;
     GdkPixbuf *xfcalendar_logo = xfce_themed_icon_load("xfcalendar", 48);
+
 
     xfcalendar_init_settings(xfcal);
                                                                                 
@@ -351,44 +349,64 @@ void create_mainWin()
     if (show_main_menu) {
         xfcal->mMenubar = gtk_menu_bar_new();
         gtk_box_pack_start(GTK_BOX(xfcal->mVbox),
-                            xfcal->mMenubar,
-                            FALSE, FALSE, 0); 
+                xfcal->mMenubar,
+                FALSE, FALSE, 0); 
 
         /* File menu */
         xfcal->mFile_menu = xfcalendar_menu_new(_("_File"), xfcal->mMenubar);
 
-        xfcal->mFile_newApp = xfcalendar_image_menu_item_new_from_stock("gtk-new", xfcal->mFile_menu, xfcal->mAccel_group);
+        xfcal->mFile_newApp = 
+                xfcalendar_image_menu_item_new_from_stock("gtk-new"
+                        , xfcal->mFile_menu, xfcal->mAccel_group);
 
         menu_separator = xfcalendar_separator_menu_item_new(xfcal->mFile_menu);
  
-        xfcal->mFile_openArchive = xfcalendar_menu_item_new_with_mnemonic(_("Open archive file..."), xfcal->mFile_menu);
-        xfcal->mFile_closeArchive = xfcalendar_menu_item_new_with_mnemonic(_("Close archive file"), xfcal->mFile_menu);
+        xfcal->mFile_openArchive = 
+                xfcalendar_menu_item_new_with_mnemonic(_("Open archive file...")
+                        , xfcal->mFile_menu);
+        xfcal->mFile_closeArchive = 
+                xfcalendar_menu_item_new_with_mnemonic(_("Close archive file")
+                        , xfcal->mFile_menu);
         gtk_widget_set_sensitive(xfcal->mFile_closeArchive, FALSE);
 
         menu_separator = xfcalendar_separator_menu_item_new(xfcal->mFile_menu);
 
-        xfcal->mFile_close = xfcalendar_image_menu_item_new_from_stock("gtk-close", xfcal->mFile_menu, xfcal->mAccel_group);
+        xfcal->mFile_close = 
+                xfcalendar_image_menu_item_new_from_stock("gtk-close"
+                        , xfcal->mFile_menu, xfcal->mAccel_group);
 
-        xfcal->mFile_quit = xfcalendar_image_menu_item_new_from_stock("gtk-quit", xfcal->mFile_menu, xfcal->mAccel_group);
+        xfcal->mFile_quit = 
+                xfcalendar_image_menu_item_new_from_stock("gtk-quit"
+                        , xfcal->mFile_menu, xfcal->mAccel_group);
 
         /* Edit menu */
         xfcal->mEdit_menu = xfcalendar_menu_new(_("_Edit"), xfcal->mMenubar);
 
-        xfcal->mEdit_preferences = xfcalendar_image_menu_item_new_from_stock("gtk-preferences", xfcal->mEdit_menu, xfcal->mAccel_group);
+        xfcal->mEdit_preferences = 
+                xfcalendar_image_menu_item_new_from_stock("gtk-preferences"
+                        , xfcal->mEdit_menu, xfcal->mAccel_group);
 
         /* View menu */
         xfcal->mView_menu = xfcalendar_menu_new(_("_View"), xfcal->mMenubar);
 
-        xfcal->mView_ViewSelectedDate = xfcalendar_menu_item_new_with_mnemonic(_("View selected _date"), xfcal->mView_menu);
+        xfcal->mView_ViewSelectedDate = 
+                xfcalendar_menu_item_new_with_mnemonic(_("View selected _date")
+                        , xfcal->mView_menu);
 
         menu_separator = xfcalendar_separator_menu_item_new(xfcal->mView_menu);
 
-        xfcal->mView_selectToday = xfcalendar_menu_item_new_with_mnemonic(_("Select _Today"), xfcal->mView_menu);
+        xfcal->mView_selectToday = 
+                xfcalendar_menu_item_new_with_mnemonic(_("Select _Today")
+                        , xfcal->mView_menu);
 
         /* Help menu */
         xfcal->mHelp_menu = xfcalendar_menu_new(_("_Help"), xfcal->mMenubar);
-        xfcal->mHelp_help = xfcalendar_image_menu_item_new_from_stock("gtk-help", xfcal->mHelp_menu, xfcal->mAccel_group);
-        xfcal->mHelp_about = xfcalendar_image_menu_item_new_from_stock("gtk-about", xfcal->mHelp_menu, xfcal->mAccel_group);
+        xfcal->mHelp_help = 
+                xfcalendar_image_menu_item_new_from_stock("gtk-help"
+                        , xfcal->mHelp_menu, xfcal->mAccel_group);
+        xfcal->mHelp_about = 
+                xfcalendar_image_menu_item_new_from_stock("gtk-about"
+                        , xfcal->mHelp_menu, xfcal->mAccel_group);
 
         /* Signals */
         g_signal_connect((gpointer) xfcal->mFile_newApp, "activate",

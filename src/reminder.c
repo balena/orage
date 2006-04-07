@@ -245,7 +245,6 @@ gboolean
 orage_alarm_clock(gpointer user_data)
 {
     CalWin *xfcal = (CalWin *)user_data;
-    time_t tt;
     struct tm *t;
     static guint previous_year=0, previous_month=0, previous_day=0;
     guint selected_year=0, selected_month=0, selected_day=0;
@@ -255,8 +254,7 @@ orage_alarm_clock(gpointer user_data)
     gboolean alarm_raised=FALSE;
     gboolean more_alarms=TRUE;
                                                                                 
-    tt=time(NULL);
-    t=localtime(&tt);
+    t = orage_localtime();
   /* See if the day just changed and the former current date was selected */
     if (previous_day != t->tm_mday) {
         current_year  = t->tm_year + 1900;

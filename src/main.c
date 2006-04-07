@@ -85,6 +85,25 @@ GList *alarm_list = NULL;
 char *local_icaltimezone_location = NULL;
 gboolean local_icaltimezone_utc = FALSE;
 
+/*
+void
+program_log (const char *format, ...)
+{
+        va_list args;
+        char *formatted, *str;
+
+        va_start (args, format);
+        formatted = g_strdup_vprintf (format, args);
+        va_end (args);
+
+        str = g_strdup_printf ("MARK: %s: %s", g_get_prgname(), formatted);
+        g_free (formatted);
+
+        access (str, F_OK);
+        g_free (str);
+} 
+*/
+
 static void
 raise_window()
 {
