@@ -11,8 +11,8 @@ dnl
 dnl Version information
 m4_define([orage_version_major], [4])
 m4_define([orage_version_minor], [3])
-m4_define([orage_version_micro], [2])
-m4_define([orage_version_nano], [11])  dnl leave this empty to have no nano version
+m4_define([orage_version_micro], [90])
+m4_define([orage_version_nano], [1])  dnl leave this empty to have no nano version
 m4_define([orage_version_tag], [svn])
 m4_define([orage_version], [orage_version_major().orage_version_minor().orage_version_micro()ifelse(orage_version_nano(), [], [], [.orage_version_nano()])orage_version_tag()])
 
