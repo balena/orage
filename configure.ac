@@ -70,8 +70,8 @@ AC_CHECK_FUNCS([gmtime_r iswspace strdup snprintf])
 
 dnl Check for i18n support
 XDT_I18N([ar az be bg bn_IN ca cs de el en_GB eo es et eu fa fi fr gu he \
-          hi hy it ja ko lt mr ms nl nb_NO pa pl pt_BR pt_PT ro ru sk sv \
-          ta tr uk vi zh_CN zh_TW])
+          hi hu hy it ja ko lt mr ms nl nb_NO pa pl pt_BR pt_PT ro ru sk \
+          sv ta tr uk vi zh_CN zh_TW])
 
 dnl Check for required packages
 XDT_CHECK_PACKAGE([LIBXFCE4MCS_CLIENT], [libxfce4mcs-client-1.0], [4.2.0])
