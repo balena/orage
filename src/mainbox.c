@@ -119,6 +119,7 @@ mFile_openArchive_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
 	xfce_file_filter_set_name(filter, _("Calendar files"));
 	xfce_file_filter_add_pattern(filter, "*.ics");
 	xfce_file_chooser_add_filter(XFCE_FILE_CHOOSER(file_chooser), filter);
+    filter = xfce_file_filter_new ();
 	xfce_file_filter_set_name(filter, _("All Files"));
 	xfce_file_filter_add_pattern(filter, "*");
 	xfce_file_chooser_add_filter(XFCE_FILE_CHOOSER(file_chooser), filter);

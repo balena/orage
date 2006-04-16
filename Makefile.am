@@ -1,3 +1,5 @@
+# $Id$
+
 if INCLUDED_LIBICAL
 LIBICAL_SUBDIR=								\
 	libical
@@ -17,7 +19,8 @@ desktop_in_files = xfcalendar.desktop.in
 desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 @INTLTOOL_DESKTOP_RULE@
 
-EXTRA_DIST = mkinstalldirs  								\
+EXTRA_DIST =								\
+	mkinstalldirs  							\
 	intltool-extract.in						\
 	intltool-merge.in						\
 	intltool-update.in						\
@@ -30,22 +33,20 @@ DISTCLEANFILES =							\
 	intltool-update							\
 	$(desktop_DATA)
 
-rpm: dist
-	rpmbuild -ta $(PACKAGE)-$(VERSION).tar.gz
-	@rm -f $(PACKAGE)-$(VERSION).tar.gz
-
-dist-bz2: dist
-	zcat $(PACKAGE)-$(VERSION).tar.gz | \
-	 bzip2 --best -c > $(PACKAGE)-$(VERSION).tar.bz2
-
-distcheck-bz2: distcheck
-	zcat $(PACKAGE)-$(VERSION).tar.gz | \
-	 bzip2 --best -c > $(PACKAGE)-$(VERSION).tar.bz2
+AUTOMAKE_OPTIONS =							\
+	1.8								\
+	dist-bzip2
 
 distclean-local:
 	rm -rf *.cache *~ *.spec
+
+rpm: dist
+	rpmbuild -ta $(PACKAGE)-$(VERSION).tar.gz
+	@rm -f $(PACKAGE)-$(VERSION).tar.gz
 
 html: Makefile
 	make -C doc html
 
 ACLOCAL_AMFLAGS = -I m4
+
+# vi:set ts=8 sw=8 noet ai nocindent:

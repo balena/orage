@@ -2,7 +2,7 @@ dnl $Id$
 dnl
 dnl Orage - Calendar application for Xfce
 dnl
-dnl Copyright (c) 2003-2005
+dnl Copyright (c) 2003-2006
 dnl         The Xfce development team. All rights reserved.
 dnl
 dnl Written for Xfce by Mickael Graf <korbinus@xfce.org>.
@@ -13,7 +13,7 @@ m4_define([orage_version_major], [4])
 m4_define([orage_version_minor], [3])
 m4_define([orage_version_micro], [90])
 m4_define([orage_version_nano], [1])  dnl leave this empty to have no nano version
-m4_define([orage_version_tag], [svn])
+m4_define([orage_version_tag], [])
 m4_define([orage_version], [orage_version_major().orage_version_minor().orage_version_micro()ifelse(orage_version_nano(), [], [], [.orage_version_nano()])orage_version_tag()])
 
 
@@ -22,7 +22,7 @@ dnl # YOU ARE DOING.
 
 
 dnl Initialize autoconf
-AC_COPYRIGHT([Copyright (c) 2003-2005
+AC_COPYRIGHT([Copyright (c) 2003-2006
         The Xfce development team. All rights reserved.
 
 Written for Xfce by Mickael Graf <korbinus@xfce.org>.])
@@ -74,11 +74,11 @@ XDT_I18N([ar az be bg bn_IN ca cs de el en_GB eo es et eu fa fi fr gu he \
           sv ta tr uk vi zh_CN zh_TW])
 
 dnl Check for required packages
-XDT_CHECK_PACKAGE([LIBXFCE4MCS_CLIENT], [libxfce4mcs-client-1.0], [4.2.0])
-XDT_CHECK_PACKAGE([LIBXFCEGUI4], [libxfcegui4-1.0], [4.2.0])
+XDT_CHECK_PACKAGE([LIBXFCE4MCS_CLIENT], [libxfce4mcs-client-1.0], [4.3.90.1])
+XDT_CHECK_PACKAGE([LIBXFCEGUI4], [libxfcegui4-1.0], [4.3.90.1])
 
 dnl configure the mcs plugin
-XDT_XFCE_MCS_PLUGIN([XFCE_MCS_MANAGER], [4.2.0])
+XDT_XFCE_MCS_PLUGIN([XFCE_MCS_MANAGER], [4.3.90.1])
 
 dnl the ical magic
 XDT_CHECK_PACKAGE([ICAL], [libical-0.24], [0.24],
