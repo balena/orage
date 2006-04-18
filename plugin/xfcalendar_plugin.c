@@ -785,7 +785,8 @@ McsPluginInitResult mcs_plugin_init(McsPlugin * mcs_plugin)
 
     create_channel(mcs_plugin);
     mcs_plugin->plugin_name = g_strdup(PLUGIN_NAME);
-    mcs_plugin->caption = g_strdup(_("Orage"));
+    /* the button label in the xfce-mcs-manager dialog */
+    mcs_plugin->caption = g_strdup(Q_("Button Label|Orage"));
     mcs_plugin->run_dialog = run_dialog;
     mcs_plugin->icon = xfce_themed_icon_load("xfcalendar", 48);
     mcs_manager_notify(mcs_plugin->manager, CHANNEL);
