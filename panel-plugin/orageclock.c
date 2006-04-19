@@ -352,6 +352,7 @@ Clock *orage_oc_new(XfcePanelPlugin *plugin)
 {
     Clock *clock = g_new0(Clock, 1);
     gchar *data_init[] = {"%X", "%A", "%x"};
+    gboolean show_init[] = {TRUE, FALSE, FALSE};
     gint  i;
 
     clock->plugin = plugin;
@@ -374,11 +375,11 @@ Clock *orage_oc_new(XfcePanelPlugin *plugin)
     clock->timezone = g_string_new(""); /* = not set */
     clock->TZ_orig = g_strdup(getenv("TZ"));
 
-    for (i = 0; i < OC_MAX_LINES; i++) { /* by default all 3 lines visible */
+    for (i = 0; i < OC_MAX_LINES; i++) {
         clock->line[i].label = gtk_label_new("");
         g_object_ref(clock->line[i].label); /* it is not always in the vbox */
         gtk_widget_show(clock->line[i].label);
-        clock->line[i].show = TRUE;
+        clock->line[i].show = show_init[i];
         clock->line[i].data = g_string_new(data_init[i]);
         clock->line[i].font = g_string_new("");
     }
@@ -387,7 +388,8 @@ Clock *orage_oc_new(XfcePanelPlugin *plugin)
     g_object_ref(clock->tips);
     gtk_object_sink(GTK_OBJECT(clock->tips));
     oc_get_time(clock);
-    clock->timeout_id = g_timeout_add(200, (GSourceFunc) oc_get_time, clock);
+    clock->timeout_id = g_timeout_add_full(G_PRIORITY_DEFAULT_IDLE
+            , 200, (GSourceFunc) oc_get_time, clock, NULL);
         
     return(clock);
 }

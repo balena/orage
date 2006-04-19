@@ -213,7 +213,8 @@ static void oc_properties_appearance(GtkWidget *dlg, Clock *clock)
 
 static void oc_properties_options(GtkWidget *dlg, Clock *clock)
 {
-    GtkWidget *frame, *bin, *vbox, *hbox, *cb, *label, *entry, *font, *button;
+    GtkWidget *frame, *bin, *vbox, *hbox, *cb, *label, *entry, *font, *button
+            , *image;
     GtkStyle *def_style;
     gchar *def_font;
 
@@ -221,7 +222,7 @@ static void oc_properties_options(GtkWidget *dlg, Clock *clock)
     gtk_container_set_border_width(GTK_CONTAINER(frame), 6);
     gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), frame, FALSE, FALSE, 0);
 
-    vbox = gtk_vbox_new(TRUE, 8);
+    vbox = gtk_vbox_new(FALSE, 8);
     gtk_container_add(GTK_CONTAINER(bin), vbox);
 
     /* timezone */
@@ -261,7 +262,7 @@ static void oc_properties_options(GtkWidget *dlg, Clock *clock)
     g_signal_connect(entry, "key-release-event", G_CALLBACK(oc_line_changed)
             , clock->line[0].data);
     gtk_tooltips_set_tip(clock->tips, GTK_WIDGET(entry),
-            _("This program uses strftime function to get time.\nUse any valid code to get time in the format you prefer.\nSome common codes are:\n\t%A = weekday\t\t\t%B = month\n\t%c = date & time\t\t%R = hour & minute\n\t%V = week number\t\t%Z = timezone in use\n\t%H = hours \t\t\t\t%M = minute")
+            ("Enter any valid strftime function parameter.")
             , NULL);
     
     def_style = gtk_widget_get_default_style();
@@ -325,6 +326,18 @@ static void oc_properties_options(GtkWidget *dlg, Clock *clock)
     gtk_box_pack_start(GTK_BOX(hbox), font, FALSE, FALSE, 0);
     g_signal_connect(G_OBJECT(font), "font-set"
             , G_CALLBACK(oc_line_font_changed3), clock);
+
+    /* hints */
+    hbox = gtk_hbox_new(FALSE, 0);
+    gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 6);
+
+    image = gtk_image_new_from_stock(GTK_STOCK_DIALOG_INFO, GTK_ICON_SIZE_DND);
+    gtk_misc_set_alignment(GTK_MISC(image), 0.5f, 0.0f);
+    gtk_box_pack_start(GTK_BOX(hbox), image, FALSE, FALSE, 0);
+
+    label = gtk_label_new(_("This program uses strftime function to get time.\nUse any valid code to get time in the format you prefer.\nSome common codes are:\n\t%A = weekday\t\t\t%B = month\n\t%c = date & time\t\t%R = hour & minute\n\t%V = week number\t\t%Z = timezone in use\n\t%H = hours \t\t\t\t%M = minute\n\t%X = local time\t\t\t%x = local date"));
+    gtk_misc_set_alignment(GTK_MISC(label), 0.0f, 0.0f);
+    gtk_box_pack_start(GTK_BOX(hbox), label, TRUE, TRUE, 0);
 }
 
 static void oc_dialog_response(GtkWidget *dlg, int reponse, Clock *clock)
