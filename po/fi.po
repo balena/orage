@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.3.90.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-04-15 09:58+0900\n"
-"PO-Revision-Date: 2006-03-08 14:30+0200\n"
+"POT-Creation-Date: 2006-04-19 14:55+0300\n"
+"PO-Revision-Date: 2006-04-19 15:13+0300\n"
 "Last-Translator: Jari Rahkonen <jari.rahkonen@pp1.inet.fi>\n"
 "Language-Team: Finnish <translation-team-fi@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -28,7 +28,7 @@ msgid "Calendar files"
 msgstr "Kalenteritiedostot"
 
 #: ../plugin/xfcalendar_plugin.c:265 ../src/appointment.c:294
-#: ../src/mainbox.c:122
+#: ../src/mainbox.c:123
 msgid "All Files"
 msgstr "Kaikki tiedostot"
 
@@ -149,9 +149,9 @@ msgstr "Sovellus"
 msgid "Timezone"
 msgstr "Aikavyöhyke"
 
-#: ../plugin/xfcalendar_plugin.c:788 ../src/appointment.c:208
-#: ../src/mainbox.c:334 ../xfcalendar.desktop.in.h:3
-msgid "Orage"
+#. the button label in the xfce-mcs-manager dialog
+#: ../plugin/xfcalendar_plugin.c:789
+msgid "Button Label|Orage"
 msgstr "Orage"
 
 #: ../src/about-xfcalendar.c:39
@@ -172,6 +172,10 @@ msgstr "Avustava kehittäjä"
 #: ../src/appointment.c:98 ../src/appointment.c:410 ../src/appointment.c:711
 msgid "%m/%d/%Y"
 msgstr "%d.%m.%Y"
+
+#: ../src/appointment.c:208 ../src/mainbox.c:335 ../xfcalendar.desktop.in.h:3
+msgid "Orage"
+msgstr "Orage"
 
 #: ../src/appointment.c:288
 msgid "Sound Files"
@@ -217,7 +221,7 @@ msgstr "Uusi tapahtuma - Orage"
 
 #. File menu stuff
 #. File menu
-#: ../src/appointment.c:1192 ../src/event-list.c:654 ../src/mainbox.c:356
+#: ../src/appointment.c:1192 ../src/event-list.c:654 ../src/mainbox.c:357
 msgid "_File"
 msgstr "_Tiedosto"
 
@@ -367,7 +371,7 @@ msgstr ""
 "tältä päivämäärältä."
 
 #. View menu
-#: ../src/event-list.c:685 ../src/mainbox.c:390
+#: ../src/event-list.c:685 ../src/mainbox.c:391
 msgid "_View"
 msgstr "_Näytä"
 
@@ -411,6 +415,26 @@ msgstr "Nimi"
 #: ../src/event-list.c:802
 msgid "uid"
 msgstr "tunnus"
+
+#: ../src/event-list.c:811
+msgid ""
+"Double click line to edit it.\n"
+"\n"
+"Flags in order:\n"
+"\t 1. Alarm: n=no alarm\n"
+"\t\tA=visual Alarm S=also Sound alarm\n"
+"\t 2. Recurrence: n=no recurrence\n"
+"\t\t D=Daily W=Weekly M=Monthly Y=Yearly\n"
+"\t 3. Type: f=free B=Busy"
+msgstr ""
+"Kaksoisnapsauta rivä muokataksesi sitä.\n"
+"\n"
+"Liput järjestyksessä:\n"
+"\t 1. Hälytys: n=ei hälytystä,\n"
+"\t\tA=visuaalinen hälytys, S=myös äänihälytys\n"
+"\t 2. Toistuvuus: n=ei toistoa, D=päivittäin,\n"
+"\t\tW=viikoittain, M=kuukausittain, Y=vuosittain\n"
+"\t 3. Tyyppi: f=vapaa, B=varattu"
 
 #: ../src/ical-code.c:98
 msgid "Africa"
@@ -1944,33 +1968,33 @@ msgstr "Tyynimeri/Wallis"
 msgid "Pacific/Yap"
 msgstr "Tyynimeri/Yap"
 
-#: ../src/ical-code.c:974
+#: ../src/ical-code.c:1168
 msgid "Orage default alarm"
 msgstr "Oragen oletushälytys"
 
-#: ../src/mainbox.c:365
+#: ../src/mainbox.c:366
 msgid "Open archive file..."
 msgstr "Valitse tiedosto..."
 
-#: ../src/mainbox.c:368
+#: ../src/mainbox.c:369
 msgid "Close archive file"
 msgstr "Sulje arkistointitiedosto"
 
 #. Edit menu
-#: ../src/mainbox.c:383
+#: ../src/mainbox.c:384
 msgid "_Edit"
 msgstr "_Muokkaa"
 
-#: ../src/mainbox.c:393
+#: ../src/mainbox.c:394
 msgid "View selected _date"
 msgstr "Näytä valittu _päivämäärä"
 
-#: ../src/mainbox.c:399
+#: ../src/mainbox.c:400
 msgid "Select _Today"
 msgstr "_Valitse tämä päivä"
 
 #. Help menu
-#: ../src/mainbox.c:403
+#: ../src/mainbox.c:404
 msgid "_Help"
 msgstr "_Ohje"
 
