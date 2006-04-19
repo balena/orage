@@ -1,6 +1,6 @@
 Time-managing application for the Xfce desktop environment.
 
-Xfcalendar 4.3.0.1 uses new ical interface instead of old dbh to store and
+Orage 4.3 uses new ical interface instead of old dbh to store and
 utilize calender appointments. 
 
 libical-0.24RC4 version is needed and it comes together with xfcalendar
@@ -10,3 +10,7 @@ of base libical-0.24RC4.
 Note that there is no conversion routine to migrate your old data into 
 the new format, but you will loose all old appointments and start from
 clean table.
+
+First thing you want to do is add your local timezone in the preferces,
+If you do not set local timezone, do not use timezones in any appointments
+either. It will cause just problems.

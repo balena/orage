@@ -41,6 +41,7 @@ dnl Check for UNIX variants
 AC_AIX()
 AC_ISC_POSIX()
 AC_MINIX()
+AM_CONDITIONAL([HAVE_CYGWIN], [test "`uname | grep \"CYGWIN\"`" != ""])
 
 dnl Check for basic programs
 AC_PROG_CC()
@@ -76,6 +77,9 @@ XDT_I18N([ar az be bg bn_IN ca cs de el en_GB eo es et eu fa fi fr gu he \
 dnl Check for required packages
 XDT_CHECK_PACKAGE([LIBXFCE4MCS_CLIENT], [libxfce4mcs-client-1.0], [4.3.90.1])
 XDT_CHECK_PACKAGE([LIBXFCEGUI4], [libxfcegui4-1.0], [4.3.90.1])
+
+dnl Needed for panel plugin
+XDT_CHECK_PACKAGE([LIBXFCE4PANEL], [libxfce4panel-1.0], [4.3.90.1])
 
 dnl configure the mcs plugin
 XDT_XFCE_MCS_PLUGIN([XFCE_MCS_MANAGER], [4.3.90.1])
@@ -207,4 +211,5 @@ plugin/Makefile
 doc/Makefile
 doc/C/Makefile
 doc/C/images/Makefile
+panel-plugin/Makefile
 ])

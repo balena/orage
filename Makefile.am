@@ -12,6 +12,7 @@ SUBDIRS = 								\
 	po								\
 	sounds								\
 	src								\
+	panel-plugin							\
 	plugin
 
 desktopdir = $(datadir)/applications
