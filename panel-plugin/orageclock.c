@@ -58,14 +58,6 @@ static gboolean oc_date_tooltip(Clock *clock)
      * %Y  : four digit year
      * %V  : ISO week number
      */
-    char    tmp[101];
-    int     i;
-    for (i = 0; i < OC_MAX_LINES; i++) {
-        if (clock->line[i].show) {
-            strftime(tmp, 100, clock->line[i].data->str, &clock->now);
-            gtk_label_set_text(GTK_LABEL(clock->line[i].label), tmp);
-        }
-    }
     strftime(date_s, 255, _("%A %d %B %Y/%V"), &clock->now);
 
     /* Conversion to utf8 */
@@ -89,7 +81,7 @@ static gboolean oc_date_tooltip(Clock *clock)
 static gboolean oc_get_time(Clock *clock)
 {
     time_t  t;
-    char    tmp[101]="koe";
+    char    tmp[OC_MAX_LINE_LENGTH];
     int     i;
     static gint mday = -1;
 
@@ -98,11 +90,15 @@ static gboolean oc_get_time(Clock *clock)
 
     for (i = 0; i < OC_MAX_LINES; i++) {
         if (clock->line[i].show) {
-            strftime(tmp, 100, clock->line[i].data->str, &clock->now);
-            /* need to optimize this. gtk_label_set_text call takes almost
+            strftime(tmp, OC_MAX_LINE_LENGTH-1, clock->line[i].data->str
+                    , &clock->now);
+            /* gtk_label_set_text call takes almost
              * 100 % of the time wasted in this procedure 
              * */
-            gtk_label_set_text(GTK_LABEL(clock->line[i].label), tmp);
+            if (strcmp(tmp,  clock->line[i].prev)) {
+                gtk_label_set_text(GTK_LABEL(clock->line[i].label), tmp);
+                strcpy(clock->line[i].prev, tmp);
+            }
         }
     }
 

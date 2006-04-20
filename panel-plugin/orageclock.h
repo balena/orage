@@ -19,6 +19,7 @@
 
 #define OC_NAME "orageclock panel plugin"
 #define OC_MAX_LINES 3 /* changing this causes trouble. don't do it */
+#define OC_MAX_LINE_LENGTH 100 
 
 
 typedef struct
@@ -27,6 +28,7 @@ typedef struct
     gboolean   show;
     GString   *data; /* the time formatting data */
     GString   *font;
+    gchar      prev[OC_MAX_LINE_LENGTH];
 } Line;
 
 typedef struct
