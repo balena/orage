@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.3.90.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-04-15 09:58+0900\n"
+"POT-Creation-Date: 2006-04-22 18:43+0900\n"
 "PO-Revision-Date: 2005-08-17 01:42+0900\n"
 "Last-Translator: Edscott Wilson Garcia <edscott@xfce.org>\n"
 "Language-Team: Spanish <es@li.org>\n"
@@ -28,7 +28,7 @@ msgid "Calendar files"
 msgstr "Calendario"
 
 #: ../plugin/xfcalendar_plugin.c:265 ../src/appointment.c:294
-#: ../src/mainbox.c:122
+#: ../src/mainbox.c:123
 msgid "All Files"
 msgstr ""
 
@@ -153,9 +153,9 @@ msgstr ""
 msgid "Timezone"
 msgstr ""
 
-#: ../plugin/xfcalendar_plugin.c:788 ../src/appointment.c:208
-#: ../src/mainbox.c:334 ../xfcalendar.desktop.in.h:3
-msgid "Orage"
+#. the button label in the xfce-mcs-manager dialog
+#: ../plugin/xfcalendar_plugin.c:789
+msgid "Button Label|Orage"
 msgstr ""
 
 #: ../src/about-xfcalendar.c:39
@@ -175,6 +175,10 @@ msgstr "Contribuyente"
 #. FIXME: use year_month_day_to_display() instead of doing it here
 #: ../src/appointment.c:98 ../src/appointment.c:410 ../src/appointment.c:711
 msgid "%m/%d/%Y"
+msgstr ""
+
+#: ../src/appointment.c:208 ../src/mainbox.c:335 ../xfcalendar.desktop.in.h:3
+msgid "Orage"
 msgstr ""
 
 #: ../src/appointment.c:288
@@ -226,7 +230,7 @@ msgstr "Cita"
 
 #. File menu stuff
 #. File menu
-#: ../src/appointment.c:1192 ../src/event-list.c:654 ../src/mainbox.c:356
+#: ../src/appointment.c:1192 ../src/event-list.c:654 ../src/mainbox.c:357
 msgid "_File"
 msgstr "_Fichero"
 
@@ -377,7 +381,7 @@ msgstr ""
 "relacionada con esta fecha."
 
 #. View menu
-#: ../src/event-list.c:685 ../src/mainbox.c:390
+#: ../src/event-list.c:685 ../src/mainbox.c:391
 msgid "_View"
 msgstr ""
 
@@ -420,6 +424,18 @@ msgstr ""
 
 #: ../src/event-list.c:802
 msgid "uid"
+msgstr ""
+
+#: ../src/event-list.c:811
+msgid ""
+"Double click line to edit it.\n"
+"\n"
+"Flags in order:\n"
+"\t 1. Alarm: n=no alarm\n"
+"\t\tA=visual Alarm S=also Sound alarm\n"
+"\t 2. Recurrence: n=no recurrence\n"
+"\t\t D=Daily W=Weekly M=Monthly Y=Yearly\n"
+"\t 3. Type: f=free B=Busy"
 msgstr ""
 
 #: ../src/ical-code.c:98
@@ -1954,33 +1970,33 @@ msgstr ""
 msgid "Pacific/Yap"
 msgstr ""
 
-#: ../src/ical-code.c:974
+#: ../src/ical-code.c:1168
 msgid "Orage default alarm"
 msgstr ""
 
-#: ../src/mainbox.c:365
+#: ../src/mainbox.c:366
 msgid "Open archive file..."
 msgstr ""
 
-#: ../src/mainbox.c:368
+#: ../src/mainbox.c:369
 msgid "Close archive file"
 msgstr ""
 
 #. Edit menu
-#: ../src/mainbox.c:383
+#: ../src/mainbox.c:384
 msgid "_Edit"
 msgstr ""
 
-#: ../src/mainbox.c:393
+#: ../src/mainbox.c:394
 msgid "View selected _date"
 msgstr ""
 
-#: ../src/mainbox.c:399
+#: ../src/mainbox.c:400
 msgid "Select _Today"
 msgstr "Seleccionar hoy"
 
 #. Help menu
-#: ../src/mainbox.c:403
+#: ../src/mainbox.c:404
 msgid "_Help"
 msgstr "Ayuda"
 

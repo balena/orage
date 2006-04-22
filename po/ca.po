@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.3.90.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-04-15 09:58+0900\n"
+"POT-Creation-Date: 2006-04-22 18:43+0900\n"
 "PO-Revision-Date: 2006-03-19 17:35+0100\n"
 "Last-Translator: Pau Rul·lan Ferragut <paurullan@bulma.net>\n"
 "Language-Team: Catalan\n"
@@ -30,7 +30,7 @@ msgid "Calendar files"
 msgstr "Fitxers de calendari"
 
 #: ../plugin/xfcalendar_plugin.c:265 ../src/appointment.c:294
-#: ../src/mainbox.c:122
+#: ../src/mainbox.c:123
 msgid "All Files"
 msgstr "Tots els fitxers"
 
@@ -151,10 +151,10 @@ msgstr "Aplicació"
 msgid "Timezone"
 msgstr "Fus horari"
 
-#: ../plugin/xfcalendar_plugin.c:788 ../src/appointment.c:208
-#: ../src/mainbox.c:334 ../xfcalendar.desktop.in.h:3
-msgid "Orage"
-msgstr "Orage"
+#. the button label in the xfce-mcs-manager dialog
+#: ../plugin/xfcalendar_plugin.c:789
+msgid "Button Label|Orage"
+msgstr ""
 
 #: ../src/about-xfcalendar.c:39
 msgid "Manage your time with Xfce4"
@@ -174,6 +174,10 @@ msgstr "Contribuïdor"
 #: ../src/appointment.c:98 ../src/appointment.c:410 ../src/appointment.c:711
 msgid "%m/%d/%Y"
 msgstr "%d/%m/%Y"
+
+#: ../src/appointment.c:208 ../src/mainbox.c:335 ../xfcalendar.desktop.in.h:3
+msgid "Orage"
+msgstr "Orage"
 
 #: ../src/appointment.c:288
 msgid "Sound Files"
@@ -219,7 +223,7 @@ msgstr "Nova cita - Orage"
 
 #. File menu stuff
 #. File menu
-#: ../src/appointment.c:1192 ../src/event-list.c:654 ../src/mainbox.c:356
+#: ../src/appointment.c:1192 ../src/event-list.c:654 ../src/mainbox.c:357
 msgid "_File"
 msgstr "_Fitxer"
 
@@ -369,7 +373,7 @@ msgstr ""
 "associada amb aquesta data."
 
 #. View menu
-#: ../src/event-list.c:685 ../src/mainbox.c:390
+#: ../src/event-list.c:685 ../src/mainbox.c:391
 msgid "_View"
 msgstr "_Visualitza"
 
@@ -413,6 +417,18 @@ msgstr "Títol"
 #: ../src/event-list.c:802
 msgid "uid"
 msgstr "uid"
+
+#: ../src/event-list.c:811
+msgid ""
+"Double click line to edit it.\n"
+"\n"
+"Flags in order:\n"
+"\t 1. Alarm: n=no alarm\n"
+"\t\tA=visual Alarm S=also Sound alarm\n"
+"\t 2. Recurrence: n=no recurrence\n"
+"\t\t D=Daily W=Weekly M=Monthly Y=Yearly\n"
+"\t 3. Type: f=free B=Busy"
+msgstr ""
 
 #: ../src/ical-code.c:98
 #, fuzzy
@@ -2326,33 +2342,33 @@ msgstr "Pacífic/Wallis"
 msgid "Pacific/Yap"
 msgstr "Pacífic/Yap"
 
-#: ../src/ical-code.c:974
+#: ../src/ical-code.c:1168
 msgid "Orage default alarm"
 msgstr "Alarma per omisió d'Orage"
 
-#: ../src/mainbox.c:365
+#: ../src/mainbox.c:366
 msgid "Open archive file..."
 msgstr "Obre fitxer..."
 
-#: ../src/mainbox.c:368
+#: ../src/mainbox.c:369
 msgid "Close archive file"
 msgstr "Tanca fitxer"
 
 #. Edit menu
-#: ../src/mainbox.c:383
+#: ../src/mainbox.c:384
 msgid "_Edit"
 msgstr "_Edita"
 
-#: ../src/mainbox.c:393
+#: ../src/mainbox.c:394
 msgid "View selected _date"
 msgstr "Visualitza la _data seleccionada"
 
-#: ../src/mainbox.c:399
+#: ../src/mainbox.c:400
 msgid "Select _Today"
 msgstr "Seleccione_u avui"
 
 #. Help menu
-#: ../src/mainbox.c:403
+#: ../src/mainbox.c:404
 msgid "_Help"
 msgstr "A_juda"
 

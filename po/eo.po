@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.3.90.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-04-15 09:58+0900\n"
+"POT-Creation-Date: 2006-04-22 18:43+0900\n"
 "PO-Revision-Date: 2006-03-15 23:07+0100\n"
 "Last-Translator: Sylvain Vedrenne <gnu_sylvain@xfce.org>\n"
 "Language-Team: Esperanto <translation-team-eo@lists.sourceforge.net>\n"
@@ -28,7 +28,7 @@ msgid "Calendar files"
 msgstr "Kalendaraj dosieroj"
 
 #: ../plugin/xfcalendar_plugin.c:265 ../src/appointment.c:294
-#: ../src/mainbox.c:122
+#: ../src/mainbox.c:123
 msgid "All Files"
 msgstr "Ĉiuj dosieroj"
 
@@ -150,10 +150,10 @@ msgstr "Aplikaĵo"
 msgid "Timezone"
 msgstr "Tempzono"
 
-#: ../plugin/xfcalendar_plugin.c:788 ../src/appointment.c:208
-#: ../src/mainbox.c:334 ../xfcalendar.desktop.in.h:3
-msgid "Orage"
-msgstr "Oraĝo"
+#. the button label in the xfce-mcs-manager dialog
+#: ../plugin/xfcalendar_plugin.c:789
+msgid "Button Label|Orage"
+msgstr ""
 
 #: ../src/about-xfcalendar.c:39
 msgid "Manage your time with Xfce4"
@@ -173,6 +173,10 @@ msgstr "Partoprenanto"
 #: ../src/appointment.c:98 ../src/appointment.c:410 ../src/appointment.c:711
 msgid "%m/%d/%Y"
 msgstr "%Y/%m/%d"
+
+#: ../src/appointment.c:208 ../src/mainbox.c:335 ../xfcalendar.desktop.in.h:3
+msgid "Orage"
+msgstr "Oraĝo"
 
 #: ../src/appointment.c:288
 msgid "Sound Files"
@@ -218,7 +222,7 @@ msgstr "Novan rendevuon - Oraĝo"
 
 #. File menu stuff
 #. File menu
-#: ../src/appointment.c:1192 ../src/event-list.c:654 ../src/mainbox.c:356
+#: ../src/appointment.c:1192 ../src/event-list.c:654 ../src/mainbox.c:357
 msgid "_File"
 msgstr "_Dosiero"
 
@@ -368,7 +372,7 @@ msgstr ""
 "rilatajn al tiu dato."
 
 #. View menu
-#: ../src/event-list.c:685 ../src/mainbox.c:390
+#: ../src/event-list.c:685 ../src/mainbox.c:391
 msgid "_View"
 msgstr "_Vidu"
 
@@ -412,6 +416,18 @@ msgstr "Titolo"
 #: ../src/event-list.c:802
 msgid "uid"
 msgstr "Uzantmarko (uid)"
+
+#: ../src/event-list.c:811
+msgid ""
+"Double click line to edit it.\n"
+"\n"
+"Flags in order:\n"
+"\t 1. Alarm: n=no alarm\n"
+"\t\tA=visual Alarm S=also Sound alarm\n"
+"\t 2. Recurrence: n=no recurrence\n"
+"\t\t D=Daily W=Weekly M=Monthly Y=Yearly\n"
+"\t 3. Type: f=free B=Busy"
+msgstr ""
 
 #: ../src/ical-code.c:98
 msgid "Africa"
@@ -1945,33 +1961,33 @@ msgstr "Pacifika/Wallis"
 msgid "Pacific/Yap"
 msgstr "Pacifika/Yap"
 
-#: ../src/ical-code.c:974
+#: ../src/ical-code.c:1168
 msgid "Orage default alarm"
 msgstr "Kalendara antaŭsupoza alarmo"
 
-#: ../src/mainbox.c:365
+#: ../src/mainbox.c:366
 msgid "Open archive file..."
 msgstr "Malfermu arkivan dosieron..."
 
-#: ../src/mainbox.c:368
+#: ../src/mainbox.c:369
 msgid "Close archive file"
 msgstr "Fermu arkivan dosieron"
 
 #. Edit menu
-#: ../src/mainbox.c:383
+#: ../src/mainbox.c:384
 msgid "_Edit"
 msgstr "_Modifiu"
 
-#: ../src/mainbox.c:393
+#: ../src/mainbox.c:394
 msgid "View selected _date"
 msgstr "Vidu la elektitan _daton"
 
-#: ../src/mainbox.c:399
+#: ../src/mainbox.c:400
 msgid "Select _Today"
 msgstr "Elektu _Hodiaŭ"
 
 #. Help menu
-#: ../src/mainbox.c:403
+#: ../src/mainbox.c:404
 msgid "_Help"
 msgstr "_Helpo"
 

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.3.90.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-04-15 09:58+0900\n"
+"POT-Creation-Date: 2006-04-22 18:43+0900\n"
 "PO-Revision-Date: 2006-01-17 16:11+0800\n"
 "Last-Translator: Hydonsingore Cia <hydonsingore@mail.educities.edu.tw>\n"
 "Language-Team: Chinese (traditional) <zh-l10n@linux.org.tw>\n"
@@ -29,7 +29,7 @@ msgid "Calendar files"
 msgstr "月曆檔案"
 
 #: ../plugin/xfcalendar_plugin.c:265 ../src/appointment.c:294
-#: ../src/mainbox.c:122
+#: ../src/mainbox.c:123
 msgid "All Files"
 msgstr "所有檔案"
 
@@ -150,10 +150,10 @@ msgstr "應用程式"
 msgid "Timezone"
 msgstr "時區"
 
-#: ../plugin/xfcalendar_plugin.c:788 ../src/appointment.c:208
-#: ../src/mainbox.c:334 ../xfcalendar.desktop.in.h:3
-msgid "Orage"
-msgstr "Orage"
+#. the button label in the xfce-mcs-manager dialog
+#: ../plugin/xfcalendar_plugin.c:789
+msgid "Button Label|Orage"
+msgstr ""
 
 #: ../src/about-xfcalendar.c:39
 msgid "Manage your time with Xfce4"
@@ -173,6 +173,10 @@ msgstr "參與貢獻者"
 #: ../src/appointment.c:98 ../src/appointment.c:410 ../src/appointment.c:711
 msgid "%m/%d/%Y"
 msgstr "%m/%d/%Y"
+
+#: ../src/appointment.c:208 ../src/mainbox.c:335 ../xfcalendar.desktop.in.h:3
+msgid "Orage"
+msgstr "Orage"
 
 #: ../src/appointment.c:288
 msgid "Sound Files"
@@ -218,7 +222,7 @@ msgstr "新約會 - Orage"
 
 #. File menu stuff
 #. File menu
-#: ../src/appointment.c:1192 ../src/event-list.c:654 ../src/mainbox.c:356
+#: ../src/appointment.c:1192 ../src/event-list.c:654 ../src/mainbox.c:357
 msgid "_File"
 msgstr "檔案(_F)"
 
@@ -366,7 +370,7 @@ msgid ""
 msgstr "您將刪除與該日期有關的所有資訊。"
 
 #. View menu
-#: ../src/event-list.c:685 ../src/mainbox.c:390
+#: ../src/event-list.c:685 ../src/mainbox.c:391
 msgid "_View"
 msgstr "檢視(_V)"
 
@@ -410,6 +414,18 @@ msgstr "標題"
 #: ../src/event-list.c:802
 msgid "uid"
 msgstr "uid"
+
+#: ../src/event-list.c:811
+msgid ""
+"Double click line to edit it.\n"
+"\n"
+"Flags in order:\n"
+"\t 1. Alarm: n=no alarm\n"
+"\t\tA=visual Alarm S=also Sound alarm\n"
+"\t 2. Recurrence: n=no recurrence\n"
+"\t\t D=Daily W=Weekly M=Monthly Y=Yearly\n"
+"\t 3. Type: f=free B=Busy"
+msgstr ""
 
 #: ../src/ical-code.c:98
 msgid "Africa"
@@ -1943,33 +1959,33 @@ msgstr ""
 msgid "Pacific/Yap"
 msgstr ""
 
-#: ../src/ical-code.c:974
+#: ../src/ical-code.c:1168
 msgid "Orage default alarm"
 msgstr "Orage 預設提醒"
 
-#: ../src/mainbox.c:365
+#: ../src/mainbox.c:366
 msgid "Open archive file..."
 msgstr "開啟封存檔案..."
 
-#: ../src/mainbox.c:368
+#: ../src/mainbox.c:369
 msgid "Close archive file"
 msgstr "關閉封存檔案"
 
 #. Edit menu
-#: ../src/mainbox.c:383
+#: ../src/mainbox.c:384
 msgid "_Edit"
 msgstr "編輯(_E)"
 
-#: ../src/mainbox.c:393
+#: ../src/mainbox.c:394
 msgid "View selected _date"
 msgstr "檢視所選的日期(_D)"
 
-#: ../src/mainbox.c:399
+#: ../src/mainbox.c:400
 msgid "Select _Today"
 msgstr "選擇今天日期(_T)"
 
 #. Help menu
-#: ../src/mainbox.c:403
+#: ../src/mainbox.c:404
 msgid "_Help"
 msgstr "說明(_H)"
 

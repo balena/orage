@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.3.90.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-04-15 09:58+0900\n"
+"POT-Creation-Date: 2006-04-22 18:43+0900\n"
 "PO-Revision-Date: 2005-09-16 22:12+0100\n"
 "Last-Translator: Juraj Brosz <juro@jurajbrosz.info>\n"
 "Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
@@ -27,7 +27,7 @@ msgid "Calendar files"
 msgstr "Súbory kalendára"
 
 #: ../plugin/xfcalendar_plugin.c:265 ../src/appointment.c:294
-#: ../src/mainbox.c:122
+#: ../src/mainbox.c:123
 msgid "All Files"
 msgstr "Všetky súbory"
 
@@ -161,9 +161,9 @@ msgstr "Aplikácia"
 msgid "Timezone"
 msgstr "Čas"
 
-#: ../plugin/xfcalendar_plugin.c:788 ../src/appointment.c:208
-#: ../src/mainbox.c:334 ../xfcalendar.desktop.in.h:3
-msgid "Orage"
+#. the button label in the xfce-mcs-manager dialog
+#: ../plugin/xfcalendar_plugin.c:789
+msgid "Button Label|Orage"
 msgstr ""
 
 #: ../src/about-xfcalendar.c:39
@@ -184,6 +184,10 @@ msgstr "Prispievateľ"
 #: ../src/appointment.c:98 ../src/appointment.c:410 ../src/appointment.c:711
 msgid "%m/%d/%Y"
 msgstr "%d.%m.%Y"
+
+#: ../src/appointment.c:208 ../src/mainbox.c:335 ../xfcalendar.desktop.in.h:3
+msgid "Orage"
+msgstr ""
 
 #: ../src/appointment.c:288
 msgid "Sound Files"
@@ -230,7 +234,7 @@ msgstr "Nová udalosť"
 
 #. File menu stuff
 #. File menu
-#: ../src/appointment.c:1192 ../src/event-list.c:654 ../src/mainbox.c:356
+#: ../src/appointment.c:1192 ../src/event-list.c:654 ../src/mainbox.c:357
 msgid "_File"
 msgstr "_Záznam"
 
@@ -389,7 +393,7 @@ msgstr ""
 "asociované s týmto dátumom."
 
 #. View menu
-#: ../src/event-list.c:685 ../src/mainbox.c:390
+#: ../src/event-list.c:685 ../src/mainbox.c:391
 msgid "_View"
 msgstr "Zo_braziť"
 
@@ -433,6 +437,18 @@ msgstr "Názov"
 #: ../src/event-list.c:802
 msgid "uid"
 msgstr "uid"
+
+#: ../src/event-list.c:811
+msgid ""
+"Double click line to edit it.\n"
+"\n"
+"Flags in order:\n"
+"\t 1. Alarm: n=no alarm\n"
+"\t\tA=visual Alarm S=also Sound alarm\n"
+"\t 2. Recurrence: n=no recurrence\n"
+"\t\t D=Daily W=Weekly M=Monthly Y=Yearly\n"
+"\t 3. Type: f=free B=Busy"
+msgstr ""
 
 #: ../src/ical-code.c:98
 msgid "Africa"
@@ -1966,34 +1982,34 @@ msgstr ""
 msgid "Pacific/Yap"
 msgstr ""
 
-#: ../src/ical-code.c:974
+#: ../src/ical-code.c:1168
 #, fuzzy
 msgid "Orage default alarm"
 msgstr "Prednastavený alarm kalendára"
 
-#: ../src/mainbox.c:365
+#: ../src/mainbox.c:366
 msgid "Open archive file..."
 msgstr "Otvoriť archívny súbor..."
 
-#: ../src/mainbox.c:368
+#: ../src/mainbox.c:369
 msgid "Close archive file"
 msgstr "Zatvoriť archívny súbor"
 
 #. Edit menu
-#: ../src/mainbox.c:383
+#: ../src/mainbox.c:384
 msgid "_Edit"
 msgstr "_Upraviť"
 
-#: ../src/mainbox.c:393
+#: ../src/mainbox.c:394
 msgid "View selected _date"
 msgstr "Zobraziť _zvolený dátum"
 
-#: ../src/mainbox.c:399
+#: ../src/mainbox.c:400
 msgid "Select _Today"
 msgstr "Vybrať _dnešný dátum"
 
 #. Help menu
-#: ../src/mainbox.c:403
+#: ../src/mainbox.c:404
 msgid "_Help"
 msgstr "_Pomocník"
 
