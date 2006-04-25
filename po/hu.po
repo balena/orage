@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: orage 4.3.90.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-04-22 18:43+0900\n"
-"PO-Revision-Date: 2006-04-23 09:54+0100\n"
+"PO-Revision-Date: 2006-04-24 19:41+0100\n"
 "Last-Translator: Andras Mohari <mayday@mailpont.hu>\n"
 "Language-Team: Hungarian <translation-team-hu@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -59,6 +59,7 @@ msgstr "Válassz időzónát"
 msgid "UTC"
 msgstr "UTC"
 
+# XXX [mayday]: Ez bizony az időzónára vonatkozik. A forrás alapján: floating = local = no timezone
 #: ../plugin/xfcalendar_plugin.c:423
 #: ../plugin/xfcalendar_plugin.c:454
 #: ../plugin/xfcalendar_plugin.c:740
@@ -67,7 +68,7 @@ msgstr "UTC"
 #: ../src/appointment.c:893
 #: ../src/appointment.c:901
 msgid "floating"
-msgstr "lebegő"
+msgstr "helyi"
 
 #: ../plugin/xfcalendar_plugin.c:514
 #: ../plugin/xfcalendar_plugin.c:524
@@ -81,7 +82,7 @@ msgstr "Megjelenítés"
 #. Display calendar borders or not
 #: ../plugin/xfcalendar_plugin.c:543
 msgid "Calendar borders"
-msgstr "Naptár keretei"
+msgstr "Naptár kerete"
 
 #: ../plugin/xfcalendar_plugin.c:548
 msgid "Displayed"
@@ -98,28 +99,29 @@ msgstr "Naptárablak"
 
 #: ../plugin/xfcalendar_plugin.c:567
 msgid "Show in taskbar"
-msgstr "Mutasd a feladatlistában"
+msgstr "Látszik a feladatlistában"
 
 #: ../plugin/xfcalendar_plugin.c:571
 msgid "Show in pager"
-msgstr "Mutasd a lapozóban"
+msgstr "Látszik a lapozóban"
 
 #: ../plugin/xfcalendar_plugin.c:575
 msgid "Show in systray"
-msgstr "Mutasd a rendszertálcán"
+msgstr "Látszik a rendszertálcán"
 
+# XXX [mayday]: Egy frame felirata, benne vannak a "Show", "Hide" és "Minimized" választógombok. Lehetne sokkal egyértelműbb is!!!
 #.
 #: ../plugin/xfcalendar_plugin.c:580
 msgid "Calendar start"
-msgstr ""
+msgstr "Naptár indítása"
 
 #: ../plugin/xfcalendar_plugin.c:585
 msgid "Show"
-msgstr "Megjelenítés"
+msgstr "Látható"
 
 #: ../plugin/xfcalendar_plugin.c:591
 msgid "Hide"
-msgstr "Elrejtés"
+msgstr "Rejtett"
 
 #: ../plugin/xfcalendar_plugin.c:597
 msgid "Minimized"
@@ -132,11 +134,11 @@ msgstr "Archívumok"
 #. Archive file and periodicity
 #: ../plugin/xfcalendar_plugin.c:614
 msgid "Archive file"
-msgstr "Archívum fájl"
+msgstr "Archív fájl"
 
 #: ../plugin/xfcalendar_plugin.c:636
 msgid "Archive threshold"
-msgstr "Archívum küszöb"
+msgstr "Archiválás küszöbe"
 
 #: ../plugin/xfcalendar_plugin.c:650
 msgid "3 months"
@@ -168,11 +170,10 @@ msgstr "Alkalmazás"
 msgid "Timezone"
 msgstr "Időzóna"
 
-# XXX: [mayday] Esetleg a többet mondó "Naptár"?
 #. the button label in the xfce-mcs-manager dialog
 #: ../plugin/xfcalendar_plugin.c:789
 msgid "Button Label|Orage"
-msgstr "Orage"
+msgstr "Naptár (Orage)"
 
 #: ../src/about-xfcalendar.c:39
 msgid "Manage your time with Xfce4"
@@ -213,10 +214,9 @@ msgstr "Hangfájlok"
 msgid "Warning"
 msgstr "Figyelmeztetés"
 
-# XXX: [mayday]: "...módosultak."?
 #: ../src/appointment.c:337
 msgid "The appointment information has been modified."
-msgstr "A találkozó adatai módosítva lettek."
+msgstr "A találkozó adatai módosultak."
 
 #: ../src/appointment.c:338
 #: ../src/appointment.c:610
@@ -346,7 +346,7 @@ msgstr "Elérhetőség"
 msgid "Note"
 msgstr "Megjegyzés"
 
-# XXX: [mayday] jelzés, riasztás, figyelmeztetés?
+# XXX [mayday]: jelzés, riasztás, figyelmeztetés?
 #: ../src/appointment.c:1415
 #: ../src/appointment.c:1425
 msgid "Alarm"
@@ -412,8 +412,8 @@ msgid ""
 "You will remove all information \n"
 "associated with this date."
 msgstr ""
-"E dátumhoz kapcsolódó összes\n"
-"adat törölve lesz."
+"Az ehhez a dátumhoz kapcsolódó\n"
+"összes adat törölve lesz."
 
 #. View menu
 #: ../src/event-list.c:685
@@ -458,12 +458,11 @@ msgstr "Kapcsolók"
 msgid "Title"
 msgstr "Cím"
 
-# XXX: [mayday] user id? Mit keres ez itt?
+# XXX [mayday]: user id? Mit keres ez itt?
 #: ../src/event-list.c:802
 msgid "uid"
 msgstr "uid"
 
-# XXX: [mayday]: A betűk fixek?
 #: ../src/event-list.c:811
 msgid ""
 "Double click line to edit it.\n"
@@ -482,7 +481,7 @@ msgstr ""
 "\t\tA=látható riasztás S=hangosan is riasszon\n"
 "\t 2. Ismétlődés: n=nem ismétlődik\n"
 "\t\t D=naponta W=hetente M=havonta Y=évente\n"
-"\t 3. Típus: f=szabad B=foglalt"
+"\t 3. Típus: f=szabad B=elfoglalt"
 
 #: ../src/ical-code.c:98
 msgid "Africa"
@@ -502,7 +501,7 @@ msgstr "Afrika/Addis Ababa"
 
 #: ../src/ical-code.c:102
 msgid "Africa/Algiers"
-msgstr "Afrika/Algiers"
+msgstr "Afrika/Algír"
 
 #: ../src/ical-code.c:103
 msgid "Africa/Asmera"
@@ -538,7 +537,7 @@ msgstr "Afrika/Bujumbura"
 
 #: ../src/ical-code.c:111
 msgid "Africa/Cairo"
-msgstr "Afrika/Cairo"
+msgstr "Afrika/Kairó"
 
 #: ../src/ical-code.c:112
 msgid "Africa/Casablanca"
@@ -1222,7 +1221,7 @@ msgstr "Ázsia"
 
 #: ../src/ical-code.c:282
 msgid "Asia/Aden"
-msgstr "Ázsia/Aden"
+msgstr "Ázsia/Áden"
 
 #: ../src/ical-code.c:283
 msgid "Asia/Almaty"
@@ -1230,7 +1229,7 @@ msgstr "Ázsia/Almaty"
 
 #: ../src/ical-code.c:284
 msgid "Asia/Amman"
-msgstr "Ázsia/Amman"
+msgstr "Ázsia/Ammán"
 
 #: ../src/ical-code.c:285
 msgid "Asia/Anadyr"
@@ -1238,7 +1237,7 @@ msgstr "Ázsia/Anadyr"
 
 #: ../src/ical-code.c:286
 msgid "Asia/Aqtau"
-msgstr "Ázsia/Aqtau"
+msgstr "Ázsia/Aktau"
 
 #: ../src/ical-code.c:287
 msgid "Asia/Aqtobe"
@@ -1250,7 +1249,7 @@ msgstr "Ázsia/Ashgabat"
 
 #: ../src/ical-code.c:289
 msgid "Asia/Baghdad"
-msgstr "Ázsia/Baghdad"
+msgstr "Ázsia/Bagdad"
 
 #: ../src/ical-code.c:290
 msgid "Asia/Bahrain"
@@ -1266,7 +1265,7 @@ msgstr "Ázsia/Bangkok"
 
 #: ../src/ical-code.c:293
 msgid "Asia/Beirut"
-msgstr "Ázsia/Beirut"
+msgstr "Ázsia/Bejrút"
 
 #: ../src/ical-code.c:294
 msgid "Asia/Bishkek"
@@ -1290,7 +1289,7 @@ msgstr "Ázsia/Colombo"
 
 #: ../src/ical-code.c:299
 msgid "Asia/Damascus"
-msgstr "Ázsia/Damascus"
+msgstr "Ázsia/Damaszkusz"
 
 #: ../src/ical-code.c:300
 msgid "Asia/Dhaka"
@@ -1310,7 +1309,7 @@ msgstr "Ázsia/Dushanbe"
 
 #: ../src/ical-code.c:304
 msgid "Asia/Gaza"
-msgstr "Ázsia/Gaza"
+msgstr "Ázsia/Gáza"
 
 #: ../src/ical-code.c:305
 msgid "Asia/Harbin"
@@ -1318,7 +1317,7 @@ msgstr "Ázsia/Harbin"
 
 #: ../src/ical-code.c:306
 msgid "Asia/Hong_Kong"
-msgstr "Ázsia/Hong_Kong"
+msgstr "Ázsia/Hongkong"
 
 #: ../src/ical-code.c:307
 msgid "Asia/Hovd"
@@ -1326,7 +1325,7 @@ msgstr "Ázsia/Hovd"
 
 #: ../src/ical-code.c:308
 msgid "Asia/Irkutsk"
-msgstr "Ázsia/Irkutsk"
+msgstr "Ázsia/Irkutszk"
 
 #: ../src/ical-code.c:309
 msgid "Asia/Istanbul"
@@ -1342,7 +1341,7 @@ msgstr "Ázsia/Jayapura"
 
 #: ../src/ical-code.c:312
 msgid "Asia/Jerusalem"
-msgstr "Ázsia/Jerusalem"
+msgstr "Ázsia/Jeruzsálem"
 
 #: ../src/ical-code.c:313
 msgid "Asia/Kabul"
@@ -1350,7 +1349,7 @@ msgstr "Ázsia/Kabul"
 
 #: ../src/ical-code.c:314
 msgid "Asia/Kamchatka"
-msgstr "Ázsia/Kamchatka"
+msgstr "Ázsia/Kamcsatka"
 
 #: ../src/ical-code.c:315
 msgid "Asia/Karachi"
@@ -1366,7 +1365,7 @@ msgstr "Ázsia/Katmandu"
 
 #: ../src/ical-code.c:318
 msgid "Asia/Krasnoyarsk"
-msgstr "Ázsia/Krasnoyarsk"
+msgstr "Ázsia/Krasznojarszk"
 
 #: ../src/ical-code.c:319
 msgid "Asia/Kuala_Lumpur"
@@ -1378,7 +1377,7 @@ msgstr "Ázsia/Kuching"
 
 #: ../src/ical-code.c:321
 msgid "Asia/Kuwait"
-msgstr "Ázsia/Kuwait"
+msgstr "Ázsia/Kuvait"
 
 #: ../src/ical-code.c:322
 msgid "Asia/Macao"
@@ -1402,11 +1401,11 @@ msgstr "Ázsia/Nicosia"
 
 #: ../src/ical-code.c:327
 msgid "Asia/Novosibirsk"
-msgstr "Ázsia/Novosibirsk"
+msgstr "Ázsia/Novoszibirszk"
 
 #: ../src/ical-code.c:328
 msgid "Asia/Omsk"
-msgstr "Ázsia/Omsk"
+msgstr "Ázsia/Omszk"
 
 #: ../src/ical-code.c:329
 msgid "Asia/Phnom_Penh"
@@ -1422,7 +1421,7 @@ msgstr "Ázsia/Pyongyang"
 
 #: ../src/ical-code.c:332
 msgid "Asia/Qatar"
-msgstr "Ázsia/Qatar"
+msgstr "Ázsia/Katar"
 
 #: ../src/ical-code.c:333
 msgid "Asia/Rangoon"
@@ -1430,7 +1429,7 @@ msgstr "Ázsia/Rangoon"
 
 #: ../src/ical-code.c:334
 msgid "Asia/Riyadh"
-msgstr "Ázsia/Riyadh"
+msgstr "Ázsia/Rijád"
 
 #: ../src/ical-code.c:335
 msgid "Asia/Saigon"
@@ -1442,11 +1441,11 @@ msgstr "Ázsia/Samarkand"
 
 #: ../src/ical-code.c:337
 msgid "Asia/Seoul"
-msgstr "Ázsia/Seoul"
+msgstr "Ázsia/Szöul"
 
 #: ../src/ical-code.c:338
 msgid "Asia/Shanghai"
-msgstr "Ázsia/Shanghai"
+msgstr "Ázsia/Sanghaj"
 
 #: ../src/ical-code.c:339
 msgid "Asia/Singapore"
@@ -1454,7 +1453,7 @@ msgstr "Ázsia/Singapore"
 
 #: ../src/ical-code.c:340
 msgid "Asia/Taipei"
-msgstr "Ázsia/Taipei"
+msgstr "Ázsia/Tajpej"
 
 #: ../src/ical-code.c:341
 msgid "Asia/Tashkent"
@@ -1466,7 +1465,7 @@ msgstr "Ázsia/Tbilisi"
 
 #: ../src/ical-code.c:343
 msgid "Asia/Tehran"
-msgstr "Ázsia/Tehran"
+msgstr "Ázsia/Teherán"
 
 #: ../src/ical-code.c:344
 msgid "Asia/Thimphu"
@@ -1474,7 +1473,7 @@ msgstr "Ázsia/Thimphu"
 
 #: ../src/ical-code.c:345
 msgid "Asia/Tokyo"
-msgstr "Ázsia/Tokyo"
+msgstr "Ázsia/Tokió"
 
 #: ../src/ical-code.c:346
 msgid "Asia/Ujung_Pandang"
@@ -1482,7 +1481,7 @@ msgstr "Ázsia/Ujung_Pandang"
 
 #: ../src/ical-code.c:347
 msgid "Asia/Ulaanbaatar"
-msgstr "Ázsia/Ulaanbaatar"
+msgstr "Ázsia/Ulánbátor"
 
 #: ../src/ical-code.c:348
 msgid "Asia/Urumqi"
@@ -1494,19 +1493,19 @@ msgstr "Ázsia/Vientiane"
 
 #: ../src/ical-code.c:350
 msgid "Asia/Vladivostok"
-msgstr "Ázsia/Vladivostok"
+msgstr "Ázsia/Vlagyivosztok"
 
 #: ../src/ical-code.c:351
 msgid "Asia/Yakutsk"
-msgstr "Ázsia/Yakutsk"
+msgstr "Ázsia/Jakutszk"
 
 #: ../src/ical-code.c:352
 msgid "Asia/Yekaterinburg"
-msgstr "Ázsia/Yekaterinburg"
+msgstr "Ázsia/Jekatyerinburg"
 
 #: ../src/ical-code.c:353
 msgid "Asia/Yerevan"
-msgstr "Ázsia/Yerevan"
+msgstr "Ázsia/Jereván"
 
 #: ../src/ical-code.c:354
 msgid "Atlantic"
@@ -1542,7 +1541,7 @@ msgstr "Atlanti-óceán/Madeira"
 
 #: ../src/ical-code.c:362
 msgid "Atlantic/Reykjavik"
-msgstr "Atlanti-óceán/Reykjavik"
+msgstr "Atlanti-óceán/Reykjavík"
 
 #: ../src/ical-code.c:363
 msgid "Atlantic/South_Georgia"
@@ -1550,7 +1549,7 @@ msgstr "Atlanti-óceán/South_Georgia"
 
 #: ../src/ical-code.c:364
 msgid "Atlantic/St_Helena"
-msgstr "Atlanti-óceán/St_Helena"
+msgstr "Atlanti-óceán/Szent_Ilona"
 
 #: ../src/ical-code.c:365
 msgid "Atlantic/Stanley"
@@ -1646,7 +1645,7 @@ msgstr "Európa/Budapest"
 
 #: ../src/ical-code.c:388
 msgid "Europe/Chisinau"
-msgstr "Európa/Chisinau"
+msgstr "Európa/Chişinău"
 
 #: ../src/ical-code.c:389
 msgid "Europe/Copenhagen"
@@ -1774,7 +1773,7 @@ msgstr "Európa/Tirana"
 
 #: ../src/ical-code.c:420
 msgid "Europe/Uzhgorod"
-msgstr "Európa/Uzhgorod"
+msgstr "Európa/Ungvár"
 
 #: ../src/ical-code.c:421
 msgid "Europe/Vaduz"
@@ -1802,7 +1801,7 @@ msgstr "Európa/Zágráb"
 
 #: ../src/ical-code.c:427
 msgid "Europe/Zaporozhye"
-msgstr "Európa/Zaporozhye"
+msgstr "Európa/Zaporozsje"
 
 #: ../src/ical-code.c:428
 msgid "Europe/Zurich"
@@ -2022,11 +2021,11 @@ msgstr "Orage alapértelmezett riasztása"
 
 #: ../src/mainbox.c:366
 msgid "Open archive file..."
-msgstr "Archívum fájl megnyitása..."
+msgstr "Archív fájl megnyitása..."
 
 #: ../src/mainbox.c:369
 msgid "Close archive file"
-msgstr "Archívum fájl bezárása"
+msgstr "Archív fájl bezárása"
 
 #. Edit menu
 #: ../src/mainbox.c:384
@@ -2048,11 +2047,11 @@ msgstr "_Súgó"
 
 #: ../src/main.c:198
 msgid "This should not happen"
-msgstr ""
+msgstr "Ennek nem lenne szabad előfordulnia"
 
 #: ../src/main.c:486
 msgid "Cannot create MCS client channel"
-msgstr "Sikertelen MCS ügyfél csatorna létrehozás"
+msgstr "Nem hozható létre az MCS-ügyfélcsatorna"
 
 #: ../src/reminder.c:174
 msgid "Reminder "
