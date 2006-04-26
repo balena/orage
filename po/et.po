@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.3.90.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-04-22 18:43+0900\n"
+"POT-Creation-Date: 2006-04-15 09:58+0900\n"
 "PO-Revision-Date: 2006-04-18 17:13+0300\n"
 "Last-Translator: Mart Tõnso <mart.tonso@ttu.ee>\n"
 "Language-Team: Estonian <et@li.org>\n"
@@ -28,7 +28,7 @@ msgid "Calendar files"
 msgstr "Kalendri failid"
 
 #: ../plugin/xfcalendar_plugin.c:265 ../src/appointment.c:294
-#: ../src/mainbox.c:123
+#: ../src/mainbox.c:122
 msgid "All Files"
 msgstr "Kõik failid"
 
@@ -149,10 +149,10 @@ msgstr "Rakendus"
 msgid "Timezone"
 msgstr "Ajavöönd"
 
-#. the button label in the xfce-mcs-manager dialog
-#: ../plugin/xfcalendar_plugin.c:789
-msgid "Button Label|Orage"
-msgstr ""
+#: ../plugin/xfcalendar_plugin.c:788 ../src/appointment.c:208
+#: ../src/mainbox.c:334 ../xfcalendar.desktop.in.h:3
+msgid "Orage"
+msgstr "Orage"
 
 #: ../src/about-xfcalendar.c:39
 msgid "Manage your time with Xfce4"
@@ -172,10 +172,6 @@ msgstr "Toetaja"
 #: ../src/appointment.c:98 ../src/appointment.c:410 ../src/appointment.c:711
 msgid "%m/%d/%Y"
 msgstr "%Y.%m.%d"
-
-#: ../src/appointment.c:208 ../src/mainbox.c:335 ../xfcalendar.desktop.in.h:3
-msgid "Orage"
-msgstr "Orage"
 
 #: ../src/appointment.c:288
 msgid "Sound Files"
@@ -221,7 +217,7 @@ msgstr "Uus kohtumine - Orage"
 
 #. File menu stuff
 #. File menu
-#: ../src/appointment.c:1192 ../src/event-list.c:654 ../src/mainbox.c:357
+#: ../src/appointment.c:1192 ../src/event-list.c:654 ../src/mainbox.c:356
 msgid "_File"
 msgstr "_Fail"
 
@@ -371,7 +367,7 @@ msgstr ""
 "seotud informatsiooni."
 
 #. View menu
-#: ../src/event-list.c:685 ../src/mainbox.c:391
+#: ../src/event-list.c:685 ../src/mainbox.c:390
 msgid "_View"
 msgstr "_Vaade"
 
@@ -415,18 +411,6 @@ msgstr "Pealkiri"
 #: ../src/event-list.c:802
 msgid "uid"
 msgstr "uid"
-
-#: ../src/event-list.c:811
-msgid ""
-"Double click line to edit it.\n"
-"\n"
-"Flags in order:\n"
-"\t 1. Alarm: n=no alarm\n"
-"\t\tA=visual Alarm S=also Sound alarm\n"
-"\t 2. Recurrence: n=no recurrence\n"
-"\t\t D=Daily W=Weekly M=Monthly Y=Yearly\n"
-"\t 3. Type: f=free B=Busy"
-msgstr ""
 
 #: ../src/ical-code.c:98
 msgid "Africa"
@@ -1960,33 +1944,33 @@ msgstr "Vaikne ookean/Wallis"
 msgid "Pacific/Yap"
 msgstr "Vaikne ookean/Yap"
 
-#: ../src/ical-code.c:1168
+#: ../src/ical-code.c:974
 msgid "Orage default alarm"
 msgstr "Orage tavaline alarm"
 
-#: ../src/mainbox.c:366
+#: ../src/mainbox.c:365
 msgid "Open archive file..."
 msgstr "Ava arhiivi fail..."
 
-#: ../src/mainbox.c:369
+#: ../src/mainbox.c:368
 msgid "Close archive file"
 msgstr "Sulge arhiivi fail"
 
 #. Edit menu
-#: ../src/mainbox.c:384
+#: ../src/mainbox.c:383
 msgid "_Edit"
 msgstr "_Redaktor"
 
-#: ../src/mainbox.c:394
+#: ../src/mainbox.c:393
 msgid "View selected _date"
 msgstr "Näita valitud _kuupäeva"
 
-#: ../src/mainbox.c:400
+#: ../src/mainbox.c:399
 msgid "Select _Today"
 msgstr "Vali tänane päev"
 
 #. Help menu
-#: ../src/mainbox.c:404
+#: ../src/mainbox.c:403
 msgid "_Help"
 msgstr "_Abi"
 
@@ -2029,3 +2013,4 @@ msgstr "Kalender"
 #: ../xfcalendar.desktop.in.h:2
 msgid "Desktop calendar"
 msgstr "Töölaua kalender"
+
