@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.3.90.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-04-27 17:42+0300\n"
-"PO-Revision-Date: 2006-04-19 15:13+0300\n"
+"POT-Creation-Date: 2006-04-27 23:49+0300\n"
+"PO-Revision-Date: 2006-04-28 00:10+0300\n"
 "Last-Translator: Jari Rahkonen <jari.rahkonen@pp1.inet.fi>\n"
 "Language-Team: Finnish <translation-team-fi@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -18,44 +18,43 @@ msgstr ""
 
 #: ../panel-plugin/oc_config.c:163
 msgid "Appearance"
-msgstr ""
+msgstr "Ulkoasu"
 
 #: ../panel-plugin/oc_config.c:170
 msgid "Show _frame"
-msgstr ""
+msgstr "Näytä _kehys"
 
 #: ../panel-plugin/oc_config.c:183
 msgid "set foreground _color:"
-msgstr ""
+msgstr "Tekstin _väri:"
 
 #: ../panel-plugin/oc_config.c:200
 msgid "set _background color:"
-msgstr ""
+msgstr "Taustaväri:"
 
 #: ../panel-plugin/oc_config.c:221
 msgid "Clock Options"
-msgstr ""
+msgstr "Kellon asetukset"
 
 #: ../panel-plugin/oc_config.c:232
-#, fuzzy
 msgid "set timezone to:"
-msgstr "Valitse aikavyöhyke"
+msgstr "Aikavyöhyke:"
 
 #: ../panel-plugin/oc_config.c:241
 msgid "Set any valid timezone (=TZ) value or pick one from the list."
-msgstr ""
+msgstr "Aseta kelvollinen aikavyöhyke (=TZ) tai valitse sellainen listalta."
 
 #: ../panel-plugin/oc_config.c:254
 msgid "show line _1:"
-msgstr ""
+msgstr "näytä rivi _1:"
 
 #: ../panel-plugin/oc_config.c:284
 msgid "show line _2:"
-msgstr ""
+msgstr "näytä rivi _2:"
 
 #: ../panel-plugin/oc_config.c:309
 msgid "show line _3:"
-msgstr ""
+msgstr "näytä rivi _3:"
 
 #: ../panel-plugin/oc_config.c:338
 msgid ""
@@ -68,18 +67,24 @@ msgid ""
 "\t%H = hours \t\t\t\t%M = minute\n"
 "\t%X = local time\t\t\t%x = local date"
 msgstr ""
+"Sovellus noutaa ajan strftime-funktiolla.\n"
+"Voit määrittää ajan esitystavan käyttäen haluamiasi koodeja.\n"
+"Eräitä yleisiä koodeja:\n"
+"\t%A = viikonpäivä\t\t%B = kuukausi\n"
+"\t%c = pvm ja aika\t\t%R = tunti ja minuutti\n"
+"\t%V = viikon numero\t%Z = käytettävä aikavyöhyke\n"
+"\t%H = tunti \t\t\t%M = minuutti\n"
+"\t%X = paikallinen aika\t%x = paikallinen päivämäärä"
 
 #: ../panel-plugin/oc_config.c:357
-#, fuzzy
 msgid "Properties"
-msgstr "Eurooppa/Pariisi"
+msgstr "Ominaisuudet"
 
 #: ../panel-plugin/oc_config.c:372
-#, fuzzy
 msgid "Orage clock"
-msgstr "Orage"
+msgstr "Orage-kello"
 
-#. Use format characters from strftime(3)
+#. TRANSLATORS: Use format characters from strftime(3)
 #. * to get the proper string for your locale.
 #. * I used these:
 #. * %A  : full weekday name
@@ -2095,13 +2100,12 @@ msgid "About Orage"
 msgstr "Tietoja Oragesta"
 
 #: ../panel-plugin/orageclock.desktop.in.in.h:1
-#, fuzzy
 msgid "Orage Clock"
-msgstr "Orage"
+msgstr "Orage-kello"
 
 #: ../panel-plugin/orageclock.desktop.in.in.h:2
 msgid "What time and date is it?"
-msgstr ""
+msgstr "Näytä kellonaika ja päivämäärä."
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:1
 msgid "Calendar Settings"
