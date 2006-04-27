@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.3.90.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-04-22 18:43+0900\n"
+"POT-Creation-Date: 2006-04-27 17:42+0300\n"
 "PO-Revision-Date: 2006-04-23 15:55+0200\n"
 "Last-Translator: Stavros Giannouris <stavrosg2002@freemail.gr>\n"
 "Language-Team: Greek <nls@tux.hellug.gr>\n"
@@ -16,31 +16,100 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#: ../panel-plugin/oc_config.c:163
+msgid "Appearance"
+msgstr ""
+
+#: ../panel-plugin/oc_config.c:170
+msgid "Show _frame"
+msgstr ""
+
+#: ../panel-plugin/oc_config.c:183
+msgid "set foreground _color:"
+msgstr ""
+
+#: ../panel-plugin/oc_config.c:200
+msgid "set _background color:"
+msgstr ""
+
+#: ../panel-plugin/oc_config.c:221
+msgid "Clock Options"
+msgstr ""
+
+#: ../panel-plugin/oc_config.c:232
+#, fuzzy
+msgid "set timezone to:"
+msgstr "Επιλογή ζώνης ώρας"
+
+#: ../panel-plugin/oc_config.c:241
+msgid "Set any valid timezone (=TZ) value or pick one from the list."
+msgstr ""
+
+#: ../panel-plugin/oc_config.c:254
+msgid "show line _1:"
+msgstr ""
+
+#: ../panel-plugin/oc_config.c:284
+msgid "show line _2:"
+msgstr ""
+
+#: ../panel-plugin/oc_config.c:309
+msgid "show line _3:"
+msgstr ""
+
+#: ../panel-plugin/oc_config.c:338
+msgid ""
+"This program uses strftime function to get time.\n"
+"Use any valid code to get time in the format you prefer.\n"
+"Some common codes are:\n"
+"\t%A = weekday\t\t\t%B = month\n"
+"\t%c = date & time\t\t%R = hour & minute\n"
+"\t%V = week number\t\t%Z = timezone in use\n"
+"\t%H = hours \t\t\t\t%M = minute\n"
+"\t%X = local time\t\t\t%x = local date"
+msgstr ""
+
+#: ../panel-plugin/oc_config.c:357
+#, fuzzy
+msgid "Properties"
+msgstr "Ευρώπη/Παρίσι"
+
+#: ../panel-plugin/oc_config.c:372
+#, fuzzy
+msgid "Orage clock"
+msgstr "Orage"
+
+#. Use format characters from strftime(3)
+#. * to get the proper string for your locale.
+#. * I used these:
+#. * %A  : full weekday name
+#. * %d  : day of the month
+#. * %B  : full month name
+#. * %Y  : four digit year
+#. * %V  : ISO week number
+#.
+#: ../panel-plugin/orageclock.c:61
+msgid "%A %d %B %Y/%V"
+msgstr ""
+
 #. to avoid timing problems when updating entry
 #. Create file chooser
-#: ../plugin/xfcalendar_plugin.c:253
-#: ../plugin/xfcalendar_plugin.c:310
-#: ../src/appointment.c:280
-#: ../src/mainbox.c:111
+#: ../plugin/xfcalendar_plugin.c:253 ../plugin/xfcalendar_plugin.c:310
+#: ../src/appointment.c:280 ../src/mainbox.c:111
 msgid "Select a file..."
 msgstr "Επιλογή αρχείου..."
 
-#: ../plugin/xfcalendar_plugin.c:261
-#: ../src/mainbox.c:119
+#: ../plugin/xfcalendar_plugin.c:261 ../src/mainbox.c:119
 msgid "Calendar files"
 msgstr "Αρχεία ημερολογίου"
 
-#: ../plugin/xfcalendar_plugin.c:265
-#: ../src/appointment.c:294
+#: ../plugin/xfcalendar_plugin.c:265 ../src/appointment.c:294
 #: ../src/mainbox.c:123
 msgid "All Files"
 msgstr "Όλα τα αρχεία"
 
-#: ../plugin/xfcalendar_plugin.c:408
-#: ../plugin/xfcalendar_plugin.c:413
-#: ../src/appointment.c:811
-#: ../src/appointment.c:816
-#: ../src/appointment.c:1304
+#: ../plugin/xfcalendar_plugin.c:408 ../plugin/xfcalendar_plugin.c:413
+#: ../src/appointment.c:811 ../src/appointment.c:816 ../src/appointment.c:1304
 msgid "Location"
 msgstr "Τοποθεσία"
 
@@ -49,25 +118,18 @@ msgstr "Τοποθεσία"
 msgid "Pick local timezone"
 msgstr "Επιλογή τοπικής ζώνης ώρας"
 
-#: ../plugin/xfcalendar_plugin.c:422
-#: ../plugin/xfcalendar_plugin.c:450
-#: ../src/appointment.c:825
-#: ../src/appointment.c:853
+#: ../plugin/xfcalendar_plugin.c:422 ../plugin/xfcalendar_plugin.c:450
+#: ../src/appointment.c:825 ../src/appointment.c:853
 msgid "UTC"
 msgstr "UTC"
 
-#: ../plugin/xfcalendar_plugin.c:423
-#: ../plugin/xfcalendar_plugin.c:454
-#: ../plugin/xfcalendar_plugin.c:740
-#: ../src/appointment.c:826
-#: ../src/appointment.c:857
-#: ../src/appointment.c:893
-#: ../src/appointment.c:901
+#: ../plugin/xfcalendar_plugin.c:423 ../plugin/xfcalendar_plugin.c:454
+#: ../plugin/xfcalendar_plugin.c:740 ../src/appointment.c:826
+#: ../src/appointment.c:857 ../src/appointment.c:893 ../src/appointment.c:901
 msgid "floating"
 msgstr "μετακινούμενη"
 
-#: ../plugin/xfcalendar_plugin.c:514
-#: ../plugin/xfcalendar_plugin.c:524
+#: ../plugin/xfcalendar_plugin.c:514 ../plugin/xfcalendar_plugin.c:524
 msgid "Orage Preferences"
 msgstr "Προτιμήσεις Orage"
 
@@ -151,8 +213,7 @@ msgstr "1 χρόνο"
 msgid "never"
 msgstr "ποτέ"
 
-#: ../plugin/xfcalendar_plugin.c:682
-#: ../src/appointment.c:1454
+#: ../plugin/xfcalendar_plugin.c:682 ../src/appointment.c:1454
 msgid "Sound"
 msgstr "Ήχοι"
 
@@ -160,8 +221,7 @@ msgstr "Ήχοι"
 msgid "Application"
 msgstr "Εφαρμογή"
 
-#: ../plugin/xfcalendar_plugin.c:715
-#: ../plugin/xfcalendar_plugin.c:725
+#: ../plugin/xfcalendar_plugin.c:715 ../plugin/xfcalendar_plugin.c:725
 msgid "Timezone"
 msgstr "Ζώνη ώρας"
 
@@ -178,23 +238,18 @@ msgstr "Διαχειριστείτε το χρόνο σας με το Xfce4"
 msgid "Core developer"
 msgstr "Βασικός προγραμματιστής"
 
-#: ../src/about-xfcalendar.c:54
-#: ../src/about-xfcalendar.c:59
+#: ../src/about-xfcalendar.c:54 ../src/about-xfcalendar.c:59
 #: ../src/about-xfcalendar.c:64
 msgid "Contributor"
 msgstr "Συντελεστής"
 
 #. Get the start date and time and timezone
 #. FIXME: use year_month_day_to_display() instead of doing it here
-#: ../src/appointment.c:98
-#: ../src/appointment.c:410
-#: ../src/appointment.c:711
+#: ../src/appointment.c:98 ../src/appointment.c:410 ../src/appointment.c:711
 msgid "%m/%d/%Y"
 msgstr "%d/%m/%Y"
 
-#: ../src/appointment.c:208
-#: ../src/mainbox.c:335
-#: ../xfcalendar.desktop.in.h:3
+#: ../src/appointment.c:208 ../src/mainbox.c:335 ../xfcalendar.desktop.in.h:3
 msgid "Orage"
 msgstr "Orage"
 
@@ -202,9 +257,7 @@ msgstr "Orage"
 msgid "Sound Files"
 msgstr "Αρχεία ήχου"
 
-#: ../src/appointment.c:335
-#: ../src/appointment.c:370
-#: ../src/appointment.c:607
+#: ../src/appointment.c:335 ../src/appointment.c:370 ../src/appointment.c:607
 #: ../src/event-list.c:587
 msgid "Warning"
 msgstr "Προειδοποίηση"
@@ -213,9 +266,7 @@ msgstr "Προειδοποίηση"
 msgid "The appointment information has been modified."
 msgstr "Οι πληροφορίες του ραντεβού έχουν τροποποιηθεί."
 
-#: ../src/appointment.c:338
-#: ../src/appointment.c:610
-#: ../src/event-list.c:590
+#: ../src/appointment.c:338 ../src/appointment.c:610 ../src/event-list.c:590
 msgid "Do you want to continue?"
 msgstr "Επιθυμείτε να συνεχίσετε;"
 
@@ -231,9 +282,7 @@ msgstr "Αυτό το ραντεβού θα απομακρυνθεί οριστ�
 msgid "Pick the date"
 msgstr "Επιλογή ημερομηνίας"
 
-#: ../src/appointment.c:718
-#: ../src/event-list.c:728
-#: ../src/tray_icon.c:102
+#: ../src/appointment.c:718 ../src/event-list.c:728 ../src/tray_icon.c:102
 msgid "Today"
 msgstr "Σήμερα"
 
@@ -248,9 +297,7 @@ msgstr "Νέο ραντεβού - Orage"
 
 #. File menu stuff
 #. File menu
-#: ../src/appointment.c:1192
-#: ../src/event-list.c:654
-#: ../src/mainbox.c:357
+#: ../src/appointment.c:1192 ../src/event-list.c:654 ../src/mainbox.c:357
 msgid "_File"
 msgstr "_Αρχείο"
 
@@ -258,8 +305,7 @@ msgstr "_Αρχείο"
 msgid "Sav_e and close"
 msgstr "Αποθήκ_ευση και κλείσιμο"
 
-#: ../src/appointment.c:1212
-#: ../src/event-list.c:663
+#: ../src/appointment.c:1212 ../src/event-list.c:663
 msgid "D_uplicate"
 msgstr "Δημιουργία αντι_γράφου"
 
@@ -267,8 +313,7 @@ msgstr "Δημιουργία αντι_γράφου"
 msgid "Save"
 msgstr "Αποθήκευση"
 
-#: ../src/appointment.c:1256
-#: ../src/appointment.c:1258
+#: ../src/appointment.c:1256 ../src/appointment.c:1258
 msgid "Save and close"
 msgstr "Αποθήκευση και κλείσιμο"
 
@@ -276,9 +321,7 @@ msgstr "Αποθήκευση και κλείσιμο"
 msgid "Revert"
 msgstr "Επαναφορά"
 
-#: ../src/appointment.c:1268
-#: ../src/appointment.c:1270
-#: ../src/event-list.c:740
+#: ../src/appointment.c:1268 ../src/appointment.c:1270 ../src/event-list.c:740
 msgid "Duplicate"
 msgstr "Αντίγραφο"
 
@@ -318,18 +361,15 @@ msgstr "Τέλος"
 msgid "Duration"
 msgstr "Διάρκεια"
 
-#: ../src/appointment.c:1357
-#: ../src/appointment.c:1431
+#: ../src/appointment.c:1357 ../src/appointment.c:1431
 msgid "days"
 msgstr "ημέρες"
 
-#: ../src/appointment.c:1365
-#: ../src/appointment.c:1439
+#: ../src/appointment.c:1365 ../src/appointment.c:1439
 msgid "hours"
 msgstr "ώρες"
 
-#: ../src/appointment.c:1373
-#: ../src/appointment.c:1447
+#: ../src/appointment.c:1373 ../src/appointment.c:1447
 msgid "mins"
 msgstr "λεπτά"
 
@@ -341,8 +381,7 @@ msgstr "Διαθεσιμότητα"
 msgid "Note"
 msgstr "Σημείωση"
 
-#: ../src/appointment.c:1415
-#: ../src/appointment.c:1425
+#: ../src/appointment.c:1415 ../src/appointment.c:1425
 msgid "Alarm"
 msgstr "Ειδοποίηση"
 
@@ -370,8 +409,7 @@ msgstr "Μηνιαία"
 msgid "Yearly"
 msgstr "Ετήσια"
 
-#: ../src/appointment.c:1484
-#: ../src/appointment.c:1494
+#: ../src/appointment.c:1484 ../src/appointment.c:1494
 msgid "Recurrence"
 msgstr "Επανάληψη"
 
@@ -396,8 +434,7 @@ msgstr "Επανάληψη μέχρι"
 msgid "All day"
 msgstr "Ολόκληρη τη μέρα"
 
-#: ../src/event-list.c:276
-#: ../src/event-list.c:782
+#: ../src/event-list.c:276 ../src/event-list.c:782
 msgid "Time"
 msgstr "Ώρα"
 
@@ -410,8 +447,7 @@ msgstr ""
 "που σχετίζονται με αυτή την ημερομηνία."
 
 #. View menu
-#: ../src/event-list.c:685
-#: ../src/mainbox.c:391
+#: ../src/event-list.c:685 ../src/mainbox.c:391
 msgid "_View"
 msgstr "_Προβολή"
 
@@ -2058,6 +2094,15 @@ msgstr "Νέο ραντεβού"
 msgid "About Orage"
 msgstr "Περί Orage"
 
+#: ../panel-plugin/orageclock.desktop.in.in.h:1
+#, fuzzy
+msgid "Orage Clock"
+msgstr "Orage"
+
+#: ../panel-plugin/orageclock.desktop.in.in.h:2
+msgid "What time and date is it?"
+msgstr ""
+
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:1
 msgid "Calendar Settings"
 msgstr "Ρυθμίσεις ημερολογίου"
@@ -2077,4 +2122,3 @@ msgstr "Ημερολόγιο"
 #: ../xfcalendar.desktop.in.h:2
 msgid "Desktop calendar"
 msgstr "Ημερολόγιο γραφείου"
-

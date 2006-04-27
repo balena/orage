@@ -49,7 +49,7 @@ static gboolean oc_date_tooltip(Clock *clock)
     char date_s[255];
     char *utf8date = NULL;
 
-    /* Use format characters from strftime(3)
+    /* TRANSLATORS: Use format characters from strftime(3)
      * to get the proper string for your locale.
      * I used these:
      * %A  : full weekday name

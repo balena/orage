@@ -7,13 +7,86 @@ msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.3.90.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-04-22 18:43+0900\n"
+"POT-Creation-Date: 2006-04-27 17:42+0300\n"
 "PO-Revision-Date: 2005-09-14 01:01+0900\n"
 "Last-Translator: Saleh Alhathal <hathalsal@hotmail.com>\n"
 "Language-Team: Arabic <lumina@silverpen.de>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: ../panel-plugin/oc_config.c:163
+msgid "Appearance"
+msgstr ""
+
+#: ../panel-plugin/oc_config.c:170
+msgid "Show _frame"
+msgstr ""
+
+#: ../panel-plugin/oc_config.c:183
+msgid "set foreground _color:"
+msgstr ""
+
+#: ../panel-plugin/oc_config.c:200
+msgid "set _background color:"
+msgstr ""
+
+#: ../panel-plugin/oc_config.c:221
+msgid "Clock Options"
+msgstr ""
+
+#: ../panel-plugin/oc_config.c:232
+msgid "set timezone to:"
+msgstr ""
+
+#: ../panel-plugin/oc_config.c:241
+msgid "Set any valid timezone (=TZ) value or pick one from the list."
+msgstr ""
+
+#: ../panel-plugin/oc_config.c:254
+msgid "show line _1:"
+msgstr ""
+
+#: ../panel-plugin/oc_config.c:284
+msgid "show line _2:"
+msgstr ""
+
+#: ../panel-plugin/oc_config.c:309
+msgid "show line _3:"
+msgstr ""
+
+#: ../panel-plugin/oc_config.c:338
+msgid ""
+"This program uses strftime function to get time.\n"
+"Use any valid code to get time in the format you prefer.\n"
+"Some common codes are:\n"
+"\t%A = weekday\t\t\t%B = month\n"
+"\t%c = date & time\t\t%R = hour & minute\n"
+"\t%V = week number\t\t%Z = timezone in use\n"
+"\t%H = hours \t\t\t\t%M = minute\n"
+"\t%X = local time\t\t\t%x = local date"
+msgstr ""
+
+#: ../panel-plugin/oc_config.c:357
+msgid "Properties"
+msgstr ""
+
+#: ../panel-plugin/oc_config.c:372
+msgid "Orage clock"
+msgstr ""
+
+#. Use format characters from strftime(3)
+#. * to get the proper string for your locale.
+#. * I used these:
+#. * %A  : full weekday name
+#. * %d  : day of the month
+#. * %B  : full month name
+#. * %Y  : four digit year
+#. * %V  : ISO week number
+#.
+#: ../panel-plugin/orageclock.c:61
+msgid "%A %d %B %Y/%V"
+msgstr ""
 
 #. to avoid timing problems when updating entry
 #. Create file chooser
@@ -2019,6 +2092,14 @@ msgstr "موعد"
 
 #: ../src/tray_icon.c:130
 msgid "About Orage"
+msgstr ""
+
+#: ../panel-plugin/orageclock.desktop.in.in.h:1
+msgid "Orage Clock"
+msgstr ""
+
+#: ../panel-plugin/orageclock.desktop.in.in.h:2
+msgid "What time and date is it?"
 msgstr ""
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:1
