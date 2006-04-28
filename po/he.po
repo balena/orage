@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: he\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-04-27 17:42+0300\n"
-"PO-Revision-Date: 2006-04-18 19:57+0300\n"
+"PO-Revision-Date: 2006-04-28 13:53+0300\n"
 "Last-Translator: Yuval Tanny <tanai@int.gov.il>\n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
@@ -23,44 +23,43 @@ msgstr ""
 
 #: ../panel-plugin/oc_config.c:163
 msgid "Appearance"
-msgstr ""
+msgstr "מראה"
 
 #: ../panel-plugin/oc_config.c:170
 msgid "Show _frame"
-msgstr ""
+msgstr "הצג _מסגרת"
 
 #: ../panel-plugin/oc_config.c:183
 msgid "set foreground _color:"
-msgstr ""
+msgstr "קבע צבע _חזית:"
 
 #: ../panel-plugin/oc_config.c:200
 msgid "set _background color:"
-msgstr ""
+msgstr "קבע צבע _רקע:"
 
 #: ../panel-plugin/oc_config.c:221
 msgid "Clock Options"
-msgstr ""
+msgstr "אפשרויות שעון"
 
 #: ../panel-plugin/oc_config.c:232
-#, fuzzy
 msgid "set timezone to:"
-msgstr "בחר אזור-זמן"
+msgstr "קבע אזור-זמן:"
 
 #: ../panel-plugin/oc_config.c:241
 msgid "Set any valid timezone (=TZ) value or pick one from the list."
-msgstr ""
+msgstr "הכנס ערך אזור זמן תקין (=TZ) או שתבחר אחד מהרשימה."
 
 #: ../panel-plugin/oc_config.c:254
 msgid "show line _1:"
-msgstr ""
+msgstr "הצג שורה _1:"
 
 #: ../panel-plugin/oc_config.c:284
 msgid "show line _2:"
-msgstr ""
+msgstr "הצג שורה _2:"
 
 #: ../panel-plugin/oc_config.c:309
 msgid "show line _3:"
-msgstr ""
+msgstr "הצג שורה _3:"
 
 #: ../panel-plugin/oc_config.c:338
 msgid ""
@@ -73,16 +72,22 @@ msgid ""
 "\t%H = hours \t\t\t\t%M = minute\n"
 "\t%X = local time\t\t\t%x = local date"
 msgstr ""
+"תכנית זו משתמשת בפונקציית strftime בשביל לקבל את השעה.\n"
+"אפשר להשתמש בכל קוד תקין בשביל לקבוע את תבנית התאריך והשעה המועדפת.\n"
+"מספר קודים נפוצים: "
+"\t%A = יום בשבוע\t\t\t%B = חודש\n"
+"\t%c = תאריך ושעה\t\t%R = שעה ודקה\n"
+"\t%V = מספר השבוע\t\t%Z = אזור זמן בשימוש\n"
+"\t%H = שעות \t\t\t\t%M = דקות\n"
+"\t%X = שעה מקומית\t\t\t%x = תאריך מקומי"
 
 #: ../panel-plugin/oc_config.c:357
-#, fuzzy
 msgid "Properties"
-msgstr "אירופה/פריז"
+msgstr "מאפיינים"
 
 #: ../panel-plugin/oc_config.c:372
-#, fuzzy
 msgid "Orage clock"
-msgstr "Orage"
+msgstr "שעון Orage"
 
 #. Use format characters from strftime(3)
 #. * to get the proper string for your locale.
@@ -95,7 +100,7 @@ msgstr "Orage"
 #.
 #: ../panel-plugin/orageclock.c:61
 msgid "%A %d %B %Y/%V"
-msgstr ""
+msgstr "%A %d %B %Y/%V"
 
 #. to avoid timing problems when updating entry
 #. Create file chooser
@@ -233,7 +238,7 @@ msgstr "אזור-זמן"
 #. the button label in the xfce-mcs-manager dialog
 #: ../plugin/xfcalendar_plugin.c:789
 msgid "Button Label|Orage"
-msgstr ""
+msgstr "Orage"
 
 #: ../src/about-xfcalendar.c:39
 msgid "Manage your time with Xfce4"
@@ -508,6 +513,14 @@ msgid ""
 "\t\t D=Daily W=Weekly M=Monthly Y=Yearly\n"
 "\t 3. Type: f=free B=Busy"
 msgstr ""
+"לחץ לחיצה כפולה על השורה בשביל לערוך אותה\n"
+"\n"
+"דגלים לפי סדר:\n"
+"\t 1. התראה: n=ללא התראה\n"
+"\t\tA=התראה ויזואלית S=גם התראה קולית\n"
+"\t 2. Recurrence: n=ללא חזרות\n"
+"\t\t D=יומית W=שבועית M=חודשית Y=שנתית\n"
+"\t 3. סוג: f=פנוי B=עסוק"
 
 #: ../src/ical-code.c:98
 msgid "Africa"
@@ -2092,13 +2105,12 @@ msgid "About Orage"
 msgstr "אודות Orage"
 
 #: ../panel-plugin/orageclock.desktop.in.in.h:1
-#, fuzzy
 msgid "Orage Clock"
-msgstr "Orage"
+msgstr "שעון Orage"
 
 #: ../panel-plugin/orageclock.desktop.in.in.h:2
 msgid "What time and date is it?"
-msgstr ""
+msgstr "באיזה תאריך ושעה זה?"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:1
 msgid "Calendar Settings"
@@ -2119,3 +2131,4 @@ msgstr "לוח שנה"
 #: ../xfcalendar.desktop.in.h:2
 msgid "Desktop calendar"
 msgstr "לוח שנה לשולחן העבודה"
+
