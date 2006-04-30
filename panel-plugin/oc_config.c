@@ -88,7 +88,7 @@ static void oc_timezone_selected(GtkWidget *widget, Clock *clock)
     gchar *filename = NULL;
     gchar *clockname = NULL;
 
-    dialog = gtk_file_chooser_dialog_new("Select timezone", NULL
+    dialog = gtk_file_chooser_dialog_new(_("Select timezone"), NULL
             , GTK_FILE_CHOOSER_ACTION_OPEN
             , GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL
             , GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT, NULL);
@@ -262,7 +262,7 @@ static void oc_properties_options(GtkWidget *dlg, Clock *clock)
     g_signal_connect(entry, "key-release-event", G_CALLBACK(oc_line_changed)
             , clock->line[0].data);
     gtk_tooltips_set_tip(clock->tips, GTK_WIDGET(entry),
-            ("Enter any valid strftime function parameter.")
+            _("Enter any valid strftime function parameter.")
             , NULL);
     
     def_style = gtk_widget_get_default_style();
