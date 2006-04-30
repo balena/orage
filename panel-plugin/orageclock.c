@@ -163,9 +163,9 @@ static gboolean popup_program(GtkWidget *widget, gchar *program, Clock *clock)
     }
     else { /* not running, let's try to start it. Need to reset TZ! */
         if (clock->TZ_orig != NULL)  /* we had TZ when we started */
-            setenv("TZ", clock->TZ_orig, 1);
+            xfce_setenv("TZ", clock->TZ_orig, 1);
         else  /* TZ was not set so take it out */
-            unsetenv("TZ");
+            xfce_unsetenv("TZ");
         tzset();
 
         if (!xfce_exec(program, FALSE, FALSE, &error)) 
@@ -173,7 +173,7 @@ static gboolean popup_program(GtkWidget *widget, gchar *program, Clock *clock)
 
         if ((clock->timezone->str != NULL) && (clock->timezone->len > 0)) {
         /* user has set timezone, so let's set TZ */
-            setenv("TZ", clock->timezone->str, 1);
+            xfce_setenv("TZ", clock->timezone->str, 1);
             tzset();
         }
 
@@ -423,13 +423,13 @@ void oc_timezone_set(Clock *clock)
 
     if ((clock->timezone->str != NULL) && (clock->timezone->len > 0)) {
         /* user has set timezone, so let's set TZ */
-        setenv("TZ", clock->timezone->str, 1);
+        xfce_setenv("TZ", clock->timezone->str, 1);
     }
     else if (clock->TZ_orig != NULL) { /* we had TZ when we started */
-        setenv("TZ", clock->TZ_orig, 1);
+        xfce_setenv("TZ", clock->TZ_orig, 1);
     }
     else { /* TZ was not set so take it out */
-        unsetenv("TZ");
+        xfce_unsetenv("TZ");
     }
     tzset();
 }
