@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.3.90.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-04-27 17:42+0300\n"
+"POT-Creation-Date: 2006-04-30 17:24+0900\n"
 "PO-Revision-Date: 2006-04-26 22:40+0400\n"
 "Last-Translator: Phan Vĩnh Thịnh <teppi@vnlinux.org>\n"
 "Language-Team: Vietnamese <vi_VN@googlegroups.com>\n"
@@ -17,6 +17,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.10\n"
 "Plural-Forms: nplurals=1; nplural=0\n"
+
+#: ../panel-plugin/oc_config.c:91
+#, fuzzy
+msgid "Select timezone"
+msgstr "Chọn múi giờ"
 
 #: ../panel-plugin/oc_config.c:163
 msgid "Appearance"
@@ -51,6 +56,10 @@ msgstr ""
 msgid "show line _1:"
 msgstr ""
 
+#: ../panel-plugin/oc_config.c:265
+msgid "Enter any valid strftime function parameter."
+msgstr ""
+
 #: ../panel-plugin/oc_config.c:284
 msgid "show line _2:"
 msgstr ""
@@ -81,7 +90,7 @@ msgstr "Châu Âu/Pa-ri"
 msgid "Orage clock"
 msgstr "Orage"
 
-#. Use format characters from strftime(3)
+#. TRANSLATORS: Use format characters from strftime(3)
 #. * to get the proper string for your locale.
 #. * I used these:
 #. * %A  : full weekday name
@@ -2050,6 +2059,14 @@ msgstr ""
 msgid "Orage default alarm"
 msgstr "Báo thức mặc định của Orage"
 
+#: ../src/main.c:198
+msgid "This should not happen"
+msgstr "Điều này không nên xảy ra"
+
+#: ../src/main.c:486
+msgid "Cannot create MCS client channel"
+msgstr "Không thể tạo kênh khách MCS"
+
 #: ../src/mainbox.c:366
 msgid "Open archive file..."
 msgstr "Mở tập tin lưu trữ..."
@@ -2075,14 +2092,6 @@ msgstr "Chọn hôm na_y"
 #: ../src/mainbox.c:404
 msgid "_Help"
 msgstr "_Giúp đỡ"
-
-#: ../src/main.c:198
-msgid "This should not happen"
-msgstr "Điều này không nên xảy ra"
-
-#: ../src/main.c:486
-msgid "Cannot create MCS client channel"
-msgstr "Không thể tạo kênh khách MCS"
 
 #: ../src/reminder.c:174
 msgid "Reminder "

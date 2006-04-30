@@ -8,13 +8,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.3.90.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-04-27 23:49+0300\n"
+"POT-Creation-Date: 2006-04-30 17:24+0900\n"
 "PO-Revision-Date: 2006-04-28 00:10+0300\n"
 "Last-Translator: Jari Rahkonen <jari.rahkonen@pp1.inet.fi>\n"
 "Language-Team: Finnish <translation-team-fi@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: ../panel-plugin/oc_config.c:91
+#, fuzzy
+msgid "Select timezone"
+msgstr "Valitse aikavyöhyke"
 
 #: ../panel-plugin/oc_config.c:163
 msgid "Appearance"
@@ -47,6 +52,10 @@ msgstr "Aseta kelvollinen aikavyöhyke (=TZ) tai valitse sellainen listalta."
 #: ../panel-plugin/oc_config.c:254
 msgid "show line _1:"
 msgstr "näytä rivi _1:"
+
+#: ../panel-plugin/oc_config.c:265
+msgid "Enter any valid strftime function parameter."
+msgstr ""
 
 #: ../panel-plugin/oc_config.c:284
 msgid "show line _2:"
@@ -2053,6 +2062,14 @@ msgstr "Tyynimeri/Yap"
 msgid "Orage default alarm"
 msgstr "Oragen oletushälytys"
 
+#: ../src/main.c:198
+msgid "This should not happen"
+msgstr "Näin ei pitäisi tapahtua"
+
+#: ../src/main.c:486
+msgid "Cannot create MCS client channel"
+msgstr "MCS-kanavan luonti epäonnistui"
+
 #: ../src/mainbox.c:366
 msgid "Open archive file..."
 msgstr "Valitse tiedosto..."
@@ -2078,14 +2095,6 @@ msgstr "_Valitse tämä päivä"
 #: ../src/mainbox.c:404
 msgid "_Help"
 msgstr "_Ohje"
-
-#: ../src/main.c:198
-msgid "This should not happen"
-msgstr "Näin ei pitäisi tapahtua"
-
-#: ../src/main.c:486
-msgid "Cannot create MCS client channel"
-msgstr "MCS-kanavan luonti epäonnistui"
 
 #: ../src/reminder.c:174
 msgid "Reminder "

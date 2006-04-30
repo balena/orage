@@ -9,13 +9,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.3.90.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-04-27 17:42+0300\n"
+"POT-Creation-Date: 2006-04-30 17:24+0900\n"
 "PO-Revision-Date: 2006-01-17 16:11+0800\n"
 "Last-Translator: Hydonsingore Cia <hydonsingore@mail.educities.edu.tw>\n"
 "Language-Team: Chinese (traditional) <zh-l10n@linux.org.tw>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: ../panel-plugin/oc_config.c:91
+#, fuzzy
+msgid "Select timezone"
+msgstr "選擇時區"
 
 #: ../panel-plugin/oc_config.c:163
 msgid "Appearance"
@@ -50,6 +55,10 @@ msgstr ""
 msgid "show line _1:"
 msgstr ""
 
+#: ../panel-plugin/oc_config.c:265
+msgid "Enter any valid strftime function parameter."
+msgstr ""
+
 #: ../panel-plugin/oc_config.c:284
 msgid "show line _2:"
 msgstr ""
@@ -79,7 +88,7 @@ msgstr ""
 msgid "Orage clock"
 msgstr "Orage"
 
-#. Use format characters from strftime(3)
+#. TRANSLATORS: Use format characters from strftime(3)
 #. * to get the proper string for your locale.
 #. * I used these:
 #. * %A  : full weekday name
@@ -2038,6 +2047,14 @@ msgstr ""
 msgid "Orage default alarm"
 msgstr "Orage 預設提醒"
 
+#: ../src/main.c:198
+msgid "This should not happen"
+msgstr "不應發生此種情況"
+
+#: ../src/main.c:486
+msgid "Cannot create MCS client channel"
+msgstr "無法建立 MCS 客戶端通道"
+
 #: ../src/mainbox.c:366
 msgid "Open archive file..."
 msgstr "開啟封存檔案..."
@@ -2063,14 +2080,6 @@ msgstr "選擇今天日期(_T)"
 #: ../src/mainbox.c:404
 msgid "_Help"
 msgstr "說明(_H)"
-
-#: ../src/main.c:198
-msgid "This should not happen"
-msgstr "不應發生此種情況"
-
-#: ../src/main.c:486
-msgid "Cannot create MCS client channel"
-msgstr "無法建立 MCS 客戶端通道"
 
 #: ../src/reminder.c:174
 msgid "Reminder "

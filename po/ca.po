@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.3.90.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-04-27 17:42+0300\n"
+"POT-Creation-Date: 2006-04-30 17:24+0900\n"
 "PO-Revision-Date: 2006-03-19 17:35+0100\n"
 "Last-Translator: Pau Rul·lan Ferragut <paurullan@bulma.net>\n"
 "Language-Team: Catalan\n"
@@ -17,6 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.2\n"
+
+#: ../panel-plugin/oc_config.c:91
+#, fuzzy
+msgid "Select timezone"
+msgstr "Seleccioneu fus horari"
 
 #: ../panel-plugin/oc_config.c:163
 msgid "Appearance"
@@ -51,6 +56,10 @@ msgstr ""
 msgid "show line _1:"
 msgstr ""
 
+#: ../panel-plugin/oc_config.c:265
+msgid "Enter any valid strftime function parameter."
+msgstr ""
+
 #: ../panel-plugin/oc_config.c:284
 msgid "show line _2:"
 msgstr ""
@@ -81,7 +90,7 @@ msgstr "Europa/París"
 msgid "Orage clock"
 msgstr "Orage"
 
-#. Use format characters from strftime(3)
+#. TRANSLATORS: Use format characters from strftime(3)
 #. * to get the proper string for your locale.
 #. * I used these:
 #. * %A  : full weekday name
@@ -2422,6 +2431,14 @@ msgstr "Pacífic/Yap"
 msgid "Orage default alarm"
 msgstr "Alarma per omisió d'Orage"
 
+#: ../src/main.c:198
+msgid "This should not happen"
+msgstr "Això no hauria de succeir"
+
+#: ../src/main.c:486
+msgid "Cannot create MCS client channel"
+msgstr "No s'ha pogut crear el client per MCS"
+
 #: ../src/mainbox.c:366
 msgid "Open archive file..."
 msgstr "Obre fitxer..."
@@ -2447,14 +2464,6 @@ msgstr "Seleccione_u avui"
 #: ../src/mainbox.c:404
 msgid "_Help"
 msgstr "A_juda"
-
-#: ../src/main.c:198
-msgid "This should not happen"
-msgstr "Això no hauria de succeir"
-
-#: ../src/main.c:486
-msgid "Cannot create MCS client channel"
-msgstr "No s'ha pogut crear el client per MCS"
 
 #: ../src/reminder.c:174
 msgid "Reminder "

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.3.90.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-04-27 17:42+0300\n"
+"POT-Creation-Date: 2006-04-30 17:24+0900\n"
 "PO-Revision-Date: 2006-03-15 23:07+0100\n"
 "Last-Translator: Sylvain Vedrenne <gnu_sylvain@xfce.org>\n"
 "Language-Team: Esperanto <translation-team-eo@lists.sourceforge.net>\n"
@@ -15,6 +15,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../panel-plugin/oc_config.c:91
+#, fuzzy
+msgid "Select timezone"
+msgstr "Elektu tempzonon"
 
 #: ../panel-plugin/oc_config.c:163
 msgid "Appearance"
@@ -49,6 +54,10 @@ msgstr ""
 msgid "show line _1:"
 msgstr ""
 
+#: ../panel-plugin/oc_config.c:265
+msgid "Enter any valid strftime function parameter."
+msgstr ""
+
 #: ../panel-plugin/oc_config.c:284
 msgid "show line _2:"
 msgstr ""
@@ -79,7 +88,7 @@ msgstr "Eŭropo/Parizo"
 msgid "Orage clock"
 msgstr "Oraĝo"
 
-#. Use format characters from strftime(3)
+#. TRANSLATORS: Use format characters from strftime(3)
 #. * to get the proper string for your locale.
 #. * I used these:
 #. * %A  : full weekday name
@@ -2041,6 +2050,14 @@ msgstr "Pacifika/Yap"
 msgid "Orage default alarm"
 msgstr "Kalendara antaŭsupoza alarmo"
 
+#: ../src/main.c:198
+msgid "This should not happen"
+msgstr "Tio ne devus okazi"
+
+#: ../src/main.c:486
+msgid "Cannot create MCS client channel"
+msgstr "Ne povas krei MCS-an klientan kanalon"
+
 #: ../src/mainbox.c:366
 msgid "Open archive file..."
 msgstr "Malfermu arkivan dosieron..."
@@ -2066,14 +2083,6 @@ msgstr "Elektu _Hodiaŭ"
 #: ../src/mainbox.c:404
 msgid "_Help"
 msgstr "_Helpo"
-
-#: ../src/main.c:198
-msgid "This should not happen"
-msgstr "Tio ne devus okazi"
-
-#: ../src/main.c:486
-msgid "Cannot create MCS client channel"
-msgstr "Ne povas krei MCS-an klientan kanalon"
 
 #: ../src/reminder.c:174
 msgid "Reminder "

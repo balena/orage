@@ -7,13 +7,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.3.90.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-04-27 17:42+0300\n"
+"POT-Creation-Date: 2006-04-30 17:24+0900\n"
 "PO-Revision-Date: 2005-09-14 01:51+0900\n"
 "Last-Translator: Mickal Graf <korbinus@linux.se>\n"
 "Language-Team: French <traduc@traduc.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: ../panel-plugin/oc_config.c:91
+msgid "Select timezone"
+msgstr ""
 
 #: ../panel-plugin/oc_config.c:163
 msgid "Appearance"
@@ -47,6 +51,10 @@ msgstr ""
 msgid "show line _1:"
 msgstr ""
 
+#: ../panel-plugin/oc_config.c:265
+msgid "Enter any valid strftime function parameter."
+msgstr ""
+
 #: ../panel-plugin/oc_config.c:284
 msgid "show line _2:"
 msgstr ""
@@ -75,7 +83,7 @@ msgstr ""
 msgid "Orage clock"
 msgstr ""
 
-#. Use format characters from strftime(3)
+#. TRANSLATORS: Use format characters from strftime(3)
 #. * to get the proper string for your locale.
 #. * I used these:
 #. * %A  : full weekday name
@@ -2045,6 +2053,14 @@ msgstr ""
 msgid "Orage default alarm"
 msgstr ""
 
+#: ../src/main.c:198
+msgid "This should not happen"
+msgstr "Cela ne devrait pas arriver."
+
+#: ../src/main.c:486
+msgid "Cannot create MCS client channel"
+msgstr "Impossible de créer un canal client MCS"
+
 #: ../src/mainbox.c:366
 msgid "Open archive file..."
 msgstr ""
@@ -2070,14 +2086,6 @@ msgstr "Selectionner _Aujourd'hui"
 #: ../src/mainbox.c:404
 msgid "_Help"
 msgstr "_Aide"
-
-#: ../src/main.c:198
-msgid "This should not happen"
-msgstr "Cela ne devrait pas arriver."
-
-#: ../src/main.c:486
-msgid "Cannot create MCS client channel"
-msgstr "Impossible de créer un canal client MCS"
 
 #: ../src/reminder.c:174
 #, fuzzy

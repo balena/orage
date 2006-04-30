@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.3.90.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-04-27 17:42+0300\n"
+"POT-Creation-Date: 2006-04-30 17:24+0900\n"
 "PO-Revision-Date: 2006-04-23 12:20+0600\n"
 "Last-Translator: Andrey Fedoseev <andrey.fedoseev@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -18,6 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: ../panel-plugin/oc_config.c:91
+#, fuzzy
+msgid "Select timezone"
+msgstr "Выбор часового пояса"
 
 #: ../panel-plugin/oc_config.c:163
 msgid "Appearance"
@@ -52,6 +57,10 @@ msgstr ""
 msgid "show line _1:"
 msgstr ""
 
+#: ../panel-plugin/oc_config.c:265
+msgid "Enter any valid strftime function parameter."
+msgstr ""
+
 #: ../panel-plugin/oc_config.c:284
 msgid "show line _2:"
 msgstr ""
@@ -82,7 +91,7 @@ msgstr "Европа/Париж"
 msgid "Orage clock"
 msgstr "Календарь"
 
-#. Use format characters from strftime(3)
+#. TRANSLATORS: Use format characters from strftime(3)
 #. * to get the proper string for your locale.
 #. * I used these:
 #. * %A  : full weekday name
@@ -2043,6 +2052,14 @@ msgstr ""
 msgid "Orage default alarm"
 msgstr "Сигнал по умолчанию"
 
+#: ../src/main.c:198
+msgid "This should not happen"
+msgstr "Этого не должно происходить"
+
+#: ../src/main.c:486
+msgid "Cannot create MCS client channel"
+msgstr "Невозможно создать канал клиента настроек"
+
 #: ../src/mainbox.c:366
 msgid "Open archive file..."
 msgstr "Открыть файл архива..."
@@ -2068,14 +2085,6 @@ msgstr "Перейти к сегодняшнему дню"
 #: ../src/mainbox.c:404
 msgid "_Help"
 msgstr "_Справка"
-
-#: ../src/main.c:198
-msgid "This should not happen"
-msgstr "Этого не должно происходить"
-
-#: ../src/main.c:486
-msgid "Cannot create MCS client channel"
-msgstr "Невозможно создать канал клиента настроек"
 
 #: ../src/reminder.c:174
 msgid "Reminder "
