@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: orage 4.3.90.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-04-30 17:24+0900\n"
-"PO-Revision-Date: 2006-04-29 22:26+0900\n"
+"PO-Revision-Date: 2006-04-30 17:44+0900\n"
 "Last-Translator: Daichi Kawahata <daichi@xfce.org>\n"
 "Language-Team: Japanese <xfce-users-jp@ml.fdiary.net>\n"
 "MIME-Version: 1.0\n"
@@ -19,9 +19,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../panel-plugin/oc_config.c:91
-#, fuzzy
 msgid "Select timezone"
-msgstr "等時帯を選択して下さい"
+msgstr "等時帯を選択してください"
 
 #: ../panel-plugin/oc_config.c:163
 msgid "Appearance"
@@ -50,22 +49,23 @@ msgstr "等時帯:"
 #: ../panel-plugin/oc_config.c:241
 msgid "Set any valid timezone (=TZ) value or pick one from the list."
 msgstr ""
+"いずれか有効な等時帯 (TZ) を設定するか、このリストから一つ選んでください。"
 
 #: ../panel-plugin/oc_config.c:254
 msgid "show line _1:"
-msgstr ""
+msgstr "1行表示(_1):"
 
 #: ../panel-plugin/oc_config.c:265
 msgid "Enter any valid strftime function parameter."
-msgstr ""
+msgstr "関数 strftime(3) の有効なパラメーターを入力してください。"
 
 #: ../panel-plugin/oc_config.c:284
 msgid "show line _2:"
-msgstr ""
+msgstr "2行表示(_2):"
 
 #: ../panel-plugin/oc_config.c:309
 msgid "show line _3:"
-msgstr ""
+msgstr "3行表示(_3):"
 
 #: ../panel-plugin/oc_config.c:338
 msgid ""
@@ -78,6 +78,14 @@ msgid ""
 "\t%H = hours \t\t\t\t%M = minute\n"
 "\t%X = local time\t\t\t%x = local date"
 msgstr ""
+"このプログラムは時間を取得するのに関数 strftime(3) を利用します。\n"
+"有効なコードを使用すれば、お好きな表示方式で時間を表示できます。\n"
+"以下に、一般的なコードの一部を掲載します:\n"
+"\t%A = 曜日\t\t\t\t%B = 月\n"
+"\t%c = 日付と時間\t\t\t%R = 時間と分\n"
+"\t%V = 年頭からの経過週\t%Z = 現在の等時帯\n"
+"\t%H = 時間\t\t\t\t%M = 分\n"
+"\t%X = 現地の時間\t\t\t%x = 現地の日付"
 
 #: ../panel-plugin/oc_config.c:357
 msgid "Properties"
@@ -87,6 +95,7 @@ msgstr "プロパティ"
 msgid "Orage clock"
 msgstr "Orage クロック"
 
+# FIXME: On IRIX, it makes sense at least
 #. TRANSLATORS: Use format characters from strftime(3)
 #. * to get the proper string for your locale.
 #. * I used these:
@@ -98,14 +107,14 @@ msgstr "Orage クロック"
 #.
 #: ../panel-plugin/orageclock.c:61
 msgid "%A %d %B %Y/%V"
-msgstr "%Y %B %d (%A) %V"
+msgstr "%Y年 %B%d日%A (%V週目)"
 
 #. to avoid timing problems when updating entry
 #. Create file chooser
 #: ../plugin/xfcalendar_plugin.c:253 ../plugin/xfcalendar_plugin.c:310
 #: ../src/appointment.c:280 ../src/mainbox.c:111
 msgid "Select a file..."
-msgstr "ファイルを選択して下さい..."
+msgstr "ファイルを選択してください..."
 
 #: ../plugin/xfcalendar_plugin.c:261 ../src/mainbox.c:119
 msgid "Calendar files"
@@ -119,12 +128,12 @@ msgstr "全てのファイル"
 #: ../plugin/xfcalendar_plugin.c:408 ../plugin/xfcalendar_plugin.c:413
 #: ../src/appointment.c:811 ../src/appointment.c:816 ../src/appointment.c:1304
 msgid "Location"
-msgstr "所在地"
+msgstr "現在地"
 
 #. show it
 #: ../plugin/xfcalendar_plugin.c:419
 msgid "Pick local timezone"
-msgstr "等時帯を選択して下さい"
+msgstr "等時帯を選択してください"
 
 #: ../plugin/xfcalendar_plugin.c:422 ../plugin/xfcalendar_plugin.c:450
 #: ../src/appointment.c:825 ../src/appointment.c:853
@@ -178,7 +187,7 @@ msgstr "システムトレイに表示する"
 #.
 #: ../plugin/xfcalendar_plugin.c:580
 msgid "Calendar start"
-msgstr "カレンダーウィンドウの起動"
+msgstr "起動時の振る舞い"
 
 #: ../plugin/xfcalendar_plugin.c:585
 msgid "Show"
@@ -297,7 +306,7 @@ msgstr "今日"
 #. show it
 #: ../src/appointment.c:822
 msgid "Pick timezone"
-msgstr "等時帯を選択して下さい"
+msgstr "等時帯を選択してください"
 
 #: ../src/appointment.c:1085
 msgid "New appointment - Orage"
@@ -512,6 +521,18 @@ msgid ""
 "\t\t D=Daily W=Weekly M=Monthly Y=Yearly\n"
 "\t 3. Type: f=free B=Busy"
 msgstr ""
+"編集するには行をダブルクリックしてください。\n"
+"\n"
+"並んでいるフラッグは:\n"
+"\t1. アラーム: n=アラーム無し\n"
+"\t\t\t\t A=アラームを視覚的に表示\n"
+"\t\t\t\t S=アラームにサウンドも追加\n"
+"\t2. 繰り返し: n=無し\n"
+"\t\t\t\t D=毎日\n"
+"\t\t\t\t W=毎週\n"
+"\t\t\t\t M=毎月\n"
+"\t\t\t\t Y=毎年\n"
+"\t3. 種類:     f=用事無し B=用事有り"
 
 #: ../src/ical-code.c:98
 msgid "Africa"
@@ -2101,7 +2122,7 @@ msgstr "Orage クロック"
 
 #: ../panel-plugin/orageclock.desktop.in.in.h:2
 msgid "What time and date is it?"
-msgstr ""
+msgstr "今の時間と日付は？"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:1
 msgid "Calendar Settings"
