@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: orage 4.3.90.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-04-30 17:24+0900\n"
-"PO-Revision-Date: 2006-04-23 12:20+0600\n"
+"PO-Revision-Date: 2006-05-01 18:11+0600\n"
 "Last-Translator: Andrey Fedoseev <andrey.fedoseev@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -20,54 +20,52 @@ msgstr ""
 "10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: ../panel-plugin/oc_config.c:91
-#, fuzzy
 msgid "Select timezone"
 msgstr "Выбор часового пояса"
 
 #: ../panel-plugin/oc_config.c:163
 msgid "Appearance"
-msgstr ""
+msgstr "Внешний вид"
 
 #: ../panel-plugin/oc_config.c:170
 msgid "Show _frame"
-msgstr ""
+msgstr "Показывать _рамку"
 
 #: ../panel-plugin/oc_config.c:183
 msgid "set foreground _color:"
-msgstr ""
+msgstr "цвет _шрифта:"
 
 #: ../panel-plugin/oc_config.c:200
 msgid "set _background color:"
-msgstr ""
+msgstr "цвет _фона:"
 
 #: ../panel-plugin/oc_config.c:221
 msgid "Clock Options"
-msgstr ""
+msgstr "Параметры часов"
 
 #: ../panel-plugin/oc_config.c:232
-#, fuzzy
 msgid "set timezone to:"
-msgstr "Выбор часового пояса"
+msgstr "часовой пояс:"
 
 #: ../panel-plugin/oc_config.c:241
 msgid "Set any valid timezone (=TZ) value or pick one from the list."
-msgstr ""
+msgstr "Укажите часовой пояс (=TZ) или выберите его из списка."
 
 #: ../panel-plugin/oc_config.c:254
 msgid "show line _1:"
-msgstr ""
+msgstr "строка _1:"
 
 #: ../panel-plugin/oc_config.c:265
 msgid "Enter any valid strftime function parameter."
-msgstr ""
+msgstr "Укажите параметр для функции stftime."
 
 #: ../panel-plugin/oc_config.c:284
 msgid "show line _2:"
-msgstr ""
+msgstr "строка _2:"
 
 #: ../panel-plugin/oc_config.c:309
 msgid "show line _3:"
-msgstr ""
+msgstr "строка _3:"
 
 #: ../panel-plugin/oc_config.c:338
 msgid ""
@@ -80,16 +78,23 @@ msgid ""
 "\t%H = hours \t\t\t\t%M = minute\n"
 "\t%X = local time\t\t\t%x = local date"
 msgstr ""
+"Эта программа использует функцию strftime для\n"
+"отображения времени. Вы можете указать формат,\n"
+"в котором будет отображено время и дата.\n"
+"Часто используемые параметры:\n"
+"\t%A = день недели\t\t\t%B = месяц\n"
+"\t%c = дата и время\t\t%R = часы и минуты\n"
+"\t%V = номер недели\t\t%Z = часовой пояс\n"
+"\t%H = часы\t\t\t\t\t%M = минуты\n"
+"\t%X = местное время\t\t%x = местная дата"
 
 #: ../panel-plugin/oc_config.c:357
-#, fuzzy
 msgid "Properties"
-msgstr "Европа/Париж"
+msgstr "Параметры"
 
 #: ../panel-plugin/oc_config.c:372
-#, fuzzy
 msgid "Orage clock"
-msgstr "Календарь"
+msgstr "Часы с датой"
 
 #. TRANSLATORS: Use format characters from strftime(3)
 #. * to get the proper string for your locale.
@@ -102,7 +107,7 @@ msgstr "Календарь"
 #.
 #: ../panel-plugin/orageclock.c:61
 msgid "%A %d %B %Y/%V"
-msgstr ""
+msgstr "%A, %d %b, %Y"
 
 #. to avoid timing problems when updating entry
 #. Create file chooser
@@ -186,7 +191,7 @@ msgstr "Запуск календаря"
 
 #: ../plugin/xfcalendar_plugin.c:585
 msgid "Show"
-msgstr "Отображен"
+msgstr "Отображён"
 
 #: ../plugin/xfcalendar_plugin.c:591
 msgid "Hide"
@@ -194,7 +199,7 @@ msgstr "Скрыт"
 
 #: ../plugin/xfcalendar_plugin.c:597
 msgid "Minimized"
-msgstr "Свернут"
+msgstr "Свёрнут"
 
 #: ../plugin/xfcalendar_plugin.c:605
 msgid "Archives"
@@ -284,7 +289,7 @@ msgstr "Вы хотите продолжить?"
 
 #: ../src/appointment.c:372
 msgid "The end of this appointment is earlier than the beginning."
-msgstr "Окончание встречи назначено на более раннее время, чем ее начало."
+msgstr "Окончание встречи назначено на более раннее время, чем её начало."
 
 #: ../src/appointment.c:609
 msgid "This appointment will be permanently removed."
@@ -455,7 +460,7 @@ msgid ""
 "You will remove all information \n"
 "associated with this date."
 msgstr ""
-"Вся информация, связанная с этой датой, \n"
+"Вся информация, связанная с этой датой,\n"
 "будет удалена."
 
 #. View menu
@@ -558,7 +563,7 @@ msgstr "Африка/Бисау"
 
 #: ../src/ical-code.c:108
 msgid "Africa/Blantyre"
-msgstr ""
+msgstr "Африка/Блантир"
 
 #: ../src/ical-code.c:109
 msgid "Africa/Brazzaville"
@@ -582,7 +587,7 @@ msgstr "Африка/Конакри"
 
 #: ../src/ical-code.c:114
 msgid "Africa/Conakry"
-msgstr ""
+msgstr "Африка/Конакри"
 
 #: ../src/ical-code.c:115
 msgid "Africa/Dakar"
@@ -590,7 +595,7 @@ msgstr "Африка/Дакар"
 
 #: ../src/ical-code.c:116
 msgid "Africa/Dar_es_Salaam"
-msgstr ""
+msgstr "Африка/Дар-эс-Салам"
 
 #: ../src/ical-code.c:117
 msgid "Africa/Djibouti"
@@ -598,7 +603,7 @@ msgstr "Африка/Джибути"
 
 #: ../src/ical-code.c:118
 msgid "Africa/Douala"
-msgstr ""
+msgstr "Африка/Дуала"
 
 #: ../src/ical-code.c:119
 msgid "Africa/El_Aaiun"
@@ -654,7 +659,7 @@ msgstr "Африка/Луанда"
 
 #: ../src/ical-code.c:132
 msgid "Africa/Lubumbashi"
-msgstr ""
+msgstr "Африка/Лубумбаши"
 
 #: ../src/ical-code.c:133
 msgid "Africa/Lusaka"
@@ -710,7 +715,7 @@ msgstr "Африка/Порто-Ново"
 
 #: ../src/ical-code.c:146
 msgid "Africa/Sao_Tome"
-msgstr ""
+msgstr "Африка/Сао Томе"
 
 #: ../src/ical-code.c:147
 msgid "Africa/Timbuktu"
@@ -734,7 +739,7 @@ msgstr "Америка"
 
 #: ../src/ical-code.c:152
 msgid "America/Adak"
-msgstr ""
+msgstr "Америка/Адак"
 
 #: ../src/ical-code.c:153
 msgid "America/Anchorage"
@@ -742,7 +747,7 @@ msgstr "Америка/Анкоридж"
 
 #: ../src/ical-code.c:154
 msgid "America/Anguilla"
-msgstr ""
+msgstr "Америка/Ангилья"
 
 #: ../src/ical-code.c:155
 msgid "America/Antigua"
@@ -782,7 +787,7 @@ msgstr "Америка/Богота"
 
 #: ../src/ical-code.c:164
 msgid "America/Boise"
-msgstr ""
+msgstr "Америка/Бойсе"
 
 #: ../src/ical-code.c:165
 msgid "America/Buenos_Aires"
@@ -790,11 +795,11 @@ msgstr "Америка/Буэнос-Айрес"
 
 #: ../src/ical-code.c:166
 msgid "America/Cambridge_Bay"
-msgstr ""
+msgstr "Америка/Камбридж-Бей"
 
 #: ../src/ical-code.c:167
 msgid "America/Cancun"
-msgstr ""
+msgstr "Америка/Канкун"
 
 #: ../src/ical-code.c:168
 msgid "America/Caracas"
@@ -802,15 +807,15 @@ msgstr "Америка/Каракас"
 
 #: ../src/ical-code.c:169
 msgid "America/Catamarca"
-msgstr ""
+msgstr "Америка/Катамарка"
 
 #: ../src/ical-code.c:170
 msgid "America/Cayenne"
-msgstr ""
+msgstr "Америка/Кайенн"
 
 #: ../src/ical-code.c:171
 msgid "America/Cayman"
-msgstr ""
+msgstr "Америка/Кайманы"
 
 #: ../src/ical-code.c:172
 msgid "America/Chicago"
@@ -822,7 +827,7 @@ msgstr "Америка/Чихуахуа"
 
 #: ../src/ical-code.c:174
 msgid "America/Cordoba"
-msgstr ""
+msgstr "Америка/Кордоба"
 
 #: ../src/ical-code.c:175
 msgid "America/Costa_Rica"
@@ -842,7 +847,7 @@ msgstr "Америка/Доусон"
 
 #: ../src/ical-code.c:179
 msgid "America/Dawson_Creek"
-msgstr ""
+msgstr "Америка/Бухта Доусона"
 
 #: ../src/ical-code.c:180
 msgid "America/Denver"
@@ -858,15 +863,15 @@ msgstr "Америка/Доминика"
 
 #: ../src/ical-code.c:183
 msgid "America/Edmonton"
-msgstr ""
+msgstr "Америка/Эдмонтон"
 
 #: ../src/ical-code.c:184
 msgid "America/Eirunepe"
-msgstr ""
+msgstr "Америка/Эйрунепе"
 
 #: ../src/ical-code.c:185
 msgid "America/El_Salvador"
-msgstr ""
+msgstr "Америка/Сальвадор"
 
 #: ../src/ical-code.c:186
 msgid "America/Fortaleza"
@@ -874,15 +879,15 @@ msgstr "Америка/Форталеза"
 
 #: ../src/ical-code.c:187
 msgid "America/Glace_Bay"
-msgstr ""
+msgstr "Америка/Глейс-Бей"
 
 #: ../src/ical-code.c:188
 msgid "America/Godthab"
-msgstr ""
+msgstr "Америка/Готхоб"
 
 #: ../src/ical-code.c:189
 msgid "America/Goose_Bay"
-msgstr ""
+msgstr "Америка/Гуз-Бей"
 
 #: ../src/ical-code.c:190
 msgid "America/Grand_Turk"
@@ -902,7 +907,7 @@ msgstr "Америка/Гватемала"
 
 #: ../src/ical-code.c:194
 msgid "America/Guayaquil"
-msgstr ""
+msgstr "Америка/Гуаякиль"
 
 #: ../src/ical-code.c:195
 msgid "America/Guyana"
@@ -910,7 +915,7 @@ msgstr "Америка/Гайана"
 
 #: ../src/ical-code.c:196
 msgid "America/Halifax"
-msgstr ""
+msgstr "Америка/Галифакс"
 
 #: ../src/ical-code.c:197
 msgid "America/Havana"
@@ -918,7 +923,7 @@ msgstr "Америка/Гавана"
 
 #: ../src/ical-code.c:198
 msgid "America/Hermosillo"
-msgstr ""
+msgstr "Америка/Эрмосильо"
 
 #: ../src/ical-code.c:199
 msgid "America/Indiana/Indianapolis"
@@ -926,11 +931,11 @@ msgstr "Америка/Индиана/Индианполис"
 
 #: ../src/ical-code.c:200
 msgid "America/Indiana/Knox"
-msgstr ""
+msgstr "Америка/Индиана/Нокс"
 
 #: ../src/ical-code.c:201
 msgid "America/Indiana/Marengo"
-msgstr ""
+msgstr "Америка/Индиана/Маренго"
 
 #: ../src/ical-code.c:202
 msgid "America/Indiana/Vevay"
@@ -942,11 +947,11 @@ msgstr "Америка/Индианаполис"
 
 #: ../src/ical-code.c:204
 msgid "America/Inuvik"
-msgstr ""
+msgstr "Амеркиа/Инувик"
 
 #: ../src/ical-code.c:205
 msgid "America/Iqaluit"
-msgstr ""
+msgstr "Америка/Иквалюит"
 
 #: ../src/ical-code.c:206
 msgid "America/Jamaica"
@@ -954,7 +959,7 @@ msgstr "Америка/Ямайка"
 
 #: ../src/ical-code.c:207
 msgid "America/Jujuy"
-msgstr ""
+msgstr "Америка/Жужуй"
 
 #: ../src/ical-code.c:208
 msgid "America/Juneau"
@@ -962,11 +967,11 @@ msgstr "Америка/Джуно"
 
 #: ../src/ical-code.c:209
 msgid "America/Kentucky/Louisville"
-msgstr ""
+msgstr "Америка/Кентуки/Луисвиль"
 
 #: ../src/ical-code.c:210
 msgid "America/Kentucky/Monticello"
-msgstr ""
+msgstr "Америка/Кентуки/Монтичелло"
 
 #: ../src/ical-code.c:211
 msgid "America/La_Paz"
@@ -982,7 +987,7 @@ msgstr "Америка/Лос-Анджелес"
 
 #: ../src/ical-code.c:214
 msgid "America/Louisville"
-msgstr ""
+msgstr "Америка/Луисвиль"
 
 #: ../src/ical-code.c:215
 msgid "America/Maceio"
@@ -1002,7 +1007,7 @@ msgstr "Америка/Мартиника"
 
 #: ../src/ical-code.c:219
 msgid "America/Mazatlan"
-msgstr ""
+msgstr "Америка/Мазатлан"
 
 #: ../src/ical-code.c:220
 msgid "America/Mendoza"
@@ -1010,7 +1015,7 @@ msgstr "Америка/Мендоза"
 
 #: ../src/ical-code.c:221
 msgid "America/Menominee"
-msgstr ""
+msgstr "Амеркиа/Меномини"
 
 #: ../src/ical-code.c:222
 msgid "America/Merida"
@@ -1022,11 +1027,11 @@ msgstr "Америка/Мехико"
 
 #: ../src/ical-code.c:224
 msgid "America/Miquelon"
-msgstr ""
+msgstr "Америка/Миквелон"
 
 #: ../src/ical-code.c:225
 msgid "America/Monterrey"
-msgstr ""
+msgstr "Америка/Монтеррей"
 
 #: ../src/ical-code.c:226
 msgid "America/Montevideo"
@@ -1038,7 +1043,7 @@ msgstr "Америка/Монреаль"
 
 #: ../src/ical-code.c:228
 msgid "America/Montserrat"
-msgstr ""
+msgstr "Америка/Монтсеррат"
 
 #: ../src/ical-code.c:229
 msgid "America/Nassau"
@@ -1050,7 +1055,7 @@ msgstr "Америка/Нью-Йорк"
 
 #: ../src/ical-code.c:231
 msgid "America/Nipigon"
-msgstr ""
+msgstr "Америка/Нипигон"
 
 #: ../src/ical-code.c:232
 msgid "America/Nome"
@@ -1058,7 +1063,7 @@ msgstr "Америка/Ном"
 
 #: ../src/ical-code.c:233
 msgid "America/Noronha"
-msgstr ""
+msgstr "Америка/Норона"
 
 #: ../src/ical-code.c:234
 msgid "America/Panama"
@@ -2079,7 +2084,7 @@ msgstr "Просмотреть выбранную _дату"
 
 #: ../src/mainbox.c:400
 msgid "Select _Today"
-msgstr "Перейти к сегодняшнему дню"
+msgstr "Перейти к _сегодняшнему дню"
 
 #. Help menu
 #: ../src/mainbox.c:404
@@ -2099,13 +2104,12 @@ msgid "About Orage"
 msgstr "О программе"
 
 #: ../panel-plugin/orageclock.desktop.in.in.h:1
-#, fuzzy
 msgid "Orage Clock"
-msgstr "Календарь"
+msgstr "Часы с датой"
 
 #: ../panel-plugin/orageclock.desktop.in.in.h:2
 msgid "What time and date is it?"
-msgstr ""
+msgstr "Который час? Какое число?"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:1
 msgid "Calendar Settings"
