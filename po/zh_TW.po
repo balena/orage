@@ -4,68 +4,67 @@
 # umm <umm@pchome.com.tw>, 2003.
 # Ambrose Li <acli@ada.dhs.org>, 2004.
 # Hydonsingore Cia <hydonsingore@mail.educities.edu.tw>, 2005.
+# Cosmo Chene <cosmolax@gmail.com>, 2006
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.3.90.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-04-30 17:24+0900\n"
-"PO-Revision-Date: 2006-01-17 16:11+0800\n"
-"Last-Translator: Hydonsingore Cia <hydonsingore@mail.educities.edu.tw>\n"
+"PO-Revision-Date: 2006-05-02 16:25+0800\n"
+"Last-Translator: Cosmo Chene <cosmolax@gmail.com>\n"
 "Language-Team: Chinese (traditional) <zh-l10n@linux.org.tw>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../panel-plugin/oc_config.c:91
-#, fuzzy
 msgid "Select timezone"
 msgstr "選擇時區"
 
 #: ../panel-plugin/oc_config.c:163
 msgid "Appearance"
-msgstr ""
+msgstr "功能設定"
 
 #: ../panel-plugin/oc_config.c:170
 msgid "Show _frame"
-msgstr ""
+msgstr "顯示框格(_F)"
 
 #: ../panel-plugin/oc_config.c:183
 msgid "set foreground _color:"
-msgstr ""
+msgstr "設定前景顏色(_C):"
 
 #: ../panel-plugin/oc_config.c:200
 msgid "set _background color:"
-msgstr ""
+msgstr "設定背景顏色(_B):"
 
 #: ../panel-plugin/oc_config.c:221
 msgid "Clock Options"
-msgstr ""
+msgstr "時鐘選項"
 
 #: ../panel-plugin/oc_config.c:232
-#, fuzzy
 msgid "set timezone to:"
-msgstr "選擇時區"
+msgstr "設定時區為:"
 
 #: ../panel-plugin/oc_config.c:241
 msgid "Set any valid timezone (=TZ) value or pick one from the list."
-msgstr ""
+msgstr "設定任一可用的 時區值 (=TZ) 或請從清單中自行挑選。"
 
 #: ../panel-plugin/oc_config.c:254
 msgid "show line _1:"
-msgstr ""
+msgstr "顯示行數(_1):"
 
 #: ../panel-plugin/oc_config.c:265
 msgid "Enter any valid strftime function parameter."
-msgstr ""
+msgstr "請輸入任一可用的·strftime·函數參數"
 
 #: ../panel-plugin/oc_config.c:284
 msgid "show line _2:"
-msgstr ""
+msgstr "顯示行數(_2):"
 
 #: ../panel-plugin/oc_config.c:309
 msgid "show line _3:"
-msgstr ""
+msgstr "顯示行數(_3):"
 
 #: ../panel-plugin/oc_config.c:338
 msgid ""
@@ -78,15 +77,22 @@ msgid ""
 "\t%H = hours \t\t\t\t%M = minute\n"
 "\t%X = local time\t\t\t%x = local date"
 msgstr ""
+"本程式使用 strftime 函數來獲知時間。\n"
+"您可以使用可用的取數來調整成您習慣的時間格式。\n"
+"底下是一般常用的取數:\n"
+"\t%A = 星期幾\t\t\t%B = 月份\n"
+"\t%c = 日期與時間\t\t%R = 小時及分鐘\n"
+"\t%V = 第幾週\t\t%Z = 使用的時區\n"
+"\t%H = 小時 \t\t\t\t%M = 分鐘\n"
+"\t%X = 本地時間\t\t\t%x = 本地日期"
 
 #: ../panel-plugin/oc_config.c:357
 msgid "Properties"
-msgstr ""
+msgstr "內容"
 
 #: ../panel-plugin/oc_config.c:372
-#, fuzzy
 msgid "Orage clock"
-msgstr "Orage"
+msgstr "Orage 時鐘"
 
 #. TRANSLATORS: Use format characters from strftime(3)
 #. * to get the proper string for your locale.
@@ -99,7 +105,7 @@ msgstr "Orage"
 #.
 #: ../panel-plugin/orageclock.c:61
 msgid "%A %d %B %Y/%V"
-msgstr ""
+msgstr "%Y %B %d %A/%V"
 
 #. to avoid timing problems when updating entry
 #. Create file chooser
@@ -110,7 +116,7 @@ msgstr "選擇一個檔案..."
 
 #: ../plugin/xfcalendar_plugin.c:261 ../src/mainbox.c:119
 msgid "Calendar files"
-msgstr "月曆檔案"
+msgstr "日曆檔案"
 
 #: ../plugin/xfcalendar_plugin.c:265 ../src/appointment.c:294
 #: ../src/mainbox.c:123
@@ -120,7 +126,7 @@ msgstr "所有檔案"
 #: ../plugin/xfcalendar_plugin.c:408 ../plugin/xfcalendar_plugin.c:413
 #: ../src/appointment.c:811 ../src/appointment.c:816 ../src/appointment.c:1304
 msgid "Location"
-msgstr "地點"
+msgstr "區域"
 
 #. show it
 #: ../plugin/xfcalendar_plugin.c:419
@@ -237,7 +243,7 @@ msgstr "時區"
 #. the button label in the xfce-mcs-manager dialog
 #: ../plugin/xfcalendar_plugin.c:789
 msgid "Button Label|Orage"
-msgstr ""
+msgstr "按鈕標籤|Orage"
 
 #: ../src/about-xfcalendar.c:39
 msgid "Manage your time with Xfce4"
@@ -510,1538 +516,1546 @@ msgid ""
 "\t\t D=Daily W=Weekly M=Monthly Y=Yearly\n"
 "\t 3. Type: f=free B=Busy"
 msgstr ""
+"雙擊此行以開始編輯。\n"
+"\n"
+"旗標順序:\n"
+"\t 1. 鬧鐘: n=不用鬧鐘\n"
+"\t\tA=顯示鬧鐘 S=並用音效鬧鈴\n"
+"\t 2. 再現: n=不用再現\n"
+"\t\t D=每天 W=每週 M=每月 Y=每天\n"
+"\t 3. 情況: f=有閒 B=無閒"
 
 #: ../src/ical-code.c:98
 msgid "Africa"
-msgstr ""
+msgstr "非洲"
 
 #: ../src/ical-code.c:99
 msgid "Africa/Abidjan"
-msgstr ""
+msgstr "非洲/阿必尚"
 
 #: ../src/ical-code.c:100
 msgid "Africa/Accra"
-msgstr ""
+msgstr "非洲/阿克拉"
 
 #: ../src/ical-code.c:101
 msgid "Africa/Addis_Ababa"
-msgstr ""
+msgstr "非洲/阿迪斯阿貝巴"
 
 #: ../src/ical-code.c:102
 msgid "Africa/Algiers"
-msgstr ""
+msgstr "非洲/阿爾及爾"
 
 #: ../src/ical-code.c:103
 msgid "Africa/Asmera"
-msgstr ""
+msgstr "非洲/阿斯馬拉"
 
 #: ../src/ical-code.c:104
 msgid "Africa/Bamako"
-msgstr ""
+msgstr "非洲/巴馬科"
 
 #: ../src/ical-code.c:105
 msgid "Africa/Bangui"
-msgstr ""
+msgstr "非洲/班基"
 
 #: ../src/ical-code.c:106
 msgid "Africa/Banjul"
-msgstr ""
+msgstr "非洲/班竹"
 
 #: ../src/ical-code.c:107
 msgid "Africa/Bissau"
-msgstr ""
+msgstr "非洲/比索"
 
 #: ../src/ical-code.c:108
 msgid "Africa/Blantyre"
-msgstr ""
+msgstr "非洲/布蘭泰爾"
 
 #: ../src/ical-code.c:109
 msgid "Africa/Brazzaville"
-msgstr ""
+msgstr "非洲/布拉薩"
 
 #: ../src/ical-code.c:110
 msgid "Africa/Bujumbura"
-msgstr ""
+msgstr "非洲/布松布拉"
 
 #: ../src/ical-code.c:111
 msgid "Africa/Cairo"
-msgstr ""
+msgstr "非洲/開羅"
 
 #: ../src/ical-code.c:112
 msgid "Africa/Casablanca"
-msgstr ""
+msgstr "非洲/卡薩布蘭加"
 
 #: ../src/ical-code.c:113
 msgid "Africa/Ceuta"
-msgstr ""
+msgstr "非洲/休達"
 
 #: ../src/ical-code.c:114
 msgid "Africa/Conakry"
-msgstr ""
+msgstr "非洲/科納克里"
 
 #: ../src/ical-code.c:115
 msgid "Africa/Dakar"
-msgstr ""
+msgstr "非洲/達卡"
 
 #: ../src/ical-code.c:116
 msgid "Africa/Dar_es_Salaam"
-msgstr ""
+msgstr "非洲/三蘭港"
 
 #: ../src/ical-code.c:117
 msgid "Africa/Djibouti"
-msgstr ""
+msgstr "非洲/吉布地"
 
 #: ../src/ical-code.c:118
 msgid "Africa/Douala"
-msgstr ""
+msgstr "非洲/都阿拉"
 
 #: ../src/ical-code.c:119
 msgid "Africa/El_Aaiun"
-msgstr ""
+msgstr "非洲/愛恩"
 
 #: ../src/ical-code.c:120
 msgid "Africa/Freetown"
-msgstr ""
+msgstr "非洲/自由城"
 
 #: ../src/ical-code.c:121
 msgid "Africa/Gaborone"
-msgstr ""
+msgstr "非洲/嘉伯隆里"
 
 #: ../src/ical-code.c:122
 msgid "Africa/Harare"
-msgstr ""
+msgstr "非洲/哈拉雷"
 
 #: ../src/ical-code.c:123
 msgid "Africa/Johannesburg"
-msgstr ""
+msgstr "非洲/約翰尼斯堡"
 
 #: ../src/ical-code.c:124
 msgid "Africa/Kampala"
-msgstr ""
+msgstr "非洲/康培拉"
 
 #: ../src/ical-code.c:125
 msgid "Africa/Khartoum"
-msgstr ""
+msgstr "非洲/喀土穆"
 
 #: ../src/ical-code.c:126
 msgid "Africa/Kigali"
-msgstr ""
+msgstr "非洲/吉佳利"
 
 #: ../src/ical-code.c:127
 msgid "Africa/Kinshasa"
-msgstr ""
+msgstr "非洲/金夏沙"
 
 #: ../src/ical-code.c:128
 msgid "Africa/Lagos"
-msgstr ""
+msgstr "非洲/拉哥斯"
 
 #: ../src/ical-code.c:129
 msgid "Africa/Libreville"
-msgstr ""
+msgstr "非洲/自由市"
 
 #: ../src/ical-code.c:130
 msgid "Africa/Lome"
-msgstr ""
+msgstr "非洲/洛梅"
 
 #: ../src/ical-code.c:131
 msgid "Africa/Luanda"
-msgstr ""
+msgstr "非洲/魯安達"
 
 #: ../src/ical-code.c:132
 msgid "Africa/Lubumbashi"
-msgstr ""
+msgstr "非洲/羅彭巴布"
 
 #: ../src/ical-code.c:133
 msgid "Africa/Lusaka"
-msgstr ""
+msgstr "非洲/路沙卡"
 
 #: ../src/ical-code.c:134
 msgid "Africa/Malabo"
-msgstr ""
+msgstr "非洲/馬拉博"
 
 #: ../src/ical-code.c:135
 msgid "Africa/Maputo"
-msgstr ""
+msgstr "非洲/馬布多"
 
 #: ../src/ical-code.c:136
 msgid "Africa/Maseru"
-msgstr ""
+msgstr "非洲/馬塞魯"
 
 #: ../src/ical-code.c:137
 msgid "Africa/Mbabane"
-msgstr ""
+msgstr "非洲/墨巴本"
 
 #: ../src/ical-code.c:138
 msgid "Africa/Mogadishu"
-msgstr ""
+msgstr "非洲/摩加迪休"
 
 #: ../src/ical-code.c:139
 msgid "Africa/Monrovia"
-msgstr ""
+msgstr "非洲/蒙羅維亞"
 
 #: ../src/ical-code.c:140
 msgid "Africa/Nairobi"
-msgstr ""
+msgstr "非洲/奈洛比"
 
 #: ../src/ical-code.c:141
 msgid "Africa/Ndjamena"
-msgstr ""
+msgstr "非洲/恩加美納"
 
 #: ../src/ical-code.c:142
 msgid "Africa/Niamey"
-msgstr ""
+msgstr "非洲/尼阿美"
 
 #: ../src/ical-code.c:143
 msgid "Africa/Nouakchott"
-msgstr ""
+msgstr "非洲/諾克少"
 
 #: ../src/ical-code.c:144
 msgid "Africa/Ouagadougou"
-msgstr ""
+msgstr "非洲/瓦加杜古"
 
 #: ../src/ical-code.c:145
 msgid "Africa/Porto-Novo"
-msgstr ""
+msgstr "非洲/新港"
 
 #: ../src/ical-code.c:146
 msgid "Africa/Sao_Tome"
-msgstr ""
+msgstr "非洲/聖多美"
 
 #: ../src/ical-code.c:147
 msgid "Africa/Timbuktu"
-msgstr ""
+msgstr "非洲/廷巴克圖"
 
 #: ../src/ical-code.c:148
 msgid "Africa/Tripoli"
-msgstr ""
+msgstr "非洲/的黎波里"
 
 #: ../src/ical-code.c:149
 msgid "Africa/Tunis"
-msgstr ""
+msgstr "非洲/突尼斯"
 
 #: ../src/ical-code.c:150
 msgid "Africa/Windhoek"
-msgstr ""
+msgstr "非洲/溫荷克"
 
 #: ../src/ical-code.c:151
 msgid "America"
-msgstr ""
+msgstr "美洲"
 
 #: ../src/ical-code.c:152
 msgid "America/Adak"
-msgstr ""
+msgstr "北美洲/艾達克"
 
 #: ../src/ical-code.c:153
 msgid "America/Anchorage"
-msgstr ""
+msgstr "北美洲/安哥拉治"
 
 #: ../src/ical-code.c:154
 msgid "America/Anguilla"
-msgstr ""
+msgstr "中美洲/安吉拉"
 
 #: ../src/ical-code.c:155
 msgid "America/Antigua"
-msgstr ""
+msgstr "中美洲/安地瓜"
 
 #: ../src/ical-code.c:156
 msgid "America/Araguaina"
-msgstr ""
+msgstr "南美洲/阿拉瓜伊納"
 
 #: ../src/ical-code.c:157
 msgid "America/Aruba"
-msgstr ""
+msgstr "南美洲/阿路巴"
 
 #: ../src/ical-code.c:158
 msgid "America/Asuncion"
-msgstr ""
+msgstr "南美洲/亞松森"
 
 #: ../src/ical-code.c:159
 msgid "America/Barbados"
-msgstr ""
+msgstr "南美洲/巴貝多"
 
 #: ../src/ical-code.c:160
 msgid "America/Belem"
-msgstr ""
+msgstr "南美洲/貝郎"
 
 #: ../src/ical-code.c:161
 msgid "America/Belize"
-msgstr ""
+msgstr "南美洲/貝里斯"
 
 #: ../src/ical-code.c:162
 msgid "America/Boa_Vista"
-msgstr ""
+msgstr "南美洲/保維斯塔島"
 
 #: ../src/ical-code.c:163
 msgid "America/Bogota"
-msgstr ""
+msgstr "南美洲/波哥大"
 
 #: ../src/ical-code.c:164
 msgid "America/Boise"
-msgstr ""
+msgstr "北美洲/波伊西"
 
 #: ../src/ical-code.c:165
 msgid "America/Buenos_Aires"
-msgstr ""
+msgstr "南美洲/布宜諾斯艾利斯"
 
 #: ../src/ical-code.c:166
 msgid "America/Cambridge_Bay"
-msgstr ""
+msgstr "北美洲/劍橋灣"
 
 #: ../src/ical-code.c:167
 msgid "America/Cancun"
-msgstr ""
+msgstr "南美洲/坎昆"
 
 #: ../src/ical-code.c:168
 msgid "America/Caracas"
-msgstr ""
+msgstr "南美洲/卡拉卡斯"
 
 #: ../src/ical-code.c:169
 msgid "America/Catamarca"
-msgstr ""
+msgstr "南美洲/卡塔馬卡"
 
 #: ../src/ical-code.c:170
 msgid "America/Cayenne"
-msgstr ""
+msgstr "南美洲/凱恩"
 
 #: ../src/ical-code.c:171
 msgid "America/Cayman"
-msgstr ""
+msgstr "中美洲/開曼群島"
 
 #: ../src/ical-code.c:172
 msgid "America/Chicago"
-msgstr ""
+msgstr "北美洲/芝加哥"
 
 #: ../src/ical-code.c:173
 msgid "America/Chihuahua"
-msgstr ""
+msgstr "南美洲/濟華花"
 
 #: ../src/ical-code.c:174
 msgid "America/Cordoba"
-msgstr ""
+msgstr "南美洲/科多巴"
 
 #: ../src/ical-code.c:175
 msgid "America/Costa_Rica"
-msgstr ""
+msgstr "中美洲/哥斯大黎加"
 
 #: ../src/ical-code.c:176
 msgid "America/Cuiaba"
-msgstr ""
+msgstr "南美洲/古雅巴"
 
 #: ../src/ical-code.c:177
 msgid "America/Curacao"
-msgstr ""
+msgstr "南美洲/科拉克"
 
 #: ../src/ical-code.c:178
 msgid "America/Dawson"
-msgstr ""
+msgstr "北美洲/道森"
 
 #: ../src/ical-code.c:179
 msgid "America/Dawson_Creek"
-msgstr ""
+msgstr "北美洲/道森克里克"
 
 #: ../src/ical-code.c:180
 msgid "America/Denver"
-msgstr ""
+msgstr "北美洲/丹佛"
 
 #: ../src/ical-code.c:181
 msgid "America/Detroit"
-msgstr ""
+msgstr "北美洲/底特律"
 
 #: ../src/ical-code.c:182
 msgid "America/Dominica"
-msgstr ""
+msgstr "中美洲/多明尼加"
 
 #: ../src/ical-code.c:183
 msgid "America/Edmonton"
-msgstr ""
+msgstr "北美洲/愛民頓"
 
 #: ../src/ical-code.c:184
 msgid "America/Eirunepe"
-msgstr ""
+msgstr "南美洲/艾魯內佩"
 
 #: ../src/ical-code.c:185
 msgid "America/El_Salvador"
-msgstr ""
+msgstr "中美洲/薩爾瓦多"
 
 #: ../src/ical-code.c:186
 msgid "America/Fortaleza"
-msgstr ""
+msgstr "南美洲/佛達雷莎"
 
 #: ../src/ical-code.c:187
 msgid "America/Glace_Bay"
-msgstr ""
+msgstr "北美洲/葛雷斯灣"
 
 #: ../src/ical-code.c:188
 msgid "America/Godthab"
-msgstr ""
+msgstr "北美洲/戈薩普"
 
 #: ../src/ical-code.c:189
 msgid "America/Goose_Bay"
-msgstr ""
+msgstr "北美洲/鵝灣"
 
 #: ../src/ical-code.c:190
 msgid "America/Grand_Turk"
-msgstr ""
+msgstr "中美洲/大特克斯島"
 
 #: ../src/ical-code.c:191
 msgid "America/Grenada"
-msgstr ""
+msgstr "中美洲/格瑞那達"
 
 #: ../src/ical-code.c:192
 msgid "America/Guadeloupe"
-msgstr ""
+msgstr "北美洲/瓜德魯普島"
 
 #: ../src/ical-code.c:193
 msgid "America/Guatemala"
-msgstr ""
+msgstr "中美洲/瓜地馬拉"
 
 #: ../src/ical-code.c:194
 msgid "America/Guayaquil"
-msgstr ""
+msgstr "南美洲/惠夜基"
 
 #: ../src/ical-code.c:195
 msgid "America/Guyana"
-msgstr ""
+msgstr "南美洲/圭亞那"
 
 #: ../src/ical-code.c:196
 msgid "America/Halifax"
-msgstr ""
+msgstr "北美洲/哈利法克斯市"
 
 #: ../src/ical-code.c:197
 msgid "America/Havana"
-msgstr ""
+msgstr "中美洲/哈瓦那"
 
 #: ../src/ical-code.c:198
 msgid "America/Hermosillo"
-msgstr ""
+msgstr "北美洲/厄莫休"
 
 #: ../src/ical-code.c:199
 msgid "America/Indiana/Indianapolis"
-msgstr ""
+msgstr "北美洲/印第安那州/印第安納波里斯巿"
 
 #: ../src/ical-code.c:200
 msgid "America/Indiana/Knox"
-msgstr ""
+msgstr "北美洲/印第安那州/諾克斯"
 
 #: ../src/ical-code.c:201
 msgid "America/Indiana/Marengo"
-msgstr ""
+msgstr "北美洲/印第安那州/馬倫哥"
 
 #: ../src/ical-code.c:202
 msgid "America/Indiana/Vevay"
-msgstr ""
+msgstr "北美洲/印第安那州/維維市"
 
 #: ../src/ical-code.c:203
 msgid "America/Indianapolis"
-msgstr ""
+msgstr "北美洲/印第安納波里斯"
 
 #: ../src/ical-code.c:204
 msgid "America/Inuvik"
-msgstr ""
+msgstr "北美洲/因紐特"
 
 #: ../src/ical-code.c:205
 msgid "America/Iqaluit"
-msgstr ""
+msgstr "北美洲/伊魁特"
 
 #: ../src/ical-code.c:206
 msgid "America/Jamaica"
-msgstr ""
+msgstr "中美洲/牙買加"
 
 #: ../src/ical-code.c:207
 msgid "America/Jujuy"
-msgstr ""
+msgstr "南美洲/呼回"
 
 #: ../src/ical-code.c:208
 msgid "America/Juneau"
-msgstr ""
+msgstr "北美洲/朱諾"
 
 #: ../src/ical-code.c:209
 msgid "America/Kentucky/Louisville"
-msgstr ""
+msgstr "北美洲/肯德基州/路易斯維爾"
 
 #: ../src/ical-code.c:210
 msgid "America/Kentucky/Monticello"
-msgstr ""
+msgstr "北美洲/肯德基州/蒙提薩羅"
 
 #: ../src/ical-code.c:211
 msgid "America/La_Paz"
-msgstr ""
+msgstr "南美洲/拉巴斯"
 
 #: ../src/ical-code.c:212
 msgid "America/Lima"
-msgstr ""
+msgstr "南美洲/利馬"
 
 #: ../src/ical-code.c:213
 msgid "America/Los_Angeles"
-msgstr ""
+msgstr "北美洲/洛杉磯"
 
 #: ../src/ical-code.c:214
 msgid "America/Louisville"
-msgstr ""
+msgstr "北美洲/路易斯維爾"
 
 #: ../src/ical-code.c:215
 msgid "America/Maceio"
-msgstr ""
+msgstr "南美洲/馬賽約"
 
 #: ../src/ical-code.c:216
 msgid "America/Managua"
-msgstr ""
+msgstr "中美洲/馬納瓜"
 
 #: ../src/ical-code.c:217
 msgid "America/Manaus"
-msgstr ""
+msgstr "南美洲/瑪瑙斯"
 
 #: ../src/ical-code.c:218
 msgid "America/Martinique"
-msgstr ""
+msgstr "中美洲/法屬馬丁尼克"
 
 #: ../src/ical-code.c:219
 msgid "America/Mazatlan"
-msgstr ""
+msgstr "北美洲/馬薩特蘭"
 
 #: ../src/ical-code.c:220
 msgid "America/Mendoza"
-msgstr ""
+msgstr "南美洲/門多薩"
 
 #: ../src/ical-code.c:221
 msgid "America/Menominee"
-msgstr ""
+msgstr "北美洲/美諾米尼"
 
 #: ../src/ical-code.c:222
 msgid "America/Merida"
-msgstr ""
+msgstr "北美洲/美利達"
 
 #: ../src/ical-code.c:223
 msgid "America/Mexico_City"
-msgstr ""
+msgstr "北美洲/墨西哥城"
 
 #: ../src/ical-code.c:224
 msgid "America/Miquelon"
-msgstr ""
+msgstr "北美洲/密克隆"
 
 #: ../src/ical-code.c:225
 msgid "America/Monterrey"
-msgstr ""
+msgstr "北美洲/蒙特里"
 
 #: ../src/ical-code.c:226
 msgid "America/Montevideo"
-msgstr ""
+msgstr "南美洲/蒙特維多"
 
 #: ../src/ical-code.c:227
 msgid "America/Montreal"
-msgstr ""
+msgstr "北美洲/蒙特婁"
 
 #: ../src/ical-code.c:228
 msgid "America/Montserrat"
-msgstr ""
+msgstr "中美洲/蒙哲臘"
 
 #: ../src/ical-code.c:229
 msgid "America/Nassau"
-msgstr ""
+msgstr "中美洲/拿索"
 
 #: ../src/ical-code.c:230
 msgid "America/New_York"
-msgstr ""
+msgstr "北美洲/紐約"
 
 #: ../src/ical-code.c:231
 msgid "America/Nipigon"
-msgstr ""
+msgstr "北美洲/尼匹岡"
 
 #: ../src/ical-code.c:232
 msgid "America/Nome"
-msgstr ""
+msgstr "北美洲/諾母"
 
 #: ../src/ical-code.c:233
 msgid "America/Noronha"
-msgstr ""
+msgstr "南美洲/諾若尼亞"
 
 #: ../src/ical-code.c:234
 msgid "America/Panama"
-msgstr ""
+msgstr "中美洲/巴拿馬"
 
 #: ../src/ical-code.c:235
 msgid "America/Pangnirtung"
-msgstr ""
+msgstr "北美洲/龐納唐"
 
 #: ../src/ical-code.c:236
 msgid "America/Paramaribo"
-msgstr ""
+msgstr "南美洲/巴拉馬利波市"
 
 #: ../src/ical-code.c:237
 msgid "America/Phoenix"
-msgstr ""
+msgstr "北美洲/鳳凰城"
 
 #: ../src/ical-code.c:238
 msgid "America/Port-au-Prince"
-msgstr ""
+msgstr "中美洲/太子港"
 
 #: ../src/ical-code.c:239
 msgid "America/Port_of_Spain"
-msgstr ""
+msgstr "中美洲/西班牙港"
 
 #: ../src/ical-code.c:240
 msgid "America/Porto_Velho"
-msgstr ""
+msgstr "南美洲/維留港"
 
 #: ../src/ical-code.c:241
 msgid "America/Puerto_Rico"
-msgstr ""
+msgstr "中美洲/波多黎各"
 
 #: ../src/ical-code.c:242
 msgid "America/Rainy_River"
-msgstr ""
+msgstr "北美洲/雨河鎮"
 
 #: ../src/ical-code.c:243
 msgid "America/Rankin_Inlet"
-msgstr ""
+msgstr "北美洲/雷今海口"
 
 #: ../src/ical-code.c:244
 msgid "America/Recife"
-msgstr ""
+msgstr "南美洲/海席飛"
 
 #: ../src/ical-code.c:245
 msgid "America/Regina"
-msgstr ""
+msgstr "北美洲/雷嘉那"
 
 #: ../src/ical-code.c:246
 msgid "America/Rio_Branco"
-msgstr ""
+msgstr "南美洲/白河"
 
 #: ../src/ical-code.c:247
 msgid "America/Rosario"
-msgstr ""
+msgstr "南美洲/羅沙里市"
 
 #: ../src/ical-code.c:248
 msgid "America/Santiago"
-msgstr ""
+msgstr "南美洲/聖地牙哥"
 
 #: ../src/ical-code.c:249
 msgid "America/Santo_Domingo"
-msgstr ""
+msgstr "中美洲/聖多明哥"
 
 #: ../src/ical-code.c:250
 msgid "America/Sao_Paulo"
-msgstr ""
+msgstr "南美洲/聖保羅"
 
 #: ../src/ical-code.c:251
 msgid "America/Scoresbysund"
-msgstr ""
+msgstr "北美洲/史科斯比孫"
 
 #: ../src/ical-code.c:252
 msgid "America/Shiprock"
-msgstr ""
+msgstr "北美洲/船岩市"
 
 #: ../src/ical-code.c:253
 msgid "America/St_Johns"
-msgstr ""
+msgstr "中美洲/聖約翰"
 
 #: ../src/ical-code.c:254
 msgid "America/St_Kitts"
-msgstr ""
+msgstr "中美洲/聖啟斯"
 
 #: ../src/ical-code.c:255
 msgid "America/St_Lucia"
-msgstr ""
+msgstr "中美洲/聖露西亞"
 
 #: ../src/ical-code.c:256
 msgid "America/St_Thomas"
-msgstr ""
+msgstr "中美洲/聖湯瑪斯"
 
 #: ../src/ical-code.c:257
 msgid "America/St_Vincent"
-msgstr ""
+msgstr "中美洲/聖文森"
 
 #: ../src/ical-code.c:258
 msgid "America/Swift_Current"
-msgstr ""
+msgstr "北美洲/斯威夫特卡倫特"
 
 #: ../src/ical-code.c:259
 msgid "America/Tegucigalpa"
-msgstr ""
+msgstr "中美洲/德古西加巴"
 
 #: ../src/ical-code.c:260
 msgid "America/Thule"
-msgstr ""
+msgstr "北美洲/述利"
 
 #: ../src/ical-code.c:261
 msgid "America/Thunder_Bay"
-msgstr ""
+msgstr "北美洲/雷灣市"
 
 #: ../src/ical-code.c:262
 msgid "America/Tijuana"
-msgstr ""
+msgstr "北美洲/提華納"
 
 #: ../src/ical-code.c:263
 msgid "America/Tortola"
-msgstr ""
+msgstr "中美洲/托爾托拉島"
 
 #: ../src/ical-code.c:264
 msgid "America/Vancouver"
-msgstr ""
+msgstr "北美洲/溫哥華"
 
 #: ../src/ical-code.c:265
 msgid "America/Whitehorse"
-msgstr ""
+msgstr "北美洲/白馬市"
 
 #: ../src/ical-code.c:266
 msgid "America/Winnipeg"
-msgstr ""
+msgstr "北美洲/溫尼伯"
 
 #: ../src/ical-code.c:267
 msgid "America/Yakutat"
-msgstr ""
+msgstr "北美洲/亞庫塔特"
 
 #: ../src/ical-code.c:268
 msgid "America/Yellowknife"
-msgstr ""
+msgstr "北美洲/黃刀鎮"
 
 #: ../src/ical-code.c:269
 msgid "Antarctica"
-msgstr ""
+msgstr "南極洲"
 
 #: ../src/ical-code.c:270
 msgid "Antarctica/Casey"
-msgstr ""
+msgstr "南極洲/凱西研究站"
 
 #: ../src/ical-code.c:271
 msgid "Antarctica/Davis"
-msgstr ""
+msgstr "南極洲/戴維斯研究站"
 
 #: ../src/ical-code.c:272
 msgid "Antarctica/DumontDUrville"
-msgstr ""
+msgstr "南極洲/杜蒙杜荷維勒科學中心"
 
 #: ../src/ical-code.c:273
 msgid "Antarctica/Mawson"
-msgstr ""
+msgstr "南極洲/墨生研究站"
 
 #: ../src/ical-code.c:274
 msgid "Antarctica/McMurdo"
-msgstr ""
+msgstr "南極洲/麥克馬多基地"
 
 #: ../src/ical-code.c:275
 msgid "Antarctica/Palmer"
-msgstr ""
+msgstr "南極洲/巴麥"
 
 #: ../src/ical-code.c:276
 msgid "Antarctica/South_Pole"
-msgstr ""
+msgstr "南極洲/南極點"
 
 #: ../src/ical-code.c:277
 msgid "Antarctica/Syowa"
-msgstr ""
+msgstr "南極洲/昭和觀測站"
 
 #: ../src/ical-code.c:278
 msgid "Antarctica/Vostok"
-msgstr ""
+msgstr "南極洲/東方研究站"
 
 #: ../src/ical-code.c:279
 msgid "Arctic"
-msgstr ""
+msgstr "北極"
 
 #: ../src/ical-code.c:280
 msgid "Arctic/Longyearbyen"
-msgstr ""
+msgstr "北極/隆伊爾畢"
 
 #: ../src/ical-code.c:281
 msgid "Asia"
-msgstr ""
+msgstr "亞洲"
 
 #: ../src/ical-code.c:282
 msgid "Asia/Aden"
-msgstr ""
+msgstr "亞洲/亞丁"
 
 #: ../src/ical-code.c:283
 msgid "Asia/Almaty"
-msgstr ""
+msgstr "亞洲/阿拉木圖"
 
 #: ../src/ical-code.c:284
 msgid "Asia/Amman"
-msgstr ""
+msgstr "亞洲/安曼"
 
 #: ../src/ical-code.c:285
 msgid "Asia/Anadyr"
-msgstr ""
+msgstr "亞洲/阿納德爾"
 
 #: ../src/ical-code.c:286
 msgid "Asia/Aqtau"
-msgstr ""
+msgstr "亞洲/阿克圖"
 
 #: ../src/ical-code.c:287
 msgid "Asia/Aqtobe"
-msgstr ""
+msgstr "亞洲/阿克托貝"
 
 #: ../src/ical-code.c:288
 msgid "Asia/Ashgabat"
-msgstr ""
+msgstr "亞洲/阿什格巴特"
 
 #: ../src/ical-code.c:289
 msgid "Asia/Baghdad"
-msgstr ""
+msgstr "亞洲/巴格達"
 
 #: ../src/ical-code.c:290
 msgid "Asia/Bahrain"
-msgstr ""
+msgstr "亞洲/巴林"
 
 #: ../src/ical-code.c:291
 msgid "Asia/Baku"
-msgstr ""
+msgstr "亞洲/巴庫"
 
 #: ../src/ical-code.c:292
 msgid "Asia/Bangkok"
-msgstr ""
+msgstr "亞洲/曼谷"
 
 #: ../src/ical-code.c:293
 msgid "Asia/Beirut"
-msgstr ""
+msgstr "亞洲/貝魯特"
 
 #: ../src/ical-code.c:294
 msgid "Asia/Bishkek"
-msgstr ""
+msgstr "亞洲/比斯凱克"
 
 #: ../src/ical-code.c:295
 msgid "Asia/Brunei"
-msgstr ""
+msgstr "亞洲/汶萊"
 
 #: ../src/ical-code.c:296
 msgid "Asia/Calcutta"
-msgstr ""
+msgstr "亞洲/加爾各答"
 
 #: ../src/ical-code.c:297
 msgid "Asia/Chungking"
-msgstr ""
+msgstr "亞洲/重慶"
 
 #: ../src/ical-code.c:298
 msgid "Asia/Colombo"
-msgstr ""
+msgstr "亞洲/可倫坡"
 
 #: ../src/ical-code.c:299
 msgid "Asia/Damascus"
-msgstr ""
+msgstr "亞洲/大馬士革"
 
 #: ../src/ical-code.c:300
 msgid "Asia/Dhaka"
-msgstr ""
+msgstr "亞洲/達卡"
 
 #: ../src/ical-code.c:301
 msgid "Asia/Dili"
-msgstr ""
+msgstr "亞洲/帝利"
 
 #: ../src/ical-code.c:302
 msgid "Asia/Dubai"
-msgstr ""
+msgstr "亞洲/杜拜"
 
 #: ../src/ical-code.c:303
 msgid "Asia/Dushanbe"
-msgstr ""
+msgstr "亞洲/杜尚貝"
 
 #: ../src/ical-code.c:304
 msgid "Asia/Gaza"
-msgstr ""
+msgstr "亞洲/加薩"
 
 #: ../src/ical-code.c:305
 msgid "Asia/Harbin"
-msgstr ""
+msgstr "亞洲/哈爾濱"
 
 #: ../src/ical-code.c:306
 msgid "Asia/Hong_Kong"
-msgstr ""
+msgstr "亞洲/香港"
 
 #: ../src/ical-code.c:307
 msgid "Asia/Hovd"
-msgstr ""
+msgstr "亞洲/科布多"
 
 #: ../src/ical-code.c:308
 msgid "Asia/Irkutsk"
-msgstr ""
+msgstr "亞洲/伊爾庫玆克"
 
 #: ../src/ical-code.c:309
 msgid "Asia/Istanbul"
-msgstr ""
+msgstr "亞洲/伊斯坦堡"
 
 #: ../src/ical-code.c:310
 msgid "Asia/Jakarta"
-msgstr ""
+msgstr "亞洲/雅加達"
 
 #: ../src/ical-code.c:311
 msgid "Asia/Jayapura"
-msgstr ""
+msgstr "亞洲/加亞布拉港"
 
 #: ../src/ical-code.c:312
 msgid "Asia/Jerusalem"
-msgstr ""
+msgstr "亞洲/耶路撒冷"
 
 #: ../src/ical-code.c:313
 msgid "Asia/Kabul"
-msgstr ""
+msgstr "亞洲/喀布爾"
 
 #: ../src/ical-code.c:314
 msgid "Asia/Kamchatka"
-msgstr ""
+msgstr "亞洲/勘察加半島"
 
 #: ../src/ical-code.c:315
 msgid "Asia/Karachi"
-msgstr ""
+msgstr "亞洲/喀拉蚩"
 
 #: ../src/ical-code.c:316
 msgid "Asia/Kashgar"
-msgstr ""
+msgstr "亞洲/喀什噶爾"
 
 #: ../src/ical-code.c:317
 msgid "Asia/Katmandu"
-msgstr ""
+msgstr "亞洲/加德滿都"
 
 #: ../src/ical-code.c:318
 msgid "Asia/Krasnoyarsk"
-msgstr ""
+msgstr "亞洲/克拉斯諾雅斯科"
 
 #: ../src/ical-code.c:319
 msgid "Asia/Kuala_Lumpur"
-msgstr ""
+msgstr "亞洲/吉隆坡"
 
 #: ../src/ical-code.c:320
 msgid "Asia/Kuching"
-msgstr ""
+msgstr "亞洲/古晉"
 
 #: ../src/ical-code.c:321
 msgid "Asia/Kuwait"
-msgstr ""
+msgstr "亞洲/科威特"
 
 #: ../src/ical-code.c:322
 msgid "Asia/Macao"
-msgstr ""
+msgstr "亞洲/澳門"
 
 #: ../src/ical-code.c:323
 msgid "Asia/Magadan"
-msgstr ""
+msgstr "亞洲/馬加丹"
 
 #: ../src/ical-code.c:324
 msgid "Asia/Manila"
-msgstr ""
+msgstr "亞洲/馬尼拉"
 
 #: ../src/ical-code.c:325
 msgid "Asia/Muscat"
-msgstr ""
+msgstr "亞洲/馬斯開特"
 
 #: ../src/ical-code.c:326
 msgid "Asia/Nicosia"
-msgstr ""
+msgstr "亞洲/尼古西亞"
 
 #: ../src/ical-code.c:327
 msgid "Asia/Novosibirsk"
-msgstr ""
+msgstr "亞洲/新西伯利亞"
 
 #: ../src/ical-code.c:328
 msgid "Asia/Omsk"
-msgstr ""
+msgstr "亞洲/鄂木斯克"
 
 #: ../src/ical-code.c:329
 msgid "Asia/Phnom_Penh"
-msgstr ""
+msgstr "亞洲/金邊"
 
 #: ../src/ical-code.c:330
 msgid "Asia/Pontianak"
-msgstr ""
+msgstr "亞洲/坤甸"
 
 #: ../src/ical-code.c:331
 msgid "Asia/Pyongyang"
-msgstr ""
+msgstr "亞洲/平壤"
 
 #: ../src/ical-code.c:332
 msgid "Asia/Qatar"
-msgstr ""
+msgstr "亞洲/卡達"
 
 #: ../src/ical-code.c:333
 msgid "Asia/Rangoon"
-msgstr ""
+msgstr "亞洲/仰光"
 
 #: ../src/ical-code.c:334
 msgid "Asia/Riyadh"
-msgstr ""
+msgstr "亞洲/利雅德"
 
 #: ../src/ical-code.c:335
 msgid "Asia/Saigon"
-msgstr ""
+msgstr "亞洲/西貢"
 
 #: ../src/ical-code.c:336
 msgid "Asia/Samarkand"
-msgstr ""
+msgstr "亞洲/撒馬兒罕"
 
 #: ../src/ical-code.c:337
 msgid "Asia/Seoul"
-msgstr ""
+msgstr "亞洲/漢城"
 
 #: ../src/ical-code.c:338
 msgid "Asia/Shanghai"
-msgstr ""
+msgstr "亞洲/上海"
 
 #: ../src/ical-code.c:339
 msgid "Asia/Singapore"
-msgstr ""
+msgstr "亞洲/新加坡"
 
 #: ../src/ical-code.c:340
 msgid "Asia/Taipei"
-msgstr ""
+msgstr "亞洲/台北"
 
 #: ../src/ical-code.c:341
 msgid "Asia/Tashkent"
-msgstr ""
+msgstr "亞洲/塔什干"
 
 #: ../src/ical-code.c:342
 msgid "Asia/Tbilisi"
-msgstr ""
+msgstr "亞洲/提比里西"
 
 #: ../src/ical-code.c:343
 msgid "Asia/Tehran"
-msgstr ""
+msgstr "亞洲/德黑蘭"
 
 #: ../src/ical-code.c:344
 msgid "Asia/Thimphu"
-msgstr ""
+msgstr "亞洲/烏魯木齊"
 
 #: ../src/ical-code.c:345
 msgid "Asia/Tokyo"
-msgstr ""
+msgstr "亞洲/東京"
 
 #: ../src/ical-code.c:346
 msgid "Asia/Ujung_Pandang"
-msgstr ""
+msgstr "亞洲/錫江"
 
 #: ../src/ical-code.c:347
 msgid "Asia/Ulaanbaatar"
-msgstr ""
+msgstr "亞洲/烏蘭巴托"
 
 #: ../src/ical-code.c:348
 msgid "Asia/Urumqi"
-msgstr ""
+msgstr "亞洲/烏魯木齊"
 
 #: ../src/ical-code.c:349
 msgid "Asia/Vientiane"
-msgstr ""
+msgstr "亞洲/永珍"
 
 #: ../src/ical-code.c:350
 msgid "Asia/Vladivostok"
-msgstr ""
+msgstr "亞洲/海參崴"
 
 #: ../src/ical-code.c:351
 msgid "Asia/Yakutsk"
-msgstr ""
+msgstr "亞洲/雅庫次克"
 
 #: ../src/ical-code.c:352
 msgid "Asia/Yekaterinburg"
-msgstr ""
+msgstr "亞洲/葉卡捷林堡"
 
 #: ../src/ical-code.c:353
 msgid "Asia/Yerevan"
-msgstr ""
+msgstr "亞洲/葉里溫"
 
 #: ../src/ical-code.c:354
 msgid "Atlantic"
-msgstr ""
+msgstr "大西洋"
 
 #: ../src/ical-code.c:355
 msgid "Atlantic/Azores"
-msgstr ""
+msgstr "大西洋/亞速爾群島"
 
 #: ../src/ical-code.c:356
 msgid "Atlantic/Bermuda"
-msgstr ""
+msgstr "大西洋/百慕達"
 
 #: ../src/ical-code.c:357
 msgid "Atlantic/Canary"
-msgstr ""
+msgstr "大西洋/加那利群島"
 
 #: ../src/ical-code.c:358
 msgid "Atlantic/Cape_Verde"
-msgstr ""
+msgstr "大西洋/維德角"
 
 #: ../src/ical-code.c:359
 msgid "Atlantic/Faeroe"
-msgstr ""
+msgstr "大西洋/法羅群島"
 
 #: ../src/ical-code.c:360
 msgid "Atlantic/Jan_Mayen"
-msgstr ""
+msgstr "大西洋/珍瑪煙島"
 
 #: ../src/ical-code.c:361
 msgid "Atlantic/Madeira"
-msgstr ""
+msgstr "大西洋/馬德拉群島"
 
 #: ../src/ical-code.c:362
 msgid "Atlantic/Reykjavik"
-msgstr ""
+msgstr "大西洋/雷克雅維克"
 
 #: ../src/ical-code.c:363
 msgid "Atlantic/South_Georgia"
-msgstr ""
+msgstr "大西洋/南喬治亞"
 
 #: ../src/ical-code.c:364
 msgid "Atlantic/St_Helena"
-msgstr ""
+msgstr "大西洋/聖赫勒拿島"
 
 #: ../src/ical-code.c:365
 msgid "Atlantic/Stanley"
-msgstr ""
+msgstr "大西洋/史坦利港"
 
 #: ../src/ical-code.c:366
 msgid "Australia"
-msgstr ""
+msgstr "澳洲"
 
 #: ../src/ical-code.c:367
 msgid "Australia/Adelaide"
-msgstr ""
+msgstr "澳洲/阿得雷德市"
 
 #: ../src/ical-code.c:368
 msgid "Australia/Brisbane"
-msgstr ""
+msgstr "澳洲/布里斯本市"
 
 #: ../src/ical-code.c:369
 msgid "Australia/Broken_Hill"
-msgstr ""
+msgstr "澳洲/斷山"
 
 #: ../src/ical-code.c:370
 msgid "Australia/Darwin"
-msgstr ""
+msgstr "澳洲/達爾文"
 
 #: ../src/ical-code.c:371
 msgid "Australia/Hobart"
-msgstr ""
+msgstr "澳洲/荷巴特"
 
 #: ../src/ical-code.c:372
 msgid "Australia/Lindeman"
-msgstr ""
+msgstr "澳洲/林得曼島"
 
 #: ../src/ical-code.c:373
 msgid "Australia/Lord_Howe"
-msgstr ""
+msgstr "澳洲/豪勛爵群島"
 
 #: ../src/ical-code.c:374
 msgid "Australia/Melbourne"
-msgstr ""
+msgstr "澳洲/墨爾本"
 
 #: ../src/ical-code.c:375
 msgid "Australia/Perth"
-msgstr ""
+msgstr "澳洲/伯斯"
 
 #: ../src/ical-code.c:376
 msgid "Australia/Sydney"
-msgstr ""
+msgstr "澳洲/雪梨"
 
 #: ../src/ical-code.c:377
 msgid "Europe"
-msgstr ""
+msgstr "歐洲"
 
 #: ../src/ical-code.c:378
 msgid "Europe/Amsterdam"
-msgstr ""
+msgstr "歐洲/阿姆斯特丹"
 
 #: ../src/ical-code.c:379
 msgid "Europe/Andorra"
-msgstr ""
+msgstr "歐洲/安道爾"
 
 #: ../src/ical-code.c:380
 msgid "Europe/Athens"
-msgstr ""
+msgstr "歐洲/雅典"
 
 #: ../src/ical-code.c:381
 msgid "Europe/Belfast"
-msgstr ""
+msgstr "歐洲/貝爾法斯特"
 
 #: ../src/ical-code.c:382
 msgid "Europe/Belgrade"
-msgstr ""
+msgstr "歐洲/貝爾格勒"
 
 #: ../src/ical-code.c:383
 msgid "Europe/Berlin"
-msgstr ""
+msgstr "歐洲/柏林"
 
 #: ../src/ical-code.c:384
 msgid "Europe/Bratislava"
-msgstr ""
+msgstr "歐洲/布拉提斯拉瓦"
 
 #: ../src/ical-code.c:385
 msgid "Europe/Brussels"
-msgstr ""
+msgstr "歐洲/布魯塞爾"
 
 #: ../src/ical-code.c:386
 msgid "Europe/Bucharest"
-msgstr ""
+msgstr "歐洲/布加勒斯特"
 
 #: ../src/ical-code.c:387
 msgid "Europe/Budapest"
-msgstr ""
+msgstr "歐洲/布達佩斯"
 
 #: ../src/ical-code.c:388
 msgid "Europe/Chisinau"
-msgstr ""
+msgstr "歐洲/基西紐"
 
 #: ../src/ical-code.c:389
 msgid "Europe/Copenhagen"
-msgstr ""
+msgstr "歐洲/哥本哈根"
 
 #: ../src/ical-code.c:390
 msgid "Europe/Dublin"
-msgstr ""
+msgstr "歐洲/都柏林"
 
 #: ../src/ical-code.c:391
 msgid "Europe/Gibraltar"
-msgstr ""
+msgstr "歐洲/直布羅陀"
 
 #: ../src/ical-code.c:392
 msgid "Europe/Helsinki"
-msgstr ""
+msgstr "歐洲/赫爾辛基"
 
 #: ../src/ical-code.c:393
 msgid "Europe/Istanbul"
-msgstr ""
+msgstr "歐洲/伊斯坦堡"
 
 #: ../src/ical-code.c:394
 msgid "Europe/Kaliningrad"
-msgstr ""
+msgstr "歐洲/加里寧格勒"
 
 #: ../src/ical-code.c:395
 msgid "Europe/Kiev"
-msgstr ""
+msgstr "歐洲/基輔"
 
 #: ../src/ical-code.c:396
 msgid "Europe/Lisbon"
-msgstr ""
+msgstr "歐洲/里斯本"
 
 #: ../src/ical-code.c:397
 msgid "Europe/Ljubljana"
-msgstr ""
+msgstr "歐洲/盧布亞那"
 
 #: ../src/ical-code.c:398
 msgid "Europe/London"
-msgstr ""
+msgstr "歐洲/倫敦"
 
 #: ../src/ical-code.c:399
 msgid "Europe/Luxembourg"
-msgstr ""
+msgstr "歐洲/盧森堡"
 
 #: ../src/ical-code.c:400
 msgid "Europe/Madrid"
-msgstr ""
+msgstr "歐洲/馬德里"
 
 #: ../src/ical-code.c:401
 msgid "Europe/Malta"
-msgstr ""
+msgstr "歐洲/馬爾他"
 
 #: ../src/ical-code.c:402
 msgid "Europe/Minsk"
-msgstr ""
+msgstr "歐洲/明斯克"
 
 #: ../src/ical-code.c:403
 msgid "Europe/Monaco"
-msgstr ""
+msgstr "歐洲/摩納哥"
 
 #: ../src/ical-code.c:404
 msgid "Europe/Moscow"
-msgstr ""
+msgstr "歐洲/莫斯科"
 
 #: ../src/ical-code.c:405
 msgid "Europe/Nicosia"
-msgstr ""
+msgstr "歐洲/尼古西亞"
 
 #: ../src/ical-code.c:406
 msgid "Europe/Oslo"
-msgstr ""
+msgstr "歐洲/奧斯陸"
 
 #: ../src/ical-code.c:407
 msgid "Europe/Paris"
-msgstr ""
+msgstr "歐洲/巴黎"
 
 #: ../src/ical-code.c:408
 msgid "Europe/Prague"
-msgstr ""
+msgstr "歐洲/布拉格"
 
 #: ../src/ical-code.c:409
 msgid "Europe/Riga"
-msgstr ""
+msgstr "歐洲/里加"
 
 #: ../src/ical-code.c:410
 msgid "Europe/Rome"
-msgstr ""
+msgstr "歐洲/羅馬"
 
 #: ../src/ical-code.c:411
 msgid "Europe/Samara"
-msgstr ""
+msgstr "歐洲/薩瑪羅"
 
 #: ../src/ical-code.c:412
 msgid "Europe/San_Marino"
-msgstr ""
+msgstr "歐洲/聖馬利諾"
 
 #: ../src/ical-code.c:413
 msgid "Europe/Sarajevo"
-msgstr ""
+msgstr "歐洲/塞拉耶佛"
 
 #: ../src/ical-code.c:414
 msgid "Europe/Simferopol"
-msgstr ""
+msgstr "歐洲/辛菲羅波爾"
 
 #: ../src/ical-code.c:415
 msgid "Europe/Skopje"
-msgstr ""
+msgstr "歐洲/史高比耶"
 
 #: ../src/ical-code.c:416
 msgid "Europe/Sofia"
-msgstr ""
+msgstr "歐洲/索菲亞"
 
 #: ../src/ical-code.c:417
 msgid "Europe/Stockholm"
-msgstr ""
+msgstr "歐洲/斯德哥爾摩"
 
 #: ../src/ical-code.c:418
 msgid "Europe/Tallinn"
-msgstr ""
+msgstr "歐洲/塔林"
 
 #: ../src/ical-code.c:419
 msgid "Europe/Tirane"
-msgstr ""
+msgstr "歐洲/地拉那"
 
 #: ../src/ical-code.c:420
 msgid "Europe/Uzhgorod"
-msgstr ""
+msgstr "歐洲/烏玆哥洛"
 
 #: ../src/ical-code.c:421
 msgid "Europe/Vaduz"
-msgstr ""
+msgstr "歐洲/瓦都茲"
 
 #: ../src/ical-code.c:422
 msgid "Europe/Vatican"
-msgstr ""
+msgstr "歐洲/梵蒂岡"
 
 #: ../src/ical-code.c:423
 msgid "Europe/Vienna"
-msgstr ""
+msgstr "歐洲/維也納"
 
 #: ../src/ical-code.c:424
 msgid "Europe/Vilnius"
-msgstr ""
+msgstr "歐洲/維爾紐斯"
 
 #: ../src/ical-code.c:425
 msgid "Europe/Warsaw"
-msgstr ""
+msgstr "歐洲/華沙"
 
 #: ../src/ical-code.c:426
 msgid "Europe/Zagreb"
-msgstr ""
+msgstr "歐洲/札格瑞布"
 
 #: ../src/ical-code.c:427
 msgid "Europe/Zaporozhye"
-msgstr ""
+msgstr "歐洲/扎波羅熱"
 
 #: ../src/ical-code.c:428
 msgid "Europe/Zurich"
-msgstr ""
+msgstr "歐洲/蘇黎士"
 
 #: ../src/ical-code.c:429
 msgid "Indian"
-msgstr ""
+msgstr "印度次大陸"
 
 #: ../src/ical-code.c:430
 msgid "Indian/Antananarivo"
-msgstr ""
+msgstr "印度/安塔那那利弗"
 
 #: ../src/ical-code.c:431
 msgid "Indian/Chagos"
-msgstr ""
+msgstr "印度/查哥斯群島"
 
 #: ../src/ical-code.c:432
 msgid "Indian/Christmas"
-msgstr ""
+msgstr "印度/聖誕島"
 
 #: ../src/ical-code.c:433
 msgid "Indian/Cocos"
-msgstr ""
+msgstr "印度/科克斯島"
 
 #: ../src/ical-code.c:434
 msgid "Indian/Comoro"
-msgstr ""
+msgstr "印度/科摩洛群島"
 
 #: ../src/ical-code.c:435
 msgid "Indian/Kerguelen"
-msgstr ""
+msgstr "印度/克格連群島"
 
 #: ../src/ical-code.c:436
 msgid "Indian/Mahe"
-msgstr ""
+msgstr "印度/馬埃"
 
 #: ../src/ical-code.c:437
 msgid "Indian/Maldives"
-msgstr ""
+msgstr "印度/馬爾地夫"
 
 #: ../src/ical-code.c:438
 msgid "Indian/Mauritius"
-msgstr ""
+msgstr "印度/模里西斯"
 
 #: ../src/ical-code.c:439
 msgid "Indian/Mayotte"
-msgstr ""
+msgstr "印度/馬約特"
 
 #: ../src/ical-code.c:440
 msgid "Indian/Reunion"
-msgstr ""
+msgstr "印度/留尼旺島"
 
 #: ../src/ical-code.c:441
 msgid "Pacific"
-msgstr ""
+msgstr "太平洋"
 
 #: ../src/ical-code.c:442
 msgid "Pacific/Apia"
-msgstr ""
+msgstr "太平洋/阿庇亞"
 
 #: ../src/ical-code.c:443
 msgid "Pacific/Auckland"
-msgstr ""
+msgstr "太平洋/奧克蘭"
 
 #: ../src/ical-code.c:444
 msgid "Pacific/Chatham"
-msgstr ""
+msgstr "太平洋/查坦島"
 
 #: ../src/ical-code.c:445
 msgid "Pacific/Easter"
-msgstr ""
+msgstr "太平洋/復活節島"
 
 #: ../src/ical-code.c:446
 msgid "Pacific/Efate"
-msgstr ""
+msgstr "太平洋/艾法特島"
 
 #: ../src/ical-code.c:447
 msgid "Pacific/Enderbury"
-msgstr ""
+msgstr "太平洋/恩得伯利島"
 
 #: ../src/ical-code.c:448
 msgid "Pacific/Fakaofo"
-msgstr ""
+msgstr "太平洋/法考福環礁"
 
 #: ../src/ical-code.c:449
 msgid "Pacific/Fiji"
-msgstr ""
+msgstr "太平洋/斐濟"
 
 #: ../src/ical-code.c:450
 msgid "Pacific/Funafuti"
-msgstr ""
+msgstr "太平洋/富那富提"
 
 #: ../src/ical-code.c:451
 msgid "Pacific/Galapagos"
-msgstr ""
+msgstr "太平洋/龜島群島"
 
 #: ../src/ical-code.c:452
 msgid "Pacific/Gambier"
-msgstr ""
+msgstr "太平洋/甘比爾群島"
 
 #: ../src/ical-code.c:453
 msgid "Pacific/Guadalcanal"
-msgstr ""
+msgstr "太平洋/瓜達卡納爾"
 
 #: ../src/ical-code.c:454
 msgid "Pacific/Guam"
-msgstr ""
+msgstr "太平洋/關島"
 
 #: ../src/ical-code.c:455
 msgid "Pacific/Honolulu"
-msgstr ""
+msgstr "太平洋/檀香山"
 
 #: ../src/ical-code.c:456
 msgid "Pacific/Johnston"
-msgstr ""
+msgstr "太平洋/京斯頓礁群"
 
 #: ../src/ical-code.c:457
 msgid "Pacific/Kiritimati"
-msgstr ""
+msgstr "太平洋/聖誕島"
 
 #: ../src/ical-code.c:458
 msgid "Pacific/Kosrae"
-msgstr ""
+msgstr "太平洋/庫賽埃島"
 
 #: ../src/ical-code.c:459
 msgid "Pacific/Kwajalein"
-msgstr ""
+msgstr "太平洋/瓜佳蓮市"
 
 #: ../src/ical-code.c:460
 msgid "Pacific/Majuro"
-msgstr ""
+msgstr "太平洋/馬紹爾"
 
 #: ../src/ical-code.c:461
 msgid "Pacific/Marquesas"
-msgstr ""
+msgstr "太平洋/馬貴士群島"
 
 #: ../src/ical-code.c:462
 msgid "Pacific/Midway"
-msgstr ""
+msgstr "太平洋/中途島"
 
 #: ../src/ical-code.c:463
 msgid "Pacific/Nauru"
-msgstr ""
+msgstr "太平洋/諾魯"
 
 #: ../src/ical-code.c:464
 msgid "Pacific/Niue"
-msgstr ""
+msgstr "太平洋/紐埃"
 
 #: ../src/ical-code.c:465
 msgid "Pacific/Norfolk"
-msgstr ""
+msgstr "太平洋/諾福克島"
 
 #: ../src/ical-code.c:466
 msgid "Pacific/Noumea"
-msgstr ""
+msgstr "太平洋/努米亞"
 
 #: ../src/ical-code.c:467
 msgid "Pacific/Pago_Pago"
-msgstr ""
+msgstr "太平洋/巴哥巴哥"
 
 #: ../src/ical-code.c:468
 msgid "Pacific/Palau"
-msgstr ""
+msgstr "太平洋/帛琉"
 
 #: ../src/ical-code.c:469
 msgid "Pacific/Pitcairn"
-msgstr ""
+msgstr "太平洋/庇開恩島"
 
 #: ../src/ical-code.c:470
 msgid "Pacific/Ponape"
-msgstr ""
+msgstr "太平洋/波納佩"
 
 #: ../src/ical-code.c:471
 msgid "Pacific/Port_Moresby"
-msgstr ""
+msgstr "太平洋/莫士比港"
 
 #: ../src/ical-code.c:472
 msgid "Pacific/Rarotonga"
-msgstr ""
+msgstr "太平洋/拉羅東加"
 
 #: ../src/ical-code.c:473
 msgid "Pacific/Saipan"
-msgstr ""
+msgstr "太平洋/塞班島"
 
 #: ../src/ical-code.c:474
 msgid "Pacific/Tahiti"
-msgstr ""
+msgstr "太平洋/大溪地"
 
 #: ../src/ical-code.c:475
 msgid "Pacific/Tarawa"
-msgstr ""
+msgstr "太平洋/塔拉瓦"
 
 #: ../src/ical-code.c:476
 msgid "Pacific/Tongatapu"
-msgstr ""
+msgstr "太平洋/東加大浦"
 
 #: ../src/ical-code.c:477
 msgid "Pacific/Truk"
-msgstr ""
+msgstr "太平洋/特魯克"
 
 #: ../src/ical-code.c:478
 msgid "Pacific/Wake"
-msgstr ""
+msgstr "太平洋/威克島"
 
 #: ../src/ical-code.c:479
 msgid "Pacific/Wallis"
-msgstr ""
+msgstr "太平洋/沃里斯"
 
 #: ../src/ical-code.c:480
 msgid "Pacific/Yap"
-msgstr ""
+msgstr "太平洋/雅浦"
 
 #: ../src/ical-code.c:1168
 msgid "Orage default alarm"
@@ -2094,13 +2108,12 @@ msgid "About Orage"
 msgstr "關於Orage"
 
 #: ../panel-plugin/orageclock.desktop.in.in.h:1
-#, fuzzy
 msgid "Orage Clock"
-msgstr "Orage"
+msgstr "Orage 時鐘"
 
 #: ../panel-plugin/orageclock.desktop.in.in.h:2
 msgid "What time and date is it?"
-msgstr ""
+msgstr "請問現在的時間與日期"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:1
 msgid "Calendar Settings"
