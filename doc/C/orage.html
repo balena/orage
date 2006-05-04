@@ -1,19 +1,379 @@
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Orage</title><link rel="stylesheet" href="../xfce.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.69.1"><link rel="start" href="#orage" title="Orage"><link rel="next" href="#orage-intro" title="Introduction"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="article" lang="en"><div class="titlepage"><div><div><h1 class="title"><a name="orage"></a>Orage</h1></div><div><div class="authorgroup"><div class="author"><h3 class="author"><span class="firstname">Mickaël</span> <span class="surname">Graf</span></h3><div class="affiliation"><div class="address"><p><code class="email">&lt;<a href="mailto:korbinus@xfce.org">korbinus@xfce.org</a>&gt;</code></p></div></div></div><div class="author"><h3 class="author"><span class="firstname">Juha</span> <span class="surname">Kautto</span></h3><div class="affiliation"><div class="address"><p><code class="email">&lt;<a href="mailto:juha@xfce.org">juha@xfce.org</a>&gt;</code></p></div></div></div><div class="author"><h3 class="author"><span class="firstname">Benedikt</span> <span class="surname">Meurer</span></h3><div class="affiliation"><div class="address"><p><code class="email">&lt;<a href="mailto:benny@xfce.org">benny@xfce.org</a>&gt;</code></p></div></div></div><div class="author"><h3 class="author"><span class="firstname">Edscott Wilson</span> <span class="surname">Garcia</span></h3><div class="affiliation"><div class="address"><p><code class="email">&lt;<a href="mailto:edscott@xfce.org">edscott@xfce.org</a>&gt;</code></p></div></div></div></div></div><div><span xmlns="http://www.w3.org/TR/xhtml1/transitional" class="releaseinfo">This manual describes <strong xmlns="" class="application"><code>orage</code></strong> version 4.3.1. 
-    Last updated: Oct 2005
-  <br></br></span></div><div><p class="copyright">Copyright © 2005 Mickaël Graf</p></div></div><hr></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="sect1"><a href="#orage-intro">Introduction</a></span></dt><dt><span class="sect1"><a href="#orage-getting-started">Getting started</a></span></dt><dt><span class="sect1"><a href="#orage-calendar-window">The calendar window</a></span></dt></dl></div><p> </p><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="orage-intro"></a>Introduction</h2></div></div></div><p>
-    Orage is a time-managing application that is part of the <a href="http://www.xfce.org" target="_top">Xfce 4 Desktop Environment</a> and features a calendar window, 
-    lists of events and reminders. It also provides an easy way to archive and manage your 
-    old appointments.
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>Orage</title><link rel="stylesheet" href="../xfce.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.68.1"><link rel="start" href="#orage" title="Orage"><link rel="next" href="#orage-intro" title="Introduction"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="article" lang="en"><div class="titlepage"><div><div><h1 class="title"><a name="orage"></a>Orage</h1></div><div><div class="authorgroup"><div class="author"><h3 class="author"><span class="firstname">Mickael</span> <span class="surname">Graf</span></h3><div class="affiliation"><div class="address"><p><code class="email">&lt;<a href="mailto:korbinus@xfce.org">korbinus@xfce.org</a>&gt;</code></p></div></div></div><div class="author"><h3 class="author"><span class="firstname">Juha</span> <span class="surname">Kautto</span></h3><div class="affiliation"><div class="address"><p><code class="email">&lt;<a href="mailto:juha@xfce.org">juha@xfce.org</a>&gt;</code></p></div></div></div><div class="author"><h3 class="author"><span class="firstname">Benedikt</span> <span class="surname">Meurer</span></h3><div class="affiliation"><div class="address"><p><code class="email">&lt;<a href="mailto:benny@xfce.org">benny@xfce.org</a>&gt;</code></p></div></div></div><div class="author"><h3 class="author"><span class="firstname">Edscott Wilson</span> <span class="surname">Garcia</span></h3><div class="affiliation"><div class="address"><p><code class="email">&lt;<a href="mailto:edscott@xfce.org">edscott@xfce.org</a>&gt;</code></p></div></div></div></div></div><div><span xmlns="http://www.w3.org/TR/xhtml1/transitional" class="releaseinfo">This manual describes <strong xmlns="" class="application"><code>orage</code></strong> version 4.3.90.1.
+    Last updated: May 2006
+  <br></br></span></div><div><p class="copyright">Copyright © 2005-2006 Mickael Graf</p></div></div><hr></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="sect1"><a href="#orage-intro">Introduction</a></span></dt><dt><span class="sect1"><a href="#orage-getting-started">Getting started</a></span></dt><dt><span class="sect1"><a href="#orage-calendar-window">The calendar window</a></span></dt><dd><dl><dt><span class="sect2"><a href="#calendar-menu-bar">The menu bar</a></span></dt><dt><span class="sect2"><a href="#calendar-window">The calendar</a></span></dt></dl></dd><dt><span class="sect1"><a href="#orage-eventlist-window">The eventlist window</a></span></dt><dd><dl><dt><span class="sect2"><a href="#eventlist-action-bar">The button bar</a></span></dt><dt><span class="sect2"><a href="#eventlist-appointments">The eventlist</a></span></dt></dl></dd><dt><span class="sect1"><a href="#orage-appointment-window">The appointment window</a></span></dt><dd><dl><dt><span class="sect2"><a href="#appointment-action-bar">The button bar</a></span></dt><dt><span class="sect2"><a href="#appointment-general-tab">The general tab</a></span></dt><dt><span class="sect2"><a href="#appointment-alarm-tab">The alarm tab</a></span></dt><dt><span class="sect2"><a href="#appointment-recurrence-tab">The recurrence tab</a></span></dt></dl></dd><dt><span class="sect1"><a href="#orage-preferences-window">The preferences window</a></span></dt><dd><dl><dt><span class="sect2"><a href="#preferences-display-tab">The display tab</a></span></dt><dt><span class="sect2"><a href="#preferences-archives-tab">The archives tab</a></span></dt><dt><span class="sect2"><a href="#preferences-sound-tab">The sound tab</a></span></dt><dt><span class="sect2"><a href="#preferences-timezone-tab">The timezone tab</a></span></dt></dl></dd><dt><span class="sect1"><a href="#orage-faq">Frequently Asked Questions</a></span></dt></dl></div><p> </p><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="orage-intro"></a>Introduction</h2></div></div></div><p>
+    Orage is a time-managing application that is part of the
+    <a href="http://www.xfce.org" target="_top">Xfce 4 Desktop Environment
+    </a> and features a calendar window, lists of events and reminders.
+    It also provides an easy way to archive and manage your old appointments.
   </p></div><p> </p><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="orage-getting-started"></a>Getting started</h2></div></div></div><p>
-    Orage is started by writting <strong class="application"><code>orage</code></strong> on the command line or in the run application window. 
-    You can also start it by clicking on the item <strong class="application"><code>orage</code></strong> in the submenu "Office" from the desktop
-    menu.
+    Orage is started by typing <strong class="application"><code>orage</code></strong> on the command line or in the run
+    application window. You can also start it by clicking on the item <strong class="application"><code>orage</code></strong>
+    in the submenu "Office" from the desktop menu.
+    Another handy way of starting <strong class="application"><code>orage</code></strong> is to click button 1 on orageclock
+    panel plugin.
+  </p><p>
+    But actually the first thing you should do is to adjust your 
+    <a href="#orage-preferences-window" title="The preferences window">preferences</a>. At least
+    before adding any appointments, you should set your local
+    <a href="#preferences-timezone-tab" title="The timezone tab">timezone</a>.
   </p><div class="figure"><a name="desktop-menuitem-fig"></a><p class="title"><b>Figure 1. Orage menu item in the desktop menu</b></p><div class="screenshot"><div class="mediaobject"><img src="images/orage_desktop_menuitem.png" alt='
-	    For starting Orage from the desktop menu: "Office" and then click on "Orage".
-	  '></div></div></div><p>
-    When you run <strong class="application"><code>orage</code></strong>, you will first see the calendar window appearing. 
+            For starting orage from the desktop menu: "Office" and then click
+            on "Orage".
+          '></div></div></div><p>
+    When you run <strong class="application"><code>orage</code></strong>, you will first see the calendar window appearing.
   </p></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="orage-calendar-window"></a>The calendar window</h2></div></div></div><div class="figure"><a name="default-calendar-fig"></a><p class="title"><b>Figure 2. Default Calendar window</b></p><div class="screenshot"><div class="mediaobject"><img src="images/default_calendar.png" alt="
-	    The default calendar window: a menu giving access to different functions, a nice 
-	    calendar in the middle, showing the month, the year, day names, week numbers, and
-	    in bold which days you have appointments.
-	  "></div></div></div></div></div></body></html>
+            The calendar window.
+          "></div></div></div><p>
+    The calendar window provides you a menu bar giving access to different
+    functions. 
+    Below that is a nice calendar showing the month, the year, day names,
+    week numbers. 
+  </p><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="calendar-menu-bar"></a>The menu bar</h3></div></div></div><p>
+      The menubar contains four menus, which are the File, Edit, View, Help.
+    </p><div class="sect3" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="calendar-file-menu"></a>The File menu</h4></div></div></div><div class="figure"><a name="calendar-file-menu-fig"></a><p class="title"><b>Figure 3. File menu in the calendar window</b></p><div class="screenshot"><div class="mediaobject"><img src="images/orage_calendar_file_menu.png" alt="
+                The File menu in the calendar window.
+              "></div></div></div><p>
+        The file menu contains five items:
+      </p><div class="itemizedlist"><ul type="disc"><li>New: fire an appointment window (see below) for creating a
+                  new appointment;
+        </li><li>Open archive file...: fire a file selector for opening file
+                  containing old items;
+        </li><li>Close archive file: close the previously opened file -
+                  greyed when no file opened;
+        </li><li>Close: close the calendar window, keeping the application
+                  running;
+        </li><li>Quit: close the opened windows and end the application;
+        </li></ul></div></div><div class="sect3" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="calendar-edit-menu"></a>The Edit menu</h4></div></div></div><div class="figure"><a name="calendar-edit-menu-fig"></a><p class="title"><b>Figure 4. Edit menu in the calendar window</b></p><div class="screenshot"><div class="mediaobject"><img src="images/orage_calendar_edit_menu.png" alt="
+                The Edit menu in the calendar window.
+              "></div></div></div><p>
+        The Edit menu gives you access to the setting window, which will be
+        presented later on.
+      </p></div><div class="sect3" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="calendar-view-menu"></a>The View menu</h4></div></div></div><div class="figure"><a name="calendar-view-menu-fig"></a><p class="title"><b>Figure 5. View menu in the calendar window</b></p><div class="screenshot"><div class="mediaobject"><img src="images/orage_calendar_view_menu.png" alt="
+                The View menu in the calendar window.
+              "></div></div></div><p>
+        The View menu has two choices:
+      </p><div class="itemizedlist"><ul type="disc"><li>View selected date: show the event list of currently
+                  selected date;
+        </li><li>Select today: set calendar's selected day to be today;
+        </li></ul></div></div><div class="sect3" lang="en"><div class="titlepage"><div><div><h4 class="title"><a name="calendar-help-menu"></a>The Help menu</h4></div></div></div><div class="figure"><a name="calendar-help-menu-fig"></a><p class="title"><b>Figure 6. Help menu in the calendar window</b></p><div class="screenshot"><div class="mediaobject"><img src="images/orage_calendar_help_menu.png" alt="
+                The Help menu in the calendar window.
+              "></div></div></div><p>
+        The Help menu has also two choices:
+      </p><div class="itemizedlist"><ul type="disc"><li>Help: show this help file;</li><li>About: show information about the authors and license;
+        </li></ul></div></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="calendar-window"></a>The calendar</h3></div></div></div><p>
+      Calendar view presents you one month, which you can change by pressing
+      the arrow beside the month name or the year number or using the mouse 
+      wheel.
+      Days where you have appointments are marked as bold. One day is always
+      selected and shown with a block.
+      You can change the selected day by single clicking any day number.
+      Double clicking a day number causes event-list window for that day to be
+      activated.
+    </p></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="orage-eventlist-window"></a>The eventlist window</h2></div></div></div><div class="figure"><a name="orage-eventlist-fig"></a><p class="title"><b>Figure 7. Orage eventlist window</b></p><div class="screenshot"><div class="mediaobject"><img src="images/orage_eventlist.png" alt="
+            The eventlist window.
+          "></div></div></div><p>
+    The eventlist (or appointment list as it is also called) window shows all
+    activites that you have reserved for the day (date is shown in the window
+    heading the format yyyy-mm-dd).
+    On top of the window it gives you buttons to do actions. (All actions are
+    also available in menus above the buttons.)
+    This is your main activity window and you may want to keep it up all the
+    day and even make it to appear on all workspaces or to be always on top
+    of other windows.
+  </p><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="eventlist-action-bar"></a>The button bar</h3></div></div></div><p>
+      There are 9 activity buttons in the button bar from left to right:
+    </p><div class="itemizedlist"><ul type="disc"><li>New: start an <a href="#orage-appointment-window" title="The appointment window">
+                appointment window</a> for creating a new appointment for 
+                this day;
+      </li><li>Back: show previous day; </li><li>Today: show today; </li><li>Forward: show next day; </li><li>Refresh: Redisplay this date. This window is usually 
+        refreshed automatically, but on certain special cases it may
+        not show the latest changes. (Most common case is probably
+        when you start editing an appointment from the alarm window
+        instead from this eventlist window);
+      </li><li>Duplicate: start an <a href="#orage-appointment-window" target="_top">
+        appointment window</a> for creating a new appointment for
+        this day. But do not start from scratch, but copy all values
+        from the active row in the appointment list below. Note that
+        if you do not have any rows selected from the eventlist, this
+        button does not do anything (but gives a g_warning, which you
+        normally cannot see);
+      </li><li>Close: close this window; </li><li>Clear: remove all appointments which start on the shown day.
+        Note that it is possible to create repeating appointments in
+        <strong class="application"><code>orage</code></strong> and if such an appointment is shown, but starts on an
+        earlier date, it is NOT removed. (But repeating events will
+        be removed if the first day is on this day.) Be carefull with
+        this button! Before removing anything it asks for your
+        verification, because it may remove many appointments.
+        (Note that you can not delete a single appointment in this
+        window; you have to go to the appointment window to do that);
+      </li><li>Day count: you can see more than one day in this window by
+        setting this number to larger than 0. Each number means show
+        one more day. (It causes the Time column in the event
+        listing to show also the date.) Note however that each
+        repeating appointment is shown only once (=first time)
+        instead of everytime it happens.
+      </li></ul></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="eventlist-appointments"></a>The eventlist</h3></div></div></div><p>
+      The event list shows all appointments happening on this day.  Scrollbars
+      will appear if there are more lines or longer lines than what can fit
+      into the window.  You can edit any appointment by double clicking the
+      row. Each line has three fields:
+    </p><div class="itemizedlist"><ul type="disc"><li>
+        Time: the starting and ending times of the appointment (it shows the
+        date only if more than one day is shown). If the event has passed, it
+        is overstriked. Currently active appointments are shown with red
+        colour and future appointments are bold. It is also possible to define
+        special whole day appoinmtments and they always have a text "All day"
+        instead of real start and end times.
+      </li><li>
+        Flags: gives information about the appointment. (Note that the
+        explanations are visible as a hint when you move your cursor into the
+        event list.) There are three flags in order:
+        <div class="itemizedlist"><ul type="circle"><li>
+            Alarm: what kind of action happens when alarm time passes.
+            <span><strong class="keycap">n</strong></span> means no alarm has been defined.
+            <span><strong class="keycap">A</strong></span> means that window is raised as an alarm and
+            <span><strong class="keycap">S</strong></span> means that in addition to the window, a
+            sound is also played.
+          </li><li>
+            Repeat: how often is that appointment happening.
+            <span><strong class="keycap">n</strong></span> means no repeating so that this event only
+            happens once. <span><strong class="keycap">D</strong></span> means daily repeat,
+            <span><strong class="keycap">W</strong></span> weekly, <span><strong class="keycap">M</strong></span> monthly and
+            <span><strong class="keycap">Y</strong></span> yearly.
+          </li><li>
+            Type: what kind of reservation is this. Two options:
+            <span><strong class="keycap">f</strong></span> means free so that the action is not reserving
+            the time and it is possible to schedule more appointments at the
+            same time and respectively <span><strong class="keycap">B</strong></span> means busy, so that
+            nothing else can not be done at this time.  Note that current
+            version of <strong class="application"><code>orage</code></strong> does not enforce these and the flag is only as a
+            comment (in the future this may be enforced).
+          </li></ul></div></li><li>
+        Title: the heading of the appointment. Note that the whole title is
+        shown, so you may want to avoid using too long titles to keep the view
+        cleaner.
+      </li></ul></div></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="orage-appointment-window"></a>The appointment window</h2></div></div></div><p>
+    The appointment window is used to add, edit and delete appointments.
+    It is the most complex window in <strong class="application"><code>orage</code></strong>, but most fields still have good
+    default values and are not mandatory. It has button bar (All actions are
+    also available in menus above the buttons) and three tabs controlling
+    basic settings and alarms and recurrence settings.
+  </p><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="appointment-action-bar"></a>The button bar</h3></div></div></div><p>
+      There are 5 activity buttons in the button bar from left to right:
+    </p><div class="itemizedlist"><ul type="disc"><li>Save: store the appointment to the orage system. This causes
+        also data validity checking.
+      </li><li>Save and close: like Save, but also closes the window.
+      </li><li>Revert: undo all changes done after previous save. Note that
+        this button is active only after data has been changed.
+      </li><li>Duplicate: start creating new appointment and copy all values
+        from the current activity into it. The new appointment is not created
+        until you press <span><strong class="guibutton">Save</strong></span>.
+      </li><li>Delete: remove current appointment permanently from orage
+        system.
+      </li></ul></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="appointment-general-tab"></a>The general tab</h3></div></div></div><div class="figure"><a name="orage-appointment-fig"></a><p class="title"><b>Figure 8. Orage appointment window - general tab</b></p><div class="screenshot"><div class="mediaobject"><img src="images/orage_appointment.png" alt="
+              The appointment window.
+            "></div></div></div><p>
+      In this tab, you define the contents of the appointment.
+    </p><div class="variablelist"><dl><dt><span class="term">Title</span></dt><dd><p>The title of the appointment. It appears in the event list
+            and also in the alarm window and is listed at the header of this
+            window. It should be a rather short summary of the appointment.
+          </p></dd><dt><span class="term">Location</span></dt><dd><p>This field should describe where the event happens. It can
+            be for example Home or Office or Paris depending on what kind of
+            appointment you have. It is also possible to leave it empty. <strong class="application"><code>orage</code></strong>
+            is not using it in any special way, nor is it visible anywhere 
+            else than here.
+          </p></dd><dt><span class="term"><a name="all-day-event"></a>All day event</span></dt><dd><p>Selecting this checkbox causes so called whole day appointment
+            to be defined. These do not have start nor end time defined, but
+            it is possible that the event lasts several days. These are 
+            special since they always have window type alarm defined and 
+            although it is possible to add separate alarm (in alarm tab), it 
+            is ignored and not even stored to the system. (no warning is given
+            so this is a bit confusing.) The automatic alarm is raised when
+            <strong class="application"><code>orage</code></strong> is started or date changes and the new day has this kind of
+            event.
+          </p></dd><dt><span class="term">Start</span></dt><dd><p>Defines the start time of the appointment. First, press the    
+            date button and choose the date from the calendar. After that
+            you set the hour and minute using either your mouse wheel or
+            clicking the small arrows. It is also possible to type the
+            numbers directly to the fields. Hours go from 0 to 23 (24 is not
+            allowed value).
+          </p><p>The last button is timezone. Default value for new
+            appointments is your current timezone, which you have set in the
+            preferences. It is recommended to use real timezones instead of
+            floating. You should not mix floating with real timezones although 
+            it is possible. Floating means that time is not bound to any
+            timezone, but varies according to current settings. Modifying
+            either the default timezone or start timezone may cause floating
+            values to change.
+          </p></dd><dt><span class="term">End</span></dt><dd><p>Similar to Start, but defines naturally the ending time. Note
+            that start and end timezones may be different (for example when
+            you schedule a meeting in abroad you can set the starting time in
+            your local timezone and the rest of the timings in thedestination
+            timezone).
+            <a href="#orage-eventlist-window" title="The eventlist window"> Eventlist window</a>
+            always shows times in your local time.
+          </p></dd><dt><span class="term">Duration</span></dt><dd><p>Often it is easier to set the appointment duration instead of
+            ending time. You can do that by marking the first box here. It is
+            not possible to have both end time and duration at the same time,
+            so end time setting will be unavailable after you select duration.
+            Maximum duration is 1000 days, which is almost three years. Note
+            that although the minute selectionm jumps 5 minutes at a time, you
+            can manually enter any number (just remember to tab out from the
+            field, so that the value is read).
+          </p></dd><dt><span class="term">Availability</span></dt><dd><p>What kind of reservation is this. There are two possiblities:
+            <span class="emphasis"><em>Free</em></span> means that the action is not reserving
+            the time and it is possible to schedule more appointments at the
+            same time and respectively <span class="emphasis"><em>Busy</em></span> means that
+            nothing else can not be done at this time.  Note that current
+            version of <strong class="application"><code>orage</code></strong> does not enforce these menings and the flag is
+            only as a comment (in the future this may be checked).
+          </p></dd><dt><span class="term">Note</span></dt><dd><p>Free format long text, where you can and should explain more
+            the appointment. It is shown in the alarm window.
+          </p></dd></dl></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="appointment-alarm-tab"></a>The alarm tab</h3></div></div></div><div class="figure"><a name="orage-appointment-alarm-fig"></a><p class="title"><b>Figure 9. Orage appointment window - alarm tab</b></p><div class="screenshot"><div class="mediaobject"><img src="images/orage_appointment_alarm.png" alt="
+              The appointment alarm tab.
+            "></div></div></div><p>
+      In this tab, you define the alarm for the appointment. <strong class="application"><code>orage</code></strong> supports 
+      two kinds of alarms: window and sound, but they both happen at the same 
+      time and sound is just an extra alarm; it is not possible to only raise
+      sound alarm. window alarm is raised if any of the alarm timing numbers
+      is non zero (in other words there is no special flag to set alarm; just 
+      define the time for it). Similarly sound alarm is raised if sound file
+      has a value.
+    </p><p>NOTE: this alarm setting has no effect on 
+        <a href="#all-day-event">all day events</a>; they always
+        have only window type alarm set.
+    </p><div class="variablelist"><dl><dt><span class="term">Alarm</span></dt><dd><p>Define how much earlier (compared to the appointment starting
+            time) the alarm(s) happens. If all numbers are zero, no alarm is
+            raised for this appointment.
+          </p></dd><dt><span class="term">Sound</span></dt><dd><p>Define the sound file to be played when the alarm fires.
+            Leaving this empty disables sound alarm and putting any value
+            enables it. Remember to define the actual play command in the
+            preferences dialog. You should also test that your system can 
+            play the filetype you choose there. Simply start a terminal and
+            test it using the command you specified and the the sound file.
+          </p></dd><dt><span class="term">Repeat alarm sound</span></dt><dd><p>Set this check box if you want to hear the sound more than
+            once. (Usually you want to check this.) Note that there is an
+            internal counter, which stops the sound after 500 plays. Note
+            also that when sound is repeating it is restarted after each 2
+            seconds, so you may get problems with longer lasting soundfiles.
+          </p></dd></dl></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="appointment-recurrence-tab"></a>The recurrence tab</h3></div></div></div><div class="figure"><a name="orage-appointment-recurrence-fig"></a><p class="title"><b>Figure 10. Orage appointment window - recurrence tab</b></p><div class="screenshot"><div class="mediaobject"><img src="images/orage_appointment_recurrence.png" alt="
+              The appointment recurrence tab.
+            "></div></div></div><p>
+      In this tab you can define repeating appointments. Sometimes it makes
+      much sense to define that the same appointment happens every day or
+      every month instead of creating a new appoointment for each event.
+    </p><p>
+      First you need to select <span class="emphasis"><em>recurrence</em></span> period. Default
+      is no repeat and other possibilities are daily, weekly, monthly and
+      yearly.
+    </p><p>
+      <strong class="application"><code>orage</code></strong> allows you also to limit the repeating count:
+      </p><div class="itemizedlist"><ul type="disc"><li>Repeat forever: this is default and does not limit the
+          number of occurrences.
+        </li><li>Repeat n times: the appointment is scheduled exactly n
+          times. After that it ends (but is not removed).
+        </li><li>Repeat until date: you can select the last date when this
+          event happens. Note that it still happens normally during this date.
+        </li></ul></div><p>
+    </p></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="orage-preferences-window"></a>The preferences window</h2></div></div></div><p>
+    The preferences window is used to enter initial values for <strong class="application"><code>orage</code></strong>.
+    You can define several display options, how old apppointments should
+    be archived and what is the play command to be used for playing sound
+    alarms and also you can set the local timezone for <strong class="application"><code>orage</code></strong>.
+  </p><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="preferences-display-tab"></a>The display tab</h3></div></div></div><div class="figure"><a name="orage-preferences-display-fig"></a><p class="title"><b>Figure 11. Orage preferences window - display tab</b></p><div class="screenshot"><div class="mediaobject"><img src="images/orage_preferences_display.png" alt="
+              The preferences display tab.
+            "></div></div></div><p>
+      In this tab you can define visibility options for the 
+      <a href="#orage-calendar-window" title="The calendar window">main window</a> of <strong class="application"><code>orage</code></strong>.
+    </p><div class="variablelist"><dl><dt><span class="term">Calendar borders</span></dt><dd><p>You can hide window borders and make the calendar window 
+            smaller by choosing Hidden option. This frees more space to your 
+            other applicatiosn from your workspace.
+          </p></dd><dt><span class="term">Calendar window</span></dt><dd><p>This option defines where the main window is visible.
+          </p></dd><dt><span class="term">Calendar start</span></dt><dd><p>It is possible to define that <strong class="application"><code>orage</code></strong> starts in the background
+            or as minimized. This option only affects the start of <strong class="application"><code>orage</code></strong>.
+          </p></dd></dl></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="preferences-archives-tab"></a>The archives tab</h3></div></div></div><div class="figure"><a name="orage-preferences-archives-fig"></a><p class="title"><b>Figure 12. Orage preferences window - archives tab</b></p><div class="screenshot"><div class="mediaobject"><img src="images/orage_preferences_archives.png" alt="
+              The preferences archives tab.
+            "></div></div></div><p>
+      <strong class="application"><code>orage</code></strong> does not delete appointments automatically, so usually your
+      calendar file grows bigger and because of that <strong class="application"><code>orage</code></strong> gets slower and
+      takes up more memory from the system. It is possible to define
+      automatic archiving so that old appointments are moved from the active
+      calendar file to passive history file. This helps to keep the active
+      file smaller and the application in good shape. Archiving is enabled by
+      setting the threshold to other than "never" value. Of course it is also
+      possible to manually delete appointments, but that removes them 
+      permanently and you will not be able to find them later.
+    </p><p>
+      Unfortunately <strong class="application"><code>orage</code></strong> version 4.3.90.1 has no way to search or bring
+      back appointments from the history file. This means that although the
+      archived events are not lost, they vanish so that you can only access
+      them manually outside <strong class="application"><code>orage</code></strong>.
+    </p><p>
+      Note that <strong class="application"><code>orage</code></strong> also splits
+      <a href="#appointment-recurrence-tab" title="The recurrence tab">recurring appointments</a>
+      so that if the original start date is older than threshold, that
+      appointment is added to the archive file and the starting date in the
+      active calendar file is updated to contain only values more recent than
+      threshold. This also saves time when <strong class="application"><code>orage</code></strong> is searching recurrent
+      events.
+    </p><div class="variablelist"><dl><dt><span class="term">Archive file</span></dt><dd><p>This file will contain the archived appointments. It will
+            grow, but since <strong class="application"><code>orage</code></strong> is not accessing it, that does not matter.
+          </p></dd><dt><span class="term">Archive threshold</span></dt><dd><p>This enables archiving mode by setting it to other than 
+            "never" value. Choises are 3, 6 or 12 months.
+          </p></dd></dl></div></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="preferences-sound-tab"></a>The sound tab</h3></div></div></div><div class="figure"><a name="orage-preferences-sound-fig"></a><p class="title"><b>Figure 13. Orage preferences window - sound tab</b></p><div class="screenshot"><div class="mediaobject"><img src="images/orage_preferences_sound.png" alt="
+              The preferences sound tab.
+            "></div></div></div><p>
+      In this tab you can define which sound command <strong class="application"><code>orage</code></strong> uses when playing
+      sound files. try testing some common commands like play or aplay 
+      from terminal to see what works in your system. You probably do not want
+      to use full version of totem or mplayer since they will cause a video
+      window also to appear and that most probably is not what you want.
+    </p><p>
+      Basically it is possible to do other than sound commands also since 
+      <strong class="application"><code>orage</code></strong> really only starts this program and gives it
+      <a href="#appointment-alarm-tab" title="The alarm tab">the sound file</a>
+      as parameter. But this is not the intention of this feature.
+    </p></div><div class="sect2" lang="en"><div class="titlepage"><div><div><h3 class="title"><a name="preferences-timezone-tab"></a>The timezone tab</h3></div></div></div><div class="figure"><a name="orage-preferences-timezone-fig"></a><p class="title"><b>Figure 14. Orage preferences window - timezone tab</b></p><div class="screenshot"><div class="mediaobject"><img src="images/orage_preferences_timezone.png" alt="
+              The preferences timezone tab.
+            "></div></div></div><p>
+      You should always set the default timezone for <strong class="application"><code>orage</code></strong> It is possible to
+      use also floating times, but then all times should be in floating form.
+      It definitely is a bad idea to mix floating and timezone times. 
+      Floating times tend to move to follow any timezones they see...
+    </p></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="orage-faq"></a>Frequently Asked Questions</h2></div></div></div><p>
+    Some common questions and answers.
+  </p><tr class="qandadiv"><td align="left" valign="top" colspan="2"><a name="id2514350"></a><h4 class="title"><a name="id2514350"></a>1. Frequently Asked Questions</h4></td></tr><tr class="toc" colspan="2"><td align="left" valign="top" colspan="2"><dl><dt>1.1. <a href="#id2514354">
+          Why does my week start on Saturday?
+        </a></dt><dt>1.2. <a href="#id2514454">
+          How can I insert my ical file into orage?
+        </a></dt></dl></td></tr><tr class="question"><td align="left" valign="top"><a name="id2514354"></a><a name="id2514357"></a><b>1.1.</b></td><td align="left" valign="top"><p>
+          Why does my week start on Saturday?
+        </p></td></tr><tr class="answer"><td align="left" valign="top"><b></b></td><td align="left" valign="top"><p>
+          This really is a problem in your distro. You can check how your
+          operating system reports these to GTK+ and hence to <strong class="application"><code>orage</code></strong>, which
+          uses strictly gtk calendar widget and does not tune these settings
+          itself. Command <span><strong class="command">locale first_weekday</strong></span> shows
+          which day is the first day in your system. Usually Sunday is day
+          number 1, but that can be changed so check that with command
+          <span><strong class="command">locale day</strong></span>, which shows days starting from day 
+          number 1. You may try with different LANG enevironment variable
+          settings and calendar view in <strong class="application"><code>orage</code></strong> should change accordingly. Log
+          a new bug for <strong class="application"><code>orage</code></strong> if you think it is not working correctly.
+          Look more information from
+          <a href="http://bugzilla.xfce.org/show_bug.cgi?id=1237" target="_top">Xfce bug 1237
+          </a>
+          or from
+          <a href="http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=215466" target="_top">Debian bug 215466
+          </a>
+        </p><p>
+          If you are adventurous, you can actually fix these yourself. You
+          need to find your locale definition file (like fi_FI or fr_FR). 
+          <span><strong class="command">locate</strong></span> is your friend here and helps finding it.
+          After that you can check what the setting is: 
+          <span><strong class="command">grep first_weekday fi_FI</strong></span> and change that if it is
+          wrong and after that you need to recompile your locale database.
+        </p></td></tr><tr class="question"><td align="left" valign="top"><a name="id2514454"></a><a name="id2514456"></a><b>1.2.</b></td><td align="left" valign="top"><p>
+          How can I insert my ical file into <strong class="application"><code>orage</code></strong>?
+        </p></td></tr><tr class="answer"><td align="left" valign="top"><b></b></td><td align="left" valign="top"><p>
+          This is not currently possible. It is planned in future versions.
+        </p></td></tr></div></div></body></html>

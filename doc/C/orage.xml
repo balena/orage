@@ -2,7 +2,7 @@
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
           "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
   <!ENTITY manrevision "0.2"> 
-  <!ENTITY date "Apr 2006"> 
+  <!ENTITY date "May 2006"> 
   <!ENTITY appversion "4.3.90.1"> 
   <!ENTITY app "<application>orage</application>">
 ]>
@@ -15,7 +15,7 @@
   <title>Orage</title>
 
   <copyright>
-    <year>2006</year> <holder>Mickael Graf</holder>
+    <year>2005-2006</year> <holder>Mickael Graf</holder>
   </copyright>
 
 <!-- translators: uncomment this:
@@ -40,28 +40,28 @@
     <author>
       <firstname>Mickael</firstname> <surname>Graf</surname>
       <affiliation>
-	<address><email>korbinus@xfce.org</email></address>
+        <address><email>korbinus@xfce.org</email></address>
       </affiliation>
     </author>
 
     <author>
       <firstname>Juha</firstname> <surname>Kautto</surname>
       <affiliation>
-	<address><email>juha@xfce.org</email></address>
+        <address><email>juha@xfce.org</email></address>
       </affiliation>
     </author>
 
     <author>
       <firstname>Benedikt</firstname> <surname>Meurer</surname>
       <affiliation>
-	<address><email>benny@xfce.org</email></address>
+        <address><email>benny@xfce.org</email></address>
       </affiliation>
     </author>
 
     <author>
       <firstname>Edscott Wilson</firstname> <surname>Garcia</surname>
       <affiliation>
-	<address><email>edscott@xfce.org</email></address>
+        <address><email>edscott@xfce.org</email></address>
       </affiliation>
     </author>
 
@@ -71,8 +71,8 @@ maintainers, etc. Commented out by default.
     <othercredit role="translator">
       <firstname>Latin</firstname> <surname>Translator 1</surname>
       <affiliation>
-	<orgname>Latin Translation Team</orgname>
-	<address><email>translator@gnome.org</email> </address>
+        <orgname>Latin Translation Team</orgname>
+        <address><email>translator@gnome.org</email> </address>
       </affiliation> <contrib>Latin translation</contrib>
     </othercredit>
 -->
@@ -94,7 +94,7 @@ maintainers, etc. Commented out by default.
   </revhistory>
   -->
 
-  <releaseinfo>This manual describes &app; version &appversion;. 
+  <releaseinfo>This manual describes &app; version &appversion;.
     Last updated: &date;
   </releaseinfo>
 
@@ -107,10 +107,10 @@ maintainers, etc. Commented out by default.
   <title>Introduction</title>
 
   <para>
-    Orage is a time-managing application that is part of the <ulink url="http://www.xfce.org" 
-    type="html">Xfce 4 Desktop Environment</ulink> and features a calendar window, 
-    lists of events and reminders. It also provides an easy way to archive and manage your 
-    old appointments.
+    Orage is a time-managing application that is part of the
+    <ulink url="http://www.xfce.org" type="html">Xfce 4 Desktop Environment
+    </ulink> and features a calendar window, lists of events and reminders.
+    It also provides an easy way to archive and manage your old appointments.
   </para>
 
 </sect1>
@@ -122,10 +122,17 @@ maintainers, etc. Commented out by default.
   <title>Getting started</title>
 
   <para>
-    Orage is started by writing &app; on the command line or in the run application window. 
-    You can also start it by clicking on the item &app; in the submenu "Office" from the desktop
-    menu.
-    Another handy way of starting it is to click button 1 from the orageclock panel plugin.
+    Orage is started by typing &app; on the command line or in the run
+    application window. You can also start it by clicking on the item &app;
+    in the submenu "Office" from the desktop menu.
+    Another handy way of starting &app; is to click button 1 on orageclock
+    panel plugin.
+  </para>
+  <para>
+    But actually the first thing you should do is to adjust your 
+    <link linkend="orage-preferences-window">preferences</link>. At least
+    before adding any appointments, you should set your local
+    <link linkend="preferences-timezone-tab">timezone</link>.
   </para>
 
   <figure id="desktop-menuitem-fig">
@@ -133,61 +140,62 @@ maintainers, etc. Commented out by default.
     <screenshot>
       <mediaobject>
         <imageobject>
-	  <imagedata fileref="images/orage_desktop_menuitem.png" format="PNG" />
-	</imageobject>
-	<!--
+          <imagedata fileref="images/orage_desktop_menuitem.png" 
+                     format="PNG" />
+        </imageobject>
+        <!--
         <imageobject>
-	  <imagedata fileref="images/orage_desktop_menuitem.eps" format="EPS" />
-	</imageobject>
-	-->
-	<textobject>
-	  <phrase>
-	    For starting Orage from the desktop menu: "Office" and then click on "Orage".
-	  </phrase>
-	</textobject>
+          <imagedata fileref="images/orage_desktop_menuitem.eps" format="EPS" />
+        </imageobject>
+        -->
+        <textobject>
+          <phrase>
+            For starting &app; from the desktop menu: "Office" and then click
+            on "Orage".
+          </phrase>
+        </textobject>
       </mediaobject>
     </screenshot>
   </figure>
 
   <para>
-    When you run &app;, you will first see the calendar window appearing. 
+    When you run &app;, you will first see the calendar window appearing.
   </para>
 </sect1>
 
 <sect1 id="orage-calendar-window">
   <title>The calendar window</title>
-
   <figure id="default-calendar-fig">
     <title>Default Calendar window</title>
 
     <screenshot>
       <mediaobject>
         <imageobject>
-	  <imagedata fileref="images/default_calendar.png" format="PNG" />
-	</imageobject>
-	<!--
+          <imagedata fileref="images/default_calendar.png" format="PNG" />
+        </imageobject>
+        <!--
         <imageobject>
-	  <imagedata fileref="images/default_calendar.eps" format="EPS" />
-	</imageobject>
-	-->
-	<textobject>
-	  <phrase>
-	    The calendar window.
-	  </phrase>
-	</textobject>
+          <imagedata fileref="images/default_calendar.eps" format="EPS" />
+        </imageobject>
+        -->
+        <textobject>
+          <phrase>
+            The calendar window.
+          </phrase>
+        </textobject>
       </mediaobject>
     </screenshot>
   </figure>
 
   <para>
-    The calendar window provides you first with a menu bar giving access to different functions, a nice 
-    calendar in the middle, showing the month, the year, day names, week numbers, and in bold which days 
-    you have appointments.
+    The calendar window provides you a menu bar giving access to different
+    functions. 
+    Below that is a nice calendar showing the month, the year, day names,
+    week numbers. 
   </para>
 
   <sect2 id="calendar-menu-bar">
     <title>The menu bar</title>
-
     <para>
       The menubar contains four menus, which are the File, Edit, View, Help.
     </para>
@@ -197,33 +205,40 @@ maintainers, etc. Commented out by default.
 
       <figure id="calendar-file-menu-fig">
         <title>File menu in the calendar window</title>
-
-	<screenshot>
-	  <mediaobject>
-	    <imageobject>
-	      <imagedata fileref="images/orage_calendar_file_menu.png" format="PNG" />
-	    </imageobject>
-	    <textobject>
-	      <phrase>
-	        The File menu in the calendar window.
-	      </phrase>
-	    </textobject>
-	  </mediaobject>
-	</screenshot>
+        <screenshot>
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="images/orage_calendar_file_menu.png" 
+                         format="PNG" />
+            </imageobject>
+            <textobject>
+              <phrase>
+                The File menu in the calendar window.
+              </phrase>
+            </textobject>
+          </mediaobject>
+        </screenshot>
       </figure>
 
       <para>
         The file menu contains five items:
       </para>
-
       <itemizedlist>
-        <listitem>New: fire an appointment window (see below) for creating a new appointment;</listitem>
-        <listitem>Open archive file...: fire a file selector for opening file containing old items;</listitem>
-        <listitem>Close archive file: close the previously opened file - greyed when no file opened;</listitem>
-        <listitem>Close: close the calendar window, keeping the application running;</listitem>
-        <listitem>Quit: close the opened windows, may put old appointments in an archive file, and then close the application.</listitem>
+        <listitem>New: fire an appointment window (see below) for creating a
+                  new appointment;
+        </listitem>
+        <listitem>Open archive file...: fire a file selector for opening file
+                  containing old items;
+        </listitem>
+        <listitem>Close archive file: close the previously opened file -
+                  greyed when no file opened;
+        </listitem>
+        <listitem>Close: close the calendar window, keeping the application
+                  running;
+        </listitem>
+        <listitem>Quit: close the opened windows and end the application;
+        </listitem>
       </itemizedlist>
-
     </sect3>
 
     <sect3 id="calendar-edit-menu">
@@ -231,30 +246,775 @@ maintainers, etc. Commented out by default.
 
       <figure id="calendar-edit-menu-fig">
         <title>Edit menu in the calendar window</title>
-
-	<screenshot>
-	  <mediaobject>
-	    <imageobject>
-	      <imagedata fileref="images/orage_calendar_edit_menu.png" format="PNG" />
-	    </imageobject>
-	    <textobject>
-	      <phrase>
-	        The Edit menu in the calendar window.
-	      </phrase>
-	    </textobject>
-	  </mediaobject>
-	</screenshot>
+        <screenshot>
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="images/orage_calendar_edit_menu.png"
+                         format="PNG" />
+            </imageobject>
+            <textobject>
+              <phrase>
+                The Edit menu in the calendar window.
+              </phrase>
+            </textobject>
+          </mediaobject>
+        </screenshot>
       </figure>
 
       <para>
-        The Edit menu gives you access to the setting window, which will be presented later on.
+        The Edit menu gives you access to the setting window, which will be
+        presented later on.
       </para>
-
-
     </sect3>
 
+    <sect3 id="calendar-view-menu">
+      <title>The View menu</title>
+
+      <figure id="calendar-view-menu-fig">
+        <title>View menu in the calendar window</title>
+        <screenshot>
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="images/orage_calendar_view_menu.png"
+                         format="PNG" />
+            </imageobject>
+            <textobject>
+              <phrase>
+                The View menu in the calendar window.
+              </phrase>
+            </textobject>
+          </mediaobject>
+        </screenshot>
+      </figure>
+
+      <para>
+        The View menu has two choices:
+      </para>
+      <itemizedlist>
+        <listitem>View selected date: show the event list of currently
+                  selected date;
+        </listitem>
+        <listitem>Select today: set calendar's selected day to be today;
+        </listitem>
+      </itemizedlist>
+    </sect3>
+
+    <sect3 id="calendar-help-menu">
+      <title>The Help menu</title>
+
+      <figure id="calendar-help-menu-fig">
+        <title>Help menu in the calendar window</title>
+        <screenshot>
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="images/orage_calendar_help_menu.png"
+                         format="PNG" />
+            </imageobject>
+            <textobject>
+              <phrase>
+                The Help menu in the calendar window.
+              </phrase>
+            </textobject>
+          </mediaobject>
+        </screenshot>
+      </figure>
+
+      <para>
+        The Help menu has also two choices:
+      </para>
+      <itemizedlist>
+        <listitem>Help: show this help file;</listitem>
+        <listitem>About: show information about the authors and license;
+        </listitem>
+      </itemizedlist>
+    </sect3>
+  </sect2>
+
+  <sect2 id="calendar-window">
+    <title>The calendar</title>
+
+    <para>
+      Calendar view presents you one month, which you can change by pressing
+      the arrow beside the month name or the year number or using the mouse 
+      wheel.
+      Days where you have appointments are marked as bold. One day is always
+      selected and shown with a block.
+      You can change the selected day by single clicking any day number.
+      Double clicking a day number causes event-list window for that day to be
+      activated.
+    </para>
+  </sect2>
+</sect1>
+
+<sect1 id="orage-eventlist-window">
+  <title>The eventlist window</title>
+
+  <figure id="orage-eventlist-fig">
+    <title>Orage eventlist window</title>
+    <screenshot>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="images/orage_eventlist.png" format="PNG" />
+        </imageobject>
+        <textobject>
+          <phrase>
+            The eventlist window.
+          </phrase>
+        </textobject>
+      </mediaobject>
+    </screenshot>
+  </figure>
+
+  <para>
+    The eventlist (or appointment list as it is also called) window shows all
+    activites that you have reserved for the day (date is shown in the window
+    heading the format yyyy-mm-dd).
+    On top of the window it gives you buttons to do actions. (All actions are
+    also available in menus above the buttons.)
+    This is your main activity window and you may want to keep it up all the
+    day and even make it to appear on all workspaces or to be always on top
+    of other windows.
+  </para>
+
+  <sect2 id="eventlist-action-bar">
+    <title>The button bar</title>
+    <para>
+      There are 9 activity buttons in the button bar from left to right:
+    </para>
+    <itemizedlist>
+      <listitem>New: start an <link linkend="orage-appointment-window">
+                appointment window</link> for creating a new appointment for 
+                this day;
+      </listitem>
+      <listitem>Back: show previous day; </listitem>
+      <listitem>Today: show today; </listitem>
+      <listitem>Forward: show next day; </listitem>
+      <listitem>Refresh: Redisplay this date. This window is usually 
+        refreshed automatically, but on certain special cases it may
+        not show the latest changes. (Most common case is probably
+        when you start editing an appointment from the alarm window
+        instead from this eventlist window);
+      </listitem>
+      <listitem>Duplicate: start an <ulink url="#orage-appointment-window">
+        appointment window</ulink> for creating a new appointment for
+        this day. But do not start from scratch, but copy all values
+        from the active row in the appointment list below. Note that
+        if you do not have any rows selected from the eventlist, this
+        button does not do anything (but gives a g_warning, which you
+        normally cannot see);
+      </listitem>
+      <listitem>Close: close this window; </listitem>
+      <listitem>Clear: remove all appointments which start on the shown day.
+        Note that it is possible to create repeating appointments in
+        &app; and if such an appointment is shown, but starts on an
+        earlier date, it is NOT removed. (But repeating events will
+        be removed if the first day is on this day.) Be carefull with
+        this button! Before removing anything it asks for your
+        verification, because it may remove many appointments.
+        (Note that you can not delete a single appointment in this
+        window; you have to go to the appointment window to do that);
+      </listitem>
+      <listitem>Day count: you can see more than one day in this window by
+        setting this number to larger than 0. Each number means show
+        one more day. (It causes the Time column in the event
+        listing to show also the date.) Note however that each
+        repeating appointment is shown only once (=first time)
+        instead of everytime it happens.
+      </listitem>
+    </itemizedlist>
+  </sect2>
+
+  <sect2 id="eventlist-appointments">
+    <title>The eventlist</title>
+    <para>
+      The event list shows all appointments happening on this day.  Scrollbars
+      will appear if there are more lines or longer lines than what can fit
+      into the window.  You can edit any appointment by double clicking the
+      row. Each line has three fields:
+    </para>
+    <itemizedlist>
+      <listitem>
+        Time: the starting and ending times of the appointment (it shows the
+        date only if more than one day is shown). If the event has passed, it
+        is overstriked. Currently active appointments are shown with red
+        colour and future appointments are bold. It is also possible to define
+        special whole day appoinmtments and they always have a text "All day"
+        instead of real start and end times.
+      </listitem>
+      <listitem>
+        Flags: gives information about the appointment. (Note that the
+        explanations are visible as a hint when you move your cursor into the
+        event list.) There are three flags in order:
+        <itemizedlist>
+          <listitem>
+            Alarm: what kind of action happens when alarm time passes.
+            <keycap>n</keycap> means no alarm has been defined.
+            <keycap>A</keycap> means that window is raised as an alarm and
+            <keycap>S</keycap> means that in addition to the window, a
+            sound is also played.
+          </listitem>
+          <listitem>
+            Repeat: how often is that appointment happening.
+            <keycap>n</keycap> means no repeating so that this event only
+            happens once. <keycap>D</keycap> means daily repeat,
+            <keycap>W</keycap> weekly, <keycap>M</keycap> monthly and
+            <keycap>Y</keycap> yearly.
+          </listitem>
+          <listitem>
+            Type: what kind of reservation is this. Two options:
+            <keycap>f</keycap> means free so that the action is not reserving
+            the time and it is possible to schedule more appointments at the
+            same time and respectively <keycap>B</keycap> means busy, so that
+            nothing else can not be done at this time.  Note that current
+            version of &app; does not enforce these and the flag is only as a
+            comment (in the future this may be enforced).
+          </listitem>
+        </itemizedlist>
+      </listitem>
+      <listitem>
+        Title: the heading of the appointment. Note that the whole title is
+        shown, so you may want to avoid using too long titles to keep the view
+        cleaner.
+      </listitem>
+    </itemizedlist>
+  </sect2>
+</sect1>
+
+<sect1 id="orage-appointment-window">
+  <title>The appointment window</title>
+
+  <para>
+    The appointment window is used to add, edit and delete appointments.
+    It is the most complex window in &app;, but most fields still have good
+    default values and are not mandatory. It has button bar (All actions are
+    also available in menus above the buttons) and three tabs controlling
+    basic settings and alarms and recurrence settings.
+  </para>
+
+  <sect2 id="appointment-action-bar">
+    <title>The button bar</title>
+    <para>
+      There are 5 activity buttons in the button bar from left to right:
+    </para>
+    <itemizedlist>
+      <listitem>Save: store the appointment to the orage system. This causes
+        also data validity checking.
+      </listitem>
+      <listitem>Save and close: like Save, but also closes the window.
+      </listitem>
+      <listitem>Revert: undo all changes done after previous save. Note that
+        this button is active only after data has been changed.
+      </listitem>
+      <listitem>Duplicate: start creating new appointment and copy all values
+        from the current activity into it. The new appointment is not created
+        until you press <guibutton>Save</guibutton>.
+      </listitem>
+      <listitem>Delete: remove current appointment permanently from orage
+        system.
+      </listitem>
+    </itemizedlist>
+  </sect2>
+
+  <sect2 id="appointment-general-tab">
+    <title>The general tab</title>
+
+    <figure id="orage-appointment-fig">
+      <title>Orage appointment window - general tab</title>
+      <screenshot>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="images/orage_appointment.png" format="PNG" />
+          </imageobject>
+          <textobject>
+            <phrase>
+              The appointment window.
+            </phrase>
+          </textobject>
+        </mediaobject>
+      </screenshot>
+    </figure>
+
+    <para>
+      In this tab, you define the contents of the appointment.
+    </para>
+    <variablelist>
+      <varlistentry>
+        <term>Title</term>
+        <listitem>
+          <para>The title of the appointment. It appears in the event list
+            and also in the alarm window and is listed at the header of this
+            window. It should be a rather short summary of the appointment.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Location</term>
+        <listitem>
+          <para>This field should describe where the event happens. It can
+            be for example Home or Office or Paris depending on what kind of
+            appointment you have. It is also possible to leave it empty. &app;
+            is not using it in any special way, nor is it visible anywhere 
+            else than here.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term id="all-day-event">All day event</term>
+        <listitem>
+          <para>Selecting this checkbox causes so called whole day appointment
+            to be defined. These do not have start nor end time defined, but
+            it is possible that the event lasts several days. These are 
+            special since they always have window type alarm defined and 
+            although it is possible to add separate alarm (in alarm tab), it 
+            is ignored and not even stored to the system. (no warning is given
+            so this is a bit confusing.) The automatic alarm is raised when
+            &app; is started or date changes and the new day has this kind of
+            event.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Start</term>
+        <listitem>
+          <para>Defines the start time of the appointment. First, press the    
+            date button and choose the date from the calendar. After that
+            you set the hour and minute using either your mouse wheel or
+            clicking the small arrows. It is also possible to type the
+            numbers directly to the fields. Hours go from 0 to 23 (24 is not
+            allowed value).
+          </para>
+          <para>The last button is timezone. Default value for new
+            appointments is your current timezone, which you have set in the
+            preferences. It is recommended to use real timezones instead of
+            floating. You should not mix floating with real timezones although 
+            it is possible. Floating means that time is not bound to any
+            timezone, but varies according to current settings. Modifying
+            either the default timezone or start timezone may cause floating
+            values to change.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>End</term>
+        <listitem>
+          <para>Similar to Start, but defines naturally the ending time. Note
+            that start and end timezones may be different (for example when
+            you schedule a meeting in abroad you can set the starting time in
+            your local timezone and the rest of the timings in thedestination
+            timezone).
+            <link linkend="orage-eventlist-window"> Eventlist window</link>
+            always shows times in your local time.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Duration</term>
+        <listitem>
+          <para>Often it is easier to set the appointment duration instead of
+            ending time. You can do that by marking the first box here. It is
+            not possible to have both end time and duration at the same time,
+            so end time setting will be unavailable after you select duration.
+            Maximum duration is 1000 days, which is almost three years. Note
+            that although the minute selectionm jumps 5 minutes at a time, you
+            can manually enter any number (just remember to tab out from the
+            field, so that the value is read).
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Availability</term>
+        <listitem>
+          <para>What kind of reservation is this. There are two possiblities:
+            <emphasis>Free</emphasis> means that the action is not reserving
+            the time and it is possible to schedule more appointments at the
+            same time and respectively <emphasis>Busy</emphasis> means that
+            nothing else can not be done at this time.  Note that current
+            version of &app; does not enforce these menings and the flag is
+            only as a comment (in the future this may be checked).
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Note</term>
+        <listitem>
+          <para>Free format long text, where you can and should explain more
+            the appointment. It is shown in the alarm window.
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect2>
+
+  <sect2 id="appointment-alarm-tab">
+    <title>The alarm tab</title>
+
+    <figure id="orage-appointment-alarm-fig">
+      <title>Orage appointment window - alarm tab</title>
+      <screenshot>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="images/orage_appointment_alarm.png"
+                       format="PNG" />
+          </imageobject>
+          <textobject>
+            <phrase>
+              The appointment alarm tab.
+            </phrase>
+          </textobject>
+        </mediaobject>
+      </screenshot>
+    </figure>
+
+    <para>
+      In this tab, you define the alarm for the appointment. &app; supports 
+      two kinds of alarms: window and sound, but they both happen at the same 
+      time and sound is just an extra alarm; it is not possible to only raise
+      sound alarm. window alarm is raised if any of the alarm timing numbers
+      is non zero (in other words there is no special flag to set alarm; just 
+      define the time for it). Similarly sound alarm is raised if sound file
+      has a value.
+    </para>
+    <para>NOTE: this alarm setting has no effect on 
+        <link linkend="all-day-event">all day events</link>; they always
+        have only window type alarm set.
+    </para>
+    <variablelist>
+      <varlistentry>
+        <term>Alarm</term>
+        <listitem>
+          <para>Define how much earlier (compared to the appointment starting
+            time) the alarm(s) happens. If all numbers are zero, no alarm is
+            raised for this appointment.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Sound</term>
+        <listitem>
+          <para>Define the sound file to be played when the alarm fires.
+            Leaving this empty disables sound alarm and putting any value
+            enables it. Remember to define the actual play command in the
+            preferences dialog. You should also test that your system can 
+            play the filetype you choose there. Simply start a terminal and
+            test it using the command you specified and the the sound file.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Repeat alarm sound</term>
+        <listitem>
+          <para>Set this check box if you want to hear the sound more than
+            once. (Usually you want to check this.) Note that there is an
+            internal counter, which stops the sound after 500 plays. Note
+            also that when sound is repeating it is restarted after each 2
+            seconds, so you may get problems with longer lasting soundfiles.
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect2>
+
+  <sect2 id="appointment-recurrence-tab">
+    <title>The recurrence tab</title>
+
+    <figure id="orage-appointment-recurrence-fig">
+      <title>Orage appointment window - recurrence tab</title>
+      <screenshot>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="images/orage_appointment_recurrence.png"
+                     format="PNG" />
+          </imageobject>
+          <textobject>
+            <phrase>
+              The appointment recurrence tab.
+            </phrase>
+          </textobject>
+        </mediaobject>
+      </screenshot>
+    </figure>
+
+    <para>
+      In this tab you can define repeating appointments. Sometimes it makes
+      much sense to define that the same appointment happens every day or
+      every month instead of creating a new appoointment for each event.
+    </para>
+    <para>
+      First you need to select <emphasis>recurrence</emphasis> period. Default
+      is no repeat and other possibilities are daily, weekly, monthly and
+      yearly.
+    </para>
+    <para>
+      &app; allows you also to limit the repeating count:
+      <itemizedlist>
+        <listitem>Repeat forever: this is default and does not limit the
+          number of occurrences.
+        </listitem>
+        <listitem>Repeat n times: the appointment is scheduled exactly n
+          times. After that it ends (but is not removed).
+        </listitem>
+        <listitem>Repeat until date: you can select the last date when this
+          event happens. Note that it still happens normally during this date.
+        </listitem>
+      </itemizedlist>
+    </para>
+  </sect2>
+</sect1>
+
+<sect1 id="orage-preferences-window">
+  <title>The preferences window</title>
+
+  <para>
+    The preferences window is used to enter initial values for &app;.
+    You can define several display options, how old apppointments should
+    be archived and what is the play command to be used for playing sound
+    alarms and also you can set the local timezone for &app;.
+  </para>
+
+  <sect2 id="preferences-display-tab">
+    <title>The display tab</title>
+
+    <figure id="orage-preferences-display-fig">
+      <title>Orage preferences window - display tab</title>
+      <screenshot>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="images/orage_preferences_display.png"
+                       format="PNG" />
+          </imageobject>
+          <textobject>
+            <phrase>
+              The preferences display tab.
+            </phrase>
+          </textobject>
+        </mediaobject>
+      </screenshot>
+    </figure>
+
+    <para>
+      In this tab you can define visibility options for the 
+      <link linkend="orage-calendar-window">main window</link> of &app;.
+    </para>
+    <variablelist>
+      <varlistentry>
+        <term>Calendar borders</term>
+        <listitem>
+          <para>You can hide window borders and make the calendar window 
+            smaller by choosing Hidden option. This frees more space to your 
+            other applicatiosn from your workspace.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Calendar window</term>
+        <listitem>
+          <para>This option defines where the main window is visible.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Calendar start</term>
+        <listitem>
+          <para>It is possible to define that &app; starts in the background
+            or as minimized. This option only affects the start of &app;.
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect2>
+
+  <sect2 id="preferences-archives-tab">
+    <title>The archives tab</title>
+
+    <figure id="orage-preferences-archives-fig">
+      <title>Orage preferences window - archives tab</title>
+      <screenshot>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="images/orage_preferences_archives.png"
+                       format="PNG" />
+          </imageobject>
+          <textobject>
+            <phrase>
+              The preferences archives tab.
+            </phrase>
+          </textobject>
+        </mediaobject>
+      </screenshot>
+    </figure>
+
+    <para>
+      &app; does not delete appointments automatically, so usually your
+      calendar file grows bigger and because of that &app; gets slower and
+      takes up more memory from the system. It is possible to define
+      automatic archiving so that old appointments are moved from the active
+      calendar file to passive history file. This helps to keep the active
+      file smaller and the application in good shape. Archiving is enabled by
+      setting the threshold to other than "never" value. Of course it is also
+      possible to manually delete appointments, but that removes them 
+      permanently and you will not be able to find them later.
+    </para>
+    <para>
+      Unfortunately &app; version &appversion; has no way to search or bring
+      back appointments from the history file. This means that although the
+      archived events are not lost, they vanish so that you can only access
+      them manually outside &app;.
+    </para>
+    <para>
+      Note that &app; also splits
+      <link linkend="appointment-recurrence-tab">recurring appointments</link>
+      so that if the original start date is older than threshold, that
+      appointment is added to the archive file and the starting date in the
+      active calendar file is updated to contain only values more recent than
+      threshold. This also saves time when &app; is searching recurrent
+      events.
+    </para>
+    <variablelist>
+      <varlistentry>
+        <term>Archive file</term>
+        <listitem>
+          <para>This file will contain the archived appointments. It will
+            grow, but since &app; is not accessing it, that does not matter.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Archive threshold</term>
+        <listitem>
+          <para>This enables archiving mode by setting it to other than 
+            "never" value. Choises are 3, 6 or 12 months.
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect2>
+
+  <sect2 id="preferences-sound-tab">
+    <title>The sound tab</title>
+
+    <figure id="orage-preferences-sound-fig">
+      <title>Orage preferences window - sound tab</title>
+      <screenshot>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="images/orage_preferences_sound.png"
+                       format="PNG" />
+          </imageobject>
+          <textobject>
+            <phrase>
+              The preferences sound tab.
+            </phrase>
+          </textobject>
+        </mediaobject>
+      </screenshot>
+    </figure>
+
+    <para>
+      In this tab you can define which sound command &app; uses when playing
+      sound files. try testing some common commands like play or aplay 
+      from terminal to see what works in your system. You probably do not want
+      to use full version of totem or mplayer since they will cause a video
+      window also to appear and that most probably is not what you want.
+    </para>
+    <para>
+      Basically it is possible to do other than sound commands also since 
+      &app; really only starts this program and gives it
+      <link linkend="appointment-alarm-tab">the sound file</link>
+      as parameter. But this is not the intention of this feature.
+    </para>
+  </sect2>
+
+  <sect2 id="preferences-timezone-tab">
+    <title>The timezone tab</title>
+
+    <figure id="orage-preferences-timezone-fig">
+      <title>Orage preferences window - timezone tab</title>
+      <screenshot>
+        <mediaobject>
+          <imageobject>
+            <imagedata fileref="images/orage_preferences_timezone.png"
+                       format="PNG" />
+          </imageobject>
+          <textobject>
+            <phrase>
+              The preferences timezone tab.
+            </phrase>
+          </textobject>
+        </mediaobject>
+      </screenshot>
+    </figure>
+
+    <para>
+      You should always set the default timezone for &app; It is possible to
+      use also floating times, but then all times should be in floating form.
+      It definitely is a bad idea to mix floating and timezone times. 
+      Floating times tend to move to follow any timezones they see...
+    </para>
   </sect2>
 
 </sect1>
 
+<sect1 id="orage-faq">
+  <title>Frequently Asked Questions</title>
+
+  <para>
+    Some common questions and answers.
+  </para>
+  <qandadiv><title>Frequently Asked Questions</title>
+    <qandaentry>
+      <question>
+        <para>
+          Why does my week start on Saturday?
+        </para>
+      </question>
+      <answer>
+        <para>
+          This really is a problem in your distro. You can check how your
+          operating system reports these to GTK+ and hence to &app;, which
+          uses strictly gtk calendar widget and does not tune these settings
+          itself. Command <command>locale first_weekday</command> shows
+          which day is the first day in your system. Usually Sunday is day
+          number 1, but that can be changed so check that with command
+          <command>locale day</command>, which shows days starting from day 
+          number 1. You may try with different LANG enevironment variable
+          settings and calendar view in &app; should change accordingly. Log
+          a new bug for &app; if you think it is not working correctly.
+          Look more information from
+          <ulink url="http://bugzilla.xfce.org/show_bug.cgi?id=1237" 
+                 type="html">Xfce bug 1237
+          </ulink>
+          or from
+          <ulink url="http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=215466"
+                 type="html">Debian bug 215466
+          </ulink>
+        </para>
+        <para>
+          If you are adventurous, you can actually fix these yourself. You
+          need to find your locale definition file (like fi_FI or fr_FR). 
+          <command>locate</command> is your friend here and helps finding it.
+          After that you can check what the setting is: 
+          <command>grep first_weekday fi_FI</command> and change that if it is
+          wrong and after that you need to recompile your locale database.
+        </para>
+      </answer>
+    </qandaentry>
+    <qandaentry>
+      <question>
+        <para>
+          How can I insert my ical file into &app;?
+        </para>
+      </question>
+      <answer>
+        <para>
+          This is not currently possible. It is planned in future versions.
+        </para>
+      </answer>
+    </qandaentry>
+  </qandadiv>
+</sect1>
+<!--
+<appendix><title>An Appendix</title>
+<para>...</para>
+</appendix>
+-->
 </article>

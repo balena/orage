@@ -188,7 +188,17 @@ mView_selectToday_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
 void
 mHelp_help_activate_cb (GtkMenuItem *menuitem, gpointer user_data)
 {
+    gchar *helpdoc;
+
+    helpdoc = g_strconcat("xfbrowser4 ", PACKAGE_DATA_DIR
+           , G_DIR_SEPARATOR_S, "orage"
+           , G_DIR_SEPARATOR_S, "doc"
+           , G_DIR_SEPARATOR_S, "C"
+           , G_DIR_SEPARATOR_S, "orage.html", NULL);
+    xfce_exec(helpdoc, FALSE, FALSE, NULL);
+    /*
     xfce_exec("xfhelp4 xfce4-user-guide.html", FALSE, FALSE, NULL);
+    */
 }
 
 void

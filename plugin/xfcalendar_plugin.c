@@ -138,9 +138,19 @@ struct _Itf
 
 static void cb_dialog_response(GtkWidget * dialog, gint response_id)
 {
+    gchar *helpdoc;
+
     if(response_id == GTK_RESPONSE_HELP)
     {
+        /*
         xfce_exec("xfhelp4 xfce4-user-guide.html", FALSE, FALSE, NULL);
+        */
+                                                                             
+        helpdoc = g_strconcat("xfbrowser4 ", DATADIR
+                , G_DIR_SEPARATOR_S, "doc"
+                , G_DIR_SEPARATOR_S, "C"
+                , G_DIR_SEPARATOR_S, "orage.html", NULL);
+        xfce_exec(helpdoc, FALSE, FALSE, NULL);
     }
     else
     {
