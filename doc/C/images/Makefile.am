@@ -11,6 +11,8 @@ images_DATA = \
 	orage_appointment_alarm.png \
 	orage_appointment_recurrence.png \
 	orage_preferences_display.png \
-	orage_preferences_archives.png 
+	orage_preferences_archives.png \
+	orage_preferences_sound.png \
+	orage_preferences_timezone.png 
 
 EXTRA_DIST = $(images_DATA)
