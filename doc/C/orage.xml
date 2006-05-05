@@ -951,7 +951,47 @@ maintainers, etc. Commented out by default.
       Floating times tend to move to follow any timezones they see...
     </para>
   </sect2>
+</sect1>
 
+<sect1 id="orage-undocumented">
+  <title>Undocumented Features</title>
+  <para>
+    Some hidden options allow you to customize &app; behaviour. You can find 
+    and change those in
+    <filename>~/.config/xfce4/orage/oragerc</filename>. (note that the active 
+    calendar file is also localeted in this directory.) You must be carefull 
+    not to change the format of these files or &app; may not start anymore.
+    Undocumented settings are:
+  </para>
+  <itemizedlist>
+    <listitem>
+      Main Window Position: normally you do not want to change this. It is the
+      location of <link linkend="orage-calendar-window">calendar window</link>
+      in the screen. &app; updates this automatically, so your setting will be
+      overwritten.
+    </listitem>
+    <listitem>
+      Event Window Size: normally you do not want to change this. It is the
+      size of <link linkend="orage-eventlist-window">eventlist window</link>
+      in the screen. &app; updates this automatically, so your setting will be
+      overwritten.
+    </listitem>
+    <listitem>
+      Show Main Window Menu: setting this to 0 causes the menubar from
+      <link linkend="orage-calendar-window">calendar window</link> to vanish.
+      If you never use the menu, you can save screenspace with this and using
+      <link linkend="preferences-display-tab">Calendar boder option</link>. 
+      Default value is 1 (=show the menu). Only 0 and 1 are valid values.
+    </listitem>
+    <listitem>
+      Select Always Today: controls which day is selected after &app; main
+      <link linkend="orage-calendar-window">calendar window</link> is hidden
+      and comes visible again (for example clicking orageclock panel plugin).
+      Default value is 0, which means that previously selected day will remain
+      selected. The other option is 1, which causes current date always being
+      selected. Only 0 and 1 are valid values.
+    </listitem>
+  </itemizedlist>
 </sect1>
 
 <sect1 id="orage-faq">
@@ -1007,6 +1047,24 @@ maintainers, etc. Commented out by default.
       <answer>
         <para>
           This is not currently possible. It is planned in future versions.
+        </para>
+      </answer>
+    </qandaentry>
+    <qandaentry>
+      <question>
+        <para>
+          I have found a bug in &app; or would like to see a new feature. How
+          can I inform that to the developers?
+        </para>
+      </question>
+      <answer>
+        <para>
+          You should file a bug into
+          <ulink url="http://bugzilla.xfce.org/" 
+                 type="html">Xfce bugzilla
+          </ulink>
+          send an email to 
+        <email>xfce4-dev@xfce.org</email> Xfce development.
         </para>
       </answer>
     </qandaentry>

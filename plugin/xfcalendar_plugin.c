@@ -149,7 +149,8 @@ static void cb_dialog_response(GtkWidget * dialog, gint response_id)
         helpdoc = g_strconcat("xfbrowser4 ", DATADIR
                 , G_DIR_SEPARATOR_S, "doc"
                 , G_DIR_SEPARATOR_S, "C"
-                , G_DIR_SEPARATOR_S, "orage.html", NULL);
+                , G_DIR_SEPARATOR_S, "orage.html#orage-preferences-window"
+                , NULL);
         xfce_exec(helpdoc, FALSE, FALSE, NULL);
     }
     else
