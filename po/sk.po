@@ -2,67 +2,68 @@
 # This file is distributed under the same license as the orage package.
 # Copyright (C) 2003-2006 The Xfce development team.
 # Juraj Brosz <juro@jurajbrosz.info>, 2004, 2005.
+# Roman Moravcik <roman.moravcik@gmail.com>, 2006.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.3.90.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-05-06 05:30+0900\n"
-"PO-Revision-Date: 2005-09-16 22:12+0100\n"
-"Last-Translator: Juraj Brosz <juro@jurajbrosz.info>\n"
+"PO-Revision-Date: 2006-05-02 21:55+0200\n"
+"Last-Translator: Roman Moravcik <roman.moravcik@gmail.com>\n"
 "Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../panel-plugin/oc_config.c:91
-#, fuzzy
 msgid "Select timezone"
-msgstr "Čas"
+msgstr "Zvoľte časovú zónu"
 
 #: ../panel-plugin/oc_config.c:163
 msgid "Appearance"
-msgstr ""
+msgstr "Vzhľad"
 
 #: ../panel-plugin/oc_config.c:170
 msgid "Show _frame"
-msgstr ""
+msgstr "Zobraziť _rám"
 
 #: ../panel-plugin/oc_config.c:183
 msgid "set foreground _color:"
-msgstr ""
+msgstr "Nastaviť farbu _popredia:"
 
 #: ../panel-plugin/oc_config.c:200
 msgid "set _background color:"
-msgstr ""
+msgstr "Nastaviť _farbu pozadia:"
 
 #: ../panel-plugin/oc_config.c:221
 msgid "Clock Options"
-msgstr ""
+msgstr "Nastavenie hodín"
 
 #: ../panel-plugin/oc_config.c:232
 msgid "set timezone to:"
-msgstr ""
+msgstr "Nastaviť časovú zónu na:"
 
 #: ../panel-plugin/oc_config.c:241
 msgid "Set any valid timezone (=TZ) value or pick one from the list."
 msgstr ""
+"Zvoľte správnu hodnotu časovej zóny (=TZ)  alebo vyberte jednu zo zoznamu."
 
 #: ../panel-plugin/oc_config.c:254
 msgid "show line _1:"
-msgstr ""
+msgstr "Zobraziť riadok _1:"
 
 #: ../panel-plugin/oc_config.c:265
 msgid "Enter any valid strftime function parameter."
-msgstr ""
+msgstr "Zadajte správny parameter funkcie strftime."
 
 #: ../panel-plugin/oc_config.c:284
 msgid "show line _2:"
-msgstr ""
+msgstr "Zobraziť riadok _2:"
 
 #: ../panel-plugin/oc_config.c:309
 msgid "show line _3:"
-msgstr ""
+msgstr "Zobraziť riadok _3:"
 
 #: ../panel-plugin/oc_config.c:338
 msgid ""
@@ -75,14 +76,22 @@ msgid ""
 "\t%H = hours \t\t\t\t%M = minute\n"
 "\t%X = local time\t\t\t%x = local date"
 msgstr ""
+"Tento program používa na získavanie času funkciu strftime.\n"
+"Použite správny kód pre formát zobrazenia času.\n"
+"Základné kódy sú:\n"
+"\t%A = deň v týždni\t\t\t%B = mesiac\n"
+"\t%c = dátum & čas\t\t%R = hodiny a minúty\n"
+"\t%V = týždeň\t\t%Z = použitá časová zóna\n"
+"\t%H = hodiny \t\t\t\t%M = minúty\n"
+"\t%X = miestny čas\t\t\t%x = miestny dátum"
 
 #: ../panel-plugin/oc_config.c:357
 msgid "Properties"
-msgstr ""
+msgstr "Vlastnosti"
 
 #: ../panel-plugin/oc_config.c:372
 msgid "Orage clock"
-msgstr ""
+msgstr "Hodiny Orage"
 
 #. TRANSLATORS: Use format characters from strftime(3)
 #. * to get the proper string for your locale.
@@ -95,7 +104,7 @@ msgstr ""
 #.
 #: ../panel-plugin/orageclock.c:61
 msgid "%A %d %B %Y/%V"
-msgstr ""
+msgstr "%A %d %B %Y/%V"
 
 #. to avoid timing problems when updating entry
 #. Create file chooser
@@ -121,94 +130,84 @@ msgstr "Miesto"
 #. show it
 #: ../plugin/xfcalendar_plugin.c:430
 msgid "Pick local timezone"
-msgstr ""
+msgstr "Vyberte si miestnu časovú zónu"
 
 #: ../plugin/xfcalendar_plugin.c:433 ../plugin/xfcalendar_plugin.c:461
 #: ../src/appointment.c:825 ../src/appointment.c:853
 msgid "UTC"
-msgstr ""
+msgstr "UTC"
 
 #: ../plugin/xfcalendar_plugin.c:434 ../plugin/xfcalendar_plugin.c:465
 #: ../plugin/xfcalendar_plugin.c:751 ../src/appointment.c:826
 #: ../src/appointment.c:857 ../src/appointment.c:893 ../src/appointment.c:901
-#, fuzzy
 msgid "floating"
-msgstr "Miesto"
+msgstr "Pohyblivá"
 
 #: ../plugin/xfcalendar_plugin.c:525 ../plugin/xfcalendar_plugin.c:535
-#, fuzzy
 msgid "Orage Preferences"
-msgstr "Nastavenia"
+msgstr "Nastavenie kalendára"
 
 #: ../plugin/xfcalendar_plugin.c:544
-#, fuzzy
 msgid "Display"
-msgstr "Denne"
+msgstr "Zobrazenie"
 
 #. Display calendar borders or not
 #: ../plugin/xfcalendar_plugin.c:554
-#, fuzzy
 msgid "Calendar borders"
-msgstr "Súbory kalendára"
+msgstr "Okraj okna kalendára"
 
 #: ../plugin/xfcalendar_plugin.c:559
 msgid "Displayed"
-msgstr ""
+msgstr "Zobrazený"
 
 #: ../plugin/xfcalendar_plugin.c:565
-#, fuzzy
 msgid "Hidden"
-msgstr "Skryť"
+msgstr "Skrytý"
 
 #. Show in... taskbar pager systray
 #: ../plugin/xfcalendar_plugin.c:572
-#, fuzzy
 msgid "Calendar window"
-msgstr "Kalendár"
+msgstr "Ikonu kalendára"
 
 #: ../plugin/xfcalendar_plugin.c:578
 msgid "Show in taskbar"
-msgstr ""
+msgstr "Zobraziť v taskbare"
 
 #: ../plugin/xfcalendar_plugin.c:582
 msgid "Show in pager"
-msgstr ""
+msgstr "Zobraziť v pagery"
 
 #: ../plugin/xfcalendar_plugin.c:586
 msgid "Show in systray"
-msgstr ""
+msgstr "Zobraziť v systray"
 
 #.
 #: ../plugin/xfcalendar_plugin.c:591
-#, fuzzy
 msgid "Calendar start"
-msgstr "Kalendár"
+msgstr "Kalendár sa spúšťa"
 
 #: ../plugin/xfcalendar_plugin.c:596
 msgid "Show"
-msgstr "Ukázať"
+msgstr "Zobrazený"
 
 #: ../plugin/xfcalendar_plugin.c:602
 msgid "Hide"
-msgstr "Skryť"
+msgstr "Skrytý"
 
 #: ../plugin/xfcalendar_plugin.c:608
 msgid "Minimized"
-msgstr "Minimalizované"
+msgstr "Minimalizovaný"
 
 #: ../plugin/xfcalendar_plugin.c:616
-#, fuzzy
 msgid "Archives"
-msgstr "Archívny súbor"
+msgstr "Archív"
 
 #. Archive file and periodicity
 #: ../plugin/xfcalendar_plugin.c:625
-#, fuzzy
 msgid "Archive file"
 msgstr "Archívny súbor"
 
 #: ../plugin/xfcalendar_plugin.c:647
-#, fuzzy
 msgid "Archive threshold"
 msgstr "Položky v archíve staršie ako"
 
@@ -225,28 +224,25 @@ msgid "1 year"
 msgstr "1 rok"
 
 #: ../plugin/xfcalendar_plugin.c:667
-#, fuzzy
 msgid "never"
-msgstr "Obnoviť"
+msgstr "nemazať"
 
 #: ../plugin/xfcalendar_plugin.c:693 ../src/appointment.c:1454
 msgid "Sound"
 msgstr "Zvuk"
 
 #: ../plugin/xfcalendar_plugin.c:703
-#, fuzzy
 msgid "Application"
 msgstr "Aplikácia"
 
 #: ../plugin/xfcalendar_plugin.c:726 ../plugin/xfcalendar_plugin.c:736
-#, fuzzy
 msgid "Timezone"
-msgstr "Čas"
+msgstr "Časová zóna"
 
 #. the button label in the xfce-mcs-manager dialog
 #: ../plugin/xfcalendar_plugin.c:800
 msgid "Button Label|Orage"
-msgstr ""
+msgstr "Kalendár"
 
 #: ../src/about-xfcalendar.c:39
 msgid "Manage your time with Xfce4"
@@ -269,7 +265,7 @@ msgstr "%d.%m.%Y"
 
 #: ../src/appointment.c:208 ../src/mainbox.c:345 ../xfcalendar.desktop.in.h:3
 msgid "Orage"
-msgstr ""
+msgstr "Orage"
 
 #: ../src/appointment.c:288
 msgid "Sound Files"
@@ -298,7 +294,7 @@ msgstr "Udalosť bude odstránená."
 
 #: ../src/appointment.c:716
 msgid "Pick the date"
-msgstr ""
+msgstr "Vyberte si dátum"
 
 #: ../src/appointment.c:718 ../src/event-list.c:728 ../src/tray_icon.c:102
 msgid "Today"
@@ -307,12 +303,11 @@ msgstr "Dnes"
 #. show it
 #: ../src/appointment.c:822
 msgid "Pick timezone"
-msgstr ""
+msgstr "Vyberte si časovú zónu"
 
 #: ../src/appointment.c:1085
-#, fuzzy
 msgid "New appointment - Orage"
-msgstr "Nová udalosť"
+msgstr "Nová udalosť - Orage"
 
 #. File menu stuff
 #. File menu
@@ -377,24 +372,20 @@ msgid "End"
 msgstr "Koniec"
 
 #: ../src/appointment.c:1350
-#, fuzzy
 msgid "Duration"
-msgstr "Miesto"
+msgstr "Trvanie"
 
 #: ../src/appointment.c:1357 ../src/appointment.c:1431
-#, fuzzy
 msgid "days"
-msgstr "2 dni"
+msgstr "dní"
 
 #: ../src/appointment.c:1365 ../src/appointment.c:1439
-#, fuzzy
 msgid "hours"
-msgstr "2 hodiny"
+msgstr "hodín"
 
 #: ../src/appointment.c:1373 ../src/appointment.c:1447
-#, fuzzy
 msgid "mins"
-msgstr "5 minút"
+msgstr "minút"
 
 #: ../src/appointment.c:1380
 msgid "Availability"
@@ -414,7 +405,7 @@ msgstr "Opakovať zvukový alarm"
 
 #: ../src/appointment.c:1481
 msgid "None"
-msgstr "Žiadny"
+msgstr "Žiadne"
 
 #: ../src/appointment.c:1481
 msgid "Daily"
@@ -430,35 +421,30 @@ msgstr "Mesačne"
 
 #: ../src/appointment.c:1481
 msgid "Yearly"
-msgstr ""
+msgstr "Ročne"
 
 #: ../src/appointment.c:1484 ../src/appointment.c:1494
-#, fuzzy
 msgid "Recurrence"
 msgstr "Opakovanie"
 
 #: ../src/appointment.c:1504
 msgid "Repeat forever"
-msgstr ""
+msgstr "Opakovať stále"
 
 #: ../src/appointment.c:1513
-#, fuzzy
 msgid "Repeat "
-msgstr "Obnoviť"
+msgstr "Opakovať "
 
 #: ../src/appointment.c:1520
-#, fuzzy
 msgid "times"
-msgstr "Čas"
+msgstr "krát"
 
 #: ../src/appointment.c:1531
-#, fuzzy
 msgid "Repeat until "
-msgstr "Obnoviť"
+msgstr "Opakovať do "
 
 #. date only appointment
 #: ../src/event-list.c:200
-#, fuzzy
 msgid "All day"
 msgstr "Celodenná udalosť"
 
@@ -531,1541 +517,1548 @@ msgid ""
 "\t\t D=Daily W=Weekly M=Monthly Y=Yearly\n"
 "\t 3. Type: f=free B=Busy"
 msgstr ""
+"Pre úpravu dvakrát klikni na riadok.\n"
+"\n"
+"Značky:\n"
+"\t 1. Alarm: n=bez alarmu\n"
+"\t\tA=vizuálny alarm S=tiež zvukový alarm\n"
+"\t 2. Opakovanie: n=bez opakovania\n"
+"\t\t D=Denne W=Týždenne M=Mesačne Y=Ročne\n"
+"\t 3. Typ: f=Voľný B=Zaneprázdnený"
 
 #: ../src/ical-code.c:98
 msgid "Africa"
-msgstr ""
+msgstr "Afrika"
 
 #: ../src/ical-code.c:99
 msgid "Africa/Abidjan"
-msgstr ""
+msgstr "Afrika/Abidjan"
 
 #: ../src/ical-code.c:100
 msgid "Africa/Accra"
-msgstr ""
+msgstr "Afrika/Accra"
 
 #: ../src/ical-code.c:101
 msgid "Africa/Addis_Ababa"
-msgstr ""
+msgstr "Afrika/Addis_Ababa"
 
 #: ../src/ical-code.c:102
 msgid "Africa/Algiers"
-msgstr ""
+msgstr "Afrika/Algiers"
 
 #: ../src/ical-code.c:103
 msgid "Africa/Asmera"
-msgstr ""
+msgstr "Afrika/Asmera"
 
 #: ../src/ical-code.c:104
 msgid "Africa/Bamako"
-msgstr ""
+msgstr "Afrika/Bamako"
 
 #: ../src/ical-code.c:105
 msgid "Africa/Bangui"
-msgstr ""
+msgstr "Afrika/Bangui"
 
 #: ../src/ical-code.c:106
 msgid "Africa/Banjul"
-msgstr ""
+msgstr "Afrika/Banjul"
 
 #: ../src/ical-code.c:107
 msgid "Africa/Bissau"
-msgstr ""
+msgstr "Afrika/Bissau"
 
 #: ../src/ical-code.c:108
 msgid "Africa/Blantyre"
-msgstr ""
+msgstr "Afrika/Blantyre"
 
 #: ../src/ical-code.c:109
 msgid "Africa/Brazzaville"
-msgstr ""
+msgstr "Afrika/Brazzaville"
 
 #: ../src/ical-code.c:110
 msgid "Africa/Bujumbura"
-msgstr ""
+msgstr "Afrika/Bujumbura"
 
 #: ../src/ical-code.c:111
 msgid "Africa/Cairo"
-msgstr ""
+msgstr "Afrika/Cairo"
 
 #: ../src/ical-code.c:112
 msgid "Africa/Casablanca"
-msgstr ""
+msgstr "Afrika/Casablanca"
 
 #: ../src/ical-code.c:113
 msgid "Africa/Ceuta"
-msgstr ""
+msgstr "Afrika/Ceuta"
 
 #: ../src/ical-code.c:114
 msgid "Africa/Conakry"
-msgstr ""
+msgstr "Afrika/Conakry"
 
 #: ../src/ical-code.c:115
 msgid "Africa/Dakar"
-msgstr ""
+msgstr "Afrika/Dakar"
 
 #: ../src/ical-code.c:116
 msgid "Africa/Dar_es_Salaam"
-msgstr ""
+msgstr "Afrika/Dar_es_Salaam"
 
 #: ../src/ical-code.c:117
 msgid "Africa/Djibouti"
-msgstr ""
+msgstr "Afrika/Djibouti"
 
 #: ../src/ical-code.c:118
 msgid "Africa/Douala"
-msgstr ""
+msgstr "Afrika/Douala"
 
 #: ../src/ical-code.c:119
 msgid "Africa/El_Aaiun"
-msgstr ""
+msgstr "Afrika/El_Aaiun"
 
 #: ../src/ical-code.c:120
 msgid "Africa/Freetown"
-msgstr ""
+msgstr "Afrika/Freetown"
 
 #: ../src/ical-code.c:121
 msgid "Africa/Gaborone"
-msgstr ""
+msgstr "Afrika/Gaborone"
 
 #: ../src/ical-code.c:122
 msgid "Africa/Harare"
-msgstr ""
+msgstr "Afrika/Harare"
 
 #: ../src/ical-code.c:123
 msgid "Africa/Johannesburg"
-msgstr ""
+msgstr "Afrika/Johannesburg"
 
 #: ../src/ical-code.c:124
 msgid "Africa/Kampala"
-msgstr ""
+msgstr "Afrika/Kampala"
 
 #: ../src/ical-code.c:125
 msgid "Africa/Khartoum"
-msgstr ""
+msgstr "Afrika/Khartoum"
 
 #: ../src/ical-code.c:126
 msgid "Africa/Kigali"
-msgstr ""
+msgstr "Afrika/Kigali"
 
 #: ../src/ical-code.c:127
 msgid "Africa/Kinshasa"
-msgstr ""
+msgstr "Afrika/Kinshasa"
 
 #: ../src/ical-code.c:128
 msgid "Africa/Lagos"
-msgstr ""
+msgstr "Afrika/Lagos"
 
 #: ../src/ical-code.c:129
 msgid "Africa/Libreville"
-msgstr ""
+msgstr "Afrika/Libreville"
 
 #: ../src/ical-code.c:130
 msgid "Africa/Lome"
-msgstr ""
+msgstr "Afrika/Lome"
 
 #: ../src/ical-code.c:131
 msgid "Africa/Luanda"
-msgstr ""
+msgstr "Afrika/Luanda"
 
 #: ../src/ical-code.c:132
 msgid "Africa/Lubumbashi"
-msgstr ""
+msgstr "Afrika/Lubumbashi"
 
 #: ../src/ical-code.c:133
 msgid "Africa/Lusaka"
-msgstr ""
+msgstr "Afrika/Lusaka"
 
 #: ../src/ical-code.c:134
 msgid "Africa/Malabo"
-msgstr ""
+msgstr "Afrika/Malabo"
 
 #: ../src/ical-code.c:135
 msgid "Africa/Maputo"
-msgstr ""
+msgstr "Afrika/Maputo"
 
 #: ../src/ical-code.c:136
 msgid "Africa/Maseru"
-msgstr ""
+msgstr "Afrika/Maseru"
 
 #: ../src/ical-code.c:137
 msgid "Africa/Mbabane"
-msgstr ""
+msgstr "Afrika/Mbabane"
 
 #: ../src/ical-code.c:138
 msgid "Africa/Mogadishu"
-msgstr ""
+msgstr "Afrika/Mogadishu"
 
 #: ../src/ical-code.c:139
 msgid "Africa/Monrovia"
-msgstr ""
+msgstr "Afrika/Monrovia"
 
 #: ../src/ical-code.c:140
 msgid "Africa/Nairobi"
-msgstr ""
+msgstr "Afrika/Nairobi"
 
 #: ../src/ical-code.c:141
 msgid "Africa/Ndjamena"
-msgstr ""
+msgstr "Afrika/Ndjamena"
 
 #: ../src/ical-code.c:142
 msgid "Africa/Niamey"
-msgstr ""
+msgstr "Afrika/Niamey"
 
 #: ../src/ical-code.c:143
 msgid "Africa/Nouakchott"
-msgstr ""
+msgstr "Afrika/Nouakchott"
 
 #: ../src/ical-code.c:144
 msgid "Africa/Ouagadougou"
-msgstr ""
+msgstr "Afrika/Ouagadougou"
 
 #: ../src/ical-code.c:145
 msgid "Africa/Porto-Novo"
-msgstr ""
+msgstr "Afrika/Porto-Novo"
 
 #: ../src/ical-code.c:146
 msgid "Africa/Sao_Tome"
-msgstr ""
+msgstr "Afrika/Sao_Tome"
 
 #: ../src/ical-code.c:147
 msgid "Africa/Timbuktu"
-msgstr ""
+msgstr "Afrika/Timbuktu"
 
 #: ../src/ical-code.c:148
 msgid "Africa/Tripoli"
-msgstr ""
+msgstr "Afrika/Tripoli"
 
 #: ../src/ical-code.c:149
 msgid "Africa/Tunis"
-msgstr ""
+msgstr "Afrika/Tunis"
 
 #: ../src/ical-code.c:150
 msgid "Africa/Windhoek"
-msgstr ""
+msgstr "Afrika/Windhoek"
 
 #: ../src/ical-code.c:151
 msgid "America"
-msgstr ""
+msgstr "Amerika"
 
 #: ../src/ical-code.c:152
 msgid "America/Adak"
-msgstr ""
+msgstr "Amerika/Adak"
 
 #: ../src/ical-code.c:153
 msgid "America/Anchorage"
-msgstr ""
+msgstr "Amerika/Anchorage"
 
 #: ../src/ical-code.c:154
 msgid "America/Anguilla"
-msgstr ""
+msgstr "Amerika/Anguilla"
 
 #: ../src/ical-code.c:155
 msgid "America/Antigua"
-msgstr ""
+msgstr "Amerika/Antigua"
 
 #: ../src/ical-code.c:156
 msgid "America/Araguaina"
-msgstr ""
+msgstr "Amerika/Araguaina"
 
 #: ../src/ical-code.c:157
 msgid "America/Aruba"
-msgstr ""
+msgstr "Amerika/Aruba"
 
 #: ../src/ical-code.c:158
 msgid "America/Asuncion"
-msgstr ""
+msgstr "Amerika/Asuncion"
 
 #: ../src/ical-code.c:159
 msgid "America/Barbados"
-msgstr ""
+msgstr "Amerika/Barbados"
 
 #: ../src/ical-code.c:160
 msgid "America/Belem"
-msgstr ""
+msgstr "Amerika/Belem"
 
 #: ../src/ical-code.c:161
 msgid "America/Belize"
-msgstr ""
+msgstr "Amerika/Belize"
 
 #: ../src/ical-code.c:162
 msgid "America/Boa_Vista"
-msgstr ""
+msgstr "Amerika/Boa_Vista"
 
 #: ../src/ical-code.c:163
 msgid "America/Bogota"
-msgstr ""
+msgstr "Amerika/Bogota"
 
 #: ../src/ical-code.c:164
 msgid "America/Boise"
-msgstr ""
+msgstr "Amerika/Boise"
 
 #: ../src/ical-code.c:165
 msgid "America/Buenos_Aires"
-msgstr ""
+msgstr "Amerika/Buenos_Aires"
 
 #: ../src/ical-code.c:166
 msgid "America/Cambridge_Bay"
-msgstr ""
+msgstr "Amerika/Cambridge_Bay"
 
 #: ../src/ical-code.c:167
 msgid "America/Cancun"
-msgstr ""
+msgstr "Amerika/Cancun"
 
 #: ../src/ical-code.c:168
 msgid "America/Caracas"
-msgstr ""
+msgstr "Amerika/Caracas"
 
 #: ../src/ical-code.c:169
 msgid "America/Catamarca"
-msgstr ""
+msgstr "Amerika/Catamarca"
 
 #: ../src/ical-code.c:170
 msgid "America/Cayenne"
-msgstr ""
+msgstr "Amerika/Cayenne"
 
 #: ../src/ical-code.c:171
 msgid "America/Cayman"
-msgstr ""
+msgstr "Amerika/Cayman"
 
 #: ../src/ical-code.c:172
 msgid "America/Chicago"
-msgstr ""
+msgstr "Amerika/Chicago"
 
 #: ../src/ical-code.c:173
 msgid "America/Chihuahua"
-msgstr ""
+msgstr "Amerika/Chihuahua"
 
 #: ../src/ical-code.c:174
 msgid "America/Cordoba"
-msgstr ""
+msgstr "Amerika/Cordoba"
 
 #: ../src/ical-code.c:175
 msgid "America/Costa_Rica"
-msgstr ""
+msgstr "Amerika/Costa_Rica"
 
 #: ../src/ical-code.c:176
 msgid "America/Cuiaba"
-msgstr ""
+msgstr "Amerika/Cuiaba"
 
 #: ../src/ical-code.c:177
 msgid "America/Curacao"
-msgstr ""
+msgstr "Amerika/Curacao"
 
 #: ../src/ical-code.c:178
 msgid "America/Dawson"
-msgstr ""
+msgstr "Amerika/Dawson"
 
 #: ../src/ical-code.c:179
 msgid "America/Dawson_Creek"
-msgstr ""
+msgstr "Amerika/Dawson_Creek"
 
 #: ../src/ical-code.c:180
 msgid "America/Denver"
-msgstr ""
+msgstr "Amerika/Denver"
 
 #: ../src/ical-code.c:181
 msgid "America/Detroit"
-msgstr ""
+msgstr "Amerika/Detroit"
 
 #: ../src/ical-code.c:182
 msgid "America/Dominica"
-msgstr ""
+msgstr "Amerika/Dominica"
 
 #: ../src/ical-code.c:183
 msgid "America/Edmonton"
-msgstr ""
+msgstr "Amerika/Edmonton"
 
 #: ../src/ical-code.c:184
 msgid "America/Eirunepe"
-msgstr ""
+msgstr "Amerika/Eirunepe"
 
 #: ../src/ical-code.c:185
 msgid "America/El_Salvador"
-msgstr ""
+msgstr "Amerika/El_Salvador"
 
 #: ../src/ical-code.c:186
 msgid "America/Fortaleza"
-msgstr ""
+msgstr "Amerika/Fortaleza"
 
 #: ../src/ical-code.c:187
 msgid "America/Glace_Bay"
-msgstr ""
+msgstr "Amerika/Glace_Bay"
 
 #: ../src/ical-code.c:188
 msgid "America/Godthab"
-msgstr ""
+msgstr "Amerika/Godthab"
 
 #: ../src/ical-code.c:189
 msgid "America/Goose_Bay"
-msgstr ""
+msgstr "Amerika/Goose_Bay"
 
 #: ../src/ical-code.c:190
 msgid "America/Grand_Turk"
-msgstr ""
+msgstr "Amerika/Grand_Turk"
 
 #: ../src/ical-code.c:191
 msgid "America/Grenada"
-msgstr ""
+msgstr "Amerika/Grenada"
 
 #: ../src/ical-code.c:192
 msgid "America/Guadeloupe"
-msgstr ""
+msgstr "Amerika/Guadeloupe"
 
 #: ../src/ical-code.c:193
 msgid "America/Guatemala"
-msgstr ""
+msgstr "Amerika/Guatemala"
 
 #: ../src/ical-code.c:194
 msgid "America/Guayaquil"
-msgstr ""
+msgstr "Amerika/Guayaquil"
 
 #: ../src/ical-code.c:195
 msgid "America/Guyana"
-msgstr ""
+msgstr "Amerika/Guyana"
 
 #: ../src/ical-code.c:196
 msgid "America/Halifax"
-msgstr ""
+msgstr "Amerika/Halifax"
 
 #: ../src/ical-code.c:197
 msgid "America/Havana"
-msgstr ""
+msgstr "Amerika/Havana"
 
 #: ../src/ical-code.c:198
 msgid "America/Hermosillo"
-msgstr ""
+msgstr "Amerika/Hermosillo"
 
 #: ../src/ical-code.c:199
 msgid "America/Indiana/Indianapolis"
-msgstr ""
+msgstr "Amerika/Indiaa/Indiaapolis"
 
 #: ../src/ical-code.c:200
 msgid "America/Indiana/Knox"
-msgstr ""
+msgstr "Amerika/Indiaa/Knox"
 
 #: ../src/ical-code.c:201
 msgid "America/Indiana/Marengo"
-msgstr ""
+msgstr "Amerika/Indiaa/Marengo"
 
 #: ../src/ical-code.c:202
 msgid "America/Indiana/Vevay"
-msgstr ""
+msgstr "Amerika/Indiaa/Vevay"
 
 #: ../src/ical-code.c:203
 msgid "America/Indianapolis"
-msgstr ""
+msgstr "Amerika/Indiaapolis"
 
 #: ../src/ical-code.c:204
 msgid "America/Inuvik"
-msgstr ""
+msgstr "Amerika/Inuvik"
 
 #: ../src/ical-code.c:205
 msgid "America/Iqaluit"
-msgstr ""
+msgstr "Amerika/Iqaluit"
 
 #: ../src/ical-code.c:206
 msgid "America/Jamaica"
-msgstr ""
+msgstr "Amerika/Jamaica"
 
 #: ../src/ical-code.c:207
 msgid "America/Jujuy"
-msgstr ""
+msgstr "Amerika/Jujuy"
 
 #: ../src/ical-code.c:208
 msgid "America/Juneau"
-msgstr ""
+msgstr "Amerika/Juneau"
 
 #: ../src/ical-code.c:209
 msgid "America/Kentucky/Louisville"
-msgstr ""
+msgstr "Amerika/Kentucky/Louisville"
 
 #: ../src/ical-code.c:210
 msgid "America/Kentucky/Monticello"
-msgstr ""
+msgstr "Amerika/Kentucky/Monticello"
 
 #: ../src/ical-code.c:211
 msgid "America/La_Paz"
-msgstr ""
+msgstr "Amerika/La_Paz"
 
 #: ../src/ical-code.c:212
 msgid "America/Lima"
-msgstr ""
+msgstr "Amerika/Lima"
 
 #: ../src/ical-code.c:213
 msgid "America/Los_Angeles"
-msgstr ""
+msgstr "Amerika/Los_Angeles"
 
 #: ../src/ical-code.c:214
 msgid "America/Louisville"
-msgstr ""
+msgstr "Amerika/Louisville"
 
 #: ../src/ical-code.c:215
 msgid "America/Maceio"
-msgstr ""
+msgstr "Amerika/Maceio"
 
 #: ../src/ical-code.c:216
 msgid "America/Managua"
-msgstr ""
+msgstr "Amerika/Managua"
 
 #: ../src/ical-code.c:217
 msgid "America/Manaus"
-msgstr ""
+msgstr "Amerika/Manaus"
 
 #: ../src/ical-code.c:218
 msgid "America/Martinique"
-msgstr ""
+msgstr "Amerika/Martinique"
 
 #: ../src/ical-code.c:219
 msgid "America/Mazatlan"
-msgstr ""
+msgstr "Amerika/Mazatlan"
 
 #: ../src/ical-code.c:220
 msgid "America/Mendoza"
-msgstr ""
+msgstr "Amerika/Mendoza"
 
 #: ../src/ical-code.c:221
 msgid "America/Menominee"
-msgstr ""
+msgstr "Amerika/Menominee"
 
 #: ../src/ical-code.c:222
 msgid "America/Merida"
-msgstr ""
+msgstr "Amerika/Merida"
 
 #: ../src/ical-code.c:223
 msgid "America/Mexico_City"
-msgstr ""
+msgstr "Amerika/Mexico_City"
 
 #: ../src/ical-code.c:224
 msgid "America/Miquelon"
-msgstr ""
+msgstr "Amerika/Miquelon"
 
 #: ../src/ical-code.c:225
 msgid "America/Monterrey"
-msgstr ""
+msgstr "Amerika/Monterrey"
 
 #: ../src/ical-code.c:226
 msgid "America/Montevideo"
-msgstr ""
+msgstr "Amerika/Montevideo"
 
 #: ../src/ical-code.c:227
 msgid "America/Montreal"
-msgstr ""
+msgstr "Amerika/Montreal"
 
 #: ../src/ical-code.c:228
 msgid "America/Montserrat"
-msgstr ""
+msgstr "Amerika/Montserrat"
 
 #: ../src/ical-code.c:229
 msgid "America/Nassau"
-msgstr ""
+msgstr "Amerika/Nassau"
 
 #: ../src/ical-code.c:230
 msgid "America/New_York"
-msgstr ""
+msgstr "Amerika/New_York"
 
 #: ../src/ical-code.c:231
 msgid "America/Nipigon"
-msgstr ""
+msgstr "Amerika/Nipigon"
 
 #: ../src/ical-code.c:232
 msgid "America/Nome"
-msgstr ""
+msgstr "Amerika/Nome"
 
 #: ../src/ical-code.c:233
 msgid "America/Noronha"
-msgstr ""
+msgstr "Amerika/Noronha"
 
 #: ../src/ical-code.c:234
 msgid "America/Panama"
-msgstr ""
+msgstr "Amerika/Panama"
 
 #: ../src/ical-code.c:235
 msgid "America/Pangnirtung"
-msgstr ""
+msgstr "Amerika/Pangnirtung"
 
 #: ../src/ical-code.c:236
 msgid "America/Paramaribo"
-msgstr ""
+msgstr "Amerika/Paramaribo"
 
 #: ../src/ical-code.c:237
 msgid "America/Phoenix"
-msgstr ""
+msgstr "Amerika/Phoenix"
 
 #: ../src/ical-code.c:238
 msgid "America/Port-au-Prince"
-msgstr ""
+msgstr "Amerika/Port-au-Prince"
 
 #: ../src/ical-code.c:239
 msgid "America/Port_of_Spain"
-msgstr ""
+msgstr "Amerika/Port_of_Spain"
 
 #: ../src/ical-code.c:240
 msgid "America/Porto_Velho"
-msgstr ""
+msgstr "Amerika/Porto_Velho"
 
 #: ../src/ical-code.c:241
 msgid "America/Puerto_Rico"
-msgstr ""
+msgstr "Amerika/Puerto_Rico"
 
 #: ../src/ical-code.c:242
 msgid "America/Rainy_River"
-msgstr ""
+msgstr "Amerika/Rainy_River"
 
 #: ../src/ical-code.c:243
 msgid "America/Rankin_Inlet"
-msgstr ""
+msgstr "Amerika/Rankin_Inlet"
 
 #: ../src/ical-code.c:244
 msgid "America/Recife"
-msgstr ""
+msgstr "Amerika/Recife"
 
 #: ../src/ical-code.c:245
 msgid "America/Regina"
-msgstr ""
+msgstr "Amerika/Regina"
 
 #: ../src/ical-code.c:246
 msgid "America/Rio_Branco"
-msgstr ""
+msgstr "Amerika/Rio_Branco"
 
 #: ../src/ical-code.c:247
 msgid "America/Rosario"
-msgstr ""
+msgstr "Amerika/Rosario"
 
 #: ../src/ical-code.c:248
 msgid "America/Santiago"
-msgstr ""
+msgstr "Amerika/Santiago"
 
 #: ../src/ical-code.c:249
 msgid "America/Santo_Domingo"
-msgstr ""
+msgstr "Amerika/Santo_Domingo"
 
 #: ../src/ical-code.c:250
 msgid "America/Sao_Paulo"
-msgstr ""
+msgstr "Amerika/Sao_Paulo"
 
 #: ../src/ical-code.c:251
 msgid "America/Scoresbysund"
-msgstr ""
+msgstr "Amerika/Scoresbysund"
 
 #: ../src/ical-code.c:252
 msgid "America/Shiprock"
-msgstr ""
+msgstr "Amerika/Shiprock"
 
 #: ../src/ical-code.c:253
 msgid "America/St_Johns"
-msgstr ""
+msgstr "Amerika/St_Johns"
 
 #: ../src/ical-code.c:254
 msgid "America/St_Kitts"
-msgstr ""
+msgstr "Amerika/St_Kitts"
 
 #: ../src/ical-code.c:255
 msgid "America/St_Lucia"
-msgstr ""
+msgstr "Amerika/St_Lucia"
 
 #: ../src/ical-code.c:256
 msgid "America/St_Thomas"
-msgstr ""
+msgstr "Amerika/St_Thomas"
 
 #: ../src/ical-code.c:257
 msgid "America/St_Vincent"
-msgstr ""
+msgstr "Amerika/St_Vincent"
 
 #: ../src/ical-code.c:258
 msgid "America/Swift_Current"
-msgstr ""
+msgstr "Amerika/Swift_Current"
 
 #: ../src/ical-code.c:259
 msgid "America/Tegucigalpa"
-msgstr ""
+msgstr "Amerika/Tegucigalpa"
 
 #: ../src/ical-code.c:260
 msgid "America/Thule"
-msgstr ""
+msgstr "Amerika/Thule"
 
 #: ../src/ical-code.c:261
 msgid "America/Thunder_Bay"
-msgstr ""
+msgstr "Amerika/Thunder_Bay"
 
 #: ../src/ical-code.c:262
 msgid "America/Tijuana"
-msgstr ""
+msgstr "Amerika/Tijuana"
 
 #: ../src/ical-code.c:263
 msgid "America/Tortola"
-msgstr ""
+msgstr "Amerika/Tortola"
 
 #: ../src/ical-code.c:264
 msgid "America/Vancouver"
-msgstr ""
+msgstr "Amerika/Vancouver"
 
 #: ../src/ical-code.c:265
 msgid "America/Whitehorse"
-msgstr ""
+msgstr "Amerika/Whitehorse"
 
 #: ../src/ical-code.c:266
 msgid "America/Winnipeg"
-msgstr ""
+msgstr "Amerika/Winnipeg"
 
 #: ../src/ical-code.c:267
 msgid "America/Yakutat"
-msgstr ""
+msgstr "Amerika/Yakutat"
 
 #: ../src/ical-code.c:268
 msgid "America/Yellowknife"
-msgstr ""
+msgstr "Amerika/Yellowknife"
 
 #: ../src/ical-code.c:269
 msgid "Antarctica"
-msgstr ""
+msgstr "Antarktída"
 
 #: ../src/ical-code.c:270
 msgid "Antarctica/Casey"
-msgstr ""
+msgstr "Antarktída/Casey"
 
 #: ../src/ical-code.c:271
 msgid "Antarctica/Davis"
-msgstr ""
+msgstr "Antarktída/Davis"
 
 #: ../src/ical-code.c:272
 msgid "Antarctica/DumontDUrville"
-msgstr ""
+msgstr "Antarktída/DumontDUrville"
 
 #: ../src/ical-code.c:273
 msgid "Antarctica/Mawson"
-msgstr ""
+msgstr "Antarktída/Mawson"
 
 #: ../src/ical-code.c:274
 msgid "Antarctica/McMurdo"
-msgstr ""
+msgstr "Antarktída/McMurdo"
 
 #: ../src/ical-code.c:275
 msgid "Antarctica/Palmer"
-msgstr ""
+msgstr "Antarktída/Palmer"
 
 #: ../src/ical-code.c:276
 msgid "Antarctica/South_Pole"
-msgstr ""
+msgstr "Antarktída/South_Pole"
 
 #: ../src/ical-code.c:277
 msgid "Antarctica/Syowa"
-msgstr ""
+msgstr "Antarktída/Syowa"
 
 #: ../src/ical-code.c:278
 msgid "Antarctica/Vostok"
-msgstr ""
+msgstr "Antarktída/Vostok"
 
 #: ../src/ical-code.c:279
 msgid "Arctic"
-msgstr ""
+msgstr "Arktída"
 
 #: ../src/ical-code.c:280
 msgid "Arctic/Longyearbyen"
-msgstr ""
+msgstr "Arktída/Longyearbyen"
 
 #: ../src/ical-code.c:281
 msgid "Asia"
-msgstr ""
+msgstr "Ázia"
 
 #: ../src/ical-code.c:282
 msgid "Asia/Aden"
-msgstr ""
+msgstr "Ázia/Aden"
 
 #: ../src/ical-code.c:283
 msgid "Asia/Almaty"
-msgstr ""
+msgstr "Ázia/Almaty"
 
 #: ../src/ical-code.c:284
 msgid "Asia/Amman"
-msgstr ""
+msgstr "Ázia/Amman"
 
 #: ../src/ical-code.c:285
 msgid "Asia/Anadyr"
-msgstr ""
+msgstr "Ázia/Anadyr"
 
 #: ../src/ical-code.c:286
 msgid "Asia/Aqtau"
-msgstr ""
+msgstr "Ázia/Aqtau"
 
 #: ../src/ical-code.c:287
 msgid "Asia/Aqtobe"
-msgstr ""
+msgstr "Ázia/Aqtobe"
 
 #: ../src/ical-code.c:288
 msgid "Asia/Ashgabat"
-msgstr ""
+msgstr "Ázia/Ashgabat"
 
 #: ../src/ical-code.c:289
 msgid "Asia/Baghdad"
-msgstr ""
+msgstr "Ázia/Baghdad"
 
 #: ../src/ical-code.c:290
 msgid "Asia/Bahrain"
-msgstr ""
+msgstr "Ázia/Bahrain"
 
 #: ../src/ical-code.c:291
 msgid "Asia/Baku"
-msgstr ""
+msgstr "Ázia/Baku"
 
 #: ../src/ical-code.c:292
 msgid "Asia/Bangkok"
-msgstr ""
+msgstr "Ázia/Bangkok"
 
 #: ../src/ical-code.c:293
 msgid "Asia/Beirut"
-msgstr ""
+msgstr "Ázia/Beirut"
 
 #: ../src/ical-code.c:294
 msgid "Asia/Bishkek"
-msgstr ""
+msgstr "Ázia/Bishkek"
 
 #: ../src/ical-code.c:295
 msgid "Asia/Brunei"
-msgstr ""
+msgstr "Ázia/Brunei"
 
 #: ../src/ical-code.c:296
 msgid "Asia/Calcutta"
-msgstr ""
+msgstr "Ázia/Calcutta"
 
 #: ../src/ical-code.c:297
 msgid "Asia/Chungking"
-msgstr ""
+msgstr "Ázia/Chungking"
 
 #: ../src/ical-code.c:298
 msgid "Asia/Colombo"
-msgstr ""
+msgstr "Ázia/Colombo"
 
 #: ../src/ical-code.c:299
 msgid "Asia/Damascus"
-msgstr ""
+msgstr "Ázia/Damascus"
 
 #: ../src/ical-code.c:300
 msgid "Asia/Dhaka"
-msgstr ""
+msgstr "Ázia/Dhaka"
 
 #: ../src/ical-code.c:301
 msgid "Asia/Dili"
-msgstr ""
+msgstr "Ázia/Dili"
 
 #: ../src/ical-code.c:302
 msgid "Asia/Dubai"
-msgstr ""
+msgstr "Ázia/Dubai"
 
 #: ../src/ical-code.c:303
 msgid "Asia/Dushanbe"
-msgstr ""
+msgstr "Ázia/Dushanbe"
 
 #: ../src/ical-code.c:304
 msgid "Asia/Gaza"
-msgstr ""
+msgstr "Ázia/Gaza"
 
 #: ../src/ical-code.c:305
 msgid "Asia/Harbin"
-msgstr ""
+msgstr "Ázia/Harbin"
 
 #: ../src/ical-code.c:306
 msgid "Asia/Hong_Kong"
-msgstr ""
+msgstr "Ázia/Hong_Kong"
 
 #: ../src/ical-code.c:307
 msgid "Asia/Hovd"
-msgstr ""
+msgstr "Ázia/Hovd"
 
 #: ../src/ical-code.c:308
 msgid "Asia/Irkutsk"
-msgstr ""
+msgstr "Ázia/Irkutsk"
 
 #: ../src/ical-code.c:309
 msgid "Asia/Istanbul"
-msgstr ""
+msgstr "Ázia/Istanbul"
 
 #: ../src/ical-code.c:310
 msgid "Asia/Jakarta"
-msgstr ""
+msgstr "Ázia/Jakarta"
 
 #: ../src/ical-code.c:311
 msgid "Asia/Jayapura"
-msgstr ""
+msgstr "Ázia/Jayapura"
 
 #: ../src/ical-code.c:312
 msgid "Asia/Jerusalem"
-msgstr ""
+msgstr "Ázia/Jerusalem"
 
 #: ../src/ical-code.c:313
 msgid "Asia/Kabul"
-msgstr ""
+msgstr "Ázia/Kabul"
 
 #: ../src/ical-code.c:314
 msgid "Asia/Kamchatka"
-msgstr ""
+msgstr "Ázia/Kamchatka"
 
 #: ../src/ical-code.c:315
 msgid "Asia/Karachi"
-msgstr ""
+msgstr "Ázia/Karachi"
 
 #: ../src/ical-code.c:316
 msgid "Asia/Kashgar"
-msgstr ""
+msgstr "Ázia/Kashgar"
 
 #: ../src/ical-code.c:317
 msgid "Asia/Katmandu"
-msgstr ""
+msgstr "Ázia/Katmandu"
 
 #: ../src/ical-code.c:318
 msgid "Asia/Krasnoyarsk"
-msgstr ""
+msgstr "Ázia/Krasnoyarsk"
 
 #: ../src/ical-code.c:319
 msgid "Asia/Kuala_Lumpur"
-msgstr ""
+msgstr "Ázia/Kuala_Lumpur"
 
 #: ../src/ical-code.c:320
 msgid "Asia/Kuching"
-msgstr ""
+msgstr "Ázia/Kuching"
 
 #: ../src/ical-code.c:321
 msgid "Asia/Kuwait"
-msgstr ""
+msgstr "Ázia/Kuwait"
 
 #: ../src/ical-code.c:322
 msgid "Asia/Macao"
-msgstr ""
+msgstr "Ázia/Macao"
 
 #: ../src/ical-code.c:323
 msgid "Asia/Magadan"
-msgstr ""
+msgstr "Ázia/Magadan"
 
 #: ../src/ical-code.c:324
 msgid "Asia/Manila"
-msgstr ""
+msgstr "Ázia/Manila"
 
 #: ../src/ical-code.c:325
 msgid "Asia/Muscat"
-msgstr ""
+msgstr "Ázia/Muscat"
 
 #: ../src/ical-code.c:326
 msgid "Asia/Nicosia"
-msgstr ""
+msgstr "Ázia/Nicosia"
 
 #: ../src/ical-code.c:327
 msgid "Asia/Novosibirsk"
-msgstr ""
+msgstr "Ázia/Novosibirsk"
 
 #: ../src/ical-code.c:328
 msgid "Asia/Omsk"
-msgstr ""
+msgstr "Ázia/Omsk"
 
 #: ../src/ical-code.c:329
 msgid "Asia/Phnom_Penh"
-msgstr ""
+msgstr "Ázia/Phnom_Penh"
 
 #: ../src/ical-code.c:330
 msgid "Asia/Pontianak"
-msgstr ""
+msgstr "Ázia/Pontianak"
 
 #: ../src/ical-code.c:331
 msgid "Asia/Pyongyang"
-msgstr ""
+msgstr "Ázia/Pyongyang"
 
 #: ../src/ical-code.c:332
 msgid "Asia/Qatar"
-msgstr ""
+msgstr "Ázia/Qatar"
 
 #: ../src/ical-code.c:333
 msgid "Asia/Rangoon"
-msgstr ""
+msgstr "Ázia/Rangoon"
 
 #: ../src/ical-code.c:334
 msgid "Asia/Riyadh"
-msgstr ""
+msgstr "Ázia/Riyadh"
 
 #: ../src/ical-code.c:335
 msgid "Asia/Saigon"
-msgstr ""
+msgstr "Ázia/Saigon"
 
 #: ../src/ical-code.c:336
 msgid "Asia/Samarkand"
-msgstr ""
+msgstr "Ázia/Samarkand"
 
 #: ../src/ical-code.c:337
 msgid "Asia/Seoul"
-msgstr ""
+msgstr "Ázia/Seoul"
 
 #: ../src/ical-code.c:338
 msgid "Asia/Shanghai"
-msgstr ""
+msgstr "Ázia/Shanghai"
 
 #: ../src/ical-code.c:339
 msgid "Asia/Singapore"
-msgstr ""
+msgstr "Ázia/Singapore"
 
 #: ../src/ical-code.c:340
 msgid "Asia/Taipei"
-msgstr ""
+msgstr "Ázia/Taipei"
 
 #: ../src/ical-code.c:341
 msgid "Asia/Tashkent"
-msgstr ""
+msgstr "Ázia/Tashkent"
 
 #: ../src/ical-code.c:342
 msgid "Asia/Tbilisi"
-msgstr ""
+msgstr "Ázia/Tbilisi"
 
 #: ../src/ical-code.c:343
 msgid "Asia/Tehran"
-msgstr ""
+msgstr "Ázia/Tehran"
 
 #: ../src/ical-code.c:344
 msgid "Asia/Thimphu"
-msgstr ""
+msgstr "Ázia/Thimphu"
 
 #: ../src/ical-code.c:345
 msgid "Asia/Tokyo"
-msgstr ""
+msgstr "Ázia/Tokyo"
 
 #: ../src/ical-code.c:346
 msgid "Asia/Ujung_Pandang"
-msgstr ""
+msgstr "Ázia/Ujung_Pandang"
 
 #: ../src/ical-code.c:347
 msgid "Asia/Ulaanbaatar"
-msgstr ""
+msgstr "Ázia/Ulaanbaatar"
 
 #: ../src/ical-code.c:348
 msgid "Asia/Urumqi"
-msgstr ""
+msgstr "Ázia/Urumqi"
 
 #: ../src/ical-code.c:349
 msgid "Asia/Vientiane"
-msgstr ""
+msgstr "Ázia/Vientiane"
 
 #: ../src/ical-code.c:350
 msgid "Asia/Vladivostok"
-msgstr ""
+msgstr "Ázia/Vladivostok"
 
 #: ../src/ical-code.c:351
 msgid "Asia/Yakutsk"
-msgstr ""
+msgstr "Ázia/Yakutsk"
 
 #: ../src/ical-code.c:352
 msgid "Asia/Yekaterinburg"
-msgstr ""
+msgstr "Ázia/Yekaterinburg"
 
 #: ../src/ical-code.c:353
 msgid "Asia/Yerevan"
-msgstr ""
+msgstr "Ázia/Yerevan"
 
 #: ../src/ical-code.c:354
 msgid "Atlantic"
-msgstr ""
+msgstr "Atlantik"
 
 #: ../src/ical-code.c:355
 msgid "Atlantic/Azores"
-msgstr ""
+msgstr "Atlantik/Azores"
 
 #: ../src/ical-code.c:356
 msgid "Atlantic/Bermuda"
-msgstr ""
+msgstr "Atlantik/Bermuda"
 
 #: ../src/ical-code.c:357
 msgid "Atlantic/Canary"
-msgstr ""
+msgstr "Atlantik/Canary"
 
 #: ../src/ical-code.c:358
 msgid "Atlantic/Cape_Verde"
-msgstr ""
+msgstr "Atlantik/Cape_Verde"
 
 #: ../src/ical-code.c:359
 msgid "Atlantic/Faeroe"
-msgstr ""
+msgstr "Atlantik/Faeroe"
 
 #: ../src/ical-code.c:360
 msgid "Atlantic/Jan_Mayen"
-msgstr ""
+msgstr "Atlantik/Jan_Mayen"
 
 #: ../src/ical-code.c:361
 msgid "Atlantic/Madeira"
-msgstr ""
+msgstr "Atlantik/Madeira"
 
 #: ../src/ical-code.c:362
 msgid "Atlantic/Reykjavik"
-msgstr ""
+msgstr "Atlantik/Reykjavik"
 
 #: ../src/ical-code.c:363
 msgid "Atlantic/South_Georgia"
-msgstr ""
+msgstr "Atlantik/South_Georgia"
 
 #: ../src/ical-code.c:364
 msgid "Atlantic/St_Helena"
-msgstr ""
+msgstr "Atlantik/St_Helena"
 
 #: ../src/ical-code.c:365
 msgid "Atlantic/Stanley"
-msgstr ""
+msgstr "Atlantik/Stanley"
 
 #: ../src/ical-code.c:366
 msgid "Australia"
-msgstr ""
+msgstr "Austrália"
 
 #: ../src/ical-code.c:367
 msgid "Australia/Adelaide"
-msgstr ""
+msgstr "Austrália/Adelaide"
 
 #: ../src/ical-code.c:368
 msgid "Australia/Brisbane"
-msgstr ""
+msgstr "Austrália/Brisbane"
 
 #: ../src/ical-code.c:369
 msgid "Australia/Broken_Hill"
-msgstr ""
+msgstr "Austrália/Broken_Hill"
 
 #: ../src/ical-code.c:370
 msgid "Australia/Darwin"
-msgstr ""
+msgstr "Austrália/Darwin"
 
 #: ../src/ical-code.c:371
 msgid "Australia/Hobart"
-msgstr ""
+msgstr "Austrália/Hobart"
 
 #: ../src/ical-code.c:372
 msgid "Australia/Lindeman"
-msgstr ""
+msgstr "Austrália/Lindeman"
 
 #: ../src/ical-code.c:373
 msgid "Australia/Lord_Howe"
-msgstr ""
+msgstr "Austrália/Lord_Howe"
 
 #: ../src/ical-code.c:374
 msgid "Australia/Melbourne"
-msgstr ""
+msgstr "Austrália/Melbourne"
 
 #: ../src/ical-code.c:375
 msgid "Australia/Perth"
-msgstr ""
+msgstr "Austrália/Perth"
 
 #: ../src/ical-code.c:376
 msgid "Australia/Sydney"
-msgstr ""
+msgstr "Austrália/Sydney"
 
 #: ../src/ical-code.c:377
 msgid "Europe"
-msgstr ""
+msgstr "Európa"
 
 #: ../src/ical-code.c:378
 msgid "Europe/Amsterdam"
-msgstr ""
+msgstr "Európa/Amsterdam"
 
 #: ../src/ical-code.c:379
 msgid "Europe/Andorra"
-msgstr ""
+msgstr "Európa/Andorra"
 
 #: ../src/ical-code.c:380
 msgid "Europe/Athens"
-msgstr ""
+msgstr "Európa/Athens"
 
 #: ../src/ical-code.c:381
 msgid "Europe/Belfast"
-msgstr ""
+msgstr "Európa/Belfast"
 
 #: ../src/ical-code.c:382
 msgid "Europe/Belgrade"
-msgstr ""
+msgstr "Európa/Belgrade"
 
 #: ../src/ical-code.c:383
 msgid "Europe/Berlin"
-msgstr ""
+msgstr "Európa/Berlin"
 
 #: ../src/ical-code.c:384
 msgid "Europe/Bratislava"
-msgstr ""
+msgstr "Európa/Bratislava"
 
 #: ../src/ical-code.c:385
 msgid "Europe/Brussels"
-msgstr ""
+msgstr "Európa/Brussels"
 
 #: ../src/ical-code.c:386
 msgid "Europe/Bucharest"
-msgstr ""
+msgstr "Európa/Bucharest"
 
 #: ../src/ical-code.c:387
 msgid "Europe/Budapest"
-msgstr ""
+msgstr "Európa/Budapest"
 
 #: ../src/ical-code.c:388
 msgid "Europe/Chisinau"
-msgstr ""
+msgstr "Európa/Chisinau"
 
 #: ../src/ical-code.c:389
 msgid "Europe/Copenhagen"
-msgstr ""
+msgstr "Európa/Copenhagen"
 
 #: ../src/ical-code.c:390
 msgid "Europe/Dublin"
-msgstr ""
+msgstr "Európa/Dublin"
 
 #: ../src/ical-code.c:391
 msgid "Europe/Gibraltar"
-msgstr ""
+msgstr "Európa/Gibraltar"
 
 #: ../src/ical-code.c:392
 msgid "Europe/Helsinki"
-msgstr ""
+msgstr "Európa/Helsinki"
 
 #: ../src/ical-code.c:393
 msgid "Europe/Istanbul"
-msgstr ""
+msgstr "Európa/Istanbul"
 
 #: ../src/ical-code.c:394
 msgid "Europe/Kaliningrad"
-msgstr ""
+msgstr "Európa/Kaliningrad"
 
 #: ../src/ical-code.c:395
 msgid "Europe/Kiev"
-msgstr ""
+msgstr "Európa/Kiev"
 
 #: ../src/ical-code.c:396
 msgid "Europe/Lisbon"
-msgstr ""
+msgstr "Európa/Lisbon"
 
 #: ../src/ical-code.c:397
 msgid "Europe/Ljubljana"
-msgstr ""
+msgstr "Európa/Ljubljana"
 
 #: ../src/ical-code.c:398
 msgid "Europe/London"
-msgstr ""
+msgstr "Európa/London"
 
 #: ../src/ical-code.c:399
 msgid "Europe/Luxembourg"
-msgstr ""
+msgstr "Európa/Luxembourg"
 
 #: ../src/ical-code.c:400
 msgid "Europe/Madrid"
-msgstr ""
+msgstr "Európa/Madrid"
 
 #: ../src/ical-code.c:401
 msgid "Europe/Malta"
-msgstr ""
+msgstr "Európa/Malta"
 
 #: ../src/ical-code.c:402
 msgid "Europe/Minsk"
-msgstr ""
+msgstr "Európa/Minsk"
 
 #: ../src/ical-code.c:403
 msgid "Europe/Monaco"
-msgstr ""
+msgstr "Európa/Monaco"
 
 #: ../src/ical-code.c:404
 msgid "Europe/Moscow"
-msgstr ""
+msgstr "Európa/Moscow"
 
 #: ../src/ical-code.c:405
 msgid "Europe/Nicosia"
-msgstr ""
+msgstr "Európa/Nicosia"
 
 #: ../src/ical-code.c:406
 msgid "Europe/Oslo"
-msgstr ""
+msgstr "Európa/Oslo"
 
 #: ../src/ical-code.c:407
 msgid "Europe/Paris"
-msgstr ""
+msgstr "Európa/Paris"
 
 #: ../src/ical-code.c:408
 msgid "Europe/Prague"
-msgstr ""
+msgstr "Európa/Prague"
 
 #: ../src/ical-code.c:409
 msgid "Europe/Riga"
-msgstr ""
+msgstr "Európa/Riga"
 
 #: ../src/ical-code.c:410
 msgid "Europe/Rome"
-msgstr ""
+msgstr "Európa/Rome"
 
 #: ../src/ical-code.c:411
 msgid "Europe/Samara"
-msgstr ""
+msgstr "Európa/Samara"
 
 #: ../src/ical-code.c:412
 msgid "Europe/San_Marino"
-msgstr ""
+msgstr "Európa/San_Marino"
 
 #: ../src/ical-code.c:413
 msgid "Europe/Sarajevo"
-msgstr ""
+msgstr "Európa/Sarajevo"
 
 #: ../src/ical-code.c:414
 msgid "Europe/Simferopol"
-msgstr ""
+msgstr "Európa/Simferopol"
 
 #: ../src/ical-code.c:415
 msgid "Europe/Skopje"
-msgstr ""
+msgstr "Európa/Skopje"
 
 #: ../src/ical-code.c:416
 msgid "Europe/Sofia"
-msgstr ""
+msgstr "Európa/Sofia"
 
 #: ../src/ical-code.c:417
 msgid "Europe/Stockholm"
-msgstr ""
+msgstr "Európa/Stockholm"
 
 #: ../src/ical-code.c:418
 msgid "Europe/Tallinn"
-msgstr ""
+msgstr "Európa/Tallinn"
 
 #: ../src/ical-code.c:419
 msgid "Europe/Tirane"
-msgstr ""
+msgstr "Európa/Tirane"
 
 #: ../src/ical-code.c:420
 msgid "Europe/Uzhgorod"
-msgstr ""
+msgstr "Európa/Uzhgorod"
 
 #: ../src/ical-code.c:421
 msgid "Europe/Vaduz"
-msgstr ""
+msgstr "Európa/Vaduz"
 
 #: ../src/ical-code.c:422
 msgid "Europe/Vatican"
-msgstr ""
+msgstr "Európa/Vatican"
 
 #: ../src/ical-code.c:423
 msgid "Europe/Vienna"
-msgstr ""
+msgstr "Európa/Vienna"
 
 #: ../src/ical-code.c:424
 msgid "Europe/Vilnius"
-msgstr ""
+msgstr "Európa/Vilnius"
 
 #: ../src/ical-code.c:425
 msgid "Europe/Warsaw"
-msgstr ""
+msgstr "Európa/Warsaw"
 
 #: ../src/ical-code.c:426
 msgid "Europe/Zagreb"
-msgstr ""
+msgstr "Európa/Zagreb"
 
 #: ../src/ical-code.c:427
 msgid "Europe/Zaporozhye"
-msgstr ""
+msgstr "Európa/Zaporozhye"
 
 #: ../src/ical-code.c:428
 msgid "Europe/Zurich"
-msgstr ""
+msgstr "Európa/Zurich"
 
 #: ../src/ical-code.c:429
 msgid "Indian"
-msgstr ""
+msgstr "India"
 
 #: ../src/ical-code.c:430
 msgid "Indian/Antananarivo"
-msgstr ""
+msgstr "India/Antananarivo"
 
 #: ../src/ical-code.c:431
 msgid "Indian/Chagos"
-msgstr ""
+msgstr "India/Chagos"
 
 #: ../src/ical-code.c:432
 msgid "Indian/Christmas"
-msgstr ""
+msgstr "India/Christmas"
 
 #: ../src/ical-code.c:433
 msgid "Indian/Cocos"
-msgstr ""
+msgstr "India/Cocos"
 
 #: ../src/ical-code.c:434
 msgid "Indian/Comoro"
-msgstr ""
+msgstr "India/Comoro"
 
 #: ../src/ical-code.c:435
 msgid "Indian/Kerguelen"
-msgstr ""
+msgstr "India/Kerguelen"
 
 #: ../src/ical-code.c:436
 msgid "Indian/Mahe"
-msgstr ""
+msgstr "India/Mahe"
 
 #: ../src/ical-code.c:437
 msgid "Indian/Maldives"
-msgstr ""
+msgstr "India/Maldives"
 
 #: ../src/ical-code.c:438
 msgid "Indian/Mauritius"
-msgstr ""
+msgstr "India/Mauritius"
 
 #: ../src/ical-code.c:439
 msgid "Indian/Mayotte"
-msgstr ""
+msgstr "India/Mayotte"
 
 #: ../src/ical-code.c:440
 msgid "Indian/Reunion"
-msgstr ""
+msgstr "India/Reunion"
 
 #: ../src/ical-code.c:441
 msgid "Pacific"
-msgstr ""
+msgstr "Pacifik"
 
 #: ../src/ical-code.c:442
 msgid "Pacific/Apia"
-msgstr ""
+msgstr "Pacifik/Apia"
 
 #: ../src/ical-code.c:443
 msgid "Pacific/Auckland"
-msgstr ""
+msgstr "Pacifik/Auckland"
 
 #: ../src/ical-code.c:444
 msgid "Pacific/Chatham"
-msgstr ""
+msgstr "Pacifik/Chatham"
 
 #: ../src/ical-code.c:445
 msgid "Pacific/Easter"
-msgstr ""
+msgstr "Pacifik/Easter"
 
 #: ../src/ical-code.c:446
 msgid "Pacific/Efate"
-msgstr ""
+msgstr "Pacifik/Efate"
 
 #: ../src/ical-code.c:447
 msgid "Pacific/Enderbury"
-msgstr ""
+msgstr "Pacifik/Enderbury"
 
 #: ../src/ical-code.c:448
 msgid "Pacific/Fakaofo"
-msgstr ""
+msgstr "Pacifik/Fakaofo"
 
 #: ../src/ical-code.c:449
 msgid "Pacific/Fiji"
-msgstr ""
+msgstr "Pacifik/Fiji"
 
 #: ../src/ical-code.c:450
 msgid "Pacific/Funafuti"
-msgstr ""
+msgstr "Pacifik/Funafuti"
 
 #: ../src/ical-code.c:451
 msgid "Pacific/Galapagos"
-msgstr ""
+msgstr "Pacifik/Galapagos"
 
 #: ../src/ical-code.c:452
 msgid "Pacific/Gambier"
-msgstr ""
+msgstr "Pacifik/Gambier"
 
 #: ../src/ical-code.c:453
 msgid "Pacific/Guadalcanal"
-msgstr ""
+msgstr "Pacifik/Guadalcanal"
 
 #: ../src/ical-code.c:454
 msgid "Pacific/Guam"
-msgstr ""
+msgstr "Pacifik/Guam"
 
 #: ../src/ical-code.c:455
 msgid "Pacific/Honolulu"
-msgstr ""
+msgstr "Pacifik/Honolulu"
 
 #: ../src/ical-code.c:456
 msgid "Pacific/Johnston"
-msgstr ""
+msgstr "Pacifik/Johnston"
 
 #: ../src/ical-code.c:457
 msgid "Pacific/Kiritimati"
-msgstr ""
+msgstr "Pacifik/Kiritimati"
 
 #: ../src/ical-code.c:458
 msgid "Pacific/Kosrae"
-msgstr ""
+msgstr "Pacifik/Kosrae"
 
 #: ../src/ical-code.c:459
 msgid "Pacific/Kwajalein"
-msgstr ""
+msgstr "Pacifik/Kwajalein"
 
 #: ../src/ical-code.c:460
 msgid "Pacific/Majuro"
-msgstr ""
+msgstr "Pacifik/Majuro"
 
 #: ../src/ical-code.c:461
 msgid "Pacific/Marquesas"
-msgstr ""
+msgstr "Pacifik/Marquesas"
 
 #: ../src/ical-code.c:462
 msgid "Pacific/Midway"
-msgstr ""
+msgstr "Pacifik/Midway"
 
 #: ../src/ical-code.c:463
 msgid "Pacific/Nauru"
-msgstr ""
+msgstr "Pacifik/Nauru"
 
 #: ../src/ical-code.c:464
 msgid "Pacific/Niue"
-msgstr ""
+msgstr "Pacifik/Niue"
 
 #: ../src/ical-code.c:465
 msgid "Pacific/Norfolk"
-msgstr ""
+msgstr "Pacifik/Norfolk"
 
 #: ../src/ical-code.c:466
 msgid "Pacific/Noumea"
-msgstr ""
+msgstr "Pacifik/Noumea"
 
 #: ../src/ical-code.c:467
 msgid "Pacific/Pago_Pago"
-msgstr ""
+msgstr "Pacifik/Pago_Pago"
 
 #: ../src/ical-code.c:468
 msgid "Pacific/Palau"
-msgstr ""
+msgstr "Pacifik/Palau"
 
 #: ../src/ical-code.c:469
 msgid "Pacific/Pitcairn"
-msgstr ""
+msgstr "Pacifik/Pitcairn"
 
 #: ../src/ical-code.c:470
 msgid "Pacific/Ponape"
-msgstr ""
+msgstr "Pacifik/Ponape"
 
 #: ../src/ical-code.c:471
 msgid "Pacific/Port_Moresby"
-msgstr ""
+msgstr "Pacifik/Port_Moresby"
 
 #: ../src/ical-code.c:472
 msgid "Pacific/Rarotonga"
-msgstr ""
+msgstr "Pacifik/Rarotonga"
 
 #: ../src/ical-code.c:473
 msgid "Pacific/Saipan"
-msgstr ""
+msgstr "Pacifik/Saipan"
 
 #: ../src/ical-code.c:474
 msgid "Pacific/Tahiti"
-msgstr ""
+msgstr "Pacifik/Tahiti"
 
 #: ../src/ical-code.c:475
 msgid "Pacific/Tarawa"
-msgstr ""
+msgstr "Pacifik/Tarawa"
 
 #: ../src/ical-code.c:476
 msgid "Pacific/Tongatapu"
-msgstr ""
+msgstr "Pacifik/Tongatapu"
 
 #: ../src/ical-code.c:477
 msgid "Pacific/Truk"
-msgstr ""
+msgstr "Pacifik/Truk"
 
 #: ../src/ical-code.c:478
 msgid "Pacific/Wake"
-msgstr ""
+msgstr "Pacifik/Wake"
 
 #: ../src/ical-code.c:479
 msgid "Pacific/Wallis"
-msgstr ""
+msgstr "Pacifik/Wallis"
 
 #: ../src/ical-code.c:480
 msgid "Pacific/Yap"
-msgstr ""
+msgstr "Pacifik/Yap"
 
 #: ../src/ical-code.c:1168
-#, fuzzy
 msgid "Orage default alarm"
 msgstr "Prednastavený alarm kalendára"
 
@@ -2113,15 +2106,15 @@ msgstr "Nová udalosť"
 
 #: ../src/tray_icon.c:130
 msgid "About Orage"
-msgstr ""
+msgstr "O programe"
 
 #: ../panel-plugin/orageclock.desktop.in.in.h:1
 msgid "Orage Clock"
-msgstr ""
+msgstr "Hodiny Orage"
 
 #: ../panel-plugin/orageclock.desktop.in.in.h:2
 msgid "What time and date is it?"
-msgstr ""
+msgstr "Aký je čas a dátum?"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:1
 msgid "Calendar Settings"
