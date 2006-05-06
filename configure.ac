@@ -12,7 +12,7 @@ dnl Version information
 m4_define([orage_version_major], [4])
 m4_define([orage_version_minor], [3])
 m4_define([orage_version_micro], [90])
-m4_define([orage_version_nano], [1])  dnl leave this empty to have no nano version
+m4_define([orage_version_nano], [2])  dnl leave this empty to have no nano version
 m4_define([orage_version_tag], [])
 m4_define([orage_version], [orage_version_major().orage_version_minor().orage_version_micro()ifelse(orage_version_nano(), [], [], [.orage_version_nano()])orage_version_tag()])
 
@@ -76,13 +76,13 @@ XDT_I18N([ar az be bg bn_IN ca cs de el en_GB eo es et eu fa fi fr gu he \
 
 dnl Check for required packages
 XDT_CHECK_PACKAGE([LIBXFCE4MCS_CLIENT], [libxfce4mcs-client-1.0], [4.3.90.1])
-XDT_CHECK_PACKAGE([LIBXFCEGUI4], [libxfcegui4-1.0], [4.3.90.1])
+XDT_CHECK_PACKAGE([LIBXFCEGUI4], [libxfcegui4-1.0], [4.3.90.2])
 
 dnl Needed for panel plugin
 XDT_CHECK_PACKAGE([LIBXFCE4PANEL], [libxfce4panel-1.0], [4.3.90.1])
 
 dnl configure the mcs plugin
-XDT_XFCE_MCS_PLUGIN([XFCE_MCS_MANAGER], [4.3.90.1])
+XDT_XFCE_MCS_PLUGIN([XFCE_MCS_MANAGER], [4.3.90.2])
 
 dnl the ical magic
 XDT_CHECK_PACKAGE([ICAL], [libical-0.24], [0.24],

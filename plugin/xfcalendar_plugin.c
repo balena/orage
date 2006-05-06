@@ -73,7 +73,6 @@ struct _Itf
     McsPlugin *mcs_plugin;
 
     GtkWidget *orage_dialog;
-    GtkWidget *dialog_header;
     GtkWidget *dialog_vbox1;
     GtkWidget *notebook;
     /* Tabs */
@@ -520,20 +519,17 @@ Itf *create_orage_dialog(McsPlugin * mcs_plugin)
     dialog->mode_radiobutton_group = NULL;
     dialog->visibility_radiobutton_group = NULL;
 
-    dialog->orage_dialog = gtk_dialog_new();
+    dialog->orage_dialog = xfce_titled_dialog_new();
     gtk_window_set_default_size(GTK_WINDOW(dialog->orage_dialog), 300, 350);
     gtk_window_set_title(GTK_WINDOW(dialog->orage_dialog), _("Orage Preferences"));
     gtk_window_set_position(GTK_WINDOW(dialog->orage_dialog), GTK_WIN_POS_CENTER);
     gtk_window_set_modal(GTK_WINDOW(dialog->orage_dialog), FALSE);
     gtk_window_set_resizable(GTK_WINDOW(dialog->orage_dialog), FALSE);
-    gtk_window_set_icon(GTK_WINDOW(dialog->orage_dialog), mcs_plugin->icon);
+    gtk_window_set_icon_name(GTK_WINDOW(dialog->orage_dialog), "xfcalendar");
 
     gtk_dialog_set_has_separator(GTK_DIALOG(dialog->orage_dialog), FALSE);
 
     dialog->dialog_vbox1 = GTK_DIALOG(dialog->orage_dialog)->vbox;
-
-    dialog->dialog_header = xfce_create_header(mcs_plugin->icon, _("Orage Preferences"));
-    gtk_box_pack_start(GTK_BOX(dialog->dialog_vbox1), dialog->dialog_header, FALSE, TRUE, 0);
 
     dialog->notebook = gtk_notebook_new ();
     gtk_container_add (GTK_CONTAINER (dialog->dialog_vbox1), dialog->notebook);
@@ -800,6 +796,8 @@ McsPluginInitResult mcs_plugin_init(McsPlugin * mcs_plugin)
     mcs_plugin->caption = g_strdup(Q_("Button Label|Orage"));
     mcs_plugin->run_dialog = run_dialog;
     mcs_plugin->icon = xfce_themed_icon_load("xfcalendar", 48);
+    if (G_LIKELY (mcs_plugin->icon != NULL))
+      g_object_set_data_full(G_OBJECT(mcs_plugin->icon), "mcs-plugin-icon-name", g_strdup("xfcalendar"), g_free);
     mcs_manager_notify(mcs_plugin->manager, CHANNEL);
 
     return (MCS_PLUGIN_INIT_OK);
