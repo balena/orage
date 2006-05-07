@@ -49,23 +49,23 @@ msgstr "ustaw strefę czasoną na:"
 
 #: ../panel-plugin/oc_config.c:241
 msgid "Set any valid timezone (=TZ) value or pick one from the list."
-msgstr ""
+msgstr "Ustaw poprawną strefę czasową (=SC) lub wybierz jedną z listy"
 
 #: ../panel-plugin/oc_config.c:254
 msgid "show line _1:"
-msgstr ""
+msgstr "pokaż wiersz _1:"
 
 #: ../panel-plugin/oc_config.c:265
 msgid "Enter any valid strftime function parameter."
-msgstr ""
+msgstr "Podaj dowolny poprawny parametr funkcji strftime"
 
 #: ../panel-plugin/oc_config.c:284
 msgid "show line _2:"
-msgstr ""
+msgstr "pokaż wiersz _2:"
 
 #: ../panel-plugin/oc_config.c:309
 msgid "show line _3:"
-msgstr ""
+msgstr "pokaż wiersz _3:"
 
 #: ../panel-plugin/oc_config.c:338
 msgid ""
@@ -78,6 +78,14 @@ msgid ""
 "\t%H = hours \t\t\t\t%M = minute\n"
 "\t%X = local time\t\t\t%x = local date"
 msgstr ""
+"Ten program używa funkcji strftime do pobierania czasu.\n"
+"Możesz używać dowolnego poprawnego parametru tej funkcji.\n"
+"Część składni dla tej funkcji to:\n"
+"\t%A = dzień tygodnia\t\t\t%B = miesiąc\n"
+"\t%c = data i czas\t\t%R = godzina i minuty\n"
+"\t%V = numer tygodnia\t\t%Z = używana strefa czasowa\n"
+"\t%H = godziny \t\t\t\t%M = minuty\n"
+"\t%X = czas lokalny\t\t\t%x = czas lokalny"
 
 #: ../panel-plugin/oc_config.c:357
 msgid "Properties"
@@ -511,6 +519,14 @@ msgid ""
 "\t\t D=Daily W=Weekly M=Monthly Y=Yearly\n"
 "\t 3. Type: f=free B=Busy"
 msgstr ""
+"Podwójnie kliknij na wiersz by edytować.\n"
+"\n"
+"Flagi w kolejności:\n"
+"\t 1. Alarm: n=brak alarmu\n"
+"\t\tA=graficzny Alarm S=alarm dźwiękiem\n"
+"\t 2. Rekurencja: n=brak rekurencji\n"
+"\t\t D=Dzienny W=Tygodniowy M=Miesięczny Y=Roczny\n"
+"\t 3. Typ: f=wolny B=Zajęty"
 
 #: ../src/ical-code.c:98
 msgid "Africa"
