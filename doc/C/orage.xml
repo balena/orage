@@ -229,6 +229,15 @@ maintainers, etc. Commented out by default.
         </listitem>
         <listitem>Open archive file...: fire a file selector for opening file
                   containing old items;
+                  <warning>
+                    <para>
+                      This makes the selected file to act as your current 
+                      active calendar file. It is possible to add, modify and 
+                      remove appointments from it. You probably only want to 
+                      take a look and return to your normal file (by closing 
+                      archive file). 
+                    </para>
+                  </warning>
         </listitem>
         <listitem>Close archive file: close the previously opened file -
                   greyed when no file opened;
@@ -858,7 +867,9 @@ maintainers, etc. Commented out by default.
       Unfortunately &app; version &appversion; has no way to search or bring
       back appointments from the history file. This means that although the
       archived events are not lost, they vanish so that you can only access
-      them manually outside &app;.
+      them with the not so perfect
+      <link linkend="calendar-file-menu">archive file</link>
+      method (or manually outside &app;).
     </para>
     <para>
       Note that &app; also splits
