@@ -505,7 +505,7 @@ xfical_timezone_array xfical_get_timezones()
 void set_default_ical_path (void)
 {
     if (ical_path)
-        g_free (ical_path);
+        g_free(ical_path);
 
     ical_path = xfce_resource_save_location(XFCE_RESOURCE_CONFIG,
                     RCDIR G_DIR_SEPARATOR_S APPOINTMENT_FILE, FALSE);
@@ -514,7 +514,7 @@ void set_default_ical_path (void)
 void set_ical_path(gchar *path)
 {
     if (ical_path)
-        g_free (ical_path);
+        g_free(ical_path);
 
     ical_path = path;
 }
@@ -522,7 +522,7 @@ void set_ical_path(gchar *path)
 void set_aical_path(gchar *path)
 {
     if (aical_path)
-        g_free (aical_path);
+        g_free(aical_path);
 
     aical_path = g_strdup(path);
 }
@@ -1099,10 +1099,11 @@ void xfical_alarm_build_list_internal(gboolean first_list_today)
         if (trg_found) {
         /* all data available. let's pack it if alarm is still active */
             alarm_time = icaltime_add(per.stime, trg.duration);
-            if (icaltime_compare(cur_time, alarm_time) <= 0) /* active */
+            if (icaltime_compare(cur_time, alarm_time) <= 0) { /* active */
                 alarm_add(stat, suid, ssummary, sdescription
                         , ssound, repeat_cnt, repeat_delay
                         , alarm_time, per.stime);
+            }
             else if ((p = icalcomponent_get_first_property(c
                 , ICAL_RRULE_PROPERTY)) != 0) { /* check recurring EVENTs */                    rrule = icalproperty_get_rrule(p);
                 next_date = icaltime_null_time();
@@ -1114,10 +1115,11 @@ void xfical_alarm_build_list_internal(gboolean first_list_today)
                 }
                 icalrecur_iterator_free(ri);
                 alarm_time = icaltime_add(next_date, trg.duration);
-                if (icaltime_compare(cur_time, alarm_time) <= 0)
+                if (icaltime_compare(cur_time, alarm_time) <= 0) {
                     alarm_add(stat, suid, ssummary, sdescription
                         , ssound, repeat_cnt, repeat_delay
                         , alarm_time, per.stime);
+                }
             }
         } /* trg_found */
     }  /* EVENTS */
