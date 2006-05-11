@@ -982,7 +982,6 @@ void alarm_add(icalproperty_status action
              , struct icaltimetype alarm_time, struct icaltimetype event_time)
 {
     alarm_struct *new_alarm;
-                                                                                
     new_alarm = g_new(alarm_struct, 1);
     new_alarm->uid = g_string_new(uid);
     new_alarm->title = g_string_new(title);
@@ -1018,6 +1017,7 @@ void xfical_alarm_build_list_internal(gboolean first_list_today)
     icalrecur_iterator* ri;
     gint repeat_cnt, repeat_delay;
     struct icaldurationtype duration;
+    gint cnt_alarm=0, cnt_repeat=0, cnt_event=0, cnt_act_alarm=0;
 
     cur_time = ical_get_current_local_time();
     g_list_foreach(alarm_list, alarm_free, NULL);
@@ -1027,6 +1027,7 @@ void xfical_alarm_build_list_internal(gboolean first_list_today)
     for (c = icalcomponent_get_first_component(ical, ICAL_VEVENT_COMPONENT);
          c != 0;
          c = icalcomponent_get_next_component(ical, ICAL_VEVENT_COMPONENT)){
+        cnt_event++;
         suid = (char*)icalcomponent_get_uid(c);
         ssummary = (char*)icalcomponent_get_summary(c);
         sdescription = (char*)icalcomponent_get_description(c);
@@ -1038,6 +1039,7 @@ void xfical_alarm_build_list_internal(gboolean first_list_today)
                 alarm_add(ICAL_ACTION_DISPLAY
                         , suid, ssummary, sdescription, NULL, 0, 0
                         , per.stime, per.stime);
+                cnt_act_alarm++;
             }
             else if ((p = icalcomponent_get_first_property(c
                 , ICAL_RRULE_PROPERTY)) != 0) { /* check recurring EVENTs */
@@ -1048,12 +1050,14 @@ void xfical_alarm_build_list_internal(gboolean first_list_today)
                     !icaltime_is_null_time(next_date)
                         && local_compare_date_only(cur_time, next_date) > 0;
                     next_date = icalrecur_iterator_next(ri)) {
+                    cnt_repeat++;
                 }
                 icalrecur_iterator_free(ri);
                 if (local_compare_date_only(next_date, cur_time) == 0) {
                     alarm_add(ICAL_ACTION_DISPLAY
                             , suid, ssummary, sdescription, NULL, 0, 0
                             , next_date, per.stime);
+                    cnt_act_alarm++;
                 }
             }
         }
@@ -1097,33 +1101,50 @@ void xfical_alarm_build_list_internal(gboolean first_list_today)
             } 
         }  /* ALARMS */
         if (trg_found) {
+            cnt_alarm++;
+            if (icaltime_is_date(per.stime)) { 
+    /* HACK: convert to local time so that we can use time arithmetic
+     * when counting alarm time. */
+                per.stime.is_date       = 0;
+                per.stime.is_utc        = cur_time.is_utc;
+                per.stime.is_daylight   = cur_time.is_daylight;
+                per.stime.zone          = cur_time.zone;
+                per.stime.hour          = 0;
+                per.stime.minute        = 0;
+                per.stime.second        = 0;
+            }
         /* all data available. let's pack it if alarm is still active */
             alarm_time = icaltime_add(per.stime, trg.duration);
             if (icaltime_compare(cur_time, alarm_time) <= 0) { /* active */
                 alarm_add(stat, suid, ssummary, sdescription
                         , ssound, repeat_cnt, repeat_delay
                         , alarm_time, per.stime);
+                cnt_act_alarm++;
             }
             else if ((p = icalcomponent_get_first_property(c
                 , ICAL_RRULE_PROPERTY)) != 0) { /* check recurring EVENTs */                    rrule = icalproperty_get_rrule(p);
                 next_date = icaltime_null_time();
-                ri = icalrecur_iterator_new(rrule, per.stime);
+                alarm_time = icaltime_add(per.stime, trg.duration);
+                ri = icalrecur_iterator_new(rrule, alarm_time);
                 for (next_date = icalrecur_iterator_next(ri);
                     (!icaltime_is_null_time(next_date))
                     && (local_compare_date_only(cur_time, next_date) > 0) ;
                     next_date = icalrecur_iterator_next(ri)) {
+                    cnt_repeat++;
                 }
                 icalrecur_iterator_free(ri);
-                alarm_time = icaltime_add(next_date, trg.duration);
-                if (icaltime_compare(cur_time, alarm_time) <= 0) {
+                if (icaltime_compare(cur_time, next_date) <= 0) {
                     alarm_add(stat, suid, ssummary, sdescription
                         , ssound, repeat_cnt, repeat_delay
-                        , alarm_time, per.stime);
+                        , next_date, per.stime);
+                    cnt_act_alarm++;
                 }
             }
         } /* trg_found */
     }  /* EVENTS */
     alarm_list = g_list_sort(alarm_list, alarm_order);
+    g_message("Orage build alarm list: Processed %d events. Found %d alarms of which %d are active. (Searched %d recurring alarms.)"
+            , cnt_event, cnt_alarm, cnt_act_alarm, cnt_repeat);
 }
 
 void xfical_alarm_build_list(gboolean first_list_today)
@@ -1273,8 +1294,7 @@ char *appt_add_internal(appt_data *appt, gboolean add, char *uid
         icalcomponent_add_property(ievent
             , icalproperty_new_duration(duration));
     }
-    else
-    if XFICAL_STR_EXISTS(appt->endtime) {
+    else if XFICAL_STR_EXISTS(appt->endtime) {
         wtime=icaltime_from_string(appt->endtime);
         if XFICAL_STR_EXISTS(appt->end_tz_loc) {
             if (strcmp(appt->end_tz_loc, "UTC") == 0) {
@@ -1326,7 +1346,7 @@ char *appt_add_internal(appt_data *appt, gboolean add, char *uid
         rrule = icalrecurrencetype_from_string(recur_str);
         icalcomponent_add_property(ievent, icalproperty_new_rrule(rrule));
     }
-    if (!appt->allDay && appt->alarmtime != 0) {
+    if (appt->alarmtime != 0) {
         appt_add_alarm_internal(appt, ievent);
     }
 
