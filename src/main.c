@@ -117,7 +117,10 @@ raise_window()
     gtk_window_stick(GTK_WINDOW(xfcal->mWindow));
     if (select_always_today)
         xfcalendar_select_today(GTK_CALENDAR(xfcal->mCalendar));
+    gtk_window_present(GTK_WINDOW(xfcal->mWindow));
+    /*
     gtk_widget_show_all(xfcal->mWindow);
+    */
 }
 
 void apply_settings()
