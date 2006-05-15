@@ -89,10 +89,27 @@ ical_to_year_month_day_hour_minute(char *ical
     return TRUE;
 }
 
-void 
-year_month_day_to_display(int year, int month, int day , char *display)
+struct tm
+display_to_year_month_day(const char *display)
 {
     const char *date_format;
+    char *ret;
+    struct tm d = {0,0,0,0,0,0,0,0,0};
+
+    date_format = _("%m/%d/%Y");
+    if ((ret = strptime(display, date_format, &d)) == NULL)
+        g_error("Orage: display_to_year_month_day wrong format (%s)");
+    else if (strlen(ret))
+        g_error("Orage: display_to_year_month_day too long format (%s)");
+    else
+        return(d);
+}
+
+char * 
+year_month_day_to_display(int year, int month, int day)
+{
+    const char *date_format;
+    static char result[32];
     struct tm d = {0,0,0,0,0,0,0,0,0};
 
     date_format = _("%m/%d/%Y");
@@ -100,7 +117,12 @@ year_month_day_to_display(int year, int month, int day , char *display)
     d.tm_mon = month - 1;
     d.tm_year = year - 1900;
 
-    strftime(display, 11, date_format, &d);
+    if (strftime(result, 32, date_format, &d))
+        return(result);
+    else {
+        g_error("Orage:year_month_day_to_display too long string in strftime");
+        return(NULL);
+    }
 }
 
 void
@@ -389,9 +411,8 @@ gboolean
 fill_appt(appt_data *appt, appt_win *apptw)
 {
     GtkTextIter start, end;
-    const char *date_format, *time_format;
+    const char *time_format="%H:%M";
     struct tm current_t;
-    char *returned_by_strptime;
     gchar starttime[6], endtime[6];
 
     /*Get the title */
@@ -406,21 +427,14 @@ fill_appt(appt_data *appt, appt_win *apptw)
             GTK_TOGGLE_BUTTON(apptw->appAllDay_checkbutton));
 
     /* Get the start date and time and timezone */
-    /* FIXME: use year_month_day_to_display() instead of doing it here */
-    date_format = _("%m/%d/%Y");
-    time_format = "%H:%M";
-
-    current_t.tm_hour = 0;
-    current_t.tm_min = 0;
-
-    returned_by_strptime = strptime(gtk_button_get_label(
-            GTK_BUTTON(apptw->appStartDate_button)), date_format, &current_t);
+    current_t = display_to_year_month_day(gtk_button_get_label(
+            GTK_BUTTON(apptw->appStartDate_button)));
     g_sprintf(starttime, "%02d:%02d"
             , gtk_spin_button_get_value_as_int(
                     GTK_SPIN_BUTTON(apptw->appStartTime_spin_hh))
             , gtk_spin_button_get_value_as_int(
                     GTK_SPIN_BUTTON(apptw->appStartTime_spin_mm)));
-    returned_by_strptime = strptime(starttime, time_format, &current_t);
+    strptime(starttime, time_format, &current_t);
     g_sprintf(appt->starttime, XFICAL_APPT_TIME_FORMAT
             , current_t.tm_year + 1900, current_t.tm_mon + 1, current_t.tm_mday
             , current_t.tm_hour, current_t.tm_min, 0);
@@ -428,17 +442,14 @@ fill_appt(appt_data *appt, appt_win *apptw)
             G_OBJECT(apptw->appStartTimezone_button), "LOCATION_ENG"));
 
     /* Get the end date and time and timezone */
-    current_t.tm_hour = 0;
-    current_t.tm_min = 0;
-
-    returned_by_strptime = strptime(gtk_button_get_label(
-            GTK_BUTTON(apptw->appEndDate_button)), date_format, &current_t);
+    current_t = display_to_year_month_day(gtk_button_get_label(
+            GTK_BUTTON(apptw->appEndDate_button)));
     g_sprintf(endtime, "%02d:%02d"
             , gtk_spin_button_get_value_as_int(
                     GTK_SPIN_BUTTON(apptw->appEndTime_spin_hh))
             , gtk_spin_button_get_value_as_int(
                     GTK_SPIN_BUTTON(apptw->appEndTime_spin_mm)));
-    returned_by_strptime = strptime(endtime, time_format, &current_t);
+    strptime(endtime, time_format, &current_t);
     g_sprintf(appt->endtime, XFICAL_APPT_TIME_FORMAT
             , current_t.tm_year + 1900, current_t.tm_mon + 1, current_t.tm_mday
             , current_t.tm_hour, current_t.tm_min, 0);
@@ -446,7 +457,7 @@ fill_appt(appt_data *appt, appt_win *apptw)
             G_OBJECT(apptw->appEndTimezone_button), "LOCATION_ENG"));
 
     /* Get the duration */
-     appt->use_duration = gtk_toggle_button_get_active(
+    appt->use_duration = gtk_toggle_button_get_active(
             GTK_TOGGLE_BUTTON(apptw->appDur_checkbutton));
     appt->duration = gtk_spin_button_get_value_as_int(
             GTK_SPIN_BUTTON(apptw->appDur_spin_dd)) * 24*60*60
@@ -504,8 +515,8 @@ fill_appt(appt_data *appt, appt_win *apptw)
         appt->recur_limit = 2;    /* until limit */
         appt->recur_count = 0;    /* special: means no repeat count limit */
 
-        returned_by_strptime = strptime(gtk_button_get_label(GTK_BUTTON(apptw->appRecur_until_button)), date_format, &current_t);
-        returned_by_strptime = strptime(starttime, time_format, &current_t);
+        current_t = display_to_year_month_day(gtk_button_get_label(
+                GTK_BUTTON(apptw->appRecur_until_button)));
         g_sprintf(appt->recur_until, XFICAL_APPT_TIME_FORMAT
             , current_t.tm_year + 1900, current_t.tm_mon + 1, current_t.tm_mday
             , 0, 0, 0);
@@ -702,15 +713,9 @@ on_appStartEndDate_clicked_cb(GtkWidget *button, gpointer *user_data)
     GtkWidget *selDate_Calendar_calendar;
     gint result;
     guint year, month, day;
-    const char *date_format;
-    char date_to_display[11]; 
+    char *date_to_display; 
     struct tm *t;
     struct tm current_t;
-    char *returned_by_strptime;
-
-    date_format = _("%m/%d/%Y");
-    returned_by_strptime = strptime(gtk_button_get_label(GTK_BUTTON(button))
-                , date_format, &current_t);
 
     selDate_Window_dialog = gtk_dialog_new_with_buttons(
             _("Pick the date"), GTK_WINDOW(apptw->appWindow),
@@ -724,9 +729,11 @@ on_appStartEndDate_clicked_cb(GtkWidget *button, gpointer *user_data)
     selDate_Calendar_calendar = gtk_calendar_new();
     gtk_container_add(GTK_CONTAINER(GTK_DIALOG(selDate_Window_dialog)->vbox)
             , selDate_Calendar_calendar);
-    xfcalendar_select_date (GTK_CALENDAR (selDate_Calendar_calendar)
-            , current_t.tm_year+1900
-            , current_t.tm_mon, current_t.tm_mday);
+
+    current_t = display_to_year_month_day(gtk_button_get_label(
+            GTK_BUTTON(button)));
+    xfcalendar_select_date(GTK_CALENDAR(selDate_Calendar_calendar)
+            , current_t.tm_year+1900, current_t.tm_mon, current_t.tm_mday);
     gtk_widget_show_all(selDate_Window_dialog);
 
     result = gtk_dialog_run(GTK_DIALOG(selDate_Window_dialog));
@@ -734,16 +741,16 @@ on_appStartEndDate_clicked_cb(GtkWidget *button, gpointer *user_data)
         case GTK_RESPONSE_ACCEPT:
             gtk_calendar_get_date(GTK_CALENDAR(selDate_Calendar_calendar)
                     , &year, &month, &day);
-            year_month_day_to_display(year, month + 1, day, date_to_display);
+            date_to_display = year_month_day_to_display(year, month + 1, day);
             break;
         case 1:
             t = orage_localtime();
-            year_month_day_to_display(t->tm_year + 1900, t->tm_mon + 1
-                    , t->tm_mday, date_to_display);
+            date_to_display = year_month_day_to_display(t->tm_year + 1900
+                    , t->tm_mon + 1, t->tm_mday);
             break;
         case GTK_RESPONSE_DELETE_EVENT:
-            g_strlcpy(date_to_display, gtk_button_get_label(GTK_BUTTON(button))
-                    ,11);
+            date_to_display = (gchar *)gtk_button_get_label(
+                    GTK_BUTTON(button));
             break;
     }
     if (g_ascii_strcasecmp((gchar *)date_to_display
@@ -880,7 +887,7 @@ on_appStartEndTimezone_clicked_cb(GtkWidget *button, gpointer *user_data)
 void
 fill_appt_window_times(appt_win *apptw, appt_data *appt)
 {
-    char startdate_to_display[11], enddate_to_display[11];
+    char *startdate_to_display, *enddate_to_display;
     int year, month, day, hours, minutes;
     gchar *s_tz, *e_tz, *s_tze, *e_tze;
 
@@ -909,7 +916,7 @@ fill_appt_window_times(appt_win *apptw, appt_data *appt)
     if (strlen(appt->starttime) > 6 ) {
         ical_to_year_month_day_hour_minute(appt->starttime
                 , &year, &month, &day, &hours, &minutes);
-        year_month_day_to_display(year, month, day, startdate_to_display);
+        startdate_to_display = year_month_day_to_display(year, month, day);
         gtk_button_set_label(GTK_BUTTON(apptw->appStartDate_button)
                 , (const gchar *)startdate_to_display);
 
@@ -936,7 +943,7 @@ fill_appt_window_times(appt_win *apptw, appt_data *appt)
     if (strlen(appt->endtime) > 6 ) {
         ical_to_year_month_day_hour_minute(appt->endtime
                 , &year, &month, &day, &hours, &minutes);
-        year_month_day_to_display(year, month, day, enddate_to_display);
+        enddate_to_display = year_month_day_to_display(year, month, day);
         gtk_button_set_label(GTK_BUTTON(apptw->appEndDate_button)
                 , (const gchar *)enddate_to_display);
 
@@ -987,7 +994,7 @@ fill_appt_window_get_appt(char *action, char *par)
         g_sprintf(today, "%04d%02d%02d", t->tm_year+1900, t->tm_mon+1
                 , t->tm_mday);
         /* If we're today, we propose an appointment the next half-hour */
-        /* JK: hour 24 is wrong, we use 00 */
+        /* hour 24 is wrong, we use 00 */
         if (strcmp(par, today) == 0 && t->tm_hour < 23) { 
             if(t->tm_min <= 30){
                 g_sprintf(appt->starttime,"%sT%02d%02d00"
@@ -1046,7 +1053,7 @@ fill_appt_window(appt_win *apptw, char *action, char *par)
     GtkTextBuffer *tb;
     appt_data *appt;
     struct tm *t;
-    char untildate_to_display[11];
+    char *untildate_to_display;
 
     g_message("%s appointment: %s", action, par);
     if ((appt = fill_appt_window_get_appt(action, par)) == NULL) {
@@ -1138,8 +1145,8 @@ fill_appt_window(appt_win *apptw, char *action, char *par)
             gtk_spin_button_set_value(
                     GTK_SPIN_BUTTON(apptw->appRecur_count_spin), (gdouble)1);
             t = orage_localtime();
-            year_month_day_to_display(t->tm_year+1900, t->tm_mon+1, t->tm_mday
-                    , untildate_to_display);
+            untildate_to_display = year_month_day_to_display(t->tm_year+1900
+                    , t->tm_mon+1, t->tm_mday);
             gtk_button_set_label(GTK_BUTTON(apptw->appRecur_until_button)
                     , (const gchar *)untildate_to_display);
             break;
@@ -1150,8 +1157,8 @@ fill_appt_window(appt_win *apptw, char *action, char *par)
                     GTK_SPIN_BUTTON(apptw->appRecur_count_spin)
                     , (gdouble)appt->recur_count);
             t = orage_localtime();
-            year_month_day_to_display(t->tm_year+1900, t->tm_mon+1, t->tm_mday
-                    , untildate_to_display);
+            untildate_to_display = year_month_day_to_display(t->tm_year+1900
+                    , t->tm_mon+1, t->tm_mday);
             gtk_button_set_label(GTK_BUTTON(apptw->appRecur_until_button)
                     , (const gchar *)untildate_to_display);
             break;
@@ -1162,7 +1169,7 @@ fill_appt_window(appt_win *apptw, char *action, char *par)
                     GTK_SPIN_BUTTON(apptw->appRecur_count_spin), (gdouble)1);
             ical_to_year_month_day_hour_minute(appt->recur_until
                     , &year, &month, &day, &hours, &minutes);
-            year_month_day_to_display(year, month, day, untildate_to_display);
+            untildate_to_display = year_month_day_to_display(year, month, day);
             gtk_button_set_label(GTK_BUTTON(apptw->appRecur_until_button)
                     , (const gchar *)untildate_to_display);
             break;
