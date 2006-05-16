@@ -546,7 +546,7 @@ gboolean xfical_set_local_timezone(char *location)
     if XFICAL_STR_EXISTS(location) {
         local_icaltimezone_location = g_strdup(location);
         if (!local_icaltimezone_location) {
-            g_warning("xfical_set_local_timezone: strdup memory exhausted");
+            g_warning("Orage xfical_set_local_timezone: strdup memory exhausted");
             return (FALSE);
         }
         if (strcmp(location,"UTC") == 0) {
@@ -554,14 +554,14 @@ gboolean xfical_set_local_timezone(char *location)
             local_icaltimezone = utc_icaltimezone;
         }
         else if (strcmp(location,"floating") == 0) {
-            g_warning("xfical_set_local_timezone: default timezone set to floating. Do not use timezones when setting appointments, it does not make sense without proper local timezone.");
+            g_warning("Orage xfical_set_local_timezone: default timezone set to floating. Do not use timezones when setting appointments, it does not make sense without proper local timezone.");
             return(TRUE); /* local_icaltimezone_location = NULL */
         }
         else
             local_icaltimezone = icaltimezone_get_builtin_timezone(location);
 
         if (!local_icaltimezone) {
-            g_warning("xfical_set_local_timezone: builtin timezone %s not found"
+            g_warning("Orage xfical_set_local_timezone: builtin timezone %s not found"
                     , location);
             return (FALSE);
         }
@@ -575,7 +575,7 @@ void xfical_add_timezone(icalcomponent *p_ical, icalset *p_fical, char *loc)
     icalcomponent *itimezone=NULL;
                                                                                 
     if (!loc) {
-        g_warning("xfical_add_timezone: no location defined");
+        g_warning("Orage xfical_add_timezone: no location defined");
         return;
     }
     else
@@ -588,7 +588,7 @@ void xfical_add_timezone(icalcomponent *p_ical, icalset *p_fical, char *loc)
                                                                                 
     icaltz=icaltimezone_get_builtin_timezone(loc);
     if (icaltz==NULL) {
-        g_warning("xfical_add_timezone: timezone not found %s", loc);
+        g_warning("Orage xfical_add_timezone: timezone not found %s", loc);
         return;
     }
     itimezone=icaltimezone_get_component(icaltz);
@@ -599,7 +599,7 @@ void xfical_add_timezone(icalcomponent *p_ical, icalset *p_fical, char *loc)
         icalset_mark(p_fical);
     }
     else
-        g_warning("xfical_add_timezone: timezone add failed %s", loc);
+        g_warning("Orage xfical_add_timezone: timezone add failed %s", loc);
 }
 
 gboolean xfical_internal_file_open(icalcomponent **p_ical
@@ -610,7 +610,7 @@ gboolean xfical_internal_file_open(icalcomponent **p_ical
     gint cnt=0;
 
     if (*p_fical != NULL)
-        g_warning("xfical_internal_file_open: file already open");
+        g_warning("Orage xfical_internal_file_open: file already open");
     if ((*p_fical = icalset_new_file(file_icalpath)) == NULL) {
         g_error("xfical_internal_file_open: Could not open ical file (%s) %s\n"
                 , file_icalpath, icalerror_strerror(icalerrno));
@@ -634,13 +634,18 @@ gboolean xfical_internal_file_open(icalcomponent **p_ical
                    , icalproperty_new_prodid("-//Xfce//Orage//EN")
                    , 0);
             xfical_add_timezone(*p_ical, *p_fical, local_icaltimezone_location);
+            icalset_add_component(*p_fical, *p_ical);
+            /*
             icalset_add_component(*p_fical
                    , icalcomponent_new_clone(*p_ical));
+
+            *p_ical = icalset_get_first_component(*p_fical);
+            */
             icalset_commit(*p_fical);
         }
         else { /* VCALENDAR found */
             if (cnt > 1) {
-                g_warning("xfical_internal_file_open: Too many top level components in calendar file %s", file_icalpath);
+                g_warning("Orage xfical_internal_file_open: Too many top level components in calendar file %s", file_icalpath);
             }
         }
     }
@@ -665,7 +670,7 @@ gboolean xfical_archive_open (void)
 void xfical_file_close(void)
 {
     if (fical == NULL)
-        g_warning("xfical_file_close: fical is NULL");
+        g_warning("Orage xfical_file_close: fical is NULL");
     icalset_free(fical);
     fical = NULL;
 }
@@ -676,7 +681,7 @@ void xfical_archive_close(void)
         return;
 
     if (afical == NULL)
-        g_warning("xfical_file_close: afical is NULL");
+        g_warning("Orage xfical_file_close: afical is NULL");
     icalset_free(afical);
     afical = NULL;
 }
@@ -721,7 +726,7 @@ struct icaltimetype convert_to_timezone(struct icaltimetype t, icalproperty *p)
          tz_loc = (char *) icalparameter_get_tzid(itime_tz);
          l_icaltimezone = icaltimezone_get_builtin_timezone(tz_loc);
          if (!l_icaltimezone) {
-            g_warning("convert_to_timezone: builtin timezone %s not found, conversion failed.", tz_loc);
+            g_warning("Orage convert_to_timezone: builtin timezone %s not found, conversion failed.", tz_loc);
         }
         tz = icaltime_convert_to_zone(t, l_icaltimezone);
     }
@@ -754,7 +759,8 @@ xfical_period get_period(icalcomponent *c_event)
         per.stime = convert_to_local_timezone(per.stime, p);
     }
     else {
-        g_warning("get_period: start time not found (%s)", icalcomponent_get_uid(c_event));
+        g_warning("Orage get_period: start time not found (%s)"
+                , icalcomponent_get_uid(c_event));
         per.stime = icaltime_null_time();
     } 
 
@@ -772,7 +778,7 @@ xfical_period get_period(icalcomponent *c_event)
             per.etime = icaltime_add(per.stime, per.duration);
         }
         else {
-            g_message("get_period: end time/duration not found");
+            g_message("Orage get_period: end time/duration not found");
             per.etime = per.stime;
             per.duration = icaldurationtype_null_duration();
         } 
@@ -879,7 +885,7 @@ struct icaltimetype convert_to_zone(struct icaltimetype t, gchar *tz)
         else {
             l_icaltimezone = icaltimezone_get_builtin_timezone(tz);
             if (!l_icaltimezone)
-                g_warning("convert_to_zone: builtin timezone %s not found, conversion failed.", tz);
+                g_warning("Orage convert_to_zone: builtin timezone %s not found, conversion failed.", tz);
             else
                 wtime = icaltime_convert_to_zone(t, l_icaltimezone);
         }
@@ -899,7 +905,7 @@ int xfical_compare_times(appt_data *appt)
 
     if (appt->use_duration) {
         if (! XFICAL_STR_EXISTS(appt->starttime)) {
-            g_warning("xfical_compare_times: null start time");
+            g_warning("Orage xfical_compare_times: null start time");
             return(0); /* should be error ! */
         }
         stime = icaltime_from_string(appt->starttime);
@@ -928,7 +934,7 @@ int xfical_compare_times(appt_data *appt)
             return (icaltime_compare(stime, etime));
         }
         else {
-            g_warning("xfical_compare_times: null time %s %s"
+            g_warning("Orage xfical_compare_times: null time %s %s"
                     , appt->starttime, appt->endtime);
             return(0); /* should be error ! */
         }
@@ -1094,7 +1100,7 @@ void xfical_alarm_build_list_internal(gboolean first_list_today)
                         repeat_delay = icaldurationtype_as_int(duration);
                         break;
                     default:
-                        g_warning("ical-code: Unknown property (%s) in Alarm",
+                        g_warning("Orage ical-code: Unknown property (%s) in Alarm",
                             (char *)icalproperty_get_property_name(p));
                         break;
                 } 
@@ -1334,7 +1340,7 @@ char *appt_add_internal(appt_data *appt, gboolean add, char *uid
                 recur_p = g_stpcpy(recur_p, "YEARLY");
                 break;
             default:
-                g_warning("appt_add_internal: Unsupported freq");
+                g_warning("Orage appt_add_internal: Unsupported freq");
                 icalrecurrencetype_clear(&rrule);
         }
         if (appt->recur_limit == 1) {
@@ -1390,7 +1396,7 @@ void ical_appt_get_alarm_internal(icalcomponent *c,  appt_data *appt)
                                             * -1;
                     }
                     else
-                        g_warning("ical_appt_get_alarm_internal: Can not process time triggers");
+                        g_warning("Orage ical_appt_get_alarm_internal: Can not process time triggers");
                     break;
                 case ICAL_ATTACH_PROPERTY:
                     attach = icalproperty_get_attach(p);
@@ -1408,7 +1414,7 @@ void ical_appt_get_alarm_internal(icalcomponent *c,  appt_data *appt)
                 /* no actions defined */
                     break;
                 default:
-                    g_warning("ical_appt_get_alarm_internal: unknown property %s", (char *)icalproperty_get_property_name(p));
+                    g_warning("Orage ical_appt_get_alarm_internal: unknown property %s", (char *)icalproperty_get_property_name(p));
                     break;
             }
         }
@@ -1580,7 +1586,7 @@ appt_data *xfical_appt_get_internal(char *ical_uid)
                     case ICAL_CREATED_PROPERTY:
                         break;
                     default:
-                        g_warning("xfical_appt_get: unknown property %s", (char *)icalproperty_get_property_name(p));
+                        g_warning("Orage xfical_appt_get: unknown property %s", (char *)icalproperty_get_property_name(p));
                         break;
                 }
             }
@@ -1657,7 +1663,7 @@ gboolean xfical_appt_mod(char *ical_uid, appt_data *app)
     struct icaltimetype create_time = icaltime_null_time();
 
     if (ical_uid == NULL) {
-        g_warning("xfical_appt_mod: Got NULL uid. doing nothing");
+        g_warning("Orage xfical_appt_mod: Got NULL uid. doing nothing");
         return(FALSE);
     }
     for (c = icalcomponent_get_first_component(ical, ICAL_VEVENT_COMPONENT); 
@@ -1672,7 +1678,7 @@ gboolean xfical_appt_mod(char *ical_uid, appt_data *app)
         }
     } 
     if (!key_found) {
-        g_warning("xfical_appt_mod: uid not found. doing nothing");
+        g_warning("Orage xfical_appt_mod: uid not found. doing nothing");
         return(FALSE);
     }
 
@@ -1690,7 +1696,7 @@ gboolean xfical_appt_del(char *ical_uid)
     char *uid;
 
     if (ical_uid == NULL) {
-        g_warning("xfical_appt_del: Got NULL uid. doing nothing");
+        g_warning("Orage xfical_appt_del: Got NULL uid. doing nothing");
         return(FALSE);
      }
     for (c = icalcomponent_get_first_component(ical, ICAL_VEVENT_COMPONENT); 
@@ -1705,7 +1711,7 @@ gboolean xfical_appt_del(char *ical_uid)
             return(TRUE);
         }
     } 
-    g_warning("xfical_appt_del: uid not found. doing nothing");
+    g_warning("Orage xfical_appt_del: uid not found. doing nothing");
     return(FALSE);
 }
 
@@ -1888,27 +1894,27 @@ void xfical_rmday(char *a_day)
 }
 
 void xfical_icalcomponent_archive_recurrent(icalcomponent *e
-        , struct tm *threshold)
+        , struct tm *threshold, char *uid)
 {
     struct icaltimetype sdate, edate, nsdate, nedate;
     struct icalrecurrencetype rrule;
     struct icaldurationtype duration;
     icalrecur_iterator* ri;
     icalcomponent *d, *a;
-    icalproperty *p;
     icalparameter *itime_tz;
-    gchar *tz_loc = NULL;
+    gchar *stz_loc = NULL, *etz_loc = NULL;
     icaltimezone *l_icaltimezone = NULL;
     gboolean key_found = FALSE;
-    const char *text, *uid;
+    const char *text;
+    icalproperty *p, *pdtstart, *pdtend;
+    gboolean upd_edate = FALSE;
 
-    /* Add to the archive file */
-    /* We must first check that this event has not yet been added.
+    /* *** PHASE 1 *** : Add to the archive file */
+    /* We must first check that this event has not yet been archived.
      * It is recurrent, so we may have added it earlier already.
      * If it has been added, we do not have to do anything since the
      * one in the archive file must be older than our current event.
      */
-    uid = icalcomponent_get_uid(e);
     for (a = icalcomponent_get_first_component(aical, ICAL_VEVENT_COMPONENT);
          a != 0 && !key_found;
          a = icalcomponent_get_next_component(aical, ICAL_VEVENT_COMPONENT)) {
@@ -1921,38 +1927,52 @@ void xfical_icalcomponent_archive_recurrent(icalcomponent *e
         icalcomponent_add_component(aical, d);
     }
 
-
-    /* Update startdate and enddate in the main file */
+    /* *** PHASE 2 *** : Update startdate and enddate in the main file */
     /* We must not remove recurrent events, but just modify start- and
      * enddates and actually only the date parts since time will stay.
-     * FIXME: this will not work after we add limited recurrency events
+     * Note that we may need to remove limited recurrency events.
      */
-    p = icalcomponent_get_first_property(e, ICAL_DTSTART_PROPERTY);
-    sdate = icalproperty_get_dtstart(p);
-    itime_tz = icalproperty_get_first_parameter(p, ICAL_TZID_PARAMETER);
+    sdate = icalcomponent_get_dtstart(e);
+    pdtstart = icalcomponent_get_first_property(e, ICAL_DTSTART_PROPERTY);
+    itime_tz = icalproperty_get_first_parameter(pdtstart, ICAL_TZID_PARAMETER);
     if (itime_tz) {
-         tz_loc = (char *) icalparameter_get_tzid(itime_tz);
-         l_icaltimezone=icaltimezone_get_builtin_timezone(tz_loc);
+         stz_loc = (char *) icalparameter_get_tzid(itime_tz);
+         l_icaltimezone=icaltimezone_get_builtin_timezone(stz_loc);
          if (!l_icaltimezone) {
-            g_warning("xfical_icalcomponent_archive_recurrent: builtin timezone %s not found, conversion failed.", tz_loc);
+            g_warning("Orage xfical_icalcomponent_archive_recurrent: builtin timezone %s not found, conversion failed.", stz_loc);
         }
         sdate = icaltime_convert_to_zone(sdate, l_icaltimezone);
     }
 
-    p = icalcomponent_get_first_property(e, ICAL_DTEND_PROPERTY);
-    edate = icalproperty_get_dtend(p);
-    itime_tz = icalproperty_get_first_parameter(p, ICAL_TZID_PARAMETER);
-    if (itime_tz) {
-         tz_loc = (char *) icalparameter_get_tzid(itime_tz);
-         l_icaltimezone=icaltimezone_get_builtin_timezone(tz_loc);
-         if (!l_icaltimezone) {
-            g_warning("xfical_icalcomponent_archive_recurrent: builtin timezone %s not found, conversion failed.", tz_loc);
+    edate = icalcomponent_get_dtend(e);
+    if (icaltime_is_null_time(edate)) {
+        edate = sdate;
+    }
+    pdtend = icalcomponent_get_first_property(e, ICAL_DTEND_PROPERTY);
+    if (pdtend) { /* we have DTEND, so we need to adjust it. */
+        itime_tz = icalproperty_get_first_parameter(pdtend, ICAL_TZID_PARAMETER);
+        if (itime_tz) {
+             etz_loc = (char *) icalparameter_get_tzid(itime_tz);
+             l_icaltimezone=icaltimezone_get_builtin_timezone(etz_loc);
+             if (!l_icaltimezone) {
+                g_warning("Orage xfical_icalcomponent_archive_recurrent: builtin timezone %s not found, conversion failed.", etz_loc);
+            }
+            edate = icaltime_convert_to_zone(edate, l_icaltimezone);
         }
-        edate = icaltime_convert_to_zone(edate, l_icaltimezone);
+        duration = icaltime_subtract(edate, sdate);
+        upd_edate = TRUE;
+    }
+    else { 
+        p = icalcomponent_get_first_property(e, ICAL_DURATION_PROPERTY);
+        if (p) { /* we have DURATION, which does not need changes */
+            duration = icalproperty_get_duration(p);
+        }
+        else { /* neither duration, nor dtend, assume dtend=dtstart */
+            duration = icaltime_subtract(edate, sdate);
+        }
     }
 
     p = icalcomponent_get_first_property(e, ICAL_RRULE_PROPERTY);
-    duration = icaltime_subtract(edate, sdate);
     nsdate = icaltime_null_time();
     rrule = icalproperty_get_rrule(p);
     ri = icalrecur_iterator_new(rrule, sdate);
@@ -1968,9 +1988,29 @@ void xfical_icalcomponent_archive_recurrent(icalcomponent *e
     }
     icalrecur_iterator_free(ri);
 
-    /* Here I should change the values of the icalcomponent we received */
-    icalcomponent_set_dtstart(e, nsdate);
-    icalcomponent_set_dtend(e, nedate);
+    if (icaltime_is_null_time(nsdate)) { /* remove since it has ended */
+        icalcomponent_remove_component(ical, e);
+    }
+    else { /* modify times*/
+        icalcomponent_remove_property(e, pdtstart);
+        if (stz_loc == NULL)
+            icalcomponent_add_property(e, icalproperty_new_dtstart(nsdate));
+        else
+            icalcomponent_add_property(e
+                    , icalproperty_vanew_dtstart(nsdate
+                            , icalparameter_new_tzid(stz_loc)
+                            , 0));
+        if (upd_edate) {
+            icalcomponent_remove_property(e, pdtend);
+            if (stz_loc == NULL)
+                icalcomponent_add_property(e, icalproperty_new_dtend(nedate));
+            else
+                icalcomponent_add_property(e
+                        , icalproperty_vanew_dtend(nedate
+                                , icalparameter_new_tzid(etz_loc)
+                                , 0));
+        }
+    }
 }
 
 void xfical_icalcomponent_archive_normal(icalcomponent *e) 
@@ -1988,66 +2028,67 @@ void xfical_icalcomponent_archive_normal(icalcomponent *e)
 gboolean xfical_keep_tidy(void)
 {
     struct icaltimetype sdate, edate;
-    static icalcomponent *c;
+    static icalcomponent *c, *c2;
     icalproperty *p;
     struct tm *threshold;
     char *uid;
 
-    if (xfical_file_open() && xfical_archive_open()) {
-
-        threshold = orage_localtime();
-
-        threshold->tm_mday = 1;
-        threshold->tm_year += 1900;
-        if (threshold->tm_mon > lookback) {
-            threshold->tm_mon -= lookback;
-        }
-        else {
-            threshold->tm_mon += (12 - lookback);
-            threshold->tm_year--;
-        }
-        threshold->tm_mon += 1;
-
-        g_message("Threshold: %d month(s)", lookback);
-        g_message("Archiving before: %04d-%02d-%02d", threshold->tm_year
-                , threshold->tm_mon, threshold->tm_mday);
-
-    /* Parse appointment file for looking for items older than the threshold */
-        for (c = icalcomponent_get_first_component(ical, ICAL_VEVENT_COMPONENT);
-             c != 0;
-             c = icalcomponent_get_next_component(ical, ICAL_VEVENT_COMPONENT)) {
-            sdate = icalcomponent_get_dtstart (c);
-            edate = icalcomponent_get_dtend (c);
-            uid = (char*)icalcomponent_get_uid (c);
-            if (icaltime_is_null_time (edate)) {
-                edate = sdate;
-            }
-            /* Items with startdate and endate before threshold => archived.
-             * Recurring items are duplicated in the archive file, and 
-             * they are also updated in the current appointment file 
-             * with a new startdate and enddate.
-             * Items sitting on the threshold are kept as they are.
-             */
-            if ((edate.year*12 + edate.month) 
-                < ((threshold->tm_year)*12 + (threshold->tm_mon))) {
-        /* Read from appointment files and copy into archive file */
-                g_message("uid: %s", uid);
-                g_message("End year: %04d", edate.year);
-                g_message("End month: %02d", edate.month);
-                g_message("End day: %02d", edate.day);
-                g_message("We found something dude!");
-                p = icalcomponent_get_first_property(c, ICAL_RRULE_PROPERTY);
-                if (p)  /*  it is recurrent event */
-                    xfical_icalcomponent_archive_recurrent(c, threshold);
-                else 
-                    xfical_icalcomponent_archive_normal(c);
-            }
-        }
-
-        icalset_mark (fical);
-        icalset_commit (fical);
-        icalset_mark (afical);
-        icalset_commit (afical);
+    if (!xfical_file_open() || !xfical_archive_open()) {
+        g_message("Orage xfical_keep_tidy: file open error");
+        return;
     }
+    threshold = orage_localtime();
+    threshold->tm_mday = 1;
+    threshold->tm_year += 1900;
+    if (threshold->tm_mon > lookback) {
+        threshold->tm_mon -= lookback;
+    }
+    else {
+        threshold->tm_mon += (12 - lookback);
+        threshold->tm_year--;
+    }
+    threshold->tm_mon += 1;
+
+    g_message("Orage archiving threshold: %d month(s)", lookback);
+    g_message("Orage archiving before: %04d-%02d-%02d", threshold->tm_year
+            , threshold->tm_mon, threshold->tm_mday);
+
+    /* Check appointment file for items older than the threshold */
+    /* Note: remove moves the "c" pointer to next item, so we need to store it
+     *          first to process all of them or we end up skipping entries */
+    for (c = icalcomponent_get_first_component(ical, ICAL_VEVENT_COMPONENT);
+         c != 0;
+         c = c2) {
+         c2 = icalcomponent_get_next_component(ical, ICAL_VEVENT_COMPONENT);
+        sdate = icalcomponent_get_dtstart(c);
+        edate = icalcomponent_get_dtend(c);
+        uid = (char*)icalcomponent_get_uid(c);
+        if (icaltime_is_null_time(edate)) {
+            edate = sdate;
+        }
+        /* Items with endate before threshold => archived.
+         * Recurring items are duplicated in the archive file, and 
+         * they are also updated in the current appointment file 
+         * with a new startdate and enddate.
+         */
+        if ((edate.year*12 + edate.month) 
+            < ((threshold->tm_year)*12 + (threshold->tm_mon))) {
+    /* Read from appointment files and copy into archive file */
+            p = icalcomponent_get_first_property(c, ICAL_RRULE_PROPERTY);
+            g_message("Archiving uid: %s (%s)", uid, (p) ? "recur" : "normal");
+            g_message("\tEnd year: %04d, month: %02d, day: %02d"
+                    , edate.year, edate.month, edate.day);
+            if (p)  /*  it is recurrent event */
+                xfical_icalcomponent_archive_recurrent(c, threshold, uid);
+            else 
+                xfical_icalcomponent_archive_normal(c);
+        }
+    }
+
+    icalset_mark(afical);
+    icalset_commit(afical);
+    icalset_mark(fical);
+    icalset_commit(fical);
+    g_message("Orage archiving threshold: %d month(s) done", lookback);
     return(TRUE);
 }
