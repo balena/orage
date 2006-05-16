@@ -27,19 +27,18 @@
 #include "mainbox.h"
 
 
-void create_wAbout(GtkWidget *widget, gpointer user_data){
-
-  GtkWidget *dialog;
+void create_wAbout(GtkWidget *widget, gpointer user_data)
+{
   CalWin *xfcal = (CalWin *)user_data;
+  GtkWidget *dialog;
+  GdkPixbuf *xfcalendar_logo;
+  XfceAboutInfo *about;
 
-  GdkPixbuf *xfcalendar_logo = xfce_themed_icon_load ("xfcalendar", 48);
-
-  XfceAboutInfo *about = xfce_about_info_new("Orage",
-			      VERSION,
-			      _("Manage your time with Xfce4"),
-			      XFCE_COPYRIGHT_TEXT("2003-2005", "Mickael 'Korbinus' Graf"),
-			      XFCE_LICENSE_GPL);
-
+  about = xfce_about_info_new("Orage", VERSION
+          , _("Manage your time with Xfce4")
+          , XFCE_COPYRIGHT_TEXT("2003-2006", "Mickael 'Korbinus' Graf")
+          , XFCE_LICENSE_GPL);
+  xfcalendar_logo = xfce_themed_icon_load("xfcalendar", 48);
   xfce_about_info_set_homepage(about, "http://www.xfce.org");
 
   /* Credits */
@@ -63,15 +62,13 @@ void create_wAbout(GtkWidget *widget, gpointer user_data){
 			     "kautto.juha@kolumbus.fi",
 			     _("Contributor"));
 
-  dialog = xfce_about_dialog_new(GTK_WINDOW(xfcal->mWindow), about,
-                                 xfcalendar_logo);
+  dialog = xfce_about_dialog_new_with_values(GTK_WINDOW(xfcal->mWindow)
+          , about, xfcalendar_logo);
 
-  gtk_window_set_default_size(GTK_WINDOW(dialog), 400, 400);
-  xfce_about_info_free(about);
+  gtk_window_set_default_size(GTK_WINDOW(dialog), 520, 440);
 
   gtk_dialog_run(GTK_DIALOG(dialog));
-
   gtk_widget_destroy(dialog);
-
+  xfce_about_info_free(about);
   g_object_unref(xfcalendar_logo);
 }
