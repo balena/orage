@@ -117,10 +117,8 @@ raise_window()
     gtk_window_stick(GTK_WINDOW(xfcal->mWindow));
     if (select_always_today)
         xfcalendar_select_today(GTK_CALENDAR(xfcal->mCalendar));
-    gtk_window_present(GTK_WINDOW(xfcal->mWindow));
-    /*
     gtk_widget_show_all(xfcal->mWindow);
-    */
+    gtk_window_present(GTK_WINDOW(xfcal->mWindow));
 }
 
 void apply_settings()
@@ -183,9 +181,10 @@ client_message_received(GtkWidget * widget, GdkEventClient * event,
     return FALSE;
 }
 
-int keep_tidy(void){
-    /* we could move old appointment to other file to keep the active
+gboolean keep_tidy(void){
+    /* move old appointment to other file to keep the active
        calendar file smaller and faster */
+    xfical_keep_tidy();
     return TRUE;
 }
 
@@ -230,7 +229,7 @@ notify_cb(const char *name, const char *channel_name
             * must get a FALSE value, and if we don't want to be seen in
             * the taskbar, then the function must eat a TRUE.
             */
-            gtk_window_set_skip_taskbar_hint(GTK_WINDOW(xfcal->mWindow)
+                    gtk_window_set_skip_taskbar_hint(GTK_WINDOW(xfcal->mWindow)
                             , !showtaskbar);
                 }
                 else if(!strcmp(name, "orage/Pager")) {
@@ -498,7 +497,7 @@ main(int argc, char *argv[])
                                                                                 
   gtk_main();
 
-  xfical_keep_tidy();
+  keep_tidy();
 
   return(EXIT_SUCCESS);
 }
