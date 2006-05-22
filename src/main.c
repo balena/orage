@@ -108,16 +108,18 @@ static void
 raise_window()
 {
     GdkScreen *screen;
+    GdkWindow *window;
 
     screen = xfce_gdk_display_locate_monitor_with_pointer(NULL, NULL);
     gtk_window_set_screen(GTK_WINDOW(xfcal->mWindow)
                 , screen ? screen : gdk_screen_get_default ());
     if (pos_x || pos_y)
         gtk_window_move(GTK_WINDOW(xfcal->mWindow), pos_x, pos_y);
-    gtk_window_stick(GTK_WINDOW(xfcal->mWindow));
     if (select_always_today)
         xfcalendar_select_today(GTK_CALENDAR(xfcal->mCalendar));
-    gtk_widget_show_all(xfcal->mWindow);
+    gtk_window_stick(GTK_WINDOW(xfcal->mWindow));
+    window = GTK_WIDGET(xfcal->mWindow)->window;
+    gdk_x11_window_set_user_time(window, gdk_x11_get_server_time(window));
     gtk_window_present(GTK_WINDOW(xfcal->mWindow));
 }
 
@@ -125,14 +127,13 @@ void apply_settings()
 {
     gchar *fpath;
     FILE *fp;
-                                                                                
+
     xfce_textdomain(GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8");
-                                                                                
   /* Save settings here */
   /* I know, it's bad(tm) */
     fpath = xfce_resource_save_location(XFCE_RESOURCE_CONFIG,
                 RCDIR G_DIR_SEPARATOR_S "oragerc", FALSE);
-    if ((fp = fopen(fpath, "w")) == NULL){
+    if ((fp = fopen(fpath, "w")) == NULL) {
         g_warning("Unable to open RC file.");
     }
     else {
@@ -157,7 +158,7 @@ void apply_settings()
 }
 
 static gboolean
-client_message_received(GtkWidget * widget, GdkEventClient * event,
+client_message_received(GtkWidget *widget, GdkEventClient *event,
     gpointer user_data)
 {
     if (event->message_type ==
@@ -190,7 +191,7 @@ gboolean keep_tidy(void){
 
 void 
 notify_cb(const char *name, const char *channel_name
-        , McsAction action, McsSetting * setting, void *data)
+        , McsAction action, McsSetting *setting, void *data)
 {
     gboolean normalmode
            , showtaskbar, showpager, showsystray
@@ -213,6 +214,12 @@ notify_cb(const char *name, const char *channel_name
                     gtk_window_iconify(GTK_WINDOW(xfcal->mWindow));
                     gtk_widget_show_all(xfcal->mWindow);
                 }
+                else if (hidestart) {
+                    gtk_widget_show_all(xfcal->mWindow);
+                    gtk_widget_hide(xfcal->mWindow);
+                }
+                else
+                    gtk_widget_show_all(xfcal->mWindow);
             }
          /* note that break is missing, we want to do also CHANGED actions */
         case MCS_ACTION_CHANGED:
