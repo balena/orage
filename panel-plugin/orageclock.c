@@ -249,7 +249,9 @@ static void oc_read_rc_file(XfcePanelPlugin *plugin, Clock *clock)
     if (clock->fg_set) {
         ret = xfce_rc_read_entry(rc, "fg", NULL);
         sscanf(ret, "%uR %uG %uB"
-                , &clock->fg.red, &clock->fg.green, &clock->fg.blue);
+                , (unsigned int *)&clock->fg.red
+                , (unsigned int *)&clock->fg.green
+                , (unsigned int *)&clock->fg.blue);
         clock->fg.pixel = 0;
     }
 
@@ -257,7 +259,9 @@ static void oc_read_rc_file(XfcePanelPlugin *plugin, Clock *clock)
     if (clock->bg_set) {
         ret = xfce_rc_read_entry(rc, "bg", NULL);
         sscanf(ret, "%uR %uG %uB"
-                , &clock->bg.red, &clock->bg.green, &clock->bg.blue);
+                , (unsigned int *)&clock->bg.red
+                , (unsigned int *)&clock->bg.green
+                , (unsigned int *)&clock->bg.blue);
         clock->bg.pixel = 0;
     }
 

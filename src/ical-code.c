@@ -74,8 +74,6 @@ static icalcomponent *ical = NULL,
                      *aical = NULL;
 static icalset *fical = NULL,
                *afical = NULL;
-static gboolean fical_modified = FALSE,
-                afical_modified = FALSE;
 static gchar *ical_path = NULL,
              *aical_path = NULL;
 
@@ -595,7 +593,6 @@ void xfical_add_timezone(icalcomponent *p_ical, icalset *p_fical, char *loc)
     if (itimezone != NULL) {
         icalcomponent_add_component(p_ical
             , icalcomponent_new_clone(itimezone));
-        fical_modified = TRUE;
         icalset_mark(p_fical);
     }
     else
@@ -1357,7 +1354,6 @@ char *appt_add_internal(appt_data *appt, gboolean add, char *uid
     }
 
     icalcomponent_add_component(ical, ievent);
-    fical_modified = TRUE;
     icalset_mark(fical);
     xfical_alarm_build_list_internal(FALSE);
     return(xf_uid);
@@ -1572,7 +1568,7 @@ appt_data *xfical_appt_get_internal(char *ical_uid)
                                 appt.freq = XFICAL_FREQ_NONE;
                                 break;
                         }
-                        if (appt.recur_count = rrule.count)
+                        if ((appt.recur_count = rrule.count))
                             appt.recur_limit = 1;
                         else if(! icaltime_is_null_time(rrule.until)) {
                             appt.recur_limit = 2;
@@ -1705,7 +1701,6 @@ gboolean xfical_appt_del(char *ical_uid)
         uid = (char *)icalcomponent_get_uid(c);
         if (strcmp(uid, ical_uid) == 0) {
             icalcomponent_remove_component(ical, c);
-            fical_modified = TRUE;
             icalset_mark(fical);
             xfical_alarm_build_list_internal(FALSE);
             return(TRUE);
@@ -1888,7 +1883,6 @@ void xfical_rmday(char *a_day)
             icalcomponent_remove_component(ical, c);
         }
     } 
-    fical_modified = TRUE;
     icalset_mark(fical);
     xfical_alarm_build_list_internal(FALSE);
 }
@@ -2035,7 +2029,7 @@ gboolean xfical_keep_tidy(void)
 
     if (!xfical_file_open() || !xfical_archive_open()) {
         g_message("Orage xfical_keep_tidy: file open error");
-        return;
+        return(FALSE);
     }
     threshold = orage_localtime();
     threshold->tm_mday = 1;

@@ -29,6 +29,7 @@
 #include <gtk/gtk.h>
 #include <gdk/gdk.h>
 
+#include <libxfcegui4/xfce-filechooser.h>
 #include <libxfce4mcs/mcs-common.h>
 #include <libxfce4mcs/mcs-manager.h>
 #include <libxfcegui4/libxfcegui4.h>
@@ -261,11 +262,11 @@ static void cb_archive_file_open_button_clicked (GtkButton *button, gpointer use
 
     /* Create file chooser */
     file_chooser = xfce_file_chooser_new(_("Select a file..."),
-                                        GTK_WINDOW (itf->orage_dialog),
-                                        XFCE_FILE_CHOOSER_ACTION_SAVE,
-                                        GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-                                        GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT,
-                                            NULL);
+            GTK_WINDOW (itf->orage_dialog),
+            XFCE_FILE_CHOOSER_ACTION_SAVE,
+            GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
+            GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT,
+                NULL);
     /* Add filters */
     filter = xfce_file_filter_new();
 	xfce_file_filter_set_name(filter, _("Calendar files"));
@@ -472,7 +473,7 @@ static void cb_timezone_button_clicked (GtkButton *button, gpointer user_data)
     } while (result == 0) ;
     gtk_button_set_label(GTK_BUTTON(button), loc);
 
-    if (loc_int = g_object_get_data(G_OBJECT(button), "LOCATION_ENG"))
+    if ((loc_int = g_object_get_data(G_OBJECT(button), "LOCATION_ENG")))
                 g_free(loc_int);
     loc_int = g_strdup(loc_eng);
     g_object_set_data(G_OBJECT(button), "LOCATION_ENG", loc_int);

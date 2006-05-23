@@ -98,11 +98,12 @@ display_to_year_month_day(const char *display)
 
     date_format = _("%m/%d/%Y");
     if ((ret = strptime(display, date_format, &d)) == NULL)
-        g_error("Orage: display_to_year_month_day wrong format (%s)");
+        g_error("Orage: display_to_year_month_day wrong format (%s)"
+                , display);
     else if (strlen(ret))
-        g_error("Orage: display_to_year_month_day too long format (%s)");
-    else
-        return(d);
+        g_error("Orage: display_to_year_month_day too long format (%s)"
+                , display);
+    return(d);
 }
 
 char * 
@@ -713,7 +714,7 @@ on_appStartEndDate_clicked_cb(GtkWidget *button, gpointer *user_data)
     GtkWidget *selDate_Calendar_calendar;
     gint result;
     guint year, month, day;
-    char *date_to_display; 
+    char *date_to_display=NULL; 
     struct tm *t;
     struct tm current_t;
 
@@ -749,6 +750,7 @@ on_appStartEndDate_clicked_cb(GtkWidget *button, gpointer *user_data)
                     , t->tm_mon + 1, t->tm_mday);
             break;
         case GTK_RESPONSE_DELETE_EVENT:
+        default:
             date_to_display = (gchar *)gtk_button_get_label(
                     GTK_BUTTON(button));
             break;
@@ -875,7 +877,7 @@ on_appStartEndTimezone_clicked_cb(GtkWidget *button, gpointer *user_data)
         mark_appointment_changed(apptw);
     }
     gtk_button_set_label(GTK_BUTTON(button), loc);
-    if (loc_int = g_object_get_data(G_OBJECT(button), "LOCATION_ENG"))
+    if ((loc_int = g_object_get_data(G_OBJECT(button), "LOCATION_ENG")))
         g_free(loc_int);
     loc_int = g_strdup(loc_eng);
     g_object_set_data(G_OBJECT(button), "LOCATION_ENG", loc_int);

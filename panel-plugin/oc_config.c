@@ -86,7 +86,6 @@ static void oc_timezone_selected(GtkWidget *widget, Clock *clock)
 {
     GtkWidget *dialog;
     gchar *filename = NULL;
-    gchar *clockname = NULL;
 
     dialog = gtk_file_chooser_dialog_new(_("Select timezone"), NULL
             , GTK_FILE_CHOOSER_ACTION_OPEN
