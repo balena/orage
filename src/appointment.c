@@ -1292,16 +1292,13 @@ create_appt_win_tab_general(appt_win *apptw)
     char *availability_array[AVAILABILITY_ARRAY_DIM] = {
             _("Free"), _("Busy")};
 
-    apptw->appGeneral_notebook_page = xfce_framebox_new(NULL, FALSE);
+    apptw->appTableGeneral = xfcalendar_table_new(8, 2);
+    apptw->appGeneral_notebook_page = 
+        xfce_create_framebox_with_content(NULL, apptw->appTableGeneral);
     apptw->appGeneral_tab_label = gtk_label_new(_("General"));
 
     gtk_notebook_append_page(GTK_NOTEBOOK(apptw->appNotebook)
-            , apptw->appGeneral_notebook_page
-            , apptw->appGeneral_tab_label);
-
-    apptw->appTableGeneral = xfcalendar_table_new(8, 2);
-    xfce_framebox_add(XFCE_FRAMEBOX(apptw->appGeneral_notebook_page)
-            , apptw->appTableGeneral);
+            , apptw->appGeneral_notebook_page, apptw->appGeneral_tab_label);
 
     apptw->appTitle_label = gtk_label_new(_("Title "));
     apptw->appTitle_entry = gtk_entry_new();
@@ -1420,16 +1417,13 @@ create_appt_win_tab_alarm(appt_win *apptw)
 {
     GtkWidget *label;
 
-    apptw->appAlarm_notebook_page = xfce_framebox_new(NULL, FALSE);
+    apptw->appTableAlarm = xfcalendar_table_new(8, 2);
+    apptw->appAlarm_notebook_page = 
+        xfce_create_framebox_with_content(NULL, apptw->appTableAlarm);
     apptw->appAlarm_tab_label = gtk_label_new(_("Alarm"));
 
     gtk_notebook_append_page(GTK_NOTEBOOK(apptw->appNotebook)
-            , apptw->appAlarm_notebook_page
-            , apptw->appAlarm_tab_label);
-
-    apptw->appTableAlarm = xfcalendar_table_new(3, 2);
-    xfce_framebox_add(XFCE_FRAMEBOX(apptw->appAlarm_notebook_page)
-            , apptw->appTableAlarm);
+            , apptw->appAlarm_notebook_page, apptw->appAlarm_tab_label);
 
     apptw->appAlarm = gtk_label_new(_("Alarm"));
     apptw->appAlarm_hbox = gtk_hbox_new(FALSE, 0);
@@ -1489,16 +1483,13 @@ create_appt_win_tab_recurrence(appt_win *apptw)
     char *recur_array[RECUR_ARRAY_DIM] = {
             _("None"), _("Daily"), _("Weekly"), _("Monthly"), _("Yearly")};
 
-    apptw->appRecur_notebook_page = xfce_framebox_new(NULL, FALSE);
+    apptw->appTableRecur = xfcalendar_table_new(8, 2);
+    apptw->appRecur_notebook_page = 
+        xfce_create_framebox_with_content(NULL, apptw->appTableRecur);
     apptw->appRecur_tab_label = gtk_label_new(_("Recurrence"));
 
     gtk_notebook_append_page(GTK_NOTEBOOK(apptw->appNotebook)
-            , apptw->appRecur_notebook_page
-            , apptw->appRecur_tab_label);
-
-    apptw->appTableRecur = xfcalendar_table_new(4, 2);
-    xfce_framebox_add(XFCE_FRAMEBOX(apptw->appRecur_notebook_page)
-            , apptw->appTableRecur);
+            , apptw->appRecur_notebook_page, apptw->appRecur_tab_label);
 
     apptw->appRecur = gtk_label_new(_("Recurrence"));
     apptw->appRecur_cb = gtk_combo_box_new_text();

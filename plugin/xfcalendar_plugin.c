@@ -29,7 +29,6 @@
 #include <gtk/gtk.h>
 #include <gdk/gdk.h>
 
-#include <libxfcegui4/xfce-filechooser.h>
 #include <libxfce4mcs/mcs-common.h>
 #include <libxfce4mcs/mcs-manager.h>
 #include <libxfcegui4/libxfcegui4.h>
@@ -537,21 +536,20 @@ Itf *create_orage_dialog(McsPlugin * mcs_plugin)
     gtk_container_set_border_width (GTK_CONTAINER (dialog->notebook), 5);
 
     /* Here begins display tab */
-    dialog->display_tab = xfce_framebox_new (NULL, FALSE);
-    dialog->display_tab_label = gtk_label_new (_("Display"));
-    gtk_notebook_append_page (GTK_NOTEBOOK (dialog->notebook)
-                              , dialog->display_tab
-                              , dialog->display_tab_label);
-
-    dialog->display_vbox = gtk_vbox_new (FALSE, 0);
-    xfce_framebox_add (XFCE_FRAMEBOX (dialog->display_tab)
-                       , dialog->display_vbox);
+    dialog->display_vbox = gtk_vbox_new(FALSE, 0);
+    dialog->display_tab = 
+        xfce_create_framebox_with_content(NULL, dialog->display_vbox);
+    dialog->display_tab_label = gtk_label_new(_("Display"));
+    gtk_notebook_append_page(GTK_NOTEBOOK(dialog->notebook)
+          , dialog->display_tab, dialog->display_tab_label);
 
     /* Display calendar borders or not */
-    dialog->mode_frame = xfce_framebox_new (_("Calendar borders"), TRUE);
-    gtk_box_pack_start(GTK_BOX(dialog->display_vbox), dialog->mode_frame, TRUE, TRUE, 0);
     dialog->mode_hbox = gtk_hbox_new(TRUE, 0);
-    xfce_framebox_add(XFCE_FRAMEBOX(dialog->mode_frame), dialog->mode_hbox);
+    dialog->mode_frame = 
+        xfce_create_framebox_with_content(_("Calendar borders")
+                , dialog->mode_hbox);
+    gtk_box_pack_start(GTK_BOX(dialog->display_vbox), dialog->mode_frame
+            , TRUE, TRUE, 0);
 
     dialog->normal_mode_radiobutton = gtk_radio_button_new_with_mnemonic(NULL, _("Displayed"));
     gtk_box_pack_start(GTK_BOX(dialog->mode_hbox), dialog->normal_mode_radiobutton, FALSE, FALSE, 0);
@@ -566,11 +564,12 @@ Itf *create_orage_dialog(McsPlugin * mcs_plugin)
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(dialog->compact_mode_radiobutton), !normalmode);
     
     /* Show in... taskbar pager systray */
-    dialog->show_frame = xfce_framebox_new(_("Calendar window"), TRUE);
-    gtk_box_pack_start(GTK_BOX(dialog->display_vbox), dialog->show_frame, TRUE, TRUE, 5);
-     
     dialog->show_vbox = gtk_vbox_new(TRUE, 0);
-    xfce_framebox_add(XFCE_FRAMEBOX(dialog->show_frame), dialog->show_vbox);
+    dialog->show_frame = 
+        xfce_create_framebox_with_content(_("Calendar window")
+                , dialog->show_vbox);
+    gtk_box_pack_start(GTK_BOX(dialog->display_vbox), dialog->show_frame
+            , TRUE, TRUE, 5);
 
     dialog->show_taskbar_checkbutton = gtk_check_button_new_with_mnemonic(_("Show in taskbar"));
     gtk_box_pack_start(GTK_BOX(dialog->show_vbox), dialog->show_taskbar_checkbutton, FALSE, FALSE, 0);
@@ -584,11 +583,13 @@ Itf *create_orage_dialog(McsPlugin * mcs_plugin)
     gtk_box_pack_start(GTK_BOX(dialog->show_vbox), dialog->show_systray_checkbutton, FALSE, FALSE, 0);
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(dialog->show_systray_checkbutton), showsystray);
 
-    /* */
-    dialog->visibility_frame = xfce_framebox_new(_("Calendar start"), TRUE);
-    gtk_box_pack_start(GTK_BOX(dialog->display_vbox), dialog->visibility_frame, TRUE, TRUE, 5);
+    /* how to show when started (show/hide/minimize) */
     dialog->visibility_hbox = gtk_hbox_new(TRUE, 0);
-    xfce_framebox_add(XFCE_FRAMEBOX(dialog->visibility_frame), dialog->visibility_hbox);
+    dialog->visibility_frame = 
+        xfce_create_framebox_with_content(_("Calendar start")
+                , dialog->visibility_hbox);
+    gtk_box_pack_start(GTK_BOX(dialog->display_vbox), dialog->visibility_frame
+            , TRUE, TRUE, 5);
 
     dialog->visibility_show_radiobutton = gtk_radio_button_new_with_mnemonic(NULL, _("Show"));
     gtk_box_pack_start(GTK_BOX(dialog->visibility_hbox), dialog->visibility_show_radiobutton, FALSE, FALSE, 0);
@@ -609,25 +610,24 @@ Itf *create_orage_dialog(McsPlugin * mcs_plugin)
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(dialog->visibility_minimized_radiobutton), ministart);
 
     /* Here begins archives tab */
-    dialog->archives_tab = xfce_framebox_new (NULL, FALSE);
-    dialog->archives_tab_label = gtk_label_new (_("Archives"));
-    gtk_notebook_append_page (GTK_NOTEBOOK (dialog->notebook)
-                              , dialog->archives_tab
-                              , dialog->archives_tab_label);
+    dialog->archive_vbox = gtk_vbox_new(FALSE, 0);
+    dialog->archives_tab = 
+        xfce_create_framebox_with_content(NULL, dialog->display_vbox);
+    dialog->archives_tab_label = gtk_label_new(_("Archives"));
+    gtk_notebook_append_page(GTK_NOTEBOOK(dialog->notebook)
+          , dialog->archives_tab, dialog->archives_tab_label);
 
-    dialog->archive_vbox = gtk_vbox_new (FALSE, 0);
-    xfce_framebox_add (XFCE_FRAMEBOX (dialog->archives_tab)
-                       , dialog->archive_vbox);
     /* Archive file and periodicity */
-    dialog->archive_file_frame = xfce_framebox_new (_("Archive file"), TRUE);
-    gtk_box_pack_start (GTK_BOX (dialog->archive_vbox), dialog->archive_file_frame, TRUE, TRUE, 5);
-
     dialog->archive_file_table = gtk_table_new (1, 2, FALSE);
-    gtk_container_set_border_width (GTK_CONTAINER (dialog->archive_file_table), 10);
-    gtk_table_set_row_spacings (GTK_TABLE (dialog->archive_file_table), 6);
-    gtk_table_set_col_spacings (GTK_TABLE (dialog->archive_file_table), 6);
-    xfce_framebox_add (XFCE_FRAMEBOX (dialog->archive_file_frame)
-                       , dialog->archive_file_table);
+    gtk_container_set_border_width(GTK_CONTAINER(dialog->archive_file_table)
+            , 10);
+    gtk_table_set_row_spacings(GTK_TABLE(dialog->archive_file_table), 6);
+    gtk_table_set_col_spacings(GTK_TABLE(dialog->archive_file_table), 6);
+    dialog->archive_file_frame = 
+        xfce_create_framebox_with_content(_("Archive file")
+                , dialog->archive_file_table);
+    gtk_box_pack_start(GTK_BOX(dialog->display_vbox)
+            , dialog->archive_file_frame, TRUE, TRUE, 5);
 
     dialog->archive_file_entry = gtk_entry_new ();
     gtk_table_attach (GTK_TABLE (dialog->archive_file_table), dialog->archive_file_entry, 0, 1, 0, 1,
@@ -640,18 +640,16 @@ Itf *create_orage_dialog(McsPlugin * mcs_plugin)
                         (GtkAttachOptions) (GTK_FILL),
                         (GtkAttachOptions) (0), 0, 0);
 
-    dialog->archive_threshold_frame = 
-        xfce_framebox_new(_("Archive threshold"), TRUE);
-    gtk_box_pack_start(GTK_BOX (dialog->archive_vbox),
-        dialog->archive_threshold_frame, TRUE, TRUE, 5);
-
-    dialog->archive_threshold_table = gtk_table_new (1, 1, FALSE);
+    dialog->archive_threshold_table = gtk_table_new(1, 1, FALSE);
     gtk_container_set_border_width(
-        GTK_CONTAINER(dialog->archive_threshold_table), 10);
+            GTK_CONTAINER(dialog->archive_threshold_table), 10);
     gtk_table_set_row_spacings(GTK_TABLE(dialog->archive_threshold_table), 6);
     gtk_table_set_col_spacings(GTK_TABLE(dialog->archive_threshold_table), 6);
-    xfce_framebox_add (XFCE_FRAMEBOX (dialog->archive_threshold_frame)
-                       , dialog->archive_threshold_table);
+    dialog->archive_file_frame = 
+        xfce_create_framebox_with_content(_("Archive threshold")
+                , dialog->archive_threshold_table);
+    gtk_box_pack_start(GTK_BOX(dialog->archive_vbox)
+            , dialog->archive_threshold_frame, TRUE, TRUE, 5);
 
     dialog->archive_threshold_combobox = gtk_combo_box_new_text ();
     gtk_combo_box_append_text(
@@ -686,26 +684,24 @@ Itf *create_orage_dialog(McsPlugin * mcs_plugin)
                         (GtkAttachOptions) (0), 0, 0);
 
     /* Here begins the sound tab */
-    dialog->sound_tab = xfce_framebox_new (NULL, FALSE);
-    dialog->sound_tab_label = gtk_label_new (_("Sound"));
-    gtk_notebook_append_page (GTK_NOTEBOOK (dialog->notebook)
-                              , dialog->sound_tab
-                              , dialog->sound_tab_label);
+    dialog->sound_vbox = gtk_vbox_new(FALSE, 0);
+    dialog->sound_tab = 
+        xfce_create_framebox_with_content(NULL, dialog->sound_vbox);
+    dialog->sound_tab_label = gtk_label_new(_("Sound"));
+    gtk_notebook_append_page(GTK_NOTEBOOK(dialog->notebook)
+          , dialog->sound_tab, dialog->sound_tab_label);
 
     /* Choose a sound application for reminders */
-    dialog->sound_vbox = gtk_vbox_new (FALSE, 0);
-    xfce_framebox_add (XFCE_FRAMEBOX (dialog->sound_tab)
-                       , dialog->sound_vbox);
-
-    dialog->sound_application_frame = xfce_framebox_new(_("Application"), TRUE);
-    gtk_box_pack_start(GTK_BOX(dialog->sound_vbox), dialog->sound_application_frame, TRUE, TRUE, 5);
-
     dialog->sound_application_table = gtk_table_new(1, 2, FALSE);
-    gtk_container_set_border_width(GTK_CONTAINER(dialog->sound_application_table), 10);
+    gtk_container_set_border_width(
+            GTK_CONTAINER(dialog->sound_application_table), 10);
     gtk_table_set_row_spacings(GTK_TABLE(dialog->sound_application_table), 6);
     gtk_table_set_col_spacings(GTK_TABLE(dialog->sound_application_table), 6);
-    xfce_framebox_add(XFCE_FRAMEBOX(dialog->sound_application_frame)
-                       , dialog->sound_application_table);
+    dialog->sound_application_frame = 
+        xfce_create_framebox_with_content(_("Application")
+                , dialog->sound_application_table);
+    gtk_box_pack_start(GTK_BOX(dialog->sound_vbox)
+            , dialog->sound_application_frame, TRUE, TRUE, 5);
 
     dialog->sound_application_entry = gtk_entry_new();
     gtk_table_attach(GTK_TABLE(dialog->sound_application_table)
@@ -719,26 +715,25 @@ Itf *create_orage_dialog(McsPlugin * mcs_plugin)
                         (GtkAttachOptions) (0), 0, 0);
 
     /* Here begins the timezone tab */
-    dialog->timezone_tab = xfce_framebox_new (NULL, FALSE);
-    dialog->timezone_tab_label = gtk_label_new (_("Timezone"));
-    gtk_notebook_append_page (GTK_NOTEBOOK (dialog->notebook)
-                              , dialog->timezone_tab
-                              , dialog->timezone_tab_label);
+    dialog->timezone_vbox = gtk_vbox_new(FALSE, 0);
+    dialog->timezone_tab = 
+        xfce_create_framebox_with_content(NULL, dialog->timezone_vbox);
+    dialog->timezone_tab_label = gtk_label_new(_("Timezone"));
+    gtk_notebook_append_page(GTK_NOTEBOOK(dialog->notebook)
+          , dialog->timezone_tab, dialog->timezone_tab_label);
 
     /* Choose a timezone to be used in appointments */
-    dialog->timezone_vbox = gtk_vbox_new (FALSE, 0);
-    xfce_framebox_add (XFCE_FRAMEBOX (dialog->timezone_tab)
-                       , dialog->timezone_vbox);
+    dialog->timezone_table = gtk_table_new(1, 1, FALSE);
+    gtk_container_set_border_width(
+            GTK_CONTAINER(dialog->timezone_table), 10);
+    gtk_table_set_row_spacings(GTK_TABLE(dialog->timezone_table), 6);
+    gtk_table_set_col_spacings(GTK_TABLE(dialog->timezone_table), 6);
+    dialog->timezone_frame = 
+        xfce_create_framebox_with_content(_("Timezone")
+                , dialog->timezone_table);
+    gtk_box_pack_start(GTK_BOX(dialog->timezone_vbox)
+            , dialog->timezone_frame, TRUE, TRUE, 5);
 
-    dialog->timezone_frame = xfce_framebox_new (_("Timezone"), TRUE);
-    gtk_box_pack_start (GTK_BOX (dialog->timezone_vbox), dialog->timezone_frame, TRUE, TRUE, 5);
-
-    dialog->timezone_table = gtk_table_new (1, 1, FALSE);
-    gtk_container_set_border_width (GTK_CONTAINER (dialog->timezone_table), 10);
-    gtk_table_set_row_spacings (GTK_TABLE (dialog->timezone_table), 6);
-    gtk_table_set_col_spacings (GTK_TABLE (dialog->timezone_table), 6);
-    xfce_framebox_add (XFCE_FRAMEBOX (dialog->timezone_frame)
-                       , dialog->timezone_table);
     dialog->timezone_button = gtk_button_new();
     if (local_timezone) {
         gtk_button_set_label(GTK_BUTTON(dialog->timezone_button), _(local_timezone));
