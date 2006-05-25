@@ -284,8 +284,7 @@ on_appSound_button_clicked_cb(GtkButton *button, gpointer user_data)
 {
     appt_win *apptw = (appt_win *)user_data;
     GtkWidget *file_chooser;
-    XfceFileFilter *filter;
-
+    GtkFileFilter *filter;
     gchar *appSound_entry_filename;
     gchar *sound_file;
     const gchar *filetype[FILETYPE_SIZE] = {
@@ -295,42 +294,42 @@ on_appSound_button_clicked_cb(GtkButton *button, gpointer user_data)
         "*.prc", "*.raw", "*.sb", "*.sf", "*.sl", "*.smp", "*.sndt", 
         "*.sph", "*.8svx", "*.sw", "*.txw", "*.ub", "*.ul", "*.uw",
         "*.voc", "*.vorbis", "*.vox", "*.wav", "*.wve"};
-
     register int i;
 
-    appSound_entry_filename = g_strdup(gtk_entry_get_text((GtkEntry *)apptw->appSound_entry));
-
-    file_chooser = xfce_file_chooser_new(_("Select a file..."),
+    appSound_entry_filename = g_strdup(gtk_entry_get_text(
+            (GtkEntry *)apptw->appSound_entry));
+    file_chooser = gtk_file_chooser_dialog_new(_("Select a file..."),
             GTK_WINDOW (apptw->appWindow),
-            XFCE_FILE_CHOOSER_ACTION_OPEN,
+            GTK_FILE_CHOOSER_ACTION_OPEN,
             GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
             GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT,
             NULL);
 
-    filter = xfce_file_filter_new();
-    xfce_file_filter_set_name(filter, _("Sound Files"));
+    filter = gtk_file_filter_new();
+    gtk_file_filter_set_name(filter, _("Sound Files"));
     for (i = 0; i < FILETYPE_SIZE; i++) {
-        xfce_file_filter_add_pattern(filter, filetype[i]);
+        gtk_file_filter_add_pattern(filter, filetype[i]);
     }
-    xfce_file_chooser_add_filter(XFCE_FILE_CHOOSER(file_chooser), filter);
-    filter = xfce_file_filter_new();
-    xfce_file_filter_set_name(filter, _("All Files"));
-    xfce_file_filter_add_pattern(filter, "*");
-    xfce_file_chooser_add_filter(XFCE_FILE_CHOOSER(file_chooser), filter);
+    gtk_file_chooser_add_filter(GTK_FILE_CHOOSER(file_chooser), filter);
 
-    xfce_file_chooser_add_shortcut_folder(XFCE_FILE_CHOOSER(file_chooser)
+    filter = gtk_file_filter_new();
+    gtk_file_filter_set_name(filter, _("All Files"));
+    gtk_file_filter_add_pattern(filter, "*");
+    gtk_file_chooser_add_filter(GTK_FILE_CHOOSER(file_chooser), filter);
+
+    gtk_file_chooser_add_shortcut_folder(GTK_FILE_CHOOSER(file_chooser)
             , PACKAGE_DATA_DIR "/orage/sounds", NULL);
 
     if (strlen(appSound_entry_filename) > 0)
-        xfce_file_chooser_set_filename(XFCE_FILE_CHOOSER(file_chooser), 
-                                   (const gchar *) appSound_entry_filename);
+        gtk_file_chooser_set_filename(GTK_FILE_CHOOSER(file_chooser)
+                , (const gchar *) appSound_entry_filename);
     else
-        xfce_file_chooser_set_current_folder(XFCE_FILE_CHOOSER(file_chooser)
+        gtk_file_chooser_set_current_folder(GTK_FILE_CHOOSER(file_chooser)
             , PACKAGE_DATA_DIR "/orage/sounds");
 
     if (gtk_dialog_run(GTK_DIALOG(file_chooser)) == GTK_RESPONSE_ACCEPT) {
         sound_file = 
-                xfce_file_chooser_get_filename(XFCE_FILE_CHOOSER(file_chooser));
+            gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(file_chooser));
         if (sound_file) {
             gtk_entry_set_text(GTK_ENTRY(apptw->appSound_entry), sound_file);
             gtk_editable_set_position(GTK_EDITABLE(apptw->appSound_entry), -1);

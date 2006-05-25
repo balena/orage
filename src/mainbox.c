@@ -104,29 +104,30 @@ mFile_openArchive_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
 {
     CalWin *xfcal = (CalWin *) user_data;
     GtkWidget *file_chooser;
-    XfceFileFilter *filter;
+    GtkFileFilter *filter;
     gchar *archive_path;
 
     /* Create file chooser */
-    file_chooser = xfce_file_chooser_new (_("Select a file..."),
-                                        GTK_WINDOW (xfcal->mWindow),
-                                        XFCE_FILE_CHOOSER_ACTION_OPEN,
-                                        GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-                                        GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT,
-                                        NULL);
+    file_chooser = gtk_file_chooser_dialog_new(_("Select a file..."),
+            GTK_WINDOW(xfcal->mWindow),
+            GTK_FILE_CHOOSER_ACTION_OPEN,
+            GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
+            GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT,
+            NULL);
     /* Add filters */
-    filter = xfce_file_filter_new ();
-	xfce_file_filter_set_name(filter, _("Calendar files"));
-	xfce_file_filter_add_pattern(filter, "*.ics");
-	xfce_file_chooser_add_filter(XFCE_FILE_CHOOSER(file_chooser), filter);
-    filter = xfce_file_filter_new ();
-	xfce_file_filter_set_name(filter, _("All Files"));
-	xfce_file_filter_add_pattern(filter, "*");
-	xfce_file_chooser_add_filter(XFCE_FILE_CHOOSER(file_chooser), filter);
+    filter = gtk_file_filter_new();
+    gtk_file_filter_set_name(filter, _("Calendar files"));
+    gtk_file_filter_add_pattern(filter, "*.ics");
+    gtk_file_chooser_add_filter(GTK_FILE_CHOOSER(file_chooser), filter);
 
-	if (gtk_dialog_run(GTK_DIALOG(file_chooser)) == GTK_RESPONSE_ACCEPT) {
-		archive_path = xfce_file_chooser_get_filename(XFCE_FILE_CHOOSER(file_chooser));
+    filter = gtk_file_filter_new();
+    gtk_file_filter_set_name(filter, _("All Files"));
+    gtk_file_filter_add_pattern(filter, "*");
+    gtk_file_chooser_add_filter(GTK_FILE_CHOOSER(file_chooser), filter);
 
+    if (gtk_dialog_run(GTK_DIALOG(file_chooser)) == GTK_RESPONSE_ACCEPT) {
+        archive_path = 
+            gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(file_chooser));
         if (archive_path) {
             set_ical_path(archive_path);
             gtk_widget_set_sensitive(xfcal->mFile_closeArchive, TRUE);

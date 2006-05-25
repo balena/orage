@@ -255,53 +255,54 @@ static void cb_archive_file_open_button_clicked (GtkButton *button, gpointer use
 {
     Itf *itf = (Itf *) user_data;
     GtkWidget *file_chooser;
-	XfceFileFilter *filter;
+	GtkFileFilter *filter;
     gchar *rcfile;
     gchar *s; /* to avoid timing problems when updating entry */
 
     /* Create file chooser */
-    file_chooser = xfce_file_chooser_new(_("Select a file..."),
-            GTK_WINDOW (itf->orage_dialog),
-            XFCE_FILE_CHOOSER_ACTION_SAVE,
+    file_chooser = gtk_file_chooser_dialog_new(_("Select a file..."),
+            GTK_WINDOW(itf->orage_dialog),
+            GTK_FILE_CHOOSER_ACTION_SAVE,
             GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
             GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT,
-                NULL);
+            NULL);
     /* Add filters */
-    filter = xfce_file_filter_new();
-	xfce_file_filter_set_name(filter, _("Calendar files"));
-	xfce_file_filter_add_pattern(filter, "*.ics");
-	xfce_file_chooser_add_filter(XFCE_FILE_CHOOSER(file_chooser), filter);
-    filter = xfce_file_filter_new();
-	xfce_file_filter_set_name(filter, _("All Files"));
-	xfce_file_filter_add_pattern(filter, "*");
-	xfce_file_chooser_add_filter(XFCE_FILE_CHOOSER(file_chooser), filter);
+    filter = gtk_file_filter_new();
+	gtk_file_filter_set_name(filter, _("Calendar files"));
+	gtk_file_filter_add_pattern(filter, "*.ics");
+	gtk_file_chooser_add_filter(GTK_FILE_CHOOSER(file_chooser), filter);
+
+    filter = gtk_file_filter_new();
+	gtk_file_filter_set_name(filter, _("All Files"));
+	gtk_file_filter_add_pattern(filter, "*");
+	gtk_file_chooser_add_filter(GTK_FILE_CHOOSER(file_chooser), filter);
 
     rcfile = xfce_resource_save_location(XFCE_RESOURCE_CONFIG, ARCDIR, TRUE);
-    xfce_file_chooser_add_shortcut_folder(XFCE_FILE_CHOOSER(file_chooser)
-                , rcfile, NULL);
+    gtk_file_chooser_add_shortcut_folder(GTK_FILE_CHOOSER(file_chooser)
+            , rcfile, NULL);
 
     /* Set the archive path */
     if (archive_path && strlen(archive_path)) {
-        if (! xfce_file_chooser_set_filename(XFCE_FILE_CHOOSER(file_chooser)
-            , archive_path))
-            xfce_file_chooser_set_current_name(
-                XFCE_FILE_CHOOSER(file_chooser), ARCFILE);
+        if (! gtk_file_chooser_set_filename(GTK_FILE_CHOOSER(file_chooser)
+                , archive_path))
+            gtk_file_chooser_set_current_name(
+                    GTK_FILE_CHOOSER(file_chooser), ARCFILE);
     }
     else { 
     /* this should actually never happen since we give default value in
      * creating the channel
      */
         g_warning("orage: archive file missing");
-        xfce_file_chooser_set_current_folder(XFCE_FILE_CHOOSER(file_chooser)
-            , rcfile);
+        gtk_file_chooser_set_current_folder(GTK_FILE_CHOOSER(file_chooser)
+                , rcfile);
     }
 	if (gtk_dialog_run(GTK_DIALOG(file_chooser)) == GTK_RESPONSE_ACCEPT) {
-		archive_path = xfce_file_chooser_get_filename(
-            XFCE_FILE_CHOOSER(file_chooser));
+		archive_path = gtk_file_chooser_get_filename(
+                GTK_FILE_CHOOSER(file_chooser));
         if (archive_path) {
             s = g_strdup(archive_path);
             gtk_entry_set_text(GTK_ENTRY(itf->archive_file_entry)
-                , (const gchar*) s);
+                    , (const gchar*) s);
             g_free(s);
         }
     }
@@ -310,36 +311,36 @@ static void cb_archive_file_open_button_clicked (GtkButton *button, gpointer use
 }
 
 static void cb_sound_application_open_button_clicked (GtkButton *button
-    , gpointer user_data)
+        , gpointer user_data)
 {
     Itf *itf = (Itf *) user_data;
     GtkWidget *file_chooser;
     gchar *s; /* to avoid timing problems when updating entry */
 
     /* Create file chooser */
-    file_chooser = xfce_file_chooser_new(_("Select a file..."),
-                                    GTK_WINDOW (itf->orage_dialog),
-                                    XFCE_FILE_CHOOSER_ACTION_OPEN,
-                                    GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-                                    GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT,
-                                        NULL);
+    file_chooser = gtk_file_chooser_dialog_new(_("Select a file..."),
+            GTK_WINDOW(itf->orage_dialog),
+            GTK_FILE_CHOOSER_ACTION_OPEN,
+            GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
+            GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT,
+            NULL);
 
     /* Set sound application search path */
     if (sound_application == NULL
     ||  strlen(sound_application) == 0
     ||  sound_application[0] != '/'
-    || ! xfce_file_chooser_set_filename(XFCE_FILE_CHOOSER(file_chooser)
-        , sound_application))
-        xfce_file_chooser_set_current_folder(XFCE_FILE_CHOOSER(file_chooser)
-                    , "/usr/bin/");
+    || ! gtk_file_chooser_set_filename(GTK_FILE_CHOOSER(file_chooser)
+                , sound_application))
+        gtk_file_chooser_set_current_folder(GTK_FILE_CHOOSER(file_chooser)
+                , "/usr/bin/");
 
 	if (gtk_dialog_run(GTK_DIALOG(file_chooser)) == GTK_RESPONSE_ACCEPT) {
-		sound_application = xfce_file_chooser_get_filename(
-            XFCE_FILE_CHOOSER(file_chooser));
+		sound_application = gtk_file_chooser_get_filename(
+                GTK_FILE_CHOOSER(file_chooser));
         if (sound_application) {
             s = g_strdup(sound_application);
             gtk_entry_set_text(GTK_ENTRY(itf->sound_application_entry)
-                , (const gchar*) s);
+                    , (const gchar*) s);
             g_free(s);
         }
     }
