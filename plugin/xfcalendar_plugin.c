@@ -613,7 +613,7 @@ Itf *create_orage_dialog(McsPlugin * mcs_plugin)
     /* Here begins archives tab */
     dialog->archive_vbox = gtk_vbox_new(FALSE, 0);
     dialog->archives_tab = 
-        xfce_create_framebox_with_content(NULL, dialog->display_vbox);
+        xfce_create_framebox_with_content(NULL, dialog->archive_vbox);
     dialog->archives_tab_label = gtk_label_new(_("Archives"));
     gtk_notebook_append_page(GTK_NOTEBOOK(dialog->notebook)
           , dialog->archives_tab, dialog->archives_tab_label);
@@ -627,7 +627,7 @@ Itf *create_orage_dialog(McsPlugin * mcs_plugin)
     dialog->archive_file_frame = 
         xfce_create_framebox_with_content(_("Archive file")
                 , dialog->archive_file_table);
-    gtk_box_pack_start(GTK_BOX(dialog->display_vbox)
+    gtk_box_pack_start(GTK_BOX(dialog->archive_vbox)
             , dialog->archive_file_frame, TRUE, TRUE, 5);
 
     dialog->archive_file_entry = gtk_entry_new ();
@@ -646,7 +646,7 @@ Itf *create_orage_dialog(McsPlugin * mcs_plugin)
             GTK_CONTAINER(dialog->archive_threshold_table), 10);
     gtk_table_set_row_spacings(GTK_TABLE(dialog->archive_threshold_table), 6);
     gtk_table_set_col_spacings(GTK_TABLE(dialog->archive_threshold_table), 6);
-    dialog->archive_file_frame = 
+    dialog->archive_threshold_frame = 
         xfce_create_framebox_with_content(_("Archive threshold")
                 , dialog->archive_threshold_table);
     gtk_box_pack_start(GTK_BOX(dialog->archive_vbox)
