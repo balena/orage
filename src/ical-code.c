@@ -92,7 +92,7 @@ extern GList *alarm_list;
  * This is used only for translations purposes. It makes it
  * possible to translate these timezones.
  */
-gchar *trans_timezone[] = {
+const gchar *trans_timezone[] = {
     N_("Africa"),
     N_("Africa/Abidjan"),
     N_("Africa/Accra"),
