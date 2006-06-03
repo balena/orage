@@ -73,6 +73,9 @@ McsClient *client = NULL;
 /* tray icon */
 XfceTrayIcon *trayIcon = NULL;
 
+/* dynamic icon size */
+gint icon_size_x = 0, icon_size_y = 0;
+
 /* main calendar window position */
 gint pos_x = 0, pos_y = 0; 
 /* latest event-list window size */
@@ -152,6 +155,8 @@ void apply_settings()
             fprintf(fp, "1\n");
         else
             fprintf(fp, "0\n");
+        fprintf(fp, "[Use Dynamic Icon]\n");
+        fprintf(fp, "X=%i, Y=%i\n", icon_size_x, icon_size_y);
         fclose(fp);
     }
     g_free(fpath);

@@ -20,5 +20,9 @@
 
 #include "xfce_trayicon.h"
 
-XfceTrayIcon*
-create_TrayIcon (CalWin *xfcal);
+GdkPixbuf *create_icon(CalWin *xfcal, gint x, gint y);
+
+XfceTrayIcon *create_TrayIcon(CalWin *xfcal);
+
+void destroy_TrayIcon(XfceTrayIcon *trayIcon);
+

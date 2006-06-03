@@ -41,8 +41,12 @@
 #include "reminder.h"
 #include "ical-code.h"
 #include "functions.h"
+#include "tray_icon.h"
+#include "xfce_trayicon.h"
 
 extern GList *alarm_list;
+extern XfceTrayIcon *trayIcon;
+
 
 static gchar *play_cmd = NULL;
 
@@ -277,6 +281,12 @@ orage_alarm_clock(gpointer user_data)
         previous_month = current_month;
         previous_day   = current_day;
         xfical_alarm_build_list(TRUE);  /* new alarm list when date changed */
+        if (NETK_IS_TRAY_ICON(trayIcon->tray)) {
+            xfce_tray_icon_disconnect(trayIcon);
+            destroy_TrayIcon(trayIcon);
+            trayIcon = create_TrayIcon(xfcal);
+            xfce_tray_icon_connect(trayIcon);
+        }
     }
 
   /* Check if there are any alarms to show */

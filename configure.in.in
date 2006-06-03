@@ -185,7 +185,8 @@ AM_CONDITIONAL([HAVE_PTHREAD], [test x"$have_pthread" = x"yes"])
 AM_CONDITIONAL([WITH_BDB4], [test x"$WITH_BDB4" = x"yes"])
 
 dnl Check for debugging support
-BM_DEBUG_SUPPORT()
+dnl BM_DEBUG_SUPPORT()
+XDT_FEATURE_DEBUG
 
 AC_OUTPUT([ 
 Makefile

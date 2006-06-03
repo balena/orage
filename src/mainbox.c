@@ -43,6 +43,7 @@
 #include "mainbox.h"
 #include "functions.h"
 #include "xfce_trayicon.h"
+#include "tray_icon.h"
 #include "about-xfcalendar.h"
 #include "event-list.h"
 #include "appointment.h"
@@ -61,6 +62,7 @@ extern gboolean show_main_menu;
 extern gboolean select_always_today;
 extern gint pos_x, pos_y;
 extern gint event_win_size_x, event_win_size_y;
+extern gint icon_size_x, icon_size_y;
 
 gboolean
 xfcalendar_mark_appointments()
@@ -265,6 +267,7 @@ xfcalendar_init_settings(CalWin *xfcal)
                         RCDIR G_DIR_SEPARATOR_S "oragerc", FALSE);
 
     if ((fp = fopen(fpath, "r")) == NULL) {
+        g_warning("Unable to open %s. Using default parameters and creating new rc file", fpath);
         fp = fopen(fpath, "w");
         if (fp == NULL)
             g_warning("Unable to create %s", fpath);
@@ -308,6 +311,12 @@ xfcalendar_init_settings(CalWin *xfcal)
             else
                 select_always_today = FALSE;
         }
+        fgets(buf, LEN_BUFFER, fp); /* [Use Dynamic Icon] */
+        eof = fgets(buf, LEN_BUFFER, fp); 
+        if (eof == NULL 
+        || sscanf(buf, "X=%i, Y=%i", &icon_size_x, &icon_size_y) != 2) {
+            g_warning("Unable to read dynamic icon size from: %s", fpath);
+        }
     }
     g_free(fpath);
 }
@@ -336,11 +345,11 @@ xfcalendar_toggle_visible()
 void create_mainWin()
 {
     GtkWidget *menu_separator;
-    GdkPixbuf *xfcalendar_logo = xfce_themed_icon_load("xfcalendar", 48);
-
+    GdkPixbuf *xfcalendar_logo;
 
     xfcalendar_init_settings(xfcal);
-                                                                                
+    /* xfcalendar_logo = xfce_themed_icon_load("xfcalendar", 48); */
+    xfcalendar_logo = create_icon(xfcal, 48, 48);
     xfcal->mAccel_group = gtk_accel_group_new();
 
     gtk_window_set_title(GTK_WINDOW(xfcal->mWindow), _("Orage"));

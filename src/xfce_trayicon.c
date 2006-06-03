@@ -289,8 +289,9 @@ xfce_tray_icon_connect(XfceTrayIcon *icon)
 	g_return_if_fail(XFCE_IS_TRAY_ICON(icon));
 
 	/* check if icon is not already connected */
-	if (!NETK_IS_TRAY_ICON(icon->tray))
+	if (!NETK_IS_TRAY_ICON(icon->tray)) {
 		xfce_tray_icon_reconnect(icon);
+    }
 }
 
 /*

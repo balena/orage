@@ -25,6 +25,7 @@
 #include <libxfcegui4/libxfcegui4.h>
 
 #include "mainbox.h"
+#include "tray_icon.h"
 
 
 void create_wAbout(GtkWidget *widget, gpointer user_data)
@@ -38,7 +39,8 @@ void create_wAbout(GtkWidget *widget, gpointer user_data)
           , _("Manage your time with Xfce4")
           , XFCE_COPYRIGHT_TEXT("2003-2006", "Mickael 'Korbinus' Graf")
           , XFCE_LICENSE_GPL);
-  xfcalendar_logo = xfce_themed_icon_load("xfcalendar", 48);
+  /* xfcalendar_logo = xfce_themed_icon_load("xfcalendar", 48); */
+  xfcalendar_logo = create_icon(xfcal, 48, 48);
   xfce_about_info_set_homepage(about, "http://www.xfce.org");
 
   /* Credits */
