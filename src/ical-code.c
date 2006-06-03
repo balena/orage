@@ -89,7 +89,7 @@ extern GList *alarm_list;
                                                                                 
 
 /* Remember to keep this string table in sync with zones.tab
- * This is used only for translations purposes. It makes it
+ * This is used only for translations purposes. It makes
  * possible to translate these timezones.
  */
 const gchar *trans_timezone[] = {
@@ -2027,6 +2027,10 @@ gboolean xfical_keep_tidy(void)
     struct tm *threshold;
     char *uid;
 
+    if (lookback == 0) {
+        g_message("Orage archiving not enabled. Exiting");
+        return(TRUE);
+    }
     if (!xfical_file_open() || !xfical_archive_open()) {
         g_message("Orage xfical_keep_tidy: file open error");
         return(FALSE);
