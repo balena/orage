@@ -270,7 +270,7 @@ GdkPixbuf *create_icon(CalWin *xfcal, gint x, gint y)
   g_object_unref(pl_day);
   g_object_unref(pl_head);
   g_object_unref(pl_month);
-  g_free(pic1);
+  g_object_unref(pic1);
   
   return(pixbuf);
 }
@@ -283,10 +283,11 @@ void destroy_TrayIcon(XfceTrayIcon *trayIcon)
         g_free(trayIcon->tip_text);
     if (trayIcon->tip_private != NULL)
         g_free(trayIcon->tip_private);
-    gtk_widget_destroy(trayIcon->image);
     g_object_unref(G_OBJECT(trayIcon->tooltips));
     g_object_unref(G_OBJECT(trayIcon->image));
-    g_free(trayIcon);
+    /*
+    g_object_unref(GTK_OBJECT(trayIcon));
+    */
 }
 
 XfceTrayIcon* create_TrayIcon(CalWin *xfcal)
@@ -348,6 +349,8 @@ XfceTrayIcon* create_TrayIcon(CalWin *xfcal)
   /* pixbuf = xfce_themed_icon_load ("xfcalendar", 16); */
   pixbuf = create_icon(xfcal, icon_size_x, icon_size_y);
   trayIcon = xfce_tray_icon_new_with_menu_from_pixbuf(trayMenu, pixbuf);
+  g_object_ref(trayIcon);
+  gtk_object_sink(GTK_OBJECT(trayIcon));
   g_object_unref(pixbuf);
 
   g_signal_connect_swapped(G_OBJECT(trayIcon), "clicked",
