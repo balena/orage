@@ -2,8 +2,8 @@
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
           "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
   <!ENTITY manrevision "0.2"> 
-  <!ENTITY date "May 2006"> 
-  <!ENTITY appversion "4.3.90.1"> 
+  <!ENTITY date "July 2006"> 
+  <!ENTITY appversion "4.3.90.2"> 
   <!ENTITY app "<application>orage</application>">
 ]>
 
@@ -991,7 +991,7 @@ maintainers, etc. Commented out by default.
       Show Main Window Menu: setting this to 0 causes the menubar from
       <link linkend="orage-calendar-window">calendar window</link> to vanish.
       If you never use the menu, you can save screenspace with this and using
-      <link linkend="preferences-display-tab">Calendar boder option</link>. 
+      <link linkend="preferences-display-tab">Calendar border option</link>. 
       Default value is 1 (=show the menu). Only 0 and 1 are valid values.
     </listitem>
     <listitem>
@@ -1001,6 +1001,16 @@ maintainers, etc. Commented out by default.
       Default value is 0, which means that previously selected day will remain
       selected. The other option is 1, which causes current date always being
       selected. Only 0 and 1 are valid values.
+    </listitem>
+    <listitem>
+      Use Dynamic Icon: setting these x and y sizes to nonzero causes &app; 
+      to use dynamic icon, which has real month day number in it. It also
+      lists &app; in the top and month name at the bottom if those fit in.
+      &app; tries to fit all those three pieces of information in the available
+      icon size using proper fonts, but if there is not enough space, top and
+      bottom texts can be omitted. Finally &app; switches to static icon if
+      not even the number fits into the icon. Good values to test with are 32
+      (like X=32 Y=32).
     </listitem>
   </itemizedlist>
 </sect1>
