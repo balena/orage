@@ -247,10 +247,32 @@ mCalendar_day_selected_double_click_cb(GtkCalendar *cdar, gpointer user_data)
     manage_eventlist_win(GTK_CALENDAR(xfcal->mCalendar), el);
 }
 
+gboolean
+upd_calendar(GtkCalendar *calendar)
+{
+    static guint year=-1, month=-1;
+    guint year_n, month_n, day_n;
+
+    /* we only need to do this if it is really a new month. We may get
+     * many of these while calender is changing months and it is enough
+     * to show only the last one, which is visible */
+    gtk_calendar_get_date(calendar, &year_n, &month_n, &day_n);
+    if (month != month_n || year != year_n) { /* need really do it */
+        xfcalendar_mark_appointments();
+        year = year_n;
+        month = month_n;
+    }
+    return(FALSE); /* we do this only once */
+}
+
 void
 mCalendar_month_changed_cb(GtkCalendar *calendar, gpointer user_data)
 {
-  xfcalendar_mark_appointments();
+    /* xfcalendar_mark_appointments is rather heavy (=slow), so doing
+     * it here is not a good idea. We can't keep up with the autorepeat
+     * speed if we do the whole thing here. bug 2080 proofs it. so let's
+     * throw it to background and do it later */
+    g_timeout_add(500, (GtkFunction)upd_calendar, calendar);
 }
 
 void 
