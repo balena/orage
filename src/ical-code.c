@@ -1246,7 +1246,7 @@ char *appt_add_internal(appt_data *appt, gboolean add, char *uid
            , icalproperty_new_class(ICAL_CLASS_PUBLIC)
            , icalproperty_new_dtstamp(dtstamp)
            , icalproperty_new_created(create_time)
-           , 0);
+           , NULL);
 
     if XFICAL_STR_EXISTS(appt->title)
         icalcomponent_add_property(ievent
