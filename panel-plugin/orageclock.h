@@ -38,6 +38,10 @@ typedef struct
     GtkWidget *ebox;
     GtkWidget *frame;
     GtkWidget *vbox;
+    gboolean   width_set;
+    gint       width;
+    gboolean   height_set;
+    gint       height;
     gboolean   show_frame;
     gboolean   fg_set;
     GdkColor   fg;
@@ -58,6 +62,7 @@ void oc_properties_dialog(XfcePanelPlugin *plugin, Clock *clock);
 void oc_show_frame_set(Clock *clock);
 void oc_fg_set(Clock *clock);
 void oc_bg_set(Clock *clock);
+void oc_size_set(Clock *clock);
 void oc_timezone_set(Clock *clock);
 void oc_show_line_set(Clock *clock, gint lno);
 void oc_line_font_set(Clock *clock, gint lno);

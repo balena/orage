@@ -74,6 +74,30 @@ static void oc_bg_color_changed(GtkWidget *widget, Clock *clock)
     oc_bg_set(clock);
 }
 
+static void oc_set_height_toggled(GtkToggleButton *cb, Clock *clock)
+{
+    clock->height_set = gtk_toggle_button_get_active(cb);
+    oc_size_set(clock);
+}
+
+static void oc_set_height_changed(GtkSpinButton *sb, Clock *clock)
+{
+    clock->height = gtk_spin_button_get_value_as_int(sb);
+    oc_size_set(clock);
+}
+
+static void oc_set_width_toggled(GtkToggleButton *cb, Clock *clock)
+{
+    clock->width_set = gtk_toggle_button_get_active(cb);
+    oc_size_set(clock);
+}
+
+static void oc_set_width_changed(GtkSpinButton *sb, Clock *clock)
+{
+    clock->width = gtk_spin_button_get_value_as_int(sb);
+    oc_size_set(clock);
+}
+
 static void oc_timezone_changed(GtkWidget *widget, GdkEventKey *key
         , Clock *clock)
 {
@@ -155,7 +179,7 @@ static void oc_line_font_changed3(GtkWidget *widget, Clock *clock)
 
 static void oc_properties_appearance(GtkWidget *dlg, Clock *clock)
 {
-    GtkWidget *frame, *bin, *vbox, *cb, *hbox, *color;
+    GtkWidget *frame, *bin, *vbox, *cb, *hbox, *color, *sb;
     GdkColor def_fg, def_bg;
     GtkStyle *def_style;
 
@@ -208,6 +232,38 @@ static void oc_properties_appearance(GtkWidget *dlg, Clock *clock)
     gtk_box_pack_start(GTK_BOX(hbox), color, FALSE, FALSE, 0);
     g_signal_connect(G_OBJECT(color), "color-set"
             , G_CALLBACK(oc_bg_color_changed), clock);
+
+    /* clock size (=vbox size): height and width */
+    hbox = gtk_hbox_new(FALSE, 0);
+    gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
+
+    cb = gtk_check_button_new_with_mnemonic(_("set _height:"));
+    gtk_box_pack_start(GTK_BOX(hbox), cb, FALSE, FALSE, 0);
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(cb), clock->height_set);
+    g_signal_connect(cb, "toggled", G_CALLBACK(oc_set_height_toggled), clock);
+    sb = gtk_spin_button_new_with_range(10, 200, 1);
+    gtk_box_pack_start(GTK_BOX(hbox), sb, FALSE, FALSE, 0);
+    if (!clock->height_set)
+        clock->height = 32;
+    gtk_spin_button_set_value(GTK_SPIN_BUTTON(sb), (gdouble)clock->height);
+    g_signal_connect((gpointer) sb, "value-changed",
+            G_CALLBACK(oc_set_height_changed), clock);
+
+
+    hbox = gtk_hbox_new(FALSE, 0);
+    gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
+
+    cb = gtk_check_button_new_with_mnemonic(_("set _width:"));
+    gtk_box_pack_start(GTK_BOX(hbox), cb, FALSE, FALSE, 0);
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(cb), clock->width_set);
+    g_signal_connect(cb, "toggled", G_CALLBACK(oc_set_width_toggled), clock);
+    sb = gtk_spin_button_new_with_range(10, 400, 1);
+    gtk_box_pack_start(GTK_BOX(hbox), sb, FALSE, FALSE, 0);
+    if (!clock->width_set)
+        clock->width = 70;
+    gtk_spin_button_set_value(GTK_SPIN_BUTTON(sb), (gdouble)clock->width);
+    g_signal_connect((gpointer) sb, "value-changed",
+            G_CALLBACK(oc_set_width_changed), clock);
 }
 
 static void oc_properties_options(GtkWidget *dlg, Clock *clock)

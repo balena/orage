@@ -245,7 +245,7 @@ static void oc_read_rc_file(XfcePanelPlugin *plugin, Clock *clock)
 
     clock->show_frame = xfce_rc_read_bool_entry(rc, "show_frame", TRUE);
 
-    clock->fg_set = xfce_rc_read_bool_entry(rc, "fg_set", TRUE);
+    clock->fg_set = xfce_rc_read_bool_entry(rc, "fg_set", FALSE);
     if (clock->fg_set) {
         ret = xfce_rc_read_entry(rc, "fg", NULL);
         sscanf(ret, "%uR %uG %uB"
@@ -255,7 +255,7 @@ static void oc_read_rc_file(XfcePanelPlugin *plugin, Clock *clock)
         clock->fg.pixel = 0;
     }
 
-    clock->bg_set = xfce_rc_read_bool_entry(rc, "bg_set", TRUE);
+    clock->bg_set = xfce_rc_read_bool_entry(rc, "bg_set", FALSE);
     if (clock->bg_set) {
         ret = xfce_rc_read_entry(rc, "bg", NULL);
         sscanf(ret, "%uR %uG %uB"
@@ -267,10 +267,19 @@ static void oc_read_rc_file(XfcePanelPlugin *plugin, Clock *clock)
 
     ret = xfce_rc_read_entry(rc, "timezone", NULL);
     g_string_assign(clock->timezone, ret); 
+
+    clock->width_set = xfce_rc_read_bool_entry(rc, "width_set", FALSE);
+    if (clock->width_set) {
+        clock->width = xfce_rc_read_int_entry(rc, "width", -1);
+    }
+    clock->height_set = xfce_rc_read_bool_entry(rc, "height_set", FALSE);
+    if (clock->height_set) {
+        clock->height = xfce_rc_read_int_entry(rc, "height", -1);
+    }
     
     for (i = 0; i < OC_MAX_LINES; i++) {
         sprintf(tmp, "show%d", i);
-        clock->line[i].show = xfce_rc_read_bool_entry(rc, tmp, TRUE);
+        clock->line[i].show = xfce_rc_read_bool_entry(rc, tmp, FALSE);
         if (clock->line[i].show) {
             sprintf(tmp, "data%d", i);
             ret = xfce_rc_read_entry(rc, tmp, NULL);
@@ -325,6 +334,22 @@ void oc_write_rc_file(XfcePanelPlugin *plugin, Clock *clock)
     }
 
     xfce_rc_write_entry(rc, "timezone",  clock->timezone->str);
+
+    xfce_rc_write_bool_entry(rc, "width_set", clock->width_set);
+    if (clock->width_set) {
+        xfce_rc_write_int_entry(rc, "width", clock->width);
+    }
+    else {
+        xfce_rc_delete_entry(rc, "width", TRUE);
+    }
+
+    xfce_rc_write_bool_entry(rc, "height_set", clock->height_set);
+    if (clock->height_set) {
+        xfce_rc_write_int_entry(rc, "height", clock->height);
+    }
+    else {
+        xfce_rc_delete_entry(rc, "height", TRUE);
+    }
 
     for (i = 0; i < OC_MAX_LINES; i++) {
         sprintf(tmp, "show%d", i);
@@ -438,6 +463,15 @@ void oc_timezone_set(Clock *clock)
     tzset();
 }
 
+void oc_size_set(Clock *clock)
+{
+    gint w, h;
+
+    w = clock->width_set ? clock->width : -1;
+    h = clock->height_set ? clock->height : -1;
+    gtk_widget_set_size_request(clock->vbox, w, h);
+}
+
 void oc_show_line_set(Clock *clock, gint lno)
 {
     GtkWidget *line_label = clock->line[lno].label;
@@ -496,6 +530,7 @@ static void oc_construct(XfcePanelPlugin *plugin)
     oc_fg_set(clock);
     oc_bg_set(clock);
     oc_timezone_set(clock);
+    oc_size_set(clock);
     for (i = 0; i < OC_MAX_LINES; i++) {
         if (clock->line[i].show)  /* need to add */
             oc_show_line_set(clock, i);
