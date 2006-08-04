@@ -1,6 +1,7 @@
 /* tray_icon.c
  *
- * (C) 2004 Mickaël Graf
+ * (C) 2004-2006 Mickaël Graf
+ * (C)      2006 Juha Kautto
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -302,18 +303,21 @@ XfceTrayIcon* create_TrayIcon(CalWin *xfcal)
    */
   trayMenu = gtk_menu_new();
   menuItem = gtk_image_menu_item_new_with_mnemonic(_("Today"));
-  gtk_image_menu_item_set_image(GTK_IMAGE_MENU_ITEM(menuItem), gtk_image_new_from_stock(GTK_STOCK_HOME, GTK_ICON_SIZE_MENU));
-  g_signal_connect(menuItem, "activate", G_CALLBACK(on_Today_activate),
-		   xfcal);
+  gtk_image_menu_item_set_image(GTK_IMAGE_MENU_ITEM(menuItem)
+          , gtk_image_new_from_stock(GTK_STOCK_HOME, GTK_ICON_SIZE_MENU));
+  g_signal_connect(menuItem, "activate", G_CALLBACK(on_Today_activate)
+          , xfcal);
   gtk_menu_shell_append(GTK_MENU_SHELL(trayMenu), menuItem);
   gtk_widget_show_all(menuItem);
   menuItem = gtk_separator_menu_item_new();
   gtk_menu_shell_append(GTK_MENU_SHELL(trayMenu), menuItem);
   gtk_widget_show(menuItem);
 
-  menuItem = gtk_menu_item_new_with_label(_("New appointment"));
-  g_signal_connect(menuItem, "activate", G_CALLBACK(on_new_appointment_activate),
-		   NULL);
+  menuItem = gtk_image_menu_item_new_with_label(_("New appointment"));
+  gtk_image_menu_item_set_image(GTK_IMAGE_MENU_ITEM(menuItem)
+          , gtk_image_new_from_stock(GTK_STOCK_NEW, GTK_ICON_SIZE_MENU));
+  g_signal_connect(menuItem, "activate"
+          , G_CALLBACK(on_new_appointment_activate), NULL);
   gtk_menu_shell_append(GTK_MENU_SHELL(trayMenu), menuItem);
   gtk_widget_show(menuItem);
   menuItem = gtk_separator_menu_item_new();
@@ -321,22 +325,25 @@ XfceTrayIcon* create_TrayIcon(CalWin *xfcal)
   gtk_widget_show(menuItem);
   
   menuItem = gtk_image_menu_item_new_from_stock(GTK_STOCK_PREFERENCES, NULL);
-  g_signal_connect(menuItem, "activate", G_CALLBACK(on_preferences_activate),
-		   NULL);
+  g_signal_connect(menuItem, "activate", G_CALLBACK(on_preferences_activate)
+          , NULL);
   gtk_menu_shell_append(GTK_MENU_SHELL(trayMenu), menuItem);
   gtk_widget_show(menuItem);
   menuItem = gtk_separator_menu_item_new();
   gtk_menu_shell_append(GTK_MENU_SHELL(trayMenu), menuItem);
   gtk_widget_show(menuItem);
 
-  menuItem = gtk_menu_item_new_with_label(_("About Orage"));
-  g_signal_connect(menuItem, "activate", G_CALLBACK(on_about_activate),
-		   xfcal);
+  menuItem = gtk_image_menu_item_new_with_label(_("About Orage"));
+  gtk_image_menu_item_set_image(GTK_IMAGE_MENU_ITEM(menuItem)
+          , gtk_image_new_from_stock(GTK_STOCK_ABOUT, GTK_ICON_SIZE_MENU));
+  g_signal_connect(menuItem, "activate", G_CALLBACK(on_about_activate)
+          , xfcal);
   gtk_menu_shell_append(GTK_MENU_SHELL(trayMenu), menuItem);
   gtk_widget_show(menuItem);
   menuItem = gtk_separator_menu_item_new();
   gtk_menu_shell_append(GTK_MENU_SHELL(trayMenu), menuItem);
   gtk_widget_show(menuItem);
+
   menuItem = gtk_image_menu_item_new_from_stock(GTK_STOCK_QUIT, NULL);
   g_signal_connect(menuItem, "activate", G_CALLBACK(gtk_main_quit), NULL);
   gtk_menu_shell_append(GTK_MENU_SHELL(trayMenu), menuItem);
