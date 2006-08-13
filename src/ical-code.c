@@ -629,7 +629,7 @@ gboolean xfical_internal_file_open(icalcomponent **p_ical
             *p_ical = icalcomponent_vanew(ICAL_VCALENDAR_COMPONENT
                    , icalproperty_new_version("2.0")
                    , icalproperty_new_prodid("-//Xfce//Orage//EN")
-                   , 0);
+                   , NULL);
             xfical_add_timezone(*p_ical, *p_fical, local_icaltimezone_location);
             icalset_add_component(*p_fical, *p_ical);
             /*
@@ -1182,7 +1182,7 @@ void appt_add_alarm_internal(appt_data *appt, icalcomponent *ievent)
     ialarm = icalcomponent_vanew(ICAL_VALARM_COMPONENT
         , icalproperty_new_action(ICAL_ACTION_DISPLAY)
         , icalproperty_new_trigger(trg)
-        , 0);
+        , NULL);
     if XFICAL_STR_EXISTS(appt->note)
         icalcomponent_add_property(ialarm
             , icalproperty_new_description(appt->note));
@@ -1198,7 +1198,7 @@ void appt_add_alarm_internal(appt_data *appt, icalcomponent *ievent)
         ialarm = icalcomponent_vanew(ICAL_VALARM_COMPONENT
             , icalproperty_new_action(ICAL_ACTION_AUDIO)
             , icalproperty_new_trigger(trg)
-            , 0);
+            , NULL);
         attach = icalattach_new_from_url(appt->sound);
         icalcomponent_add_property(ialarm
             , icalproperty_new_attach(attach));

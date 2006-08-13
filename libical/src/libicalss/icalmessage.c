@@ -123,8 +123,8 @@ icalcomponent *icalmessage_new_reply_base(icalcomponent* c,
 	icalcomponent_vanew(
 	    ICAL_VEVENT_COMPONENT,
 	    icalproperty_new_dtstamp(icaltime_from_timet(time(0),0)),
-	    0),
-	0);
+	    NULL),
+	NULL);
 
     icalcomponent *inner = icalmessage_get_inner(reply);
 

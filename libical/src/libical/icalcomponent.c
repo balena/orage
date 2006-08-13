@@ -96,7 +96,7 @@ void icalcomponent_add_children(icalcomponent *impl, va_list args)
 {
     void* vp;
     
-    while((vp = va_arg(args, void*)) != 0) {
+    while((vp = va_arg(args, void*)) != NULL) {
 
 	assert (icalcomponent_isa_component(vp) != 0 ||
 		icalproperty_isa_property(vp) != 0 ) ;
@@ -155,8 +155,8 @@ icalcomponent_vanew (icalcomponent_kind kind, ...)
 
    icalcomponent *impl = icalcomponent_new_impl(kind);
 
-    if (impl == 0){
-	return 0;
+    if (impl == NULL){
+	return NULL;
     }
 
    va_start(args,kind);
@@ -377,7 +377,7 @@ icalcomponent_isa (const icalcomponent* component)
 
 
 int
-icalcomponent_isa_component (void* component)
+icalcomponent_isa_component (icalcomponent* component)
 {
     icalcomponent *impl = component;
 
