@@ -509,6 +509,4 @@ void create_mainWin()
     if (pos_x || pos_y)
         gtk_window_move(GTK_WINDOW(xfcal->mWindow), pos_x, pos_y);
     gtk_window_stick(GTK_WINDOW(xfcal->mWindow));
-
-    xfcalendar_mark_appointments();
 }

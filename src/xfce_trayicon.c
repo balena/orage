@@ -39,7 +39,7 @@
 enum
 {
 	CLICKED,		/* user single-clicked the icon */
-	DBL_CLICKED,		/* user double-clicked the icon */
+	DBL_CLICKED,	/* user double-clicked the icon */
 	LAST_SIGNAL
 };
 

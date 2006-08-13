@@ -283,6 +283,8 @@ notify_cb(const char *name, const char *channel_name
                         xfical_set_local_timezone(setting->data.v_string);
                     else
                         xfical_set_local_timezone(NULL);
+                    xfcalendar_mark_appointments();
+
                 }
             }
             break;
@@ -480,7 +482,7 @@ main(int argc, char *argv[])
   ensure_basedir_spec();
 
     /* Test */
-    set_default_ical_path();
+  set_default_ical_path();
 
   /*
    * Create the orage.
