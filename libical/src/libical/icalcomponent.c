@@ -377,7 +377,7 @@ icalcomponent_isa (const icalcomponent* component)
 
 
 int
-icalcomponent_isa_component (icalcomponent* component)
+icalcomponent_isa_component (void* component)
 {
     icalcomponent *impl = component;
 
