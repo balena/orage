@@ -180,6 +180,7 @@ create_wReminder(alarm_struct *alarm)
   gtk_window_set_position(GTK_WINDOW(wReminder), GTK_WIN_POS_CENTER);
   gtk_window_set_modal(GTK_WINDOW(wReminder), FALSE);
   gtk_window_set_resizable(GTK_WINDOW(wReminder), TRUE);
+  gtk_window_set_keep_above(GTK_WINDOW(wReminder), TRUE);
 
   vbReminder = GTK_DIALOG(wReminder)->vbox;
   gtk_widget_show(vbReminder);

@@ -370,8 +370,11 @@ void create_mainWin()
     GdkPixbuf *xfcalendar_logo;
 
     xfcalendar_init_settings(xfcal);
-    /* xfcalendar_logo = xfce_themed_icon_load("xfcalendar", 48); */
-    xfcalendar_logo = create_icon(xfcal, 48, 48);
+    /* using static icon here since this dynamic icon is not updated
+     * when date changes. Could be added, but not worth it.
+     * Dynamic icon is used in systray and about windows */
+    xfcalendar_logo = xfce_themed_icon_load("xfcalendar", 48); 
+    /* xfcalendar_logo = create_icon(xfcal, 48, 48); */
     xfcal->mAccel_group = gtk_accel_group_new();
 
     gtk_window_set_title(GTK_WINDOW(xfcal->mWindow), _("Orage"));
@@ -381,6 +384,7 @@ void create_mainWin()
 
     if (xfcalendar_logo != NULL) {
       gtk_window_set_icon(GTK_WINDOW(xfcal->mWindow), xfcalendar_logo);
+      gtk_window_set_default_icon(xfcalendar_logo);
       g_object_unref(xfcalendar_logo);
     }
 
