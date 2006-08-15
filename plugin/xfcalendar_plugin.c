@@ -364,7 +364,7 @@ static void cb_timezone_button_clicked (GtkButton *button, gpointer user_data)
     GtkWidget *sw;
     int j, result, latitude, longitude;
     char area_old[MAX_AREA_LENGTH], tz[MAX_BUFF_LENGTH], buf[MAX_BUFF_LENGTH]
-        , *loc, *loc_eng, *loc_int;
+        , *loc, *loc_eng;
     GtkTreeSelection *sel;
     GtkTreeModel     *model;
     GtkTreeIter       iter;
@@ -450,11 +450,13 @@ static void cb_timezone_button_clicked (GtkButton *button, gpointer user_data)
                         result = 0;
                     else {
                         gtk_tree_model_get(model, &iter, LOCATION, &loc, -1); 
-                        gtk_tree_model_get(model, &iter, LOCATION_ENG, &loc_eng, -1); 
+                        gtk_tree_model_get(model, &iter, LOCATION_ENG, &loc_eng
+                                , -1); 
                     }
                 else {
                     loc = g_strdup(gtk_button_get_label(GTK_BUTTON(button)));
-                    loc_eng = g_object_get_data(G_OBJECT(button), "LOCATION_ENG");
+                    loc_eng = g_object_get_data(G_OBJECT(button)
+                            , "LOCATION_ENG");
                 }
                 break;
             case 1:
@@ -473,12 +475,13 @@ static void cb_timezone_button_clicked (GtkButton *button, gpointer user_data)
     } while (result == 0) ;
     gtk_button_set_label(GTK_BUTTON(button), loc);
 
-    if ((loc_int = g_object_get_data(G_OBJECT(button), "LOCATION_ENG")))
-                g_free(loc_int);
-    loc_int = g_strdup(loc_eng);
-    g_object_set_data(G_OBJECT(button), "LOCATION_ENG", loc_int);
+    if ((local_timezone = g_object_get_data(G_OBJECT(button), "LOCATION_ENG")))
+        g_free(local_timezone);
+    local_timezone = g_strdup(loc_eng);
+    g_object_set_data(G_OBJECT(button), "LOCATION_ENG", loc_eng);
 
-    mcs_manager_set_string(mcs_plugin->manager, "orage/Timezone", CHANNEL, loc_eng);
+    mcs_manager_set_string(mcs_plugin->manager, "orage/Timezone", CHANNEL
+            , loc_eng);
     post_to_mcs(mcs_plugin);
 
     g_free(loc);
@@ -729,23 +732,27 @@ Itf *create_orage_dialog(McsPlugin * mcs_plugin)
             GTK_CONTAINER(dialog->timezone_table), 10);
     gtk_table_set_row_spacings(GTK_TABLE(dialog->timezone_table), 6);
     gtk_table_set_col_spacings(GTK_TABLE(dialog->timezone_table), 6);
-    dialog->timezone_frame = 
-        xfce_create_framebox_with_content(_("Timezone")
-                , dialog->timezone_table);
+    dialog->timezone_frame = xfce_create_framebox_with_content(_("Timezone")
+            , dialog->timezone_table);
     gtk_box_pack_start(GTK_BOX(dialog->timezone_vbox)
             , dialog->timezone_frame, TRUE, TRUE, 5);
 
     dialog->timezone_button = gtk_button_new();
     if (local_timezone) {
-        gtk_button_set_label(GTK_BUTTON(dialog->timezone_button), _(local_timezone));
-        g_object_set_data(G_OBJECT(dialog->timezone_button), "LOCATION_ENG", local_timezone);
+        gtk_button_set_label(GTK_BUTTON(dialog->timezone_button)
+                , _(local_timezone));
+        g_object_set_data(G_OBJECT(dialog->timezone_button), "LOCATION_ENG"
+                , local_timezone);
     }
     else {
-        gtk_button_set_label(GTK_BUTTON(dialog->timezone_button), _("floating"));
-        g_object_set_data(G_OBJECT(dialog->timezone_button), "LOCATION_ENG", "floating");
+        gtk_button_set_label(GTK_BUTTON(dialog->timezone_button)
+                , _("floating"));
+        g_object_set_data(G_OBJECT(dialog->timezone_button), "LOCATION_ENG"
+                , "floating");
     }
 
-    gtk_table_attach (GTK_TABLE (dialog->timezone_table), dialog->timezone_button, 0, 1, 0, 1,
+    gtk_table_attach (GTK_TABLE (dialog->timezone_table)
+            , dialog->timezone_button, 0, 1, 0, 1,
                         (GtkAttachOptions) (GTK_FILL),
                         (GtkAttachOptions) (0), 0, 0);
 
