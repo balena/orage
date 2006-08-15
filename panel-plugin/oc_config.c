@@ -177,21 +177,32 @@ static void oc_line_font_changed3(GtkWidget *widget, Clock *clock)
     oc_line_font_set(clock, 2);
 }
 
+static void oc_table_add(GtkWidget *table, GtkWidget *widget, int col, int row)
+{
+    gtk_table_attach(GTK_TABLE(table), widget, col, col+1, row, row+1
+            , GTK_FILL, GTK_FILL, 0, 0);
+}
+
 static void oc_properties_appearance(GtkWidget *dlg, Clock *clock)
 {
-    GtkWidget *frame, *bin, *vbox, *cb, *hbox, *color, *sb;
+    GtkWidget *frame, *bin, *cb, *color, *sb;
     GdkColor def_fg, def_bg;
     GtkStyle *def_style;
+    GtkWidget *table;
 
     frame = xfce_create_framebox(_("Appearance"), &bin);
     gtk_container_set_border_width(GTK_CONTAINER(frame), 6);
     gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), frame, FALSE, FALSE, 0);
     
-    vbox = gtk_vbox_new(FALSE, 8);
-    gtk_container_add(GTK_CONTAINER(bin), vbox);
+    table = gtk_table_new(5, 2, FALSE);
+    gtk_container_set_border_width(GTK_CONTAINER(table), 10);
+    gtk_table_set_row_spacings(GTK_TABLE(table), 6);
+    gtk_table_set_col_spacings(GTK_TABLE(table), 6);
+    gtk_container_add(GTK_CONTAINER(bin), table);
 
+    /* show frame */
     cb = gtk_check_button_new_with_mnemonic(_("Show _frame"));
-    gtk_box_pack_start(GTK_BOX(vbox), cb, FALSE, FALSE, 0);
+    oc_table_add(table, cb, 0, 0);
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(cb), clock->show_frame);
     g_signal_connect(cb, "toggled", G_CALLBACK(oc_show_frame_toggled), clock);
     
@@ -200,11 +211,8 @@ static void oc_properties_appearance(GtkWidget *dlg, Clock *clock)
     def_bg = def_style->bg[GTK_STATE_NORMAL];
 
     /* foreground color */
-    hbox = gtk_hbox_new(FALSE, 0);
-    gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
-
     cb = gtk_check_button_new_with_mnemonic(_("set foreground _color:"));
-    gtk_box_pack_start(GTK_BOX(hbox), cb, FALSE, FALSE, 0);
+    oc_table_add(table, cb, 0, 1);
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(cb), clock->fg_set);
     g_signal_connect(cb, "toggled", G_CALLBACK(oc_set_fg_toggled), clock);
 
@@ -212,16 +220,13 @@ static void oc_properties_appearance(GtkWidget *dlg, Clock *clock)
         clock->fg = def_fg;
     }
     color = gtk_color_button_new_with_color(&clock->fg);
-    gtk_box_pack_start(GTK_BOX(hbox), color, FALSE, FALSE, 0);
+    oc_table_add(table, color, 1, 1);
     g_signal_connect(G_OBJECT(color), "color-set"
             , G_CALLBACK(oc_fg_color_changed), clock);
 
     /* background color */
-    hbox = gtk_hbox_new(FALSE, 0);
-    gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
-
     cb = gtk_check_button_new_with_mnemonic(_("set _background color:"));
-    gtk_box_pack_start(GTK_BOX(hbox), cb, FALSE, FALSE, 0);
+    oc_table_add(table, cb, 0, 2);
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(cb), clock->bg_set);
     g_signal_connect(cb, "toggled", G_CALLBACK(oc_set_bg_toggled), clock);
 
@@ -229,36 +234,30 @@ static void oc_properties_appearance(GtkWidget *dlg, Clock *clock)
         clock->bg = def_bg;
     }
     color = gtk_color_button_new_with_color(&clock->bg);
-    gtk_box_pack_start(GTK_BOX(hbox), color, FALSE, FALSE, 0);
+    oc_table_add(table, color, 1, 2);
     g_signal_connect(G_OBJECT(color), "color-set"
             , G_CALLBACK(oc_bg_color_changed), clock);
 
     /* clock size (=vbox size): height and width */
-    hbox = gtk_hbox_new(FALSE, 0);
-    gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
-
     cb = gtk_check_button_new_with_mnemonic(_("set _height:"));
-    gtk_box_pack_start(GTK_BOX(hbox), cb, FALSE, FALSE, 0);
+    oc_table_add(table, cb, 0, 3);
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(cb), clock->height_set);
     g_signal_connect(cb, "toggled", G_CALLBACK(oc_set_height_toggled), clock);
     sb = gtk_spin_button_new_with_range(10, 200, 1);
-    gtk_box_pack_start(GTK_BOX(hbox), sb, FALSE, FALSE, 0);
+    oc_table_add(table, sb, 1, 3);
     if (!clock->height_set)
         clock->height = 32;
     gtk_spin_button_set_value(GTK_SPIN_BUTTON(sb), (gdouble)clock->height);
     g_signal_connect((gpointer) sb, "value-changed",
             G_CALLBACK(oc_set_height_changed), clock);
 
-
-    hbox = gtk_hbox_new(FALSE, 0);
-    gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
-
     cb = gtk_check_button_new_with_mnemonic(_("set _width:"));
-    gtk_box_pack_start(GTK_BOX(hbox), cb, FALSE, FALSE, 0);
+    oc_table_add(table, cb, 0, 4);
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(cb), clock->width_set);
     g_signal_connect(cb, "toggled", G_CALLBACK(oc_set_width_toggled), clock);
     sb = gtk_spin_button_new_with_range(10, 400, 1);
-    gtk_box_pack_start(GTK_BOX(hbox), sb, FALSE, FALSE, 0);
+    oc_table_add(table, sb, 1, 4);
+
     if (!clock->width_set)
         clock->width = 70;
     gtk_spin_button_set_value(GTK_SPIN_BUTTON(sb), (gdouble)clock->width);
@@ -268,52 +267,48 @@ static void oc_properties_appearance(GtkWidget *dlg, Clock *clock)
 
 static void oc_properties_options(GtkWidget *dlg, Clock *clock)
 {
-    GtkWidget *frame, *bin, *vbox, *hbox, *cb, *label, *entry, *font, *button
-            , *image;
+    GtkWidget *frame, *bin, *hbox, *cb, *label, *entry, *font, *button, *image;
     GtkStyle *def_style;
     gchar *def_font;
+    GtkWidget *table;
 
     frame = xfce_create_framebox(_("Clock Options"), &bin);
     gtk_container_set_border_width(GTK_CONTAINER(frame), 6);
     gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), frame, FALSE, FALSE, 0);
 
-    vbox = gtk_vbox_new(FALSE, 8);
-    gtk_container_add(GTK_CONTAINER(bin), vbox);
+    table = gtk_table_new(4, 3, FALSE);
+    gtk_container_set_border_width(GTK_CONTAINER(table), 10);
+    gtk_table_set_row_spacings(GTK_TABLE(table), 6);
+    gtk_table_set_col_spacings(GTK_TABLE(table), 6);
+    gtk_container_add(GTK_CONTAINER(bin), table);
 
     /* timezone */
-    hbox = gtk_hbox_new(FALSE, 0);
-    gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
-
     label = gtk_label_new(_("set timezone to:"));
-    gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 0);
+    oc_table_add(table, label, 0, 0);
 
     clock->tz_entry = gtk_entry_new();
     gtk_entry_set_text(GTK_ENTRY(clock->tz_entry), clock->timezone->str);
-    gtk_box_pack_start(GTK_BOX(hbox), clock->tz_entry, FALSE, FALSE, 5);
+    oc_table_add(table, clock->tz_entry, 1, 0);
     g_signal_connect(clock->tz_entry, "key-release-event"
             , G_CALLBACK(oc_timezone_changed), clock);
     gtk_tooltips_set_tip(clock->tips, GTK_WIDGET(clock->tz_entry),
             _("Set any valid timezone (=TZ) value or pick one from the list.")
             , NULL);
 
-
     button = gtk_button_new_from_stock(GTK_STOCK_OPEN);
-    gtk_box_pack_start(GTK_BOX(hbox), button, FALSE, FALSE, 0);
+    oc_table_add(table, button, 2, 0);
     g_signal_connect(G_OBJECT(button), "clicked"
             , G_CALLBACK(oc_timezone_selected), clock);
 
     /* line 1 */
-    hbox = gtk_hbox_new(FALSE, 0);
-    gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
-
     cb = gtk_check_button_new_with_mnemonic(_("show line _1:"));
-    gtk_box_pack_start(GTK_BOX(hbox), cb, FALSE, FALSE, 0);
+    oc_table_add(table, cb, 0, 1);
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(cb), clock->line[0].show);
     g_signal_connect(cb, "toggled", G_CALLBACK(oc_show1), clock);
 
     entry = gtk_entry_new();
     gtk_entry_set_text(GTK_ENTRY(entry), clock->line[0].data->str); 
-    gtk_box_pack_start(GTK_BOX(hbox), entry, FALSE, FALSE, 5);
+    oc_table_add(table, entry, 1, 1);
     g_signal_connect(entry, "key-release-event", G_CALLBACK(oc_line_changed)
             , clock->line[0].data);
     gtk_tooltips_set_tip(clock->tips, GTK_WIDGET(entry),
@@ -328,22 +323,19 @@ static void oc_properties_options(GtkWidget *dlg, Clock *clock)
     else {
         font = gtk_font_button_new_with_font(def_font);
     }
-    gtk_box_pack_start(GTK_BOX(hbox), font, FALSE, FALSE, 0);
+    oc_table_add(table, font, 2, 1);
     g_signal_connect(G_OBJECT(font), "font-set"
             , G_CALLBACK(oc_line_font_changed1), clock);
 
     /* line 2 */
-    hbox = gtk_hbox_new(FALSE, 0);
-    gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
-
     cb = gtk_check_button_new_with_mnemonic(_("show line _2:"));
-    gtk_box_pack_start(GTK_BOX(hbox), cb, FALSE, FALSE, 0);
+    oc_table_add(table, cb, 0, 2);
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(cb), clock->line[1].show);
     g_signal_connect(cb, "toggled", G_CALLBACK(oc_show2), clock);
 
     entry = gtk_entry_new();
     gtk_entry_set_text(GTK_ENTRY(entry), clock->line[1].data->str); 
-    gtk_box_pack_start(GTK_BOX(hbox), entry, FALSE, FALSE, 5);
+    oc_table_add(table, entry, 1, 2);
     g_signal_connect(entry, "key-release-event", G_CALLBACK(oc_line_changed)
             , clock->line[1].data);
     
@@ -353,22 +345,19 @@ static void oc_properties_options(GtkWidget *dlg, Clock *clock)
     else {
         font = gtk_font_button_new_with_font(def_font);
     }
-    gtk_box_pack_start(GTK_BOX(hbox), font, FALSE, FALSE, 0);
+    oc_table_add(table, font, 2, 2);
     g_signal_connect(G_OBJECT(font), "font-set"
             , G_CALLBACK(oc_line_font_changed2), clock);
     
     /* line 3 */
-    hbox = gtk_hbox_new(FALSE, 0);
-    gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
-
     cb = gtk_check_button_new_with_mnemonic(_("show line _3:"));
-    gtk_box_pack_start(GTK_BOX(hbox), cb, FALSE, FALSE, 0);
+    oc_table_add(table, cb, 0, 3);
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(cb), clock->line[2].show);
     g_signal_connect(cb, "toggled", G_CALLBACK(oc_show3), clock);
     
     entry = gtk_entry_new();
     gtk_entry_set_text(GTK_ENTRY(entry), clock->line[2].data->str); 
-    gtk_box_pack_start(GTK_BOX(hbox), entry, FALSE, FALSE, 5);
+    oc_table_add(table, entry, 1, 3);
     g_signal_connect(entry, "key-release-event", G_CALLBACK(oc_line_changed)
             , clock->line[2].data);
     
@@ -378,13 +367,13 @@ static void oc_properties_options(GtkWidget *dlg, Clock *clock)
     else {
         font = gtk_font_button_new_with_font(def_font);
     }
-    gtk_box_pack_start(GTK_BOX(hbox), font, FALSE, FALSE, 0);
+    oc_table_add(table, font, 2, 3);
     g_signal_connect(G_OBJECT(font), "font-set"
             , G_CALLBACK(oc_line_font_changed3), clock);
 
     /* hints */
     hbox = gtk_hbox_new(FALSE, 0);
-    gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 6);
+    gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), hbox, FALSE, FALSE, 6);
 
     image = gtk_image_new_from_stock(GTK_STOCK_DIALOG_INFO, GTK_ICON_SIZE_DND);
     gtk_misc_set_alignment(GTK_MISC(image), 0.5f, 0.0f);

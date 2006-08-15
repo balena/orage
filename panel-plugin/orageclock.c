@@ -449,7 +449,6 @@ void oc_bg_set(Clock *clock)
 
 void oc_timezone_set(Clock *clock)
 {
-
     if ((clock->timezone->str != NULL) && (clock->timezone->len > 0)) {
         /* user has set timezone, so let's set TZ */
         g_setenv("TZ", clock->timezone->str, 1);
