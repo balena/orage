@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.3.90.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-06-04 19:18+0900\n"
+"POT-Creation-Date: 2006-08-16 17:58+0300\n"
 "PO-Revision-Date: 2006-04-26 22:40+0400\n"
 "Last-Translator: Phan Vĩnh Thịnh <teppi@vnlinux.org>\n"
 "Language-Team: Vietnamese <vi_VN@googlegroups.com>\n"
@@ -18,57 +18,73 @@ msgstr ""
 "X-Generator: KBabel 1.10\n"
 "Plural-Forms: nplurals=1; nplural=0\n"
 
-#: ../panel-plugin/oc_config.c:90
+#: ../panel-plugin/oc_config.c:114
 #, fuzzy
 msgid "Select timezone"
 msgstr "Chọn múi giờ"
 
-#: ../panel-plugin/oc_config.c:162
+#: ../panel-plugin/oc_config.c:193
 msgid "Appearance"
 msgstr ""
 
-#: ../panel-plugin/oc_config.c:169
+#. show frame
+#: ../panel-plugin/oc_config.c:204
 msgid "Show _frame"
 msgstr ""
 
-#: ../panel-plugin/oc_config.c:182
+#. foreground color
+#: ../panel-plugin/oc_config.c:214
 msgid "set foreground _color:"
 msgstr ""
 
-#: ../panel-plugin/oc_config.c:199
+#. background color
+#: ../panel-plugin/oc_config.c:228
 msgid "set _background color:"
 msgstr ""
 
-#: ../panel-plugin/oc_config.c:220
+#. clock size (=vbox size): height and width
+#: ../panel-plugin/oc_config.c:242
+msgid "set _height:"
+msgstr ""
+
+#: ../panel-plugin/oc_config.c:254
+msgid "set _width:"
+msgstr ""
+
+#: ../panel-plugin/oc_config.c:275
 msgid "Clock Options"
 msgstr ""
 
-#: ../panel-plugin/oc_config.c:231
+#. timezone
+#: ../panel-plugin/oc_config.c:286
 #, fuzzy
 msgid "set timezone to:"
 msgstr "Chọn múi giờ"
 
-#: ../panel-plugin/oc_config.c:240
+#: ../panel-plugin/oc_config.c:295
 msgid "Set any valid timezone (=TZ) value or pick one from the list."
 msgstr ""
 
-#: ../panel-plugin/oc_config.c:253
+#. line 1
+#: ../panel-plugin/oc_config.c:304
 msgid "show line _1:"
 msgstr ""
 
-#: ../panel-plugin/oc_config.c:264
+#: ../panel-plugin/oc_config.c:315
 msgid "Enter any valid strftime function parameter."
 msgstr ""
 
-#: ../panel-plugin/oc_config.c:283
+#. line 2
+#: ../panel-plugin/oc_config.c:331
 msgid "show line _2:"
 msgstr ""
 
-#: ../panel-plugin/oc_config.c:308
+#. line 3
+#: ../panel-plugin/oc_config.c:353
 msgid "show line _3:"
 msgstr ""
 
-#: ../panel-plugin/oc_config.c:337
+#: ../panel-plugin/oc_config.c:382
 msgid ""
 "This program uses strftime function to get time.\n"
 "Use any valid code to get time in the format you prefer.\n"
@@ -80,12 +96,12 @@ msgid ""
 "\t%X = local time\t\t\t%x = local date"
 msgstr ""
 
-#: ../panel-plugin/oc_config.c:356
+#: ../panel-plugin/oc_config.c:401
 #, fuzzy
 msgid "Properties"
 msgstr "Châu Âu/Pa-ri"
 
-#: ../panel-plugin/oc_config.c:371
+#: ../panel-plugin/oc_config.c:416
 #, fuzzy
 msgid "Orage clock"
 msgstr "Orage"
@@ -106,7 +122,7 @@ msgstr ""
 #. to avoid timing problems when updating entry
 #. Create file chooser
 #: ../plugin/xfcalendar_plugin.c:263 ../plugin/xfcalendar_plugin.c:321
-#: ../src/appointment.c:301 ../src/mainbox.c:113
+#: ../src/appointment.c:334 ../src/mainbox.c:113
 msgid "Select a file..."
 msgstr "Chọn một tập tin..."
 
@@ -114,13 +130,13 @@ msgstr "Chọn một tập tin..."
 msgid "Calendar files"
 msgstr "Tập tin lịch"
 
-#: ../plugin/xfcalendar_plugin.c:276 ../src/appointment.c:316
+#: ../plugin/xfcalendar_plugin.c:276 ../src/appointment.c:349
 #: ../src/mainbox.c:126
 msgid "All Files"
 msgstr "Tất cả"
 
 #: ../plugin/xfcalendar_plugin.c:419 ../plugin/xfcalendar_plugin.c:424
-#: ../src/appointment.c:819 ../src/appointment.c:824 ../src/appointment.c:1309
+#: ../src/appointment.c:857 ../src/appointment.c:862 ../src/appointment.c:1350
 msgid "Location"
 msgstr "Vị trí"
 
@@ -129,111 +145,111 @@ msgstr "Vị trí"
 msgid "Pick local timezone"
 msgstr "Chọn múi giờ"
 
-#: ../plugin/xfcalendar_plugin.c:433 ../plugin/xfcalendar_plugin.c:461
-#: ../src/appointment.c:833 ../src/appointment.c:861
+#: ../plugin/xfcalendar_plugin.c:433 ../plugin/xfcalendar_plugin.c:463
+#: ../src/appointment.c:871 ../src/appointment.c:901
 msgid "UTC"
 msgstr "UTC"
 
-#: ../plugin/xfcalendar_plugin.c:434 ../plugin/xfcalendar_plugin.c:465
-#: ../plugin/xfcalendar_plugin.c:744 ../src/appointment.c:834
-#: ../src/appointment.c:865 ../src/appointment.c:901 ../src/appointment.c:909
+#: ../plugin/xfcalendar_plugin.c:434 ../plugin/xfcalendar_plugin.c:467
+#: ../plugin/xfcalendar_plugin.c:749 ../src/appointment.c:872
+#: ../src/appointment.c:905 ../src/appointment.c:941 ../src/appointment.c:949
 msgid "floating"
 msgstr "không cố định"
 
-#: ../plugin/xfcalendar_plugin.c:525
+#: ../plugin/xfcalendar_plugin.c:528
 msgid "Orage Preferences"
 msgstr "Tuỳ thích"
 
-#: ../plugin/xfcalendar_plugin.c:543
+#: ../plugin/xfcalendar_plugin.c:546
 msgid "Display"
 msgstr "Hiển thị"
 
-#: ../plugin/xfcalendar_plugin.c:550
+#: ../plugin/xfcalendar_plugin.c:553
 msgid "Calendar borders"
 msgstr "Đường viền"
 
-#: ../plugin/xfcalendar_plugin.c:555
+#: ../plugin/xfcalendar_plugin.c:558
 msgid "Displayed"
 msgstr "Hiện"
 
-#: ../plugin/xfcalendar_plugin.c:561
+#: ../plugin/xfcalendar_plugin.c:564
 msgid "Hidden"
 msgstr "Ẩn"
 
-#: ../plugin/xfcalendar_plugin.c:570
+#: ../plugin/xfcalendar_plugin.c:573
 msgid "Calendar window"
 msgstr "Cửa sổ lịch"
 
-#: ../plugin/xfcalendar_plugin.c:575
+#: ../plugin/xfcalendar_plugin.c:578
 msgid "Show in taskbar"
 msgstr "Hiện thị trên thanh công cụ"
 
-#: ../plugin/xfcalendar_plugin.c:579
+#: ../plugin/xfcalendar_plugin.c:582
 msgid "Show in pager"
 msgstr "Hiện trong chuyển trang"
 
-#: ../plugin/xfcalendar_plugin.c:583
+#: ../plugin/xfcalendar_plugin.c:586
 msgid "Show in systray"
 msgstr "Hiện thị trong khay"
 
-#: ../plugin/xfcalendar_plugin.c:590
+#: ../plugin/xfcalendar_plugin.c:593
 msgid "Calendar start"
 msgstr "Khởi động lịch"
 
-#: ../plugin/xfcalendar_plugin.c:595
+#: ../plugin/xfcalendar_plugin.c:598
 msgid "Show"
 msgstr "Hiện"
 
-#: ../plugin/xfcalendar_plugin.c:601
+#: ../plugin/xfcalendar_plugin.c:604
 msgid "Hide"
 msgstr "Ẩn"
 
-#: ../plugin/xfcalendar_plugin.c:607
+#: ../plugin/xfcalendar_plugin.c:610
 msgid "Minimized"
 msgstr "Thu nhỏ"
 
-#: ../plugin/xfcalendar_plugin.c:617
+#: ../plugin/xfcalendar_plugin.c:620
 msgid "Archives"
 msgstr "Lưu trữ"
 
-#: ../plugin/xfcalendar_plugin.c:628
+#: ../plugin/xfcalendar_plugin.c:631
 msgid "Archive file"
 msgstr "Tập tin lưu"
 
-#: ../plugin/xfcalendar_plugin.c:650
+#: ../plugin/xfcalendar_plugin.c:653
 msgid "Archive threshold"
 msgstr "Giới hạn"
 
-#: ../plugin/xfcalendar_plugin.c:657
+#: ../plugin/xfcalendar_plugin.c:660
 msgid "3 months"
 msgstr "3 tháng"
 
-#: ../plugin/xfcalendar_plugin.c:659
+#: ../plugin/xfcalendar_plugin.c:662
 msgid "6 months"
 msgstr "6 tháng"
 
-#: ../plugin/xfcalendar_plugin.c:661
+#: ../plugin/xfcalendar_plugin.c:664
 msgid "1 year"
 msgstr "1 năm"
 
-#: ../plugin/xfcalendar_plugin.c:663
+#: ../plugin/xfcalendar_plugin.c:666
 msgid "never"
 msgstr "không bao giờ"
 
-#: ../plugin/xfcalendar_plugin.c:691 ../src/appointment.c:1456
+#: ../plugin/xfcalendar_plugin.c:694 ../src/appointment.c:1500
 msgid "Sound"
 msgstr "Âm thanh"
 
-#: ../plugin/xfcalendar_plugin.c:702
+#: ../plugin/xfcalendar_plugin.c:705
 msgid "Application"
 msgstr "Ứng dụng"
 
-#: ../plugin/xfcalendar_plugin.c:722 ../plugin/xfcalendar_plugin.c:733
+#: ../plugin/xfcalendar_plugin.c:725 ../plugin/xfcalendar_plugin.c:735
 msgid "Timezone"
 msgstr "Múi giờ"
 
 #. the button label in the xfce-mcs-manager dialog
-#: ../plugin/xfcalendar_plugin.c:793
+#: ../plugin/xfcalendar_plugin.c:800
 msgid "Button Label|Orage"
 msgstr "Orage"
 
@@ -254,183 +270,183 @@ msgstr "Người đóng góp"
 msgid "%m/%d/%Y"
 msgstr "%m/%d/%Y"
 
-#: ../src/appointment.c:231 ../src/mainbox.c:355 ../xfcalendar.desktop.in.h:3
+#: ../src/appointment.c:256 ../src/mainbox.c:380 ../xfcalendar.desktop.in.h:3
 msgid "Orage"
 msgstr "Orage"
 
-#: ../src/appointment.c:309
+#: ../src/appointment.c:342
 msgid "Sound Files"
 msgstr "Tập tin Âm thanh"
 
-#: ../src/appointment.c:357 ../src/appointment.c:392 ../src/appointment.c:618
+#: ../src/appointment.c:390 ../src/appointment.c:425 ../src/appointment.c:656
 #: ../src/event-list.c:587
 msgid "Warning"
 msgstr "Cảnh báo"
 
-#: ../src/appointment.c:359
+#: ../src/appointment.c:392
 msgid "The appointment information has been modified."
 msgstr "Đã thay đổi thông tin về cuộc hẹn."
 
-#: ../src/appointment.c:360 ../src/appointment.c:621 ../src/event-list.c:590
+#: ../src/appointment.c:393 ../src/appointment.c:659 ../src/event-list.c:590
 msgid "Do you want to continue?"
 msgstr "Tiếp tục?"
 
-#: ../src/appointment.c:394
+#: ../src/appointment.c:427
 msgid "The end of this appointment is earlier than the beginning."
 msgstr "Thời gian kết thúc cuộc hẹn sớm hơn thời gian bắt đầu."
 
-#: ../src/appointment.c:620
+#: ../src/appointment.c:658
 msgid "This appointment will be permanently removed."
 msgstr "Sẽ xóa cuộc hẹn này."
 
-#: ../src/appointment.c:721
+#: ../src/appointment.c:759
 msgid "Pick the date"
 msgstr "Chọn ngày"
 
-#: ../src/appointment.c:723 ../src/event-list.c:728 ../src/tray_icon.c:304
+#: ../src/appointment.c:761 ../src/event-list.c:728 ../src/tray_icon.c:305
 msgid "Today"
 msgstr "Hôm nay"
 
 #. show it
-#: ../src/appointment.c:830
+#: ../src/appointment.c:868
 msgid "Pick timezone"
 msgstr "Chọn múi giờ"
 
-#: ../src/appointment.c:1093
+#: ../src/appointment.c:1133
 msgid "New appointment - Orage"
 msgstr "Cuộc hẹn mới - Orage"
 
 #. File menu stuff
 #. File menu
-#: ../src/appointment.c:1200 ../src/event-list.c:654 ../src/mainbox.c:377
+#: ../src/appointment.c:1241 ../src/event-list.c:654 ../src/mainbox.c:403
 msgid "_File"
 msgstr "_Tập tin"
 
-#: ../src/appointment.c:1207
+#: ../src/appointment.c:1248
 msgid "Sav_e and close"
 msgstr "Ghi _và đóng"
 
-#: ../src/appointment.c:1220 ../src/event-list.c:663
+#: ../src/appointment.c:1261 ../src/event-list.c:663
 msgid "D_uplicate"
 msgstr "_Sao chép"
 
-#: ../src/appointment.c:1261
+#: ../src/appointment.c:1302
 msgid "Save"
 msgstr "Ghi"
 
-#: ../src/appointment.c:1264 ../src/appointment.c:1266
+#: ../src/appointment.c:1305 ../src/appointment.c:1307
 msgid "Save and close"
 msgstr "Ghi và đóng"
 
-#: ../src/appointment.c:1273
+#: ../src/appointment.c:1314
 msgid "Revert"
 msgstr "Quay lại"
 
-#: ../src/appointment.c:1276 ../src/appointment.c:1278 ../src/event-list.c:740
+#: ../src/appointment.c:1317 ../src/appointment.c:1319 ../src/event-list.c:740
 msgid "Duplicate"
 msgstr "Sao"
 
-#: ../src/appointment.c:1284
+#: ../src/appointment.c:1325
 msgid "Delete"
 msgstr "Xóa"
 
-#: ../src/appointment.c:1292
+#: ../src/appointment.c:1333
 msgid "Free"
 msgstr "Rảnh"
 
-#: ../src/appointment.c:1292
+#: ../src/appointment.c:1333
 msgid "Busy"
 msgstr "Bận"
 
-#: ../src/appointment.c:1297
+#: ../src/appointment.c:1338
 msgid "General"
 msgstr "Chung"
 
-#: ../src/appointment.c:1302
+#: ../src/appointment.c:1343
 msgid "Title "
 msgstr "Tên"
 
-#: ../src/appointment.c:1317
+#: ../src/appointment.c:1358
 msgid "All day event"
 msgstr "Tất cả sự kiện"
 
-#: ../src/appointment.c:1323
+#: ../src/appointment.c:1364
 msgid "Start"
 msgstr "Bắt đầu"
 
-#: ../src/appointment.c:1338
+#: ../src/appointment.c:1379
 msgid "End"
 msgstr "Kết thúc"
 
-#: ../src/appointment.c:1355
+#: ../src/appointment.c:1396
 msgid "Duration"
 msgstr "Khoảng thời gian"
 
-#: ../src/appointment.c:1362 ../src/appointment.c:1433
+#: ../src/appointment.c:1403 ../src/appointment.c:1477
 msgid "days"
 msgstr "ngày"
 
-#: ../src/appointment.c:1370 ../src/appointment.c:1441
+#: ../src/appointment.c:1412 ../src/appointment.c:1485
 msgid "hours"
 msgstr "giờ"
 
-#: ../src/appointment.c:1378 ../src/appointment.c:1449
+#: ../src/appointment.c:1421 ../src/appointment.c:1493
 msgid "mins"
 msgstr "phút"
 
-#: ../src/appointment.c:1385
+#: ../src/appointment.c:1429
 msgid "Availability"
 msgstr "Khả năng"
 
-#: ../src/appointment.c:1394
+#: ../src/appointment.c:1438
 msgid "Note"
 msgstr "Ghi chú"
 
-#: ../src/appointment.c:1422 ../src/appointment.c:1427
+#: ../src/appointment.c:1466 ../src/appointment.c:1471
 msgid "Alarm"
 msgstr "Báo thức"
 
-#: ../src/appointment.c:1471
+#: ../src/appointment.c:1515
 msgid "Repeat alarm sound"
 msgstr "Lặp lại âm thanh báo thức"
 
-#: ../src/appointment.c:1483
+#: ../src/appointment.c:1527
 msgid "None"
 msgstr "Không"
 
-#: ../src/appointment.c:1483
+#: ../src/appointment.c:1527
 msgid "Daily"
 msgstr "Hàng ngày"
 
-#: ../src/appointment.c:1483
+#: ../src/appointment.c:1527
 msgid "Weekly"
 msgstr "Hàng tuần"
 
-#: ../src/appointment.c:1483
+#: ../src/appointment.c:1527
 msgid "Monthly"
 msgstr "Hàng tháng"
 
-#: ../src/appointment.c:1483
+#: ../src/appointment.c:1527
 msgid "Yearly"
 msgstr "Hàng năm"
 
-#: ../src/appointment.c:1488 ../src/appointment.c:1493
+#: ../src/appointment.c:1532 ../src/appointment.c:1537
 msgid "Recurrence"
 msgstr "Lặp lại"
 
-#: ../src/appointment.c:1503
+#: ../src/appointment.c:1548
 msgid "Repeat forever"
 msgstr "Lặp lại mãi"
 
-#: ../src/appointment.c:1512
+#: ../src/appointment.c:1556
 msgid "Repeat "
 msgstr "Lặp lại"
 
-#: ../src/appointment.c:1519
+#: ../src/appointment.c:1564
 msgid "times"
 msgstr "thời gian"
 
-#: ../src/appointment.c:1530
+#: ../src/appointment.c:1574
 msgid "Repeat until "
 msgstr "Lặp lại cho đến "
 
@@ -452,7 +468,7 @@ msgstr ""
 "liên hệ với ngày này."
 
 #. View menu
-#: ../src/event-list.c:685 ../src/mainbox.c:411
+#: ../src/event-list.c:685 ../src/mainbox.c:437
 msgid "_View"
 msgstr "_Xem"
 
@@ -2057,33 +2073,33 @@ msgstr "Báo thức mặc định của Orage"
 msgid "This should not happen"
 msgstr "Điều này không nên xảy ra"
 
-#: ../src/main.c:500
+#: ../src/main.c:502
 msgid "Cannot create MCS client channel"
 msgstr "Không thể tạo kênh khách MCS"
 
-#: ../src/mainbox.c:386
+#: ../src/mainbox.c:412
 msgid "Open archive file..."
 msgstr "Mở tập tin lưu trữ..."
 
-#: ../src/mainbox.c:389
+#: ../src/mainbox.c:415
 msgid "Close archive file"
 msgstr "Đóng tập tin lưu trữ"
 
 #. Edit menu
-#: ../src/mainbox.c:404
+#: ../src/mainbox.c:430
 msgid "_Edit"
 msgstr "Th_ay đổi"
 
-#: ../src/mainbox.c:414
+#: ../src/mainbox.c:440
 msgid "View selected _date"
 msgstr "Xem _ngày đã chọn"
 
-#: ../src/mainbox.c:420
+#: ../src/mainbox.c:446
 msgid "Select _Today"
 msgstr "Chọn hôm na_y"
 
 #. Help menu
-#: ../src/mainbox.c:424
+#: ../src/mainbox.c:450
 msgid "_Help"
 msgstr "_Giúp đỡ"
 
@@ -2091,11 +2107,11 @@ msgstr "_Giúp đỡ"
 msgid "Reminder "
 msgstr "Nhắc "
 
-#: ../src/tray_icon.c:314
+#: ../src/tray_icon.c:316
 msgid "New appointment"
 msgstr "Cuộc hẹn mới"
 
-#: ../src/tray_icon.c:332
+#: ../src/tray_icon.c:336
 msgid "About Orage"
 msgstr "Về Orage"
 

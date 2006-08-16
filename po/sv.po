@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.3.2.9svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-06-04 19:18+0900\n"
+"POT-Creation-Date: 2006-08-16 17:58+0300\n"
 "PO-Revision-Date: 2005-09-14 01:22+0900\n"
 "Last-Translator: Alexander Toresson <alexander.toresson@gmail.com>\n"
 "Language-Team: Swedish <sv@li.org>\n"
@@ -16,55 +16,71 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../panel-plugin/oc_config.c:90
+#: ../panel-plugin/oc_config.c:114
 msgid "Select timezone"
 msgstr "Välj tidszon"
 
-#: ../panel-plugin/oc_config.c:162
+#: ../panel-plugin/oc_config.c:193
 msgid "Appearance"
 msgstr "Utseende"
 
-#: ../panel-plugin/oc_config.c:169
+#. show frame
+#: ../panel-plugin/oc_config.c:204
 msgid "Show _frame"
 msgstr "Visa _ram"
 
-#: ../panel-plugin/oc_config.c:182
+#. foreground color
+#: ../panel-plugin/oc_config.c:214
 msgid "set foreground _color:"
 msgstr "sätt _förgrundsfärg:"
 
-#: ../panel-plugin/oc_config.c:199
+#. background color
+#: ../panel-plugin/oc_config.c:228
 msgid "set _background color:"
 msgstr "sätt _bakgrundsfärg:"
 
-#: ../panel-plugin/oc_config.c:220
+#. clock size (=vbox size): height and width
+#: ../panel-plugin/oc_config.c:242
+msgid "set _height:"
+msgstr ""
+
+#: ../panel-plugin/oc_config.c:254
+msgid "set _width:"
+msgstr ""
+
+#: ../panel-plugin/oc_config.c:275
 msgid "Clock Options"
 msgstr "Klockinställningar"
 
-#: ../panel-plugin/oc_config.c:231
+#. timezone
+#: ../panel-plugin/oc_config.c:286
 msgid "set timezone to:"
 msgstr "Välj tidszon"
 
-#: ../panel-plugin/oc_config.c:240
+#: ../panel-plugin/oc_config.c:295
 msgid "Set any valid timezone (=TZ) value or pick one from the list."
 msgstr "Sätt en giltig tidszon (=TZ) eller välj en från listan."
 
-#: ../panel-plugin/oc_config.c:253
+#. line 1
+#: ../panel-plugin/oc_config.c:304
 msgid "show line _1:"
 msgstr ""
 
-#: ../panel-plugin/oc_config.c:264
+#: ../panel-plugin/oc_config.c:315
 msgid "Enter any valid strftime function parameter."
 msgstr ""
 
-#: ../panel-plugin/oc_config.c:283
+#. line 2
+#: ../panel-plugin/oc_config.c:331
 msgid "show line _2:"
 msgstr ""
 
-#: ../panel-plugin/oc_config.c:308
+#. line 3
+#: ../panel-plugin/oc_config.c:353
 msgid "show line _3:"
 msgstr ""
 
-#: ../panel-plugin/oc_config.c:337
+#: ../panel-plugin/oc_config.c:382
 msgid ""
 "This program uses strftime function to get time.\n"
 "Use any valid code to get time in the format you prefer.\n"
@@ -76,11 +92,11 @@ msgid ""
 "\t%X = local time\t\t\t%x = local date"
 msgstr ""
 
-#: ../panel-plugin/oc_config.c:356
+#: ../panel-plugin/oc_config.c:401
 msgid "Properties"
 msgstr ""
 
-#: ../panel-plugin/oc_config.c:371
+#: ../panel-plugin/oc_config.c:416
 msgid "Orage clock"
 msgstr ""
 
@@ -100,7 +116,7 @@ msgstr ""
 #. to avoid timing problems when updating entry
 #. Create file chooser
 #: ../plugin/xfcalendar_plugin.c:263 ../plugin/xfcalendar_plugin.c:321
-#: ../src/appointment.c:301 ../src/mainbox.c:113
+#: ../src/appointment.c:334 ../src/mainbox.c:113
 msgid "Select a file..."
 msgstr "Välj en fil..."
 
@@ -108,13 +124,13 @@ msgstr "Välj en fil..."
 msgid "Calendar files"
 msgstr "Kalenderfiler"
 
-#: ../plugin/xfcalendar_plugin.c:276 ../src/appointment.c:316
+#: ../plugin/xfcalendar_plugin.c:276 ../src/appointment.c:349
 #: ../src/mainbox.c:126
 msgid "All Files"
 msgstr "Alla filer"
 
 #: ../plugin/xfcalendar_plugin.c:419 ../plugin/xfcalendar_plugin.c:424
-#: ../src/appointment.c:819 ../src/appointment.c:824 ../src/appointment.c:1309
+#: ../src/appointment.c:857 ../src/appointment.c:862 ../src/appointment.c:1350
 msgid "Location"
 msgstr "Plats"
 
@@ -123,111 +139,111 @@ msgstr "Plats"
 msgid "Pick local timezone"
 msgstr "Välj lokal tidszon"
 
-#: ../plugin/xfcalendar_plugin.c:433 ../plugin/xfcalendar_plugin.c:461
-#: ../src/appointment.c:833 ../src/appointment.c:861
+#: ../plugin/xfcalendar_plugin.c:433 ../plugin/xfcalendar_plugin.c:463
+#: ../src/appointment.c:871 ../src/appointment.c:901
 msgid "UTC"
 msgstr "UTC"
 
-#: ../plugin/xfcalendar_plugin.c:434 ../plugin/xfcalendar_plugin.c:465
-#: ../plugin/xfcalendar_plugin.c:744 ../src/appointment.c:834
-#: ../src/appointment.c:865 ../src/appointment.c:901 ../src/appointment.c:909
+#: ../plugin/xfcalendar_plugin.c:434 ../plugin/xfcalendar_plugin.c:467
+#: ../plugin/xfcalendar_plugin.c:749 ../src/appointment.c:872
+#: ../src/appointment.c:905 ../src/appointment.c:941 ../src/appointment.c:949
 msgid "floating"
 msgstr "varierande tidszon"
 
-#: ../plugin/xfcalendar_plugin.c:525
+#: ../plugin/xfcalendar_plugin.c:528
 msgid "Orage Preferences"
 msgstr "Inställningar för Orage"
 
-#: ../plugin/xfcalendar_plugin.c:543
+#: ../plugin/xfcalendar_plugin.c:546
 msgid "Display"
 msgstr "Vy"
 
-#: ../plugin/xfcalendar_plugin.c:550
+#: ../plugin/xfcalendar_plugin.c:553
 msgid "Calendar borders"
 msgstr "Fönsterkanter"
 
-#: ../plugin/xfcalendar_plugin.c:555
+#: ../plugin/xfcalendar_plugin.c:558
 msgid "Displayed"
 msgstr "Vsa"
 
-#: ../plugin/xfcalendar_plugin.c:561
+#: ../plugin/xfcalendar_plugin.c:564
 msgid "Hidden"
 msgstr "Göm"
 
-#: ../plugin/xfcalendar_plugin.c:570
+#: ../plugin/xfcalendar_plugin.c:573
 msgid "Calendar window"
 msgstr "Kalenderfönster"
 
-#: ../plugin/xfcalendar_plugin.c:575
+#: ../plugin/xfcalendar_plugin.c:578
 msgid "Show in taskbar"
 msgstr "Visa i aktivitetsfältet"
 
-#: ../plugin/xfcalendar_plugin.c:579
+#: ../plugin/xfcalendar_plugin.c:582
 msgid "Show in pager"
 msgstr "Visa i skrivbordsbläddraren"
 
-#: ../plugin/xfcalendar_plugin.c:583
+#: ../plugin/xfcalendar_plugin.c:586
 msgid "Show in systray"
 msgstr "Visa i notifieringsfältet"
 
-#: ../plugin/xfcalendar_plugin.c:590
+#: ../plugin/xfcalendar_plugin.c:593
 msgid "Calendar start"
 msgstr "Vid start"
 
-#: ../plugin/xfcalendar_plugin.c:595
+#: ../plugin/xfcalendar_plugin.c:598
 msgid "Show"
 msgstr "Visa"
 
-#: ../plugin/xfcalendar_plugin.c:601
+#: ../plugin/xfcalendar_plugin.c:604
 msgid "Hide"
 msgstr "Göm"
 
-#: ../plugin/xfcalendar_plugin.c:607
+#: ../plugin/xfcalendar_plugin.c:610
 msgid "Minimized"
 msgstr "Minimera"
 
-#: ../plugin/xfcalendar_plugin.c:617
+#: ../plugin/xfcalendar_plugin.c:620
 msgid "Archives"
 msgstr "Arkiv"
 
-#: ../plugin/xfcalendar_plugin.c:628
+#: ../plugin/xfcalendar_plugin.c:631
 msgid "Archive file"
 msgstr "Arkivfil"
 
-#: ../plugin/xfcalendar_plugin.c:650
+#: ../plugin/xfcalendar_plugin.c:653
 msgid "Archive threshold"
 msgstr ""
 
-#: ../plugin/xfcalendar_plugin.c:657
+#: ../plugin/xfcalendar_plugin.c:660
 msgid "3 months"
 msgstr "3 månader"
 
-#: ../plugin/xfcalendar_plugin.c:659
+#: ../plugin/xfcalendar_plugin.c:662
 msgid "6 months"
 msgstr "6 månader"
 
-#: ../plugin/xfcalendar_plugin.c:661
+#: ../plugin/xfcalendar_plugin.c:664
 msgid "1 year"
 msgstr "1 år"
 
-#: ../plugin/xfcalendar_plugin.c:663
+#: ../plugin/xfcalendar_plugin.c:666
 msgid "never"
 msgstr "aldrig"
 
-#: ../plugin/xfcalendar_plugin.c:691 ../src/appointment.c:1456
+#: ../plugin/xfcalendar_plugin.c:694 ../src/appointment.c:1500
 msgid "Sound"
 msgstr "Ljud"
 
-#: ../plugin/xfcalendar_plugin.c:702
+#: ../plugin/xfcalendar_plugin.c:705
 msgid "Application"
 msgstr "Program"
 
-#: ../plugin/xfcalendar_plugin.c:722 ../plugin/xfcalendar_plugin.c:733
+#: ../plugin/xfcalendar_plugin.c:725 ../plugin/xfcalendar_plugin.c:735
 msgid "Timezone"
 msgstr "Tidszon"
 
 #. the button label in the xfce-mcs-manager dialog
-#: ../plugin/xfcalendar_plugin.c:793
+#: ../plugin/xfcalendar_plugin.c:800
 msgid "Button Label|Orage"
 msgstr ""
 
@@ -248,183 +264,183 @@ msgstr "Medhjälpare"
 msgid "%m/%d/%Y"
 msgstr "%Y/%m/%d"
 
-#: ../src/appointment.c:231 ../src/mainbox.c:355 ../xfcalendar.desktop.in.h:3
+#: ../src/appointment.c:256 ../src/mainbox.c:380 ../xfcalendar.desktop.in.h:3
 msgid "Orage"
 msgstr ""
 
-#: ../src/appointment.c:309
+#: ../src/appointment.c:342
 msgid "Sound Files"
 msgstr "Ljudfiler"
 
-#: ../src/appointment.c:357 ../src/appointment.c:392 ../src/appointment.c:618
+#: ../src/appointment.c:390 ../src/appointment.c:425 ../src/appointment.c:656
 #: ../src/event-list.c:587
 msgid "Warning"
 msgstr "Varning"
 
-#: ../src/appointment.c:359
+#: ../src/appointment.c:392
 msgid "The appointment information has been modified."
 msgstr "Mötesinformationen har ändrats"
 
-#: ../src/appointment.c:360 ../src/appointment.c:621 ../src/event-list.c:590
+#: ../src/appointment.c:393 ../src/appointment.c:659 ../src/event-list.c:590
 msgid "Do you want to continue?"
 msgstr "Vill du fortsätta"
 
-#: ../src/appointment.c:394
+#: ../src/appointment.c:427
 msgid "The end of this appointment is earlier than the beginning."
 msgstr "Det här mötet slutar innan dte börjar."
 
-#: ../src/appointment.c:620
+#: ../src/appointment.c:658
 msgid "This appointment will be permanently removed."
 msgstr "Det här mötet kommer att tas bort permanent."
 
-#: ../src/appointment.c:721
+#: ../src/appointment.c:759
 msgid "Pick the date"
 msgstr "Välj ett datum"
 
-#: ../src/appointment.c:723 ../src/event-list.c:728 ../src/tray_icon.c:304
+#: ../src/appointment.c:761 ../src/event-list.c:728 ../src/tray_icon.c:305
 msgid "Today"
 msgstr "Idag"
 
 #. show it
-#: ../src/appointment.c:830
+#: ../src/appointment.c:868
 msgid "Pick timezone"
 msgstr "Välj tidszon"
 
-#: ../src/appointment.c:1093
+#: ../src/appointment.c:1133
 msgid "New appointment - Orage"
 msgstr "Nytt möte - Orage"
 
 #. File menu stuff
 #. File menu
-#: ../src/appointment.c:1200 ../src/event-list.c:654 ../src/mainbox.c:377
+#: ../src/appointment.c:1241 ../src/event-list.c:654 ../src/mainbox.c:403
 msgid "_File"
 msgstr "_Arkiv"
 
-#: ../src/appointment.c:1207
+#: ../src/appointment.c:1248
 msgid "Sav_e and close"
 msgstr "Spar_a och stäng"
 
-#: ../src/appointment.c:1220 ../src/event-list.c:663
+#: ../src/appointment.c:1261 ../src/event-list.c:663
 msgid "D_uplicate"
 msgstr "D_uplicera"
 
-#: ../src/appointment.c:1261
+#: ../src/appointment.c:1302
 msgid "Save"
 msgstr "Spara"
 
-#: ../src/appointment.c:1264 ../src/appointment.c:1266
+#: ../src/appointment.c:1305 ../src/appointment.c:1307
 msgid "Save and close"
 msgstr "Spara och stäng"
 
-#: ../src/appointment.c:1273
+#: ../src/appointment.c:1314
 msgid "Revert"
 msgstr "Återgå"
 
-#: ../src/appointment.c:1276 ../src/appointment.c:1278 ../src/event-list.c:740
+#: ../src/appointment.c:1317 ../src/appointment.c:1319 ../src/event-list.c:740
 msgid "Duplicate"
 msgstr "Duplicera"
 
-#: ../src/appointment.c:1284
+#: ../src/appointment.c:1325
 msgid "Delete"
 msgstr "Ta bort"
 
-#: ../src/appointment.c:1292
+#: ../src/appointment.c:1333
 msgid "Free"
 msgstr "Ledig"
 
-#: ../src/appointment.c:1292
+#: ../src/appointment.c:1333
 msgid "Busy"
 msgstr "Upptagen"
 
-#: ../src/appointment.c:1297
+#: ../src/appointment.c:1338
 msgid "General"
 msgstr "Generellt"
 
-#: ../src/appointment.c:1302
+#: ../src/appointment.c:1343
 msgid "Title "
 msgstr "Titel"
 
-#: ../src/appointment.c:1317
+#: ../src/appointment.c:1358
 msgid "All day event"
 msgstr "Heldagsaktivitet"
 
-#: ../src/appointment.c:1323
+#: ../src/appointment.c:1364
 msgid "Start"
 msgstr "Start"
 
-#: ../src/appointment.c:1338
+#: ../src/appointment.c:1379
 msgid "End"
 msgstr "Slut"
 
-#: ../src/appointment.c:1355
+#: ../src/appointment.c:1396
 msgid "Duration"
 msgstr "Längd"
 
-#: ../src/appointment.c:1362 ../src/appointment.c:1433
+#: ../src/appointment.c:1403 ../src/appointment.c:1477
 msgid "days"
 msgstr "dagar"
 
-#: ../src/appointment.c:1370 ../src/appointment.c:1441
+#: ../src/appointment.c:1412 ../src/appointment.c:1485
 msgid "hours"
 msgstr "timmar"
 
-#: ../src/appointment.c:1378 ../src/appointment.c:1449
+#: ../src/appointment.c:1421 ../src/appointment.c:1493
 msgid "mins"
 msgstr "minuter"
 
-#: ../src/appointment.c:1385
+#: ../src/appointment.c:1429
 msgid "Availability"
 msgstr "Status"
 
-#: ../src/appointment.c:1394
+#: ../src/appointment.c:1438
 msgid "Note"
 msgstr "Anteckning"
 
-#: ../src/appointment.c:1422 ../src/appointment.c:1427
+#: ../src/appointment.c:1466 ../src/appointment.c:1471
 msgid "Alarm"
 msgstr "Alarm"
 
-#: ../src/appointment.c:1471
+#: ../src/appointment.c:1515
 msgid "Repeat alarm sound"
 msgstr "Upprepa alarm"
 
-#: ../src/appointment.c:1483
+#: ../src/appointment.c:1527
 msgid "None"
 msgstr "Nej"
 
-#: ../src/appointment.c:1483
+#: ../src/appointment.c:1527
 msgid "Daily"
 msgstr "Dagligen"
 
-#: ../src/appointment.c:1483
+#: ../src/appointment.c:1527
 msgid "Weekly"
 msgstr "En gång i veckan"
 
-#: ../src/appointment.c:1483
+#: ../src/appointment.c:1527
 msgid "Monthly"
 msgstr "En gång i månaden"
 
-#: ../src/appointment.c:1483
+#: ../src/appointment.c:1527
 msgid "Yearly"
 msgstr "Årligen"
 
-#: ../src/appointment.c:1488 ../src/appointment.c:1493
+#: ../src/appointment.c:1532 ../src/appointment.c:1537
 msgid "Recurrence"
 msgstr "Återkommande"
 
-#: ../src/appointment.c:1503
+#: ../src/appointment.c:1548
 msgid "Repeat forever"
 msgstr "Upprepa för alltid"
 
-#: ../src/appointment.c:1512
+#: ../src/appointment.c:1556
 msgid "Repeat "
 msgstr "Upprepa "
 
-#: ../src/appointment.c:1519
+#: ../src/appointment.c:1564
 msgid "times"
 msgstr "gånger"
 
-#: ../src/appointment.c:1530
+#: ../src/appointment.c:1574
 msgid "Repeat until "
 msgstr "Repetera tills "
 
@@ -446,7 +462,7 @@ msgstr ""
 "som hör till det här datumet."
 
 #. View menu
-#: ../src/event-list.c:685 ../src/mainbox.c:411
+#: ../src/event-list.c:685 ../src/mainbox.c:437
 msgid "_View"
 msgstr "_Vy"
 
@@ -2043,33 +2059,33 @@ msgstr "Orage standardalarm"
 msgid "This should not happen"
 msgstr "Detta ska inte kunna hända"
 
-#: ../src/main.c:500
+#: ../src/main.c:502
 msgid "Cannot create MCS client channel"
 msgstr "Kan inte skapa MCS-klientkanal"
 
-#: ../src/mainbox.c:386
+#: ../src/mainbox.c:412
 msgid "Open archive file..."
 msgstr "Öppna arkivfil..."
 
-#: ../src/mainbox.c:389
+#: ../src/mainbox.c:415
 msgid "Close archive file"
 msgstr "Stäng arkivfil"
 
 #. Edit menu
-#: ../src/mainbox.c:404
+#: ../src/mainbox.c:430
 msgid "_Edit"
 msgstr "_Redigera"
 
-#: ../src/mainbox.c:414
+#: ../src/mainbox.c:440
 msgid "View selected _date"
 msgstr "Visa det valda _datumet"
 
-#: ../src/mainbox.c:420
+#: ../src/mainbox.c:446
 msgid "Select _Today"
 msgstr "Välj _idag"
 
 #. Help menu
-#: ../src/mainbox.c:424
+#: ../src/mainbox.c:450
 msgid "_Help"
 msgstr "_Hjälp"
 
@@ -2077,11 +2093,11 @@ msgstr "_Hjälp"
 msgid "Reminder "
 msgstr "Påminnelse"
 
-#: ../src/tray_icon.c:314
+#: ../src/tray_icon.c:316
 msgid "New appointment"
 msgstr "Nytt möte"
 
-#: ../src/tray_icon.c:332
+#: ../src/tray_icon.c:336
 msgid "About Orage"
 msgstr "Om Orage"
 

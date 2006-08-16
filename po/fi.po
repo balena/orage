@@ -8,63 +8,79 @@ msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.3.90.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-06-04 19:18+0900\n"
-"PO-Revision-Date: 2006-05-01 14:25+0300\n"
-"Last-Translator: Jari Rahkonen <jari.rahkonen@pp2.inet.fi>\n"
+"POT-Creation-Date: 2006-08-16 17:58+0300\n"
+"PO-Revision-Date: 2006-08-16 18:02+0300\n"
+"Last-Translator: Juha Kautto <kautto.juha@kolumbus.fi>\n"
 "Language-Team: Finnish <translation-team-fi@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../panel-plugin/oc_config.c:90
+#: ../panel-plugin/oc_config.c:114
 msgid "Select timezone"
 msgstr "Valitse aikavyöhyke"
 
-#: ../panel-plugin/oc_config.c:162
+#: ../panel-plugin/oc_config.c:193
 msgid "Appearance"
 msgstr "Ulkoasu"
 
-#: ../panel-plugin/oc_config.c:169
+#. show frame
+#: ../panel-plugin/oc_config.c:204
 msgid "Show _frame"
 msgstr "Näytä _kehys"
 
-#: ../panel-plugin/oc_config.c:182
+#. foreground color
+#: ../panel-plugin/oc_config.c:214
 msgid "set foreground _color:"
 msgstr "Tekstin _väri:"
 
-#: ../panel-plugin/oc_config.c:199
+#. background color
+#: ../panel-plugin/oc_config.c:228
 msgid "set _background color:"
-msgstr "Taustaväri:"
+msgstr "_Taustaväri:"
 
-#: ../panel-plugin/oc_config.c:220
+#. clock size (=vbox size): height and width
+#: ../panel-plugin/oc_config.c:242
+msgid "set _height:"
+msgstr "_korkeus"
+
+#: ../panel-plugin/oc_config.c:254
+msgid "set _width:"
+msgstr "_leveys"
+
+#: ../panel-plugin/oc_config.c:275
 msgid "Clock Options"
 msgstr "Kellon asetukset"
 
-#: ../panel-plugin/oc_config.c:231
+#. timezone
+#: ../panel-plugin/oc_config.c:286
 msgid "set timezone to:"
 msgstr "Aikavyöhyke:"
 
-#: ../panel-plugin/oc_config.c:240
+#: ../panel-plugin/oc_config.c:295
 msgid "Set any valid timezone (=TZ) value or pick one from the list."
 msgstr "Aseta kelvollinen aikavyöhyke (=TZ) tai valitse sellainen listalta."
 
-#: ../panel-plugin/oc_config.c:253
+#. line 1
+#: ../panel-plugin/oc_config.c:304
 msgid "show line _1:"
 msgstr "näytä rivi _1:"
 
-#: ../panel-plugin/oc_config.c:264
+#: ../panel-plugin/oc_config.c:315
 msgid "Enter any valid strftime function parameter."
 msgstr "Syötä kelvollinen strftime-funktion parametri."
 
-#: ../panel-plugin/oc_config.c:283
+#. line 2
+#: ../panel-plugin/oc_config.c:331
 msgid "show line _2:"
 msgstr "näytä rivi _2:"
 
-#: ../panel-plugin/oc_config.c:308
+#. line 3
+#: ../panel-plugin/oc_config.c:353
 msgid "show line _3:"
 msgstr "näytä rivi _3:"
 
-#: ../panel-plugin/oc_config.c:337
+#: ../panel-plugin/oc_config.c:382
 msgid ""
 "This program uses strftime function to get time.\n"
 "Use any valid code to get time in the format you prefer.\n"
@@ -84,11 +100,11 @@ msgstr ""
 "\t%H = tunti \t\t\t%M = minuutti\n"
 "\t%X = paikallinen aika\t%x = paikallinen päivämäärä"
 
-#: ../panel-plugin/oc_config.c:356
+#: ../panel-plugin/oc_config.c:401
 msgid "Properties"
 msgstr "Ominaisuudet"
 
-#: ../panel-plugin/oc_config.c:371
+#: ../panel-plugin/oc_config.c:416
 msgid "Orage clock"
 msgstr "Orage-kello"
 
@@ -108,7 +124,7 @@ msgstr "%A %d %B %Y/%V"
 #. to avoid timing problems when updating entry
 #. Create file chooser
 #: ../plugin/xfcalendar_plugin.c:263 ../plugin/xfcalendar_plugin.c:321
-#: ../src/appointment.c:301 ../src/mainbox.c:113
+#: ../src/appointment.c:334 ../src/mainbox.c:113
 msgid "Select a file..."
 msgstr "Valitse tiedosto..."
 
@@ -116,13 +132,13 @@ msgstr "Valitse tiedosto..."
 msgid "Calendar files"
 msgstr "Kalenteritiedostot"
 
-#: ../plugin/xfcalendar_plugin.c:276 ../src/appointment.c:316
+#: ../plugin/xfcalendar_plugin.c:276 ../src/appointment.c:349
 #: ../src/mainbox.c:126
 msgid "All Files"
 msgstr "Kaikki tiedostot"
 
 #: ../plugin/xfcalendar_plugin.c:419 ../plugin/xfcalendar_plugin.c:424
-#: ../src/appointment.c:819 ../src/appointment.c:824 ../src/appointment.c:1309
+#: ../src/appointment.c:857 ../src/appointment.c:862 ../src/appointment.c:1350
 msgid "Location"
 msgstr "Sijainti"
 
@@ -131,111 +147,111 @@ msgstr "Sijainti"
 msgid "Pick local timezone"
 msgstr "Valitse oma aikavyöhykkeesi"
 
-#: ../plugin/xfcalendar_plugin.c:433 ../plugin/xfcalendar_plugin.c:461
-#: ../src/appointment.c:833 ../src/appointment.c:861
+#: ../plugin/xfcalendar_plugin.c:433 ../plugin/xfcalendar_plugin.c:463
+#: ../src/appointment.c:871 ../src/appointment.c:901
 msgid "UTC"
 msgstr "UTC"
 
-#: ../plugin/xfcalendar_plugin.c:434 ../plugin/xfcalendar_plugin.c:465
-#: ../plugin/xfcalendar_plugin.c:744 ../src/appointment.c:834
-#: ../src/appointment.c:865 ../src/appointment.c:901 ../src/appointment.c:909
+#: ../plugin/xfcalendar_plugin.c:434 ../plugin/xfcalendar_plugin.c:467
+#: ../plugin/xfcalendar_plugin.c:749 ../src/appointment.c:872
+#: ../src/appointment.c:905 ../src/appointment.c:941 ../src/appointment.c:949
 msgid "floating"
 msgstr "vaihtuva"
 
-#: ../plugin/xfcalendar_plugin.c:525
+#: ../plugin/xfcalendar_plugin.c:528
 msgid "Orage Preferences"
 msgstr "Oragen asetukset"
 
-#: ../plugin/xfcalendar_plugin.c:543
+#: ../plugin/xfcalendar_plugin.c:546
 msgid "Display"
 msgstr "Näkymät"
 
-#: ../plugin/xfcalendar_plugin.c:550
+#: ../plugin/xfcalendar_plugin.c:553
 msgid "Calendar borders"
 msgstr "Kalenterin kehykset"
 
-#: ../plugin/xfcalendar_plugin.c:555
+#: ../plugin/xfcalendar_plugin.c:558
 msgid "Displayed"
 msgstr "Näytä"
 
-#: ../plugin/xfcalendar_plugin.c:561
+#: ../plugin/xfcalendar_plugin.c:564
 msgid "Hidden"
 msgstr "Piilota"
 
-#: ../plugin/xfcalendar_plugin.c:570
+#: ../plugin/xfcalendar_plugin.c:573
 msgid "Calendar window"
 msgstr "Kalenteri"
 
-#: ../plugin/xfcalendar_plugin.c:575
+#: ../plugin/xfcalendar_plugin.c:578
 msgid "Show in taskbar"
 msgstr "Näytä tehtäväpalkissa"
 
-#: ../plugin/xfcalendar_plugin.c:579
+#: ../plugin/xfcalendar_plugin.c:582
 msgid "Show in pager"
 msgstr "Näytä työpöydänvaihtajassa"
 
-#: ../plugin/xfcalendar_plugin.c:583
+#: ../plugin/xfcalendar_plugin.c:586
 msgid "Show in systray"
 msgstr "Näytä järjestelmälokerossa"
 
-#: ../plugin/xfcalendar_plugin.c:590
+#: ../plugin/xfcalendar_plugin.c:593
 msgid "Calendar start"
 msgstr "Kalenterin käynnistys"
 
-#: ../plugin/xfcalendar_plugin.c:595
+#: ../plugin/xfcalendar_plugin.c:598
 msgid "Show"
 msgstr "Näytä"
 
-#: ../plugin/xfcalendar_plugin.c:601
+#: ../plugin/xfcalendar_plugin.c:604
 msgid "Hide"
 msgstr "Piilota"
 
-#: ../plugin/xfcalendar_plugin.c:607
+#: ../plugin/xfcalendar_plugin.c:610
 msgid "Minimized"
 msgstr "Pienennä"
 
-#: ../plugin/xfcalendar_plugin.c:617
+#: ../plugin/xfcalendar_plugin.c:620
 msgid "Archives"
 msgstr "Arkisto"
 
-#: ../plugin/xfcalendar_plugin.c:628
+#: ../plugin/xfcalendar_plugin.c:631
 msgid "Archive file"
 msgstr "Arkistointitiedosto"
 
-#: ../plugin/xfcalendar_plugin.c:650
+#: ../plugin/xfcalendar_plugin.c:653
 msgid "Archive threshold"
 msgstr "Arkistointiraja"
 
-#: ../plugin/xfcalendar_plugin.c:657
+#: ../plugin/xfcalendar_plugin.c:660
 msgid "3 months"
 msgstr "3 kuukautta"
 
-#: ../plugin/xfcalendar_plugin.c:659
+#: ../plugin/xfcalendar_plugin.c:662
 msgid "6 months"
 msgstr "6 kuukautta"
 
-#: ../plugin/xfcalendar_plugin.c:661
+#: ../plugin/xfcalendar_plugin.c:664
 msgid "1 year"
 msgstr "1 vuosi"
 
-#: ../plugin/xfcalendar_plugin.c:663
+#: ../plugin/xfcalendar_plugin.c:666
 msgid "never"
 msgstr "ei lainkaan"
 
-#: ../plugin/xfcalendar_plugin.c:691 ../src/appointment.c:1456
+#: ../plugin/xfcalendar_plugin.c:694 ../src/appointment.c:1500
 msgid "Sound"
 msgstr "Ääni"
 
-#: ../plugin/xfcalendar_plugin.c:702
+#: ../plugin/xfcalendar_plugin.c:705
 msgid "Application"
 msgstr "Sovellus"
 
-#: ../plugin/xfcalendar_plugin.c:722 ../plugin/xfcalendar_plugin.c:733
+#: ../plugin/xfcalendar_plugin.c:725 ../plugin/xfcalendar_plugin.c:735
 msgid "Timezone"
 msgstr "Aikavyöhyke"
 
 #. the button label in the xfce-mcs-manager dialog
-#: ../plugin/xfcalendar_plugin.c:793
+#: ../plugin/xfcalendar_plugin.c:800
 msgid "Button Label|Orage"
 msgstr "Orage"
 
@@ -256,183 +272,183 @@ msgstr "Avustava kehittäjä"
 msgid "%m/%d/%Y"
 msgstr "%d.%m.%Y"
 
-#: ../src/appointment.c:231 ../src/mainbox.c:355 ../xfcalendar.desktop.in.h:3
+#: ../src/appointment.c:256 ../src/mainbox.c:380 ../xfcalendar.desktop.in.h:3
 msgid "Orage"
 msgstr "Orage"
 
-#: ../src/appointment.c:309
+#: ../src/appointment.c:342
 msgid "Sound Files"
 msgstr "Äänitiedostot"
 
-#: ../src/appointment.c:357 ../src/appointment.c:392 ../src/appointment.c:618
+#: ../src/appointment.c:390 ../src/appointment.c:425 ../src/appointment.c:656
 #: ../src/event-list.c:587
 msgid "Warning"
 msgstr "Varoitus"
 
-#: ../src/appointment.c:359
+#: ../src/appointment.c:392
 msgid "The appointment information has been modified."
 msgstr "Tapahtumatiedot ovat muuttuneet."
 
-#: ../src/appointment.c:360 ../src/appointment.c:621 ../src/event-list.c:590
+#: ../src/appointment.c:393 ../src/appointment.c:659 ../src/event-list.c:590
 msgid "Do you want to continue?"
 msgstr "Haluatko jatkaa?"
 
-#: ../src/appointment.c:394
+#: ../src/appointment.c:427
 msgid "The end of this appointment is earlier than the beginning."
 msgstr "Tapahtuman päättymisaika on ennen alkamisaikaa."
 
-#: ../src/appointment.c:620
+#: ../src/appointment.c:658
 msgid "This appointment will be permanently removed."
 msgstr "Tapahtuma poistetaan pysyvästi."
 
-#: ../src/appointment.c:721
+#: ../src/appointment.c:759
 msgid "Pick the date"
 msgstr "Valitse päivä"
 
-#: ../src/appointment.c:723 ../src/event-list.c:728 ../src/tray_icon.c:304
+#: ../src/appointment.c:761 ../src/event-list.c:728 ../src/tray_icon.c:305
 msgid "Today"
 msgstr "Tämä päivä"
 
 #. show it
-#: ../src/appointment.c:830
+#: ../src/appointment.c:868
 msgid "Pick timezone"
 msgstr "Valitse aikavyöhyke"
 
-#: ../src/appointment.c:1093
+#: ../src/appointment.c:1133
 msgid "New appointment - Orage"
 msgstr "Uusi tapahtuma - Orage"
 
 #. File menu stuff
 #. File menu
-#: ../src/appointment.c:1200 ../src/event-list.c:654 ../src/mainbox.c:377
+#: ../src/appointment.c:1241 ../src/event-list.c:654 ../src/mainbox.c:403
 msgid "_File"
 msgstr "_Tiedosto"
 
-#: ../src/appointment.c:1207
+#: ../src/appointment.c:1248
 msgid "Sav_e and close"
 msgstr "Ta_llenna ja sulje"
 
-#: ../src/appointment.c:1220 ../src/event-list.c:663
+#: ../src/appointment.c:1261 ../src/event-list.c:663
 msgid "D_uplicate"
 msgstr "K_opioi"
 
-#: ../src/appointment.c:1261
+#: ../src/appointment.c:1302
 msgid "Save"
 msgstr "Tallenna"
 
-#: ../src/appointment.c:1264 ../src/appointment.c:1266
+#: ../src/appointment.c:1305 ../src/appointment.c:1307
 msgid "Save and close"
 msgstr "Tallenna ja sulje"
 
-#: ../src/appointment.c:1273
+#: ../src/appointment.c:1314
 msgid "Revert"
 msgstr "Palauta"
 
-#: ../src/appointment.c:1276 ../src/appointment.c:1278 ../src/event-list.c:740
+#: ../src/appointment.c:1317 ../src/appointment.c:1319 ../src/event-list.c:740
 msgid "Duplicate"
 msgstr "Kopioi"
 
-#: ../src/appointment.c:1284
+#: ../src/appointment.c:1325
 msgid "Delete"
 msgstr "Poista"
 
-#: ../src/appointment.c:1292
+#: ../src/appointment.c:1333
 msgid "Free"
 msgstr "Vapaa"
 
-#: ../src/appointment.c:1292
+#: ../src/appointment.c:1333
 msgid "Busy"
 msgstr "Varattu"
 
-#: ../src/appointment.c:1297
+#: ../src/appointment.c:1338
 msgid "General"
 msgstr "Yleiset"
 
-#: ../src/appointment.c:1302
+#: ../src/appointment.c:1343
 msgid "Title "
 msgstr "Nimi "
 
-#: ../src/appointment.c:1317
+#: ../src/appointment.c:1358
 msgid "All day event"
 msgstr "Kokopäiväinen tapahtuma"
 
-#: ../src/appointment.c:1323
+#: ../src/appointment.c:1364
 msgid "Start"
 msgstr "Alkaa"
 
-#: ../src/appointment.c:1338
+#: ../src/appointment.c:1379
 msgid "End"
 msgstr "Päättyy"
 
-#: ../src/appointment.c:1355
+#: ../src/appointment.c:1396
 msgid "Duration"
 msgstr "Kesto"
 
-#: ../src/appointment.c:1362 ../src/appointment.c:1433
+#: ../src/appointment.c:1403 ../src/appointment.c:1477
 msgid "days"
 msgstr "päivää"
 
-#: ../src/appointment.c:1370 ../src/appointment.c:1441
+#: ../src/appointment.c:1412 ../src/appointment.c:1485
 msgid "hours"
 msgstr "tuntia"
 
-#: ../src/appointment.c:1378 ../src/appointment.c:1449
+#: ../src/appointment.c:1421 ../src/appointment.c:1493
 msgid "mins"
 msgstr "minuuttia"
 
-#: ../src/appointment.c:1385
+#: ../src/appointment.c:1429
 msgid "Availability"
 msgstr "Saatavuus"
 
-#: ../src/appointment.c:1394
+#: ../src/appointment.c:1438
 msgid "Note"
 msgstr "Huomioitavaa"
 
-#: ../src/appointment.c:1422 ../src/appointment.c:1427
+#: ../src/appointment.c:1466 ../src/appointment.c:1471
 msgid "Alarm"
 msgstr "Hälytys"
 
-#: ../src/appointment.c:1471
+#: ../src/appointment.c:1515
 msgid "Repeat alarm sound"
 msgstr "Toista hälytysääntä"
 
-#: ../src/appointment.c:1483
+#: ../src/appointment.c:1527
 msgid "None"
 msgstr "Ei lainkaan"
 
-#: ../src/appointment.c:1483
+#: ../src/appointment.c:1527
 msgid "Daily"
 msgstr "Päivittäin"
 
-#: ../src/appointment.c:1483
+#: ../src/appointment.c:1527
 msgid "Weekly"
 msgstr "Viikoittain"
 
-#: ../src/appointment.c:1483
+#: ../src/appointment.c:1527
 msgid "Monthly"
 msgstr "Kuukausittain"
 
-#: ../src/appointment.c:1483
+#: ../src/appointment.c:1527
 msgid "Yearly"
 msgstr "Vuosittain"
 
-#: ../src/appointment.c:1488 ../src/appointment.c:1493
+#: ../src/appointment.c:1532 ../src/appointment.c:1537
 msgid "Recurrence"
 msgstr "Toisto"
 
-#: ../src/appointment.c:1503
+#: ../src/appointment.c:1548
 msgid "Repeat forever"
 msgstr "Toista rajattomasti"
 
-#: ../src/appointment.c:1512
+#: ../src/appointment.c:1556
 msgid "Repeat "
 msgstr "Toista "
 
-#: ../src/appointment.c:1519
+#: ../src/appointment.c:1564
 msgid "times"
 msgstr "kertaa"
 
-#: ../src/appointment.c:1530
+#: ../src/appointment.c:1574
 msgid "Repeat until "
 msgstr "Toisto päättyy "
 
@@ -454,7 +470,7 @@ msgstr ""
 "tältä päivämäärältä."
 
 #. View menu
-#: ../src/event-list.c:685 ../src/mainbox.c:411
+#: ../src/event-list.c:685 ../src/mainbox.c:437
 msgid "_View"
 msgstr "_Näytä"
 
@@ -2059,33 +2075,33 @@ msgstr "Oragen oletushälytys"
 msgid "This should not happen"
 msgstr "Näin ei pitäisi tapahtua"
 
-#: ../src/main.c:500
+#: ../src/main.c:502
 msgid "Cannot create MCS client channel"
 msgstr "MCS-kanavan luonti epäonnistui"
 
-#: ../src/mainbox.c:386
+#: ../src/mainbox.c:412
 msgid "Open archive file..."
 msgstr "Valitse tiedosto..."
 
-#: ../src/mainbox.c:389
+#: ../src/mainbox.c:415
 msgid "Close archive file"
 msgstr "Sulje arkistointitiedosto"
 
 #. Edit menu
-#: ../src/mainbox.c:404
+#: ../src/mainbox.c:430
 msgid "_Edit"
 msgstr "_Muokkaa"
 
-#: ../src/mainbox.c:414
+#: ../src/mainbox.c:440
 msgid "View selected _date"
 msgstr "Näytä valittu _päivämäärä"
 
-#: ../src/mainbox.c:420
+#: ../src/mainbox.c:446
 msgid "Select _Today"
 msgstr "_Valitse tämä päivä"
 
 #. Help menu
-#: ../src/mainbox.c:424
+#: ../src/mainbox.c:450
 msgid "_Help"
 msgstr "_Ohje"
 
@@ -2093,11 +2109,11 @@ msgstr "_Ohje"
 msgid "Reminder "
 msgstr "Muistutus "
 
-#: ../src/tray_icon.c:314
+#: ../src/tray_icon.c:316
 msgid "New appointment"
 msgstr "Uusi tapahtuma"
 
-#: ../src/tray_icon.c:332
+#: ../src/tray_icon.c:336
 msgid "About Orage"
 msgstr "Tietoja Oragesta"
 

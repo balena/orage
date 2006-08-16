@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.3.90.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-06-04 19:18+0900\n"
+"POT-Creation-Date: 2006-08-16 17:58+0300\n"
 "PO-Revision-Date: 2006-07-11 00:21+0200\n"
 "Last-Translator: Jarbas Araujo <jarbasaraujojr@yahoo.com.br>\n"
 "Language-Team: Esperanto <debian-l10n-esperanto@lists.debian.org>\n"
@@ -16,55 +16,71 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../panel-plugin/oc_config.c:90
+#: ../panel-plugin/oc_config.c:114
 msgid "Select timezone"
 msgstr "Elektu tempzonon"
 
-#: ../panel-plugin/oc_config.c:162
+#: ../panel-plugin/oc_config.c:193
 msgid "Appearance"
 msgstr "Vidaspekto"
 
-#: ../panel-plugin/oc_config.c:169
+#. show frame
+#: ../panel-plugin/oc_config.c:204
 msgid "Show _frame"
 msgstr "Montru la _konturlinion"
 
-#: ../panel-plugin/oc_config.c:182
+#. foreground color
+#: ../panel-plugin/oc_config.c:214
 msgid "set foreground _color:"
 msgstr "difinu la _antaŭkoloron:"
 
-#: ../panel-plugin/oc_config.c:199
+#. background color
+#: ../panel-plugin/oc_config.c:228
 msgid "set _background color:"
 msgstr "difinu la _Postkoloron:"
 
-#: ../panel-plugin/oc_config.c:220
+#. clock size (=vbox size): height and width
+#: ../panel-plugin/oc_config.c:242
+msgid "set _height:"
+msgstr ""
+
+#: ../panel-plugin/oc_config.c:254
+msgid "set _width:"
+msgstr ""
+
+#: ../panel-plugin/oc_config.c:275
 msgid "Clock Options"
 msgstr "Horloĝopcioj"
 
-#: ../panel-plugin/oc_config.c:231
+#. timezone
+#: ../panel-plugin/oc_config.c:286
 msgid "set timezone to:"
 msgstr "difinu la tempzonon:"
 
-#: ../panel-plugin/oc_config.c:240
+#: ../panel-plugin/oc_config.c:295
 msgid "Set any valid timezone (=TZ) value or pick one from the list."
 msgstr "Enskribu validan tempzonon (=TZ) aŭ elektu unu el la listo."
 
-#: ../panel-plugin/oc_config.c:253
+#. line 1
+#: ../panel-plugin/oc_config.c:304
 msgid "show line _1:"
 msgstr "montru la linion _1:"
 
-#: ../panel-plugin/oc_config.c:264
+#: ../panel-plugin/oc_config.c:315
 msgid "Enter any valid strftime function parameter."
 msgstr "Indiku validan parametron por la funkcio strftime."
 
-#: ../panel-plugin/oc_config.c:283
+#. line 2
+#: ../panel-plugin/oc_config.c:331
 msgid "show line _2:"
 msgstr "montru la linion _2:"
 
-#: ../panel-plugin/oc_config.c:308
+#. line 3
+#: ../panel-plugin/oc_config.c:353
 msgid "show line _3:"
 msgstr "montru la linion _3:"
 
-#: ../panel-plugin/oc_config.c:337
+#: ../panel-plugin/oc_config.c:382
 msgid ""
 "This program uses strftime function to get time.\n"
 "Use any valid code to get time in the format you prefer.\n"
@@ -84,11 +100,11 @@ msgstr ""
 "\t%H = horoj\t\t\t\t%M = minuto\n"
 "\t%X = loka horaro\t\t%x = loka dato"
 
-#: ../panel-plugin/oc_config.c:356
+#: ../panel-plugin/oc_config.c:401
 msgid "Properties"
 msgstr "Aspektoj"
 
-#: ../panel-plugin/oc_config.c:371
+#: ../panel-plugin/oc_config.c:416
 msgid "Orage clock"
 msgstr "Oraĝa horloĝo"
 
@@ -108,7 +124,7 @@ msgstr "%A, %Y %B %d[%V]"
 #. to avoid timing problems when updating entry
 #. Create file chooser
 #: ../plugin/xfcalendar_plugin.c:263 ../plugin/xfcalendar_plugin.c:321
-#: ../src/appointment.c:301 ../src/mainbox.c:113
+#: ../src/appointment.c:334 ../src/mainbox.c:113
 msgid "Select a file..."
 msgstr "Elektu dosieron..."
 
@@ -116,13 +132,13 @@ msgstr "Elektu dosieron..."
 msgid "Calendar files"
 msgstr "Kalendaraj dosieroj"
 
-#: ../plugin/xfcalendar_plugin.c:276 ../src/appointment.c:316
+#: ../plugin/xfcalendar_plugin.c:276 ../src/appointment.c:349
 #: ../src/mainbox.c:126
 msgid "All Files"
 msgstr "Ĉiuj dosieroj"
 
 #: ../plugin/xfcalendar_plugin.c:419 ../plugin/xfcalendar_plugin.c:424
-#: ../src/appointment.c:819 ../src/appointment.c:824 ../src/appointment.c:1309
+#: ../src/appointment.c:857 ../src/appointment.c:862 ../src/appointment.c:1350
 msgid "Location"
 msgstr "Loko"
 
@@ -131,111 +147,111 @@ msgstr "Loko"
 msgid "Pick local timezone"
 msgstr "Elektu lokalan tempzonon"
 
-#: ../plugin/xfcalendar_plugin.c:433 ../plugin/xfcalendar_plugin.c:461
-#: ../src/appointment.c:833 ../src/appointment.c:861
+#: ../plugin/xfcalendar_plugin.c:433 ../plugin/xfcalendar_plugin.c:463
+#: ../src/appointment.c:871 ../src/appointment.c:901
 msgid "UTC"
 msgstr "UTC"
 
-#: ../plugin/xfcalendar_plugin.c:434 ../plugin/xfcalendar_plugin.c:465
-#: ../plugin/xfcalendar_plugin.c:744 ../src/appointment.c:834
-#: ../src/appointment.c:865 ../src/appointment.c:901 ../src/appointment.c:909
+#: ../plugin/xfcalendar_plugin.c:434 ../plugin/xfcalendar_plugin.c:467
+#: ../plugin/xfcalendar_plugin.c:749 ../src/appointment.c:872
+#: ../src/appointment.c:905 ../src/appointment.c:941 ../src/appointment.c:949
 msgid "floating"
 msgstr "flosanta"
 
-#: ../plugin/xfcalendar_plugin.c:525
+#: ../plugin/xfcalendar_plugin.c:528
 msgid "Orage Preferences"
 msgstr "Parametroj de Oraĝo"
 
-#: ../plugin/xfcalendar_plugin.c:543
+#: ../plugin/xfcalendar_plugin.c:546
 msgid "Display"
 msgstr "Montru"
 
-#: ../plugin/xfcalendar_plugin.c:550
+#: ../plugin/xfcalendar_plugin.c:553
 msgid "Calendar borders"
 msgstr "Kalendaraj bordoj"
 
-#: ../plugin/xfcalendar_plugin.c:555
+#: ../plugin/xfcalendar_plugin.c:558
 msgid "Displayed"
 msgstr "Montrita"
 
-#: ../plugin/xfcalendar_plugin.c:561
+#: ../plugin/xfcalendar_plugin.c:564
 msgid "Hidden"
 msgstr "Kaŝita"
 
-#: ../plugin/xfcalendar_plugin.c:570
+#: ../plugin/xfcalendar_plugin.c:573
 msgid "Calendar window"
 msgstr "Kalendara fenestro"
 
-#: ../plugin/xfcalendar_plugin.c:575
+#: ../plugin/xfcalendar_plugin.c:578
 msgid "Show in taskbar"
 msgstr "Montru en la taskostrio"
 
-#: ../plugin/xfcalendar_plugin.c:579
+#: ../plugin/xfcalendar_plugin.c:582
 msgid "Show in pager"
 msgstr "Montru en la paĝilo"
 
-#: ../plugin/xfcalendar_plugin.c:583
+#: ../plugin/xfcalendar_plugin.c:586
 msgid "Show in systray"
 msgstr "Montru en la avizazono"
 
-#: ../plugin/xfcalendar_plugin.c:590
+#: ../plugin/xfcalendar_plugin.c:593
 msgid "Calendar start"
 msgstr "Lanĉo de la Kalendaro"
 
-#: ../plugin/xfcalendar_plugin.c:595
+#: ../plugin/xfcalendar_plugin.c:598
 msgid "Show"
 msgstr "Montru"
 
-#: ../plugin/xfcalendar_plugin.c:601
+#: ../plugin/xfcalendar_plugin.c:604
 msgid "Hide"
 msgstr "Kaŝu"
 
-#: ../plugin/xfcalendar_plugin.c:607
+#: ../plugin/xfcalendar_plugin.c:610
 msgid "Minimized"
 msgstr "Malmaksimumigita"
 
-#: ../plugin/xfcalendar_plugin.c:617
+#: ../plugin/xfcalendar_plugin.c:620
 msgid "Archives"
 msgstr "Arkivoj"
 
-#: ../plugin/xfcalendar_plugin.c:628
+#: ../plugin/xfcalendar_plugin.c:631
 msgid "Archive file"
 msgstr "Arkiva dosiero"
 
-#: ../plugin/xfcalendar_plugin.c:650
+#: ../plugin/xfcalendar_plugin.c:653
 msgid "Archive threshold"
 msgstr "Arkiva sojlo"
 
-#: ../plugin/xfcalendar_plugin.c:657
+#: ../plugin/xfcalendar_plugin.c:660
 msgid "3 months"
 msgstr "3 monatoj"
 
-#: ../plugin/xfcalendar_plugin.c:659
+#: ../plugin/xfcalendar_plugin.c:662
 msgid "6 months"
 msgstr "6 monatoj"
 
-#: ../plugin/xfcalendar_plugin.c:661
+#: ../plugin/xfcalendar_plugin.c:664
 msgid "1 year"
 msgstr "1 jaro"
 
-#: ../plugin/xfcalendar_plugin.c:663
+#: ../plugin/xfcalendar_plugin.c:666
 msgid "never"
 msgstr "neniam"
 
-#: ../plugin/xfcalendar_plugin.c:691 ../src/appointment.c:1456
+#: ../plugin/xfcalendar_plugin.c:694 ../src/appointment.c:1500
 msgid "Sound"
 msgstr "Sono"
 
-#: ../plugin/xfcalendar_plugin.c:702
+#: ../plugin/xfcalendar_plugin.c:705
 msgid "Application"
 msgstr "Aplikaĵo"
 
-#: ../plugin/xfcalendar_plugin.c:722 ../plugin/xfcalendar_plugin.c:733
+#: ../plugin/xfcalendar_plugin.c:725 ../plugin/xfcalendar_plugin.c:735
 msgid "Timezone"
 msgstr "Tempzono"
 
 #. the button label in the xfce-mcs-manager dialog
-#: ../plugin/xfcalendar_plugin.c:793
+#: ../plugin/xfcalendar_plugin.c:800
 msgid "Button Label|Orage"
 msgstr "Buton-Nomo|Oraĝo"
 
@@ -256,183 +272,183 @@ msgstr "Partoprenanto"
 msgid "%m/%d/%Y"
 msgstr "%Y/%m/%d"
 
-#: ../src/appointment.c:231 ../src/mainbox.c:355 ../xfcalendar.desktop.in.h:3
+#: ../src/appointment.c:256 ../src/mainbox.c:380 ../xfcalendar.desktop.in.h:3
 msgid "Orage"
 msgstr "Oraĝo"
 
-#: ../src/appointment.c:309
+#: ../src/appointment.c:342
 msgid "Sound Files"
 msgstr "Sonaj dosieroj"
 
-#: ../src/appointment.c:357 ../src/appointment.c:392 ../src/appointment.c:618
+#: ../src/appointment.c:390 ../src/appointment.c:425 ../src/appointment.c:656
 #: ../src/event-list.c:587
 msgid "Warning"
 msgstr "Atentavizo"
 
-#: ../src/appointment.c:359
+#: ../src/appointment.c:392
 msgid "The appointment information has been modified."
 msgstr "La rendevua informo estis modifita"
 
-#: ../src/appointment.c:360 ../src/appointment.c:621 ../src/event-list.c:590
+#: ../src/appointment.c:393 ../src/appointment.c:659 ../src/event-list.c:590
 msgid "Do you want to continue?"
 msgstr "Ĉu vi volas daŭrigi?"
 
-#: ../src/appointment.c:394
+#: ../src/appointment.c:427
 msgid "The end of this appointment is earlier than the beginning."
 msgstr "La fino de tiu rendevuo estas pli frua ol la komenco!"
 
-#: ../src/appointment.c:620
+#: ../src/appointment.c:658
 msgid "This appointment will be permanently removed."
 msgstr "Tiu ĉi rendevuo estos permanente forigita."
 
-#: ../src/appointment.c:721
+#: ../src/appointment.c:759
 msgid "Pick the date"
 msgstr "Elektu daton"
 
-#: ../src/appointment.c:723 ../src/event-list.c:728 ../src/tray_icon.c:304
+#: ../src/appointment.c:761 ../src/event-list.c:728 ../src/tray_icon.c:305
 msgid "Today"
 msgstr "Hodiaŭ"
 
 #. show it
-#: ../src/appointment.c:830
+#: ../src/appointment.c:868
 msgid "Pick timezone"
 msgstr "Elektu tempzonon"
 
-#: ../src/appointment.c:1093
+#: ../src/appointment.c:1133
 msgid "New appointment - Orage"
 msgstr "Novan rendevuon - Oraĝo"
 
 #. File menu stuff
 #. File menu
-#: ../src/appointment.c:1200 ../src/event-list.c:654 ../src/mainbox.c:377
+#: ../src/appointment.c:1241 ../src/event-list.c:654 ../src/mainbox.c:403
 msgid "_File"
 msgstr "_Dosiero"
 
-#: ../src/appointment.c:1207
+#: ../src/appointment.c:1248
 msgid "Sav_e and close"
 msgstr "_Konservu kaj fermu"
 
-#: ../src/appointment.c:1220 ../src/event-list.c:663
+#: ../src/appointment.c:1261 ../src/event-list.c:663
 msgid "D_uplicate"
 msgstr "D_uobligita"
 
-#: ../src/appointment.c:1261
+#: ../src/appointment.c:1302
 msgid "Save"
 msgstr "Konservu"
 
-#: ../src/appointment.c:1264 ../src/appointment.c:1266
+#: ../src/appointment.c:1305 ../src/appointment.c:1307
 msgid "Save and close"
 msgstr "Konservu kaj fermu"
 
-#: ../src/appointment.c:1273
+#: ../src/appointment.c:1314
 msgid "Revert"
 msgstr "Reversu"
 
-#: ../src/appointment.c:1276 ../src/appointment.c:1278 ../src/event-list.c:740
+#: ../src/appointment.c:1317 ../src/appointment.c:1319 ../src/event-list.c:740
 msgid "Duplicate"
 msgstr "Duobligita"
 
-#: ../src/appointment.c:1284
+#: ../src/appointment.c:1325
 msgid "Delete"
 msgstr "Forigu"
 
-#: ../src/appointment.c:1292
+#: ../src/appointment.c:1333
 msgid "Free"
 msgstr "Libera"
 
-#: ../src/appointment.c:1292
+#: ../src/appointment.c:1333
 msgid "Busy"
 msgstr "Okupita"
 
-#: ../src/appointment.c:1297
+#: ../src/appointment.c:1338
 msgid "General"
 msgstr "Ĝeneralaĵoj"
 
-#: ../src/appointment.c:1302
+#: ../src/appointment.c:1343
 msgid "Title "
 msgstr "Titolo "
 
-#: ../src/appointment.c:1317
+#: ../src/appointment.c:1358
 msgid "All day event"
 msgstr "Ĉiutaga evento"
 
-#: ../src/appointment.c:1323
+#: ../src/appointment.c:1364
 msgid "Start"
 msgstr "Komenco"
 
-#: ../src/appointment.c:1338
+#: ../src/appointment.c:1379
 msgid "End"
 msgstr "Fino"
 
-#: ../src/appointment.c:1355
+#: ../src/appointment.c:1396
 msgid "Duration"
 msgstr "Daŭro"
 
-#: ../src/appointment.c:1362 ../src/appointment.c:1433
+#: ../src/appointment.c:1403 ../src/appointment.c:1477
 msgid "days"
 msgstr "tagoj"
 
-#: ../src/appointment.c:1370 ../src/appointment.c:1441
+#: ../src/appointment.c:1412 ../src/appointment.c:1485
 msgid "hours"
 msgstr "horoj"
 
-#: ../src/appointment.c:1378 ../src/appointment.c:1449
+#: ../src/appointment.c:1421 ../src/appointment.c:1493
 msgid "mins"
 msgstr "minutoj"
 
-#: ../src/appointment.c:1385
+#: ../src/appointment.c:1429
 msgid "Availability"
 msgstr "Disponebleco"
 
-#: ../src/appointment.c:1394
+#: ../src/appointment.c:1438
 msgid "Note"
 msgstr "Noto"
 
-#: ../src/appointment.c:1422 ../src/appointment.c:1427
+#: ../src/appointment.c:1466 ../src/appointment.c:1471
 msgid "Alarm"
 msgstr "Alarmo"
 
-#: ../src/appointment.c:1471
+#: ../src/appointment.c:1515
 msgid "Repeat alarm sound"
 msgstr "Ripetu la alarman sonon"
 
-#: ../src/appointment.c:1483
+#: ../src/appointment.c:1527
 msgid "None"
 msgstr "Nenia"
 
-#: ../src/appointment.c:1483
+#: ../src/appointment.c:1527
 msgid "Daily"
 msgstr "Tage"
 
-#: ../src/appointment.c:1483
+#: ../src/appointment.c:1527
 msgid "Weekly"
 msgstr "Semajne"
 
-#: ../src/appointment.c:1483
+#: ../src/appointment.c:1527
 msgid "Monthly"
 msgstr "Monate"
 
-#: ../src/appointment.c:1483
+#: ../src/appointment.c:1527
 msgid "Yearly"
 msgstr "Jare"
 
-#: ../src/appointment.c:1488 ../src/appointment.c:1493
+#: ../src/appointment.c:1532 ../src/appointment.c:1537
 msgid "Recurrence"
 msgstr "Ripeteco"
 
-#: ../src/appointment.c:1503
+#: ../src/appointment.c:1548
 msgid "Repeat forever"
 msgstr "Ripetu ĉiam"
 
-#: ../src/appointment.c:1512
+#: ../src/appointment.c:1556
 msgid "Repeat "
 msgstr "Ripetu "
 
-#: ../src/appointment.c:1519
+#: ../src/appointment.c:1564
 msgid "times"
 msgstr "foje"
 
-#: ../src/appointment.c:1530
+#: ../src/appointment.c:1574
 msgid "Repeat until "
 msgstr "Ripetu ĝis "
 
@@ -454,7 +470,7 @@ msgstr ""
 "rilatajn al tiu dato."
 
 #. View menu
-#: ../src/event-list.c:685 ../src/mainbox.c:411
+#: ../src/event-list.c:685 ../src/mainbox.c:437
 msgid "_View"
 msgstr "_Vidu"
 
@@ -518,7 +534,6 @@ msgstr ""
 "\t 2. Real-alarmo: n=Nenia Real-alarmo\n"
 "\t\t D=Ĉiutaga W=Ĉiusemajna M=Ĉiumonata Y=Ĉiujara\n"
 "\t 3. Karaktero: f=libera B=okupita"
-
 
 #: ../src/ical-code.c:96
 msgid "Africa"
@@ -2060,33 +2075,33 @@ msgstr "Kalendara antaŭsupoza alarmo"
 msgid "This should not happen"
 msgstr "Tio ne devus okazi"
 
-#: ../src/main.c:500
+#: ../src/main.c:502
 msgid "Cannot create MCS client channel"
 msgstr "Ne eblas krei MCS-an klientan kanalon"
 
-#: ../src/mainbox.c:386
+#: ../src/mainbox.c:412
 msgid "Open archive file..."
 msgstr "Malfermu arkivan dosieron..."
 
-#: ../src/mainbox.c:389
+#: ../src/mainbox.c:415
 msgid "Close archive file"
 msgstr "Fermu arkivan dosieron"
 
 #. Edit menu
-#: ../src/mainbox.c:404
+#: ../src/mainbox.c:430
 msgid "_Edit"
 msgstr "_Modifu"
 
-#: ../src/mainbox.c:414
+#: ../src/mainbox.c:440
 msgid "View selected _date"
 msgstr "Vidu la elektitan _daton"
 
-#: ../src/mainbox.c:420
+#: ../src/mainbox.c:446
 msgid "Select _Today"
 msgstr "Elektu _Hodiaŭ"
 
 #. Help menu
-#: ../src/mainbox.c:424
+#: ../src/mainbox.c:450
 msgid "_Help"
 msgstr "_Helpo"
 
@@ -2094,11 +2109,11 @@ msgstr "_Helpo"
 msgid "Reminder "
 msgstr "Memorigilo "
 
-#: ../src/tray_icon.c:314
+#: ../src/tray_icon.c:316
 msgid "New appointment"
 msgstr "Novan rendevuon"
 
-#: ../src/tray_icon.c:332
+#: ../src/tray_icon.c:336
 msgid "About Orage"
 msgstr "Pri Oraĝo"
 

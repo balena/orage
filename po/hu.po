@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.3.90.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-06-04 19:18+0900\n"
+"POT-Creation-Date: 2006-08-16 17:58+0300\n"
 "PO-Revision-Date: 2006-05-01 18:39+0100\n"
 "Last-Translator: Andras Mohari <mayday@mailpont.hu>\n"
 "Language-Team: Hungarian <translation-team-hu@lists.sourceforge.net>\n"
@@ -19,56 +19,72 @@ msgstr ""
 "X-Poedit-Language: Hungarian\n"
 "X-Poedit-Country: HUNGARY\n"
 
-#: ../panel-plugin/oc_config.c:90
+#: ../panel-plugin/oc_config.c:114
 msgid "Select timezone"
 msgstr "Válassz időzónát"
 
-#: ../panel-plugin/oc_config.c:162
+#: ../panel-plugin/oc_config.c:193
 msgid "Appearance"
 msgstr "Megjelenés"
 
-#: ../panel-plugin/oc_config.c:169
+#. show frame
+#: ../panel-plugin/oc_config.c:204
 msgid "Show _frame"
 msgstr "Keret mutatása"
 
-#: ../panel-plugin/oc_config.c:182
+#. foreground color
+#: ../panel-plugin/oc_config.c:214
 msgid "set foreground _color:"
 msgstr "_Előtérszín:"
 
-#: ../panel-plugin/oc_config.c:199
+#. background color
+#: ../panel-plugin/oc_config.c:228
 msgid "set _background color:"
 msgstr "_Háttérszín:"
 
-#: ../panel-plugin/oc_config.c:220
+#. clock size (=vbox size): height and width
+#: ../panel-plugin/oc_config.c:242
+msgid "set _height:"
+msgstr ""
+
+#: ../panel-plugin/oc_config.c:254
+msgid "set _width:"
+msgstr ""
+
+#: ../panel-plugin/oc_config.c:275
 msgid "Clock Options"
 msgstr "Az óra beállításai"
 
-#: ../panel-plugin/oc_config.c:231
+#. timezone
+#: ../panel-plugin/oc_config.c:286
 msgid "set timezone to:"
 msgstr "Időzóna:"
 
-#: ../panel-plugin/oc_config.c:240
+#: ../panel-plugin/oc_config.c:295
 msgid "Set any valid timezone (=TZ) value or pick one from the list."
 msgstr ""
 "Állíts be egy érvényes időzóna (=TZ) értéket vagy válassz egyet a listából."
 
-#: ../panel-plugin/oc_config.c:253
+#. line 1
+#: ../panel-plugin/oc_config.c:304
 msgid "show line _1:"
 msgstr "_1. sor mutatása:"
 
-#: ../panel-plugin/oc_config.c:264
+#: ../panel-plugin/oc_config.c:315
 msgid "Enter any valid strftime function parameter."
 msgstr "Adj meg az strftime függvény által használható paramétereket."
 
-#: ../panel-plugin/oc_config.c:283
+#. line 2
+#: ../panel-plugin/oc_config.c:331
 msgid "show line _2:"
 msgstr "_2. sor mutatása:"
 
-#: ../panel-plugin/oc_config.c:308
+#. line 3
+#: ../panel-plugin/oc_config.c:353
 msgid "show line _3:"
 msgstr "_3. sor mutatása:"
 
-#: ../panel-plugin/oc_config.c:337
+#: ../panel-plugin/oc_config.c:382
 msgid ""
 "This program uses strftime function to get time.\n"
 "Use any valid code to get time in the format you prefer.\n"
@@ -88,11 +104,11 @@ msgstr ""
 "\t%H = óra \t\t\t\t%M = perc\n"
 "\t%X = helyi idő\t\t\t%x = helyi dátum"
 
-#: ../panel-plugin/oc_config.c:356
+#: ../panel-plugin/oc_config.c:401
 msgid "Properties"
 msgstr "Tulajdonságok"
 
-#: ../panel-plugin/oc_config.c:371
+#: ../panel-plugin/oc_config.c:416
 msgid "Orage clock"
 msgstr "Orage óra"
 
@@ -112,7 +128,7 @@ msgstr "%Y./%V., %B %d., %A"
 #. to avoid timing problems when updating entry
 #. Create file chooser
 #: ../plugin/xfcalendar_plugin.c:263 ../plugin/xfcalendar_plugin.c:321
-#: ../src/appointment.c:301 ../src/mainbox.c:113
+#: ../src/appointment.c:334 ../src/mainbox.c:113
 msgid "Select a file..."
 msgstr "Válassz fájlt..."
 
@@ -120,13 +136,13 @@ msgstr "Válassz fájlt..."
 msgid "Calendar files"
 msgstr "Naptárfájlok"
 
-#: ../plugin/xfcalendar_plugin.c:276 ../src/appointment.c:316
+#: ../plugin/xfcalendar_plugin.c:276 ../src/appointment.c:349
 #: ../src/mainbox.c:126
 msgid "All Files"
 msgstr "Minden fájl"
 
 #: ../plugin/xfcalendar_plugin.c:419 ../plugin/xfcalendar_plugin.c:424
-#: ../src/appointment.c:819 ../src/appointment.c:824 ../src/appointment.c:1309
+#: ../src/appointment.c:857 ../src/appointment.c:862 ../src/appointment.c:1350
 msgid "Location"
 msgstr "Hely"
 
@@ -135,112 +151,112 @@ msgstr "Hely"
 msgid "Pick local timezone"
 msgstr "Válassz időzónát"
 
-#: ../plugin/xfcalendar_plugin.c:433 ../plugin/xfcalendar_plugin.c:461
-#: ../src/appointment.c:833 ../src/appointment.c:861
+#: ../plugin/xfcalendar_plugin.c:433 ../plugin/xfcalendar_plugin.c:463
+#: ../src/appointment.c:871 ../src/appointment.c:901
 msgid "UTC"
 msgstr "UTC"
 
 # XXX [mayday]: Ez bizony az időzónára vonatkozik. A forrás alapján: floating = local = no timezone
-#: ../plugin/xfcalendar_plugin.c:434 ../plugin/xfcalendar_plugin.c:465
-#: ../plugin/xfcalendar_plugin.c:744 ../src/appointment.c:834
-#: ../src/appointment.c:865 ../src/appointment.c:901 ../src/appointment.c:909
+#: ../plugin/xfcalendar_plugin.c:434 ../plugin/xfcalendar_plugin.c:467
+#: ../plugin/xfcalendar_plugin.c:749 ../src/appointment.c:872
+#: ../src/appointment.c:905 ../src/appointment.c:941 ../src/appointment.c:949
 msgid "floating"
 msgstr "helyi"
 
-#: ../plugin/xfcalendar_plugin.c:525
+#: ../plugin/xfcalendar_plugin.c:528
 msgid "Orage Preferences"
 msgstr "Orage beállításai"
 
-#: ../plugin/xfcalendar_plugin.c:543
+#: ../plugin/xfcalendar_plugin.c:546
 msgid "Display"
 msgstr "Megjelenítés"
 
-#: ../plugin/xfcalendar_plugin.c:550
+#: ../plugin/xfcalendar_plugin.c:553
 msgid "Calendar borders"
 msgstr "Naptár kerete"
 
-#: ../plugin/xfcalendar_plugin.c:555
+#: ../plugin/xfcalendar_plugin.c:558
 msgid "Displayed"
 msgstr "Látszik"
 
-#: ../plugin/xfcalendar_plugin.c:561
+#: ../plugin/xfcalendar_plugin.c:564
 msgid "Hidden"
 msgstr "Rejtett"
 
-#: ../plugin/xfcalendar_plugin.c:570
+#: ../plugin/xfcalendar_plugin.c:573
 msgid "Calendar window"
 msgstr "Naptárablak"
 
-#: ../plugin/xfcalendar_plugin.c:575
+#: ../plugin/xfcalendar_plugin.c:578
 msgid "Show in taskbar"
 msgstr "Látszik a feladatlistában"
 
-#: ../plugin/xfcalendar_plugin.c:579
+#: ../plugin/xfcalendar_plugin.c:582
 msgid "Show in pager"
 msgstr "Látszik a lapozóban"
 
-#: ../plugin/xfcalendar_plugin.c:583
+#: ../plugin/xfcalendar_plugin.c:586
 msgid "Show in systray"
 msgstr "Látszik a rendszertálcán"
 
-#: ../plugin/xfcalendar_plugin.c:590
+#: ../plugin/xfcalendar_plugin.c:593
 msgid "Calendar start"
 msgstr "Naptár indítása"
 
-#: ../plugin/xfcalendar_plugin.c:595
+#: ../plugin/xfcalendar_plugin.c:598
 msgid "Show"
 msgstr "Látható"
 
-#: ../plugin/xfcalendar_plugin.c:601
+#: ../plugin/xfcalendar_plugin.c:604
 msgid "Hide"
 msgstr "Rejtett"
 
-#: ../plugin/xfcalendar_plugin.c:607
+#: ../plugin/xfcalendar_plugin.c:610
 msgid "Minimized"
 msgstr "Minimalizált"
 
-#: ../plugin/xfcalendar_plugin.c:617
+#: ../plugin/xfcalendar_plugin.c:620
 msgid "Archives"
 msgstr "Archívumok"
 
-#: ../plugin/xfcalendar_plugin.c:628
+#: ../plugin/xfcalendar_plugin.c:631
 msgid "Archive file"
 msgstr "Archív fájl"
 
-#: ../plugin/xfcalendar_plugin.c:650
+#: ../plugin/xfcalendar_plugin.c:653
 msgid "Archive threshold"
 msgstr "Archiválás küszöbe"
 
-#: ../plugin/xfcalendar_plugin.c:657
+#: ../plugin/xfcalendar_plugin.c:660
 msgid "3 months"
 msgstr "3 hónap"
 
-#: ../plugin/xfcalendar_plugin.c:659
+#: ../plugin/xfcalendar_plugin.c:662
 msgid "6 months"
 msgstr "6 hónap"
 
-#: ../plugin/xfcalendar_plugin.c:661
+#: ../plugin/xfcalendar_plugin.c:664
 msgid "1 year"
 msgstr "1 év"
 
-#: ../plugin/xfcalendar_plugin.c:663
+#: ../plugin/xfcalendar_plugin.c:666
 msgid "never"
 msgstr "soha"
 
-#: ../plugin/xfcalendar_plugin.c:691 ../src/appointment.c:1456
+#: ../plugin/xfcalendar_plugin.c:694 ../src/appointment.c:1500
 msgid "Sound"
 msgstr "Hang"
 
-#: ../plugin/xfcalendar_plugin.c:702
+#: ../plugin/xfcalendar_plugin.c:705
 msgid "Application"
 msgstr "Alkalmazás"
 
-#: ../plugin/xfcalendar_plugin.c:722 ../plugin/xfcalendar_plugin.c:733
+#: ../plugin/xfcalendar_plugin.c:725 ../plugin/xfcalendar_plugin.c:735
 msgid "Timezone"
 msgstr "Időzóna"
 
 #. the button label in the xfce-mcs-manager dialog
-#: ../plugin/xfcalendar_plugin.c:793
+#: ../plugin/xfcalendar_plugin.c:800
 msgid "Button Label|Orage"
 msgstr "Naptár (Orage)"
 
@@ -261,183 +277,183 @@ msgstr "Közreműködő"
 msgid "%m/%d/%Y"
 msgstr "%Y-%m-%d"
 
-#: ../src/appointment.c:231 ../src/mainbox.c:355 ../xfcalendar.desktop.in.h:3
+#: ../src/appointment.c:256 ../src/mainbox.c:380 ../xfcalendar.desktop.in.h:3
 msgid "Orage"
 msgstr "Orage"
 
-#: ../src/appointment.c:309
+#: ../src/appointment.c:342
 msgid "Sound Files"
 msgstr "Hangfájlok"
 
-#: ../src/appointment.c:357 ../src/appointment.c:392 ../src/appointment.c:618
+#: ../src/appointment.c:390 ../src/appointment.c:425 ../src/appointment.c:656
 #: ../src/event-list.c:587
 msgid "Warning"
 msgstr "Figyelmeztetés"
 
-#: ../src/appointment.c:359
+#: ../src/appointment.c:392
 msgid "The appointment information has been modified."
 msgstr "A találkozó adatai módosultak."
 
-#: ../src/appointment.c:360 ../src/appointment.c:621 ../src/event-list.c:590
+#: ../src/appointment.c:393 ../src/appointment.c:659 ../src/event-list.c:590
 msgid "Do you want to continue?"
 msgstr "Folytatod?"
 
-#: ../src/appointment.c:394
+#: ../src/appointment.c:427
 msgid "The end of this appointment is earlier than the beginning."
 msgstr "A találkozó vége korábban van a kezdeténél."
 
-#: ../src/appointment.c:620
+#: ../src/appointment.c:658
 msgid "This appointment will be permanently removed."
 msgstr "Végleg törölve lesz ez a találkozó."
 
-#: ../src/appointment.c:721
+#: ../src/appointment.c:759
 msgid "Pick the date"
 msgstr "Válassz napot"
 
-#: ../src/appointment.c:723 ../src/event-list.c:728 ../src/tray_icon.c:304
+#: ../src/appointment.c:761 ../src/event-list.c:728 ../src/tray_icon.c:305
 msgid "Today"
 msgstr "Ma"
 
 #. show it
-#: ../src/appointment.c:830
+#: ../src/appointment.c:868
 msgid "Pick timezone"
 msgstr "Válassz időzónát"
 
-#: ../src/appointment.c:1093
+#: ../src/appointment.c:1133
 msgid "New appointment - Orage"
 msgstr "Új találkozó - Orage"
 
 #. File menu stuff
 #. File menu
-#: ../src/appointment.c:1200 ../src/event-list.c:654 ../src/mainbox.c:377
+#: ../src/appointment.c:1241 ../src/event-list.c:654 ../src/mainbox.c:403
 msgid "_File"
 msgstr "_Fájl"
 
-#: ../src/appointment.c:1207
+#: ../src/appointment.c:1248
 msgid "Sav_e and close"
 msgstr "M_entés és bezárás"
 
-#: ../src/appointment.c:1220 ../src/event-list.c:663
+#: ../src/appointment.c:1261 ../src/event-list.c:663
 msgid "D_uplicate"
 msgstr "Megkettőzés"
 
-#: ../src/appointment.c:1261
+#: ../src/appointment.c:1302
 msgid "Save"
 msgstr "Mentés"
 
-#: ../src/appointment.c:1264 ../src/appointment.c:1266
+#: ../src/appointment.c:1305 ../src/appointment.c:1307
 msgid "Save and close"
 msgstr "Mentés és bezárás"
 
-#: ../src/appointment.c:1273
+#: ../src/appointment.c:1314
 msgid "Revert"
 msgstr "Visszavonás"
 
-#: ../src/appointment.c:1276 ../src/appointment.c:1278 ../src/event-list.c:740
+#: ../src/appointment.c:1317 ../src/appointment.c:1319 ../src/event-list.c:740
 msgid "Duplicate"
 msgstr "Megkettőzés"
 
-#: ../src/appointment.c:1284
+#: ../src/appointment.c:1325
 msgid "Delete"
 msgstr "Törlés"
 
-#: ../src/appointment.c:1292
+#: ../src/appointment.c:1333
 msgid "Free"
 msgstr "Szabad"
 
-#: ../src/appointment.c:1292
+#: ../src/appointment.c:1333
 msgid "Busy"
 msgstr "Elfoglalt"
 
-#: ../src/appointment.c:1297
+#: ../src/appointment.c:1338
 msgid "General"
 msgstr "Általános"
 
-#: ../src/appointment.c:1302
+#: ../src/appointment.c:1343
 msgid "Title "
 msgstr "Cím"
 
-#: ../src/appointment.c:1317
+#: ../src/appointment.c:1358
 msgid "All day event"
 msgstr "Egész napos esemény"
 
-#: ../src/appointment.c:1323
+#: ../src/appointment.c:1364
 msgid "Start"
 msgstr "Kezdete"
 
-#: ../src/appointment.c:1338
+#: ../src/appointment.c:1379
 msgid "End"
 msgstr "Vége"
 
-#: ../src/appointment.c:1355
+#: ../src/appointment.c:1396
 msgid "Duration"
 msgstr "Hossza"
 
-#: ../src/appointment.c:1362 ../src/appointment.c:1433
+#: ../src/appointment.c:1403 ../src/appointment.c:1477
 msgid "days"
 msgstr "nap"
 
-#: ../src/appointment.c:1370 ../src/appointment.c:1441
+#: ../src/appointment.c:1412 ../src/appointment.c:1485
 msgid "hours"
 msgstr "óra"
 
-#: ../src/appointment.c:1378 ../src/appointment.c:1449
+#: ../src/appointment.c:1421 ../src/appointment.c:1493
 msgid "mins"
 msgstr "perc"
 
-#: ../src/appointment.c:1385
+#: ../src/appointment.c:1429
 msgid "Availability"
 msgstr "Elérhetőség"
 
-#: ../src/appointment.c:1394
+#: ../src/appointment.c:1438
 msgid "Note"
 msgstr "Megjegyzés"
 
-#: ../src/appointment.c:1422 ../src/appointment.c:1427
+#: ../src/appointment.c:1466 ../src/appointment.c:1471
 msgid "Alarm"
 msgstr "Riasztás"
 
-#: ../src/appointment.c:1471
+#: ../src/appointment.c:1515
 msgid "Repeat alarm sound"
 msgstr "Hangriasztás ismétlése"
 
-#: ../src/appointment.c:1483
+#: ../src/appointment.c:1527
 msgid "None"
 msgstr "Nincs"
 
-#: ../src/appointment.c:1483
+#: ../src/appointment.c:1527
 msgid "Daily"
 msgstr "Naponta"
 
-#: ../src/appointment.c:1483
+#: ../src/appointment.c:1527
 msgid "Weekly"
 msgstr "Hetente"
 
-#: ../src/appointment.c:1483
+#: ../src/appointment.c:1527
 msgid "Monthly"
 msgstr "Havonta"
 
-#: ../src/appointment.c:1483
+#: ../src/appointment.c:1527
 msgid "Yearly"
 msgstr "Évente"
 
-#: ../src/appointment.c:1488 ../src/appointment.c:1493
+#: ../src/appointment.c:1532 ../src/appointment.c:1537
 msgid "Recurrence"
 msgstr "Ismétlődés"
 
-#: ../src/appointment.c:1503
+#: ../src/appointment.c:1548
 msgid "Repeat forever"
 msgstr "Ismétlés örökké"
 
-#: ../src/appointment.c:1512
+#: ../src/appointment.c:1556
 msgid "Repeat "
 msgstr "Ismétlés"
 
-#: ../src/appointment.c:1519
+#: ../src/appointment.c:1564
 msgid "times"
 msgstr "alkalommal"
 
-#: ../src/appointment.c:1530
+#: ../src/appointment.c:1574
 msgid "Repeat until "
 msgstr "Ismétlés eddig: "
 
@@ -459,7 +475,7 @@ msgstr ""
 "kapcsolódó összes adat."
 
 #. View menu
-#: ../src/event-list.c:685 ../src/mainbox.c:411
+#: ../src/event-list.c:685 ../src/mainbox.c:437
 msgid "_View"
 msgstr "_Nézet"
 
@@ -2065,33 +2081,33 @@ msgstr "Az Orage alapértelmezett riasztása"
 msgid "This should not happen"
 msgstr "Ennek nem lenne szabad előfordulnia"
 
-#: ../src/main.c:500
+#: ../src/main.c:502
 msgid "Cannot create MCS client channel"
 msgstr "Nem hozható létre az MCS-ügyfélcsatorna"
 
-#: ../src/mainbox.c:386
+#: ../src/mainbox.c:412
 msgid "Open archive file..."
 msgstr "Archív fájl megnyitása..."
 
-#: ../src/mainbox.c:389
+#: ../src/mainbox.c:415
 msgid "Close archive file"
 msgstr "Archív fájl bezárása"
 
 #. Edit menu
-#: ../src/mainbox.c:404
+#: ../src/mainbox.c:430
 msgid "_Edit"
 msgstr "Sz_erkesztés"
 
-#: ../src/mainbox.c:414
+#: ../src/mainbox.c:440
 msgid "View selected _date"
 msgstr "Kijelölt _dátum megtekintése"
 
-#: ../src/mainbox.c:420
+#: ../src/mainbox.c:446
 msgid "Select _Today"
 msgstr "Ugrás mára"
 
 #. Help menu
-#: ../src/mainbox.c:424
+#: ../src/mainbox.c:450
 msgid "_Help"
 msgstr "_Súgó"
 
@@ -2099,11 +2115,11 @@ msgstr "_Súgó"
 msgid "Reminder "
 msgstr "Emlékeztető"
 
-#: ../src/tray_icon.c:314
+#: ../src/tray_icon.c:316
 msgid "New appointment"
 msgstr "Új találkozó"
 
-#: ../src/tray_icon.c:332
+#: ../src/tray_icon.c:336
 msgid "About Orage"
 msgstr "Az Orage névjegye"
 
