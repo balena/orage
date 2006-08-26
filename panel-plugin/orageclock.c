@@ -30,6 +30,7 @@
 #include <time.h>
 #include <unistd.h>
 
+#include <glib.h>
 #include <gtk/gtk.h>
 #include <gdk/gdkevents.h>
 
@@ -58,7 +59,9 @@ static gboolean oc_date_tooltip(Clock *clock)
      * %Y  : four digit year
      * %V  : ISO week number
      */
-    strftime(date_s, 255, _("%A %d %B %Y/%V"), &clock->now);
+    strftime(date_s, 255
+            , g_locale_from_utf8( _("%A %d %B %Y/%V"), -1, NULL, NULL, NULL)
+            , &clock->now);
 
     /* Conversion to utf8 */
     if (!g_utf8_validate(date_s, -1, NULL)) {
@@ -93,7 +96,9 @@ static gboolean oc_get_time(Clock *clock)
     for (i = 0; i < OC_MAX_LINES; i++) {
         line = &clock->line[i];
         if (line->show) {
-            strftime(time_s, sizeof(time_s), line->data->str, &clock->now);
+            strftime(time_s, sizeof(time_s)
+                    , g_locale_from_utf8(line->data->str, -1, NULL, NULL, NULL)
+                    , &clock->now);
             if (!g_utf8_validate(time_s, -1, NULL)) {
                 utf8time_s = g_locale_to_utf8(time_s, -1, NULL, NULL, NULL);
                 if (utf8time_s) {
