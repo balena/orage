@@ -28,8 +28,8 @@ typedef struct
     gboolean   show;
     GString   *data; /* the time formatting data */
     GString   *font;
-    gchar      prev[OC_MAX_LINE_LENGTH];
-} Line;
+    gchar      prev[OC_MAX_LINE_LENGTH+1];
+} ClockLine;
 
 typedef struct
 {
@@ -50,7 +50,7 @@ typedef struct
     GString   *timezone;
     gchar     *TZ_orig;
     GtkWidget *tz_entry;
-    Line       line[OC_MAX_LINES];
+    ClockLine  line[OC_MAX_LINES];
 
     GtkTooltips *tips;
     int timeout_id;

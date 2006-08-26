@@ -81,23 +81,32 @@ static gboolean oc_date_tooltip(Clock *clock)
 static gboolean oc_get_time(Clock *clock)
 {
     time_t  t;
-    char    tmp[OC_MAX_LINE_LENGTH];
+    char    time_s[OC_MAX_LINE_LENGTH-1];
+    char    *utf8time_s = NULL;
     int     i;
     static gint mday = -1;
+    ClockLine *line;
 
     time(&t);
     localtime_r(&t, &clock->now);
 
     for (i = 0; i < OC_MAX_LINES; i++) {
-        if (clock->line[i].show) {
-            strftime(tmp, OC_MAX_LINE_LENGTH-1, clock->line[i].data->str
-                    , &clock->now);
+        line = &clock->line[i];
+        if (line->show) {
+            strftime(time_s, sizeof(time_s), line->data->str, &clock->now);
+            if (!g_utf8_validate(time_s, -1, NULL)) {
+                utf8time_s = g_locale_to_utf8(time_s, -1, NULL, NULL, NULL);
+                if (utf8time_s) {
+                    g_strlcpy(time_s, utf8time_s, sizeof(time_s));
+                    g_free(utf8time_s);
+                }
+            }
             /* gtk_label_set_text call takes almost
              * 100 % of the time wasted in this procedure 
              * */
-            if (strcmp(tmp,  clock->line[i].prev)) {
-                gtk_label_set_text(GTK_LABEL(clock->line[i].label), tmp);
-                strcpy(clock->line[i].prev, tmp);
+            if (strcmp(time_s,  line->prev)) {
+                gtk_label_set_text(GTK_LABEL(line->label), time_s);
+                strcpy(line->prev, time_s);
             }
         }
     }
