@@ -2,14 +2,14 @@
 # Copyright (C) 2003-2006 The Xfce development team.
 # This file is distributed under the same license as the orage package.
 # Moritz Heiber <moe@xfce.org>, 2003.
-# Fabian Nowak <timystery@arcor.de>, 2005.
+# Fabian Nowak <timystery@arcor.de>, 2005, 2006.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: orage 4.3.90.2\n"
+"Project-Id-Version: orage 4.3.2.9svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-08-16 17:58+0300\n"
-"PO-Revision-Date: 2005-10-09 19:23+0900\n"
+"POT-Creation-Date: 2006-08-27 17:55+0200\n"
+"PO-Revision-Date: 2006-08-27 17:56+0200\n"
 "Last-Translator: Fabian Nowak <timystery@arcor.de>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -17,69 +17,69 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../panel-plugin/oc_config.c:114
-#, fuzzy
 msgid "Select timezone"
-msgstr "Zeit"
+msgstr "Wählen Sie eine Zeitzone"
 
 #: ../panel-plugin/oc_config.c:193
 msgid "Appearance"
-msgstr ""
+msgstr "Erscheinung"
 
 #. show frame
 #: ../panel-plugin/oc_config.c:204
 msgid "Show _frame"
-msgstr ""
+msgstr "_Rahmen anzeigen"
 
 #. foreground color
 #: ../panel-plugin/oc_config.c:214
 msgid "set foreground _color:"
-msgstr ""
+msgstr "_Vorderfarbe setzen:"
 
 #. background color
 #: ../panel-plugin/oc_config.c:228
 msgid "set _background color:"
-msgstr ""
+msgstr "Hinter_grundfarbe setzen:"
 
 #. clock size (=vbox size): height and width
 #: ../panel-plugin/oc_config.c:242
 msgid "set _height:"
-msgstr ""
+msgstr "_Höhe einstellen:"
 
 #: ../panel-plugin/oc_config.c:254
 msgid "set _width:"
-msgstr ""
+msgstr "_Breite einstellen:"
 
 #: ../panel-plugin/oc_config.c:275
 msgid "Clock Options"
-msgstr ""
+msgstr "Uhreinstellungen"
 
 #. timezone
 #: ../panel-plugin/oc_config.c:286
 msgid "set timezone to:"
-msgstr ""
+msgstr "Zeitzone setzen auf:"
 
 #: ../panel-plugin/oc_config.c:295
 msgid "Set any valid timezone (=TZ) value or pick one from the list."
 msgstr ""
+"Geben Sie eine gültige Zeitone (TZ) ein oder wählen Sie eine aus der Liste"
 
 #. line 1
 #: ../panel-plugin/oc_config.c:304
 msgid "show line _1:"
-msgstr ""
+msgstr "Zeige Zeile _1:"
 
 #: ../panel-plugin/oc_config.c:315
 msgid "Enter any valid strftime function parameter."
-msgstr ""
+msgstr "Geben Sie gültige Parameter der 'strftime'-Funktion ein."
 
 #. line 2
 #: ../panel-plugin/oc_config.c:331
 msgid "show line _2:"
-msgstr ""
+msgstr "Zeige Zeile _2:"
 
 #. line 3
 #: ../panel-plugin/oc_config.c:353
 msgid "show line _3:"
-msgstr ""
+msgstr "Zeige Zeile _3:"
 
 #: ../panel-plugin/oc_config.c:382
 msgid ""
@@ -92,28 +92,27 @@ msgid ""
 "\t%H = hours \t\t\t\t%M = minute\n"
 "\t%X = local time\t\t\t%x = local date"
 msgstr ""
+"Diese Programm verwendet die Funktion »strftime«, um die Zeit zu erhalten.\n"
+"Verwenden Sie beliebigen gültigen Code, um die Zeit in dem Format zu "
+"erhalten, das Sie bevorzugen.\n"
+"Einige häufig verwendete Codes sind:\n"
+"\t%A = Wochentag\t\t\t%B = Monat\n"
+"\t%c = Datum und Zeit\t\t%R = Stunde und Minuten\n"
+"\t%V = Kalenderwoche\t\t%Z = Verwendete Zeitzone\n"
+"\t%H = Stunden \t\t\t\t%M = Minuten\n"
+"\t%X = Ortszeit\t\t\t%x = Ortsdatum"
 
 #: ../panel-plugin/oc_config.c:401
 msgid "Properties"
-msgstr ""
+msgstr "Eigenschaften"
 
 #: ../panel-plugin/oc_config.c:416
-#, fuzzy
 msgid "Orage clock"
-msgstr "Orage"
+msgstr "Orage Uhr"
 
-#. TRANSLATORS: Use format characters from strftime(3)
-#. * to get the proper string for your locale.
-#. * I used these:
-#. * %A  : full weekday name
-#. * %d  : day of the month
-#. * %B  : full month name
-#. * %Y  : four digit year
-#. * %V  : ISO week number
-#.
-#: ../panel-plugin/orageclock.c:61
+#: ../panel-plugin/orageclock.c:63
 msgid "%A %d %B %Y/%V"
-msgstr ""
+msgstr "%A, %d. %B %Y (KW %V)"
 
 #. to avoid timing problems when updating entry
 #. Create file chooser
@@ -139,19 +138,18 @@ msgstr "Ort"
 #. show it
 #: ../plugin/xfcalendar_plugin.c:430
 msgid "Pick local timezone"
-msgstr ""
+msgstr "Lokale Zeitzone auswählen"
 
 #: ../plugin/xfcalendar_plugin.c:433 ../plugin/xfcalendar_plugin.c:463
 #: ../src/appointment.c:871 ../src/appointment.c:901
 msgid "UTC"
-msgstr ""
+msgstr "Universelle Zeitzone"
 
 #: ../plugin/xfcalendar_plugin.c:434 ../plugin/xfcalendar_plugin.c:467
 #: ../plugin/xfcalendar_plugin.c:749 ../src/appointment.c:872
 #: ../src/appointment.c:905 ../src/appointment.c:941 ../src/appointment.c:949
-#, fuzzy
 msgid "floating"
-msgstr "Ort"
+msgstr "gleitend"
 
 #: ../plugin/xfcalendar_plugin.c:528
 msgid "Orage Preferences"
@@ -178,18 +176,16 @@ msgid "Calendar window"
 msgstr "Kalender-Fenster"
 
 #: ../plugin/xfcalendar_plugin.c:578
-#, fuzzy
 msgid "Show in taskbar"
-msgstr "in der Taskbar zeigen"
+msgstr "In der Taskleiste zeigen"
 
 #: ../plugin/xfcalendar_plugin.c:582
 msgid "Show in pager"
-msgstr "im Pager zeigen"
+msgstr "Im Pager zeigen"
 
 #: ../plugin/xfcalendar_plugin.c:586
-#, fuzzy
 msgid "Show in systray"
-msgstr "im Systray zeigen"
+msgstr "In der Systemleiste zeigen"
 
 #: ../plugin/xfcalendar_plugin.c:593
 msgid "Calendar start"
@@ -197,15 +193,15 @@ msgstr "Kalender beim Start..."
 
 #: ../plugin/xfcalendar_plugin.c:598
 msgid "Show"
-msgstr "anzeigen"
+msgstr "Anzeigen"
 
 #: ../plugin/xfcalendar_plugin.c:604
 msgid "Hide"
-msgstr "verstecken"
+msgstr "Verstecken"
 
 #: ../plugin/xfcalendar_plugin.c:610
 msgid "Minimized"
-msgstr "minimieren"
+msgstr "Minimiert"
 
 #: ../plugin/xfcalendar_plugin.c:620
 msgid "Archives"
@@ -232,9 +228,8 @@ msgid "1 year"
 msgstr "1 Jahr"
 
 #: ../plugin/xfcalendar_plugin.c:666
-#, fuzzy
 msgid "never"
-msgstr "Wiederherstellen"
+msgstr "nie"
 
 #: ../plugin/xfcalendar_plugin.c:694 ../src/appointment.c:1500
 msgid "Sound"
@@ -245,14 +240,13 @@ msgid "Application"
 msgstr "Anwendung"
 
 #: ../plugin/xfcalendar_plugin.c:725 ../plugin/xfcalendar_plugin.c:735
-#, fuzzy
 msgid "Timezone"
-msgstr "Zeit"
+msgstr "Zeitzone"
 
 #. the button label in the xfce-mcs-manager dialog
 #: ../plugin/xfcalendar_plugin.c:800
 msgid "Button Label|Orage"
-msgstr ""
+msgstr "Orage"
 
 #: ../src/about-xfcalendar.c:39
 msgid "Manage your time with Xfce4"
@@ -269,7 +263,7 @@ msgstr "Mitwirkender"
 
 #: ../src/appointment.c:99 ../src/appointment.c:116
 msgid "%m/%d/%Y"
-msgstr "%d. %m. %Y"
+msgstr "%d.%m.%Y"
 
 #: ../src/appointment.c:256 ../src/mainbox.c:380 ../xfcalendar.desktop.in.h:3
 msgid "Orage"
@@ -290,7 +284,7 @@ msgstr "Die Termin-Information wurde geändert."
 
 #: ../src/appointment.c:393 ../src/appointment.c:659 ../src/event-list.c:590
 msgid "Do you want to continue?"
-msgstr "Fortfahren?"
+msgstr "Möchten Sie fortfahren?"
 
 #: ../src/appointment.c:427
 msgid "The end of this appointment is earlier than the beginning."
@@ -302,7 +296,7 @@ msgstr "Dieser Termin wird endgültig gelöscht."
 
 #: ../src/appointment.c:759
 msgid "Pick the date"
-msgstr ""
+msgstr "Wählen Sie das Datum aus"
 
 #: ../src/appointment.c:761 ../src/event-list.c:728 ../src/tray_icon.c:305
 msgid "Today"
@@ -311,7 +305,7 @@ msgstr "Heute"
 #. show it
 #: ../src/appointment.c:868
 msgid "Pick timezone"
-msgstr ""
+msgstr "Wählen Sie eine Zeitzone"
 
 #: ../src/appointment.c:1133
 msgid "New appointment - Orage"
@@ -380,24 +374,20 @@ msgid "End"
 msgstr "Ende"
 
 #: ../src/appointment.c:1396
-#, fuzzy
 msgid "Duration"
-msgstr "Ort"
+msgstr "Dauer"
 
 #: ../src/appointment.c:1403 ../src/appointment.c:1477
-#, fuzzy
 msgid "days"
-msgstr "2 Tage"
+msgstr "Tage"
 
 #: ../src/appointment.c:1412 ../src/appointment.c:1485
-#, fuzzy
 msgid "hours"
-msgstr "2 Stunden"
+msgstr "Stunden"
 
 #: ../src/appointment.c:1421 ../src/appointment.c:1493
-#, fuzzy
 msgid "mins"
-msgstr "5 Minuten"
+msgstr "Minuten"
 
 #: ../src/appointment.c:1429
 msgid "Availability"
@@ -433,7 +423,7 @@ msgstr "Monatlich"
 
 #: ../src/appointment.c:1527
 msgid "Yearly"
-msgstr ""
+msgstr "Jährlich"
 
 #: ../src/appointment.c:1532 ../src/appointment.c:1537
 msgid "Recurrence"
@@ -441,22 +431,19 @@ msgstr "Wiederholung"
 
 #: ../src/appointment.c:1548
 msgid "Repeat forever"
-msgstr ""
+msgstr "Immer wiederholen"
 
 #: ../src/appointment.c:1556
-#, fuzzy
 msgid "Repeat "
-msgstr "Wiederherstellen"
+msgstr "Wiederholen "
 
 #: ../src/appointment.c:1564
-#, fuzzy
 msgid "times"
-msgstr "Zeit"
+msgstr "mal"
 
 #: ../src/appointment.c:1574
-#, fuzzy
 msgid "Repeat until "
-msgstr "Wiederherstellen"
+msgstr "Wiederholen bis "
 
 #. date only appointment
 #: ../src/event-list.c:200
@@ -532,10 +519,18 @@ msgid ""
 "\t\t D=Daily W=Weekly M=Monthly Y=Yearly\n"
 "\t 3. Type: f=free B=Busy"
 msgstr ""
+"Klicken sie doppelt auf die Zeile, um sie zu ändern.\n"
+"\n"
+"Kennzeichen (der Reihe nach):\n"
+"\t 1. Alarm: n=kein Alarm\n"
+"\t\tA=visueller Alarm S=zusätzlich Klangalarm\n"
+"\t 2. Wiederholung: n=keine Wiederholung\n"
+"\t\t D=Täglich W=Wöchentlich M=Monatlich Y=Jährlich\n"
+"\t 3. Typ: f=Frei B=Beschäftigt"
 
 #: ../src/ical-code.c:96
 msgid "Africa"
-msgstr ""
+msgstr "Afrika"
 
 #: ../src/ical-code.c:97
 msgid "Africa/Abidjan"
@@ -587,11 +582,11 @@ msgstr ""
 
 #: ../src/ical-code.c:109
 msgid "Africa/Cairo"
-msgstr ""
+msgstr "Afrika/Kairo"
 
 #: ../src/ical-code.c:110
 msgid "Africa/Casablanca"
-msgstr ""
+msgstr "Afrika/Casablanca"
 
 #: ../src/ical-code.c:111
 msgid "Africa/Ceuta"
@@ -635,7 +630,7 @@ msgstr ""
 
 #: ../src/ical-code.c:121
 msgid "Africa/Johannesburg"
-msgstr ""
+msgstr "Afrika/Johannesburg"
 
 #: ../src/ical-code.c:122
 msgid "Africa/Kampala"
@@ -739,7 +734,7 @@ msgstr ""
 
 #: ../src/ical-code.c:147
 msgid "Africa/Tunis"
-msgstr ""
+msgstr "Afrika/Tunesien"
 
 #: ../src/ical-code.c:148
 msgid "Africa/Windhoek"
@@ -747,7 +742,7 @@ msgstr ""
 
 #: ../src/ical-code.c:149
 msgid "America"
-msgstr ""
+msgstr "Amerika"
 
 #: ../src/ical-code.c:150
 msgid "America/Adak"
@@ -831,7 +826,7 @@ msgstr ""
 
 #: ../src/ical-code.c:170
 msgid "America/Chicago"
-msgstr ""
+msgstr "Amerika/Chicago"
 
 #: ../src/ical-code.c:171
 msgid "America/Chihuahua"
@@ -867,7 +862,7 @@ msgstr ""
 
 #: ../src/ical-code.c:179
 msgid "America/Detroit"
-msgstr ""
+msgstr "Amerika/Detroit"
 
 #: ../src/ical-code.c:180
 msgid "America/Dominica"
@@ -915,7 +910,7 @@ msgstr ""
 
 #: ../src/ical-code.c:191
 msgid "America/Guatemala"
-msgstr ""
+msgstr "Amerika/Guatemala"
 
 #: ../src/ical-code.c:192
 msgid "America/Guayaquil"
@@ -967,7 +962,7 @@ msgstr ""
 
 #: ../src/ical-code.c:204
 msgid "America/Jamaica"
-msgstr ""
+msgstr "Amerika/Jamaika"
 
 #: ../src/ical-code.c:205
 msgid "America/Jujuy"
@@ -1063,7 +1058,7 @@ msgstr ""
 
 #: ../src/ical-code.c:228
 msgid "America/New_York"
-msgstr ""
+msgstr "Amerika/New_York"
 
 #: ../src/ical-code.c:229
 msgid "America/Nipigon"
@@ -1079,7 +1074,7 @@ msgstr ""
 
 #: ../src/ical-code.c:232
 msgid "America/Panama"
-msgstr ""
+msgstr "Amerika/Panama"
 
 #: ../src/ical-code.c:233
 msgid "America/Pangnirtung"
@@ -1219,7 +1214,7 @@ msgstr ""
 
 #: ../src/ical-code.c:267
 msgid "Antarctica"
-msgstr ""
+msgstr "Antarktik"
 
 #: ../src/ical-code.c:268
 msgid "Antarctica/Casey"
@@ -1259,7 +1254,7 @@ msgstr ""
 
 #: ../src/ical-code.c:277
 msgid "Arctic"
-msgstr ""
+msgstr "Arktik"
 
 #: ../src/ical-code.c:278
 msgid "Arctic/Longyearbyen"
@@ -1267,7 +1262,7 @@ msgstr ""
 
 #: ../src/ical-code.c:279
 msgid "Asia"
-msgstr ""
+msgstr "Asien"
 
 #: ../src/ical-code.c:280
 msgid "Asia/Aden"
@@ -1559,7 +1554,7 @@ msgstr ""
 
 #: ../src/ical-code.c:352
 msgid "Atlantic"
-msgstr ""
+msgstr "Atlantik"
 
 #: ../src/ical-code.c:353
 msgid "Atlantic/Azores"
@@ -1607,11 +1602,11 @@ msgstr ""
 
 #: ../src/ical-code.c:364
 msgid "Australia"
-msgstr ""
+msgstr "Australien"
 
 #: ../src/ical-code.c:365
 msgid "Australia/Adelaide"
-msgstr ""
+msgstr "Australien/Adelaide"
 
 #: ../src/ical-code.c:366
 msgid "Australia/Brisbane"
@@ -1639,7 +1634,7 @@ msgstr ""
 
 #: ../src/ical-code.c:372
 msgid "Australia/Melbourne"
-msgstr ""
+msgstr "Australien/Melbourne"
 
 #: ../src/ical-code.c:373
 msgid "Australia/Perth"
@@ -1647,35 +1642,35 @@ msgstr ""
 
 #: ../src/ical-code.c:374
 msgid "Australia/Sydney"
-msgstr ""
+msgstr "Australien/Sydney"
 
 #: ../src/ical-code.c:375
 msgid "Europe"
-msgstr ""
+msgstr "Europa"
 
 #: ../src/ical-code.c:376
 msgid "Europe/Amsterdam"
-msgstr ""
+msgstr "Europa/Amsterdam"
 
 #: ../src/ical-code.c:377
 msgid "Europe/Andorra"
-msgstr ""
+msgstr "Europa/Andorra"
 
 #: ../src/ical-code.c:378
 msgid "Europe/Athens"
-msgstr ""
+msgstr "Europa/Athen"
 
 #: ../src/ical-code.c:379
 msgid "Europe/Belfast"
-msgstr ""
+msgstr "Europa/Belfast"
 
 #: ../src/ical-code.c:380
 msgid "Europe/Belgrade"
-msgstr ""
+msgstr "Europa/Belgrad"
 
 #: ../src/ical-code.c:381
 msgid "Europe/Berlin"
-msgstr ""
+msgstr "Europa/Berlin"
 
 #: ../src/ical-code.c:382
 msgid "Europe/Bratislava"
@@ -1683,15 +1678,15 @@ msgstr ""
 
 #: ../src/ical-code.c:383
 msgid "Europe/Brussels"
-msgstr ""
+msgstr "Europa/Brüssel"
 
 #: ../src/ical-code.c:384
 msgid "Europe/Bucharest"
-msgstr ""
+msgstr "Europa/Bukarest"
 
 #: ../src/ical-code.c:385
 msgid "Europe/Budapest"
-msgstr ""
+msgstr "Europa/Budapest"
 
 #: ../src/ical-code.c:386
 msgid "Europe/Chisinau"
@@ -1699,23 +1694,23 @@ msgstr ""
 
 #: ../src/ical-code.c:387
 msgid "Europe/Copenhagen"
-msgstr ""
+msgstr "Europa/Kopenhagen"
 
 #: ../src/ical-code.c:388
 msgid "Europe/Dublin"
-msgstr ""
+msgstr "Europa/Dublin"
 
 #: ../src/ical-code.c:389
 msgid "Europe/Gibraltar"
-msgstr ""
+msgstr "Europa/Gibraltar"
 
 #: ../src/ical-code.c:390
 msgid "Europe/Helsinki"
-msgstr ""
+msgstr "Europa/Helsinki"
 
 #: ../src/ical-code.c:391
 msgid "Europe/Istanbul"
-msgstr ""
+msgstr "Europa/Instabul"
 
 #: ../src/ical-code.c:392
 msgid "Europe/Kaliningrad"
@@ -1723,43 +1718,43 @@ msgstr ""
 
 #: ../src/ical-code.c:393
 msgid "Europe/Kiev"
-msgstr ""
+msgstr "Europa/Kiew"
 
 #: ../src/ical-code.c:394
 msgid "Europe/Lisbon"
-msgstr ""
+msgstr "Europa/Lissabonn"
 
 #: ../src/ical-code.c:395
 msgid "Europe/Ljubljana"
-msgstr ""
+msgstr "Europa/Ljubljana"
 
 #: ../src/ical-code.c:396
 msgid "Europe/London"
-msgstr ""
+msgstr "Europa/London"
 
 #: ../src/ical-code.c:397
 msgid "Europe/Luxembourg"
-msgstr ""
+msgstr "Europa/Luxemburg"
 
 #: ../src/ical-code.c:398
 msgid "Europe/Madrid"
-msgstr ""
+msgstr "Europa/Madrid"
 
 #: ../src/ical-code.c:399
 msgid "Europe/Malta"
-msgstr ""
+msgstr "Europa/Malta"
 
 #: ../src/ical-code.c:400
 msgid "Europe/Minsk"
-msgstr ""
+msgstr "Europa/Minsk"
 
 #: ../src/ical-code.c:401
 msgid "Europe/Monaco"
-msgstr ""
+msgstr "Europa/Monakko"
 
 #: ../src/ical-code.c:402
 msgid "Europe/Moscow"
-msgstr ""
+msgstr "Europa/Moskau"
 
 #: ../src/ical-code.c:403
 msgid "Europe/Nicosia"
@@ -1767,23 +1762,23 @@ msgstr ""
 
 #: ../src/ical-code.c:404
 msgid "Europe/Oslo"
-msgstr ""
+msgstr "Europa/Oslo"
 
 #: ../src/ical-code.c:405
 msgid "Europe/Paris"
-msgstr ""
+msgstr "Europa/Paris"
 
 #: ../src/ical-code.c:406
 msgid "Europe/Prague"
-msgstr ""
+msgstr "Europa/Prag"
 
 #: ../src/ical-code.c:407
 msgid "Europe/Riga"
-msgstr ""
+msgstr "Europa/Riga"
 
 #: ../src/ical-code.c:408
 msgid "Europe/Rome"
-msgstr ""
+msgstr "Europa/Rom"
 
 #: ../src/ical-code.c:409
 msgid "Europe/Samara"
@@ -1791,11 +1786,11 @@ msgstr ""
 
 #: ../src/ical-code.c:410
 msgid "Europe/San_Marino"
-msgstr ""
+msgstr "Europa/San_Marino"
 
 #: ../src/ical-code.c:411
 msgid "Europe/Sarajevo"
-msgstr ""
+msgstr "Europa/Sarajewo"
 
 #: ../src/ical-code.c:412
 msgid "Europe/Simferopol"
@@ -1807,11 +1802,11 @@ msgstr ""
 
 #: ../src/ical-code.c:414
 msgid "Europe/Sofia"
-msgstr ""
+msgstr "Europa/Sofia"
 
 #: ../src/ical-code.c:415
 msgid "Europe/Stockholm"
-msgstr ""
+msgstr "Europa/Stockholm"
 
 #: ../src/ical-code.c:416
 msgid "Europe/Tallinn"
@@ -1831,11 +1826,11 @@ msgstr ""
 
 #: ../src/ical-code.c:420
 msgid "Europe/Vatican"
-msgstr ""
+msgstr "Europa/Vatikan"
 
 #: ../src/ical-code.c:421
 msgid "Europe/Vienna"
-msgstr ""
+msgstr "Europa/Wien"
 
 #: ../src/ical-code.c:422
 msgid "Europe/Vilnius"
@@ -1843,11 +1838,11 @@ msgstr ""
 
 #: ../src/ical-code.c:423
 msgid "Europe/Warsaw"
-msgstr ""
+msgstr "Europa/Warschau"
 
 #: ../src/ical-code.c:424
 msgid "Europe/Zagreb"
-msgstr ""
+msgstr "Europa/Zagreb"
 
 #: ../src/ical-code.c:425
 msgid "Europe/Zaporozhye"
@@ -1855,11 +1850,11 @@ msgstr ""
 
 #: ../src/ical-code.c:426
 msgid "Europe/Zurich"
-msgstr ""
+msgstr "Europa/Zürich"
 
 #: ../src/ical-code.c:427
 msgid "Indian"
-msgstr ""
+msgstr "Indien"
 
 #: ../src/ical-code.c:428
 msgid "Indian/Antananarivo"
@@ -1907,7 +1902,7 @@ msgstr ""
 
 #: ../src/ical-code.c:439
 msgid "Pacific"
-msgstr ""
+msgstr "Pazifik"
 
 #: ../src/ical-code.c:440
 msgid "Pacific/Apia"
@@ -1923,7 +1918,7 @@ msgstr ""
 
 #: ../src/ical-code.c:443
 msgid "Pacific/Easter"
-msgstr ""
+msgstr "Pazifik/Osterinseln"
 
 #: ../src/ical-code.c:444
 msgid "Pacific/Efate"
@@ -2066,9 +2061,8 @@ msgid "Pacific/Yap"
 msgstr ""
 
 #: ../src/ical-code.c:1194
-#, fuzzy
 msgid "Orage default alarm"
-msgstr "Xfcalendar Standard-Alarm"
+msgstr "Orage Standard-Alarm"
 
 #: ../src/main.c:206
 msgid "This should not happen"
@@ -2076,7 +2070,7 @@ msgstr "Das sollte nicht passieren"
 
 #: ../src/main.c:502
 msgid "Cannot create MCS client channel"
-msgstr "Konnte MCS Kanal nicht erzeugen"
+msgstr "Konnte MCS-Kanal nicht erzeugen"
 
 #: ../src/mainbox.c:412
 msgid "Open archive file..."
@@ -2093,11 +2087,11 @@ msgstr "_Bearbeiten"
 
 #: ../src/mainbox.c:440
 msgid "View selected _date"
-msgstr "Ausgewähltes Datum anzeigen"
+msgstr "Ausgewähltes _Datum anzeigen"
 
 #: ../src/mainbox.c:446
 msgid "Select _Today"
-msgstr "Heutiger Tag"
+msgstr "Heutiger _Tag"
 
 #. Help menu
 #: ../src/mainbox.c:450
@@ -2117,13 +2111,12 @@ msgid "About Orage"
 msgstr "Über Orage"
 
 #: ../panel-plugin/orageclock.desktop.in.in.h:1
-#, fuzzy
 msgid "Orage Clock"
-msgstr "Orage"
+msgstr "Orage Uhr"
 
 #: ../panel-plugin/orageclock.desktop.in.in.h:2
 msgid "What time and date is it?"
-msgstr ""
+msgstr "Wieviel Uhr und welches Datum ist jetzt?"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:1
 msgid "Calendar Settings"
@@ -2143,4 +2136,12 @@ msgstr "Kalender"
 
 #: ../xfcalendar.desktop.in.h:2
 msgid "Desktop calendar"
-msgstr "Arbeitsplatz Kalender"
+msgstr "Arbeitsplatz-Kalender"
+
+#~ msgid "A time value is wrong."
+#~ msgstr "Ein Zeitwert ist falsch."
+
+#~ msgid ""
+#~ "Time values must be written 'hh:mm', for instance '09:36' or '15:23'."
+#~ msgstr ""
+#~ "Zeitwerte müssen als 'hh:mm' eingegeben werden, z.B. '09:36' oder '15:23'."
