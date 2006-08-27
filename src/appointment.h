@@ -68,6 +68,9 @@ typedef struct
     gint   recur_limit; /* 0 = no limit  1 = count  2 = until */
     gint   recur_count;
     gchar  recur_until[17];
+    gboolean recur_byday[7]; /* 0=Mo, 1=Tu, 2=We, 3=Th, 4=Fr, 5=Sa, 6=Su */
+    gint    recur_byday_cnt[7]; /* monthly/early: 1=first -1=last 2=second... */
+    gint   interval;    /* 1=every day/week..., 2=every second day/week,... */
 } appt_data;
 
 typedef struct
@@ -83,7 +86,6 @@ typedef struct
     GtkWidget *appFileDuplicate_menuitem;
     GtkWidget *appFileDelete_menuitem;
     GtkWidget *appFileClose_menuitem;
-    /* GtkWidget *appHandleBox; */
     GtkWidget *appToolbar;
     GtkTooltips *appTooltips;
     GtkWidget *appNotebook;
@@ -114,6 +116,10 @@ typedef struct
     GtkWidget *appNote_Scrolledwindow;
     GtkWidget *appNote_textview;
     GtkTextBuffer *appNote_buffer;
+    GtkWidget *appRecur_feature_label;
+    GtkWidget *appRecur_feature_hbox;
+    GtkWidget *appRecur_feature_normal_rb;
+    GtkWidget *appRecur_feature_advanced_rb;
     GtkWidget *appRecur_freq_label;
     GtkWidget *appRecur_freq_cb;
     GtkWidget *appRecur_limit_rb;
@@ -125,6 +131,17 @@ typedef struct
     GtkWidget *appRecur_until_hbox;
     GtkWidget *appRecur_until_rb;
     GtkWidget *appRecur_until_button;
+    GtkWidget *appRecur_byday_label;
+    GtkWidget *appRecur_byday_hbox;
+    GtkWidget *appRecur_byday_cb[7];    /* 0=Mo, 1=Tu ... 6=Su */
+    GtkWidget *appRecur_byday_spin_label;
+    GtkWidget *appRecur_byday_spin_hbox;
+    GtkWidget *appRecur_byday_spin[7];  /* 0=Mo, 1=Tu ... 6=Su */
+    GtkWidget *appRecur_int_label;
+    GtkWidget *appRecur_int_hbox;
+    GtkWidget *appRecur_int_spin;
+    GtkWidget *appRecur_int_spin_label1;
+    GtkWidget *appRecur_int_spin_label2;
     GtkWidget *appAvailability_cb;
     GtkWidget *appAllDay_checkbutton;
     GtkWidget *appStartDate_button;

@@ -211,7 +211,7 @@ set_time_sensitivity(appt_win *apptw)
 void
 set_repeat_sensitivity(appt_win *apptw)
 {
-    gint freq;
+    gint freq, i;
     
     freq = gtk_combo_box_get_active((GtkComboBox *)apptw->appRecur_freq_cb);
     if (freq == XFICAL_FREQ_NONE) {
@@ -221,6 +221,13 @@ set_repeat_sensitivity(appt_win *apptw)
         gtk_widget_set_sensitive(apptw->appRecur_count_label, FALSE);
         gtk_widget_set_sensitive(apptw->appRecur_until_rb, FALSE);
         gtk_widget_set_sensitive(apptw->appRecur_until_button, FALSE);
+        for (i=0; i <= 6; i++) {
+            gtk_widget_set_sensitive(apptw->appRecur_byday_cb[i], FALSE);
+            gtk_widget_set_sensitive(apptw->appRecur_byday_spin[i], FALSE);
+        }
+        gtk_widget_set_sensitive(apptw->appRecur_int_spin, FALSE);
+        gtk_widget_set_sensitive(apptw->appRecur_int_spin_label1, FALSE);
+        gtk_widget_set_sensitive(apptw->appRecur_int_spin_label2, FALSE);
     }
     else {
         gtk_widget_set_sensitive(apptw->appRecur_limit_rb, TRUE);
@@ -236,12 +243,28 @@ set_repeat_sensitivity(appt_win *apptw)
         }
         gtk_widget_set_sensitive(apptw->appRecur_until_rb, TRUE);
         if (gtk_toggle_button_get_active(
-            GTK_TOGGLE_BUTTON(apptw->appRecur_until_rb))) {
+                GTK_TOGGLE_BUTTON(apptw->appRecur_until_rb))) {
             gtk_widget_set_sensitive(apptw->appRecur_until_button, TRUE);
         }
         else {
             gtk_widget_set_sensitive(apptw->appRecur_until_button, FALSE);
         }
+        for (i=0; i <= 6; i++) {
+            gtk_widget_set_sensitive(apptw->appRecur_byday_cb[i], TRUE);
+        }
+        if (freq == XFICAL_FREQ_MONTHLY || freq == XFICAL_FREQ_YEARLY) {
+            for (i=0; i <= 6; i++) {
+                gtk_widget_set_sensitive(apptw->appRecur_byday_spin[i], TRUE);
+            }
+        }
+        else {
+            for (i=0; i <= 6; i++) {
+                gtk_widget_set_sensitive(apptw->appRecur_byday_spin[i], FALSE);
+            }
+        }
+        gtk_widget_set_sensitive(apptw->appRecur_int_spin, TRUE);
+        gtk_widget_set_sensitive(apptw->appRecur_int_spin_label1, TRUE);
+        gtk_widget_set_sensitive(apptw->appRecur_int_spin_label2, TRUE);
     }
 }
 
@@ -279,6 +302,32 @@ app_recur_checkbutton_clicked_cb(GtkCheckButton *checkbutton
 {
     mark_appointment_changed((appt_win *)user_data);
     set_repeat_sensitivity((appt_win *)user_data);
+}
+
+void
+app_recur_feature_checkbutton_clicked_cb(GtkCheckButton *checkbutton
+        , gpointer user_data)
+{
+    appt_win *apptw=(appt_win *)user_data;
+
+    mark_appointment_changed((appt_win *)user_data);
+    if (gtk_toggle_button_get_active(
+            GTK_TOGGLE_BUTTON(apptw->appRecur_feature_normal_rb))) {
+        gtk_widget_hide(apptw->appRecur_int_label);
+        gtk_widget_hide(apptw->appRecur_int_hbox);
+        gtk_widget_hide(apptw->appRecur_byday_label);
+        gtk_widget_hide(apptw->appRecur_byday_hbox);
+        gtk_widget_hide(apptw->appRecur_byday_spin_label);
+        gtk_widget_hide(apptw->appRecur_byday_spin_hbox);
+    }
+    else {
+        gtk_widget_show(apptw->appRecur_int_label);
+        gtk_widget_show(apptw->appRecur_int_hbox);
+        gtk_widget_show(apptw->appRecur_byday_label);
+        gtk_widget_show(apptw->appRecur_byday_hbox);
+        gtk_widget_show(apptw->appRecur_byday_spin_label);
+        gtk_widget_show(apptw->appRecur_byday_spin_hbox);
+    }
 }
 
 void
@@ -447,6 +496,7 @@ fill_appt_from_apptw(appt_data *appt, appt_win *apptw)
     const char *time_format="%H:%M";
     struct tm current_t;
     gchar starttime[6], endtime[6];
+    gint i;
 
     /*Get the title */
     appt->title = g_strdup(gtk_entry_get_text(
@@ -534,6 +584,10 @@ fill_appt_from_apptw(appt_data *appt, appt_win *apptw)
     appt->freq = gtk_combo_box_get_active(
             (GtkComboBox *)apptw->appRecur_freq_cb);
 
+    /* Get the recurrence interval */
+    appt->interval = gtk_spin_button_get_value_as_int(
+            GTK_SPIN_BUTTON(apptw->appRecur_int_spin));
+
     /* Get the recurrence ending */
     if (gtk_toggle_button_get_active(
                 GTK_TOGGLE_BUTTON(apptw->appRecur_limit_rb))) {
@@ -561,6 +615,15 @@ fill_appt_from_apptw(appt_data *appt, appt_win *apptw)
     }
     else
         g_warning("fill_appt_from_apptw: coding error, illegal recurrence");
+
+    /* Get the recurrence weekdays */
+    for (i=0; i <= 6; i++) {
+        appt->recur_byday[i] = gtk_toggle_button_get_active(
+                GTK_TOGGLE_BUTTON(apptw->appRecur_byday_cb[i]));
+    /* Get the recurrence weekday selection for month/yearly case */
+        appt->recur_byday_cnt[i] = gtk_spin_button_get_value_as_int(
+                GTK_SPIN_BUTTON(apptw->appRecur_byday_spin[i]));
+    }
 
     return(TRUE);
 }
@@ -1095,6 +1158,7 @@ fill_appt_window(appt_win *apptw, char *action, char *par)
     appt_data *appt;
     struct tm *t;
     char *untildate_to_display;
+    int i;
 
     g_message("%s appointment: %s", action, par);
     if ((appt = fill_appt_window_get_appt(action, par)) == NULL) {
@@ -1220,6 +1284,33 @@ fill_appt_window(appt_win *apptw, char *action, char *par)
                     appt->recur_limit);
     }
 
+    /* weekdays */
+    for (i=0; i <= 6; i++) {
+        gtk_toggle_button_set_active(
+                GTK_TOGGLE_BUTTON(apptw->appRecur_byday_cb[i])
+                , appt->recur_byday[i]);
+        /* which weekday of month / year */
+        gtk_spin_button_set_value(
+                GTK_SPIN_BUTTON(apptw->appRecur_byday_spin[i])
+                , (gdouble)appt->recur_byday_cnt[i]);
+    }
+
+    /* interval */
+    gtk_spin_button_set_value(
+            GTK_SPIN_BUTTON(apptw->appRecur_int_spin)
+            , (gdouble)appt->interval);
+
+    if (appt->interval > 1
+    || !appt->recur_byday[0] || !appt->recur_byday[1] || !appt->recur_byday[2] 
+    || !appt->recur_byday[3] || !appt->recur_byday[4] || !appt->recur_byday[5] 
+    || !appt->recur_byday[6]) {
+        gtk_toggle_button_set_active(
+                GTK_TOGGLE_BUTTON(apptw->appRecur_feature_advanced_rb), TRUE);
+    }
+    else {
+        gtk_toggle_button_set_active(
+                GTK_TOGGLE_BUTTON(apptw->appRecur_feature_normal_rb), TRUE);
+    }
     xfical_appt_free(appt);
 
     set_time_sensitivity(apptw);
@@ -1522,9 +1613,11 @@ create_appt_win_tab_alarm(appt_win *apptw)
 void
 create_appt_win_tab_recurrence(appt_win *apptw)
 {
-    gint row=1;
+    gint row=1, i;
     char *recur_freq_array[RECUR_ARRAY_DIM] = {
-            _("None"), _("Daily"), _("Weekly"), _("Monthly"), _("Yearly")};
+        _("None"), _("Daily"), _("Weekly"), _("Monthly"), _("Yearly")};
+    char *weekday_array[7] = {
+        _("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun")};
 
     apptw->appTableRecur = xfcalendar_table_new(8, 2);
     apptw->appRecur_notebook_page = 
@@ -1533,6 +1626,28 @@ create_appt_win_tab_recurrence(appt_win *apptw)
 
     gtk_notebook_append_page(GTK_NOTEBOOK(apptw->appNotebook)
             , apptw->appRecur_notebook_page, apptw->appRecur_tab_label);
+
+    apptw->appRecur_feature_label = gtk_label_new(_("Complexity"));
+    apptw->appRecur_feature_hbox = gtk_hbox_new(FALSE, 0);
+    apptw->appRecur_feature_normal_rb = gtk_radio_button_new_with_label(NULL
+            , _("Basic"));
+    gtk_box_pack_start(GTK_BOX(apptw->appRecur_feature_hbox)
+            , apptw->appRecur_feature_normal_rb, FALSE, FALSE, 15);
+    apptw->appRecur_feature_advanced_rb = 
+            gtk_radio_button_new_with_mnemonic_from_widget(
+                    GTK_RADIO_BUTTON(apptw->appRecur_feature_normal_rb)
+            , _("Advanced"));
+    gtk_box_pack_start(GTK_BOX(apptw->appRecur_feature_hbox)
+            , apptw->appRecur_feature_advanced_rb, FALSE, FALSE, 15);
+    xfcalendar_table_add_row(apptw->appTableRecur
+            , apptw->appRecur_feature_label, apptw->appRecur_feature_hbox, row++
+            , (GtkAttachOptions) (GTK_EXPAND | GTK_FILL)
+            , (GtkAttachOptions) (0));
+    gtk_tooltips_set_tip(apptw->appTooltips, apptw->appRecur_feature_normal_rb
+            , _("Use this is you want regular repeating event"), NULL);
+    gtk_tooltips_set_tip(apptw->appTooltips, apptw->appRecur_feature_advanced_rb
+            , _("Use this if you need complex times like:\n Every second week or \n Every Saturday and Sunday or \n First Tuesday every month")
+            , NULL);
 
     apptw->appRecur_freq_label = gtk_label_new(_("Recurrence"));
     apptw->appRecur_freq_cb = gtk_combo_box_new_text();
@@ -1543,7 +1658,27 @@ create_appt_win_tab_recurrence(appt_win *apptw)
             , (GtkAttachOptions) (GTK_EXPAND | GTK_FILL)
             , (GtkAttachOptions) (GTK_FILL));
 
-    apptw->appRecur_limit_label = gtk_label_new(""/* _("Limit") */);
+    apptw->appRecur_int_label = gtk_label_new(_("Interval"));
+    apptw->appRecur_int_hbox = gtk_hbox_new(FALSE, 0);
+    apptw->appRecur_int_spin_label1 = gtk_label_new(_("Each"));
+    gtk_box_pack_start(GTK_BOX(apptw->appRecur_int_hbox)
+            , apptw->appRecur_int_spin_label1, FALSE, FALSE, 0);
+    apptw->appRecur_int_spin = gtk_spin_button_new_with_range(1, 100, 1);
+    gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(apptw->appRecur_int_spin), TRUE);
+    gtk_box_pack_start(GTK_BOX(apptw->appRecur_int_hbox)
+            , apptw->appRecur_int_spin, FALSE, FALSE, 5);
+    apptw->appRecur_int_spin_label2 = gtk_label_new(_("occurrance"));
+    gtk_box_pack_start(GTK_BOX(apptw->appRecur_int_hbox)
+            , apptw->appRecur_int_spin_label2, FALSE, FALSE, 0);
+    xfcalendar_table_add_row(apptw->appTableRecur
+            , apptw->appRecur_int_label, apptw->appRecur_int_hbox, row++
+            , (GtkAttachOptions) (GTK_EXPAND | GTK_FILL)
+            , (GtkAttachOptions) (0));
+    gtk_tooltips_set_tip(apptw->appTooltips, apptw->appRecur_int_spin
+            , _("Limit frequency to certain interval. For example:\n Every third day: Frequency = Daily and Interval = 3")
+            , NULL);
+
+    apptw->appRecur_limit_label = gtk_label_new(_("Limit"));
     apptw->appRecur_limit_rb = gtk_radio_button_new_with_label(NULL
             , _("Repeat forever"));
     xfcalendar_table_add_row(apptw->appTableRecur
@@ -1581,11 +1716,43 @@ create_appt_win_tab_recurrence(appt_win *apptw)
             , NULL, apptw->appRecur_until_hbox, row++
             , (GtkAttachOptions) (GTK_EXPAND | GTK_FILL)
             , (GtkAttachOptions) (0));
+
+    apptw->appRecur_byday_label = gtk_label_new(_("Weekdays"));
+    apptw->appRecur_byday_hbox = gtk_hbox_new(FALSE, 0);
+    for (i=0; i <= 6; i++) {
+        apptw->appRecur_byday_cb[i] = 
+                gtk_check_button_new_with_mnemonic(weekday_array[i]);
+        gtk_box_pack_start(GTK_BOX(apptw->appRecur_byday_hbox)
+                , apptw->appRecur_byday_cb[i], FALSE, FALSE, i ? 5 : 0);
+    }
+    xfcalendar_table_add_row(apptw->appTableRecur
+            , apptw->appRecur_byday_label, apptw->appRecur_byday_hbox, row++
+            , (GtkAttachOptions) (GTK_EXPAND | GTK_FILL)
+            , (GtkAttachOptions) (0));
+
+    apptw->appRecur_byday_spin_label = gtk_label_new(_("Which day"));
+    apptw->appRecur_byday_spin_hbox = gtk_hbox_new(FALSE, 0);
+    for (i=0; i <= 6; i++) {
+        apptw->appRecur_byday_spin[i] = 
+                gtk_spin_button_new_with_range(-9, 9, 1);
+        gtk_box_pack_start(GTK_BOX(apptw->appRecur_byday_spin_hbox)
+                , apptw->appRecur_byday_spin[i], FALSE, FALSE, i ? 2 : 0);
+        gtk_tooltips_set_tip(apptw->appTooltips, apptw->appRecur_byday_spin[i]
+                , _("Specify which weekday for monthly and yearly events.\n For example:\n Every second Wednesday each month:\n\tFrequency = Monthly,\n\tWeekdays = cross only Wednesday,\n\tWhich day = select 2 from the number below Wednesday")
+                , NULL);
+    }
+    xfcalendar_table_add_row(apptw->appTableRecur
+            , apptw->appRecur_byday_spin_label
+            , apptw->appRecur_byday_spin_hbox, row++
+            , (GtkAttachOptions) (GTK_EXPAND | GTK_FILL)
+            , (GtkAttachOptions) (0));
 }
 
 appt_win 
 *create_appt_win(char *action, char *par, eventlist_win *event_list)
 {
+    int i;
+
     /* main window creation and base elements */
     appt_win *apptw = g_new(appt_win, 1);
 
@@ -1726,8 +1893,25 @@ appt_win
     g_signal_connect((gpointer) apptw->appRecur_until_rb, "clicked",
             G_CALLBACK(app_recur_checkbutton_clicked_cb), apptw);
 
+    g_signal_connect((gpointer) apptw->appRecur_feature_normal_rb, "clicked",
+            G_CALLBACK(app_recur_feature_checkbutton_clicked_cb), apptw);
+
+    g_signal_connect((gpointer) apptw->appRecur_feature_advanced_rb, "clicked",
+            G_CALLBACK(app_recur_feature_checkbutton_clicked_cb), apptw);
+
     g_signal_connect((gpointer) apptw->appRecur_until_button, "clicked",
             G_CALLBACK(on_appStartEndDate_clicked_cb), apptw);
+
+
+    for (i=0; i <= 6; i++) {
+        g_signal_connect((gpointer) apptw->appRecur_byday_cb[i], "clicked",
+                G_CALLBACK(app_checkbutton_clicked_cb), apptw);
+        g_signal_connect((gpointer) apptw->appRecur_byday_spin[i], 
+                "value-changed",
+                G_CALLBACK(on_app_spin_button_changed_cb), apptw);
+    }
+    g_signal_connect((gpointer) apptw->appRecur_int_spin, "value-changed",
+            G_CALLBACK(on_app_spin_button_changed_cb), apptw);
 
     g_signal_connect((gpointer) apptw->appAvailability_cb, "changed",
             G_CALLBACK(on_app_combobox_changed_cb), apptw);
@@ -1750,6 +1934,15 @@ appt_win
     fill_appt_window(apptw, action, par);
 
     gtk_widget_show_all(apptw->appWindow);
+    if (gtk_toggle_button_get_active(
+            GTK_TOGGLE_BUTTON(apptw->appRecur_feature_normal_rb))) {
+        gtk_widget_hide(apptw->appRecur_int_label);
+        gtk_widget_hide(apptw->appRecur_int_hbox);
+        gtk_widget_hide(apptw->appRecur_byday_label);
+        gtk_widget_hide(apptw->appRecur_byday_hbox);
+        gtk_widget_hide(apptw->appRecur_byday_spin_label);
+        gtk_widget_hide(apptw->appRecur_byday_spin_hbox);
+    }
 
     return apptw;
 }

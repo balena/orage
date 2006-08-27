@@ -39,6 +39,7 @@
 
 #include <unistd.h>
 #include <time.h>
+#include <math.h>
 
 #include <libxfce4util/libxfce4util.h>
 #include <libxfcegui4/libxfcegui4.h>
@@ -55,6 +56,7 @@
 #include "mainbox.h"
 #include "ical-code.h"
 #include "functions.h"
+#include "xfce_trayicon.h"
 
 #define MAX_APPT_LENGTH 4096
 #define LEN_BUFFER 1024
@@ -62,6 +64,9 @@
 #define APPOINTMENT_FILE "orage.ics"
 
 #define XFICAL_STR_EXISTS(str) ((str != NULL) && (str[0] != 0))
+
+extern XfceTrayIcon *trayIcon;
+
 
 typedef struct
 {
@@ -477,6 +482,7 @@ const gchar *trans_timezone[] = {
     N_("Pacific/Wallis"),
     N_("Pacific/Yap"),
 };
+
 xfical_timezone_array xfical_get_timezones()
 {
     static xfical_timezone_array tz={0, NULL};
@@ -944,11 +950,14 @@ int xfical_compare_times(appt_data *appt)
   */
 appt_data *xfical_appt_alloc()
 {
-    appt_data *temp;
+    appt_data *appt;
+    int i;
 
-    temp = g_new0(appt_data, 1);
-    temp->availability = 1;
-    return(temp);
+    appt = g_new0(appt_data, 1);
+    appt->availability = 1;
+    for (i=0; i <= 6; i++)
+        appt->recur_byday[i] = TRUE;
+    return(appt);
 }
 
 void alarm_free(gpointer galarm, gpointer dummy)
@@ -985,6 +994,7 @@ void alarm_add(icalproperty_status action
              , struct icaltimetype alarm_time, struct icaltimetype event_time)
 {
     alarm_struct *new_alarm;
+
     new_alarm = g_new(alarm_struct, 1);
     new_alarm->uid = g_string_new(uid);
     new_alarm->title = g_string_new(title);
@@ -1002,6 +1012,7 @@ void alarm_add(icalproperty_status action
         new_alarm->audio = TRUE;
     else
         new_alarm->audio = FALSE;
+
     alarm_list = g_list_append(alarm_list, new_alarm);
 }
 
@@ -1168,6 +1179,23 @@ gboolean xfical_alarm_passed(char *alarm_stime)
     return(FALSE);
  }
 
+gboolean xfical_duration(char *alarm_stime, int *days, int *hours, int *mins)
+{
+    struct icaltimetype alarm_time, cur_time;
+    struct icaldurationtype duration;
+
+    duration = icaldurationtype_null_duration();
+    cur_time = ical_get_current_local_time();
+    alarm_time = icaltime_from_string(alarm_stime);
+    duration = icaltime_subtract(alarm_time, cur_time);
+    if (icaldurationtype_is_bad_duration(duration) || duration.is_neg)
+        return(FALSE);
+    *days = duration.weeks*7 + duration.days;
+    *hours = duration.hours;
+    *mins = duration.minutes;
+    return(TRUE);
+ }
+
 void appt_add_alarm_internal(appt_data *appt, icalcomponent *ievent)
 {
     icalcomponent *ialarm;
@@ -1220,9 +1248,11 @@ char *appt_add_internal(appt_data *appt, gboolean add, char *uid
     struct icaltimetype dtstamp, create_time, wtime;
     static gchar xf_uid[1001];
     gchar xf_host[501];
-    gchar recur_str[101], *recur_p;
+    gchar recur_str[1001], *recur_p, *recur_p2;
     struct icalrecurrencetype rrule;
     struct icaldurationtype duration;
+    int i, cnt;
+    gchar *byday_a[] = {"MO", "TU", "WE", "TH", "FR", "SA", "SU"};
 
     dtstamp = icaltime_current_time_with_zone(utc_icaltimezone);
     if (add) {
@@ -1341,10 +1371,33 @@ char *appt_add_internal(appt_data *appt, gboolean add, char *uid
                 icalrecurrencetype_clear(&rrule);
         }
         if (appt->recur_limit == 1) {
-            g_sprintf(recur_p, ";COUNT=%d", appt->recur_count);
+            recur_p += g_sprintf(recur_p, ";COUNT=%d", appt->recur_count);
         }
         else if (appt->recur_limit == 2) { /* needs to be in UTC */
-            g_sprintf(recur_p, ";UNTIL=%sZ", appt->recur_until);
+            recur_p += g_sprintf(recur_p, ";UNTIL=%sZ", appt->recur_until);
+        }
+        recur_p2 = recur_p; /* store current pointer */
+        for (i = 0, cnt = 0; i <= 6; i++) {
+            if (appt->recur_byday[i]) {
+                if (cnt == 0) /* first day found */
+                    recur_p = g_stpcpy(recur_p, ";BYDAY=");
+                else /* continue the list */
+                    recur_p = g_stpcpy(recur_p, ",");
+                if ((appt->freq == XFICAL_FREQ_MONTHLY
+                        || appt->freq == XFICAL_FREQ_YEARLY)
+                    && (appt->recur_byday_cnt[i])) /* number defined */
+                        recur_p += g_sprintf(recur_p, "%d"
+                                , appt->recur_byday_cnt[i]);
+                recur_p = g_stpcpy(recur_p, byday_a[i]);
+                cnt++;
+            }
+        }
+        if (cnt == 7) { /* all days defined... */
+            *recur_p2 = *recur_p; /* ...reset to null... */
+            recur_p = recur_p2;   /* ...no need for BYDAY then */
+        }
+        if (appt->interval > 1) { /* not default, need to insert it */
+            recur_p += g_sprintf(recur_p, ";INTERVAL=%d", appt->interval);
         }
         rrule = icalrecurrencetype_from_string(recur_str);
         icalcomponent_add_property(ievent, icalproperty_new_rrule(rrule));
@@ -1440,12 +1493,13 @@ appt_data *xfical_appt_get_internal(char *ical_uid)
     icalproperty_transp xf_transp;
     struct icalrecurrencetype rrule;
     struct icaldurationtype duration;
+    int i, cnt, day;
 
     for (c = icalcomponent_get_first_component(ical, ICAL_VEVENT_COMPONENT); 
          c != 0 && !key_found;
          c = icalcomponent_get_next_component(ical, ICAL_VEVENT_COMPONENT)) {
         text = icalcomponent_get_uid(c);
-        if (strcmp(text, ical_uid) == 0) {
+        if (strcmp(text, ical_uid) == 0) { /* we found our uid (=event) */
         /*********** Defaults ***********/
             stime = icaltime_null_time();
             sltime = icaltime_null_time();
@@ -1473,6 +1527,10 @@ appt_data *xfical_appt_get_internal(char *ical_uid)
             appt.recur_limit = 0;
             appt.recur_count = 0;
             appt.recur_until[0] = '\0';
+            for (i=0; i <= 6; i++) {
+                appt.recur_byday[i] = TRUE;
+                appt.recur_byday_cnt[i] = 0;
+            }
         /*********** Properties ***********/
             for (p = icalcomponent_get_first_property(c, ICAL_ANY_PROPERTY);
                  p != 0;
@@ -1575,6 +1633,52 @@ appt_data *xfical_appt_get_internal(char *ical_uid)
                             text  = icaltime_as_ical_string(rrule.until);
                             g_strlcpy(appt.recur_until, text, 17);
                         }
+                        if (rrule.by_day[0] != ICAL_RECURRENCE_ARRAY_MAX) {
+                            for (i=0; i <= 6; i++)
+                                appt.recur_byday[i] = FALSE;
+                            for (i=0; i <= 6 && 
+                                 rrule.by_day[i] != ICAL_RECURRENCE_ARRAY_MAX; 
+                                 i++) {
+                                cnt = (int)floor((double)(rrule.by_day[i]/8));
+                                day = abs(rrule.by_day[i]-8*cnt);
+                                switch (day) {
+                                    case ICAL_MONDAY_WEEKDAY:
+                                        appt.recur_byday[0] = TRUE;
+                                        appt.recur_byday_cnt[0] = cnt;
+                                        break;
+                                    case ICAL_TUESDAY_WEEKDAY:
+                                        appt.recur_byday[1] = TRUE;
+                                        appt.recur_byday_cnt[1] = cnt;
+                                        break;
+                                    case ICAL_WEDNESDAY_WEEKDAY:
+                                        appt.recur_byday[2] = TRUE;
+                                        appt.recur_byday_cnt[2] = cnt;
+                                        break;
+                                    case ICAL_THURSDAY_WEEKDAY:
+                                        appt.recur_byday[3] = TRUE;
+                                        appt.recur_byday_cnt[3] = cnt;
+                                        break;
+                                    case ICAL_FRIDAY_WEEKDAY:
+                                        appt.recur_byday[4] = TRUE;
+                                        appt.recur_byday_cnt[4] = cnt;
+                                        break;
+                                    case ICAL_SATURDAY_WEEKDAY:
+                                        appt.recur_byday[5] = TRUE;
+                                        appt.recur_byday_cnt[5] = cnt;
+                                        break;
+                                    case ICAL_SUNDAY_WEEKDAY:
+                                        appt.recur_byday[6] = TRUE;
+                                        appt.recur_byday_cnt[6] = cnt;
+                                        break;
+                                    case ICAL_NO_WEEKDAY:
+                                        break;
+                                    default:
+                                        g_warning("Orage xfical_appt_get_internal: unknown weekday %s: %d/%d (%x)", ical_uid, rrule.by_day[i], i, rrule.by_day[i]);
+                                        break;
+                                }
+                            }
+                        }
+                        appt.interval = rrule.interval;
                         break;
                     case ICAL_CATEGORIES_PROPERTY:
                     case ICAL_CLASS_PROPERTY:
@@ -1582,7 +1686,7 @@ appt_data *xfical_appt_get_internal(char *ical_uid)
                     case ICAL_CREATED_PROPERTY:
                         break;
                     default:
-                        g_warning("Orage xfical_appt_get: unknown property %s", (char *)icalproperty_get_property_name(p));
+                        g_warning("Orage xfical_appt_get_internal: unknown property %s", (char *)icalproperty_get_property_name(p));
                         break;
                 }
             }
@@ -1828,7 +1932,9 @@ void xfical_mark_calendar(GtkCalendar *gtkcal, int year, int month)
             else
                 end_day = 31;
             for (day_cnt = start_day; day_cnt <= end_day; day_cnt++)
+            {
                 gtk_calendar_mark_day(gtkcal, day_cnt);
+            }
         }
         if ((p = icalcomponent_get_first_property(c
                 , ICAL_RRULE_PROPERTY)) != 0) { /* check recurring EVENTs */
@@ -1842,8 +1948,8 @@ void xfical_mark_calendar(GtkCalendar *gtkcal, int year, int month)
                  nsdate = icalrecur_iterator_next(ri),
                     nedate = icaltime_add(nsdate, per.duration)) {
                 if ((nsdate.year*12+nsdate.month) <= (year*12+month)
-                        && (year*12+month) <= (nedate.year*12+nedate.month)) {
-                        /* event is in our year+month = visible in calendar */
+                    && (year*12+month) <= (nedate.year*12+nedate.month)) {
+                    /* event is in our year+month = visible in calendar */
                     if (nsdate.year == year && nsdate.month == month)
                         start_day = nsdate.day;
                     else
@@ -1853,7 +1959,9 @@ void xfical_mark_calendar(GtkCalendar *gtkcal, int year, int month)
                     else
                         end_day = 31;
                     for (day_cnt = start_day; day_cnt <= end_day; day_cnt++)
+                    {
                         gtk_calendar_mark_day(gtkcal, day_cnt);
+                    }
                 }
             }
             icalrecur_iterator_free(ri);
