@@ -212,6 +212,21 @@ xfce_tray_icon_reconnect(XfceTrayIcon *icon)
 }
 
 /*
+ * Show new balloon message
+ * Does not seem to work! commented out
+ */
+/*
+void
+xfce_tray_icon_message(XfceTrayIcon *icon, glong timeout, const gchar *text)
+{
+	g_return_if_fail(XFCE_IS_TRAY_ICON(icon));
+    g_return_if_fail(NETK_IS_TRAY_ICON(icon->tray));
+
+	netk_tray_icon_message_new(NETK_TRAY_ICON(icon->tray), timeout, text);
+}
+*/
+
+/*
  * The tray just disappeared
  */
 static void
@@ -360,6 +375,9 @@ xfce_tray_icon_set_tooltip(XfceTrayIcon *icon, const gchar *text,
 {
 	g_return_if_fail(XFCE_IS_TRAY_ICON(icon));
 
+    /* remove these to save cpu for mem allocations
+     * since orage uses tooltips a lot! */
+    /*
 	if (icon->tip_text != NULL) {
 		g_free(icon->tip_text);
 		icon->tip_text = NULL;
@@ -369,14 +387,17 @@ xfce_tray_icon_set_tooltip(XfceTrayIcon *icon, const gchar *text,
 		g_free(icon->tip_private);
 		icon->tip_private = NULL;
 	}
+    */
 
 	if (NETK_IS_TRAY_ICON(icon->tray))
 		gtk_tooltips_set_tip(icon->tooltips, icon->tray, text, private);
 
+    /*
 	if (text != NULL)
 		icon->tip_text = g_strdup(text);
 
 	if (private != NULL)
 		icon->tip_private = g_strdup(private);
+        */
 }
 

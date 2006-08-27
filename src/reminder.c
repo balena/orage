@@ -1,7 +1,7 @@
 /* reminder.c
  *
- * (C) 2003-2005 Mickaël Graf
- * (C) 2005      Juha Kautto 
+ * (C) 2003-2006 Mickaël Graf
+ * (C) 2005-2006 Juha Kautto 
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -21,6 +21,9 @@
 #ifdef HAVE_CONFIG_H
 #  include <config.h>
 #endif
+#ifdef HAVE_SYS_WAIT_H
+#include <sys/wait.h>
+#endif
 
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -29,6 +32,8 @@
 #include <stdio.h>
 #include <time.h>
 
+#include <glib.h>
+#include <glib/gprintf.h>
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
 #include <libxfce4util/libxfce4util.h>
@@ -47,7 +52,6 @@
 extern GList *alarm_list;
 extern XfceTrayIcon *trayIcon;
 
-
 static gchar *play_cmd = NULL;
 
 void set_play_command(gchar *cmd)
@@ -55,6 +59,48 @@ void set_play_command(gchar *cmd)
     if (play_cmd)
         g_free(play_cmd);
     play_cmd = g_strdup(cmd);
+}
+
+static void
+child_setup_async(gpointer user_data)
+{
+#if defined(HAVE_SETSID) && !defined(G_OS_WIN32)
+    setsid();
+#endif
+}
+
+static void
+child_watch_cb(GPid pid, gint status, gpointer data)
+{
+    gboolean *sound_active = (gboolean *)data;
+
+    waitpid(pid, NULL, 0);
+    g_spawn_close_pid(pid);
+    *sound_active = FALSE;
+}
+
+gboolean 
+orage_exec(const char *cmd, gboolean *sound_active, GError **error)
+{
+    char **argv;
+    gboolean success;
+    int spawn_flags = G_SPAWN_SEARCH_PATH | G_SPAWN_DO_NOT_REAP_CHILD;
+    GPid pid;
+
+    if (!g_shell_parse_argv(cmd, NULL, &argv, error)) 
+        return FALSE;
+
+    if (!argv || !argv[0])
+        return FALSE;
+
+    success = g_spawn_async(NULL, argv, NULL, spawn_flags
+            , child_setup_async, NULL, &pid, error);
+    if (success)
+        *sound_active = TRUE;
+    g_child_watch_add(pid, child_watch_cb, sound_active);
+    g_strfreev(argv);
+
+    return success;
 }
 
 gboolean
@@ -68,7 +114,14 @@ orage_sound_alarm(gpointer data)
 
     /* note: -1 loops forever */
     if (audio_alarm->cnt != 0) {
+        /*
         status = xfce_exec(audio_alarm->play_cmd, FALSE, FALSE, &error);
+        */
+        if (audio_alarm->sound_active) {
+            return(TRUE);
+        }
+        status = orage_exec(audio_alarm->play_cmd, &audio_alarm->sound_active
+                , &error);
         if (!status) {
             g_warning("reminder: play failed (%si)", audio_alarm->play_cmd);
             audio_alarm->cnt = 0; /* one warning is enough */
@@ -98,6 +151,7 @@ create_soundReminder(alarm_struct *alarm, GtkWidget *wReminder)
     audio_alarm =  g_new(xfce_audio_alarm_type, 1);
     audio_alarm->play_cmd = g_strconcat(play_cmd, " \"", alarm->sound->str, "\"", NULL);
     audio_alarm->delay = alarm->repeat_delay;
+    audio_alarm->sound_active = FALSE;
     if ((audio_alarm->cnt = alarm->repeat_cnt) == 0) {
         audio_alarm->cnt++;
         audio_alarm->wReminder = NULL;
@@ -249,6 +303,44 @@ create_wReminder(alarm_struct *alarm)
   gtk_widget_show(wReminder);
 }
 
+void
+build_tray_tooltip()
+{
+    gint alarm_cnt=0;
+    gint tooltip_alarm_limit=5;
+    gint dd, hh, min;
+    GString *tooltip=NULL;
+    GList *alarm_l;
+    alarm_struct *cur_alarm;
+    /* GtkTooltipsData *cur_tooltip; */
+     
+    tooltip = g_string_new(_("Next active alarms:"));
+    alarm_l = alarm_list;
+    for (alarm_l = g_list_first(alarm_l);
+         alarm_l != NULL && (alarm_cnt < tooltip_alarm_limit);
+         alarm_l = g_list_next(alarm_l)) {
+        cur_alarm = (alarm_struct *)alarm_l->data;
+        if (xfical_duration(cur_alarm->alarm_time->str, &dd, &hh, &min)) {
+            g_string_append_printf(tooltip, 
+                    _("\n%02d d %02d h %02d min to: %s"),
+                    dd, hh, min, cur_alarm->title->str);
+            alarm_cnt++;
+        }
+    }
+    if (alarm_cnt == 0)
+        g_string_append_printf(tooltip, _("\nNo active alarms found"));
+
+    /* would this check save CPU or not??
+    cur_tooltip = gtk_tooltips_data_get(trayIcon->tray);
+    if (cur_tooltip == NULL) 
+    || (strcmp(tooltip->str, cur_tooltip->tip_text) != 0) {
+        xfce_tray_icon_set_tooltip(trayIcon, tooltip->str, NULL);
+    }
+    */
+    xfce_tray_icon_set_tooltip(trayIcon, tooltip->str, NULL);
+    g_string_free(tooltip, TRUE);
+}
+
 gboolean
 orage_alarm_clock(gpointer user_data)
 {
@@ -276,13 +368,15 @@ orage_alarm_clock(gpointer user_data)
         && selected_day == previous_day) {
             /* previous day was indeed selected, 
                keep it current automatically */
-            xfcalendar_select_date(GTK_CALENDAR (xfcal->mCalendar), current_year, current_month, current_day);
+            xfcalendar_select_date(GTK_CALENDAR(xfcal->mCalendar)
+                    , current_year, current_month, current_day);
         }
         previous_year  = current_year;
         previous_month = current_month;
         previous_day   = current_day;
         xfical_alarm_build_list(TRUE);  /* new alarm list when date changed */
-        if (NETK_IS_TRAY_ICON(trayIcon->tray)) {
+        if (NETK_IS_TRAY_ICON(trayIcon->tray)) { 
+            /* refresh date in tray icon */
             xfce_tray_icon_disconnect(trayIcon);
             destroy_TrayIcon(trayIcon);
             trayIcon = create_TrayIcon(xfcal);
@@ -291,7 +385,7 @@ orage_alarm_clock(gpointer user_data)
     }
 
   /* Check if there are any alarms to show */
-    alarm_l=alarm_list;
+    alarm_l = alarm_list;
     for (alarm_l = g_list_first(alarm_l);
          alarm_l != NULL && more_alarms;
          alarm_l = g_list_next(alarm_l)) {
@@ -306,6 +400,9 @@ orage_alarm_clock(gpointer user_data)
     if (alarm_raised) /* at least one alarm processed, need new list */
         xfical_alarm_build_list(FALSE); 
 
+    if (NETK_IS_TRAY_ICON(trayIcon->tray)) { 
+        build_tray_tooltip();
+    }
     return TRUE;
 }
 
