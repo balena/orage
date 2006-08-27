@@ -1718,7 +1718,7 @@ create_appt_win_tab_recurrence(appt_win *apptw)
             , (GtkAttachOptions) (0));
 
     apptw->appRecur_byday_label = gtk_label_new(_("Weekdays"));
-    apptw->appRecur_byday_hbox = gtk_hbox_new(FALSE, 5);
+    apptw->appRecur_byday_hbox = gtk_hbox_new(TRUE, 0);
     for (i=0; i <= 6; i++) {
         apptw->appRecur_byday_cb[i] = 
                 gtk_check_button_new_with_mnemonic(weekday_array[i]);
@@ -1731,7 +1731,7 @@ create_appt_win_tab_recurrence(appt_win *apptw)
             , (GtkAttachOptions) (0));
 
     apptw->appRecur_byday_spin_label = gtk_label_new(_("Which day"));
-    apptw->appRecur_byday_spin_hbox = gtk_hbox_new(FALSE, 2);
+    apptw->appRecur_byday_spin_hbox = gtk_hbox_new(TRUE, 0);
     for (i=0; i <= 6; i++) {
         apptw->appRecur_byday_spin[i] = 
                 gtk_spin_button_new_with_range(-9, 9, 1);
