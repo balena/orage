@@ -1718,12 +1718,12 @@ create_appt_win_tab_recurrence(appt_win *apptw)
             , (GtkAttachOptions) (0));
 
     apptw->appRecur_byday_label = gtk_label_new(_("Weekdays"));
-    apptw->appRecur_byday_hbox = gtk_hbox_new(FALSE, 0);
+    apptw->appRecur_byday_hbox = gtk_hbox_new(FALSE, 5);
     for (i=0; i <= 6; i++) {
         apptw->appRecur_byday_cb[i] = 
                 gtk_check_button_new_with_mnemonic(weekday_array[i]);
         gtk_box_pack_start(GTK_BOX(apptw->appRecur_byday_hbox)
-                , apptw->appRecur_byday_cb[i], FALSE, FALSE, i ? 5 : 0);
+                , apptw->appRecur_byday_cb[i], FALSE, FALSE, 0);
     }
     xfcalendar_table_add_row(apptw->appTableRecur
             , apptw->appRecur_byday_label, apptw->appRecur_byday_hbox, row++
@@ -1731,12 +1731,12 @@ create_appt_win_tab_recurrence(appt_win *apptw)
             , (GtkAttachOptions) (0));
 
     apptw->appRecur_byday_spin_label = gtk_label_new(_("Which day"));
-    apptw->appRecur_byday_spin_hbox = gtk_hbox_new(FALSE, 0);
+    apptw->appRecur_byday_spin_hbox = gtk_hbox_new(FALSE, 2);
     for (i=0; i <= 6; i++) {
         apptw->appRecur_byday_spin[i] = 
                 gtk_spin_button_new_with_range(-9, 9, 1);
         gtk_box_pack_start(GTK_BOX(apptw->appRecur_byday_spin_hbox)
-                , apptw->appRecur_byday_spin[i], FALSE, FALSE, i ? 2 : 0);
+                , apptw->appRecur_byday_spin[i], FALSE, FALSE, 0);
         gtk_tooltips_set_tip(apptw->appTooltips, apptw->appRecur_byday_spin[i]
                 , _("Specify which weekday for monthly and yearly events.\n For example:\n Every second Wednesday each month:\n\tFrequency = Monthly,\n\tWeekdays = cross only Wednesday,\n\tWhich day = select 2 from the number below Wednesday")
                 , NULL);
