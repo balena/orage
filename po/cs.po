@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.3.90.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-08-16 17:58+0300\n"
-"PO-Revision-Date: 2006-07-12 18:02+0100\n"
+"POT-Creation-Date: 2006-08-26 18:48+0200\n"
+"PO-Revision-Date: 2006-08-26 18:51+0100\n"
 "Last-Translator: Michal Várady <miko.vaji@gmail.com>\n"
 "Language-Team: Czech <translation-team-cs@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -45,11 +45,11 @@ msgstr "na_stavit barvu pozadí"
 #. clock size (=vbox size): height and width
 #: ../panel-plugin/oc_config.c:242
 msgid "set _height:"
-msgstr ""
+msgstr "nastavte _výšku:"
 
 #: ../panel-plugin/oc_config.c:254
 msgid "set _width:"
-msgstr ""
+msgstr "na_stavte šířku:"
 
 #: ../panel-plugin/oc_config.c:275
 msgid "Clock Options"
@@ -111,37 +111,35 @@ msgstr "Vlastnosti"
 msgid "Orage clock"
 msgstr "Hodiny Orage"
 
-#. TRANSLATORS: Use format characters from strftime(3)
-#. * to get the proper string for your locale.
-#. * I used these:
-#. * %A  : full weekday name
-#. * %d  : day of the month
-#. * %B  : full month name
-#. * %Y  : four digit year
-#. * %V  : ISO week number
-#.
-#: ../panel-plugin/orageclock.c:61
+#: ../panel-plugin/orageclock.c:63
 msgid "%A %d %B %Y/%V"
 msgstr "%A, %d. %B %Y, %V. týden"
 
 #. to avoid timing problems when updating entry
 #. Create file chooser
-#: ../plugin/xfcalendar_plugin.c:263 ../plugin/xfcalendar_plugin.c:321
-#: ../src/appointment.c:334 ../src/mainbox.c:113
+#: ../plugin/xfcalendar_plugin.c:263
+#: ../plugin/xfcalendar_plugin.c:321
+#: ../src/appointment.c:334
+#: ../src/mainbox.c:113
 msgid "Select a file..."
 msgstr "Vyberte soubor..."
 
-#: ../plugin/xfcalendar_plugin.c:271 ../src/mainbox.c:121
+#: ../plugin/xfcalendar_plugin.c:271
+#: ../src/mainbox.c:121
 msgid "Calendar files"
 msgstr "Soubory kalendáře"
 
-#: ../plugin/xfcalendar_plugin.c:276 ../src/appointment.c:349
+#: ../plugin/xfcalendar_plugin.c:276
+#: ../src/appointment.c:349
 #: ../src/mainbox.c:126
 msgid "All Files"
 msgstr "Všechny soubory"
 
-#: ../plugin/xfcalendar_plugin.c:419 ../plugin/xfcalendar_plugin.c:424
-#: ../src/appointment.c:857 ../src/appointment.c:862 ../src/appointment.c:1350
+#: ../plugin/xfcalendar_plugin.c:419
+#: ../plugin/xfcalendar_plugin.c:424
+#: ../src/appointment.c:857
+#: ../src/appointment.c:862
+#: ../src/appointment.c:1350
 msgid "Location"
 msgstr "Umístění"
 
@@ -150,14 +148,20 @@ msgstr "Umístění"
 msgid "Pick local timezone"
 msgstr "Vyberte si místní časovou zónu"
 
-#: ../plugin/xfcalendar_plugin.c:433 ../plugin/xfcalendar_plugin.c:463
-#: ../src/appointment.c:871 ../src/appointment.c:901
+#: ../plugin/xfcalendar_plugin.c:433
+#: ../plugin/xfcalendar_plugin.c:463
+#: ../src/appointment.c:871
+#: ../src/appointment.c:901
 msgid "UTC"
 msgstr "UTC"
 
-#: ../plugin/xfcalendar_plugin.c:434 ../plugin/xfcalendar_plugin.c:467
-#: ../plugin/xfcalendar_plugin.c:749 ../src/appointment.c:872
-#: ../src/appointment.c:905 ../src/appointment.c:941 ../src/appointment.c:949
+#: ../plugin/xfcalendar_plugin.c:434
+#: ../plugin/xfcalendar_plugin.c:467
+#: ../plugin/xfcalendar_plugin.c:749
+#: ../src/appointment.c:872
+#: ../src/appointment.c:905
+#: ../src/appointment.c:941
+#: ../src/appointment.c:949
 msgid "floating"
 msgstr "plovoucí"
 
@@ -241,7 +245,8 @@ msgstr "Jeden rok"
 msgid "never"
 msgstr "Nikdy"
 
-#: ../plugin/xfcalendar_plugin.c:694 ../src/appointment.c:1500
+#: ../plugin/xfcalendar_plugin.c:694
+#: ../src/appointment.c:1500
 msgid "Sound"
 msgstr "Zvuk"
 
@@ -249,7 +254,8 @@ msgstr "Zvuk"
 msgid "Application"
 msgstr "Aplikace"
 
-#: ../plugin/xfcalendar_plugin.c:725 ../plugin/xfcalendar_plugin.c:735
+#: ../plugin/xfcalendar_plugin.c:725
+#: ../plugin/xfcalendar_plugin.c:735
 msgid "Timezone"
 msgstr "Časová zóna"
 
@@ -266,16 +272,20 @@ msgstr "Uspořádejte si svůj čas s Xfce4"
 msgid "Core developer"
 msgstr "Hlavní vývojář"
 
-#: ../src/about-xfcalendar.c:55 ../src/about-xfcalendar.c:60
+#: ../src/about-xfcalendar.c:55
+#: ../src/about-xfcalendar.c:60
 #: ../src/about-xfcalendar.c:65
 msgid "Contributor"
 msgstr "Přispěvatel"
 
-#: ../src/appointment.c:99 ../src/appointment.c:116
+#: ../src/appointment.c:99
+#: ../src/appointment.c:116
 msgid "%m/%d/%Y"
 msgstr "%d. %m %Y"
 
-#: ../src/appointment.c:256 ../src/mainbox.c:380 ../xfcalendar.desktop.in.h:3
+#: ../src/appointment.c:256
+#: ../src/mainbox.c:380
+#: ../xfcalendar.desktop.in.h:3
 msgid "Orage"
 msgstr "Orage - kalendář"
 
@@ -283,7 +293,9 @@ msgstr "Orage - kalendář"
 msgid "Sound Files"
 msgstr "Zvukové soubory"
 
-#: ../src/appointment.c:390 ../src/appointment.c:425 ../src/appointment.c:656
+#: ../src/appointment.c:390
+#: ../src/appointment.c:425
+#: ../src/appointment.c:656
 #: ../src/event-list.c:587
 msgid "Warning"
 msgstr "Varování"
@@ -292,7 +304,9 @@ msgstr "Varování"
 msgid "The appointment information has been modified."
 msgstr "Informace o schůzce byla změněna."
 
-#: ../src/appointment.c:393 ../src/appointment.c:659 ../src/event-list.c:590
+#: ../src/appointment.c:393
+#: ../src/appointment.c:659
+#: ../src/event-list.c:590
 msgid "Do you want to continue?"
 msgstr "Chcete pokračovat?"
 
@@ -308,7 +322,9 @@ msgstr "Tato schůzka bude trvale odebrána."
 msgid "Pick the date"
 msgstr "Zvolte datum"
 
-#: ../src/appointment.c:761 ../src/event-list.c:728 ../src/tray_icon.c:305
+#: ../src/appointment.c:761
+#: ../src/event-list.c:728
+#: ../src/tray_icon.c:305
 msgid "Today"
 msgstr "Dnes"
 
@@ -323,7 +339,9 @@ msgstr "Nová schůzka - Orage"
 
 #. File menu stuff
 #. File menu
-#: ../src/appointment.c:1241 ../src/event-list.c:654 ../src/mainbox.c:403
+#: ../src/appointment.c:1241
+#: ../src/event-list.c:654
+#: ../src/mainbox.c:403
 msgid "_File"
 msgstr "_Soubor"
 
@@ -331,7 +349,8 @@ msgstr "_Soubor"
 msgid "Sav_e and close"
 msgstr "Uložit _a zavřít"
 
-#: ../src/appointment.c:1261 ../src/event-list.c:663
+#: ../src/appointment.c:1261
+#: ../src/event-list.c:663
 msgid "D_uplicate"
 msgstr "D_uplikovat"
 
@@ -339,7 +358,8 @@ msgstr "D_uplikovat"
 msgid "Save"
 msgstr "Ulož_it"
 
-#: ../src/appointment.c:1305 ../src/appointment.c:1307
+#: ../src/appointment.c:1305
+#: ../src/appointment.c:1307
 msgid "Save and close"
 msgstr "Uložit a zavřít"
 
@@ -347,7 +367,9 @@ msgstr "Uložit a zavřít"
 msgid "Revert"
 msgstr "Obnovit původní"
 
-#: ../src/appointment.c:1317 ../src/appointment.c:1319 ../src/event-list.c:740
+#: ../src/appointment.c:1317
+#: ../src/appointment.c:1319
+#: ../src/event-list.c:740
 msgid "Duplicate"
 msgstr "Duplikovat"
 
@@ -387,15 +409,18 @@ msgstr "Konec"
 msgid "Duration"
 msgstr "Trvání"
 
-#: ../src/appointment.c:1403 ../src/appointment.c:1477
+#: ../src/appointment.c:1403
+#: ../src/appointment.c:1477
 msgid "days"
 msgstr "dnů"
 
-#: ../src/appointment.c:1412 ../src/appointment.c:1485
+#: ../src/appointment.c:1412
+#: ../src/appointment.c:1485
 msgid "hours"
 msgstr "hodin"
 
-#: ../src/appointment.c:1421 ../src/appointment.c:1493
+#: ../src/appointment.c:1421
+#: ../src/appointment.c:1493
 msgid "mins"
 msgstr "minut"
 
@@ -407,7 +432,8 @@ msgstr "Dostupnost"
 msgid "Note"
 msgstr "Poznámka"
 
-#: ../src/appointment.c:1466 ../src/appointment.c:1471
+#: ../src/appointment.c:1466
+#: ../src/appointment.c:1471
 msgid "Alarm"
 msgstr "Výstraha"
 
@@ -435,7 +461,8 @@ msgstr "Měsíčně"
 msgid "Yearly"
 msgstr "Ročně"
 
-#: ../src/appointment.c:1532 ../src/appointment.c:1537
+#: ../src/appointment.c:1532
+#: ../src/appointment.c:1537
 msgid "Recurrence"
 msgstr "Opakování"
 
@@ -460,7 +487,8 @@ msgstr "Opakovat do "
 msgid "All day"
 msgstr "Celý den"
 
-#: ../src/event-list.c:276 ../src/event-list.c:782
+#: ../src/event-list.c:276
+#: ../src/event-list.c:782
 msgid "Time"
 msgstr "Čas"
 
@@ -473,7 +501,8 @@ msgstr ""
 "asociované s vybraným datem."
 
 #. View menu
-#: ../src/event-list.c:685 ../src/mainbox.c:437
+#: ../src/event-list.c:685
+#: ../src/mainbox.c:437
 msgid "_View"
 msgstr "_Zobrazit"
 
@@ -2097,7 +2126,7 @@ msgstr "_Upravit"
 
 #: ../src/mainbox.c:440
 msgid "View selected _date"
-msgstr "Zobrazit vybrané _datum"
+msgstr "Zobrazit _vybrané datum"
 
 #: ../src/mainbox.c:446
 msgid "Select _Today"
@@ -2147,3 +2176,4 @@ msgstr "Kalendář"
 #: ../xfcalendar.desktop.in.h:2
 msgid "Desktop calendar"
 msgstr "Kalendář pracovního prostředí"
+
