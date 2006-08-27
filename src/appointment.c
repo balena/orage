@@ -1738,7 +1738,7 @@ create_appt_win_tab_recurrence(appt_win *apptw)
         gtk_box_pack_start(GTK_BOX(apptw->appRecur_byday_spin_hbox)
                 , apptw->appRecur_byday_spin[i], FALSE, FALSE, 0);
         gtk_tooltips_set_tip(apptw->appTooltips, apptw->appRecur_byday_spin[i]
-                , _("Specify which weekday for monthly and yearly events.\n For example:\n Every second Wednesday each month:\n\tFrequency = Monthly,\n\tWeekdays = cross only Wednesday,\n\tWhich day = select 2 from the number below Wednesday")
+                , _("Specify which weekday for monthly and yearly events.\n For example:\n Second Wednesday each month:\n\tFrequency = Monthly,\n\tWeekdays = cross only Wednesday,\n\tWhich day = select 2 from the number below Wednesday")
                 , NULL);
     }
     xfcalendar_table_add_row(apptw->appTableRecur
