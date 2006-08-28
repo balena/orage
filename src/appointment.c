@@ -1644,12 +1644,12 @@ create_appt_win_tab_recurrence(appt_win *apptw)
             , (GtkAttachOptions) (GTK_EXPAND | GTK_FILL)
             , (GtkAttachOptions) (0));
     gtk_tooltips_set_tip(apptw->appTooltips, apptw->appRecur_feature_normal_rb
-            , _("Use this is you want regular repeating event"), NULL);
+            , _("Use this if you want regular repeating event"), NULL);
     gtk_tooltips_set_tip(apptw->appTooltips, apptw->appRecur_feature_advanced_rb
             , _("Use this if you need complex times like:\n Every second week or \n Every Saturday and Sunday or \n First Tuesday every month")
             , NULL);
 
-    apptw->appRecur_freq_label = gtk_label_new(_("Recurrence"));
+    apptw->appRecur_freq_label = gtk_label_new(_("Frequency"));
     apptw->appRecur_freq_cb = gtk_combo_box_new_text();
     xfcalendar_combo_box_append_array(apptw->appRecur_freq_cb
             , recur_freq_array, RECUR_ARRAY_DIM);
@@ -1667,7 +1667,7 @@ create_appt_win_tab_recurrence(appt_win *apptw)
     gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(apptw->appRecur_int_spin), TRUE);
     gtk_box_pack_start(GTK_BOX(apptw->appRecur_int_hbox)
             , apptw->appRecur_int_spin, FALSE, FALSE, 5);
-    apptw->appRecur_int_spin_label2 = gtk_label_new(_("occurrance"));
+    apptw->appRecur_int_spin_label2 = gtk_label_new(_("occurrence"));
     gtk_box_pack_start(GTK_BOX(apptw->appRecur_int_hbox)
             , apptw->appRecur_int_spin_label2, FALSE, FALSE, 0);
     xfcalendar_table_add_row(apptw->appTableRecur
@@ -1738,7 +1738,7 @@ create_appt_win_tab_recurrence(appt_win *apptw)
         gtk_box_pack_start(GTK_BOX(apptw->appRecur_byday_spin_hbox)
                 , apptw->appRecur_byday_spin[i], FALSE, FALSE, 0);
         gtk_tooltips_set_tip(apptw->appTooltips, apptw->appRecur_byday_spin[i]
-                , _("Specify which weekday for monthly and yearly events.\n For example:\n Second Wednesday each month:\n\tFrequency = Monthly,\n\tWeekdays = cross only Wednesday,\n\tWhich day = select 2 from the number below Wednesday")
+                , _("Specify which weekday for monthly and yearly events.\n For example:\n Second Wednesday each month:\n\tFrequency = Monthly,\n\tWeekdays = check only Wednesday,\n\tWhich day = select 2 from the number below Wednesday")
                 , NULL);
     }
     xfcalendar_table_add_row(apptw->appTableRecur
