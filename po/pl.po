@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: orage 4.3.90.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-08-28 00:08+0300\n"
-"PO-Revision-Date: 2006-08-23 21:54+0200\n"
+"PO-Revision-Date: 2006-08-28 13:00+0200\n"
 "Last-Translator: Szymon Kałasz <szymon_maestro@gazeta.pl>\n"
 "Language-Team: Polish <translation-team-pl@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -414,50 +414,47 @@ msgstr "Brak"
 
 #: ../src/appointment.c:1618
 msgid "Daily"
-msgstr "Dzienny"
+msgstr "Dziennie"
 
 #: ../src/appointment.c:1618
 msgid "Weekly"
-msgstr "Tygodniowy"
+msgstr "Tygodniowo"
 
 #: ../src/appointment.c:1618
 msgid "Monthly"
-msgstr "Miesięczny"
+msgstr "Miesięcznie"
 
 #: ../src/appointment.c:1618
 msgid "Yearly"
-msgstr "Roczny"
+msgstr "Rocznie"
 
 #: ../src/appointment.c:1620
-#, fuzzy
 msgid "Mon"
-msgstr "Miesięczny"
+msgstr "pon"
 
 #: ../src/appointment.c:1620
 msgid "Tue"
-msgstr ""
+msgstr "wto"
 
 #: ../src/appointment.c:1620
 msgid "Wed"
-msgstr ""
+msgstr "śro"
 
 #: ../src/appointment.c:1620
 msgid "Thu"
-msgstr ""
+msgstr "czw"
 
 #: ../src/appointment.c:1620
 msgid "Fri"
-msgstr ""
+msgstr "pią"
 
 #: ../src/appointment.c:1620
-#, fuzzy
 msgid "Sat"
-msgstr "Początek"
+msgstr "sob"
 
 #: ../src/appointment.c:1620
-#, fuzzy
 msgid "Sun"
-msgstr "Dźwięk"
+msgstr "nie"
 
 #: ../src/appointment.c:1625 ../src/appointment.c:1652
 msgid "Recurrence"
@@ -465,20 +462,19 @@ msgstr "Rekurencja"
 
 #: ../src/appointment.c:1630
 msgid "Complexity"
-msgstr ""
+msgstr "Złożoność"
 
 #: ../src/appointment.c:1633
-#, fuzzy
 msgid "Basic"
-msgstr "Wstecz"
+msgstr "Podstawowa"
 
 #: ../src/appointment.c:1639
 msgid "Advanced"
-msgstr ""
+msgstr "Zaawansowana"
 
 #: ../src/appointment.c:1647
 msgid "Use this is you want regular repeating event"
-msgstr ""
+msgstr "Regularnie powtarzające się zdarzenia"
 
 #: ../src/appointment.c:1649
 msgid ""
@@ -487,30 +483,34 @@ msgid ""
 " Every Saturday and Sunday or \n"
 " First Tuesday every month"
 msgstr ""
+"Skomplikowane reguły czasowe, np.:\n"
+" - w drugim tygodniu miesiąca, lub\n"
+" - w każdą sobotę i niedzielę, lub\n"
+" - w pierwszy wtorek miesiąca"
 
 #: ../src/appointment.c:1661
-#, fuzzy
 msgid "Interval"
-msgstr "Ogólne"
+msgstr "Interwał"
 
 #: ../src/appointment.c:1663
 msgid "Each"
-msgstr ""
+msgstr "Każdego"
 
 #: ../src/appointment.c:1670
-#, fuzzy
 msgid "occurrance"
-msgstr "Rekurencja"
+msgstr "razu"
 
 #: ../src/appointment.c:1678
 msgid ""
 "Limit frequency to certain interval. For example:\n"
 " Every third day: Frequency = Daily and Interval = 3"
 msgstr ""
+"Ogranicz częstotliwość do pewnego interwału, np.:\n"
+" każdego trzeciego dnia: Częstotliwość = Dziennie, Interwał = 3"
 
 #: ../src/appointment.c:1681
 msgid "Limit"
-msgstr ""
+msgstr "Limit"
 
 #: ../src/appointment.c:1683
 msgid "Repeat forever"
@@ -518,7 +518,7 @@ msgstr "Powtarzaj w nieskończoność"
 
 #: ../src/appointment.c:1691
 msgid "Repeat "
-msgstr "Powtarzaj"
+msgstr "Powtarzaj "
 
 #: ../src/appointment.c:1699
 msgid "times"
@@ -526,16 +526,15 @@ msgstr "razy"
 
 #: ../src/appointment.c:1709
 msgid "Repeat until "
-msgstr "Powtarzaj dopóki "
+msgstr "Powtarzaj do "
 
 #: ../src/appointment.c:1720
-#, fuzzy
 msgid "Weekdays"
-msgstr "Tygodniowy"
+msgstr "Dni tygodnia"
 
 #: ../src/appointment.c:1733
 msgid "Which day"
-msgstr ""
+msgstr "Którego dnia"
 
 #: ../src/appointment.c:1741
 msgid ""
@@ -546,6 +545,11 @@ msgid ""
 "\tWeekdays = cross only Wednesday,\n"
 "\tWhich day = select 2 from the number below Wednesday"
 msgstr ""
+"Określ dzień tygodnia dla comiesięcznych i corocznych zdarzeń, np.:\n"
+" W drugą środę każdego miesiąca:\n"
+"\tCzęstotliwość = Dziennie,\n"
+"\tDni tygodnia = zaznacz tylko środę,\n"
+"\tKtórego dnia = wybierz liczbę 2 z pola pod środą"
 
 #. date only appointment
 #: ../src/event-list.c:199
@@ -627,8 +631,8 @@ msgstr ""
 "\t 1. Alarm: n=brak alarmu\n"
 "\t\tA=graficzny Alarm S=alarm dźwiękiem\n"
 "\t 2. Rekurencja: n=brak rekurencji\n"
-"\t\t D=Dzienny W=Tygodniowy M=Miesięczny Y=Roczny\n"
-"\t 3. Typ: f=wolny B=Zajęty"
+"\t\t D=Dziennie W=Tygodniowo M=Miesięcznie Y=Rocznie\n"
+"\t 3. Typ: f=Wolny B=Zajęty"
 
 #: ../src/ical-code.c:101
 msgid "Africa"
@@ -2207,7 +2211,7 @@ msgstr "Przypominacz "
 #. GtkTooltipsData *cur_tooltip;
 #: ../src/reminder.c:317
 msgid "Next active alarms:"
-msgstr ""
+msgstr "Kolejne aktywne alarmy:"
 
 #: ../src/reminder.c:325
 #, c-format
@@ -2215,13 +2219,16 @@ msgid ""
 "\n"
 "%02d d %02d h %02d min to: %s"
 msgstr ""
+"\n"
+"%02d d %02d h %02d min do: %s"
 
 #: ../src/reminder.c:331
-#, fuzzy
 msgid ""
 "\n"
 "No active alarms found"
-msgstr "Powtórz dźwięk alarmu"
+msgstr ""
+"\n"
+"Nie znaleziono aktywnych alarmów"
 
 #: ../src/tray_icon.c:316
 msgid "New appointment"
