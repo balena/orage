@@ -233,7 +233,7 @@ mCalendar_scroll_event_cb (GtkWidget *calendar, GdkEventScroll *event)
 	    gtk_calendar_select_month(GTK_CALENDAR(calendar), month, year);
 	    break;
 	default:
-	  g_print("get scroll event!!!");
+	  g_message("Orage **: Got unknown scroll event!!!");
     }
 }
 
@@ -289,7 +289,8 @@ xfcalendar_init_settings(CalWin *xfcal)
                         RCDIR G_DIR_SEPARATOR_S "oragerc", FALSE);
 
     if ((fp = fopen(fpath, "r")) == NULL) {
-        g_warning("Unable to open %s. Using default parameters and creating new rc file", fpath);
+        g_warning("Unable to open %s. Using default parameters and creating new rc file"
+                , fpath);
         fp = fopen(fpath, "w");
         if (fp == NULL)
             g_warning("Unable to create %s", fpath);

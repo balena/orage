@@ -649,7 +649,7 @@ save_xfical_from_appt_win(appt_win *apptw)
                 if (ok) {
                     apptw->appointment_add = FALSE;
                     gtk_widget_set_sensitive(apptw->appDuplicate, TRUE);
-                    g_message("Added: %s", apptw->xf_uid);
+                    g_message("Orage **: Added: %s", apptw->xf_uid);
                 }
                 else
                     g_warning("Addition failed: %s", apptw->xf_uid);
@@ -657,7 +657,7 @@ save_xfical_from_appt_win(appt_win *apptw)
             else {
                 ok = xfical_appt_mod(apptw->xf_uid, appt);
                 if (ok)
-                    g_message("Modified: %s", apptw->xf_uid);
+                    g_message("Orage **: Modified: %s", apptw->xf_uid);
                 else
                     g_warning("Modification failed: %s", apptw->xf_uid);
             }
@@ -732,7 +732,7 @@ delete_xfical_from_appt_win(appt_win *apptw)
                 result = xfical_appt_del(apptw->xf_uid);
                 xfical_file_close();
                 if (result)
-                    g_message("Removed: %s", apptw->xf_uid);
+                    g_message("Orage **: Removed: %s", apptw->xf_uid);
                 else
                     g_warning("Removal failed: %s", apptw->xf_uid);
             }
@@ -904,9 +904,6 @@ on_appStartEndTimezone_clicked_cb(GtkWidget *button, gpointer *user_data)
                     , -1);
         }
         /* then city translated and in base form used internally */
-        /*
-        g_print("TREE store: %s %s\n", _(tz.city[i]), tz.city[i]);
-        */
         gtk_tree_store_append(store, &iter2, &iter1);
         gtk_tree_store_set(store, &iter2
                 , LOCATION, _(tz.city[i]) 
@@ -1136,7 +1133,7 @@ fill_appt_window_get_appt(char *action, char *par)
             return(NULL);
         }
         if ((appt = xfical_appt_get(par)) == NULL) {
-            g_message("appointment not found");
+            g_message("Orage **: appointment not found");
             xfical_file_close();
             return(NULL);
         }
@@ -1160,7 +1157,7 @@ fill_appt_window(appt_win *apptw, char *action, char *par)
     char *untildate_to_display;
     int i;
 
-    g_message("%s appointment: %s", action, par);
+    g_message("Orage **: %s appointment: %s", action, par);
     if ((appt = fill_appt_window_get_appt(action, par)) == NULL) {
         g_error("fill_appt_window: Appointment initialization failed");
         return;

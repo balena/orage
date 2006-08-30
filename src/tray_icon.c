@@ -120,12 +120,12 @@ GdkPixbuf *create_icon(CalWin *xfcal, gint x, gint y)
                       , "small", "x-small", "xx-small", "END"};
 
   if (x <= 12 || y <= 12) {
-      g_message("orage create_icon: too small icon size, using static icon\n");
+      g_message("Orage **: Too small icon size, using static icon\n");
       pixbuf = xfce_themed_icon_load("xfcalendar", 16);
       return(pixbuf);
   }
   if (icon_size_x == 0 || icon_size_y == 0) { /* signal to use static icon */
-      g_message("orage create_icon: using static icon\n");
+      g_message("Orage **: Icon size set to zero, using static icon\n");
       pixbuf = xfce_themed_icon_load("xfcalendar", x);
       return(pixbuf);
   }
@@ -167,9 +167,7 @@ GdkPixbuf *create_icon(CalWin *xfcal, gint x, gint y)
   pango_layout_get_extents(pl_head, &real_rect, &log_rect);
   x_offset = (width - PANGO_PIXELS(log_rect.width) - 2)/2;
   y_offset = -2;
-  /*
-  g_print("orage offset x=%d y=%d height=%d text height=%d real text height=%d\n" , x_offset, y_offset, height, PANGO_PIXELS(log_rect.height), PANGO_PIXELS(real_rect.height));
-  */
+  /* g_print("orage offset x=%d y=%d height=%d text height=%d real text height=%d\n" , x_offset, y_offset, height, PANGO_PIXELS(log_rect.height), PANGO_PIXELS(real_rect.height)); */
   if (x_offset > 0 && (height-PANGO_PIXELS(log_rect.height)-y_offset) > 0) {
       draw_head = TRUE; /* fits */
       x_head = x_offset;
@@ -190,9 +188,6 @@ GdkPixbuf *create_icon(CalWin *xfcal, gint x, gint y)
   pango_layout_get_extents(pl_month, &real_rect, &log_rect);
   x_offset = (width - PANGO_PIXELS(real_rect.width) - 2)/2;
   y_offset = (height - PANGO_PIXELS(log_rect.height) - 2);
-  /*
-  g_print("month offset x=%d y=%d height=%d text height=%d real text height=%d\n" , x_offset, y_offset, height, PANGO_PIXELS(log_rect.height), PANGO_PIXELS(real_rect.height));
-  */
   if (x_offset > 0 && (height - y_offset - PANGO_PIXELS(log_rect.height))) {
       draw_month = TRUE; /* fits */
       x_month = x_offset;
@@ -226,9 +221,6 @@ GdkPixbuf *create_icon(CalWin *xfcal, gint x, gint y)
       pango_layout_get_extents(pl_day, &real_rect, &log_rect);
       x_offset = (width - PANGO_PIXELS(log_rect.width))/2;
       y_offset = (height - y_used - PANGO_PIXELS(log_rect.height))/2;
-      /*
-  g_print("day offset x=%d y=%d height=%d text height=%d real text height=%d\n" , x_offset, y_offset, height, PANGO_PIXELS(log_rect.height), PANGO_PIXELS(real_rect.height));
-  */
       } /* for */
       if (x_offset >= 0 && (y_offset) >= 0) { /* it fits */
           draw_dynamic = TRUE;
