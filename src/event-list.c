@@ -509,12 +509,7 @@ on_elGo_previous_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
 void 
 go_to_today(eventlist_win *el)
 {
-    struct tm *t;
-
-    t = orage_localtime();
-    xfcalendar_select_date(GTK_CALENDAR(xfcal->mCalendar)
-            , t->tm_year+1900, t->tm_mon, t->tm_mday);
-
+    xfcalendar_select_today(GTK_CALENDAR(xfcal->mCalendar));
     recreate_eventlist_win(el);
 }
 

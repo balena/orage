@@ -1,7 +1,7 @@
 /* functions.c
  *
- * Copyright (C) 2005 Mickaël Graf <korbinus at xfce.org>
- * Copyright (C) 2005 Juha Kautto <juha at xfce.org>
+ * Copyright (C) 2005-2006 Mickaël Graf <korbinus at xfce.org>
+ * Copyright (C) 2005-2006 Juha Kautto <juha at xfce.org>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -183,6 +183,7 @@ struct tm *orage_localtime()
 void xfcalendar_select_date(GtkCalendar *cal
     , guint year, guint month, guint day)
 {
+    gtk_calendar_select_day(cal, 0); /* needed to avoid illegal day/month */
     gtk_calendar_select_month(cal, month, year);
     gtk_calendar_select_day(cal, day);
 }

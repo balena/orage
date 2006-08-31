@@ -1143,7 +1143,7 @@ void xfical_alarm_build_list_internal(gboolean first_list_today)
                 ri = icalrecur_iterator_new(rrule, alarm_time);
                 for (next_date = icalrecur_iterator_next(ri);
                     (!icaltime_is_null_time(next_date))
-                    && (local_compare_date_only(cur_time, next_date) > 0) ;
+                    && (local_compare(cur_time, next_date) > 0) ;
                     next_date = icalrecur_iterator_next(ri)) {
                     cnt_repeat++;
                 }

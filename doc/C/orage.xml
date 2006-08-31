@@ -1,9 +1,9 @@
 <?xml version='1.0'?> 
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
           "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
-  <!ENTITY manrevision "0.2"> 
-  <!ENTITY date "July 2006"> 
-  <!ENTITY appversion "4.3.90.2"> 
+  <!ENTITY manrevision "1.3"> 
+  <!ENTITY date "September 2006"> 
+  <!ENTITY appversion "4.4"> 
   <!ENTITY app "<application>orage</application>">
 ]>
 
@@ -224,28 +224,33 @@ maintainers, etc. Commented out by default.
         The file menu contains five items:
       </para>
       <itemizedlist>
-        <listitem>New: fire an appointment window (see below) for creating a
-                  new appointment;
+        <listitem>
+          New: fire an appointment window (see below) for creating a
+          new appointment;
         </listitem>
-        <listitem>Open archive file...: fire a file selector for opening file
-                  containing old items;
-                  <warning>
-                    <para>
-                      This makes the selected file to act as your current 
-                      active calendar file. It is possible to add, modify and 
-                      remove appointments from it. You probably only want to 
-                      take a look and return to your normal file (by closing 
-                      archive file). 
-                    </para>
-                  </warning>
+        <listitem>
+          Open archive file...: fire a file selector for opening file
+          containing old items;
+          <warning>
+            <para>
+              This makes the selected file to act as your current 
+              active calendar file. It is possible to add, modify and 
+              remove appointments from it. You probably only want to 
+              take a look and return to your normal file (by closing 
+              archive file). 
+            </para>
+          </warning>
         </listitem>
-        <listitem>Close archive file: close the previously opened file -
-                  greyed when no file opened;
+        <listitem>
+          Close archive file: close the previously opened file -
+          greyed when no file opened;
         </listitem>
-        <listitem>Close: close the calendar window, keeping the application
-                  running;
+        <listitem>
+          Close: close the calendar window, keeping the application
+          running;
         </listitem>
-        <listitem>Quit: close the opened windows and end the application;
+        <listitem>
+          Quit: close the opened windows and end the application;
         </listitem>
       </itemizedlist>
     </sect3>
@@ -300,10 +305,12 @@ maintainers, etc. Commented out by default.
         The View menu has two choices:
       </para>
       <itemizedlist>
-        <listitem>View selected date: show the event list of currently
-                  selected date;
+        <listitem>
+          View selected date: show the event list of currently
+          selected date;
         </listitem>
-        <listitem>Select today: set calendar's selected day to be today;
+        <listitem>
+          Select today: set calendar's selected day to be today;
         </listitem>
       </itemizedlist>
     </sect3>
@@ -332,8 +339,11 @@ maintainers, etc. Commented out by default.
         The Help menu has also two choices:
       </para>
       <itemizedlist>
-        <listitem>Help: show this help file;</listitem>
-        <listitem>About: show information about the authors and license;
+        <listitem>
+          Help: show this help file;
+        </listitem>
+        <listitem>
+          About: show information about the authors and license;
         </listitem>
       </itemizedlist>
     </sect3>
@@ -391,20 +401,28 @@ maintainers, etc. Commented out by default.
       There are 9 activity buttons in the button bar from left to right:
     </para>
     <itemizedlist>
-      <listitem>New: start an <link linkend="orage-appointment-window">
-                appointment window</link> for creating a new appointment for 
-                this day;
+      <listitem>
+        New: start an <link linkend="orage-appointment-window">
+        appointment window</link> for creating a new appointment for this day;
       </listitem>
-      <listitem>Back: show previous day; </listitem>
-      <listitem>Today: show today; </listitem>
-      <listitem>Forward: show next day; </listitem>
-      <listitem>Refresh: Redisplay this date. This window is usually 
+      <listitem>
+        Back: show previous day; 
+      </listitem>
+      <listitem>
+        Today: show today; 
+      </listitem>
+      <listitem>
+        Forward: show next day; 
+      </listitem>
+      <listitem>
+        Refresh: Redisplay this date. This window is usually 
         refreshed automatically, but on certain special cases it may
         not show the latest changes. (Most common case is probably
         when you start editing an appointment from the alarm window
         instead from this eventlist window);
       </listitem>
-      <listitem>Duplicate: start an <ulink url="#orage-appointment-window">
+      <listitem>
+        Duplicate: start an <ulink url="#orage-appointment-window">
         appointment window</ulink> for creating a new appointment for
         this day. But do not start from scratch, but copy all values
         from the active row in the appointment list below. Note that
@@ -412,8 +430,11 @@ maintainers, etc. Commented out by default.
         button does not do anything (but gives a g_warning, which you
         normally cannot see);
       </listitem>
-      <listitem>Close: close this window; </listitem>
-      <listitem>Clear: remove all appointments which start on the shown day.
+      <listitem>
+        Close: close this window; 
+      </listitem>
+      <listitem>
+        Clear: remove all appointments which start on the shown day.
         Note that it is possible to create repeating appointments in
         &app; and if such an appointment is shown, but starts on an
         earlier date, it is NOT removed. (But repeating events will
@@ -423,7 +444,8 @@ maintainers, etc. Commented out by default.
         (Note that you can not delete a single appointment in this
         window; you have to go to the appointment window to do that);
       </listitem>
-      <listitem>Day count: you can see more than one day in this window by
+      <listitem>
+        Day count: you can see more than one day in this window by
         setting this number to larger than 0. Each number means show
         one more day. (It causes the Time column in the event
         listing to show also the date.) Note however that each
@@ -506,19 +528,24 @@ maintainers, etc. Commented out by default.
       There are 5 activity buttons in the button bar from left to right:
     </para>
     <itemizedlist>
-      <listitem>Save: store the appointment to the orage system. This causes
+      <listitem>
+        Save: store the appointment to the orage system. This causes
         also data validity checking.
       </listitem>
-      <listitem>Save and close: like Save, but also closes the window.
+      <listitem>
+        Save and close: like Save, but also closes the window.
       </listitem>
-      <listitem>Revert: undo all changes done after previous save. Note that
+      <listitem>
+        Revert: undo all changes done after previous save. Note that
         this button is active only after data has been changed.
       </listitem>
-      <listitem>Duplicate: start creating new appointment and copy all values
+      <listitem>
+        Duplicate: start creating new appointment and copy all values
         from the current activity into it. The new appointment is not created
         until you press <guibutton>Save</guibutton>.
       </listitem>
-      <listitem>Delete: remove current appointment permanently from orage
+      <listitem>
+        Delete: remove current appointment permanently from orage
         system.
       </listitem>
     </itemizedlist>
@@ -550,7 +577,8 @@ maintainers, etc. Commented out by default.
       <varlistentry>
         <term>Title</term>
         <listitem>
-          <para>The title of the appointment. It appears in the event list
+          <para>
+            The title of the appointment. It appears in the event list
             and also in the alarm window and is listed at the header of this
             window. It should be a rather short summary of the appointment.
           </para>
@@ -559,7 +587,8 @@ maintainers, etc. Commented out by default.
       <varlistentry>
         <term>Location</term>
         <listitem>
-          <para>This field should describe where the event happens. It can
+          <para>
+            This field should describe where the event happens. It can
             be for example Home or Office or Paris depending on what kind of
             appointment you have. It is also possible to leave it empty. &app;
             is not using it in any special way, nor is it visible anywhere 
@@ -570,7 +599,8 @@ maintainers, etc. Commented out by default.
       <varlistentry>
         <term id="all-day-event">All day event</term>
         <listitem>
-          <para>Selecting this checkbox causes so called whole day appointment
+          <para>
+            Selecting this checkbox causes so called whole day appointment
             to be defined. These do not have start nor end time defined, but
             it is possible that the event lasts several days. These are 
             special since they always have window type alarm defined and 
@@ -585,14 +615,16 @@ maintainers, etc. Commented out by default.
       <varlistentry>
         <term>Start</term>
         <listitem>
-          <para>Defines the start time of the appointment. First, press the    
+          <para>
+            Defines the start time of the appointment. First, press the    
             date button and choose the date from the calendar. After that
             you set the hour and minute using either your mouse wheel or
             clicking the small arrows. It is also possible to type the
             numbers directly to the fields. Hours go from 0 to 23 (24 is not
             allowed value).
           </para>
-          <para>The last button is timezone. Default value for new
+          <para>
+            The last button is timezone. Default value for new
             appointments is your current timezone, which you have set in the
             preferences. It is recommended to use real timezones instead of
             floating. You should not mix floating with real timezones although 
@@ -606,7 +638,8 @@ maintainers, etc. Commented out by default.
       <varlistentry>
         <term>End</term>
         <listitem>
-          <para>Similar to Start, but defines naturally the ending time. Note
+          <para>
+            Similar to Start, but defines naturally the ending time. Note
             that start and end timezones may be different (for example when
             you schedule a meeting in abroad you can set the starting time in
             your local timezone and the rest of the timings in thedestination
@@ -619,7 +652,8 @@ maintainers, etc. Commented out by default.
       <varlistentry>
         <term>Duration</term>
         <listitem>
-          <para>Often it is easier to set the appointment duration instead of
+          <para>
+            Often it is easier to set the appointment duration instead of
             ending time. You can do that by marking the first box here. It is
             not possible to have both end time and duration at the same time,
             so end time setting will be unavailable after you select duration.
@@ -633,7 +667,8 @@ maintainers, etc. Commented out by default.
       <varlistentry>
         <term>Availability</term>
         <listitem>
-          <para>What kind of reservation is this. There are two possiblities:
+          <para>
+            What kind of reservation is this. There are two possiblities:
             <emphasis>Free</emphasis> means that the action is not reserving
             the time and it is possible to schedule more appointments at the
             same time and respectively <emphasis>Busy</emphasis> means that
@@ -646,7 +681,8 @@ maintainers, etc. Commented out by default.
       <varlistentry>
         <term>Note</term>
         <listitem>
-          <para>Free format long text, where you can and should explain more
+          <para>
+            Free format long text, where you can and should explain more
             the appointment. It is shown in the alarm window.
           </para>
         </listitem>
@@ -683,15 +719,17 @@ maintainers, etc. Commented out by default.
       define the time for it). Similarly sound alarm is raised if sound file
       has a value.
     </para>
-    <para>NOTE: this alarm setting has no effect on 
-        <link linkend="all-day-event">all day events</link>; they always
-        have only window type alarm set.
+    <para>
+      NOTE: this alarm setting has no effect on 
+      <link linkend="all-day-event">all day events</link>; they always
+      have only window type alarm set.
     </para>
     <variablelist>
       <varlistentry>
         <term>Alarm</term>
         <listitem>
-          <para>Define how much earlier (compared to the appointment starting
+          <para>
+            Define how much earlier (compared to the appointment starting
             time) the alarm(s) happens. If all numbers are zero, no alarm is
             raised for this appointment.
           </para>
@@ -700,7 +738,8 @@ maintainers, etc. Commented out by default.
       <varlistentry>
         <term>Sound</term>
         <listitem>
-          <para>Define the sound file to be played when the alarm fires.
+          <para>
+            Define the sound file to be played when the alarm fires.
             Leaving this empty disables sound alarm and putting any value
             enables it. Remember to define the actual play command in the
             preferences dialog. You should also test that your system can 
@@ -712,11 +751,15 @@ maintainers, etc. Commented out by default.
       <varlistentry>
         <term>Repeat alarm sound</term>
         <listitem>
-          <para>Set this check box if you want to hear the sound more than
+          <para>
+            Set this check box if you want to hear the sound more than
             once. (Usually you want to check this.) Note that there is an
             internal counter, which stops the sound after 500 plays. Note
             also that when sound is repeating it is restarted after each 2
-            seconds, so you may get problems with longer lasting soundfiles.
+            seconds. (Sound can be stopped in the alarm window, but that only
+            prevents the next play to happen, it does not interrupt currently
+            playing alarm, which you should remember when using long lasting 
+            soundfiles.)
           </para>
         </listitem>
       </varlistentry>
@@ -744,29 +787,123 @@ maintainers, etc. Commented out by default.
     </figure>
 
     <para>
-      In this tab you can define repeating appointments. Sometimes it makes
-      much sense to define that the same appointment happens every day or
-      every month instead of creating a new appoointment for each event.
+      In this tab you can define repeating appointments. Often it makes
+      sense to define that the same appointment happens every day or
+      every month instead of creating a new appointment for each event.
     </para>
-    <para>
-      First you need to select <emphasis>recurrence</emphasis> period. Default
-      is no repeat and other possibilities are daily, weekly, monthly and
-      yearly.
-    </para>
-    <para>
-      &app; allows you also to limit the repeating count:
-      <itemizedlist>
-        <listitem>Repeat forever: this is default and does not limit the
-          number of occurrences.
+    <variablelist>
+      <varlistentry>
+        <term>Complexity</term>
+        <listitem>
+          <para>
+            Default is Basic and that makes it possible to define frequency 
+            and limit of the appointment only. Often that is enough and these 
+            settings are very easy and fast to do even if you are not familiar 
+            with calendars and alarms. Selecting Advanced gives you more 
+            possibilities and makes it possible to build complex recurrent 
+            appointments like for example:
+            <itemizedlist>
+              <listitem>
+                Every Monday, Tuesday, Wednesday, Thursday and Friday.
+              </listitem>
+              <listitem>
+                Every third week.
+              </listitem>
+              <listitem>
+                Last Tuesday on every second month.
+              </listitem>
+            </itemizedlist>
+          </para>
         </listitem>
-        <listitem>Repeat n times: the appointment is scheduled exactly n
-          times. After that it ends (but is not removed).
+      </varlistentry>
+      <varlistentry>
+        <term>Frequency</term>
+        <listitem>
+          <para>
+            This is the base repeating period. Default is no repeat (=None)
+            and other possibilities are daily, weekly, monthly and yearly.
+          </para>
         </listitem>
-        <listitem>Repeat until date: you can select the last date when this
-          event happens. Note that it still happens normally during this date.
+      </varlistentry>
+      <varlistentry>
+        <term>Interval (Advanced)</term>
+        <listitem>
+          <para>
+            Default value is 1 and it means every time as specified in the 
+            Frequency selections. 2 means every second time and 3 every third
+            time etc. For example if you want to schedule your meeting to
+            happen every third week, select Frequency = Weekly and set Interval
+            to 3. (Starting time is selected in the 
+            <link linkend="appointment-general-tab"> General tab</link> 
+            and next event happens exactly 3 weeks from that)
+          </para>
         </listitem>
-      </itemizedlist>
-    </para>
+      </varlistentry>
+      <varlistentry>
+        <term>Limit</term>
+        <listitem>
+          <para>
+            &app; allows you also to limit the repeating count:
+            <itemizedlist>
+              <listitem>
+                Repeat forever: this is default and does not limit the
+                number of occurrences at all.
+              </listitem>
+              <listitem>
+                Repeat n times: the appointment is scheduled exactly n
+                times. After that it ends (but is not removed).
+              </listitem>
+              <listitem>
+                Repeat until date: you can select the last date when this
+                event happens. Note that it still happens normally during this 
+                date.
+              </listitem>
+            </itemizedlist>
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Weekdays (Advanced)</term>
+        <listitem>
+          <para>
+            Default is that all days are checked, which means that the event
+            happens normally every day. By removing any check, you prevent 
+            the appointment to happen on that day. In other words, your 
+            appointment only happens on checked weekdays. The most natural
+            usage of this is to use it with Frequency = Daily. You may want
+            to have a chat meeting for example each Monday and Wednesday. You
+            can do this by selecting Frequency = Daily and by checking only
+            Weekdays Mon and Wed. 
+          </para>
+          <para>
+            Selecting Weekly or Monthly actually causes the same thing. 
+            Deselecting any weekday for weekly or monthly or yearly repeating
+            appointments causes all the remaining weekdays to become selected 
+            even though the original repeating selection only selects one day 
+            from the period. This is needed so that it is possible to schedule 
+            for example a meeting to happen every second week on Tuesday and 
+            Friday (Frequency = weekly, Interval = 2, Weekdays = Tue and Fri).
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Which day (Advanced)</term>
+        <listitem>
+          <para>
+            This setting can only be used for monthly and yearly repeating
+            events. It can be used to select which weekday from the month or
+            year is selected. For example if you want to schedule your
+            meeting to happen on the first Tuesday of every month, you can first
+            select Frequency = Monthly and then check only Tuesday from Weekdays
+            and finally set this "which day" number to be 1 (choose the number 
+            located below Tuesday). Negative numbers count backwards starting 
+            from the end of period and zero means that this setting is not used.
+            Frequency = Yearly, weekdays = Thursday only clicked and which say =
+            -2 means second last Thursday of the year.
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
   </sect2>
 </sect1>
 
@@ -1084,8 +1221,8 @@ maintainers, etc. Commented out by default.
           <ulink url="http://bugzilla.xfce.org/" 
                  type="html">Xfce bugzilla
           </ulink>
-          send an email to 
-        <email>xfce4-dev@xfce.org</email> Xfce development.
+          or send an email to 
+          <email>xfce4-dev@xfce.org</email> Xfce development.
         </para>
       </answer>
     </qandaentry>
