@@ -5,17 +5,17 @@
 # Piarres Beobide Egaña <pi@beobide.net>, 2004, 2005, 2006.
 msgid ""
 msgstr ""
-"Project-Id-Version: orage 4.3.90.2\n"
+"Project-Id-Version: eu\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-08-28 20:03+0300\n"
-"PO-Revision-Date: 2006-03-06 21:26+0100\n"
+"PO-Revision-Date: 2006-09-02 07:53+0200\n"
 "Last-Translator: Piarres Beobide <pi@beobide.net>\n"
 "Language-Team: librezale <librezale@librezale.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.2\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: (n != 1)\n"
 
 #: ../panel-plugin/oc_config.c:114
 msgid "Select timezone"
@@ -426,35 +426,32 @@ msgid "Yearly"
 msgstr "Urtero"
 
 #: ../src/appointment.c:1620
-#, fuzzy
 msgid "Mon"
-msgstr "Hilabetero"
+msgstr "Asl"
 
 #: ../src/appointment.c:1620
 msgid "Tue"
-msgstr ""
+msgstr "Asr"
 
 #: ../src/appointment.c:1620
 msgid "Wed"
-msgstr ""
+msgstr "Asz"
 
 #: ../src/appointment.c:1620
 msgid "Thu"
-msgstr ""
+msgstr "Osg"
 
 #: ../src/appointment.c:1620
 msgid "Fri"
-msgstr ""
+msgstr "Osi"
 
 #: ../src/appointment.c:1620
-#, fuzzy
 msgid "Sat"
-msgstr "Hasi"
+msgstr "Lar"
 
 #: ../src/appointment.c:1620
-#, fuzzy
 msgid "Sun"
-msgstr "Soinua"
+msgstr "Iga"
 
 #: ../src/appointment.c:1625
 msgid "Recurrence"
@@ -462,20 +459,19 @@ msgstr "Errepikatzea"
 
 #: ../src/appointment.c:1630
 msgid "Complexity"
-msgstr ""
+msgstr "Konplexutasun"
 
 #: ../src/appointment.c:1633
-#, fuzzy
 msgid "Basic"
-msgstr "Atzera"
+msgstr "Oinarrizkoa"
 
 #: ../src/appointment.c:1639
 msgid "Advanced"
-msgstr ""
+msgstr "Aurreratua"
 
 #: ../src/appointment.c:1647
 msgid "Use this if you want regular repeating event"
-msgstr ""
+msgstr "Errepikatze gertaera arrunt bat nahi ezkero hau erabili"
 
 #: ../src/appointment.c:1649
 msgid ""
@@ -484,35 +480,38 @@ msgid ""
 " Every Saturday and Sunday or \n"
 " First Tuesday every month"
 msgstr ""
+"Horrelako errepikatze konplexuak behar ezkero erabili hau:\n"
+" Bigarren astero edo\n"
+" Larunbat eta Igandero edo\n"
+" Hilabete guztietako lehen asteartea"
 
 #: ../src/appointment.c:1652
-#, fuzzy
 msgid "Frequency"
-msgstr "Libre"
+msgstr "Maiztasuna"
 
 #: ../src/appointment.c:1661
-#, fuzzy
 msgid "Interval"
-msgstr "Orokorra"
+msgstr "Tartea"
 
 #: ../src/appointment.c:1663
 msgid "Each"
-msgstr ""
+msgstr " "
 
 #: ../src/appointment.c:1670
-#, fuzzy
 msgid "occurrence"
-msgstr "Errepikatzea"
+msgstr "errepikatzea"
 
 #: ../src/appointment.c:1678
 msgid ""
 "Limit frequency to certain interval. For example:\n"
 " Every third day: Frequency = Daily and Interval = 3"
 msgstr ""
+"Maiztasuna tarte batetara mugatu. Adibidez: "
+" Hirrugarren egunero: Maiztasuna = Egunero eta Tartea= 3"
 
 #: ../src/appointment.c:1681
 msgid "Limit"
-msgstr ""
+msgstr "Muga"
 
 #: ../src/appointment.c:1683
 msgid "Repeat forever"
@@ -531,13 +530,12 @@ msgid "Repeat until "
 msgstr "Errepikapenak: "
 
 #: ../src/appointment.c:1720
-#, fuzzy
 msgid "Weekdays"
-msgstr "Astero"
+msgstr "Astegunak"
 
 #: ../src/appointment.c:1733
 msgid "Which day"
-msgstr ""
+msgstr "Zein egun"
 
 #: ../src/appointment.c:1741
 msgid ""
@@ -548,6 +546,12 @@ msgid ""
 "\tWeekdays = check only Wednesday,\n"
 "\tWhich day = select 2 from the number below Wednesday"
 msgstr ""
+"Zein astegun ezarri hilabete eta urteroko gertaerentzat.\n"
+" Adibidez:\n"
+" Hilabete bakoitzeko bigarren Astezkena:\n"
+"\tMaiztasuna = Hilbatero,\n"
+"\tAstegunak  = Asteazkena bakarrik markatu,\n"
+"\tZein egun   = Asteazkena azpiko 2 zenbakia hautatu"
 
 #. date only appointment
 #: ../src/event-list.c:199
@@ -2209,7 +2213,7 @@ msgstr "Gogorarazlea "
 #. GtkTooltipsData *cur_tooltip;
 #: ../src/reminder.c:317
 msgid "Next active alarms:"
-msgstr ""
+msgstr "Hurrengo alarma aktiboa:"
 
 #: ../src/reminder.c:325
 #, c-format
@@ -2217,13 +2221,16 @@ msgid ""
 "\n"
 "%02d d %02d h %02d min to: %s"
 msgstr ""
+"\n"
+"%02d e %02d o %02d min: %s"
 
 #: ../src/reminder.c:331
-#, fuzzy
 msgid ""
 "\n"
 "No active alarms found"
-msgstr "Errepikatu abisu soinua"
+msgstr ""
+"\n"
+"Ez da alarma aktiborik aurkitu"
 
 #: ../src/tray_icon.c:316
 msgid "New appointment"
@@ -2260,3 +2267,4 @@ msgstr "Egutegia"
 #: ../xfcalendar.desktop.in.h:2
 msgid "Desktop calendar"
 msgstr "Idazmahai egutegia"
+
