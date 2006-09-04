@@ -16,6 +16,9 @@
 
     The Mozilla Public License Version 1.0. You may obtain a copy of
     the License at http://www.mozilla.org/MPL/
+
+    2006-09-04 week start day fixes  **Juha
+        based on CVS code
 */
 
 /**
@@ -179,6 +182,7 @@ enum icalrecurrencetype_weekday icalrecurrencetype_day_day_of_week(short day);
 /** 0 == any of day of week. 1 == first, 2 = second, -2 == second to last, etc */
 int icalrecurrencetype_day_position(short day);
 
+icalrecurrencetype_weekday icalrecur_string_to_weekday(const char* str);
 
 /** Recurrance rule parser */
 

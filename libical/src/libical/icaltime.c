@@ -22,6 +22,8 @@
  The Original Code is eric. The Initial Developer of the Original
  Code is Eric Busboom
 
+ 2006-09-04 Added support for WKST = weekstart day **Juha
+ 	based on CVS code
 
  ======================================================================*/
 
@@ -251,9 +253,14 @@ time_t icaltime_as_timet(const struct icaltimetype tt)
     /* Copy the icaltimetype to a struct tm. */
     memset (&stm, 0, sizeof (struct tm));
 
-    stm.tm_sec = tt.second;
-    stm.tm_min = tt.minute;
-    stm.tm_hour = tt.hour;
+    if (icaltime_is_date(tt)) {
+	stm.tm_sec = stm.tm_min = stm.tm_hour = 0;
+    } else {
+	stm.tm_sec = tt.second;
+	stm.tm_min = tt.minute;
+	stm.tm_hour = tt.hour;
+    }
+
     stm.tm_mday = tt.day;
     stm.tm_mon = tt.month-1;
     stm.tm_year = tt.year-1900;
@@ -292,9 +299,14 @@ time_t icaltime_as_timet_with_zone(const struct icaltimetype _tt,
     /* Copy the icaltimetype to a struct tm. */
     memset (&stm, 0, sizeof (struct tm));
 
-    stm.tm_sec = tt.second;
-    stm.tm_min = tt.minute;
-    stm.tm_hour = tt.hour;
+    if (icaltime_is_date(tt)) {
+	stm.tm_sec = stm.tm_min = stm.tm_hour = 0;
+    } else {
+	stm.tm_sec = tt.second;
+	stm.tm_min = tt.minute;
+	stm.tm_hour = tt.hour;
+    }
+
     stm.tm_mday = tt.day;
     stm.tm_mon = tt.month-1;
     stm.tm_year = tt.year-1900;
@@ -454,26 +466,41 @@ int icaltime_day_of_week(const struct icaltimetype t){
 	return jt.weekday + 1;
 }
 
-/** Day of the year that the first day of the week (Sunday) is on.
- * 
- *  @todo Doesn't take into account different week start days. 
+/** Day of the year that the first day of the week is on.
  */
-int icaltime_start_doy_of_week(const struct icaltimetype t){
+int icaltime_start_doy_week(const struct icaltimetype t, int fdow){
 	UTinstant jt;
+    int delta;
 
-	memset(&jt,0,sizeof(UTinstant));
+    memset(&jt,0,sizeof(UTinstant));
 
-	jt.year = t.year;
+    jt.year = t.year;
     jt.month = t.month;
     jt.day = t.day;
     jt.i_hour = 0;
     jt.i_minute = 0;
     jt.i_second = 0;
 
-	juldat(&jt);
-	caldat(&jt);
+    juldat(&jt);
+    caldat(&jt);
 
-	return jt.day_of_year - jt.weekday;
+    delta = jt.weekday - (fdow - 1);
+    if (delta < 0) delta += 7;
+    return jt.day_of_year - delta;
+}
+
+/** Day of the year that the first day of the week (Sunday) is on.
+ *
+ *  @deprecated Doesn't take into account different week start days.
+ */
+int icaltime_start_doy_of_week(const struct icaltimetype t){
+
+#ifndef NO_WARN_DEPRECATED
+    icalerror_warn("icaltime_start_doy_of_week() is DEPRECATED, use\
+	    icaltime_start_doy_week() instead");
+#endif
+
+    return icaltime_start_doy_week(t, 1);
 }
 
 /** 
@@ -752,8 +779,12 @@ icaltime_adjust(struct icaltimetype *tt, const int days, const int hours,
 	const int minutes, const int seconds) {
 
     int second, minute, hour, day;
-    int minutes_overflow, hours_overflow, days_overflow, years_overflow;
+    int minutes_overflow, hours_overflow, days_overflow = 0, years_overflow;
     int days_in_month;
+
+    /* If we are passed a date make sure to ignore hour minute and second */
+    if (tt->is_date)
+	goto IS_DATE;
 
     /* Add on the seconds. */
     second = tt->second + seconds;
@@ -782,6 +813,7 @@ icaltime_adjust(struct icaltimetype *tt, const int days, const int hours,
 	days_overflow--;
     }
 
+IS_DATE:
     /* Normalize the month. We do this before handling the day since we may
        need to know what month it is to get the number of days in it.
        Note that months are 1 to 12, so we have to be a bit careful. */
