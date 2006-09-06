@@ -89,9 +89,8 @@ extern char *local_icaltimezone_location;
 extern gboolean local_icaltimezone_utc;
 
 static int lookback = 0;
-
 extern GList *alarm_list;
-                                                                                
+extern gint ical_weekstartday;
 
 /* Remember to keep this string table in sync with zones.tab
  * This is used only for translations purposes. It makes
@@ -1158,8 +1157,9 @@ void xfical_alarm_build_list_internal(gboolean first_list_today)
         } /* trg_found */
     }  /* EVENTS */
     alarm_list = g_list_sort(alarm_list, alarm_order);
-    g_message("Orage **: Build alarm list: Processed %d events.\n\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
-            , cnt_event, cnt_alarm, cnt_act_alarm, cnt_repeat);
+    if (first_list_today)
+        g_message("Orage **: Build alarm list: Processed %d events.\n\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
+                , cnt_event, cnt_alarm, cnt_act_alarm, cnt_repeat);
 }
 
 void xfical_alarm_build_list(gboolean first_list_today)
@@ -1371,6 +1371,9 @@ char *appt_add_internal(appt_data *appt, gboolean add, char *uid
                 g_warning("appt_add_internal: Unsupported freq");
                 icalrecurrencetype_clear(&rrule);
         }
+        if (appt->interval > 1) { /* not default, need to insert it */
+            recur_p += g_sprintf(recur_p, ";INTERVAL=%d", appt->interval);
+        }
         if (appt->recur_limit == 1) {
             recur_p += g_sprintf(recur_p, ";COUNT=%d", appt->recur_count);
         }
@@ -1397,8 +1400,17 @@ char *appt_add_internal(appt_data *appt, gboolean add, char *uid
             *recur_p2 = *recur_p; /* ...reset to null... */
             recur_p = recur_p2;   /* ...no need for BYDAY then */
         }
-        if (appt->interval > 1) { /* not default, need to insert it */
-            recur_p += g_sprintf(recur_p, ";INTERVAL=%d", appt->interval);
+        else if (appt->interval > 1 && appt->freq == XFICAL_FREQ_WEEKLY) {
+            /* we have BYDAY rule, let's check week starting date:
+             * WKST has meaning only in two cases:
+             * 1) WEEKLY rule && interval > 1 && BYDAY rule is in use 
+             * 2) YEARLY rule && BYWEEKNO rule is in use 
+             * BUT Orage is not using BYWEEKNO rule, so we only check 1)
+             * Monday is default, so we can skip that, too
+             * */
+            if (ical_weekstartday)
+                recur_p += g_sprintf(recur_p, ";WKST=%s"
+                        , byday_a[ical_weekstartday]);
         }
         rrule = icalrecurrencetype_from_string(recur_str);
         icalcomponent_add_property(ievent, icalproperty_new_rrule(rrule));

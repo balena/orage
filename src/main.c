@@ -78,8 +78,12 @@ gint icon_size_x = 0, icon_size_y = 0;
 
 /* main calendar window position */
 gint pos_x = 0, pos_y = 0; 
+
 /* latest event-list window size */
 gint event_win_size_x = 400, event_win_size_y = 200;
+
+/* Ical week start day (0 = Monday, 1 = Tuesday,... 6 = Sunday) */
+gint ical_weekstartday = 0; 
 
 /* List of active alarms */
 GList *alarm_list = NULL;
@@ -130,6 +134,8 @@ void apply_settings()
 {
     gchar *fpath;
     FILE *fp;
+    char *weekday[10] = { "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY"
+                        , "FRIDAY", "SATURDAY", "SUNDAY" };
 
     xfce_textdomain(GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8");
   /* Save settings here */
@@ -157,6 +163,8 @@ void apply_settings()
             fprintf(fp, "0\n");
         fprintf(fp, "[Use Dynamic Icon]\n");
         fprintf(fp, "X=%i, Y=%i\n", icon_size_x, icon_size_y);
+        fprintf(fp, "[Ical Week Start Day]\n");
+        fprintf(fp, "%s\n", weekday[ical_weekstartday]);
         fclose(fp);
     }
     g_free(fpath);

@@ -63,6 +63,7 @@ extern gboolean select_always_today;
 extern gint pos_x, pos_y;
 extern gint event_win_size_x, event_win_size_y;
 extern gint icon_size_x, icon_size_y;
+extern gint ical_weekstartday;
 
 gboolean
 xfcalendar_mark_appointments()
@@ -280,7 +281,9 @@ xfcalendar_init_settings(CalWin *xfcal)
 {
     gchar *fpath;
     FILE *fp;
-    char buf[LEN_BUFFER], *eof;
+    char buf[LEN_BUFFER], *eof, weekstartday[11];
+    char *weekday[10] = { "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY"
+                        , "FRIDAY", "SATURDAY", "SUNDAY" };
     gint tempi = 1;
 
     xfce_textdomain(GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8");
@@ -339,6 +342,18 @@ xfcalendar_init_settings(CalWin *xfcal)
         if (eof == NULL 
         || sscanf(buf, "X=%i, Y=%i", &icon_size_x, &icon_size_y) != 2) {
             g_warning("Unable to read dynamic icon size from: %s", fpath);
+        }
+        fgets(buf, LEN_BUFFER, fp); /* [Ical Week Start Day] */
+        eof = fgets(buf, LEN_BUFFER, fp); 
+        if (eof == NULL 
+        || sscanf(buf, "%s10", weekstartday) != 1) {
+            g_warning("Unable to read ical week start day from: %s", fpath);
+        }
+        else {
+            for (tempi=0; tempi<7; tempi++) {
+                if (strcasecmp(weekstartday, weekday[tempi]) == 0)
+                    ical_weekstartday = tempi;
+            }
         }
     }
     g_free(fpath);
