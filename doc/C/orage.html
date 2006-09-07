@@ -483,16 +483,20 @@
       bottom texts can be omitted. Finally <strong class="application"><code>orage</code></strong> switches to static icon if
       not even the number fits into the icon. Good values to test with are 32
       (like X=32 Y=32).
+    </li><li>
+      Ical Week Start Day: tells what is the first day of week. But note, that 
+      it is <span class="emphasis"><em>only</em></span> used in weekly repeating appointments.
+      It will not change the calendar view anyway.
     </li></ul></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="orage-faq"></a>Frequently Asked Questions</h2></div></div></div><p>
     Some common questions and answers.
-  </p><tr class="qandadiv"><td align="left" valign="top" colspan="2"><a name="id2514998"></a><h4 class="title"><a name="id2514998"></a>1. Frequently Asked Questions</h4></td></tr><tr class="toc" colspan="2"><td align="left" valign="top" colspan="2"><dl><dt>1.1. <a href="#id2515003">
+  </p><tr class="qandadiv"><td align="left" valign="top" colspan="2"><a name="id2515008"></a><h4 class="title"><a name="id2515008"></a>1. Frequently Asked Questions</h4></td></tr><tr class="toc" colspan="2"><td align="left" valign="top" colspan="2"><dl><dt>1.1. <a href="#id2515013">
           Why does my week start on Saturday?
-        </a></dt><dt>1.2. <a href="#id2515101">
+        </a></dt><dt>1.2. <a href="#id2515112">
           How can I insert my ical file into orage?
-        </a></dt><dt>1.3. <a href="#id2515126">
+        </a></dt><dt>1.3. <a href="#id2515136">
           I have found a bug in orage or would like to see a new feature. How
           can I inform that to the developers?
-        </a></dt></dl></td></tr><tr class="question"><td align="left" valign="top"><a name="id2515003"></a><a name="id2515005"></a><b>1.1.</b></td><td align="left" valign="top"><p>
+        </a></dt></dl></td></tr><tr class="question"><td align="left" valign="top"><a name="id2515013"></a><a name="id2515015"></a><b>1.1.</b></td><td align="left" valign="top"><p>
           Why does my week start on Saturday?
         </p></td></tr><tr class="answer"><td align="left" valign="top"><b></b></td><td align="left" valign="top"><p>
           This really is a problem in your distro. You can check how your
@@ -518,11 +522,11 @@
           After that you can check what the setting is: 
           <span><strong class="command">grep first_weekday fi_FI</strong></span> and change that if it is
           wrong and after that you need to recompile your locale database.
-        </p></td></tr><tr class="question"><td align="left" valign="top"><a name="id2515101"></a><a name="id2515104"></a><b>1.2.</b></td><td align="left" valign="top"><p>
+        </p></td></tr><tr class="question"><td align="left" valign="top"><a name="id2515112"></a><a name="id2515114"></a><b>1.2.</b></td><td align="left" valign="top"><p>
           How can I insert my ical file into <strong class="application"><code>orage</code></strong>?
         </p></td></tr><tr class="answer"><td align="left" valign="top"><b></b></td><td align="left" valign="top"><p>
           This is not currently possible. It is planned in future versions.
-        </p></td></tr><tr class="question"><td align="left" valign="top"><a name="id2515126"></a><a name="id2515128"></a><b>1.3.</b></td><td align="left" valign="top"><p>
+        </p></td></tr><tr class="question"><td align="left" valign="top"><a name="id2515136"></a><a name="id2515138"></a><b>1.3.</b></td><td align="left" valign="top"><p>
           I have found a bug in <strong class="application"><code>orage</code></strong> or would like to see a new feature. How
           can I inform that to the developers?
         </p></td></tr><tr class="answer"><td align="left" valign="top"><b></b></td><td align="left" valign="top"><p>

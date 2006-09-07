@@ -1,6 +1,7 @@
 /* about-xfcalendar.c
  *
- * (C) 2004 Mickaël Graf
+ * (C) 2004-2006 Mickaël Graf
+ * (C) 2004-2006 Juha Kautto
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -50,6 +51,11 @@ void create_wAbout(GtkWidget *widget, gpointer user_data)
 			     _("Core developer"));
 
   xfce_about_info_add_credit(about,
+			     "Juha Kautto",
+			     "juha@xfce.org",
+			     _("Core developer"));
+
+  xfce_about_info_add_credit(about,
 			     "Benedikt Meurer",
 			     "benny@xfce.org",
 			     _("Contributor"));
@@ -57,11 +63,6 @@ void create_wAbout(GtkWidget *widget, gpointer user_data)
   xfce_about_info_add_credit(about,
 			     "Edscott Wilson Garcia",
 			     "edscott@imp.mx",
-			     _("Contributor"));
-
-  xfce_about_info_add_credit(about,
-			     "Juha Kautto",
-			     "kautto.juha@kolumbus.fi",
 			     _("Contributor"));
 
   dialog = xfce_about_dialog_new_with_values(GTK_WINDOW(xfcal->mWindow)
