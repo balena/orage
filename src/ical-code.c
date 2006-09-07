@@ -1537,6 +1537,7 @@ appt_data *xfical_appt_get_internal(char *ical_uid)
             appt.starttimecur[0] = '\0';
             appt.endtimecur[0] = '\0';
             appt.freq = XFICAL_FREQ_NONE;
+            appt.interval = 1;
             appt.recur_limit = 0;
             appt.recur_count = 0;
             appt.recur_until[0] = '\0';
