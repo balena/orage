@@ -1,88 +1,87 @@
 # Vietnamese translations for orage package.
 # Copyright (C) 2003-2006 The Xfce development team.
 # This file is distributed under the same license as the orage package.
+#
 # Lâm Vĩnh Niên <nienvl@yahoo.ca>, 2004.
 # Phan Vĩnh Thịnh <teppi@vnlinux.org>, 2006.
-#
+# Phan Vĩnh Thịnh <teppi82@gmail.com>, 2006.
 msgid ""
 msgstr ""
-"Project-Id-Version: xfcalendar 4.3.99.1\n"
+"Project-Id-Version: orage 4.3.90.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-08-28 20:03+0300\n"
-"PO-Revision-Date: 2006-04-26 22:40+0400\n"
-"Last-Translator: Phan Vĩnh Thịnh <teppi@vnlinux.org>\n"
-"Language-Team: Vietnamese <vi_VN@googlegroups.com>\n"
+"PO-Revision-Date: 2006-09-05 03:26+0400\n"
+"Last-Translator: Phan Vĩnh Thịnh <teppi82@gmail.com>\n"
+"Language-Team: Vietnamese <vi-VN@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.10\n"
+"X-Generator: KBabel 1.11.2\n"
 "Plural-Forms: nplurals=1; nplural=0\n"
 
 #: ../panel-plugin/oc_config.c:114
-#, fuzzy
 msgid "Select timezone"
 msgstr "Chọn múi giờ"
 
 #: ../panel-plugin/oc_config.c:193
 msgid "Appearance"
-msgstr ""
+msgstr "Trang trí"
 
 #. show frame
 #: ../panel-plugin/oc_config.c:204
 msgid "Show _frame"
-msgstr ""
+msgstr "_Hiện khung"
 
 #. foreground color
 #: ../panel-plugin/oc_config.c:214
 msgid "set foreground _color:"
-msgstr ""
+msgstr "đặt _màu số:"
 
 #. background color
 #: ../panel-plugin/oc_config.c:228
 msgid "set _background color:"
-msgstr ""
+msgstr "đặt màu _nền:"
 
 #. clock size (=vbox size): height and width
 #: ../panel-plugin/oc_config.c:242
 msgid "set _height:"
-msgstr ""
+msgstr "đặt _chiều cao:"
 
 #: ../panel-plugin/oc_config.c:254
 msgid "set _width:"
-msgstr ""
+msgstr "đặt chiều _rộng:"
 
 #: ../panel-plugin/oc_config.c:275
 msgid "Clock Options"
-msgstr ""
+msgstr "Tùy chọn đồng hồ"
 
 #. timezone
 #: ../panel-plugin/oc_config.c:286
-#, fuzzy
 msgid "set timezone to:"
-msgstr "Chọn múi giờ"
+msgstr "đặt múi giờ thành:"
 
 #: ../panel-plugin/oc_config.c:295
 msgid "Set any valid timezone (=TZ) value or pick one from the list."
-msgstr ""
+msgstr "Đặt một giá trị múi giờ nào đó hoặc chọn một từ danh sách."
 
 #. line 1
 #: ../panel-plugin/oc_config.c:304
 msgid "show line _1:"
-msgstr ""
+msgstr "hiển thị dòng _1:"
 
 #: ../panel-plugin/oc_config.c:315
 msgid "Enter any valid strftime function parameter."
-msgstr ""
+msgstr "Hãy nhập một tham số hàm strftime đúng."
 
 #. line 2
 #: ../panel-plugin/oc_config.c:331
 msgid "show line _2:"
-msgstr ""
+msgstr "hiển thị dòng _2:"
 
 #. line 3
 #: ../panel-plugin/oc_config.c:353
 msgid "show line _3:"
-msgstr ""
+msgstr "hiển thị dòng _3:"
 
 #: ../panel-plugin/oc_config.c:382
 msgid ""
@@ -95,20 +94,26 @@ msgid ""
 "\t%H = hours \t\t\t\t%M = minute\n"
 "\t%X = local time\t\t\t%x = local date"
 msgstr ""
+"Chương trình này sử dụng hàm strftime để lấy thời gian.\n"
+"Dùng bất kỳ mã đúng nào để lấy thời gian ở dạng bạn thích.\n"
+"Một số mã thường dùng là:\n"
+"\t%A = thứ trong tuần\t\t\t%B = tháng\n"
+"\t%c = ngày & giờ\t\t%R = giờ & phút\n"
+"\t%V = số thứ tự tuần\t\t%Z = múi giờ\n"
+"\t%H = giờ \t\t\t\t%M = phút\n"
+"\t%X = giờ địa phương\t\t\t%x = ngày địa phương"
 
 #: ../panel-plugin/oc_config.c:401
-#, fuzzy
 msgid "Properties"
-msgstr "Châu Âu/Pa-ri"
+msgstr "Thuộc tính"
 
 #: ../panel-plugin/oc_config.c:416
-#, fuzzy
 msgid "Orage clock"
-msgstr "Orage"
+msgstr "Đồng hồ orage"
 
 #: ../panel-plugin/orageclock.c:63
 msgid "%A %d %B %Y/%V"
-msgstr ""
+msgstr "%A %d %B %Y/%V"
 
 #. to avoid timing problems when updating entry
 #. Create file chooser
@@ -423,35 +428,32 @@ msgid "Yearly"
 msgstr "Hàng năm"
 
 #: ../src/appointment.c:1620
-#, fuzzy
 msgid "Mon"
-msgstr "Hàng tháng"
+msgstr "Hai"
 
 #: ../src/appointment.c:1620
 msgid "Tue"
-msgstr ""
+msgstr "Ba"
 
 #: ../src/appointment.c:1620
 msgid "Wed"
-msgstr ""
+msgstr "Tư"
 
 #: ../src/appointment.c:1620
 msgid "Thu"
-msgstr ""
+msgstr "Năm"
 
 #: ../src/appointment.c:1620
 msgid "Fri"
-msgstr ""
+msgstr "Sáu"
 
 #: ../src/appointment.c:1620
-#, fuzzy
 msgid "Sat"
-msgstr "Bắt đầu"
+msgstr "Bảy"
 
 #: ../src/appointment.c:1620
-#, fuzzy
 msgid "Sun"
-msgstr "Âm thanh"
+msgstr "CN"
 
 #: ../src/appointment.c:1625
 msgid "Recurrence"
@@ -459,20 +461,19 @@ msgstr "Lặp lại"
 
 #: ../src/appointment.c:1630
 msgid "Complexity"
-msgstr ""
+msgstr "Phức tạp"
 
 #: ../src/appointment.c:1633
-#, fuzzy
 msgid "Basic"
-msgstr "Quay lại"
+msgstr "Cơ bản"
 
 #: ../src/appointment.c:1639
 msgid "Advanced"
-msgstr ""
+msgstr "Nâng cao"
 
 #: ../src/appointment.c:1647
 msgid "Use this if you want regular repeating event"
-msgstr ""
+msgstr "Dùng nó nếu bạn muốn sự kiện lặp lại thường xuyên"
 
 #: ../src/appointment.c:1649
 msgid ""
@@ -481,35 +482,38 @@ msgid ""
 " Every Saturday and Sunday or \n"
 " First Tuesday every month"
 msgstr ""
+"Dùng nó nếu bạn muốn thời gian phức tạp dạng:\n"
+" Mỗi tuần thứ hai hoặc \n"
+" Mỗi thứ Sáu và thứ Bảy hoặc\n"
+" thứ Ba đầu tiên của mỗi tháng"
 
 #: ../src/appointment.c:1652
-#, fuzzy
 msgid "Frequency"
-msgstr "Rảnh"
+msgstr "Tần số"
 
 #: ../src/appointment.c:1661
-#, fuzzy
 msgid "Interval"
-msgstr "Chung"
+msgstr "Thời gian"
 
 #: ../src/appointment.c:1663
 msgid "Each"
-msgstr ""
+msgstr "Mỗi"
 
 #: ../src/appointment.c:1670
-#, fuzzy
 msgid "occurrence"
-msgstr "Lặp lại"
+msgstr "xuất hiện"
 
 #: ../src/appointment.c:1678
 msgid ""
 "Limit frequency to certain interval. For example:\n"
 " Every third day: Frequency = Daily and Interval = 3"
 msgstr ""
+"Giới hạn tần số tới một khoảng thích hợp. Ví dụ:\n"
+" Sau 3 ngày: Tần số = Hàng ngày và Thời gian = 3"
 
 #: ../src/appointment.c:1681
 msgid "Limit"
-msgstr ""
+msgstr "Giới hạn"
 
 #: ../src/appointment.c:1683
 msgid "Repeat forever"
@@ -528,13 +532,12 @@ msgid "Repeat until "
 msgstr "Lặp lại cho đến "
 
 #: ../src/appointment.c:1720
-#, fuzzy
 msgid "Weekdays"
-msgstr "Hàng tuần"
+msgstr "Trong tuần"
 
 #: ../src/appointment.c:1733
 msgid "Which day"
-msgstr ""
+msgstr "Ngày nào"
 
 #: ../src/appointment.c:1741
 msgid ""
@@ -545,6 +548,12 @@ msgid ""
 "\tWeekdays = check only Wednesday,\n"
 "\tWhich day = select 2 from the number below Wednesday"
 msgstr ""
+"Chỉ ra thứ trong tuần cho sự kiện hàng ngày và hàng tháng.\n"
+" Ví dụ:\n"
+" Thứ Tư thứ hai hàng tháng:\n"
+"\tTần số = Monthly,\n"
+"\tTrong tuần = chỉ chọn Wednesday,\n"
+"\tNgày nào = chọn 2 từ số nằm dưới thứ Tư"
 
 #. date only appointment
 #: ../src/event-list.c:199
@@ -927,7 +936,7 @@ msgstr ""
 
 #: ../src/ical-code.c:175
 msgid "America/Chicago"
-msgstr ""
+msgstr "Châu Mỹ/Chi-ca-gô"
 
 #: ../src/ical-code.c:176
 msgid "America/Chihuahua"
@@ -2206,7 +2215,7 @@ msgstr "Nhắc "
 #. GtkTooltipsData *cur_tooltip;
 #: ../src/reminder.c:317
 msgid "Next active alarms:"
-msgstr ""
+msgstr "Báo thức được dùng tiếp theo:"
 
 #: ../src/reminder.c:325
 #, c-format
@@ -2214,15 +2223,16 @@ msgid ""
 "\n"
 "%02d d %02d h %02d min to: %s"
 msgstr ""
+"\n"
+"%02d n %02d g %02d phút tới: %s"
 
 #: ../src/reminder.c:331
-#, fuzzy
 msgid ""
 "\n"
 "No active alarms found"
 msgstr ""
 "\n"
-"Lặp lại âm thanh báo thức"
+"Không có báo thức"
 
 #: ../src/tray_icon.c:316
 msgid "New appointment"
@@ -2233,13 +2243,12 @@ msgid "About Orage"
 msgstr "Về Orage"
 
 #: ../panel-plugin/orageclock.desktop.in.in.h:1
-#, fuzzy
 msgid "Orage Clock"
-msgstr "Orage"
+msgstr "Đồng hồ Orage"
 
 #: ../panel-plugin/orageclock.desktop.in.in.h:2
 msgid "What time and date is it?"
-msgstr ""
+msgstr "Bây giờ là mấy giờ và ngày bao nhiêu?"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:1
 msgid "Calendar Settings"
@@ -2260,3 +2269,4 @@ msgstr "Lịch"
 #: ../xfcalendar.desktop.in.h:2
 msgid "Desktop calendar"
 msgstr "Lịch màn hình"
+
