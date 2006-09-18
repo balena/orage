@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: xfcalendar 4.3.99.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-08-28 20:03+0300\n"
-"PO-Revision-Date: 2006-05-13 21:35+0200\n"
+"PO-Revision-Date: 2006-09-18 21:32+0200\n"
 "Last-Translator: Carles Muñoz Gorriz <carlesmu@internautas.org>\n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
@@ -45,11 +45,11 @@ msgstr "Defineix _el color del rerefons:"
 #. clock size (=vbox size): height and width
 #: ../panel-plugin/oc_config.c:242
 msgid "set _height:"
-msgstr ""
+msgstr "fixa _alçada:"
 
 #: ../panel-plugin/oc_config.c:254
 msgid "set _width:"
-msgstr ""
+msgstr "fixa a_mplada:"
 
 #: ../panel-plugin/oc_config.c:275
 msgid "Clock Options"
@@ -431,35 +431,32 @@ msgid "Yearly"
 msgstr "Anualment"
 
 #: ../src/appointment.c:1620
-#, fuzzy
 msgid "Mon"
-msgstr "Mensualment"
+msgstr "Dil"
 
 #: ../src/appointment.c:1620
 msgid "Tue"
-msgstr ""
+msgstr "Dim"
 
 #: ../src/appointment.c:1620
 msgid "Wed"
-msgstr ""
+msgstr "Dic"
 
 #: ../src/appointment.c:1620
 msgid "Thu"
-msgstr ""
+msgstr "Dij"
 
 #: ../src/appointment.c:1620
 msgid "Fri"
-msgstr ""
+msgstr "Div"
 
 #: ../src/appointment.c:1620
-#, fuzzy
 msgid "Sat"
-msgstr "Inici"
+msgstr "Dis"
 
 #: ../src/appointment.c:1620
-#, fuzzy
 msgid "Sun"
-msgstr "So"
+msgstr "Diu"
 
 #: ../src/appointment.c:1625
 msgid "Recurrence"
@@ -467,20 +464,19 @@ msgstr "Periodicitat"
 
 #: ../src/appointment.c:1630
 msgid "Complexity"
-msgstr ""
+msgstr "Complexitat"
 
 #: ../src/appointment.c:1633
-#, fuzzy
 msgid "Basic"
-msgstr "Endarrere"
+msgstr "Basic"
 
 #: ../src/appointment.c:1639
 msgid "Advanced"
-msgstr ""
+msgstr "Avançat"
 
 #: ../src/appointment.c:1647
 msgid "Use this if you want regular repeating event"
-msgstr ""
+msgstr "Useu aquest si el que voleu és un event de repetició regular"
 
 #: ../src/appointment.c:1649
 msgid ""
@@ -489,35 +485,38 @@ msgid ""
 " Every Saturday and Sunday or \n"
 " First Tuesday every month"
 msgstr ""
+"Useu aquest si el que voleu és un event amb temps complexos com:\n"
+" la segona setmana o\n"
+" cada dissabte i diumenge o\n"
+" el primer dijous de cada mes"
 
 #: ../src/appointment.c:1652
-#, fuzzy
 msgid "Frequency"
-msgstr "Lliure"
+msgstr "Freqüència"
 
 #: ../src/appointment.c:1661
-#, fuzzy
 msgid "Interval"
-msgstr "General"
+msgstr "Intèrval"
 
 #: ../src/appointment.c:1663
 msgid "Each"
-msgstr ""
+msgstr "Cada"
 
 #: ../src/appointment.c:1670
-#, fuzzy
 msgid "occurrence"
-msgstr "Periodicitat"
+msgstr "ocurrència"
 
 #: ../src/appointment.c:1678
 msgid ""
 "Limit frequency to certain interval. For example:\n"
 " Every third day: Frequency = Daily and Interval = 3"
 msgstr ""
+"Limita la freqüència a cert intèrval. Per exemple:\n"
+" Cada tercer dia: freqüència = diari, intèrval = 3"
 
 #: ../src/appointment.c:1681
 msgid "Limit"
-msgstr ""
+msgstr "Límit"
 
 #: ../src/appointment.c:1683
 msgid "Repeat forever"
@@ -536,13 +535,12 @@ msgid "Repeat until "
 msgstr "Repeteix fins"
 
 #: ../src/appointment.c:1720
-#, fuzzy
 msgid "Weekdays"
-msgstr "Setmanalment"
+msgstr "Dies de la setmana"
 
 #: ../src/appointment.c:1733
 msgid "Which day"
-msgstr ""
+msgstr "Quin dia"
 
 #: ../src/appointment.c:1741
 msgid ""
@@ -553,6 +551,12 @@ msgid ""
 "\tWeekdays = check only Wednesday,\n"
 "\tWhich day = select 2 from the number below Wednesday"
 msgstr ""
+"Especifiqueu quin dia de la setmana per esdeveniments mensuals o anuals.\n"
+" Per exemple:\n"
+" El segon dimecres de cada mes:\n"
+" freqüència = mensual,\n"
+" dies de la setmana = sols el dimecres,\n"
+" quin dia = seleccioni 2 del nombre davall dimecres"
 
 #. date only appointment
 #: ../src/event-list.c:199
@@ -2214,23 +2218,20 @@ msgstr "Recordatori "
 #. GtkTooltipsData *cur_tooltip;
 #: ../src/reminder.c:317
 msgid "Next active alarms:"
-msgstr ""
+msgstr "Següent alarma activa:"
 
 #: ../src/reminder.c:325
 #, c-format
 msgid ""
 "\n"
 "%02d d %02d h %02d min to: %s"
-msgstr ""
+msgstr "\n%02d d %02d h %02d min per: %s\""
 
 #: ../src/reminder.c:331
-#, fuzzy
 msgid ""
 "\n"
 "No active alarms found"
-msgstr ""
-"\n"
-"Repeteix ĺ'alarma sonora"
+msgstr "\nNo s’han trobat alarmes actives"
 
 #: ../src/tray_icon.c:316
 msgid "New appointment"
