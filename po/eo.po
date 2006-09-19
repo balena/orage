@@ -18,7 +18,7 @@ msgstr ""
 
 #: ../panel-plugin/oc_config.c:114
 msgid "Select timezone"
-msgstr "Elektu tempzonon"
+msgstr "Elektu tempozonon"
 
 #: ../panel-plugin/oc_config.c:193
 msgid "Appearance"
@@ -37,16 +37,16 @@ msgstr "difinu la _antaŭkoloron:"
 #. background color
 #: ../panel-plugin/oc_config.c:228
 msgid "set _background color:"
-msgstr "difinu la _Postkoloron:"
+msgstr "difinu la _postkoloron:"
 
 #. clock size (=vbox size): height and width
 #: ../panel-plugin/oc_config.c:242
 msgid "set _height:"
-msgstr ""
+msgstr "difinu a_ltecon:"
 
 #: ../panel-plugin/oc_config.c:254
 msgid "set _width:"
-msgstr ""
+msgstr "difinu la_rĝecon:"
 
 #: ../panel-plugin/oc_config.c:275
 msgid "Clock Options"
@@ -55,11 +55,11 @@ msgstr "Horloĝopcioj"
 #. timezone
 #: ../panel-plugin/oc_config.c:286
 msgid "set timezone to:"
-msgstr "difinu la tempzonon:"
+msgstr "difinu la tempozonon:"
 
 #: ../panel-plugin/oc_config.c:295
 msgid "Set any valid timezone (=TZ) value or pick one from the list."
-msgstr "Enskribu validan tempzonon (=TZ) aŭ elektu unu el la listo."
+msgstr "Enskribu validan tempozonon (=TZ) aŭ elektu unu el la listo."
 
 #. line 1
 #: ../panel-plugin/oc_config.c:304
@@ -94,7 +94,7 @@ msgstr ""
 "Ĉi tiu programo uzas la funkcion strftime por difini la tempon.\n"
 "Uzu ajnan validan kodon por konfiguri la tempon en via preferstilo.\n"
 "Jen kelkaj kutimaj kodoj:\n"
-"\t%A = tago de la semajno\t\t%B = mês\n"
+"\t%A = tago de la semajno\t\t%B = monato\n"
 "\t%c = dato & horo\t\t\t%R = horo & minuto\n"
 "\t%V = numero de la semajno\t%Z = uzata tempozono\n"
 "\t%H = horoj\t\t\t\t%M = minuto\n"
@@ -136,12 +136,12 @@ msgstr "Loko"
 #. show it
 #: ../plugin/xfcalendar_plugin.c:430
 msgid "Pick local timezone"
-msgstr "Elektu lokalan tempzonon"
+msgstr "Elektu lokalan tempozonon"
 
 #: ../plugin/xfcalendar_plugin.c:433 ../plugin/xfcalendar_plugin.c:463
 #: ../src/appointment.c:934 ../src/appointment.c:964
 msgid "UTC"
-msgstr "UTC"
+msgstr "UTC Universala KunOrdhava Tempo"
 
 #: ../plugin/xfcalendar_plugin.c:434 ../plugin/xfcalendar_plugin.c:467
 #: ../plugin/xfcalendar_plugin.c:749 ../src/appointment.c:935
@@ -240,12 +240,12 @@ msgstr "Aplikaĵo"
 
 #: ../plugin/xfcalendar_plugin.c:725 ../plugin/xfcalendar_plugin.c:735
 msgid "Timezone"
-msgstr "Tempzono"
+msgstr "Tempozono"
 
 #. the button label in the xfce-mcs-manager dialog
 #: ../plugin/xfcalendar_plugin.c:800
 msgid "Button Label|Orage"
-msgstr "Buton-Nomo|Oraĝo"
+msgstr "Butona Nomo|Oraĝo"
 
 #: ../src/about-xfcalendar.c:39
 msgid "Manage your time with Xfce4"
@@ -304,7 +304,7 @@ msgstr "Hodiaŭ"
 #. show it
 #: ../src/appointment.c:931
 msgid "Pick timezone"
-msgstr "Elektu tempzonon"
+msgstr "Elektu tempozonon"
 
 #: ../src/appointment.c:1197
 msgid "New appointment - Orage"
@@ -402,7 +402,7 @@ msgstr "Alarmo"
 
 #: ../src/appointment.c:1606
 msgid "Repeat alarm sound"
-msgstr "Ripetu la alarman sonon"
+msgstr "Ripetu la alarmosonon"
 
 #: ../src/appointment.c:1618
 msgid "None"
@@ -425,35 +425,32 @@ msgid "Yearly"
 msgstr "Jare"
 
 #: ../src/appointment.c:1620
-#, fuzzy
 msgid "Mon"
-msgstr "Monate"
+msgstr "Lun"
 
 #: ../src/appointment.c:1620
 msgid "Tue"
-msgstr ""
+msgstr "Mar"
 
 #: ../src/appointment.c:1620
 msgid "Wed"
-msgstr ""
+msgstr "Mer"
 
 #: ../src/appointment.c:1620
 msgid "Thu"
-msgstr ""
+msgstr "JaŬ"
 
 #: ../src/appointment.c:1620
 msgid "Fri"
-msgstr ""
+msgstr "Ven"
 
 #: ../src/appointment.c:1620
-#, fuzzy
 msgid "Sat"
-msgstr "Komenco"
+msgstr "Sab"
 
 #: ../src/appointment.c:1620
-#, fuzzy
 msgid "Sun"
-msgstr "Sono"
+msgstr "Dim"
 
 #: ../src/appointment.c:1625
 msgid "Recurrence"
@@ -461,20 +458,19 @@ msgstr "Ripeteco"
 
 #: ../src/appointment.c:1630
 msgid "Complexity"
-msgstr ""
+msgstr "Komplekseco"
 
 #: ../src/appointment.c:1633
-#, fuzzy
 msgid "Basic"
-msgstr "Reen"
+msgstr "Basa"
 
 #: ../src/appointment.c:1639
 msgid "Advanced"
-msgstr ""
+msgstr "Supera"
 
 #: ../src/appointment.c:1647
 msgid "Use this if you want regular repeating event"
-msgstr ""
+msgstr "Uzu ĉi opcion se vi volas daŭran eventoripetadon"
 
 #: ../src/appointment.c:1649
 msgid ""
@@ -483,23 +479,24 @@ msgid ""
 " Every Saturday and Sunday or \n"
 " First Tuesday every month"
 msgstr ""
+"Uzu Ĉi opcion se vi necesas komplekshorarojn kiel:\n"
+" Ĉiu dua monata semajno \n"
+" Ĉiu Sabato kaj Dimanĉo \n"
+" Unua Monata Mardo "
 
 #: ../src/appointment.c:1652
-#, fuzzy
 msgid "Frequency"
-msgstr "Libera"
+msgstr "Frekvenco"
 
 #: ../src/appointment.c:1661
-#, fuzzy
 msgid "Interval"
-msgstr "Ĝeneralaĵoj"
+msgstr "Intertempo"
 
 #: ../src/appointment.c:1663
 msgid "Each"
-msgstr ""
+msgstr "Ĉiu"
 
 #: ../src/appointment.c:1670
-#, fuzzy
 msgid "occurrence"
 msgstr "Ripeteco"
 
@@ -508,10 +505,12 @@ msgid ""
 "Limit frequency to certain interval. For example:\n"
 " Every third day: Frequency = Daily and Interval = 3"
 msgstr ""
+"Limigu frekvenco al kelkaj intervaloj. Ekzemple:\n"
+" Ĉiu tria tago: Frekvenco=Ĉiutaga kaj Intervalo=3"
 
 #: ../src/appointment.c:1681
 msgid "Limit"
-msgstr ""
+msgstr "Limigu"
 
 #: ../src/appointment.c:1683
 msgid "Repeat forever"
@@ -530,13 +529,12 @@ msgid "Repeat until "
 msgstr "Ripetu ĝis "
 
 #: ../src/appointment.c:1720
-#, fuzzy
 msgid "Weekdays"
 msgstr "Semajne"
 
 #: ../src/appointment.c:1733
 msgid "Which day"
-msgstr ""
+msgstr "Kiutage"
 
 #: ../src/appointment.c:1741
 msgid ""
@@ -547,6 +545,12 @@ msgid ""
 "\tWeekdays = check only Wednesday,\n"
 "\tWhich day = select 2 from the number below Wednesday"
 msgstr ""
+"Specifu kiun semajnotagon por Ĉiumonataj kaj Ĉiujaraj eventoj.\n"
+" Ekzemple:\n"
+" Dua Merkredo je ĉiu monato:\n"
+"\tFrekvenco = Ĉiumonate,\n"
+"\tSemajnotagoj = Verifu nur Merkredon,\n"
+"\tKiu tago = elektu 2 kiel numero sub Merkredo"
 
 #. date only appointment
 #: ../src/event-list.c:199
@@ -562,7 +566,7 @@ msgid ""
 "You will remove all information \n"
 "associated with this date."
 msgstr ""
-"Vi forigos ciujn informojn \n"
+"Vi forigos ĉiujn informojn \n"
 "rilatajn al tiu dato."
 
 #. View menu
@@ -573,15 +577,15 @@ msgstr "_Vidu"
 #. Go menu
 #: ../src/event-list.c:693
 msgid "_Go"
-msgstr "_Ekiru"
+msgstr "_Aliru"
 
 #: ../src/event-list.c:720
 msgid "New"
-msgstr "Novan"
+msgstr "Nova"
 
 #: ../src/event-list.c:724
 msgid "Back"
-msgstr "Reen"
+msgstr "Malantaŭen"
 
 #: ../src/event-list.c:730
 msgid "Forward"
@@ -622,12 +626,12 @@ msgid ""
 "\t\t D=Daily W=Weekly M=Monthly Y=Yearly\n"
 "\t 3. Type: f=free B=Busy"
 msgstr ""
-"Dukliku la linion por ĝin modifi.\n"
+"Duklaku la linion por ĝin modifi.\n"
 "\n"
 "Opcioj en ordo:\n"
 "\t 1. Alarmo: n=nenia alarmo\n"
 "\t\tA=Vida Alarmo S=Ankaŭ Sona Alarmo\n"
-"\t 2. Real-alarmo: n=Nenia Real-alarmo\n"
+"\t 2. Ripeteco: n=Nenia Ripeteco\n"
 "\t\t D=Ĉiutaga W=Ĉiusemajna M=Ĉiumonata Y=Ĉiujara\n"
 "\t 3. Karaktero: f=libera B=okupita"
 
@@ -1836,7 +1840,7 @@ msgid "Europe/London"
 msgstr "Eŭropo/Londono"
 
 #: ../src/ical-code.c:402
-msgid "Europe/Luxembourg"
+msgid "Europe/LŬembourg"
 msgstr "Eŭropo/Luksemburgo"
 
 #: ../src/ical-code.c:403
@@ -2165,7 +2169,7 @@ msgstr "Pacifika/Yap"
 
 #: ../src/ical-code.c:1222
 msgid "Orage default alarm"
-msgstr "Kalendara antaŭsupoza alarmo"
+msgstr "Kalendara defaŬlta alarmo"
 
 #: ../src/main.c:206
 msgid "This should not happen"
@@ -2208,7 +2212,7 @@ msgstr "Memorigilo "
 #. GtkTooltipsData *cur_tooltip;
 #: ../src/reminder.c:317
 msgid "Next active alarms:"
-msgstr ""
+msgstr "Sekvantaj aktivaj alarmoj:"
 
 #: ../src/reminder.c:325
 #, c-format
@@ -2216,15 +2220,16 @@ msgid ""
 "\n"
 "%02d d %02d h %02d min to: %s"
 msgstr ""
+"\n"
+"%02d tagoj %02d horoj %02d minutoj ĝis: %s"
 
 #: ../src/reminder.c:331
-#, fuzzy
 msgid ""
 "\n"
 "No active alarms found"
 msgstr ""
 "\n"
-"Ripetu la alarman sonon"
+"Neniu aktivalarmo trovata"
 
 #: ../src/tray_icon.c:316
 msgid "New appointment"
