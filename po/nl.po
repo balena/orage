@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.3.90.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-09-02 20:05+0200\n"
-"PO-Revision-Date: 2006-04-21 22:23+0100\n"
+"POT-Creation-Date: 2006-08-28 20:03+0300\n"
+"PO-Revision-Date: 2006-10-02 17:38+0200\n"
 "Last-Translator: Stephan Arts <psybsd@gmail.com>\n"
 "Language-Team: Dutch <vertaling@vrijschrift.org>\n"
 "MIME-Version: 1.0\n"
@@ -48,7 +48,7 @@ msgstr "_Hoogte:"
 
 #: ../panel-plugin/oc_config.c:254
 msgid "set _width:"
-msgstr "Breedte:"
+msgstr "_Breedte:"
 
 #: ../panel-plugin/oc_config.c:275
 msgid "Clock Options"
@@ -93,6 +93,14 @@ msgid ""
 "\t%H = hours \t\t\t\t%M = minute\n"
 "\t%X = local time\t\t\t%x = local date"
 msgstr ""
+"Dit programma gebruikt strftime om de tijd op te vragen.\n"
+"Gebruik een geldige code om de tijd in het formaat te krijgen dat jij wilt.\n"
+"Enkele bekende codes zijn:\n"
+"\t%A = weekdag\t\t\t%B = maand\n"
+"\t%c = datum & tijd\t\t%R = uur & minuut\n"
+"\t%V = week nummer\t\t%Z = tijdzone in gebruik\n"
+"\t%H = uren \t\t\t\t%M = minuut\n"
+"\t%X = locale tijd\t\t\t%x = locale datum"
 
 #: ../panel-plugin/oc_config.c:401
 msgid "Properties"
@@ -123,7 +131,7 @@ msgid "All Files"
 msgstr "Alle Bestanden"
 
 #: ../plugin/xfcalendar_plugin.c:419 ../plugin/xfcalendar_plugin.c:424
-#: ../src/appointment.c:917 ../src/appointment.c:922 ../src/appointment.c:1438
+#: ../src/appointment.c:920 ../src/appointment.c:925 ../src/appointment.c:1441
 msgid "Location"
 msgstr "Locatie"
 
@@ -133,14 +141,14 @@ msgid "Pick local timezone"
 msgstr "Selecteer een lokale tijdzone"
 
 #: ../plugin/xfcalendar_plugin.c:433 ../plugin/xfcalendar_plugin.c:463
-#: ../src/appointment.c:931 ../src/appointment.c:961
+#: ../src/appointment.c:934 ../src/appointment.c:964
 msgid "UTC"
 msgstr "UTC"
 
 #: ../plugin/xfcalendar_plugin.c:434 ../plugin/xfcalendar_plugin.c:467
-#: ../plugin/xfcalendar_plugin.c:749 ../src/appointment.c:932
-#: ../src/appointment.c:965 ../src/appointment.c:1001
-#: ../src/appointment.c:1009
+#: ../plugin/xfcalendar_plugin.c:749 ../src/appointment.c:935
+#: ../src/appointment.c:968 ../src/appointment.c:1004
+#: ../src/appointment.c:1012
 msgid "floating"
 msgstr "zwevend"
 
@@ -224,7 +232,7 @@ msgstr "een jaar"
 msgid "never"
 msgstr "nooit"
 
-#: ../plugin/xfcalendar_plugin.c:694 ../src/appointment.c:1588
+#: ../plugin/xfcalendar_plugin.c:694 ../src/appointment.c:1591
 msgid "Sound"
 msgstr "Geluid"
 
@@ -258,7 +266,7 @@ msgstr "Medewerker"
 msgid "%m/%d/%Y"
 msgstr "%d/%m/%Y"
 
-#: ../src/appointment.c:279 ../src/mainbox.c:381 ../xfcalendar.desktop.in.h:3
+#: ../src/appointment.c:279 ../src/mainbox.c:380 ../xfcalendar.desktop.in.h:3
 msgid "Orage"
 msgstr "Orage"
 
@@ -267,7 +275,7 @@ msgid "Sound Files"
 msgstr "Geluidsbestanden"
 
 #: ../src/appointment.c:439 ../src/appointment.c:474 ../src/appointment.c:719
-#: ../src/event-list.c:581
+#: ../src/event-list.c:586
 msgid "Warning"
 msgstr "Waarschuwing"
 
@@ -275,7 +283,7 @@ msgstr "Waarschuwing"
 msgid "The appointment information has been modified."
 msgstr "The afspraak gegevens zijn aangepast."
 
-#: ../src/appointment.c:442 ../src/appointment.c:722 ../src/event-list.c:584
+#: ../src/appointment.c:442 ../src/appointment.c:722 ../src/event-list.c:589
 msgid "Do you want to continue?"
 msgstr "Wilt u doorgaan?"
 
@@ -291,240 +299,247 @@ msgstr "Deze afspraak zal voorgoed verwijderd worden."
 msgid "Pick the date"
 msgstr "Kies de datum"
 
-#: ../src/appointment.c:824 ../src/event-list.c:722 ../src/tray_icon.c:297
+#: ../src/appointment.c:824 ../src/event-list.c:727 ../src/tray_icon.c:305
 msgid "Today"
 msgstr "Vandaag"
 
 #. show it
-#: ../src/appointment.c:928
+#: ../src/appointment.c:931
 msgid "Pick timezone"
 msgstr "Kies tijdzone"
 
-#: ../src/appointment.c:1194
+#: ../src/appointment.c:1197
 msgid "New appointment - Orage"
 msgstr "Nieuwe afspraak - Orage"
 
 #. File menu stuff
 #. File menu
-#: ../src/appointment.c:1329 ../src/event-list.c:648 ../src/mainbox.c:404
+#: ../src/appointment.c:1332 ../src/event-list.c:653 ../src/mainbox.c:403
 msgid "_File"
 msgstr "_Bestand"
 
-#: ../src/appointment.c:1336
+#: ../src/appointment.c:1339
 msgid "Sav_e and close"
 msgstr "Opsl_aan en afsluiten"
 
-#: ../src/appointment.c:1349 ../src/event-list.c:657
+#: ../src/appointment.c:1352 ../src/event-list.c:662
 msgid "D_uplicate"
 msgstr "V_erdubbelen"
 
-#: ../src/appointment.c:1390
+#: ../src/appointment.c:1393
 msgid "Save"
 msgstr "Opslaan"
 
-#: ../src/appointment.c:1393 ../src/appointment.c:1395
+#: ../src/appointment.c:1396 ../src/appointment.c:1398
 msgid "Save and close"
 msgstr "Opslaan en sluiten"
 
-#: ../src/appointment.c:1402
+#: ../src/appointment.c:1405
 msgid "Revert"
 msgstr "Ongedaan maken"
 
-#: ../src/appointment.c:1405 ../src/appointment.c:1407 ../src/event-list.c:734
+#: ../src/appointment.c:1408 ../src/appointment.c:1410 ../src/event-list.c:739
 msgid "Duplicate"
 msgstr "Verdubbelen"
 
-#: ../src/appointment.c:1413
+#: ../src/appointment.c:1416
 msgid "Delete"
 msgstr "Verwijderen"
 
-#: ../src/appointment.c:1421
+#: ../src/appointment.c:1424
 msgid "Free"
 msgstr "Vrij"
 
-#: ../src/appointment.c:1421
+#: ../src/appointment.c:1424
 msgid "Busy"
 msgstr "Bezig"
 
-#: ../src/appointment.c:1426
+#: ../src/appointment.c:1429
 msgid "General"
 msgstr "Algemeen"
 
-#: ../src/appointment.c:1431
+#: ../src/appointment.c:1434
 msgid "Title "
 msgstr "Titel"
 
-#: ../src/appointment.c:1446
+#: ../src/appointment.c:1449
 msgid "All day event"
 msgstr "Gebeurtenis voor de hele dag"
 
-#: ../src/appointment.c:1452
+#: ../src/appointment.c:1455
 msgid "Start"
 msgstr "Begin"
 
-#: ../src/appointment.c:1467
+#: ../src/appointment.c:1470
 msgid "End"
 msgstr "Eind"
 
-#: ../src/appointment.c:1484
+#: ../src/appointment.c:1487
 msgid "Duration"
 msgstr "Duur"
 
-#: ../src/appointment.c:1491 ../src/appointment.c:1565
+#: ../src/appointment.c:1494 ../src/appointment.c:1568
 msgid "days"
 msgstr "dagen"
 
-#: ../src/appointment.c:1500 ../src/appointment.c:1573
+#: ../src/appointment.c:1503 ../src/appointment.c:1576
 msgid "hours"
 msgstr "uren"
 
-#: ../src/appointment.c:1509 ../src/appointment.c:1581
+#: ../src/appointment.c:1512 ../src/appointment.c:1584
 msgid "mins"
 msgstr "minuten"
 
-#: ../src/appointment.c:1517
+#: ../src/appointment.c:1520
 msgid "Availability"
 msgstr "Beschikbaarheid"
 
-#: ../src/appointment.c:1526
+#: ../src/appointment.c:1529
 msgid "Note"
 msgstr "Opmerking"
 
-#: ../src/appointment.c:1554 ../src/appointment.c:1559
+#: ../src/appointment.c:1557 ../src/appointment.c:1562
 msgid "Alarm"
 msgstr "Alarm"
 
-#: ../src/appointment.c:1603
+#: ../src/appointment.c:1606
 msgid "Repeat alarm sound"
 msgstr "Alarmgeluid herhalen"
 
-#: ../src/appointment.c:1615
+#: ../src/appointment.c:1618
 msgid "None"
 msgstr "Geen"
 
-#: ../src/appointment.c:1615
+#: ../src/appointment.c:1618
 msgid "Daily"
 msgstr "Dagelijks"
 
-#: ../src/appointment.c:1615
+#: ../src/appointment.c:1618
 msgid "Weekly"
 msgstr "Wekelijks"
 
-#: ../src/appointment.c:1615
+#: ../src/appointment.c:1618
 msgid "Monthly"
 msgstr "Maandelijks"
 
-#: ../src/appointment.c:1615
+#: ../src/appointment.c:1618
 msgid "Yearly"
 msgstr "Jaarlijks"
 
-#: ../src/appointment.c:1617
+#: ../src/appointment.c:1620
 msgid "Mon"
 msgstr "Ma"
 
-#: ../src/appointment.c:1617
+#: ../src/appointment.c:1620
 msgid "Tue"
 msgstr "Di"
 
-#: ../src/appointment.c:1617
+#: ../src/appointment.c:1620
 msgid "Wed"
 msgstr "Wo"
 
-#: ../src/appointment.c:1617
+#: ../src/appointment.c:1620
 msgid "Thu"
 msgstr "Do"
 
-#: ../src/appointment.c:1617
+#: ../src/appointment.c:1620
 msgid "Fri"
 msgstr "Vr"
 
-#: ../src/appointment.c:1617
+#: ../src/appointment.c:1620
 msgid "Sat"
 msgstr "Za"
 
-#: ../src/appointment.c:1617
+#: ../src/appointment.c:1620
 msgid "Sun"
 msgstr "Zo"
 
-#: ../src/appointment.c:1622
+#: ../src/appointment.c:1625
 msgid "Recurrence"
 msgstr "Herhaling"
 
-#: ../src/appointment.c:1627
+#: ../src/appointment.c:1630
 msgid "Complexity"
 msgstr "Complexiteit"
 
-#: ../src/appointment.c:1630
+#: ../src/appointment.c:1633
 msgid "Basic"
 msgstr "Basis"
 
-#: ../src/appointment.c:1636
+#: ../src/appointment.c:1639
 msgid "Advanced"
 msgstr "Geavanceerd"
 
-#: ../src/appointment.c:1644
+#: ../src/appointment.c:1647
+#, fuzzy
 msgid "Use this if you want regular repeating event"
-msgstr ""
+msgstr "Gebruik dit bij een herhalende gebeurtenis"
 
-#: ../src/appointment.c:1646
+#: ../src/appointment.c:1649
 msgid ""
 "Use this if you need complex times like:\n"
 " Every second week or \n"
 " Every Saturday and Sunday or \n"
 " First Tuesday every month"
 msgstr ""
+"Gebruik dit als je complexe tijden nodig hebt zoals:\n"
+" Elke tweede week, of \n"
+" Elke Zaterdag en Zondag, of \n"
+" Elke eerste Dinsdag van de Maand."
 
-#: ../src/appointment.c:1649
+#: ../src/appointment.c:1652
 msgid "Frequency"
-msgstr ""
+msgstr "Frequentie"
 
-#: ../src/appointment.c:1658
+#: ../src/appointment.c:1661
 msgid "Interval"
-msgstr ""
+msgstr "Interval"
 
-#: ../src/appointment.c:1660
+#: ../src/appointment.c:1663
 msgid "Each"
 msgstr "Elke"
 
-#: ../src/appointment.c:1667
+#: ../src/appointment.c:1670
 msgid "occurrence"
 msgstr "herhaling"
 
-#: ../src/appointment.c:1675
+#: ../src/appointment.c:1678
 msgid ""
 "Limit frequency to certain interval. For example:\n"
 " Every third day: Frequency = Daily and Interval = 3"
 msgstr ""
+"Beperk frequentie tot bepaald interval. Bijvoorbeeld:\n"
+" Elke derde dag: Frequentie = Dagelijks en Interval = 3"
 
-#: ../src/appointment.c:1678
+#: ../src/appointment.c:1681
 msgid "Limit"
 msgstr "Limiet"
 
-#: ../src/appointment.c:1680
+#: ../src/appointment.c:1683
 msgid "Repeat forever"
 msgstr "Altijd herhalen"
 
-#: ../src/appointment.c:1688
+#: ../src/appointment.c:1691
 msgid "Repeat "
 msgstr "Herhalen"
 
-#: ../src/appointment.c:1696
+#: ../src/appointment.c:1699
 msgid "times"
 msgstr "keer"
 
-#: ../src/appointment.c:1706
+#: ../src/appointment.c:1709
 msgid "Repeat until "
 msgstr "Herhaal tot"
 
-#: ../src/appointment.c:1717
+#: ../src/appointment.c:1720
 msgid "Weekdays"
 msgstr "Weekdagen"
 
-#: ../src/appointment.c:1730
+#: ../src/appointment.c:1733
 msgid "Which day"
 msgstr "Welke dag"
 
-#: ../src/appointment.c:1738
+#: ../src/appointment.c:1741
 msgid ""
 "Specify which weekday for monthly and yearly events.\n"
 " For example:\n"
@@ -539,11 +554,11 @@ msgstr ""
 msgid "All day"
 msgstr "Gehele dag"
 
-#: ../src/event-list.c:275 ../src/event-list.c:776
+#: ../src/event-list.c:275 ../src/event-list.c:781
 msgid "Time"
 msgstr "Tijd"
 
-#: ../src/event-list.c:583
+#: ../src/event-list.c:588
 msgid ""
 "You will remove all information \n"
 "associated with this date."
@@ -552,52 +567,52 @@ msgstr ""
 "zal worden verwijderd."
 
 #. View menu
-#: ../src/event-list.c:679 ../src/mainbox.c:438
+#: ../src/event-list.c:684 ../src/mainbox.c:437
 msgid "_View"
 msgstr "_Weergave"
 
 #. Go menu
-#: ../src/event-list.c:688
+#: ../src/event-list.c:693
 msgid "_Go"
 msgstr "_Gaan"
 
-#: ../src/event-list.c:715
+#: ../src/event-list.c:720
 msgid "New"
 msgstr "Nieuw"
 
-#: ../src/event-list.c:719
+#: ../src/event-list.c:724
 msgid "Back"
 msgstr "Terug"
 
-#: ../src/event-list.c:725
+#: ../src/event-list.c:730
 msgid "Forward"
 msgstr "Vooruit"
 
-#: ../src/event-list.c:728
+#: ../src/event-list.c:733
 msgid "Refresh"
 msgstr "Verversen"
 
-#: ../src/event-list.c:737
+#: ../src/event-list.c:742
 msgid "Close"
 msgstr "Sluiten"
 
-#: ../src/event-list.c:740
+#: ../src/event-list.c:745
 msgid "Clear"
 msgstr "Wissen"
 
-#: ../src/event-list.c:784
+#: ../src/event-list.c:789
 msgid "Flags"
 msgstr "Bladwijzers"
 
-#: ../src/event-list.c:790
+#: ../src/event-list.c:795
 msgid "Title"
 msgstr "Titel"
 
-#: ../src/event-list.c:796
+#: ../src/event-list.c:801
 msgid "uid"
 msgstr "uid"
 
-#: ../src/event-list.c:805
+#: ../src/event-list.c:810
 msgid ""
 "Double click line to edit it.\n"
 "\n"
@@ -1659,7 +1674,7 @@ msgstr "Atlantische Oceaan/Canarische_Eilanden"
 
 #: ../src/ical-code.c:361
 msgid "Atlantic/Cape_Verde"
-msgstr "Atlantische Oceaan/Kaapverdië"
+msgstr "Atlantische Oceaan/Kaap_verdië"
 
 #: ../src/ical-code.c:362
 msgid "Atlantic/Faeroe"
@@ -1679,11 +1694,11 @@ msgstr "Atlantische Oceaan/Reykjavik"
 
 #: ../src/ical-code.c:366
 msgid "Atlantic/South_Georgia"
-msgstr "Atlantische Oceaan/Zuid-Georgië"
+msgstr "Atlantische Oceaan/Zuid_Georgië"
 
 #: ../src/ical-code.c:367
 msgid "Atlantic/St_Helena"
-msgstr "Atlantische Oceaan/Sint-Helena"
+msgstr "Atlantische Oceaan/Sint_Helena"
 
 #: ../src/ical-code.c:368
 msgid "Atlantic/Stanley"
@@ -2149,7 +2164,7 @@ msgstr "Grote Oceaan/Wallis"
 msgid "Pacific/Yap"
 msgstr "Grote Oceaan/Yap"
 
-#: ../src/ical-code.c:1223
+#: ../src/ical-code.c:1222
 msgid "Orage default alarm"
 msgstr "Orage standaard alarm"
 
@@ -2161,29 +2176,29 @@ msgstr "Dit hoort niet te gebeuren"
 msgid "Cannot create MCS client channel"
 msgstr "Kan MCS client-kanaal niet maken"
 
-#: ../src/mainbox.c:413
+#: ../src/mainbox.c:412
 msgid "Open archive file..."
 msgstr "Archiefbestand openen..."
 
-#: ../src/mainbox.c:416
+#: ../src/mainbox.c:415
 msgid "Close archive file"
 msgstr "Archiefbestand sluiten"
 
 #. Edit menu
-#: ../src/mainbox.c:431
+#: ../src/mainbox.c:430
 msgid "_Edit"
 msgstr "_Aanpassen"
 
-#: ../src/mainbox.c:441
+#: ../src/mainbox.c:440
 msgid "View selected _date"
 msgstr "Geselecteerde _datum bekijken"
 
-#: ../src/mainbox.c:447
+#: ../src/mainbox.c:446
 msgid "Select _Today"
 msgstr "_Vandaag Selecteren"
 
 #. Help menu
-#: ../src/mainbox.c:451
+#: ../src/mainbox.c:450
 msgid "_Help"
 msgstr "_Help"
 
@@ -2213,11 +2228,11 @@ msgstr ""
 "\n"
 "Geen actieve alarmen gevonden"
 
-#: ../src/tray_icon.c:308
+#: ../src/tray_icon.c:316
 msgid "New appointment"
 msgstr "Nieuwe afspraak"
 
-#: ../src/tray_icon.c:328
+#: ../src/tray_icon.c:336
 msgid "About Orage"
 msgstr "Over Orage"
 
