@@ -1847,7 +1847,6 @@ appt_data *xfical_appt_get_next_on_day(char *a_day, gboolean first, gint days)
     struct icaltimetype 
               asdate, aedate    /* period to check */
             , nsdate, nedate;   /* repeating event occurrency start and end */
-    struct icaldurationtype aduration;
     xfical_period per; /* event start and end times with duration */
     icalcomponent *c=NULL;
     icalproperty *p = NULL;
@@ -1861,13 +1860,9 @@ appt_data *xfical_appt_get_next_on_day(char *a_day, gboolean first, gint days)
 
     /* setup period to test */
     asdate = icaltime_from_string(a_day);
-    if (days) { /* more than one day to check */
-        aduration = icaldurationtype_null_duration();
-        aduration.days = days;
-        aedate = icaltime_add(asdate, aduration);
-    }
-    else /* only one day */
-        aedate = asdate;
+    aedate = asdate;
+    if (days)  /* more than one day to check */
+        icaltime_adjust(&aedate, days, 0, 0, 0);
 
     if (first)
         ci = icalcomponent_begin_component(ical, ICAL_VEVENT_COMPONENT);
