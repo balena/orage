@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: xfcalendar 4.3.99.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-08-28 20:03+0300\n"
-"PO-Revision-Date: 2006-05-12 22:57+0200\n"
+"PO-Revision-Date: 2006-10-11 23:07+0200\n"
 "Last-Translator: Stavros Giannouris <stavrosg2002@freemail.gr>\n"
 "Language-Team: Greek <nls@tux.hellug.gr>\n"
 "MIME-Version: 1.0\n"
@@ -42,11 +42,11 @@ msgstr "Χρώμα _παρασκηνίου:"
 #. clock size (=vbox size): height and width
 #: ../panel-plugin/oc_config.c:242
 msgid "set _height:"
-msgstr ""
+msgstr "Ύ_ψος"
 
 #: ../panel-plugin/oc_config.c:254
 msgid "set _width:"
-msgstr ""
+msgstr "_Πλάτος:"
 
 #: ../panel-plugin/oc_config.c:275
 msgid "Clock Options"
@@ -426,35 +426,32 @@ msgid "Yearly"
 msgstr "Ετήσια"
 
 #: ../src/appointment.c:1620
-#, fuzzy
 msgid "Mon"
-msgstr "Μηνιαία"
+msgstr "Δευ"
 
 #: ../src/appointment.c:1620
 msgid "Tue"
-msgstr ""
+msgstr "Τρ"
 
 #: ../src/appointment.c:1620
 msgid "Wed"
-msgstr ""
+msgstr "Τετ"
 
 #: ../src/appointment.c:1620
 msgid "Thu"
-msgstr ""
+msgstr "Πεμ"
 
 #: ../src/appointment.c:1620
 msgid "Fri"
-msgstr ""
+msgstr "Παρ"
 
 #: ../src/appointment.c:1620
-#, fuzzy
 msgid "Sat"
-msgstr "Έναρξη"
+msgstr "Σαβ"
 
 #: ../src/appointment.c:1620
-#, fuzzy
 msgid "Sun"
-msgstr "Ήχοι"
+msgstr "Κυρ"
 
 #: ../src/appointment.c:1625
 msgid "Recurrence"
@@ -462,20 +459,19 @@ msgstr "Επανάληψη"
 
 #: ../src/appointment.c:1630
 msgid "Complexity"
-msgstr ""
+msgstr "Πολυπλοκότητα"
 
 #: ../src/appointment.c:1633
-#, fuzzy
 msgid "Basic"
-msgstr "Πίσω"
+msgstr "Βασικό"
 
 #: ../src/appointment.c:1639
 msgid "Advanced"
-msgstr ""
+msgstr "Για προχωρημένους"
 
 #: ../src/appointment.c:1647
 msgid "Use this if you want regular repeating event"
-msgstr ""
+msgstr "Χρησιμοποιήστε αυτό αν θέλετε ένα κανονικό επαναλαμβανόμενο γεγονός"
 
 #: ../src/appointment.c:1649
 msgid ""
@@ -484,35 +480,38 @@ msgid ""
 " Every Saturday and Sunday or \n"
 " First Tuesday every month"
 msgstr ""
+"Χρησιμοποιήστε αυτό αν θέλετε πολύπλοκες ρυθμίσεις, όπως:\n"
+" Κάθε δεύτερη εβδομάδα ή \n"
+" Κάθε Σάββατο και Κυριακή ή\n"
+" Την πρώτη Τρίτη κάθε μήνα"
 
 #: ../src/appointment.c:1652
-#, fuzzy
 msgid "Frequency"
-msgstr "Διαθέσιμος/η"
+msgstr "Συχνότητα"
 
 #: ../src/appointment.c:1661
-#, fuzzy
 msgid "Interval"
-msgstr "Γενικές"
+msgstr "Διάστημα"
 
 #: ../src/appointment.c:1663
 msgid "Each"
-msgstr ""
+msgstr "Κάθε"
 
 #: ../src/appointment.c:1670
-#, fuzzy
 msgid "occurrence"
-msgstr "Επανάληψη"
+msgstr "εμφάνιση"
 
 #: ../src/appointment.c:1678
 msgid ""
 "Limit frequency to certain interval. For example:\n"
 " Every third day: Frequency = Daily and Interval = 3"
 msgstr ""
+"Περιορισμός της συχνότητας σε συγκεκριμένο διάστημα. π.χ.:\n"
+" Κάθε τρίτη μέρα: Συχνότητα = καθημερινά και διάστημα = 3"
 
 #: ../src/appointment.c:1681
 msgid "Limit"
-msgstr ""
+msgstr "Όριο"
 
 #: ../src/appointment.c:1683
 msgid "Repeat forever"
@@ -531,13 +530,12 @@ msgid "Repeat until "
 msgstr "Επανάληψη μέχρι"
 
 #: ../src/appointment.c:1720
-#, fuzzy
 msgid "Weekdays"
-msgstr "Εβδομαδιαία"
+msgstr "Καθημερινές"
 
 #: ../src/appointment.c:1733
 msgid "Which day"
-msgstr ""
+msgstr "Ποια ημέρα"
 
 #: ../src/appointment.c:1741
 msgid ""
@@ -548,6 +546,12 @@ msgid ""
 "\tWeekdays = check only Wednesday,\n"
 "\tWhich day = select 2 from the number below Wednesday"
 msgstr ""
+"Ορισμός ημέρας για μηνιαία και ετήσια γεγονότα.\n"
+" Για παράδειγμα\n"
+" Τη δεύτερη Τετάρτη κάθε μήνα:\n"
+"\tΣυχνότητα = Μηνιαία,\n"
+"\tΚαθημερινές = επιλέξτε μόνο Τετάρτη,\n"
+"\tΠοια μέρα = επιλέξτε 2 από τον αριθμό κάτω από το Τετάρτη"
 
 #. date only appointment
 #: ../src/event-list.c:199
@@ -2209,7 +2213,7 @@ msgstr "Υπενθύμιση"
 #. GtkTooltipsData *cur_tooltip;
 #: ../src/reminder.c:317
 msgid "Next active alarms:"
-msgstr ""
+msgstr "Επόμενες ενεργές υπενθυμίσεις:"
 
 #: ../src/reminder.c:325
 #, c-format
@@ -2217,15 +2221,16 @@ msgid ""
 "\n"
 "%02d d %02d h %02d min to: %s"
 msgstr ""
+"\n"
+"%02d μ %02d ω %02d λεπ για: %s"
 
 #: ../src/reminder.c:331
-#, fuzzy
 msgid ""
 "\n"
 "No active alarms found"
 msgstr ""
 "\n"
-"Επανάληψη ήχου ειδοποίησης"
+"Δε βρέθηκαν ενεργές υπενθυμίσεις"
 
 #: ../src/tray_icon.c:316
 msgid "New appointment"
