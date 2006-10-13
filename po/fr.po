@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfcalendar 4.3.99.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-08-28 20:03+0300\n"
+"POT-Creation-Date: 2006-10-13 18:52+0300\n"
 "PO-Revision-Date: 2006-08-28 19:54+0100\n"
 "Last-Translator: Gerald Barre <g.barre@free.fr>\n"
 "Language-Team: French <xfce-i18n@xfce.org>\n"
@@ -80,7 +80,12 @@ msgstr "Montrer la ligne_2 :"
 msgid "show line _3:"
 msgstr "Montrer la ligne_3 :"
 
-#: ../panel-plugin/oc_config.c:382
+#. Tooltip hint
+#: ../panel-plugin/oc_config.c:375
+msgid "Tooltip:"
+msgstr ""
+
+#: ../panel-plugin/oc_config.c:392
 msgid ""
 "This program uses strftime function to get time.\n"
 "Use any valid code to get time in the format you prefer.\n"
@@ -100,43 +105,45 @@ msgstr ""
 "\t%H = heures \t\t\t\t%M = minute\n"
 "\t%X = heure locale\t\t\t%x = date locale"
 
-#: ../panel-plugin/oc_config.c:401
+#: ../panel-plugin/oc_config.c:411
 msgid "Properties"
 msgstr "Propriétés"
 
-#: ../panel-plugin/oc_config.c:416
+#: ../panel-plugin/oc_config.c:426
 msgid "Orage clock"
 msgstr "Horloge Orage"
 
-#: ../panel-plugin/orageclock.c:63
+#. TRANSLATORS: Use format characters from strftime(3)
+#. * to get the proper string for your locale.
+#. * I used these:
+#. * %A  : full weekday name
+#. * %d  : day of the month
+#. * %B  : full month name
+#. * %Y  : four digit year
+#. * %V  : ISO week number
+#.
+#: ../panel-plugin/orageclock.c:420
 msgid "%A %d %B %Y/%V"
 msgstr "%A %d %B %Y/%V"
 
 #. to avoid timing problems when updating entry
 #. Create file chooser
-#: ../plugin/xfcalendar_plugin.c:263
-#: ../plugin/xfcalendar_plugin.c:321
-#: ../src/appointment.c:383
-#: ../src/mainbox.c:113
+#: ../plugin/xfcalendar_plugin.c:263 ../plugin/xfcalendar_plugin.c:321
+#: ../src/appointment.c:383 ../src/mainbox.c:114
 msgid "Select a file..."
 msgstr "Choisir un fichier..."
 
-#: ../plugin/xfcalendar_plugin.c:271
-#: ../src/mainbox.c:121
+#: ../plugin/xfcalendar_plugin.c:271 ../src/mainbox.c:122
 msgid "Calendar files"
 msgstr "Fichiers du calendrier"
 
-#: ../plugin/xfcalendar_plugin.c:276
-#: ../src/appointment.c:398
-#: ../src/mainbox.c:126
+#: ../plugin/xfcalendar_plugin.c:276 ../src/appointment.c:398
+#: ../src/mainbox.c:127
 msgid "All Files"
 msgstr "Tous les fichiers"
 
-#: ../plugin/xfcalendar_plugin.c:419
-#: ../plugin/xfcalendar_plugin.c:424
-#: ../src/appointment.c:920
-#: ../src/appointment.c:925
-#: ../src/appointment.c:1441
+#: ../plugin/xfcalendar_plugin.c:419 ../plugin/xfcalendar_plugin.c:424
+#: ../src/appointment.c:917 ../src/appointment.c:922 ../src/appointment.c:1438
 msgid "Location"
 msgstr "Localisation"
 
@@ -145,20 +152,15 @@ msgstr "Localisation"
 msgid "Pick local timezone"
 msgstr "Choisir la zone horaire locale"
 
-#: ../plugin/xfcalendar_plugin.c:433
-#: ../plugin/xfcalendar_plugin.c:463
-#: ../src/appointment.c:934
-#: ../src/appointment.c:964
+#: ../plugin/xfcalendar_plugin.c:433 ../plugin/xfcalendar_plugin.c:463
+#: ../src/appointment.c:931 ../src/appointment.c:961
 msgid "UTC"
 msgstr "UTC"
 
-#: ../plugin/xfcalendar_plugin.c:434
-#: ../plugin/xfcalendar_plugin.c:467
-#: ../plugin/xfcalendar_plugin.c:749
-#: ../src/appointment.c:935
-#: ../src/appointment.c:968
-#: ../src/appointment.c:1004
-#: ../src/appointment.c:1012
+#: ../plugin/xfcalendar_plugin.c:434 ../plugin/xfcalendar_plugin.c:467
+#: ../plugin/xfcalendar_plugin.c:749 ../src/appointment.c:932
+#: ../src/appointment.c:965 ../src/appointment.c:1001
+#: ../src/appointment.c:1009
 msgid "floating"
 msgstr "flottante"
 
@@ -242,8 +244,7 @@ msgstr "1 an"
 msgid "never"
 msgstr "jamais"
 
-#: ../plugin/xfcalendar_plugin.c:694
-#: ../src/appointment.c:1591
+#: ../plugin/xfcalendar_plugin.c:694 ../src/appointment.c:1588
 msgid "Sound"
 msgstr "Son"
 
@@ -251,8 +252,7 @@ msgstr "Son"
 msgid "Application"
 msgstr "Application"
 
-#: ../plugin/xfcalendar_plugin.c:725
-#: ../plugin/xfcalendar_plugin.c:735
+#: ../plugin/xfcalendar_plugin.c:725 ../plugin/xfcalendar_plugin.c:735
 msgid "Timezone"
 msgstr "Zone horaire"
 
@@ -261,28 +261,23 @@ msgstr "Zone horaire"
 msgid "Button Label|Orage"
 msgstr "Orage"
 
-#: ../src/about-xfcalendar.c:39
+#: ../src/about-xfcalendar.c:40
 msgid "Manage your time with Xfce4"
 msgstr "Gérer votre temps avec Xfce4"
 
-#: ../src/about-xfcalendar.c:50
+#: ../src/about-xfcalendar.c:51 ../src/about-xfcalendar.c:56
 msgid "Core developer"
 msgstr "Développeur principal"
 
-#: ../src/about-xfcalendar.c:55
-#: ../src/about-xfcalendar.c:60
-#: ../src/about-xfcalendar.c:65
+#: ../src/about-xfcalendar.c:61 ../src/about-xfcalendar.c:66
 msgid "Contributor"
 msgstr "Contributeur"
 
-#: ../src/appointment.c:99
-#: ../src/appointment.c:116
+#: ../src/appointment.c:99 ../src/appointment.c:116
 msgid "%m/%d/%Y"
 msgstr "%m/%d/%Y"
 
-#: ../src/appointment.c:279
-#: ../src/mainbox.c:380
-#: ../xfcalendar.desktop.in.h:3
+#: ../src/appointment.c:279 ../src/mainbox.c:396 ../xfcalendar.desktop.in.h:3
 msgid "Orage"
 msgstr "Orage"
 
@@ -290,10 +285,8 @@ msgstr "Orage"
 msgid "Sound Files"
 msgstr "Fichier Son"
 
-#: ../src/appointment.c:439
-#: ../src/appointment.c:474
-#: ../src/appointment.c:719
-#: ../src/event-list.c:586
+#: ../src/appointment.c:439 ../src/appointment.c:474 ../src/appointment.c:719
+#: ../src/event-list.c:581
 msgid "Warning"
 msgstr "Attention"
 
@@ -301,9 +294,7 @@ msgstr "Attention"
 msgid "The appointment information has been modified."
 msgstr "Les infos du rendez-vous ont été modifiées."
 
-#: ../src/appointment.c:442
-#: ../src/appointment.c:722
-#: ../src/event-list.c:589
+#: ../src/appointment.c:442 ../src/appointment.c:722 ../src/event-list.c:584
 msgid "Do you want to continue?"
 msgstr "Voulez vous continuer?"
 
@@ -319,194 +310,182 @@ msgstr "Ce rendez-vous sera enlevé définitivement."
 msgid "Pick the date"
 msgstr "Choisir la date"
 
-#: ../src/appointment.c:824
-#: ../src/event-list.c:727
-#: ../src/tray_icon.c:305
+#: ../src/appointment.c:824 ../src/event-list.c:722 ../src/tray_icon.c:297
 msgid "Today"
 msgstr "Aujourd'hui"
 
 #. show it
-#: ../src/appointment.c:931
+#: ../src/appointment.c:928
 msgid "Pick timezone"
 msgstr "Choisir la zone horaire"
 
-#: ../src/appointment.c:1197
+#: ../src/appointment.c:1194
 msgid "New appointment - Orage"
 msgstr "Nouveau rendez-vous - Orage"
 
 #. File menu stuff
 #. File menu
-#: ../src/appointment.c:1332
-#: ../src/event-list.c:653
-#: ../src/mainbox.c:403
+#: ../src/appointment.c:1329 ../src/event-list.c:648 ../src/mainbox.c:419
 msgid "_File"
 msgstr "_Fichier"
 
-#: ../src/appointment.c:1339
+#: ../src/appointment.c:1336
 msgid "Sav_e and close"
 msgstr "Enr_egistrer et fermer"
 
-#: ../src/appointment.c:1352
-#: ../src/event-list.c:662
+#: ../src/appointment.c:1349 ../src/event-list.c:657
 msgid "D_uplicate"
 msgstr "D_upliquer"
 
-#: ../src/appointment.c:1393
+#: ../src/appointment.c:1390
 msgid "Save"
 msgstr "Enregistrer"
 
-#: ../src/appointment.c:1396
-#: ../src/appointment.c:1398
+#: ../src/appointment.c:1393 ../src/appointment.c:1395
 msgid "Save and close"
 msgstr "Enregistrer et fermer"
 
-#: ../src/appointment.c:1405
+#: ../src/appointment.c:1402
 msgid "Revert"
 msgstr "Revenir"
 
-#: ../src/appointment.c:1408
-#: ../src/appointment.c:1410
-#: ../src/event-list.c:739
+#: ../src/appointment.c:1405 ../src/appointment.c:1407 ../src/event-list.c:734
 msgid "Duplicate"
 msgstr "Dupliquer"
 
-#: ../src/appointment.c:1416
+#: ../src/appointment.c:1413
 msgid "Delete"
 msgstr "Effacer"
 
-#: ../src/appointment.c:1424
+#: ../src/appointment.c:1421
 msgid "Free"
 msgstr "Libre"
 
-#: ../src/appointment.c:1424
+#: ../src/appointment.c:1421
 msgid "Busy"
 msgstr "Occupé"
 
-#: ../src/appointment.c:1429
+#: ../src/appointment.c:1426
 msgid "General"
 msgstr "Infos générales"
 
-#: ../src/appointment.c:1434
+#: ../src/appointment.c:1431
 msgid "Title "
 msgstr "Titre"
 
-#: ../src/appointment.c:1449
+#: ../src/appointment.c:1446
 msgid "All day event"
 msgstr "Évènement du quotidien"
 
-#: ../src/appointment.c:1455
+#: ../src/appointment.c:1452
 msgid "Start"
 msgstr "Début"
 
-#: ../src/appointment.c:1470
+#: ../src/appointment.c:1467
 msgid "End"
 msgstr "Fin"
 
-#: ../src/appointment.c:1487
+#: ../src/appointment.c:1484
 msgid "Duration"
 msgstr "Durée"
 
-#: ../src/appointment.c:1494
-#: ../src/appointment.c:1568
+#: ../src/appointment.c:1491 ../src/appointment.c:1565
 msgid "days"
 msgstr "jours"
 
-#: ../src/appointment.c:1503
-#: ../src/appointment.c:1576
+#: ../src/appointment.c:1500 ../src/appointment.c:1573
 msgid "hours"
 msgstr "heures"
 
-#: ../src/appointment.c:1512
-#: ../src/appointment.c:1584
+#: ../src/appointment.c:1509 ../src/appointment.c:1581
 msgid "mins"
 msgstr "mins"
 
-#: ../src/appointment.c:1520
+#: ../src/appointment.c:1517
 msgid "Availability"
 msgstr "Disponibilité"
 
-#: ../src/appointment.c:1529
+#: ../src/appointment.c:1526
 msgid "Note"
 msgstr "Note"
 
-#: ../src/appointment.c:1557
-#: ../src/appointment.c:1562
+#: ../src/appointment.c:1554 ../src/appointment.c:1559
 msgid "Alarm"
 msgstr "Alarme"
 
-#: ../src/appointment.c:1606
+#: ../src/appointment.c:1603
 msgid "Repeat alarm sound"
 msgstr "Répéter le son de l'alarme"
 
-#: ../src/appointment.c:1618
+#: ../src/appointment.c:1615
 msgid "None"
 msgstr "Aucune"
 
-#: ../src/appointment.c:1618
+#: ../src/appointment.c:1615
 msgid "Daily"
 msgstr "Quotidienne"
 
-#: ../src/appointment.c:1618
+#: ../src/appointment.c:1615
 msgid "Weekly"
 msgstr "Hebdomadaire"
 
-#: ../src/appointment.c:1618
+#: ../src/appointment.c:1615
 msgid "Monthly"
 msgstr "Mensuelle"
 
-#: ../src/appointment.c:1618
+#: ../src/appointment.c:1615
 msgid "Yearly"
 msgstr "Annuelle"
 
-#: ../src/appointment.c:1620
+#: ../src/appointment.c:1617
 msgid "Mon"
 msgstr "Lun"
 
-#: ../src/appointment.c:1620
+#: ../src/appointment.c:1617
 msgid "Tue"
 msgstr "Mar"
 
-#: ../src/appointment.c:1620
+#: ../src/appointment.c:1617
 msgid "Wed"
 msgstr "Mer"
 
-#: ../src/appointment.c:1620
+#: ../src/appointment.c:1617
 msgid "Thu"
 msgstr "Jeu"
 
-#: ../src/appointment.c:1620
+#: ../src/appointment.c:1617
 msgid "Fri"
 msgstr "Ven"
 
-#: ../src/appointment.c:1620
+#: ../src/appointment.c:1617
 msgid "Sat"
 msgstr "Sam"
 
-#: ../src/appointment.c:1620
+#: ../src/appointment.c:1617
 msgid "Sun"
 msgstr "Dim"
 
-#: ../src/appointment.c:1625
+#: ../src/appointment.c:1622
 msgid "Recurrence"
 msgstr "Périodicité"
 
-#: ../src/appointment.c:1630
+#: ../src/appointment.c:1627
 msgid "Complexity"
 msgstr "Complexité"
 
-#: ../src/appointment.c:1633
+#: ../src/appointment.c:1630
 msgid "Basic"
 msgstr "Basique"
 
-#: ../src/appointment.c:1639
+#: ../src/appointment.c:1636
 msgid "Advanced"
 msgstr "Avancé"
 
-#: ../src/appointment.c:1647
+#: ../src/appointment.c:1644
 msgid "Use this if you want regular repeating event"
 msgstr "Utilisez ceci si vous voulez un évènement régulier et répété"
 
-#: ../src/appointment.c:1649
+#: ../src/appointment.c:1646
 msgid ""
 "Use this if you need complex times like:\n"
 " Every second week or \n"
@@ -518,23 +497,23 @@ msgstr ""
 " Tous les Samedis et Dimanches ou \n"
 " Le premier Mardi de chaque mois"
 
-#: ../src/appointment.c:1652
+#: ../src/appointment.c:1649
 msgid "Frequency"
 msgstr "Fréquence"
 
-#: ../src/appointment.c:1661
+#: ../src/appointment.c:1658
 msgid "Interval"
 msgstr "Intervalle"
 
-#: ../src/appointment.c:1663
+#: ../src/appointment.c:1660
 msgid "Each"
 msgstr "Chacun"
 
-#: ../src/appointment.c:1670
+#: ../src/appointment.c:1667
 msgid "occurrence"
 msgstr "période"
 
-#: ../src/appointment.c:1678
+#: ../src/appointment.c:1675
 msgid ""
 "Limit frequency to certain interval. For example:\n"
 " Every third day: Frequency = Daily and Interval = 3"
@@ -542,35 +521,35 @@ msgstr ""
 "Limite la fréquence à un intervalle défini. Par exemple :\n"
 " Tous les trois jours : Fréquence = Quotidienne et Intervalle = 3"
 
-#: ../src/appointment.c:1681
+#: ../src/appointment.c:1678
 msgid "Limit"
 msgstr "Limite"
 
-#: ../src/appointment.c:1683
+#: ../src/appointment.c:1680
 msgid "Repeat forever"
 msgstr "Répéter sans arrêt"
 
-#: ../src/appointment.c:1691
+#: ../src/appointment.c:1688
 msgid "Repeat "
 msgstr "Répéter"
 
-#: ../src/appointment.c:1699
+#: ../src/appointment.c:1696
 msgid "times"
 msgstr "fois"
 
-#: ../src/appointment.c:1709
+#: ../src/appointment.c:1706
 msgid "Repeat until "
 msgstr "Répéter jusqu'au"
 
-#: ../src/appointment.c:1720
+#: ../src/appointment.c:1717
 msgid "Weekdays"
 msgstr "jours de la semaine"
 
-#: ../src/appointment.c:1733
+#: ../src/appointment.c:1730
 msgid "Which day"
 msgstr "Quel jour"
 
-#: ../src/appointment.c:1741
+#: ../src/appointment.c:1738
 msgid ""
 "Specify which weekday for monthly and yearly events.\n"
 " For example:\n"
@@ -591,12 +570,11 @@ msgstr ""
 msgid "All day"
 msgstr "Toute la journée"
 
-#: ../src/event-list.c:275
-#: ../src/event-list.c:781
+#: ../src/event-list.c:275 ../src/event-list.c:776
 msgid "Time"
 msgstr "Temps"
 
-#: ../src/event-list.c:588
+#: ../src/event-list.c:583
 msgid ""
 "You will remove all information \n"
 "associated with this date."
@@ -605,53 +583,52 @@ msgstr ""
 "associée à cette date."
 
 #. View menu
-#: ../src/event-list.c:684
-#: ../src/mainbox.c:437
+#: ../src/event-list.c:679 ../src/mainbox.c:453
 msgid "_View"
 msgstr "_Voir"
 
 #. Go menu
-#: ../src/event-list.c:693
+#: ../src/event-list.c:688
 msgid "_Go"
 msgstr "_Aller"
 
-#: ../src/event-list.c:720
+#: ../src/event-list.c:715
 msgid "New"
 msgstr "Nouveau"
 
-#: ../src/event-list.c:724
+#: ../src/event-list.c:719
 msgid "Back"
 msgstr "Revenir"
 
-#: ../src/event-list.c:730
+#: ../src/event-list.c:725
 msgid "Forward"
 msgstr "Avancer"
 
-#: ../src/event-list.c:733
+#: ../src/event-list.c:728
 msgid "Refresh"
 msgstr "Rafraîchir"
 
-#: ../src/event-list.c:742
+#: ../src/event-list.c:737
 msgid "Close"
 msgstr "Fermer"
 
-#: ../src/event-list.c:745
+#: ../src/event-list.c:740
 msgid "Clear"
 msgstr "Effacer"
 
-#: ../src/event-list.c:789
+#: ../src/event-list.c:784
 msgid "Flags"
 msgstr "Drapeaux"
 
-#: ../src/event-list.c:795
+#: ../src/event-list.c:790
 msgid "Title"
 msgstr "Titre"
 
-#: ../src/event-list.c:801
+#: ../src/event-list.c:796
 msgid "uid"
 msgstr "uid"
 
-#: ../src/event-list.c:810
+#: ../src/event-list.c:805
 msgid ""
 "Double click line to edit it.\n"
 "\n"
@@ -671,1573 +648,1573 @@ msgstr ""
 "t\t D=Quotidienne W=Hebdomadaire M=Mensuelle Y=Annuelle\n"
 "\t 3. Type: f=Libre B=Occupé"
 
-#: ../src/ical-code.c:101
+#: ../src/ical-code.c:100
 msgid "Africa"
 msgstr "Afrique"
 
-#: ../src/ical-code.c:102
+#: ../src/ical-code.c:101
 msgid "Africa/Abidjan"
 msgstr "Afrique/Abidjan"
 
-#: ../src/ical-code.c:103
+#: ../src/ical-code.c:102
 msgid "Africa/Accra"
 msgstr "Afrique/Accra"
 
-#: ../src/ical-code.c:104
+#: ../src/ical-code.c:103
 msgid "Africa/Addis_Ababa"
 msgstr "Afrique/Adis_Abeba"
 
-#: ../src/ical-code.c:105
+#: ../src/ical-code.c:104
 msgid "Africa/Algiers"
 msgstr "Afrique/Alger"
 
-#: ../src/ical-code.c:106
+#: ../src/ical-code.c:105
 msgid "Africa/Asmera"
 msgstr "Afrique/Asmara"
 
-#: ../src/ical-code.c:107
+#: ../src/ical-code.c:106
 msgid "Africa/Bamako"
 msgstr "Afrique/Bamako"
 
-#: ../src/ical-code.c:108
+#: ../src/ical-code.c:107
 msgid "Africa/Bangui"
 msgstr "Afrique/Bangui"
 
-#: ../src/ical-code.c:109
+#: ../src/ical-code.c:108
 msgid "Africa/Banjul"
 msgstr "Afrique/Banjul"
 
-#: ../src/ical-code.c:110
+#: ../src/ical-code.c:109
 msgid "Africa/Bissau"
 msgstr "Afrique/Bissau"
 
-#: ../src/ical-code.c:111
+#: ../src/ical-code.c:110
 msgid "Africa/Blantyre"
 msgstr "Afrique/Blantyre"
 
-#: ../src/ical-code.c:112
+#: ../src/ical-code.c:111
 msgid "Africa/Brazzaville"
 msgstr "Afrique/Brazzaville"
 
-#: ../src/ical-code.c:113
+#: ../src/ical-code.c:112
 msgid "Africa/Bujumbura"
 msgstr "Afrique/Boujoumboura"
 
-#: ../src/ical-code.c:114
+#: ../src/ical-code.c:113
 msgid "Africa/Cairo"
 msgstr "Afrique/Le_Caire"
 
-#: ../src/ical-code.c:115
+#: ../src/ical-code.c:114
 msgid "Africa/Casablanca"
 msgstr "Afrique/Casablanca"
 
-#: ../src/ical-code.c:116
+#: ../src/ical-code.c:115
 msgid "Africa/Ceuta"
 msgstr "Afrique/Ceuta"
 
-#: ../src/ical-code.c:117
+#: ../src/ical-code.c:116
 msgid "Africa/Conakry"
 msgstr "Afrique/Conakry"
 
-#: ../src/ical-code.c:118
+#: ../src/ical-code.c:117
 msgid "Africa/Dakar"
 msgstr "Afrique/Dakar"
 
-#: ../src/ical-code.c:119
+#: ../src/ical-code.c:118
 msgid "Africa/Dar_es_Salaam"
 msgstr "Afrique/Dar_es_Salaam"
 
-#: ../src/ical-code.c:120
+#: ../src/ical-code.c:119
 msgid "Africa/Djibouti"
 msgstr "Afrique/Djibouti"
 
-#: ../src/ical-code.c:121
+#: ../src/ical-code.c:120
 msgid "Africa/Douala"
 msgstr "Afrique/Douala"
 
-#: ../src/ical-code.c:122
+#: ../src/ical-code.c:121
 msgid "Africa/El_Aaiun"
 msgstr "Afrique/El_Aaiun"
 
-#: ../src/ical-code.c:123
+#: ../src/ical-code.c:122
 msgid "Africa/Freetown"
 msgstr "Afrique/Freetown"
 
-#: ../src/ical-code.c:124
+#: ../src/ical-code.c:123
 msgid "Africa/Gaborone"
 msgstr "Afrique/Gaborone"
 
-#: ../src/ical-code.c:125
+#: ../src/ical-code.c:124
 msgid "Africa/Harare"
 msgstr "Afrique/Harare"
 
-#: ../src/ical-code.c:126
+#: ../src/ical-code.c:125
 msgid "Africa/Johannesburg"
 msgstr "Afrique/Johannesburg"
 
-#: ../src/ical-code.c:127
+#: ../src/ical-code.c:126
 msgid "Africa/Kampala"
 msgstr "Afrique/Kampala"
 
-#: ../src/ical-code.c:128
+#: ../src/ical-code.c:127
 msgid "Africa/Khartoum"
 msgstr "Afrique/Khartoum"
 
-#: ../src/ical-code.c:129
+#: ../src/ical-code.c:128
 msgid "Africa/Kigali"
 msgstr "Afrique/Kigali"
 
-#: ../src/ical-code.c:130
+#: ../src/ical-code.c:129
 msgid "Africa/Kinshasa"
 msgstr "Afrique/Kinshasa"
 
-#: ../src/ical-code.c:131
+#: ../src/ical-code.c:130
 msgid "Africa/Lagos"
 msgstr "Afrique/Lagos"
 
-#: ../src/ical-code.c:132
+#: ../src/ical-code.c:131
 msgid "Africa/Libreville"
 msgstr "Afrique/Libreville"
 
-#: ../src/ical-code.c:133
+#: ../src/ical-code.c:132
 msgid "Africa/Lome"
 msgstr "Afrique/Lome"
 
-#: ../src/ical-code.c:134
+#: ../src/ical-code.c:133
 msgid "Africa/Luanda"
 msgstr "Afrique/Luanda"
 
-#: ../src/ical-code.c:135
+#: ../src/ical-code.c:134
 msgid "Africa/Lubumbashi"
 msgstr "Afrique/Lubumbashi"
 
-#: ../src/ical-code.c:136
+#: ../src/ical-code.c:135
 msgid "Africa/Lusaka"
 msgstr "Afrique/Lusaka"
 
-#: ../src/ical-code.c:137
+#: ../src/ical-code.c:136
 msgid "Africa/Malabo"
 msgstr "Afrique/Malabo"
 
-#: ../src/ical-code.c:138
+#: ../src/ical-code.c:137
 msgid "Africa/Maputo"
 msgstr "Afrique/Maputo"
 
-#: ../src/ical-code.c:139
+#: ../src/ical-code.c:138
 msgid "Africa/Maseru"
 msgstr "Afrique/Maseru"
 
-#: ../src/ical-code.c:140
+#: ../src/ical-code.c:139
 msgid "Africa/Mbabane"
 msgstr "Afrique/Mbabane"
 
-#: ../src/ical-code.c:141
+#: ../src/ical-code.c:140
 msgid "Africa/Mogadishu"
 msgstr "Afrique/Mogadiscio"
 
-#: ../src/ical-code.c:142
+#: ../src/ical-code.c:141
 msgid "Africa/Monrovia"
 msgstr "Afrique/Monrovia"
 
-#: ../src/ical-code.c:143
+#: ../src/ical-code.c:142
 msgid "Africa/Nairobi"
 msgstr "Afrique/Nairobi"
 
-#: ../src/ical-code.c:144
+#: ../src/ical-code.c:143
 msgid "Africa/Ndjamena"
 msgstr "Afrique/Ndjamena"
 
-#: ../src/ical-code.c:145
+#: ../src/ical-code.c:144
 msgid "Africa/Niamey"
 msgstr "Afrique/Niamey"
 
-#: ../src/ical-code.c:146
+#: ../src/ical-code.c:145
 msgid "Africa/Nouakchott"
 msgstr "Afrique/Nouakchott"
 
-#: ../src/ical-code.c:147
+#: ../src/ical-code.c:146
 msgid "Africa/Ouagadougou"
 msgstr "Afrique/Ouagadougou"
 
-#: ../src/ical-code.c:148
+#: ../src/ical-code.c:147
 msgid "Africa/Porto-Novo"
 msgstr "Afrique/Porto-Novo"
 
-#: ../src/ical-code.c:149
+#: ../src/ical-code.c:148
 msgid "Africa/Sao_Tome"
 msgstr "Afrique/Sao_Tome"
 
-#: ../src/ical-code.c:150
+#: ../src/ical-code.c:149
 msgid "Africa/Timbuktu"
 msgstr "Afrique/Tombouctou"
 
-#: ../src/ical-code.c:151
+#: ../src/ical-code.c:150
 msgid "Africa/Tripoli"
 msgstr "Afrique/Tripoli"
 
-#: ../src/ical-code.c:152
+#: ../src/ical-code.c:151
 msgid "Africa/Tunis"
 msgstr "Afrique/Tunis"
 
-#: ../src/ical-code.c:153
+#: ../src/ical-code.c:152
 msgid "Africa/Windhoek"
 msgstr "Afrique/Windhoek"
 
-#: ../src/ical-code.c:154
+#: ../src/ical-code.c:153
 msgid "America"
 msgstr "Amérique"
 
-#: ../src/ical-code.c:155
+#: ../src/ical-code.c:154
 msgid "America/Adak"
 msgstr "Amérique/Adak"
 
-#: ../src/ical-code.c:156
+#: ../src/ical-code.c:155
 msgid "America/Anchorage"
 msgstr "Amérique/Anchorage"
 
-#: ../src/ical-code.c:157
+#: ../src/ical-code.c:156
 msgid "America/Anguilla"
 msgstr "Amérique/Anguilla"
 
-#: ../src/ical-code.c:158
+#: ../src/ical-code.c:157
 msgid "America/Antigua"
 msgstr "Amérique/Antigua"
 
-#: ../src/ical-code.c:159
+#: ../src/ical-code.c:158
 msgid "America/Araguaina"
 msgstr "Amérique/Araguaia"
 
-#: ../src/ical-code.c:160
+#: ../src/ical-code.c:159
 msgid "America/Aruba"
 msgstr "Amérique/Aruba"
 
-#: ../src/ical-code.c:161
+#: ../src/ical-code.c:160
 msgid "America/Asuncion"
 msgstr "Amérique/Asuncion"
 
-#: ../src/ical-code.c:162
+#: ../src/ical-code.c:161
 msgid "America/Barbados"
 msgstr "Amérique/Barbade"
 
-#: ../src/ical-code.c:163
+#: ../src/ical-code.c:162
 msgid "America/Belem"
 msgstr "Amérique/Belém"
 
-#: ../src/ical-code.c:164
+#: ../src/ical-code.c:163
 msgid "America/Belize"
 msgstr "Amérique/Belize"
 
-#: ../src/ical-code.c:165
+#: ../src/ical-code.c:164
 msgid "America/Boa_Vista"
 msgstr "Amérique/Boa_Vista"
 
-#: ../src/ical-code.c:166
+#: ../src/ical-code.c:165
 msgid "America/Bogota"
 msgstr "Amérique/Bogota"
 
-#: ../src/ical-code.c:167
+#: ../src/ical-code.c:166
 msgid "America/Boise"
 msgstr "Amérique/Boise"
 
-#: ../src/ical-code.c:168
+#: ../src/ical-code.c:167
 msgid "America/Buenos_Aires"
 msgstr "Amérique/Buenos_Aires"
 
-#: ../src/ical-code.c:169
+#: ../src/ical-code.c:168
 msgid "America/Cambridge_Bay"
 msgstr "Amérique/Cambridge_Bay"
 
-#: ../src/ical-code.c:170
+#: ../src/ical-code.c:169
 msgid "America/Cancun"
 msgstr "Amérique/Cancun"
 
-#: ../src/ical-code.c:171
+#: ../src/ical-code.c:170
 msgid "America/Caracas"
 msgstr "Amérique/Caracas"
 
-#: ../src/ical-code.c:172
+#: ../src/ical-code.c:171
 msgid "America/Catamarca"
 msgstr "Amérique/Catamarca"
 
-#: ../src/ical-code.c:173
+#: ../src/ical-code.c:172
 msgid "America/Cayenne"
 msgstr "Amérique/Cayenne"
 
-#: ../src/ical-code.c:174
+#: ../src/ical-code.c:173
 msgid "America/Cayman"
 msgstr "Amérique/Caïman"
 
-#: ../src/ical-code.c:175
+#: ../src/ical-code.c:174
 msgid "America/Chicago"
 msgstr "Amérique/Chicago"
 
-#: ../src/ical-code.c:176
+#: ../src/ical-code.c:175
 msgid "America/Chihuahua"
 msgstr "Amérique/Chihuahua"
 
-#: ../src/ical-code.c:177
+#: ../src/ical-code.c:176
 msgid "America/Cordoba"
 msgstr "Amérique/Cordoba"
 
-#: ../src/ical-code.c:178
+#: ../src/ical-code.c:177
 msgid "America/Costa_Rica"
 msgstr "Amérique/Costa_Rica"
 
-#: ../src/ical-code.c:179
+#: ../src/ical-code.c:178
 msgid "America/Cuiaba"
 msgstr "Amérique/Cuiabà"
 
-#: ../src/ical-code.c:180
+#: ../src/ical-code.c:179
 msgid "America/Curacao"
 msgstr "Amérique/Curaçao"
 
-#: ../src/ical-code.c:181
+#: ../src/ical-code.c:180
 msgid "America/Dawson"
 msgstr "Amérique/Dawson"
 
-#: ../src/ical-code.c:182
+#: ../src/ical-code.c:181
 msgid "America/Dawson_Creek"
 msgstr "Amérique/Dawson_Creek"
 
-#: ../src/ical-code.c:183
+#: ../src/ical-code.c:182
 msgid "America/Denver"
 msgstr "Amérique/Denver"
 
-#: ../src/ical-code.c:184
+#: ../src/ical-code.c:183
 msgid "America/Detroit"
 msgstr "Amérique/Detroit"
 
-#: ../src/ical-code.c:185
+#: ../src/ical-code.c:184
 msgid "America/Dominica"
 msgstr "Amérique/Dominique"
 
-#: ../src/ical-code.c:186
+#: ../src/ical-code.c:185
 msgid "America/Edmonton"
 msgstr "Amérique/Edmonton"
 
-#: ../src/ical-code.c:187
+#: ../src/ical-code.c:186
 msgid "America/Eirunepe"
 msgstr "Amérique/Eirunepé"
 
-#: ../src/ical-code.c:188
+#: ../src/ical-code.c:187
 msgid "America/El_Salvador"
 msgstr "Amérique/San_Salvador"
 
-#: ../src/ical-code.c:189
+#: ../src/ical-code.c:188
 msgid "America/Fortaleza"
 msgstr "Amérique/Fortaleza"
 
-#: ../src/ical-code.c:190
+#: ../src/ical-code.c:189
 msgid "America/Glace_Bay"
 msgstr "Amérique/Glace_Bay"
 
-#: ../src/ical-code.c:191
+#: ../src/ical-code.c:190
 msgid "America/Godthab"
 msgstr "Amérique/Godthab"
 
-#: ../src/ical-code.c:192
+#: ../src/ical-code.c:191
 msgid "America/Goose_Bay"
 msgstr "Amérique/Goose_Bay"
 
-#: ../src/ical-code.c:193
+#: ../src/ical-code.c:192
 msgid "America/Grand_Turk"
 msgstr "Amérique/Grand_Turk"
 
-#: ../src/ical-code.c:194
+#: ../src/ical-code.c:193
 msgid "America/Grenada"
 msgstr "Amérique/Grenade"
 
-#: ../src/ical-code.c:195
+#: ../src/ical-code.c:194
 msgid "America/Guadeloupe"
 msgstr "Amérique/Guadeloupe"
 
-#: ../src/ical-code.c:196
+#: ../src/ical-code.c:195
 msgid "America/Guatemala"
 msgstr "Amérique/Guatemala"
 
-#: ../src/ical-code.c:197
+#: ../src/ical-code.c:196
 msgid "America/Guayaquil"
 msgstr "Amérique/Guayaquil"
 
-#: ../src/ical-code.c:198
+#: ../src/ical-code.c:197
 msgid "America/Guyana"
 msgstr "Amérique/Guyana"
 
-#: ../src/ical-code.c:199
+#: ../src/ical-code.c:198
 msgid "America/Halifax"
 msgstr "Amérique/Halifax"
 
-#: ../src/ical-code.c:200
+#: ../src/ical-code.c:199
 msgid "America/Havana"
 msgstr "Amérique/La_Havane"
 
-#: ../src/ical-code.c:201
+#: ../src/ical-code.c:200
 msgid "America/Hermosillo"
 msgstr "Amérique/Hermosillo"
 
-#: ../src/ical-code.c:202
+#: ../src/ical-code.c:201
 msgid "America/Indiana/Indianapolis"
 msgstr "Amérique/Indiana/Indianapolis"
 
-#: ../src/ical-code.c:203
+#: ../src/ical-code.c:202
 msgid "America/Indiana/Knox"
 msgstr "Amérique/Indiana/Knox"
 
-#: ../src/ical-code.c:204
+#: ../src/ical-code.c:203
 msgid "America/Indiana/Marengo"
 msgstr "Amérique/Indiana/Marengo"
 
-#: ../src/ical-code.c:205
+#: ../src/ical-code.c:204
 msgid "America/Indiana/Vevay"
 msgstr "Amérique/Indiana/Vevay"
 
-#: ../src/ical-code.c:206
+#: ../src/ical-code.c:205
 msgid "America/Indianapolis"
 msgstr "Amérique/Indianapolis"
 
-#: ../src/ical-code.c:207
+#: ../src/ical-code.c:206
 msgid "America/Inuvik"
 msgstr "Amérique/Inuvik"
 
-#: ../src/ical-code.c:208
+#: ../src/ical-code.c:207
 msgid "America/Iqaluit"
 msgstr "Amérique/Iqaluit"
 
-#: ../src/ical-code.c:209
+#: ../src/ical-code.c:208
 msgid "America/Jamaica"
 msgstr "Amérique/Jamaïque"
 
-#: ../src/ical-code.c:210
+#: ../src/ical-code.c:209
 msgid "America/Jujuy"
 msgstr "Amérique/Jujuy"
 
-#: ../src/ical-code.c:211
+#: ../src/ical-code.c:210
 msgid "America/Juneau"
 msgstr "Amérique/Juneau"
 
-#: ../src/ical-code.c:212
+#: ../src/ical-code.c:211
 msgid "America/Kentucky/Louisville"
 msgstr "Amérique/Kentucky/Louisville"
 
-#: ../src/ical-code.c:213
+#: ../src/ical-code.c:212
 msgid "America/Kentucky/Monticello"
 msgstr "Amérique/Kentucky/Monticello"
 
-#: ../src/ical-code.c:214
+#: ../src/ical-code.c:213
 msgid "America/La_Paz"
 msgstr "Amérique/La_Paz"
 
-#: ../src/ical-code.c:215
+#: ../src/ical-code.c:214
 msgid "America/Lima"
 msgstr "Amérique/Lima"
 
-#: ../src/ical-code.c:216
+#: ../src/ical-code.c:215
 msgid "America/Los_Angeles"
 msgstr "Amérique/Los_Angeles"
 
-#: ../src/ical-code.c:217
+#: ../src/ical-code.c:216
 msgid "America/Louisville"
 msgstr "Amérique/Louisville"
 
-#: ../src/ical-code.c:218
+#: ../src/ical-code.c:217
 msgid "America/Maceio"
 msgstr "Amérique/Maceio"
 
-#: ../src/ical-code.c:219
+#: ../src/ical-code.c:218
 msgid "America/Managua"
 msgstr "Amérique/Managua"
 
-#: ../src/ical-code.c:220
+#: ../src/ical-code.c:219
 msgid "America/Manaus"
 msgstr "Amérique/Manaus"
 
-#: ../src/ical-code.c:221
+#: ../src/ical-code.c:220
 msgid "America/Martinique"
 msgstr "Amérique/Martinique"
 
-#: ../src/ical-code.c:222
+#: ../src/ical-code.c:221
 msgid "America/Mazatlan"
 msgstr "Amérique/Mazatlan"
 
-#: ../src/ical-code.c:223
+#: ../src/ical-code.c:222
 msgid "America/Mendoza"
 msgstr "Amérique/Mendoza"
 
-#: ../src/ical-code.c:224
+#: ../src/ical-code.c:223
 msgid "America/Menominee"
 msgstr "Amérique/Menominee"
 
-#: ../src/ical-code.c:225
+#: ../src/ical-code.c:224
 msgid "America/Merida"
 msgstr "Amérique/Mérida"
 
-#: ../src/ical-code.c:226
+#: ../src/ical-code.c:225
 msgid "America/Mexico_City"
 msgstr "Amérique/Mexico"
 
-#: ../src/ical-code.c:227
+#: ../src/ical-code.c:226
 msgid "America/Miquelon"
 msgstr "Amérique/Miquelon"
 
-#: ../src/ical-code.c:228
+#: ../src/ical-code.c:227
 msgid "America/Monterrey"
 msgstr "Amérique/Monterrey"
 
-#: ../src/ical-code.c:229
+#: ../src/ical-code.c:228
 msgid "America/Montevideo"
 msgstr "Amérique/Montevideo"
 
-#: ../src/ical-code.c:230
+#: ../src/ical-code.c:229
 msgid "America/Montreal"
 msgstr "Amérique/Montréal"
 
-#: ../src/ical-code.c:231
+#: ../src/ical-code.c:230
 msgid "America/Montserrat"
 msgstr "Amérique/Montserrat"
 
-#: ../src/ical-code.c:232
+#: ../src/ical-code.c:231
 msgid "America/Nassau"
 msgstr "Amérique/Nassau"
 
-#: ../src/ical-code.c:233
+#: ../src/ical-code.c:232
 msgid "America/New_York"
 msgstr "Amérique/New_York"
 
-#: ../src/ical-code.c:234
+#: ../src/ical-code.c:233
 msgid "America/Nipigon"
 msgstr "Amérique/Nipigon"
 
-#: ../src/ical-code.c:235
+#: ../src/ical-code.c:234
 msgid "America/Nome"
 msgstr "Amérique/Nome"
 
-#: ../src/ical-code.c:236
+#: ../src/ical-code.c:235
 msgid "America/Noronha"
 msgstr "Amérique/Noronha"
 
-#: ../src/ical-code.c:237
+#: ../src/ical-code.c:236
 msgid "America/Panama"
 msgstr "Amérique/Panama"
 
-#: ../src/ical-code.c:238
+#: ../src/ical-code.c:237
 msgid "America/Pangnirtung"
 msgstr "Amérique/Pangnirtung"
 
-#: ../src/ical-code.c:239
+#: ../src/ical-code.c:238
 msgid "America/Paramaribo"
 msgstr "Amérique/Paramaribo"
 
-#: ../src/ical-code.c:240
+#: ../src/ical-code.c:239
 msgid "America/Phoenix"
 msgstr "Amérique/Phoenix"
 
-#: ../src/ical-code.c:241
+#: ../src/ical-code.c:240
 msgid "America/Port-au-Prince"
 msgstr "Amérique/Port-au-Prince"
 
-#: ../src/ical-code.c:242
+#: ../src/ical-code.c:241
 msgid "America/Port_of_Spain"
 msgstr "Amérique/Port_of_Spain"
 
-#: ../src/ical-code.c:243
+#: ../src/ical-code.c:242
 msgid "America/Porto_Velho"
 msgstr "Amérique/Pôrto_Velho"
 
-#: ../src/ical-code.c:244
+#: ../src/ical-code.c:243
 msgid "America/Puerto_Rico"
 msgstr "Amérique/Porto_Rico"
 
-#: ../src/ical-code.c:245
+#: ../src/ical-code.c:244
 msgid "America/Rainy_River"
 msgstr "Amérique/Rainy_River"
 
-#: ../src/ical-code.c:246
+#: ../src/ical-code.c:245
 msgid "America/Rankin_Inlet"
 msgstr "Amérique/Rankin_Inlet"
 
-#: ../src/ical-code.c:247
+#: ../src/ical-code.c:246
 msgid "America/Recife"
 msgstr "Amérique/Recife"
 
-#: ../src/ical-code.c:248
+#: ../src/ical-code.c:247
 msgid "America/Regina"
 msgstr "Amérique/Regina"
 
-#: ../src/ical-code.c:249
+#: ../src/ical-code.c:248
 msgid "America/Rio_Branco"
 msgstr "Amérique/Rio_Branco"
 
-#: ../src/ical-code.c:250
+#: ../src/ical-code.c:249
 msgid "America/Rosario"
 msgstr "Amérique/Rosario"
 
-#: ../src/ical-code.c:251
+#: ../src/ical-code.c:250
 msgid "America/Santiago"
 msgstr "Amérique/Santiago"
 
-#: ../src/ical-code.c:252
+#: ../src/ical-code.c:251
 msgid "America/Santo_Domingo"
 msgstr "Amérique/Santo_Domingo"
 
-#: ../src/ical-code.c:253
+#: ../src/ical-code.c:252
 msgid "America/Sao_Paulo"
 msgstr "Amérique/Sao_Paulo"
 
-#: ../src/ical-code.c:254
+#: ../src/ical-code.c:253
 msgid "America/Scoresbysund"
 msgstr "Amérique/Scoresbysund"
 
-#: ../src/ical-code.c:255
+#: ../src/ical-code.c:254
 msgid "America/Shiprock"
 msgstr "Amérique/Shiprock"
 
-#: ../src/ical-code.c:256
+#: ../src/ical-code.c:255
 msgid "America/St_Johns"
 msgstr "Amérique/St_Johns"
 
-#: ../src/ical-code.c:257
+#: ../src/ical-code.c:256
 msgid "America/St_Kitts"
 msgstr "Amérique/St_Kitts"
 
-#: ../src/ical-code.c:258
+#: ../src/ical-code.c:257
 msgid "America/St_Lucia"
 msgstr "Amérique/Ste_Lucie"
 
-#: ../src/ical-code.c:259
+#: ../src/ical-code.c:258
 msgid "America/St_Thomas"
 msgstr "Amérique/St_Thomas"
 
-#: ../src/ical-code.c:260
+#: ../src/ical-code.c:259
 msgid "America/St_Vincent"
 msgstr "Amérique/St_Vincent"
 
-#: ../src/ical-code.c:261
+#: ../src/ical-code.c:260
 msgid "America/Swift_Current"
 msgstr "Amérique/Swift_Current"
 
-#: ../src/ical-code.c:262
+#: ../src/ical-code.c:261
 msgid "America/Tegucigalpa"
 msgstr "Amérique/Tegucigalpa"
 
-#: ../src/ical-code.c:263
+#: ../src/ical-code.c:262
 msgid "America/Thule"
 msgstr "Amérique/Thule"
 
-#: ../src/ical-code.c:264
+#: ../src/ical-code.c:263
 msgid "America/Thunder_Bay"
 msgstr "Amérique/Thunder_Bay"
 
-#: ../src/ical-code.c:265
+#: ../src/ical-code.c:264
 msgid "America/Tijuana"
 msgstr "Amérique/Tijuana"
 
-#: ../src/ical-code.c:266
+#: ../src/ical-code.c:265
 msgid "America/Tortola"
 msgstr "Amérique/Tortola"
 
-#: ../src/ical-code.c:267
+#: ../src/ical-code.c:266
 msgid "America/Vancouver"
 msgstr "Amérique/Vancouver"
 
-#: ../src/ical-code.c:268
+#: ../src/ical-code.c:267
 msgid "America/Whitehorse"
 msgstr "Amérique/Whitehorse"
 
-#: ../src/ical-code.c:269
+#: ../src/ical-code.c:268
 msgid "America/Winnipeg"
 msgstr "Amérique/Winnipeg"
 
-#: ../src/ical-code.c:270
+#: ../src/ical-code.c:269
 msgid "America/Yakutat"
 msgstr "Amérique/Yakutat"
 
-#: ../src/ical-code.c:271
+#: ../src/ical-code.c:270
 msgid "America/Yellowknife"
 msgstr "Amérique/Yellowknife"
 
-#: ../src/ical-code.c:272
+#: ../src/ical-code.c:271
 msgid "Antarctica"
 msgstr "Antarctique"
 
-#: ../src/ical-code.c:273
+#: ../src/ical-code.c:272
 msgid "Antarctica/Casey"
 msgstr "Antarctique/Casey"
 
-#: ../src/ical-code.c:274
+#: ../src/ical-code.c:273
 msgid "Antarctica/Davis"
 msgstr "Antarctique/Davis"
 
-#: ../src/ical-code.c:275
+#: ../src/ical-code.c:274
 msgid "Antarctica/DumontDUrville"
 msgstr "Antarctique/Dumont_D'Urville"
 
-#: ../src/ical-code.c:276
+#: ../src/ical-code.c:275
 msgid "Antarctica/Mawson"
 msgstr "Antarctique/Mawson"
 
-#: ../src/ical-code.c:277
+#: ../src/ical-code.c:276
 msgid "Antarctica/McMurdo"
 msgstr "Antarctique/McMurdo"
 
-#: ../src/ical-code.c:278
+#: ../src/ical-code.c:277
 msgid "Antarctica/Palmer"
 msgstr "Antarctique/Palmer"
 
-#: ../src/ical-code.c:279
+#: ../src/ical-code.c:278
 msgid "Antarctica/South_Pole"
 msgstr "Antarctique/Pôle_Sud"
 
-#: ../src/ical-code.c:280
+#: ../src/ical-code.c:279
 msgid "Antarctica/Syowa"
 msgstr "Antarctique/Syowa"
 
-#: ../src/ical-code.c:281
+#: ../src/ical-code.c:280
 msgid "Antarctica/Vostok"
 msgstr "Antarctique/Vostok"
 
-#: ../src/ical-code.c:282
+#: ../src/ical-code.c:281
 msgid "Arctic"
 msgstr "Arctique"
 
-#: ../src/ical-code.c:283
+#: ../src/ical-code.c:282
 msgid "Arctic/Longyearbyen"
 msgstr "Arctique/Longyearbyen"
 
-#: ../src/ical-code.c:284
+#: ../src/ical-code.c:283
 msgid "Asia"
 msgstr "Asie"
 
-#: ../src/ical-code.c:285
+#: ../src/ical-code.c:284
 msgid "Asia/Aden"
 msgstr "Asie/Aden"
 
-#: ../src/ical-code.c:286
+#: ../src/ical-code.c:285
 msgid "Asia/Almaty"
 msgstr "Asie/Almati"
 
-#: ../src/ical-code.c:287
+#: ../src/ical-code.c:286
 msgid "Asia/Amman"
 msgstr "Asie/Amman"
 
-#: ../src/ical-code.c:288
+#: ../src/ical-code.c:287
 msgid "Asia/Anadyr"
 msgstr "Asie/Anadyr"
 
-#: ../src/ical-code.c:289
+#: ../src/ical-code.c:288
 msgid "Asia/Aqtau"
 msgstr "Asie/Aktaou"
 
-#: ../src/ical-code.c:290
+#: ../src/ical-code.c:289
 msgid "Asia/Aqtobe"
 msgstr "Asie/Aktioubinsk"
 
-#: ../src/ical-code.c:291
+#: ../src/ical-code.c:290
 msgid "Asia/Ashgabat"
 msgstr "Asie/Achkhabad"
 
-#: ../src/ical-code.c:292
+#: ../src/ical-code.c:291
 msgid "Asia/Baghdad"
 msgstr "Asie/Baghdad"
 
-#: ../src/ical-code.c:293
+#: ../src/ical-code.c:292
 msgid "Asia/Bahrain"
 msgstr "Asie/Bahrein"
 
-#: ../src/ical-code.c:294
+#: ../src/ical-code.c:293
 msgid "Asia/Baku"
 msgstr "Asie/Bakou"
 
-#: ../src/ical-code.c:295
+#: ../src/ical-code.c:294
 msgid "Asia/Bangkok"
 msgstr "Asie/Bangkok"
 
-#: ../src/ical-code.c:296
+#: ../src/ical-code.c:295
 msgid "Asia/Beirut"
 msgstr "Asie/Beyrouth"
 
-#: ../src/ical-code.c:297
+#: ../src/ical-code.c:296
 msgid "Asia/Bishkek"
 msgstr "Asie/Bishkek"
 
-#: ../src/ical-code.c:298
+#: ../src/ical-code.c:297
 msgid "Asia/Brunei"
 msgstr "Asie/Brunei"
 
-#: ../src/ical-code.c:299
+#: ../src/ical-code.c:298
 msgid "Asia/Calcutta"
 msgstr "Asie/Calcutta"
 
-#: ../src/ical-code.c:300
+#: ../src/ical-code.c:299
 msgid "Asia/Chungking"
 msgstr "Asie/Chongqing"
 
-#: ../src/ical-code.c:301
+#: ../src/ical-code.c:300
 msgid "Asia/Colombo"
 msgstr "Asie/Colombo"
 
-#: ../src/ical-code.c:302
+#: ../src/ical-code.c:301
 msgid "Asia/Damascus"
 msgstr "Asie/Damas"
 
-#: ../src/ical-code.c:303
+#: ../src/ical-code.c:302
 msgid "Asia/Dhaka"
 msgstr "Asie/Dhaka"
 
-#: ../src/ical-code.c:304
+#: ../src/ical-code.c:303
 msgid "Asia/Dili"
 msgstr "Asie/Dili"
 
-#: ../src/ical-code.c:305
+#: ../src/ical-code.c:304
 msgid "Asia/Dubai"
 msgstr "Asie/Doubaï"
 
-#: ../src/ical-code.c:306
+#: ../src/ical-code.c:305
 msgid "Asia/Dushanbe"
 msgstr "Asie/Douchanbé"
 
-#: ../src/ical-code.c:307
+#: ../src/ical-code.c:306
 msgid "Asia/Gaza"
 msgstr "Asie/Gaza"
 
-#: ../src/ical-code.c:308
+#: ../src/ical-code.c:307
 msgid "Asia/Harbin"
 msgstr "Asie/Harbin"
 
-#: ../src/ical-code.c:309
+#: ../src/ical-code.c:308
 msgid "Asia/Hong_Kong"
 msgstr "Asie/Hong_Kong"
 
-#: ../src/ical-code.c:310
+#: ../src/ical-code.c:309
 msgid "Asia/Hovd"
 msgstr "Asie/Hovd"
 
-#: ../src/ical-code.c:311
+#: ../src/ical-code.c:310
 msgid "Asia/Irkutsk"
 msgstr "Asie/Irkoutsk"
 
-#: ../src/ical-code.c:312
+#: ../src/ical-code.c:311
 msgid "Asia/Istanbul"
 msgstr "Asie/Istanbul"
 
-#: ../src/ical-code.c:313
+#: ../src/ical-code.c:312
 msgid "Asia/Jakarta"
 msgstr "Asie/Djakarta"
 
-#: ../src/ical-code.c:314
+#: ../src/ical-code.c:313
 msgid "Asia/Jayapura"
 msgstr "Asie/Jayapura"
 
-#: ../src/ical-code.c:315
+#: ../src/ical-code.c:314
 msgid "Asia/Jerusalem"
 msgstr "Asie/Jerusalem"
 
-#: ../src/ical-code.c:316
+#: ../src/ical-code.c:315
 msgid "Asia/Kabul"
 msgstr "Asie/Kaboul"
 
-#: ../src/ical-code.c:317
+#: ../src/ical-code.c:316
 msgid "Asia/Kamchatka"
 msgstr "Asie/Kamchatka"
 
-#: ../src/ical-code.c:318
+#: ../src/ical-code.c:317
 msgid "Asia/Karachi"
 msgstr "Asie/Karachi"
 
-#: ../src/ical-code.c:319
+#: ../src/ical-code.c:318
 msgid "Asia/Kashgar"
 msgstr "Asie/Kashgar"
 
-#: ../src/ical-code.c:320
+#: ../src/ical-code.c:319
 msgid "Asia/Katmandu"
 msgstr "Asie/Kathmandu"
 
-#: ../src/ical-code.c:321
+#: ../src/ical-code.c:320
 msgid "Asia/Krasnoyarsk"
 msgstr "Asie/Krasnoyarsk"
 
-#: ../src/ical-code.c:322
+#: ../src/ical-code.c:321
 msgid "Asia/Kuala_Lumpur"
 msgstr "Asie/Kuala_Lumpur"
 
-#: ../src/ical-code.c:323
+#: ../src/ical-code.c:322
 msgid "Asia/Kuching"
 msgstr "Asie/Kuching"
 
-#: ../src/ical-code.c:324
+#: ../src/ical-code.c:323
 msgid "Asia/Kuwait"
 msgstr "Asie/Kowait"
 
-#: ../src/ical-code.c:325
+#: ../src/ical-code.c:324
 msgid "Asia/Macao"
 msgstr "Asie/Macao"
 
-#: ../src/ical-code.c:326
+#: ../src/ical-code.c:325
 msgid "Asia/Magadan"
 msgstr "Asie/Magadan"
 
-#: ../src/ical-code.c:327
+#: ../src/ical-code.c:326
 msgid "Asia/Manila"
 msgstr "Asie/Manille"
 
-#: ../src/ical-code.c:328
+#: ../src/ical-code.c:327
 msgid "Asia/Muscat"
 msgstr "Asie/Muscat"
 
-#: ../src/ical-code.c:329
+#: ../src/ical-code.c:328
 msgid "Asia/Nicosia"
 msgstr "Asie/Nicosie"
 
-#: ../src/ical-code.c:330
+#: ../src/ical-code.c:329
 msgid "Asia/Novosibirsk"
 msgstr "Asie/Novosibirsk"
 
-#: ../src/ical-code.c:331
+#: ../src/ical-code.c:330
 msgid "Asia/Omsk"
 msgstr "Asie/Omsk"
 
-#: ../src/ical-code.c:332
+#: ../src/ical-code.c:331
 msgid "Asia/Phnom_Penh"
 msgstr "Asie/Phnom_Penh"
 
-#: ../src/ical-code.c:333
+#: ../src/ical-code.c:332
 msgid "Asia/Pontianak"
 msgstr "Asie/Pontianak"
 
-#: ../src/ical-code.c:334
+#: ../src/ical-code.c:333
 msgid "Asia/Pyongyang"
 msgstr "Asie/Pyongyang"
 
-#: ../src/ical-code.c:335
+#: ../src/ical-code.c:334
 msgid "Asia/Qatar"
 msgstr "Asie/Qatar"
 
-#: ../src/ical-code.c:336
+#: ../src/ical-code.c:335
 msgid "Asia/Rangoon"
 msgstr "Asie/Rangoon"
 
-#: ../src/ical-code.c:337
+#: ../src/ical-code.c:336
 msgid "Asia/Riyadh"
 msgstr "Asie/Riad"
 
-#: ../src/ical-code.c:338
+#: ../src/ical-code.c:337
 msgid "Asia/Saigon"
 msgstr "Asie/Saïgon"
 
-#: ../src/ical-code.c:339
+#: ../src/ical-code.c:338
 msgid "Asia/Samarkand"
 msgstr "Asie/Samarkand"
 
-#: ../src/ical-code.c:340
+#: ../src/ical-code.c:339
 msgid "Asia/Seoul"
 msgstr "Asie/Séoul"
 
-#: ../src/ical-code.c:341
+#: ../src/ical-code.c:340
 msgid "Asia/Shanghai"
 msgstr "Asie/Shanghai"
 
-#: ../src/ical-code.c:342
+#: ../src/ical-code.c:341
 msgid "Asia/Singapore"
 msgstr "Asie/Singapour"
 
-#: ../src/ical-code.c:343
+#: ../src/ical-code.c:342
 msgid "Asia/Taipei"
 msgstr "Asie/Taipei"
 
-#: ../src/ical-code.c:344
+#: ../src/ical-code.c:343
 msgid "Asia/Tashkent"
 msgstr "Asie/Tachkent"
 
-#: ../src/ical-code.c:345
+#: ../src/ical-code.c:344
 msgid "Asia/Tbilisi"
 msgstr "Asie/Tbilisi"
 
-#: ../src/ical-code.c:346
+#: ../src/ical-code.c:345
 msgid "Asia/Tehran"
 msgstr "Asie/Téhéran"
 
-#: ../src/ical-code.c:347
+#: ../src/ical-code.c:346
 msgid "Asia/Thimphu"
 msgstr "Asie/Thimbu"
 
-#: ../src/ical-code.c:348
+#: ../src/ical-code.c:347
 msgid "Asia/Tokyo"
 msgstr "Asie/Tokyo"
 
-#: ../src/ical-code.c:349
+#: ../src/ical-code.c:348
 msgid "Asia/Ujung_Pandang"
 msgstr "Asie/Ujung_Pandang"
 
-#: ../src/ical-code.c:350
+#: ../src/ical-code.c:349
 msgid "Asia/Ulaanbaatar"
 msgstr "Asie/Oulan_Bator"
 
-#: ../src/ical-code.c:351
+#: ../src/ical-code.c:350
 msgid "Asia/Urumqi"
 msgstr "Asie/Tihoua"
 
-#: ../src/ical-code.c:352
+#: ../src/ical-code.c:351
 msgid "Asia/Vientiane"
 msgstr "Asie/Vientiane"
 
-#: ../src/ical-code.c:353
+#: ../src/ical-code.c:352
 msgid "Asia/Vladivostok"
 msgstr "Asie/Vladivostok"
 
-#: ../src/ical-code.c:354
+#: ../src/ical-code.c:353
 msgid "Asia/Yakutsk"
 msgstr "Asie/Iakoutsk"
 
-#: ../src/ical-code.c:355
+#: ../src/ical-code.c:354
 msgid "Asia/Yekaterinburg"
 msgstr "Asie/Sverdlovsk"
 
-#: ../src/ical-code.c:356
+#: ../src/ical-code.c:355
 msgid "Asia/Yerevan"
 msgstr "Asie/Erevan"
 
-#: ../src/ical-code.c:357
+#: ../src/ical-code.c:356
 msgid "Atlantic"
 msgstr "Atlantique"
 
-#: ../src/ical-code.c:358
+#: ../src/ical-code.c:357
 msgid "Atlantic/Azores"
 msgstr "Atlantique/Açores"
 
-#: ../src/ical-code.c:359
+#: ../src/ical-code.c:358
 msgid "Atlantic/Bermuda"
 msgstr "Atlantique/Bermudes"
 
-#: ../src/ical-code.c:360
+#: ../src/ical-code.c:359
 msgid "Atlantic/Canary"
 msgstr "Atlantique/Canaries"
 
-#: ../src/ical-code.c:361
+#: ../src/ical-code.c:360
 msgid "Atlantic/Cape_Verde"
 msgstr "Atlantique/Cap_Vert"
 
-#: ../src/ical-code.c:362
+#: ../src/ical-code.c:361
 msgid "Atlantic/Faeroe"
 msgstr "Atlantique/Faeroe"
 
-#: ../src/ical-code.c:363
+#: ../src/ical-code.c:362
 msgid "Atlantic/Jan_Mayen"
 msgstr "Atlantique/Jan_Mayen"
 
-#: ../src/ical-code.c:364
+#: ../src/ical-code.c:363
 msgid "Atlantic/Madeira"
 msgstr "Atlantique/Madère"
 
-#: ../src/ical-code.c:365
+#: ../src/ical-code.c:364
 msgid "Atlantic/Reykjavik"
 msgstr "Atlantique/Reykjavik"
 
-#: ../src/ical-code.c:366
+#: ../src/ical-code.c:365
 msgid "Atlantic/South_Georgia"
 msgstr "Atlantique/Géorgie-du_Sud"
 
-#: ../src/ical-code.c:367
+#: ../src/ical-code.c:366
 msgid "Atlantic/St_Helena"
 msgstr "Atlantique/Ste_Hélène"
 
-#: ../src/ical-code.c:368
+#: ../src/ical-code.c:367
 msgid "Atlantic/Stanley"
 msgstr "Atlantique/Stanley"
 
-#: ../src/ical-code.c:369
+#: ../src/ical-code.c:368
 msgid "Australia"
 msgstr "Australie"
 
-#: ../src/ical-code.c:370
+#: ../src/ical-code.c:369
 msgid "Australia/Adelaide"
 msgstr "Australie/Adelaïde"
 
-#: ../src/ical-code.c:371
+#: ../src/ical-code.c:370
 msgid "Australia/Brisbane"
 msgstr "Australie/Brisbane"
 
-#: ../src/ical-code.c:372
+#: ../src/ical-code.c:371
 msgid "Australia/Broken_Hill"
 msgstr "Australie/Broken_Hill"
 
-#: ../src/ical-code.c:373
+#: ../src/ical-code.c:372
 msgid "Australia/Darwin"
 msgstr "Australie/Darwin"
 
-#: ../src/ical-code.c:374
+#: ../src/ical-code.c:373
 msgid "Australia/Hobart"
 msgstr "Australie/Hobart"
 
-#: ../src/ical-code.c:375
+#: ../src/ical-code.c:374
 msgid "Australia/Lindeman"
 msgstr "Australie/Lindeman"
 
-#: ../src/ical-code.c:376
+#: ../src/ical-code.c:375
 msgid "Australia/Lord_Howe"
 msgstr "Australie/Lord_Howe"
 
-#: ../src/ical-code.c:377
+#: ../src/ical-code.c:376
 msgid "Australia/Melbourne"
 msgstr "Australie/Melbourne"
 
-#: ../src/ical-code.c:378
+#: ../src/ical-code.c:377
 msgid "Australia/Perth"
 msgstr "Australie/Perth"
 
-#: ../src/ical-code.c:379
+#: ../src/ical-code.c:378
 msgid "Australia/Sydney"
 msgstr "Australie/Sydney"
 
-#: ../src/ical-code.c:380
+#: ../src/ical-code.c:379
 msgid "Europe"
 msgstr "Europe"
 
-#: ../src/ical-code.c:381
+#: ../src/ical-code.c:380
 msgid "Europe/Amsterdam"
 msgstr "Europe/Amsterdam"
 
-#: ../src/ical-code.c:382
+#: ../src/ical-code.c:381
 msgid "Europe/Andorra"
 msgstr "Europe/Andorre"
 
-#: ../src/ical-code.c:383
+#: ../src/ical-code.c:382
 msgid "Europe/Athens"
 msgstr "Europe/Athene"
 
-#: ../src/ical-code.c:384
+#: ../src/ical-code.c:383
 msgid "Europe/Belfast"
 msgstr "Europe/Belfast"
 
-#: ../src/ical-code.c:385
+#: ../src/ical-code.c:384
 msgid "Europe/Belgrade"
 msgstr "Europe/Belgrade"
 
-#: ../src/ical-code.c:386
+#: ../src/ical-code.c:385
 msgid "Europe/Berlin"
 msgstr "Europe/Berlin"
 
-#: ../src/ical-code.c:387
+#: ../src/ical-code.c:386
 msgid "Europe/Bratislava"
 msgstr "Europe/Bratislava"
 
-#: ../src/ical-code.c:388
+#: ../src/ical-code.c:387
 msgid "Europe/Brussels"
 msgstr "Europe/Bruxelles"
 
-#: ../src/ical-code.c:389
+#: ../src/ical-code.c:388
 msgid "Europe/Bucharest"
 msgstr "Europe/Bucarest"
 
-#: ../src/ical-code.c:390
+#: ../src/ical-code.c:389
 msgid "Europe/Budapest"
 msgstr "Europe/Budapest"
 
-#: ../src/ical-code.c:391
+#: ../src/ical-code.c:390
 msgid "Europe/Chisinau"
 msgstr "Europe/Chisinau"
 
-#: ../src/ical-code.c:392
+#: ../src/ical-code.c:391
 msgid "Europe/Copenhagen"
 msgstr "Europe/Copenhague"
 
-#: ../src/ical-code.c:393
+#: ../src/ical-code.c:392
 msgid "Europe/Dublin"
 msgstr "Europe/Dublin"
 
-#: ../src/ical-code.c:394
+#: ../src/ical-code.c:393
 msgid "Europe/Gibraltar"
 msgstr "Europe/Gibraltar"
 
-#: ../src/ical-code.c:395
+#: ../src/ical-code.c:394
 msgid "Europe/Helsinki"
 msgstr "Europe/Helsinki"
 
-#: ../src/ical-code.c:396
+#: ../src/ical-code.c:395
 msgid "Europe/Istanbul"
 msgstr "Europe/Istanbul"
 
-#: ../src/ical-code.c:397
+#: ../src/ical-code.c:396
 msgid "Europe/Kaliningrad"
 msgstr "Europe/Kaliningrad"
 
-#: ../src/ical-code.c:398
+#: ../src/ical-code.c:397
 msgid "Europe/Kiev"
 msgstr "Europe/Kiev"
 
-#: ../src/ical-code.c:399
+#: ../src/ical-code.c:398
 msgid "Europe/Lisbon"
 msgstr "Europe/Lisbonne"
 
-#: ../src/ical-code.c:400
+#: ../src/ical-code.c:399
 msgid "Europe/Ljubljana"
 msgstr "Europe/Ljubljana"
 
-#: ../src/ical-code.c:401
+#: ../src/ical-code.c:400
 msgid "Europe/London"
 msgstr "Europe/Londres"
 
-#: ../src/ical-code.c:402
+#: ../src/ical-code.c:401
 msgid "Europe/Luxembourg"
 msgstr "Europe/Luxembourg"
 
-#: ../src/ical-code.c:403
+#: ../src/ical-code.c:402
 msgid "Europe/Madrid"
 msgstr "Europe/Madrid"
 
-#: ../src/ical-code.c:404
+#: ../src/ical-code.c:403
 msgid "Europe/Malta"
 msgstr "Europe/Malte"
 
-#: ../src/ical-code.c:405
+#: ../src/ical-code.c:404
 msgid "Europe/Minsk"
 msgstr "Europe/Minsk"
 
-#: ../src/ical-code.c:406
+#: ../src/ical-code.c:405
 msgid "Europe/Monaco"
 msgstr "Europe/Monaco"
 
-#: ../src/ical-code.c:407
+#: ../src/ical-code.c:406
 msgid "Europe/Moscow"
 msgstr "Europe/Moscou"
 
-#: ../src/ical-code.c:408
+#: ../src/ical-code.c:407
 msgid "Europe/Nicosia"
 msgstr "Europe/Nicosie"
 
-#: ../src/ical-code.c:409
+#: ../src/ical-code.c:408
 msgid "Europe/Oslo"
 msgstr "Europe/Oslo"
 
-#: ../src/ical-code.c:410
+#: ../src/ical-code.c:409
 msgid "Europe/Paris"
 msgstr "Europe/Paris"
 
-#: ../src/ical-code.c:411
+#: ../src/ical-code.c:410
 msgid "Europe/Prague"
 msgstr "Europe/Prague"
 
-#: ../src/ical-code.c:412
+#: ../src/ical-code.c:411
 msgid "Europe/Riga"
 msgstr "Europe/Riga"
 
-#: ../src/ical-code.c:413
+#: ../src/ical-code.c:412
 msgid "Europe/Rome"
 msgstr "Europe/Rome"
 
-#: ../src/ical-code.c:414
+#: ../src/ical-code.c:413
 msgid "Europe/Samara"
 msgstr "Europe/Samara"
 
-#: ../src/ical-code.c:415
+#: ../src/ical-code.c:414
 msgid "Europe/San_Marino"
 msgstr "Europe/San_Marin"
 
-#: ../src/ical-code.c:416
+#: ../src/ical-code.c:415
 msgid "Europe/Sarajevo"
 msgstr "Europe/Sarajevo"
 
-#: ../src/ical-code.c:417
+#: ../src/ical-code.c:416
 msgid "Europe/Simferopol"
 msgstr "Europe/Simferopol"
 
-#: ../src/ical-code.c:418
+#: ../src/ical-code.c:417
 msgid "Europe/Skopje"
 msgstr "Europe/Skopje"
 
-#: ../src/ical-code.c:419
+#: ../src/ical-code.c:418
 msgid "Europe/Sofia"
 msgstr "Europe/Sofia"
 
-#: ../src/ical-code.c:420
+#: ../src/ical-code.c:419
 msgid "Europe/Stockholm"
 msgstr "Europe/Stockholm"
 
-#: ../src/ical-code.c:421
+#: ../src/ical-code.c:420
 msgid "Europe/Tallinn"
 msgstr "Europe/Tallinn"
 
-#: ../src/ical-code.c:422
+#: ../src/ical-code.c:421
 msgid "Europe/Tirane"
 msgstr "Europe/Tirana"
 
-#: ../src/ical-code.c:423
+#: ../src/ical-code.c:422
 msgid "Europe/Uzhgorod"
 msgstr "Europe/Oujgorod"
 
-#: ../src/ical-code.c:424
+#: ../src/ical-code.c:423
 msgid "Europe/Vaduz"
 msgstr "Europe/Vaduz"
 
-#: ../src/ical-code.c:425
+#: ../src/ical-code.c:424
 msgid "Europe/Vatican"
 msgstr "Europe/Vatican"
 
-#: ../src/ical-code.c:426
+#: ../src/ical-code.c:425
 msgid "Europe/Vienna"
 msgstr "Europe/Vienne"
 
-#: ../src/ical-code.c:427
+#: ../src/ical-code.c:426
 msgid "Europe/Vilnius"
 msgstr "Europe/Vilnius"
 
-#: ../src/ical-code.c:428
+#: ../src/ical-code.c:427
 msgid "Europe/Warsaw"
 msgstr "Europe/Varsovie"
 
-#: ../src/ical-code.c:429
+#: ../src/ical-code.c:428
 msgid "Europe/Zagreb"
 msgstr "Europe/Zagreb"
 
-#: ../src/ical-code.c:430
+#: ../src/ical-code.c:429
 msgid "Europe/Zaporozhye"
 msgstr "Europe/Zaporijjya"
 
-#: ../src/ical-code.c:431
+#: ../src/ical-code.c:430
 msgid "Europe/Zurich"
 msgstr "Europe/Zurich"
 
-#: ../src/ical-code.c:432
+#: ../src/ical-code.c:431
 msgid "Indian"
 msgstr "Indien"
 
-#: ../src/ical-code.c:433
+#: ../src/ical-code.c:432
 msgid "Indian/Antananarivo"
 msgstr "Indien/Antananarive"
 
-#: ../src/ical-code.c:434
+#: ../src/ical-code.c:433
 msgid "Indian/Chagos"
 msgstr "Indien/Chagos"
 
-#: ../src/ical-code.c:435
+#: ../src/ical-code.c:434
 msgid "Indian/Christmas"
 msgstr "Indien/Christmas"
 
-#: ../src/ical-code.c:436
+#: ../src/ical-code.c:435
 msgid "Indian/Cocos"
 msgstr "Indien/Cocos"
 
-#: ../src/ical-code.c:437
+#: ../src/ical-code.c:436
 msgid "Indian/Comoro"
 msgstr "Indien/Comores"
 
-#: ../src/ical-code.c:438
+#: ../src/ical-code.c:437
 msgid "Indian/Kerguelen"
 msgstr "Indien/Kerguelen"
 
-#: ../src/ical-code.c:439
+#: ../src/ical-code.c:438
 msgid "Indian/Mahe"
 msgstr "Indien/Mahé"
 
-#: ../src/ical-code.c:440
+#: ../src/ical-code.c:439
 msgid "Indian/Maldives"
 msgstr "Indien/Maldives"
 
-#: ../src/ical-code.c:441
+#: ../src/ical-code.c:440
 msgid "Indian/Mauritius"
 msgstr "Indien/Maurice"
 
-#: ../src/ical-code.c:442
+#: ../src/ical-code.c:441
 msgid "Indian/Mayotte"
 msgstr "Indien/Mayotte"
 
-#: ../src/ical-code.c:443
+#: ../src/ical-code.c:442
 msgid "Indian/Reunion"
 msgstr "Indien/Réunion"
 
-#: ../src/ical-code.c:444
+#: ../src/ical-code.c:443
 msgid "Pacific"
 msgstr "Pacifique"
 
-#: ../src/ical-code.c:445
+#: ../src/ical-code.c:444
 msgid "Pacific/Apia"
 msgstr "Pacifique/Apia"
 
-#: ../src/ical-code.c:446
+#: ../src/ical-code.c:445
 msgid "Pacific/Auckland"
 msgstr "Pacifique/Auckland"
 
-#: ../src/ical-code.c:447
+#: ../src/ical-code.c:446
 msgid "Pacific/Chatham"
 msgstr "Pacifique/Chatham"
 
-#: ../src/ical-code.c:448
+#: ../src/ical-code.c:447
 msgid "Pacific/Easter"
 msgstr "Pacifique/Pâques"
 
-#: ../src/ical-code.c:449
+#: ../src/ical-code.c:448
 msgid "Pacific/Efate"
 msgstr "Pacifique/Efate"
 
-#: ../src/ical-code.c:450
+#: ../src/ical-code.c:449
 msgid "Pacific/Enderbury"
 msgstr "Pacifique/Enderbury"
 
-#: ../src/ical-code.c:451
+#: ../src/ical-code.c:450
 msgid "Pacific/Fakaofo"
 msgstr "Pacifique/Fakaofo"
 
-#: ../src/ical-code.c:452
+#: ../src/ical-code.c:451
 msgid "Pacific/Fiji"
 msgstr "Pacifique/Fidji"
 
-#: ../src/ical-code.c:453
+#: ../src/ical-code.c:452
 msgid "Pacific/Funafuti"
 msgstr "Pacifique/Funafuti"
 
-#: ../src/ical-code.c:454
+#: ../src/ical-code.c:453
 msgid "Pacific/Galapagos"
 msgstr "Pacifique/Galapagos"
 
-#: ../src/ical-code.c:455
+#: ../src/ical-code.c:454
 msgid "Pacific/Gambier"
 msgstr "Pacifique/Gambier"
 
-#: ../src/ical-code.c:456
+#: ../src/ical-code.c:455
 msgid "Pacific/Guadalcanal"
 msgstr "Pacifique/Guadalcanal"
 
-#: ../src/ical-code.c:457
+#: ../src/ical-code.c:456
 msgid "Pacific/Guam"
 msgstr "Pacifique/Guam"
 
-#: ../src/ical-code.c:458
+#: ../src/ical-code.c:457
 msgid "Pacific/Honolulu"
 msgstr "Pacifique/Honolulu"
 
-#: ../src/ical-code.c:459
+#: ../src/ical-code.c:458
 msgid "Pacific/Johnston"
 msgstr "Pacifique/Johnston"
 
-#: ../src/ical-code.c:460
+#: ../src/ical-code.c:459
 msgid "Pacific/Kiritimati"
 msgstr "Pacifique/Kiritimati"
 
-#: ../src/ical-code.c:461
+#: ../src/ical-code.c:460
 msgid "Pacific/Kosrae"
 msgstr "Pacifique/Kosrae"
 
-#: ../src/ical-code.c:462
+#: ../src/ical-code.c:461
 msgid "Pacific/Kwajalein"
 msgstr "Pacifique/Kwajalein"
 
-#: ../src/ical-code.c:463
+#: ../src/ical-code.c:462
 msgid "Pacific/Majuro"
 msgstr "Pacifique/Majuro"
 
-#: ../src/ical-code.c:464
+#: ../src/ical-code.c:463
 msgid "Pacific/Marquesas"
 msgstr "Pacifique/Marquises"
 
-#: ../src/ical-code.c:465
+#: ../src/ical-code.c:464
 msgid "Pacific/Midway"
 msgstr "Pacifique/Midway"
 
-#: ../src/ical-code.c:466
+#: ../src/ical-code.c:465
 msgid "Pacific/Nauru"
 msgstr "Pacifique/Nauru"
 
-#: ../src/ical-code.c:467
+#: ../src/ical-code.c:466
 msgid "Pacific/Niue"
 msgstr "Pacifique/Niue"
 
-#: ../src/ical-code.c:468
+#: ../src/ical-code.c:467
 msgid "Pacific/Norfolk"
 msgstr "Pacifique/Norfolk"
 
-#: ../src/ical-code.c:469
+#: ../src/ical-code.c:468
 msgid "Pacific/Noumea"
 msgstr "Pacifique/Nouméa"
 
-#: ../src/ical-code.c:470
+#: ../src/ical-code.c:469
 msgid "Pacific/Pago_Pago"
 msgstr "Pacifique/Pago_Pago"
 
-#: ../src/ical-code.c:471
+#: ../src/ical-code.c:470
 msgid "Pacific/Palau"
 msgstr "Pacifique/Palaos"
 
-#: ../src/ical-code.c:472
+#: ../src/ical-code.c:471
 msgid "Pacific/Pitcairn"
 msgstr "Pacifique/Pitcairn"
 
-#: ../src/ical-code.c:473
+#: ../src/ical-code.c:472
 msgid "Pacific/Ponape"
 msgstr "Pacifique/Ponape"
 
-#: ../src/ical-code.c:474
+#: ../src/ical-code.c:473
 msgid "Pacific/Port_Moresby"
 msgstr "Pacifique/Port_Moresby"
 
-#: ../src/ical-code.c:475
+#: ../src/ical-code.c:474
 msgid "Pacific/Rarotonga"
 msgstr "Pacifique/Rarotonga"
 
-#: ../src/ical-code.c:476
+#: ../src/ical-code.c:475
 msgid "Pacific/Saipan"
 msgstr "Pacifique/Saipan"
 
-#: ../src/ical-code.c:477
+#: ../src/ical-code.c:476
 msgid "Pacific/Tahiti"
 msgstr "Pacifique/Tahiti"
 
-#: ../src/ical-code.c:478
+#: ../src/ical-code.c:477
 msgid "Pacific/Tarawa"
 msgstr "Pacifique/Tarawa"
 
-#: ../src/ical-code.c:479
+#: ../src/ical-code.c:478
 msgid "Pacific/Tongatapu"
 msgstr "Pacifique/Tongatapu"
 
-#: ../src/ical-code.c:480
+#: ../src/ical-code.c:479
 msgid "Pacific/Truk"
 msgstr "Pacifique/Truk"
 
-#: ../src/ical-code.c:481
+#: ../src/ical-code.c:480
 msgid "Pacific/Wake"
 msgstr "Pacifique/Wake"
 
-#: ../src/ical-code.c:482
+#: ../src/ical-code.c:481
 msgid "Pacific/Wallis"
 msgstr "Pacifique/Wallis"
 
-#: ../src/ical-code.c:483
+#: ../src/ical-code.c:482
 msgid "Pacific/Yap"
 msgstr "Pacifique/Yap"
 
-#: ../src/ical-code.c:1222
+#: ../src/ical-code.c:1223
 msgid "Orage default alarm"
 msgstr "Alarme Orage par défaut"
 
-#: ../src/main.c:206
+#: ../src/main.c:214
 msgid "This should not happen"
 msgstr "Cela ne devrait pas arriver"
 
-#: ../src/main.c:502
+#: ../src/main.c:510
 msgid "Cannot create MCS client channel"
 msgstr "Impossible de créer un canal client MCS"
 
-#: ../src/mainbox.c:412
+#: ../src/mainbox.c:428
 msgid "Open archive file..."
 msgstr "Ouvrir un fichier archive..."
 
-#: ../src/mainbox.c:415
+#: ../src/mainbox.c:431
 msgid "Close archive file"
 msgstr "Fermer un fichier archive"
 
 #. Edit menu
-#: ../src/mainbox.c:430
+#: ../src/mainbox.c:446
 msgid "_Edit"
 msgstr "_Éditer"
 
-#: ../src/mainbox.c:440
+#: ../src/mainbox.c:456
 msgid "View selected _date"
 msgstr "Voir la _date choisie"
 
-#: ../src/mainbox.c:446
+#: ../src/mainbox.c:462
 msgid "Select _Today"
 msgstr "Choisir _Aujourd'hui"
 
 #. Help menu
-#: ../src/mainbox.c:450
+#: ../src/mainbox.c:466
 msgid "_Help"
 msgstr "_Aide"
 
@@ -2267,11 +2244,11 @@ msgstr ""
 "\n"
 "Pas d'alarmes actives"
 
-#: ../src/tray_icon.c:316
+#: ../src/tray_icon.c:308
 msgid "New appointment"
 msgstr "Nouveau rendez-vous"
 
-#: ../src/tray_icon.c:336
+#: ../src/tray_icon.c:328
 msgid "About Orage"
 msgstr "À propos d'Orage"
 
@@ -2302,4 +2279,3 @@ msgstr "Calendrier"
 #: ../xfcalendar.desktop.in.h:2
 msgid "Desktop calendar"
 msgstr "Calendrier du bureau"
-
