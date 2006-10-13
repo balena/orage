@@ -46,22 +46,24 @@
 
 static void utf8_strftime(char *res, int res_l, char *format, struct tm *tm)
 {
-    char *utf8res = NULL;
+    char *tmp = NULL;
 
     /* strftime is nasty. It returns formatted characters (%A...) in utf8
      * but it does not convert plain characters so they will be in locale 
-     * charset.
-     * We need to convert all formatting text first into utf8 to make
-     * sure all plain characters are also in utf8. Only that way, we can 
-     * be sure that all characters returned into res are in utf8 no matter
-     * what format is used */
-    strftime(res, res_l, g_locale_from_utf8(format, -1, NULL, NULL, NULL), tm);
+     * charset. 
+     * It expects format to be in locale charset, so we need to convert 
+     * that first (it may contain utf8).
+     * We need then convert the results finally to utf8.
+     * */
+    tmp = g_locale_from_utf8(format, -1, NULL, NULL, NULL);
+    strftime(res, res_l, tmp, tm);
+    g_free(tmp);
     /* Then convert to utf8 if needed */
     if (!g_utf8_validate(res, -1, NULL)) {
-        utf8res = g_locale_to_utf8(res, -1, NULL, NULL, NULL);
-        if (utf8res) {
-            g_strlcpy(res, utf8res, res_l);
-            g_free(utf8res);
+        tmp = g_locale_to_utf8(res, -1, NULL, NULL, NULL);
+        if (tmp) {
+            g_strlcpy(res, tmp, res_l);
+            g_free(tmp);
         }
     }
 }
