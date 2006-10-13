@@ -44,82 +44,62 @@
  *                               Clock                                  *
  * -------------------------------------------------------------------- */
 
-
-static gboolean oc_date_tooltip(Clock *clock)
+static void utf8_strftime(char *res, int res_l, char *format, struct tm *tm)
 {
-    char date_s[255];
-    char *utf8date = NULL;
+    char *utf8res = NULL;
 
-    /* TRANSLATORS: Use format characters from strftime(3)
-     * to get the proper string for your locale.
-     * I used these:
-     * %A  : full weekday name
-     * %d  : day of the month
-     * %B  : full month name
-     * %Y  : four digit year
-     * %V  : ISO week number
-     */
-    strftime(date_s, 255
-            , g_locale_from_utf8( _("%A %d %B %Y/%V"), -1, NULL, NULL, NULL)
-            , &clock->now);
-
-    /* Conversion to utf8 */
-    if (!g_utf8_validate(date_s, -1, NULL)) {
-        utf8date = g_locale_to_utf8(date_s, -1, NULL, NULL, NULL);
+    /* strftime is nasty. It returns formatted characters (%A...) in utf8
+     * but it does not convert plain characters so they will be in locale 
+     * charset.
+     * We need to convert all formatting text first into utf8 to make
+     * sure all plain characters are also in utf8. Only that way, we can 
+     * be sure that all characters returned into res are in utf8 no matter
+     * what format is used */
+    strftime(res, res_l, g_locale_from_utf8(format, -1, NULL, NULL, NULL), tm);
+    /* Then convert to utf8 if needed */
+    if (!g_utf8_validate(res, -1, NULL)) {
+        utf8res = g_locale_to_utf8(res, -1, NULL, NULL, NULL);
+        if (utf8res) {
+            g_strlcpy(res, utf8res, res_l);
+            g_free(utf8res);
+        }
     }
+}
 
-    if (utf8date) {
-        gtk_tooltips_set_tip(clock->tips, GTK_WIDGET(clock->plugin), 
-                utf8date, NULL);
-        g_free(utf8date);
-    }
-    else {
-        gtk_tooltips_set_tip(clock->tips, GTK_WIDGET(clock->plugin), 
-                date_s, NULL);
-    }
+static void oc_tooltip_set(Clock *clock)
+{
+    char res[OC_MAX_LINE_LENGTH-1];
 
-    return(TRUE);
+    utf8_strftime(res, sizeof(res), clock->tooltip_data->str, &clock->now);
+    if (strcmp(res,  clock->tooltip_prev)) {
+        gtk_tooltips_set_tip(clock->tips, GTK_WIDGET(clock->plugin),res, NULL);
+        strcpy(clock->tooltip_prev, res);
+    }
 }
 
 static gboolean oc_get_time(Clock *clock)
 {
     time_t  t;
-    char    time_s[OC_MAX_LINE_LENGTH-1];
-    char    *utf8time_s = NULL;
+    char    res[OC_MAX_LINE_LENGTH-1];
     int     i;
-    static gint mday = -1;
     ClockLine *line;
 
     time(&t);
     localtime_r(&t, &clock->now);
-
     for (i = 0; i < OC_MAX_LINES; i++) {
         line = &clock->line[i];
         if (line->show) {
-            strftime(time_s, sizeof(time_s)
-                    , g_locale_from_utf8(line->data->str, -1, NULL, NULL, NULL)
-                    , &clock->now);
-            if (!g_utf8_validate(time_s, -1, NULL)) {
-                utf8time_s = g_locale_to_utf8(time_s, -1, NULL, NULL, NULL);
-                if (utf8time_s) {
-                    g_strlcpy(time_s, utf8time_s, sizeof(time_s));
-                    g_free(utf8time_s);
-                }
-            }
+            utf8_strftime(res, sizeof(res), line->data->str, &clock->now);
             /* gtk_label_set_text call takes almost
              * 100 % of the time wasted in this procedure 
              * */
-            if (strcmp(time_s,  line->prev)) {
-                gtk_label_set_text(GTK_LABEL(line->label), time_s);
-                strcpy(line->prev, time_s);
+            if (strcmp(res,  line->prev)) {
+                gtk_label_set_text(GTK_LABEL(line->label), res);
+                strcpy(line->prev, res);
             }
         }
     }
-
-    if (mday != clock->now.tm_mday) {
-        oc_date_tooltip(clock);
-        mday = clock->now.tm_mday;
-    }
+    oc_tooltip_set(clock);
 
     return(TRUE);
 }
@@ -305,6 +285,9 @@ static void oc_read_rc_file(XfcePanelPlugin *plugin, Clock *clock)
         }
     }
 
+    if (ret = xfce_rc_read_entry(rc, "tooltip", NULL))
+        g_string_assign(clock->tooltip_data, ret); 
+
     xfce_rc_close(rc);
 }
 
@@ -382,6 +365,8 @@ void oc_write_rc_file(XfcePanelPlugin *plugin, Clock *clock)
         }
     }
 
+    xfce_rc_write_entry(rc, "tooltip",  clock->tooltip_data->str);
+
     xfce_rc_close(rc);
 }
 
@@ -422,6 +407,17 @@ Clock *orage_oc_new(XfcePanelPlugin *plugin)
         clock->line[i].data = g_string_new(data_init[i]);
         clock->line[i].font = g_string_new("");
     }
+
+    /* TRANSLATORS: Use format characters from strftime(3)
+     * to get the proper string for your locale.
+     * I used these:
+     * %A  : full weekday name
+     * %d  : day of the month
+     * %B  : full month name
+     * %Y  : four digit year
+     * %V  : ISO week number
+     */
+    clock->tooltip_data = g_string_new(_("%A %d %B %Y/%V"));
 
     clock->tips = gtk_tooltips_new();
     g_object_ref(clock->tips);

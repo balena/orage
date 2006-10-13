@@ -194,7 +194,7 @@ static void oc_properties_appearance(GtkWidget *dlg, Clock *clock)
     gtk_container_set_border_width(GTK_CONTAINER(frame), 6);
     gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), frame, FALSE, FALSE, 0);
     
-    table = gtk_table_new(5, 2, FALSE);
+    table = gtk_table_new(3, 4, FALSE);
     gtk_container_set_border_width(GTK_CONTAINER(table), 10);
     gtk_table_set_row_spacings(GTK_TABLE(table), 6);
     gtk_table_set_col_spacings(GTK_TABLE(table), 6);
@@ -226,7 +226,7 @@ static void oc_properties_appearance(GtkWidget *dlg, Clock *clock)
 
     /* background color */
     cb = gtk_check_button_new_with_mnemonic(_("set _background color:"));
-    oc_table_add(table, cb, 0, 2);
+    oc_table_add(table, cb, 2, 1);
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(cb), clock->bg_set);
     g_signal_connect(cb, "toggled", G_CALLBACK(oc_set_bg_toggled), clock);
 
@@ -234,17 +234,17 @@ static void oc_properties_appearance(GtkWidget *dlg, Clock *clock)
         clock->bg = def_bg;
     }
     color = gtk_color_button_new_with_color(&clock->bg);
-    oc_table_add(table, color, 1, 2);
+    oc_table_add(table, color, 3, 1);
     g_signal_connect(G_OBJECT(color), "color-set"
             , G_CALLBACK(oc_bg_color_changed), clock);
 
     /* clock size (=vbox size): height and width */
     cb = gtk_check_button_new_with_mnemonic(_("set _height:"));
-    oc_table_add(table, cb, 0, 3);
+    oc_table_add(table, cb, 0, 2);
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(cb), clock->height_set);
     g_signal_connect(cb, "toggled", G_CALLBACK(oc_set_height_toggled), clock);
     sb = gtk_spin_button_new_with_range(10, 200, 1);
-    oc_table_add(table, sb, 1, 3);
+    oc_table_add(table, sb, 1, 2);
     if (!clock->height_set)
         clock->height = 32;
     gtk_spin_button_set_value(GTK_SPIN_BUTTON(sb), (gdouble)clock->height);
@@ -252,11 +252,11 @@ static void oc_properties_appearance(GtkWidget *dlg, Clock *clock)
             G_CALLBACK(oc_set_height_changed), clock);
 
     cb = gtk_check_button_new_with_mnemonic(_("set _width:"));
-    oc_table_add(table, cb, 0, 4);
+    oc_table_add(table, cb, 2, 2);
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(cb), clock->width_set);
     g_signal_connect(cb, "toggled", G_CALLBACK(oc_set_width_toggled), clock);
     sb = gtk_spin_button_new_with_range(10, 400, 1);
-    oc_table_add(table, sb, 1, 4);
+    oc_table_add(table, sb, 3, 2);
 
     if (!clock->width_set)
         clock->width = 70;
@@ -276,7 +276,7 @@ static void oc_properties_options(GtkWidget *dlg, Clock *clock)
     gtk_container_set_border_width(GTK_CONTAINER(frame), 6);
     gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), frame, FALSE, FALSE, 0);
 
-    table = gtk_table_new(4, 3, FALSE);
+    table = gtk_table_new(5, 3, FALSE);
     gtk_container_set_border_width(GTK_CONTAINER(table), 10);
     gtk_table_set_row_spacings(GTK_TABLE(table), 6);
     gtk_table_set_col_spacings(GTK_TABLE(table), 6);
@@ -371,7 +371,17 @@ static void oc_properties_options(GtkWidget *dlg, Clock *clock)
     g_signal_connect(G_OBJECT(font), "font-set"
             , G_CALLBACK(oc_line_font_changed3), clock);
 
-    /* hints */
+    /* Tooltip hint */
+    label = gtk_label_new(_("Tooltip:"));
+    oc_table_add(table, label, 0, 4);
+
+    entry = gtk_entry_new();
+    gtk_entry_set_text(GTK_ENTRY(entry), clock->tooltip_data->str); 
+    oc_table_add(table, entry, 1, 4);
+    g_signal_connect(entry, "key-release-event", G_CALLBACK(oc_line_changed)
+            , clock->tooltip_data);
+
+    /* Instructions */
     hbox = gtk_hbox_new(FALSE, 0);
     gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), hbox, FALSE, FALSE, 6);
 
