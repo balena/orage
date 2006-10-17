@@ -292,7 +292,7 @@ static void cb_archive_file_open_button_clicked (GtkButton *button, gpointer use
     /* this should actually never happen since we give default value in
      * creating the channel
      */
-        g_warning("orage: archive file missing");
+        g_warning("Archive file missing");
         gtk_file_chooser_set_current_folder(GTK_FILE_CHOOSER(file_chooser)
                 , rcfile);
     }
@@ -376,7 +376,7 @@ static void cb_timezone_button_clicked (GtkButton *button, gpointer user_data)
     fpath = g_strconcat(DATADIR, G_DIR_SEPARATOR_S, "zoneinfo"
                         G_DIR_SEPARATOR_S, "zones.tab", NULL);
     if ((fp = fopen(fpath, "r")) == NULL) {
-        g_warning("Orage: Unable to open timezones %s", fpath);
+        g_warning("Unable to open timezones %s", fpath);
         return;
     }
  
@@ -384,7 +384,7 @@ static void cb_timezone_button_clicked (GtkButton *button, gpointer user_data)
     strcpy(area_old, "S T a R T");
     while (fgets(buf, MAX_BUFF_LENGTH, fp) != NULL) {
         if (sscanf(buf, "%d %d %s", &latitude, &longitude, tz) != 3) {
-            g_warning("Orage: Malformed timezones 1 %s (%s)", fpath, buf);
+            g_warning("Malformed timezones 1 %s (%s)", fpath, buf);
             return;
         }
         /* first area */
@@ -393,7 +393,7 @@ static void cb_timezone_button_clicked (GtkButton *button, gpointer user_data)
                 area_old[j] = tz[j];
             }
             if (j >= MAX_AREA_LENGTH) {
-                g_warning("Orage: Malformed timezones 2 %s (%s)", fpath, tz);
+                g_warning("Malformed timezones 2 %s (%s)", fpath, tz);
                 return;
             }
             area_old[j] = 0;
@@ -440,6 +440,10 @@ static void cb_timezone_button_clicked (GtkButton *button, gpointer user_data)
     gtk_window_set_default_size(GTK_WINDOW(window), 300, 500);
                                                                              
     gtk_widget_show_all(window);
+    if (local_timezone == NULL || strlen(local_timezone) == 0) {
+        g_warning("local timezone missing");
+        local_timezone = g_strdup("floating");
+    }
     do {
         result = gtk_dialog_run(GTK_DIALOG(window));
         switch (result) {
@@ -454,9 +458,8 @@ static void cb_timezone_button_clicked (GtkButton *button, gpointer user_data)
                                 , -1); 
                     }
                 else {
-                    loc = g_strdup(gtk_button_get_label(GTK_BUTTON(button)));
-                    loc_eng = g_object_get_data(G_OBJECT(button)
-                            , "LOCATION_ENG");
+                loc = g_strdup(_(local_timezone));
+                loc_eng = g_strdup(local_timezone);
                 }
                 break;
             case 1:
@@ -468,20 +471,19 @@ static void cb_timezone_button_clicked (GtkButton *button, gpointer user_data)
                 loc_eng = g_strdup("floating");
                 break;
             default:
-                loc = g_strdup(gtk_button_get_label(GTK_BUTTON(button)));
-                loc_eng = g_object_get_data(G_OBJECT(button), "LOCATION_ENG");
+                loc = g_strdup(_(local_timezone));
+                loc_eng = g_strdup(local_timezone);
                 break;
         }
     } while (result == 0) ;
     gtk_button_set_label(GTK_BUTTON(button), loc);
 
-    if ((local_timezone = g_object_get_data(G_OBJECT(button), "LOCATION_ENG")))
+    if (local_timezone)
         g_free(local_timezone);
     local_timezone = g_strdup(loc_eng);
-    g_object_set_data(G_OBJECT(button), "LOCATION_ENG", loc_eng);
 
     mcs_manager_set_string(mcs_plugin->manager, "orage/Timezone", CHANNEL
-            , loc_eng);
+            , local_timezone);
     post_to_mcs(mcs_plugin);
 
     g_free(loc);
@@ -741,14 +743,11 @@ Itf *create_orage_dialog(McsPlugin * mcs_plugin)
     if (local_timezone) {
         gtk_button_set_label(GTK_BUTTON(dialog->timezone_button)
                 , _(local_timezone));
-        g_object_set_data(G_OBJECT(dialog->timezone_button), "LOCATION_ENG"
-                , local_timezone);
     }
     else {
+        local_timezone = g_strdup("floating");
         gtk_button_set_label(GTK_BUTTON(dialog->timezone_button)
                 , _("floating"));
-        g_object_set_data(G_OBJECT(dialog->timezone_button), "LOCATION_ENG"
-                , "floating");
     }
 
     gtk_table_attach (GTK_TABLE (dialog->timezone_table)
@@ -920,16 +919,21 @@ static void create_channel(McsPlugin * mcs_plugin)
     }
 
     setting = mcs_manager_setting_lookup(mcs_plugin->manager, "orage/Timezone", CHANNEL);
-    if(setting)
-    {
+    if(setting) {
         if (local_timezone)
             g_free(local_timezone);
         local_timezone = g_strdup(setting->data.v_string);
     }
-    else 
-    {
+    else {
         if (local_timezone)
             g_free(local_timezone);
+        /* FIXME: we would need better default here, but not trivial since
+         * 1) different sources are used in different ways, like /etc/timezone
+         *    or /etc/localtime to TZ
+         * 2) we need to make sure that operating system default is good for
+         *    ical also. Ical does not have all cities and it totally lacks 
+         *    CET, GMT, etc...
+         */
         local_timezone=g_strdup("floating");
         mcs_manager_set_string(mcs_plugin->manager, "orage/Timezone", CHANNEL, local_timezone);
     }
