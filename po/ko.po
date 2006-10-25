@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: xfcalendar 4.3.99.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-10-13 18:52+0300\n"
-"PO-Revision-Date: 2005-09-14 01:03+0900\n"
-"Last-Translator: ByungHyun Choi<byunghyunchoi@hotmail.com>\n"
+"PO-Revision-Date: 2006-10-20 12:59+0900\n"
+"Last-Translator: ByungHyun Choi<byunghyunchoi@debianusers.org>\n"
 "Language-Team: xfce4-users-kr-i18n <xfce4-users-kr-i18n@lists.sourceforge."
 "net>\n"
 "MIME-Version: 1.0\n"
@@ -18,48 +18,48 @@ msgstr ""
 
 #: ../panel-plugin/oc_config.c:114
 msgid "Select timezone"
-msgstr ""
+msgstr "시간대 설정"
 
 #: ../panel-plugin/oc_config.c:193
 msgid "Appearance"
-msgstr ""
+msgstr "겉 모양"
 
 #. show frame
 #: ../panel-plugin/oc_config.c:204
 msgid "Show _frame"
-msgstr ""
+msgstr "틀보이기(_f)"
 
 #. foreground color
 #: ../panel-plugin/oc_config.c:214
 msgid "set foreground _color:"
-msgstr ""
+msgstr "글자색(_c)"
 
 #. background color
 #: ../panel-plugin/oc_config.c:228
 msgid "set _background color:"
-msgstr ""
+msgstr "바탕색(_b)"
 
 #. clock size (=vbox size): height and width
 #: ../panel-plugin/oc_config.c:242
 msgid "set _height:"
-msgstr ""
+msgstr "높이(_h)"
 
 #: ../panel-plugin/oc_config.c:254
 msgid "set _width:"
-msgstr ""
+msgstr "폭(_w)"
 
 #: ../panel-plugin/oc_config.c:275
 msgid "Clock Options"
-msgstr ""
+msgstr "시계 선택사항"
 
 #. timezone
 #: ../panel-plugin/oc_config.c:286
 msgid "set timezone to:"
-msgstr ""
+msgstr "시간대 설정:"
 
 #: ../panel-plugin/oc_config.c:295
 msgid "Set any valid timezone (=TZ) value or pick one from the list."
-msgstr ""
+msgstr "시간대 코드(TZ)를 입력하시거나 아래 목록에서 선택하십시오."
 
 #. line 1
 #: ../panel-plugin/oc_config.c:304
@@ -68,7 +68,7 @@ msgstr ""
 
 #: ../panel-plugin/oc_config.c:315
 msgid "Enter any valid strftime function parameter."
-msgstr ""
+msgstr "strftime 함수의 파라미터를 입력하시면 됩니다."
 
 #. line 2
 #: ../panel-plugin/oc_config.c:331
@@ -83,7 +83,7 @@ msgstr ""
 #. Tooltip hint
 #: ../panel-plugin/oc_config.c:375
 msgid "Tooltip:"
-msgstr ""
+msgstr "힌트"
 
 #: ../panel-plugin/oc_config.c:392
 msgid ""
@@ -96,14 +96,22 @@ msgid ""
 "\t%H = hours \t\t\t\t%M = minute\n"
 "\t%X = local time\t\t\t%x = local date"
 msgstr ""
+"이 프로그램은 strftime()함수를 이용하여 시간을 나타냅니다.\n"
+"시간표시 코드를 이용하여 원하는 형식으로 시간을 표시하십시오.\n"
+"다음은 자주 사용하는 코드입니다.:\n"
+"\t%A = 요일\t\t\t%B = 월\n"
+"\t%c = 날짜와 시간\t\t%R = 시분\n"
+"\t%V = 요일(숫자)\t\t%Z = 현재 시간대\n"
+"\t%H = 시 \t\t\t\t%M = 분\n"
+"\t%X = 현지 시간\t\t\t%x = 현지 날짜"
 
 #: ../panel-plugin/oc_config.c:411
 msgid "Properties"
-msgstr ""
+msgstr "속성"
 
 #: ../panel-plugin/oc_config.c:426
 msgid "Orage clock"
-msgstr ""
+msgstr "Orage 시계"
 
 #. TRANSLATORS: Use format characters from strftime(3)
 #. * to get the proper string for your locale.
@@ -116,147 +124,142 @@ msgstr ""
 #.
 #: ../panel-plugin/orageclock.c:420
 msgid "%A %d %B %Y/%V"
-msgstr ""
+msgstr "%Y-%m-%d %A/%V"
 
 #. to avoid timing problems when updating entry
 #. Create file chooser
 #: ../plugin/xfcalendar_plugin.c:263 ../plugin/xfcalendar_plugin.c:321
 #: ../src/appointment.c:383 ../src/mainbox.c:114
 msgid "Select a file..."
-msgstr ""
+msgstr "화일을 선택하시지요."
 
 #: ../plugin/xfcalendar_plugin.c:271 ../src/mainbox.c:122
-#, fuzzy
 msgid "Calendar files"
-msgstr "달력"
+msgstr "달력 화일"
 
 #: ../plugin/xfcalendar_plugin.c:276 ../src/appointment.c:398
 #: ../src/mainbox.c:127
 msgid "All Files"
-msgstr ""
+msgstr "모든 화일"
 
 #: ../plugin/xfcalendar_plugin.c:419 ../plugin/xfcalendar_plugin.c:424
 #: ../src/appointment.c:917 ../src/appointment.c:922 ../src/appointment.c:1438
 msgid "Location"
-msgstr ""
+msgstr "위치"
 
 #. show it
 #: ../plugin/xfcalendar_plugin.c:430
 msgid "Pick local timezone"
-msgstr ""
+msgstr "현지 시간대 선택"
 
 #: ../plugin/xfcalendar_plugin.c:433 ../plugin/xfcalendar_plugin.c:463
 #: ../src/appointment.c:931 ../src/appointment.c:961
 msgid "UTC"
-msgstr ""
+msgstr "UTC"
 
 #: ../plugin/xfcalendar_plugin.c:434 ../plugin/xfcalendar_plugin.c:467
 #: ../plugin/xfcalendar_plugin.c:749 ../src/appointment.c:932
 #: ../src/appointment.c:965 ../src/appointment.c:1001
 #: ../src/appointment.c:1009
 msgid "floating"
-msgstr ""
+msgstr "모름"
 
 #: ../plugin/xfcalendar_plugin.c:528
-#, fuzzy
 msgid "Orage Preferences"
-msgstr "속성"
+msgstr "Orage 속성"
 
 #: ../plugin/xfcalendar_plugin.c:546
 msgid "Display"
-msgstr ""
+msgstr "표시"
 
 #: ../plugin/xfcalendar_plugin.c:553
-#, fuzzy
 msgid "Calendar borders"
-msgstr "달력"
+msgstr "달력 틀"
 
 #: ../plugin/xfcalendar_plugin.c:558
 msgid "Displayed"
-msgstr ""
+msgstr "보여줌"
 
 #: ../plugin/xfcalendar_plugin.c:564
 msgid "Hidden"
-msgstr ""
+msgstr "숨김"
 
 #: ../plugin/xfcalendar_plugin.c:573
-#, fuzzy
 msgid "Calendar window"
-msgstr "창 닫기(_C)"
+msgstr "달력 창"
 
 #: ../plugin/xfcalendar_plugin.c:578
 msgid "Show in taskbar"
-msgstr ""
+msgstr "태스크바에 보이기"
 
 #: ../plugin/xfcalendar_plugin.c:582
 msgid "Show in pager"
-msgstr ""
+msgstr "페이저에 보이기"
 
 #: ../plugin/xfcalendar_plugin.c:586
 msgid "Show in systray"
-msgstr ""
+msgstr "트레이에 보이기"
 
 #: ../plugin/xfcalendar_plugin.c:593
-#, fuzzy
 msgid "Calendar start"
-msgstr "달력"
+msgstr "달력 시작"
 
 #: ../plugin/xfcalendar_plugin.c:598
 msgid "Show"
-msgstr ""
+msgstr "보여줌"
 
 #: ../plugin/xfcalendar_plugin.c:604
 msgid "Hide"
-msgstr ""
+msgstr "숨김"
 
 #: ../plugin/xfcalendar_plugin.c:610
 msgid "Minimized"
-msgstr ""
+msgstr "최소화"
 
 #: ../plugin/xfcalendar_plugin.c:620
 msgid "Archives"
-msgstr ""
+msgstr "압축"
 
 #: ../plugin/xfcalendar_plugin.c:631
 msgid "Archive file"
-msgstr ""
+msgstr "압축화일"
 
 #: ../plugin/xfcalendar_plugin.c:653
 msgid "Archive threshold"
-msgstr ""
+msgstr "압축 기준"
 
 #: ../plugin/xfcalendar_plugin.c:660
 msgid "3 months"
-msgstr ""
+msgstr "3 달"
 
 #: ../plugin/xfcalendar_plugin.c:662
 msgid "6 months"
-msgstr ""
+msgstr "6 달"
 
 #: ../plugin/xfcalendar_plugin.c:664
 msgid "1 year"
-msgstr ""
+msgstr "1 년"
 
 #: ../plugin/xfcalendar_plugin.c:666
 msgid "never"
-msgstr ""
+msgstr "안함"
 
 #: ../plugin/xfcalendar_plugin.c:694 ../src/appointment.c:1588
 msgid "Sound"
-msgstr ""
+msgstr "소리"
 
 #: ../plugin/xfcalendar_plugin.c:705
 msgid "Application"
-msgstr ""
+msgstr "프로그램"
 
 #: ../plugin/xfcalendar_plugin.c:725 ../plugin/xfcalendar_plugin.c:735
 msgid "Timezone"
-msgstr ""
+msgstr "시간대"
 
 #. the button label in the xfce-mcs-manager dialog
 #: ../plugin/xfcalendar_plugin.c:800
 msgid "Button Label|Orage"
-msgstr ""
+msgstr "Orage"
 
 #: ../src/about-xfcalendar.c:40
 msgid "Manage your time with Xfce4"
@@ -272,15 +275,15 @@ msgstr "도와주신 분들"
 
 #: ../src/appointment.c:99 ../src/appointment.c:116
 msgid "%m/%d/%Y"
-msgstr ""
+msgstr "%Y-%m-%d"
 
 #: ../src/appointment.c:279 ../src/mainbox.c:396 ../xfcalendar.desktop.in.h:3
 msgid "Orage"
-msgstr ""
+msgstr "Orage"
 
 #: ../src/appointment.c:391
 msgid "Sound Files"
-msgstr ""
+msgstr "소리 화일"
 
 #: ../src/appointment.c:439 ../src/appointment.c:474 ../src/appointment.c:719
 #: ../src/event-list.c:581
@@ -288,27 +291,25 @@ msgid "Warning"
 msgstr "경고"
 
 #: ../src/appointment.c:441
-#, fuzzy
 msgid "The appointment information has been modified."
 msgstr ""
-"정보를 변경하셨습니다.\n"
-" 계속 진행하실렵니까?"
+"일정을 변경하셨습니다."
 
 #: ../src/appointment.c:442 ../src/appointment.c:722 ../src/event-list.c:584
 msgid "Do you want to continue?"
-msgstr ""
+msgstr " 계속 진행하실렵니까?"
 
 #: ../src/appointment.c:476
 msgid "The end of this appointment is earlier than the beginning."
-msgstr ""
+msgstr "일정의 마지막이 시작보다 전입니다."
 
 #: ../src/appointment.c:721
 msgid "This appointment will be permanently removed."
-msgstr ""
+msgstr "이 일정은 완전히 삭제됩니다."
 
 #: ../src/appointment.c:822
 msgid "Pick the date"
-msgstr ""
+msgstr "날짜 선택"
 
 #: ../src/appointment.c:824 ../src/event-list.c:722 ../src/tray_icon.c:297
 msgid "Today"
@@ -317,12 +318,11 @@ msgstr "오늘"
 #. show it
 #: ../src/appointment.c:928
 msgid "Pick timezone"
-msgstr ""
+msgstr "시간대 선택"
 
 #: ../src/appointment.c:1194
-#, fuzzy
 msgid "New appointment - Orage"
-msgstr "약속"
+msgstr "새로운 일정 - Orage"
 
 #. File menu stuff
 #. File menu
@@ -332,76 +332,75 @@ msgstr "화일(_F)"
 
 #: ../src/appointment.c:1336
 msgid "Sav_e and close"
-msgstr ""
+msgstr "저장후 종료(_e)"
 
 #: ../src/appointment.c:1349 ../src/event-list.c:657
 msgid "D_uplicate"
-msgstr ""
+msgstr "복사(_u)"
 
 #: ../src/appointment.c:1390
 msgid "Save"
-msgstr ""
+msgstr "저장"
 
 #: ../src/appointment.c:1393 ../src/appointment.c:1395
 msgid "Save and close"
-msgstr ""
+msgstr "저장후 종료"
 
 #: ../src/appointment.c:1402
 msgid "Revert"
-msgstr ""
+msgstr "되돌리기"
 
 #: ../src/appointment.c:1405 ../src/appointment.c:1407 ../src/event-list.c:734
 msgid "Duplicate"
-msgstr ""
+msgstr "복사"
 
 #: ../src/appointment.c:1413
 msgid "Delete"
-msgstr ""
+msgstr "삭제"
 
 #: ../src/appointment.c:1421
 msgid "Free"
-msgstr ""
+msgstr "여유"
 
 #: ../src/appointment.c:1421
 msgid "Busy"
-msgstr ""
+msgstr "바쁨"
 
 #: ../src/appointment.c:1426
 msgid "General"
-msgstr ""
+msgstr "일반"
 
 #: ../src/appointment.c:1431
 msgid "Title "
-msgstr ""
+msgstr "제목"
 
 #: ../src/appointment.c:1446
 msgid "All day event"
-msgstr ""
+msgstr "하루 종일"
 
 #: ../src/appointment.c:1452
 msgid "Start"
-msgstr ""
+msgstr "시작"
 
 #: ../src/appointment.c:1467
 msgid "End"
-msgstr ""
+msgstr "끝"
 
 #: ../src/appointment.c:1484
 msgid "Duration"
-msgstr ""
+msgstr "기간"
 
 #: ../src/appointment.c:1491 ../src/appointment.c:1565
-#, fuzzy
 msgid "days"
-msgstr "오늘"
+msgstr "일"
 
 #: ../src/appointment.c:1500 ../src/appointment.c:1573
 msgid "hours"
-msgstr ""
+msgstr "시간"
 
 #: ../src/appointment.c:1509 ../src/appointment.c:1581
 msgid "mins"
-msgstr ""
+msgstr "분"
 
 #: ../src/appointment.c:1517
 msgid "Availability"
@@ -409,83 +408,83 @@ msgstr ""
 
 #: ../src/appointment.c:1526
 msgid "Note"
-msgstr ""
+msgstr "메모"
 
 #: ../src/appointment.c:1554 ../src/appointment.c:1559
 msgid "Alarm"
-msgstr ""
+msgstr "알리미"
 
 #: ../src/appointment.c:1603
 msgid "Repeat alarm sound"
-msgstr ""
+msgstr "알리미 소리 반복"
 
 #: ../src/appointment.c:1615
 msgid "None"
-msgstr ""
+msgstr "없음"
 
 #: ../src/appointment.c:1615
 msgid "Daily"
-msgstr ""
+msgstr "매일"
 
 #: ../src/appointment.c:1615
 msgid "Weekly"
-msgstr ""
+msgstr "매주"
 
 #: ../src/appointment.c:1615
 msgid "Monthly"
-msgstr ""
+msgstr "매달"
 
 #: ../src/appointment.c:1615
 msgid "Yearly"
-msgstr ""
+msgstr "매년"
 
 #: ../src/appointment.c:1617
 msgid "Mon"
-msgstr ""
+msgstr "월"
 
 #: ../src/appointment.c:1617
 msgid "Tue"
-msgstr ""
+msgstr "화"
 
 #: ../src/appointment.c:1617
 msgid "Wed"
-msgstr ""
+msgstr "수"
 
 #: ../src/appointment.c:1617
 msgid "Thu"
-msgstr ""
+msgstr "목"
 
 #: ../src/appointment.c:1617
 msgid "Fri"
-msgstr ""
+msgstr "금"
 
 #: ../src/appointment.c:1617
 msgid "Sat"
-msgstr ""
+msgstr "토"
 
 #: ../src/appointment.c:1617
 msgid "Sun"
-msgstr ""
+msgstr "일"
 
 #: ../src/appointment.c:1622
 msgid "Recurrence"
-msgstr ""
+msgstr "반복"
 
 #: ../src/appointment.c:1627
 msgid "Complexity"
-msgstr ""
+msgstr "반복정도"
 
 #: ../src/appointment.c:1630
 msgid "Basic"
-msgstr ""
+msgstr "단순"
 
 #: ../src/appointment.c:1636
 msgid "Advanced"
-msgstr ""
+msgstr "복잡"
 
 #: ../src/appointment.c:1644
 msgid "Use this if you want regular repeating event"
-msgstr ""
+msgstr "주기적으로 반복되는 이벤트에 사용하십시오."
 
 #: ../src/appointment.c:1646
 msgid ""
@@ -493,23 +492,28 @@ msgid ""
 " Every second week or \n"
 " Every Saturday and Sunday or \n"
 " First Tuesday every month"
+
 msgstr ""
+"다음과 같이 반복 주기 설정이 복잡한 경우에 사용하십시오."
+" 매월 2번째 주 또는\n"
+" 매주 토요일과 일요일 또는 \n"
+" 매월 첫번째 화요일"
 
 #: ../src/appointment.c:1649
 msgid "Frequency"
-msgstr ""
+msgstr "주기"
 
 #: ../src/appointment.c:1658
 msgid "Interval"
-msgstr ""
+msgstr "기간"
 
 #: ../src/appointment.c:1660
 msgid "Each"
-msgstr ""
+msgstr "매"
 
 #: ../src/appointment.c:1667
 msgid "occurrence"
-msgstr ""
+msgstr "회"
 
 #: ../src/appointment.c:1675
 msgid ""
@@ -538,9 +542,8 @@ msgid "Repeat until "
 msgstr ""
 
 #: ../src/appointment.c:1717
-#, fuzzy
 msgid "Weekdays"
-msgstr "오늘"
+msgstr "요일"
 
 #: ../src/appointment.c:1730
 msgid "Which day"
@@ -559,11 +562,11 @@ msgstr ""
 #. date only appointment
 #: ../src/event-list.c:199
 msgid "All day"
-msgstr ""
+msgstr "하루 종일"
 
 #: ../src/event-list.c:275 ../src/event-list.c:776
 msgid "Time"
-msgstr ""
+msgstr "시간"
 
 #: ../src/event-list.c:583
 msgid ""
@@ -576,37 +579,36 @@ msgstr ""
 #. View menu
 #: ../src/event-list.c:679 ../src/mainbox.c:453
 msgid "_View"
-msgstr ""
+msgstr "보기(_V)"
 
 #. Go menu
 #: ../src/event-list.c:688
 msgid "_Go"
-msgstr ""
+msgstr "이동(_G)"
 
 #: ../src/event-list.c:715
 msgid "New"
-msgstr ""
+msgstr "새로 만들기"
 
 #: ../src/event-list.c:719
 msgid "Back"
-msgstr ""
+msgstr "뒤로"
 
 #: ../src/event-list.c:725
 msgid "Forward"
-msgstr ""
+msgstr "앞으로"
 
 #: ../src/event-list.c:728
 msgid "Refresh"
-msgstr ""
+msgstr "새로 고침"
 
 #: ../src/event-list.c:737
 msgid "Close"
-msgstr ""
+msgstr "닫기"
 
 #: ../src/event-list.c:740
-#, fuzzy
 msgid "Clear"
-msgstr "달력"
+msgstr "비우기"
 
 #: ../src/event-list.c:784
 msgid "Flags"
@@ -614,11 +616,11 @@ msgstr ""
 
 #: ../src/event-list.c:790
 msgid "Title"
-msgstr ""
+msgstr "제목"
 
 #: ../src/event-list.c:796
 msgid "uid"
-msgstr ""
+msgstr "uid"
 
 #: ../src/event-list.c:805
 msgid ""
@@ -634,1483 +636,1483 @@ msgstr ""
 
 #: ../src/ical-code.c:100
 msgid "Africa"
-msgstr ""
+msgstr "아프리카대륙"
 
 #: ../src/ical-code.c:101
 msgid "Africa/Abidjan"
-msgstr ""
+msgstr "아프리카대륙/Abidjan"
 
 #: ../src/ical-code.c:102
 msgid "Africa/Accra"
-msgstr ""
+msgstr "아프리카대륙/Accra"
 
 #: ../src/ical-code.c:103
 msgid "Africa/Addis_Ababa"
-msgstr ""
+msgstr "아프리카대륙/Addis_Ababa"
 
 #: ../src/ical-code.c:104
 msgid "Africa/Algiers"
-msgstr ""
+msgstr "아프리카대륙/Algiers"
 
 #: ../src/ical-code.c:105
 msgid "Africa/Asmera"
-msgstr ""
+msgstr "아프리카대륙/Asmera"
 
 #: ../src/ical-code.c:106
 msgid "Africa/Bamako"
-msgstr ""
+msgstr "아프리카대륙/Bamako"
 
 #: ../src/ical-code.c:107
 msgid "Africa/Bangui"
-msgstr ""
+msgstr "아프리카대륙/Bangui"
 
 #: ../src/ical-code.c:108
 msgid "Africa/Banjul"
-msgstr ""
+msgstr "아프리카대륙/Banjul"
 
 #: ../src/ical-code.c:109
 msgid "Africa/Bissau"
-msgstr ""
+msgstr "아프리카대륙/Bissau"
 
 #: ../src/ical-code.c:110
 msgid "Africa/Blantyre"
-msgstr ""
+msgstr "아프리카대륙/Blantyre"
 
 #: ../src/ical-code.c:111
 msgid "Africa/Brazzaville"
-msgstr ""
+msgstr "아프리카대륙/Brazzaville"
 
 #: ../src/ical-code.c:112
 msgid "Africa/Bujumbura"
-msgstr ""
+msgstr "아프리카대륙/Bujumbura"
 
 #: ../src/ical-code.c:113
 msgid "Africa/Cairo"
-msgstr ""
+msgstr "아프리카대륙/Cairo"
 
 #: ../src/ical-code.c:114
 msgid "Africa/Casablanca"
-msgstr ""
+msgstr "아프리카대륙/Casablanca"
 
 #: ../src/ical-code.c:115
 msgid "Africa/Ceuta"
-msgstr ""
+msgstr "아프리카대륙/Ceuta"
 
 #: ../src/ical-code.c:116
 msgid "Africa/Conakry"
-msgstr ""
+msgstr "아프리카대륙/Conakry"
 
 #: ../src/ical-code.c:117
 msgid "Africa/Dakar"
-msgstr ""
+msgstr "아프리카대륙/Dakar"
 
 #: ../src/ical-code.c:118
 msgid "Africa/Dar_es_Salaam"
-msgstr ""
+msgstr "아프리카대륙/Dar_es_Salaam"
 
 #: ../src/ical-code.c:119
 msgid "Africa/Djibouti"
-msgstr ""
+msgstr "아프리카대륙/Djibouti"
 
 #: ../src/ical-code.c:120
 msgid "Africa/Douala"
-msgstr ""
+msgstr "아프리카대륙/Douala"
 
 #: ../src/ical-code.c:121
 msgid "Africa/El_Aaiun"
-msgstr ""
+msgstr "아프리카대륙/El_Aaiun"
 
 #: ../src/ical-code.c:122
 msgid "Africa/Freetown"
-msgstr ""
+msgstr "아프리카대륙/Freetown"
 
 #: ../src/ical-code.c:123
 msgid "Africa/Gaborone"
-msgstr ""
+msgstr "아프리카대륙/Gaborone"
 
 #: ../src/ical-code.c:124
 msgid "Africa/Harare"
-msgstr ""
+msgstr "아프리카대륙/Harare"
 
 #: ../src/ical-code.c:125
 msgid "Africa/Johannesburg"
-msgstr ""
+msgstr "아프리카대륙/Johannesburg"
 
 #: ../src/ical-code.c:126
 msgid "Africa/Kampala"
-msgstr ""
+msgstr "아프리카대륙/Kampala"
 
 #: ../src/ical-code.c:127
 msgid "Africa/Khartoum"
-msgstr ""
+msgstr "아프리카대륙/Khartoum"
 
 #: ../src/ical-code.c:128
 msgid "Africa/Kigali"
-msgstr ""
+msgstr "아프리카대륙/Kigali"
 
 #: ../src/ical-code.c:129
 msgid "Africa/Kinshasa"
-msgstr ""
+msgstr "아프리카대륙/Kinshasa"
 
 #: ../src/ical-code.c:130
 msgid "Africa/Lagos"
-msgstr ""
+msgstr "아프리카대륙/Lagos"
 
 #: ../src/ical-code.c:131
 msgid "Africa/Libreville"
-msgstr ""
+msgstr "아프리카대륙/Libreville"
 
 #: ../src/ical-code.c:132
 msgid "Africa/Lome"
-msgstr ""
+msgstr "아프리카대륙/Lome"
 
 #: ../src/ical-code.c:133
 msgid "Africa/Luanda"
-msgstr ""
+msgstr "아프리카대륙/Luanda"
 
 #: ../src/ical-code.c:134
 msgid "Africa/Lubumbashi"
-msgstr ""
+msgstr "아프리카대륙/Lubumbashi"
 
 #: ../src/ical-code.c:135
 msgid "Africa/Lusaka"
-msgstr ""
+msgstr "아프리카대륙/Lusaka"
 
 #: ../src/ical-code.c:136
 msgid "Africa/Malabo"
-msgstr ""
+msgstr "아프리카대륙/Malabo"
 
 #: ../src/ical-code.c:137
 msgid "Africa/Maputo"
-msgstr ""
+msgstr "아프리카대륙/Maputo"
 
 #: ../src/ical-code.c:138
 msgid "Africa/Maseru"
-msgstr ""
+msgstr "아프리카대륙/Maseru"
 
 #: ../src/ical-code.c:139
 msgid "Africa/Mbabane"
-msgstr ""
+msgstr "아프리카대륙/Mbabane"
 
 #: ../src/ical-code.c:140
 msgid "Africa/Mogadishu"
-msgstr ""
+msgstr "아프리카대륙/Mogadishu"
 
 #: ../src/ical-code.c:141
 msgid "Africa/Monrovia"
-msgstr ""
+msgstr "아프리카대륙/Monrovia"
 
 #: ../src/ical-code.c:142
 msgid "Africa/Nairobi"
-msgstr ""
+msgstr "아프리카대륙/Nairobi"
 
 #: ../src/ical-code.c:143
 msgid "Africa/Ndjamena"
-msgstr ""
+msgstr "아프리카대륙/Ndjamena"
 
 #: ../src/ical-code.c:144
 msgid "Africa/Niamey"
-msgstr ""
+msgstr "아프리카대륙/Niamey"
 
 #: ../src/ical-code.c:145
 msgid "Africa/Nouakchott"
-msgstr ""
+msgstr "아프리카대륙/Nouakchott"
 
 #: ../src/ical-code.c:146
 msgid "Africa/Ouagadougou"
-msgstr ""
+msgstr "아프리카대륙/Ouagadougou"
 
 #: ../src/ical-code.c:147
 msgid "Africa/Porto-Novo"
-msgstr ""
+msgstr "아프리카대륙/Porto"
 
 #: ../src/ical-code.c:148
 msgid "Africa/Sao_Tome"
-msgstr ""
+msgstr "아프리카대륙/Sao_Tome"
 
 #: ../src/ical-code.c:149
 msgid "Africa/Timbuktu"
-msgstr ""
+msgstr "아프리카대륙/Timbuktu"
 
 #: ../src/ical-code.c:150
 msgid "Africa/Tripoli"
-msgstr ""
+msgstr "아프리카대륙/Tripoli"
 
 #: ../src/ical-code.c:151
 msgid "Africa/Tunis"
-msgstr ""
+msgstr "아프리카대륙/Tunis"
 
 #: ../src/ical-code.c:152
 msgid "Africa/Windhoek"
-msgstr ""
+msgstr "아프리카대륙/Windhoek"
 
 #: ../src/ical-code.c:153
 msgid "America"
-msgstr ""
+msgstr "아메리카대륙"
 
 #: ../src/ical-code.c:154
 msgid "America/Adak"
-msgstr ""
+msgstr "아메리카대륙"
 
 #: ../src/ical-code.c:155
 msgid "America/Anchorage"
-msgstr ""
+msgstr "아메리카대륙/Anchorage"
 
 #: ../src/ical-code.c:156
 msgid "America/Anguilla"
-msgstr ""
+msgstr "아메리카대륙/Anguilla"
 
 #: ../src/ical-code.c:157
 msgid "America/Antigua"
-msgstr ""
+msgstr "아메리카대륙/Antigua"
 
 #: ../src/ical-code.c:158
 msgid "America/Araguaina"
-msgstr ""
+msgstr "아메리카대륙/Araguaina"
 
 #: ../src/ical-code.c:159
 msgid "America/Aruba"
-msgstr ""
+msgstr "아메리카대륙/Aruba"
 
 #: ../src/ical-code.c:160
 msgid "America/Asuncion"
-msgstr ""
+msgstr "아메리카대륙/Asuncion"
 
 #: ../src/ical-code.c:161
 msgid "America/Barbados"
-msgstr ""
+msgstr "아메리카대륙/Barbados"
 
 #: ../src/ical-code.c:162
 msgid "America/Belem"
-msgstr ""
+msgstr "아메리카대륙/Belem"
 
 #: ../src/ical-code.c:163
 msgid "America/Belize"
-msgstr ""
+msgstr "아메리카대륙/Belize"
 
 #: ../src/ical-code.c:164
 msgid "America/Boa_Vista"
-msgstr ""
+msgstr "아메리카대륙/Boa_Vista"
 
 #: ../src/ical-code.c:165
 msgid "America/Bogota"
-msgstr ""
+msgstr "아메리카대륙/Bogota"
 
 #: ../src/ical-code.c:166
 msgid "America/Boise"
-msgstr ""
+msgstr "아메리카대륙/Boise"
 
 #: ../src/ical-code.c:167
 msgid "America/Buenos_Aires"
-msgstr ""
+msgstr "아메리카대륙/Buenos_Aires"
 
 #: ../src/ical-code.c:168
 msgid "America/Cambridge_Bay"
-msgstr ""
+msgstr "아메리카대륙/Cambridge_Bay"
 
 #: ../src/ical-code.c:169
 msgid "America/Cancun"
-msgstr ""
+msgstr "아메리카대륙/Cancun"
 
 #: ../src/ical-code.c:170
 msgid "America/Caracas"
-msgstr ""
+msgstr "아메리카대륙/Caracas"
 
 #: ../src/ical-code.c:171
 msgid "America/Catamarca"
-msgstr ""
+msgstr "아메리카대륙/Catamarca"
 
 #: ../src/ical-code.c:172
 msgid "America/Cayenne"
-msgstr ""
+msgstr "아메리카대륙/Cayenne"
 
 #: ../src/ical-code.c:173
 msgid "America/Cayman"
-msgstr ""
+msgstr "아메리카대륙/Cayman"
 
 #: ../src/ical-code.c:174
 msgid "America/Chicago"
-msgstr ""
+msgstr "아메리카대륙/Chicago"
 
 #: ../src/ical-code.c:175
 msgid "America/Chihuahua"
-msgstr ""
+msgstr "아메리카대륙/Chihuahua"
 
 #: ../src/ical-code.c:176
 msgid "America/Cordoba"
-msgstr ""
+msgstr "아메리카대륙/Cordoba"
 
 #: ../src/ical-code.c:177
 msgid "America/Costa_Rica"
-msgstr ""
+msgstr "아메리카대륙/Costa_Rica"
 
 #: ../src/ical-code.c:178
 msgid "America/Cuiaba"
-msgstr ""
+msgstr "아메리카대륙/Cuiaba"
 
 #: ../src/ical-code.c:179
 msgid "America/Curacao"
-msgstr ""
+msgstr "아메리카대륙/Curacao"
 
 #: ../src/ical-code.c:180
 msgid "America/Dawson"
-msgstr ""
+msgstr "아메리카대륙/Dawson"
 
 #: ../src/ical-code.c:181
 msgid "America/Dawson_Creek"
-msgstr ""
+msgstr "아메리카대륙/Dawson_Creek"
 
 #: ../src/ical-code.c:182
 msgid "America/Denver"
-msgstr ""
+msgstr "아메리카대륙/Denver"
 
 #: ../src/ical-code.c:183
 msgid "America/Detroit"
-msgstr ""
+msgstr "아메리카대륙/Detroit"
 
 #: ../src/ical-code.c:184
 msgid "America/Dominica"
-msgstr ""
+msgstr "아메리카대륙/Dominica"
 
 #: ../src/ical-code.c:185
 msgid "America/Edmonton"
-msgstr ""
+msgstr "아메리카대륙/Edmonton"
 
 #: ../src/ical-code.c:186
 msgid "America/Eirunepe"
-msgstr ""
+msgstr "아메리카대륙/Eirunepe"
 
 #: ../src/ical-code.c:187
 msgid "America/El_Salvador"
-msgstr ""
+msgstr "아메리카대륙/El_Salvador"
 
 #: ../src/ical-code.c:188
 msgid "America/Fortaleza"
-msgstr ""
+msgstr "아메리카대륙/Fortaleza"
 
 #: ../src/ical-code.c:189
 msgid "America/Glace_Bay"
-msgstr ""
+msgstr "아메리카대륙/Glace_Bay"
 
 #: ../src/ical-code.c:190
 msgid "America/Godthab"
-msgstr ""
+msgstr "아메리카대륙/Godthab"
 
 #: ../src/ical-code.c:191
 msgid "America/Goose_Bay"
-msgstr ""
+msgstr "아메리카대륙/Goose_Bay"
 
 #: ../src/ical-code.c:192
 msgid "America/Grand_Turk"
-msgstr ""
+msgstr "아메리카대륙/Grand_Turk"
 
 #: ../src/ical-code.c:193
 msgid "America/Grenada"
-msgstr ""
+msgstr "아메리카대륙/Grenada"
 
 #: ../src/ical-code.c:194
 msgid "America/Guadeloupe"
-msgstr ""
+msgstr "아메리카대륙/Guadeloupe"
 
 #: ../src/ical-code.c:195
 msgid "America/Guatemala"
-msgstr ""
+msgstr "아메리카대륙/Guatemala"
 
 #: ../src/ical-code.c:196
 msgid "America/Guayaquil"
-msgstr ""
+msgstr "아메리카대륙/Guayaquil"
 
 #: ../src/ical-code.c:197
 msgid "America/Guyana"
-msgstr ""
+msgstr "아메리카대륙/Guyana"
 
 #: ../src/ical-code.c:198
 msgid "America/Halifax"
-msgstr ""
+msgstr "아메리카대륙/Halifax"
 
 #: ../src/ical-code.c:199
 msgid "America/Havana"
-msgstr ""
+msgstr "아메리카대륙/Havana"
 
 #: ../src/ical-code.c:200
 msgid "America/Hermosillo"
-msgstr ""
+msgstr "아메리카대륙/Hermosillo"
 
 #: ../src/ical-code.c:201
 msgid "America/Indiana/Indianapolis"
-msgstr ""
+msgstr "아메리카대륙/Indiana/Indianapolis"
 
 #: ../src/ical-code.c:202
 msgid "America/Indiana/Knox"
-msgstr ""
+msgstr "아메리카대륙/Indiana"
 
 #: ../src/ical-code.c:203
 msgid "America/Indiana/Marengo"
-msgstr ""
+msgstr "아메리카대륙/Indiana/Marengo"
 
 #: ../src/ical-code.c:204
 msgid "America/Indiana/Vevay"
-msgstr ""
+msgstr "아메리카대륙/Indiana/Vevay"
 
 #: ../src/ical-code.c:205
 msgid "America/Indianapolis"
-msgstr ""
+msgstr "아메리카대륙/Indianapolis"
 
 #: ../src/ical-code.c:206
 msgid "America/Inuvik"
-msgstr ""
+msgstr "아메리카대륙/Inuvik"
 
 #: ../src/ical-code.c:207
 msgid "America/Iqaluit"
-msgstr ""
+msgstr "아메리카대륙/Iqaluit"
 
 #: ../src/ical-code.c:208
 msgid "America/Jamaica"
-msgstr ""
+msgstr "아메리카대륙/Jamaica"
 
 #: ../src/ical-code.c:209
 msgid "America/Jujuy"
-msgstr ""
+msgstr "아메리카대륙/Jujuy"
 
 #: ../src/ical-code.c:210
 msgid "America/Juneau"
-msgstr ""
+msgstr "아메리카대륙/Juneau"
 
 #: ../src/ical-code.c:211
 msgid "America/Kentucky/Louisville"
-msgstr ""
+msgstr "아메리카대륙/Kentucky/Louisville"
 
 #: ../src/ical-code.c:212
 msgid "America/Kentucky/Monticello"
-msgstr ""
+msgstr "아메리카대륙/Kentucky/Monticello"
 
 #: ../src/ical-code.c:213
 msgid "America/La_Paz"
-msgstr ""
+msgstr "아메리카대륙/La_Paz"
 
 #: ../src/ical-code.c:214
 msgid "America/Lima"
-msgstr ""
+msgstr "아메리카대륙/Lima"
 
 #: ../src/ical-code.c:215
 msgid "America/Los_Angeles"
-msgstr ""
+msgstr "아메리카대륙/Los_Angeles"
 
 #: ../src/ical-code.c:216
 msgid "America/Louisville"
-msgstr ""
+msgstr "아메리카대륙/Louisville"
 
 #: ../src/ical-code.c:217
 msgid "America/Maceio"
-msgstr ""
+msgstr "아메리카대륙/Maceio"
 
 #: ../src/ical-code.c:218
 msgid "America/Managua"
-msgstr ""
+msgstr "아메리카대륙/Managua"
 
 #: ../src/ical-code.c:219
 msgid "America/Manaus"
-msgstr ""
+msgstr "아메리카대륙/Manaus"
 
 #: ../src/ical-code.c:220
 msgid "America/Martinique"
-msgstr ""
+msgstr "아메리카대륙/Martinique"
 
 #: ../src/ical-code.c:221
 msgid "America/Mazatlan"
-msgstr ""
+msgstr "아메리카대륙/Mazatlan"
 
 #: ../src/ical-code.c:222
 msgid "America/Mendoza"
-msgstr ""
+msgstr "아메리카대륙/Mendoza"
 
 #: ../src/ical-code.c:223
 msgid "America/Menominee"
-msgstr ""
+msgstr "아메리카대륙/Menominee"
 
 #: ../src/ical-code.c:224
 msgid "America/Merida"
-msgstr ""
+msgstr "아메리카대륙/Merida"
 
 #: ../src/ical-code.c:225
 msgid "America/Mexico_City"
-msgstr ""
+msgstr "아메리카대륙/Mexico_City"
 
 #: ../src/ical-code.c:226
 msgid "America/Miquelon"
-msgstr ""
+msgstr "아메리카대륙/Miquelon"
 
 #: ../src/ical-code.c:227
 msgid "America/Monterrey"
-msgstr ""
+msgstr "아메리카대륙/Monterrey"
 
 #: ../src/ical-code.c:228
 msgid "America/Montevideo"
-msgstr ""
+msgstr "아메리카대륙/Montevideo"
 
 #: ../src/ical-code.c:229
 msgid "America/Montreal"
-msgstr ""
+msgstr "아메리카대륙/Montreal"
 
 #: ../src/ical-code.c:230
 msgid "America/Montserrat"
-msgstr ""
+msgstr "아메리카대륙/Montserrat"
 
 #: ../src/ical-code.c:231
 msgid "America/Nassau"
-msgstr ""
+msgstr "아메리카대륙/Nassau"
 
 #: ../src/ical-code.c:232
 msgid "America/New_York"
-msgstr ""
+msgstr "아메리카대륙/New_York"
 
 #: ../src/ical-code.c:233
 msgid "America/Nipigon"
-msgstr ""
+msgstr "아메리카대륙/Nipigon"
 
 #: ../src/ical-code.c:234
 msgid "America/Nome"
-msgstr ""
+msgstr "아메리카대륙/Nome"
 
 #: ../src/ical-code.c:235
 msgid "America/Noronha"
-msgstr ""
+msgstr "아메리카대륙/Noronha"
 
 #: ../src/ical-code.c:236
 msgid "America/Panama"
-msgstr ""
+msgstr "아메리카대륙/Panama"
 
 #: ../src/ical-code.c:237
 msgid "America/Pangnirtung"
-msgstr ""
+msgstr "아메리카대륙/Pangnirtung"
 
 #: ../src/ical-code.c:238
 msgid "America/Paramaribo"
-msgstr ""
+msgstr "아메리카대륙/Paramaribo"
 
 #: ../src/ical-code.c:239
 msgid "America/Phoenix"
-msgstr ""
+msgstr "아메리카대륙/Phoenix"
 
 #: ../src/ical-code.c:240
 msgid "America/Port-au-Prince"
-msgstr ""
+msgstr "아메리카대륙/Port-au-Prince"
 
 #: ../src/ical-code.c:241
 msgid "America/Port_of_Spain"
-msgstr ""
+msgstr "아메리카대륙/Port_of_Spain"
 
 #: ../src/ical-code.c:242
 msgid "America/Porto_Velho"
-msgstr ""
+msgstr "아메리카대륙/Porto_Velho"
 
 #: ../src/ical-code.c:243
 msgid "America/Puerto_Rico"
-msgstr ""
+msgstr "아메리카대륙/Puerto_Rico"
 
 #: ../src/ical-code.c:244
 msgid "America/Rainy_River"
-msgstr ""
+msgstr "아메리카대륙/Rainy_River"
 
 #: ../src/ical-code.c:245
 msgid "America/Rankin_Inlet"
-msgstr ""
+msgstr "아메리카대륙/Rankin_Inlet"
 
 #: ../src/ical-code.c:246
 msgid "America/Recife"
-msgstr ""
+msgstr "아메리카대륙/Recife"
 
 #: ../src/ical-code.c:247
 msgid "America/Regina"
-msgstr ""
+msgstr "아메리카대륙/Regina"
 
 #: ../src/ical-code.c:248
 msgid "America/Rio_Branco"
-msgstr ""
+msgstr "아메리카대륙/Rio_Branco"
 
 #: ../src/ical-code.c:249
 msgid "America/Rosario"
-msgstr ""
+msgstr "아메리카대륙/Rosario"
 
 #: ../src/ical-code.c:250
 msgid "America/Santiago"
-msgstr ""
+msgstr "아메리카대륙/Santiago"
 
 #: ../src/ical-code.c:251
 msgid "America/Santo_Domingo"
-msgstr ""
+msgstr "아메리카대륙/Santo_Domingo"
 
 #: ../src/ical-code.c:252
 msgid "America/Sao_Paulo"
-msgstr ""
+msgstr "아메리카대륙/Sao_Paulo"
 
 #: ../src/ical-code.c:253
 msgid "America/Scoresbysund"
-msgstr ""
+msgstr "아메리카대륙/Scoresbysund"
 
 #: ../src/ical-code.c:254
 msgid "America/Shiprock"
-msgstr ""
+msgstr "아메리카대륙/Shiprock"
 
 #: ../src/ical-code.c:255
 msgid "America/St_Johns"
-msgstr ""
+msgstr "아메리카대륙/St_Johns"
 
 #: ../src/ical-code.c:256
 msgid "America/St_Kitts"
-msgstr ""
+msgstr "아메리카대륙/St_Kitts"
 
 #: ../src/ical-code.c:257
 msgid "America/St_Lucia"
-msgstr ""
+msgstr "아메리카대륙/St_Lucia"
 
 #: ../src/ical-code.c:258
 msgid "America/St_Thomas"
-msgstr ""
+msgstr "아메리카대륙/St_Thomas"
 
 #: ../src/ical-code.c:259
 msgid "America/St_Vincent"
-msgstr ""
+msgstr "아메리카대륙/St_Vincent"
 
 #: ../src/ical-code.c:260
 msgid "America/Swift_Current"
-msgstr ""
+msgstr "아메리카대륙/Swift_Current"
 
 #: ../src/ical-code.c:261
 msgid "America/Tegucigalpa"
-msgstr ""
+msgstr "아메리카대륙/Tegucigalpa"
 
 #: ../src/ical-code.c:262
 msgid "America/Thule"
-msgstr ""
+msgstr "아메리카대륙/Thule"
 
 #: ../src/ical-code.c:263
 msgid "America/Thunder_Bay"
-msgstr ""
+msgstr "아메리카대륙/Thunder_Bay"
 
 #: ../src/ical-code.c:264
 msgid "America/Tijuana"
-msgstr ""
+msgstr "아메리카대륙/Tijuana"
 
 #: ../src/ical-code.c:265
 msgid "America/Tortola"
-msgstr ""
+msgstr "아메리카대륙/Tortola"
 
 #: ../src/ical-code.c:266
 msgid "America/Vancouver"
-msgstr ""
+msgstr "아메리카대륙/Vancouver"
 
 #: ../src/ical-code.c:267
 msgid "America/Whitehorse"
-msgstr ""
+msgstr "아메리카대륙/Whitehorse"
 
 #: ../src/ical-code.c:268
 msgid "America/Winnipeg"
-msgstr ""
+msgstr "아메리카대륙/Winnipeg"
 
 #: ../src/ical-code.c:269
 msgid "America/Yakutat"
-msgstr ""
+msgstr "아메리카대륙/Yakutat"
 
 #: ../src/ical-code.c:270
 msgid "America/Yellowknife"
-msgstr ""
+msgstr "아메리카대륙/Yellowknife"
 
 #: ../src/ical-code.c:271
 msgid "Antarctica"
-msgstr ""
+msgstr "남극대륙"
 
 #: ../src/ical-code.c:272
 msgid "Antarctica/Casey"
-msgstr ""
+msgstr "남극대륙/Casey"
 
 #: ../src/ical-code.c:273
 msgid "Antarctica/Davis"
-msgstr ""
+msgstr "남극대륙/Davis"
 
 #: ../src/ical-code.c:274
 msgid "Antarctica/DumontDUrville"
-msgstr ""
+msgstr "남극대륙/DumontDUrville"
 
 #: ../src/ical-code.c:275
 msgid "Antarctica/Mawson"
-msgstr ""
+msgstr "남극대륙/Mawson"
 
 #: ../src/ical-code.c:276
 msgid "Antarctica/McMurdo"
-msgstr ""
+msgstr "남극대륙/McMurdo"
 
 #: ../src/ical-code.c:277
 msgid "Antarctica/Palmer"
-msgstr ""
+msgstr "남극대륙/Palmer"
 
 #: ../src/ical-code.c:278
 msgid "Antarctica/South_Pole"
-msgstr ""
+msgstr "남극대륙/South_Pole"
 
 #: ../src/ical-code.c:279
 msgid "Antarctica/Syowa"
-msgstr ""
+msgstr "남극대륙/Syowa"
 
 #: ../src/ical-code.c:280
 msgid "Antarctica/Vostok"
-msgstr ""
+msgstr "남극대륙/Vostok"
 
 #: ../src/ical-code.c:281
 msgid "Arctic"
-msgstr ""
+msgstr "북극대륙"
 
 #: ../src/ical-code.c:282
 msgid "Arctic/Longyearbyen"
-msgstr ""
+msgstr "북극대륙/Longyearbyen"
 
 #: ../src/ical-code.c:283
 msgid "Asia"
-msgstr ""
+msgstr "아시아"
 
 #: ../src/ical-code.c:284
 msgid "Asia/Aden"
-msgstr ""
+msgstr "아시아/Aden"
 
 #: ../src/ical-code.c:285
 msgid "Asia/Almaty"
-msgstr ""
+msgstr "아시아/Almaty"
 
 #: ../src/ical-code.c:286
 msgid "Asia/Amman"
-msgstr ""
+msgstr "아시아/Amman"
 
 #: ../src/ical-code.c:287
 msgid "Asia/Anadyr"
-msgstr ""
+msgstr "아시아/Anadyr"
 
 #: ../src/ical-code.c:288
 msgid "Asia/Aqtau"
-msgstr ""
+msgstr "아시아/Aqtau"
 
 #: ../src/ical-code.c:289
 msgid "Asia/Aqtobe"
-msgstr ""
+msgstr "아시아/Aqtobe"
 
 #: ../src/ical-code.c:290
 msgid "Asia/Ashgabat"
-msgstr ""
+msgstr "아시아/Ashgabat"
 
 #: ../src/ical-code.c:291
 msgid "Asia/Baghdad"
-msgstr ""
+msgstr "아시아/Baghdad"
 
 #: ../src/ical-code.c:292
 msgid "Asia/Bahrain"
-msgstr ""
+msgstr "아시아/Bahrain"
 
 #: ../src/ical-code.c:293
 msgid "Asia/Baku"
-msgstr ""
+msgstr "아시아/Baku"
 
 #: ../src/ical-code.c:294
 msgid "Asia/Bangkok"
-msgstr ""
+msgstr "아시아/Bangkok"
 
 #: ../src/ical-code.c:295
 msgid "Asia/Beirut"
-msgstr ""
+msgstr "아시아/Beirut"
 
 #: ../src/ical-code.c:296
 msgid "Asia/Bishkek"
-msgstr ""
+msgstr "아시아/Bishkek"
 
 #: ../src/ical-code.c:297
 msgid "Asia/Brunei"
-msgstr ""
+msgstr "아시아/Brunei"
 
 #: ../src/ical-code.c:298
 msgid "Asia/Calcutta"
-msgstr ""
+msgstr "아시아/Calcutta"
 
 #: ../src/ical-code.c:299
 msgid "Asia/Chungking"
-msgstr ""
+msgstr "아시아/Chungking"
 
 #: ../src/ical-code.c:300
 msgid "Asia/Colombo"
-msgstr ""
+msgstr "아시아/Colombo"
 
 #: ../src/ical-code.c:301
 msgid "Asia/Damascus"
-msgstr ""
+msgstr "아시아/Damascus"
 
 #: ../src/ical-code.c:302
 msgid "Asia/Dhaka"
-msgstr ""
+msgstr "아시아/Dhaka"
 
 #: ../src/ical-code.c:303
 msgid "Asia/Dili"
-msgstr ""
+msgstr "아시아/Dili"
 
 #: ../src/ical-code.c:304
 msgid "Asia/Dubai"
-msgstr ""
+msgstr "아시아/Dubai"
 
 #: ../src/ical-code.c:305
 msgid "Asia/Dushanbe"
-msgstr ""
+msgstr "아시아/Dushanbe"
 
 #: ../src/ical-code.c:306
 msgid "Asia/Gaza"
-msgstr ""
+msgstr "아시아/Gaza"
 
 #: ../src/ical-code.c:307
 msgid "Asia/Harbin"
-msgstr ""
+msgstr "아시아/Harbin"
 
 #: ../src/ical-code.c:308
 msgid "Asia/Hong_Kong"
-msgstr ""
+msgstr "아시아/Hong_Kong"
 
 #: ../src/ical-code.c:309
 msgid "Asia/Hovd"
-msgstr ""
+msgstr "아시아/Hovd"
 
 #: ../src/ical-code.c:310
 msgid "Asia/Irkutsk"
-msgstr ""
+msgstr "아시아/Irkutsk"
 
 #: ../src/ical-code.c:311
 msgid "Asia/Istanbul"
-msgstr ""
+msgstr "아시아/Istanbul"
 
 #: ../src/ical-code.c:312
 msgid "Asia/Jakarta"
-msgstr ""
+msgstr "아시아/Jakarta"
 
 #: ../src/ical-code.c:313
 msgid "Asia/Jayapura"
-msgstr ""
+msgstr "아시아/Jayapura"
 
 #: ../src/ical-code.c:314
 msgid "Asia/Jerusalem"
-msgstr ""
+msgstr "아시아/Jerusalem"
 
 #: ../src/ical-code.c:315
 msgid "Asia/Kabul"
-msgstr ""
+msgstr "아시아/Kabul"
 
 #: ../src/ical-code.c:316
 msgid "Asia/Kamchatka"
-msgstr ""
+msgstr "아시아/Kamchatka"
 
 #: ../src/ical-code.c:317
 msgid "Asia/Karachi"
-msgstr ""
+msgstr "아시아/Karachi"
 
 #: ../src/ical-code.c:318
 msgid "Asia/Kashgar"
-msgstr ""
+msgstr "아시아/Kashgar"
 
 #: ../src/ical-code.c:319
 msgid "Asia/Katmandu"
-msgstr ""
+msgstr "아시아/Katmandu"
 
 #: ../src/ical-code.c:320
 msgid "Asia/Krasnoyarsk"
-msgstr ""
+msgstr "아시아/Krasnoyarsk"
 
 #: ../src/ical-code.c:321
 msgid "Asia/Kuala_Lumpur"
-msgstr ""
+msgstr "아시아/Kuala_Lumpur"
 
 #: ../src/ical-code.c:322
 msgid "Asia/Kuching"
-msgstr ""
+msgstr "아시아/Kuching"
 
 #: ../src/ical-code.c:323
 msgid "Asia/Kuwait"
-msgstr ""
+msgstr "아시아/Kuwait"
 
 #: ../src/ical-code.c:324
 msgid "Asia/Macao"
-msgstr ""
+msgstr "아시아/Macao"
 
 #: ../src/ical-code.c:325
 msgid "Asia/Magadan"
-msgstr ""
+msgstr "아시아/Magadan"
 
 #: ../src/ical-code.c:326
 msgid "Asia/Manila"
-msgstr ""
+msgstr "아시아/Manila"
 
 #: ../src/ical-code.c:327
 msgid "Asia/Muscat"
-msgstr ""
+msgstr "아시아/Muscat"
 
 #: ../src/ical-code.c:328
 msgid "Asia/Nicosia"
-msgstr ""
+msgstr "아시아/Nicosia"
 
 #: ../src/ical-code.c:329
 msgid "Asia/Novosibirsk"
-msgstr ""
+msgstr "아시아/Novosibirsk"
 
 #: ../src/ical-code.c:330
 msgid "Asia/Omsk"
-msgstr ""
+msgstr "아시아/Omsk"
 
 #: ../src/ical-code.c:331
 msgid "Asia/Phnom_Penh"
-msgstr ""
+msgstr "아시아/Phnom_Penh"
 
 #: ../src/ical-code.c:332
 msgid "Asia/Pontianak"
-msgstr ""
+msgstr "아시아/Pontianak"
 
 #: ../src/ical-code.c:333
 msgid "Asia/Pyongyang"
-msgstr ""
+msgstr "아시아/Pyongyang"
 
 #: ../src/ical-code.c:334
 msgid "Asia/Qatar"
-msgstr ""
+msgstr "아시아/Qatar"
 
 #: ../src/ical-code.c:335
 msgid "Asia/Rangoon"
-msgstr ""
+msgstr "아시아/Rangoon"
 
 #: ../src/ical-code.c:336
 msgid "Asia/Riyadh"
-msgstr ""
+msgstr "아시아/Riyadh"
 
 #: ../src/ical-code.c:337
 msgid "Asia/Saigon"
-msgstr ""
+msgstr "아시아/Saigon"
 
 #: ../src/ical-code.c:338
 msgid "Asia/Samarkand"
-msgstr ""
+msgstr "아시아/Samarkand"
 
 #: ../src/ical-code.c:339
 msgid "Asia/Seoul"
-msgstr ""
+msgstr "아시아/서울"
 
 #: ../src/ical-code.c:340
 msgid "Asia/Shanghai"
-msgstr ""
+msgstr "아시아/Shanghai"
 
 #: ../src/ical-code.c:341
 msgid "Asia/Singapore"
-msgstr ""
+msgstr "아시아/Singapore"
 
 #: ../src/ical-code.c:342
 msgid "Asia/Taipei"
-msgstr ""
+msgstr "아시아/Taipei"
 
 #: ../src/ical-code.c:343
 msgid "Asia/Tashkent"
-msgstr ""
+msgstr "아시아/Tashkent"
 
 #: ../src/ical-code.c:344
 msgid "Asia/Tbilisi"
-msgstr ""
+msgstr "아시아/Tbilisi"
 
 #: ../src/ical-code.c:345
 msgid "Asia/Tehran"
-msgstr ""
+msgstr "아시아/Tehran"
 
 #: ../src/ical-code.c:346
 msgid "Asia/Thimphu"
-msgstr ""
+msgstr "아시아/Thimphu"
 
 #: ../src/ical-code.c:347
 msgid "Asia/Tokyo"
-msgstr ""
+msgstr "아시아/Tokyo"
 
 #: ../src/ical-code.c:348
 msgid "Asia/Ujung_Pandang"
-msgstr ""
+msgstr "아시아/Ujung_Pandang"
 
 #: ../src/ical-code.c:349
 msgid "Asia/Ulaanbaatar"
-msgstr ""
+msgstr "아시아/Ulaanbaatar"
 
 #: ../src/ical-code.c:350
 msgid "Asia/Urumqi"
-msgstr ""
+msgstr "아시아/Urumqi"
 
 #: ../src/ical-code.c:351
 msgid "Asia/Vientiane"
-msgstr ""
+msgstr "아시아/Vientiane"
 
 #: ../src/ical-code.c:352
 msgid "Asia/Vladivostok"
-msgstr ""
+msgstr "아시아/Vladivostok"
 
 #: ../src/ical-code.c:353
 msgid "Asia/Yakutsk"
-msgstr ""
+msgstr "아시아/Yakutsk"
 
 #: ../src/ical-code.c:354
 msgid "Asia/Yekaterinburg"
-msgstr ""
+msgstr "아시아/Yekaterinburg"
 
 #: ../src/ical-code.c:355
 msgid "Asia/Yerevan"
-msgstr ""
+msgstr "아시아/Yerevan"
 
 #: ../src/ical-code.c:356
 msgid "Atlantic"
-msgstr ""
+msgstr "대서양"
 
 #: ../src/ical-code.c:357
 msgid "Atlantic/Azores"
-msgstr ""
+msgstr "대서양/Azores"
 
 #: ../src/ical-code.c:358
 msgid "Atlantic/Bermuda"
-msgstr ""
+msgstr "대서양/Bermuda"
 
 #: ../src/ical-code.c:359
 msgid "Atlantic/Canary"
-msgstr ""
+msgstr "대서양/Canary"
 
 #: ../src/ical-code.c:360
 msgid "Atlantic/Cape_Verde"
-msgstr ""
+msgstr "대서양/Cape_Verde"
 
 #: ../src/ical-code.c:361
 msgid "Atlantic/Faeroe"
-msgstr ""
+msgstr "대서양/Faeroe"
 
 #: ../src/ical-code.c:362
 msgid "Atlantic/Jan_Mayen"
-msgstr ""
+msgstr "대서양/Jan_Mayen"
 
 #: ../src/ical-code.c:363
 msgid "Atlantic/Madeira"
-msgstr ""
+msgstr "대서양/Madeira"
 
 #: ../src/ical-code.c:364
 msgid "Atlantic/Reykjavik"
-msgstr ""
+msgstr "대서양/Reykjavik"
 
 #: ../src/ical-code.c:365
 msgid "Atlantic/South_Georgia"
-msgstr ""
+msgstr "대서양/South_Georgia"
 
 #: ../src/ical-code.c:366
 msgid "Atlantic/St_Helena"
-msgstr ""
+msgstr "대서양/St_Helena"
 
 #: ../src/ical-code.c:367
 msgid "Atlantic/Stanley"
-msgstr ""
+msgstr "대서양/Stanley"
 
 #: ../src/ical-code.c:368
 msgid "Australia"
-msgstr ""
+msgstr "오스트레일리아"
 
 #: ../src/ical-code.c:369
 msgid "Australia/Adelaide"
-msgstr ""
+msgstr "오스트레일리아/Adelaide"
 
 #: ../src/ical-code.c:370
 msgid "Australia/Brisbane"
-msgstr ""
+msgstr "오스트레일리아/Brisbane"
 
 #: ../src/ical-code.c:371
 msgid "Australia/Broken_Hill"
-msgstr ""
+msgstr "오스트레일리아/Broken_Hill"
 
 #: ../src/ical-code.c:372
 msgid "Australia/Darwin"
-msgstr ""
+msgstr "오스트레일리아/Darwin"
 
 #: ../src/ical-code.c:373
 msgid "Australia/Hobart"
-msgstr ""
+msgstr "오스트레일리아/Hobart"
 
 #: ../src/ical-code.c:374
 msgid "Australia/Lindeman"
-msgstr ""
+msgstr "오스트레일리아/Lindeman"
 
 #: ../src/ical-code.c:375
 msgid "Australia/Lord_Howe"
-msgstr ""
+msgstr "오스트레일리아/Lord_Howe"
 
 #: ../src/ical-code.c:376
 msgid "Australia/Melbourne"
-msgstr ""
+msgstr "오스트레일리아/Melbourne"
 
 #: ../src/ical-code.c:377
 msgid "Australia/Perth"
-msgstr ""
+msgstr "오스트레일리아/Perth"
 
 #: ../src/ical-code.c:378
 msgid "Australia/Sydney"
-msgstr ""
+msgstr "오스트레일리아/Sydney"
 
 #: ../src/ical-code.c:379
 msgid "Europe"
-msgstr ""
+msgstr "유럽"
 
 #: ../src/ical-code.c:380
 msgid "Europe/Amsterdam"
-msgstr ""
+msgstr "유럽/Amsterdam"
 
 #: ../src/ical-code.c:381
 msgid "Europe/Andorra"
-msgstr ""
+msgstr "유럽/Andorra"
 
 #: ../src/ical-code.c:382
 msgid "Europe/Athens"
-msgstr ""
+msgstr "유럽/Athens"
 
 #: ../src/ical-code.c:383
 msgid "Europe/Belfast"
-msgstr ""
+msgstr "유럽/Belfast"
 
 #: ../src/ical-code.c:384
 msgid "Europe/Belgrade"
-msgstr ""
+msgstr "유럽/Belgrade"
 
 #: ../src/ical-code.c:385
 msgid "Europe/Berlin"
-msgstr ""
+msgstr "유럽/Berlin"
 
 #: ../src/ical-code.c:386
 msgid "Europe/Bratislava"
-msgstr ""
+msgstr "유럽/Bratislava"
 
 #: ../src/ical-code.c:387
 msgid "Europe/Brussels"
-msgstr ""
+msgstr "유럽/Brussels"
 
 #: ../src/ical-code.c:388
 msgid "Europe/Bucharest"
-msgstr ""
+msgstr "유럽/Bucharest"
 
 #: ../src/ical-code.c:389
 msgid "Europe/Budapest"
-msgstr ""
+msgstr "유럽/Budapest"
 
 #: ../src/ical-code.c:390
 msgid "Europe/Chisinau"
-msgstr ""
+msgstr "유럽/Chisinau"
 
 #: ../src/ical-code.c:391
 msgid "Europe/Copenhagen"
-msgstr ""
+msgstr "유럽/Copenhagen"
 
 #: ../src/ical-code.c:392
 msgid "Europe/Dublin"
-msgstr ""
+msgstr "유럽/Dublin"
 
 #: ../src/ical-code.c:393
 msgid "Europe/Gibraltar"
-msgstr ""
+msgstr "유럽/Gibraltar"
 
 #: ../src/ical-code.c:394
 msgid "Europe/Helsinki"
-msgstr ""
+msgstr "유럽/Helsinki"
 
 #: ../src/ical-code.c:395
 msgid "Europe/Istanbul"
-msgstr ""
+msgstr "유럽/Istanbul"
 
 #: ../src/ical-code.c:396
 msgid "Europe/Kaliningrad"
-msgstr ""
+msgstr "유럽/Kaliningrad"
 
 #: ../src/ical-code.c:397
 msgid "Europe/Kiev"
-msgstr ""
+msgstr "유럽/Kiev"
 
 #: ../src/ical-code.c:398
 msgid "Europe/Lisbon"
-msgstr ""
+msgstr "유럽/Lisbon"
 
 #: ../src/ical-code.c:399
 msgid "Europe/Ljubljana"
-msgstr ""
+msgstr "유럽/Ljubljana"
 
 #: ../src/ical-code.c:400
 msgid "Europe/London"
-msgstr ""
+msgstr "유럽/London"
 
 #: ../src/ical-code.c:401
 msgid "Europe/Luxembourg"
-msgstr ""
+msgstr "유럽/Luxembourg"
 
 #: ../src/ical-code.c:402
 msgid "Europe/Madrid"
-msgstr ""
+msgstr "유럽/Madrid"
 
 #: ../src/ical-code.c:403
 msgid "Europe/Malta"
-msgstr ""
+msgstr "유럽/Malta"
 
 #: ../src/ical-code.c:404
 msgid "Europe/Minsk"
-msgstr ""
+msgstr "유럽/Minsk"
 
 #: ../src/ical-code.c:405
 msgid "Europe/Monaco"
-msgstr ""
+msgstr "유럽/Monaco"
 
 #: ../src/ical-code.c:406
 msgid "Europe/Moscow"
-msgstr ""
+msgstr "유럽/Moscow"
 
 #: ../src/ical-code.c:407
 msgid "Europe/Nicosia"
-msgstr ""
+msgstr "유럽/Nicosia"
 
 #: ../src/ical-code.c:408
 msgid "Europe/Oslo"
-msgstr ""
+msgstr "유럽/Oslo"
 
 #: ../src/ical-code.c:409
 msgid "Europe/Paris"
-msgstr ""
+msgstr "유럽/Paris"
 
 #: ../src/ical-code.c:410
 msgid "Europe/Prague"
-msgstr ""
+msgstr "유럽/Prague"
 
 #: ../src/ical-code.c:411
 msgid "Europe/Riga"
-msgstr ""
+msgstr "유럽/Riga"
 
 #: ../src/ical-code.c:412
 msgid "Europe/Rome"
-msgstr ""
+msgstr "유럽/Rome"
 
 #: ../src/ical-code.c:413
 msgid "Europe/Samara"
-msgstr ""
+msgstr "유럽/Samara"
 
 #: ../src/ical-code.c:414
 msgid "Europe/San_Marino"
-msgstr ""
+msgstr "유럽/San_Marino"
 
 #: ../src/ical-code.c:415
 msgid "Europe/Sarajevo"
-msgstr ""
+msgstr "유럽/Sarajevo"
 
 #: ../src/ical-code.c:416
 msgid "Europe/Simferopol"
-msgstr ""
+msgstr "유럽/Simferopol"
 
 #: ../src/ical-code.c:417
 msgid "Europe/Skopje"
-msgstr ""
+msgstr "유럽/Skopje"
 
 #: ../src/ical-code.c:418
 msgid "Europe/Sofia"
-msgstr ""
+msgstr "유럽/Sofia"
 
 #: ../src/ical-code.c:419
 msgid "Europe/Stockholm"
-msgstr ""
+msgstr "유럽/Stockholm"
 
 #: ../src/ical-code.c:420
 msgid "Europe/Tallinn"
-msgstr ""
+msgstr "유럽/Tallinn"
 
 #: ../src/ical-code.c:421
 msgid "Europe/Tirane"
-msgstr ""
+msgstr "유럽/Tirane"
 
 #: ../src/ical-code.c:422
 msgid "Europe/Uzhgorod"
-msgstr ""
+msgstr "유럽/Uzhgorod"
 
 #: ../src/ical-code.c:423
 msgid "Europe/Vaduz"
-msgstr ""
+msgstr "유럽/Vaduz"
 
 #: ../src/ical-code.c:424
 msgid "Europe/Vatican"
-msgstr ""
+msgstr "유럽/Vatican"
 
 #: ../src/ical-code.c:425
 msgid "Europe/Vienna"
-msgstr ""
+msgstr "유럽/Vienna"
 
 #: ../src/ical-code.c:426
 msgid "Europe/Vilnius"
-msgstr ""
+msgstr "유럽/Vilnius"
 
 #: ../src/ical-code.c:427
 msgid "Europe/Warsaw"
-msgstr ""
+msgstr "유럽/Warsaw"
 
 #: ../src/ical-code.c:428
 msgid "Europe/Zagreb"
-msgstr ""
+msgstr "유럽/Zagreb"
 
 #: ../src/ical-code.c:429
 msgid "Europe/Zaporozhye"
-msgstr ""
+msgstr "유럽/Zaporozhye"
 
 #: ../src/ical-code.c:430
 msgid "Europe/Zurich"
-msgstr ""
+msgstr "유럽/Zurich"
 
 #: ../src/ical-code.c:431
 msgid "Indian"
-msgstr ""
+msgstr "동인도"
 
 #: ../src/ical-code.c:432
 msgid "Indian/Antananarivo"
-msgstr ""
+msgstr "동인도/Antananarivo"
 
 #: ../src/ical-code.c:433
 msgid "Indian/Chagos"
-msgstr ""
+msgstr "동인도/Chagos"
 
 #: ../src/ical-code.c:434
 msgid "Indian/Christmas"
-msgstr ""
+msgstr "동인도/Christmas"
 
 #: ../src/ical-code.c:435
 msgid "Indian/Cocos"
-msgstr ""
+msgstr "동인도/Cocos"
 
 #: ../src/ical-code.c:436
 msgid "Indian/Comoro"
-msgstr ""
+msgstr "동인도/Comoro"
 
 #: ../src/ical-code.c:437
 msgid "Indian/Kerguelen"
-msgstr ""
+msgstr "동인도/Kerguelen"
 
 #: ../src/ical-code.c:438
 msgid "Indian/Mahe"
-msgstr ""
+msgstr "동인도/Mahe"
 
 #: ../src/ical-code.c:439
 msgid "Indian/Maldives"
-msgstr ""
+msgstr "동인도/Maldives"
 
 #: ../src/ical-code.c:440
 msgid "Indian/Mauritius"
-msgstr ""
+msgstr "동인도/Mauritius"
 
 #: ../src/ical-code.c:441
 msgid "Indian/Mayotte"
-msgstr ""
+msgstr "동인도/Mayotte"
 
 #: ../src/ical-code.c:442
 msgid "Indian/Reunion"
-msgstr ""
+msgstr "동인도/Reunion"
 
 #: ../src/ical-code.c:443
 msgid "Pacific"
-msgstr ""
+msgstr "태평양"
 
 #: ../src/ical-code.c:444
 msgid "Pacific/Apia"
-msgstr ""
+msgstr "태평양/Apia"
 
 #: ../src/ical-code.c:445
 msgid "Pacific/Auckland"
-msgstr ""
+msgstr "태평양/Auckland"
 
 #: ../src/ical-code.c:446
 msgid "Pacific/Chatham"
-msgstr ""
+msgstr "태평양/Chatham"
 
 #: ../src/ical-code.c:447
 msgid "Pacific/Easter"
-msgstr ""
+msgstr "태평양/Easter"
 
 #: ../src/ical-code.c:448
 msgid "Pacific/Efate"
-msgstr ""
+msgstr "태평양/Efate"
 
 #: ../src/ical-code.c:449
 msgid "Pacific/Enderbury"
-msgstr ""
+msgstr "태평양/Enderbury"
 
 #: ../src/ical-code.c:450
 msgid "Pacific/Fakaofo"
-msgstr ""
+msgstr "태평양/Fakaofo"
 
 #: ../src/ical-code.c:451
 msgid "Pacific/Fiji"
-msgstr ""
+msgstr "태평양/Fiji"
 
 #: ../src/ical-code.c:452
 msgid "Pacific/Funafuti"
-msgstr ""
+msgstr "태평양/Funafuti"
 
 #: ../src/ical-code.c:453
 msgid "Pacific/Galapagos"
-msgstr ""
+msgstr "태평양/Galapagos"
 
 #: ../src/ical-code.c:454
 msgid "Pacific/Gambier"
-msgstr ""
+msgstr "태평양/Gambier"
 
 #: ../src/ical-code.c:455
 msgid "Pacific/Guadalcanal"
-msgstr ""
+msgstr "태평양/Guadalcanal"
 
 #: ../src/ical-code.c:456
 msgid "Pacific/Guam"
-msgstr ""
+msgstr "태평양/Guam"
 
 #: ../src/ical-code.c:457
 msgid "Pacific/Honolulu"
-msgstr ""
+msgstr "태평양/Honolulu"
 
 #: ../src/ical-code.c:458
 msgid "Pacific/Johnston"
-msgstr ""
+msgstr "태평양/Johnston"
 
 #: ../src/ical-code.c:459
 msgid "Pacific/Kiritimati"
-msgstr ""
+msgstr "태평양/Kiritimati"
 
 #: ../src/ical-code.c:460
 msgid "Pacific/Kosrae"
-msgstr ""
+msgstr "태평양/Kosrae"
 
 #: ../src/ical-code.c:461
 msgid "Pacific/Kwajalein"
-msgstr ""
+msgstr "태평양/Kwajalein"
 
 #: ../src/ical-code.c:462
 msgid "Pacific/Majuro"
-msgstr ""
+msgstr "태평양/Majuro"
 
 #: ../src/ical-code.c:463
 msgid "Pacific/Marquesas"
-msgstr ""
+msgstr "태평양/Marquesas"
 
 #: ../src/ical-code.c:464
 msgid "Pacific/Midway"
-msgstr ""
+msgstr "태평양/Midway"
 
 #: ../src/ical-code.c:465
 msgid "Pacific/Nauru"
-msgstr ""
+msgstr "태평양/Nauru"
 
 #: ../src/ical-code.c:466
 msgid "Pacific/Niue"
-msgstr ""
+msgstr "태평양/Niue"
 
 #: ../src/ical-code.c:467
 msgid "Pacific/Norfolk"
-msgstr ""
+msgstr "태평양/Norfolk"
 
 #: ../src/ical-code.c:468
 msgid "Pacific/Noumea"
-msgstr ""
+msgstr "태평양/Noumea"
 
 #: ../src/ical-code.c:469
 msgid "Pacific/Pago_Pago"
-msgstr ""
+msgstr "태평양/Pago_Pago"
 
 #: ../src/ical-code.c:470
 msgid "Pacific/Palau"
@@ -2118,55 +2120,55 @@ msgstr ""
 
 #: ../src/ical-code.c:471
 msgid "Pacific/Pitcairn"
-msgstr ""
+msgstr "태평양/Pitcairn"
 
 #: ../src/ical-code.c:472
 msgid "Pacific/Ponape"
-msgstr ""
+msgstr "태평양/Ponape"
 
 #: ../src/ical-code.c:473
 msgid "Pacific/Port_Moresby"
-msgstr ""
+msgstr "태평양/Port_Moresby"
 
 #: ../src/ical-code.c:474
 msgid "Pacific/Rarotonga"
-msgstr ""
+msgstr "태평양/Rarotonga"
 
 #: ../src/ical-code.c:475
 msgid "Pacific/Saipan"
-msgstr ""
+msgstr "태평양/Saipan"
 
 #: ../src/ical-code.c:476
 msgid "Pacific/Tahiti"
-msgstr ""
+msgstr "태평양/Tahiti"
 
 #: ../src/ical-code.c:477
 msgid "Pacific/Tarawa"
-msgstr ""
+msgstr "태평양/Tarawa"
 
 #: ../src/ical-code.c:478
 msgid "Pacific/Tongatapu"
-msgstr ""
+msgstr "태평양/Tongatapu"
 
 #: ../src/ical-code.c:479
 msgid "Pacific/Truk"
-msgstr ""
+msgstr "태평양/Truk"
 
 #: ../src/ical-code.c:480
 msgid "Pacific/Wake"
-msgstr ""
+msgstr "태평양/Wake"
 
 #: ../src/ical-code.c:481
 msgid "Pacific/Wallis"
-msgstr ""
+msgstr "태평양/Wallis"
 
 #: ../src/ical-code.c:482
 msgid "Pacific/Yap"
-msgstr ""
+msgstr "태평양/Yap"
 
 #: ../src/ical-code.c:1223
 msgid "Orage default alarm"
-msgstr ""
+msgstr "Orage 기본 알리미"
 
 #: ../src/main.c:214
 msgid "This should not happen"
@@ -2178,20 +2180,20 @@ msgstr "MCS 클라이언트 채널을 만들지 못 했습니다."
 
 #: ../src/mainbox.c:428
 msgid "Open archive file..."
-msgstr ""
+msgstr "압축화일 열기"
 
 #: ../src/mainbox.c:431
 msgid "Close archive file"
-msgstr ""
+msgstr "압축화일 닫기"
 
 #. Edit menu
 #: ../src/mainbox.c:446
 msgid "_Edit"
-msgstr ""
+msgstr "수정(_E)"
 
 #: ../src/mainbox.c:456
 msgid "View selected _date"
-msgstr ""
+msgstr "선택한 날짜 보기(_d)"
 
 #: ../src/mainbox.c:462
 msgid "Select _Today"
@@ -2203,14 +2205,13 @@ msgid "_Help"
 msgstr "도움말(_H)"
 
 #: ../src/reminder.c:232
-#, fuzzy
 msgid "Reminder "
 msgstr "알리미"
 
 #. GtkTooltipsData *cur_tooltip;
 #: ../src/reminder.c:317
 msgid "Next active alarms:"
-msgstr ""
+msgstr "다음 알리미:"
 
 #: ../src/reminder.c:325
 #, c-format
@@ -2218,29 +2219,31 @@ msgid ""
 "\n"
 "%02d d %02d h %02d min to: %s"
 msgstr ""
+"\n"
+"%02d 일 %02d 시간 %02d 분을: %s"
 
 #: ../src/reminder.c:331
 msgid ""
 "\n"
 "No active alarms found"
 msgstr ""
+"알리미가 설정되어 있지 않습니다."
 
 #: ../src/tray_icon.c:308
-#, fuzzy
 msgid "New appointment"
-msgstr "약속"
+msgstr "새로운 일정"
 
 #: ../src/tray_icon.c:328
 msgid "About Orage"
-msgstr ""
+msgstr "Orage란..."
 
 #: ../panel-plugin/orageclock.desktop.in.in.h:1
 msgid "Orage Clock"
-msgstr ""
+msgstr "Orage 시계"
 
 #: ../panel-plugin/orageclock.desktop.in.in.h:2
 msgid "What time and date is it?"
-msgstr ""
+msgstr "시간과 날짜는요?"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:1
 msgid "Calendar Settings"
