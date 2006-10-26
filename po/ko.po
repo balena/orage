@@ -547,7 +547,7 @@ msgstr "요일"
 
 #: ../src/appointment.c:1730
 msgid "Which day"
-msgstr ""
+msgstr "몇 번째"
 
 #: ../src/appointment.c:1738
 msgid ""
@@ -558,6 +558,12 @@ msgid ""
 "\tWeekdays = check only Wednesday,\n"
 "\tWhich day = select 2 from the number below Wednesday"
 msgstr ""
+"매년 매월 어느 요일인지를 설정하십시오.\n"
+" 설정 예:\n"
+" 매월 2번째 수요일:\n"
+"\t주기 = 매월,\n"
+"\t요일 = 수요일만 선택,\n"
+"\t몇 번째 = 수요일 아래의 숫자란에서 2를 선택합니다."
 
 #. date only appointment
 #: ../src/event-list.c:199
@@ -2227,6 +2233,7 @@ msgid ""
 "\n"
 "No active alarms found"
 msgstr ""
+"\n"
 "알리미가 설정되어 있지 않습니다."
 
 #: ../src/tray_icon.c:308
