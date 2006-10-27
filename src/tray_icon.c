@@ -104,6 +104,7 @@ GdkPixbuf *create_icon(CalWin *xfcal, gint x, gint y)
   GdkGC *pic1_gc1, *pic1_gc2;
   GdkColormap *pic1_cmap;
   GdkColor color;
+  GdkVisual *pic1_vis;
   PangoLayout *pl_day, *pl_head, *pl_month;
   gint width = 0, height = 0, depth = 16;
   gint red = 239, green = 235, blue = 230;
@@ -133,9 +134,11 @@ GdkPixbuf *create_icon(CalWin *xfcal, gint x, gint y)
   t = orage_localtime();
   width = x; 
   height = y;
-  depth = gdk_visual_get_best_depth();
+  pic1_cmap = gdk_colormap_get_system();
+  pic1_vis = gdk_colormap_get_visual(pic1_cmap);
+  depth = pic1_vis->depth;
   pic1 = gdk_pixmap_new(NULL, width, height, depth);
-  pic1_cmap = gdk_screen_get_default_colormap(gdk_screen_get_default());
+  gdk_drawable_set_colormap(pic1, pic1_cmap);
   /* pic1_cmap = gtk_widget_get_colormap(xfcal->mWindow); */
   pic1_gc1 = gdk_gc_new(pic1);
   pic1_gc2 = gdk_gc_new(pic1);
