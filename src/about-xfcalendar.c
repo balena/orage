@@ -38,7 +38,7 @@ void create_wAbout(GtkWidget *widget, gpointer user_data)
 
   about = xfce_about_info_new("Orage", VERSION
           , _("Manage your time with Xfce4")
-          , XFCE_COPYRIGHT_TEXT("2003-2006", "Mickael 'Korbinus' Graf")
+          , XFCE_COPYRIGHT_TEXT("2003-2006", "Mickael 'Korbinus' Graf & Juha Kautto")
           , XFCE_LICENSE_GPL);
   /* xfcalendar_logo = xfce_themed_icon_load("xfcalendar", 48); */
   xfcalendar_logo = create_icon(xfcal, 48, 48);
