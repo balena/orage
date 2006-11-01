@@ -60,6 +60,9 @@
 extern char *local_icaltimezone_location;
 extern gboolean local_icaltimezone_utc;
 
+void
+fill_appt_window(appt_win *apptw, char *action, char *par);
+
 enum {
     LOCATION,
     LOCATION_ENG,
@@ -1322,8 +1325,8 @@ create_appt_win_menu(appt_win *apptw)
 
     /* Menu bar */
     apptw->appMenubar = gtk_menu_bar_new();
-    gtk_box_pack_start(GTK_BOX(apptw->appVBox1), apptw->appMenubar,
-                        FALSE, FALSE, 0);
+    gtk_box_pack_start(GTK_BOX(apptw->appVBox1), apptw->appMenubar
+            , FALSE, FALSE, 0);
 
     /* File menu stuff */
     apptw->appFile_menu = xfcalendar_menu_new(_("_File"), apptw->appMenubar);
@@ -1541,6 +1544,7 @@ create_appt_win_tab_general(appt_win *apptw)
             , apptw->appNote, apptw->appNote_Scrolledwindow, 7
             , (GtkAttachOptions) (GTK_EXPAND | GTK_FILL)
             , (GtkAttachOptions) (GTK_EXPAND | GTK_FILL));
+    gtk_widget_grab_focus(apptw->appTitle_entry);
 }
 
 void
@@ -1749,10 +1753,9 @@ appt_win
 *create_appt_win(char *action, char *par, eventlist_win *event_list)
 {
     int i;
-
-    /* main window creation and base elements */
     appt_win *apptw = g_new(appt_win, 1);
 
+    /* main window creation and base elements */
     apptw->xf_uid = NULL;
     apptw->eventlist = event_list;    /* Keep track of the parent, if any */
     apptw->appointment_changed = FALSE;

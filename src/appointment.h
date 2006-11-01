@@ -1,7 +1,7 @@
 /* appointment.h
  *
- * Copyright (C) 2004 Mickaël Graf <korbinus at xfce.org>
- * Copyright (C) 2005 Juha Kautto <kautto.juha at kolumbus.fi>
+ * Copyright (c) 2004-2006 Mickaël Graf <korbinus@xfce.org>
+ * Copyright (c) 2005-2006 Juha Kautto <juha@xfce.org>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -19,10 +19,14 @@
  *
  */
 
+#ifndef __APPOINTMENT_H__
+#define __APPOINTMENT_H__
+
 #define XFICAL_APPT_TIME_FORMAT "%04d%02d%02dT%02d%02d%02d"
 #define XFICAL_APPT_DATE_FORMAT "%04d%02d%02d"
 
-typedef enum {
+typedef enum 
+{
     XFICAL_FREQ_NONE = 0
     ,XFICAL_FREQ_DAILY
     ,XFICAL_FREQ_WEEKLY
@@ -184,11 +188,7 @@ typedef struct
      * add == TRUE && new == FALSE */
 } appt_win;
 
-void
-fill_appt_window_times(appt_win *apptw, appt_data *appt);
-
-void 
-fill_appt_window(appt_win *apptw, char *action, char *par);
-
 appt_win 
 *create_appt_win(char *action, char *par, eventlist_win *el);
+
+#endif /* !__APPOINTMENT_H__ */
