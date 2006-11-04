@@ -224,6 +224,7 @@ create_wReminder(alarm_struct *alarm)
   GtkWidget *swReminder;
   GtkWidget *hdReminder;
   char heading[200];
+  gchar *head2;
   xfce_audio_alarm_type *audio_alarm;
   gchar *alarm_uid;
 
@@ -240,7 +241,9 @@ create_wReminder(alarm_struct *alarm)
   gtk_widget_show(vbReminder);
 
   strncat(heading, alarm->title->str, 50);
-  hdReminder = xfce_create_header(NULL, heading);
+  head2 = g_markup_escape_text(heading, -1);
+  hdReminder = xfce_create_header(NULL, head2);
+  g_free(head2);
   gtk_widget_show(hdReminder);
   gtk_box_pack_start(GTK_BOX(vbReminder), hdReminder, FALSE, TRUE, 0);
 

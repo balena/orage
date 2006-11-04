@@ -1,7 +1,7 @@
 /* reminder.h
  *
- * (C) 2004-2005 Mickaël Graf
- * (C) 2005 Juha Kautto
+ * (C) 2004-2006 Mickaël Graf <korbinus@xfce.org>
+ * (C) 2005-2006 Juha Kautto <juha@xfce.org>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -18,6 +18,9 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  *
  */
+
+#ifndef __REMINDER_H__
+#define __REMINDER_H__
 
 typedef struct 
 {
@@ -47,3 +50,5 @@ void create_wReminder(alarm_struct *alarm);
 gboolean orage_alarm_clock(gpointer user_data);
 
 void set_play_command(gchar *cmd);
+
+#endif /* !__REMINDER_H__ */
