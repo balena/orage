@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: xfcalendar 4.3.99.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-10-13 18:52+0300\n"
-"PO-Revision-Date: 2006-10-20 12:59+0900\n"
+"PO-Revision-Date: 2006-11-05 05:09+0900\n"
 "Last-Translator: ByungHyun Choi<byunghyunchoi@debianusers.org>\n"
 "Language-Team: xfce4-users-kr-i18n <xfce4-users-kr-i18n@lists.sourceforge."
 "net>\n"
@@ -64,7 +64,7 @@ msgstr "시간대 코드(TZ)를 입력하시거나 아래 목록에서 선택하
 #. line 1
 #: ../panel-plugin/oc_config.c:304
 msgid "show line _1:"
-msgstr ""
+msgstr "line_1 표시:"
 
 #: ../panel-plugin/oc_config.c:315
 msgid "Enter any valid strftime function parameter."
@@ -73,12 +73,12 @@ msgstr "strftime 함수의 파라미터를 입력하시면 됩니다."
 #. line 2
 #: ../panel-plugin/oc_config.c:331
 msgid "show line _2:"
-msgstr ""
+msgstr "line_2 표시:"
 
 #. line 3
 #: ../panel-plugin/oc_config.c:353
 msgid "show line _3:"
-msgstr ""
+msgstr "line_3 표시:"
 
 #. Tooltip hint
 #: ../panel-plugin/oc_config.c:375
@@ -404,7 +404,7 @@ msgstr "분"
 
 #: ../src/appointment.c:1517
 msgid "Availability"
-msgstr ""
+msgstr "이용가능"
 
 #: ../src/appointment.c:1526
 msgid "Note"
@@ -520,26 +520,28 @@ msgid ""
 "Limit frequency to certain interval. For example:\n"
 " Every third day: Frequency = Daily and Interval = 3"
 msgstr ""
+"주기를 특정간격으로 제한합니다. 설정예:\n\n"
+" 3일마다: 주기 = 매일 그리고 기간 = 3"
 
 #: ../src/appointment.c:1678
 msgid "Limit"
-msgstr ""
+msgstr "제한"
 
 #: ../src/appointment.c:1680
 msgid "Repeat forever"
-msgstr ""
+msgstr "계속 반복"
 
 #: ../src/appointment.c:1688
 msgid "Repeat "
-msgstr ""
+msgstr "반복"
 
 #: ../src/appointment.c:1696
 msgid "times"
-msgstr ""
+msgstr "회수"
 
 #: ../src/appointment.c:1706
 msgid "Repeat until "
-msgstr ""
+msgstr "~까지 반복"
 
 #: ../src/appointment.c:1717
 msgid "Weekdays"
@@ -618,7 +620,7 @@ msgstr "비우기"
 
 #: ../src/event-list.c:784
 msgid "Flags"
-msgstr ""
+msgstr "Flags"
 
 #: ../src/event-list.c:790
 msgid "Title"
@@ -639,6 +641,14 @@ msgid ""
 "\t\t D=Daily W=Weekly M=Monthly Y=Yearly\n"
 "\t 3. Type: f=free B=Busy"
 msgstr ""
+"수정하려는 라인을 따닥 하십시오.\n"
+"\n"
+"Flags in order:\n"
+"\t 1. 알리미: n=알리미설정 없음\n"
+"\t\tA= 화면으로 알림  S= 소리로 알림\n"
+"\t 2. Recurrence: n=no recurrence\n"
+"\t\t D=매일 W=매주 M=매월 Y=매년\n"
+"\t 3. 형태: f=여유 B=바쁨"
 
 #: ../src/ical-code.c:100
 msgid "Africa"
@@ -2122,7 +2132,7 @@ msgstr "태평양/Pago_Pago"
 
 #: ../src/ical-code.c:470
 msgid "Pacific/Palau"
-msgstr ""
+msgstr "태평양/Palau"
 
 #: ../src/ical-code.c:471
 msgid "Pacific/Pitcairn"
