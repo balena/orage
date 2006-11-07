@@ -59,8 +59,7 @@ on_Today_activate                      (GtkMenuItem *menuitem,
     t = orage_localtime();
     xfcalendar_select_date(GTK_CALENDAR(xfcal->mCalendar), t->tm_year+1900
             , t->tm_mon, t->tm_mday);
-    el = create_eventlist_win();
-    manage_eventlist_win(GTK_CALENDAR(xfcal->mCalendar), el);
+    el = create_eventlist_win(GTK_CALENDAR(xfcal->mCalendar));
 }
 
 void 

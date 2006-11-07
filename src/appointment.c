@@ -671,7 +671,7 @@ save_xfical_from_appt_win(appt_win *apptw)
             apptw->appointment_new = FALSE;
             mark_appointment_unchanged(apptw);
             if (apptw->eventlist != NULL)
-                recreate_eventlist_win((eventlist_win *)apptw->eventlist);
+                refresh_eventlist_win((eventlist_win *)apptw->eventlist);
             xfcalendar_mark_appointments();
         }
     }
@@ -741,7 +741,7 @@ delete_xfical_from_appt_win(appt_win *apptw)
             }
 
         if (apptw->eventlist != NULL)
-            recreate_eventlist_win((eventlist_win *)apptw->eventlist);
+            refresh_eventlist_win((eventlist_win *)apptw->eventlist);
         xfcalendar_mark_appointments();
 
         gtk_widget_destroy(apptw->appWindow);

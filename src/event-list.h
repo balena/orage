@@ -62,6 +62,5 @@ typedef struct
     int elNumber_of_days_to_show;
 } eventlist_win;
 
-eventlist_win* create_eventlist_win(void);
-void recreate_eventlist_win(eventlist_win *el);
-void manage_eventlist_win(GtkCalendar *calendar, eventlist_win *el);
+eventlist_win *create_eventlist_win(GtkCalendar *cal);
+void refresh_eventlist_win(eventlist_win *el);

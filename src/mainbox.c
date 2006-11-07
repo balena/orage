@@ -177,8 +177,7 @@ mView_ViewSelectedDate_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
     CalWin *xfcal = (CalWin *) user_data;
     eventlist_win *el;
 
-    el = create_eventlist_win();
-    manage_eventlist_win(GTK_CALENDAR(xfcal->mCalendar), el);
+    el = create_eventlist_win(GTK_CALENDAR(xfcal->mCalendar));
 }
 
 void
@@ -244,8 +243,7 @@ mCalendar_day_selected_double_click_cb(GtkCalendar *cdar, gpointer user_data)
     CalWin *xfcal = (CalWin *) user_data;
     eventlist_win *el;
 
-    el = create_eventlist_win();
-    manage_eventlist_win(GTK_CALENDAR(xfcal->mCalendar), el);
+    el = create_eventlist_win(GTK_CALENDAR(xfcal->mCalendar));
 }
 
 gboolean

@@ -259,29 +259,6 @@ void start_time_data_func(GtkTreeViewColumn *col, GtkCellRenderer *rend,
     }
 }
 
-void
-recreate_eventlist_win (eventlist_win *el)
-{
-    GtkCellRenderer *rend;
-    GtkTreeViewColumn *col;
-
-    if (el->elWindow != NULL
-    &&  el->elListStore != NULL
-    &&  el->elTreeView != NULL) {
-        gtk_list_store_clear(el->elListStore);
-        col = gtk_tree_view_get_column(GTK_TREE_VIEW(el->elTreeView), 0);
-        gtk_tree_view_remove_column(GTK_TREE_VIEW(el->elTreeView), col);
-        rend = gtk_cell_renderer_text_new();
-        col = gtk_tree_view_column_new_with_attributes( _("Time"), rend
-                                                        , "text", COL_TIME
-                                                        , NULL);
-        gtk_tree_view_column_set_cell_data_func(col, rend, start_time_data_func
-                                                , el, NULL);
-        gtk_tree_view_insert_column(GTK_TREE_VIEW(el->elTreeView), col, 0);
-        manage_eventlist_win(GTK_CALENDAR(xfcal->mCalendar), el);
-    }
-}
-
 void addEvent(GtkListStore *list1, appt_data *appt, char *header, gint days)
 {
     GtkTreeIter     iter1;
@@ -375,6 +352,84 @@ void manage_eventlist_win(GtkCalendar *calendar, eventlist_win *el)
 }
 
 void
+recreate_eventlist_win (eventlist_win *el)
+{
+    GtkCellRenderer *rend;
+    GtkTreeViewColumn *col;
+
+    if (el->elWindow != NULL
+    &&  el->elListStore != NULL
+    &&  el->elTreeView != NULL) {
+        gtk_list_store_clear(el->elListStore);
+        col = gtk_tree_view_get_column(GTK_TREE_VIEW(el->elTreeView), 0);
+        gtk_tree_view_remove_column(GTK_TREE_VIEW(el->elTreeView), col);
+        rend = gtk_cell_renderer_text_new();
+        col = gtk_tree_view_column_new_with_attributes( _("Time"), rend
+                                                        , "text", COL_TIME
+                                                        , NULL);
+        gtk_tree_view_column_set_cell_data_func(col, rend, start_time_data_func
+                                                , el, NULL);
+        gtk_tree_view_insert_column(GTK_TREE_VIEW(el->elTreeView), col, 0);
+        manage_eventlist_win(GTK_CALENDAR(xfcal->mCalendar), el);
+    }
+}
+
+void refresh_eventlist_data(eventlist_win *el)
+{
+    guint year, month, day;
+    char      *title;
+    char      a_day[9];  /* yyyymmdd */
+    appt_data *appt;
+    struct tm *t;
+    gint      days = 0;
+
+    title = (char*)gtk_window_get_title(GTK_WINDOW(el->elWindow));
+    if (sscanf(title, "%d-%d-%d", &year, &month, &day) != 3)
+        g_warning("refresh_eventlist_data: title conversion error\n");
+    days = gtk_spin_button_get_value(GTK_SPIN_BUTTON(el->elSpin1));
+
+    if (xfical_file_open()) {
+        g_sprintf(a_day, XFICAL_APPT_DATE_FORMAT, year, month, day);
+        if ((appt = xfical_appt_get_next_on_day(a_day, TRUE, days))) {
+            t = orage_localtime();
+            if (   year  == t->tm_year + 1900
+                && month == t->tm_mon  + 1
+                && day   == t->tm_mday)
+                el->elToday = TRUE;
+            else
+                el->elToday = FALSE; 
+
+            do {
+                addEvent(el->elListStore, appt, title, days);
+            } while ((appt = xfical_appt_get_next_on_day(a_day, FALSE, days)));
+        }
+        xfical_file_close();
+    }
+}
+
+void refresh_eventlist_win(eventlist_win *el)
+{
+    GtkCellRenderer *rend;
+    GtkTreeViewColumn *col;
+
+    if (el->elWindow != NULL
+    &&  el->elListStore != NULL
+    &&  el->elTreeView != NULL) {
+        gtk_list_store_clear(el->elListStore);
+        col = gtk_tree_view_get_column(GTK_TREE_VIEW(el->elTreeView), 0);
+        gtk_tree_view_remove_column(GTK_TREE_VIEW(el->elTreeView), col);
+        rend = gtk_cell_renderer_text_new();
+        col = gtk_tree_view_column_new_with_attributes( _("Time"), rend
+                                                        , "text", COL_TIME
+                                                        , NULL);
+        gtk_tree_view_column_set_cell_data_func(col, rend, start_time_data_func
+                                                , el, NULL);
+        gtk_tree_view_insert_column(GTK_TREE_VIEW(el->elTreeView), col, 0);
+        refresh_eventlist_data(el);
+    }
+}
+
+void
 duplicate_appointment(eventlist_win *el)
 {
     GtkTreeSelection *sel;
@@ -442,13 +497,13 @@ on_elWindow_delete_event(GtkWidget *widget, GdkEvent *event, gpointer user_data)
 void
 on_elRefresh_clicked(GtkButton *button, gpointer user_data)
 {
-    recreate_eventlist_win((eventlist_win*)user_data);
+    refresh_eventlist_win((eventlist_win*)user_data);
 }
 
 void
 on_elView_refresh_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
 {
-    recreate_eventlist_win((eventlist_win*)user_data);
+    refresh_eventlist_win((eventlist_win*)user_data);
 }
 
 void
@@ -566,7 +621,7 @@ on_elCreate_toolbutton_clicked_cb(GtkButton *button, gpointer user_data)
 void
 on_elSpin1_changed(GtkSpinButton *button, gpointer user_data)
 {
-    recreate_eventlist_win((eventlist_win *)user_data);
+    refresh_eventlist_win((eventlist_win *)user_data);
 }
 
 void
@@ -594,9 +649,8 @@ clear_eventlist_win(eventlist_win *el)
             title_to_ical(title, a_day);
             xfical_rmday(a_day);
             xfical_file_close();
-            day = atoi(a_day+6);
-            gtk_calendar_unmark_day(GTK_CALENDAR(xfcal->mCalendar), day);
-            recreate_eventlist_win(el);
+            refresh_eventlist_win(el);
+            xfcalendar_mark_appointments();
         }
     }
 }
@@ -613,8 +667,7 @@ on_elFile_delete_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
     clear_eventlist_win((eventlist_win *)user_data);
 }
 
-eventlist_win
-*create_eventlist_win(void)
+eventlist_win *create_eventlist_win(GtkCalendar *cal)
 {
     GtkWidget
         *toolbar_separator, 
@@ -845,6 +898,7 @@ eventlist_win
     gtk_window_add_accel_group(GTK_WINDOW(el->elWindow), el->accel_group);
 
     gtk_widget_show_all(el->elWindow);
+    manage_eventlist_win(cal, el);
 
   return el;
 }
