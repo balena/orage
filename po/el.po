@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: xfcalendar 4.3.99.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-10-13 18:52+0300\n"
-"PO-Revision-Date: 2006-10-11 23:07+0200\n"
+"PO-Revision-Date: 2006-11-11 20:20+0200\n"
 "Last-Translator: Stavros Giannouris <stavrosg2002@freemail.gr>\n"
 "Language-Team: Greek <nls@tux.hellug.gr>\n"
 "MIME-Version: 1.0\n"
@@ -83,7 +83,7 @@ msgstr "Εμφάνιση γραμμής _3:"
 #. Tooltip hint
 #: ../panel-plugin/oc_config.c:375
 msgid "Tooltip:"
-msgstr ""
+msgstr "Αναδυόμενη συμβουλή:"
 
 #: ../panel-plugin/oc_config.c:392
 msgid ""
@@ -96,10 +96,8 @@ msgid ""
 "\t%H = hours \t\t\t\t%M = minute\n"
 "\t%X = local time\t\t\t%x = local date"
 msgstr ""
-"Αυτό το πρόγραμμα χρησιμοποιεί τη συνάρτηση strftime για να εμφανίσει την "
-"ώρα.\n"
-"Εισάγετε κάποιον έγκυρο κωδικό για να εμφανίσετε την ώρα στη μορφή που "
-"προτιμάτε.\n"
+"Αυτό το πρόγραμμα χρησιμοποιεί τη συνάρτηση strftime για να εμφανίσει την ώρα.\n"
+"Εισάγετε κάποιον έγκυρο κωδικό για να εμφανίσετε την ώρα στη μορφή που προτιμάτε.\n"
 "Μερικοί κοινοί κωδικοί είναι οι:\t%A = ημέρα εβδομάδας\t\t%B = μήνας\n"
 "\t%c = ημερομηνία & ώρα\t\t%R = ώρα και λεπτά\n"
 "\t%V = αριθμός εβδομάδας\t\t%Z = ζώνη ώρας\n"
@@ -129,22 +127,29 @@ msgstr "%A %d %B %Y"
 
 #. to avoid timing problems when updating entry
 #. Create file chooser
-#: ../plugin/xfcalendar_plugin.c:263 ../plugin/xfcalendar_plugin.c:321
-#: ../src/appointment.c:383 ../src/mainbox.c:114
+#: ../plugin/xfcalendar_plugin.c:263
+#: ../plugin/xfcalendar_plugin.c:321
+#: ../src/appointment.c:383
+#: ../src/mainbox.c:114
 msgid "Select a file..."
 msgstr "Επιλογή αρχείου..."
 
-#: ../plugin/xfcalendar_plugin.c:271 ../src/mainbox.c:122
+#: ../plugin/xfcalendar_plugin.c:271
+#: ../src/mainbox.c:122
 msgid "Calendar files"
 msgstr "Αρχεία ημερολογίου"
 
-#: ../plugin/xfcalendar_plugin.c:276 ../src/appointment.c:398
+#: ../plugin/xfcalendar_plugin.c:276
+#: ../src/appointment.c:398
 #: ../src/mainbox.c:127
 msgid "All Files"
 msgstr "Όλα τα αρχεία"
 
-#: ../plugin/xfcalendar_plugin.c:419 ../plugin/xfcalendar_plugin.c:424
-#: ../src/appointment.c:917 ../src/appointment.c:922 ../src/appointment.c:1438
+#: ../plugin/xfcalendar_plugin.c:419
+#: ../plugin/xfcalendar_plugin.c:424
+#: ../src/appointment.c:917
+#: ../src/appointment.c:922
+#: ../src/appointment.c:1438
 msgid "Location"
 msgstr "Τοποθεσία"
 
@@ -153,14 +158,19 @@ msgstr "Τοποθεσία"
 msgid "Pick local timezone"
 msgstr "Επιλογή τοπικής ζώνης ώρας"
 
-#: ../plugin/xfcalendar_plugin.c:433 ../plugin/xfcalendar_plugin.c:463
-#: ../src/appointment.c:931 ../src/appointment.c:961
+#: ../plugin/xfcalendar_plugin.c:433
+#: ../plugin/xfcalendar_plugin.c:463
+#: ../src/appointment.c:931
+#: ../src/appointment.c:961
 msgid "UTC"
 msgstr "UTC"
 
-#: ../plugin/xfcalendar_plugin.c:434 ../plugin/xfcalendar_plugin.c:467
-#: ../plugin/xfcalendar_plugin.c:749 ../src/appointment.c:932
-#: ../src/appointment.c:965 ../src/appointment.c:1001
+#: ../plugin/xfcalendar_plugin.c:434
+#: ../plugin/xfcalendar_plugin.c:467
+#: ../plugin/xfcalendar_plugin.c:749
+#: ../src/appointment.c:932
+#: ../src/appointment.c:965
+#: ../src/appointment.c:1001
 #: ../src/appointment.c:1009
 msgid "floating"
 msgstr "μετακινούμενη"
@@ -245,7 +255,8 @@ msgstr "1 χρόνο"
 msgid "never"
 msgstr "ποτέ"
 
-#: ../plugin/xfcalendar_plugin.c:694 ../src/appointment.c:1588
+#: ../plugin/xfcalendar_plugin.c:694
+#: ../src/appointment.c:1588
 msgid "Sound"
 msgstr "Ήχοι"
 
@@ -253,7 +264,8 @@ msgstr "Ήχοι"
 msgid "Application"
 msgstr "Εφαρμογή"
 
-#: ../plugin/xfcalendar_plugin.c:725 ../plugin/xfcalendar_plugin.c:735
+#: ../plugin/xfcalendar_plugin.c:725
+#: ../plugin/xfcalendar_plugin.c:735
 msgid "Timezone"
 msgstr "Ζώνη ώρας"
 
@@ -266,19 +278,24 @@ msgstr "Orage"
 msgid "Manage your time with Xfce4"
 msgstr "Διαχειριστείτε το χρόνο σας με το Xfce4"
 
-#: ../src/about-xfcalendar.c:51 ../src/about-xfcalendar.c:56
+#: ../src/about-xfcalendar.c:51
+#: ../src/about-xfcalendar.c:56
 msgid "Core developer"
 msgstr "Βασικός προγραμματιστής"
 
-#: ../src/about-xfcalendar.c:61 ../src/about-xfcalendar.c:66
+#: ../src/about-xfcalendar.c:61
+#: ../src/about-xfcalendar.c:66
 msgid "Contributor"
 msgstr "Συντελεστής"
 
-#: ../src/appointment.c:99 ../src/appointment.c:116
+#: ../src/appointment.c:99
+#: ../src/appointment.c:116
 msgid "%m/%d/%Y"
 msgstr "%d/%m/%Y"
 
-#: ../src/appointment.c:279 ../src/mainbox.c:396 ../xfcalendar.desktop.in.h:3
+#: ../src/appointment.c:279
+#: ../src/mainbox.c:396
+#: ../xfcalendar.desktop.in.h:3
 msgid "Orage"
 msgstr "Orage"
 
@@ -286,7 +303,9 @@ msgstr "Orage"
 msgid "Sound Files"
 msgstr "Αρχεία ήχου"
 
-#: ../src/appointment.c:439 ../src/appointment.c:474 ../src/appointment.c:719
+#: ../src/appointment.c:439
+#: ../src/appointment.c:474
+#: ../src/appointment.c:719
 #: ../src/event-list.c:581
 msgid "Warning"
 msgstr "Προειδοποίηση"
@@ -295,7 +314,9 @@ msgstr "Προειδοποίηση"
 msgid "The appointment information has been modified."
 msgstr "Οι πληροφορίες του ραντεβού έχουν τροποποιηθεί."
 
-#: ../src/appointment.c:442 ../src/appointment.c:722 ../src/event-list.c:584
+#: ../src/appointment.c:442
+#: ../src/appointment.c:722
+#: ../src/event-list.c:584
 msgid "Do you want to continue?"
 msgstr "Επιθυμείτε να συνεχίσετε;"
 
@@ -311,7 +332,9 @@ msgstr "Αυτό το ραντεβού θα απομακρυνθεί οριστ�
 msgid "Pick the date"
 msgstr "Επιλογή ημερομηνίας"
 
-#: ../src/appointment.c:824 ../src/event-list.c:722 ../src/tray_icon.c:297
+#: ../src/appointment.c:824
+#: ../src/event-list.c:722
+#: ../src/tray_icon.c:297
 msgid "Today"
 msgstr "Σήμερα"
 
@@ -326,7 +349,9 @@ msgstr "Νέο ραντεβού - Orage"
 
 #. File menu stuff
 #. File menu
-#: ../src/appointment.c:1329 ../src/event-list.c:648 ../src/mainbox.c:419
+#: ../src/appointment.c:1329
+#: ../src/event-list.c:648
+#: ../src/mainbox.c:419
 msgid "_File"
 msgstr "_Αρχείο"
 
@@ -334,7 +359,8 @@ msgstr "_Αρχείο"
 msgid "Sav_e and close"
 msgstr "Αποθήκ_ευση και κλείσιμο"
 
-#: ../src/appointment.c:1349 ../src/event-list.c:657
+#: ../src/appointment.c:1349
+#: ../src/event-list.c:657
 msgid "D_uplicate"
 msgstr "Δημιουργία αντι_γράφου"
 
@@ -342,7 +368,8 @@ msgstr "Δημιουργία αντι_γράφου"
 msgid "Save"
 msgstr "Αποθήκευση"
 
-#: ../src/appointment.c:1393 ../src/appointment.c:1395
+#: ../src/appointment.c:1393
+#: ../src/appointment.c:1395
 msgid "Save and close"
 msgstr "Αποθήκευση και κλείσιμο"
 
@@ -350,7 +377,9 @@ msgstr "Αποθήκευση και κλείσιμο"
 msgid "Revert"
 msgstr "Επαναφορά"
 
-#: ../src/appointment.c:1405 ../src/appointment.c:1407 ../src/event-list.c:734
+#: ../src/appointment.c:1405
+#: ../src/appointment.c:1407
+#: ../src/event-list.c:734
 msgid "Duplicate"
 msgstr "Αντίγραφο"
 
@@ -390,15 +419,18 @@ msgstr "Τέλος"
 msgid "Duration"
 msgstr "Διάρκεια"
 
-#: ../src/appointment.c:1491 ../src/appointment.c:1565
+#: ../src/appointment.c:1491
+#: ../src/appointment.c:1565
 msgid "days"
 msgstr "ημέρες"
 
-#: ../src/appointment.c:1500 ../src/appointment.c:1573
+#: ../src/appointment.c:1500
+#: ../src/appointment.c:1573
 msgid "hours"
 msgstr "ώρες"
 
-#: ../src/appointment.c:1509 ../src/appointment.c:1581
+#: ../src/appointment.c:1509
+#: ../src/appointment.c:1581
 msgid "mins"
 msgstr "λεπτά"
 
@@ -410,7 +442,8 @@ msgstr "Διαθεσιμότητα"
 msgid "Note"
 msgstr "Σημείωση"
 
-#: ../src/appointment.c:1554 ../src/appointment.c:1559
+#: ../src/appointment.c:1554
+#: ../src/appointment.c:1559
 msgid "Alarm"
 msgstr "Ειδοποίηση"
 
@@ -571,7 +604,8 @@ msgstr ""
 msgid "All day"
 msgstr "Ολόκληρη τη μέρα"
 
-#: ../src/event-list.c:275 ../src/event-list.c:776
+#: ../src/event-list.c:275
+#: ../src/event-list.c:776
 msgid "Time"
 msgstr "Ώρα"
 
@@ -584,7 +618,8 @@ msgstr ""
 "που σχετίζονται με αυτή την ημερομηνία."
 
 #. View menu
-#: ../src/event-list.c:679 ../src/mainbox.c:453
+#: ../src/event-list.c:679
+#: ../src/mainbox.c:453
 msgid "_View"
 msgstr "_Προβολή"
 
@@ -2280,3 +2315,4 @@ msgstr "Ημερολόγιο"
 #: ../xfcalendar.desktop.in.h:2
 msgid "Desktop calendar"
 msgstr "Ημερολόγιο γραφείου"
+
