@@ -135,6 +135,7 @@ mark_appointment_changed(appt_win *apptw)
     if (!apptw->appointment_changed) {
         apptw->appointment_changed = TRUE;
         gtk_widget_set_sensitive(apptw->appRevert, TRUE);
+        gtk_widget_set_sensitive(apptw->appFileRevert_menuitem, TRUE);
     }
 }
 
@@ -144,6 +145,7 @@ mark_appointment_unchanged(appt_win *apptw)
     if (apptw->appointment_changed) {
         apptw->appointment_changed = FALSE;
         gtk_widget_set_sensitive(apptw->appRevert, FALSE);
+        gtk_widget_set_sensitive(apptw->appFileRevert_menuitem, FALSE);
     }
 }
 
@@ -652,6 +654,8 @@ save_xfical_from_appt_win(appt_win *apptw)
                 if (ok) {
                     apptw->appointment_add = FALSE;
                     gtk_widget_set_sensitive(apptw->appDuplicate, TRUE);
+                    gtk_widget_set_sensitive(apptw->appFileDuplicate_menuitem
+                            , TRUE);
                     g_message("Orage **: Added: %s", apptw->xf_uid);
                 }
                 else
@@ -1191,6 +1195,8 @@ fill_appt_window(appt_win *apptw, char *action, char *par)
     /* we only want to enable duplication if we are working with an old
      * existing app (=not adding new) */
     gtk_widget_set_sensitive(apptw->appDuplicate, !apptw->appointment_add);
+    gtk_widget_set_sensitive(apptw->appFileDuplicate_menuitem
+            , !apptw->appointment_add);
 
     /* window title */
     gtk_window_set_title(GTK_WINDOW(apptw->appWindow)
