@@ -434,6 +434,16 @@ on_appAllDay_clicked_cb(GtkCheckButton *checkbutton, gpointer user_data)
     mark_appointment_changed((appt_win *)user_data);
 }
 
+void free_apptw(appt_win *apptw)
+{
+    gtk_widget_destroy(apptw->appWindow);
+    gtk_object_destroy(GTK_OBJECT(apptw->appTooltips));
+    g_free(apptw->xf_uid);
+    g_free(apptw->par);
+    xfical_appt_free(apptw->appt);
+    g_free(apptw);
+}
+
 gboolean
 appWindow_check_and_close(appt_win *apptw)
 {
@@ -449,16 +459,11 @@ appWindow_check_and_close(appt_win *apptw)
              GTK_STOCK_NO, GTK_RESPONSE_CANCEL,
              NULL);
 
-        if (result == GTK_RESPONSE_ACCEPT) {
-            gtk_widget_destroy(apptw->appWindow);
-            g_free(apptw);
-        }
+        if (result == GTK_RESPONSE_ACCEPT)
+            free_apptw(apptw);
     }
-    else{
-        gtk_widget_destroy(apptw->appWindow);
-        gtk_object_destroy(GTK_OBJECT(apptw->appTooltips));
-        g_free(apptw);
-    }
+    else
+        free_apptw(apptw);
     return TRUE;
 }
 
@@ -526,8 +531,6 @@ fill_appt_from_apptw(appt_data *appt, appt_win *apptw)
     g_sprintf(appt->starttime, XFICAL_APPT_TIME_FORMAT
             , current_t.tm_year + 1900, current_t.tm_mon + 1, current_t.tm_mday
             , current_t.tm_hour, current_t.tm_min, 0);
-    appt->start_tz_loc = g_strdup(g_object_get_data(
-            G_OBJECT(apptw->appStartTimezone_button), "LOCATION_ENG"));
 
     /* Get the end date and time and timezone */
     current_t = display_to_year_month_day(gtk_button_get_label(
@@ -541,8 +544,6 @@ fill_appt_from_apptw(appt_data *appt, appt_win *apptw)
     g_sprintf(appt->endtime, XFICAL_APPT_TIME_FORMAT
             , current_t.tm_year + 1900, current_t.tm_mon + 1, current_t.tm_mday
             , current_t.tm_hour, current_t.tm_min, 0);
-    appt->end_tz_loc = g_strdup(g_object_get_data(
-            G_OBJECT(apptw->appEndTimezone_button), "LOCATION_ENG"));
 
     /* Get the duration */
     appt->use_duration = gtk_toggle_button_get_active(
@@ -643,7 +644,7 @@ gboolean
 save_xfical_from_appt_win(appt_win *apptw)
 {
     gboolean ok = FALSE;
-    appt_data *appt = xfical_appt_alloc();
+    appt_data *appt = apptw->appt;
 
     if (fill_appt_from_apptw(appt, apptw)) {
         /* Here we try to save the event... */
@@ -680,7 +681,6 @@ save_xfical_from_appt_win(appt_win *apptw)
         }
     }
 
-    xfical_appt_free(appt);
     return (ok);
 }
 
@@ -699,10 +699,8 @@ on_appSave_clicked_cb(GtkButton *button, gpointer user_data)
 void
 save_xfical_from_appt_win_and_close(appt_win *apptw)
 {
-    if (save_xfical_from_appt_win(apptw)) {
-        gtk_widget_destroy(apptw->appWindow);
-        g_free(apptw);
-    }
+    if (save_xfical_from_appt_win(apptw))
+        free_apptw(apptw);
 }
 
 void 
@@ -748,10 +746,7 @@ delete_xfical_from_appt_win(appt_win *apptw)
             refresh_eventlist_win((eventlist_win *)apptw->eventlist);
         xfcalendar_mark_appointments();
 
-        gtk_widget_destroy(apptw->appWindow);
-        g_free(apptw->xf_uid);
-        g_free(apptw->par);
-        g_free(apptw);
+        free_apptw(apptw);
     }
 }
 
@@ -871,10 +866,10 @@ on_appStartEndDate_clicked_cb(GtkWidget *button, gpointer *user_data)
 }
 
 void
-on_appStartEndTimezone_clicked_cb(GtkWidget *button, gpointer *user_data)
+on_appTimezone_clicked_cb(GtkWidget *button,  appt_win *apptw
+        , gchar **tz)
 {
 #define MAX_AREA_LENGTH 20
-    appt_win *apptw = (appt_win *)user_data;
     GtkTreeStore *store;
     GtkTreeIter iter1, iter2;
     GtkWidget *tree;
@@ -882,7 +877,7 @@ on_appStartEndTimezone_clicked_cb(GtkWidget *button, gpointer *user_data)
     GtkTreeViewColumn *col;
     GtkWidget *window;
     GtkWidget *sw;
-    xfical_timezone_array tz;
+    xfical_timezone_array tz_a;
     int i, j, result;
     char area_old[MAX_AREA_LENGTH], *loc, *loc_eng, *loc_int;
     GtkTreeSelection *sel;
@@ -892,17 +887,17 @@ on_appStartEndTimezone_clicked_cb(GtkWidget *button, gpointer *user_data)
     /* enter data */
     store = gtk_tree_store_new(N_COLUMNS, G_TYPE_STRING, G_TYPE_STRING);
     strcpy(area_old, "S T a R T");
-    tz = xfical_get_timezones();
-    for (i=0; i < tz.count-2; i++) {
+    tz_a = xfical_get_timezones();
+    for (i=0; i < tz_a.count-2; i++) {
         /* first area */
-        if (! g_str_has_prefix(tz.city[i], area_old)) {
-            for (j=0; tz.city[i][j] != '/' && j < MAX_AREA_LENGTH; j++) {
-                area_old[j] = tz.city[i][j];
+        if (! g_str_has_prefix(tz_a.city[i], area_old)) {
+            for (j=0; tz_a.city[i][j] != '/' && j < MAX_AREA_LENGTH; j++) {
+                area_old[j] = tz_a.city[i][j];
             }
             if (j < MAX_AREA_LENGTH)
                 area_old[j] = 0;
             else
-                g_warning("on_appStartEndTimezone_clicked_cb: too long line in zones.tab %s", tz.city[i]);
+                g_warning("on_appStartEndTimezone_clicked_cb: too long line in zones.tab %s", tz_a.city[i]);
 
             gtk_tree_store_append(store, &iter1, NULL);
             gtk_tree_store_set(store, &iter1
@@ -913,8 +908,8 @@ on_appStartEndTimezone_clicked_cb(GtkWidget *button, gpointer *user_data)
         /* then city translated and in base form used internally */
         gtk_tree_store_append(store, &iter2, &iter1);
         gtk_tree_store_set(store, &iter2
-                , LOCATION, _(tz.city[i]) 
-                , LOCATION_ENG, tz.city[i] 
+                , LOCATION, _(tz_a.city[i]) 
+                , LOCATION_ENG, tz_a.city[i] 
                 , -1);
     }
          
@@ -959,9 +954,8 @@ on_appStartEndTimezone_clicked_cb(GtkWidget *button, gpointer *user_data)
                                 , &loc_eng, -1);
                     }
                 else {
-                    loc = g_strdup(gtk_button_get_label(GTK_BUTTON(button)));
-                    loc_eng = g_object_get_data(G_OBJECT(button)
-                            , "LOCATION_ENG");
+                    loc = g_strdup(_(*tz));
+                    loc_eng = g_strdup((*tz));
                 }
                 break;
             case 1:
@@ -973,8 +967,8 @@ on_appStartEndTimezone_clicked_cb(GtkWidget *button, gpointer *user_data)
                 loc_eng = g_strdup("floating");
                 break;
             default:
-                loc = g_strdup(gtk_button_get_label(GTK_BUTTON(button)));
-                loc_eng = g_object_get_data(G_OBJECT(button), "LOCATION_ENG");
+                loc = g_strdup(_(*tz));
+                loc_eng = g_strdup((*tz));
                 break;
         }
     } while (result == 0) ;
@@ -983,13 +977,32 @@ on_appStartEndTimezone_clicked_cb(GtkWidget *button, gpointer *user_data)
         mark_appointment_changed(apptw);
     }
     gtk_button_set_label(GTK_BUTTON(button), loc);
-    if ((loc_int = g_object_get_data(G_OBJECT(button), "LOCATION_ENG")))
-        g_free(loc_int);
-    loc_int = g_strdup(loc_eng);
-    g_object_set_data(G_OBJECT(button), "LOCATION_ENG", loc_int);
+    if (*tz)
+        g_free(*tz);
+    *tz = g_strdup(loc_eng);
     g_free(loc);
     g_free(loc_eng);
     gtk_widget_destroy(window);
+}
+
+static void on_appStartTimezone_clicked_cb(GtkWidget *button
+        , gpointer *user_data)
+{
+    appt_win *apptw = (appt_win *)user_data;
+    appt_data *appt;
+
+    appt = apptw->appt;
+    on_appTimezone_clicked_cb(button, apptw, &appt->start_tz_loc);
+}
+
+static void on_appEndTimezone_clicked_cb(GtkWidget *button
+        , gpointer *user_data)
+{
+    appt_win *apptw = (appt_win *)user_data;
+    appt_data *appt;
+
+    appt = apptw->appt;
+    on_appTimezone_clicked_cb(button, apptw, &appt->end_tz_loc);
 }
 
 void
@@ -997,24 +1010,6 @@ fill_appt_window_times(appt_win *apptw, appt_data *appt)
 {
     char *startdate_to_display, *enddate_to_display;
     int year, month, day, hours, minutes;
-    gchar *s_tz, *e_tz, *s_tze, *e_tze;
-
-    if (appt->start_tz_loc) {
-        s_tze = g_strdup(appt->start_tz_loc);
-        s_tz  = g_strdup(_(appt->start_tz_loc));
-    }
-    else { /* null = local = no timezone = floating */
-        s_tze = g_strdup("floating");
-        s_tz  = g_strdup(_("floating"));
-    }
-    if (appt->end_tz_loc) {
-        e_tze = g_strdup(appt->end_tz_loc);
-        e_tz  = g_strdup(_(appt->end_tz_loc));
-    }
-    else { /* null = local = no timezone = floating */
-        e_tze = g_strdup("floating");
-        e_tz  = g_strdup(_("floating"));
-    }
 
     /* all day ? */
     gtk_toggle_button_set_active(
@@ -1034,12 +1029,9 @@ fill_appt_window_times(appt_win *apptw, appt_data *appt)
             gtk_spin_button_set_value(
                 GTK_SPIN_BUTTON(apptw->appStartTime_spin_mm), (gdouble)minutes);
         }
-        if (s_tz) {
+        if (appt->start_tz_loc) {
             gtk_button_set_label(GTK_BUTTON(apptw->appStartTimezone_button)
-                    , s_tz);
-            g_free(s_tz);
-            g_object_set_data(G_OBJECT(apptw->appStartTimezone_button)
-                    , "LOCATION_ENG", s_tze);
+                    , _(appt->start_tz_loc));
         }
         else /* we should never get here */
             g_warning("fill_appt_window_times: s_tz is null");
@@ -1061,12 +1053,9 @@ fill_appt_window_times(appt_win *apptw, appt_data *appt)
             gtk_spin_button_set_value(
                 GTK_SPIN_BUTTON(apptw->appEndTime_spin_mm), (gdouble)minutes);
         }
-        if (e_tz) {
+        if (appt->end_tz_loc) {
             gtk_button_set_label(GTK_BUTTON(apptw->appEndTimezone_button)
-                    , e_tz);
-            g_free(e_tz);
-            g_object_set_data(G_OBJECT(apptw->appEndTimezone_button)
-                    , "LOCATION_ENG", e_tze);
+                    , _(appt->end_tz_loc));
         }
         else /* we should never get here */
             g_warning("fill_appt_window_times: e_tz is null");
@@ -1169,6 +1158,14 @@ fill_appt_window(appt_win *apptw, char *action, char *par)
         g_error("fill_appt_window: Appointment initialization failed");
         return;
     }
+    apptw->appt = appt; 
+    /* let's make sure timezones are never null. 
+     * Remember: null means use floating */
+    if (!appt->start_tz_loc)
+        appt->start_tz_loc = g_strdup("floating");
+    if (!appt->end_tz_loc)
+        appt->end_tz_loc = g_strdup("floating");
+
 
     /* first flags */
     apptw->xf_uid = g_strdup(appt->uid);
@@ -1317,7 +1314,6 @@ fill_appt_window(appt_win *apptw, char *action, char *par)
         gtk_toggle_button_set_active(
                 GTK_TOGGLE_BUTTON(apptw->appRecur_feature_normal_rb), TRUE);
     }
-    xfical_appt_free(appt);
 
     set_time_sensitivity(apptw);
     set_repeat_sensitivity(apptw);
@@ -1852,10 +1848,10 @@ appt_win
             G_CALLBACK(on_app_spin_button_changed_cb), apptw);
 
     g_signal_connect((gpointer) apptw->appStartTimezone_button, "clicked",
-            G_CALLBACK(on_appStartEndTimezone_clicked_cb), apptw);
+            G_CALLBACK(on_appStartTimezone_clicked_cb), apptw);
 
     g_signal_connect((gpointer) apptw->appEndTimezone_button, "clicked",
-            G_CALLBACK(on_appStartEndTimezone_clicked_cb), apptw);
+            G_CALLBACK(on_appEndTimezone_clicked_cb), apptw);
 
     g_signal_connect((gpointer) apptw->appDur_checkbutton, "clicked",
             G_CALLBACK(appDur_checkbutton_clicked_cb), apptw);

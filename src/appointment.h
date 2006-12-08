@@ -80,6 +80,7 @@ typedef struct
 typedef struct
 {
     GtkWidget *appWindow;
+    appt_data *appt;
     GtkAccelGroup *appAccelgroup;
     GtkWidget *appVBox1;
     GtkWidget *appMenubar;
