@@ -1,9 +1,825 @@
+2006-05-23 02:45  daichi
+
+	* libexo/trunk/po/ChangeLog, libexo/trunk/po/fi.po,
+	  libxfce4util/trunk/po/ChangeLog, libxfce4util/trunk/po/fi.po,
+	  libxfcegui4/branches/xfce_4_2/po/ChangeLog,
+	  libxfcegui4/branches/xfce_4_2/po/fi.po,
+	  libxfcegui4/trunk/po/ChangeLog, libxfcegui4/trunk/po/fi.po,
+	  mousepad/trunk/po/ChangeLog, mousepad/trunk/po/fi.po,
+	  terminal/trunk/po/ChangeLog, terminal/trunk/po/fi.po,
+	  thunar/trunk/po/ChangeLog, thunar/trunk/po/fi.po, po/ChangeLog,
+	  xfcalendar/trunk/po/ChangeLog, xfcalendar/trunk/po/fi.po,
+	  xfce-mcs-manager/branches/xfce_4_2/po/ChangeLog,
+	  xfce-mcs-manager/branches/xfce_4_2/po/fi.po,
+	  xfce-mcs-manager/trunk/po/ChangeLog,
+	  xfce-mcs-manager/trunk/po/fi.po,
+	  xfce-mcs-plugins/branches/xfce_4_2/po/ChangeLog,
+	  xfce-mcs-plugins/branches/xfce_4_2/po/fi.po,
+	  xfce-mcs-plugins/trunk/po/ChangeLog,
+	  xfce-mcs-plugins/trunk/po/fi.po,
+	  xfce-utils/branches/xfce_4_2/po/ChangeLog,
+	  xfce-utils/branches/xfce_4_2/po/fi.po,
+	  xfce-utils/branches/xfce_4_2/xfce4-about/AUTHORS,
+	  xfce-utils/branches/xfce_4_2/xfce4-about/AUTHORS.az,
+	  xfce-utils/branches/xfce_4_2/xfce4-about/AUTHORS.ca,
+	  xfce-utils/branches/xfce_4_2/xfce4-about/AUTHORS.de,
+	  xfce-utils/branches/xfce_4_2/xfce4-about/AUTHORS.es,
+	  xfce-utils/branches/xfce_4_2/xfce4-about/AUTHORS.eu,
+	  xfce-utils/branches/xfce_4_2/xfce4-about/AUTHORS.fi,
+	  xfce-utils/branches/xfce_4_2/xfce4-about/AUTHORS.fr,
+	  xfce-utils/branches/xfce_4_2/xfce4-about/AUTHORS.he,
+	  xfce-utils/branches/xfce_4_2/xfce4-about/AUTHORS.html,
+	  xfce-utils/branches/xfce_4_2/xfce4-about/AUTHORS.html.az,
+	  xfce-utils/branches/xfce_4_2/xfce4-about/AUTHORS.html.ca,
+	  xfce-utils/branches/xfce_4_2/xfce4-about/AUTHORS.html.de,
+	  xfce-utils/branches/xfce_4_2/xfce4-about/AUTHORS.html.es,
+	  xfce-utils/branches/xfce_4_2/xfce4-about/AUTHORS.html.eu,
+	  xfce-utils/branches/xfce_4_2/xfce4-about/AUTHORS.html.fi,
+	  xfce-utils/branches/xfce_4_2/xfce4-about/AUTHORS.html.fr,
+	  xfce-utils/branches/xfce_4_2/xfce4-about/AUTHORS.html.it,
+	  xfce-utils/branches/xfce_4_2/xfce4-about/AUTHORS.html.ja,
+	  xfce-utils/branches/xfce_4_2/xfce4-about/AUTHORS.html.lt,
+	  xfce-utils/branches/xfce_4_2/xfce4-about/AUTHORS.html.ro,
+	  xfce-utils/branches/xfce_4_2/xfce4-about/AUTHORS.html.ru,
+	  xfce-utils/branches/xfce_4_2/xfce4-about/AUTHORS.html.sk,
+	  xfce-utils/branches/xfce_4_2/xfce4-about/AUTHORS.html.vi,
+	  xfce-utils/branches/xfce_4_2/xfce4-about/AUTHORS.html.zh_TW,
+	  xfce-utils/branches/xfce_4_2/xfce4-about/AUTHORS.it,
+	  xfce-utils/branches/xfce_4_2/xfce4-about/AUTHORS.ja,
+	  xfce-utils/branches/xfce_4_2/xfce4-about/AUTHORS.lt,
+	  xfce-utils/branches/xfce_4_2/xfce4-about/AUTHORS.ro,
+	  xfce-utils/branches/xfce_4_2/xfce4-about/AUTHORS.ru,
+	  xfce-utils/branches/xfce_4_2/xfce4-about/AUTHORS.sk,
+	  xfce-utils/branches/xfce_4_2/xfce4-about/AUTHORS.uk,
+	  xfce-utils/branches/xfce_4_2/xfce4-about/AUTHORS.vi,
+	  xfce-utils/branches/xfce_4_2/xfce4-about/AUTHORS.zh_TW,
+	  xfce-utils/trunk/po/ChangeLog, xfce-utils/trunk/po/fi.po,
+	  xfce-utils/trunk/xfce4-about/AUTHORS,
+	  xfce4-appfinder/branches/xfce_4_2/po/ChangeLog,
+	  xfce4-appfinder/branches/xfce_4_2/po/fi.po,
+	  xfce4-appfinder/trunk/po/ChangeLog,
+	  xfce4-appfinder/trunk/po/fi.po,
+	  xfce4-icon-theme/trunk/po/ChangeLog,
+	  xfce4-icon-theme/trunk/po/fi.po,
+	  xfce4-iconbox/branches/xfce_4_2/po/fi.po,
+	  xfce4-mailwatch-plugin/trunk/po/fi.po,
+	  xfce4-mixer/branches/xfce_4_2/po/ChangeLog,
+	  xfce4-mixer/branches/xfce_4_2/po/fi.po,
+	  xfce4-mixer/trunk/po/ChangeLog, xfce4-mixer/trunk/po/fi.po,
+	  xfce4-panel/branches/xfce_4_2/po/ChangeLog,
+	  xfce4-panel/branches/xfce_4_2/po/fi.po,
+	  xfce4-panel/trunk/po/ChangeLog, xfce4-panel/trunk/po/fi.po,
+	  xfce4-session/branches/xfce_4_2/po/ChangeLog,
+	  xfce4-session/branches/xfce_4_2/po/fi.po,
+	  xfce4-session/trunk/po/ChangeLog, xfce4-session/trunk/po/fi.po,
+	  xfce4-toys/branches/xfce_4_2/po/ChangeLog,
+	  xfce4-toys/branches/xfce_4_2/po/fi.po,
+	  xfce4-trigger-launcher/branches/xfce_4_2/po/ChangeLog,
+	  xfce4-trigger-launcher/branches/xfce_4_2/po/fi.po,
+	  xfce4-trigger-launcher/trunk/po/ChangeLog,
+	  xfce4-trigger-launcher/trunk/po/fi.po,
+	  xfdesktop/branches/xfce_4_2/po/ChangeLog,
+	  xfdesktop/branches/xfce_4_2/po/fi.po,
+	  xfdesktop/trunk/po/ChangeLog, xfdesktop/trunk/po/fi.po,
+	  xffm/branches/xfce_4_2/po/ChangeLog,
+	  xffm/branches/xfce_4_2/po/fi.po, xfmedia/trunk/po/fi.po,
+	  xfprint/branches/xfce_4_2/po/ChangeLog,
+	  xfprint/branches/xfce_4_2/po/fi.po, xfprint/trunk/po/ChangeLog,
+	  xfprint/trunk/po/fi.po, xfwm4/branches/xfce_4_2/po/ChangeLog,
+	  xfwm4/branches/xfce_4_2/po/fi.po, xfwm4/trunk/po/ChangeLog,
+	  xfwm4/trunk/po/fi.po: Changed an address.
+
+2006-05-06 12:26  daichi
+
+	* po/et.po, xfce-mcs-manager/branches/xfce_4_2/po/et.po,
+	  xfce-mcs-plugins/branches/xfce_4_2/po/et.po,
+	  xfce-utils/branches/xfce_4_2/po/et.po,
+	  xfce4-mixer/branches/xfce_4_2/po/et.po,
+	  xfce4-panel/branches/xfce_4_2/po/et.po,
+	  xfce4-session/branches/xfce_4_2/po/et.po,
+	  xfce4-toys/branches/xfce_4_2/po/et.po,
+	  xfce4-trigger-launcher/branches/xfce_4_2/po/et.po,
+	  xfdesktop/branches/xfce_4_2/po/et.po,
+	  xffm/branches/xfce_4_2/po/et.po,
+	  xfprint/branches/xfce_4_2/po/et.po,
+	  xfwm4/branches/xfce_4_2/po/et.po: Updated Estonian translations
+	  by Mart Tonso <tm@rinjin.pri.ee>.
+
+2006-04-11 12:00  daichi
+
+	* libxfcegui4/branches/xfce_4_2/po/af.po,
+	  libxfcegui4/branches/xfce_4_2/po/be.po,
+	  libxfcegui4/branches/xfce_4_2/po/bn_IN.po,
+	  libxfcegui4/branches/xfce_4_2/po/ca.po,
+	  libxfcegui4/branches/xfce_4_2/po/cs.po,
+	  libxfcegui4/branches/xfce_4_2/po/da.po,
+	  libxfcegui4/branches/xfce_4_2/po/de.po,
+	  libxfcegui4/branches/xfce_4_2/po/el.po,
+	  libxfcegui4/branches/xfce_4_2/po/en_GB.po,
+	  libxfcegui4/branches/xfce_4_2/po/eo.po,
+	  libxfcegui4/branches/xfce_4_2/po/es.po,
+	  libxfcegui4/branches/xfce_4_2/po/et.po,
+	  libxfcegui4/branches/xfce_4_2/po/eu.po,
+	  libxfcegui4/branches/xfce_4_2/po/fa.po,
+	  libxfcegui4/branches/xfce_4_2/po/fi.po,
+	  libxfcegui4/branches/xfce_4_2/po/fr.po,
+	  libxfcegui4/branches/xfce_4_2/po/gu.po,
+	  libxfcegui4/branches/xfce_4_2/po/he.po,
+	  libxfcegui4/branches/xfce_4_2/po/hy.po,
+	  libxfcegui4/branches/xfce_4_2/po/it.po,
+	  libxfcegui4/branches/xfce_4_2/po/ja.po,
+	  libxfcegui4/branches/xfce_4_2/po/ko.po,
+	  libxfcegui4/branches/xfce_4_2/po/ku.po,
+	  libxfcegui4/branches/xfce_4_2/po/libxfcegui4.pot,
+	  libxfcegui4/branches/xfce_4_2/po/lt.po,
+	  libxfcegui4/branches/xfce_4_2/po/mr.po,
+	  libxfcegui4/branches/xfce_4_2/po/nl.po,
+	  libxfcegui4/branches/xfce_4_2/po/pa.po,
+	  libxfcegui4/branches/xfce_4_2/po/pl.po,
+	  libxfcegui4/branches/xfce_4_2/po/pt_BR.po,
+	  libxfcegui4/branches/xfce_4_2/po/ro.po,
+	  libxfcegui4/branches/xfce_4_2/po/ru.po,
+	  libxfcegui4/branches/xfce_4_2/po/sk.po,
+	  libxfcegui4/branches/xfce_4_2/po/sl.po,
+	  libxfcegui4/branches/xfce_4_2/po/sq.po,
+	  libxfcegui4/branches/xfce_4_2/po/sv.po,
+	  libxfcegui4/branches/xfce_4_2/po/ta.po,
+	  libxfcegui4/branches/xfce_4_2/po/uk.po,
+	  libxfcegui4/branches/xfce_4_2/po/zh_CN.po,
+	  libxfcegui4/branches/xfce_4_2/po/zh_TW.po, po/af.po, po/ar.po,
+	  po/az.po, po/be.po, po/bg.po, po/bn_IN.po, po/ca.po, po/cs.po,
+	  po/da.po, po/de.po, po/el.po, po/en_GB.po, po/eo.po, po/es.po,
+	  po/et.po, po/eu.po, po/fa.po, po/fi.po, po/fr.po, po/gu.po,
+	  po/he.po, po/hi.po, po/hu.po, po/hy.po, po/it.po, po/ja.po,
+	  po/ko.po, po/ku.po, po/lt.po, po/mr.po, po/ms.po, po/nb_NO.po,
+	  po/nl.po, po/pa.po, po/pl.po, po/pt_BR.po, po/pt_PT.po, po/ro.po,
+	  po/ru.po, po/sk.po, po/sl.po, po/sq.po, po/sv.po, po/ta.po,
+	  po/tr.po, po/uk.po, po/vi.po, po/zh_CN.po, po/zh_TW.po,
+	  xfce-mcs-manager/branches/xfce_4_2/po/af.po,
+	  xfce-mcs-manager/branches/xfce_4_2/po/ar.po,
+	  xfce-mcs-manager/branches/xfce_4_2/po/az.po,
+	  xfce-mcs-manager/branches/xfce_4_2/po/be.po,
+	  xfce-mcs-manager/branches/xfce_4_2/po/bg.po,
+	  xfce-mcs-manager/branches/xfce_4_2/po/bn_IN.po,
+	  xfce-mcs-manager/branches/xfce_4_2/po/ca.po,
+	  xfce-mcs-manager/branches/xfce_4_2/po/cs.po,
+	  xfce-mcs-manager/branches/xfce_4_2/po/da.po,
+	  xfce-mcs-manager/branches/xfce_4_2/po/de.po,
+	  xfce-mcs-manager/branches/xfce_4_2/po/el.po,
+	  xfce-mcs-manager/branches/xfce_4_2/po/en_GB.po,
+	  xfce-mcs-manager/branches/xfce_4_2/po/eo.po,
+	  xfce-mcs-manager/branches/xfce_4_2/po/es.po,
+	  xfce-mcs-manager/branches/xfce_4_2/po/es_MX.po,
+	  xfce-mcs-manager/branches/xfce_4_2/po/et.po,
+	  xfce-mcs-manager/branches/xfce_4_2/po/eu.po,
+	  xfce-mcs-manager/branches/xfce_4_2/po/fa.po,
+	  xfce-mcs-manager/branches/xfce_4_2/po/fi.po,
+	  xfce-mcs-manager/branches/xfce_4_2/po/fr.po,
+	  xfce-mcs-manager/branches/xfce_4_2/po/gu.po,
+	  xfce-mcs-manager/branches/xfce_4_2/po/he.po,
+	  xfce-mcs-manager/branches/xfce_4_2/po/hi.po,
+	  xfce-mcs-manager/branches/xfce_4_2/po/hu.po,
+	  xfce-mcs-manager/branches/xfce_4_2/po/it.po,
+	  xfce-mcs-manager/branches/xfce_4_2/po/ja.po,
+	  xfce-mcs-manager/branches/xfce_4_2/po/ko.po,
+	  xfce-mcs-manager/branches/xfce_4_2/po/ku.po,
+	  xfce-mcs-manager/branches/xfce_4_2/po/lt.po,
+	  xfce-mcs-manager/branches/xfce_4_2/po/mr.po,
+	  xfce-mcs-manager/branches/xfce_4_2/po/ms.po,
+	  xfce-mcs-manager/branches/xfce_4_2/po/nb_NO.po,
+	  xfce-mcs-manager/branches/xfce_4_2/po/nl.po,
+	  xfce-mcs-manager/branches/xfce_4_2/po/pa.po,
+	  xfce-mcs-manager/branches/xfce_4_2/po/pl.po,
+	  xfce-mcs-manager/branches/xfce_4_2/po/pt_BR.po,
+	  xfce-mcs-manager/branches/xfce_4_2/po/pt_PT.po,
+	  xfce-mcs-manager/branches/xfce_4_2/po/ro.po,
+	  xfce-mcs-manager/branches/xfce_4_2/po/ru.po,
+	  xfce-mcs-manager/branches/xfce_4_2/po/sk.po,
+	  xfce-mcs-manager/branches/xfce_4_2/po/sl.po,
+	  xfce-mcs-manager/branches/xfce_4_2/po/sq.po,
+	  xfce-mcs-manager/branches/xfce_4_2/po/sv.po,
+	  xfce-mcs-manager/branches/xfce_4_2/po/ta.po,
+	  xfce-mcs-manager/branches/xfce_4_2/po/tr.po,
+	  xfce-mcs-manager/branches/xfce_4_2/po/uk.po,
+	  xfce-mcs-manager/branches/xfce_4_2/po/vi.po,
+	  xfce-mcs-manager/branches/xfce_4_2/po/xfce-mcs-manager.pot,
+	  xfce-mcs-manager/branches/xfce_4_2/po/zh_CN.po,
+	  xfce-mcs-manager/branches/xfce_4_2/po/zh_TW.po,
+	  xfce-mcs-plugins/branches/xfce_4_2/po/af.po,
+	  xfce-mcs-plugins/branches/xfce_4_2/po/ar.po,
+	  xfce-mcs-plugins/branches/xfce_4_2/po/az.po,
+	  xfce-mcs-plugins/branches/xfce_4_2/po/be.po,
+	  xfce-mcs-plugins/branches/xfce_4_2/po/bg.po,
+	  xfce-mcs-plugins/branches/xfce_4_2/po/bn_IN.po,
+	  xfce-mcs-plugins/branches/xfce_4_2/po/ca.po,
+	  xfce-mcs-plugins/branches/xfce_4_2/po/cs.po,
+	  xfce-mcs-plugins/branches/xfce_4_2/po/da.po,
+	  xfce-mcs-plugins/branches/xfce_4_2/po/de.po,
+	  xfce-mcs-plugins/branches/xfce_4_2/po/el.po,
+	  xfce-mcs-plugins/branches/xfce_4_2/po/en_GB.po,
+	  xfce-mcs-plugins/branches/xfce_4_2/po/eo.po,
+	  xfce-mcs-plugins/branches/xfce_4_2/po/es.po,
+	  xfce-mcs-plugins/branches/xfce_4_2/po/es_MX.po,
+	  xfce-mcs-plugins/branches/xfce_4_2/po/et.po,
+	  xfce-mcs-plugins/branches/xfce_4_2/po/eu.po,
+	  xfce-mcs-plugins/branches/xfce_4_2/po/fa.po,
+	  xfce-mcs-plugins/branches/xfce_4_2/po/fi.po,
+	  xfce-mcs-plugins/branches/xfce_4_2/po/fr.po,
+	  xfce-mcs-plugins/branches/xfce_4_2/po/gu.po,
+	  xfce-mcs-plugins/branches/xfce_4_2/po/he.po,
+	  xfce-mcs-plugins/branches/xfce_4_2/po/hi.po,
+	  xfce-mcs-plugins/branches/xfce_4_2/po/it.po,
+	  xfce-mcs-plugins/branches/xfce_4_2/po/ja.po,
+	  xfce-mcs-plugins/branches/xfce_4_2/po/ko.po,
+	  xfce-mcs-plugins/branches/xfce_4_2/po/ku.po,
+	  xfce-mcs-plugins/branches/xfce_4_2/po/lt.po,
+	  xfce-mcs-plugins/branches/xfce_4_2/po/mr.po,
+	  xfce-mcs-plugins/branches/xfce_4_2/po/ms.po,
+	  xfce-mcs-plugins/branches/xfce_4_2/po/nl.po,
+	  xfce-mcs-plugins/branches/xfce_4_2/po/pa.po,
+	  xfce-mcs-plugins/branches/xfce_4_2/po/pl.po,
+	  xfce-mcs-plugins/branches/xfce_4_2/po/pt_BR.po,
+	  xfce-mcs-plugins/branches/xfce_4_2/po/pt_PT.po,
+	  xfce-mcs-plugins/branches/xfce_4_2/po/ro.po,
+	  xfce-mcs-plugins/branches/xfce_4_2/po/ru.po,
+	  xfce-mcs-plugins/branches/xfce_4_2/po/sk.po,
+	  xfce-mcs-plugins/branches/xfce_4_2/po/sl.po,
+	  xfce-mcs-plugins/branches/xfce_4_2/po/sq.po,
+	  xfce-mcs-plugins/branches/xfce_4_2/po/sv.po,
+	  xfce-mcs-plugins/branches/xfce_4_2/po/ta.po,
+	  xfce-mcs-plugins/branches/xfce_4_2/po/tr.po,
+	  xfce-mcs-plugins/branches/xfce_4_2/po/uk.po,
+	  xfce-mcs-plugins/branches/xfce_4_2/po/vi.po,
+	  xfce-mcs-plugins/branches/xfce_4_2/po/zh_CN.po,
+	  xfce-mcs-plugins/branches/xfce_4_2/po/zh_TW.po,
+	  xfce-utils/branches/xfce_4_2/po/af.po,
+	  xfce-utils/branches/xfce_4_2/po/ar.po,
+	  xfce-utils/branches/xfce_4_2/po/az.po,
+	  xfce-utils/branches/xfce_4_2/po/be.po,
+	  xfce-utils/branches/xfce_4_2/po/bg.po,
+	  xfce-utils/branches/xfce_4_2/po/bn_IN.po,
+	  xfce-utils/branches/xfce_4_2/po/ca.po,
+	  xfce-utils/branches/xfce_4_2/po/cs.po,
+	  xfce-utils/branches/xfce_4_2/po/da.po,
+	  xfce-utils/branches/xfce_4_2/po/de.po,
+	  xfce-utils/branches/xfce_4_2/po/el.po,
+	  xfce-utils/branches/xfce_4_2/po/en_GB.po,
+	  xfce-utils/branches/xfce_4_2/po/eo.po,
+	  xfce-utils/branches/xfce_4_2/po/es.po,
+	  xfce-utils/branches/xfce_4_2/po/es_MX.po,
+	  xfce-utils/branches/xfce_4_2/po/et.po,
+	  xfce-utils/branches/xfce_4_2/po/eu.po,
+	  xfce-utils/branches/xfce_4_2/po/fa.po,
+	  xfce-utils/branches/xfce_4_2/po/fi.po,
+	  xfce-utils/branches/xfce_4_2/po/fr.po,
+	  xfce-utils/branches/xfce_4_2/po/gu.po,
+	  xfce-utils/branches/xfce_4_2/po/he.po,
+	  xfce-utils/branches/xfce_4_2/po/hi.po,
+	  xfce-utils/branches/xfce_4_2/po/hy.po,
+	  xfce-utils/branches/xfce_4_2/po/it.po,
+	  xfce-utils/branches/xfce_4_2/po/ja.po,
+	  xfce-utils/branches/xfce_4_2/po/ko.po,
+	  xfce-utils/branches/xfce_4_2/po/ku.po,
+	  xfce-utils/branches/xfce_4_2/po/lt.po,
+	  xfce-utils/branches/xfce_4_2/po/mr.po,
+	  xfce-utils/branches/xfce_4_2/po/ms.po,
+	  xfce-utils/branches/xfce_4_2/po/nl.po,
+	  xfce-utils/branches/xfce_4_2/po/pa.po,
+	  xfce-utils/branches/xfce_4_2/po/pl.po,
+	  xfce-utils/branches/xfce_4_2/po/pt_BR.po,
+	  xfce-utils/branches/xfce_4_2/po/pt_PT.po,
+	  xfce-utils/branches/xfce_4_2/po/ro.po,
+	  xfce-utils/branches/xfce_4_2/po/ru.po,
+	  xfce-utils/branches/xfce_4_2/po/sk.po,
+	  xfce-utils/branches/xfce_4_2/po/sl.po,
+	  xfce-utils/branches/xfce_4_2/po/sq.po,
+	  xfce-utils/branches/xfce_4_2/po/sv.po,
+	  xfce-utils/branches/xfce_4_2/po/ta.po,
+	  xfce-utils/branches/xfce_4_2/po/tr.po,
+	  xfce-utils/branches/xfce_4_2/po/uk.po,
+	  xfce-utils/branches/xfce_4_2/po/vi.po,
+	  xfce-utils/branches/xfce_4_2/po/xfce-utils.pot,
+	  xfce-utils/branches/xfce_4_2/po/zh_CN.po,
+	  xfce-utils/branches/xfce_4_2/po/zh_TW.po,
+	  xfce4-appfinder/branches/xfce_4_2/po/af.po,
+	  xfce4-appfinder/branches/xfce_4_2/po/be.po,
+	  xfce4-appfinder/branches/xfce_4_2/po/bn_IN.po,
+	  xfce4-appfinder/branches/xfce_4_2/po/ca.po,
+	  xfce4-appfinder/branches/xfce_4_2/po/cs.po,
+	  xfce4-appfinder/branches/xfce_4_2/po/da.po,
+	  xfce4-appfinder/branches/xfce_4_2/po/de.po,
+	  xfce4-appfinder/branches/xfce_4_2/po/el.po,
+	  xfce4-appfinder/branches/xfce_4_2/po/en_GB.po,
+	  xfce4-appfinder/branches/xfce_4_2/po/es.po,
+	  xfce4-appfinder/branches/xfce_4_2/po/es_MX.po,
+	  xfce4-appfinder/branches/xfce_4_2/po/et.po,
+	  xfce4-appfinder/branches/xfce_4_2/po/eu.po,
+	  xfce4-appfinder/branches/xfce_4_2/po/fa.po,
+	  xfce4-appfinder/branches/xfce_4_2/po/fi.po,
+	  xfce4-appfinder/branches/xfce_4_2/po/gu.po,
+	  xfce4-appfinder/branches/xfce_4_2/po/he.po,
+	  xfce4-appfinder/branches/xfce_4_2/po/hy.po,
+	  xfce4-appfinder/branches/xfce_4_2/po/it.po,
+	  xfce4-appfinder/branches/xfce_4_2/po/ja.po,
+	  xfce4-appfinder/branches/xfce_4_2/po/ko.po,
+	  xfce4-appfinder/branches/xfce_4_2/po/ku.po,
+	  xfce4-appfinder/branches/xfce_4_2/po/lt.po,
+	  xfce4-appfinder/branches/xfce_4_2/po/mr.po,
+	  xfce4-appfinder/branches/xfce_4_2/po/nl.po,
+	  xfce4-appfinder/branches/xfce_4_2/po/pa.po,
+	  xfce4-appfinder/branches/xfce_4_2/po/pl.po,
+	  xfce4-appfinder/branches/xfce_4_2/po/pt_BR.po,
+	  xfce4-appfinder/branches/xfce_4_2/po/pt_PT.po,
+	  xfce4-appfinder/branches/xfce_4_2/po/ro.po,
+	  xfce4-appfinder/branches/xfce_4_2/po/ru.po,
+	  xfce4-appfinder/branches/xfce_4_2/po/sk.po,
+	  xfce4-appfinder/branches/xfce_4_2/po/sl.po,
+	  xfce4-appfinder/branches/xfce_4_2/po/sq.po,
+	  xfce4-appfinder/branches/xfce_4_2/po/sv.po,
+	  xfce4-appfinder/branches/xfce_4_2/po/tr.po,
+	  xfce4-appfinder/branches/xfce_4_2/po/uk.po,
+	  xfce4-appfinder/branches/xfce_4_2/po/xfce4-appfinder.pot,
+	  xfce4-appfinder/branches/xfce_4_2/po/zh_CN.po,
+	  xfce4-appfinder/branches/xfce_4_2/po/zh_TW.po,
+	  xfce4-iconbox/branches/xfce_4_2/po/af.po,
+	  xfce4-iconbox/branches/xfce_4_2/po/ar.po,
+	  xfce4-iconbox/branches/xfce_4_2/po/az.po,
+	  xfce4-iconbox/branches/xfce_4_2/po/be.po,
+	  xfce4-iconbox/branches/xfce_4_2/po/bg.po,
+	  xfce4-iconbox/branches/xfce_4_2/po/bn_IN.po,
+	  xfce4-iconbox/branches/xfce_4_2/po/ca.po,
+	  xfce4-iconbox/branches/xfce_4_2/po/cs.po,
+	  xfce4-iconbox/branches/xfce_4_2/po/da.po,
+	  xfce4-iconbox/branches/xfce_4_2/po/de.po,
+	  xfce4-iconbox/branches/xfce_4_2/po/el.po,
+	  xfce4-iconbox/branches/xfce_4_2/po/en_GB.po,
+	  xfce4-iconbox/branches/xfce_4_2/po/es.po,
+	  xfce4-iconbox/branches/xfce_4_2/po/es_MX.po,
+	  xfce4-iconbox/branches/xfce_4_2/po/et.po,
+	  xfce4-iconbox/branches/xfce_4_2/po/eu.po,
+	  xfce4-iconbox/branches/xfce_4_2/po/fa.po,
+	  xfce4-iconbox/branches/xfce_4_2/po/fi.po,
+	  xfce4-iconbox/branches/xfce_4_2/po/fr.po,
+	  xfce4-iconbox/branches/xfce_4_2/po/gu.po,
+	  xfce4-iconbox/branches/xfce_4_2/po/he.po,
+	  xfce4-iconbox/branches/xfce_4_2/po/hi.po,
+	  xfce4-iconbox/branches/xfce_4_2/po/it.po,
+	  xfce4-iconbox/branches/xfce_4_2/po/ja.po,
+	  xfce4-iconbox/branches/xfce_4_2/po/ko.po,
+	  xfce4-iconbox/branches/xfce_4_2/po/ku.po,
+	  xfce4-iconbox/branches/xfce_4_2/po/lt.po,
+	  xfce4-iconbox/branches/xfce_4_2/po/ms.po,
+	  xfce4-iconbox/branches/xfce_4_2/po/nb_NO.po,
+	  xfce4-iconbox/branches/xfce_4_2/po/nl.po,
+	  xfce4-iconbox/branches/xfce_4_2/po/pa.po,
+	  xfce4-iconbox/branches/xfce_4_2/po/pl.po,
+	  xfce4-iconbox/branches/xfce_4_2/po/pt_BR.po,
+	  xfce4-iconbox/branches/xfce_4_2/po/pt_PT.po,
+	  xfce4-iconbox/branches/xfce_4_2/po/ro.po,
+	  xfce4-iconbox/branches/xfce_4_2/po/ru.po,
+	  xfce4-iconbox/branches/xfce_4_2/po/sk.po,
+	  xfce4-iconbox/branches/xfce_4_2/po/sq.po,
+	  xfce4-iconbox/branches/xfce_4_2/po/sv.po,
+	  xfce4-iconbox/branches/xfce_4_2/po/ta.po,
+	  xfce4-iconbox/branches/xfce_4_2/po/tr.po,
+	  xfce4-iconbox/branches/xfce_4_2/po/uk.po,
+	  xfce4-iconbox/branches/xfce_4_2/po/vi.po,
+	  xfce4-iconbox/branches/xfce_4_2/po/xfce4-iconbox.pot,
+	  xfce4-iconbox/branches/xfce_4_2/po/zh_CN.po,
+	  xfce4-iconbox/branches/xfce_4_2/po/zh_TW.po,
+	  xfce4-mixer/branches/xfce_4_2/po/af.po,
+	  xfce4-mixer/branches/xfce_4_2/po/ar.po,
+	  xfce4-mixer/branches/xfce_4_2/po/az.po,
+	  xfce4-mixer/branches/xfce_4_2/po/be.po,
+	  xfce4-mixer/branches/xfce_4_2/po/bg.po,
+	  xfce4-mixer/branches/xfce_4_2/po/bn_IN.po,
+	  xfce4-mixer/branches/xfce_4_2/po/ca.po,
+	  xfce4-mixer/branches/xfce_4_2/po/cs.po,
+	  xfce4-mixer/branches/xfce_4_2/po/da.po,
+	  xfce4-mixer/branches/xfce_4_2/po/de.po,
+	  xfce4-mixer/branches/xfce_4_2/po/el.po,
+	  xfce4-mixer/branches/xfce_4_2/po/en_GB.po,
+	  xfce4-mixer/branches/xfce_4_2/po/es.po,
+	  xfce4-mixer/branches/xfce_4_2/po/es_MX.po,
+	  xfce4-mixer/branches/xfce_4_2/po/et.po,
+	  xfce4-mixer/branches/xfce_4_2/po/eu.po,
+	  xfce4-mixer/branches/xfce_4_2/po/fa.po,
+	  xfce4-mixer/branches/xfce_4_2/po/fi.po,
+	  xfce4-mixer/branches/xfce_4_2/po/fr.po,
+	  xfce4-mixer/branches/xfce_4_2/po/gu.po,
+	  xfce4-mixer/branches/xfce_4_2/po/he.po,
+	  xfce4-mixer/branches/xfce_4_2/po/hi.po,
+	  xfce4-mixer/branches/xfce_4_2/po/hu.po,
+	  xfce4-mixer/branches/xfce_4_2/po/hy.po,
+	  xfce4-mixer/branches/xfce_4_2/po/it.po,
+	  xfce4-mixer/branches/xfce_4_2/po/ja.po,
+	  xfce4-mixer/branches/xfce_4_2/po/ko.po,
+	  xfce4-mixer/branches/xfce_4_2/po/ku.po,
+	  xfce4-mixer/branches/xfce_4_2/po/lt.po,
+	  xfce4-mixer/branches/xfce_4_2/po/mr.po,
+	  xfce4-mixer/branches/xfce_4_2/po/ms.po,
+	  xfce4-mixer/branches/xfce_4_2/po/nb_NO.po,
+	  xfce4-mixer/branches/xfce_4_2/po/nl.po,
+	  xfce4-mixer/branches/xfce_4_2/po/pa.po,
+	  xfce4-mixer/branches/xfce_4_2/po/pl.po,
+	  xfce4-mixer/branches/xfce_4_2/po/pt_BR.po,
+	  xfce4-mixer/branches/xfce_4_2/po/pt_PT.po,
+	  xfce4-mixer/branches/xfce_4_2/po/ro.po,
+	  xfce4-mixer/branches/xfce_4_2/po/ru.po,
+	  xfce4-mixer/branches/xfce_4_2/po/sk.po,
+	  xfce4-mixer/branches/xfce_4_2/po/sl.po,
+	  xfce4-mixer/branches/xfce_4_2/po/sq.po,
+	  xfce4-mixer/branches/xfce_4_2/po/sv.po,
+	  xfce4-mixer/branches/xfce_4_2/po/ta.po,
+	  xfce4-mixer/branches/xfce_4_2/po/tr.po,
+	  xfce4-mixer/branches/xfce_4_2/po/uk.po,
+	  xfce4-mixer/branches/xfce_4_2/po/vi.po,
+	  xfce4-mixer/branches/xfce_4_2/po/xfce4-mixer.pot,
+	  xfce4-mixer/branches/xfce_4_2/po/zh_CN.po,
+	  xfce4-mixer/branches/xfce_4_2/po/zh_TW.po,
+	  xfce4-panel/branches/xfce_4_2/po/af.po,
+	  xfce4-panel/branches/xfce_4_2/po/ar.po,
+	  xfce4-panel/branches/xfce_4_2/po/az.po,
+	  xfce4-panel/branches/xfce_4_2/po/be.po,
+	  xfce4-panel/branches/xfce_4_2/po/bg.po,
+	  xfce4-panel/branches/xfce_4_2/po/bn_IN.po,
+	  xfce4-panel/branches/xfce_4_2/po/ca.po,
+	  xfce4-panel/branches/xfce_4_2/po/cs.po,
+	  xfce4-panel/branches/xfce_4_2/po/da.po,
+	  xfce4-panel/branches/xfce_4_2/po/de.po,
+	  xfce4-panel/branches/xfce_4_2/po/el.po,
+	  xfce4-panel/branches/xfce_4_2/po/en_GB.po,
+	  xfce4-panel/branches/xfce_4_2/po/eo.po,
+	  xfce4-panel/branches/xfce_4_2/po/es.po,
+	  xfce4-panel/branches/xfce_4_2/po/es_MX.po,
+	  xfce4-panel/branches/xfce_4_2/po/et.po,
+	  xfce4-panel/branches/xfce_4_2/po/eu.po,
+	  xfce4-panel/branches/xfce_4_2/po/fa.po,
+	  xfce4-panel/branches/xfce_4_2/po/fi.po,
+	  xfce4-panel/branches/xfce_4_2/po/fr.po,
+	  xfce4-panel/branches/xfce_4_2/po/gu.po,
+	  xfce4-panel/branches/xfce_4_2/po/he.po,
+	  xfce4-panel/branches/xfce_4_2/po/hi.po,
+	  xfce4-panel/branches/xfce_4_2/po/hy.po,
+	  xfce4-panel/branches/xfce_4_2/po/it.po,
+	  xfce4-panel/branches/xfce_4_2/po/ja.po,
+	  xfce4-panel/branches/xfce_4_2/po/ko.po,
+	  xfce4-panel/branches/xfce_4_2/po/ku.po,
+	  xfce4-panel/branches/xfce_4_2/po/lt.po,
+	  xfce4-panel/branches/xfce_4_2/po/mr.po,
+	  xfce4-panel/branches/xfce_4_2/po/ms.po,
+	  xfce4-panel/branches/xfce_4_2/po/nb_NO.po,
+	  xfce4-panel/branches/xfce_4_2/po/nl.po,
+	  xfce4-panel/branches/xfce_4_2/po/pa.po,
+	  xfce4-panel/branches/xfce_4_2/po/pl.po,
+	  xfce4-panel/branches/xfce_4_2/po/pt_BR.po,
+	  xfce4-panel/branches/xfce_4_2/po/pt_PT.po,
+	  xfce4-panel/branches/xfce_4_2/po/ro.po,
+	  xfce4-panel/branches/xfce_4_2/po/ru.po,
+	  xfce4-panel/branches/xfce_4_2/po/sk.po,
+	  xfce4-panel/branches/xfce_4_2/po/sl.po,
+	  xfce4-panel/branches/xfce_4_2/po/sq.po,
+	  xfce4-panel/branches/xfce_4_2/po/sv.po,
+	  xfce4-panel/branches/xfce_4_2/po/ta.po,
+	  xfce4-panel/branches/xfce_4_2/po/tr.po,
+	  xfce4-panel/branches/xfce_4_2/po/uk.po,
+	  xfce4-panel/branches/xfce_4_2/po/vi.po,
+	  xfce4-panel/branches/xfce_4_2/po/zh_CN.po,
+	  xfce4-panel/branches/xfce_4_2/po/zh_TW.po,
+	  xfce4-session/branches/xfce_4_2/po/af.po,
+	  xfce4-session/branches/xfce_4_2/po/ar.po,
+	  xfce4-session/branches/xfce_4_2/po/az.po,
+	  xfce4-session/branches/xfce_4_2/po/be.po,
+	  xfce4-session/branches/xfce_4_2/po/bn_IN.po,
+	  xfce4-session/branches/xfce_4_2/po/ca.po,
+	  xfce4-session/branches/xfce_4_2/po/cs.po,
+	  xfce4-session/branches/xfce_4_2/po/da.po,
+	  xfce4-session/branches/xfce_4_2/po/de.po,
+	  xfce4-session/branches/xfce_4_2/po/el.po,
+	  xfce4-session/branches/xfce_4_2/po/en_GB.po,
+	  xfce4-session/branches/xfce_4_2/po/eo.po,
+	  xfce4-session/branches/xfce_4_2/po/es.po,
+	  xfce4-session/branches/xfce_4_2/po/es_MX.po,
+	  xfce4-session/branches/xfce_4_2/po/et.po,
+	  xfce4-session/branches/xfce_4_2/po/eu.po,
+	  xfce4-session/branches/xfce_4_2/po/fa.po,
+	  xfce4-session/branches/xfce_4_2/po/fi.po,
+	  xfce4-session/branches/xfce_4_2/po/fr.po,
+	  xfce4-session/branches/xfce_4_2/po/gu.po,
+	  xfce4-session/branches/xfce_4_2/po/he.po,
+	  xfce4-session/branches/xfce_4_2/po/hi.po,
+	  xfce4-session/branches/xfce_4_2/po/hu.po,
+	  xfce4-session/branches/xfce_4_2/po/it.po,
+	  xfce4-session/branches/xfce_4_2/po/ja.po,
+	  xfce4-session/branches/xfce_4_2/po/ko.po,
+	  xfce4-session/branches/xfce_4_2/po/ku.po,
+	  xfce4-session/branches/xfce_4_2/po/lt.po,
+	  xfce4-session/branches/xfce_4_2/po/mr.po,
+	  xfce4-session/branches/xfce_4_2/po/ms.po,
+	  xfce4-session/branches/xfce_4_2/po/nb_NO.po,
+	  xfce4-session/branches/xfce_4_2/po/nl.po,
+	  xfce4-session/branches/xfce_4_2/po/pa.po,
+	  xfce4-session/branches/xfce_4_2/po/pl.po,
+	  xfce4-session/branches/xfce_4_2/po/pt_BR.po,
+	  xfce4-session/branches/xfce_4_2/po/pt_PT.po,
+	  xfce4-session/branches/xfce_4_2/po/ro.po,
+	  xfce4-session/branches/xfce_4_2/po/ru.po,
+	  xfce4-session/branches/xfce_4_2/po/sk.po,
+	  xfce4-session/branches/xfce_4_2/po/sl.po,
+	  xfce4-session/branches/xfce_4_2/po/sq.po,
+	  xfce4-session/branches/xfce_4_2/po/sv.po,
+	  xfce4-session/branches/xfce_4_2/po/ta.po,
+	  xfce4-session/branches/xfce_4_2/po/tr.po,
+	  xfce4-session/branches/xfce_4_2/po/uk.po,
+	  xfce4-session/branches/xfce_4_2/po/vi.po,
+	  xfce4-session/branches/xfce_4_2/po/xfce4-session.pot,
+	  xfce4-session/branches/xfce_4_2/po/zh_CN.po,
+	  xfce4-session/branches/xfce_4_2/po/zh_TW.po,
+	  xfce4-toys/branches/xfce_4_2/po/af.po,
+	  xfce4-toys/branches/xfce_4_2/po/ar.po,
+	  xfce4-toys/branches/xfce_4_2/po/az.po,
+	  xfce4-toys/branches/xfce_4_2/po/be.po,
+	  xfce4-toys/branches/xfce_4_2/po/bg.po,
+	  xfce4-toys/branches/xfce_4_2/po/bn_IN.po,
+	  xfce4-toys/branches/xfce_4_2/po/ca.po,
+	  xfce4-toys/branches/xfce_4_2/po/cs.po,
+	  xfce4-toys/branches/xfce_4_2/po/da.po,
+	  xfce4-toys/branches/xfce_4_2/po/de.po,
+	  xfce4-toys/branches/xfce_4_2/po/el.po,
+	  xfce4-toys/branches/xfce_4_2/po/en_GB.po,
+	  xfce4-toys/branches/xfce_4_2/po/eo.po,
+	  xfce4-toys/branches/xfce_4_2/po/es.po,
+	  xfce4-toys/branches/xfce_4_2/po/es_MX.po,
+	  xfce4-toys/branches/xfce_4_2/po/et.po,
+	  xfce4-toys/branches/xfce_4_2/po/eu.po,
+	  xfce4-toys/branches/xfce_4_2/po/fa.po,
+	  xfce4-toys/branches/xfce_4_2/po/fi.po,
+	  xfce4-toys/branches/xfce_4_2/po/fr.po,
+	  xfce4-toys/branches/xfce_4_2/po/gu.po,
+	  xfce4-toys/branches/xfce_4_2/po/he.po,
+	  xfce4-toys/branches/xfce_4_2/po/hi.po,
+	  xfce4-toys/branches/xfce_4_2/po/hu.po,
+	  xfce4-toys/branches/xfce_4_2/po/it.po,
+	  xfce4-toys/branches/xfce_4_2/po/ja.po,
+	  xfce4-toys/branches/xfce_4_2/po/ko.po,
+	  xfce4-toys/branches/xfce_4_2/po/ku.po,
+	  xfce4-toys/branches/xfce_4_2/po/lt.po,
+	  xfce4-toys/branches/xfce_4_2/po/mr.po,
+	  xfce4-toys/branches/xfce_4_2/po/ms.po,
+	  xfce4-toys/branches/xfce_4_2/po/nb_NO.po,
+	  xfce4-toys/branches/xfce_4_2/po/nl.po,
+	  xfce4-toys/branches/xfce_4_2/po/pa.po,
+	  xfce4-toys/branches/xfce_4_2/po/pl.po,
+	  xfce4-toys/branches/xfce_4_2/po/pt_BR.po,
+	  xfce4-toys/branches/xfce_4_2/po/pt_PT.po,
+	  xfce4-toys/branches/xfce_4_2/po/ro.po,
+	  xfce4-toys/branches/xfce_4_2/po/ru.po,
+	  xfce4-toys/branches/xfce_4_2/po/sk.po,
+	  xfce4-toys/branches/xfce_4_2/po/sl.po,
+	  xfce4-toys/branches/xfce_4_2/po/sq.po,
+	  xfce4-toys/branches/xfce_4_2/po/sv.po,
+	  xfce4-toys/branches/xfce_4_2/po/ta.po,
+	  xfce4-toys/branches/xfce_4_2/po/tr.po,
+	  xfce4-toys/branches/xfce_4_2/po/uk.po,
+	  xfce4-toys/branches/xfce_4_2/po/vi.po,
+	  xfce4-toys/branches/xfce_4_2/po/zh_CN.po,
+	  xfce4-toys/branches/xfce_4_2/po/zh_TW.po,
+	  xfce4-trigger-launcher/branches/xfce_4_2/po/af.po,
+	  xfce4-trigger-launcher/branches/xfce_4_2/po/ar.po,
+	  xfce4-trigger-launcher/branches/xfce_4_2/po/az.po,
+	  xfce4-trigger-launcher/branches/xfce_4_2/po/be.po,
+	  xfce4-trigger-launcher/branches/xfce_4_2/po/bg.po,
+	  xfce4-trigger-launcher/branches/xfce_4_2/po/bn_IN.po,
+	  xfce4-trigger-launcher/branches/xfce_4_2/po/ca.po,
+	  xfce4-trigger-launcher/branches/xfce_4_2/po/cs.po,
+	  xfce4-trigger-launcher/branches/xfce_4_2/po/da.po,
+	  xfce4-trigger-launcher/branches/xfce_4_2/po/de.po,
+	  xfce4-trigger-launcher/branches/xfce_4_2/po/el.po,
+	  xfce4-trigger-launcher/branches/xfce_4_2/po/en_GB.po,
+	  xfce4-trigger-launcher/branches/xfce_4_2/po/eo.po,
+	  xfce4-trigger-launcher/branches/xfce_4_2/po/es.po,
+	  xfce4-trigger-launcher/branches/xfce_4_2/po/es_MX.po,
+	  xfce4-trigger-launcher/branches/xfce_4_2/po/et.po,
+	  xfce4-trigger-launcher/branches/xfce_4_2/po/eu.po,
+	  xfce4-trigger-launcher/branches/xfce_4_2/po/fa.po,
+	  xfce4-trigger-launcher/branches/xfce_4_2/po/fi.po,
+	  xfce4-trigger-launcher/branches/xfce_4_2/po/fr.po,
+	  xfce4-trigger-launcher/branches/xfce_4_2/po/gu.po,
+	  xfce4-trigger-launcher/branches/xfce_4_2/po/he.po,
+	  xfce4-trigger-launcher/branches/xfce_4_2/po/hi.po,
+	  xfce4-trigger-launcher/branches/xfce_4_2/po/hu.po,
+	  xfce4-trigger-launcher/branches/xfce_4_2/po/it.po,
+	  xfce4-trigger-launcher/branches/xfce_4_2/po/ja.po,
+	  xfce4-trigger-launcher/branches/xfce_4_2/po/ko.po,
+	  xfce4-trigger-launcher/branches/xfce_4_2/po/ku.po,
+	  xfce4-trigger-launcher/branches/xfce_4_2/po/lt.po,
+	  xfce4-trigger-launcher/branches/xfce_4_2/po/mr.po,
+	  xfce4-trigger-launcher/branches/xfce_4_2/po/ms.po,
+	  xfce4-trigger-launcher/branches/xfce_4_2/po/nl.po,
+	  xfce4-trigger-launcher/branches/xfce_4_2/po/pa.po,
+	  xfce4-trigger-launcher/branches/xfce_4_2/po/pl.po,
+	  xfce4-trigger-launcher/branches/xfce_4_2/po/pt_BR.po,
+	  xfce4-trigger-launcher/branches/xfce_4_2/po/pt_PT.po,
+	  xfce4-trigger-launcher/branches/xfce_4_2/po/ro.po,
+	  xfce4-trigger-launcher/branches/xfce_4_2/po/ru.po,
+	  xfce4-trigger-launcher/branches/xfce_4_2/po/sk.po,
+	  xfce4-trigger-launcher/branches/xfce_4_2/po/sl.po,
+	  xfce4-trigger-launcher/branches/xfce_4_2/po/sq.po,
+	  xfce4-trigger-launcher/branches/xfce_4_2/po/sv.po,
+	  xfce4-trigger-launcher/branches/xfce_4_2/po/ta.po,
+	  xfce4-trigger-launcher/branches/xfce_4_2/po/tr.po,
+	  xfce4-trigger-launcher/branches/xfce_4_2/po/uk.po,
+	  xfce4-trigger-launcher/branches/xfce_4_2/po/vi.po,
+	  xfce4-trigger-launcher/branches/xfce_4_2/po/xfce4-trigger-launcher.pot,
+	  xfce4-trigger-launcher/branches/xfce_4_2/po/zh_CN.po,
+	  xfce4-trigger-launcher/branches/xfce_4_2/po/zh_TW.po,
+	  xfdesktop/branches/xfce_4_2/po/af.po,
+	  xfdesktop/branches/xfce_4_2/po/ar.po,
+	  xfdesktop/branches/xfce_4_2/po/az.po,
+	  xfdesktop/branches/xfce_4_2/po/be.po,
+	  xfdesktop/branches/xfce_4_2/po/bg.po,
+	  xfdesktop/branches/xfce_4_2/po/bn_IN.po,
+	  xfdesktop/branches/xfce_4_2/po/ca.po,
+	  xfdesktop/branches/xfce_4_2/po/cs.po,
+	  xfdesktop/branches/xfce_4_2/po/da.po,
+	  xfdesktop/branches/xfce_4_2/po/de.po,
+	  xfdesktop/branches/xfce_4_2/po/el.po,
+	  xfdesktop/branches/xfce_4_2/po/en_GB.po,
+	  xfdesktop/branches/xfce_4_2/po/eo.po,
+	  xfdesktop/branches/xfce_4_2/po/es.po,
+	  xfdesktop/branches/xfce_4_2/po/es_MX.po,
+	  xfdesktop/branches/xfce_4_2/po/et.po,
+	  xfdesktop/branches/xfce_4_2/po/eu.po,
+	  xfdesktop/branches/xfce_4_2/po/fa.po,
+	  xfdesktop/branches/xfce_4_2/po/fi.po,
+	  xfdesktop/branches/xfce_4_2/po/fr.po,
+	  xfdesktop/branches/xfce_4_2/po/gu.po,
+	  xfdesktop/branches/xfce_4_2/po/he.po,
+	  xfdesktop/branches/xfce_4_2/po/hi.po,
+	  xfdesktop/branches/xfce_4_2/po/hu.po,
+	  xfdesktop/branches/xfce_4_2/po/hy.po,
+	  xfdesktop/branches/xfce_4_2/po/it.po,
+	  xfdesktop/branches/xfce_4_2/po/ja.po,
+	  xfdesktop/branches/xfce_4_2/po/ko.po,
+	  xfdesktop/branches/xfce_4_2/po/ku.po,
+	  xfdesktop/branches/xfce_4_2/po/lt.po,
+	  xfdesktop/branches/xfce_4_2/po/mr.po,
+	  xfdesktop/branches/xfce_4_2/po/ms.po,
+	  xfdesktop/branches/xfce_4_2/po/nb_NO.po,
+	  xfdesktop/branches/xfce_4_2/po/nl.po,
+	  xfdesktop/branches/xfce_4_2/po/pa.po,
+	  xfdesktop/branches/xfce_4_2/po/pl.po,
+	  xfdesktop/branches/xfce_4_2/po/pt_BR.po,
+	  xfdesktop/branches/xfce_4_2/po/pt_PT.po,
+	  xfdesktop/branches/xfce_4_2/po/ro.po,
+	  xfdesktop/branches/xfce_4_2/po/ru.po,
+	  xfdesktop/branches/xfce_4_2/po/sk.po,
+	  xfdesktop/branches/xfce_4_2/po/sl.po,
+	  xfdesktop/branches/xfce_4_2/po/sq.po,
+	  xfdesktop/branches/xfce_4_2/po/sv.po,
+	  xfdesktop/branches/xfce_4_2/po/ta.po,
+	  xfdesktop/branches/xfce_4_2/po/tr.po,
+	  xfdesktop/branches/xfce_4_2/po/uk.po,
+	  xfdesktop/branches/xfce_4_2/po/vi.po,
+	  xfdesktop/branches/xfce_4_2/po/xfdesktop.pot,
+	  xfdesktop/branches/xfce_4_2/po/zh_CN.po,
+	  xfdesktop/branches/xfce_4_2/po/zh_TW.po,
+	  xffm/branches/xfce_4_2/po/af.po, xffm/branches/xfce_4_2/po/ar.po,
+	  xffm/branches/xfce_4_2/po/az.po, xffm/branches/xfce_4_2/po/bg.po,
+	  xffm/branches/xfce_4_2/po/bn_IN.po,
+	  xffm/branches/xfce_4_2/po/ca.po, xffm/branches/xfce_4_2/po/cs.po,
+	  xffm/branches/xfce_4_2/po/de.po,
+	  xffm/branches/xfce_4_2/po/en_GB.po,
+	  xffm/branches/xfce_4_2/po/es.po,
+	  xffm/branches/xfce_4_2/po/es_MX.po,
+	  xffm/branches/xfce_4_2/po/et.po, xffm/branches/xfce_4_2/po/eu.po,
+	  xffm/branches/xfce_4_2/po/fa.po, xffm/branches/xfce_4_2/po/fi.po,
+	  xffm/branches/xfce_4_2/po/fr.po, xffm/branches/xfce_4_2/po/gu.po,
+	  xffm/branches/xfce_4_2/po/he.po, xffm/branches/xfce_4_2/po/hi.po,
+	  xffm/branches/xfce_4_2/po/hu.po, xffm/branches/xfce_4_2/po/it.po,
+	  xffm/branches/xfce_4_2/po/ja.po, xffm/branches/xfce_4_2/po/ko.po,
+	  xffm/branches/xfce_4_2/po/ku.po, xffm/branches/xfce_4_2/po/lt.po,
+	  xffm/branches/xfce_4_2/po/mr.po, xffm/branches/xfce_4_2/po/ms.po,
+	  xffm/branches/xfce_4_2/po/nb_NO.po,
+	  xffm/branches/xfce_4_2/po/nl.po, xffm/branches/xfce_4_2/po/pa.po,
+	  xffm/branches/xfce_4_2/po/pl.po,
+	  xffm/branches/xfce_4_2/po/pt_BR.po,
+	  xffm/branches/xfce_4_2/po/pt_PT.po,
+	  xffm/branches/xfce_4_2/po/sk.po, xffm/branches/xfce_4_2/po/sl.po,
+	  xffm/branches/xfce_4_2/po/sq.po, xffm/branches/xfce_4_2/po/sv.po,
+	  xffm/branches/xfce_4_2/po/ta.po, xffm/branches/xfce_4_2/po/tr.po,
+	  xffm/branches/xfce_4_2/po/uk.po, xffm/branches/xfce_4_2/po/vi.po,
+	  xffm/branches/xfce_4_2/po/xffm.pot,
+	  xffm/branches/xfce_4_2/po/zh_CN.po,
+	  xffm/branches/xfce_4_2/po/zh_TW.po,
+	  xfprint/branches/xfce_4_2/po/af.po,
+	  xfprint/branches/xfce_4_2/po/ar.po,
+	  xfprint/branches/xfce_4_2/po/az.po,
+	  xfprint/branches/xfce_4_2/po/be.po,
+	  xfprint/branches/xfce_4_2/po/bg.po,
+	  xfprint/branches/xfce_4_2/po/bn_IN.po,
+	  xfprint/branches/xfce_4_2/po/ca.po,
+	  xfprint/branches/xfce_4_2/po/cs.po,
+	  xfprint/branches/xfce_4_2/po/de.po,
+	  xfprint/branches/xfce_4_2/po/el.po,
+	  xfprint/branches/xfce_4_2/po/en_GB.po,
+	  xfprint/branches/xfce_4_2/po/es.po,
+	  xfprint/branches/xfce_4_2/po/es_MX.po,
+	  xfprint/branches/xfce_4_2/po/et.po,
+	  xfprint/branches/xfce_4_2/po/eu.po,
+	  xfprint/branches/xfce_4_2/po/fa.po,
+	  xfprint/branches/xfce_4_2/po/fi.po,
+	  xfprint/branches/xfce_4_2/po/fr.po,
+	  xfprint/branches/xfce_4_2/po/gu.po,
+	  xfprint/branches/xfce_4_2/po/he.po,
+	  xfprint/branches/xfce_4_2/po/hi.po,
+	  xfprint/branches/xfce_4_2/po/hu.po,
+	  xfprint/branches/xfce_4_2/po/it.po,
+	  xfprint/branches/xfce_4_2/po/ja.po,
+	  xfprint/branches/xfce_4_2/po/ko.po,
+	  xfprint/branches/xfce_4_2/po/ku.po,
+	  xfprint/branches/xfce_4_2/po/lt.po,
+	  xfprint/branches/xfce_4_2/po/mr.po,
+	  xfprint/branches/xfce_4_2/po/ms.po,
+	  xfprint/branches/xfce_4_2/po/nl.po,
+	  xfprint/branches/xfce_4_2/po/pa.po,
+	  xfprint/branches/xfce_4_2/po/pl.po,
+	  xfprint/branches/xfce_4_2/po/pt_BR.po,
+	  xfprint/branches/xfce_4_2/po/pt_PT.po,
+	  xfprint/branches/xfce_4_2/po/ro.po,
+	  xfprint/branches/xfce_4_2/po/ru.po,
+	  xfprint/branches/xfce_4_2/po/sk.po,
+	  xfprint/branches/xfce_4_2/po/sl.po,
+	  xfprint/branches/xfce_4_2/po/sq.po,
+	  xfprint/branches/xfce_4_2/po/sv.po,
+	  xfprint/branches/xfce_4_2/po/ta.po,
+	  xfprint/branches/xfce_4_2/po/tr.po,
+	  xfprint/branches/xfce_4_2/po/uk.po,
+	  xfprint/branches/xfce_4_2/po/vi.po,
+	  xfprint/branches/xfce_4_2/po/xfprint.pot,
+	  xfprint/branches/xfce_4_2/po/zh_CN.po,
+	  xfprint/branches/xfce_4_2/po/zh_TW.po,
+	  xfwm4/branches/xfce_4_2/po/af.po,
+	  xfwm4/branches/xfce_4_2/po/ar.po,
+	  xfwm4/branches/xfce_4_2/po/az.po,
+	  xfwm4/branches/xfce_4_2/po/be.po,
+	  xfwm4/branches/xfce_4_2/po/bg.po,
+	  xfwm4/branches/xfce_4_2/po/bn_IN.po,
+	  xfwm4/branches/xfce_4_2/po/ca.po,
+	  xfwm4/branches/xfce_4_2/po/cs.po,
+	  xfwm4/branches/xfce_4_2/po/de.po,
+	  xfwm4/branches/xfce_4_2/po/el.po,
+	  xfwm4/branches/xfce_4_2/po/en_GB.po,
+	  xfwm4/branches/xfce_4_2/po/eo.po,
+	  xfwm4/branches/xfce_4_2/po/es.po,
+	  xfwm4/branches/xfce_4_2/po/es_MX.po,
+	  xfwm4/branches/xfce_4_2/po/et.po,
+	  xfwm4/branches/xfce_4_2/po/eu.po,
+	  xfwm4/branches/xfce_4_2/po/fa.po,
+	  xfwm4/branches/xfce_4_2/po/fi.po,
+	  xfwm4/branches/xfce_4_2/po/fr.po,
+	  xfwm4/branches/xfce_4_2/po/gu.po,
+	  xfwm4/branches/xfce_4_2/po/he.po,
+	  xfwm4/branches/xfce_4_2/po/hi.po,
+	  xfwm4/branches/xfce_4_2/po/hu.po,
+	  xfwm4/branches/xfce_4_2/po/it.po,
+	  xfwm4/branches/xfce_4_2/po/ja.po,
+	  xfwm4/branches/xfce_4_2/po/ko.po,
+	  xfwm4/branches/xfce_4_2/po/ku.po,
+	  xfwm4/branches/xfce_4_2/po/lt.po,
+	  xfwm4/branches/xfce_4_2/po/mr.po,
+	  xfwm4/branches/xfce_4_2/po/ms.po,
+	  xfwm4/branches/xfce_4_2/po/nb_NO.po,
+	  xfwm4/branches/xfce_4_2/po/nl.po,
+	  xfwm4/branches/xfce_4_2/po/pa.po,
+	  xfwm4/branches/xfce_4_2/po/pl.po,
+	  xfwm4/branches/xfce_4_2/po/pt_BR.po,
+	  xfwm4/branches/xfce_4_2/po/pt_PT.po,
+	  xfwm4/branches/xfce_4_2/po/ro.po,
+	  xfwm4/branches/xfce_4_2/po/ru.po,
+	  xfwm4/branches/xfce_4_2/po/sk.po,
+	  xfwm4/branches/xfce_4_2/po/sl.po,
+	  xfwm4/branches/xfce_4_2/po/sq.po,
+	  xfwm4/branches/xfce_4_2/po/sv.po,
+	  xfwm4/branches/xfce_4_2/po/ta.po,
+	  xfwm4/branches/xfce_4_2/po/tr.po,
+	  xfwm4/branches/xfce_4_2/po/uk.po,
+	  xfwm4/branches/xfce_4_2/po/vi.po,
+	  xfwm4/branches/xfce_4_2/po/zh_CN.po,
+	  xfwm4/branches/xfce_4_2/po/zh_TW.po: Bump.
+
+2006-04-03 20:42  olivier
+
+	* ChangeLog: Update ChangeLog
+
+2006-04-03 20:18  olivier
+
+	* configure.ac: Update version.
+
 2006-03-05 06:23  daichi
 
 	* libxfcegui4/branches/xfce_4_2/configure.ac,
-	  libxfcegui4/branches/xfce_4_2/po/sq.po,
-	  xfcalendar/branches/xfce_4_2/configure.ac,
-	  xfcalendar/branches/xfce_4_2/po/sq.po,
+	  libxfcegui4/branches/xfce_4_2/po/sq.po, configure.ac, po/sq.po,
 	  xfce-mcs-manager/branches/xfce_4_2/configure.ac,
 	  xfce-mcs-manager/branches/xfce_4_2/po/sq.po,
 	  xfce-mcs-plugins/branches/xfce_4_2/configure.ac,
@@ -70,8 +886,7 @@
 
 2005-11-14 23:54  daichi
 
-	* libxfcegui4/branches/xfce_4_2/po/ChangeLog,
-	  xfcalendar/branches/xfce_4_2/po/ChangeLog,
+	* libxfcegui4/branches/xfce_4_2/po/ChangeLog, po/ChangeLog,
 	  xfce-mcs-manager/branches/xfce_4_2/po/ChangeLog,
 	  xfce-mcs-plugins/branches/xfce_4_2/po/ChangeLog,
 	  xfce-utils/branches/xfce_4_2/po/ChangeLog,
@@ -89,76 +904,60 @@
 
 2005-11-11 17:53  daichi
 
-	* xfcalendar/branches/xfce_4_2/po/pt_BR.po,
-	  xfce-utils/branches/xfce_4_2/po/pt_BR.po,
+	* po/pt_BR.po, xfce-utils/branches/xfce_4_2/po/pt_BR.po,
 	  xfdesktop/branches/xfce_4_2/po/pt_BR.po: Added missing
 	  accelerator keys by Adriano Winter Bess <awbess@gmail.com>.
 
 2005-11-06 09:26  olivier
 
-	* xfcalendar/branches/xfce_4_2/po/hu.po: Update Hungarian
-	  translation by Attila SZERVÁC <sas@321.hu>
+	* po/hu.po: Update Hungarian translation by Attila SZERVÁC
+	  <sas@321.hu>
 
 2005-11-05 15:42  olivier
 
-	* xfcalendar/branches/xfce_4_2/ChangeLog: Update ChangeLog
+	* ChangeLog: Update ChangeLog
 
 2005-11-05 15:41  olivier
 
-	* xfcalendar/branches/xfce_4_2/configure.ac,
-	  xfcalendar/branches/xfce_4_2/po/be.po,
-	  xfcalendar/branches/xfce_4_2/po/bg.po,
-	  xfcalendar/branches/xfce_4_2/po/et.po,
-	  xfcalendar/branches/xfce_4_2/po/fi.po,
-	  xfcalendar/branches/xfce_4_2/po/hu.po,
-	  xfcalendar/branches/xfce_4_2/po/it.po,
-	  xfcalendar/branches/xfce_4_2/po/ku.po,
-	  xfcalendar/branches/xfce_4_2/po/lt.po,
-	  xfcalendar/branches/xfce_4_2/po/ro.po,
-	  xfcalendar/branches/xfce_4_2/po/sl.po,
-	  xfcalendar/branches/xfce_4_2/po/sv.po: Remove revision in version
+	* configure.ac, po/be.po, po/bg.po, po/et.po, po/fi.po, po/hu.po,
+	  po/it.po, po/ku.po, po/lt.po, po/ro.po, po/sl.po, po/sv.po:
+	  Remove revision in version
 
 2005-11-05 14:16  olivier
 
-	* xfcalendar/branches/xfce_4_2/ChangeLog: Update ChangeLog
+	* ChangeLog: Update ChangeLog
 
 2005-11-03 13:23  daichi
 
-	* xfcalendar/branches/xfce_4_2/configure.ac,
-	  xfcalendar/branches/xfce_4_2/po/sl.po: Added Slovenian
-	  translations by Bostjan Spetic <igzebedze@auch.eu.org>.
+	* configure.ac, po/sl.po: Added Slovenian translations by Bostjan
+	  Spetic <igzebedze@auch.eu.org>.
 
 2005-10-29 14:21  daichi
 
-	* xfcalendar/branches/xfce_4_2/configure.ac: Added `eo' at the
-	  BM_I18N().
+	* configure.ac: Added `eo' at the BM_I18N().
 
 2005-10-29 14:02  gnu_sylvain
 
-	* xfcalendar/branches/xfce_4_2/po/eo.po: Esperanto translation for
-	  xfce_4_2 module xfcalendar.
+	* po/eo.po: Esperanto translation for xfce_4_2 module xfcalendar.
 
 2005-10-29 04:24  daichi
 
-	* xfcalendar/branches/xfce_4_2/po/ChangeLog,
-	  xfce-mcs-manager/branches/xfce_4_2/po/ChangeLog,
+	* po/ChangeLog, xfce-mcs-manager/branches/xfce_4_2/po/ChangeLog,
 	  xfce-mcs-plugins/branches/xfce_4_2/po/ChangeLog,
 	  xfce-utils/branches/xfce_4_2/po/ChangeLog: Sorry, `xfce' was
 	  Olivier.
 
 2005-10-28 16:46  daichi
 
-	* xfcalendar/branches/xfce_4_2/po/ChangeLog: Sorry, updated again.
+	* po/ChangeLog: Sorry, updated again.
 
 2005-10-28 16:27  daichi
 
-	* xfcalendar/branches/xfce_4_2/po/ChangeLog: Trimmed and updated,
-	  I bet `xfce' was Jasper.
+	* po/ChangeLog: Trimmed and updated, I bet `xfce' was Jasper.
 
 2005-10-28 12:08  daichi
 
-	* libxfcegui4/branches/xfce_4_2/po/be.po,
-	  xfcalendar/branches/xfce_4_2/po/be.po,
+	* libxfcegui4/branches/xfce_4_2/po/be.po, po/be.po,
 	  xfce-mcs-manager/branches/xfce_4_2/po/be.po,
 	  xfce-mcs-plugins/branches/xfce_4_2/po/be.po,
 	  xfce-utils/branches/xfce_4_2/po/be.po,
@@ -176,29 +975,26 @@
 
 2005-10-21 12:22  alex
 
-	* xfcalendar/branches/xfce_4_2/po/it.po,
-	  xfcalendar/trunk/po/it.po, xfdesktop/branches/xfce_4_2/po/it.po,
-	  xfdesktop/trunk/po/it.po, xffm/branches/xfce_4_2/po/it.po,
+	* po/it.po, xfcalendar/trunk/po/it.po,
+	  xfdesktop/branches/xfce_4_2/po/it.po, xfdesktop/trunk/po/it.po,
+	  xffm/branches/xfce_4_2/po/it.po,
 	  xfprint/branches/xfce_4_2/po/it.po, xfprint/trunk/po/it.po,
 	  xfwm4/branches/xfce_4_2/po/it.po, xfwm4/trunk/po/it.po: Update
 	  Italian translations and add missing accelerator keys.
 
 2005-10-21 05:26  daichi
 
-	* xfcalendar/branches/xfce_4_2/po/ChangeLog: Updated (in which
-	  unnecessary logs are removed).
+	* po/ChangeLog: Updated (in which unnecessary logs are removed).
 
 2005-10-19 20:51  daichi
 
 	* libxfcegui4/branches/xfce_4_2/po/lt.po,
-	  libxfcegui4/trunk/po/lt.po,
-	  xfcalendar/branches/xfce_4_2/po/lt.po,
+	  libxfcegui4/trunk/po/lt.po, po/lt.po,
 	  xfce-mcs-manager/branches/xfce_4_2/po/lt.po,
 	  xfce-mcs-manager/trunk/po/lt.po,
 	  xfce-mcs-plugins/branches/xfce_4_2/po/lt.po,
 	  xfce-mcs-plugins/trunk/po/lt.po,
-	  xfce-utils/branches/xfce_4_2/po/lt.po,
-	  xfce-utils/trunk/po/lt.po,
+	  xfce-utils/branches/xfce_4_2/po/lt.po, xfce-utils/trunk/po/lt.po,
 	  xfce4-appfinder/branches/xfce_4_2/po/lt.po,
 	  xfce4-appfinder/trunk/po/lt.po,
 	  xfce4-iconbox/branches/xfce_4_2/po/lt.po,
@@ -213,11 +1009,8 @@
 2005-10-18 15:46  daichi
 
 	* libxfcegui4/branches/xfce_4_2/po/hu.po,
-	  libxfcegui4/branches/xfce_4_2/po/ku.po,
-	  xfcalendar/branches/xfce_4_2/po/bg.po,
-	  xfcalendar/branches/xfce_4_2/po/hu.po,
-	  xfcalendar/branches/xfce_4_2/po/ku.po,
-	  xfce-mcs-manager/branches/xfce_4_2/po/bg.po,
+	  libxfcegui4/branches/xfce_4_2/po/ku.po, po/bg.po, po/hu.po,
+	  po/ku.po, xfce-mcs-manager/branches/xfce_4_2/po/bg.po,
 	  xfce-mcs-manager/branches/xfce_4_2/po/hu.po,
 	  xfce-mcs-manager/branches/xfce_4_2/po/ku.po,
 	  xfce-mcs-plugins/branches/xfce_4_2/po/bg.po,
@@ -245,8 +1038,7 @@
 	  xfce4-trigger-launcher/branches/xfce_4_2/po/bg.po,
 	  xfce4-trigger-launcher/branches/xfce_4_2/po/hu.po,
 	  xfce4-trigger-launcher/branches/xfce_4_2/po/ku.po,
-	  xffm/branches/xfce_4_2/po/bg.po,
-	  xffm/branches/xfce_4_2/po/hu.po,
+	  xffm/branches/xfce_4_2/po/bg.po, xffm/branches/xfce_4_2/po/hu.po,
 	  xffm/branches/xfce_4_2/po/ku.po,
 	  xfprint/branches/xfce_4_2/po/bg.po,
 	  xfprint/branches/xfce_4_2/po/hu.po,
@@ -257,9 +1049,8 @@
 
 2005-10-12 08:16  daichi
 
-	* xfcalendar/branches/xfce_4_2/plugin/xfce-xfcalendar-settings.desktop,
-	  xfcalendar/branches/xfce_4_2/xfcalendar.desktop: * Added
-	  Swedish translations by
+	* plugin/xfce-xfcalendar-settings.desktop, xfcalendar.desktop: *
+	  Added Swedish translations by
 	  Alexander Toresson <alexander.toresson at gmail.com>.
 	  
 	  * Added Japanese translations.
@@ -268,21 +1059,18 @@
 
 2005-10-11 09:53  daichi
 
-	* xfcalendar/branches/xfce_4_2/po/et.po,
-	  xfcalendar/trunk/po/et.po,
+	* po/et.po, xfcalendar/trunk/po/et.po,
 	  xfce-mcs-manager/branches/xfce_4_2/po/et.po,
 	  xfce-mcs-manager/trunk/po/et.po,
 	  xfce-mcs-plugins/branches/xfce_4_2/po/et.po,
 	  xfce-mcs-plugins/trunk/po/et.po,
-	  xfce-utils/branches/xfce_4_2/po/et.po,
-	  xfce-utils/trunk/po/et.po,
+	  xfce-utils/branches/xfce_4_2/po/et.po, xfce-utils/trunk/po/et.po,
 	  xfce4-iconbox/branches/xfce_4_2/po/et.po,
 	  xfce4-mixer/branches/xfce_4_2/po/et.po,
 	  xfce4-mixer/trunk/po/et.po,
 	  xfce4-panel/branches/xfce_4_2/po/et.po,
 	  xfce4-panel/trunk/po/et.po,
-	  xfce4-toys/branches/xfce_4_2/po/et.po,
-	  xfce4-toys/trunk/po/et.po,
+	  xfce4-toys/branches/xfce_4_2/po/et.po, xfce4-toys/trunk/po/et.po,
 	  xfce4-trigger-launcher/branches/xfce_4_2/po/et.po,
 	  xfce4-trigger-launcher/trunk/po/et.po,
 	  xfdesktop/branches/xfce_4_2/po/et.po, xfdesktop/trunk/po/et.po,
@@ -294,16 +1082,14 @@
 2005-10-11 08:56  daichi
 
 	* libxfcegui4/branches/xfce_4_2/po/fi.po,
-	  libxfcegui4/trunk/po/fi.po,
-	  xfcalendar/branches/xfce_4_2/po/fi.po,
+	  libxfcegui4/trunk/po/fi.po, po/fi.po,
 	  xfce4-appfinder/branches/xfce_4_2/po/fi.po,
 	  xfce4-iconbox/branches/xfce_4_2/po/fi.po,
 	  xfce4-mixer/branches/xfce_4_2/po/fi.po,
 	  xfce4-mixer/trunk/po/fi.po,
 	  xfce4-session/branches/xfce_4_2/po/fi.po,
 	  xfce4-session/trunk/po/fi.po,
-	  xfce4-toys/branches/xfce_4_2/po/fi.po,
-	  xfce4-toys/trunk/po/fi.po,
+	  xfce4-toys/branches/xfce_4_2/po/fi.po, xfce4-toys/trunk/po/fi.po,
 	  xfce4-trigger-launcher/branches/xfce_4_2/po/fi.po,
 	  xfce4-trigger-launcher/trunk/po/fi.po,
 	  xffm/branches/xfce_4_2/po/fi.po,
@@ -312,8 +1098,7 @@
 
 2005-10-10 22:41  daichi
 
-	* libxfcegui4/branches/xfce_4_2/po/ro.po,
-	  xfcalendar/branches/xfce_4_2/po/ro.po,
+	* libxfcegui4/branches/xfce_4_2/po/ro.po, po/ro.po,
 	  xfce-mcs-manager/branches/xfce_4_2/po/ro.po,
 	  xfce-mcs-plugins/branches/xfce_4_2/po/ro.po,
 	  xfce-utils/branches/xfce_4_2/po/ro.po,
@@ -336,8 +1121,7 @@
 2005-10-09 07:00  daichi
 
 	* libxfcegui4/branches/xfce_4_2/configure.ac,
-	  libxfcegui4/branches/xfce_4_2/po/sv.po,
-	  xfcalendar/branches/xfce_4_2/po/sv.po,
+	  libxfcegui4/branches/xfce_4_2/po/sv.po, po/sv.po,
 	  xfce-mcs-manager/branches/xfce_4_2/po/sv.po,
 	  xfce-mcs-plugins/branches/xfce_4_2/po/sv.po,
 	  xfce-utils/branches/xfce_4_2/po/sv.po,
@@ -392,53 +1176,15 @@
 	  libxfcegui4/branches/xfce_4_2/po/sk.po,
 	  libxfcegui4/branches/xfce_4_2/po/ta.po,
 	  libxfcegui4/branches/xfce_4_2/po/uk.po,
-	  libxfcegui4/branches/xfce_4_2/po/zh_CN.po,
-	  xfcalendar/branches/xfce_4_2/po/af.po,
-	  xfcalendar/branches/xfce_4_2/po/ar.po,
-	  xfcalendar/branches/xfce_4_2/po/az.po,
-	  xfcalendar/branches/xfce_4_2/po/be.po,
-	  xfcalendar/branches/xfce_4_2/po/bg.po,
-	  xfcalendar/branches/xfce_4_2/po/bn_IN.po,
-	  xfcalendar/branches/xfce_4_2/po/ca.po,
-	  xfcalendar/branches/xfce_4_2/po/cs.po,
-	  xfcalendar/branches/xfce_4_2/po/da.po,
-	  xfcalendar/branches/xfce_4_2/po/de.po,
-	  xfcalendar/branches/xfce_4_2/po/el.po,
-	  xfcalendar/branches/xfce_4_2/po/en_GB.po,
-	  xfcalendar/branches/xfce_4_2/po/es.po,
-	  xfcalendar/branches/xfce_4_2/po/et.po,
-	  xfcalendar/branches/xfce_4_2/po/eu.po,
-	  xfcalendar/branches/xfce_4_2/po/fa.po,
-	  xfcalendar/branches/xfce_4_2/po/fi.po,
-	  xfcalendar/branches/xfce_4_2/po/fr.po,
-	  xfcalendar/branches/xfce_4_2/po/gu.po,
-	  xfcalendar/branches/xfce_4_2/po/he.po,
-	  xfcalendar/branches/xfce_4_2/po/hi.po,
-	  xfcalendar/branches/xfce_4_2/po/hu.po,
-	  xfcalendar/branches/xfce_4_2/po/hy.po,
-	  xfcalendar/branches/xfce_4_2/po/it.po,
-	  xfcalendar/branches/xfce_4_2/po/ja.po,
-	  xfcalendar/branches/xfce_4_2/po/ko.po,
-	  xfcalendar/branches/xfce_4_2/po/ku.po,
-	  xfcalendar/branches/xfce_4_2/po/lt.po,
-	  xfcalendar/branches/xfce_4_2/po/mr.po,
-	  xfcalendar/branches/xfce_4_2/po/ms.po,
-	  xfcalendar/branches/xfce_4_2/po/nb_NO.po,
-	  xfcalendar/branches/xfce_4_2/po/nl.po,
-	  xfcalendar/branches/xfce_4_2/po/pa.po,
-	  xfcalendar/branches/xfce_4_2/po/pt_BR.po,
-	  xfcalendar/branches/xfce_4_2/po/pt_PT.po,
-	  xfcalendar/branches/xfce_4_2/po/ro.po,
-	  xfcalendar/branches/xfce_4_2/po/ru.po,
-	  xfcalendar/branches/xfce_4_2/po/sk.po,
-	  xfcalendar/branches/xfce_4_2/po/sv.po,
-	  xfcalendar/branches/xfce_4_2/po/ta.po,
-	  xfcalendar/branches/xfce_4_2/po/tr.po,
-	  xfcalendar/branches/xfce_4_2/po/uk.po,
-	  xfcalendar/branches/xfce_4_2/po/vi.po,
-	  xfcalendar/branches/xfce_4_2/po/zh_CN.po,
-	  xfcalendar/branches/xfce_4_2/po/zh_TW.po,
-	  xfce-mcs-manager/branches/xfce_4_2/po/af.po,
+	  libxfcegui4/branches/xfce_4_2/po/zh_CN.po, po/af.po, po/ar.po,
+	  po/az.po, po/be.po, po/bg.po, po/bn_IN.po, po/ca.po, po/cs.po,
+	  po/da.po, po/de.po, po/el.po, po/en_GB.po, po/es.po, po/et.po,
+	  po/eu.po, po/fa.po, po/fi.po, po/fr.po, po/gu.po, po/he.po,
+	  po/hi.po, po/hu.po, po/hy.po, po/it.po, po/ja.po, po/ko.po,
+	  po/ku.po, po/lt.po, po/mr.po, po/ms.po, po/nb_NO.po, po/nl.po,
+	  po/pa.po, po/pt_BR.po, po/pt_PT.po, po/ro.po, po/ru.po, po/sk.po,
+	  po/sv.po, po/ta.po, po/tr.po, po/uk.po, po/vi.po, po/zh_CN.po,
+	  po/zh_TW.po, xfce-mcs-manager/branches/xfce_4_2/po/af.po,
 	  xfce-mcs-manager/branches/xfce_4_2/po/ar.po,
 	  xfce-mcs-manager/branches/xfce_4_2/po/az.po,
 	  xfce-mcs-manager/branches/xfce_4_2/po/be.po,
@@ -925,44 +1671,29 @@
 	  xfdesktop/branches/xfce_4_2/po/vi.po,
 	  xfdesktop/branches/xfce_4_2/po/zh_CN.po,
 	  xfdesktop/branches/xfce_4_2/po/zh_TW.po,
-	  xffm/branches/xfce_4_2/po/af.po,
-	  xffm/branches/xfce_4_2/po/ar.po,
-	  xffm/branches/xfce_4_2/po/az.po,
-	  xffm/branches/xfce_4_2/po/bg.po,
+	  xffm/branches/xfce_4_2/po/af.po, xffm/branches/xfce_4_2/po/ar.po,
+	  xffm/branches/xfce_4_2/po/az.po, xffm/branches/xfce_4_2/po/bg.po,
 	  xffm/branches/xfce_4_2/po/bn_IN.po,
-	  xffm/branches/xfce_4_2/po/ca.po,
-	  xffm/branches/xfce_4_2/po/cs.po,
+	  xffm/branches/xfce_4_2/po/ca.po, xffm/branches/xfce_4_2/po/cs.po,
 	  xffm/branches/xfce_4_2/po/de.po,
 	  xffm/branches/xfce_4_2/po/en_GB.po,
 	  xffm/branches/xfce_4_2/po/es.po,
 	  xffm/branches/xfce_4_2/po/es_MX.po,
-	  xffm/branches/xfce_4_2/po/et.po,
-	  xffm/branches/xfce_4_2/po/eu.po,
-	  xffm/branches/xfce_4_2/po/fa.po,
-	  xffm/branches/xfce_4_2/po/fi.po,
-	  xffm/branches/xfce_4_2/po/fr.po,
-	  xffm/branches/xfce_4_2/po/gu.po,
-	  xffm/branches/xfce_4_2/po/he.po,
-	  xffm/branches/xfce_4_2/po/hi.po,
-	  xffm/branches/xfce_4_2/po/hu.po,
-	  xffm/branches/xfce_4_2/po/it.po,
-	  xffm/branches/xfce_4_2/po/ja.po,
-	  xffm/branches/xfce_4_2/po/ko.po,
-	  xffm/branches/xfce_4_2/po/ku.po,
-	  xffm/branches/xfce_4_2/po/lt.po,
-	  xffm/branches/xfce_4_2/po/mr.po,
-	  xffm/branches/xfce_4_2/po/ms.po,
+	  xffm/branches/xfce_4_2/po/et.po, xffm/branches/xfce_4_2/po/eu.po,
+	  xffm/branches/xfce_4_2/po/fa.po, xffm/branches/xfce_4_2/po/fi.po,
+	  xffm/branches/xfce_4_2/po/fr.po, xffm/branches/xfce_4_2/po/gu.po,
+	  xffm/branches/xfce_4_2/po/he.po, xffm/branches/xfce_4_2/po/hi.po,
+	  xffm/branches/xfce_4_2/po/hu.po, xffm/branches/xfce_4_2/po/it.po,
+	  xffm/branches/xfce_4_2/po/ja.po, xffm/branches/xfce_4_2/po/ko.po,
+	  xffm/branches/xfce_4_2/po/ku.po, xffm/branches/xfce_4_2/po/lt.po,
+	  xffm/branches/xfce_4_2/po/mr.po, xffm/branches/xfce_4_2/po/ms.po,
 	  xffm/branches/xfce_4_2/po/nb_NO.po,
-	  xffm/branches/xfce_4_2/po/nl.po,
-	  xffm/branches/xfce_4_2/po/pa.po,
+	  xffm/branches/xfce_4_2/po/nl.po, xffm/branches/xfce_4_2/po/pa.po,
 	  xffm/branches/xfce_4_2/po/pt_BR.po,
 	  xffm/branches/xfce_4_2/po/pt_PT.po,
-	  xffm/branches/xfce_4_2/po/sk.po,
-	  xffm/branches/xfce_4_2/po/sv.po,
-	  xffm/branches/xfce_4_2/po/ta.po,
-	  xffm/branches/xfce_4_2/po/tr.po,
-	  xffm/branches/xfce_4_2/po/uk.po,
-	  xffm/branches/xfce_4_2/po/vi.po,
+	  xffm/branches/xfce_4_2/po/sk.po, xffm/branches/xfce_4_2/po/sv.po,
+	  xffm/branches/xfce_4_2/po/ta.po, xffm/branches/xfce_4_2/po/tr.po,
+	  xffm/branches/xfce_4_2/po/uk.po, xffm/branches/xfce_4_2/po/vi.po,
 	  xffm/branches/xfce_4_2/po/zh_CN.po,
 	  xffm/branches/xfce_4_2/po/zh_TW.po,
 	  xfprint/branches/xfce_4_2/po/af.po,
@@ -1058,7 +1789,7 @@
 2005-10-07 21:20  daichi
 
 	* libxfcegui4/branches/xfce_4_2/po/libxfcegui4.pot,
-	  xfcalendar/branches/xfce_4_2/po/xfcalendar.pot,
+	  po/xfcalendar.pot,
 	  xfce-mcs-manager/branches/xfce_4_2/po/xfce-mcs-manager.pot,
 	  xfce-mcs-plugins/branches/xfce_4_2/po/xfce-mcs-plugins.pot,
 	  xfce-utils/branches/xfce_4_2/po/xfce-utils.pot,
@@ -1077,8 +1808,7 @@
 
 2005-10-07 21:19  daichi
 
-	* libxfcegui4/branches/xfce_4_2/po/pl.po,
-	  xfcalendar/branches/xfce_4_2/po/pl.po,
+	* libxfcegui4/branches/xfce_4_2/po/pl.po, po/pl.po,
 	  xfce-mcs-manager/branches/xfce_4_2/po/pl.po,
 	  xfce-mcs-plugins/branches/xfce_4_2/po/pl.po,
 	  xfce-utils/branches/xfce_4_2/po/pl.po,
@@ -1097,8 +1827,7 @@
 
 2005-10-06 07:42  daichi
 
-	* libxfcegui4/branches/xfce_4_2/po/ja.po,
-	  xfcalendar/branches/xfce_4_2/po/ja.po,
+	* libxfcegui4/branches/xfce_4_2/po/ja.po, po/ja.po,
 	  xfce-mcs-plugins/branches/xfce_4_2/po/ja.po,
 	  xfce-utils/branches/xfce_4_2/po/ja.po,
 	  xfce4-appfinder/branches/xfce_4_2/po/ja.po,
@@ -1107,23 +1836,15 @@
 2005-10-04 21:20  stavrosg
 
 	* libxfcegui4/branches/xfce_4_2/po/el.po,
-	  libxfcegui4/trunk/po/el.po,
-	  xfcalendar/branches/xfce_4_2/po/el.po,
-	  xfcalendar/trunk/po/el.po, xfce-mcs-manager/trunk/po/el.po,
-	  xfce-mcs-plugins/trunk/po/el.po, xfce-utils/trunk/po/el.po:
-	  Minor changes and updates in el translations
+	  libxfcegui4/trunk/po/el.po, po/el.po, xfcalendar/trunk/po/el.po,
+	  xfce-mcs-manager/trunk/po/el.po, xfce-mcs-plugins/trunk/po/el.po,
+	  xfce-utils/trunk/po/el.po: Minor changes and updates in el
+	  translations
 
 2005-10-04 15:57  daichi
 
-	* libxfcegui4/branches/xfce_4_2/po/el.po,
-	  xfcalendar/branches/xfce_4_2/po/ar.po,
-	  xfcalendar/branches/xfce_4_2/po/gu.po,
-	  xfcalendar/branches/xfce_4_2/po/hi.po,
-	  xfcalendar/branches/xfce_4_2/po/pt_PT.po,
-	  xfcalendar/branches/xfce_4_2/po/ro.po,
-	  xfcalendar/branches/xfce_4_2/po/sk.po,
-	  xfcalendar/branches/xfce_4_2/po/tr.po,
-	  xfcalendar/branches/xfce_4_2/po/uk.po,
+	* libxfcegui4/branches/xfce_4_2/po/el.po, po/ar.po, po/gu.po,
+	  po/hi.po, po/pt_PT.po, po/ro.po, po/sk.po, po/tr.po, po/uk.po,
 	  xfce-mcs-plugins/branches/xfce_4_2/po/af.po,
 	  xfce-mcs-plugins/branches/xfce_4_2/po/fa.po: Misc. changes.
 
@@ -1163,53 +1884,15 @@
 	  libxfcegui4/branches/xfce_4_2/po/sk.po,
 	  libxfcegui4/branches/xfce_4_2/po/ta.po,
 	  libxfcegui4/branches/xfce_4_2/po/uk.po,
-	  libxfcegui4/branches/xfce_4_2/po/zh_CN.po,
-	  xfcalendar/branches/xfce_4_2/po/af.po,
-	  xfcalendar/branches/xfce_4_2/po/ar.po,
-	  xfcalendar/branches/xfce_4_2/po/az.po,
-	  xfcalendar/branches/xfce_4_2/po/be.po,
-	  xfcalendar/branches/xfce_4_2/po/bg.po,
-	  xfcalendar/branches/xfce_4_2/po/bn_IN.po,
-	  xfcalendar/branches/xfce_4_2/po/ca.po,
-	  xfcalendar/branches/xfce_4_2/po/cs.po,
-	  xfcalendar/branches/xfce_4_2/po/da.po,
-	  xfcalendar/branches/xfce_4_2/po/de.po,
-	  xfcalendar/branches/xfce_4_2/po/el.po,
-	  xfcalendar/branches/xfce_4_2/po/en_GB.po,
-	  xfcalendar/branches/xfce_4_2/po/es.po,
-	  xfcalendar/branches/xfce_4_2/po/et.po,
-	  xfcalendar/branches/xfce_4_2/po/eu.po,
-	  xfcalendar/branches/xfce_4_2/po/fa.po,
-	  xfcalendar/branches/xfce_4_2/po/fi.po,
-	  xfcalendar/branches/xfce_4_2/po/fr.po,
-	  xfcalendar/branches/xfce_4_2/po/gu.po,
-	  xfcalendar/branches/xfce_4_2/po/he.po,
-	  xfcalendar/branches/xfce_4_2/po/hi.po,
-	  xfcalendar/branches/xfce_4_2/po/hu.po,
-	  xfcalendar/branches/xfce_4_2/po/hy.po,
-	  xfcalendar/branches/xfce_4_2/po/it.po,
-	  xfcalendar/branches/xfce_4_2/po/ja.po,
-	  xfcalendar/branches/xfce_4_2/po/ko.po,
-	  xfcalendar/branches/xfce_4_2/po/ku.po,
-	  xfcalendar/branches/xfce_4_2/po/lt.po,
-	  xfcalendar/branches/xfce_4_2/po/mr.po,
-	  xfcalendar/branches/xfce_4_2/po/ms.po,
-	  xfcalendar/branches/xfce_4_2/po/nb_NO.po,
-	  xfcalendar/branches/xfce_4_2/po/nl.po,
-	  xfcalendar/branches/xfce_4_2/po/pa.po,
-	  xfcalendar/branches/xfce_4_2/po/pl.po,
-	  xfcalendar/branches/xfce_4_2/po/pt_BR.po,
-	  xfcalendar/branches/xfce_4_2/po/pt_PT.po,
-	  xfcalendar/branches/xfce_4_2/po/ro.po,
-	  xfcalendar/branches/xfce_4_2/po/ru.po,
-	  xfcalendar/branches/xfce_4_2/po/sk.po,
-	  xfcalendar/branches/xfce_4_2/po/sv.po,
-	  xfcalendar/branches/xfce_4_2/po/ta.po,
-	  xfcalendar/branches/xfce_4_2/po/tr.po,
-	  xfcalendar/branches/xfce_4_2/po/uk.po,
-	  xfcalendar/branches/xfce_4_2/po/vi.po,
-	  xfcalendar/branches/xfce_4_2/po/zh_CN.po,
-	  xfcalendar/branches/xfce_4_2/po/zh_TW.po,
+	  libxfcegui4/branches/xfce_4_2/po/zh_CN.po, po/af.po, po/ar.po,
+	  po/az.po, po/be.po, po/bg.po, po/bn_IN.po, po/ca.po, po/cs.po,
+	  po/da.po, po/de.po, po/el.po, po/en_GB.po, po/es.po, po/et.po,
+	  po/eu.po, po/fa.po, po/fi.po, po/fr.po, po/gu.po, po/he.po,
+	  po/hi.po, po/hu.po, po/hy.po, po/it.po, po/ja.po, po/ko.po,
+	  po/ku.po, po/lt.po, po/mr.po, po/ms.po, po/nb_NO.po, po/nl.po,
+	  po/pa.po, po/pl.po, po/pt_BR.po, po/pt_PT.po, po/ro.po, po/ru.po,
+	  po/sk.po, po/sv.po, po/ta.po, po/tr.po, po/uk.po, po/vi.po,
+	  po/zh_CN.po, po/zh_TW.po,
 	  xfce-mcs-manager/branches/xfce_4_2/po/af.po,
 	  xfce-mcs-manager/branches/xfce_4_2/po/ar.po,
 	  xfce-mcs-manager/branches/xfce_4_2/po/az.po,
@@ -1705,45 +2388,30 @@
 	  xfdesktop/branches/xfce_4_2/po/vi.po,
 	  xfdesktop/branches/xfce_4_2/po/zh_CN.po,
 	  xfdesktop/branches/xfce_4_2/po/zh_TW.po,
-	  xffm/branches/xfce_4_2/po/af.po,
-	  xffm/branches/xfce_4_2/po/ar.po,
-	  xffm/branches/xfce_4_2/po/az.po,
-	  xffm/branches/xfce_4_2/po/bg.po,
+	  xffm/branches/xfce_4_2/po/af.po, xffm/branches/xfce_4_2/po/ar.po,
+	  xffm/branches/xfce_4_2/po/az.po, xffm/branches/xfce_4_2/po/bg.po,
 	  xffm/branches/xfce_4_2/po/bn_IN.po,
-	  xffm/branches/xfce_4_2/po/ca.po,
-	  xffm/branches/xfce_4_2/po/cs.po,
+	  xffm/branches/xfce_4_2/po/ca.po, xffm/branches/xfce_4_2/po/cs.po,
 	  xffm/branches/xfce_4_2/po/de.po,
 	  xffm/branches/xfce_4_2/po/en_GB.po,
 	  xffm/branches/xfce_4_2/po/es.po,
 	  xffm/branches/xfce_4_2/po/es_MX.po,
-	  xffm/branches/xfce_4_2/po/et.po,
-	  xffm/branches/xfce_4_2/po/eu.po,
-	  xffm/branches/xfce_4_2/po/fa.po,
-	  xffm/branches/xfce_4_2/po/fi.po,
-	  xffm/branches/xfce_4_2/po/fr.po,
-	  xffm/branches/xfce_4_2/po/gu.po,
-	  xffm/branches/xfce_4_2/po/he.po,
-	  xffm/branches/xfce_4_2/po/hi.po,
-	  xffm/branches/xfce_4_2/po/hu.po,
-	  xffm/branches/xfce_4_2/po/it.po,
-	  xffm/branches/xfce_4_2/po/ja.po,
-	  xffm/branches/xfce_4_2/po/ko.po,
-	  xffm/branches/xfce_4_2/po/ku.po,
-	  xffm/branches/xfce_4_2/po/lt.po,
-	  xffm/branches/xfce_4_2/po/mr.po,
-	  xffm/branches/xfce_4_2/po/ms.po,
+	  xffm/branches/xfce_4_2/po/et.po, xffm/branches/xfce_4_2/po/eu.po,
+	  xffm/branches/xfce_4_2/po/fa.po, xffm/branches/xfce_4_2/po/fi.po,
+	  xffm/branches/xfce_4_2/po/fr.po, xffm/branches/xfce_4_2/po/gu.po,
+	  xffm/branches/xfce_4_2/po/he.po, xffm/branches/xfce_4_2/po/hi.po,
+	  xffm/branches/xfce_4_2/po/hu.po, xffm/branches/xfce_4_2/po/it.po,
+	  xffm/branches/xfce_4_2/po/ja.po, xffm/branches/xfce_4_2/po/ko.po,
+	  xffm/branches/xfce_4_2/po/ku.po, xffm/branches/xfce_4_2/po/lt.po,
+	  xffm/branches/xfce_4_2/po/mr.po, xffm/branches/xfce_4_2/po/ms.po,
 	  xffm/branches/xfce_4_2/po/nb_NO.po,
-	  xffm/branches/xfce_4_2/po/nl.po,
-	  xffm/branches/xfce_4_2/po/pa.po,
+	  xffm/branches/xfce_4_2/po/nl.po, xffm/branches/xfce_4_2/po/pa.po,
 	  xffm/branches/xfce_4_2/po/pl.po,
 	  xffm/branches/xfce_4_2/po/pt_BR.po,
 	  xffm/branches/xfce_4_2/po/pt_PT.po,
-	  xffm/branches/xfce_4_2/po/sk.po,
-	  xffm/branches/xfce_4_2/po/sv.po,
-	  xffm/branches/xfce_4_2/po/ta.po,
-	  xffm/branches/xfce_4_2/po/tr.po,
-	  xffm/branches/xfce_4_2/po/uk.po,
-	  xffm/branches/xfce_4_2/po/vi.po,
+	  xffm/branches/xfce_4_2/po/sk.po, xffm/branches/xfce_4_2/po/sv.po,
+	  xffm/branches/xfce_4_2/po/ta.po, xffm/branches/xfce_4_2/po/tr.po,
+	  xffm/branches/xfce_4_2/po/uk.po, xffm/branches/xfce_4_2/po/vi.po,
 	  xffm/branches/xfce_4_2/po/zh_CN.po,
 	  xffm/branches/xfce_4_2/po/zh_TW.po,
 	  xfprint/branches/xfce_4_2/po/af.po,
@@ -1843,59 +2511,20 @@
 
 2005-09-24 09:49  daichi
 
-	* xfcalendar/branches/xfce_4_2/po/af.po,
-	  xfcalendar/branches/xfce_4_2/po/ar.po,
-	  xfcalendar/branches/xfce_4_2/po/az.po,
-	  xfcalendar/branches/xfce_4_2/po/be.po,
-	  xfcalendar/branches/xfce_4_2/po/bg.po,
-	  xfcalendar/branches/xfce_4_2/po/bn_IN.po,
-	  xfcalendar/branches/xfce_4_2/po/ca.po,
-	  xfcalendar/branches/xfce_4_2/po/cs.po,
-	  xfcalendar/branches/xfce_4_2/po/da.po,
-	  xfcalendar/branches/xfce_4_2/po/de.po,
-	  xfcalendar/branches/xfce_4_2/po/el.po,
-	  xfcalendar/branches/xfce_4_2/po/en_GB.po,
-	  xfcalendar/branches/xfce_4_2/po/es.po,
-	  xfcalendar/branches/xfce_4_2/po/et.po,
-	  xfcalendar/branches/xfce_4_2/po/eu.po,
-	  xfcalendar/branches/xfce_4_2/po/fa.po,
-	  xfcalendar/branches/xfce_4_2/po/fi.po,
-	  xfcalendar/branches/xfce_4_2/po/fr.po,
-	  xfcalendar/branches/xfce_4_2/po/gu.po,
-	  xfcalendar/branches/xfce_4_2/po/he.po,
-	  xfcalendar/branches/xfce_4_2/po/hi.po,
-	  xfcalendar/branches/xfce_4_2/po/hu.po,
-	  xfcalendar/branches/xfce_4_2/po/hy.po,
-	  xfcalendar/branches/xfce_4_2/po/it.po,
-	  xfcalendar/branches/xfce_4_2/po/ja.po,
-	  xfcalendar/branches/xfce_4_2/po/ko.po,
-	  xfcalendar/branches/xfce_4_2/po/ku.po,
-	  xfcalendar/branches/xfce_4_2/po/lt.po,
-	  xfcalendar/branches/xfce_4_2/po/mr.po,
-	  xfcalendar/branches/xfce_4_2/po/ms.po,
-	  xfcalendar/branches/xfce_4_2/po/nb_NO.po,
-	  xfcalendar/branches/xfce_4_2/po/nl.po,
-	  xfcalendar/branches/xfce_4_2/po/pa.po,
-	  xfcalendar/branches/xfce_4_2/po/pl.po,
-	  xfcalendar/branches/xfce_4_2/po/pt_BR.po,
-	  xfcalendar/branches/xfce_4_2/po/pt_PT.po,
-	  xfcalendar/branches/xfce_4_2/po/ro.po,
-	  xfcalendar/branches/xfce_4_2/po/ru.po,
-	  xfcalendar/branches/xfce_4_2/po/sk.po,
-	  xfcalendar/branches/xfce_4_2/po/sv.po,
-	  xfcalendar/branches/xfce_4_2/po/ta.po,
-	  xfcalendar/branches/xfce_4_2/po/tr.po,
-	  xfcalendar/branches/xfce_4_2/po/uk.po,
-	  xfcalendar/branches/xfce_4_2/po/vi.po,
-	  xfcalendar/branches/xfce_4_2/po/zh_CN.po,
-	  xfcalendar/branches/xfce_4_2/po/zh_TW.po: * Bumped version at
-	  the "Project-Id-Version: " for the next release.
+	* po/af.po, po/ar.po, po/az.po, po/be.po, po/bg.po, po/bn_IN.po,
+	  po/ca.po, po/cs.po, po/da.po, po/de.po, po/el.po, po/en_GB.po,
+	  po/es.po, po/et.po, po/eu.po, po/fa.po, po/fi.po, po/fr.po,
+	  po/gu.po, po/he.po, po/hi.po, po/hu.po, po/hy.po, po/it.po,
+	  po/ja.po, po/ko.po, po/ku.po, po/lt.po, po/mr.po, po/ms.po,
+	  po/nb_NO.po, po/nl.po, po/pa.po, po/pl.po, po/pt_BR.po,
+	  po/pt_PT.po, po/ro.po, po/ru.po, po/sk.po, po/sv.po, po/ta.po,
+	  po/tr.po, po/uk.po, po/vi.po, po/zh_CN.po, po/zh_TW.po: * Bumped
+	  version at the "Project-Id-Version: " for the next release.
 	  
 	  * Modified initial comment strings using template by "msginit".
 	  
 	  * Added fall back address at the "Language-Team: ", according to
 	  the
-	  
 	  http://www.iro.umontreal.ca/translation/registry.cgi?team=index
 	  
 	  * Discarded obsolete translations.
@@ -1904,8 +2533,7 @@
 
 2005-09-21 02:20  daichi
 
-	* libxfcegui4/branches/xfce_4_2/po/ja.po,
-	  xfcalendar/branches/xfce_4_2/po/ja.po,
+	* libxfcegui4/branches/xfce_4_2/po/ja.po, po/ja.po,
 	  xfce-mcs-manager/branches/xfce_4_2/po/ja.po,
 	  xfce-mcs-plugins/branches/xfce_4_2/po/ja.po,
 	  xfce-utils/branches/xfce_4_2/po/ja.po,
@@ -1926,8 +2554,7 @@
 
 2005-09-21 02:04  daichi
 
-	* libxfcegui4/branches/xfce_4_2/po/pl.po,
-	  xfcalendar/branches/xfce_4_2/po/pl.po,
+	* libxfcegui4/branches/xfce_4_2/po/pl.po, po/pl.po,
 	  xfce-mcs-manager/branches/xfce_4_2/po/pl.po,
 	  xfce-mcs-plugins/branches/xfce_4_2/po/pl.po,
 	  xfce-utils/branches/xfce_4_2/po/pl.po,
@@ -1942,14 +2569,13 @@
 	  xfdesktop/branches/xfce_4_2/po/pl.po,
 	  xffm/branches/xfce_4_2/po/pl.po,
 	  xfprint/branches/xfce_4_2/po/pl.po,
-	  xfwm4/branches/xfce_4_2/po/pl.po: Added Polish translations by
-	  by Piotr Malinski.
+	  xfwm4/branches/xfce_4_2/po/pl.po: Added Polish translations by by
+	  Piotr Malinski.
 	  
 	  Updated Polish translations by Piotr Malinski.
 	  
 	  Added fall back address at the 'Language-Team: ', according to
 	  the
-	  
 	  http://www.iro.umontreal.ca/translation/registry.cgi?team=index
 	  
 	  Bumped version at the 'Project-Id-Version: ' for the next
@@ -1959,14 +2585,12 @@
 
 2005-09-20 19:24  alex
 
-	* xfcalendar/branches/xfce_4_2/po/ChangeLog,
-	  xfcalendar/branches/xfce_4_2/po/it.po: Update Italian
-	  translation for 4.2 branch.
+	* po/ChangeLog, po/it.po: Update Italian translation for 4.2
+	  branch.
 
 2005-09-10 16:57  daichi
 
-	* libxfcegui4/branches/xfce_4_2/po/pt_BR.po,
-	  xfcalendar/branches/xfce_4_2/po/pt_BR.po,
+	* libxfcegui4/branches/xfce_4_2/po/pt_BR.po, po/pt_BR.po,
 	  xfce-mcs-manager/branches/xfce_4_2/po/pt_BR.po,
 	  xfce-mcs-plugins/branches/xfce_4_2/po/pt_BR.po,
 	  xfce-utils/branches/xfce_4_2/po/pt_BR.po,
@@ -1989,8 +2613,7 @@
 
 2005-09-09 16:53  stavrosg
 
-	* libxfcegui4/branches/xfce_4_2/po/el.po,
-	  xfcalendar/branches/xfce_4_2/po/el.po,
+	* libxfcegui4/branches/xfce_4_2/po/el.po, po/el.po,
 	  xfce-mcs-manager/branches/xfce_4_2/po/el.po,
 	  xfce-mcs-plugins/branches/xfce_4_2/po/el.po,
 	  xfce-utils/branches/xfce_4_2/po/el.po,
@@ -2004,23 +2627,20 @@
 
 2005-09-09 12:06  daichi
 
-	* libxfcegui4/trunk/po/zh_TW.po,
-	  xfcalendar/branches/xfce_4_2/po/zh_TW.po,
-	  xfcalendar/trunk/po/zh_TW.po,
-	  xfce-mcs-manager/trunk/po/zh_TW.po,
+	* libxfcegui4/trunk/po/zh_TW.po, po/zh_TW.po,
+	  xfcalendar/trunk/po/zh_TW.po, xfce-mcs-manager/trunk/po/zh_TW.po,
 	  xfce-mcs-plugins/branches/xfce_4_2/po/zh_TW.po,
 	  xfce-utils/trunk/po/zh_TW.po, xfce4-appfinder/trunk/po/zh_TW.po,
 	  xfce4-mixer/trunk/po/zh_TW.po, xfce4-session/trunk/po/zh_TW.po,
 	  xfdesktop/branches/xfce_4_2/po/zh_TW.po,
 	  xfdesktop/trunk/po/zh_TW.po, xffm/trunk/po/zh_TW.po,
-	  xfprint/branches/xfce_4_2/po/zh_TW.po,
-	  xfprint/trunk/po/zh_TW.po, xfwm4/trunk/po/zh_TW.po: Changed
-	  translator's representation in spelling by the request.
+	  xfprint/branches/xfce_4_2/po/zh_TW.po, xfprint/trunk/po/zh_TW.po,
+	  xfwm4/trunk/po/zh_TW.po: Changed translator's representation in
+	  spelling by the request.
 
 2005-09-09 10:49  daichi
 
-	* xfcalendar/branches/xfce_4_2/po/pt_BR.po,
-	  xfdesktop/branches/xfce_4_2/po/pt_BR.po,
+	* po/pt_BR.po, xfdesktop/branches/xfce_4_2/po/pt_BR.po,
 	  xffm/branches/xfce_4_2/po/pt_BR.po,
 	  xfprint/branches/xfce_4_2/po/pt_BR.po,
 	  xfwm4/branches/xfce_4_2/po/pt_BR.po: Updated Brazilian Portugues
@@ -2028,20 +2648,17 @@
 
 2005-08-29 21:48  daichi
 
-	* xfcalendar/branches/xfce_4_2/po/ja.po,
-	  xfcalendar/trunk/po/ja.po,
+	* po/ja.po, xfcalendar/trunk/po/ja.po,
 	  xfce-mcs-manager/branches/xfce_4_2/po/ja.po,
 	  xfce-mcs-manager/trunk/po/ja.po,
 	  xfce-mcs-plugins/branches/xfce_4_2/po/ja.po,
 	  xfce-mcs-plugins/trunk/po/ja.po,
-	  xfce-utils/branches/xfce_4_2/po/ja.po,
-	  xfce-utils/trunk/po/ja.po,
+	  xfce-utils/branches/xfce_4_2/po/ja.po, xfce-utils/trunk/po/ja.po,
 	  xfce4-panel/branches/xfce_4_2/po/ja.po,
 	  xfce4-panel/trunk/po/ja.po,
 	  xfce4-session/branches/xfce_4_2/po/ja.po,
 	  xfce4-session/trunk/po/ja.po,
-	  xfce4-toys/branches/xfce_4_2/po/ja.po,
-	  xfce4-toys/trunk/po/ja.po,
+	  xfce4-toys/branches/xfce_4_2/po/ja.po, xfce4-toys/trunk/po/ja.po,
 	  xfce4-trigger-launcher/branches/xfce_4_2/po/ja.po,
 	  xfce4-trigger-launcher/trunk/po/ja.po,
 	  xfdesktop/branches/xfce_4_2/po/ja.po, xfdesktop/trunk/po/ja.po,
@@ -2052,8 +2669,7 @@
 
 2005-08-29 21:42  daichi
 
-	* libxfcegui4/branches/xfce_4_2/po/ku.po,
-	  xfcalendar/branches/xfce_4_2/po/ku.po,
+	* libxfcegui4/branches/xfce_4_2/po/ku.po, po/ku.po,
 	  xfce-mcs-manager/branches/xfce_4_2/po/ku.po,
 	  xfce-mcs-plugins/branches/xfce_4_2/po/ku.po,
 	  xfce-utils/branches/xfce_4_2/po/ku.po,
@@ -2073,8 +2689,7 @@
 
 2005-08-29 21:34  daichi
 
-	* libxfcegui4/branches/xfce_4_2/configure.ac,
-	  xfcalendar/branches/xfce_4_2/configure.ac,
+	* libxfcegui4/branches/xfce_4_2/configure.ac, configure.ac,
 	  xfce-mcs-manager/branches/xfce_4_2/configure.ac,
 	  xfce-mcs-plugins/branches/xfce_4_2/configure.ac,
 	  xfce-utils/branches/xfce_4_2/configure.ac,
@@ -2093,8 +2708,7 @@
 
 2005-08-25 15:58  yuvaltanny
 
-	* xfcalendar/branches/xfce_4_2/po/he.po,
-	  xfce-mcs-plugins/branches/xfce_4_2/po/he.po,
+	* po/he.po, xfce-mcs-plugins/branches/xfce_4_2/po/he.po,
 	  xfce4-session/branches/xfce_4_2/po/he.po,
 	  xfdesktop/branches/xfce_4_2/po/he.po,
 	  xffm/branches/xfce_4_2/po/he.po,
@@ -2104,8 +2718,7 @@
 
 2005-08-21 06:38  daichi
 
-	* xfcalendar/branches/xfce_4_2/po/es.po,
-	  xfce4-mixer/branches/xfce_4_2/po/it.po,
+	* po/es.po, xfce4-mixer/branches/xfce_4_2/po/it.po,
 	  xfce4-panel/branches/xfce_4_2/po/ar.po,
 	  xfce4-panel/branches/xfce_4_2/po/bg.po,
 	  xfce4-panel/branches/xfce_4_2/po/hi.po,
@@ -2113,13 +2726,12 @@
 	  xfce4-panel/branches/xfce_4_2/po/ms.po,
 	  xfce4-panel/branches/xfce_4_2/po/sv.po,
 	  xfce4-panel/branches/xfce_4_2/po/ta.po,
-	  xfce4-panel/branches/xfce_4_2/po/uk.po: Added missing '\n',
-	  which causes parsing error at
+	  xfce4-panel/branches/xfce_4_2/po/uk.po: Added missing '\n', which
+	  causes parsing error at
 	  http://xfce.org/~kelnos/xfce4/i18n/
 	  
 	  Added fall back address at the 'Language-Team: ', according to
 	  the
-	  
 	  http://www.iro.umontreal.ca/translation/registry.cgi?team=index
 	  
 	  Modified initial comment strings with template by 'msginit'.
@@ -2128,8 +2740,7 @@
 
 2005-08-18 12:08  daichi
 
-	* libxfcegui4/branches/xfce_4_2/po/ja.po,
-	  xfcalendar/branches/xfce_4_2/po/ja.po,
+	* libxfcegui4/branches/xfce_4_2/po/ja.po, po/ja.po,
 	  xfce-mcs-manager/branches/xfce_4_2/po/ja.po,
 	  xfce-mcs-plugins/branches/xfce_4_2/po/ja.po,
 	  xfce-utils/branches/xfce_4_2/po/ja.po,
@@ -2146,8 +2757,7 @@
 
 2005-08-16 15:21  daichi
 
-	* libxfcegui4/branches/xfce_4_2/po/ja.po,
-	  xfcalendar/branches/xfce_4_2/po/ja.po,
+	* libxfcegui4/branches/xfce_4_2/po/ja.po, po/ja.po,
 	  xfce-mcs-manager/branches/xfce_4_2/po/ja.po,
 	  xfce-mcs-plugins/branches/xfce_4_2/po/ja.po,
 	  xfce-utils/branches/xfce_4_2/po/ja.po,
@@ -2165,29 +2775,20 @@
 
 2005-08-15 14:40  daichi
 
-	* xfcalendar/branches/xfce_4_2/po/af.po,
-	  xfcalendar/branches/xfce_4_2/po/bg.po,
-	  xfcalendar/branches/xfce_4_2/po/en_GB.po,
-	  xfcalendar/branches/xfce_4_2/po/es.po,
-	  xfcalendar/branches/xfce_4_2/po/nb_NO.po,
-	  xfcalendar/branches/xfce_4_2/po/nl.po,
-	  xfcalendar/branches/xfce_4_2/po/zh_CN.po,
-	  xfcalendar/branches/xfce_4_2/po/zh_TW.po: Fixed errors emitted
-	  by 'msgfmt -c'.
+	* po/af.po, po/bg.po, po/en_GB.po, po/es.po, po/nb_NO.po, po/nl.po,
+	  po/zh_CN.po, po/zh_TW.po: Fixed errors emitted by 'msgfmt -c'.
 	  
 	  Converted local charset to UTF-8 at the 'Content-Type:'.
 	  
 	  Added fall back address at the 'Language-Team: ', according to
 	  the
-	  
 	  http://www.iro.umontreal.ca/translation/registry.cgi?team=index
 	  
 	  Modified initial comment strings with template by 'msginit'.
 
 2005-08-12 14:35  daichi
 
-	* libxfcegui4/branches/xfce_4_2/po/ChangeLog,
-	  xfcalendar/branches/xfce_4_2/po/ChangeLog,
+	* libxfcegui4/branches/xfce_4_2/po/ChangeLog, po/ChangeLog,
 	  xfce-mcs-manager/branches/xfce_4_2/po/ChangeLog,
 	  xfce-mcs-plugins/branches/xfce_4_2/po/ChangeLog,
 	  xfce-utils/branches/xfce_4_2/po/ChangeLog,
@@ -2200,13 +2801,12 @@
 	  xfdesktop/branches/xfce_4_2/po/ChangeLog,
 	  xffm/branches/xfce_4_2/po/ChangeLog,
 	  xfprint/branches/xfce_4_2/po/ChangeLog,
-	  xfwm4/branches/xfce_4_2/po/ChangeLog: Updated Finnish
-	  translation by Jari Rahkonen.
+	  xfwm4/branches/xfce_4_2/po/ChangeLog: Updated Finnish translation
+	  by Jari Rahkonen.
 
 2005-08-12 14:14  daichi
 
-	* libxfcegui4/branches/xfce_4_2/po/fi.po,
-	  xfcalendar/branches/xfce_4_2/po/fi.po,
+	* libxfcegui4/branches/xfce_4_2/po/fi.po, po/fi.po,
 	  xfce-mcs-manager/branches/xfce_4_2/po/fi.po,
 	  xfce-mcs-plugins/branches/xfce_4_2/po/fi.po,
 	  xfce-utils/branches/xfce_4_2/po/fi.po,
@@ -2224,9 +2824,8 @@
 
 2005-08-04 15:17  pollux
 
-	* xfcalendar/branches/xfce_4_2/configure.ac,
-	  xfcalendar/branches/xfce_4_2/po/hy.po,
-	  xfcalendar/trunk/configure.ac, xfcalendar/trunk/po/hy.po,
+	* configure.ac, po/hy.po, xfcalendar/trunk/configure.ac,
+	  xfcalendar/trunk/po/hy.po,
 	  xfce-utils/branches/xfce_4_2/configure.ac,
 	  xfce-utils/branches/xfce_4_2/po/hy.po,
 	  xfce-utils/branches/xfce_4_2/xfce4-about/AUTHORS,
@@ -2280,9 +2879,7 @@
 	  libxfce4util/trunk/docs/tmpl/xfce-rc.sgml,
 	  libxfce4util/trunk/docs/tmpl/xfce-resource.sgml,
 	  libxfcegui4/branches/xfce_4_2/configure.ac,
-	  libxfcegui4/branches/xfce_4_2/po/af.po,
-	  xfcalendar/branches/xfce_4_2/configure.ac,
-	  xfcalendar/branches/xfce_4_2/po/af.po,
+	  libxfcegui4/branches/xfce_4_2/po/af.po, configure.ac, po/af.po,
 	  xfce-mcs-manager/branches/xfce_4_2/configure.ac,
 	  xfce-mcs-manager/branches/xfce_4_2/po/af.po,
 	  xfce-utils/branches/xfce_4_2/configure.ac,
@@ -2323,13 +2920,12 @@
 
 2005-07-19 17:08  korbinus
 
-	* xfcalendar/branches/xfce_4_2/src/interface.c: interface.c:
-	  adding margins to textview in appointment window
+	* src/interface.c: interface.c: adding margins to textview in
+	  appointment window
 
 2005-07-06 09:09  pollux
 
-	* libxfcegui4/branches/xfce_4_2/po/ko.po,
-	  xfcalendar/branches/xfce_4_2/po/ko.po,
+	* libxfcegui4/branches/xfce_4_2/po/ko.po, po/ko.po,
 	  xfce-mcs-manager/branches/xfce_4_2/po/ko.po,
 	  xfce-mcs-plugins/branches/xfce_4_2/po/ko.po,
 	  xfce-utils/branches/xfce_4_2/po/ko.po,
@@ -2345,8 +2941,7 @@
 
 2005-06-26 17:07  pollux
 
-	* xfcalendar/branches/xfce_4_2/po/ko.po,
-	  xfce-mcs-plugins/branches/xfce_4_2/po/ko.po,
+	* po/ko.po, xfce-mcs-plugins/branches/xfce_4_2/po/ko.po,
 	  xfce-utils/branches/xfce_4_2/po/ko.po,
 	  xfce4-mixer/branches/xfce_4_2/po/ko.po,
 	  xfce4-panel/branches/xfce_4_2/po/ko.po,
@@ -2357,27 +2952,27 @@
 
 2005-05-14 19:39  olivier
 
-	* xfcalendar/branches/xfce_4_2/po/ChangeLog: Update ChangeLog
-	* xfcalendar/branches/xfce_4_2/ChangeLog: Update ChangeLog
+	* po/ChangeLog: Update ChangeLog
+
+2005-05-14 19:39  olivier
+
+	* ChangeLog: Update ChangeLog
 
 2005-05-13 21:18  olivier
 
-	* xfcalendar/branches/xfce_4_2/configure.ac: Prepare 4.2.2
+	* configure.ac: Prepare 4.2.2
 
 2005-05-13 15:10  pollux
 
-	* xfcalendar/branches/xfce_4_2/po/ro.po,
+	* po/ro.po,
 	  xfce-utils/branches/xfce_4_2/xftaskbar/plugin/xfce-taskbar-settings.desktop,
 	  xfce4-appfinder/branches/xfce_4_2/src/xfce4-appfinder.desktop,
 	  xfce4-panel/branches/xfce_4_2/contents.xml.ro,
 	  xfce4-panel/branches/xfce_4_2/settings/xfce-panel-settings.desktop,
-	  
 	  xfce4-session/branches/xfce_4_2/settings/session/xfce-session-settings.desktop,
-	  
 	  xfce4-session/branches/xfce_4_2/settings/splash/xfce-splash-settings.desktop,
 	  xfdesktop/branches/xfce_4_2/po/ro.po,
 	  xfprint/branches/xfce_4_2/mcs-plugin/xfce-xfprint-settings.desktop,
-	  
 	  xfprint/branches/xfce_4_2/xfprint-manager/xfprint-manager.desktop,
 	  xfprint/branches/xfce_4_2/xfprint/xfprint.desktop,
 	  xfwm4/branches/xfce_4_2/mcs-plugin/xfce-wm-settings.desktop,
@@ -2385,8 +2980,7 @@
 
 2005-05-13 15:02  pollux
 
-	* libxfcegui4/branches/xfce_4_2/po/ja.po,
-	  xfcalendar/branches/xfce_4_2/po/ja.po,
+	* libxfcegui4/branches/xfce_4_2/po/ja.po, po/ja.po,
 	  xfce-mcs-manager/branches/xfce_4_2/po/ja.po,
 	  xfce-mcs-plugins/branches/xfce_4_2/po/ja.po,
 	  xfce-utils/branches/xfce_4_2/po/ja.po,
@@ -2403,750 +2997,369 @@
 
 2005-05-06 21:16  pollux
 
-	* xfcalendar/branches/xfce_4_2/configure.ac,
-	  xfcalendar/branches/xfce_4_2/po/gu.po,
-	  xfcalendar/branches/xfce_4_2/po/mr.po: add MR and GU translations
+	* configure.ac, po/gu.po, po/mr.po: add MR and GU translations
 
 2005-05-04 20:54  olivier
 
-	* xfcalendar/branches/xfce_4_2/ChangeLog: Update ChangeLog
-	* xfcalendar/branches/xfce_4_2/po/ChangeLog: Update ChangeLog
+	* ChangeLog: Update ChangeLog
+
+2005-05-04 20:54  olivier
+
+	* po/ChangeLog: Update ChangeLog
 
 2005-04-16 16:09  pollux
 
-	* xfcalendar/branches/xfce_4_2/configure.ac,
-	  xfcalendar/branches/xfce_4_2/po/bn_IN.po: add bn_IN translations
+	* configure.ac, po/bn_IN.po: add bn_IN translations
 
 2005-04-12 14:58  jasper
 
-	* xfcalendar/branches/xfce_4_2/Makefile.in,
-	  xfcalendar/branches/xfce_4_2/aclocal.m4,
-	  xfcalendar/branches/xfce_4_2/autogen.sh,
-	  xfcalendar/branches/xfce_4_2/compile,
-	  xfcalendar/branches/xfce_4_2/config.guess,
-	  xfcalendar/branches/xfce_4_2/config.h.in,
-	  xfcalendar/branches/xfce_4_2/config.sub,
-	  xfcalendar/branches/xfce_4_2/configure,
-	  xfcalendar/branches/xfce_4_2/depcomp,
-	  xfcalendar/branches/xfce_4_2/icons/48x48/Makefile.in,
-	  xfcalendar/branches/xfce_4_2/icons/Makefile.in,
-	  xfcalendar/branches/xfce_4_2/icons/scalable/Makefile.in,
-	  xfcalendar/branches/xfce_4_2/install-sh,
-	  xfcalendar/branches/xfce_4_2/ltmain.sh,
-	  xfcalendar/branches/xfce_4_2/missing,
-	  xfcalendar/branches/xfce_4_2/mkinstalldirs,
-	  xfcalendar/branches/xfce_4_2/plugin/Makefile.in,
-	  xfcalendar/branches/xfce_4_2/po/Makefile.in.in,
-	  xfcalendar/branches/xfce_4_2/po/ar.gmo,
-	  xfcalendar/branches/xfce_4_2/po/az.gmo,
-	  xfcalendar/branches/xfce_4_2/po/be.gmo,
-	  xfcalendar/branches/xfce_4_2/po/bg.gmo,
-	  xfcalendar/branches/xfce_4_2/po/ca.gmo,
-	  xfcalendar/branches/xfce_4_2/po/cs.gmo,
-	  xfcalendar/branches/xfce_4_2/po/da.gmo,
-	  xfcalendar/branches/xfce_4_2/po/de.gmo,
-	  xfcalendar/branches/xfce_4_2/po/el.gmo,
-	  xfcalendar/branches/xfce_4_2/po/en_GB.gmo,
-	  xfcalendar/branches/xfce_4_2/po/es.gmo,
-	  xfcalendar/branches/xfce_4_2/po/et.gmo,
-	  xfcalendar/branches/xfce_4_2/po/eu.gmo,
-	  xfcalendar/branches/xfce_4_2/po/fa.gmo,
-	  xfcalendar/branches/xfce_4_2/po/fi.gmo,
-	  xfcalendar/branches/xfce_4_2/po/fr.gmo,
-	  xfcalendar/branches/xfce_4_2/po/gu.gmo,
-	  xfcalendar/branches/xfce_4_2/po/he.gmo,
-	  xfcalendar/branches/xfce_4_2/po/hi.gmo,
-	  xfcalendar/branches/xfce_4_2/po/hu.gmo,
-	  xfcalendar/branches/xfce_4_2/po/it.gmo,
-	  xfcalendar/branches/xfce_4_2/po/ja.gmo,
-	  xfcalendar/branches/xfce_4_2/po/ko.gmo,
-	  xfcalendar/branches/xfce_4_2/po/lt.gmo,
-	  xfcalendar/branches/xfce_4_2/po/ms.gmo,
-	  xfcalendar/branches/xfce_4_2/po/nb_NO.gmo,
-	  xfcalendar/branches/xfce_4_2/po/nl.gmo,
-	  xfcalendar/branches/xfce_4_2/po/pa.gmo,
-	  xfcalendar/branches/xfce_4_2/po/pl.gmo,
-	  xfcalendar/branches/xfce_4_2/po/pt_BR.gmo,
-	  xfcalendar/branches/xfce_4_2/po/pt_PT.gmo,
-	  xfcalendar/branches/xfce_4_2/po/ro.gmo,
-	  xfcalendar/branches/xfce_4_2/po/ru.gmo,
-	  xfcalendar/branches/xfce_4_2/po/sk.gmo,
-	  xfcalendar/branches/xfce_4_2/po/sv.gmo,
-	  xfcalendar/branches/xfce_4_2/po/ta.gmo,
-	  xfcalendar/branches/xfce_4_2/po/tr.gmo,
-	  xfcalendar/branches/xfce_4_2/po/uk.gmo,
-	  xfcalendar/branches/xfce_4_2/po/vi.gmo,
-	  xfcalendar/branches/xfce_4_2/po/zh_CN.gmo,
-	  xfcalendar/branches/xfce_4_2/po/zh_TW.gmo,
-	  xfcalendar/branches/xfce_4_2/src/Makefile.in: Make xfce_4_2
-	  branch use dev tools and remove generated files
+	* Makefile.in, aclocal.m4, autogen.sh, compile, config.guess,
+	  config.h.in, config.sub, configure, depcomp,
+	  icons/48x48/Makefile.in, icons/Makefile.in,
+	  icons/scalable/Makefile.in, install-sh, ltmain.sh, missing,
+	  mkinstalldirs, plugin/Makefile.in, po/Makefile.in.in, po/ar.gmo,
+	  po/az.gmo, po/be.gmo, po/bg.gmo, po/ca.gmo, po/cs.gmo, po/da.gmo,
+	  po/de.gmo, po/el.gmo, po/en_GB.gmo, po/es.gmo, po/et.gmo,
+	  po/eu.gmo, po/fa.gmo, po/fi.gmo, po/fr.gmo, po/gu.gmo, po/he.gmo,
+	  po/hi.gmo, po/hu.gmo, po/it.gmo, po/ja.gmo, po/ko.gmo, po/lt.gmo,
+	  po/ms.gmo, po/nb_NO.gmo, po/nl.gmo, po/pa.gmo, po/pl.gmo,
+	  po/pt_BR.gmo, po/pt_PT.gmo, po/ro.gmo, po/ru.gmo, po/sk.gmo,
+	  po/sv.gmo, po/ta.gmo, po/tr.gmo, po/uk.gmo, po/vi.gmo,
+	  po/zh_CN.gmo, po/zh_TW.gmo, src/Makefile.in: Make xfce_4_2 branch
+	  use dev tools and remove generated files
 
 2005-04-09 11:53  pollux
 
-	* xfcalendar/branches/xfce_4_2/po/ca.gmo,
-	  xfcalendar/branches/xfce_4_2/po/ca.po: update CA translations
+	* po/ca.gmo, po/ca.po: update CA translations
 
 2005-04-08 07:56  pollux
 
-	* xfcalendar/branches/xfce_4_2/configure,
-	  xfcalendar/branches/xfce_4_2/configure.ac: update EL translations
+	* configure, configure.ac: update EL translations
 
 2005-04-08 07:55  pollux
 
-	* xfcalendar/branches/xfce_4_2/po/el.gmo,
-	  xfcalendar/branches/xfce_4_2/po/el.po,
-	  xfcalendar/branches/xfce_4_2/po/el_GR.gmo,
-	  xfcalendar/branches/xfce_4_2/po/el_GR.po: update EL translations
+	* po/el.gmo, po/el.po, po/el_GR.gmo, po/el_GR.po: update EL
+	  translations
 
 2005-04-07 17:54  pollux
 
-	* xfcalendar/branches/xfce_4_2/po/vi.gmo,
-	  xfcalendar/branches/xfce_4_2/po/vi.po: update VI translations
+	* po/vi.gmo, po/vi.po: update VI translations
 
 2005-04-07 17:00  pollux
 
-	* xfcalendar/branches/xfce_4_2/po/cs.gmo,
-	  xfcalendar/branches/xfce_4_2/po/cs.po: update CS translations
+	* po/cs.gmo, po/cs.po: update CS translations
 
 2005-04-07 16:51  pollux
 
-	* xfcalendar/branches/xfce_4_2/po/ar.gmo,
-	  xfcalendar/branches/xfce_4_2/po/az.gmo,
-	  xfcalendar/branches/xfce_4_2/po/be.gmo,
-	  xfcalendar/branches/xfce_4_2/po/bg.gmo,
-	  xfcalendar/branches/xfce_4_2/po/ca.gmo,
-	  xfcalendar/branches/xfce_4_2/po/cs.gmo,
-	  xfcalendar/branches/xfce_4_2/po/da.gmo,
-	  xfcalendar/branches/xfce_4_2/po/de.gmo,
-	  xfcalendar/branches/xfce_4_2/po/el_GR.gmo,
-	  xfcalendar/branches/xfce_4_2/po/en_GB.gmo,
-	  xfcalendar/branches/xfce_4_2/po/es.gmo,
-	  xfcalendar/branches/xfce_4_2/po/et.gmo,
-	  xfcalendar/branches/xfce_4_2/po/eu.gmo,
-	  xfcalendar/branches/xfce_4_2/po/fa.gmo,
-	  xfcalendar/branches/xfce_4_2/po/fi.gmo,
-	  xfcalendar/branches/xfce_4_2/po/fr.gmo,
-	  xfcalendar/branches/xfce_4_2/po/gu.gmo,
-	  xfcalendar/branches/xfce_4_2/po/he.gmo,
-	  xfcalendar/branches/xfce_4_2/po/hi.gmo,
-	  xfcalendar/branches/xfce_4_2/po/hu.gmo,
-	  xfcalendar/branches/xfce_4_2/po/it.gmo,
-	  xfcalendar/branches/xfce_4_2/po/ja.gmo,
-	  xfcalendar/branches/xfce_4_2/po/ko.gmo,
-	  xfcalendar/branches/xfce_4_2/po/lt.gmo,
-	  xfcalendar/branches/xfce_4_2/po/ms.gmo,
-	  xfcalendar/branches/xfce_4_2/po/nb_NO.gmo,
-	  xfcalendar/branches/xfce_4_2/po/nl.gmo,
-	  xfcalendar/branches/xfce_4_2/po/pa.gmo,
-	  xfcalendar/branches/xfce_4_2/po/pl.gmo,
-	  xfcalendar/branches/xfce_4_2/po/pl.po,
-	  xfcalendar/branches/xfce_4_2/po/pt_BR.gmo,
-	  xfcalendar/branches/xfce_4_2/po/pt_PT.gmo,
-	  xfcalendar/branches/xfce_4_2/po/ro.gmo,
-	  xfcalendar/branches/xfce_4_2/po/ru.gmo,
-	  xfcalendar/branches/xfce_4_2/po/sk.gmo,
-	  xfcalendar/branches/xfce_4_2/po/sv.gmo,
-	  xfcalendar/branches/xfce_4_2/po/ta.gmo,
-	  xfcalendar/branches/xfce_4_2/po/tr.gmo,
-	  xfcalendar/branches/xfce_4_2/po/uk.gmo,
-	  xfcalendar/branches/xfce_4_2/po/vi.gmo,
-	  xfcalendar/branches/xfce_4_2/po/zh_CN.gmo,
-	  xfcalendar/branches/xfce_4_2/po/zh_TW.gmo: update PL translations
+	* po/ar.gmo, po/az.gmo, po/be.gmo, po/bg.gmo, po/ca.gmo, po/cs.gmo,
+	  po/da.gmo, po/de.gmo, po/el_GR.gmo, po/en_GB.gmo, po/es.gmo,
+	  po/et.gmo, po/eu.gmo, po/fa.gmo, po/fi.gmo, po/fr.gmo, po/gu.gmo,
+	  po/he.gmo, po/hi.gmo, po/hu.gmo, po/it.gmo, po/ja.gmo, po/ko.gmo,
+	  po/lt.gmo, po/ms.gmo, po/nb_NO.gmo, po/nl.gmo, po/pa.gmo,
+	  po/pl.gmo, po/pl.po, po/pt_BR.gmo, po/pt_PT.gmo, po/ro.gmo,
+	  po/ru.gmo, po/sk.gmo, po/sv.gmo, po/ta.gmo, po/tr.gmo, po/uk.gmo,
+	  po/vi.gmo, po/zh_CN.gmo, po/zh_TW.gmo: update PL translations
 
 2005-03-26 11:07  pollux
 
-	* xfcalendar/branches/xfce_4_2/Makefile.in,
-	  xfcalendar/branches/xfce_4_2/aclocal.m4,
-	  xfcalendar/branches/xfce_4_2/compile,
-	  xfcalendar/branches/xfce_4_2/config.guess,
-	  xfcalendar/branches/xfce_4_2/config.sub,
-	  xfcalendar/branches/xfce_4_2/configure,
-	  xfcalendar/branches/xfce_4_2/configure.ac,
-	  xfcalendar/branches/xfce_4_2/icons/48x48/Makefile.in,
-	  xfcalendar/branches/xfce_4_2/icons/Makefile.in,
-	  xfcalendar/branches/xfce_4_2/icons/scalable/Makefile.in,
-	  xfcalendar/branches/xfce_4_2/install-sh,
-	  xfcalendar/branches/xfce_4_2/ltmain.sh,
-	  xfcalendar/branches/xfce_4_2/plugin/Makefile.in,
-	  xfcalendar/branches/xfce_4_2/po/el_GR.gmo,
-	  xfcalendar/branches/xfce_4_2/po/el_GR.po,
-	  xfcalendar/branches/xfce_4_2/src/Makefile.in: ADD el_GR
-	  translations from Stavros Giannouris <StavrosG2002@freemail.gr>
+	* Makefile.in, aclocal.m4, compile, config.guess, config.sub,
+	  configure, configure.ac, icons/48x48/Makefile.in,
+	  icons/Makefile.in, icons/scalable/Makefile.in, install-sh,
+	  ltmain.sh, plugin/Makefile.in, po/el_GR.gmo, po/el_GR.po,
+	  src/Makefile.in: ADD el_GR translations from Stavros Giannouris
+	  <StavrosG2002@freemail.gr>
 
 2005-03-26 10:37  pollux
 
-	* xfcalendar/branches/xfce_4_2/po/eu.gmo,
-	  xfcalendar/branches/xfce_4_2/po/eu.po: update EU translations
+	* po/eu.gmo, po/eu.po: update EU translations
 
 2005-03-20 21:52  pollux
 
-	* xfcalendar/branches/xfce_4_2/po/ko.gmo,
-	  xfcalendar/branches/xfce_4_2/po/ko.po: update KO translations
+	* po/ko.gmo, po/ko.po: update KO translations
 
 2005-03-20 21:43  pollux
 
-	* xfcalendar/branches/xfce_4_2/po/hu.gmo,
-	  xfcalendar/branches/xfce_4_2/po/hu.po: update HU translations
+	* po/hu.gmo, po/hu.po: update HU translations
 
 2005-03-19 23:06  korbinus
 
-	* xfcalendar/branches/xfce_4_2/Makefile.in,
-	  xfcalendar/branches/xfce_4_2/aclocal.m4,
-	  xfcalendar/branches/xfce_4_2/compile,
-	  xfcalendar/branches/xfce_4_2/config.guess,
-	  xfcalendar/branches/xfce_4_2/config.sub,
-	  xfcalendar/branches/xfce_4_2/configure,
-	  xfcalendar/branches/xfce_4_2/icons/48x48/Makefile.in,
-	  xfcalendar/branches/xfce_4_2/icons/Makefile.in,
-	  xfcalendar/branches/xfce_4_2/icons/scalable/Makefile.in,
-	  xfcalendar/branches/xfce_4_2/install-sh,
-	  xfcalendar/branches/xfce_4_2/ltmain.sh,
-	  xfcalendar/branches/xfce_4_2/plugin/Makefile.in,
-	  xfcalendar/branches/xfce_4_2/src/Makefile.in,
-	  xfcalendar/branches/xfce_4_2/src/callbacks.c,
-	  xfcalendar/branches/xfce_4_2/src/callbacks.h: Fixing bug #843:
-	  compiling w/ --enable-debug=full
+	* Makefile.in, aclocal.m4, compile, config.guess, config.sub,
+	  configure, icons/48x48/Makefile.in, icons/Makefile.in,
+	  icons/scalable/Makefile.in, install-sh, ltmain.sh,
+	  plugin/Makefile.in, src/Makefile.in, src/callbacks.c,
+	  src/callbacks.h: Fixing bug #843: compiling w/
+	  --enable-debug=full
 
 2005-03-14 18:21  olivier
 
-	* xfcalendar/branches/xfce_4_2/po/ar.gmo,
-	  xfcalendar/branches/xfce_4_2/po/ar.po,
-	  xfcalendar/branches/xfce_4_2/po/az.gmo,
-	  xfcalendar/branches/xfce_4_2/po/az.po,
-	  xfcalendar/branches/xfce_4_2/po/be.gmo,
-	  xfcalendar/branches/xfce_4_2/po/be.po,
-	  xfcalendar/branches/xfce_4_2/po/bg.gmo,
-	  xfcalendar/branches/xfce_4_2/po/bg.po,
-	  xfcalendar/branches/xfce_4_2/po/ca.gmo,
-	  xfcalendar/branches/xfce_4_2/po/ca.po,
-	  xfcalendar/branches/xfce_4_2/po/cs.gmo,
-	  xfcalendar/branches/xfce_4_2/po/cs.po,
-	  xfcalendar/branches/xfce_4_2/po/da.gmo,
-	  xfcalendar/branches/xfce_4_2/po/da.po,
-	  xfcalendar/branches/xfce_4_2/po/de.gmo,
-	  xfcalendar/branches/xfce_4_2/po/de.po,
-	  xfcalendar/branches/xfce_4_2/po/en_GB.gmo,
-	  xfcalendar/branches/xfce_4_2/po/en_GB.po,
-	  xfcalendar/branches/xfce_4_2/po/es.gmo,
-	  xfcalendar/branches/xfce_4_2/po/es.po,
-	  xfcalendar/branches/xfce_4_2/po/et.gmo,
-	  xfcalendar/branches/xfce_4_2/po/et.po,
-	  xfcalendar/branches/xfce_4_2/po/eu.gmo,
-	  xfcalendar/branches/xfce_4_2/po/eu.po,
-	  xfcalendar/branches/xfce_4_2/po/fa.gmo,
-	  xfcalendar/branches/xfce_4_2/po/fa.po,
-	  xfcalendar/branches/xfce_4_2/po/fi.gmo,
-	  xfcalendar/branches/xfce_4_2/po/fi.po,
-	  xfcalendar/branches/xfce_4_2/po/fr.gmo,
-	  xfcalendar/branches/xfce_4_2/po/fr.po,
-	  xfcalendar/branches/xfce_4_2/po/gu.gmo,
-	  xfcalendar/branches/xfce_4_2/po/gu.po,
-	  xfcalendar/branches/xfce_4_2/po/he.gmo,
-	  xfcalendar/branches/xfce_4_2/po/he.po,
-	  xfcalendar/branches/xfce_4_2/po/hi.gmo,
-	  xfcalendar/branches/xfce_4_2/po/hi.po,
-	  xfcalendar/branches/xfce_4_2/po/hu.gmo,
-	  xfcalendar/branches/xfce_4_2/po/hu.po,
-	  xfcalendar/branches/xfce_4_2/po/it.gmo,
-	  xfcalendar/branches/xfce_4_2/po/it.po,
-	  xfcalendar/branches/xfce_4_2/po/ja.gmo,
-	  xfcalendar/branches/xfce_4_2/po/ja.po,
-	  xfcalendar/branches/xfce_4_2/po/ko.gmo,
-	  xfcalendar/branches/xfce_4_2/po/ko.po,
-	  xfcalendar/branches/xfce_4_2/po/lt.gmo,
-	  xfcalendar/branches/xfce_4_2/po/lt.po,
-	  xfcalendar/branches/xfce_4_2/po/ms.gmo,
-	  xfcalendar/branches/xfce_4_2/po/ms.po,
-	  xfcalendar/branches/xfce_4_2/po/nb_NO.gmo,
-	  xfcalendar/branches/xfce_4_2/po/nb_NO.po,
-	  xfcalendar/branches/xfce_4_2/po/nl.gmo,
-	  xfcalendar/branches/xfce_4_2/po/nl.po,
-	  xfcalendar/branches/xfce_4_2/po/pa.gmo,
-	  xfcalendar/branches/xfce_4_2/po/pa.po,
-	  xfcalendar/branches/xfce_4_2/po/pl.gmo,
-	  xfcalendar/branches/xfce_4_2/po/pl.po,
-	  xfcalendar/branches/xfce_4_2/po/pt_BR.gmo,
-	  xfcalendar/branches/xfce_4_2/po/pt_BR.po,
-	  xfcalendar/branches/xfce_4_2/po/pt_PT.gmo,
-	  xfcalendar/branches/xfce_4_2/po/pt_PT.po,
-	  xfcalendar/branches/xfce_4_2/po/ro.gmo,
-	  xfcalendar/branches/xfce_4_2/po/ro.po,
-	  xfcalendar/branches/xfce_4_2/po/ru.gmo,
-	  xfcalendar/branches/xfce_4_2/po/ru.po,
-	  xfcalendar/branches/xfce_4_2/po/sk.gmo,
-	  xfcalendar/branches/xfce_4_2/po/sk.po,
-	  xfcalendar/branches/xfce_4_2/po/ta.gmo,
-	  xfcalendar/branches/xfce_4_2/po/ta.po,
-	  xfcalendar/branches/xfce_4_2/po/tr.gmo,
-	  xfcalendar/branches/xfce_4_2/po/tr.po,
-	  xfcalendar/branches/xfce_4_2/po/uk.gmo,
-	  xfcalendar/branches/xfce_4_2/po/uk.po,
-	  xfcalendar/branches/xfce_4_2/po/vi.gmo,
-	  xfcalendar/branches/xfce_4_2/po/vi.po,
-	  xfcalendar/branches/xfce_4_2/po/xfcalendar.pot,
-	  xfcalendar/branches/xfce_4_2/po/zh_CN.gmo,
-	  xfcalendar/branches/xfce_4_2/po/zh_CN.po,
-	  xfcalendar/branches/xfce_4_2/po/zh_TW.gmo,
-	  xfcalendar/branches/xfce_4_2/po/zh_TW.po: po update after src
-	  change
+	* po/ar.gmo, po/ar.po, po/az.gmo, po/az.po, po/be.gmo, po/be.po,
+	  po/bg.gmo, po/bg.po, po/ca.gmo, po/ca.po, po/cs.gmo, po/cs.po,
+	  po/da.gmo, po/da.po, po/de.gmo, po/de.po, po/en_GB.gmo,
+	  po/en_GB.po, po/es.gmo, po/es.po, po/et.gmo, po/et.po, po/eu.gmo,
+	  po/eu.po, po/fa.gmo, po/fa.po, po/fi.gmo, po/fi.po, po/fr.gmo,
+	  po/fr.po, po/gu.gmo, po/gu.po, po/he.gmo, po/he.po, po/hi.gmo,
+	  po/hi.po, po/hu.gmo, po/hu.po, po/it.gmo, po/it.po, po/ja.gmo,
+	  po/ja.po, po/ko.gmo, po/ko.po, po/lt.gmo, po/lt.po, po/ms.gmo,
+	  po/ms.po, po/nb_NO.gmo, po/nb_NO.po, po/nl.gmo, po/nl.po,
+	  po/pa.gmo, po/pa.po, po/pl.gmo, po/pl.po, po/pt_BR.gmo,
+	  po/pt_BR.po, po/pt_PT.gmo, po/pt_PT.po, po/ro.gmo, po/ro.po,
+	  po/ru.gmo, po/ru.po, po/sk.gmo, po/sk.po, po/ta.gmo, po/ta.po,
+	  po/tr.gmo, po/tr.po, po/uk.gmo, po/uk.po, po/vi.gmo, po/vi.po,
+	  po/xfcalendar.pot, po/zh_CN.gmo, po/zh_CN.po, po/zh_TW.gmo,
+	  po/zh_TW.po: po update after src change
 
 2005-03-14 15:01  juha
 
-	* xfcalendar/branches/xfce_4_2/src/main.c,
-	  xfcalendar/branches/xfce_4_2/src/mainbox.c: changed comments //
-	  to /* */ to enforce ansi pedantic compilation
+	* src/main.c, src/mainbox.c: changed comments // to /* */ to
+	  enforce ansi pedantic compilation
 
 2005-03-14 11:25  juha
 
-	* xfcalendar/branches/xfce_4_2/src/callbacks.c: fix of C99
-	  dependent variable declaration.
+	* src/callbacks.c: fix of C99 dependent variable declaration.
 
 2005-03-12 14:52  olivier
 
-	* xfcalendar/branches/xfce_4_2/ChangeLog: Update ChangeLog
+	* ChangeLog: Update ChangeLog
 
 2005-03-12 14:19  olivier
 
-	* xfcalendar/branches/xfce_4_2/configure,
-	  xfcalendar/branches/xfce_4_2/configure.ac,
-	  xfcalendar/branches/xfce_4_2/ltmain.sh,
-	  xfcalendar/branches/xfce_4_2/po/ar.gmo,
-	  xfcalendar/branches/xfce_4_2/po/ar.po,
-	  xfcalendar/branches/xfce_4_2/po/az.gmo,
-	  xfcalendar/branches/xfce_4_2/po/az.po,
-	  xfcalendar/branches/xfce_4_2/po/be.gmo,
-	  xfcalendar/branches/xfce_4_2/po/be.po,
-	  xfcalendar/branches/xfce_4_2/po/bg.gmo,
-	  xfcalendar/branches/xfce_4_2/po/bg.po,
-	  xfcalendar/branches/xfce_4_2/po/ca.gmo,
-	  xfcalendar/branches/xfce_4_2/po/ca.po,
-	  xfcalendar/branches/xfce_4_2/po/cs.gmo,
-	  xfcalendar/branches/xfce_4_2/po/cs.po,
-	  xfcalendar/branches/xfce_4_2/po/da.gmo,
-	  xfcalendar/branches/xfce_4_2/po/da.po,
-	  xfcalendar/branches/xfce_4_2/po/de.gmo,
-	  xfcalendar/branches/xfce_4_2/po/de.po,
-	  xfcalendar/branches/xfce_4_2/po/en_GB.gmo,
-	  xfcalendar/branches/xfce_4_2/po/en_GB.po,
-	  xfcalendar/branches/xfce_4_2/po/es.gmo,
-	  xfcalendar/branches/xfce_4_2/po/es.po,
-	  xfcalendar/branches/xfce_4_2/po/et.gmo,
-	  xfcalendar/branches/xfce_4_2/po/et.po,
-	  xfcalendar/branches/xfce_4_2/po/eu.gmo,
-	  xfcalendar/branches/xfce_4_2/po/eu.po,
-	  xfcalendar/branches/xfce_4_2/po/fa.gmo,
-	  xfcalendar/branches/xfce_4_2/po/fa.po,
-	  xfcalendar/branches/xfce_4_2/po/fi.gmo,
-	  xfcalendar/branches/xfce_4_2/po/fi.po,
-	  xfcalendar/branches/xfce_4_2/po/fr.gmo,
-	  xfcalendar/branches/xfce_4_2/po/fr.po,
-	  xfcalendar/branches/xfce_4_2/po/gu.gmo,
-	  xfcalendar/branches/xfce_4_2/po/gu.po,
-	  xfcalendar/branches/xfce_4_2/po/he.gmo,
-	  xfcalendar/branches/xfce_4_2/po/he.po,
-	  xfcalendar/branches/xfce_4_2/po/hi.gmo,
-	  xfcalendar/branches/xfce_4_2/po/hi.po,
-	  xfcalendar/branches/xfce_4_2/po/hu.gmo,
-	  xfcalendar/branches/xfce_4_2/po/hu.po,
-	  xfcalendar/branches/xfce_4_2/po/it.gmo,
-	  xfcalendar/branches/xfce_4_2/po/it.po,
-	  xfcalendar/branches/xfce_4_2/po/ja.gmo,
-	  xfcalendar/branches/xfce_4_2/po/ja.po,
-	  xfcalendar/branches/xfce_4_2/po/ko.gmo,
-	  xfcalendar/branches/xfce_4_2/po/ko.po,
-	  xfcalendar/branches/xfce_4_2/po/lt.gmo,
-	  xfcalendar/branches/xfce_4_2/po/lt.po,
-	  xfcalendar/branches/xfce_4_2/po/ms.gmo,
-	  xfcalendar/branches/xfce_4_2/po/ms.po,
-	  xfcalendar/branches/xfce_4_2/po/nb_NO.gmo,
-	  xfcalendar/branches/xfce_4_2/po/nb_NO.po,
-	  xfcalendar/branches/xfce_4_2/po/nl.gmo,
-	  xfcalendar/branches/xfce_4_2/po/nl.po,
-	  xfcalendar/branches/xfce_4_2/po/pa.gmo,
-	  xfcalendar/branches/xfce_4_2/po/pa.po,
-	  xfcalendar/branches/xfce_4_2/po/pl.gmo,
-	  xfcalendar/branches/xfce_4_2/po/pl.po,
-	  xfcalendar/branches/xfce_4_2/po/pt_BR.gmo,
-	  xfcalendar/branches/xfce_4_2/po/pt_BR.po,
-	  xfcalendar/branches/xfce_4_2/po/pt_PT.gmo,
-	  xfcalendar/branches/xfce_4_2/po/pt_PT.po,
-	  xfcalendar/branches/xfce_4_2/po/ro.gmo,
-	  xfcalendar/branches/xfce_4_2/po/ro.po,
-	  xfcalendar/branches/xfce_4_2/po/ru.gmo,
-	  xfcalendar/branches/xfce_4_2/po/ru.po,
-	  xfcalendar/branches/xfce_4_2/po/sk.gmo,
-	  xfcalendar/branches/xfce_4_2/po/sk.po,
-	  xfcalendar/branches/xfce_4_2/po/ta.gmo,
-	  xfcalendar/branches/xfce_4_2/po/ta.po,
-	  xfcalendar/branches/xfce_4_2/po/tr.gmo,
-	  xfcalendar/branches/xfce_4_2/po/tr.po,
-	  xfcalendar/branches/xfce_4_2/po/uk.gmo,
-	  xfcalendar/branches/xfce_4_2/po/uk.po,
-	  xfcalendar/branches/xfce_4_2/po/vi.gmo,
-	  xfcalendar/branches/xfce_4_2/po/vi.po,
-	  xfcalendar/branches/xfce_4_2/po/xfcalendar.pot,
-	  xfcalendar/branches/xfce_4_2/po/zh_CN.gmo,
-	  xfcalendar/branches/xfce_4_2/po/zh_CN.po,
-	  xfcalendar/branches/xfce_4_2/po/zh_TW.gmo,
-	  xfcalendar/branches/xfce_4_2/po/zh_TW.po: Mass update for 4.2.1
+	* configure, configure.ac, ltmain.sh, po/ar.gmo, po/ar.po,
+	  po/az.gmo, po/az.po, po/be.gmo, po/be.po, po/bg.gmo, po/bg.po,
+	  po/ca.gmo, po/ca.po, po/cs.gmo, po/cs.po, po/da.gmo, po/da.po,
+	  po/de.gmo, po/de.po, po/en_GB.gmo, po/en_GB.po, po/es.gmo,
+	  po/es.po, po/et.gmo, po/et.po, po/eu.gmo, po/eu.po, po/fa.gmo,
+	  po/fa.po, po/fi.gmo, po/fi.po, po/fr.gmo, po/fr.po, po/gu.gmo,
+	  po/gu.po, po/he.gmo, po/he.po, po/hi.gmo, po/hi.po, po/hu.gmo,
+	  po/hu.po, po/it.gmo, po/it.po, po/ja.gmo, po/ja.po, po/ko.gmo,
+	  po/ko.po, po/lt.gmo, po/lt.po, po/ms.gmo, po/ms.po, po/nb_NO.gmo,
+	  po/nb_NO.po, po/nl.gmo, po/nl.po, po/pa.gmo, po/pa.po, po/pl.gmo,
+	  po/pl.po, po/pt_BR.gmo, po/pt_BR.po, po/pt_PT.gmo, po/pt_PT.po,
+	  po/ro.gmo, po/ro.po, po/ru.gmo, po/ru.po, po/sk.gmo, po/sk.po,
+	  po/ta.gmo, po/ta.po, po/tr.gmo, po/tr.po, po/uk.gmo, po/uk.po,
+	  po/vi.gmo, po/vi.po, po/xfcalendar.pot, po/zh_CN.gmo,
+	  po/zh_CN.po, po/zh_TW.gmo, po/zh_TW.po: Mass update for 4.2.1
 
 2005-03-12 09:10  pollux
 
-	* xfcalendar/branches/xfce_4_2/po/he.gmo,
-	  xfcalendar/branches/xfce_4_2/po/he.po: update HE translations
+	* po/he.gmo, po/he.po: update HE translations
 
 2005-03-10 17:58  pollux
 
-	* xfcalendar/branches/xfce_4_2/po/lt.gmo,
-	  xfcalendar/branches/xfce_4_2/po/lt.po: update LT translations
+	* po/lt.gmo, po/lt.po: update LT translations
 
 2005-03-09 15:43  pollux
 
-	* xfcalendar/branches/xfce_4_2/po/zh_TW.gmo,
-	  xfcalendar/branches/xfce_4_2/po/zh_TW.po: update zh_TW
-	  translations
+	* po/zh_TW.gmo, po/zh_TW.po: update zh_TW translations
 
 2005-03-09 15:42  pollux
 
-	* xfcalendar/branches/xfce_4_2/po/pt_BR.gmo,
-	  xfcalendar/branches/xfce_4_2/po/pt_BR.po: update pt_BR
-	  translations
+	* po/pt_BR.gmo, po/pt_BR.po: update pt_BR translations
 
 2005-03-09 15:40  pollux
 
-	* xfcalendar/branches/xfce_4_2/plugin/xfce-xfcalendar-settings.desktop,
-	  xfcalendar/branches/xfce_4_2/xfcalendar.desktop: update SK
-	  translations
+	* plugin/xfce-xfcalendar-settings.desktop, xfcalendar.desktop:
+	  update SK translations
 
 2005-03-09 15:27  pollux
 
-	* xfcalendar/branches/xfce_4_2/po/es.gmo,
-	  xfcalendar/branches/xfce_4_2/po/es.po,
-	  xfcalendar/branches/xfce_4_2/po/eu.gmo,
-	  xfcalendar/branches/xfce_4_2/po/eu.po,
-	  xfcalendar/branches/xfce_4_2/po/nl.gmo,
-	  xfcalendar/branches/xfce_4_2/po/pt_BR.gmo: update EU translations
+	* po/es.gmo, po/es.po, po/eu.gmo, po/eu.po, po/nl.gmo,
+	  po/pt_BR.gmo: update EU translations
 
 2005-03-08 23:25  juha
 
-	* xfcalendar/branches/xfce_4_2/src/mainbox.c: still another bug
-	  fix for initial visibity after starting
+	* src/mainbox.c: still another bug fix for initial visibity after
+	  starting
 
 2005-03-08 21:11  olivier
 
-	* xfcalendar/branches/xfce_4_2/xfcalendar.desktop: Fix typos.
+	* xfcalendar.desktop: Fix typos.
 
 2005-03-07 22:47  edscott
 
-	* xfcalendar/branches/xfce_4_2/po/es.po: translation gaps
+	* po/es.po: translation gaps
 
 2005-03-07 20:30  jasper
 
-	* xfcalendar/branches/xfce_4_2/po/nl.po: Update nl translations
-	  for 4.2.1
+	* po/nl.po: Update nl translations for 4.2.1
 
 2005-03-07 14:09  moe
 
-	* xfcalendar/branches/xfce_4_2/po/de.gmo,
-	  xfcalendar/branches/xfce_4_2/po/de.po: Updating german
-	  translations
+	* po/de.gmo, po/de.po: Updating german translations
 
 2005-03-07 14:00  pollux
 
-	* xfcalendar/branches/xfce_4_2/po/fr.po,
-	  xfcalendar/branches/xfce_4_2/po/pt_BR.po: update-po
+	* po/fr.po, po/pt_BR.po: update-po
 
 2005-03-06 18:12  pollux
 
-	* xfcalendar/branches/xfce_4_2/po/pt_BR.gmo,
-	  xfcalendar/branches/xfce_4_2/po/pt_BR.po: update pt_BR
-	  translations
+	* po/pt_BR.gmo, po/pt_BR.po: update pt_BR translations
 
 2005-03-06 17:45  pollux
 
-	* xfcalendar/branches/xfce_4_2/po/ja.gmo,
-	  xfcalendar/branches/xfce_4_2/po/ja.po: update JA translations
+	* po/ja.gmo, po/ja.po: update JA translations
 
 2005-03-06 17:17  pollux
 
-	* xfcalendar/branches/xfce_4_2/configure,
-	  xfcalendar/branches/xfce_4_2/configure.ac,
-	  xfcalendar/branches/xfce_4_2/po/ar.gmo,
-	  xfcalendar/branches/xfce_4_2/po/az.gmo,
-	  xfcalendar/branches/xfce_4_2/po/be.gmo,
-	  xfcalendar/branches/xfce_4_2/po/bg.gmo,
-	  xfcalendar/branches/xfce_4_2/po/ca.gmo,
-	  xfcalendar/branches/xfce_4_2/po/cs.gmo,
-	  xfcalendar/branches/xfce_4_2/po/de.gmo,
-	  xfcalendar/branches/xfce_4_2/po/en_GB.gmo,
-	  xfcalendar/branches/xfce_4_2/po/es.gmo,
-	  xfcalendar/branches/xfce_4_2/po/et.gmo,
-	  xfcalendar/branches/xfce_4_2/po/eu.gmo,
-	  xfcalendar/branches/xfce_4_2/po/fa.gmo,
-	  xfcalendar/branches/xfce_4_2/po/fi.gmo,
-	  xfcalendar/branches/xfce_4_2/po/fr.gmo,
-	  xfcalendar/branches/xfce_4_2/po/gu.gmo,
-	  xfcalendar/branches/xfce_4_2/po/he.gmo,
-	  xfcalendar/branches/xfce_4_2/po/hi.gmo,
-	  xfcalendar/branches/xfce_4_2/po/hu.gmo,
-	  xfcalendar/branches/xfce_4_2/po/it.gmo,
-	  xfcalendar/branches/xfce_4_2/po/ja.gmo,
-	  xfcalendar/branches/xfce_4_2/po/ko.gmo,
-	  xfcalendar/branches/xfce_4_2/po/lt.gmo,
-	  xfcalendar/branches/xfce_4_2/po/ms.gmo,
-	  xfcalendar/branches/xfce_4_2/po/nb_NO.gmo,
-	  xfcalendar/branches/xfce_4_2/po/nl.gmo,
-	  xfcalendar/branches/xfce_4_2/po/pa.gmo,
-	  xfcalendar/branches/xfce_4_2/po/pl.gmo,
-	  xfcalendar/branches/xfce_4_2/po/pt_BR.gmo,
-	  xfcalendar/branches/xfce_4_2/po/pt_PT.gmo,
-	  xfcalendar/branches/xfce_4_2/po/ro.gmo,
-	  xfcalendar/branches/xfce_4_2/po/ru.gmo,
-	  xfcalendar/branches/xfce_4_2/po/sk.gmo,
-	  xfcalendar/branches/xfce_4_2/po/sv.gmo,
-	  xfcalendar/branches/xfce_4_2/po/sv.po,
-	  xfcalendar/branches/xfce_4_2/po/ta.gmo,
-	  xfcalendar/branches/xfce_4_2/po/tr.gmo,
-	  xfcalendar/branches/xfce_4_2/po/uk.gmo,
-	  xfcalendar/branches/xfce_4_2/po/vi.gmo,
-	  xfcalendar/branches/xfce_4_2/po/zh_CN.gmo,
-	  xfcalendar/branches/xfce_4_2/po/zh_TW.gmo: add SV translations
-	  from Magnus Berg <berg.magnus@bredband.net>
+	* configure, configure.ac, po/ar.gmo, po/az.gmo, po/be.gmo,
+	  po/bg.gmo, po/ca.gmo, po/cs.gmo, po/de.gmo, po/en_GB.gmo,
+	  po/es.gmo, po/et.gmo, po/eu.gmo, po/fa.gmo, po/fi.gmo, po/fr.gmo,
+	  po/gu.gmo, po/he.gmo, po/hi.gmo, po/hu.gmo, po/it.gmo, po/ja.gmo,
+	  po/ko.gmo, po/lt.gmo, po/ms.gmo, po/nb_NO.gmo, po/nl.gmo,
+	  po/pa.gmo, po/pl.gmo, po/pt_BR.gmo, po/pt_PT.gmo, po/ro.gmo,
+	  po/ru.gmo, po/sk.gmo, po/sv.gmo, po/sv.po, po/ta.gmo, po/tr.gmo,
+	  po/uk.gmo, po/vi.gmo, po/zh_CN.gmo, po/zh_TW.gmo: add SV
+	  translations from Magnus Berg <berg.magnus@bredband.net>
 
 2005-03-06 14:39  olivier
 
-	* xfcalendar/branches/xfce_4_2/po/fr.po: Add missing translations
+	* po/fr.po: Add missing translations
 
 2005-03-06 07:41  juha
 
-	* xfcalendar/branches/xfce_4_2/po/fi.po: 4.2.1 new srings
+	* po/fi.po: 4.2.1 new srings
 
 2005-03-06 00:11  juha
 
-	* xfcalendar/branches/xfce_4_2/po/ar.po,
-	  xfcalendar/branches/xfce_4_2/po/az.po,
-	  xfcalendar/branches/xfce_4_2/po/be.po,
-	  xfcalendar/branches/xfce_4_2/po/bg.po,
-	  xfcalendar/branches/xfce_4_2/po/ca.po,
-	  xfcalendar/branches/xfce_4_2/po/cs.po,
-	  xfcalendar/branches/xfce_4_2/po/de.po,
-	  xfcalendar/branches/xfce_4_2/po/en_GB.po,
-	  xfcalendar/branches/xfce_4_2/po/es.po,
-	  xfcalendar/branches/xfce_4_2/po/et.po,
-	  xfcalendar/branches/xfce_4_2/po/eu.po,
-	  xfcalendar/branches/xfce_4_2/po/fa.po,
-	  xfcalendar/branches/xfce_4_2/po/fi.po,
-	  xfcalendar/branches/xfce_4_2/po/fr.po,
-	  xfcalendar/branches/xfce_4_2/po/gu.po,
-	  xfcalendar/branches/xfce_4_2/po/he.po,
-	  xfcalendar/branches/xfce_4_2/po/hi.po,
-	  xfcalendar/branches/xfce_4_2/po/hu.po,
-	  xfcalendar/branches/xfce_4_2/po/it.po,
-	  xfcalendar/branches/xfce_4_2/po/ja.po,
-	  xfcalendar/branches/xfce_4_2/po/ko.po,
-	  xfcalendar/branches/xfce_4_2/po/lt.po,
-	  xfcalendar/branches/xfce_4_2/po/ms.po,
-	  xfcalendar/branches/xfce_4_2/po/nb_NO.po,
-	  xfcalendar/branches/xfce_4_2/po/nl.po,
-	  xfcalendar/branches/xfce_4_2/po/pa.po,
-	  xfcalendar/branches/xfce_4_2/po/pl.po,
-	  xfcalendar/branches/xfce_4_2/po/pt_BR.po,
-	  xfcalendar/branches/xfce_4_2/po/pt_PT.po,
-	  xfcalendar/branches/xfce_4_2/po/ro.po,
-	  xfcalendar/branches/xfce_4_2/po/ru.po,
-	  xfcalendar/branches/xfce_4_2/po/sk.po,
-	  xfcalendar/branches/xfce_4_2/po/ta.po,
-	  xfcalendar/branches/xfce_4_2/po/tr.po,
-	  xfcalendar/branches/xfce_4_2/po/uk.po,
-	  xfcalendar/branches/xfce_4_2/po/vi.po,
-	  xfcalendar/branches/xfce_4_2/po/xfcalendar.pot,
-	  xfcalendar/branches/xfce_4_2/po/zh_CN.po,
-	  xfcalendar/branches/xfce_4_2/po/zh_TW.po: New strings for xfce
+	* po/ar.po, po/az.po, po/be.po, po/bg.po, po/ca.po, po/cs.po,
+	  po/de.po, po/en_GB.po, po/es.po, po/et.po, po/eu.po, po/fa.po,
+	  po/fi.po, po/fr.po, po/gu.po, po/he.po, po/hi.po, po/hu.po,
+	  po/it.po, po/ja.po, po/ko.po, po/lt.po, po/ms.po, po/nb_NO.po,
+	  po/nl.po, po/pa.po, po/pl.po, po/pt_BR.po, po/pt_PT.po, po/ro.po,
+	  po/ru.po, po/sk.po, po/ta.po, po/tr.po, po/uk.po, po/vi.po,
+	  po/xfcalendar.pot, po/zh_CN.po, po/zh_TW.po: New strings for xfce
 	  4.2.1
 
 2005-03-05 23:14  moe
 
-	* xfcalendar/branches/xfce_4_2/po/de.gmo,
-	  xfcalendar/branches/xfce_4_2/po/de.po: Updating german
-	  translations. We sort of need a global
+	* po/de.gmo, po/de.po: Updating german translations. We sort of
+	  need a global
 	  'make update-po'.
 
 2005-03-05 14:55  pollux
 
-	* xfcalendar/branches/xfce_4_2/po/sk.gmo,
-	  xfcalendar/branches/xfce_4_2/po/sk.po: update SK translations
+	* po/sk.gmo, po/sk.po: update SK translations
 
 2005-03-05 11:20  pollux
 
-	* xfcalendar/branches/xfce_4_2/configure,
-	  xfcalendar/branches/xfce_4_2/configure.ac,
-	  xfcalendar/branches/xfce_4_2/po/da.gmo,
-	  xfcalendar/branches/xfce_4_2/po/da.po: add DA translations from
-	  Jesper Berth <big@santaz.dk>
+	* configure, configure.ac, po/da.gmo, po/da.po: add DA translations
+	  from Jesper Berth <big@santaz.dk>
 
 2005-03-05 10:52  pollux
 
-	* xfcalendar/branches/xfce_4_2/plugin/xfce-xfcalendar-settings.desktop,
-	  xfcalendar/branches/xfce_4_2/xfcalendar.desktop: update HU
-	  translations
+	* plugin/xfce-xfcalendar-settings.desktop, xfcalendar.desktop:
+	  update HU translations
 
 2005-03-05 10:42  pollux
 
-	* xfcalendar/branches/xfce_4_2/plugin/xfce-xfcalendar-settings.desktop,
-	  xfcalendar/branches/xfce_4_2/xfcalendar.desktop: update EU
-	  translations
+	* plugin/xfce-xfcalendar-settings.desktop, xfcalendar.desktop:
+	  update EU translations
 
 2005-03-04 17:43  pollux
 
-	* xfcalendar/branches/xfce_4_2/po/ja.gmo,
-	  xfcalendar/branches/xfce_4_2/po/ja.po: update JA translations
+	* po/ja.gmo, po/ja.po: update JA translations
 
 2005-02-21 08:57  pollux
 
-	* xfcalendar/branches/xfce_4_2/po/ja.gmo,
-	  xfcalendar/branches/xfce_4_2/po/ja.po: update JA translations
+	* po/ja.gmo, po/ja.po: update JA translations
 
 2005-02-20 21:36  juha
 
-	* xfcalendar/branches/xfce_4_2/AUTHORS,
-	  xfcalendar/branches/xfce_4_2/NEWS,
-	  xfcalendar/branches/xfce_4_2/plugin/xfcalendar_plugin.c,
-	  xfcalendar/branches/xfce_4_2/src/about-xfcalendar.c,
-	  xfcalendar/branches/xfce_4_2/src/callbacks.c,
-	  xfcalendar/branches/xfce_4_2/src/interface.c,
-	  xfcalendar/branches/xfce_4_2/src/interface.h,
-	  xfcalendar/branches/xfce_4_2/src/main.c,
-	  xfcalendar/branches/xfce_4_2/src/mainbox.c,
-	  xfcalendar/branches/xfce_4_2/src/mainbox.h,
-	  xfcalendar/branches/xfce_4_2/src/tray_icon.c,
-	  xfcalendar/branches/xfce_4_2/src/tray_icon.h: making tag
-	  xfce_4_2 upto date from HEAD
+	* AUTHORS, NEWS, plugin/xfcalendar_plugin.c,
+	  src/about-xfcalendar.c, src/callbacks.c, src/interface.c,
+	  src/interface.h, src/main.c, src/mainbox.c, src/mainbox.h,
+	  src/tray_icon.c, src/tray_icon.h: making tag xfce_4_2 upto date
+	  from HEAD
 
 2005-02-01 17:25  pollux
 
-	* xfcalendar/branches/xfce_4_2/plugin/xfce-xfcalendar-settings.desktop,
-	  xfcalendar/branches/xfce_4_2/po/fi.gmo,
-	  xfcalendar/branches/xfce_4_2/xfcalendar.desktop: update zh_CN
-	  translations
+	* plugin/xfce-xfcalendar-settings.desktop, po/fi.gmo,
+	  xfcalendar.desktop: update zh_CN translations
 
 2005-01-30 09:39  pollux
 
-	* xfcalendar/branches/xfce_4_2/po/fi.po: update FI translations
+	* po/fi.po: update FI translations
 
 2005-01-23 17:08  pollux
 
-	* xfcalendar/branches/xfce_4_2/po/lt.gmo,
-	  xfcalendar/branches/xfce_4_2/po/lt.po: update LT translations
+	* po/lt.gmo, po/lt.po: update LT translations
 
 2005-01-23 16:48  pollux
 
-	* xfcalendar/branches/xfce_4_2/plugin/xfce-xfcalendar-settings.desktop,
-	  xfcalendar/branches/xfce_4_2/po/fi.gmo,
-	  xfcalendar/branches/xfce_4_2/po/fi.po,
-	  xfcalendar/branches/xfce_4_2/xfcalendar.desktop: update FI
-	  translations
+	* plugin/xfce-xfcalendar-settings.desktop, po/fi.gmo, po/fi.po,
+	  xfcalendar.desktop: update FI translations
 
 2005-01-22 09:18  pollux
 
-	* xfcalendar/branches/xfce_4_2/po/fi.gmo,
-	  xfcalendar/branches/xfce_4_2/po/fi.po: update FI translations
+	* po/fi.gmo, po/fi.po: update FI translations
 
 2005-01-22 08:57  pollux
 
-	* xfcalendar/branches/xfce_4_2/po/ko.gmo,
-	  xfcalendar/branches/xfce_4_2/po/ko.po: update KO translations
+	* po/ko.gmo, po/ko.po: update KO translations
 
 2005-01-10 17:14  benny
 
-	* xfcalendar/branches/xfce_4_2/ChangeLog,
-	  xfcalendar/branches/xfce_4_2/NEWS: Final touch before the tag
+	* ChangeLog, NEWS: Final touch before the tag
 
 2005-01-10 12:56  pollux
 
-	* xfcalendar/branches/xfce_4_2/configure,
-	  xfcalendar/branches/xfce_4_2/configure.ac,
-	  xfcalendar/branches/xfce_4_2/po/hu.gmo,
-	  xfcalendar/branches/xfce_4_2/po/hu.po: update HU translations
+	* configure, configure.ac, po/hu.gmo, po/hu.po: update HU
+	  translations
 
 2005-01-10 12:23  pollux
 
-	* xfcalendar/branches/xfce_4_2/plugin/xfce-xfcalendar-settings.desktop,
-	  xfcalendar/branches/xfce_4_2/xfcalendar.desktop: update LT
-	  translations
+	* plugin/xfce-xfcalendar-settings.desktop, xfcalendar.desktop:
+	  update LT translations
 
 2005-01-10 11:55  pollux
 
-	* xfcalendar/branches/xfce_4_2/po/lt.gmo,
-	  xfcalendar/branches/xfce_4_2/po/lt.po: update LT translations
+	* po/lt.gmo, po/lt.po: update LT translations
 
 2005-01-09 22:53  pollux
 
-	* xfcalendar/branches/xfce_4_2/configure,
-	  xfcalendar/branches/xfce_4_2/configure.ac,
-	  xfcalendar/branches/xfce_4_2/po/sv.gmo,
-	  xfcalendar/branches/xfce_4_2/po/sv.po: remove outdated SV
+	* configure, configure.ac, po/sv.gmo, po/sv.po: remove outdated SV
 	  translations
 
 2005-01-09 13:42  pollux
 
-	* xfcalendar/branches/xfce_4_2/plugin/xfce-xfcalendar-settings.desktop:
-	  update RO translations
+	* plugin/xfce-xfcalendar-settings.desktop: update RO translations
 
 2005-01-09 12:42  pollux
 
-	* xfcalendar/branches/xfce_4_2/xfcalendar.desktop: update RO
-	  translations
+	* xfcalendar.desktop: update RO translations
 
 2005-01-09 12:03  pollux
 
-	* xfcalendar/branches/xfce_4_2/po/ro.gmo,
-	  xfcalendar/branches/xfce_4_2/po/ro.po: update RO translations
+	* po/ro.gmo, po/ro.po: update RO translations
 
 2005-01-08 15:49  pollux
 
-	* xfcalendar/branches/xfce_4_2/plugin/xfce-xfcalendar-settings.desktop,
-	  xfcalendar/branches/xfce_4_2/po/ru.gmo,
-	  xfcalendar/branches/xfce_4_2/po/ru.po,
-	  xfcalendar/branches/xfce_4_2/xfcalendar.desktop: update RU
-	  translations
+	* plugin/xfce-xfcalendar-settings.desktop, po/ru.gmo, po/ru.po,
+	  xfcalendar.desktop: update RU translations
 
 2005-01-06 20:33  pollux
 
-	* xfcalendar/branches/xfce_4_2/configure,
-	  xfcalendar/branches/xfce_4_2/configure.ac,
-	  xfcalendar/branches/xfce_4_2/po/uk.gmo,
-	  xfcalendar/branches/xfce_4_2/po/uk.po: update UK translations, i
-	  hope i didn't forget any file this time
+	* configure, configure.ac, po/uk.gmo, po/uk.po: update UK
+	  translations, i hope i didn't forget any file this time
 
 2005-01-06 19:24  
 
-	* xfcalendar/branches/xfce_4_2/po/uk.gmo,
-	  xfcalendar/branches/xfce_4_2/po/uk.po: This commit was
-	  manufactured by cvs2svn to create branch 'xfce_4_2'.
+	* po/uk.gmo, po/uk.po: This commit was manufactured by cvs2svn to
+	  create branch 'xfce_4_2'.
 
 2005-01-05 22:02  benny
 
-	* xfcalendar/branches/xfce_4_2/ChangeLog,
-	  xfcalendar/branches/xfce_4_2/configure,
-	  xfcalendar/branches/xfce_4_2/configure.ac,
-	  xfcalendar/branches/xfce_4_2/ltmain.sh,
-	  xfcalendar/branches/xfce_4_2/po/xfcalendar.pot,
-	  xfcalendar/branches/xfce_4_2/src/callbacks.c: Final updates
+	* ChangeLog, configure, configure.ac, ltmain.sh, po/xfcalendar.pot,
+	  src/callbacks.c: Final updates
 
 2005-01-05 16:14  pollux
 
-	* xfcalendar/branches/xfce_4_2/po/he.gmo,
-	  xfcalendar/branches/xfce_4_2/po/he.po: update HE translations
+	* po/he.gmo, po/he.po: update HE translations
 
 2005-01-05 16:14  
 
-	* xfcalendar/branches/xfce_4_2,
-	  xfcalendar/branches/xfce_4_2/INSTALL,
-	  xfcalendar/branches/xfce_4_2/m4/i18n.m4,
-	  xfcalendar/branches/xfce_4_2/po/ChangeLog,
-	  xfcalendar/branches/xfce_4_2/stamp-h.in,
-	  xfcalendar/branches/xfce_4_2/xfcalendar.gladep: This commit was
-	  manufactured by cvs2svn to create branch 'xfce_4_2'.
+	* ., INSTALL, m4/i18n.m4, po/ChangeLog, stamp-h.in,
+	  xfcalendar.gladep: This commit was manufactured by cvs2svn to
+	  create branch 'xfce_4_2'.
 
 2005-01-02 12:51  olivier
 
@@ -3232,8 +3445,8 @@
 2004-12-04 16:41  benny
 
 	* xfcalendar/trunk/ChangeLog, xfcalendar/trunk/configure,
-	  xfcalendar/trunk/configure.ac, xfcalendar/trunk/ltmain.sh:
-	  Update version and ChangeLog.
+	  xfcalendar/trunk/configure.ac, xfcalendar/trunk/ltmain.sh: Update
+	  version and ChangeLog.
 
 2004-11-28 18:01  pollux
 
@@ -3431,8 +3644,8 @@
 
 	* xfcalendar/trunk/ChangeLog, xfcalendar/trunk/configure,
 	  xfcalendar/trunk/configure.ac, xfcalendar/trunk/ltmain.sh,
-	  xfcalendar/trunk/po/xfcalendar.pot: Update all files for 4.2
-	  beta 1
+	  xfcalendar/trunk/po/xfcalendar.pot: Update all files for 4.2 beta
+	  1
 
 2004-09-30 15:48  pollux
 
@@ -3530,8 +3743,8 @@
 
 2004-09-18 20:50  jasper
 
-	* xfcalendar/trunk/plugin/xfcalendar_plugin.c: Fix translations
-	  for mcs plugins
+	* xfcalendar/trunk/plugin/xfcalendar_plugin.c: Fix translations for
+	  mcs plugins
 
 2004-09-18 18:27  jasper
 
@@ -3607,9 +3820,8 @@
 	  xfcalendar/trunk/icons/scalable/Makefile.in,
 	  xfcalendar/trunk/install-sh, xfcalendar/trunk/ltmain.sh,
 	  xfcalendar/trunk/plugin/Makefile.in,
-	  xfcalendar/trunk/src/Makefile.in,
-	  xfcalendar/trunk/src/mainbox.c: Try to fix g_object_unref bug.
-	  Thanks to Benny.
+	  xfcalendar/trunk/src/Makefile.in, xfcalendar/trunk/src/mainbox.c:
+	  Try to fix g_object_unref bug. Thanks to Benny.
 
 2004-08-29 16:03  pollux
 
@@ -3702,8 +3914,8 @@
 	  xfcalendar/trunk/po/tr.po, xfcalendar/trunk/po/xfcalendar.pot,
 	  xfcalendar/trunk/po/zh_CN.gmo, xfcalendar/trunk/po/zh_CN.po,
 	  xfcalendar/trunk/po/zh_TW.gmo, xfcalendar/trunk/po/zh_TW.po,
-	  xfcalendar/trunk/xfcalendar.desktop: Resync with repository,
-	  most notably:
+	  xfcalendar/trunk/xfcalendar.desktop: Resync with repository, most
+	  notably:
 	  - libxfcegui4 fixes with gtk 2.2
 	  - xfwm4 updates
 	  - Present panel plugins in alphabetical order
@@ -3734,14 +3946,14 @@
 
 2004-07-28 21:22  benny
 
-	* xfcalendar/trunk/m4/depends.m4: Fixed (module)_FOUND bug
-	  reported by brian. Hopefully nothing else broke
+	* xfcalendar/trunk/m4/depends.m4: Fixed (module)_FOUND bug reported
+	  by brian. Hopefully nothing else broke
 	  this time.
 
 2004-07-28 17:32  kelnos
 
-	* xfcalendar/trunk/plugin/xfce-xfcalendar-settings.desktop: "Xfce
-	  4 Xfcalendar" looks silly: -> "Xfce 4 Calendar"
+	* xfcalendar/trunk/plugin/xfce-xfcalendar-settings.desktop: "Xfce 4
+	  Xfcalendar" looks silly: -> "Xfce 4 Calendar"
 
 2004-07-27 19:41  benny
 
@@ -3767,8 +3979,8 @@
 
 2004-07-24 17:30  benny
 
-	* xfcalendar/trunk/m4/depends.m4: XFCE_PANEL_PLUGIN had wrong
-	  panel version for the threaded test.
+	* xfcalendar/trunk/m4/depends.m4: XFCE_PANEL_PLUGIN had wrong panel
+	  version for the threaded test.
 
 2004-07-24 17:28  benny
 
@@ -3826,8 +4038,7 @@
 	  xfcalendar/trunk/src/Makefile.am,
 	  xfcalendar/trunk/src/Makefile.in,
 	  xfcalendar/trunk/src/about-xfcalendar.c,
-	  xfcalendar/trunk/src/interface.c,
-	  xfcalendar/trunk/src/mainbox.c,
+	  xfcalendar/trunk/src/interface.c, xfcalendar/trunk/src/mainbox.c,
 	  xfcalendar/trunk/src/tray_icon.c,
 	  xfcalendar/trunk/src/xfcalendar-icon-inline.h,
 	  xfcalendar/trunk/src/xfcalendar.png,
@@ -3911,9 +4122,8 @@
 	  xfcalendar/trunk/src/Makefile.in,
 	  xfcalendar/trunk/src/callbacks.c,
 	  xfcalendar/trunk/src/interface.c,
-	  xfcalendar/trunk/src/reminder.c,
-	  xfcalendar/trunk/src/reminder.h: Code cleaning: creating a file
-	  for reminder window
+	  xfcalendar/trunk/src/reminder.c, xfcalendar/trunk/src/reminder.h:
+	  Code cleaning: creating a file for reminder window
 
 2004-06-27 18:23  korbinus
 
@@ -3989,8 +4199,8 @@
 	  xfcalendar/trunk/configure.ac, xfcalendar/trunk/ltmain.sh,
 	  xfcalendar/trunk/po/ar.gmo, xfcalendar/trunk/po/ar.po,
 	  xfcalendar/trunk/po/bg.gmo, xfcalendar/trunk/po/bg.po,
-	  xfcalendar/trunk/po/it.gmo, xfcalendar/trunk/po/it.po:
-	  Add/update i18n for:
+	  xfcalendar/trunk/po/it.gmo, xfcalendar/trunk/po/it.po: Add/update
+	  i18n for:
 	  Bulgarian from Miroslav Yordanov <miordanov@i-space.org> and
 	  Peter Slavov <peshka@i-space.org>
 	  Italian from Alex Dupre <ale@FreeBSD.org>
@@ -4005,8 +4215,8 @@
 
 2004-03-01 21:09  benny
 
-	* xfcalendar/trunk/m4/debug.m4: Added --enable-gcov to compile
-	  xfce with support for coverage tests. Very
+	* xfcalendar/trunk/m4/debug.m4: Added --enable-gcov to compile xfce
+	  with support for coverage tests. Very
 	  useful.
 
 2004-02-17 19:36  jasper
@@ -4017,8 +4227,8 @@
 2004-02-11 20:44  jasper
 
 	* xfcalendar/trunk/configure, xfcalendar/trunk/ltmain.sh,
-	  xfcalendar/trunk/po/eu.gmo, xfcalendar/trunk/po/eu.po: Add
-	  Basque (eu) translations
+	  xfcalendar/trunk/po/eu.gmo, xfcalendar/trunk/po/eu.po: Add Basque
+	  (eu) translations
 
 2004-01-29 15:51  jasper
 
@@ -4247,8 +4457,8 @@
 
 2003-10-22 07:47  jasper
 
-	* xfcalendar/trunk/configure, xfcalendar/trunk/configure.ac:
-	  Update tamil and chinese traditional translations
+	* xfcalendar/trunk/configure, xfcalendar/trunk/configure.ac: Update
+	  tamil and chinese traditional translations
 
 2003-10-16 20:56  korbinus
 
@@ -4257,8 +4467,8 @@
 
 2003-10-15 11:30  jasper
 
-	* xfcalendar/trunk/configure, xfcalendar/trunk/configure.ac:
-	  Update configure files as well
+	* xfcalendar/trunk/configure, xfcalendar/trunk/configure.ac: Update
+	  configure files as well
 
 2003-10-15 11:24  jasper
 
@@ -4267,8 +4477,8 @@
 
 2003-10-13 18:51  jasper
 
-	* xfcalendar/trunk/ChangeLog: Update ChangeLog's after syncing
-	  with SF. Everything should now be up-to-date.
+	* xfcalendar/trunk/ChangeLog: Update ChangeLog's after syncing with
+	  SF. Everything should now be up-to-date.
 
 2003-09-27 12:36  huysmans
 
@@ -4329,8 +4539,8 @@
 
 	* xfcalendar/trunk/src/callbacks.c,
 	  xfcalendar/trunk/src/interface.c, xfcalendar/trunk/src/main.c:
-	  Make the close button and the Quit entry from the calendar
-	  window close the window instead of real quit (which was very
+	  Make the close button and the Quit entry from the calendar window
+	  close the window instead of real quit (which was very
 	  desapointing from a user standpoint...)
 
 2003-08-30 22:06  korbinus
@@ -4367,8 +4577,8 @@
 
 2003-08-18 22:56  korbinus
 
-	* xfcalendar/trunk/po/fr.gmo, xfcalendar/trunk/po/fr.po: Add
-	  french translation
+	* xfcalendar/trunk/po/fr.gmo, xfcalendar/trunk/po/fr.po: Add french
+	  translation
 
 2003-08-18 22:38  korbinus
 
@@ -4494,8 +4704,8 @@
 
 2003-07-13 08:21  bmeurer
 
-	* xfcalendar/trunk/ChangeLog,
-	  xfcalendar/trunk/src/xfce_trayicon.c: Gtk2.0 compatibility fixes.
+	* xfcalendar/trunk/ChangeLog, xfcalendar/trunk/src/xfce_trayicon.c:
+	  Gtk2.0 compatibility fixes.
 
 2003-07-12 21:23  bmeurer
 
@@ -4545,8 +4755,8 @@
 
 2003-07-08 20:55  xfce
 
-	* xfcalendar/trunk/po/Makefile.in.in: Don't perform an update-po
-	  on make dist as it causes far too much trouble
+	* xfcalendar/trunk/po/Makefile.in.in: Don't perform an update-po on
+	  make dist as it causes far too much trouble
 
 2003-07-08 16:38  korbinus
 
@@ -4576,8 +4786,8 @@
 	* xfcalendar/trunk/po/de.gmo, xfcalendar/trunk/src/callbacks.c,
 	  xfcalendar/trunk/src/callbacks.h,
 	  xfcalendar/trunk/src/interface.c,
-	  xfcalendar/trunk/src/interface.h: Adding the reminder window
-	  (the pretty one ;-))
+	  xfcalendar/trunk/src/interface.h: Adding the reminder window (the
+	  pretty one ;-))
 
 2003-07-06 22:38  bmeurer
 
@@ -4612,10 +4822,9 @@
 2003-07-06 07:40  korbinus
 
 	* xfcalendar/trunk/src/callbacks.c,
-	  xfcalendar/trunk/src/interface.c,
-	  xfcalendar/trunk/src/support.c, xfcalendar/trunk/src/support.h:
-	  fixed a gettext-macro conflict between support.h and
-	  libxfce4util/i18n.h
+	  xfcalendar/trunk/src/interface.c, xfcalendar/trunk/src/support.c,
+	  xfcalendar/trunk/src/support.h: fixed a gettext-macro conflict
+	  between support.h and libxfce4util/i18n.h
 
 2003-07-05 01:49  edscott
 
