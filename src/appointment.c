@@ -508,6 +508,18 @@ fill_appt_from_apptw(appt_data *appt, appt_win *apptw)
     gchar starttime[6], endtime[6];
     gint i;
 
+    /* Next line is fix for bug 2811.
+     * We need to make sure spin buttons do not have values which are not
+     * yet updated = visible.
+     * gtk_spin_button_update call would do it, but it seems to cause
+     * crash if done in on_app_spin_button_changed_cb and here we should
+     * either do it for all spin fields, which takes too many lines of code.
+     * if (GTK_WIDGET_HAS_FOCUS(apptw->StartTime_spin_hh))
+     *      gtk_spin_button_update;
+     * So we just change the focus field and then spin button value gets set.
+     * It would be nice to not to have to change the field though.
+     */
+    gtk_widget_grab_focus(apptw->appTitle_entry);
     /*Get the title */
     appt->title = g_strdup(gtk_entry_get_text(
             (GtkEntry *)apptw->appTitle_entry));
