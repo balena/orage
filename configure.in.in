@@ -10,10 +10,10 @@ dnl
 
 dnl Version information
 m4_define([orage_version_major], [4])
-m4_define([orage_version_minor], [4])
-m4_define([orage_version_micro], [1])
-m4_define([orage_version_nano], [])  dnl leave this empty to have no nano version
-m4_define([orage_version_tag], [])
+m4_define([orage_version_minor], [5])
+m4_define([orage_version_micro], [6])
+m4_define([orage_version_nano], [0])  dnl leave this empty to have no nano version
+m4_define([orage_version_tag], [svn])
 m4_define([orage_version], [orage_version_major().orage_version_minor().orage_version_micro()ifelse(orage_version_nano(), [], [], [.orage_version_nano()])orage_version_tag()])
 
 
@@ -184,6 +184,12 @@ AM_CONDITIONAL([INCLUDED_LIBICAL], [test x"$ac_INCLUDED_LIBICAL" = x"yes"])
 AM_CONDITIONAL([HAVE_PTHREAD], [test x"$have_pthread" = x"yes"])
 AM_CONDITIONAL([WITH_BDB4], [test x"$WITH_BDB4" = x"yes"])
 
+dnl **********************************
+dnl *** Optional support for D-BUS ***
+dnl **********************************
+XDT_CHECK_OPTIONAL_PACKAGE([DBUS], [dbus-glib-1],
+                           [0.34], [dbus], [D-BUS support])
+
 dnl Check for debugging support
 dnl BM_DEBUG_SUPPORT()
 XDT_FEATURE_DEBUG
@@ -211,4 +217,18 @@ doc/Makefile
 doc/C/Makefile
 doc/C/images/Makefile
 panel-plugin/Makefile
+globaltime/Makefile
 ])
+
+dnl ***************************
+dnl *** Print configuration *** 
+dnl ***************************
+echo
+echo "Build Configuration:"
+echo
+if test x"$DBUS_FOUND" = x"yes"; then
+echo "* D-BUS support:             yes"
+else
+echo "* D-BUS support:             no"
+fi
+

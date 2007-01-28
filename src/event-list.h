@@ -1,66 +1,101 @@
-/* event-list.h
+/*      Orage - Calendar and alarm handler
  *
- * Copyright (C) 2004 Mickaël Graf <korbinus at xfce.org>
- * Copyright (C) 2005 Juha Kautto <kautto.juha at kolumbus.fi>
+ * Copyright (c) 2005-2007 Juha Kautto  (juha at xfce.org)
+ * Copyright (c) 2004-2005 Mickael Graf (korbinus at xfce.org)
  *
- *  This program is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2, or (at your option)
+ * any later version.
  *
- *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
- *  along with this program; if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
- *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the 
+       Free Software Foundation
+       51 Franklin Street, 5th Floor
+       Boston, MA 02110-1301 USA
+
  */
 
-#include <gtk/gtk.h>
-#include <gdk/gdk.h>
+#ifndef __EVENT_LIST_H__
+#define __EVENT_LIST_H__
+
+#define EVENT_PAGE 0
+#define TODO_PAGE 1
+#define JOURNAL_PAGE 2
+#define SEARCH_PAGE 3
 
 typedef struct
 {
-    GtkWidget *elWindow;
-    GtkWidget *elVbox;
-    GtkWidget *elMenubar;
-    GtkWidget *elFile_menu;
-    GtkWidget *elFile_newApp_menuitem;
-    GtkWidget *elFile_duplicate_menuitem;
-    GtkWidget *elFile_delete_menuitem;
-    GtkWidget *elFile_close_menuitem;
-    GtkWidget *elView_menu;
-    GtkWidget *elView_refresh_menuitem;
-    GtkWidget *elGo_menu;
-    GtkWidget *elGo_today_menuitem;
-    GtkWidget *elGo_previous_menuitem;
-    GtkWidget *elGo_next_menuitem;
-    /*GtkWidget *elHelp_menu;*/
-    GtkWidget *elToolbar;
-    GtkWidget *elCreate_toolbutton;
-    GtkWidget *elPrevious_toolbutton;
-    GtkWidget *elToday_toolbutton;
-    GtkWidget *elNext_toolbutton;
-    GtkWidget *elRefresh_toolbutton;
-    GtkWidget *elCopy_toolbutton;
-    GtkWidget *elClose_toolbutton;
-    GtkWidget *elDelete_toolbutton;
-    GtkWidget *elScrolledWindow;
-    GtkWidget *elTreeView;
-    GtkTooltips *elTooltips;
-    GtkTreeSelection *elTreeSelection;
-    GtkListStore    *elListStore;
-    GtkTreeSortable *elTreeSortable;
     GtkAccelGroup *accel_group;
-    GtkWidget *elSpin1, *elSpin2;
-    GtkTreeViewColumn *elTime_treeviewcolumn;
+    GtkTooltips   *Tooltips;
+    GtkWidget *Window;
+    GtkWidget *Vbox;
 
-    gboolean elToday;
-    int elNumber_of_days_to_show;
-} eventlist_win;
+    GtkWidget *Menubar;
+    GtkWidget *File_menu;
+    GtkWidget *File_menu_new;
+    GtkWidget *File_menu_duplicate;
+    GtkWidget *File_menu_delete;
+    GtkWidget *File_menu_close;
+    GtkWidget *View_menu;
+    GtkWidget *View_menu_refresh;
+    GtkWidget *View_menu_search;
+    GtkWidget *Go_menu;
+    GtkWidget *Go_menu_today;
+    GtkWidget *Go_menu_prev;
+    GtkWidget *Go_menu_next;
 
-eventlist_win *create_eventlist_win(GtkCalendar *cal);
-void refresh_eventlist_win(eventlist_win *el);
+    GtkWidget *Toolbar;
+    GtkWidget *Create_toolbutton;
+    GtkWidget *Copy_toolbutton;
+    GtkWidget *Delete_toolbutton;
+    GtkWidget *Previous_toolbutton;
+    GtkWidget *Today_toolbutton;
+    GtkWidget *Next_toolbutton;
+    GtkWidget *Refresh_toolbutton;
+    GtkWidget *Search_toolbutton;
+    GtkWidget *Close_toolbutton;
+
+    GtkWidget *Notebook;
+    GtkWidget *event_tab_label;
+    GtkWidget *event_notebook_page;
+    GtkWidget *event_spin;
+    GtkWidget *todo_tab_label;
+    GtkWidget *todo_notebook_page;
+    GtkWidget *journal_tab_label;
+    GtkWidget *journal_notebook_page;
+    GtkWidget *journal_start_button;
+    /*
+    GtkWidget *time_event_rb;
+    GtkWidget *time_todo_rb;
+    GtkWidget *time_journal_rb;
+    */
+    GtkWidget *search_tab_label;
+    GtkWidget *search_notebook_page;
+    GtkWidget *search_entry;
+    /*
+    GtkWidget *search_archive_cb;
+    */
+
+    GtkWidget   *ScrolledWindow;
+    GtkWidget   *TreeView;
+    GtkTreeSelection *TreeSelection;
+    GtkListStore     *ListStore;
+    GtkTreeSortable  *TreeSortable;
+
+    /* these are used to build the data into event list */
+    gboolean today;       /* flag: today or not */
+    int      days;        /* how many extra days to show; usually 0 */
+    xfical_type type;     /* appointment component type to show */
+    char     time_now[5]; /* hh:mm */
+} el_win; /* event list window */
+
+el_win* create_el_win(void);
+void refresh_el_win(el_win *el, gint page);
+
+#endif /* !__EVENT_LIST_H__ */

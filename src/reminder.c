@@ -1,23 +1,26 @@
-/* reminder.c
+/*      Orage - Calendar and alarm handler
  *
- * (C) 2003-2006 Mickaël Graf
- * (C) 2005-2006 Juha Kautto 
+ * Copyright (c) 2005-2007 Juha Kautto  (juha at xfce.org)
+ * Copyright (c) 2003-2006 Mickael Graf (korbinus at xfce.org)
  *
- *  This program is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2, or (at your option)
+ * any later version.
  *
- *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
- *  along with this program; if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
- *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the 
+       Free Software Foundation
+       51 Franklin Street, 5th Floor
+       Boston, MA 02110-1301 USA
+
  */
+
 #ifdef HAVE_CONFIG_H
 #  include <config.h>
 #endif
@@ -40,25 +43,22 @@
 #include <libxfcegui4/libxfcegui4.h>
 #include <libxfcegui4/dialogs.h>
 
+#include "functions.h"
 #include "mainbox.h"
 #include "event-list.h"
 #include "appointment.h"
 #include "reminder.h"
 #include "ical-code.h"
-#include "functions.h"
 #include "tray_icon.h"
 #include "xfce_trayicon.h"
+#include "parameters.h"
 
-extern GList *alarm_list;
-extern XfceTrayIcon *trayIcon;
-
-static gchar *play_cmd = NULL;
 
 void set_play_command(gchar *cmd)
 {
-    if (play_cmd)
-        g_free(play_cmd);
-    play_cmd = g_strdup(cmd);
+    if (g_par.sound_application)
+        g_free(g_par.sound_application);
+    g_par.sound_application = g_strdup(cmd);
 }
 
 static void
@@ -149,7 +149,7 @@ create_soundReminder(alarm_struct *alarm, GtkWidget *wReminder)
     xfce_audio_alarm_type *audio_alarm;
 
     audio_alarm =  g_new(xfce_audio_alarm_type, 1);
-    audio_alarm->play_cmd = g_strconcat(play_cmd, " \"", alarm->sound->str, "\"", NULL);
+    audio_alarm->play_cmd = g_strconcat(g_par.sound_application, " \"", alarm->sound->str, "\"", NULL);
     audio_alarm->delay = alarm->repeat_delay;
     audio_alarm->sound_active = FALSE;
     if ((audio_alarm->cnt = alarm->repeat_cnt) == 0) {
@@ -195,7 +195,7 @@ on_btOpenReminder_clicked(GtkButton *button, gpointer user_data)
     if ((uid = (gchar *)g_object_get_data(G_OBJECT(wReminder), "ALARM_UID"))
         != NULL) {
         app = create_appt_win("UPDATE", uid, NULL);
-        gtk_widget_show(app->appWindow);
+        gtk_widget_show(app->Window);
     }
 }
 
@@ -318,7 +318,7 @@ build_tray_tooltip()
     /* GtkTooltipsData *cur_tooltip; */
      
     tooltip = g_string_new(_("Next active alarms:"));
-    alarm_l = alarm_list;
+    alarm_l = g_par.alarm_list;
     for (alarm_l = g_list_first(alarm_l);
          alarm_l != NULL && (alarm_cnt < tooltip_alarm_limit);
          alarm_l = g_list_next(alarm_l)) {
@@ -334,13 +334,13 @@ build_tray_tooltip()
         g_string_append_printf(tooltip, _("\nNo active alarms found"));
 
     /* would this check save CPU or not??
-    cur_tooltip = gtk_tooltips_data_get(trayIcon->tray);
+    cur_tooltip = gtk_tooltips_data_get(g_par.trayIcon->tray);
     if (cur_tooltip == NULL) 
     || (strcmp(tooltip->str, cur_tooltip->tip_text) != 0) {
-        xfce_tray_icon_set_tooltip(trayIcon, tooltip->str, NULL);
+        xfce_tray_icon_set_tooltip(g_par.trayIcon, tooltip->str, NULL);
     }
     */
-    xfce_tray_icon_set_tooltip(trayIcon, tooltip->str, NULL);
+    xfce_tray_icon_set_tooltip(g_par.trayIcon, tooltip->str, NULL);
     g_string_free(tooltip, TRUE);
 }
 
@@ -371,24 +371,24 @@ orage_alarm_clock(gpointer user_data)
         && selected_day == previous_day) {
             /* previous day was indeed selected, 
                keep it current automatically */
-            xfcalendar_select_date(GTK_CALENDAR(xfcal->mCalendar)
+            orage_select_date(GTK_CALENDAR(xfcal->mCalendar)
                     , current_year, current_month, current_day);
         }
         previous_year  = current_year;
         previous_month = current_month;
         previous_day   = current_day;
         xfical_alarm_build_list(TRUE);  /* new alarm list when date changed */
-        if (NETK_IS_TRAY_ICON(trayIcon->tray)) { 
+        if (NETK_IS_TRAY_ICON(g_par.trayIcon->tray)) { 
             /* refresh date in tray icon */
-            xfce_tray_icon_disconnect(trayIcon);
-            destroy_TrayIcon(trayIcon);
-            trayIcon = create_TrayIcon(xfcal);
-            xfce_tray_icon_connect(trayIcon);
+            xfce_tray_icon_disconnect(g_par.trayIcon);
+            destroy_TrayIcon(g_par.trayIcon);
+            g_par.trayIcon = create_TrayIcon(xfcal);
+            xfce_tray_icon_connect(g_par.trayIcon);
         }
     }
 
   /* Check if there are any alarms to show */
-    alarm_l = alarm_list;
+    alarm_l = g_par.alarm_list;
     for (alarm_l = g_list_first(alarm_l);
          alarm_l != NULL && more_alarms;
          alarm_l = g_list_next(alarm_l)) {
@@ -403,7 +403,7 @@ orage_alarm_clock(gpointer user_data)
     if (alarm_raised) /* at least one alarm processed, need new list */
         xfical_alarm_build_list(FALSE); 
 
-    if (NETK_IS_TRAY_ICON(trayIcon->tray)) { 
+    if (NETK_IS_TRAY_ICON(g_par.trayIcon->tray)) { 
         build_tray_tooltip();
     }
     return TRUE;

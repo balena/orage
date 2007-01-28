@@ -1,22 +1,24 @@
-/* appointment.c
+/*      Orage - Calendar and alarm handler
  *
- * Copyright (C) 2004-2005 Mickaël Graf <korbinus at xfce.org>
- * Copyright (C) 2005 Juha Kautto <juha at xfce.org>
+ * Copyright (c) 2005-2007 Juha Kautto  (juha at xfce.org)
+ * Copyright (c) 2004-2005 Mickael Graf (korbinus at xfce.org)
  *
- *  This program is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2, or (at your option)
+ * any later version.
  *
- *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
- *  along with this program; if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
- *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the 
+       Free Software Foundation
+       51 Franklin Street, 5th Floor
+       Boston, MA 02110-1301 USA
+
  */
 
 #ifdef HAVE_CONFIG_H
@@ -44,24 +46,21 @@
 #include <libxfce4util/libxfce4util.h>
 #include <libxfcegui4/netk-trayicon.h>
 #include <libxfcegui4/libxfcegui4.h>
-#include <libxfce4mcs/mcs-client.h>
 
 #include "mainbox.h"
+#include "functions.h"
 #include "event-list.h"
 #include "appointment.h"
+#include "parameters.h"
 #include "ical-code.h"
-#include "functions.h"
 
 #define AVAILABILITY_ARRAY_DIM 2
 #define RECUR_ARRAY_DIM 5
-#define ALARM_ARRAY_DIM 11
+#define BORDER_SIZE 20
 #define FILETYPE_SIZE 38
 
-extern char *local_icaltimezone_location;
-extern gboolean local_icaltimezone_utc;
 
-void
-fill_appt_window(appt_win *apptw, char *action, char *par);
+static void fill_appt_window(appt_win *apptw, char *action, char *par);
 
 enum {
     LOCATION,
@@ -69,8 +68,7 @@ enum {
     N_COLUMNS
 };
 
-gboolean 
-ical_to_year_month_day_hour_minute(char *ical
+static gboolean ical_to_year_month_day_hour_minute(char *ical
     , int *year, int *month, int *day, int *hour, int *minute)
 {
     int i;
@@ -92,8 +90,7 @@ ical_to_year_month_day_hour_minute(char *ical
     return TRUE;
 }
 
-struct tm
-display_to_year_month_day(const char *display)
+static struct tm display_to_year_month_day(const char *display)
 {
     const char *date_format;
     char *ret;
@@ -109,8 +106,7 @@ display_to_year_month_day(const char *display)
     return(d);
 }
 
-char * 
-year_month_day_to_display(int year, int month, int day)
+static char *year_month_day_to_display(int year, int month, int day)
 {
     const char *date_format;
     static char result[32];
@@ -129,245 +125,409 @@ year_month_day_to_display(int year, int month, int day)
     }
 }
 
-void
-mark_appointment_changed(appt_win *apptw)
+static void combo_box_append_array(GtkWidget *combo_box, char *text[], int size)
+{
+    register int i;
+
+    for (i = 0; i < size; i++) {
+        gtk_combo_box_append_text(GTK_COMBO_BOX(combo_box)
+                , (const gchar *)text[i]);
+    }
+}
+
+static GtkWidget *datetime_hbox_new(GtkWidget *date_button
+        , GtkWidget *time_spin_hh, GtkWidget *time_spin_mm
+        , GtkWidget *timezone_button)
+{
+
+    GtkWidget *hbox, *space_label;
+
+    hbox = gtk_hbox_new(FALSE, 0);
+    gtk_box_pack_start(GTK_BOX(hbox), date_button, FALSE, FALSE, 0);
+
+    space_label = gtk_label_new("  ");
+    gtk_box_pack_start(GTK_BOX(hbox), space_label, FALSE, FALSE, 0);
+
+    space_label = gtk_label_new("  ");
+    gtk_box_pack_start(GTK_BOX(hbox), space_label, FALSE, FALSE, 0);
+    gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(time_spin_hh), TRUE);
+    gtk_widget_set_size_request(time_spin_hh, 40, -1);
+    gtk_box_pack_start(GTK_BOX(hbox), time_spin_hh, FALSE, FALSE, 0);
+
+    space_label = gtk_label_new(":");
+    gtk_box_pack_start(GTK_BOX(hbox), space_label, FALSE, FALSE, 0);
+    gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(time_spin_mm), TRUE);
+    gtk_widget_set_size_request(time_spin_mm, 40, -1);
+    gtk_box_pack_start(GTK_BOX(hbox), time_spin_mm, FALSE, FALSE, 0);
+
+    space_label = gtk_label_new("  ");
+    gtk_box_pack_start(GTK_BOX(hbox), space_label, FALSE, FALSE, 0);
+
+    gtk_box_pack_start(GTK_BOX(hbox), timezone_button, TRUE, TRUE, 0);
+
+    return hbox;
+}
+
+static void mark_appointment_changed(appt_win *apptw)
 {
     if (!apptw->appointment_changed) {
         apptw->appointment_changed = TRUE;
-        gtk_widget_set_sensitive(apptw->appRevert, TRUE);
-        gtk_widget_set_sensitive(apptw->appFileRevert_menuitem, TRUE);
+        gtk_widget_set_sensitive(apptw->Revert, TRUE);
+        gtk_widget_set_sensitive(apptw->File_menu_revert, TRUE);
     }
 }
 
-void
-mark_appointment_unchanged(appt_win *apptw)
+static void mark_appointment_unchanged(appt_win *apptw)
 {
     if (apptw->appointment_changed) {
         apptw->appointment_changed = FALSE;
-        gtk_widget_set_sensitive(apptw->appRevert, FALSE);
-        gtk_widget_set_sensitive(apptw->appFileRevert_menuitem, FALSE);
+        gtk_widget_set_sensitive(apptw->Revert, FALSE);
+        gtk_widget_set_sensitive(apptw->File_menu_revert, FALSE);
     }
 }
 
-void
-set_time_sensitivity(appt_win *apptw)
+static void set_time_sensitivity(appt_win *apptw)
 {
-    gboolean dur_act;
-    gboolean allDay_act;
+    gboolean dur_act, allDay_act, completed_act;
 
     dur_act = gtk_toggle_button_get_active(
-                GTK_TOGGLE_BUTTON(apptw->appDur_checkbutton));
+	    GTK_TOGGLE_BUTTON(apptw->Dur_checkbutton));
     allDay_act = gtk_toggle_button_get_active(
-                GTK_TOGGLE_BUTTON(apptw->appAllDay_checkbutton));
+	    GTK_TOGGLE_BUTTON(apptw->AllDay_checkbutton));
+    completed_act = gtk_toggle_button_get_active(
+            GTK_TOGGLE_BUTTON(apptw->Completed_checkbutton));
 
     if (allDay_act) {
-        gtk_widget_set_sensitive(apptw->appStartTime_spin_hh, FALSE);
-        gtk_widget_set_sensitive(apptw->appStartTime_spin_mm, FALSE);
-        gtk_widget_set_sensitive(apptw->appStartTimezone_button, FALSE);
-        gtk_widget_set_sensitive(apptw->appEndTime_spin_hh, FALSE);
-        gtk_widget_set_sensitive(apptw->appEndTime_spin_mm, FALSE);
-        gtk_widget_set_sensitive(apptw->appEndTimezone_button, FALSE);
-        gtk_widget_set_sensitive(apptw->appDur_spin_hh, FALSE);
-        gtk_widget_set_sensitive(apptw->appDur_spin_hh_label, FALSE);
-        gtk_widget_set_sensitive(apptw->appDur_spin_mm, FALSE);
-        gtk_widget_set_sensitive(apptw->appDur_spin_mm_label, FALSE);
+        gtk_widget_set_sensitive(apptw->StartTime_spin_hh, FALSE);
+        gtk_widget_set_sensitive(apptw->StartTime_spin_mm, FALSE);
+        gtk_widget_set_sensitive(apptw->StartTimezone_button, FALSE);
+        gtk_widget_set_sensitive(apptw->EndTime_spin_hh, FALSE);
+        gtk_widget_set_sensitive(apptw->EndTime_spin_mm, FALSE);
+        gtk_widget_set_sensitive(apptw->EndTimezone_button, FALSE);
+        gtk_widget_set_sensitive(apptw->Dur_spin_hh, FALSE);
+        gtk_widget_set_sensitive(apptw->Dur_spin_hh_label, FALSE);
+        gtk_widget_set_sensitive(apptw->Dur_spin_mm, FALSE);
+        gtk_widget_set_sensitive(apptw->Dur_spin_mm_label, FALSE);
+	gtk_widget_set_sensitive(apptw->CompletedTime_spin_hh, FALSE);
+	gtk_widget_set_sensitive(apptw->CompletedTime_spin_mm, FALSE);
+	gtk_widget_set_sensitive(apptw->CompletedTimezone_button, FALSE);
         if (dur_act) {
-            gtk_widget_set_sensitive(apptw->appEndDate_button, FALSE);
-            gtk_widget_set_sensitive(apptw->appDur_spin_dd, TRUE);
-            gtk_widget_set_sensitive(apptw->appDur_spin_dd_label, TRUE);
+            gtk_widget_set_sensitive(apptw->EndDate_button, FALSE);
+            gtk_widget_set_sensitive(apptw->Dur_spin_dd, TRUE);
+            gtk_widget_set_sensitive(apptw->Dur_spin_dd_label, TRUE);
         }
         else {
-            gtk_widget_set_sensitive(apptw->appEndDate_button, TRUE);
-            gtk_widget_set_sensitive(apptw->appDur_spin_dd, FALSE);
-            gtk_widget_set_sensitive(apptw->appDur_spin_dd_label, FALSE);
+            gtk_widget_set_sensitive(apptw->EndDate_button, TRUE);
+            gtk_widget_set_sensitive(apptw->Dur_spin_dd, FALSE);
+            gtk_widget_set_sensitive(apptw->Dur_spin_dd_label, FALSE);
         }
+	if (completed_act) {
+	    gtk_widget_set_sensitive(apptw->CompletedDate_button, TRUE);
+	}
+	else {
+	    gtk_widget_set_sensitive(apptw->CompletedDate_button, FALSE);
+	}
     }
     else {
-        gtk_widget_set_sensitive(apptw->appStartTime_spin_hh, TRUE);
-        gtk_widget_set_sensitive(apptw->appStartTime_spin_mm, TRUE);
-        gtk_widget_set_sensitive(apptw->appStartTimezone_button, TRUE);
+        gtk_widget_set_sensitive(apptw->StartTime_spin_hh, TRUE);
+        gtk_widget_set_sensitive(apptw->StartTime_spin_mm, TRUE);
+        gtk_widget_set_sensitive(apptw->StartTimezone_button, TRUE);
         if (dur_act) {
-            gtk_widget_set_sensitive(apptw->appEndDate_button, FALSE);
-            gtk_widget_set_sensitive(apptw->appEndTime_spin_hh, FALSE);
-            gtk_widget_set_sensitive(apptw->appEndTime_spin_mm, FALSE);
-            gtk_widget_set_sensitive(apptw->appEndTimezone_button, FALSE);
-            gtk_widget_set_sensitive(apptw->appDur_spin_dd, TRUE);
-            gtk_widget_set_sensitive(apptw->appDur_spin_dd_label, TRUE);
-            gtk_widget_set_sensitive(apptw->appDur_spin_hh, TRUE);
-            gtk_widget_set_sensitive(apptw->appDur_spin_hh_label, TRUE);
-            gtk_widget_set_sensitive(apptw->appDur_spin_mm, TRUE);
-            gtk_widget_set_sensitive(apptw->appDur_spin_mm_label, TRUE);
+            gtk_widget_set_sensitive(apptw->EndDate_button, FALSE);
+            gtk_widget_set_sensitive(apptw->EndTime_spin_hh, FALSE);
+            gtk_widget_set_sensitive(apptw->EndTime_spin_mm, FALSE);
+            gtk_widget_set_sensitive(apptw->EndTimezone_button, FALSE);
+            gtk_widget_set_sensitive(apptw->Dur_spin_dd, TRUE);
+            gtk_widget_set_sensitive(apptw->Dur_spin_dd_label, TRUE);
+            gtk_widget_set_sensitive(apptw->Dur_spin_hh, TRUE);
+            gtk_widget_set_sensitive(apptw->Dur_spin_hh_label, TRUE);
+            gtk_widget_set_sensitive(apptw->Dur_spin_mm, TRUE);
+            gtk_widget_set_sensitive(apptw->Dur_spin_mm_label, TRUE);
         }
         else {
-            gtk_widget_set_sensitive(apptw->appEndDate_button, TRUE);
-            gtk_widget_set_sensitive(apptw->appEndTime_spin_hh, TRUE);
-            gtk_widget_set_sensitive(apptw->appEndTime_spin_mm, TRUE);
-            gtk_widget_set_sensitive(apptw->appEndTimezone_button, TRUE);
-            gtk_widget_set_sensitive(apptw->appDur_spin_dd, FALSE);
-            gtk_widget_set_sensitive(apptw->appDur_spin_dd_label, FALSE);
-            gtk_widget_set_sensitive(apptw->appDur_spin_hh, FALSE);
-            gtk_widget_set_sensitive(apptw->appDur_spin_hh_label, FALSE);
-            gtk_widget_set_sensitive(apptw->appDur_spin_mm, FALSE);
-            gtk_widget_set_sensitive(apptw->appDur_spin_mm_label, FALSE);
+            gtk_widget_set_sensitive(apptw->EndDate_button, TRUE);
+            gtk_widget_set_sensitive(apptw->EndTime_spin_hh, TRUE);
+            gtk_widget_set_sensitive(apptw->EndTime_spin_mm, TRUE);
+            gtk_widget_set_sensitive(apptw->EndTimezone_button, TRUE);
+            gtk_widget_set_sensitive(apptw->Dur_spin_dd, FALSE);
+            gtk_widget_set_sensitive(apptw->Dur_spin_dd_label, FALSE);
+            gtk_widget_set_sensitive(apptw->Dur_spin_hh, FALSE);
+            gtk_widget_set_sensitive(apptw->Dur_spin_hh_label, FALSE);
+            gtk_widget_set_sensitive(apptw->Dur_spin_mm, FALSE);
+            gtk_widget_set_sensitive(apptw->Dur_spin_mm_label, FALSE);
         }
+	if (completed_act) {
+	    gtk_widget_set_sensitive(apptw->CompletedDate_button, TRUE);
+	    gtk_widget_set_sensitive(apptw->CompletedTime_spin_hh, TRUE);
+	    gtk_widget_set_sensitive(apptw->CompletedTime_spin_mm, TRUE);
+	    gtk_widget_set_sensitive(apptw->CompletedTimezone_button, TRUE);
+	}
+	else {
+	    gtk_widget_set_sensitive(apptw->CompletedDate_button, FALSE);
+	    gtk_widget_set_sensitive(apptw->CompletedTime_spin_hh, FALSE);
+	    gtk_widget_set_sensitive(apptw->CompletedTime_spin_mm, FALSE);
+	    gtk_widget_set_sensitive(apptw->CompletedTimezone_button, FALSE);
+	}
     }
 }
 
-void
-set_repeat_sensitivity(appt_win *apptw)
+static void set_repeat_sensitivity(appt_win *apptw)
 {
     gint freq, i;
     
-    freq = gtk_combo_box_get_active((GtkComboBox *)apptw->appRecur_freq_cb);
+    freq = gtk_combo_box_get_active((GtkComboBox *)apptw->Recur_freq_cb);
     if (freq == XFICAL_FREQ_NONE) {
-        gtk_widget_set_sensitive(apptw->appRecur_limit_rb, FALSE);
-        gtk_widget_set_sensitive(apptw->appRecur_count_rb, FALSE);
-        gtk_widget_set_sensitive(apptw->appRecur_count_spin, FALSE);
-        gtk_widget_set_sensitive(apptw->appRecur_count_label, FALSE);
-        gtk_widget_set_sensitive(apptw->appRecur_until_rb, FALSE);
-        gtk_widget_set_sensitive(apptw->appRecur_until_button, FALSE);
+        gtk_widget_set_sensitive(apptw->Recur_limit_rb, FALSE);
+        gtk_widget_set_sensitive(apptw->Recur_count_rb, FALSE);
+        gtk_widget_set_sensitive(apptw->Recur_count_spin, FALSE);
+        gtk_widget_set_sensitive(apptw->Recur_count_label, FALSE);
+        gtk_widget_set_sensitive(apptw->Recur_until_rb, FALSE);
+        gtk_widget_set_sensitive(apptw->Recur_until_button, FALSE);
         for (i=0; i <= 6; i++) {
-            gtk_widget_set_sensitive(apptw->appRecur_byday_cb[i], FALSE);
-            gtk_widget_set_sensitive(apptw->appRecur_byday_spin[i], FALSE);
+            gtk_widget_set_sensitive(apptw->Recur_byday_cb[i], FALSE);
+            gtk_widget_set_sensitive(apptw->Recur_byday_spin[i], FALSE);
         }
-        gtk_widget_set_sensitive(apptw->appRecur_int_spin, FALSE);
-        gtk_widget_set_sensitive(apptw->appRecur_int_spin_label1, FALSE);
-        gtk_widget_set_sensitive(apptw->appRecur_int_spin_label2, FALSE);
+        gtk_widget_set_sensitive(apptw->Recur_int_spin, FALSE);
+        gtk_widget_set_sensitive(apptw->Recur_int_spin_label1, FALSE);
+        gtk_widget_set_sensitive(apptw->Recur_int_spin_label2, FALSE);
     }
     else {
-        gtk_widget_set_sensitive(apptw->appRecur_limit_rb, TRUE);
-        gtk_widget_set_sensitive(apptw->appRecur_count_rb, TRUE);
+        gtk_widget_set_sensitive(apptw->Recur_limit_rb, TRUE);
+        gtk_widget_set_sensitive(apptw->Recur_count_rb, TRUE);
         if (gtk_toggle_button_get_active(
-                GTK_TOGGLE_BUTTON(apptw->appRecur_count_rb))) {
-            gtk_widget_set_sensitive(apptw->appRecur_count_spin, TRUE);
-            gtk_widget_set_sensitive(apptw->appRecur_count_label, TRUE);
+                GTK_TOGGLE_BUTTON(apptw->Recur_count_rb))) {
+            gtk_widget_set_sensitive(apptw->Recur_count_spin, TRUE);
+            gtk_widget_set_sensitive(apptw->Recur_count_label, TRUE);
         }
         else {
-            gtk_widget_set_sensitive(apptw->appRecur_count_spin, FALSE);
-            gtk_widget_set_sensitive(apptw->appRecur_count_label, FALSE);
+            gtk_widget_set_sensitive(apptw->Recur_count_spin, FALSE);
+            gtk_widget_set_sensitive(apptw->Recur_count_label, FALSE);
         }
-        gtk_widget_set_sensitive(apptw->appRecur_until_rb, TRUE);
+        gtk_widget_set_sensitive(apptw->Recur_until_rb, TRUE);
         if (gtk_toggle_button_get_active(
-                GTK_TOGGLE_BUTTON(apptw->appRecur_until_rb))) {
-            gtk_widget_set_sensitive(apptw->appRecur_until_button, TRUE);
+                GTK_TOGGLE_BUTTON(apptw->Recur_until_rb))) {
+            gtk_widget_set_sensitive(apptw->Recur_until_button, TRUE);
         }
         else {
-            gtk_widget_set_sensitive(apptw->appRecur_until_button, FALSE);
+            gtk_widget_set_sensitive(apptw->Recur_until_button, FALSE);
         }
         for (i=0; i <= 6; i++) {
-            gtk_widget_set_sensitive(apptw->appRecur_byday_cb[i], TRUE);
+            gtk_widget_set_sensitive(apptw->Recur_byday_cb[i], TRUE);
         }
         if (freq == XFICAL_FREQ_MONTHLY || freq == XFICAL_FREQ_YEARLY) {
             for (i=0; i <= 6; i++) {
-                gtk_widget_set_sensitive(apptw->appRecur_byday_spin[i], TRUE);
+                gtk_widget_set_sensitive(apptw->Recur_byday_spin[i], TRUE);
             }
         }
         else {
             for (i=0; i <= 6; i++) {
-                gtk_widget_set_sensitive(apptw->appRecur_byday_spin[i], FALSE);
+                gtk_widget_set_sensitive(apptw->Recur_byday_spin[i], FALSE);
             }
         }
-        gtk_widget_set_sensitive(apptw->appRecur_int_spin, TRUE);
-        gtk_widget_set_sensitive(apptw->appRecur_int_spin_label1, TRUE);
-        gtk_widget_set_sensitive(apptw->appRecur_int_spin_label2, TRUE);
+        gtk_widget_set_sensitive(apptw->Recur_int_spin, TRUE);
+        gtk_widget_set_sensitive(apptw->Recur_int_spin_label1, TRUE);
+        gtk_widget_set_sensitive(apptw->Recur_int_spin_label2, TRUE);
     }
 }
 
-void
-on_appTitle_entry_changed_cb(GtkEditable *entry, gpointer user_data)
+static void recur_hide_show(appt_win *apptw)
+{
+    if (gtk_toggle_button_get_active(
+            GTK_TOGGLE_BUTTON(apptw->Recur_feature_normal_rb))) {
+        gtk_widget_hide(apptw->Recur_int_label);
+        gtk_widget_hide(apptw->Recur_int_hbox);
+        gtk_widget_hide(apptw->Recur_byday_label);
+        gtk_widget_hide(apptw->Recur_byday_hbox);
+        gtk_widget_hide(apptw->Recur_byday_spin_label);
+        gtk_widget_hide(apptw->Recur_byday_spin_hbox);
+    }
+    else {
+        gtk_widget_show(apptw->Recur_int_label);
+        gtk_widget_show(apptw->Recur_int_hbox);
+        gtk_widget_show(apptw->Recur_byday_label);
+        gtk_widget_show(apptw->Recur_byday_hbox);
+        gtk_widget_show(apptw->Recur_byday_spin_label);
+        gtk_widget_show(apptw->Recur_byday_spin_hbox);
+    }
+}
+
+static void type_hide_show(appt_win *apptw)
+{
+    if (gtk_toggle_button_get_active(
+            GTK_TOGGLE_BUTTON(apptw->Type_event_rb))) {
+        gtk_label_set_text(GTK_LABEL(apptw->End_label), _("End"));
+        gtk_widget_show(apptw->Availability_label);
+        gtk_widget_show(apptw->Availability_cb);
+        gtk_widget_hide(apptw->Completed_label);
+        gtk_widget_hide(apptw->Completed_hbox);
+        gtk_widget_set_sensitive(apptw->Alarm_notebook_page, TRUE);
+        gtk_widget_set_sensitive(apptw->Alarm_tab_label, TRUE);
+        gtk_widget_set_sensitive(apptw->Location_label, TRUE);
+        gtk_widget_set_sensitive(apptw->Location_entry, TRUE);
+    }
+    else if (gtk_toggle_button_get_active(
+            GTK_TOGGLE_BUTTON(apptw->Type_todo_rb))) {
+        gtk_label_set_text(GTK_LABEL(apptw->End_label), _("Due"));
+        gtk_widget_hide(apptw->Availability_label);
+        gtk_widget_hide(apptw->Availability_cb);
+        gtk_widget_show(apptw->Completed_label);
+        gtk_widget_show(apptw->Completed_hbox);
+        gtk_widget_set_sensitive(apptw->Alarm_notebook_page, TRUE);
+        gtk_widget_set_sensitive(apptw->Alarm_tab_label, TRUE);
+        gtk_widget_set_sensitive(apptw->Location_label, TRUE);
+        gtk_widget_set_sensitive(apptw->Location_entry, TRUE);
+    }
+    else {
+     /* gtk_toggle_button_get_active(
+            GTK_TOGGLE_BUTTON(apptw->Type_journal_rb)) */
+        gtk_label_set_text(GTK_LABEL(apptw->End_label), _("End"));
+        gtk_widget_hide(apptw->Availability_label);
+        gtk_widget_hide(apptw->Availability_cb);
+        gtk_widget_hide(apptw->Completed_label);
+        gtk_widget_hide(apptw->Completed_hbox);
+        gtk_widget_set_sensitive(apptw->Alarm_notebook_page, FALSE);
+        gtk_widget_set_sensitive(apptw->Alarm_tab_label, FALSE);
+        gtk_widget_set_sensitive(apptw->Location_label, FALSE);
+        gtk_widget_set_sensitive(apptw->Location_entry, FALSE);
+    }
+}
+
+static void app_event_checkbutton_clicked_cb(GtkCheckButton *cb
+        , gpointer user_data)
+{
+    type_hide_show((appt_win *)user_data);
+    mark_appointment_changed((appt_win *)user_data);
+}
+
+static void app_todo_checkbutton_clicked_cb(GtkCheckButton *cb
+        , gpointer user_data)
+{
+    type_hide_show((appt_win *)user_data);
+    mark_appointment_changed((appt_win *)user_data);
+}
+
+static void app_journal_checkbutton_clicked_cb(GtkCheckButton *cb
+        , gpointer user_data)
+{
+    type_hide_show((appt_win *)user_data);
+    mark_appointment_changed((appt_win *)user_data);
+}
+
+static void on_appTitle_entry_changed_cb(GtkEditable *entry
+        , gpointer user_data)
 {
     gchar *title, *application_name;
     const gchar *appointment_name;
     appt_win *apptw = (appt_win *)user_data;
 
-    appointment_name = gtk_entry_get_text((GtkEntry *)apptw->appTitle_entry);
+    appointment_name = gtk_entry_get_text((GtkEntry *)apptw->Title_entry);
     application_name = _("Orage");
 
-    if(strlen((char *)appointment_name) > 0)
+    if (ORAGE_STR_EXISTS(appointment_name))
         title = g_strdup_printf("%s - %s", appointment_name, application_name);
     else
         title = g_strdup_printf("%s", application_name);
 
-    gtk_window_set_title(GTK_WINDOW(apptw->appWindow), (const gchar *)title);
+    gtk_window_set_title(GTK_WINDOW(apptw->Window), (const gchar *)title);
 
     g_free(title);
     mark_appointment_changed((appt_win *)user_data);
 }
 
-void
-appDur_checkbutton_clicked_cb(GtkCheckButton *cb, gpointer user_data)
+static void appDur_checkbutton_clicked_cb(GtkCheckButton *cb
+        , gpointer user_data)
 {
     set_time_sensitivity((appt_win *)user_data);
     mark_appointment_changed((appt_win *)user_data);
 }
 
-void
-app_recur_checkbutton_clicked_cb(GtkCheckButton *checkbutton
+static void appCompleted_checkbutton_clicked_cb(GtkCheckButton *cb
+        , gpointer user_data)
+{
+    set_time_sensitivity((appt_win *)user_data);
+    mark_appointment_changed((appt_win *)user_data);
+}
+
+static void app_recur_checkbutton_clicked_cb(GtkCheckButton *checkbutton
         , gpointer user_data)
 {
     mark_appointment_changed((appt_win *)user_data);
     set_repeat_sensitivity((appt_win *)user_data);
 }
 
-void
-app_recur_feature_checkbutton_clicked_cb(GtkCheckButton *checkbutton
+static void app_recur_feature_checkbutton_clicked_cb(GtkCheckButton *cb
         , gpointer user_data)
 {
-    appt_win *apptw=(appt_win *)user_data;
-
     mark_appointment_changed((appt_win *)user_data);
-    if (gtk_toggle_button_get_active(
-            GTK_TOGGLE_BUTTON(apptw->appRecur_feature_normal_rb))) {
-        gtk_widget_hide(apptw->appRecur_int_label);
-        gtk_widget_hide(apptw->appRecur_int_hbox);
-        gtk_widget_hide(apptw->appRecur_byday_label);
-        gtk_widget_hide(apptw->appRecur_byday_hbox);
-        gtk_widget_hide(apptw->appRecur_byday_spin_label);
-        gtk_widget_hide(apptw->appRecur_byday_spin_hbox);
+    recur_hide_show((appt_win *)user_data);
+}
+
+static void app_checkbutton_clicked_cb(GtkCheckButton *cb, gpointer user_data)
+{
+    mark_appointment_changed((appt_win *)user_data);
+}
+
+static void on_appNote_buffer_changed_cb(GtkTextBuffer *b, gpointer user_data)
+{
+    appt_win *apptw = (appt_win *)user_data;
+    GtkTextIter start, end, match_start, match_end;
+    GtkTextBuffer *tb;
+    gchar *cdate, ctime[6], *cdatetime;
+    struct tm *tm;
+
+    tb = apptw->Note_buffer;
+    gtk_text_buffer_get_bounds(tb, &start, &end);
+    if (gtk_text_iter_forward_search(&start, "<D>"
+                , GTK_TEXT_SEARCH_TEXT_ONLY
+                , &match_start, &match_end, &end)) { /* found it */
+        tm = orage_localtime();
+        cdate = year_month_day_to_display(tm->tm_year + 1900, tm->tm_mon + 1
+                , tm->tm_mday);
+        gtk_text_buffer_delete(tb, &match_start, &match_end);
+        gtk_text_buffer_insert(tb, &match_start, cdate, -1);
     }
-    else {
-        gtk_widget_show(apptw->appRecur_int_label);
-        gtk_widget_show(apptw->appRecur_int_hbox);
-        gtk_widget_show(apptw->appRecur_byday_label);
-        gtk_widget_show(apptw->appRecur_byday_hbox);
-        gtk_widget_show(apptw->appRecur_byday_spin_label);
-        gtk_widget_show(apptw->appRecur_byday_spin_hbox);
+    else if (gtk_text_iter_forward_search(&start, "<T>"
+                , GTK_TEXT_SEARCH_TEXT_ONLY
+                , &match_start, &match_end, &end)) { /* found it */
+        tm = orage_localtime();
+        g_sprintf(ctime, "%02d:%02d", tm->tm_hour, tm->tm_min);
+        gtk_text_buffer_delete(tb, &match_start, &match_end);
+        gtk_text_buffer_insert(tb, &match_start, ctime, -1);
     }
+    else if (gtk_text_iter_forward_search(&start, "<DT>"
+                , GTK_TEXT_SEARCH_TEXT_ONLY
+                , &match_start, &match_end, &end)) { /* found it */
+        tm = orage_localtime();
+        cdate = year_month_day_to_display(tm->tm_year + 1900, tm->tm_mon + 1
+                , tm->tm_mday);
+        g_sprintf(ctime, "%02d:%02d", tm->tm_hour, tm->tm_min);
+        cdatetime = g_strconcat(cdate, " ", ctime, NULL);
+        gtk_text_buffer_delete(tb, &match_start, &match_end);
+        gtk_text_buffer_insert(tb, &match_start, cdatetime, -1);
+        g_free(cdatetime);
+    }
+   
+    mark_appointment_changed((appt_win *)user_data);
 }
 
-void
-app_checkbutton_clicked_cb(GtkCheckButton *checkbutton, gpointer user_data)
+static void on_app_entry_changed_cb(GtkEditable *entry, gpointer user_data)
 {
     mark_appointment_changed((appt_win *)user_data);
 }
 
-void
-on_appNote_buffer_changed_cb(GtkTextBuffer *buffer, gpointer user_data)
-{
-    mark_appointment_changed((appt_win *)user_data);
-}
-
-void
-on_app_entry_changed_cb(GtkEditable *entry, gpointer user_data)
-{
-    mark_appointment_changed((appt_win *)user_data);
-}
-
-void
-on_app_combobox_changed_cb(GtkComboBox *cb, gpointer user_data)
+static void on_app_combobox_changed_cb(GtkComboBox *cb, gpointer user_data)
 {
     set_repeat_sensitivity((appt_win *)user_data);
     mark_appointment_changed((appt_win *)user_data);
 }
 
-void
-on_app_spin_button_changed_cb(GtkSpinButton *cb, gpointer user_data)
+static void on_app_spin_button_changed_cb(GtkSpinButton *sb
+        , gpointer user_data)
 {
     mark_appointment_changed((appt_win *)user_data);
 }
 
-void
-on_appSound_button_clicked_cb(GtkButton *button, gpointer user_data)
+static void on_appSound_button_clicked_cb(GtkButton *button, gpointer user_data)
 {
     appt_win *apptw = (appt_win *)user_data;
     GtkWidget *file_chooser;
@@ -384,9 +544,9 @@ on_appSound_button_clicked_cb(GtkButton *button, gpointer user_data)
     register int i;
 
     appSound_entry_filename = g_strdup(gtk_entry_get_text(
-            (GtkEntry *)apptw->appSound_entry));
+            (GtkEntry *)apptw->Sound_entry));
     file_chooser = gtk_file_chooser_dialog_new(_("Select a file..."),
-            GTK_WINDOW (apptw->appWindow),
+            GTK_WINDOW(apptw->Window),
             GTK_FILE_CHOOSER_ACTION_OPEN,
             GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
             GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT,
@@ -418,8 +578,8 @@ on_appSound_button_clicked_cb(GtkButton *button, gpointer user_data)
         sound_file = 
             gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(file_chooser));
         if (sound_file) {
-            gtk_entry_set_text(GTK_ENTRY(apptw->appSound_entry), sound_file);
-            gtk_editable_set_position(GTK_EDITABLE(apptw->appSound_entry), -1);
+            gtk_entry_set_text(GTK_ENTRY(apptw->Sound_entry), sound_file);
+            gtk_editable_set_position(GTK_EDITABLE(apptw->Sound_entry), -1);
         }
     }
 
@@ -427,30 +587,18 @@ on_appSound_button_clicked_cb(GtkButton *button, gpointer user_data)
     g_free(appSound_entry_filename);
 }
 
-void
-on_appAllDay_clicked_cb(GtkCheckButton *checkbutton, gpointer user_data)
+static void on_appAllDay_clicked_cb(GtkCheckButton *cb, gpointer user_data)
 {
     set_time_sensitivity((appt_win *)user_data);
     mark_appointment_changed((appt_win *)user_data);
 }
 
-void free_apptw(appt_win *apptw)
-{
-    gtk_widget_destroy(apptw->appWindow);
-    gtk_object_destroy(GTK_OBJECT(apptw->appTooltips));
-    g_free(apptw->xf_uid);
-    g_free(apptw->par);
-    xfical_appt_free(apptw->appt);
-    g_free(apptw);
-}
-
-gboolean
-appWindow_check_and_close(appt_win *apptw)
+static gboolean appWindow_check_and_close(appt_win *apptw)
 {
     gint result;
 
     if (apptw->appointment_changed == TRUE) {
-        result = xfce_message_dialog(GTK_WINDOW(apptw->appWindow),
+        result = xfce_message_dialog(GTK_WINDOW(apptw->Window),
              _("Warning"),
              GTK_STOCK_DIALOG_WARNING,
              _("The appointment information has been modified."),
@@ -459,28 +607,32 @@ appWindow_check_and_close(appt_win *apptw)
              GTK_STOCK_NO, GTK_RESPONSE_CANCEL,
              NULL);
 
-        if (result == GTK_RESPONSE_ACCEPT)
-            free_apptw(apptw);
+        if (result == GTK_RESPONSE_ACCEPT) {
+            gtk_widget_destroy(apptw->Window);
+            g_free(apptw);
+        }
     }
-    else
-        free_apptw(apptw);
+    else {
+        gtk_widget_destroy(apptw->Window);
+        gtk_object_destroy(GTK_OBJECT(apptw->Tooltips));
+        xfical_appt_free(apptw->appt);
+        g_free(apptw);
+    }
     return TRUE;
 }
 
-gboolean
-on_appWindow_delete_event_cb(GtkWidget *widget, GdkEvent *event
+static gboolean on_appWindow_delete_event_cb(GtkWidget *widget, GdkEvent *event
     , gpointer user_data)
 {
-    return appWindow_check_and_close((appt_win *) user_data);
+    return appWindow_check_and_close((appt_win *)user_data);
 }
 
-gboolean 
-orage_validate_datetime(appt_win *apptw, appt_data *appt)
+static gboolean orage_validate_datetime(appt_win *apptw, appt_data *appt)
 {
     gint result;
 
     if (xfical_compare_times(appt) > 0) {
-        result = xfce_message_dialog(GTK_WINDOW(apptw->appWindow),
+        result = xfce_message_dialog(GTK_WINDOW(apptw->Window),
                 _("Warning"),
                 GTK_STOCK_DIALOG_WARNING,
                 _("The end of this appointment is earlier than the beginning."),
@@ -497,136 +649,172 @@ orage_validate_datetime(appt_win *apptw, appt_data *appt)
 
 /*
  * fill_appt_from_apptw
- * This function fills an appointment with the content of an appointment window
+ * This function fills an appointment with the contents of an appointment 
+ * window
  */
-gboolean
-fill_appt_from_apptw(appt_data *appt, appt_win *apptw)
+static gboolean fill_appt_from_apptw(appt_data *appt, appt_win *apptw)
 {
     GtkTextIter start, end;
     const char *time_format="%H:%M";
     struct tm current_t;
-    gchar starttime[6], endtime[6];
+    gchar starttime[6], endtime[6], completedtime[6];
     gint i;
 
     /* Next line is fix for bug 2811.
-     * We need to make sure spin buttons do not have values which are not
-     * yet updated = visible.
-     * gtk_spin_button_update call would do it, but it seems to cause
-     * crash if done in on_app_spin_button_changed_cb and here we should
-     * either do it for all spin fields, which takes too many lines of code.
-     * if (GTK_WIDGET_HAS_FOCUS(apptw->StartTime_spin_hh))
-     *      gtk_spin_button_update;
-     * So we just change the focus field and then spin button value gets set.
-     * It would be nice to not to have to change the field though.
-     */
-    gtk_widget_grab_focus(apptw->appTitle_entry);
-    /*Get the title */
+ * We need to make sure spin buttons do not have values which are not
+ * yet updated = visible.
+ * gtk_spin_button_update call would do it, but it seems to cause
+ * crash if done in on_app_spin_button_changed_cb and here we should
+ * either do it for all spin fields, which takes too many lines of code.
+ * if (GTK_WIDGET_HAS_FOCUS(apptw->StartTime_spin_hh))
+ *      gtk_spin_button_update;
+ * So we just change the focus field and then spin button value gets set.
+ * It would be nice to not to have to change the field though.
+ */
+    gtk_widget_grab_focus(apptw->Title_entry);
+
+    /* type */
+    if (gtk_toggle_button_get_active(
+                GTK_TOGGLE_BUTTON(apptw->Type_event_rb)))
+        appt->type = XFICAL_TYPE_EVENT;
+    else if (gtk_toggle_button_get_active(
+                GTK_TOGGLE_BUTTON(apptw->Type_todo_rb)))
+        appt->type = XFICAL_TYPE_TODO;
+    else if (gtk_toggle_button_get_active(
+                GTK_TOGGLE_BUTTON(apptw->Type_journal_rb)))
+        appt->type = XFICAL_TYPE_JOURNAL;
+    else
+        g_warning("fill_appt_from_apptw: coding error, illegal type");
+
+    /* title */
     appt->title = g_strdup(gtk_entry_get_text(
-            (GtkEntry *)apptw->appTitle_entry));
-    /* Get the location */
+            (GtkEntry *)apptw->Title_entry));
+
+    /* location */
     appt->location = g_strdup(gtk_entry_get_text(
-            (GtkEntry *)apptw->appLocation_entry));
+            (GtkEntry *)apptw->Location_entry));
 
-    /* Get if the appointment is for the all day */
+    /* all day */
     appt->allDay = gtk_toggle_button_get_active(
-            GTK_TOGGLE_BUTTON(apptw->appAllDay_checkbutton));
+            GTK_TOGGLE_BUTTON(apptw->AllDay_checkbutton));
 
-    /* Get the start date and time and timezone */
+    /* start date and time. 
+     * Note that timezone is kept upto date all the time 
+     */
     current_t = display_to_year_month_day(gtk_button_get_label(
-            GTK_BUTTON(apptw->appStartDate_button)));
+            GTK_BUTTON(apptw->StartDate_button)));
     g_sprintf(starttime, "%02d:%02d"
             , gtk_spin_button_get_value_as_int(
-                    GTK_SPIN_BUTTON(apptw->appStartTime_spin_hh))
+                    GTK_SPIN_BUTTON(apptw->StartTime_spin_hh))
             , gtk_spin_button_get_value_as_int(
-                    GTK_SPIN_BUTTON(apptw->appStartTime_spin_mm)));
+                    GTK_SPIN_BUTTON(apptw->StartTime_spin_mm)));
     strptime(starttime, time_format, &current_t);
     g_sprintf(appt->starttime, XFICAL_APPT_TIME_FORMAT
             , current_t.tm_year + 1900, current_t.tm_mon + 1, current_t.tm_mday
             , current_t.tm_hour, current_t.tm_min, 0);
 
-    /* Get the end date and time and timezone */
+    /* end date and time. 
+     * Note that timezone is kept upto date all the time 
+     */ 
     current_t = display_to_year_month_day(gtk_button_get_label(
-            GTK_BUTTON(apptw->appEndDate_button)));
+            GTK_BUTTON(apptw->EndDate_button)));
     g_sprintf(endtime, "%02d:%02d"
             , gtk_spin_button_get_value_as_int(
-                    GTK_SPIN_BUTTON(apptw->appEndTime_spin_hh))
+                    GTK_SPIN_BUTTON(apptw->EndTime_spin_hh))
             , gtk_spin_button_get_value_as_int(
-                    GTK_SPIN_BUTTON(apptw->appEndTime_spin_mm)));
+                    GTK_SPIN_BUTTON(apptw->EndTime_spin_mm)));
     strptime(endtime, time_format, &current_t);
     g_sprintf(appt->endtime, XFICAL_APPT_TIME_FORMAT
             , current_t.tm_year + 1900, current_t.tm_mon + 1, current_t.tm_mday
             , current_t.tm_hour, current_t.tm_min, 0);
 
-    /* Get the duration */
+    /* duration */
     appt->use_duration = gtk_toggle_button_get_active(
-            GTK_TOGGLE_BUTTON(apptw->appDur_checkbutton));
+            GTK_TOGGLE_BUTTON(apptw->Dur_checkbutton));
     appt->duration = gtk_spin_button_get_value_as_int(
-            GTK_SPIN_BUTTON(apptw->appDur_spin_dd)) * 24*60*60
+            GTK_SPIN_BUTTON(apptw->Dur_spin_dd)) * 24*60*60
                     + gtk_spin_button_get_value_as_int(
-            GTK_SPIN_BUTTON(apptw->appDur_spin_hh)) *    60*60
+            GTK_SPIN_BUTTON(apptw->Dur_spin_hh)) *    60*60
                     + gtk_spin_button_get_value_as_int(
-            GTK_SPIN_BUTTON(apptw->appDur_spin_mm)) *       60
-                    ;
+            GTK_SPIN_BUTTON(apptw->Dur_spin_mm)) *       60;
 
     if(!orage_validate_datetime(apptw, appt))
         return(FALSE);
 
-    /* Get the availability */
-    appt->availability = gtk_combo_box_get_active(
-            (GtkComboBox *)apptw->appAvailability_cb);
+    /* completed date and time. 
+     * Note that timezone is kept upto date all the time 
+     */ 
+    appt->completed = gtk_toggle_button_get_active(
+            GTK_TOGGLE_BUTTON(apptw->Completed_checkbutton));
+    current_t = display_to_year_month_day(gtk_button_get_label(
+            GTK_BUTTON(apptw->CompletedDate_button)));
+    g_sprintf(completedtime, "%02d:%02d"
+            , gtk_spin_button_get_value_as_int(
+                    GTK_SPIN_BUTTON(apptw->CompletedTime_spin_hh))
+            , gtk_spin_button_get_value_as_int(
+                    GTK_SPIN_BUTTON(apptw->CompletedTime_spin_mm)));
+    strptime(completedtime, time_format, &current_t);
+    g_sprintf(appt->completedtime, XFICAL_APPT_TIME_FORMAT
+            , current_t.tm_year + 1900, current_t.tm_mon + 1, current_t.tm_mday
+            , current_t.tm_hour, current_t.tm_min, 0);
 
-    /* Get the notes */
-    gtk_text_buffer_get_bounds(
-            gtk_text_view_get_buffer((GtkTextView *)apptw->appNote_textview)
-            , &start, &end);
+    /* availability */
+    appt->availability = gtk_combo_box_get_active(
+            (GtkComboBox *)apptw->Availability_cb);
+
+    /* notes */
+    gtk_text_buffer_get_bounds(apptw->Note_buffer, &start, &end);
+            /*
+            gtk_text_view_get_buffer((GtkTextView *)apptw->Note_textview)
+            */
     appt->note = gtk_text_iter_get_text(&start, &end);
 
-    /* Get when the reminder will show up */
+    /* reminder time */
     appt->alarmtime = gtk_spin_button_get_value_as_int(
-            GTK_SPIN_BUTTON(apptw->appAlarm_spin_dd)) * 24*60*60
+            GTK_SPIN_BUTTON(apptw->Alarm_spin_dd)) * 24*60*60
                     + gtk_spin_button_get_value_as_int(
-            GTK_SPIN_BUTTON(apptw->appAlarm_spin_hh)) *    60*60
+            GTK_SPIN_BUTTON(apptw->Alarm_spin_hh)) *    60*60
                     + gtk_spin_button_get_value_as_int(
-            GTK_SPIN_BUTTON(apptw->appAlarm_spin_mm)) *       60
+            GTK_SPIN_BUTTON(apptw->Alarm_spin_mm)) *       60
                     ;
 
     /* Which sound file will be played */
     appt->sound = g_strdup(gtk_entry_get_text(
-                (GtkEntry *)apptw->appSound_entry));
+                (GtkEntry *)apptw->Sound_entry));
 
-    /* Get if the alarm will repeat until someone shuts it off */
+    /* the alarm will repeat until someone shuts it off */
     appt->alarmrepeat = gtk_toggle_button_get_active(
-            GTK_TOGGLE_BUTTON(apptw->appSoundRepeat_checkbutton));
+            GTK_TOGGLE_BUTTON(apptw->SoundRepeat_checkbutton));
 
-    /* Get the recurrence */
+    /* recurrence */
     appt->freq = gtk_combo_box_get_active(
-            (GtkComboBox *)apptw->appRecur_freq_cb);
+            (GtkComboBox *)apptw->Recur_freq_cb);
 
-    /* Get the recurrence interval */
+    /* recurrence interval */
     appt->interval = gtk_spin_button_get_value_as_int(
-            GTK_SPIN_BUTTON(apptw->appRecur_int_spin));
+            GTK_SPIN_BUTTON(apptw->Recur_int_spin));
 
-    /* Get the recurrence ending */
+    /* recurrence ending */
     if (gtk_toggle_button_get_active(
-                GTK_TOGGLE_BUTTON(apptw->appRecur_limit_rb))) {
+                GTK_TOGGLE_BUTTON(apptw->Recur_limit_rb))) {
         appt->recur_limit = 0;    /* no limit */
         appt->recur_count = 0;    /* special: means no repeat count limit */
         appt->recur_until[0] = 0; /* special: means no until time limit */
     }
     else if (gtk_toggle_button_get_active(
-                GTK_TOGGLE_BUTTON(apptw->appRecur_count_rb))) {
+                GTK_TOGGLE_BUTTON(apptw->Recur_count_rb))) {
         appt->recur_limit = 1;    /* count limit */
         appt->recur_count = gtk_spin_button_get_value_as_int(
-                GTK_SPIN_BUTTON(apptw->appRecur_count_spin));
+                GTK_SPIN_BUTTON(apptw->Recur_count_spin));
         appt->recur_until[0] = 0; /* special: means no until time limit */
     }
     else if (gtk_toggle_button_get_active(
-                GTK_TOGGLE_BUTTON(apptw->appRecur_until_rb))) {
+                GTK_TOGGLE_BUTTON(apptw->Recur_until_rb))) {
         appt->recur_limit = 2;    /* until limit */
         appt->recur_count = 0;    /* special: means no repeat count limit */
 
         current_t = display_to_year_month_day(gtk_button_get_label(
-                GTK_BUTTON(apptw->appRecur_until_button)));
+                GTK_BUTTON(apptw->Recur_until_button)));
         g_sprintf(appt->recur_until, XFICAL_APPT_TIME_FORMAT
                 , current_t.tm_year + 1900, current_t.tm_mon + 1
                 , current_t.tm_mday, 0, 0, 0);
@@ -634,26 +822,25 @@ fill_appt_from_apptw(appt_data *appt, appt_win *apptw)
     else
         g_warning("fill_appt_from_apptw: coding error, illegal recurrence");
 
-    /* Get the recurrence weekdays */
+    /* recurrence weekdays */
     for (i=0; i <= 6; i++) {
         appt->recur_byday[i] = gtk_toggle_button_get_active(
-                GTK_TOGGLE_BUTTON(apptw->appRecur_byday_cb[i]));
-    /* Get the recurrence weekday selection for month/yearly case */
+                GTK_TOGGLE_BUTTON(apptw->Recur_byday_cb[i]));
+    /* recurrence weekday selection for month/yearly case */
         appt->recur_byday_cnt[i] = gtk_spin_button_get_value_as_int(
-                GTK_SPIN_BUTTON(apptw->appRecur_byday_spin[i]));
+                GTK_SPIN_BUTTON(apptw->Recur_byday_spin[i]));
     }
 
     return(TRUE);
 }
 
-void
-on_appFileClose_menu_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
+static void on_appFileClose_menu_activate_cb(GtkMenuItem *mi
+        , gpointer user_data)
 {
-    appWindow_check_and_close((appt_win *) user_data);
+    appWindow_check_and_close((appt_win *)user_data);
 }
 
-gboolean 
-save_xfical_from_appt_win(appt_win *apptw)
+static gboolean save_xfical_from_appt_win(appt_win *apptw)
 {
     gboolean ok = FALSE;
     appt_data *appt = apptw->appt;
@@ -666,9 +853,8 @@ save_xfical_from_appt_win(appt_win *apptw)
                 ok = (apptw->xf_uid ? TRUE : FALSE);
                 if (ok) {
                     apptw->appointment_add = FALSE;
-                    gtk_widget_set_sensitive(apptw->appDuplicate, TRUE);
-                    gtk_widget_set_sensitive(apptw->appFileDuplicate_menuitem
-                            , TRUE);
+                    gtk_widget_set_sensitive(apptw->Duplicate, TRUE);
+                    gtk_widget_set_sensitive(apptw->File_menu_duplicate, TRUE);
                     g_message("Orage **: Added: %s", apptw->xf_uid);
                 }
                 else
@@ -687,61 +873,57 @@ save_xfical_from_appt_win(appt_win *apptw)
         if (ok) {
             apptw->appointment_new = FALSE;
             mark_appointment_unchanged(apptw);
-            if (apptw->eventlist != NULL)
-                refresh_eventlist_win((eventlist_win *)apptw->eventlist);
-            xfcalendar_mark_appointments();
+            if (apptw->el != NULL)
+                refresh_el_win((el_win *)apptw->el, -1);
+            orage_mark_appointments();
         }
     }
 
     return (ok);
 }
 
-void
-on_appFileSave_menu_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
+static void on_appFileSave_menu_activate_cb(GtkMenuItem *mi, gpointer user_data)
 {
     save_xfical_from_appt_win((appt_win *)user_data);
 }
 
-void
-on_appSave_clicked_cb(GtkButton *button, gpointer user_data)
+static void on_appSave_clicked_cb(GtkButton *b, gpointer user_data)
 {
     save_xfical_from_appt_win((appt_win *)user_data);
 }
 
-void
-save_xfical_from_appt_win_and_close(appt_win *apptw)
+static void save_xfical_from_appt_win_and_close(appt_win *apptw)
 {
-    if (save_xfical_from_appt_win(apptw))
-        free_apptw(apptw);
+    if (save_xfical_from_appt_win(apptw)) {
+        gtk_widget_destroy(apptw->Window);
+        xfical_appt_free(apptw->appt);
+        g_free(apptw);
+    }
 }
 
-void 
-on_appFileSaveClose_menu_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
-{
-    save_xfical_from_appt_win_and_close((appt_win *)user_data);
-}
-
-void
-on_appSaveClose_clicked_cb(GtkButton *button, gpointer user_data)
+static void on_appFileSaveClose_menu_activate_cb(GtkMenuItem *mi
+        , gpointer user_data)
 {
     save_xfical_from_appt_win_and_close((appt_win *)user_data);
 }
 
-void
-delete_xfical_from_appt_win(appt_win *apptw)
+static void on_appSaveClose_clicked_cb(GtkButton *b, gpointer user_data)
+{
+    save_xfical_from_appt_win_and_close((appt_win *)user_data);
+}
+
+static void delete_xfical_from_appt_win(appt_win *apptw)
 {
     gint result;
 
-    result = xfce_message_dialog(GTK_WINDOW(apptw->appWindow),
-             _("Warning"),
-             GTK_STOCK_DIALOG_WARNING,
-             _("This appointment will be permanently removed."),
-             _("Do you want to continue?"),
-             GTK_STOCK_YES,
-             GTK_RESPONSE_ACCEPT,
-             GTK_STOCK_NO,
-             GTK_RESPONSE_REJECT,
-             NULL);
+    result = xfce_message_dialog(GTK_WINDOW(apptw->Window)
+            , _("Warning")
+            , GTK_STOCK_DIALOG_WARNING
+            , _("This appointment will be permanently removed.")
+            , _("Do you want to continue?")
+            , GTK_STOCK_YES, GTK_RESPONSE_ACCEPT
+            , GTK_STOCK_NO, GTK_RESPONSE_REJECT
+            , NULL);
                                  
     if (result == GTK_RESPONSE_ACCEPT) {
         if (!apptw->appointment_add)
@@ -754,51 +936,51 @@ delete_xfical_from_appt_win(appt_win *apptw)
                     g_warning("Removal failed: %s", apptw->xf_uid);
             }
 
-        if (apptw->eventlist != NULL)
-            refresh_eventlist_win((eventlist_win *)apptw->eventlist);
-        xfcalendar_mark_appointments();
+        if (apptw->el != NULL)
+            refresh_el_win((el_win *)apptw->el, -1);
+        orage_mark_appointments();
 
-        free_apptw(apptw);
+        gtk_widget_destroy(apptw->Window);
+        g_free(apptw->xf_uid);
+        g_free(apptw->par);
+        xfical_appt_free(apptw->appt);
+        g_free(apptw);
     }
 }
 
-void
-on_appDelete_clicked_cb(GtkButton *button, gpointer user_data)
+static void on_appDelete_clicked_cb(GtkButton *b, gpointer user_data)
 {
     delete_xfical_from_appt_win((appt_win *)user_data);
 }
 
-void
-on_appFileDelete_menu_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
+static void on_appFileDelete_menu_activate_cb(GtkMenuItem *mi
+        , gpointer user_data)
 {
     delete_xfical_from_appt_win((appt_win *) user_data);
 }
 
-void 
-duplicate_xfical_from_appt_win(appt_win *apptw)
+static void duplicate_xfical_from_appt_win(appt_win *apptw)
 {
     gint x, y;
     appt_win *apptw2;
 
-    apptw2 = create_appt_win("COPY", apptw->xf_uid, apptw->eventlist);
-    gtk_window_get_position(GTK_WINDOW(apptw->appWindow), &x, &y);
-    gtk_window_move(GTK_WINDOW(apptw2->appWindow), x+20, y+20);
+    apptw2 = create_appt_win("COPY", apptw->xf_uid, apptw->el);
+    gtk_window_get_position(GTK_WINDOW(apptw->Window), &x, &y);
+    gtk_window_move(GTK_WINDOW(apptw2->Window), x+20, y+20);
 }
 
-void
-on_appFileDuplicate_menu_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
+static void on_appFileDuplicate_menu_activate_cb(GtkMenuItem *mi
+        , gpointer user_data)
 {
     duplicate_xfical_from_appt_win((appt_win *)user_data);
 }
 
-void
-on_appDuplicate_clicked_cb(GtkButton *button, gpointer user_data)
+static void on_appDuplicate_clicked_cb(GtkButton *b, gpointer user_data)
 {
     duplicate_xfical_from_appt_win((appt_win *)user_data);
 }
 
-void
-revert_xfical_to_last_saved(appt_win *apptw)
+static void revert_xfical_to_last_saved(appt_win *apptw)
 {
     if (!apptw->appointment_new) {
         fill_appt_window(apptw, "UPDATE", apptw->xf_uid);
@@ -808,20 +990,18 @@ revert_xfical_to_last_saved(appt_win *apptw)
     }
 }
 
-void
-on_appFileRevert_menu_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
+static void on_appFileRevert_menu_activate_cb(GtkMenuItem *mi, gpointer user_data)
 {
-    revert_xfical_to_last_saved((appt_win *) user_data);
+    revert_xfical_to_last_saved((appt_win *)user_data);
 }
 
-void
-on_appRevert_clicked_cb(GtkWidget *button, gpointer *user_data)
+static void on_appRevert_clicked_cb(GtkWidget *b, gpointer *user_data)
 {
-    revert_xfical_to_last_saved((appt_win *) user_data);
+    revert_xfical_to_last_saved((appt_win *)user_data);
 }
 
-void
-on_appStartEndDate_clicked_cb(GtkWidget *button, gpointer *user_data)
+static void on_Date_button_clicked_cb(GtkWidget *button
+        , gpointer *user_data)
 {
     appt_win *apptw = (appt_win *)user_data;
     GtkWidget *selDate_Window_dialog;
@@ -833,7 +1013,7 @@ on_appStartEndDate_clicked_cb(GtkWidget *button, gpointer *user_data)
     struct tm current_t;
 
     selDate_Window_dialog = gtk_dialog_new_with_buttons(
-            _("Pick the date"), GTK_WINDOW(apptw->appWindow),
+            _("Pick the date"), GTK_WINDOW(apptw->Window),
             GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
             _("Today"), 
             1,
@@ -847,7 +1027,7 @@ on_appStartEndDate_clicked_cb(GtkWidget *button, gpointer *user_data)
 
     current_t = display_to_year_month_day(gtk_button_get_label(
             GTK_BUTTON(button)));
-    xfcalendar_select_date(GTK_CALENDAR(selDate_Calendar_calendar)
+    orage_select_date(GTK_CALENDAR(selDate_Calendar_calendar)
             , current_t.tm_year+1900, current_t.tm_mon, current_t.tm_mday);
     gtk_widget_show_all(selDate_Window_dialog);
 
@@ -877,8 +1057,7 @@ on_appStartEndDate_clicked_cb(GtkWidget *button, gpointer *user_data)
     gtk_widget_destroy(selDate_Window_dialog);
 }
 
-void
-on_appTimezone_clicked_cb(GtkWidget *button,  appt_win *apptw
+static void on_appTimezone_clicked_cb(GtkWidget *button, appt_win *apptw 
         , gchar **tz)
 {
 #define MAX_AREA_LENGTH 20
@@ -940,7 +1119,7 @@ on_appTimezone_clicked_cb(GtkWidget *button,  appt_win *apptw
 
     /* show it */
     window =  gtk_dialog_new_with_buttons(_("Pick timezone")
-            , GTK_WINDOW(apptw->appWindow)
+            , GTK_WINDOW(apptw->Window)
             , GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT
             , _("UTC"), 1
             , _("floating"), 2
@@ -1017,36 +1196,45 @@ static void on_appEndTimezone_clicked_cb(GtkWidget *button
     on_appTimezone_clicked_cb(button, apptw, &appt->end_tz_loc);
 }
 
-void
-fill_appt_window_times(appt_win *apptw, appt_data *appt)
+static void on_appCompletedTimezone_clicked_cb(GtkWidget *button
+        , gpointer *user_data)
 {
-    char *startdate_to_display, *enddate_to_display;
+    appt_win *apptw = (appt_win *)user_data;
+    appt_data *appt;
+
+    appt = apptw->appt;
+    on_appTimezone_clicked_cb(button, apptw, &appt->completed_tz_loc);
+}
+
+static void fill_appt_window_times(appt_win *apptw, appt_data *appt)
+{
+    char *startdate_to_display, *enddate_to_display, *completeddate_to_display;
     int year, month, day, hours, minutes;
 
     /* all day ? */
     gtk_toggle_button_set_active(
-            GTK_TOGGLE_BUTTON(apptw->appAllDay_checkbutton), appt->allDay);
+            GTK_TOGGLE_BUTTON(apptw->AllDay_checkbutton), appt->allDay);
 
     /* start time */
     if (strlen(appt->starttime) > 6 ) {
         ical_to_year_month_day_hour_minute(appt->starttime
                 , &year, &month, &day, &hours, &minutes);
         startdate_to_display = year_month_day_to_display(year, month, day);
-        gtk_button_set_label(GTK_BUTTON(apptw->appStartDate_button)
+        gtk_button_set_label(GTK_BUTTON(apptw->StartDate_button)
                 , (const gchar *)startdate_to_display);
 
         if (hours > -1 && minutes > -1) {
             gtk_spin_button_set_value(
-                GTK_SPIN_BUTTON(apptw->appStartTime_spin_hh), (gdouble)hours);
+                GTK_SPIN_BUTTON(apptw->StartTime_spin_hh), (gdouble)hours);
             gtk_spin_button_set_value(
-                GTK_SPIN_BUTTON(apptw->appStartTime_spin_mm), (gdouble)minutes);
+                GTK_SPIN_BUTTON(apptw->StartTime_spin_mm), (gdouble)minutes);
         }
         if (appt->start_tz_loc) {
-            gtk_button_set_label(GTK_BUTTON(apptw->appStartTimezone_button)
+            gtk_button_set_label(GTK_BUTTON(apptw->StartTimezone_button)
                     , _(appt->start_tz_loc));
         }
         else /* we should never get here */
-            g_warning("fill_appt_window_times: s_tz is null");
+            g_warning("fill_appt_window_times: start_tz_loc is null");
     }
     else
         g_warning("fill_appt_window_times: starttime wrong %s", appt->uid);
@@ -1056,41 +1244,68 @@ fill_appt_window_times(appt_win *apptw, appt_data *appt)
         ical_to_year_month_day_hour_minute(appt->endtime
                 , &year, &month, &day, &hours, &minutes);
         enddate_to_display = year_month_day_to_display(year, month, day);
-        gtk_button_set_label(GTK_BUTTON(apptw->appEndDate_button)
+        gtk_button_set_label(GTK_BUTTON(apptw->EndDate_button)
                 , (const gchar *)enddate_to_display);
 
         if (hours > -1 && minutes > -1) {
             gtk_spin_button_set_value(
-                GTK_SPIN_BUTTON(apptw->appEndTime_spin_hh), (gdouble)hours);
+                GTK_SPIN_BUTTON(apptw->EndTime_spin_hh), (gdouble)hours);
             gtk_spin_button_set_value(
-                GTK_SPIN_BUTTON(apptw->appEndTime_spin_mm), (gdouble)minutes);
+                GTK_SPIN_BUTTON(apptw->EndTime_spin_mm), (gdouble)minutes);
         }
         if (appt->end_tz_loc) {
-            gtk_button_set_label(GTK_BUTTON(apptw->appEndTimezone_button)
+            gtk_button_set_label(GTK_BUTTON(apptw->EndTimezone_button)
                     , _(appt->end_tz_loc));
         }
         else /* we should never get here */
-            g_warning("fill_appt_window_times: e_tz is null");
+            g_warning("fill_appt_window_times: end_tz_loc is null");
     }
     else
         g_warning("fill_appt_window_times: endtime wrong %s", appt->uid);
 
     /* duration */
-    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(apptw->appDur_checkbutton)
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(apptw->Dur_checkbutton)
             , appt->use_duration);
     day = appt->duration/(24*60*60);
     hours = (appt->duration-day*(24*60*60))/(60*60);
     minutes = (appt->duration-day*(24*60*60)-hours*(60*60))/(60);
-    gtk_spin_button_set_value(GTK_SPIN_BUTTON(apptw->appDur_spin_dd)
+    gtk_spin_button_set_value(GTK_SPIN_BUTTON(apptw->Dur_spin_dd)
             , (gdouble)day);
-    gtk_spin_button_set_value(GTK_SPIN_BUTTON(apptw->appDur_spin_hh)
+    gtk_spin_button_set_value(GTK_SPIN_BUTTON(apptw->Dur_spin_hh)
             , (gdouble)hours);
-    gtk_spin_button_set_value(GTK_SPIN_BUTTON(apptw->appDur_spin_mm)
+    gtk_spin_button_set_value(GTK_SPIN_BUTTON(apptw->Dur_spin_mm)
             , (gdouble)minutes);
+
+    /* completed time (only available for todo) */
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
+            apptw->Completed_checkbutton), appt->completed);
+    if (strlen(appt->completedtime) > 6 ) {
+        ical_to_year_month_day_hour_minute(appt->completedtime
+                , &year, &month, &day, &hours, &minutes);
+        completeddate_to_display = year_month_day_to_display(year, month, day);
+        gtk_button_set_label(GTK_BUTTON(apptw->CompletedDate_button)
+                , (const gchar *)completeddate_to_display);
+
+        if (hours > -1 && minutes > -1) {
+            gtk_spin_button_set_value(
+                GTK_SPIN_BUTTON(apptw->CompletedTime_spin_hh)
+                        , (gdouble)hours);
+            gtk_spin_button_set_value(
+                GTK_SPIN_BUTTON(apptw->CompletedTime_spin_mm)
+                        , (gdouble)minutes);
+        }
+        if (appt->completed_tz_loc) {
+            gtk_button_set_label(GTK_BUTTON(apptw->CompletedTimezone_button)
+                    , _(appt->completed_tz_loc));
+        }
+        else /* we should never get here */
+            g_warning("fill_appt_window_times: completed_tz_loc is null");
+    }
+    else
+        g_warning("fill_appt_window_times: completedtime wrong %s", appt->uid);
 }
 
-appt_data *
-fill_appt_window_get_appt(char *action, char *par)
+static appt_data *fill_appt_window_get_appt(char *action, char *par)
 {
     appt_data *appt=NULL;
     struct tm *t;
@@ -1105,17 +1320,17 @@ fill_appt_window_get_appt(char *action, char *par)
         /* If we're today, we propose an appointment the next half-hour */
         /* hour 24 is wrong, we use 00 */
         if (strcmp(par, today) == 0 && t->tm_hour < 23) { 
-            if(t->tm_min <= 30){
+            if (t->tm_min <= 30) {
                 g_sprintf(appt->starttime,"%sT%02d%02d00"
-                            , par, t->tm_hour, 30);
+                        , par, t->tm_hour, 30);
                 g_sprintf(appt->endtime,"%sT%02d%02d00"
-                            , par, t->tm_hour + 1, 00);
+                        , par, t->tm_hour + 1, 00);
             }
-            else{
+            else {
                 g_sprintf(appt->starttime,"%sT%02d%02d00"
-                            , par, t->tm_hour + 1, 00);
+                        , par, t->tm_hour + 1, 00);
                 g_sprintf(appt->endtime,"%sT%02d%02d00"
-                            , par, t->tm_hour + 1, 30);
+                        , par, t->tm_hour + 1, 30);
             }
         }
         /* otherwise we suggest it at 09:00 in the morning. */
@@ -1123,15 +1338,17 @@ fill_appt_window_get_appt(char *action, char *par)
             g_sprintf(appt->starttime,"%sT090000", par);
             g_sprintf(appt->endtime,"%sT093000", par);
         }
-        if (local_icaltimezone_utc) {
+        if (g_par.local_timezone_utc)
             appt->start_tz_loc = g_strdup("UTC");
-            appt->end_tz_loc = g_strdup("UTC");
-        }
-        else if (local_icaltimezone_location) {
-            appt->start_tz_loc = g_strdup(local_icaltimezone_location);
-            appt->end_tz_loc = g_strdup(local_icaltimezone_location);
-        }
+        else if (g_par.local_timezone) 
+            appt->start_tz_loc = g_strdup(g_par.local_timezone);
+        else
+            appt->start_tz_loc = g_strdup("floating");
+        appt->end_tz_loc = g_strdup(appt->start_tz_loc);
         appt->duration = 30;
+        g_sprintf(appt->completedtime,"%sT%02d%02d00"
+                    , today, t->tm_hour, t->tm_min);
+        appt->completed_tz_loc = g_strdup(appt->start_tz_loc);
     }
     else if ((strcmp(action, "UPDATE") == 0) 
           || (strcmp(action, "COPY") == 0)) {
@@ -1155,11 +1372,9 @@ fill_appt_window_get_appt(char *action, char *par)
     return(appt);
 }
 
-void
-fill_appt_window(appt_win *apptw, char *action, char *par)
+static void fill_appt_window(appt_win *apptw, char *action, char *par)
 {
     int year, month, day, hours, minutes;
-    GtkTextBuffer *tb;
     appt_data *appt;
     struct tm *t;
     char *untildate_to_display;
@@ -1167,17 +1382,10 @@ fill_appt_window(appt_win *apptw, char *action, char *par)
 
     g_message("Orage **: %s appointment: %s", action, par);
     if ((appt = fill_appt_window_get_appt(action, par)) == NULL) {
-        g_error("fill_appt_window: Appointment initialization failed");
+        apptw->appt = NULL;
         return;
     }
-    apptw->appt = appt; 
-    /* let's make sure timezones are never null. 
-     * Remember: null means use floating */
-    if (!appt->start_tz_loc)
-        appt->start_tz_loc = g_strdup("floating");
-    if (!appt->end_tz_loc)
-        appt->end_tz_loc = g_strdup("floating");
-
+    apptw->appt = appt;
 
     /* first flags */
     apptw->xf_uid = g_strdup(appt->uid);
@@ -1198,26 +1406,50 @@ fill_appt_window(appt_win *apptw, char *action, char *par)
         apptw->appointment_new = FALSE;
     }
     else {
-        g_error("unknown parameter\n");
+        g_error("fill_appt_window: unknown parameter\n");
         return;
+    }
+    if (!appt->completed) { /* some nice default */
+        t = orage_localtime(); /* probably completed today? */
+        g_sprintf(appt->completedtime, XFICAL_APPT_TIME_FORMAT
+                , t->tm_year+1900, t->tm_mon+1 , t->tm_mday
+                , t->tm_hour, t->tm_min, 0);
+        appt->completed_tz_loc = g_strdup(appt->start_tz_loc);
     }
     /* we only want to enable duplication if we are working with an old
      * existing app (=not adding new) */
-    gtk_widget_set_sensitive(apptw->appDuplicate, !apptw->appointment_add);
-    gtk_widget_set_sensitive(apptw->appFileDuplicate_menuitem
+    gtk_widget_set_sensitive(apptw->Duplicate, !apptw->appointment_add);
+    gtk_widget_set_sensitive(apptw->File_menu_duplicate
             , !apptw->appointment_add);
 
     /* window title */
-    gtk_window_set_title(GTK_WINDOW(apptw->appWindow)
+    gtk_window_set_title(GTK_WINDOW(apptw->Window)
             , _("New appointment - Orage"));
 
     /********************* GENERAL tab *********************/
+    /* type */
+    if (appt->type == XFICAL_TYPE_EVENT)
+        gtk_toggle_button_set_active(
+            GTK_TOGGLE_BUTTON(apptw->Type_event_rb), TRUE);
+    else if (appt->type == XFICAL_TYPE_TODO)
+        gtk_toggle_button_set_active(
+            GTK_TOGGLE_BUTTON(apptw->Type_todo_rb), TRUE);
+    else if (appt->type == XFICAL_TYPE_JOURNAL)
+        gtk_toggle_button_set_active(
+            GTK_TOGGLE_BUTTON(apptw->Type_journal_rb), TRUE);
+    else
+        g_warning("fill_appt_window: Illegal value for type\n");
+
     /* appointment name */
-    gtk_entry_set_text(GTK_ENTRY(apptw->appTitle_entry)
+    gtk_entry_set_text(GTK_ENTRY(apptw->Title_entry)
             , (appt->title ? appt->title : ""));
 
+    if (strcmp(action, "COPY") == 0) 
+        gtk_entry_append_text(GTK_ENTRY(apptw->Title_entry)
+                , _(" *** COPY ***"));
+
     /* location */
-    gtk_entry_set_text(GTK_ENTRY(apptw->appLocation_entry)
+    gtk_entry_set_text(GTK_ENTRY(apptw->Location_entry)
             , (appt->location ? appt->location : ""));
 
     /* times */
@@ -1225,13 +1457,12 @@ fill_appt_window(appt_win *apptw, char *action, char *par)
 
     /* availability */
     if (appt->availability != -1) {
-        gtk_combo_box_set_active(GTK_COMBO_BOX(apptw->appAvailability_cb)
+        gtk_combo_box_set_active(GTK_COMBO_BOX(apptw->Availability_cb)
                    , appt->availability);
     }
 
     /* note */
-    tb = gtk_text_view_get_buffer((GtkTextView *)apptw->appNote_textview);
-    gtk_text_buffer_set_text(tb
+    gtk_text_buffer_set_text(apptw->Note_buffer
             , (appt->note ? (const gchar *) appt->note : ""), -1);
 
     /********************* ALARM tab *********************/
@@ -1239,59 +1470,59 @@ fill_appt_window(appt_win *apptw, char *action, char *par)
     day = appt->alarmtime/(24*60*60);
     hours = (appt->alarmtime-day*(24*60*60))/(60*60);
     minutes = (appt->alarmtime-day*(24*60*60)-hours*(60*60))/(60);
-    gtk_spin_button_set_value(GTK_SPIN_BUTTON(apptw->appAlarm_spin_dd)
+    gtk_spin_button_set_value(GTK_SPIN_BUTTON(apptw->Alarm_spin_dd)
                 , (gdouble)day);
-    gtk_spin_button_set_value(GTK_SPIN_BUTTON(apptw->appAlarm_spin_hh)
+    gtk_spin_button_set_value(GTK_SPIN_BUTTON(apptw->Alarm_spin_hh)
                 , (gdouble)hours);
-    gtk_spin_button_set_value(GTK_SPIN_BUTTON(apptw->appAlarm_spin_mm)
+    gtk_spin_button_set_value(GTK_SPIN_BUTTON(apptw->Alarm_spin_mm)
                 , (gdouble)minutes);
 
     /* alarm sound */
-    gtk_entry_set_text(GTK_ENTRY(apptw->appSound_entry)
+    gtk_entry_set_text(GTK_ENTRY(apptw->Sound_entry)
             , (appt->sound ? appt->sound : ""));
 
     /* alarm repeat */
     gtk_toggle_button_set_active(
-            GTK_TOGGLE_BUTTON(apptw->appSoundRepeat_checkbutton)
+            GTK_TOGGLE_BUTTON(apptw->SoundRepeat_checkbutton)
                     , appt->alarmrepeat);
 
     /********************* RECURRENCE tab *********************/
     /* recurrence */
-    gtk_combo_box_set_active(GTK_COMBO_BOX(apptw->appRecur_freq_cb)
+    gtk_combo_box_set_active(GTK_COMBO_BOX(apptw->Recur_freq_cb)
             , appt->freq);
     switch(appt->recur_limit) {
         case 0: /* no limit */
             gtk_toggle_button_set_active(
-                    GTK_TOGGLE_BUTTON(apptw->appRecur_limit_rb), TRUE);
+                    GTK_TOGGLE_BUTTON(apptw->Recur_limit_rb), TRUE);
             gtk_spin_button_set_value(
-                    GTK_SPIN_BUTTON(apptw->appRecur_count_spin), (gdouble)1);
+                    GTK_SPIN_BUTTON(apptw->Recur_count_spin), (gdouble)1);
             t = orage_localtime();
             untildate_to_display = year_month_day_to_display(t->tm_year+1900
                     , t->tm_mon+1, t->tm_mday);
-            gtk_button_set_label(GTK_BUTTON(apptw->appRecur_until_button)
+            gtk_button_set_label(GTK_BUTTON(apptw->Recur_until_button)
                     , (const gchar *)untildate_to_display);
             break;
         case 1: /* count */
             gtk_toggle_button_set_active(
-                    GTK_TOGGLE_BUTTON(apptw->appRecur_count_rb), TRUE);
+                    GTK_TOGGLE_BUTTON(apptw->Recur_count_rb), TRUE);
             gtk_spin_button_set_value(
-                    GTK_SPIN_BUTTON(apptw->appRecur_count_spin)
+                    GTK_SPIN_BUTTON(apptw->Recur_count_spin)
                     , (gdouble)appt->recur_count);
             t = orage_localtime();
             untildate_to_display = year_month_day_to_display(t->tm_year+1900
                     , t->tm_mon+1, t->tm_mday);
-            gtk_button_set_label(GTK_BUTTON(apptw->appRecur_until_button)
+            gtk_button_set_label(GTK_BUTTON(apptw->Recur_until_button)
                     , (const gchar *)untildate_to_display);
             break;
         case 2: /* until */
             gtk_toggle_button_set_active(
-                    GTK_TOGGLE_BUTTON(apptw->appRecur_until_rb), TRUE);
+                    GTK_TOGGLE_BUTTON(apptw->Recur_until_rb), TRUE);
             gtk_spin_button_set_value(
-                    GTK_SPIN_BUTTON(apptw->appRecur_count_spin), (gdouble)1);
+                    GTK_SPIN_BUTTON(apptw->Recur_count_spin), (gdouble)1);
             ical_to_year_month_day_hour_minute(appt->recur_until
                     , &year, &month, &day, &hours, &minutes);
             untildate_to_display = year_month_day_to_display(year, month, day);
-            gtk_button_set_label(GTK_BUTTON(apptw->appRecur_until_button)
+            gtk_button_set_label(GTK_BUTTON(apptw->Recur_until_button)
                     , (const gchar *)untildate_to_display);
             break;
         default: /* error */
@@ -1302,17 +1533,17 @@ fill_appt_window(appt_win *apptw, char *action, char *par)
     /* weekdays */
     for (i=0; i <= 6; i++) {
         gtk_toggle_button_set_active(
-                GTK_TOGGLE_BUTTON(apptw->appRecur_byday_cb[i])
+                GTK_TOGGLE_BUTTON(apptw->Recur_byday_cb[i])
                 , appt->recur_byday[i]);
         /* which weekday of month / year */
         gtk_spin_button_set_value(
-                GTK_SPIN_BUTTON(apptw->appRecur_byday_spin[i])
+                GTK_SPIN_BUTTON(apptw->Recur_byday_spin[i])
                 , (gdouble)appt->recur_byday_cnt[i]);
     }
 
     /* interval */
     gtk_spin_button_set_value(
-            GTK_SPIN_BUTTON(apptw->appRecur_int_spin)
+            GTK_SPIN_BUTTON(apptw->Recur_int_spin)
             , (gdouble)appt->interval);
 
     if (appt->interval > 1
@@ -1320,642 +1551,629 @@ fill_appt_window(appt_win *apptw, char *action, char *par)
     || !appt->recur_byday[3] || !appt->recur_byday[4] || !appt->recur_byday[5] 
     || !appt->recur_byday[6]) {
         gtk_toggle_button_set_active(
-                GTK_TOGGLE_BUTTON(apptw->appRecur_feature_advanced_rb), TRUE);
+                GTK_TOGGLE_BUTTON(apptw->Recur_feature_advanced_rb), TRUE);
     }
     else {
         gtk_toggle_button_set_active(
-                GTK_TOGGLE_BUTTON(apptw->appRecur_feature_normal_rb), TRUE);
+                GTK_TOGGLE_BUTTON(apptw->Recur_feature_normal_rb), TRUE);
     }
+    /*
+    xfical_appt_free(appt);
+    */
 
     set_time_sensitivity(apptw);
     set_repeat_sensitivity(apptw);
     mark_appointment_unchanged(apptw);
 }
 
-void
-create_appt_win_menu(appt_win *apptw)
+static void build_menu(appt_win *apptw)
 {
     GtkWidget *menu_separator;
 
     /* Menu bar */
-    apptw->appMenubar = gtk_menu_bar_new();
-    gtk_box_pack_start(GTK_BOX(apptw->appVBox1), apptw->appMenubar
-            , FALSE, FALSE, 0);
+    apptw->Menubar = gtk_menu_bar_new();
+    gtk_box_pack_start(GTK_BOX(apptw->Vbox), apptw->Menubar, FALSE, FALSE, 0);
 
     /* File menu stuff */
-    apptw->appFile_menu = xfcalendar_menu_new(_("_File"), apptw->appMenubar);
+    apptw->File_menu = orage_menu_new(_("_File"), apptw->Menubar);
 
-    apptw->appFileSave_menuitem = 
-            xfcalendar_image_menu_item_new_from_stock("gtk-save"
-                    , apptw->appFile_menu, apptw->appAccelgroup);
+    apptw->File_menu_save = orage_image_menu_item_new_from_stock("gtk-save"
+            , apptw->File_menu, apptw->accel_group);
 
-    apptw->appFileSaveClose_menuitem = 
-            xfcalendar_menu_item_new_with_mnemonic(_("Sav_e and close")
-                    , apptw->appFile_menu);
-    gtk_widget_add_accelerator(apptw->appFileSaveClose_menuitem
-            , "activate", apptw->appAccelgroup
+    apptw->File_menu_saveclose = 
+            orage_menu_item_new_with_mnemonic(_("Sav_e and close")
+                    , apptw->File_menu);
+    gtk_widget_add_accelerator(apptw->File_menu_saveclose
+            , "activate", apptw->accel_group
             , GDK_w, GDK_MOD1_MASK, GTK_ACCEL_VISIBLE);
 
-    menu_separator = xfcalendar_separator_menu_item_new(apptw->appFile_menu);
+    menu_separator = orage_separator_menu_item_new(apptw->File_menu);
 
-    apptw->appFileRevert_menuitem = 
-            xfcalendar_image_menu_item_new_from_stock("gtk-revert-to-saved"
-                    , apptw->appFile_menu, apptw->appAccelgroup);
+    apptw->File_menu_revert = 
+            orage_image_menu_item_new_from_stock("gtk-revert-to-saved"
+                    , apptw->File_menu, apptw->accel_group);
 
-    apptw->appFileDuplicate_menuitem = 
-            xfcalendar_menu_item_new_with_mnemonic(_("D_uplicate")
-                    , apptw->appFile_menu);
-    gtk_widget_add_accelerator(apptw->appFileDuplicate_menuitem
-            , "activate", apptw->appAccelgroup
+    apptw->File_menu_duplicate = 
+            orage_menu_item_new_with_mnemonic(_("D_uplicate")
+                    , apptw->File_menu);
+    gtk_widget_add_accelerator(apptw->File_menu_duplicate
+            , "activate", apptw->accel_group
             , GDK_d, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
 
-    menu_separator = xfcalendar_separator_menu_item_new(apptw->appFile_menu);
+    menu_separator = orage_separator_menu_item_new(apptw->File_menu);
 
-    apptw->appFileDelete_menuitem = 
-            xfcalendar_image_menu_item_new_from_stock("gtk-delete"
-                    , apptw->appFile_menu, apptw->appAccelgroup);
+    apptw->File_menu_delete = orage_image_menu_item_new_from_stock("gtk-delete"
+            , apptw->File_menu, apptw->accel_group);
 
-    menu_separator = xfcalendar_separator_menu_item_new(apptw->appFile_menu);
+    menu_separator = orage_separator_menu_item_new(apptw->File_menu);
 
-    apptw->appFileClose_menuitem = 
-            xfcalendar_image_menu_item_new_from_stock("gtk-close"
-                    , apptw->appFile_menu, apptw->appAccelgroup);
+    apptw->File_menu_close = orage_image_menu_item_new_from_stock("gtk-close"
+            , apptw->File_menu, apptw->accel_group);
+
+    g_signal_connect((gpointer)apptw->File_menu_save, "activate"
+            , G_CALLBACK(on_appFileSave_menu_activate_cb), apptw);
+    g_signal_connect((gpointer)apptw->File_menu_saveclose, "activate"
+            , G_CALLBACK(on_appFileSaveClose_menu_activate_cb), apptw);
+    g_signal_connect((gpointer)apptw->File_menu_duplicate, "activate"
+            , G_CALLBACK(on_appFileDuplicate_menu_activate_cb), apptw);
+    g_signal_connect((gpointer)apptw->File_menu_revert, "activate"
+            , G_CALLBACK(on_appFileRevert_menu_activate_cb), apptw);
+    g_signal_connect((gpointer)apptw->File_menu_delete, "activate"
+            , G_CALLBACK(on_appFileDelete_menu_activate_cb), apptw);
+    g_signal_connect((gpointer)apptw->File_menu_close, "activate"
+            , G_CALLBACK(on_appFileClose_menu_activate_cb), apptw);
 }
 
-void
-create_appt_win_buttons(appt_win *apptw)
+static void build_toolbar(appt_win *apptw)
 {
-    gint i = 0;
     GtkWidget *toolbar_separator;
+    gint i = 0;
 
-    /* Handle box and toolbar */
-    /*
-    apptw->appHandleBox = gtk_handle_box_new();
-    gtk_box_pack_start(GTK_BOX(apptw->appVBox1), apptw->appHandleBox
-            , FALSE, FALSE, 0);
-
-    apptw->appToolbar = gtk_toolbar_new();
-    gtk_container_add(GTK_CONTAINER (apptw->appHandleBox), apptw->appToolbar);
-    */
-    apptw->appToolbar = gtk_toolbar_new();
-    gtk_box_pack_start(GTK_BOX(apptw->appVBox1), apptw->appToolbar
-            , FALSE, FALSE, 0);
-    gtk_toolbar_set_tooltips(GTK_TOOLBAR(apptw->appToolbar), TRUE);
+    apptw->Toolbar = gtk_toolbar_new();
+    gtk_box_pack_start(GTK_BOX(apptw->Vbox), apptw->Toolbar, FALSE, FALSE, 0);
+    gtk_toolbar_set_tooltips(GTK_TOOLBAR(apptw->Toolbar), TRUE);
 
     /* Add buttons to the toolbar */
-    apptw->appSave = xfcalendar_toolbar_append_button(apptw->appToolbar
-            , "gtk-save", apptw->appTooltips, _("Save"), i++);
+    apptw->Save = orage_toolbar_append_button(apptw->Toolbar
+            , "gtk-save", apptw->Tooltips, _("Save"), i++);
+    apptw->SaveClose = orage_toolbar_append_button(apptw->Toolbar
+            , "gtk-close", apptw->Tooltips, _("Save and close"), i++);
 
-    apptw->appSaveClose = xfcalendar_toolbar_append_button(apptw->appToolbar
-            , "gtk-close", apptw->appTooltips, _("Save and close"), i++);
-    gtk_tool_button_set_label(GTK_TOOL_BUTTON(apptw->appSaveClose)
-            , _("Save and close"));
-    gtk_tool_item_set_is_important(GTK_TOOL_ITEM(apptw->appSaveClose), TRUE);
+    toolbar_separator = orage_toolbar_append_separator(apptw->Toolbar, i++);
 
-    toolbar_separator = xfcalendar_toolbar_append_separator(apptw->appToolbar
-            , i++);
+    apptw->Revert = orage_toolbar_append_button(apptw->Toolbar
+            , "gtk-revert-to-saved", apptw->Tooltips, _("Revert"), i++);
+    apptw->Duplicate = orage_toolbar_append_button(apptw->Toolbar
+            , "gtk-copy", apptw->Tooltips, _("Duplicate"), i++);
 
-    apptw->appRevert = xfcalendar_toolbar_append_button(apptw->appToolbar
-            , "gtk-revert-to-saved", apptw->appTooltips, _("Revert"), i++);
+    toolbar_separator = orage_toolbar_append_separator(apptw->Toolbar, i++);
 
-    apptw->appDuplicate = xfcalendar_toolbar_append_button(apptw->appToolbar
-            , "gtk-copy", apptw->appTooltips, _("Duplicate"), i++);
-    gtk_tool_button_set_label(GTK_TOOL_BUTTON(apptw->appDuplicate)
-            , _("Duplicate"));
+    apptw->Delete = orage_toolbar_append_button(apptw->Toolbar
+            , "gtk-delete", apptw->Tooltips, _("Delete"), i++);
 
-    toolbar_separator = xfcalendar_toolbar_append_separator(apptw->appToolbar
-            , i++);
-
-    apptw->appDelete = xfcalendar_toolbar_append_button(apptw->appToolbar
-            , "gtk-delete", apptw->appTooltips, _("Delete"), i++);
+    g_signal_connect((gpointer)apptw->Save, "clicked"
+            , G_CALLBACK(on_appSave_clicked_cb), apptw);
+    g_signal_connect((gpointer)apptw->SaveClose, "clicked"
+            , G_CALLBACK(on_appSaveClose_clicked_cb), apptw);
+    g_signal_connect((gpointer)apptw->Revert, "clicked"
+            , G_CALLBACK(on_appRevert_clicked_cb), apptw);
+    g_signal_connect((gpointer)apptw->Duplicate, "clicked"
+            , G_CALLBACK(on_appDuplicate_clicked_cb), apptw);
+    g_signal_connect((gpointer)apptw->Delete, "clicked"
+            , G_CALLBACK(on_appDelete_clicked_cb), apptw);
 }
 
-void
-create_appt_win_tab_general(appt_win *apptw)
+/*
+static void oc_set_height_changed(GtkSpinButton *sb, appt_win *apptw)
 {
-    GtkWidget *label;
+        gint test;
+
+        test = gtk_spin_button_get_value_as_int(sb);
+        g_print("oc_set_height_changed: %d\n", test);
+}
+*/
+
+
+static void build_general_page(appt_win *apptw)
+{
+    gint row;
+    GtkWidget *label, *event, *hbox;
     char *availability_array[AVAILABILITY_ARRAY_DIM] = {
             _("Free"), _("Busy")};
 
-    apptw->appTableGeneral = xfcalendar_table_new(8, 2);
-    apptw->appGeneral_notebook_page = 
-        xfce_create_framebox_with_content(NULL, apptw->appTableGeneral);
-    apptw->appGeneral_tab_label = gtk_label_new(_("General"));
+    apptw->TableGeneral = orage_table_new(10, BORDER_SIZE);
+    apptw->General_notebook_page = apptw->TableGeneral;
+    apptw->General_tab_label = gtk_label_new(_("General"));
 
-    gtk_notebook_append_page(GTK_NOTEBOOK(apptw->appNotebook)
-            , apptw->appGeneral_notebook_page, apptw->appGeneral_tab_label);
+    gtk_notebook_append_page(GTK_NOTEBOOK(apptw->Notebook)
+            , apptw->General_notebook_page, apptw->General_tab_label);
 
-    apptw->appTitle_label = gtk_label_new(_("Title "));
-    apptw->appTitle_entry = gtk_entry_new();
-    xfcalendar_table_add_row(apptw->appTableGeneral
-            , apptw->appTitle_label, apptw->appTitle_entry, 0
-            , (GtkAttachOptions) (GTK_EXPAND | GTK_FILL)
-            , (GtkAttachOptions) (0));
+    apptw->Type_label = gtk_label_new(_("Type "));
+    hbox =  gtk_hbox_new(FALSE, 0);
+    apptw->Type_event_rb = gtk_radio_button_new_with_label(NULL, _("Event"));
+    gtk_box_pack_start(GTK_BOX(hbox), apptw->Type_event_rb, FALSE, FALSE, 15);
+    gtk_tooltips_set_tip(apptw->Tooltips, apptw->Type_event_rb
+            , _("Event that will happen sometime. For example:\nMeeting or birthday or TV show."), NULL);
 
-    apptw->appLocation_label = gtk_label_new(_("Location"));
-    apptw->appLocation_entry = gtk_entry_new();
-    xfcalendar_table_add_row(apptw->appTableGeneral
-            , apptw->appLocation_label, apptw->appLocation_entry, 1
-            , (GtkAttachOptions) (GTK_EXPAND | GTK_FILL)
-            , (GtkAttachOptions) (0));
+    apptw->Type_todo_rb = gtk_radio_button_new_with_mnemonic_from_widget(
+            GTK_RADIO_BUTTON(apptw->Type_event_rb) , _("Todo"));
+    gtk_box_pack_start(GTK_BOX(hbox), apptw->Type_todo_rb, FALSE, FALSE, 15);
+    gtk_tooltips_set_tip(apptw->Tooltips, apptw->Type_todo_rb
+            , _("Something that you should do sometime. For example:\nWash your car or test new version of Orage."), NULL);
 
-    apptw->appAllDay_checkbutton = 
+    apptw->Type_journal_rb = gtk_radio_button_new_with_mnemonic_from_widget(
+            GTK_RADIO_BUTTON(apptw->Type_event_rb) , _("Journal"));
+    gtk_box_pack_start(GTK_BOX(hbox), apptw->Type_journal_rb
+            , FALSE, FALSE, 15);
+    gtk_tooltips_set_tip(apptw->Tooltips, apptw->Type_journal_rb
+            , _("Make a note that something happened. For example:\nRemark that your mother called or first snow came."), NULL);
+
+    orage_table_add_row(apptw->TableGeneral
+            , apptw->Type_label, hbox
+            , row = 0, (GTK_EXPAND | GTK_FILL), (0));
+
+    apptw->Title_label = gtk_label_new(_("Title "));
+    apptw->Title_entry = gtk_entry_new();
+    orage_table_add_row(apptw->TableGeneral
+            , apptw->Title_label, apptw->Title_entry
+            , ++row, (GTK_EXPAND | GTK_FILL), (0));
+
+    apptw->Location_label = gtk_label_new(_("Location"));
+    apptw->Location_entry = gtk_entry_new();
+    orage_table_add_row(apptw->TableGeneral
+            , apptw->Location_label, apptw->Location_entry
+            , ++row, (GTK_EXPAND | GTK_FILL), (0));
+
+    apptw->AllDay_checkbutton = 
             gtk_check_button_new_with_mnemonic(_("All day event"));
-    xfcalendar_table_add_row(apptw->appTableGeneral
-            , NULL, apptw->appAllDay_checkbutton, 2
-            , (GtkAttachOptions) (GTK_EXPAND | GTK_FILL)
-            , (GtkAttachOptions) (0));
+    orage_table_add_row(apptw->TableGeneral
+            , NULL, apptw->AllDay_checkbutton
+            , ++row, (GTK_EXPAND | GTK_FILL), (0));
 
-    apptw->appStart = gtk_label_new(_("Start"));
-    apptw->appStartDate_button = gtk_button_new();
-    apptw->appStartTime_spin_hh = gtk_spin_button_new_with_range(0, 23, 1);
-    apptw->appStartTime_spin_mm = gtk_spin_button_new_with_range(0, 59, 1);
-    apptw->appStartTimezone_button = gtk_button_new();
-    apptw->appStartTime_hbox = xfcalendar_datetime_hbox_new(
-            apptw->appStartDate_button, 
-            apptw->appStartTime_spin_hh, 
-            apptw->appStartTime_spin_mm, 
-            apptw->appStartTimezone_button);
-    xfcalendar_table_add_row(apptw->appTableGeneral
-            , apptw->appStart, apptw->appStartTime_hbox, 3
-            , (GtkAttachOptions) (GTK_SHRINK | GTK_FILL)
-            , (GtkAttachOptions) (GTK_SHRINK | GTK_FILL));
+    apptw->Start_label = gtk_label_new(_("Start"));
+    apptw->StartDate_button = gtk_button_new();
+    apptw->StartTime_spin_hh = gtk_spin_button_new_with_range(0, 23, 1);
+    apptw->StartTime_spin_mm = gtk_spin_button_new_with_range(0, 59, 1);
+    apptw->StartTimezone_button = gtk_button_new();
+    apptw->StartTime_hbox = datetime_hbox_new(
+            apptw->StartDate_button, 
+            apptw->StartTime_spin_hh, 
+            apptw->StartTime_spin_mm, 
+            apptw->StartTimezone_button);
+    orage_table_add_row(apptw->TableGeneral
+            , apptw->Start_label, apptw->StartTime_hbox
+            , ++row, (GTK_SHRINK | GTK_FILL), (GTK_SHRINK | GTK_FILL));
+    /*
+g_signal_connect((gpointer) apptw->StartTime_spin_hh, "value-changed",
+            G_CALLBACK(oc_set_height_changed), NULL);
+*/
 
-    apptw->appEnd = gtk_label_new(_("End"));
-    apptw->appEndDate_button = gtk_button_new();
-    apptw->appEndTime_spin_hh = gtk_spin_button_new_with_range(0, 23, 1);
-    apptw->appEndTime_spin_mm = gtk_spin_button_new_with_range(0, 59, 1);
-    apptw->appEndTimezone_button = gtk_button_new();
-    apptw->appEndTime_hbox = xfcalendar_datetime_hbox_new(
-            apptw->appEndDate_button, 
-            apptw->appEndTime_spin_hh, 
-            apptw->appEndTime_spin_mm, 
-            apptw->appEndTimezone_button);
-    xfcalendar_table_add_row(apptw->appTableGeneral
-            , apptw->appEnd, apptw->appEndTime_hbox, 4
-            , (GtkAttachOptions) (GTK_SHRINK | GTK_FILL)
-            , (GtkAttachOptions) (GTK_SHRINK | GTK_FILL));
+    apptw->End_label = gtk_label_new(_("End"));
+    apptw->EndDate_button = gtk_button_new();
+    apptw->EndTime_spin_hh = gtk_spin_button_new_with_range(0, 23, 1);
+    apptw->EndTime_spin_mm = gtk_spin_button_new_with_range(0, 59, 1);
+    apptw->EndTimezone_button = gtk_button_new();
+    apptw->EndTime_hbox = datetime_hbox_new(
+            apptw->EndDate_button, 
+            apptw->EndTime_spin_hh, 
+            apptw->EndTime_spin_mm, 
+            apptw->EndTimezone_button);
+    orage_table_add_row(apptw->TableGeneral
+            , apptw->End_label, apptw->EndTime_hbox
+            , ++row, (GTK_SHRINK | GTK_FILL), (GTK_SHRINK | GTK_FILL));
 
-    apptw->appDur_hbox = gtk_hbox_new(FALSE, 0);
-    apptw->appDur_checkbutton = 
+    apptw->Dur_hbox = gtk_hbox_new(FALSE, 0);
+    apptw->Dur_checkbutton = 
             gtk_check_button_new_with_mnemonic(_("Duration"));
-    gtk_box_pack_start(GTK_BOX(apptw->appDur_hbox), apptw->appDur_checkbutton
+    gtk_box_pack_start(GTK_BOX(apptw->Dur_hbox), apptw->Dur_checkbutton
             , FALSE, FALSE, 0);
-    apptw->appDur_spin_dd = gtk_spin_button_new_with_range(0, 1000, 1);
-    gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(apptw->appDur_spin_dd), TRUE);
-    gtk_box_pack_start(GTK_BOX(apptw->appDur_hbox), apptw->appDur_spin_dd
+    apptw->Dur_spin_dd = gtk_spin_button_new_with_range(0, 1000, 1);
+    gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(apptw->Dur_spin_dd), TRUE);
+    gtk_box_pack_start(GTK_BOX(apptw->Dur_hbox), apptw->Dur_spin_dd
             , FALSE, FALSE, 5);
-    apptw->appDur_spin_dd_label = gtk_label_new(_("days"));
-    gtk_box_pack_start(GTK_BOX(apptw->appDur_hbox)
-            , apptw->appDur_spin_dd_label, FALSE, FALSE, 0);
+    apptw->Dur_spin_dd_label = gtk_label_new(_("days"));
+    gtk_box_pack_start(GTK_BOX(apptw->Dur_hbox)
+            , apptw->Dur_spin_dd_label, FALSE, FALSE, 0);
     label = gtk_label_new(" ");
-    gtk_box_pack_start(GTK_BOX(apptw->appDur_hbox), label, FALSE, FALSE, 5);
-    apptw->appDur_spin_hh = gtk_spin_button_new_with_range(0, 23, 1);
-    gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(apptw->appDur_spin_hh), TRUE);
-    gtk_box_pack_start(GTK_BOX(apptw->appDur_hbox), apptw->appDur_spin_hh
+    gtk_box_pack_start(GTK_BOX(apptw->Dur_hbox), label, FALSE, FALSE, 5);
+    apptw->Dur_spin_hh = gtk_spin_button_new_with_range(0, 23, 1);
+    gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(apptw->Dur_spin_hh), TRUE);
+    gtk_box_pack_start(GTK_BOX(apptw->Dur_hbox), apptw->Dur_spin_hh
             , FALSE, FALSE, 5);
-    apptw->appDur_spin_hh_label = gtk_label_new(_("hours"));
-    gtk_box_pack_start(GTK_BOX(apptw->appDur_hbox)
-            , apptw->appDur_spin_hh_label, FALSE, FALSE, 0);
+    apptw->Dur_spin_hh_label = gtk_label_new(_("hours"));
+    gtk_box_pack_start(GTK_BOX(apptw->Dur_hbox)
+            , apptw->Dur_spin_hh_label, FALSE, FALSE, 0);
     label = gtk_label_new(" ");
-    gtk_box_pack_start(GTK_BOX(apptw->appDur_hbox), label, FALSE, FALSE, 5);
-    apptw->appDur_spin_mm = gtk_spin_button_new_with_range(0, 59, 5);
-    gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(apptw->appDur_spin_mm), TRUE);
-    gtk_box_pack_start(GTK_BOX(apptw->appDur_hbox), apptw->appDur_spin_mm
+    gtk_box_pack_start(GTK_BOX(apptw->Dur_hbox), label, FALSE, FALSE, 5);
+    apptw->Dur_spin_mm = gtk_spin_button_new_with_range(0, 59, 5);
+    gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(apptw->Dur_spin_mm), TRUE);
+    gtk_box_pack_start(GTK_BOX(apptw->Dur_hbox), apptw->Dur_spin_mm
             , FALSE, FALSE, 5);
-    apptw->appDur_spin_mm_label = gtk_label_new(_("mins"));
-    gtk_box_pack_start(GTK_BOX (apptw->appDur_hbox)
-            , apptw->appDur_spin_mm_label, FALSE, FALSE, 0);
-    xfcalendar_table_add_row(apptw->appTableGeneral
-            , NULL, apptw->appDur_hbox, 5
-            , (GtkAttachOptions) (GTK_FILL)
-            , (GtkAttachOptions) (GTK_FILL));
+    apptw->Dur_spin_mm_label = gtk_label_new(_("mins"));
+    gtk_box_pack_start(GTK_BOX (apptw->Dur_hbox)
+            , apptw->Dur_spin_mm_label, FALSE, FALSE, 0);
+    orage_table_add_row(apptw->TableGeneral
+            , NULL, apptw->Dur_hbox
+            , ++row, (GTK_FILL), (GTK_FILL));
     
-    apptw->appAvailability = gtk_label_new(_("Availability"));
-    apptw->appAvailability_cb = gtk_combo_box_new_text();
-    xfcalendar_combo_box_append_array(apptw->appAvailability_cb
+    apptw->Availability_label = gtk_label_new(_("Availability"));
+    apptw->Availability_cb = gtk_combo_box_new_text();
+    combo_box_append_array(apptw->Availability_cb
             , availability_array, AVAILABILITY_ARRAY_DIM);
-    xfcalendar_table_add_row(apptw->appTableGeneral
-            , apptw->appAvailability, apptw->appAvailability_cb, 6
-            , (GtkAttachOptions) (GTK_FILL)
-            , (GtkAttachOptions) (GTK_FILL));
+    orage_table_add_row(apptw->TableGeneral
+            , apptw->Availability_label, apptw->Availability_cb
+            , ++row, (GTK_FILL), (GTK_FILL));
+    
+    apptw->Completed_label = gtk_label_new(_("Completed"));
+    apptw->Completed_hbox = gtk_hbox_new(FALSE, 0);
+    apptw->Completed_checkbutton = 
+            gtk_check_button_new_with_mnemonic(_("Done"));
+    gtk_box_pack_start(GTK_BOX(apptw->Completed_hbox)
+            , apptw->Completed_checkbutton, FALSE, FALSE, 0);
+    label = gtk_label_new(" ");
+    gtk_box_pack_start(GTK_BOX(apptw->Completed_hbox), label, FALSE, FALSE, 4);
+    apptw->CompletedDate_button = gtk_button_new();
+    apptw->CompletedTime_spin_hh = gtk_spin_button_new_with_range(0, 23, 1);
+    apptw->CompletedTime_spin_mm = gtk_spin_button_new_with_range(0, 59, 1);
+    apptw->CompletedTimezone_button = gtk_button_new();
+    apptw->CompletedTime_hbox = datetime_hbox_new(
+            apptw->CompletedDate_button, 
+            apptw->CompletedTime_spin_hh, 
+            apptw->CompletedTime_spin_mm, 
+            apptw->CompletedTimezone_button);
+    gtk_box_pack_end(GTK_BOX(apptw->Completed_hbox)
+            , apptw->CompletedTime_hbox, TRUE, TRUE, 0);
+    orage_table_add_row(apptw->TableGeneral
+            , apptw->Completed_label, apptw->Completed_hbox
+            , ++row, (GTK_FILL), (GTK_FILL));
 
-    apptw->appNote = gtk_label_new(_("Note"));
-    apptw->appNote_Scrolledwindow = gtk_scrolled_window_new(NULL, NULL);
+    apptw->Note = gtk_label_new(_("Note"));
+    apptw->Note_Scrolledwindow = gtk_scrolled_window_new(NULL, NULL);
+    event =  gtk_event_box_new(); /* only needed for tooltips */
+    gtk_container_add(GTK_CONTAINER(event), apptw->Note_Scrolledwindow);
     gtk_scrolled_window_set_policy(
-            GTK_SCROLLED_WINDOW(apptw->appNote_Scrolledwindow)
+            GTK_SCROLLED_WINDOW(apptw->Note_Scrolledwindow)
             , GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
     gtk_scrolled_window_set_shadow_type(
-            GTK_SCROLLED_WINDOW(apptw->appNote_Scrolledwindow)
-            , GTK_SHADOW_IN);
-    apptw->appNote_buffer = gtk_text_buffer_new(NULL);
-    apptw->appNote_textview = 
-            gtk_text_view_new_with_buffer(
-                    GTK_TEXT_BUFFER(apptw->appNote_buffer));
-    gtk_container_add(GTK_CONTAINER(apptw->appNote_Scrolledwindow)
-            , apptw->appNote_textview);
-    xfcalendar_table_add_row(apptw->appTableGeneral
-            , apptw->appNote, apptw->appNote_Scrolledwindow, 7
-            , (GtkAttachOptions) (GTK_EXPAND | GTK_FILL)
-            , (GtkAttachOptions) (GTK_EXPAND | GTK_FILL));
-    gtk_widget_grab_focus(apptw->appTitle_entry);
+            GTK_SCROLLED_WINDOW(apptw->Note_Scrolledwindow), GTK_SHADOW_IN);
+    apptw->Note_buffer = gtk_text_buffer_new(NULL);
+    apptw->Note_textview = 
+            gtk_text_view_new_with_buffer(GTK_TEXT_BUFFER(apptw->Note_buffer));
+    gtk_container_add(GTK_CONTAINER(apptw->Note_Scrolledwindow)
+            , apptw->Note_textview);
+    orage_table_add_row(apptw->TableGeneral
+            , apptw->Note, event
+            , ++row, (GTK_EXPAND | GTK_FILL), (GTK_EXPAND | GTK_FILL));
+
+    gtk_tooltips_set_tip(apptw->Tooltips, event
+            , _("<D> inserts current date in local date format.\n<T> inserts time and\n<DT> inserts date and time."), NULL);
+
+    g_signal_connect((gpointer)apptw->Type_event_rb, "clicked"
+            , G_CALLBACK(app_event_checkbutton_clicked_cb), apptw);
+    g_signal_connect((gpointer)apptw->Type_todo_rb, "clicked"
+            , G_CALLBACK(app_todo_checkbutton_clicked_cb), apptw);
+    g_signal_connect((gpointer)apptw->Type_journal_rb, "clicked"
+            , G_CALLBACK(app_journal_checkbutton_clicked_cb), apptw);
+    g_signal_connect((gpointer)apptw->AllDay_checkbutton, "clicked"
+            , G_CALLBACK(on_appAllDay_clicked_cb), apptw);
+    g_signal_connect((gpointer)apptw->StartDate_button, "clicked"
+            , G_CALLBACK(on_Date_button_clicked_cb), apptw);
+    g_signal_connect((gpointer)apptw->StartTime_spin_hh, "changed"
+            , G_CALLBACK(on_app_spin_button_changed_cb), apptw);
+    g_signal_connect((gpointer)apptw->StartTime_spin_mm, "changed"
+            , G_CALLBACK(on_app_spin_button_changed_cb), apptw);
+    g_signal_connect((gpointer)apptw->StartTimezone_button, "clicked"
+            , G_CALLBACK(on_appStartTimezone_clicked_cb), apptw);
+    g_signal_connect((gpointer)apptw->EndDate_button, "clicked"
+            , G_CALLBACK(on_Date_button_clicked_cb), apptw);
+    g_signal_connect((gpointer)apptw->EndTime_spin_hh, "changed"
+            , G_CALLBACK(on_app_spin_button_changed_cb), apptw);
+    g_signal_connect((gpointer)apptw->EndTime_spin_mm, "changed"
+            , G_CALLBACK(on_app_spin_button_changed_cb), apptw);
+    g_signal_connect((gpointer)apptw->EndTimezone_button, "clicked"
+            , G_CALLBACK(on_appEndTimezone_clicked_cb), apptw);
+    g_signal_connect((gpointer)apptw->Dur_checkbutton, "clicked"
+            , G_CALLBACK(appDur_checkbutton_clicked_cb), apptw);
+    g_signal_connect((gpointer)apptw->Dur_spin_dd, "value-changed"
+            , G_CALLBACK(on_app_spin_button_changed_cb), apptw);
+    g_signal_connect((gpointer)apptw->Dur_spin_hh, "value-changed"
+            , G_CALLBACK(on_app_spin_button_changed_cb), apptw);
+    g_signal_connect((gpointer)apptw->Dur_spin_mm, "value-changed"
+            , G_CALLBACK(on_app_spin_button_changed_cb), apptw);
+    g_signal_connect((gpointer)apptw->Completed_checkbutton, "clicked"
+            , G_CALLBACK(appCompleted_checkbutton_clicked_cb), apptw);
+    g_signal_connect((gpointer)apptw->CompletedDate_button, "clicked"
+            , G_CALLBACK(on_Date_button_clicked_cb), apptw);
+    g_signal_connect((gpointer)apptw->CompletedTime_spin_hh, "changed"
+            , G_CALLBACK(on_app_spin_button_changed_cb), apptw);
+    g_signal_connect((gpointer)apptw->CompletedTime_spin_mm, "changed"
+            , G_CALLBACK(on_app_spin_button_changed_cb), apptw);
+    g_signal_connect((gpointer)apptw->CompletedTimezone_button, "clicked"
+            , G_CALLBACK(on_appCompletedTimezone_clicked_cb), apptw);
+    /* Take care of the title entry to build the appointment window title 
+     * Beware: we are not using apptw->Title_entry as a GtkEntry here 
+     * but as an interface GtkEditable instead.
+     */
+    g_signal_connect((gpointer)apptw->Title_entry, "changed"
+            , G_CALLBACK(on_appTitle_entry_changed_cb), apptw);
+    g_signal_connect((gpointer)apptw->Location_entry, "changed"
+            , G_CALLBACK(on_app_entry_changed_cb), apptw);
+    g_signal_connect((gpointer)apptw->Availability_cb, "changed"
+            , G_CALLBACK(on_app_combobox_changed_cb), apptw);
+    g_signal_connect((gpointer)apptw->Note_buffer, "changed"
+            , G_CALLBACK(on_appNote_buffer_changed_cb), apptw);
 }
 
-void
-create_appt_win_tab_alarm(appt_win *apptw)
+static void build_alarm_page(appt_win *apptw)
 {
+    gint row;
     GtkWidget *label;
 
-    apptw->appTableAlarm = xfcalendar_table_new(8, 2);
-    apptw->appAlarm_notebook_page = 
-        xfce_create_framebox_with_content(NULL, apptw->appTableAlarm);
-    apptw->appAlarm_tab_label = gtk_label_new(_("Alarm"));
+    apptw->TableAlarm = orage_table_new(8, BORDER_SIZE);
+    apptw->Alarm_notebook_page = apptw->TableAlarm;
+    apptw->Alarm_tab_label = gtk_label_new(_("Alarm"));
 
-    gtk_notebook_append_page(GTK_NOTEBOOK(apptw->appNotebook)
-            , apptw->appAlarm_notebook_page, apptw->appAlarm_tab_label);
+    gtk_notebook_append_page(GTK_NOTEBOOK(apptw->Notebook)
+            , apptw->Alarm_notebook_page, apptw->Alarm_tab_label);
 
-    apptw->appAlarm = gtk_label_new(_("Alarm"));
-    apptw->appAlarm_hbox = gtk_hbox_new(FALSE, 0);
-    apptw->appAlarm_spin_dd = gtk_spin_button_new_with_range(0, 100, 1);
-    gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(apptw->appAlarm_spin_dd), TRUE);
-    gtk_box_pack_start(GTK_BOX(apptw->appAlarm_hbox)
-            , apptw->appAlarm_spin_dd, FALSE, FALSE, 0);
+    apptw->Alarm = gtk_label_new(_("Alarm"));
+    apptw->Alarm_hbox = gtk_hbox_new(FALSE, 0);
+    apptw->Alarm_spin_dd = gtk_spin_button_new_with_range(0, 100, 1);
+    gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(apptw->Alarm_spin_dd), TRUE);
+    gtk_box_pack_start(GTK_BOX(apptw->Alarm_hbox)
+            , apptw->Alarm_spin_dd, FALSE, FALSE, 0);
     label = gtk_label_new(_("days"));
-    gtk_box_pack_start(GTK_BOX (apptw->appAlarm_hbox), label, FALSE, FALSE, 5);
+    gtk_box_pack_start(GTK_BOX (apptw->Alarm_hbox), label, FALSE, FALSE, 5);
     label = gtk_label_new(" ");
-    gtk_box_pack_start(GTK_BOX (apptw->appAlarm_hbox), label, FALSE, FALSE, 10);
-    apptw->appAlarm_spin_hh = gtk_spin_button_new_with_range(0, 23, 1);
-    gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(apptw->appAlarm_spin_hh), TRUE);
-    gtk_box_pack_start(GTK_BOX (apptw->appAlarm_hbox)
-            , apptw->appAlarm_spin_hh, FALSE, FALSE, 0);
+    gtk_box_pack_start(GTK_BOX (apptw->Alarm_hbox), label, FALSE, FALSE, 10);
+    apptw->Alarm_spin_hh = gtk_spin_button_new_with_range(0, 23, 1);
+    gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(apptw->Alarm_spin_hh), TRUE);
+    gtk_box_pack_start(GTK_BOX (apptw->Alarm_hbox)
+            , apptw->Alarm_spin_hh, FALSE, FALSE, 0);
     label = gtk_label_new(_("hours"));
-    gtk_box_pack_start(GTK_BOX (apptw->appAlarm_hbox), label, FALSE, FALSE, 5);
+    gtk_box_pack_start(GTK_BOX (apptw->Alarm_hbox), label, FALSE, FALSE, 5);
     label = gtk_label_new(" ");
-    gtk_box_pack_start(GTK_BOX (apptw->appAlarm_hbox), label, FALSE, FALSE, 10);
-    apptw->appAlarm_spin_mm = gtk_spin_button_new_with_range(0, 59, 5);
-    gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(apptw->appAlarm_spin_mm), TRUE);
-    gtk_box_pack_start(GTK_BOX (apptw->appAlarm_hbox), apptw->appAlarm_spin_mm
+    gtk_box_pack_start(GTK_BOX (apptw->Alarm_hbox), label, FALSE, FALSE, 10);
+    apptw->Alarm_spin_mm = gtk_spin_button_new_with_range(0, 59, 5);
+    gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(apptw->Alarm_spin_mm), TRUE);
+    gtk_box_pack_start(GTK_BOX (apptw->Alarm_hbox), apptw->Alarm_spin_mm
             , FALSE, FALSE, 0);
     label = gtk_label_new(_("mins"));
-    gtk_box_pack_start(GTK_BOX (apptw->appAlarm_hbox), label, FALSE, FALSE, 5);
-    xfcalendar_table_add_row(apptw->appTableAlarm
-            , apptw->appAlarm, apptw->appAlarm_hbox, 1
-            , (GtkAttachOptions) (GTK_FILL)
-            , (GtkAttachOptions) (GTK_FILL));
+    gtk_box_pack_start(GTK_BOX (apptw->Alarm_hbox), label, FALSE, FALSE, 5);
+    orage_table_add_row(apptw->TableAlarm
+            , apptw->Alarm, apptw->Alarm_hbox
+            , row = 0, (GTK_FILL), (GTK_FILL));
 
-    apptw->appSound_label = gtk_label_new(_("Sound"));
-    apptw->appSound_hbox = gtk_hbox_new(FALSE, 0);
-    gtk_box_set_spacing(GTK_BOX(apptw->appSound_hbox), 6);
-    apptw->appSound_entry = gtk_entry_new();
-    gtk_box_pack_start(GTK_BOX(apptw->appSound_hbox), apptw->appSound_entry
+    apptw->Sound_label = gtk_label_new(_("Sound"));
+    apptw->Sound_hbox = gtk_hbox_new(FALSE, 0);
+    gtk_box_set_spacing(GTK_BOX(apptw->Sound_hbox), 6);
+    apptw->Sound_entry = gtk_entry_new();
+    gtk_box_pack_start(GTK_BOX(apptw->Sound_hbox), apptw->Sound_entry
             , TRUE, TRUE, 0);
-    apptw->appSound_button = gtk_button_new_from_stock("gtk-find");
-    gtk_box_pack_start(GTK_BOX(apptw->appSound_hbox), apptw->appSound_button
+    apptw->Sound_button = gtk_button_new_from_stock("gtk-find");
+    gtk_box_pack_start(GTK_BOX(apptw->Sound_hbox), apptw->Sound_button
             , FALSE, TRUE, 0);
-    xfcalendar_table_add_row(apptw->appTableAlarm
-            , apptw->appSound_label, apptw->appSound_hbox, 2
-            , (GtkAttachOptions) (GTK_FILL)
-            , (GtkAttachOptions) (GTK_FILL));
+    orage_table_add_row(apptw->TableAlarm
+            , apptw->Sound_label, apptw->Sound_hbox
+            , ++row, (GTK_FILL), (GTK_FILL));
 
-    apptw->appSoundRepeat_checkbutton = 
+    apptw->SoundRepeat_checkbutton = 
             gtk_check_button_new_with_mnemonic(_("Repeat alarm sound"));
-    xfcalendar_table_add_row(apptw->appTableAlarm
-            , NULL, apptw->appSoundRepeat_checkbutton, 3
-            , (GtkAttachOptions) (GTK_EXPAND | GTK_FILL)
-            , (GtkAttachOptions) (0));
+    orage_table_add_row(apptw->TableAlarm
+            , NULL, apptw->SoundRepeat_checkbutton
+            , ++row, (GTK_EXPAND | GTK_FILL), (0));
+
+    g_signal_connect((gpointer)apptw->Alarm_spin_dd, "value-changed"
+            , G_CALLBACK(on_app_spin_button_changed_cb), apptw);
+    g_signal_connect((gpointer)apptw->Alarm_spin_hh, "value-changed"
+            , G_CALLBACK(on_app_spin_button_changed_cb), apptw);
+    g_signal_connect((gpointer)apptw->Alarm_spin_mm, "value-changed"
+            , G_CALLBACK(on_app_spin_button_changed_cb), apptw);
+    g_signal_connect((gpointer)apptw->Sound_entry, "changed"
+            , G_CALLBACK(on_app_entry_changed_cb), apptw);
+    g_signal_connect((gpointer)apptw->Sound_button, "clicked"
+            , G_CALLBACK(on_appSound_button_clicked_cb), apptw);
+    g_signal_connect((gpointer)apptw->SoundRepeat_checkbutton, "clicked"
+            , G_CALLBACK(app_checkbutton_clicked_cb), apptw);
 }
 
-void
-create_appt_win_tab_recurrence(appt_win *apptw)
+static void build_recurrence_page(appt_win *apptw)
 {
-    gint row=1, i;
+    gint row, i;
     char *recur_freq_array[RECUR_ARRAY_DIM] = {
         _("None"), _("Daily"), _("Weekly"), _("Monthly"), _("Yearly")};
     char *weekday_array[7] = {
         _("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun")};
 
-    apptw->appTableRecur = xfcalendar_table_new(8, 2);
-    apptw->appRecur_notebook_page = 
-            xfce_create_framebox_with_content(NULL, apptw->appTableRecur);
-    apptw->appRecur_tab_label = gtk_label_new(_("Recurrence"));
+    apptw->TableRecur = orage_table_new(8, BORDER_SIZE);
+    apptw->Recur_notebook_page = apptw->TableRecur;
+    apptw->Recur_tab_label = gtk_label_new(_("Recurrence"));
 
-    gtk_notebook_append_page(GTK_NOTEBOOK(apptw->appNotebook)
-            , apptw->appRecur_notebook_page, apptw->appRecur_tab_label);
+    gtk_notebook_append_page(GTK_NOTEBOOK(apptw->Notebook)
+            , apptw->Recur_notebook_page, apptw->Recur_tab_label);
 
-    apptw->appRecur_feature_label = gtk_label_new(_("Complexity"));
-    apptw->appRecur_feature_hbox = gtk_hbox_new(FALSE, 0);
-    apptw->appRecur_feature_normal_rb = gtk_radio_button_new_with_label(NULL
+    apptw->Recur_feature_label = gtk_label_new(_("Complexity"));
+    apptw->Recur_feature_hbox = gtk_hbox_new(FALSE, 0);
+    apptw->Recur_feature_normal_rb = gtk_radio_button_new_with_label(NULL
             , _("Basic"));
-    gtk_box_pack_start(GTK_BOX(apptw->appRecur_feature_hbox)
-            , apptw->appRecur_feature_normal_rb, FALSE, FALSE, 15);
-    apptw->appRecur_feature_advanced_rb = 
+    gtk_box_pack_start(GTK_BOX(apptw->Recur_feature_hbox)
+            , apptw->Recur_feature_normal_rb, FALSE, FALSE, 15);
+    apptw->Recur_feature_advanced_rb = 
             gtk_radio_button_new_with_mnemonic_from_widget(
-                    GTK_RADIO_BUTTON(apptw->appRecur_feature_normal_rb)
+                    GTK_RADIO_BUTTON(apptw->Recur_feature_normal_rb)
             , _("Advanced"));
-    gtk_box_pack_start(GTK_BOX(apptw->appRecur_feature_hbox)
-            , apptw->appRecur_feature_advanced_rb, FALSE, FALSE, 15);
-    xfcalendar_table_add_row(apptw->appTableRecur
-            , apptw->appRecur_feature_label, apptw->appRecur_feature_hbox, row++
-            , (GtkAttachOptions) (GTK_EXPAND | GTK_FILL)
-            , (GtkAttachOptions) (0));
-    gtk_tooltips_set_tip(apptw->appTooltips, apptw->appRecur_feature_normal_rb
+    gtk_box_pack_start(GTK_BOX(apptw->Recur_feature_hbox)
+            , apptw->Recur_feature_advanced_rb, FALSE, FALSE, 15);
+    orage_table_add_row(apptw->TableRecur
+            , apptw->Recur_feature_label, apptw->Recur_feature_hbox
+            , row = 0, (GTK_EXPAND | GTK_FILL), (0));
+    gtk_tooltips_set_tip(apptw->Tooltips, apptw->Recur_feature_normal_rb
             , _("Use this if you want regular repeating event"), NULL);
-    gtk_tooltips_set_tip(apptw->appTooltips, apptw->appRecur_feature_advanced_rb
+    gtk_tooltips_set_tip(apptw->Tooltips, apptw->Recur_feature_advanced_rb
             , _("Use this if you need complex times like:\n Every second week or \n Every Saturday and Sunday or \n First Tuesday every month")
             , NULL);
 
-    apptw->appRecur_freq_label = gtk_label_new(_("Frequency"));
-    apptw->appRecur_freq_cb = gtk_combo_box_new_text();
-    xfcalendar_combo_box_append_array(apptw->appRecur_freq_cb
+    apptw->Recur_freq_label = gtk_label_new(_("Frequency"));
+    apptw->Recur_freq_cb = gtk_combo_box_new_text();
+    combo_box_append_array(apptw->Recur_freq_cb
             , recur_freq_array, RECUR_ARRAY_DIM);
-    xfcalendar_table_add_row(apptw->appTableRecur
-            , apptw->appRecur_freq_label, apptw->appRecur_freq_cb, row++
-            , (GtkAttachOptions) (GTK_EXPAND | GTK_FILL)
-            , (GtkAttachOptions) (GTK_FILL));
+    orage_table_add_row(apptw->TableRecur
+            , apptw->Recur_freq_label, apptw->Recur_freq_cb
+            , ++row, (GTK_EXPAND | GTK_FILL), (GTK_FILL));
 
-    apptw->appRecur_int_label = gtk_label_new(_("Interval"));
-    apptw->appRecur_int_hbox = gtk_hbox_new(FALSE, 0);
-    apptw->appRecur_int_spin_label1 = gtk_label_new(_("Each"));
-    gtk_box_pack_start(GTK_BOX(apptw->appRecur_int_hbox)
-            , apptw->appRecur_int_spin_label1, FALSE, FALSE, 0);
-    apptw->appRecur_int_spin = gtk_spin_button_new_with_range(1, 100, 1);
-    gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(apptw->appRecur_int_spin), TRUE);
-    gtk_box_pack_start(GTK_BOX(apptw->appRecur_int_hbox)
-            , apptw->appRecur_int_spin, FALSE, FALSE, 5);
-    apptw->appRecur_int_spin_label2 = gtk_label_new(_("occurrence"));
-    gtk_box_pack_start(GTK_BOX(apptw->appRecur_int_hbox)
-            , apptw->appRecur_int_spin_label2, FALSE, FALSE, 0);
-    xfcalendar_table_add_row(apptw->appTableRecur
-            , apptw->appRecur_int_label, apptw->appRecur_int_hbox, row++
-            , (GtkAttachOptions) (GTK_EXPAND | GTK_FILL)
-            , (GtkAttachOptions) (0));
-    gtk_tooltips_set_tip(apptw->appTooltips, apptw->appRecur_int_spin
+    apptw->Recur_int_label = gtk_label_new(_("Interval"));
+    apptw->Recur_int_hbox = gtk_hbox_new(FALSE, 0);
+    apptw->Recur_int_spin_label1 = gtk_label_new(_("Each"));
+    gtk_box_pack_start(GTK_BOX(apptw->Recur_int_hbox)
+            , apptw->Recur_int_spin_label1, FALSE, FALSE, 0);
+    apptw->Recur_int_spin = gtk_spin_button_new_with_range(1, 100, 1);
+    gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(apptw->Recur_int_spin), TRUE);
+    gtk_box_pack_start(GTK_BOX(apptw->Recur_int_hbox)
+            , apptw->Recur_int_spin, FALSE, FALSE, 5);
+    apptw->Recur_int_spin_label2 = gtk_label_new(_("occurrence"));
+    gtk_box_pack_start(GTK_BOX(apptw->Recur_int_hbox)
+            , apptw->Recur_int_spin_label2, FALSE, FALSE, 0);
+    orage_table_add_row(apptw->TableRecur
+            , apptw->Recur_int_label, apptw->Recur_int_hbox
+            , ++row, (GTK_EXPAND | GTK_FILL), (0));
+    gtk_tooltips_set_tip(apptw->Tooltips, apptw->Recur_int_spin
             , _("Limit frequency to certain interval. For example:\n Every third day: Frequency = Daily and Interval = 3")
             , NULL);
 
-    apptw->appRecur_limit_label = gtk_label_new(_("Limit"));
-    apptw->appRecur_limit_rb = gtk_radio_button_new_with_label(NULL
+    apptw->Recur_limit_label = gtk_label_new(_("Limit"));
+    apptw->Recur_limit_rb = gtk_radio_button_new_with_label(NULL
             , _("Repeat forever"));
-    xfcalendar_table_add_row(apptw->appTableRecur
-            , apptw->appRecur_limit_label, apptw->appRecur_limit_rb, row++
-            , (GtkAttachOptions) (GTK_EXPAND | GTK_FILL)
-            , (GtkAttachOptions) (0));
+    orage_table_add_row(apptw->TableRecur
+            , apptw->Recur_limit_label, apptw->Recur_limit_rb
+            , ++row, (GTK_EXPAND | GTK_FILL), (0));
 
-    apptw->appRecur_count_hbox = gtk_hbox_new(FALSE, 0);
-    apptw->appRecur_count_rb = gtk_radio_button_new_with_mnemonic_from_widget(
-            GTK_RADIO_BUTTON(apptw->appRecur_limit_rb), _("Repeat "));
-    gtk_box_pack_start(GTK_BOX(apptw->appRecur_count_hbox)
-            , apptw->appRecur_count_rb, FALSE, FALSE, 0);
-    apptw->appRecur_count_spin = gtk_spin_button_new_with_range(1, 100, 1);
-    gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(apptw->appRecur_count_spin)
+    apptw->Recur_count_hbox = gtk_hbox_new(FALSE, 0);
+    apptw->Recur_count_rb = gtk_radio_button_new_with_mnemonic_from_widget(
+            GTK_RADIO_BUTTON(apptw->Recur_limit_rb), _("Repeat "));
+    gtk_box_pack_start(GTK_BOX(apptw->Recur_count_hbox)
+            , apptw->Recur_count_rb, FALSE, FALSE, 0);
+    apptw->Recur_count_spin = gtk_spin_button_new_with_range(1, 100, 1);
+    gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(apptw->Recur_count_spin)
             , TRUE);
-    gtk_box_pack_start(GTK_BOX(apptw->appRecur_count_hbox)
-            , apptw->appRecur_count_spin, FALSE, FALSE, 0);
-    apptw->appRecur_count_label = gtk_label_new(_("times"));
-    gtk_box_pack_start(GTK_BOX(apptw->appRecur_count_hbox)
-            , apptw->appRecur_count_label, FALSE, FALSE, 5);
-    xfcalendar_table_add_row(apptw->appTableRecur
-            , NULL, apptw->appRecur_count_hbox, row++
-            , (GtkAttachOptions) (GTK_EXPAND | GTK_FILL)
-            , (GtkAttachOptions) (0));
+    gtk_box_pack_start(GTK_BOX(apptw->Recur_count_hbox)
+            , apptw->Recur_count_spin, FALSE, FALSE, 0);
+    apptw->Recur_count_label = gtk_label_new(_("times"));
+    gtk_box_pack_start(GTK_BOX(apptw->Recur_count_hbox)
+            , apptw->Recur_count_label, FALSE, FALSE, 5);
+    orage_table_add_row(apptw->TableRecur
+            , NULL, apptw->Recur_count_hbox
+            , ++row, (GTK_EXPAND | GTK_FILL), (0));
 
-    apptw->appRecur_until_hbox = gtk_hbox_new(FALSE, 0);
-    apptw->appRecur_until_rb = gtk_radio_button_new_with_mnemonic_from_widget(
-            GTK_RADIO_BUTTON(apptw->appRecur_limit_rb), _("Repeat until "));
-    gtk_box_pack_start(GTK_BOX(apptw->appRecur_until_hbox)
-            , apptw->appRecur_until_rb, FALSE, FALSE, 0);
-    apptw->appRecur_until_button = gtk_button_new();
-    gtk_box_pack_start(GTK_BOX(apptw->appRecur_until_hbox)
-            , apptw->appRecur_until_button, FALSE, FALSE, 0);
-    xfcalendar_table_add_row(apptw->appTableRecur
-            , NULL, apptw->appRecur_until_hbox, row++
-            , (GtkAttachOptions) (GTK_EXPAND | GTK_FILL)
-            , (GtkAttachOptions) (0));
+    apptw->Recur_until_hbox = gtk_hbox_new(FALSE, 0);
+    apptw->Recur_until_rb = gtk_radio_button_new_with_mnemonic_from_widget(
+            GTK_RADIO_BUTTON(apptw->Recur_limit_rb), _("Repeat until "));
+    gtk_box_pack_start(GTK_BOX(apptw->Recur_until_hbox)
+            , apptw->Recur_until_rb, FALSE, FALSE, 0);
+    apptw->Recur_until_button = gtk_button_new();
+    gtk_box_pack_start(GTK_BOX(apptw->Recur_until_hbox)
+            , apptw->Recur_until_button, FALSE, FALSE, 0);
+    orage_table_add_row(apptw->TableRecur
+            , NULL, apptw->Recur_until_hbox
+            , ++row, (GTK_EXPAND | GTK_FILL), (0));
 
-    apptw->appRecur_byday_label = gtk_label_new(_("Weekdays"));
-    apptw->appRecur_byday_hbox = gtk_hbox_new(TRUE, 0);
+    apptw->Recur_byday_label = gtk_label_new(_("Weekdays"));
+    apptw->Recur_byday_hbox = gtk_hbox_new(TRUE, 0);
     for (i=0; i <= 6; i++) {
-        apptw->appRecur_byday_cb[i] = 
+        apptw->Recur_byday_cb[i] = 
                 gtk_check_button_new_with_mnemonic(weekday_array[i]);
-        gtk_box_pack_start(GTK_BOX(apptw->appRecur_byday_hbox)
-                , apptw->appRecur_byday_cb[i], FALSE, FALSE, 0);
+        gtk_box_pack_start(GTK_BOX(apptw->Recur_byday_hbox)
+                , apptw->Recur_byday_cb[i], FALSE, FALSE, 0);
     }
-    xfcalendar_table_add_row(apptw->appTableRecur
-            , apptw->appRecur_byday_label, apptw->appRecur_byday_hbox, row++
-            , (GtkAttachOptions) (GTK_EXPAND | GTK_FILL)
-            , (GtkAttachOptions) (0));
+    orage_table_add_row(apptw->TableRecur
+            , apptw->Recur_byday_label, apptw->Recur_byday_hbox
+            , ++row, (GTK_EXPAND | GTK_FILL), (0));
 
-    apptw->appRecur_byday_spin_label = gtk_label_new(_("Which day"));
-    apptw->appRecur_byday_spin_hbox = gtk_hbox_new(TRUE, 0);
+    apptw->Recur_byday_spin_label = gtk_label_new(_("Which day"));
+    apptw->Recur_byday_spin_hbox = gtk_hbox_new(TRUE, 0);
     for (i=0; i <= 6; i++) {
-        apptw->appRecur_byday_spin[i] = 
+        apptw->Recur_byday_spin[i] = 
                 gtk_spin_button_new_with_range(-9, 9, 1);
-        gtk_box_pack_start(GTK_BOX(apptw->appRecur_byday_spin_hbox)
-                , apptw->appRecur_byday_spin[i], FALSE, FALSE, 0);
-        gtk_tooltips_set_tip(apptw->appTooltips, apptw->appRecur_byday_spin[i]
+        gtk_box_pack_start(GTK_BOX(apptw->Recur_byday_spin_hbox)
+                , apptw->Recur_byday_spin[i], FALSE, FALSE, 0);
+        gtk_tooltips_set_tip(apptw->Tooltips, apptw->Recur_byday_spin[i]
                 , _("Specify which weekday for monthly and yearly events.\n For example:\n Second Wednesday each month:\n\tFrequency = Monthly,\n\tWeekdays = check only Wednesday,\n\tWhich day = select 2 from the number below Wednesday")
                 , NULL);
     }
-    xfcalendar_table_add_row(apptw->appTableRecur
-            , apptw->appRecur_byday_spin_label
-            , apptw->appRecur_byday_spin_hbox, row++
-            , (GtkAttachOptions) (GTK_EXPAND | GTK_FILL)
-            , (GtkAttachOptions) (0));
+    orage_table_add_row(apptw->TableRecur
+            , apptw->Recur_byday_spin_label, apptw->Recur_byday_spin_hbox
+            , ++row ,(GTK_EXPAND | GTK_FILL), (0));
+
+    g_signal_connect((gpointer)apptw->Recur_feature_normal_rb, "clicked"
+            , G_CALLBACK(app_recur_feature_checkbutton_clicked_cb), apptw);
+    g_signal_connect((gpointer)apptw->Recur_feature_advanced_rb, "clicked"
+            , G_CALLBACK(app_recur_feature_checkbutton_clicked_cb), apptw);
+    g_signal_connect((gpointer)apptw->Recur_freq_cb, "changed"
+            , G_CALLBACK(on_app_combobox_changed_cb), apptw);
+    g_signal_connect((gpointer)apptw->Recur_int_spin, "value-changed"
+            , G_CALLBACK(on_app_spin_button_changed_cb), apptw);
+    g_signal_connect((gpointer)apptw->Recur_limit_rb, "clicked"
+            , G_CALLBACK(app_recur_checkbutton_clicked_cb), apptw);
+    g_signal_connect((gpointer)apptw->Recur_count_rb, "clicked"
+            , G_CALLBACK(app_recur_checkbutton_clicked_cb), apptw);
+    g_signal_connect((gpointer)apptw->Recur_count_spin, "value-changed"
+            , G_CALLBACK(on_app_spin_button_changed_cb), apptw);
+    g_signal_connect((gpointer)apptw->Recur_until_rb, "clicked"
+            , G_CALLBACK(app_recur_checkbutton_clicked_cb), apptw);
+    g_signal_connect((gpointer)apptw->Recur_until_button, "clicked"
+            , G_CALLBACK(on_Date_button_clicked_cb), apptw);
+    for (i=0; i <= 6; i++) {
+        g_signal_connect((gpointer)apptw->Recur_byday_cb[i], "clicked"
+                , G_CALLBACK(app_checkbutton_clicked_cb), apptw);
+        g_signal_connect((gpointer)apptw->Recur_byday_spin[i], "value-changed"
+                , G_CALLBACK(on_app_spin_button_changed_cb), apptw);
+    }
 }
 
-appt_win 
-*create_appt_win(char *action, char *par, eventlist_win *event_list)
+appt_win *create_appt_win(char *action, char *par, el_win *event_list)
 {
-    int i;
-    appt_win *apptw = g_new(appt_win, 1);
+    appt_win *apptw;
 
-    /* main window creation and base elements */
+    /*  initialisation + main window + base vbox */
+    apptw = g_new(appt_win, 1);
     apptw->xf_uid = NULL;
-    apptw->eventlist = event_list;    /* Keep track of the parent, if any */
+    apptw->el = event_list;    /* Keep track of the parent, if any */
     apptw->appointment_changed = FALSE;
+    apptw->Tooltips = gtk_tooltips_new();
+    apptw->accel_group = gtk_accel_group_new();
 
-    apptw->appWindow = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-    gtk_window_set_default_size(GTK_WINDOW(apptw->appWindow), 450, 325);
+    apptw->Window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+    gtk_window_set_default_size(GTK_WINDOW(apptw->Window), 450, 325);
+    gtk_window_add_accel_group(GTK_WINDOW(apptw->Window), apptw->accel_group);
 
-    apptw->appTooltips = gtk_tooltips_new();
-    apptw->appAccelgroup = gtk_accel_group_new();
-    gtk_window_add_accel_group(GTK_WINDOW(apptw->appWindow)
-            , apptw->appAccelgroup);
+    apptw->Vbox = gtk_vbox_new(FALSE, 0);
+    gtk_container_add(GTK_CONTAINER(apptw->Window), apptw->Vbox);
 
-    apptw->appVBox1 = gtk_vbox_new(FALSE, 0);
-    gtk_container_add(GTK_CONTAINER(apptw->appWindow), apptw->appVBox1);
-
-    create_appt_win_menu(apptw);
-
-    create_appt_win_buttons(apptw);
+    build_menu(apptw);
+    build_toolbar(apptw);
 
     /* ********** Here begins tabs ********** */
-    apptw->appNotebook = gtk_notebook_new();
-    gtk_container_add(GTK_CONTAINER(apptw->appVBox1), apptw->appNotebook);
-    gtk_container_set_border_width(GTK_CONTAINER (apptw->appNotebook), 5);
+    apptw->Notebook = gtk_notebook_new();
+    gtk_container_add(GTK_CONTAINER(apptw->Vbox), apptw->Notebook);
+    gtk_container_set_border_width(GTK_CONTAINER (apptw->Notebook), 5);
 
-    create_appt_win_tab_general(apptw);
+    build_general_page(apptw);
+    build_alarm_page(apptw);
+    build_recurrence_page(apptw);
 
-    create_appt_win_tab_alarm(apptw);
-
-    create_appt_win_tab_recurrence(apptw);
-
-    /* signals */
-
-    g_signal_connect((gpointer) apptw->appFileSave_menuitem, "activate",
-            G_CALLBACK(on_appFileSave_menu_activate_cb), apptw);
-
-    g_signal_connect((gpointer) apptw->appFileSaveClose_menuitem, "activate",
-            G_CALLBACK(on_appFileSaveClose_menu_activate_cb), apptw);
-
-    g_signal_connect((gpointer) apptw->appFileDuplicate_menuitem, "activate",
-            G_CALLBACK(on_appFileDuplicate_menu_activate_cb), apptw);
-
-    g_signal_connect((gpointer) apptw->appFileRevert_menuitem, "activate",
-            G_CALLBACK(on_appFileRevert_menu_activate_cb), apptw);
-
-    g_signal_connect((gpointer) apptw->appFileDelete_menuitem, "activate",
-            G_CALLBACK(on_appFileDelete_menu_activate_cb), apptw);
-
-    g_signal_connect((gpointer) apptw->appFileClose_menuitem, "activate",
-            G_CALLBACK(on_appFileClose_menu_activate_cb), apptw);
-
-    g_signal_connect((gpointer) apptw->appAllDay_checkbutton, "clicked",
-            G_CALLBACK(on_appAllDay_clicked_cb), apptw);
-
-    g_signal_connect((gpointer) apptw->appSound_button, "clicked",
-            G_CALLBACK(on_appSound_button_clicked_cb), apptw);
-
-    g_signal_connect((gpointer) apptw->appSave, "clicked",
-            G_CALLBACK(on_appSave_clicked_cb), apptw);
-
-    g_signal_connect((gpointer) apptw->appSaveClose, "clicked",
-            G_CALLBACK(on_appSaveClose_clicked_cb), apptw);
-
-    g_signal_connect((gpointer) apptw->appDelete, "clicked",
-            G_CALLBACK(on_appDelete_clicked_cb), apptw);
-
-    g_signal_connect((gpointer) apptw->appDuplicate, "clicked",
-            G_CALLBACK(on_appDuplicate_clicked_cb), apptw);
-
-    g_signal_connect((gpointer) apptw->appRevert, "clicked",
-            G_CALLBACK(on_appRevert_clicked_cb), apptw);
-
-    g_signal_connect((gpointer) apptw->appStartDate_button, "clicked",
-            G_CALLBACK(on_appStartEndDate_clicked_cb), apptw);
-
-    g_signal_connect((gpointer) apptw->appEndDate_button, "clicked",
-            G_CALLBACK(on_appStartEndDate_clicked_cb), apptw);
-
-    g_signal_connect((gpointer) apptw->appStartTime_spin_hh, "changed",
-            G_CALLBACK(on_app_spin_button_changed_cb), apptw);
-
-    g_signal_connect((gpointer) apptw->appStartTime_spin_mm, "changed",
-            G_CALLBACK(on_app_spin_button_changed_cb), apptw);
-
-    g_signal_connect((gpointer) apptw->appEndTime_spin_hh, "changed",
-            G_CALLBACK(on_app_spin_button_changed_cb), apptw);
-
-    g_signal_connect((gpointer) apptw->appEndTime_spin_mm, "changed",
-            G_CALLBACK(on_app_spin_button_changed_cb), apptw);
-
-    g_signal_connect((gpointer) apptw->appStartTimezone_button, "clicked",
-            G_CALLBACK(on_appStartTimezone_clicked_cb), apptw);
-
-    g_signal_connect((gpointer) apptw->appEndTimezone_button, "clicked",
-            G_CALLBACK(on_appEndTimezone_clicked_cb), apptw);
-
-    g_signal_connect((gpointer) apptw->appDur_checkbutton, "clicked",
-            G_CALLBACK(appDur_checkbutton_clicked_cb), apptw);
-
-    g_signal_connect((gpointer) apptw->appDur_spin_dd, "value-changed",
-            G_CALLBACK(on_app_spin_button_changed_cb), apptw);
-
-    g_signal_connect((gpointer) apptw->appDur_spin_hh, "value-changed",
-            G_CALLBACK(on_app_spin_button_changed_cb), apptw);
-
-    g_signal_connect((gpointer) apptw->appDur_spin_mm, "value-changed",
-            G_CALLBACK(on_app_spin_button_changed_cb), apptw);
-
-    g_signal_connect((gpointer) apptw->appWindow, "delete-event",
-            G_CALLBACK(on_appWindow_delete_event_cb), apptw);
-    /* Take care of the title entry to build the appointment window title 
-     * Beware: we are not using apptw->appTitle_entry as a GtkEntry here 
-     * but as an interface GtkEditable instead.
-     */
-    g_signal_connect((gpointer) apptw->appTitle_entry, "changed",
-            G_CALLBACK(on_appTitle_entry_changed_cb), apptw);
-
-    g_signal_connect((gpointer) apptw->appLocation_entry, "changed",
-            G_CALLBACK(on_app_entry_changed_cb), apptw);
-
-    g_signal_connect((gpointer) apptw->appSoundRepeat_checkbutton, "clicked",
-            G_CALLBACK(app_checkbutton_clicked_cb), apptw);
-
-    g_signal_connect((gpointer) apptw->appRecur_freq_cb, "changed",
-            G_CALLBACK(on_app_combobox_changed_cb), apptw);
-
-    g_signal_connect((gpointer) apptw->appRecur_limit_rb, "clicked",
-            G_CALLBACK(app_recur_checkbutton_clicked_cb), apptw);
-
-    g_signal_connect((gpointer) apptw->appRecur_count_rb, "clicked",
-            G_CALLBACK(app_recur_checkbutton_clicked_cb), apptw);
-
-    g_signal_connect((gpointer) apptw->appRecur_count_spin, "value-changed",
-            G_CALLBACK(on_app_spin_button_changed_cb), apptw);
-
-    g_signal_connect((gpointer) apptw->appRecur_until_rb, "clicked",
-            G_CALLBACK(app_recur_checkbutton_clicked_cb), apptw);
-
-    g_signal_connect((gpointer) apptw->appRecur_feature_normal_rb, "clicked",
-            G_CALLBACK(app_recur_feature_checkbutton_clicked_cb), apptw);
-
-    g_signal_connect((gpointer) apptw->appRecur_feature_advanced_rb, "clicked",
-            G_CALLBACK(app_recur_feature_checkbutton_clicked_cb), apptw);
-
-    g_signal_connect((gpointer) apptw->appRecur_until_button, "clicked",
-            G_CALLBACK(on_appStartEndDate_clicked_cb), apptw);
-
-
-    for (i=0; i <= 6; i++) {
-        g_signal_connect((gpointer) apptw->appRecur_byday_cb[i], "clicked",
-                G_CALLBACK(app_checkbutton_clicked_cb), apptw);
-        g_signal_connect((gpointer) apptw->appRecur_byday_spin[i], 
-                "value-changed",
-                G_CALLBACK(on_app_spin_button_changed_cb), apptw);
-    }
-    g_signal_connect((gpointer) apptw->appRecur_int_spin, "value-changed",
-            G_CALLBACK(on_app_spin_button_changed_cb), apptw);
-
-    g_signal_connect((gpointer) apptw->appAvailability_cb, "changed",
-            G_CALLBACK(on_app_combobox_changed_cb), apptw);
-
-    g_signal_connect((gpointer) apptw->appAlarm_spin_dd, "value-changed",
-            G_CALLBACK(on_app_spin_button_changed_cb), apptw);
-
-    g_signal_connect((gpointer) apptw->appAlarm_spin_hh, "value-changed",
-            G_CALLBACK(on_app_spin_button_changed_cb), apptw);
-
-    g_signal_connect((gpointer) apptw->appAlarm_spin_mm, "value-changed",
-            G_CALLBACK(on_app_spin_button_changed_cb), apptw);
-
-    g_signal_connect((gpointer) apptw->appNote_buffer, "changed",
-            G_CALLBACK(on_appNote_buffer_changed_cb), apptw);
-
-    g_signal_connect((gpointer) apptw->appSound_entry, "changed",
-            G_CALLBACK(on_app_entry_changed_cb), apptw);
+    g_signal_connect((gpointer)apptw->Window, "delete-event"
+            , G_CALLBACK(on_appWindow_delete_event_cb), apptw);
 
     fill_appt_window(apptw, action, par);
-
-    gtk_widget_show_all(apptw->appWindow);
-    if (gtk_toggle_button_get_active(
-            GTK_TOGGLE_BUTTON(apptw->appRecur_feature_normal_rb))) {
-        gtk_widget_hide(apptw->appRecur_int_label);
-        gtk_widget_hide(apptw->appRecur_int_hbox);
-        gtk_widget_hide(apptw->appRecur_byday_label);
-        gtk_widget_hide(apptw->appRecur_byday_hbox);
-        gtk_widget_hide(apptw->appRecur_byday_spin_label);
-        gtk_widget_hide(apptw->appRecur_byday_spin_hbox);
+    if (apptw->appt) { /* all fine */
+        gtk_widget_show_all(apptw->Window);
+        recur_hide_show(apptw);
+        type_hide_show(apptw);
+        gtk_widget_grab_focus(apptw->Title_entry);
+    }
+    else { /* failed to get data */
+        gtk_widget_destroy(apptw->Window);
+        gtk_object_destroy(GTK_OBJECT(apptw->Tooltips));
+        g_free(apptw);
     }
 
     return apptw;

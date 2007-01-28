@@ -1,22 +1,24 @@
-/* appointment.h
+/*      Orage - Calendar and alarm handler
  *
- * Copyright (c) 2004-2006 Mickaël Graf <korbinus@xfce.org>
- * Copyright (c) 2005-2006 Juha Kautto <juha@xfce.org>
+ * Copyright (c) 2005-2007 Juha Kautto  (juha at xfce.org)
+ * Copyright (c) 2004-2006 Mickael Graf (korbinus at xfce.org)
  *
- *  This program is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2, or (at your option)
+ * any later version.
  *
- *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
- *  along with this program; if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
- *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the 
+       Free Software Foundation
+       51 Franklin Street, 5th Floor
+       Boston, MA 02110-1301 USA
+
  */
 
 #ifndef __APPOINTMENT_H__
@@ -25,19 +27,11 @@
 #define XFICAL_APPT_TIME_FORMAT "%04d%02d%02dT%02d%02d%02d"
 #define XFICAL_APPT_DATE_FORMAT "%04d%02d%02d"
 
-typedef enum 
-{
-    XFICAL_FREQ_NONE = 0
-    ,XFICAL_FREQ_DAILY
-    ,XFICAL_FREQ_WEEKLY
-    ,XFICAL_FREQ_MONTHLY
-    ,XFICAL_FREQ_YEARLY
-} xfical_freq;
-
 typedef struct
 {
     gchar *uid;
 
+    xfical_type type;
     gchar *title;
     gchar *location;
 
@@ -54,6 +48,9 @@ typedef struct
     gchar *end_tz_loc;
     gboolean use_duration;
     gint   duration; 
+    gboolean completed;
+    gchar  completedtime[17];
+    gchar *completed_tz_loc;
 
     gint availability;
     gchar *note;
@@ -77,111 +74,126 @@ typedef struct
     gint   interval;    /* 1=every day/week..., 2=every second day/week,... */
 } appt_data;
 
-typedef struct
+typedef struct _appt_win
 {
-    GtkWidget *appWindow;
-    appt_data *appt;
-    GtkAccelGroup *appAccelgroup;
-    GtkWidget *appVBox1;
-    GtkWidget *appMenubar;
-    GtkWidget *appFile_menu;
-    GtkWidget *appFileSave_menuitem;
-    GtkWidget *appFileSaveClose_menuitem;
-    GtkWidget *appFileRevert_menuitem;
-    GtkWidget *appFileDuplicate_menuitem;
-    GtkWidget *appFileDelete_menuitem;
-    GtkWidget *appFileClose_menuitem;
-    GtkWidget *appToolbar;
-    GtkTooltips *appTooltips;
-    GtkWidget *appNotebook;
-    GtkWidget *appGeneral_notebook_page;
-    GtkWidget *appGeneral_tab_label;
-    GtkWidget *appAlarm_notebook_page;
-    GtkWidget *appAlarm_tab_label;
-    GtkWidget *appRecur_notebook_page;
-    GtkWidget *appRecur_tab_label;
-    GtkWidget *appTableGeneral;
-    GtkWidget *appTableAlarm;
-    GtkWidget *appTableRecur;
-    GtkWidget *appTitle_label;
-    GtkWidget *appLocation_label;
-    GtkWidget *appStart;
-    GtkWidget *appEnd;
-    GtkWidget *appPrivate;
-    GtkWidget *appAlarm;
-    GtkWidget *appAlarm_hbox;
-    GtkWidget *appAlarm_spin_dd;
-    GtkWidget *appAlarm_spin_hh;
-    GtkWidget *appAlarm_spin_mm;
-    GtkWidget *appNote;
-    GtkWidget *appAvailability;
-    GtkWidget *appTitle_entry;
-    GtkWidget *appLocation_entry;
-    GtkWidget *appPrivate_check;
-    GtkWidget *appNote_Scrolledwindow;
-    GtkWidget *appNote_textview;
-    GtkTextBuffer *appNote_buffer;
-    GtkWidget *appRecur_feature_label;
-    GtkWidget *appRecur_feature_hbox;
-    GtkWidget *appRecur_feature_normal_rb;
-    GtkWidget *appRecur_feature_advanced_rb;
-    GtkWidget *appRecur_freq_label;
-    GtkWidget *appRecur_freq_cb;
-    GtkWidget *appRecur_limit_rb;
-    GtkWidget *appRecur_limit_label;
-    GtkWidget *appRecur_count_hbox;
-    GtkWidget *appRecur_count_rb;
-    GtkWidget *appRecur_count_spin;
-    GtkWidget *appRecur_count_label;
-    GtkWidget *appRecur_until_hbox;
-    GtkWidget *appRecur_until_rb;
-    GtkWidget *appRecur_until_button;
-    GtkWidget *appRecur_byday_label;
-    GtkWidget *appRecur_byday_hbox;
-    GtkWidget *appRecur_byday_cb[7];    /* 0=Mo, 1=Tu ... 6=Su */
-    GtkWidget *appRecur_byday_spin_label;
-    GtkWidget *appRecur_byday_spin_hbox;
-    GtkWidget *appRecur_byday_spin[7];  /* 0=Mo, 1=Tu ... 6=Su */
-    GtkWidget *appRecur_int_label;
-    GtkWidget *appRecur_int_hbox;
-    GtkWidget *appRecur_int_spin;
-    GtkWidget *appRecur_int_spin_label1;
-    GtkWidget *appRecur_int_spin_label2;
-    GtkWidget *appAvailability_cb;
-    GtkWidget *appAllDay_checkbutton;
-    GtkWidget *appStartDate_button;
-    GtkWidget *appStartTime_hbox;
-    GtkWidget *appStartTime_spin_hh;
-    GtkWidget *appStartTime_spin_mm;
-    GtkWidget *appStartTimezone_button;
-    GtkWidget *appEndDate_button;
-    GtkWidget *appEndTime_hbox;
-    GtkWidget *appEndTime_spin_hh;
-    GtkWidget *appEndTime_spin_mm;
-    GtkWidget *appEndTimezone_button;
-    GtkWidget *appDur_hbox;
-    GtkWidget *appDur_checkbutton;
-    GtkWidget *appDur_spin_dd;
-    GtkWidget *appDur_spin_dd_label;
-    GtkWidget *appDur_spin_hh;
-    GtkWidget *appDur_spin_hh_label;
-    GtkWidget *appDur_spin_mm;
-    GtkWidget *appDur_spin_mm_label;
-    GtkWidget *appSound_label;
-    GtkWidget *appSound_hbox;
-    GtkWidget *appSound_entry;
-    GtkWidget *appSound_button;
-    GtkWidget *appSoundRepeat_checkbutton;
-    GtkWidget *appHBox1;
-    GtkWidget *appRevert;
-    GtkWidget *appDelete;
-    GtkWidget *appDuplicate;
-    GtkWidget *appSave;
-    GtkWidget *appSaveClose;
+    GtkWidget *Window;
+    GtkWidget *Vbox;
 
+    GtkWidget *Menubar;
+    GtkWidget *Revert;
+    GtkWidget *Delete;
+    GtkWidget *Duplicate;
+    GtkWidget *Save;
+    GtkWidget *SaveClose;
+
+    GtkWidget *File_menu;
+    GtkWidget *File_menu_save;
+    GtkWidget *File_menu_saveclose;
+    GtkWidget *File_menu_revert;
+    GtkWidget *File_menu_duplicate;
+    GtkWidget *File_menu_delete;
+    GtkWidget *File_menu_close;
+
+    GtkWidget *Toolbar;
+
+    GtkWidget *Notebook;
+    GtkWidget *General_notebook_page;
+    GtkWidget *General_tab_label;
+    GtkWidget *TableGeneral;
+    GtkWidget *Type_label;
+    GtkWidget *Type_event_rb;
+    GtkWidget *Type_todo_rb;
+    GtkWidget *Type_journal_rb;
+    GtkWidget *Title_label;
+    GtkWidget *Title_entry;
+    GtkWidget *Location_label;
+    GtkWidget *Location_entry;
+    GtkWidget *AllDay_checkbutton;
+    GtkWidget *Start_label;
+    GtkWidget *StartDate_button;
+    GtkWidget *StartTime_hbox;
+    GtkWidget *StartTime_spin_hh;
+    GtkWidget *StartTime_spin_mm;
+    GtkWidget *StartTimezone_button;
+    GtkWidget *End_label;
+    GtkWidget *EndDate_button;
+    GtkWidget *EndTime_hbox;
+    GtkWidget *EndTime_spin_hh;
+    GtkWidget *EndTime_spin_mm;
+    GtkWidget *EndTimezone_button;
+    GtkWidget *Dur_hbox;
+    GtkWidget *Dur_checkbutton;
+    GtkWidget *Dur_spin_dd;
+    GtkWidget *Dur_spin_dd_label;
+    GtkWidget *Dur_spin_hh;
+    GtkWidget *Dur_spin_hh_label;
+    GtkWidget *Dur_spin_mm;
+    GtkWidget *Dur_spin_mm_label;
+    GtkWidget *Completed_label;
+    GtkWidget *Completed_hbox;
+    GtkWidget *Completed_checkbutton;
+    GtkWidget *CompletedDate_button;
+    GtkWidget *CompletedTime_hbox;
+    GtkWidget *CompletedTime_spin_hh;
+    GtkWidget *CompletedTime_spin_mm;
+    GtkWidget *CompletedTimezone_button;
+    GtkWidget *Availability_label;
+    GtkWidget *Availability_cb;
+    GtkWidget *Note;
+    GtkWidget *Note_Scrolledwindow;
+    GtkWidget *Note_textview;
+    GtkTextBuffer *Note_buffer;
+
+    GtkWidget *Alarm_notebook_page;
+    GtkWidget *Alarm_tab_label;
+    GtkWidget *TableAlarm;
+    GtkWidget *Alarm;
+    GtkWidget *Alarm_hbox;
+    GtkWidget *Alarm_spin_dd;
+    GtkWidget *Alarm_spin_hh;
+    GtkWidget *Alarm_spin_mm;
+
+    GtkWidget *Recur_notebook_page;
+    GtkWidget *Recur_tab_label;
+    GtkWidget *TableRecur;
+    GtkWidget *Recur_feature_label;
+    GtkWidget *Recur_feature_hbox;
+    GtkWidget *Recur_feature_normal_rb;
+    GtkWidget *Recur_feature_advanced_rb;
+    GtkWidget *Recur_freq_label;
+    GtkWidget *Recur_freq_cb;
+    GtkWidget *Recur_limit_rb;
+    GtkWidget *Recur_limit_label;
+    GtkWidget *Recur_count_hbox;
+    GtkWidget *Recur_count_rb;
+    GtkWidget *Recur_count_spin;
+    GtkWidget *Recur_count_label;
+    GtkWidget *Recur_until_hbox;
+    GtkWidget *Recur_until_rb;
+    GtkWidget *Recur_until_button;
+    GtkWidget *Recur_byday_label;
+    GtkWidget *Recur_byday_hbox;
+    GtkWidget *Recur_byday_cb[7];    /* 0=Mo, 1=Tu ... 6=Su */
+    GtkWidget *Recur_byday_spin_label;
+    GtkWidget *Recur_byday_spin_hbox;
+    GtkWidget *Recur_byday_spin[7];  /* 0=Mo, 1=Tu ... 6=Su */
+    GtkWidget *Recur_int_label;
+    GtkWidget *Recur_int_hbox;
+    GtkWidget *Recur_int_spin;
+    GtkWidget *Recur_int_spin_label1;
+    GtkWidget *Recur_int_spin_label2;
+    GtkWidget *Sound_label;
+    GtkWidget *Sound_hbox;
+    GtkWidget *Sound_entry;
+    GtkWidget *Sound_button;
+    GtkWidget *SoundRepeat_checkbutton;
+
+    GtkAccelGroup *accel_group;
+    GtkTooltips *Tooltips;
+    appt_data *appt;
     gchar *xf_uid;
     gchar *par;
-    eventlist_win *eventlist; 
+    el_win *el; 
     gboolean appointment_add;       /* are we adding app */
     gboolean appointment_changed;   /* has this app been modified now */
     gboolean appointment_new;       /* is this new = no uid yet */
@@ -189,7 +201,6 @@ typedef struct
      * add == TRUE && new == FALSE */
 } appt_win;
 
-appt_win 
-*create_appt_win(char *action, char *par, eventlist_win *el);
+appt_win *create_appt_win(char *action, char *par, el_win *el);
 
 #endif /* !__APPOINTMENT_H__ */

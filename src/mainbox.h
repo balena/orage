@@ -1,22 +1,28 @@
-/* mainbox.h
+/*      Orage - Calendar and alarm handler
  *
- * (C) 2004-2005 Mickaël Graf
+ * Copyright (c) 2005-2007 Juha Kautto  (juha at xfce.org)
+ * Copyright (c) 2004-2006 Mickael Graf (korbinus at xfce.org)
  *
- *  This program is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2, or (at your option)
+ * any later version.
  *
- *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
- *  along with this program; if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
- *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the 
+       Free Software Foundation
+       51 Franklin Street, 5th Floor
+       Boston, MA 02110-1301 USA
+
  */
+
+#ifndef __MAINBOX_H__
+#define __MAINBOX_H__
 
 typedef struct _CalWin
 {
@@ -25,8 +31,7 @@ typedef struct _CalWin
     GtkWidget *mMenubar;
     GtkWidget *mFile_menu;
     GtkWidget *mFile_newApp;
-    GtkWidget *mFile_openArchive;
-    GtkWidget *mFile_closeArchive;
+    GtkWidget *mFile_interface;
     GtkWidget *mFile_close;
     GtkWidget *mFile_quit;
     GtkWidget *mEdit_menu;
@@ -42,6 +47,7 @@ typedef struct _CalWin
 
 } CalWin;
 
-void create_mainWin();
-void xfcalendar_toggle_visible();
-gboolean xfcalendar_mark_appointments();
+void build_mainWin();
+gboolean orage_mark_appointments();
+
+#endif /* !__MAINBOX_H__ */

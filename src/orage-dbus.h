@@ -1,7 +1,6 @@
 /*      Orage - Calendar and alarm handler
  *
- * Copyright (c) 2005-2007 Juha Kautto  (juha at xfce.org)
- * Copyright (c) 2004-2006 Mickael Graf (korbinus at xfce.org)
+ * Copyright (c) 2006-2007 Juha Kautto  (juha at xfce.org)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,16 +20,10 @@
 
  */
 
-#ifndef __TRAY_ICON_H__
-#define __TRAY_ICON_H__
+#ifndef __ORAGE_DBUS_H__
+#define __ORAGE_DBUS_H__
 
-#include "xfce_trayicon.h"
-#include "mainbox.h"
+void orage_dbus_start(void);
+gboolean orage_dbus_import_file(gchar *file_name);
 
-GdkPixbuf *create_icon(CalWin *xfcal, gint x, gint y);
-
-XfceTrayIcon *create_TrayIcon(CalWin *xfcal);
-
-void destroy_TrayIcon(XfceTrayIcon *trayIcon);
-
-#endif /* !__TRAY_ICON_H__ */
+#endif /* !__ORAGE_DBUS_H__ */

@@ -13,6 +13,7 @@ SUBDIRS = 								\
 	sounds								\
 	src								\
 	panel-plugin							\
+	globaltime							\
 	plugin
 
 desktopdir = $(datadir)/applications
@@ -20,19 +21,29 @@ desktop_in_files = xfcalendar.desktop.in
 desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 @INTLTOOL_DESKTOP_RULE@
 
+if HAVE_DBUS
+servicedir = $(datadir)/dbus-1/services
+service_in_files = org.xfce.calendar.service.in org.xfce.orage.service.in
+service_DATA = $(service_in_files:.service.in=.service)
+%.service: %.service.in
+	sed -e "s,\@bindir\@,$(bindir),g" < $< > $@
+endif
+
 EXTRA_DIST =								\
 	mkinstalldirs  							\
 	intltool-extract.in						\
 	intltool-merge.in						\
 	intltool-update.in						\
 	xfcalendar.spec							\
-	$(desktop_in_files)
+	$(desktop_in_files)						\
+	$(service_in_files)
 
 DISTCLEANFILES =							\
 	intltool-extract						\
 	intltool-merge							\
 	intltool-update							\
-	$(desktop_DATA)
+	$(desktop_DATA)							\
+	$(service_DATA)
 
 AUTOMAKE_OPTIONS =							\
 	1.8								\

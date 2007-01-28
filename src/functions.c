@@ -1,22 +1,24 @@
-/* functions.c
+/*      Orage - Calendar and alarm handler
  *
- * Copyright (C) 2005-2006 Mickaël Graf <korbinus at xfce.org>
- * Copyright (C) 2005-2006 Juha Kautto <juha at xfce.org>
+ * Copyright (c) 2005-2007 Juha Kautto  (juha at xfce.org)
+ * Copyright (c) 2003-2005 Mickael Graf (korbinus at xfce.org)
  *
- *  This program is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2, or (at your option)
+ * any later version.
  *
- *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
- *  along with this program; if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
- *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the 
+       Free Software Foundation
+       51 Franklin Street, 5th Floor
+       Boston, MA 02110-1301 USA
+
  */
 
 #include <stdio.h>
@@ -29,11 +31,12 @@
 
 #include <libxfce4util/libxfce4util.h>
 
+
 /**************************************
  *  Functions for drawing interfaces  *
  **************************************/
 
-GtkWidget *xfcalendar_toolbar_append_button(GtkWidget *toolbar
+GtkWidget *orage_toolbar_append_button(GtkWidget *toolbar
     , const gchar *stock_id, GtkTooltips *tooltips, const char *tooltip_text
     , gint pos)
 {
@@ -46,7 +49,7 @@ GtkWidget *xfcalendar_toolbar_append_button(GtkWidget *toolbar
     return button;
 }
 
-GtkWidget *xfcalendar_toolbar_append_separator(GtkWidget *toolbar, gint pos)
+GtkWidget *orage_toolbar_append_separator(GtkWidget *toolbar, gint pos)
 {
     GtkWidget *separator;
 
@@ -56,70 +59,25 @@ GtkWidget *xfcalendar_toolbar_append_separator(GtkWidget *toolbar, gint pos)
     return separator;
 }
 
-void xfcalendar_combo_box_append_array(GtkWidget *combo_box
-    , char *text[], int size)
-{
-    register int i;
-
-    for (i = 0; i < size; i++) {
-        gtk_combo_box_append_text(GTK_COMBO_BOX(combo_box),
-            (const gchar *)text[i]);
-    }
-}
-
-GtkWidget *xfcalendar_datetime_hbox_new(GtkWidget *date_button
-        , GtkWidget *time_spin_hh, GtkWidget *time_spin_mm
-        , GtkWidget *timezone_button)
-{
-
-    GtkWidget *hbox, *space_label;
-
-    hbox = gtk_hbox_new(FALSE, 0);
-    gtk_box_pack_start(GTK_BOX(hbox), date_button, FALSE, FALSE, 0);
-
-    space_label = gtk_label_new("  ");
-    gtk_box_pack_start(GTK_BOX(hbox), space_label, FALSE, FALSE, 0);
-
-    space_label = gtk_label_new("  ");
-    gtk_box_pack_start(GTK_BOX(hbox), space_label, FALSE, FALSE, 0);
-    gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(time_spin_hh), TRUE);
-    gtk_widget_set_size_request(time_spin_hh, 40, -1);
-    gtk_box_pack_start(GTK_BOX(hbox), time_spin_hh, FALSE, FALSE, 0);
-
-    space_label = gtk_label_new(":");
-    gtk_box_pack_start(GTK_BOX(hbox), space_label, FALSE, FALSE, 0);
-    gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(time_spin_mm), TRUE);
-    gtk_widget_set_size_request(time_spin_mm, 40, -1);
-    gtk_box_pack_start(GTK_BOX(hbox), time_spin_mm, FALSE, FALSE, 0);
-
-    space_label = gtk_label_new("  ");
-    gtk_box_pack_start(GTK_BOX(hbox), space_label, FALSE, FALSE, 0);
-
-    gtk_box_pack_start(GTK_BOX(hbox), timezone_button, TRUE, TRUE, 0);
-
-    return hbox;
-}
-
-GtkWidget *xfcalendar_table_new(guint rows, guint columns)
+GtkWidget *orage_table_new(guint rows, guint border)
 {
     GtkWidget *table;
 
-    table = gtk_table_new(rows, columns, FALSE);
-    gtk_container_set_border_width(GTK_CONTAINER(table), 10);
+    table = gtk_table_new(rows, 2, FALSE);
+    gtk_container_set_border_width(GTK_CONTAINER(table), border);
     gtk_table_set_row_spacings(GTK_TABLE(table), 6);
     gtk_table_set_col_spacings(GTK_TABLE(table), 6);
     return table;
 }
 
-void xfcalendar_table_add_row(GtkWidget *table, GtkWidget *label
+void orage_table_add_row(GtkWidget *table, GtkWidget *label
         , GtkWidget *input, guint row
         , GtkAttachOptions input_x_option
         , GtkAttachOptions input_y_option)
 {
     if (label) {
-        gtk_table_attach(GTK_TABLE (table), label, 0, 1, row, row+1,
-                  (GtkAttachOptions) (GTK_FILL),
-                  (GtkAttachOptions) (0), 0, 0);
+        gtk_table_attach(GTK_TABLE (table), label, 0, 1, row, row+1
+                , (GTK_FILL), (0), 0, 0);
         gtk_misc_set_alignment(GTK_MISC(label), 0, 0.5);
     }
 
@@ -129,7 +87,7 @@ void xfcalendar_table_add_row(GtkWidget *table, GtkWidget *label
     }
 }
 
-GtkWidget *xfcalendar_menu_new(const gchar *menu_header_title
+GtkWidget *orage_menu_new(const gchar *menu_header_title
     , GtkWidget *menu_bar)
 {
     GtkWidget *menu_header, *menu;
@@ -143,7 +101,7 @@ GtkWidget *xfcalendar_menu_new(const gchar *menu_header_title
     return menu;
 }
 
-GtkWidget *xfcalendar_image_menu_item_new_from_stock(const gchar *stock_id
+GtkWidget *orage_image_menu_item_new_from_stock(const gchar *stock_id
     , GtkWidget *menu, GtkAccelGroup *ag)
 {
     GtkWidget *menu_item;
@@ -153,7 +111,7 @@ GtkWidget *xfcalendar_image_menu_item_new_from_stock(const gchar *stock_id
     return menu_item;
 }
 
-GtkWidget *xfcalendar_separator_menu_item_new(GtkWidget *menu)
+GtkWidget *orage_separator_menu_item_new(GtkWidget *menu)
 {
     GtkWidget *menu_item;
 
@@ -162,7 +120,7 @@ GtkWidget *xfcalendar_separator_menu_item_new(GtkWidget *menu)
     return menu_item;
 }
 
-GtkWidget *xfcalendar_menu_item_new_with_mnemonic(const gchar *label
+GtkWidget *orage_menu_item_new_with_mnemonic(const gchar *label
     , GtkWidget *menu)
 {
     GtkWidget *menu_item;
@@ -180,7 +138,7 @@ struct tm *orage_localtime()
     return(localtime(&tt));
 }
 
-void xfcalendar_select_date(GtkCalendar *cal
+void orage_select_date(GtkCalendar *cal
     , guint year, guint month, guint day)
 {
     gtk_calendar_select_day(cal, 0); /* needed to avoid illegal day/month */
@@ -188,10 +146,10 @@ void xfcalendar_select_date(GtkCalendar *cal
     gtk_calendar_select_day(cal, day);
 }
 
-void xfcalendar_select_today(GtkCalendar *cal)
+void orage_select_today(GtkCalendar *cal)
 {
     struct tm *t;
 
     t = orage_localtime();
-    xfcalendar_select_date(cal, t->tm_year+1900, t->tm_mon, t->tm_mday);
+    orage_select_date(cal, t->tm_year+1900, t->tm_mon, t->tm_mday);
 }

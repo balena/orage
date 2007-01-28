@@ -1,6 +1,7 @@
 bin_PROGRAMS = orage
 
 orage_SOURCES =							\
+	$(orage_dbus_sources)						\
 	about-xfcalendar.c						\
 	about-xfcalendar.h						\
 	appointment.c							\
@@ -11,9 +12,13 @@ orage_SOURCES =							\
 	functions.h							\
 	ical-code.c							\
 	ical-code.h							\
+	interface.c							\
+	interface.h							\
 	main.c								\
 	mainbox.c                                                       \
 	mainbox.h                                                       \
+	parameters.c							\
+	parameters.h							\
 	reminder.c							\
 	reminder.h							\
 	tray_icon.c                                                     \
@@ -24,14 +29,13 @@ orage_SOURCES =							\
 orage_CFLAGS =							\
 	$(LIBXFCEGUI4_CFLAGS)						\
 	$(ICAL_CFLAGS)							\
-	$(LIBXFCE4MCS_CLIENT_CFLAGS)					\
 	-DPACKAGE_DATA_DIR=\""$(datadir)"\"				\
 	-DPACKAGE_LOCALE_DIR=\""$(localedir)"\"
 
 orage_LDADD =							\
 	$(LIBXFCEGUI4_LIBS)						\
+	$(LIBXFCEUTIL_LIBS)						\
 	$(ICAL_LIBS)							\
-	$(LIBXFCE4MCS_CLIENT_LIBS)					\
 	$(INTLLIBS)
 
 if INCLUDED_LIBICAL
@@ -45,6 +49,25 @@ orage_LDADD +=							\
 	$(PTHREAD_LIBS)							\
 	$(top_builddir)/libical/src/libical/libical.la			\
 	$(top_builddir)/libical/src/libicalss/libicalss.la
+endif
+
+if HAVE_DBUS
+orage_dbus_sources =						\
+	orage-dbus-object.c						\
+	orage-dbus-object.h						\
+	orage-dbus-client.c						\
+	orage-dbus-client.h						\
+	orage-dbus-service.h
+
+orage_CFLAGS +=							\
+	-DDBUS_API_SUBJECT_TO_CHANGE					\
+	$(DBUS_CFLAGS)
+
+orage_LDADD +=							\
+	$(DBUS_LIBS)
+
+orage-dbus-server.h: $(srcdir)/orage-dbus-service.xml Makefile
+	dbus-binding-tool --prefix=orage --mode=glib-server $(srcdir)/orage-dbus-service.xml > orage-dbus-service.h
 endif
 
 # vi:set ts=8 sw=8 noet ai:

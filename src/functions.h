@@ -1,60 +1,75 @@
-/* functions.h
+/*      Orage - Calendar and alarm handler
  *
- * Copyright (C) 2005 Mickaël Graf <korbinus at xfce.org>
+ * Copyright (c) 2006-2007 Juha Kautto  (juha at xfce.org)
+ * Copyright (c) 2005-2006 Mickael Graf (korbinus at xfce.org)
  *
- *  This program is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2, or (at your option)
+ * any later version.
  *
- *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
- *  along with this program; if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
- *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the 
+       Free Software Foundation
+       51 Franklin Street, 5th Floor
+       Boston, MA 02110-1301 USA
+
  */
 
-/**************************************
- *  Functions for drawing interfaces  *
- **************************************/
+#ifndef __ORAGE_FUNCTIONS_H__
+#define __ORAGE_FUNCTIONS_H__
 
-GtkWidget *xfcalendar_toolbar_append_button(GtkWidget *toolbar
+#define ORAGE_STR_EXISTS(str) ((str != NULL) && (str[0] != 0))
+
+typedef enum
+{
+    XFICAL_FREQ_NONE = 0
+   ,XFICAL_FREQ_DAILY
+   ,XFICAL_FREQ_WEEKLY
+   ,XFICAL_FREQ_MONTHLY
+   ,XFICAL_FREQ_YEARLY
+} xfical_freq;
+
+typedef enum
+{
+    XFICAL_TYPE_EVENT = 0
+   ,XFICAL_TYPE_TODO
+   ,XFICAL_TYPE_JOURNAL
+} xfical_type;
+
+
+GtkWidget *orage_toolbar_append_button(GtkWidget *toolbar
         , const gchar *stock_id, GtkTooltips *tooltips
         , const char *tooltip_text, gint pos);
 
-GtkWidget *xfcalendar_toolbar_append_separator(GtkWidget *toolbar, gint pos);
+GtkWidget *orage_toolbar_append_separator(GtkWidget *toolbar, gint pos);
 
-void xfcalendar_combo_box_append_array(GtkWidget *combo_box
-        , char *text[], int size);
+GtkWidget *orage_table_new(guint rows, guint border);
 
-GtkWidget *xfcalendar_datetime_hbox_new(GtkWidget *date_button
-        , GtkWidget *time_spin_hh, GtkWidget *time_spin_dd
-        , GtkWidget *timezone_button);
-
-GtkWidget *xfcalendar_table_new(guint rows, guint columns);
-
-void xfcalendar_table_add_row(GtkWidget *table, GtkWidget *label
+void orage_table_add_row(GtkWidget *table, GtkWidget *label
         , GtkWidget *input, guint row
         , GtkAttachOptions input_x_option, GtkAttachOptions input_y_option);
 
-GtkWidget *xfcalendar_menu_new(const gchar *menu_header_title
-        , GtkWidget *menu_bar);
+GtkWidget *orage_menu_new(const gchar *menu_header_title, GtkWidget *menu_bar);
 
-GtkWidget *xfcalendar_image_menu_item_new_from_stock(const gchar *stock_id
+GtkWidget *orage_image_menu_item_new_from_stock(const gchar *stock_id
         , GtkWidget *menu, GtkAccelGroup *ag);
 
-GtkWidget *xfcalendar_separator_menu_item_new(GtkWidget *menu);
+GtkWidget *orage_separator_menu_item_new(GtkWidget *menu);
 
-GtkWidget *xfcalendar_menu_item_new_with_mnemonic(const gchar *label
+GtkWidget *orage_menu_item_new_with_mnemonic(const gchar *label
         , GtkWidget *menu);
 
 struct tm *orage_localtime();
 
-void xfcalendar_select_date(GtkCalendar *cal
+void orage_select_date(GtkCalendar *cal
         , guint year, guint month, guint day);
 
-void xfcalendar_select_today(GtkCalendar *cal);
+void orage_select_today(GtkCalendar *cal);
+
+#endif /* !__ORAGE_FUNCTIONS_H__ */

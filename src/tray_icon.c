@@ -1,22 +1,24 @@
-/* tray_icon.c
+/*      Orage - Calendar and alarm handler
  *
- * (C) 2004-2006 Mickaël Graf
- * (C)      2006 Juha Kautto
+ * Copyright (c) 2006-2007 Juha Kautto  (juha at xfce.org)
+ * Copyright (c) 2004-2006 Mickael Graf (korbinus at xfce.org)
  *
- *  This program is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2, or (at your option)
+ * any later version.
  *
- *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
- *  along with this program; if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
- *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the 
+       Free Software Foundation
+       51 Franklin Street, 5th Floor
+       Boston, MA 02110-1301 USA
+
  */
 
 #ifdef HAVE_CONFIG_H
@@ -34,40 +36,36 @@
 #include <libxfce4util/libxfce4util.h>
 #include <libxfcegui4/libxfcegui4.h>
 #include <libxfcegui4/netk-trayicon.h>
-#include <libxfce4mcs/mcs-client.h>
 
+#include "functions.h"
 #include "event-list.h"
 #include "appointment.h"
-#include "functions.h"
 #include "mainbox.h"
 #include "xfce_trayicon.h"
 #include "about-xfcalendar.h"
-
-#define CHANNEL  "orage"
-
-extern gint icon_size_x, icon_size_y;
+#include "parameters.h"
 
 
-void
-on_Today_activate                      (GtkMenuItem *menuitem,
-                                        gpointer user_data)
+void orage_toggle_visible();
+
+
+void on_Today_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
     struct tm *t;
     CalWin *xfcal = (CalWin *)user_data;
-    eventlist_win *el;
+    el_win *el;
 
     t = orage_localtime();
-    xfcalendar_select_date(GTK_CALENDAR(xfcal->mCalendar), t->tm_year+1900
+    orage_select_date(GTK_CALENDAR(xfcal->mCalendar), t->tm_year+1900
             , t->tm_mon, t->tm_mday);
-    el = create_eventlist_win(GTK_CALENDAR(xfcal->mCalendar));
+    el = create_el_win();
 }
 
 void 
 on_preferences_activate                (GtkMenuItem     *menuitem,
                                         gpointer         user_data)
 {
-  mcs_client_show (GDK_DISPLAY (), DefaultScreen (GDK_DISPLAY ()),
-		   CHANNEL);
+    show_parameters();
 }
 
 void
@@ -93,7 +91,7 @@ on_about_activate(GtkMenuItem *menuitem, gpointer user_data)
 void 
 toggle_visible_cb ()
 {
-  xfcalendar_toggle_visible ();
+  orage_toggle_visible ();
 }
 
 GdkPixbuf *create_icon(CalWin *xfcal, gint x, gint y)
@@ -124,7 +122,8 @@ GdkPixbuf *create_icon(CalWin *xfcal, gint x, gint y)
       pixbuf = xfce_themed_icon_load("xfcalendar", 16);
       return(pixbuf);
   }
-  if (icon_size_x == 0 || icon_size_y == 0) { /* signal to use static icon */
+  if (g_par.icon_size_x == 0 
+  ||  g_par.icon_size_y == 0) { /* signal to use static icon */
       g_message("Orage **: Icon size set to zero, using static icon\n");
       pixbuf = xfce_themed_icon_load("xfcalendar", x);
       return(pixbuf);
@@ -163,7 +162,7 @@ GdkPixbuf *create_icon(CalWin *xfcal, gint x, gint y)
 
   /* heading: orage */
   g_snprintf(ts, 199
-          , "<span foreground=\"blue\" size=\"x-small\">orage</span>");
+          , "<span foreground=\"blue\" size=\"x-small\">Orage</span>");
   pango_layout_set_markup(pl_head, ts, -1);
   pango_layout_set_alignment(pl_head, PANGO_ALIGN_CENTER);
   pango_layout_get_extents(pl_head, &real_rect, &log_rect);
@@ -176,15 +175,19 @@ GdkPixbuf *create_icon(CalWin *xfcal, gint x, gint y)
       y_head = y_offset;
       y_used_head = PANGO_PIXELS(real_rect.height);
   }
+  else
+      g_message("Orage **: trayicon: heading does not fit in dynamic icon");
 
   /* month */
-  if (strftime(month, 19, "%b", t) == 0) {
-      g_warning("create_icon: strftime failed");
-      g_sprintf(month, "orage");
+  if (strftime(month, 19, "%^b", t) == 0) {
+      g_warning("create_icon: strftime %^b failed");
+      if (strftime(month, 19, "%b", t) == 0) {
+          g_warning("create_icon: strftime %b failed");
+          g_sprintf(month, "orage");
+      }
   }
   g_snprintf(ts, 199
-          , "<span foreground=\"blue\" size=\"x-small\">%s</span>"
-          , month);
+          , "<span foreground=\"blue\" size=\"x-small\">%s</span>", month);
   pango_layout_set_markup(pl_month, ts, -1);
   pango_layout_set_alignment(pl_month, PANGO_ALIGN_CENTER);
   pango_layout_get_extents(pl_month, &real_rect, &log_rect);
@@ -196,6 +199,8 @@ GdkPixbuf *create_icon(CalWin *xfcal, gint x, gint y)
       y_month = y_offset;
       y_used_month = PANGO_PIXELS(real_rect.height);
   }
+  else
+      g_message("Orage **: trayicon: month does not fit in dynamic icon");
 
   do { /* main loop where we try our best to fit header+day+month into icon */
       y_used = 0;
@@ -215,14 +220,14 @@ GdkPixbuf *create_icon(CalWin *xfcal, gint x, gint y)
                 && (i <= limit)
                 && ((x_offset <= 0) || ((y_offset) <= 0));
            i++) {
-      g_snprintf(ts, 199
-          , "<span foreground=\"red\" weight=\"bold\" size=\"%s\">%02d</span>"
-          , day_sizes[i], t->tm_mday);
-      pango_layout_set_markup(pl_day, ts, -1);
-      pango_layout_set_alignment(pl_day, PANGO_ALIGN_CENTER);
-      pango_layout_get_extents(pl_day, &real_rect, &log_rect);
-      x_offset = (width - PANGO_PIXELS(log_rect.width))/2;
-      y_offset = (height - y_used - PANGO_PIXELS(log_rect.height))/2;
+          g_snprintf(ts, 199
+                  , "<span foreground=\"red\" weight=\"bold\" size=\"%s\">%02d</span>"
+                  , day_sizes[i], t->tm_mday);
+          pango_layout_set_markup(pl_day, ts, -1);
+          pango_layout_set_alignment(pl_day, PANGO_ALIGN_CENTER);
+          pango_layout_get_extents(pl_day, &real_rect, &log_rect);
+          x_offset = (width - PANGO_PIXELS(log_rect.width))/2;
+          y_offset = (height - y_used - PANGO_PIXELS(log_rect.height))/2;
       } /* for */
       if (x_offset >= 0 && (y_offset) >= 0) { /* it fits */
           draw_dynamic = TRUE;
@@ -348,7 +353,7 @@ XfceTrayIcon* create_TrayIcon(CalWin *xfcal)
    */
 
   /* pixbuf = xfce_themed_icon_load ("xfcalendar", 16); */
-  pixbuf = create_icon(xfcal, icon_size_x, icon_size_y);
+  pixbuf = create_icon(xfcal, g_par.icon_size_x, g_par.icon_size_y);
   trayIcon = xfce_tray_icon_new_with_menu_from_pixbuf(trayMenu, pixbuf);
   g_object_ref(trayIcon);
   gtk_object_sink(GTK_OBJECT(trayIcon));
