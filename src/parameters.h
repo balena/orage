@@ -23,7 +23,6 @@
 #ifndef __ORAGE_PARAMETERS_H__
 #define __ORAGE_PARAMETERS_H__
 
-#include "mainbox.h"
 #include <xfce_trayicon.h>
 
 #define ORAGE_DIR "orage" G_DIR_SEPARATOR_S

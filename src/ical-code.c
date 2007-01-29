@@ -73,6 +73,12 @@ typedef struct
     struct icaltimetype ctime; /* completed time for VTODO appointmnets */
 } xfical_period;
 
+typedef struct
+{
+    int    count;     /* how many timezones we have */
+    char **city;      /* pointer to timezone location name strings */
+} xfical_timezone_array;
+
 static icalcomponent *ical = NULL,
                      *aical = NULL;
 static icalset *fical = NULL,
@@ -472,7 +478,7 @@ const gchar *trans_timezone[] = {
     N_("Pacific/Yap"),
 };
 
-xfical_timezone_array xfical_get_timezones()
+static xfical_timezone_array xfical_get_timezones()
 {
     static xfical_timezone_array tz={0, NULL};
     static char tz_utc[]="UTC";
@@ -3032,4 +3038,130 @@ appt_data *xfical_appt_get_next_with_string(char *str, gboolean first
         g_warning("xfical_appt_get_next_with_string: illegal ending %s", str);
     }
     return(NULL);
+}
+
+gboolean xfical_timezone_button_clicked(GtkButton *button, GtkWindow *parent
+        , gchar **tz)
+{
+#define MAX_AREA_LENGTH 20
+
+enum {
+    LOCATION,
+    LOCATION_ENG,
+    N_COLUMNS
+};
+
+    GtkTreeStore *store;
+    GtkTreeIter iter1, iter2;
+    GtkWidget *tree;
+    GtkCellRenderer *rend;
+    GtkTreeViewColumn *col;
+    GtkWidget *window;
+    GtkWidget *sw;
+    xfical_timezone_array tz_a;
+    int i, j, result;
+    char area_old[MAX_AREA_LENGTH], *loc, *loc_eng;
+    GtkTreeSelection *sel;
+    GtkTreeModel     *model;
+    GtkTreeIter       iter;
+    gboolean    changed = FALSE;
+
+    /* enter data */
+    store = gtk_tree_store_new(N_COLUMNS, G_TYPE_STRING, G_TYPE_STRING);
+    strcpy(area_old, "S T a R T");
+    tz_a = xfical_get_timezones();
+    for (i=0; i < tz_a.count-2; i++) {
+        /* first area */
+        if (! g_str_has_prefix(tz_a.city[i], area_old)) {
+            for (j=0; tz_a.city[i][j] != '/' && j < MAX_AREA_LENGTH; j++) {
+                area_old[j] = tz_a.city[i][j];
+            }
+            if (j < MAX_AREA_LENGTH)
+                area_old[j] = 0;
+            else
+                g_warning("xfical_timezone_button_clicked: too long line in zones.tab %s", tz_a.city[i]);
+
+            gtk_tree_store_append(store, &iter1, NULL);
+            gtk_tree_store_set(store, &iter1
+                    , LOCATION, _(area_old)
+                    , LOCATION_ENG, area_old
+                    , -1);
+        }
+        /* then city translated and in base form used internally */
+        gtk_tree_store_append(store, &iter2, &iter1);
+        gtk_tree_store_set(store, &iter2
+                , LOCATION, _(tz_a.city[i])
+                , LOCATION_ENG, tz_a.city[i]
+                , -1);
+    }
+
+    /* create view */
+    tree = gtk_tree_view_new_with_model(GTK_TREE_MODEL(store));
+    rend = gtk_cell_renderer_text_new();
+    col  = gtk_tree_view_column_new_with_attributes(_("Location")
+                , rend, "text", LOCATION, NULL);
+    gtk_tree_view_append_column(GTK_TREE_VIEW(tree), col);
+
+    rend = gtk_cell_renderer_text_new();
+    col  = gtk_tree_view_column_new_with_attributes(_("Location")
+                , rend, "text", LOCATION_ENG, NULL);
+    gtk_tree_view_append_column(GTK_TREE_VIEW(tree), col);
+    gtk_tree_view_column_set_visible(col, FALSE);
+
+    /* show it */
+    window =  gtk_dialog_new_with_buttons(_("Pick timezone")
+            , parent
+            , GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT
+            , _("UTC"), 1
+            , _("floating"), 2
+            , GTK_STOCK_OK, GTK_RESPONSE_ACCEPT
+            , NULL);
+    sw = gtk_scrolled_window_new(NULL, NULL);
+    gtk_container_add(GTK_CONTAINER(sw), tree);
+    gtk_box_pack_start(GTK_BOX(GTK_DIALOG(window)->vbox), sw, TRUE, TRUE, 0);
+    gtk_window_set_default_size(GTK_WINDOW(window), 300, 500);
+
+    gtk_widget_show_all(window);
+    do {
+        result = gtk_dialog_run(GTK_DIALOG(window));
+        switch (result) {
+            case GTK_RESPONSE_ACCEPT:
+                sel = gtk_tree_view_get_selection(GTK_TREE_VIEW(tree));
+                if (gtk_tree_selection_get_selected(sel, &model, &iter))
+                    if (gtk_tree_model_iter_has_child(model, &iter))
+                        result = 0;
+                    else {
+                        gtk_tree_model_get(model, &iter, LOCATION, &loc, -1);
+                        gtk_tree_model_get(model, &iter, LOCATION_ENG, &loc_eng
+                                , -1);                     }
+                else {
+                    loc = g_strdup(_(*tz));
+                    loc_eng = g_strdup(*tz);
+                }
+                break;
+            case 1:
+                loc = g_strdup(_("UTC"));
+                loc_eng = g_strdup("UTC");
+                break;
+            case 2:
+                loc = g_strdup(_("floating"));
+                loc_eng = g_strdup("floating");
+                break;
+            default:
+                loc = g_strdup(_(*tz));
+                loc_eng = g_strdup(*tz);
+                break;
+        }
+    } while (result == 0);
+    if (g_ascii_strcasecmp(loc, (gchar *)gtk_button_get_label(button)) != 0)
+        changed = TRUE;
+    gtk_button_set_label(button, loc);
+
+    if (*tz)
+        g_free(*tz);
+    *tz = g_strdup(loc_eng);
+    g_free(loc);
+    g_free(loc_eng);
+    gtk_widget_destroy(window);
+    return(changed);
 }

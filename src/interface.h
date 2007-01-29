@@ -23,9 +23,6 @@
 #ifndef __INTERFACE_H__
 #define __INTERFACE_H__
 
-#include <gtk/gtk.h>
-#include <gdk/gdk.h>
-
 typedef struct
 {
     GtkWidget *main_window;

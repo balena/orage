@@ -24,16 +24,7 @@
 #ifndef __ICAL_CODE_H__
 #define __ICAL_CODE_H__
 
-#include "appointment.h"
-
 #define ORAGE_UID_LEN 200
-typedef struct
-{
-    int    count;      /* how many timezones we have */
-    char **city;      /* pointer to timezone location name strings */
-} xfical_timezone_array;
-
-xfical_timezone_array xfical_get_timezones();
 
 gboolean xfical_set_local_timezone();
 
@@ -64,5 +55,8 @@ gboolean xfical_unarchive_uid(char *uid);
 
 gboolean xfical_import_file(char *file_name);
 gboolean xfical_export_file(char *file_name, int type, char *uids);
+
+gboolean xfical_timezone_button_clicked(GtkButton *button, GtkWindow *parent
+        , gchar **tz);
 
 #endif /* !__ICAL_CODE_H__ */

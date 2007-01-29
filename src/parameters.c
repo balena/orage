@@ -34,20 +34,17 @@
 #include <libxfcegui4/libxfcegui4.h>
 #include <libxfce4util/libxfce4util.h>
 
-#include "parameters.h"
 #include "mainbox.h"
 #include "functions.h"
+#include "event-list.h"
 #include "tray_icon.h"
 #include "xfce_trayicon.h"
+#include "appointment.h"
+#include "parameters.h"
+#include "ical-code.h"
 
 
 static gboolean is_running = FALSE;
-
-enum {
-    LOCATION,
-    LOCATION_ENG,
-    N_COLUMNS
-};
 
 typedef struct _Itf
 {
@@ -473,141 +470,13 @@ static void timezone_button_clicked(GtkButton *button, gpointer user_data)
 {
     Itf *itf = (Itf *)user_data;
 
-#define MAX_AREA_LENGTH 20
-#define MAX_BUFF_LENGTH 80
-
-    GtkTreeStore *store;
-    GtkTreeIter iter1, iter2;
-    GtkWidget *tree;
-    GtkCellRenderer *rend;
-    GtkTreeViewColumn *col;
-    GtkWidget *window;
-    GtkWidget *sw;
-    int j, result, latitude, longitude;
-    char area_old[MAX_AREA_LENGTH], tz[MAX_BUFF_LENGTH], buf[MAX_BUFF_LENGTH]
-        , *loc, *loc_eng;
-    GtkTreeSelection *sel;
-    GtkTreeModel     *model;
-    GtkTreeIter       iter;
-    gchar *fpath;
-    FILE *fp;
-                                                                             
-    fpath = g_strconcat(PACKAGE_DATA_DIR
-            , G_DIR_SEPARATOR_S, "orage"
-            , G_DIR_SEPARATOR_S, "zoneinfo"
-            , G_DIR_SEPARATOR_S, "zones.tab"
-            , NULL);
-    if ((fp = fopen(fpath, "r")) == NULL) {
-        g_warning("Unable to open timezones %s", fpath);
-        return;
-    }
- 
-    store = gtk_tree_store_new(N_COLUMNS, G_TYPE_STRING, G_TYPE_STRING);
-    strcpy(area_old, "S T a R T");
-    while (fgets(buf, MAX_BUFF_LENGTH, fp) != NULL) {
-        if (sscanf(buf, "%d %d %s", &latitude, &longitude, tz) != 3) {
-            g_warning("Malformed timezones 1 %s (%s)", fpath, buf);
-            return;
-        }
-        /* first area */
-        if (! g_str_has_prefix(tz, area_old)) {
-            for (j=0; tz[j] != '/' && j < MAX_AREA_LENGTH; j++) {
-                area_old[j] = tz[j];
-            }
-            if (j >= MAX_AREA_LENGTH) {
-                g_warning("Malformed timezones 2 %s (%s)", fpath, tz);
-                return;
-            }
-            area_old[j] = 0;
-                                                                             
-            gtk_tree_store_append(store, &iter1, NULL);
-            gtk_tree_store_set(store, &iter1
-                    , LOCATION, _(area_old)
-                    , LOCATION_ENG, area_old
-                    , -1);
-        }
-        /* then city translated and in base form used internally */
-        gtk_tree_store_append(store, &iter2, &iter1);
-        gtk_tree_store_set(store, &iter2
-                , LOCATION, _(tz)
-                , LOCATION_ENG, tz
-                , -1);
-    }
-    g_free(fpath);
-                                                                             
-    /* create view */
-    tree = gtk_tree_view_new_with_model(GTK_TREE_MODEL(store));
-    rend = gtk_cell_renderer_text_new();
-    col  = gtk_tree_view_column_new_with_attributes(_("Location")
-                , rend, "text", LOCATION, NULL);
-    gtk_tree_view_append_column(GTK_TREE_VIEW(tree), col);
-
-    rend = gtk_cell_renderer_text_new();
-    col  = gtk_tree_view_column_new_with_attributes(_("Location")
-                , rend, "text", LOCATION_ENG, NULL);
-    gtk_tree_view_append_column(GTK_TREE_VIEW(tree), col);
-    gtk_tree_view_column_set_visible(col, FALSE);
-                                                                             
-    /* show it */
-    window =  gtk_dialog_new_with_buttons(_("Pick local timezone")
-            , GTK_WINDOW (itf->orage_dialog)
-            , GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT
-            , _("UTC"), 1
-            , _("floating"), 2
-            , GTK_STOCK_OK, GTK_RESPONSE_ACCEPT
-            , NULL);
-    sw = gtk_scrolled_window_new(NULL, NULL);
-    gtk_container_add(GTK_CONTAINER(sw), tree);
-    gtk_box_pack_start(GTK_BOX(GTK_DIALOG(window)->vbox), sw, TRUE, TRUE, 0);
-    gtk_window_set_default_size(GTK_WINDOW(window), 300, 500);
-                                                                             
-    gtk_widget_show_all(window);
     if (g_par.local_timezone == NULL || strlen(g_par.local_timezone) == 0) {
         g_warning("timezone pressed: local timezone missing");
         g_par.local_timezone = g_strdup("floating");
     }
-    do {
-        result = gtk_dialog_run(GTK_DIALOG(window));
-        switch (result) {
-            case GTK_RESPONSE_ACCEPT:
-                sel = gtk_tree_view_get_selection(GTK_TREE_VIEW(tree));
-                if (gtk_tree_selection_get_selected(sel, &model, &iter))
-                    if (gtk_tree_model_iter_has_child(model, &iter))
-                        result = 0;
-                    else {
-                        gtk_tree_model_get(model, &iter, LOCATION, &loc, -1); 
-                        gtk_tree_model_get(model, &iter, LOCATION_ENG, &loc_eng
-                                , -1); 
-                    }
-                else {
-                    loc = g_strdup(_(g_par.local_timezone));
-                    loc_eng = g_strdup(g_par.local_timezone);
-                }
-                break;
-            case 1:
-                loc = g_strdup(_("UTC"));
-                loc_eng = g_strdup("UTC");
-                break;
-            case 2:
-                loc = g_strdup(_("floating"));
-                loc_eng = g_strdup("floating");
-                break;
-            default:
-                loc = g_strdup(_(g_par.local_timezone));
-                loc_eng = g_strdup(g_par.local_timezone);
-                break;
-        }
-    } while (result == 0);
-    gtk_button_set_label(GTK_BUTTON(button), loc);
-
-    if (g_par.local_timezone)
-        g_free(g_par.local_timezone);
-    g_par.local_timezone = g_strdup(loc_eng);
-    xfical_set_local_timezone();
-
-    g_free(loc);
-    g_free(loc_eng);
-    gtk_widget_destroy(window);
+    if (xfical_timezone_button_clicked(button, GTK_WINDOW(itf->orage_dialog)
+            , &g_par.local_timezone))
+        xfical_set_local_timezone();
 }
 
 static void archive_threshold_spin_changed(GtkSpinButton *sb

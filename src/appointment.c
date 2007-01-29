@@ -62,12 +62,6 @@
 
 static void fill_appt_window(appt_win *apptw, char *action, char *par);
 
-enum {
-    LOCATION,
-    LOCATION_ENG,
-    N_COLUMNS
-};
-
 static gboolean ical_to_year_month_day_hour_minute(char *ical
     , int *year, int *month, int *day, int *hour, int *minute)
 {
@@ -1019,153 +1013,40 @@ static void on_Date_button_clicked_cb(GtkWidget *button
     gtk_widget_destroy(selDate_Window_dialog);
 }
 
-static void on_appTimezone_clicked_cb(GtkWidget *button, appt_win *apptw 
-        , gchar **tz)
+static void on_appStartTimezone_clicked_cb(GtkButton *button
+        , gpointer *user_data)
 {
-#define MAX_AREA_LENGTH 20
-    GtkTreeStore *store;
-    GtkTreeIter iter1, iter2;
-    GtkWidget *tree;
-    GtkCellRenderer *rend;
-    GtkTreeViewColumn *col;
-    GtkWidget *window;
-    GtkWidget *sw;
-    xfical_timezone_array tz_a;
-    int i, j, result;
-    char area_old[MAX_AREA_LENGTH], *loc, *loc_eng, *loc_int;
-    GtkTreeSelection *sel;
-    GtkTreeModel     *model;
-    GtkTreeIter       iter;
+    appt_win *apptw = (appt_win *)user_data;
+    appt_data *appt;
 
-    /* enter data */
-    store = gtk_tree_store_new(N_COLUMNS, G_TYPE_STRING, G_TYPE_STRING);
-    strcpy(area_old, "S T a R T");
-    tz_a = xfical_get_timezones();
-    for (i=0; i < tz_a.count-2; i++) {
-        /* first area */
-        if (! g_str_has_prefix(tz_a.city[i], area_old)) {
-            for (j=0; tz_a.city[i][j] != '/' && j < MAX_AREA_LENGTH; j++) {
-                area_old[j] = tz_a.city[i][j];
-            }
-            if (j < MAX_AREA_LENGTH)
-                area_old[j] = 0;
-            else
-                g_warning("on_appStartEndTimezone_clicked_cb: too long line in zones.tab %s", tz_a.city[i]);
-
-            gtk_tree_store_append(store, &iter1, NULL);
-            gtk_tree_store_set(store, &iter1
-                    , LOCATION, _(area_old)
-                    , LOCATION_ENG, area_old
-                    , -1);
-        }
-        /* then city translated and in base form used internally */
-        gtk_tree_store_append(store, &iter2, &iter1);
-        gtk_tree_store_set(store, &iter2
-                , LOCATION, _(tz_a.city[i]) 
-                , LOCATION_ENG, tz_a.city[i] 
-                , -1);
-    }
-         
-    /* create view */
-    tree = gtk_tree_view_new_with_model(GTK_TREE_MODEL(store));
-    rend = gtk_cell_renderer_text_new();
-    col  = gtk_tree_view_column_new_with_attributes(_("Location")
-                , rend, "text", LOCATION, NULL);
-    gtk_tree_view_append_column(GTK_TREE_VIEW(tree), col);
-
-    rend = gtk_cell_renderer_text_new();
-    col  = gtk_tree_view_column_new_with_attributes(_("Location")
-                , rend, "text", LOCATION_ENG, NULL);
-    gtk_tree_view_append_column(GTK_TREE_VIEW(tree), col);
-    gtk_tree_view_column_set_visible(col, FALSE);
-
-    /* show it */
-    window =  gtk_dialog_new_with_buttons(_("Pick timezone")
-            , GTK_WINDOW(apptw->Window)
-            , GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT
-            , _("UTC"), 1
-            , _("floating"), 2
-            , GTK_STOCK_OK, GTK_RESPONSE_ACCEPT
-            , NULL);
-    sw = gtk_scrolled_window_new(NULL, NULL);
-    gtk_container_add(GTK_CONTAINER(sw), tree);
-    gtk_box_pack_start(GTK_BOX(GTK_DIALOG(window)->vbox), sw, TRUE, TRUE, 0);
-    gtk_window_set_default_size(GTK_WINDOW(window), 300, 500);
-
-    gtk_widget_show_all(window);
-    do {
-        result = gtk_dialog_run(GTK_DIALOG(window));
-        switch (result) {
-            case GTK_RESPONSE_ACCEPT:
-                sel = gtk_tree_view_get_selection(GTK_TREE_VIEW(tree));
-                if (gtk_tree_selection_get_selected(sel, &model, &iter))
-                    if (gtk_tree_model_iter_has_child(model, &iter))
-                        result = 0;
-                    else {
-                        gtk_tree_model_get(model, &iter, LOCATION, &loc, -1);
-                        gtk_tree_model_get(model, &iter, LOCATION_ENG
-                                , &loc_eng, -1);
-                    }
-                else {
-                    loc = g_strdup(_(*tz));
-                    loc_eng = g_strdup((*tz));
-                }
-                break;
-            case 1:
-                loc = g_strdup(_("UTC"));
-                loc_eng = g_strdup("UTC");
-                break;
-            case 2:
-                loc = g_strdup(_("floating"));
-                loc_eng = g_strdup("floating");
-                break;
-            default:
-                loc = g_strdup(_(*tz));
-                loc_eng = g_strdup((*tz));
-                break;
-        }
-    } while (result == 0) ;
-    if (g_ascii_strcasecmp((gchar *)loc
-            , (gchar *)gtk_button_get_label(GTK_BUTTON(button))) != 0) {
+    appt = apptw->appt;
+    if (xfical_timezone_button_clicked(button, GTK_WINDOW(apptw->Window)
+            , &appt->start_tz_loc))
         mark_appointment_changed(apptw);
-    }
-    gtk_button_set_label(GTK_BUTTON(button), loc);
-    if (*tz)
-        g_free(*tz);
-    *tz = g_strdup(loc_eng);
-    g_free(loc);
-    g_free(loc_eng);
-    gtk_widget_destroy(window);
 }
 
-static void on_appStartTimezone_clicked_cb(GtkWidget *button
+static void on_appEndTimezone_clicked_cb(GtkButton *button
         , gpointer *user_data)
 {
     appt_win *apptw = (appt_win *)user_data;
     appt_data *appt;
 
     appt = apptw->appt;
-    on_appTimezone_clicked_cb(button, apptw, &appt->start_tz_loc);
+    if (xfical_timezone_button_clicked(button, GTK_WINDOW(apptw->Window)
+            , &appt->end_tz_loc))
+        mark_appointment_changed(apptw);
 }
 
-static void on_appEndTimezone_clicked_cb(GtkWidget *button
+static void on_appCompletedTimezone_clicked_cb(GtkButton *button
         , gpointer *user_data)
 {
     appt_win *apptw = (appt_win *)user_data;
     appt_data *appt;
 
     appt = apptw->appt;
-    on_appTimezone_clicked_cb(button, apptw, &appt->end_tz_loc);
-}
-
-static void on_appCompletedTimezone_clicked_cb(GtkWidget *button
-        , gpointer *user_data)
-{
-    appt_win *apptw = (appt_win *)user_data;
-    appt_data *appt;
-
-    appt = apptw->appt;
-    on_appTimezone_clicked_cb(button, apptw, &appt->completed_tz_loc);
+    if (xfical_timezone_button_clicked(button, GTK_WINDOW(apptw->Window)
+            , &appt->completed_tz_loc))
+        mark_appointment_changed(apptw);
 }
 
 static void fill_appt_window_times(appt_win *apptw, appt_data *appt)
