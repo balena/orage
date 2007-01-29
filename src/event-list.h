@@ -96,6 +96,6 @@ typedef struct
 } el_win; /* event list window */
 
 el_win* create_el_win(void);
-void refresh_el_win(el_win *el, gint page);
+void refresh_el_win(el_win *el);
 
 #endif /* !__EVENT_LIST_H__ */

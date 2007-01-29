@@ -177,7 +177,7 @@ static int append_special_time(char *result, char *str, int i)
     return(6);
 }
 
-static char *format_time(el_win *el, appt_data *appt, row_type rt, char *par)
+static char *format_time(el_win *el, appt_data *appt, char *par)
 {
     static char result[40];
     int i = 0;
@@ -189,7 +189,7 @@ static char *format_time(el_win *el, appt_data *appt, row_type rt, char *par)
     end_ical_time = appt->endtimecur;
     same_date = !strncmp(start_ical_time, end_ical_time, 8);
 
-    if (rt == TYPE_TIME && el->type == XFICAL_TYPE_EVENT && el->days == 0) { 
+    if (el->type == XFICAL_TYPE_EVENT && el->days == 0) { 
         /* special formatting for 1 day VEVENTS */
         if (start_ical_time[8] == 'T') { /* time part available */
             if (strncmp(start_ical_time, par, 8) < 0)
@@ -289,8 +289,8 @@ static void start_time_data_func(GtkTreeViewColumn *col, GtkCellRenderer *rend
     }
 }
 
-static void add_el_row(el_win *el, appt_data *appt, row_type rt, char *par)
-{ /* par depends on rt */
+static void add_el_row(el_win *el, appt_data *appt, char *par)
+{
     GtkTreeIter     iter1;
     GtkListStore   *list1;
     gchar          *title = NULL;
@@ -299,7 +299,7 @@ static void add_el_row(el_win *el, appt_data *appt, row_type rt, char *par)
     gchar          *s_sort, *s_sort1;
     gint            len = 50;
 
-    stime = format_time(el, appt, rt, par);
+    stime = format_time(el, appt, par);
     if (appt->alarmtime != 0)
         if (appt->sound != NULL)
             flags[0] = 'S';
@@ -326,7 +326,7 @@ static void add_el_row(el_win *el, appt_data *appt, row_type rt, char *par)
     else
         flags[2] = 'f';
 
-    if (rt == TYPE_SEARCH && strcmp(par, "archive") == 0)
+    if (strcmp(par, "archive") == 0)
         flags[3] = 'A';
     else
         flags[3] = 'n';
@@ -375,14 +375,11 @@ static void search_data(el_win *el)
     for (appt = xfical_appt_get_next_with_string(search_string, TRUE, FALSE);
          appt;
          appt = xfical_appt_get_next_with_string(search_string, FALSE, FALSE)){
-        add_el_row(el, appt, TYPE_SEARCH, "main");
+        add_el_row(el, appt, "main");
         xfical_appt_free(appt);
     }
-    /* then check if we need to process archive file also */
-    /*
-    if (gtk_toggle_button_get_active(
-                GTK_TOGGLE_BUTTON(el->search_archive_cb))) {
-                */
+    xfical_file_close();
+    /* process always archive file also */
     if (!xfical_archive_open()) {
         g_free(search_string);
         return;
@@ -390,15 +387,39 @@ static void search_data(el_win *el)
     for (appt = xfical_appt_get_next_with_string(search_string, TRUE, TRUE);
          appt;
          appt = xfical_appt_get_next_with_string(search_string, FALSE, TRUE)) {
-        add_el_row(el, appt, TYPE_SEARCH, "archive");
+        add_el_row(el, appt, "archive");
         xfical_appt_free(appt);
     }
     xfical_archive_close();
-        /*
-    }
-    */
     g_free(search_string);
-    xfical_file_close();
+}
+
+static void get_data_rows(el_win *el, char *a_day, gboolean arch, char *par)
+{
+    appt_data *appt;
+
+    if (!arch) {
+        if (!xfical_file_open())
+            return;
+    }
+    else {
+        if (!xfical_archive_open())
+            return;
+    }
+
+    for (appt = xfical_appt_get_next_on_day(a_day, TRUE, el->days, el->type
+                , arch);
+         appt;
+         appt = xfical_appt_get_next_on_day(a_day, FALSE, el->days, el->type
+                , arch)) {
+        add_el_row(el, appt, par);
+        xfical_appt_free(appt);
+    }
+
+    if (!arch)
+        xfical_file_close();
+    else
+        xfical_archive_close();
 }
 
 static void event_data(el_win *el)
@@ -406,11 +427,9 @@ static void event_data(el_win *el)
     guint year, month, day;
     char      *title;
     char      a_day[9];  /* yyyymmdd */
-    appt_data *appt;
     struct tm *t;
 
-    if (!xfical_file_open())
-        return;
+    el->type = XFICAL_TYPE_EVENT;
     el->days = gtk_spin_button_get_value(GTK_SPIN_BUTTON(el->event_spin));
     title = (char *)gtk_window_get_title(GTK_WINDOW(el->Window));
     title_to_ical(title, a_day);
@@ -424,109 +443,23 @@ static void event_data(el_win *el)
         el->today = TRUE;
     else
         el->today = FALSE; 
-    /*
-    if (gtk_toggle_button_get_active(
-                GTK_TOGGLE_BUTTON(el->time_event_rb)))
-        el->type = XFICAL_TYPE_EVENT;
-    else if (gtk_toggle_button_get_active(
-                GTK_TOGGLE_BUTTON(el->time_todo_rb)))
-        el->type = XFICAL_TYPE_TODO;
-    else if (gtk_toggle_button_get_active(
-                GTK_TOGGLE_BUTTON(el->time_journal_rb)))
-        el->type = XFICAL_TYPE_JOURNAL;
-    else
-        g_warning("time_data: coding error, illegal type");
-        */
 
-    for (appt = xfical_appt_get_next_on_day(a_day, TRUE, el->days, el->type
-                , FALSE);
-         appt;
-         appt = xfical_appt_get_next_on_day(a_day, FALSE, el->days, el->type
-                , FALSE))
-    {
-        add_el_row(el, appt, TYPE_TIME, a_day);
-        xfical_appt_free(appt);
-    }
-    xfical_file_close();
+    get_data_rows(el, a_day, FALSE, a_day);
 }
 
 static void todo_data(el_win *el)
 {
-    /* FIXME */
     guint year, month, day;
     char      *title;
     char      a_day[9];  /* yyyymmdd */
-    appt_data *appt;
     struct tm *t;
 
-    if (!xfical_file_open())
-        return;
-    /*
-    el->days = gtk_spin_button_get_value(GTK_SPIN_BUTTON(el->event_spin));
-    title = (char *)gtk_window_get_title(GTK_WINDOW(el->Window));
-    title_to_ical(title, a_day);
-    if (sscanf(title, "%d-%d-%d", &year, &month, &day) != 3)
-        g_warning("time_data: title conversion error\n");
-    t = orage_localtime();
-    g_sprintf(el->time_now, "%02d:%02d", t->tm_hour, t->tm_min);
-    if (   year  == t->tm_year + 1900
-        && month == t->tm_mon + 1
-        && day   == t->tm_mday)
-        el->today = TRUE;
-    else
-        el->today = FALSE; 
-        */
-
+    el->type = XFICAL_TYPE_TODO;
+    el->days = 10*365; /* long enough time to get everything from future */
     t = orage_localtime();
     g_sprintf(a_day, "%04d%02d%02d"
             , t->tm_year + 1900, t->tm_mon + 1, t->tm_mday);
-    el->days = 10*365; /* long enough time to get everything from future */
-    for (appt = xfical_appt_get_next_on_day(a_day, TRUE, el->days, el->type
-                , FALSE);
-         appt;
-         appt = xfical_appt_get_next_on_day(a_day, FALSE, el->days, el->type
-                , FALSE))
-    {
-        add_el_row(el, appt, TYPE_TIME, a_day);
-        xfical_appt_free(appt);
-    }
-    xfical_file_close();
-}
-
-/* FIXME: move to functions and combine with appointment */
-static struct tm display_to_year_month_day(const char *display)
-{
-    const char *date_format;
-    char *ret;
-    struct tm d = {0,0,0,0,0,0,0,0,0};
-
-    date_format = _("%m/%d/%Y");
-    if ((ret = (char *)strptime(display, date_format, &d)) == NULL)
-        g_error("Orage: display_to_year_month_day wrong format (%s)"
-                , display);
-    else if (strlen(ret))
-        g_error("Orage: display_to_year_month_day too long format (%s)"
-                , display);
-    return(d);
-}
-
-/* FIXME: move to functions and combine with appointment */
-static char *year_month_day_to_display(int year, int month, int day)
-{
-    const char *date_format;
-    static char result[32];
-    struct tm d = {0,0,0,0,0,0,0,0,0};
-
-    date_format = _("%m/%d/%Y");
-    d.tm_mday = day;
-    d.tm_mon = month - 1;
-    d.tm_year = year - 1900;
-
-    if (strftime(result, 32, date_format, &d))
-        return(result);
-    else {
-        g_error("Orage:year_month_day_to_display too long string in strftime");        return(NULL);
-    }
+    get_data_rows(el, a_day, FALSE, a_day);
 }
 
 void journal_data(el_win *el)
@@ -536,46 +469,23 @@ void journal_data(el_win *el)
     appt_data *appt;
     struct tm t;
 
-    if (!xfical_file_open())
-        return;
-    t = display_to_year_month_day(gtk_button_get_label(
+    el->type = XFICAL_TYPE_JOURNAL;
+    el->days = 10*365; /* long enough time to get everything from future */
+    t = orage_i18_date_to_tm_date(gtk_button_get_label(
             GTK_BUTTON(el->journal_start_button)));
     g_sprintf(a_day, "%04d%02d%02d"
             , t.tm_year + 1900, t.tm_mon + 1, t.tm_mday);
-    el->days = 10*365; /* long enough time to get everything from future */
 
-    for (appt = xfical_appt_get_next_on_day(a_day, TRUE, el->days, el->type
-                , FALSE);
-         appt;
-         appt = xfical_appt_get_next_on_day(a_day, FALSE, el->days, el->type
-                , FALSE)) {
-        add_el_row(el, appt, TYPE_SEARCH, "main");
-        xfical_appt_free(appt);
-    }
-    xfical_file_close();
-    if (!xfical_archive_open())
-        return;
-    for (appt = xfical_appt_get_next_on_day(a_day, TRUE, el->days, el->type
-                , TRUE);
-         appt;
-         appt = xfical_appt_get_next_on_day(a_day, FALSE, el->days, el->type
-                , TRUE)) {
-        add_el_row(el, appt, TYPE_SEARCH, "archive");
-        xfical_appt_free(appt);
-    }
-    xfical_archive_close();
+    get_data_rows(el, a_day, FALSE, "main");
+    get_data_rows(el, a_day, TRUE, "archive");
 }
 
-/* FIXME: remove unused parameter page and coordinate with appointment */
-void refresh_el_win(el_win *el, gint page)
+void refresh_el_win(el_win *el)
 {
     GtkCellRenderer *rend;
     GtkTreeViewColumn *col;
-    gint page_num;
 
-    if (el->Window != NULL
-    &&  el->ListStore != NULL
-    &&  el->TreeView != NULL) {
+    if (el->Window &&  el->ListStore &&  el->TreeView) {
         gtk_list_store_clear(el->ListStore);
         /* this is needed if we want to make time field smaller again */
         if (el->type == XFICAL_TYPE_EVENT && el->days == 0) {
@@ -588,21 +498,14 @@ void refresh_el_win(el_win *el, gint page)
                     , start_time_data_func, el, NULL);
             gtk_tree_view_insert_column(GTK_TREE_VIEW(el->TreeView), col, 0);
         }
-        /*
-        if (page != -1) / * -1 = use current selection * /
-            gtk_notebook_set_current_page(GTK_NOTEBOOK(el->Notebook), page);
-            */
         switch (gtk_notebook_get_current_page(GTK_NOTEBOOK(el->Notebook))) {
             case EVENT_PAGE:
-                el->type = XFICAL_TYPE_EVENT;
                 event_data(el);
                 break;
             case TODO_PAGE:
-                el->type = XFICAL_TYPE_TODO;
                 todo_data(el);
                 break;
             case JOURNAL_PAGE:
-                el->type = XFICAL_TYPE_JOURNAL;
                 journal_data(el);
                 break;
             case SEARCH_PAGE:
@@ -626,7 +529,7 @@ static gboolean upd_notebook(el_win *el)
     cur_page = gtk_notebook_get_current_page(GTK_NOTEBOOK(el->Notebook));
     if (cur_page != prev_page) {
         prev_page = cur_page;
-        refresh_el_win(el, SEARCH_PAGE);
+        refresh_el_win(el);
     }
     return(FALSE); /* we do this only once */
 }
@@ -657,7 +560,7 @@ static void on_Search_clicked(GtkButton *b, gpointer user_data)
     el_win *el = (el_win *)user_data;
 
     gtk_notebook_set_current_page(GTK_NOTEBOOK(el->Notebook), SEARCH_PAGE);
-    refresh_el_win((el_win *)user_data, SEARCH_PAGE);
+    refresh_el_win((el_win *)user_data);
 }
 
 static void on_View_search_activate_cb(GtkMenuItem *mi, gpointer user_data)
@@ -665,7 +568,7 @@ static void on_View_search_activate_cb(GtkMenuItem *mi, gpointer user_data)
     el_win *el = (el_win *)user_data;
 
     gtk_notebook_set_current_page(GTK_NOTEBOOK(el->Notebook), SEARCH_PAGE);
-    refresh_el_win((el_win *)user_data, SEARCH_PAGE);
+    refresh_el_win((el_win *)user_data);
 }
 
 static void set_el_data_from_cal(el_win *el)
@@ -678,7 +581,7 @@ static void set_el_data_from_cal(el_win *el)
     g_sprintf(title, "%04d-%02d-%02d", year, month+1, day);
     gtk_window_set_title(GTK_WINDOW(el->Window), (const gchar*)title);
     gtk_notebook_set_current_page(GTK_NOTEBOOK(el->Notebook), EVENT_PAGE);
-    refresh_el_win(el, EVENT_PAGE);
+    refresh_el_win(el);
 }
 
 static void duplicate_appointment(el_win *el)
@@ -754,12 +657,12 @@ static gboolean on_Window_delete_event(GtkWidget *w, GdkEvent *e
 
 static void on_Refresh_clicked(GtkButton *b, gpointer user_data)
 {
-    refresh_el_win((el_win*)user_data, -1);
+    refresh_el_win((el_win*)user_data);
 }
 
 static void on_View_refresh_activate_cb(GtkMenuItem *mi, gpointer user_data)
 {
-    refresh_el_win((el_win*)user_data, -1);
+    refresh_el_win((el_win*)user_data);
 }
 
 static void changeSelectedDate(el_win *el, gint direction)
@@ -861,16 +764,8 @@ static void on_Create_toolbutton_clicked_cb(GtkButton *b, gpointer user_data)
 
 static void on_spin_changed(GtkSpinButton *b, gpointer user_data)
 {
-    refresh_el_win((el_win *)user_data, EVENT_PAGE);
+    refresh_el_win((el_win *)user_data);
 }
-
-/*
-static void checkbutton_clicked_cb(GtkCheckButton *cb
-                , gpointer user_data)
-{
-    refresh_el_win((el_win *)user_data, TIME_PAGE);
-}
-*/
 
 static void delete_appointment(el_win *el)
 {
@@ -893,28 +788,28 @@ static void delete_appointment(el_win *el)
              NULL);
 
     if (result == GTK_RESPONSE_ACCEPT) {
-        if (xfical_file_open()) {
-            sel = gtk_tree_view_get_selection(GTK_TREE_VIEW(el->TreeView));
-            list = gtk_tree_selection_get_selected_rows(sel, &model);
-            list_len = g_list_length(list);
-            for (i = 0; i < list_len; i++) {
-                path = (GtkTreePath *)g_list_nth_data(list, i);
-                if (gtk_tree_model_get_iter(model, &iter, path)) {
-                    gtk_tree_model_get(model, &iter, COL_UID, &uid, -1);
-                    result = xfical_appt_del(uid);
-                    if (result)
-                        g_message("Orage **: Removed: %s", uid);
-                    else
-                        g_warning("Removal failed: %s", uid);
-                    g_free(uid);
-                }
+        if (!xfical_file_open())
+            return;
+        sel = gtk_tree_view_get_selection(GTK_TREE_VIEW(el->TreeView));
+        list = gtk_tree_selection_get_selected_rows(sel, &model);
+        list_len = g_list_length(list);
+        for (i = 0; i < list_len; i++) {
+            path = (GtkTreePath *)g_list_nth_data(list, i);
+            if (gtk_tree_model_get_iter(model, &iter, path)) {
+                gtk_tree_model_get(model, &iter, COL_UID, &uid, -1);
+                result = xfical_appt_del(uid);
+                if (result)
+                    g_message("Orage **: Removed: %s", uid);
+                else
+                    g_warning("Removal failed: %s", uid);
+                g_free(uid);
             }
-            xfical_file_close();
-            refresh_el_win(el, -1);
-            orage_mark_appointments();
-            g_list_foreach(list, (GFunc)gtk_tree_path_free, NULL);
-            g_list_free(list);
         }
+        xfical_file_close();
+        refresh_el_win(el);
+        orage_mark_appointments();
+        g_list_foreach(list, (GFunc)gtk_tree_path_free, NULL);
+        g_list_free(list);
     }
 }
 
@@ -937,8 +832,7 @@ static void on_journal_start_button_clicked(GtkWidget *button
     gint result;
     guint year, month, day;
     char *date_to_display = NULL;
-    struct tm *t;
-    struct tm current_t;
+    struct tm *t, cur_t;
 
     selDate_Window_dialog = gtk_dialog_new_with_buttons(
             _("Pick the date"), GTK_WINDOW(el->Window),
@@ -953,23 +847,24 @@ static void on_journal_start_button_clicked(GtkWidget *button
     gtk_container_add(GTK_CONTAINER(GTK_DIALOG(selDate_Window_dialog)->vbox)
             , selDate_Calendar_calendar);
 
-    current_t = display_to_year_month_day(gtk_button_get_label(
+    cur_t = orage_i18_date_to_tm_date(gtk_button_get_label(
             GTK_BUTTON(button)));
     orage_select_date(GTK_CALENDAR(selDate_Calendar_calendar)
-            , current_t.tm_year+1900, current_t.tm_mon, current_t.tm_mday);
+            , cur_t.tm_year+1900, cur_t.tm_mon, cur_t.tm_mday);
     gtk_widget_show_all(selDate_Window_dialog);
 
     result = gtk_dialog_run(GTK_DIALOG(selDate_Window_dialog));
     switch(result){
         case GTK_RESPONSE_ACCEPT:
             gtk_calendar_get_date(GTK_CALENDAR(selDate_Calendar_calendar)
-                    , &year, &month, &day);
-            date_to_display = year_month_day_to_display(year, month + 1, day);
+                    , (guint *)&cur_t.tm_year, (guint *)&cur_t.tm_mon
+                    , (guint *)&cur_t.tm_mday);
+            cur_t.tm_year -= 1900;
+            date_to_display = orage_tm_date_to_i18_date(cur_t);
             break;
         case 1:
             t = orage_localtime();
-            date_to_display = year_month_day_to_display(t->tm_year + 1900
-                    , t->tm_mon + 1, t->tm_mday);
+            date_to_display = orage_tm_date_to_i18_date(*t);
             break;
         case GTK_RESPONSE_DELETE_EVENT:
         default:
@@ -984,7 +879,7 @@ static void on_journal_start_button_clicked(GtkWidget *button
     }
 */
     gtk_button_set_label(GTK_BUTTON(button), (const gchar *)date_to_display);
-    refresh_el_win(el, SEARCH_PAGE);
+    refresh_el_win(el);
     gtk_widget_destroy(selDate_Window_dialog);
 }
 
@@ -1186,45 +1081,11 @@ static void build_event_tab(el_win *el)
             , label, hbox
             , row = 0, (GTK_FILL), (0));
 
-    /*
-    label = gtk_label_new(_("Type "));
-    hbox =  gtk_hbox_new(FALSE, 0);
-    el->time_event_rb = gtk_radio_button_new_with_label(NULL, _("Event"));
-    gtk_box_pack_start(GTK_BOX(hbox), el->time_event_rb, FALSE, FALSE, 15);
-    gtk_tooltips_set_tip(el->Tooltips, el->time_event_rb
-            , _("Event that will happen sometime. For example:\nMeeting or birthday or TV show."), NULL);
-
-    el->time_todo_rb = gtk_radio_button_new_with_mnemonic_from_widget(
-            GTK_RADIO_BUTTON(el->time_event_rb) , _("Todo"));
-    gtk_box_pack_start(GTK_BOX(hbox), el->time_todo_rb, FALSE, FALSE, 15);
-    gtk_tooltips_set_tip(el->Tooltips, el->time_todo_rb
-            , _("Something that you should do sometime. For example:\nWash your car or test new version of Orage."), NULL);
-            
-    el->time_journal_rb = gtk_radio_button_new_with_mnemonic_from_widget(
-            GTK_RADIO_BUTTON(el->time_event_rb) , _("Journal"));
-    gtk_box_pack_start(GTK_BOX(hbox), el->time_journal_rb
-            , FALSE, FALSE, 15);
-    gtk_tooltips_set_tip(el->Tooltips, el->time_journal_rb
-            , _("Make a note that something happened. For example:\nRemark that you bought new car or went to dentist."), NULL);
-
-    orage_table_add_row(el->event_notebook_page
-            , label, hbox
-            , ++row, (GTK_FILL), (GTK_FILL));
-            */
-
     gtk_notebook_append_page(GTK_NOTEBOOK(el->Notebook)
             , el->event_notebook_page, el->event_tab_label);
 
     g_signal_connect((gpointer)el->event_spin, "value-changed"
             , G_CALLBACK(on_spin_changed), el);
-    /*
-    g_signal_connect((gpointer)el->time_event_rb, "clicked"
-            , G_CALLBACK(checkbutton_clicked_cb), el);
-    g_signal_connect((gpointer)el->time_todo_rb, "clicked"
-            , G_CALLBACK(checkbutton_clicked_cb), el);
-    g_signal_connect((gpointer)el->time_journal_rb, "clicked"
-            , G_CALLBACK(checkbutton_clicked_cb), el);
-            */
 }
 
 static void build_todo_tab(el_win *el)
@@ -1250,8 +1111,8 @@ static void build_journal_tab(el_win *el)
     hbox =  gtk_hbox_new(FALSE, 0);
     el->journal_start_button = gtk_button_new();
     tm = orage_localtime();
-    sdate = year_month_day_to_display(tm->tm_year + 1900 - 1, tm->tm_mon + 1
-            , tm->tm_mday);
+    tm->tm_year -= 1;
+    sdate = orage_tm_date_to_i18_date(*tm);
     gtk_button_set_label(GTK_BUTTON(el->journal_start_button)
             , (const gchar *)sdate);
     gtk_box_pack_start(GTK_BOX(hbox), el->journal_start_button
@@ -1262,7 +1123,6 @@ static void build_journal_tab(el_win *el)
 
     gtk_notebook_append_page(GTK_NOTEBOOK(el->Notebook)
             , el->journal_notebook_page, el->journal_tab_label);
-
     g_signal_connect((gpointer)el->journal_start_button, "clicked"
             , G_CALLBACK(on_journal_start_button_clicked), el);
 }
@@ -1280,17 +1140,6 @@ static void build_search_tab(el_win *el)
     orage_table_add_row(el->search_notebook_page
             , label, el->search_entry
             , row = 0, (GTK_EXPAND | GTK_FILL), (0));
-
-    /*
-    label = gtk_label_new(_("History "));
-    el->search_archive_cb = gtk_check_button_new_with_mnemonic(
-            _("Search also from history file"));
-    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(el->search_archive_cb)
-            , TRUE);
-    orage_table_add_row(el->search_notebook_page
-            , label, el->search_archive_cb
-            , ++row, (GTK_EXPAND | GTK_FILL), (0));
-            */
 
     gtk_notebook_append_page(GTK_NOTEBOOK(el->Notebook)
             , el->search_notebook_page, el->search_tab_label);

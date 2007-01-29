@@ -90,41 +90,6 @@ static gboolean ical_to_year_month_day_hour_minute(char *ical
     return TRUE;
 }
 
-static struct tm display_to_year_month_day(const char *display)
-{
-    const char *date_format;
-    char *ret;
-    struct tm d = {0,0,0,0,0,0,0,0,0};
-
-    date_format = _("%m/%d/%Y");
-    if ((ret = strptime(display, date_format, &d)) == NULL)
-        g_error("Orage: display_to_year_month_day wrong format (%s)"
-                , display);
-    else if (strlen(ret))
-        g_error("Orage: display_to_year_month_day too long format (%s)"
-                , display);
-    return(d);
-}
-
-static char *year_month_day_to_display(int year, int month, int day)
-{
-    const char *date_format;
-    static char result[32];
-    struct tm d = {0,0,0,0,0,0,0,0,0};
-
-    date_format = _("%m/%d/%Y");
-    d.tm_mday = day;
-    d.tm_mon = month - 1;
-    d.tm_year = year - 1900;
-
-    if (strftime(result, 32, date_format, &d))
-        return(result);
-    else {
-        g_error("Orage:year_month_day_to_display too long string in strftime");
-        return(NULL);
-    }
-}
-
 static void combo_box_append_array(GtkWidget *combo_box, char *text[], int size)
 {
     register int i;
@@ -481,8 +446,7 @@ static void on_appNote_buffer_changed_cb(GtkTextBuffer *b, gpointer user_data)
                 , GTK_TEXT_SEARCH_TEXT_ONLY
                 , &match_start, &match_end, &end)) { /* found it */
         tm = orage_localtime();
-        cdate = year_month_day_to_display(tm->tm_year + 1900, tm->tm_mon + 1
-                , tm->tm_mday);
+        cdate = orage_tm_date_to_i18_date(*tm);
         gtk_text_buffer_delete(tb, &match_start, &match_end);
         gtk_text_buffer_insert(tb, &match_start, cdate, -1);
     }
@@ -498,8 +462,7 @@ static void on_appNote_buffer_changed_cb(GtkTextBuffer *b, gpointer user_data)
                 , GTK_TEXT_SEARCH_TEXT_ONLY
                 , &match_start, &match_end, &end)) { /* found it */
         tm = orage_localtime();
-        cdate = year_month_day_to_display(tm->tm_year + 1900, tm->tm_mon + 1
-                , tm->tm_mday);
+        cdate = orage_tm_date_to_i18_date(*tm);
         g_sprintf(ctime, "%02d:%02d", tm->tm_hour, tm->tm_min);
         cdatetime = g_strconcat(cdate, " ", ctime, NULL);
         gtk_text_buffer_delete(tb, &match_start, &match_end);
@@ -701,7 +664,7 @@ static gboolean fill_appt_from_apptw(appt_data *appt, appt_win *apptw)
     /* start date and time. 
      * Note that timezone is kept upto date all the time 
      */
-    current_t = display_to_year_month_day(gtk_button_get_label(
+    current_t = orage_i18_date_to_tm_date(gtk_button_get_label(
             GTK_BUTTON(apptw->StartDate_button)));
     g_sprintf(starttime, "%02d:%02d"
             , gtk_spin_button_get_value_as_int(
@@ -716,7 +679,7 @@ static gboolean fill_appt_from_apptw(appt_data *appt, appt_win *apptw)
     /* end date and time. 
      * Note that timezone is kept upto date all the time 
      */ 
-    current_t = display_to_year_month_day(gtk_button_get_label(
+    current_t = orage_i18_date_to_tm_date(gtk_button_get_label(
             GTK_BUTTON(apptw->EndDate_button)));
     g_sprintf(endtime, "%02d:%02d"
             , gtk_spin_button_get_value_as_int(
@@ -746,7 +709,7 @@ static gboolean fill_appt_from_apptw(appt_data *appt, appt_win *apptw)
      */ 
     appt->completed = gtk_toggle_button_get_active(
             GTK_TOGGLE_BUTTON(apptw->Completed_checkbutton));
-    current_t = display_to_year_month_day(gtk_button_get_label(
+    current_t = orage_i18_date_to_tm_date(gtk_button_get_label(
             GTK_BUTTON(apptw->CompletedDate_button)));
     g_sprintf(completedtime, "%02d:%02d"
             , gtk_spin_button_get_value_as_int(
@@ -813,7 +776,7 @@ static gboolean fill_appt_from_apptw(appt_data *appt, appt_win *apptw)
         appt->recur_limit = 2;    /* until limit */
         appt->recur_count = 0;    /* special: means no repeat count limit */
 
-        current_t = display_to_year_month_day(gtk_button_get_label(
+        current_t = orage_i18_date_to_tm_date(gtk_button_get_label(
                 GTK_BUTTON(apptw->Recur_until_button)));
         g_sprintf(appt->recur_until, XFICAL_APPT_TIME_FORMAT
                 , current_t.tm_year + 1900, current_t.tm_mon + 1
@@ -847,38 +810,36 @@ static gboolean save_xfical_from_appt_win(appt_win *apptw)
 
     if (fill_appt_from_apptw(appt, apptw)) {
         /* Here we try to save the event... */
-        if (xfical_file_open()) {
-            if (apptw->appointment_add) {
-                apptw->xf_uid = g_strdup(xfical_appt_add(appt));
-                ok = (apptw->xf_uid ? TRUE : FALSE);
-                if (ok) {
-                    apptw->appointment_add = FALSE;
-                    gtk_widget_set_sensitive(apptw->Duplicate, TRUE);
-                    gtk_widget_set_sensitive(apptw->File_menu_duplicate, TRUE);
-                    g_message("Orage **: Added: %s", apptw->xf_uid);
-                }
-                else
-                    g_warning("Addition failed: %s", apptw->xf_uid);
+        if (!xfical_file_open())
+            return(FALSE);
+        if (apptw->appointment_add) {
+            apptw->xf_uid = g_strdup(xfical_appt_add(appt));
+            ok = (apptw->xf_uid ? TRUE : FALSE);
+            if (ok) {
+                apptw->appointment_add = FALSE;
+                gtk_widget_set_sensitive(apptw->Duplicate, TRUE);
+                gtk_widget_set_sensitive(apptw->File_menu_duplicate, TRUE);
+                g_message("Orage **: Added: %s", apptw->xf_uid);
             }
-            else {
-                ok = xfical_appt_mod(apptw->xf_uid, appt);
-                if (ok)
-                    g_message("Orage **: Modified: %s", apptw->xf_uid);
-                else
-                    g_warning("Modification failed: %s", apptw->xf_uid);
+            else
+                g_warning("Addition failed: %s", apptw->xf_uid);
             }
-            xfical_file_close();
+        else {
+            ok = xfical_appt_mod(apptw->xf_uid, appt);
+            if (ok)
+                g_message("Orage **: Modified: %s", apptw->xf_uid);
+            else
+                g_warning("Modification failed: %s", apptw->xf_uid);
         }
-
+        xfical_file_close();
         if (ok) {
             apptw->appointment_new = FALSE;
             mark_appointment_unchanged(apptw);
             if (apptw->el != NULL)
-                refresh_el_win((el_win *)apptw->el, -1);
+                refresh_el_win((el_win *)apptw->el);
             orage_mark_appointments();
         }
     }
-
     return (ok);
 }
 
@@ -926,18 +887,19 @@ static void delete_xfical_from_appt_win(appt_win *apptw)
             , NULL);
                                  
     if (result == GTK_RESPONSE_ACCEPT) {
-        if (!apptw->appointment_add)
-            if (xfical_file_open()) {
-                result = xfical_appt_del(apptw->xf_uid);
-                xfical_file_close();
-                if (result)
-                    g_message("Orage **: Removed: %s", apptw->xf_uid);
-                else
-                    g_warning("Removal failed: %s", apptw->xf_uid);
-            }
+        if (!apptw->appointment_add) {
+            if (!xfical_file_open())
+                    return;
+            result = xfical_appt_del(apptw->xf_uid);
+            if (result)
+                g_message("Orage **: Removed: %s", apptw->xf_uid);
+            else
+                g_warning("Removal failed: %s", apptw->xf_uid);
+            xfical_file_close();
+        }
 
         if (apptw->el != NULL)
-            refresh_el_win((el_win *)apptw->el, -1);
+            refresh_el_win((el_win *)apptw->el);
         orage_mark_appointments();
 
         gtk_widget_destroy(apptw->Window);
@@ -1007,10 +969,9 @@ static void on_Date_button_clicked_cb(GtkWidget *button
     GtkWidget *selDate_Window_dialog;
     GtkWidget *selDate_Calendar_calendar;
     gint result;
-    guint year, month, day;
     char *date_to_display=NULL; 
     struct tm *t;
-    struct tm current_t;
+    struct tm cur_t;
 
     selDate_Window_dialog = gtk_dialog_new_with_buttons(
             _("Pick the date"), GTK_WINDOW(apptw->Window),
@@ -1025,23 +986,24 @@ static void on_Date_button_clicked_cb(GtkWidget *button
     gtk_container_add(GTK_CONTAINER(GTK_DIALOG(selDate_Window_dialog)->vbox)
             , selDate_Calendar_calendar);
 
-    current_t = display_to_year_month_day(gtk_button_get_label(
+    cur_t = orage_i18_date_to_tm_date(gtk_button_get_label(
             GTK_BUTTON(button)));
     orage_select_date(GTK_CALENDAR(selDate_Calendar_calendar)
-            , current_t.tm_year+1900, current_t.tm_mon, current_t.tm_mday);
+            , cur_t.tm_year+1900, cur_t.tm_mon, cur_t.tm_mday);
     gtk_widget_show_all(selDate_Window_dialog);
 
     result = gtk_dialog_run(GTK_DIALOG(selDate_Window_dialog));
     switch(result){
         case GTK_RESPONSE_ACCEPT:
             gtk_calendar_get_date(GTK_CALENDAR(selDate_Calendar_calendar)
-                    , &year, &month, &day);
-            date_to_display = year_month_day_to_display(year, month + 1, day);
+                    , (guint *)&cur_t.tm_year, (guint *)&cur_t.tm_mon
+                    , (guint *)&cur_t.tm_mday);
+            cur_t.tm_year -= 1900;
+            date_to_display = orage_tm_date_to_i18_date(cur_t);
             break;
         case 1:
             t = orage_localtime();
-            date_to_display = year_month_day_to_display(t->tm_year + 1900
-                    , t->tm_mon + 1, t->tm_mday);
+            date_to_display = orage_tm_date_to_i18_date(*t);
             break;
         case GTK_RESPONSE_DELETE_EVENT:
         default:
@@ -1210,6 +1172,7 @@ static void fill_appt_window_times(appt_win *apptw, appt_data *appt)
 {
     char *startdate_to_display, *enddate_to_display, *completeddate_to_display;
     int year, month, day, hours, minutes;
+    struct tm tm_date;
 
     /* all day ? */
     gtk_toggle_button_set_active(
@@ -1219,7 +1182,10 @@ static void fill_appt_window_times(appt_win *apptw, appt_data *appt)
     if (strlen(appt->starttime) > 6 ) {
         ical_to_year_month_day_hour_minute(appt->starttime
                 , &year, &month, &day, &hours, &minutes);
-        startdate_to_display = year_month_day_to_display(year, month, day);
+        tm_date.tm_year = year - 1900;
+        tm_date.tm_mon  = month - 1;
+        tm_date.tm_mday = day;
+        startdate_to_display = orage_tm_date_to_i18_date(tm_date);
         gtk_button_set_label(GTK_BUTTON(apptw->StartDate_button)
                 , (const gchar *)startdate_to_display);
 
@@ -1243,7 +1209,10 @@ static void fill_appt_window_times(appt_win *apptw, appt_data *appt)
     if (strlen(appt->endtime) > 6 ) {
         ical_to_year_month_day_hour_minute(appt->endtime
                 , &year, &month, &day, &hours, &minutes);
-        enddate_to_display = year_month_day_to_display(year, month, day);
+        tm_date.tm_year = year - 1900;
+        tm_date.tm_mon  = month - 1;
+        tm_date.tm_mday = day;
+        enddate_to_display = orage_tm_date_to_i18_date(tm_date);
         gtk_button_set_label(GTK_BUTTON(apptw->EndDate_button)
                 , (const gchar *)enddate_to_display);
 
@@ -1282,7 +1251,10 @@ static void fill_appt_window_times(appt_win *apptw, appt_data *appt)
     if (strlen(appt->completedtime) > 6 ) {
         ical_to_year_month_day_hour_minute(appt->completedtime
                 , &year, &month, &day, &hours, &minutes);
-        completeddate_to_display = year_month_day_to_display(year, month, day);
+        tm_date.tm_year = year - 1900;
+        tm_date.tm_mon  = month - 1;
+        tm_date.tm_mday = day;
+        completeddate_to_display = orage_tm_date_to_i18_date(tm_date);
         gtk_button_set_label(GTK_BUTTON(apptw->CompletedDate_button)
                 , (const gchar *)completeddate_to_display);
 
@@ -1353,10 +1325,8 @@ static appt_data *fill_appt_window_get_appt(char *action, char *par)
     else if ((strcmp(action, "UPDATE") == 0) 
           || (strcmp(action, "COPY") == 0)) {
         /* par contains ical uid */
-        if (!xfical_file_open()) {
-            g_error("ical file open failed\n");
+        if (!xfical_file_open())
             return(NULL);
-        }
         if ((appt = xfical_appt_get(par)) == NULL) {
             g_message("Orage **: appointment not found");
             xfical_file_close();
@@ -1376,7 +1346,7 @@ static void fill_appt_window(appt_win *apptw, char *action, char *par)
 {
     int year, month, day, hours, minutes;
     appt_data *appt;
-    struct tm *t;
+    struct tm *t, tm_date;
     char *untildate_to_display;
     int i;
 
@@ -1497,8 +1467,7 @@ static void fill_appt_window(appt_win *apptw, char *action, char *par)
             gtk_spin_button_set_value(
                     GTK_SPIN_BUTTON(apptw->Recur_count_spin), (gdouble)1);
             t = orage_localtime();
-            untildate_to_display = year_month_day_to_display(t->tm_year+1900
-                    , t->tm_mon+1, t->tm_mday);
+            untildate_to_display = orage_tm_date_to_i18_date(*t);
             gtk_button_set_label(GTK_BUTTON(apptw->Recur_until_button)
                     , (const gchar *)untildate_to_display);
             break;
@@ -1509,8 +1478,7 @@ static void fill_appt_window(appt_win *apptw, char *action, char *par)
                     GTK_SPIN_BUTTON(apptw->Recur_count_spin)
                     , (gdouble)appt->recur_count);
             t = orage_localtime();
-            untildate_to_display = year_month_day_to_display(t->tm_year+1900
-                    , t->tm_mon+1, t->tm_mday);
+            untildate_to_display = orage_tm_date_to_i18_date(*t);
             gtk_button_set_label(GTK_BUTTON(apptw->Recur_until_button)
                     , (const gchar *)untildate_to_display);
             break;
@@ -1521,7 +1489,10 @@ static void fill_appt_window(appt_win *apptw, char *action, char *par)
                     GTK_SPIN_BUTTON(apptw->Recur_count_spin), (gdouble)1);
             ical_to_year_month_day_hour_minute(appt->recur_until
                     , &year, &month, &day, &hours, &minutes);
-            untildate_to_display = year_month_day_to_display(year, month, day);
+            tm_date.tm_year = year - 1900;
+            tm_date.tm_mon  = month - 1;
+            tm_date.tm_mday = day;
+            untildate_to_display = orage_tm_date_to_i18_date(tm_date);
             gtk_button_set_label(GTK_BUTTON(apptw->Recur_until_button)
                     , (const gchar *)untildate_to_display);
             break;
