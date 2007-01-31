@@ -48,15 +48,12 @@
 
 #define ORAGE_MAIN  "orage"
 
-#include "mainbox.h"
 #include "functions.h"
-#include "event-list.h"
-#include "xfce_trayicon.h"
-#include "tray_icon.h"
+#include "mainbox.h"
 #include "reminder.h"
-#include "appointment.h"
-#include "parameters.h"
 #include "ical-code.h"
+#include "tray_icon.h"
+#include "parameters.h"
 #include "orage-dbus.h"
 
 

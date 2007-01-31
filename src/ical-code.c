@@ -57,13 +57,12 @@
 #include <icalss.h>
 
 #include "functions.h"
+#include "mainbox.h"
+#include "reminder.h"
+#include "ical-code.h"
 #include "event-list.h"
 #include "appointment.h"
-#include "reminder.h"
-#include "mainbox.h"
-#include "ical-code.h"
 #include "parameters.h"
-
 
 typedef struct
 {
@@ -892,7 +891,7 @@ static struct icaltimetype convert_to_zone(struct icaltimetype t, gchar *tz)
     return(wtime);
 }
 
-int xfical_compare_times(appt_data *appt)
+int xfical_compare_times(xfical_appt *appt)
 {
     struct icaltimetype stime, etime;
     const char *text;
@@ -939,15 +938,15 @@ int xfical_compare_times(appt_data *appt)
 }
 
  /* allocates memory and initializes it for new ical_type structure
-  * returns: NULL if failed and pointer to appt_data if successfull.
+  * returns: NULL if failed and pointer to xfical_appt if successfull.
   *         You must free it after not being used anymore. (g_free())
   */
-appt_data *xfical_appt_alloc()
+xfical_appt *xfical_appt_alloc()
 {
-    appt_data *appt;
+    xfical_appt *appt;
     int i;
 
-    appt = g_new0(appt_data, 1);
+    appt = g_new0(xfical_appt, 1);
     appt->availability = 1;
     for (i=0; i <= 6; i++)
         appt->recur_byday[i] = TRUE;
@@ -1191,7 +1190,7 @@ gboolean xfical_duration(char *alarm_stime, int *days, int *hours, int *mins)
     return(TRUE);
  }
 
-static void appt_add_alarm_internal(appt_data *appt, icalcomponent *ievent)
+static void appt_add_alarm_internal(xfical_appt *appt, icalcomponent *ievent)
 {
     icalcomponent *ialarm;
     gint duration=0;
@@ -1238,22 +1237,22 @@ static void appt_add_alarm_internal(appt_data *appt, icalcomponent *ievent)
 
 static char *generate_uid()
 {
-    gchar xf_host[ORAGE_UID_LEN/2+1];
-    static gchar xf_uid[ORAGE_UID_LEN+1];
+    gchar xf_host[XFICAL_UID_LEN/2+1];
+    static gchar xf_uid[XFICAL_UID_LEN+1];
     static int seq = 0;
     struct icaltimetype dtstamp;
 
     dtstamp = icaltime_current_time_with_zone(utc_icaltimezone);
-    gethostname(xf_host, ORAGE_UID_LEN/2);
-    xf_host[ORAGE_UID_LEN/2] = '\0';
-    g_snprintf(xf_uid, ORAGE_UID_LEN, "Orage-%s%d-%lu@%s"
+    gethostname(xf_host, XFICAL_UID_LEN/2);
+    xf_host[XFICAL_UID_LEN/2] = '\0';
+    g_snprintf(xf_uid, XFICAL_UID_LEN, "Orage-%s%d-%lu@%s"
             , icaltime_as_ical_string(dtstamp), seq, (long) getuid(), xf_host);
     if (++seq > 999)
         seq = 0;
     return(xf_uid);
 }
 
-static char *appt_add_internal(appt_data *appt, gboolean add, char *uid
+static char *appt_add_internal(xfical_appt *appt, gboolean add, char *uid
         , struct icaltimetype cre_time)
 {
     icalcomponent *icmp;
@@ -1485,18 +1484,18 @@ static char *appt_add_internal(appt_data *appt, gboolean add, char *uid
 }
 
  /* add EVENT/TODO/JOURNAL type ical appointment to ical file
-  * app: pointer to filled appt_data structure, which is stored
+  * app: pointer to filled xfical_appt structure, which is stored
   *      Caller is responsible for filling and allocating and freeing it.
   *  returns: NULL if failed and new ical id if successfully added. 
   *           This ical id is owned by the routine. Do not deallocate it.
   *           It will be overwrittewritten by next invocation of this function.
   */
-char *xfical_appt_add(appt_data *appt)
+char *xfical_appt_add(xfical_appt *appt)
 {
     return(appt_add_internal(appt, TRUE, NULL, icaltime_null_time()));
 }
 
-void ical_appt_get_alarm_internal(icalcomponent *c,  appt_data *appt)
+void ical_appt_get_alarm_internal(icalcomponent *c,  xfical_appt *appt)
 {
     icalcomponent *ca = NULL;
     icalproperty *p = NULL;
@@ -1542,7 +1541,7 @@ void ical_appt_get_alarm_internal(icalcomponent *c,  appt_data *appt)
     }
 }
 
-static void process_start_date(appt_data *appt, icalproperty *p
+static void process_start_date(xfical_appt *appt, icalproperty *p
         , struct icaltimetype *itime, struct icaltimetype *stime
         , struct icaltimetype *sltime, struct icaltimetype *etime)
 {
@@ -1574,7 +1573,7 @@ static void process_start_date(appt_data *appt, icalproperty *p
     }
 }
 
-static void process_end_date(appt_data *appt, icalproperty *p
+static void process_end_date(xfical_appt *appt, icalproperty *p
         , struct icaltimetype *itime, struct icaltimetype *etime
         , struct icaltimetype *eltime)
 {
@@ -1601,7 +1600,7 @@ static void process_end_date(appt_data *appt, icalproperty *p
     }
 }
 
-static void process_completed_date(appt_data *appt, icalproperty *p)
+static void process_completed_date(xfical_appt *appt, icalproperty *p)
 {
     const char *text;
     icalparameter *itime_tz;
@@ -1625,18 +1624,18 @@ static void process_completed_date(appt_data *appt, icalproperty *p)
  /* Read EVENT/TODO/JOURNAL component from ical datafile.
   * ical_uid:  key of ical comp appt-> is to be read
   * returns: if failed: NULL
-  *          if successfull: appt_data pointer to appt_data struct 
+  *          if successfull: xfical_appt pointer to xfical_appt struct 
   *              filled with data.
-  *              This appt_data struct is owned by the routine.
+  *              This xfical_appt struct is owned by the routine.
   *              Do not deallocate it.
   *             It will be overdriven by next invocation of this function.
   *          NOTE: This routine does not fill starttimecur nor endtimecur,
   *                Those are always initialized to null string
   */
-static appt_data *xfical_appt_get_internal(char *ical_uid
+static xfical_appt *xfical_appt_get_internal(char *ical_uid
         , icalcomponent *base)
 {
-    static appt_data appt;
+    static xfical_appt appt;
     icalcomponent *c = NULL;
     icalproperty *p = NULL;
     gboolean key_found = FALSE;
@@ -1881,7 +1880,7 @@ static appt_data *xfical_appt_get_internal(char *ical_uid
         return(NULL);
 }
 
-static void xfical_appt_get_fill_internal(appt_data *appt)
+static void xfical_appt_get_fill_internal(xfical_appt *appt)
 {
     if (appt) {
         appt->uid = g_strdup(appt->uid);
@@ -1904,12 +1903,12 @@ static void xfical_appt_get_fill_internal(appt_data *appt)
     }
 }
 
-static appt_data *xfical_appt_get_archive(char *ical_uid)
+static xfical_appt *xfical_appt_get_archive(char *ical_uid)
 {
-    appt_data *appt;
+    xfical_appt *appt;
 
     if ((appt = g_memdup(xfical_appt_get_internal(ical_uid, aical)
-            , sizeof(appt_data)))) {
+            , sizeof(xfical_appt)))) {
         xfical_appt_get_fill_internal(appt);
     }
     return(appt);
@@ -1918,25 +1917,25 @@ static appt_data *xfical_appt_get_archive(char *ical_uid)
  /* Read EVENT from ical datafile.
   * ical_uid:  key of ical EVENT appt-> is to be read
   * returns: if failed: NULL
-  *          if successfull: appt_data pointer to appt_data struct 
+  *          if successfull: xfical_appt pointer to xfical_appt struct 
   *             filled with data.
   *             You must free it after not being used anymore
   *             using xfical_appt_free.
   *          NOTE: This routine does not fill starttimecur nor endtimecur,
   *                Those are always initialized to null string
   */
-appt_data *xfical_appt_get(char *ical_uid)
+xfical_appt *xfical_appt_get(char *ical_uid)
 {
-    appt_data *appt;
+    xfical_appt *appt;
 
     if ((appt = g_memdup(xfical_appt_get_internal(ical_uid, ical)
-            , sizeof(appt_data)))) {
+            , sizeof(xfical_appt)))) {
         xfical_appt_get_fill_internal(appt);
     }
     return(appt);
 }
 
-void xfical_appt_free(appt_data *appt)
+void xfical_appt_free(xfical_appt *appt)
 {
     g_free(appt->uid);
     g_free(appt->title);
@@ -1950,11 +1949,11 @@ void xfical_appt_free(appt_data *appt)
 
  /* modify EVENT type ical appointment in ical file
   * ical_uid: char pointer to ical ical_uid to modify
-  * app: pointer to filled appt_data structure, which is stored
+  * app: pointer to filled xfical_appt structure, which is stored
   *      Caller is responsible for filling and allocating and freeing it.
   * returns: TRUE is successfull, FALSE if failed
   */
-gboolean xfical_appt_mod(char *ical_uid, appt_data *app)
+gboolean xfical_appt_mod(char *ical_uid, xfical_appt *app)
 {
     icalcomponent *c;
     char *uid;
@@ -2021,14 +2020,14 @@ gboolean xfical_appt_del(char *ical_uid)
   * first:  get first appointment is TRUE, if not get next.
   * days:   how many more days to check forward. 0 = only one day
   * type:   EVENT/TODO/JOURNAL to be read
-  * returns: NULL if failed and appt_data pointer to appt_data struct 
+  * returns: NULL if failed and xfical_appt pointer to xfical_appt struct 
   *          filled with data if successfull. 
-  *          This appt_data struct is owned by the routine. 
+  *          This xfical_appt struct is owned by the routine. 
   *          Do not deallocate it.
   *          It will be overdriven by next invocation of this function.
   * Note:   starttimecur and endtimecur are converted to local timezone
   */
-appt_data *xfical_appt_get_next_on_day(char *a_day, gboolean first, gint days
+xfical_appt *xfical_appt_get_next_on_day(char *a_day, gboolean first, gint days
         , xfical_type type, gboolean arch)
 {
     struct icaltimetype 
@@ -2041,7 +2040,7 @@ appt_data *xfical_appt_get_next_on_day(char *a_day, gboolean first, gint days
     gboolean date_found=FALSE;
     gboolean date_rec_found=FALSE;
     char *uid;
-    appt_data *appt;
+    xfical_appt *appt;
     struct icalrecurrencetype rrule;
     icalrecur_iterator* ri;
     icalcomponent_kind ikind = ICAL_VEVENT_COMPONENT;
@@ -2899,18 +2898,18 @@ gchar *find_prev(gchar *beg, gchar *cur, gchar *str)
   * str:     string to search
   * first:   get first appointment is TRUE, if not get next.
   * returns: NULL if failed.
-  *          appt_data pointer to appt_data struct filled with data if 
+  *          xfical_appt pointer to xfical_appt struct filled with data if 
   *          successfull. 
   *          You must deallocate the appt after the call
   */
-appt_data *xfical_appt_get_next_with_string(char *str, gboolean first
+xfical_appt *xfical_appt_get_next_with_string(char *str, gboolean first
         , gboolean arch)
 {
     static gchar *text, *beg, *end;
     gchar *cur, *tmp, mem;
     gsize text_len;
-    char *uid, ical_uid[ORAGE_UID_LEN+1], *search_file;
-    appt_data *appt;
+    char *uid, ical_uid[XFICAL_UID_LEN+1], *search_file;
+    xfical_appt *appt;
     gboolean found_valid, search_done = FALSE;
     struct icaltimetype it;
     const char *stime;
@@ -2991,7 +2990,7 @@ appt_data *xfical_appt_get_next_with_string(char *str, gboolean first
                     search_done = TRUE;
                 }
                 else {
-                    sscanf(uid, "UID:%sORAGE_UID_LEN", ical_uid);
+                    sscanf(uid, "UID:%sXFICAL_UID_LEN", ical_uid);
                     if (arch)
                         appt = xfical_appt_get_archive(ical_uid);
                     else

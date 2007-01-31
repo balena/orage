@@ -24,55 +24,8 @@
 #ifndef __APPOINTMENT_H__
 #define __APPOINTMENT_H__
 
-#define XFICAL_APPT_TIME_FORMAT "%04d%02d%02dT%02d%02d%02d"
-#define XFICAL_APPT_DATE_FORMAT "%04d%02d%02d"
-
-typedef struct
-{
-    gchar *uid;
-
-    xfical_type type;
-    gchar *title;
-    gchar *location;
-
-    gboolean allDay;
-
-        /* time format must be:
-         * yyyymmdd[Thhmiss[Z]] = %04d%02d%02dT%02d%02d%02d
-         * T means it has also time part
-         * Z means it is in UTC format
-         */
-    gchar  starttime[17];
-    gchar *start_tz_loc;
-    gchar  endtime[17];
-    gchar *end_tz_loc;
-    gboolean use_duration;
-    gint   duration; 
-    gboolean completed;
-    gchar  completedtime[17];
-    gchar *completed_tz_loc;
-
-    gint availability;
-    gchar *note;
-
-        /* alarm */
-    gint alarmtime;
-    gchar *sound;
-    gboolean alarmrepeat;
-
-        /* for repeating events cur times show current repeating event.
-         * normal times are always the real (=first) start and end times 
-         */
-    gchar  starttimecur[17]; 
-    gchar  endtimecur[17];
-    xfical_freq freq;
-    gint   recur_limit; /* 0 = no limit  1 = count  2 = until */
-    gint   recur_count;
-    gchar  recur_until[17];
-    gboolean recur_byday[7]; /* 0=Mo, 1=Tu, 2=We, 3=Th, 4=Fr, 5=Sa, 6=Su */
-    gint    recur_byday_cnt[7]; /* monthly/early: 1=first -1=last 2=second... */
-    gint   interval;    /* 1=every day/week..., 2=every second day/week,... */
-} appt_data;
+#include "ical-code.h"
+#include "event-list.h"
 
 typedef struct _appt_win
 {
@@ -190,7 +143,8 @@ typedef struct _appt_win
 
     GtkAccelGroup *accel_group;
     GtkTooltips *Tooltips;
-    appt_data *appt;
+
+    xfical_appt *appt;
     gchar *xf_uid;
     gchar *par;
     el_win *el; 

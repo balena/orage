@@ -47,12 +47,12 @@
 #include <libxfcegui4/netk-trayicon.h>
 #include <libxfcegui4/libxfcegui4.h>
 
-#include "mainbox.h"
 #include "functions.h"
+#include "mainbox.h"
+#include "ical-code.h"
 #include "event-list.h"
 #include "appointment.h"
 #include "parameters.h"
-#include "ical-code.h"
 
 #define AVAILABILITY_ARRAY_DIM 2
 #define RECUR_ARRAY_DIM 5
@@ -584,7 +584,7 @@ static gboolean on_appWindow_delete_event_cb(GtkWidget *widget, GdkEvent *event
     return appWindow_check_and_close((appt_win *)user_data);
 }
 
-static gboolean orage_validate_datetime(appt_win *apptw, appt_data *appt)
+static gboolean orage_validate_datetime(appt_win *apptw, xfical_appt *appt)
 {
     gint result;
 
@@ -609,7 +609,7 @@ static gboolean orage_validate_datetime(appt_win *apptw, appt_data *appt)
  * This function fills an appointment with the contents of an appointment 
  * window
  */
-static gboolean fill_appt_from_apptw(appt_data *appt, appt_win *apptw)
+static gboolean fill_appt_from_apptw(xfical_appt *appt, appt_win *apptw)
 {
     GtkTextIter start, end;
     const char *time_format="%H:%M";
@@ -800,7 +800,7 @@ static void on_appFileClose_menu_activate_cb(GtkMenuItem *mi
 static gboolean save_xfical_from_appt_win(appt_win *apptw)
 {
     gboolean ok = FALSE;
-    appt_data *appt = apptw->appt;
+    xfical_appt *appt = apptw->appt;
 
     if (fill_appt_from_apptw(appt, apptw)) {
         /* Here we try to save the event... */
@@ -1017,7 +1017,7 @@ static void on_appStartTimezone_clicked_cb(GtkButton *button
         , gpointer *user_data)
 {
     appt_win *apptw = (appt_win *)user_data;
-    appt_data *appt;
+    xfical_appt *appt;
 
     appt = apptw->appt;
     if (xfical_timezone_button_clicked(button, GTK_WINDOW(apptw->Window)
@@ -1029,7 +1029,7 @@ static void on_appEndTimezone_clicked_cb(GtkButton *button
         , gpointer *user_data)
 {
     appt_win *apptw = (appt_win *)user_data;
-    appt_data *appt;
+    xfical_appt *appt;
 
     appt = apptw->appt;
     if (xfical_timezone_button_clicked(button, GTK_WINDOW(apptw->Window)
@@ -1041,7 +1041,7 @@ static void on_appCompletedTimezone_clicked_cb(GtkButton *button
         , gpointer *user_data)
 {
     appt_win *apptw = (appt_win *)user_data;
-    appt_data *appt;
+    xfical_appt *appt;
 
     appt = apptw->appt;
     if (xfical_timezone_button_clicked(button, GTK_WINDOW(apptw->Window)
@@ -1049,7 +1049,7 @@ static void on_appCompletedTimezone_clicked_cb(GtkButton *button
         mark_appointment_changed(apptw);
 }
 
-static void fill_appt_window_times(appt_win *apptw, appt_data *appt)
+static void fill_appt_window_times(appt_win *apptw, xfical_appt *appt)
 {
     char *startdate_to_display, *enddate_to_display, *completeddate_to_display;
     int year, month, day, hours, minutes;
@@ -1158,9 +1158,9 @@ static void fill_appt_window_times(appt_win *apptw, appt_data *appt)
         g_warning("fill_appt_window_times: completedtime wrong %s", appt->uid);
 }
 
-static appt_data *fill_appt_window_get_appt(char *action, char *par)
+static xfical_appt *fill_appt_window_get_appt(char *action, char *par)
 {
-    appt_data *appt=NULL;
+    xfical_appt *appt=NULL;
     struct tm *t;
     gchar today[9];
 
@@ -1226,7 +1226,7 @@ static appt_data *fill_appt_window_get_appt(char *action, char *par)
 static void fill_appt_window(appt_win *apptw, char *action, char *par)
 {
     int year, month, day, hours, minutes;
-    appt_data *appt;
+    xfical_appt *appt;
     struct tm *t, tm_date;
     char *untildate_to_display;
     int i;

@@ -45,12 +45,12 @@
 
 #include "functions.h"
 #include "mainbox.h"
+#include "ical-code.h"
 #include "event-list.h"
 #include "appointment.h"
 #include "reminder.h"
-#include "ical-code.h"
-#include "tray_icon.h"
 #include "xfce_trayicon.h"
+#include "tray_icon.h"
 #include "parameters.h"
 
 

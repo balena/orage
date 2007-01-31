@@ -32,11 +32,9 @@
 
 #include <libxfcegui4/libxfcegui4.h>
 
-#include "mainbox.h"
 #include "functions.h"
+#include "mainbox.h"
 #include "interface.h"
-#include "event-list.h"
-#include "appointment.h"
 #include "ical-code.h"
 #include "parameters.h"
 

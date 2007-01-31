@@ -24,10 +24,14 @@
 #ifndef __EVENT_LIST_H__
 #define __EVENT_LIST_H__
 
-#define EVENT_PAGE 0
-#define TODO_PAGE 1
-#define JOURNAL_PAGE 2
-#define SEARCH_PAGE 3
+typedef enum
+{
+    EVENT_PAGE = 0
+   ,TODO_PAGE
+   ,JOURNAL_PAGE
+   ,SEARCH_PAGE
+} el_page;
+
 
 typedef struct
 {
@@ -70,17 +74,9 @@ typedef struct
     GtkWidget *journal_tab_label;
     GtkWidget *journal_notebook_page;
     GtkWidget *journal_start_button;
-    /*
-    GtkWidget *time_event_rb;
-    GtkWidget *time_todo_rb;
-    GtkWidget *time_journal_rb;
-    */
     GtkWidget *search_tab_label;
     GtkWidget *search_notebook_page;
     GtkWidget *search_entry;
-    /*
-    GtkWidget *search_archive_cb;
-    */
 
     GtkWidget   *ScrolledWindow;
     GtkWidget   *TreeView;
@@ -91,7 +87,7 @@ typedef struct
     /* these are used to build the data into event list */
     gboolean today;       /* flag: today or not */
     int      days;        /* how many extra days to show; usually 0 */
-    xfical_type type;     /* appointment component type to show */
+    el_page  page;        /* appointment page to show */
     char     time_now[5]; /* hh:mm */
 } el_win; /* event list window */
 

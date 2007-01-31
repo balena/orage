@@ -38,11 +38,12 @@
 #include <libxfcegui4/netk-trayicon.h>
 
 #include "functions.h"
+#include "mainbox.h"
+#include "about-xfcalendar.h"
+#include "ical-code.h"
 #include "event-list.h"
 #include "appointment.h"
-#include "mainbox.h"
 #include "xfce_trayicon.h"
-#include "about-xfcalendar.h"
 #include "parameters.h"
 
 

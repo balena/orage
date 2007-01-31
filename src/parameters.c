@@ -34,14 +34,10 @@
 #include <libxfcegui4/libxfcegui4.h>
 #include <libxfce4util/libxfce4util.h>
 
-#include "mainbox.h"
 #include "functions.h"
-#include "event-list.h"
 #include "tray_icon.h"
-#include "xfce_trayicon.h"
-#include "appointment.h"
-#include "parameters.h"
 #include "ical-code.h"
+#include "parameters.h"
 
 
 static gboolean is_running = FALSE;

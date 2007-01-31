@@ -54,12 +54,12 @@
 #include <glib/gprintf.h>
 
 #include "functions.h"
-#include "event-list.h"
+#include "mainbox.h"
 #include "reminder.h"
 #include "about-xfcalendar.h"
-#include "mainbox.h"
-#include "appointment.h"
 #include "ical-code.h"
+#include "event-list.h"
+#include "appointment.h"
 #include "parameters.h"
 
 
@@ -86,12 +86,6 @@ static const GtkTargetEntry drag_targets[] =
 {
     { "STRING", 0, DRAG_TARGET_STRING }
 };
-
-typedef enum {
-    TYPE_TIME = 0
-   ,TYPE_SEARCH
-} row_type;
-
 
 static void title_to_ical(char *title, char *ical)
 { /* yyyy-mm-dd\0 -> yyyymmdd\0 */
@@ -177,7 +171,7 @@ static int append_special_time(char *result, char *str, int i)
     return(6);
 }
 
-static char *format_time(el_win *el, appt_data *appt, char *par)
+static char *format_time(el_win *el, xfical_appt *appt, char *par)
 {
     static char result[40];
     int i = 0;
@@ -189,7 +183,7 @@ static char *format_time(el_win *el, appt_data *appt, char *par)
     end_ical_time = appt->endtimecur;
     same_date = !strncmp(start_ical_time, end_ical_time, 8);
 
-    if (el->type == XFICAL_TYPE_EVENT && el->days == 0) { 
+    if (el->page == EVENT_PAGE && el->days == 0) { 
         /* special formatting for 1 day VEVENTS */
         if (start_ical_time[8] == 'T') { /* time part available */
             if (strncmp(start_ical_time, par, 8) < 0)
@@ -253,7 +247,7 @@ static void start_time_data_func(GtkTreeViewColumn *col, GtkCellRenderer *rend
     /* only add special highlight if we are on today (=start with time)
      * and we process VEVENT 
      */
-    if (stime[2] != ':' || el->type != XFICAL_TYPE_EVENT) { 
+    if (stime[2] != ':' || el->page != EVENT_PAGE) { 
         g_object_set(rend
                  , "foreground-set",    FALSE
                  , "strikethrough-set", FALSE
@@ -289,7 +283,7 @@ static void start_time_data_func(GtkTreeViewColumn *col, GtkCellRenderer *rend
     }
 }
 
-static void add_el_row(el_win *el, appt_data *appt, char *par)
+static void add_el_row(el_win *el, xfical_appt *appt, char *par)
 {
     GtkTreeIter     iter1;
     GtkListStore   *list1;
@@ -367,7 +361,7 @@ static void search_data(el_win *el)
     gchar *search_string = NULL;
     gchar *text;
     gsize text_len;
-    appt_data *appt;
+    xfical_appt *appt;
 
     if (!xfical_file_open())
         return;
@@ -396,7 +390,8 @@ static void search_data(el_win *el)
 
 static void get_data_rows(el_win *el, char *a_day, gboolean arch, char *par)
 {
-    appt_data *appt;
+    xfical_appt *appt;
+    xfical_type ical_type;
 
     if (!arch) {
         if (!xfical_file_open())
@@ -407,10 +402,24 @@ static void get_data_rows(el_win *el, char *a_day, gboolean arch, char *par)
             return;
     }
 
-    for (appt = xfical_appt_get_next_on_day(a_day, TRUE, el->days, el->type
+    switch (el->page) {
+        case EVENT_PAGE:
+            ical_type = XFICAL_TYPE_EVENT;
+            break;
+        case TODO_PAGE:
+            ical_type = XFICAL_TYPE_TODO;
+            break;
+        case JOURNAL_PAGE:
+            ical_type = XFICAL_TYPE_JOURNAL;
+            break;
+        default:
+            g_error("wrong page in get_data_rows (%d)\n", el->page);
+    }
+
+    for (appt = xfical_appt_get_next_on_day(a_day, TRUE, el->days, ical_type
                 , arch);
          appt;
-         appt = xfical_appt_get_next_on_day(a_day, FALSE, el->days, el->type
+         appt = xfical_appt_get_next_on_day(a_day, FALSE, el->days, ical_type
                 , arch)) {
         add_el_row(el, appt, par);
         xfical_appt_free(appt);
@@ -422,6 +431,22 @@ static void get_data_rows(el_win *el, char *a_day, gboolean arch, char *par)
         xfical_archive_close();
 }
 
+static void refresh_time_field(el_win *el)
+{
+    GtkCellRenderer *rend;
+    GtkTreeViewColumn *col;
+
+/* this is needed if we want to make time field smaller again */
+    col = gtk_tree_view_get_column(GTK_TREE_VIEW(el->TreeView), 0);
+    gtk_tree_view_remove_column(GTK_TREE_VIEW(el->TreeView), col);
+    rend = gtk_cell_renderer_text_new();
+    col = gtk_tree_view_column_new_with_attributes( _("Time"), rend
+            , "text", COL_TIME, NULL);
+    gtk_tree_view_column_set_cell_data_func(col, rend
+            , start_time_data_func, el, NULL);
+    gtk_tree_view_insert_column(GTK_TREE_VIEW(el->TreeView), col, 0);
+}
+
 static void event_data(el_win *el)
 {
     guint year, month, day;
@@ -429,7 +454,8 @@ static void event_data(el_win *el)
     char      a_day[9];  /* yyyymmdd */
     struct tm *t;
 
-    el->type = XFICAL_TYPE_EVENT;
+    if (el->days == 0)
+        refresh_time_field(el);
     el->days = gtk_spin_button_get_value(GTK_SPIN_BUTTON(el->event_spin));
     title = (char *)gtk_window_get_title(GTK_WINDOW(el->Window));
     title_to_ical(title, a_day);
@@ -454,7 +480,6 @@ static void todo_data(el_win *el)
     char      a_day[9];  /* yyyymmdd */
     struct tm *t;
 
-    el->type = XFICAL_TYPE_TODO;
     el->days = 10*365; /* long enough time to get everything from future */
     t = orage_localtime();
     g_sprintf(a_day, "%04d%02d%02d"
@@ -466,10 +491,9 @@ void journal_data(el_win *el)
 {
     guint year, month, day;
     char      a_day[9];  /* yyyymmdd */
-    appt_data *appt;
+    xfical_appt *appt;
     struct tm t;
 
-    el->type = XFICAL_TYPE_JOURNAL;
     el->days = 10*365; /* long enough time to get everything from future */
     t = orage_i18_date_to_tm_date(gtk_button_get_label(
             GTK_BUTTON(el->journal_start_button)));
@@ -482,23 +506,10 @@ void journal_data(el_win *el)
 
 void refresh_el_win(el_win *el)
 {
-    GtkCellRenderer *rend;
-    GtkTreeViewColumn *col;
-
-    if (el->Window &&  el->ListStore &&  el->TreeView) {
+    if (el->Window && el->ListStore && el->TreeView) {
         gtk_list_store_clear(el->ListStore);
-        /* this is needed if we want to make time field smaller again */
-        if (el->type == XFICAL_TYPE_EVENT && el->days == 0) {
-            col = gtk_tree_view_get_column(GTK_TREE_VIEW(el->TreeView), 0);
-            gtk_tree_view_remove_column(GTK_TREE_VIEW(el->TreeView), col);
-            rend = gtk_cell_renderer_text_new();
-            col = gtk_tree_view_column_new_with_attributes( _("Time"), rend
-                    , "text", COL_TIME, NULL);
-            gtk_tree_view_column_set_cell_data_func(col, rend
-                    , start_time_data_func, el, NULL);
-            gtk_tree_view_insert_column(GTK_TREE_VIEW(el->TreeView), col, 0);
-        }
-        switch (gtk_notebook_get_current_page(GTK_NOTEBOOK(el->Notebook))) {
+        el->page = gtk_notebook_get_current_page(GTK_NOTEBOOK(el->Notebook));
+        switch (el->page) {
             case EVENT_PAGE:
                 event_data(el);
                 break;
@@ -546,13 +557,6 @@ static void on_notebook_page_switch(GtkNotebook *notebook
      * refreshes when tab is change quickly; like with mouse roll
      */
     g_timeout_add(300, (GtkFunction)upd_notebook, el);
-}
-
-static gboolean on_notebook_page_change(GtkNotebook *notebook
-        , guint page_num, gpointer user_data)
-{
-    g_print("we change here %d\n", page_num);
-    return(TRUE);
 }
 
 static void on_Search_clicked(GtkButton *b, gpointer user_data)
@@ -823,7 +827,7 @@ static void on_File_delete_activate_cb(GtkMenuItem *mi, gpointer user_data)
     delete_appointment((el_win *)user_data);
 }
 
-static void on_journal_start_button_clicked(GtkWidget *button
+static void on_journal_start_button_clicked(GtkButton *button
         , gpointer *user_data)
 {
     el_win *el = (el_win *)user_data;
@@ -868,17 +872,10 @@ static void on_journal_start_button_clicked(GtkWidget *button
             break;
         case GTK_RESPONSE_DELETE_EVENT:
         default:
-            date_to_display = (gchar *)gtk_button_get_label(
-                    GTK_BUTTON(button));
+            date_to_display = (gchar *)gtk_button_get_label(button);
             break;
     }
-/*
-    if (g_ascii_strcasecmp((gchar *)date_to_display
-            , (gchar *)gtk_button_get_label(GTK_BUTTON(button))) != 0) {
-        mark_appointment_changed(apptw);
-    }
-*/
-    gtk_button_set_label(GTK_BUTTON(button), (const gchar *)date_to_display);
+    gtk_button_set_label(button, (const gchar *)date_to_display);
     refresh_el_win(el);
     gtk_widget_destroy(selDate_Window_dialog);
 }
@@ -1157,8 +1154,6 @@ static void build_notebook(el_win *el)
 
     g_signal_connect((gpointer)el->Notebook, "switch-page"
             , G_CALLBACK(on_notebook_page_switch), el);
-    g_signal_connect((gpointer)el->Notebook, "select-page"
-            , G_CALLBACK(on_notebook_page_change), el);
 }
 
 static void build_event_list(el_win *el)

@@ -26,23 +26,6 @@
 
 #define ORAGE_STR_EXISTS(str) ((str != NULL) && (str[0] != 0))
 
-typedef enum
-{
-    XFICAL_FREQ_NONE = 0
-   ,XFICAL_FREQ_DAILY
-   ,XFICAL_FREQ_WEEKLY
-   ,XFICAL_FREQ_MONTHLY
-   ,XFICAL_FREQ_YEARLY
-} xfical_freq;
-
-typedef enum
-{
-    XFICAL_TYPE_EVENT = 0
-   ,XFICAL_TYPE_TODO
-   ,XFICAL_TYPE_JOURNAL
-} xfical_type;
-
-
 GtkWidget *orage_toolbar_append_button(GtkWidget *toolbar
         , const gchar *stock_id, GtkTooltips *tooltips
         , const char *tooltip_text, gint pos);

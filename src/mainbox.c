@@ -39,13 +39,12 @@
 #include <libxfce4util/libxfce4util.h>
 #include <libxfcegui4/libxfcegui4.h>
 
-#include "mainbox.h"
 #include "functions.h"
+#include "mainbox.h"
 #include "about-xfcalendar.h"
+#include "ical-code.h"
 #include "event-list.h"
 #include "appointment.h"
-#include "ical-code.h"
-#include "reminder.h"
 #include "interface.h"
 #include "parameters.h"
 
