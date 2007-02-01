@@ -103,6 +103,11 @@ void orage_toggle_visible()
     send_event("_XFCE_CALENDAR_TOGGLE_HERE");
 }
 
+void raise_orage()
+{
+    send_event("_XFCE_CALENDAR_RAISE");
+}
+
 gboolean mWindow_delete_event_cb(GtkWidget *widget, GdkEvent *event
         , gpointer user_data)
 {
@@ -267,61 +272,87 @@ static void preferences(void)
 
 static void print_help(void)
 {
-    g_print("\tThis is %s version %s for Xfce %s\n\n"
-            , PACKAGE, VERSION, xfce_version_string());
     g_print("Usage: orage [options] files\n\n");
     g_print("Options:\n");
     g_print("--version (-v) \t\tshow version of orage\n");
     g_print("--help (-h) \t\tprint this text\n");
     g_print("--preferences (-p) \tshow preferences form\n");
-    g_print("--toggle (-t) \tmake orage visible/unvisible\n");
+    g_print("--toggle (-t) \t\tmake orage visible/unvisible\n");
     g_print("\n");
     g_print("files=ical files to load into orage\n");
     g_print("\n");
 }
 
-static void import_file(gboolean running, char *file_name)
+static void import_file(gboolean running, char *file_name, gboolean initialized)
 {
-    if (running) /* let's use dbus since server is running there already */
+    if (running && !initialized) 
+        /* let's use dbus since server is running there already */
         if (orage_dbus_import_file(file_name))
             g_message("import done file=%s", file_name);
         else
             g_warning("import failed file=%s\n", file_name);
-    else /* do it self directly */
+    else if (!running && initialized) /* do it self directly */
         if (xfical_import_file(file_name))
             g_message("import done file=%s", file_name);
         else
             g_warning("import failed file=%s\n", file_name);
-    send_event("_XFCE_CALENDAR_RAISE");
 }
 
-static void process_args(int argc, char *argv[], gboolean running)
+static gboolean process_args(int argc, char *argv[], gboolean running
+        , gboolean initialized)
 { /* we need dbus if orage is already running and we just want to add file */
     int argi;
+    gboolean end = FALSE;
 
-    if (running && argc == 1) {
-        send_event("_XFCE_CALENDAR_RAISE");
-        return;
+    if (running && argc == 1) { /* no parameters */
+        raise_orage();
+        return(TRUE);
     }
+    end = running;
     for (argi = 1; argi < argc; argi++) {
-        if (!strcmp(argv[argi], "--sm-client-id"))
+        if (!strcmp(argv[argi], "--sm-client-id")) {
             argi++; /* skip the parameter also */
+        }
         else if (!strcmp(argv[argi], "--version") || 
-                 !strcmp(argv[argi], "-v"))
+                 !strcmp(argv[argi], "-v")) {
             print_version();
-        else if (!strcmp(argv[argi], "--preferences") || 
-                 !strcmp(argv[argi], "-p"))
-            preferences();
+            end = TRUE;
+        }
         else if (!strcmp(argv[argi], "--help") || 
                  !strcmp(argv[argi], "-h")     ||
-                 !strcmp(argv[argi], "-?"))
+                 !strcmp(argv[argi], "-?")) {
             print_help();
+            end = TRUE;
+        }
+        else if (!strcmp(argv[argi], "--preferences") || 
+                 !strcmp(argv[argi], "-p")) {
+            if (running && !initialized) {
+                preferences();
+                end = TRUE;
+            }
+            else if (!running && initialized) {
+                preferences();
+            }
+            /* if (!running && !initialized) Do nothing 
+             * if (running && initialized) impossible
+             */
+        }
         else if (!strcmp(argv[argi], "--toggle") || 
-                 !strcmp(argv[argi], "-t"))
+                 !strcmp(argv[argi], "-t")) {
             orage_toggle_visible();
-        else
-            import_file(running, argv[argi]);
+            end = TRUE;
+        }
+        else if (argv[argi][0] == '-') {
+            g_print(_("\nUnknown parameter %s\n\n"), argv[argi]);
+            print_help();
+            end = TRUE;
+        }
+        else {
+            import_file(running, argv[argi], initialized);
+            raise_orage();
+        }
     }
+    return(end);
 }
 
 static gboolean check_orage_alive()
@@ -351,16 +382,15 @@ static gboolean mark_orage_alive()
 
 int main(int argc, char *argv[])
 {
-    gboolean running;
+    gboolean running, initialized = FALSE;
 
     xfce_textdomain(GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8");
     gtk_init(&argc, &argv);
 
     atom_alive = gdk_atom_intern("_XFCE_CALENDAR_RUNNING", FALSE);
-    if (running = check_orage_alive()) {
-        process_args(argc, argv, running);
+    running = check_orage_alive();
+    if (process_args(argc, argv, running, initialized)) 
         return(EXIT_SUCCESS);
-    }
     /* we need to start since orage was not found to be running already */
     mark_orage_alive();
 
@@ -410,7 +440,8 @@ int main(int argc, char *argv[])
             , (gpointer) g_par.xfcal, NULL);
                                                         
     /* let's check if I got filename as a parameter */
-    process_args(argc, argv, running);
+    initialized = TRUE;
+    process_args(argc, argv, running, initialized);
 
     gtk_main();
     keep_tidy();
