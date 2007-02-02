@@ -378,10 +378,12 @@ orage_alarm_clock(gpointer user_data)
         previous_month = current_month;
         previous_day   = current_day;
         xfical_alarm_build_list(TRUE);  /* new alarm list when date changed */
-        if (NETK_IS_TRAY_ICON(g_par.trayIcon->tray)) { 
+        if (g_par.show_systray) {
             /* refresh date in tray icon */
-            xfce_tray_icon_disconnect(g_par.trayIcon);
-            destroy_TrayIcon(g_par.trayIcon);
+            if (g_par.trayIcon && NETK_IS_TRAY_ICON(g_par.trayIcon->tray)) { 
+                xfce_tray_icon_disconnect(g_par.trayIcon);
+                destroy_TrayIcon(g_par.trayIcon);
+            }
             g_par.trayIcon = create_TrayIcon(xfcal);
             xfce_tray_icon_connect(g_par.trayIcon);
         }
@@ -403,7 +405,7 @@ orage_alarm_clock(gpointer user_data)
     if (alarm_raised) /* at least one alarm processed, need new list */
         xfical_alarm_build_list(FALSE); 
 
-    if (NETK_IS_TRAY_ICON(g_par.trayIcon->tray)) { 
+    if (g_par.trayIcon && NETK_IS_TRAY_ICON(g_par.trayIcon->tray)) { 
         build_tray_tooltip();
     }
     return TRUE;

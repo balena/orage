@@ -60,7 +60,6 @@
 /* session client handler */
 static SessionClient	*session_client = NULL;
 static GdkAtom atom_alive;
-
 /*
 void program_log (const char *format, ...)
 {
@@ -421,10 +420,14 @@ int main(int argc, char *argv[])
     */
     read_parameters();
     build_mainWin();
+    /* let's do this later when the alarm timer fires first time.
+     * Saves 1-2 seconds in startup time
     g_par.trayIcon = create_TrayIcon(g_par.xfcal);
+    */
     set_parameters();
-    if (g_par.start_visible)
+    if (g_par.start_visible) {
         gtk_widget_show(g_par.xfcal->mWindow);
+    }
     else if (g_par.start_minimized) {
         gtk_window_iconify(GTK_WINDOW(g_par.xfcal->mWindow));
         gtk_widget_show(g_par.xfcal->mWindow);
@@ -433,7 +436,11 @@ int main(int argc, char *argv[])
         gtk_widget_realize(g_par.xfcal->mWindow);
         gtk_widget_hide(g_par.xfcal->mWindow);
     }
+    /* mCalendar_month_changed_cb calls orage_mark_appointments but
+     * delayed using timer, so that we save another 1-2 secs in startup
     orage_mark_appointments();
+    */
+    mCalendar_month_changed_cb(g_par.xfcal->mCalendar, NULL);
 
     /* start alarm monitoring timeout */
     g_timeout_add_full(0, 1000, (GtkFunction) orage_alarm_clock

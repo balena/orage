@@ -403,6 +403,10 @@ static void pager_changed(GtkWidget *dialog, gpointer user_data)
 
 static void set_systray()
 {
+    if (!(g_par.trayIcon && NETK_IS_TRAY_ICON(g_par.trayIcon->tray))) {
+        g_par.trayIcon = create_TrayIcon(g_par.xfcal);
+    }
+
     if (g_par.show_systray)
         xfce_tray_icon_connect(g_par.trayIcon);
     else
@@ -499,7 +503,7 @@ static void ical_weekstartday_changed(GtkWidget *dialog, gpointer user_data)
 
 static void set_icon_size()
 {
-    if (NETK_IS_TRAY_ICON(g_par.trayIcon->tray)) {
+    if (g_par.trayIcon && NETK_IS_TRAY_ICON(g_par.trayIcon->tray)) {
         /* refresh date in tray icon */
         xfce_tray_icon_disconnect(g_par.trayIcon);
         destroy_TrayIcon(g_par.trayIcon);
@@ -1037,7 +1041,9 @@ void set_parameters()
     set_border();
     set_taskbar();
     set_pager();
+    /*
     set_systray();
+    */
     set_stick();
     set_ontop();
     xfical_set_local_timezone();

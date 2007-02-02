@@ -206,7 +206,7 @@ upd_calendar(GtkCalendar *calendar)
     return(FALSE); /* we do this only once */
 }
 
-static void
+void
 mCalendar_month_changed_cb(GtkCalendar *calendar, gpointer user_data)
 {
     /* orage_mark_appointments is rather heavy (=slow), so doing
