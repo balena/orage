@@ -55,7 +55,9 @@ void orage_select_date(GtkCalendar *cal
 
 void orage_select_today(GtkCalendar *cal);
 
+/*
 struct tm orage_i18_date_to_tm_date(const char *display);
 
 char *orage_tm_date_to_i18_date(struct tm tm_date);
+*/
 #endif /* !__ORAGE_FUNCTIONS_H__ */

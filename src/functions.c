@@ -35,10 +35,13 @@
 
 
 /**************************************
- *  Functions for drawing interfaces  *
+ *  General purpose helper functions  *
  **************************************/
 
-
+/* FIXME: moved to appointment.c, because these do not work here!
+ * I do not know why NLS does not work here. Very annoying!
+ * */
+/*
 struct tm orage_i18_date_to_tm_date(const char *i18_date)
 {
     const char *date_format;
@@ -46,6 +49,7 @@ struct tm orage_i18_date_to_tm_date(const char *i18_date)
     struct tm tm_date = {0,0,0,0,0,0,0,0,0};
 
     date_format = _("%m/%d/%Y");
+    g_print("format: %s (%s) %s\n", date_format, _("%m/%d/%Y"), "%m/%d/%Y");
     ret = (char *)strptime(i18_date, date_format, &tm_date);
     if (ret == NULL)
         g_error("Orage: orage_i18_date_to_tm_date wrong format (%s)"
@@ -60,16 +64,18 @@ char *orage_tm_date_to_i18_date(struct tm tm_date)
 {
     const char *date_format;
     static char i18_date[32];
-    /*
+    / *
     struct tm d = {0,0,0,0,0,0,0,0,0};
-    */
+    * /
 
     date_format = _("%m/%d/%Y");
-    /*
+    g_print("format: %s\n", date_format);
+    g_print("format: %s (%s) %s\n", date_format, _("%m/%d/%Y"), "%m/%d/%Y");
+    / *
     d.tm_mday = day;
     d.tm_mon = month - 1;
     d.tm_year = year - 1900;
-    */
+    * /
 
     if (strftime(i18_date, 32, date_format, &tm_date))
         return(i18_date);
@@ -78,6 +84,7 @@ char *orage_tm_date_to_i18_date(struct tm tm_date)
         return(NULL);
     }
 }
+*/
 
 GtkWidget *orage_toolbar_append_button(GtkWidget *toolbar
     , const gchar *stock_id, GtkTooltips *tooltips, const char *tooltip_text

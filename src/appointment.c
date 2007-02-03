@@ -62,6 +62,57 @@
 
 static void fill_appt_window(appt_win *apptw, char *action, char *par);
 
+
+/* FIXME: moved form functions. because, these do not work there!
+ * I do not know why NLS does not work here. Very annoying!
+ * */
+struct tm orage_i18_date_to_tm_date(const char *i18_date)
+{
+    const char *date_format;
+    char *ret;
+    struct tm tm_date = {0,0,0,0,0,0,0,0,0};
+
+    date_format = _("%m/%d/%Y");
+    /*
+    g_print("format: %s (%s) %s\n", date_format, _("%m/%d/%Y"), "%m/%d/%Y");
+    */
+    ret = (char *)strptime(i18_date, date_format, &tm_date);
+    if (ret == NULL)
+        g_error("Orage: orage_i18_date_to_tm_date wrong format (%s)"
+                , i18_date);
+    else if (strlen(ret))
+        g_error("Orage: orage_i18_date_to_tm_date too long format (%s)"
+                , i18_date);
+    return(tm_date);
+}
+
+char *orage_tm_date_to_i18_date(struct tm tm_date)
+{
+    const char *date_format;
+    static char i18_date[32];
+    /*
+      struct tm d = {0,0,0,0,0,0,0,0,0};
+    */
+
+    date_format = _("%m/%d/%Y");
+    /*
+    g_print("format: %s\n", date_format);
+    g_print("format: %s (%s) %s\n", date_format, _("%m/%d/%Y"), "%m/%d/%Y");
+    */
+    /*
+      d.tm_mday = day;
+      d.tm_mon = month - 1;
+      d.tm_year = year - 1900;
+    */
+
+    if (strftime(i18_date, 32, date_format, &tm_date))
+        return(i18_date);
+    else {
+        g_error("Orage: orage_tm_date_to_i18_date too long string in strftime");        return(NULL);
+    }
+}
+
+
 static gboolean ical_to_year_month_day_hour_minute(char *ical
     , int *year, int *month, int *day, int *hour, int *minute)
 {
