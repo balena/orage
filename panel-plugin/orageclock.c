@@ -136,7 +136,7 @@ static gboolean popup_program(GtkWidget *widget, gchar *program, Clock *clock)
         popup = "_XFCE_GLOBALTIME_TOGGLE_HERE";
     }
     else {
-        g_warning("%s: unknown program to start %s", OC_NAME, program);
+        g_warning("unknown program to start %s", program);
         return(FALSE);
     }
 
@@ -229,12 +229,10 @@ static void oc_read_rc_file(XfcePanelPlugin *plugin, Clock *clock)
     gchar tmp[100];
     gint i;
 
-    if (!(file = xfce_panel_plugin_lookup_rc_file(plugin))) {
-        g_warning("%s: unable to read rc file", OC_NAME);
-        return;
-    }
+    if (!(file = xfce_panel_plugin_lookup_rc_file(plugin)))
+        return; /* if it does not exist, we use defaults from orage_oc_new */
     if (!(rc = xfce_rc_simple_open(file, TRUE))) {
-        g_warning("%s: unable to read-open rc file (%s)", OC_NAME, file);
+        g_warning("unable to read-open rc file (%s)", file);
         return;
     }
     g_free(file);
@@ -301,11 +299,11 @@ void oc_write_rc_file(XfcePanelPlugin *plugin, Clock *clock)
     gint i;
 
     if (!(file = xfce_panel_plugin_save_location(plugin, TRUE))) {
-        g_warning("%s: unable to write rc file", OC_NAME);
+        g_warning("unable to write rc file");
         return;
     }
     if (!(rc = xfce_rc_simple_open(file, FALSE))) {
-        g_warning("%s: unable to read-open rc file (%s)", OC_NAME, file);
+        g_warning("unable to read-open rc file (%s)", file);
         return;
     }
     g_free(file);
@@ -397,6 +395,8 @@ Clock *orage_oc_new(XfcePanelPlugin *plugin)
     clock->show_frame = TRUE;
     clock->fg_set = FALSE;
     clock->bg_set = FALSE;
+    clock->width_set = FALSE;
+    clock->height_set = FALSE;
 
     clock->timezone = g_string_new(""); /* = not set */
     clock->TZ_orig = g_strdup(g_getenv("TZ"));
