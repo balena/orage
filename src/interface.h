@@ -23,7 +23,7 @@
 #ifndef __INTERFACE_H__
 #define __INTERFACE_H__
 
-typedef struct
+typedef struct _intf_win
 {
     GtkWidget *main_window;
     GtkWidget *main_vbox;
@@ -53,6 +53,29 @@ typedef struct
     GtkWidget *arc_tab_label;
     GtkWidget *arc_button1;
     GtkWidget *arc_button2;
+    GtkWidget *fil_table;
+    GtkWidget *fil_notebook_page;
+    GtkWidget *fil_tab_label;
+    /* Orage calendar file */
+    GtkWidget *orage_file_frame;
+    GtkWidget *orage_file_entry;
+    GtkWidget *orage_file_open_button;
+    GtkWidget *orage_file_save_button;
+    GtkWidget *orage_file_rename_rb;
+    GtkWidget *orage_file_copy_rb;
+    GtkWidget *orage_file_move_rb;
+    /* archive file */
+    GtkWidget *archive_file_frame;
+    GtkWidget *archive_file_entry;
+    GtkWidget *archive_file_open_button;
+    GtkWidget *archive_file_save_button;
+    GtkWidget *archive_file_rename_rb;
+    GtkWidget *archive_file_copy_rb;
+    GtkWidget *archive_file_move_rb;
+
+    GtkWidget *ext_table;
+    GtkWidget *ext_notebook_page;
+    GtkWidget *ext_tab_label;
 
     GtkTooltips *tooltips;
     GtkAccelGroup *accelgroup;

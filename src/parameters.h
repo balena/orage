@@ -32,6 +32,12 @@
 #define ARCFILE  "orage_archive.ics"
 
 #define BORDER 5
+typedef struct _foreign_file
+{
+    char *file;
+    gboolean read_only;
+} foreign_file;
+
 
 typedef struct _parameters
 {
@@ -57,6 +63,10 @@ typedef struct _parameters
     /* archiving */
     int archive_limit;
     char *archive_file;
+
+    /* foreign files */
+    int foreign_count;
+    foreign_file foreign_data[10];
 
     /* other */
     char *orage_file;

@@ -566,18 +566,27 @@ static void xfical_add_timezone(icalcomponent *p_ical, icalset *p_fical
 }
 
 static gboolean xfical_internal_file_open(icalcomponent **p_ical
-        , icalset **p_fical, gchar *file_icalpath)
+        , icalset **p_fical, gchar *file_icalpath, gboolean test)
 {
     icalcomponent *iter;
     gint cnt=0;
 
     if (*p_fical != NULL)
         g_warning("xfical_internal_file_open: file already open");
-    if (!ORAGE_STR_EXISTS(file_icalpath))
-        g_error("xfical_internal_file_open: file empty");
+    if (!ORAGE_STR_EXISTS(file_icalpath)) {
+        if (test)
+            g_warning("xfical_internal_file_open: file empty");
+        else
+            g_error("xfical_internal_file_open: file empty");
+        return(FALSE);
+    }
     if ((*p_fical = icalset_new_file(file_icalpath)) == NULL) {
-        g_error("xfical_internal_file_open: Could not open ical file (%s) %s\n"
-                , file_icalpath, icalerror_strerror(icalerrno));
+        if (test)
+            g_warning("xfical_internal_file_open: Could not open ical file (%s) %s\n"
+                    , file_icalpath, icalerror_strerror(icalerrno));
+        else
+            g_error("xfical_internal_file_open: Could not open ical file (%s) %s\n"
+                    , file_icalpath, icalerror_strerror(icalerrno));
         return(FALSE);
     }
     else { /* file open, let's find last VCALENDAR entry */
@@ -588,6 +597,10 @@ static gboolean xfical_internal_file_open(icalcomponent **p_ical
             *p_ical = iter; /* last valid component */
         }
         if (cnt == 0) {
+            if (test) { /* failed */
+                g_warning("xfical_internal_file_open: no top level (VCALENDAR) component in calendar file %s", file_icalpath);
+                return(FALSE);
+            }
         /* calendar missing, need to add one.  
          * Note: According to standard rfc2445 calendar always needs to
          *       contain at least one other component. So strictly speaking
@@ -611,7 +624,15 @@ static gboolean xfical_internal_file_open(icalcomponent **p_ical
         }
         else { /* VCALENDAR found */
             if (cnt > 1) {
-                g_warning("xfical_internal_file_open: Too many top level components in calendar file %s", file_icalpath);
+                g_warning("xfical_internal_file_open: too many top level components in calendar file %s", file_icalpath);
+                if (test) { /* failed */
+                    return(FALSE);
+                }
+            }
+            if (test 
+            && icalcomponent_isa(*p_ical) != ICAL_VCALENDAR_COMPONENT) {
+                g_warning("xfical_internal_file_open: top level component is not VCALENDAR %s", file_icalpath);
+                return(FALSE);
             }
         }
     }
@@ -620,7 +641,7 @@ static gboolean xfical_internal_file_open(icalcomponent **p_ical
 
 gboolean xfical_file_open(void)
 { 
-    return(xfical_internal_file_open(&ical, &fical, g_par.orage_file));
+    return(xfical_internal_file_open(&ical, &fical, g_par.orage_file, FALSE));
 }
 
 gboolean xfical_archive_open(void)
@@ -630,7 +651,16 @@ gboolean xfical_archive_open(void)
     if (!ORAGE_STR_EXISTS(g_par.archive_file))
         return(FALSE);
 
-    return(xfical_internal_file_open(&aical, &afical, g_par.archive_file));
+    return(xfical_internal_file_open(&aical, &afical, g_par.archive_file
+            , FALSE));
+}
+
+gboolean xfical_file_check(gchar *file_name)
+{ 
+    icalcomponent *x_ical = NULL;
+    icalset *x_fical = NULL;
+
+    return(xfical_internal_file_open(&x_ical, &x_fical, file_name, TRUE));
 }
 
 void xfical_file_close(void)
@@ -1150,9 +1180,12 @@ static void xfical_alarm_build_list_internal(gboolean first_list_today)
         } /* trg_found */
     }  /* EVENTS */
     g_par.alarm_list = g_list_sort(g_par.alarm_list, alarm_order);
-    if (first_list_today)
-        g_message("Orage **: Build alarm list: Processed %d events.\n\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
-                , cnt_event, cnt_alarm, cnt_act_alarm, cnt_repeat);
+    if (first_list_today) {
+        g_message("Orage **: Build alarm list: Processed %d events."
+                , cnt_event);
+        g_message("Orage **: \tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
+                , cnt_alarm, cnt_act_alarm, cnt_repeat);
+        }
 }
 
 void xfical_alarm_build_list(gboolean first_list_today)
@@ -2372,8 +2405,9 @@ gboolean xfical_archive(void)
     }
     threshold->tm_mon += 1;
 
-    g_message(_("Orage **: Archiving threshold: %d month(s)\n\tArchiving events, which are older than: %04d-%02d-%02d")
-            , g_par.archive_limit
+    g_message(_("Orage **: Archiving threshold: %d month(s)")
+            , g_par.archive_limit);
+    g_message(_("Orage **: \tArchiving events, which are older than: %04d-%02d-%02d")
             , threshold->tm_year, threshold->tm_mon, threshold->tm_mday);
 
     /* Check appointment file for items older than the threshold */
@@ -2399,8 +2433,9 @@ gboolean xfical_archive(void)
         if ((edate.year*12 + edate.month) 
             < (threshold->tm_year*12 + threshold->tm_mon)) {
             p = icalcomponent_get_first_property(c, ICAL_RRULE_PROPERTY);
-            g_message("Orage **: Archiving uid: %s (%s)\n\tEnd year: %04d, month: %02d, day: %02d"
-                    , uid, (p) ? "recur" : "normal"
+            g_message(_("Orage **: Archiving uid: %s (%s)")
+                    , uid, (p) ? _("recur") : _("normal"));
+            g_message(_("Orage **: \tEnd year: %04d, month: %02d, day: %02d")
                     , edate.year, edate.month, edate.day);
             if (p)  /*  it is recurrent event */
                 xfical_icalcomponent_archive_recurrent(c, threshold, uid);
@@ -2781,7 +2816,7 @@ static gboolean export_selected(char *file_name, char *uids)
         g_warning("xfical_export_file: UID list is empty");
         return(FALSE);
     }
-    if (!xfical_internal_file_open(&x_ical, &x_fical, file_name)) {
+    if (!xfical_internal_file_open(&x_ical, &x_fical, file_name, FALSE)) {
         g_warning("xfical_export_file: Failed to create export file %s"
                 , file_name);
         return(FALSE);

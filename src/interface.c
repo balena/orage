@@ -68,6 +68,256 @@ static const GtkTargetEntry uid_drag_targets[] =
 static int uid_drag_target_count = 1;
 
 
+void static orage_file_entry_changed(GtkWidget *dialog, gpointer user_data)
+{
+    intf_win *itf = (intf_win *)user_data;
+    const gchar *s;
+
+    s = gtk_entry_get_text(GTK_ENTRY(itf->orage_file_entry));
+    if (strcmp(g_par.orage_file, s) == 0) {
+        gtk_widget_set_sensitive(itf->orage_file_save_button, FALSE);
+    }
+    else {
+        gtk_widget_set_sensitive(itf->orage_file_save_button, TRUE);
+    }
+}
+
+static gboolean copy_file(gchar *source, gchar *target)
+{
+    gchar *text;
+    gsize text_len;
+    GError *error = NULL;
+    gboolean ok = TRUE;
+
+    /* read file */
+    if (!g_file_get_contents(source, &text, &text_len, &error)) {
+        g_warning("file save: Could not open ical file (%s) error:%s"
+                , source, error->message);
+        g_error_free(error);
+        ok = FALSE;
+    }
+    /* write file */
+    if (!g_file_set_contents(target, text, -1, &error)) {
+        g_warning("file save: Could not write ical file (%s) error:%s"
+                , target, error->message);
+        g_error_free(error);
+        ok = FALSE;
+    }
+    g_free(text);
+    return(ok);
+}
+
+void static orage_file_save_button_clicked(GtkButton *button
+        , gpointer user_data)
+{
+    intf_win *itf = (intf_win *)user_data;
+    gchar *s;
+    gboolean ok = TRUE;
+
+    s = strdup(gtk_entry_get_text(GTK_ENTRY(itf->orage_file_entry)));
+    if (gtk_toggle_button_get_active(
+            GTK_TOGGLE_BUTTON(itf->orage_file_rename_rb))) {
+        if (!g_file_test(s, G_FILE_TEST_EXISTS)) {
+            g_warning("New file %s does not exist. Rename not done", s);
+            ok = FALSE;
+        }
+        if (!xfical_file_check(s)) {
+            g_warning("New file %s is not valid ical calendar file. Rename not done", s);
+            ok = FALSE;
+        }
+    }
+    else if (gtk_toggle_button_get_active(
+            GTK_TOGGLE_BUTTON(itf->orage_file_copy_rb))) {
+        ok = copy_file(g_par.orage_file, s);
+    }
+    else if (gtk_toggle_button_get_active(
+            GTK_TOGGLE_BUTTON(itf->orage_file_move_rb))) {
+        if (g_rename(g_par.orage_file, s)) { /* failed */
+            g_warning("rename failed. trying manual copy");
+            ok = copy_file(g_par.orage_file, s);
+            if (ok) { /* this is move. so let's remove the orig */
+               if (g_remove(g_par.orage_file))
+                   g_message("file remove failed %s", g_par.orage_file);
+            }
+        }
+    }
+    else {
+        g_warning("illegal file save toggle button status");
+        ok = FALSE;
+    }
+
+    /* finally orage internal file name change */
+    if (ok) {
+        if (g_par.orage_file)
+            g_free(g_par.orage_file);
+        g_par.orage_file = s;
+        gtk_widget_set_sensitive(itf->orage_file_save_button, FALSE);
+    }
+    else {
+        g_free(s);
+    }
+}
+
+void static archive_file_entry_changed(GtkWidget *dialog, gpointer user_data)
+{
+    intf_win *itf = (intf_win *)user_data;
+    const gchar *s;
+
+    s = gtk_entry_get_text(GTK_ENTRY(itf->archive_file_entry));
+    if (strcmp(g_par.archive_file, s) == 0) { /* same file */
+        gtk_widget_set_sensitive(itf->archive_file_save_button, FALSE);
+    }
+    else {
+        gtk_widget_set_sensitive(itf->archive_file_save_button, TRUE);
+    }
+}
+
+void static archive_file_save_button_clicked(GtkButton *button
+        , gpointer user_data)
+{
+    intf_win *itf = (intf_win *)user_data;
+    gchar *s;
+    gboolean ok = TRUE;
+
+    s = strdup(gtk_entry_get_text(GTK_ENTRY(itf->archive_file_entry)));
+    if (gtk_toggle_button_get_active(
+            GTK_TOGGLE_BUTTON(itf->archive_file_rename_rb))) {
+        if (!g_file_test(s, G_FILE_TEST_EXISTS)) {
+            g_warning("New file %s does not exist. Rename not done", s);
+            ok = FALSE;
+        }
+        if (!xfical_file_check(s)) {
+            g_warning("New file %s is not valid ical calendar file. Rename not done", s);
+            ok = FALSE;
+        }
+    }
+    else if (gtk_toggle_button_get_active(
+            GTK_TOGGLE_BUTTON(itf->archive_file_copy_rb))) {
+        ok = copy_file(g_par.archive_file, s);
+    }
+    else if (gtk_toggle_button_get_active(
+            GTK_TOGGLE_BUTTON(itf->archive_file_move_rb))) {
+        if (g_rename(g_par.archive_file, s)) { /* failed */
+            g_warning("rename failed. trying manual copy");
+            ok = copy_file(g_par.archive_file, s);
+            if (ok) { /* this is move. so let's remove the orig */
+               if (g_remove(g_par.archive_file))
+                   g_message("file remove failed %s", g_par.archive_file);
+            }
+        }
+    }
+    else {
+        g_warning("illegal file save toggle button status");
+        ok = FALSE;
+    }
+
+    /* finally archive internal file name change */
+    if (ok) {
+        if (g_par.archive_file)
+            g_free(g_par.archive_file);
+        g_par.archive_file = s;
+        gtk_widget_set_sensitive(itf->archive_file_save_button, FALSE);
+    }
+    else {
+        g_free(s);
+    }
+}
+
+static GtkWidget *create_orage_file_chooser(intf_win *itf, gchar *cur_file
+        , gchar *rcfolder, gchar *def_name)
+{
+    GtkWidget *file_chooser;
+    GtkFileFilter *filter;
+
+    /* Create file chooser */
+    file_chooser = gtk_file_chooser_dialog_new(_("Select a file...")
+            , GTK_WINDOW(itf->main_window), GTK_FILE_CHOOSER_ACTION_SAVE
+            , GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL
+            , GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT
+            , NULL);
+    /* Add filters */
+    filter = gtk_file_filter_new();
+    gtk_file_filter_set_name(filter, _("Calendar files"));
+    gtk_file_filter_add_pattern(filter, "*.ics");
+    gtk_file_chooser_add_filter(GTK_FILE_CHOOSER(file_chooser), filter);
+
+    filter = gtk_file_filter_new();
+    gtk_file_filter_set_name(filter, _("All Files"));
+    gtk_file_filter_add_pattern(filter, "*");
+    gtk_file_chooser_add_filter(GTK_FILE_CHOOSER(file_chooser), filter);
+
+    gtk_file_chooser_add_shortcut_folder(GTK_FILE_CHOOSER(file_chooser)
+            , rcfolder, NULL);
+
+    gtk_file_chooser_set_show_hidden(GTK_FILE_CHOOSER(file_chooser), TRUE);
+
+    if (ORAGE_STR_EXISTS(cur_file)) {
+        if (! gtk_file_chooser_set_filename(GTK_FILE_CHOOSER(file_chooser)
+                , cur_file)) {
+            gtk_file_chooser_set_current_folder(GTK_FILE_CHOOSER(file_chooser)
+                    , rcfolder);
+            gtk_file_chooser_set_current_name(
+                    GTK_FILE_CHOOSER(file_chooser), def_name);
+        }
+    }
+    else { /* this should never happen since we have default value */
+        g_warning("Orage file missing");
+        gtk_file_chooser_set_current_folder(GTK_FILE_CHOOSER(file_chooser)
+                , rcfolder);
+        gtk_file_chooser_set_current_name(
+                GTK_FILE_CHOOSER(file_chooser), def_name);
+    }
+    return(file_chooser);
+}
+
+static void orage_file_open_button_clicked(GtkButton *button
+        , gpointer user_data)
+{
+    intf_win *itf = (intf_win *)user_data;
+    GtkWidget *file_chooser;
+    gchar *rcfile;
+    gchar *s;
+
+    rcfile = xfce_resource_save_location(XFCE_RESOURCE_DATA, ORAGE_DIR, TRUE);
+    file_chooser = create_orage_file_chooser(itf, g_par.orage_file
+            , rcfile, APPFILE);
+
+    if (gtk_dialog_run(GTK_DIALOG(file_chooser)) == GTK_RESPONSE_ACCEPT) {
+        s = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(file_chooser));
+        if (s) {
+            gtk_entry_set_text(GTK_ENTRY(itf->orage_file_entry)
+                    , (const gchar *)s);
+            g_free(s);
+        }
+    }
+    gtk_widget_destroy(file_chooser);
+    g_free(rcfile);
+}
+
+static void archive_file_open_button_clicked(GtkButton *button
+        , gpointer user_data)
+{
+    intf_win *itf = (intf_win *)user_data;
+    GtkWidget *file_chooser;
+    gchar *rcfile;
+    gchar *s;
+
+    rcfile = xfce_resource_save_location(XFCE_RESOURCE_DATA, ORAGE_DIR, TRUE);
+    file_chooser = create_orage_file_chooser(itf, g_par.archive_file
+            , rcfile, ARCFILE);
+
+    if (gtk_dialog_run(GTK_DIALOG(file_chooser)) == GTK_RESPONSE_ACCEPT) {
+        s = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(file_chooser));
+        if (s) {
+            gtk_entry_set_text(GTK_ENTRY(itf->archive_file_entry)
+                    , (const gchar *)s);
+            g_free(s);
+        }
+    }
+    gtk_widget_destroy(file_chooser);
+    g_free(rcfile);
+}
+
 void on_exp_file_button_clicked_cb(GtkButton *button, gpointer user_data)
 {
     intf_win *intf_w = (intf_win *)user_data;
@@ -516,9 +766,9 @@ void create_export_tab(intf_win *intf_w)
     intf_w->exp_file_entry = gtk_entry_new();
     gtk_box_pack_start(GTK_BOX(hbox), intf_w->exp_file_entry, TRUE, TRUE, 0);
     intf_w->exp_file_button = gtk_button_new_from_stock("gtk-find");
-    gtk_box_pack_start(GTK_BOX(hbox), intf_w->exp_file_button, FALSE, TRUE, 0);
+    gtk_box_pack_start(GTK_BOX(hbox), intf_w->exp_file_button, FALSE, FALSE, 0);
     orage_table_add_row(intf_w->exp_table, label, hbox, 0
-            , (GTK_FILL) , (GTK_FILL));
+            , (GTK_SHRINK | GTK_FILL), (GTK_SHRINK | GTK_FILL));
     g_signal_connect((gpointer)intf_w->exp_file_button, "clicked"
             , G_CALLBACK(on_exp_file_button_clicked_cb), intf_w);
     file = g_build_filename(g_get_home_dir(), "orage_export.ics", NULL);
@@ -609,6 +859,153 @@ void create_archive_tab(intf_win *intf_w)
             , G_CALLBACK(on_unarchive_button_clicked_cb), intf_w);
 }
 
+void create_orage_file_tab(intf_win *intf_w)
+{
+    GtkWidget *label, *hbox, *vbox, *m_vbox;
+    gchar *file;
+    char *str;
+
+    m_vbox = gtk_vbox_new(FALSE, 0);
+    intf_w->fil_notebook_page = xfce_create_framebox_with_content(NULL, m_vbox);
+    intf_w->fil_tab_label = gtk_label_new(_("Orage files"));
+    gtk_notebook_append_page(GTK_NOTEBOOK(intf_w->notebook)
+            , intf_w->fil_notebook_page, intf_w->fil_tab_label);
+
+    /***** main file *****/
+    vbox = gtk_vbox_new(FALSE, 0);
+    intf_w->orage_file_frame = xfce_create_framebox_with_content(
+            _("Orage main calendar file"), vbox);
+    gtk_box_pack_start(GTK_BOX(m_vbox)
+            , intf_w->orage_file_frame, FALSE, FALSE, 5);
+
+    hbox = gtk_hbox_new(FALSE, 0);
+    label = gtk_label_new(_("Current file"));
+    gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 5);
+    label = gtk_label_new((const gchar *)g_par.orage_file);
+    gtk_box_pack_start(GTK_BOX(hbox), label, TRUE, TRUE, 5);
+    gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 5);
+
+    hbox = gtk_hbox_new(FALSE, 0);
+    label = gtk_label_new(_("New file"));
+    gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 5);
+    intf_w->orage_file_entry = gtk_entry_new();
+    gtk_entry_set_text(GTK_ENTRY(intf_w->orage_file_entry)
+            , (const gchar *)g_par.orage_file);
+    gtk_box_pack_start(GTK_BOX(hbox), intf_w->orage_file_entry, TRUE, TRUE, 5);
+    intf_w->orage_file_open_button = gtk_button_new_from_stock("gtk-open");
+    gtk_box_pack_start(GTK_BOX(hbox)
+            , intf_w->orage_file_open_button, FALSE, FALSE, 5);
+    intf_w->orage_file_save_button = gtk_button_new_from_stock("gtk-save");
+    gtk_widget_set_sensitive(intf_w->orage_file_save_button, FALSE);
+    gtk_box_pack_start(GTK_BOX(hbox)
+            , intf_w->orage_file_save_button, FALSE, FALSE, 5);
+    gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 5);
+
+    hbox = gtk_hbox_new(FALSE, 0);
+    label = gtk_label_new(_("Action options"));
+    gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 5);
+    intf_w->orage_file_rename_rb = 
+            gtk_radio_button_new_with_label(NULL, _("Rename"));
+    gtk_box_pack_start(GTK_BOX(hbox)
+            , intf_w->orage_file_rename_rb, FALSE, FALSE, 5);
+    gtk_tooltips_set_tip(intf_w->tooltips, intf_w->orage_file_rename_rb
+            , _("Orage internal file rename only.\nDoes not touch external filesystem at all.\nNew file must exist."), NULL);
+
+    intf_w->orage_file_copy_rb = 
+            gtk_radio_button_new_with_mnemonic_from_widget(
+                    GTK_RADIO_BUTTON(intf_w->orage_file_rename_rb), _("Copy"));
+    gtk_box_pack_start(GTK_BOX(hbox)
+            , intf_w->orage_file_copy_rb, FALSE, FALSE, 5);
+    gtk_tooltips_set_tip(intf_w->tooltips, intf_w->orage_file_copy_rb
+            , _("Current file is copied and stays unmodified in the old place."), NULL);
+
+    intf_w->orage_file_move_rb = 
+            gtk_radio_button_new_with_mnemonic_from_widget(
+                    GTK_RADIO_BUTTON(intf_w->orage_file_rename_rb), _("Move"));
+    gtk_box_pack_start(GTK_BOX(hbox)
+            , intf_w->orage_file_move_rb, FALSE, FALSE, 5);
+    gtk_tooltips_set_tip(intf_w->tooltips, intf_w->orage_file_move_rb
+            , _("Current file is moved and vanishes from the old place."), NULL);
+    gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 5);
+
+    g_signal_connect(G_OBJECT(intf_w->orage_file_open_button), "clicked"
+            , G_CALLBACK(orage_file_open_button_clicked), intf_w);
+    g_signal_connect(G_OBJECT(intf_w->orage_file_entry), "changed"
+            , G_CALLBACK(orage_file_entry_changed), intf_w);
+    g_signal_connect(G_OBJECT(intf_w->orage_file_save_button), "clicked"
+            , G_CALLBACK(orage_file_save_button_clicked), intf_w);
+
+    /***** archive file *****/
+    vbox = gtk_vbox_new(FALSE, 0);
+    intf_w->archive_file_frame = xfce_create_framebox_with_content(
+            _("Archive file"), vbox);
+    gtk_box_pack_start(GTK_BOX(m_vbox)
+            , intf_w->archive_file_frame, FALSE, FALSE, 5);
+
+    hbox = gtk_hbox_new(FALSE, 0);
+    label = gtk_label_new(_("Current file"));
+    gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 5);
+    label = gtk_label_new((const gchar *)g_par.archive_file);
+    gtk_box_pack_start(GTK_BOX(hbox), label, TRUE, TRUE, 5);
+    gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 5);
+
+    hbox = gtk_hbox_new(FALSE, 0);
+    label = gtk_label_new(_("New file"));
+    gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 5);
+    intf_w->archive_file_entry = gtk_entry_new();
+    gtk_entry_set_text(GTK_ENTRY(intf_w->archive_file_entry)
+            , (const gchar *)g_par.archive_file);
+    gtk_box_pack_start(GTK_BOX(hbox)
+            , intf_w->archive_file_entry, TRUE, TRUE, 5);
+    intf_w->archive_file_open_button = gtk_button_new_from_stock("gtk-open");
+    gtk_box_pack_start(GTK_BOX(hbox)
+            , intf_w->archive_file_open_button, FALSE, FALSE, 5);
+    intf_w->archive_file_save_button = gtk_button_new_from_stock("gtk-save");
+    gtk_widget_set_sensitive(intf_w->archive_file_save_button, FALSE);
+    gtk_box_pack_start(GTK_BOX(hbox)
+            , intf_w->archive_file_save_button, FALSE, FALSE, 5);
+    gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 5);
+
+    hbox = gtk_hbox_new(FALSE, 0);
+    label = gtk_label_new(_("Action options"));
+    gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 5);
+    intf_w->archive_file_rename_rb = 
+            gtk_radio_button_new_with_label(NULL, _("Rename"));
+    gtk_box_pack_start(GTK_BOX(hbox)
+            , intf_w->archive_file_rename_rb, FALSE, FALSE, 5);
+    intf_w->archive_file_copy_rb = 
+            gtk_radio_button_new_with_mnemonic_from_widget(
+                GTK_RADIO_BUTTON(intf_w->archive_file_rename_rb), _("Copy"));
+    gtk_box_pack_start(GTK_BOX(hbox)
+            , intf_w->archive_file_copy_rb, FALSE, FALSE, 5);
+    intf_w->archive_file_move_rb = 
+            gtk_radio_button_new_with_mnemonic_from_widget(
+                GTK_RADIO_BUTTON(intf_w->archive_file_rename_rb), _("Move"));
+    gtk_box_pack_start(GTK_BOX(hbox)
+            , intf_w->archive_file_move_rb, FALSE, FALSE, 5);
+    gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 5);
+
+    g_signal_connect(G_OBJECT(intf_w->archive_file_open_button), "clicked"
+            , G_CALLBACK(archive_file_open_button_clicked), intf_w);
+    g_signal_connect(G_OBJECT(intf_w->archive_file_entry), "changed"
+            , G_CALLBACK(archive_file_entry_changed), intf_w);
+    g_signal_connect(G_OBJECT(intf_w->archive_file_save_button), "clicked"
+            , G_CALLBACK(archive_file_save_button_clicked), intf_w);
+}
+
+void create_external_file_tab(intf_win *intf_w)
+{
+    GtkWidget *label;
+    gchar *file;
+    char *str;
+
+    intf_w->ext_table = orage_table_new(3, 20);
+    intf_w->ext_notebook_page = intf_w->ext_table;
+    intf_w->ext_tab_label = gtk_label_new(_("External files"));
+    gtk_notebook_append_page(GTK_NOTEBOOK(intf_w->notebook)
+            , intf_w->ext_notebook_page, intf_w->ext_tab_label);
+}
+
 void orage_external_interface(CalWin *xfcal)
 {
     intf_win *intf_w = g_new(intf_win, 1);
@@ -638,6 +1035,9 @@ void orage_external_interface(CalWin *xfcal)
     create_import_tab(intf_w);
     create_export_tab(intf_w);
     create_archive_tab(intf_w);
+    create_orage_file_tab(intf_w);
+    create_external_file_tab(intf_w);
+    gtk_notebook_set_current_page(GTK_NOTEBOOK(intf_w->notebook), 1);
 
     gtk_widget_show_all(intf_w->main_window);
     drag_and_drop_init(intf_w);

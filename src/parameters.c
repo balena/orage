@@ -96,18 +96,6 @@ typedef struct _Itf
     GtkWidget *icon_size_frame;
     GtkWidget *icon_size_x_spin;
     GtkWidget *icon_size_y_spin;
-#ifdef ORAGE_FILE_RENAME_ENABLED
-    /* Orage calendar file */
-    GtkWidget *orage_file_frame;
-    GtkWidget *orage_file_entry;
-    GtkWidget *orage_file_open_button;
-    GtkWidget *orage_file_save_button;
-    /* archive file */
-    GtkWidget *archive_file_frame;
-    GtkWidget *archive_file_entry;
-    GtkWidget *archive_file_open_button;
-    GtkWidget *archive_file_save_button;
-#endif
 
     /* the rest */
     GtkWidget *close_button;
@@ -145,167 +133,6 @@ static void sound_application_changed(GtkWidget *dialog, gpointer user_data)
     g_par.sound_application = g_strdup(gtk_entry_get_text(
             GTK_ENTRY(itf->sound_application_entry)));
 }
-
-#ifdef ORAGE_FILE_RENAME_ENABLED
-void static orage_file_entry_changed(GtkWidget *dialog, gpointer user_data)
-{
-    Itf *itf = (Itf *)user_data;
-    const gchar *s;
-
-    s = gtk_entry_get_text(GTK_ENTRY(itf->orage_file_entry));
-    if (strcmp(g_par.orage_file, s) == 0) {
-        gtk_widget_set_sensitive(itf->orage_file_save_button, FALSE);
-    }
-    else {
-        gtk_widget_set_sensitive(itf->orage_file_save_button, TRUE);
-    }
-}
-
-void static orage_file_save_button_clicked(GtkButton *button
-        , gpointer user_data)
-{
-    Itf *itf = (Itf *)user_data;
-    gchar *s;
-
-    s = strdup(gtk_entry_get_text(GTK_ENTRY(itf->archive_file_entry)));
-    if (g_rename(g_par.orage_file, s)) { /* failed */ 
-        g_warning("rename failed");
-        g_free(s);
-    }
-    else {
-        if (g_par.orage_file)
-            g_free(g_par.orage_file);
-        g_par.orage_file = s;
-        gtk_widget_set_sensitive(itf->orage_file_save_button, FALSE);
-    }
-}
-
-void static archive_file_entry_changed(GtkWidget *dialog, gpointer user_data)
-{
-    Itf *itf = (Itf *)user_data;
-    const gchar *s;
-
-    s = gtk_entry_get_text(GTK_ENTRY(itf->archive_file_entry));
-    if (strcmp(g_par.archive_file, s) == 0) { /* same file */
-        gtk_widget_set_sensitive(itf->archive_file_save_button, FALSE);
-    }
-    else {
-        gtk_widget_set_sensitive(itf->archive_file_save_button, TRUE);
-    }
-}
-
-void static archive_file_save_button_clicked(GtkButton *button
-        , gpointer user_data)
-{
-    Itf *itf = (Itf *)user_data;
-    gchar *s;
-
-    s = strdup(gtk_entry_get_text(GTK_ENTRY(itf->archive_file_entry)));
-    if (g_rename(g_par.archive_file, s)) { /* failed */ 
-        g_warning("rename failed");
-        g_free(s);
-    }
-    else {
-        if (g_par.archive_file)
-            g_free(g_par.archive_file);
-        g_par.archive_file = s;
-        gtk_widget_set_sensitive(itf->archive_file_save_button, FALSE);
-    }
-}
-
-static GtkWidget *create_orage_file_chooser(Itf *itf, gchar *cur_file
-        , gchar *rcfolder, gchar *def_name)
-{
-    GtkWidget *file_chooser;
-    GtkFileFilter *filter;
-
-    /* Create file chooser */
-    file_chooser = gtk_file_chooser_dialog_new(_("Select a file...")
-            , GTK_WINDOW(itf->orage_dialog), GTK_FILE_CHOOSER_ACTION_SAVE
-            , GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL
-            , GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT
-            , NULL);
-    /* Add filters */
-    filter = gtk_file_filter_new();
-    gtk_file_filter_set_name(filter, _("Calendar files"));
-    gtk_file_filter_add_pattern(filter, "*.ics");
-    gtk_file_chooser_add_filter(GTK_FILE_CHOOSER(file_chooser), filter);
-
-    filter = gtk_file_filter_new();
-    gtk_file_filter_set_name(filter, _("All Files"));
-    gtk_file_filter_add_pattern(filter, "*");
-    gtk_file_chooser_add_filter(GTK_FILE_CHOOSER(file_chooser), filter);
-
-    gtk_file_chooser_add_shortcut_folder(GTK_FILE_CHOOSER(file_chooser)
-            , rcfolder, NULL);
-
-    if (ORAGE_STR_EXISTS(cur_file)) {
-        if (! gtk_file_chooser_set_filename(GTK_FILE_CHOOSER(file_chooser)
-                , cur_file)) {
-            gtk_file_chooser_set_current_folder(GTK_FILE_CHOOSER(file_chooser)
-                    , rcfolder);
-            gtk_file_chooser_set_current_name(
-                    GTK_FILE_CHOOSER(file_chooser), def_name);
-        }
-    }
-    else { /* this should never happen since we have default value */
-        g_warning("Orage file missing");
-        gtk_file_chooser_set_current_folder(GTK_FILE_CHOOSER(file_chooser)
-                , rcfolder);
-        gtk_file_chooser_set_current_name(
-                GTK_FILE_CHOOSER(file_chooser), def_name);
-    }
-    return(file_chooser);
-}
-
-static void orage_file_open_button_clicked(GtkButton *button
-        , gpointer user_data)
-{
-    Itf *itf = (Itf *)user_data;
-    GtkWidget *file_chooser;
-    gchar *rcfile;
-    gchar *s;
-
-    rcfile = xfce_resource_save_location(XFCE_RESOURCE_DATA, ORAGE_DIR, TRUE);
-    file_chooser = create_orage_file_chooser(itf, g_par.orage_file
-            , rcfile, APPFILE);
-
-    if (gtk_dialog_run(GTK_DIALOG(file_chooser)) == GTK_RESPONSE_ACCEPT) {
-        s = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(file_chooser));
-        if (s) {
-            gtk_entry_set_text(GTK_ENTRY(itf->orage_file_entry)
-                    , (const gchar *)s);
-            g_free(s);
-        }
-    }
-    gtk_widget_destroy(file_chooser);
-    g_free(rcfile);
-}
-
-static void archive_file_open_button_clicked(GtkButton *button
-        , gpointer user_data)
-{
-    Itf *itf = (Itf *)user_data;
-    GtkWidget *file_chooser;
-    gchar *rcfile;
-    gchar *s;
-
-    rcfile = xfce_resource_save_location(XFCE_RESOURCE_DATA, ORAGE_DIR, TRUE);
-    file_chooser = create_orage_file_chooser(itf, g_par.archive_file
-            , rcfile, ARCFILE);
-
-    if (gtk_dialog_run(GTK_DIALOG(file_chooser)) == GTK_RESPONSE_ACCEPT) {
-        s = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(file_chooser));
-        if (s) {
-            gtk_entry_set_text(GTK_ENTRY(itf->archive_file_entry)
-                    , (const gchar *)s);
-            g_free(s);
-        }
-    }
-    gtk_widget_destroy(file_chooser);
-    g_free(rcfile);
-}
-#endif
 
 static void set_border()
 {
@@ -817,62 +644,6 @@ static void create_parameter_dialog_extra_setup_tab(Itf *dialog)
     gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 5);
     g_signal_connect(G_OBJECT(dialog->icon_size_y_spin), "value-changed"
             , G_CALLBACK(icon_size_y_spin_changed), dialog);
-
-#ifdef ORAGE_FILE_RENAME_ENABLED
-    /***** main file *****/
-    hbox = gtk_hbox_new(FALSE, 0);
-    dialog->orage_file_frame = xfce_create_framebox_with_content(
-            _("Orage main calendar file"), hbox);
-    gtk_box_pack_start(GTK_BOX(dialog->extra_vbox)
-            , dialog->orage_file_frame, FALSE, FALSE, 5);
-
-    dialog->orage_file_entry = gtk_entry_new();
-    gtk_entry_set_text(GTK_ENTRY(dialog->orage_file_entry)
-            , (const gchar *)g_par.orage_file);
-    gtk_box_pack_start(GTK_BOX(hbox)
-            , dialog->orage_file_entry, TRUE, TRUE, 5);
-    dialog->orage_file_open_button = gtk_button_new_from_stock("gtk-open");
-    gtk_box_pack_start(GTK_BOX(hbox)
-            , dialog->orage_file_open_button, FALSE, FALSE, 5);
-    dialog->orage_file_save_button = gtk_button_new_from_stock("gtk-save");
-    gtk_widget_set_sensitive(dialog->orage_file_save_button, FALSE);
-    gtk_box_pack_start(GTK_BOX(hbox)
-            , dialog->orage_file_save_button, FALSE, FALSE, 5);
-
-    g_signal_connect(G_OBJECT(dialog->orage_file_open_button), "clicked"
-            , G_CALLBACK(orage_file_open_button_clicked), dialog);
-    g_signal_connect(G_OBJECT(dialog->orage_file_entry), "changed"
-            , G_CALLBACK(orage_file_entry_changed), dialog);
-    g_signal_connect(G_OBJECT(dialog->orage_file_save_button), "clicked"
-            , G_CALLBACK(orage_file_save_button_clicked), dialog);
-
-    /***** archive file *****/
-    hbox = gtk_hbox_new(FALSE, 0);
-    dialog->archive_file_frame = xfce_create_framebox_with_content(
-            _("Archive file"), hbox);
-    gtk_box_pack_start(GTK_BOX(dialog->extra_vbox)
-            , dialog->archive_file_frame, FALSE, FALSE, 5);
-
-    dialog->archive_file_entry = gtk_entry_new();
-    gtk_entry_set_text(GTK_ENTRY(dialog->archive_file_entry)
-            , (const gchar *)g_par.archive_file);
-    gtk_box_pack_start(GTK_BOX(hbox)
-            , dialog->archive_file_entry, TRUE, TRUE, 5);
-    dialog->archive_file_open_button = gtk_button_new_from_stock("gtk-open");
-    gtk_box_pack_start(GTK_BOX(hbox)
-            , dialog->archive_file_open_button, FALSE, FALSE, 5);
-    dialog->archive_file_save_button = gtk_button_new_from_stock("gtk-save");
-    gtk_widget_set_sensitive(dialog->archive_file_save_button, FALSE);
-    gtk_box_pack_start(GTK_BOX(hbox)
-            , dialog->archive_file_save_button, FALSE, FALSE, 5);
-
-    g_signal_connect(G_OBJECT(dialog->archive_file_open_button), "clicked"
-            , G_CALLBACK(archive_file_open_button_clicked), dialog);
-    g_signal_connect(G_OBJECT(dialog->archive_file_entry), "changed"
-            , G_CALLBACK(archive_file_entry_changed), dialog);
-    g_signal_connect(G_OBJECT(dialog->archive_file_save_button), "clicked"
-            , G_CALLBACK(archive_file_save_button_clicked), dialog);
-#endif
 }
 
 Itf *create_parameter_dialog()
@@ -930,6 +701,8 @@ void write_parameters()
 {
     gchar *fpath;
     XfceRc *rc;
+    gint i;
+    gchar f_par[100];
 
     fpath = xfce_resource_save_location(XFCE_RESOURCE_CONFIG
             , ORAGE_DIR PARFILE, TRUE);
@@ -955,13 +728,20 @@ void write_parameters()
     xfce_rc_write_bool_entry(rc, "Show in pager", g_par.show_pager);
     xfce_rc_write_bool_entry(rc, "Show in systray", g_par.show_systray);
     xfce_rc_write_bool_entry(rc, "Show in taskbar", g_par.show_taskbar);
-    xfce_rc_write_bool_entry(rc, "start visible", g_par.start_visible);
-    xfce_rc_write_bool_entry(rc, "start minimized", g_par.start_minimized);
-    xfce_rc_write_bool_entry(rc, "set sticked", g_par.set_stick);
-    xfce_rc_write_bool_entry(rc, "set ontop", g_par.set_ontop);
+    xfce_rc_write_bool_entry(rc, "Start visible", g_par.start_visible);
+    xfce_rc_write_bool_entry(rc, "Start minimized", g_par.start_minimized);
+    xfce_rc_write_bool_entry(rc, "Set sticked", g_par.set_stick);
+    xfce_rc_write_bool_entry(rc, "Set ontop", g_par.set_ontop);
     xfce_rc_write_int_entry(rc, "Dynamic icon X", g_par.icon_size_x);
     xfce_rc_write_int_entry(rc, "Dynamic icon Y", g_par.icon_size_y);
     xfce_rc_write_int_entry(rc, "Ical week start day", g_par.ical_weekstartday);
+    xfce_rc_write_int_entry(rc, "Foreign file count", g_par.foreign_count);
+    for (i = g_par.foreign_count; i; i++) {
+        g_sprintf(f_par, "Foreign file %02d name", i);
+        xfce_rc_write_entry(rc, f_par, g_par.foreign_data[i].file);
+        g_sprintf(f_par, "Foreign file %02d read-only", i);
+        xfce_rc_write_bool_entry(rc, f_par, g_par.foreign_data[i].read_only);
+    }
 
     g_free(fpath);
     xfce_rc_close(rc);
@@ -971,6 +751,8 @@ void read_parameters(void)
 {
     gchar *fpath;
     XfceRc *rc;
+    gint i;
+    gchar f_par[100];
 
     fpath = xfce_resource_save_location(XFCE_RESOURCE_CONFIG
             , ORAGE_DIR PARFILE, TRUE);
@@ -1007,15 +789,25 @@ void read_parameters(void)
     g_par.show_pager = xfce_rc_read_bool_entry(rc, "Show in pager", TRUE);
     g_par.show_systray = xfce_rc_read_bool_entry(rc, "Show in systray", TRUE);
     g_par.show_taskbar = xfce_rc_read_bool_entry(rc, "Show in taskbar", TRUE);
-    g_par.start_visible = xfce_rc_read_bool_entry(rc, "start visible", TRUE);
+    g_par.start_visible = xfce_rc_read_bool_entry(rc, "Start visible", TRUE);
     g_par.start_minimized = 
-            xfce_rc_read_bool_entry(rc, "start minimized", FALSE);
-    g_par.set_stick = xfce_rc_read_bool_entry(rc, "set sticked", TRUE);
-    g_par.set_ontop = xfce_rc_read_bool_entry(rc, "set ontop", FALSE);
+            xfce_rc_read_bool_entry(rc, "Start minimized", FALSE);
+    g_par.set_stick = xfce_rc_read_bool_entry(rc, "Set sticked", TRUE);
+    g_par.set_ontop = xfce_rc_read_bool_entry(rc, "Set ontop", FALSE);
     g_par.icon_size_x = xfce_rc_read_int_entry(rc, "Dynamic icon X", 42);
     g_par.icon_size_y = xfce_rc_read_int_entry(rc, "Dynamic icon Y", 32);
     g_par.ical_weekstartday = 
             xfce_rc_read_int_entry(rc, "Ical week start day", 0); /* monday */
+    g_par.foreign_count = 
+            xfce_rc_read_int_entry(rc, "Foreign file count", 0);
+    for (i = g_par.foreign_count; i; i++) {
+        g_sprintf(f_par, "Foreign file %02d name", i);
+        g_par.foreign_data[i].file = 
+                g_strdup(xfce_rc_read_entry(rc, f_par, NULL));
+        g_sprintf(f_par, "Foreign file %02d read-only", i);
+        g_par.foreign_data[i].read_only = 
+                xfce_rc_read_bool_entry(rc, f_par, TRUE);
+    }
 
     g_free(fpath);
     xfce_rc_close(rc);
