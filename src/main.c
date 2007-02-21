@@ -54,8 +54,9 @@
 #include "ical-code.h"
 #include "tray_icon.h"
 #include "parameters.h"
+#ifdef HAVE_DBUS
 #include "orage-dbus.h"
-
+#endif
 
 /* session client handler */
 static SessionClient	*session_client = NULL;
@@ -253,13 +254,18 @@ static void ensure_basedir_spec(void)
 
 static void print_version(void)
 {
-    g_print("\tThis is %s version %s for Xfce %s\n\n"
+    g_print(_("\tThis is %s version %s for Xfce %s\n\n")
             , PACKAGE, VERSION, xfce_version_string());
-    g_print("\tReleased under the terms of the GNU General Public License.\n");
-    g_print("\tCompiled against GTK+-%d.%d.%d, "
+    g_print(_("\tReleased under the terms of the GNU General Public License.\n"));
+    g_print(_("\tCompiled against GTK+-%d.%d.%d, ")
             , GTK_MAJOR_VERSION, GTK_MINOR_VERSION, GTK_MICRO_VERSION);
-    g_print("using GTK+-%d.%d.%d.\n"
+    g_print(_("using GTK+-%d.%d.%d.\n")
             , gtk_major_version, gtk_minor_version, gtk_micro_version);
+#ifdef HAVE_DBUS
+    g_print(_("\tusing DBUS for import.\n"));
+#else
+    g_print(_("\tnot using DBUS. import works only partially.\n"));
+#endif
     g_print("\n");
 }
 
@@ -271,14 +277,19 @@ static void preferences(void)
 
 static void print_help(void)
 {
-    g_print("Usage: orage [options] files\n\n");
-    g_print("Options:\n");
-    g_print("--version (-v) \t\tshow version of orage\n");
-    g_print("--help (-h) \t\tprint this text\n");
-    g_print("--preferences (-p) \tshow preferences form\n");
-    g_print("--toggle (-t) \t\tmake orage visible/unvisible\n");
+    g_print(_("Usage: orage [options] files\n\n"));
+    g_print(_("Options:\n"));
+    g_print(_("--version (-v) \t\tshow version of orage\n"));
+    g_print(_("--help (-h) \t\tprint this text\n"));
+    g_print(_("--preferences (-p) \tshow preferences form\n"));
+    g_print(_("--toggle (-t) \t\tmake orage visible/unvisible\n"));
     g_print("\n");
-    g_print("files=ical files to load into orage\n");
+    g_print(_("files=ical files to load into orage\n"));
+#ifndef HAVE_DBUS
+    g_print(_("\tdbus not included in orage. \n"));
+    g_print(_("\tfiles for running orage not supported without dbus \n"));
+    g_print(_("\tfiles can only be used when starting orage \n"));
+#endif
     g_print("\n");
 }
 
@@ -286,10 +297,14 @@ static void import_file(gboolean running, char *file_name, gboolean initialized)
 {
     if (running && !initialized) 
         /* let's use dbus since server is running there already */
+#ifdef HAVE_DBUS
         if (orage_dbus_import_file(file_name))
             g_message("import done file=%s", file_name);
         else
             g_warning("import failed file=%s\n", file_name);
+#else
+        g_warning("Can not do import without dbus. import failed file=%s\n", file_name);
+#endif
     else if (!running && initialized) /* do it self directly */
         if (xfical_import_file(file_name))
             g_message("import done file=%s", file_name);
@@ -299,7 +314,7 @@ static void import_file(gboolean running, char *file_name, gboolean initialized)
 
 static gboolean process_args(int argc, char *argv[], gboolean running
         , gboolean initialized)
-{ /* we need dbus if orage is already running and we just want to add file */
+{ 
     int argi;
     gboolean end = FALSE;
 
@@ -413,7 +428,9 @@ int main(int argc, char *argv[])
     * directory and check for config files in old location.
     */
     ensure_basedir_spec();
+#ifdef HAVE_DBUS
     orage_dbus_start();
+#endif
 
     /*
     * Create the orage.
