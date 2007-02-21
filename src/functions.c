@@ -86,6 +86,19 @@ char *orage_tm_date_to_i18_date(struct tm tm_date)
 }
 */
 
+void orage_message(const char *format, ...)
+{
+    va_list args;
+    char *formatted, *str;
+
+    va_start(args, format);
+    formatted = g_strdup_vprintf(format, args);
+    va_end(args);
+
+    g_message("Orage **: %s", formatted);
+    g_free(formatted);
+}
+
 GtkWidget *orage_toolbar_append_button(GtkWidget *toolbar
     , const gchar *stock_id, GtkTooltips *tooltips, const char *tooltip_text
     , gint pos)

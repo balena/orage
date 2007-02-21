@@ -299,7 +299,7 @@ static void import_file(gboolean running, char *file_name, gboolean initialized)
         /* let's use dbus since server is running there already */
 #ifdef HAVE_DBUS
         if (orage_dbus_import_file(file_name))
-            g_message("import done file=%s", file_name);
+            orage_message("import done file=%s", file_name);
         else
             g_warning("import failed file=%s\n", file_name);
 #else
@@ -307,7 +307,7 @@ static void import_file(gboolean running, char *file_name, gboolean initialized)
 #endif
     else if (!running && initialized) /* do it self directly */
         if (xfical_import_file(file_name))
-            g_message("import done file=%s", file_name);
+            orage_message("import done file=%s", file_name);
         else
             g_warning("import failed file=%s\n", file_name);
 }

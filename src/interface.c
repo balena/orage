@@ -137,7 +137,7 @@ void static orage_file_save_button_clicked(GtkButton *button
             ok = copy_file(g_par.orage_file, s);
             if (ok) { /* this is move. so let's remove the orig */
                if (g_remove(g_par.orage_file))
-                   g_message("file remove failed %s", g_par.orage_file);
+                   g_warning("file remove failed %s", g_par.orage_file);
             }
         }
     }
@@ -202,7 +202,7 @@ void static archive_file_save_button_clicked(GtkButton *button
             ok = copy_file(g_par.archive_file, s);
             if (ok) { /* this is move. so let's remove the orig */
                if (g_remove(g_par.archive_file))
-                   g_message("file remove failed %s", g_par.archive_file);
+                   g_warning("file remove failed %s", g_par.archive_file);
             }
         }
     }
@@ -444,7 +444,7 @@ void save_intf_import(intf_win *intf_w)
                 *filename_end = 0; /* filename ends here */
             /* FIXME: proper messages to screen */
             if (orage_import_file(filename))
-                g_message("Orage **: Import done %s", filename);
+                orage_message("Import done %s", filename);
             else
                 g_warning("import failed file=%s\n", filename);
             if (filename_end != NULL) { /* we have more files */
@@ -485,7 +485,7 @@ void save_intf_export(intf_win *intf_w)
         }
 
         if (orage_export_file(entry_filename, app_count, entry_uids))
-            g_message("Orage **: Export done %s", entry_filename);
+            orage_message("Export done %s", entry_filename);
         else
             g_warning("export failed file=%s\n", entry_filename);
     }

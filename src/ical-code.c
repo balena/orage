@@ -543,7 +543,7 @@ static void xfical_add_timezone(icalcomponent *p_ical, icalset *p_fical
         return;
     }
     else
-        g_message("Orage **: Adding timezone %s", loc);
+        orage_message("Adding timezone %s", loc);
 
     if (strcmp(loc,"UTC") == 0 
     ||  strcmp(loc,"floating") == 0) {
@@ -1181,9 +1181,9 @@ static void xfical_alarm_build_list_internal(gboolean first_list_today)
     }  /* EVENTS */
     g_par.alarm_list = g_list_sort(g_par.alarm_list, alarm_order);
     if (first_list_today) {
-        g_message("Orage **: Build alarm list: Processed %d events."
+        orage_message("Build alarm list: Processed %d events."
                 , cnt_event);
-        g_message("Orage **: \tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
+        orage_message("\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
                 , cnt_alarm, cnt_act_alarm, cnt_repeat);
         }
 }
@@ -2386,7 +2386,7 @@ gboolean xfical_archive(void)
     char *uid;
 
     if (g_par.archive_limit == 0) {
-        g_message(_("Orage **: Archiving not enabled. Exiting"));
+        orage_message(_("Archiving not enabled. Exiting"));
         return(TRUE);
     }
     if (!xfical_file_open() || !xfical_archive_open()) {
@@ -2405,9 +2405,9 @@ gboolean xfical_archive(void)
     }
     threshold->tm_mon += 1;
 
-    g_message(_("Orage **: Archiving threshold: %d month(s)")
+    orage_message(_("Archiving threshold: %d month(s)")
             , g_par.archive_limit);
-    g_message(_("Orage **: \tArchiving events, which are older than: %04d-%02d-%02d")
+    orage_message(_("\tArchiving events, which are older than: %04d-%02d-%02d")
             , threshold->tm_year, threshold->tm_mon, threshold->tm_mday);
 
     /* Check appointment file for items older than the threshold */
@@ -2433,9 +2433,9 @@ gboolean xfical_archive(void)
         if ((edate.year*12 + edate.month) 
             < (threshold->tm_year*12 + threshold->tm_mon)) {
             p = icalcomponent_get_first_property(c, ICAL_RRULE_PROPERTY);
-            g_message(_("Orage **: Archiving uid: %s (%s)")
+            orage_message(_("Archiving uid: %s (%s)")
                     , uid, (p) ? _("recur") : _("normal"));
-            g_message(_("Orage **: \tEnd year: %04d, month: %02d, day: %02d")
+            orage_message(_("\tEnd year: %04d, month: %02d, day: %02d")
                     , edate.year, edate.month, edate.day);
             if (p)  /*  it is recurrent event */
                 xfical_icalcomponent_archive_recurrent(c, threshold, uid);
@@ -2450,7 +2450,7 @@ gboolean xfical_archive(void)
     icalset_mark(fical);
     icalset_commit(fical);
     xfical_file_close();
-    g_message(_("Orage **: Archiving done\n"));
+    orage_message(_("Archiving done\n"));
     return(TRUE);
 }
 
@@ -2483,7 +2483,7 @@ gboolean xfical_unarchive(void)
     const char *text;
 
     /* PHASE 1: go through base orage file and remove "repeat" shortcuts */
-    g_message(_("Orage **: Starting archive removal: PHASE 1: reset recurring appointments"));
+    orage_message(_("Starting archive removal: PHASE 1: reset recurring appointments"));
     if (!xfical_file_open()) {
         g_warning("xfical_unarchive: file open error");
         return(FALSE);
@@ -2527,7 +2527,7 @@ gboolean xfical_unarchive(void)
     icalset_mark(fical);
     icalset_commit(fical);
     xfical_file_close();
-    g_message(_("Orage **: Archive removal done\n"));
+    orage_message(_("Archive removal done\n"));
     return(TRUE);
 }
 
@@ -2577,7 +2577,7 @@ gboolean add_event(icalcomponent *c)
     if ((uid = (char *)icalcomponent_get_uid(ca)) == NULL) {
         uid = generate_uid();
         icalcomponent_add_property(ca,  icalproperty_new_uid(uid));
-        g_message("Orage **: Generated UID %s\n", uid);
+        orage_message("Generated UID %s\n", uid);
 
     }
     if (!xfical_file_open()) {
@@ -2622,7 +2622,7 @@ gboolean pre_format(char *file_name_in, char *file_name_out)
      * support so that we can do better conversion 
      */
 
-    g_message("Orage **: Starting import file preprocessing");
+    orage_message("Starting import file preprocessing");
     if (!g_file_get_contents(file_name_in, &text, &text_len, &error)) {
         g_warning("pre_format: Could not open ical file (%s) error:%s"
                 , file_name_in, error->message);
@@ -2669,7 +2669,7 @@ gboolean pre_format(char *file_name_in, char *file_name_out)
             }
         }
         tmp3 = g_strndup(tmp2+1, tmp-tmp2);
-        g_message("Orage **: ... Removed CHARSET from %s", tmp3);
+        orage_message("... Removed CHARSET from %s", tmp3);
         g_free(tmp3);
     }
     /* 2: change DCREATED to CREATED */
@@ -2689,7 +2689,7 @@ gboolean pre_format(char *file_name_in, char *file_name_out)
             *(tmp3-1) = 'Z'; /* this is 'bad'...but who cares...it is fast */
         }
         tmp3 = g_strndup(tmp, tmp2-tmp);
-        g_message("Orage **: ... Patched DCREATED to be CREATED (%s)", tmp3);
+        orage_message("... Patched DCREATED to be CREATED (%s)", tmp3);
         g_free(tmp3);
     }
     /* write file */
@@ -2698,7 +2698,7 @@ gboolean pre_format(char *file_name_in, char *file_name_out)
         return(FALSE);
     }
     g_free(text);
-    g_message("Orage **: Import file preprocessing done");
+    orage_message("Import file preprocessing done");
     return(TRUE);
 }
 

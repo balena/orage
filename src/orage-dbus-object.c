@@ -64,7 +64,7 @@ static void orage_dbus_init(OrageDBus *orage_dbus)
     orage_dbus->connection = dbus_g_bus_get(DBUS_BUS_SESSION, &error);
     if (orage_dbus->connection == NULL) {
       /* notify the user that D-BUS service won't be available */
-        g_message("Orage: Failed to connect to the D-BUS session bus: %s"
+        g_warning("Failed to connect to the D-BUS session bus: %s"
                 , error->message);
         g_error_free(error);
     }

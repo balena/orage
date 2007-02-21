@@ -176,7 +176,7 @@ mCalendar_scroll_event_cb(GtkWidget *calendar, GdkEventScroll *event)
             gtk_calendar_select_month(GTK_CALENDAR(calendar), month, year);
             break;
         default:
-            g_message("Orage **: Got unknown scroll event!!!");
+            g_warning("Got unknown scroll event!!!");
     }
 }
 

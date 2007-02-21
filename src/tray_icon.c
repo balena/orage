@@ -119,13 +119,13 @@ GdkPixbuf *create_icon(CalWin *xfcal, gint x, gint y)
                       , "small", "x-small", "xx-small", "END"};
 
   if (x <= 12 || y <= 12) {
-      g_message("Orage **: Too small icon size, using static icon\n");
+      orage_message("Too small icon size, using static icon\n");
       pixbuf = xfce_themed_icon_load("xfcalendar", 16);
       return(pixbuf);
   }
   if (g_par.icon_size_x == 0 
   ||  g_par.icon_size_y == 0) { /* signal to use static icon */
-      g_message("Orage **: Icon size set to zero, using static icon\n");
+      orage_message("Icon size set to zero, using static icon\n");
       pixbuf = xfce_themed_icon_load("xfcalendar", x);
       return(pixbuf);
   }
@@ -177,7 +177,7 @@ GdkPixbuf *create_icon(CalWin *xfcal, gint x, gint y)
       y_used_head = PANGO_PIXELS(real_rect.height);
   }
   else
-      g_message("Orage **: trayicon: heading does not fit in dynamic icon");
+      orage_message("trayicon: heading does not fit in dynamic icon");
 
   /* month */
   if (strftime(month, 19, "%^b", t) == 0) {
@@ -201,7 +201,7 @@ GdkPixbuf *create_icon(CalWin *xfcal, gint x, gint y)
       y_used_month = PANGO_PIXELS(real_rect.height);
   }
   else
-      g_message("Orage **: trayicon: month does not fit in dynamic icon");
+      orage_message("trayicon: month does not fit in dynamic icon");
 
   do { /* main loop where we try our best to fit header+day+month into icon */
       y_used = 0;

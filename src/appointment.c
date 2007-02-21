@@ -864,7 +864,7 @@ static gboolean save_xfical_from_appt_win(appt_win *apptw)
                 apptw->appointment_add = FALSE;
                 gtk_widget_set_sensitive(apptw->Duplicate, TRUE);
                 gtk_widget_set_sensitive(apptw->File_menu_duplicate, TRUE);
-                g_message("Orage **: Added: %s", apptw->xf_uid);
+                orage_message("Added: %s", apptw->xf_uid);
             }
             else
                 g_warning("Addition failed: %s", apptw->xf_uid);
@@ -872,7 +872,7 @@ static gboolean save_xfical_from_appt_win(appt_win *apptw)
         else {
             ok = xfical_appt_mod(apptw->xf_uid, appt);
             if (ok)
-                g_message("Orage **: Modified: %s", apptw->xf_uid);
+                orage_message("Modified: %s", apptw->xf_uid);
             else
                 g_warning("Modification failed: %s", apptw->xf_uid);
         }
@@ -937,7 +937,7 @@ static void delete_xfical_from_appt_win(appt_win *apptw)
                     return;
             result = xfical_appt_del(apptw->xf_uid);
             if (result)
-                g_message("Orage **: Removed: %s", apptw->xf_uid);
+                orage_message("Removed: %s", apptw->xf_uid);
             else
                 g_warning("Removal failed: %s", apptw->xf_uid);
             xfical_file_close();
@@ -1260,7 +1260,7 @@ static xfical_appt *fill_appt_window_get_appt(char *action, char *par)
         if (!xfical_file_open())
             return(NULL);
         if ((appt = xfical_appt_get(par)) == NULL) {
-            g_message("Orage **: appointment not found");
+            orage_message("appointment not found");
             xfical_file_close();
             return(NULL);
         }
@@ -1282,7 +1282,7 @@ static void fill_appt_window(appt_win *apptw, char *action, char *par)
     char *untildate_to_display;
     int i;
 
-    g_message("Orage **: %s appointment: %s", action, par);
+    orage_message("%s appointment: %s", action, par);
     if ((appt = fill_appt_window_get_appt(action, par)) == NULL) {
         apptw->appt = NULL;
         return;

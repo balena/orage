@@ -26,6 +26,8 @@
 
 #define ORAGE_STR_EXISTS(str) ((str != NULL) && (str[0] != 0))
 
+void orage_message(const char *format, ...);
+
 GtkWidget *orage_toolbar_append_button(GtkWidget *toolbar
         , const gchar *stock_id, GtkTooltips *tooltips
         , const char *tooltip_text, gint pos);

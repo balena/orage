@@ -803,7 +803,7 @@ static void delete_appointment(el_win *el)
                 gtk_tree_model_get(model, &iter, COL_UID, &uid, -1);
                 result = xfical_appt_del(uid);
                 if (result)
-                    g_message("Orage **: Removed: %s", uid);
+                    orage_message("Removed: %s", uid);
                 else
                     g_warning("Removal failed: %s", uid);
                 g_free(uid);
