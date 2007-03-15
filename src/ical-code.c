@@ -1254,6 +1254,8 @@ char *appt_add_internal(appt_data *appt, gboolean add, char *uid
     struct icaldurationtype duration;
     int i, cnt;
     gchar *byday_a[] = {"MO", "TU", "WE", "TH", "FR", "SA", "SU"};
+    icaltimezone *l_icaltimezone = NULL;
+    const char *text;
 
     dtstamp = icaltime_current_time_with_zone(utc_icaltimezone);
     if (add) {
@@ -1378,7 +1380,26 @@ char *appt_add_internal(appt_data *appt, gboolean add, char *uid
             recur_p += g_sprintf(recur_p, ";COUNT=%d", appt->recur_count);
         }
         else if (appt->recur_limit == 2) { /* needs to be in UTC */
-            recur_p += g_sprintf(recur_p, ";UNTIL=%sZ", appt->recur_until);
+/* BUG 2937: convert recur_until to utc from start time timezone */
+            wtime = icaltime_from_string(appt->recur_until);
+            if XFICAL_STR_EXISTS(appt->start_tz_loc) {
+            /* Null == floating => no special action needed */
+                if (strcmp(appt->start_tz_loc, "floating") == 0) {
+                    wtime = icaltime_convert_to_zone(wtime
+                            , local_icaltimezone);
+                }
+                else if (strcmp(appt->start_tz_loc, "UTC") != 0) {
+                /* FIXME: add this vtimezone to vcalendar if it is not there */
+                    l_icaltimezone = icaltimezone_get_builtin_timezone(
+                            appt->start_tz_loc);
+                    wtime = icaltime_convert_to_zone(wtime, l_icaltimezone);
+                }
+            }
+            else
+                wtime = icaltime_convert_to_zone(wtime, local_icaltimezone);
+            wtime = icaltime_convert_to_zone(wtime, utc_icaltimezone);
+            text  = icaltime_as_ical_string(wtime);
+            recur_p += g_sprintf(recur_p, ";UNTIL=%s", text);
         }
         recur_p2 = recur_p; /* store current pointer */
         for (i = 0, cnt = 0; i <= 6; i++) {

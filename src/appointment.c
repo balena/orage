@@ -629,7 +629,7 @@ fill_appt_from_apptw(appt_data *appt, appt_win *apptw)
                 GTK_BUTTON(apptw->appRecur_until_button)));
         g_sprintf(appt->recur_until, XFICAL_APPT_TIME_FORMAT
                 , current_t.tm_year + 1900, current_t.tm_mon + 1
-                , current_t.tm_mday, 23, 59, 59);
+                , current_t.tm_mday, 23, 59, 10);
     }
     else
         g_warning("fill_appt_from_apptw: coding error, illegal recurrence");
