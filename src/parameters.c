@@ -593,7 +593,7 @@ static void create_parameter_dialog_extra_setup_tab(Itf *dialog)
     /***** ical week start day (0 = Monday, 1 = Tuesday,... 6 = Sunday) *****/
     hbox = gtk_hbox_new(FALSE, 0);
     dialog->ical_weekstartday_frame = xfce_create_framebox_with_content(
-            _("Select always today"), hbox);
+            _("Ical week start day"), hbox);
     gtk_box_pack_start(GTK_BOX(dialog->extra_vbox)
             , dialog->ical_weekstartday_frame, FALSE, FALSE, 5);
 
@@ -702,7 +702,7 @@ void write_parameters()
     gchar *fpath;
     XfceRc *rc;
     gint i;
-    gchar f_par[100];
+    gchar f_par[50];
 
     fpath = xfce_resource_save_location(XFCE_RESOURCE_CONFIG
             , ORAGE_DIR PARFILE, TRUE);
@@ -736,11 +736,19 @@ void write_parameters()
     xfce_rc_write_int_entry(rc, "Dynamic icon Y", g_par.icon_size_y);
     xfce_rc_write_int_entry(rc, "Ical week start day", g_par.ical_weekstartday);
     xfce_rc_write_int_entry(rc, "Foreign file count", g_par.foreign_count);
-    for (i = g_par.foreign_count; i; i++) {
+    for (i = 0; i < g_par.foreign_count;  i++) {
         g_sprintf(f_par, "Foreign file %02d name", i);
         xfce_rc_write_entry(rc, f_par, g_par.foreign_data[i].file);
         g_sprintf(f_par, "Foreign file %02d read-only", i);
         xfce_rc_write_bool_entry(rc, f_par, g_par.foreign_data[i].read_only);
+    }
+    for (i = g_par.foreign_count; i < 10;  i++) {
+        g_sprintf(f_par, "Foreign file %02d name", i);
+        if (!xfce_rc_has_entry(rc, f_par))
+            break; /* it is in order, so we know that the rest are missing */
+        xfce_rc_delete_entry(rc, f_par, TRUE);
+        g_sprintf(f_par, "Foreign file %02d read-only", i);
+        xfce_rc_delete_entry(rc, f_par, TRUE);
     }
 
     g_free(fpath);
@@ -800,7 +808,7 @@ void read_parameters(void)
             xfce_rc_read_int_entry(rc, "Ical week start day", 0); /* monday */
     g_par.foreign_count = 
             xfce_rc_read_int_entry(rc, "Foreign file count", 0);
-    for (i = g_par.foreign_count; i; i++) {
+    for (i = 0; i < g_par.foreign_count; i++) {
         g_sprintf(f_par, "Foreign file %02d name", i);
         g_par.foreign_data[i].file = 
                 g_strdup(xfce_rc_read_entry(rc, f_par, NULL));

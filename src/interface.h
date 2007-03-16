@@ -29,31 +29,33 @@ typedef struct _intf_win
     GtkWidget *main_vbox;
     GtkWidget *menubar;
     GtkWidget *filemenu;
-    GtkWidget *filemenu_save;
     GtkWidget *filemenu_close;
     GtkWidget *toolbar;
-    GtkWidget *save_button;
     GtkWidget *close_button;
     GtkWidget *notebook;
-    GtkWidget *exp_table;
-    GtkWidget *exp_notebook_page;
-    GtkWidget *exp_tab_label;
-    GtkWidget *exp_file_entry;
-    GtkWidget *exp_file_button;
-    GtkWidget *exp_add_all_rb;
-    GtkWidget *exp_add_id_rb;
-    GtkWidget *exp_id_entry;
-    GtkWidget *imp_table;
-    GtkWidget *imp_notebook_page;
-    GtkWidget *imp_tab_label;
-    GtkWidget *imp_file_entry;
-    GtkWidget *imp_file_button;
-    GtkWidget *arc_table;
-    GtkWidget *arc_notebook_page;
-    GtkWidget *arc_tab_label;
-    GtkWidget *arc_button1;
-    GtkWidget *arc_button2;
-    GtkWidget *fil_table;
+
+        /* Import/export tab */
+    GtkWidget *iea_notebook_page;
+    GtkWidget *iea_tab_label;
+    /* import */
+    GtkWidget *iea_imp_frame;
+    GtkWidget *iea_imp_entry;
+    GtkWidget *iea_imp_open_button;
+    GtkWidget *iea_imp_save_button;
+    /* export */
+    GtkWidget *iea_exp_frame;
+    GtkWidget *iea_exp_entry;
+    GtkWidget *iea_exp_open_button;
+    GtkWidget *iea_exp_save_button;
+    GtkWidget *iea_exp_add_all_rb;
+    GtkWidget *iea_exp_add_id_rb;
+    GtkWidget *iea_exp_id_entry;
+    /* archive */
+    GtkWidget *iea_arc_frame;
+    GtkWidget *iea_arc_button1;
+    GtkWidget *iea_arc_button2;
+
+        /* Orage files tab */
     GtkWidget *fil_notebook_page;
     GtkWidget *fil_tab_label;
     /* Orage calendar file */
@@ -73,9 +75,19 @@ typedef struct _intf_win
     GtkWidget *archive_file_copy_rb;
     GtkWidget *archive_file_move_rb;
 
-    GtkWidget *ext_table;
-    GtkWidget *ext_notebook_page;
-    GtkWidget *ext_tab_label;
+        /* Foreign tab */
+    GtkWidget *for_notebook_page;
+    GtkWidget *for_tab_label;
+    GtkWidget *for_tab_main_vbox;
+    /* add new file */
+    GtkWidget *for_new_frame;
+    GtkWidget *for_new_entry;
+    GtkWidget *for_new_open_button;
+    GtkWidget *for_new_save_button;
+    GtkWidget *for_new_read_only;
+    /* currrent files */
+    GtkWidget *for_cur_frame;
+    GtkWidget *for_cur_table;
 
     GtkTooltips *tooltips;
     GtkAccelGroup *accelgroup;

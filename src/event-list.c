@@ -63,6 +63,8 @@
 #include "parameters.h"
 
 
+void refresh_el_win(el_win *el);
+
 /* Direction for changing day to look at */
 enum {
     PREVIOUS,
@@ -111,8 +113,12 @@ static void editEvent(GtkTreeView *view, GtkTreePath *path
     if (gtk_tree_model_get_iter(model, &iter, path)) {
         gtk_tree_model_get(model, &iter, COL_UID, &uid, -1);
         gtk_tree_model_get(model, &iter, COL_FLAGS, &flags, -1);
-        if (flags && flags[3] == 'A')
+        if (flags && flags[3] == 'A') {
             xfical_unarchive_uid(uid);
+            /* note that file id changes after archive */ 
+            uid[0]='O';
+            refresh_el_win(el);
+        }
         apptw = create_appt_win("UPDATE", uid, el);
         g_free(uid);
     }
@@ -291,6 +297,7 @@ static void add_el_row(el_win *el, xfical_appt *appt, char *par)
     gchar           flags[5]; 
     gchar          *stime;
     gchar          *s_sort, *s_sort1;
+    gchar           source[5]; 
     gint            len = 50;
 
     stime = format_time(el, appt, par);
@@ -320,10 +327,7 @@ static void add_el_row(el_win *el, xfical_appt *appt, char *par)
     else
         flags[2] = 'f';
 
-    if (strcmp(par, "archive") == 0)
-        flags[3] = 'A';
-    else
-        flags[3] = 'n';
+    flags[3] = appt->uid[0]; /* file type */
 
     flags[4] = '\0';
 
@@ -356,51 +360,69 @@ static void add_el_row(el_win *el, xfical_appt *appt, char *par)
     g_free(s_sort);
 }
 
-static void search_data(el_win *el)
+static void searh_rows(el_win *el, gchar *search_string, gchar *file_type)
 {
-    gchar *search_string = NULL;
-    gchar *text;
-    gsize text_len;
     xfical_appt *appt;
 
-    if (!xfical_file_open())
-        return;
-    search_string = g_strdup(gtk_entry_get_text((GtkEntry *)el->search_entry));
-    for (appt = xfical_appt_get_next_with_string(search_string, TRUE, FALSE);
+    for (appt = xfical_appt_get_next_with_string(search_string, TRUE
+                , file_type);
          appt;
-         appt = xfical_appt_get_next_with_string(search_string, FALSE, FALSE)){
-        add_el_row(el, appt, "main");
+         appt = xfical_appt_get_next_with_string(search_string, FALSE
+                 , file_type)) {
+        add_el_row(el, appt, NULL);
         xfical_appt_free(appt);
     }
-    xfical_file_close();
-    /* process always archive file also */
+}
+
+static void search_data(el_win *el)
+{
+    gchar *search_string = NULL, file_type[8];
+    gint i;
+
+    search_string = g_strdup(gtk_entry_get_text((GtkEntry *)el->search_entry));
+    /* first search base orage file */
+    if (!xfical_file_open(TRUE))
+        return;
+    strcpy(file_type, "O00.");
+    searh_rows(el, search_string, file_type);
+    /* then process all foreign files */
+    for (i = 0; i < g_par.foreign_count; i++) {
+        g_sprintf(file_type, "F%02d.", i);
+        searh_rows(el, search_string, file_type);
+    }
+    xfical_file_close(TRUE);
+
+    /* finally process always archive file also */
     if (!xfical_archive_open()) {
         g_free(search_string);
         return;
     }
-    for (appt = xfical_appt_get_next_with_string(search_string, TRUE, TRUE);
-         appt;
-         appt = xfical_appt_get_next_with_string(search_string, FALSE, TRUE)) {
-        add_el_row(el, appt, "archive");
-        xfical_appt_free(appt);
-    }
+    strcpy(file_type, "A00.");
+    searh_rows(el, search_string, file_type);
     xfical_archive_close();
     g_free(search_string);
 }
 
-static void get_data_rows(el_win *el, char *a_day, gboolean arch, char *par)
+static void app_rows(el_win *el, char *a_day, char *par, xfical_type ical_type
+        , gchar *file_type)
 {
     xfical_appt *appt;
-    xfical_type ical_type;
 
-    if (!arch) {
-        if (!xfical_file_open())
-            return;
+    for (appt = xfical_appt_get_next_on_day(a_day, TRUE, el->days
+                , ical_type , file_type);
+         appt;
+         appt = xfical_appt_get_next_on_day(a_day, FALSE, el->days
+                , ical_type , file_type)) {
+        add_el_row(el, appt, par);
+        xfical_appt_free(appt);
     }
-    else {
-        if (!xfical_archive_open())
-            return;
-    }
+}
+
+static void app_data(el_win *el, char *a_day, char *par)
+{
+    xfical_type ical_type;
+    gchar file_type[8];
+    gint i;
 
     switch (el->page) {
         case EVENT_PAGE:
@@ -413,22 +435,29 @@ static void get_data_rows(el_win *el, char *a_day, gboolean arch, char *par)
             ical_type = XFICAL_TYPE_JOURNAL;
             break;
         default:
-            g_error("wrong page in get_data_rows (%d)\n", el->page);
+            g_error("wrong page in app_data (%d)\n", el->page);
     }
 
-    for (appt = xfical_appt_get_next_on_day(a_day, TRUE, el->days, ical_type
-                , arch);
-         appt;
-         appt = xfical_appt_get_next_on_day(a_day, FALSE, el->days, ical_type
-                , arch)) {
-        add_el_row(el, appt, par);
-        xfical_appt_free(appt);
+    /* first search base orage file */
+    if (!xfical_file_open(TRUE))
+        return;
+    strcpy(file_type, "O00.");
+    app_rows(el, a_day, par, ical_type, file_type);
+    /* then process all foreign files */
+    for (i = 0; i < g_par.foreign_count; i++) {
+        g_sprintf(file_type, "F%02d.", i);
+        app_rows(el, a_day, par, ical_type, file_type);
     }
+    xfical_file_close(TRUE);
 
-    if (!arch)
-        xfical_file_close();
-    else
+    /* finally process archive file for JOURNAL only */
+    if (ical_type == XFICAL_TYPE_JOURNAL) {
+        if (!xfical_archive_open())
+            return;
+        strcpy(file_type, "A00.");
+        app_rows(el, a_day, par, ical_type, file_type);
         xfical_archive_close();
+    }
 }
 
 static void refresh_time_field(el_win *el)
@@ -470,7 +499,7 @@ static void event_data(el_win *el)
     else
         el->today = FALSE; 
 
-    get_data_rows(el, a_day, FALSE, a_day);
+    app_data(el, a_day, a_day);
 }
 
 static void todo_data(el_win *el)
@@ -484,7 +513,7 @@ static void todo_data(el_win *el)
     t = orage_localtime();
     g_sprintf(a_day, "%04d%02d%02d"
             , t->tm_year + 1900, t->tm_mon + 1, t->tm_mday);
-    get_data_rows(el, a_day, FALSE, a_day);
+    app_data(el, a_day, NULL);
 }
 
 void journal_data(el_win *el)
@@ -500,8 +529,7 @@ void journal_data(el_win *el)
     g_sprintf(a_day, "%04d%02d%02d"
             , t.tm_year + 1900, t.tm_mon + 1, t.tm_mday);
 
-    get_data_rows(el, a_day, FALSE, "main");
-    get_data_rows(el, a_day, TRUE, "archive");
+    app_data(el, a_day, NULL);
 }
 
 void refresh_el_win(el_win *el)
@@ -609,8 +637,12 @@ static void duplicate_appointment(el_win *el)
         if (gtk_tree_model_get_iter(model, &iter, path)) {
             gtk_tree_model_get(model, &iter, COL_UID, &uid, -1);
             gtk_tree_model_get(model, &iter, COL_FLAGS, &flags, -1);
-            if (flags && flags[3] == 'A')
+            if (flags && flags[3] == 'A') {
                 xfical_unarchive_uid(uid);
+                /* note that file id changes after archive */ 
+                uid[0]='O';
+                refresh_el_win(el);
+            }
             apptw = create_appt_win("COPY", uid, el);
             g_free(uid);
         }
@@ -792,7 +824,7 @@ static void delete_appointment(el_win *el)
              NULL);
 
     if (result == GTK_RESPONSE_ACCEPT) {
-        if (!xfical_file_open())
+        if (!xfical_file_open(TRUE))
             return;
         sel = gtk_tree_view_get_selection(GTK_TREE_VIEW(el->TreeView));
         list = gtk_tree_selection_get_selected_rows(sel, &model);
@@ -809,7 +841,7 @@ static void delete_appointment(el_win *el)
                 g_free(uid);
             }
         }
-        xfical_file_close();
+        xfical_file_close(TRUE);
         refresh_el_win(el);
         orage_mark_appointments();
         g_list_foreach(list, (GFunc)gtk_tree_path_free, NULL);
@@ -1223,7 +1255,7 @@ static void build_event_list(el_win *el)
     gtk_tree_view_append_column(GTK_TREE_VIEW(el->TreeView), col);
     gtk_tree_view_column_set_visible(col, FALSE);
 
-    gtk_tooltips_set_tip(el->Tooltips, el->TreeView, _("Double click line to edit it.\n\nFlags in order:\n\t 1. Alarm: n=no alarm\n\t\tA=visual Alarm S=also Sound alarm\n\t 2. Recurrence: n=no recurrence\n\t\t D=Daily W=Weekly M=Monthly Y=Yearly\n\t 3. Type: f=free B=Busy\n\t 4.Archived: A=Archived n=not archived"), NULL);
+    gtk_tooltips_set_tip(el->Tooltips, el->TreeView, _("Double click line to edit it.\n\nFlags in order:\n\t 1. Alarm: n=no alarm\n\t\t A=visual Alarm S=also Sound alarm\n\t 2. Recurrence: n=no recurrence\n\t\t D=Daily W=Weekly M=Monthly Y=Yearly\n\t 3. Type: f=free B=Busy\n\t 4. Located in file: O=Orage\n\t\t  A=Archive F=Foreign"), NULL);
 
     g_signal_connect(el->TreeView, "row-activated",
             G_CALLBACK(editEvent), el);

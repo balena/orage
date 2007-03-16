@@ -230,7 +230,7 @@ create_wReminder(alarm_struct *alarm)
 
   wReminder = gtk_dialog_new();
   gtk_widget_set_size_request(wReminder, 300, 250);
-  strcpy(heading,  _("Reminder "));
+  strncpy(heading,  _("Reminder "), 199);
   gtk_window_set_title(GTK_WINDOW(wReminder),  heading);
   gtk_window_set_position(GTK_WINDOW(wReminder), GTK_WIN_POS_CENTER);
   gtk_window_set_modal(GTK_WINDOW(wReminder), FALSE);

@@ -557,7 +557,7 @@ static void on_appSound_button_clicked_cb(GtkButton *button, gpointer user_data)
             GTK_WINDOW(apptw->Window),
             GTK_FILE_CHOOSER_ACTION_OPEN,
             GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-            GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT,
+            GTK_STOCK_OK, GTK_RESPONSE_ACCEPT,
             NULL);
 
     filter = gtk_file_filter_new();
@@ -825,7 +825,7 @@ static gboolean fill_appt_from_apptw(xfical_appt *appt, appt_win *apptw)
                 GTK_BUTTON(apptw->Recur_until_button)));
         g_sprintf(appt->recur_until, XFICAL_APPT_TIME_FORMAT
                 , current_t.tm_year + 1900, current_t.tm_mon + 1
-                , current_t.tm_mday, 0, 0, 0);
+                , current_t.tm_mday, 23, 59, 10);
     }
     else
         g_warning("fill_appt_from_apptw: coding error, illegal recurrence");
@@ -855,7 +855,7 @@ static gboolean save_xfical_from_appt_win(appt_win *apptw)
 
     if (fill_appt_from_apptw(appt, apptw)) {
         /* Here we try to save the event... */
-        if (!xfical_file_open())
+        if (!xfical_file_open(TRUE))
             return(FALSE);
         if (apptw->appointment_add) {
             apptw->xf_uid = g_strdup(xfical_appt_add(appt));
@@ -876,7 +876,7 @@ static gboolean save_xfical_from_appt_win(appt_win *apptw)
             else
                 g_warning("Modification failed: %s", apptw->xf_uid);
         }
-        xfical_file_close();
+        xfical_file_close(TRUE);
         if (ok) {
             apptw->appointment_new = FALSE;
             mark_appointment_unchanged(apptw);
@@ -933,14 +933,14 @@ static void delete_xfical_from_appt_win(appt_win *apptw)
                                  
     if (result == GTK_RESPONSE_ACCEPT) {
         if (!apptw->appointment_add) {
-            if (!xfical_file_open())
+            if (!xfical_file_open(TRUE))
                     return;
             result = xfical_appt_del(apptw->xf_uid);
             if (result)
                 orage_message("Removed: %s", apptw->xf_uid);
             else
                 g_warning("Removal failed: %s", apptw->xf_uid);
-            xfical_file_close();
+            xfical_file_close(TRUE);
         }
 
         if (apptw->el != NULL)
@@ -1257,14 +1257,14 @@ static xfical_appt *fill_appt_window_get_appt(char *action, char *par)
     else if ((strcmp(action, "UPDATE") == 0) 
           || (strcmp(action, "COPY") == 0)) {
         /* par contains ical uid */
-        if (!xfical_file_open())
+        if (!xfical_file_open(TRUE))
             return(NULL);
         if ((appt = xfical_appt_get(par)) == NULL) {
             orage_message("appointment not found");
-            xfical_file_close();
+            xfical_file_close(TRUE);
             return(NULL);
         }
-        xfical_file_close();
+        xfical_file_close(TRUE);
     }
     else {
         g_error("unknown parameter\n");
@@ -1853,7 +1853,7 @@ static void build_alarm_page(appt_win *apptw)
     apptw->Sound_entry = gtk_entry_new();
     gtk_box_pack_start(GTK_BOX(apptw->Sound_hbox), apptw->Sound_entry
             , TRUE, TRUE, 0);
-    apptw->Sound_button = gtk_button_new_from_stock("gtk-find");
+    apptw->Sound_button = gtk_button_new_from_stock("gtk-open");
     gtk_box_pack_start(GTK_BOX(apptw->Sound_hbox), apptw->Sound_button
             , FALSE, TRUE, 0);
     orage_table_add_row(apptw->TableAlarm

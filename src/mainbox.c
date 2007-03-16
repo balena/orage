@@ -54,13 +54,13 @@ orage_mark_appointments()
 {
     guint year, month, day;
 
-    if (!xfical_file_open())
+    if (!xfical_file_open(TRUE))
         return(FALSE);
     gtk_calendar_get_date(GTK_CALENDAR(g_par.xfcal->mCalendar)
             , &year, &month, &day);
     xfical_mark_calendar(GTK_CALENDAR(g_par.xfcal->mCalendar)
             , year, month+1); 
-    xfical_file_close();
+    xfical_file_close(TRUE);
     return(TRUE);
 }
 

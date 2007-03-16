@@ -46,7 +46,14 @@ typedef enum
 
 typedef struct
 {
-    gchar *uid;
+    gchar *uid; 
+    /* note that version 4.5.9 changed uid format.
+     * new format starts with 3 char source id (plus separator '.'), 
+     * which tells the file where the id is found:
+     * "O01." = Orage file (normal file)
+     * "A01." = Archive file
+     * "F10." = Foreign file number 10
+     */
 
     xfical_type type;
     gchar *title;
@@ -92,8 +99,8 @@ typedef struct
 
 gboolean xfical_set_local_timezone();
 
-gboolean xfical_file_open(void);
-void xfical_file_close(void);
+gboolean xfical_file_open(gboolean foreign);
+void xfical_file_close(gboolean foreign);
 
 xfical_appt *xfical_appt_alloc();
 char *xfical_appt_add(xfical_appt *app);
@@ -102,9 +109,13 @@ void xfical_appt_free(xfical_appt *appt);
 gboolean xfical_appt_mod(char *ical_id, xfical_appt *app);
 gboolean xfical_appt_del(char *ical_id);
 xfical_appt *xfical_appt_get_next_on_day(char *a_day, gboolean first, gint days
-        , xfical_type type, gboolean arch);
+        , xfical_type type,  gchar *file_type);
+/*
 xfical_appt *xfical_appt_get_next_with_string(char *a_day, gboolean first
         , gboolean arch);
+        */
+xfical_appt *xfical_appt_get_next_with_string(char *str, gboolean first
+        , gchar *file_type);
 
 void xfical_mark_calendar(GtkCalendar *gtkcal, int year, int month);
 
