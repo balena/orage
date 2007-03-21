@@ -58,6 +58,11 @@
 #include "orage-dbus.h"
 #endif
 
+/* defined in interface.c */
+gboolean orage_import_file(gchar *entry_filename);
+gboolean orage_foreign_file_add(gchar *filename, gboolean read_only);
+gboolean orage_foreign_file_remove(gchar *filename);
+
 /* session client handler */
 static SessionClient	*session_client = NULL;
 static GdkAtom atom_alive;
@@ -277,18 +282,19 @@ static void preferences(void)
 
 static void print_help(void)
 {
-    g_print(_("Usage: orage [options] files\n\n"));
+    g_print(_("Usage: orage [options] [files]\n\n"));
     g_print(_("Options:\n"));
     g_print(_("--version (-v) \t\tshow version of orage\n"));
     g_print(_("--help (-h) \t\tprint this text\n"));
     g_print(_("--preferences (-p) \tshow preferences form\n"));
     g_print(_("--toggle (-t) \t\tmake orage visible/unvisible\n"));
+    g_print(_("--add-foreign (-a) file [RW] \tadd a foreign file\n"));
+    g_print(_("--remove-foreign (-r) file \tremove a foreign file\n"));
     g_print("\n");
     g_print(_("files=ical files to load into orage\n"));
 #ifndef HAVE_DBUS
     g_print(_("\tdbus not included in orage. \n"));
-    g_print(_("\tfiles for running orage not supported without dbus \n"));
-    g_print(_("\tfiles can only be used when starting orage \n"));
+    g_print(_("\twithout dbus [files] and foreign file options(-a & -r) can only be used when starting orage \n"));
 #endif
     g_print("\n");
 }
@@ -312,11 +318,53 @@ static void import_file(gboolean running, char *file_name, gboolean initialized)
             g_warning("import failed file=%s\n", file_name);
 }
 
+static void add_foreign(gboolean running, char *file_name, gboolean initialized
+        , gboolean read_only)
+{
+    if (running && !initialized) 
+        /* let's use dbus since server is running there already */
+#ifdef HAVE_DBUS
+        if (orage_dbus_foreign_add(file_name, read_only))
+            orage_message("add done foreign file=%s", file_name);
+        else
+            g_warning("add failed foreign file=%s\n", file_name);
+#else
+        g_warning("Can not do add foreign file without dbus. failed file=%s\n", file_name);
+#endif
+    else if (!running && initialized) { /* do it self directly */
+        if (orage_foreign_file_add(file_name, read_only))
+            orage_message("add done foreign file=%s", file_name);
+        else
+            g_warning("add failed foreign file=%s\n", file_name);
+    }
+}
+
+static void remove_foreign(gboolean running, char *file_name, gboolean initialized)
+{
+    if (running && !initialized) 
+        /* let's use dbus since server is running there already */
+#ifdef HAVE_DBUS
+        if (orage_dbus_foreign_remove(file_name))
+            orage_message("remove done foreign file=%s", file_name);
+        else
+            g_warning("remove failed foreign file=%s\n", file_name);
+#else
+        g_warning("Can not do remove foreign file without dbus. failed file=%s\n", file_name);
+#endif
+    else if (!running && initialized) { /* do it self directly */
+        if (orage_foreign_file_remove(file_name))
+            orage_message("remove done foreign file=%s", file_name);
+        else
+            g_warning("remove failed foreign file=%s\n", file_name);
+    }
+}
+
 static gboolean process_args(int argc, char *argv[], gboolean running
         , gboolean initialized)
 { 
     int argi;
     gboolean end = FALSE;
+    gboolean foreign_file_read_only = TRUE;
 
     if (running && argc == 1) { /* no parameters */
         raise_orage();
@@ -356,8 +404,38 @@ static gboolean process_args(int argc, char *argv[], gboolean running
             orage_toggle_visible();
             end = TRUE;
         }
+        else if (!strcmp(argv[argi], "--add-foreign") ||
+                 !strcmp(argv[argi], "-a")) {
+            if (argi+1 >= argc) {
+                g_print("\nFile not specified\n\n");
+                print_help();
+                end = TRUE;
+            } 
+            else {
+                if (argi+2 < argc && (
+                    !strcmp(argv[argi+2], "RW") ||
+                    !strcmp(argv[argi+2], "READWRITE"))) {
+                    foreign_file_read_only = FALSE;
+                }
+                add_foreign(running, argv[++argi], initialized
+                        , foreign_file_read_only);
+                if (!foreign_file_read_only)
+                    ++argi;
+            }
+        }
+        else if (!strcmp(argv[argi], "--remove-foreign") ||
+                 !strcmp(argv[argi], "-r")) {
+            if (argi+1 >= argc) {
+                g_print("\nFile not specified\n\n");
+                print_help();
+                end = TRUE;
+            } 
+            else {
+                remove_foreign(running, argv[++argi], initialized);
+            }
+        }
         else if (argv[argi][0] == '-') {
-            g_print(_("\nUnknown parameter %s\n\n"), argv[argi]);
+            g_print(_("\nUnknown option %s\n\n"), argv[argi]);
             print_help();
             end = TRUE;
         }

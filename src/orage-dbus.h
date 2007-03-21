@@ -25,5 +25,7 @@
 
 void orage_dbus_start(void);
 gboolean orage_dbus_import_file(gchar *file_name);
+gboolean orage_dbus_foreign_add(gchar *file_name, gboolean read_only);
+gboolean orage_dbus_foreign_remove(gchar *file_name);
 
 #endif /* !__ORAGE_DBUS_H__ */

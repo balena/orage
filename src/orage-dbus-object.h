@@ -40,7 +40,14 @@ typedef struct _OrageDBus      OrageDBus;
 
 GType orage_dbus_get_type(void);
 
-gboolean orage_dbus_service_load_file(DBusGProxy *proxy, const char * IN_str
+gboolean orage_dbus_service_load_file(DBusGProxy *proxy
+                , const char *IN_file
+                , GError **error);
+gboolean orage_dbus_service_add_foreign(DBusGProxy *proxy
+                , const char *IN_file, const gboolean *IN_mode
+                , GError **error);
+gboolean orage_dbus_service_remove_foreign(DBusGProxy *proxy
+                , const char *IN_file
                 , GError **error);
 
 

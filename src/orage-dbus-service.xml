@@ -28,7 +28,14 @@
       <!-- x
       <annotation name="org.freedesktop.DBus.GLib.CSymbol" value="my_object_many_args"/>
       -->
-      <arg type="s" name="str" direction="in" />
+      <arg type="s" name="file" direction="in" />
+    </method>
+    <method name="AddForeign">
+      <arg type="s" name="file" direction="in" />
+      <arg type="b" name="mode" direction="in" />
+    </method>
+    <method name="RemoveForeign">
+      <arg type="s" name="file" direction="in" />
     </method>
   </interface>
 </node>

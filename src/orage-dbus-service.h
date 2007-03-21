@@ -53,7 +53,56 @@ G_BEGIN_DECLS
 #endif /* !G_ENABLE_DEBUG */
 
 
-/* BOOLEAN:STRING,POINTER (/tmp/dbus-binding-tool-c-marshallers.sI10Xj:1) */
+/* BOOLEAN:STRING,BOOLEAN,POINTER (/tmp/dbus-binding-tool-c-marshallers.q1gxbp:1) */
+extern void dbus_glib_marshal_orage_BOOLEAN__STRING_BOOLEAN_POINTER (GClosure     *closure,
+                                                                     GValue       *return_value,
+                                                                     guint         n_param_values,
+                                                                     const GValue *param_values,
+                                                                     gpointer      invocation_hint,
+                                                                     gpointer      marshal_data);
+void
+dbus_glib_marshal_orage_BOOLEAN__STRING_BOOLEAN_POINTER (GClosure     *closure,
+                                                         GValue       *return_value,
+                                                         guint         n_param_values,
+                                                         const GValue *param_values,
+                                                         gpointer      invocation_hint,
+                                                         gpointer      marshal_data)
+{
+  typedef gboolean (*GMarshalFunc_BOOLEAN__STRING_BOOLEAN_POINTER) (gpointer     data1,
+                                                                    gpointer     arg_1,
+                                                                    gboolean     arg_2,
+                                                                    gpointer     arg_3,
+                                                                    gpointer     data2);
+  register GMarshalFunc_BOOLEAN__STRING_BOOLEAN_POINTER callback;
+  register GCClosure *cc = (GCClosure*) closure;
+  register gpointer data1, data2;
+  gboolean v_return;
+
+  g_return_if_fail (return_value != NULL);
+  g_return_if_fail (n_param_values == 4);
+
+  if (G_CCLOSURE_SWAP_DATA (closure))
+    {
+      data1 = closure->data;
+      data2 = g_value_peek_pointer (param_values + 0);
+    }
+  else
+    {
+      data1 = g_value_peek_pointer (param_values + 0);
+      data2 = closure->data;
+    }
+  callback = (GMarshalFunc_BOOLEAN__STRING_BOOLEAN_POINTER) (marshal_data ? marshal_data : cc->callback);
+
+  v_return = callback (data1,
+                       g_marshal_value_peek_string (param_values + 1),
+                       g_marshal_value_peek_boolean (param_values + 2),
+                       g_marshal_value_peek_pointer (param_values + 3),
+                       data2);
+
+  g_value_set_boolean (return_value, v_return);
+}
+
+/* BOOLEAN:STRING,POINTER (/tmp/dbus-binding-tool-c-marshallers.q1gxbp:2) */
 extern void dbus_glib_marshal_orage_BOOLEAN__STRING_POINTER (GClosure     *closure,
                                                              GValue       *return_value,
                                                              guint         n_param_values,
@@ -107,13 +156,15 @@ G_END_DECLS
 #include <dbus/dbus-glib.h>
 static const DBusGMethodInfo dbus_glib_orage_methods[] = {
   { (GCallback) orage_dbus_service_load_file, dbus_glib_marshal_orage_BOOLEAN__STRING_POINTER, 0 },
+  { (GCallback) orage_dbus_service_add_foreign, dbus_glib_marshal_orage_BOOLEAN__STRING_BOOLEAN_POINTER, 39 },
+  { (GCallback) orage_dbus_service_remove_foreign, dbus_glib_marshal_orage_BOOLEAN__STRING_POINTER, 89 },
 };
 
 const DBusGObjectInfo dbus_glib_orage_object_info = {
   0,
   dbus_glib_orage_methods,
-  1,
-"org.xfce.calendar\0LoadFile\0S\0str\0I\0s\0\0\0",
+  3,
+"org.xfce.calendar\0LoadFile\0S\0file\0I\0s\0\0org.xfce.calendar\0AddForeign\0S\0file\0I\0s\0mode\0I\0b\0\0org.xfce.calendar\0RemoveForeign\0S\0file\0I\0s\0\0\0",
 "\0",
 "\0"
 };

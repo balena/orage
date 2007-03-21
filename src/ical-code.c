@@ -2425,7 +2425,8 @@ xfical_appt *xfical_appt_get_next_on_day(char *a_day, gboolean first, gint days
   * year: Year to be searched
   * month: Month to be searched
   */
-void xfical_mark_calendar(GtkCalendar *gtkcal, int year, int month)
+void xfical_mark_calendar_internal(GtkCalendar *gtkcal, icalcomponent *base
+        , int year, int month)
 {
     xfical_period per;
     struct icaltimetype nsdate, nedate;
@@ -2435,11 +2436,9 @@ void xfical_mark_calendar(GtkCalendar *gtkcal, int year, int month)
     icalproperty *p = NULL;
     gint start_day, day_cnt, end_day;
 
-    gtk_calendar_freeze(gtkcal);
-    gtk_calendar_clear_marks(gtkcal);
-    for (c = icalcomponent_get_first_component(ical, ICAL_VEVENT_COMPONENT);
+    for (c = icalcomponent_get_first_component(base, ICAL_VEVENT_COMPONENT);
          c != 0;
-         c = icalcomponent_get_next_component(ical, ICAL_VEVENT_COMPONENT)) {
+         c = icalcomponent_get_next_component(base, ICAL_VEVENT_COMPONENT)) {
         per = get_period(c);
         if ((per.stime.year*12+per.stime.month) <= (year*12+month)
                 && (year*12+month) <= (per.etime.year*12+per.etime.month)) {
@@ -2488,6 +2487,18 @@ void xfical_mark_calendar(GtkCalendar *gtkcal, int year, int month)
             icalrecur_iterator_free(ri);
         } 
     } 
+}
+
+void xfical_mark_calendar(GtkCalendar *gtkcal, int year, int month)
+{
+    gint i;
+
+    gtk_calendar_freeze(gtkcal);
+    gtk_calendar_clear_marks(gtkcal);
+    xfical_mark_calendar_internal(gtkcal, ical, year, month);
+    for (i = 0; i < g_par.foreign_count; i++) {
+        xfical_mark_calendar_internal(gtkcal, f_ical[i].ical, year, month);
+    }
     gtk_calendar_thaw(gtkcal);
 }
 

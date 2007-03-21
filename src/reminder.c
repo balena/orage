@@ -199,7 +199,7 @@ on_btOpenReminder_clicked(GtkButton *button, gpointer user_data)
     }
 }
 
-void
+static void
 on_destroy(GtkWidget *wReminder, gpointer user_data)
 {
     xfce_audio_alarm_type *audio_alarm = (xfce_audio_alarm_type *)user_data;

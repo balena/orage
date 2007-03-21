@@ -67,7 +67,18 @@ static const GtkTargetEntry uid_drag_targets[] =
 };
 static int uid_drag_target_count = 1;
 
+/* This prevents access from cmd line if the window is open.
+ * We must make sure foreign files are not deleted from command
+ * line (using dbus) while they are being updated using the window 
+ */
+static gboolean interface_lock = FALSE;
+
 static void refresh_foreign_files(intf_win *intf_w, gboolean first);
+
+static void on_destroy(GtkWidget *window, gpointer user_data)
+{
+     interface_lock = FALSE;
+}
 
 void static orage_file_entry_changed(GtkWidget *dialog, gpointer user_data)
 {
@@ -157,74 +168,6 @@ void static orage_file_save_button_clicked(GtkButton *button
     else {
         g_free(s);
     }
-}
-
-static void for_remove_button_clicked(GtkButton *button, gpointer user_data)
-{
-    gint del_line = (gint) user_data;
-    gint i;
-
-    g_free(g_par.foreign_data[del_line].file);
-    g_par.foreign_count--;
-    for (i = del_line; i < g_par.foreign_count; i++) {
-        g_par.foreign_data[i].file = g_par.foreign_data[i+1].file;
-        g_par.foreign_data[i].read_only = g_par.foreign_data[i+1].read_only;
-    }
-    write_parameters();
-}
-
-static void for_remove_button_clicked2(GtkButton *button, gpointer user_data)
-{
-    intf_win *intf_w = (intf_win *)user_data;
-
-    refresh_foreign_files(intf_w, FALSE);
-}
-
-static void refresh_foreign_files(intf_win *intf_w, gboolean first)
-{
-    GtkWidget *label, *hbox, *vbox, *button;
-    gchar num[3];
-    gint i;
-
-    if (!first)
-        gtk_widget_destroy(intf_w->for_cur_frame);
-    vbox = gtk_vbox_new(FALSE, 0);
-    intf_w->for_cur_frame = xfce_create_framebox_with_content(
-            _("Current foreign files"), vbox);
-    gtk_box_pack_start(GTK_BOX(intf_w->for_tab_main_vbox)
-            , intf_w->for_cur_frame, FALSE, FALSE, 5);
-
-    intf_w->for_cur_table = orage_table_new(10, 5);
-    if (g_par.foreign_count) {
-        for (i = 0; i < g_par.foreign_count; i++) {
-            hbox = gtk_hbox_new(FALSE, 0);
-            label = gtk_label_new(g_par.foreign_data[i].file);
-            gtk_box_pack_start(GTK_BOX(hbox), label, TRUE, TRUE, 5);
-            if (g_par.foreign_data[i].read_only)
-                label = gtk_label_new(_("READ ONLY"));
-            else
-                label = gtk_label_new(_("READ WRITE"));
-            gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 5);
-            button = gtk_button_new_from_stock("gtk-remove");
-            gtk_box_pack_start(GTK_BOX(hbox), button, FALSE, FALSE, 5);
-            g_sprintf(num, "%02d", i+1);
-            label = gtk_label_new(num);
-            orage_table_add_row(intf_w->for_cur_table
-                    , label, hbox
-                    , i, (GTK_EXPAND | GTK_FILL), (0));
-            g_signal_connect((gpointer)button, "clicked"
-                    , G_CALLBACK(for_remove_button_clicked), (void *)i);
-            g_signal_connect_after((gpointer)button, "clicked"
-                    , G_CALLBACK(for_remove_button_clicked2), intf_w);
-        }
-        gtk_box_pack_start(GTK_BOX(vbox), intf_w->for_cur_table
-                , FALSE, FALSE, 5);
-    }
-    else {
-        label = gtk_label_new(_("***** No foreign files *****"));
-        gtk_box_pack_start(GTK_BOX(vbox), label, FALSE, FALSE, 5);
-    }
-    gtk_widget_show_all(intf_w->for_cur_frame);
 }
 
 void static archive_file_entry_changed(GtkWidget *dialog, gpointer user_data)
@@ -572,35 +515,161 @@ void for_open_button_clicked(GtkButton *button, gpointer user_data)
     gtk_widget_destroy(f_chooser);
 }
 
+void orage_foreign_file_remove_line(gint del_line)
+{
+    int i;
+
+    g_free(g_par.foreign_data[del_line].file);
+    g_par.foreign_count--;
+    for (i = del_line; i < g_par.foreign_count; i++) {
+        g_par.foreign_data[i].file = g_par.foreign_data[i+1].file;
+        g_par.foreign_data[i].read_only = g_par.foreign_data[i+1].read_only;
+    }
+    g_par.foreign_data[i].file = NULL;
+
+    write_parameters();
+}
+
+gboolean orage_foreign_file_remove(gchar *filename)
+{
+    int i = 0;
+    gboolean found = FALSE;
+
+    if (interface_lock) {
+        g_warning("Exchange window active, can't remove files from cmd line\n");
+        return(FALSE);
+    }
+    if (!ORAGE_STR_EXISTS(filename)) {
+        g_warning("File is empty. Not removed.");
+        return(FALSE);
+    }
+    for (i = 0; i < g_par.foreign_count && !found; i++) {
+        if (strcmp(g_par.foreign_data[i].file, filename) == 0) {
+            found = TRUE;
+        }
+    }
+    if (!found) {
+        g_warning("File not found. Not removed.");
+        return(FALSE);
+    }
+
+    orage_foreign_file_remove_line(i);
+    return(TRUE);
+}
+
+static void for_remove_button_clicked(GtkButton *button, gpointer user_data)
+{
+    gint del_line = (gint) user_data;
+
+    orage_foreign_file_remove_line(del_line);
+}
+
+static void for_remove_button_clicked2(GtkButton *button, gpointer user_data)
+{
+    intf_win *intf_w = (intf_win *)user_data;
+
+    refresh_foreign_files(intf_w, FALSE);
+}
+
+static void refresh_foreign_files(intf_win *intf_w, gboolean first)
+{
+    GtkWidget *label, *hbox, *vbox, *button;
+    gchar num[3];
+    gint i;
+
+    if (!first)
+        gtk_widget_destroy(intf_w->for_cur_frame);
+    vbox = gtk_vbox_new(FALSE, 0);
+    intf_w->for_cur_frame = xfce_create_framebox_with_content(
+            _("Current foreign files"), vbox);
+    gtk_box_pack_start(GTK_BOX(intf_w->for_tab_main_vbox)
+            , intf_w->for_cur_frame, FALSE, FALSE, 5);
+
+    intf_w->for_cur_table = orage_table_new(10, 5);
+    if (g_par.foreign_count) {
+        for (i = 0; i < g_par.foreign_count; i++) {
+            hbox = gtk_hbox_new(FALSE, 0);
+            label = gtk_label_new(g_par.foreign_data[i].file);
+            gtk_box_pack_start(GTK_BOX(hbox), label, TRUE, TRUE, 5);
+            if (g_par.foreign_data[i].read_only)
+                label = gtk_label_new(_("READ ONLY"));
+            else
+                label = gtk_label_new(_("READ WRITE"));
+            gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 5);
+            button = gtk_button_new_from_stock("gtk-remove");
+            gtk_box_pack_start(GTK_BOX(hbox), button, FALSE, FALSE, 5);
+            g_sprintf(num, "%02d", i+1);
+            label = gtk_label_new(num);
+            orage_table_add_row(intf_w->for_cur_table
+                    , label, hbox
+                    , i, (GTK_EXPAND | GTK_FILL), (0));
+            g_signal_connect((gpointer)button, "clicked"
+                    , G_CALLBACK(for_remove_button_clicked), (void *)i);
+            g_signal_connect_after((gpointer)button, "clicked"
+                    , G_CALLBACK(for_remove_button_clicked2), intf_w);
+        }
+        gtk_box_pack_start(GTK_BOX(vbox), intf_w->for_cur_table
+                , FALSE, FALSE, 5);
+    }
+    else {
+        label = gtk_label_new(_("***** No foreign files *****"));
+        gtk_box_pack_start(GTK_BOX(vbox), label, FALSE, FALSE, 5);
+    }
+    gtk_widget_show_all(intf_w->for_cur_frame);
+}
+
+gboolean orage_foreign_file_add_internal(gchar *filename, gboolean read_only)
+{
+    gint i = 0;
+
+    if (g_par.foreign_count > 9) {
+        g_warning("Orage can only handle 10 foreign files. Limit reached. New file not added.");
+        return(FALSE);
+    }
+    if (!ORAGE_STR_EXISTS(filename)) {
+        g_warning("File is empty. New file not added.");
+        return(FALSE);
+    }
+    if (!g_file_test(filename, G_FILE_TEST_EXISTS)) {
+        g_warning("New file %s does not exist. New file not added."
+                , filename);
+        return(FALSE);
+    }
+    for (i = 0; i < g_par.foreign_count; i++) {
+        if (strcmp(g_par.foreign_data[i].file, filename) == 0) {
+            g_warning("Foreign file already exists.");
+            return(FALSE);
+        }
+    }
+
+    g_par.foreign_data[g_par.foreign_count].file = g_strdup(filename);
+    g_par.foreign_data[g_par.foreign_count].read_only = read_only;
+    g_par.foreign_count++;
+
+    write_parameters();
+    return(TRUE);
+}
+
+gboolean orage_foreign_file_add(gchar *filename, gboolean read_only)
+{
+    if (interface_lock) {
+        g_warning("Exchange window active, can't add files from cmd line\n");
+        return(FALSE);
+    }
+    return(orage_foreign_file_add_internal(filename, read_only));
+}
+
 void for_add_button_clicked(GtkButton *button, gpointer user_data)
 {
     intf_win *intf_w = (intf_win *)user_data;
-    gchar *entry_filename;
+    const gchar *entry_filename;
     gboolean read_only;
 
-    if (g_par.foreign_count > 9) {
-        g_warning("Orage can only handle 10 foreign fils. Limit reached. New file not added.");
-        return;
-    }
-    entry_filename = g_strdup(gtk_entry_get_text(
-            (GtkEntry *)intf_w->for_new_entry));
-    if (!ORAGE_STR_EXISTS(entry_filename)) {
-        g_warning("File is empty. New file not added.");
-        return;
-    }
-    if (!g_file_test(entry_filename, G_FILE_TEST_EXISTS)) {
-        g_warning("New file %s does not exist. New file not added."
-                , entry_filename);
-        g_free(entry_filename);
-        return;
-    }
+    entry_filename = gtk_entry_get_text((GtkEntry *)intf_w->for_new_entry);
     read_only = gtk_toggle_button_get_active(
             GTK_TOGGLE_BUTTON(intf_w->for_new_read_only));
-    g_par.foreign_data[g_par.foreign_count].file = entry_filename;
-    g_par.foreign_data[g_par.foreign_count].read_only = read_only;
-    g_par.foreign_count++;
-    write_parameters();
-    refresh_foreign_files(intf_w, FALSE);
+    if (orage_foreign_file_add_internal((char *)entry_filename, read_only))
+        refresh_foreign_files(intf_w, FALSE);
 }
 
 void close_intf_w(gpointer user_data)
@@ -1153,58 +1222,18 @@ static void create_foreign_file_tab(intf_win *intf_w)
             , FALSE, FALSE, 5);
     gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 5);
 
-    /*
-    g_signal_connect((gpointer)intf_w->for_new_read_only, "clicked"
-            , G_CALLBACK(for_new_read_only_clicked), intf_w);
-            */
-
     gtk_tooltips_set_tip(intf_w->tooltips, intf_w->for_new_read_only
             , _("Set this if you want to make sure that this file is never modified by Orage."), NULL);
 
     /***** Current files *****/
     refresh_foreign_files(intf_w, TRUE);
-    /*
-    vbox = gtk_vbox_new(FALSE, 0);
-    intf_w->for_cur_frame = xfce_create_framebox_with_content(
-            _("Current foreign files"), vbox);
-    gtk_box_pack_start(GTK_BOX(intf_w->for_tab_main_vbox)
-            , intf_w->for_cur_frame, FALSE, FALSE, 5);
-
-    intf_w->for_cur_table = orage_table_new(10, 5);
-    if (g_par.foreign_count) {
-        for (i = 0; i < g_par.foreign_count; i++) {
-            hbox = gtk_hbox_new(FALSE, 0);
-            label = gtk_label_new(g_par.foreign_data[i].file);
-            gtk_box_pack_start(GTK_BOX(hbox), label, TRUE, TRUE, 5);
-            if (g_par.foreign_data[i].read_only)
-                label = gtk_label_new(_("READ ONLY"));
-            else
-                label = gtk_label_new(_("READ WRITE"));
-            gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 5);
-            button = gtk_button_new_from_stock("gtk-remove");
-            gtk_box_pack_start(GTK_BOX(hbox), button, FALSE, FALSE, 5);
-            g_sprintf(num, "%02d", i+1);
-            label = gtk_label_new(num);
-            orage_table_add_row(intf_w->for_cur_table
-                    , label, hbox
-                    , i, (GTK_EXPAND | GTK_FILL), (0));
-            g_signal_connect((gpointer)button, "clicked"
-                    , G_CALLBACK(for_remove_button_clicked), intf_w);
-        }
-        gtk_box_pack_start(GTK_BOX(vbox), intf_w->for_cur_table
-                , FALSE, FALSE, 5);
-    }
-    else {
-        label = gtk_label_new(_("***** No foreign files *****"));
-        gtk_box_pack_start(GTK_BOX(vbox), label, FALSE, FALSE, 5);
-    }
-    */
 }
 
 void orage_external_interface(CalWin *xfcal)
 {
     intf_win *intf_w = g_new(intf_win, 1);
 
+    interface_lock = TRUE;
      /* main window creation and base elements */
     intf_w->main_window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
     gtk_window_set_title(GTK_WINDOW(intf_w->main_window)
@@ -1230,6 +1259,9 @@ void orage_external_interface(CalWin *xfcal)
     create_import_export_tab(intf_w);
     create_orage_file_tab(intf_w);
     create_foreign_file_tab(intf_w);
+
+     g_signal_connect(G_OBJECT(intf_w->main_window), "destroy",
+             G_CALLBACK(on_destroy), NULL);
 
     gtk_widget_show_all(intf_w->main_window);
     drag_and_drop_init(intf_w);

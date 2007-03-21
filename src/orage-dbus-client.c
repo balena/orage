@@ -53,15 +53,16 @@ gboolean orage_dbus_import_file(gchar *file_name)
         return(FALSE);
     }
 
-  /* Create a proxy object for the "bus driver" (name "org.freedesktop.DBus") */
+/* Create a proxy object for the "bus driver" (name "org.freedesktop.DBus") */
     proxy = dbus_g_proxy_new_for_name(connection
             , "org.xfce.calendar", "/org/xfce/calendar", "org.xfce.calendar");
 
     /*
     if (orage_dbus_service_load_file(proxy, file_name,  &error)) {
     */
-    if (dbus_g_proxy_call(proxy,  "LoadFile", &error, G_TYPE_STRING, file_name
-                 , G_TYPE_INVALID, G_TYPE_INVALID)) {
+    if (dbus_g_proxy_call(proxy, "LoadFile", &error
+                , G_TYPE_STRING, file_name
+                , G_TYPE_INVALID, G_TYPE_INVALID)) {
         return(TRUE);
     }
     else {
@@ -69,3 +70,55 @@ gboolean orage_dbus_import_file(gchar *file_name)
     };
 }
 
+gboolean orage_dbus_foreign_add(gchar *file_name, gboolean read_only)
+{
+    DBusGConnection *connection;
+    GError *error = NULL;
+    DBusGProxy *proxy;
+
+    g_type_init();
+    connection = dbus_g_bus_get(DBUS_BUS_SESSION, &error);
+    if (connection == NULL) {
+        g_warning("Failed to connect to the D-BUS session bus: %s"
+                , error->message);
+        return(FALSE);
+    }
+
+    proxy = dbus_g_proxy_new_for_name(connection
+            , "org.xfce.calendar", "/org/xfce/calendar", "org.xfce.calendar");
+    if (dbus_g_proxy_call(proxy, "AddForeign", &error
+                , G_TYPE_STRING, file_name
+                , G_TYPE_BOOLEAN, read_only
+                , G_TYPE_INVALID, G_TYPE_INVALID)) {
+        return(TRUE);
+    }
+    else {
+        return(FALSE);
+    };
+}
+
+gboolean orage_dbus_foreign_remove(gchar *file_name)
+{
+    DBusGConnection *connection;
+    GError *error = NULL;
+    DBusGProxy *proxy;
+
+    g_type_init();
+    connection = dbus_g_bus_get(DBUS_BUS_SESSION, &error);
+    if (connection == NULL) {
+        g_warning("Failed to connect to the D-BUS session bus: %s"
+                , error->message);
+        return(FALSE);
+    }
+
+    proxy = dbus_g_proxy_new_for_name(connection
+            , "org.xfce.calendar", "/org/xfce/calendar", "org.xfce.calendar");
+    if (dbus_g_proxy_call(proxy, "RemoveForeign", &error
+                , G_TYPE_STRING, file_name
+                , G_TYPE_INVALID, G_TYPE_INVALID)) {
+        return(TRUE);
+    }
+    else {
+        return(FALSE);
+    };
+}

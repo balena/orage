@@ -33,6 +33,8 @@
 
 /* defined in interface.c */
 gboolean orage_import_file(gchar *entry_filename);
+gboolean orage_foreign_file_add(gchar *filename, gboolean read_only);
+gboolean orage_foreign_file_remove(gchar *filename);
 
 struct _OrageDBusClass
 {
@@ -85,21 +87,50 @@ static void orage_dbus_init(OrageDBus *orage_dbus)
     }
 }
 
-gboolean orage_dbus_service_load_file(DBusGProxy *proxy, const char * IN_str
+gboolean orage_dbus_service_load_file(DBusGProxy *proxy
+        , const char *IN_file
         , GError **error)
 {
-    if (orage_import_file((char *)IN_str)) {
-        g_message("Orage **: DBUS File added %s", IN_str);
+    if (orage_import_file((char *)IN_file)) {
+        g_message("Orage **: DBUS File added %s", IN_file);
         return(TRUE);
     }
     else {
-        g_warning("DBUS File add failed %s", IN_str);
+        g_warning("DBUS File add failed %s", IN_file);
         g_set_error(error, G_FILE_ERROR, G_FILE_ERROR_INVAL
-                , "Invalid ical file \"%s\"", IN_str);
-
+                , "Invalid ical file \"%s\"", IN_file);
         return(FALSE);
     }
 }
+
+gboolean orage_dbus_service_add_foreign(DBusGProxy *proxy
+        , const char *IN_file, const gboolean *IN_mode
+        , GError **error)
+{
+    if (orage_foreign_file_add((char *)IN_file, (gboolean)IN_mode)) {
+        g_message("Orage **: DBUS Foreign file added %s", IN_file);
+        return(TRUE);
+    }
+    else {
+        g_warning("DBUS Foreign file add failed %s", IN_file);
+        return(FALSE);
+    }
+}
+
+gboolean orage_dbus_service_remove_foreign(DBusGProxy *proxy
+        , const char *IN_file
+        , GError **error)
+{
+    if (orage_foreign_file_remove((char *)IN_file)) {
+        g_message("Orage **: DBUS Foreign file removed %s", IN_file);
+        return(TRUE);
+    }
+    else {
+        g_warning("Orage **: DBUS Foreign file remove failed %s", IN_file);
+        return(FALSE);
+    }
+}
+
 
 void orage_dbus_start()
 {
