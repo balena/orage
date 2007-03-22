@@ -616,6 +616,7 @@ static void refresh_foreign_files(intf_win *intf_w, gboolean first)
         gtk_box_pack_start(GTK_BOX(vbox), label, FALSE, FALSE, 5);
     }
     gtk_widget_show_all(intf_w->for_cur_frame);
+    orage_mark_appointments();
 }
 
 gboolean orage_foreign_file_add_internal(gchar *filename, gboolean read_only)
