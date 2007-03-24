@@ -34,6 +34,7 @@ typedef struct
     GList *clock_list;      /* list of clock_structs */
     gchar time_now[16];     /* 88:88 null terminated */
     gint previous_secs;
+    time_t previous_t;
     gboolean time_adj_act;  /* manual time adjustment active or not */
     gint hh_adj;            /* adjustment hours */
     gint mm_adj;            /* adjustment hours */

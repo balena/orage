@@ -44,7 +44,7 @@
 #include "globaltime.h"
 
 
-#define NAME_VERSION "Global Time (1.20)"
+#define NAME_VERSION "Global Time (1.21)"
 
 
 global_times_struct clocks;
@@ -55,7 +55,7 @@ char *attr_underline[] =
 
 static struct tm *get_time(const gchar *tz)
 {
-    time_t             t;
+    time_t t;
     static struct tm now;
     static char env_tz[256];
 
@@ -65,10 +65,11 @@ static struct tm *get_time(const gchar *tz)
     g_snprintf(env_tz, 256, "TZ=%s", tz);
     putenv(env_tz);
     tzset();
-    time(&t);
     if (clocks.time_adj_act) {
-        t += clocks.mm_adj*60;
-        t += clocks.hh_adj*3600;
+        t = clocks.previous_t + clocks.mm_adj*60 + clocks.hh_adj*3600;
+    }
+    else {
+        time(&t);
     }
     localtime_r(&t, &now);
 
@@ -357,12 +358,6 @@ static gboolean preferences_button_pressed(GtkWidget *widget
             gtk_widget_show(clocks.hdr_adj_sep);
             gtk_widget_show(clocks.hdr_adj_hh);
             clocks.time_adj_act = TRUE;
-            gtk_spin_button_set_value(GTK_SPIN_BUTTON(clocks.hdr_adj_hh)
-                    , (gdouble)0);
-            gtk_spin_button_set_value(GTK_SPIN_BUTTON(clocks.hdr_adj_mm)
-                    , (gdouble)0);
-            clocks.mm_adj = 0;
-            clocks.hh_adj = 0;
             g_message("Starting time adjustment mode");
         }
         return(FALSE);
@@ -387,7 +382,7 @@ static void add_default_clock(void)
 
 void upd_clock(clock_struct *clockp)
 {
-    static struct tm *now;
+    struct tm *now;
 
     now = get_time(clockp->tz->str);
     if (clocks.local_mday == now->tm_mday) 
@@ -405,12 +400,18 @@ void upd_clock(clock_struct *clockp)
 
 static gboolean upd_clocks(void)
 {
-    static struct tm *now;
+    struct tm *now;
     gint secs_now;
 
     now = get_time(clocks.local_tz->str); /* GMT is returmed if not found */
-    clocks.local_mday = now->tm_mday;
-    secs_now = now->tm_sec;
+    if (!clocks.time_adj_act) {
+        time(&clocks.previous_t);
+        clocks.local_mday = now->tm_mday;
+        secs_now = now->tm_sec;
+    }
+    else {
+        secs_now = 70; /* force update after time adjust ends */
+    }
 
 /* the following if is just for saving CPU: update clocks only when needed */
     if ((clocks.modified > 0) || (clocks.time_adj_act)
