@@ -63,15 +63,15 @@ void on_Today_activate(GtkMenuItem *menuitem, gpointer user_data)
 }
 
 void 
-on_preferences_activate                (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
+on_preferences_activate(GtkMenuItem *menuitem
+        , gpointer user_data)
 {
     show_parameters();
 }
 
 void
-on_new_appointment_activate            (GtkMenuItem     *menuitem,
-                                        gpointer         user_data)
+on_new_appointment_activate(GtkMenuItem *menuitem
+        , gpointer user_data)
 {
     appt_win *app;
     struct tm *t;

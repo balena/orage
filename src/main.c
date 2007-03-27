@@ -59,7 +59,6 @@
 #endif
 
 /* defined in interface.c */
-gboolean orage_import_file(gchar *entry_filename);
 gboolean orage_foreign_file_add(gchar *filename, gboolean read_only);
 gboolean orage_foreign_file_remove(gchar *filename);
 

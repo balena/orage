@@ -409,7 +409,13 @@ void on_unarchive_button_clicked_cb(GtkButton *button, gpointer user_data)
 
 gboolean orage_import_file(gchar *entry_filename) 
 {
-    return(xfical_import_file(entry_filename));
+    if (xfical_import_file(entry_filename)) {
+        orage_mark_appointments();
+        xfical_alarm_build_list(FALSE);
+        return(TRUE);
+    }
+    else
+        return(FALSE);
 }
 
 gboolean orage_export_file(gchar *entry_filename, gint count, gchar *uids) 
@@ -528,6 +534,8 @@ void orage_foreign_file_remove_line(gint del_line)
     g_par.foreign_data[i].file = NULL;
 
     write_parameters();
+    orage_mark_appointments();
+    xfical_alarm_build_list(FALSE);
 }
 
 gboolean orage_foreign_file_remove(gchar *filename)
@@ -616,7 +624,6 @@ static void refresh_foreign_files(intf_win *intf_w, gboolean first)
         gtk_box_pack_start(GTK_BOX(vbox), label, FALSE, FALSE, 5);
     }
     gtk_widget_show_all(intf_w->for_cur_frame);
-    orage_mark_appointments();
 }
 
 gboolean orage_foreign_file_add_internal(gchar *filename, gboolean read_only)
@@ -648,9 +655,12 @@ gboolean orage_foreign_file_add_internal(gchar *filename, gboolean read_only)
     g_par.foreign_count++;
 
     write_parameters();
+    orage_mark_appointments();
+    xfical_alarm_build_list(FALSE);
     return(TRUE);
 }
 
+/* this is used from command line */
 gboolean orage_foreign_file_add(gchar *filename, gboolean read_only)
 {
     if (interface_lock) {
