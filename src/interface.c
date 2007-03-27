@@ -25,7 +25,11 @@
 #  include <config.h>
 #endif
 #include <string.h>
+#include <time.h>
+#include <errno.h>
 
+#include <glib.h>
+#include <glib/gstdio.h>
 #include <gtk/gtk.h>
 #include <gdk/gdk.h>
 #include <gdk/gdkkeysyms.h>
@@ -73,7 +77,40 @@ static int uid_drag_target_count = 1;
  */
 static gboolean interface_lock = FALSE;
 
+
 static void refresh_foreign_files(intf_win *intf_w, gboolean first);
+
+gboolean orage_foreign_files_check(gpointer user_data)
+{
+    static time_t latest_foreign_file_change = (time_t)0;
+    struct stat s;
+    gint i;
+    gboolean changes_present = FALSE;
+
+    if (!latest_foreign_file_change)
+        latest_foreign_file_change = time(NULL);
+
+    /* check foreign files */
+    for (i = 0; i < g_par.foreign_count; i++) {
+        if (g_stat(g_par.foreign_data[i].file, &s) < 0) {
+            g_warning("stat of %s failed: %d (%s)",
+                        g_par.foreign_data[i].file, errno, strerror(errno));
+        }
+        else if (s.st_mtime > latest_foreign_file_change) {
+            latest_foreign_file_change = s.st_mtime;
+            orage_message("updating %s", g_par.foreign_data[i].file);  
+            changes_present = TRUE;
+        }
+    }
+    
+    if (changes_present == TRUE) {
+        xfical_alarm_build_list(FALSE);
+        orage_mark_appointments();
+    }
+
+    /* keep running */
+    return (TRUE);
+}
 
 static void on_destroy(GtkWidget *window, gpointer user_data)
 {

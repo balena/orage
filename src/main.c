@@ -43,6 +43,7 @@
 #include <libxfcegui4/libxfcegui4.h>
 #include <libxfcegui4/netk-trayicon.h>
 
+#include <glib.h>
 #include <gtk/gtk.h>
 #include <gdk/gdk.h>
 
@@ -54,13 +55,10 @@
 #include "ical-code.h"
 #include "tray_icon.h"
 #include "parameters.h"
+#include "interface.h"
 #ifdef HAVE_DBUS
 #include "orage-dbus.h"
 #endif
-
-/* defined in interface.c */
-gboolean orage_foreign_file_add(gchar *filename, gboolean read_only);
-gboolean orage_foreign_file_remove(gchar *filename);
 
 /* session client handler */
 static SessionClient	*session_client = NULL;
@@ -539,6 +537,9 @@ int main(int argc, char *argv[])
     /* start alarm monitoring timeout */
     g_timeout_add_full(0, 1000, (GtkFunction) orage_alarm_clock
             , (gpointer) g_par.xfcal, NULL);
+
+    /* start monitoring foreign file updates */
+    g_timeout_add(30*1000, (GtkFunction) orage_foreign_files_check, NULL);
                                                         
     /* let's check if I got filename as a parameter */
     initialized = TRUE;
