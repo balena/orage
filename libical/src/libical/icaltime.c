@@ -25,6 +25,8 @@
  2006-09-04 Added support for WKST = weekstart day **Juha
  	based on CVS code
 
+ 2007-01-10 fixed icaltime_add by fixing icaltime_adjust **Juha
+
  ======================================================================*/
 
 #ifdef HAVE_CONFIG_H
@@ -783,8 +785,12 @@ icaltime_adjust(struct icaltimetype *tt, const int days, const int hours,
     int days_in_month;
 
     /* If we are passed a date make sure to ignore hour minute and second */
+    /* JK: fix part1: this function is called by icaltime_add, which uses 
+     * only seconds even for date and adding days does not work */
+    /*
     if (tt->is_date)
 	goto IS_DATE;
+    */
 
     /* Add on the seconds. */
     second = tt->second + seconds;
@@ -811,6 +817,16 @@ icaltime_adjust(struct icaltimetype *tt, const int days, const int hours,
     if (tt->hour < 0) {
 	tt->hour += 24;
 	days_overflow--;
+    }
+
+    /* If we are passed a date make sure to ignore hour minute and second */
+    /* JK: fix part2: this function is called by icaltime_add, which uses 
+     * only seconds even for date and adding days does not work. we need
+     * however make sure time part is zero */
+    if (tt->is_date) {
+        tt->second = 0;
+        tt->minute = 0;
+        tt->hour = 0;
     }
 
 IS_DATE:

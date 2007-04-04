@@ -753,6 +753,8 @@ xfical_period get_period(icalcomponent *c_event)
 {
     icalproperty *p;
     xfical_period per;
+    struct icaldurationtype duration_tmp;
+    gint dur_int;
 
     /* Exactly one start time must be there */
     p = icalcomponent_get_first_property(c_event, ICAL_DTSTART_PROPERTY);
@@ -772,6 +774,16 @@ xfical_period get_period(icalcomponent *c_event)
         per.etime = icalproperty_get_dtend(p);
         per.etime = convert_to_local_timezone(per.etime, p);
         per.duration = icaltime_subtract(per.etime, per.stime);
+        if (icaltime_is_date(per.stime)
+            && icaldurationtype_as_int(per.duration) != 0) {
+        /* need to subtract 1 day.
+         * read explanation from appt_add_internal: appt->endtime processing */
+            duration_tmp = icaldurationtype_from_int(60*60*24);
+            dur_int = icaldurationtype_as_int(per.duration);
+            dur_int -= icaldurationtype_as_int(duration_tmp);
+            per.duration = icaldurationtype_from_int(dur_int);
+            per.etime = icaltime_add(per.stime, per.duration);
+        }
     }
     else {
         p = icalcomponent_get_first_property(c_event, ICAL_DURATION_PROPERTY);
@@ -1303,7 +1315,11 @@ char *appt_add_internal(appt_data *appt, gboolean add, char *uid
 
     if XFICAL_STR_EXISTS(appt->starttime) {
         wtime=icaltime_from_string(appt->starttime);
-        if XFICAL_STR_EXISTS(appt->start_tz_loc) {
+        if (appt->allDay) { /* date */
+            icalcomponent_add_property(ievent
+                    , icalproperty_new_dtstart(wtime));
+        }
+        else if XFICAL_STR_EXISTS(appt->start_tz_loc) {
             if (strcmp(appt->start_tz_loc, "UTC") == 0) {
                 wtime=icaltime_convert_to_zone(wtime, utc_icaltimezone);
                 icalcomponent_add_property(ievent
@@ -1332,7 +1348,15 @@ char *appt_add_internal(appt_data *appt, gboolean add, char *uid
     }
     else if XFICAL_STR_EXISTS(appt->endtime) {
         wtime=icaltime_from_string(appt->endtime);
-        if XFICAL_STR_EXISTS(appt->end_tz_loc) {
+        if (appt->allDay) {
+            /* need to add 1 day. For example:
+             * DTSTART=20070221 & DTEND=20070223
+             * means only 21 and 22 February */
+            duration = icaldurationtype_from_int(60*60*24);
+            wtime = icaltime_add(wtime, duration);
+            icalcomponent_add_property(ievent, icalproperty_new_dtend(wtime));
+        }
+        else if XFICAL_STR_EXISTS(appt->end_tz_loc) {
             if (strcmp(appt->end_tz_loc, "UTC") == 0) {
                 wtime=icaltime_convert_to_zone(wtime, utc_icaltimezone);
                 icalcomponent_add_property(ievent
@@ -1526,7 +1550,7 @@ appt_data *xfical_appt_get_internal(char *ical_uid)
     icalparameter *itime_tz;
     icalproperty_transp xf_transp;
     struct icalrecurrencetype rrule;
-    struct icaldurationtype duration;
+    struct icaldurationtype duration, duration_tmp;
     int i, cnt, day;
 
     for (c = icalcomponent_get_first_component(ical, ICAL_VEVENT_COMPONENT); 
@@ -1732,19 +1756,30 @@ appt_data *xfical_appt_get_internal(char *ical_uid)
         }
     } 
 
+    if (key_found) {
     /* need to set missing endtime or duration */
-    if (appt.use_duration) { 
-        etime = icaltime_add(stime, duration);
-        text  = icaltime_as_ical_string(etime);
-        g_strlcpy(appt.endtime, text, 17);
-        appt.end_tz_loc = appt.start_tz_loc;
-    }
-    else {
-        duration = icaltime_subtract(eltime, sltime);
-        appt.duration = icaldurationtype_as_int(duration);
-    }
-    if (key_found)
+        if (appt.use_duration) { 
+            etime = icaltime_add(stime, duration);
+            text  = icaltime_as_ical_string(etime);
+            g_strlcpy(appt.endtime, text, 17);
+            appt.end_tz_loc = appt.start_tz_loc;
+        }
+        else {
+            duration = icaltime_subtract(eltime, sltime);
+            appt.duration = icaldurationtype_as_int(duration);
+            if (appt.allDay && appt.duration) {
+        /* need to subtract 1 day.
+         * read explanation from appt_add_internal: appt->endtime processing */
+                duration_tmp = icaldurationtype_from_int(60*60*24);
+                appt.duration -= icaldurationtype_as_int(duration_tmp);
+                duration = icaldurationtype_from_int(appt.duration);
+                etime = icaltime_add(stime, duration);
+                text  = icaltime_as_ical_string(etime);
+                g_strlcpy(appt.endtime, text, 17);
+            }
+        }
         return(&appt);
+    }
     else
         return(NULL);
 }
