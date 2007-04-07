@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: orage 4.4.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-03-26 01:42+0900\n"
-"PO-Revision-Date: 2007-03-26 01:24+0900\n"
+"PO-Revision-Date: 2007-04-07 13:36+0900\n"
 "Last-Translator: Daichi Kawahata <daichi@xfce.org>\n"
 "Language-Team: Japanese <xfce-users-jp@ml.fdiary.net>\n"
 "MIME-Version: 1.0\n"
@@ -128,7 +128,7 @@ msgstr "Orage クロック"
 #.
 #: ../panel-plugin/orageclock.c:422
 msgid "%A %d %B %Y/%V"
-msgstr "%Y年 %B%d日%A (%V週目)"
+msgstr "%A %d %B %Y/%V"
 
 #. to avoid timing problems when updating entry
 #. Create file chooser
@@ -473,9 +473,10 @@ msgstr "日"
 msgid "Recurrence"
 msgstr "繰り返し"
 
+# XXX
 #: ../src/appointment.c:1645
 msgid "Complexity"
-msgstr ""
+msgstr "指定方法"
 
 #: ../src/appointment.c:1648
 msgid "Basic"
@@ -487,7 +488,7 @@ msgstr "詳細"
 
 #: ../src/appointment.c:1662
 msgid "Use this if you want regular repeating event"
-msgstr ""
+msgstr "定期的に繰り返す出来事でしたら、このオプションを使用します。"
 
 #: ../src/appointment.c:1664
 msgid ""
@@ -496,6 +497,12 @@ msgid ""
 " Every Saturday and Sunday or \n"
 " First Tuesday every month"
 msgstr ""
+"定期的ではありますが、もう少し詳細な指定を行いたければ、このオプションを使用"
+"します。\n"
+"\n"
+" 毎月第二週\n"
+" 毎週土曜および日曜日\n"
+" 毎月最初の火曜日"
 
 #: ../src/appointment.c:1667
 msgid "Frequency"
@@ -518,6 +525,10 @@ msgid ""
 "Limit frequency to certain interval. For example:\n"
 " Every third day: Frequency = Daily and Interval = 3"
 msgstr ""
+"頻度をある一定の間隔に決めます。\n"
+"\n"
+" 3日ごと: 頻度 = 毎日\n"
+"          間隔 = 3"
 
 #: ../src/appointment.c:1696
 msgid "Limit"
@@ -541,13 +552,14 @@ msgstr "次まで繰り返す "
 
 #: ../src/appointment.c:1735
 msgid "Weekdays"
-msgstr "曜日"
+msgstr "平日"
 
 #: ../src/appointment.c:1748
 msgid "Which day"
-msgstr ""
+msgstr "曜日"
 
 #: ../src/appointment.c:1756
+#, fuzzy
 msgid ""
 "Specify which weekday for monthly and yearly events.\n"
 " For example:\n"
@@ -556,6 +568,12 @@ msgid ""
 "\tWeekdays = check only Wednesday,\n"
 "\tWhich day = select 2 from the number below Wednesday"
 msgstr ""
+"毎月および毎年の出来事。\n"
+"例えば:\n"
+"毎月第二水曜日:\n"
+"頻度 = 毎月,\n"
+"平日 = 水曜のみチェック,\n"
+"曜日 = 水曜の下の番号から2を選択"
 
 #. date only appointment
 #: ../src/event-list.c:199
@@ -2221,7 +2239,7 @@ msgstr "備忘録 "
 #. GtkTooltipsData *cur_tooltip;
 #: ../src/reminder.c:320
 msgid "Next active alarms:"
-msgstr ""
+msgstr "次回の有効アラーム:"
 
 #: ../src/reminder.c:328
 #, c-format
@@ -2229,6 +2247,8 @@ msgid ""
 "\n"
 "%02d d %02d h %02d min to: %s"
 msgstr ""
+"\n"
+"%02d 日 %02d 時間 %02d 分: %s"
 
 #: ../src/reminder.c:334
 msgid ""
