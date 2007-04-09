@@ -149,7 +149,8 @@ create_soundReminder(alarm_struct *alarm, GtkWidget *wReminder)
     xfce_audio_alarm_type *audio_alarm;
 
     audio_alarm =  g_new(xfce_audio_alarm_type, 1);
-    audio_alarm->play_cmd = g_strconcat(g_par.sound_application, " \"", alarm->sound->str, "\"", NULL);
+    audio_alarm->play_cmd = g_strconcat(g_par.sound_application, " \""
+            , alarm->sound->str, "\"", NULL);
     audio_alarm->delay = alarm->repeat_delay;
     audio_alarm->sound_active = FALSE;
     if ((audio_alarm->cnt = alarm->repeat_cnt) == 0) {
@@ -162,8 +163,8 @@ create_soundReminder(alarm_struct *alarm, GtkWidget *wReminder)
     }
 
     g_timeout_add(alarm->repeat_delay*1000
-        , (GtkFunction) orage_sound_alarm
-        , (gpointer) audio_alarm);
+            , (GtkFunction) orage_sound_alarm
+            , (gpointer) audio_alarm);
 
     return(audio_alarm);
 }
@@ -171,18 +172,18 @@ create_soundReminder(alarm_struct *alarm, GtkWidget *wReminder)
 void
 on_btOkReminder_clicked(GtkButton *button, gpointer user_data)
 {
-  GtkWidget *wReminder = (GtkWidget *)user_data;
+    GtkWidget *wReminder = (GtkWidget *)user_data;
 
-  gtk_widget_destroy(wReminder); /* destroy the specific appointment window */
+    gtk_widget_destroy(wReminder); /* destroy the specific appointment window */
 }
 
 void
 on_btStopNoiseReminder_clicked(GtkButton *button, gpointer user_data)
 {
-  xfce_audio_alarm_type *audio_alarm = (xfce_audio_alarm_type *)user_data;
+    xfce_audio_alarm_type *audio_alarm = (xfce_audio_alarm_type *)user_data;
 
-  audio_alarm->cnt = 0;
-  gtk_widget_set_sensitive(GTK_WIDGET(button), FALSE);
+    audio_alarm->cnt = 0;
+    gtk_widget_set_sensitive(GTK_WIDGET(button), FALSE);
 }
 
 void
@@ -214,96 +215,94 @@ on_destroy(GtkWidget *wReminder, gpointer user_data)
 void
 create_wReminder(alarm_struct *alarm)
 {
-  GtkWidget *wReminder;
-  GtkWidget *vbReminder;
-  GtkWidget *lbReminder;
-  GtkWidget *daaReminder;
-  GtkWidget *btOpenReminder;
-  GtkWidget *btStopNoiseReminder;
-  GtkWidget *btOkReminder;
-  GtkWidget *swReminder;
-  GtkWidget *hdReminder;
-  char heading[200];
-  gchar *head2;
-  xfce_audio_alarm_type *audio_alarm;
-  gchar *alarm_uid;
+    GtkWidget *wReminder;
+    GtkWidget *vbReminder;
+    GtkWidget *lbReminder;
+    GtkWidget *daaReminder;
+    GtkWidget *btOpenReminder;
+    GtkWidget *btStopNoiseReminder;
+    GtkWidget *btOkReminder;
+    GtkWidget *swReminder;
+    GtkWidget *hdReminder;
+    char heading[250];
+    gchar *head2;
+    xfce_audio_alarm_type *audio_alarm;
+    gchar *alarm_uid;
 
-  wReminder = gtk_dialog_new();
-  gtk_widget_set_size_request(wReminder, 300, 250);
-  strncpy(heading,  _("Reminder "), 199);
-  gtk_window_set_title(GTK_WINDOW(wReminder),  heading);
-  gtk_window_set_position(GTK_WINDOW(wReminder), GTK_WIN_POS_CENTER);
-  gtk_window_set_modal(GTK_WINDOW(wReminder), FALSE);
-  gtk_window_set_resizable(GTK_WINDOW(wReminder), TRUE);
-  gtk_window_set_keep_above(GTK_WINDOW(wReminder), TRUE);
+    wReminder = gtk_dialog_new();
+    gtk_widget_set_size_request(wReminder, 300, 250);
+    strncpy(heading,  _("Reminder "), 199);
+    gtk_window_set_title(GTK_WINDOW(wReminder),  heading);
+    gtk_window_set_position(GTK_WINDOW(wReminder), GTK_WIN_POS_CENTER);
+    gtk_window_set_modal(GTK_WINDOW(wReminder), FALSE);
+    gtk_window_set_resizable(GTK_WINDOW(wReminder), TRUE);
+    gtk_window_set_keep_above(GTK_WINDOW(wReminder), TRUE);
 
-  vbReminder = GTK_DIALOG(wReminder)->vbox;
-  gtk_widget_show(vbReminder);
+    vbReminder = GTK_DIALOG(wReminder)->vbox;
+    gtk_widget_show(vbReminder);
 
-  strncat(heading, alarm->title->str, 50);
-  head2 = g_markup_escape_text(heading, -1);
-  hdReminder = xfce_create_header(NULL, head2);
-  g_free(head2);
-  gtk_widget_show(hdReminder);
-  gtk_box_pack_start(GTK_BOX(vbReminder), hdReminder, FALSE, TRUE, 0);
+    strncat(heading, alarm->title->str, 50);
+    head2 = g_markup_escape_text(heading, -1);
+    hdReminder = xfce_create_header(NULL, head2);
+    g_free(head2);
+    gtk_widget_show(hdReminder);
+    gtk_box_pack_start(GTK_BOX(vbReminder), hdReminder, FALSE, TRUE, 0);
 
-  swReminder = gtk_scrolled_window_new(NULL, NULL);
-  gtk_scrolled_window_set_shadow_type(GTK_SCROLLED_WINDOW(swReminder)
-          , GTK_SHADOW_NONE);
-  gtk_widget_show(swReminder);
-  gtk_box_pack_start(GTK_BOX(vbReminder), swReminder, TRUE, TRUE, 5);
-  gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(swReminder)
-          , GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
+    swReminder = gtk_scrolled_window_new(NULL, NULL);
+    gtk_scrolled_window_set_shadow_type(GTK_SCROLLED_WINDOW(swReminder)
+            , GTK_SHADOW_NONE);
+    gtk_widget_show(swReminder);
+    gtk_box_pack_start(GTK_BOX(vbReminder), swReminder, TRUE, TRUE, 5);
+    gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(swReminder)
+            , GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
 
-  lbReminder = gtk_label_new(alarm->description->str);
-  gtk_label_set_line_wrap(GTK_LABEL(lbReminder), TRUE);
-  gtk_widget_show(lbReminder);
-  gtk_scrolled_window_add_with_viewport(GTK_SCROLLED_WINDOW(swReminder)
-          , lbReminder);
+    lbReminder = gtk_label_new(alarm->description->str);
+    gtk_label_set_line_wrap(GTK_LABEL(lbReminder), TRUE);
+    gtk_widget_show(lbReminder);
+    gtk_scrolled_window_add_with_viewport(GTK_SCROLLED_WINDOW(swReminder)
+            , lbReminder);
 
-  daaReminder = GTK_DIALOG(wReminder)->action_area;
-  gtk_dialog_set_has_separator(GTK_DIALOG(wReminder), FALSE);
-  gtk_widget_show(daaReminder);
-  gtk_button_box_set_layout(GTK_BUTTON_BOX(daaReminder), GTK_BUTTONBOX_END);
+    daaReminder = GTK_DIALOG(wReminder)->action_area;
+    gtk_dialog_set_has_separator(GTK_DIALOG(wReminder), FALSE);
+    gtk_widget_show(daaReminder);
+    gtk_button_box_set_layout(GTK_BUTTON_BOX(daaReminder), GTK_BUTTONBOX_END);
 
-  btOpenReminder = gtk_button_new_from_stock("gtk-open");
-  gtk_widget_show(btOpenReminder);
-  gtk_dialog_add_action_widget(GTK_DIALOG(wReminder), btOpenReminder
-          , GTK_RESPONSE_OK);
+    btOpenReminder = gtk_button_new_from_stock("gtk-open");
+    gtk_widget_show(btOpenReminder);
+    gtk_dialog_add_action_widget(GTK_DIALOG(wReminder), btOpenReminder
+            , GTK_RESPONSE_OK);
 
-  btOkReminder = gtk_button_new_from_stock("gtk-close");
-  gtk_widget_show(btOkReminder);
-  gtk_dialog_add_action_widget(GTK_DIALOG(wReminder), btOkReminder
-          , GTK_RESPONSE_OK);
-  GTK_WIDGET_SET_FLAGS(btOkReminder, GTK_CAN_DEFAULT);
+    btOkReminder = gtk_button_new_from_stock("gtk-close");
+    gtk_widget_show(btOkReminder);
+    gtk_dialog_add_action_widget(GTK_DIALOG(wReminder), btOkReminder
+            , GTK_RESPONSE_OK);
+    GTK_WIDGET_SET_FLAGS(btOkReminder, GTK_CAN_DEFAULT);
 
-  alarm_uid = g_strdup(alarm->uid->str);
-  g_object_set_data(G_OBJECT(wReminder), "ALARM_UID", alarm_uid);
-  g_signal_connect((gpointer) btOpenReminder, "clicked",
-            G_CALLBACK(on_btOpenReminder_clicked), wReminder);
+    alarm_uid = g_strdup(alarm->uid->str);
+    g_object_set_data(G_OBJECT(wReminder), "ALARM_UID", alarm_uid);
+    g_signal_connect((gpointer) btOpenReminder, "clicked"
+            , G_CALLBACK(on_btOpenReminder_clicked), wReminder);
 
-  g_signal_connect((gpointer) btOkReminder, "clicked",
-		    G_CALLBACK(on_btOkReminder_clicked), wReminder);
+    g_signal_connect((gpointer) btOkReminder, "clicked"
+            , G_CALLBACK(on_btOkReminder_clicked), wReminder);
 
-  if (alarm->audio) {
-    audio_alarm = create_soundReminder(alarm, wReminder);
-    if (alarm->repeat_cnt != 0) {
-        btStopNoiseReminder = gtk_button_new_from_stock("gtk-stop");
-        gtk_widget_show(btStopNoiseReminder);
-        gtk_dialog_add_action_widget(GTK_DIALOG(wReminder), btStopNoiseReminder
-                , GTK_RESPONSE_OK);
-        g_object_set_data(G_OBJECT(wReminder), "AUDIO STOP"
-                , btStopNoiseReminder);
+    if (alarm->audio) {
+        audio_alarm = create_soundReminder(alarm, wReminder);
+        if (alarm->repeat_cnt != 0) {
+            btStopNoiseReminder = gtk_button_new_from_stock("gtk-stop");
+            gtk_widget_show(btStopNoiseReminder);
+            gtk_dialog_add_action_widget(GTK_DIALOG(wReminder)
+                    , btStopNoiseReminder, GTK_RESPONSE_OK);
+            g_object_set_data(G_OBJECT(wReminder), "AUDIO STOP"
+                    , btStopNoiseReminder);
 
-        g_signal_connect((gpointer) btStopNoiseReminder, "clicked",
-		    G_CALLBACK(on_btStopNoiseReminder_clicked), audio_alarm);
-
-        g_signal_connect(G_OBJECT(wReminder), "destroy",
-		    G_CALLBACK(on_destroy), audio_alarm);
+            g_signal_connect((gpointer) btStopNoiseReminder, "clicked",
+                G_CALLBACK(on_btStopNoiseReminder_clicked), audio_alarm);
+            g_signal_connect(G_OBJECT(wReminder), "destroy",
+                G_CALLBACK(on_destroy), audio_alarm);
+        }
     }
-  }
-
-  gtk_widget_show(wReminder);
+    gtk_widget_show(wReminder);
 }
 
 void

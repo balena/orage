@@ -81,8 +81,13 @@ typedef struct
 
         /* alarm */
     gint alarmtime;
+    gboolean alarm_before; /* TRUE = before FALSE = after */
+        /* TRUE = related to start FALSE= related to end */
+    gboolean alarm_related_start; 
     gchar *sound;
-    gboolean alarmrepeat;
+    gboolean soundrepeat;
+    gint soundrepeat_cnt;
+    gint soundrepeat_len;
 
         /* for repeating events cur times show current repeating event.
          * normal times are always the real (=first) start and end times

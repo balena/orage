@@ -100,11 +100,20 @@ typedef struct _appt_win
     GtkWidget *Alarm_notebook_page;
     GtkWidget *Alarm_tab_label;
     GtkWidget *TableAlarm;
-    GtkWidget *Alarm;
+    GtkWidget *Alarm_label;
     GtkWidget *Alarm_hbox;
     GtkWidget *Alarm_spin_dd;
     GtkWidget *Alarm_spin_hh;
     GtkWidget *Alarm_spin_mm;
+    GtkWidget *Alarm_when_cb;
+    GtkWidget *Sound_label;
+    GtkWidget *Sound_hbox;
+    GtkWidget *Sound_entry;
+    GtkWidget *Sound_button;
+    GtkWidget *SoundRepeat_hbox;
+    GtkWidget *SoundRepeat_checkbutton;
+    GtkWidget *SoundRepeat_spin_cnt;
+    GtkWidget *SoundRepeat_spin_len;
 
     GtkWidget *Recur_notebook_page;
     GtkWidget *Recur_tab_label;
@@ -114,7 +123,11 @@ typedef struct _appt_win
     GtkWidget *Recur_feature_normal_rb;
     GtkWidget *Recur_feature_advanced_rb;
     GtkWidget *Recur_freq_label;
+    GtkWidget *Recur_freq_hbox;
     GtkWidget *Recur_freq_cb;
+    GtkWidget *Recur_int_spin;
+    GtkWidget *Recur_int_spin_label1;
+    GtkWidget *Recur_int_spin_label2;
     GtkWidget *Recur_limit_rb;
     GtkWidget *Recur_limit_label;
     GtkWidget *Recur_count_hbox;
@@ -130,16 +143,6 @@ typedef struct _appt_win
     GtkWidget *Recur_byday_spin_label;
     GtkWidget *Recur_byday_spin_hbox;
     GtkWidget *Recur_byday_spin[7];  /* 0=Mo, 1=Tu ... 6=Su */
-    GtkWidget *Recur_int_label;
-    GtkWidget *Recur_int_hbox;
-    GtkWidget *Recur_int_spin;
-    GtkWidget *Recur_int_spin_label1;
-    GtkWidget *Recur_int_spin_label2;
-    GtkWidget *Sound_label;
-    GtkWidget *Sound_hbox;
-    GtkWidget *Sound_entry;
-    GtkWidget *Sound_button;
-    GtkWidget *SoundRepeat_checkbutton;
 
     GtkAccelGroup *accel_group;
     GtkTooltips *Tooltips;

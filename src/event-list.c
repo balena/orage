@@ -216,7 +216,6 @@ static char *format_time(el_win *el, xfical_appt *appt, char *par)
             result[i++] = ' ';
             if (!same_date) {
                 i += append_date(result, end_ical_time, i);
-                result[i++] = ' ';
             }
             i += append_time(result, end_ical_time, i);
         }
@@ -236,56 +235,154 @@ static void start_time_data_func(GtkTreeViewColumn *col, GtkCellRenderer *rend
 {
     el_win *el = (el_win *)user_data;
     gchar *stime, *etime;
+    gchar start_time[17], end_time[17];
+    gint len;
 
-    if (!el->today || el->days != 0) { /* reset */
+    if (el->page == EVENT_PAGE) {
+        if (!el->today || el->days != 0) { /* reset */
+            g_object_set(rend
+                     , "foreground-set",    FALSE
+                     , "strikethrough-set", FALSE
+                     , "weight-set",        FALSE
+                     , NULL); 
+            return;
+        }
+
+        gtk_tree_model_get(model, iter, COL_TIME, &stime, -1);
+        if (stime[0] == '+')
+            stime++;
+        etime = stime + 8; /* hh:mm - hh:mm */
+        /* only add special highlight if we are on today (=start with time) */
+        if (stime[2] != ':') { 
+            g_object_set(rend
+                     , "foreground-set",    FALSE
+                     , "strikethrough-set", FALSE
+                     , "weight-set",        FALSE
+                     , NULL); 
+        }
+        else if (strncmp(etime, el->time_now, 5) < 0) { /* gone */
+            g_object_set(rend
+                     , "foreground-set",    FALSE
+                     , "strikethrough",     TRUE
+                     , "strikethrough-set", TRUE
+                     , "weight",            PANGO_WEIGHT_LIGHT
+                     , "weight-set",        TRUE
+                     , NULL);
+        }
+        else if (strncmp(stime, el->time_now, 5) <= 0 
+              && strncmp(etime, el->time_now, 5) >= 0) { /* current */
+            g_object_set(rend
+                     , "foreground",        "Blue"
+                     , "foreground-set",    TRUE
+                     , "strikethrough-set", FALSE
+                     , "weight",            PANGO_WEIGHT_BOLD
+                     , "weight-set",        TRUE
+                     , NULL);
+        }
+        else { /* future */
+            g_object_set(rend
+                     , "foreground-set",    FALSE
+                     , "strikethrough-set", FALSE
+                     , "weight",            PANGO_WEIGHT_BOLD
+                     , "weight-set",        TRUE
+                     , NULL);
+        }
+    }
+    else if (el->page == TODO_PAGE) {
+        /*
+        gtk_tree_model_get(model, iter, COL_TIME, &stime, -1);
+        start_time[0] = stime[6];
+        start_time[1] = stime[7];
+        start_time[2] = stime[8];
+        start_time[3] = stime[9];
+        start_time[4] = stime[3];
+        start_time[5] = stime[4];
+        start_time[6] = stime[0];
+        start_time[7] = stime[1];
+        if (stime[11] == '-') { / * date only * /
+            len = 8;
+            end_time[0] = stime[6+13];
+            end_time[1] = stime[7+13];
+            end_time[2] = stime[8+13];
+            end_time[3] = stime[9+13];
+            end_time[4] = stime[3+13];
+            end_time[5] = stime[4+13];
+            end_time[6] = stime[0+13];
+            end_time[7] = stime[1+13];
+        }
+        else { / * date+time * /
+            start_time[8] = stime[11];
+            start_time[9] = stime[12];
+            start_time[10] = stime[14];
+            start_time[11] = stime[15];
+            len = 12;
+            if (stime[21] == ':') { / * time only = same day ending * /
+                strncpy(end_time, start_time, 8);
+                end_time[8] = stime[11+8];
+                end_time[9] = stime[12+8];
+                end_time[10] = stime[14+8];
+                end_time[11] = stime[15+8];
+            }
+            else { / * also date = different end date * /
+                end_time[0] = stime[6+19];
+                end_time[1] = stime[7+19];
+                end_time[2] = stime[8+19];
+                end_time[3] = stime[9+19];
+                end_time[4] = stime[3+19];
+                end_time[5] = stime[4+19];
+                end_time[6] = stime[0+19];
+                end_time[7] = stime[1+19];
+
+                end_time[8] = stime[11+19];
+                end_time[9] = stime[12+19];
+                end_time[10] = stime[14+19];
+                end_time[11] = stime[15+19];
+            }
+        }
+        */
+        gtk_tree_model_get(model, iter, COL_SORT, &stime, -1);
+        if (stime[8] == 'T') { /* date+time */
+            len = 15;
+        }
+        else { /* date only */
+            len = 8;
+        }
+        strncpy(start_time, stime, len);
+        strncpy(end_time, stime+len, len);
+        if (strncmp(end_time, el->date_now, len) < 0) { /* gone */
+            g_object_set(rend
+                     , "foreground",        "Red"
+                     , "foreground-set",    TRUE
+                     , "strikethrough-set", FALSE
+                     , "weight",            PANGO_WEIGHT_BOLD
+                     , "weight-set",        TRUE
+                     , NULL);
+        }
+        else if (strncmp(start_time, el->date_now, len) <= 0 
+              && strncmp(end_time, el->date_now, len) >= 0) { /* current */
+            g_object_set(rend
+                     , "foreground",        "Blue"
+                     , "foreground-set",    TRUE
+                     , "strikethrough-set", FALSE
+                     , "weight",            PANGO_WEIGHT_BOLD
+                     , "weight-set",        TRUE
+                     , NULL);
+        }
+        else { /* future */
+            g_object_set(rend
+                     , "foreground-set",    FALSE
+                     , "strikethrough-set", FALSE
+                     , "weight",            PANGO_WEIGHT_LIGHT
+                     , "weight-set",        TRUE
+                     , NULL);
+        }
+    }
+    else {
         g_object_set(rend
                  , "foreground-set",    FALSE
                  , "strikethrough-set", FALSE
                  , "weight-set",        FALSE
                  , NULL); 
-        return;
-    }
-
-    gtk_tree_model_get(model, iter, COL_TIME, &stime, -1);
-    if (stime[0] == '+')
-        stime++;
-    etime = stime + 8; /* hh:mm - hh:mm */
-    /* only add special highlight if we are on today (=start with time)
-     * and we process VEVENT 
-     */
-    if (stime[2] != ':' || el->page != EVENT_PAGE) { 
-        g_object_set(rend
-                 , "foreground-set",    FALSE
-                 , "strikethrough-set", FALSE
-                 , "weight-set",        FALSE
-                 , NULL); 
-    }
-    else if (strncmp(etime, el->time_now, 5) < 0) { /* gone */
-        g_object_set(rend
-                 , "foreground-set",    FALSE
-                 , "strikethrough",     TRUE
-                 , "strikethrough-set", TRUE
-                 , "weight",            PANGO_WEIGHT_LIGHT
-                 , "weight-set",        TRUE
-                 , NULL);
-    }
-    else if (strncmp(stime, el->time_now, 5) <= 0 
-          && strncmp(etime, el->time_now, 5) >= 0) { /* current */
-        g_object_set(rend
-                 , "foreground",        "Red"
-                 , "foreground-set",    TRUE
-                 , "strikethrough-set", FALSE
-                 , "weight",            PANGO_WEIGHT_BOLD
-                 , "weight-set",        TRUE
-                 , NULL);
-    }
-    else { /* future */
-        g_object_set(rend
-                 , "foreground-set",    FALSE
-                 , "strikethrough-set", FALSE
-                 , "weight",            PANGO_WEIGHT_BOLD
-                 , "weight-set",        TRUE
-                 , NULL);
     }
 }
 
@@ -344,7 +441,9 @@ static void add_el_row(el_win *el, xfical_appt *appt, char *par)
     }
 
     s_sort1 = g_strconcat(appt->starttimecur, appt->endtimecur, NULL);
+    /*
     s_sort = g_utf8_collate_key(s_sort1, -1);
+    */
 
     list1 = el->ListStore;
     gtk_list_store_append(list1, &iter1);
@@ -353,11 +452,13 @@ static void add_el_row(el_win *el, xfical_appt *appt, char *par)
             , COL_FLAGS, flags
             , COL_HEAD,  title
             , COL_UID,   appt->uid
-            , COL_SORT,  s_sort
+            , COL_SORT,  s_sort1
             , -1);
     g_free(title);
     g_free(s_sort1);
+    /*
     g_free(s_sort);
+    */
 }
 
 static void searh_rows(el_win *el, gchar *search_string, gchar *file_type)
@@ -509,10 +610,14 @@ static void todo_data(el_win *el)
     char      a_day[9];  /* yyyymmdd */
     struct tm *t;
 
-    el->days = 10*365; /* long enough time to get everything from future */
+    /* el->days = 10*365; *//* long enough time to get everything from future */
+    el->days = 0; /* not used */
     t = orage_localtime();
     g_sprintf(a_day, "%04d%02d%02d"
             , t->tm_year + 1900, t->tm_mon + 1, t->tm_mday);
+    g_sprintf(el->date_now, "%04d%02d%02dT%02d%02d00"
+            , t->tm_year + 1900, t->tm_mon + 1, t->tm_mday
+            , t->tm_hour, t->tm_min);
     app_data(el, a_day, NULL);
 }
 

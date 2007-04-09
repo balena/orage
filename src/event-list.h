@@ -88,7 +88,8 @@ typedef struct
     gboolean today;       /* flag: today or not */
     int      days;        /* how many extra days to show; usually 0 */
     el_page  page;        /* appointment page to show */
-    char     time_now[5]; /* hh:mm */
+    char     time_now[6]; /* hh:mm */
+    char     date_now[13]; /* yyyymmddhhmm */
 } el_win; /* event list window */
 
 el_win* create_el_win(void);
