@@ -24,6 +24,11 @@
 #ifndef __ORAGE_FUNCTIONS_H__
 #define __ORAGE_FUNCTIONS_H__
 
+#define XFICAL_APPT_TIME_FORMAT "%04d%02d%02dT%02d%02d%02d"
+#define XFICAL_APPT_TIME_FORMAT_LEN 16
+#define XFICAL_APPT_DATE_FORMAT "%04d%02d%02d"
+#define XFICAL_APPT_DATE_FORMAT_LEN 9
+
 #define ORAGE_STR_EXISTS(str) ((str != NULL) && (str[0] != 0))
 
 void orage_message(const char *format, ...);
@@ -57,9 +62,12 @@ void orage_select_date(GtkCalendar *cal
 
 void orage_select_today(GtkCalendar *cal);
 
-/*
 struct tm orage_i18_date_to_tm_date(const char *display);
 
-char *orage_tm_date_to_i18_date(struct tm tm_date);
-*/
+char *orage_tm_date_to_i18_date(struct tm *tm_date);
+
+struct tm orage_icaltime_to_tm_time(const char *i18_date);
+
+char *orage_tm_time_to_icaltime(struct tm *t);
+
 #endif /* !__ORAGE_FUNCTIONS_H__ */

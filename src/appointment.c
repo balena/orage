@@ -63,78 +63,6 @@
 static void fill_appt_window(appt_win *apptw, char *action, char *par);
 
 
-/* FIXME: moved form functions. because, these do not work there!
- * I do not know why NLS does not work here. Very annoying!
- * */
-struct tm orage_i18_date_to_tm_date(const char *i18_date)
-{
-    const char *date_format;
-    char *ret;
-    struct tm tm_date = {0,0,0,0,0,0,0,0,0};
-
-    date_format = _("%m/%d/%Y");
-    /*
-    g_print("format: %s (%s) %s\n", date_format, _("%m/%d/%Y"), "%m/%d/%Y");
-    */
-    ret = (char *)strptime(i18_date, date_format, &tm_date);
-    if (ret == NULL)
-        g_error("Orage: orage_i18_date_to_tm_date wrong format (%s)"
-                , i18_date);
-    else if (strlen(ret))
-        g_error("Orage: orage_i18_date_to_tm_date too long format (%s)"
-                , i18_date);
-    return(tm_date);
-}
-
-char *orage_tm_date_to_i18_date(struct tm tm_date)
-{
-    const char *date_format;
-    static char i18_date[32];
-    /*
-      struct tm d = {0,0,0,0,0,0,0,0,0};
-    */
-
-    date_format = _("%m/%d/%Y");
-    /*
-    g_print("format: %s\n", date_format);
-    g_print("format: %s (%s) %s\n", date_format, _("%m/%d/%Y"), "%m/%d/%Y");
-    */
-    /*
-      d.tm_mday = day;
-      d.tm_mon = month - 1;
-      d.tm_year = year - 1900;
-    */
-
-    if (strftime(i18_date, 32, date_format, &tm_date))
-        return(i18_date);
-    else {
-        g_error("Orage: orage_tm_date_to_i18_date too long string in strftime");        return(NULL);
-    }
-}
-
-
-static gboolean ical_to_year_month_day_hour_minute(char *ical
-    , int *year, int *month, int *day, int *hour, int *minute)
-{
-    int i;
-
-    i = sscanf(ical, "%04d%02d%02dT%02d%02d", year, month, day, hour, minute);
-    switch (i) {
-        case 3: /* date */
-            *hour = -1;
-            *minute = -1;
-            break;
-        case 5: /* time */
-            break;
-        default: /* error */
-            g_warning("ical_to_year_month_day_hour_minute: ical error %s %d"
-                    , ical, i);
-            return FALSE;
-            break;
-    }
-    return TRUE;
-}
-
 static void combo_box_append_array(GtkWidget *combo_box, char *text[], int size)
 {
     register int i;
@@ -503,7 +431,7 @@ static void on_appNote_buffer_changed_cb(GtkTextBuffer *b, gpointer user_data)
                 , GTK_TEXT_SEARCH_TEXT_ONLY
                 , &match_start, &match_end, &end)) { /* found it */
         tm = orage_localtime();
-        cdate = orage_tm_date_to_i18_date(*tm);
+        cdate = orage_tm_date_to_i18_date(tm);
         gtk_text_buffer_delete(tb, &match_start, &match_end);
         gtk_text_buffer_insert(tb, &match_start, cdate, -1);
     }
@@ -519,7 +447,7 @@ static void on_appNote_buffer_changed_cb(GtkTextBuffer *b, gpointer user_data)
                 , GTK_TEXT_SEARCH_TEXT_ONLY
                 , &match_start, &match_end, &end)) { /* found it */
         tm = orage_localtime();
-        cdate = orage_tm_date_to_i18_date(*tm);
+        cdate = orage_tm_date_to_i18_date(tm);
         g_sprintf(ctime, "%02d:%02d", tm->tm_hour, tm->tm_min);
         cdatetime = g_strconcat(cdate, " ", ctime, NULL);
         gtk_text_buffer_delete(tb, &match_start, &match_end);
@@ -1091,11 +1019,11 @@ static void on_Date_button_clicked_cb(GtkWidget *button
                     , (guint *)&cur_t.tm_year, (guint *)&cur_t.tm_mon
                     , (guint *)&cur_t.tm_mday);
             cur_t.tm_year -= 1900;
-            date_to_display = orage_tm_date_to_i18_date(cur_t);
+            date_to_display = orage_tm_date_to_i18_date(&cur_t);
             break;
         case 1:
             t = orage_localtime();
-            date_to_display = orage_tm_date_to_i18_date(*t);
+            date_to_display = orage_tm_date_to_i18_date(t);
             break;
         case GTK_RESPONSE_DELETE_EVENT:
         default:
@@ -1150,7 +1078,7 @@ static void on_appCompletedTimezone_clicked_cb(GtkButton *button
 static void fill_appt_window_times(appt_win *apptw, xfical_appt *appt)
 {
     char *startdate_to_display, *enddate_to_display, *completeddate_to_display;
-    int year, month, day, hours, minutes;
+    int days, hours, minutes;
     struct tm tm_date;
 
     /* all day ? */
@@ -1159,25 +1087,19 @@ static void fill_appt_window_times(appt_win *apptw, xfical_appt *appt)
 
     /* start time */
     if (strlen(appt->starttime) > 6 ) {
-        ical_to_year_month_day_hour_minute(appt->starttime
-                , &year, &month, &day, &hours, &minutes);
-        tm_date.tm_year = year - 1900;
-        tm_date.tm_mon  = month - 1;
-        tm_date.tm_mday = day;
-        startdate_to_display = orage_tm_date_to_i18_date(tm_date);
+        tm_date = orage_icaltime_to_tm_time(appt->starttime);
+        startdate_to_display = orage_tm_date_to_i18_date(&tm_date);
         gtk_button_set_label(GTK_BUTTON(apptw->StartDate_button)
                 , (const gchar *)startdate_to_display);
-
-        if (hours > -1 && minutes > -1) {
-            gtk_spin_button_set_value(
-                GTK_SPIN_BUTTON(apptw->StartTime_spin_hh), (gdouble)hours);
-            gtk_spin_button_set_value(
-                GTK_SPIN_BUTTON(apptw->StartTime_spin_mm), (gdouble)minutes);
-        }
-        if (appt->start_tz_loc) {
+        gtk_spin_button_set_value(
+                GTK_SPIN_BUTTON(apptw->StartTime_spin_hh)
+                        , (gdouble)tm_date.tm_hour);
+        gtk_spin_button_set_value(
+                GTK_SPIN_BUTTON(apptw->StartTime_spin_mm)
+                        , (gdouble)tm_date.tm_min);
+        if (appt->start_tz_loc)
             gtk_button_set_label(GTK_BUTTON(apptw->StartTimezone_button)
                     , _(appt->start_tz_loc));
-        }
         else /* we should never get here */
             g_warning("fill_appt_window_times: start_tz_loc is null");
     }
@@ -1186,21 +1108,16 @@ static void fill_appt_window_times(appt_win *apptw, xfical_appt *appt)
 
     /* end time */
     if (strlen(appt->endtime) > 6 ) {
-        ical_to_year_month_day_hour_minute(appt->endtime
-                , &year, &month, &day, &hours, &minutes);
-        tm_date.tm_year = year - 1900;
-        tm_date.tm_mon  = month - 1;
-        tm_date.tm_mday = day;
-        enddate_to_display = orage_tm_date_to_i18_date(tm_date);
+        tm_date = orage_icaltime_to_tm_time(appt->endtime);
+        enddate_to_display = orage_tm_date_to_i18_date(&tm_date);
         gtk_button_set_label(GTK_BUTTON(apptw->EndDate_button)
                 , (const gchar *)enddate_to_display);
-
-        if (hours > -1 && minutes > -1) {
-            gtk_spin_button_set_value(
-                GTK_SPIN_BUTTON(apptw->EndTime_spin_hh), (gdouble)hours);
-            gtk_spin_button_set_value(
-                GTK_SPIN_BUTTON(apptw->EndTime_spin_mm), (gdouble)minutes);
-        }
+        gtk_spin_button_set_value(
+                GTK_SPIN_BUTTON(apptw->EndTime_spin_hh)
+                        , (gdouble)tm_date.tm_hour);
+        gtk_spin_button_set_value(
+                GTK_SPIN_BUTTON(apptw->EndTime_spin_mm)
+                        , (gdouble)tm_date.tm_min);
         if (appt->end_tz_loc) {
             gtk_button_set_label(GTK_BUTTON(apptw->EndTimezone_button)
                     , _(appt->end_tz_loc));
@@ -1214,11 +1131,11 @@ static void fill_appt_window_times(appt_win *apptw, xfical_appt *appt)
     /* duration */
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(apptw->Dur_checkbutton)
             , appt->use_duration);
-    day = appt->duration/(24*60*60);
-    hours = (appt->duration-day*(24*60*60))/(60*60);
-    minutes = (appt->duration-day*(24*60*60)-hours*(60*60))/(60);
+    days = appt->duration/(24*60*60);
+    hours = (appt->duration-days*(24*60*60))/(60*60);
+    minutes = (appt->duration-days*(24*60*60)-hours*(60*60))/(60);
     gtk_spin_button_set_value(GTK_SPIN_BUTTON(apptw->Dur_spin_dd)
-            , (gdouble)day);
+            , (gdouble)days);
     gtk_spin_button_set_value(GTK_SPIN_BUTTON(apptw->Dur_spin_hh)
             , (gdouble)hours);
     gtk_spin_button_set_value(GTK_SPIN_BUTTON(apptw->Dur_spin_mm)
@@ -1228,23 +1145,16 @@ static void fill_appt_window_times(appt_win *apptw, xfical_appt *appt)
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
             apptw->Completed_checkbutton), appt->completed);
     if (strlen(appt->completedtime) > 6 ) {
-        ical_to_year_month_day_hour_minute(appt->completedtime
-                , &year, &month, &day, &hours, &minutes);
-        tm_date.tm_year = year - 1900;
-        tm_date.tm_mon  = month - 1;
-        tm_date.tm_mday = day;
-        completeddate_to_display = orage_tm_date_to_i18_date(tm_date);
+        tm_date = orage_icaltime_to_tm_time(appt->completedtime);
+        completeddate_to_display = orage_tm_date_to_i18_date(&tm_date);
         gtk_button_set_label(GTK_BUTTON(apptw->CompletedDate_button)
                 , (const gchar *)completeddate_to_display);
-
-        if (hours > -1 && minutes > -1) {
-            gtk_spin_button_set_value(
+        gtk_spin_button_set_value(
                 GTK_SPIN_BUTTON(apptw->CompletedTime_spin_hh)
-                        , (gdouble)hours);
-            gtk_spin_button_set_value(
+                        , (gdouble)tm_date.tm_hour);
+        gtk_spin_button_set_value(
                 GTK_SPIN_BUTTON(apptw->CompletedTime_spin_mm)
-                        , (gdouble)minutes);
-        }
+                        , (gdouble)tm_date.tm_hour);
         if (appt->completed_tz_loc) {
             gtk_button_set_label(GTK_BUTTON(apptw->CompletedTimezone_button)
                     , _(appt->completed_tz_loc));
@@ -1470,7 +1380,7 @@ static void fill_appt_window(appt_win *apptw, char *action, char *par)
             gtk_spin_button_set_value(
                     GTK_SPIN_BUTTON(apptw->Recur_count_spin), (gdouble)1);
             t = orage_localtime();
-            untildate_to_display = orage_tm_date_to_i18_date(*t);
+            untildate_to_display = orage_tm_date_to_i18_date(t);
             gtk_button_set_label(GTK_BUTTON(apptw->Recur_until_button)
                     , (const gchar *)untildate_to_display);
             break;
@@ -1481,7 +1391,7 @@ static void fill_appt_window(appt_win *apptw, char *action, char *par)
                     GTK_SPIN_BUTTON(apptw->Recur_count_spin)
                     , (gdouble)appt->recur_count);
             t = orage_localtime();
-            untildate_to_display = orage_tm_date_to_i18_date(*t);
+            untildate_to_display = orage_tm_date_to_i18_date(t);
             gtk_button_set_label(GTK_BUTTON(apptw->Recur_until_button)
                     , (const gchar *)untildate_to_display);
             break;
@@ -1490,12 +1400,8 @@ static void fill_appt_window(appt_win *apptw, char *action, char *par)
                     GTK_TOGGLE_BUTTON(apptw->Recur_until_rb), TRUE);
             gtk_spin_button_set_value(
                     GTK_SPIN_BUTTON(apptw->Recur_count_spin), (gdouble)1);
-            ical_to_year_month_day_hour_minute(appt->recur_until
-                    , &year, &month, &day, &hours, &minutes);
-            tm_date.tm_year = year - 1900;
-            tm_date.tm_mon  = month - 1;
-            tm_date.tm_mday = day;
-            untildate_to_display = orage_tm_date_to_i18_date(tm_date);
+            tm_date = orage_icaltime_to_tm_time(appt->recur_until);
+            untildate_to_display = orage_tm_date_to_i18_date(&tm_date);
             gtk_button_set_label(GTK_BUTTON(apptw->Recur_until_button)
                     , (const gchar *)untildate_to_display);
             break;

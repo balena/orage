@@ -160,8 +160,4 @@ typedef struct _appt_win
 
 appt_win *create_appt_win(char *action, char *par, el_win *el);
 
-struct tm orage_i18_date_to_tm_date(const char *display);
-
-char *orage_tm_date_to_i18_date(struct tm tm_date);
-
 #endif /* !__APPOINTMENT_H__ */

@@ -44,7 +44,7 @@ typedef struct {
     gint delay;
     GtkWidget *wReminder; /* needed for callbacks when stopping timer */
     gboolean sound_active;
-} xfce_audio_alarm_type;
+} orage_audio_alarm_type;
 
 
 void create_wReminder(alarm_struct *alarm);

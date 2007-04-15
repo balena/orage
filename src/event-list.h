@@ -89,7 +89,7 @@ typedef struct
     int      days;        /* how many extra days to show; usually 0 */
     el_page  page;        /* appointment page to show */
     char     time_now[6]; /* hh:mm */
-    char     date_now[13]; /* yyyymmddhhmm */
+    char     date_now[XFICAL_APPT_TIME_FORMAT_LEN]; /* yyyymmddThhmmss */
 } el_win; /* event list window */
 
 el_win* create_el_win(void);

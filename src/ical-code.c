@@ -64,6 +64,9 @@
 #include "appointment.h"
 #include "parameters.h"
 
+/*
+#define ORAGE_DEBUG 1
+*/
 typedef struct
 {
     struct icaltimetype stime; /* start time */
@@ -487,12 +490,17 @@ const gchar *trans_timezone[] = {
 
 static xfical_timezone_array xfical_get_timezones()
 {
+#undef P_N
+#define P_N "xfical_timezone_array: "
     static xfical_timezone_array tz={0, NULL};
     static char tz_utc[]="UTC";
     static char tz_floating[]="floating";
     icalarray *tz_array;
     icaltimezone *l_tz;
 
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
     if (tz.count == 0) {
         tz_array = icaltimezone_get_builtin_timezones();
         tz.city = (char **)g_malloc(sizeof(char *)*(2+tz_array->num_elements));
@@ -510,13 +518,18 @@ static xfical_timezone_array xfical_get_timezones()
 
 gboolean xfical_set_local_timezone()
 {
+#undef P_N
+#define P_N "xfical_set_local_timezone: "
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
     local_icaltimezone = NULL;
     g_par.local_timezone_utc = FALSE;
     if (!utc_icaltimezone)
             utc_icaltimezone = icaltimezone_get_utc_timezone();
 
     if (!ORAGE_STR_EXISTS(g_par.local_timezone)) {
-        g_warning("xfical_set_local_timezone: empty timezone\n");
+        g_warning(P_N "empty timezone\n");
         g_par.local_timezone = g_strdup("floating");
     }
 
@@ -525,7 +538,7 @@ gboolean xfical_set_local_timezone()
         local_icaltimezone = utc_icaltimezone;
     }
     else if (strcmp(g_par.local_timezone,"floating") == 0) {
-        g_warning("Default timezone set to floating. Do not use timezones when setting appointments, it does not make sense without proper local timezone.");
+        orage_message("Default timezone set to floating. Do not use timezones when setting appointments, it does not make sense without proper local timezone.");
         return(TRUE); /* g_par.local_timezone = NULL */
     }
     else
@@ -533,7 +546,7 @@ gboolean xfical_set_local_timezone()
                 icaltimezone_get_builtin_timezone(g_par.local_timezone);
 
     if (!local_icaltimezone) {
-        g_warning("xfical_set_local_timezone: builtin timezone %s not found"
+        g_warning(P_N "builtin timezone %s not found"
                 , g_par.local_timezone);
         return (FALSE);
     }
@@ -589,6 +602,9 @@ static gboolean xfical_internal_file_open(icalcomponent **p_ical
     icalcomponent *iter;
     gint cnt=0;
 
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
     if (*p_fical != NULL)
         g_warning(P_N "file already open");
     if (!ORAGE_STR_EXISTS(file_icalpath)) {
@@ -659,9 +675,14 @@ static gboolean xfical_internal_file_open(icalcomponent **p_ical
 
 gboolean xfical_file_open(gboolean foreign)
 { 
+#undef P_N
+#define P_N "xfical_file_open: "
     gboolean ok;
     gint i;
 
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
     ok = xfical_internal_file_open(&ical, &fical, g_par.orage_file, FALSE);
     if (ok && foreign) /* let's open foreign files */
         for (i = 0; i < g_par.foreign_count; i++) {
@@ -677,6 +698,11 @@ gboolean xfical_file_open(gboolean foreign)
 
 gboolean xfical_archive_open(void)
 {
+#undef P_N
+#define P_N "xfical_archive_open: "
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
     if (!g_par.archive_limit)
         return(FALSE);
     if (!ORAGE_STR_EXISTS(g_par.archive_file))
@@ -688,9 +714,14 @@ gboolean xfical_archive_open(void)
 
 gboolean xfical_file_check(gchar *file_name)
 { 
+#undef P_N
+#define P_N "xfical_file_check: "
     icalcomponent *x_ical = NULL;
     icalset *x_fical = NULL;
 
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
     return(xfical_internal_file_open(&x_ical, &x_fical, file_name, TRUE));
 }
 
@@ -700,6 +731,9 @@ void xfical_file_close(gboolean foreign)
 #define P_N "xfical_file_close: "
     gint i;
 
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
     if (fical == NULL)
         g_warning(P_N "fical is NULL");
     else
@@ -721,6 +755,9 @@ void xfical_archive_close(void)
 {
 #undef  P_N 
 #define P_N "xfical_archive_close: "
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
     if (!ORAGE_STR_EXISTS(g_par.archive_file))
         return;
 
@@ -732,9 +769,14 @@ void xfical_archive_close(void)
 
 static struct icaltimetype ical_get_current_local_time()
 {
+#undef P_N
+#define P_N "ical_get_current_local_time: "
     struct tm *tm;
     static struct icaltimetype ctime;
 
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
     if (g_par.local_timezone_utc)
         ctime = icaltime_current_time_with_zone(utc_icaltimezone);
     else if ((g_par.local_timezone)
@@ -768,6 +810,9 @@ static struct icaltimetype convert_to_timezone(struct icaltimetype t
     icaltimezone *l_icaltimezone = NULL;
     struct icaltimetype tz;
 
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
     itime_tz = icalproperty_get_first_parameter(p, ICAL_TZID_PARAMETER);
     if (itime_tz) {
          tz_loc = (char *) icalparameter_get_tzid(itime_tz);
@@ -786,8 +831,13 @@ static struct icaltimetype convert_to_timezone(struct icaltimetype t
 static struct icaltimetype convert_to_local_timezone(struct icaltimetype t
             , icalproperty *p)
 {
+#undef P_N
+#define P_N "convert_to_local_timezone: "
     struct icaltimetype tl;
 
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
     tl = convert_to_timezone(t, p);
     tl = icaltime_convert_to_zone(tl, local_icaltimezone);
 
@@ -804,6 +854,9 @@ static xfical_period get_period(icalcomponent *c)
     struct icaldurationtype duration_tmp;
     gint dur_int;
 
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
     /* Exactly one start time must be there */
     p = icalcomponent_get_first_property(c, ICAL_DTSTART_PROPERTY);
     if (p != NULL) {
@@ -878,8 +931,13 @@ static xfical_period get_period(icalcomponent *c)
  */
 static int local_compare(struct icaltimetype a, struct icaltimetype b)
 {
+#undef P_N
+#define P_N "local_compare: "
     int retval = 0;
 
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
     if (a.year > b.year)
         retval = 1;
     else if (a.year < b.year)
@@ -933,8 +991,13 @@ static int local_compare(struct icaltimetype a, struct icaltimetype b)
 static int local_compare_date_only(struct icaltimetype a
         , struct icaltimetype b)
 {
+#undef P_N
+#define P_N "local_compare_date_only: "
     int retval;
-                                                                                
+
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
     if (a.year > b.year)
         retval = 1;
     else if (a.year < b.year)
@@ -963,6 +1026,9 @@ static struct icaltimetype convert_to_zone(struct icaltimetype t, gchar *tz)
     struct icaltimetype wtime = t;
     icaltimezone *l_icaltimezone = NULL;
 
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
     if ORAGE_STR_EXISTS(tz) {
         if (strcmp(tz, "UTC") == 0) {
             wtime = icaltime_convert_to_zone(t, utc_icaltimezone);
@@ -994,6 +1060,9 @@ int xfical_compare_times(xfical_appt *appt)
     const char *text;
     struct icaldurationtype duration;
 
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
     if (appt->use_duration) {
         if (! ORAGE_STR_EXISTS(appt->starttime)) {
             g_warning(P_N "null start time");
@@ -1040,9 +1109,14 @@ int xfical_compare_times(xfical_appt *appt)
   */
 xfical_appt *xfical_appt_alloc()
 {
+#undef P_N
+#define P_N "xfical_appt_alloc: "
     xfical_appt *appt;
     int i;
 
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
     appt = g_new0(xfical_appt, 1);
     appt->availability = 1;
     appt->alarm_before = TRUE;
@@ -1054,10 +1128,13 @@ xfical_appt *xfical_appt_alloc()
 
 static void alarm_free(gpointer galarm, gpointer dummy)
 {
-    alarm_struct *alarm;
+#undef P_N
+#define P_N "alarm_free: "
+    alarm_struct *alarm = (alarm_struct *)galarm;;
 
-    alarm = (alarm_struct *)galarm;
-
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
     g_string_free(alarm->uid, TRUE);
     g_string_free(alarm->alarm_time, TRUE);
     g_string_free(alarm->event_time, TRUE);
@@ -1072,8 +1149,13 @@ static void alarm_free(gpointer galarm, gpointer dummy)
 
 static gint alarm_order(gconstpointer a, gconstpointer b)
 {
+#undef P_N
+#define P_N "alarm_order: "
     struct icaltimetype t1, t2;
 
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
     t1=icaltime_from_string(((alarm_struct *)a)->alarm_time->str);
     t2=icaltime_from_string(((alarm_struct *)b)->alarm_time->str);
 
@@ -1085,8 +1167,13 @@ static void alarm_add(icalproperty_status action
          , char *sound, gint repeat_cnt, gint repeat_delay
          , struct icaltimetype alarm_time, struct icaltimetype event_time)
 {
+#undef P_N
+#define P_N "alarm_add: "
     alarm_struct *new_alarm;
 
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
     new_alarm = g_new(alarm_struct, 1);
     new_alarm->uid = g_string_new(file_type);
     new_alarm->uid = g_string_append(new_alarm->uid, uid);
@@ -1131,6 +1218,9 @@ static void xfical_alarm_build_list_internal_real(gboolean first_list_today
     icalparameter *trg_related_par;
     icalparameter_related rel;
 
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
     cur_time = ical_get_current_local_time();
 
     for (c = icalcomponent_get_first_component(base, ICAL_ANY_COMPONENT);
@@ -1281,9 +1371,14 @@ static void xfical_alarm_build_list_internal_real(gboolean first_list_today
 
 static void xfical_alarm_build_list_internal(gboolean first_list_today)
 {
+#undef P_N
+#define P_N "xfical_alarm_build_list_internal: "
     gchar file_type[8];
     gint i;
 
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
     /* first remove all old alarms by cleaning the whole structure */
     g_list_foreach(g_par.alarm_list, alarm_free, NULL);
     g_list_free(g_par.alarm_list);
@@ -1302,27 +1397,45 @@ static void xfical_alarm_build_list_internal(gboolean first_list_today)
 
 void xfical_alarm_build_list(gboolean first_list_today)
 {
+#undef P_N
+#define P_N "xfical_alarm_build_list: "
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
     xfical_file_open(TRUE);
     xfical_alarm_build_list_internal(first_list_today);
     xfical_file_close(TRUE);
 }
 
+/*
 gboolean xfical_alarm_passed(char *alarm_stime)
 {
+#undef P_N
+#define P_N "xfical_alarm_passed: "
     struct icaltimetype alarm_time, cur_time;
 
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
     cur_time = ical_get_current_local_time();
     alarm_time = icaltime_from_string(alarm_stime);
     if (local_compare(cur_time, alarm_time) > 0)
         return(TRUE);
     return(FALSE);
  }
+ */
 
+/*
 gboolean xfical_duration(char *alarm_stime, int *days, int *hours, int *mins)
 {
+#undef P_N
+#define P_N "xfical_duration: "
     struct icaltimetype alarm_time, cur_time;
     struct icaldurationtype duration;
 
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
     duration = icaldurationtype_null_duration();
     cur_time = ical_get_current_local_time();
     alarm_time = icaltime_from_string(alarm_stime);
@@ -1334,14 +1447,20 @@ gboolean xfical_duration(char *alarm_stime, int *days, int *hours, int *mins)
     *mins = duration.minutes;
     return(TRUE);
  }
+ */
 
 static char *generate_uid()
 {
+#undef P_N
+#define P_N "generate_uid: "
     gchar xf_host[XFICAL_UID_LEN/2+1];
     static gchar xf_uid[XFICAL_UID_LEN+1];
     static int seq = 0;
     struct icaltimetype dtstamp;
 
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
     dtstamp = icaltime_current_time_with_zone(utc_icaltimezone);
     gethostname(xf_host, XFICAL_UID_LEN/2);
     xf_host[XFICAL_UID_LEN/2] = '\0';
@@ -1354,11 +1473,16 @@ static char *generate_uid()
 
 static void appt_add_alarm_internal(xfical_appt *appt, icalcomponent *ievent)
 {
+#undef P_N
+#define P_N "appt_add_alarm_internal: "
     icalcomponent *ialarm;
     gint duration=0;
     struct icaltriggertype trg;
     icalattach *attach;
 
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
     duration = appt->alarmtime;
     trg.time = icaltime_null_time();
     if (appt->alarm_before)
@@ -1426,6 +1550,9 @@ static void appt_add_recur_internal(xfical_appt *appt, icalcomponent *ievent)
     int i, cnt;
     icaltimezone *l_icaltimezone = NULL;
 
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
     recur_p = g_stpcpy(recur_str, "FREQ=");
     switch(appt->freq) {
         case XFICAL_FREQ_DAILY:
@@ -1522,6 +1649,9 @@ static char *appt_add_internal(xfical_appt *appt, gboolean add, char *uid
     icalcomponent_kind ikind = ICAL_VEVENT_COMPONENT;
     icaltimezone *l_icaltimezone = NULL;
 
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
     dtstamp = icaltime_current_time_with_zone(utc_icaltimezone);
     if (add) {
         int_uid = generate_uid();
@@ -1740,6 +1870,9 @@ void ical_appt_get_alarm_internal(icalcomponent *c,  xfical_appt *appt)
     icalparameter *trg_related_par;
     icalparameter_related rel;
 
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
     for (ca = icalcomponent_get_first_component(c, ICAL_VALARM_COMPONENT); 
          ca != 0;
          ca = icalcomponent_get_next_component(c, ICAL_VALARM_COMPONENT)) {
@@ -1802,9 +1935,14 @@ static void process_start_date(xfical_appt *appt, icalproperty *p
         , struct icaltimetype *itime, struct icaltimetype *stime
         , struct icaltimetype *sltime, struct icaltimetype *etime)
 {
+#undef P_N
+#define P_N "process_start_date: "
     const char *text;
     icalparameter *itime_tz;
 
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
     text = icalproperty_get_value_as_string(p);
     *itime = icaltime_from_string(text);
     *stime = convert_to_timezone(*itime, p);
@@ -1834,9 +1972,14 @@ static void process_end_date(xfical_appt *appt, icalproperty *p
         , struct icaltimetype *itime, struct icaltimetype *etime
         , struct icaltimetype *eltime)
 {
+#undef P_N
+#define P_N "process_end_date: "
     const char *text;
     icalparameter *itime_tz;
 
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
     text = icalproperty_get_value_as_string(p);
     *itime = icaltime_from_string(text);
     *eltime = convert_to_local_timezone(*itime, p);
@@ -1860,11 +2003,16 @@ static void process_end_date(xfical_appt *appt, icalproperty *p
 
 static void process_completed_date(xfical_appt *appt, icalproperty *p)
 {
+#undef P_N
+#define P_N "process_completed_date: "
     const char *text;
     icalparameter *itime_tz;
     struct icaltimetype itime;
     struct icaltimetype eltime;
 
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
     /* FIXME: convert to local timezone */
     text = icalproperty_get_value_as_string(p);
     itime = icaltime_from_string(text);
@@ -1908,6 +2056,9 @@ static xfical_appt *xfical_appt_get_internal(char *ical_uid
     int i, cnt, day;
     gboolean stime_found = FALSE, etime_found = FALSE, valid_comp = FALSE;
 
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
     for (c = icalcomponent_get_first_component(base, ICAL_ANY_COMPONENT); 
          c != 0 && !key_found;
          c = icalcomponent_get_next_component(base, ICAL_ANY_COMPONENT)) {
@@ -2176,6 +2327,11 @@ static xfical_appt *xfical_appt_get_internal(char *ical_uid
 
 static void xfical_appt_get_fill_internal(xfical_appt *appt, char *file_type)
 {
+#undef P_N
+#define P_N "xfical_appt_get_fill_internal: "
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
     if (appt) {
         appt->uid = g_strconcat(file_type, appt->uid, NULL);
         appt->title = g_strdup(appt->title);
@@ -2200,8 +2356,13 @@ static void xfical_appt_get_fill_internal(xfical_appt *appt, char *file_type)
 static xfical_appt *appt_get_any(char *ical_uid, icalcomponent *base
         , char *file_type)
 {
+#undef P_N
+#define P_N "appt_get_any: "
     xfical_appt *appt;
 
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
     if ((appt = g_memdup(xfical_appt_get_internal(ical_uid, base)
             , sizeof(xfical_appt)))) {
         xfical_appt_get_fill_internal(appt, file_type);
@@ -2239,6 +2400,9 @@ xfical_appt *xfical_appt_get(char *uid)
     char file_type[8];
     gint i;
 
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
     strncpy(file_type, uid, 4); /* file id */
     file_type[4] = '\0';
     ical_uid = uid+4; /* skip file id */
@@ -2272,6 +2436,11 @@ xfical_appt *xfical_appt_get(char *uid)
 
 void xfical_appt_free(xfical_appt *appt)
 {
+#undef P_N
+#define P_N "xfical_appt_free: "
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
     g_free(appt->uid);
     g_free(appt->title);
     g_free(appt->location);
@@ -2299,6 +2468,9 @@ gboolean xfical_appt_mod(char *ical_uid, xfical_appt *app)
     struct icaltimetype create_time = icaltime_null_time();
     int i;
 
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
     if (ical_uid == NULL) {
         g_warning(P_N "Got NULL uid. doing nothing");
         return(FALSE);
@@ -2357,6 +2529,9 @@ gboolean xfical_appt_del(char *ical_uid)
     char *uid, *int_uid;
     int i;
 
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
     if (ical_uid == NULL) {
         g_warning(P_N "Got NULL uid. doing nothing");
         return(FALSE);
@@ -2437,6 +2612,9 @@ static xfical_appt *xfical_appt_get_next_on_day_internal(char *a_day
     icalrecur_iterator* ri;
     icalcomponent_kind ikind = ICAL_VEVENT_COMPONENT;
 
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
     /* setup period to test */
     asdate = icaltime_from_string(a_day);
     aedate = asdate;
@@ -2562,6 +2740,9 @@ xfical_appt *xfical_appt_get_next_on_day(char *a_day, gboolean first, gint days
 #define P_N "xfical_appt_get_next_on_day: "
     gint i;
 
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
     if (file_type[0] == 'O') {
         return(xfical_appt_get_next_on_day_internal(a_day, first
                 , days, type, ical, file_type));
@@ -2594,6 +2775,8 @@ xfical_appt *xfical_appt_get_next_on_day(char *a_day, gboolean first, gint days
 void xfical_mark_calendar_internal(GtkCalendar *gtkcal, icalcomponent *base
         , int year, int month)
 {
+#undef P_N
+#define P_N "xfical_mark_calendar_internal: "
     xfical_period per;
     struct icaltimetype nsdate, nedate;
     static icalcomponent *c;
@@ -2602,6 +2785,9 @@ void xfical_mark_calendar_internal(GtkCalendar *gtkcal, icalcomponent *base
     icalproperty *p = NULL;
     gint start_day, day_cnt, end_day;
 
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
     for (c = icalcomponent_get_first_component(base, ICAL_VEVENT_COMPONENT);
          c != 0;
          c = icalcomponent_get_next_component(base, ICAL_VEVENT_COMPONENT)) {
@@ -2657,8 +2843,13 @@ void xfical_mark_calendar_internal(GtkCalendar *gtkcal, icalcomponent *base
 
 void xfical_mark_calendar(GtkCalendar *gtkcal, int year, int month)
 {
+#undef P_N
+#define P_N "xfical_mark_calendar: "
     gint i;
 
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
     gtk_calendar_freeze(gtkcal);
     gtk_calendar_clear_marks(gtkcal);
     xfical_mark_calendar_internal(gtkcal, ical, year, month);
@@ -2670,8 +2861,13 @@ void xfical_mark_calendar(GtkCalendar *gtkcal, int year, int month)
 
 void xfical_icalcomponent_archive_normal(icalcomponent *e) 
 {
+#undef P_N
+#define P_N "xfical_icalcomponent_archive_normal: "
     icalcomponent *d;
 
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
     /* Add to the archive file */
     d = icalcomponent_new_clone(e);
     icalcomponent_add_component(aical, d);
@@ -2699,6 +2895,9 @@ void xfical_icalcomponent_archive_recurrent(icalcomponent *e
     icalproperty *p, *pdtstart, *pdtend;
     gboolean upd_edate = FALSE;
 
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
     /* *** PHASE 1 *** : Add to the archive file */
     /* We must first check that this event has not yet been archived.
      * It is recurrent, so we may have added it earlier already.
@@ -2825,6 +3024,9 @@ gboolean xfical_archive(void)
     struct tm *threshold;
     char *uid;
 
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
     if (g_par.archive_limit == 0) {
         orage_message(_("Archiving not enabled. Exiting"));
         return(TRUE);
@@ -2897,10 +3099,15 @@ gboolean xfical_archive(void)
 icalproperty *replace_repeating(icalcomponent *c, icalproperty *p
         , icalproperty_kind k)
 {
+#undef P_N
+#define P_N "replace_repeating: "
     icalproperty *s, *n;
     const char *text;
     const gint x_len = strlen("X-ORAGE-ORIG-");
 
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
     text = g_strdup(icalproperty_as_ical_string(p));
     n = icalproperty_new_from_string(text + x_len);
     g_free((gchar *)text);
@@ -2924,6 +3131,9 @@ gboolean xfical_unarchive(void)
     icalproperty *p;
     const char *text;
 
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
     /* PHASE 1: go through base orage file and remove "repeat" shortcuts */
     orage_message(_("Starting archive removal: PHASE 1: reset recurring appointments"));
     if (!xfical_file_open(FALSE)) {
@@ -2982,6 +3192,9 @@ gboolean xfical_unarchive_uid(char *uid)
     const char *text;
     char *ical_uid;
 
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
     ical_uid = uid+4; /* skip file id (which is A00. now)*/
     if (!xfical_file_open(FALSE) || !xfical_archive_open()) {
         g_warning(P_N "file open error");
@@ -3021,6 +3234,9 @@ static gboolean add_event(icalcomponent *c)
     int par_cnt = 0;
     char *uid;
 
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
     ca = icalcomponent_new_clone(c);
     if ((uid = (char *)icalcomponent_get_uid(ca)) == NULL) {
         uid = generate_uid();
@@ -3072,6 +3288,9 @@ static gboolean pre_format(char *file_name_in, char *file_name_out)
      * support so that we can do better conversion 
      */
 
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
     orage_message("Starting import file preprocessing");
     if (!g_file_get_contents(file_name_in, &text, &text_len, &error)) {
         g_warning(P_N "Could not open ical file (%s) error:%s"
@@ -3161,6 +3380,9 @@ gboolean xfical_import_file(char *file_name)
     icalcomponent *c1, *c2;
     int cnt1 = 0, cnt2 = 0;
 
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
     ical_file_name = g_strdup_printf("%s.orage", file_name);
     if (!pre_format(file_name, ical_file_name)) {
         return(FALSE);
@@ -3214,6 +3436,9 @@ static gboolean export_prepare_write_file(char *file_name)
 #define P_N "export_prepare_write_file: "
     gchar *tmp;
 
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
     if (strcmp(file_name, g_par.orage_file) == 0) {
         g_warning(P_N "You do not want to overwrite Orage ical file! (%s)"
                 , file_name);
@@ -3240,6 +3465,9 @@ static gboolean export_all(char *file_name)
     gchar *text;
     gsize text_len;
 
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
     if (!export_prepare_write_file(file_name))
         return(FALSE);
     /* read Orage's ical file */
@@ -3267,6 +3495,9 @@ static void export_selected_uid(icalcomponent *base, gchar *uid_int
     gboolean key_found = FALSE;
     gchar *uid_ical;
 
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
     key_found = FALSE;
     for (c = icalcomponent_get_first_component(base, ICAL_ANY_COMPONENT);
          c != 0 && !key_found;
@@ -3292,6 +3523,9 @@ static gboolean export_selected(char *file_name, char *uids)
     gboolean more_uids;
     int i;
 
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
     if (!export_prepare_write_file(file_name))
         return(FALSE);
     if (!ORAGE_STR_EXISTS(uids)) {
@@ -3350,6 +3584,9 @@ gboolean xfical_export_file(char *file_name, int type, char *uids)
 {
 #undef P_N
 #define P_N "xfical_export_file: "
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
     if (type == 0) { /* copy the whole file */
         return(export_all(file_name));
     }
@@ -3367,9 +3604,14 @@ gboolean xfical_export_file(char *file_name, int type, char *uids)
  * beginning or the end */
 gchar *find_next(gchar *cur, gchar *end, gchar *str)
 {
+#undef P_N
+#define P_N "find_next: "
     gchar *next;
     gboolean found_valid = FALSE;
 
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
     next = cur;
     do {
         next = g_strstr_len(next, end-next, str);
@@ -3394,9 +3636,14 @@ gchar *find_next(gchar *cur, gchar *end, gchar *str)
  */
 gchar *find_prev(gchar *beg, gchar *cur, gchar *str)
 {
+#undef P_N
+#define P_N "find_prev: "
     gchar *prev;
     gboolean found_valid = FALSE;
 
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
     prev = cur;
     do {
          prev = g_strrstr_len(beg, prev-beg, str);
@@ -3439,6 +3686,9 @@ xfical_appt *xfical_appt_get_next_with_string_internal(char *str
     struct icaltimetype it;
     const char *stime;
 
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
     if (!ORAGE_STR_EXISTS(str))
         return(NULL);
     if (first) {
@@ -3576,6 +3826,9 @@ xfical_appt *xfical_appt_get_next_with_string(char *str, gboolean first
 #define P_N "xfical_appt_get_next_with_string: "
     gint i;
 
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
     if (file_type[0] == 'O') {
         return(xfical_appt_get_next_with_string_internal(str, first
                 , g_par.orage_file , ical, file_type));
@@ -3628,6 +3881,9 @@ enum {
     GtkTreeIter       iter;
     gboolean    changed = FALSE;
 
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
     /* enter data */
     store = gtk_tree_store_new(N_COLUMNS, G_TYPE_STRING, G_TYPE_STRING);
     strcpy(area_old, "S T a R T");

@@ -108,7 +108,7 @@ orage_sound_alarm(gpointer data)
 {
     GError *error = NULL;
     gboolean status;
-    xfce_audio_alarm_type *audio_alarm = (xfce_audio_alarm_type *) data;
+    orage_audio_alarm_type *audio_alarm = (orage_audio_alarm_type *) data;
     GtkWidget *wReminder;
     GtkWidget *stop;
 
@@ -143,12 +143,12 @@ orage_sound_alarm(gpointer data)
     return(status);
 }
 
-xfce_audio_alarm_type *
+orage_audio_alarm_type *
 create_soundReminder(alarm_struct *alarm, GtkWidget *wReminder)
 {
-    xfce_audio_alarm_type *audio_alarm;
+    orage_audio_alarm_type *audio_alarm;
 
-    audio_alarm =  g_new(xfce_audio_alarm_type, 1);
+    audio_alarm =  g_new(orage_audio_alarm_type, 1);
     audio_alarm->play_cmd = g_strconcat(g_par.sound_application, " \""
             , alarm->sound->str, "\"", NULL);
     audio_alarm->delay = alarm->repeat_delay;
@@ -180,7 +180,7 @@ on_btOkReminder_clicked(GtkButton *button, gpointer user_data)
 void
 on_btStopNoiseReminder_clicked(GtkButton *button, gpointer user_data)
 {
-    xfce_audio_alarm_type *audio_alarm = (xfce_audio_alarm_type *)user_data;
+    orage_audio_alarm_type *audio_alarm = (orage_audio_alarm_type *)user_data;
 
     audio_alarm->cnt = 0;
     gtk_widget_set_sensitive(GTK_WIDGET(button), FALSE);
@@ -203,7 +203,7 @@ on_btOpenReminder_clicked(GtkButton *button, gpointer user_data)
 static void
 on_destroy(GtkWidget *wReminder, gpointer user_data)
 {
-    xfce_audio_alarm_type *audio_alarm = (xfce_audio_alarm_type *)user_data;
+    orage_audio_alarm_type *audio_alarm = (orage_audio_alarm_type *)user_data;
 
     if (g_object_get_data(G_OBJECT(wReminder), "AUDIO ACTIVE") != NULL) {
         audio_alarm->cnt = 0;
@@ -226,7 +226,7 @@ create_wReminder(alarm_struct *alarm)
     GtkWidget *hdReminder;
     char heading[250];
     gchar *head2;
-    xfce_audio_alarm_type *audio_alarm;
+    orage_audio_alarm_type *audio_alarm;
     gchar *alarm_uid;
 
     wReminder = gtk_dialog_new();
@@ -305,46 +305,7 @@ create_wReminder(alarm_struct *alarm)
     gtk_widget_show(wReminder);
 }
 
-void
-build_tray_tooltip()
-{
-    gint alarm_cnt=0;
-    gint tooltip_alarm_limit=5;
-    gint dd, hh, min;
-    GString *tooltip=NULL;
-    GList *alarm_l;
-    alarm_struct *cur_alarm;
-    /* GtkTooltipsData *cur_tooltip; */
-     
-    tooltip = g_string_new(_("Next active alarms:"));
-    alarm_l = g_par.alarm_list;
-    for (alarm_l = g_list_first(alarm_l);
-         alarm_l != NULL && (alarm_cnt < tooltip_alarm_limit);
-         alarm_l = g_list_next(alarm_l)) {
-        cur_alarm = (alarm_struct *)alarm_l->data;
-        if (xfical_duration(cur_alarm->alarm_time->str, &dd, &hh, &min)) {
-            g_string_append_printf(tooltip, 
-                    _("\n%02d d %02d h %02d min to: %s"),
-                    dd, hh, min, cur_alarm->title->str);
-            alarm_cnt++;
-        }
-    }
-    if (alarm_cnt == 0)
-        g_string_append_printf(tooltip, _("\nNo active alarms found"));
-
-    /* would this check save CPU or not??
-    cur_tooltip = gtk_tooltips_data_get(g_par.trayIcon->tray);
-    if (cur_tooltip == NULL) 
-    || (strcmp(tooltip->str, cur_tooltip->tip_text) != 0) {
-        xfce_tray_icon_set_tooltip(g_par.trayIcon, tooltip->str, NULL);
-    }
-    */
-    xfce_tray_icon_set_tooltip(g_par.trayIcon, tooltip->str, NULL);
-    g_string_free(tooltip, TRUE);
-}
-
-gboolean
-orage_alarm_clock(gpointer user_data)
+gboolean orage_alarm_clock(gpointer user_data)
 {
     CalWin *xfcal = (CalWin *)user_data;
     struct tm *t;
@@ -355,6 +316,13 @@ orage_alarm_clock(gpointer user_data)
     alarm_struct *cur_alarm;
     gboolean alarm_raised=FALSE;
     gboolean more_alarms=TRUE;
+    gchar time_now[XFICAL_APPT_TIME_FORMAT_LEN];
+    GString *tooltip=NULL;
+    gint alarm_cnt=0;
+    gint tooltip_alarm_limit=5;
+    gint year, month, day, hour, minute, second;
+    gint dd, hh, min;
+    GDate *g_now, *g_alarm;
                                                                                 
     t = orage_localtime();
   /* See if the day just changed and the former current date was selected */
@@ -388,25 +356,70 @@ orage_alarm_clock(gpointer user_data)
         }
     }
 
+    if (g_par.trayIcon && NETK_IS_TRAY_ICON(g_par.trayIcon->tray)) { 
+        tooltip = g_string_new(_("Next active alarms:"));
+    }
   /* Check if there are any alarms to show */
     alarm_l = g_par.alarm_list;
     for (alarm_l = g_list_first(alarm_l);
          alarm_l != NULL && more_alarms;
          alarm_l = g_list_next(alarm_l)) {
+        /* remember that it is sorted list */
         cur_alarm = (alarm_struct *)alarm_l->data;
+        g_sprintf(time_now, XFICAL_APPT_TIME_FORMAT, t->tm_year + 1900
+                , t->tm_mon + 1, t->tm_mday, t->tm_hour, t->tm_min, t->tm_sec);
+        if (strcmp(time_now, cur_alarm->alarm_time->str) > 0) {
+            /*
         if (xfical_alarm_passed(cur_alarm->alarm_time->str)) {
+        */
             create_wReminder(cur_alarm);
             alarm_raised = TRUE;
         }
-        else
-            more_alarms = FALSE; /* it is sorted list, so we can stop */
+        else /*if (strcmp(time_now, cur_alarm->alarm_time->str) <= 0) */ {
+            /* check if this should be visible in systray icon tooltip */
+            if (tooltip && (alarm_cnt < tooltip_alarm_limit)) {
+                sscanf(cur_alarm->alarm_time->str, XFICAL_APPT_TIME_FORMAT
+                        , &year, &month, &day, &hour, &minute, &second);
+                g_now = g_date_new_dmy(t->tm_mday, t->tm_mon + 1
+                        , t->tm_year + 1900);
+                g_alarm = g_date_new_dmy(day, month, year);
+                dd = g_date_days_between(g_now, g_alarm);
+                hh = hour - t->tm_hour;
+                min = minute - t->tm_min;
+                if (min < 0) {
+                    min += 60;
+                    hh -= 1;
+                }
+                if (hh < 0) {
+                    hh += 24;
+                    dd -= 1;
+                }
+                g_date_free(g_now);
+                g_date_free(g_alarm);
+
+                g_string_append_printf(tooltip, 
+                        _("\n%02d d %02d h %02d min to: %s"),
+                        dd, hh, min, cur_alarm->title->str);
+                alarm_cnt++;
+            }
+            else /* sorted so scan can be stopped */
+                more_alarms = FALSE; 
+        }
     }
     if (alarm_raised) /* at least one alarm processed, need new list */
         xfical_alarm_build_list(FALSE); 
 
-    if (g_par.trayIcon && NETK_IS_TRAY_ICON(g_par.trayIcon->tray)) { 
-        build_tray_tooltip();
+    if (tooltip) {
+        if (alarm_cnt == 0)
+            g_string_append_printf(tooltip, _("\nNo active alarms found"));
+        xfce_tray_icon_set_tooltip(g_par.trayIcon, tooltip->str, NULL);
+        g_string_free(tooltip, TRUE);
     }
+    /*
+    if (g_par.trayIcon && NETK_IS_TRAY_ICON(g_par.trayIcon->tray)) { 
+        build_tray_tooltip(time_now);
+    }
+    */
     return TRUE;
 }
 

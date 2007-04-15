@@ -24,8 +24,6 @@
 #ifndef __ICAL_CODE_H__
 #define __ICAL_CODE_H__
 
-#define XFICAL_APPT_TIME_FORMAT "%04d%02d%02dT%02d%02d%02d"
-#define XFICAL_APPT_DATE_FORMAT "%04d%02d%02d"
 #define XFICAL_UID_LEN 200
 
 typedef enum
