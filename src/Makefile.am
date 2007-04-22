@@ -57,6 +57,8 @@ orage_dbus_sources =						\
 	orage-dbus-object.h						\
 	orage-dbus-client.c						\
 	orage-dbus-client.h						\
+	orage-dbus.h							\
+	orage-dbus-service.xml						\
 	orage-dbus-service.h
 
 orage_CFLAGS +=							\
