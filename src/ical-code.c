@@ -2048,7 +2048,8 @@ static xfical_appt *xfical_appt_get_internal(char *ical_uid
     icalproperty *p = NULL;
     gboolean key_found = FALSE;
     const char *text;
-    struct icaltimetype itime, stime, etime, sltime, eltime;
+    struct icaltimetype itime, stime, etime, sltime, eltime, wtime;
+    icaltimezone *l_icaltimezone = NULL;
     icalparameter *itime_tz;
     icalproperty_transp xf_transp;
     struct icalrecurrencetype rrule;
@@ -2318,6 +2319,21 @@ static xfical_appt *xfical_appt_get_internal(char *ical_uid
                 text  = icaltime_as_ical_string(etime);
                 g_strlcpy(appt.endtime, text, 17);
             }
+        }
+        if (appt.recur_limit == 2) { /* BUG 2937: convert back from UTC */
+            wtime = icaltime_from_string(appt.recur_until);
+            if (! ORAGE_STR_EXISTS(appt.start_tz_loc) )
+                wtime = icaltime_convert_to_zone(wtime, local_icaltimezone);
+            else if (strcmp(appt.start_tz_loc, "floating") == 0)
+                wtime = icaltime_convert_to_zone(wtime, local_icaltimezone);
+            else if (strcmp(appt.start_tz_loc, "UTC") != 0) {
+                /* done if in UTC, but real conversion needed if not */
+                l_icaltimezone = icaltimezone_get_builtin_timezone(
+                        appt.start_tz_loc);
+                wtime = icaltime_convert_to_zone(wtime, l_icaltimezone);
+            }
+            text  = icaltime_as_ical_string(wtime);
+            g_strlcpy(appt.recur_until, text, 17);
         }
         return(&appt);
     }
