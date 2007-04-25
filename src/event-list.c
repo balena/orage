@@ -832,7 +832,7 @@ static void create_new_appointment(el_win *el)
     a_day[8] = '\0';
 
     apptw = create_appt_win("NEW", a_day, el);
-    gtk_widget_show(apptw->Window);
+    /* gtk_widget_show(apptw->Window); */
 }
 
 static void on_File_newApp_activate_cb(GtkMenuItem *mi, gpointer user_data)

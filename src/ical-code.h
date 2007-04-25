@@ -75,6 +75,7 @@ typedef struct
     gchar *completed_tz_loc;
 
     gint availability;
+    gint priority;
     gchar *note;
 
         /* alarm */

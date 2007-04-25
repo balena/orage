@@ -1696,14 +1696,6 @@ static char *appt_add_internal(xfical_appt *appt, gboolean add, char *uid
             icalcomponent_add_property(icmp
                     , icalproperty_new_location(appt->location));
     }
-    if (appt->type == XFICAL_TYPE_EVENT) {
-        if (appt->availability == 0)
-            icalcomponent_add_property(icmp
-               , icalproperty_new_transp(ICAL_TRANSP_TRANSPARENT));
-        else if (appt->availability == 1)
-            icalcomponent_add_property(icmp
-               , icalproperty_new_transp(ICAL_TRANSP_OPAQUE));
-    }
     if (appt->allDay) { /* cut the string after Date: yyyymmdd */
         appt->starttime[8] = '\0';
         appt->endtime[8] = '\0';
@@ -1784,42 +1776,49 @@ static char *appt_add_internal(xfical_appt *appt, gboolean add, char *uid
                             , icalproperty_new_due(wtime));
             }
         }
-    }
-
-    if (appt->type == XFICAL_TYPE_TODO) {
-        if (appt->completed) {
-            wtime = icaltime_from_string(appt->completedtime);
-            if ORAGE_STR_EXISTS(appt->completed_tz_loc) {
-            /* Null == floating => no special action needed */
-                if (strcmp(appt->completed_tz_loc, "floating") == 0) {
-                    wtime = icaltime_convert_to_zone(wtime
-                            , local_icaltimezone);
-                }
-                else if (strcmp(appt->completed_tz_loc, "UTC") != 0) {
-                /* FIXME: add this vtimezone to vcalendar if it is not there */
-                    l_icaltimezone = icaltimezone_get_builtin_timezone(
-                            appt->start_tz_loc);
-                    wtime = icaltime_convert_to_zone(wtime, l_icaltimezone);
-                }
-            }
-            else
-                wtime = icaltime_convert_to_zone(wtime, local_icaltimezone);
-            wtime = icaltime_convert_to_zone(wtime, utc_icaltimezone);
+        if (appt->priority != 0)
             icalcomponent_add_property(icmp
-                    , icalproperty_new_completed(wtime));
+                   , icalproperty_new_priority(appt->priority));
+        if (appt->type == XFICAL_TYPE_EVENT) {
+            if (appt->availability == 0)
+                icalcomponent_add_property(icmp
+                       , icalproperty_new_transp(ICAL_TRANSP_TRANSPARENT));
+            else if (appt->availability == 1)
+                icalcomponent_add_property(icmp
+                       , icalproperty_new_transp(ICAL_TRANSP_OPAQUE));
         }
-    }
-
-    if (appt->type != XFICAL_TYPE_JOURNAL && appt->freq != XFICAL_FREQ_NONE) {
-        /* journal has no recurrency.
-         * NOTE: according to standard VJURNAL has this recurrency, 
-         * but I can't understand how it coud be usefull, 
-         * so Orage takes it away */
-        appt_add_recur_internal(appt, icmp);
-    }
-    if (appt->type != XFICAL_TYPE_JOURNAL && appt->alarmtime != 0) {
-        /* journal has no alarms */
-        appt_add_alarm_internal(appt, icmp);
+        else if (appt->type == XFICAL_TYPE_TODO) {
+            if (appt->completed) {
+                wtime = icaltime_from_string(appt->completedtime);
+                if ORAGE_STR_EXISTS(appt->completed_tz_loc) {
+                /* Null == floating => no special action needed */
+                    if (strcmp(appt->completed_tz_loc, "floating") == 0) {
+                        wtime = icaltime_convert_to_zone(wtime
+                                , local_icaltimezone);
+                    }
+                    else if (strcmp(appt->completed_tz_loc, "UTC") != 0) {
+                /* FIXME: add this vtimezone to vcalendar if it is not there */
+                        l_icaltimezone = icaltimezone_get_builtin_timezone(
+                                appt->start_tz_loc);
+                        wtime = icaltime_convert_to_zone(wtime, l_icaltimezone);
+                    }
+                }
+                else
+                    wtime = icaltime_convert_to_zone(wtime, local_icaltimezone);
+                wtime = icaltime_convert_to_zone(wtime, utc_icaltimezone);
+                icalcomponent_add_property(icmp
+                        , icalproperty_new_completed(wtime));
+            }
+        }
+        if (appt->freq != XFICAL_FREQ_NONE) { /* journal has no recurrency. */
+            /* NOTE: according to standard VJOURNAL _has_ recurrency, 
+             * but I can't understand how it coud be usefull, 
+             * so Orage takes it away */
+            appt_add_recur_internal(appt, icmp);
+        }
+        if (appt->alarmtime != 0) { /* journal has no alarms */
+            appt_add_alarm_internal(appt, icmp);
+        }
     }
 
     if (ext_uid[0] == 'O') {
@@ -2094,6 +2093,7 @@ static xfical_appt *xfical_appt_get_internal(char *ical_uid
             appt.location = NULL;
             appt.alarmtime = 0;
             appt.availability = -1;
+            appt.priority = 0;
             appt.allDay = FALSE;
             appt.soundrepeat = FALSE;
             appt.soundrepeat_cnt = 500;
@@ -2128,34 +2128,13 @@ static xfical_appt *xfical_appt_get_internal(char *ical_uid
                 /* these are in icalderivedproperty.h */
                 switch (icalproperty_isa(p)) {
                     case ICAL_SUMMARY_PROPERTY:
-                        /* FIXME JK001 */
-                        appt.title = (char*)icalproperty_get_value_as_string(p);
-                        if (!appt.title)
-                            g_print("xfical_appt_get_internal: summary is null. uid=%s\n", (ical_uid));
-                        else
-                            appt.title = (char *)icalproperty_get_summary(p);
+                        appt.title = (char *)icalproperty_get_summary(p);
                         break;
                     case ICAL_LOCATION_PROPERTY:
-                        appt.location = (char *) icalproperty_get_value_as_string(p);
-                        if (!appt.location)
-                            g_print("xfical_appt_get_internal: location is null. uid=%s\n", (ical_uid));
-                        /*
                         appt.location = (char *) icalproperty_get_location(p);
-                        */
                         break;
                     case ICAL_DESCRIPTION_PROPERTY:
-                        /* FIXME JK001 */
-                        appt.note = (char *)icalproperty_get_value_as_string(p);
-                        /*
-                        g_print ("note string %s\n", appt.note);
-                        */
-                        if (!appt.note)
-                            g_print("xfical_appt_get_internal: description is null. uid=%s\n", (ical_uid));
-                        else
-                            appt.note = (char *)icalproperty_get_description(p);
-                        /*
-                        g_print ("note description %s\n", appt.note);
-                        */
+                        appt.note = (char *)icalproperty_get_description(p);
                         break;
                     case ICAL_UID_PROPERTY:
                         appt.uid = (char *) icalproperty_get_uid(p);
@@ -2283,6 +2262,9 @@ static xfical_appt *xfical_appt_get_internal(char *ical_uid
                         }
                         g_warning(P_N "unknown X property %s"
                                 , (char *)text);
+                    case ICAL_PRIORITY_PROPERTY:
+                        appt.priority = icalproperty_get_priority(p);
+                        break;
                     case ICAL_CATEGORIES_PROPERTY:
                     case ICAL_CLASS_PROPERTY:
                     case ICAL_DTSTAMP_PROPERTY:
@@ -2652,7 +2634,7 @@ static xfical_appt *xfical_appt_get_next_on_day_internal(char *a_day
     for ( ; 
          icalcompiter_deref(&ci) != 0 && !date_found;
          icalcompiter_next(&ci)) {
-        /* next VTODO appointment loop. check if it is ok */
+        /* next appointment loop. check if it is ok */
         c = icalcompiter_deref(&ci);
         per = get_period(c);
         /*
@@ -2718,7 +2700,10 @@ static xfical_appt *xfical_appt_get_next_on_day_internal(char *a_day
         }
     }
     if (date_found) {
-        uid = (char *)icalcomponent_get_uid(c);
+        if ((uid = (char *)icalcomponent_get_uid(c)) == NULL) {
+            g_warning(P_N "File %s has component without UID. File is either corrupted or not compatible with Orage, skipping this file", file_type);
+            return(0);
+        }
         appt = appt_get_any(uid, base, file_type);
         if (date_rec_found) {
             g_strlcpy(appt->starttimecur, icaltime_as_ical_string(nsdate), 17);
@@ -3337,6 +3322,9 @@ static gboolean pre_format(char *file_name_in, char *file_name_out)
     */
 
     /* 1: remove ;CHARSET=...: parameter */
+    /* not needed anymore since added CHARSET parameter into libical in
+     * Orage 4.5.9.4 */
+    /*
     for (tmp = g_strrstr(text, ";CHARSET="); 
          tmp != NULL;
          tmp = g_strrstr(text, ";CHARSET="))  {
@@ -3357,6 +3345,7 @@ static gboolean pre_format(char *file_name_in, char *file_name_out)
         orage_message("... Removed CHARSET from %s", tmp3);
         g_free(tmp3);
     }
+    */
     /* 2: change DCREATED to CREATED */
     for (tmp = g_strrstr(text, "DCREATED:"); 
          tmp != NULL;

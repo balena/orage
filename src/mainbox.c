@@ -75,7 +75,6 @@ mFile_newApp_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
     g_snprintf(cur_date, 9, "%04d%02d%02d", t->tm_year+1900
             , t->tm_mon+1, t->tm_mday);
     app = create_appt_win("NEW", cur_date, NULL);  
-    gtk_widget_show(app->Window);
 }
 
 static void

@@ -61,16 +61,14 @@ void set_play_command(gchar *cmd)
     g_par.sound_application = g_strdup(cmd);
 }
 
-static void
-child_setup_async(gpointer user_data)
+static void child_setup_async(gpointer user_data)
 {
 #if defined(HAVE_SETSID) && !defined(G_OS_WIN32)
     setsid();
 #endif
 }
 
-static void
-child_watch_cb(GPid pid, gint status, gpointer data)
+static void child_watch_cb(GPid pid, gint status, gpointer data)
 {
     gboolean *sound_active = (gboolean *)data;
 
@@ -79,8 +77,7 @@ child_watch_cb(GPid pid, gint status, gpointer data)
     *sound_active = FALSE;
 }
 
-gboolean 
-orage_exec(const char *cmd, gboolean *sound_active, GError **error)
+gboolean orage_exec(const char *cmd, gboolean *sound_active, GError **error)
 {
     char **argv;
     gboolean success;
@@ -103,8 +100,7 @@ orage_exec(const char *cmd, gboolean *sound_active, GError **error)
     return success;
 }
 
-gboolean
-orage_sound_alarm(gpointer data)
+gboolean orage_sound_alarm(gpointer data)
 {
     GError *error = NULL;
     gboolean status;
@@ -143,8 +139,8 @@ orage_sound_alarm(gpointer data)
     return(status);
 }
 
-orage_audio_alarm_type *
-create_soundReminder(alarm_struct *alarm, GtkWidget *wReminder)
+orage_audio_alarm_type *create_soundReminder(alarm_struct *alarm
+        , GtkWidget *wReminder)
 {
     orage_audio_alarm_type *audio_alarm;
 
@@ -169,16 +165,14 @@ create_soundReminder(alarm_struct *alarm, GtkWidget *wReminder)
     return(audio_alarm);
 }
 
-void
-on_btOkReminder_clicked(GtkButton *button, gpointer user_data)
+void on_btOkReminder_clicked(GtkButton *button, gpointer user_data)
 {
     GtkWidget *wReminder = (GtkWidget *)user_data;
 
     gtk_widget_destroy(wReminder); /* destroy the specific appointment window */
 }
 
-void
-on_btStopNoiseReminder_clicked(GtkButton *button, gpointer user_data)
+void on_btStopNoiseReminder_clicked(GtkButton *button, gpointer user_data)
 {
     orage_audio_alarm_type *audio_alarm = (orage_audio_alarm_type *)user_data;
 
@@ -186,8 +180,7 @@ on_btStopNoiseReminder_clicked(GtkButton *button, gpointer user_data)
     gtk_widget_set_sensitive(GTK_WIDGET(button), FALSE);
 }
 
-void
-on_btOpenReminder_clicked(GtkButton *button, gpointer user_data)
+void on_btOpenReminder_clicked(GtkButton *button, gpointer user_data)
 {
     GtkWidget *wReminder = (GtkWidget *)user_data;
     gchar *uid;
@@ -196,12 +189,10 @@ on_btOpenReminder_clicked(GtkButton *button, gpointer user_data)
     if ((uid = (gchar *)g_object_get_data(G_OBJECT(wReminder), "ALARM_UID"))
         != NULL) {
         app = create_appt_win("UPDATE", uid, NULL);
-        gtk_widget_show(app->Window);
     }
 }
 
-static void
-on_destroy(GtkWidget *wReminder, gpointer user_data)
+static void on_destroy(GtkWidget *wReminder, gpointer user_data)
 {
     orage_audio_alarm_type *audio_alarm = (orage_audio_alarm_type *)user_data;
 
@@ -212,8 +203,7 @@ on_destroy(GtkWidget *wReminder, gpointer user_data)
     g_free(g_object_get_data(G_OBJECT(wReminder), "ALARM_UID")); /* free uid */
 }
 
-void
-create_wReminder(alarm_struct *alarm)
+void create_wReminder(alarm_struct *alarm)
 {
     GtkWidget *wReminder;
     GtkWidget *vbReminder;
