@@ -42,6 +42,9 @@
 #include <libxfce4util/libxfce4util.h>
 #include <libxfcegui4/libxfcegui4.h>
 #include <libxfcegui4/dialogs.h>
+#ifdef HAVE_NOTIFY
+#include <libnotify/notify.h>
+#endif
 
 #include "functions.h"
 #include "mainbox.h"
@@ -53,13 +56,7 @@
 #include "tray_icon.h"
 #include "parameters.h"
 
-
-void set_play_command(gchar *cmd)
-{
-    if (g_par.sound_application)
-        g_free(g_par.sound_application);
-    g_par.sound_application = g_strdup(cmd);
-}
+void create_notify_reminder(alarm_struct *alarm);
 
 static void child_setup_async(gpointer user_data)
 {
@@ -100,110 +97,187 @@ gboolean orage_exec(const char *cmd, gboolean *sound_active, GError **error)
     return success;
 }
 
-gboolean orage_sound_alarm(gpointer data)
+static void alarm_free_memory(alarm_struct *alarm)
 {
+    if (!alarm->display_orage && !alarm->display_notify)
+        /* if both visuals are gone we can't stop audio anymore, so stop it 
+         * now before it is too late */
+        alarm->repeat_cnt = 0;
+    if (!alarm->display_orage && !alarm->display_notify && !alarm->audio) {
+        /* all gone, need to clean memory */
+        g_string_free(alarm->uid, TRUE);
+        if (alarm->title != NULL)
+            g_string_free(alarm->title, TRUE);
+        if (alarm->description != NULL)
+            g_string_free(alarm->description, TRUE);
+        if (alarm->sound != NULL)
+            g_string_free(alarm->sound, TRUE);
+        g_free(alarm->active_alarm);
+        g_free(alarm);
+    }
+}
+
+static gboolean sound_alarm(gpointer data)
+{
+    alarm_struct *alarm = (alarm_struct *)data;
     GError *error = NULL;
     gboolean status;
-    orage_audio_alarm_type *audio_alarm = (orage_audio_alarm_type *) data;
-    GtkWidget *wReminder;
     GtkWidget *stop;
 
     /* note: -1 loops forever */
-    if (audio_alarm->cnt != 0) {
-        /*
-        status = xfce_exec(audio_alarm->play_cmd, FALSE, FALSE, &error);
-        */
-        if (audio_alarm->sound_active) {
+    if (alarm->repeat_cnt != 0) {
+        if (alarm->active_alarm->sound_active) {
             return(TRUE);
         }
-        status = orage_exec(audio_alarm->play_cmd, &audio_alarm->sound_active
-                , &error);
+        status = orage_exec(alarm->sound->str
+                , &alarm->active_alarm->sound_active, &error);
         if (!status) {
-            g_warning("reminder: play failed (%si)", audio_alarm->play_cmd);
-            audio_alarm->cnt = 0; /* one warning is enough */
+            g_warning("reminder: play failed (%si)", alarm->sound->str);
+            alarm->repeat_cnt = 0; /* one warning is enough */
         }
-        else if (audio_alarm->cnt > 0)
-            audio_alarm->cnt--;
+        else if (alarm->repeat_cnt > 0)
+            alarm->repeat_cnt--;
     }
-    else { /* cnt == 0 */
-        if ((wReminder = audio_alarm->wReminder) != NULL) {
-            g_object_steal_data(G_OBJECT(wReminder), "AUDIO ACTIVE");
-            stop = g_object_get_data(G_OBJECT(wReminder), "AUDIO STOP");
+    else { /* repeat_cnt == 0 */
+        if (alarm->display_orage 
+        && ((stop = alarm->active_alarm->stop_noise_reminder) != NULL)) {
             gtk_widget_set_sensitive(GTK_WIDGET(stop), FALSE);
         }
-        g_free(audio_alarm->play_cmd);
-        g_free(data);
-        status = FALSE; /* no more alarms */
+#ifdef HAVE_NOTIFY
+        if (alarm->display_notify) {
+            /* We need to remove the silence button from notify window.
+             * This is not nice method, but it is not possible to access
+             * the timeout so we just need to start it from all over */
+            notify_notification_close(alarm->active_alarm->active_notify, NULL);
+            create_notify_reminder(alarm);
+        }
+#endif
+        alarm_free_memory(alarm);
+        status = FALSE; /* no more alarms, end timeouts */
     }
         
     return(status);
 }
 
-orage_audio_alarm_type *create_soundReminder(alarm_struct *alarm
-        , GtkWidget *wReminder)
+static void create_sound_reminder(alarm_struct *alarm)
 {
-    orage_audio_alarm_type *audio_alarm;
-
-    audio_alarm =  g_new(orage_audio_alarm_type, 1);
-    audio_alarm->play_cmd = g_strconcat(g_par.sound_application, " \""
-            , alarm->sound->str, "\"", NULL);
-    audio_alarm->delay = alarm->repeat_delay;
-    audio_alarm->sound_active = FALSE;
-    if ((audio_alarm->cnt = alarm->repeat_cnt) == 0) {
-        audio_alarm->cnt++;
-        audio_alarm->wReminder = NULL;
-    }
-    else { /* repeat alarm */
-        audio_alarm->wReminder = wReminder;
-        g_object_set_data(G_OBJECT(wReminder), "AUDIO ACTIVE", audio_alarm);
+    g_string_prepend(alarm->sound, " \"");
+    g_string_prepend(alarm->sound, g_par.sound_application);
+    g_string_append(alarm->sound, "\"");
+    alarm->active_alarm->sound_active = FALSE;
+    if (alarm->repeat_cnt == 0) {
+        alarm->repeat_cnt++; /* need to do it once */
     }
 
     g_timeout_add(alarm->repeat_delay*1000
-            , (GtkFunction) orage_sound_alarm
-            , (gpointer) audio_alarm);
-
-    return(audio_alarm);
+            , (GtkFunction) sound_alarm
+            , (gpointer) alarm);
 }
 
-void on_btOkReminder_clicked(GtkButton *button, gpointer user_data)
+#ifdef HAVE_NOTIFY
+static void notify_closed(NotifyNotification *n, gpointer par)
+{
+    alarm_struct *alarm = (alarm_struct *)par;
+
+    alarm->display_notify = FALSE; /* I am gone */
+    alarm_free_memory(alarm);
+}
+
+static void notify_action_open(NotifyNotification *n, const char *action
+        , gpointer par)
+{
+    alarm_struct *alarm = (alarm_struct *)par;
+
+    create_notify_reminder(alarm);
+    create_appt_win("UPDATE", alarm->uid->str, NULL);
+}
+
+static void notify_action_silence(NotifyNotification *n, const char *action
+        , gpointer par)
+{
+    alarm_struct *alarm = (alarm_struct *)par;
+
+    alarm->repeat_cnt = 0;
+    create_notify_reminder(alarm);
+}
+#endif
+
+void create_notify_reminder(alarm_struct *alarm) 
+{
+#ifdef HAVE_NOTIFY
+    char heading[250];
+    NotifyNotification *n;
+
+    if (!notify_init("Orage")) {
+        g_warning("Notify init failed\n");
+        return;
+    }
+
+    strncpy(heading,  _("Reminder "), 199);
+    strncat(heading, alarm->title->str, 50);
+    n = notify_notification_new(heading, alarm->description->str, NULL, NULL);
+    alarm->active_alarm->active_notify = n;
+    if (g_par.trayIcon && NETK_IS_TRAY_ICON(g_par.trayIcon->tray)) 
+        notify_notification_attach_to_widget(n, g_par.trayIcon->image);
+
+    if (alarm->notify_timeout == -1)
+        notify_notification_set_timeout(n, NOTIFY_EXPIRES_NEVER);
+    else if (alarm->notify_timeout == 0)
+        notify_notification_set_timeout(n, NOTIFY_EXPIRES_DEFAULT);
+    else
+        notify_notification_set_timeout(n, alarm->notify_timeout*1000);
+
+    notify_notification_add_action(n, "open", _("Open")
+            , (NotifyActionCallback)notify_action_open
+            , alarm, NULL);
+    if ((alarm->audio) && (alarm->repeat_cnt > 1)) {
+        notify_notification_add_action(n, "stop", "Silence"
+                , (NotifyActionCallback)notify_action_silence
+                , alarm, NULL);
+    }
+    (void)g_signal_connect(G_OBJECT(n), "closed"
+           , G_CALLBACK(notify_closed), alarm);
+
+    if (!notify_notification_show(n, NULL)) {
+        g_warning("failed to send notification");
+    }
+#else
+    g_warning("libnotify not linked in. Can't use notifications.");
+#endif
+}
+
+static void destroy_orage_reminder(GtkWidget *wReminder, gpointer user_data)
+{
+    alarm_struct *alarm = (alarm_struct *)user_data;
+
+    alarm->display_orage = FALSE; /* I am gone */
+    alarm_free_memory(alarm);
+}
+
+static void on_btStopNoiseReminder_clicked(GtkButton *button
+        , gpointer user_data)
+{
+    alarm_struct *alarm = (alarm_struct *)user_data;
+
+    alarm->repeat_cnt = 0;
+    gtk_widget_set_sensitive(GTK_WIDGET(button), FALSE);
+}
+
+static void on_btOkReminder_clicked(GtkButton *button, gpointer user_data)
 {
     GtkWidget *wReminder = (GtkWidget *)user_data;
 
     gtk_widget_destroy(wReminder); /* destroy the specific appointment window */
 }
 
-void on_btStopNoiseReminder_clicked(GtkButton *button, gpointer user_data)
+static void on_btOpenReminder_clicked(GtkButton *button, gpointer user_data)
 {
-    orage_audio_alarm_type *audio_alarm = (orage_audio_alarm_type *)user_data;
+    alarm_struct *alarm = (alarm_struct *)user_data;
 
-    audio_alarm->cnt = 0;
-    gtk_widget_set_sensitive(GTK_WIDGET(button), FALSE);
+    create_appt_win("UPDATE", alarm->uid->str, NULL);
 }
 
-void on_btOpenReminder_clicked(GtkButton *button, gpointer user_data)
-{
-    GtkWidget *wReminder = (GtkWidget *)user_data;
-    gchar *uid;
-    appt_win *app;
-                                                                                
-    if ((uid = (gchar *)g_object_get_data(G_OBJECT(wReminder), "ALARM_UID"))
-        != NULL) {
-        app = create_appt_win("UPDATE", uid, NULL);
-    }
-}
-
-static void on_destroy(GtkWidget *wReminder, gpointer user_data)
-{
-    orage_audio_alarm_type *audio_alarm = (orage_audio_alarm_type *)user_data;
-
-    if (g_object_get_data(G_OBJECT(wReminder), "AUDIO ACTIVE") != NULL) {
-        audio_alarm->cnt = 0;
-        audio_alarm->wReminder = NULL; /* window is being distroyed */
-    }
-    g_free(g_object_get_data(G_OBJECT(wReminder), "ALARM_UID")); /* free uid */
-}
-
-void create_wReminder(alarm_struct *alarm)
+static void create_orage_reminder(alarm_struct *alarm)
 {
     GtkWidget *wReminder;
     GtkWidget *vbReminder;
@@ -216,8 +290,6 @@ void create_wReminder(alarm_struct *alarm)
     GtkWidget *hdReminder;
     char heading[250];
     gchar *head2;
-    orage_audio_alarm_type *audio_alarm;
-    gchar *alarm_uid;
 
     wReminder = gtk_dialog_new();
     gtk_widget_set_size_request(wReminder, 300, 250);
@@ -229,70 +301,104 @@ void create_wReminder(alarm_struct *alarm)
     gtk_window_set_keep_above(GTK_WINDOW(wReminder), TRUE);
 
     vbReminder = GTK_DIALOG(wReminder)->vbox;
-    gtk_widget_show(vbReminder);
 
     strncat(heading, alarm->title->str, 50);
     head2 = g_markup_escape_text(heading, -1);
     hdReminder = xfce_create_header(NULL, head2);
     g_free(head2);
-    gtk_widget_show(hdReminder);
     gtk_box_pack_start(GTK_BOX(vbReminder), hdReminder, FALSE, TRUE, 0);
 
     swReminder = gtk_scrolled_window_new(NULL, NULL);
     gtk_scrolled_window_set_shadow_type(GTK_SCROLLED_WINDOW(swReminder)
             , GTK_SHADOW_NONE);
-    gtk_widget_show(swReminder);
     gtk_box_pack_start(GTK_BOX(vbReminder), swReminder, TRUE, TRUE, 5);
     gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(swReminder)
             , GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
 
     lbReminder = gtk_label_new(alarm->description->str);
     gtk_label_set_line_wrap(GTK_LABEL(lbReminder), TRUE);
-    gtk_widget_show(lbReminder);
     gtk_scrolled_window_add_with_viewport(GTK_SCROLLED_WINDOW(swReminder)
             , lbReminder);
 
     daaReminder = GTK_DIALOG(wReminder)->action_area;
     gtk_dialog_set_has_separator(GTK_DIALOG(wReminder), FALSE);
-    gtk_widget_show(daaReminder);
     gtk_button_box_set_layout(GTK_BUTTON_BOX(daaReminder), GTK_BUTTONBOX_END);
 
     btOpenReminder = gtk_button_new_from_stock("gtk-open");
-    gtk_widget_show(btOpenReminder);
     gtk_dialog_add_action_widget(GTK_DIALOG(wReminder), btOpenReminder
             , GTK_RESPONSE_OK);
 
     btOkReminder = gtk_button_new_from_stock("gtk-close");
-    gtk_widget_show(btOkReminder);
     gtk_dialog_add_action_widget(GTK_DIALOG(wReminder), btOkReminder
             , GTK_RESPONSE_OK);
     GTK_WIDGET_SET_FLAGS(btOkReminder, GTK_CAN_DEFAULT);
 
-    alarm_uid = g_strdup(alarm->uid->str);
-    g_object_set_data(G_OBJECT(wReminder), "ALARM_UID", alarm_uid);
     g_signal_connect((gpointer) btOpenReminder, "clicked"
-            , G_CALLBACK(on_btOpenReminder_clicked), wReminder);
+            , G_CALLBACK(on_btOpenReminder_clicked), alarm);
 
     g_signal_connect((gpointer) btOkReminder, "clicked"
             , G_CALLBACK(on_btOkReminder_clicked), wReminder);
 
-    if (alarm->audio) {
-        audio_alarm = create_soundReminder(alarm, wReminder);
-        if (alarm->repeat_cnt != 0) {
-            btStopNoiseReminder = gtk_button_new_from_stock("gtk-stop");
-            gtk_widget_show(btStopNoiseReminder);
-            gtk_dialog_add_action_widget(GTK_DIALOG(wReminder)
-                    , btStopNoiseReminder, GTK_RESPONSE_OK);
-            g_object_set_data(G_OBJECT(wReminder), "AUDIO STOP"
-                    , btStopNoiseReminder);
-
-            g_signal_connect((gpointer) btStopNoiseReminder, "clicked",
-                G_CALLBACK(on_btStopNoiseReminder_clicked), audio_alarm);
-            g_signal_connect(G_OBJECT(wReminder), "destroy",
-                G_CALLBACK(on_destroy), audio_alarm);
-        }
+    if ((alarm->audio) && (alarm->repeat_cnt > 1)) {
+        btStopNoiseReminder = gtk_button_new_from_stock("gtk-stop");
+        alarm->active_alarm->stop_noise_reminder = btStopNoiseReminder;
+        gtk_dialog_add_action_widget(GTK_DIALOG(wReminder)
+                , btStopNoiseReminder, GTK_RESPONSE_OK);
+        g_signal_connect((gpointer)btStopNoiseReminder, "clicked",
+            G_CALLBACK(on_btStopNoiseReminder_clicked), alarm);
+        g_signal_connect(G_OBJECT(wReminder), "destroy",
+            G_CALLBACK(destroy_orage_reminder), alarm);
     }
-    gtk_widget_show(wReminder);
+    gtk_widget_show_all(wReminder);
+}
+
+void create_reminders(alarm_struct *alarm)
+{
+    alarm_struct *n_alarm;
+
+    /* FIXME: instead of copying this new private version of the alarm,
+     * g_list_remove(GList *g_par.alarm_list, gconstpointer alarm);
+     * remove it and use the original. saves time */
+    n_alarm = g_new0(alarm_struct, 1);
+    /* alarm_time is not copied. It was only used to find out when alarm
+     * happens and while we are here, it happened already */
+    n_alarm->uid = g_string_new(alarm->uid->str);
+    n_alarm->title = g_string_new(alarm->title->str);
+    n_alarm->description = g_string_new(alarm->description->str);
+    n_alarm->notify_timeout = alarm->notify_timeout;
+    n_alarm->display = alarm->display;
+    n_alarm->display_orage = alarm->display_orage;
+    n_alarm->display_notify = alarm->display_notify;
+    n_alarm->notify_timeout = alarm->notify_timeout;
+    n_alarm->audio = alarm->audio;
+    if (alarm->sound != NULL)
+        n_alarm->sound = g_string_new(alarm->sound->str);
+    n_alarm->repeat_cnt = alarm->repeat_cnt;
+    n_alarm->repeat_delay = alarm->repeat_delay;
+    if (n_alarm->display
+    && (!n_alarm->display_orage && !n_alarm->display_notify))
+        n_alarm->display_orage = TRUE;
+    n_alarm->active_alarm = g_new0(active_alarm_struct, 1);
+
+    if (n_alarm->audio)
+        create_sound_reminder(n_alarm);
+    if (n_alarm->display_orage)
+        create_orage_reminder(n_alarm);
+    if (n_alarm->display_notify)
+        create_notify_reminder(n_alarm);
+    /*
+    if (alarm->display
+    && (!alarm->display_orage && !alarm->display_notify))
+        alarm->display_orage = TRUE;
+    alarm->active_alarm = g_new0(active_alarm_struct, 1);
+
+    if (alarm->audio)
+        create_sound_reminder(alarm);
+    if (alarm->display_orage)
+        create_orage_reminder(alarm);
+    if (alarm->display_notify)
+        create_notify_reminder(alarm);
+        */
 }
 
 gboolean orage_alarm_clock(gpointer user_data)
@@ -358,17 +464,14 @@ gboolean orage_alarm_clock(gpointer user_data)
         cur_alarm = (alarm_struct *)alarm_l->data;
         g_sprintf(time_now, XFICAL_APPT_TIME_FORMAT, t->tm_year + 1900
                 , t->tm_mon + 1, t->tm_mday, t->tm_hour, t->tm_min, t->tm_sec);
-        if (strcmp(time_now, cur_alarm->alarm_time->str) > 0) {
-            /*
-        if (xfical_alarm_passed(cur_alarm->alarm_time->str)) {
-        */
-            create_wReminder(cur_alarm);
+        if (strcmp(time_now, cur_alarm->alarm_time) > 0) {
+            create_reminders(cur_alarm);
             alarm_raised = TRUE;
         }
-        else /*if (strcmp(time_now, cur_alarm->alarm_time->str) <= 0) */ {
+        else /*if (strcmp(time_now, cur_alarm->alarm_time) <= 0) */ {
             /* check if this should be visible in systray icon tooltip */
             if (tooltip && (alarm_cnt < tooltip_alarm_limit)) {
-                sscanf(cur_alarm->alarm_time->str, XFICAL_APPT_TIME_FORMAT
+                sscanf(cur_alarm->alarm_time, XFICAL_APPT_TIME_FORMAT
                         , &year, &month, &day, &hour, &minute, &second);
                 g_now = g_date_new_dmy(t->tm_mday, t->tm_mon + 1
                         , t->tm_year + 1900);
@@ -396,8 +499,9 @@ gboolean orage_alarm_clock(gpointer user_data)
                 more_alarms = FALSE; 
         }
     }
-    if (alarm_raised) /* at least one alarm processed, need new list */
+    if (alarm_raised) { /* at least one alarm processed, need new list */
         xfical_alarm_build_list(FALSE); 
+    }
 
     if (tooltip) {
         if (alarm_cnt == 0)

@@ -76,6 +76,7 @@ typedef struct _appt_win
     GtkWidget *EndTimezone_button;
     GtkWidget *Dur_hbox;
     GtkWidget *Dur_checkbutton;
+    GtkWidget *Dur_time_hbox;
     GtkWidget *Dur_spin_dd;
     GtkWidget *Dur_spin_dd_label;
     GtkWidget *Dur_spin_hh;
@@ -102,18 +103,35 @@ typedef struct _appt_win
     GtkWidget *TableAlarm;
     GtkWidget *Alarm_label;
     GtkWidget *Alarm_hbox;
+    GtkWidget *Alarm_time_hbox;
     GtkWidget *Alarm_spin_dd;
+    GtkWidget *Alarm_spin_dd_label;
     GtkWidget *Alarm_spin_hh;
+    GtkWidget *Alarm_spin_hh_label;
     GtkWidget *Alarm_spin_mm;
+    GtkWidget *Alarm_spin_mm_label;
     GtkWidget *Alarm_when_cb;
     GtkWidget *Sound_label;
     GtkWidget *Sound_hbox;
+    GtkWidget *Sound_checkbutton;
     GtkWidget *Sound_entry;
     GtkWidget *Sound_button;
     GtkWidget *SoundRepeat_hbox;
     GtkWidget *SoundRepeat_checkbutton;
     GtkWidget *SoundRepeat_spin_cnt;
+    GtkWidget *SoundRepeat_spin_cnt_label;
     GtkWidget *SoundRepeat_spin_len;
+    GtkWidget *SoundRepeat_spin_len_label;
+    GtkWidget *Display_label;
+    GtkWidget *Display_hbox_orage;
+    GtkWidget *Display_checkbutton_orage;
+#ifdef HAVE_NOTIFY
+    GtkWidget *Display_hbox_notify;
+    GtkWidget *Display_checkbutton_notify;
+    GtkWidget *Display_checkbutton_expire_notify;
+    GtkWidget *Display_spin_expire_notify;
+    GtkWidget *Display_spin_expire_notify_label;
+#endif
 
     GtkWidget *Recur_notebook_page;
     GtkWidget *Recur_tab_label;

@@ -264,9 +264,9 @@ static void print_version(void)
     g_print(_("using GTK+-%d.%d.%d.\n")
             , gtk_major_version, gtk_minor_version, gtk_micro_version);
 #ifdef HAVE_DBUS
-    g_print(_("\tusing DBUS for import.\n"));
+    g_print(_("\tUsing DBUS for import.\n"));
 #else
-    g_print(_("\tnot using DBUS. import works only partially.\n"));
+    g_print(_("\tNot using DBUS. Import works only partially.\n"));
 #endif
     g_print("\n");
 }

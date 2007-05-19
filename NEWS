@@ -1,42 +1,45 @@
-4.4.0
-=====
-- Fix possible crash in appointment timezone selection.
-- Add missing revert/duplicate menu item sensitiviness settings.
-- Several new and updated translations.
+20070519:
+---------
+        * Orage version 4.5.9.5 released 
+        * libnotify support added.
 
+20070104:
+---------
+        * Orage version 4.5.9 released 
+        * globaltime added. Can show times in several timezones
 
-20061904
-========
-- xfcalendar renamed to orage
-- production version of orage (4.3) available 
-- orageclock panel plugin added. Can use timezone
+20072101:
+---------
+        * Orage version 4.4.0 released together with Xfce 4.4.0
 
+20061904:
+---------
+        * xfcalendar renamed to orage
+        * production version of orage (4.3) available 
+        * orageclock panel plugin added. Can use timezone
 
-20051201
-========
-- beta version of xfcalendar (4.3.2) can use timezones
-  builtin to the libical package
+20051201:
+---------
+        * beta version of xfcalendar (4.3.2) can use timezones
+          builtin to the libical package
 
+20050302:
+---------
+        * beta version of xfcalendar (4.3.0.1) is using libical 
+          instead of the previous dbh.
 
-20050302
-========
-- beta version of xfcalendar (4.3.0.1) is using libical 
-  instead of the previous dbh.
+20050210:
+---------
+        * Position in screen now stored so that xfcalendar stays where 
+          it was put.
+        * More paramaters added: Visibility in Systray, Pager and 
+          Taskbar now configurable from standard parameter screen. 
+          Also xfcalendar visibility when it is started from shell 
+          first time can be configured either visible or hidden.
 
-
-20050210
-========
-- Position in screen now stored so that xfcalendar stays where 
-  it was put.
-- More paramaters added: Visibility in Systray, Pager and 
-  Taskbar now configurable from standard parameter screen. 
-  Also xfcalendar visibility when it is started from shell 
-  first time can be configured either visible or hidden.
-
-
-20030716
-========
-- XfceTrayIcon now both provides "clicked" (a single left button
-  click) and "double_clicked" (double left button click) signals
-- XfceTrayIcon no longer autoconnects, you'll need to call
-  xfce_tray_icon_connect() explicitly
+20030716:
+---------
+	    * XfceTrayIcon now both provides "clicked" (a single left button
+	      click) and "double_clicked" (double left button click) signals
+  	    * XfceTrayIcon no longer autoconnects, you'll need to call
+	      xfce_tray_icon_connect() explicitly

@@ -72,4 +72,9 @@ orage-dbus-server.h: $(srcdir)/orage-dbus-service.xml Makefile
 	dbus-binding-tool --prefix=orage --mode=glib-server $(srcdir)/orage-dbus-service.xml > orage-dbus-service.h
 endif
 
+if HAVE_NOTIFY
+orage_LDADD +=							\
+	$(NOTIFY_LIBS)
+endif
+
 # vi:set ts=8 sw=8 noet ai:

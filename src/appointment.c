@@ -74,34 +74,78 @@ static void combo_box_append_array(GtkWidget *combo_box, char *text[], int size)
 }
 
 static GtkWidget *datetime_hbox_new(GtkWidget *date_button
-        , GtkWidget *time_spin_hh, GtkWidget *time_spin_mm
+        , GtkWidget *spin_hh, GtkWidget *spin_mm
         , GtkWidget *timezone_button)
 {
-
     GtkWidget *hbox, *space_label;
 
     hbox = gtk_hbox_new(FALSE, 0);
+
     gtk_box_pack_start(GTK_BOX(hbox), date_button, FALSE, FALSE, 0);
 
     space_label = gtk_label_new("  ");
     gtk_box_pack_start(GTK_BOX(hbox), space_label, FALSE, FALSE, 0);
 
-    space_label = gtk_label_new("  ");
-    gtk_box_pack_start(GTK_BOX(hbox), space_label, FALSE, FALSE, 0);
-    gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(time_spin_hh), TRUE);
-    gtk_widget_set_size_request(time_spin_hh, 40, -1);
-    gtk_box_pack_start(GTK_BOX(hbox), time_spin_hh, FALSE, FALSE, 0);
+    gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(spin_hh), TRUE);
+    gtk_widget_set_size_request(spin_hh, 40, -1);
+    gtk_box_pack_start(GTK_BOX(hbox), spin_hh, FALSE, FALSE, 0);
 
     space_label = gtk_label_new(":");
     gtk_box_pack_start(GTK_BOX(hbox), space_label, FALSE, FALSE, 0);
-    gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(time_spin_mm), TRUE);
-    gtk_widget_set_size_request(time_spin_mm, 40, -1);
-    gtk_box_pack_start(GTK_BOX(hbox), time_spin_mm, FALSE, FALSE, 0);
+
+    gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(spin_mm), TRUE);
+    gtk_widget_set_size_request(spin_mm, 40, -1);
+    gtk_box_pack_start(GTK_BOX(hbox), spin_mm, FALSE, FALSE, 0);
 
     space_label = gtk_label_new("  ");
     gtk_box_pack_start(GTK_BOX(hbox), space_label, FALSE, FALSE, 0);
 
     gtk_box_pack_start(GTK_BOX(hbox), timezone_button, TRUE, TRUE, 0);
+
+    return hbox;
+}
+
+static GtkWidget *period_hbox_new(gboolean head_space, gboolean tail_space
+        , GtkWidget *spin_dd, GtkWidget *dd_label
+        , GtkWidget *spin_hh, GtkWidget *hh_label
+        , GtkWidget *spin_mm, GtkWidget *mm_label)
+{
+    GtkWidget *hbox, *space_label;
+
+    hbox = gtk_hbox_new(FALSE, 0);
+
+    if (head_space) {
+        space_label = gtk_label_new("   ");
+        gtk_box_pack_start(GTK_BOX(hbox), space_label, FALSE, FALSE, 0);
+    }
+
+    gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(spin_dd), TRUE);
+    gtk_box_pack_start(GTK_BOX(hbox), spin_dd, FALSE, FALSE, 0);
+
+    gtk_box_pack_start(GTK_BOX(hbox), dd_label, FALSE, FALSE, 5);
+    
+    space_label = gtk_label_new("   ");
+    gtk_box_pack_start(GTK_BOX(hbox), space_label, FALSE, FALSE, 0);
+
+    gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(spin_hh), TRUE);
+    gtk_widget_set_size_request(spin_hh, 40, -1);
+    gtk_box_pack_start(GTK_BOX(hbox), spin_hh, FALSE, FALSE, 0);
+
+    gtk_box_pack_start(GTK_BOX(hbox), hh_label, FALSE, FALSE, 5);
+    
+    space_label = gtk_label_new("   ");
+    gtk_box_pack_start(GTK_BOX(hbox), space_label, FALSE, FALSE, 0);
+
+    gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(spin_mm), TRUE);
+    gtk_widget_set_size_request(spin_mm, 40, -1);
+    gtk_box_pack_start(GTK_BOX(hbox), spin_mm, FALSE, FALSE, 0);
+
+    gtk_box_pack_start(GTK_BOX(hbox), mm_label, FALSE, FALSE, 5);
+
+    if (tail_space) {
+        space_label = gtk_label_new("   ");
+        gtk_box_pack_start(GTK_BOX(hbox), space_label, FALSE, FALSE, 0);
+    }
 
     return hbox;
 }
@@ -146,9 +190,9 @@ static void set_time_sensitivity(appt_win *apptw)
         gtk_widget_set_sensitive(apptw->Dur_spin_hh_label, FALSE);
         gtk_widget_set_sensitive(apptw->Dur_spin_mm, FALSE);
         gtk_widget_set_sensitive(apptw->Dur_spin_mm_label, FALSE);
-	gtk_widget_set_sensitive(apptw->CompletedTime_spin_hh, FALSE);
-	gtk_widget_set_sensitive(apptw->CompletedTime_spin_mm, FALSE);
-	gtk_widget_set_sensitive(apptw->CompletedTimezone_button, FALSE);
+        gtk_widget_set_sensitive(apptw->CompletedTime_spin_hh, FALSE);
+        gtk_widget_set_sensitive(apptw->CompletedTime_spin_mm, FALSE);
+        gtk_widget_set_sensitive(apptw->CompletedTimezone_button, FALSE);
         if (dur_act) {
             gtk_widget_set_sensitive(apptw->EndDate_button, FALSE);
             gtk_widget_set_sensitive(apptw->Dur_spin_dd, TRUE);
@@ -159,12 +203,12 @@ static void set_time_sensitivity(appt_win *apptw)
             gtk_widget_set_sensitive(apptw->Dur_spin_dd, FALSE);
             gtk_widget_set_sensitive(apptw->Dur_spin_dd_label, FALSE);
         }
-	if (completed_act) {
-	    gtk_widget_set_sensitive(apptw->CompletedDate_button, TRUE);
-	}
-	else {
-	    gtk_widget_set_sensitive(apptw->CompletedDate_button, FALSE);
-	}
+        if (completed_act) {
+            gtk_widget_set_sensitive(apptw->CompletedDate_button, TRUE);
+        }
+        else {
+            gtk_widget_set_sensitive(apptw->CompletedDate_button, FALSE);
+        }
     }
     else {
         gtk_widget_set_sensitive(apptw->StartTime_spin_hh, TRUE);
@@ -194,18 +238,18 @@ static void set_time_sensitivity(appt_win *apptw)
             gtk_widget_set_sensitive(apptw->Dur_spin_mm, FALSE);
             gtk_widget_set_sensitive(apptw->Dur_spin_mm_label, FALSE);
         }
-	if (completed_act) {
-	    gtk_widget_set_sensitive(apptw->CompletedDate_button, TRUE);
-	    gtk_widget_set_sensitive(apptw->CompletedTime_spin_hh, TRUE);
-	    gtk_widget_set_sensitive(apptw->CompletedTime_spin_mm, TRUE);
-	    gtk_widget_set_sensitive(apptw->CompletedTimezone_button, TRUE);
-	}
-	else {
-	    gtk_widget_set_sensitive(apptw->CompletedDate_button, FALSE);
-	    gtk_widget_set_sensitive(apptw->CompletedTime_spin_hh, FALSE);
-	    gtk_widget_set_sensitive(apptw->CompletedTime_spin_mm, FALSE);
-	    gtk_widget_set_sensitive(apptw->CompletedTimezone_button, FALSE);
-	}
+        if (completed_act) {
+            gtk_widget_set_sensitive(apptw->CompletedDate_button, TRUE);
+            gtk_widget_set_sensitive(apptw->CompletedTime_spin_hh, TRUE);
+            gtk_widget_set_sensitive(apptw->CompletedTime_spin_mm, TRUE);
+            gtk_widget_set_sensitive(apptw->CompletedTimezone_button, TRUE);
+        }
+        else {
+            gtk_widget_set_sensitive(apptw->CompletedDate_button, FALSE);
+            gtk_widget_set_sensitive(apptw->CompletedTime_spin_hh, FALSE);
+            gtk_widget_set_sensitive(apptw->CompletedTime_spin_mm, FALSE);
+            gtk_widget_set_sensitive(apptw->CompletedTimezone_button, FALSE);
+        }
     }
 }
 
@@ -340,21 +384,73 @@ static void type_hide_show(appt_win *apptw)
     }
 }
 
-/*
-static void app_event_checkbutton_clicked_cb(GtkCheckButton *cb
-        , gpointer user_data)
+static void set_sound_sensitivity(appt_win *apptw)
 {
-    type_hide_show((appt_win *)user_data);
-    mark_appointment_changed((appt_win *)user_data);
+    gboolean sound_act, repeat_act;
+
+    sound_act = gtk_toggle_button_get_active(
+	    GTK_TOGGLE_BUTTON(apptw->Sound_checkbutton));
+    repeat_act = gtk_toggle_button_get_active(
+	    GTK_TOGGLE_BUTTON(apptw->SoundRepeat_checkbutton));
+
+    if (sound_act) {
+        gtk_widget_set_sensitive(apptw->Sound_entry, TRUE);
+        gtk_widget_set_sensitive(apptw->Sound_button, TRUE);
+        gtk_widget_set_sensitive(apptw->SoundRepeat_hbox, TRUE);
+        gtk_widget_set_sensitive(apptw->SoundRepeat_checkbutton, TRUE);
+        if (repeat_act) {
+            gtk_widget_set_sensitive(apptw->SoundRepeat_spin_cnt, TRUE);
+            gtk_widget_set_sensitive(apptw->SoundRepeat_spin_cnt_label, TRUE);
+            gtk_widget_set_sensitive(apptw->SoundRepeat_spin_len, TRUE);
+            gtk_widget_set_sensitive(apptw->SoundRepeat_spin_len_label, TRUE);
+        }
+        else {
+            gtk_widget_set_sensitive(apptw->SoundRepeat_spin_cnt, FALSE);
+            gtk_widget_set_sensitive(apptw->SoundRepeat_spin_cnt_label, FALSE);
+            gtk_widget_set_sensitive(apptw->SoundRepeat_spin_len, FALSE);
+            gtk_widget_set_sensitive(apptw->SoundRepeat_spin_len_label, FALSE);
+        }
+    }
+    else {
+        gtk_widget_set_sensitive(apptw->Sound_entry, FALSE);
+        gtk_widget_set_sensitive(apptw->Sound_button, FALSE);
+        gtk_widget_set_sensitive(apptw->SoundRepeat_hbox, FALSE); /* enough */
+    }
 }
 
-static void app_todo_checkbutton_clicked_cb(GtkCheckButton *cb
-        , gpointer user_data)
+static void set_notify_sensitivity(appt_win *apptw)
 {
-    type_hide_show((appt_win *)user_data);
-    mark_appointment_changed((appt_win *)user_data);
+#ifdef HAVE_NOTIFY
+    gboolean notify_act, expire_act;
+
+    notify_act = gtk_toggle_button_get_active(
+	    GTK_TOGGLE_BUTTON(apptw->Display_checkbutton_notify));
+    expire_act = gtk_toggle_button_get_active(
+	    GTK_TOGGLE_BUTTON(apptw->Display_checkbutton_expire_notify));
+
+    if (notify_act) {
+        gtk_widget_set_sensitive(apptw->Display_checkbutton_expire_notify
+                , TRUE);
+        if (expire_act) {
+            gtk_widget_set_sensitive(apptw->Display_spin_expire_notify, TRUE);
+            gtk_widget_set_sensitive(apptw->Display_spin_expire_notify_label
+                    , TRUE);
+        }
+        else {
+            gtk_widget_set_sensitive(apptw->Display_spin_expire_notify, FALSE);
+            gtk_widget_set_sensitive(apptw->Display_spin_expire_notify_label
+                    , FALSE);
+        }
+    }
+    else {
+        gtk_widget_set_sensitive(apptw->Display_checkbutton_expire_notify
+                , FALSE);
+        gtk_widget_set_sensitive(apptw->Display_spin_expire_notify, FALSE);
+        gtk_widget_set_sensitive(apptw->Display_spin_expire_notify_label
+                , FALSE);
+    }
+#endif
 }
-*/
 
 static void app_type_checkbutton_clicked_cb(GtkCheckButton *cb
         , gpointer user_data)
@@ -411,6 +507,22 @@ static void app_recur_feature_checkbutton_clicked_cb(GtkCheckButton *cb
     mark_appointment_changed((appt_win *)user_data);
     recur_hide_show((appt_win *)user_data);
 }
+
+static void app_sound_checkbutton_clicked_cb(GtkCheckButton *cb
+        , gpointer user_data)
+{
+    mark_appointment_changed((appt_win *)user_data);
+    set_sound_sensitivity((appt_win *)user_data);
+}
+
+#ifdef HAVE_NOTIFY
+static void app_notify_checkbutton_clicked_cb(GtkCheckButton *cb
+        , gpointer user_data)
+{
+    mark_appointment_changed((appt_win *)user_data);
+    set_notify_sensitivity((appt_win *)user_data);
+}
+#endif
 
 static void app_checkbutton_clicked_cb(GtkCheckButton *cb, gpointer user_data)
 {
@@ -729,6 +841,7 @@ static gboolean fill_appt_from_apptw(xfical_appt *appt, appt_win *apptw)
                     + gtk_spin_button_get_value_as_int(
             GTK_SPIN_BUTTON(apptw->Alarm_spin_mm)) *       60
                     ;
+    appt->display_alarm_orage = appt->alarmtime ? TRUE : FALSE;
 
     /* reminder before/after related to start/end */
     /*
@@ -758,6 +871,10 @@ static gboolean fill_appt_from_apptw(xfical_appt *appt, appt_win *apptw)
             break;
     }
 
+    /* Do we use audio alarm */
+    appt->sound_alarm = gtk_toggle_button_get_active(
+            GTK_TOGGLE_BUTTON(apptw->Sound_checkbutton));
+
     /* Which sound file will be played */
     appt->sound = g_strdup(gtk_entry_get_text(GTK_ENTRY(apptw->Sound_entry)));
 
@@ -769,6 +886,30 @@ static gboolean fill_appt_from_apptw(xfical_appt *appt, appt_win *apptw)
             GTK_SPIN_BUTTON(apptw->SoundRepeat_spin_cnt));
     appt->soundrepeat_len = gtk_spin_button_get_value_as_int(
             GTK_SPIN_BUTTON(apptw->SoundRepeat_spin_len));
+
+    /* Do we use orage display alarm */
+    appt->display_alarm_orage = gtk_toggle_button_get_active(
+            GTK_TOGGLE_BUTTON(apptw->Display_checkbutton_orage));
+
+    /* Do we use notify display alarm */
+#ifdef HAVE_NOTIFY
+    appt->display_alarm_notify = gtk_toggle_button_get_active(
+            GTK_TOGGLE_BUTTON(apptw->Display_checkbutton_notify));
+#else
+    appt->display_alarm_notify = FALSE;
+#endif
+
+    /* notify display alarm timeout */
+#ifdef HAVE_NOTIFY
+    if (gtk_toggle_button_get_active(
+            GTK_TOGGLE_BUTTON(apptw->Display_checkbutton_expire_notify)))
+        appt->display_notify_timeout = gtk_spin_button_get_value_as_int(
+                GTK_SPIN_BUTTON(apptw->Display_spin_expire_notify));
+    else 
+        appt->display_notify_timeout = -1;
+#else
+    appt->display_notify_timeout = -1;
+#endif
 
     /* recurrence */
     appt->freq = gtk_combo_box_get_active(GTK_COMBO_BOX(apptw->Recur_freq_cb));
@@ -1214,6 +1355,9 @@ static xfical_appt *fill_appt_window_get_appt(char *action, char *par)
         /* default alarm time is 500 cnt & 2 secs each */
         appt->soundrepeat_cnt = 500;
         appt->soundrepeat_len = 2;
+
+        /* default alarm type is orage window */
+        appt->display_alarm_orage = TRUE;
     }
     else if ((strcmp(action, "UPDATE") == 0) 
           || (strcmp(action, "COPY") == 0)) {
@@ -1307,9 +1451,16 @@ static void fill_appt_window(appt_win *apptw, char *action, char *par)
     gtk_entry_set_text(GTK_ENTRY(apptw->Title_entry)
             , (appt->title ? appt->title : ""));
 
-    if (strcmp(action, "COPY") == 0) 
+    if (strcmp(action, "COPY") == 0) {
+            gtk_editable_set_position(GTK_EDITABLE(apptw->Title_entry), -1);
+            i = gtk_editable_get_position(GTK_EDITABLE(apptw->Title_entry));
+            gtk_editable_insert_text(GTK_EDITABLE(apptw->Title_entry)
+                    , _(" *** COPY ***"), strlen(_(" *** COPY ***")), &i);
+    }
+    /*
         gtk_entry_append_text(GTK_ENTRY(apptw->Title_entry)
                 , _(" *** COPY ***"));
+                */
 
     /* location */
     gtk_entry_set_text(GTK_ENTRY(apptw->Location_entry)
@@ -1342,8 +1493,8 @@ static void fill_appt_window(appt_win *apptw, char *action, char *par)
 
     /* alarmrelation */
     /*
-    char *when_array[4] = {_("Before Start"), _("Before End")
-        , _("After Start"), _("After End")};
+    char *when_array[4] = {
+    _("Before Start"), _("Before End"), _("After Start"), _("After End")};
         */
     if (appt->alarm_before)
         if (appt->alarm_related_start)
@@ -1356,11 +1507,15 @@ static void fill_appt_window(appt_win *apptw, char *action, char *par)
         else
             gtk_combo_box_set_active(GTK_COMBO_BOX(apptw->Alarm_when_cb), 3);
 
-    /* alarm sound */
+    /* sound */
+    gtk_toggle_button_set_active(
+            GTK_TOGGLE_BUTTON(apptw->Sound_checkbutton)
+                    , appt->sound_alarm);
     gtk_entry_set_text(GTK_ENTRY(apptw->Sound_entry)
-            , (appt->sound ? appt->sound : ""));
+            , (appt->sound ? appt->sound : 
+                PACKAGE_DATA_DIR "/orage/sounds/Spo.wav"));
 
-    /* alarm repeat */
+    /* sound repeat */
     gtk_toggle_button_set_active(
             GTK_TOGGLE_BUTTON(apptw->SoundRepeat_checkbutton)
                     , appt->soundrepeat);
@@ -1368,6 +1523,34 @@ static void fill_appt_window(appt_win *apptw, char *action, char *par)
             , (gdouble)appt->soundrepeat_cnt);
     gtk_spin_button_set_value(GTK_SPIN_BUTTON(apptw->SoundRepeat_spin_len)
             , (gdouble)appt->soundrepeat_len);
+
+    /* display */
+    gtk_toggle_button_set_active(
+            GTK_TOGGLE_BUTTON(apptw->Display_checkbutton_orage)
+                    , appt->display_alarm_orage);
+    /* display:notify */
+#ifdef HAVE_NOTIFY
+    gtk_toggle_button_set_active(
+            GTK_TOGGLE_BUTTON(apptw->Display_checkbutton_notify)
+                    , appt->display_alarm_notify);
+    if (!appt->display_alarm_notify 
+            || appt->display_notify_timeout == -1) { /* no timeout */
+        gtk_toggle_button_set_active(
+                GTK_TOGGLE_BUTTON(apptw->Display_checkbutton_expire_notify)
+                        , FALSE);
+        gtk_spin_button_set_value(
+                GTK_SPIN_BUTTON(apptw->Display_spin_expire_notify)
+                , (gdouble)0);
+    }
+    else {
+        gtk_toggle_button_set_active(
+                GTK_TOGGLE_BUTTON(apptw->Display_checkbutton_expire_notify)
+                        , TRUE);
+        gtk_spin_button_set_value(
+                GTK_SPIN_BUTTON(apptw->Display_spin_expire_notify)
+                , (gdouble)appt->display_notify_timeout);
+    }
+#endif
 
     /********************* RECURRENCE tab *********************/
     /* recurrence */
@@ -1443,6 +1626,8 @@ static void fill_appt_window(appt_win *apptw, char *action, char *par)
 
     set_time_sensitivity(apptw);
     set_repeat_sensitivity(apptw);
+    set_sound_sensitivity(apptw);
+    set_notify_sensitivity(apptw);
     mark_appointment_unchanged(apptw);
 }
 
@@ -1648,30 +1833,17 @@ g_signal_connect((gpointer) apptw->StartTime_spin_hh, "value-changed",
     gtk_box_pack_start(GTK_BOX(apptw->Dur_hbox), apptw->Dur_checkbutton
             , FALSE, FALSE, 0);
     apptw->Dur_spin_dd = gtk_spin_button_new_with_range(0, 1000, 1);
-    gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(apptw->Dur_spin_dd), TRUE);
-    gtk_box_pack_start(GTK_BOX(apptw->Dur_hbox), apptw->Dur_spin_dd
-            , FALSE, FALSE, 5);
     apptw->Dur_spin_dd_label = gtk_label_new(_("days"));
-    gtk_box_pack_start(GTK_BOX(apptw->Dur_hbox)
-            , apptw->Dur_spin_dd_label, FALSE, FALSE, 0);
-    label = gtk_label_new(" ");
-    gtk_box_pack_start(GTK_BOX(apptw->Dur_hbox), label, FALSE, FALSE, 5);
     apptw->Dur_spin_hh = gtk_spin_button_new_with_range(0, 23, 1);
-    gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(apptw->Dur_spin_hh), TRUE);
-    gtk_box_pack_start(GTK_BOX(apptw->Dur_hbox), apptw->Dur_spin_hh
-            , FALSE, FALSE, 5);
     apptw->Dur_spin_hh_label = gtk_label_new(_("hours"));
-    gtk_box_pack_start(GTK_BOX(apptw->Dur_hbox)
-            , apptw->Dur_spin_hh_label, FALSE, FALSE, 0);
-    label = gtk_label_new(" ");
-    gtk_box_pack_start(GTK_BOX(apptw->Dur_hbox), label, FALSE, FALSE, 5);
     apptw->Dur_spin_mm = gtk_spin_button_new_with_range(0, 59, 5);
-    gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(apptw->Dur_spin_mm), TRUE);
-    gtk_box_pack_start(GTK_BOX(apptw->Dur_hbox), apptw->Dur_spin_mm
-            , FALSE, FALSE, 5);
     apptw->Dur_spin_mm_label = gtk_label_new(_("mins"));
-    gtk_box_pack_start(GTK_BOX (apptw->Dur_hbox)
-            , apptw->Dur_spin_mm_label, FALSE, FALSE, 0);
+    apptw->Dur_time_hbox = period_hbox_new(TRUE, FALSE
+            , apptw->Dur_spin_dd, apptw->Dur_spin_dd_label
+            , apptw->Dur_spin_hh, apptw->Dur_spin_hh_label
+            , apptw->Dur_spin_mm, apptw->Dur_spin_mm_label);
+    gtk_box_pack_start(GTK_BOX(apptw->Dur_hbox), apptw->Dur_time_hbox
+            , FALSE, FALSE, 0);
     orage_table_add_row(apptw->TableGeneral
             , NULL, apptw->Dur_hbox
             , ++row, (GTK_FILL), (GTK_FILL));
@@ -1791,6 +1963,7 @@ static void build_alarm_page(appt_win *apptw)
     char *when_array[4] = {_("Before Start"), _("Before End")
         , _("After Start"), _("After End")};
 
+    /***** Header *****/
     apptw->TableAlarm = orage_table_new(8, BORDER_SIZE);
     apptw->Alarm_notebook_page = apptw->TableAlarm;
     apptw->Alarm_tab_label = gtk_label_new(_("Alarm"));
@@ -1798,52 +1971,52 @@ static void build_alarm_page(appt_win *apptw)
     gtk_notebook_append_page(GTK_NOTEBOOK(apptw->Notebook)
             , apptw->Alarm_notebook_page, apptw->Alarm_tab_label);
 
-    apptw->Alarm_label = gtk_label_new(_("Alarm"));
+    /***** ALARM TIME *****/
+    apptw->Alarm_label = gtk_label_new(_("Alarm time"));
     apptw->Alarm_hbox = gtk_hbox_new(FALSE, 0);
     apptw->Alarm_spin_dd = gtk_spin_button_new_with_range(0, 100, 1);
-    gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(apptw->Alarm_spin_dd), TRUE);
-    gtk_box_pack_start(GTK_BOX(apptw->Alarm_hbox)
-            , apptw->Alarm_spin_dd, FALSE, FALSE, 0);
-    label = gtk_label_new(_("days"));
-    gtk_box_pack_start(GTK_BOX (apptw->Alarm_hbox), label, FALSE, FALSE, 5);
-    label = gtk_label_new(" ");
-    gtk_box_pack_start(GTK_BOX (apptw->Alarm_hbox), label, FALSE, FALSE, 10);
+    apptw->Alarm_spin_dd_label = gtk_label_new(_("days"));
     apptw->Alarm_spin_hh = gtk_spin_button_new_with_range(0, 23, 1);
-    gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(apptw->Alarm_spin_hh), TRUE);
-    gtk_box_pack_start(GTK_BOX (apptw->Alarm_hbox)
-            , apptw->Alarm_spin_hh, FALSE, FALSE, 0);
-    label = gtk_label_new(_("hours"));
-    gtk_box_pack_start(GTK_BOX (apptw->Alarm_hbox), label, FALSE, FALSE, 5);
-    label = gtk_label_new(" ");
-    gtk_box_pack_start(GTK_BOX (apptw->Alarm_hbox), label, FALSE, FALSE, 10);
+    apptw->Alarm_spin_hh_label = gtk_label_new(_("hours"));
     apptw->Alarm_spin_mm = gtk_spin_button_new_with_range(0, 59, 5);
-    gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(apptw->Alarm_spin_mm), TRUE);
-    gtk_box_pack_start(GTK_BOX (apptw->Alarm_hbox), apptw->Alarm_spin_mm
+    apptw->Alarm_spin_mm_label = gtk_label_new(_("mins"));
+    apptw->Alarm_time_hbox = period_hbox_new(FALSE, TRUE
+            , apptw->Alarm_spin_dd, apptw->Alarm_spin_dd_label
+            , apptw->Alarm_spin_hh, apptw->Alarm_spin_hh_label
+            , apptw->Alarm_spin_mm, apptw->Alarm_spin_mm_label);
+    gtk_box_pack_start(GTK_BOX(apptw->Alarm_hbox), apptw->Alarm_time_hbox
             , FALSE, FALSE, 0);
-    label = gtk_label_new(_("mins"));
-    gtk_box_pack_start(GTK_BOX (apptw->Alarm_hbox), label, FALSE, FALSE, 5);
     apptw->Alarm_when_cb = gtk_combo_box_new_text();
     combo_box_append_array(apptw->Alarm_when_cb
             , when_array, 4);
     event =  gtk_event_box_new(); /* only needed for tooltips */
     gtk_container_add(GTK_CONTAINER(event), apptw->Alarm_when_cb);
     gtk_box_pack_start(GTK_BOX(apptw->Alarm_hbox)
-            , event, FALSE, FALSE, 15);
+            , event, FALSE, FALSE, 0);
     orage_table_add_row(apptw->TableAlarm
             , apptw->Alarm_label, apptw->Alarm_hbox
             , row = 0, (GTK_FILL), (GTK_FILL));
     gtk_tooltips_set_tip(apptw->Tooltips, event
             , _("Often you want to get alarm:\n 1) before Event start\n 2) before Todo end\n 3) after Todo start"), NULL);
 
+    /***** Audio Alarm *****/
     apptw->Sound_label = gtk_label_new(_("Sound"));
-    apptw->Sound_hbox = gtk_hbox_new(FALSE, 0);
-    gtk_box_set_spacing(GTK_BOX(apptw->Sound_hbox), 6);
+
+    apptw->Sound_hbox = gtk_hbox_new(FALSE, 6);
+    apptw->Sound_checkbutton = 
+            gtk_check_button_new_with_mnemonic(_("Use"));
+    gtk_tooltips_set_tip(apptw->Tooltips, apptw->Sound_checkbutton
+            , _("Select this if you want audible alarm"), NULL);
+    gtk_box_pack_start(GTK_BOX(apptw->Sound_hbox), apptw->Sound_checkbutton
+            , FALSE, TRUE, 0);
+
     apptw->Sound_entry = gtk_entry_new();
     gtk_box_pack_start(GTK_BOX(apptw->Sound_hbox), apptw->Sound_entry
             , TRUE, TRUE, 0);
     apptw->Sound_button = gtk_button_new_from_stock("gtk-open");
     gtk_box_pack_start(GTK_BOX(apptw->Sound_hbox), apptw->Sound_button
             , FALSE, TRUE, 0);
+
     orage_table_add_row(apptw->TableAlarm
             , apptw->Sound_label, apptw->Sound_hbox
             , ++row, (GTK_FILL), (GTK_FILL));
@@ -1854,33 +2027,98 @@ static void build_alarm_page(appt_win *apptw)
     gtk_box_pack_start(GTK_BOX(apptw->SoundRepeat_hbox)
             , apptw->SoundRepeat_checkbutton
             , FALSE, FALSE, 0);
+
     label = gtk_label_new(" ");
     gtk_box_pack_start(GTK_BOX(apptw->SoundRepeat_hbox), label
             , FALSE, FALSE, 10);
-    apptw->SoundRepeat_spin_cnt = gtk_spin_button_new_with_range(1, 999, 1);
+
+    apptw->SoundRepeat_spin_cnt = gtk_spin_button_new_with_range(1, 999, 10);
     gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(apptw->SoundRepeat_spin_cnt)
             , TRUE);
     gtk_box_pack_start(GTK_BOX(apptw->SoundRepeat_hbox)
             , apptw->SoundRepeat_spin_cnt
             , FALSE, FALSE, 0);
-    label = gtk_label_new(_("times"));
-    gtk_box_pack_start(GTK_BOX(apptw->SoundRepeat_hbox), label
+
+    apptw->SoundRepeat_spin_cnt_label = gtk_label_new(_("times"));
+    gtk_box_pack_start(GTK_BOX(apptw->SoundRepeat_hbox)
+            , apptw->SoundRepeat_spin_cnt_label
             , FALSE, FALSE, 5);
+    
     label = gtk_label_new(" ");
     gtk_box_pack_start(GTK_BOX(apptw->SoundRepeat_hbox), label
             , FALSE, FALSE, 10);
+
     apptw->SoundRepeat_spin_len = gtk_spin_button_new_with_range(1, 250, 1);
     gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(apptw->SoundRepeat_spin_len)
             , TRUE);
     gtk_box_pack_start(GTK_BOX(apptw->SoundRepeat_hbox)
             , apptw->SoundRepeat_spin_len
             , FALSE, FALSE, 0);
-    label = gtk_label_new(_("sec interval"));
-    gtk_box_pack_start(GTK_BOX(apptw->SoundRepeat_hbox), label
+
+    apptw->SoundRepeat_spin_len_label = gtk_label_new(_("sec interval"));
+    gtk_box_pack_start(GTK_BOX(apptw->SoundRepeat_hbox)
+            , apptw->SoundRepeat_spin_len_label
             , FALSE, FALSE, 5);
+
     orage_table_add_row(apptw->TableAlarm
             , NULL, apptw->SoundRepeat_hbox
             , ++row, (GTK_EXPAND | GTK_FILL), (0));
+
+    /***** Display Alarm *****/
+    apptw->Display_label = gtk_label_new(_("Visual"));
+
+    apptw->Display_hbox_orage = gtk_hbox_new(FALSE, 0);
+    apptw->Display_checkbutton_orage = 
+            gtk_check_button_new_with_mnemonic(_("Use Orage window"));
+    gtk_tooltips_set_tip(apptw->Tooltips, apptw->Display_checkbutton_orage
+            , _("Select this if you want Orage window alarm"), NULL);
+    gtk_box_pack_start(GTK_BOX(apptw->Display_hbox_orage)
+            , apptw->Display_checkbutton_orage
+            , FALSE, TRUE, 0);
+
+    orage_table_add_row(apptw->TableAlarm
+            , apptw->Display_label, apptw->Display_hbox_orage
+            , ++row, (GTK_EXPAND | GTK_FILL), (0));
+
+#ifdef HAVE_NOTIFY
+    apptw->Display_hbox_notify = gtk_hbox_new(FALSE, 0);
+    apptw->Display_checkbutton_notify = 
+            gtk_check_button_new_with_mnemonic(_("Use notification"));
+    gtk_tooltips_set_tip(apptw->Tooltips, apptw->Display_checkbutton_notify
+            , _("Select this if you want notification alarm"), NULL);
+    gtk_box_pack_start(GTK_BOX(apptw->Display_hbox_notify)
+            , apptw->Display_checkbutton_notify
+            , FALSE, TRUE, 0);
+
+    apptw->Display_checkbutton_expire_notify = 
+            gtk_check_button_new_with_mnemonic(_("Set timeout"));
+    gtk_tooltips_set_tip(apptw->Tooltips
+            , apptw->Display_checkbutton_expire_notify
+            , _("Select this if you want notification to expire automatically")
+            , NULL);
+    gtk_box_pack_start(GTK_BOX(apptw->Display_hbox_notify)
+            , apptw->Display_checkbutton_expire_notify
+            , FALSE, TRUE, 10);
+
+    apptw->Display_spin_expire_notify = 
+            gtk_spin_button_new_with_range(0, 999, 1);
+    gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(apptw->Display_spin_expire_notify)
+            , TRUE);
+    gtk_tooltips_set_tip(apptw->Tooltips, apptw->Display_spin_expire_notify
+            , _("0 = system default expiration time"), NULL);
+    gtk_box_pack_start(GTK_BOX(apptw->Display_hbox_notify)
+            , apptw->Display_spin_expire_notify
+            , FALSE, TRUE, 10);
+
+    apptw->Display_spin_expire_notify_label = gtk_label_new(_("seconds"));
+    gtk_box_pack_start(GTK_BOX(apptw->Display_hbox_notify)
+            , apptw->Display_spin_expire_notify_label
+            , FALSE, TRUE, 0);
+
+    orage_table_add_row(apptw->TableAlarm
+            , NULL, apptw->Display_hbox_notify
+            , ++row, (GTK_EXPAND | GTK_FILL), (0));
+#endif
 
     g_signal_connect((gpointer)apptw->Alarm_spin_dd, "value-changed"
             , G_CALLBACK(on_app_spin_button_changed_cb), apptw);
@@ -1888,18 +2126,34 @@ static void build_alarm_page(appt_win *apptw)
             , G_CALLBACK(on_app_spin_button_changed_cb), apptw);
     g_signal_connect((gpointer)apptw->Alarm_spin_mm, "value-changed"
             , G_CALLBACK(on_app_spin_button_changed_cb), apptw);
-    g_signal_connect((gpointer)apptw->SoundRepeat_spin_cnt, "value-changed"
-            , G_CALLBACK(on_app_spin_button_changed_cb), apptw);
     g_signal_connect((gpointer)apptw->Alarm_when_cb, "changed"
             , G_CALLBACK(on_app_combobox_changed_cb), apptw);
-    g_signal_connect((gpointer)apptw->SoundRepeat_spin_len, "value-changed"
-            , G_CALLBACK(on_app_spin_button_changed_cb), apptw);
+
+    g_signal_connect((gpointer)apptw->Sound_checkbutton, "clicked"
+            , G_CALLBACK(app_sound_checkbutton_clicked_cb), apptw);
     g_signal_connect((gpointer)apptw->Sound_entry, "changed"
             , G_CALLBACK(on_app_entry_changed_cb), apptw);
     g_signal_connect((gpointer)apptw->Sound_button, "clicked"
             , G_CALLBACK(on_appSound_button_clicked_cb), apptw);
     g_signal_connect((gpointer)apptw->SoundRepeat_checkbutton, "clicked"
+            , G_CALLBACK(app_sound_checkbutton_clicked_cb), apptw);
+    g_signal_connect((gpointer)apptw->SoundRepeat_spin_cnt, "value-changed"
+            , G_CALLBACK(on_app_spin_button_changed_cb), apptw);
+    g_signal_connect((gpointer)apptw->SoundRepeat_spin_len, "value-changed"
+            , G_CALLBACK(on_app_spin_button_changed_cb), apptw);
+
+    g_signal_connect((gpointer)apptw->Display_checkbutton_orage, "clicked"
             , G_CALLBACK(app_checkbutton_clicked_cb), apptw);
+#ifdef HAVE_NOTIFY
+    g_signal_connect((gpointer)apptw->Display_checkbutton_notify, "clicked"
+            , G_CALLBACK(app_notify_checkbutton_clicked_cb), apptw);
+    g_signal_connect((gpointer)apptw->Display_checkbutton_expire_notify
+            , "clicked"
+            , G_CALLBACK(app_notify_checkbutton_clicked_cb), apptw);
+    g_signal_connect((gpointer)apptw->Display_spin_expire_notify
+            , "value-changed"
+            , G_CALLBACK(on_app_spin_button_changed_cb), apptw);
+#endif
 }
 
 static void build_recurrence_page(appt_win *apptw)
@@ -1935,7 +2189,7 @@ static void build_recurrence_page(appt_win *apptw)
     gtk_tooltips_set_tip(apptw->Tooltips, apptw->Recur_feature_normal_rb
             , _("Use this if you want regular repeating event"), NULL);
     gtk_tooltips_set_tip(apptw->Tooltips, apptw->Recur_feature_advanced_rb
-            , _("Use this if you need complex times like:\n Every second week or \n Every Saturday and Sunday or \n First Tuesday every month")
+            , _("Use this if you need complex times like:\n Every Saturday and Sunday or \n First Tuesday every month")
             , NULL);
 
     apptw->Recur_freq_label = gtk_label_new(_("Frequency"));
@@ -2064,7 +2318,9 @@ appt_win *create_appt_win(char *action, char *par, el_win *event_list)
     apptw->accel_group = gtk_accel_group_new();
 
     apptw->Window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+    /*
     gtk_window_set_default_size(GTK_WINDOW(apptw->Window), 450, 325);
+    */
     gtk_window_add_accel_group(GTK_WINDOW(apptw->Window), apptw->accel_group);
 
     apptw->Vbox = gtk_vbox_new(FALSE, 0);

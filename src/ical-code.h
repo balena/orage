@@ -42,7 +42,7 @@ typedef enum
    ,XFICAL_TYPE_JOURNAL
 } xfical_type;
 
-typedef struct
+typedef struct _xfical_appt
 {
     gchar *uid; 
     /* note that version 4.5.9 changed uid format.
@@ -79,14 +79,29 @@ typedef struct
     gchar *note;
 
         /* alarm */
-    gint alarmtime;
+    gint alarmtime; /* 0 means no alarms */
     gboolean alarm_before; /* TRUE = before FALSE = after */
         /* TRUE = related to start FALSE= related to end */
     gboolean alarm_related_start; 
+
+    gboolean sound_alarm;
     gchar *sound;
     gboolean soundrepeat;
     gint soundrepeat_cnt;
     gint soundrepeat_len;
+
+    gboolean display_alarm_orage;
+    gboolean display_alarm_notify;
+        /* used only with libnotify. -1 = no timeout 0 = use default timeout */
+    gint display_notify_timeout;  
+
+    /*
+    gboolean email_alarm;
+    gchar *email_attendees;
+
+    gboolean procedure_alarm;
+    gchar *procedure_cmd;
+    */
 
         /* for repeating events cur times show current repeating event.
          * normal times are always the real (=first) start and end times

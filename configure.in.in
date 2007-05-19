@@ -9,11 +9,12 @@ dnl Written for Xfce by Juha Kautto <juha@xfce.org>
 dnl
 
 dnl Version information
-m4_define([orage_version], [4.5.9.4-svn])
+m4_define([orage_version], [4.5.9.5-svn])
 
 m4_define([gtk_minimum_version], [2.6.0])
 m4_define([xfce_minimum_version], [4.4.0])
 m4_define([dbus_minimum_version], [0.34])
+m4_define([notify_minimum_version], [0.3.2])
 m4_define([intltool_minimum_version], [0.31])
 
 
@@ -185,6 +186,14 @@ dnl **********************************
 XDT_CHECK_OPTIONAL_PACKAGE([DBUS], [dbus-glib-1],
                            [dbus_minimum_version], [dbus], [D-BUS support])
 
+
+dnl **************************************
+dnl *** Optional support for libnotify ***
+dnl **************************************
+XDT_CHECK_OPTIONAL_PACKAGE([NOTIFY], [libnotify],
+                           [notify_minimum_version], [libnotify], 
+                           [LIBNOTIFY support])
+
 dnl Check for debugging support
 dnl BM_DEBUG_SUPPORT()
 XDT_FEATURE_DEBUG
@@ -226,3 +235,9 @@ echo "* D-BUS support:             yes"
 else
 echo "* D-BUS support:             no"
 fi
+if test x"$NOTIFY_FOUND" = x"yes"; then
+echo "* LIBNOTIFY support:         yes"
+else
+echo "* LIBNOTIFY support:         no"
+fi
+echo

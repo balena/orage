@@ -24,33 +24,39 @@
 #ifndef __REMINDER_H__
 #define __REMINDER_H__
 
-typedef struct 
+typedef struct _active_alarm_struct
 {
+    gboolean sound_active; /* sound is currently being played */
+    GtkWidget *stop_noise_reminder;
+    gpointer active_notify; /* this is NotifyNotification, but it may not be
+                               linked in, so need to be done like this */
+} active_alarm_struct;
+
+typedef struct _alarm_struct
+{
+    gchar   *alarm_time;
     GString *uid;
-    GString *alarm_time;
-    GString *event_time;
     GString *title;
-    gboolean display;
     GString *description;
+
+    gboolean display;
+    gboolean display_orage;
+    gboolean display_notify;
+    gint     notify_timeout;
+
     gboolean audio;
     GString *sound;
     gint     repeat_cnt;
     gint     repeat_delay;
+
+    /*
+    gboolean email;
+    gboolean procedure;
+    */
+    /* this is used to control active alarms */
+    active_alarm_struct *active_alarm;
 } alarm_struct;
 
-typedef struct {
-    gchar *play_cmd;
-    gint cnt;
-    gint delay;
-    GtkWidget *wReminder; /* needed for callbacks when stopping timer */
-    gboolean sound_active;
-} orage_audio_alarm_type;
-
-
-void create_wReminder(alarm_struct *alarm);
-
 gboolean orage_alarm_clock(gpointer user_data);
-
-void set_play_command(gchar *cmd);
 
 #endif /* !__REMINDER_H__ */
