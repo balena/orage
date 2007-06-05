@@ -132,6 +132,10 @@ typedef struct _appt_win
     GtkWidget *Display_spin_expire_notify;
     GtkWidget *Display_spin_expire_notify_label;
 #endif
+    GtkWidget *Proc_label;
+    GtkWidget *Proc_hbox;
+    GtkWidget *Proc_checkbutton;
+    GtkWidget *Proc_entry;
 
     GtkWidget *Recur_notebook_page;
     GtkWidget *Recur_tab_label;

@@ -452,6 +452,21 @@ static void set_notify_sensitivity(appt_win *apptw)
 #endif
 }
 
+static void set_proc_sensitivity(appt_win *apptw)
+{
+    gboolean proc_act;
+
+    proc_act = gtk_toggle_button_get_active(
+	    GTK_TOGGLE_BUTTON(apptw->Proc_checkbutton));
+
+    if (proc_act) {
+        gtk_widget_set_sensitive(apptw->Proc_entry, TRUE);
+    }
+    else {
+        gtk_widget_set_sensitive(apptw->Proc_entry, FALSE);
+    }
+}
+
 static void app_type_checkbutton_clicked_cb(GtkCheckButton *cb
         , gpointer user_data)
 {
@@ -523,6 +538,13 @@ static void app_notify_checkbutton_clicked_cb(GtkCheckButton *cb
     set_notify_sensitivity((appt_win *)user_data);
 }
 #endif
+
+static void app_proc_checkbutton_clicked_cb(GtkCheckButton *cb
+        , gpointer user_data)
+{
+    mark_appointment_changed((appt_win *)user_data);
+    set_proc_sensitivity((appt_win *)user_data);
+}
 
 static void app_checkbutton_clicked_cb(GtkCheckButton *cb, gpointer user_data)
 {
@@ -723,9 +745,10 @@ static gboolean fill_appt_from_apptw(xfical_appt *appt, appt_win *apptw)
     const char *time_format="%H:%M";
     struct tm current_t;
     gchar starttime[6], endtime[6], completedtime[6];
-    gint i;
+    gint i, j, k;
+    gchar *tmp;
 
-    /* Next line is fix for bug 2811.
+/* Next line is fix for bug 2811.
  * We need to make sure spin buttons do not have values which are not
  * yet updated = visible.
  * gtk_spin_button_update call would do it, but it seems to cause
@@ -738,6 +761,7 @@ static gboolean fill_appt_from_apptw(xfical_appt *appt, appt_win *apptw)
  */
     gtk_widget_grab_focus(apptw->Title_entry);
 
+            /*********** GENERAL TAB ***********/
     /* type */
     if (gtk_toggle_button_get_active(
                 GTK_TOGGLE_BUTTON(apptw->Type_event_rb)))
@@ -833,6 +857,7 @@ static gboolean fill_appt_from_apptw(xfical_appt *appt, appt_win *apptw)
             */
     appt->note = gtk_text_iter_get_text(&start, &end);
 
+            /*********** ALARM TAB ***********/
     /* reminder time */
     appt->alarmtime = gtk_spin_button_get_value_as_int(
             GTK_SPIN_BUTTON(apptw->Alarm_spin_dd)) * 24*60*60
@@ -911,6 +936,27 @@ static gboolean fill_appt_from_apptw(xfical_appt *appt, appt_win *apptw)
     appt->display_notify_timeout = -1;
 #endif
 
+    /* Do we use procedure alarm */
+    appt->procedure_alarm = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(apptw->Proc_checkbutton));
+
+    /* The actual command. 
+     * Note that we need to split this into cmd and the parameters 
+     * since that is how libical stores it */
+    appt->procedure_cmd =  NULL;
+    appt->procedure_params =  NULL;
+    tmp = (char*)gtk_entry_get_text(GTK_ENTRY(apptw->Proc_entry));
+    j = strlen(tmp);
+    for (i = 0; i < j && g_ascii_isspace(tmp[i]); i++)
+        ; /* skip blanks */
+    for (k = i; k < j && !g_ascii_isspace(tmp[k]); k++)
+        ; /* find first blank after the cmd */
+        /* now i points to start of cmd and k points to end of cmd */
+    if (k-i)
+        appt->procedure_cmd = g_strndup(tmp+i, k-i);
+    if (j-k)
+        appt->procedure_params = g_strndup(tmp+k, j-k);
+
+            /*********** RECURRENCE TAB ***********/
     /* recurrence */
     appt->freq = gtk_combo_box_get_active(GTK_COMBO_BOX(apptw->Recur_freq_cb));
 
@@ -1384,7 +1430,7 @@ static void fill_appt_window(appt_win *apptw, char *action, char *par)
     int year, month, day, hours, minutes;
     xfical_appt *appt;
     struct tm *t, tm_date;
-    char *untildate_to_display;
+    char *untildate_to_display, *tmp;
     int i;
 
     orage_message("%s appointment: %s", action, par);
@@ -1552,6 +1598,14 @@ static void fill_appt_window(appt_win *apptw, char *action, char *par)
     }
 #endif
 
+    /* procedure */
+    gtk_toggle_button_set_active(
+            GTK_TOGGLE_BUTTON(apptw->Proc_checkbutton)
+                    , appt->procedure_alarm);
+    tmp = g_strconcat(appt->procedure_cmd, " ", appt->procedure_params, NULL);
+    gtk_entry_set_text(GTK_ENTRY(apptw->Proc_entry), tmp ? tmp : "");
+    g_free(tmp);
+
     /********************* RECURRENCE tab *********************/
     /* recurrence */
     gtk_combo_box_set_active(GTK_COMBO_BOX(apptw->Recur_freq_cb)
@@ -1628,6 +1682,7 @@ static void fill_appt_window(appt_win *apptw, char *action, char *par)
     set_repeat_sensitivity(apptw);
     set_sound_sensitivity(apptw);
     set_notify_sensitivity(apptw);
+    set_proc_sensitivity(apptw);
     mark_appointment_unchanged(apptw);
 }
 
@@ -2120,6 +2175,27 @@ static void build_alarm_page(appt_win *apptw)
             , ++row, (GTK_EXPAND | GTK_FILL), (0));
 #endif
 
+    /***** Procedure Alarm *****/
+    apptw->Proc_label = gtk_label_new(_("Procedure"));
+
+    apptw->Proc_hbox = gtk_hbox_new(FALSE, 6);
+    apptw->Proc_checkbutton = 
+            gtk_check_button_new_with_mnemonic(_("Use"));
+    gtk_tooltips_set_tip(apptw->Tooltips, apptw->Proc_checkbutton
+            , _("Select this if you want procedure or script alarm"), NULL);
+    gtk_box_pack_start(GTK_BOX(apptw->Proc_hbox), apptw->Proc_checkbutton
+            , FALSE, TRUE, 0);
+
+    apptw->Proc_entry = gtk_entry_new();
+    gtk_tooltips_set_tip(apptw->Tooltips, apptw->Proc_entry
+            , _("You must enter all escape etc characters yourself.\n This string is just given to shell to process"), NULL);
+    gtk_box_pack_start(GTK_BOX(apptw->Proc_hbox), apptw->Proc_entry
+            , TRUE, TRUE, 0);
+
+    orage_table_add_row(apptw->TableAlarm
+            , apptw->Proc_label, apptw->Proc_hbox
+            , ++row, (GTK_FILL), (GTK_FILL));
+
     g_signal_connect((gpointer)apptw->Alarm_spin_dd, "value-changed"
             , G_CALLBACK(on_app_spin_button_changed_cb), apptw);
     g_signal_connect((gpointer)apptw->Alarm_spin_hh, "value-changed"
@@ -2154,6 +2230,11 @@ static void build_alarm_page(appt_win *apptw)
             , "value-changed"
             , G_CALLBACK(on_app_spin_button_changed_cb), apptw);
 #endif
+
+    g_signal_connect((gpointer)apptw->Proc_checkbutton, "clicked"
+            , G_CALLBACK(app_proc_checkbutton_clicked_cb), apptw);
+    g_signal_connect((gpointer)apptw->Proc_entry, "changed"
+            , G_CALLBACK(on_app_entry_changed_cb), apptw);
 }
 
 static void build_recurrence_page(appt_win *apptw)

@@ -132,7 +132,7 @@ static gboolean sound_alarm(gpointer data)
         status = orage_exec(alarm->sound->str
                 , &alarm->active_alarm->sound_active, &error);
         if (!status) {
-            g_warning("reminder: play failed (%si)", alarm->sound->str);
+            g_warning("reminder: play failed (%s)", alarm->sound->str);
             alarm->repeat_cnt = 0; /* one warning is enough */
         }
         else if (alarm->repeat_cnt > 0)
@@ -346,10 +346,20 @@ static void create_orage_reminder(alarm_struct *alarm)
                 , btStopNoiseReminder, GTK_RESPONSE_OK);
         g_signal_connect((gpointer)btStopNoiseReminder, "clicked",
             G_CALLBACK(on_btStopNoiseReminder_clicked), alarm);
-        g_signal_connect(G_OBJECT(wReminder), "destroy",
-            G_CALLBACK(destroy_orage_reminder), alarm);
     }
+    g_signal_connect(G_OBJECT(wReminder), "destroy",
+        G_CALLBACK(destroy_orage_reminder), alarm);
     gtk_widget_show_all(wReminder);
+}
+
+static void create_procedure_reminder(alarm_struct *alarm)
+{
+    gboolean status, active; /* active not used */
+    GError *error = NULL;
+
+    status = orage_exec(alarm->cmd->str, &active, &error);
+    if (!status)
+        g_warning("create_procedure_reminder: cmd failed(%s)", alarm->cmd->str);
 }
 
 void create_reminders(alarm_struct *alarm)
@@ -378,6 +388,8 @@ void create_reminders(alarm_struct *alarm)
     if (n_alarm->display
     && (!n_alarm->display_orage && !n_alarm->display_notify))
         n_alarm->display_orage = TRUE;
+    n_alarm->procedure = alarm->procedure;
+    n_alarm->cmd = g_string_new(alarm->cmd->str);
     n_alarm->active_alarm = g_new0(active_alarm_struct, 1);
 
     if (n_alarm->audio)
@@ -386,6 +398,8 @@ void create_reminders(alarm_struct *alarm)
         create_orage_reminder(n_alarm);
     if (n_alarm->display_notify)
         create_notify_reminder(n_alarm);
+    if (n_alarm->procedure)
+        create_procedure_reminder(n_alarm);
     /*
     if (alarm->display
     && (!alarm->display_orage && !alarm->display_notify))

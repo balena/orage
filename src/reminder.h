@@ -49,9 +49,10 @@ typedef struct _alarm_struct
     gint     repeat_cnt;
     gint     repeat_delay;
 
+    gboolean procedure;
+    GString *cmd;
     /*
     gboolean email;
-    gboolean procedure;
     */
     /* this is used to control active alarms */
     active_alarm_struct *active_alarm;

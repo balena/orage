@@ -44,7 +44,6 @@ typedef enum
 
 typedef struct _xfical_appt
 {
-    gchar *uid; 
     /* note that version 4.5.9 changed uid format.
      * new format starts with 3 char source id (plus separator '.'), 
      * which tells the file where the id is found:
@@ -52,6 +51,7 @@ typedef struct _xfical_appt
      * "A01." = Archive file
      * "F10." = Foreign file number 10
      */
+    gchar *uid; 
 
     xfical_type type;
     gchar *title;
@@ -98,10 +98,11 @@ typedef struct _xfical_appt
     /*
     gboolean email_alarm;
     gchar *email_attendees;
+    */
 
     gboolean procedure_alarm;
     gchar *procedure_cmd;
-    */
+    gchar *procedure_params;
 
         /* for repeating events cur times show current repeating event.
          * normal times are always the real (=first) start and end times

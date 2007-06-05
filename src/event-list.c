@@ -326,7 +326,7 @@ static void add_el_row(el_win *el, xfical_appt *appt, char *par)
     gchar          *title = NULL;
     gchar           flags[5]; 
     gchar          *stime;
-    gchar          *s_sort, *s_sort1;
+    gchar          /* *s_sort,*/ *s_sort1;
     gchar           source[5]; 
     gint            len = 50;
 
