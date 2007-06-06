@@ -32,6 +32,10 @@
  *DONE*12. Fix clock formatting after hour adjustment ends (free space)
   */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -41,10 +45,11 @@
 #include <gdk/gdkkeysyms.h>
 #include <gdk/gdkx.h>
 #include <gtk/gtk.h>
+#include <libxfce4util/libxfce4util.h>
 #include "globaltime.h"
 
 
-#define NAME_VERSION "Global Time (1.21)"
+#define NAME_VERSION "Global Time (2.0)"
 
 
 global_times_struct clocks;
@@ -92,9 +97,9 @@ static gboolean global_time_active_already(GdkAtom *atom)
         gev.data_format = 8; 
         if (gdk_event_send_client_message ((GdkEvent *) &gev
                     , (GdkNativeWindow) xwindow))
-            g_message("Raising GlobalTime window...");
+            g_message(_("Raising GlobalTime window..."));
         else
-            g_warning("GlobalTime window raise failed");
+            g_warning(_("GlobalTime window raise failed"));
         return(TRUE); 
     }
     else
@@ -270,7 +275,7 @@ static void show_clock_format_clock(clock_struct *clockp)
     }
 
 /*********** timezone tooltip ***********/
-    sprintf(tmp, "%s\nclick to modify clock", clockp->tz->str);
+    sprintf(tmp, _("%s\nclick to modify clock"), clockp->tz->str);
     gtk_tooltips_set_tip(clocks.tips, clockp->clock_ebox, tmp, NULL);
 
 /*********** clock size even or varying */
@@ -350,7 +355,7 @@ static gboolean preferences_button_pressed(GtkWidget *widget
             clocks.mm_adj = 0;
             clocks.hh_adj = 0;
             clocks.previous_secs = 70; /* trick to refresh clocks once */
-            g_message("Ending time adjustment mode");
+            g_message(_("Ending time adjustment mode"));
             gtk_window_resize(GTK_WINDOW(clocks.window), 10, 10);
         }
         else { /* start hour adjusting mode */
@@ -358,7 +363,7 @@ static gboolean preferences_button_pressed(GtkWidget *widget
             gtk_widget_show(clocks.hdr_adj_sep);
             gtk_widget_show(clocks.hdr_adj_hh);
             clocks.time_adj_act = TRUE;
-            g_message("Starting time adjustment mode");
+            g_message(_("Starting time adjustment mode"));
         }
         return(FALSE);
     }
@@ -373,7 +378,7 @@ static void add_default_clock(void)
 
     clockp = g_new(clock_struct, 1);
     clockp->tz = g_string_new(clocks.local_tz->str);
-    clockp->name = g_string_new("Localtime");
+    clockp->name = g_string_new(_("Localtime"));
     clockp->modified = FALSE;
     init_attr(&clockp->clock_attr);
     clocks.clock_list = g_list_append(clocks.clock_list, clockp);
@@ -448,7 +453,7 @@ static void init_hdr_button(void)
     gtk_box_pack_start(GTK_BOX(clocks.hdr_hbox)
             , clocks.hdr_button, FALSE, FALSE, 0);
     gtk_tooltips_set_tip(clocks.tips, clocks.hdr_button
-            , "button 1 to change preferences \nbutton 2 to adjust time of clocks", NULL);
+            , _("button 1 to change preferences \nbutton 2 to adjust time of clocks"), NULL);
     g_signal_connect(clocks.hdr_button, "button_press_event"
             , G_CALLBACK(preferences_button_pressed), NULL);
     image = gtk_image_new_from_stock(GTK_STOCK_PREFERENCES
@@ -464,7 +469,7 @@ static void init_hdr_button(void)
     gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(clocks.hdr_adj_hh), TRUE);
     gtk_widget_set_size_request(clocks.hdr_adj_hh, 40, -1);
     gtk_tooltips_set_tip(clocks.tips, clocks.hdr_adj_hh
-            , "adjust to change hour", NULL);
+            , _("adjust to change hour"), NULL);
     g_signal_connect((gpointer) clocks.hdr_adj_hh, "changed"
             , G_CALLBACK(adj_hh_changed), NULL);
 
@@ -479,7 +484,7 @@ static void init_hdr_button(void)
     gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(clocks.hdr_adj_mm), TRUE);
     gtk_widget_set_size_request(clocks.hdr_adj_mm, 40, -1);
     gtk_tooltips_set_tip(clocks.tips, clocks.hdr_adj_mm
-            , "adjust to change minute", NULL);
+            , _("adjust to change minute"), NULL);
     g_signal_connect((gpointer) clocks.hdr_adj_mm, "changed"
             , G_CALLBACK(adj_mm_changed), NULL);
     /* We want it to be hidden initially, it is special thing to do...
@@ -562,7 +567,6 @@ static void create_global_time(void)
     gint pos = -1; /* to the end */
     GdkAtom atom;
 
-
     /* first check if we are active already */
     if (global_time_active_already(&atom))
         exit(1);
@@ -600,6 +604,7 @@ static void create_global_time(void)
 
 int main(int argc, char *argv[])
 {
+    xfce_textdomain(GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8");
     gtk_init (&argc, &argv);
     create_global_time();
     gtk_main();
