@@ -6,19 +6,324 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: orage 4.4.0\n"
+"Project-Id-Version: orage 4.3.90.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-10-13 18:52+0300\n"
-"PO-Revision-Date: 2006-11-11 20:20+0200\n"
-"Last-Translator: Stavros Giannouris <stavrosg@serverhive.com>\n"
+"POT-Creation-Date: 2007-06-06 23:57+0300\n"
+"PO-Revision-Date: 2006-05-12 22:57+0200\n"
+"Last-Translator: Stavros Giannouris <stavrosg2002@freemail.gr>\n"
 "Language-Team: Greek <nls@tux.hellug.gr>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../panel-plugin/oc_config.c:114
+#: ../globaltime/globaltime.c:100
+msgid "Raising GlobalTime window..."
+msgstr ""
+
+#: ../globaltime/globaltime.c:102
+msgid "GlobalTime window raise failed"
+msgstr ""
+
+#. ********** timezone tooltip **********
+#: ../globaltime/globaltime.c:278
+#, c-format
+msgid ""
+"%s\n"
+"click to modify clock"
+msgstr ""
+
+#. trick to refresh clocks once
+#: ../globaltime/globaltime.c:358
+msgid "Ending time adjustment mode"
+msgstr ""
+
+#: ../globaltime/globaltime.c:366
+msgid "Starting time adjustment mode"
+msgstr ""
+
+#: ../globaltime/globaltime.c:381
+#, fuzzy
+msgid "Localtime"
+msgstr "Τοποθεσία"
+
+#: ../globaltime/globaltime.c:456
+msgid ""
+"button 1 to change preferences \n"
+"button 2 to adjust time of clocks"
+msgstr ""
+
+#: ../globaltime/globaltime.c:472
+msgid "adjust to change hour"
+msgstr ""
+
+#: ../globaltime/globaltime.c:487
+msgid "adjust to change minute"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:69 ../globaltime/gt_prefs.c:1078
+#, fuzzy
+msgid "Standard"
+msgstr "Ημερολόγιο"
+
+#: ../globaltime/gt_prefs.c:71 ../src/appointment.c:2244
+msgid "None"
+msgstr "Κανένα"
+
+#: ../globaltime/gt_prefs.c:84 ../globaltime/gt_prefs.c:1101
+msgid "Equal"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:86
+#, fuzzy
+msgid "Vary"
+msgstr "Ετήσια"
+
+#: ../globaltime/gt_prefs.c:267 ../globaltime/gt_prefs.c:268
+msgid "NEW"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:291
+msgid "NEW COPY"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:312
+msgid "Not possible to delete the last clock."
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:367 ../panel-plugin/oc_config.c:114
 msgid "Select timezone"
 msgstr "Επιλογή ζώνης ώρας"
+
+#: ../globaltime/gt_prefs.c:512
+msgid "update this clock"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:517 ../globaltime/gt_prefs.c:1034
+msgid "add new empty clock"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:522
+msgid "add new clock using this clock as model"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:527
+msgid "delete this clock"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:535
+msgid "move this clock first"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:540
+msgid "move this clock left"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:545
+msgid "move this clock right"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:550
+msgid "move this clock last"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:558
+msgid "set the timezone of this clock to be local timezone"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:564 ../globaltime/gt_prefs.c:1042
+msgid "close window and exit"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:587
+msgid "Modify Clock "
+msgstr ""
+
+#. -----------------------HEADING-------------------------------------------
+#: ../globaltime/gt_prefs.c:600
+msgid "Clock Parameters"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:604
+msgid "Name of the clock:"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:610
+#, fuzzy
+msgid "enter name of clock"
+msgstr "Ρολόι orage"
+
+#: ../globaltime/gt_prefs.c:613
+msgid "Timezone of the clock:"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:619
+msgid ""
+"enter timezone of clock,\n"
+"(=any valid TZ value)"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:643
+msgid "Text Formatting"
+msgstr ""
+
+#. ------------------------background-------------------------
+#: ../globaltime/gt_prefs.c:649 ../globaltime/gt_prefs.c:856
+#, fuzzy
+msgid "Background color:"
+msgstr "Χρώμα _παρασκηνίου:"
+
+#: ../globaltime/gt_prefs.c:656
+msgid "Click to change background colour for clock"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:665 ../globaltime/gt_prefs.c:697
+#: ../globaltime/gt_prefs.c:729 ../globaltime/gt_prefs.c:762
+#: ../globaltime/gt_prefs.c:796 ../globaltime/gt_prefs.c:826
+#: ../globaltime/gt_prefs.c:872 ../globaltime/gt_prefs.c:905
+#: ../globaltime/gt_prefs.c:938 ../globaltime/gt_prefs.c:972
+#, fuzzy
+msgid "Use default"
+msgstr "Προκαθορισμένη ειδοποίηση"
+
+#: ../globaltime/gt_prefs.c:670 ../globaltime/gt_prefs.c:702
+#: ../globaltime/gt_prefs.c:735 ../globaltime/gt_prefs.c:768
+#: ../globaltime/gt_prefs.c:802 ../globaltime/gt_prefs.c:832
+msgid "Cross this to use default instead of selected value"
+msgstr ""
+
+#. ------------------------foreground-------------------------
+#: ../globaltime/gt_prefs.c:681 ../globaltime/gt_prefs.c:889
+#, fuzzy
+msgid "Foreground (=text) color:"
+msgstr "Χρώμα _κειμένου:"
+
+#: ../globaltime/gt_prefs.c:688
+msgid "Click to change foreground colour for clock"
+msgstr ""
+
+#. ------------------------name font-------------------------
+#: ../globaltime/gt_prefs.c:713 ../globaltime/gt_prefs.c:922
+msgid "Font for name of clock:"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:720
+msgid "Click to change font for clock name"
+msgstr ""
+
+#. ------------------------time font-------------------------
+#: ../globaltime/gt_prefs.c:746 ../globaltime/gt_prefs.c:956
+msgid "Font for time of clock:"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:753
+msgid "Click to change font for clock time"
+msgstr ""
+
+#. ------------------------underline name--------------------
+#: ../globaltime/gt_prefs.c:780
+msgid "Underline name of clock:"
+msgstr ""
+
+#. ------------------------underline time--------------------
+#: ../globaltime/gt_prefs.c:810
+msgid "Underline time of clock:"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:850
+msgid "Text Default Formatting"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:863
+msgid "Click to change default background colour for clocks"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:877 ../globaltime/gt_prefs.c:910
+msgid "Cross this to use system default instead of selected color"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:896
+msgid "Click to change default text colour for clocks"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:929
+msgid "Click to change default font for clock name"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:944 ../globaltime/gt_prefs.c:978
+msgid "Cross this to use system default font instead of selected font"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:963
+msgid "Click to change default font for clock time"
+msgstr ""
+
+#. ------------------------underline name--------------------
+#: ../globaltime/gt_prefs.c:990
+msgid "Underline for name of clock:"
+msgstr ""
+
+#. ------------------------underline time--------------------
+#: ../globaltime/gt_prefs.c:1004
+msgid "Underline for time of clock:"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:1027
+#, fuzzy
+msgid "update preferences"
+msgstr "Προτιμήσεις Orage"
+
+#: ../globaltime/gt_prefs.c:1062
+#, fuzzy
+msgid "Modify Preferences"
+msgstr "Προτιμήσεις Orage"
+
+#. -----------------------HEADING--------------------------------------
+#: ../globaltime/gt_prefs.c:1073
+#, fuzzy
+msgid "General Preferences"
+msgstr "Προτιμήσεις Orage"
+
+#: ../globaltime/gt_prefs.c:1077
+#, fuzzy
+msgid "Decorations:"
+msgstr "Διάρκεια"
+
+#: ../globaltime/gt_prefs.c:1083
+msgid "Use normal decorations"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:1094
+msgid "Do not show window decorations (borders)"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:1100
+#, fuzzy
+msgid "Clock size:"
+msgstr "Κλείσιμο"
+
+#: ../globaltime/gt_prefs.c:1106
+msgid "All clocks have same size"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:1111
+#, fuzzy
+msgid "Varying"
+msgstr "Προειδοποίηση"
+
+#: ../globaltime/gt_prefs.c:1116
+msgid "Clock sizes vary"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:1122
+#, fuzzy
+msgid "Local timezone:"
+msgstr "Επιλογή τοπικής ζώνης ώρας"
+
+#: ../globaltime/gt_prefs.c:1129
+msgid ""
+"Enter local timezone. (it is used to show if time is on previous(-) or next "
+"date(+) by adding a +/- after the time)"
+msgstr ""
 
 #: ../panel-plugin/oc_config.c:193
 msgid "Appearance"
@@ -42,11 +347,11 @@ msgstr "Χρώμα _παρασκηνίου:"
 #. clock size (=vbox size): height and width
 #: ../panel-plugin/oc_config.c:242
 msgid "set _height:"
-msgstr "Ύ_ψος"
+msgstr ""
 
 #: ../panel-plugin/oc_config.c:254
 msgid "set _width:"
-msgstr "_Πλάτος:"
+msgstr ""
 
 #: ../panel-plugin/oc_config.c:275
 msgid "Clock Options"
@@ -83,7 +388,7 @@ msgstr "Εμφάνιση γραμμής _3:"
 #. Tooltip hint
 #: ../panel-plugin/oc_config.c:375
 msgid "Tooltip:"
-msgstr "Αναδυόμενη συμβουλή:"
+msgstr ""
 
 #: ../panel-plugin/oc_config.c:392
 msgid ""
@@ -96,8 +401,10 @@ msgid ""
 "\t%H = hours \t\t\t\t%M = minute\n"
 "\t%X = local time\t\t\t%x = local date"
 msgstr ""
-"Αυτό το πρόγραμμα χρησιμοποιεί τη συνάρτηση strftime για να εμφανίσει την ώρα.\n"
-"Εισάγετε κάποιον έγκυρο κωδικό για να εμφανίσετε την ώρα στη μορφή που προτιμάτε.\n"
+"Αυτό το πρόγραμμα χρησιμοποιεί τη συνάρτηση strftime για να εμφανίσει την "
+"ώρα.\n"
+"Εισάγετε κάποιον έγκυρο κωδικό για να εμφανίσετε την ώρα στη μορφή που "
+"προτιμάτε.\n"
 "Μερικοί κοινοί κωδικοί είναι οι:\t%A = ημέρα εβδομάδας\t\t%B = μήνας\n"
 "\t%c = ημερομηνία & ώρα\t\t%R = ώρα και λεπτά\n"
 "\t%V = αριθμός εβδομάδας\t\t%Z = ζώνη ώρας\n"
@@ -121,469 +428,478 @@ msgstr "Ρολόι orage"
 #. * %Y  : four digit year
 #. * %V  : ISO week number
 #.
-#: ../panel-plugin/orageclock.c:420
+#: ../panel-plugin/orageclock.c:422
 msgid "%A %d %B %Y/%V"
 msgstr "%A %d %B %Y"
 
-#. to avoid timing problems when updating entry
-#. Create file chooser
-#: ../plugin/xfcalendar_plugin.c:263
-#: ../plugin/xfcalendar_plugin.c:321
-#: ../src/appointment.c:383
-#: ../src/mainbox.c:114
-msgid "Select a file..."
-msgstr "Επιλογή αρχείου..."
-
-#: ../plugin/xfcalendar_plugin.c:271
-#: ../src/mainbox.c:122
-msgid "Calendar files"
-msgstr "Αρχεία ημερολογίου"
-
-#: ../plugin/xfcalendar_plugin.c:276
-#: ../src/appointment.c:398
-#: ../src/mainbox.c:127
-msgid "All Files"
-msgstr "Όλα τα αρχεία"
-
-#: ../plugin/xfcalendar_plugin.c:419
-#: ../plugin/xfcalendar_plugin.c:424
-#: ../src/appointment.c:917
-#: ../src/appointment.c:922
-#: ../src/appointment.c:1438
-msgid "Location"
-msgstr "Τοποθεσία"
-
-#. show it
-#: ../plugin/xfcalendar_plugin.c:430
-msgid "Pick local timezone"
-msgstr "Επιλογή τοπικής ζώνης ώρας"
-
-#: ../plugin/xfcalendar_plugin.c:433
-#: ../plugin/xfcalendar_plugin.c:463
-#: ../src/appointment.c:931
-#: ../src/appointment.c:961
-msgid "UTC"
-msgstr "UTC"
-
-#: ../plugin/xfcalendar_plugin.c:434
-#: ../plugin/xfcalendar_plugin.c:467
-#: ../plugin/xfcalendar_plugin.c:749
-#: ../src/appointment.c:932
-#: ../src/appointment.c:965
-#: ../src/appointment.c:1001
-#: ../src/appointment.c:1009
-msgid "floating"
-msgstr "μετακινούμενη"
-
-#: ../plugin/xfcalendar_plugin.c:528
-msgid "Orage Preferences"
-msgstr "Προτιμήσεις Orage"
-
-#: ../plugin/xfcalendar_plugin.c:546
-msgid "Display"
-msgstr "Εμφάνιση"
-
-#: ../plugin/xfcalendar_plugin.c:553
-msgid "Calendar borders"
-msgstr "Περιγράμματα παραθύρου"
-
-#: ../plugin/xfcalendar_plugin.c:558
-msgid "Displayed"
-msgstr "Εμφάνιση"
-
-#: ../plugin/xfcalendar_plugin.c:564
-msgid "Hidden"
-msgstr "Απόκρυψη"
-
-#: ../plugin/xfcalendar_plugin.c:573
-msgid "Calendar window"
-msgstr "Παράθυρο ημερολογίου"
-
-#: ../plugin/xfcalendar_plugin.c:578
-msgid "Show in taskbar"
-msgstr "Προβολή στη μπάρα εργασιών"
-
-#: ../plugin/xfcalendar_plugin.c:582
-msgid "Show in pager"
-msgstr "Προβολή στον ειδοποιητή"
-
-#: ../plugin/xfcalendar_plugin.c:586
-msgid "Show in systray"
-msgstr "Προβολή στον πίνακα συστήματος"
-
-#: ../plugin/xfcalendar_plugin.c:593
-msgid "Calendar start"
-msgstr "Εκκίνηση"
-
-#: ../plugin/xfcalendar_plugin.c:598
-msgid "Show"
-msgstr "Προβολή"
-
-#: ../plugin/xfcalendar_plugin.c:604
-msgid "Hide"
-msgstr "Απόκρυψη"
-
-#: ../plugin/xfcalendar_plugin.c:610
-msgid "Minimized"
-msgstr "Ελαχιστοποιημένο"
-
-#: ../plugin/xfcalendar_plugin.c:620
-msgid "Archives"
-msgstr "Αρχειοθέτηση"
-
-#: ../plugin/xfcalendar_plugin.c:631
-msgid "Archive file"
-msgstr "Όνομα αρχείου"
-
-#: ../plugin/xfcalendar_plugin.c:653
-msgid "Archive threshold"
-msgstr "Κατώφλι αρχειοθέτησης"
-
-#: ../plugin/xfcalendar_plugin.c:660
-msgid "3 months"
-msgstr "3 μήνες"
-
-#: ../plugin/xfcalendar_plugin.c:662
-msgid "6 months"
-msgstr "6 μήνες"
-
-#: ../plugin/xfcalendar_plugin.c:664
-msgid "1 year"
-msgstr "1 χρόνο"
-
-#: ../plugin/xfcalendar_plugin.c:666
-msgid "never"
-msgstr "ποτέ"
-
-#: ../plugin/xfcalendar_plugin.c:694
-#: ../src/appointment.c:1588
-msgid "Sound"
-msgstr "Ήχοι"
-
-#: ../plugin/xfcalendar_plugin.c:705
-msgid "Application"
-msgstr "Εφαρμογή"
-
-#: ../plugin/xfcalendar_plugin.c:725
-#: ../plugin/xfcalendar_plugin.c:735
-msgid "Timezone"
-msgstr "Ζώνη ώρας"
-
 #. the button label in the xfce-mcs-manager dialog
-#: ../plugin/xfcalendar_plugin.c:800
-msgid "Button Label|Orage"
-msgstr "Orage"
+#: ../plugin/xfcalendar_plugin.c:47
+#, fuzzy
+msgid "Orage - Calendar"
+msgstr "Ημερολόγιο"
 
-#: ../src/about-xfcalendar.c:40
+#: ../src/about-xfcalendar.c:42
 msgid "Manage your time with Xfce4"
 msgstr "Διαχειριστείτε το χρόνο σας με το Xfce4"
 
-#: ../src/about-xfcalendar.c:51
-#: ../src/about-xfcalendar.c:56
-msgid "Core developer"
-msgstr "Βασικός προγραμματιστής"
+#: ../src/about-xfcalendar.c:53
+msgid "Maintainer"
+msgstr ""
 
-#: ../src/about-xfcalendar.c:61
-#: ../src/about-xfcalendar.c:66
+#: ../src/about-xfcalendar.c:58
+msgid "Original creator, retired maintainer"
+msgstr ""
+
+#: ../src/about-xfcalendar.c:63
 msgid "Contributor"
 msgstr "Συντελεστής"
 
-#: ../src/appointment.c:99
-#: ../src/appointment.c:116
-msgid "%m/%d/%Y"
-msgstr "%d/%m/%Y"
-
-#: ../src/appointment.c:279
-#: ../src/mainbox.c:396
-#: ../xfcalendar.desktop.in.h:3
-msgid "Orage"
-msgstr "Orage"
-
-#: ../src/appointment.c:391
-msgid "Sound Files"
-msgstr "Αρχεία ήχου"
-
-#: ../src/appointment.c:439
-#: ../src/appointment.c:474
-#: ../src/appointment.c:719
-#: ../src/event-list.c:581
-msgid "Warning"
-msgstr "Προειδοποίηση"
-
-#: ../src/appointment.c:441
-msgid "The appointment information has been modified."
-msgstr "Οι πληροφορίες του ραντεβού έχουν τροποποιηθεί."
-
-#: ../src/appointment.c:442
-#: ../src/appointment.c:722
-#: ../src/event-list.c:584
-msgid "Do you want to continue?"
-msgstr "Επιθυμείτε να συνεχίσετε;"
-
-#: ../src/appointment.c:476
-msgid "The end of this appointment is earlier than the beginning."
-msgstr "Το τέλος αυτού του ραντεβού είναι νωρίτερα από την αρχή του."
-
-#: ../src/appointment.c:721
-msgid "This appointment will be permanently removed."
-msgstr "Αυτό το ραντεβού θα απομακρυνθεί οριστικά."
-
-#: ../src/appointment.c:822
-msgid "Pick the date"
-msgstr "Επιλογή ημερομηνίας"
-
-#: ../src/appointment.c:824
-#: ../src/event-list.c:722
-#: ../src/tray_icon.c:297
-msgid "Today"
-msgstr "Σήμερα"
-
-#. show it
-#: ../src/appointment.c:928
-msgid "Pick timezone"
-msgstr "Επιλογή ζώνης ώρας"
-
-#: ../src/appointment.c:1194
-msgid "New appointment - Orage"
-msgstr "Νέο ραντεβού - Orage"
-
-#. File menu stuff
-#. File menu
-#: ../src/appointment.c:1329
-#: ../src/event-list.c:648
-#: ../src/mainbox.c:419
-msgid "_File"
-msgstr "_Αρχείο"
-
-#: ../src/appointment.c:1336
-msgid "Sav_e and close"
-msgstr "Αποθήκ_ευση και κλείσιμο"
-
-#: ../src/appointment.c:1349
-#: ../src/event-list.c:657
-msgid "D_uplicate"
-msgstr "Δημιουργία αντι_γράφου"
-
-#: ../src/appointment.c:1390
-msgid "Save"
-msgstr "Αποθήκευση"
-
-#: ../src/appointment.c:1393
-#: ../src/appointment.c:1395
-msgid "Save and close"
-msgstr "Αποθήκευση και κλείσιμο"
-
-#: ../src/appointment.c:1402
-msgid "Revert"
-msgstr "Επαναφορά"
-
-#: ../src/appointment.c:1405
-#: ../src/appointment.c:1407
-#: ../src/event-list.c:734
-msgid "Duplicate"
-msgstr "Αντίγραφο"
-
-#: ../src/appointment.c:1413
-msgid "Delete"
-msgstr "Διαγραφή"
-
-#: ../src/appointment.c:1421
-msgid "Free"
-msgstr "Διαθέσιμος/η"
-
-#: ../src/appointment.c:1421
-msgid "Busy"
-msgstr "Απασχολημένος/η"
-
-#: ../src/appointment.c:1426
-msgid "General"
-msgstr "Γενικές"
-
-#: ../src/appointment.c:1431
-msgid "Title "
-msgstr "Τίτλος"
-
-#: ../src/appointment.c:1446
-msgid "All day event"
-msgstr "Νέο γεγονός ολόκληρης της μέρας"
-
-#: ../src/appointment.c:1452
-msgid "Start"
-msgstr "Έναρξη"
-
-#: ../src/appointment.c:1467
+#. if (gtk_toggle_button_get_active(
+#. GTK_TOGGLE_BUTTON(apptw->Type_journal_rb)))
+#.
+#. g_signal_connect((gpointer) apptw->StartTime_spin_hh, "value-changed",
+#. G_CALLBACK(oc_set_height_changed), NULL);
+#.
+#: ../src/appointment.c:336 ../src/appointment.c:370 ../src/appointment.c:1871
 msgid "End"
 msgstr "Τέλος"
 
-#: ../src/appointment.c:1484
+#: ../src/appointment.c:353
+msgid "Due"
+msgstr ""
+
+#: ../src/appointment.c:485 ../src/mainbox.c:307 ../xfcalendar.desktop.in.h:3
+msgid "Orage"
+msgstr "Orage"
+
+#. to avoid timing problems when updating entry
+#. Create file chooser
+#: ../src/appointment.c:635 ../src/interface.c:283 ../src/parameters.c:270
+msgid "Select a file..."
+msgstr "Επιλογή αρχείου..."
+
+#: ../src/appointment.c:643
+msgid "Sound Files"
+msgstr "Αρχεία ήχου"
+
+#: ../src/appointment.c:650 ../src/interface.c:296
+msgid "All Files"
+msgstr "Όλα τα αρχεία"
+
+#: ../src/appointment.c:689 ../src/appointment.c:723 ../src/appointment.c:1088
+#: ../src/event-list.c:865
+msgid "Warning"
+msgstr "Προειδοποίηση"
+
+#: ../src/appointment.c:691
+msgid "The appointment information has been modified."
+msgstr "Οι πληροφορίες του ραντεβού έχουν τροποποιηθεί."
+
+#: ../src/appointment.c:692 ../src/appointment.c:1091 ../src/event-list.c:868
+msgid "Do you want to continue?"
+msgstr "Επιθυμείτε να συνεχίσετε;"
+
+#: ../src/appointment.c:725
+msgid "The end of this appointment is earlier than the beginning."
+msgstr "Το τέλος αυτού του ραντεβού είναι νωρίτερα από την αρχή του."
+
+#: ../src/appointment.c:1090
+msgid "This appointment will be permanently removed."
+msgstr "Αυτό το ραντεβού θα απομακρυνθεί οριστικά."
+
+#: ../src/appointment.c:1184 ../src/event-list.c:921
+msgid "Pick the date"
+msgstr "Επιλογή ημερομηνίας"
+
+#: ../src/appointment.c:1186 ../src/event-list.c:923 ../src/event-list.c:1108
+#: ../src/tray_icon.c:305
+msgid "Today"
+msgstr "Σήμερα"
+
+#: ../src/appointment.c:1480
+msgid "New appointment - Orage"
+msgstr "Νέο ραντεβού - Orage"
+
+#: ../src/appointment.c:1504
+msgid " *** COPY ***"
+msgstr ""
+
+#. File menu stuff
+#. File menu
+#: ../src/appointment.c:1698 ../src/event-list.c:1007 ../src/interface.c:751
+#: ../src/mainbox.c:227
+msgid "_File"
+msgstr "_Αρχείο"
+
+#: ../src/appointment.c:1704
+msgid "Sav_e and close"
+msgstr "Αποθήκ_ευση και κλείσιμο"
+
+#. add event copying and day cleaning
+#: ../src/appointment.c:1717 ../src/event-list.c:1014
+msgid "D_uplicate"
+msgstr "Δημιουργία αντι_γράφου"
+
+#: ../src/appointment.c:1758
+msgid "Save"
+msgstr "Αποθήκευση"
+
+#: ../src/appointment.c:1760
+msgid "Save and close"
+msgstr "Αποθήκευση και κλείσιμο"
+
+#: ../src/appointment.c:1765
+msgid "Revert"
+msgstr "Επαναφορά"
+
+#: ../src/appointment.c:1767 ../src/event-list.c:1099
+msgid "Duplicate"
+msgstr "Αντίγραφο"
+
+#: ../src/appointment.c:1772 ../src/event-list.c:1101
+msgid "Delete"
+msgstr "Διαγραφή"
+
+#: ../src/appointment.c:1802
+msgid "Free"
+msgstr "Διαθέσιμος/η"
+
+#: ../src/appointment.c:1802
+msgid "Busy"
+msgstr "Απασχολημένος/η"
+
+#: ../src/appointment.c:1806
+msgid "General"
+msgstr "Γενικές"
+
+#: ../src/appointment.c:1811
+msgid "Type "
+msgstr ""
+
+#: ../src/appointment.c:1813 ../src/event-list.c:1149
+msgid "Event"
+msgstr ""
+
+#: ../src/appointment.c:1816
+msgid ""
+"Event that will happen sometime. For example:\n"
+"Meeting or birthday or TV show."
+msgstr ""
+
+#: ../src/appointment.c:1819 ../src/event-list.c:1169
+#, fuzzy
+msgid "Todo"
+msgstr "Σήμερα"
+
+#: ../src/appointment.c:1822
+msgid ""
+"Something that you should do sometime. For example:\n"
+"Wash your car or test new version of Orage."
+msgstr ""
+
+#: ../src/appointment.c:1825 ../src/event-list.c:1183
+msgid "Journal"
+msgstr ""
+
+#: ../src/appointment.c:1829
+msgid ""
+"Make a note that something happened. For example:\n"
+"Remark that your mother called or first snow came."
+msgstr ""
+
+#: ../src/appointment.c:1835
+msgid "Title "
+msgstr "Τίτλος"
+
+#: ../src/appointment.c:1841 ../src/ical-code.c:4246 ../src/ical-code.c:4251
+msgid "Location"
+msgstr "Τοποθεσία"
+
+#: ../src/appointment.c:1848
+msgid "All day event"
+msgstr "Νέο γεγονός ολόκληρης της μέρας"
+
+#: ../src/appointment.c:1853
+msgid "Start"
+msgstr "Έναρξη"
+
+#: ../src/appointment.c:1887
 msgid "Duration"
 msgstr "Διάρκεια"
 
-#: ../src/appointment.c:1491
-#: ../src/appointment.c:1565
+#: ../src/appointment.c:1891 ../src/appointment.c:2033
 msgid "days"
 msgstr "ημέρες"
 
-#: ../src/appointment.c:1500
-#: ../src/appointment.c:1573
+#: ../src/appointment.c:1893 ../src/appointment.c:2035
 msgid "hours"
 msgstr "ώρες"
 
-#: ../src/appointment.c:1509
-#: ../src/appointment.c:1581
+#: ../src/appointment.c:1895 ../src/appointment.c:2037
 msgid "mins"
 msgstr "λεπτά"
 
-#: ../src/appointment.c:1517
+#: ../src/appointment.c:1906
 msgid "Availability"
 msgstr "Διαθεσιμότητα"
 
-#: ../src/appointment.c:1526
+#: ../src/appointment.c:1914
+msgid "Completed"
+msgstr ""
+
+#: ../src/appointment.c:1917
+#, fuzzy
+msgid "Done"
+msgstr "Κανένα"
+
+#: ../src/appointment.c:1937
 msgid "Note"
 msgstr "Σημείωση"
 
-#: ../src/appointment.c:1554
-#: ../src/appointment.c:1559
+#: ../src/appointment.c:1956
+msgid ""
+"<D> inserts current date in local date format.\n"
+"<T> inserts time and\n"
+"<DT> inserts date and time."
+msgstr ""
+
+#: ../src/appointment.c:2018
+msgid "Before Start"
+msgstr ""
+
+#: ../src/appointment.c:2018
+msgid "Before End"
+msgstr ""
+
+#: ../src/appointment.c:2019
+#, fuzzy
+msgid "After Start"
+msgstr "Έναρξη"
+
+#: ../src/appointment.c:2019
+msgid "After End"
+msgstr ""
+
+#: ../src/appointment.c:2024
 msgid "Alarm"
 msgstr "Ειδοποίηση"
 
-#: ../src/appointment.c:1603
+#. **** ALARM TIME ****
+#: ../src/appointment.c:2030
+#, fuzzy
+msgid "Alarm time"
+msgstr "Ειδοποίηση"
+
+#: ../src/appointment.c:2055
+msgid ""
+"Often you want to get alarm:\n"
+" 1) before Event start\n"
+" 2) before Todo end\n"
+" 3) after Todo start"
+msgstr ""
+
+#. **** Audio Alarm ****
+#: ../src/appointment.c:2058
+msgid "Sound"
+msgstr "Ήχοι"
+
+#: ../src/appointment.c:2062 ../src/appointment.c:2183
+msgid "Use"
+msgstr ""
+
+#: ../src/appointment.c:2064
+msgid "Select this if you want audible alarm"
+msgstr ""
+
+#: ../src/appointment.c:2081
 msgid "Repeat alarm sound"
 msgstr "Επανάληψη ήχου ειδοποίησης"
 
-#: ../src/appointment.c:1615
-msgid "None"
-msgstr "Κανένα"
-
-#: ../src/appointment.c:1615
-msgid "Daily"
-msgstr "Ημερήσια"
-
-#: ../src/appointment.c:1615
-msgid "Weekly"
-msgstr "Εβδομαδιαία"
-
-#: ../src/appointment.c:1615
-msgid "Monthly"
-msgstr "Μηνιαία"
-
-#: ../src/appointment.c:1615
-msgid "Yearly"
-msgstr "Ετήσια"
-
-#: ../src/appointment.c:1617
-msgid "Mon"
-msgstr "Δευ"
-
-#: ../src/appointment.c:1617
-msgid "Tue"
-msgstr "Τρ"
-
-#: ../src/appointment.c:1617
-msgid "Wed"
-msgstr "Τετ"
-
-#: ../src/appointment.c:1617
-msgid "Thu"
-msgstr "Πεμ"
-
-#: ../src/appointment.c:1617
-msgid "Fri"
-msgstr "Παρ"
-
-#: ../src/appointment.c:1617
-msgid "Sat"
-msgstr "Σαβ"
-
-#: ../src/appointment.c:1617
-msgid "Sun"
-msgstr "Κυρ"
-
-#: ../src/appointment.c:1622
-msgid "Recurrence"
-msgstr "Επανάληψη"
-
-#: ../src/appointment.c:1627
-msgid "Complexity"
-msgstr "Πολυπλοκότητα"
-
-#: ../src/appointment.c:1630
-msgid "Basic"
-msgstr "Βασικό"
-
-#: ../src/appointment.c:1636
-msgid "Advanced"
-msgstr "Για προχωρημένους"
-
-#: ../src/appointment.c:1644
-msgid "Use this if you want regular repeating event"
-msgstr "Χρησιμοποιήστε αυτό αν θέλετε ένα κανονικό επαναλαμβανόμενο γεγονός"
-
-#: ../src/appointment.c:1646
-msgid ""
-"Use this if you need complex times like:\n"
-" Every second week or \n"
-" Every Saturday and Sunday or \n"
-" First Tuesday every month"
-msgstr ""
-"Χρησιμοποιήστε αυτό αν θέλετε πολύπλοκες ρυθμίσεις, όπως:\n"
-" Κάθε δεύτερη εβδομάδα ή \n"
-" Κάθε Σάββατο και Κυριακή ή\n"
-" Την πρώτη Τρίτη κάθε μήνα"
-
-#: ../src/appointment.c:1649
-msgid "Frequency"
-msgstr "Συχνότητα"
-
-#: ../src/appointment.c:1658
-msgid "Interval"
-msgstr "Διάστημα"
-
-#: ../src/appointment.c:1660
-msgid "Each"
-msgstr "Κάθε"
-
-#: ../src/appointment.c:1667
-msgid "occurrence"
-msgstr "εμφάνιση"
-
-#: ../src/appointment.c:1675
-msgid ""
-"Limit frequency to certain interval. For example:\n"
-" Every third day: Frequency = Daily and Interval = 3"
-msgstr ""
-"Περιορισμός της συχνότητας σε συγκεκριμένο διάστημα. π.χ.:\n"
-" Κάθε τρίτη μέρα: Συχνότητα = καθημερινά και διάστημα = 3"
-
-#: ../src/appointment.c:1678
-msgid "Limit"
-msgstr "Όριο"
-
-#: ../src/appointment.c:1680
-msgid "Repeat forever"
-msgstr "Συνεχές"
-
-#: ../src/appointment.c:1688
-msgid "Repeat "
-msgstr "Επανάληψη"
-
-#: ../src/appointment.c:1696
+#: ../src/appointment.c:2097 ../src/appointment.c:2317
 msgid "times"
 msgstr "φορές"
 
-#: ../src/appointment.c:1706
+#: ../src/appointment.c:2113
+#, fuzzy
+msgid "sec interval"
+msgstr "Γενικές"
+
+#. **** Display Alarm ****
+#: ../src/appointment.c:2123
+msgid "Visual"
+msgstr ""
+
+#: ../src/appointment.c:2127
+msgid "Use Orage window"
+msgstr ""
+
+#: ../src/appointment.c:2129
+msgid "Select this if you want Orage window alarm"
+msgstr ""
+
+#: ../src/appointment.c:2141
+msgid "Use notification"
+msgstr ""
+
+#: ../src/appointment.c:2143
+msgid "Select this if you want notification alarm"
+msgstr ""
+
+#: ../src/appointment.c:2149
+#, fuzzy
+msgid "Set timeout"
+msgstr "Επιλογή ζώνης ώρας"
+
+#: ../src/appointment.c:2152
+msgid "Select this if you want notification to expire automatically"
+msgstr ""
+
+#: ../src/appointment.c:2163
+msgid "0 = system default expiration time"
+msgstr ""
+
+#: ../src/appointment.c:2168
+msgid "seconds"
+msgstr ""
+
+#. **** Procedure Alarm ****
+#: ../src/appointment.c:2179
+#, fuzzy
+msgid "Procedure"
+msgstr "Ιδιότητες"
+
+#: ../src/appointment.c:2185
+msgid "Select this if you want procedure or script alarm"
+msgstr ""
+
+#: ../src/appointment.c:2191
+msgid ""
+"You must enter all escape etc characters yourself.\n"
+" This string is just given to shell to process"
+msgstr ""
+
+#: ../src/appointment.c:2244
+msgid "Daily"
+msgstr "Ημερήσια"
+
+#: ../src/appointment.c:2244
+msgid "Weekly"
+msgstr "Εβδομαδιαία"
+
+#: ../src/appointment.c:2244
+msgid "Monthly"
+msgstr "Μηνιαία"
+
+#: ../src/appointment.c:2244
+msgid "Yearly"
+msgstr "Ετήσια"
+
+#: ../src/appointment.c:2246
+#, fuzzy
+msgid "Mon"
+msgstr "Μηνιαία"
+
+#: ../src/appointment.c:2246
+msgid "Tue"
+msgstr ""
+
+#: ../src/appointment.c:2246
+msgid "Wed"
+msgstr ""
+
+#: ../src/appointment.c:2246
+msgid "Thu"
+msgstr ""
+
+#: ../src/appointment.c:2246
+msgid "Fri"
+msgstr ""
+
+#: ../src/appointment.c:2246
+#, fuzzy
+msgid "Sat"
+msgstr "Έναρξη"
+
+#: ../src/appointment.c:2246
+#, fuzzy
+msgid "Sun"
+msgstr "Ήχοι"
+
+#: ../src/appointment.c:2250
+msgid "Recurrence"
+msgstr "Επανάληψη"
+
+#: ../src/appointment.c:2255
+msgid "Complexity"
+msgstr ""
+
+#: ../src/appointment.c:2258
+#, fuzzy
+msgid "Basic"
+msgstr "Πίσω"
+
+#: ../src/appointment.c:2264
+msgid "Advanced"
+msgstr ""
+
+#: ../src/appointment.c:2271
+msgid "Use this if you want regular repeating event"
+msgstr ""
+
+#: ../src/appointment.c:2273
+msgid ""
+"Use this if you need complex times like:\n"
+" Every Saturday and Sunday or \n"
+" First Tuesday every month"
+msgstr ""
+
+#: ../src/appointment.c:2276
+#, fuzzy
+msgid "Frequency"
+msgstr "Διαθέσιμος/η"
+
+#: ../src/appointment.c:2283
+msgid "Each"
+msgstr ""
+
+#: ../src/appointment.c:2290
+#, fuzzy
+msgid "occurrence"
+msgstr "Επανάληψη"
+
+#: ../src/appointment.c:2294
+msgid ""
+"Limit frequency to certain interval.\n"
+" For example: Every third day:\n"
+" Frequency = Daily and Interval = 3"
+msgstr ""
+
+#: ../src/appointment.c:2300
+msgid "Limit"
+msgstr ""
+
+#: ../src/appointment.c:2302
+msgid "Repeat forever"
+msgstr "Συνεχές"
+
+#: ../src/appointment.c:2309
+msgid "Repeat "
+msgstr "Επανάληψη"
+
+#: ../src/appointment.c:2326
 msgid "Repeat until "
 msgstr "Επανάληψη μέχρι"
 
-#: ../src/appointment.c:1717
+#: ../src/appointment.c:2336
+#, fuzzy
 msgid "Weekdays"
-msgstr "Καθημερινές"
+msgstr "Εβδομαδιαία"
 
-#: ../src/appointment.c:1730
+#: ../src/appointment.c:2348
 msgid "Which day"
-msgstr "Ποια ημέρα"
+msgstr ""
 
-#: ../src/appointment.c:1738
+#: ../src/appointment.c:2356
 msgid ""
 "Specify which weekday for monthly and yearly events.\n"
 " For example:\n"
@@ -592,88 +908,93 @@ msgid ""
 "\tWeekdays = check only Wednesday,\n"
 "\tWhich day = select 2 from the number below Wednesday"
 msgstr ""
-"Ορισμός ημέρας για μηνιαία και ετήσια γεγονότα.\n"
-" Για παράδειγμα\n"
-" Τη δεύτερη Τετάρτη κάθε μήνα:\n"
-"\tΣυχνότητα = Μηνιαία,\n"
-"\tΚαθημερινές = επιλέξτε μόνο Τετάρτη,\n"
-"\tΠοια μέρα = επιλέξτε 2 από τον αριθμό κάτω από το Τετάρτη"
 
 #. date only appointment
-#: ../src/event-list.c:199
+#: ../src/event-list.c:186
 msgid "All day"
 msgstr "Ολόκληρη τη μέρα"
 
-#: ../src/event-list.c:275
-#: ../src/event-list.c:776
+#: ../src/event-list.c:506 ../src/event-list.c:1272
 msgid "Time"
 msgstr "Ώρα"
 
-#: ../src/event-list.c:583
+#: ../src/event-list.c:867
 msgid ""
-"You will remove all information \n"
-"associated with this date."
+"You will permanently remove all\n"
+"selected appointments."
 msgstr ""
-"Θα αφαιρέσετε όλες τις πληροφορίες \n"
-"που σχετίζονται με αυτή την ημερομηνία."
 
 #. View menu
-#: ../src/event-list.c:679
-#: ../src/mainbox.c:453
+#: ../src/event-list.c:1031 ../src/mainbox.c:253
 msgid "_View"
 msgstr "_Προβολή"
 
 #. Go menu
-#: ../src/event-list.c:688
+#: ../src/event-list.c:1050
 msgid "_Go"
 msgstr "_Μετάβαση"
 
-#: ../src/event-list.c:715
+#: ../src/event-list.c:1097
 msgid "New"
 msgstr "Νέο"
 
-#: ../src/event-list.c:719
+#: ../src/event-list.c:1106
 msgid "Back"
 msgstr "Πίσω"
 
-#: ../src/event-list.c:725
+#: ../src/event-list.c:1110
 msgid "Forward"
 msgstr "Μπροστά"
 
-#: ../src/event-list.c:728
+#: ../src/event-list.c:1115
 msgid "Refresh"
 msgstr "Ανανέωση"
 
-#: ../src/event-list.c:737
+#: ../src/event-list.c:1117
+msgid "Find"
+msgstr ""
+
+#: ../src/event-list.c:1122 ../src/interface.c:794
 msgid "Close"
 msgstr "Κλείσιμο"
 
-#: ../src/event-list.c:740
-msgid "Clear"
-msgstr "Καθάρισμα"
+#: ../src/event-list.c:1152
+msgid "Extra days to show "
+msgstr ""
 
-#: ../src/event-list.c:784
+#: ../src/event-list.c:1186
+msgid "Journal entries starting from:"
+msgstr ""
+
+#: ../src/event-list.c:1211
+msgid "Search"
+msgstr ""
+
+#: ../src/event-list.c:1214
+msgid "Search text "
+msgstr ""
+
+#: ../src/event-list.c:1280
 msgid "Flags"
 msgstr "Διακόπτες"
 
-#: ../src/event-list.c:790
+#: ../src/event-list.c:1286
 msgid "Title"
 msgstr "Τίτλος"
 
-#: ../src/event-list.c:796
-msgid "uid"
-msgstr "uid"
-
-#: ../src/event-list.c:805
+#: ../src/event-list.c:1305
+#, fuzzy
 msgid ""
 "Double click line to edit it.\n"
 "\n"
 "Flags in order:\n"
 "\t 1. Alarm: n=no alarm\n"
-"\t\tA=visual Alarm S=also Sound alarm\n"
+"\t\t A=visual Alarm S=also Sound alarm\n"
 "\t 2. Recurrence: n=no recurrence\n"
 "\t\t D=Daily W=Weekly M=Monthly Y=Yearly\n"
-"\t 3. Type: f=free B=Busy"
+"\t 3. Type: f=free B=Busy\n"
+"\t 4. Located in file: O=Orage\n"
+"\t\t  A=Archive F=Foreign"
 msgstr ""
 "Επεξεργασία με διπλό κλικ.\n"
 "\n"
@@ -684,1607 +1005,2065 @@ msgstr ""
 "\t\t D=Ημερήσιο W=Εβδομαδιαίο M=Μηνιαίο Y=Ετήσιο\n"
 "\t 3. Τύπος: f=Διαθέσιμος B=Απασχολημένος"
 
-#: ../src/ical-code.c:100
+#: ../src/ical-code.c:106
 msgid "Africa"
 msgstr "Αφρική"
 
-#: ../src/ical-code.c:101
+#: ../src/ical-code.c:107
 msgid "Africa/Abidjan"
 msgstr "Αφρική/Αμπιτζάν"
 
-#: ../src/ical-code.c:102
+#: ../src/ical-code.c:108
 msgid "Africa/Accra"
 msgstr "Αφρική/Άκρα"
 
-#: ../src/ical-code.c:103
+#: ../src/ical-code.c:109
 msgid "Africa/Addis_Ababa"
 msgstr "Αφρική/Αντίς Αμπέμπα"
 
-#: ../src/ical-code.c:104
+#: ../src/ical-code.c:110
 msgid "Africa/Algiers"
 msgstr "Αφρική/Αλγέρι"
 
-#: ../src/ical-code.c:105
+#: ../src/ical-code.c:111
 msgid "Africa/Asmera"
 msgstr "Αφρική/Ασμέρα"
 
-#: ../src/ical-code.c:106
+#: ../src/ical-code.c:112
 msgid "Africa/Bamako"
 msgstr "Αφρική/Μπαμακό"
 
-#: ../src/ical-code.c:107
+#: ../src/ical-code.c:113
 msgid "Africa/Bangui"
 msgstr "Αφρική/Μπάνγκουι"
 
-#: ../src/ical-code.c:108
+#: ../src/ical-code.c:114
 msgid "Africa/Banjul"
 msgstr "Αφρική/Μπαντζούλ"
 
-#: ../src/ical-code.c:109
+#: ../src/ical-code.c:115
 msgid "Africa/Bissau"
 msgstr "Αφρική/Μπισσάου"
 
-#: ../src/ical-code.c:110
+#: ../src/ical-code.c:116
 msgid "Africa/Blantyre"
 msgstr "Αφρική/Μπλάντυρ"
 
-#: ../src/ical-code.c:111
+#: ../src/ical-code.c:117
 msgid "Africa/Brazzaville"
 msgstr "Αφρική/Μπραζαβίλ"
 
-#: ../src/ical-code.c:112
+#: ../src/ical-code.c:118
 msgid "Africa/Bujumbura"
 msgstr "Αφρική/Μπουζουμπούρα"
 
-#: ../src/ical-code.c:113
+#: ../src/ical-code.c:119
 msgid "Africa/Cairo"
 msgstr "Αφρική/Κάιρο"
 
-#: ../src/ical-code.c:114
+#: ../src/ical-code.c:120
 msgid "Africa/Casablanca"
 msgstr "Αφρική/Καζαμπλάνκα"
 
-#: ../src/ical-code.c:115
+#: ../src/ical-code.c:121
 msgid "Africa/Ceuta"
 msgstr "Αφρική/Κέουτα"
 
-#: ../src/ical-code.c:116
+#: ../src/ical-code.c:122
 msgid "Africa/Conakry"
 msgstr "Αφρική/Κόνακρυ"
 
-#: ../src/ical-code.c:117
+#: ../src/ical-code.c:123
 msgid "Africa/Dakar"
 msgstr "Αφρική/Ντακάρ"
 
-#: ../src/ical-code.c:118
+#: ../src/ical-code.c:124
 msgid "Africa/Dar_es_Salaam"
 msgstr "Αφρική/Νταρ-Ες-Σαλάμ"
 
-#: ../src/ical-code.c:119
+#: ../src/ical-code.c:125
 msgid "Africa/Djibouti"
 msgstr "Αφρική/Τζιμπουτί"
 
-#: ../src/ical-code.c:120
+#: ../src/ical-code.c:126
 msgid "Africa/Douala"
 msgstr "Αφρική/Ντουάλα"
 
-#: ../src/ical-code.c:121
+#: ../src/ical-code.c:127
 msgid "Africa/El_Aaiun"
 msgstr "Αφρική/Ελ Αγιούν"
 
-#: ../src/ical-code.c:122
+#: ../src/ical-code.c:128
 msgid "Africa/Freetown"
 msgstr "Αφρική/Φρητάουν"
 
-#: ../src/ical-code.c:123
+#: ../src/ical-code.c:129
 msgid "Africa/Gaborone"
 msgstr "Αφρική/Γκαμπορόν"
 
-#: ../src/ical-code.c:124
+#: ../src/ical-code.c:130
 msgid "Africa/Harare"
 msgstr "Αφρική/Χαράρε"
 
-#: ../src/ical-code.c:125
+#: ../src/ical-code.c:131
 msgid "Africa/Johannesburg"
 msgstr "Αφρική/Γιοχάνεσμπουργκ"
 
-#: ../src/ical-code.c:126
+#: ../src/ical-code.c:132
 msgid "Africa/Kampala"
 msgstr "Αφρική/Καμπάλα"
 
-#: ../src/ical-code.c:127
+#: ../src/ical-code.c:133
 msgid "Africa/Khartoum"
 msgstr "Αφρική/Χαρτούμ"
 
-#: ../src/ical-code.c:128
+#: ../src/ical-code.c:134
 msgid "Africa/Kigali"
 msgstr "Αφρική/Κιγκάλι"
 
-#: ../src/ical-code.c:129
+#: ../src/ical-code.c:135
 msgid "Africa/Kinshasa"
 msgstr "Αφρική/Κινσάσα"
 
-#: ../src/ical-code.c:130
+#: ../src/ical-code.c:136
 msgid "Africa/Lagos"
 msgstr "Αφρική/Λάγγος"
 
-#: ../src/ical-code.c:131
+#: ../src/ical-code.c:137
 msgid "Africa/Libreville"
 msgstr "Αφρική/Λιμπρεβίλ"
 
-#: ../src/ical-code.c:132
+#: ../src/ical-code.c:138
 msgid "Africa/Lome"
 msgstr "Αφρική/Λόμε"
 
-#: ../src/ical-code.c:133
+#: ../src/ical-code.c:139
 msgid "Africa/Luanda"
 msgstr "Αφρική/Λουάντα"
 
-#: ../src/ical-code.c:134
+#: ../src/ical-code.c:140
 msgid "Africa/Lubumbashi"
 msgstr "Αφρική/Λουμπουμπάσι"
 
-#: ../src/ical-code.c:135
+#: ../src/ical-code.c:141
 msgid "Africa/Lusaka"
 msgstr "Αφρική/Λουζάκα"
 
-#: ../src/ical-code.c:136
+#: ../src/ical-code.c:142
 msgid "Africa/Malabo"
 msgstr "Αφρική/Μαλάμπο"
 
-#: ../src/ical-code.c:137
+#: ../src/ical-code.c:143
 msgid "Africa/Maputo"
 msgstr "Αφρική/Μαπούτο"
 
-#: ../src/ical-code.c:138
+#: ../src/ical-code.c:144
 msgid "Africa/Maseru"
 msgstr "Αφρική/Μασερού"
 
-#: ../src/ical-code.c:139
+#: ../src/ical-code.c:145
 msgid "Africa/Mbabane"
 msgstr "Αφρική/Μπαμπάνε"
 
-#: ../src/ical-code.c:140
+#: ../src/ical-code.c:146
 msgid "Africa/Mogadishu"
 msgstr "Αφρική/Μογκαντίσου"
 
-#: ../src/ical-code.c:141
+#: ../src/ical-code.c:147
 msgid "Africa/Monrovia"
 msgstr "Αφρική/Μονροβία"
 
-#: ../src/ical-code.c:142
+#: ../src/ical-code.c:148
 msgid "Africa/Nairobi"
 msgstr "Αφρική/Ναϊρόμπι"
 
-#: ../src/ical-code.c:143
+#: ../src/ical-code.c:149
 msgid "Africa/Ndjamena"
 msgstr "Αφρική/Ντζιαμένα"
 
-#: ../src/ical-code.c:144
+#: ../src/ical-code.c:150
 msgid "Africa/Niamey"
 msgstr "Αφρική/Νιαμέυ"
 
-#: ../src/ical-code.c:145
+#: ../src/ical-code.c:151
 msgid "Africa/Nouakchott"
 msgstr "Αφρική/Νουακχώτ"
 
-#: ../src/ical-code.c:146
+#: ../src/ical-code.c:152
 msgid "Africa/Ouagadougou"
 msgstr "Αφρική/Ουαγκαντούγκου"
 
-#: ../src/ical-code.c:147
+#: ../src/ical-code.c:153
 msgid "Africa/Porto-Novo"
 msgstr "Αφρική/Πόρτο-Νόβο"
 
-#: ../src/ical-code.c:148
+#: ../src/ical-code.c:154
 msgid "Africa/Sao_Tome"
 msgstr "Αφρική/Σάο Τόμε"
 
-#: ../src/ical-code.c:149
+#: ../src/ical-code.c:155
 msgid "Africa/Timbuktu"
 msgstr "Αφρική/Τιμπουκτού"
 
-#: ../src/ical-code.c:150
+#: ../src/ical-code.c:156
 msgid "Africa/Tripoli"
 msgstr "Αφρική/Τρίπολη"
 
-#: ../src/ical-code.c:151
+#: ../src/ical-code.c:157
 msgid "Africa/Tunis"
 msgstr "Αφρική/Τύνιδα"
 
-#: ../src/ical-code.c:152
+#: ../src/ical-code.c:158
 msgid "Africa/Windhoek"
 msgstr "Αφρική/Ουίντχουκ"
 
-#: ../src/ical-code.c:153
+#: ../src/ical-code.c:159
 msgid "America"
 msgstr "Αμερική"
 
-#: ../src/ical-code.c:154
+#: ../src/ical-code.c:160
 msgid "America/Adak"
 msgstr "Αμερική/Αντάκ"
 
-#: ../src/ical-code.c:155
+#: ../src/ical-code.c:161
 msgid "America/Anchorage"
 msgstr "Αμερική/Άνκορατζ"
 
-#: ../src/ical-code.c:156
+#: ../src/ical-code.c:162
 msgid "America/Anguilla"
 msgstr "Αμερική/Αγκίλα"
 
-#: ../src/ical-code.c:157
+#: ../src/ical-code.c:163
 msgid "America/Antigua"
 msgstr "Αμερική/Αντίγκουα"
 
-#: ../src/ical-code.c:158
+#: ../src/ical-code.c:164
 msgid "America/Araguaina"
 msgstr "Αμερική/Αραγκουάινα"
 
-#: ../src/ical-code.c:159
+#: ../src/ical-code.c:165
 msgid "America/Aruba"
 msgstr "Αμερική/Αρούμπα"
 
-#: ../src/ical-code.c:160
+#: ../src/ical-code.c:166
 msgid "America/Asuncion"
 msgstr "Αμερική/Ασουνθιόν"
 
-#: ../src/ical-code.c:161
+#: ../src/ical-code.c:167
 msgid "America/Barbados"
 msgstr "Αμερική/Μπαρμπάντος"
 
-#: ../src/ical-code.c:162
+#: ../src/ical-code.c:168
 msgid "America/Belem"
 msgstr "Αμερική/Μπέλεμ"
 
-#: ../src/ical-code.c:163
+#: ../src/ical-code.c:169
 msgid "America/Belize"
 msgstr "Αμερική/Μπελίζ"
 
-#: ../src/ical-code.c:164
+#: ../src/ical-code.c:170
 msgid "America/Boa_Vista"
 msgstr "Αμερική/Μπόα Βίστα"
 
-#: ../src/ical-code.c:165
+#: ../src/ical-code.c:171
 msgid "America/Bogota"
 msgstr "Αμερική/Μπογκοτά"
 
-#: ../src/ical-code.c:166
+#: ../src/ical-code.c:172
 msgid "America/Boise"
 msgstr "Αμερική/Μπόιζ"
 
-#: ../src/ical-code.c:167
+#: ../src/ical-code.c:173
 msgid "America/Buenos_Aires"
 msgstr "Αμερική/Μπουένος Άιρες"
 
-#: ../src/ical-code.c:168
+#: ../src/ical-code.c:174
 msgid "America/Cambridge_Bay"
 msgstr "Αμερική/Κέμπριτζ Μπέυ"
 
-#: ../src/ical-code.c:169
+#: ../src/ical-code.c:175
 msgid "America/Cancun"
 msgstr "Αμερική/Κανκούν"
 
-#: ../src/ical-code.c:170
+#: ../src/ical-code.c:176
 msgid "America/Caracas"
 msgstr "Αμερική/Καράκας"
 
-#: ../src/ical-code.c:171
+#: ../src/ical-code.c:177
 msgid "America/Catamarca"
 msgstr "Αμερική/Καταμάρκα"
 
-#: ../src/ical-code.c:172
+#: ../src/ical-code.c:178
 msgid "America/Cayenne"
 msgstr "Αμερική/Καϋέν"
 
-#: ../src/ical-code.c:173
+#: ../src/ical-code.c:179
 msgid "America/Cayman"
 msgstr "Αμερική/Κάυμαν"
 
-#: ../src/ical-code.c:174
+#: ../src/ical-code.c:180
 msgid "America/Chicago"
 msgstr "Αμερική/Σικάγο"
 
-#: ../src/ical-code.c:175
+#: ../src/ical-code.c:181
 msgid "America/Chihuahua"
 msgstr "Αμερική/Τσιουάουα"
 
-#: ../src/ical-code.c:176
+#: ../src/ical-code.c:182
 msgid "America/Cordoba"
 msgstr "Αμερική/Κόρντομπα"
 
-#: ../src/ical-code.c:177
+#: ../src/ical-code.c:183
 msgid "America/Costa_Rica"
 msgstr "Αμερική/Κόστα Ρίκα"
 
-#: ../src/ical-code.c:178
+#: ../src/ical-code.c:184
 msgid "America/Cuiaba"
 msgstr "Αμερική/Κουϊάμπα"
 
-#: ../src/ical-code.c:179
+#: ../src/ical-code.c:185
 msgid "America/Curacao"
 msgstr "Αμερική/Κουρασάο"
 
-#: ../src/ical-code.c:180
+#: ../src/ical-code.c:186
 msgid "America/Dawson"
 msgstr "Αμερική/Ντώσον"
 
-#: ../src/ical-code.c:181
+#: ../src/ical-code.c:187
 msgid "America/Dawson_Creek"
 msgstr "Αμερική/Ντώσον Κρηκ"
 
-#: ../src/ical-code.c:182
+#: ../src/ical-code.c:188
 msgid "America/Denver"
 msgstr "Αμερική/Ντένβερ"
 
-#: ../src/ical-code.c:183
+#: ../src/ical-code.c:189
 msgid "America/Detroit"
 msgstr "Αμερική/Ντητρόιτ"
 
-#: ../src/ical-code.c:184
+#: ../src/ical-code.c:190
 msgid "America/Dominica"
 msgstr "Αμερική/Ντομίνικα"
 
-#: ../src/ical-code.c:185
+#: ../src/ical-code.c:191
 msgid "America/Edmonton"
 msgstr "Αμερική/Έντμοντον"
 
-#: ../src/ical-code.c:186
+#: ../src/ical-code.c:192
 msgid "America/Eirunepe"
 msgstr "Αμερική/Εϊρουνέπε"
 
-#: ../src/ical-code.c:187
+#: ../src/ical-code.c:193
 msgid "America/El_Salvador"
 msgstr "Αμερική/Ελ Σαλβαδόρ"
 
-#: ../src/ical-code.c:188
+#: ../src/ical-code.c:194
 msgid "America/Fortaleza"
 msgstr "Αμερική/Φορταλέζα"
 
-#: ../src/ical-code.c:189
+#: ../src/ical-code.c:195
 msgid "America/Glace_Bay"
 msgstr "Αμερική/Γκλέις Μπέυ"
 
-#: ../src/ical-code.c:190
+#: ../src/ical-code.c:196
 msgid "America/Godthab"
 msgstr "Αμερική/Γκόντχαμπ"
 
-#: ../src/ical-code.c:191
+#: ../src/ical-code.c:197
 msgid "America/Goose_Bay"
 msgstr "Αμερική/Γκουζ Μπέυ"
 
-#: ../src/ical-code.c:192
+#: ../src/ical-code.c:198
 msgid "America/Grand_Turk"
 msgstr "Αμερική/Γκραντ Τουρκ"
 
-#: ../src/ical-code.c:193
+#: ../src/ical-code.c:199
 msgid "America/Grenada"
 msgstr "Αμερική/Γρενάδα"
 
-#: ../src/ical-code.c:194
+#: ../src/ical-code.c:200
 msgid "America/Guadeloupe"
 msgstr "Αμερική/Γουαδελούπη"
 
-#: ../src/ical-code.c:195
+#: ../src/ical-code.c:201
 msgid "America/Guatemala"
 msgstr "Αμερική/Γουατεμάλα"
 
-#: ../src/ical-code.c:196
+#: ../src/ical-code.c:202
 msgid "America/Guayaquil"
 msgstr "Αμερική/Γκουαγιακίλ"
 
-#: ../src/ical-code.c:197
+#: ../src/ical-code.c:203
 msgid "America/Guyana"
 msgstr "Αμερική/Γουϊάνα"
 
-#: ../src/ical-code.c:198
+#: ../src/ical-code.c:204
 msgid "America/Halifax"
 msgstr "Αμερική/Χάλιφαξ"
 
-#: ../src/ical-code.c:199
+#: ../src/ical-code.c:205
 msgid "America/Havana"
 msgstr "Αμερική/Αβάνα"
 
-#: ../src/ical-code.c:200
+#: ../src/ical-code.c:206
 msgid "America/Hermosillo"
 msgstr "Αμερική/Ερμοσίλλο"
 
-#: ../src/ical-code.c:201
+#: ../src/ical-code.c:207
 msgid "America/Indiana/Indianapolis"
 msgstr "Αμερική/Ινδιάνα/Ινδιανάπολη"
 
-#: ../src/ical-code.c:202
+#: ../src/ical-code.c:208
 msgid "America/Indiana/Knox"
 msgstr "Αμερική/Ινδιάνα/Νοξ"
 
-#: ../src/ical-code.c:203
+#: ../src/ical-code.c:209
 msgid "America/Indiana/Marengo"
 msgstr "Αμερική/Ινδιάνα/Μαρένγκο"
 
-#: ../src/ical-code.c:204
+#: ../src/ical-code.c:210
 msgid "America/Indiana/Vevay"
 msgstr "Αμερική/Ινδιάνα/Βέβεϋ"
 
-#: ../src/ical-code.c:205
+#: ../src/ical-code.c:211
 msgid "America/Indianapolis"
 msgstr "Αμερική/Ινδιανάπολη"
 
-#: ../src/ical-code.c:206
+#: ../src/ical-code.c:212
 msgid "America/Inuvik"
 msgstr "Αμερική/Ινουβίκ"
 
-#: ../src/ical-code.c:207
+#: ../src/ical-code.c:213
 msgid "America/Iqaluit"
 msgstr "Αμερική/Ικαλούιτ"
 
-#: ../src/ical-code.c:208
+#: ../src/ical-code.c:214
 msgid "America/Jamaica"
 msgstr "Αμερική/Τζαμάικα"
 
-#: ../src/ical-code.c:209
+#: ../src/ical-code.c:215
 msgid "America/Jujuy"
 msgstr "Αμερική/Γιούγιουι"
 
-#: ../src/ical-code.c:210
+#: ../src/ical-code.c:216
 msgid "America/Juneau"
 msgstr "Αμερική/Γιούνω"
 
-#: ../src/ical-code.c:211
+#: ../src/ical-code.c:217
 msgid "America/Kentucky/Louisville"
 msgstr "Αμερική/Κεντάκυ/Λούισβιλ"
 
-#: ../src/ical-code.c:212
+#: ../src/ical-code.c:218
 msgid "America/Kentucky/Monticello"
 msgstr "Αμερική/Κεντάκυ/Μοντισέλλο"
 
-#: ../src/ical-code.c:213
+#: ../src/ical-code.c:219
 msgid "America/La_Paz"
 msgstr "Αμερική/Λα Παζ"
 
-#: ../src/ical-code.c:214
+#: ../src/ical-code.c:220
 msgid "America/Lima"
 msgstr "Αμερική/Λίμα"
 
-#: ../src/ical-code.c:215
+#: ../src/ical-code.c:221
 msgid "America/Los_Angeles"
 msgstr "Αμερική/Λος Άντζελες"
 
-#: ../src/ical-code.c:216
+#: ../src/ical-code.c:222
 msgid "America/Louisville"
 msgstr "Αμερική/Λούισβιλ"
 
-#: ../src/ical-code.c:217
+#: ../src/ical-code.c:223
 msgid "America/Maceio"
 msgstr "Αμερική/Μασέιο"
 
-#: ../src/ical-code.c:218
+#: ../src/ical-code.c:224
 msgid "America/Managua"
 msgstr "Αμερική/Μανάγκουα"
 
-#: ../src/ical-code.c:219
+#: ../src/ical-code.c:225
 msgid "America/Manaus"
 msgstr "Αμερική/Μανάους"
 
-#: ../src/ical-code.c:220
+#: ../src/ical-code.c:226
 msgid "America/Martinique"
 msgstr "Αμερική/Μαρτινίκα"
 
-#: ../src/ical-code.c:221
+#: ../src/ical-code.c:227
 msgid "America/Mazatlan"
 msgstr "Αμερική/Μαζατλάν"
 
-#: ../src/ical-code.c:222
+#: ../src/ical-code.c:228
 msgid "America/Mendoza"
 msgstr "Αμερική/Μεντόζα"
 
-#: ../src/ical-code.c:223
+#: ../src/ical-code.c:229
 msgid "America/Menominee"
 msgstr "Αμερική/Μενομινέ"
 
-#: ../src/ical-code.c:224
+#: ../src/ical-code.c:230
 msgid "America/Merida"
 msgstr "Αμερική/Μερίντα"
 
-#: ../src/ical-code.c:225
+#: ../src/ical-code.c:231
 msgid "America/Mexico_City"
 msgstr "Αμερική/Πόλη του Μεξικού"
 
-#: ../src/ical-code.c:226
+#: ../src/ical-code.c:232
 msgid "America/Miquelon"
 msgstr "Αμερική/Μικελόν"
 
-#: ../src/ical-code.c:227
+#: ../src/ical-code.c:233
 msgid "America/Monterrey"
 msgstr "Αμερική/Μοντερέυ"
 
-#: ../src/ical-code.c:228
+#: ../src/ical-code.c:234
 msgid "America/Montevideo"
 msgstr "Αμερική/Μοντεβιντέο"
 
-#: ../src/ical-code.c:229
+#: ../src/ical-code.c:235
 msgid "America/Montreal"
 msgstr "Αμερική/Μόντρεαλ"
 
-#: ../src/ical-code.c:230
+#: ../src/ical-code.c:236
 msgid "America/Montserrat"
 msgstr "Αμερική/Μονσεράτ"
 
-#: ../src/ical-code.c:231
+#: ../src/ical-code.c:237
 msgid "America/Nassau"
 msgstr "Αμερική/Νασσάου"
 
-#: ../src/ical-code.c:232
+#: ../src/ical-code.c:238
 msgid "America/New_York"
 msgstr "Αμερική/Νέα Υόρκη"
 
-#: ../src/ical-code.c:233
+#: ../src/ical-code.c:239
 msgid "America/Nipigon"
 msgstr "Αμερική/Νιπιγκόν"
 
-#: ../src/ical-code.c:234
+#: ../src/ical-code.c:240
 msgid "America/Nome"
 msgstr "Αμερική/Νόμε"
 
-#: ../src/ical-code.c:235
+#: ../src/ical-code.c:241
 msgid "America/Noronha"
 msgstr "Αμερική/Νορόνα"
 
-#: ../src/ical-code.c:236
+#: ../src/ical-code.c:242
 msgid "America/Panama"
 msgstr "Αμερική/Παναμάς"
 
-#: ../src/ical-code.c:237
+#: ../src/ical-code.c:243
 msgid "America/Pangnirtung"
 msgstr "Αμερική/Πάγγνιρτουγκ"
 
-#: ../src/ical-code.c:238
+#: ../src/ical-code.c:244
 msgid "America/Paramaribo"
 msgstr "Αμερική/Παραμαρίμπο"
 
-#: ../src/ical-code.c:239
+#: ../src/ical-code.c:245
 msgid "America/Phoenix"
 msgstr "Αμερική/Φοίνιξ"
 
-#: ../src/ical-code.c:240
+#: ../src/ical-code.c:246
 msgid "America/Port-au-Prince"
 msgstr "Αμερική/Πορτ-Ο-Πρενς"
 
-#: ../src/ical-code.c:241
+#: ../src/ical-code.c:247
 msgid "America/Port_of_Spain"
 msgstr "Αμερική/Πορτ-Οβ-Σπέιν"
 
-#: ../src/ical-code.c:242
+#: ../src/ical-code.c:248
 msgid "America/Porto_Velho"
 msgstr "Αμερική/Πόρτο Βέλο"
 
-#: ../src/ical-code.c:243
+#: ../src/ical-code.c:249
 msgid "America/Puerto_Rico"
 msgstr "Αμερική/Πουέρτο Ρίκο"
 
-#: ../src/ical-code.c:244
+#: ../src/ical-code.c:250
 msgid "America/Rainy_River"
 msgstr "Αμερική/Ρέινυ Ρίβερ"
 
-#: ../src/ical-code.c:245
+#: ../src/ical-code.c:251
 msgid "America/Rankin_Inlet"
 msgstr "Αμερική/Ράνκιν_Ίνλετ"
 
-#: ../src/ical-code.c:246
+#: ../src/ical-code.c:252
 msgid "America/Recife"
 msgstr "Αμερική/Ρεσίφε"
 
-#: ../src/ical-code.c:247
+#: ../src/ical-code.c:253
 msgid "America/Regina"
 msgstr "Αμερική/Ρεγκίνα"
 
-#: ../src/ical-code.c:248
+#: ../src/ical-code.c:254
 msgid "America/Rio_Branco"
 msgstr "Αμερική/Ρίο Μπράνκο"
 
-#: ../src/ical-code.c:249
+#: ../src/ical-code.c:255
 msgid "America/Rosario"
 msgstr "Αμερική/Ροσάριο"
 
-#: ../src/ical-code.c:250
+#: ../src/ical-code.c:256
 msgid "America/Santiago"
 msgstr "Αμερική/Σαντιάγκο"
 
-#: ../src/ical-code.c:251
+#: ../src/ical-code.c:257
 msgid "America/Santo_Domingo"
 msgstr "Αμερική/Σάντο Ντομίνγκο"
 
-#: ../src/ical-code.c:252
+#: ../src/ical-code.c:258
 msgid "America/Sao_Paulo"
 msgstr "Αμερική/Σάο Πάολο"
 
-#: ../src/ical-code.c:253
+#: ../src/ical-code.c:259
 msgid "America/Scoresbysund"
 msgstr "Αμερική/Σκορέσμπυσουντ"
 
-#: ../src/ical-code.c:254
+#: ../src/ical-code.c:260
 msgid "America/Shiprock"
 msgstr "Αμερική/Σίπροκ"
 
-#: ../src/ical-code.c:255
+#: ../src/ical-code.c:261
 msgid "America/St_Johns"
 msgstr "Αμερική/Σαιντ Τζωνς"
 
-#: ../src/ical-code.c:256
+#: ../src/ical-code.c:262
 msgid "America/St_Kitts"
 msgstr "Αμερική/Σαιντ Κιτς"
 
-#: ../src/ical-code.c:257
+#: ../src/ical-code.c:263
 msgid "America/St_Lucia"
 msgstr "Αμερική/Σαντα Λουτσία"
 
-#: ../src/ical-code.c:258
+#: ../src/ical-code.c:264
 msgid "America/St_Thomas"
 msgstr "Αμερική/Σαιντ Τόμας"
 
-#: ../src/ical-code.c:259
+#: ../src/ical-code.c:265
 msgid "America/St_Vincent"
 msgstr "Αμερική/Σαιντ Βίνσεντ"
 
-#: ../src/ical-code.c:260
+#: ../src/ical-code.c:266
 msgid "America/Swift_Current"
 msgstr "Αμερική/Σουίφτ Κάρρεντ"
 
-#: ../src/ical-code.c:261
+#: ../src/ical-code.c:267
 msgid "America/Tegucigalpa"
 msgstr "Αμερική/Τεγκουσιγκάλπα"
 
-#: ../src/ical-code.c:262
+#: ../src/ical-code.c:268
 msgid "America/Thule"
 msgstr "Αμερική/Θούλη"
 
-#: ../src/ical-code.c:263
+#: ../src/ical-code.c:269
 msgid "America/Thunder_Bay"
 msgstr "Αμερική/Θάντερ Μπέυ"
 
-#: ../src/ical-code.c:264
+#: ../src/ical-code.c:270
 msgid "America/Tijuana"
 msgstr "Αμερική/Τιχουάνα"
 
-#: ../src/ical-code.c:265
+#: ../src/ical-code.c:271
 msgid "America/Tortola"
 msgstr "Αμερική/Τόρτολα"
 
-#: ../src/ical-code.c:266
+#: ../src/ical-code.c:272
 msgid "America/Vancouver"
 msgstr "Αμερική/Βανκούβερ"
 
-#: ../src/ical-code.c:267
+#: ../src/ical-code.c:273
 msgid "America/Whitehorse"
 msgstr "Αμερική/Γουάιτχορς"
 
-#: ../src/ical-code.c:268
+#: ../src/ical-code.c:274
 msgid "America/Winnipeg"
 msgstr "Αμερική/Γουίννιπεγκ"
 
-#: ../src/ical-code.c:269
+#: ../src/ical-code.c:275
 msgid "America/Yakutat"
 msgstr "Αμερική/Γιάκουτατ"
 
-#: ../src/ical-code.c:270
+#: ../src/ical-code.c:276
 msgid "America/Yellowknife"
 msgstr "Αμερική/Γιέλοουνάιφ"
 
-#: ../src/ical-code.c:271
+#: ../src/ical-code.c:277
 msgid "Antarctica"
 msgstr "Ανταρκτική"
 
-#: ../src/ical-code.c:272
+#: ../src/ical-code.c:278
 msgid "Antarctica/Casey"
 msgstr "Ανταρκτική/Κέισυ"
 
-#: ../src/ical-code.c:273
+#: ../src/ical-code.c:279
 msgid "Antarctica/Davis"
 msgstr "Ανταρκτική/Ντέιβις"
 
-#: ../src/ical-code.c:274
+#: ../src/ical-code.c:280
 msgid "Antarctica/DumontDUrville"
 msgstr "Ανταρκτική/Ντυμόντ Ντ' Ουρβίλ"
 
-#: ../src/ical-code.c:275
+#: ../src/ical-code.c:281
 msgid "Antarctica/Mawson"
 msgstr "Ανταρκτική/Μώσον"
 
-#: ../src/ical-code.c:276
+#: ../src/ical-code.c:282
 msgid "Antarctica/McMurdo"
 msgstr "Ανταρκτική/ΜακΜέρντο"
 
-#: ../src/ical-code.c:277
+#: ../src/ical-code.c:283
 msgid "Antarctica/Palmer"
 msgstr "Ανταρκτική/Πάλμερ"
 
-#: ../src/ical-code.c:278
+#: ../src/ical-code.c:284
 msgid "Antarctica/South_Pole"
 msgstr "Ανταρκτική/Νότιος Πόλος"
 
-#: ../src/ical-code.c:279
+#: ../src/ical-code.c:285
 msgid "Antarctica/Syowa"
 msgstr "Ανταρκτική/Σίοβα"
 
-#: ../src/ical-code.c:280
+#: ../src/ical-code.c:286
 msgid "Antarctica/Vostok"
 msgstr "Ανταρκτική/Βοστόκ"
 
-#: ../src/ical-code.c:281
+#: ../src/ical-code.c:287
 msgid "Arctic"
 msgstr "Αρκτικός κύκλος"
 
-#: ../src/ical-code.c:282
+#: ../src/ical-code.c:288
 msgid "Arctic/Longyearbyen"
 msgstr "Αρκτικός κύκλος/Λονγκιρμπίεν"
 
-#: ../src/ical-code.c:283
+#: ../src/ical-code.c:289
 msgid "Asia"
 msgstr "Ασία"
 
-#: ../src/ical-code.c:284
+#: ../src/ical-code.c:290
 msgid "Asia/Aden"
 msgstr "Ασία/Άντεν"
 
-#: ../src/ical-code.c:285
+#: ../src/ical-code.c:291
 msgid "Asia/Almaty"
 msgstr "Ασία/Αλμάτυ"
 
-#: ../src/ical-code.c:286
+#: ../src/ical-code.c:292
 msgid "Asia/Amman"
 msgstr "Ασία/Αμμάν"
 
-#: ../src/ical-code.c:287
+#: ../src/ical-code.c:293
 msgid "Asia/Anadyr"
 msgstr "Ασία/Αναντύρ"
 
-#: ../src/ical-code.c:288
+#: ../src/ical-code.c:294
 msgid "Asia/Aqtau"
 msgstr "Ασία/Ακτάου"
 
-#: ../src/ical-code.c:289
+#: ../src/ical-code.c:295
 msgid "Asia/Aqtobe"
 msgstr "Ασία/Ακτόμπε"
 
-#: ../src/ical-code.c:290
+#: ../src/ical-code.c:296
 msgid "Asia/Ashgabat"
 msgstr "Ασία/Ασγκαμπάτ"
 
-#: ../src/ical-code.c:291
+#: ../src/ical-code.c:297
 msgid "Asia/Baghdad"
 msgstr "Ασία/Βαγδάτη"
 
-#: ../src/ical-code.c:292
+#: ../src/ical-code.c:298
 msgid "Asia/Bahrain"
 msgstr "Ασία/Μπαχρέιν"
 
-#: ../src/ical-code.c:293
+#: ../src/ical-code.c:299
 msgid "Asia/Baku"
 msgstr "Ασία/Μπακού"
 
-#: ../src/ical-code.c:294
+#: ../src/ical-code.c:300
 msgid "Asia/Bangkok"
 msgstr "Ασία/Μπανγκόγκ"
 
-#: ../src/ical-code.c:295
+#: ../src/ical-code.c:301
 msgid "Asia/Beirut"
 msgstr "Ασία/Βηρυτός"
 
-#: ../src/ical-code.c:296
+#: ../src/ical-code.c:302
 msgid "Asia/Bishkek"
 msgstr "Ασία/Μπίσκεκ"
 
-#: ../src/ical-code.c:297
+#: ../src/ical-code.c:303
 msgid "Asia/Brunei"
 msgstr "Ασία/Μπρουνέι"
 
-#: ../src/ical-code.c:298
+#: ../src/ical-code.c:304
 msgid "Asia/Calcutta"
 msgstr "Ασία/Καλκούτα"
 
-#: ../src/ical-code.c:299
+#: ../src/ical-code.c:305
 msgid "Asia/Chungking"
 msgstr "Ασία/Άντεν"
 
-#: ../src/ical-code.c:300
+#: ../src/ical-code.c:306
 msgid "Asia/Colombo"
 msgstr "Ασία/Κολόμπο"
 
-#: ../src/ical-code.c:301
+#: ../src/ical-code.c:307
 msgid "Asia/Damascus"
 msgstr "Ασία/Δαμασκός"
 
-#: ../src/ical-code.c:302
+#: ../src/ical-code.c:308
 msgid "Asia/Dhaka"
 msgstr "Ασία/Ντάκα"
 
-#: ../src/ical-code.c:303
+#: ../src/ical-code.c:309
 msgid "Asia/Dili"
 msgstr "Ασία/Ντίλι"
 
-#: ../src/ical-code.c:304
+#: ../src/ical-code.c:310
 msgid "Asia/Dubai"
 msgstr "Ασία/Ντουμπάι"
 
-#: ../src/ical-code.c:305
+#: ../src/ical-code.c:311
 msgid "Asia/Dushanbe"
 msgstr "Ασία/Ντουσάμπε"
 
-#: ../src/ical-code.c:306
+#: ../src/ical-code.c:312
 msgid "Asia/Gaza"
 msgstr "Ασία/Γάζα"
 
-#: ../src/ical-code.c:307
+#: ../src/ical-code.c:313
 msgid "Asia/Harbin"
 msgstr "Ασία/Χαρμπίν"
 
-#: ../src/ical-code.c:308
+#: ../src/ical-code.c:314
 msgid "Asia/Hong_Kong"
 msgstr "Ασία/Χονγκ Κονγκ"
 
-#: ../src/ical-code.c:309
+#: ../src/ical-code.c:315
 msgid "Asia/Hovd"
 msgstr "Ασία/Χοβντ"
 
-#: ../src/ical-code.c:310
+#: ../src/ical-code.c:316
 msgid "Asia/Irkutsk"
 msgstr "Ασία/Ιρκούτσκ"
 
-#: ../src/ical-code.c:311
+#: ../src/ical-code.c:317
 msgid "Asia/Istanbul"
 msgstr "Ασία/Κωνσταντινούπολη"
 
-#: ../src/ical-code.c:312
+#: ../src/ical-code.c:318
 msgid "Asia/Jakarta"
 msgstr "Ασία/Τζακάρτα"
 
-#: ../src/ical-code.c:313
+#: ../src/ical-code.c:319
 msgid "Asia/Jayapura"
 msgstr "Ασία/Τζαγιαπούρα"
 
-#: ../src/ical-code.c:314
+#: ../src/ical-code.c:320
 msgid "Asia/Jerusalem"
 msgstr "Ασία/Ιερουσαλήμ"
 
-#: ../src/ical-code.c:315
+#: ../src/ical-code.c:321
 msgid "Asia/Kabul"
 msgstr "Ασία/Καμπούλ"
 
-#: ../src/ical-code.c:316
+#: ../src/ical-code.c:322
 msgid "Asia/Kamchatka"
 msgstr "Ασία/Καμτσάτκα"
 
-#: ../src/ical-code.c:317
+#: ../src/ical-code.c:323
 msgid "Asia/Karachi"
 msgstr "Ασία/Καράτσι"
 
-#: ../src/ical-code.c:318
+#: ../src/ical-code.c:324
 msgid "Asia/Kashgar"
 msgstr "Ασία/Κασγκάρ"
 
-#: ../src/ical-code.c:319
+#: ../src/ical-code.c:325
 msgid "Asia/Katmandu"
 msgstr "Ασία/Κατμαντού"
 
-#: ../src/ical-code.c:320
+#: ../src/ical-code.c:326
 msgid "Asia/Krasnoyarsk"
 msgstr "Ασία/Κρασνόγιαρσκ"
 
-#: ../src/ical-code.c:321
+#: ../src/ical-code.c:327
 msgid "Asia/Kuala_Lumpur"
 msgstr "Ασία/Κουάλα Λουμπούρ"
 
-#: ../src/ical-code.c:322
+#: ../src/ical-code.c:328
 msgid "Asia/Kuching"
 msgstr "Ασία/Κούτσινγκ"
 
-#: ../src/ical-code.c:323
+#: ../src/ical-code.c:329
 msgid "Asia/Kuwait"
 msgstr "Ασία/Κουβέιτ"
 
-#: ../src/ical-code.c:324
+#: ../src/ical-code.c:330
 msgid "Asia/Macao"
 msgstr "Ασία/Μακάο"
 
-#: ../src/ical-code.c:325
+#: ../src/ical-code.c:331
 msgid "Asia/Magadan"
 msgstr "Ασία/Μαγκαντάν"
 
-#: ../src/ical-code.c:326
+#: ../src/ical-code.c:332
 msgid "Asia/Manila"
 msgstr "Ασία/Μανίλα"
 
-#: ../src/ical-code.c:327
+#: ../src/ical-code.c:333
 msgid "Asia/Muscat"
 msgstr "Ασία/Μουσκάτ"
 
-#: ../src/ical-code.c:328
+#: ../src/ical-code.c:334
 msgid "Asia/Nicosia"
 msgstr "Ασία/Λευκωσία"
 
-#: ../src/ical-code.c:329
+#: ../src/ical-code.c:335
 msgid "Asia/Novosibirsk"
 msgstr "Ασία/Νοβοσιμπίρσκ"
 
-#: ../src/ical-code.c:330
+#: ../src/ical-code.c:336
 msgid "Asia/Omsk"
 msgstr "Ασία/Ομσκ"
 
-#: ../src/ical-code.c:331
+#: ../src/ical-code.c:337
 msgid "Asia/Phnom_Penh"
 msgstr "Ασία/Πνομ Πενχ"
 
-#: ../src/ical-code.c:332
+#: ../src/ical-code.c:338
 msgid "Asia/Pontianak"
 msgstr "Ασία/Ποντιάνακ"
 
-#: ../src/ical-code.c:333
+#: ../src/ical-code.c:339
 msgid "Asia/Pyongyang"
 msgstr "Ασία/Πιονγκ Γιανγκ"
 
-#: ../src/ical-code.c:334
+#: ../src/ical-code.c:340
 msgid "Asia/Qatar"
 msgstr "Ασία/Κατάρ"
 
-#: ../src/ical-code.c:335
+#: ../src/ical-code.c:341
 msgid "Asia/Rangoon"
 msgstr "Ασία/Ρανγκούν"
 
-#: ../src/ical-code.c:336
+#: ../src/ical-code.c:342
 msgid "Asia/Riyadh"
 msgstr "Ασία/Ριάντ"
 
-#: ../src/ical-code.c:337
+#: ../src/ical-code.c:343
 msgid "Asia/Saigon"
 msgstr "Ασία/Σαϊγκόν"
 
-#: ../src/ical-code.c:338
+#: ../src/ical-code.c:344
 msgid "Asia/Samarkand"
 msgstr "Ασία/Σαμαρκάνδη"
 
-#: ../src/ical-code.c:339
+#: ../src/ical-code.c:345
 msgid "Asia/Seoul"
 msgstr "Ασία/Σεούλ"
 
-#: ../src/ical-code.c:340
+#: ../src/ical-code.c:346
 msgid "Asia/Shanghai"
 msgstr "Ασία/Σαγγάη"
 
-#: ../src/ical-code.c:341
+#: ../src/ical-code.c:347
 msgid "Asia/Singapore"
 msgstr "Ασία/Σιγκαπούρη"
 
-#: ../src/ical-code.c:342
+#: ../src/ical-code.c:348
 msgid "Asia/Taipei"
 msgstr "Ασία/Ταϊπέι"
 
-#: ../src/ical-code.c:343
+#: ../src/ical-code.c:349
 msgid "Asia/Tashkent"
 msgstr "Ασία/Τασκένδη"
 
-#: ../src/ical-code.c:344
+#: ../src/ical-code.c:350
 msgid "Asia/Tbilisi"
 msgstr "Ασία/Τυφλίδα"
 
-#: ../src/ical-code.c:345
+#: ../src/ical-code.c:351
 msgid "Asia/Tehran"
 msgstr "Ασία/Τεχεράνη"
 
-#: ../src/ical-code.c:346
+#: ../src/ical-code.c:352
 msgid "Asia/Thimphu"
 msgstr "Ασία/Τιμφού"
 
-#: ../src/ical-code.c:347
+#: ../src/ical-code.c:353
 msgid "Asia/Tokyo"
 msgstr "Ασία/Τόκιο"
 
-#: ../src/ical-code.c:348
+#: ../src/ical-code.c:354
 msgid "Asia/Ujung_Pandang"
 msgstr "Ασία/Ουγιούνγκ Παντάνγκ"
 
-#: ../src/ical-code.c:349
+#: ../src/ical-code.c:355
 msgid "Asia/Ulaanbaatar"
 msgstr "Ασία/Ουλάν Μπατόρ"
 
-#: ../src/ical-code.c:350
+#: ../src/ical-code.c:356
 msgid "Asia/Urumqi"
 msgstr "Ασία/Ουρούμκι"
 
-#: ../src/ical-code.c:351
+#: ../src/ical-code.c:357
 msgid "Asia/Vientiane"
 msgstr "Ασία/Βιεντιάνε"
 
-#: ../src/ical-code.c:352
+#: ../src/ical-code.c:358
 msgid "Asia/Vladivostok"
 msgstr "Ασία/Βλαδιβοστόκ"
 
-#: ../src/ical-code.c:353
+#: ../src/ical-code.c:359
 msgid "Asia/Yakutsk"
 msgstr "Ασία/Γιακούτσκ"
 
-#: ../src/ical-code.c:354
+#: ../src/ical-code.c:360
 msgid "Asia/Yekaterinburg"
 msgstr "Ασία/Αικατερίνμπουργκ"
 
-#: ../src/ical-code.c:355
+#: ../src/ical-code.c:361
 msgid "Asia/Yerevan"
 msgstr "Ασία/Ερεβάν"
 
-#: ../src/ical-code.c:356
+#: ../src/ical-code.c:362
 msgid "Atlantic"
 msgstr "Ατλαντικός"
 
-#: ../src/ical-code.c:357
+#: ../src/ical-code.c:363
 msgid "Atlantic/Azores"
 msgstr "Ατλαντικός/Αζόρες"
 
-#: ../src/ical-code.c:358
+#: ../src/ical-code.c:364
 msgid "Atlantic/Bermuda"
 msgstr "Ατλαντικός/Βερμούδες"
 
-#: ../src/ical-code.c:359
+#: ../src/ical-code.c:365
 msgid "Atlantic/Canary"
 msgstr "Ατλαντικός/Κανάριοι Νήσοι"
 
-#: ../src/ical-code.c:360
+#: ../src/ical-code.c:366
 msgid "Atlantic/Cape_Verde"
 msgstr "Ατλαντικός/Πράσινο Ακρωτήριο"
 
-#: ../src/ical-code.c:361
+#: ../src/ical-code.c:367
 msgid "Atlantic/Faeroe"
 msgstr "Ατλαντικός/Φερόες"
 
-#: ../src/ical-code.c:362
+#: ../src/ical-code.c:368
 msgid "Atlantic/Jan_Mayen"
 msgstr "Ατλαντικός/Γιαν Μάυεν"
 
-#: ../src/ical-code.c:363
+#: ../src/ical-code.c:369
 msgid "Atlantic/Madeira"
 msgstr "Ατλαντικός/Μαδέρα"
 
-#: ../src/ical-code.c:364
+#: ../src/ical-code.c:370
 msgid "Atlantic/Reykjavik"
 msgstr "Ατλαντικός/Ρέυκιαβικ"
 
-#: ../src/ical-code.c:365
+#: ../src/ical-code.c:371
 msgid "Atlantic/South_Georgia"
 msgstr "Ατλαντικός/Σάουθ Τζώρτζια"
 
-#: ../src/ical-code.c:366
+#: ../src/ical-code.c:372
 msgid "Atlantic/St_Helena"
 msgstr "Ατλαντικός/Σάντα Ελένα"
 
-#: ../src/ical-code.c:367
+#: ../src/ical-code.c:373
 msgid "Atlantic/Stanley"
 msgstr "Ατλαντικός/Στάνλεϋ"
 
-#: ../src/ical-code.c:368
+#: ../src/ical-code.c:374
 msgid "Australia"
 msgstr "Αυστραλία"
 
-#: ../src/ical-code.c:369
+#: ../src/ical-code.c:375
 msgid "Australia/Adelaide"
 msgstr "Αυστραλία/Αδελαΐδα"
 
-#: ../src/ical-code.c:370
+#: ../src/ical-code.c:376
 msgid "Australia/Brisbane"
 msgstr "Αυστραλία/Μπρισμπέιν"
 
-#: ../src/ical-code.c:371
+#: ../src/ical-code.c:377
 msgid "Australia/Broken_Hill"
 msgstr "Αυστραλία/Μπρόκεν Χιλ"
 
-#: ../src/ical-code.c:372
+#: ../src/ical-code.c:378
 msgid "Australia/Darwin"
 msgstr "Αυστραλία/Ντάργουιν"
 
-#: ../src/ical-code.c:373
+#: ../src/ical-code.c:379
 msgid "Australia/Hobart"
 msgstr "Αυστραλία/Χόμπαρτ"
 
-#: ../src/ical-code.c:374
+#: ../src/ical-code.c:380
 msgid "Australia/Lindeman"
 msgstr "Αυστραλία/Λίντεμαν"
 
-#: ../src/ical-code.c:375
+#: ../src/ical-code.c:381
 msgid "Australia/Lord_Howe"
 msgstr "Αυστραλία/Λορντ Χάου"
 
-#: ../src/ical-code.c:376
+#: ../src/ical-code.c:382
 msgid "Australia/Melbourne"
 msgstr "Αυστραλία/Μελβούρνη"
 
-#: ../src/ical-code.c:377
+#: ../src/ical-code.c:383
 msgid "Australia/Perth"
 msgstr "Αυστραλία/Περθ"
 
-#: ../src/ical-code.c:378
+#: ../src/ical-code.c:384
 msgid "Australia/Sydney"
 msgstr "Αυστραλία/Σύδνεϋ"
 
-#: ../src/ical-code.c:379
+#: ../src/ical-code.c:385
 msgid "Europe"
 msgstr "Ευρώπη"
 
-#: ../src/ical-code.c:380
+#: ../src/ical-code.c:386
 msgid "Europe/Amsterdam"
 msgstr "Ευρώπη/Άμστερνταμ"
 
-#: ../src/ical-code.c:381
+#: ../src/ical-code.c:387
 msgid "Europe/Andorra"
 msgstr "Ευρώπη/Ανδόρρα"
 
-#: ../src/ical-code.c:382
+#: ../src/ical-code.c:388
 msgid "Europe/Athens"
 msgstr "Ευρώπη/Αθήνα"
 
-#: ../src/ical-code.c:383
+#: ../src/ical-code.c:389
 msgid "Europe/Belfast"
 msgstr "Ευρώπη/Μπέλφαστ"
 
-#: ../src/ical-code.c:384
+#: ../src/ical-code.c:390
 msgid "Europe/Belgrade"
 msgstr "Ευρώπη/Βελιγράδι"
 
-#: ../src/ical-code.c:385
+#: ../src/ical-code.c:391
 msgid "Europe/Berlin"
 msgstr "Ευρώπη/Βερολίνο"
 
-#: ../src/ical-code.c:386
+#: ../src/ical-code.c:392
 msgid "Europe/Bratislava"
 msgstr "Ευρώπη/Μπρατισλάβα"
 
-#: ../src/ical-code.c:387
+#: ../src/ical-code.c:393
 msgid "Europe/Brussels"
 msgstr "Ευρώπη/Βρυξέλες"
 
-#: ../src/ical-code.c:388
+#: ../src/ical-code.c:394
 msgid "Europe/Bucharest"
 msgstr "Ευρώπη/Βουκουρέστι"
 
-#: ../src/ical-code.c:389
+#: ../src/ical-code.c:395
 msgid "Europe/Budapest"
 msgstr "Ευρώπη/Βουδαπέστη"
 
-#: ../src/ical-code.c:390
+#: ../src/ical-code.c:396
 msgid "Europe/Chisinau"
 msgstr "Ευρώπη/Σισινάου"
 
-#: ../src/ical-code.c:391
+#: ../src/ical-code.c:397
 msgid "Europe/Copenhagen"
 msgstr "Ευρώπη/Κοπεγχάγη"
 
-#: ../src/ical-code.c:392
+#: ../src/ical-code.c:398
 msgid "Europe/Dublin"
 msgstr "Ευρώπη/Δουβλίνο"
 
-#: ../src/ical-code.c:393
+#: ../src/ical-code.c:399
 msgid "Europe/Gibraltar"
 msgstr "Ευρώπη/Γιβραλτάρ"
 
-#: ../src/ical-code.c:394
+#: ../src/ical-code.c:400
 msgid "Europe/Helsinki"
 msgstr "Ευρώπη/Ελσίνκι"
 
-#: ../src/ical-code.c:395
+#: ../src/ical-code.c:401
 msgid "Europe/Istanbul"
 msgstr "Ευρώπη/Κωνσταντινούπολη"
 
-#: ../src/ical-code.c:396
+#: ../src/ical-code.c:402
 msgid "Europe/Kaliningrad"
 msgstr "Ευρώπη/Καλίνιγκραντ"
 
-#: ../src/ical-code.c:397
+#: ../src/ical-code.c:403
 msgid "Europe/Kiev"
 msgstr "Ευρώπη/Κίεβο"
 
-#: ../src/ical-code.c:398
+#: ../src/ical-code.c:404
 msgid "Europe/Lisbon"
 msgstr "Ευρώπη/Λισαβώνα"
 
-#: ../src/ical-code.c:399
+#: ../src/ical-code.c:405
 msgid "Europe/Ljubljana"
 msgstr "Ευρώπη/Λιουμπλιάνα"
 
-#: ../src/ical-code.c:400
+#: ../src/ical-code.c:406
 msgid "Europe/London"
 msgstr "Ευρώπη/Λονδίνο"
 
-#: ../src/ical-code.c:401
+#: ../src/ical-code.c:407
 msgid "Europe/Luxembourg"
 msgstr "Ευρώπη/Λουξεμβούργο"
 
-#: ../src/ical-code.c:402
+#: ../src/ical-code.c:408
 msgid "Europe/Madrid"
 msgstr "Ευρώπη/Μαδρίτη"
 
-#: ../src/ical-code.c:403
+#: ../src/ical-code.c:409
 msgid "Europe/Malta"
 msgstr "Ευρώπη/Μάλτα"
 
-#: ../src/ical-code.c:404
+#: ../src/ical-code.c:410
 msgid "Europe/Minsk"
 msgstr "Ευρώπη/Μινσκ"
 
-#: ../src/ical-code.c:405
+#: ../src/ical-code.c:411
 msgid "Europe/Monaco"
 msgstr "Ευρώπη/Μονακό"
 
-#: ../src/ical-code.c:406
+#: ../src/ical-code.c:412
 msgid "Europe/Moscow"
 msgstr "Ευρώπη/Μόσχα"
 
-#: ../src/ical-code.c:407
+#: ../src/ical-code.c:413
 msgid "Europe/Nicosia"
 msgstr "Ευρώπη/Λευκωσία"
 
-#: ../src/ical-code.c:408
+#: ../src/ical-code.c:414
 msgid "Europe/Oslo"
 msgstr "Ευρώπη/Όσλο"
 
-#: ../src/ical-code.c:409
+#: ../src/ical-code.c:415
 msgid "Europe/Paris"
 msgstr "Ευρώπη/Παρίσι"
 
-#: ../src/ical-code.c:410
+#: ../src/ical-code.c:416
 msgid "Europe/Prague"
 msgstr "Ευρώπη/Πράγα"
 
-#: ../src/ical-code.c:411
+#: ../src/ical-code.c:417
 msgid "Europe/Riga"
 msgstr "Ευρώπη/Ρίγα"
 
-#: ../src/ical-code.c:412
+#: ../src/ical-code.c:418
 msgid "Europe/Rome"
 msgstr "Ευρώπη/Ρώμη"
 
-#: ../src/ical-code.c:413
+#: ../src/ical-code.c:419
 msgid "Europe/Samara"
 msgstr "Ευρώπη/Σαμάρα"
 
-#: ../src/ical-code.c:414
+#: ../src/ical-code.c:420
 msgid "Europe/San_Marino"
 msgstr "Ευρώπη/Άγιος Μαρίνος"
 
-#: ../src/ical-code.c:415
+#: ../src/ical-code.c:421
 msgid "Europe/Sarajevo"
 msgstr "Ευρώπη/Σεράγιεβο"
 
-#: ../src/ical-code.c:416
+#: ../src/ical-code.c:422
 msgid "Europe/Simferopol"
 msgstr "Ευρώπη/Σιμφερόπολ"
 
-#: ../src/ical-code.c:417
+#: ../src/ical-code.c:423
 msgid "Europe/Skopje"
 msgstr "Ευρώπη/Σκόπια"
 
-#: ../src/ical-code.c:418
+#: ../src/ical-code.c:424
 msgid "Europe/Sofia"
 msgstr "Ευρώπη/Σόφια"
 
-#: ../src/ical-code.c:419
+#: ../src/ical-code.c:425
 msgid "Europe/Stockholm"
 msgstr "Ευρώπη/Στοκχόλμη"
 
-#: ../src/ical-code.c:420
+#: ../src/ical-code.c:426
 msgid "Europe/Tallinn"
 msgstr "Ευρώπη/Ταλίν"
 
-#: ../src/ical-code.c:421
+#: ../src/ical-code.c:427
 msgid "Europe/Tirane"
 msgstr "Ευρώπη/Τίρανα"
 
-#: ../src/ical-code.c:422
+#: ../src/ical-code.c:428
 msgid "Europe/Uzhgorod"
 msgstr "Ευρώπη/Ούζγκοροντ"
 
-#: ../src/ical-code.c:423
+#: ../src/ical-code.c:429
 msgid "Europe/Vaduz"
 msgstr "Ευρώπη/Βαντούζ"
 
-#: ../src/ical-code.c:424
+#: ../src/ical-code.c:430
 msgid "Europe/Vatican"
 msgstr "Ευρώπη/Βατικανό"
 
-#: ../src/ical-code.c:425
+#: ../src/ical-code.c:431
 msgid "Europe/Vienna"
 msgstr "Ευρώπη/Βιέννη"
 
-#: ../src/ical-code.c:426
+#: ../src/ical-code.c:432
 msgid "Europe/Vilnius"
 msgstr "Ευρώπη/Βίλνιους"
 
-#: ../src/ical-code.c:427
+#: ../src/ical-code.c:433
 msgid "Europe/Warsaw"
 msgstr "Ευρώπη/Βαρσοβία"
 
-#: ../src/ical-code.c:428
+#: ../src/ical-code.c:434
 msgid "Europe/Zagreb"
 msgstr "Ευρώπη/Ζάγκρεμπ"
 
-#: ../src/ical-code.c:429
+#: ../src/ical-code.c:435
 msgid "Europe/Zaporozhye"
 msgstr "Ευρώπη/Ζαπορόζιε"
 
-#: ../src/ical-code.c:430
+#: ../src/ical-code.c:436
 msgid "Europe/Zurich"
 msgstr "Ευρώπη/Ζυρίχη"
 
-#: ../src/ical-code.c:431
+#: ../src/ical-code.c:437
 msgid "Indian"
 msgstr "Ινδικός"
 
-#: ../src/ical-code.c:432
+#: ../src/ical-code.c:438
 msgid "Indian/Antananarivo"
 msgstr "Ινδικός/Ανταναναρίβο"
 
-#: ../src/ical-code.c:433
+#: ../src/ical-code.c:439
 msgid "Indian/Chagos"
 msgstr "Ινδικός/Chagos"
 
-#: ../src/ical-code.c:434
+#: ../src/ical-code.c:440
 msgid "Indian/Christmas"
 msgstr "Ινδικός/Christmas"
 
-#: ../src/ical-code.c:435
+#: ../src/ical-code.c:441
 msgid "Indian/Cocos"
 msgstr "Ινδικός/Cocos"
 
-#: ../src/ical-code.c:436
+#: ../src/ical-code.c:442
 msgid "Indian/Comoro"
 msgstr "Ινδικός/Κομόρες"
 
-#: ../src/ical-code.c:437
+#: ../src/ical-code.c:443
 msgid "Indian/Kerguelen"
 msgstr "Ινδικός/Kerguelen"
 
-#: ../src/ical-code.c:438
+#: ../src/ical-code.c:444
 msgid "Indian/Mahe"
 msgstr "Ινδικός/Μάχε"
 
-#: ../src/ical-code.c:439
+#: ../src/ical-code.c:445
 msgid "Indian/Maldives"
 msgstr "Ινδικός/Μαλδίβες"
 
-#: ../src/ical-code.c:440
+#: ../src/ical-code.c:446
 msgid "Indian/Mauritius"
 msgstr "Ινδικός/Μαυρίκιος"
 
-#: ../src/ical-code.c:441
+#: ../src/ical-code.c:447
 msgid "Indian/Mayotte"
 msgstr "Ινδικός/Μαγιότ"
 
-#: ../src/ical-code.c:442
+#: ../src/ical-code.c:448
 msgid "Indian/Reunion"
 msgstr "Ινδικός/Ρεουνιόν"
 
-#: ../src/ical-code.c:443
+#: ../src/ical-code.c:449
 msgid "Pacific"
 msgstr "Ειρηνικός"
 
-#: ../src/ical-code.c:444
+#: ../src/ical-code.c:450
 msgid "Pacific/Apia"
 msgstr "Ειρηνικός/Apia"
 
-#: ../src/ical-code.c:445
+#: ../src/ical-code.c:451
 msgid "Pacific/Auckland"
 msgstr "Ειρηνικός/Ώκλαντ"
 
-#: ../src/ical-code.c:446
+#: ../src/ical-code.c:452
 msgid "Pacific/Chatham"
 msgstr "Ειρηνικός/Τσάτχαμ"
 
-#: ../src/ical-code.c:447
+#: ../src/ical-code.c:453
 msgid "Pacific/Easter"
 msgstr "Ειρηνικός/Πάσχα"
 
-#: ../src/ical-code.c:448
+#: ../src/ical-code.c:454
 msgid "Pacific/Efate"
 msgstr "Ειρηνικός/Εφάτε"
 
-#: ../src/ical-code.c:449
+#: ../src/ical-code.c:455
 msgid "Pacific/Enderbury"
 msgstr "Ειρηνικός/Εντέρμπουρυ"
 
-#: ../src/ical-code.c:450
+#: ../src/ical-code.c:456
 msgid "Pacific/Fakaofo"
 msgstr "Ειρηνικός/Φακαόφο"
 
-#: ../src/ical-code.c:451
+#: ../src/ical-code.c:457
 msgid "Pacific/Fiji"
 msgstr "Ειρηνικός/Φίτζι"
 
-#: ../src/ical-code.c:452
+#: ../src/ical-code.c:458
 msgid "Pacific/Funafuti"
 msgstr "Ειρηνικός/Φουναφούτι"
 
-#: ../src/ical-code.c:453
+#: ../src/ical-code.c:459
 msgid "Pacific/Galapagos"
 msgstr "Ειρηνικός/Γκαλαπάγος"
 
-#: ../src/ical-code.c:454
+#: ../src/ical-code.c:460
 msgid "Pacific/Gambier"
 msgstr "Ειρηνικός/Γκαμπιέ"
 
-#: ../src/ical-code.c:455
+#: ../src/ical-code.c:461
 msgid "Pacific/Guadalcanal"
 msgstr "Ειρηνικός/Γκουανταλκανάλ"
 
-#: ../src/ical-code.c:456
+#: ../src/ical-code.c:462
 msgid "Pacific/Guam"
 msgstr "Ειρηνικός/Γουάμ"
 
-#: ../src/ical-code.c:457
+#: ../src/ical-code.c:463
 msgid "Pacific/Honolulu"
 msgstr "Ειρηνικός/Χονολουλού"
 
-#: ../src/ical-code.c:458
+#: ../src/ical-code.c:464
 msgid "Pacific/Johnston"
 msgstr "Ειρηνικός/Τζόνστον"
 
-#: ../src/ical-code.c:459
+#: ../src/ical-code.c:465
 msgid "Pacific/Kiritimati"
 msgstr "Ειρηνικός/Κριτιμάτι"
 
-#: ../src/ical-code.c:460
+#: ../src/ical-code.c:466
 msgid "Pacific/Kosrae"
 msgstr "Ειρηνικός/Κοσράε"
 
-#: ../src/ical-code.c:461
+#: ../src/ical-code.c:467
 msgid "Pacific/Kwajalein"
 msgstr "Ειρηνικός/Κουατζαλίν"
 
-#: ../src/ical-code.c:462
+#: ../src/ical-code.c:468
 msgid "Pacific/Majuro"
 msgstr "Ειρηνικός/Μαγιούρο"
 
-#: ../src/ical-code.c:463
+#: ../src/ical-code.c:469
 msgid "Pacific/Marquesas"
 msgstr "Ειρηνικός/Μαρκέσας"
 
-#: ../src/ical-code.c:464
+#: ../src/ical-code.c:470
 msgid "Pacific/Midway"
 msgstr "Ειρηνικός/Μίντγουέϊ"
 
-#: ../src/ical-code.c:465
+#: ../src/ical-code.c:471
 msgid "Pacific/Nauru"
 msgstr "Ειρηνικός/Ναούρου"
 
-#: ../src/ical-code.c:466
+#: ../src/ical-code.c:472
 msgid "Pacific/Niue"
 msgstr "Ειρηνικός/Νιούε"
 
-#: ../src/ical-code.c:467
+#: ../src/ical-code.c:473
 msgid "Pacific/Norfolk"
 msgstr "Ειρηνικός/Νόρφολκ"
 
-#: ../src/ical-code.c:468
+#: ../src/ical-code.c:474
 msgid "Pacific/Noumea"
 msgstr "Ειρηνικός/Νουμία"
 
-#: ../src/ical-code.c:469
+#: ../src/ical-code.c:475
 msgid "Pacific/Pago_Pago"
 msgstr "Ειρηνικός/Πάγκο Πάγκο"
 
-#: ../src/ical-code.c:470
+#: ../src/ical-code.c:476
 msgid "Pacific/Palau"
 msgstr "Ειρηνικός/Παλάου"
 
-#: ../src/ical-code.c:471
+#: ../src/ical-code.c:477
 msgid "Pacific/Pitcairn"
 msgstr "Ειρηνικός/Νήσοι Πίτκαιρν"
 
-#: ../src/ical-code.c:472
+#: ../src/ical-code.c:478
 msgid "Pacific/Ponape"
 msgstr "Ειρηνικός/Πονάπε"
 
-#: ../src/ical-code.c:473
+#: ../src/ical-code.c:479
 msgid "Pacific/Port_Moresby"
 msgstr "Ειρηνικός/Πορτ Μόρσμπι"
 
-#: ../src/ical-code.c:474
+#: ../src/ical-code.c:480
 msgid "Pacific/Rarotonga"
 msgstr "Ειρηνικός/Ραροτόνγκα"
 
-#: ../src/ical-code.c:475
+#: ../src/ical-code.c:481
 msgid "Pacific/Saipan"
 msgstr "Ειρηνικός/Σαϊπάν"
 
-#: ../src/ical-code.c:476
+#: ../src/ical-code.c:482
 msgid "Pacific/Tahiti"
 msgstr "Ειρηνικός/Ταϊτή"
 
-#: ../src/ical-code.c:477
+#: ../src/ical-code.c:483
 msgid "Pacific/Tarawa"
 msgstr "Ειρηνικός/Ταράβα"
 
-#: ../src/ical-code.c:478
+#: ../src/ical-code.c:484
 msgid "Pacific/Tongatapu"
 msgstr "Ειρηνικός/Τονγκαπάτου"
 
-#: ../src/ical-code.c:479
+#: ../src/ical-code.c:485
 msgid "Pacific/Truk"
 msgstr "Ειρηνικός/Τρούκ"
 
-#: ../src/ical-code.c:480
+#: ../src/ical-code.c:486
 msgid "Pacific/Wake"
 msgstr "Ειρηνικός/Ουέηκ"
 
-#: ../src/ical-code.c:481
+#: ../src/ical-code.c:487
 msgid "Pacific/Wallis"
 msgstr "Ειρηνικός/Γουάλις"
 
-#: ../src/ical-code.c:482
+#: ../src/ical-code.c:488
 msgid "Pacific/Yap"
 msgstr "Ειρηνικός/Γιάπ"
 
-#: ../src/ical-code.c:1223
+#: ../src/ical-code.c:1545
 msgid "Orage default alarm"
 msgstr "Προκαθορισμένη ειδοποίηση"
 
-#: ../src/main.c:214
-msgid "This should not happen"
-msgstr "Αυτό δε θα έπρεπε να συμβεί"
+#: ../src/ical-code.c:3352
+msgid "Archiving not enabled. Exiting"
+msgstr ""
 
-#: ../src/main.c:510
-msgid "Cannot create MCS client channel"
-msgstr "Αδύνατη η δημιουργία καναλιού πελάτη MCS"
+#: ../src/ical-code.c:3371
+#, fuzzy, c-format
+msgid "Archiving threshold: %d month(s)"
+msgstr "Κατώφλι αρχειοθέτησης"
 
-#: ../src/mainbox.c:428
-msgid "Open archive file..."
-msgstr "Επιλογή αρχείου..."
+#: ../src/ical-code.c:3373
+#, c-format
+msgid "\tArchiving events, which are older than: %04d-%02d-%02d"
+msgstr ""
 
-#: ../src/mainbox.c:431
-msgid "Close archive file"
-msgstr "Κλείσιμο αρχείου"
+#: ../src/ical-code.c:3399
+#, c-format
+msgid "Archiving uid: %s (%s)"
+msgstr ""
+
+#: ../src/ical-code.c:3400
+msgid "recur"
+msgstr ""
+
+#: ../src/ical-code.c:3400
+#, fuzzy
+msgid "normal"
+msgstr "Γενικές"
+
+#: ../src/ical-code.c:3401
+#, c-format
+msgid "\tEnd year: %04d, month: %02d, day: %02d"
+msgstr ""
+
+#: ../src/ical-code.c:3416
+#, fuzzy
+msgid "Archiving done\n"
+msgstr "Αρχειοθέτηση"
+
+#. PHASE 1: go through base orage file and remove "repeat" shortcuts
+#: ../src/ical-code.c:3459
+msgid "Starting archive removal: PHASE 1: reset recurring appointments"
+msgstr ""
+
+#: ../src/ical-code.c:3503
+#, fuzzy
+msgid "Archive removal done\n"
+msgstr "Κατώφλι αρχειοθέτησης"
+
+#. show it
+#: ../src/ical-code.c:4257
+msgid "Pick timezone"
+msgstr "Επιλογή ζώνης ώρας"
+
+#: ../src/ical-code.c:4260 ../src/ical-code.c:4288
+msgid "UTC"
+msgstr "UTC"
+
+#: ../src/ical-code.c:4261 ../src/ical-code.c:4292 ../src/parameters.c:381
+msgid "floating"
+msgstr "μετακινούμενη"
+
+#: ../src/interface.c:290
+msgid "Calendar files"
+msgstr "Αρχεία ημερολογίου"
+
+#: ../src/interface.c:629
+msgid "Current foreign files"
+msgstr ""
+
+#: ../src/interface.c:640
+msgid "READ ONLY"
+msgstr ""
+
+#: ../src/interface.c:642
+msgid "READ WRITE"
+msgstr ""
+
+#: ../src/interface.c:660
+msgid "***** No foreign files *****"
+msgstr ""
+
+#: ../src/interface.c:960
+msgid "Import/export"
+msgstr ""
+
+#: ../src/interface.c:967
+msgid "Import"
+msgstr ""
+
+#: ../src/interface.c:972
+#, fuzzy
+msgid "Read from file:"
+msgstr "Όνομα αρχείου"
+
+#: ../src/interface.c:989
+msgid ""
+"Separate filenames with comma(,).\n"
+" NOTE: comma is not valid character in filenames for Orage."
+msgstr ""
+
+#: ../src/interface.c:994
+msgid "Export"
+msgstr ""
+
+#: ../src/interface.c:999
+#, fuzzy
+msgid "Write to file:"
+msgstr "Όνομα αρχείου"
+
+#: ../src/interface.c:1020 ../src/interface.c:1032
+#, fuzzy
+msgid "Select"
+msgstr "Διαγραφή"
+
+#: ../src/interface.c:1023
+#, fuzzy
+msgid "All appointments"
+msgstr "Νέο ραντεβού"
+
+#: ../src/interface.c:1036
+#, fuzzy
+msgid "Named appointments: "
+msgstr "Νέο ραντεβού"
+
+#: ../src/interface.c:1047
+msgid ""
+"Note that only main file appointments are read.\n"
+"Archived events are not exported."
+msgstr ""
+
+#: ../src/interface.c:1049
+msgid "You can easily drag these from event-list window."
+msgstr ""
+
+#: ../src/interface.c:1051
+msgid "Orage appointment UIDs separated by commas."
+msgstr ""
+
+#: ../src/interface.c:1056
+#, fuzzy
+msgid "Archive"
+msgstr "Αρχειοθέτηση"
+
+#: ../src/interface.c:1064
+#, fuzzy, c-format
+msgid "Archive now (threshold: %d months)"
+msgstr "Κατώφλι αρχειοθέτησης"
+
+#: ../src/interface.c:1074
+msgid "You can change archive threshold in parameters"
+msgstr ""
+
+#: ../src/interface.c:1081
+msgid "Revert archive now"
+msgstr ""
+
+#: ../src/interface.c:1087
+msgid ""
+"Return all archived events into main orage file and remove arch file.\n"
+"This is usefull for example when doing export and moving orage\n"
+"appointments to another system."
+msgstr ""
+
+#: ../src/interface.c:1098
+#, fuzzy
+msgid "Orage files"
+msgstr "Προτιμήσεις Orage"
+
+#: ../src/interface.c:1105
+#, fuzzy
+msgid "Orage main calendar file"
+msgstr "Ημερολόγιο"
+
+#: ../src/interface.c:1110 ../src/interface.c:1174
+#, fuzzy
+msgid "Current file"
+msgstr "Όνομα αρχείου"
+
+#: ../src/interface.c:1117 ../src/interface.c:1181
+#, fuzzy
+msgid "New file"
+msgstr "Όνομα αρχείου"
+
+#: ../src/interface.c:1133 ../src/interface.c:1198
+msgid "Action options"
+msgstr ""
+
+#: ../src/interface.c:1136 ../src/interface.c:1201
+msgid "Rename"
+msgstr ""
+
+#: ../src/interface.c:1140
+msgid ""
+"Orage internal file rename only.\n"
+"Does not touch external filesystem at all.\n"
+"New file must exist."
+msgstr ""
+
+#: ../src/interface.c:1144 ../src/interface.c:1206
+msgid "Copy"
+msgstr ""
+
+#: ../src/interface.c:1148
+msgid "Current file is copied and stays unmodified in the old place."
+msgstr ""
+
+#: ../src/interface.c:1152 ../src/interface.c:1211
+msgid "Move"
+msgstr ""
+
+#: ../src/interface.c:1156
+msgid "Current file is moved and vanishes from the old place."
+msgstr ""
+
+#: ../src/interface.c:1169
+msgid "Archive file"
+msgstr "Όνομα αρχείου"
+
+#: ../src/interface.c:1234
+msgid "Foreign files"
+msgstr ""
+
+#: ../src/interface.c:1241
+msgid "Add new foreign file"
+msgstr ""
+
+#: ../src/interface.c:1246
+msgid "Foreign file:"
+msgstr ""
+
+#: ../src/interface.c:1264
+#, fuzzy
+msgid "Options"
+msgstr "Επιλογές ρολογιού"
+
+#: ../src/interface.c:1266
+msgid "Read only"
+msgstr ""
+
+#: ../src/interface.c:1274
+msgid ""
+"Set this if you want to make sure that this file is never modified by Orage."
+msgstr ""
+
+#: ../src/interface.c:1288
+msgid "Exchange data - Orage"
+msgstr ""
+
+#: ../src/main.c:259
+#, c-format
+msgid ""
+"\tThis is %s version %s for Xfce %s\n"
+"\n"
+msgstr ""
+
+#: ../src/main.c:261
+msgid "\tReleased under the terms of the GNU General Public License.\n"
+msgstr ""
+
+#: ../src/main.c:262
+#, c-format
+msgid "\tCompiled against GTK+-%d.%d.%d, "
+msgstr ""
+
+#: ../src/main.c:264
+#, c-format
+msgid "using GTK+-%d.%d.%d.\n"
+msgstr ""
+
+#: ../src/main.c:267
+msgid "\tUsing DBUS for import.\n"
+msgstr ""
+
+#: ../src/main.c:269
+msgid "\tNot using DBUS. Import works only partially.\n"
+msgstr ""
+
+#: ../src/main.c:282
+msgid ""
+"Usage: orage [options] [files]\n"
+"\n"
+msgstr ""
+
+#: ../src/main.c:283
+#, fuzzy
+msgid "Options:\n"
+msgstr "Επιλογές ρολογιού"
+
+#: ../src/main.c:284
+msgid "--version (-v) \t\tshow version of orage\n"
+msgstr ""
+
+#: ../src/main.c:285
+msgid "--help (-h) \t\tprint this text\n"
+msgstr ""
+
+#: ../src/main.c:286
+msgid "--preferences (-p) \tshow preferences form\n"
+msgstr ""
+
+#: ../src/main.c:287
+msgid "--toggle (-t) \t\tmake orage visible/unvisible\n"
+msgstr ""
+
+#: ../src/main.c:288
+msgid "--add-foreign (-a) file [RW] \tadd a foreign file\n"
+msgstr ""
+
+#: ../src/main.c:289
+msgid "--remove-foreign (-r) file \tremove a foreign file\n"
+msgstr ""
+
+#: ../src/main.c:291
+msgid "files=ical files to load into orage\n"
+msgstr ""
+
+#: ../src/main.c:293
+msgid "\tdbus not included in orage. \n"
+msgstr ""
+
+#: ../src/main.c:294
+msgid ""
+"\twithout dbus [files] and foreign file options(-a & -r) can only be used "
+"when starting orage \n"
+msgstr ""
+
+#: ../src/main.c:435
+#, c-format
+msgid ""
+"\n"
+"Unknown option %s\n"
+"\n"
+msgstr ""
+
+#: ../src/mainbox.c:235
+msgid "_Exchange data"
+msgstr ""
 
 #. Edit menu
-#: ../src/mainbox.c:446
+#: ../src/mainbox.c:246
 msgid "_Edit"
 msgstr "_Επεξεργασία"
 
-#: ../src/mainbox.c:456
+#: ../src/mainbox.c:256
 msgid "View selected _date"
 msgstr "Προβολή της επιλεγμένης _ημερομηνίας"
 
-#: ../src/mainbox.c:462
+#: ../src/mainbox.c:262
 msgid "Select _Today"
 msgstr "Επίλεξε το _σήμερα"
 
 #. Help menu
-#: ../src/mainbox.c:466
+#: ../src/mainbox.c:266
 msgid "_Help"
 msgstr "_Βοήθεια"
 
-#: ../src/reminder.c:232
+#: ../src/parameters.c:361
+msgid "Main setups"
+msgstr ""
+
+#: ../src/parameters.c:367
+msgid "Timezone"
+msgstr "Ζώνη ώρας"
+
+#: ../src/parameters.c:391
+#, fuzzy
+msgid "Archive threshold (months)"
+msgstr "Κατώφλι αρχειοθέτησης"
+
+#: ../src/parameters.c:401
+msgid "(0 = no archiving)"
+msgstr ""
+
+#: ../src/parameters.c:409
+msgid "Sound command"
+msgstr ""
+
+#: ../src/parameters.c:436
+msgid "Display"
+msgstr "Εμφάνιση"
+
+#: ../src/parameters.c:443
+#, fuzzy
+msgid "Calendar main window"
+msgstr "Παράθυρο ημερολογίου"
+
+#: ../src/parameters.c:448
+#, fuzzy
+msgid "Show borders"
+msgstr "Με _πλαίσιο"
+
+#: ../src/parameters.c:455
+#, fuzzy
+msgid "Show menu"
+msgstr "Με _πλαίσιο"
+
+#: ../src/parameters.c:462
+msgid "Set sticked"
+msgstr ""
+
+#: ../src/parameters.c:469
+#, fuzzy
+msgid "Set on top"
+msgstr "ορισμός ζώνης ώρας:"
+
+#: ../src/parameters.c:486
+msgid "Show in taskbar"
+msgstr "Προβολή στη μπάρα εργασιών"
+
+#: ../src/parameters.c:493
+msgid "Show in pager"
+msgstr "Προβολή στον ειδοποιητή"
+
+#: ../src/parameters.c:500
+msgid "Show in systray"
+msgstr "Προβολή στον πίνακα συστήματος"
+
+#: ../src/parameters.c:516
+msgid "Calendar start"
+msgstr "Εκκίνηση"
+
+#: ../src/parameters.c:521
+msgid "Show"
+msgstr "Προβολή"
+
+#: ../src/parameters.c:533
+msgid "Hide"
+msgstr "Απόκρυψη"
+
+#: ../src/parameters.c:545
+msgid "Minimized"
+msgstr "Ελαχιστοποιημένο"
+
+#: ../src/parameters.c:567
+#, fuzzy
+msgid "Monday"
+msgstr "Σήμερα"
+
+#: ../src/parameters.c:567
+#, fuzzy
+msgid "Tuesday"
+msgstr "Σήμερα"
+
+#: ../src/parameters.c:567
+#, fuzzy
+msgid "Wednesday"
+msgstr "Εβδομαδιαία"
+
+#: ../src/parameters.c:567
+#, fuzzy
+msgid "Thursday"
+msgstr "Σήμερα"
+
+#: ../src/parameters.c:568
+#, fuzzy
+msgid "Friday"
+msgstr "ημέρες"
+
+#: ../src/parameters.c:568
+msgid "Saturday"
+msgstr ""
+
+#: ../src/parameters.c:568
+#, fuzzy
+msgid "Sunday"
+msgstr "Ήχοι"
+
+#: ../src/parameters.c:573
+msgid "Extra setups"
+msgstr ""
+
+#: ../src/parameters.c:580 ../src/parameters.c:585
+#, fuzzy
+msgid "Select always today"
+msgstr "Επίλεξε το _σήμερα"
+
+#: ../src/parameters.c:596
+msgid "Ical week start day"
+msgstr ""
+
+#: ../src/parameters.c:616
+msgid "Dynamic icon size"
+msgstr ""
+
+#: ../src/parameters.c:629 ../src/parameters.c:643
+msgid "(0 = use static icon)"
+msgstr ""
+
+#: ../src/parameters.c:660
+msgid "Orage Preferences"
+msgstr "Προτιμήσεις Orage"
+
+#: ../src/reminder.c:216 ../src/reminder.c:296
 msgid "Reminder "
 msgstr "Υπενθύμιση"
 
-#. GtkTooltipsData *cur_tooltip;
-#: ../src/reminder.c:317
-msgid "Next active alarms:"
-msgstr "Επόμενες ενεργές υπενθυμίσεις:"
+#: ../src/reminder.c:230
+msgid "Open"
+msgstr ""
 
-#: ../src/reminder.c:325
+#: ../src/reminder.c:470
+msgid "Next active alarms:"
+msgstr ""
+
+#: ../src/reminder.c:508
 #, c-format
 msgid ""
 "\n"
 "%02d d %02d h %02d min to: %s"
 msgstr ""
-"\n"
-"%02d μ %02d ω %02d λεπ για: %s"
 
-#: ../src/reminder.c:331
+#: ../src/reminder.c:522
+#, fuzzy
 msgid ""
 "\n"
 "No active alarms found"
-msgstr ""
-"\n"
-"Δε βρέθηκαν ενεργές υπενθυμίσεις"
+msgstr "Επανάληψη ήχου ειδοποίησης"
 
-#: ../src/tray_icon.c:308
+#: ../src/tray_icon.c:316
 msgid "New appointment"
 msgstr "Νέο ραντεβού"
 
-#: ../src/tray_icon.c:328
+#: ../src/tray_icon.c:336
 msgid "About Orage"
 msgstr "Περί Orage"
 
@@ -2316,3 +3095,64 @@ msgstr "Ημερολόγιο"
 msgid "Desktop calendar"
 msgstr "Ημερολόγιο γραφείου"
 
+#~ msgid "%m/%d/%Y"
+#~ msgstr "%d/%m/%Y"
+
+#, fuzzy
+#~ msgid "Calendar Files"
+#~ msgstr "Αρχεία ημερολογίου"
+
+#~ msgid "Calendar borders"
+#~ msgstr "Περιγράμματα παραθύρου"
+
+#~ msgid "Displayed"
+#~ msgstr "Εμφάνιση"
+
+#~ msgid "Hidden"
+#~ msgstr "Απόκρυψη"
+
+#~ msgid "3 months"
+#~ msgstr "3 μήνες"
+
+#~ msgid "6 months"
+#~ msgstr "6 μήνες"
+
+#~ msgid "1 year"
+#~ msgstr "1 χρόνο"
+
+#~ msgid "never"
+#~ msgstr "ποτέ"
+
+#~ msgid "Application"
+#~ msgstr "Εφαρμογή"
+
+#~ msgid "Button Label|Orage"
+#~ msgstr "Orage"
+
+#~ msgid "Core developer"
+#~ msgstr "Βασικός προγραμματιστής"
+
+#~ msgid ""
+#~ "You will remove all information \n"
+#~ "associated with this date."
+#~ msgstr ""
+#~ "Θα αφαιρέσετε όλες τις πληροφορίες \n"
+#~ "που σχετίζονται με αυτή την ημερομηνία."
+
+#~ msgid "Clear"
+#~ msgstr "Καθάρισμα"
+
+#~ msgid "uid"
+#~ msgstr "uid"
+
+#~ msgid "This should not happen"
+#~ msgstr "Αυτό δε θα έπρεπε να συμβεί"
+
+#~ msgid "Cannot create MCS client channel"
+#~ msgstr "Αδύνατη η δημιουργία καναλιού πελάτη MCS"
+
+#~ msgid "Open archive file..."
+#~ msgstr "Επιλογή αρχείου..."
+
+#~ msgid "Close archive file"
+#~ msgstr "Κλείσιμο αρχείου"

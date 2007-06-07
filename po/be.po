@@ -5,84 +5,380 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: orage 4.4.0\n"
+"Project-Id-Version: orage 4.3.90.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-11-05 10:09+0100\n"
-"PO-Revision-Date: 2007-01-20 06:05+0200\n"
-"Last-Translator: Alexander Nyakhaychyk <nyakhaychyk@gmail.com>\n"
+"POT-Creation-Date: 2007-06-06 23:57+0300\n"
+"PO-Revision-Date: 2005-09-14 01:39+0900\n"
+"Last-Translator: Ales Nyakhaychyk <nab@mail.by>\n"
 "Language-Team: Belarusian <i18n@mova.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../panel-plugin/oc_config.c:114
+#: ../globaltime/globaltime.c:100
+msgid "Raising GlobalTime window..."
+msgstr ""
+
+#: ../globaltime/globaltime.c:102
+msgid "GlobalTime window raise failed"
+msgstr ""
+
+#. ********** timezone tooltip **********
+#: ../globaltime/globaltime.c:278
+#, c-format
+msgid ""
+"%s\n"
+"click to modify clock"
+msgstr ""
+
+#. trick to refresh clocks once
+#: ../globaltime/globaltime.c:358
+msgid "Ending time adjustment mode"
+msgstr ""
+
+#: ../globaltime/globaltime.c:366
+msgid "Starting time adjustment mode"
+msgstr ""
+
+#: ../globaltime/globaltime.c:381
+msgid "Localtime"
+msgstr ""
+
+#: ../globaltime/globaltime.c:456
+msgid ""
+"button 1 to change preferences \n"
+"button 2 to adjust time of clocks"
+msgstr ""
+
+#: ../globaltime/globaltime.c:472
+msgid "adjust to change hour"
+msgstr ""
+
+#: ../globaltime/globaltime.c:487
+msgid "adjust to change minute"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:69 ../globaltime/gt_prefs.c:1078
+#, fuzzy
+msgid "Standard"
+msgstr "Каляндар"
+
+#: ../globaltime/gt_prefs.c:71 ../src/appointment.c:2244
+msgid "None"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:84 ../globaltime/gt_prefs.c:1101
+msgid "Equal"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:86
+msgid "Vary"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:267 ../globaltime/gt_prefs.c:268
+msgid "NEW"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:291
+msgid "NEW COPY"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:312
+msgid "Not possible to delete the last clock."
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:367 ../panel-plugin/oc_config.c:114
 msgid "Select timezone"
-msgstr "Вылучэньне часавага поясу"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:512
+msgid "update this clock"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:517 ../globaltime/gt_prefs.c:1034
+msgid "add new empty clock"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:522
+msgid "add new clock using this clock as model"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:527
+msgid "delete this clock"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:535
+msgid "move this clock first"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:540
+msgid "move this clock left"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:545
+msgid "move this clock right"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:550
+msgid "move this clock last"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:558
+msgid "set the timezone of this clock to be local timezone"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:564 ../globaltime/gt_prefs.c:1042
+msgid "close window and exit"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:587
+msgid "Modify Clock "
+msgstr ""
+
+#. -----------------------HEADING-------------------------------------------
+#: ../globaltime/gt_prefs.c:600
+msgid "Clock Parameters"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:604
+msgid "Name of the clock:"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:610
+msgid "enter name of clock"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:613
+msgid "Timezone of the clock:"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:619
+msgid ""
+"enter timezone of clock,\n"
+"(=any valid TZ value)"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:643
+msgid "Text Formatting"
+msgstr ""
+
+#. ------------------------background-------------------------
+#: ../globaltime/gt_prefs.c:649 ../globaltime/gt_prefs.c:856
+msgid "Background color:"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:656
+msgid "Click to change background colour for clock"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:665 ../globaltime/gt_prefs.c:697
+#: ../globaltime/gt_prefs.c:729 ../globaltime/gt_prefs.c:762
+#: ../globaltime/gt_prefs.c:796 ../globaltime/gt_prefs.c:826
+#: ../globaltime/gt_prefs.c:872 ../globaltime/gt_prefs.c:905
+#: ../globaltime/gt_prefs.c:938 ../globaltime/gt_prefs.c:972
+msgid "Use default"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:670 ../globaltime/gt_prefs.c:702
+#: ../globaltime/gt_prefs.c:735 ../globaltime/gt_prefs.c:768
+#: ../globaltime/gt_prefs.c:802 ../globaltime/gt_prefs.c:832
+msgid "Cross this to use default instead of selected value"
+msgstr ""
+
+#. ------------------------foreground-------------------------
+#: ../globaltime/gt_prefs.c:681 ../globaltime/gt_prefs.c:889
+msgid "Foreground (=text) color:"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:688
+msgid "Click to change foreground colour for clock"
+msgstr ""
+
+#. ------------------------name font-------------------------
+#: ../globaltime/gt_prefs.c:713 ../globaltime/gt_prefs.c:922
+msgid "Font for name of clock:"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:720
+msgid "Click to change font for clock name"
+msgstr ""
+
+#. ------------------------time font-------------------------
+#: ../globaltime/gt_prefs.c:746 ../globaltime/gt_prefs.c:956
+msgid "Font for time of clock:"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:753
+msgid "Click to change font for clock time"
+msgstr ""
+
+#. ------------------------underline name--------------------
+#: ../globaltime/gt_prefs.c:780
+msgid "Underline name of clock:"
+msgstr ""
+
+#. ------------------------underline time--------------------
+#: ../globaltime/gt_prefs.c:810
+msgid "Underline time of clock:"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:850
+msgid "Text Default Formatting"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:863
+msgid "Click to change default background colour for clocks"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:877 ../globaltime/gt_prefs.c:910
+msgid "Cross this to use system default instead of selected color"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:896
+msgid "Click to change default text colour for clocks"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:929
+msgid "Click to change default font for clock name"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:944 ../globaltime/gt_prefs.c:978
+msgid "Cross this to use system default font instead of selected font"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:963
+msgid "Click to change default font for clock time"
+msgstr ""
+
+#. ------------------------underline name--------------------
+#: ../globaltime/gt_prefs.c:990
+msgid "Underline for name of clock:"
+msgstr ""
+
+#. ------------------------underline time--------------------
+#: ../globaltime/gt_prefs.c:1004
+msgid "Underline for time of clock:"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:1027
+#, fuzzy
+msgid "update preferences"
+msgstr "Перавагі"
+
+#: ../globaltime/gt_prefs.c:1062
+#, fuzzy
+msgid "Modify Preferences"
+msgstr "Перавагі"
+
+#. -----------------------HEADING--------------------------------------
+#: ../globaltime/gt_prefs.c:1073
+#, fuzzy
+msgid "General Preferences"
+msgstr "Перавагі"
+
+#: ../globaltime/gt_prefs.c:1077
+msgid "Decorations:"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:1083
+msgid "Use normal decorations"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:1094
+msgid "Do not show window decorations (borders)"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:1100
+msgid "Clock size:"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:1106
+msgid "All clocks have same size"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:1111
+#, fuzzy
+msgid "Varying"
+msgstr "Увага"
+
+#: ../globaltime/gt_prefs.c:1116
+msgid "Clock sizes vary"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:1122
+msgid "Local timezone:"
+msgstr ""
+
+#: ../globaltime/gt_prefs.c:1129
+msgid ""
+"Enter local timezone. (it is used to show if time is on previous(-) or next "
+"date(+) by adding a +/- after the time)"
+msgstr ""
 
 #: ../panel-plugin/oc_config.c:193
 msgid "Appearance"
-msgstr "Выгляд"
+msgstr ""
 
 #. show frame
 #: ../panel-plugin/oc_config.c:204
 msgid "Show _frame"
-msgstr "Паказаць _рамку"
+msgstr ""
 
 #. foreground color
 #: ../panel-plugin/oc_config.c:214
 msgid "set foreground _color:"
-msgstr "задаць асноўны _колер:"
+msgstr ""
 
 #. background color
 #: ../panel-plugin/oc_config.c:228
 msgid "set _background color:"
-msgstr "задаць колер _тла:"
+msgstr ""
 
 #. clock size (=vbox size): height and width
 #: ../panel-plugin/oc_config.c:242
 msgid "set _height:"
-msgstr "задаць вы_шыню:"
+msgstr ""
 
 #: ../panel-plugin/oc_config.c:254
 msgid "set _width:"
-msgstr "задаць шы_рыню"
+msgstr ""
 
 #: ../panel-plugin/oc_config.c:275
 msgid "Clock Options"
-msgstr "Опцыі гадзіньніка"
+msgstr ""
 
 #. timezone
 #: ../panel-plugin/oc_config.c:286
 msgid "set timezone to:"
-msgstr "задаць часавы пояс:"
+msgstr ""
 
 #: ../panel-plugin/oc_config.c:295
 msgid "Set any valid timezone (=TZ) value or pick one from the list."
-msgstr "Задайце рэчаіснае значэньне часавай зоны (=TZ) альбо абярыце яго са сьпісу."
+msgstr ""
 
 #. line 1
 #: ../panel-plugin/oc_config.c:304
 msgid "show line _1:"
-msgstr "паказаць радок _1:"
+msgstr ""
 
 #: ../panel-plugin/oc_config.c:315
 msgid "Enter any valid strftime function parameter."
-msgstr "Увядзіце рэчаісныя парамэтры функцыі strftime"
+msgstr ""
 
 #. line 2
 #: ../panel-plugin/oc_config.c:331
 msgid "show line _2:"
-msgstr "паказаць радок _2:"
+msgstr ""
 
 #. line 3
 #: ../panel-plugin/oc_config.c:353
 msgid "show line _3:"
-msgstr "паказаць радок _2:"
+msgstr ""
 
 #. Tooltip hint
 #: ../panel-plugin/oc_config.c:375
 msgid "Tooltip:"
-msgstr "Падказка:"
+msgstr ""
 
 #: ../panel-plugin/oc_config.c:392
 msgid ""
@@ -95,22 +391,14 @@ msgid ""
 "\t%H = hours \t\t\t\t%M = minute\n"
 "\t%X = local time\t\t\t%x = local date"
 msgstr ""
-"Гэтая праграма выкарыстоўвае функцыю strftime для даты і часу.\n"
-"Выкарыстоўвайце рэчаісныя коды, каб атрымаць патрэбны вам фармат.\n"
-"Некалькі агульных кодаў:\n"
-"\t%A = дзень тыдня\t\t\t%B = месяц\n"
-"\t%c = дата і час\t\t%R = гадзіны і хвіліны\n"
-"\t%V = нумар тыдня\t\t%Z = часавы пояс\n"
-"\t%H = гадзіны \t\t\t\t%M = хвіліны\n"
-"\t%X = мясцовы час\t\t\t%x = мясцовая дата"
 
 #: ../panel-plugin/oc_config.c:411
 msgid "Properties"
-msgstr "Уласьцівасьці"
+msgstr ""
 
 #: ../panel-plugin/oc_config.c:426
 msgid "Orage clock"
-msgstr "Гадзіньнік Orage"
+msgstr ""
 
 #. TRANSLATORS: Use format characters from strftime(3)
 #. * to get the proper string for your locale.
@@ -123,467 +411,466 @@ msgstr "Гадзіньнік Orage"
 #.
 #: ../panel-plugin/orageclock.c:422
 msgid "%A %d %B %Y/%V"
-msgstr "%A %d %B %Y/%V"
-
-#. to avoid timing problems when updating entry
-#. Create file chooser
-#: ../plugin/xfcalendar_plugin.c:263
-#: ../plugin/xfcalendar_plugin.c:321
-#: ../src/appointment.c:386
-#: ../src/mainbox.c:114
-msgid "Select a file..."
-msgstr "Вылучэньне файла..."
-
-#: ../plugin/xfcalendar_plugin.c:271
-#: ../src/mainbox.c:122
-msgid "Calendar files"
-msgstr "Файлы календара"
-
-#: ../plugin/xfcalendar_plugin.c:276
-#: ../src/appointment.c:401
-#: ../src/mainbox.c:127
-msgid "All Files"
-msgstr "Усе файлы"
-
-#: ../plugin/xfcalendar_plugin.c:419
-#: ../plugin/xfcalendar_plugin.c:424
-#: ../src/appointment.c:920
-#: ../src/appointment.c:925
-#: ../src/appointment.c:1441
-msgid "Location"
-msgstr "Месца"
-
-#. show it
-#: ../plugin/xfcalendar_plugin.c:430
-msgid "Pick local timezone"
-msgstr "Атрымаць мясцовы часавы пояс"
-
-#: ../plugin/xfcalendar_plugin.c:433
-#: ../plugin/xfcalendar_plugin.c:466
-#: ../src/appointment.c:934
-#: ../src/appointment.c:964
-msgid "UTC"
-msgstr "UTC"
-
-#: ../plugin/xfcalendar_plugin.c:434
-#: ../plugin/xfcalendar_plugin.c:470
-#: ../plugin/xfcalendar_plugin.c:750
-#: ../src/appointment.c:935
-#: ../src/appointment.c:968
-#: ../src/appointment.c:1004
-#: ../src/appointment.c:1012
-msgid "floating"
-msgstr "дынамічны"
-
-#: ../plugin/xfcalendar_plugin.c:530
-msgid "Orage Preferences"
-msgstr "Перавагі Orage"
-
-#: ../plugin/xfcalendar_plugin.c:548
-msgid "Display"
-msgstr "Адлюстраваньне"
-
-#: ../plugin/xfcalendar_plugin.c:555
-msgid "Calendar borders"
-msgstr "Межы календара"
-
-#: ../plugin/xfcalendar_plugin.c:560
-msgid "Displayed"
-msgstr "Бачныя"
-
-#: ../plugin/xfcalendar_plugin.c:566
-msgid "Hidden"
-msgstr "Схаваныя"
-
-#: ../plugin/xfcalendar_plugin.c:575
-msgid "Calendar window"
-msgstr "Вакно Каленадар"
-
-#: ../plugin/xfcalendar_plugin.c:580
-msgid "Show in taskbar"
-msgstr "Паказваць на панэлі задач"
-
-#: ../plugin/xfcalendar_plugin.c:584
-msgid "Show in pager"
-msgstr "Паказваць у вакне прастораў"
-
-#: ../plugin/xfcalendar_plugin.c:588
-msgid "Show in systray"
-msgstr "Паказваць у сыстэмным сподку"
-
-#: ../plugin/xfcalendar_plugin.c:595
-msgid "Calendar start"
-msgstr "Пачатак календара"
-
-#: ../plugin/xfcalendar_plugin.c:600
-msgid "Show"
-msgstr "Паказаць"
-
-#: ../plugin/xfcalendar_plugin.c:606
-msgid "Hide"
-msgstr "Схаваць"
-
-#: ../plugin/xfcalendar_plugin.c:612
-msgid "Minimized"
-msgstr "Найменшаны"
-
-#: ../plugin/xfcalendar_plugin.c:622
-msgid "Archives"
-msgstr "Архівы"
-
-#: ../plugin/xfcalendar_plugin.c:633
-msgid "Archive file"
-msgstr "Файлы архіваў"
-
-#: ../plugin/xfcalendar_plugin.c:655
-msgid "Archive threshold"
-msgstr "Парог архіва"
-
-#: ../plugin/xfcalendar_plugin.c:662
-msgid "3 months"
-msgstr "3 месяцы"
-
-#: ../plugin/xfcalendar_plugin.c:664
-msgid "6 months"
-msgstr "6 месяцаў"
-
-#: ../plugin/xfcalendar_plugin.c:666
-msgid "1 year"
-msgstr "1 год"
-
-#: ../plugin/xfcalendar_plugin.c:668
-msgid "never"
-msgstr "ніколі"
-
-#: ../plugin/xfcalendar_plugin.c:696
-#: ../src/appointment.c:1592
-msgid "Sound"
-msgstr "Гук"
-
-#: ../plugin/xfcalendar_plugin.c:707
-msgid "Application"
-msgstr "Дастасаваньне"
-
-#: ../plugin/xfcalendar_plugin.c:727
-#: ../plugin/xfcalendar_plugin.c:737
-msgid "Timezone"
-msgstr "Часавы пояс"
+msgstr ""
 
 #. the button label in the xfce-mcs-manager dialog
-#: ../plugin/xfcalendar_plugin.c:799
-msgid "Button Label|Orage"
+#: ../plugin/xfcalendar_plugin.c:47
+#, fuzzy
+msgid "Orage - Calendar"
 msgstr "Каляндар"
 
-#: ../src/about-xfcalendar.c:40
+#: ../src/about-xfcalendar.c:42
 msgid "Manage your time with Xfce4"
 msgstr "Кіруйце вашым часам разам з Xfce4"
 
-#: ../src/about-xfcalendar.c:51
-#: ../src/about-xfcalendar.c:56
-msgid "Core developer"
-msgstr "Асноўны распрацоўнік"
+#: ../src/about-xfcalendar.c:53
+msgid "Maintainer"
+msgstr ""
 
-#: ../src/about-xfcalendar.c:61
-#: ../src/about-xfcalendar.c:66
+#: ../src/about-xfcalendar.c:58
+msgid "Original creator, retired maintainer"
+msgstr ""
+
+#: ../src/about-xfcalendar.c:63
 msgid "Contributor"
 msgstr "Укладальнік"
 
-#: ../src/appointment.c:102
-#: ../src/appointment.c:119
-msgid "%m/%d/%Y"
-msgstr "%d/%m/%Y"
+#. if (gtk_toggle_button_get_active(
+#. GTK_TOGGLE_BUTTON(apptw->Type_journal_rb)))
+#.
+#. g_signal_connect((gpointer) apptw->StartTime_spin_hh, "value-changed",
+#. G_CALLBACK(oc_set_height_changed), NULL);
+#.
+#: ../src/appointment.c:336 ../src/appointment.c:370 ../src/appointment.c:1871
+msgid "End"
+msgstr ""
 
-#: ../src/appointment.c:282
-#: ../src/mainbox.c:396
-#: ../xfcalendar.desktop.in.h:3
+#: ../src/appointment.c:353
+msgid "Due"
+msgstr ""
+
+#: ../src/appointment.c:485 ../src/mainbox.c:307 ../xfcalendar.desktop.in.h:3
 msgid "Orage"
-msgstr "Orage"
+msgstr ""
 
-#: ../src/appointment.c:394
+#. to avoid timing problems when updating entry
+#. Create file chooser
+#: ../src/appointment.c:635 ../src/interface.c:283 ../src/parameters.c:270
+msgid "Select a file..."
+msgstr ""
+
+#: ../src/appointment.c:643
 msgid "Sound Files"
-msgstr "Гукавыя файлы"
+msgstr ""
 
-#: ../src/appointment.c:442
-#: ../src/appointment.c:477
-#: ../src/appointment.c:722
-#: ../src/event-list.c:581
+#: ../src/appointment.c:650 ../src/interface.c:296
+msgid "All Files"
+msgstr ""
+
+#: ../src/appointment.c:689 ../src/appointment.c:723 ../src/appointment.c:1088
+#: ../src/event-list.c:865
 msgid "Warning"
 msgstr "Увага"
 
-#: ../src/appointment.c:444
+#: ../src/appointment.c:691
 msgid "The appointment information has been modified."
-msgstr "Зьвесткі пра нараду былі зьменены."
+msgstr ""
 
-#: ../src/appointment.c:445
-#: ../src/appointment.c:725
-#: ../src/event-list.c:584
+#: ../src/appointment.c:692 ../src/appointment.c:1091 ../src/event-list.c:868
 msgid "Do you want to continue?"
-msgstr "Ці жадаеце працягваць?"
+msgstr ""
 
-#: ../src/appointment.c:479
+#: ../src/appointment.c:725
 msgid "The end of this appointment is earlier than the beginning."
-msgstr "Канец нарады раней за пачатак."
+msgstr ""
 
-#: ../src/appointment.c:724
+#: ../src/appointment.c:1090
 msgid "This appointment will be permanently removed."
-msgstr "Гэты сустрэча будзе цалкам і назаўсёды выдалена."
+msgstr ""
 
-#: ../src/appointment.c:825
+#: ../src/appointment.c:1184 ../src/event-list.c:921
 msgid "Pick the date"
-msgstr "Атрымаць дату"
+msgstr ""
 
-#: ../src/appointment.c:827
-#: ../src/event-list.c:722
-#: ../src/tray_icon.c:300
+#: ../src/appointment.c:1186 ../src/event-list.c:923 ../src/event-list.c:1108
+#: ../src/tray_icon.c:305
 msgid "Today"
 msgstr "Сёньня"
 
-#. show it
-#: ../src/appointment.c:931
-msgid "Pick timezone"
-msgstr "Атрымаць часавы пояс"
-
-#: ../src/appointment.c:1197
+#: ../src/appointment.c:1480
+#, fuzzy
 msgid "New appointment - Orage"
-msgstr "Новая сустрэча - Orage"
+msgstr "Прызначэньне"
+
+#: ../src/appointment.c:1504
+msgid " *** COPY ***"
+msgstr ""
 
 #. File menu stuff
 #. File menu
-#: ../src/appointment.c:1332
-#: ../src/event-list.c:648
-#: ../src/mainbox.c:419
+#: ../src/appointment.c:1698 ../src/event-list.c:1007 ../src/interface.c:751
+#: ../src/mainbox.c:227
 msgid "_File"
 msgstr "_Файл"
 
-#: ../src/appointment.c:1339
+#: ../src/appointment.c:1704
 msgid "Sav_e and close"
-msgstr "За_хаваць і закрыць"
+msgstr ""
 
-#: ../src/appointment.c:1352
-#: ../src/event-list.c:657
+#. add event copying and day cleaning
+#: ../src/appointment.c:1717 ../src/event-list.c:1014
 msgid "D_uplicate"
-msgstr "Ду_блікат"
+msgstr ""
 
-#: ../src/appointment.c:1393
+#: ../src/appointment.c:1758
 msgid "Save"
-msgstr "Захаваць"
+msgstr ""
 
-#: ../src/appointment.c:1396
-#: ../src/appointment.c:1398
+#: ../src/appointment.c:1760
 msgid "Save and close"
-msgstr "Захаваць і закрыць"
+msgstr ""
 
-#: ../src/appointment.c:1405
+#: ../src/appointment.c:1765
 msgid "Revert"
-msgstr "Вярнуць"
+msgstr ""
 
-#: ../src/appointment.c:1408
-#: ../src/appointment.c:1410
-#: ../src/event-list.c:734
+#: ../src/appointment.c:1767 ../src/event-list.c:1099
 msgid "Duplicate"
-msgstr "Дублікат"
+msgstr ""
 
-#: ../src/appointment.c:1416
+#: ../src/appointment.c:1772 ../src/event-list.c:1101
 msgid "Delete"
-msgstr "Выдаліць"
+msgstr ""
 
-#: ../src/appointment.c:1424
+#: ../src/appointment.c:1802
 msgid "Free"
-msgstr "Вольны"
+msgstr ""
 
-#: ../src/appointment.c:1424
+#: ../src/appointment.c:1802
 msgid "Busy"
-msgstr "Заняты"
+msgstr ""
 
-#: ../src/appointment.c:1429
+#: ../src/appointment.c:1806
 msgid "General"
-msgstr "Агульныя"
+msgstr ""
 
-#: ../src/appointment.c:1434
+#: ../src/appointment.c:1811
+msgid "Type "
+msgstr ""
+
+#: ../src/appointment.c:1813 ../src/event-list.c:1149
+msgid "Event"
+msgstr ""
+
+#: ../src/appointment.c:1816
+msgid ""
+"Event that will happen sometime. For example:\n"
+"Meeting or birthday or TV show."
+msgstr ""
+
+#: ../src/appointment.c:1819 ../src/event-list.c:1169
+#, fuzzy
+msgid "Todo"
+msgstr "Сёньня"
+
+#: ../src/appointment.c:1822
+msgid ""
+"Something that you should do sometime. For example:\n"
+"Wash your car or test new version of Orage."
+msgstr ""
+
+#: ../src/appointment.c:1825 ../src/event-list.c:1183
+msgid "Journal"
+msgstr ""
+
+#: ../src/appointment.c:1829
+msgid ""
+"Make a note that something happened. For example:\n"
+"Remark that your mother called or first snow came."
+msgstr ""
+
+#: ../src/appointment.c:1835
 msgid "Title "
-msgstr "Загаловак"
+msgstr ""
 
-#: ../src/appointment.c:1449
+#: ../src/appointment.c:1841 ../src/ical-code.c:4246 ../src/ical-code.c:4251
+msgid "Location"
+msgstr ""
+
+#: ../src/appointment.c:1848
 msgid "All day event"
-msgstr "Падзея на ўвесь дзень"
+msgstr ""
 
-#: ../src/appointment.c:1455
+#: ../src/appointment.c:1853
 msgid "Start"
-msgstr "Пачатак"
+msgstr ""
 
-#: ../src/appointment.c:1470
-msgid "End"
-msgstr "Канец"
-
-#: ../src/appointment.c:1487
+#: ../src/appointment.c:1887
 msgid "Duration"
-msgstr "Працягласьць"
+msgstr ""
 
-#: ../src/appointment.c:1494
-#: ../src/appointment.c:1569
+#: ../src/appointment.c:1891 ../src/appointment.c:2033
+#, fuzzy
 msgid "days"
-msgstr "дні"
+msgstr "Сёньня"
 
-#: ../src/appointment.c:1503
-#: ../src/appointment.c:1577
+#: ../src/appointment.c:1893 ../src/appointment.c:2035
 msgid "hours"
-msgstr "гадзіны"
+msgstr ""
 
-#: ../src/appointment.c:1512
-#: ../src/appointment.c:1585
+#: ../src/appointment.c:1895 ../src/appointment.c:2037
 msgid "mins"
-msgstr "хв."
+msgstr ""
 
-#: ../src/appointment.c:1520
+#: ../src/appointment.c:1906
 msgid "Availability"
-msgstr "Наяўнасьць"
+msgstr ""
 
-#: ../src/appointment.c:1529
+#: ../src/appointment.c:1914
+msgid "Completed"
+msgstr ""
+
+#: ../src/appointment.c:1917
+msgid "Done"
+msgstr ""
+
+#: ../src/appointment.c:1937
 msgid "Note"
-msgstr "Заўвага"
+msgstr ""
 
-#: ../src/appointment.c:1558
-#: ../src/appointment.c:1563
+#: ../src/appointment.c:1956
+msgid ""
+"<D> inserts current date in local date format.\n"
+"<T> inserts time and\n"
+"<DT> inserts date and time."
+msgstr ""
+
+#: ../src/appointment.c:2018
+msgid "Before Start"
+msgstr ""
+
+#: ../src/appointment.c:2018
+msgid "Before End"
+msgstr ""
+
+#: ../src/appointment.c:2019
+msgid "After Start"
+msgstr ""
+
+#: ../src/appointment.c:2019
+msgid "After End"
+msgstr ""
+
+#: ../src/appointment.c:2024
 msgid "Alarm"
-msgstr "Сыгнал"
+msgstr ""
 
-#: ../src/appointment.c:1607
+#. **** ALARM TIME ****
+#: ../src/appointment.c:2030
+msgid "Alarm time"
+msgstr ""
+
+#: ../src/appointment.c:2055
+msgid ""
+"Often you want to get alarm:\n"
+" 1) before Event start\n"
+" 2) before Todo end\n"
+" 3) after Todo start"
+msgstr ""
+
+#. **** Audio Alarm ****
+#: ../src/appointment.c:2058
+msgid "Sound"
+msgstr ""
+
+#: ../src/appointment.c:2062 ../src/appointment.c:2183
+msgid "Use"
+msgstr ""
+
+#: ../src/appointment.c:2064
+msgid "Select this if you want audible alarm"
+msgstr ""
+
+#: ../src/appointment.c:2081
 msgid "Repeat alarm sound"
-msgstr "Паўтараць сыгнал"
+msgstr ""
 
-#: ../src/appointment.c:1619
-msgid "None"
-msgstr "Няма"
+#: ../src/appointment.c:2097 ../src/appointment.c:2317
+msgid "times"
+msgstr ""
 
-#: ../src/appointment.c:1619
+#: ../src/appointment.c:2113
+msgid "sec interval"
+msgstr ""
+
+#. **** Display Alarm ****
+#: ../src/appointment.c:2123
+msgid "Visual"
+msgstr ""
+
+#: ../src/appointment.c:2127
+msgid "Use Orage window"
+msgstr ""
+
+#: ../src/appointment.c:2129
+msgid "Select this if you want Orage window alarm"
+msgstr ""
+
+#: ../src/appointment.c:2141
+msgid "Use notification"
+msgstr ""
+
+#: ../src/appointment.c:2143
+msgid "Select this if you want notification alarm"
+msgstr ""
+
+#: ../src/appointment.c:2149
+msgid "Set timeout"
+msgstr ""
+
+#: ../src/appointment.c:2152
+msgid "Select this if you want notification to expire automatically"
+msgstr ""
+
+#: ../src/appointment.c:2163
+msgid "0 = system default expiration time"
+msgstr ""
+
+#: ../src/appointment.c:2168
+msgid "seconds"
+msgstr ""
+
+#. **** Procedure Alarm ****
+#: ../src/appointment.c:2179
+msgid "Procedure"
+msgstr ""
+
+#: ../src/appointment.c:2185
+msgid "Select this if you want procedure or script alarm"
+msgstr ""
+
+#: ../src/appointment.c:2191
+msgid ""
+"You must enter all escape etc characters yourself.\n"
+" This string is just given to shell to process"
+msgstr ""
+
+#: ../src/appointment.c:2244
 msgid "Daily"
-msgstr "Штодзённа"
+msgstr ""
 
-#: ../src/appointment.c:1619
+#: ../src/appointment.c:2244
 msgid "Weekly"
-msgstr "Штотыдзень"
+msgstr ""
 
-#: ../src/appointment.c:1619
+#: ../src/appointment.c:2244
 msgid "Monthly"
-msgstr "Штомесяц"
+msgstr ""
 
-#: ../src/appointment.c:1619
+#: ../src/appointment.c:2244
 msgid "Yearly"
-msgstr "Штогод"
+msgstr ""
 
-#: ../src/appointment.c:1621
+#: ../src/appointment.c:2246
 msgid "Mon"
-msgstr "Пн"
+msgstr ""
 
-#: ../src/appointment.c:1621
+#: ../src/appointment.c:2246
 msgid "Tue"
-msgstr "Ат"
+msgstr ""
 
-#: ../src/appointment.c:1621
+#: ../src/appointment.c:2246
 msgid "Wed"
-msgstr "Ср"
+msgstr ""
 
-#: ../src/appointment.c:1621
+#: ../src/appointment.c:2246
 msgid "Thu"
-msgstr "Чц"
+msgstr ""
 
-#: ../src/appointment.c:1621
+#: ../src/appointment.c:2246
 msgid "Fri"
-msgstr "Пт"
+msgstr ""
 
-#: ../src/appointment.c:1621
+#: ../src/appointment.c:2246
 msgid "Sat"
-msgstr "Сб"
+msgstr ""
 
-#: ../src/appointment.c:1621
+#: ../src/appointment.c:2246
 msgid "Sun"
-msgstr "Нд"
+msgstr ""
 
-#: ../src/appointment.c:1626
+#: ../src/appointment.c:2250
 msgid "Recurrence"
-msgstr "Вяртаньне"
+msgstr ""
 
-#: ../src/appointment.c:1631
+#: ../src/appointment.c:2255
 msgid "Complexity"
-msgstr "Складанасьць"
+msgstr ""
 
-#: ../src/appointment.c:1634
+#: ../src/appointment.c:2258
 msgid "Basic"
-msgstr "Асноўны"
+msgstr ""
 
-#: ../src/appointment.c:1640
+#: ../src/appointment.c:2264
 msgid "Advanced"
-msgstr "Адмысловы"
+msgstr ""
 
-#: ../src/appointment.c:1648
+#: ../src/appointment.c:2271
 msgid "Use this if you want regular repeating event"
-msgstr "Выкарыстоўвайце гэта, калі жадаеце задаць падзею, якая паўтараецца"
+msgstr ""
 
-#: ../src/appointment.c:1650
+#: ../src/appointment.c:2273
 msgid ""
 "Use this if you need complex times like:\n"
-" Every second week or \n"
 " Every Saturday and Sunday or \n"
 " First Tuesday every month"
 msgstr ""
-"Выкарыстоўвайце гэта, калі патрэбны складаны час:\n"
-" Кожны другі тыдзень альбо \n"
-" Кожная субота і нядзеля, альбо \n"
-" Першы аўторак кожнага месяца"
 
-#: ../src/appointment.c:1653
+#: ../src/appointment.c:2276
 msgid "Frequency"
-msgstr "Частата"
-
-#: ../src/appointment.c:1662
-msgid "Interval"
-msgstr "Прамежак"
-
-#: ../src/appointment.c:1664
-msgid "Each"
-msgstr "Кожны"
-
-#: ../src/appointment.c:1671
-msgid "occurrence"
-msgstr "уваходжаньне"
-
-#: ../src/appointment.c:1679
-msgid ""
-"Limit frequency to certain interval. For example:\n"
-" Every third day: Frequency = Daily and Interval = 3"
 msgstr ""
-"Абмяжуйце частату пэўным інтэрвалам. Напрыклад:\n"
-" Кожны трэці дзень: Частата = Штодзень і Прамежак = 3"
 
-#: ../src/appointment.c:1682
+#: ../src/appointment.c:2283
+msgid "Each"
+msgstr ""
+
+#: ../src/appointment.c:2290
+msgid "occurrence"
+msgstr ""
+
+#: ../src/appointment.c:2294
+msgid ""
+"Limit frequency to certain interval.\n"
+" For example: Every third day:\n"
+" Frequency = Daily and Interval = 3"
+msgstr ""
+
+#: ../src/appointment.c:2300
 msgid "Limit"
-msgstr "Абмежаваць"
+msgstr ""
 
-#: ../src/appointment.c:1684
+#: ../src/appointment.c:2302
 msgid "Repeat forever"
-msgstr "Паўтараць заўсёды"
+msgstr ""
 
-#: ../src/appointment.c:1692
+#: ../src/appointment.c:2309
 msgid "Repeat "
-msgstr "Паўтарэньне"
+msgstr ""
 
-#: ../src/appointment.c:1700
-msgid "times"
-msgstr "часы"
-
-#: ../src/appointment.c:1710
+#: ../src/appointment.c:2326
 msgid "Repeat until "
-msgstr "Паўтараць"
+msgstr ""
 
-#: ../src/appointment.c:1721
+#: ../src/appointment.c:2336
+#, fuzzy
 msgid "Weekdays"
-msgstr "Дні тыдня"
+msgstr "Сёньня"
 
-#: ../src/appointment.c:1734
+#: ../src/appointment.c:2348
 msgid "Which day"
-msgstr "Які дзень"
+msgstr ""
 
-#: ../src/appointment.c:1742
+#: ../src/appointment.c:2356
 msgid ""
 "Specify which weekday for monthly and yearly events.\n"
 " For example:\n"
@@ -592,1950 +879,2201 @@ msgid ""
 "\tWeekdays = check only Wednesday,\n"
 "\tWhich day = select 2 from the number below Wednesday"
 msgstr ""
-"Задайце дні тыдня для штомесячных і штогадовых падзей.\n"
-" Прыклады:\n"
-" Другая серада кожнага месяца:\n"
-"\tЧастата = Штомесяц,\n"
-"\tДні тыдня = правяраць толькі ў сераду,\n"
-"\tЯкі дзень = вылучыце 2 з нумароў пад серадой"
 
 #. date only appointment
-#: ../src/event-list.c:199
+#: ../src/event-list.c:186
 msgid "All day"
-msgstr "Увесь дзень"
-
-#: ../src/event-list.c:275
-#: ../src/event-list.c:776
-msgid "Time"
-msgstr "Час"
-
-#: ../src/event-list.c:583
-msgid ""
-"You will remove all information \n"
-"associated with this date."
 msgstr ""
-"Вы выдаліце ўсе зьвесткі,\n"
-"зьвязаныя з гэтай датай."
+
+#: ../src/event-list.c:506 ../src/event-list.c:1272
+msgid "Time"
+msgstr ""
+
+#: ../src/event-list.c:867
+msgid ""
+"You will permanently remove all\n"
+"selected appointments."
+msgstr ""
 
 #. View menu
-#: ../src/event-list.c:679
-#: ../src/mainbox.c:453
+#: ../src/event-list.c:1031 ../src/mainbox.c:253
 msgid "_View"
-msgstr "_Выгляд"
+msgstr ""
 
 #. Go menu
-#: ../src/event-list.c:688
+#: ../src/event-list.c:1050
 msgid "_Go"
-msgstr "Пера_ход"
+msgstr ""
 
-#: ../src/event-list.c:715
+#: ../src/event-list.c:1097
 msgid "New"
-msgstr "Стварыць"
+msgstr ""
 
-#: ../src/event-list.c:719
+#: ../src/event-list.c:1106
 msgid "Back"
-msgstr "Назад"
+msgstr ""
 
-#: ../src/event-list.c:725
+#: ../src/event-list.c:1110
 msgid "Forward"
-msgstr "Наперад"
+msgstr ""
 
-#: ../src/event-list.c:728
+#: ../src/event-list.c:1115
 msgid "Refresh"
-msgstr "Абнавіць"
+msgstr ""
 
-#: ../src/event-list.c:737
+#: ../src/event-list.c:1117
+msgid "Find"
+msgstr ""
+
+#: ../src/event-list.c:1122 ../src/interface.c:794
 msgid "Close"
-msgstr "Закрыць"
+msgstr ""
 
-#: ../src/event-list.c:740
-msgid "Clear"
-msgstr "Ачысьціць"
+#: ../src/event-list.c:1152
+msgid "Extra days to show "
+msgstr ""
 
-#: ../src/event-list.c:784
+#: ../src/event-list.c:1186
+msgid "Journal entries starting from:"
+msgstr ""
+
+#: ../src/event-list.c:1211
+msgid "Search"
+msgstr ""
+
+#: ../src/event-list.c:1214
+msgid "Search text "
+msgstr ""
+
+#: ../src/event-list.c:1280
 msgid "Flags"
-msgstr "Сьцягі"
+msgstr ""
 
-#: ../src/event-list.c:790
+#: ../src/event-list.c:1286
 msgid "Title"
-msgstr "Пасада"
+msgstr ""
 
-#: ../src/event-list.c:796
-msgid "uid"
-msgstr "UID"
-
-#: ../src/event-list.c:805
+#: ../src/event-list.c:1305
 msgid ""
 "Double click line to edit it.\n"
 "\n"
 "Flags in order:\n"
 "\t 1. Alarm: n=no alarm\n"
-"\t\tA=visual Alarm S=also Sound alarm\n"
+"\t\t A=visual Alarm S=also Sound alarm\n"
 "\t 2. Recurrence: n=no recurrence\n"
 "\t\t D=Daily W=Weekly M=Monthly Y=Yearly\n"
-"\t 3. Type: f=free B=Busy"
+"\t 3. Type: f=free B=Busy\n"
+"\t 4. Located in file: O=Orage\n"
+"\t\t  A=Archive F=Foreign"
 msgstr ""
-"Двойчы пстрыкніце радок для рэдагаваньня.\n"
-"\n"
-"Сьцяжкі:\n"
-"\t 1. Сыгнал: n=няма сыгналу\n"
-"\t\tA=візуальны сыгнал S=візуальны і гукавы сыгнал\n"
-"\t 2. Паўтарэньне: n=без паўтору\n"
-"\t\t D=Штодзень W=Штотыдзень M=Штомесяц Y=Штогод\n"
-"\t 3. Тып: f=вольны B=заняты"
-
-#: ../src/ical-code.c:100
-msgid "Africa"
-msgstr "Афрыка"
-
-#: ../src/ical-code.c:101
-msgid "Africa/Abidjan"
-msgstr "Афрыка/Абіджан"
-
-#: ../src/ical-code.c:102
-#
-msgid "Africa/Accra"
-msgstr "Афрыка/Акра"
-
-#: ../src/ical-code.c:103
-msgid "Africa/Addis_Ababa"
-msgstr "Афрыка/Адыс-Абеба"
-
-#: ../src/ical-code.c:104
-msgid "Africa/Algiers"
-msgstr "Афрыка/Альжыр"
-
-#: ../src/ical-code.c:105
-#
-msgid "Africa/Asmera"
-msgstr "Афрыка/Асьмера"
 
 #: ../src/ical-code.c:106
-#
-msgid "Africa/Bamako"
-msgstr "Афрыка/Бамако"
+msgid "Africa"
+msgstr ""
 
 #: ../src/ical-code.c:107
-#
-msgid "Africa/Bangui"
-msgstr "Афрыка/Бангуі"
+msgid "Africa/Abidjan"
+msgstr ""
 
 #: ../src/ical-code.c:108
-#
-msgid "Africa/Banjul"
-msgstr "Афрыка/Банджул"
+msgid "Africa/Accra"
+msgstr ""
 
 #: ../src/ical-code.c:109
-#
-msgid "Africa/Bissau"
-msgstr "Афрыка/Бісау"
+msgid "Africa/Addis_Ababa"
+msgstr ""
 
 #: ../src/ical-code.c:110
-#
-msgid "Africa/Blantyre"
-msgstr "Афрыка/Блантэр"
+msgid "Africa/Algiers"
+msgstr ""
 
 #: ../src/ical-code.c:111
-#
-msgid "Africa/Brazzaville"
-msgstr "Афрыка/Браззавіль"
+msgid "Africa/Asmera"
+msgstr ""
 
 #: ../src/ical-code.c:112
-#
-msgid "Africa/Bujumbura"
-msgstr "Афрыка/Бужумбура"
+msgid "Africa/Bamako"
+msgstr ""
 
 #: ../src/ical-code.c:113
-msgid "Africa/Cairo"
-msgstr "Афрыка/Каір"
+msgid "Africa/Bangui"
+msgstr ""
 
 #: ../src/ical-code.c:114
-msgid "Africa/Casablanca"
-msgstr "Афрыка/Касаблянка"
+msgid "Africa/Banjul"
+msgstr ""
 
 #: ../src/ical-code.c:115
-#
-msgid "Africa/Ceuta"
-msgstr "Афрыка/Кеўта"
+msgid "Africa/Bissau"
+msgstr ""
 
 #: ../src/ical-code.c:116
-#
-msgid "Africa/Conakry"
-msgstr "Афрыка/Конакры"
+msgid "Africa/Blantyre"
+msgstr ""
 
 #: ../src/ical-code.c:117
-msgid "Africa/Dakar"
-msgstr "Афрыка/Дакар"
+msgid "Africa/Brazzaville"
+msgstr ""
 
 #: ../src/ical-code.c:118
-#
-msgid "Africa/Dar_es_Salaam"
-msgstr "Афрыка/Дар эс Салям"
+msgid "Africa/Bujumbura"
+msgstr ""
 
 #: ../src/ical-code.c:119
-msgid "Africa/Djibouti"
-msgstr "Афрыка/Джыбуці"
+msgid "Africa/Cairo"
+msgstr ""
 
 #: ../src/ical-code.c:120
-#
-msgid "Africa/Douala"
-msgstr "Афрыка/Доўла"
+msgid "Africa/Casablanca"
+msgstr ""
 
 #: ../src/ical-code.c:121
-#
-msgid "Africa/El_Aaiun"
-msgstr "Афрыка/Эль Айюн"
+msgid "Africa/Ceuta"
+msgstr ""
 
 #: ../src/ical-code.c:122
-msgid "Africa/Freetown"
-msgstr "Афрыка/Фрытаўн"
+msgid "Africa/Conakry"
+msgstr ""
 
 #: ../src/ical-code.c:123
-#
-msgid "Africa/Gaborone"
-msgstr "Афрыка/Габарон"
+msgid "Africa/Dakar"
+msgstr ""
 
 #: ../src/ical-code.c:124
-#
-msgid "Africa/Harare"
-msgstr "Афрыка/Гарар"
+msgid "Africa/Dar_es_Salaam"
+msgstr ""
 
 #: ../src/ical-code.c:125
-msgid "Africa/Johannesburg"
-msgstr "Афрыка/Яганэсбург"
+msgid "Africa/Djibouti"
+msgstr ""
 
 #: ../src/ical-code.c:126
-#
-msgid "Africa/Kampala"
-msgstr "Афрыка/Кампала"
+msgid "Africa/Douala"
+msgstr ""
 
 #: ../src/ical-code.c:127
-#
-msgid "Africa/Khartoum"
-msgstr "Афрыка/Хартум"
+msgid "Africa/El_Aaiun"
+msgstr ""
 
 #: ../src/ical-code.c:128
-#
-msgid "Africa/Kigali"
-msgstr "Афрыка/Кігалі"
+msgid "Africa/Freetown"
+msgstr ""
 
 #: ../src/ical-code.c:129
-#
-msgid "Africa/Kinshasa"
-msgstr "Афрыка/Кіншаса"
+msgid "Africa/Gaborone"
+msgstr ""
 
 #: ../src/ical-code.c:130
-#
-msgid "Africa/Lagos"
-msgstr "Афрыка/Лагас"
+msgid "Africa/Harare"
+msgstr ""
 
 #: ../src/ical-code.c:131
-#
-msgid "Africa/Libreville"
-msgstr "Афрыка/Лібрэвіль"
+msgid "Africa/Johannesburg"
+msgstr ""
 
 #: ../src/ical-code.c:132
-#
-msgid "Africa/Lome"
-msgstr "Афрыка/Лома"
+msgid "Africa/Kampala"
+msgstr ""
 
 #: ../src/ical-code.c:133
-#
-msgid "Africa/Luanda"
-msgstr "Афрыка/Люанда"
+msgid "Africa/Khartoum"
+msgstr ""
 
 #: ../src/ical-code.c:134
-#
-msgid "Africa/Lubumbashi"
-msgstr "Афрыка/Любумбашы"
+msgid "Africa/Kigali"
+msgstr ""
 
 #: ../src/ical-code.c:135
-#
-msgid "Africa/Lusaka"
-msgstr "Афрыка/Лусака"
+msgid "Africa/Kinshasa"
+msgstr ""
 
 #: ../src/ical-code.c:136
-#
-msgid "Africa/Malabo"
-msgstr "Афрыка/Малаба"
+msgid "Africa/Lagos"
+msgstr ""
 
 #: ../src/ical-code.c:137
-#
-msgid "Africa/Maputo"
-msgstr "Афрыка/Мапата"
+msgid "Africa/Libreville"
+msgstr ""
 
 #: ../src/ical-code.c:138
-#
-msgid "Africa/Maseru"
-msgstr "Афрыка/Мазэру"
+msgid "Africa/Lome"
+msgstr ""
 
 #: ../src/ical-code.c:139
-#
-msgid "Africa/Mbabane"
-msgstr "Афрыка/Мбабан"
+msgid "Africa/Luanda"
+msgstr ""
 
 #: ../src/ical-code.c:140
-#
-msgid "Africa/Mogadishu"
-msgstr "Афрыка/Магадыша"
+msgid "Africa/Lubumbashi"
+msgstr ""
 
 #: ../src/ical-code.c:141
-#
-msgid "Africa/Monrovia"
-msgstr "Афрыка/Манровія"
+msgid "Africa/Lusaka"
+msgstr ""
 
 #: ../src/ical-code.c:142
-#
-msgid "Africa/Nairobi"
-msgstr "Афрыка/Найробі"
+msgid "Africa/Malabo"
+msgstr ""
 
 #: ../src/ical-code.c:143
-#
-msgid "Africa/Ndjamena"
-msgstr "Афрыка/Ндзямэна"
+msgid "Africa/Maputo"
+msgstr ""
 
 #: ../src/ical-code.c:144
-#
-msgid "Africa/Niamey"
-msgstr "Афрыка/Нямей"
+msgid "Africa/Maseru"
+msgstr ""
 
 #: ../src/ical-code.c:145
-#
-msgid "Africa/Nouakchott"
-msgstr "Афрыка/Нуакшот"
+msgid "Africa/Mbabane"
+msgstr ""
 
 #: ../src/ical-code.c:146
-#
-msgid "Africa/Ouagadougou"
-msgstr "Афрыка/Оўагадоўгоў"
+msgid "Africa/Mogadishu"
+msgstr ""
 
 #: ../src/ical-code.c:147
-#
-msgid "Africa/Porto-Novo"
-msgstr "Афрыка/Порта-Нова"
+msgid "Africa/Monrovia"
+msgstr ""
 
 #: ../src/ical-code.c:148
-#
-msgid "Africa/Sao_Tome"
-msgstr "Афрыка/Сяо-Томе"
+msgid "Africa/Nairobi"
+msgstr ""
 
 #: ../src/ical-code.c:149
-#
-msgid "Africa/Timbuktu"
-msgstr "Афрыка/Цімбукту"
+msgid "Africa/Ndjamena"
+msgstr ""
 
 #: ../src/ical-code.c:150
-#
-msgid "Africa/Tripoli"
-msgstr "Афрыка/Трыпалі"
+msgid "Africa/Niamey"
+msgstr ""
 
 #: ../src/ical-code.c:151
-#
-msgid "Africa/Tunis"
-msgstr "Афрыка/Туніс"
+msgid "Africa/Nouakchott"
+msgstr ""
 
 #: ../src/ical-code.c:152
-#
-msgid "Africa/Windhoek"
-msgstr "Афрыка/Віндгук"
+msgid "Africa/Ouagadougou"
+msgstr ""
 
 #: ../src/ical-code.c:153
-msgid "America"
-msgstr "Амэрыка"
+msgid "Africa/Porto-Novo"
+msgstr ""
 
 #: ../src/ical-code.c:154
-#
-msgid "America/Adak"
-msgstr "Амэрыка/Адак"
+msgid "Africa/Sao_Tome"
+msgstr ""
 
 #: ../src/ical-code.c:155
-#
-msgid "America/Anchorage"
-msgstr "Амэрыка/Анчураг"
+msgid "Africa/Timbuktu"
+msgstr ""
 
 #: ../src/ical-code.c:156
-#
-msgid "America/Anguilla"
-msgstr "Амэрыка/Анджулія"
+msgid "Africa/Tripoli"
+msgstr ""
 
 #: ../src/ical-code.c:157
-#
-msgid "America/Antigua"
-msgstr "Амэрыка/Анцігуа"
+msgid "Africa/Tunis"
+msgstr ""
 
 #: ../src/ical-code.c:158
-#
-msgid "America/Araguaina"
-msgstr "Амэрыка/Арагуяна"
+msgid "Africa/Windhoek"
+msgstr ""
 
 #: ../src/ical-code.c:159
-#
-msgid "America/Aruba"
-msgstr "Амэрыка/Аруба"
+msgid "America"
+msgstr ""
 
 #: ../src/ical-code.c:160
-#
-msgid "America/Asuncion"
-msgstr "Амэрыка/Асунсьён"
+msgid "America/Adak"
+msgstr ""
 
 #: ../src/ical-code.c:161
-#
-msgid "America/Barbados"
-msgstr "Амэрыка/Барбадас"
+msgid "America/Anchorage"
+msgstr ""
 
 #: ../src/ical-code.c:162
-#
-msgid "America/Belem"
-msgstr "Амэрыка/Бэлем"
+msgid "America/Anguilla"
+msgstr ""
 
 #: ../src/ical-code.c:163
-#
-msgid "America/Belize"
-msgstr "Амэрыка/Беліз"
+msgid "America/Antigua"
+msgstr ""
 
 #: ../src/ical-code.c:164
-#
-msgid "America/Boa_Vista"
-msgstr "Амэрыка/Боа-Віста"
+msgid "America/Araguaina"
+msgstr ""
 
 #: ../src/ical-code.c:165
-#
-msgid "America/Bogota"
-msgstr "Амэрыка/Багата"
+msgid "America/Aruba"
+msgstr ""
 
 #: ../src/ical-code.c:166
-#
-msgid "America/Boise"
-msgstr "Амэрыка/Бойзе"
+msgid "America/Asuncion"
+msgstr ""
 
 #: ../src/ical-code.c:167
-#
-msgid "America/Buenos_Aires"
-msgstr "Амэрыка/Буанас-Айрэс"
+msgid "America/Barbados"
+msgstr ""
 
 #: ../src/ical-code.c:168
-#
-msgid "America/Cambridge_Bay"
-msgstr "Амэрыка/Кэмбрыдж-Бай"
+msgid "America/Belem"
+msgstr ""
 
 #: ../src/ical-code.c:169
-#
-msgid "America/Cancun"
-msgstr "Амэрыка/Канкун"
+msgid "America/Belize"
+msgstr ""
 
 #: ../src/ical-code.c:170
-#
-msgid "America/Caracas"
-msgstr "Амэрыка/Каракас"
+msgid "America/Boa_Vista"
+msgstr ""
 
 #: ../src/ical-code.c:171
-#
-msgid "America/Catamarca"
-msgstr "Амэрыка/Катамарка"
+msgid "America/Bogota"
+msgstr ""
 
 #: ../src/ical-code.c:172
-#
-msgid "America/Cayenne"
-msgstr "Амэрыка/Кайін"
+msgid "America/Boise"
+msgstr ""
 
 #: ../src/ical-code.c:173
-#
-msgid "America/Cayman"
-msgstr "Амэрыка/Кайман"
+msgid "America/Buenos_Aires"
+msgstr ""
 
 #: ../src/ical-code.c:174
-#
-msgid "America/Chicago"
-msgstr "Амэрыка/Чыкага"
+msgid "America/Cambridge_Bay"
+msgstr ""
 
 #: ../src/ical-code.c:175
-#
-msgid "America/Chihuahua"
-msgstr "Амэрыка/Чыхуахуа"
+msgid "America/Cancun"
+msgstr ""
 
 #: ../src/ical-code.c:176
-#
-msgid "America/Cordoba"
-msgstr "Амэрыка/Кардоба"
+msgid "America/Caracas"
+msgstr ""
 
 #: ../src/ical-code.c:177
-#
-msgid "America/Costa_Rica"
-msgstr "Амэрыка/Коста-Рыка"
+msgid "America/Catamarca"
+msgstr ""
 
 #: ../src/ical-code.c:178
-#
-msgid "America/Cuiaba"
-msgstr "Амэрыка/Куяба"
+msgid "America/Cayenne"
+msgstr ""
 
 #: ../src/ical-code.c:179
-#
-msgid "America/Curacao"
-msgstr "Амэрыка/Курацао"
+msgid "America/Cayman"
+msgstr ""
 
 #: ../src/ical-code.c:180
-#
-msgid "America/Dawson"
-msgstr "Амэрыка/Даўнсан"
+msgid "America/Chicago"
+msgstr ""
 
 #: ../src/ical-code.c:181
-#
-msgid "America/Dawson_Creek"
-msgstr "Амэрыка/Даўнсан-Крык"
+msgid "America/Chihuahua"
+msgstr ""
 
 #: ../src/ical-code.c:182
-#
-msgid "America/Denver"
-msgstr "Амэрыка/Дэнвэр"
+msgid "America/Cordoba"
+msgstr ""
 
 #: ../src/ical-code.c:183
-#
-msgid "America/Detroit"
-msgstr "Амэрыка/Дэтройт"
+msgid "America/Costa_Rica"
+msgstr ""
 
 #: ../src/ical-code.c:184
-#
-msgid "America/Dominica"
-msgstr "Амэрыка/Дамініка"
+msgid "America/Cuiaba"
+msgstr ""
 
 #: ../src/ical-code.c:185
-#
-msgid "America/Edmonton"
-msgstr "Амэрыка/Эдмантан"
+msgid "America/Curacao"
+msgstr ""
 
 #: ../src/ical-code.c:186
-#
-msgid "America/Eirunepe"
-msgstr "Амэрыка/Эйрунеп"
+msgid "America/Dawson"
+msgstr ""
 
 #: ../src/ical-code.c:187
-#
-msgid "America/El_Salvador"
-msgstr "Амэрыка/Эль-Сальвадор"
+msgid "America/Dawson_Creek"
+msgstr ""
 
 #: ../src/ical-code.c:188
-#
-msgid "America/Fortaleza"
-msgstr "Амэрыка/Фарталіза"
+msgid "America/Denver"
+msgstr ""
 
 #: ../src/ical-code.c:189
-#
-msgid "America/Glace_Bay"
-msgstr "Амэрыка/Гляцэ-Бай"
+msgid "America/Detroit"
+msgstr ""
 
 #: ../src/ical-code.c:190
-#
-msgid "America/Godthab"
-msgstr "Амэрыка/Гудсаб"
+msgid "America/Dominica"
+msgstr ""
 
 #: ../src/ical-code.c:191
-#
-msgid "America/Goose_Bay"
-msgstr "Амэрыка/Гузе-Бай"
+msgid "America/Edmonton"
+msgstr ""
 
 #: ../src/ical-code.c:192
-#
-msgid "America/Grand_Turk"
-msgstr "Амэрыка/Гранд-Турк"
+msgid "America/Eirunepe"
+msgstr ""
 
 #: ../src/ical-code.c:193
-#
-msgid "America/Grenada"
-msgstr "Амэрыка/Грэнада"
+msgid "America/El_Salvador"
+msgstr ""
 
 #: ../src/ical-code.c:194
-#
-msgid "America/Guadeloupe"
-msgstr "Амэрыка/Гвадэлупа"
+msgid "America/Fortaleza"
+msgstr ""
 
 #: ../src/ical-code.c:195
-#
-msgid "America/Guatemala"
-msgstr "Амэрыка/Гватэмала"
+msgid "America/Glace_Bay"
+msgstr ""
 
 #: ../src/ical-code.c:196
-#
-msgid "America/Guayaquil"
-msgstr "Амэрыка/Гуяквіл"
+msgid "America/Godthab"
+msgstr ""
 
 #: ../src/ical-code.c:197
-#
-msgid "America/Guyana"
-msgstr "Амэрыка/Гаяна"
+msgid "America/Goose_Bay"
+msgstr ""
 
 #: ../src/ical-code.c:198
-#
-msgid "America/Halifax"
-msgstr "Амэрыка/Галіхвакс"
+msgid "America/Grand_Turk"
+msgstr ""
 
 #: ../src/ical-code.c:199
-#
-msgid "America/Havana"
-msgstr "Амэрыка/Гавана"
+msgid "America/Grenada"
+msgstr ""
 
 #: ../src/ical-code.c:200
-#
-msgid "America/Hermosillo"
-msgstr "Амэрыка/Гермасіла"
+msgid "America/Guadeloupe"
+msgstr ""
 
 #: ../src/ical-code.c:201
-#
-msgid "America/Indiana/Indianapolis"
-msgstr "Амэрыка/Індыяна/Індыянаполіс"
+msgid "America/Guatemala"
+msgstr ""
 
 #: ../src/ical-code.c:202
-#
-msgid "America/Indiana/Knox"
-msgstr "Амэрыка/Індыяна/Кнокс"
+msgid "America/Guayaquil"
+msgstr ""
 
 #: ../src/ical-code.c:203
-#
-msgid "America/Indiana/Marengo"
-msgstr "Амэрыка/Індыяна/Марэнга"
+msgid "America/Guyana"
+msgstr ""
 
 #: ../src/ical-code.c:204
-#
-msgid "America/Indiana/Vevay"
-msgstr "Амэрыка/Індыяна/Вівэй"
+msgid "America/Halifax"
+msgstr ""
 
 #: ../src/ical-code.c:205
-#
-msgid "America/Indianapolis"
-msgstr "Амэрыка/Індыянаполіс"
+msgid "America/Havana"
+msgstr ""
 
 #: ../src/ical-code.c:206
-#
-msgid "America/Inuvik"
-msgstr "Амэрыка/Інівік"
+msgid "America/Hermosillo"
+msgstr ""
 
 #: ../src/ical-code.c:207
-#
-msgid "America/Iqaluit"
-msgstr "Амэрыка/Іквілют"
+msgid "America/Indiana/Indianapolis"
+msgstr ""
 
 #: ../src/ical-code.c:208
-#
-msgid "America/Jamaica"
-msgstr "Амэрыка/Ямайка"
+msgid "America/Indiana/Knox"
+msgstr ""
 
 #: ../src/ical-code.c:209
-#
-msgid "America/Jujuy"
-msgstr "Амэрыка/Яджі"
+msgid "America/Indiana/Marengo"
+msgstr ""
 
 #: ../src/ical-code.c:210
-#
-msgid "America/Juneau"
-msgstr "Амэрыка/Янея"
+msgid "America/Indiana/Vevay"
+msgstr ""
 
 #: ../src/ical-code.c:211
-#
-msgid "America/Kentucky/Louisville"
-msgstr "Амэрыка/Кентукі/Лёўсьвіль"
+msgid "America/Indianapolis"
+msgstr ""
 
 #: ../src/ical-code.c:212
-#
-msgid "America/Kentucky/Monticello"
-msgstr "Амэрыка/Кентукі/Манцічэла"
+msgid "America/Inuvik"
+msgstr ""
 
 #: ../src/ical-code.c:213
-#
-msgid "America/La_Paz"
-msgstr "Амэрыка/Ля-паз"
+msgid "America/Iqaluit"
+msgstr ""
 
 #: ../src/ical-code.c:214
-#
-msgid "America/Lima"
-msgstr "Амэрыка/Ліма"
+msgid "America/Jamaica"
+msgstr ""
 
 #: ../src/ical-code.c:215
-#
-msgid "America/Los_Angeles"
-msgstr "Амэрыка/Лос-Анжэлес"
+msgid "America/Jujuy"
+msgstr ""
 
 #: ../src/ical-code.c:216
-#
-msgid "America/Louisville"
-msgstr "Амэрыка/Лёўсьвіль"
+msgid "America/Juneau"
+msgstr ""
 
 #: ../src/ical-code.c:217
-#
-msgid "America/Maceio"
-msgstr "Амэрыка/Мацейо"
+msgid "America/Kentucky/Louisville"
+msgstr ""
 
 #: ../src/ical-code.c:218
-#
-msgid "America/Managua"
-msgstr "Амэрыка/Манагуа"
+msgid "America/Kentucky/Monticello"
+msgstr ""
 
 #: ../src/ical-code.c:219
-#
-msgid "America/Manaus"
-msgstr "Амэрыка/Манаўс"
+msgid "America/La_Paz"
+msgstr ""
 
 #: ../src/ical-code.c:220
-#
-msgid "America/Martinique"
-msgstr "Амэрыка/Марцініка"
+msgid "America/Lima"
+msgstr ""
 
 #: ../src/ical-code.c:221
-#
-msgid "America/Mazatlan"
-msgstr "Амэрыка/Мазатлян"
+msgid "America/Los_Angeles"
+msgstr ""
 
 #: ../src/ical-code.c:222
-#
-msgid "America/Mendoza"
-msgstr "Амэрыка/Мэндоза"
+msgid "America/Louisville"
+msgstr ""
 
 #: ../src/ical-code.c:223
-#
-msgid "America/Menominee"
-msgstr "Амэрыка/Мэнаміні"
+msgid "America/Maceio"
+msgstr ""
 
 #: ../src/ical-code.c:224
-#
-msgid "America/Merida"
-msgstr "Амэрыка/Мэрыда"
+msgid "America/Managua"
+msgstr ""
 
 #: ../src/ical-code.c:225
-#
-msgid "America/Mexico_City"
-msgstr "Амэрыка/Мэхіко"
+msgid "America/Manaus"
+msgstr ""
 
 #: ../src/ical-code.c:226
-#
-msgid "America/Miquelon"
-msgstr "Амэрыка/Мікелён"
+msgid "America/Martinique"
+msgstr ""
 
 #: ../src/ical-code.c:227
-#
-msgid "America/Monterrey"
-msgstr "Амэрыка/Монтэрэй"
+msgid "America/Mazatlan"
+msgstr ""
 
 #: ../src/ical-code.c:228
-#
-msgid "America/Montevideo"
-msgstr "Амэрыка/Монтэвідэа"
+msgid "America/Mendoza"
+msgstr ""
 
 #: ../src/ical-code.c:229
-#
-msgid "America/Montreal"
-msgstr "Амэрыка/Монрэаль"
+msgid "America/Menominee"
+msgstr ""
 
 #: ../src/ical-code.c:230
-#
-msgid "America/Montserrat"
-msgstr "Амэрыка/Монтсэрат"
+msgid "America/Merida"
+msgstr ""
 
 #: ../src/ical-code.c:231
-#
-msgid "America/Nassau"
-msgstr "Амэрыка/Нассаў"
+msgid "America/Mexico_City"
+msgstr ""
 
 #: ../src/ical-code.c:232
-#
-msgid "America/New_York"
-msgstr "Амэрыка/Ню-Ёрк"
+msgid "America/Miquelon"
+msgstr ""
 
 #: ../src/ical-code.c:233
-#
-msgid "America/Nipigon"
-msgstr "Амэрыка/Ніпігон"
+msgid "America/Monterrey"
+msgstr ""
 
 #: ../src/ical-code.c:234
-#
-msgid "America/Nome"
-msgstr "Амэрыка/Ном"
+msgid "America/Montevideo"
+msgstr ""
 
 #: ../src/ical-code.c:235
-#
-msgid "America/Noronha"
-msgstr "Амэрыка/Наронга"
+msgid "America/Montreal"
+msgstr ""
 
 #: ../src/ical-code.c:236
-#
-msgid "America/Panama"
-msgstr "Амэрыка/Панама"
+msgid "America/Montserrat"
+msgstr ""
 
 #: ../src/ical-code.c:237
-#
-msgid "America/Pangnirtung"
-msgstr "Амэрыка/Пангніцюнг"
+msgid "America/Nassau"
+msgstr ""
 
 #: ../src/ical-code.c:238
-#
-msgid "America/Paramaribo"
-msgstr "Амэрыка/Парамарыба"
+msgid "America/New_York"
+msgstr ""
 
 #: ../src/ical-code.c:239
-#
-msgid "America/Phoenix"
-msgstr "Амэрыка/Фенікс"
+msgid "America/Nipigon"
+msgstr ""
 
 #: ../src/ical-code.c:240
-#
-msgid "America/Port-au-Prince"
-msgstr "Амэрыка/Порт-аў-Прынц"
+msgid "America/Nome"
+msgstr ""
 
 #: ../src/ical-code.c:241
-#
-msgid "America/Port_of_Spain"
-msgstr "Амэрыка/Гішпанскі порт"
+msgid "America/Noronha"
+msgstr ""
 
 #: ../src/ical-code.c:242
-#
-msgid "America/Porto_Velho"
-msgstr "Амэрыка/Порта-Вэльга"
+msgid "America/Panama"
+msgstr ""
 
 #: ../src/ical-code.c:243
-#
-msgid "America/Puerto_Rico"
-msgstr "Амэрыка/Пуэрта-Рэка"
+msgid "America/Pangnirtung"
+msgstr ""
 
 #: ../src/ical-code.c:244
-#
-msgid "America/Rainy_River"
-msgstr "Амэрыка/Рэйні-Рыва"
+msgid "America/Paramaribo"
+msgstr ""
 
 #: ../src/ical-code.c:245
-#
-msgid "America/Rankin_Inlet"
-msgstr "Амэрыка/Ранкін-Інлет"
+msgid "America/Phoenix"
+msgstr ""
 
 #: ../src/ical-code.c:246
-#
-msgid "America/Recife"
-msgstr "Амэрыка/Рэцыф"
+msgid "America/Port-au-Prince"
+msgstr ""
 
 #: ../src/ical-code.c:247
-#
-msgid "America/Regina"
-msgstr "Амэрыка/Рэгуна"
+msgid "America/Port_of_Spain"
+msgstr ""
 
 #: ../src/ical-code.c:248
-#
-msgid "America/Rio_Branco"
-msgstr "Амэрыка/Рыя-Бранка"
+msgid "America/Porto_Velho"
+msgstr ""
 
 #: ../src/ical-code.c:249
-#
-msgid "America/Rosario"
-msgstr "Амэрыка/Разаліё"
+msgid "America/Puerto_Rico"
+msgstr ""
 
 #: ../src/ical-code.c:250
-#
-msgid "America/Santiago"
-msgstr "Амэрыка/Санц'яга"
+msgid "America/Rainy_River"
+msgstr ""
 
 #: ../src/ical-code.c:251
-#
-msgid "America/Santo_Domingo"
-msgstr "Амэрыка/Санта-Дамінга"
+msgid "America/Rankin_Inlet"
+msgstr ""
 
 #: ../src/ical-code.c:252
-#
-msgid "America/Sao_Paulo"
-msgstr "Амэрыка/Сяо-Паўла"
+msgid "America/Recife"
+msgstr ""
 
 #: ../src/ical-code.c:253
-#
-msgid "America/Scoresbysund"
-msgstr "Амэрыка/Скорэбысанд"
+msgid "America/Regina"
+msgstr ""
 
 #: ../src/ical-code.c:254
-#
-msgid "America/Shiprock"
-msgstr "Амэрыка/Шыпрок"
+msgid "America/Rio_Branco"
+msgstr ""
 
 #: ../src/ical-code.c:255
-#
-msgid "America/St_Johns"
-msgstr "Амэрыка/Санта-Джонс"
+msgid "America/Rosario"
+msgstr ""
 
 #: ../src/ical-code.c:256
-#
-msgid "America/St_Kitts"
-msgstr "Амэрыка/Санта-Кітс"
+msgid "America/Santiago"
+msgstr ""
 
 #: ../src/ical-code.c:257
-#
-msgid "America/St_Lucia"
-msgstr "Амэрыка/Санта-Лючыя"
+msgid "America/Santo_Domingo"
+msgstr ""
 
 #: ../src/ical-code.c:258
-#
-msgid "America/St_Thomas"
-msgstr "Амэрыка/Sанта-Томас"
+msgid "America/Sao_Paulo"
+msgstr ""
 
 #: ../src/ical-code.c:259
-#
-msgid "America/St_Vincent"
-msgstr "Амэрыка/Санта-Вінцэнт"
+msgid "America/Scoresbysund"
+msgstr ""
 
 #: ../src/ical-code.c:260
-#
-msgid "America/Swift_Current"
-msgstr "Амэрыка/Свіфт-Карэнт"
+msgid "America/Shiprock"
+msgstr ""
 
 #: ../src/ical-code.c:261
-#
-msgid "America/Tegucigalpa"
-msgstr "Амэрыка/Тэгуцыгалпа"
+msgid "America/St_Johns"
+msgstr ""
 
 #: ../src/ical-code.c:262
-#
-msgid "America/Thule"
-msgstr "Амэрыка/Тал"
+msgid "America/St_Kitts"
+msgstr ""
 
 #: ../src/ical-code.c:263
-#
-msgid "America/Thunder_Bay"
-msgstr "Амэрыка/Тандэр-Бай"
+msgid "America/St_Lucia"
+msgstr ""
 
 #: ../src/ical-code.c:264
-#
-msgid "America/Tijuana"
-msgstr "Амэрыка/Ціяна"
+msgid "America/St_Thomas"
+msgstr ""
 
 #: ../src/ical-code.c:265
-#
-msgid "America/Tortola"
-msgstr "Амэрыка/Тартала"
+msgid "America/St_Vincent"
+msgstr ""
 
 #: ../src/ical-code.c:266
-#
-msgid "America/Vancouver"
-msgstr "Амэрыка/Ванкувэр"
+msgid "America/Swift_Current"
+msgstr ""
 
 #: ../src/ical-code.c:267
-#
-msgid "America/Whitehorse"
-msgstr "Амэрыка/Вайтхос"
+msgid "America/Tegucigalpa"
+msgstr ""
 
 #: ../src/ical-code.c:268
-#
-msgid "America/Winnipeg"
-msgstr "Амэрыка/Вініпег"
+msgid "America/Thule"
+msgstr ""
 
 #: ../src/ical-code.c:269
-#
-msgid "America/Yakutat"
-msgstr "Амэрыка/Якутат"
+msgid "America/Thunder_Bay"
+msgstr ""
 
 #: ../src/ical-code.c:270
-#
-msgid "America/Yellowknife"
-msgstr "Амэрыка/Елаўкніф"
+msgid "America/Tijuana"
+msgstr ""
 
 #: ../src/ical-code.c:271
-msgid "Antarctica"
-msgstr "Антарктыка"
+msgid "America/Tortola"
+msgstr ""
 
 #: ../src/ical-code.c:272
-msgid "Antarctica/Casey"
-msgstr "Aнтарктыда/Касей"
+msgid "America/Vancouver"
+msgstr ""
 
 #: ../src/ical-code.c:273
-msgid "Antarctica/Davis"
-msgstr "Антарктыда/Дэвіс"
+msgid "America/Whitehorse"
+msgstr ""
 
 #: ../src/ical-code.c:274
-#
-msgid "Antarctica/DumontDUrville"
-msgstr "Антарктыда/Д'юмонтдьюрвіль"
+msgid "America/Winnipeg"
+msgstr ""
 
 #: ../src/ical-code.c:275
-#
-msgid "Antarctica/Mawson"
-msgstr "Антарктыда/Маўсан"
+msgid "America/Yakutat"
+msgstr ""
 
 #: ../src/ical-code.c:276
-#
-msgid "Antarctica/McMurdo"
-msgstr "Антарктыда/Макмарда"
+msgid "America/Yellowknife"
+msgstr ""
 
 #: ../src/ical-code.c:277
-#
-msgid "Antarctica/Palmer"
-msgstr "Антарктыда/Пальмер"
+msgid "Antarctica"
+msgstr ""
 
 #: ../src/ical-code.c:278
-msgid "Antarctica/South_Pole"
-msgstr "Антарктыда/Паўднёвы полюс"
+msgid "Antarctica/Casey"
+msgstr ""
 
 #: ../src/ical-code.c:279
-#
-msgid "Antarctica/Syowa"
-msgstr "Антарктыда/Сыёва"
+msgid "Antarctica/Davis"
+msgstr ""
 
 #: ../src/ical-code.c:280
-msgid "Antarctica/Vostok"
-msgstr "Антарктыда/Усход"
+msgid "Antarctica/DumontDUrville"
+msgstr ""
 
 #: ../src/ical-code.c:281
-msgid "Arctic"
-msgstr "Арктыка"
+msgid "Antarctica/Mawson"
+msgstr ""
 
 #: ../src/ical-code.c:282
-#
-msgid "Arctic/Longyearbyen"
-msgstr "Арктыка/Лёнгырбаен"
+msgid "Antarctica/McMurdo"
+msgstr ""
 
 #: ../src/ical-code.c:283
-msgid "Asia"
-msgstr "Азія"
+msgid "Antarctica/Palmer"
+msgstr ""
 
 #: ../src/ical-code.c:284
-msgid "Asia/Aden"
-msgstr "Азія/Адэн"
+msgid "Antarctica/South_Pole"
+msgstr ""
 
 #: ../src/ical-code.c:285
-msgid "Asia/Almaty"
-msgstr "Азія/Алма-Аты"
+msgid "Antarctica/Syowa"
+msgstr ""
 
 #: ../src/ical-code.c:286
-msgid "Asia/Amman"
-msgstr "Азія/Аман"
+msgid "Antarctica/Vostok"
+msgstr ""
 
 #: ../src/ical-code.c:287
-msgid "Asia/Anadyr"
-msgstr "Азія/Анадыр"
+msgid "Arctic"
+msgstr ""
 
 #: ../src/ical-code.c:288
-msgid "Asia/Aqtau"
-msgstr "Азія/Актаў"
+msgid "Arctic/Longyearbyen"
+msgstr ""
 
 #: ../src/ical-code.c:289
-msgid "Asia/Aqtobe"
-msgstr "Азія/Актуба"
+msgid "Asia"
+msgstr ""
 
 #: ../src/ical-code.c:290
-msgid "Asia/Ashgabat"
-msgstr "Азія/Ашхабад"
+msgid "Asia/Aden"
+msgstr ""
 
 #: ../src/ical-code.c:291
-msgid "Asia/Baghdad"
-msgstr "Азія/Багдад"
+msgid "Asia/Almaty"
+msgstr ""
 
 #: ../src/ical-code.c:292
-msgid "Asia/Bahrain"
-msgstr "Азія/Бахрэйн"
+msgid "Asia/Amman"
+msgstr ""
 
 #: ../src/ical-code.c:293
-msgid "Asia/Baku"
-msgstr "Азія/Баку"
+msgid "Asia/Anadyr"
+msgstr ""
 
 #: ../src/ical-code.c:294
-msgid "Asia/Bangkok"
-msgstr "Азія/Бангкок"
+msgid "Asia/Aqtau"
+msgstr ""
 
 #: ../src/ical-code.c:295
-msgid "Asia/Beirut"
-msgstr "Азія/Бейрут"
+msgid "Asia/Aqtobe"
+msgstr ""
 
 #: ../src/ical-code.c:296
-msgid "Asia/Bishkek"
-msgstr "Азія/Бішкек"
+msgid "Asia/Ashgabat"
+msgstr ""
 
 #: ../src/ical-code.c:297
-msgid "Asia/Brunei"
-msgstr "Азія/Брунеі"
+msgid "Asia/Baghdad"
+msgstr ""
 
 #: ../src/ical-code.c:298
-msgid "Asia/Calcutta"
-msgstr "Азія/Калькута"
+msgid "Asia/Bahrain"
+msgstr ""
 
 #: ../src/ical-code.c:299
-msgid "Asia/Chungking"
-msgstr "Азія/Чунгкінг"
+msgid "Asia/Baku"
+msgstr ""
 
 #: ../src/ical-code.c:300
-msgid "Asia/Colombo"
-msgstr "Азія/Калюмба"
+msgid "Asia/Bangkok"
+msgstr ""
 
 #: ../src/ical-code.c:301
-msgid "Asia/Damascus"
-msgstr "Азія/Дамаск"
+msgid "Asia/Beirut"
+msgstr ""
 
 #: ../src/ical-code.c:302
-msgid "Asia/Dhaka"
-msgstr "Азія/Дгака"
+msgid "Asia/Bishkek"
+msgstr ""
 
 #: ../src/ical-code.c:303
-msgid "Asia/Dili"
-msgstr "Азія/Дылі"
+msgid "Asia/Brunei"
+msgstr ""
 
 #: ../src/ical-code.c:304
-msgid "Asia/Dubai"
-msgstr "Азія/Дубай"
+msgid "Asia/Calcutta"
+msgstr ""
 
 #: ../src/ical-code.c:305
-msgid "Asia/Dushanbe"
-msgstr "Азія/Душанбэ"
+msgid "Asia/Chungking"
+msgstr ""
 
 #: ../src/ical-code.c:306
-msgid "Asia/Gaza"
-msgstr "Азія/Газа"
+msgid "Asia/Colombo"
+msgstr ""
 
 #: ../src/ical-code.c:307
-msgid "Asia/Harbin"
-msgstr "Азія/Гарбін"
+msgid "Asia/Damascus"
+msgstr ""
 
 #: ../src/ical-code.c:308
-msgid "Asia/Hong_Kong"
-msgstr "Азія/Сян-Ган (Ган-Конг)"
+msgid "Asia/Dhaka"
+msgstr ""
 
 #: ../src/ical-code.c:309
-msgid "Asia/Hovd"
-msgstr "Азія/Гоўд"
+msgid "Asia/Dili"
+msgstr ""
 
 #: ../src/ical-code.c:310
-msgid "Asia/Irkutsk"
-msgstr "Азія/Іркуцк"
+msgid "Asia/Dubai"
+msgstr ""
 
 #: ../src/ical-code.c:311
-msgid "Asia/Istanbul"
-msgstr "Азія/Стамбул"
+msgid "Asia/Dushanbe"
+msgstr ""
 
 #: ../src/ical-code.c:312
-msgid "Asia/Jakarta"
-msgstr "Азія/Джакарта"
+msgid "Asia/Gaza"
+msgstr ""
 
 #: ../src/ical-code.c:313
-msgid "Asia/Jayapura"
-msgstr "Азія/Джаяпура"
+msgid "Asia/Harbin"
+msgstr ""
 
 #: ../src/ical-code.c:314
-msgid "Asia/Jerusalem"
-msgstr "Азія/Іерусалім"
+msgid "Asia/Hong_Kong"
+msgstr ""
 
 #: ../src/ical-code.c:315
-msgid "Asia/Kabul"
-msgstr "Азія/Кабул"
+msgid "Asia/Hovd"
+msgstr ""
 
 #: ../src/ical-code.c:316
-msgid "Asia/Kamchatka"
-msgstr "Азія/Камчатка"
+msgid "Asia/Irkutsk"
+msgstr ""
 
 #: ../src/ical-code.c:317
-msgid "Asia/Karachi"
-msgstr "Азія/Карачы"
+msgid "Asia/Istanbul"
+msgstr ""
 
 #: ../src/ical-code.c:318
-msgid "Asia/Kashgar"
-msgstr "Азія/Кашгар"
+msgid "Asia/Jakarta"
+msgstr ""
 
 #: ../src/ical-code.c:319
-msgid "Asia/Katmandu"
-msgstr "Азія/Катманду"
+msgid "Asia/Jayapura"
+msgstr ""
 
 #: ../src/ical-code.c:320
-msgid "Asia/Krasnoyarsk"
-msgstr "Азія/Краснаярск"
+msgid "Asia/Jerusalem"
+msgstr ""
 
 #: ../src/ical-code.c:321
-msgid "Asia/Kuala_Lumpur"
-msgstr "Азія/Куала-Люмпур"
+msgid "Asia/Kabul"
+msgstr ""
 
 #: ../src/ical-code.c:322
-msgid "Asia/Kuching"
-msgstr "Азія/Качынг"
+msgid "Asia/Kamchatka"
+msgstr ""
 
 #: ../src/ical-code.c:323
-msgid "Asia/Kuwait"
-msgstr "Азія/Кувэйт"
+msgid "Asia/Karachi"
+msgstr ""
 
 #: ../src/ical-code.c:324
-msgid "Asia/Macao"
-msgstr "Азія/Макао"
+msgid "Asia/Kashgar"
+msgstr ""
 
 #: ../src/ical-code.c:325
-msgid "Asia/Magadan"
-msgstr "Азія/Магадан"
+msgid "Asia/Katmandu"
+msgstr ""
 
 #: ../src/ical-code.c:326
-msgid "Asia/Manila"
-msgstr "Азія/Маніла"
+msgid "Asia/Krasnoyarsk"
+msgstr ""
 
 #: ../src/ical-code.c:327
-msgid "Asia/Muscat"
-msgstr "Азія/Мускат"
+msgid "Asia/Kuala_Lumpur"
+msgstr ""
 
 #: ../src/ical-code.c:328
-msgid "Asia/Nicosia"
-msgstr "Азія/Нікасія"
+msgid "Asia/Kuching"
+msgstr ""
 
 #: ../src/ical-code.c:329
-msgid "Asia/Novosibirsk"
-msgstr "Азія/Новасыбірск"
+msgid "Asia/Kuwait"
+msgstr ""
 
 #: ../src/ical-code.c:330
-msgid "Asia/Omsk"
-msgstr "Азія/Омск"
+msgid "Asia/Macao"
+msgstr ""
 
 #: ../src/ical-code.c:331
-msgid "Asia/Phnom_Penh"
-msgstr "Азія/Пнампэнь"
+msgid "Asia/Magadan"
+msgstr ""
 
 #: ../src/ical-code.c:332
-msgid "Asia/Pontianak"
-msgstr "Азія/Пантыанак"
+msgid "Asia/Manila"
+msgstr ""
 
 #: ../src/ical-code.c:333
-msgid "Asia/Pyongyang"
-msgstr "Азія/Пёнгянг"
+msgid "Asia/Muscat"
+msgstr ""
 
 #: ../src/ical-code.c:334
-msgid "Asia/Qatar"
-msgstr "Азія/Катар"
+msgid "Asia/Nicosia"
+msgstr ""
 
 #: ../src/ical-code.c:335
-msgid "Asia/Rangoon"
-msgstr "Азія/Рангун"
+msgid "Asia/Novosibirsk"
+msgstr ""
 
 #: ../src/ical-code.c:336
-msgid "Asia/Riyadh"
-msgstr "Азія/Рыад"
+msgid "Asia/Omsk"
+msgstr ""
 
 #: ../src/ical-code.c:337
-msgid "Asia/Saigon"
-msgstr "Азія/Сайгон"
+msgid "Asia/Phnom_Penh"
+msgstr ""
 
 #: ../src/ical-code.c:338
-msgid "Asia/Samarkand"
-msgstr "Азія/Самарканд"
+msgid "Asia/Pontianak"
+msgstr ""
 
 #: ../src/ical-code.c:339
-msgid "Asia/Seoul"
-msgstr "Азія/Сеул"
+msgid "Asia/Pyongyang"
+msgstr ""
 
 #: ../src/ical-code.c:340
-msgid "Asia/Shanghai"
-msgstr "Азія/Шанхай"
+msgid "Asia/Qatar"
+msgstr ""
 
 #: ../src/ical-code.c:341
-msgid "Asia/Singapore"
-msgstr "Азія/Сынгапур"
+msgid "Asia/Rangoon"
+msgstr ""
 
 #: ../src/ical-code.c:342
-msgid "Asia/Taipei"
-msgstr "Азія/Тайбэй"
+msgid "Asia/Riyadh"
+msgstr ""
 
 #: ../src/ical-code.c:343
-msgid "Asia/Tashkent"
-msgstr "Азія/Ташкент"
+msgid "Asia/Saigon"
+msgstr ""
 
 #: ../src/ical-code.c:344
-msgid "Asia/Tbilisi"
-msgstr "Азія/Тбілісі"
+msgid "Asia/Samarkand"
+msgstr ""
 
 #: ../src/ical-code.c:345
-msgid "Asia/Tehran"
-msgstr "Азія/Тэгеран"
+msgid "Asia/Seoul"
+msgstr ""
 
 #: ../src/ical-code.c:346
-msgid "Asia/Thimphu"
-msgstr "Азія/Цімпху"
+msgid "Asia/Shanghai"
+msgstr ""
 
 #: ../src/ical-code.c:347
-msgid "Asia/Tokyo"
-msgstr "Азія/Токіо "
+msgid "Asia/Singapore"
+msgstr ""
 
 #: ../src/ical-code.c:348
-#
-msgid "Asia/Ujung_Pandang"
-msgstr "Азія/Ёнг-Панданг"
+msgid "Asia/Taipei"
+msgstr ""
 
 #: ../src/ical-code.c:349
-msgid "Asia/Ulaanbaatar"
-msgstr "Азія/Улан-Батар"
+msgid "Asia/Tashkent"
+msgstr ""
 
 #: ../src/ical-code.c:350
-#
-msgid "Asia/Urumqi"
-msgstr "Азія/Юрумкві"
+msgid "Asia/Tbilisi"
+msgstr ""
 
 #: ../src/ical-code.c:351
-#
-msgid "Asia/Vientiane"
-msgstr "Азія/Вэнцын"
+msgid "Asia/Tehran"
+msgstr ""
 
 #: ../src/ical-code.c:352
-msgid "Asia/Vladivostok"
-msgstr "Азія/Уладзівасток"
+msgid "Asia/Thimphu"
+msgstr ""
 
 #: ../src/ical-code.c:353
-msgid "Asia/Yakutsk"
-msgstr "Азія/Якуцк"
+msgid "Asia/Tokyo"
+msgstr ""
 
 #: ../src/ical-code.c:354
-msgid "Asia/Yekaterinburg"
-msgstr "Азія/Екацерынбург"
+msgid "Asia/Ujung_Pandang"
+msgstr ""
 
 #: ../src/ical-code.c:355
-msgid "Asia/Yerevan"
-msgstr "Азія/Ерэван"
+msgid "Asia/Ulaanbaatar"
+msgstr ""
 
 #: ../src/ical-code.c:356
-msgid "Atlantic"
-msgstr "Атлянтыка"
+msgid "Asia/Urumqi"
+msgstr ""
 
 #: ../src/ical-code.c:357
-#
-msgid "Atlantic/Azores"
-msgstr "Атлянтыка/Азорэс"
+msgid "Asia/Vientiane"
+msgstr ""
 
 #: ../src/ical-code.c:358
-#
-msgid "Atlantic/Bermuda"
-msgstr "Атлянтыка/Бермуды"
+msgid "Asia/Vladivostok"
+msgstr ""
 
 #: ../src/ical-code.c:359
-#
-msgid "Atlantic/Canary"
-msgstr "Атлянтыка/Канары"
+msgid "Asia/Yakutsk"
+msgstr ""
 
 #: ../src/ical-code.c:360
-#
-msgid "Atlantic/Cape_Verde"
-msgstr "Атлянтыка/Капе-Вэрдзі"
+msgid "Asia/Yekaterinburg"
+msgstr ""
 
 #: ../src/ical-code.c:361
-#
-msgid "Atlantic/Faeroe"
-msgstr "Атлянтыка/Фару"
+msgid "Asia/Yerevan"
+msgstr ""
 
 #: ../src/ical-code.c:362
-#
-msgid "Atlantic/Jan_Mayen"
-msgstr "Атлянтыка/Ян-Майен"
+msgid "Atlantic"
+msgstr ""
 
 #: ../src/ical-code.c:363
-#
-msgid "Atlantic/Madeira"
-msgstr "Атлянтыка/Мадэйра"
+msgid "Atlantic/Azores"
+msgstr ""
 
 #: ../src/ical-code.c:364
-#
-msgid "Atlantic/Reykjavik"
-msgstr "Атлянтыка/Рэйк'явік"
+msgid "Atlantic/Bermuda"
+msgstr ""
 
 #: ../src/ical-code.c:365
-#
-msgid "Atlantic/South_Georgia"
-msgstr "Атлянтыка/Паўдзенная Джорджыя"
+msgid "Atlantic/Canary"
+msgstr ""
 
 #: ../src/ical-code.c:366
-#
-msgid "Atlantic/St_Helena"
-msgstr "Атлянтыка/Сан-Галена"
+msgid "Atlantic/Cape_Verde"
+msgstr ""
 
 #: ../src/ical-code.c:367
-#
-msgid "Atlantic/Stanley"
-msgstr "Атлянтыка/Стэнлі"
+msgid "Atlantic/Faeroe"
+msgstr ""
 
 #: ../src/ical-code.c:368
-msgid "Australia"
-msgstr "Аўстралія"
+msgid "Atlantic/Jan_Mayen"
+msgstr ""
 
 #: ../src/ical-code.c:369
-#
-msgid "Australia/Adelaide"
-msgstr "Аўстралія/Адэляйд"
+msgid "Atlantic/Madeira"
+msgstr ""
 
 #: ../src/ical-code.c:370
-#
-msgid "Australia/Brisbane"
-msgstr "Аўстралія/Брышбан"
+msgid "Atlantic/Reykjavik"
+msgstr ""
 
 #: ../src/ical-code.c:371
-#
-msgid "Australia/Broken_Hill"
-msgstr "Аўстралія/Брокен-Хіл"
+msgid "Atlantic/South_Georgia"
+msgstr ""
 
 #: ../src/ical-code.c:372
-#
-msgid "Australia/Darwin"
-msgstr "Аўстралія/Дарвін"
+msgid "Atlantic/St_Helena"
+msgstr ""
 
 #: ../src/ical-code.c:373
-#
-msgid "Australia/Hobart"
-msgstr "Аўстралія/Губерт"
+msgid "Atlantic/Stanley"
+msgstr ""
 
 #: ../src/ical-code.c:374
-#
-msgid "Australia/Lindeman"
-msgstr "Аўстралія/Ліндэман"
+msgid "Australia"
+msgstr ""
 
 #: ../src/ical-code.c:375
-#
-msgid "Australia/Lord_Howe"
-msgstr "Аўстралія/Лорд-Хоў"
+msgid "Australia/Adelaide"
+msgstr ""
 
 #: ../src/ical-code.c:376
-#
-msgid "Australia/Melbourne"
-msgstr "Аўстралія/Мэльбурн"
+msgid "Australia/Brisbane"
+msgstr ""
 
 #: ../src/ical-code.c:377
-#
-msgid "Australia/Perth"
-msgstr "Аўстралія/Пэрс"
+msgid "Australia/Broken_Hill"
+msgstr ""
 
 #: ../src/ical-code.c:378
-#
-msgid "Australia/Sydney"
-msgstr "Аўстралія/Сідней"
+msgid "Australia/Darwin"
+msgstr ""
 
 #: ../src/ical-code.c:379
-msgid "Europe"
-msgstr "Эўропа"
+msgid "Australia/Hobart"
+msgstr ""
 
 #: ../src/ical-code.c:380
-msgid "Europe/Amsterdam"
-msgstr "Эўропа/Амстэрдам"
+msgid "Australia/Lindeman"
+msgstr ""
 
 #: ../src/ical-code.c:381
-msgid "Europe/Andorra"
-msgstr "Эўропа/Андора"
+msgid "Australia/Lord_Howe"
+msgstr ""
 
 #: ../src/ical-code.c:382
-msgid "Europe/Athens"
-msgstr "Эўропа/Афіны"
+msgid "Australia/Melbourne"
+msgstr ""
 
 #: ../src/ical-code.c:383
-msgid "Europe/Belfast"
-msgstr "Эўропа/Бэлфаст"
+msgid "Australia/Perth"
+msgstr ""
 
 #: ../src/ical-code.c:384
-msgid "Europe/Belgrade"
-msgstr "Эўропа/Бялград"
+msgid "Australia/Sydney"
+msgstr ""
 
 #: ../src/ical-code.c:385
-msgid "Europe/Berlin"
-msgstr "Эўропа/Бэрлін"
+msgid "Europe"
+msgstr ""
 
 #: ../src/ical-code.c:386
-msgid "Europe/Bratislava"
-msgstr "Эўропа/Браціслава"
+msgid "Europe/Amsterdam"
+msgstr ""
 
 #: ../src/ical-code.c:387
-msgid "Europe/Brussels"
-msgstr "Эўропа/Брусэль"
+msgid "Europe/Andorra"
+msgstr ""
 
 #: ../src/ical-code.c:388
-msgid "Europe/Bucharest"
-msgstr "Эўропа/Бухарэст"
+msgid "Europe/Athens"
+msgstr ""
 
 #: ../src/ical-code.c:389
-msgid "Europe/Budapest"
-msgstr "Эўропа/Будапэшт"
+msgid "Europe/Belfast"
+msgstr ""
 
 #: ../src/ical-code.c:390
-msgid "Europe/Chisinau"
-msgstr "Эўропа/Чызінаў"
+msgid "Europe/Belgrade"
+msgstr ""
 
 #: ../src/ical-code.c:391
-msgid "Europe/Copenhagen"
-msgstr "Эўропа/Капэнгаген"
+msgid "Europe/Berlin"
+msgstr ""
 
 #: ../src/ical-code.c:392
-msgid "Europe/Dublin"
-msgstr "Эўропа/Дублін"
+msgid "Europe/Bratislava"
+msgstr ""
 
 #: ../src/ical-code.c:393
-msgid "Europe/Gibraltar"
-msgstr "Эўропа/Гібральтар"
+msgid "Europe/Brussels"
+msgstr ""
 
 #: ../src/ical-code.c:394
-msgid "Europe/Helsinki"
-msgstr "Эўропа/Хэльсынкі"
+msgid "Europe/Bucharest"
+msgstr ""
 
 #: ../src/ical-code.c:395
-msgid "Europe/Istanbul"
-msgstr "Эўропа/Стамбул"
+msgid "Europe/Budapest"
+msgstr ""
 
 #: ../src/ical-code.c:396
-msgid "Europe/Kaliningrad"
-msgstr "Эўропа/Кёнігсбэрг"
+msgid "Europe/Chisinau"
+msgstr ""
 
 #: ../src/ical-code.c:397
-msgid "Europe/Kiev"
-msgstr "Эўропа/Кіеў"
+msgid "Europe/Copenhagen"
+msgstr ""
 
 #: ../src/ical-code.c:398
-msgid "Europe/Lisbon"
-msgstr "Эўропа/Лісабон"
+msgid "Europe/Dublin"
+msgstr ""
 
 #: ../src/ical-code.c:399
-msgid "Europe/Ljubljana"
-msgstr "Эўропа/Люблін"
+msgid "Europe/Gibraltar"
+msgstr ""
 
 #: ../src/ical-code.c:400
-msgid "Europe/London"
-msgstr "Эўропа/Лёндан"
+msgid "Europe/Helsinki"
+msgstr ""
 
 #: ../src/ical-code.c:401
-msgid "Europe/Luxembourg"
-msgstr "Эўропа/Люксэмбург"
+msgid "Europe/Istanbul"
+msgstr ""
 
 #: ../src/ical-code.c:402
-msgid "Europe/Madrid"
-msgstr "Эўропа/Мадрыд"
+msgid "Europe/Kaliningrad"
+msgstr ""
 
 #: ../src/ical-code.c:403
-msgid "Europe/Malta"
-msgstr "Эўропа/Мальта"
+msgid "Europe/Kiev"
+msgstr ""
 
 #: ../src/ical-code.c:404
-msgid "Europe/Minsk"
-msgstr "Эўропа/Менск"
+msgid "Europe/Lisbon"
+msgstr ""
 
 #: ../src/ical-code.c:405
-msgid "Europe/Monaco"
-msgstr "Эўропа/Манака"
+msgid "Europe/Ljubljana"
+msgstr ""
 
 #: ../src/ical-code.c:406
-msgid "Europe/Moscow"
-msgstr "Эўропа/Масква"
+msgid "Europe/London"
+msgstr ""
 
 #: ../src/ical-code.c:407
-msgid "Europe/Nicosia"
-msgstr "Эўропа/Нікасія"
+msgid "Europe/Luxembourg"
+msgstr ""
 
 #: ../src/ical-code.c:408
-msgid "Europe/Oslo"
-msgstr "Эўропа/Осла"
+msgid "Europe/Madrid"
+msgstr ""
 
 #: ../src/ical-code.c:409
-msgid "Europe/Paris"
-msgstr "Эўропа/Парыж"
+msgid "Europe/Malta"
+msgstr ""
 
 #: ../src/ical-code.c:410
-msgid "Europe/Prague"
-msgstr "Эўропа/Прага"
+msgid "Europe/Minsk"
+msgstr ""
 
 #: ../src/ical-code.c:411
-msgid "Europe/Riga"
-msgstr "Эўропа/Рыга"
+msgid "Europe/Monaco"
+msgstr ""
 
 #: ../src/ical-code.c:412
-msgid "Europe/Rome"
-msgstr "Эўропа/Рым"
+msgid "Europe/Moscow"
+msgstr ""
 
 #: ../src/ical-code.c:413
-msgid "Europe/Samara"
-msgstr "Эўропа/Самара"
+msgid "Europe/Nicosia"
+msgstr ""
 
 #: ../src/ical-code.c:414
-msgid "Europe/San_Marino"
-msgstr "Эўропа/Сан-Марына"
+msgid "Europe/Oslo"
+msgstr ""
 
 #: ../src/ical-code.c:415
-msgid "Europe/Sarajevo"
-msgstr "Эўропа/Сараева"
+msgid "Europe/Paris"
+msgstr ""
 
 #: ../src/ical-code.c:416
-msgid "Europe/Simferopol"
-msgstr "Эўропа/Сімфэропаль"
+msgid "Europe/Prague"
+msgstr ""
 
 #: ../src/ical-code.c:417
-msgid "Europe/Skopje"
-msgstr "Эўропа/Скоп'е"
+msgid "Europe/Riga"
+msgstr ""
 
 #: ../src/ical-code.c:418
-msgid "Europe/Sofia"
-msgstr "Эўропа/Сафія"
+msgid "Europe/Rome"
+msgstr ""
 
 #: ../src/ical-code.c:419
-msgid "Europe/Stockholm"
-msgstr "Эўропа/Стакгольм"
+msgid "Europe/Samara"
+msgstr ""
 
 #: ../src/ical-code.c:420
-msgid "Europe/Tallinn"
-msgstr "Эўропа/Талін"
+msgid "Europe/San_Marino"
+msgstr ""
 
 #: ../src/ical-code.c:421
-msgid "Europe/Tirane"
-msgstr "Эўропа/Цірана"
+msgid "Europe/Sarajevo"
+msgstr ""
 
 #: ../src/ical-code.c:422
-msgid "Europe/Uzhgorod"
-msgstr "Эўропа/Ужгарад"
+msgid "Europe/Simferopol"
+msgstr ""
 
 #: ../src/ical-code.c:423
-msgid "Europe/Vaduz"
-msgstr "Эўропа/Вадуц"
+msgid "Europe/Skopje"
+msgstr ""
 
 #: ../src/ical-code.c:424
-msgid "Europe/Vatican"
-msgstr "Эўропа/Ватыкан"
+msgid "Europe/Sofia"
+msgstr ""
 
 #: ../src/ical-code.c:425
-msgid "Europe/Vienna"
-msgstr "Эўропа/Ведня"
+msgid "Europe/Stockholm"
+msgstr ""
 
 #: ../src/ical-code.c:426
-msgid "Europe/Vilnius"
-msgstr "Эўропа/Вільня"
+msgid "Europe/Tallinn"
+msgstr ""
 
 #: ../src/ical-code.c:427
-msgid "Europe/Warsaw"
-msgstr "Эўропа/Варшава"
+msgid "Europe/Tirane"
+msgstr ""
 
 #: ../src/ical-code.c:428
-msgid "Europe/Zagreb"
-msgstr "Эўропа/Заграб"
+msgid "Europe/Uzhgorod"
+msgstr ""
 
 #: ../src/ical-code.c:429
-msgid "Europe/Zaporozhye"
-msgstr "Эўропа/Запарожжа"
+msgid "Europe/Vaduz"
+msgstr ""
 
 #: ../src/ical-code.c:430
-msgid "Europe/Zurich"
-msgstr "Эўропа/Цюрых"
+msgid "Europe/Vatican"
+msgstr ""
 
 #: ../src/ical-code.c:431
-msgid "Indian"
-msgstr "Індыйскі акіян"
+msgid "Europe/Vienna"
+msgstr ""
 
 #: ../src/ical-code.c:432
-msgid "Indian/Antananarivo"
-msgstr "Індыйскі акіян/Антананарыва"
+msgid "Europe/Vilnius"
+msgstr ""
 
 #: ../src/ical-code.c:433
-msgid "Indian/Chagos"
-msgstr "Індыйскі акіян/Чага"
+msgid "Europe/Warsaw"
+msgstr ""
 
 #: ../src/ical-code.c:434
-msgid "Indian/Christmas"
-msgstr "Індыйскі акіян/Раство"
+msgid "Europe/Zagreb"
+msgstr ""
 
 #: ../src/ical-code.c:435
-msgid "Indian/Cocos"
-msgstr "Індыйскі акіян/Какос"
+msgid "Europe/Zaporozhye"
+msgstr ""
 
 #: ../src/ical-code.c:436
-msgid "Indian/Comoro"
-msgstr "Індыйскі акіян/Камара"
+msgid "Europe/Zurich"
+msgstr ""
 
 #: ../src/ical-code.c:437
-msgid "Indian/Kerguelen"
-msgstr "Індыйскі акіян/Кергуэлен"
+msgid "Indian"
+msgstr ""
 
 #: ../src/ical-code.c:438
-msgid "Indian/Mahe"
-msgstr "Індыйскі акіян/Мах"
+msgid "Indian/Antananarivo"
+msgstr ""
 
 #: ../src/ical-code.c:439
-msgid "Indian/Maldives"
-msgstr "Індыйскі акіян/Мальдывы"
+msgid "Indian/Chagos"
+msgstr ""
 
 #: ../src/ical-code.c:440
-msgid "Indian/Mauritius"
-msgstr "Індыйскі акіян/Маўрыцыюс"
+msgid "Indian/Christmas"
+msgstr ""
 
 #: ../src/ical-code.c:441
-msgid "Indian/Mayotte"
-msgstr "Індыйскі акіян/Майот"
+msgid "Indian/Cocos"
+msgstr ""
 
 #: ../src/ical-code.c:442
-msgid "Indian/Reunion"
-msgstr "Індыйскі акіян/Рэюніён"
+msgid "Indian/Comoro"
+msgstr ""
 
 #: ../src/ical-code.c:443
-msgid "Pacific"
-msgstr "Ціхі акіян"
+msgid "Indian/Kerguelen"
+msgstr ""
 
 #: ../src/ical-code.c:444
-msgid "Pacific/Apia"
-msgstr "Ціхі акіян/Апія"
+msgid "Indian/Mahe"
+msgstr ""
 
 #: ../src/ical-code.c:445
-msgid "Pacific/Auckland"
-msgstr "Ціхі акіян/Окленд"
+msgid "Indian/Maldives"
+msgstr ""
 
 #: ../src/ical-code.c:446
-msgid "Pacific/Chatham"
-msgstr "Ціхі акіян/Чатам"
+msgid "Indian/Mauritius"
+msgstr ""
 
 #: ../src/ical-code.c:447
-msgid "Pacific/Easter"
-msgstr "Ціхі акіян/Істэр"
+msgid "Indian/Mayotte"
+msgstr ""
 
 #: ../src/ical-code.c:448
-msgid "Pacific/Efate"
-msgstr "Ціхі акіян/Эфіт"
+msgid "Indian/Reunion"
+msgstr ""
 
 #: ../src/ical-code.c:449
-msgid "Pacific/Enderbury"
-msgstr "Ціхі акіян/Эндэрбары"
+msgid "Pacific"
+msgstr ""
 
 #: ../src/ical-code.c:450
-#
-msgid "Pacific/Fakaofo"
-msgstr "Ціхі акіян/Хвакахву"
+msgid "Pacific/Apia"
+msgstr ""
 
 #: ../src/ical-code.c:451
-#
-msgid "Pacific/Fiji"
-msgstr "Ціхі акіян/Фіджы"
+msgid "Pacific/Auckland"
+msgstr ""
 
 #: ../src/ical-code.c:452
-#
-msgid "Pacific/Funafuti"
-msgstr "Ціхі акіян/Хванахваці"
+msgid "Pacific/Chatham"
+msgstr ""
 
 #: ../src/ical-code.c:453
-#
-msgid "Pacific/Galapagos"
-msgstr "Ціхі акіян/Галапагос"
+msgid "Pacific/Easter"
+msgstr ""
 
 #: ../src/ical-code.c:454
-#
-msgid "Pacific/Gambier"
-msgstr "Ціхі акіян/Гамбір"
+msgid "Pacific/Efate"
+msgstr ""
 
 #: ../src/ical-code.c:455
-#
-msgid "Pacific/Guadalcanal"
-msgstr "Ціхі акіян/Гуадалканал"
+msgid "Pacific/Enderbury"
+msgstr ""
 
 #: ../src/ical-code.c:456
-#
-msgid "Pacific/Guam"
-msgstr "Ціхі акіян/Гуам"
+msgid "Pacific/Fakaofo"
+msgstr ""
 
 #: ../src/ical-code.c:457
-#
-msgid "Pacific/Honolulu"
-msgstr "Ціхі акіян/Ганалулу"
+msgid "Pacific/Fiji"
+msgstr ""
 
 #: ../src/ical-code.c:458
-#
-msgid "Pacific/Johnston"
-msgstr "Ціхі акіян/Джонсан"
+msgid "Pacific/Funafuti"
+msgstr ""
 
 #: ../src/ical-code.c:459
-#
-msgid "Pacific/Kiritimati"
-msgstr "Ціхі акіян/Кіріцімаці"
+msgid "Pacific/Galapagos"
+msgstr ""
 
 #: ../src/ical-code.c:460
-#
-msgid "Pacific/Kosrae"
-msgstr "Ціхі акіян/Косрае"
+msgid "Pacific/Gambier"
+msgstr ""
 
 #: ../src/ical-code.c:461
-#
-msgid "Pacific/Kwajalein"
-msgstr "Ціхі акіян/Квайляйн"
+msgid "Pacific/Guadalcanal"
+msgstr ""
 
 #: ../src/ical-code.c:462
-#
-msgid "Pacific/Majuro"
-msgstr "Ціхі акіян/Маджара"
+msgid "Pacific/Guam"
+msgstr ""
 
 #: ../src/ical-code.c:463
-#
-msgid "Pacific/Marquesas"
-msgstr "Ціхі акіян/Маргуесас"
+msgid "Pacific/Honolulu"
+msgstr ""
 
 #: ../src/ical-code.c:464
-#
-msgid "Pacific/Midway"
-msgstr "Ціхі акіян/Мідвэй"
+msgid "Pacific/Johnston"
+msgstr ""
 
 #: ../src/ical-code.c:465
-#
-msgid "Pacific/Nauru"
-msgstr "Ціхі акіян/Науру"
+msgid "Pacific/Kiritimati"
+msgstr ""
 
 #: ../src/ical-code.c:466
-#
-msgid "Pacific/Niue"
-msgstr "Ціхі акіян/Нуе"
+msgid "Pacific/Kosrae"
+msgstr ""
 
 #: ../src/ical-code.c:467
-#
-msgid "Pacific/Norfolk"
-msgstr "Ціхі акіян/Норфалк"
+msgid "Pacific/Kwajalein"
+msgstr ""
 
 #: ../src/ical-code.c:468
-#
-msgid "Pacific/Noumea"
-msgstr "Ціхі акіян/Нумеа"
+msgid "Pacific/Majuro"
+msgstr ""
 
 #: ../src/ical-code.c:469
-#
-msgid "Pacific/Pago_Pago"
-msgstr "Ціхі акіян/Пага-Пага"
+msgid "Pacific/Marquesas"
+msgstr ""
 
 #: ../src/ical-code.c:470
-#
-msgid "Pacific/Palau"
-msgstr "Ціхі акіян/Палаў"
+msgid "Pacific/Midway"
+msgstr ""
 
 #: ../src/ical-code.c:471
-#
-msgid "Pacific/Pitcairn"
-msgstr "Ціхі акіян/Піткэрн"
+msgid "Pacific/Nauru"
+msgstr ""
 
 #: ../src/ical-code.c:472
-#
-msgid "Pacific/Ponape"
-msgstr "Ціхі акіян/Понапэ"
+msgid "Pacific/Niue"
+msgstr ""
 
 #: ../src/ical-code.c:473
-#
-msgid "Pacific/Port_Moresby"
-msgstr "Ціхі акіян/Порт-Морсбі"
+msgid "Pacific/Norfolk"
+msgstr ""
 
 #: ../src/ical-code.c:474
-#
-msgid "Pacific/Rarotonga"
-msgstr "Ціхі акіян/Раротонга"
+msgid "Pacific/Noumea"
+msgstr ""
 
 #: ../src/ical-code.c:475
-#
-msgid "Pacific/Saipan"
-msgstr "Ціхі акіян/Сайпэн"
+msgid "Pacific/Pago_Pago"
+msgstr ""
 
 #: ../src/ical-code.c:476
-#
-msgid "Pacific/Tahiti"
-msgstr "Ціхі акіян/Таіці"
+msgid "Pacific/Palau"
+msgstr ""
 
 #: ../src/ical-code.c:477
-#
-msgid "Pacific/Tarawa"
-msgstr "Ціхі акіян/Тарава"
+msgid "Pacific/Pitcairn"
+msgstr ""
 
 #: ../src/ical-code.c:478
-#
-msgid "Pacific/Tongatapu"
-msgstr "Ціхі акіян/Тонгатапу"
+msgid "Pacific/Ponape"
+msgstr ""
 
 #: ../src/ical-code.c:479
-#
-msgid "Pacific/Truk"
-msgstr "Ціхі акіян/Трук"
+msgid "Pacific/Port_Moresby"
+msgstr ""
 
 #: ../src/ical-code.c:480
-#
-msgid "Pacific/Wake"
-msgstr "Ціхі акіян/Вак"
+msgid "Pacific/Rarotonga"
+msgstr ""
 
 #: ../src/ical-code.c:481
-#
-msgid "Pacific/Wallis"
-msgstr "Ціхі акіян/Валі"
+msgid "Pacific/Saipan"
+msgstr ""
 
 #: ../src/ical-code.c:482
-#
+msgid "Pacific/Tahiti"
+msgstr ""
+
+#: ../src/ical-code.c:483
+msgid "Pacific/Tarawa"
+msgstr ""
+
+#: ../src/ical-code.c:484
+msgid "Pacific/Tongatapu"
+msgstr ""
+
+#: ../src/ical-code.c:485
+msgid "Pacific/Truk"
+msgstr ""
+
+#: ../src/ical-code.c:486
+msgid "Pacific/Wake"
+msgstr ""
+
+#: ../src/ical-code.c:487
+msgid "Pacific/Wallis"
+msgstr ""
+
+#: ../src/ical-code.c:488
 msgid "Pacific/Yap"
-msgstr "Ціхі акіян/Яп"
+msgstr ""
 
-#: ../src/ical-code.c:1223
+#: ../src/ical-code.c:1545
 msgid "Orage default alarm"
-msgstr "Прадвызначаны сыгнал Orage"
+msgstr ""
 
-#: ../src/main.c:214
-msgid "This should not happen"
-msgstr "Гэта не павінна было здарыцца"
+#: ../src/ical-code.c:3352
+msgid "Archiving not enabled. Exiting"
+msgstr ""
 
-#: ../src/main.c:510
-msgid "Cannot create MCS client channel"
-msgstr "Немагчыма стварыць кліенцкі MCS канал"
+#: ../src/ical-code.c:3371
+#, c-format
+msgid "Archiving threshold: %d month(s)"
+msgstr ""
 
-#: ../src/mainbox.c:428
-msgid "Open archive file..."
-msgstr "Адкрыць файл з архівам..."
+#: ../src/ical-code.c:3373
+#, c-format
+msgid "\tArchiving events, which are older than: %04d-%02d-%02d"
+msgstr ""
 
-#: ../src/mainbox.c:431
-msgid "Close archive file"
-msgstr "Закрыць файл з архівам"
+#: ../src/ical-code.c:3399
+#, c-format
+msgid "Archiving uid: %s (%s)"
+msgstr ""
+
+#: ../src/ical-code.c:3400
+msgid "recur"
+msgstr ""
+
+#: ../src/ical-code.c:3400
+msgid "normal"
+msgstr ""
+
+#: ../src/ical-code.c:3401
+#, c-format
+msgid "\tEnd year: %04d, month: %02d, day: %02d"
+msgstr ""
+
+#: ../src/ical-code.c:3416
+msgid "Archiving done\n"
+msgstr ""
+
+#. PHASE 1: go through base orage file and remove "repeat" shortcuts
+#: ../src/ical-code.c:3459
+msgid "Starting archive removal: PHASE 1: reset recurring appointments"
+msgstr ""
+
+#: ../src/ical-code.c:3503
+msgid "Archive removal done\n"
+msgstr ""
+
+#. show it
+#: ../src/ical-code.c:4257
+msgid "Pick timezone"
+msgstr ""
+
+#: ../src/ical-code.c:4260 ../src/ical-code.c:4288
+msgid "UTC"
+msgstr ""
+
+#: ../src/ical-code.c:4261 ../src/ical-code.c:4292 ../src/parameters.c:381
+msgid "floating"
+msgstr ""
+
+#: ../src/interface.c:290
+#, fuzzy
+msgid "Calendar files"
+msgstr "Каляндар"
+
+#: ../src/interface.c:629
+msgid "Current foreign files"
+msgstr ""
+
+#: ../src/interface.c:640
+msgid "READ ONLY"
+msgstr ""
+
+#: ../src/interface.c:642
+msgid "READ WRITE"
+msgstr ""
+
+#: ../src/interface.c:660
+msgid "***** No foreign files *****"
+msgstr ""
+
+#: ../src/interface.c:960
+msgid "Import/export"
+msgstr ""
+
+#: ../src/interface.c:967
+msgid "Import"
+msgstr ""
+
+#: ../src/interface.c:972
+msgid "Read from file:"
+msgstr ""
+
+#: ../src/interface.c:989
+msgid ""
+"Separate filenames with comma(,).\n"
+" NOTE: comma is not valid character in filenames for Orage."
+msgstr ""
+
+#: ../src/interface.c:994
+msgid "Export"
+msgstr ""
+
+#: ../src/interface.c:999
+msgid "Write to file:"
+msgstr ""
+
+#: ../src/interface.c:1020 ../src/interface.c:1032
+#, fuzzy
+msgid "Select"
+msgstr "Вылучыць _сёньня"
+
+#: ../src/interface.c:1023
+#, fuzzy
+msgid "All appointments"
+msgstr "Прызначэньне"
+
+#: ../src/interface.c:1036
+#, fuzzy
+msgid "Named appointments: "
+msgstr "Прызначэньне"
+
+#: ../src/interface.c:1047
+msgid ""
+"Note that only main file appointments are read.\n"
+"Archived events are not exported."
+msgstr ""
+
+#: ../src/interface.c:1049
+msgid "You can easily drag these from event-list window."
+msgstr ""
+
+#: ../src/interface.c:1051
+msgid "Orage appointment UIDs separated by commas."
+msgstr ""
+
+#: ../src/interface.c:1056
+msgid "Archive"
+msgstr ""
+
+#: ../src/interface.c:1064
+#, c-format
+msgid "Archive now (threshold: %d months)"
+msgstr ""
+
+#: ../src/interface.c:1074
+msgid "You can change archive threshold in parameters"
+msgstr ""
+
+#: ../src/interface.c:1081
+msgid "Revert archive now"
+msgstr ""
+
+#: ../src/interface.c:1087
+msgid ""
+"Return all archived events into main orage file and remove arch file.\n"
+"This is usefull for example when doing export and moving orage\n"
+"appointments to another system."
+msgstr ""
+
+#: ../src/interface.c:1098
+#, fuzzy
+msgid "Orage files"
+msgstr "Перавагі"
+
+#: ../src/interface.c:1105
+#, fuzzy
+msgid "Orage main calendar file"
+msgstr "Каляндар"
+
+#: ../src/interface.c:1110 ../src/interface.c:1174
+#, fuzzy
+msgid "Current file"
+msgstr "Каляндар"
+
+#: ../src/interface.c:1117 ../src/interface.c:1181
+msgid "New file"
+msgstr ""
+
+#: ../src/interface.c:1133 ../src/interface.c:1198
+msgid "Action options"
+msgstr ""
+
+#: ../src/interface.c:1136 ../src/interface.c:1201
+msgid "Rename"
+msgstr ""
+
+#: ../src/interface.c:1140
+msgid ""
+"Orage internal file rename only.\n"
+"Does not touch external filesystem at all.\n"
+"New file must exist."
+msgstr ""
+
+#: ../src/interface.c:1144 ../src/interface.c:1206
+msgid "Copy"
+msgstr ""
+
+#: ../src/interface.c:1148
+msgid "Current file is copied and stays unmodified in the old place."
+msgstr ""
+
+#: ../src/interface.c:1152 ../src/interface.c:1211
+msgid "Move"
+msgstr ""
+
+#: ../src/interface.c:1156
+msgid "Current file is moved and vanishes from the old place."
+msgstr ""
+
+#: ../src/interface.c:1169
+msgid "Archive file"
+msgstr ""
+
+#: ../src/interface.c:1234
+msgid "Foreign files"
+msgstr ""
+
+#: ../src/interface.c:1241
+msgid "Add new foreign file"
+msgstr ""
+
+#: ../src/interface.c:1246
+msgid "Foreign file:"
+msgstr ""
+
+#: ../src/interface.c:1264
+msgid "Options"
+msgstr ""
+
+#: ../src/interface.c:1266
+msgid "Read only"
+msgstr ""
+
+#: ../src/interface.c:1274
+msgid ""
+"Set this if you want to make sure that this file is never modified by Orage."
+msgstr ""
+
+#: ../src/interface.c:1288
+msgid "Exchange data - Orage"
+msgstr ""
+
+#: ../src/main.c:259
+#, c-format
+msgid ""
+"\tThis is %s version %s for Xfce %s\n"
+"\n"
+msgstr ""
+
+#: ../src/main.c:261
+msgid "\tReleased under the terms of the GNU General Public License.\n"
+msgstr ""
+
+#: ../src/main.c:262
+#, c-format
+msgid "\tCompiled against GTK+-%d.%d.%d, "
+msgstr ""
+
+#: ../src/main.c:264
+#, c-format
+msgid "using GTK+-%d.%d.%d.\n"
+msgstr ""
+
+#: ../src/main.c:267
+msgid "\tUsing DBUS for import.\n"
+msgstr ""
+
+#: ../src/main.c:269
+msgid "\tNot using DBUS. Import works only partially.\n"
+msgstr ""
+
+#: ../src/main.c:282
+msgid ""
+"Usage: orage [options] [files]\n"
+"\n"
+msgstr ""
+
+#: ../src/main.c:283
+msgid "Options:\n"
+msgstr ""
+
+#: ../src/main.c:284
+msgid "--version (-v) \t\tshow version of orage\n"
+msgstr ""
+
+#: ../src/main.c:285
+msgid "--help (-h) \t\tprint this text\n"
+msgstr ""
+
+#: ../src/main.c:286
+msgid "--preferences (-p) \tshow preferences form\n"
+msgstr ""
+
+#: ../src/main.c:287
+msgid "--toggle (-t) \t\tmake orage visible/unvisible\n"
+msgstr ""
+
+#: ../src/main.c:288
+msgid "--add-foreign (-a) file [RW] \tadd a foreign file\n"
+msgstr ""
+
+#: ../src/main.c:289
+msgid "--remove-foreign (-r) file \tremove a foreign file\n"
+msgstr ""
+
+#: ../src/main.c:291
+msgid "files=ical files to load into orage\n"
+msgstr ""
+
+#: ../src/main.c:293
+msgid "\tdbus not included in orage. \n"
+msgstr ""
+
+#: ../src/main.c:294
+msgid ""
+"\twithout dbus [files] and foreign file options(-a & -r) can only be used "
+"when starting orage \n"
+msgstr ""
+
+#: ../src/main.c:435
+#, c-format
+msgid ""
+"\n"
+"Unknown option %s\n"
+"\n"
+msgstr ""
+
+#: ../src/mainbox.c:235
+msgid "_Exchange data"
+msgstr ""
 
 #. Edit menu
-#: ../src/mainbox.c:446
+#: ../src/mainbox.c:246
 msgid "_Edit"
-msgstr "_Рэдагаваньне"
+msgstr ""
 
-#: ../src/mainbox.c:456
+#: ../src/mainbox.c:256
 msgid "View selected _date"
-msgstr "Прагледзіць вылучаную _дату"
+msgstr ""
 
-#: ../src/mainbox.c:462
+#: ../src/mainbox.c:262
 msgid "Select _Today"
 msgstr "Вылучыць _сёньня"
 
 #. Help menu
-#: ../src/mainbox.c:466
+#: ../src/mainbox.c:266
 msgid "_Help"
 msgstr "_Даведка"
 
-#: ../src/reminder.c:233
+#: ../src/parameters.c:361
+msgid "Main setups"
+msgstr ""
+
+#: ../src/parameters.c:367
+msgid "Timezone"
+msgstr ""
+
+#: ../src/parameters.c:391
+msgid "Archive threshold (months)"
+msgstr ""
+
+#: ../src/parameters.c:401
+msgid "(0 = no archiving)"
+msgstr ""
+
+#: ../src/parameters.c:409
+msgid "Sound command"
+msgstr ""
+
+#: ../src/parameters.c:436
+msgid "Display"
+msgstr ""
+
+#: ../src/parameters.c:443
+#, fuzzy
+msgid "Calendar main window"
+msgstr "За_чыніць вакно"
+
+#: ../src/parameters.c:448
+msgid "Show borders"
+msgstr ""
+
+#: ../src/parameters.c:455
+msgid "Show menu"
+msgstr ""
+
+#: ../src/parameters.c:462
+msgid "Set sticked"
+msgstr ""
+
+#: ../src/parameters.c:469
+msgid "Set on top"
+msgstr ""
+
+#: ../src/parameters.c:486
+msgid "Show in taskbar"
+msgstr ""
+
+#: ../src/parameters.c:493
+msgid "Show in pager"
+msgstr ""
+
+#: ../src/parameters.c:500
+msgid "Show in systray"
+msgstr ""
+
+#: ../src/parameters.c:516
+#, fuzzy
+msgid "Calendar start"
+msgstr "Каляндар"
+
+#: ../src/parameters.c:521
+msgid "Show"
+msgstr ""
+
+#: ../src/parameters.c:533
+msgid "Hide"
+msgstr ""
+
+#: ../src/parameters.c:545
+msgid "Minimized"
+msgstr ""
+
+#: ../src/parameters.c:567
+#, fuzzy
+msgid "Monday"
+msgstr "Сёньня"
+
+#: ../src/parameters.c:567
+#, fuzzy
+msgid "Tuesday"
+msgstr "Сёньня"
+
+#: ../src/parameters.c:567
+#, fuzzy
+msgid "Wednesday"
+msgstr "Сёньня"
+
+#: ../src/parameters.c:567
+#, fuzzy
+msgid "Thursday"
+msgstr "Сёньня"
+
+#: ../src/parameters.c:568
+#, fuzzy
+msgid "Friday"
+msgstr "Сёньня"
+
+#: ../src/parameters.c:568
+msgid "Saturday"
+msgstr ""
+
+#: ../src/parameters.c:568
+#, fuzzy
+msgid "Sunday"
+msgstr "Сёньня"
+
+#: ../src/parameters.c:573
+msgid "Extra setups"
+msgstr ""
+
+#: ../src/parameters.c:580 ../src/parameters.c:585
+#, fuzzy
+msgid "Select always today"
+msgstr "Вылучыць _сёньня"
+
+#: ../src/parameters.c:596
+msgid "Ical week start day"
+msgstr ""
+
+#: ../src/parameters.c:616
+msgid "Dynamic icon size"
+msgstr ""
+
+#: ../src/parameters.c:629 ../src/parameters.c:643
+msgid "(0 = use static icon)"
+msgstr ""
+
+#: ../src/parameters.c:660
+#, fuzzy
+msgid "Orage Preferences"
+msgstr "Перавагі"
+
+#: ../src/reminder.c:216 ../src/reminder.c:296
+#, fuzzy
 msgid "Reminder "
 msgstr "Нагадвальнік"
 
-#. GtkTooltipsData *cur_tooltip;
-#: ../src/reminder.c:320
-msgid "Next active alarms:"
-msgstr "Наступныя актыўныя сыгналы:"
+#: ../src/reminder.c:230
+msgid "Open"
+msgstr ""
 
-#: ../src/reminder.c:328
+#: ../src/reminder.c:470
+msgid "Next active alarms:"
+msgstr ""
+
+#: ../src/reminder.c:508
 #, c-format
 msgid ""
 "\n"
 "%02d d %02d h %02d min to: %s"
 msgstr ""
-"\n"
-"%02d дз. %02d г %02d хв. да: %s"
 
-#: ../src/reminder.c:334
+#: ../src/reminder.c:522
 msgid ""
 "\n"
 "No active alarms found"
 msgstr ""
-"\n"
-"Актыўны сыгнал ня знойдзены"
 
-#: ../src/tray_icon.c:311
+#: ../src/tray_icon.c:316
+#, fuzzy
 msgid "New appointment"
-msgstr "Новая сустрэча"
+msgstr "Прызначэньне"
 
-#: ../src/tray_icon.c:331
+#: ../src/tray_icon.c:336
 msgid "About Orage"
-msgstr "Пра Orage"
+msgstr ""
 
 #: ../panel-plugin/orageclock.desktop.in.in.h:1
 msgid "Orage Clock"
-msgstr "Гадзіньнік Orage"
+msgstr ""
 
 #: ../panel-plugin/orageclock.desktop.in.in.h:2
 msgid "What time and date is it?"
-msgstr "Які зараз дзень і колькі часу?"
+msgstr ""
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:1
+#, fuzzy
 msgid "Calendar Settings"
-msgstr "Настаўленьні Календара"
+msgstr "Выс_таўленьні"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:2
 msgid "Settings for the Xfce 4 Calendar Application"
-msgstr "Настаўленьні для Календара Xfce 4"
+msgstr ""
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:3
 msgid "Xfce 4 Calendar Settings"
-msgstr "Настаўленьні Календара Xfce 4"
+msgstr ""
 
 #: ../xfcalendar.desktop.in.h:1
+#, fuzzy
 msgid "Calendar"
 msgstr "Каляндар"
 
 #: ../xfcalendar.desktop.in.h:2
+#, fuzzy
 msgid "Desktop calendar"
-msgstr "Каляндар для Стальца"
+msgstr "Аб календары"
 
+#, fuzzy
+#~ msgid "Calendar Files"
+#~ msgstr "Каляндар"
+
+#, fuzzy
+#~ msgid "Calendar borders"
+#~ msgstr "Каляндар"
+
+#~ msgid "Core developer"
+#~ msgstr "Асноўны распрацоўнік"
+
+#~ msgid ""
+#~ "You will remove all information \n"
+#~ "associated with this date."
+#~ msgstr ""
+#~ "Вы выдаліце ўсе зьвесткі,\n"
+#~ "зьвязаныя з гэтай датай."
+
+#~ msgid "Clear"
+#~ msgstr "Ачысьціць"
+
+#~ msgid "This should not happen"
+#~ msgstr "Гэта не павінна было здарыцца"
+
+#~ msgid "Cannot create MCS client channel"
+#~ msgstr "Немагчыма стварыць кліенцкі MCS канал"
