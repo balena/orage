@@ -376,7 +376,6 @@ void create_reminders(alarm_struct *alarm)
     n_alarm->title = g_string_new(alarm->title->str);
     n_alarm->description = g_string_new(alarm->description->str);
     n_alarm->notify_timeout = alarm->notify_timeout;
-    n_alarm->display = alarm->display;
     n_alarm->display_orage = alarm->display_orage;
     n_alarm->display_notify = alarm->display_notify;
     n_alarm->notify_timeout = alarm->notify_timeout;
@@ -385,11 +384,9 @@ void create_reminders(alarm_struct *alarm)
         n_alarm->sound = g_string_new(alarm->sound->str);
     n_alarm->repeat_cnt = alarm->repeat_cnt;
     n_alarm->repeat_delay = alarm->repeat_delay;
-    if (n_alarm->display
-    && (!n_alarm->display_orage && !n_alarm->display_notify))
-        n_alarm->display_orage = TRUE;
     n_alarm->procedure = alarm->procedure;
-    n_alarm->cmd = g_string_new(alarm->cmd->str);
+    if (alarm->cmd != NULL)
+        n_alarm->cmd = g_string_new(alarm->cmd->str);
     n_alarm->active_alarm = g_new0(active_alarm_struct, 1);
 
     if (n_alarm->audio)

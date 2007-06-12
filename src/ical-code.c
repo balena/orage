@@ -64,6 +64,8 @@
 #include "appointment.h"
 #include "parameters.h"
 
+static void xfical_alarm_build_list_internal(gboolean first_list_today);
+
 /*
 #define ORAGE_DEBUG 1
 */
@@ -1130,357 +1132,6 @@ xfical_appt *xfical_appt_alloc()
     return(appt);
 }
 
-static void alarm_free(gpointer galarm, gpointer dummy)
-{
-#undef P_N
-#define P_N "alarm_free: "
-    alarm_struct *alarm = (alarm_struct *)galarm;;
-
-#ifdef ORAGE_DEBUG
-    g_print(P_N "\n");
-#endif
-    g_string_free(alarm->uid, TRUE);
-    g_free(alarm->alarm_time);
-    if (alarm->title != NULL)
-        g_string_free(alarm->title, TRUE);
-    if (alarm->description != NULL)
-        g_string_free(alarm->description, TRUE);
-    if (alarm->sound != NULL)
-        g_string_free(alarm->sound, TRUE);
-    g_free(alarm);
-}
-
-static gint alarm_order(gconstpointer a, gconstpointer b)
-{
-#undef P_N
-#define P_N "alarm_order: "
-    struct icaltimetype t1, t2;
-
-#ifdef ORAGE_DEBUG
-    g_print(P_N "\n");
-#endif
-    t1=icaltime_from_string(((alarm_struct *)a)->alarm_time);
-    t2=icaltime_from_string(((alarm_struct *)b)->alarm_time);
-
-    return(icaltime_compare(t1, t2));
-}
-
-    /*
-static void alarm_add(icalproperty_status action
-         , char *uid, char *file_type, char *title, char *description
-         , char *sound, gint repeat_cnt, gint repeat_delay
-         , struct icaltimetype alarm_time, struct icaltimetype event_time)
-{
-#undef P_N
-#define P_N "alarm_add: "
-    alarm_struct *new_alarm;
-
-#ifdef ORAGE_DEBUG
-    g_print(P_N "\n");
-#endif
-    new_alarm = g_new(alarm_struct, 1);
-    new_alarm->uid = g_string_new(file_type);
-    new_alarm->uid = g_string_append(new_alarm->uid, uid);
-    new_alarm->title = g_string_new(title);
-    new_alarm->alarm_time = g_strdup(icaltime_as_ical_string(alarm_time));
-    new_alarm->event_time = g_strdup(icaltime_as_ical_string(event_time));
-    new_alarm->description = g_string_new(description);
-    new_alarm->sound = g_string_new(sound);
-    new_alarm->repeat_cnt = repeat_cnt;
-    new_alarm->repeat_delay = repeat_delay;
-    if (description != NULL)
-        new_alarm->display = TRUE;
-    else
-        new_alarm->display = FALSE;
-    if (sound != NULL)
-        new_alarm->audio = TRUE;
-    else
-        new_alarm->audio = FALSE;
-
-    g_par.alarm_list = g_list_append(g_par.alarm_list, new_alarm);
-}
-    */
-
-/* let's find the trigger and check that it is active.
- * return new alarm struct if alarm is active and NULL if it is not
- * FIXME: We assume all alarms have similar trigger, which 
- * may not be true for other that Orage appointments
- */
-static  alarm_struct *process_alarm_trigger(icalcomponent *c
-        , icalcomponent *ca, struct icaltimetype cur_time, int *cnt_repeat)
-{
-#undef P_N
-#define P_N "process_alarm_trigger: "
-    icalproperty *p;
-    struct icaltriggertype trg;
-    icalparameter *trg_related_par;
-    icalparameter_related rel;
-    struct icalrecurrencetype rrule;
-    icalrecur_iterator* ri;
-    xfical_period per;
-    struct icaltimetype alarm_time, next_time;
-    gboolean trg_active = FALSE;
-    alarm_struct *new_alarm;;
-
-#ifdef ORAGE_DEBUG
-    g_print(P_N "\n");
-#endif
-    p = icalcomponent_get_first_property(ca, ICAL_TRIGGER_PROPERTY);
-    if (!p) {
-        g_warning(P_N "Trigger not found");
-        return(NULL);
-    }
-    trg = icalproperty_get_trigger(p);
-    trg_related_par = icalproperty_get_first_parameter(p
-            , ICAL_RELATED_PARAMETER);
-    if (trg_related_par)
-        rel = icalparameter_get_related(trg_related_par);
-    else
-        rel = ICAL_RELATED_START;
-    per = get_period(c);
-    if (icaltime_is_date(per.stime)) { 
-/* HACK: convert to local time so that we can use time arithmetic
- * when counting alarm time. */
-        per.stime.is_date       = 0;
-        per.stime.is_utc        = cur_time.is_utc;
-        per.stime.is_daylight   = cur_time.is_daylight;
-        per.stime.zone          = cur_time.zone;
-        per.stime.hour          = 0;
-        per.stime.minute        = 0;
-        per.stime.second        = 0;
-    }
-    if (rel == ICAL_RELATED_END)
-        alarm_time = icaltime_add(per.etime, trg.duration);
-    else /* default is ICAL_RELATED_START */
-        alarm_time = icaltime_add(per.stime, trg.duration);
-    if (icaltime_compare(cur_time, alarm_time) <= 0) { /* active */
-        trg_active = TRUE;
-    }
-    else if ((p = icalcomponent_get_first_property(c
-        , ICAL_RRULE_PROPERTY)) != 0) { /* check recurring EVENTs */                    rrule = icalproperty_get_rrule(p);
-        next_time = icaltime_null_time();
-        ri = icalrecur_iterator_new(rrule, alarm_time);
-        for (next_time = icalrecur_iterator_next(ri);
-            (!icaltime_is_null_time(next_time))
-            && (local_compare(cur_time, next_time) > 0) ;
-            next_time = icalrecur_iterator_next(ri)) {
-            (*cnt_repeat)++;
-        }
-        icalrecur_iterator_free(ri);
-        if (icaltime_compare(cur_time, next_time) <= 0) {
-            trg_active = TRUE;
-            alarm_time = next_time;
-        }
-    }
-    if (trg_active) {
-        new_alarm = g_new0(alarm_struct, 1);
-        new_alarm->alarm_time = g_strdup(icaltime_as_ical_string(alarm_time));
-        return(new_alarm);
-    }
-    else
-        return(NULL);
-}
-
-static void process_alarm_data(icalcomponent *ca, alarm_struct *new_alarm)
-{
-#undef P_N
-#define P_N "process_alarm_data: "
-    icalproperty *p;
-    enum icalproperty_action act;
-    icalattach *attach = NULL;
-    struct icaldurationtype duration;
-    char *text;
-    int i;
-
-#ifdef ORAGE_DEBUG
-    g_print(P_N "\n");
-#endif
-    p = icalcomponent_get_first_property(ca, ICAL_ACTION_PROPERTY);
-    if (!p) {
-        g_warning(P_N "No ACTION in alarm. Ignoring this ALARM.");
-        return;
-    }
-    act = icalproperty_get_action(p);
-    if (act == ICAL_ACTION_DISPLAY) {
-        new_alarm->display = TRUE;
-        p = icalcomponent_get_first_property(ca, ICAL_DESCRIPTION_PROPERTY);
-        if (p)
-            new_alarm->description = g_string_new(
-                    (char *)icalproperty_get_description(p));
-        for (p = icalcomponent_get_first_property(ca, ICAL_X_PROPERTY);
-             p != 0;
-             p = icalcomponent_get_next_property(ca, ICAL_X_PROPERTY)) {
-            text = (char *)icalproperty_get_x_name(p);
-            if (!strcmp(text, "X-ORAGE-DISPLAY-ALARM")) {
-                text = (char *)icalproperty_get_value_as_string(p);
-                if (!strcmp(text, "ORAGE")) {
-                    new_alarm->display_orage = TRUE;
-                }
-                else if (!strcmp(text, "NOTIFY")) {
-                    new_alarm->display_notify = TRUE;
-                }
-            }
-            else if (!strcmp(text, "X-ORAGE-NOTIFY-ALARM-TIMEOUT")) {
-                text = (char *)icalproperty_get_value_as_string(p);
-                sscanf(text, "%d", &i);
-                new_alarm->notify_timeout = i;
-            }
-            else {
-                g_warning(P_N "unknown X property %s", text);
-            }
-        }
-    }
-    else if (act == ICAL_ACTION_AUDIO) {
-        new_alarm->audio = TRUE;
-        p = icalcomponent_get_first_property(ca, ICAL_ATTACH_PROPERTY);
-        if (p) {
-            attach = icalproperty_get_attach(p);
-            text = (char *)icalattach_get_url(attach);
-            if (text)
-                new_alarm->sound = g_string_new(text);
-        }
-        p = icalcomponent_get_first_property(ca, ICAL_REPEAT_PROPERTY);
-        if (p)
-            new_alarm->repeat_cnt = icalproperty_get_repeat(p);
-        p = icalcomponent_get_first_property(ca, ICAL_DURATION_PROPERTY);
-        if (p) {
-            duration = icalproperty_get_duration(p);
-            new_alarm->repeat_delay = icaldurationtype_as_int(duration);
-        }
-    }
-    else if (act == ICAL_ACTION_PROCEDURE) {
-        new_alarm->procedure = TRUE;
-        p = icalcomponent_get_first_property(ca, ICAL_ATTACH_PROPERTY);
-        if (p) {
-            attach = icalproperty_get_attach(p);
-            text = (char *)icalattach_get_url(attach);
-            if (text) {
-                new_alarm->cmd = g_string_new(text);
-                p = icalcomponent_get_first_property(ca
-                        , ICAL_DESCRIPTION_PROPERTY);
-                if (p)
-                    new_alarm->cmd = g_string_append(new_alarm->cmd
-                            , (char *)icalproperty_get_description(p));
-            }
-        }
-    }
-    else { /* unknown alarm action */
-        g_warning(P_N "Unknown ACTION (%d) in alarm. Ignoring ALARM.", act);
-        return;
-    }
-}
-
-static void xfical_alarm_build_list_internal_real(gboolean first_list_today
-        , icalcomponent *base, char *file_type)
-{
-#undef P_N
-#define P_N "xfical_alarm_build_list_internal_real: "
-    icalcomponent *c, *ca;
-    icalproperty *p;
-    icalproperty_status stat=ICAL_ACTION_DISPLAY;
-    struct icaltimetype cur_time;
-    char *suid, *ssummary, *sdescription, *ssound = NULL;
-    gboolean trg_processed = FALSE, trg_active = FALSE;
-    gint repeat_cnt = 0, repeat_delay = 0;
-    gint cnt_alarm=0, cnt_repeat=0, cnt_event=0, cnt_act_alarm=0
-        , cnt_alarm_add=0;
-    icalcompiter ci;
-    alarm_struct *new_alarm = NULL;
-
-#ifdef ORAGE_DEBUG
-    g_print(P_N "\n");
-#endif
-    cur_time = ical_get_current_local_time();
-
-    for (c = icalcomponent_get_first_component(base, ICAL_ANY_COMPONENT);
-            c != 0;
-            c = icalcomponent_get_next_component(base, ICAL_ANY_COMPONENT)) {
-        cnt_event++;
-        trg_processed = FALSE;
-        trg_active = FALSE;
-        for (ci = icalcomponent_begin_component(c, ICAL_VALARM_COMPONENT);
-                icalcompiter_deref(&ci) != 0;
-                icalcompiter_next(&ci)) {
-            ca = icalcompiter_deref(&ci);
-            cnt_alarm++;
-            if (!trg_processed) {
-                trg_processed = TRUE;
-                new_alarm = process_alarm_trigger(c, ca, cur_time, &cnt_repeat);
-                if (new_alarm) {
-                    trg_active = TRUE;
-                    new_alarm->uid = g_string_new(file_type);
-                    suid = (char *)icalcomponent_get_uid(c);
-                    new_alarm->uid = g_string_append(new_alarm->uid, suid);
-                    new_alarm->title = g_string_new(
-                            (char *)icalcomponent_get_summary(c));
-                }
-            }
-            if (trg_processed) {
-                if (trg_active) {
-                    cnt_act_alarm++;
-                    process_alarm_data(ca, new_alarm);
-                }
-            }
-            else {
-                g_warning(P_N "Found alarm without trigger %s. Skipping it"
-                        , icalcomponent_get_uid(c));
-            }
-        }  /* ALARM */
-        if (trg_active) {
-            if (!new_alarm->description)
-                new_alarm->description = g_string_new(
-                        (char *)icalcomponent_get_description(c));
-            g_par.alarm_list = g_list_append(g_par.alarm_list, new_alarm);
-            cnt_alarm_add++;
-        }
-    }  /* COMPONENT */
-    g_par.alarm_list = g_list_sort(g_par.alarm_list, alarm_order);
-    if (first_list_today) {
-        orage_message("Build alarm list: Added %d alarms. Processed %d events."
-                , cnt_alarm_add, cnt_event);
-        orage_message("\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
-                , cnt_alarm, cnt_act_alarm, cnt_repeat);
-    }
-}
-
-static void xfical_alarm_build_list_internal(gboolean first_list_today)
-{
-#undef P_N
-#define P_N "xfical_alarm_build_list_internal: "
-    gchar file_type[8];
-    gint i;
-
-#ifdef ORAGE_DEBUG
-    g_print(P_N "\n");
-#endif
-    /* first remove all old alarms by cleaning the whole structure */
-    g_list_foreach(g_par.alarm_list, alarm_free, NULL);
-    g_list_free(g_par.alarm_list);
-    g_par.alarm_list = NULL;
-
-    /* first search base orage file */
-    strcpy(file_type, "O00.");
-    xfical_alarm_build_list_internal_real(first_list_today, ical, file_type);
-    /* then process all foreign files */
-    for (i = 0; i < g_par.foreign_count; i++) {
-        g_sprintf(file_type, "F%02d.", i);
-        xfical_alarm_build_list_internal_real(first_list_today, f_ical[i].ical
-                , file_type);
-    }
-}
-
-void xfical_alarm_build_list(gboolean first_list_today)
-{
-#undef P_N
-#define P_N "xfical_alarm_build_list: "
-#ifdef ORAGE_DEBUG
-    g_print(P_N "\n");
-#endif
-    xfical_file_open(TRUE);
-    xfical_alarm_build_list_internal(first_list_today);
-    xfical_file_close(TRUE);
-}
-
 static char *generate_uid()
 {
 #undef P_N
@@ -2160,7 +1811,7 @@ static gboolean get_alarm_data(icalcomponent *ca,  xfical_appt *appt)
         if (p) {
             appt->sound_alarm = TRUE;
             attach = icalproperty_get_attach(p);
-            appt->sound = g_strdup((char *)icalattach_get_url(attach));
+            appt->sound = (char *)icalattach_get_url(attach);
             p = icalcomponent_get_first_property(ca, ICAL_REPEAT_PROPERTY);
             if (p) {
                 appt->soundrepeat = TRUE;
@@ -2180,12 +1831,12 @@ static gboolean get_alarm_data(icalcomponent *ca,  xfical_appt *appt)
             attach = icalproperty_get_attach(p);
             text = (char *)icalattach_get_url(attach);
             if (text) {
-                appt->procedure_cmd = g_strdup(text);
+                appt->procedure_cmd = text;
                 p = icalcomponent_get_first_property(ca
                         , ICAL_DESCRIPTION_PROPERTY);
                 if (p)
-                    appt->procedure_params = g_strdup(
-                            (char *)icalproperty_get_description(p));
+                    appt->procedure_params = 
+                            (char *)icalproperty_get_description(p);
             }
         }
     }
@@ -2897,6 +2548,395 @@ gboolean xfical_appt_del(char *ical_uid)
     return(FALSE);
 }
 
+static void alarm_free(gpointer galarm, gpointer dummy)
+{
+#undef P_N
+#define P_N "alarm_free: "
+    alarm_struct *alarm = (alarm_struct *)galarm;;
+
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
+    g_free(alarm->alarm_time);
+    g_string_free(alarm->uid, TRUE);
+    if (alarm->title != NULL)
+        g_string_free(alarm->title, TRUE);
+    if (alarm->description != NULL)
+        g_string_free(alarm->description, TRUE);
+    if (alarm->sound != NULL)
+        g_string_free(alarm->sound, TRUE);
+    if (alarm->cmd != NULL)
+        g_string_free(alarm->cmd, TRUE);
+    g_free(alarm);
+}
+
+static gint alarm_order(gconstpointer a, gconstpointer b)
+{
+#undef P_N
+#define P_N "alarm_order: "
+    struct icaltimetype t1, t2;
+
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
+    t1=icaltime_from_string(((alarm_struct *)a)->alarm_time);
+    t2=icaltime_from_string(((alarm_struct *)b)->alarm_time);
+
+    return(icaltime_compare(t1, t2));
+}
+
+    /*
+static void alarm_add(icalproperty_status action
+         , char *uid, char *file_type, char *title, char *description
+         , char *sound, gint repeat_cnt, gint repeat_delay
+         , struct icaltimetype alarm_time, struct icaltimetype event_time)
+{
+#undef P_N
+#define P_N "alarm_add: "
+    alarm_struct *new_alarm;
+
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
+    new_alarm = g_new(alarm_struct, 1);
+    new_alarm->uid = g_string_new(file_type);
+    new_alarm->uid = g_string_append(new_alarm->uid, uid);
+    new_alarm->title = g_string_new(title);
+    new_alarm->alarm_time = g_strdup(icaltime_as_ical_string(alarm_time));
+    new_alarm->event_time = g_strdup(icaltime_as_ical_string(event_time));
+    new_alarm->description = g_string_new(description);
+    new_alarm->sound = g_string_new(sound);
+    new_alarm->repeat_cnt = repeat_cnt;
+    new_alarm->repeat_delay = repeat_delay;
+    if (description != NULL)
+        new_alarm->display = TRUE;
+    else
+        new_alarm->display = FALSE;
+    if (sound != NULL)
+        new_alarm->audio = TRUE;
+    else
+        new_alarm->audio = FALSE;
+
+    g_par.alarm_list = g_list_append(g_par.alarm_list, new_alarm);
+}
+    */
+
+/* let's find the trigger and check that it is active.
+ * return new alarm struct if alarm is active and NULL if it is not
+ * FIXME: We assume all alarms have similar trigger, which 
+ * may not be true for other than Orage appointments
+ */
+static  alarm_struct *process_alarm_trigger(icalcomponent *c
+        , icalcomponent *ca, struct icaltimetype cur_time, int *cnt_repeat)
+{
+#undef P_N
+#define P_N "process_alarm_trigger: "
+    icalproperty *p;
+    struct icaltriggertype trg;
+    icalparameter *trg_related_par;
+    icalparameter_related rel;
+    struct icalrecurrencetype rrule;
+    icalrecur_iterator* ri;
+    xfical_period per;
+    struct icaltimetype alarm_time, next_time;
+    gboolean trg_active = FALSE;
+    alarm_struct *new_alarm;;
+
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
+    p = icalcomponent_get_first_property(ca, ICAL_TRIGGER_PROPERTY);
+    if (!p) {
+        g_warning(P_N "Trigger not found");
+        return(NULL);
+    }
+    trg = icalproperty_get_trigger(p);
+    trg_related_par = icalproperty_get_first_parameter(p
+            , ICAL_RELATED_PARAMETER);
+    if (trg_related_par)
+        rel = icalparameter_get_related(trg_related_par);
+    else
+        rel = ICAL_RELATED_START;
+    per = get_period(c);
+    if (icaltime_is_date(per.stime)) { 
+/* HACK: convert to local time so that we can use time arithmetic
+ * when counting alarm time. */
+        per.stime.is_date       = 0;
+        per.stime.is_utc        = cur_time.is_utc;
+        per.stime.is_daylight   = cur_time.is_daylight;
+        per.stime.zone          = cur_time.zone;
+        per.stime.hour          = 0;
+        per.stime.minute        = 0;
+        per.stime.second        = 0;
+    }
+    if (rel == ICAL_RELATED_END)
+        alarm_time = icaltime_add(per.etime, trg.duration);
+    else /* default is ICAL_RELATED_START */
+        alarm_time = icaltime_add(per.stime, trg.duration);
+    if (icaltime_compare(cur_time, alarm_time) <= 0) { /* active */
+        trg_active = TRUE;
+    }
+    else if ((p = icalcomponent_get_first_property(c
+        , ICAL_RRULE_PROPERTY)) != 0) { /* check recurring EVENTs */                    rrule = icalproperty_get_rrule(p);
+        next_time = icaltime_null_time();
+        ri = icalrecur_iterator_new(rrule, alarm_time);
+        for (next_time = icalrecur_iterator_next(ri);
+            (!icaltime_is_null_time(next_time))
+            && (local_compare(cur_time, next_time) > 0) ;
+            next_time = icalrecur_iterator_next(ri)) {
+            (*cnt_repeat)++;
+        }
+        icalrecur_iterator_free(ri);
+        if (icaltime_compare(cur_time, next_time) <= 0) {
+            trg_active = TRUE;
+            alarm_time = next_time;
+        }
+    }
+    if (trg_active) {
+        new_alarm = g_new0(alarm_struct, 1);
+        new_alarm->alarm_time = g_strdup(icaltime_as_ical_string(alarm_time));
+        return(new_alarm);
+    }
+    else
+        return(NULL);
+}
+
+static void process_alarm_data(icalcomponent *ca, alarm_struct *new_alarm)
+{
+#undef P_N
+#define P_N "process_alarm_data: "
+    xfical_appt *appt;
+    /*
+    icalproperty *p;
+    enum icalproperty_action act;
+    icalattach *attach = NULL;
+    struct icaldurationtype duration;
+    char *text;
+    int i;
+    */
+
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
+    appt = xfical_appt_alloc();
+    get_alarm_data(ca, appt);
+
+    if (appt->display_alarm_orage ||  appt->display_alarm_notify) {
+        new_alarm->display_orage = appt->display_alarm_orage;
+        new_alarm->display_notify = appt->display_alarm_notify;
+        new_alarm->notify_timeout = appt->display_notify_timeout;
+        if (ORAGE_STR_EXISTS(appt->note))
+            new_alarm->description = g_string_new(appt->note);
+    }
+    else if (appt->sound_alarm) {
+        new_alarm->audio = appt->sound_alarm;
+        if (ORAGE_STR_EXISTS(appt->sound))
+            new_alarm->sound = g_string_new(appt->sound);
+        if (appt->soundrepeat) {
+            new_alarm->repeat_cnt = appt->soundrepeat_cnt;
+            new_alarm->repeat_delay = appt->soundrepeat_len;
+        }
+    }
+    else if(appt->procedure_alarm) {
+        new_alarm->procedure = appt->procedure_alarm;
+        if (ORAGE_STR_EXISTS(appt->procedure_cmd)) {
+            new_alarm->cmd = g_string_new(appt->procedure_cmd);
+            if (ORAGE_STR_EXISTS(appt->procedure_params)) {
+                new_alarm->cmd = 
+                        g_string_append(new_alarm->cmd, appt->procedure_params);
+            }
+        }
+    }
+
+    g_free(appt);
+    /*
+    p = icalcomponent_get_first_property(ca, ICAL_ACTION_PROPERTY);
+    if (!p) {
+        g_warning(P_N "No ACTION in alarm. Ignoring this ALARM.");
+        return;
+    }
+    act = icalproperty_get_action(p);
+    if (act == ICAL_ACTION_DISPLAY) {
+        new_alarm->display = TRUE;
+        p = icalcomponent_get_first_property(ca, ICAL_DESCRIPTION_PROPERTY);
+        if (p)
+            new_alarm->description = g_string_new(
+                    (char *)icalproperty_get_description(p));
+        for (p = icalcomponent_get_first_property(ca, ICAL_X_PROPERTY);
+             p != 0;
+             p = icalcomponent_get_next_property(ca, ICAL_X_PROPERTY)) {
+            text = (char *)icalproperty_get_x_name(p);
+            if (!strcmp(text, "X-ORAGE-DISPLAY-ALARM")) {
+                text = (char *)icalproperty_get_value_as_string(p);
+                if (!strcmp(text, "ORAGE")) {
+                    new_alarm->display_orage = TRUE;
+                }
+                else if (!strcmp(text, "NOTIFY")) {
+                    new_alarm->display_notify = TRUE;
+                }
+            }
+            else if (!strcmp(text, "X-ORAGE-NOTIFY-ALARM-TIMEOUT")) {
+                text = (char *)icalproperty_get_value_as_string(p);
+                sscanf(text, "%d", &i);
+                new_alarm->notify_timeout = i;
+            }
+            else {
+                g_warning(P_N "unknown X property %s", text);
+            }
+        }
+    }
+    else if (act == ICAL_ACTION_AUDIO) {
+        new_alarm->audio = TRUE;
+        p = icalcomponent_get_first_property(ca, ICAL_ATTACH_PROPERTY);
+        if (p) {
+            attach = icalproperty_get_attach(p);
+            text = (char *)icalattach_get_url(attach);
+            if (text)
+                new_alarm->sound = g_string_new(text);
+        }
+        p = icalcomponent_get_first_property(ca, ICAL_REPEAT_PROPERTY);
+        if (p)
+            new_alarm->repeat_cnt = icalproperty_get_repeat(p);
+        p = icalcomponent_get_first_property(ca, ICAL_DURATION_PROPERTY);
+        if (p) {
+            duration = icalproperty_get_duration(p);
+            new_alarm->repeat_delay = icaldurationtype_as_int(duration);
+        }
+    }
+    else if (act == ICAL_ACTION_PROCEDURE) {
+        new_alarm->procedure = TRUE;
+        p = icalcomponent_get_first_property(ca, ICAL_ATTACH_PROPERTY);
+        if (p) {
+            attach = icalproperty_get_attach(p);
+            text = (char *)icalattach_get_url(attach);
+            if (text) {
+                new_alarm->cmd = g_string_new(text);
+                p = icalcomponent_get_first_property(ca
+                        , ICAL_DESCRIPTION_PROPERTY);
+                if (p)
+                    new_alarm->cmd = g_string_append(new_alarm->cmd
+                            , (char *)icalproperty_get_description(p));
+            }
+        }
+    }
+    else {
+        g_warning(P_N "Unknown ACTION (%d) in alarm. Ignoring ALARM.", act);
+        return;
+    }
+*/
+}
+
+static void xfical_alarm_build_list_internal_real(gboolean first_list_today
+        , icalcomponent *base, char *file_type)
+{
+#undef P_N
+#define P_N "xfical_alarm_build_list_internal_real: "
+    icalcomponent *c, *ca;
+    icalproperty *p;
+    icalproperty_status stat=ICAL_ACTION_DISPLAY;
+    struct icaltimetype cur_time;
+    char *suid, *ssummary, *sdescription, *ssound = NULL;
+    gboolean trg_processed = FALSE, trg_active = FALSE;
+    gint repeat_cnt = 0, repeat_delay = 0;
+    gint cnt_alarm=0, cnt_repeat=0, cnt_event=0, cnt_act_alarm=0
+        , cnt_alarm_add=0;
+    icalcompiter ci;
+    alarm_struct *new_alarm = NULL;
+
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
+    cur_time = ical_get_current_local_time();
+
+    for (c = icalcomponent_get_first_component(base, ICAL_ANY_COMPONENT);
+            c != 0;
+            c = icalcomponent_get_next_component(base, ICAL_ANY_COMPONENT)) {
+        cnt_event++;
+        trg_processed = FALSE;
+        trg_active = FALSE;
+        for (ci = icalcomponent_begin_component(c, ICAL_VALARM_COMPONENT);
+                icalcompiter_deref(&ci) != 0;
+                icalcompiter_next(&ci)) {
+            ca = icalcompiter_deref(&ci);
+            cnt_alarm++;
+            if (!trg_processed) {
+                trg_processed = TRUE;
+                new_alarm = process_alarm_trigger(c, ca, cur_time, &cnt_repeat);
+                if (new_alarm) {
+                    trg_active = TRUE;
+                    new_alarm->uid = g_string_new(file_type);
+                    suid = (char *)icalcomponent_get_uid(c);
+                    new_alarm->uid = g_string_append(new_alarm->uid, suid);
+                    new_alarm->title = g_string_new(
+                            (char *)icalcomponent_get_summary(c));
+                }
+            }
+            if (trg_processed) {
+                if (trg_active) {
+                    cnt_act_alarm++;
+                    process_alarm_data(ca, new_alarm);
+                }
+            }
+            else {
+                g_warning(P_N "Found alarm without trigger %s. Skipping it"
+                        , icalcomponent_get_uid(c));
+            }
+        }  /* ALARM */
+        if (trg_active) {
+            if (!new_alarm->description)
+                new_alarm->description = g_string_new(
+                        (char *)icalcomponent_get_description(c));
+            g_par.alarm_list = g_list_append(g_par.alarm_list, new_alarm);
+            cnt_alarm_add++;
+        }
+    }  /* COMPONENT */
+    g_par.alarm_list = g_list_sort(g_par.alarm_list, alarm_order);
+    if (first_list_today) {
+        orage_message(_("Build alarm list: Added %d alarms. Processed %d events.")
+                , cnt_alarm_add, cnt_event);
+        orage_message(_("\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)")
+                , cnt_alarm, cnt_act_alarm, cnt_repeat);
+    }
+}
+
+static void xfical_alarm_build_list_internal(gboolean first_list_today)
+{
+#undef P_N
+#define P_N "xfical_alarm_build_list_internal: "
+    gchar file_type[8];
+    gint i;
+
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
+    /* first remove all old alarms by cleaning the whole structure */
+    g_list_foreach(g_par.alarm_list, alarm_free, NULL);
+    g_list_free(g_par.alarm_list);
+    g_par.alarm_list = NULL;
+
+    /* first search base orage file */
+    strcpy(file_type, "O00.");
+    xfical_alarm_build_list_internal_real(first_list_today, ical, file_type);
+    /* then process all foreign files */
+    for (i = 0; i < g_par.foreign_count; i++) {
+        g_sprintf(file_type, "F%02d.", i);
+        xfical_alarm_build_list_internal_real(first_list_today, f_ical[i].ical
+                , file_type);
+    }
+}
+
+void xfical_alarm_build_list(gboolean first_list_today)
+{
+#undef P_N
+#define P_N "xfical_alarm_build_list: "
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
+    xfical_file_open(TRUE);
+    xfical_alarm_build_list_internal(first_list_today);
+    xfical_file_close(TRUE);
+}
+
  /* Read next EVENT/TODO/JOURNAL component on the specified date from 
   * ical datafile.
   * a_day:  start date of ical component which is to be read
@@ -3171,13 +3211,11 @@ void xfical_mark_calendar(GtkCalendar *gtkcal, int year, int month)
 #ifdef ORAGE_DEBUG
     g_print(P_N "\n");
 #endif
-    gtk_calendar_freeze(gtkcal);
     gtk_calendar_clear_marks(gtkcal);
     xfical_mark_calendar_internal(gtkcal, ical, year, month);
     for (i = 0; i < g_par.foreign_count; i++) {
         xfical_mark_calendar_internal(gtkcal, f_ical[i].ical, year, month);
     }
-    gtk_calendar_thaw(gtkcal);
 }
 
 void xfical_icalcomponent_archive_normal(icalcomponent *e) 
@@ -3370,6 +3408,7 @@ gboolean xfical_archive(void)
 
     orage_message(_("Archiving threshold: %d month(s)")
             , g_par.archive_limit);
+    /* yy mon day */
     orage_message(_("\tArchiving events, which are older than: %04d-%02d-%02d")
             , threshold->tm_year, threshold->tm_mon, threshold->tm_mday);
 

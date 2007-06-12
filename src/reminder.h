@@ -39,7 +39,6 @@ typedef struct _alarm_struct
     GString *title;
     GString *description;
 
-    gboolean display;
     gboolean display_orage;
     gboolean display_notify;
     gint     notify_timeout;
