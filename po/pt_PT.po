@@ -2,87 +2,88 @@
 # Copyright (C) 2003-2006 The Xfce development team.
 # This file is distributed under the same license as the orage package.
 # Nuno Donato <nunodonato@gmail.com>, 2004.
+# Nuno Miguel <nunis@netcabo.pt>
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.4.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-10-13 18:52+0300\n"
-"PO-Revision-Date: 2005-09-14 01:13+0900\n"
-"Last-Translator: Nuno Donato <nunodonato@gmail.com>\n"
-"Language-Team: Portuguese <translation-team-pt@lists.sourceforge.net>\n"
+"PO-Revision-Date: 2007-06-14 19:33+0100\n"
+"Last-Translator: Nuno Miguel <nunis@netcabo.pt>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language-Team: \n"
 
 #: ../panel-plugin/oc_config.c:114
 msgid "Select timezone"
-msgstr ""
+msgstr "Seleccione a zona horária"
 
 #: ../panel-plugin/oc_config.c:193
 msgid "Appearance"
-msgstr ""
+msgstr "Aparência"
 
 #. show frame
 #: ../panel-plugin/oc_config.c:204
 msgid "Show _frame"
-msgstr ""
+msgstr "Mostrar _janela"
 
 #. foreground color
 #: ../panel-plugin/oc_config.c:214
 msgid "set foreground _color:"
-msgstr ""
+msgstr "mudar _cor primeiro plano"
 
 #. background color
 #: ../panel-plugin/oc_config.c:228
 msgid "set _background color:"
-msgstr ""
+msgstr "mudar cor de _fundo"
 
 #. clock size (=vbox size): height and width
 #: ../panel-plugin/oc_config.c:242
 msgid "set _height:"
-msgstr ""
+msgstr "mudar _altura"
 
 #: ../panel-plugin/oc_config.c:254
 msgid "set _width:"
-msgstr ""
+msgstr "mudar _comprimento"
 
 #: ../panel-plugin/oc_config.c:275
 msgid "Clock Options"
-msgstr ""
+msgstr "Opções de relógio"
 
 #. timezone
 #: ../panel-plugin/oc_config.c:286
 msgid "set timezone to:"
-msgstr ""
+msgstr "mudar fuso para:"
 
 #: ../panel-plugin/oc_config.c:295
 msgid "Set any valid timezone (=TZ) value or pick one from the list."
-msgstr ""
+msgstr "Ajuste qualquer valor de fuso horário ou escolha um da lista."
 
 #. line 1
 #: ../panel-plugin/oc_config.c:304
 msgid "show line _1:"
-msgstr ""
+msgstr "mostrar linha _1"
 
 #: ../panel-plugin/oc_config.c:315
 msgid "Enter any valid strftime function parameter."
-msgstr ""
+msgstr "Entre qualquer parâmetro válido da função strftime."
 
 #. line 2
 #: ../panel-plugin/oc_config.c:331
 msgid "show line _2:"
-msgstr ""
+msgstr "mostrar linha _2"
 
 #. line 3
 #: ../panel-plugin/oc_config.c:353
 msgid "show line _3:"
-msgstr ""
+msgstr "mostrar linha _3"
 
 #. Tooltip hint
 #: ../panel-plugin/oc_config.c:375
 msgid "Tooltip:"
-msgstr ""
+msgstr "Dica:"
 
 #: ../panel-plugin/oc_config.c:392
 msgid ""
@@ -95,14 +96,22 @@ msgid ""
 "\t%H = hours \t\t\t\t%M = minute\n"
 "\t%X = local time\t\t\t%x = local date"
 msgstr ""
+"Este programa usa a função strftime para obter o tempo.\n"
+"Use qualquer código válido para obter o tempo no formato\n"
+"preferido. Alguns códigos comuns são:\n"
+"\t%A = dia da semana\t\t%B = mês\n"
+"\t%c = data & hora\t\t\t%R = hora & minuto\n"
+"\t%V = número da semana\t%Z = fuso horário em uso\n"
+"\t%H = horas\t\t\t\t%M = minuto\n"
+"\t%X = horário local\t\t%x = data local"
 
 #: ../panel-plugin/oc_config.c:411
 msgid "Properties"
-msgstr ""
+msgstr "Propriedades"
 
 #: ../panel-plugin/oc_config.c:426
 msgid "Orage clock"
-msgstr ""
+msgstr "Relógio Orage"
 
 #. TRANSLATORS: Use format characters from strftime(3)
 #. * to get the proper string for your locale.
@@ -115,377 +124,401 @@ msgstr ""
 #.
 #: ../panel-plugin/orageclock.c:420
 msgid "%A %d %B %Y/%V"
-msgstr ""
+msgstr "%A %d %B %Y/%V"
 
 #. to avoid timing problems when updating entry
 #. Create file chooser
-#: ../plugin/xfcalendar_plugin.c:263 ../plugin/xfcalendar_plugin.c:321
-#: ../src/appointment.c:383 ../src/mainbox.c:114
+#: ../plugin/xfcalendar_plugin.c:263
+#: ../plugin/xfcalendar_plugin.c:321
+#: ../src/appointment.c:383
+#: ../src/mainbox.c:114
 msgid "Select a file..."
-msgstr ""
+msgstr "Seleccione um ficheiro..."
 
-#: ../plugin/xfcalendar_plugin.c:271 ../src/mainbox.c:122
-#, fuzzy
+#: ../plugin/xfcalendar_plugin.c:271
+#: ../src/mainbox.c:122
 msgid "Calendar files"
-msgstr "Xfcalendar"
+msgstr "Ficheiros do calendário"
 
-#: ../plugin/xfcalendar_plugin.c:276 ../src/appointment.c:398
+#: ../plugin/xfcalendar_plugin.c:276
+#: ../src/appointment.c:398
 #: ../src/mainbox.c:127
 msgid "All Files"
-msgstr ""
+msgstr "Todos os ficheiros"
 
-#: ../plugin/xfcalendar_plugin.c:419 ../plugin/xfcalendar_plugin.c:424
-#: ../src/appointment.c:917 ../src/appointment.c:922 ../src/appointment.c:1438
+#: ../plugin/xfcalendar_plugin.c:419
+#: ../plugin/xfcalendar_plugin.c:424
+#: ../src/appointment.c:917
+#: ../src/appointment.c:922
+#: ../src/appointment.c:1438
 msgid "Location"
-msgstr ""
+msgstr "Localização"
 
 #. show it
 #: ../plugin/xfcalendar_plugin.c:430
 msgid "Pick local timezone"
-msgstr ""
+msgstr "Escolha o fuso local"
 
-#: ../plugin/xfcalendar_plugin.c:433 ../plugin/xfcalendar_plugin.c:463
-#: ../src/appointment.c:931 ../src/appointment.c:961
+#: ../plugin/xfcalendar_plugin.c:433
+#: ../plugin/xfcalendar_plugin.c:463
+#: ../src/appointment.c:931
+#: ../src/appointment.c:961
 msgid "UTC"
-msgstr ""
+msgstr "UTC"
 
-#: ../plugin/xfcalendar_plugin.c:434 ../plugin/xfcalendar_plugin.c:467
-#: ../plugin/xfcalendar_plugin.c:749 ../src/appointment.c:932
-#: ../src/appointment.c:965 ../src/appointment.c:1001
+#: ../plugin/xfcalendar_plugin.c:434
+#: ../plugin/xfcalendar_plugin.c:467
+#: ../plugin/xfcalendar_plugin.c:749
+#: ../src/appointment.c:932
+#: ../src/appointment.c:965
+#: ../src/appointment.c:1001
 #: ../src/appointment.c:1009
 msgid "floating"
-msgstr ""
+msgstr "flutuar"
 
 #: ../plugin/xfcalendar_plugin.c:528
-#, fuzzy
 msgid "Orage Preferences"
-msgstr "Preferências"
+msgstr "Preferências do Orage"
 
 #: ../plugin/xfcalendar_plugin.c:546
 msgid "Display"
-msgstr ""
+msgstr "Mostrar"
 
 #: ../plugin/xfcalendar_plugin.c:553
-#, fuzzy
 msgid "Calendar borders"
-msgstr "Xfcalendar"
+msgstr "Bordas do calendário"
 
 #: ../plugin/xfcalendar_plugin.c:558
 msgid "Displayed"
-msgstr ""
+msgstr "Mostrado"
 
 #: ../plugin/xfcalendar_plugin.c:564
 msgid "Hidden"
-msgstr ""
+msgstr "Escondido"
 
 #: ../plugin/xfcalendar_plugin.c:573
-#, fuzzy
 msgid "Calendar window"
-msgstr "_Fechar janela"
+msgstr "Janela de calendário"
 
 #: ../plugin/xfcalendar_plugin.c:578
 msgid "Show in taskbar"
-msgstr ""
+msgstr "Mostrar no taskbar"
 
 #: ../plugin/xfcalendar_plugin.c:582
 msgid "Show in pager"
-msgstr ""
+msgstr "Mostrar no pager"
 
 #: ../plugin/xfcalendar_plugin.c:586
 msgid "Show in systray"
-msgstr ""
+msgstr "Mostrar no systray"
 
 #: ../plugin/xfcalendar_plugin.c:593
-#, fuzzy
 msgid "Calendar start"
-msgstr "Xfcalendar"
+msgstr "Começo do calendário"
 
 #: ../plugin/xfcalendar_plugin.c:598
 msgid "Show"
-msgstr ""
+msgstr "Mostrar"
 
 #: ../plugin/xfcalendar_plugin.c:604
 msgid "Hide"
-msgstr ""
+msgstr "Ocultar"
 
 #: ../plugin/xfcalendar_plugin.c:610
 msgid "Minimized"
-msgstr ""
+msgstr "Minimizado"
 
 #: ../plugin/xfcalendar_plugin.c:620
 msgid "Archives"
-msgstr ""
+msgstr "Arquivos"
 
 #: ../plugin/xfcalendar_plugin.c:631
 msgid "Archive file"
-msgstr ""
+msgstr "Ficheiro de arquivo"
 
 #: ../plugin/xfcalendar_plugin.c:653
 msgid "Archive threshold"
-msgstr ""
+msgstr "Ponto inicial de arquivo"
 
 #: ../plugin/xfcalendar_plugin.c:660
 msgid "3 months"
-msgstr ""
+msgstr "3 meses"
 
 #: ../plugin/xfcalendar_plugin.c:662
 msgid "6 months"
-msgstr ""
+msgstr "6 meses"
 
 #: ../plugin/xfcalendar_plugin.c:664
 msgid "1 year"
-msgstr ""
+msgstr "1 ano"
 
 #: ../plugin/xfcalendar_plugin.c:666
 msgid "never"
-msgstr ""
+msgstr "nunca"
 
-#: ../plugin/xfcalendar_plugin.c:694 ../src/appointment.c:1588
-#, fuzzy
+#: ../plugin/xfcalendar_plugin.c:694
+#: ../src/appointment.c:1588
 msgid "Sound"
-msgstr "Domingo"
+msgstr "Som"
 
 #: ../plugin/xfcalendar_plugin.c:705
 msgid "Application"
-msgstr ""
+msgstr "Aplicação"
 
-#: ../plugin/xfcalendar_plugin.c:725 ../plugin/xfcalendar_plugin.c:735
+#: ../plugin/xfcalendar_plugin.c:725
+#: ../plugin/xfcalendar_plugin.c:735
 msgid "Timezone"
-msgstr ""
+msgstr "Fuso"
 
 #. the button label in the xfce-mcs-manager dialog
 #: ../plugin/xfcalendar_plugin.c:800
 msgid "Button Label|Orage"
-msgstr ""
+msgstr "Orage"
 
 #: ../src/about-xfcalendar.c:40
 msgid "Manage your time with Xfce4"
 msgstr "Faça a gestão do seu tempo com o Xfce4"
 
-#: ../src/about-xfcalendar.c:51 ../src/about-xfcalendar.c:56
+#: ../src/about-xfcalendar.c:51
+#: ../src/about-xfcalendar.c:56
 msgid "Core developer"
 msgstr "Programador principal"
 
-#: ../src/about-xfcalendar.c:61 ../src/about-xfcalendar.c:66
+#: ../src/about-xfcalendar.c:61
+#: ../src/about-xfcalendar.c:66
 msgid "Contributor"
 msgstr "Contribuidor"
 
-#: ../src/appointment.c:99 ../src/appointment.c:116
+#: ../src/appointment.c:99
+#: ../src/appointment.c:116
 msgid "%m/%d/%Y"
-msgstr ""
+msgstr "%m/%d/%Y"
 
-#: ../src/appointment.c:279 ../src/mainbox.c:396 ../xfcalendar.desktop.in.h:3
+#: ../src/appointment.c:279
+#: ../src/mainbox.c:396
+#: ../xfcalendar.desktop.in.h:3
 msgid "Orage"
-msgstr ""
+msgstr "Orage"
 
 #: ../src/appointment.c:391
 msgid "Sound Files"
-msgstr ""
+msgstr "Ficheiros de Som"
 
-#: ../src/appointment.c:439 ../src/appointment.c:474 ../src/appointment.c:719
+#: ../src/appointment.c:439
+#: ../src/appointment.c:474
+#: ../src/appointment.c:719
 #: ../src/event-list.c:581
 msgid "Warning"
 msgstr "Aviso"
 
 #: ../src/appointment.c:441
 msgid "The appointment information has been modified."
-msgstr ""
+msgstr "A informação do apontamento foi alterada."
 
-#: ../src/appointment.c:442 ../src/appointment.c:722 ../src/event-list.c:584
+#: ../src/appointment.c:442
+#: ../src/appointment.c:722
+#: ../src/event-list.c:584
 msgid "Do you want to continue?"
-msgstr ""
+msgstr "Deseja continuar?"
 
 #: ../src/appointment.c:476
 msgid "The end of this appointment is earlier than the beginning."
-msgstr ""
+msgstr "O fim deste apontamento é anterior ao início"
 
 #: ../src/appointment.c:721
 msgid "This appointment will be permanently removed."
-msgstr ""
+msgstr "Este apontamento será removido para sempre."
 
 #: ../src/appointment.c:822
 msgid "Pick the date"
-msgstr ""
+msgstr "Escolher a data"
 
-#: ../src/appointment.c:824 ../src/event-list.c:722 ../src/tray_icon.c:297
+#: ../src/appointment.c:824
+#: ../src/event-list.c:722
+#: ../src/tray_icon.c:297
 msgid "Today"
 msgstr "Hoje"
 
 #. show it
 #: ../src/appointment.c:928
 msgid "Pick timezone"
-msgstr ""
+msgstr "Escolher fuso"
 
 #: ../src/appointment.c:1194
-#, fuzzy
 msgid "New appointment - Orage"
-msgstr "Reunião"
+msgstr "Novo apontamento - Orage"
 
 #. File menu stuff
 #. File menu
-#: ../src/appointment.c:1329 ../src/event-list.c:648 ../src/mainbox.c:419
+#: ../src/appointment.c:1329
+#: ../src/event-list.c:648
+#: ../src/mainbox.c:419
 msgid "_File"
 msgstr "_Ficheiro"
 
 #: ../src/appointment.c:1336
 msgid "Sav_e and close"
-msgstr ""
+msgstr "Grava_r e fechar"
 
-#: ../src/appointment.c:1349 ../src/event-list.c:657
+#: ../src/appointment.c:1349
+#: ../src/event-list.c:657
 msgid "D_uplicate"
-msgstr ""
+msgstr "D_uplicar"
 
 #: ../src/appointment.c:1390
 msgid "Save"
-msgstr ""
+msgstr "Gravar"
 
-#: ../src/appointment.c:1393 ../src/appointment.c:1395
+#: ../src/appointment.c:1393
+#: ../src/appointment.c:1395
 msgid "Save and close"
-msgstr ""
+msgstr "Gravar e sair"
 
 #: ../src/appointment.c:1402
 msgid "Revert"
-msgstr ""
+msgstr "Reverter"
 
-#: ../src/appointment.c:1405 ../src/appointment.c:1407 ../src/event-list.c:734
+#: ../src/appointment.c:1405
+#: ../src/appointment.c:1407
+#: ../src/event-list.c:734
 msgid "Duplicate"
-msgstr ""
+msgstr "Duplicado"
 
 #: ../src/appointment.c:1413
 msgid "Delete"
-msgstr ""
+msgstr "Apagar"
 
 #: ../src/appointment.c:1421
 msgid "Free"
-msgstr ""
+msgstr "Livre"
 
 #: ../src/appointment.c:1421
 msgid "Busy"
-msgstr ""
+msgstr "Ocupado"
 
 #: ../src/appointment.c:1426
 msgid "General"
-msgstr ""
+msgstr "Geral"
 
 #: ../src/appointment.c:1431
 msgid "Title "
-msgstr ""
+msgstr "Título"
 
 #: ../src/appointment.c:1446
 msgid "All day event"
-msgstr ""
+msgstr "Evento todo o dia"
 
 #: ../src/appointment.c:1452
 msgid "Start"
-msgstr ""
+msgstr "Começo"
 
 #: ../src/appointment.c:1467
 msgid "End"
-msgstr ""
+msgstr "Fim"
 
 #: ../src/appointment.c:1484
 msgid "Duration"
-msgstr ""
+msgstr "Duração"
 
-#: ../src/appointment.c:1491 ../src/appointment.c:1565
-#, fuzzy
+#: ../src/appointment.c:1491
+#: ../src/appointment.c:1565
 msgid "days"
-msgstr "Hoje"
+msgstr "dias"
 
-#: ../src/appointment.c:1500 ../src/appointment.c:1573
+#: ../src/appointment.c:1500
+#: ../src/appointment.c:1573
 msgid "hours"
-msgstr ""
+msgstr "horas"
 
-#: ../src/appointment.c:1509 ../src/appointment.c:1581
+#: ../src/appointment.c:1509
+#: ../src/appointment.c:1581
 msgid "mins"
-msgstr ""
+msgstr "minutos"
 
 #: ../src/appointment.c:1517
 msgid "Availability"
-msgstr ""
+msgstr "Disponibilidade"
 
 #: ../src/appointment.c:1526
 msgid "Note"
-msgstr ""
+msgstr "Nota"
 
-#: ../src/appointment.c:1554 ../src/appointment.c:1559
+#: ../src/appointment.c:1554
+#: ../src/appointment.c:1559
 msgid "Alarm"
-msgstr ""
+msgstr "Alarme"
 
 #: ../src/appointment.c:1603
 msgid "Repeat alarm sound"
-msgstr ""
+msgstr "Repetir som de alarme"
 
 #: ../src/appointment.c:1615
 msgid "None"
-msgstr ""
+msgstr "Nenhum"
 
 #: ../src/appointment.c:1615
 msgid "Daily"
-msgstr ""
+msgstr "Diariamente"
 
 #: ../src/appointment.c:1615
 msgid "Weekly"
-msgstr ""
+msgstr "Semanalmente"
 
 #: ../src/appointment.c:1615
-#, fuzzy
 msgid "Monthly"
-msgstr "Segunda-Feira"
+msgstr "Mensalmente"
 
 #: ../src/appointment.c:1615
 msgid "Yearly"
-msgstr ""
+msgstr "Anualmente"
 
 #: ../src/appointment.c:1617
-#, fuzzy
 msgid "Mon"
 msgstr "Segunda-Feira"
 
 #: ../src/appointment.c:1617
 msgid "Tue"
-msgstr ""
+msgstr "Ter"
 
 #: ../src/appointment.c:1617
 msgid "Wed"
-msgstr ""
+msgstr "Qua"
 
 #: ../src/appointment.c:1617
 msgid "Thu"
-msgstr ""
+msgstr "Qui"
 
 #: ../src/appointment.c:1617
 msgid "Fri"
-msgstr ""
+msgstr "Sex"
 
 #: ../src/appointment.c:1617
 msgid "Sat"
-msgstr ""
+msgstr "Sab"
 
 #: ../src/appointment.c:1617
-#, fuzzy
 msgid "Sun"
 msgstr "Domingo"
 
 #: ../src/appointment.c:1622
 msgid "Recurrence"
-msgstr ""
+msgstr "Recorrência"
 
 #: ../src/appointment.c:1627
 msgid "Complexity"
-msgstr ""
+msgstr "Complexidade"
 
 #: ../src/appointment.c:1630
 msgid "Basic"
-msgstr ""
+msgstr "Básico"
 
 #: ../src/appointment.c:1636
 msgid "Advanced"
-msgstr ""
+msgstr "Avançado"
 
 #: ../src/appointment.c:1644
 msgid "Use this if you want regular repeating event"
-msgstr ""
+msgstr "Usar isto se quiser eventos repetidos regulares"
 
 #: ../src/appointment.c:1646
 msgid ""
@@ -494,57 +527,62 @@ msgid ""
 " Every Saturday and Sunday or \n"
 " First Tuesday every month"
 msgstr ""
+"Use este se precisar de horários mais complexos como:\n"
+" A cada segunda semana ou \n"
+" A cada Sábado e Domingo ou \n"
+" A primeira Terça de cada mês"
 
 #: ../src/appointment.c:1649
 msgid "Frequency"
-msgstr ""
+msgstr "Frequência"
 
 #: ../src/appointment.c:1658
 msgid "Interval"
-msgstr ""
+msgstr "Intervalo"
 
 #: ../src/appointment.c:1660
 msgid "Each"
-msgstr ""
+msgstr "Cada"
 
 #: ../src/appointment.c:1667
 msgid "occurrence"
-msgstr ""
+msgstr "ocurrência"
 
 #: ../src/appointment.c:1675
 msgid ""
 "Limit frequency to certain interval. For example:\n"
 " Every third day: Frequency = Daily and Interval = 3"
 msgstr ""
+"Limita a frequência a um determinado intervalo. Por exemplo:\n"
+" A cada terceiro dia: Frequência = Diária e Intervalo = 3"
 
 #: ../src/appointment.c:1678
 msgid "Limit"
-msgstr ""
+msgstr "Limite"
 
 #: ../src/appointment.c:1680
 msgid "Repeat forever"
-msgstr ""
+msgstr "Repetir para sempre"
 
 #: ../src/appointment.c:1688
 msgid "Repeat "
-msgstr ""
+msgstr "Repetir"
 
 #: ../src/appointment.c:1696
 msgid "times"
-msgstr ""
+msgstr "tempos"
 
 #: ../src/appointment.c:1706
 msgid "Repeat until "
-msgstr ""
+msgstr "Repetir até"
 
 #: ../src/appointment.c:1717
-#, fuzzy
 msgid "Weekdays"
-msgstr "Hoje"
+msgstr "Dias da Semana"
 
 #: ../src/appointment.c:1730
 msgid "Which day"
-msgstr ""
+msgstr "Cada dia"
 
 #: ../src/appointment.c:1738
 msgid ""
@@ -555,15 +593,22 @@ msgid ""
 "\tWeekdays = check only Wednesday,\n"
 "\tWhich day = select 2 from the number below Wednesday"
 msgstr ""
+"Especifica qual dia da semana para eventos mensais e anuais.\n"
+" Por exemplo:\n"
+" Segunda Quarta de cada mês:\n"
+"\tFrequência = Mensal,\n"
+"\tDia da semana = marcar apenas Quarta,\n"
+"\tQual dia = seleccione 2 como número abaixo de Quarta"
 
 #. date only appointment
 #: ../src/event-list.c:199
 msgid "All day"
-msgstr ""
+msgstr "Todo o dia"
 
-#: ../src/event-list.c:275 ../src/event-list.c:776
+#: ../src/event-list.c:275
+#: ../src/event-list.c:776
 msgid "Time"
-msgstr ""
+msgstr "Tempo"
 
 #: ../src/event-list.c:583
 msgid ""
@@ -574,34 +619,35 @@ msgstr ""
 "associadas a esta data."
 
 #. View menu
-#: ../src/event-list.c:679 ../src/mainbox.c:453
+#: ../src/event-list.c:679
+#: ../src/mainbox.c:453
 msgid "_View"
-msgstr ""
+msgstr "_Ver"
 
 #. Go menu
 #: ../src/event-list.c:688
 msgid "_Go"
-msgstr ""
+msgstr "_Ir"
 
 #: ../src/event-list.c:715
 msgid "New"
-msgstr ""
+msgstr "Novo"
 
 #: ../src/event-list.c:719
 msgid "Back"
-msgstr ""
+msgstr "Recuar"
 
 #: ../src/event-list.c:725
 msgid "Forward"
-msgstr ""
+msgstr "Avançar"
 
 #: ../src/event-list.c:728
 msgid "Refresh"
-msgstr ""
+msgstr "Actualizar"
 
 #: ../src/event-list.c:737
 msgid "Close"
-msgstr ""
+msgstr "Fechar"
 
 #: ../src/event-list.c:740
 msgid "Clear"
@@ -609,15 +655,15 @@ msgstr "Limpar"
 
 #: ../src/event-list.c:784
 msgid "Flags"
-msgstr ""
+msgstr "Indicadores"
 
 #: ../src/event-list.c:790
 msgid "Title"
-msgstr ""
+msgstr "Título"
 
 #: ../src/event-list.c:796
 msgid "uid"
-msgstr ""
+msgstr "uid"
 
 #: ../src/event-list.c:805
 msgid ""
@@ -630,6 +676,14 @@ msgid ""
 "\t\t D=Daily W=Weekly M=Monthly Y=Yearly\n"
 "\t 3. Type: f=free B=Busy"
 msgstr ""
+"Duplo clique na linha para editar.\n"
+"\n"
+"Indicadores em ordem:\n"
+"\t 1. Alarme n=sem alarme\n"
+"\t\tA=Alarme visual S=Alarme sonoro\n"
+"\t 2. Recorrente: n=sem recorrência\n"
+"\t\t D=Siariamente W=Semanalmente M=Mensalmente Y=Anualmente\n"
+"\t 3. Tipo: f=livre B=Ocupado"
 
 #: ../src/ical-code.c:100
 msgid "Africa"
@@ -2165,7 +2219,7 @@ msgstr ""
 
 #: ../src/ical-code.c:1223
 msgid "Orage default alarm"
-msgstr ""
+msgstr "Alarme Orage padrão"
 
 #: ../src/main.c:214
 msgid "This should not happen"
@@ -2177,24 +2231,24 @@ msgstr "O canal cliente MCS não pôde ser criado"
 
 #: ../src/mainbox.c:428
 msgid "Open archive file..."
-msgstr ""
+msgstr "Abrir ficheiro arquivo..."
 
 #: ../src/mainbox.c:431
 msgid "Close archive file"
-msgstr ""
+msgstr "Fechar ficheiro arquivo"
 
 #. Edit menu
 #: ../src/mainbox.c:446
 msgid "_Edit"
-msgstr ""
+msgstr "_Editar"
 
 #: ../src/mainbox.c:456
 msgid "View selected _date"
-msgstr ""
+msgstr "Ver _data seleccionada"
 
 #: ../src/mainbox.c:462
 msgid "Select _Today"
-msgstr "Seleccionar hoje"
+msgstr "Seleccionar _Hoje"
 
 #. Help menu
 #: ../src/mainbox.c:466
@@ -2202,14 +2256,13 @@ msgid "_Help"
 msgstr "_Ajuda"
 
 #: ../src/reminder.c:232
-#, fuzzy
 msgid "Reminder "
 msgstr "Relembrar"
 
 #. GtkTooltipsData *cur_tooltip;
 #: ../src/reminder.c:317
 msgid "Next active alarms:"
-msgstr ""
+msgstr "Próximos alarmes activos:"
 
 #: ../src/reminder.c:325
 #, c-format
@@ -2217,49 +2270,50 @@ msgid ""
 "\n"
 "%02d d %02d h %02d min to: %s"
 msgstr ""
+"\n"
+"%02d d %02d h %02d min para: %s"
 
 #: ../src/reminder.c:331
 msgid ""
 "\n"
 "No active alarms found"
 msgstr ""
+"\n"
+"Sem alarmes activos"
 
 #: ../src/tray_icon.c:308
-#, fuzzy
 msgid "New appointment"
-msgstr "Reunião"
+msgstr "Novo apontamento"
 
 #: ../src/tray_icon.c:328
 msgid "About Orage"
-msgstr ""
+msgstr "Acerca do Orage"
 
 #: ../panel-plugin/orageclock.desktop.in.in.h:1
 msgid "Orage Clock"
-msgstr ""
+msgstr "Relógio Orage"
 
 #: ../panel-plugin/orageclock.desktop.in.in.h:2
 msgid "What time and date is it?"
-msgstr ""
+msgstr "Que horas e data é?"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:1
-#, fuzzy
 msgid "Calendar Settings"
-msgstr "_Definições"
+msgstr "Definições de Calendário"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:2
 msgid "Settings for the Xfce 4 Calendar Application"
-msgstr ""
+msgstr "Definições para a Aplicação de Calendário Xfce 4"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:3
 msgid "Xfce 4 Calendar Settings"
-msgstr ""
+msgstr "Definições do Calendário Xfce 4"
 
 #: ../xfcalendar.desktop.in.h:1
-#, fuzzy
 msgid "Calendar"
-msgstr "Xfcalendar"
+msgstr "Calendário"
 
 #: ../xfcalendar.desktop.in.h:2
-#, fuzzy
 msgid "Desktop calendar"
-msgstr "Sobre o Xfcalendar"
+msgstr "Calendário de Desktop"
+
