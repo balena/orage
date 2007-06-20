@@ -3,83 +3,82 @@ msgstr ""
 "Project-Id-Version: orage 4.4.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-10-13 18:52+0300\n"
-"PO-Revision-Date: 2006-08-24 23:38+0400\n"
+"PO-Revision-Date: 2007-06-19 00:15+0400\n"
 "Last-Translator: Dimitri Gogelia <delphi.knight@gmail.com>\n"
 "Language-Team: Georgian <delphi.knight@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Language: Georgian\n"
 "X-Poedit-Country: GEORGIA\n"
 
 #: ../panel-plugin/oc_config.c:114
 msgid "Select timezone"
-msgstr ""
+msgstr "დროის სარტყელის არჩევა"
 
 #: ../panel-plugin/oc_config.c:193
 msgid "Appearance"
-msgstr ""
+msgstr "გარეგანი სახე"
 
 #. show frame
 #: ../panel-plugin/oc_config.c:204
 msgid "Show _frame"
-msgstr ""
+msgstr "კადრების ჩ_ვენება"
 
 #. foreground color
 #: ../panel-plugin/oc_config.c:214
 msgid "set foreground _color:"
-msgstr ""
+msgstr "შრიფტის_ფერი:"
 
 #. background color
 #: ../panel-plugin/oc_config.c:228
 msgid "set _background color:"
-msgstr ""
+msgstr "ფონის_ფერი:"
 
 #. clock size (=vbox size): height and width
 #: ../panel-plugin/oc_config.c:242
 msgid "set _height:"
-msgstr ""
+msgstr "_სიმაღლე:"
 
 #: ../panel-plugin/oc_config.c:254
 msgid "set _width:"
-msgstr ""
+msgstr "ს_იგანე:"
 
 #: ../panel-plugin/oc_config.c:275
 msgid "Clock Options"
-msgstr ""
+msgstr "საათის პარამეტრები"
 
 #. timezone
 #: ../panel-plugin/oc_config.c:286
 msgid "set timezone to:"
-msgstr ""
+msgstr "დროის სარტყელი:"
 
 #: ../panel-plugin/oc_config.c:295
 msgid "Set any valid timezone (=TZ) value or pick one from the list."
-msgstr ""
+msgstr "მიუთითეთ დროის სარტყელი (=TZ) ან ამოირჩიეთ სიიდან."
 
 #. line 1
 #: ../panel-plugin/oc_config.c:304
 msgid "show line _1:"
-msgstr ""
+msgstr "სტრიქონი _1:"
 
 #: ../panel-plugin/oc_config.c:315
 msgid "Enter any valid strftime function parameter."
-msgstr ""
+msgstr "მიუთითეთ პარამეტრი strftime ფუნქციისათვის."
 
 #. line 2
 #: ../panel-plugin/oc_config.c:331
 msgid "show line _2:"
-msgstr ""
+msgstr "სტრიქონი _2:"
 
 #. line 3
 #: ../panel-plugin/oc_config.c:353
 msgid "show line _3:"
-msgstr ""
+msgstr "სტრიქონი _3:"
 
 #. Tooltip hint
 #: ../panel-plugin/oc_config.c:375
 msgid "Tooltip:"
-msgstr ""
+msgstr "ქარაგმა:"
 
 #: ../panel-plugin/oc_config.c:392
 msgid ""
@@ -92,14 +91,22 @@ msgid ""
 "\t%H = hours \t\t\t\t%M = minute\n"
 "\t%X = local time\t\t\t%x = local date"
 msgstr ""
+"ეს პროგრამა იყენებს strftime ფუნქციას დროის გამოსახვისათვის.\n"
+"მიუთითეთ დროის გამოსახვის ფორმატი.\n"
+"ხშირად გამოყენებული ფორმატებია:\n"
+"\t%A = კვირის დღე\t\t\t%B = თვე\n"
+"\t%c = თარიღი და დრო\t\t%R = საათი და წუთი\n"
+"\t%V = კვირის ნომერი\t\t%Z = საათობრივი სარტყელი\n"
+"\t%H = საათი \t\t\t\t%M = წუთი\n"
+"\t%X = ადგილობრივი დრო\t\t\t%x = ადგილობრივი თარიღი"
 
 #: ../panel-plugin/oc_config.c:411
 msgid "Properties"
-msgstr ""
+msgstr "თვისებები"
 
 #: ../panel-plugin/oc_config.c:426
 msgid "Orage clock"
-msgstr ""
+msgstr "საათის თარიღით"
 
 #. TRANSLATORS: Use format characters from strftime(3)
 #. * to get the proper string for your locale.
@@ -112,366 +119,401 @@ msgstr ""
 #.
 #: ../panel-plugin/orageclock.c:420
 msgid "%A %d %B %Y/%V"
-msgstr ""
+msgstr "%A %d %B %Y/%V"
 
 #. to avoid timing problems when updating entry
 #. Create file chooser
-#: ../plugin/xfcalendar_plugin.c:263 ../plugin/xfcalendar_plugin.c:321
-#: ../src/appointment.c:383 ../src/mainbox.c:114
+#: ../plugin/xfcalendar_plugin.c:263
+#: ../plugin/xfcalendar_plugin.c:321
+#: ../src/appointment.c:383
+#: ../src/mainbox.c:114
 msgid "Select a file..."
-msgstr ""
+msgstr "ფაილის არჩევა..."
 
-#: ../plugin/xfcalendar_plugin.c:271 ../src/mainbox.c:122
+#: ../plugin/xfcalendar_plugin.c:271
+#: ../src/mainbox.c:122
 msgid "Calendar files"
-msgstr ""
+msgstr "კალენდრის ფაილები"
 
-#: ../plugin/xfcalendar_plugin.c:276 ../src/appointment.c:398
+#: ../plugin/xfcalendar_plugin.c:276
+#: ../src/appointment.c:398
 #: ../src/mainbox.c:127
 msgid "All Files"
-msgstr ""
+msgstr "ყველა ფაილი"
 
-#: ../plugin/xfcalendar_plugin.c:419 ../plugin/xfcalendar_plugin.c:424
-#: ../src/appointment.c:917 ../src/appointment.c:922 ../src/appointment.c:1438
+#: ../plugin/xfcalendar_plugin.c:419
+#: ../plugin/xfcalendar_plugin.c:424
+#: ../src/appointment.c:917
+#: ../src/appointment.c:922
+#: ../src/appointment.c:1438
 msgid "Location"
 msgstr "მდებარეობა"
 
 #. show it
 #: ../plugin/xfcalendar_plugin.c:430
 msgid "Pick local timezone"
-msgstr ""
+msgstr "განსაზღვრეთ სასაათო სარტყელი"
 
-#: ../plugin/xfcalendar_plugin.c:433 ../plugin/xfcalendar_plugin.c:463
-#: ../src/appointment.c:931 ../src/appointment.c:961
+#: ../plugin/xfcalendar_plugin.c:433
+#: ../plugin/xfcalendar_plugin.c:463
+#: ../src/appointment.c:931
+#: ../src/appointment.c:961
 msgid "UTC"
-msgstr ""
+msgstr "UTC"
 
-#: ../plugin/xfcalendar_plugin.c:434 ../plugin/xfcalendar_plugin.c:467
-#: ../plugin/xfcalendar_plugin.c:749 ../src/appointment.c:932
-#: ../src/appointment.c:965 ../src/appointment.c:1001
+#: ../plugin/xfcalendar_plugin.c:434
+#: ../plugin/xfcalendar_plugin.c:467
+#: ../plugin/xfcalendar_plugin.c:749
+#: ../src/appointment.c:932
+#: ../src/appointment.c:965
+#: ../src/appointment.c:1001
 #: ../src/appointment.c:1009
 msgid "floating"
-msgstr ""
+msgstr "მცურავი"
 
 #: ../plugin/xfcalendar_plugin.c:528
 msgid "Orage Preferences"
-msgstr ""
+msgstr "Orage-ის პარამეტრები"
 
 #: ../plugin/xfcalendar_plugin.c:546
 msgid "Display"
-msgstr ""
+msgstr "გამოსახვა"
 
 #: ../plugin/xfcalendar_plugin.c:553
 msgid "Calendar borders"
-msgstr ""
+msgstr "კალენდრის ჩარჩოები"
 
 #: ../plugin/xfcalendar_plugin.c:558
 msgid "Displayed"
-msgstr ""
+msgstr "ჩვენება"
 
 #: ../plugin/xfcalendar_plugin.c:564
 msgid "Hidden"
-msgstr ""
+msgstr "დამალული"
 
 #: ../plugin/xfcalendar_plugin.c:573
 msgid "Calendar window"
-msgstr ""
+msgstr "კალენდრის ფანჯარა"
 
 #: ../plugin/xfcalendar_plugin.c:578
 msgid "Show in taskbar"
-msgstr ""
+msgstr "ამოცანათა პანელში ჩვენება"
 
 #: ../plugin/xfcalendar_plugin.c:582
 msgid "Show in pager"
-msgstr ""
+msgstr "სამუშაო ადგილების გადამრთველში ჩვენება"
 
 #: ../plugin/xfcalendar_plugin.c:586
 msgid "Show in systray"
-msgstr ""
+msgstr "შეტყობინების არეში ჩვენება"
 
 #: ../plugin/xfcalendar_plugin.c:593
 msgid "Calendar start"
-msgstr ""
+msgstr "კალენდრის გაშვება"
 
 #: ../plugin/xfcalendar_plugin.c:598
 msgid "Show"
-msgstr ""
+msgstr "ჩვენება"
 
 #: ../plugin/xfcalendar_plugin.c:604
 msgid "Hide"
-msgstr ""
+msgstr "დამალვა"
 
 #: ../plugin/xfcalendar_plugin.c:610
 msgid "Minimized"
-msgstr ""
+msgstr "ჩაკეცილი"
 
 #: ../plugin/xfcalendar_plugin.c:620
 msgid "Archives"
-msgstr ""
+msgstr "არქივები"
 
 #: ../plugin/xfcalendar_plugin.c:631
 msgid "Archive file"
-msgstr ""
+msgstr "ფაილის არქივაცია"
 
 #: ../plugin/xfcalendar_plugin.c:653
 msgid "Archive threshold"
-msgstr ""
+msgstr "არქივში შენახვა"
 
 #: ../plugin/xfcalendar_plugin.c:660
 msgid "3 months"
-msgstr ""
+msgstr "3 თვე"
 
 #: ../plugin/xfcalendar_plugin.c:662
 msgid "6 months"
-msgstr ""
+msgstr "6 თვე"
 
 #: ../plugin/xfcalendar_plugin.c:664
 msgid "1 year"
-msgstr ""
+msgstr "1 წელი"
 
 #: ../plugin/xfcalendar_plugin.c:666
 msgid "never"
-msgstr ""
+msgstr "არასდროს"
 
-#: ../plugin/xfcalendar_plugin.c:694 ../src/appointment.c:1588
+#: ../plugin/xfcalendar_plugin.c:694
+#: ../src/appointment.c:1588
 msgid "Sound"
-msgstr ""
+msgstr "ხმა"
 
 #: ../plugin/xfcalendar_plugin.c:705
 msgid "Application"
-msgstr ""
+msgstr "პროგრამა"
 
-#: ../plugin/xfcalendar_plugin.c:725 ../plugin/xfcalendar_plugin.c:735
+#: ../plugin/xfcalendar_plugin.c:725
+#: ../plugin/xfcalendar_plugin.c:735
 msgid "Timezone"
-msgstr ""
+msgstr "საათობრივი სარტყელი"
 
 #. the button label in the xfce-mcs-manager dialog
 #: ../plugin/xfcalendar_plugin.c:800
 msgid "Button Label|Orage"
-msgstr ""
+msgstr "კალენდარი"
 
 #: ../src/about-xfcalendar.c:40
 msgid "Manage your time with Xfce4"
-msgstr ""
+msgstr "დროის მართვა Xfce4-ის დახმარებით"
 
-#: ../src/about-xfcalendar.c:51 ../src/about-xfcalendar.c:56
+#: ../src/about-xfcalendar.c:51
+#: ../src/about-xfcalendar.c:56
 msgid "Core developer"
-msgstr ""
+msgstr "ძირითადი ავტორი"
 
-#: ../src/about-xfcalendar.c:61 ../src/about-xfcalendar.c:66
+#: ../src/about-xfcalendar.c:61
+#: ../src/about-xfcalendar.c:66
 msgid "Contributor"
-msgstr ""
+msgstr "დამხმარე"
 
-#: ../src/appointment.c:99 ../src/appointment.c:116
+#: ../src/appointment.c:99
+#: ../src/appointment.c:116
 msgid "%m/%d/%Y"
-msgstr ""
+msgstr "%m/%d/%Y"
 
-#: ../src/appointment.c:279 ../src/mainbox.c:396 ../xfcalendar.desktop.in.h:3
+#: ../src/appointment.c:279
+#: ../src/mainbox.c:396
+#: ../xfcalendar.desktop.in.h:3
 msgid "Orage"
-msgstr ""
+msgstr "კალენდარი"
 
 #: ../src/appointment.c:391
 msgid "Sound Files"
-msgstr ""
+msgstr "ხმოვანი ფაილები"
 
-#: ../src/appointment.c:439 ../src/appointment.c:474 ../src/appointment.c:719
+#: ../src/appointment.c:439
+#: ../src/appointment.c:474
+#: ../src/appointment.c:719
 #: ../src/event-list.c:581
 msgid "Warning"
-msgstr ""
+msgstr "გაფრთხილება"
 
 #: ../src/appointment.c:441
 msgid "The appointment information has been modified."
-msgstr ""
+msgstr "ინფორმაცია შეხვედრის შესახებ შეიცვალა."
 
-#: ../src/appointment.c:442 ../src/appointment.c:722 ../src/event-list.c:584
+#: ../src/appointment.c:442
+#: ../src/appointment.c:722
+#: ../src/event-list.c:584
 msgid "Do you want to continue?"
-msgstr ""
+msgstr "გსურთ გაგრძელება?"
 
 #: ../src/appointment.c:476
 msgid "The end of this appointment is earlier than the beginning."
-msgstr ""
+msgstr "შეხვედრის დასრულების დრო დაგეგმილია უფრო ადრე, ვიდრე დაწყება."
 
 #: ../src/appointment.c:721
 msgid "This appointment will be permanently removed."
-msgstr ""
+msgstr "ეს შეხვედრა წაიშლება სამუდამოდ."
 
 #: ../src/appointment.c:822
 msgid "Pick the date"
-msgstr ""
+msgstr "თარიღის არჩევა"
 
-#: ../src/appointment.c:824 ../src/event-list.c:722 ../src/tray_icon.c:297
+#: ../src/appointment.c:824
+#: ../src/event-list.c:722
+#: ../src/tray_icon.c:297
 msgid "Today"
-msgstr ""
+msgstr "დღეს"
 
 #. show it
 #: ../src/appointment.c:928
 msgid "Pick timezone"
-msgstr ""
+msgstr "თარიღის არჩევა"
 
 #: ../src/appointment.c:1194
 msgid "New appointment - Orage"
-msgstr ""
+msgstr "ახალი შეხვედრა - Orage"
 
 #. File menu stuff
 #. File menu
-#: ../src/appointment.c:1329 ../src/event-list.c:648 ../src/mainbox.c:419
+#: ../src/appointment.c:1329
+#: ../src/event-list.c:648
+#: ../src/mainbox.c:419
 msgid "_File"
-msgstr ""
+msgstr "_ფაილი"
 
 #: ../src/appointment.c:1336
 msgid "Sav_e and close"
-msgstr ""
+msgstr "დამ_ახსოვრება და დახურვა"
 
-#: ../src/appointment.c:1349 ../src/event-list.c:657
+#: ../src/appointment.c:1349
+#: ../src/event-list.c:657
 msgid "D_uplicate"
-msgstr ""
+msgstr "დ_უბლირება"
 
 #: ../src/appointment.c:1390
 msgid "Save"
-msgstr ""
+msgstr "დამახსოვრება"
 
-#: ../src/appointment.c:1393 ../src/appointment.c:1395
+#: ../src/appointment.c:1393
+#: ../src/appointment.c:1395
 msgid "Save and close"
-msgstr ""
+msgstr "დამახსოვრება და დახურვა"
 
 #: ../src/appointment.c:1402
 msgid "Revert"
-msgstr ""
+msgstr "აღდგენა"
 
-#: ../src/appointment.c:1405 ../src/appointment.c:1407 ../src/event-list.c:734
+#: ../src/appointment.c:1405
+#: ../src/appointment.c:1407
+#: ../src/event-list.c:734
 msgid "Duplicate"
-msgstr ""
+msgstr "დუბლირება"
 
 #: ../src/appointment.c:1413
 msgid "Delete"
-msgstr ""
+msgstr "წაშლა"
 
 #: ../src/appointment.c:1421
 msgid "Free"
-msgstr ""
+msgstr "თავისუფალი"
 
 #: ../src/appointment.c:1421
 msgid "Busy"
-msgstr ""
+msgstr "დაკავებული"
 
 #: ../src/appointment.c:1426
 msgid "General"
-msgstr ""
+msgstr "ზოგადი"
 
 #: ../src/appointment.c:1431
 msgid "Title "
-msgstr ""
+msgstr "სათაური"
 
 #: ../src/appointment.c:1446
 msgid "All day event"
-msgstr ""
+msgstr "მთელი დღის მოქმედებები"
 
 #: ../src/appointment.c:1452
 msgid "Start"
-msgstr ""
+msgstr "დაწყება"
 
 #: ../src/appointment.c:1467
 msgid "End"
-msgstr ""
+msgstr "დასრულება"
 
 #: ../src/appointment.c:1484
 msgid "Duration"
-msgstr ""
+msgstr "ხანგძლივობა"
 
-#: ../src/appointment.c:1491 ../src/appointment.c:1565
+#: ../src/appointment.c:1491
+#: ../src/appointment.c:1565
 msgid "days"
-msgstr ""
+msgstr "დღე"
 
-#: ../src/appointment.c:1500 ../src/appointment.c:1573
+#: ../src/appointment.c:1500
+#: ../src/appointment.c:1573
 msgid "hours"
-msgstr ""
+msgstr "საათი"
 
-#: ../src/appointment.c:1509 ../src/appointment.c:1581
+#: ../src/appointment.c:1509
+#: ../src/appointment.c:1581
 msgid "mins"
-msgstr ""
+msgstr "წუთი"
 
 #: ../src/appointment.c:1517
 msgid "Availability"
-msgstr ""
+msgstr "დაკავებულია"
 
 #: ../src/appointment.c:1526
 msgid "Note"
-msgstr ""
+msgstr "შენიშვნა"
 
-#: ../src/appointment.c:1554 ../src/appointment.c:1559
+#: ../src/appointment.c:1554
+#: ../src/appointment.c:1559
 msgid "Alarm"
-msgstr ""
+msgstr "სიგნალი"
 
 #: ../src/appointment.c:1603
 msgid "Repeat alarm sound"
-msgstr ""
+msgstr "სიგნალის გამეორება"
 
 #: ../src/appointment.c:1615
 msgid "None"
-msgstr ""
+msgstr "არაფერი"
 
 #: ../src/appointment.c:1615
 msgid "Daily"
-msgstr ""
+msgstr "ყოველდღიურად"
 
 #: ../src/appointment.c:1615
 msgid "Weekly"
-msgstr ""
+msgstr "ყოველკვირეულად"
 
 #: ../src/appointment.c:1615
 msgid "Monthly"
-msgstr ""
+msgstr "ყოველთვიურად"
 
 #: ../src/appointment.c:1615
 msgid "Yearly"
-msgstr ""
+msgstr "ყოველწლიურად"
 
 #: ../src/appointment.c:1617
 msgid "Mon"
-msgstr ""
+msgstr "ორშ"
 
 #: ../src/appointment.c:1617
 msgid "Tue"
-msgstr ""
+msgstr "სამ"
 
 #: ../src/appointment.c:1617
 msgid "Wed"
-msgstr ""
+msgstr "ოთხ"
 
 #: ../src/appointment.c:1617
 msgid "Thu"
-msgstr ""
+msgstr "ხუთ"
 
 #: ../src/appointment.c:1617
 msgid "Fri"
-msgstr ""
+msgstr "პარ"
 
 #: ../src/appointment.c:1617
 msgid "Sat"
-msgstr ""
+msgstr "შაბ"
 
 #: ../src/appointment.c:1617
 msgid "Sun"
-msgstr ""
+msgstr "კვი"
 
 #: ../src/appointment.c:1622
 msgid "Recurrence"
-msgstr ""
+msgstr "გამეორება"
 
 #: ../src/appointment.c:1627
 msgid "Complexity"
-msgstr ""
+msgstr "რეჟიმი"
 
 #: ../src/appointment.c:1630
 msgid "Basic"
-msgstr ""
+msgstr "მარტივი"
 
 #: ../src/appointment.c:1636
 msgid "Advanced"
-msgstr ""
+msgstr "დამატებით"
 
 #: ../src/appointment.c:1644
 msgid "Use this if you want regular repeating event"
-msgstr ""
+msgstr "გამოიყენეთ მარტივი გამეორებადი მოქმედების შესაქმნელად"
 
 #: ../src/appointment.c:1646
 msgid ""
@@ -480,56 +522,62 @@ msgid ""
 " Every Saturday and Sunday or \n"
 " First Tuesday every month"
 msgstr ""
+"გამოიყენეთ რთული გამეორებადი მოქმედების შესაქმნელად, მაგალითად:\n"
+" ყოველ მეორე კვირას ან \n"
+" ყოველ შაბათს და კვირას ან \n"
+" ყოველი თვის პირველ სამშაბათს"
 
 #: ../src/appointment.c:1649
 msgid "Frequency"
-msgstr ""
+msgstr "სიხშირე"
 
 #: ../src/appointment.c:1658
 msgid "Interval"
-msgstr ""
+msgstr "ინტერვალი"
 
 #: ../src/appointment.c:1660
 msgid "Each"
-msgstr ""
+msgstr "ყოველ"
 
 #: ../src/appointment.c:1667
 msgid "occurrence"
-msgstr ""
+msgstr "ჯერ"
 
 #: ../src/appointment.c:1675
 msgid ""
 "Limit frequency to certain interval. For example:\n"
 " Every third day: Frequency = Daily and Interval = 3"
 msgstr ""
+"სისირის შეზღუდვა განსაზღვრული პერიოდით, მაგალითად:\n"
+" ყოველ მესამე დღეს: სიხშირე = ყოველდღე და პერიოდი = 3"
 
 #: ../src/appointment.c:1678
 msgid "Limit"
-msgstr ""
+msgstr "შეზღუდვა"
 
 #: ../src/appointment.c:1680
 msgid "Repeat forever"
-msgstr ""
+msgstr "უსასრულო გამეორება"
 
 #: ../src/appointment.c:1688
 msgid "Repeat "
-msgstr ""
+msgstr "გამეორება"
 
 #: ../src/appointment.c:1696
 msgid "times"
-msgstr ""
+msgstr "ჯერ"
 
 #: ../src/appointment.c:1706
 msgid "Repeat until "
-msgstr ""
+msgstr "გამეორება"
 
 #: ../src/appointment.c:1717
 msgid "Weekdays"
-msgstr ""
+msgstr "კვირის დღეები"
 
 #: ../src/appointment.c:1730
 msgid "Which day"
-msgstr ""
+msgstr "დღის ნომერი"
 
 #: ../src/appointment.c:1738
 msgid ""
@@ -540,31 +588,41 @@ msgid ""
 "\tWeekdays = check only Wednesday,\n"
 "\tWhich day = select 2 from the number below Wednesday"
 msgstr ""
+"განსაზღვრეთ კვირის დღე ყოველთვიური და ყოველწლიური მოქმედებებისათვის.\n"
+" მაგალითად:\n"
+" ყოველი თვის მეორე ოთხშაბათი:\n"
+"\tსიხშირე = ყოველთვიურად,\n"
+"\tკვირს დღე = მონიშნეთ მხოლოდ ოთხშაბათი,\n"
+"\tWhich day = მიუთითეთ 2 ოთხშაბათისათვის"
 
 #. date only appointment
 #: ../src/event-list.c:199
 msgid "All day"
-msgstr ""
+msgstr "ყველა დღე"
 
-#: ../src/event-list.c:275 ../src/event-list.c:776
+#: ../src/event-list.c:275
+#: ../src/event-list.c:776
 msgid "Time"
-msgstr ""
+msgstr "დრო"
 
 #: ../src/event-list.c:583
 msgid ""
 "You will remove all information \n"
 "associated with this date."
 msgstr ""
+"მთელი ინფორმაცია, რომელიც დაკავშირებულია \n"
+"ამ თარიღთან, წაიშლება."
 
 #. View menu
-#: ../src/event-list.c:679 ../src/mainbox.c:453
+#: ../src/event-list.c:679
+#: ../src/mainbox.c:453
 msgid "_View"
-msgstr ""
+msgstr "_ხედი"
 
 #. Go menu
 #: ../src/event-list.c:688
 msgid "_Go"
-msgstr ""
+msgstr "_გადასვლა"
 
 #: ../src/event-list.c:715
 msgid "New"
@@ -572,35 +630,35 @@ msgstr "ახალი"
 
 #: ../src/event-list.c:719
 msgid "Back"
-msgstr ""
+msgstr "უკან"
 
 #: ../src/event-list.c:725
 msgid "Forward"
-msgstr ""
+msgstr "წინ"
 
 #: ../src/event-list.c:728
 msgid "Refresh"
-msgstr ""
+msgstr "განახლება"
 
 #: ../src/event-list.c:737
 msgid "Close"
-msgstr ""
+msgstr "დახურვა"
 
 #: ../src/event-list.c:740
 msgid "Clear"
-msgstr ""
+msgstr "გასუფთავება"
 
 #: ../src/event-list.c:784
 msgid "Flags"
-msgstr ""
+msgstr "ალმები"
 
 #: ../src/event-list.c:790
 msgid "Title"
-msgstr ""
+msgstr "სათაური"
 
 #: ../src/event-list.c:796
 msgid "uid"
-msgstr ""
+msgstr "uid"
 
 #: ../src/event-list.c:805
 msgid ""
@@ -613,1122 +671,1130 @@ msgid ""
 "\t\t D=Daily W=Weekly M=Monthly Y=Yearly\n"
 "\t 3. Type: f=free B=Busy"
 msgstr ""
+"ორმაგი დაწკაპუნება რედაქტირებისათვის.\n"
+"\n"
+"ალმები თანმიმდევრულად:\n"
+"\t 1. სიგნალი: n=არ არის სიგნალი\n"
+"\t\tA=ხილული სიგნალი S=ხმოვანი სიგნალი\n"
+"\t 2. გამეორება: n=გამეორების გარეშე\n"
+"\t\t D=ყოველდღიურად W=ყოველკვირეულად M=ყოველთვიურად Y=ყოველწლიურად\n"
+"\t 3. ტიპი: f=თავისუფალი B=დაკავებული"
 
 #: ../src/ical-code.c:100
 msgid "Africa"
-msgstr ""
+msgstr "აფრიკა"
 
 #: ../src/ical-code.c:101
 msgid "Africa/Abidjan"
-msgstr ""
+msgstr "აფრიკა/აბიჯანი"
 
 #: ../src/ical-code.c:102
 msgid "Africa/Accra"
-msgstr ""
+msgstr "აფრიკა/აკრა"
 
 #: ../src/ical-code.c:103
 msgid "Africa/Addis_Ababa"
-msgstr ""
+msgstr "აფრიკა/ადის-აბება"
 
 #: ../src/ical-code.c:104
 msgid "Africa/Algiers"
-msgstr ""
+msgstr "აფრიკა/ალჟირი"
 
 #: ../src/ical-code.c:105
 msgid "Africa/Asmera"
-msgstr ""
+msgstr "აფრიკა/ასმერა"
 
 #: ../src/ical-code.c:106
 msgid "Africa/Bamako"
-msgstr ""
+msgstr "აფრიკა/ბამაკო"
 
 #: ../src/ical-code.c:107
 msgid "Africa/Bangui"
-msgstr ""
+msgstr "აფრიკა/ბანგი"
 
 #: ../src/ical-code.c:108
 msgid "Africa/Banjul"
-msgstr ""
+msgstr "აფრიკა/ბანჯული"
 
 #: ../src/ical-code.c:109
 msgid "Africa/Bissau"
-msgstr ""
+msgstr "აფრიკა/ბისაუ"
 
 #: ../src/ical-code.c:110
 msgid "Africa/Blantyre"
-msgstr ""
+msgstr "აფრიკა/ბლანტირი"
 
 #: ../src/ical-code.c:111
 msgid "Africa/Brazzaville"
-msgstr ""
+msgstr "აფრიკა/ბრაზავილი"
 
 #: ../src/ical-code.c:112
 msgid "Africa/Bujumbura"
-msgstr ""
+msgstr "აფრიკა/ბუჯუმბურა"
 
 #: ../src/ical-code.c:113
 msgid "Africa/Cairo"
-msgstr ""
+msgstr "აფრიკა/ქაირო"
 
 #: ../src/ical-code.c:114
 msgid "Africa/Casablanca"
-msgstr ""
+msgstr "აფრიკა/კასაბლანკა"
 
 #: ../src/ical-code.c:115
 msgid "Africa/Ceuta"
-msgstr ""
+msgstr "აფრიკა/კეუტა"
 
 #: ../src/ical-code.c:116
 msgid "Africa/Conakry"
-msgstr ""
+msgstr "აფრიკა/კონაკრი"
 
 #: ../src/ical-code.c:117
 msgid "Africa/Dakar"
-msgstr ""
+msgstr "აფრიკა/დაკარი"
 
 #: ../src/ical-code.c:118
 msgid "Africa/Dar_es_Salaam"
-msgstr ""
+msgstr "აფრიკა/დარ-ეს-სალამი"
 
 #: ../src/ical-code.c:119
 msgid "Africa/Djibouti"
-msgstr ""
+msgstr "აფრიკა/ჯიბუტი"
 
 #: ../src/ical-code.c:120
 msgid "Africa/Douala"
-msgstr ""
+msgstr "აფრიკა/დუალა"
 
 #: ../src/ical-code.c:121
 msgid "Africa/El_Aaiun"
-msgstr ""
+msgstr "აფრიკა/ელ-აიუნი"
 
 #: ../src/ical-code.c:122
 msgid "Africa/Freetown"
-msgstr ""
+msgstr "აფრიკა/ფრიტაუნი"
 
 #: ../src/ical-code.c:123
 msgid "Africa/Gaborone"
-msgstr ""
+msgstr "აფრიკა/გაბორონე"
 
 #: ../src/ical-code.c:124
 msgid "Africa/Harare"
-msgstr ""
+msgstr "აფრიკა/ჰარარე"
 
 #: ../src/ical-code.c:125
 msgid "Africa/Johannesburg"
-msgstr ""
+msgstr "აფრიკა/იოჰანესბურგი"
 
 #: ../src/ical-code.c:126
 msgid "Africa/Kampala"
-msgstr ""
+msgstr "აფრიკა/კამპალა"
 
 #: ../src/ical-code.c:127
 msgid "Africa/Khartoum"
-msgstr ""
+msgstr "აფრიკა/ხართუმი"
 
 #: ../src/ical-code.c:128
 msgid "Africa/Kigali"
-msgstr ""
+msgstr "აფრიკა/კიგალი"
 
 #: ../src/ical-code.c:129
 msgid "Africa/Kinshasa"
-msgstr ""
+msgstr "აფრიკა/კინშასა"
 
 #: ../src/ical-code.c:130
 msgid "Africa/Lagos"
-msgstr ""
+msgstr "აფრიკა/ლაგოსი"
 
 #: ../src/ical-code.c:131
 msgid "Africa/Libreville"
-msgstr ""
+msgstr "აფრიკა/ლიბრევილი"
 
 #: ../src/ical-code.c:132
 msgid "Africa/Lome"
-msgstr ""
+msgstr "აფრიკა/ლომე"
 
 #: ../src/ical-code.c:133
 msgid "Africa/Luanda"
-msgstr ""
+msgstr "აფრიკა/ლუანდა"
 
 #: ../src/ical-code.c:134
 msgid "Africa/Lubumbashi"
-msgstr ""
+msgstr "აფრიკა/ლუბუმბაში"
 
 #: ../src/ical-code.c:135
 msgid "Africa/Lusaka"
-msgstr ""
+msgstr "აფრიკა/ლუსაკა"
 
 #: ../src/ical-code.c:136
 msgid "Africa/Malabo"
-msgstr ""
+msgstr "აფრიკა/მალაბო"
 
 #: ../src/ical-code.c:137
 msgid "Africa/Maputo"
-msgstr ""
+msgstr "აფრიკა/მაპუტუ"
 
 #: ../src/ical-code.c:138
 msgid "Africa/Maseru"
-msgstr ""
+msgstr "აფრიკა/მასერუ"
 
 #: ../src/ical-code.c:139
 msgid "Africa/Mbabane"
-msgstr ""
+msgstr "აფრიკა/მბაბანე"
 
 #: ../src/ical-code.c:140
 msgid "Africa/Mogadishu"
-msgstr ""
+msgstr "აფრიკა/მოგადიშუ"
 
 #: ../src/ical-code.c:141
 msgid "Africa/Monrovia"
-msgstr ""
+msgstr "აფრიკა/მონროვია"
 
 #: ../src/ical-code.c:142
 msgid "Africa/Nairobi"
-msgstr ""
+msgstr "აფრიკა/ნაირობი"
 
 #: ../src/ical-code.c:143
 msgid "Africa/Ndjamena"
-msgstr ""
+msgstr "აფრიკა/ნჯამენა"
 
 #: ../src/ical-code.c:144
 msgid "Africa/Niamey"
-msgstr ""
+msgstr "აფრიკა/ნიამეი"
 
 #: ../src/ical-code.c:145
 msgid "Africa/Nouakchott"
-msgstr ""
+msgstr "აფრიკა/ნუაკშოტი"
 
 #: ../src/ical-code.c:146
 msgid "Africa/Ouagadougou"
-msgstr ""
+msgstr "აფრიკა/უაგადუგუ"
 
 #: ../src/ical-code.c:147
 msgid "Africa/Porto-Novo"
-msgstr ""
+msgstr "აფრიკა/პორტო-ნოვო"
 
 #: ../src/ical-code.c:148
 msgid "Africa/Sao_Tome"
-msgstr ""
+msgstr "აფრიკა/საო-ტომე"
 
 #: ../src/ical-code.c:149
 msgid "Africa/Timbuktu"
-msgstr ""
+msgstr "აფრიკა/ტიმბუქტუ"
 
 #: ../src/ical-code.c:150
 msgid "Africa/Tripoli"
-msgstr ""
+msgstr "აფრიკა/ტრიპოლი"
 
 #: ../src/ical-code.c:151
 msgid "Africa/Tunis"
-msgstr ""
+msgstr "აფრიკა/ტუნისი"
 
 #: ../src/ical-code.c:152
 msgid "Africa/Windhoek"
-msgstr ""
+msgstr "აფრიკა/ვინდჰუკი"
 
 #: ../src/ical-code.c:153
 msgid "America"
-msgstr ""
+msgstr "ამერიკა"
 
 #: ../src/ical-code.c:154
 msgid "America/Adak"
-msgstr ""
+msgstr "ამერიკა/ადაკი"
 
 #: ../src/ical-code.c:155
 msgid "America/Anchorage"
-msgstr ""
+msgstr "ამერიკა/ანკორიჯი"
 
 #: ../src/ical-code.c:156
 msgid "America/Anguilla"
-msgstr ""
+msgstr "ამერიკა/ანგილია"
 
 #: ../src/ical-code.c:157
 msgid "America/Antigua"
-msgstr ""
+msgstr "ამერიკა/ანტიგუა"
 
 #: ../src/ical-code.c:158
 msgid "America/Araguaina"
-msgstr ""
+msgstr "ამერიკა/არაგუაინა"
 
 #: ../src/ical-code.c:159
 msgid "America/Aruba"
-msgstr ""
+msgstr "ამერიკა/არუბა"
 
 #: ../src/ical-code.c:160
 msgid "America/Asuncion"
-msgstr ""
+msgstr "ამერიკა/ასუნსიონი"
 
 #: ../src/ical-code.c:161
 msgid "America/Barbados"
-msgstr ""
+msgstr "ამერიკა/ბარბადოსი"
 
 #: ../src/ical-code.c:162
 msgid "America/Belem"
-msgstr ""
+msgstr "ამერიკა/ბელემი"
 
 #: ../src/ical-code.c:163
 msgid "America/Belize"
-msgstr ""
+msgstr "ამერიკა/ბელიზი"
 
 #: ../src/ical-code.c:164
 msgid "America/Boa_Vista"
-msgstr ""
+msgstr "ამერიკა/ბოა-ვისტა"
 
 #: ../src/ical-code.c:165
 msgid "America/Bogota"
-msgstr ""
+msgstr "ამერიკა/ბოგოტა"
 
 #: ../src/ical-code.c:166
 msgid "America/Boise"
-msgstr ""
+msgstr "ამერიკა/ბოისე"
 
 #: ../src/ical-code.c:167
 msgid "America/Buenos_Aires"
-msgstr ""
+msgstr "ამერიკა/ბუენოს-აირესი"
 
 #: ../src/ical-code.c:168
 msgid "America/Cambridge_Bay"
-msgstr ""
+msgstr "ამერიკა/კემბრიჯ-ბეი"
 
 #: ../src/ical-code.c:169
 msgid "America/Cancun"
-msgstr ""
+msgstr "ამერიკა/კანკუნი"
 
 #: ../src/ical-code.c:170
 msgid "America/Caracas"
-msgstr ""
+msgstr "ამერიკა/კარაკასი"
 
 #: ../src/ical-code.c:171
 msgid "America/Catamarca"
-msgstr ""
+msgstr "ამერიკა/კატამარკა"
 
 #: ../src/ical-code.c:172
 msgid "America/Cayenne"
-msgstr ""
+msgstr "ამერიკა/კაიენი"
 
 #: ../src/ical-code.c:173
 msgid "America/Cayman"
-msgstr ""
+msgstr "ამერიკა/კაიმანი"
 
 #: ../src/ical-code.c:174
 msgid "America/Chicago"
-msgstr ""
+msgstr "ამერიკა/ჩიკაგო"
 
 #: ../src/ical-code.c:175
 msgid "America/Chihuahua"
-msgstr ""
+msgstr "ამერიკა/ჩიჰუაჰუა"
 
 #: ../src/ical-code.c:176
 msgid "America/Cordoba"
-msgstr ""
+msgstr "ამერიკა/კორდობა"
 
 #: ../src/ical-code.c:177
 msgid "America/Costa_Rica"
-msgstr ""
+msgstr "ამერიკა/კოსტა-რიკა"
 
 #: ../src/ical-code.c:178
 msgid "America/Cuiaba"
-msgstr ""
+msgstr "ამერიკა/კუიაბა"
 
 #: ../src/ical-code.c:179
 msgid "America/Curacao"
-msgstr ""
+msgstr "ამერიკა/კურაკაო"
 
 #: ../src/ical-code.c:180
 msgid "America/Dawson"
-msgstr ""
+msgstr "ამერიკა/დოუსონი"
 
 #: ../src/ical-code.c:181
 msgid "America/Dawson_Creek"
-msgstr ""
+msgstr "ამერიკა/დოუსონის ყურე"
 
 #: ../src/ical-code.c:182
 msgid "America/Denver"
-msgstr ""
+msgstr "ამერიკა/დენვერი"
 
 #: ../src/ical-code.c:183
 msgid "America/Detroit"
-msgstr ""
+msgstr "ამერიკა/დეტროიტი"
 
 #: ../src/ical-code.c:184
 msgid "America/Dominica"
-msgstr ""
+msgstr "ამერიკა/დომინიკა"
 
 #: ../src/ical-code.c:185
 msgid "America/Edmonton"
-msgstr ""
+msgstr "ამერიკა/ედმონტონი"
 
 #: ../src/ical-code.c:186
 msgid "America/Eirunepe"
-msgstr ""
+msgstr "ამერიკა/ეირუნეპე"
 
 #: ../src/ical-code.c:187
 msgid "America/El_Salvador"
-msgstr ""
+msgstr "ამერიკა/ელ-სალვადორი"
 
 #: ../src/ical-code.c:188
 msgid "America/Fortaleza"
-msgstr ""
+msgstr "ამერიკა/ფორტალეზა"
 
 #: ../src/ical-code.c:189
 msgid "America/Glace_Bay"
-msgstr ""
+msgstr "ამერიკა/გლეის-ბეი"
 
 #: ../src/ical-code.c:190
 msgid "America/Godthab"
-msgstr ""
+msgstr "ამერიკა/გოთჰობი"
 
 #: ../src/ical-code.c:191
 msgid "America/Goose_Bay"
-msgstr ""
+msgstr "ამერიკა/გუზ-ბეი"
 
 #: ../src/ical-code.c:192
 msgid "America/Grand_Turk"
-msgstr ""
+msgstr "ამერიკა/გრანდ-ტურკი"
 
 #: ../src/ical-code.c:193
 msgid "America/Grenada"
-msgstr ""
+msgstr "ამერიკა/გრენადა"
 
 #: ../src/ical-code.c:194
 msgid "America/Guadeloupe"
-msgstr ""
+msgstr "ამერიკა/გვადელუპე"
 
 #: ../src/ical-code.c:195
 msgid "America/Guatemala"
-msgstr ""
+msgstr "ამერიკა/გვატემალა"
 
 #: ../src/ical-code.c:196
 msgid "America/Guayaquil"
-msgstr ""
+msgstr "ამერიკა/გუიაკილი"
 
 #: ../src/ical-code.c:197
 msgid "America/Guyana"
-msgstr ""
+msgstr "ამერიკა/გაიანა"
 
 #: ../src/ical-code.c:198
 msgid "America/Halifax"
-msgstr ""
+msgstr "ამერიკა/ჰალიფაქსი"
 
 #: ../src/ical-code.c:199
 msgid "America/Havana"
-msgstr ""
+msgstr "ამერიკა/ჰავანა"
 
 #: ../src/ical-code.c:200
 msgid "America/Hermosillo"
-msgstr ""
+msgstr "ამერიკა/ერმოსილიო"
 
 #: ../src/ical-code.c:201
 msgid "America/Indiana/Indianapolis"
-msgstr ""
+msgstr "ამერიკა/ინდიანა/ინდიანაპოლისი"
 
 #: ../src/ical-code.c:202
 msgid "America/Indiana/Knox"
-msgstr ""
+msgstr "ამერიკა/ინდიანა/ნოქსი"
 
 #: ../src/ical-code.c:203
 msgid "America/Indiana/Marengo"
-msgstr ""
+msgstr "ამერიკა/ინდიანა/მარენგო"
 
 #: ../src/ical-code.c:204
 msgid "America/Indiana/Vevay"
-msgstr ""
+msgstr "ამერიკა/ინდიანა/ვივეი"
 
 #: ../src/ical-code.c:205
 msgid "America/Indianapolis"
-msgstr ""
+msgstr "ამერიკა/ინდიანაპოლისი"
 
 #: ../src/ical-code.c:206
 msgid "America/Inuvik"
-msgstr ""
+msgstr "ამერიკა/ინუვიკი"
 
 #: ../src/ical-code.c:207
 msgid "America/Iqaluit"
-msgstr ""
+msgstr "ამერიკა/იქვალუიტი"
 
 #: ../src/ical-code.c:208
 msgid "America/Jamaica"
-msgstr ""
+msgstr "ამერიკა/იამაიკა"
 
 #: ../src/ical-code.c:209
 msgid "America/Jujuy"
-msgstr ""
+msgstr "ამერიკა/ჯუჯუი"
 
 #: ../src/ical-code.c:210
 msgid "America/Juneau"
-msgstr ""
+msgstr "ამერიკა/ჯუნო"
 
 #: ../src/ical-code.c:211
 msgid "America/Kentucky/Louisville"
-msgstr ""
+msgstr "ამერიკა/კენტუკი/ლუისვილი"
 
 #: ../src/ical-code.c:212
 msgid "America/Kentucky/Monticello"
-msgstr ""
+msgstr "ამერიკა/კენტუკი/მონტიჩელო"
 
 #: ../src/ical-code.c:213
 msgid "America/La_Paz"
-msgstr ""
+msgstr "ამერიკა/ლა-პასი"
 
 #: ../src/ical-code.c:214
 msgid "America/Lima"
-msgstr ""
+msgstr "ამერიკა/ლიმა"
 
 #: ../src/ical-code.c:215
 msgid "America/Los_Angeles"
-msgstr ""
+msgstr "ამერიკა/ლოს-ანჯელესი"
 
 #: ../src/ical-code.c:216
 msgid "America/Louisville"
-msgstr ""
+msgstr "ამერიკა/ლუისვილი"
 
 #: ../src/ical-code.c:217
 msgid "America/Maceio"
-msgstr ""
+msgstr "ამერიკა/მასეიო"
 
 #: ../src/ical-code.c:218
 msgid "America/Managua"
-msgstr ""
+msgstr "ამერიკა/მანაგუა"
 
 #: ../src/ical-code.c:219
 msgid "America/Manaus"
-msgstr ""
+msgstr "ამერიკა/მანაუსი"
 
 #: ../src/ical-code.c:220
 msgid "America/Martinique"
-msgstr ""
+msgstr "ამერიკა/მარტინიკი"
 
 #: ../src/ical-code.c:221
 msgid "America/Mazatlan"
-msgstr ""
+msgstr "ამერიკა/მაზალტანი"
 
 #: ../src/ical-code.c:222
 msgid "America/Mendoza"
-msgstr ""
+msgstr "ამერიკა/მენდოზა"
 
 #: ../src/ical-code.c:223
 msgid "America/Menominee"
-msgstr ""
+msgstr "ამერიკა/მენომინი"
 
 #: ../src/ical-code.c:224
 msgid "America/Merida"
-msgstr ""
+msgstr "ამერიკა/მერიდა"
 
 #: ../src/ical-code.c:225
 msgid "America/Mexico_City"
-msgstr ""
+msgstr "ამერიკა/მექსიკო-სიტი"
 
 #: ../src/ical-code.c:226
 msgid "America/Miquelon"
-msgstr ""
+msgstr "ამერიკა/მიკველონი"
 
 #: ../src/ical-code.c:227
 msgid "America/Monterrey"
-msgstr ""
+msgstr "ამერიკა/მონტერეი"
 
 #: ../src/ical-code.c:228
 msgid "America/Montevideo"
-msgstr ""
+msgstr "ამერიკა/მონტევიდეო"
 
 #: ../src/ical-code.c:229
 msgid "America/Montreal"
-msgstr ""
+msgstr "ამერიკა/მონრეალი"
 
 #: ../src/ical-code.c:230
 msgid "America/Montserrat"
-msgstr ""
+msgstr "ამერიკა/მონსერატი"
 
 #: ../src/ical-code.c:231
 msgid "America/Nassau"
-msgstr ""
+msgstr "ამერიკა/ნასაუ"
 
 #: ../src/ical-code.c:232
 msgid "America/New_York"
-msgstr ""
+msgstr "ამერიკა/ნიუ-იორკი"
 
 #: ../src/ical-code.c:233
 msgid "America/Nipigon"
-msgstr ""
+msgstr "ამერიკა/ნიპიგონი"
 
 #: ../src/ical-code.c:234
 msgid "America/Nome"
-msgstr ""
+msgstr "ამერიკა/ნომი"
 
 #: ../src/ical-code.c:235
 msgid "America/Noronha"
-msgstr ""
+msgstr "ამერიკა/ნორონა"
 
 #: ../src/ical-code.c:236
 msgid "America/Panama"
-msgstr ""
+msgstr "ამერიკა/პანამა"
 
 #: ../src/ical-code.c:237
 msgid "America/Pangnirtung"
-msgstr ""
+msgstr "ამერიკა/პანგირტანგი"
 
 #: ../src/ical-code.c:238
 msgid "America/Paramaribo"
-msgstr ""
+msgstr "ამერიკა/პარამარიბო"
 
 #: ../src/ical-code.c:239
 msgid "America/Phoenix"
-msgstr ""
+msgstr "ამერიკა/ფენიქსი"
 
 #: ../src/ical-code.c:240
 msgid "America/Port-au-Prince"
-msgstr ""
+msgstr "ამერიკა/პორტ-ო-პრენსი"
 
 #: ../src/ical-code.c:241
 msgid "America/Port_of_Spain"
-msgstr ""
+msgstr "ამერიკა/პორტ-ოფ-სპაინ"
 
 #: ../src/ical-code.c:242
 msgid "America/Porto_Velho"
-msgstr ""
+msgstr "ამერიკა/პორტო-ველო"
 
 #: ../src/ical-code.c:243
 msgid "America/Puerto_Rico"
-msgstr ""
+msgstr "ამერიკა/პუერტო-რიკო"
 
 #: ../src/ical-code.c:244
 msgid "America/Rainy_River"
-msgstr ""
+msgstr "ამერიკა/რეინი-რივერი"
 
 #: ../src/ical-code.c:245
 msgid "America/Rankin_Inlet"
-msgstr ""
+msgstr "ამერიკა/რანკინ-ინლეტი"
 
 #: ../src/ical-code.c:246
 msgid "America/Recife"
-msgstr ""
+msgstr "ამერიკა/რესიფე"
 
 #: ../src/ical-code.c:247
 msgid "America/Regina"
-msgstr ""
+msgstr "ამერიკა/რეჯინა"
 
 #: ../src/ical-code.c:248
 msgid "America/Rio_Branco"
-msgstr ""
+msgstr "ამერიკა/რიო-ბრანკო"
 
 #: ../src/ical-code.c:249
 msgid "America/Rosario"
-msgstr ""
+msgstr "ამერიკა/როზარიო"
 
 #: ../src/ical-code.c:250
 msgid "America/Santiago"
-msgstr ""
+msgstr "ამერიკა/სანტიაგო"
 
 #: ../src/ical-code.c:251
 msgid "America/Santo_Domingo"
-msgstr ""
+msgstr "ამერიკა/სანტო-დომინიკო"
 
 #: ../src/ical-code.c:252
 msgid "America/Sao_Paulo"
-msgstr ""
+msgstr "ამერიკა/სან-პაულო"
 
 #: ../src/ical-code.c:253
 msgid "America/Scoresbysund"
-msgstr ""
+msgstr "ამერიკა/სკორსბისუნი"
 
 #: ../src/ical-code.c:254
 msgid "America/Shiprock"
-msgstr ""
+msgstr "ამერიკა/შიპროკი"
 
 #: ../src/ical-code.c:255
 msgid "America/St_Johns"
-msgstr ""
+msgstr "ამერიკა/სენტ-ჯონსი"
 
 #: ../src/ical-code.c:256
 msgid "America/St_Kitts"
-msgstr ""
+msgstr "ამერიკა/სენტ-კიტსი"
 
 #: ../src/ical-code.c:257
 msgid "America/St_Lucia"
-msgstr ""
+msgstr "ამერიკა/სენტ-ლუსია"
 
 #: ../src/ical-code.c:258
 msgid "America/St_Thomas"
-msgstr ""
+msgstr "ამერიკა/სენტ-ტომასი"
 
 #: ../src/ical-code.c:259
 msgid "America/St_Vincent"
-msgstr ""
+msgstr "ამერიკა/სენტ-ვინცენტი"
 
 #: ../src/ical-code.c:260
 msgid "America/Swift_Current"
-msgstr ""
+msgstr "ამერიკა/სვიფტ-კარენტი"
 
 #: ../src/ical-code.c:261
 msgid "America/Tegucigalpa"
-msgstr ""
+msgstr "ამერიკა/ტეგუსიგალპა"
 
 #: ../src/ical-code.c:262
 msgid "America/Thule"
-msgstr ""
+msgstr "ამერიკა/ტულე"
 
 #: ../src/ical-code.c:263
 msgid "America/Thunder_Bay"
-msgstr ""
+msgstr "ამერიკა/ტანდერ-ბეი"
 
 #: ../src/ical-code.c:264
 msgid "America/Tijuana"
-msgstr ""
+msgstr "ამერიკა/ტიჰუანა"
 
 #: ../src/ical-code.c:265
 msgid "America/Tortola"
-msgstr ""
+msgstr "ამერიკა/ტორტოლა"
 
 #: ../src/ical-code.c:266
 msgid "America/Vancouver"
-msgstr ""
+msgstr "ამერიკა/ვანკუვერი"
 
 #: ../src/ical-code.c:267
 msgid "America/Whitehorse"
-msgstr ""
+msgstr "ამერიკა/ვაიტჰორსი"
 
 #: ../src/ical-code.c:268
 msgid "America/Winnipeg"
-msgstr ""
+msgstr "ამერიკა/ვინიპეგი"
 
 #: ../src/ical-code.c:269
 msgid "America/Yakutat"
-msgstr ""
+msgstr "ამერიკა/იაკუტატი"
 
 #: ../src/ical-code.c:270
 msgid "America/Yellowknife"
-msgstr ""
+msgstr "ამერიკა/იელონაიფი"
 
 #: ../src/ical-code.c:271
 msgid "Antarctica"
-msgstr ""
+msgstr "ანტარქტიკა"
 
 #: ../src/ical-code.c:272
 msgid "Antarctica/Casey"
-msgstr ""
+msgstr "ანტარქტიკა/კეისი"
 
 #: ../src/ical-code.c:273
 msgid "Antarctica/Davis"
-msgstr ""
+msgstr "ანტარქტიკა/დევისი"
 
 #: ../src/ical-code.c:274
 msgid "Antarctica/DumontDUrville"
-msgstr ""
+msgstr "ანტარქტიკა/დიუმონ-დურვილი"
 
 #: ../src/ical-code.c:275
 msgid "Antarctica/Mawson"
-msgstr ""
+msgstr "ანტარქტიკა/მოუსონი"
 
 #: ../src/ical-code.c:276
 msgid "Antarctica/McMurdo"
-msgstr ""
+msgstr "ანტარქტიკა/მაკ-მერდო"
 
 #: ../src/ical-code.c:277
 msgid "Antarctica/Palmer"
-msgstr ""
+msgstr "ანტარქტიკა/პალმერი"
 
 #: ../src/ical-code.c:278
 msgid "Antarctica/South_Pole"
-msgstr ""
+msgstr "ანტარქტიკა/სამხრეთ პოლუსი"
 
 #: ../src/ical-code.c:279
 msgid "Antarctica/Syowa"
-msgstr ""
+msgstr "ანტარქტიკა/სეოვა"
 
 #: ../src/ical-code.c:280
 msgid "Antarctica/Vostok"
-msgstr ""
+msgstr "ანტარქტიკა/ვოსტოკი"
 
 #: ../src/ical-code.c:281
 msgid "Arctic"
-msgstr ""
+msgstr "არქტიკა"
 
 #: ../src/ical-code.c:282
 msgid "Arctic/Longyearbyen"
-msgstr ""
+msgstr "არქტიკა/ლონგებრუინი"
 
 #: ../src/ical-code.c:283
 msgid "Asia"
-msgstr ""
+msgstr "აზია"
 
 #: ../src/ical-code.c:284
 msgid "Asia/Aden"
-msgstr ""
+msgstr "აზია/ადენი"
 
 #: ../src/ical-code.c:285
 msgid "Asia/Almaty"
-msgstr ""
+msgstr "აზია/ალმატი"
 
 #: ../src/ical-code.c:286
 msgid "Asia/Amman"
-msgstr ""
+msgstr "აზია/ამანი"
 
 #: ../src/ical-code.c:287
 msgid "Asia/Anadyr"
-msgstr ""
+msgstr "აზია/ანადირი"
 
 #: ../src/ical-code.c:288
 msgid "Asia/Aqtau"
-msgstr ""
+msgstr "აზია/აქტაუ"
 
 #: ../src/ical-code.c:289
 msgid "Asia/Aqtobe"
-msgstr ""
+msgstr "აზია/აქტიუბინსკი"
 
 #: ../src/ical-code.c:290
 msgid "Asia/Ashgabat"
-msgstr ""
+msgstr "აზია/აშხაბადი"
 
 #: ../src/ical-code.c:291
 msgid "Asia/Baghdad"
-msgstr ""
+msgstr "აზია/ბაღდადი"
 
 #: ../src/ical-code.c:292
 msgid "Asia/Bahrain"
-msgstr ""
+msgstr "აზია/ბაჰრეინი"
 
 #: ../src/ical-code.c:293
 msgid "Asia/Baku"
-msgstr ""
+msgstr "აზია/ბაქო"
 
 #: ../src/ical-code.c:294
 msgid "Asia/Bangkok"
-msgstr ""
+msgstr "აზია/ბაკოკი"
 
 #: ../src/ical-code.c:295
 msgid "Asia/Beirut"
-msgstr ""
+msgstr "აზია/ბეირუტი"
 
 #: ../src/ical-code.c:296
 msgid "Asia/Bishkek"
-msgstr ""
+msgstr "აზია/ბიშკეკი"
 
 #: ../src/ical-code.c:297
 msgid "Asia/Brunei"
-msgstr ""
+msgstr "აზია/ბრუნეი"
 
 #: ../src/ical-code.c:298
 msgid "Asia/Calcutta"
-msgstr ""
+msgstr "აზია/კალკუტა"
 
 #: ../src/ical-code.c:299
 msgid "Asia/Chungking"
-msgstr ""
+msgstr "აზია/ჩუნცინი"
 
 #: ../src/ical-code.c:300
 msgid "Asia/Colombo"
-msgstr ""
+msgstr "აზია/კოლომბო"
 
 #: ../src/ical-code.c:301
 msgid "Asia/Damascus"
-msgstr ""
+msgstr "აზია/დამასკო"
 
 #: ../src/ical-code.c:302
 msgid "Asia/Dhaka"
-msgstr ""
+msgstr "აზია/დაკა"
 
 #: ../src/ical-code.c:303
 msgid "Asia/Dili"
-msgstr ""
+msgstr "აზია/დილი"
 
 #: ../src/ical-code.c:304
 msgid "Asia/Dubai"
-msgstr ""
+msgstr "აზია/დუბაი"
 
 #: ../src/ical-code.c:305
 msgid "Asia/Dushanbe"
-msgstr ""
+msgstr "აზია/დუშანბე"
 
 #: ../src/ical-code.c:306
 msgid "Asia/Gaza"
-msgstr ""
+msgstr "აზია/ღაზა"
 
 #: ../src/ical-code.c:307
 msgid "Asia/Harbin"
-msgstr ""
+msgstr "აზია/ჰარბინი"
 
 #: ../src/ical-code.c:308
 msgid "Asia/Hong_Kong"
-msgstr ""
+msgstr "აზია/ჰონ-კონგი"
 
 #: ../src/ical-code.c:309
 msgid "Asia/Hovd"
-msgstr ""
+msgstr "აზია/ჰოვდი"
 
 #: ../src/ical-code.c:310
 msgid "Asia/Irkutsk"
-msgstr ""
+msgstr "აზია/ირკუტსკი"
 
 #: ../src/ical-code.c:311
 msgid "Asia/Istanbul"
-msgstr ""
+msgstr "აზია/სტამბული"
 
 #: ../src/ical-code.c:312
 msgid "Asia/Jakarta"
-msgstr ""
+msgstr "აზია/ჯაკარტა"
 
 #: ../src/ical-code.c:313
 msgid "Asia/Jayapura"
-msgstr ""
+msgstr "აზია/ჯაიპური"
 
 #: ../src/ical-code.c:314
 msgid "Asia/Jerusalem"
-msgstr ""
+msgstr "აზია/იერუსალიმი"
 
 #: ../src/ical-code.c:315
 msgid "Asia/Kabul"
-msgstr ""
+msgstr "აზია/ქაბული"
 
 #: ../src/ical-code.c:316
 msgid "Asia/Kamchatka"
-msgstr ""
+msgstr "აზია/კამჩატკა"
 
 #: ../src/ical-code.c:317
 msgid "Asia/Karachi"
-msgstr ""
+msgstr "აზია/ყარაჩი"
 
 #: ../src/ical-code.c:318
 msgid "Asia/Kashgar"
-msgstr ""
+msgstr "აზია/კაშგარი"
 
 #: ../src/ical-code.c:319
 msgid "Asia/Katmandu"
-msgstr ""
+msgstr "აზია/კატმანდუ"
 
 #: ../src/ical-code.c:320
 msgid "Asia/Krasnoyarsk"
-msgstr ""
+msgstr "აზია/კრასნოიარსკი"
 
 #: ../src/ical-code.c:321
 msgid "Asia/Kuala_Lumpur"
-msgstr ""
+msgstr "აზია/კუალა-ლუმპური"
 
 #: ../src/ical-code.c:322
 msgid "Asia/Kuching"
-msgstr ""
+msgstr "აზია/კუჩინგი"
 
 #: ../src/ical-code.c:323
 msgid "Asia/Kuwait"
-msgstr ""
+msgstr "აზია/კუვეიტი"
 
 #: ../src/ical-code.c:324
 msgid "Asia/Macao"
-msgstr ""
+msgstr "აზია/მაკაო"
 
 #: ../src/ical-code.c:325
 msgid "Asia/Magadan"
-msgstr ""
+msgstr "აზია/მაგადანი"
 
 #: ../src/ical-code.c:326
 msgid "Asia/Manila"
-msgstr ""
+msgstr "აზია/მანილა"
 
 #: ../src/ical-code.c:327
 msgid "Asia/Muscat"
-msgstr ""
+msgstr "აზია/მასკატი"
 
 #: ../src/ical-code.c:328
 msgid "Asia/Nicosia"
-msgstr ""
+msgstr "აზია/ნიქოზია"
 
 #: ../src/ical-code.c:329
 msgid "Asia/Novosibirsk"
-msgstr ""
+msgstr "აზია/ნოვოსიბირსკი"
 
 #: ../src/ical-code.c:330
 msgid "Asia/Omsk"
-msgstr ""
+msgstr "აზია/ომსკი"
 
 #: ../src/ical-code.c:331
 msgid "Asia/Phnom_Penh"
-msgstr ""
+msgstr "აზია/პნომპენი"
 
 #: ../src/ical-code.c:332
 msgid "Asia/Pontianak"
-msgstr ""
+msgstr "აზია/პონტიანაკი"
 
 #: ../src/ical-code.c:333
 msgid "Asia/Pyongyang"
-msgstr ""
+msgstr "აზია/პხენიანი"
 
 #: ../src/ical-code.c:334
 msgid "Asia/Qatar"
-msgstr ""
+msgstr "აზია/კატარი"
 
 #: ../src/ical-code.c:335
 msgid "Asia/Rangoon"
-msgstr ""
+msgstr "აზია/რანგუნი"
 
 #: ../src/ical-code.c:336
 msgid "Asia/Riyadh"
-msgstr ""
+msgstr "აზია/ელ-რიადი"
 
 #: ../src/ical-code.c:337
 msgid "Asia/Saigon"
-msgstr ""
+msgstr "აზია/საიგონი"
 
 #: ../src/ical-code.c:338
 msgid "Asia/Samarkand"
-msgstr ""
+msgstr "აზია/სამარყანდი"
 
 #: ../src/ical-code.c:339
 msgid "Asia/Seoul"
-msgstr ""
+msgstr "აზია/სეული"
 
 #: ../src/ical-code.c:340
 msgid "Asia/Shanghai"
-msgstr ""
+msgstr "აზია/შანხაი"
 
 #: ../src/ical-code.c:341
 msgid "Asia/Singapore"
-msgstr ""
+msgstr "აზია/სინგაპური"
 
 #: ../src/ical-code.c:342
 msgid "Asia/Taipei"
-msgstr ""
+msgstr "აზია/ტაიპეი"
 
 #: ../src/ical-code.c:343
 msgid "Asia/Tashkent"
-msgstr ""
+msgstr "აზია/ტაშკენტი"
 
 #: ../src/ical-code.c:344
 msgid "Asia/Tbilisi"
-msgstr ""
+msgstr "აზია/თბილისი"
 
 #: ../src/ical-code.c:345
 msgid "Asia/Tehran"
-msgstr ""
+msgstr "აზია/თეირანი"
 
 #: ../src/ical-code.c:346
 msgid "Asia/Thimphu"
-msgstr ""
+msgstr "აზია/თჰიმპუ"
 
 #: ../src/ical-code.c:347
 msgid "Asia/Tokyo"
-msgstr ""
+msgstr "აზია/ტოკიო"
 
 #: ../src/ical-code.c:348
 msgid "Asia/Ujung_Pandang"
-msgstr ""
+msgstr "აზია/უჯუნგ-პანდანგი"
 
 #: ../src/ical-code.c:349
 msgid "Asia/Ulaanbaatar"
-msgstr ""
+msgstr "აზია/ულანბატორი"
 
 #: ../src/ical-code.c:350
 msgid "Asia/Urumqi"
-msgstr ""
+msgstr "აზია/ურუმჩი"
 
 #: ../src/ical-code.c:351
 msgid "Asia/Vientiane"
-msgstr ""
+msgstr "აზია/ვიენტიანი"
 
 #: ../src/ical-code.c:352
 msgid "Asia/Vladivostok"
-msgstr ""
+msgstr "აზია/ვლადივოსტოკი"
 
 #: ../src/ical-code.c:353
 msgid "Asia/Yakutsk"
-msgstr ""
+msgstr "აზია/იაკუტსკი"
 
 #: ../src/ical-code.c:354
 msgid "Asia/Yekaterinburg"
-msgstr ""
+msgstr "აზია/ეკატერინბურგი"
 
 #: ../src/ical-code.c:355
 msgid "Asia/Yerevan"
-msgstr ""
+msgstr "აზია/ერევანი"
 
 #: ../src/ical-code.c:356
 msgid "Atlantic"
-msgstr ""
+msgstr "ატლანტიკის ოკეანე"
 
 #: ../src/ical-code.c:357
 msgid "Atlantic/Azores"
-msgstr ""
+msgstr "ატლანტიკის ოკეანე/აზორის კუნძულები"
 
 #: ../src/ical-code.c:358
 msgid "Atlantic/Bermuda"
-msgstr ""
+msgstr "ატლანტიკის ოკეანე/ბერმუდები"
 
 #: ../src/ical-code.c:359
 msgid "Atlantic/Canary"
-msgstr ""
+msgstr "ატლანტიკის ოკეანე/კანარის კუნძულები"
 
 #: ../src/ical-code.c:360
 msgid "Atlantic/Cape_Verde"
-msgstr ""
+msgstr "ატლანტიკის ოკეანე/კაპე-ვერდე"
 
 #: ../src/ical-code.c:361
 msgid "Atlantic/Faeroe"
-msgstr ""
+msgstr "ატლანტიკის ოკეანე/ფარერის კუნძულები"
 
 #: ../src/ical-code.c:362
 msgid "Atlantic/Jan_Mayen"
-msgstr ""
+msgstr "ატლანტიკის ოკეანე/იან-მაიენი"
 
 #: ../src/ical-code.c:363
 msgid "Atlantic/Madeira"
-msgstr ""
+msgstr "ატლანტიკის ოკეანე/მადეირა"
 
 #: ../src/ical-code.c:364
 msgid "Atlantic/Reykjavik"
-msgstr ""
+msgstr "ატლანტიკის ოკეანე/რეიკიავიკი"
 
 #: ../src/ical-code.c:365
 msgid "Atlantic/South_Georgia"
-msgstr ""
+msgstr "ატლანტიკის ოკეანე/სამხრეთ ჯორჯია"
 
 #: ../src/ical-code.c:366
 msgid "Atlantic/St_Helena"
-msgstr ""
+msgstr "ატლანტიკის ოკეანე/წმინდა ელენეს კუნძული"
 
 #: ../src/ical-code.c:367
 msgid "Atlantic/Stanley"
-msgstr ""
+msgstr "ატლანტიკის ოკეანე/სტენლი"
 
 #: ../src/ical-code.c:368
 msgid "Australia"
-msgstr ""
+msgstr "ავსტრალია"
 
 #: ../src/ical-code.c:369
 msgid "Australia/Adelaide"
-msgstr ""
+msgstr "ავსტრალია/ადელაიდა"
 
 #: ../src/ical-code.c:370
 msgid "Australia/Brisbane"
-msgstr ""
+msgstr "ავსტრალია/ბრისბენი"
 
 #: ../src/ical-code.c:371
 msgid "Australia/Broken_Hill"
-msgstr ""
+msgstr "ავსტრალია/ბროკენ-ჰილი"
 
 #: ../src/ical-code.c:372
 msgid "Australia/Darwin"
-msgstr ""
+msgstr "ავსტრალია/დარვინი"
 
 #: ../src/ical-code.c:373
 msgid "Australia/Hobart"
-msgstr ""
+msgstr "ავსტრალია/ჰობარტი"
 
 #: ../src/ical-code.c:374
 msgid "Australia/Lindeman"
-msgstr ""
+msgstr "ავსტრალია/ლინდემანი"
 
 #: ../src/ical-code.c:375
 msgid "Australia/Lord_Howe"
-msgstr ""
+msgstr "ავსტრალია/ლორდ-ჰაუ"
 
 #: ../src/ical-code.c:376
 msgid "Australia/Melbourne"
-msgstr ""
+msgstr "ავსტრალია/მელბურნი"
 
 #: ../src/ical-code.c:377
 msgid "Australia/Perth"
-msgstr ""
+msgstr "ავსტრალია/პერტი"
 
 #: ../src/ical-code.c:378
 msgid "Australia/Sydney"
-msgstr ""
+msgstr "ავსტრალია/სიდნეი"
 
 #: ../src/ical-code.c:379
 msgid "Europe"
@@ -1736,462 +1802,462 @@ msgstr "ევროპა"
 
 #: ../src/ical-code.c:380
 msgid "Europe/Amsterdam"
-msgstr ""
+msgstr "ევროპა/ამსტერდამი"
 
 #: ../src/ical-code.c:381
 msgid "Europe/Andorra"
-msgstr ""
+msgstr "ევროპა/ანდორა"
 
 #: ../src/ical-code.c:382
 msgid "Europe/Athens"
-msgstr ""
+msgstr "ევროპა/ათენი"
 
 #: ../src/ical-code.c:383
 msgid "Europe/Belfast"
-msgstr ""
+msgstr "ევროპა/ბელფასტი"
 
 #: ../src/ical-code.c:384
 msgid "Europe/Belgrade"
-msgstr ""
+msgstr "ევროპა/ბელგრადი"
 
 #: ../src/ical-code.c:385
 msgid "Europe/Berlin"
-msgstr ""
+msgstr "ევროპა/ბერლინი"
 
 #: ../src/ical-code.c:386
 msgid "Europe/Bratislava"
-msgstr ""
+msgstr "ევროპა/ბრატისლავა"
 
 #: ../src/ical-code.c:387
 msgid "Europe/Brussels"
-msgstr ""
+msgstr "ევროპა/ბრიუსელი"
 
 #: ../src/ical-code.c:388
 msgid "Europe/Bucharest"
-msgstr ""
+msgstr "ევროპა/ბუქარესტი"
 
 #: ../src/ical-code.c:389
 msgid "Europe/Budapest"
-msgstr ""
+msgstr "ევროპა/ბუდაპეშტი"
 
 #: ../src/ical-code.c:390
 msgid "Europe/Chisinau"
-msgstr ""
+msgstr "ევროპა/კიშინოვი"
 
 #: ../src/ical-code.c:391
 msgid "Europe/Copenhagen"
-msgstr ""
+msgstr "ევროპა/კოპენჰაგენი"
 
 #: ../src/ical-code.c:392
 msgid "Europe/Dublin"
-msgstr ""
+msgstr "ევროპა/დუბლინი"
 
 #: ../src/ical-code.c:393
 msgid "Europe/Gibraltar"
-msgstr ""
+msgstr "ევროპა/გიბრალტარი"
 
 #: ../src/ical-code.c:394
 msgid "Europe/Helsinki"
-msgstr ""
+msgstr "ევროპა/ჰელსინკი"
 
 #: ../src/ical-code.c:395
 msgid "Europe/Istanbul"
-msgstr ""
+msgstr "ევროპა/სტამბული"
 
 #: ../src/ical-code.c:396
 msgid "Europe/Kaliningrad"
-msgstr ""
+msgstr "ევროპა/კალინინგრადი"
 
 #: ../src/ical-code.c:397
 msgid "Europe/Kiev"
-msgstr ""
+msgstr "ევროპა/კიევი"
 
 #: ../src/ical-code.c:398
 msgid "Europe/Lisbon"
-msgstr ""
+msgstr "ევროპა/ლისაბონი"
 
 #: ../src/ical-code.c:399
 msgid "Europe/Ljubljana"
-msgstr ""
+msgstr "ევროპა/ლუბლიანა"
 
 #: ../src/ical-code.c:400
 msgid "Europe/London"
-msgstr ""
+msgstr "ევროპა/ლონდონი"
 
 #: ../src/ical-code.c:401
 msgid "Europe/Luxembourg"
-msgstr ""
+msgstr "ევროპა/ლუქსემბურგი"
 
 #: ../src/ical-code.c:402
 msgid "Europe/Madrid"
-msgstr ""
+msgstr "ევროპა/მადრიდი"
 
 #: ../src/ical-code.c:403
 msgid "Europe/Malta"
-msgstr ""
+msgstr "ევროპა/მალტა"
 
 #: ../src/ical-code.c:404
 msgid "Europe/Minsk"
-msgstr ""
+msgstr "ევროპა/მინსკი"
 
 #: ../src/ical-code.c:405
 msgid "Europe/Monaco"
-msgstr ""
+msgstr "ევროპა/მონაკო"
 
 #: ../src/ical-code.c:406
 msgid "Europe/Moscow"
-msgstr ""
+msgstr "ევროპა/მოსკოვი"
 
 #: ../src/ical-code.c:407
 msgid "Europe/Nicosia"
-msgstr ""
+msgstr "ევროპა/ნიქოზია"
 
 #: ../src/ical-code.c:408
 msgid "Europe/Oslo"
-msgstr ""
+msgstr "ევროპა/ოსლო"
 
 #: ../src/ical-code.c:409
 msgid "Europe/Paris"
-msgstr ""
+msgstr "ევროპა/პარიზი"
 
 #: ../src/ical-code.c:410
 msgid "Europe/Prague"
-msgstr ""
+msgstr "ევროპა/პრაღა"
 
 #: ../src/ical-code.c:411
 msgid "Europe/Riga"
-msgstr ""
+msgstr "ევროპა/რიგა"
 
 #: ../src/ical-code.c:412
 msgid "Europe/Rome"
-msgstr ""
+msgstr "ევროპა/რომი"
 
 #: ../src/ical-code.c:413
 msgid "Europe/Samara"
-msgstr ""
+msgstr "ევროპა/სამარა"
 
 #: ../src/ical-code.c:414
 msgid "Europe/San_Marino"
-msgstr ""
+msgstr "ევროპა/სან-მარინო"
 
 #: ../src/ical-code.c:415
 msgid "Europe/Sarajevo"
-msgstr ""
+msgstr "ევროპა/სარაევო"
 
 #: ../src/ical-code.c:416
 msgid "Europe/Simferopol"
-msgstr ""
+msgstr "ევროპა/სიმფეროპოლი"
 
 #: ../src/ical-code.c:417
 msgid "Europe/Skopje"
-msgstr ""
+msgstr "ევროპა/სკოპიე"
 
 #: ../src/ical-code.c:418
 msgid "Europe/Sofia"
-msgstr ""
+msgstr "ევროპა/სოფია"
 
 #: ../src/ical-code.c:419
 msgid "Europe/Stockholm"
-msgstr ""
+msgstr "ევროპა/სტოქჰოლმი"
 
 #: ../src/ical-code.c:420
 msgid "Europe/Tallinn"
-msgstr ""
+msgstr "ევროპა/ტალინი"
 
 #: ../src/ical-code.c:421
 msgid "Europe/Tirane"
-msgstr ""
+msgstr "ევროპა/ტირანა"
 
 #: ../src/ical-code.c:422
 msgid "Europe/Uzhgorod"
-msgstr ""
+msgstr "ევროპა/უშგოროდი"
 
 #: ../src/ical-code.c:423
 msgid "Europe/Vaduz"
-msgstr ""
+msgstr "ევროპა/ვადუცი"
 
 #: ../src/ical-code.c:424
 msgid "Europe/Vatican"
-msgstr ""
+msgstr "ევროპა/ვატიკანი"
 
 #: ../src/ical-code.c:425
 msgid "Europe/Vienna"
-msgstr ""
+msgstr "ევროპა/ვენა"
 
 #: ../src/ical-code.c:426
 msgid "Europe/Vilnius"
-msgstr ""
+msgstr "ევროპა/ვილნიუსი"
 
 #: ../src/ical-code.c:427
 msgid "Europe/Warsaw"
-msgstr ""
+msgstr "ევროპა/ვარშავა"
 
 #: ../src/ical-code.c:428
 msgid "Europe/Zagreb"
-msgstr ""
+msgstr "ევროპა/ზაგრები"
 
 #: ../src/ical-code.c:429
 msgid "Europe/Zaporozhye"
-msgstr ""
+msgstr "ევროპა/ზაპოროჟიე"
 
 #: ../src/ical-code.c:430
 msgid "Europe/Zurich"
-msgstr ""
+msgstr "ევროპა/ციურიხი"
 
 #: ../src/ical-code.c:431
 msgid "Indian"
-msgstr ""
+msgstr "ინდოეთის ოკეანე"
 
 #: ../src/ical-code.c:432
 msgid "Indian/Antananarivo"
-msgstr ""
+msgstr "ინდოეთის ოკეანე/ანტანანარივო"
 
 #: ../src/ical-code.c:433
 msgid "Indian/Chagos"
-msgstr ""
+msgstr "ინდოეთის ოკეანე/ჩაგოსი"
 
 #: ../src/ical-code.c:434
 msgid "Indian/Christmas"
-msgstr ""
+msgstr "ინდოეთის ოკეანე/შობის კუნძულები"
 
 #: ../src/ical-code.c:435
 msgid "Indian/Cocos"
-msgstr ""
+msgstr "ინდოეთის ოკეანე/ქოქოსის კუნძულები"
 
 #: ../src/ical-code.c:436
 msgid "Indian/Comoro"
-msgstr ""
+msgstr "ინდოეთის ოკეანე/კომორო"
 
 #: ../src/ical-code.c:437
 msgid "Indian/Kerguelen"
-msgstr ""
+msgstr "ინდოეთის ოკეანე/კერგუელენი"
 
 #: ../src/ical-code.c:438
 msgid "Indian/Mahe"
-msgstr ""
+msgstr "ინდოეთის ოკეანე/მაჰე"
 
 #: ../src/ical-code.c:439
 msgid "Indian/Maldives"
-msgstr ""
+msgstr "ინდოეთის ოკეანე/მალდივები"
 
 #: ../src/ical-code.c:440
 msgid "Indian/Mauritius"
-msgstr ""
+msgstr "ინდოეთის ოკეანე/მავრიკია"
 
 #: ../src/ical-code.c:441
 msgid "Indian/Mayotte"
-msgstr ""
+msgstr "ინდოეთის ოკეანე/მაიოტი"
 
 #: ../src/ical-code.c:442
 msgid "Indian/Reunion"
-msgstr ""
+msgstr "ინდოეთის ოკეანე/რეუნიონი"
 
 #: ../src/ical-code.c:443
 msgid "Pacific"
-msgstr ""
+msgstr "წყნარი ოკეანე"
 
 #: ../src/ical-code.c:444
 msgid "Pacific/Apia"
-msgstr ""
+msgstr "წყნარი ოკეანე/აპია"
 
 #: ../src/ical-code.c:445
 msgid "Pacific/Auckland"
-msgstr ""
+msgstr "წყნარი ოკეანე/ოკლენდი"
 
 #: ../src/ical-code.c:446
 msgid "Pacific/Chatham"
-msgstr ""
+msgstr "წყნარი ოკეანე/ჩატემი"
 
 #: ../src/ical-code.c:447
 msgid "Pacific/Easter"
-msgstr ""
+msgstr "წყნარი ოკეანე/აღდგომის კუნძული"
 
 #: ../src/ical-code.c:448
 msgid "Pacific/Efate"
-msgstr ""
+msgstr "წყნარი ოკეანე/ეფატი"
 
 #: ../src/ical-code.c:449
 msgid "Pacific/Enderbury"
-msgstr ""
+msgstr "წყნარი ოკეანე/ენდერბერი"
 
 #: ../src/ical-code.c:450
 msgid "Pacific/Fakaofo"
-msgstr ""
+msgstr "წყნარი ოკეანე/ფაკაოფო"
 
 #: ../src/ical-code.c:451
 msgid "Pacific/Fiji"
-msgstr ""
+msgstr "წყნარი ოკეანე/ფიჯი"
 
 #: ../src/ical-code.c:452
 msgid "Pacific/Funafuti"
-msgstr ""
+msgstr "წყნარი ოკეანე/ფინაფუტი"
 
 #: ../src/ical-code.c:453
 msgid "Pacific/Galapagos"
-msgstr ""
+msgstr "წყნარი ოკეანე/გალაპაგოსის კუნძულები"
 
 #: ../src/ical-code.c:454
 msgid "Pacific/Gambier"
-msgstr ""
+msgstr "წყნარი ოკეანე/გამბიეს კუნძულები"
 
 #: ../src/ical-code.c:455
 msgid "Pacific/Guadalcanal"
-msgstr ""
+msgstr "წყნარი ოკეანე/გუადალკანალი"
 
 #: ../src/ical-code.c:456
 msgid "Pacific/Guam"
-msgstr ""
+msgstr "წყნარი ოკეანე/გუამი"
 
 #: ../src/ical-code.c:457
 msgid "Pacific/Honolulu"
-msgstr ""
+msgstr "წყნარი ოკეანე/ჰონოლულუ"
 
 #: ../src/ical-code.c:458
 msgid "Pacific/Johnston"
-msgstr ""
+msgstr "წყნარი ოკეანე/ჯონსტონი"
 
 #: ../src/ical-code.c:459
 msgid "Pacific/Kiritimati"
-msgstr ""
+msgstr "წყნარი ოკეანე/კირიტიმატი"
 
 #: ../src/ical-code.c:460
 msgid "Pacific/Kosrae"
-msgstr ""
+msgstr "წყნარი ოკეანე/კოსრაე"
 
 #: ../src/ical-code.c:461
 msgid "Pacific/Kwajalein"
-msgstr ""
+msgstr "წყნარი ოკეანე/კვაჯალეინი"
 
 #: ../src/ical-code.c:462
 msgid "Pacific/Majuro"
-msgstr ""
+msgstr "წყნარი ოკეანე/მაჯურო"
 
 #: ../src/ical-code.c:463
 msgid "Pacific/Marquesas"
-msgstr ""
+msgstr "წყნარი ოკეანე/მარკიზის კუნძულები"
 
 #: ../src/ical-code.c:464
 msgid "Pacific/Midway"
-msgstr ""
+msgstr "წყნარი ოკეანე/მიდუეი"
 
 #: ../src/ical-code.c:465
 msgid "Pacific/Nauru"
-msgstr ""
+msgstr "წყნარი ოკეანე/ნაურუ"
 
 #: ../src/ical-code.c:466
 msgid "Pacific/Niue"
-msgstr ""
+msgstr "წყნარი ოკეანე/ნიუე"
 
 #: ../src/ical-code.c:467
 msgid "Pacific/Norfolk"
-msgstr ""
+msgstr "წყნარი ოკეანე/ნორფოლკი"
 
 #: ../src/ical-code.c:468
 msgid "Pacific/Noumea"
-msgstr ""
+msgstr "წყნარი ოკეანე/ნოუმეა"
 
 #: ../src/ical-code.c:469
 msgid "Pacific/Pago_Pago"
-msgstr ""
+msgstr "წყნარი ოკეანე/პაგო-პაგო"
 
 #: ../src/ical-code.c:470
 msgid "Pacific/Palau"
-msgstr ""
+msgstr "წყნარი ოკეანე/პალაუ"
 
 #: ../src/ical-code.c:471
 msgid "Pacific/Pitcairn"
-msgstr ""
+msgstr "წყნარი ოკეანე/პიტკერნი"
 
 #: ../src/ical-code.c:472
 msgid "Pacific/Ponape"
-msgstr ""
+msgstr "წყნარი ოკეანე/პონაპე"
 
 #: ../src/ical-code.c:473
 msgid "Pacific/Port_Moresby"
-msgstr ""
+msgstr "წყნარი ოკეანე/პორტ-მორესბი"
 
 #: ../src/ical-code.c:474
 msgid "Pacific/Rarotonga"
-msgstr ""
+msgstr "წყნარი ოკეანე/რაროტონგა"
 
 #: ../src/ical-code.c:475
 msgid "Pacific/Saipan"
-msgstr ""
+msgstr "წყნარი ოკეანე/საიპანი"
 
 #: ../src/ical-code.c:476
 msgid "Pacific/Tahiti"
-msgstr ""
+msgstr "წყნარი ოკეანე/ტაიტი"
 
 #: ../src/ical-code.c:477
 msgid "Pacific/Tarawa"
-msgstr ""
+msgstr "წყნარი ოკეანე/ტარავა"
 
 #: ../src/ical-code.c:478
 msgid "Pacific/Tongatapu"
-msgstr ""
+msgstr "წყნარი ოკეანე/ტონგატაპუ"
 
 #: ../src/ical-code.c:479
 msgid "Pacific/Truk"
-msgstr ""
+msgstr "წყნარი ოკეანე/ტრუკი"
 
 #: ../src/ical-code.c:480
 msgid "Pacific/Wake"
-msgstr ""
+msgstr "წყნარი ოკეანე/უეიქი"
 
 #: ../src/ical-code.c:481
 msgid "Pacific/Wallis"
-msgstr ""
+msgstr "წყნარი ოკეანე/ვოლისი"
 
 #: ../src/ical-code.c:482
 msgid "Pacific/Yap"
-msgstr ""
+msgstr "წყნარი ოკეანე/იაპი"
 
 #: ../src/ical-code.c:1223
 msgid "Orage default alarm"
-msgstr ""
+msgstr "ნაგულისხმევი სიგნალი"
 
 #: ../src/main.c:214
 msgid "This should not happen"
-msgstr ""
+msgstr "ეს არ უნდა მოხდეს"
 
 #: ../src/main.c:510
 msgid "Cannot create MCS client channel"
-msgstr ""
+msgstr "შეუძლებელია MCS-ის კლიენტის არხის შექმნა"
 
 #: ../src/mainbox.c:428
 msgid "Open archive file..."
-msgstr ""
+msgstr "არქივის ფაილის გახსნა..."
 
 #: ../src/mainbox.c:431
 msgid "Close archive file"
-msgstr ""
+msgstr "არქივის ფაილის დახურვა"
 
 #. Edit menu
 #: ../src/mainbox.c:446
 msgid "_Edit"
-msgstr ""
+msgstr "_რედაქტირება"
 
 #: ../src/mainbox.c:456
 msgid "View selected _date"
-msgstr ""
+msgstr "მონიშნული თარიღის ჩ_ვენება"
 
 #: ../src/mainbox.c:462
 msgid "Select _Today"
-msgstr ""
+msgstr "დღევანდელ დღეზე გადასვლა"
 
 #. Help menu
 #: ../src/mainbox.c:466
 msgid "_Help"
-msgstr ""
+msgstr "_დახმარება"
 
 #: ../src/reminder.c:232
 msgid "Reminder "
-msgstr ""
+msgstr "შეხსენება"
 
 #. GtkTooltipsData *cur_tooltip;
 #: ../src/reminder.c:317
 msgid "Next active alarms:"
-msgstr ""
+msgstr "შემდეგი აქტიური ალმები:"
 
 #: ../src/reminder.c:325
 #, c-format
@@ -2199,40 +2265,44 @@ msgid ""
 "\n"
 "%02d d %02d h %02d min to: %s"
 msgstr ""
+"\n"
+"დარჩენილია %02d დღ. %02d სთ. %02d წთ.: %s"
 
 #: ../src/reminder.c:331
 msgid ""
 "\n"
 "No active alarms found"
 msgstr ""
+"\n"
+"აქტიური სიგნალები ვერ მოიძებნა"
 
 #: ../src/tray_icon.c:308
 msgid "New appointment"
-msgstr ""
+msgstr "ახალი შეხვედრა"
 
 #: ../src/tray_icon.c:328
 msgid "About Orage"
-msgstr ""
+msgstr "პროგრამის შესახებ"
 
 #: ../panel-plugin/orageclock.desktop.in.in.h:1
 msgid "Orage Clock"
-msgstr ""
+msgstr "საათი თარიღით"
 
 #: ../panel-plugin/orageclock.desktop.in.in.h:2
 msgid "What time and date is it?"
-msgstr ""
+msgstr "რა დროა? რა თარიღია?"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:1
 msgid "Calendar Settings"
-msgstr ""
+msgstr "კალენდარის პარამეტრები"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:2
 msgid "Settings for the Xfce 4 Calendar Application"
-msgstr ""
+msgstr "Xfce 4-ის კალენდრის პროგრამის პარამეტრების მართვა"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:3
 msgid "Xfce 4 Calendar Settings"
-msgstr ""
+msgstr "Xfce 4 კალენდარის პარამეტრები"
 
 #: ../xfcalendar.desktop.in.h:1
 msgid "Calendar"
@@ -2240,4 +2310,5 @@ msgstr "კალენდარი"
 
 #: ../xfcalendar.desktop.in.h:2
 msgid "Desktop calendar"
-msgstr ""
+msgstr "მარტივი კალენდარი"
+
