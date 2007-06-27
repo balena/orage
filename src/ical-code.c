@@ -75,6 +75,7 @@ typedef struct
     struct icaltimetype etime; /* end time */
     struct icaldurationtype duration;
     struct icaltimetype ctime; /* completed time for VTODO appointmnets */
+    icalcomponent_kind ikind;  /* type of component, VEVENt, VTODO... */
 } xfical_period;
 
 typedef struct
@@ -852,7 +853,6 @@ static xfical_period get_period(icalcomponent *c)
 #define P_N "get_period: "
     icalproperty *p = NULL, *p2 = NULL;
     xfical_period per;
-    icalcomponent_kind ikind = ICAL_VEVENT_COMPONENT;
     struct icaldurationtype duration_tmp;
     gint dur_int;
 
@@ -874,23 +874,23 @@ static xfical_period get_period(icalcomponent *c)
      * But neither is required.
      * VTODO may also have completed time
      */
-    ikind = icalcomponent_isa(c);
-    if (ikind == ICAL_VEVENT_COMPONENT)
+    per.ikind = icalcomponent_isa(c);
+    if (per.ikind == ICAL_VEVENT_COMPONENT)
         p = icalcomponent_get_first_property(c, ICAL_DTEND_PROPERTY);
-    else if (ikind == ICAL_VTODO_COMPONENT) {
+    else if (per.ikind == ICAL_VTODO_COMPONENT) {
         p = icalcomponent_get_first_property(c, ICAL_DUE_PROPERTY);
         p2 = icalcomponent_get_first_property(c, ICAL_COMPLETED_PROPERTY);
     }
-    else if (ikind == ICAL_VJOURNAL_COMPONENT)
+    else if (per.ikind == ICAL_VJOURNAL_COMPONENT)
         p = NULL; /* does not exist for journal */
     else {
         g_warning(P_N "unknown component type (%s)", icalcomponent_get_uid(c));
         p = NULL;
     }
     if (p != NULL) {
-        if (ikind == ICAL_VEVENT_COMPONENT)
+        if (per.ikind == ICAL_VEVENT_COMPONENT)
             per.etime = icalproperty_get_dtend(p);
-        else if (ikind == ICAL_VTODO_COMPONENT)
+        else if (per.ikind == ICAL_VTODO_COMPONENT)
             per.etime = icalproperty_get_due(p);
         per.etime = convert_to_local_timezone(per.etime, p);
         per.duration = icaltime_subtract(per.etime, per.stime);
@@ -3081,6 +3081,33 @@ static xfical_appt *xfical_appt_get_next_on_day_internal(char *a_day
         return(0);
 }
 
+static icalproperty *replace_repeating(icalcomponent *c, icalproperty *p
+        , icalproperty_kind k)
+{
+#undef P_N
+#define P_N "replace_repeating: "
+    icalproperty *s, *n;
+    const char *text;
+    const gint x_len = strlen("X-ORAGE-ORIG-");
+
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
+    text = g_strdup(icalproperty_as_ical_string(p));
+    n = icalproperty_new_from_string(text + x_len);
+    g_free((gchar *)text);
+    s = icalcomponent_get_first_property(c, k);
+    /* remove X-ORAGE-ORIG...*/
+    icalcomponent_remove_property(c, p);
+    /* remove old k (=either DTSTART or DTEND) */
+    icalcomponent_remove_property(c, s);
+    /* add new DTSTART or DTEND */
+    icalcomponent_add_property(c, n);
+    /* we need to start again from the first since we messed the order,
+     * but there are not so many X- propoerties that this is worth worring */
+    return(icalcomponent_get_first_property(c, ICAL_X_PROPERTY));
+}
+
  /* Read next EVENT/TODO/JOURNAL component on the specified date from 
   * ical datafile.
   * a_day:  start date of ical component which is to be read
@@ -3252,47 +3279,25 @@ void xfical_icalcomponent_archive_recurrent(icalcomponent *e
     const char *text;
     char *text2;
     icalproperty *p, *pdtstart, *pdtend;
-    gboolean upd_edate = FALSE;
+    icalproperty *p_orig, *p_origdtstart, *p_origdtend;
+    gboolean upd_edate = FALSE; 
+    gboolean has_orig_dtstart = FALSE, has_orig_dtend = FALSE;
 
 #ifdef ORAGE_DEBUG
     g_print(P_N "\n");
 #endif
-    /* *** PHASE 1 *** : Add to the archive file */
-    /* We must first check that this event has not yet been archived.
-     * It is recurrent, so we may have added it earlier already.
-     * If it has been added, we do not have to do anything since the
-     * one in the archive file must be older than our current event.
-     */
-    /*
-    for (a = icalcomponent_get_first_component(aical, ICAL_VEVENT_COMPONENT);
-         a != 0 && !key_found;
-         a = icalcomponent_get_next_component(aical, ICAL_VEVENT_COMPONENT)) {
-        text = icalcomponent_get_uid(a);
-        if (strcmp(text, uid) == 0) 
-            key_found = TRUE;
-    }
-    if (!key_found) {
-        d = icalcomponent_new_clone(e);
-        icalcomponent_add_component(aical, d);
-    }
-    */
 
-    /* *** PHASE 2 *** : Update startdate and enddate in the main file */
     /* We must not remove recurrent events, but just modify start- and
      * enddates and actually only the date parts since time will stay.
-     * Note that we may need to remove limited recurrency events.
+     * Note that we may need to remove limited recurrency events. We only
+     * add X-ORAGE-ORIG... dates if those are not there already.
      */
     sdate = icalcomponent_get_dtstart(e);
     pdtstart = icalcomponent_get_first_property(e, ICAL_DTSTART_PROPERTY);
     itime_tz = icalproperty_get_first_parameter(pdtstart, ICAL_TZID_PARAMETER);
-    if (itime_tz) {
-         stz_loc = (char *) icalparameter_get_tzid(itime_tz);
-         l_icaltimezone = icaltimezone_get_builtin_timezone(stz_loc);
-         if (!l_icaltimezone) {
-            g_warning(P_N "builtin timezone %s not found, conversion failed.", stz_loc);
-        }
-        sdate = icaltime_convert_to_zone(sdate, l_icaltimezone);
-    }
+    if (itime_tz)
+         stz_loc = (char *)icalparameter_get_tzid(itime_tz);
+    sdate = convert_to_timezone(sdate, pdtstart);
 
     edate = icalcomponent_get_dtend(e);
     if (icaltime_is_null_time(edate)) {
@@ -3302,14 +3307,10 @@ void xfical_icalcomponent_archive_recurrent(icalcomponent *e
     if (pdtend) { /* we have DTEND, so we need to adjust it. */
         itime_tz = icalproperty_get_first_parameter(pdtend
                 , ICAL_TZID_PARAMETER);
-        if (itime_tz) {
-             etz_loc = (char *) icalparameter_get_tzid(itime_tz);
-             l_icaltimezone = icaltimezone_get_builtin_timezone(etz_loc);
-             if (!l_icaltimezone) {
-                g_warning(P_N "builtin timezone %s not found, conversion failed.", etz_loc);
-            }
-            edate = icaltime_convert_to_zone(edate, l_icaltimezone);
-        }
+        if (itime_tz)
+             etz_loc = (char *)icalparameter_get_tzid(itime_tz);
+
+        edate = convert_to_timezone(edate, pdtend);
         duration = icaltime_subtract(edate, sdate);
         upd_edate = TRUE;
     }
@@ -3319,6 +3320,46 @@ void xfical_icalcomponent_archive_recurrent(icalcomponent *e
             duration = icalproperty_get_duration(p);
         else  /* neither duration, nor dtend, assume dtend=dtstart */
             duration = icaltime_subtract(edate, sdate);
+    }
+    p_orig = icalcomponent_get_first_property(e, ICAL_X_PROPERTY);
+    while (p_orig) {
+        text = icalproperty_get_x_name(p_orig);
+        if (g_str_has_prefix(text, "X-ORAGE-ORIG-DTSTART")) {
+            if (has_orig_dtstart) {
+                /* This fixes bug which existed prior to 4.5.9.7: 
+                 * It was possible that multiple entries were generated. 
+                 * They are in order: oldest first. 
+                 * And we only need the oldest, so delete the rest */
+                g_warning(P_N "Corrupted X-ORAGE-ORIG-DTSTART setting. Fixing");
+                icalcomponent_remove_property(e, p_orig);
+                /* we need to start from scratch since counting may go wrong
+                 * bcause delete moves the pointer. */
+                has_orig_dtstart = FALSE;
+                has_orig_dtend = FALSE;
+                p_orig = icalcomponent_get_first_property(e, ICAL_X_PROPERTY);
+            }
+            else {
+                has_orig_dtstart = TRUE;
+                p_origdtstart = p_orig;
+                p_orig = icalcomponent_get_next_property(e, ICAL_X_PROPERTY);
+            }
+        }
+        else if (g_str_has_prefix(text, "X-ORAGE-ORIG-DTEND")) {
+            if (has_orig_dtend) {
+                g_warning(P_N "Corrupted X-ORAGE-ORIG-DTEND setting. Fixing");
+                icalcomponent_remove_property(e, p_orig);
+                has_orig_dtstart = FALSE;
+                has_orig_dtend = FALSE;
+                p_orig = icalcomponent_get_first_property(e, ICAL_X_PROPERTY);
+            }
+            else {
+                has_orig_dtend = TRUE;
+                p_origdtend = p_orig;
+                p_orig = icalcomponent_get_next_property(e, ICAL_X_PROPERTY);
+            }
+        }
+        else /* it was not our X-PROPERTY */
+            p_orig = icalcomponent_get_next_property(e, ICAL_X_PROPERTY);
     }
 
     p = icalcomponent_get_first_property(e, ICAL_RRULE_PROPERTY);
@@ -3337,15 +3378,23 @@ void xfical_icalcomponent_archive_recurrent(icalcomponent *e
     }
     icalrecur_iterator_free(ri);
 
-    if (icaltime_is_null_time(nsdate))  /* remove since it has ended */
+    if (icaltime_is_null_time(nsdate)) { /* remove since it has ended */
+        orage_message(_("\tRecur ended, moving to archive file."));
+        if (has_orig_dtstart) 
+            replace_repeating(e, p_origdtstart, ICAL_DTSTART_PROPERTY);
+        if (has_orig_dtend) 
+            replace_repeating(e, p_origdtend, ICAL_DTEND_PROPERTY);
         xfical_icalcomponent_archive_normal(e);
+    }
     else { /* modify times*/
-        text = g_strdup(icalproperty_as_ical_string(pdtstart));
-        text2 = g_strjoin(NULL, "X-ORAGE-ORIG-", text, NULL);
-        p = icalproperty_new_from_string(text2);
-        g_free((gchar *)text2);
-        g_free((gchar *)text);
-        icalcomponent_add_property(e, p);
+        if (!has_orig_dtstart) {
+            text = g_strdup(icalproperty_as_ical_string(pdtstart));
+            text2 = g_strjoin(NULL, "X-ORAGE-ORIG-", text, NULL);
+            p = icalproperty_new_from_string(text2);
+            g_free((gchar *)text2);
+            g_free((gchar *)text);
+            icalcomponent_add_property(e, p);
+        }
         icalcomponent_remove_property(e, pdtstart);
         if (stz_loc == NULL)
             icalcomponent_add_property(e, icalproperty_new_dtstart(nsdate));
@@ -3355,12 +3404,14 @@ void xfical_icalcomponent_archive_recurrent(icalcomponent *e
                             , icalparameter_new_tzid(stz_loc)
                             , 0));
         if (upd_edate) {
-            text = g_strdup(icalproperty_as_ical_string(pdtend));
-            text2 = g_strjoin(NULL, "X-ORAGE-ORIG-", text, NULL);
-            p = icalproperty_new_from_string(text2);
-            g_free((gchar *)text2);
-            g_free((gchar *)text);
-            icalcomponent_add_property(e, p);
+            if (!has_orig_dtend) {
+                text = g_strdup(icalproperty_as_ical_string(pdtend));
+                text2 = g_strjoin(NULL, "X-ORAGE-ORIG-", text, NULL);
+                p = icalproperty_new_from_string(text2);
+                g_free((gchar *)text2);
+                g_free((gchar *)text);
+                icalcomponent_add_property(e, p);
+            }
             icalcomponent_remove_property(e, pdtend);
             if (etz_loc == NULL)
                 icalcomponent_add_property(e, icalproperty_new_dtend(nedate));
@@ -3377,8 +3428,11 @@ gboolean xfical_archive(void)
 {
 #undef P_N
 #define P_N "xfical_archive: "
+    /*
     struct icaltimetype sdate, edate;
-    static icalcomponent *c, *c2;
+    */
+    xfical_period per;
+    icalcomponent *c, *c2;
     icalproperty *p;
     struct tm *threshold;
     char *uid;
@@ -3397,14 +3451,13 @@ gboolean xfical_archive(void)
     threshold = orage_localtime();
     threshold->tm_mday = 1;
     threshold->tm_year += 1900;
-    if (threshold->tm_mon > g_par.archive_limit) {
-        threshold->tm_mon -= g_par.archive_limit;
-    }
-    else {
-        threshold->tm_mon += (12 - g_par.archive_limit);
+    threshold->tm_mon += 1; /* convert from 0...11 to 1...12 */
+
+    threshold->tm_mon -= g_par.archive_limit;
+    if (threshold->tm_mon <= 0) {
+        threshold->tm_mon += 12;
         threshold->tm_year--;
     }
-    threshold->tm_mon += 1;
 
     orage_message(_("Archiving threshold: %d month(s)")
             , g_par.archive_limit);
@@ -3414,35 +3467,46 @@ gboolean xfical_archive(void)
 
     /* Check appointment file for items older than the threshold */
     /* Note: remove moves the "c" pointer to next item, so we need to store it
-     *          first to process all of them or we end up skipping entries */
+     *       first to process all of them or we end up skipping entries */
     for (c = icalcomponent_get_first_component(ical, ICAL_ANY_COMPONENT);
          c != 0;
          c = c2) {
         c2 = icalcomponent_get_next_component(ical, ICAL_ANY_COMPONENT);
+        /*
         sdate = icalcomponent_get_dtstart(c);
         edate = icalcomponent_get_dtend(c);
-        uid = (char *)icalcomponent_get_uid(c);
         if (icaltime_is_null_time(edate)) {
             edate = sdate;
         }
+        */
+        per =  get_period(c);
+        uid = (char *)icalcomponent_get_uid(c);
         /* Items with endate before threshold => archived.
          * Recurring events are marked in the main file by adding special
          * X-ORAGE_ORIG-DTSTART/X-ORAGE_ORIG-DTEND to save the original
          * start/end dates. Then start_date is changed. These are NOT
-         * written in archive file (unless of course they really have
-         * ended).
+         * written in archive file (unless of course they really have ended).
          */
-        if ((edate.year*12 + edate.month) 
+        if ((per.etime.year*12 + per.etime.month) 
             < (threshold->tm_year*12 + threshold->tm_mon)) {
-            p = icalcomponent_get_first_property(c, ICAL_RRULE_PROPERTY);
-            orage_message(_("Archiving uid: %s (%s)")
-                    , uid, (p) ? _("recur") : _("normal"));
-            orage_message(_("\tEnd year: %04d, month: %02d, day: %02d")
-                    , edate.year, edate.month, edate.day);
-            if (p)  /*  it is recurrent event */
-                xfical_icalcomponent_archive_recurrent(c, threshold, uid);
-            else 
-                xfical_icalcomponent_archive_normal(c);
+            orage_message(_("Archiving uid: %s"), uid);
+            /* FIXME: check VTODO completed before archiving it */
+            if (per.ikind == ICAL_VTODO_COMPONENT 
+                && ((per.ctime.year*12 + per.ctime.month) 
+                    < (per.stime.year*12 + per.stime.month))) {
+                /* VTODO not com,pleted, do not archive */
+                orage_message(_("\tVTODO not complete; not archived"));
+            }
+            else {
+                p = icalcomponent_get_first_property(c, ICAL_RRULE_PROPERTY);
+                if (p) {  /*  it is recurrent event */
+                    orage_message(_("\tRecurring. End year: %04d, month: %02d, day: %02d")
+                        , per.etime.year, per.etime.month, per.etime.day);
+                    xfical_icalcomponent_archive_recurrent(c, threshold, uid);
+                }
+                else 
+                    xfical_icalcomponent_archive_normal(c);
+            }
         }
     }
 
@@ -3454,33 +3518,6 @@ gboolean xfical_archive(void)
     xfical_file_close(FALSE);
     orage_message(_("Archiving done\n"));
     return(TRUE);
-}
-
-icalproperty *replace_repeating(icalcomponent *c, icalproperty *p
-        , icalproperty_kind k)
-{
-#undef P_N
-#define P_N "replace_repeating: "
-    icalproperty *s, *n;
-    const char *text;
-    const gint x_len = strlen("X-ORAGE-ORIG-");
-
-#ifdef ORAGE_DEBUG
-    g_print(P_N "\n");
-#endif
-    text = g_strdup(icalproperty_as_ical_string(p));
-    n = icalproperty_new_from_string(text + x_len);
-    g_free((gchar *)text);
-    s = icalcomponent_get_first_property(c, k);
-    /* remove X-ORAGE-ORIG...*/
-    icalcomponent_remove_property(c, p);
-    /* remove old k (=either DTSTART or DTEND) */
-    icalcomponent_remove_property(c, s);
-    /* add new DTSTART or DTEND */
-    icalcomponent_add_property(c, n);
-    /* we need to start again from the first since we messed the order,
-     * but there are not so many X- propoerties that this is worth worring */
-    return(icalcomponent_get_first_property(c, ICAL_X_PROPERTY));
 }
 
 gboolean xfical_unarchive(void)
@@ -3495,7 +3532,8 @@ gboolean xfical_unarchive(void)
     g_print(P_N "\n");
 #endif
     /* PHASE 1: go through base orage file and remove "repeat" shortcuts */
-    orage_message(_("Starting archive removal: PHASE 1: reset recurring appointments"));
+    orage_message(_("Starting archive removal."));
+    orage_message(_("\tPHASE 1: reset recurring appointments"));
     if (!xfical_file_open(FALSE)) {
         g_warning(P_N "file open error");
         return(FALSE);
@@ -3517,6 +3555,7 @@ gboolean xfical_unarchive(void)
     }
     /* PHASE 2: go through archive file and add everything back to base orage.
      * After that delete the whole arch file */
+    orage_message(_("\tPHASE 2: return archived appointments"));
     if (!xfical_archive_open()) {
         g_warning(P_N "archive file open error");
         icalset_mark(fical);
@@ -3533,8 +3572,7 @@ gboolean xfical_unarchive(void)
     }
     xfical_archive_close();
     if (g_remove(g_par.archive_file) == -1) {
-        g_warning(P_N "Failed to remove archive file %s"
-                , g_par.archive_file);
+        g_warning(P_N "Failed to remove archive file %s", g_par.archive_file);
     }
     icalset_mark(fical);
     icalset_commit(fical);
