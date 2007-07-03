@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: orage 4.4.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-10-13 18:52+0300\n"
-"PO-Revision-Date: 2007-06-28 16:06+0100\n"
+"PO-Revision-Date: 2007-06-30 15:33+0100\n"
 "Last-Translator: Nuno Miguel <nunis@netcabo.pt>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2610,7 +2610,7 @@ msgstr "\tEncontrados %d alarmes dos quais %d estão activos. (Encontrados %d al
 #. remove since it has ended
 #: ../src/ical-code.c:3382
 msgid "\tRecur ended, moving to archive file."
-msgstr ""
+msgstr "\tOcorrência terminada, movendo para ficheiro de arquivo."
 
 #: ../src/ical-code.c:3444
 msgid "Archiving not enabled. Exiting"
@@ -2628,20 +2628,20 @@ msgid "\tArchiving events, which are older than: %04d-%02d-%02d"
 msgstr "\tEventos de arquivamento, que são mais antigos que: %04d-%02d-%02d"
 
 #: ../src/ical-code.c:3492
-#, fuzzy, c-format
+#, c-format
 msgid "Archiving uid: %s"
-msgstr "UID/GID"
+msgstr "Arquivamento uid: %s"
 
 #. VTODO not com,pleted, do not archive
 #: ../src/ical-code.c:3498
 msgid "\tVTODO not complete; not archived"
-msgstr ""
+msgstr "\tVTODO não completo; não arquivado"
 
 #. it is recurrent event
 #: ../src/ical-code.c:3503
-#, fuzzy, c-format
+#, c-format
 msgid "\tRecurring. End year: %04d, month: %02d, day: %02d"
-msgstr "\tFim de ano: %04d, month: %02d, day: %02d"
+msgstr "\tOcorrência. Fim de ano: %04d, mês: %02d, dia: %02d"
 
 #: ../src/ical-code.c:3519
 msgid "Archiving done\n"
@@ -2649,20 +2649,18 @@ msgstr "Arquivamento feito\n"
 
 #. PHASE 1: go through base orage file and remove "repeat" shortcuts
 #: ../src/ical-code.c:3535
-#, fuzzy
 msgid "Starting archive removal."
-msgstr "Cr_iar ficheiro"
+msgstr "Começar remoção de arquivo."
 
 #: ../src/ical-code.c:3536
-#, fuzzy
 msgid "\tPHASE 1: reset recurring appointments"
-msgstr "Começando a remoção do arquivo: FASE 1: restaurar apontamentos recursivamente"
+msgstr "\tFASE 1: restaurar apontamentos"
 
 #. PHASE 2: go through archive file and add everything back to base orage.
 #. * After that delete the whole arch file
 #: ../src/ical-code.c:3558
 msgid "\tPHASE 2: return archived appointments"
-msgstr ""
+msgstr "\tFASE 2: retornar apontamentos arquivados"
 
 #: ../src/ical-code.c:3580
 msgid "Archive removal done\n"
