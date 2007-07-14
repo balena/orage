@@ -1,17 +1,17 @@
 # $Id$
 #
 # Japanese translations for orage package.
-# Copyright (C) 2003-2006 The Xfce development team.
+# Copyright (C) 2003-2007 The Xfce development team.
 # This file is distributed under the same license as the orage package.
 # Zhao Ji <zhao-ji@awz.ne.jp>, 2003.
-# Daichi Kawahata <daichi@xfce.org>, 2005-2006.
+# Daichi Kawahata <daichi@xfce.org>, 2005-2007.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: orage 4.3.90.2\n"
+"Project-Id-Version: orage 4.5.9.6\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-06-27 23:56+0300\n"
-"PO-Revision-Date: 2006-05-05 13:41+0900\n"
+"PO-Revision-Date: 2007-07-11 02:08+0900\n"
 "Last-Translator: Daichi Kawahata <daichi@xfce.org>\n"
 "Language-Team: Japanese <xfce-users-jp@ml.fdiary.net>\n"
 "MIME-Version: 1.0\n"
@@ -44,9 +44,8 @@ msgid "Starting time adjustment mode"
 msgstr ""
 
 #: ../globaltime/globaltime.c:381
-#, fuzzy
 msgid "Localtime"
-msgstr "現在地"
+msgstr "現地時間"
 
 #: ../globaltime/globaltime.c:456
 msgid ""
@@ -63,9 +62,8 @@ msgid "adjust to change minute"
 msgstr ""
 
 #: ../globaltime/gt_prefs.c:69 ../globaltime/gt_prefs.c:1078
-#, fuzzy
 msgid "Standard"
-msgstr "カレンダー"
+msgstr "標準"
 
 #: ../globaltime/gt_prefs.c:71 ../src/appointment.c:2244
 msgid "None"
@@ -150,9 +148,8 @@ msgid "Name of the clock:"
 msgstr ""
 
 #: ../globaltime/gt_prefs.c:610
-#, fuzzy
 msgid "enter name of clock"
-msgstr "Orage クロック"
+msgstr "クロック名を入力してください"
 
 #: ../globaltime/gt_prefs.c:613
 msgid "Timezone of the clock:"
@@ -170,7 +167,6 @@ msgstr ""
 
 #. ------------------------background-------------------------
 #: ../globaltime/gt_prefs.c:649 ../globaltime/gt_prefs.c:856
-#, fuzzy
 msgid "Background color:"
 msgstr "背景色:"
 
@@ -183,9 +179,8 @@ msgstr ""
 #: ../globaltime/gt_prefs.c:796 ../globaltime/gt_prefs.c:826
 #: ../globaltime/gt_prefs.c:872 ../globaltime/gt_prefs.c:905
 #: ../globaltime/gt_prefs.c:938 ../globaltime/gt_prefs.c:972
-#, fuzzy
 msgid "Use default"
-msgstr "Orage の標準アラーム"
+msgstr "既定値を使用する"
 
 #: ../globaltime/gt_prefs.c:670 ../globaltime/gt_prefs.c:702
 #: ../globaltime/gt_prefs.c:735 ../globaltime/gt_prefs.c:768
@@ -195,9 +190,8 @@ msgstr ""
 
 #. ------------------------foreground-------------------------
 #: ../globaltime/gt_prefs.c:681 ../globaltime/gt_prefs.c:889
-#, fuzzy
 msgid "Foreground (=text) color:"
-msgstr "フォント色:"
+msgstr "文字色:"
 
 #: ../globaltime/gt_prefs.c:688
 msgid "Click to change foreground colour for clock"
@@ -286,22 +280,20 @@ msgid "General Preferences"
 msgstr "Orage の環境設定"
 
 #: ../globaltime/gt_prefs.c:1077
-#, fuzzy
 msgid "Decorations:"
-msgstr "適用期間"
+msgstr "ウィンドウの表示枠:"
 
 #: ../globaltime/gt_prefs.c:1083
 msgid "Use normal decorations"
-msgstr ""
+msgstr "ウィンドウの枠を表示する"
 
 #: ../globaltime/gt_prefs.c:1094
 msgid "Do not show window decorations (borders)"
-msgstr ""
+msgstr "ウィンドウの枠を表示しない"
 
 #: ../globaltime/gt_prefs.c:1100
-#, fuzzy
 msgid "Clock size:"
-msgstr "このウィンドウを閉じます"
+msgstr "クロックサイズ:"
 
 #: ../globaltime/gt_prefs.c:1106
 msgid "All clocks have same size"
@@ -317,9 +309,8 @@ msgid "Clock sizes vary"
 msgstr ""
 
 #: ../globaltime/gt_prefs.c:1122
-#, fuzzy
 msgid "Local timezone:"
-msgstr "等時帯を選択してください"
+msgstr "現地の等時帯:"
 
 #: ../globaltime/gt_prefs.c:1129
 msgid ""
@@ -339,21 +330,21 @@ msgstr "枠を表示する(_F)"
 #. foreground color
 #: ../panel-plugin/oc_config.c:214
 msgid "set foreground _color:"
-msgstr "フォント色:"
+msgstr "文字色(_C):"
 
 #. background color
 #: ../panel-plugin/oc_config.c:228
 msgid "set _background color:"
-msgstr "背景色:"
+msgstr "背景色(_B):"
 
 #. clock size (=vbox size): height and width
 #: ../panel-plugin/oc_config.c:242
 msgid "set _height:"
-msgstr ""
+msgstr "縦幅(_H):"
 
 #: ../panel-plugin/oc_config.c:254
 msgid "set _width:"
-msgstr ""
+msgstr "横幅(_W):"
 
 #: ../panel-plugin/oc_config.c:275
 msgid "Clock Options"
@@ -391,7 +382,7 @@ msgstr "3行表示(_3):"
 #. Tooltip hint
 #: ../panel-plugin/oc_config.c:375
 msgid "Tooltip:"
-msgstr ""
+msgstr "ツールチップ:"
 
 #: ../panel-plugin/oc_config.c:392
 msgid ""
@@ -433,13 +424,12 @@ msgstr "Orage クロック"
 #.
 #: ../panel-plugin/orageclock.c:422
 msgid "%A %d %B %Y/%V"
-msgstr "%Y年 %B%d日%A (%V週目)"
+msgstr "%A %d %B %Y/%V"
 
 #. the button label in the xfce-mcs-manager dialog
 #: ../plugin/xfcalendar_plugin.c:47
-#, fuzzy
 msgid "Orage - Calendar"
-msgstr "カレンダー"
+msgstr "Orage - カレンダー"
 
 #: ../src/about-xfcalendar.c:42
 msgid "Manage your time with Xfce4"
@@ -447,7 +437,7 @@ msgstr "スケジュールを管理します"
 
 #: ../src/about-xfcalendar.c:53
 msgid "Maintainer"
-msgstr ""
+msgstr "メインテナー"
 
 #: ../src/about-xfcalendar.c:58
 msgid "Original creator, retired maintainer"
@@ -468,8 +458,9 @@ msgid "End"
 msgstr "終了"
 
 #: ../src/appointment.c:353
+#, fuzzy
 msgid "Due"
-msgstr ""
+msgstr "火"
 
 #: ../src/appointment.c:485 ../src/mainbox.c:307 ../xfcalendar.desktop.in.h:3
 msgid "Orage"
@@ -496,7 +487,7 @@ msgstr "警告"
 
 #: ../src/appointment.c:691
 msgid "The appointment information has been modified."
-msgstr "このアポイント情報は変更されています。"
+msgstr "この約束情報は変更されています。"
 
 #: ../src/appointment.c:692 ../src/appointment.c:1091 ../src/event-list.c:868
 msgid "Do you want to continue?"
@@ -504,11 +495,11 @@ msgstr "続行しますか？"
 
 #: ../src/appointment.c:725
 msgid "The end of this appointment is earlier than the beginning."
-msgstr "このアポイントの終了時刻が開始時刻よりも早くなっています。"
+msgstr "この約束の終了時刻が開始時刻よりも早くなっています。"
 
 #: ../src/appointment.c:1090
 msgid "This appointment will be permanently removed."
-msgstr "このアポイントは永久に削除されます。"
+msgstr "この約束は永久に削除されます。"
 
 #: ../src/appointment.c:1184 ../src/event-list.c:921
 msgid "Pick the date"
@@ -521,11 +512,11 @@ msgstr "今日"
 
 #: ../src/appointment.c:1480
 msgid "New appointment - Orage"
-msgstr "新しいアポイント - Orage"
+msgstr "新しい約束 - Orage"
 
 #: ../src/appointment.c:1504
 msgid " *** COPY ***"
-msgstr ""
+msgstr "*** コピー ***"
 
 #. File menu stuff
 #. File menu
@@ -577,11 +568,11 @@ msgstr "一般"
 
 #: ../src/appointment.c:1811
 msgid "Type "
-msgstr ""
+msgstr "タイプ "
 
 #: ../src/appointment.c:1813 ../src/event-list.c:1149
 msgid "Event"
-msgstr ""
+msgstr "出来事"
 
 #: ../src/appointment.c:1816
 msgid ""
@@ -647,14 +638,15 @@ msgstr "分"
 msgid "Availability"
 msgstr "都合"
 
+# XXX
 #: ../src/appointment.c:1914
+#, fuzzy
 msgid "Completed"
-msgstr ""
+msgstr "指定方法"
 
 #: ../src/appointment.c:1917
-#, fuzzy
 msgid "Done"
-msgstr "無し"
+msgstr "完了"
 
 #: ../src/appointment.c:1937
 msgid "Note"
@@ -676,9 +668,8 @@ msgid "Before End"
 msgstr ""
 
 #: ../src/appointment.c:2019
-#, fuzzy
 msgid "After Start"
-msgstr "開始"
+msgstr ""
 
 #: ../src/appointment.c:2019
 msgid "After End"
@@ -726,7 +717,7 @@ msgstr "回繰り返す"
 #: ../src/appointment.c:2113
 #, fuzzy
 msgid "sec interval"
-msgstr "一般"
+msgstr "間隔"
 
 #. **** Display Alarm ****
 #: ../src/appointment.c:2123
@@ -764,7 +755,7 @@ msgstr ""
 
 #: ../src/appointment.c:2168
 msgid "seconds"
-msgstr ""
+msgstr " 秒"
 
 #. **** Procedure Alarm ****
 #: ../src/appointment.c:2179
@@ -773,8 +764,9 @@ msgid "Procedure"
 msgstr "プロパティ"
 
 #: ../src/appointment.c:2185
+#, fuzzy
 msgid "Select this if you want procedure or script alarm"
-msgstr ""
+msgstr "定期的に繰り返す出来事でしたら、このオプションを使用します。"
 
 #: ../src/appointment.c:2191
 msgid ""
@@ -799,88 +791,95 @@ msgid "Yearly"
 msgstr "毎年"
 
 #: ../src/appointment.c:2246
-#, fuzzy
 msgid "Mon"
-msgstr "毎月"
+msgstr "月"
 
 #: ../src/appointment.c:2246
 msgid "Tue"
-msgstr ""
+msgstr "火"
 
 #: ../src/appointment.c:2246
 msgid "Wed"
-msgstr ""
+msgstr "水"
 
 #: ../src/appointment.c:2246
 msgid "Thu"
-msgstr ""
+msgstr "木"
 
 #: ../src/appointment.c:2246
 msgid "Fri"
-msgstr ""
+msgstr "金"
 
 #: ../src/appointment.c:2246
-#, fuzzy
 msgid "Sat"
-msgstr "開始"
+msgstr "土"
 
 #: ../src/appointment.c:2246
-#, fuzzy
 msgid "Sun"
-msgstr "サウンド"
+msgstr "日"
 
 #: ../src/appointment.c:2250
 msgid "Recurrence"
 msgstr "繰り返し"
 
+# XXX
 #: ../src/appointment.c:2255
 msgid "Complexity"
-msgstr ""
+msgstr "指定方法"
 
 #: ../src/appointment.c:2258
-#, fuzzy
 msgid "Basic"
-msgstr "前日に移動します"
+msgstr "基本"
 
 #: ../src/appointment.c:2264
 msgid "Advanced"
-msgstr ""
+msgstr "詳細"
 
 #: ../src/appointment.c:2271
 msgid "Use this if you want regular repeating event"
-msgstr ""
+msgstr "定期的に繰り返す出来事でしたら、このオプションを使用します。"
 
 #: ../src/appointment.c:2273
+#, fuzzy
 msgid ""
 "Use this if you need complex times like:\n"
 " Every Saturday and Sunday or \n"
 " First Tuesday every month"
 msgstr ""
+"定期的ではありますが、もう少し詳細な指定を行いたければ、このオプションを使用"
+"します。\n"
+"\n"
+" 毎月第二週\n"
+" 毎週土曜および日曜日\n"
+" 毎月最初の火曜日"
 
 #: ../src/appointment.c:2276
-#, fuzzy
 msgid "Frequency"
-msgstr "用事なし"
+msgstr "頻度"
 
 #: ../src/appointment.c:2283
 msgid "Each"
-msgstr ""
+msgstr "それぞれ"
 
 #: ../src/appointment.c:2290
-#, fuzzy
 msgid "occurrence"
-msgstr "繰り返し"
+msgstr "回繰り返す"
 
 #: ../src/appointment.c:2294
+#, fuzzy
 msgid ""
 "Limit frequency to certain interval.\n"
 " For example: Every third day:\n"
 " Frequency = Daily and Interval = 3"
 msgstr ""
+"頻度をある一定の間隔に決めます。\n"
+"\n"
+" 3日ごと: 頻度 = 毎日\n"
+"          間隔 = 3"
 
 #: ../src/appointment.c:2300
 msgid "Limit"
-msgstr ""
+msgstr "制限"
 
 #: ../src/appointment.c:2302
 msgid "Repeat forever"
@@ -895,15 +894,15 @@ msgid "Repeat until "
 msgstr "次まで繰り返す "
 
 #: ../src/appointment.c:2336
-#, fuzzy
 msgid "Weekdays"
-msgstr "毎週"
+msgstr "平日"
 
 #: ../src/appointment.c:2348
 msgid "Which day"
-msgstr ""
+msgstr "曜日"
 
 #: ../src/appointment.c:2356
+#, fuzzy
 msgid ""
 "Specify which weekday for monthly and yearly events.\n"
 " For example:\n"
@@ -912,6 +911,12 @@ msgid ""
 "\tWeekdays = check only Wednesday,\n"
 "\tWhich day = select 2 from the number below Wednesday"
 msgstr ""
+"毎月および毎年の出来事。\n"
+"例えば:\n"
+"毎月第二水曜日:\n"
+"頻度 = 毎月,\n"
+"平日 = 水曜のみチェック,\n"
+"曜日 = 水曜の下の番号から2を選択"
 
 #. date only appointment
 #: ../src/event-list.c:186
@@ -926,7 +931,7 @@ msgstr "時間"
 msgid ""
 "You will permanently remove all\n"
 "selected appointments."
-msgstr ""
+msgstr "選択した全ての約束が削除されます。"
 
 #. View menu
 #: ../src/event-list.c:1031 ../src/mainbox.c:253
@@ -972,7 +977,7 @@ msgstr ""
 
 #: ../src/event-list.c:1211
 msgid "Search"
-msgstr ""
+msgstr "検索"
 
 #: ../src/event-list.c:1214
 msgid "Search text "
@@ -2570,9 +2575,9 @@ msgid "Archiving not enabled. Exiting"
 msgstr ""
 
 #: ../src/ical-code.c:3462
-#, fuzzy, c-format
+#, c-format
 msgid "Archiving threshold: %d month(s)"
-msgstr "書庫に入れるまでの期間"
+msgstr "書庫に入れるまでの期間: %dヵ月"
 
 #. yy mon day
 #: ../src/ical-code.c:3465
@@ -2657,16 +2662,15 @@ msgstr ""
 
 #: ../src/interface.c:960
 msgid "Import/export"
-msgstr ""
+msgstr "インポート/エクスポート"
 
 #: ../src/interface.c:967
 msgid "Import"
-msgstr ""
+msgstr "インポート"
 
 #: ../src/interface.c:972
-#, fuzzy
 msgid "Read from file:"
-msgstr "書庫ファイル"
+msgstr ""
 
 #: ../src/interface.c:989
 msgid ""
@@ -2676,7 +2680,7 @@ msgstr ""
 
 #: ../src/interface.c:994
 msgid "Export"
-msgstr ""
+msgstr "エクスポート"
 
 #: ../src/interface.c:999
 #, fuzzy
@@ -2684,14 +2688,12 @@ msgid "Write to file:"
 msgstr "書庫ファイル"
 
 #: ../src/interface.c:1020 ../src/interface.c:1032
-#, fuzzy
 msgid "Select"
-msgstr "削除します"
+msgstr "選択してください"
 
 #: ../src/interface.c:1023
-#, fuzzy
 msgid "All appointments"
-msgstr "新しいアポイント"
+msgstr "全ての約束"
 
 #: ../src/interface.c:1036
 #, fuzzy
@@ -2713,14 +2715,13 @@ msgid "Orage appointment UIDs separated by commas."
 msgstr ""
 
 #: ../src/interface.c:1056
-#, fuzzy
 msgid "Archive"
 msgstr "書庫"
 
 #: ../src/interface.c:1064
 #, fuzzy, c-format
 msgid "Archive now (threshold: %d months)"
-msgstr "書庫に入れるまでの期間"
+msgstr "書庫に入れるまでの期間: %dヵ月"
 
 #: ../src/interface.c:1074
 msgid "You can change archive threshold in parameters"
@@ -2738,24 +2739,21 @@ msgid ""
 msgstr ""
 
 #: ../src/interface.c:1098
-#, fuzzy
 msgid "Orage files"
-msgstr "Orage の環境設定"
+msgstr "Orage ファイル"
 
 #: ../src/interface.c:1105
 #, fuzzy
 msgid "Orage main calendar file"
-msgstr "カレンダー"
+msgstr "Orage - カレンダー"
 
 #: ../src/interface.c:1110 ../src/interface.c:1174
-#, fuzzy
 msgid "Current file"
-msgstr "書庫ファイル"
+msgstr "現在のファイル"
 
 #: ../src/interface.c:1117 ../src/interface.c:1181
-#, fuzzy
 msgid "New file"
-msgstr "書庫ファイル"
+msgstr "新規ファイル"
 
 #: ../src/interface.c:1133 ../src/interface.c:1198
 msgid "Action options"
@@ -2763,7 +2761,7 @@ msgstr ""
 
 #: ../src/interface.c:1136 ../src/interface.c:1201
 msgid "Rename"
-msgstr ""
+msgstr "名前変更"
 
 #: ../src/interface.c:1140
 msgid ""
@@ -2774,7 +2772,7 @@ msgstr ""
 
 #: ../src/interface.c:1144 ../src/interface.c:1206
 msgid "Copy"
-msgstr ""
+msgstr "コピー"
 
 #: ../src/interface.c:1148
 msgid "Current file is copied and stays unmodified in the old place."
@@ -2782,7 +2780,7 @@ msgstr ""
 
 #: ../src/interface.c:1152 ../src/interface.c:1211
 msgid "Move"
-msgstr ""
+msgstr "移動"
 
 #: ../src/interface.c:1156
 msgid "Current file is moved and vanishes from the old place."
@@ -2805,9 +2803,8 @@ msgid "Foreign file:"
 msgstr ""
 
 #: ../src/interface.c:1264
-#, fuzzy
 msgid "Options"
-msgstr "クロックオプション"
+msgstr "オプション"
 
 #: ../src/interface.c:1266
 msgid "Read only"
@@ -2820,7 +2817,7 @@ msgstr ""
 
 #: ../src/interface.c:1288
 msgid "Exchange data - Orage"
-msgstr ""
+msgstr "交換データ - Orage"
 
 #: ../src/main.c:259
 #, c-format
@@ -2831,44 +2828,45 @@ msgstr ""
 
 #: ../src/main.c:261
 msgid "\tReleased under the terms of the GNU General Public License.\n"
-msgstr ""
+msgstr "\tGNU一般公有使用許諾書の制約の下にリリースされています。\n"
 
 #: ../src/main.c:262
 #, c-format
 msgid "\tCompiled against GTK+-%d.%d.%d, "
-msgstr ""
+msgstr "\tGTK+-%d.%d.%d に対してコンパイルされています、"
 
 #: ../src/main.c:264
 #, c-format
 msgid "using GTK+-%d.%d.%d.\n"
-msgstr ""
+msgstr "GTK+-%d.%d.%d を使用しています。\n"
 
 #: ../src/main.c:267
 msgid "\tUsing DBUS for import.\n"
-msgstr ""
+msgstr "\tインポートにD-Busを使用しています。\n"
 
 #: ../src/main.c:269
 msgid "\tNot using DBUS. Import works only partially.\n"
-msgstr ""
+msgstr "\tD-Busを使用していません。インポート機能は一部のみ動作します。\n"
 
 #: ../src/main.c:282
 msgid ""
 "Usage: orage [options] [files]\n"
 "\n"
 msgstr ""
+"使用法: orage [オプション] [ファイル]\n"
+"\n"
 
 #: ../src/main.c:283
-#, fuzzy
 msgid "Options:\n"
-msgstr "クロックオプション"
+msgstr "オプション:\n"
 
 #: ../src/main.c:284
 msgid "--version (-v) \t\tshow version of orage\n"
-msgstr ""
+msgstr "--version (-v)\t\torage のバージョンを表示します\n"
 
 #: ../src/main.c:285
 msgid "--help (-h) \t\tprint this text\n"
-msgstr ""
+msgstr "--help (-h)\t\tこのメッセージを表示します\n"
 
 #: ../src/main.c:286
 msgid "--preferences (-p) \tshow preferences form\n"
@@ -2910,7 +2908,7 @@ msgstr ""
 
 #: ../src/mainbox.c:235
 msgid "_Exchange data"
-msgstr ""
+msgstr "交換データ(_E)"
 
 #. Edit menu
 #: ../src/mainbox.c:246
@@ -2939,13 +2937,12 @@ msgid "Timezone"
 msgstr "等時帯"
 
 #: ../src/parameters.c:391
-#, fuzzy
 msgid "Archive threshold (months)"
-msgstr "書庫に入れるまでの期間"
+msgstr "書庫に入れるまでの期間 (月)"
 
 #: ../src/parameters.c:401
 msgid "(0 = no archiving)"
-msgstr ""
+msgstr "(0 = 書庫化しません)"
 
 #: ../src/parameters.c:409
 msgid "Sound command"
@@ -2956,19 +2953,16 @@ msgid "Display"
 msgstr "表示"
 
 #: ../src/parameters.c:443
-#, fuzzy
 msgid "Calendar main window"
-msgstr "カレンダーウィンドウ"
+msgstr "メインウィンドウ"
 
 #: ../src/parameters.c:448
-#, fuzzy
 msgid "Show borders"
-msgstr "枠を表示する(_F)"
+msgstr "枠を表示する"
 
 #: ../src/parameters.c:455
-#, fuzzy
 msgid "Show menu"
-msgstr "枠を表示する(_F)"
+msgstr "メニューを表示する"
 
 #: ../src/parameters.c:462
 msgid "Set sticked"
@@ -3008,47 +3002,40 @@ msgid "Minimized"
 msgstr "最小化する"
 
 #: ../src/parameters.c:567
-#, fuzzy
 msgid "Monday"
-msgstr "今日"
+msgstr "月曜"
 
 #: ../src/parameters.c:567
-#, fuzzy
 msgid "Tuesday"
-msgstr "今日"
+msgstr "火曜"
 
 #: ../src/parameters.c:567
-#, fuzzy
 msgid "Wednesday"
-msgstr "毎週"
+msgstr "水曜"
 
 #: ../src/parameters.c:567
-#, fuzzy
 msgid "Thursday"
-msgstr "今日"
+msgstr "木曜"
 
 #: ../src/parameters.c:568
-#, fuzzy
 msgid "Friday"
-msgstr "日"
+msgstr "金曜"
 
 #: ../src/parameters.c:568
 msgid "Saturday"
-msgstr ""
+msgstr "土曜"
 
 #: ../src/parameters.c:568
-#, fuzzy
 msgid "Sunday"
-msgstr "サウンド"
+msgstr "日曜"
 
 #: ../src/parameters.c:573
 msgid "Extra setups"
-msgstr ""
+msgstr "追加設定"
 
 #: ../src/parameters.c:580 ../src/parameters.c:585
-#, fuzzy
 msgid "Select always today"
-msgstr "今日の日付を選択(_T)"
+msgstr "常の今日の日付を選択する"
 
 #: ../src/parameters.c:596
 msgid "Ical week start day"
@@ -3056,7 +3043,7 @@ msgstr ""
 
 #: ../src/parameters.c:616
 msgid "Dynamic icon size"
-msgstr ""
+msgstr "自動的に変わるアイコンサイズ"
 
 #: ../src/parameters.c:629 ../src/parameters.c:643
 msgid "(0 = use static icon)"
@@ -3076,7 +3063,7 @@ msgstr ""
 
 #: ../src/reminder.c:467
 msgid "Next active alarms:"
-msgstr ""
+msgstr "次回の有効アラーム:"
 
 #: ../src/reminder.c:505
 #, c-format
@@ -3084,17 +3071,20 @@ msgid ""
 "\n"
 "%02d d %02d h %02d min to: %s"
 msgstr ""
+"\n"
+"%02d 日 %02d 時間 %02d 分: %s"
 
 #: ../src/reminder.c:519
-#, fuzzy
 msgid ""
 "\n"
 "No active alarms found"
-msgstr "アラート音を繰り返す"
+msgstr ""
+"\n"
+"有効なアラームがありません"
 
 #: ../src/tray_icon.c:316
 msgid "New appointment"
-msgstr "新しいアポイント"
+msgstr "新しい約束"
 
 #: ../src/tray_icon.c:336
 msgid "About Orage"
@@ -3127,69 +3117,3 @@ msgstr "カレンダー"
 #: ../xfcalendar.desktop.in.h:2
 msgid "Desktop calendar"
 msgstr "卓上カレンダー"
-
-#, fuzzy
-#~ msgid "normal"
-#~ msgstr "一般"
-
-#~ msgid "%m/%d/%Y"
-#~ msgstr "%Y-%m-%d"
-
-#, fuzzy
-#~ msgid "Calendar Files"
-#~ msgstr "カレンダーファイル"
-
-#~ msgid "Calendar borders"
-#~ msgstr "カレンダーの枠"
-
-#~ msgid "Displayed"
-#~ msgstr "表示する"
-
-#~ msgid "Hidden"
-#~ msgstr "表示しない"
-
-#~ msgid "3 months"
-#~ msgstr "3ヶ月"
-
-#~ msgid "6 months"
-#~ msgstr "6ヶ月"
-
-#~ msgid "1 year"
-#~ msgstr "1年"
-
-#~ msgid "never"
-#~ msgstr "書庫には入れない"
-
-#~ msgid "Application"
-#~ msgstr "アプリケーション"
-
-#~ msgid "Button Label|Orage"
-#~ msgstr "カレンダー"
-
-#~ msgid "Core developer"
-#~ msgstr "中心開発者"
-
-#~ msgid ""
-#~ "You will remove all information \n"
-#~ "associated with this date."
-#~ msgstr ""
-#~ "この日付に関する全ての\n"
-#~ "情報を削除します。"
-
-#~ msgid "Clear"
-#~ msgstr "内容を消去します"
-
-#~ msgid "uid"
-#~ msgstr "UID"
-
-#~ msgid "This should not happen"
-#~ msgstr "想定外の事が起こりました"
-
-#~ msgid "Cannot create MCS client channel"
-#~ msgstr "MCS クライアントのチャンネルを作成できません"
-
-#~ msgid "Open archive file..."
-#~ msgstr "書庫ファイルを開く..."
-
-#~ msgid "Close archive file"
-#~ msgstr "書庫ファイルを閉じる"
