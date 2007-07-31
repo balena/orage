@@ -1398,6 +1398,9 @@ static xfical_appt *fill_appt_window_get_appt(char *action, char *par)
                     , today, t->tm_hour, t->tm_min);
         appt->completed_tz_loc = g_strdup(appt->start_tz_loc);
 
+        /* default alarm time is 5 mins before event (Bug 3425) */
+        appt->alarmtime = 5*60;
+
         /* default alarm time is 500 cnt & 2 secs each */
         appt->soundrepeat_cnt = 500;
         appt->soundrepeat_len = 2;
