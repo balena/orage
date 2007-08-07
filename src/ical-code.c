@@ -1291,6 +1291,7 @@ char *appt_add_internal(appt_data *appt, gboolean add, char *uid
            , icalproperty_new_class(ICAL_CLASS_PUBLIC)
            , icalproperty_new_dtstamp(dtstamp)
            , icalproperty_new_created(create_time)
+           , icalproperty_new_lastmodified(dtstamp)
            , NULL);
 
     if XFICAL_STR_EXISTS(appt->title)
@@ -1746,6 +1747,7 @@ appt_data *xfical_appt_get_internal(char *ical_uid)
                     case ICAL_CLASS_PROPERTY:
                     case ICAL_DTSTAMP_PROPERTY:
                     case ICAL_CREATED_PROPERTY:
+                    case ICAL_LASTMODIFIED_PROPERTY:
                         break;
                     default:
                         g_warning("xfical_appt_get_internal: unknown property %s"
