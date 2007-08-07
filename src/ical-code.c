@@ -1538,6 +1538,7 @@ static char *appt_add_internal(xfical_appt *appt, gboolean add, char *uid
            , icalproperty_new_class(ICAL_CLASS_PUBLIC)
            , icalproperty_new_dtstamp(dtstamp)
            , icalproperty_new_created(create_time)
+           , icalproperty_new_lastmodified(dtstamp)
            , NULL);
 
     if ORAGE_STR_EXISTS(appt->title)
@@ -2248,6 +2249,7 @@ static xfical_appt *xfical_appt_get_internal(char *ical_uid
                     case ICAL_CLASS_PROPERTY:
                     case ICAL_DTSTAMP_PROPERTY:
                     case ICAL_CREATED_PROPERTY:
+                    case ICAL_LASTMODIFIED_PROPERTY:
                         break;
                     default:
                         orage_message(P_N "unknown property %s"
