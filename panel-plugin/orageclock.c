@@ -94,6 +94,9 @@ static gboolean oc_get_time(Clock *clock)
             utf8_strftime(res, sizeof(res), line->data->str, &clock->now);
             /* gtk_label_set_text call takes almost
              * 100 % of the time wasted in this procedure 
+             * Note that even though we only wake up when needed, we 
+             * may not have to update all lines, so this check still
+             * probably is worth doing
              * */
             if (strcmp(res,  line->prev)) {
                 gtk_label_set_text(GTK_LABEL(line->label), res);
@@ -104,6 +107,177 @@ static gboolean oc_get_time(Clock *clock)
     oc_tooltip_set(clock);
 
     return(TRUE);
+}
+
+static gboolean oc_get_time_delay(Clock *clock)
+{
+    clock->timeout_id = g_timeout_add_full(G_PRIORITY_DEFAULT_IDLE
+            , clock->interval, (GSourceFunc)oc_get_time, clock, NULL);
+    oc_get_time(clock);
+    return(FALSE); /* this is one time only timer */
+}
+
+gboolean oc_start_timer(Clock *clock)
+{
+    time_t t;
+    gint   delay_time =  0;
+
+    oc_get_time(clock);
+    time(&t);
+    localtime_r(&t, &clock->now);
+    if (clock->interval >= 60000) 
+        delay_time = (clock->interval-clock->now.tm_sec*1000);
+    if (clock->delay_timeout_id) {
+        g_source_remove(clock->delay_timeout_id);
+        clock->delay_timeout_id = 0;
+    }
+    if (clock->timeout_id) {
+        g_source_remove(clock->timeout_id);
+        clock->timeout_id = 0;
+    }
+    clock->delay_timeout_id = g_timeout_add_full(G_PRIORITY_DEFAULT_IDLE
+            , delay_time, (GSourceFunc)oc_get_time_delay, clock, NULL);
+    return(TRUE);
+}
+
+static gboolean oc_end_tuning(Clock *clock)
+{
+    /* if we have longer than 1 sec timer, we need to reschedule it regularly 
+     * since it will fall down slowly but surely 
+     * */
+    if (clock->adjust_timeout_id) {
+        g_source_remove(clock->adjust_timeout_id);
+        clock->adjust_timeout_id = 0;
+    }
+    if (clock->interval >= 60000) {
+        clock->adjust_timeout_id = g_timeout_add_full(G_PRIORITY_DEFAULT_IDLE
+                , 60*60*1000, (GSourceFunc)oc_start_timer, clock, NULL);
+    }
+    g_free(clock->tune);
+    clock->tune = NULL;
+}
+
+static gboolean oc_next_level_tuning(Clock *clock)
+{
+    TimeTuning *tune = clock->tune;
+    gboolean continue_tuning = TRUE;
+
+    if (clock->interval == OC_CONFIG_INTERVAL) /* setup active => no changes */
+        return(FALSE);
+    switch (tune->level) {
+        case 0: /* second now; let's set interval to minute */
+            clock->interval = 60*1000; 
+            break;
+        case 1: /* minute now; let's set it to hour */
+            clock->interval = 60*60*1000; 
+            break;
+        default: /* no point tune more */
+            break;
+    }
+    if (tune->level < 2) {
+        tune->level++;
+        oc_start_timer(clock);
+        oc_start_tuning(clock);
+    }
+    else {
+        continue_tuning = FALSE;
+        oc_end_tuning(clock);
+    }
+    return(continue_tuning);
+}
+
+static gboolean oc_tune_time(Clock *clock)
+{
+    /* idea is that we compare the panel string three times and 
+     * if all of those are the same, we can tune the timer since we know 
+     * that we do not have to check it so often. Time in panel plugin is
+     * not changing anyway. So we adjust the timers and check again */
+    gboolean continue_tuning = TRUE;
+    TimeTuning *tune = clock->tune;
+
+    if (clock->interval == OC_CONFIG_INTERVAL) /* setup active => no changes */
+        return(FALSE);
+    switch (tune->cnt) {
+        case 0: /* first time we come here */
+            strncpy(tune->prev[0], clock->line[0].prev, OC_MAX_LINE_LENGTH);
+            strncpy(tune->prev[1], clock->line[1].prev, OC_MAX_LINE_LENGTH);
+            strncpy(tune->prev[2], clock->line[2].prev, OC_MAX_LINE_LENGTH);
+            strncpy(tune->tooltip_prev, clock->tooltip_prev,OC_MAX_LINE_LENGTH);
+            break;
+        case 1:
+        case 2:
+        case 3: /* FIXME: two may be enough ?? */
+            if (strncmp(tune->prev[0], clock->line[0].prev, OC_MAX_LINE_LENGTH)
+            ||  strncmp(tune->prev[1], clock->line[1].prev, OC_MAX_LINE_LENGTH)
+            ||  strncmp(tune->prev[2], clock->line[2].prev, OC_MAX_LINE_LENGTH)
+            ||  strncmp(tune->tooltip_prev, clock->tooltip_prev
+                    ,OC_MAX_LINE_LENGTH)) {
+                /* time has changed. But it may change due to bigger time
+                 * change. For example if we are checking seconds and time
+                 * only shows minutes, this can change if hour happens to
+                 * change. So we need to check the change twice to be sure */
+                if (tune->changed_once) { /* this is the second trial already */
+                    continue_tuning = FALSE;
+                    oc_end_tuning(clock);
+                }
+                else { /* need to try again */
+                    tune->changed_once = TRUE;
+                    tune->cnt = -1; /* this gets incremented to 0 below */
+                }
+            }
+            break;
+        default:
+            break;
+    }
+    if (continue_tuning)
+        if (tune->cnt == 3) 
+            continue_tuning = oc_next_level_tuning(clock);
+        else 
+            tune->cnt++;
+
+    return(continue_tuning);
+}
+
+void oc_disable_tuning(Clock *clock)
+{
+    TimeTuning *tune = clock->tune;
+
+    if (tune == NULL)
+        return;
+    if (tune->timeout_id) {
+        g_source_remove(tune->timeout_id);
+        tune->timeout_id = 0;
+    }
+    if (clock->adjust_timeout_id) {
+        g_source_remove(clock->adjust_timeout_id);
+        clock->adjust_timeout_id = 0;
+    }
+}
+
+void oc_start_tuning(Clock *clock)
+{
+    TimeTuning *tune = clock->tune;
+
+    if (clock->interval == OC_CONFIG_INTERVAL) /* setup active => no changes */
+        return;
+    tune->cnt = 0;
+    tune->changed_once = FALSE;
+    if (tune->timeout_id) {
+        g_source_remove(tune->timeout_id);
+        tune->timeout_id = 0;
+    }
+    tune->timeout_id = g_timeout_add_full(G_PRIORITY_DEFAULT_IDLE
+            , 2*clock->interval, (GSourceFunc)oc_tune_time, clock, NULL);
+}
+
+void oc_init_timer(Clock *clock)
+{
+    clock->interval = OC_BASE_INTERVAL;
+    if (clock->tune == NULL)
+        clock->tune = g_new0(TimeTuning, 1);
+    clock->tune->level = 0;
+    oc_start_timer(clock);
+    oc_start_tuning(clock);
 }
 
 static void oc_update_size(Clock *clock, int size)
@@ -424,9 +598,7 @@ Clock *orage_oc_new(XfcePanelPlugin *plugin)
     clock->tips = gtk_tooltips_new();
     g_object_ref(clock->tips);
     gtk_object_sink(GTK_OBJECT(clock->tips));
-    oc_get_time(clock);
-    clock->timeout_id = g_timeout_add_full(G_PRIORITY_DEFAULT_IDLE
-            , 200, (GSourceFunc) oc_get_time, clock, NULL);
+    oc_init_timer(clock);
         
     return(clock);
 }
