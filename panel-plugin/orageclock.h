@@ -20,9 +20,20 @@
 #define OC_NAME "orageclock panel plugin"
 #define OC_MAX_LINES 3 /* changing this causes trouble. don't do it */
 #define OC_MAX_LINE_LENGTH 100 
+#define OC_BASE_INTERVAL 1000  /* best accurance of the clock */
+#define OC_CONFIG_INTERVAL 200 /* special fast interval used in setup */
 
+typedef struct _timetuning
+{
+    gint  level; /* 0 = seconds, 1 = minutes, 2 = hours */
+    gint  cnt;
+    gboolean changed_once; 
+    gint  timeout_id;
+    gchar prev[OC_MAX_LINES][OC_MAX_LINE_LENGTH+1];
+    gchar tooltip_prev[OC_MAX_LINE_LENGTH+1];
+} TimeTuning;
 
-typedef struct
+typedef struct _clockline
 {
     GtkWidget *label;
     gboolean   show;
@@ -31,7 +42,7 @@ typedef struct
     gchar      prev[OC_MAX_LINE_LENGTH+1];
 } ClockLine;
 
-typedef struct
+typedef struct _clock
 {
     XfcePanelPlugin *plugin;
 
@@ -56,7 +67,12 @@ typedef struct
 
     GtkTooltips *tips;
     int timeout_id;
+    int delay_timeout_id;
+    int adjust_timeout_id;
+    int interval;
     struct tm   now;
+
+    TimeTuning  *tune;
 } Clock;
 
 void oc_properties_dialog(XfcePanelPlugin *plugin, Clock *clock);
@@ -69,3 +85,8 @@ void oc_timezone_set(Clock *clock);
 void oc_show_line_set(Clock *clock, gint lno);
 void oc_line_font_set(Clock *clock, gint lno);
 void oc_write_rc_file(XfcePanelPlugin *plugin, Clock *clock);
+gboolean oc_start_timer(Clock *clock);
+void oc_start_tuning(Clock *clock);
+void oc_disable_tuning(Clock *clock);
+void oc_init_timer(Clock *clock);
+

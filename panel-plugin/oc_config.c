@@ -400,6 +400,7 @@ static void oc_dialog_response(GtkWidget *dlg, int reponse, Clock *clock)
     gtk_widget_destroy(dlg);
     xfce_panel_plugin_unblock_menu(clock->plugin);
     oc_write_rc_file(clock->plugin, clock);
+    oc_init_timer(clock);
 }
 
 void oc_properties_dialog(XfcePanelPlugin *plugin, Clock *clock)
@@ -408,6 +409,10 @@ void oc_properties_dialog(XfcePanelPlugin *plugin, Clock *clock)
 
     xfce_panel_plugin_block_menu(plugin);
     
+    clock->interval = 200; /* 0,2 sec, so that we can show quick feedback
+                            * on the panel */
+    oc_disable_tuning(clock);
+    oc_start_timer(clock);
     dlg = gtk_dialog_new_with_buttons(_("Properties"), 
             GTK_WINDOW(gtk_widget_get_toplevel(GTK_WIDGET(plugin))),
             GTK_DIALOG_DESTROY_WITH_PARENT |
