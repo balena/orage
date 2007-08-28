@@ -3,15 +3,16 @@
 # This file is distributed under the same license as the orage package.
 # Felix da Silva Costa <felix@online.eti.br>, 2004.
 # Adriano Winter Bess <awbess@gmail.com>, 2005.
+# Fábio Nogueira <deb-user-ba@ubuntu.com>, 2007.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.4.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2006-11-05 10:09+0100\n"
-"PO-Revision-Date: 2007-07-04 10:49-0300\n"
-"Last-Translator: Pablo Vieira <pbgozer@gmail.com>\n"
-"Language-Team: Brazilian Portuguese <ldp-br@bazar.conectiva.com.br>\n"
+"PO-Revision-Date: 2007-08-28 15:13-0300\n"
+"Last-Translator: Fábio Nogueira <deb-user-ba@ubuntu.com>\n"
+"Language-Team: Brazilian Portuguese <ldp-br@bazar2.conectiva.com.br>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -59,7 +60,7 @@ msgstr "ajustar fuso horário para:"
 
 #: ../panel-plugin/oc_config.c:295
 msgid "Set any valid timezone (=TZ) value or pick one from the list."
-msgstr "Ajuste qualquer valor de fuso horário ou escolha um da lista."
+msgstr "Ajuste qualquer valor de fuso horário válido (=TZ) ou escolha um da lista."
 
 #. line 1
 #: ../panel-plugin/oc_config.c:304
@@ -96,14 +97,14 @@ msgid ""
 "\t%H = hours \t\t\t\t%M = minute\n"
 "\t%X = local time\t\t\t%x = local date"
 msgstr ""
-"Este programa usa a função strftime para obter o tempo.\n"
+"Este programa utiliza a função strftime para obter o tempo.\n"
 "Use qualquer código válido para obter o tempo no formato\n"
 "preferido. Alguns códidos comuns são:\n"
-"\t%A = dia da semana\t\t%B = mês\n"
-"\t%c = data & hora\t\t\t%R = hora & minuto\n"
-"\t%V = número da semana\t%Z = fuso horário em uso\n"
-"\t%H = horas\t\t\t\t%M = minuto\n"
-"\t%X = horário local\t\t%x = data local"
+"\t%A = dia da semana\t\t\t%B = mês\n"
+"\t%c = data & hora\t\t%R = hora & minuto\n"
+"\t%V = número da semana\t\t%Z = fuso horário em uso\n"
+"\t%H = horas \t\t\t\t%M = minuto\n"
+"\t%X = horário local\t\t\t%x = data local"
 
 #: ../panel-plugin/oc_config.c:411
 msgid "Properties"
@@ -124,7 +125,7 @@ msgstr "Relógio do Orage"
 #.
 #: ../panel-plugin/orageclock.c:422
 msgid "%A %d %B %Y/%V"
-msgstr "%d de %B de %Y"
+msgstr "%A, %d de %B de %Y"
 
 #. to avoid timing problems when updating entry
 #. Create file chooser
@@ -494,7 +495,7 @@ msgstr "Sex"
 
 #: ../src/appointment.c:1621
 msgid "Sat"
-msgstr "Sab"
+msgstr "Sáb"
 
 #: ../src/appointment.c:1621
 msgid "Sun"
@@ -518,7 +519,7 @@ msgstr "Avançado"
 
 #: ../src/appointment.c:1648
 msgid "Use this if you want regular repeating event"
-msgstr "Use este se você quiser um evento com repetição regular"
+msgstr "Utilize isto se você quiser um evento com repetição regular"
 
 #: ../src/appointment.c:1650
 msgid ""
@@ -527,10 +528,10 @@ msgid ""
 " Every Saturday and Sunday or \n"
 " First Tuesday every month"
 msgstr ""
-"Use este se você precisar de horários mais complexos como:\n"
+"Utilize isto se você precisar de horários mais complexos como:\n"
 " A cada segunda semana ou \n"
-" A cada Sábado e Domingo ou \n"
-" A primeira Terça de cada mês"
+" A cada sábado e domingo ou \n"
+" A primeira terça de cada mês"
 
 #: ../src/appointment.c:1653
 msgid "Frequency"
@@ -595,10 +596,10 @@ msgid ""
 msgstr ""
 "Especifica qual dia da semana para eventos mensais e anuais.\n"
 " Por exemplo:\n"
-" Segunda Quarta de cada mês:\n"
-" \tFrequência = Mensal,\n"
+" Segunda quarta de cada mês:\n"
+"\tFrequência = Mensal,\n"
 "\tDia da semana = marcar apenas Quarta,\n"
-"\tQual dia = selecione 2 como número abaixo de Quarta"
+"\tQual dia = selecione 2 como número abaixo de quarta"
 
 #. date only appointment
 #: ../src/event-list.c:199
@@ -655,7 +656,7 @@ msgstr "Limpar"
 
 #: ../src/event-list.c:784
 msgid "Flags"
-msgstr "Opções"
+msgstr "Sinalizadores"
 
 #: ../src/event-list.c:790
 msgid "Title"
@@ -679,19 +680,11 @@ msgstr ""
 "Clique duas vezes na linha para editá-la.\n"
 "\n"
 "Opções em ordem:\n"
-"1. Alarme:\n"
-"\t\tn=nenhum alarme\n"
-"\t\tv=alarme visual\n"
-"\t\tS=alarme de som\n"
-"2. Recorrência:\n"
-"\t\tn=nenhuma recorrência\n"
-"\t\tD=diária\n"
-"\t\tW=semanal\n"
-"\t\tM=mensal\n"
-"\t\tY=anual\n"
-"3. Tipo:\n"
-"\t\tf=disponível\n"
-"\t\tB=Ocupado"
+"\t 1. Alarme: n=nenhum alarme\n"
+"\t\tA=Alarme visual S=também com alarme sonoro\n"
+"\t 2. Recorrência: n=nenhuma recorrência\n"
+"\t\t D=Diária W=Semanal M=Mensal Y=Anual\n"
+"\t 3. Tipo: f=disponível B=Ocupado"
 
 #: ../src/ical-code.c:100
 msgid "Africa"
@@ -699,7 +692,7 @@ msgstr "África"
 
 #: ../src/ical-code.c:101
 msgid "Africa/Abidjan"
-msgstr "África/Abidjan"
+msgstr "África/Abidjã"
 
 #: ../src/ical-code.c:102
 msgid "Africa/Accra"
@@ -767,7 +760,7 @@ msgstr "África/Dakar"
 
 #: ../src/ical-code.c:118
 msgid "Africa/Dar_es_Salaam"
-msgstr "África/Dar es Salaam"
+msgstr "África/Dar_es_Salaam"
 
 #: ../src/ical-code.c:119
 msgid "Africa/Djibouti"
@@ -2270,7 +2263,7 @@ msgstr "Lembrete "
 #. GtkTooltipsData *cur_tooltip;
 #: ../src/reminder.c:320
 msgid "Next active alarms:"
-msgstr "Próximos alarmes ativos"
+msgstr "Próximos alarmes ativos:"
 
 #: ../src/reminder.c:328
 #, c-format
@@ -2323,5 +2316,5 @@ msgstr "Calendário"
 
 #: ../xfcalendar.desktop.in.h:2
 msgid "Desktop calendar"
-msgstr "Calendário do Ambiente de Trabalho"
+msgstr "Calendário da área de trabalho"
 
