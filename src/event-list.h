@@ -33,7 +33,7 @@ typedef enum
 } el_page;
 
 
-typedef struct
+typedef struct _el_win
 {
     GtkAccelGroup *accel_group;
     GtkTooltips   *Tooltips;
@@ -64,6 +64,7 @@ typedef struct
     GtkWidget *Refresh_toolbutton;
     GtkWidget *Search_toolbutton;
     GtkWidget *Close_toolbutton;
+    GtkWidget *Dayview_toolbutton;
 
     GtkWidget *Notebook;
     GtkWidget *event_tab_label;
@@ -92,7 +93,7 @@ typedef struct
     char     date_now[XFICAL_APPT_TIME_FORMAT_LEN]; /* yyyymmddThhmmss */
 } el_win; /* event list window */
 
-el_win* create_el_win(void);
+el_win* create_el_win(char *start_date);
 void refresh_el_win(el_win *el);
 
 #endif /* !__EVENT_LIST_H__ */

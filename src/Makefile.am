@@ -6,6 +6,8 @@ orage_SOURCES =							\
 	about-xfcalendar.h						\
 	appointment.c							\
 	appointment.h							\
+	day-view.c							\
+	day-view.h							\
 	event-list.c							\
 	event-list.h							\
 	functions.c							\
@@ -17,6 +19,7 @@ orage_SOURCES =							\
 	main.c								\
 	mainbox.c                                                       \
 	mainbox.h                                                       \
+	orage-i18n.h                                                    \
 	parameters.c							\
 	parameters.h							\
 	reminder.c							\

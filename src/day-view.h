@@ -21,17 +21,36 @@
 
  */
 
-#ifndef __TRAY_ICON_H__
-#define __TRAY_ICON_H__
+#ifndef __DAY_VIEW_H__
+#define __DAY_VIEW_H__
 
-#include "xfce_trayicon.h"
-#include "mainbox.h"
+typedef struct _day_win
+{
+    GtkAccelGroup *accel_group;
+    GtkTooltips   *Tooltips;
 
-GdkPixbuf *orage_create_icon(CalWin *xfcal, gboolean static_icon
-        , gint x, gint y);
+    GtkWidget *Window;
+    GtkWidget *Vbox;
 
-XfceTrayIcon *create_TrayIcon(CalWin *xfcal);
+    GtkWidget *StartDate_button;
+    GtkRequisition StartDate_button_req;
+    GtkWidget *day_spin;
 
-void destroy_TrayIcon(XfceTrayIcon *trayIcon);
+    GtkWidget *Menubar;
+    GtkWidget *File_menu;
+    GtkWidget *File_menu_close;
 
-#endif /* !__TRAY_ICON_H__ */
+    GtkWidget *Toolbar;
+    GtkWidget *Close_toolbutton;
+
+    GtkWidget *day_view_vbox;
+    GtkWidget *scroll_win_h;
+    GtkWidget *dtable_h; /* header of day table */
+    GtkWidget *scroll_win;
+    GtkWidget *dtable;   /* day table */
+    GtkRequisition hour_req;
+} day_win;
+
+day_win *create_day_win(char *start_date);
+
+#endif /* !__DAY_VIEW_H__ */

@@ -39,13 +39,11 @@
 #include <glib/gprintf.h>
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
-#include <libxfce4util/libxfce4util.h>
-#include <libxfcegui4/libxfcegui4.h>
-#include <libxfcegui4/dialogs.h>
 #ifdef HAVE_NOTIFY
 #include <libnotify/notify.h>
 #endif
 
+#include "orage-i18n.h"
 #include "functions.h"
 #include "mainbox.h"
 #include "ical-code.h"
@@ -58,44 +56,6 @@
 
 void create_notify_reminder(alarm_struct *alarm);
 
-static void child_setup_async(gpointer user_data)
-{
-#if defined(HAVE_SETSID) && !defined(G_OS_WIN32)
-    setsid();
-#endif
-}
-
-static void child_watch_cb(GPid pid, gint status, gpointer data)
-{
-    gboolean *sound_active = (gboolean *)data;
-
-    waitpid(pid, NULL, 0);
-    g_spawn_close_pid(pid);
-    *sound_active = FALSE;
-}
-
-gboolean orage_exec(const char *cmd, gboolean *sound_active, GError **error)
-{
-    char **argv;
-    gboolean success;
-    int spawn_flags = G_SPAWN_SEARCH_PATH | G_SPAWN_DO_NOT_REAP_CHILD;
-    GPid pid;
-
-    if (!g_shell_parse_argv(cmd, NULL, &argv, error)) 
-        return FALSE;
-
-    if (!argv || !argv[0])
-        return FALSE;
-
-    success = g_spawn_async(NULL, argv, NULL, spawn_flags
-            , child_setup_async, NULL, &pid, error);
-    if (success)
-        *sound_active = TRUE;
-    g_child_watch_add(pid, child_watch_cb, sound_active);
-    g_strfreev(argv);
-
-    return success;
-}
 
 static void alarm_free_memory(alarm_struct *alarm)
 {
@@ -288,13 +248,10 @@ static void create_orage_reminder(alarm_struct *alarm)
     GtkWidget *btOkReminder;
     GtkWidget *swReminder;
     GtkWidget *hdReminder;
-    char heading[250];
-    gchar *head2;
 
     wReminder = gtk_dialog_new();
     gtk_widget_set_size_request(wReminder, 300, 250);
-    strncpy(heading,  _("Reminder "), 199);
-    gtk_window_set_title(GTK_WINDOW(wReminder),  heading);
+    gtk_window_set_title(GTK_WINDOW(wReminder),  _("Reminder - Orage"));
     gtk_window_set_position(GTK_WINDOW(wReminder), GTK_WIN_POS_CENTER);
     gtk_window_set_modal(GTK_WINDOW(wReminder), FALSE);
     gtk_window_set_resizable(GTK_WINDOW(wReminder), TRUE);
@@ -302,10 +259,7 @@ static void create_orage_reminder(alarm_struct *alarm)
 
     vbReminder = GTK_DIALOG(wReminder)->vbox;
 
-    strncat(heading, alarm->title->str, 50);
-    head2 = g_markup_escape_text(heading, -1);
-    hdReminder = xfce_create_header(NULL, head2);
-    g_free(head2);
+    hdReminder = gtk_label_new(alarm->title->str);
     gtk_box_pack_start(GTK_BOX(vbReminder), hdReminder, FALSE, TRUE, 0);
 
     swReminder = gtk_scrolled_window_new(NULL, NULL);

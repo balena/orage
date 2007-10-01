@@ -688,8 +688,6 @@ Itf *create_parameter_dialog()
     g_signal_connect(G_OBJECT (dialog->orage_dialog), "response"
             , G_CALLBACK(dialog_response), NULL);
 
-    xfce_gtk_window_center_on_monitor_with_pointer(
-            GTK_WINDOW(dialog->orage_dialog));
     gdk_x11_window_set_user_time(GTK_WIDGET(dialog->orage_dialog)->window, 
             gdk_x11_get_server_time(GTK_WIDGET(dialog->orage_dialog)->window));
     gtk_widget_show_all(dialog->orage_dialog);

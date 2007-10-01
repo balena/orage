@@ -63,7 +63,7 @@
 /* session client handler */
 static SessionClient	*session_client = NULL;
 static GdkAtom atom_alive;
-/*
+
 void program_log (const char *format, ...)
 {
         va_list args;
@@ -79,7 +79,7 @@ void program_log (const char *format, ...)
         access (str, F_OK);
         g_free (str);
 } 
-*/
+
 
 static void send_event(char *event)
 {
@@ -119,10 +119,12 @@ gboolean mWindow_delete_event_cb(GtkWidget *widget, GdkEvent *event
 
 static void raise_window()
 {
-    GdkScreen *screen;
+    GdkScreen *screen = NULL;
     GdkWindow *window;
 
+    /*
     screen = xfce_gdk_display_locate_monitor_with_pointer(NULL, NULL);
+    */
     gtk_window_set_screen(GTK_WINDOW(g_par.xfcal->mWindow)
             , screen ? screen : gdk_screen_get_default());
     if (g_par.pos_x || g_par.pos_y)
@@ -196,62 +198,6 @@ void save_yourself_cb(gpointer data, int save_style, gboolean shutdown
 void die_cb(gpointer data)
 {
     gtk_main_quit();
-}
-
-static void ensure_basedir_spec(void)
-{
-    char *newdir, *olddir;
-    GError *error = NULL;
-    GDir *gdir;
-
-    newdir = xfce_resource_save_location(XFCE_RESOURCE_CONFIG, ORAGE_DIR, FALSE);
-
-  /* if new directory exist, assume old config has been copied */
-    if (g_file_test(newdir, G_FILE_TEST_IS_DIR)) {
-        g_free(newdir);
-        return;
-    }
-
-    if (!xfce_mkdirhier(newdir, 0700, &error)) {
-        g_critical("Cannot create directory %s: %s", newdir, error->message);
-        g_error_free(error);
-        g_free(newdir);
-        exit(EXIT_FAILURE);
-    }
-
-    olddir = xfce_get_userfile("xfcalendar", NULL);
-
-    if ((gdir = g_dir_open(olddir, 0, NULL)) != NULL) {
-        const char *name;
-
-        while ((name = g_dir_read_name(gdir)) != NULL) {
-            FILE *r, *w;
-            char *path;
-
-            path = g_build_filename(olddir, name, NULL);
-            r = fopen(path, "r");
-            g_free(path);
-
-            path = g_build_filename(newdir, name, NULL);
-            w = fopen(path, "w");
-            g_free(path);
-
-            if (r && w) {
-                char c;
-
-                while ((c = getc(r)) != EOF)
-                    putc (c, w);
-            }
-
-            if (r)
-                fclose(r);
-            if (w)
-                fclose(w);
-        }
-    }
-
-    g_free(newdir);
-    g_free(olddir);
 }
 
 static void print_version(void)
@@ -473,7 +419,16 @@ int main(int argc, char *argv[])
 {
     gboolean running, initialized = FALSE;
 
+    /*
     xfce_textdomain(GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8");
+    */
+    /* init i18n = nls to use gettext */
+    bindtextdomain(GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR);
+#ifdef HAVE_BIND_TEXTDOMAIN_CODESET
+    bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8");
+#endif
+    textdomain(GETTEXT_PACKAGE);
+
     gtk_init(&argc, &argv);
 
     atom_alive = gdk_atom_intern("_XFCE_CALENDAR_RUNNING", FALSE);
@@ -502,7 +457,6 @@ int main(int argc, char *argv[])
     * Now it's serious, the application is running, so we create the RC
     * directory and check for config files in old location.
     */
-    ensure_basedir_spec();
 #ifdef HAVE_DBUS
     orage_dbus_start();
 #endif

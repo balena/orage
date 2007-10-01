@@ -26,18 +26,123 @@
 #define _XOPEN_SOURCE /* glibc2 needs this */
 #include <time.h>
 #include <string.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 
 #include <glib.h>
 #include <gtk/gtk.h>
 #include <gdk/gdk.h>
 
+/*
 #include <libxfce4util/libxfce4util.h>
+*/
 
+#include "orage-i18n.h"
 #include "functions.h"
 
 /**************************************
  *  General purpose helper functions  *
  **************************************/
+
+
+gboolean orage_date_button_clicked(GtkWidget *button, GtkWidget *win)
+{
+    GtkWidget *selDate_Window_dialog;
+    GtkWidget *selDate_Calendar_calendar;
+    gint result;
+    char *date_to_display=NULL;
+    struct tm *t;
+    struct tm cur_t;
+    gboolean changed;
+
+    selDate_Window_dialog = gtk_dialog_new_with_buttons(
+            _("Pick the date"), GTK_WINDOW(win),
+            GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
+            _("Today"),
+            1,
+            GTK_STOCK_OK,
+            GTK_RESPONSE_ACCEPT,
+            NULL);
+
+    selDate_Calendar_calendar = gtk_calendar_new();
+    gtk_container_add(GTK_CONTAINER(GTK_DIALOG(selDate_Window_dialog)->vbox)
+            , selDate_Calendar_calendar);
+
+    cur_t = orage_i18_date_to_tm_date(gtk_button_get_label(
+            GTK_BUTTON(button)));
+    orage_select_date(GTK_CALENDAR(selDate_Calendar_calendar)
+            , cur_t.tm_year+1900, cur_t.tm_mon, cur_t.tm_mday);
+    gtk_widget_show_all(selDate_Window_dialog);
+
+    result = gtk_dialog_run(GTK_DIALOG(selDate_Window_dialog));
+    switch(result){
+        case GTK_RESPONSE_ACCEPT:
+            gtk_calendar_get_date(GTK_CALENDAR(selDate_Calendar_calendar)
+                    , (guint *)&cur_t.tm_year, (guint *)&cur_t.tm_mon
+                    , (guint *)&cur_t.tm_mday);
+            cur_t.tm_year -= 1900;
+            date_to_display = orage_tm_date_to_i18_date(&cur_t);
+            break;
+        case 1:
+            t = orage_localtime();
+            date_to_display = orage_tm_date_to_i18_date(t);
+            break;
+        case GTK_RESPONSE_DELETE_EVENT:
+        default:
+            date_to_display = (gchar *)gtk_button_get_label(
+                    GTK_BUTTON(button));
+            break;
+    }
+    if (g_ascii_strcasecmp((gchar *)date_to_display
+            , (gchar *)gtk_button_get_label(GTK_BUTTON(button))) != 0)
+        changed = TRUE;
+    else
+        changed = FALSE;
+    gtk_button_set_label(GTK_BUTTON(button), (const gchar *)date_to_display);
+    gtk_widget_destroy(selDate_Window_dialog);
+    return(changed);
+}
+
+static void child_setup_async(gpointer user_data)
+{
+#if defined(HAVE_SETSID) && !defined(G_OS_WIN32)
+    setsid();
+#endif
+}
+
+static void child_watch_cb(GPid pid, gint status, gpointer data)
+{
+    gboolean *cmd_active = (gboolean *)data;
+
+    waitpid(pid, NULL, 0);
+    g_spawn_close_pid(pid);
+    *cmd_active = FALSE;
+}
+
+gboolean orage_exec(const char *cmd, gboolean *cmd_active, GError **error)
+{
+    char **argv;
+    gboolean success;
+    int spawn_flags = G_SPAWN_SEARCH_PATH | G_SPAWN_DO_NOT_REAP_CHILD;
+    GPid pid;
+
+    if (!g_shell_parse_argv(cmd, NULL, &argv, error))
+        return FALSE;
+
+    if (!argv || !argv[0])
+        return FALSE;
+
+    success = g_spawn_async(NULL, argv, NULL, spawn_flags
+            , child_setup_async, NULL, &pid, error);
+    if (cmd_active) {
+        if (success)
+            *cmd_active = TRUE;
+        g_child_watch_add(pid, child_watch_cb, cmd_active);
+    }
+    g_strfreev(argv);
+
+    return(success);
+}
 
 struct tm orage_i18_date_to_tm_date(const char *i18_date)
 {
@@ -62,7 +167,7 @@ char *orage_tm_date_to_i18_date(struct tm *tm_date)
     return(i18_date);
 }
 
-struct tm orage_icaltime_to_tm_time(const char *icaltime)
+struct tm orage_icaltime_to_tm_time(const char *icaltime, gboolean real_tm)
 {
     int i;
     struct tm t = {0,0,0,0,0,0,0,0,0};
@@ -82,9 +187,10 @@ struct tm orage_icaltime_to_tm_time(const char *icaltime)
             g_error("orage: orage_icaltime_to_tm_time error %s %d", icaltime, i);
             break;
     }
-    /* normalise to standard tm format */
-    t.tm_year -= 1900;
-    t.tm_mon -= 1;
+    if (real_tm) { /* normalise to standard tm format */
+        t.tm_year -= 1900;
+        t.tm_mon -= 1;
+    }
     return(t);
 }
 
@@ -97,6 +203,17 @@ char *orage_tm_time_to_icaltime(struct tm *t)
             , t->tm_hour, t->tm_min, t->tm_sec);
 
     return(icaltime);
+}
+
+char *orage_i18_date_to_icaltime(const char *i18_date)
+{
+    struct tm t;
+    char      *ct;
+
+    t = orage_i18_date_to_tm_date(i18_date);
+    ct = orage_tm_time_to_icaltime(&t);
+    ct[8] = '\0'; /* we know it is date */
+    return(ct);
 }
 
 void orage_message(const char *format, ...)

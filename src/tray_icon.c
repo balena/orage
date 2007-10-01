@@ -59,7 +59,7 @@ void on_Today_activate(GtkMenuItem *menuitem, gpointer user_data)
     t = orage_localtime();
     orage_select_date(GTK_CALENDAR(xfcal->mCalendar), t->tm_year+1900
             , t->tm_mon, t->tm_mday);
-    el = create_el_win();
+    el = create_el_win(NULL);
 }
 
 void 
@@ -95,8 +95,10 @@ toggle_visible_cb ()
   orage_toggle_visible ();
 }
 
-GdkPixbuf *create_icon(CalWin *xfcal, gint x, gint y)
+GdkPixbuf *orage_create_icon(CalWin *xfcal, gboolean static_icon
+        , gint x, gint y)
 {
+  GtkIconTheme *icon_theme = NULL;
   GdkPixbuf *pixbuf;
   GdkPixmap *pic1;
   GdkGC *pic1_gc1, *pic1_gc2;
@@ -118,15 +120,31 @@ GdkPixbuf *create_icon(CalWin *xfcal, gint x, gint y)
   gchar *day_sizes[] = {"xx-large", "x-large", "large", "medium"
                       , "small", "x-small", "xx-small", "END"};
 
+  if (static_icon) {
+      icon_theme = gtk_icon_theme_get_default();
+      pixbuf = gtk_icon_theme_load_icon(icon_theme, "xfcalendar", x
+              , GTK_ICON_LOOKUP_USE_BUILTIN, NULL);
+      return(pixbuf);
+  }
   if (x <= 12 || y <= 12) {
       orage_message("Too small icon size, using static icon\n");
+      icon_theme = gtk_icon_theme_get_default();
+      pixbuf = gtk_icon_theme_load_icon(icon_theme, "xfcalendar", 16
+              , GTK_ICON_LOOKUP_USE_BUILTIN, NULL);
+      /*
       pixbuf = xfce_themed_icon_load("xfcalendar", 16);
+      */
       return(pixbuf);
   }
   if (g_par.icon_size_x == 0 
   ||  g_par.icon_size_y == 0) { /* signal to use static icon */
       orage_message("Icon size set to zero, using static icon\n");
+      icon_theme = gtk_icon_theme_get_default();
+      pixbuf = gtk_icon_theme_load_icon(icon_theme, "xfcalendar", x
+              , GTK_ICON_LOOKUP_USE_BUILTIN, NULL);
+      /*
       pixbuf = xfce_themed_icon_load("xfcalendar", x);
+      */
       return(pixbuf);
   }
 
@@ -145,7 +163,10 @@ GdkPixbuf *create_icon(CalWin *xfcal, gint x, gint y)
   color.green = green * (65535/255);
   color.blue = blue * (65535/255);
   color.pixel = (gulong)(red*65536 + green*256 + blue);
+  /*
   gdk_color_alloc(pic1_cmap, &color);
+  */
+  gdk_colormap_alloc_color(pic1_cmap, &color, FALSE, TRUE);
   gdk_gc_set_foreground(pic1_gc1, &color);
   gdk_draw_rectangle(pic1, pic1_gc1, TRUE, 0, 0, width, height);
   gdk_draw_rectangle(pic1, pic1_gc2, FALSE, 0, 0, width-1, height-1);
@@ -181,9 +202,9 @@ GdkPixbuf *create_icon(CalWin *xfcal, gint x, gint y)
 
   /* month */
   if (strftime(month, 19, "%^b", t) == 0) {
-      g_warning("create_icon: strftime %^b failed");
+      g_warning("orage_create_icon: strftime %^b failed");
       if (strftime(month, 19, "%b", t) == 0) {
-          g_warning("create_icon: strftime %b failed");
+          g_warning("orage_create_icon: strftime %b failed");
           g_sprintf(month, "orage");
       }
   }
@@ -264,7 +285,7 @@ GdkPixbuf *create_icon(CalWin *xfcal, gint x, gint y)
       pixbuf = xfce_themed_icon_load("xfcalendar", 16);
 
   if (pixbuf == NULL)
-      g_warning("create_icon: load failed\n");
+      g_warning("orage_create_icon: load failed\n");
 
   g_object_unref(pic1_gc1);
   g_object_unref(pic1_gc2);
@@ -354,7 +375,8 @@ XfceTrayIcon* create_TrayIcon(CalWin *xfcal)
    */
 
   /* pixbuf = xfce_themed_icon_load ("xfcalendar", 16); */
-  pixbuf = create_icon(xfcal, g_par.icon_size_x, g_par.icon_size_y);
+  pixbuf = orage_create_icon(xfcal, FALSE
+          , g_par.icon_size_x, g_par.icon_size_y);
   trayIcon = xfce_tray_icon_new_with_menu_from_pixbuf(trayMenu, pixbuf);
   g_object_ref(trayIcon);
   gtk_object_sink(GTK_OBJECT(trayIcon));

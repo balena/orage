@@ -680,6 +680,16 @@ static void on_appAllDay_clicked_cb(GtkCheckButton *cb, gpointer user_data)
     mark_appointment_changed((appt_win *)user_data);
 }
 
+static void app_free_memory(appt_win *apptw)
+{
+    gtk_widget_destroy(apptw->Window);
+    gtk_object_destroy(GTK_OBJECT(apptw->Tooltips));
+    g_free(apptw->xf_uid);
+    g_free(apptw->par);
+    xfical_appt_free(apptw->appt);
+    g_free(apptw);
+}
+
 static gboolean appWindow_check_and_close(appt_win *apptw)
 {
     gint result;
@@ -695,15 +705,22 @@ static gboolean appWindow_check_and_close(appt_win *apptw)
              NULL);
 
         if (result == GTK_RESPONSE_ACCEPT) {
+            app_free_memory(apptw);
+            /*
             gtk_widget_destroy(apptw->Window);
+            gtk_object_destroy(GTK_OBJECT(apptw->Tooltips));
             g_free(apptw);
+            */
         }
     }
     else {
+        app_free_memory(apptw);
+        /*
         gtk_widget_destroy(apptw->Window);
         gtk_object_destroy(GTK_OBJECT(apptw->Tooltips));
         xfical_appt_free(apptw->appt);
         g_free(apptw);
+        */
     }
     return TRUE;
 }
@@ -1063,9 +1080,13 @@ static void on_appSave_clicked_cb(GtkButton *b, gpointer user_data)
 static void save_xfical_from_appt_win_and_close(appt_win *apptw)
 {
     if (save_xfical_from_appt_win(apptw)) {
+        app_free_memory(apptw);
+        /*
         gtk_widget_destroy(apptw->Window);
+        gtk_object_destroy(GTK_OBJECT(apptw->Tooltips));
         xfical_appt_free(apptw->appt);
         g_free(apptw);
+        */
     }
 }
 
@@ -1109,11 +1130,15 @@ static void delete_xfical_from_appt_win(appt_win *apptw)
             refresh_el_win((el_win *)apptw->el);
         orage_mark_appointments();
 
+        app_free_memory(apptw);
+        /*
         gtk_widget_destroy(apptw->Window);
+        gtk_object_destroy(GTK_OBJECT(apptw->Tooltips));
         g_free(apptw->xf_uid);
         g_free(apptw->par);
         xfical_appt_free(apptw->appt);
         g_free(apptw);
+        */
     }
 }
 
@@ -1173,57 +1198,9 @@ static void on_Date_button_clicked_cb(GtkWidget *button
         , gpointer *user_data)
 {
     appt_win *apptw = (appt_win *)user_data;
-    GtkWidget *selDate_Window_dialog;
-    GtkWidget *selDate_Calendar_calendar;
-    gint result;
-    char *date_to_display=NULL; 
-    struct tm *t;
-    struct tm cur_t;
 
-    selDate_Window_dialog = gtk_dialog_new_with_buttons(
-            _("Pick the date"), GTK_WINDOW(apptw->Window),
-            GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
-            _("Today"), 
-            1,
-            GTK_STOCK_OK,
-            GTK_RESPONSE_ACCEPT,
-            NULL);
-
-    selDate_Calendar_calendar = gtk_calendar_new();
-    gtk_container_add(GTK_CONTAINER(GTK_DIALOG(selDate_Window_dialog)->vbox)
-            , selDate_Calendar_calendar);
-
-    cur_t = orage_i18_date_to_tm_date(gtk_button_get_label(
-            GTK_BUTTON(button)));
-    orage_select_date(GTK_CALENDAR(selDate_Calendar_calendar)
-            , cur_t.tm_year+1900, cur_t.tm_mon, cur_t.tm_mday);
-    gtk_widget_show_all(selDate_Window_dialog);
-
-    result = gtk_dialog_run(GTK_DIALOG(selDate_Window_dialog));
-    switch(result){
-        case GTK_RESPONSE_ACCEPT:
-            gtk_calendar_get_date(GTK_CALENDAR(selDate_Calendar_calendar)
-                    , (guint *)&cur_t.tm_year, (guint *)&cur_t.tm_mon
-                    , (guint *)&cur_t.tm_mday);
-            cur_t.tm_year -= 1900;
-            date_to_display = orage_tm_date_to_i18_date(&cur_t);
-            break;
-        case 1:
-            t = orage_localtime();
-            date_to_display = orage_tm_date_to_i18_date(t);
-            break;
-        case GTK_RESPONSE_DELETE_EVENT:
-        default:
-            date_to_display = (gchar *)gtk_button_get_label(
-                    GTK_BUTTON(button));
-            break;
-    }
-    if (g_ascii_strcasecmp((gchar *)date_to_display
-            , (gchar *)gtk_button_get_label(GTK_BUTTON(button))) != 0) {
+    if (orage_date_button_clicked(button, apptw->Window))
         mark_appointment_changed(apptw);
-    }
-    gtk_button_set_label(GTK_BUTTON(button), (const gchar *)date_to_display);
-    gtk_widget_destroy(selDate_Window_dialog);
 }
 
 static void on_appStartTimezone_clicked_cb(GtkButton *button
@@ -1274,7 +1251,7 @@ static void fill_appt_window_times(appt_win *apptw, xfical_appt *appt)
 
     /* start time */
     if (strlen(appt->starttime) > 6 ) {
-        tm_date = orage_icaltime_to_tm_time(appt->starttime);
+        tm_date = orage_icaltime_to_tm_time(appt->starttime, TRUE);
         startdate_to_display = orage_tm_date_to_i18_date(&tm_date);
         gtk_button_set_label(GTK_BUTTON(apptw->StartDate_button)
                 , (const gchar *)startdate_to_display);
@@ -1295,7 +1272,7 @@ static void fill_appt_window_times(appt_win *apptw, xfical_appt *appt)
 
     /* end time */
     if (strlen(appt->endtime) > 6 ) {
-        tm_date = orage_icaltime_to_tm_time(appt->endtime);
+        tm_date = orage_icaltime_to_tm_time(appt->endtime, TRUE);
         enddate_to_display = orage_tm_date_to_i18_date(&tm_date);
         gtk_button_set_label(GTK_BUTTON(apptw->EndDate_button)
                 , (const gchar *)enddate_to_display);
@@ -1332,7 +1309,7 @@ static void fill_appt_window_times(appt_win *apptw, xfical_appt *appt)
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
             apptw->Completed_checkbutton), appt->completed);
     if (strlen(appt->completedtime) > 6 ) {
-        tm_date = orage_icaltime_to_tm_time(appt->completedtime);
+        tm_date = orage_icaltime_to_tm_time(appt->completedtime, TRUE);
         completeddate_to_display = orage_tm_date_to_i18_date(&tm_date);
         gtk_button_set_label(GTK_BUTTON(apptw->CompletedDate_button)
                 , (const gchar *)completeddate_to_display);
@@ -1640,7 +1617,7 @@ static void fill_appt_window(appt_win *apptw, char *action, char *par)
                     GTK_TOGGLE_BUTTON(apptw->Recur_until_rb), TRUE);
             gtk_spin_button_set_value(
                     GTK_SPIN_BUTTON(apptw->Recur_count_spin), (gdouble)1);
-            tm_date = orage_icaltime_to_tm_time(appt->recur_until);
+            tm_date = orage_icaltime_to_tm_time(appt->recur_until, TRUE);
             untildate_to_display = orage_tm_date_to_i18_date(&tm_date);
             gtk_button_set_label(GTK_BUTTON(apptw->Recur_until_button)
                     , (const gchar *)untildate_to_display);
@@ -2396,6 +2373,8 @@ appt_win *create_appt_win(char *action, char *par, el_win *event_list)
     /*  initialisation + main window + base vbox */
     apptw = g_new(appt_win, 1);
     apptw->xf_uid = NULL;
+    apptw->par = NULL;
+    apptw->appt = NULL;
     apptw->el = event_list;    /* Keep track of the parent, if any */
     apptw->appointment_changed = FALSE;
     apptw->Tooltips = gtk_tooltips_new();
@@ -2433,9 +2412,12 @@ appt_win *create_appt_win(char *action, char *par, el_win *event_list)
         gtk_widget_grab_focus(apptw->Title_entry);
     }
     else { /* failed to get data */
+        app_free_memory(apptw);
+        /*
         gtk_widget_destroy(apptw->Window);
         gtk_object_destroy(GTK_OBJECT(apptw->Tooltips));
         g_free(apptw);
+        */
     }
 
     return apptw;

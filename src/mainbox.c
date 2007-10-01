@@ -36,9 +36,8 @@
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
 #include <gdk/gdk.h>
-#include <libxfce4util/libxfce4util.h>
-#include <libxfcegui4/libxfcegui4.h>
 
+#include "orage-i18n.h"
 #include "functions.h"
 #include "mainbox.h"
 #include "about-xfcalendar.h"
@@ -47,6 +46,7 @@
 #include "appointment.h"
 #include "interface.h"
 #include "parameters.h"
+#include "tray_icon.h"
 
 
 gboolean
@@ -105,22 +105,13 @@ mEdit_preferences_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
     show_parameters();
 }
 
-static void 
-mEdit_search_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
-{
-    CalWin *cal = (CalWin *) user_data;
-    el_win *el;
-
-    el = create_el_win();
-}
-
 static void
 mView_ViewSelectedDate_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
 {
     CalWin *cal = (CalWin *) user_data;
     el_win *el;
 
-    el = create_el_win();
+    el = create_el_win(NULL);
 }
 
 static void
@@ -141,8 +132,9 @@ mHelp_help_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
            , G_DIR_SEPARATOR_S, "doc"
            , G_DIR_SEPARATOR_S, "C"
            , G_DIR_SEPARATOR_S, "orage.html", NULL);
-    xfce_exec(helpdoc, FALSE, FALSE, NULL);
+    orage_exec(helpdoc, NULL, NULL);
     /*
+    xfce_exec(helpdoc, FALSE, FALSE, NULL);
     xfce_exec("xfhelp4 xfce4-user-guide.html", FALSE, FALSE, NULL);
     */
 }
@@ -184,7 +176,7 @@ mCalendar_day_selected_double_click_cb(GtkCalendar *cdar, gpointer user_data)
 {
     el_win *el;
 
-    el = create_el_win();
+    el = create_el_win(NULL);
 }
 
 static gboolean
@@ -300,7 +292,8 @@ void build_mainWin()
     /* using static icon here since this dynamic icon is not updated
      * when date changes. Could be added, but not worth it.
      * Dynamic icon is used in systray and about windows */
-    orage_logo = xfce_themed_icon_load("xfcalendar", 48); 
+    orage_logo = orage_create_icon(cal, TRUE, 48, 48); 
+    /* orage_logo = xfce_themed_icon_load("xfcalendar", 48); */
     /* orage_logo = create_icon(cal, 48, 48); */
     cal->mAccel_group = gtk_accel_group_new();
 
