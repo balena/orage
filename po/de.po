@@ -10,12 +10,12 @@ msgstr ""
 "Project-Id-Version: Orage 4.5.9.6-svn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-06-27 23:56+0300\n"
-"PO-Revision-Date: 2006-08-27 17:56+0200\n"
+"PO-Revision-Date: 2007-10-01 15:36+0200\n"
 "Last-Translator: Nico Schümann <nico@prog.nico22.de>\n"
 "Language-Team: German <xfce-i18n@xfce.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: 8bit"
 
 #: ../globaltime/globaltime.c:100
 msgid "Raising GlobalTime window..."
@@ -2554,18 +2554,18 @@ msgstr "Orage Standard-Alarm"
 #: ../src/ical-code.c:2895
 #, c-format
 msgid "Build alarm list: Added %d alarms. Processed %d events."
-msgstr ""
+msgstr "Benachrichtigungsliste: %d Benachrichtugungen hinzugefügt. %d Ereignisse bearbeitet."
 
 #: ../src/ical-code.c:2897
 #, c-format
 msgid ""
 "\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
-msgstr ""
+msgstr "\t%d Benachrichtigungen, von denen %d aktiv sind, gefunden (%d wiederkehrende Benachrichtigungen wurden durchsucht)."
 
 #. remove since it has ended
 #: ../src/ical-code.c:3382
 msgid "\tRecur ended, moving to archive file."
-msgstr ""
+msgstr "\t Wiederkehrung beendet, verschiebe ins Archiv"
 
 #: ../src/ical-code.c:3444
 msgid "Archiving not enabled. Exiting"
@@ -2583,20 +2583,20 @@ msgid "\tArchiving events, which are older than: %04d-%02d-%02d"
 msgstr "Ereignisse archivieren, die älter als %04d-%02d-%02d sind"
 
 #: ../src/ical-code.c:3492
-#, fuzzy, c-format
+#, c-format
 msgid "Archiving uid: %s"
-msgstr "Archiv-UID: %s (%s)"
+msgstr "Archiv-UID: %s"
 
 #. VTODO not com,pleted, do not archive
 #: ../src/ical-code.c:3498
 msgid "\tVTODO not complete; not archived"
-msgstr ""
+msgstr "\tVTODO vollständig; nicht archiviert."
 
 #. it is recurrent event
 #: ../src/ical-code.c:3503
-#, fuzzy, c-format
+#, c-format
 msgid "\tRecurring. End year: %04d, month: %02d, day: %02d"
-msgstr "Endjahr: %04d, -Monat: %02d, -Tag: %02d"
+msgstr "\tWiederkehrend. Endjahr: %04d, -Monat: %02d, -Tag: %02d"
 
 #: ../src/ical-code.c:3519
 msgid "Archiving done\n"
@@ -2604,20 +2604,18 @@ msgstr "Archivierung abgeschlossen\n"
 
 #. PHASE 1: go through base orage file and remove "repeat" shortcuts
 #: ../src/ical-code.c:3535
-#, fuzzy
 msgid "Starting archive removal."
-msgstr "Archiventfernung abgeschlossen\n"
+msgstr "Beginne Archiventfernung.\n"
 
 #: ../src/ical-code.c:3536
-#, fuzzy
 msgid "\tPHASE 1: reset recurring appointments"
-msgstr "Starte Archivlöschungsphase 1: Setze sich wiederholende Termine zurück"
+msgstr "\tSchritt 1: Setze wiederkehrende Termine zurück"
 
 #. PHASE 2: go through archive file and add everything back to base orage.
 #. * After that delete the whole arch file
 #: ../src/ical-code.c:3558
 msgid "\tPHASE 2: return archived appointments"
-msgstr ""
+msgstr "\tSchritt 2: Hole archivierte Termine zurück"
 
 #: ../src/ical-code.c:3580
 msgid "Archive removal done\n"
