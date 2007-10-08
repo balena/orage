@@ -96,6 +96,11 @@ typedef struct _Itf
     GtkWidget *icon_size_frame;
     GtkWidget *icon_size_x_spin;
     GtkWidget *icon_size_y_spin;
+    /* show event/days window from main calendar */
+    GtkWidget *click_to_show_frame;
+    GSList    *click_to_show_radiobutton_group;
+    GtkWidget *click_to_show_days_radiobutton;
+    GtkWidget *click_to_show_events_radiobutton;
 
     /* the rest */
     GtkWidget *close_button;
@@ -257,6 +262,14 @@ static void start_changed(GtkWidget *dialog, gpointer user_data)
             itf->visibility_show_radiobutton));
     g_par.start_minimized = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(
             itf->visibility_minimized_radiobutton));
+}
+
+static void show_changed(GtkWidget *dialog, gpointer user_data)
+{
+    Itf *itf = (Itf *)user_data;
+
+    g_par.show_days = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(
+            itf->click_to_show_days_radiobutton));
 }
 
 static void sound_application_open_button_clicked(GtkButton *button
@@ -511,6 +524,7 @@ static void create_parameter_dialog_display_tab(Itf *dialog)
             , G_CALLBACK(systray_changed), dialog);
 
     /* how to show when started (show/hide/minimize) */
+    dialog->visibility_radiobutton_group = NULL;
     hbox = gtk_hbox_new(TRUE, 0);
     dialog->visibility_frame = xfce_create_framebox_with_content(
             _("Calendar start") , hbox);
@@ -612,10 +626,10 @@ static void create_parameter_dialog_extra_setup_tab(Itf *dialog)
 
     /***** tray icon size  (0 = use static icon) *****/
     vbox = gtk_vbox_new(FALSE, 0);
-    dialog->ical_weekstartday_frame = xfce_create_framebox_with_content(
+    dialog->icon_size_frame = xfce_create_framebox_with_content(
             _("Dynamic icon size"), vbox);
     gtk_box_pack_start(GTK_BOX(dialog->extra_vbox)
-            , dialog->ical_weekstartday_frame, FALSE, FALSE, 5);
+            , dialog->icon_size_frame, FALSE, FALSE, 5);
 
     hbox = gtk_hbox_new(FALSE, 0);
     gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 5);
@@ -644,6 +658,41 @@ static void create_parameter_dialog_extra_setup_tab(Itf *dialog)
     gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 5);
     g_signal_connect(G_OBJECT(dialog->icon_size_y_spin), "value-changed"
             , G_CALLBACK(icon_size_y_spin_changed), dialog);
+
+    /***** Start event or day window from main calendar *****/
+    dialog->click_to_show_radiobutton_group = NULL;
+    hbox = gtk_vbox_new(FALSE, 0);
+    dialog->click_to_show_frame = xfce_create_framebox_with_content(
+            _("Main Calendar double click shows"), hbox);
+    gtk_box_pack_start(GTK_BOX(dialog->extra_vbox)
+            , dialog->click_to_show_frame, FALSE, FALSE, 5);
+
+    dialog->click_to_show_days_radiobutton =
+            gtk_radio_button_new_with_mnemonic(NULL, _("Days view"));
+    gtk_box_pack_start(GTK_BOX(hbox)
+            , dialog->click_to_show_days_radiobutton, FALSE, FALSE, 0);
+    gtk_radio_button_set_group(
+            GTK_RADIO_BUTTON(dialog->click_to_show_days_radiobutton)
+            , dialog->click_to_show_radiobutton_group);
+    dialog->click_to_show_radiobutton_group = gtk_radio_button_get_group(
+            GTK_RADIO_BUTTON(dialog->click_to_show_days_radiobutton));
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
+            dialog->click_to_show_days_radiobutton), g_par.show_days);
+
+    dialog->click_to_show_events_radiobutton =
+            gtk_radio_button_new_with_mnemonic(NULL, _("Event list"));
+    gtk_box_pack_start(GTK_BOX(hbox)
+            , dialog->click_to_show_events_radiobutton, FALSE, FALSE, 0);
+    gtk_radio_button_set_group(
+            GTK_RADIO_BUTTON(dialog->click_to_show_events_radiobutton)
+            , dialog->click_to_show_radiobutton_group);
+    dialog->click_to_show_radiobutton_group = gtk_radio_button_get_group(
+            GTK_RADIO_BUTTON(dialog->click_to_show_events_radiobutton));
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
+            dialog->click_to_show_events_radiobutton), !g_par.show_days);
+
+    g_signal_connect(G_OBJECT(dialog->click_to_show_days_radiobutton), "toggled"
+            , G_CALLBACK(show_changed), dialog);
 }
 
 Itf *create_parameter_dialog()
@@ -651,8 +700,6 @@ Itf *create_parameter_dialog()
     Itf *dialog;
 
     dialog = g_new(Itf, 1);
-
-    dialog->visibility_radiobutton_group = NULL;
 
     dialog->orage_dialog = xfce_titled_dialog_new();
     gtk_window_set_default_size(GTK_WINDOW(dialog->orage_dialog), 300, 350);
@@ -688,9 +735,11 @@ Itf *create_parameter_dialog()
     g_signal_connect(G_OBJECT (dialog->orage_dialog), "response"
             , G_CALLBACK(dialog_response), NULL);
 
+    gtk_widget_show_all(dialog->orage_dialog);
+    /*
     gdk_x11_window_set_user_time(GTK_WIDGET(dialog->orage_dialog)->window, 
             gdk_x11_get_server_time(GTK_WIDGET(dialog->orage_dialog)->window));
-    gtk_widget_show_all(dialog->orage_dialog);
+            */
 
     return(dialog);
 }
@@ -733,6 +782,7 @@ void write_parameters()
     xfce_rc_write_int_entry(rc, "Dynamic icon X", g_par.icon_size_x);
     xfce_rc_write_int_entry(rc, "Dynamic icon Y", g_par.icon_size_y);
     xfce_rc_write_int_entry(rc, "Ical week start day", g_par.ical_weekstartday);
+    xfce_rc_write_bool_entry(rc, "Show days", g_par.show_days);
     xfce_rc_write_int_entry(rc, "Foreign file count", g_par.foreign_count);
     for (i = 0; i < g_par.foreign_count;  i++) {
         g_sprintf(f_par, "Foreign file %02d name", i);
@@ -804,6 +854,7 @@ void read_parameters(void)
     g_par.icon_size_y = xfce_rc_read_int_entry(rc, "Dynamic icon Y", 32);
     g_par.ical_weekstartday = 
             xfce_rc_read_int_entry(rc, "Ical week start day", 0); /* monday */
+    g_par.show_days = xfce_rc_read_bool_entry(rc, "Show days", FALSE);
     g_par.foreign_count = 
             xfce_rc_read_int_entry(rc, "Foreign file count", 0);
     for (i = 0; i < g_par.foreign_count; i++) {

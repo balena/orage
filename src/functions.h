@@ -76,4 +76,8 @@ char *orage_tm_time_to_icaltime(struct tm *t);
 
 char *orage_i18_date_to_icaltime(const char *i18_date);
 
+char *orage_cal_to_i18_date(GtkCalendar *cal);
+
+char *orage_localdate_i18();
+
 #endif /* !__ORAGE_FUNCTIONS_H__ */

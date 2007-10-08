@@ -44,14 +44,15 @@
  *  General purpose helper functions  *
  **************************************/
 
-
 gboolean orage_date_button_clicked(GtkWidget *button, GtkWidget *win)
 {
     GtkWidget *selDate_Window_dialog;
     GtkWidget *selDate_Calendar_calendar;
     gint result;
     char *date_to_display=NULL;
+    /*
     struct tm *t;
+    */
     struct tm cur_t;
     gboolean changed;
 
@@ -77,15 +78,21 @@ gboolean orage_date_button_clicked(GtkWidget *button, GtkWidget *win)
     result = gtk_dialog_run(GTK_DIALOG(selDate_Window_dialog));
     switch(result){
         case GTK_RESPONSE_ACCEPT:
+            /*
             gtk_calendar_get_date(GTK_CALENDAR(selDate_Calendar_calendar)
                     , (guint *)&cur_t.tm_year, (guint *)&cur_t.tm_mon
                     , (guint *)&cur_t.tm_mday);
             cur_t.tm_year -= 1900;
             date_to_display = orage_tm_date_to_i18_date(&cur_t);
+            */
+            date_to_display = orage_cal_to_i18_date(selDate_Calendar_calendar);
             break;
         case 1:
+            /*
             t = orage_localtime();
             date_to_display = orage_tm_date_to_i18_date(t);
+            */
+            date_to_display = orage_localdate_i18();
             break;
         case GTK_RESPONSE_DELETE_EVENT:
         default:
@@ -165,6 +172,18 @@ char *orage_tm_date_to_i18_date(struct tm *tm_date)
     if (strftime(i18_date, 32, "%x", tm_date) == 0)
         g_error("Orage: orage_tm_date_to_i18_date too long string in strftime");
     return(i18_date);
+}
+
+char *orage_cal_to_i18_date(GtkCalendar *cal)
+{
+    struct tm tm_date = {0,0,0,0,0,0,0,0,0};
+
+    gtk_calendar_get_date(cal
+            , (unsigned int *)&tm_date.tm_year
+            , (unsigned int *)&tm_date.tm_mon
+            , (unsigned int *)&tm_date.tm_mday);
+    tm_date.tm_year -= 1900;
+    return(orage_tm_date_to_i18_date(&tm_date));
 }
 
 struct tm orage_icaltime_to_tm_time(const char *icaltime, gboolean real_tm)
@@ -329,6 +348,14 @@ struct tm *orage_localtime()
 
     tt = time(NULL);
     return(localtime(&tt));
+}
+
+char *orage_localdate_i18()
+{
+    struct tm *t;
+
+    t = orage_localtime();
+    return(orage_tm_date_to_i18_date(t));
 }
 
 void orage_select_date(GtkCalendar *cal

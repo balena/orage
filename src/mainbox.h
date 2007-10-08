@@ -38,6 +38,7 @@ typedef struct _CalWin
     GtkWidget *mEdit_preferences;
     GtkWidget *mView_menu;
     GtkWidget *mView_ViewSelectedDate;
+    GtkWidget *mView_ViewSelectedWeek;
     GtkWidget *mView_selectToday;
     GtkWidget *mHelp_menu;
     GtkWidget *mHelp_help;

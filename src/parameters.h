@@ -85,6 +85,9 @@ typedef struct _parameters
 
     /* event-list window */
     gint el_size_x, el_size_y;
+
+    /* show days window from main calendar */
+    gboolean show_days; /* true=show days false=show events */
 } global_parameters; /* global parameters */
 
 #ifdef ORAGE_MAIN

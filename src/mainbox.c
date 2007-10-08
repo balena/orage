@@ -80,7 +80,7 @@ mFile_newApp_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
 static void
 mFile_interface_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
 {
-    CalWin *cal = (CalWin *) user_data;
+    CalWin *cal = (CalWin *)user_data;
 
     orage_external_interface(cal);
 }
@@ -108,16 +108,21 @@ mEdit_preferences_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
 static void
 mView_ViewSelectedDate_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
 {
-    CalWin *cal = (CalWin *) user_data;
-    el_win *el;
+    create_el_win(NULL);
+}
 
-    el = create_el_win(NULL);
+static void
+mView_ViewSelectedWeek_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
+{
+    CalWin *cal = (CalWin *)user_data;
+
+    create_day_win(orage_cal_to_i18_date(GTK_CALENDAR(cal->mCalendar)));
 }
 
 static void
 mView_selectToday_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
 {
-    CalWin *cal = (CalWin *) user_data;
+    CalWin *cal = (CalWin *)user_data;
 
     orage_select_today(GTK_CALENDAR(cal->mCalendar));
 }
@@ -174,9 +179,10 @@ mCalendar_scroll_event_cb(GtkWidget *calendar, GdkEventScroll *event)
 static void
 mCalendar_day_selected_double_click_cb(GtkCalendar *cdar, gpointer user_data)
 {
-    el_win *el;
-
-    el = create_el_win(NULL);
+    if (g_par.show_days)
+        create_day_win(orage_cal_to_i18_date(cdar));
+    else
+        create_el_win(NULL);
 }
 
 static gboolean
@@ -247,6 +253,9 @@ static void build_menu(void)
     cal->mView_ViewSelectedDate = 
             orage_menu_item_new_with_mnemonic(_("View selected _date")
                     , cal->mView_menu);
+    cal->mView_ViewSelectedWeek = 
+            orage_menu_item_new_with_mnemonic(_("View selected _week")
+                    , cal->mView_menu);
 
     menu_separator = orage_separator_menu_item_new(cal->mView_menu);
 
@@ -276,6 +285,8 @@ static void build_menu(void)
             , G_CALLBACK(mEdit_preferences_activate_cb), NULL);
     g_signal_connect((gpointer) cal->mView_ViewSelectedDate, "activate"
             , G_CALLBACK(mView_ViewSelectedDate_activate_cb),(gpointer) cal);
+    g_signal_connect((gpointer) cal->mView_ViewSelectedWeek, "activate"
+            , G_CALLBACK(mView_ViewSelectedWeek_activate_cb),(gpointer) cal);
     g_signal_connect((gpointer) cal->mView_selectToday, "activate"
             , G_CALLBACK(mView_selectToday_activate_cb),(gpointer) cal);
     g_signal_connect((gpointer) cal->mHelp_help, "activate"

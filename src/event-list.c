@@ -643,14 +643,8 @@ static void set_el_data(el_win *el, char *title)
 static void set_el_data_from_cal(el_win *el)
 {
     char *title;
-    struct tm tm_date = {0,0,0,0,0,0,0,0,0};
 
-    gtk_calendar_get_date(GTK_CALENDAR(g_par.xfcal->mCalendar)
-            , (unsigned int *)&tm_date.tm_year
-            , (unsigned int *)&tm_date.tm_mon
-            , (unsigned int *)&tm_date.tm_mday);
-    tm_date.tm_year -= 1900;
-    title = orage_tm_date_to_i18_date(&tm_date);
+    title = orage_cal_to_i18_date(GTK_CALENDAR(g_par.xfcal->mCalendar));
     set_el_data(el, title);
 }
 
@@ -917,57 +911,12 @@ static void on_File_delete_activate_cb(GtkMenuItem *mi, gpointer user_data)
     delete_appointment((el_win *)user_data);
 }
 
-static void on_journal_start_button_clicked(GtkButton *button
+static void on_journal_start_button_clicked(GtkWidget *button
         , gpointer *user_data)
 {
     el_win *el = (el_win *)user_data;
-    GtkWidget *selDate_Window_dialog;
-    GtkWidget *selDate_Calendar_calendar;
-    gint result;
-    guint year, month, day;
-    char *date_to_display = NULL;
-    struct tm *t, cur_t;
-
-    selDate_Window_dialog = gtk_dialog_new_with_buttons(
-            _("Pick the date"), GTK_WINDOW(el->Window),
-            GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
-            _("Today"),
-            1,
-            GTK_STOCK_OK,
-            GTK_RESPONSE_ACCEPT,
-            NULL);
-
-    selDate_Calendar_calendar = gtk_calendar_new();
-    gtk_container_add(GTK_CONTAINER(GTK_DIALOG(selDate_Window_dialog)->vbox)
-            , selDate_Calendar_calendar);
-
-    cur_t = orage_i18_date_to_tm_date(gtk_button_get_label(
-            GTK_BUTTON(button)));
-    orage_select_date(GTK_CALENDAR(selDate_Calendar_calendar)
-            , cur_t.tm_year+1900, cur_t.tm_mon, cur_t.tm_mday);
-    gtk_widget_show_all(selDate_Window_dialog);
-
-    result = gtk_dialog_run(GTK_DIALOG(selDate_Window_dialog));
-    switch(result){
-        case GTK_RESPONSE_ACCEPT:
-            gtk_calendar_get_date(GTK_CALENDAR(selDate_Calendar_calendar)
-                    , (guint *)&cur_t.tm_year, (guint *)&cur_t.tm_mon
-                    , (guint *)&cur_t.tm_mday);
-            cur_t.tm_year -= 1900;
-            date_to_display = orage_tm_date_to_i18_date(&cur_t);
-            break;
-        case 1:
-            t = orage_localtime();
-            date_to_display = orage_tm_date_to_i18_date(t);
-            break;
-        case GTK_RESPONSE_DELETE_EVENT:
-        default:
-            date_to_display = (gchar *)gtk_button_get_label(button);
-            break;
-    }
-    gtk_button_set_label(button, (const gchar *)date_to_display);
-    refresh_el_win(el);
-    gtk_widget_destroy(selDate_Window_dialog);
+    if (orage_date_button_clicked(button, el->Window))
+        refresh_el_win(el);
 }
 
 static void drag_data_get(GtkWidget *widget, GdkDragContext *context

@@ -564,8 +564,11 @@ static void on_appNote_buffer_changed_cb(GtkTextBuffer *b, gpointer user_data)
     if (gtk_text_iter_forward_search(&start, "<D>"
                 , GTK_TEXT_SEARCH_TEXT_ONLY
                 , &match_start, &match_end, &end)) { /* found it */
+        /*
         tm = orage_localtime();
         cdate = orage_tm_date_to_i18_date(tm);
+            */
+        cdate = orage_localdate_i18();
         gtk_text_buffer_delete(tb, &match_start, &match_end);
         gtk_text_buffer_insert(tb, &match_start, cdate, -1);
     }
@@ -1194,8 +1197,7 @@ static void on_appRevert_clicked_cb(GtkWidget *b, gpointer *user_data)
     revert_xfical_to_last_saved((appt_win *)user_data);
 }
 
-static void on_Date_button_clicked_cb(GtkWidget *button
-        , gpointer *user_data)
+static void on_Date_button_clicked_cb(GtkWidget *button, gpointer *user_data)
 {
     appt_win *apptw = (appt_win *)user_data;
 
@@ -1596,8 +1598,11 @@ static void fill_appt_window(appt_win *apptw, char *action, char *par)
                     GTK_TOGGLE_BUTTON(apptw->Recur_limit_rb), TRUE);
             gtk_spin_button_set_value(
                     GTK_SPIN_BUTTON(apptw->Recur_count_spin), (gdouble)1);
+            /*
             t = orage_localtime();
             untildate_to_display = orage_tm_date_to_i18_date(t);
+            */
+            untildate_to_display = orage_localdate_i18();
             gtk_button_set_label(GTK_BUTTON(apptw->Recur_until_button)
                     , (const gchar *)untildate_to_display);
             break;
@@ -1607,8 +1612,11 @@ static void fill_appt_window(appt_win *apptw, char *action, char *par)
             gtk_spin_button_set_value(
                     GTK_SPIN_BUTTON(apptw->Recur_count_spin)
                     , (gdouble)appt->recur_count);
+            /*
             t = orage_localtime();
             untildate_to_display = orage_tm_date_to_i18_date(t);
+            */
+            untildate_to_display = orage_localdate_i18();
             gtk_button_set_label(GTK_BUTTON(apptw->Recur_until_button)
                     , (const gchar *)untildate_to_display);
             break;

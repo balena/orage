@@ -24,6 +24,8 @@
 #ifndef __DAY_VIEW_H__
 #define __DAY_VIEW_H__
 
+#define MAX_DAYS 40
+
 typedef struct _day_win
 {
     GtkAccelGroup *accel_group;
@@ -49,6 +51,12 @@ typedef struct _day_win
     GtkWidget *scroll_win;
     GtkWidget *dtable;   /* day table */
     GtkRequisition hour_req;
+
+    GtkWidget *header[MAX_DAYS];
+    GtkWidget *element[24][MAX_DAYS];
+    GtkWidget *line[24][MAX_DAYS];
+
+    GdkColor bg1, bg2;
 } day_win;
 
 day_win *create_day_win(char *start_date);
