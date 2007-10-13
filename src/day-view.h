@@ -56,6 +56,8 @@ typedef struct _day_win
     GtkWidget *element[24][MAX_DAYS];
     GtkWidget *line[24][MAX_DAYS];
 
+    guint upd_timer;
+
     GdkColor bg1, bg2;
 } day_win;
 

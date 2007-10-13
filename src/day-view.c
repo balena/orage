@@ -154,6 +154,7 @@ static gboolean upd_day_view(day_win *dw)
         refresh_day_view_table(dw);
         day_cnt = day_cnt_n;
     }
+    dw->upd_timer = 0;
     return(FALSE); /* we do this only once */
 }
 
@@ -165,7 +166,10 @@ static void on_spin_changed(GtkSpinButton *b, gpointer *user_data)
      * is not a good idea. We can't keep up with repeated quick presses 
      * if we do the whole thing here. So let's throw it to background 
      * and do it later. */
-    g_timeout_add(500, (GtkFunction)upd_day_view, dw);
+    if (dw->upd_timer) {
+        g_source_remove(dw->upd_timer);       
+    }
+    dw->upd_timer = g_timeout_add(500, (GtkFunction)upd_day_view, dw);
 }
 
 static void on_Date_button_clicked_cb(GtkWidget *button, gpointer *user_data)
@@ -215,6 +219,7 @@ static void add_row(day_win *dw, xfical_appt *appt, char *a_day, gint days)
     struct tm tm_start, tm_end, tm_first;
     GDate *g_start, *g_end, *g_first;
 
+    /* First clarify timings */
     tm_start = orage_icaltime_to_tm_time(appt->starttimecur, FALSE);
     tm_end   = orage_icaltime_to_tm_time(appt->endtimecur, FALSE);
     tm_first = orage_icaltime_to_tm_time(a_day, FALSE);
@@ -233,12 +238,13 @@ static void add_row(day_win *dw, xfical_appt *appt, char *a_day, gint days)
     else 
         row = tm_start.tm_hour;
 
+    /* then add the appointment */
     text = g_strdup(appt->title ? appt->title : _("Unknown"));
     ev = gtk_event_box_new();
     lab = gtk_label_new(text);
     gtk_container_add(GTK_CONTAINER(ev), lab);
 
-    if (appt->starttimecur[8] != 'T') {
+    if (appt->starttimecur[8] != 'T') { /* whole day event */
         gtk_widget_modify_bg(ev, GTK_STATE_NORMAL, &dw->bg2);
         if (dw->header[col] == NULL)
             hb = gtk_hbox_new(TRUE, 0);
@@ -249,91 +255,86 @@ static void add_row(day_win *dw, xfical_appt *appt, char *a_day, gint days)
                 , appt->starttimecur
                 , appt->endtimecur
                 , appt->note);
-        gtk_tooltips_set_tip(dw->Tooltips, ev, tip, NULL);
-        gtk_box_pack_start(GTK_BOX(hb), ev, TRUE, TRUE, 0);
-        g_object_set_data_full(G_OBJECT(ev), "UID", g_strdup(appt->uid)
-                , g_free);
-        g_signal_connect((gpointer)ev, "button-press-event"
-                , G_CALLBACK(on_button_press_event_cb), dw);
         dw->header[col] = hb;
-        g_free(tip);
-        g_free(text);
-        g_date_free(g_start);
-        g_date_free(g_end);
-        g_date_free(g_first);
-        return;
     }
-
-    if (dw->element[row][col] == NULL)
-        hb = gtk_hbox_new(TRUE, 0);
-    else
-        hb = dw->element[row][col];
-    if ((row % 2) == 1)
-        gtk_widget_modify_bg(ev, GTK_STATE_NORMAL, &dw->bg1);
-    if (g_date_days_between(g_start, g_end) == 0)
-        tip = g_strdup_printf("%s\n%02d:%02d-%02d:%02d\n%s"
-                , appt->title
-                , tm_start.tm_hour, tm_start.tm_min
-                , tm_end.tm_hour, tm_end.tm_min
-                , appt->note);
     else {
-        /* we took the date in unnormalized format, so we need to do that now */
-        tm_start.tm_year -= 1900;
-        tm_start.tm_mon -= 1;
-        tm_end.tm_year -= 1900;
-        tm_end.tm_mon -= 1;
-        start_date = g_strdup(orage_tm_date_to_i18_date(&tm_start));
-        end_date = g_strdup(orage_tm_date_to_i18_date(&tm_end));
-        tip = g_strdup_printf("%s\n%s %02d:%02d - %s %02d:%02d\n%s"
-                , appt->title
-                , start_date, tm_start.tm_hour, tm_start.tm_min
-                , end_date, tm_end.tm_hour, tm_end.tm_min
-                , appt->note);
-        g_free(start_date);
-        g_free(end_date);
+        if ((row % 2) == 1)
+            gtk_widget_modify_bg(ev, GTK_STATE_NORMAL, &dw->bg1);
+        if (dw->element[row][col] == NULL)
+            hb = gtk_hbox_new(TRUE, 0);
+        else
+            hb = dw->element[row][col];
+        if (g_date_days_between(g_start, g_end) == 0)
+            tip = g_strdup_printf("%s\n%02d:%02d-%02d:%02d\n%s"
+                    , appt->title
+                    , tm_start.tm_hour, tm_start.tm_min
+                    , tm_end.tm_hour, tm_end.tm_min
+                    , appt->note);
+        else {
+    /* we took the date in unnormalized format, so we need to do that now */
+            tm_start.tm_year -= 1900;
+            tm_start.tm_mon -= 1;
+            tm_end.tm_year -= 1900;
+            tm_end.tm_mon -= 1;
+            start_date = g_strdup(orage_tm_date_to_i18_date(&tm_start));
+            end_date = g_strdup(orage_tm_date_to_i18_date(&tm_end));
+            tip = g_strdup_printf("%s\n%s %02d:%02d - %s %02d:%02d\n%s"
+                    , appt->title
+                    , start_date, tm_start.tm_hour, tm_start.tm_min
+                    , end_date, tm_end.tm_hour, tm_end.tm_min
+                    , appt->note);
+            g_free(start_date);
+            g_free(end_date);
+        }
+        dw->element[row][col] = hb;
     }
     gtk_tooltips_set_tip(dw->Tooltips, ev, tip, NULL);
     gtk_box_pack_start(GTK_BOX(hb), ev, TRUE, TRUE, 0);
     g_object_set_data_full(G_OBJECT(ev), "UID", g_strdup(appt->uid), g_free);
     g_signal_connect((gpointer)ev, "button-press-event"
             , G_CALLBACK(on_button_press_event_cb), dw);
-    dw->element[row][col] = hb;
     g_free(tip);
     g_free(text);
-    height = dw->StartDate_button_req.height;
-    /*
-     * same_date = !strncmp(start_ical_time, end_ical_time, 8);
-     * */
-    start_col = g_date_days_between(g_first, g_start)+1;
-    if (start_col < 1)
-        first_col = 1;
-    else
-        first_col = start_col;
-    end_col   = g_date_days_between(g_first, g_end)+1;
-    if (end_col > days)
-        last_col = days;
-    else
-        last_col = end_col;
-    for (col = first_col; col <= last_col; col++) {
-        if (col == start_col)
-            start_row = tm_start.tm_hour;
+
+    /* and finally draw the line to show how long the appointment is,
+     * but only if it is Busy type event (=availability != 0) 
+     * and it is not whole day event */
+    if (appt->availability && appt->starttimecur[8] == 'T') {
+        height = dw->StartDate_button_req.height;
+        /*
+         * same_date = !strncmp(start_ical_time, end_ical_time, 8);
+         * */
+        start_col = g_date_days_between(g_first, g_start)+1;
+        if (start_col < 1)
+            first_col = 1;
         else
-            start_row = 0;
-        if (col == end_col)
-            end_row   = tm_end.tm_hour;
+            first_col = start_col;
+        end_col   = g_date_days_between(g_first, g_end)+1;
+        if (end_col > days)
+            last_col = days;
         else
-            end_row   = 23;
-        for (row = start_row; row <= end_row; row++) {
-            if (row == tm_start.tm_hour && col == start_col)
-                start_height = tm_start.tm_min*height/60;
+            last_col = end_col;
+        for (col = first_col; col <= last_col; col++) {
+            if (col == start_col)
+                start_row = tm_start.tm_hour;
             else
-                start_height = 0;
-            if (row == tm_end.tm_hour && col == end_col)
-                end_height = tm_end.tm_min*height/60;
+                start_row = 0;
+            if (col == end_col)
+                end_row   = tm_end.tm_hour;
             else
-                end_height = height;
-            dw->line[row][col] = build_line(1, start_height
-                    , 2, end_height-start_height, dw->line[row][col]);
+                end_row   = 23;
+            for (row = start_row; row <= end_row; row++) {
+                if (row == tm_start.tm_hour && col == start_col)
+                    start_height = tm_start.tm_min*height/60;
+                else
+                    start_height = 0;
+                if (row == tm_end.tm_hour && col == end_col)
+                    end_height = tm_end.tm_min*height/60;
+                else
+                    end_height = height;
+                dw->line[row][col] = build_line(1, start_height
+                        , 2, end_height-start_height, dw->line[row][col]);
+            }
         }
     }
     g_date_free(g_start);
@@ -669,7 +670,7 @@ day_win *create_day_win(char *start_date)
 
     program_log("create_day_win started");
     /* initialisation + main window + base vbox */
-    dw = g_new(day_win, 1);
+    dw = g_new0(day_win, 1);
     dw->Tooltips = gtk_tooltips_new();
     dw->accel_group = gtk_accel_group_new();
 

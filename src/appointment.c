@@ -564,10 +564,6 @@ static void on_appNote_buffer_changed_cb(GtkTextBuffer *b, gpointer user_data)
     if (gtk_text_iter_forward_search(&start, "<D>"
                 , GTK_TEXT_SEARCH_TEXT_ONLY
                 , &match_start, &match_end, &end)) { /* found it */
-        /*
-        tm = orage_localtime();
-        cdate = orage_tm_date_to_i18_date(tm);
-            */
         cdate = orage_localdate_i18();
         gtk_text_buffer_delete(tb, &match_start, &match_end);
         gtk_text_buffer_insert(tb, &match_start, cdate, -1);
@@ -846,7 +842,10 @@ static gboolean fill_appt_from_apptw(xfical_appt *appt, appt_win *apptw)
                     + gtk_spin_button_get_value_as_int(
             GTK_SPIN_BUTTON(apptw->Dur_spin_mm)) *       60;
 
-    if(!orage_validate_datetime(apptw, appt))
+    /* Check that end time is after start time.
+     * Journal does not have end time so no need to check */
+    if (appt->type != XFICAL_TYPE_JOURNAL 
+    && !orage_validate_datetime(apptw, appt))
         return(FALSE);
 
     /* completed date and time. 

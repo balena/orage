@@ -88,6 +88,9 @@ static icalset *fical = NULL,
 static icalcomponent *ical = NULL,
                      *aical = NULL;
 
+static gboolean file_modified = FALSE; /* has any ical file been changed */
+static guint    file_close_timer = 0;  /* delayed file close timer */
+
 typedef struct _foreign_ical_files
 {;
     icalset *fical;
@@ -607,8 +610,21 @@ static gboolean xfical_internal_file_open(icalcomponent **p_ical
 #ifdef ORAGE_DEBUG
     g_print(P_N "\n");
 #endif
-    if (*p_fical != NULL)
+    if (file_close_timer) { 
+        /* We are opening main ical file and delayed close is in progress. 
+         * Closing must be cancelled since we are now opening the file. */
+        g_source_remove(file_close_timer);
+        file_close_timer = 0;
+        /*
+        orage_message(P_N "canceling delayed close");
+        */
+    }
+    if (*p_fical != NULL) {
+        /*
         g_warning(P_N "file already open");
+        */
+        return(TRUE);
+    }
     if (!ORAGE_STR_EXISTS(file_icalpath)) {
         if (test)
             g_warning(P_N "file empty");
@@ -672,6 +688,7 @@ static gboolean xfical_internal_file_open(icalcomponent **p_ical
             }
         }
     }
+    file_modified = FALSE;
     return(TRUE);
 }
 
@@ -727,6 +744,31 @@ gboolean xfical_file_check(gchar *file_name)
     return(xfical_internal_file_open(&x_ical, &x_fical, file_name, TRUE));
 }
 
+/*
+ * guint = g_timeout_add(30*1000, (GtkFunction)orage_foreign_files_check, NULL);
+ * if (tune->timeout_id) {
+ *     g_source_remove(tune->timeout_id);
+ *     tune->timeout_id = 0;
+ * }
+ * */
+gboolean delayed_file_close(gpointer user_data)
+{
+#undef P_N
+#define P_N "delayed_file_close: "
+
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
+    icalset_free(fical);
+    fical = NULL;
+    /*
+    orage_message(P_N "closing ical file");
+    */
+    /* we only close file once, so end here */
+    file_close_timer = 0;
+    return(FALSE); 
+}
+
 void xfical_file_close(gboolean foreign)
 {
 #undef  P_N 
@@ -738,9 +780,31 @@ void xfical_file_close(gboolean foreign)
 #endif
     if (fical == NULL)
         g_warning(P_N "fical is NULL");
-    else
-        icalset_free(fical);
-    fical = NULL;
+    else {
+        if (file_close_timer) { 
+            /* We are closing main ical file and delayed close is in progress. 
+             * Closing must be cancelled since we are now closing the file. */
+            g_source_remove(file_close_timer);
+            file_close_timer = 0;
+            /*
+            orage_message(P_N "canceling delayed close");
+            */
+        }
+        if (file_modified) { /* close it now */
+            /*
+            orage_message(P_N "closing file now");
+            */
+            icalset_free(fical);
+            fical = NULL;
+        }
+        else { /* close it later = after 10 minutes (to save time) */
+            /*
+            orage_message(P_N "closing file after 10 minutes");
+            */
+            file_close_timer = g_timeout_add(10*60*1000
+                    , (GtkFunction)delayed_file_close, NULL);
+        }
+    }
     
     if (foreign) 
         for (i = 0; i < g_par.foreign_count; i++) {
@@ -1696,6 +1760,7 @@ static char *appt_add_internal(xfical_appt *appt, gboolean add, char *uid
         return(NULL);
     }
     xfical_alarm_build_list_internal(FALSE);
+    file_modified = TRUE;
     return(ext_uid);
 }
 
@@ -2542,6 +2607,7 @@ gboolean xfical_appt_del(char *ical_uid)
             icalcomponent_remove_component(base, c);
             icalset_mark(fbase);
             xfical_alarm_build_list_internal(FALSE);
+            file_modified = TRUE;
             return(TRUE);
         }
     } 
@@ -3511,6 +3577,7 @@ gboolean xfical_archive(void)
         }
     }
 
+    file_modified = TRUE;
     icalset_mark(afical);
     icalset_commit(afical);
     xfical_archive_close();
@@ -3558,9 +3625,12 @@ gboolean xfical_unarchive(void)
      * After that delete the whole arch file */
     orage_message(_("\tPHASE 2: return archived appointments"));
     if (!xfical_archive_open()) {
-        g_warning(P_N "archive file open error");
+        /* we have risk to delete the data permanently, let's stop here */
+        g_error(P_N "archive file open error");
+        /*
         icalset_mark(fical);
         icalset_commit(fical);
+        */
         xfical_file_close(FALSE);
         return(FALSE);
     }
@@ -3575,6 +3645,7 @@ gboolean xfical_unarchive(void)
     if (g_remove(g_par.archive_file) == -1) {
         g_warning(P_N "Failed to remove archive file %s", g_par.archive_file);
     }
+    file_modified = TRUE;
     icalset_mark(fical);
     icalset_commit(fical);
     xfical_file_close(FALSE);
@@ -3610,14 +3681,15 @@ gboolean xfical_unarchive_uid(char *uid)
             /* Remove from the archive file */
             icalcomponent_remove_component(aical, c);
             key_found = TRUE;
+            file_modified = TRUE;
         }
     }
-    icalset_mark(fical);
-    icalset_commit(fical);
-    xfical_file_close(FALSE);
     icalset_mark(afical);
     icalset_commit(afical);
     xfical_archive_close();
+    icalset_mark(fical);
+    icalset_commit(fical);
+    xfical_file_close(FALSE);
 
     return(TRUE);
 }
@@ -3670,6 +3742,7 @@ static gboolean add_event(icalcomponent *c)
     }
              */
 
+    file_modified = TRUE;
     icalset_mark(fical);
     icalset_commit(fical);
     xfical_file_close(FALSE);

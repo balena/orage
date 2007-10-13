@@ -130,10 +130,6 @@ gboolean xfical_appt_mod(char *ical_id, xfical_appt *app);
 gboolean xfical_appt_del(char *ical_id);
 xfical_appt *xfical_appt_get_next_on_day(char *a_day, gboolean first, gint days
         , xfical_type type,  gchar *file_type);
-/*
-xfical_appt *xfical_appt_get_next_with_string(char *a_day, gboolean first
-        , gboolean arch);
-        */
 xfical_appt *xfical_appt_get_next_with_string(char *str, gboolean first
         , gchar *file_type);
 
@@ -155,4 +151,5 @@ gboolean xfical_timezone_button_clicked(GtkButton *button, GtkWindow *parent
         , gchar **tz);
 
 gboolean xfical_file_check(gchar *file_name);
+
 #endif /* !__ICAL_CODE_H__ */
