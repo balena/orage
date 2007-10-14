@@ -412,16 +412,14 @@ static void search_data(el_win *el)
         g_sprintf(file_type, "F%02d.", i);
         searh_rows(el, search_string, file_type);
     }
-    xfical_file_close(TRUE);
 
     /* finally process always archive file also */
-    if (!xfical_archive_open()) {
-        g_free(search_string);
-        return;
+    if (xfical_archive_open()) {
+        strcpy(file_type, "A00.");
+        searh_rows(el, search_string, file_type);
+        xfical_archive_close();
     }
-    strcpy(file_type, "A00.");
-    searh_rows(el, search_string, file_type);
-    xfical_archive_close();
+    xfical_file_close(TRUE);
     g_free(search_string);
 }
 
@@ -470,16 +468,16 @@ static void app_data(el_win *el, char *a_day, char *par)
         g_sprintf(file_type, "F%02d.", i);
         app_rows(el, a_day, par, ical_type, file_type);
     }
-    xfical_file_close(TRUE);
 
     /* finally process archive file for JOURNAL only */
     if (ical_type == XFICAL_TYPE_JOURNAL) {
-        if (!xfical_archive_open())
-            return;
-        strcpy(file_type, "A00.");
-        app_rows(el, a_day, par, ical_type, file_type);
-        xfical_archive_close();
+        if (xfical_archive_open()) {
+            strcpy(file_type, "A00.");
+            app_rows(el, a_day, par, ical_type, file_type);
+            xfical_archive_close();
+        }
     }
+    xfical_file_close(TRUE);
 }
 
 static void refresh_time_field(el_win *el)

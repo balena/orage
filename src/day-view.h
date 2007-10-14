@@ -58,7 +58,7 @@ typedef struct _day_win
 
     guint upd_timer;
 
-    GdkColor bg1, bg2;
+    GdkColor bg1, bg2, line_color;
 } day_win;
 
 day_win *create_day_win(char *start_date);

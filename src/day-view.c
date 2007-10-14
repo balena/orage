@@ -38,17 +38,15 @@
 
 static void refresh_day_view_table(day_win *dw);
 
-static GtkWidget *build_line(gint left_x, gint top_y, gint width, gint height
-        , GtkWidget *hour_line)
+static GtkWidget *build_line(day_win *dw, gint left_x, gint top_y
+        , gint width, gint height, GtkWidget *hour_line)
 {
-    GdkPixmap *pic1;
-    GdkGC *pic1_gc1, *pic1_gc2;
     GdkColormap *pic1_cmap;
-    GdkColor color;
     GdkVisual *pic1_vis;
+    GdkPixmap *pic1;
+    GdkGC *pic1_gc;
     GtkWidget *new_hour_line;
     gint depth = 16;
-    gint red = 239, green = 235, blue = 230;
     gboolean first = FALSE;
 
     /*
@@ -66,23 +64,17 @@ static GtkWidget *build_line(gint left_x, gint top_y, gint width, gint height
     }
     else
         gtk_image_get_pixmap(GTK_IMAGE(hour_line), &pic1, NULL);
-    pic1_gc1 = gdk_gc_new(pic1);
-    pic1_gc2 = gdk_gc_new(pic1);
-    color.red = red * (65535/255);
-    color.green = green * (65535/255);
-    color.blue = blue * (65535/255);
-    color.pixel = (gulong)(red*65536 + green*256 + blue);
-    gdk_colormap_alloc_color(pic1_cmap, &color, FALSE, TRUE);
-    gdk_gc_set_foreground(pic1_gc1, &color);
-    /* gdk_draw_rectangle(, , , left_x, top_y, width, height); */
-    if (first)
-        gdk_draw_rectangle(pic1, pic1_gc1, TRUE, left_x, top_y, width, height);
-    else
-        gdk_draw_rectangle(pic1, pic1_gc2, TRUE, left_x, top_y, width, height);
+    pic1_gc = gdk_gc_new(pic1);
+    if (first) {
+        gdk_gc_set_foreground(pic1_gc, &dw->line_color);
+        gdk_draw_rectangle(pic1, pic1_gc, TRUE, left_x, top_y, width, height);
+    }
+    else {
+        gdk_draw_rectangle(pic1, pic1_gc, TRUE, left_x, top_y, width, height);
+    }
     
     new_hour_line = gtk_image_new_from_pixmap(pic1, NULL);
-    g_object_unref(pic1_gc1);
-    g_object_unref(pic1_gc2);
+    g_object_unref(pic1_gc);
     g_object_unref(pic1);
     return(new_hour_line);
 }
@@ -247,7 +239,7 @@ static void add_row(day_win *dw, xfical_appt *appt, char *a_day, gint days)
     if (appt->starttimecur[8] != 'T') { /* whole day event */
         gtk_widget_modify_bg(ev, GTK_STATE_NORMAL, &dw->bg2);
         if (dw->header[col] == NULL)
-            hb = gtk_hbox_new(TRUE, 0);
+            hb = gtk_hbox_new(TRUE, 1);
         else
             hb = dw->header[col];
         tip = g_strdup_printf("%s\n%s - %s\n%s"
@@ -261,7 +253,7 @@ static void add_row(day_win *dw, xfical_appt *appt, char *a_day, gint days)
         if ((row % 2) == 1)
             gtk_widget_modify_bg(ev, GTK_STATE_NORMAL, &dw->bg1);
         if (dw->element[row][col] == NULL)
-            hb = gtk_hbox_new(TRUE, 0);
+            hb = gtk_hbox_new(TRUE, 1);
         else
             hb = dw->element[row][col];
         if (g_date_days_between(g_start, g_end) == 0)
@@ -289,6 +281,10 @@ static void add_row(day_win *dw, xfical_appt *appt, char *a_day, gint days)
         dw->element[row][col] = hb;
     }
     gtk_tooltips_set_tip(dw->Tooltips, ev, tip, NULL);
+    /*
+    gtk_box_pack_start(GTK_BOX(hb2), ev, FALSE, FALSE, 0);
+    gtk_box_pack_start(GTK_BOX(hb), hb2, TRUE, TRUE, 0);
+    */
     gtk_box_pack_start(GTK_BOX(hb), ev, TRUE, TRUE, 0);
     g_object_set_data_full(G_OBJECT(ev), "UID", g_strdup(appt->uid), g_free);
     g_signal_connect((gpointer)ev, "button-press-event"
@@ -332,7 +328,7 @@ static void add_row(day_win *dw, xfical_appt *appt, char *a_day, gint days)
                     end_height = tm_end.tm_min*height/60;
                 else
                     end_height = height;
-                dw->line[row][col] = build_line(1, start_height
+                dw->line[row][col] = build_line(dw, 1, start_height
                         , 2, end_height-start_height, dw->line[row][col]);
             }
         }
@@ -370,6 +366,7 @@ static void app_data(day_win *dw)
     gint i;
     gchar a_day[9]; /* yyyymmdd */
 
+    program_log("\tapp_data start");
     ical_type = XFICAL_TYPE_EVENT;
     strcpy(a_day, orage_i18_date_to_icaltime(gtk_button_get_label(
             GTK_BUTTON(dw->StartDate_button))));
@@ -386,6 +383,7 @@ static void app_data(day_win *dw)
         app_rows(dw, a_day, ical_type, file_type);
     }
     xfical_file_close(TRUE);
+    program_log("\tapp_data done");
 }
 
 
@@ -404,16 +402,13 @@ static void fill_days(day_win *dw, gint days)
         for (row = 0; row < 24; row++) {
             dw->element[row][col] = NULL;
     /* gdk_draw_rectangle(, , , left_x, top_y, width, height); */
-            dw->line[row][col] = build_line(0, 0, 3, height, NULL);
+            dw->line[row][col] = build_line(dw, 0, 0, 3, height, NULL);
         }
     }
-    program_log("fill_days init done");
-    /* FIXME: the next line is heavy. it takes almost 100 % of time */
     app_data(dw);
-    program_log("fill_days data done");
     for (col = 1; col < days+1; col++) {
         hb = gtk_hbox_new(FALSE, 0);
-        marker = build_line(0, 0, 2, height, NULL);
+        marker = build_line(dw, 0, 0, 2, height, NULL);
         gtk_box_pack_start(GTK_BOX(hb), marker, FALSE, FALSE, 0);
         if (dw->header[col]) {
             gtk_box_pack_start(GTK_BOX(hb), dw->header[col], TRUE, TRUE, 0);
@@ -507,7 +502,7 @@ static void build_day_view_header(day_win *dw, char *start_date)
             , G_CALLBACK(on_Date_button_clicked_cb), dw);
 }
 
-static void build_day_view_bgs(day_win *dw)
+static void build_day_view_colours(day_win *dw)
 {
     GtkStyle *def_style;
     GdkColormap *pic1_cmap;
@@ -518,12 +513,23 @@ static void build_day_view_bgs(day_win *dw)
     dw->bg1.red +=  (dw->bg1.red < 64000 ? 1000 : -1000);
     dw->bg1.green += (dw->bg1.green < 64000 ? 1000 : -1000);
     dw->bg1.blue += (dw->bg1.blue < 64000 ? 1000 : -1000);
+    dw->bg1.pixel = (gulong)(dw->bg1.red*65536+dw->bg1.green*256+dw->bg1.blue);
     gdk_colormap_alloc_color(pic1_cmap, &dw->bg1, FALSE, TRUE);
+
     dw->bg2 = def_style->bg[GTK_STATE_NORMAL];
     dw->bg2.red +=  (dw->bg2.red > 1000 ? -1000 : 1000);
     dw->bg2.green += (dw->bg2.green > 1000 ? -1000 : 1000);
-    dw->bg2.blue += (dw->bg2.blue > 1000 ? -1000 : 1000);
-    gdk_colormap_alloc_color(pic1_cmap, &dw->bg1, FALSE, TRUE);
+    dw->bg2.blue += (dw->bg2.blue > 2000 ? -2000 : 2000);
+    dw->bg2.pixel = (gulong)(dw->bg2.red*65536+dw->bg2.green*256+dw->bg2.blue);
+    gdk_colormap_alloc_color(pic1_cmap, &dw->bg2, FALSE, TRUE);
+
+    dw->line_color = def_style->bg[GTK_STATE_NORMAL];
+    dw->line_color.red =  239 * (65535/255);
+    dw->line_color.green = 235 * (65535/255);
+    dw->line_color.blue = 230 * (65535/255);
+    dw->line_color.pixel = (gulong)(dw->line_color.red*65536 
+            + dw->line_color.green*256 + dw->line_color.blue);
+    gdk_colormap_alloc_color(pic1_cmap, &dw->line_color, FALSE, TRUE);
 }
 
 static void build_day_view_table(day_win *dw)
@@ -658,10 +664,15 @@ static void set_scroll_position(day_win *dw)
 
 static void refresh_day_view_table(day_win *dw)
 {
+    program_log("***** refresh_day_view_table started");
     gtk_widget_destroy(dw->scroll_win_h);
+    program_log("***** refresh_day_view_table destroyed");
     build_day_view_table(dw);
+    program_log("***** refresh_day_view_table built");
     gtk_widget_show_all(dw->scroll_win_h);
+    program_log("***** refresh_day_view_table showed");
     set_scroll_position(dw);
+    program_log("***** refresh_day_view_table done");
 }
 
 day_win *create_day_win(char *start_date)
@@ -687,12 +698,13 @@ day_win *create_day_win(char *start_date)
     build_menu(dw);
     build_toolbar(dw);
     program_log("create_day_win toolbar done");
-    build_day_view_bgs(dw);
+    build_day_view_colours(dw);
     build_day_view_header(dw, start_date);
     program_log("create_day_win header done");
     build_day_view_table(dw);
     program_log("create_day_win table done");
     gtk_widget_show_all(dw->Window);
+    program_log("create_day_win show done");
     set_scroll_position(dw);
     program_log("create_day_win done");
 
