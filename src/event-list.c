@@ -101,8 +101,8 @@ static void editEvent(GtkTreeView *view, GtkTreePath *path
 
     model = gtk_tree_view_get_model(view);
     if (gtk_tree_model_get_iter(model, &iter, path)) {
-        gtk_tree_model_get(model, &iter, COL_UID, &uid, -1);
-        gtk_tree_model_get(model, &iter, COL_FLAGS, &flags, -1);
+        gtk_tree_model_get(model, &iter
+                , COL_UID, &uid, COL_FLAGS, &flags, -1);
         if (flags && flags[3] == 'A') {
             xfical_unarchive_uid(uid);
             /* note that file id changes after archive */ 
@@ -111,6 +111,7 @@ static void editEvent(GtkTreeView *view, GtkTreePath *path
         }
         apptw = create_appt_win("UPDATE", uid, el);
         g_free(uid);
+        g_free(flags);
     }
 }
 

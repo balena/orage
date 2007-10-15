@@ -744,13 +744,6 @@ gboolean xfical_file_check(gchar *file_name)
     return(xfical_internal_file_open(&x_ical, &x_fical, file_name, TRUE));
 }
 
-/*
- * guint = g_timeout_add(30*1000, (GtkFunction)orage_foreign_files_check, NULL);
- * if (tune->timeout_id) {
- *     g_source_remove(tune->timeout_id);
- *     tune->timeout_id = 0;
- * }
- * */
 gboolean delayed_file_close(gpointer user_data)
 {
 #undef P_N

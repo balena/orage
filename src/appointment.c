@@ -1061,8 +1061,11 @@ static gboolean save_xfical_from_appt_win(appt_win *apptw)
         if (ok) {
             apptw->appointment_new = FALSE;
             mark_appointment_unchanged(apptw);
+        /* FIXME: This fails if event_list window has been removed.
+         * We should check that it really still exists, before calling this.
             if (apptw->el != NULL)
                 refresh_el_win((el_win *)apptw->el);
+        */
             orage_mark_appointments();
         }
     }
@@ -1128,8 +1131,11 @@ static void delete_xfical_from_appt_win(appt_win *apptw)
             xfical_file_close(TRUE);
         }
 
+        /* FIXME: This fails if event_list window has been removed.
+         * We should check that it really still exists, before calling this.
         if (apptw->el != NULL)
             refresh_el_win((el_win *)apptw->el);
+        */
         orage_mark_appointments();
 
         app_free_memory(apptw);
