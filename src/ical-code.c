@@ -2983,6 +2983,7 @@ static void xfical_alarm_build_list_internal(gboolean first_list_today)
         xfical_alarm_build_list_internal_real(first_list_today, f_ical[i].ical
                 , file_type);
     }
+    setup_orage_alarm_clock();
 }
 
 void xfical_alarm_build_list(gboolean first_list_today)

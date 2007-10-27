@@ -87,6 +87,7 @@ gboolean orage_foreign_files_check(gpointer user_data)
     gint i;
     gboolean changes_present = FALSE;
 
+    g_print("orage_foreign_files_check: start\n");
     if (!latest_foreign_file_change)
         latest_foreign_file_change = time(NULL);
 
@@ -108,8 +109,11 @@ gboolean orage_foreign_files_check(gpointer user_data)
         orage_mark_appointments();
     }
 
-    /* keep running */
-    return (TRUE);
+    /* keep running ? */
+    if (g_par.foreign_count)
+        return(TRUE);
+    else /* no need to check changes if we do not have any files */
+        return(FALSE);
 }
 
 static void on_destroy(GtkWidget *window, gpointer user_data)
@@ -694,6 +698,8 @@ gboolean orage_foreign_file_add_internal(gchar *filename, gboolean read_only)
     write_parameters();
     orage_mark_appointments();
     xfical_alarm_build_list(FALSE);
+    if (g_par.foreign_count == 1) /* we just added our first foreign file */
+        g_timeout_add(30*1000, (GtkFunction) orage_foreign_files_check, NULL);
     return(TRUE);
 }
 

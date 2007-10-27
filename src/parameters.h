@@ -75,6 +75,11 @@ typedef struct _parameters
     /* List of active alarms */
     GList *alarm_list;
 
+    /* alarm timer id and timeout in millisecs */
+    guint alarm_timer; /* monitors next alarm */
+    guint day_timer;   /* fires when day changes = every 24 hours */
+    guint tooltip_timer; /* keeps tooltips upto date */
+
     /* main window */
     CalWin *xfcal;
     gint pos_x, pos_y;

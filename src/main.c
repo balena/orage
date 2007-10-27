@@ -487,13 +487,12 @@ int main(int argc, char *argv[])
     orage_mark_appointments();
     */
     mCalendar_month_changed_cb(g_par.xfcal->mCalendar, NULL);
+    g_par.day_timer = 0;
+    orage_day_change(NULL); /* first day change after we start */
 
-    /* start alarm monitoring timeout */
-    g_timeout_add_full(0, 1000, (GtkFunction) orage_alarm_clock
-            , (gpointer) g_par.xfcal, NULL);
-
-    /* start monitoring foreign file updates */
-    g_timeout_add(30*1000, (GtkFunction) orage_foreign_files_check, NULL);
+    /* start monitoring foreign file updates if we have foreign files */
+    if (g_par.foreign_count)
+        g_timeout_add(30*1000, (GtkFunction) orage_foreign_files_check, NULL);
                                                         
     /* let's check if I got filename as a parameter */
     initialized = TRUE;

@@ -85,7 +85,8 @@ gboolean orage_date_button_clicked(GtkWidget *button, GtkWidget *win)
             cur_t.tm_year -= 1900;
             date_to_display = orage_tm_date_to_i18_date(&cur_t);
             */
-            date_to_display = orage_cal_to_i18_date(selDate_Calendar_calendar);
+            date_to_display = orage_cal_to_i18_date(
+                    GTK_CALENDAR(selDate_Calendar_calendar));
             break;
         case 1:
             /*
@@ -215,7 +216,7 @@ struct tm orage_icaltime_to_tm_time(const char *icaltime, gboolean real_tm)
 
 char *orage_tm_time_to_icaltime(struct tm *t)
 {
-    static char icaltime[32];
+    static char icaltime[XFICAL_APPT_TIME_FORMAT_LEN];
 
     g_sprintf(icaltime, XFICAL_APPT_TIME_FORMAT
             , t->tm_year + 1900, t->tm_mon + 1, t->tm_mday
