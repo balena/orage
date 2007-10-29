@@ -538,11 +538,11 @@ static void build_day_view_table(day_win *dw)
     int year, month, day;
     gint i, j, sunday;
     GtkWidget *name, *label, *ev;
-    char text[5+1], *date;
+    char text[5+1], *date, *today;
     struct tm tm_date;
     guint monthdays[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
     GtkWidget *vp;
-    GdkColor fg;
+    GdkColor fg, bg;
     GdkColormap *pic1_cmap;
 
     pic1_cmap = gdk_colormap_get_system();
@@ -551,6 +551,11 @@ static void build_day_view_table(day_win *dw)
     fg.blue = 10 * (65535/255);
     fg.pixel = (gulong)(fg.red*65536 + fg.green*256 +fg.blue);
     gdk_colormap_alloc_color(pic1_cmap, &fg, FALSE, TRUE);
+    bg.red = 255 * (65535/255);
+    bg.green = 215 * (65535/255);
+    bg.blue = 115 * (65535/255);
+    bg.pixel = (gulong)(bg.red*65536 + bg.green*256 +bg.blue);
+    gdk_colormap_alloc_color(pic1_cmap, &bg, FALSE, TRUE);
 
     days = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(dw->day_spin));
     tm_date = orage_i18_date_to_tm_date(
@@ -584,10 +589,14 @@ static void build_day_view_table(day_win *dw)
     gtk_widget_set_size_request(name, dw->hour_req.width, -1);
     gtk_table_attach(GTK_TABLE(dw->dtable_h), name, 0, 1, 0, 1
              , (GTK_FILL), (0), 0, 0);
+    today = g_strdup(orage_localdate_i18());
     for (i = 1; i <  days+1; i++) {
         date = orage_tm_date_to_i18_date(&tm_date);
         name = gtk_button_new();
         gtk_button_set_label(GTK_BUTTON(name), date);
+        if (strcmp(today, date) == 0) {
+            gtk_widget_modify_bg(name, GTK_STATE_NORMAL, &bg);
+        }
         if ((i-1)%7 == sunday) {
             label = gtk_bin_get_child(GTK_BIN(name));
             gtk_widget_modify_fg(label, GTK_STATE_NORMAL, &fg);
@@ -606,6 +615,7 @@ static void build_day_view_table(day_win *dw)
             tm_date.tm_mday = 1;
         }
     }
+    g_free(today);
     name = gtk_label_new(" ");
     gtk_widget_set_size_request(name, dw->hour_req.width, -1);
     gtk_table_attach(GTK_TABLE(dw->dtable_h), name, days+1, days+2, 0, 1
