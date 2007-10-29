@@ -752,6 +752,8 @@ gboolean delayed_file_close(gpointer user_data)
 #ifdef ORAGE_DEBUG
     g_print(P_N "\n");
 #endif
+    if (fical == NULL)
+        return(FALSE); /* closed already, nothing to do */
     icalset_free(fical);
     fical = NULL;
     /*
@@ -808,6 +810,26 @@ void xfical_file_close(gboolean foreign)
                 f_ical[i].fical = NULL;
             }
         }
+}
+
+void xfical_file_close_force(void)
+{
+#undef  P_N 
+#define P_N "xfical_file_close_force: "
+
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
+    if (file_close_timer) { 
+            /* We are closing main ical file and delayed close is in progress. 
+             * Closing must be cancelled since we are now closing the file. */
+        g_source_remove(file_close_timer);
+        file_close_timer = 0;
+        /*
+        orage_message(P_N "canceling delayed close");
+        */
+    }
+    delayed_file_close(NULL);
 }
 
 void xfical_archive_close(void)

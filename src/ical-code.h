@@ -121,6 +121,7 @@ gboolean xfical_set_local_timezone();
 
 gboolean xfical_file_open(gboolean foreign);
 void xfical_file_close(gboolean foreign);
+void xfical_file_close_force(void);
 
 xfical_appt *xfical_appt_alloc();
 char *xfical_appt_add(xfical_appt *app);

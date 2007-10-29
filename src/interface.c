@@ -205,6 +205,8 @@ void static orage_file_save_button_clicked(GtkButton *button
             g_free(g_par.orage_file);
         g_par.orage_file = s;
         gtk_widget_set_sensitive(intf_w->orage_file_save_button, FALSE);
+        write_parameters(); /* store file name */
+        xfical_file_close_force(); /* close it so that we open new file */
     }
     else {
         g_free(s);
@@ -270,6 +272,7 @@ void static archive_file_save_button_clicked(GtkButton *button
             g_free(g_par.archive_file);
         g_par.archive_file = s;
         gtk_widget_set_sensitive(intf_w->archive_file_save_button, FALSE);
+        write_parameters(); /* store file name */
     }
     else {
         g_free(s);
