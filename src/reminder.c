@@ -416,7 +416,7 @@ gboolean orage_day_change(gpointer user_data)
         current_year  = t->tm_year + 1900;
         current_month = t->tm_mon;
         current_day   = t->tm_mday;
-      /* Get the selected data from calendar */
+      /* Get the selected date from calendar */
         xfcal = g_par.xfcal;
         gtk_calendar_get_date(GTK_CALENDAR (xfcal->mCalendar),
                  &selected_year, &selected_month, &selected_day);
@@ -525,7 +525,8 @@ gboolean orage_alarm_clock(gpointer user_data)
     return(FALSE); /* only once */
 }
 
-gboolean reset_orage_tooltip_update()
+/* start timer to fire every minute to keep tooltip accurate */
+gboolean start_orage_tooltip_update(gpointer user_data)
 {
     if (g_par.tooltip_timer) { /* need to stop it if running */
         g_source_remove(g_par.tooltip_timer);
@@ -534,6 +535,26 @@ gboolean reset_orage_tooltip_update()
     orage_tooltip_update(NULL);
     g_par.tooltip_timer = g_timeout_add(60*1000
             , (GtkFunction) orage_tooltip_update, NULL);
+    return(FALSE);
+}
+
+/* adjust the call t happen when minute changes */
+gboolean reset_orage_tooltip_update()
+{
+    struct tm *t;
+    gint secs_left;
+
+    t = orage_localtime();
+    secs_left = 60 - t->tm_sec;
+    if (secs_left > 10) 
+        orage_tooltip_update(NULL);
+    /* FIXME: do not start this, if it is already in progress.
+     * Minor thing and does not cause any real trouble and happens
+     * only when appoinments are updated in less than 1 minute apart. 
+     * Perhaps not worth fixing. 
+     * Should add another timer or static time to keep track of this */
+    g_timeout_add(secs_left*1000
+            , (GtkFunction) start_orage_tooltip_update, NULL);
     return(FALSE);
 }
 
