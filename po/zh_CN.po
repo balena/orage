@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.4.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-10-13 18:52+0300\n"
+"POT-Creation-Date: 2007-01-20 17:42+0100\n"
 "PO-Revision-Date: 2007-02-03 21:20+0800\n"
 "Last-Translator: YOUR NAME <E-MAIL@ADDRESS>\n"
 "Language-Team: Simplified Chinese <i18n-translation@lists.linux.net.cn>\n"
@@ -18,7 +18,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../panel-plugin/oc_config.c:114
-#, 
 msgid "Select timezone"
 msgstr "选择时区"
 
@@ -56,7 +55,6 @@ msgstr "时钟选项"
 
 #. timezone
 #: ../panel-plugin/oc_config.c:286
-#, 
 msgid "set timezone to:"
 msgstr "设置时区为："
 
@@ -98,14 +96,14 @@ msgid ""
 "\t%V = week number\t\t%Z = timezone in use\n"
 "\t%H = hours \t\t\t\t%M = minute\n"
 "\t%X = local time\t\t\t%x = local date"
-msgstr "此程序利用strftime 函数来获取时间,请根据你喜爱\n"
+msgstr ""
+"此程序利用strftime 函数来获取时间,请根据你喜爱\n"
 "的格式使用有效的参数来获取时间，请参考如下代码：\n"
 "\t%A = 星期\t\t\t%B = 月\n"
 "\t%C = 日期和时间\t\t\t%R = 小时和分钟\n"
 "\t%V = 星期几\t\t\t%Z = 使用的时区\n"
 "\t%H = 小时 \t\t\t%M = 分钟\n"
 "\t%X = 本地时间\t\t\t%x = 本地日期"
-
 
 #: ../panel-plugin/oc_config.c:411
 msgid "Properties"
@@ -124,14 +122,14 @@ msgstr "Orage 时钟"
 #. * %Y  : four digit year
 #. * %V  : ISO week number
 #.
-#: ../panel-plugin/orageclock.c:420
+#: ../panel-plugin/orageclock.c:422
 msgid "%A %d %B %Y/%V"
 msgstr ""
 
 #. to avoid timing problems when updating entry
 #. Create file chooser
 #: ../plugin/xfcalendar_plugin.c:263 ../plugin/xfcalendar_plugin.c:321
-#: ../src/appointment.c:383 ../src/mainbox.c:114
+#: ../src/appointment.c:388 ../src/mainbox.c:114
 msgid "Select a file..."
 msgstr "选择文件..."
 
@@ -139,13 +137,13 @@ msgstr "选择文件..."
 msgid "Calendar files"
 msgstr "日历文件"
 
-#: ../plugin/xfcalendar_plugin.c:276 ../src/appointment.c:398
+#: ../plugin/xfcalendar_plugin.c:276 ../src/appointment.c:403
 #: ../src/mainbox.c:127
 msgid "All Files"
 msgstr "所有文件"
 
 #: ../plugin/xfcalendar_plugin.c:419 ../plugin/xfcalendar_plugin.c:424
-#: ../src/appointment.c:917 ../src/appointment.c:922 ../src/appointment.c:1438
+#: ../src/appointment.c:919 ../src/appointment.c:924 ../src/appointment.c:1443
 msgid "Location"
 msgstr "地区"
 
@@ -154,113 +152,111 @@ msgstr "地区"
 msgid "Pick local timezone"
 msgstr "选取本地时区"
 
-#: ../plugin/xfcalendar_plugin.c:433 ../plugin/xfcalendar_plugin.c:463
-#: ../src/appointment.c:931 ../src/appointment.c:961
+#: ../plugin/xfcalendar_plugin.c:433 ../plugin/xfcalendar_plugin.c:466
+#: ../src/appointment.c:933 ../src/appointment.c:962
 msgid "UTC"
 msgstr "UTC(世界协调时)"
 
-#: ../plugin/xfcalendar_plugin.c:434 ../plugin/xfcalendar_plugin.c:467
-#: ../plugin/xfcalendar_plugin.c:749 ../src/appointment.c:932
-#: ../src/appointment.c:965 ../src/appointment.c:1001
-#: ../src/appointment.c:1009
+#: ../plugin/xfcalendar_plugin.c:434 ../plugin/xfcalendar_plugin.c:470
+#: ../plugin/xfcalendar_plugin.c:750 ../src/appointment.c:934
+#: ../src/appointment.c:966
 msgid "floating"
 msgstr "浮动"
 
-#: ../plugin/xfcalendar_plugin.c:528
-#, 
+#: ../plugin/xfcalendar_plugin.c:530
 msgid "Orage Preferences"
 msgstr "Orage 首选项"
 
-#: ../plugin/xfcalendar_plugin.c:546
+#: ../plugin/xfcalendar_plugin.c:548
 msgid "Display"
 msgstr "显示"
 
-#: ../plugin/xfcalendar_plugin.c:553
+#: ../plugin/xfcalendar_plugin.c:555
 msgid "Calendar borders"
 msgstr "日历板"
 
-#: ../plugin/xfcalendar_plugin.c:558
+#: ../plugin/xfcalendar_plugin.c:560
 msgid "Displayed"
 msgstr "已显示"
 
-#: ../plugin/xfcalendar_plugin.c:564
+#: ../plugin/xfcalendar_plugin.c:566
 msgid "Hidden"
 msgstr "隐藏"
 
-#: ../plugin/xfcalendar_plugin.c:573
+#: ../plugin/xfcalendar_plugin.c:575
 msgid "Calendar window"
 msgstr "日历窗口"
 
-#: ../plugin/xfcalendar_plugin.c:578
+#: ../plugin/xfcalendar_plugin.c:580
 msgid "Show in taskbar"
 msgstr "在任务栏显示"
 
-#: ../plugin/xfcalendar_plugin.c:582
+#: ../plugin/xfcalendar_plugin.c:584
 msgid "Show in pager"
 msgstr "在页面切换器中显示"
 
-#: ../plugin/xfcalendar_plugin.c:586
+#: ../plugin/xfcalendar_plugin.c:588
 msgid "Show in systray"
 msgstr "在任务托盘显示"
 
-#: ../plugin/xfcalendar_plugin.c:593
+#: ../plugin/xfcalendar_plugin.c:595
 msgid "Calendar start"
 msgstr "日历开始"
 
-#: ../plugin/xfcalendar_plugin.c:598
+#: ../plugin/xfcalendar_plugin.c:600
 msgid "Show"
 msgstr "显示"
 
-#: ../plugin/xfcalendar_plugin.c:604
+#: ../plugin/xfcalendar_plugin.c:606
 msgid "Hide"
 msgstr "隐藏"
 
-#: ../plugin/xfcalendar_plugin.c:610
+#: ../plugin/xfcalendar_plugin.c:612
 msgid "Minimized"
 msgstr "最小化"
 
-#: ../plugin/xfcalendar_plugin.c:620
+#: ../plugin/xfcalendar_plugin.c:622
 msgid "Archives"
 msgstr "归档"
 
-#: ../plugin/xfcalendar_plugin.c:631
+#: ../plugin/xfcalendar_plugin.c:633
 msgid "Archive file"
 msgstr "归档文件"
 
-#: ../plugin/xfcalendar_plugin.c:653
+#: ../plugin/xfcalendar_plugin.c:655
 msgid "Archive threshold"
 msgstr "归档阈值"
 
-#: ../plugin/xfcalendar_plugin.c:660
+#: ../plugin/xfcalendar_plugin.c:662
 msgid "3 months"
 msgstr "3个月"
 
-#: ../plugin/xfcalendar_plugin.c:662
+#: ../plugin/xfcalendar_plugin.c:664
 msgid "6 months"
 msgstr "6个月"
 
-#: ../plugin/xfcalendar_plugin.c:664
+#: ../plugin/xfcalendar_plugin.c:666
 msgid "1 year"
 msgstr "1年"
 
-#: ../plugin/xfcalendar_plugin.c:666
+#: ../plugin/xfcalendar_plugin.c:668
 msgid "never"
 msgstr "永不"
 
-#: ../plugin/xfcalendar_plugin.c:694 ../src/appointment.c:1588
+#: ../plugin/xfcalendar_plugin.c:696 ../src/appointment.c:1594
 msgid "Sound"
 msgstr "声音"
 
-#: ../plugin/xfcalendar_plugin.c:705
+#: ../plugin/xfcalendar_plugin.c:707
 msgid "Application"
 msgstr "程序"
 
-#: ../plugin/xfcalendar_plugin.c:725 ../plugin/xfcalendar_plugin.c:735
+#: ../plugin/xfcalendar_plugin.c:727 ../plugin/xfcalendar_plugin.c:737
 msgid "Timezone"
 msgstr "时区"
 
 #. the button label in the xfce-mcs-manager dialog
-#: ../plugin/xfcalendar_plugin.c:800
+#: ../plugin/xfcalendar_plugin.c:799
 msgid "Button Label|Orage"
 msgstr ""
 
@@ -276,287 +272,279 @@ msgstr "核心开发者"
 msgid "Contributor"
 msgstr "其他作出贡献人员"
 
-#: ../src/appointment.c:99 ../src/appointment.c:116
+#: ../src/appointment.c:102 ../src/appointment.c:119
 msgid "%m/%d/%Y"
 msgstr ""
 
-#: ../src/appointment.c:279 ../src/mainbox.c:396 ../xfcalendar.desktop.in.h:3
+#: ../src/appointment.c:284 ../src/mainbox.c:394 ../xfcalendar.desktop.in.h:3
 msgid "Orage"
 msgstr ""
 
-#: ../src/appointment.c:391
+#: ../src/appointment.c:396
 msgid "Sound Files"
 msgstr "声音文件"
 
-#: ../src/appointment.c:439 ../src/appointment.c:474 ../src/appointment.c:719
-#: ../src/event-list.c:581
+#: ../src/appointment.c:454 ../src/appointment.c:484 ../src/appointment.c:724
+#: ../src/event-list.c:636
 msgid "Warning"
 msgstr "警告"
 
-#: ../src/appointment.c:441
+#: ../src/appointment.c:456
 msgid "The appointment information has been modified."
 msgstr "约会信息已被修改"
 
-#: ../src/appointment.c:442 ../src/appointment.c:722 ../src/event-list.c:584
+#: ../src/appointment.c:457 ../src/appointment.c:727 ../src/event-list.c:639
 msgid "Do you want to continue?"
 msgstr "你想继续吗？"
 
-#: ../src/appointment.c:476
+#: ../src/appointment.c:486
 msgid "The end of this appointment is earlier than the beginning."
 msgstr "指定结束时间早于指定开始时间。"
 
-#: ../src/appointment.c:721
+#: ../src/appointment.c:726
 msgid "This appointment will be permanently removed."
 msgstr "当前约会将被永久清除。"
 
-#: ../src/appointment.c:822
+#: ../src/appointment.c:824
 msgid "Pick the date"
 msgstr "选取日期"
 
-#: ../src/appointment.c:824 ../src/event-list.c:722 ../src/tray_icon.c:297
+#: ../src/appointment.c:826 ../src/event-list.c:775 ../src/tray_icon.c:299
 msgid "Today"
 msgstr "今天"
 
 #. show it
-#: ../src/appointment.c:928
+#: ../src/appointment.c:930
 msgid "Pick timezone"
 msgstr "选取时区"
 
-#: ../src/appointment.c:1194
-#, 
+#: ../src/appointment.c:1200
 msgid "New appointment - Orage"
 msgstr "约会 -Orage"
 
 #. File menu stuff
 #. File menu
-#: ../src/appointment.c:1329 ../src/event-list.c:648 ../src/mainbox.c:419
+#: ../src/appointment.c:1334 ../src/event-list.c:701 ../src/mainbox.c:417
 msgid "_File"
 msgstr "文件(_F)"
 
-#: ../src/appointment.c:1336
+#: ../src/appointment.c:1341
 msgid "Sav_e and close"
 msgstr "保存并关闭(_E)"
 
-#: ../src/appointment.c:1349 ../src/event-list.c:657
+#: ../src/appointment.c:1354 ../src/event-list.c:710
 msgid "D_uplicate"
 msgstr "导出(_U)"
 
-#: ../src/appointment.c:1390
+#: ../src/appointment.c:1395
 msgid "Save"
 msgstr "保存"
 
-#: ../src/appointment.c:1393 ../src/appointment.c:1395
+#: ../src/appointment.c:1398 ../src/appointment.c:1400
 msgid "Save and close"
 msgstr "保存并关闭"
 
-#: ../src/appointment.c:1402
+#: ../src/appointment.c:1407
 msgid "Revert"
 msgstr "还原"
 
-#: ../src/appointment.c:1405 ../src/appointment.c:1407 ../src/event-list.c:734
+#: ../src/appointment.c:1410 ../src/appointment.c:1412 ../src/event-list.c:787
 msgid "Duplicate"
 msgstr "导出"
 
-#: ../src/appointment.c:1413
+#: ../src/appointment.c:1418
 msgid "Delete"
 msgstr "删除"
 
-#: ../src/appointment.c:1421
+#: ../src/appointment.c:1426
 msgid "Free"
 msgstr "空闲"
 
-#: ../src/appointment.c:1421
+#: ../src/appointment.c:1426
 msgid "Busy"
 msgstr "繁忙"
 
-#: ../src/appointment.c:1426
+#: ../src/appointment.c:1431
 msgid "General"
 msgstr "通常"
 
-#: ../src/appointment.c:1431
+#: ../src/appointment.c:1436
 msgid "Title "
 msgstr "标题"
 
-#: ../src/appointment.c:1446
+#: ../src/appointment.c:1451
 msgid "All day event"
 msgstr "所有事件"
 
-#: ../src/appointment.c:1452
+#: ../src/appointment.c:1457
 msgid "Start"
 msgstr "开始"
 
-#: ../src/appointment.c:1467
+#: ../src/appointment.c:1472
 msgid "End"
 msgstr "结束"
 
-#: ../src/appointment.c:1484
+#: ../src/appointment.c:1489
 msgid "Duration"
 msgstr "持续时间"
 
-#: ../src/appointment.c:1491 ../src/appointment.c:1565
+#: ../src/appointment.c:1496 ../src/appointment.c:1571
 msgid "days"
 msgstr "天"
 
-#: ../src/appointment.c:1500 ../src/appointment.c:1573
+#: ../src/appointment.c:1505 ../src/appointment.c:1579
 msgid "hours"
 msgstr "小时"
 
-#: ../src/appointment.c:1509 ../src/appointment.c:1581
+#: ../src/appointment.c:1514 ../src/appointment.c:1587
 msgid "mins"
 msgstr "分钟"
 
-#: ../src/appointment.c:1517
+#: ../src/appointment.c:1522
 msgid "Availability"
 msgstr "可用性"
 
-#: ../src/appointment.c:1526
+#: ../src/appointment.c:1531
 msgid "Note"
 msgstr "备注"
 
-#: ../src/appointment.c:1554 ../src/appointment.c:1559
+#: ../src/appointment.c:1560 ../src/appointment.c:1565
 msgid "Alarm"
 msgstr "报警"
 
-#: ../src/appointment.c:1603
+#: ../src/appointment.c:1609
 msgid "Repeat alarm sound"
 msgstr "重复报警声音"
 
-#: ../src/appointment.c:1615
+#: ../src/appointment.c:1621
 msgid "None"
 msgstr "无"
 
-#: ../src/appointment.c:1615
+#: ../src/appointment.c:1621
 msgid "Daily"
 msgstr "每天"
 
-#: ../src/appointment.c:1615
+#: ../src/appointment.c:1621
 msgid "Weekly"
 msgstr "每周"
 
-#: ../src/appointment.c:1615
+#: ../src/appointment.c:1621
 msgid "Monthly"
 msgstr "每月"
 
-#: ../src/appointment.c:1615
+#: ../src/appointment.c:1621
 msgid "Yearly"
 msgstr "每年"
 
-#: ../src/appointment.c:1617
-#, 
+#: ../src/appointment.c:1623
 msgid "Mon"
 msgstr "一"
 
-#: ../src/appointment.c:1617
+#: ../src/appointment.c:1623
 msgid "Tue"
 msgstr "二"
 
-#: ../src/appointment.c:1617
+#: ../src/appointment.c:1623
 msgid "Wed"
 msgstr "三"
 
-#: ../src/appointment.c:1617
+#: ../src/appointment.c:1623
 msgid "Thu"
 msgstr "四"
 
-#: ../src/appointment.c:1617
+#: ../src/appointment.c:1623
 msgid "Fri"
 msgstr "五"
 
-#: ../src/appointment.c:1617
-#, 
+#: ../src/appointment.c:1623
 msgid "Sat"
 msgstr "六"
 
-#: ../src/appointment.c:1617
-#, 
+#: ../src/appointment.c:1623
 msgid "Sun"
 msgstr "日"
 
-#: ../src/appointment.c:1622
+#: ../src/appointment.c:1628
 msgid "Recurrence"
 msgstr "反复重现"
 
-#: ../src/appointment.c:1627
+#: ../src/appointment.c:1633
 msgid "Complexity"
 msgstr "重现程度"
 
-#: ../src/appointment.c:1630
-#, 
+#: ../src/appointment.c:1636
 msgid "Basic"
 msgstr "基本"
 
-#: ../src/appointment.c:1636
+#: ../src/appointment.c:1642
 msgid "Advanced"
 msgstr "高级"
 
-#: ../src/appointment.c:1644
+#: ../src/appointment.c:1650
 msgid "Use this if you want regular repeating event"
 msgstr "如果你要规则重复事件请使用这项"
 
-#: ../src/appointment.c:1646
+#: ../src/appointment.c:1652
 msgid ""
 "Use this if you need complex times like:\n"
 " Every second week or \n"
 " Every Saturday and Sunday or \n"
 " First Tuesday every month"
-msgstr "如果你需要设置复杂的时间请用这项。比如：每月第二周\n"
+msgstr ""
+"如果你需要设置复杂的时间请用这项。比如：每月第二周\n"
 "或每个星期六日或每月第一个星期二"
 
-#: ../src/appointment.c:1649
-#, 
+#: ../src/appointment.c:1655
 msgid "Frequency"
 msgstr "重现频率"
 
-#: ../src/appointment.c:1658
-#, 
+#: ../src/appointment.c:1664
 msgid "Interval"
 msgstr "时间间隔"
 
-#: ../src/appointment.c:1660
+#: ../src/appointment.c:1666
 msgid "Each"
 msgstr "每"
 
-#: ../src/appointment.c:1667
-#, 
+#: ../src/appointment.c:1673
 msgid "occurrence"
 msgstr "发生"
 
-#: ../src/appointment.c:1675
+#: ../src/appointment.c:1681
 msgid ""
 "Limit frequency to certain interval. For example:\n"
 " Every third day: Frequency = Daily and Interval = 3"
 msgstr "以固定间隔限制发生频率。比如：每三天的第三天：频率是每天，间隔为三"
 
-#: ../src/appointment.c:1678
+#: ../src/appointment.c:1684
 msgid "Limit"
 msgstr "限制"
 
-#: ../src/appointment.c:1680
+#: ../src/appointment.c:1686
 msgid "Repeat forever"
 msgstr "永远重复"
 
-#: ../src/appointment.c:1688
+#: ../src/appointment.c:1694
 msgid "Repeat "
 msgstr "重复"
 
-#: ../src/appointment.c:1696
+#: ../src/appointment.c:1702
 msgid "times"
 msgstr "次数"
 
-#: ../src/appointment.c:1706
+#: ../src/appointment.c:1712
 msgid "Repeat until "
 msgstr "重复直到"
 
-#: ../src/appointment.c:1717
-#, 
+#: ../src/appointment.c:1723
 msgid "Weekdays"
 msgstr "星期"
 
-#: ../src/appointment.c:1730
+#: ../src/appointment.c:1736
 msgid "Which day"
 msgstr "哪天"
 
-#: ../src/appointment.c:1738
+#: ../src/appointment.c:1744
 msgid ""
 "Specify which weekday for monthly and yearly events.\n"
 " For example:\n"
@@ -564,7 +552,8 @@ msgid ""
 "\tFrequency = Monthly,\n"
 "\tWeekdays = check only Wednesday,\n"
 "\tWhich day = select 2 from the number below Wednesday"
-msgstr "指定每年每月每个星期事件。例如：每月第二个星期三\n"
+msgstr ""
+"指定每年每月每个星期事件。例如：每月第二个星期三\n"
 "\t重现频率=每月\t星期=只勾选星期三\t哪天=从星期三下面数字中选择2\n"
 "注：好复杂吧-_-||英文翻中文表达方式不同。。。"
 
@@ -573,11 +562,11 @@ msgstr "指定每年每月每个星期事件。例如：每月第二个星期三
 msgid "All day"
 msgstr "所有天"
 
-#: ../src/event-list.c:275 ../src/event-list.c:776
+#: ../src/event-list.c:367 ../src/event-list.c:422 ../src/event-list.c:829
 msgid "Time"
 msgstr "时间"
 
-#: ../src/event-list.c:583
+#: ../src/event-list.c:638
 msgid ""
 "You will remove all information \n"
 "associated with this date."
@@ -586,52 +575,52 @@ msgstr ""
 "有关的所有信息。"
 
 #. View menu
-#: ../src/event-list.c:679 ../src/mainbox.c:453
+#: ../src/event-list.c:732 ../src/mainbox.c:451
 msgid "_View"
 msgstr "查看(_V)"
 
 #. Go menu
-#: ../src/event-list.c:688
+#: ../src/event-list.c:741
 msgid "_Go"
 msgstr "开始(_G)"
 
-#: ../src/event-list.c:715
+#: ../src/event-list.c:768
 msgid "New"
 msgstr "新建"
 
-#: ../src/event-list.c:719
+#: ../src/event-list.c:772
 msgid "Back"
 msgstr "退回"
 
-#: ../src/event-list.c:725
+#: ../src/event-list.c:778
 msgid "Forward"
 msgstr "前进"
 
-#: ../src/event-list.c:728
+#: ../src/event-list.c:781
 msgid "Refresh"
 msgstr "刷新"
 
-#: ../src/event-list.c:737
+#: ../src/event-list.c:790
 msgid "Close"
 msgstr "关闭"
 
-#: ../src/event-list.c:740
+#: ../src/event-list.c:793
 msgid "Clear"
 msgstr "清除"
 
-#: ../src/event-list.c:784
+#: ../src/event-list.c:837
 msgid "Flags"
 msgstr "标签"
 
-#: ../src/event-list.c:790
+#: ../src/event-list.c:843
 msgid "Title"
 msgstr "标题"
 
-#: ../src/event-list.c:796
+#: ../src/event-list.c:849
 msgid "uid"
 msgstr "uid"
 
-#: ../src/event-list.c:805
+#: ../src/event-list.c:858
 msgid ""
 "Double click line to edit it.\n"
 "\n"
@@ -2187,51 +2176,49 @@ msgstr "不应发生此种情况"
 msgid "Cannot create MCS client channel"
 msgstr "无法创建 MCS 客户通道"
 
-#: ../src/mainbox.c:428
+#: ../src/mainbox.c:426
 msgid "Open archive file..."
 msgstr "打开归档文件..."
 
-#: ../src/mainbox.c:431
+#: ../src/mainbox.c:429
 msgid "Close archive file"
 msgstr "关闭归档文件"
 
 #. Edit menu
-#: ../src/mainbox.c:446
+#: ../src/mainbox.c:444
 msgid "_Edit"
 msgstr "编辑(_E)"
 
-#: ../src/mainbox.c:456
+#: ../src/mainbox.c:454
 msgid "View selected _date"
 msgstr "查看已选日期(_D)"
 
-#: ../src/mainbox.c:462
+#: ../src/mainbox.c:460
 msgid "Select _Today"
 msgstr "选择当天日期(_T)"
 
 #. Help menu
-#: ../src/mainbox.c:466
+#: ../src/mainbox.c:464
 msgid "_Help"
 msgstr "帮助(_H)"
 
-#: ../src/reminder.c:232
-#, 
+#: ../src/reminder.c:233
 msgid "Reminder "
 msgstr "提醒"
 
 #. GtkTooltipsData *cur_tooltip;
-#: ../src/reminder.c:317
+#: ../src/reminder.c:320
 msgid "Next active alarms:"
 msgstr "下次活动报警："
 
-#: ../src/reminder.c:325
+#: ../src/reminder.c:328
 #, c-format
 msgid ""
 "\n"
 "%02d d %02d h %02d min to: %s"
 msgstr ""
 
-#: ../src/reminder.c:331
-#, 
+#: ../src/reminder.c:334
 msgid ""
 "\n"
 "No active alarms found"
@@ -2239,12 +2226,11 @@ msgstr ""
 "\n"
 "没有找到活动报警"
 
-#: ../src/tray_icon.c:308
-#, 
+#: ../src/tray_icon.c:310
 msgid "New appointment"
 msgstr "新约会"
 
-#: ../src/tray_icon.c:328
+#: ../src/tray_icon.c:330
 msgid "About Orage"
 msgstr "关于 Orage"
 

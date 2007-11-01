@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.4.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-05-18 00:44+0900\n"
+"POT-Creation-Date: 2007-01-20 17:42+0100\n"
 "PO-Revision-Date: 2006-12-24 01:15+0100\n"
 "Last-Translator: Vlatko Trajkov <trajokvvlatko@yahoo.com>\n"
 "Language-Team: Macedonian <LL@li.org>\n"
@@ -96,7 +96,8 @@ msgid ""
 "\t%X = local time\t\t\t%x = local date"
 msgstr ""
 "Оваа програма ја користи функијата strftime·за да го добие времето.\n"
-"Користи некој валиден код за да го добиеш времето во формат што претпочиташ.\n"
+"Користи некој валиден код за да го добиеш времето во формат што "
+"претпочиташ.\n"
 "Некои општи кодови се:\n"
 "\t%A·=·ден во недела\t\t\t%B·=·месец\n"
 "\t%c·=·дата·&·час\t\t%R·=·час·&·минута\n"
@@ -128,7 +129,7 @@ msgstr "%A %d %B %Y/%V"
 #. to avoid timing problems when updating entry
 #. Create file chooser
 #: ../plugin/xfcalendar_plugin.c:263 ../plugin/xfcalendar_plugin.c:321
-#: ../src/appointment.c:386 ../src/mainbox.c:114
+#: ../src/appointment.c:388 ../src/mainbox.c:114
 msgid "Select a file..."
 msgstr "Изберете датотека"
 
@@ -136,13 +137,13 @@ msgstr "Изберете датотека"
 msgid "Calendar files"
 msgstr "Датотеки на календарот"
 
-#: ../plugin/xfcalendar_plugin.c:276 ../src/appointment.c:401
+#: ../plugin/xfcalendar_plugin.c:276 ../src/appointment.c:403
 #: ../src/mainbox.c:127
 msgid "All Files"
 msgstr "Сите Датотеки"
 
 #: ../plugin/xfcalendar_plugin.c:419 ../plugin/xfcalendar_plugin.c:424
-#: ../src/appointment.c:920 ../src/appointment.c:925 ../src/appointment.c:1441
+#: ../src/appointment.c:919 ../src/appointment.c:924 ../src/appointment.c:1443
 msgid "Location"
 msgstr "Локација"
 
@@ -152,14 +153,13 @@ msgid "Pick local timezone"
 msgstr "Изберете локална временска зона"
 
 #: ../plugin/xfcalendar_plugin.c:433 ../plugin/xfcalendar_plugin.c:466
-#: ../src/appointment.c:934 ../src/appointment.c:964
+#: ../src/appointment.c:933 ../src/appointment.c:962
 msgid "UTC"
 msgstr "UTC"
 
 #: ../plugin/xfcalendar_plugin.c:434 ../plugin/xfcalendar_plugin.c:470
-#: ../plugin/xfcalendar_plugin.c:750 ../src/appointment.c:935
-#: ../src/appointment.c:968 ../src/appointment.c:1004
-#: ../src/appointment.c:1012
+#: ../plugin/xfcalendar_plugin.c:750 ../src/appointment.c:934
+#: ../src/appointment.c:966
 msgid "floating"
 msgstr "лебдење"
 
@@ -243,7 +243,7 @@ msgstr "1 година"
 msgid "never"
 msgstr "никогаш"
 
-#: ../plugin/xfcalendar_plugin.c:696 ../src/appointment.c:1592
+#: ../plugin/xfcalendar_plugin.c:696 ../src/appointment.c:1594
 msgid "Sound"
 msgstr "Звук"
 
@@ -276,219 +276,215 @@ msgstr "Придонесувач"
 msgid "%m/%d/%Y"
 msgstr "%m/%d/%Y"
 
-#: ../src/appointment.c:282 ../src/mainbox.c:396 ../xfcalendar.desktop.in.h:3
+#: ../src/appointment.c:284 ../src/mainbox.c:394 ../xfcalendar.desktop.in.h:3
 msgid "Orage"
 msgstr "Orage"
 
-#: ../src/appointment.c:394
+#: ../src/appointment.c:396
 msgid "Sound Files"
 msgstr "Датотеки за звук"
 
-#: ../src/appointment.c:442 ../src/appointment.c:477 ../src/appointment.c:722
-#: ../src/event-list.c:581
+#: ../src/appointment.c:454 ../src/appointment.c:484 ../src/appointment.c:724
+#: ../src/event-list.c:636
 msgid "Warning"
 msgstr "Предупредување"
 
-#: ../src/appointment.c:444
+#: ../src/appointment.c:456
 msgid "The appointment information has been modified."
 msgstr "Информациите за состанокот беа променети"
 
-#: ../src/appointment.c:445 ../src/appointment.c:725 ../src/event-list.c:584
+#: ../src/appointment.c:457 ../src/appointment.c:727 ../src/event-list.c:639
 msgid "Do you want to continue?"
 msgstr "Дали сакате да продолжите"
 
-#: ../src/appointment.c:479
+#: ../src/appointment.c:486
 msgid "The end of this appointment is earlier than the beginning."
 msgstr "Крајот на состанокот е порано од неговиот почеток."
 
-#: ../src/appointment.c:724
+#: ../src/appointment.c:726
 msgid "This appointment will be permanently removed."
 msgstr "Состанокот ќе биде трајно избришан."
 
-#: ../src/appointment.c:825
+#: ../src/appointment.c:824
 msgid "Pick the date"
 msgstr "Изберете ја датата"
 
-#: ../src/appointment.c:827 ../src/event-list.c:722 ../src/tray_icon.c:300
+#: ../src/appointment.c:826 ../src/event-list.c:775 ../src/tray_icon.c:299
 msgid "Today"
 msgstr "Денес"
 
 #. show it
-#: ../src/appointment.c:931
+#: ../src/appointment.c:930
 msgid "Pick timezone"
 msgstr "Изберете временска зона"
 
-#: ../src/appointment.c:1197
+#: ../src/appointment.c:1200
 msgid "New appointment - Orage"
 msgstr "Нов состанок - Orage"
 
 #. File menu stuff
 #. File menu
-#: ../src/appointment.c:1332 ../src/event-list.c:648 ../src/mainbox.c:419
+#: ../src/appointment.c:1334 ../src/event-list.c:701 ../src/mainbox.c:417
 msgid "_File"
 msgstr "_Датотека"
 
-#: ../src/appointment.c:1339
+#: ../src/appointment.c:1341
 msgid "Sav_e and close"
 msgstr "С_ними и затвори"
 
-#: ../src/appointment.c:1352 ../src/event-list.c:657
+#: ../src/appointment.c:1354 ../src/event-list.c:710
 msgid "D_uplicate"
 msgstr "Дуплирај"
 
-#: ../src/appointment.c:1393
+#: ../src/appointment.c:1395
 msgid "Save"
 msgstr "Сними"
 
-#: ../src/appointment.c:1396 ../src/appointment.c:1398
+#: ../src/appointment.c:1398 ../src/appointment.c:1400
 msgid "Save and close"
 msgstr "Сними и затвори"
 
-#: ../src/appointment.c:1405
+#: ../src/appointment.c:1407
 msgid "Revert"
 msgstr "Врати"
 
-#: ../src/appointment.c:1408 ../src/appointment.c:1410 ../src/event-list.c:734
+#: ../src/appointment.c:1410 ../src/appointment.c:1412 ../src/event-list.c:787
 msgid "Duplicate"
 msgstr "Дуплирај"
 
-#: ../src/appointment.c:1416
+#: ../src/appointment.c:1418
 msgid "Delete"
 msgstr "Избриши"
 
-#: ../src/appointment.c:1424
+#: ../src/appointment.c:1426
 msgid "Free"
 msgstr "Слободен"
 
-#: ../src/appointment.c:1424
+#: ../src/appointment.c:1426
 msgid "Busy"
 msgstr "Зафатен"
 
-#: ../src/appointment.c:1429
+#: ../src/appointment.c:1431
 msgid "General"
 msgstr "Општо"
 
-#: ../src/appointment.c:1434
+#: ../src/appointment.c:1436
 msgid "Title "
 msgstr "Наслов"
 
-#: ../src/appointment.c:1449
+#: ../src/appointment.c:1451
 msgid "All day event"
 msgstr "Целодневен настан"
 
-#: ../src/appointment.c:1455
+#: ../src/appointment.c:1457
 msgid "Start"
 msgstr "Старт"
 
-#: ../src/appointment.c:1470
+#: ../src/appointment.c:1472
 msgid "End"
 msgstr "Крај"
 
-#: ../src/appointment.c:1487
+#: ../src/appointment.c:1489
 msgid "Duration"
 msgstr "Времетраење"
 
-#: ../src/appointment.c:1494 ../src/appointment.c:1569
+#: ../src/appointment.c:1496 ../src/appointment.c:1571
 msgid "days"
 msgstr "денови"
 
-#: ../src/appointment.c:1503 ../src/appointment.c:1577
+#: ../src/appointment.c:1505 ../src/appointment.c:1579
 msgid "hours"
 msgstr "часови"
 
-#: ../src/appointment.c:1512 ../src/appointment.c:1585
+#: ../src/appointment.c:1514 ../src/appointment.c:1587
 msgid "mins"
 msgstr "минути"
 
-#: ../src/appointment.c:1520
+#: ../src/appointment.c:1522
 msgid "Availability"
 msgstr "Достапност"
 
-#: ../src/appointment.c:1529
+#: ../src/appointment.c:1531
 msgid "Note"
 msgstr "Белешка"
 
-#: ../src/appointment.c:1558 ../src/appointment.c:1563
+#: ../src/appointment.c:1560 ../src/appointment.c:1565
 msgid "Alarm"
 msgstr "Аларм"
 
-#: ../src/appointment.c:1607
+#: ../src/appointment.c:1609
 msgid "Repeat alarm sound"
 msgstr "Повтори го звукот од алармот"
 
-#: ../src/appointment.c:1619
+#: ../src/appointment.c:1621
 msgid "None"
 msgstr "Ништо"
 
-#: ../src/appointment.c:1619
+#: ../src/appointment.c:1621
 msgid "Daily"
 msgstr "Дневно"
 
-#: ../src/appointment.c:1619
+#: ../src/appointment.c:1621
 msgid "Weekly"
 msgstr "Неделно"
 
-#: ../src/appointment.c:1619
+#: ../src/appointment.c:1621
 msgid "Monthly"
 msgstr "Месечно"
 
-#: ../src/appointment.c:1619
+#: ../src/appointment.c:1621
 msgid "Yearly"
 msgstr "Годишно"
 
-#: ../src/appointment.c:1621
+#: ../src/appointment.c:1623
 msgid "Mon"
 msgstr "Пон"
 
-#: ../src/appointment.c:1621
+#: ../src/appointment.c:1623
 msgid "Tue"
 msgstr "Вто"
 
-#: ../src/appointment.c:1621
+#: ../src/appointment.c:1623
 msgid "Wed"
 msgstr "Сре"
 
-#: ../src/appointment.c:1621
+#: ../src/appointment.c:1623
 msgid "Thu"
 msgstr "Чет"
 
-#: ../src/appointment.c:1621
+#: ../src/appointment.c:1623
 msgid "Fri"
 msgstr "Пет"
 
-#: ../src/appointment.c:1621
+#: ../src/appointment.c:1623
 msgid "Sat"
 msgstr "Саб"
 
-#: ../src/appointment.c:1621
+#: ../src/appointment.c:1623
 msgid "Sun"
 msgstr "Нед"
 
-#: ../src/appointment.c:1626
+#: ../src/appointment.c:1628
 msgid "Recurrence"
 msgstr "Повторување"
 
-#: ../src/appointment.c:1631
+#: ../src/appointment.c:1633
 msgid "Complexity"
 msgstr "Комплексност"
 
-#: ../src/appointment.c:1634
+#: ../src/appointment.c:1636
 msgid "Basic"
 msgstr "Основно"
 
-#: ../src/appointment.c:1640
+#: ../src/appointment.c:1642
 msgid "Advanced"
 msgstr "Напредно"
 
-
-#: this is the turning point
-
-
-#: ../src/appointment.c:1648
+#: ../src/appointment.c:1650
 msgid "Use this if you want regular repeating event"
 msgstr "Употребете го ова ако сакате стандардно повторување"
 
-#: ../src/appointment.c:1650
+#: ../src/appointment.c:1652
 msgid ""
 "Use this if you need complex times like:\n"
 " Every second week or \n"
@@ -500,23 +496,23 @@ msgstr ""
 " Секоја сабота и Недела или \n"
 " Првиот вторник секој месец"
 
-#: ../src/appointment.c:1653
+#: ../src/appointment.c:1655
 msgid "Frequency"
 msgstr "Честота"
 
-#: ../src/appointment.c:1662
+#: ../src/appointment.c:1664
 msgid "Interval"
 msgstr "Интервал"
 
-#: ../src/appointment.c:1664
+#: ../src/appointment.c:1666
 msgid "Each"
 msgstr "Секој"
 
-#: ../src/appointment.c:1671
+#: ../src/appointment.c:1673
 msgid "occurrence"
 msgstr "појавување"
 
-#: ../src/appointment.c:1679
+#: ../src/appointment.c:1681
 msgid ""
 "Limit frequency to certain interval. For example:\n"
 " Every third day: Frequency = Daily and Interval = 3"
@@ -524,35 +520,35 @@ msgstr ""
 "Ограничена честота на одредени интервали. Пр.: \n"
 " Секој трет ден: Честота = Дневно и Интервал = 3"
 
-#: ../src/appointment.c:1682
+#: ../src/appointment.c:1684
 msgid "Limit"
 msgstr "Ограничување"
 
-#: ../src/appointment.c:1684
+#: ../src/appointment.c:1686
 msgid "Repeat forever"
 msgstr "Повторувај засекогаш"
 
-#: ../src/appointment.c:1692
+#: ../src/appointment.c:1694
 msgid "Repeat "
 msgstr "Повторувај"
 
-#: ../src/appointment.c:1700
+#: ../src/appointment.c:1702
 msgid "times"
 msgstr "пати"
 
-#: ../src/appointment.c:1710
+#: ../src/appointment.c:1712
 msgid "Repeat until "
 msgstr "Повторувај до "
 
-#: ../src/appointment.c:1721
+#: ../src/appointment.c:1723
 msgid "Weekdays"
 msgstr "Викенди"
 
-#: ../src/appointment.c:1734
+#: ../src/appointment.c:1736
 msgid "Which day"
 msgstr "Кој ден"
 
-#: ../src/appointment.c:1742
+#: ../src/appointment.c:1744
 msgid ""
 "Specify which weekday for monthly and yearly events.\n"
 " For example:\n"
@@ -573,11 +569,11 @@ msgstr ""
 msgid "All day"
 msgstr "Цел ден"
 
-#: ../src/event-list.c:275 ../src/event-list.c:776
+#: ../src/event-list.c:367 ../src/event-list.c:422 ../src/event-list.c:829
 msgid "Time"
 msgstr "Време"
 
-#: ../src/event-list.c:583
+#: ../src/event-list.c:638
 msgid ""
 "You will remove all information \n"
 "associated with this date."
@@ -586,52 +582,52 @@ msgstr ""
 "поврзани со оваа дата."
 
 #. View menu
-#: ../src/event-list.c:679 ../src/mainbox.c:453
+#: ../src/event-list.c:732 ../src/mainbox.c:451
 msgid "_View"
 msgstr "_Поглед"
 
 #. Go menu
-#: ../src/event-list.c:688
+#: ../src/event-list.c:741
 msgid "_Go"
 msgstr "_Оди"
 
-#: ../src/event-list.c:715
+#: ../src/event-list.c:768
 msgid "New"
 msgstr "Нов"
 
-#: ../src/event-list.c:719
+#: ../src/event-list.c:772
 msgid "Back"
 msgstr "Назад"
 
-#: ../src/event-list.c:725
+#: ../src/event-list.c:778
 msgid "Forward"
 msgstr "Напред"
 
-#: ../src/event-list.c:728
+#: ../src/event-list.c:781
 msgid "Refresh"
 msgstr "Освежи"
 
-#: ../src/event-list.c:737
+#: ../src/event-list.c:790
 msgid "Close"
 msgstr "Затвори"
 
-#: ../src/event-list.c:740
+#: ../src/event-list.c:793
 msgid "Clear"
 msgstr "Исчисти"
 
-#: ../src/event-list.c:784
+#: ../src/event-list.c:837
 msgid "Flags"
 msgstr "Обележувачи"
 
-#: ../src/event-list.c:790
+#: ../src/event-list.c:843
 msgid "Title"
 msgstr "Наслов"
 
-#: ../src/event-list.c:796
+#: ../src/event-list.c:849
 msgid "uid"
 msgstr "uid"
 
-#: ../src/event-list.c:805
+#: ../src/event-list.c:858
 msgid ""
 "Double click line to edit it.\n"
 "\n"
@@ -2195,29 +2191,29 @@ msgstr "Ова не треба да се случи"
 msgid "Cannot create MCS client channel"
 msgstr "Не може да се направи MCS клиент канал"
 
-#: ../src/mainbox.c:428
+#: ../src/mainbox.c:426
 msgid "Open archive file..."
 msgstr "Отвори архивска датотека..."
 
-#: ../src/mainbox.c:431
+#: ../src/mainbox.c:429
 msgid "Close archive file"
 msgstr "Затвори архивска датотека"
 
 #. Edit menu
-#: ../src/mainbox.c:446
+#: ../src/mainbox.c:444
 msgid "_Edit"
 msgstr "_Уреди"
 
-#: ../src/mainbox.c:456
+#: ../src/mainbox.c:454
 msgid "View selected _date"
 msgstr "Прикажи ја избраната _дата"
 
-#: ../src/mainbox.c:462
+#: ../src/mainbox.c:460
 msgid "Select _Today"
 msgstr "Изберете _денес"
 
 #. Help menu
-#: ../src/mainbox.c:466
+#: ../src/mainbox.c:464
 msgid "_Help"
 msgstr "_Помош"
 
@@ -2247,11 +2243,11 @@ msgstr ""
 "\n"
 "Не беа пронајдени активни аларми"
 
-#: ../src/tray_icon.c:311
+#: ../src/tray_icon.c:310
 msgid "New appointment"
 msgstr "Нов состанок"
 
-#: ../src/tray_icon.c:331
+#: ../src/tray_icon.c:330
 msgid "About Orage"
 msgstr "За Orage"
 
@@ -2282,4 +2278,3 @@ msgstr "Календар"
 #: ../xfcalendar.desktop.in.h:2
 msgid "Desktop calendar"
 msgstr "Календар на работната површина"
-
