@@ -26,8 +26,12 @@
 
 typedef struct _CalWin
 {
+    GtkAccelGroup *mAccel_group;
+    GtkTooltips   *Tooltips;
+
     GtkWidget *mWindow;
     GtkWidget *mVbox;
+
     GtkWidget *mMenubar;
     GtkWidget *mFile_menu;
     GtkWidget *mFile_newApp;
@@ -43,12 +47,15 @@ typedef struct _CalWin
     GtkWidget *mHelp_menu;
     GtkWidget *mHelp_help;
     GtkWidget *mHelp_about;
-    GtkWidget *mCalendar;
-    GtkAccelGroup *mAccel_group;
 
+    GtkWidget *mCalendar;
+
+    GtkWidget *mInfo_scrolledWin;
+    GtkWidget *mInfo_vbox;
 } CalWin;
 
 void build_mainWin();
 gboolean orage_mark_appointments();
+void build_mainbox_info();
 
 #endif /* !__MAINBOX_H__ */

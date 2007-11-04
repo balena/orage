@@ -513,22 +513,19 @@ static void build_day_view_colours(day_win *dw)
     dw->bg1.red +=  (dw->bg1.red < 64000 ? 1000 : -1000);
     dw->bg1.green += (dw->bg1.green < 64000 ? 1000 : -1000);
     dw->bg1.blue += (dw->bg1.blue < 64000 ? 1000 : -1000);
-    dw->bg1.pixel = (gulong)(dw->bg1.red*65536+dw->bg1.green*256+dw->bg1.blue);
     gdk_colormap_alloc_color(pic1_cmap, &dw->bg1, FALSE, TRUE);
 
     dw->bg2 = def_style->bg[GTK_STATE_NORMAL];
     dw->bg2.red +=  (dw->bg2.red > 1000 ? -1000 : 1000);
     dw->bg2.green += (dw->bg2.green > 1000 ? -1000 : 1000);
     dw->bg2.blue += (dw->bg2.blue > 2000 ? -2000 : 2000);
-    dw->bg2.pixel = (gulong)(dw->bg2.red*65536+dw->bg2.green*256+dw->bg2.blue);
     gdk_colormap_alloc_color(pic1_cmap, &dw->bg2, FALSE, TRUE);
 
-    dw->line_color = def_style->bg[GTK_STATE_NORMAL];
-    dw->line_color.red =  239 * (65535/255);
-    dw->line_color.green = 235 * (65535/255);
-    dw->line_color.blue = 230 * (65535/255);
-    dw->line_color.pixel = (gulong)(dw->line_color.red*65536 
-            + dw->line_color.green*256 + dw->line_color.blue);
+    if (!gdk_color_parse("white", &dw->line_color)) {
+        dw->line_color.red =  239 * (65535/255);
+        dw->line_color.green = 235 * (65535/255);
+        dw->line_color.blue = 230 * (65535/255);
+    }
     gdk_colormap_alloc_color(pic1_cmap, &dw->line_color, FALSE, TRUE);
 }
 
@@ -546,15 +543,19 @@ static void build_day_view_table(day_win *dw)
     GdkColormap *pic1_cmap;
 
     pic1_cmap = gdk_colormap_get_system();
-    fg.red = 255 * (65535/255);
-    fg.green = 10 * (65535/255);
-    fg.blue = 10 * (65535/255);
-    fg.pixel = (gulong)(fg.red*65536 + fg.green*256 +fg.blue);
+    if (!gdk_color_parse("red", &fg)) {
+        g_warning("color parse failed: red\n");
+        fg.red = 255 * (65535/255);
+        fg.green = 10 * (65535/255);
+        fg.blue = 10 * (65535/255);
+    }
     gdk_colormap_alloc_color(pic1_cmap, &fg, FALSE, TRUE);
-    bg.red = 255 * (65535/255);
-    bg.green = 215 * (65535/255);
-    bg.blue = 115 * (65535/255);
-    bg.pixel = (gulong)(bg.red*65536 + bg.green*256 +bg.blue);
+    if (!gdk_color_parse("gold", &bg)) {
+        g_warning("color parse failed: gold\n");
+        bg.red = 255 * (65535/255);
+        bg.green = 215 * (65535/255);
+        bg.blue = 115 * (65535/255);
+    }
     gdk_colormap_alloc_color(pic1_cmap, &bg, FALSE, TRUE);
 
     days = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(dw->day_spin));

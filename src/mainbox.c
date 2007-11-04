@@ -49,8 +49,7 @@
 #include "tray_icon.h"
 
 
-gboolean
-orage_mark_appointments()
+gboolean orage_mark_appointments()
 {
     guint year, month, day;
 
@@ -64,8 +63,7 @@ orage_mark_appointments()
     return(TRUE);
 }
 
-static void
-mFile_newApp_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
+static void mFile_newApp_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
 {
     appt_win *app;
     struct tm *t;
@@ -77,58 +75,55 @@ mFile_newApp_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
     app = create_appt_win("NEW", cur_date, NULL);  
 }
 
-static void
-mFile_interface_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
+static void mFile_interface_activate_cb(GtkMenuItem *menuitem
+        , gpointer user_data)
 {
     CalWin *cal = (CalWin *)user_data;
 
     orage_external_interface(cal);
 }
 
-static void
-mFile_close_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
+static void mFile_close_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
 {
     CalWin *cal = (CalWin *)user_data;
 
     gtk_widget_hide(cal->mWindow);
 }
 
-static void
-mFile_quit_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
+static void mFile_quit_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
 {
     gtk_main_quit();
 }
 
-static void 
-mEdit_preferences_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
+static void mEdit_preferences_activate_cb(GtkMenuItem *menuitem
+        , gpointer user_data)
 {
     show_parameters();
 }
 
-static void
-mView_ViewSelectedDate_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
+static void mView_ViewSelectedDate_activate_cb(GtkMenuItem *menuitem
+        , gpointer user_data)
 {
     create_el_win(NULL);
 }
 
-static void
-mView_ViewSelectedWeek_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
+static void mView_ViewSelectedWeek_activate_cb(GtkMenuItem *menuitem
+        , gpointer user_data)
 {
     CalWin *cal = (CalWin *)user_data;
 
     create_day_win(orage_cal_to_i18_date(GTK_CALENDAR(cal->mCalendar)));
 }
 
-static void
-mView_selectToday_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
+static void mView_selectToday_activate_cb(GtkMenuItem *menuitem
+        , gpointer user_data)
 {
     CalWin *cal = (CalWin *)user_data;
 
     orage_select_today(GTK_CALENDAR(cal->mCalendar));
 }
 
-static void
-mHelp_help_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
+static void mHelp_help_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
 {
     gchar *helpdoc;
 
@@ -144,14 +139,13 @@ mHelp_help_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
     */
 }
 
-static void
-mHelp_about_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
+static void mHelp_about_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
 {
     create_wAbout((GtkWidget *)menuitem, user_data);
 }
 
-static void
-mCalendar_scroll_event_cb(GtkWidget *calendar, GdkEventScroll *event)
+static void mCalendar_scroll_event_cb(GtkWidget *calendar
+        , GdkEventScroll *event)
 {
     guint year, month, day;
     gtk_calendar_get_date(GTK_CALENDAR(calendar), &year, &month, &day);
@@ -176,17 +170,16 @@ mCalendar_scroll_event_cb(GtkWidget *calendar, GdkEventScroll *event)
     }
 }
 
-static void
-mCalendar_day_selected_double_click_cb(GtkCalendar *cdar, gpointer user_data)
+static void mCalendar_day_selected_double_click_cb(GtkCalendar *calendar
+        , gpointer user_data)
 {
     if (g_par.show_days)
-        create_day_win(orage_cal_to_i18_date(cdar));
+        create_day_win(orage_cal_to_i18_date(calendar));
     else
         create_el_win(NULL);
 }
 
-static gboolean
-upd_calendar(GtkCalendar *calendar)
+static gboolean upd_calendar(GtkCalendar *calendar)
 {
     static guint year=-1, month=-1;
     guint year_n, month_n, day_n;
@@ -203,8 +196,7 @@ upd_calendar(GtkCalendar *calendar)
     return(FALSE); /* we do this only once */
 }
 
-void
-mCalendar_month_changed_cb(GtkCalendar *calendar, gpointer user_data)
+void mCalendar_month_changed_cb(GtkCalendar *calendar, gpointer user_data)
 {
     /* orage_mark_appointments is rather heavy (=slow), so doing
      * it here is not a good idea. We can't keep up with the autorepeat
@@ -295,6 +287,92 @@ static void build_menu(void)
             , G_CALLBACK(mHelp_about_activate_cb),(gpointer) cal);
 }
 
+static void todo_clicked(GtkWidget *widget
+        , GdkEventButton *event, gpointer *user_data)
+{
+    gchar *uid;
+
+    uid = g_object_get_data(G_OBJECT(widget), "UID");
+    create_appt_win("UPDATE", uid, NULL);
+}
+
+static void add_info_row(xfical_appt *appt)
+{
+    GtkWidget *ev, *label;
+    CalWin *cal = g_par.xfcal;
+    gchar *tip;
+
+    ev = gtk_event_box_new();
+    label = gtk_label_new(appt->title);
+    gtk_label_set_ellipsize(GTK_LABEL(label), PANGO_ELLIPSIZE_END);
+    gtk_container_add(GTK_CONTAINER(ev), label);
+    gtk_box_pack_start(GTK_BOX(cal->mInfo_vbox), ev, FALSE, FALSE, 0);
+    tip = g_strdup_printf("%s\n%s-%s\n%s", appt->title, appt->starttimecur
+            , appt->endtimecur ,appt->note);
+    gtk_tooltips_set_tip(cal->Tooltips, ev, tip, NULL);
+    g_free(tip);
+    g_object_set_data_full(G_OBJECT(ev), "UID", g_strdup(appt->uid), g_free);
+    g_signal_connect((gpointer)ev, "button-press-event"
+            , G_CALLBACK(todo_clicked), cal);
+
+}
+
+static void info_rows(char *a_day, xfical_type ical_type, gchar *file_type)
+{
+    xfical_appt *appt;
+
+    for (appt = xfical_appt_get_next_on_day(a_day, TRUE, 0
+                , ical_type , file_type);
+         appt;
+         appt = xfical_appt_get_next_on_day(a_day, FALSE, 0
+                , ical_type , file_type)) {
+        add_info_row(appt);
+        xfical_appt_free(appt);
+    }
+}
+
+void build_mainbox_info(void)
+{
+    CalWin *cal = g_par.xfcal;
+    char      *s_time;
+    char      a_day[9];  /* yyyymmdd */
+    struct tm *t;
+    xfical_type ical_type;
+    gchar file_type[8];
+    gint i;
+
+
+    gtk_widget_destroy(cal->mInfo_scrolledWin);
+    cal->mInfo_scrolledWin = gtk_scrolled_window_new(NULL, NULL);
+    gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(cal->mInfo_scrolledWin)
+            , GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);
+    gtk_box_pack_start(GTK_BOX(cal->mVbox), cal->mInfo_scrolledWin
+            , FALSE, FALSE, 0);
+    cal->mInfo_vbox = gtk_vbox_new(FALSE, 0);
+    gtk_scrolled_window_add_with_viewport(
+            GTK_SCROLLED_WINDOW(cal->mInfo_scrolledWin), cal->mInfo_vbox);
+
+    t = orage_localtime();
+    s_time = orage_tm_time_to_icaltime(t);
+    strncpy(a_day, s_time, 8);
+    a_day[8] = '\0';
+
+    ical_type = XFICAL_TYPE_TODO;
+    /* first search base orage file */
+    if (!xfical_file_open(TRUE))
+        return;
+    strcpy(file_type, "O00.");
+    info_rows(a_day, ical_type, file_type);
+    /* then process all foreign files */
+    for (i = 0; i < g_par.foreign_count; i++) {
+        g_sprintf(file_type, "F%02d.", i);
+        info_rows(a_day, ical_type, file_type);
+    }
+    xfical_file_close(TRUE);
+
+    gtk_widget_show_all(cal->mInfo_scrolledWin);
+}
+
 void build_mainWin()
 {
     GdkPixbuf *orage_logo;
@@ -304,9 +382,8 @@ void build_mainWin()
      * when date changes. Could be added, but not worth it.
      * Dynamic icon is used in systray and about windows */
     orage_logo = orage_create_icon(cal, TRUE, 48, 48); 
-    /* orage_logo = xfce_themed_icon_load("xfcalendar", 48); */
-    /* orage_logo = create_icon(cal, 48, 48); */
     cal->mAccel_group = gtk_accel_group_new();
+    cal->Tooltips = gtk_tooltips_new();
 
     gtk_window_set_title(GTK_WINDOW(cal->mWindow), _("Orage"));
     gtk_window_set_position(GTK_WINDOW(cal->mWindow), GTK_WIN_POS_NONE);
@@ -334,6 +411,11 @@ void build_mainWin()
             , GTK_CALENDAR_SHOW_HEADING | GTK_CALENDAR_SHOW_DAY_NAMES
             | GTK_CALENDAR_SHOW_WEEK_NUMBERS);
     gtk_widget_show(cal->mCalendar);
+
+    /* Build the Info box */
+    /* build_mainbox_info always deletes scrolled window, so we create one here */
+    cal->mInfo_scrolledWin = gtk_scrolled_window_new(NULL, NULL);
+    build_mainbox_info();
 
     /* Signals */
     g_signal_connect((gpointer) cal->mCalendar, "scroll_event"

@@ -3006,6 +3006,7 @@ static void xfical_alarm_build_list_internal(gboolean first_list_today)
                 , file_type);
     }
     setup_orage_alarm_clock();
+    build_mainbox_info();
 }
 
 void xfical_alarm_build_list(gboolean first_list_today)
@@ -3046,7 +3047,7 @@ static xfical_appt *xfical_appt_get_next_on_day_internal(char *a_day
     icalproperty *p = NULL;
     static icalcompiter ci;
     gboolean date_found=FALSE;
-    gboolean date_rec_found=FALSE;
+    gboolean recurrent_date_found=FALSE;
     char *uid;
     xfical_appt *appt;
     struct icalrecurrencetype rrule;
@@ -3107,7 +3108,20 @@ static xfical_appt *xfical_appt_get_next_on_day_internal(char *a_day
                 , ICAL_RRULE_PROPERTY)) != 0) { /* check recurring */
             nsdate = icaltime_null_time();
             rrule = icalproperty_get_rrule(p);
-            ri = icalrecur_iterator_new(rrule, per.stime);
+            /* FIXME:
+             * for soem VTODOs you do not want to start over regularly
+             * from the starttime, but actually from the latest completed
+             * time. This kind of VTODOs do not have startdate! */
+            /*
+            if (type == XFICAL_TYPE_TODO) {
+                if (!icaltime_is_null_time(per.ctime))
+                    ri = icalrecur_iterator_new(rrule, per.ctime);
+                else
+                    ri = icalrecur_iterator_new(rrule, per.stime);
+            }
+            else
+            */
+                ri = icalrecur_iterator_new(rrule, per.stime);
             for (nsdate = icalrecur_iterator_next(ri),
                     nedate = icaltime_add(nsdate, per.duration);
                  !icaltime_is_null_time(nsdate)
@@ -3132,13 +3146,13 @@ static xfical_appt *xfical_appt_get_next_on_day_internal(char *a_day
             if (type == XFICAL_TYPE_TODO) {
                 if (!icaltime_is_null_time(nsdate)) {
                     date_found = TRUE;
-                    date_rec_found = TRUE;
+                    recurrent_date_found = TRUE;
                 }
             }
             else if (local_compare_date_only(nsdate, aedate) <= 0
                 && local_compare_date_only(asdate, nedate) <= 0) {
                 date_found = TRUE;
-                date_rec_found = TRUE;
+                recurrent_date_found = TRUE;
             }
         }
     }
@@ -3148,7 +3162,7 @@ static xfical_appt *xfical_appt_get_next_on_day_internal(char *a_day
             return(0);
         }
         appt = appt_get_any(uid, base, file_type);
-        if (date_rec_found) {
+        if (recurrent_date_found) {
             g_strlcpy(appt->starttimecur, icaltime_as_ical_string(nsdate), 17);
             g_strlcpy(appt->endtimecur, icaltime_as_ical_string(nedate), 17);
         }
