@@ -1,3 +1,32 @@
+4.4.2
+=====
+- Recurrence not recurring at the limit date. Missing fix: convert
+  time back to UTC when reading. Caused day to be incremented for
+  GMT timezones (Bug #2937).
+- Added missing last update time (Bug #3431).
+- Orage clock now wakes up only when needed. This fix sacrifies a little
+  of accuracy to save wakeups. If seconds are not visible clock wakes up
+  only once per minute (Bug #3363).
+- Updated translations: Fabio Riga (it), Pau Rul-lan Ferragut (ca),
+  Daichi Kawahata (ja), Terje Uriansrud (nb_NO), Nuno Miguel (pt_PT),
+  Tegegne Tefera (am), Dimitri Gogelia (ka), Vincent Tunru (nl),
+  Pablo Vieira (pt_PT), Fábio Nogueira (pt_PT).
+- New translations: RPrieditis (lv).
+    
+    
+4.4.1
+=====
+- Change field before save so that spin buttons activate always (Bug #2811).
+- Erroneous warning when adding panel plugin (Bug #2863).
+- Recurring events need to happen on ending date also (Bug #2937).
+- Bug when adding All day event from iCal All day events were handled
+  wrongly in Orage (Bug #3058).
+- Updated translations: Wu Li (zh_CN), Dmitry Nikitin (uk), Eren Turkay (tr),
+  Nico Schümann (de), Jeff Bailes (en_GB), Fabio Riga (it), Piotr Maliński (pl).
+- New translations: Besnik Bleta (sq).
+  
+
+
 4.4.0
 =====
 - Fix possible crash in appointment timezone selection.
