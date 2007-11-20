@@ -313,7 +313,7 @@ static void add_el_row(el_win *el, xfical_appt *appt, char *par)
     GtkTreeIter     iter1;
     GtkListStore   *list1;
     gchar          *title = NULL;
-    gchar           flags[5]; 
+    gchar           flags[6]; 
     gchar          *stime;
     gchar          /* *s_sort,*/ *s_sort1;
     gchar           source[5]; 
@@ -348,7 +348,14 @@ static void add_el_row(el_win *el, xfical_appt *appt, char *par)
 
     flags[3] = appt->uid[0]; /* file type */
 
-    flags[4] = '\0';
+    if (appt->type == XFICAL_TYPE_EVENT)
+        flags[4] = 'E';
+    else if (appt->type == XFICAL_TYPE_TODO)
+        flags[4] = 'T';
+    else
+        flags[4] = 'J';
+
+    flags[5] = '\0';
 
     if (appt->title != NULL)
         title = g_strdup(appt->title);
@@ -1265,7 +1272,7 @@ static void build_event_list(el_win *el)
     gtk_tree_view_append_column(GTK_TREE_VIEW(el->TreeView), col);
     gtk_tree_view_column_set_visible(col, FALSE);
 
-    gtk_tooltips_set_tip(el->Tooltips, el->TreeView, _("Double click line to edit it.\n\nFlags in order:\n\t 1. Alarm: n=no alarm\n\t\t A=visual Alarm S=also Sound alarm\n\t 2. Recurrence: n=no recurrence\n\t\t D=Daily W=Weekly M=Monthly Y=Yearly\n\t 3. Type: f=free B=Busy\n\t 4. Located in file: O=Orage\n\t\t  A=Archive F=Foreign"), NULL);
+    gtk_tooltips_set_tip(el->Tooltips, el->TreeView, _("Double click line to edit it.\n\nFlags in order:\n\t 1. Alarm: n=no alarm\n\t\t A=visual Alarm S=also Sound alarm\n\t 2. Recurrence: n=no recurrence\n\t\t D=Daily W=Weekly M=Monthly Y=Yearly\n\t 3. Type: f=free B=Busy\n\t 4. Located in file:\n\t\tO=Orage A=Archive F=Foreign\n\t 5. Appointment type:\n\t\tE=Event T=Todo J=Journal"), NULL);
 
     g_signal_connect(el->TreeView, "row-activated",
             G_CALLBACK(editEvent), el);

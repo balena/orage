@@ -734,6 +734,9 @@ static gboolean orage_validate_datetime(appt_win *apptw, xfical_appt *appt)
 {
     gint result;
 
+    /* Journal does not have end time so no need to check */
+    if (appt->type == XFICAL_TYPE_JOURNAL)
+        return(TRUE);
     if (xfical_compare_times(appt) > 0) {
         result = xfce_message_dialog(GTK_WINDOW(apptw->Window),
                 _("Warning"),
@@ -743,10 +746,10 @@ static gboolean orage_validate_datetime(appt_win *apptw, xfical_appt *appt)
                 GTK_STOCK_OK,
                 GTK_RESPONSE_ACCEPT,
                 NULL);
-        return FALSE;
+        return(FALSE);
     }
     else {
-        return TRUE;
+        return(TRUE);
     }
 }
 
@@ -835,17 +838,19 @@ static gboolean fill_appt_from_apptw(xfical_appt *appt, appt_win *apptw)
     /* duration */
     appt->use_duration = gtk_toggle_button_get_active(
             GTK_TOGGLE_BUTTON(apptw->Dur_checkbutton));
-    appt->duration = gtk_spin_button_get_value_as_int(
-            GTK_SPIN_BUTTON(apptw->Dur_spin_dd)) * 24*60*60
-                    + gtk_spin_button_get_value_as_int(
-            GTK_SPIN_BUTTON(apptw->Dur_spin_hh)) *    60*60
-                    + gtk_spin_button_get_value_as_int(
-            GTK_SPIN_BUTTON(apptw->Dur_spin_mm)) *       60;
+    if (appt->allDay)
+        appt->duration = gtk_spin_button_get_value_as_int(
+                GTK_SPIN_BUTTON(apptw->Dur_spin_dd)) * 24*60*60;
+    else
+        appt->duration = gtk_spin_button_get_value_as_int(
+                GTK_SPIN_BUTTON(apptw->Dur_spin_dd)) * 24*60*60
+                        + gtk_spin_button_get_value_as_int(
+                GTK_SPIN_BUTTON(apptw->Dur_spin_hh)) *    60*60
+                        + gtk_spin_button_get_value_as_int(
+                GTK_SPIN_BUTTON(apptw->Dur_spin_mm)) *       60;
 
-    /* Check that end time is after start time.
-     * Journal does not have end time so no need to check */
-    if (appt->type != XFICAL_TYPE_JOURNAL 
-    && !orage_validate_datetime(apptw, appt))
+    /* Check that end time is after start time. */
+    if (!orage_validate_datetime(apptw, appt))
         return(FALSE);
 
     /* completed date and time. 
@@ -1325,7 +1330,7 @@ static void fill_appt_window_times(appt_win *apptw, xfical_appt *appt)
                         , (gdouble)tm_date.tm_hour);
         gtk_spin_button_set_value(
                 GTK_SPIN_BUTTON(apptw->CompletedTime_spin_mm)
-                        , (gdouble)tm_date.tm_hour);
+                        , (gdouble)tm_date.tm_min);
         if (appt->completed_tz_loc) {
             gtk_button_set_label(GTK_BUTTON(apptw->CompletedTimezone_button)
                     , _(appt->completed_tz_loc));
@@ -1801,6 +1806,7 @@ static void build_general_page(appt_win *apptw)
     gtk_notebook_append_page(GTK_NOTEBOOK(apptw->Notebook)
             , apptw->General_notebook_page, apptw->General_tab_label);
 
+    /* type */
     apptw->Type_label = gtk_label_new(_("Type "));
     hbox =  gtk_hbox_new(FALSE, 0);
     apptw->Type_event_rb = gtk_radio_button_new_with_label(NULL, _("Event"));
@@ -1825,24 +1831,28 @@ static void build_general_page(appt_win *apptw)
             , apptw->Type_label, hbox
             , row = 0, (GTK_EXPAND | GTK_FILL), (0));
 
+    /* title */
     apptw->Title_label = gtk_label_new(_("Title "));
     apptw->Title_entry = gtk_entry_new();
     orage_table_add_row(apptw->TableGeneral
             , apptw->Title_label, apptw->Title_entry
             , ++row, (GTK_EXPAND | GTK_FILL), (0));
 
+    /* location */
     apptw->Location_label = gtk_label_new(_("Location"));
     apptw->Location_entry = gtk_entry_new();
     orage_table_add_row(apptw->TableGeneral
             , apptw->Location_label, apptw->Location_entry
             , ++row, (GTK_EXPAND | GTK_FILL), (0));
 
+    /* All day */
     apptw->AllDay_checkbutton = 
             gtk_check_button_new_with_mnemonic(_("All day event"));
     orage_table_add_row(apptw->TableGeneral
             , NULL, apptw->AllDay_checkbutton
             , ++row, (GTK_EXPAND | GTK_FILL), (0));
 
+    /* start time */
     apptw->Start_label = gtk_label_new(_("Start"));
     apptw->StartDate_button = gtk_button_new();
     apptw->StartTime_spin_hh = gtk_spin_button_new_with_range(0, 23, 1);
@@ -1861,6 +1871,7 @@ g_signal_connect((gpointer) apptw->StartTime_spin_hh, "value-changed",
             G_CALLBACK(oc_set_height_changed), NULL);
 */
 
+    /* end time */
     apptw->End_label = gtk_label_new(_("End"));
     apptw->EndDate_button = gtk_button_new();
     apptw->EndTime_spin_hh = gtk_spin_button_new_with_range(0, 23, 1);
@@ -1875,6 +1886,7 @@ g_signal_connect((gpointer) apptw->StartTime_spin_hh, "value-changed",
             , apptw->End_label, apptw->EndTime_hbox
             , ++row, (GTK_SHRINK | GTK_FILL), (GTK_SHRINK | GTK_FILL));
 
+    /* duration */
     apptw->Dur_hbox = gtk_hbox_new(FALSE, 0);
     apptw->Dur_checkbutton = 
             gtk_check_button_new_with_mnemonic(_("Duration"));
@@ -1896,6 +1908,7 @@ g_signal_connect((gpointer) apptw->StartTime_spin_hh, "value-changed",
             , NULL, apptw->Dur_hbox
             , ++row, (GTK_FILL), (GTK_FILL));
     
+    /* Availability (only for EVENT) */
     apptw->Availability_label = gtk_label_new(_("Availability"));
     apptw->Availability_cb = gtk_combo_box_new_text();
     combo_box_append_array(apptw->Availability_cb
@@ -1904,6 +1917,7 @@ g_signal_connect((gpointer) apptw->StartTime_spin_hh, "value-changed",
             , apptw->Availability_label, apptw->Availability_cb
             , ++row, (GTK_FILL), (GTK_FILL));
     
+    /* completed (only for TODO) */
     apptw->Completed_label = gtk_label_new(_("Completed"));
     apptw->Completed_hbox = gtk_hbox_new(FALSE, 0);
     apptw->Completed_checkbutton = 
@@ -1927,6 +1941,7 @@ g_signal_connect((gpointer) apptw->StartTime_spin_hh, "value-changed",
             , apptw->Completed_label, apptw->Completed_hbox
             , ++row, (GTK_FILL), (GTK_FILL));
 
+    /* note */
     apptw->Note = gtk_label_new(_("Note"));
     apptw->Note_Scrolledwindow = gtk_scrolled_window_new(NULL, NULL);
     event =  gtk_event_box_new(); /* only needed for tooltips */
@@ -2382,6 +2397,7 @@ static void build_recurrence_page(appt_win *apptw)
 appt_win *create_appt_win(char *action, char *par, el_win *event_list)
 {
     appt_win *apptw;
+    GdkWindow *window;
 
     /*  initialisation + main window + base vbox */
     apptw = g_new(appt_win, 1);
@@ -2423,6 +2439,10 @@ appt_win *create_appt_win(char *action, char *par, el_win *event_list)
         recur_hide_show(apptw);
         type_hide_show(apptw);
         gtk_widget_grab_focus(apptw->Title_entry);
+        window = GTK_WIDGET(apptw->Window)->window;
+        gdk_x11_window_set_user_time(window, gdk_x11_get_server_time(window));
+        gtk_window_present(GTK_WINDOW(apptw->Window));
+
     }
     else { /* failed to get data */
         app_free_memory(apptw);

@@ -51,14 +51,9 @@
 
 gboolean orage_mark_appointments()
 {
-    guint year, month, day;
-
     if (!xfical_file_open(TRUE))
         return(FALSE);
-    gtk_calendar_get_date(GTK_CALENDAR(g_par.xfcal->mCalendar)
-            , &year, &month, &day);
-    xfical_mark_calendar(GTK_CALENDAR(g_par.xfcal->mCalendar)
-            , year, month+1); 
+    xfical_mark_calendar(GTK_CALENDAR(g_par.xfcal->mCalendar));
     xfical_file_close(TRUE);
     return(TRUE);
 }
@@ -301,15 +296,38 @@ static void add_info_row(xfical_appt *appt)
     GtkWidget *ev, *label;
     CalWin *cal = g_par.xfcal;
     gchar *tip;
+    struct tm *t;
+    char      *l_time, *s_time, *e_time, *c_time, *na;
+    gint  len;
+
 
     ev = gtk_event_box_new();
     label = gtk_label_new(appt->title);
     gtk_label_set_ellipsize(GTK_LABEL(label), PANGO_ELLIPSIZE_END);
+    t = orage_localtime();
+    l_time = orage_tm_time_to_icaltime(t);
+    if (appt->starttimecur[8] == 'T') /* date+time */
+        len = 15;
+    else /* date only */
+        len = 8;
+    if (strncmp(appt->endtimecur,  l_time, len) < 0) /* gone */
+        gtk_widget_modify_fg(label, GTK_STATE_NORMAL, &cal->mRed);
+    else if (strncmp(appt->starttimecur,  l_time, len) <= 0
+         &&  strncmp(appt->endtimecur,  l_time, len) >= 0)
+        gtk_widget_modify_fg(label, GTK_STATE_NORMAL, &cal->mBlue);
     gtk_container_add(GTK_CONTAINER(ev), label);
     gtk_box_pack_start(GTK_BOX(cal->mInfo_vbox), ev, FALSE, FALSE, 0);
-    tip = g_strdup_printf("%s\n%s-%s\n%s", appt->title, appt->starttimecur
-            , appt->endtimecur ,appt->note);
+    na = _("Not defined");
+    s_time = g_strdup(orage_icaltime_to_i18_time(appt->starttimecur));
+    e_time = g_strdup(orage_icaltime_to_i18_time(appt->endtimecur));
+    c_time = g_strdup(appt->completed
+            ? orage_icaltime_to_i18_time(appt->completedtime) : na);
+    tip = g_strdup_printf(_("Title: %s\n Start:\t%s\n Due:\t%s\n Done:\t%s\nNote:\n%s")
+            , appt->title, s_time, e_time, c_time, appt->note);
     gtk_tooltips_set_tip(cal->Tooltips, ev, tip, NULL);
+    g_free(s_time);
+    g_free(e_time);
+    g_free(c_time);
     g_free(tip);
     g_object_set_data_full(G_OBJECT(ev), "UID", g_strdup(appt->uid), g_free);
     g_signal_connect((gpointer)ev, "button-press-event"
@@ -317,7 +335,8 @@ static void add_info_row(xfical_appt *appt)
 
 }
 
-static void info_rows(char *a_day, xfical_type ical_type, gchar *file_type)
+static void insert_rows(GList **todo_list, char *a_day, xfical_type ical_type
+        , gchar *file_type)
 {
     xfical_appt *appt;
 
@@ -326,9 +345,27 @@ static void info_rows(char *a_day, xfical_type ical_type, gchar *file_type)
          appt;
          appt = xfical_appt_get_next_on_day(a_day, FALSE, 0
                 , ical_type , file_type)) {
-        add_info_row(appt);
-        xfical_appt_free(appt);
+        *todo_list = g_list_append(*todo_list, appt);
     }
+}
+
+static gint todo_order(gconstpointer a, gconstpointer b)
+{
+    xfical_appt *appt1, *appt2;
+
+    appt1 = (xfical_appt *)a;
+    appt2 = (xfical_appt *)b;
+
+    return(strcmp(appt1->starttimecur, appt2->starttimecur));
+}
+
+static void todo_process(gpointer a, gpointer dummy)
+{
+    xfical_appt *appt;
+
+    appt = (xfical_appt *)a;
+    add_info_row(appt);
+    xfical_appt_free(appt);
 }
 
 void build_mainbox_info(void)
@@ -340,7 +377,7 @@ void build_mainbox_info(void)
     xfical_type ical_type;
     gchar file_type[8];
     gint i;
-
+    GList *todo_list=NULL;
 
     gtk_widget_destroy(cal->mInfo_scrolledWin);
     cal->mInfo_scrolledWin = gtk_scrolled_window_new(NULL, NULL);
@@ -362,13 +399,19 @@ void build_mainbox_info(void)
     if (!xfical_file_open(TRUE))
         return;
     strcpy(file_type, "O00.");
-    info_rows(a_day, ical_type, file_type);
+    insert_rows(&todo_list, a_day, ical_type, file_type);
     /* then process all foreign files */
     for (i = 0; i < g_par.foreign_count; i++) {
         g_sprintf(file_type, "F%02d.", i);
-        info_rows(a_day, ical_type, file_type);
+        insert_rows(&todo_list, a_day, ical_type, file_type);
     }
     xfical_file_close(TRUE);
+    if (todo_list) {
+        todo_list = g_list_sort(todo_list, todo_order);
+        g_list_foreach(todo_list, (GFunc)todo_process, NULL);
+        g_list_free(todo_list);
+        todo_list = NULL;
+    }
 
     gtk_widget_show_all(cal->mInfo_scrolledWin);
 }
@@ -377,6 +420,13 @@ void build_mainWin()
 {
     GdkPixbuf *orage_logo;
     CalWin *cal = g_par.xfcal;
+    GdkColormap *pic1_cmap;
+
+    pic1_cmap = gdk_colormap_get_system();
+    gdk_color_parse("red", &cal->mRed);
+    gdk_colormap_alloc_color(pic1_cmap, &cal->mRed, FALSE, TRUE);
+    gdk_color_parse("blue", &cal->mBlue);
+    gdk_colormap_alloc_color(pic1_cmap, &cal->mBlue, FALSE, TRUE);
 
     /* using static icon here since this dynamic icon is not updated
      * when date changes. Could be added, but not worth it.

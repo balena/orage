@@ -52,6 +52,8 @@ typedef struct _CalWin
 
     GtkWidget *mInfo_scrolledWin;
     GtkWidget *mInfo_vbox;
+
+    GdkColor mRed, mBlue;
 } CalWin;
 
 void build_mainWin();

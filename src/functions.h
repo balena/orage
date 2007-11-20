@@ -68,11 +68,15 @@ void orage_select_today(GtkCalendar *cal);
 
 struct tm orage_i18_date_to_tm_date(const char *display);
 
+char *orage_tm_time_to_i18_time(struct tm *tm_date);
+
 char *orage_tm_date_to_i18_date(struct tm *tm_date);
 
 struct tm orage_icaltime_to_tm_time(const char *i18_date, gboolean real_tm);
 
 char *orage_tm_time_to_icaltime(struct tm *t);
+
+char *orage_icaltime_to_i18_time(const char *icaltime);
 
 char *orage_i18_date_to_icaltime(const char *i18_date);
 

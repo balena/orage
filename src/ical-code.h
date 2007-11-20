@@ -134,7 +134,7 @@ xfical_appt *xfical_appt_get_next_on_day(char *a_day, gboolean first, gint days
 xfical_appt *xfical_appt_get_next_with_string(char *str, gboolean first
         , gchar *file_type);
 
-void xfical_mark_calendar(GtkCalendar *gtkcal, int year, int month);
+void xfical_mark_calendar(GtkCalendar *gtkcal);
 
 void xfical_alarm_build_list(gboolean first_list_today);
 gboolean xfical_alarm_passed(char *alarm_stime);

@@ -944,13 +944,12 @@ static xfical_period get_period(icalcomponent *c)
         per.stime = convert_to_local_timezone(per.stime, p);
     }
     else {
-        g_warning(P_N "start time not found (%s)", icalcomponent_get_uid(c));
         per.stime = icaltime_null_time();
     } 
 
     /* Either endtime/duetime or duration may be there. 
      * But neither is required.
-     * VTODO may also have completed time
+     * VTODO may also have completed time but it does not have dtstart always
      */
     per.ikind = icalcomponent_isa(c);
     if (per.ikind == ICAL_VEVENT_COMPONENT)
@@ -1143,6 +1142,10 @@ int xfical_compare_times(xfical_appt *appt)
 #ifdef ORAGE_DEBUG
     g_print(P_N "\n");
 #endif
+    if (appt->allDay) { /* cut the string after Date: yyyymmdd */
+        appt->starttime[8] = '\0';
+        appt->endtime[8] = '\0';
+    }
     if (appt->use_duration) {
         if (! ORAGE_STR_EXISTS(appt->starttime)) {
             g_warning(P_N "null start time");
@@ -1173,7 +1176,7 @@ int xfical_compare_times(xfical_appt *appt)
 
             duration = icaltime_subtract(etime, stime);
             appt->duration = icaldurationtype_as_int(duration);
-            return (icaltime_compare(stime, etime));
+            return(icaltime_compare(stime, etime));
         }
         else {
             g_warning(P_N "null time %s %s"
@@ -1666,8 +1669,11 @@ static char *appt_add_internal(xfical_appt *appt, gboolean add, char *uid
     }
 
     if (appt->type != XFICAL_TYPE_JOURNAL) { 
-        /* journal has no duration nor enddate or due */
-        if (appt->use_duration) { /* both event and todo can have duration */
+        /* journal has no duration nor enddate or due 
+         * journal also has no priority or transparent setting
+         * journal also has not alarms or repeat settings */
+        if (appt->use_duration) { 
+            /* both event and todo can have duration */
             duration = icaldurationtype_from_int(appt->duration);
             icalcomponent_add_property(icmp
                     , icalproperty_new_duration(duration));
@@ -1710,6 +1716,7 @@ static char *appt_add_internal(xfical_appt *appt, gboolean add, char *uid
                             , icalproperty_new_due(wtime));
             }
         }
+
         if (appt->priority != 0)
             icalcomponent_add_property(icmp
                    , icalproperty_new_priority(appt->priority));
@@ -3039,7 +3046,7 @@ static xfical_appt *xfical_appt_get_next_on_day_internal(char *a_day
         , gchar *file_type)
 {
 #undef P_N
-#define P_N "xfical_appt_get_next_on_day: "
+#define P_N "xfical_appt_get_next_on_day_internal: "
     struct icaltimetype asdate, aedate    /* period to check */
             , nsdate, nedate;   /* repeating event occurrency start and end */
     xfical_period per; /* event start and end times with duration */
@@ -3090,11 +3097,10 @@ static xfical_appt *xfical_appt_get_next_on_day_internal(char *a_day
                 , icaltime_as_ical_string(per.ctime));
                 */
         if (type == XFICAL_TYPE_TODO) {
-            if (icaltime_is_null_time(per.ctime))
+            if (icaltime_is_null_time(per.ctime)
+            || local_compare(per.ctime, per.stime) <= 0)
             /* VTODO is never completed  */
-                date_found = TRUE;
-            else if (local_compare(per.ctime, per.stime) <= 0)
-            /* this is VTODO and it has completed before start, so
+            /* or it has completed before start, so
              * this one is not done and needs to be counted */
                 date_found = TRUE;
         }
@@ -3108,25 +3114,12 @@ static xfical_appt *xfical_appt_get_next_on_day_internal(char *a_day
                 , ICAL_RRULE_PROPERTY)) != 0) { /* check recurring */
             nsdate = icaltime_null_time();
             rrule = icalproperty_get_rrule(p);
-            /* FIXME:
-             * for soem VTODOs you do not want to start over regularly
-             * from the starttime, but actually from the latest completed
-             * time. This kind of VTODOs do not have startdate! */
-            /*
-            if (type == XFICAL_TYPE_TODO) {
-                if (!icaltime_is_null_time(per.ctime))
-                    ri = icalrecur_iterator_new(rrule, per.ctime);
-                else
-                    ri = icalrecur_iterator_new(rrule, per.stime);
-            }
-            else
-            */
-                ri = icalrecur_iterator_new(rrule, per.stime);
+            ri = icalrecur_iterator_new(rrule, per.stime);
             for (nsdate = icalrecur_iterator_next(ri),
                     nedate = icaltime_add(nsdate, per.duration);
                  !icaltime_is_null_time(nsdate)
                  && ((type == XFICAL_TYPE_TODO
-                        && local_compare(nsdate, per.ctime) < 0)
+                        && local_compare(nsdate, per.ctime) <= 0)
                      || (type != XFICAL_TYPE_TODO
                          && local_compare_date_only(nedate, asdate) < 0));
                  nsdate = icalrecur_iterator_next(ri),
@@ -3253,12 +3246,42 @@ xfical_appt *xfical_appt_get_next_on_day(char *a_day, gboolean first, gint days
 
 }
 
+static gboolean xfical_mark_calendar_days(GtkCalendar *gtkcal
+        , int cur_year, int cur_month
+        , int s_year, int s_month, int s_day
+        , int e_year, int e_month, int e_day)
+{
+    gint start_day, day_cnt, end_day;
+    gboolean marked = FALSE;
+
+    /*
+    g_print("\t***xfical_mark_calendar_days: marked=%d cur year=%d, cur mon=%d \n\t\tstart year=%d start mon=%d start day=%d end year=%d, end mon=%d, end day=%d\n", marked, cur_year,cur_month, s_year,s_month,s_day, e_year,e_month,e_day);
+    */
+    if ((s_year*12+s_month) <= (cur_year*12+cur_month)
+        && (cur_year*12+cur_month) <= (e_year*12+e_month)) {
+        /* event is in our year+month = visible in calendar */
+        if (s_year == cur_year && s_month == cur_month)
+            start_day = s_day;
+        else
+            start_day = 1;
+        if (e_year == cur_year && e_month == cur_month)
+            end_day = e_day;
+        else
+            end_day = 31;
+        for (day_cnt = start_day; day_cnt <= end_day; day_cnt++) {
+            gtk_calendar_mark_day(gtkcal, day_cnt);
+            marked = TRUE;
+        }
+    }
+    return(marked);
+}
+
  /* Mark days with appointments into calendar
   * year: Year to be searched
   * month: Month to be searched
   */
-void xfical_mark_calendar_internal(GtkCalendar *gtkcal, icalcomponent *base
-        , int year, int month)
+static void xfical_mark_calendar_internal(GtkCalendar *gtkcal
+        , icalcomponent *base, int year, int month)
 {
 #undef P_N
 #define P_N "xfical_mark_calendar_internal: "
@@ -3269,32 +3292,21 @@ void xfical_mark_calendar_internal(GtkCalendar *gtkcal, icalcomponent *base
     icalrecur_iterator* ri;
     icalproperty *p = NULL;
     gint start_day, day_cnt, end_day;
+    gboolean marked;
 
 #ifdef ORAGE_DEBUG
     g_print(P_N "\n");
 #endif
+    /*
     for (c = icalcomponent_get_first_component(base, ICAL_VEVENT_COMPONENT);
          c != 0;
          c = icalcomponent_get_next_component(base, ICAL_VEVENT_COMPONENT)) {
         per = get_period(c);
-        if ((per.stime.year*12+per.stime.month) <= (year*12+month)
-                && (year*12+month) <= (per.etime.year*12+per.etime.month)) {
-                /* event is in our year+month = visible in calendar */
-            if (per.stime.year == year && per.stime.month == month)
-                start_day = per.stime.day;
-            else
-                start_day = 1;
-            if (per.etime.year == year && per.etime.month == month)
-                end_day = per.etime.day;
-            else
-                end_day = 31;
-            for (day_cnt = start_day; day_cnt <= end_day; day_cnt++)
-            {
-                gtk_calendar_mark_day(gtkcal, day_cnt);
-            }
-        }
+        xfical_mark_calendar_days(gtkcal, year, month
+                , per.stime.year, per.stime.month, per.stime.day
+                , per.etime.year, per.etime.month, per.etime.day);
         if ((p = icalcomponent_get_first_property(c
-                , ICAL_RRULE_PROPERTY)) != 0) { /* check recurring EVENTs */
+                , ICAL_RRULE_PROPERTY)) != 0) {
             nsdate = icaltime_null_time();
             rrule = icalproperty_get_rrule(p);
             ri = icalrecur_iterator_new(rrule, per.stime);
@@ -3304,41 +3316,94 @@ void xfical_mark_calendar_internal(GtkCalendar *gtkcal, icalcomponent *base
                     && (nsdate.year*12+nsdate.month) <= (year*12+month);
                  nsdate = icalrecur_iterator_next(ri),
                     nedate = icaltime_add(nsdate, per.duration)) {
-                if ((nsdate.year*12+nsdate.month) <= (year*12+month)
-                    && (year*12+month) <= (nedate.year*12+nedate.month)) {
-                    /* event is in our year+month = visible in calendar */
-                    if (nsdate.year == year && nsdate.month == month)
-                        start_day = nsdate.day;
-                    else
-                        start_day = 1;
-                    if (nedate.year == year && nedate.month == month)
-                        end_day = nedate.day;
-                    else
-                        end_day = 31;
-                    for (day_cnt = start_day; day_cnt <= end_day; day_cnt++)
-                    {
-                        gtk_calendar_mark_day(gtkcal, day_cnt);
-                    }
-                }
+                xfical_mark_calendar_days(gtkcal, year, month
+                        , nsdate.year, nsdate.month, nsdate.day
+                        , nedate.year, nedate.month, nedate.day);
             }
             icalrecur_iterator_free(ri);
         } 
     } 
+    */
+    /* Note that all VEVENTS are marked, but only the first VTODO
+     * end date is marked */
+    for (c = icalcomponent_get_first_component(base, ICAL_ANY_COMPONENT);
+         c != 0;
+         c = icalcomponent_get_next_component(base, ICAL_ANY_COMPONENT)) {
+        per = get_period(c);
+        if (per.ikind == ICAL_VEVENT_COMPONENT && 0 == 1) {
+            xfical_mark_calendar_days(gtkcal, year, month
+                    , per.stime.year, per.stime.month, per.stime.day
+                    , per.etime.year, per.etime.month, per.etime.day);
+            if ((p = icalcomponent_get_first_property(c
+                    , ICAL_RRULE_PROPERTY)) != 0) { /* check recurring EVENTs */
+                nsdate = icaltime_null_time();
+                rrule = icalproperty_get_rrule(p);
+                ri = icalrecur_iterator_new(rrule, per.stime);
+                for (nsdate = icalrecur_iterator_next(ri),
+                        nedate = icaltime_add(nsdate, per.duration);
+                     !icaltime_is_null_time(nsdate)
+                        && (nsdate.year*12+nsdate.month) <= (year*12+month);
+                     nsdate = icalrecur_iterator_next(ri),
+                        nedate = icaltime_add(nsdate, per.duration)) {
+                    xfical_mark_calendar_days(gtkcal, year, month
+                            , nsdate.year, nsdate.month, nsdate.day
+                            , nedate.year, nedate.month, nedate.day);
+                }
+                icalrecur_iterator_free(ri);
+            } 
+        } /* ICAL_VEVENT_COMPONENT */
+        else if (per.ikind == ICAL_VTODO_COMPONENT) {
+            marked = FALSE;
+            if (icaltime_is_null_time(per.ctime)
+            || (local_compare(per.ctime, per.stime) <= 0)) {
+                /* VTODO needs to be checked either if it never completed 
+                 * or it has completed before start */
+                marked = xfical_mark_calendar_days(gtkcal, year, month
+                        , per.etime.year, per.etime.month, per.etime.day
+                        , per.etime.year, per.etime.month, per.etime.day);
+            }
+            if (!marked && (p = icalcomponent_get_first_property(c
+                    , ICAL_RRULE_PROPERTY)) != 0) { 
+                /* check recurring TODOs */
+                nsdate = icaltime_null_time();
+                rrule = icalproperty_get_rrule(p);
+                ri = icalrecur_iterator_new(rrule, per.stime);
+                for (nsdate = icalrecur_iterator_next(ri),
+                        nedate = icaltime_add(nsdate, per.duration);
+                     !icaltime_is_null_time(nsdate)
+                        && (nsdate.year*12+nsdate.month) <= (year*12+month)
+                        && (local_compare(nsdate, per.ctime) < 0);
+                     nsdate = icalrecur_iterator_next(ri),
+                        nedate = icaltime_add(nsdate, per.duration)) {
+                    /* find the active one like in 
+                     * xfical_appt_get_next_on_day_internal */
+                }
+                icalrecur_iterator_free(ri);
+                if (!icaltime_is_null_time(nsdate)) {
+                    marked = xfical_mark_calendar_days(gtkcal, year, month
+                            , nedate.year, nedate.month, nedate.day
+                            , nedate.year, nedate.month, nedate.day);
+                }
+            } 
+        } /* ICAL_VTODO_COMPONENT */
+    } 
 }
 
-void xfical_mark_calendar(GtkCalendar *gtkcal, int year, int month)
+void xfical_mark_calendar(GtkCalendar *gtkcal)
 {
 #undef P_N
 #define P_N "xfical_mark_calendar: "
     gint i;
+    guint year, month, day;
 
 #ifdef ORAGE_DEBUG
     g_print(P_N "\n");
 #endif
+    gtk_calendar_get_date(gtkcal, &year, &month, &day);
     gtk_calendar_clear_marks(gtkcal);
-    xfical_mark_calendar_internal(gtkcal, ical, year, month);
+    xfical_mark_calendar_internal(gtkcal, ical, year, month+1);
     for (i = 0; i < g_par.foreign_count; i++) {
-        xfical_mark_calendar_internal(gtkcal, f_ical[i].ical, year, month);
+        xfical_mark_calendar_internal(gtkcal, f_ical[i].ical, year, month+1);
     }
 }
 
@@ -3591,7 +3656,7 @@ gboolean xfical_archive(void)
             if (per.ikind == ICAL_VTODO_COMPONENT 
                 && ((per.ctime.year*12 + per.ctime.month) 
                     < (per.stime.year*12 + per.stime.month))) {
-                /* VTODO not com,pleted, do not archive */
+                /* VTODO not completed, do not archive */
                 orage_message(_("\tVTODO not complete; not archived"));
             }
             else {

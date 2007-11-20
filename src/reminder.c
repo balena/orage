@@ -114,6 +114,7 @@ static gboolean sound_alarm(gpointer data)
             create_notify_reminder(alarm);
         }
 #endif
+        alarm->audio = FALSE;
         alarm_free_memory(alarm);
         status = FALSE; /* no more alarms, end timeouts */
     }
@@ -150,7 +151,16 @@ static void notify_action_open(NotifyNotification *n, const char *action
 {
     alarm_struct *alarm = (alarm_struct *)par;
 
+    /* This causes core if notify is the last alarm, because libnotify
+     * closes the notification and hence raises notify_closed, which
+     * frees the memory. If we want to keep notification visible, we
+     * need to handle this somehow. For example let notify_closed know
+     * that there will be new notification and memory must not be freed.
+     * Or by allocating memory here again, which must not be done if there
+     * are more alarms active. Fro now just remove the line and let notify
+     * window go away like libnotify wants.
     create_notify_reminder(alarm);
+    */
     create_appt_win("UPDATE", alarm->uid->str, NULL);
 }
 
