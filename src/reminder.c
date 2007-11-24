@@ -61,6 +61,9 @@ gboolean orage_tooltip_update(gpointer user_data);
 
 static void alarm_free_memory(alarm_struct *alarm)
 {
+    /*
+    g_print("alarm_free_memory: start %d %d\n",  alarm->audio, alarm->display_notify);
+    */
     if (!alarm->display_orage && !alarm->display_notify)
         /* if both visuals are gone we can't stop audio anymore, so stop it 
          * now before it is too late */
@@ -76,7 +79,25 @@ static void alarm_free_memory(alarm_struct *alarm)
             g_string_free(alarm->sound, TRUE);
         g_free(alarm->active_alarm);
         g_free(alarm);
+        /*
+    g_print("alarm_free_memory: freed %d %d\n",  alarm->audio, alarm->display_notify);
+    */
     }
+}
+
+static void notify_action_open(NotifyNotification *n, const char *action
+        , gpointer par)
+{
+    alarm_struct *alarm = (alarm_struct *)par;
+
+    /* 
+     * These two lines wuold keep notify window active and make it possible
+     * to start several times the appointment or start it and still be 
+     * able to control sound. Not sure if they should be there or not.
+    alarm->notify_refresh = TRUE;
+    create_notify_reminder(alarm);
+    */
+    create_appt_win("UPDATE", alarm->uid->str, NULL);
 }
 
 static gboolean sound_alarm(gpointer data)
@@ -106,10 +127,12 @@ static gboolean sound_alarm(gpointer data)
             gtk_widget_set_sensitive(GTK_WIDGET(stop), FALSE);
         }
 #ifdef HAVE_NOTIFY
-        if (alarm->display_notify) {
+        if (alarm->display_notify
+        &&  alarm->active_alarm->notify_stop_noise_action) {
             /* We need to remove the silence button from notify window.
              * This is not nice method, but it is not possible to access
              * the timeout so we just need to start it from all over */
+            alarm->notify_refresh = TRUE;
             notify_notification_close(alarm->active_alarm->active_notify, NULL);
             create_notify_reminder(alarm);
         }
@@ -142,26 +165,18 @@ static void notify_closed(NotifyNotification *n, gpointer par)
 {
     alarm_struct *alarm = (alarm_struct *)par;
 
-    alarm->display_notify = FALSE; /* I am gone */
-    alarm_free_memory(alarm);
-}
-
-static void notify_action_open(NotifyNotification *n, const char *action
-        , gpointer par)
-{
-    alarm_struct *alarm = (alarm_struct *)par;
-
-    /* This causes core if notify is the last alarm, because libnotify
-     * closes the notification and hence raises notify_closed, which
-     * frees the memory. If we want to keep notification visible, we
-     * need to handle this somehow. For example let notify_closed know
-     * that there will be new notification and memory must not be freed.
-     * Or by allocating memory here again, which must not be done if there
-     * are more alarms active. Fro now just remove the line and let notify
-     * window go away like libnotify wants.
-    create_notify_reminder(alarm);
+    /*
+    g_print("notify_closed: start %d %d\n",  alarm->audio, alarm->display_notify);
     */
-    create_appt_win("UPDATE", alarm->uid->str, NULL);
+    if (alarm->notify_refresh) {
+        /* this is not really closing notify, but only a refresh, so
+         * we do not clean the memory now */
+        alarm->notify_refresh = FALSE;
+    }
+    else {
+        alarm->display_notify = FALSE; /* I am gone */
+        alarm_free_memory(alarm);
+    }
 }
 
 static void notify_action_silence(NotifyNotification *n, const char *action
@@ -169,8 +184,15 @@ static void notify_action_silence(NotifyNotification *n, const char *action
 {
     alarm_struct *alarm = (alarm_struct *)par;
 
+    /*
+    g_print("notify_action_silence: start %d %d\n",  alarm->audio, alarm->display_notify);
+    */
+    alarm->notify_refresh = TRUE;
     alarm->repeat_cnt = 0;
     create_notify_reminder(alarm);
+    /*
+    g_print("notify_action_silence: end %d %d\n",  alarm->audio, alarm->display_notify);
+    */
 }
 #endif
 
@@ -206,6 +228,7 @@ void create_notify_reminder(alarm_struct *alarm)
         notify_notification_add_action(n, "stop", "Silence"
                 , (NotifyActionCallback)notify_action_silence
                 , alarm, NULL);
+        alarm->active_alarm->notify_stop_noise_action = TRUE;
     }
     (void)g_signal_connect(G_OBJECT(n), "closed"
            , G_CALLBACK(notify_closed), alarm);

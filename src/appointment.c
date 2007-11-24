@@ -2056,11 +2056,25 @@ static void build_alarm_page(appt_win *apptw)
     gtk_container_add(GTK_CONTAINER(event), apptw->Alarm_when_cb);
     gtk_box_pack_start(GTK_BOX(apptw->Alarm_hbox)
             , event, FALSE, FALSE, 0);
+
     orage_table_add_row(apptw->TableAlarm
             , apptw->Alarm_label, apptw->Alarm_hbox
             , row = 0, (GTK_FILL), (GTK_FILL));
     gtk_tooltips_set_tip(apptw->Tooltips, event
             , _("Often you want to get alarm:\n 1) before Event start\n 2) before Todo end\n 3) after Todo start"), NULL);
+
+    /***** Persistent Alarm *****/
+    apptw->Per_hbox = gtk_hbox_new(FALSE, 6);
+    apptw->Per_checkbutton = 
+            gtk_check_button_new_with_mnemonic(_("Persistent alarm"));
+    gtk_tooltips_set_tip(apptw->Tooltips, apptw->Per_checkbutton
+            , _("Select this if you want Orage to remind you even if it has not been active when the alarm happened."), NULL);
+    gtk_box_pack_start(GTK_BOX(apptw->Per_hbox), apptw->Per_checkbutton
+            , FALSE, TRUE, 0);
+
+    orage_table_add_row(apptw->TableAlarm
+            , NULL, apptw->Per_hbox
+            , ++row, (GTK_FILL), (GTK_FILL));
 
     /***** Audio Alarm *****/
     apptw->Sound_label = gtk_label_new(_("Sound"));

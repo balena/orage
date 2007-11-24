@@ -136,6 +136,8 @@ typedef struct _appt_win
     GtkWidget *Proc_hbox;
     GtkWidget *Proc_checkbutton;
     GtkWidget *Proc_entry;
+    GtkWidget *Per_hbox;
+    GtkWidget *Per_checkbutton;
 
     GtkWidget *Recur_notebook_page;
     GtkWidget *Recur_tab_label;

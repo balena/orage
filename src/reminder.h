@@ -30,6 +30,7 @@ typedef struct _active_alarm_struct
     GtkWidget *stop_noise_reminder;
     gpointer active_notify; /* this is NotifyNotification, but it may not be
                                linked in, so need to be done like this */
+    gboolean notify_stop_noise_action;
 } active_alarm_struct;
 
 typedef struct _alarm_struct
@@ -38,9 +39,11 @@ typedef struct _alarm_struct
     GString *uid;
     GString *title;
     GString *description;
+    gboolean persistent;
 
     gboolean display_orage;
     gboolean display_notify;
+    gboolean notify_refresh;
     gint     notify_timeout;
 
     gboolean audio;

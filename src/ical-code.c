@@ -2750,13 +2750,24 @@ static  alarm_struct *process_alarm_trigger(icalcomponent *c
     if (icaltime_is_date(per.stime)) { 
 /* HACK: convert to local time so that we can use time arithmetic
  * when counting alarm time. */
-        per.stime.is_date       = 0;
-        per.stime.is_utc        = cur_time.is_utc;
-        per.stime.is_daylight   = cur_time.is_daylight;
-        per.stime.zone          = cur_time.zone;
-        per.stime.hour          = 0;
-        per.stime.minute        = 0;
-        per.stime.second        = 0;
+        if (rel == ICAL_RELATED_START) {
+            per.stime.is_date       = 0;
+            per.stime.is_utc        = cur_time.is_utc;
+            per.stime.is_daylight   = cur_time.is_daylight;
+            per.stime.zone          = cur_time.zone;
+            per.stime.hour          = 0;
+            per.stime.minute        = 0;
+            per.stime.second        = 0;
+        }
+        else {
+            per.etime.is_date       = 0;
+            per.etime.is_utc        = cur_time.is_utc;
+            per.etime.is_daylight   = cur_time.is_daylight;
+            per.etime.zone          = cur_time.zone;
+            per.etime.hour          = 0;
+            per.etime.minute        = 0;
+            per.etime.second        = 0;
+        }
     }
     if (rel == ICAL_RELATED_END)
         alarm_time = icaltime_add(per.etime, trg.duration);
@@ -2796,7 +2807,7 @@ static void process_alarm_data(icalcomponent *ca, alarm_struct *new_alarm)
 #define P_N "process_alarm_data: "
     xfical_appt *appt;
     /*
-    icalproperty *p;
+    icalproperty *p;:
     enum icalproperty_action act;
     icalattach *attach = NULL;
     struct icaldurationtype duration;

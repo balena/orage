@@ -83,6 +83,7 @@ typedef struct _xfical_appt
     gboolean alarm_before; /* TRUE = before FALSE = after */
         /* TRUE = related to start FALSE= related to end */
     gboolean alarm_related_start; 
+    gboolean alarm_persistent;  /* do this alarm even if orage has been down */
 
     gboolean sound_alarm;
     gchar *sound;
