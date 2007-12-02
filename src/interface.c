@@ -24,6 +24,10 @@
 #ifdef HAVE_CONFIG_H
 #  include <config.h>
 #endif
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <stdio.h>
 #include <string.h>
 #include <time.h>
 #include <errno.h>
@@ -43,7 +47,7 @@
 #include "parameters.h"
 
 #define FILETYPE_SIZE 2
-
+#define ORAGE_PERSISTENT_ALARMS "orage_persistent_alarms.txt"
 
 /*
 enum {
@@ -79,6 +83,28 @@ static gboolean interface_lock = FALSE;
 
 
 static void refresh_foreign_files(intf_win *intf_w, gboolean first);
+
+int orage_persistent_file_open(gboolean write)
+{
+    int p_file;
+    char *file_name;
+
+    file_name = xfce_resource_save_location(XFCE_RESOURCE_DATA
+            , ORAGE_DIR ORAGE_PERSISTENT_ALARMS, TRUE);
+    if (!file_name) {
+        g_warning("orage_persistent_file_open: Persistent alarms filename build failed, alarms not saved (%s)\n", file_name);
+        return(-1);
+    }
+    if (write)
+        p_file = g_open(file_name, O_WRONLY|O_CREAT|O_APPEND|O_TRUNC
+                , S_IRUSR|S_IWUSR);
+    else
+        p_file = g_open(file_name, O_RDONLY|O_CREAT, S_IRUSR|S_IWUSR);
+    g_free(file_name);
+    if (p_file == -1) 
+        g_warning("orage_persistent_file_open: Persistent alarms file open failed, alarms not saved (%s)\n", file_name);
+    return(p_file);
+}
 
 gboolean orage_foreign_files_check(gpointer user_data)
 {

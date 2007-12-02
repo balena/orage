@@ -36,9 +36,9 @@ typedef struct _active_alarm_struct
 typedef struct _alarm_struct
 {
     gchar   *alarm_time;
-    GString *uid;
-    GString *title;
-    GString *description;
+    gchar   *uid;
+    gchar   *title;
+    gchar   *description;
     gboolean persistent;
 
     gboolean display_orage;
@@ -47,12 +47,12 @@ typedef struct _alarm_struct
     gint     notify_timeout;
 
     gboolean audio;
-    GString *sound;
+    gchar   *sound;
     gint     repeat_cnt;
     gint     repeat_delay;
 
     gboolean procedure;
-    GString *cmd;
+    gchar   *cmd;
     /*
     gboolean email;
     */
@@ -62,5 +62,6 @@ typedef struct _alarm_struct
 
 gboolean orage_day_change(gpointer user_data);
 gboolean setup_orage_alarm_clock(void);
+void alarm_read();
 
 #endif /* !__REMINDER_H__ */

@@ -111,6 +111,8 @@ typedef struct _appt_win
     GtkWidget *Alarm_spin_mm;
     GtkWidget *Alarm_spin_mm_label;
     GtkWidget *Alarm_when_cb;
+    GtkWidget *Per_hbox;
+    GtkWidget *Per_checkbutton;
     GtkWidget *Sound_label;
     GtkWidget *Sound_hbox;
     GtkWidget *Sound_checkbutton;
@@ -136,8 +138,6 @@ typedef struct _appt_win
     GtkWidget *Proc_hbox;
     GtkWidget *Proc_checkbutton;
     GtkWidget *Proc_entry;
-    GtkWidget *Per_hbox;
-    GtkWidget *Per_checkbutton;
 
     GtkWidget *Recur_notebook_page;
     GtkWidget *Recur_tab_label;

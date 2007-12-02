@@ -44,6 +44,7 @@ typedef enum
 
 typedef struct _xfical_appt
 {
+    xfical_type type;
     /* note that version 4.5.9 changed uid format.
      * new format starts with 3 char source id (plus separator '.'), 
      * which tells the file where the id is found:
@@ -52,8 +53,6 @@ typedef struct _xfical_appt
      * "F10." = Foreign file number 10
      */
     gchar *uid; 
-
-    xfical_type type;
     gchar *title;
     gchar *location;
 

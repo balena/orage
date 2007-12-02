@@ -488,6 +488,7 @@ int main(int argc, char *argv[])
     */
     mCalendar_month_changed_cb(g_par.xfcal->mCalendar, NULL);
     g_par.day_timer = 0;
+    alarm_read();
     orage_day_change(NULL); /* first day change after we start */
 
     /* start monitoring foreign file updates if we have foreign files */

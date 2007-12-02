@@ -57,7 +57,29 @@
 void create_notify_reminder(alarm_struct *alarm);
 gboolean orage_alarm_clock(gpointer user_data);
 gboolean orage_tooltip_update(gpointer user_data);
+void create_reminders(alarm_struct *alarm);
 
+/* this is almost the same than in ical-code.c.
+ * Perhaps these can be combined */
+static void alarm_free(alarm_struct *alarm)
+{
+#undef P_N
+#define P_N "alarm_free: "
+
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
+    g_free(alarm->uid);
+    if (alarm->title != NULL)
+        g_free(alarm->title);
+    if (alarm->description != NULL)
+        g_free(alarm->description);
+    if (alarm->sound != NULL)
+        g_free(alarm->sound);
+    if (alarm->cmd != NULL)
+        g_free(alarm->cmd);
+    g_free(alarm);
+}
 
 static void alarm_free_memory(alarm_struct *alarm)
 {
@@ -70,19 +92,246 @@ static void alarm_free_memory(alarm_struct *alarm)
         alarm->repeat_cnt = 0;
     if (!alarm->display_orage && !alarm->display_notify && !alarm->audio) {
         /* all gone, need to clean memory */
-        g_string_free(alarm->uid, TRUE);
+        alarm_free(alarm);
+/*
+        g_free(alarm->uid);
         if (alarm->title != NULL)
-            g_string_free(alarm->title, TRUE);
+            g_free(alarm->title);
         if (alarm->description != NULL)
-            g_string_free(alarm->description, TRUE);
+            g_free(alarm->description);
         if (alarm->sound != NULL)
-            g_string_free(alarm->sound, TRUE);
+            g_free(alarm->sound);
         g_free(alarm->active_alarm);
         g_free(alarm);
+*/
         /*
     g_print("alarm_free_memory: freed %d %d\n",  alarm->audio, alarm->display_notify);
     */
     }
+}
+
+static gboolean alarm_read_next_value(int p_file, char *buf)
+{
+#undef P_N
+#define P_N "alarm_read_next_value: "
+    int len;
+
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
+    if (read(p_file, buf, 3) == 0)
+        return(FALSE);
+    buf[3] = '\0';
+/*    g_print(P_N "read cnt %s\n", buf); */
+    len = atoi(buf);
+/*    g_print(P_N "read len %d\n", len); */
+    for (read(p_file, buf, 1); buf[0] != '='; read(p_file, buf, 1))
+        ; /* skip until =, which starts the value */
+    read(p_file, buf, len);
+    buf[len] = '\0';
+/*    g_print(P_N "read data %s\n", buf); */
+    lseek(p_file, 1, SEEK_CUR); /* skip new line */
+    return(TRUE);
+}
+
+static gboolean alarm_read_boolean(char *buf)
+{
+    if (!strncmp(buf, "TRUE", 4))
+        return(TRUE);
+    else
+        return(FALSE);
+}
+
+static alarm_struct *alarm_read_next_alarm(int p_file, char *buf)
+{
+#undef P_N
+#define P_N "alarm_read_next_alarm: "
+    alarm_struct *new_alarm;
+
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
+
+    /* We trust here that the order is the same than what we used in writing */
+    if (!alarm_read_next_value(p_file, buf))
+        return(NULL);
+    new_alarm = g_new0(alarm_struct, 1);
+
+    new_alarm->alarm_time = strdup(buf);
+
+    alarm_read_next_value(p_file, buf);
+    new_alarm->uid = strdup(buf);
+
+    alarm_read_next_value(p_file, buf);
+    new_alarm->title = strdup(buf);
+
+    alarm_read_next_value(p_file, buf);
+    new_alarm->description = strdup(buf);
+
+    alarm_read_next_value(p_file, buf);
+    new_alarm->persistent = TRUE; /* this must be */
+
+    alarm_read_next_value(p_file, buf);
+    new_alarm->display_orage = alarm_read_boolean(buf);
+
+    alarm_read_next_value(p_file, buf);
+    new_alarm->display_notify = alarm_read_boolean(buf);
+
+    alarm_read_next_value(p_file, buf);
+    new_alarm->notify_refresh = alarm_read_boolean(buf);
+
+    alarm_read_next_value(p_file, buf);
+    new_alarm->notify_timeout = atoi(buf);
+
+    alarm_read_next_value(p_file, buf);
+    new_alarm->audio = alarm_read_boolean(buf);
+
+    alarm_read_next_value(p_file, buf);
+    new_alarm->sound = strdup(buf);
+
+    alarm_read_next_value(p_file, buf);
+    new_alarm->repeat_cnt = atoi(buf);
+
+    alarm_read_next_value(p_file, buf);
+    new_alarm->repeat_delay = atoi(buf);
+
+    alarm_read_next_value(p_file, buf);
+    new_alarm->procedure = alarm_read_boolean(buf);
+
+    alarm_read_next_value(p_file, buf);
+    new_alarm->cmd = strdup(buf);
+    return(new_alarm);
+}
+
+void alarm_read()
+{
+#undef P_N
+#define P_N "alarm_read: "
+    int p_file;
+    char buf[1000];
+    alarm_struct *new_alarm;
+    struct tm *t;
+    gchar *time_now;
+
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
+
+    if ((p_file = orage_persistent_file_open(FALSE)) == -1)
+        return;
+    t = orage_localtime();
+    time_now = orage_tm_time_to_icaltime(t);
+    for (new_alarm = alarm_read_next_alarm(p_file, buf);
+            new_alarm;
+            new_alarm = alarm_read_next_alarm(p_file, buf)) {
+        if (strcmp(time_now, new_alarm->alarm_time) > 0) {
+            create_reminders(new_alarm);
+            alarm_free(new_alarm);
+        }
+    }
+    close(p_file);
+}
+
+static void alarm_store(gpointer galarm, gpointer gfile)
+{
+#undef P_N
+#define P_N "alarm_store: "
+    alarm_struct *alarm = (alarm_struct *)galarm;
+    int file = (int)gfile;
+    char buf[1000], *s_boolean, s_num[20];
+
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
+    if (!alarm->persistent)
+        return; /* only store persistent alarms */
+
+    g_sprintf(buf, "%03dALARM_TIME=%s\n"
+            , strlen(alarm->alarm_time), alarm->alarm_time);
+    write(file, buf, strlen(buf));
+
+    g_snprintf(buf, 999, "%03dUID=%s\n"
+            , strlen(alarm->uid), alarm->uid);
+    write(file, buf, strlen(buf));
+
+    g_snprintf(buf, 999, "%03dTITLE=%s\n"
+            , strlen(alarm->title), alarm->title);
+    write(file, buf, strlen(buf));
+
+    g_snprintf(buf, 999, "%03dDESCRIPTION=%s\n"
+            , strlen(alarm->description), alarm->description);
+    write(file, buf, strlen(buf));
+
+    /* this is TRUE since we are here */
+    g_sprintf(buf, "%03dPERSISTENT=%s\n", strlen("TRUE"), "TRUE");
+    write(file, buf, strlen(buf));
+
+    /*
+ *     if (alarm->display_orage)
+ *             s_boolean="TRUE";
+ *                 else
+ *                         s_boolean="FALSE";
+ *                             */
+    s_boolean = alarm->display_orage ? "TRUE" : "FALSE";
+    g_sprintf(buf, "%03dDISPLAY_ORAGE=%s\n", strlen(s_boolean), s_boolean);
+    write(file, buf, strlen(buf));
+
+    s_boolean = alarm->display_notify ? "TRUE" : "FALSE";
+    g_sprintf(buf, "%03dDISPLAY_NOTIFY=%s\n", strlen(s_boolean), s_boolean);
+    write(file, buf, strlen(buf));
+
+    s_boolean = alarm->notify_refresh ? "TRUE" : "FALSE";
+    g_sprintf(buf, "%03dNOTIFY_REFRESH=%s\n", strlen(s_boolean), s_boolean);
+    write(file, buf, strlen(buf));
+
+    g_sprintf(s_num, "%d", alarm->notify_timeout);
+    g_sprintf(buf, "%03dNOTIFY_TIMEOUT=%s\n", strlen(s_num), s_num);
+    write(file, buf, strlen(buf));
+
+    s_boolean = alarm->audio ? "TRUE" : "FALSE";
+    g_sprintf(buf, "%03dAUDIO=%s\n", strlen(s_boolean), s_boolean);
+    write(file, buf, strlen(buf));
+
+    if (alarm->audio)
+        g_snprintf(buf, 999, "%03dSOUND=%s\n"
+                , strlen(alarm->sound), alarm->sound);
+    else
+        g_sprintf(buf, "000SOUND=\n");
+    write(file, buf, strlen(buf));
+
+    g_sprintf(s_num, "%d", alarm->repeat_cnt);
+    g_sprintf(buf, "%03dREPEAT_CNT=%s\n", strlen(s_num), s_num);
+    write(file, buf, strlen(buf));
+
+    g_sprintf(s_num, "%d", alarm->repeat_delay);
+    g_sprintf(buf, "%03dREPEAT_DELAY=%s\n", strlen(s_num), s_num);
+    write(file, buf, strlen(buf));
+
+    s_boolean = alarm->procedure ? "TRUE" : "FALSE";
+    g_sprintf(buf, "%03dPROCEDURE=%s\n", strlen(s_boolean), s_boolean);
+    write(file, buf, strlen(buf));
+
+    if (alarm->procedure)
+        g_snprintf(buf, 999, "%03dCMD=%s\n"
+                , strlen(alarm->cmd), alarm->cmd);
+    else
+        g_sprintf(buf, "000CMD=\n");
+    write(file, buf, strlen(buf));
+}
+
+static void store_persistent_alarms()
+{
+#undef P_N
+#define P_N "store_persistent_alarms: "
+    int p_file;
+
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
+    if ((p_file = orage_persistent_file_open(TRUE)) == -1)
+        return;
+    g_list_foreach(g_par.alarm_list, alarm_store, (gpointer)p_file);
+    close(p_file);
 }
 
 static void notify_action_open(NotifyNotification *n, const char *action
@@ -97,7 +346,7 @@ static void notify_action_open(NotifyNotification *n, const char *action
     alarm->notify_refresh = TRUE;
     create_notify_reminder(alarm);
     */
-    create_appt_win("UPDATE", alarm->uid->str, NULL);
+    create_appt_win("UPDATE", alarm->uid, NULL);
 }
 
 static gboolean sound_alarm(gpointer data)
@@ -112,10 +361,10 @@ static gboolean sound_alarm(gpointer data)
         if (alarm->active_alarm->sound_active) {
             return(TRUE);
         }
-        status = orage_exec(alarm->sound->str
+        status = orage_exec(alarm->sound
                 , &alarm->active_alarm->sound_active, &error);
         if (!status) {
-            g_warning("reminder: play failed (%s)", alarm->sound->str);
+            g_warning("reminder: play failed (%s)", alarm->sound);
             alarm->repeat_cnt = 0; /* one warning is enough */
         }
         else if (alarm->repeat_cnt > 0)
@@ -147,9 +396,12 @@ static gboolean sound_alarm(gpointer data)
 
 static void create_sound_reminder(alarm_struct *alarm)
 {
+    /* done in initialisation 
     g_string_prepend(alarm->sound, " \"");
     g_string_prepend(alarm->sound, g_par.sound_application);
     g_string_append(alarm->sound, "\"");
+    */
+
     alarm->active_alarm->sound_active = FALSE;
     if (alarm->repeat_cnt == 0) {
         alarm->repeat_cnt++; /* need to do it once */
@@ -208,8 +460,8 @@ void create_notify_reminder(alarm_struct *alarm)
     }
 
     strncpy(heading,  _("Reminder "), 199);
-    strncat(heading, alarm->title->str, 50);
-    n = notify_notification_new(heading, alarm->description->str, NULL, NULL);
+    strncat(heading, alarm->title, 50);
+    n = notify_notification_new(heading, alarm->description, NULL, NULL);
     alarm->active_alarm->active_notify = n;
     if (g_par.trayIcon && NETK_IS_TRAY_ICON(g_par.trayIcon->tray)) 
         notify_notification_attach_to_widget(n, g_par.trayIcon->image);
@@ -269,7 +521,7 @@ static void on_btOpenReminder_clicked(GtkButton *button, gpointer user_data)
 {
     alarm_struct *alarm = (alarm_struct *)user_data;
 
-    create_appt_win("UPDATE", alarm->uid->str, NULL);
+    create_appt_win("UPDATE", alarm->uid, NULL);
 }
 
 static void create_orage_reminder(alarm_struct *alarm)
@@ -294,7 +546,7 @@ static void create_orage_reminder(alarm_struct *alarm)
 
     vbReminder = GTK_DIALOG(wReminder)->vbox;
 
-    hdReminder = gtk_label_new(alarm->title->str);
+    hdReminder = gtk_label_new(alarm->title);
     gtk_box_pack_start(GTK_BOX(vbReminder), hdReminder, FALSE, TRUE, 0);
 
     swReminder = gtk_scrolled_window_new(NULL, NULL);
@@ -304,7 +556,7 @@ static void create_orage_reminder(alarm_struct *alarm)
     gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(swReminder)
             , GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
 
-    lbReminder = gtk_label_new(alarm->description->str);
+    lbReminder = gtk_label_new(alarm->description);
     gtk_label_set_line_wrap(GTK_LABEL(lbReminder), TRUE);
     gtk_scrolled_window_add_with_viewport(GTK_SCROLLED_WINDOW(swReminder)
             , lbReminder);
@@ -346,9 +598,9 @@ static void create_procedure_reminder(alarm_struct *alarm)
     gboolean status, active; /* active not used */
     GError *error = NULL;
 
-    status = orage_exec(alarm->cmd->str, &active, &error);
+    status = orage_exec(alarm->cmd, &active, &error);
     if (!status)
-        g_warning("create_procedure_reminder: cmd failed(%s)", alarm->cmd->str);
+        g_warning("create_procedure_reminder: cmd failed(%s)", alarm->cmd);
 }
 
 void create_reminders(alarm_struct *alarm)
@@ -361,21 +613,26 @@ void create_reminders(alarm_struct *alarm)
     n_alarm = g_new0(alarm_struct, 1);
     /* alarm_time is not copied. It was only used to find out when alarm
      * happens and while we are here, it happened already */
-    n_alarm->uid = g_string_new(alarm->uid->str);
-    n_alarm->title = g_string_new(alarm->title->str);
-    n_alarm->description = g_string_new(alarm->description->str);
+    n_alarm->uid = g_strdup(alarm->uid);
+    n_alarm->title = g_strdup(alarm->title);
+    n_alarm->description = g_strdup(alarm->description);
     n_alarm->notify_timeout = alarm->notify_timeout;
     n_alarm->display_orage = alarm->display_orage;
     n_alarm->display_notify = alarm->display_notify;
     n_alarm->notify_timeout = alarm->notify_timeout;
     n_alarm->audio = alarm->audio;
     if (alarm->sound != NULL)
+        /* note that this changes here !*/
+        /*
         n_alarm->sound = g_string_new(alarm->sound->str);
+        */
+        n_alarm->sound = g_strconcat(g_par.sound_application, " \""
+                , alarm->sound, "\"", NULL);
     n_alarm->repeat_cnt = alarm->repeat_cnt;
     n_alarm->repeat_delay = alarm->repeat_delay;
     n_alarm->procedure = alarm->procedure;
     if (alarm->cmd != NULL)
-        n_alarm->cmd = g_string_new(alarm->cmd->str);
+        n_alarm->cmd = g_strdup(alarm->cmd);
     n_alarm->active_alarm = g_new0(active_alarm_struct, 1);
 
     if (n_alarm->audio)
@@ -535,6 +792,7 @@ gboolean orage_alarm_clock(gpointer user_data)
     gchar *time_now;
                                                                                 
     t = orage_localtime();
+    time_now = orage_tm_time_to_icaltime(t);
   /* Check if there are any alarms to show */
     alarm_l = g_par.alarm_list;
     for (alarm_l = g_list_first(alarm_l);
@@ -542,7 +800,6 @@ gboolean orage_alarm_clock(gpointer user_data)
          alarm_l = g_list_next(alarm_l)) {
         /* remember that it is sorted list */
         cur_alarm = (alarm_struct *)alarm_l->data;
-        time_now = orage_tm_time_to_icaltime(t);
         if (strcmp(time_now, cur_alarm->alarm_time) > 0) {
             create_reminders(cur_alarm);
             alarm_raised = TRUE;
@@ -550,9 +807,8 @@ gboolean orage_alarm_clock(gpointer user_data)
         else /* sorted so scan can be stopped */
             more_alarms = FALSE; 
     }
-    if (alarm_raised) { /* at least one alarm processed, need new list */
+    if (alarm_raised)  /* at least one alarm processed, need new list */
         xfical_alarm_build_list(FALSE); /* this calls reset_orage_alarm_clock */
-    }
     else
         reset_orage_alarm_clock(); /* need to setup next timer */
     return(FALSE); /* only once */
@@ -640,7 +896,7 @@ gboolean orage_tooltip_update(gpointer user_data)
             }
             g_string_append_printf(tooltip, 
                     _("\n%02d d %02d h %02d min to: %s"),
-                    dd, hh, min, cur_alarm->title->str);
+                    dd, hh, min, cur_alarm->title);
             alarm_cnt++;
         }
         else /* sorted so scan can be stopped */
@@ -656,6 +912,7 @@ gboolean orage_tooltip_update(gpointer user_data)
 gboolean setup_orage_alarm_clock()
 {
     reset_orage_alarm_clock();
+    store_persistent_alarms(); /* keep track of alarms when orage is down */
     /* We need to use timer since for some reason it does not work if we
      * do it here directly. Ugly, I know, but it works. */
     g_timeout_add(1*1000, (GtkFunction) reset_orage_tooltip_update, NULL);

@@ -287,8 +287,10 @@ static void todo_clicked(GtkWidget *widget
 {
     gchar *uid;
 
-    uid = g_object_get_data(G_OBJECT(widget), "UID");
-    create_appt_win("UPDATE", uid, NULL);
+    if (event->type==GDK_2BUTTON_PRESS) {
+        uid = g_object_get_data(G_OBJECT(widget), "UID");
+        create_appt_win("UPDATE", uid, NULL);
+    }
 }
 
 static void add_info_row(xfical_appt *appt)

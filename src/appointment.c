@@ -61,6 +61,10 @@
 
 
 static void fill_appt_window(appt_win *apptw, char *action, char *par);
+/*  
+ *  the previous and the following are the main functions in this file
+static gboolean fill_appt_from_apptw(xfical_appt *appt, appt_win *apptw)
+*/ 
 
 
 static void combo_box_append_array(GtkWidget *combo_box, char *text[], int size)
@@ -920,6 +924,10 @@ static gboolean fill_appt_from_apptw(xfical_appt *appt, appt_win *apptw)
             break;
     }
 
+    /* Do we use persistent alarm */
+    appt->alarm_persistent = gtk_toggle_button_get_active(
+            GTK_TOGGLE_BUTTON(apptw->Per_checkbutton));
+
     /* Do we use audio alarm */
     appt->sound_alarm = gtk_toggle_button_get_active(
             GTK_TOGGLE_BUTTON(apptw->Sound_checkbutton));
@@ -1533,7 +1541,7 @@ static void fill_appt_window(appt_win *apptw, char *action, char *par)
     /*
     char *when_array[4] = {
     _("Before Start"), _("Before End"), _("After Start"), _("After End")};
-        */
+    */
     if (appt->alarm_before)
         if (appt->alarm_related_start)
             gtk_combo_box_set_active(GTK_COMBO_BOX(apptw->Alarm_when_cb), 0);
@@ -1544,6 +1552,11 @@ static void fill_appt_window(appt_win *apptw, char *action, char *par)
             gtk_combo_box_set_active(GTK_COMBO_BOX(apptw->Alarm_when_cb), 2);
         else
             gtk_combo_box_set_active(GTK_COMBO_BOX(apptw->Alarm_when_cb), 3);
+
+    /* persistent */
+    gtk_toggle_button_set_active(
+            GTK_TOGGLE_BUTTON(apptw->Per_checkbutton)
+                    , appt->alarm_persistent);
 
     /* sound */
     gtk_toggle_button_set_active(
