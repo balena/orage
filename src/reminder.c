@@ -54,7 +54,7 @@
 #include "tray_icon.h"
 #include "parameters.h"
 
-void create_notify_reminder(alarm_struct *alarm);
+static void create_notify_reminder(alarm_struct *alarm);
 gboolean orage_alarm_clock(gpointer user_data);
 gboolean orage_tooltip_update(gpointer user_data);
 void create_reminders(alarm_struct *alarm);
@@ -86,28 +86,16 @@ static void alarm_free_memory(alarm_struct *alarm)
     /*
     g_print("alarm_free_memory: start %d %d\n",  alarm->audio, alarm->display_notify);
     */
-    if (!alarm->display_orage && !alarm->display_notify)
+    if (!alarm->display_orage && !alarm->display_notify && !alarm->audio)
+        /* all gone, need to clean memory */
+        alarm_free(alarm);
+    else if (!alarm->display_orage && !alarm->display_notify)
         /* if both visuals are gone we can't stop audio anymore, so stop it 
          * now before it is too late */
         alarm->repeat_cnt = 0;
-    if (!alarm->display_orage && !alarm->display_notify && !alarm->audio) {
-        /* all gone, need to clean memory */
-        alarm_free(alarm);
-/*
-        g_free(alarm->uid);
-        if (alarm->title != NULL)
-            g_free(alarm->title);
-        if (alarm->description != NULL)
-            g_free(alarm->description);
-        if (alarm->sound != NULL)
-            g_free(alarm->sound);
-        g_free(alarm->active_alarm);
-        g_free(alarm);
-*/
         /*
     g_print("alarm_free_memory: freed %d %d\n",  alarm->audio, alarm->display_notify);
     */
-    }
 }
 
 static gboolean alarm_read_next_value(int p_file, char *buf)
@@ -174,6 +162,7 @@ static alarm_struct *alarm_read_next_alarm(int p_file, char *buf)
     alarm_read_next_value(p_file, buf);
     new_alarm->display_orage = alarm_read_boolean(buf);
 
+#ifdef HAVE_NOTIFY
     alarm_read_next_value(p_file, buf);
     new_alarm->display_notify = alarm_read_boolean(buf);
 
@@ -182,6 +171,7 @@ static alarm_struct *alarm_read_next_alarm(int p_file, char *buf)
 
     alarm_read_next_value(p_file, buf);
     new_alarm->notify_timeout = atoi(buf);
+#endif
 
     alarm_read_next_value(p_file, buf);
     new_alarm->audio = alarm_read_boolean(buf);
@@ -276,6 +266,7 @@ static void alarm_store(gpointer galarm, gpointer gfile)
     g_sprintf(buf, "%03dDISPLAY_ORAGE=%s\n", strlen(s_boolean), s_boolean);
     write(file, buf, strlen(buf));
 
+#ifdef HAVE_NOTIFY
     s_boolean = alarm->display_notify ? "TRUE" : "FALSE";
     g_sprintf(buf, "%03dDISPLAY_NOTIFY=%s\n", strlen(s_boolean), s_boolean);
     write(file, buf, strlen(buf));
@@ -287,6 +278,7 @@ static void alarm_store(gpointer galarm, gpointer gfile)
     g_sprintf(s_num, "%d", alarm->notify_timeout);
     g_sprintf(buf, "%03dNOTIFY_TIMEOUT=%s\n", strlen(s_num), s_num);
     write(file, buf, strlen(buf));
+#endif
 
     s_boolean = alarm->audio ? "TRUE" : "FALSE";
     g_sprintf(buf, "%03dAUDIO=%s\n", strlen(s_boolean), s_boolean);
@@ -334,6 +326,7 @@ static void store_persistent_alarms()
     close(p_file);
 }
 
+#ifdef HAVE_NOTIFY
 static void notify_action_open(NotifyNotification *n, const char *action
         , gpointer par)
 {
@@ -348,6 +341,7 @@ static void notify_action_open(NotifyNotification *n, const char *action
     */
     create_appt_win("UPDATE", alarm->uid, NULL);
 }
+#endif
 
 static gboolean sound_alarm(gpointer data)
 {
@@ -448,7 +442,7 @@ static void notify_action_silence(NotifyNotification *n, const char *action
 }
 #endif
 
-void create_notify_reminder(alarm_struct *alarm) 
+static void create_notify_reminder(alarm_struct *alarm) 
 {
 #ifdef HAVE_NOTIFY
     char heading[250];
@@ -616,16 +610,14 @@ void create_reminders(alarm_struct *alarm)
     n_alarm->uid = g_strdup(alarm->uid);
     n_alarm->title = g_strdup(alarm->title);
     n_alarm->description = g_strdup(alarm->description);
-    n_alarm->notify_timeout = alarm->notify_timeout;
     n_alarm->display_orage = alarm->display_orage;
     n_alarm->display_notify = alarm->display_notify;
+    n_alarm->notify_refresh = alarm->notify_refresh;
     n_alarm->notify_timeout = alarm->notify_timeout;
     n_alarm->audio = alarm->audio;
     if (alarm->sound != NULL)
         /* note that this changes here !*/
-        /*
-        n_alarm->sound = g_string_new(alarm->sound->str);
-        */
+        /* n_alarm->sound = g_string_new(alarm->sound->str); */
         n_alarm->sound = g_strconcat(g_par.sound_application, " \""
                 , alarm->sound, "\"", NULL);
     n_alarm->repeat_cnt = alarm->repeat_cnt;
@@ -643,19 +635,6 @@ void create_reminders(alarm_struct *alarm)
         create_notify_reminder(n_alarm);
     if (n_alarm->procedure)
         create_procedure_reminder(n_alarm);
-    /*
-    if (alarm->display
-    && (!alarm->display_orage && !alarm->display_notify))
-        alarm->display_orage = TRUE;
-    alarm->active_alarm = g_new0(active_alarm_struct, 1);
-
-    if (alarm->audio)
-        create_sound_reminder(alarm);
-    if (alarm->display_orage)
-        create_orage_reminder(alarm);
-    if (alarm->display_notify)
-        create_notify_reminder(alarm);
-        */
 }
 
 gboolean reset_orage_day_change(gboolean changed)
