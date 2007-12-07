@@ -101,7 +101,7 @@ global_parameters g_par; /* real, static global parameters. Only in main !!! */
 extern global_parameters g_par; /* refer to existing global parameters */
 #endif
 
-
+gchar *orage_resource_file_location(char *name);
 void show_parameters(void);
 void write_parameters(void);
 void read_parameters(void);

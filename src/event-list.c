@@ -145,7 +145,7 @@ static int append_time(char *result, char *ical_time, int i)
 
 static char *format_time(el_win *el, xfical_appt *appt, char *par)
 {
-    static char result[50];
+    char *result;
     char *tmp;
     int i = 0;
     char *start_ical_time;
@@ -156,7 +156,7 @@ static char *format_time(el_win *el, xfical_appt *appt, char *par)
     start_ical_time = appt->starttimecur;
     end_ical_time = appt->endtimecur;
     same_date = !strncmp(start_ical_time, end_ical_time, 8);
-    result[0] = '\0';
+    result = g_new0(char, 51);
 
     if (el->page == EVENT_PAGE && el->days == 0) { 
         /* special formatting for 1 day VEVENTS */
@@ -172,8 +172,7 @@ static char *format_time(el_win *el, xfical_appt *appt, char *par)
                 i += append_time(result, end_ical_time, i);
         }
         else {/* date only appointment */
-            strncpy(result, _("All day"), 49);
-            i = strlen(result); /* because we add null to i-pos */
+            i = g_strlcpy(result, _("All day"), 50);
         }
     }
     else { /* normally show date and time */
@@ -316,7 +315,6 @@ static void add_el_row(el_win *el, xfical_appt *appt, char *par)
     gchar           flags[6]; 
     gchar          *stime;
     gchar          /* *s_sort,*/ *s_sort1;
-    gchar           source[5]; 
     gint            len = 50;
 
     stime = format_time(el, appt, par);
@@ -385,6 +383,7 @@ static void add_el_row(el_win *el, xfical_appt *appt, char *par)
             , -1);
     g_free(title);
     g_free(s_sort1);
+    g_free(stime);
     /*
     g_free(s_sort);
     */
@@ -463,6 +462,7 @@ static void app_data(el_win *el, char *a_day, char *par)
             ical_type = XFICAL_TYPE_JOURNAL;
             break;
         default:
+            ical_type = XFICAL_TYPE_EVENT; /* to satisfy c-compiler checks */
             g_error("wrong page in app_data (%d)\n", el->page);
     }
 
@@ -506,7 +506,6 @@ static void refresh_time_field(el_win *el)
 
 static void event_data(el_win *el)
 {
-    guint year, month, day;
     char      *title;  /* in %x strftime format */
     char      *s_time;  /* in icaltime format */
     char      a_day[9]; /* yyyymmdd */
@@ -661,7 +660,7 @@ static void duplicate_appointment(el_win *el)
     GtkTreePath      *path;
     GtkTreeIter       iter;
     GList *list;
-    gint  list_len, i;
+    gint  list_len;
     gchar *uid = NULL, *flags = NULL;
     appt_win *apptw;
 
@@ -830,16 +829,9 @@ static void on_Go_next_activate_cb(GtkMenuItem *mi, gpointer user_data)
 static void create_new_appointment(el_win *el)
 {
     appt_win *apptw;
-    char *title, *s_title, a_day[10];
-    struct tm tm_date = {0,0,0,0,0,0,0,0,0};
+    char *title, a_day[10];
 
     title = (char *)gtk_window_get_title(GTK_WINDOW(el->Window));
-    /*
-    tm_date = orage_i18_date_to_tm_date(title);
-    s_title = orage_tm_time_to_icaltime(&tm_date);
-    strncpy(a_day, s_title, 8);
-    a_day[8] = '\0';
-    */
     strcpy(a_day, orage_i18_date_to_icaltime(title));
 
     apptw = create_appt_win("NEW", a_day, el);
@@ -1176,7 +1168,7 @@ static void build_journal_tab(el_win *el)
 static void build_search_tab(el_win *el)
 {
     gint row;
-    GtkWidget *label, *hbox;
+    GtkWidget *label;
 
     el->search_tab_label = gtk_label_new(_("Search"));
     el->search_notebook_page = orage_table_new(2, 10);

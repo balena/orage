@@ -28,6 +28,8 @@
 #include <string.h>
 #endif
 
+#include <glib.h>
+#include <glib/gprintf.h>
 #include <gtk/gtk.h>
 #include <gdk/gdk.h>
 
@@ -108,6 +110,15 @@ typedef struct _Itf
     GtkWidget *dialog_action_area1;
 } Itf;
 
+
+gchar *orage_resource_file_location(char *name)
+{
+    char *file_name;
+
+    file_name = xfce_resource_save_location(XFCE_RESOURCE_DATA
+            , name, TRUE);
+    return(file_name);
+}
 
 static void dialog_response(GtkWidget *dialog, gint response_id)
 {
@@ -826,11 +837,9 @@ void read_parameters(void)
             g_strdup(xfce_rc_read_entry(rc, "Timezone", "floating"));
     g_par.archive_limit = xfce_rc_read_int_entry(rc, "Archive limit", 0);
     g_par.archive_file = g_strdup(xfce_rc_read_entry(rc, "Archive file"
-            , xfce_resource_save_location(XFCE_RESOURCE_DATA, ORAGE_DIR ARCFILE
-                    , TRUE)));
+            , orage_resource_file_location(ORAGE_DIR ARCFILE)));
     g_par.orage_file = g_strdup(xfce_rc_read_entry(rc, "Orage file"
-            , xfce_resource_save_location(XFCE_RESOURCE_DATA, ORAGE_DIR APPFILE
-                    , TRUE)));
+            , orage_resource_file_location(ORAGE_DIR APPFILE)));
     g_par.sound_application = 
             g_strdup(xfce_rc_read_entry(rc, "Sound application", "play"));
     g_par.pos_x = xfce_rc_read_int_entry(rc, "Main window X", 0);
@@ -884,8 +893,6 @@ void show_parameters()
 
 void set_parameters()
 {
-    static Itf *dialog = NULL;
-
     set_menu();
     set_border();
     set_taskbar();

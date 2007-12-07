@@ -27,6 +27,7 @@
 #include <time.h>
 
 #include <glib.h>
+#include <glib/gprintf.h>
 #include <gdk/gdk.h>
 #include <gtk/gtk.h>
 
@@ -35,7 +36,10 @@
 #include "day-view.h"
 #include "ical-code.h"
 #include "parameters.h"
+#include "event-list.h"
+#include "appointment.h"
 
+void program_log (const char *format, ...);
 static void refresh_day_view_table(day_win *dw);
 
 static GtkWidget *build_line(day_win *dw, gint left_x, gint top_y
@@ -174,7 +178,6 @@ static void on_Date_button_clicked_cb(GtkWidget *button, gpointer *user_data)
 
 static void header_button_clicked_cb(GtkWidget *button, gpointer *user_data)
 {
-    day_win *dw = (day_win *)user_data;
     gchar *start_date;
 
     start_date = (char *)gtk_button_get_label(GTK_BUTTON(button));
@@ -184,20 +187,10 @@ static void header_button_clicked_cb(GtkWidget *button, gpointer *user_data)
 static void on_button_press_event_cb(GtkWidget *widget
         , GdkEventButton *event, gpointer *user_data)
 {
-    day_win *dw = (day_win *)user_data;
     gchar *uid;
 
     g_print("pressed button %d\n", event->button);
     uid = g_object_get_data(G_OBJECT(widget), "UID");
-    create_appt_win("UPDATE", uid, NULL);
-}
-
-static void event_button_clicked_cb(GtkWidget *button, gpointer *user_data)
-{
-    day_win *dw = (day_win *)user_data;
-    gchar *uid;
-
-    uid = g_object_get_data(G_OBJECT(button), "UID");
     create_appt_win("UPDATE", uid, NULL);
 }
 
@@ -206,23 +199,28 @@ static void add_row(day_win *dw, xfical_appt *appt, char *a_day, gint days)
     gint row, start_row, end_row;
     gint col, start_col, end_col, first_col, last_col;
     gint height, start_height, end_height;
-    gchar *text, *tip, *uid, *start_date, *end_date;
+    gchar *text, *tip, *start_date, *end_date;
     GtkWidget *ev, *lab, *hb;
     struct tm tm_start, tm_end, tm_first;
+    /*
     GDate *g_start, *g_end, *g_first;
+    */
 
     /* First clarify timings */
     tm_start = orage_icaltime_to_tm_time(appt->starttimecur, FALSE);
     tm_end   = orage_icaltime_to_tm_time(appt->endtimecur, FALSE);
     tm_first = orage_icaltime_to_tm_time(a_day, FALSE);
 
+    /*
     g_start = g_date_new_dmy(tm_start.tm_mday, tm_start.tm_mon
             , tm_start.tm_year);
     g_end   = g_date_new_dmy(tm_end.tm_mday, tm_end.tm_mon
             , tm_end.tm_year);
     g_first = g_date_new_dmy(tm_first.tm_mday, tm_first.tm_mon
             , tm_first.tm_year);
-    col = g_date_days_between(g_first, g_start)+1;  /* col 0 == hour headers */
+    col = g_date_days_between(g_first, g_start)+1;  / * col 0 == hour headers * /
+    */
+    col = orage_days_between(&tm_first, &tm_start)+1;
     if (col < 1) {
         col = 1;
         row = 0;
@@ -256,7 +254,10 @@ static void add_row(day_win *dw, xfical_appt *appt, char *a_day, gint days)
             hb = gtk_hbox_new(TRUE, 1);
         else
             hb = dw->element[row][col];
+        /*
         if (g_date_days_between(g_start, g_end) == 0)
+        */
+        if (orage_days_between(&tm_start, &tm_end) == 0)
             tip = g_strdup_printf("%s\n%02d:%02d-%02d:%02d\n%s"
                     , appt->title
                     , tm_start.tm_hour, tm_start.tm_min
@@ -300,12 +301,18 @@ static void add_row(day_win *dw, xfical_appt *appt, char *a_day, gint days)
         /*
          * same_date = !strncmp(start_ical_time, end_ical_time, 8);
          * */
+        /*
         start_col = g_date_days_between(g_first, g_start)+1;
+        */
+        start_col = orage_days_between(&tm_first, &tm_start)+1;
         if (start_col < 1)
             first_col = 1;
         else
             first_col = start_col;
+        /*
         end_col   = g_date_days_between(g_first, g_end)+1;
+        */
+        end_col   = orage_days_between(&tm_first, &tm_end)+1;
         if (end_col > days)
             last_col = days;
         else
@@ -333,9 +340,11 @@ static void add_row(day_win *dw, xfical_appt *appt, char *a_day, gint days)
             }
         }
     }
+    /*
     g_date_free(g_start);
     g_date_free(g_end);
     g_date_free(g_first);
+    */
 }
 
 static void app_rows(day_win *dw, char *a_day , xfical_type ical_type
@@ -390,7 +399,7 @@ static void app_data(day_win *dw)
 static void fill_days(day_win *dw, gint days)
 {
     gint row, col, height, width;
-    GtkWidget *name, *ev, *hb;
+    GtkWidget *ev, *hb;
     GtkWidget *marker;
 
     program_log("fill_days started");
@@ -533,7 +542,7 @@ static void build_day_view_table(day_win *dw)
 {
     gint days;   /* number of days to show */
     int year, month, day;
-    gint i, j, sunday;
+    gint i, sunday;
     GtkWidget *name, *label, *ev;
     char text[5+1], *date, *today;
     struct tm tm_date;

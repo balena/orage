@@ -371,6 +371,19 @@ char *orage_localdate_i18()
     return(orage_tm_date_to_i18_date(t));
 }
 
+gint orage_days_between(struct tm *t1, struct tm *t2)
+{
+    GDate *g_t1, *g_t2;
+    gint dd;
+
+    g_t1 = g_date_new_dmy(t1->tm_mday, t1->tm_mon, t1->tm_year);
+    g_t2 = g_date_new_dmy(t2->tm_mday, t2->tm_mon, t2->tm_year);
+    dd = g_date_days_between(g_t1, g_t2);
+    g_date_free(g_t1);
+    g_date_free(g_t2);
+    return(dd);
+}
+
 void orage_select_date(GtkCalendar *cal
     , guint year, guint month, guint day)
 {

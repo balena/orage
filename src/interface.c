@@ -46,8 +46,6 @@
 #include "ical-code.h"
 #include "parameters.h"
 
-#define FILETYPE_SIZE 2
-#define ORAGE_PERSISTENT_ALARMS "orage_persistent_alarms.txt"
 
 /*
 enum {
@@ -84,28 +82,6 @@ static gboolean interface_lock = FALSE;
 
 static void refresh_foreign_files(intf_win *intf_w, gboolean first);
 
-int orage_persistent_file_open(gboolean write)
-{
-    int p_file;
-    char *file_name;
-
-    file_name = xfce_resource_save_location(XFCE_RESOURCE_DATA
-            , ORAGE_DIR ORAGE_PERSISTENT_ALARMS, TRUE);
-    if (!file_name) {
-        g_warning("orage_persistent_file_open: Persistent alarms filename build failed, alarms not saved (%s)\n", file_name);
-        return(-1);
-    }
-    if (write)
-        p_file = g_open(file_name, O_WRONLY|O_CREAT|O_APPEND|O_TRUNC
-                , S_IRUSR|S_IWUSR);
-    else
-        p_file = g_open(file_name, O_RDONLY|O_CREAT, S_IRUSR|S_IWUSR);
-    g_free(file_name);
-    if (p_file == -1) 
-        g_warning("orage_persistent_file_open: Persistent alarms file open failed, alarms not saved (%s)\n", file_name);
-    return(p_file);
-}
-
 gboolean orage_foreign_files_check(gpointer user_data)
 {
     static time_t latest_foreign_file_change = (time_t)0;
@@ -113,7 +89,6 @@ gboolean orage_foreign_files_check(gpointer user_data)
     gint i;
     gboolean changes_present = FALSE;
 
-    g_print("orage_foreign_files_check: start\n");
     if (!latest_foreign_file_change)
         latest_foreign_file_change = time(NULL);
 
@@ -360,7 +335,7 @@ static void orage_file_open_button_clicked(GtkButton *button
     gchar *rcfile;
     gchar *s;
 
-    rcfile = xfce_resource_save_location(XFCE_RESOURCE_DATA, ORAGE_DIR, TRUE);
+    rcfile = orage_resource_file_location(ORAGE_DIR);
     f_chooser = orage_file_chooser(intf_w->main_window, TRUE
             , g_par.orage_file, rcfile, APPFILE);
     g_free(rcfile);
@@ -386,7 +361,7 @@ static void archive_file_open_button_clicked(GtkButton *button
     gchar *rcfile;
     gchar *s;
 
-    rcfile = xfce_resource_save_location(XFCE_RESOURCE_DATA, ORAGE_DIR, TRUE);
+    rcfile = orage_resource_file_location(ORAGE_DIR);
     f_chooser = orage_file_chooser(intf_w->main_window, TRUE
             , g_par.archive_file, rcfile, ARCFILE);
     g_free(rcfile);
@@ -468,7 +443,6 @@ void imp_open_button_clicked(GtkButton *button, gpointer user_data)
 
 void on_archive_button_clicked_cb(GtkButton *button, gpointer user_data)
 {
-    intf_win *intf_w = (intf_win *)user_data;
     xfical_archive();
 }
 
@@ -548,7 +522,7 @@ void exp_save_button_clicked(GtkButton *button, gpointer user_data)
             app_count = 1;
         }
         else {
-            g_warning("UNKNOWN select appointment %s\n");
+            g_warning("UNKNOWN select appointment\n");
         }
 
         if (orage_export_file(entry_filename, app_count, entry_uids))
@@ -775,7 +749,9 @@ void filemenu_close_activated(GtkMenuItem *menuitem, gpointer user_data)
 
 void create_menu(intf_win *intf_w)
 {
+    /*
     GtkWidget *menu_separator;
+    */
 
     /* Menu bar */
     intf_w->menubar = gtk_menu_bar_new();
@@ -808,7 +784,6 @@ void create_menu(intf_win *intf_w)
 void create_toolbar(intf_win *intf_w)
 {
     gint i = 0;
-    GtkWidget *toolbar_separator;
 
     /* Toolbar */
     intf_w->toolbar = gtk_toolbar_new();
@@ -839,8 +814,6 @@ void create_toolbar(intf_win *intf_w)
 void handle_file_drag_data(GtkWidget *widget, GdkDragContext *context
         , GtkSelectionData *data, guint time, gboolean imp)
 {
-    gchar *contents;
-    gsize length;
     gchar **file_list;
     gchar *file;
     gint i, pos;
@@ -1125,8 +1098,6 @@ void create_import_export_tab(intf_win *intf_w)
 void create_orage_file_tab(intf_win *intf_w)
 {
     GtkWidget *label, *hbox, *vbox, *m_vbox;
-    gchar *file;
-    char *str;
 
     m_vbox = gtk_vbox_new(FALSE, 0);
     intf_w->fil_notebook_page = xfce_create_framebox_with_content(NULL, m_vbox);
@@ -1258,10 +1229,7 @@ void create_orage_file_tab(intf_win *intf_w)
 
 static void create_foreign_file_tab(intf_win *intf_w)
 {
-    GtkWidget *label, *hbox, *vbox, *button;
-    gchar *file;
-    gchar *str, num[3];
-    gint i;
+    GtkWidget *label, *hbox, *vbox;
 
     intf_w->for_tab_main_vbox = gtk_vbox_new(FALSE, 0);
     intf_w->for_notebook_page = xfce_create_framebox_with_content(NULL

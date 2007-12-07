@@ -62,16 +62,12 @@ void on_Today_activate(GtkMenuItem *menuitem, gpointer user_data)
     el = create_el_win(NULL);
 }
 
-void 
-on_preferences_activate(GtkMenuItem *menuitem
-        , gpointer user_data)
+void on_preferences_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
     show_parameters();
 }
 
-void
-on_new_appointment_activate(GtkMenuItem *menuitem
-        , gpointer user_data)
+void on_new_appointment_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
     appt_win *app;
     struct tm *t;
@@ -83,14 +79,12 @@ on_new_appointment_activate(GtkMenuItem *menuitem
     app = create_appt_win("NEW", cur_date, NULL);  
 }
 
-void
-on_about_activate(GtkMenuItem *menuitem, gpointer user_data)
+void on_about_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
   create_wAbout((GtkWidget *)menuitem, user_data);
 }
 
-void 
-toggle_visible_cb ()
+void toggle_visible_cb ()
 {
   orage_toggle_visible ();
 }
@@ -202,9 +196,9 @@ GdkPixbuf *orage_create_icon(CalWin *xfcal, gboolean static_icon
 
   /* month */
   if (strftime(month, 19, "%^b", t) == 0) {
-      g_warning("orage_create_icon: strftime %^b failed");
+      g_warning("orage_create_icon: strftime %%^b failed");
       if (strftime(month, 19, "%b", t) == 0) {
-          g_warning("orage_create_icon: strftime %b failed");
+          g_warning("orage_create_icon: strftime %%b failed");
           g_sprintf(month, "orage");
       }
   }

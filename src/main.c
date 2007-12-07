@@ -214,6 +214,11 @@ static void print_version(void)
 #else
     g_print(_("\tNot using DBUS. Import works only partially.\n"));
 #endif
+#ifdef HAVE_NOTIFY
+    g_print(_("\tUsing libnotify.\n"));
+#else
+    g_print(_("\tNot using libnotify.\n"));
+#endif
     g_print("\n");
 }
 
@@ -244,7 +249,7 @@ static void print_help(void)
 
 static void import_file(gboolean running, char *file_name, gboolean initialized)
 {
-    if (running && !initialized) 
+    if (running && !initialized) {
         /* let's use dbus since server is running there already */
 #ifdef HAVE_DBUS
         if (orage_dbus_import_file(file_name))
@@ -254,11 +259,13 @@ static void import_file(gboolean running, char *file_name, gboolean initialized)
 #else
         g_warning("Can not do import without dbus. import failed file=%s\n", file_name);
 #endif
-    else if (!running && initialized) /* do it self directly */
+    }
+    else if (!running && initialized) {/* do it self directly */
         if (xfical_import_file(file_name))
             orage_message("import done file=%s", file_name);
         else
             g_warning("import failed file=%s\n", file_name);
+    }
 }
 
 static void add_foreign(gboolean running, char *file_name, gboolean initialized
@@ -401,7 +408,7 @@ static gboolean check_orage_alive()
         return(FALSE);
 }
 
-static gboolean mark_orage_alive()
+static void mark_orage_alive()
 {
     GtkWidget *hidden;
 
@@ -486,7 +493,7 @@ int main(int argc, char *argv[])
      * delayed using timer, so that we save another 1-2 secs in startup
     orage_mark_appointments();
     */
-    mCalendar_month_changed_cb(g_par.xfcal->mCalendar, NULL);
+    mCalendar_month_changed_cb((GtkCalendar *)g_par.xfcal->mCalendar, NULL);
     g_par.day_timer = 0;
     alarm_read();
     orage_day_change(NULL); /* first day change after we start */

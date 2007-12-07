@@ -63,5 +63,6 @@ typedef struct _alarm_struct
 gboolean orage_day_change(gpointer user_data);
 gboolean setup_orage_alarm_clock(void);
 void alarm_read();
+void alarm_list_free();
 
 #endif /* !__REMINDER_H__ */

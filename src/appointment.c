@@ -1427,7 +1427,7 @@ static xfical_appt *fill_appt_window_get_appt(char *action, char *par)
 
 static void fill_appt_window(appt_win *apptw, char *action, char *par)
 {
-    int year, month, day, hours, minutes;
+    int day, hours, minutes;
     xfical_appt *appt;
     struct tm *t, tm_date;
     char *untildate_to_display, *tmp;

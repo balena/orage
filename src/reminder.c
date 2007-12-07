@@ -30,13 +30,16 @@
 
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <fcntl.h>
 #include <unistd.h>
 #include <string.h>
 #include <stdio.h>
 #include <time.h>
+#include <stdlib.h>
 
 #include <glib.h>
 #include <glib/gprintf.h>
+#include <glib/gstdio.h>
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
 #ifdef HAVE_NOTIFY
@@ -54,6 +57,8 @@
 #include "tray_icon.h"
 #include "parameters.h"
 
+#define ORAGE_PERSISTENT_ALARMS "orage_persistent_alarms.txt"
+
 static void create_notify_reminder(alarm_struct *alarm);
 gboolean orage_alarm_clock(gpointer user_data);
 gboolean orage_tooltip_update(gpointer user_data);
@@ -61,24 +66,36 @@ void create_reminders(alarm_struct *alarm);
 
 /* this is almost the same than in ical-code.c.
  * Perhaps these can be combined */
-static void alarm_free(alarm_struct *alarm)
+static void alarm_free(gpointer galarm, gpointer dummy)
 {
 #undef P_N
 #define P_N "alarm_free: "
+    alarm_struct *alarm = (alarm_struct *)galarm;
 
 #ifdef ORAGE_DEBUG
     g_print(P_N "\n");
 #endif
+    g_free(alarm->alarm_time);
     g_free(alarm->uid);
-    if (alarm->title != NULL)
-        g_free(alarm->title);
-    if (alarm->description != NULL)
-        g_free(alarm->description);
-    if (alarm->sound != NULL)
-        g_free(alarm->sound);
-    if (alarm->cmd != NULL)
-        g_free(alarm->cmd);
+    g_free(alarm->title);
+    g_free(alarm->description);
+    g_free(alarm->sound);
+    g_free(alarm->cmd);
+    g_free(alarm->active_alarm);
     g_free(alarm);
+}
+
+void alarm_list_free()
+{
+#undef P_N
+#define P_N "alarm_free_all: "
+
+#ifdef ORAGE_DEBUG
+    g_print(P_N "\n");
+#endif
+    g_list_foreach(g_par.alarm_list, alarm_free, NULL);
+    g_list_free(g_par.alarm_list);
+    g_par.alarm_list = NULL;
 }
 
 static void alarm_free_memory(alarm_struct *alarm)
@@ -88,7 +105,7 @@ static void alarm_free_memory(alarm_struct *alarm)
     */
     if (!alarm->display_orage && !alarm->display_notify && !alarm->audio)
         /* all gone, need to clean memory */
-        alarm_free(alarm);
+        alarm_free(alarm, NULL);
     else if (!alarm->display_orage && !alarm->display_notify)
         /* if both visuals are gone we can't stop audio anymore, so stop it 
          * now before it is too late */
@@ -96,6 +113,31 @@ static void alarm_free_memory(alarm_struct *alarm)
         /*
     g_print("alarm_free_memory: freed %d %d\n",  alarm->audio, alarm->display_notify);
     */
+}
+
+static int orage_persistent_file_open(gboolean write)
+{
+    int p_file;
+    char *file_name;
+
+    /*
+    file_name = xfce_resource_save_location(XFCE_RESOURCE_DATA
+            , ORAGE_DIR ORAGE_PERSISTENT_ALARMS, TRUE);
+            */
+    file_name = orage_resource_file_location(ORAGE_DIR ORAGE_PERSISTENT_ALARMS);
+    if (!file_name) {
+        g_warning("orage_persistent_file_open: Persistent alarms filename build failed, alarms not saved (%s)\n", file_name);
+        return(-1);
+    }
+    if (write)
+        p_file = g_open(file_name, O_WRONLY|O_CREAT|O_APPEND|O_TRUNC
+                , S_IRUSR|S_IWUSR);
+    else
+        p_file = g_open(file_name, O_RDONLY|O_CREAT, S_IRUSR|S_IWUSR);
+    g_free(file_name);
+    if (p_file == -1)
+        g_warning("orage_persistent_file_open: Persistent alarms file open failed, alarms not saved (%s)\n", file_name);
+    return(p_file);
 }
 
 static gboolean alarm_read_next_value(int p_file, char *buf)
@@ -216,7 +258,7 @@ void alarm_read()
             new_alarm = alarm_read_next_alarm(p_file, buf)) {
         if (strcmp(time_now, new_alarm->alarm_time) > 0) {
             create_reminders(new_alarm);
-            alarm_free(new_alarm);
+            alarm_free(new_alarm, NULL);
         }
     }
     close(p_file);
@@ -722,14 +764,16 @@ gboolean orage_day_change(gpointer user_data)
     return(FALSE); /* we started new timer, so we end here */
 }
 
-gboolean reset_orage_alarm_clock()
+static gboolean reset_orage_alarm_clock()
 {
     struct tm *t, t_alarm;
     GList *alarm_l;
     alarm_struct *cur_alarm;
     gchar *next_alarm;
     gint secs_to_alarm;
+    /*
     GDate *g_now, *g_alarm;
+    */
     gint dd;
 
     if (g_par.alarm_timer) /* need to stop it if running */
@@ -738,23 +782,28 @@ gboolean reset_orage_alarm_clock()
         return(FALSE);
     }
     t = orage_localtime();
+    t->tm_mon++;
+    t->tm_year = t->tm_year + 1900;
     alarm_l = g_list_first(g_par.alarm_list);
     cur_alarm = (alarm_struct *)alarm_l->data;
     next_alarm = cur_alarm->alarm_time;
     t_alarm = orage_icaltime_to_tm_time(next_alarm, FALSE);
     /* let's find out how much time we have until alarm happens */
+    /*
     g_now = g_date_new_dmy(t->tm_mday, t->tm_mon + 1, t->tm_year + 1900);
     g_alarm = g_date_new_dmy(t_alarm.tm_mday, t_alarm.tm_mon, t_alarm.tm_year);
     dd = g_date_days_between(g_now, g_alarm);
     g_date_free(g_now);
     g_date_free(g_alarm);
+    */
+    dd = orage_days_between(t, &t_alarm);
     secs_to_alarm = t_alarm.tm_sec  - t->tm_sec
               + 60*(t_alarm.tm_min  - t->tm_min)
-           + 60*60*(t_alarm.tm_hour - t->tm_hour)
-        + 24*60*60*dd;
+              + 60*60*(t_alarm.tm_hour - t->tm_hour)
+              + 24*60*60*dd;
     secs_to_alarm += 1; /* alarm needs to come a bit later */
     if (secs_to_alarm < 1) /* were rare, but possible */
-            secs_to_alarm = 1;
+        secs_to_alarm = 1;
     g_par.alarm_timer = g_timeout_add(secs_to_alarm * 1000
             , (GtkFunction) orage_alarm_clock, NULL);
     return(TRUE);
@@ -806,7 +855,7 @@ gboolean start_orage_tooltip_update(gpointer user_data)
     return(FALSE);
 }
 
-/* adjust the call t happen when minute changes */
+/* adjust the call to happen when minute changes */
 gboolean reset_orage_tooltip_update()
 {
     struct tm *t;

@@ -33,6 +33,8 @@
 #include <string.h>
 #include <stdio.h>
 
+#include <glib.h>
+#include <glib/gprintf.h>
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
 #include <gdk/gdk.h>
@@ -47,6 +49,7 @@
 #include "interface.h"
 #include "parameters.h"
 #include "tray_icon.h"
+#include "day-view.h"
 
 
 gboolean orage_mark_appointments()
