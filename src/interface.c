@@ -214,6 +214,7 @@ void static orage_file_save_button_clicked(GtkButton *button
     }
 }
 
+#ifdef HAVE_ARCHIVE
 void static archive_file_entry_changed(GtkWidget *dialog, gpointer user_data)
 {
     intf_win *intf_w = (intf_win *)user_data;
@@ -279,6 +280,7 @@ void static archive_file_save_button_clicked(GtkButton *button
         g_free(s);
     }
 }
+#endif
 
 static GtkWidget *orage_file_chooser(GtkWidget *parent_window
         , gboolean save, gchar *cur_file, gchar *cur_folder, gchar *def_name)
@@ -353,6 +355,7 @@ static void orage_file_open_button_clicked(GtkButton *button
     gtk_widget_destroy(f_chooser);
 }
 
+#ifdef HAVE_ARCHIVE
 static void archive_file_open_button_clicked(GtkButton *button
         , gpointer user_data)
 {
@@ -378,6 +381,7 @@ static void archive_file_open_button_clicked(GtkButton *button
     }
     gtk_widget_destroy(f_chooser);
 }
+#endif
 
 void exp_open_button_clicked(GtkButton *button, gpointer user_data)
 {
@@ -441,6 +445,7 @@ void imp_open_button_clicked(GtkButton *button, gpointer user_data)
     gtk_widget_destroy(f_chooser);
 }
 
+#ifdef HAVE_ARCHIVE
 void on_archive_button_clicked_cb(GtkButton *button, gpointer user_data)
 {
     xfical_archive();
@@ -450,6 +455,7 @@ void on_unarchive_button_clicked_cb(GtkButton *button, gpointer user_data)
 {
     xfical_unarchive();
 }
+#endif
 
 gboolean orage_import_file(gchar *entry_filename) 
 {
@@ -1051,13 +1057,19 @@ void create_import_export_tab(intf_win *intf_w)
 
     g_signal_connect((gpointer)intf_w->iea_exp_add_id_rb, "clicked"
             , G_CALLBACK(exp_add_id_rb_clicked), intf_w);
+#ifdef HAVE_ARCHIVE
     gtk_tooltips_set_tip(intf_w->tooltips, intf_w->iea_exp_add_all_rb
-            , _("Note that only main file appointments are read.\nArchived events are not exported."), NULL);
+            , _("Note that only main file appointments are read.\nArchived and Foreign events are not exported."), NULL);
+#else
+    gtk_tooltips_set_tip(intf_w->tooltips, intf_w->iea_exp_add_all_rb
+            , _("Note that only main file appointments are read.\nForeign events are not exported."), NULL);
+#endif
     gtk_tooltips_set_tip(intf_w->tooltips, intf_w->iea_exp_add_id_rb
             , _("You can easily drag these from event-list window."), NULL);
     gtk_tooltips_set_tip(intf_w->tooltips, intf_w->iea_exp_id_entry
             , _("Orage appointment UIDs separated by commas."), NULL);
 
+#ifdef HAVE_ARCHIVE
     /***** archive *****/
     vbox = gtk_vbox_new(FALSE, 0);
     intf_w->iea_arc_frame = xfce_create_framebox_with_content(
@@ -1093,6 +1105,7 @@ void create_import_export_tab(intf_win *intf_w)
             , G_CALLBACK(on_unarchive_button_clicked_cb), intf_w);
     gtk_tooltips_set_tip(intf_w->tooltips, intf_w->iea_arc_button2
             , _("Return all archived events into main orage file and remove arch file.\nThis is usefull for example when doing export and moving orage\nappointments to another system."), NULL);
+#endif
 }
 
 void create_orage_file_tab(intf_win *intf_w)
@@ -1169,6 +1182,7 @@ void create_orage_file_tab(intf_win *intf_w)
     g_signal_connect(G_OBJECT(intf_w->orage_file_save_button), "clicked"
             , G_CALLBACK(orage_file_save_button_clicked), intf_w);
 
+#ifdef HAVE_ARCHIVE
     /***** archive file *****/
     vbox = gtk_vbox_new(FALSE, 0);
     intf_w->archive_file_frame = xfce_create_framebox_with_content(
@@ -1225,6 +1239,7 @@ void create_orage_file_tab(intf_win *intf_w)
             , G_CALLBACK(archive_file_entry_changed), intf_w);
     g_signal_connect(G_OBJECT(intf_w->archive_file_save_button), "clicked"
             , G_CALLBACK(archive_file_save_button_clicked), intf_w);
+#endif
 }
 
 static void create_foreign_file_tab(intf_win *intf_w)

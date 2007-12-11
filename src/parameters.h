@@ -60,9 +60,11 @@ typedef struct _parameters
     char *local_timezone;
     gboolean local_timezone_utc;
 
+#ifdef HAVE_ARCHIVE
     /* archiving */
     int archive_limit;
     char *archive_file;
+#endif
 
     /* foreign files */
     int foreign_count;

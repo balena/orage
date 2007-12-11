@@ -58,8 +58,10 @@ typedef struct _Itf
     GtkWidget *timezone_frame;
     GtkWidget *timezone_button;
     /* Archive period */
+#ifdef HAVE_ARCHIVE
     GtkWidget *archive_threshold_frame;
     GtkWidget *archive_threshold_spin;
+#endif
     /* Choose the sound application for reminders */
     GtkWidget *sound_application_frame;
     GtkWidget *sound_application_entry;
@@ -330,11 +332,13 @@ static void timezone_button_clicked(GtkButton *button, gpointer user_data)
         xfical_set_local_timezone();
 }
 
+#ifdef HAVE_ARCHIVE
 static void archive_threshold_spin_changed(GtkSpinButton *sb
         , gpointer user_data)
 {
     g_par.archive_limit = gtk_spin_button_get_value(sb);
 }
+#endif
 
 static void always_today_changed(GtkWidget *dialog, gpointer user_data)
 {
@@ -409,6 +413,7 @@ static void create_parameter_dialog_main_setup_tab(Itf *dialog)
     g_signal_connect(G_OBJECT(dialog->timezone_button), "clicked"
             , G_CALLBACK(timezone_button_clicked), dialog);
 
+#ifdef HAVE_ARCHIVE
     /* Choose archiving threshold */
     hbox = gtk_hbox_new(FALSE, 0);
     dialog->archive_threshold_frame = 
@@ -426,6 +431,7 @@ static void create_parameter_dialog_main_setup_tab(Itf *dialog)
     gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 5);
     g_signal_connect(G_OBJECT(dialog->archive_threshold_spin), "value-changed"
             , G_CALLBACK(archive_threshold_spin_changed), dialog);
+#endif
 
     /* Choose a sound application for reminders */
     hbox = gtk_hbox_new(FALSE, 0);
@@ -769,8 +775,10 @@ void write_parameters()
         return;
     }
     xfce_rc_write_entry(rc, "Timezone", g_par.local_timezone);
+#ifdef HAVE_ARCHIVE
     xfce_rc_write_int_entry(rc, "Archive limit", g_par.archive_limit);
     xfce_rc_write_entry(rc, "Archive file", g_par.archive_file);
+#endif
     xfce_rc_write_entry(rc, "Orage file", g_par.orage_file);
     xfce_rc_write_entry(rc, "Sound application", g_par.sound_application);
     gtk_window_get_position(GTK_WINDOW(g_par.xfcal->mWindow)
@@ -835,9 +843,11 @@ void read_parameters(void)
     }
     g_par.local_timezone = 
             g_strdup(xfce_rc_read_entry(rc, "Timezone", "floating"));
+#ifdef HAVE_ARCHIVE
     g_par.archive_limit = xfce_rc_read_int_entry(rc, "Archive limit", 0);
     g_par.archive_file = g_strdup(xfce_rc_read_entry(rc, "Archive file"
             , orage_resource_file_location(ORAGE_DIR ARCFILE)));
+#endif
     g_par.orage_file = g_strdup(xfce_rc_read_entry(rc, "Orage file"
             , orage_resource_file_location(ORAGE_DIR APPFILE)));
     g_par.sound_application = 

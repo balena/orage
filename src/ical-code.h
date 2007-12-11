@@ -122,8 +122,6 @@ gboolean xfical_set_local_timezone();
 gboolean xfical_file_open(gboolean foreign);
 void xfical_file_close(gboolean foreign);
 void xfical_file_close_force(void);
-gboolean xfical_archive_open(void);
-void xfical_archive_close(void);
 
 xfical_appt *xfical_appt_alloc();
 char *xfical_appt_add(xfical_appt *app);
@@ -143,9 +141,13 @@ gboolean xfical_alarm_passed(char *alarm_stime);
 
 gboolean xfical_duration(char *alarm_stime, int *days, int *hours, int *mins);
 int xfical_compare_times(xfical_appt *appt);
+#ifdef HAVE_ARCHIVE
+gboolean xfical_archive_open(void);
+void xfical_archive_close(void);
 gboolean xfical_archive(void);
 gboolean xfical_unarchive(void);
 gboolean xfical_unarchive_uid(char *uid);
+#endif
 
 gboolean xfical_import_file(char *file_name);
 gboolean xfical_export_file(char *file_name, int type, char *uids);

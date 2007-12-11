@@ -172,9 +172,11 @@ static gboolean client_message_received(GtkWidget *widget
 
 gboolean keep_tidy(void)
 {
+#ifdef HAVE_ARCHIVE
     /* move old appointment to other file to keep the active
        calendar file smaller and faster */
     xfical_archive();
+#endif
     return TRUE;
 }
 

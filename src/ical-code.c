@@ -84,10 +84,12 @@ typedef struct
     char **city;      /* pointer to timezone location name strings */
 } xfical_timezone_array;
 
-static icalset *fical = NULL,
-               *afical = NULL;
-static icalcomponent *ical = NULL,
-                     *aical = NULL;
+static icalset *fical = NULL;
+static icalcomponent *ical = NULL;
+#ifdef HAVE_ARCHIVE
+static icalset *afical = NULL;
+static icalcomponent *aical = NULL;
+#endif
 
 static gboolean file_modified = FALSE; /* has any ical file been changed */
 static guint    file_close_timer = 0;  /* delayed file close timer */
@@ -716,6 +718,7 @@ gboolean xfical_file_open(gboolean foreign)
     return(ok);
 }
 
+#ifdef HAVE_ARCHIVE
 gboolean xfical_archive_open(void)
 {
 #undef P_N
@@ -731,6 +734,7 @@ gboolean xfical_archive_open(void)
     return(xfical_internal_file_open(&aical, &afical, g_par.archive_file
             , FALSE));
 }
+#endif
 
 gboolean xfical_file_check(gchar *file_name)
 { 
@@ -833,6 +837,7 @@ void xfical_file_close_force(void)
     delayed_file_close(NULL);
 }
 
+#ifdef HAVE_ARCHIVE
 void xfical_archive_close(void)
 {
 #undef  P_N 
@@ -848,6 +853,7 @@ void xfical_archive_close(void)
     icalset_free(afical);
     afical = NULL;
 }
+#endif
 
 static struct icaltimetype ical_get_current_local_time()
 {
@@ -2484,9 +2490,11 @@ xfical_appt *xfical_appt_get(char *uid)
     if (uid[0] == 'O') {
         return(appt_get_any(ical_uid, ical, file_type));
     }
+#ifdef HAVE_ARCHIVE
     else if (uid[0] == 'A') {
         return(appt_get_any(ical_uid, aical, file_type));
     }
+#endif
     else if (uid[0] == 'F') {
         sscanf(uid, "F%02d", &i);
         if (i < g_par.foreign_count && f_ical[i].ical != NULL)
@@ -3205,10 +3213,12 @@ xfical_appt *xfical_appt_get_next_on_day(char *a_day, gboolean first, gint days
         return(xfical_appt_get_next_on_day_internal(a_day, first
                 , days, type, ical, file_type));
     }
+#ifdef HAVE_ARCHIVE
     else if (file_type[0] == 'A') {
         return(xfical_appt_get_next_on_day_internal(a_day, first
                 , days, type, aical, file_type));
     }
+#endif
     else if (file_type[0] == 'F') {
         sscanf(file_type, "F%02d", &i);
         if (i < g_par.foreign_count && f_ical[i].ical != NULL)
@@ -3359,6 +3369,7 @@ void xfical_mark_calendar(GtkCalendar *gtkcal)
     }
 }
 
+#ifdef HAVE_ARCHIVE
 void xfical_icalcomponent_archive_normal(icalcomponent *e) 
 {
 #undef P_N
@@ -3737,6 +3748,7 @@ gboolean xfical_unarchive_uid(char *uid)
 
     return(TRUE);
 }
+#endif
 
 static gboolean add_event(icalcomponent *c)
 {
@@ -4307,10 +4319,12 @@ xfical_appt *xfical_appt_get_next_with_string(char *str, gboolean first
         return(xfical_appt_get_next_with_string_internal(str, first
                 , g_par.orage_file , ical, file_type));
     }
+#ifdef HAVE_ARCHIVE
     else if (file_type[0] == 'A') {
         return(xfical_appt_get_next_with_string_internal(str, first
                 , g_par.archive_file, aical, file_type));
     }
+#endif
     else if (file_type[0] == 'F') {
         sscanf(file_type, "F%02d", &i);
         if (i < g_par.foreign_count && f_ical[i].ical != NULL)

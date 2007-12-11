@@ -90,29 +90,59 @@ static const GtkTargetEntry drag_targets[] =
     { "STRING", 0, DRAG_TARGET_STRING }
 };
 
-static void editEvent(GtkTreeView *view, GtkTreePath *path
-        , GtkTreeViewColumn *col, gpointer user_data)
+static void start_appt_win(char *mode,  el_win *el
+        , GtkTreeModel *model, GtkTreeIter *iter, GtkTreePath *path)
 {
-    el_win *el = (el_win *)user_data;
-    appt_win *apptw;
-    GtkTreeModel *model;
-    GtkTreeIter   iter;
     gchar *uid = NULL, *flags = NULL;
+    appt_win *apptw;
 
-    model = gtk_tree_view_get_model(view);
-    if (gtk_tree_model_get_iter(model, &iter, path)) {
-        gtk_tree_model_get(model, &iter
-                , COL_UID, &uid, COL_FLAGS, &flags, -1);
+    if (gtk_tree_model_get_iter(model, iter, path)) {
+        gtk_tree_model_get(model, iter, COL_UID, &uid, -1);
+#ifdef HAVE_ARCHIVE
+        gtk_tree_model_get(model, iter, COL_FLAGS, &flags, -1);
         if (flags && flags[3] == 'A') {
             xfical_unarchive_uid(uid);
             /* note that file id changes after archive */ 
             uid[0]='O';
             refresh_el_win(el);
         }
+        g_free(flags);
+#endif
+        apptw = create_appt_win(mode, uid, el);
+        g_free(uid);
+    }
+}
+
+static void editEvent(GtkTreeView *view, GtkTreePath *path
+        , GtkTreeViewColumn *col, gpointer user_data)
+{
+    el_win *el = (el_win *)user_data;
+    GtkTreeModel *model;
+    GtkTreeIter   iter;
+    /*
+    gchar *uid = NULL, *flags = NULL;
+    appt_win *apptw;
+    */
+
+    model = gtk_tree_view_get_model(view);
+    start_appt_win("UPDATE", el, model, &iter, path);
+    /*
+    if (gtk_tree_model_get_iter(model, &iter, path)) {
+        gtk_tree_model_get(model, &iter, COL_UID, &uid, -1);
+#ifdef HAVE_ARCHIVE
+        gtk_tree_model_get(model, &iter, COL_FLAGS, &flags, -1);
+        if (flags && flags[3] == 'A') {
+            xfical_unarchive_uid(uid);
+            / * note that file id changes after archive * / 
+            uid[0]='O';
+            refresh_el_win(el);
+        }
+#endif
         apptw = create_appt_win("UPDATE", uid, el);
         g_free(uid);
         g_free(flags);
     }
+*/
 }
 
 static gint sortEvent_comp(GtkTreeModel *model
@@ -420,12 +450,14 @@ static void search_data(el_win *el)
         searh_rows(el, search_string, file_type);
     }
 
+#ifdef HAVE_ARCHIVE
     /* finally process always archive file also */
     if (xfical_archive_open()) {
         strcpy(file_type, "A00.");
         searh_rows(el, search_string, file_type);
         xfical_archive_close();
     }
+#endif
     xfical_file_close(TRUE);
     g_free(search_string);
 }
@@ -477,6 +509,7 @@ static void app_data(el_win *el, char *a_day, char *par)
         app_rows(el, a_day, par, ical_type, file_type);
     }
 
+#ifdef HAVE_ARCHIVE
     /* finally process archive file for JOURNAL only */
     if (ical_type == XFICAL_TYPE_JOURNAL) {
         if (xfical_archive_open()) {
@@ -485,6 +518,7 @@ static void app_data(el_win *el, char *a_day, char *par)
             xfical_archive_close();
         }
     }
+#endif
     xfical_file_close(TRUE);
 }
 
@@ -661,8 +695,10 @@ static void duplicate_appointment(el_win *el)
     GtkTreeIter       iter;
     GList *list;
     gint  list_len;
+    /*
     gchar *uid = NULL, *flags = NULL;
     appt_win *apptw;
+    */
 
     sel = gtk_tree_view_get_selection(GTK_TREE_VIEW(el->TreeView));
     list = gtk_tree_selection_get_selected_rows(sel, &model);
@@ -671,18 +707,23 @@ static void duplicate_appointment(el_win *el)
         if (list_len > 1)
             g_warning("Copy: too many rows selected\n");
         path = (GtkTreePath *)g_list_nth_data(list, 0);
+        start_appt_win("COPY", el, model, &iter, path);
+        /*
         if (gtk_tree_model_get_iter(model, &iter, path)) {
             gtk_tree_model_get(model, &iter, COL_UID, &uid, -1);
+#ifdef HAVE_ARCHIVE
             gtk_tree_model_get(model, &iter, COL_FLAGS, &flags, -1);
             if (flags && flags[3] == 'A') {
                 xfical_unarchive_uid(uid);
-                /* note that file id changes after archive */ 
+                / * note that file id changes after archive * / 
                 uid[0]='O';
                 refresh_el_win(el);
             }
+#endif
             apptw = create_appt_win("COPY", uid, el);
             g_free(uid);
         }
+        */
     }
     else
         g_warning("Copy: No row selected\n");

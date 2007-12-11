@@ -50,10 +50,12 @@ typedef struct _intf_win
     GtkWidget *iea_exp_add_all_rb;
     GtkWidget *iea_exp_add_id_rb;
     GtkWidget *iea_exp_id_entry;
+#ifdef HAVE_ARCHIVE
     /* archive */
     GtkWidget *iea_arc_frame;
     GtkWidget *iea_arc_button1;
     GtkWidget *iea_arc_button2;
+#endif
 
         /* Orage files tab */
     GtkWidget *fil_notebook_page;
