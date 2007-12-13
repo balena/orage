@@ -43,8 +43,6 @@
 #include <gdk/gdk.h>
 #include <glib/gprintf.h>
 
-#include <libxfce4util/libxfce4util.h>
-#include <libxfcegui4/netk-trayicon.h>
 #include <libxfcegui4/libxfcegui4.h>
 
 #include "functions.h"
@@ -54,8 +52,6 @@
 #include "appointment.h"
 #include "parameters.h"
 
-#define AVAILABILITY_ARRAY_DIM 2
-#define RECUR_ARRAY_DIM 5
 #define BORDER_SIZE 20
 #define FILETYPE_SIZE 38
 
@@ -66,16 +62,6 @@ static void fill_appt_window(appt_win *apptw, char *action, char *par);
 static gboolean fill_appt_from_apptw(xfical_appt *appt, appt_win *apptw)
 */ 
 
-
-static void combo_box_append_array(GtkWidget *combo_box, char *text[], int size)
-{
-    register int i;
-
-    for (i = 0; i < size; i++) {
-        gtk_combo_box_append_text(GTK_COMBO_BOX(combo_box)
-                , (const gchar *)text[i]);
-    }
-}
 
 static GtkWidget *datetime_hbox_new(GtkWidget *date_button
         , GtkWidget *spin_hh, GtkWidget *spin_mm
@@ -106,7 +92,7 @@ static GtkWidget *datetime_hbox_new(GtkWidget *date_button
 
     gtk_box_pack_start(GTK_BOX(hbox), timezone_button, TRUE, TRUE, 0);
 
-    return hbox;
+    return(hbox);
 }
 
 static GtkWidget *period_hbox_new(gboolean head_space, gboolean tail_space
@@ -261,7 +247,7 @@ static void set_repeat_sensitivity(appt_win *apptw)
 {
     gint freq, i;
     
-    freq = gtk_combo_box_get_active((GtkComboBox *)apptw->Recur_freq_cb);
+    freq = gtk_combo_box_get_active(GTK_COMBO_BOX(apptw->Recur_freq_cb));
     if (freq == XFICAL_FREQ_NONE) {
         gtk_widget_set_sensitive(apptw->Recur_limit_rb, FALSE);
         gtk_widget_set_sensitive(apptw->Recur_count_rb, FALSE);
@@ -516,38 +502,38 @@ static void appCompleted_checkbutton_clicked_cb(GtkCheckButton *cb
 static void app_recur_checkbutton_clicked_cb(GtkCheckButton *checkbutton
         , gpointer user_data)
 {
-    mark_appointment_changed((appt_win *)user_data);
     set_repeat_sensitivity((appt_win *)user_data);
+    mark_appointment_changed((appt_win *)user_data);
 }
 
 static void app_recur_feature_checkbutton_clicked_cb(GtkCheckButton *cb
         , gpointer user_data)
 {
-    mark_appointment_changed((appt_win *)user_data);
     recur_hide_show((appt_win *)user_data);
+    mark_appointment_changed((appt_win *)user_data);
 }
 
 static void app_sound_checkbutton_clicked_cb(GtkCheckButton *cb
         , gpointer user_data)
 {
-    mark_appointment_changed((appt_win *)user_data);
     set_sound_sensitivity((appt_win *)user_data);
+    mark_appointment_changed((appt_win *)user_data);
 }
 
 #ifdef HAVE_NOTIFY
 static void app_notify_checkbutton_clicked_cb(GtkCheckButton *cb
         , gpointer user_data)
 {
-    mark_appointment_changed((appt_win *)user_data);
     set_notify_sensitivity((appt_win *)user_data);
+    mark_appointment_changed((appt_win *)user_data);
 }
 #endif
 
 static void app_proc_checkbutton_clicked_cb(GtkCheckButton *cb
         , gpointer user_data)
 {
-    mark_appointment_changed((appt_win *)user_data);
     set_proc_sensitivity((appt_win *)user_data);
+    mark_appointment_changed((appt_win *)user_data);
 }
 
 static void app_checkbutton_clicked_cb(GtkCheckButton *cb, gpointer user_data)
@@ -611,8 +597,7 @@ static void on_app_combobox_changed_cb(GtkComboBox *cb, gpointer user_data)
     mark_appointment_changed((appt_win *)user_data);
 }
 
-static void on_app_spin_button_changed_cb(GtkSpinButton *sb
-        , gpointer user_data)
+static void on_app_spin_button_changed_cb(GtkSpinButton *sb, gpointer user_data)
 {
     mark_appointment_changed((appt_win *)user_data);
 }
@@ -698,40 +683,29 @@ static gboolean appWindow_check_and_close(appt_win *apptw)
     gint result;
 
     if (apptw->appointment_changed == TRUE) {
-        result = xfce_message_dialog(GTK_WINDOW(apptw->Window),
-             _("Warning"),
-             GTK_STOCK_DIALOG_WARNING,
-             _("The appointment information has been modified."),
-             _("Do you want to continue?"),
-             GTK_STOCK_YES, GTK_RESPONSE_ACCEPT,
-             GTK_STOCK_NO, GTK_RESPONSE_CANCEL,
-             NULL);
+        result = xfce_message_dialog(GTK_WINDOW(apptw->Window)
+                , _("Warning")
+                , GTK_STOCK_DIALOG_WARNING
+                , _("The appointment information has been modified.")
+                , _("Do you want to continue?")
+                , GTK_STOCK_YES, GTK_RESPONSE_ACCEPT
+                , GTK_STOCK_NO, GTK_RESPONSE_CANCEL
+                , NULL);
 
         if (result == GTK_RESPONSE_ACCEPT) {
             app_free_memory(apptw);
-            /*
-            gtk_widget_destroy(apptw->Window);
-            gtk_object_destroy(GTK_OBJECT(apptw->Tooltips));
-            g_free(apptw);
-            */
         }
     }
     else {
         app_free_memory(apptw);
-        /*
-        gtk_widget_destroy(apptw->Window);
-        gtk_object_destroy(GTK_OBJECT(apptw->Tooltips));
-        xfical_appt_free(apptw->appt);
-        g_free(apptw);
-        */
     }
-    return TRUE;
+    return(TRUE);
 }
 
 static gboolean on_appWindow_delete_event_cb(GtkWidget *widget, GdkEvent *event
     , gpointer user_data)
 {
-    return appWindow_check_and_close((appt_win *)user_data);
+    return(appWindow_check_and_close((appt_win *)user_data));
 }
 
 static gboolean orage_validate_datetime(appt_win *apptw, xfical_appt *appt)
@@ -742,14 +716,13 @@ static gboolean orage_validate_datetime(appt_win *apptw, xfical_appt *appt)
     if (appt->type == XFICAL_TYPE_JOURNAL)
         return(TRUE);
     if (xfical_compare_times(appt) > 0) {
-        result = xfce_message_dialog(GTK_WINDOW(apptw->Window),
-                _("Warning"),
-                GTK_STOCK_DIALOG_WARNING,
-                _("The end of this appointment is earlier than the beginning."),
-                NULL,
-                GTK_STOCK_OK,
-                GTK_RESPONSE_ACCEPT,
-                NULL);
+        result = xfce_message_dialog(GTK_WINDOW(apptw->Window)
+                , _("Error")
+                , GTK_STOCK_DIALOG_ERROR
+                , _("The end of this appointment is earlier than the beginning.")
+                , NULL
+                , GTK_STOCK_OK, GTK_RESPONSE_ACCEPT
+                , NULL);
         return(FALSE);
     }
     else {
@@ -758,8 +731,7 @@ static gboolean orage_validate_datetime(appt_win *apptw, xfical_appt *appt)
 }
 
 /*
- * fill_appt_from_apptw
- * This function fills an appointment with the contents of an appointment 
+ * Function fills an appointment with the contents of an appointment 
  * window
  */
 static gboolean fill_appt_from_apptw(xfical_appt *appt, appt_win *apptw)
@@ -880,9 +852,6 @@ static gboolean fill_appt_from_apptw(xfical_appt *appt, appt_win *apptw)
 
     /* notes */
     gtk_text_buffer_get_bounds(apptw->Note_buffer, &start, &end);
-            /*
-            gtk_text_view_get_buffer((GtkTextView *)apptw->Note_textview)
-            */
     appt->note = gtk_text_iter_get_text(&start, &end);
 
             /*********** ALARM TAB ***********/
@@ -969,14 +938,15 @@ static gboolean fill_appt_from_apptw(xfical_appt *appt, appt_win *apptw)
 #endif
 
     /* Do we use procedure alarm */
-    appt->procedure_alarm = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(apptw->Proc_checkbutton));
+    appt->procedure_alarm = gtk_toggle_button_get_active(
+            GTK_TOGGLE_BUTTON(apptw->Proc_checkbutton));
 
     /* The actual command. 
      * Note that we need to split this into cmd and the parameters 
      * since that is how libical stores it */
     appt->procedure_cmd =  NULL;
     appt->procedure_params =  NULL;
-    tmp = (char*)gtk_entry_get_text(GTK_ENTRY(apptw->Proc_entry));
+    tmp = (char *)gtk_entry_get_text(GTK_ENTRY(apptw->Proc_entry));
     j = strlen(tmp);
     for (i = 0; i < j && g_ascii_isspace(tmp[i]); i++)
         ; /* skip blanks */
@@ -1074,7 +1044,7 @@ static gboolean save_xfical_from_appt_win(appt_win *apptw)
         if (ok) {
             apptw->appointment_new = FALSE;
             mark_appointment_unchanged(apptw);
-        /* FIXME: This fails if event_list window has been removed.
+        /* FIXME: Removed since it fails if event_list window has been removed.
          * We should check that it really still exists, before calling this.
             if (apptw->el != NULL)
                 refresh_el_win((el_win *)apptw->el);
@@ -1082,7 +1052,7 @@ static gboolean save_xfical_from_appt_win(appt_win *apptw)
             orage_mark_appointments();
         }
     }
-    return (ok);
+    return(ok);
 }
 
 static void on_appFileSave_menu_activate_cb(GtkMenuItem *mi, gpointer user_data)
@@ -1099,12 +1069,6 @@ static void save_xfical_from_appt_win_and_close(appt_win *apptw)
 {
     if (save_xfical_from_appt_win(apptw)) {
         app_free_memory(apptw);
-        /*
-        gtk_widget_destroy(apptw->Window);
-        gtk_object_destroy(GTK_OBJECT(apptw->Tooltips));
-        xfical_appt_free(apptw->appt);
-        g_free(apptw);
-        */
     }
 }
 
@@ -1152,14 +1116,6 @@ static void delete_xfical_from_appt_win(appt_win *apptw)
         orage_mark_appointments();
 
         app_free_memory(apptw);
-        /*
-        gtk_widget_destroy(apptw->Window);
-        gtk_object_destroy(GTK_OBJECT(apptw->Tooltips));
-        g_free(apptw->xf_uid);
-        g_free(apptw->par);
-        xfical_appt_free(apptw->appt);
-        g_free(apptw);
-        */
     }
 }
 
@@ -1171,7 +1127,7 @@ static void on_appDelete_clicked_cb(GtkButton *b, gpointer user_data)
 static void on_appFileDelete_menu_activate_cb(GtkMenuItem *mi
         , gpointer user_data)
 {
-    delete_xfical_from_appt_win((appt_win *) user_data);
+    delete_xfical_from_appt_win((appt_win *)user_data);
 }
 
 static void duplicate_xfical_from_appt_win(appt_win *apptw)
@@ -1205,7 +1161,8 @@ static void revert_xfical_to_last_saved(appt_win *apptw)
     }
 }
 
-static void on_appFileRevert_menu_activate_cb(GtkMenuItem *mi, gpointer user_data)
+static void on_appFileRevert_menu_activate_cb(GtkMenuItem *mi
+        , gpointer user_data)
 {
     revert_xfical_to_last_saved((appt_win *)user_data);
 }
@@ -1333,12 +1290,10 @@ static void fill_appt_window_times(appt_win *apptw, xfical_appt *appt)
         completeddate_to_display = orage_tm_date_to_i18_date(&tm_date);
         gtk_button_set_label(GTK_BUTTON(apptw->CompletedDate_button)
                 , (const gchar *)completeddate_to_display);
-        gtk_spin_button_set_value(
-                GTK_SPIN_BUTTON(apptw->CompletedTime_spin_hh)
-                        , (gdouble)tm_date.tm_hour);
-        gtk_spin_button_set_value(
-                GTK_SPIN_BUTTON(apptw->CompletedTime_spin_mm)
-                        , (gdouble)tm_date.tm_min);
+        gtk_spin_button_set_value(GTK_SPIN_BUTTON(apptw->CompletedTime_spin_hh)
+                , (gdouble)tm_date.tm_hour);
+        gtk_spin_button_set_value(GTK_SPIN_BUTTON(apptw->CompletedTime_spin_mm)
+                , (gdouble)tm_date.tm_min);
         if (appt->completed_tz_loc) {
             gtk_button_set_label(GTK_BUTTON(apptw->CompletedTimezone_button)
                     , _(appt->completed_tz_loc));
@@ -1350,7 +1305,8 @@ static void fill_appt_window_times(appt_win *apptw, xfical_appt *appt)
         g_warning("fill_appt_window_times: completedtime wrong %s", appt->uid);
 }
 
-static xfical_appt *fill_appt_window_get_appt(char *action, char *par)
+static xfical_appt *fill_appt_window_get_appt(appt_win *apptw
+    , char *action, char *par)
 {
     xfical_appt *appt=NULL;
     struct tm *t;
@@ -1405,26 +1361,30 @@ static xfical_appt *fill_appt_window_get_appt(char *action, char *par)
         /* default alarm type is orage window */
         appt->display_alarm_orage = TRUE;
     }
-    else if ((strcmp(action, "UPDATE") == 0) 
-          || (strcmp(action, "COPY") == 0)) {
+    else if ((strcmp(action, "UPDATE") == 0) || (strcmp(action, "COPY") == 0)) {
         /* par contains ical uid */
         if (!xfical_file_open(TRUE))
             return(NULL);
         if ((appt = xfical_appt_get(par)) == NULL) {
-            orage_message("appointment not found");
-            xfical_file_close(TRUE);
-            return(NULL);
+            orage_message("appointment not found: %s", par);
+            xfce_message_dialog(GTK_WINDOW(apptw->Window)
+                , _("Info")
+                , GTK_STOCK_DIALOG_INFO
+                , _("This appointment does not exist.")
+                , _("It was probably removed, please refresh your screen.")
+                , GTK_STOCK_OK, GTK_RESPONSE_ACCEPT
+                , NULL);
         }
         xfical_file_close(TRUE);
     }
     else {
         g_error("unknown parameter\n");
-        return(NULL);
     }
 
     return(appt);
 }
 
+/* Fill appointment window with data */
 static void fill_appt_window(appt_win *apptw, char *action, char *par)
 {
     int day, hours, minutes;
@@ -1434,7 +1394,7 @@ static void fill_appt_window(appt_win *apptw, char *action, char *par)
     int i;
 
     orage_message("%s appointment: %s", action, par);
-    if ((appt = fill_appt_window_get_appt(action, par)) == NULL) {
+    if ((appt = fill_appt_window_get_appt(apptw, action, par)) == NULL) {
         apptw->appt = NULL;
         return;
     }
@@ -1503,10 +1463,6 @@ static void fill_appt_window(appt_win *apptw, char *action, char *par)
             gtk_editable_insert_text(GTK_EDITABLE(apptw->Title_entry)
                     , _(" *** COPY ***"), strlen(_(" *** COPY ***")), &i);
     }
-    /*
-        gtk_entry_append_text(GTK_ENTRY(apptw->Title_entry)
-                , _(" *** COPY ***"));
-                */
 
     /* location */
     gtk_entry_set_text(GTK_ENTRY(apptw->Location_entry)
@@ -1555,13 +1511,11 @@ static void fill_appt_window(appt_win *apptw, char *action, char *par)
 
     /* persistent */
     gtk_toggle_button_set_active(
-            GTK_TOGGLE_BUTTON(apptw->Per_checkbutton)
-                    , appt->alarm_persistent);
+            GTK_TOGGLE_BUTTON(apptw->Per_checkbutton), appt->alarm_persistent);
 
     /* sound */
     gtk_toggle_button_set_active(
-            GTK_TOGGLE_BUTTON(apptw->Sound_checkbutton)
-                    , appt->sound_alarm);
+            GTK_TOGGLE_BUTTON(apptw->Sound_checkbutton), appt->sound_alarm);
     gtk_entry_set_text(GTK_ENTRY(apptw->Sound_entry)
             , (appt->sound ? appt->sound : 
                 PACKAGE_DATA_DIR "/orage/sounds/Spo.wav"));
@@ -1584,8 +1538,8 @@ static void fill_appt_window(appt_win *apptw, char *action, char *par)
     gtk_toggle_button_set_active(
             GTK_TOGGLE_BUTTON(apptw->Display_checkbutton_notify)
                     , appt->display_alarm_notify);
-    if (!appt->display_alarm_notify 
-            || appt->display_notify_timeout == -1) { /* no timeout */
+    if (!appt->display_alarm_notify || appt->display_notify_timeout == -1) { 
+        /* no timeout */
         gtk_toggle_button_set_active(
                 GTK_TOGGLE_BUTTON(apptw->Display_checkbutton_expire_notify)
                         , FALSE);
@@ -1605,8 +1559,7 @@ static void fill_appt_window(appt_win *apptw, char *action, char *par)
 
     /* procedure */
     gtk_toggle_button_set_active(
-            GTK_TOGGLE_BUTTON(apptw->Proc_checkbutton)
-                    , appt->procedure_alarm);
+            GTK_TOGGLE_BUTTON(apptw->Proc_checkbutton), appt->procedure_alarm);
     tmp = g_strconcat(appt->procedure_cmd, " ", appt->procedure_params, NULL);
     gtk_entry_set_text(GTK_ENTRY(apptw->Proc_entry), tmp ? tmp : "");
     g_free(tmp);
@@ -1621,10 +1574,6 @@ static void fill_appt_window(appt_win *apptw, char *action, char *par)
                     GTK_TOGGLE_BUTTON(apptw->Recur_limit_rb), TRUE);
             gtk_spin_button_set_value(
                     GTK_SPIN_BUTTON(apptw->Recur_count_spin), (gdouble)1);
-            /*
-            t = orage_localtime();
-            untildate_to_display = orage_tm_date_to_i18_date(t);
-            */
             untildate_to_display = orage_localdate_i18();
             gtk_button_set_label(GTK_BUTTON(apptw->Recur_until_button)
                     , (const gchar *)untildate_to_display);
@@ -1635,10 +1584,6 @@ static void fill_appt_window(appt_win *apptw, char *action, char *par)
             gtk_spin_button_set_value(
                     GTK_SPIN_BUTTON(apptw->Recur_count_spin)
                     , (gdouble)appt->recur_count);
-            /*
-            t = orage_localtime();
-            untildate_to_display = orage_tm_date_to_i18_date(t);
-            */
             untildate_to_display = orage_localdate_i18();
             gtk_button_set_label(GTK_BUTTON(apptw->Recur_until_button)
                     , (const gchar *)untildate_to_display);
@@ -1685,9 +1630,6 @@ static void fill_appt_window(appt_win *apptw, char *action, char *par)
         gtk_toggle_button_set_active(
                 GTK_TOGGLE_BUTTON(apptw->Recur_feature_normal_rb), TRUE);
     }
-    /*
-    xfical_appt_free(appt);
-    */
 
     set_time_sensitivity(apptw);
     set_repeat_sensitivity(apptw);
@@ -1794,23 +1736,11 @@ static void build_toolbar(appt_win *apptw)
             , G_CALLBACK(on_appDelete_clicked_cb), apptw);
 }
 
-/*
-static void oc_set_height_changed(GtkSpinButton *sb, appt_win *apptw)
-{
-        gint test;
-
-        test = gtk_spin_button_get_value_as_int(sb);
-        g_print("oc_set_height_changed: %d\n", test);
-}
-*/
-
-
 static void build_general_page(appt_win *apptw)
 {
     gint row;
     GtkWidget *label, *event, *hbox;
-    char *availability_array[AVAILABILITY_ARRAY_DIM] = {
-            _("Free"), _("Busy")};
+    char *availability_array[2] = {_("Free"), _("Busy")};
 
     apptw->TableGeneral = orage_table_new(10, BORDER_SIZE);
     apptw->General_notebook_page = apptw->TableGeneral;
@@ -1879,10 +1809,6 @@ static void build_general_page(appt_win *apptw)
     orage_table_add_row(apptw->TableGeneral
             , apptw->Start_label, apptw->StartTime_hbox
             , ++row, (GTK_SHRINK | GTK_FILL), (GTK_SHRINK | GTK_FILL));
-    /*
-g_signal_connect((gpointer) apptw->StartTime_spin_hh, "value-changed",
-            G_CALLBACK(oc_set_height_changed), NULL);
-*/
 
     /* end time */
     apptw->End_label = gtk_label_new(_("End"));
@@ -1923,9 +1849,8 @@ g_signal_connect((gpointer) apptw->StartTime_spin_hh, "value-changed",
     
     /* Availability (only for EVENT) */
     apptw->Availability_label = gtk_label_new(_("Availability"));
-    apptw->Availability_cb = gtk_combo_box_new_text();
-    combo_box_append_array(apptw->Availability_cb
-            , availability_array, AVAILABILITY_ARRAY_DIM);
+    apptw->Availability_cb = orage_create_combo_box_with_content(
+            availability_array, 2);
     orage_table_add_row(apptw->TableGeneral
             , apptw->Availability_label, apptw->Availability_cb
             , ++row, (GTK_FILL), (GTK_FILL));
@@ -2062,9 +1987,7 @@ static void build_alarm_page(appt_win *apptw)
             , apptw->Alarm_spin_mm, apptw->Alarm_spin_mm_label);
     gtk_box_pack_start(GTK_BOX(apptw->Alarm_hbox), apptw->Alarm_time_hbox
             , FALSE, FALSE, 0);
-    apptw->Alarm_when_cb = gtk_combo_box_new_text();
-    combo_box_append_array(apptw->Alarm_when_cb
-            , when_array, 4);
+    apptw->Alarm_when_cb = orage_create_combo_box_with_content(when_array, 4);
     event =  gtk_event_box_new(); /* only needed for tooltips */
     gtk_container_add(GTK_CONTAINER(event), apptw->Alarm_when_cb);
     gtk_box_pack_start(GTK_BOX(apptw->Alarm_hbox)
@@ -2275,7 +2198,7 @@ static void build_alarm_page(appt_win *apptw)
 static void build_recurrence_page(appt_win *apptw)
 {
     gint row, i;
-    char *recur_freq_array[RECUR_ARRAY_DIM] = {
+    char *recur_freq_array[5] = {
         _("None"), _("Daily"), _("Weekly"), _("Monthly"), _("Yearly")};
     char *weekday_array[7] = {
         _("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun")};
@@ -2296,7 +2219,7 @@ static void build_recurrence_page(appt_win *apptw)
     apptw->Recur_feature_advanced_rb = 
             gtk_radio_button_new_with_mnemonic_from_widget(
                     GTK_RADIO_BUTTON(apptw->Recur_feature_normal_rb)
-            , _("Advanced"));
+                    , _("Advanced"));
     gtk_box_pack_start(GTK_BOX(apptw->Recur_feature_hbox)
             , apptw->Recur_feature_advanced_rb, FALSE, FALSE, 15);
     orage_table_add_row(apptw->TableRecur
@@ -2310,9 +2233,8 @@ static void build_recurrence_page(appt_win *apptw)
 
     apptw->Recur_freq_label = gtk_label_new(_("Frequency"));
     apptw->Recur_freq_hbox = gtk_hbox_new(FALSE, 0);
-    apptw->Recur_freq_cb = gtk_combo_box_new_text();
-    combo_box_append_array(apptw->Recur_freq_cb
-            , recur_freq_array, RECUR_ARRAY_DIM);
+    apptw->Recur_freq_cb = orage_create_combo_box_with_content(
+            recur_freq_array, 5);
     gtk_box_pack_start(GTK_BOX(apptw->Recur_freq_hbox)
             , apptw->Recur_freq_cb, FALSE, FALSE, 15);
     apptw->Recur_int_spin_label1 = gtk_label_new(_("Each"));
@@ -2473,12 +2395,7 @@ appt_win *create_appt_win(char *action, char *par, el_win *event_list)
     }
     else { /* failed to get data */
         app_free_memory(apptw);
-        /*
-        gtk_widget_destroy(apptw->Window);
-        gtk_object_destroy(GTK_OBJECT(apptw->Tooltips));
-        g_free(apptw);
-        */
     }
 
-    return apptw;
+    return(apptw);
 }

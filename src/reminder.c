@@ -60,9 +60,8 @@
 #define ORAGE_PERSISTENT_ALARMS "orage_persistent_alarms.txt"
 
 static void create_notify_reminder(alarm_struct *alarm);
-gboolean orage_alarm_clock(gpointer user_data);
-gboolean orage_tooltip_update(gpointer user_data);
-void create_reminders(alarm_struct *alarm);
+static void create_reminders(alarm_struct *alarm);
+static void reset_orage_alarm_clock();
 
 /* this is almost the same than in ical-code.c.
  * Perhaps these can be combined */
@@ -100,9 +99,6 @@ void alarm_list_free()
 
 static void alarm_free_memory(alarm_struct *alarm)
 {
-    /*
-    g_print("alarm_free_memory: start %d %d\n",  alarm->audio, alarm->display_notify);
-    */
     if (!alarm->display_orage && !alarm->display_notify && !alarm->audio)
         /* all gone, need to clean memory */
         alarm_free(alarm, NULL);
@@ -110,9 +106,6 @@ static void alarm_free_memory(alarm_struct *alarm)
         /* if both visuals are gone we can't stop audio anymore, so stop it 
          * now before it is too late */
         alarm->repeat_cnt = 0;
-        /*
-    g_print("alarm_free_memory: freed %d %d\n",  alarm->audio, alarm->display_notify);
-    */
 }
 
 static int orage_persistent_file_open(gboolean write)
@@ -120,10 +113,6 @@ static int orage_persistent_file_open(gboolean write)
     int p_file;
     char *file_name;
 
-    /*
-    file_name = xfce_resource_save_location(XFCE_RESOURCE_DATA
-            , ORAGE_DIR ORAGE_PERSISTENT_ALARMS, TRUE);
-            */
     file_name = orage_resource_file_location(ORAGE_DIR ORAGE_PERSISTENT_ALARMS);
     if (!file_name) {
         g_warning("orage_persistent_file_open: Persistent alarms filename build failed, alarms not saved (%s)\n", file_name);
@@ -152,14 +141,11 @@ static gboolean alarm_read_next_value(int p_file, char *buf)
     if (read(p_file, buf, 3) == 0)
         return(FALSE);
     buf[3] = '\0';
-/*    g_print(P_N "read cnt %s\n", buf); */
     len = atoi(buf);
-/*    g_print(P_N "read len %d\n", len); */
     for (read(p_file, buf, 1); buf[0] != '='; read(p_file, buf, 1))
         ; /* skip until =, which starts the value */
     read(p_file, buf, len);
     buf[len] = '\0';
-/*    g_print(P_N "read data %s\n", buf); */
     lseek(p_file, 1, SEEK_CUR); /* skip new line */
     return(TRUE);
 }
@@ -258,8 +244,8 @@ void alarm_read()
             new_alarm = alarm_read_next_alarm(p_file, buf)) {
         if (strcmp(time_now, new_alarm->alarm_time) > 0) {
             create_reminders(new_alarm);
-            alarm_free(new_alarm, NULL);
         }
+        alarm_free(new_alarm, NULL);
     }
     close(p_file);
 }
@@ -298,12 +284,6 @@ static void alarm_store(gpointer galarm, gpointer gfile)
     g_sprintf(buf, "%03dPERSISTENT=%s\n", strlen("TRUE"), "TRUE");
     write(file, buf, strlen(buf));
 
-    /*
- *     if (alarm->display_orage)
- *             s_boolean="TRUE";
- *                 else
- *                         s_boolean="FALSE";
- *                             */
     s_boolean = alarm->display_orage ? "TRUE" : "FALSE";
     g_sprintf(buf, "%03dDISPLAY_ORAGE=%s\n", strlen(s_boolean), s_boolean);
     write(file, buf, strlen(buf));
@@ -375,7 +355,7 @@ static void notify_action_open(NotifyNotification *n, const char *action
     alarm_struct *alarm = (alarm_struct *)par;
 
     /* 
-     * These two lines wuold keep notify window active and make it possible
+     * These two lines would keep notify window active and make it possible
      * to start several times the appointment or start it and still be 
      * able to control sound. Not sure if they should be there or not.
     alarm->notify_refresh = TRUE;
@@ -472,15 +452,9 @@ static void notify_action_silence(NotifyNotification *n, const char *action
 {
     alarm_struct *alarm = (alarm_struct *)par;
 
-    /*
-    g_print("notify_action_silence: start %d %d\n",  alarm->audio, alarm->display_notify);
-    */
     alarm->notify_refresh = TRUE;
     alarm->repeat_cnt = 0;
     create_notify_reminder(alarm);
-    /*
-    g_print("notify_action_silence: end %d %d\n",  alarm->audio, alarm->display_notify);
-    */
 }
 #endif
 
@@ -639,7 +613,7 @@ static void create_procedure_reminder(alarm_struct *alarm)
         g_warning("create_procedure_reminder: cmd failed(%s)", alarm->cmd);
 }
 
-void create_reminders(alarm_struct *alarm)
+static void create_reminders(alarm_struct *alarm)
 {
     alarm_struct *n_alarm;
 
@@ -679,39 +653,10 @@ void create_reminders(alarm_struct *alarm)
         create_procedure_reminder(n_alarm);
 }
 
-gboolean reset_orage_day_change(gboolean changed)
-{
-    struct tm *t;
-    gint secs_left;
-
-    if (changed) { /* date was change, need to count next change time */
-        t = orage_localtime();
-        /* t format is 23:59:59 -> 00:00:00 so we can use 
-         * 24:00:00 to represent next day.
-         * Let's find out how much time we have until it happens */
-        secs_left = 60*60*(24 - t->tm_hour) - 60*t->tm_min - t->tm_sec;
-        /*
-        if (g_par.day_timer) { / * first time it is not active yet * /
-            g_source_remove(g_par.day_timer);
-        }
-        */
-        g_par.day_timer = g_timeout_add(secs_left * 1000
-                , (GtkFunction) orage_day_change, NULL);
-    }
-    else { /* the change did not happen. Need to try again asap. */
-        /*
-        g_source_remove(g_par.day_timer);
-        */
-        g_par.day_timer = g_timeout_add(1 * 1000
-                , (GtkFunction) orage_day_change, NULL);
-    }
-    return(TRUE);
-}
-
 /* fire after the date has changed and setup the icon 
  * and change the date in the mainwindow
  */
-gboolean orage_day_change(gpointer user_data)
+static gboolean orage_day_change(gpointer user_data)
 {
     CalWin *xfcal;
     struct tm *t;
@@ -764,53 +709,36 @@ gboolean orage_day_change(gpointer user_data)
     return(FALSE); /* we started new timer, so we end here */
 }
 
-static gboolean reset_orage_alarm_clock()
+void reset_orage_day_change(gboolean changed)
 {
-    struct tm *t, t_alarm;
-    GList *alarm_l;
-    alarm_struct *cur_alarm;
-    gchar *next_alarm;
-    gint secs_to_alarm;
-    /*
-    GDate *g_now, *g_alarm;
-    */
-    gint dd;
+    struct tm *t;
+    gint secs_left;
 
-    if (g_par.alarm_timer) /* need to stop it if running */
-        g_source_remove(g_par.alarm_timer);
-    if (g_par.alarm_list == NULL) { /* we do not have alarms */
-        return(FALSE);
+    if (changed) { /* date was change, need to count next change time */
+        t = orage_localtime();
+        /* t format is 23:59:59 -> 00:00:00 so we can use 
+         * 24:00:00 to represent next day.
+         * Let's find out how much time we have until it happens */
+        secs_left = 60*60*(24 - t->tm_hour) - 60*t->tm_min - t->tm_sec;
+        /*
+        if (g_par.day_timer) { / * first time it is not active yet * /
+            g_source_remove(g_par.day_timer);
+        }
+        */
+        g_par.day_timer = g_timeout_add(secs_left * 1000
+                , (GtkFunction) orage_day_change, NULL);
     }
-    t = orage_localtime();
-    t->tm_mon++;
-    t->tm_year = t->tm_year + 1900;
-    alarm_l = g_list_first(g_par.alarm_list);
-    cur_alarm = (alarm_struct *)alarm_l->data;
-    next_alarm = cur_alarm->alarm_time;
-    t_alarm = orage_icaltime_to_tm_time(next_alarm, FALSE);
-    /* let's find out how much time we have until alarm happens */
-    /*
-    g_now = g_date_new_dmy(t->tm_mday, t->tm_mon + 1, t->tm_year + 1900);
-    g_alarm = g_date_new_dmy(t_alarm.tm_mday, t_alarm.tm_mon, t_alarm.tm_year);
-    dd = g_date_days_between(g_now, g_alarm);
-    g_date_free(g_now);
-    g_date_free(g_alarm);
-    */
-    dd = orage_days_between(t, &t_alarm);
-    secs_to_alarm = t_alarm.tm_sec  - t->tm_sec
-              + 60*(t_alarm.tm_min  - t->tm_min)
-              + 60*60*(t_alarm.tm_hour - t->tm_hour)
-              + 24*60*60*dd;
-    secs_to_alarm += 1; /* alarm needs to come a bit later */
-    if (secs_to_alarm < 1) /* were rare, but possible */
-        secs_to_alarm = 1;
-    g_par.alarm_timer = g_timeout_add(secs_to_alarm * 1000
-            , (GtkFunction) orage_alarm_clock, NULL);
-    return(TRUE);
+    else { /* the change did not happen. Need to try again asap. */
+        /*
+        g_source_remove(g_par.day_timer);
+        */
+        g_par.day_timer = g_timeout_add(1 * 1000
+                , (GtkFunction) orage_day_change, NULL);
+    }
 }
 
 /* check and raise alarms if there are any */
-gboolean orage_alarm_clock(gpointer user_data)
+static gboolean orage_alarm_clock(gpointer user_data)
 {
     struct tm *t;
     GList *alarm_l;
@@ -842,37 +770,37 @@ gboolean orage_alarm_clock(gpointer user_data)
     return(FALSE); /* only once */
 }
 
-/* start timer to fire every minute to keep tooltip accurate */
-gboolean start_orage_tooltip_update(gpointer user_data)
+static void reset_orage_alarm_clock()
 {
-    if (g_par.tooltip_timer) { /* need to stop it if running */
-        g_source_remove(g_par.tooltip_timer);
+    struct tm *t, t_alarm;
+    GList *alarm_l;
+    alarm_struct *cur_alarm;
+    gchar *next_alarm;
+    gint secs_to_alarm;
+    gint dd;
+
+    if (g_par.alarm_timer) /* need to stop it if running */
+        g_source_remove(g_par.alarm_timer);
+    if (g_par.alarm_list) { /* we have alarms */
+        t = orage_localtime();
+        t->tm_mon++;
+        t->tm_year = t->tm_year + 1900;
+        alarm_l = g_list_first(g_par.alarm_list);
+        cur_alarm = (alarm_struct *)alarm_l->data;
+        next_alarm = cur_alarm->alarm_time;
+        t_alarm = orage_icaltime_to_tm_time(next_alarm, FALSE);
+        /* let's find out how much time we have until alarm happens */
+        dd = orage_days_between(t, &t_alarm);
+        secs_to_alarm = t_alarm.tm_sec  - t->tm_sec
+                  + 60*(t_alarm.tm_min  - t->tm_min)
+                  + 60*60*(t_alarm.tm_hour - t->tm_hour)
+                  + 24*60*60*dd;
+        secs_to_alarm += 1; /* alarm needs to come a bit later */
+        if (secs_to_alarm < 1) /* were rare, but possible */
+            secs_to_alarm = 1;
+        g_par.alarm_timer = g_timeout_add(secs_to_alarm * 1000
+                , (GtkFunction) orage_alarm_clock, NULL);
     }
-
-    orage_tooltip_update(NULL);
-    g_par.tooltip_timer = g_timeout_add(60*1000
-            , (GtkFunction) orage_tooltip_update, NULL);
-    return(FALSE);
-}
-
-/* adjust the call to happen when minute changes */
-gboolean reset_orage_tooltip_update()
-{
-    struct tm *t;
-    gint secs_left;
-
-    t = orage_localtime();
-    secs_left = 60 - t->tm_sec;
-    if (secs_left > 10) 
-        orage_tooltip_update(NULL);
-    /* FIXME: do not start this, if it is already in progress.
-     * Minor thing and does not cause any real trouble and happens
-     * only when appoinments are updated in less than 1 minute apart. 
-     * Perhaps not worth fixing. 
-     * Should add another timer or static time to keep track of this */
-    g_timeout_add(secs_left*1000
-            , (GtkFunction) start_orage_tooltip_update, NULL);
-    return(FALSE);
 }
 
 /* refresh trayicon tooltip once per minute */
@@ -888,7 +816,6 @@ gboolean orage_tooltip_update(gpointer user_data)
     gint year, month, day, hour, minute, second;
     gint dd, hh, min;
     GDate *g_now, *g_alarm;
-                                                                                
 
     if (!(g_par.trayIcon && NETK_IS_TRAY_ICON(g_par.trayIcon->tray))) { 
            /* no trayicon => no need to update the tooltip */
@@ -937,12 +864,44 @@ gboolean orage_tooltip_update(gpointer user_data)
     return(TRUE);
 }
 
-gboolean setup_orage_alarm_clock()
+/* start timer to fire every minute to keep tooltip accurate */
+gboolean start_orage_tooltip_update(gpointer user_data)
+{
+    if (g_par.tooltip_timer) { /* need to stop it if running */
+        g_source_remove(g_par.tooltip_timer);
+    }
+
+    orage_tooltip_update(NULL);
+    g_par.tooltip_timer = g_timeout_add(60*1000
+            , (GtkFunction) orage_tooltip_update, NULL);
+    return(FALSE);
+}
+
+/* adjust the call to happen when minute changes */
+gboolean reset_orage_tooltip_update()
+{
+    struct tm *t;
+    gint secs_left;
+
+    t = orage_localtime();
+    secs_left = 60 - t->tm_sec;
+    if (secs_left > 10) 
+        orage_tooltip_update(NULL);
+    /* FIXME: do not start this, if it is already in progress.
+     * Minor thing and does not cause any real trouble and happens
+     * only when appoinments are updated in less than 1 minute apart. 
+     * Perhaps not worth fixing. 
+     * Should add another timer or static time to keep track of this */
+    g_timeout_add(secs_left*1000
+            , (GtkFunction) start_orage_tooltip_update, NULL);
+    return(FALSE);
+}
+
+void setup_orage_alarm_clock()
 {
     reset_orage_alarm_clock();
     store_persistent_alarms(); /* keep track of alarms when orage is down */
     /* We need to use timer since for some reason it does not work if we
      * do it here directly. Ugly, I know, but it works. */
     g_timeout_add(1*1000, (GtkFunction) reset_orage_tooltip_update, NULL);
-    return(TRUE);
 }

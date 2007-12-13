@@ -63,14 +63,13 @@ gboolean orage_mark_appointments()
 
 static void mFile_newApp_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
 {
-    appt_win *app;
     struct tm *t;
     char cur_date[9];
 
     t = orage_localtime();
     g_snprintf(cur_date, 9, "%04d%02d%02d", t->tm_year+1900
             , t->tm_mon+1, t->tm_mday);
-    app = create_appt_win("NEW", cur_date, NULL);  
+    create_appt_win("NEW", cur_date, NULL);  
 }
 
 static void mFile_interface_activate_cb(GtkMenuItem *menuitem
@@ -131,10 +130,6 @@ static void mHelp_help_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
            , G_DIR_SEPARATOR_S, "C"
            , G_DIR_SEPARATOR_S, "orage.html", NULL);
     orage_exec(helpdoc, NULL, NULL);
-    /*
-    xfce_exec(helpdoc, FALSE, FALSE, NULL);
-    xfce_exec("xfhelp4 xfce4-user-guide.html", FALSE, FALSE, NULL);
-    */
 }
 
 static void mHelp_about_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
@@ -373,6 +368,20 @@ static void todo_process(gpointer a, gpointer dummy)
     xfical_appt_free(appt);
 }
 
+void create_mainbox_info(void)
+{
+    CalWin *cal = g_par.xfcal;
+
+    cal->mInfo_scrolledWin = gtk_scrolled_window_new(NULL, NULL);
+    gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(cal->mInfo_scrolledWin)
+            , GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);
+    gtk_box_pack_start(GTK_BOX(cal->mVbox), cal->mInfo_scrolledWin
+            , FALSE, FALSE, 0);
+    cal->mInfo_vbox = gtk_vbox_new(FALSE, 0);
+    gtk_scrolled_window_add_with_viewport(
+            GTK_SCROLLED_WINDOW(cal->mInfo_scrolledWin), cal->mInfo_vbox);
+}
+
 void build_mainbox_info(void)
 {
     CalWin *cal = g_par.xfcal;
@@ -385,14 +394,7 @@ void build_mainbox_info(void)
     GList *todo_list=NULL;
 
     gtk_widget_destroy(cal->mInfo_scrolledWin);
-    cal->mInfo_scrolledWin = gtk_scrolled_window_new(NULL, NULL);
-    gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(cal->mInfo_scrolledWin)
-            , GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);
-    gtk_box_pack_start(GTK_BOX(cal->mVbox), cal->mInfo_scrolledWin
-            , FALSE, FALSE, 0);
-    cal->mInfo_vbox = gtk_vbox_new(FALSE, 0);
-    gtk_scrolled_window_add_with_viewport(
-            GTK_SCROLLED_WINDOW(cal->mInfo_scrolledWin), cal->mInfo_vbox);
+    create_mainbox_info();
 
     t = orage_localtime();
     s_time = orage_tm_time_to_icaltime(t);
@@ -417,7 +419,6 @@ void build_mainbox_info(void)
         g_list_free(todo_list);
         todo_list = NULL;
     }
-
     gtk_widget_show_all(cal->mInfo_scrolledWin);
 }
 
@@ -468,9 +469,8 @@ void build_mainWin()
     gtk_widget_show(cal->mCalendar);
 
     /* Build the Info box */
-    /* build_mainbox_info always deletes scrolled window, so we create one here */
-    cal->mInfo_scrolledWin = gtk_scrolled_window_new(NULL, NULL);
-    build_mainbox_info();
+    create_mainbox_info();
+    gtk_widget_show_all(cal->mInfo_scrolledWin);
 
     /* Signals */
     g_signal_connect((gpointer) cal->mCalendar, "scroll_event"

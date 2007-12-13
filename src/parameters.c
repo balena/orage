@@ -127,13 +127,14 @@ static void dialog_response(GtkWidget *dialog, gint response_id)
     gchar *helpdoc;
 
     if (response_id == GTK_RESPONSE_HELP) {
-        helpdoc = g_strconcat("xfbrowser4 ", PACKAGE_DATA_DIR
+        /* Needs to be in " to keep # */
+        helpdoc = g_strconcat("xfbrowser4 \"", PACKAGE_DATA_DIR
                 , G_DIR_SEPARATOR_S, "orage"
                 , G_DIR_SEPARATOR_S, "doc"
                 , G_DIR_SEPARATOR_S, "C"
-                , G_DIR_SEPARATOR_S, "orage.html#orage-preferences-window"
+                , G_DIR_SEPARATOR_S, "orage.html#orage-preferences-window\""
                 , NULL);
-        xfce_exec(helpdoc, FALSE, FALSE, NULL);
+        orage_exec(helpdoc, NULL, NULL);
     }
     else {
         write_parameters();
@@ -593,7 +594,6 @@ static void create_parameter_dialog_display_tab(Itf *dialog)
 static void create_parameter_dialog_extra_setup_tab(Itf *dialog)
 {
     GtkWidget *hbox, *vbox, *label;
-    gint i;
     gchar *weekday_array[7] = {
             _("Monday"), _("Tuesday"), _("Wednesday"), _("Thursday")
           , _("Friday"), _("Saturday"), _("Sunday")};
@@ -628,12 +628,8 @@ static void create_parameter_dialog_extra_setup_tab(Itf *dialog)
     gtk_box_pack_start(GTK_BOX(dialog->extra_vbox)
             , dialog->ical_weekstartday_frame, FALSE, FALSE, 5);
 
-    dialog->ical_weekstartday_combobox = gtk_combo_box_new_text();
-    for (i = 0; i < 7; i++) {
-        gtk_combo_box_append_text(
-                GTK_COMBO_BOX(dialog->ical_weekstartday_combobox)
-                        , (const gchar *)weekday_array[i]);
-    }
+    dialog->ical_weekstartday_combobox = orage_create_combo_box_with_content(
+            weekday_array, 7);
     gtk_box_pack_start(GTK_BOX(hbox)
             , dialog->ical_weekstartday_combobox, FALSE, FALSE, 5);
     gtk_combo_box_set_active(GTK_COMBO_BOX(dialog->ical_weekstartday_combobox)

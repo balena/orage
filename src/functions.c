@@ -23,6 +23,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 #define _XOPEN_SOURCE /* glibc2 needs this */
 #include <time.h>
 #include <string.h>
@@ -43,6 +44,43 @@
 /**************************************
  *  General purpose helper functions  *
  **************************************/
+
+/* this is for testing only. it can be used to see where time is spent.
+ * Add call program_log("dbus started") in the code and run orage like:
+ * strace -ttt -f -o /tmp/logfile.strace ./orage
+ * And then you can check results:
+ * grep MARK /tmp/logfile.strace
+ * grep MARK /tmp/logfile.strace|sed s/", F_OK) = -1 ENOENT (No such file or directory)"//
+ * */
+void program_log (const char *format, ...)
+{
+        va_list args;
+        char *formatted, *str;
+
+        va_start (args, format);
+        formatted = g_strdup_vprintf (format, args);
+        va_end (args);
+
+        str = g_strdup_printf ("MARK: %s: %s", g_get_prgname(), formatted);
+        g_free (formatted);
+
+        access (str, F_OK);
+        g_free (str);
+}
+
+
+GtkWidget *orage_create_combo_box_with_content(char *text[], int size)
+{
+    register int i;
+    GtkWidget *combo_box;
+
+    combo_box = gtk_combo_box_new_text();
+    for (i = 0; i < size; i++) {
+        gtk_combo_box_append_text(GTK_COMBO_BOX(combo_box)
+                , (const gchar *)text[i]);
+    }
+    return(combo_box);
+}
 
 gboolean orage_date_button_clicked(GtkWidget *button, GtkWidget *win)
 {
@@ -125,10 +163,10 @@ gboolean orage_exec(const char *cmd, gboolean *cmd_active, GError **error)
     GPid pid;
 
     if (!g_shell_parse_argv(cmd, NULL, &argv, error))
-        return FALSE;
+        return(FALSE);
 
     if (!argv || !argv[0])
-        return FALSE;
+        return(FALSE);
 
     success = g_spawn_async(NULL, argv, NULL, spawn_flags
             , child_setup_async, NULL, &pid, error);

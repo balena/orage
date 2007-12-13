@@ -42,7 +42,6 @@ void create_wAbout(GtkWidget *widget, gpointer user_data)
           , _("Manage your time with Xfce4")
           , XFCE_COPYRIGHT_TEXT("2003-2007", " Juha Kautto")
           , XFCE_LICENSE_GPL);
-  /* orage_logo = xfce_themed_icon_load("xfcalendar", 48); */
   orage_logo = orage_create_icon(xfcal, FALSE, 48, 48);
   xfce_about_info_set_homepage(about, "http://www.xfce.org");
 

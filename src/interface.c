@@ -47,17 +47,6 @@
 #include "parameters.h"
 
 
-/*
-enum {
-  TARGET_STRING,
-  TARGET_ROOTWIN
-};
-static GtkTargetEntry target_table[] = {
-  { "STRING",     0, TARGET_STRING },
-  { "text/plain", 0, TARGET_STRING },
-  { "application/x-rootwindow-drop", 0, TARGET_ROOTWIN }
-};
-*/
 enum {
     DRAG_TARGET_URILIST = 0
    ,DRAG_TARGET_STRING

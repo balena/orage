@@ -41,7 +41,6 @@
 
 #include <libxfce4util/libxfce4util.h>
 #include <libxfcegui4/libxfcegui4.h>
-#include <libxfcegui4/netk-trayicon.h>
 
 #include <glib.h>
 #include <gtk/gtk.h>
@@ -63,22 +62,6 @@
 /* session client handler */
 static SessionClient	*session_client = NULL;
 static GdkAtom atom_alive;
-
-void program_log (const char *format, ...)
-{
-        va_list args;
-        char *formatted, *str;
-
-        va_start (args, format);
-        formatted = g_strdup_vprintf (format, args);
-        va_end (args);
-
-        str = g_strdup_printf ("MARK: %s: %s", g_get_prgname(), formatted);
-        g_free (formatted);
-
-        access (str, F_OK);
-        g_free (str);
-} 
 
 
 static void send_event(char *event)
@@ -220,6 +203,11 @@ static void print_version(void)
     g_print(_("\tUsing libnotify.\n"));
 #else
     g_print(_("\tNot using libnotify.\n"));
+#endif
+#ifdef HAVE_ARCHIVE
+    g_print(_("\tUsing automatic archving.\n"));
+#else
+    g_print(_("\tNot using archiving.\n"));
 #endif
     g_print("\n");
 }
@@ -428,9 +416,6 @@ int main(int argc, char *argv[])
 {
     gboolean running, initialized = FALSE;
 
-    /*
-    xfce_textdomain(GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8");
-    */
     /* init i18n = nls to use gettext */
     bindtextdomain(GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR);
 #ifdef HAVE_BIND_TEXTDOMAIN_CODESET
@@ -475,10 +460,6 @@ int main(int argc, char *argv[])
     */
     read_parameters();
     build_mainWin();
-    /* let's do this later when the alarm timer fires first time.
-     * Saves 1-2 seconds in startup time
-    g_par.trayIcon = create_TrayIcon(g_par.xfcal);
-    */
     set_parameters();
     if (g_par.start_visible) {
         gtk_widget_show(g_par.xfcal->mWindow);
@@ -491,14 +472,9 @@ int main(int argc, char *argv[])
         gtk_widget_realize(g_par.xfcal->mWindow);
         gtk_widget_hide(g_par.xfcal->mWindow);
     }
-    /* mCalendar_month_changed_cb calls orage_mark_appointments but
-     * delayed using timer, so that we save another 1-2 secs in startup
-    orage_mark_appointments();
-    */
-    mCalendar_month_changed_cb((GtkCalendar *)g_par.xfcal->mCalendar, NULL);
-    g_par.day_timer = 0;
+    reset_orage_day_change(FALSE); /* first day change after we start */
     alarm_read();
-    orage_day_change(NULL); /* first day change after we start */
+    mCalendar_month_changed_cb((GtkCalendar *)g_par.xfcal->mCalendar, NULL);
 
     /* start monitoring foreign file updates if we have foreign files */
     if (g_par.foreign_count)

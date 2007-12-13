@@ -46,7 +46,6 @@
 #include <unistd.h>
 #include <time.h>
 
-#include <libxfce4util/libxfce4util.h>
 #include <libxfcegui4/libxfcegui4.h>
 #include <gdk/gdkkeysyms.h>
 #include <gdk/gdk.h>
@@ -61,10 +60,9 @@
 #include "event-list.h"
 #include "appointment.h"
 #include "parameters.h"
+#include "tray_icon.h"
 #include "day-view.h"
 
-
-void refresh_el_win(el_win *el);
 
 /* Direction for changing day to look at */
 enum {
@@ -94,7 +92,6 @@ static void start_appt_win(char *mode,  el_win *el
         , GtkTreeModel *model, GtkTreeIter *iter, GtkTreePath *path)
 {
     gchar *uid = NULL, *flags = NULL;
-    appt_win *apptw;
 
     if (gtk_tree_model_get_iter(model, iter, path)) {
         gtk_tree_model_get(model, iter, COL_UID, &uid, -1);
@@ -108,7 +105,7 @@ static void start_appt_win(char *mode,  el_win *el
         }
         g_free(flags);
 #endif
-        apptw = create_appt_win(mode, uid, el);
+        create_appt_win(mode, uid, el);
         g_free(uid);
     }
 }
@@ -119,30 +116,9 @@ static void editEvent(GtkTreeView *view, GtkTreePath *path
     el_win *el = (el_win *)user_data;
     GtkTreeModel *model;
     GtkTreeIter   iter;
-    /*
-    gchar *uid = NULL, *flags = NULL;
-    appt_win *apptw;
-    */
 
     model = gtk_tree_view_get_model(view);
     start_appt_win("UPDATE", el, model, &iter, path);
-    /*
-    if (gtk_tree_model_get_iter(model, &iter, path)) {
-        gtk_tree_model_get(model, &iter, COL_UID, &uid, -1);
-#ifdef HAVE_ARCHIVE
-        gtk_tree_model_get(model, &iter, COL_FLAGS, &flags, -1);
-        if (flags && flags[3] == 'A') {
-            xfical_unarchive_uid(uid);
-            / * note that file id changes after archive * / 
-            uid[0]='O';
-            refresh_el_win(el);
-        }
-#endif
-        apptw = create_appt_win("UPDATE", uid, el);
-        g_free(uid);
-        g_free(flags);
-    }
-*/
 }
 
 static gint sortEvent_comp(GtkTreeModel *model
@@ -571,7 +547,6 @@ static void todo_data(el_win *el)
     char      a_day[9];  /* yyyymmdd */
     struct tm *t;
 
-    /* el->days = 10*365; *//* long enough time to get everything from future */
     el->days = 0; /* not used */
     t = orage_localtime();
     s_time = orage_tm_time_to_icaltime(t);
@@ -583,18 +558,9 @@ static void todo_data(el_win *el)
 
 void journal_data(el_win *el)
 {
-    /* char      *s_time; */
     char      a_day[9];  /* yyyymmdd */
-    /* struct tm t; */
 
     el->days = 10*365; /* long enough time to get everything from future */
-    /*
-    t = orage_i18_date_to_tm_date(gtk_button_get_label(
-            GTK_BUTTON(el->journal_start_button)));
-    s_time = orage_tm_time_to_icaltime(&t);
-    strncpy(a_day, s_time, 8);
-    a_day[8] = '\0';
-    */
     strcpy(a_day, orage_i18_date_to_icaltime(gtk_button_get_label(
             GTK_BUTTON(el->journal_start_button))));
 
@@ -695,10 +661,6 @@ static void duplicate_appointment(el_win *el)
     GtkTreeIter       iter;
     GList *list;
     gint  list_len;
-    /*
-    gchar *uid = NULL, *flags = NULL;
-    appt_win *apptw;
-    */
 
     sel = gtk_tree_view_get_selection(GTK_TREE_VIEW(el->TreeView));
     list = gtk_tree_selection_get_selected_rows(sel, &model);
@@ -708,25 +670,17 @@ static void duplicate_appointment(el_win *el)
             g_warning("Copy: too many rows selected\n");
         path = (GtkTreePath *)g_list_nth_data(list, 0);
         start_appt_win("COPY", el, model, &iter, path);
-        /*
-        if (gtk_tree_model_get_iter(model, &iter, path)) {
-            gtk_tree_model_get(model, &iter, COL_UID, &uid, -1);
-#ifdef HAVE_ARCHIVE
-            gtk_tree_model_get(model, &iter, COL_FLAGS, &flags, -1);
-            if (flags && flags[3] == 'A') {
-                xfical_unarchive_uid(uid);
-                / * note that file id changes after archive * / 
-                uid[0]='O';
-                refresh_el_win(el);
-            }
-#endif
-            apptw = create_appt_win("COPY", uid, el);
-            g_free(uid);
-        }
-        */
     }
-    else
+    else {
         g_warning("Copy: No row selected\n");
+        xfce_message_dialog(GTK_WINDOW(el->Window)
+                , _("Info")
+                , GTK_STOCK_DIALOG_INFO
+                , _("No rows has been selected.")
+                , _("Click a row to select it and after that you can copy it.")
+                , GTK_STOCK_OK, GTK_RESPONSE_ACCEPT
+                , NULL);
+    }
     g_list_foreach(list, (GFunc)gtk_tree_path_free, NULL);
     g_list_free(list);
 }
@@ -833,12 +787,12 @@ static void changeSelectedDate(el_win *el, gint direction)
 
 static void on_Previous_clicked(GtkButton *b, gpointer user_data)
 {
-  changeSelectedDate((el_win *)user_data, PREVIOUS);
+    changeSelectedDate((el_win *)user_data, PREVIOUS);
 }
 
 static void on_Go_previous_activate_cb(GtkMenuItem *mi, gpointer user_data)
 {
-  changeSelectedDate((el_win *)user_data, PREVIOUS);
+    changeSelectedDate((el_win *)user_data, PREVIOUS);
 }
 
 static void go_to_today(el_win *el)
@@ -859,24 +813,22 @@ static void on_Go_today_activate_cb(GtkMenuItem *mi, gpointer user_data)
 
 static void on_Next_clicked(GtkButton *b, gpointer user_data)
 {
-  changeSelectedDate((el_win *)user_data, NEXT);
+    changeSelectedDate((el_win *)user_data, NEXT);
 }
 
 static void on_Go_next_activate_cb(GtkMenuItem *mi, gpointer user_data)
 {
-  changeSelectedDate((el_win *)user_data, NEXT);
+    changeSelectedDate((el_win *)user_data, NEXT);
 }
 
 static void create_new_appointment(el_win *el)
 {
-    appt_win *apptw;
     char *title, a_day[10];
 
     title = (char *)gtk_window_get_title(GTK_WINDOW(el->Window));
     strcpy(a_day, orage_i18_date_to_icaltime(title));
 
-    apptw = create_appt_win("NEW", a_day, el);
-    /* gtk_widget_show(apptw->Window); */
+    create_appt_win("NEW", a_day, el);
 }
 
 static void on_File_newApp_activate_cb(GtkMenuItem *mi, gpointer user_data)
@@ -905,14 +857,14 @@ static void delete_appointment(el_win *el)
     gint  list_len, i;
     gchar *uid = NULL;
 
-    result = xfce_message_dialog(GTK_WINDOW(el->Window),
-             _("Warning"),
-             GTK_STOCK_DIALOG_WARNING,
-             _("You will permanently remove all\nselected appointments."),
-             _("Do you want to continue?"),
-             GTK_STOCK_YES, GTK_RESPONSE_ACCEPT,
-             GTK_STOCK_NO, GTK_RESPONSE_CANCEL,
-             NULL);
+    result = xfce_message_dialog(GTK_WINDOW(el->Window)
+            , _("Warning")
+            , GTK_STOCK_DIALOG_WARNING
+            , _("You will permanently remove all\nselected appointments.")
+            , _("Do you want to continue?")
+            , GTK_STOCK_YES, GTK_RESPONSE_ACCEPT
+            , GTK_STOCK_NO, GTK_RESPONSE_CANCEL
+            , NULL);
 
     if (result == GTK_RESPONSE_ACCEPT) {
         if (!xfical_file_open(TRUE))
@@ -1212,7 +1164,7 @@ static void build_search_tab(el_win *el)
     GtkWidget *label;
 
     el->search_tab_label = gtk_label_new(_("Search"));
-    el->search_notebook_page = orage_table_new(2, 10);
+    el->search_notebook_page = orage_table_new(1, 10);
 
     label = gtk_label_new(_("Search text "));
     el->search_entry = gtk_entry_new();
@@ -1348,7 +1300,7 @@ el_win *create_el_win(char *start_date)
 
     gtk_drag_source_set(el->TreeView, GDK_BUTTON1_MASK
             , drag_targets, DRAG_TARGET_COUNT, GDK_ACTION_COPY);
-    pixbuf = xfce_themed_icon_load("xfcalendar", 16);
+    pixbuf = orage_create_icon(g_par.xfcal, TRUE, 16, 16);
     gtk_drag_source_set_icon_pixbuf(el->TreeView, pixbuf);
     g_object_unref(pixbuf);
     g_signal_connect(el->TreeView, "drag_data_get"

@@ -2518,6 +2518,8 @@ void xfical_appt_free(xfical_appt *appt)
 #ifdef ORAGE_DEBUG
     g_print(P_N "\n");
 #endif
+    if (!appt)
+        return;
     g_free(appt->uid);
     g_free(appt->title);
     g_free(appt->location);
