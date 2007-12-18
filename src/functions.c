@@ -409,6 +409,34 @@ char *orage_localdate_i18()
     return(orage_tm_date_to_i18_date(t));
 }
 
+/* move one day forward or backward */
+void orage_move_day(struct tm *t, int day)
+{
+    guint monthdays[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+    t->tm_year += 1900;
+    if (((t->tm_year%4) == 0) 
+    && (((t->tm_year%100) != 0) || ((t->tm_year%400) == 0)))
+        ++monthdays[1]; /* leap year, february has 29 days */
+
+    t->tm_mday += day; /* may be negative */
+    if (t->tm_mday == 0) { /*  we went to previous month */
+        if (--t->tm_mon == -1) { /* previous year */
+            --t->tm_year;
+            t->tm_mon = 11;
+        }
+        t->tm_mday = monthdays[t->tm_mon];
+    }
+    else if (t->tm_mday > (monthdays[t->tm_mon])) { /* next month */
+        if (++t->tm_mon == 12) {
+            ++t->tm_year;
+            t->tm_mon = 0;
+        }
+        t->tm_mday = 1;
+    }
+    t->tm_year -= 1900;
+}
+
 gint orage_days_between(struct tm *t1, struct tm *t2)
 {
     GDate *g_t1, *g_t2;

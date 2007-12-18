@@ -34,16 +34,28 @@ typedef struct _day_win
     GtkWidget *Window;
     GtkWidget *Vbox;
 
+    GtkWidget *Menubar;
+    GtkWidget *File_menu;
+    GtkWidget *File_menu_new;
+    GtkWidget *File_menu_close;
+    GtkWidget *View_menu;
+    GtkWidget *View_menu_refresh;
+    GtkWidget *Go_menu;
+    GtkWidget *Go_menu_today;
+    GtkWidget *Go_menu_prev;
+    GtkWidget *Go_menu_next;
+
+    GtkWidget *Toolbar;
+    GtkWidget *Create_toolbutton;
+    GtkWidget *Previous_toolbutton;
+    GtkWidget *Today_toolbutton;
+    GtkWidget *Next_toolbutton;
+    GtkWidget *Refresh_toolbutton;
+    GtkWidget *Close_toolbutton;
+
     GtkWidget *StartDate_button;
     GtkRequisition StartDate_button_req;
     GtkWidget *day_spin;
-
-    GtkWidget *Menubar;
-    GtkWidget *File_menu;
-    GtkWidget *File_menu_close;
-
-    GtkWidget *Toolbar;
-    GtkWidget *Close_toolbutton;
 
     GtkWidget *day_view_vbox;
     GtkWidget *scroll_win_h;
@@ -57,6 +69,7 @@ typedef struct _day_win
     GtkWidget *line[24][MAX_DAYS];
 
     guint upd_timer;
+    gdouble scroll_pos; /* remember the scroll position */
 
     GdkColor bg1, bg2, line_color;
 } day_win;

@@ -29,16 +29,13 @@
 
 typedef struct _appt_win
 {
+    GtkAccelGroup *accel_group;
+    GtkTooltips *Tooltips;
+
     GtkWidget *Window;
     GtkWidget *Vbox;
 
     GtkWidget *Menubar;
-    GtkWidget *Revert;
-    GtkWidget *Delete;
-    GtkWidget *Duplicate;
-    GtkWidget *Save;
-    GtkWidget *SaveClose;
-
     GtkWidget *File_menu;
     GtkWidget *File_menu_save;
     GtkWidget *File_menu_saveclose;
@@ -48,6 +45,11 @@ typedef struct _appt_win
     GtkWidget *File_menu_close;
 
     GtkWidget *Toolbar;
+    GtkWidget *Revert;
+    GtkWidget *Delete;
+    GtkWidget *Duplicate;
+    GtkWidget *Save;
+    GtkWidget *SaveClose;
 
     GtkWidget *Notebook;
     GtkWidget *General_notebook_page;
@@ -167,9 +169,6 @@ typedef struct _appt_win
     GtkWidget *Recur_byday_spin_label;
     GtkWidget *Recur_byday_spin_hbox;
     GtkWidget *Recur_byday_spin[7];  /* 0=Mo, 1=Tu ... 6=Su */
-
-    GtkAccelGroup *accel_group;
-    GtkTooltips *Tooltips;
 
     xfical_appt *appt;
     gchar *xf_uid;

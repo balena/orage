@@ -37,6 +37,7 @@ typedef struct _el_win
 {
     GtkAccelGroup *accel_group;
     GtkTooltips   *Tooltips;
+
     GtkWidget *Window;
     GtkWidget *Vbox;
 

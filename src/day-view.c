@@ -28,6 +28,7 @@
 
 #include <glib.h>
 #include <glib/gprintf.h>
+#include <gdk/gdkkeysyms.h>
 #include <gdk/gdk.h>
 #include <gtk/gtk.h>
 
@@ -39,8 +40,36 @@
 #include "event-list.h"
 #include "appointment.h"
 
-void program_log (const char *format, ...);
+
 static void refresh_day_view_table(day_win *dw);
+
+static void set_scroll_position(day_win *dw)
+{
+    GtkAdjustment *v_adj;
+
+    v_adj = gtk_scrolled_window_get_vadjustment(
+            GTK_SCROLLED_WINDOW(dw->scroll_win));
+    if (dw->scroll_pos > 0) /* we have old value */
+        gtk_adjustment_set_value(v_adj, dw->scroll_pos);
+    else if (dw->scroll_pos < 0)
+        /* default: let's try to start roughly from line 8 = 8 o'clock */
+        gtk_adjustment_set_value(v_adj, v_adj->upper/3);
+}
+
+static gboolean scroll_position_timer(gpointer user_data)
+{
+    set_scroll_position((day_win *)user_data);
+    return(FALSE); /* only once */
+}
+
+static void get_scroll_position(day_win *dw)
+{
+    GtkAdjustment *v_adj;
+
+    v_adj = gtk_scrolled_window_get_vadjustment(
+            GTK_SCROLLED_WINDOW(dw->scroll_win));
+    dw->scroll_pos = gtk_adjustment_get_value(v_adj);
+}
 
 static GtkWidget *build_line(day_win *dw, gint left_x, gint top_y
         , gint width, gint height, GtkWidget *hour_line)
@@ -103,36 +132,194 @@ static void on_File_close_activate_cb(GtkMenuItem *mi, gpointer user_data)
     close_window((day_win *)user_data);
 }
 
-static void build_menu(day_win *dw)
-{
-    dw->Menubar = gtk_menu_bar_new();
-    gtk_box_pack_start(GTK_BOX(dw->Vbox), dw->Menubar, FALSE, FALSE, 0);
-
-    /* File menu */
-    dw->File_menu = orage_menu_new(_("_File"), dw->Menubar);
-    dw->File_menu_close = orage_image_menu_item_new_from_stock("gtk-close"
-        , dw->File_menu, dw->accel_group);
-
-    g_signal_connect((gpointer)dw->File_menu_close, "activate"
-        , G_CALLBACK(on_File_close_activate_cb), dw);
-}
-
 static void on_Close_clicked(GtkButton *b, gpointer user_data)
 {
     close_window((day_win *)user_data);
 }
 
+static void create_new_appointment(day_win *dw)
+{
+    char *s_date, a_day[10];
+
+    s_date = (char *)gtk_button_get_label(GTK_BUTTON(dw->StartDate_button));
+    strcpy(a_day, orage_i18_date_to_icaltime(s_date));
+
+    create_appt_win("NEW", a_day, NULL);
+}
+
+static void on_File_newApp_activate_cb(GtkMenuItem *mi, gpointer user_data)
+{
+    create_new_appointment((day_win *)user_data);
+}
+
+static void on_Create_toolbutton_clicked_cb(GtkButton *mi, gpointer user_data)
+{
+    create_new_appointment((day_win *)user_data);
+}
+
+static void on_View_refresh_activate_cb(GtkMenuItem *mi, gpointer user_data)
+{
+    refresh_day_view_table((day_win *)user_data);
+}
+
+static void on_Refresh_clicked(GtkButton *b, gpointer user_data)
+{
+    refresh_day_view_table((day_win *)user_data);
+}
+
+static void changeSelectedDate(day_win *dw, gint day)
+{
+    struct tm tm_date;
+
+    tm_date = orage_i18_date_to_tm_date(
+            gtk_button_get_label(GTK_BUTTON(dw->StartDate_button)));
+    orage_move_day(&tm_date, day);
+    gtk_button_set_label(GTK_BUTTON(dw->StartDate_button)
+            , orage_tm_date_to_i18_date(&tm_date));
+    refresh_day_view_table(dw);
+}
+
+static void go_to_today(day_win *dw)
+{
+    gtk_button_set_label(GTK_BUTTON(dw->StartDate_button)
+            , orage_localdate_i18());
+    refresh_day_view_table(dw);
+}
+
+static void on_Today_clicked(GtkButton *b, gpointer user_data)
+{
+    go_to_today((day_win *)user_data);
+}
+
+static void on_Go_today_activate_cb(GtkMenuItem *mi, gpointer user_data)
+{
+    go_to_today((day_win *)user_data);
+}
+
+static void on_Go_previous_activate_cb(GtkMenuItem *mi, gpointer user_data)
+{
+    changeSelectedDate((day_win *)user_data, -1);
+}
+
+static void on_Previous_clicked(GtkButton *b, gpointer user_data)
+{
+    changeSelectedDate((day_win *)user_data, -1);
+}
+
+static void on_Go_next_activate_cb(GtkMenuItem *mi, gpointer user_data)
+{
+    changeSelectedDate((day_win *)user_data, 1);
+}
+
+static void on_Next_clicked(GtkButton *b, gpointer user_data)
+{
+    changeSelectedDate((day_win *)user_data, 1);
+}
+
+static void build_menu(day_win *dw)
+{
+    GtkWidget *menu_separator;
+
+    dw->Menubar = gtk_menu_bar_new();
+    gtk_box_pack_start(GTK_BOX(dw->Vbox), dw->Menubar, FALSE, FALSE, 0);
+
+    /********** File menu **********/
+    dw->File_menu = orage_menu_new(_("_File"), dw->Menubar);
+    dw->File_menu_new = orage_image_menu_item_new_from_stock("gtk-new"
+            , dw->File_menu, dw->accel_group);
+
+    menu_separator = orage_separator_menu_item_new(dw->File_menu);
+
+    dw->File_menu_close = orage_image_menu_item_new_from_stock("gtk-close"
+        , dw->File_menu, dw->accel_group);
+
+    /********** View menu **********/
+    dw->View_menu = orage_menu_new(_("_View"), dw->Menubar);
+    dw->View_menu_refresh = orage_image_menu_item_new_from_stock ("gtk-refresh"
+            , dw->View_menu, dw->accel_group);
+    gtk_widget_add_accelerator(dw->View_menu_refresh
+            , "activate", dw->accel_group
+            , GDK_r, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
+    gtk_widget_add_accelerator(dw->View_menu_refresh
+            , "activate", dw->accel_group
+            , GDK_Return, 0, 0);
+    gtk_widget_add_accelerator(dw->View_menu_refresh
+            , "activate", dw->accel_group
+            , GDK_KP_Enter, 0, 0);
+
+    /********** Go menu   **********/
+    dw->Go_menu = orage_menu_new(_("_Go"), dw->Menubar);
+    dw->Go_menu_today = orage_image_menu_item_new_from_stock("gtk-home"
+            , dw->Go_menu, dw->accel_group);
+    gtk_widget_add_accelerator(dw->Go_menu_today
+            , "activate", dw->accel_group
+            , GDK_Home, GDK_MOD1_MASK, GTK_ACCEL_VISIBLE);
+    dw->Go_menu_prev = orage_image_menu_item_new_from_stock("gtk-go-back"
+            , dw->Go_menu, dw->accel_group);
+    gtk_widget_add_accelerator(dw->Go_menu_prev
+            , "activate", dw->accel_group
+            , GDK_Left, GDK_MOD1_MASK, GTK_ACCEL_VISIBLE);
+    dw->Go_menu_next = orage_image_menu_item_new_from_stock("gtk-go-forward"
+            , dw->Go_menu, dw->accel_group);
+    gtk_widget_add_accelerator(dw->Go_menu_next
+            , "activate", dw->accel_group
+            , GDK_Right, GDK_MOD1_MASK, GTK_ACCEL_VISIBLE);
+
+    g_signal_connect((gpointer)dw->File_menu_new, "activate"
+            , G_CALLBACK(on_File_newApp_activate_cb), dw);
+    g_signal_connect((gpointer)dw->File_menu_close, "activate"
+            , G_CALLBACK(on_File_close_activate_cb), dw);
+    g_signal_connect((gpointer)dw->View_menu_refresh, "activate"
+            , G_CALLBACK(on_View_refresh_activate_cb), dw);
+    g_signal_connect((gpointer)dw->Go_menu_today, "activate"
+            , G_CALLBACK(on_Go_today_activate_cb), dw);
+    g_signal_connect((gpointer)dw->Go_menu_prev, "activate"
+            , G_CALLBACK(on_Go_previous_activate_cb), dw);
+    g_signal_connect((gpointer)dw->Go_menu_next, "activate"
+            , G_CALLBACK(on_Go_next_activate_cb), dw);
+}
+
 static void build_toolbar(day_win *dw)
 {
+    GtkWidget *toolbar_separator;
     int i = 0;
 
     dw->Toolbar = gtk_toolbar_new();
     gtk_box_pack_start(GTK_BOX(dw->Vbox), dw->Toolbar, FALSE, FALSE, 0);
     gtk_toolbar_set_tooltips(GTK_TOOLBAR(dw->Toolbar), TRUE);
 
-    dw->Close_toolbutton = orage_toolbar_append_button(dw->Toolbar
-             , "gtk-close", dw->Tooltips, _("Close"), i++);
+    dw->Create_toolbutton = orage_toolbar_append_button(dw->Toolbar
+            , "gtk-new", dw->Tooltips, _("New"), i++);
 
+    toolbar_separator = orage_toolbar_append_separator(dw->Toolbar, i++);
+
+    dw->Previous_toolbutton = orage_toolbar_append_button(dw->Toolbar
+            , "gtk-go-back", dw->Tooltips, _("Back"), i++);
+    dw->Today_toolbutton = orage_toolbar_append_button(dw->Toolbar
+            , "gtk-home", dw->Tooltips, _("Today"), i++);
+    dw->Next_toolbutton = orage_toolbar_append_button(dw->Toolbar
+            , "gtk-go-forward", dw->Tooltips, _("Forward"), i++);
+
+    toolbar_separator = orage_toolbar_append_separator(dw->Toolbar, i++);
+
+    dw->Refresh_toolbutton = orage_toolbar_append_button(dw->Toolbar
+            , "gtk-refresh", dw->Tooltips, _("Refresh"), i++);
+
+    toolbar_separator = orage_toolbar_append_separator(dw->Toolbar, i++);
+
+    dw->Close_toolbutton = orage_toolbar_append_button(dw->Toolbar
+            , "gtk-close", dw->Tooltips, _("Close"), i++);
+
+    g_signal_connect((gpointer)dw->Create_toolbutton, "clicked"
+            , G_CALLBACK(on_Create_toolbutton_clicked_cb), dw);
+    g_signal_connect((gpointer)dw->Previous_toolbutton, "clicked"
+            , G_CALLBACK(on_Previous_clicked), dw);
+    g_signal_connect((gpointer)dw->Today_toolbutton, "clicked"
+            , G_CALLBACK(on_Today_clicked), dw);
+    g_signal_connect((gpointer)dw->Next_toolbutton, "clicked"
+            , G_CALLBACK(on_Next_clicked), dw);
+    g_signal_connect((gpointer)dw->Refresh_toolbutton, "clicked"
+            , G_CALLBACK(on_Refresh_clicked), dw);
     g_signal_connect((gpointer)dw->Close_toolbutton, "clicked"
              , G_CALLBACK(on_Close_clicked), dw);
 }
@@ -189,7 +376,6 @@ static void on_button_press_event_cb(GtkWidget *widget
 {
     gchar *uid;
 
-    g_print("pressed button %d\n", event->button);
     uid = g_object_get_data(G_OBJECT(widget), "UID");
     create_appt_win("UPDATE", uid, NULL);
 }
@@ -202,24 +388,12 @@ static void add_row(day_win *dw, xfical_appt *appt, char *a_day, gint days)
     gchar *text, *tip, *start_date, *end_date;
     GtkWidget *ev, *lab, *hb;
     struct tm tm_start, tm_end, tm_first;
-    /*
-    GDate *g_start, *g_end, *g_first;
-    */
 
     /* First clarify timings */
     tm_start = orage_icaltime_to_tm_time(appt->starttimecur, FALSE);
     tm_end   = orage_icaltime_to_tm_time(appt->endtimecur, FALSE);
     tm_first = orage_icaltime_to_tm_time(a_day, FALSE);
 
-    /*
-    g_start = g_date_new_dmy(tm_start.tm_mday, tm_start.tm_mon
-            , tm_start.tm_year);
-    g_end   = g_date_new_dmy(tm_end.tm_mday, tm_end.tm_mon
-            , tm_end.tm_year);
-    g_first = g_date_new_dmy(tm_first.tm_mday, tm_first.tm_mon
-            , tm_first.tm_year);
-    col = g_date_days_between(g_first, g_start)+1;  / * col 0 == hour headers * /
-    */
     col = orage_days_between(&tm_first, &tm_start)+1;
     if (col < 1) {
         col = 1;
@@ -254,9 +428,6 @@ static void add_row(day_win *dw, xfical_appt *appt, char *a_day, gint days)
             hb = gtk_hbox_new(TRUE, 1);
         else
             hb = dw->element[row][col];
-        /*
-        if (g_date_days_between(g_start, g_end) == 0)
-        */
         if (orage_days_between(&tm_start, &tm_end) == 0)
             tip = g_strdup_printf("%s\n%02d:%02d-%02d:%02d\n%s"
                     , appt->title
@@ -301,17 +472,11 @@ static void add_row(day_win *dw, xfical_appt *appt, char *a_day, gint days)
         /*
          * same_date = !strncmp(start_ical_time, end_ical_time, 8);
          * */
-        /*
-        start_col = g_date_days_between(g_first, g_start)+1;
-        */
         start_col = orage_days_between(&tm_first, &tm_start)+1;
         if (start_col < 1)
             first_col = 1;
         else
             first_col = start_col;
-        /*
-        end_col   = g_date_days_between(g_first, g_end)+1;
-        */
         end_col   = orage_days_between(&tm_first, &tm_end)+1;
         if (end_col > days)
             last_col = days;
@@ -340,11 +505,6 @@ static void add_row(day_win *dw, xfical_appt *appt, char *a_day, gint days)
             }
         }
     }
-    /*
-    g_date_free(g_start);
-    g_date_free(g_end);
-    g_date_free(g_first);
-    */
 }
 
 static void app_rows(day_win *dw, char *a_day , xfical_type ical_type
@@ -672,26 +832,20 @@ static void build_day_view_table(day_win *dw)
     fill_days(dw, days);
 }
 
-static void set_scroll_position(day_win *dw)
-{
-    GtkAdjustment *v_adj;
-    
-    /* let's try to start roughly from line 8 = 8 o'clock */
-    v_adj = gtk_scrolled_window_get_vadjustment(
-            GTK_SCROLLED_WINDOW(dw->scroll_win));
-    gtk_adjustment_set_value(v_adj, v_adj->upper/3);
-}
-
 static void refresh_day_view_table(day_win *dw)
 {
     program_log("***** refresh_day_view_table started");
+    get_scroll_position(dw);
     gtk_widget_destroy(dw->scroll_win_h);
     program_log("***** refresh_day_view_table destroyed");
     build_day_view_table(dw);
     program_log("***** refresh_day_view_table built");
     gtk_widget_show_all(dw->scroll_win_h);
+    gtk_widget_show_now(dw->scroll_win_h);
     program_log("***** refresh_day_view_table showed");
-    set_scroll_position(dw);
+    /* I was not able to get this work without the timer. Ugly yes, but
+     * it works and does not hurt - much */
+    g_timeout_add(100, (GtkFunction)scroll_position_timer, (gpointer)dw);
     program_log("***** refresh_day_view_table done");
 }
 
@@ -702,6 +856,7 @@ day_win *create_day_win(char *start_date)
     program_log("create_day_win started");
     /* initialisation + main window + base vbox */
     dw = g_new0(day_win, 1);
+    dw->scroll_pos = -1; /* not set */
     dw->Tooltips = gtk_tooltips_new();
     dw->accel_group = gtk_accel_group_new();
 

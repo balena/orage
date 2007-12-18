@@ -66,6 +66,7 @@ char *orage_icaltime_to_i18_time(const char *icaltime);
 char *orage_i18_date_to_icaltime(const char *i18_date);
 char *orage_cal_to_i18_date(GtkCalendar *cal);
 char *orage_localdate_i18();
+void orage_move_day(struct tm *t, int day);
 gint orage_days_between(struct tm *t1, struct tm *t2);
 
 void orage_select_date(GtkCalendar *cal, guint year, guint month, guint day);

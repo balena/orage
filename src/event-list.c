@@ -64,12 +64,6 @@
 #include "day-view.h"
 
 
-/* Direction for changing day to look at */
-enum {
-    PREVIOUS,
-    NEXT
-};
-
 enum {
     COL_TIME = 0
    ,COL_FLAGS
@@ -744,55 +738,26 @@ static void on_View_refresh_activate_cb(GtkMenuItem *mi, gpointer user_data)
     refresh_el_win((el_win*)user_data);
 }
 
-static void changeSelectedDate(el_win *el, gint direction)
+static void changeSelectedDate(el_win *el, gint day)
 {
-    int year, month, day;
-    guint monthdays[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-    char *title;
     struct tm tm_date;
 
-    title = (char *)gtk_window_get_title(GTK_WINDOW(el->Window));
-    tm_date = orage_i18_date_to_tm_date(title);
-    year = tm_date.tm_year + 1900;
-    month = tm_date.tm_mon; /* gtk calendar starts from 0  month */
-    day = tm_date.tm_mday;
-    if (((year%4) == 0) && (((year%100) != 0) || ((year%400) == 0)))
-        ++monthdays[1];
-
-    switch(direction) {
-        case PREVIOUS:
-            if (--day == 0) {
-                if (--month == -1) {
-                    --year;
-                    month = 11;
-                }
-                day = monthdays[month];
-            }
-        break;
-        case NEXT:
-            if (++day == (monthdays[month]+1)) {
-                if (++month == 12) {
-                    ++year;
-                    month = 0;
-                }
-                day = 1;
-            }
-        break;
-        default:
-        break;
-    }
-    orage_select_date(GTK_CALENDAR(g_par.xfcal->mCalendar), year, month, day);
+    tm_date = orage_i18_date_to_tm_date(
+            gtk_window_get_title(GTK_WINDOW(el->Window)));
+    orage_move_day(&tm_date, day);
+    orage_select_date(GTK_CALENDAR(g_par.xfcal->mCalendar)
+            , tm_date.tm_year + 1900, tm_date.tm_mon, tm_date.tm_mday);
     set_el_data_from_cal(el);
 }
 
 static void on_Previous_clicked(GtkButton *b, gpointer user_data)
 {
-    changeSelectedDate((el_win *)user_data, PREVIOUS);
+    changeSelectedDate((el_win *)user_data, -1);
 }
 
 static void on_Go_previous_activate_cb(GtkMenuItem *mi, gpointer user_data)
 {
-    changeSelectedDate((el_win *)user_data, PREVIOUS);
+    changeSelectedDate((el_win *)user_data, -1);
 }
 
 static void go_to_today(el_win *el)
@@ -813,12 +778,12 @@ static void on_Go_today_activate_cb(GtkMenuItem *mi, gpointer user_data)
 
 static void on_Next_clicked(GtkButton *b, gpointer user_data)
 {
-    changeSelectedDate((el_win *)user_data, NEXT);
+    changeSelectedDate((el_win *)user_data, 1);
 }
 
 static void on_Go_next_activate_cb(GtkMenuItem *mi, gpointer user_data)
 {
-    changeSelectedDate((el_win *)user_data, NEXT);
+    changeSelectedDate((el_win *)user_data, 1);
 }
 
 static void create_new_appointment(el_win *el)
@@ -954,14 +919,13 @@ static void build_menu(el_win *el)
     el->Menubar = gtk_menu_bar_new();
     gtk_box_pack_start(GTK_BOX(el->Vbox), el->Menubar, FALSE, FALSE, 0);
 
-    /* File menu */
+    /********** File menu **********/
     el->File_menu = orage_menu_new(_("_File"), el->Menubar);
     el->File_menu_new = orage_image_menu_item_new_from_stock("gtk-new"
             , el->File_menu, el->accel_group);
 
     menu_separator = orage_separator_menu_item_new(el->File_menu);
 
-    /* add event copying and day cleaning */
     el->File_menu_duplicate = orage_menu_item_new_with_mnemonic(_("D_uplicate")
             , el->File_menu);
     gtk_widget_add_accelerator(el->File_menu_duplicate
@@ -978,7 +942,7 @@ static void build_menu(el_win *el)
     el->File_menu_close = orage_image_menu_item_new_from_stock("gtk-close"
             , el->File_menu, el->accel_group);
 
-    /* View menu */
+    /********** View menu **********/
     el->View_menu = orage_menu_new(_("_View"), el->Menubar);
     el->View_menu_refresh = orage_image_menu_item_new_from_stock ("gtk-refresh"
             , el->View_menu, el->accel_group);
@@ -997,7 +961,7 @@ static void build_menu(el_win *el)
     el->View_menu_search = orage_image_menu_item_new_from_stock("gtk-find"
             , el->View_menu, el->accel_group);
 
-    /* Go menu   */
+    /********** Go menu   **********/
     el->Go_menu = orage_menu_new(_("_Go"), el->Menubar);
     el->Go_menu_today = orage_image_menu_item_new_from_stock("gtk-home"
             , el->Go_menu, el->accel_group);
@@ -1008,12 +972,12 @@ static void build_menu(el_win *el)
             , el->Go_menu, el->accel_group);
     gtk_widget_add_accelerator(el->Go_menu_prev
             , "activate", el->accel_group
-            , GDK_b, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
+            , GDK_Left, GDK_MOD1_MASK, GTK_ACCEL_VISIBLE);
     el->Go_menu_next = orage_image_menu_item_new_from_stock("gtk-go-forward"
             , el->Go_menu, el->accel_group);
     gtk_widget_add_accelerator(el->Go_menu_next
             , "activate", el->accel_group
-            , GDK_f, GDK_CONTROL_MASK, GTK_ACCEL_VISIBLE);
+            , GDK_Right, GDK_MOD1_MASK, GTK_ACCEL_VISIBLE);
 
     g_signal_connect((gpointer)el->File_menu_new, "activate"
             , G_CALLBACK(on_File_newApp_activate_cb), el);
@@ -1021,8 +985,6 @@ static void build_menu(el_win *el)
             , G_CALLBACK(on_File_duplicate_activate_cb), el);
     g_signal_connect((gpointer)el->File_menu_delete, "activate"
             , G_CALLBACK(on_File_delete_activate_cb), el);
-    g_signal_connect((gpointer)el->File_menu_close, "activate"
-            , G_CALLBACK(on_File_close_activate_cb), el);
     g_signal_connect((gpointer)el->View_menu_refresh, "activate"
             , G_CALLBACK(on_View_refresh_activate_cb), el);
     g_signal_connect((gpointer)el->View_menu_search, "activate"
@@ -1033,6 +995,8 @@ static void build_menu(el_win *el)
             , G_CALLBACK(on_Go_previous_activate_cb), el);
     g_signal_connect((gpointer)el->Go_menu_next, "activate"
             , G_CALLBACK(on_Go_next_activate_cb), el);
+    g_signal_connect((gpointer)el->File_menu_close, "activate"
+            , G_CALLBACK(on_File_close_activate_cb), el);
 }
 
 static void build_toolbar(el_win *el)
