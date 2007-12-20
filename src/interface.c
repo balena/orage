@@ -106,11 +106,6 @@ gboolean orage_foreign_files_check(gpointer user_data)
         return(FALSE);
 }
 
-static void on_destroy(GtkWidget *window, gpointer user_data)
-{
-     interface_lock = FALSE;
-}
-
 void static orage_file_entry_changed(GtkWidget *dialog, gpointer user_data)
 {
     intf_win *intf_w = (intf_win *)user_data;
@@ -729,7 +724,9 @@ void close_intf_w(gpointer user_data)
     intf_win *intf_w = (intf_win *)user_data;
 
     gtk_widget_destroy(intf_w->main_window);
+    gtk_object_destroy(GTK_OBJECT(intf_w->tooltips));
     g_free(intf_w);
+    interface_lock = FALSE;
 }
 
 void close_button_clicked(GtkButton *button, gpointer user_data)
@@ -740,6 +737,13 @@ void close_button_clicked(GtkButton *button, gpointer user_data)
 void filemenu_close_activated(GtkMenuItem *menuitem, gpointer user_data)
 {
     close_intf_w(user_data);
+}
+
+static gboolean on_Window_delete_event(GtkWidget *w, GdkEvent *e
+        , gpointer user_data)
+{
+    close_intf_w(user_data);
+    return(FALSE);
 }
 
 void create_menu(intf_win *intf_w)
@@ -1315,8 +1319,8 @@ void orage_external_interface(CalWin *xfcal)
     create_orage_file_tab(intf_w);
     create_foreign_file_tab(intf_w);
 
-     g_signal_connect(G_OBJECT(intf_w->main_window), "destroy",
-             G_CALLBACK(on_destroy), NULL);
+     g_signal_connect((gpointer)intf_w->main_window, "delete_event",
+             G_CALLBACK(on_Window_delete_event), intf_w);
 
     gtk_widget_show_all(intf_w->main_window);
     drag_and_drop_init(intf_w);

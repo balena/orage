@@ -820,7 +820,7 @@ void write_parameters()
 
 void read_parameters(void)
 {
-    gchar *fpath;
+    gchar *fpath, *fpath2;
     XfceRc *rc;
     gint i;
     gchar f_par[100];
@@ -841,11 +841,14 @@ void read_parameters(void)
             g_strdup(xfce_rc_read_entry(rc, "Timezone", "floating"));
 #ifdef HAVE_ARCHIVE
     g_par.archive_limit = xfce_rc_read_int_entry(rc, "Archive limit", 0);
-    g_par.archive_file = g_strdup(xfce_rc_read_entry(rc, "Archive file"
-            , orage_resource_file_location(ORAGE_DIR ARCFILE)));
+    fpath2 = orage_resource_file_location(ORAGE_DIR ARCFILE);
+    g_par.archive_file = 
+            g_strdup(xfce_rc_read_entry(rc, "Archive file", fpath2));
+    g_free(fpath2);
 #endif
-    g_par.orage_file = g_strdup(xfce_rc_read_entry(rc, "Orage file"
-            , orage_resource_file_location(ORAGE_DIR APPFILE)));
+    fpath2 = orage_resource_file_location(ORAGE_DIR APPFILE);
+    g_par.orage_file = g_strdup(xfce_rc_read_entry(rc, "Orage file", fpath2));
+    g_free(fpath2);
     g_par.sound_application = 
             g_strdup(xfce_rc_read_entry(rc, "Sound application", "play"));
     g_par.pos_x = xfce_rc_read_int_entry(rc, "Main window X", 0);
