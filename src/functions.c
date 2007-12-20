@@ -52,6 +52,7 @@
  * grep MARK /tmp/logfile.strace
  * grep MARK /tmp/logfile.strace|sed s/", F_OK) = -1 ENOENT (No such file or directory)"//
  * */
+/*
 void program_log (const char *format, ...)
 {
         va_list args;
@@ -67,7 +68,7 @@ void program_log (const char *format, ...)
         access (str, F_OK);
         g_free (str);
 }
-
+*/
 
 GtkWidget *orage_create_combo_box_with_content(char *text[], int size)
 {

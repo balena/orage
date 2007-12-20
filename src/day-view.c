@@ -513,7 +513,6 @@ static void app_rows(day_win *dw, char *a_day , xfical_type ical_type
     xfical_appt *appt;
     int days = 1;
 
-    program_log("\tapp_rows start");
     days = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(dw->day_spin));
     /* xfical_appt_get_next_on_day uses extra days so to show 7 days we need
      * to pass days=6, which means 6 days in addition to the one */
@@ -525,7 +524,6 @@ static void app_rows(day_win *dw, char *a_day , xfical_type ical_type
         add_row(dw, appt, a_day, days);
         xfical_appt_free(appt);
     }
-    program_log("\tapp_rows end");
 }
 
 static void app_data(day_win *dw)
@@ -535,16 +533,13 @@ static void app_data(day_win *dw)
     gint i;
     gchar a_day[9]; /* yyyymmdd */
 
-    program_log("\tapp_data start");
     ical_type = XFICAL_TYPE_EVENT;
     strcpy(a_day, orage_i18_date_to_icaltime(gtk_button_get_label(
             GTK_BUTTON(dw->StartDate_button))));
 
     /* first search base orage file */
-    program_log("\tapp_data before open");
     if (!xfical_file_open(TRUE))
         return;
-    program_log("\tapp_data after open");
     strcpy(file_type, "O00.");
     app_rows(dw, a_day, ical_type, file_type);
     /* then process all foreign files */
@@ -552,7 +547,6 @@ static void app_data(day_win *dw)
         app_rows(dw, a_day, ical_type, file_type);
     }
     xfical_file_close(TRUE);
-    program_log("\tapp_data done");
 }
 
 
@@ -562,7 +556,6 @@ static void fill_days(day_win *dw, gint days)
     GtkWidget *ev, *hb;
     GtkWidget *marker;
 
-    program_log("fill_days started");
     height = dw->StartDate_button_req.height;
     width = dw->StartDate_button_req.width;
 
@@ -617,7 +610,6 @@ static void fill_days(day_win *dw, gint days)
                      , (GTK_FILL), (0), 0, 0);
         }
     }
-    program_log("fill_days done");
 }
 
 static void build_day_view_header(day_win *dw, char *start_date)
@@ -834,26 +826,19 @@ static void build_day_view_table(day_win *dw)
 
 static void refresh_day_view_table(day_win *dw)
 {
-    program_log("***** refresh_day_view_table started");
     get_scroll_position(dw);
     gtk_widget_destroy(dw->scroll_win_h);
-    program_log("***** refresh_day_view_table destroyed");
     build_day_view_table(dw);
-    program_log("***** refresh_day_view_table built");
     gtk_widget_show_all(dw->scroll_win_h);
-    gtk_widget_show_now(dw->scroll_win_h);
-    program_log("***** refresh_day_view_table showed");
     /* I was not able to get this work without the timer. Ugly yes, but
      * it works and does not hurt - much */
     g_timeout_add(100, (GtkFunction)scroll_position_timer, (gpointer)dw);
-    program_log("***** refresh_day_view_table done");
 }
 
 day_win *create_day_win(char *start_date)
 {
     day_win *dw;
 
-    program_log("create_day_win started");
     /* initialisation + main window + base vbox */
     dw = g_new0(day_win, 1);
     dw->scroll_pos = -1; /* not set */
@@ -872,16 +857,11 @@ day_win *create_day_win(char *start_date)
 
     build_menu(dw);
     build_toolbar(dw);
-    program_log("create_day_win toolbar done");
     build_day_view_colours(dw);
     build_day_view_header(dw, start_date);
-    program_log("create_day_win header done");
     build_day_view_table(dw);
-    program_log("create_day_win table done");
     gtk_widget_show_all(dw->Window);
-    program_log("create_day_win show done");
     set_scroll_position(dw);
-    program_log("create_day_win done");
 
     return(dw);
 }
