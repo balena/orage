@@ -1346,7 +1346,7 @@ static xfical_appt *fill_appt_window_get_appt(appt_win *apptw
         else
             appt->start_tz_loc = g_strdup("floating");
         appt->end_tz_loc = g_strdup(appt->start_tz_loc);
-        appt->duration = 30;
+        appt->duration = 30*60;
         g_sprintf(appt->completedtime,"%sT%02d%02d00"
                     , today, t->tm_hour, t->tm_min);
         appt->completed_tz_loc = g_strdup(appt->start_tz_loc);

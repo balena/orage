@@ -4163,9 +4163,10 @@ xfical_appt *xfical_appt_get_next_with_string_internal(char *str
 {
 #undef P_N
 #define P_N "xfical_appt_get_next_with_string_internal: "
-    static gchar *text, *beg, *end;
+    static gchar *text_upper, *text, *beg, *end;
+    static upper_text;
     gchar *cur, *tmp, mem;
-    gsize text_len;
+    gsize text_len, len;
     char *uid, ical_uid[XFICAL_UID_LEN+1];
     xfical_appt *appt;
     gboolean found_valid, search_done = FALSE;
@@ -4180,16 +4181,33 @@ xfical_appt *xfical_appt_get_next_with_string_internal(char *str
     if (first) {
         /* FIXME: it would be good idea to convert to upper case.
          * then we should not need to care about case and search would
-         * be more user friendly
+         * be more user friendly.
+         * Note: This is not easy since UID must not be converted upper case
+         * or it will not be found.
          */
         if (!g_file_get_contents(search_file, &text, &text_len, NULL)) {
             g_warning(P_N "Could not open Orage ical file (%s)", search_file);
             return(NULL);
         }
+        text_upper = g_utf8_strup(text, -1);
+        if (text_len == strlen(text_upper)) {
+            /* we can do upper case search since uppercase and original
+             * string have same format. In other words we can find UID since
+             * it starts in the same place in both strings (not 100 % sure, 
+             * but works reliable enough until somebody files a bug...) */
+            end = text_upper+text_len;
+            beg = find_next(text_upper, end, "\nBEGIN:");
+            upper_text = TRUE;
+        }
+        else { /* sorry, has to settle for normal comparison */
         /* let's find first BEGIN:VEVENT or BEGIN:VTODO or BEGIN:VJOURNAL
          * to start our search */
-        end = text+text_len;
-        beg = find_next(text, end, "\nBEGIN:");
+            end = text+text_len;
+            beg = find_next(text, end, "\nBEGIN:");
+            upper_text = FALSE;
+            g_warning(P_N "Can not do case independent comparison (%d/%d)"
+                    , text_len, strlen(text_upper));
+        }
         if (!beg) {
             g_warning(P_N "Could not find initial BEGIN:V-type from Orage ical file (%s)"
                     , search_file);
@@ -4248,7 +4266,15 @@ xfical_appt *xfical_appt_get_next_with_string_internal(char *str
                     search_done = TRUE;
                 }
                 else {
-                    sscanf(uid, "UID:%sXFICAL_UID_LEN", ical_uid);
+                    if (upper_text) {
+                        /* we need to take UID from the original text, which
+                         * has not been converted to upper case */
+                        len = uid-text_upper;
+                        tmp = text+len;
+                        sscanf(tmp, "UID:%sXFICAL_UID_LEN", ical_uid);
+                    }
+                    else
+                        sscanf(uid, "UID:%sXFICAL_UID_LEN", ical_uid);
                     if (strlen(ical_uid) > XFICAL_UID_LEN-2) {
                         g_warning(P_N "too long UID %s", ical_uid);
                         return(NULL);
@@ -4292,6 +4318,7 @@ xfical_appt *xfical_appt_get_next_with_string_internal(char *str
     }
 
     g_free(text);
+    g_free(text_upper);
     if (!search_done) {
         g_warning(P_N "illegal ending %s", str);
     }

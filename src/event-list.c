@@ -408,7 +408,8 @@ static void search_data(el_win *el)
     gchar *search_string = NULL, file_type[8];
     gint i;
 
-    search_string = g_strdup(gtk_entry_get_text((GtkEntry *)el->search_entry));
+    search_string = g_utf8_strup(gtk_entry_get_text(
+                (GtkEntry *)el->search_entry),-1);
     /* first search base orage file */
     if (!xfical_file_open(TRUE))
         return;
