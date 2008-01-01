@@ -1,6 +1,6 @@
 /*      Orage - Calendar and alarm handler
  *
- * Copyright (c) 2006-2007 Juha Kautto  (juha at xfce.org)
+ * Copyright (c) 2006-2008 Juha Kautto  (juha at xfce.org)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -46,6 +46,8 @@ static gboolean is_running = FALSE;
 
 typedef struct _Itf
 {
+    GtkTooltips *Tooltips;
+
     GtkWidget *orage_dialog;
     GtkWidget *dialog_vbox1;
     GtkWidget *notebook;
@@ -122,8 +124,10 @@ gchar *orage_resource_file_location(char *name)
     return(file_name);
 }
 
-static void dialog_response(GtkWidget *dialog, gint response_id)
+static void dialog_response(GtkWidget *dialog, gint response_id
+        , gpointer user_data)
 {
+    Itf *itf = (Itf *)user_data;
     gchar *helpdoc;
 
     if (response_id == GTK_RESPONSE_HELP) {
@@ -136,10 +140,12 @@ static void dialog_response(GtkWidget *dialog, gint response_id)
                 , NULL);
         orage_exec(helpdoc, NULL, NULL);
     }
-    else {
+    else { /* delete signal or close response */
         write_parameters();
         is_running = FALSE;
         gtk_widget_destroy(dialog);
+        gtk_object_destroy(GTK_OBJECT(itf->Tooltips));
+        g_free(itf);
     }
 }
 
@@ -411,6 +417,9 @@ static void create_parameter_dialog_main_setup_tab(Itf *dialog)
     }
     gtk_box_pack_start(GTK_BOX(vbox)
             , dialog->timezone_button, FALSE, FALSE, 5);
+    gtk_tooltips_set_tip(dialog->Tooltips, dialog->timezone_button
+            , _("You should always define your local timezone.")
+            , NULL);
     g_signal_connect(G_OBJECT(dialog->timezone_button), "clicked"
             , G_CALLBACK(timezone_button_clicked), dialog);
 
@@ -430,6 +439,9 @@ static void create_parameter_dialog_main_setup_tab(Itf *dialog)
             , dialog->archive_threshold_spin, FALSE, FALSE, 5);
     label = gtk_label_new(_("(0 = no archiving)"));
     gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 5);
+    gtk_tooltips_set_tip(dialog->Tooltips, dialog->archive_threshold_spin
+            , _("Archiving is used to save time and space when handling events.")
+            , NULL);
     g_signal_connect(G_OBJECT(dialog->archive_threshold_spin), "value-changed"
             , G_CALLBACK(archive_threshold_spin_changed), dialog);
 #endif
@@ -451,6 +463,9 @@ static void create_parameter_dialog_main_setup_tab(Itf *dialog)
     gtk_box_pack_start(GTK_BOX(hbox)
             , dialog->sound_application_open_button, FALSE, FALSE, 5);
 
+    gtk_tooltips_set_tip(dialog->Tooltips, dialog->sound_application_entry
+            , _("This command is given to shell to make sound in alarms.")
+            , NULL);
     g_signal_connect(G_OBJECT(dialog->sound_application_open_button), "clicked"
             , G_CALLBACK(sound_application_open_button_clicked), dialog);
     g_signal_connect(G_OBJECT(dialog->sound_application_entry), "changed"
@@ -593,7 +608,7 @@ static void create_parameter_dialog_display_tab(Itf *dialog)
 
 static void create_parameter_dialog_extra_setup_tab(Itf *dialog)
 {
-    GtkWidget *hbox, *vbox, *label;
+    GtkWidget *hbox, *vbox, *label, *event;
     gchar *weekday_array[7] = {
             _("Monday"), _("Tuesday"), _("Wednesday"), _("Thursday")
           , _("Friday"), _("Saturday"), _("Sunday")};
@@ -618,6 +633,9 @@ static void create_parameter_dialog_extra_setup_tab(Itf *dialog)
             , dialog->always_today_checkbutton, FALSE, FALSE, 5);
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
             dialog->always_today_checkbutton), g_par.select_always_today);
+    gtk_tooltips_set_tip(dialog->Tooltips, dialog->always_today_checkbutton
+            , _("When showing main calendar, set pointer to either previously selected day or always to current day.")
+            , NULL);
     g_signal_connect(G_OBJECT(dialog->always_today_checkbutton), "toggled"
             , G_CALLBACK(always_today_changed), dialog);
 
@@ -630,10 +648,15 @@ static void create_parameter_dialog_extra_setup_tab(Itf *dialog)
 
     dialog->ical_weekstartday_combobox = orage_create_combo_box_with_content(
             weekday_array, 7);
+    event =  gtk_event_box_new(); /* only needed for tooltips */
+    gtk_container_add(GTK_CONTAINER(event), dialog->ical_weekstartday_combobox);
     gtk_box_pack_start(GTK_BOX(hbox)
-            , dialog->ical_weekstartday_combobox, FALSE, FALSE, 5);
+            , event, FALSE, FALSE, 5);
     gtk_combo_box_set_active(GTK_COMBO_BOX(dialog->ical_weekstartday_combobox)
             , g_par.ical_weekstartday);
+    gtk_tooltips_set_tip(dialog->Tooltips, event
+            , _("This is used in some weekly repeating appointment rules. Just set it to the start day of the week for your country and forget it.")
+            , NULL);
     g_signal_connect(G_OBJECT(dialog->ical_weekstartday_combobox), "changed"
             , G_CALLBACK(ical_weekstartday_changed), dialog);
 
@@ -655,6 +678,9 @@ static void create_parameter_dialog_extra_setup_tab(Itf *dialog)
             , g_par.icon_size_x);
     label = gtk_label_new(_("(0 = use static icon)"));
     gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 5);
+    gtk_tooltips_set_tip(dialog->Tooltips, dialog->icon_size_x_spin
+            , _("Dynamic icon shows current day and month. It is visible only in tray. If tray is too small for dynamic icon size, Orage switches automatically back to status icon.")
+            , NULL);
     g_signal_connect(G_OBJECT(dialog->icon_size_x_spin), "value-changed"
             , G_CALLBACK(icon_size_x_spin_changed), dialog);
 
@@ -713,6 +739,7 @@ Itf *create_parameter_dialog()
     Itf *dialog;
 
     dialog = g_new(Itf, 1);
+    dialog->Tooltips = gtk_tooltips_new();
 
     dialog->orage_dialog = xfce_titled_dialog_new();
     gtk_window_set_default_size(GTK_WINDOW(dialog->orage_dialog), 300, 350);
@@ -745,8 +772,8 @@ Itf *create_parameter_dialog()
             , dialog->close_button, GTK_RESPONSE_CLOSE);
     GTK_WIDGET_SET_FLAGS(dialog->close_button, GTK_CAN_DEFAULT);
 
-    g_signal_connect(G_OBJECT (dialog->orage_dialog), "response"
-            , G_CALLBACK(dialog_response), NULL);
+    g_signal_connect(G_OBJECT(dialog->orage_dialog), "response"
+            , G_CALLBACK(dialog_response), dialog);
 
     gtk_widget_show_all(dialog->orage_dialog);
     /*
@@ -892,12 +919,13 @@ void show_parameters()
 {
     static Itf *dialog = NULL;
 
-    if (is_running && dialog && dialog->orage_dialog) {
+    if (is_running) {
         gtk_window_present(GTK_WINDOW(dialog->orage_dialog));
-        return;
     }
-    is_running = TRUE;
-    dialog = create_parameter_dialog();
+    else {
+        is_running = TRUE;
+        dialog = create_parameter_dialog();
+    }
 }
 
 void set_parameters()

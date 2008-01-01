@@ -1,6 +1,6 @@
 /*      Orage - Calendar and alarm handler
  *
- * Copyright (c) 2005-2007 Juha Kautto  (juha at xfce.org)
+ * Copyright (c) 2005-2008 Juha Kautto  (juha at xfce.org)
  * Copyright (c) 2004-2006 Mickael Graf (korbinus at xfce.org)
  *
  * This program is free software; you can redistribute it and/or modify
@@ -40,7 +40,7 @@ void create_wAbout(GtkWidget *widget, gpointer user_data)
 
   about = xfce_about_info_new("Orage", VERSION
           , _("Manage your time with Xfce4")
-          , XFCE_COPYRIGHT_TEXT("2003-2007", " Juha Kautto")
+          , XFCE_COPYRIGHT_TEXT("2003-2008", " Juha Kautto")
           , XFCE_LICENSE_GPL);
   orage_logo = orage_create_icon(xfcal, FALSE, 48, 48);
   xfce_about_info_set_homepage(about, "http://www.xfce.org");
