@@ -60,11 +60,9 @@ typedef struct _parameters
     char *local_timezone;
     gboolean local_timezone_utc;
 
-#ifdef HAVE_ARCHIVE
     /* archiving */
     int archive_limit;
     char *archive_file;
-#endif
 
     /* foreign files */
     int foreign_count;
@@ -95,6 +93,9 @@ typedef struct _parameters
 
     /* show days window from main calendar */
     gboolean show_days; /* true=show days false=show events */
+
+    /* Controls which messages are printed */
+    gint log_level;
 } global_parameters; /* global parameters */
 
 #ifdef ORAGE_MAIN

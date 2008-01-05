@@ -679,7 +679,7 @@ static void create_parameter_dialog_extra_setup_tab(Itf *dialog)
     label = gtk_label_new(_("(0 = use static icon)"));
     gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 5);
     gtk_tooltips_set_tip(dialog->Tooltips, dialog->icon_size_x_spin
-            , _("Dynamic icon shows current day and month. It is visible only in tray. If tray is too small for dynamic icon size, Orage switches automatically back to status icon.")
+            , _("Dynamic icon shows current day and month. It is visible only in tray. If tray is too small for dynamic icon size, Orage switches automatically back to static icon.")
             , NULL);
     g_signal_connect(G_OBJECT(dialog->icon_size_x_spin), "value-changed"
             , G_CALLBACK(icon_size_x_spin_changed), dialog);
@@ -840,6 +840,7 @@ void write_parameters()
         g_sprintf(f_par, "Foreign file %02d read-only", i);
         xfce_rc_delete_entry(rc, f_par, TRUE);
     }
+    xfce_rc_write_int_entry(rc, "Logging level", g_par.log_level);
 
     g_free(fpath);
     xfce_rc_close(rc);
@@ -910,6 +911,7 @@ void read_parameters(void)
         g_par.foreign_data[i].read_only = 
                 xfce_rc_read_bool_entry(rc, f_par, TRUE);
     }
+    g_par.log_level = xfce_rc_read_int_entry(rc, "Logging level", 0);
 
     g_free(fpath);
     xfce_rc_close(rc);

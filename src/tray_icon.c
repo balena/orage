@@ -120,14 +120,14 @@ GdkPixbuf *orage_create_icon(CalWin *xfcal, gboolean static_icon
       return(pixbuf);
   }
   if (x <= 12 || y <= 12) {
-      orage_message("Too small icon size, using static icon\n");
+      orage_message(110, "Too small icon size, using static icon\n");
       pixbuf = gtk_icon_theme_load_icon(icon_theme, "xfcalendar", 16
               , GTK_ICON_LOOKUP_USE_BUILTIN, NULL);
       return(pixbuf);
   }
   if (g_par.icon_size_x == 0 
   ||  g_par.icon_size_y == 0) { /* signal to use static icon */
-      orage_message("Icon size set to zero, using static icon\n");
+      orage_message(110, "Icon size set to zero, using static icon\n");
       pixbuf = gtk_icon_theme_load_icon(icon_theme, "xfcalendar", x
               , GTK_ICON_LOOKUP_USE_BUILTIN, NULL);
       return(pixbuf);
@@ -183,7 +183,7 @@ GdkPixbuf *orage_create_icon(CalWin *xfcal, gboolean static_icon
       y_used_head = PANGO_PIXELS(real_rect.height);
   }
   else
-      orage_message("trayicon: heading does not fit in dynamic icon");
+      orage_message(110, "trayicon: heading does not fit in dynamic icon");
 
   /* month */
   if (strftime(month, 19, "%^b", t) == 0) {
@@ -207,7 +207,7 @@ GdkPixbuf *orage_create_icon(CalWin *xfcal, gboolean static_icon
       y_used_month = PANGO_PIXELS(real_rect.height);
   }
   else
-      orage_message("trayicon: month does not fit in dynamic icon");
+      orage_message(110, "trayicon: month does not fit in dynamic icon");
 
   do { /* main loop where we try our best to fit header+day+month into icon */
       y_used = 0;

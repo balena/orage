@@ -89,7 +89,7 @@ gboolean orage_foreign_files_check(gpointer user_data)
         }
         else if (s.st_mtime > latest_foreign_file_change) {
             latest_foreign_file_change = s.st_mtime;
-            orage_message("updating %s", g_par.foreign_data[i].file);  
+            orage_message(40, "updating %s", g_par.foreign_data[i].file);  
             changes_present = TRUE;
         }
     }
@@ -474,7 +474,7 @@ void imp_save_button_clicked(GtkButton *button, gpointer user_data)
                 *filename_end = 0; /* filename ends here */
             /* FIXME: proper messages to screen */
             if (orage_import_file(filename))
-                orage_message("Import done %s", filename);
+                orage_message(40, "Import done %s", filename);
             else
                 g_warning("import failed file=%s\n", filename);
             if (filename_end != NULL) { /* we have more files */
@@ -516,7 +516,7 @@ void exp_save_button_clicked(GtkButton *button, gpointer user_data)
         }
 
         if (orage_export_file(entry_filename, app_count, entry_uids))
-            orage_message("Export done %s", entry_filename);
+            orage_message(40, "Export done %s", entry_filename);
         else
             g_warning("export failed file=%s\n", entry_filename);
     }

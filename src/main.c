@@ -243,7 +243,7 @@ static void import_file(gboolean running, char *file_name, gboolean initialized)
         /* let's use dbus since server is running there already */
 #ifdef HAVE_DBUS
         if (orage_dbus_import_file(file_name))
-            orage_message("import done file=%s", file_name);
+            orage_message(30, "import done file=%s", file_name);
         else
             g_warning("import failed file=%s\n", file_name);
 #else
@@ -252,7 +252,7 @@ static void import_file(gboolean running, char *file_name, gboolean initialized)
     }
     else if (!running && initialized) {/* do it self directly */
         if (xfical_import_file(file_name))
-            orage_message("import done file=%s", file_name);
+            orage_message(30, "import done file=%s", file_name);
         else
             g_warning("import failed file=%s\n", file_name);
     }
@@ -265,7 +265,7 @@ static void add_foreign(gboolean running, char *file_name, gboolean initialized
         /* let's use dbus since server is running there already */
 #ifdef HAVE_DBUS
         if (orage_dbus_foreign_add(file_name, read_only))
-            orage_message("add done foreign file=%s", file_name);
+            orage_message(40, "add done foreign file=%s", file_name);
         else
             g_warning("add failed foreign file=%s\n", file_name);
 #else
@@ -273,7 +273,7 @@ static void add_foreign(gboolean running, char *file_name, gboolean initialized
 #endif
     else if (!running && initialized) { /* do it self directly */
         if (orage_foreign_file_add(file_name, read_only))
-            orage_message("add done foreign file=%s", file_name);
+            orage_message(40, "add done foreign file=%s", file_name);
         else
             g_warning("add failed foreign file=%s\n", file_name);
     }
@@ -285,7 +285,7 @@ static void remove_foreign(gboolean running, char *file_name, gboolean initializ
         /* let's use dbus since server is running there already */
 #ifdef HAVE_DBUS
         if (orage_dbus_foreign_remove(file_name))
-            orage_message("remove done foreign file=%s", file_name);
+            orage_message(40, "remove done foreign file=%s", file_name);
         else
             g_warning("remove failed foreign file=%s\n", file_name);
 #else
@@ -293,7 +293,7 @@ static void remove_foreign(gboolean running, char *file_name, gboolean initializ
 #endif
     else if (!running && initialized) { /* do it self directly */
         if (orage_foreign_file_remove(file_name))
-            orage_message("remove done foreign file=%s", file_name);
+            orage_message(40, "remove done foreign file=%s", file_name);
         else
             g_warning("remove failed foreign file=%s\n", file_name);
     }

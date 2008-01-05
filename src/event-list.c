@@ -844,7 +844,7 @@ static void delete_appointment(el_win *el)
                 gtk_tree_model_get(model, &iter, COL_UID, &uid, -1);
                 result = xfical_appt_del(uid);
                 if (result)
-                    orage_message("Removed: %s", uid);
+                    orage_message(30, "Removed: %s", uid);
                 else
                     g_warning("Removal failed: %s", uid);
                 g_free(uid);
@@ -1037,7 +1037,7 @@ static void build_toolbar(el_win *el)
     el->Close_toolbutton = orage_toolbar_append_button(el->Toolbar
             , "gtk-close", el->Tooltips, _("Close"), i++);
     el->Dayview_toolbutton = orage_toolbar_append_button(el->Toolbar
-            , "gtk-zoom-in", el->Tooltips, _("Days"), i++);
+            , "gtk-zoom-in", el->Tooltips, _("Dayview"), i++);
 
     g_signal_connect((gpointer)el->Create_toolbutton, "clicked"
             , G_CALLBACK(on_Create_toolbutton_clicked_cb), el);

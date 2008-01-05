@@ -40,6 +40,7 @@
 
 #include "orage-i18n.h"
 #include "functions.h"
+#include "parameters.h"
 
 /**************************************
  *  General purpose helper functions  *
@@ -67,6 +68,54 @@ void program_log (const char *format, ...)
 
         access (str, F_OK);
         g_free (str);
+}
+*/
+
+/* Print message at various level:
+ * < 0     = Debug (Use only in special debug code which should not be in 
+ *                  normal code.)
+ * 0-99    = Message
+ * 100-199 = Warning
+ * 200-299 = Critical warning
+ * 300-    = Error
+ * variable g_par.log_level can be used to control how much data is printed
+ */
+void orage_message(gint level, const char *format, ...)
+{
+    va_list args;
+    char *formatted, *str;
+
+    if (level < g_par.log_level)
+        return;
+    va_start(args, format);
+    formatted = g_strdup_vprintf(format, args);
+    va_end(args);
+
+    if (level < 0) 
+        g_debug("%s", formatted);
+    else if (level < 100) 
+        g_message("Orage **: %s", formatted);
+    else if (level < 200) 
+        g_warning("%s", formatted);
+    else if (level < 300) 
+        g_critical("%s", formatted);
+    else
+        g_error("Orage **: %s", formatted);
+    g_free(formatted);
+}
+
+/*
+void orage_message(const char *format, ...)
+{
+    va_list args;
+    char *formatted, *str;
+
+    va_start(args, format);
+    formatted = g_strdup_vprintf(format, args);
+    va_end(args);
+
+    g_message("Orage **: %s", formatted);
+    g_free(formatted);
 }
 */
 
@@ -179,19 +228,6 @@ gboolean orage_exec(const char *cmd, gboolean *cmd_active, GError **error)
     g_strfreev(argv);
 
     return(success);
-}
-
-void orage_message(const char *format, ...)
-{
-    va_list args;
-    char *formatted, *str;
-
-    va_start(args, format);
-    formatted = g_strdup_vprintf(format, args);
-    va_end(args);
-
-    g_message("Orage **: %s", formatted);
-    g_free(formatted);
 }
 
 GtkWidget *orage_toolbar_append_button(GtkWidget *toolbar

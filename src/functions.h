@@ -31,7 +31,7 @@
 
 #define ORAGE_STR_EXISTS(str) ((str != NULL) && (str[0] != 0))
 
-void orage_message(const char *format, ...);
+void orage_message(gint level, const char *format, ...);
 
 GtkWidget *orage_create_combo_box_with_content(char *text[], int size);
 
