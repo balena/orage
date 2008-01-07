@@ -2,7 +2,8 @@
 # Copyright (C) 2003-2006 The Xfce development team.
 # This file is distributed under the same license as the orage package.
 # Eskild Hustvedt <zerodogg@skolelinux.no>, 2005.
-# Terje Uriasnrud <ter@operamail.com>, 2007
+# Terje Uriasnrud <ter@operamail.com>, 2007.
+# Christian Lomsdalen <christian@vindstille.net>, 2007.
 #
 msgid ""
 msgstr ""
@@ -10,7 +11,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-01-05 02:11+0200\n"
 "PO-Revision-Date: 2005-08-17 20:43+0900\n"
-"Last-Translator: Terje Uriansrud <ter@operamail.com>\n"
+"Last-Translator: Christian Lomsdalen <christian@vindstille.net>\n"
 "Language-Team: Norwegian Bokmal <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -318,8 +319,8 @@ msgid ""
 "Enter local timezone. (it is used to show if time is on previous(-) or next "
 "date(+) by adding a +/- after the time)"
 msgstr ""
-"Skriv inn lokal tidssone. (Denne brukes til å vise om tiden er på forrige(-) "
-"eller eller neste(+) dato ved å legge til +/- etter tiden)"
+"Skriv inn lokal tidssone. (Denne brukes til å vise om tiden er på "
+"forrige(-) eller eller neste(+) dato ved å legge til +/- etter tiden)"
 
 #: ../panel-plugin/oc_config.c:193
 msgid "Appearance"
@@ -491,7 +492,7 @@ msgstr "Ønsker du å fortsette?"
 
 #: ../src/appointment.c:720
 msgid "Error"
-msgstr ""
+msgstr "Feil"
 
 #: ../src/appointment.c:722
 msgid "The end of this appointment is earlier than the beginning."
@@ -503,16 +504,15 @@ msgstr "Avtalen vil bli slettet."
 
 #: ../src/appointment.c:1371 ../src/event-list.c:672
 msgid "Info"
-msgstr ""
+msgstr "Info"
 
 #: ../src/appointment.c:1373
-#, fuzzy
 msgid "This appointment does not exist."
-msgstr "Avtalen vil bli slettet."
+msgstr "Avtalen eksisterer ikke."
 
 #: ../src/appointment.c:1374
 msgid "It was probably removed, please refresh your screen."
-msgstr ""
+msgstr "Det ble sannsynligvis fjernet, vennligst oppdater skjermbildet."
 
 #: ../src/appointment.c:1440
 msgid "New appointment - Orage"
@@ -714,13 +714,15 @@ msgstr ""
 
 #: ../src/appointment.c:2005
 msgid "Persistent alarm"
-msgstr ""
+msgstr "Vedvarende alarm"
 
 #: ../src/appointment.c:2007
 msgid ""
 "Select this if you want Orage to remind you even if it has not been active "
 "when the alarm happened."
 msgstr ""
+"Velg dette hvis du vil at Orage skal påminne deg selv om Orage ikke var "
+"aktivt når alarmtidspunktet inntraff"
 
 #. **** Audio Alarm ****
 #: ../src/appointment.c:2016
@@ -976,16 +978,15 @@ msgstr "Lukk"
 #. then add the appointment
 #: ../src/day-view.c:406
 msgid "Unknown"
-msgstr ""
+msgstr "Ukjent"
 
 #: ../src/day-view.c:635 ../src/parameters.c:568
 msgid "Show"
 msgstr "Vis"
 
 #: ../src/day-view.c:850
-#, fuzzy
 msgid "Orage - day view"
-msgstr "Orage - Kalender"
+msgstr "Orage - Dagsvisning"
 
 #. date only appointment
 #: ../src/event-list.c:175
@@ -998,11 +999,11 @@ msgstr "Tid"
 
 #: ../src/event-list.c:674
 msgid "No rows has been selected."
-msgstr ""
+msgstr "Ingen rader har blitt valgt."
 
 #: ../src/event-list.c:675
 msgid "Click a row to select it and after that you can copy it."
-msgstr ""
+msgstr "Klikk på en rad for å velge den og etterpå kan du kopiere den."
 
 #: ../src/event-list.c:829
 msgid ""
@@ -1018,7 +1019,7 @@ msgstr "Søk"
 
 #: ../src/event-list.c:1040
 msgid "Dayview"
-msgstr ""
+msgstr "Dagsvisning"
 
 #: ../src/event-list.c:1072
 msgid "Extra days to show "
@@ -1045,7 +1046,6 @@ msgid "Title"
 msgstr "Tittel"
 
 #: ../src/event-list.c:1225
-#, fuzzy
 msgid ""
 "Double click line to edit it.\n"
 "\n"
@@ -1069,7 +1069,9 @@ msgstr ""
 "\t\t D=Daglig W=Ukentlig M=Månedlig Y=Årlig\n"
 "\t 3. Type: f=ledig B=Opptatt\n"
 "\t 4. Plassert i fil: O=Orage\n"
-"\t\t  A=Arkiv F=Ekstern"
+"\t\t  A=Arkiv F=Ekstern\n"
+"\t 5. Avtaletype:\n"
+"\t\tE=Hendelse T=Gjøremål J=Journal"
 
 #: ../src/functions.c:145
 msgid "Pick the date"
@@ -2622,7 +2624,8 @@ msgstr ""
 msgid ""
 "\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
 msgstr ""
-"\tFant %d påminnelser hvorav %d er aktive. (Søkte %d gjentagende påminnelser)"
+"\tFant %d påminnelser hvorav %d er aktive. (Søkte %d gjentagende "
+"påminnelser)"
 
 #. remove since it has ended
 #: ../src/ical-code.c:3484
@@ -2685,16 +2688,16 @@ msgstr "Arkivsletting fullført\n"
 
 #: ../src/ical-code.c:3777
 msgid "Starting import file preprocessing"
-msgstr ""
+msgstr "Starter forbehandling av filimport"
 
 #: ../src/ical-code.c:3813
 #, c-format
 msgid "... Patched DCREATED to be CREATED (%s)"
-msgstr ""
+msgstr "... Patchet DCREATED til å bli CREATED (%s)"
 
 #: ../src/ical-code.c:3822
 msgid "Import file preprocessing done"
-msgstr ""
+msgstr "Forbehandling av filimportering er ferdig"
 
 #. show it
 #: ../src/ical-code.c:4414
@@ -2770,22 +2773,20 @@ msgid "Named appointments: "
 msgstr "Navngitte avtaler: "
 
 #: ../src/interface.c:1055
-#, fuzzy
 msgid ""
 "Note that only main file appointments are read.\n"
 "Archived and Foreign events are not exported."
 msgstr ""
 "Vær oppmerksom på at kun avtaler fra hovedfil leses.\n"
-"Arkiverte hendelser eksporteres ikke."
+"Arkiverte og eksterne hendelser eksporteres ikke."
 
 #: ../src/interface.c:1058
-#, fuzzy
 msgid ""
 "Note that only main file appointments are read.\n"
 "Foreign events are not exported."
 msgstr ""
 "Vær oppmerksom på at kun avtaler fra hovedfil leses.\n"
-"Arkiverte hendelser eksporteres ikke."
+"Hendelser utenifra eksporteres ikke."
 
 #: ../src/interface.c:1061
 msgid "You can easily drag these from event-list window."
@@ -2938,20 +2939,19 @@ msgstr "\tBruker ikke DBUS. Importering funger bare delvis.\n"
 
 #: ../src/main.c:203
 msgid "\tUsing libnotify.\n"
-msgstr ""
+msgstr "\tBruker libnotify.\n"
 
 #: ../src/main.c:205
 msgid "\tNot using libnotify.\n"
-msgstr ""
+msgstr "\tBruker ikke libnotify.\n"
 
 #: ../src/main.c:208
 msgid "\tUsing automatic archving.\n"
-msgstr ""
+msgstr "\tAutomatisk arkivering aktivert.\n"
 
 #: ../src/main.c:210
-#, fuzzy
 msgid "\tNot using archiving.\n"
-msgstr "(0 = ingen arkivering)"
+msgstr "\tIngen arkivering.\n"
 
 #: ../src/main.c:223
 msgid ""
@@ -3007,14 +3007,8 @@ msgstr ""
 
 #: ../src/main.c:378
 #, c-format
-msgid ""
-"\n"
-"Unknown option %s\n"
-"\n"
-msgstr ""
-"\n"
-"Ukjent opsjon %s\n"
-"\n"
+msgid "\nUnknown option %s\n\n"
+msgstr "\nUkjent opsjon %s\n\n"
 
 #: ../src/mainbox.c:218
 msgid "_Exchange data"
@@ -3030,9 +3024,8 @@ msgid "View selected _date"
 msgstr "Vis valgte _dato"
 
 #: ../src/mainbox.c:242
-#, fuzzy
 msgid "View selected _week"
-msgstr "Vis valgte _dato"
+msgstr "Vis valgte _uke"
 
 #: ../src/mainbox.c:248
 msgid "Select _Today"
@@ -3045,7 +3038,7 @@ msgstr "_Hjelp"
 
 #: ../src/mainbox.c:320
 msgid "Not defined"
-msgstr ""
+msgstr "Ikke definert"
 
 #: ../src/mainbox.c:325
 #, c-format
@@ -3057,6 +3050,12 @@ msgid ""
 "Note:\n"
 "%s"
 msgstr ""
+"Tittel: %s\n"
+" Start:\t%s\n"
+" Slutt:\t%s\n"
+" Ferdig:\t%s\n"
+"Notat:\n"
+"%s"
 
 #: ../src/parameters.c:396
 msgid "Main setups"
@@ -3068,7 +3067,7 @@ msgstr "Tidssone"
 
 #: ../src/parameters.c:421
 msgid "You should always define your local timezone."
-msgstr ""
+msgstr "Du bør alltid definere din lokale tidssone."
 
 #: ../src/parameters.c:430
 msgid "Archive threshold (months)"
@@ -3081,6 +3080,8 @@ msgstr "(0 = ingen arkivering)"
 #: ../src/parameters.c:443
 msgid "Archiving is used to save time and space when handling events."
 msgstr ""
+"Arkivering brukes for å spare tid og lagringsplass når handlinger "
+"håndteres"
 
 #: ../src/parameters.c:452
 msgid "Sound command"
@@ -3089,6 +3090,7 @@ msgstr "Lydkommando"
 #: ../src/parameters.c:467
 msgid "This command is given to shell to make sound in alarms."
 msgstr ""
+"Denne kommandoen gis til skallet for å gi alarmer muligheten til å lage lyd"
 
 #: ../src/parameters.c:482
 msgid "Display"
@@ -3179,6 +3181,8 @@ msgid ""
 "When showing main calendar, set pointer to either previously selected day or "
 "always to current day."
 msgstr ""
+"Når hovedkalenderen vises, settes markøren enten på sist valgte dato "
+"eller på dagens dato."
 
 #: ../src/parameters.c:645
 msgid "Ical week start day"
@@ -3189,6 +3193,8 @@ msgid ""
 "This is used in some weekly repeating appointment rules. Just set it to the "
 "start day of the week for your country and forget it."
 msgstr ""
+"Dette brukes i noen tilfeller av ukentlig repetering av hendelsesregler. "
+"Bare sett den til den første dagen i uken for ditt land og glem den."
 
 #: ../src/parameters.c:666
 msgid "Dynamic icon size"
@@ -3204,19 +3210,21 @@ msgid ""
 "tray is too small for dynamic icon size, Orage switches automatically back "
 "to static icon."
 msgstr ""
+"Dynamisk ikon som viser den aktuelle dagen og måneden. Den er synlig kun i "
+"panelet. Hvis panelet er for lite for det dynamiske ikonets størrelse så "
+"bytter Orage det automatisk tilbake til et statisk ikon."
 
 #: ../src/parameters.c:705
 msgid "Main Calendar double click shows"
-msgstr ""
+msgstr "Dobbeltklikk i Hovedkalender viser"
 
 #: ../src/parameters.c:710
 msgid "Days view"
-msgstr ""
+msgstr "Dagsvisning"
 
 #: ../src/parameters.c:722
-#, fuzzy
 msgid "Event list"
-msgstr "Hendelse"
+msgstr "Hendelsesliste"
 
 #: ../src/parameters.c:747
 msgid "Orage Preferences"
@@ -3231,9 +3239,8 @@ msgid "Open"
 msgstr "Åpne"
 
 #: ../src/reminder.c:551
-#, fuzzy
 msgid "Reminder - Orage"
-msgstr "Påminnelse"
+msgstr "Påminnelse - Orage"
 
 #: ../src/reminder.c:825
 msgid "Next active alarms:"
@@ -3241,20 +3248,12 @@ msgstr "Neste aktive påminnelser:"
 
 #: ../src/reminder.c:853
 #, c-format
-msgid ""
-"\n"
-"%02d d %02d h %02d min to: %s"
-msgstr ""
-"\n"
-"%02d d %02d t %02d min til: %s"
+msgid "\n%02d d %02d h %02d min to: %s"
+msgstr "\n%02d d %02d t %02d min til: %s"
 
 #: ../src/reminder.c:861
-msgid ""
-"\n"
-"No active alarms found"
-msgstr ""
-"\n"
-"Ingen aktive påminnelser er funnet"
+msgid "\nNo active alarms found"
+msgstr "\nIngen aktive påminnelser er funnet"
 
 #: ../src/tray_icon.c:324
 msgid "New appointment"
@@ -3291,29 +3290,3 @@ msgstr "Kalender"
 #: ../xfcalendar.desktop.in.h:2
 msgid "Desktop calendar"
 msgstr "Skrivebordskalender"
-
-#, fuzzy
-#~ msgid "Days"
-#~ msgstr "dager"
-
-#~ msgid "Calendar Files"
-#~ msgstr "Kalenderfiler"
-
-#~ msgid "Calendar borders"
-#~ msgstr "Kalenderrammer"
-
-#~ msgid ""
-#~ "You will remove all information \n"
-#~ "associated with this date."
-#~ msgstr ""
-#~ "All informasjon assosiert med \n"
-#~ "denne datoen vil bli fjernet."
-
-#~ msgid "Clear"
-#~ msgstr "Tøm"
-
-#~ msgid "This should not happen"
-#~ msgstr "Dette burde ikke skje"
-
-#~ msgid "Cannot create MCS client channel"
-#~ msgstr "Klarte ikke å skape MCS-klient kanal"
