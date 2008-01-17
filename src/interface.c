@@ -85,7 +85,7 @@ gboolean orage_foreign_files_check(gpointer user_data)
     for (i = 0; i < g_par.foreign_count; i++) {
         if (g_stat(g_par.foreign_data[i].file, &s) < 0) {
             g_warning("stat of %s failed: %d (%s)",
-                        g_par.foreign_data[i].file, errno, strerror(errno));
+                    g_par.foreign_data[i].file, errno, strerror(errno));
         }
         else if (s.st_mtime > latest_foreign_file_change) {
             latest_foreign_file_change = s.st_mtime;

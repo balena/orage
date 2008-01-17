@@ -720,21 +720,12 @@ void reset_orage_day_change(gboolean changed)
          * 24:00:00 to represent next day.
          * Let's find out how much time we have until it happens */
         secs_left = 60*60*(24 - t->tm_hour) - 60*t->tm_min - t->tm_sec;
-        /*
-        if (g_par.day_timer) { / * first time it is not active yet * /
-            g_source_remove(g_par.day_timer);
-        }
-        */
-        g_par.day_timer = g_timeout_add(secs_left * 1000
-                , (GtkFunction) orage_day_change, NULL);
     }
     else { /* the change did not happen. Need to try again asap. */
-        /*
-        g_source_remove(g_par.day_timer);
-        */
-        g_par.day_timer = g_timeout_add(1 * 1000
-                , (GtkFunction) orage_day_change, NULL);
+        secs_left = 1;
     }
+    g_par.day_timer = g_timeout_add(secs_left * 1000
+            , (GtkFunction) orage_day_change, NULL);
 }
 
 /* check and raise alarms if there are any */

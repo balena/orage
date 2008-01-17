@@ -66,7 +66,9 @@
 
 static void xfical_alarm_build_list_internal(gboolean first_list_today);
 
+/*
 #define ORAGE_DEBUG 1
+*/
 
 typedef struct
 {
@@ -2814,7 +2816,10 @@ static void process_alarm_data(icalcomponent *ca, alarm_struct *new_alarm)
         }
     }
 
-    g_free(appt);
+    /* this really is g_free only instead of xfical_appt_free 
+     * since get_alarm_data does not allocate more memory.
+     * It is hack to do it faster. */
+    g_free(appt); 
     /*
     p = icalcomponent_get_first_property(ca, ICAL_ACTION_PROPERTY);
     if (!p) {
@@ -2948,11 +2953,10 @@ static void xfical_alarm_build_list_internal_real(gboolean first_list_today
             if (!new_alarm->description)
                 new_alarm->description = g_strdup(
                         (char *)icalcomponent_get_description(c));
-            g_par.alarm_list = g_list_append(g_par.alarm_list, new_alarm);
+            g_par.alarm_list = g_list_prepend(g_par.alarm_list, new_alarm);
             cnt_alarm_add++;
         }
     }  /* COMPONENT */
-    g_par.alarm_list = g_list_sort(g_par.alarm_list, alarm_order);
     if (first_list_today) {
         orage_message(20, _("Build alarm list: Added %d alarms. Processed %d events.")
                 , cnt_alarm_add, cnt_event);
@@ -2983,6 +2987,8 @@ static void xfical_alarm_build_list_internal(gboolean first_list_today)
         xfical_alarm_build_list_internal_real(first_list_today, f_ical[i].ical
                 , file_type);
     }
+    /* order list */
+    g_par.alarm_list = g_list_sort(g_par.alarm_list, alarm_order);
     setup_orage_alarm_clock(); /* keep reminders upto date */
     build_mainbox_info();      /* refresh main calendar window todo list */
     /* moved to reminder in setup_orage_alarm_clock
@@ -3010,9 +3016,7 @@ void xfical_alarm_build_list(gboolean first_list_today)
   * type:   EVENT/TODO/JOURNAL to be read
   * returns: NULL if failed and xfical_appt pointer to xfical_appt struct 
   *          filled with data if successfull. 
-  *          This xfical_appt struct is owned by the routine. 
-  *          Do not deallocate it.
-  *          It will be overdriven by next invocation of this function.
+  *          You need to deallocate it after used.
   * Note:   starttimecur and endtimecur are converted to local timezone
   */
 static xfical_appt *xfical_appt_get_next_on_day_internal(char *a_day
@@ -3172,8 +3176,7 @@ static icalproperty *replace_repeating(icalcomponent *c, icalproperty *p
   * type:   EVENT/TODO/JOURNAL to be read
   * returns: NULL if failed and xfical_appt pointer to xfical_appt struct 
   *          filled with data if successfull. 
-  *          This xfical_appt struct is owned by the routine. 
-  *          Do not deallocate it.
+  *          You need to deallocate it after used.
   *          It will be overdriven by next invocation of this function.
   * Note:   starttimecur and endtimecur are converted to local timezone
   */

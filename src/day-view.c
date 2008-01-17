@@ -376,8 +376,10 @@ static void on_button_press_event_cb(GtkWidget *widget
 {
     gchar *uid;
 
-    uid = g_object_get_data(G_OBJECT(widget), "UID");
-    create_appt_win("UPDATE", uid, NULL);
+    if (event->type==GDK_2BUTTON_PRESS) {
+        uid = g_object_get_data(G_OBJECT(widget), "UID");
+        create_appt_win("UPDATE", uid, NULL);
+    }
 }
 
 static void add_row(day_win *dw, xfical_appt *appt, char *a_day, gint days)
@@ -544,6 +546,7 @@ static void app_data(day_win *dw)
     app_rows(dw, a_day, ical_type, file_type);
     /* then process all foreign files */
     for (i = 0; i < g_par.foreign_count; i++) {
+        g_sprintf(file_type, "F%02d.", i);
         app_rows(dw, a_day, ical_type, file_type);
     }
     xfical_file_close(TRUE);

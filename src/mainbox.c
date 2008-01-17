@@ -345,7 +345,7 @@ static void insert_rows(GList **todo_list, char *a_day, xfical_type ical_type
          appt;
          appt = xfical_appt_get_next_on_day(a_day, FALSE, 0
                 , ical_type , file_type)) {
-        *todo_list = g_list_append(*todo_list, appt);
+        *todo_list = g_list_prepend(*todo_list, appt);
     }
 }
 
@@ -403,8 +403,12 @@ void build_mainbox_info(void)
 
     ical_type = XFICAL_TYPE_TODO;
     /* first search base orage file */
+    /* this routine is called always from libical build alarm list internal
+     * and ical files are already open at that time */
+    /*
     if (!xfical_file_open(TRUE))
         return;
+        */
     strcpy(file_type, "O00.");
     insert_rows(&todo_list, a_day, ical_type, file_type);
     /* then process all foreign files */
@@ -412,7 +416,9 @@ void build_mainbox_info(void)
         g_sprintf(file_type, "F%02d.", i);
         insert_rows(&todo_list, a_day, ical_type, file_type);
     }
+    /* caller takes care of this
     xfical_file_close(TRUE);
+    */
     if (todo_list) {
         todo_list = g_list_sort(todo_list, todo_order);
         g_list_foreach(todo_list, (GFunc)todo_process, NULL);
