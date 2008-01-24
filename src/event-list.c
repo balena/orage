@@ -671,7 +671,7 @@ static void duplicate_appointment(el_win *el)
         xfce_message_dialog(GTK_WINDOW(el->Window)
                 , _("Info")
                 , GTK_STOCK_DIALOG_INFO
-                , _("No rows has been selected.")
+                , _("No rows have been selected.")
                 , _("Click a row to select it and after that you can copy it.")
                 , GTK_STOCK_OK, GTK_RESPONSE_ACCEPT
                 , NULL);
