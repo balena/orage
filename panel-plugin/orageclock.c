@@ -386,7 +386,9 @@ static void oc_free_data(XfcePanelPlugin *plugin, Clock *clock)
     if (dlg)
         gtk_widget_destroy(dlg);
     
-    g_source_remove(clock->timeout_id);
+    if (clock->timeout_id) {
+        g_source_remove(clock->timeout_id);
+    }
     g_object_unref(clock->tips);
     g_object_unref(clock->line[0].label);
     g_object_unref(clock->line[1].label);
