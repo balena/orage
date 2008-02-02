@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: orage 4.3.90.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-01-05 02:11+0200\n"
-"PO-Revision-Date: 2008-01-27 21:47+0100\n"
+"PO-Revision-Date: 2008-02-02 16:38+0100\n"
 "Last-Translator: Michal Várady <miko.vaji@gmail.com>\n"
 "Language-Team: Czech <translation-team-cs@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -1125,7 +1125,7 @@ msgstr ""
 "\t\t D=Denně W=Týdně M=Měsíčně Y=Ročně\n"
 "\t 3. Typ: f=dostupný B=Zaneprázdněný\n"
 "\t 4. Umístěno v souboru:\n"
-"\t\tO=Orage A=Archiv F=Cizí\n"
+"\t\tO=Orage A=Archiv F=Externí\n"
 "\t 5. Typ schůzky:\n"
 "\t\tE=Událost T=Úkoly J=Žurnál"
 
@@ -2691,7 +2691,7 @@ msgstr "Archivování není povoleno. Ukončování..."
 #: ../src/ical-code.c:3564
 #, c-format
 msgid "Archiving threshold: %d month(s)"
-msgstr "Přesah archivu: %d měsíců"
+msgstr "Práh archivu: %d měsíců"
 
 #. yy mon day
 #: ../src/ical-code.c:3567
@@ -2773,7 +2773,7 @@ msgstr "Soubory kalendáře"
 
 #: ../src/interface.c:626
 msgid "Current foreign files"
-msgstr "Aktuální cizí soubory"
+msgstr "Aktuální externí soubory"
 
 #: ../src/interface.c:637
 msgid "READ ONLY"
@@ -2785,11 +2785,11 @@ msgstr "PRO ČTENÍ I ZÁPIS"
 
 #: ../src/interface.c:657
 msgid "***** No foreign files *****"
-msgstr "***** Žádné cizí soubory *****"
+msgstr "***** Žádné externí soubory *****"
 
 #: ../src/interface.c:967
 msgid "Import/export"
-msgstr "Import nebo export"
+msgstr "Import a export"
 
 #: ../src/interface.c:974
 msgid "Import"
@@ -2797,14 +2797,14 @@ msgstr "Import"
 
 #: ../src/interface.c:979
 msgid "Read from file:"
-msgstr "Číst ze souboru:"
+msgstr "Načíst ze souboru:"
 
 #: ../src/interface.c:996
 msgid ""
 "Separate filenames with comma(,).\n"
 " NOTE: comma is not valid character in filenames for Orage."
 msgstr ""
-"Oddělte názvy souborů čárkami.\n"
+"Názvy souborů oddělte čárkami.\n"
 " POZNÁMKA: čárka není platným znakem v názvech souborů aplikace Orage."
 
 #: ../src/interface.c:1001
@@ -2813,7 +2813,7 @@ msgstr "Export"
 
 #: ../src/interface.c:1006
 msgid "Write to file:"
-msgstr "Zapisovat do souboru:"
+msgstr "Zapsat do souboru:"
 
 #: ../src/interface.c:1027
 #: ../src/interface.c:1039
@@ -2834,7 +2834,7 @@ msgid ""
 "Archived and Foreign events are not exported."
 msgstr ""
 "Načítají se pouze schůzky z hlavního souboru.\n"
-"Archivované a cizí události se neexportují."
+"Archivované a externí události se neexportují."
 
 #: ../src/interface.c:1058
 msgid ""
@@ -2842,15 +2842,15 @@ msgid ""
 "Foreign events are not exported."
 msgstr ""
 "Načítají se pouze schůzky z hlavního souboru.\n"
-"Cizí události se neexportují."
+"Externí události se neexportují."
 
 #: ../src/interface.c:1061
 msgid "You can easily drag these from event-list window."
-msgstr "Můžete jednoduše táhnout tyto položky z okna seznamu událostí."
+msgstr "Tyto položky můžete jednoduše přetáhnout z okna seznamu událostí."
 
 #: ../src/interface.c:1063
 msgid "Orage appointment UIDs separated by commas."
-msgstr "Čísla UID schůzek aplikace Orage oddělená čárkami."
+msgstr "Čísla schůzek UID aplikace Orage oddělená čárkami."
 
 #: ../src/interface.c:1069
 msgid "Archive"
@@ -2859,15 +2859,15 @@ msgstr "Archiv"
 #: ../src/interface.c:1077
 #, c-format
 msgid "Archive now (threshold: %d months)"
-msgstr "Archivovat nyní (přesah: %d měsíců)"
+msgstr "Okamžitá archivace (práh: %d měsíců)"
 
 #: ../src/interface.c:1087
 msgid "You can change archive threshold in parameters"
-msgstr "Přesah archivu můžete změnit v parametrech."
+msgstr "Práh archivu můžete změnit v parametrech."
 
 #: ../src/interface.c:1094
 msgid "Revert archive now"
-msgstr "Vrátit archiv nyní."
+msgstr "Obnovení archivu do původního stavu"
 
 #: ../src/interface.c:1100
 msgid ""
@@ -2875,9 +2875,10 @@ msgid ""
 "This is usefull for example when doing export and moving orage\n"
 "appointments to another system."
 msgstr ""
-"Vrátí všechny archivované události do hlavního souboru aplikace Orage\n"
-"a vyjme archivní soubor. Tato funkce je užitečná například při exportu a přesunu\n"
-"schůzek na jiný systém."
+"Vrátí všechny archivované události do hlavního souboru\n"
+"aplikace Orage a odebere soubor archivu. Tato funkce\n"
+"je užitečná například při exportu a přesunu schůzek\n"
+"na jiný systém."
 
 #: ../src/interface.c:1110
 msgid "Orage files"
@@ -2900,7 +2901,7 @@ msgstr "Nový soubor"
 #: ../src/interface.c:1145
 #: ../src/interface.c:1211
 msgid "Action options"
-msgstr "Možnosti akcí"
+msgstr "Dostupné akce"
 
 #: ../src/interface.c:1148
 #: ../src/interface.c:1214
@@ -2914,8 +2915,8 @@ msgid ""
 "New file must exist."
 msgstr ""
 "Přejmenování interního souboru aplikace Orage.\n"
-"Nezasahuje do vnějších systémů souborů.\n"
-"Musí existovat nový soubor."
+"Nezasahuje do vnějšího systémů souborů.\n"
+"Nový soubor již musí existovat."
 
 #: ../src/interface.c:1156
 #: ../src/interface.c:1219
@@ -2924,7 +2925,9 @@ msgstr "Kopírovat"
 
 #: ../src/interface.c:1160
 msgid "Current file is copied and stays unmodified in the old place."
-msgstr "Aktuální soubor se zkopíruje a v původním umístění zůstane nezměněn."
+msgstr ""
+"Aktuální soubor se zkopíruje a\n"
+"v původním umístění zůstane nezměněn."
 
 #: ../src/interface.c:1164
 #: ../src/interface.c:1224
@@ -2933,7 +2936,9 @@ msgstr "Přesunout"
 
 #: ../src/interface.c:1168
 msgid "Current file is moved and vanishes from the old place."
-msgstr "Aktuální soubor se přesune a z původního umístění bude vymazán."
+msgstr ""
+"Aktuální soubor se přesune a\n"
+"z původního umístění bude vymazán."
 
 #: ../src/interface.c:1182
 msgid "Archive file"
@@ -2941,15 +2946,15 @@ msgstr "Soubor archivu"
 
 #: ../src/interface.c:1245
 msgid "Foreign files"
-msgstr "Cizí soubory"
+msgstr "Externí soubory"
 
 #: ../src/interface.c:1252
 msgid "Add new foreign file"
-msgstr "Přidat nový cizí soubor"
+msgstr "Přidat nový externí soubor"
 
 #: ../src/interface.c:1257
 msgid "Foreign file:"
-msgstr "Cizí soubor:"
+msgstr "Externí soubor:"
 
 #: ../src/interface.c:1275
 msgid "Options"
@@ -2961,11 +2966,11 @@ msgstr "Pouze pro čtení"
 
 #: ../src/interface.c:1285
 msgid "Set this if you want to make sure that this file is never modified by Orage."
-msgstr "Nastavte tuto možnost, chcete-li si být jisti, že tento soubor aplikace Orage nikdy nepozmění."
+msgstr "Nastavte tuto možnost, chcete-li aplikaci Orage zabránit změně dat v tomto souboru."
 
 #: ../src/interface.c:1299
 msgid "Exchange data - Orage"
-msgstr "Vyměněná data - Orage"
+msgstr "Správa datových souborů - Orage"
 
 #: ../src/main.c:190
 #, c-format
@@ -3044,11 +3049,11 @@ msgstr "--toggle (-t) \t\tpřepne aplikaci orage do viditelného nebo neviditeln
 
 #: ../src/main.c:229
 msgid "--add-foreign (-a) file [RW] \tadd a foreign file\n"
-msgstr "--add-foreign (-a) soubor [RW] \tpřidá cizí soubor\n"
+msgstr "--add-foreign (-a) soubor [RW] \tpřidá externí soubor\n"
 
 #: ../src/main.c:230
 msgid "--remove-foreign (-r) file \tremove a foreign file\n"
-msgstr "--remove-foreign (-r) soubor \todebere cizí soubor\n"
+msgstr "--remove-foreign (-r) soubor \todebere externí soubor\n"
 
 #: ../src/main.c:232
 msgid "files=ical files to load into orage\n"
@@ -3060,7 +3065,7 @@ msgstr "\tdbus není obsažen v aplikaci orage. \n"
 
 #: ../src/main.c:235
 msgid "\twithout dbus [files] and foreign file options(-a & -r) can only be used when starting orage \n"
-msgstr "\tbez dbus [soubory] a voleb cizích souborů (-a a -r) může být použit pouze při spuštění aplikace orage \n"
+msgstr "\tbez dbus [soubory] a voleb externích souborů (-a a -r) může být použit pouze při spouštění aplikace orage \n"
 
 #: ../src/main.c:378
 #, c-format
@@ -3075,7 +3080,7 @@ msgstr ""
 
 #: ../src/mainbox.c:218
 msgid "_Exchange data"
-msgstr "_Vyměnit data"
+msgstr "_Správa datových souborů"
 
 #. Edit menu
 #: ../src/mainbox.c:229
@@ -3084,15 +3089,15 @@ msgstr "_Upravit"
 
 #: ../src/mainbox.c:239
 msgid "View selected _date"
-msgstr "Zobrazit _vybrané datum"
+msgstr "Zobrazit vybrané _datum"
 
 #: ../src/mainbox.c:242
 msgid "View selected _week"
-msgstr "Zobrazit _vybraný týden"
+msgstr "Zobrazit vybraný _týden"
 
 #: ../src/mainbox.c:248
 msgid "Select _Today"
-msgstr "Přejít na _dnešní den"
+msgstr "_Přejít na dnešní den"
 
 #. Help menu
 #: ../src/mainbox.c:252
@@ -3134,7 +3139,7 @@ msgstr "Vždy byste měli definovat místní časové pásmo."
 
 #: ../src/parameters.c:430
 msgid "Archive threshold (months)"
-msgstr "Přesah archivu (v měsících)"
+msgstr "Práh archivu (v měsících)"
 
 #: ../src/parameters.c:440
 msgid "(0 = no archiving)"
@@ -3226,7 +3231,7 @@ msgstr "Sobota"
 
 #: ../src/parameters.c:614
 msgid "Sunday"
-msgstr "Sobota"
+msgstr "Neděle"
 
 #: ../src/parameters.c:619
 msgid "Extra setups"
@@ -3247,7 +3252,7 @@ msgstr "První den týdne pro Ical"
 
 #: ../src/parameters.c:658
 msgid "This is used in some weekly repeating appointment rules. Just set it to the start day of the week for your country and forget it."
-msgstr "Používá se v některých pravidlech pro opakované schůzky. Stačí, když tuto položku nastavíte správně na první den v týdnu pro vaši zemi."
+msgstr "Používá se v některých pravidlech pro opakované schůzky. Zvolte první den týdne podle odpovídajících standardů vaší země."
 
 #: ../src/parameters.c:666
 msgid "Dynamic icon size"
@@ -3276,11 +3281,11 @@ msgstr "Seznam událostí"
 
 #: ../src/parameters.c:747
 msgid "Orage Preferences"
-msgstr "Nastavení Orage"
+msgstr "Nastavení aplikace Orage"
 
 #: ../src/reminder.c:472
 msgid "Reminder "
-msgstr "Připomínka"
+msgstr "Upomínka"
 
 #: ../src/reminder.c:486
 msgid "Open"
