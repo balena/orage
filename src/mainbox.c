@@ -480,8 +480,6 @@ void build_mainbox_info(void)
 #ifdef ORAGE_DEBUG
     orage_message(-100, P_N);
 #endif
-    gtk_widget_destroy(cal->mInfo_scrolledWin);
-    create_mainbox_info();
 
     t = orage_localtime();
     s_time = orage_tm_time_to_icaltime(t);
@@ -507,12 +505,17 @@ void build_mainbox_info(void)
     xfical_file_close(TRUE);
     */
     if (todo_list) {
+        gtk_widget_destroy(cal->mInfo_scrolledWin);
+        create_mainbox_info();
         todo_list = g_list_sort(todo_list, todo_order);
         g_list_foreach(todo_list, (GFunc)todo_process, NULL);
         g_list_free(todo_list);
         todo_list = NULL;
+        gtk_widget_show_all(cal->mInfo_scrolledWin);
     }
-    gtk_widget_show_all(cal->mInfo_scrolledWin);
+    else {
+        gtk_widget_hide_all(cal->mInfo_scrolledWin);
+    }
 }
 
 void build_mainWin()
@@ -568,7 +571,9 @@ void build_mainWin()
 
     /* Build the Info box */
     create_mainbox_info();
+    /*
     gtk_widget_show_all(cal->mInfo_scrolledWin);
+    */
 
     /* Signals */
 

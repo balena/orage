@@ -72,8 +72,10 @@ typedef struct _day_win
     gdouble scroll_pos; /* remember the scroll position */
 
     GdkColor bg1, bg2, line_color, bg_today, fg_sunday;
+    GList    *apptw_list; /* keep track of appointments being updated */
 } day_win;
 
 day_win *create_day_win(char *start_date);
+void refresh_day_win(day_win *dw);
 
 #endif /* !__DAY_VIEW_H__ */
