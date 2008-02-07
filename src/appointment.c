@@ -670,6 +670,10 @@ static void on_appAllDay_clicked_cb(GtkCheckButton *cb, gpointer user_data)
 
 static void app_free_memory(appt_win *apptw)
 {
+    /* remove myself from event list appointment monitoring list */
+    if (apptw->el)
+        ((el_win *)apptw->el)->apptw_list = 
+                g_list_remove(((el_win *)apptw->el)->apptw_list, apptw);
     gtk_widget_destroy(apptw->Window);
     gtk_object_destroy(GTK_OBJECT(apptw->Tooltips));
     g_free(apptw->xf_uid);
@@ -1044,11 +1048,8 @@ static gboolean save_xfical_from_appt_win(appt_win *apptw)
         if (ok) {
             apptw->appointment_new = FALSE;
             mark_appointment_unchanged(apptw);
-        /* FIXME: Removed since it fails if event_list window has been removed.
-         * We should check that it really still exists, before calling this.
             if (apptw->el != NULL)
                 refresh_el_win((el_win *)apptw->el);
-        */
             orage_mark_appointments();
         }
     }
@@ -1108,11 +1109,8 @@ static void delete_xfical_from_appt_win(appt_win *apptw)
             xfical_file_close(TRUE);
         }
 
-        /* FIXME: This fails if event_list window has been removed.
-         * We should check that it really still exists, before calling this.
         if (apptw->el != NULL)
             refresh_el_win((el_win *)apptw->el);
-        */
         orage_mark_appointments();
 
         app_free_memory(apptw);
@@ -1135,7 +1133,8 @@ static void duplicate_xfical_from_appt_win(appt_win *apptw)
     gint x, y;
     appt_win *apptw2;
 
-    apptw2 = create_appt_win("COPY", apptw->xf_uid, apptw->el);
+    /* do not keep track of appointments created here */
+    apptw2 = create_appt_win("COPY", apptw->xf_uid);
     gtk_window_get_position(GTK_WINDOW(apptw->Window), &x, &y);
     gtk_window_move(GTK_WINDOW(apptw2->Window), x+20, y+20);
 }
@@ -2343,7 +2342,7 @@ static void build_recurrence_page(appt_win *apptw)
     }
 }
 
-appt_win *create_appt_win(char *action, char *par, el_win *event_list)
+appt_win *create_appt_win(char *action, char *par)
 {
     appt_win *apptw;
     GdkWindow *window;
@@ -2353,7 +2352,7 @@ appt_win *create_appt_win(char *action, char *par, el_win *event_list)
     apptw->xf_uid = NULL;
     apptw->par = NULL;
     apptw->appt = NULL;
-    apptw->el = event_list;    /* Keep track of the parent, if any */
+    apptw->el = NULL;
     apptw->appointment_changed = FALSE;
     apptw->Tooltips = gtk_tooltips_new();
     apptw->accel_group = gtk_accel_group_new();
@@ -2395,6 +2394,7 @@ appt_win *create_appt_win(char *action, char *par, el_win *event_list)
     }
     else { /* failed to get data */
         app_free_memory(apptw);
+        apptw = NULL;
     }
 
     return(apptw);

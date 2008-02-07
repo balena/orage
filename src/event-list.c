@@ -82,6 +82,19 @@ static const GtkTargetEntry drag_targets[] =
     { "STRING", 0, DRAG_TARGET_STRING }
 };
 
+static void do_appt_win(char *mode, char *uid, el_win *el)
+{
+    appt_win *apptw;
+
+    apptw = create_appt_win(mode, uid);
+    if (apptw) {
+        /* we started this, so keep track of it */
+        el->apptw_list = g_list_prepend(el->apptw_list, apptw);
+        /* inform the appointment that we are interested in it */
+        apptw->el = el; 
+    }
+};
+
 static void start_appt_win(char *mode,  el_win *el
         , GtkTreeModel *model, GtkTreeIter *iter, GtkTreePath *path)
 {
@@ -99,7 +112,7 @@ static void start_appt_win(char *mode,  el_win *el
         }
         g_free(flags);
 #endif
-        create_appt_win(mode, uid, el);
+        do_appt_win(mode, uid, el);
         g_free(uid);
     }
 }
@@ -551,7 +564,7 @@ static void todo_data(el_win *el)
     app_data(el, a_day, NULL);
 }
 
-void journal_data(el_win *el)
+static void journal_data(el_win *el)
 {
     char      a_day[9];  /* yyyymmdd */
 
@@ -692,9 +705,26 @@ static void on_File_duplicate_activate_cb(GtkMenuItem *mi, gpointer user_data)
 
 static void close_window(el_win *el)
 {
+    appt_win *apptw;
+    GList *apptw_list;
+
     gtk_window_get_size(GTK_WINDOW(el->Window)
             , &g_par.el_size_x, &g_par.el_size_y);
     write_parameters();
+
+    /* need to clean the apointment list and inform all appointments that
+     * we are not interested anymore (= should not get updated) */
+    apptw_list = el->apptw_list;
+    for (apptw_list = g_list_first(apptw_list);
+         apptw_list != NULL;
+         apptw_list = g_list_next(apptw_list)) {
+        apptw = (appt_win *)apptw_list->data;
+        if (apptw) /* appointment window is still alive */
+            apptw->el = NULL; /* not interested anymore */
+        else
+            orage_message(10, "close_window: not null appt window");
+    }
+    g_list_free(el->apptw_list);
 
     gtk_widget_destroy(el->Window); /* destroy the eventlist window */
     gtk_object_destroy(GTK_OBJECT(el->Tooltips));
@@ -793,8 +823,7 @@ static void create_new_appointment(el_win *el)
 
     title = (char *)gtk_window_get_title(GTK_WINDOW(el->Window));
     strcpy(a_day, orage_i18_date_to_icaltime(title));
-
-    create_appt_win("NEW", a_day, el);
+    do_appt_win("NEW", a_day, el);
 }
 
 static void on_File_newApp_activate_cb(GtkMenuItem *mi, gpointer user_data)
@@ -1238,6 +1267,7 @@ el_win *create_el_win(char *start_date)
     el->today = FALSE;
     el->days = 0;
     el->time_now[0] = 0;
+    el->apptw_list = NULL;
     el->Tooltips = gtk_tooltips_new();
     el->accel_group = gtk_accel_group_new();
 

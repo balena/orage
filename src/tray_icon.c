@@ -75,7 +75,7 @@ void on_new_appointment_activate(GtkMenuItem *menuitem, gpointer user_data)
     t = orage_localtime();
     g_snprintf(cur_date, 9, "%04d%02d%02d", t->tm_year+1900
                , t->tm_mon+1, t->tm_mday);
-    create_appt_win("NEW", cur_date, NULL);  
+    create_appt_win("NEW", cur_date);  
 }
 
 void on_about_activate(GtkMenuItem *menuitem, gpointer user_data)

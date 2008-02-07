@@ -361,7 +361,7 @@ static void notify_action_open(NotifyNotification *n, const char *action
     alarm->notify_refresh = TRUE;
     create_notify_reminder(alarm);
     */
-    create_appt_win("UPDATE", alarm->uid, NULL);
+    create_appt_win("UPDATE", alarm->uid);
 }
 #endif
 
@@ -531,7 +531,7 @@ static void on_btOpenReminder_clicked(GtkButton *button, gpointer user_data)
 {
     alarm_struct *alarm = (alarm_struct *)user_data;
 
-    create_appt_win("UPDATE", alarm->uid, NULL);
+    create_appt_win("UPDATE", alarm->uid);
 }
 
 static void create_orage_reminder(alarm_struct *alarm)

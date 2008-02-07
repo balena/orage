@@ -71,7 +71,7 @@ typedef struct _day_win
     guint upd_timer;
     gdouble scroll_pos; /* remember the scroll position */
 
-    GdkColor bg1, bg2, line_color;
+    GdkColor bg1, bg2, line_color, bg_today, fg_sunday;
 } day_win;
 
 day_win *create_day_win(char *start_date);

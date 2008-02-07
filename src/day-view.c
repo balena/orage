@@ -144,7 +144,7 @@ static void create_new_appointment(day_win *dw)
     s_date = (char *)gtk_button_get_label(GTK_BUTTON(dw->StartDate_button));
     strcpy(a_day, orage_i18_date_to_icaltime(s_date));
 
-    create_appt_win("NEW", a_day, NULL);
+    create_appt_win("NEW", a_day);
 }
 
 static void on_File_newApp_activate_cb(GtkMenuItem *mi, gpointer user_data)
@@ -378,7 +378,7 @@ static void on_button_press_event_cb(GtkWidget *widget
 
     if (event->type==GDK_2BUTTON_PRESS) {
         uid = g_object_get_data(G_OBJECT(widget), "UID");
-        create_appt_win("UPDATE", uid, NULL);
+        create_appt_win("UPDATE", uid);
     }
 }
 
@@ -395,14 +395,17 @@ static void add_row(day_win *dw, xfical_appt *appt, char *a_day, gint days)
     tm_start = orage_icaltime_to_tm_time(appt->starttimecur, FALSE);
     tm_end   = orage_icaltime_to_tm_time(appt->endtimecur, FALSE);
     tm_first = orage_icaltime_to_tm_time(a_day, FALSE);
+    start_col = orage_days_between(&tm_first, &tm_start)+1;
+    end_col   = orage_days_between(&tm_first, &tm_end)+1;
 
-    col = orage_days_between(&tm_first, &tm_start)+1;
-    if (col < 1) {
+    if (start_col < 1) {
         col = 1;
         row = 0;
     }
-    else 
+    else {
+        col = start_col;
         row = tm_start.tm_hour;
+    }
 
     /* then add the appointment */
     text = g_strdup(appt->title ? appt->title : _("Unknown"));
@@ -474,12 +477,10 @@ static void add_row(day_win *dw, xfical_appt *appt, char *a_day, gint days)
         /*
          * same_date = !strncmp(start_ical_time, end_ical_time, 8);
          * */
-        start_col = orage_days_between(&tm_first, &tm_start)+1;
         if (start_col < 1)
             first_col = 1;
         else
             first_col = start_col;
-        end_col   = orage_days_between(&tm_first, &tm_end)+1;
         if (end_col > days)
             last_col = days;
         else
@@ -562,6 +563,7 @@ static void fill_days(day_win *dw, gint days)
     height = dw->StartDate_button_req.height;
     width = dw->StartDate_button_req.width;
 
+    /* first clear the structure */
     for (col = 1; col <  days+1; col++) {
         dw->header[col] = NULL;
         for (row = 0; row < 24; row++) {
@@ -570,11 +572,14 @@ static void fill_days(day_win *dw, gint days)
             dw->line[row][col] = build_line(dw, 0, 0, 3, height, NULL);
         }
     }
+
     app_data(dw);
+
     for (col = 1; col < days+1; col++) {
         hb = gtk_hbox_new(FALSE, 0);
         marker = build_line(dw, 0, 0, 2, height, NULL);
         gtk_box_pack_start(GTK_BOX(hb), marker, FALSE, FALSE, 0);
+        /* check if we have full day events and put them to header */
         if (dw->header[col]) {
             gtk_box_pack_start(GTK_BOX(hb), dw->header[col], TRUE, TRUE, 0);
             gtk_widget_set_size_request(hb, width, -1);
@@ -586,6 +591,8 @@ static void fill_days(day_win *dw, gint days)
         }
         gtk_table_attach(GTK_TABLE(dw->dtable_h), hb, col, col+1, 1, 2
                  , (GTK_FILL), (0), 0, 0);
+
+        /* check rows */
         for (row = 0; row < 24; row++) {
             hb = gtk_hbox_new(FALSE, 0);
             if (row == 0)
@@ -691,6 +698,41 @@ static void build_day_view_colours(day_win *dw)
         dw->line_color.blue = 230 * (65535/255);
     }
     gdk_colormap_alloc_color(pic1_cmap, &dw->line_color, FALSE, TRUE);
+
+    if (!gdk_color_parse("red", &dw->fg_sunday)) {
+        g_warning("color parse failed: red\n");
+        dw->fg_sunday.red = 255 * (65535/255);
+        dw->fg_sunday.green = 10 * (65535/255);
+        dw->fg_sunday.blue = 10 * (65535/255);
+    }
+    gdk_colormap_alloc_color(pic1_cmap, &dw->fg_sunday, FALSE, TRUE);
+
+    if (!gdk_color_parse("gold", &dw->bg_today)) {
+        g_warning("color parse failed: gold\n");
+        dw->bg_today.red = 255 * (65535/255);
+        dw->bg_today.green = 215 * (65535/255);
+        dw->bg_today.blue = 115 * (65535/255);
+    }
+    gdk_colormap_alloc_color(pic1_cmap, &dw->bg_today, FALSE, TRUE);
+}
+
+static void fill_hour(day_win *dw, gint col, gint row, char *text)
+{
+    GtkWidget *name, *ev;
+
+    ev = gtk_event_box_new();
+    name = gtk_label_new(text);
+    gtk_container_add(GTK_CONTAINER(ev), name);
+    if ((row % 2) == 1)
+        gtk_widget_modify_bg(ev, GTK_STATE_NORMAL, &dw->bg1);
+    gtk_widget_set_size_request(ev, dw->hour_req.width
+            , dw->StartDate_button_req.height);
+    if (text)
+        gtk_table_attach(GTK_TABLE(dw->dtable), ev, col, col+1, row, row+1
+             , (GTK_FILL), (0), 0, 0);
+    else  /* special, needed for header table full day events */
+        gtk_table_attach(GTK_TABLE(dw->dtable_h), ev, col, col+1, row, row+1
+             , (GTK_FILL), (0), 0, 0);
 }
 
 static void build_day_view_table(day_win *dw)
@@ -698,38 +740,17 @@ static void build_day_view_table(day_win *dw)
     gint days;   /* number of days to show */
     int year, month, day;
     gint i, sunday;
-    GtkWidget *name, *label, *ev;
+    GtkWidget *label, *button;
     char text[5+1], *date, *today;
     struct tm tm_date;
     guint monthdays[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
     GtkWidget *vp;
-    GdkColor fg, bg;
-    GdkColormap *pic1_cmap;
-
-    pic1_cmap = gdk_colormap_get_system();
-    if (!gdk_color_parse("red", &fg)) {
-        g_warning("color parse failed: red\n");
-        fg.red = 255 * (65535/255);
-        fg.green = 10 * (65535/255);
-        fg.blue = 10 * (65535/255);
-    }
-    gdk_colormap_alloc_color(pic1_cmap, &fg, FALSE, TRUE);
-    if (!gdk_color_parse("gold", &bg)) {
-        g_warning("color parse failed: gold\n");
-        bg.red = 255 * (65535/255);
-        bg.green = 215 * (65535/255);
-        bg.blue = 115 * (65535/255);
-    }
-    gdk_colormap_alloc_color(pic1_cmap, &bg, FALSE, TRUE);
-
+    
     days = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(dw->day_spin));
     tm_date = orage_i18_date_to_tm_date(
             gtk_button_get_label(GTK_BUTTON(dw->StartDate_button)));
-    sunday = tm_date.tm_wday; /* 0 = Sunday */
-    if (sunday)
-        sunday = 7-sunday;
-    
-    /* header of day table = days columns */
+
+    /****** header of day table = days columns ******/
     dw->scroll_win_h = gtk_scrolled_window_new(NULL, NULL);
     gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(dw->scroll_win_h)
             , GTK_POLICY_AUTOMATIC, GTK_POLICY_NEVER);
@@ -741,35 +762,38 @@ static void build_day_view_table(day_win *dw)
     /*
     gtk_container_add(GTK_CONTAINER(dw->scroll_win_h), dw->day_view_vbox);
     */
+    /* row 1= day header buttons 
+     * row 2= full day events after the buttons */
     dw->dtable_h = gtk_table_new(2, days+2, FALSE);
     gtk_box_pack_start(GTK_BOX(dw->day_view_vbox), dw->dtable_h
             , FALSE, FALSE, 0);
+
+    sunday = tm_date.tm_wday; /* 0 = Sunday */
+    if (sunday) /* index to next sunday */
+        sunday = 7-sunday;
     year = tm_date.tm_year + 1900;
     month = tm_date.tm_mon;
     day = tm_date.tm_mday;
     if (((tm_date.tm_year%4) == 0) && (((tm_date.tm_year%100) != 0) 
             || ((tm_date.tm_year%400) == 0)))
         ++monthdays[1];
-    name = gtk_label_new(" ");
-    gtk_widget_set_size_request(name, dw->hour_req.width, -1);
-    gtk_table_attach(GTK_TABLE(dw->dtable_h), name, 0, 1, 0, 1
-             , (GTK_FILL), (0), 0, 0);
+    fill_hour(dw, 0, 0, NULL);
     today = g_strdup(orage_localdate_i18());
     for (i = 1; i <  days+1; i++) {
         date = orage_tm_date_to_i18_date(&tm_date);
-        name = gtk_button_new();
-        gtk_button_set_label(GTK_BUTTON(name), date);
+        button = gtk_button_new();
+        gtk_button_set_label(GTK_BUTTON(button), date);
         if (strcmp(today, date) == 0) {
-            gtk_widget_modify_bg(name, GTK_STATE_NORMAL, &bg);
+            gtk_widget_modify_bg(button, GTK_STATE_NORMAL, &dw->bg_today);
         }
         if ((i-1)%7 == sunday) {
-            label = gtk_bin_get_child(GTK_BIN(name));
-            gtk_widget_modify_fg(label, GTK_STATE_NORMAL, &fg);
+            label = gtk_bin_get_child(GTK_BIN(button));
+            gtk_widget_modify_fg(label, GTK_STATE_NORMAL, &dw->fg_sunday);
         }
-        gtk_widget_set_size_request(name, dw->StartDate_button_req.width, -1);
-        g_signal_connect((gpointer)name, "clicked"
+        gtk_widget_set_size_request(button, dw->StartDate_button_req.width, -1);
+        g_signal_connect((gpointer)button, "clicked"
                 , G_CALLBACK(header_button_clicked_cb), dw);
-        gtk_table_attach(GTK_TABLE(dw->dtable_h), name, i, i+1, 0, 1
+        gtk_table_attach(GTK_TABLE(dw->dtable_h), button, i, i+1, 0, 1
                 , (GTK_FILL), (0), 0, 0);
 
         if (++tm_date.tm_mday == (monthdays[tm_date.tm_mon]+1)) {
@@ -781,12 +805,9 @@ static void build_day_view_table(day_win *dw)
         }
     }
     g_free(today);
-    name = gtk_label_new(" ");
-    gtk_widget_set_size_request(name, dw->hour_req.width, -1);
-    gtk_table_attach(GTK_TABLE(dw->dtable_h), name, days+1, days+2, 0, 1
-             , (GTK_FILL), (0), 0, 0);
+    fill_hour(dw, days+1, 0, NULL);
 
-    /* body of day table */
+    /****** body of day table ******/
     dw->scroll_win = gtk_scrolled_window_new(NULL, NULL);
     gtk_scrolled_window_set_shadow_type(GTK_SCROLLED_WINDOW(dw->scroll_win)
             , GTK_SHADOW_NONE);
@@ -804,25 +825,10 @@ static void build_day_view_table(day_win *dw)
 
     /* hours column = hour rows */
     for (i = 0; i < 24; i++) {
-        ev = gtk_event_box_new();
         g_sprintf(text, "%02d", i);
-        name = gtk_label_new(text);
-        gtk_container_add(GTK_CONTAINER(ev), name);
-        if ((i % 2) == 1)
-            gtk_widget_modify_bg(ev, GTK_STATE_NORMAL, &dw->bg1);
-        gtk_widget_set_size_request(ev, dw->hour_req.width
-                , dw->StartDate_button_req.height);
-        gtk_table_attach(GTK_TABLE(dw->dtable), ev, 0, 1, i, i+1
-             , (GTK_FILL), (0), 0, 0);
-        ev = gtk_event_box_new();
-        name = gtk_label_new(text);
-        gtk_container_add(GTK_CONTAINER(ev), name);
-        if ((i % 2) == 1)
-            gtk_widget_modify_bg(ev, GTK_STATE_NORMAL, &dw->bg1);
-        gtk_widget_set_size_request(ev, dw->hour_req.width
-                , dw->StartDate_button_req.height);
-        gtk_table_attach(GTK_TABLE(dw->dtable), ev, days+1, days+2, i, i+1
-             , (GTK_FILL), (0), 0, 0);
+        /* ev is needed for background colour */
+        fill_hour(dw, 0, i, text);
+        fill_hour(dw, days+1, i, text);
     }
     fill_days(dw, days);
 }

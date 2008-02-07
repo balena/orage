@@ -25,7 +25,6 @@
 #define __APPOINTMENT_H__
 
 #include "ical-code.h"
-#include "event-list.h"
 
 typedef struct _appt_win
 {
@@ -173,7 +172,7 @@ typedef struct _appt_win
     xfical_appt *appt;
     gchar *xf_uid;
     gchar *par;
-    el_win *el; 
+    void  *el;          /* used to refresh calling event list */
     gboolean appointment_add;       /* are we adding app */
     gboolean appointment_changed;   /* has this app been modified now */
     gboolean appointment_new;       /* is this new = no uid yet */
@@ -181,6 +180,6 @@ typedef struct _appt_win
      * add == TRUE && new == FALSE */
 } appt_win;
 
-appt_win *create_appt_win(char *action, char *par, el_win *el);
+appt_win *create_appt_win(char *action, char *par);
 
 #endif /* !__APPOINTMENT_H__ */

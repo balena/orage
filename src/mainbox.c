@@ -83,7 +83,7 @@ static void mFile_newApp_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
     t = orage_localtime();
     g_snprintf(cur_date, 9, "%04d%02d%02d", t->tm_year+1900
             , t->tm_mon+1, t->tm_mday);
-    create_appt_win("NEW", cur_date, NULL);  
+    create_appt_win("NEW", cur_date);  
 }
 
 static void mFile_interface_activate_cb(GtkMenuItem *menuitem
@@ -345,7 +345,7 @@ static void todo_clicked(GtkWidget *widget
 #endif
     if (event->type==GDK_2BUTTON_PRESS) {
         uid = g_object_get_data(G_OBJECT(widget), "UID");
-        create_appt_win("UPDATE", uid, NULL);
+        create_appt_win("UPDATE", uid);
     }
 }
 
