@@ -826,6 +826,7 @@ void write_parameters()
     xfce_rc_write_int_entry(rc, "Ical week start day", g_par.ical_weekstartday);
     xfce_rc_write_bool_entry(rc, "Show days", g_par.show_days);
     xfce_rc_write_int_entry(rc, "Foreign file count", g_par.foreign_count);
+    /* add what we have and remove the rest */
     for (i = 0; i < g_par.foreign_count;  i++) {
         g_sprintf(f_par, "Foreign file %02d name", i);
         xfce_rc_write_entry(rc, f_par, g_par.foreign_data[i].file);

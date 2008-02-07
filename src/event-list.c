@@ -712,7 +712,7 @@ static void close_window(el_win *el)
             , &g_par.el_size_x, &g_par.el_size_y);
     write_parameters();
 
-    /* need to clean the apointment list and inform all appointments that
+    /* need to clean the appointment list and inform all appointments that
      * we are not interested anymore (= should not get updated) */
     apptw_list = el->apptw_list;
     for (apptw_list = g_list_first(apptw_list);
@@ -722,7 +722,7 @@ static void close_window(el_win *el)
         if (apptw) /* appointment window is still alive */
             apptw->el = NULL; /* not interested anymore */
         else
-            orage_message(10, "close_window: not null appt window");
+            orage_message(110, "close_window: not null appt window");
     }
     g_list_free(el->apptw_list);
 

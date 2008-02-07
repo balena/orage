@@ -49,6 +49,7 @@
 #include "mainbox.h"
 #include "ical-code.h"
 #include "event-list.h"
+#include "day-view.h"
 #include "appointment.h"
 #include "parameters.h"
 
@@ -674,6 +675,10 @@ static void app_free_memory(appt_win *apptw)
     if (apptw->el)
         ((el_win *)apptw->el)->apptw_list = 
                 g_list_remove(((el_win *)apptw->el)->apptw_list, apptw);
+    /* remove myself from day list appointment monitoring list */
+    else if (apptw->dw)
+        ((day_win *)apptw->dw)->apptw_list = 
+                g_list_remove(((day_win *)apptw->dw)->apptw_list, apptw);
     gtk_widget_destroy(apptw->Window);
     gtk_object_destroy(GTK_OBJECT(apptw->Tooltips));
     g_free(apptw->xf_uid);
@@ -1016,6 +1021,15 @@ static void on_appFileClose_menu_activate_cb(GtkMenuItem *mi
     appWindow_check_and_close((appt_win *)user_data);
 }
 
+static void refresh_dependent_data(appt_win *apptw)
+{
+    if (apptw->el != NULL)
+        refresh_el_win((el_win *)apptw->el);
+    if (apptw->dw != NULL)
+        refresh_day_win((day_win *)apptw->dw);
+    orage_mark_appointments();
+}
+
 static gboolean save_xfical_from_appt_win(appt_win *apptw)
 {
     gboolean ok = FALSE;
@@ -1048,9 +1062,7 @@ static gboolean save_xfical_from_appt_win(appt_win *apptw)
         if (ok) {
             apptw->appointment_new = FALSE;
             mark_appointment_unchanged(apptw);
-            if (apptw->el != NULL)
-                refresh_el_win((el_win *)apptw->el);
-            orage_mark_appointments();
+            refresh_dependent_data(apptw);
         }
     }
     return(ok);
@@ -1109,10 +1121,7 @@ static void delete_xfical_from_appt_win(appt_win *apptw)
             xfical_file_close(TRUE);
         }
 
-        if (apptw->el != NULL)
-            refresh_el_win((el_win *)apptw->el);
-        orage_mark_appointments();
-
+        refresh_dependent_data(apptw);
         app_free_memory(apptw);
     }
 }
@@ -2353,6 +2362,7 @@ appt_win *create_appt_win(char *action, char *par)
     apptw->par = NULL;
     apptw->appt = NULL;
     apptw->el = NULL;
+    apptw->dw = NULL;
     apptw->appointment_changed = FALSE;
     apptw->Tooltips = gtk_tooltips_new();
     apptw->accel_group = gtk_accel_group_new();

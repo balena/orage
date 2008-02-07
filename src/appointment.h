@@ -173,6 +173,7 @@ typedef struct _appt_win
     gchar *xf_uid;
     gchar *par;
     void  *el;          /* used to refresh calling event list */
+    void  *dw;          /* used to refresh calling day list */
     gboolean appointment_add;       /* are we adding app */
     gboolean appointment_changed;   /* has this app been modified now */
     gboolean appointment_new;       /* is this new = no uid yet */

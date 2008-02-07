@@ -40,8 +40,18 @@
 #include "event-list.h"
 #include "appointment.h"
 
+static void do_appt_win(char *mode, char *uid, day_win *dw)
+{
+    appt_win *apptw;
 
-static void refresh_day_view_table(day_win *dw);
+    apptw = create_appt_win(mode, uid);
+    if (apptw) {
+        /* we started this, so keep track of it */
+        dw->apptw_list = g_list_prepend(dw->apptw_list, apptw);
+        /* inform the appointment that we are interested in it */
+        apptw->dw = dw;
+    }
+};
 
 static void set_scroll_position(day_win *dw)
 {
@@ -114,6 +124,23 @@ static GtkWidget *build_line(day_win *dw, gint left_x, gint top_y
 
 static void close_window(day_win *dw)
 {
+    appt_win *apptw;
+    GList *apptw_list;
+
+    /* need to clean the appointment list and inform all appointments that
+     * we are not interested anymore (= should not get updated) */
+    apptw_list = dw->apptw_list;
+    for (apptw_list = g_list_first(apptw_list);
+         apptw_list != NULL;
+         apptw_list = g_list_next(apptw_list)) {
+        apptw = (appt_win *)apptw_list->data;
+        if (apptw) /* appointment window is still alive */
+            apptw->dw = NULL; /* not interested anymore */
+        else
+            orage_message(110, "close_window: not null appt window");
+    }
+    g_list_free(dw->apptw_list);
+
     gtk_widget_destroy(dw->Window);
     gtk_object_destroy(GTK_OBJECT(dw->Tooltips));
     g_free(dw);
@@ -144,7 +171,7 @@ static void create_new_appointment(day_win *dw)
     s_date = (char *)gtk_button_get_label(GTK_BUTTON(dw->StartDate_button));
     strcpy(a_day, orage_i18_date_to_icaltime(s_date));
 
-    create_appt_win("NEW", a_day);
+    do_appt_win("NEW", a_day, dw);
 }
 
 static void on_File_newApp_activate_cb(GtkMenuItem *mi, gpointer user_data)
@@ -159,12 +186,12 @@ static void on_Create_toolbutton_clicked_cb(GtkButton *mi, gpointer user_data)
 
 static void on_View_refresh_activate_cb(GtkMenuItem *mi, gpointer user_data)
 {
-    refresh_day_view_table((day_win *)user_data);
+    refresh_day_win((day_win *)user_data);
 }
 
 static void on_Refresh_clicked(GtkButton *b, gpointer user_data)
 {
-    refresh_day_view_table((day_win *)user_data);
+    refresh_day_win((day_win *)user_data);
 }
 
 static void changeSelectedDate(day_win *dw, gint day)
@@ -176,14 +203,14 @@ static void changeSelectedDate(day_win *dw, gint day)
     orage_move_day(&tm_date, day);
     gtk_button_set_label(GTK_BUTTON(dw->StartDate_button)
             , orage_tm_date_to_i18_date(&tm_date));
-    refresh_day_view_table(dw);
+    refresh_day_win(dw);
 }
 
 static void go_to_today(day_win *dw)
 {
     gtk_button_set_label(GTK_BUTTON(dw->StartDate_button)
             , orage_localdate_i18());
-    refresh_day_view_table(dw);
+    refresh_day_win(dw);
 }
 
 static void on_Today_clicked(GtkButton *b, gpointer user_data)
@@ -334,7 +361,7 @@ static gboolean upd_day_view(day_win *dw)
      * to show only the last one, which is visible */
     day_cnt_n = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(dw->day_spin));
     if (day_cnt != day_cnt_n) { /* need really do it */
-        refresh_day_view_table(dw);
+        refresh_day_win(dw);
         day_cnt = day_cnt_n;
     }
     dw->upd_timer = 0;
@@ -345,7 +372,7 @@ static void on_spin_changed(GtkSpinButton *b, gpointer *user_data)
 {
     day_win *dw = (day_win *)user_data;
 
-    /* refresh_day_view_table is rather heavy (=slow), so doing it here 
+    /* refresh_day_win is rather heavy (=slow), so doing it here 
      * is not a good idea. We can't keep up with repeated quick presses 
      * if we do the whole thing here. So let's throw it to background 
      * and do it later. */
@@ -360,7 +387,7 @@ static void on_Date_button_clicked_cb(GtkWidget *button, gpointer *user_data)
     day_win *dw = (day_win *)user_data;
 
     if (orage_date_button_clicked(button, dw->Window))
-        refresh_day_view_table(dw);
+        refresh_day_win(dw);
 }
 
 static void header_button_clicked_cb(GtkWidget *button, gpointer *user_data)
@@ -374,11 +401,12 @@ static void header_button_clicked_cb(GtkWidget *button, gpointer *user_data)
 static void on_button_press_event_cb(GtkWidget *widget
         , GdkEventButton *event, gpointer *user_data)
 {
+    day_win *dw = (day_win *)user_data;
     gchar *uid;
 
     if (event->type==GDK_2BUTTON_PRESS) {
         uid = g_object_get_data(G_OBJECT(widget), "UID");
-        create_appt_win("UPDATE", uid);
+        do_appt_win("UPDATE", uid, dw);
     }
 }
 
@@ -833,7 +861,7 @@ static void build_day_view_table(day_win *dw)
     fill_days(dw, days);
 }
 
-static void refresh_day_view_table(day_win *dw)
+void refresh_day_win(day_win *dw)
 {
     get_scroll_position(dw);
     gtk_widget_destroy(dw->scroll_win_h);
