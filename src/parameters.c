@@ -205,7 +205,7 @@ static void stick_changed(GtkWidget *dialog, gpointer user_data)
 
     g_par.set_stick = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(
             itf->set_stick_checkbutton));
-    set_menu();
+    set_stick();
 }
 
 static void set_ontop()
@@ -220,7 +220,7 @@ static void ontop_changed(GtkWidget *dialog, gpointer user_data)
 
     g_par.set_ontop = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(
             itf->set_ontop_checkbutton));
-    set_menu();
+    set_ontop();
 }
 
 static void set_taskbar()
