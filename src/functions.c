@@ -21,16 +21,18 @@
 
  */
 
+#define _XOPEN_SOURCE /* glibc2 needs this */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#define _XOPEN_SOURCE /* glibc2 needs this */
 #include <time.h>
 #include <string.h>
 #include <sys/types.h>
 #include <sys/wait.h>
 
 #include <glib.h>
+#include <glib/gprintf.h>
 #include <gtk/gtk.h>
 #include <gdk/gdk.h>
 
