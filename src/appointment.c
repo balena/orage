@@ -1355,6 +1355,8 @@ static xfical_appt *fill_appt_window_get_appt(appt_win *apptw
             appt->start_tz_loc = g_strdup("floating");
         appt->end_tz_loc = g_strdup(appt->start_tz_loc);
         appt->duration = 30*60;
+        /* use duration by default for new appointments */
+        appt->use_duration = TRUE;
         g_sprintf(appt->completedtime,"%sT%02d%02d00"
                     , today, t->tm_hour, t->tm_min);
         appt->completed_tz_loc = g_strdup(appt->start_tz_loc);
@@ -1366,8 +1368,10 @@ static xfical_appt *fill_appt_window_get_appt(appt_win *apptw
         appt->soundrepeat_cnt = 500;
         appt->soundrepeat_len = 2;
 
-        /* default alarm type is orage window */
+        /* default alarm type is orage window and sound */
         appt->display_alarm_orage = TRUE;
+        appt->sound_alarm = TRUE;
+        /* default sound file is set in fill_appt_window */
     }
     else if ((strcmp(action, "UPDATE") == 0) || (strcmp(action, "COPY") == 0)) {
         /* par contains ical uid */
