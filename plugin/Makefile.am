@@ -3,17 +3,18 @@ orage_plugindir = 							\
 
 orage_plugin_LTLIBRARIES = orage_plugin.la
 
-orage_plugin_la_LDFLAGS =						\
+orage_plugin_la_LDFLAGS =					\
 	-avoid-version							\
 	-module
 
-orage_plugin_la_SOURCES =						\
+orage_plugin_la_SOURCES =					\
 	xfcalendar_plugin.c
 
-orage_plugin_la_CFLAGS = 						\
-	$(XFCE_MCS_MANAGER_CFLAGS) 					\
-	-DPACKAGE_LOCALE_DIR=\"$(localedir)\"				\
-	-DSYSCONFDIR=\"$(sysconfdir)\"					\
+orage_plugin_la_CFLAGS = 					\
+	$(XFCE_MCS_MANAGER_CFLAGS) 				\
+	-DBINDIR=\"$(bindir)\"	\
+	-DPACKAGE_LOCALE_DIR=\"$(localedir)\"	\
+	-DSYSCONFDIR=\"$(sysconfdir)\"			\
 	-DDATADIR=\"$(pkgdatadir)\" 
 
 desktopdir = $(datadir)/applications

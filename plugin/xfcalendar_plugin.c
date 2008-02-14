@@ -34,11 +34,25 @@
 
 static void run_dialog(McsPlugin *mcs_plugin)
 {
-    g_spawn_command_line_async("orage -p", NULL);
+    GtkWidget *message;
+    GError    *error = NULL;
+
+    if (!g_spawn_command_line_async(BINDIR G_DIR_SEPARATOR_S "orage -p"
+            , &error)) {
+        message = gtk_message_dialog_new(NULL, 0, GTK_MESSAGE_ERROR
+                , GTK_BUTTONS_OK, "%s.", _("Failed to launch 'orage -p'"));
+        gtk_message_dialog_format_secondary_text(GTK_MESSAGE_DIALOG (message)
+                , "%s.", error->message);
+        gtk_dialog_run(GTK_DIALOG(message));
+        gtk_widget_destroy(message);
+        g_error_free(error);
+    }
 }
 
 McsPluginInitResult mcs_plugin_init(McsPlugin *mcs_plugin)
 {
+    GtkIconTheme *icon_theme;
+
     /* This is required for UTF-8 at least - Please don't remove it */
     xfce_textdomain(GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8");
 
@@ -46,7 +60,23 @@ McsPluginInitResult mcs_plugin_init(McsPlugin *mcs_plugin)
     /* the button label in the xfce-mcs-manager dialog */
     mcs_plugin->caption = g_strdup(_("Orage - Calendar"));
     mcs_plugin->run_dialog = run_dialog;
-    mcs_plugin->icon = xfce_themed_icon_load("xfcalendar", 48);
+
+    /* search the icon */
+    /* mcs_plugin->icon = xfce_themed_icon_load("xfcalendar", 48); */
+    icon_theme = gtk_icon_theme_get_default();
+    mcs_plugin->icon = gtk_icon_theme_load_icon(icon_theme, "xfcalendar"
+            , 48, 0, NULL);
+    /* if that didn't work, we know where we installed the icon, 
+     * so load it directly */
+    if (mcs_plugin->icon == NULL)
+        mcs_plugin->icon = gdk_pixbuf_new_from_file(DATADIR 
+                "/icons/hicolor/48x48/apps/xfcalendar.png", NULL);
+
+    /* attach icon name to the plugin icon (if any) */
+    if (mcs_plugin->icon != NULL)
+        g_object_set_data_full(G_OBJECT(mcs_plugin->icon)
+                , "mcs-plugin-icon-name", g_strdup("xfcalendar"), g_free);
+
 
     return(MCS_PLUGIN_INIT_OK);
 }
