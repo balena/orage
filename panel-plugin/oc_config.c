@@ -117,9 +117,9 @@ static void oc_timezone_selected(GtkWidget *widget, Clock *clock)
             , GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT, NULL);
 /* let's try to start on few standard positions */
     if (gtk_file_chooser_set_filename(GTK_FILE_CHOOSER(dialog)
-            , "/usr/local/etc/zoneinfo/GMT") == FALSE)
+            , "/usr/share/zoneinfo/GMT") == FALSE)
         gtk_file_chooser_set_filename(GTK_FILE_CHOOSER(dialog)
-                , "/usr/share/zoneinfo/GMT");
+                , "/usr/lib/zoneinfo/GMT");
     if (gtk_dialog_run(GTK_DIALOG (dialog)) == GTK_RESPONSE_ACCEPT) {
         filename = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(dialog));
         gtk_entry_set_text(GTK_ENTRY(clock->tz_entry), filename);
