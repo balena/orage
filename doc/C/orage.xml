@@ -1677,6 +1677,29 @@ maintainers, etc. Commented out by default.
         </para>
       </answer>
     </qandaentry>
+    <qandaentry>
+      <question>
+        <para>
+          I upgraded to Orage 4.5 from Orage 4.4 and now my old appointments 
+          are missing. Are they permanetly lost?
+        </para>
+      </question>
+      <answer>
+        <para>
+          &app; 4.5 uses different default location for appointments than
+          the previous version. And there is no automatic upgrade partly
+          because it is safer to leave the old data as it is in case you need
+          revert back. &app; 4.5 appointments are not compatible with older 
+          &app;. You can however copy your old file to the new place or export
+          its contents. You can do that either manually from operating system
+          (make sure &app; is not running) or using the interface menus.
+          Old default location is 
+          ~/.config/xfce4/orage/orage.ics
+          and new location is
+          ~/.local/share/orage/orage.ics
+        </para>
+      </answer>
+    </qandaentry>
   </qandadiv>
 </sect1>
 <!--
