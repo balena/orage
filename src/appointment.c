@@ -29,6 +29,7 @@
 
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <fcntl.h>
 #include <unistd.h>
 #include <locale.h>
 #include <time.h>
@@ -41,9 +42,12 @@
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
 #include <gdk/gdk.h>
+#include <glib.h>
 #include <glib/gprintf.h>
+#include <glib/gstdio.h>
 
 #include <libxfcegui4/libxfcegui4.h>
+#include <libxfce4util/libxfce4util.h>
 
 #include "functions.h"
 #include "mainbox.h"
@@ -56,6 +60,27 @@
 #define BORDER_SIZE 20
 #define FILETYPE_SIZE 38
 
+
+typedef struct _orage_category_win
+{
+    GtkWidget *window;
+    GtkWidget *vbox;
+
+    GtkWidget *new_frame;
+    GtkWidget *new_entry;
+    GtkWidget *new_color_button;
+    GtkWidget *new_add_button;
+
+    GtkWidget *cur_frame;
+    GtkWidget *cur_frame_vbox;
+
+    GtkTooltips *tooltips;
+    GtkAccelGroup *accelgroup;
+
+    gpointer *apptw;
+} category_win_struct;
+
+static void refresh_categories(category_win_struct *catw);
 
 static void fill_appt_window(appt_win *apptw, char *action, char *par);
 /*  
@@ -750,7 +775,7 @@ static gboolean fill_appt_from_apptw(xfical_appt *appt, appt_win *apptw)
     struct tm current_t;
     gchar starttime[6], endtime[6], completedtime[6];
     gint i, j, k;
-    gchar *tmp;
+    gchar *tmp, *tmp2;
 
 /* Next line is fix for bug 2811.
  * We need to make sure spin buttons do not have values which are not
@@ -858,6 +883,21 @@ static gboolean fill_appt_from_apptw(xfical_appt *appt, appt_win *apptw)
     /* availability */
     appt->availability = gtk_combo_box_get_active(
             GTK_COMBO_BOX(apptw->Availability_cb));
+
+    /* categories */
+    tmp = g_strdup(gtk_entry_get_text(GTK_ENTRY(apptw->Categories_entry)));
+    tmp2 = gtk_combo_box_get_active_text(GTK_COMBO_BOX(apptw->Categories_cb));
+    if (!strcmp(tmp2, _("Not set"))) {
+        g_free(tmp2);
+        tmp2 = NULL;
+    }
+    if (tmp) {
+        appt->categories = g_strjoin(",", tmp, tmp2, NULL);
+        g_free(tmp);
+        g_free(tmp2);
+    }
+    else 
+        appt->categories = tmp2;
 
     /* notes */
     gtk_text_buffer_get_bounds(apptw->Note_buffer, &start, &end);
@@ -1370,7 +1410,7 @@ static xfical_appt *fill_appt_window_get_appt(appt_win *apptw
 
         /* default alarm type is orage window and sound */
         appt->display_alarm_orage = TRUE;
-        appt->sound_alarm = TRUE;
+        appt->sound_alarm = TRUE; 
         /* default sound file is set in fill_appt_window */
     }
     else if ((strcmp(action, "UPDATE") == 0) || (strcmp(action, "COPY") == 0)) {
@@ -1396,6 +1436,379 @@ static xfical_appt *fill_appt_window_get_appt(appt_win *apptw
     return(appt);
 }
 
+/************************************************************/
+/* categories start. this will go to functions.c when ready */
+/************************************************************/
+
+#define ORAGE_CATEGORIES "orage_categories.txt"
+#define ORAGE_COLOR_FORMAT "%uR %uG %uB"
+
+XfceRc *orage_category_file_open(gboolean read_only)
+{
+    gchar *fpath;
+    XfceRc *rc;
+
+    fpath = orage_data_file_location(ORAGE_CATEGORIES);
+    if (!fpath) {
+        g_warning("orage_category_file_open: category filename build failed (%s)\n", fpath);
+        return(NULL);
+    }
+    if ((rc = xfce_rc_simple_open(fpath, read_only)) == NULL) {
+        g_warning("Unable to open RC file.");
+        /* let's try to build it if we opened in read mode */
+        if (read_only && (rc = xfce_rc_simple_open(fpath, FALSE)) == NULL) {
+            /* still failed, can't do more */
+            g_warning("Unable to open (write) RC file.");
+            return(NULL);
+        }
+    }
+
+    g_free(fpath);
+    return(rc);
+}
+
+void orage_category_file_close(XfceRc *rc)
+{
+    xfce_rc_close(rc);
+}
+
+typedef struct _orage_category
+{
+    gchar *category;
+    GdkColor color;
+} orage_category_struct;
+
+
+GList *orage_category_list = NULL;
+
+GdkColor *orage_category_list_contains(char *categories)
+{
+    GList *cat_l;
+    orage_category_struct *cat;
+    
+    if (categories == NULL)
+        return(NULL);
+    cat_l = orage_category_list;
+    for (cat_l = g_list_first(cat_l);
+         cat_l != NULL;
+         cat_l = g_list_next(cat_l)) {
+        cat = (orage_category_struct *)cat_l->data;
+        if (g_str_has_suffix(categories, cat->category)) {
+            return(&cat->color);
+        }
+    }
+    /* not found */
+    return(NULL);
+}
+
+void orage_category_free(gpointer gcat, gpointer dummy)
+{
+    orage_category_struct *cat = (orage_category_struct *)gcat;
+
+    g_free(cat->category);
+    g_free(cat);
+}
+
+void orage_category_free_list()
+{
+    g_list_foreach(orage_category_list, orage_category_free, NULL);
+    g_list_free(orage_category_list);
+    orage_category_list = NULL;
+}
+
+void orage_category_get_list()
+{
+    XfceRc *rc;
+    gchar **cat_groups, *color;
+    gint i;
+    orage_category_struct *cat;
+    GdkColormap *pic1_cmap;
+
+    if (orage_category_list != NULL)
+        orage_category_free_list();
+    pic1_cmap = gdk_colormap_get_system();
+    rc = orage_category_file_open(TRUE);
+    cat_groups = xfce_rc_get_groups(rc);
+    for (i=1; cat_groups[i] != NULL; i++) {
+        xfce_rc_set_group(rc, cat_groups[i]);
+        color = (char *)xfce_rc_read_entry(rc, "Color", NULL);
+        if (color) {
+            cat= g_new(orage_category_struct, 1);
+            cat->category = g_strdup(cat_groups[i]);
+            sscanf(color, ORAGE_COLOR_FORMAT, &(cat->color.red)
+                    , &(cat->color.green), &(cat->color.blue));
+            gdk_colormap_alloc_color(pic1_cmap, &cat->color, FALSE, TRUE);
+            orage_category_list = g_list_prepend(orage_category_list, cat);
+        }
+    }
+    g_strfreev(cat_groups);
+    orage_category_file_close(rc);
+}
+
+gboolean category_fill_cb(GtkComboBox *cb, char *select)
+{
+    XfceRc *rc;
+    gchar **cat_gourps;
+    gint i;
+    gboolean found=FALSE;
+
+    rc = orage_category_file_open(TRUE);
+    cat_gourps = xfce_rc_get_groups(rc);
+    /* cat_gourps[0] is special [NULL] entry always */
+    gtk_combo_box_append_text(cb, _("Not set"));
+    gtk_combo_box_set_active(cb, 0);
+    for (i=1; cat_gourps[i] != NULL; i++) {
+        gtk_combo_box_append_text(cb, (const gchar *)cat_gourps[i]);
+        if (!found && select && !strcmp(select, cat_gourps[i])) {
+            gtk_combo_box_set_active(cb, i);
+            found = TRUE;
+        }
+    }
+    g_strfreev(cat_gourps);
+    orage_category_file_close(rc);
+    return(found);
+}
+
+void orage_category_refill_cb(appt_win *apptw)
+{
+    gchar *tmp;
+
+    /* first remember the currently selected value */
+    tmp = gtk_combo_box_get_active_text(GTK_COMBO_BOX(apptw->Categories_cb));
+
+    /* then clear the values by removing the widget and putting it back */
+    gtk_widget_destroy(apptw->Categories_cb);
+    apptw->Categories_cb = gtk_combo_box_new_text();
+    gtk_container_add(GTK_CONTAINER(apptw->Categories_cb_event)
+            , apptw->Categories_cb);
+
+    /* and finally fill it with new values */
+    category_fill_cb(GTK_COMBO_BOX(apptw->Categories_cb), tmp);
+
+    g_free(tmp);
+    gtk_widget_show(apptw->Categories_cb);
+}
+
+void fill_category_data(appt_win *apptw, xfical_appt *appt)
+{
+    gchar *tmp = NULL;
+
+    /* first search the last entry. which is the special color value */
+    if (appt->categories) {
+        tmp = g_strrstr(appt->categories, ",");
+        if (!tmp) /* , not found, let's take the whole string */
+            tmp = appt->categories;
+        while (*(tmp) == ' ' || *(tmp) == ',') /* skip blanks and , */
+            tmp++; 
+    }
+    if (category_fill_cb(GTK_COMBO_BOX(apptw->Categories_cb), tmp)) {
+        /* we found match. Let's try to hide that from the entry text */
+        while (tmp != appt->categories 
+                && (*(tmp-1) == ' ' || *(tmp-1) == ','))
+            tmp--;
+        *tmp = '\0'; /* note that this goes to appt->categories */
+    }
+    gtk_entry_set_text(GTK_ENTRY(apptw->Categories_entry)
+            , (appt->categories ? appt->categories : ""));
+}
+
+void orage_category_write_entry(gchar *category, GdkColor *color)
+{
+    XfceRc *rc;
+    char *color_str;
+
+    if (!ORAGE_STR_EXISTS(category)) {
+        orage_message(50, "orage_category_write_entry: empty category. Not written");
+        return;
+    }
+    color_str = g_strdup_printf(ORAGE_COLOR_FORMAT
+            , color->red, color->green, color->blue);
+    rc = orage_category_file_open(FALSE);
+    xfce_rc_set_group(rc, category);
+    xfce_rc_write_entry(rc, "Color", color_str);
+    g_free(color_str);
+    orage_category_file_close(rc);
+}
+
+static void orage_category_remove_entry(gchar *category)
+{
+    XfceRc *rc;
+
+    if (!ORAGE_STR_EXISTS(category)) {
+        orage_message(50, "orage_category_write_entry: empty category. Not removed");
+        return;
+    }
+    rc = orage_category_file_open(FALSE);
+    xfce_rc_delete_group(rc, category, FALSE);
+    orage_category_file_close(rc);
+}
+
+static void close_cat_window(gpointer user_data)
+{
+    category_win_struct *catw = (category_win_struct *)user_data;
+
+    orage_category_refill_cb((appt_win *)catw->apptw);
+    gtk_widget_destroy(catw->window);
+    gtk_object_destroy(GTK_OBJECT(catw->tooltips));
+    g_free(catw);
+}
+
+static gboolean on_cat_window_delete_event(GtkWidget *w, GdkEvent *e
+        , gpointer user_data)
+{
+    close_cat_window(user_data);
+    return(FALSE);
+}
+
+static void cat_add_button_clicked(GtkButton *button, gpointer user_data)
+{
+    category_win_struct *catw = (category_win_struct *)user_data;
+    gchar *entry_category;
+    GdkColor color;
+
+    entry_category = g_strdup(gtk_entry_get_text((GtkEntry *)catw->new_entry));
+    g_strstrip(entry_category);
+    gtk_color_button_get_color((GtkColorButton *)catw->new_color_button
+            , &color);
+    orage_category_write_entry(entry_category, &color);
+    g_free(entry_category);
+    refresh_categories(catw);
+}
+
+static void cat_color_button_changed(GtkColorButton *color_button
+        , gpointer user_data)
+{
+    category_win_struct *catw = (category_win_struct *)user_data;
+    gchar *category;
+    GdkColor color;
+
+    category = g_object_get_data(G_OBJECT(color_button), "CATEGORY");
+    gtk_color_button_get_color(color_button, &color);
+    orage_category_write_entry(category, &color);
+}
+
+static void cat_del_button_clicked(GtkButton *button, gpointer user_data)
+{
+    category_win_struct *catw = (category_win_struct *)user_data;
+    gchar *category;
+
+    category = g_object_get_data(G_OBJECT(button), "CATEGORY");
+    orage_category_remove_entry(category);
+    refresh_categories(catw);
+}
+
+static void show_category(gpointer elem, gpointer user_data)
+{
+    orage_category_struct *cat = (orage_category_struct *)elem;
+    category_win_struct *catw = (category_win_struct *)user_data;
+    GtkWidget *label, *hbox, *button, *color_button;
+
+    hbox = gtk_hbox_new(FALSE, 0);
+    label = gtk_label_new(cat->category);
+    gtk_misc_set_alignment(GTK_MISC(label), 0, 0.5);
+    gtk_box_pack_start(GTK_BOX(hbox), label, TRUE, TRUE, 5);
+
+    color_button = gtk_color_button_new_with_color(&cat->color);
+    gtk_box_pack_start(GTK_BOX(hbox), color_button, FALSE, FALSE, 5);
+    g_object_set_data_full(G_OBJECT(color_button), "CATEGORY"
+            , g_strdup(cat->category), g_free);
+    g_signal_connect((gpointer)color_button, "color-set"
+            , G_CALLBACK(cat_color_button_changed), catw);
+
+    button = gtk_button_new_from_stock("gtk-remove");
+    gtk_box_pack_start(GTK_BOX(hbox), button, FALSE, FALSE, 5);
+    g_object_set_data_full(G_OBJECT(button), "CATEGORY"
+            , g_strdup(cat->category), g_free);
+    g_signal_connect((gpointer)button, "clicked"
+            , G_CALLBACK(cat_del_button_clicked), catw);
+
+    gtk_box_pack_start(GTK_BOX(catw->cur_frame_vbox), hbox, FALSE, FALSE, 5);
+}
+
+static void refresh_categories(category_win_struct *catw)
+{
+    GtkWidget *swin;
+
+    gtk_widget_destroy(catw->cur_frame);
+
+    catw->cur_frame_vbox = gtk_vbox_new(FALSE, 0);
+    swin = gtk_scrolled_window_new(NULL, NULL);
+    gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(swin)
+            , GTK_POLICY_AUTOMATIC, GTK_POLICY_AUTOMATIC);
+    gtk_scrolled_window_add_with_viewport(GTK_SCROLLED_WINDOW(swin)
+            , catw->cur_frame_vbox);
+    catw->cur_frame = xfce_create_framebox_with_content(
+            _("Current categories"), swin);
+    gtk_box_pack_start(GTK_BOX(catw->vbox), catw->cur_frame, TRUE, TRUE, 5);
+
+    orage_category_get_list();
+    g_list_foreach(orage_category_list, show_category, catw);
+    gtk_widget_show_all(catw->cur_frame);
+}
+
+static void create_cat_win(category_win_struct *catw)
+{
+    GtkWidget *label, *hbox, *vbox;
+
+    /***** New category *****/
+    vbox = gtk_vbox_new(FALSE, 0);
+    catw->new_frame = xfce_create_framebox_with_content(
+            _("Add new category with color"), vbox);
+    gtk_box_pack_start(GTK_BOX(catw->vbox), catw->new_frame, FALSE, FALSE, 5);
+
+    hbox = gtk_hbox_new(FALSE, 0);
+    label = gtk_label_new(_("Category:"));
+    gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 5);
+    catw->new_entry = gtk_entry_new();
+    gtk_box_pack_start(GTK_BOX(hbox), catw->new_entry, TRUE, TRUE, 0);
+    catw->new_color_button = gtk_color_button_new();
+    gtk_box_pack_start(GTK_BOX(hbox), catw->new_color_button, FALSE, FALSE, 5);
+    catw->new_add_button = gtk_button_new_from_stock("gtk-add");
+    gtk_box_pack_start(GTK_BOX(hbox), catw->new_add_button, FALSE, FALSE, 5);
+    gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 5);
+    g_signal_connect((gpointer)catw->new_add_button, "clicked"
+            , G_CALLBACK(cat_add_button_clicked), catw);
+
+    /***** Current categories *****/
+    /* refresh_categories always destroys frame first, so let's create
+     * a dummy for it for the first time */
+    vbox = gtk_vbox_new(FALSE, 0);
+    catw->cur_frame = xfce_create_framebox_with_content(("dummy"), vbox);
+    refresh_categories(catw);
+}
+
+static void on_categories_button_clicked_cb(GtkWidget *button
+        , gpointer *user_data)
+{
+    appt_win *apptw = (appt_win *)user_data;
+    category_win_struct *catw;
+
+    catw = g_new(category_win_struct, 1);
+    catw->apptw = (gpointer)apptw; /* remember the caller */
+    catw->window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+    gtk_window_set_modal(GTK_WINDOW(catw->window), TRUE);
+    gtk_window_set_title(GTK_WINDOW(catw->window)
+            , _("Colors of categories - Orage"));
+    gtk_window_set_default_size(GTK_WINDOW(catw->window), 390, 360);
+
+    catw->tooltips = gtk_tooltips_new();
+    catw->accelgroup = gtk_accel_group_new();
+    gtk_window_add_accel_group(GTK_WINDOW(catw->window), catw->accelgroup);
+
+    catw->vbox = gtk_vbox_new(FALSE, 0);
+    gtk_container_add(GTK_CONTAINER(catw->window), catw->vbox);
+
+    create_cat_win(catw);
+
+    g_signal_connect((gpointer)catw->window, "delete_event",
+        G_CALLBACK(on_cat_window_delete_event), catw);
+    gtk_widget_show_all(catw->window);
+}
+
+/**********************************************************/
+/* categories end.                                        */
+/**********************************************************/
+
 /* Fill appointment window with data */
 static void fill_appt_window(appt_win *apptw, char *action, char *par)
 {
@@ -1404,6 +1817,7 @@ static void fill_appt_window(appt_win *apptw, char *action, char *par)
     struct tm *t, tm_date;
     char *untildate_to_display, *tmp;
     int i;
+    GdkColor color;
 
     orage_message(30, "%s appointment: %s", action, par);
     if ((appt = fill_appt_window_get_appt(apptw, action, par)) == NULL) {
@@ -1470,10 +1884,10 @@ static void fill_appt_window(appt_win *apptw, char *action, char *par)
             , (appt->title ? appt->title : ""));
 
     if (strcmp(action, "COPY") == 0) {
-            gtk_editable_set_position(GTK_EDITABLE(apptw->Title_entry), -1);
-            i = gtk_editable_get_position(GTK_EDITABLE(apptw->Title_entry));
-            gtk_editable_insert_text(GTK_EDITABLE(apptw->Title_entry)
-                    , _(" *** COPY ***"), strlen(_(" *** COPY ***")), &i);
+        gtk_editable_set_position(GTK_EDITABLE(apptw->Title_entry), -1);
+        i = gtk_editable_get_position(GTK_EDITABLE(apptw->Title_entry));
+        gtk_editable_insert_text(GTK_EDITABLE(apptw->Title_entry)
+                , _(" *** COPY ***"), strlen(_(" *** COPY ***")), &i);
     }
 
     /* location */
@@ -1488,6 +1902,9 @@ static void fill_appt_window(appt_win *apptw, char *action, char *par)
         gtk_combo_box_set_active(GTK_COMBO_BOX(apptw->Availability_cb)
                    , appt->availability);
     }
+
+    /* categories */
+    fill_category_data(apptw, appt);
 
     /* note */
     gtk_text_buffer_set_text(apptw->Note_buffer
@@ -1754,7 +2171,7 @@ static void build_general_page(appt_win *apptw)
     GtkWidget *label, *event, *hbox;
     char *availability_array[2] = {_("Free"), _("Busy")};
 
-    apptw->TableGeneral = orage_table_new(10, BORDER_SIZE);
+    apptw->TableGeneral = orage_table_new(11, BORDER_SIZE);
     apptw->General_notebook_page = apptw->TableGeneral;
     apptw->General_tab_label = gtk_label_new(_("General"));
 
@@ -1891,6 +2308,29 @@ static void build_general_page(appt_win *apptw)
             , apptw->Completed_label, apptw->Completed_hbox
             , ++row, (GTK_FILL), (GTK_FILL));
 
+    /* categories */
+    apptw->Categories_label = gtk_label_new(_("Categories"));
+    apptw->Categories_hbox = gtk_hbox_new(FALSE, 0);
+    apptw->Categories_entry = gtk_entry_new();
+    gtk_box_pack_start(GTK_BOX(apptw->Categories_hbox), apptw->Categories_entry
+            , TRUE, TRUE, 0);
+    apptw->Categories_cb = gtk_combo_box_new_text();
+    apptw->Categories_cb_event =  gtk_event_box_new(); /* needed for tooltips */
+    gtk_container_add(GTK_CONTAINER(apptw->Categories_cb_event)
+            , apptw->Categories_cb);
+    gtk_box_pack_start(GTK_BOX(apptw->Categories_hbox)
+            , apptw->Categories_cb_event, FALSE, FALSE, 4);
+    gtk_tooltips_set_tip(apptw->Tooltips, apptw->Categories_cb_event
+            , _("This is special category, which can be used to color this appointment in list views."), NULL);
+    apptw->Categories_button =gtk_button_new_from_stock(GTK_STOCK_SELECT_COLOR);
+    gtk_box_pack_start(GTK_BOX(apptw->Categories_hbox), apptw->Categories_button
+            , FALSE, FALSE, 0);
+    gtk_tooltips_set_tip(apptw->Tooltips, apptw->Categories_button
+            , _("update colors for categories."), NULL);
+    orage_table_add_row(apptw->TableGeneral
+            , apptw->Categories_label, apptw->Categories_hbox
+            , ++row, (GTK_EXPAND | GTK_FILL), (0));
+
     /* note */
     apptw->Note = gtk_label_new(_("Note"));
     apptw->Note_Scrolledwindow = gtk_scrolled_window_new(NULL, NULL);
@@ -1955,14 +2395,17 @@ static void build_general_page(appt_win *apptw)
             , G_CALLBACK(on_app_spin_button_changed_cb), apptw);
     g_signal_connect((gpointer)apptw->CompletedTimezone_button, "clicked"
             , G_CALLBACK(on_appCompletedTimezone_clicked_cb), apptw);
-    /* Take care of the title entry to build the appointment window title 
-     * Beware: we are not using apptw->Title_entry as a GtkEntry here 
-     * but as an interface GtkEditable instead.
-     */
+    /* Take care of the title entry to build the appointment window title */
     g_signal_connect((gpointer)apptw->Title_entry, "changed"
             , G_CALLBACK(on_appTitle_entry_changed_cb), apptw);
     g_signal_connect((gpointer)apptw->Location_entry, "changed"
             , G_CALLBACK(on_app_entry_changed_cb), apptw);
+    g_signal_connect((gpointer)apptw->Categories_entry, "changed"
+            , G_CALLBACK(on_app_entry_changed_cb), apptw);
+    g_signal_connect((gpointer)apptw->Categories_cb, "changed"
+            , G_CALLBACK(on_app_combobox_changed_cb), apptw);
+    g_signal_connect((gpointer)apptw->Categories_button, "clicked"
+            , G_CALLBACK(on_categories_button_clicked_cb), apptw);
     g_signal_connect((gpointer)apptw->Availability_cb, "changed"
             , G_CALLBACK(on_app_combobox_changed_cb), apptw);
     g_signal_connect((gpointer)apptw->Note_buffer, "changed"

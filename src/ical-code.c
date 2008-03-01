@@ -909,9 +909,24 @@ static struct icaltimetype convert_to_timezone(struct icaltimetype t
 #endif
     itime_tz = icalproperty_get_first_parameter(p, ICAL_TZID_PARAMETER);
     if (itime_tz) {
-         tz_loc = (char *) icalparameter_get_tzid(itime_tz);
-         l_icaltimezone = icaltimezone_get_builtin_timezone(tz_loc);
-         if (!l_icaltimezone) {
+        tz_loc = (char *)icalparameter_get_tzid(itime_tz);
+        if (tz_loc[0] == '/') {
+             /* FIXME: this should be in import and in get data
+              * This probably is evolution format, 
+              * which has /xxx/xxx/timezone and we should remove the 
+              * extra /xxx/xxx/ from it */
+            char **new_str;
+
+            orage_message(-20, P_N "evolution timezone fix %s", tz_loc);
+            new_str = g_strsplit(tz_loc, "/", 4);
+            if (new_str[0] != NULL && new_str[1] != NULL && new_str[2] != NULL
+            &&  new_str[3] != NULL)
+                l_icaltimezone = icaltimezone_get_builtin_timezone(new_str[3]);
+            g_strfreev(new_str);
+        }
+        else
+            l_icaltimezone = icaltimezone_get_builtin_timezone(tz_loc);
+        if (!l_icaltimezone) {
             orage_message(250, P_N "builtin timezone %s not found, conversion failed.", tz_loc);
         }
         tz = icaltime_convert_to_zone(t, l_icaltimezone);
@@ -919,7 +934,7 @@ static struct icaltimetype convert_to_timezone(struct icaltimetype t
     else
         tz = t;
 
-    return (tz);
+    return(tz);
 }
 
 static struct icaltimetype convert_to_local_timezone(struct icaltimetype t
@@ -1597,6 +1612,7 @@ static char *appt_add_internal(xfical_appt *appt, gboolean add, char *uid
     struct icaltimetype dtstamp, create_time, wtime;
     gboolean end_time_done;
     gchar *int_uid, *ext_uid;
+    gchar **tmp_cat;
     struct icaldurationtype duration;
     int i;
     icalcomponent_kind ikind = ICAL_VEVENT_COMPONENT;
@@ -1632,7 +1648,7 @@ static char *appt_add_internal(xfical_appt *appt, gboolean add, char *uid
 
     icmp = icalcomponent_vanew(ikind
            , icalproperty_new_uid(int_uid)
-           , icalproperty_new_categories("ORAGENOTE")
+           /* , icalproperty_new_categories("ORAGENOTE") */
            , icalproperty_new_class(ICAL_CLASS_PUBLIC)
            , icalproperty_new_dtstamp(dtstamp)
            , icalproperty_new_created(create_time)
@@ -1650,6 +1666,14 @@ static char *appt_add_internal(xfical_appt *appt, gboolean add, char *uid
         if ORAGE_STR_EXISTS(appt->location)
             icalcomponent_add_property(icmp
                     , icalproperty_new_location(appt->location));
+    }
+    if (appt->categories) { /* need to split it if more than one */
+        tmp_cat = g_strsplit(appt->categories, ",", 0);
+        for (i=0; tmp_cat[i] != NULL; i++) {
+            icalcomponent_add_property(icmp
+                   , icalproperty_new_categories(tmp_cat[i]));
+        }
+        g_strfreev(tmp_cat);
     }
     if (appt->allDay) { /* cut the string after Date: yyyymmdd */
         appt->starttime[8] = '\0';
@@ -2255,6 +2279,7 @@ static xfical_appt *xfical_appt_get_internal(char *ical_uid
             appt.completed_tz_loc = NULL;
             appt.availability = -1;
             appt.priority = 0;
+            appt.categories = NULL;
             appt.note = NULL;
             appt.alarmtime = 0;
             appt.alarm_before = TRUE;
@@ -2358,6 +2383,16 @@ static xfical_appt *xfical_appt_get_internal(char *ical_uid
                         appt.priority = icalproperty_get_priority(p);
                         break;
                     case ICAL_CATEGORIES_PROPERTY:
+                        if (appt.categories == NULL)
+                            appt.categories = g_strdup(icalproperty_get_categories(p));
+                        else {
+                            text = appt.categories;
+                            appt.categories = g_strjoin(","
+                                    , appt.categories
+                                    , icalproperty_get_categories(p), NULL);
+                            g_free((char *)text);
+                        }
+                        break;
                     case ICAL_CLASS_PROPERTY:
                     case ICAL_DTSTAMP_PROPERTY:
                     case ICAL_CREATED_PROPERTY:

@@ -63,8 +63,6 @@ static void create_notify_reminder(alarm_struct *alarm);
 static void create_reminders(alarm_struct *alarm);
 static void reset_orage_alarm_clock();
 
-/* this is almost the same than in ical-code.c.
- * Perhaps these can be combined */
 static void alarm_free(gpointer galarm, gpointer dummy)
 {
 #undef P_N
@@ -113,7 +111,7 @@ static int orage_persistent_file_open(gboolean write)
     int p_file;
     char *file_name;
 
-    file_name = orage_resource_file_location(ORAGE_DIR ORAGE_PERSISTENT_ALARMS);
+    file_name = orage_data_file_location(ORAGE_PERSISTENT_ALARMS);
     if (!file_name) {
         g_warning("orage_persistent_file_open: Persistent alarms filename build failed, alarms not saved (%s)\n", file_name);
         return(-1);

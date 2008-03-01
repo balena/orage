@@ -63,6 +63,7 @@
 #include "tray_icon.h"
 #include "day-view.h"
 
+#define BORDER_SIZE 10
 
 enum {
     COL_TIME = 0
@@ -70,6 +71,7 @@ enum {
    ,COL_HEAD
    ,COL_UID
    ,COL_SORT
+   ,CAL_CATEGORIES
    ,NUM_COLS
 };
 
@@ -215,6 +217,24 @@ static char *format_time(el_win *el, xfical_appt *appt, char *par)
     return(result);
 }
 
+static void flags_data_func(GtkTreeViewColumn *col, GtkCellRenderer *rend
+        , GtkTreeModel *model, GtkTreeIter *iter, gpointer user_data)
+{
+    gchar *categories;
+    GdkColor *color;
+
+    gtk_tree_model_get(model, iter, CAL_CATEGORIES, &categories, -1);
+    if ((color = orage_category_list_contains(categories)) == NULL)
+        g_object_set(rend
+                 , "background-set",    FALSE
+                 , NULL);
+    else
+        g_object_set(rend
+                 , "background-gdk",    color
+                 , "background-set",    TRUE
+                 , NULL);
+}
+
 static void start_time_data_func(GtkTreeViewColumn *col, GtkCellRenderer *rend
         , GtkTreeModel *model, GtkTreeIter *iter, gpointer user_data)
 {
@@ -272,6 +292,7 @@ static void start_time_data_func(GtkTreeViewColumn *col, GtkCellRenderer *rend
                      , "weight-set",        TRUE
                      , NULL);
         }
+        g_free(stime);
     }
     else if (el->page == TODO_PAGE) {
         gtk_tree_model_get(model, iter, COL_SORT, &stime, -1);
@@ -310,6 +331,7 @@ static void start_time_data_func(GtkTreeViewColumn *col, GtkCellRenderer *rend
                      , "weight-set",        TRUE
                      , NULL);
         }
+        g_free(stime);
     }
     else {
         g_object_set(rend
@@ -393,6 +415,7 @@ static void add_el_row(el_win *el, xfical_appt *appt, char *par)
             , COL_HEAD,  title
             , COL_UID,   appt->uid
             , COL_SORT,  s_sort1
+            , CAL_CATEGORIES,   appt->categories
             , -1);
     g_free(title);
     g_free(s_sort1);
@@ -577,6 +600,7 @@ static void journal_data(el_win *el)
 
 void refresh_el_win(el_win *el)
 {
+    orage_category_get_list();
     if (el->Window && el->ListStore && el->TreeView) {
         gtk_list_store_clear(el->ListStore);
         el->page = gtk_notebook_get_current_page(GTK_NOTEBOOK(el->Notebook));
@@ -1096,7 +1120,8 @@ static void build_event_tab(el_win *el)
     GtkWidget *label, *hbox;
 
     el->event_tab_label = gtk_label_new(_("Event"));
-    el->event_notebook_page = orage_table_new(2, 10);
+    /* FIXME: remove these tables, which are not needed anymore */
+    el->event_notebook_page = orage_table_new(1, BORDER_SIZE);
 
     label = gtk_label_new(_("Extra days to show "));
     hbox =  gtk_hbox_new(FALSE, 0);
@@ -1116,7 +1141,8 @@ static void build_event_tab(el_win *el)
 static void build_todo_tab(el_win *el)
 {
     el->todo_tab_label = gtk_label_new(_("Todo"));
-    el->todo_notebook_page = orage_table_new(2, 10);
+    /* FIXME: remove these tables, which are not needed anymore */
+    el->todo_notebook_page = orage_table_new(1, BORDER_SIZE);
 
     gtk_notebook_append_page(GTK_NOTEBOOK(el->Notebook)
             , el->todo_notebook_page, el->todo_tab_label);
@@ -1130,7 +1156,8 @@ static void build_journal_tab(el_win *el)
     gchar *sdate;
 
     el->journal_tab_label = gtk_label_new(_("Journal"));
-    el->journal_notebook_page = orage_table_new(2, 10);
+    /* FIXME: remove these tables, which are not needed anymore */
+    el->journal_notebook_page = orage_table_new(1, BORDER_SIZE);
 
     label = gtk_label_new(_("Journal entries starting from:"));
     hbox =  gtk_hbox_new(FALSE, 0);
@@ -1158,7 +1185,8 @@ static void build_search_tab(el_win *el)
     GtkWidget *label;
 
     el->search_tab_label = gtk_label_new(_("Search"));
-    el->search_notebook_page = orage_table_new(1, 10);
+    /* FIXME: remove these tables, which are not needed anymore */
+    el->search_notebook_page = orage_table_new(1, BORDER_SIZE);
 
     label = gtk_label_new(_("Search text "));
     el->search_entry = gtk_entry_new();
@@ -1199,7 +1227,7 @@ static void build_event_list(el_win *el)
     /* Tree view */
     el->ListStore = gtk_list_store_new(NUM_COLS
             , G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING
-            , G_TYPE_STRING);
+            , G_TYPE_STRING, G_TYPE_STRING);
     el->TreeView = gtk_tree_view_new();
     gtk_tree_view_set_rules_hint(GTK_TREE_VIEW(el->TreeView), TRUE);
 
@@ -1229,6 +1257,8 @@ static void build_event_list(el_win *el)
     col = gtk_tree_view_column_new_with_attributes( _("Flags"), rend
                 , "text", COL_FLAGS
                 , NULL);
+    gtk_tree_view_column_set_cell_data_func(col, rend, flags_data_func
+                , el, NULL);
     gtk_tree_view_append_column(GTK_TREE_VIEW(el->TreeView), col);
 
     rend = gtk_cell_renderer_text_new();
@@ -1247,6 +1277,13 @@ static void build_event_list(el_win *el)
     rend = gtk_cell_renderer_text_new();
     col = gtk_tree_view_column_new_with_attributes("sort", rend
                 , "text", COL_SORT
+                , NULL);
+    gtk_tree_view_append_column(GTK_TREE_VIEW(el->TreeView), col);
+    gtk_tree_view_column_set_visible(col, FALSE);
+
+    rend = gtk_cell_renderer_text_new();
+    col = gtk_tree_view_column_new_with_attributes("cat", rend
+                , "text", CAL_CATEGORIES
                 , NULL);
     gtk_tree_view_append_column(GTK_TREE_VIEW(el->TreeView), col);
     gtk_tree_view_column_set_visible(col, FALSE);

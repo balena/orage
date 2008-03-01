@@ -29,6 +29,11 @@
 #define XFICAL_APPT_DATE_FORMAT "%04d%02d%02d"
 #define XFICAL_APPT_DATE_FORMAT_LEN 9
 
+#define ORAGE_DIR "orage" G_DIR_SEPARATOR_S
+#define ORAGE_PARFILE  "oragerc"
+#define ORAGE_APPFILE  "orage.ics"
+#define ORAGE_ARCFILE  "orage_archive.ics"
+
 #define ORAGE_STR_EXISTS(str) ((str != NULL) && (str[0] != 0))
 
 void orage_message(gint level, const char *format, ...);
@@ -71,5 +76,7 @@ gint orage_days_between(struct tm *t1, struct tm *t2);
 
 void orage_select_date(GtkCalendar *cal, guint year, guint month, guint day);
 void orage_select_today(GtkCalendar *cal);
+
+gchar *orage_data_file_location(char *name);
 
 #endif /* !__ORAGE_FUNCTIONS_H__ */

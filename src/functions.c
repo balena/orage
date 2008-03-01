@@ -36,9 +36,7 @@
 #include <gtk/gtk.h>
 #include <gdk/gdk.h>
 
-/*
 #include <libxfce4util/libxfce4util.h>
-*/
 
 #include "orage-i18n.h"
 #include "functions.h"
@@ -105,21 +103,6 @@ void orage_message(gint level, const char *format, ...)
         g_error("Orage **: %s", formatted);
     g_free(formatted);
 }
-
-/*
-void orage_message(const char *format, ...)
-{
-    va_list args;
-    char *formatted, *str;
-
-    va_start(args, format);
-    formatted = g_strdup_vprintf(format, args);
-    va_end(args);
-
-    g_message("Orage **: %s", formatted);
-    g_free(formatted);
-}
-*/
 
 GtkWidget *orage_create_combo_box_with_content(char *text[], int size)
 {
@@ -503,4 +486,14 @@ void orage_select_today(GtkCalendar *cal)
 
     t = orage_localtime();
     orage_select_date(cal, t->tm_year+1900, t->tm_mon, t->tm_mday);
+}
+
+gchar *orage_data_file_location(char *name)
+{
+    char *file_name, *dir_name;
+
+    dir_name = g_strconcat(ORAGE_DIR, name, NULL);
+    file_name = xfce_resource_save_location(XFCE_RESOURCE_DATA, dir_name, TRUE);
+    g_free(dir_name);
+    return(file_name);
 }

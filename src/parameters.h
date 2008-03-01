@@ -26,11 +26,6 @@
 #include "xfce_trayicon.h"
 #include "mainbox.h"
 
-#define ORAGE_DIR "orage" G_DIR_SEPARATOR_S
-#define PARFILE  "oragerc"
-#define APPFILE  "orage.ics"
-#define ARCFILE  "orage_archive.ics"
-
 #define BORDER 5
 typedef struct _foreign_file
 {
@@ -104,7 +99,6 @@ global_parameters g_par; /* real, static global parameters. Only in main !!! */
 extern global_parameters g_par; /* refer to existing global parameters */
 #endif
 
-gchar *orage_resource_file_location(char *name);
 void show_parameters(void);
 void write_parameters(void);
 void read_parameters(void);

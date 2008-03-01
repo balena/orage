@@ -321,9 +321,9 @@ static void orage_file_open_button_clicked(GtkButton *button
     gchar *rcfile;
     gchar *s;
 
-    rcfile = orage_resource_file_location(ORAGE_DIR);
+    rcfile = orage_data_file_location(NULL);
     f_chooser = orage_file_chooser(intf_w->main_window, TRUE
-            , g_par.orage_file, rcfile, APPFILE);
+            , g_par.orage_file, rcfile, ORAGE_APPFILE);
     g_free(rcfile);
 
     if (gtk_dialog_run(GTK_DIALOG(f_chooser)) == GTK_RESPONSE_ACCEPT) {
@@ -348,9 +348,9 @@ static void archive_file_open_button_clicked(GtkButton *button
     gchar *rcfile;
     gchar *s;
 
-    rcfile = orage_resource_file_location(ORAGE_DIR);
+    rcfile = orage_data_file_location(NULL);
     f_chooser = orage_file_chooser(intf_w->main_window, TRUE
-            , g_par.archive_file, rcfile, ARCFILE);
+            , g_par.archive_file, rcfile, ORAGE_ARCFILE);
     g_free(rcfile);
 
     if (gtk_dialog_run(GTK_DIALOG(f_chooser)) == GTK_RESPONSE_ACCEPT) {
@@ -1319,8 +1319,8 @@ void orage_external_interface(CalWin *xfcal)
     create_orage_file_tab(intf_w);
     create_foreign_file_tab(intf_w);
 
-     g_signal_connect((gpointer)intf_w->main_window, "delete_event",
-             G_CALLBACK(on_Window_delete_event), intf_w);
+    g_signal_connect((gpointer)intf_w->main_window, "delete_event",
+            G_CALLBACK(on_Window_delete_event), intf_w);
 
     gtk_widget_show_all(intf_w->main_window);
     drag_and_drop_init(intf_w);

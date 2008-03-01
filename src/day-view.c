@@ -418,6 +418,7 @@ static void add_row(day_win *dw, xfical_appt *appt, char *a_day, gint days)
     gchar *text, *tip, *start_date, *end_date;
     GtkWidget *ev, *lab, *hb;
     struct tm tm_start, tm_end, tm_first;
+    GdkColor *color;
 
     /* First clarify timings */
     tm_start = orage_icaltime_to_tm_time(appt->starttimecur, FALSE);
@@ -443,30 +444,39 @@ static void add_row(day_win *dw, xfical_appt *appt, char *a_day, gint days)
 
     if (appt->starttimecur[8] != 'T') { /* whole day event */
         gtk_widget_modify_bg(ev, GTK_STATE_NORMAL, &dw->bg2);
-        if (dw->header[col] == NULL)
-            hb = gtk_hbox_new(TRUE, 1);
-        else
+        if (dw->header[col] == NULL) { /* first data */
+            hb = gtk_hbox_new(TRUE, 3);
+            dw->header[col] = hb;
+        }
+        else {
             hb = dw->header[col];
+            /* FIXME: set some real bar here to make it visible that we
+             * have more than 1 appointment here
+             */
+        }
         tip = g_strdup_printf("%s\n%s - %s\n%s"
-                , appt->title
-                , appt->starttimecur
-                , appt->endtimecur
+                , appt->title, appt->starttimecur, appt->endtimecur
                 , appt->note);
-        dw->header[col] = hb;
     }
     else {
-        if ((row % 2) == 1)
+        if ((color = orage_category_list_contains(appt->categories)) != NULL)
+            gtk_widget_modify_bg(ev, GTK_STATE_NORMAL, color);
+        else if ((row % 2) == 1)
             gtk_widget_modify_bg(ev, GTK_STATE_NORMAL, &dw->bg1);
-        if (dw->element[row][col] == NULL)
-            hb = gtk_hbox_new(TRUE, 1);
-        else
+        if (dw->element[row][col] == NULL) {
+            hb = gtk_hbox_new(TRUE, 3);
+            dw->element[row][col] = hb;
+        }
+        else {
             hb = dw->element[row][col];
+            /* FIXME: set some real bar here to make it visible that we
+             * have more than 1 appointment here
+             */
+        }
         if (orage_days_between(&tm_start, &tm_end) == 0)
             tip = g_strdup_printf("%s\n%02d:%02d-%02d:%02d\n%s"
-                    , appt->title
-                    , tm_start.tm_hour, tm_start.tm_min
-                    , tm_end.tm_hour, tm_end.tm_min
-                    , appt->note);
+                    , appt->title, tm_start.tm_hour, tm_start.tm_min
+                    , tm_end.tm_hour, tm_end.tm_min, appt->note);
         else {
     /* we took the date in unnormalized format, so we need to do that now */
             tm_start.tm_year -= 1900;
@@ -483,7 +493,6 @@ static void add_row(day_win *dw, xfical_appt *appt, char *a_day, gint days)
             g_free(start_date);
             g_free(end_date);
         }
-        dw->element[row][col] = hb;
     }
     gtk_tooltips_set_tip(dw->Tooltips, ev, tip, NULL);
     /*
@@ -774,6 +783,7 @@ static void build_day_view_table(day_win *dw)
     guint monthdays[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
     GtkWidget *vp;
     
+    orage_category_get_list();
     days = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(dw->day_spin));
     tm_date = orage_i18_date_to_tm_date(
             gtk_button_get_label(GTK_BUTTON(dw->StartDate_button)));

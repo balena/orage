@@ -115,15 +115,6 @@ typedef struct _Itf
 } Itf;
 
 
-gchar *orage_resource_file_location(char *name)
-{
-    char *file_name;
-
-    file_name = xfce_resource_save_location(XFCE_RESOURCE_DATA
-            , name, TRUE);
-    return(file_name);
-}
-
 static void dialog_response(GtkWidget *dialog, gint response_id
         , gpointer user_data)
 {
@@ -792,7 +783,7 @@ void write_parameters()
     gchar f_par[50];
 
     fpath = xfce_resource_save_location(XFCE_RESOURCE_CONFIG
-            , ORAGE_DIR PARFILE, TRUE);
+            , ORAGE_DIR ORAGE_PARFILE, TRUE);
     if ((rc = xfce_rc_simple_open(fpath, FALSE)) == NULL) {
         g_warning("Unable to open RC file.");
         return;
@@ -855,7 +846,7 @@ void read_parameters(void)
     gchar f_par[100];
 
     fpath = xfce_resource_save_location(XFCE_RESOURCE_CONFIG
-            , ORAGE_DIR PARFILE, TRUE);
+            , ORAGE_DIR ORAGE_PARFILE, TRUE);
 
     if ((rc = xfce_rc_simple_open(fpath, TRUE)) == NULL) {
         g_warning("Unable to open (read) RC file.");
@@ -870,12 +861,12 @@ void read_parameters(void)
             g_strdup(xfce_rc_read_entry(rc, "Timezone", "floating"));
 #ifdef HAVE_ARCHIVE
     g_par.archive_limit = xfce_rc_read_int_entry(rc, "Archive limit", 0);
-    fpath2 = orage_resource_file_location(ORAGE_DIR ARCFILE);
+    fpath2 = orage_data_file_location(ORAGE_ARCFILE);
     g_par.archive_file = 
             g_strdup(xfce_rc_read_entry(rc, "Archive file", fpath2));
     g_free(fpath2);
 #endif
-    fpath2 = orage_resource_file_location(ORAGE_DIR APPFILE);
+    fpath2 = orage_data_file_location(ORAGE_APPFILE);
     g_par.orage_file = g_strdup(xfce_rc_read_entry(rc, "Orage file", fpath2));
     g_free(fpath2);
     g_par.sound_application = 

@@ -94,6 +94,12 @@ typedef struct _appt_win
     GtkWidget *CompletedTimezone_button;
     GtkWidget *Availability_label;
     GtkWidget *Availability_cb;
+    GtkWidget *Categories_label;
+    GtkWidget *Categories_hbox;
+    GtkWidget *Categories_entry;
+    GtkWidget *Categories_cb;
+    GtkWidget *Categories_cb_event;
+    GtkWidget *Categories_button;
     GtkWidget *Note;
     GtkWidget *Note_Scrolledwindow;
     GtkWidget *Note_textview;
@@ -182,5 +188,8 @@ typedef struct _appt_win
 } appt_win;
 
 appt_win *create_appt_win(char *action, char *par);
+
+GdkColor *orage_category_list_contains(char *categories);
+void orage_category_get_list();
 
 #endif /* !__APPOINTMENT_H__ */
