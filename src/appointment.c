@@ -722,8 +722,8 @@ static gboolean appWindow_check_and_close(appt_win *apptw)
                 , GTK_STOCK_DIALOG_WARNING
                 , _("The appointment information has been modified.")
                 , _("Do you want to continue?")
-                , GTK_STOCK_YES, GTK_RESPONSE_ACCEPT
                 , GTK_STOCK_NO, GTK_RESPONSE_CANCEL
+                , GTK_STOCK_YES, GTK_RESPONSE_ACCEPT
                 , NULL);
 
         if (result == GTK_RESPONSE_ACCEPT) {
@@ -1145,8 +1145,8 @@ static void delete_xfical_from_appt_win(appt_win *apptw)
             , GTK_STOCK_DIALOG_WARNING
             , _("This appointment will be permanently removed.")
             , _("Do you want to continue?")
-            , GTK_STOCK_YES, GTK_RESPONSE_ACCEPT
             , GTK_STOCK_NO, GTK_RESPONSE_REJECT
+            , GTK_STOCK_YES, GTK_RESPONSE_ACCEPT
             , NULL);
                                  
     if (result == GTK_RESPONSE_ACCEPT) {

@@ -881,8 +881,8 @@ static void delete_appointment(el_win *el)
             , GTK_STOCK_DIALOG_WARNING
             , _("You will permanently remove all\nselected appointments.")
             , _("Do you want to continue?")
-            , GTK_STOCK_YES, GTK_RESPONSE_ACCEPT
             , GTK_STOCK_NO, GTK_RESPONSE_CANCEL
+            , GTK_STOCK_YES, GTK_RESPONSE_ACCEPT
             , NULL);
 
     if (result == GTK_RESPONSE_ACCEPT) {
