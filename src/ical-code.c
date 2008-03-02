@@ -543,7 +543,7 @@ gboolean xfical_set_local_timezone()
             utc_icaltimezone = icaltimezone_get_utc_timezone();
 
     if (!ORAGE_STR_EXISTS(g_par.local_timezone)) {
-        orage_message(150, P_N "empty timezone\n");
+        orage_message(150, P_N "empty timezone");
         g_par.local_timezone = g_strdup("floating");
     }
 
@@ -643,10 +643,10 @@ static gboolean xfical_internal_file_open(icalcomponent **p_ical
     }
     if ((*p_fical = icalset_new_file(file_icalpath)) == NULL) {
         if (test)
-            orage_message(150, P_N "Could not open ical file (%s) %s\n"
+            orage_message(150, P_N "Could not open ical file (%s) %s"
                     , file_icalpath, icalerror_strerror(icalerrno));
         else
-            orage_message(350, P_N "Could not open ical file (%s) %s\n"
+            orage_message(350, P_N "Could not open ical file (%s) %s"
                     , file_icalpath, icalerror_strerror(icalerrno));
         return(FALSE);
     }
@@ -894,6 +894,27 @@ static struct icaltimetype ical_get_current_local_time()
     return(ctime);
 }
 
+static icaltimezone *get_builtin_timezone(gchar *tz_loc)
+{
+     /* This probably is evolution format, 
+      * which has /xxx/xxx/timezone and we should remove the 
+      * extra /xxx/xxx/ from it */
+    char **new_str;
+    icaltimezone *l_icaltimezone = NULL;
+
+    if (tz_loc[0] == '/') {
+        orage_message(-20, P_N "evolution timezone fix %s", tz_loc);
+        new_str = g_strsplit(tz_loc, "/", 4);
+        if (new_str[0] != NULL && new_str[1] != NULL && new_str[2] != NULL
+        &&  new_str[3] != NULL)
+            l_icaltimezone = icaltimezone_get_builtin_timezone(new_str[3]);
+        g_strfreev(new_str);
+    }
+    else
+        l_icaltimezone = icaltimezone_get_builtin_timezone(tz_loc);
+    return(l_icaltimezone);
+}
+
 static struct icaltimetype convert_to_timezone(struct icaltimetype t
         , icalproperty *p)
 {
@@ -910,22 +931,9 @@ static struct icaltimetype convert_to_timezone(struct icaltimetype t
     itime_tz = icalproperty_get_first_parameter(p, ICAL_TZID_PARAMETER);
     if (itime_tz) {
         tz_loc = (char *)icalparameter_get_tzid(itime_tz);
-        if (tz_loc[0] == '/') {
-             /* FIXME: this should be in import and in get data
-              * This probably is evolution format, 
-              * which has /xxx/xxx/timezone and we should remove the 
-              * extra /xxx/xxx/ from it */
-            char **new_str;
-
-            orage_message(-20, P_N "evolution timezone fix %s", tz_loc);
-            new_str = g_strsplit(tz_loc, "/", 4);
-            if (new_str[0] != NULL && new_str[1] != NULL && new_str[2] != NULL
-            &&  new_str[3] != NULL)
-                l_icaltimezone = icaltimezone_get_builtin_timezone(new_str[3]);
-            g_strfreev(new_str);
-        }
-        else
-            l_icaltimezone = icaltimezone_get_builtin_timezone(tz_loc);
+        /* FIXME: could we now call convert_to_zone or is it a problem
+         * if we always move to zone format ? */
+        l_icaltimezone = get_builtin_timezone(tz_loc);
         if (!l_icaltimezone) {
             orage_message(250, P_N "builtin timezone %s not found, conversion failed.", tz_loc);
         }
@@ -986,8 +994,9 @@ static xfical_period get_period(icalcomponent *c)
         p = icalcomponent_get_first_property(c, ICAL_DUE_PROPERTY);
         p2 = icalcomponent_get_first_property(c, ICAL_COMPLETED_PROPERTY);
     }
-    else if (per.ikind == ICAL_VJOURNAL_COMPONENT)
-        p = NULL; /* does not exist for journal */
+    else if (per.ikind == ICAL_VJOURNAL_COMPONENT 
+         ||  per.ikind == ICAL_VTIMEZONE_COMPONENT)
+        p = NULL; /* does not exist for journal and timezone */
     else {
         orage_message(150, P_N "unknown component type (%s)", icalcomponent_get_uid(c));
         p = NULL;
@@ -1030,7 +1039,7 @@ static xfical_period get_period(icalcomponent *c)
     else
         per.ctime = icaltime_null_time();
 
-    return (per);
+    return(per);
 }
 
 /* basically copied from icaltime_compare, which can't be used
@@ -1145,7 +1154,7 @@ static struct icaltimetype convert_to_zone(struct icaltimetype t, gchar *tz)
                 wtime = icaltime_convert_to_zone(t, local_icaltimezone);
         }
         else {
-            l_icaltimezone = icaltimezone_get_builtin_timezone(tz);
+            l_icaltimezone = get_builtin_timezone(tz);
             if (!l_icaltimezone)
                 orage_message(250, P_N "builtin timezone %s not found, conversion failed.", tz);
             else
@@ -2397,6 +2406,7 @@ static xfical_appt *xfical_appt_get_internal(char *ical_uid
                     case ICAL_DTSTAMP_PROPERTY:
                     case ICAL_CREATED_PROPERTY:
                     case ICAL_LASTMODIFIED_PROPERTY:
+                    case ICAL_SEQUENCE_PROPERTY:
                         break;
                     default:
                         orage_message(55, P_N "unknown property %s"
@@ -2620,7 +2630,7 @@ gboolean xfical_appt_mod(char *ical_uid, xfical_appt *app)
          c != 0 && !key_found;
          c = icalcomponent_get_next_component(base, ICAL_ANY_COMPONENT)) {
         uid = (char *)icalcomponent_get_uid(c);
-        if (strcmp(uid, int_uid) == 0) {
+        if (ORAGE_STR_EXISTS(uid) && (strcmp(uid, int_uid) == 0)) {
             if ((p = icalcomponent_get_first_property(c,
                             ICAL_CREATED_PROPERTY)))
                 create_time = icalproperty_get_created(p);
@@ -3787,7 +3797,7 @@ static gboolean add_event(icalcomponent *c)
     if ((uid = (char *)icalcomponent_get_uid(ca)) == NULL) {
         uid = generate_uid();
         icalcomponent_add_property(ca,  icalproperty_new_uid(uid));
-        orage_message(15, "Generated UID %s\n", uid);
+        orage_message(15, "Generated UID %s", uid);
         g_free(uid);
 
     }
@@ -3811,7 +3821,7 @@ static gboolean pre_format(char *file_name_in, char *file_name_out)
 #undef P_N
 #define P_N "pre_format: "
     gchar *text, *tmp, *tmp2, *tmp3;
-    gsize text_len;
+    gsize text_len, i;
     GError *error = NULL;
 
 #ifdef ORAGE_DEBUG
@@ -3824,7 +3834,7 @@ static gboolean pre_format(char *file_name_in, char *file_name_out)
         g_error_free(error);
         return(FALSE);
     }
-    /* Then convert to utf8 if needed */
+    /***** Check utf8 coformtability *****/
     if (!g_utf8_validate(text, -1, NULL)) {
         orage_message(250, P_N "is not in utf8 format. Conversion needed.\n (Use iconv and convert it into UTF-8 and import it again.)\n");
         return(FALSE);
@@ -3836,10 +3846,10 @@ static gboolean pre_format(char *file_name_in, char *file_name_out)
         }*/
     }
 
-    /* 1: change DCREATED to CREATED */
-    for (tmp = g_strrstr(text, "DCREATED:"); 
+    /***** 1: change DCREATED to CREATED *****/
+    for (tmp = g_strstr_len(text, text_len, "DCREATED:"); 
          tmp != NULL;
-         tmp = g_strrstr(text, "DCREATED:"))  {
+         tmp = g_strstr_len(tmp, strlen(tmp), "DCREATED:")) {
         tmp2 = tmp+strlen("DCREATED:yyyymmddThhmmss");
         if (*tmp2 == 'Z') {
             /* it is already in UTC, so just fix the parameter name */
@@ -3852,11 +3862,49 @@ static gboolean pre_format(char *file_name_in, char *file_name_out)
             }
             *(tmp3-1) = 'Z'; /* this is 'bad'...but who cares...it is fast */
         }
-        tmp3 = g_strndup(tmp, tmp2-tmp);
-        orage_message(15, _("... Patched DCREATED to be CREATED (%s)"), tmp3);
-        g_free(tmp3);
+        orage_message(15, _("... Patched DCREATED to be CREATED."));
     }
-    /* write file */
+
+    /***** 2: change absolute timezones into libical format *****/
+    /* At least evolution uses absolute timezones.
+     * We assume format has /xxx/xxx/timezone and we should remove the
+     * extra /xxx/xxx/ from it */
+    for (tmp = g_strstr_len(text, text_len, ";TZID=/"); 
+         tmp != NULL;
+         tmp = g_strstr_len(tmp, strlen(tmp), ";TZID=/")) {
+        /* tmp = original TZID start
+         * tmp2 = end of line 
+         * tmp3 = current search and eventually the real tzid */
+        tmp = tmp+6; /* 6 = skip ";TZID=" */
+        if (!(tmp2 = g_strstr_len(tmp, 100, "\n"))) { /* no end of line */
+            orage_message(150, P_N "timezone patch failed 1. no end-of-line found: %s", tmp);
+            continue;
+        }
+        tmp3 = tmp;
+
+        tmp3++; /* skip '/' */
+        if (!(tmp3 = g_strstr_len(tmp3, tmp2-tmp3, "/"))) { /* no more '/' */
+            orage_message(150, P_N "timezone patch failed 2. no / found: %s", tmp);
+            continue;
+        }
+        tmp3++; /* skip '/' */
+        if (!(tmp3 = g_strstr_len(tmp3, tmp2-tmp3, "/"))) { /* no more '/' */
+            orage_message(150, P_N "timezone patch failed 3. no / found: %s", tmp);
+            continue;
+        }
+
+        /* we found the real tzid since we came here */
+        tmp3++; /* skip '/' */
+        /* move the real tzid (=tmp3) to the beginning (=tmp) */
+        for (; tmp3 < tmp2; tmp3++, tmp++)
+            *tmp = *tmp3;
+        /* fill the end of the line with spaces */
+        for (; tmp < tmp2; tmp++)
+            *tmp = ' ';
+        orage_message(15, _("... Patched timezone to Orage format."));
+    }
+
+    /***** All done: write file *****/
     if (!g_file_set_contents(file_name_out, text, -1, NULL)) {
         orage_message(250, P_N "Could not write ical file (%s)", file_name_out);
         return(FALSE);
@@ -3883,7 +3931,7 @@ gboolean xfical_import_file(char *file_name)
         return(FALSE);
     }
     if ((file_ical = icalset_new_file(ical_file_name)) == NULL) {
-        orage_message(250, P_N "Could not open ical file (%s) %s\n"
+        orage_message(250, P_N "Could not open ical file (%s) %s"
                 , ical_file_name, icalerror_strerror(icalerrno));
         return(FALSE);
     }
@@ -3901,7 +3949,9 @@ gboolean xfical_import_file(char *file_name)
                     cnt2++;
                     add_event(c2);
                 }
-                else
+                /* we ignore TIMEZONE component; Orage only uses internal
+                 * timezones from libical */
+                else if (icalcomponent_isa(c2) != ICAL_VTIMEZONE_COMPONENT)
                     orage_message(140, P_N "unknown component %s %s"
                             , icalcomponent_kind_to_string(
                                     icalcomponent_isa(c2))
@@ -4060,7 +4110,7 @@ static gboolean export_selected(char *file_name, char *uids)
 
         }
         else {
-            orage_message(250, P_N "Unknown uid type %s\n", uid);
+            orage_message(250, P_N "Unknown uid type %s", uid);
         }
         
         if (uid_end != NULL)  /* we have more uids */

@@ -891,12 +891,12 @@ static gboolean fill_appt_from_apptw(xfical_appt *appt, appt_win *apptw)
         g_free(tmp2);
         tmp2 = NULL;
     }
-    if (tmp) {
+    if (ORAGE_STR_EXISTS(tmp)) {
         appt->categories = g_strjoin(",", tmp, tmp2, NULL);
         g_free(tmp);
         g_free(tmp2);
     }
-    else 
+    else
         appt->categories = tmp2;
 
     /* notes */
