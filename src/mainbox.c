@@ -210,6 +210,26 @@ static void mCalendar_day_selected_double_click_cb(GtkCalendar *calendar
         create_el_win(NULL);
 }
 
+void orage_show_events_for_selected_date(void)
+{
+    /* rebuild the info for the selected date */
+    if (!xfical_file_open(TRUE))
+        return;
+    build_mainbox_info();
+    xfical_file_close(TRUE);   
+}
+
+static void mCalendar_day_selected_cb(GtkCalendar *calendar
+        , gpointer user_data)
+{
+#undef P_N
+#define P_N "mCalendar_day_selected_cb: "
+#ifdef ORAGE_DEBUG
+    orage_message(-100, P_N);
+#endif
+    orage_show_events_for_selected_date();
+}
+
 static gboolean upd_calendar(GtkCalendar *calendar)
 {
 #undef P_N
@@ -349,13 +369,13 @@ static void todo_clicked(GtkWidget *widget
     }
 }
 
-static void add_info_row(xfical_appt *appt)
+static void add_info_row(xfical_appt *appt, GtkBox *parentBox, gboolean todo)
 {
 #undef P_N
 #define P_N "add_info_row: "
     GtkWidget *ev, *label;
     CalWin *cal = g_par.xfcal;
-    gchar *tip;
+    gchar *tip, *tmp;
     struct tm *t;
     char      *l_time, *s_time, *e_time, *c_time, *na;
     gint  len;
@@ -363,38 +383,54 @@ static void add_info_row(xfical_appt *appt)
 #ifdef ORAGE_DEBUG
     orage_message(-100, P_N);
 #endif
+    /***** add data into the vbox *****/
     ev = gtk_event_box_new();
-    label = gtk_label_new(appt->title);
+    tmp = g_strdup_printf("  %s", appt->title);
+    label = gtk_label_new(tmp);
+    g_free(tmp);
     gtk_label_set_ellipsize(GTK_LABEL(label), PANGO_ELLIPSIZE_END);
-    t = orage_localtime();
-    l_time = orage_tm_time_to_icaltime(t);
-    if (appt->starttimecur[8] == 'T') /* date+time */
-        len = 15;
-    else /* date only */
-        len = 8;
-    if (strncmp(appt->endtimecur,  l_time, len) < 0) /* gone */
-        gtk_widget_modify_fg(label, GTK_STATE_NORMAL, &cal->mRed);
-    else if (strncmp(appt->starttimecur,  l_time, len) <= 0
-         &&  strncmp(appt->endtimecur,  l_time, len) >= 0)
-        gtk_widget_modify_fg(label, GTK_STATE_NORMAL, &cal->mBlue);
+    gtk_misc_set_alignment(GTK_MISC(label), 0, 0.5);
+    gtk_misc_set_padding(GTK_MISC(label), 5, 0);
     gtk_container_add(GTK_CONTAINER(ev), label);
-    gtk_box_pack_start(GTK_BOX(cal->mInfo_vbox), ev, FALSE, FALSE, 0);
-    na = _("Not defined");
-    s_time = g_strdup(orage_icaltime_to_i18_time(appt->starttimecur));
-    e_time = g_strdup(orage_icaltime_to_i18_time(appt->endtimecur));
-    c_time = g_strdup(appt->completed
-            ? orage_icaltime_to_i18_time(appt->completedtime) : na);
-    tip = g_strdup_printf(_("Title: %s\n Start:\t%s\n Due:\t%s\n Done:\t%s\nNote:\n%s")
-            , appt->title, s_time, e_time, c_time, appt->note);
-    gtk_tooltips_set_tip(cal->Tooltips, ev, tip, NULL);
-    g_free(s_time);
-    g_free(e_time);
-    g_free(c_time);
-    g_free(tip);
+    gtk_box_pack_start(parentBox, ev, FALSE, FALSE, 0);
     g_object_set_data_full(G_OBJECT(ev), "UID", g_strdup(appt->uid), g_free);
     g_signal_connect((gpointer)ev, "button-press-event"
             , G_CALLBACK(todo_clicked), cal);
 
+    /***** set color *****/
+    if (todo) {
+        t = orage_localtime();
+        l_time = orage_tm_time_to_icaltime(t);
+        if (appt->starttimecur[8] == 'T') /* date+time */
+            len = 15;
+        else /* date only */
+            len = 8;
+        if (strncmp(appt->endtimecur,  l_time, len) < 0) /* gone */
+            gtk_widget_modify_fg(label, GTK_STATE_NORMAL, &cal->mRed);
+        else if (strncmp(appt->starttimecur,  l_time, len) <= 0
+             &&  strncmp(appt->endtimecur,  l_time, len) >= 0)
+            gtk_widget_modify_fg(label, GTK_STATE_NORMAL, &cal->mBlue);
+    }
+
+    /***** set hint *****/
+    s_time = g_strdup(orage_icaltime_to_i18_time(appt->starttimecur));
+    e_time = g_strdup(orage_icaltime_to_i18_time(appt->endtimecur));
+    if (todo) {
+        na = _("Never");
+        c_time = g_strdup(appt->completed
+                ? orage_icaltime_to_i18_time(appt->completedtime) : na);
+        tip = g_strdup_printf(_("Title: %s\n Start:\t%s\n Due:\t%s\n Done:\t%s\nNote:\n%s")
+                , appt->title, s_time, e_time, c_time, appt->note);
+        g_free(c_time);
+    }
+    else { /* it is event */
+        tip = g_strdup_printf(_("Title: %s\n Start:\t%s\n End:\t%s\n Note:\n%s")
+                , appt->title, s_time, e_time, appt->note);
+    }
+    gtk_tooltips_set_tip(cal->Tooltips, ev, tip, NULL);
+    g_free(s_time);
+    g_free(e_time);
+    g_free(tip);
 }
 
 static void insert_rows(GList **todo_list, char *a_day, xfical_type ical_type
@@ -416,10 +452,10 @@ static void insert_rows(GList **todo_list, char *a_day, xfical_type ical_type
     }
 }
 
-static gint todo_order(gconstpointer a, gconstpointer b)
+static gint list_order(gconstpointer a, gconstpointer b)
 {
 #undef P_N
-#define P_N "todo_order: "
+#define P_N "list_order: "
     xfical_appt *appt1, *appt2;
 
 #ifdef ORAGE_DEBUG
@@ -431,39 +467,92 @@ static gint todo_order(gconstpointer a, gconstpointer b)
     return(strcmp(appt1->starttimecur, appt2->starttimecur));
 }
 
-static void todo_process(gpointer a, gpointer dummy)
+static void info_process(gpointer a, gpointer pbox)
 {
 #undef P_N
-#define P_N "todo_process: "
-    xfical_appt *appt;
+#define P_N "info_process: "
+    xfical_appt *appt = (xfical_appt *)a;;
+    GtkBox *box = GTK_BOX(pbox);
+    CalWin *cal = g_par.xfcal;
+    gboolean todo;
 
 #ifdef ORAGE_DEBUG
     orage_message(-100, P_N);
 #endif
-    appt = (xfical_appt *)a;
-    add_info_row(appt);
+    if (pbox == cal->mTodo_rows_vbox)
+        todo = TRUE;
+    else
+        todo = FALSE;
+    add_info_row(appt, box, todo);
     xfical_appt_free(appt);
 }
 
-void create_mainbox_info(void)
+void create_mainbox_todo_info(void)
 {
 #undef P_N
-#define P_N "create_mainbox_info: "
+#define P_N "create_mainbox_todo_info: "
     CalWin *cal = g_par.xfcal;
 
 #ifdef ORAGE_DEBUG
     orage_message(-100, P_N);
 #endif
-    cal->mInfo_scrolledWin = gtk_scrolled_window_new(NULL, NULL);
-    gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(cal->mInfo_scrolledWin)
-            , GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);
-    gtk_box_pack_start(GTK_BOX(cal->mVbox), cal->mInfo_scrolledWin
+    cal->mTodo_vbox = gtk_vbox_new(FALSE, 0);
+    gtk_box_pack_start(GTK_BOX(cal->mVbox), cal->mTodo_vbox, FALSE, FALSE, 0);
+    cal->mTodo_label = gtk_label_new(NULL);
+    gtk_label_set_markup(GTK_LABEL(cal->mTodo_label), _("<b>To do:</b>"));
+    gtk_box_pack_start(GTK_BOX(cal->mTodo_vbox), cal->mTodo_label
             , FALSE, FALSE, 0);
-    cal->mInfo_vbox = gtk_vbox_new(FALSE, 0);
+    gtk_misc_set_alignment(GTK_MISC(cal->mTodo_label), 0, 0.5);
+    cal->mTodo_scrolledWin = gtk_scrolled_window_new(NULL, NULL);
+    gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(cal->mTodo_scrolledWin)
+            , GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);
+    gtk_scrolled_window_set_shadow_type(GTK_SCROLLED_WINDOW(
+            cal->mTodo_scrolledWin), GTK_SHADOW_NONE);
+    gtk_box_pack_start(GTK_BOX(cal->mTodo_vbox), cal->mTodo_scrolledWin
+            , TRUE, TRUE, 0);
+    cal->mTodo_rows_vbox = gtk_vbox_new(FALSE, 0);
     gtk_scrolled_window_add_with_viewport(
-            GTK_SCROLLED_WINDOW(cal->mInfo_scrolledWin), cal->mInfo_vbox);
+            GTK_SCROLLED_WINDOW(cal->mTodo_scrolledWin), cal->mTodo_rows_vbox);
 }
 
+void create_mainbox_event_info(void)
+{
+#undef P_N
+#define P_N "create_mainbox_event_info: "
+    CalWin *cal = g_par.xfcal;
+    gchar *tmp;
+
+#ifdef ORAGE_DEBUG
+    orage_message(-100, P_N);
+#endif
+    cal->mEvent_vbox = gtk_vbox_new(FALSE, 0);
+    gtk_box_pack_start(GTK_BOX(cal->mVbox), cal->mEvent_vbox, FALSE, FALSE, 0);
+    cal->mEvent_label = gtk_label_new(NULL);
+    tmp = g_strdup_printf(_("<b>Events for %s:</b>")
+            , orage_cal_to_i18_date(GTK_CALENDAR(cal->mCalendar)));
+    gtk_label_set_markup(GTK_LABEL(cal->mEvent_label), tmp);
+    g_free(tmp);
+
+    gtk_box_pack_start(GTK_BOX(cal->mEvent_vbox), cal->mEvent_label
+            , FALSE, FALSE, 0);
+    gtk_misc_set_alignment(GTK_MISC(cal->mEvent_label), 0, 0.5);
+    cal->mEvent_scrolledWin = gtk_scrolled_window_new(NULL, NULL);
+    gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(cal->mEvent_scrolledWin)
+            , GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);
+    gtk_scrolled_window_set_shadow_type(GTK_SCROLLED_WINDOW(
+            cal->mEvent_scrolledWin), GTK_SHADOW_NONE);
+    gtk_box_pack_start(GTK_BOX(cal->mEvent_vbox), cal->mEvent_scrolledWin
+            , TRUE, TRUE, 0);
+    cal->mEvent_rows_vbox = gtk_vbox_new(FALSE, 0);
+    gtk_scrolled_window_add_with_viewport(
+            GTK_SCROLLED_WINDOW(cal->mEvent_scrolledWin), cal->mEvent_rows_vbox);
+}
+
+/**********************************************************************
+ * This routine is called from ical-code xfical_alarm_build_list_internal
+ * and ical files are already open at that time. So make sure ical files
+ * are opened before and closed after this call.
+ **********************************************************************/
 void build_mainbox_info(void)
 {
 #undef P_N
@@ -471,50 +560,74 @@ void build_mainbox_info(void)
     CalWin *cal = g_par.xfcal;
     char      *s_time;
     char      a_day[9];  /* yyyymmdd */
-    struct tm *t;
+    struct tm *t, tt;
     xfical_type ical_type;
     gchar file_type[8];
     gint i;
     GList *todo_list=NULL;
+    GList *event_list=NULL;
 
 #ifdef ORAGE_DEBUG
     orage_message(-100, P_N);
 #endif
 
-    t = orage_localtime();
-    s_time = orage_tm_time_to_icaltime(t);
-    strncpy(a_day, s_time, 8);
-    a_day[8] = '\0';
+    if (g_par.show_todos) {
+        t = orage_localtime();
+        s_time = orage_tm_time_to_icaltime(t);
+        strncpy(a_day, s_time, 8);
+        a_day[8] = '\0';
 
-    ical_type = XFICAL_TYPE_TODO;
-    /* first search base orage file */
-    /* this routine is called always from libical build alarm list internal
-     * and ical files are already open at that time */
-    /*
-    if (!xfical_file_open(TRUE))
-        return;
-        */
-    strcpy(file_type, "O00.");
-    insert_rows(&todo_list, a_day, ical_type, file_type);
-    /* then process all foreign files */
-    for (i = 0; i < g_par.foreign_count; i++) {
-        g_sprintf(file_type, "F%02d.", i);
+        ical_type = XFICAL_TYPE_TODO;
+        /* first search base orage file */
+        strcpy(file_type, "O00.");
         insert_rows(&todo_list, a_day, ical_type, file_type);
+        /* then process all foreign files */
+        for (i = 0; i < g_par.foreign_count; i++) {
+            g_sprintf(file_type, "F%02d.", i);
+            insert_rows(&todo_list, a_day, ical_type, file_type);
+        }
     }
-    /* caller takes care of this
-    xfical_file_close(TRUE);
-    */
+    if (g_par.show_events) {
+        gtk_calendar_get_date(GTK_CALENDAR(cal->mCalendar)
+                , &(tt.tm_year), &(tt.tm_mon), &(tt.tm_mday));
+        tt.tm_year -= 1900;
+        s_time = orage_tm_time_to_icaltime(&tt);
+        strncpy(a_day, s_time, 8);
+        a_day[8] = '\0';
+    
+        ical_type = XFICAL_TYPE_EVENT;
+        strcpy(file_type, "O00.");
+        insert_rows(&event_list, a_day, ical_type, file_type);
+        for (i = 0; i < g_par.foreign_count; i++) {
+            g_sprintf(file_type, "F%02d.", i);
+            insert_rows(&event_list, a_day, ical_type, file_type);
+        }
+    }
     if (todo_list) {
-        gtk_widget_destroy(cal->mInfo_scrolledWin);
-        create_mainbox_info();
-        todo_list = g_list_sort(todo_list, todo_order);
-        g_list_foreach(todo_list, (GFunc)todo_process, NULL);
+        gtk_widget_destroy(cal->mTodo_vbox);
+        create_mainbox_todo_info();
+        todo_list = g_list_sort(todo_list, list_order);
+        g_list_foreach(todo_list, (GFunc)info_process
+                , cal->mTodo_rows_vbox);
         g_list_free(todo_list);
         todo_list = NULL;
-        gtk_widget_show_all(cal->mInfo_scrolledWin);
+        gtk_widget_show_all(cal->mTodo_vbox);
     }
     else {
-        gtk_widget_hide_all(cal->mInfo_scrolledWin);
+        gtk_widget_hide_all(cal->mTodo_vbox);
+    }
+    if (event_list) {
+        gtk_widget_destroy(cal->mEvent_vbox);
+        create_mainbox_event_info();
+        event_list = g_list_sort(event_list, list_order);
+        g_list_foreach(event_list, (GFunc)info_process
+                , cal->mEvent_rows_vbox);
+        g_list_free(event_list);
+        event_list = NULL;
+        gtk_widget_show_all(cal->mEvent_vbox);
+    }
+    else {
+        gtk_widget_hide_all(cal->mEvent_vbox);
     }
 }
 
@@ -569,16 +682,16 @@ void build_mainWin()
             | GTK_CALENDAR_SHOW_WEEK_NUMBERS);
     gtk_widget_show(cal->mCalendar);
 
-    /* Build the Info box */
-    create_mainbox_info();
-    /*
-    gtk_widget_show_all(cal->mInfo_scrolledWin);
-    */
+    /* Build the Info boxes */
+    create_mainbox_todo_info();
+    create_mainbox_event_info();
 
     /* Signals */
-
     g_signal_connect((gpointer) cal->mCalendar, "day_selected_double_click"
             , G_CALLBACK(mCalendar_day_selected_double_click_cb)
+            , (gpointer) cal);
+    g_signal_connect((gpointer) cal->mCalendar, "day_selected"
+            , G_CALLBACK(mCalendar_day_selected_cb)
             , (gpointer) cal);
 
     g_signal_connect((gpointer) cal->mCalendar, "month-changed"

@@ -40,6 +40,8 @@ typedef struct _parameters
     gboolean select_always_today;
     gboolean show_menu;
     gboolean show_borders;
+    gboolean show_todos;
+    gboolean show_events;
     gboolean show_pager;
     gboolean show_systray;
     gboolean show_taskbar;

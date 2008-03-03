@@ -50,8 +50,14 @@ typedef struct _CalWin
 
     GtkWidget *mCalendar;
 
-    GtkWidget *mInfo_scrolledWin;
-    GtkWidget *mInfo_vbox;
+    GtkWidget *mTodo_vbox;
+    GtkWidget *mTodo_label;
+    GtkWidget *mTodo_scrolledWin;
+    GtkWidget *mTodo_rows_vbox;
+    GtkWidget *mEvent_vbox;
+    GtkWidget *mEvent_label;
+    GtkWidget *mEvent_scrolledWin;
+    GtkWidget *mEvent_rows_vbox;
 
     GdkColor mRed, mBlue;
 } CalWin;

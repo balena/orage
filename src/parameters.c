@@ -82,6 +82,8 @@ typedef struct _Itf
     GtkWidget *show_taskbar_checkbutton;
     GtkWidget *show_pager_checkbutton;
     GtkWidget *show_systray_checkbutton;
+    GtkWidget *show_todos_checkbutton;
+    GtkWidget *show_events_checkbutton;
     /* Start visibity show or hide */
     GtkWidget *visibility_frame;
     GSList    *visibility_radiobutton_group;
@@ -180,6 +182,40 @@ static void menu_changed(GtkWidget *dialog, gpointer user_data)
     g_par.show_menu = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(
             itf->show_menu_checkbutton));
     set_menu();
+}
+
+static void set_todos()
+{
+    if (g_par.show_todos)
+        gtk_widget_show_all(g_par.xfcal->mTodo_vbox);
+    else
+        gtk_widget_hide_all(g_par.xfcal->mTodo_vbox);
+}
+
+static void todos_changed(GtkWidget *dialog, gpointer user_data)
+{
+    Itf *itf = (Itf *)user_data;
+
+    g_par.show_todos = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(
+            itf->show_todos_checkbutton));
+    set_todos();
+}
+
+static void set_events()
+{
+    if (g_par.show_events)
+        gtk_widget_show_all(g_par.xfcal->mEvent_vbox);
+    else
+        gtk_widget_hide_all(g_par.xfcal->mEvent_vbox);
+}
+
+static void events_changed(GtkWidget *dialog, gpointer user_data)
+{
+    Itf *itf = (Itf *)user_data;
+
+    g_par.show_events = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(
+            itf->show_events_checkbutton));
+    set_events();
 }
 
 static void set_stick()
@@ -481,29 +517,43 @@ static void create_parameter_dialog_display_tab(Itf *dialog)
     gtk_box_pack_start(GTK_BOX(dialog->display_vbox), dialog->mode_frame
             , FALSE, FALSE, 5);
 
-    dialog->show_borders_checkbutton = 
-            gtk_check_button_new_with_mnemonic(_("Show borders"));
+    dialog->show_borders_checkbutton = gtk_check_button_new_with_mnemonic(
+            _("Show borders"));
     gtk_box_pack_start(GTK_BOX(vbox)
             , dialog->show_borders_checkbutton, FALSE, FALSE, 0);
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
             dialog->show_borders_checkbutton), g_par.show_borders);
 
-    dialog->show_menu_checkbutton = 
-            gtk_check_button_new_with_mnemonic(_("Show menu"));
+    dialog->show_menu_checkbutton = gtk_check_button_new_with_mnemonic(
+            _("Show menu"));
     gtk_box_pack_start(GTK_BOX(vbox)
             , dialog->show_menu_checkbutton, FALSE, FALSE, 0);
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
             dialog->show_menu_checkbutton), g_par.show_menu);
 
-    dialog->set_stick_checkbutton = 
-            gtk_check_button_new_with_mnemonic(_("Set sticked"));
+    dialog->show_todos_checkbutton = gtk_check_button_new_with_mnemonic(
+            _("Show todo list"));
+    gtk_box_pack_start(GTK_BOX(vbox)
+            , dialog->show_todos_checkbutton, FALSE, FALSE, 0);
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
+            dialog->show_todos_checkbutton), g_par.show_todos);
+
+    dialog->show_events_checkbutton = gtk_check_button_new_with_mnemonic(
+            _("Show event list"));
+    gtk_box_pack_start(GTK_BOX(vbox)
+            , dialog->show_events_checkbutton, FALSE, FALSE, 0);
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
+            dialog->show_events_checkbutton), g_par.show_events);
+
+    dialog->set_stick_checkbutton = gtk_check_button_new_with_mnemonic(
+            _("Set sticked"));
     gtk_box_pack_start(GTK_BOX(vbox)
             , dialog->set_stick_checkbutton, FALSE, FALSE, 0);
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
             dialog->set_stick_checkbutton), g_par.set_stick);
 
-    dialog->set_ontop_checkbutton = 
-            gtk_check_button_new_with_mnemonic(_("Set on top"));
+    dialog->set_ontop_checkbutton = gtk_check_button_new_with_mnemonic(
+            _("Set on top"));
     gtk_box_pack_start(GTK_BOX(vbox)
             , dialog->set_ontop_checkbutton, FALSE, FALSE, 0);
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
@@ -513,6 +563,10 @@ static void create_parameter_dialog_display_tab(Itf *dialog)
             , G_CALLBACK(borders_changed), dialog);
     g_signal_connect(G_OBJECT(dialog->show_menu_checkbutton), "toggled"
             , G_CALLBACK(menu_changed), dialog);
+    g_signal_connect(G_OBJECT(dialog->show_todos_checkbutton), "toggled"
+            , G_CALLBACK(todos_changed), dialog);
+    g_signal_connect(G_OBJECT(dialog->show_events_checkbutton), "toggled"
+            , G_CALLBACK(events_changed), dialog);
     g_signal_connect(G_OBJECT(dialog->set_stick_checkbutton), "toggled"
             , G_CALLBACK(stick_changed), dialog);
     g_signal_connect(G_OBJECT(dialog->set_ontop_checkbutton), "toggled"
@@ -805,6 +859,8 @@ void write_parameters()
     xfce_rc_write_bool_entry(rc, "Select Always Today"
             , g_par.select_always_today);
     xfce_rc_write_bool_entry(rc, "Show borders", g_par.show_borders);
+    xfce_rc_write_bool_entry(rc, "Show todos", g_par.show_todos);
+    xfce_rc_write_bool_entry(rc, "Show events", g_par.show_events);
     xfce_rc_write_bool_entry(rc, "Show in pager", g_par.show_pager);
     xfce_rc_write_bool_entry(rc, "Show in systray", g_par.show_systray);
     xfce_rc_write_bool_entry(rc, "Show in taskbar", g_par.show_taskbar);
@@ -880,6 +936,8 @@ void read_parameters(void)
     g_par.select_always_today = 
             xfce_rc_read_bool_entry(rc, "Select Always Today", FALSE);
     g_par.show_borders = xfce_rc_read_bool_entry(rc, "Show borders", TRUE);
+    g_par.show_todos = xfce_rc_read_bool_entry(rc, "Show todos", TRUE);
+    g_par.show_events = xfce_rc_read_bool_entry(rc, "Show events", TRUE);
     g_par.show_pager = xfce_rc_read_bool_entry(rc, "Show in pager", TRUE);
     g_par.show_systray = xfce_rc_read_bool_entry(rc, "Show in systray", TRUE);
     g_par.show_taskbar = xfce_rc_read_bool_entry(rc, "Show in taskbar", TRUE);
