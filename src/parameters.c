@@ -28,6 +28,10 @@
 #include <string.h>
 #endif
 
+#include <stdio.h>
+#include <locale.h>
+#include <langinfo.h>
+
 #include <glib.h>
 #include <glib/gprintf.h>
 #include <gtk/gtk.h>
@@ -97,9 +101,13 @@ typedef struct _Itf
     /* select_always_today */
     GtkWidget *always_today_frame;
     GtkWidget *always_today_checkbutton;
-    /* ical week start day (0 = Monday, 1 = Tuesday,... 6 = Sunday) */
-    GtkWidget *ical_weekstartday_frame;
-    GtkWidget *ical_weekstartday_combobox;
+
+/* code removed. relying in get_first_weekday_from_locale now
+/ * ical week start day (0 = Monday, 1 = Tuesday,... 6 = Sunday) * /
+GtkWidget *ical_weekstartday_frame;
+GtkWidget *ical_weekstartday_combobox;
+*/
+
     /* icon size */
     GtkWidget *icon_size_frame;
     GtkWidget *icon_size_x_spin;
@@ -116,6 +124,30 @@ typedef struct _Itf
     GtkWidget *dialog_action_area1;
 } Itf;
 
+/* Return the first day of the week, where 0=monday, 6=sunday.
+ *     Borrowed from GTK+:s Calendar Widget, but modified
+ *     to return 0..6 mon..sun, which is what libical uses */
+int get_first_weekday_from_locale()
+{
+    union { unsigned int word; char *string; } langinfo;
+    int week_1stday = 0;
+    int first_weekday = 1;
+    unsigned int week_origin;
+
+    setlocale(LC_TIME, "");
+    langinfo.string = nl_langinfo(_NL_TIME_FIRST_WEEKDAY);
+    first_weekday = langinfo.string[0];
+    langinfo.string = nl_langinfo(_NL_TIME_WEEK_1STDAY);
+    week_origin = langinfo.word;
+    if (week_origin == 19971130) /* Sunday */
+        week_1stday = 0;
+    else if (week_origin == 19971201) /* Monday */
+        week_1stday = 1;
+    else
+        orage_message(150, "get_first_weekday: unknown value of _NL_TIME_WEEK_1STDAY.");
+
+    return((week_1stday + first_weekday - 2 + 7) % 7);
+}
 
 static void dialog_response(GtkWidget *dialog, gint response_id
         , gpointer user_data)
@@ -382,6 +414,7 @@ static void always_today_changed(GtkWidget *dialog, gpointer user_data)
             GTK_TOGGLE_BUTTON(itf->always_today_checkbutton));
 }
 
+/* code removed. relying in get_first_weekday_from_locale now
 static void ical_weekstartday_changed(GtkWidget *dialog, gpointer user_data)
 {
     Itf *itf = (Itf *)user_data;
@@ -389,6 +422,7 @@ static void ical_weekstartday_changed(GtkWidget *dialog, gpointer user_data)
     g_par.ical_weekstartday = gtk_combo_box_get_active(
             GTK_COMBO_BOX(itf->ical_weekstartday_combobox));
 }
+*/
 
 static void set_icon_size()
 {
@@ -654,9 +688,11 @@ static void create_parameter_dialog_display_tab(Itf *dialog)
 static void create_parameter_dialog_extra_setup_tab(Itf *dialog)
 {
     GtkWidget *hbox, *vbox, *label, *event;
+    /* code removed. relying in get_first_weekday_from_locale now
     gchar *weekday_array[7] = {
             _("Monday"), _("Tuesday"), _("Wednesday"), _("Thursday")
           , _("Friday"), _("Saturday"), _("Sunday")};
+     */
 
     dialog->extra_vbox = gtk_vbox_new(FALSE, 0);
     dialog->extra_tab = 
@@ -684,7 +720,8 @@ static void create_parameter_dialog_extra_setup_tab(Itf *dialog)
     g_signal_connect(G_OBJECT(dialog->always_today_checkbutton), "toggled"
             , G_CALLBACK(always_today_changed), dialog);
 
-    /***** ical week start day (0 = Monday, 1 = Tuesday,... 6 = Sunday) *****/
+    /* code removed. relying in get_first_weekday_from_locale now
+    / ***** ical week start day (0 = Monday, 1 = Tuesday,... 6 = Sunday) ***** /
     hbox = gtk_hbox_new(FALSE, 0);
     dialog->ical_weekstartday_frame = xfce_create_framebox_with_content(
             _("Ical week start day"), hbox);
@@ -693,7 +730,7 @@ static void create_parameter_dialog_extra_setup_tab(Itf *dialog)
 
     dialog->ical_weekstartday_combobox = orage_create_combo_box_with_content(
             weekday_array, 7);
-    event =  gtk_event_box_new(); /* only needed for tooltips */
+    event =  gtk_event_box_new(); / * only needed for tooltips * /
     gtk_container_add(GTK_CONTAINER(event), dialog->ical_weekstartday_combobox);
     gtk_box_pack_start(GTK_BOX(hbox)
             , event, FALSE, FALSE, 5);
@@ -704,6 +741,7 @@ static void create_parameter_dialog_extra_setup_tab(Itf *dialog)
             , NULL);
     g_signal_connect(G_OBJECT(dialog->ical_weekstartday_combobox), "changed"
             , G_CALLBACK(ical_weekstartday_changed), dialog);
+    */
 
     /***** tray icon size  (0 = use static icon) *****/
     vbox = gtk_vbox_new(FALSE, 0);
@@ -870,7 +908,10 @@ void write_parameters()
     xfce_rc_write_bool_entry(rc, "Set ontop", g_par.set_ontop);
     xfce_rc_write_int_entry(rc, "Dynamic icon X", g_par.icon_size_x);
     xfce_rc_write_int_entry(rc, "Dynamic icon Y", g_par.icon_size_y);
-    xfce_rc_write_int_entry(rc, "Ical week start day", g_par.ical_weekstartday);
+    /* we write this with X so that we do not read it back unless
+     * it is manually changed. It should need changes really seldom. */
+    xfce_rc_write_int_entry(rc, "XIcal week start day"
+            , g_par.ical_weekstartday);
     xfce_rc_write_bool_entry(rc, "Show days", g_par.show_days);
     xfce_rc_write_int_entry(rc, "Foreign file count", g_par.foreign_count);
     /* add what we have and remove the rest */
@@ -948,8 +989,9 @@ void read_parameters(void)
     g_par.set_ontop = xfce_rc_read_bool_entry(rc, "Set ontop", FALSE);
     g_par.icon_size_x = xfce_rc_read_int_entry(rc, "Dynamic icon X", 42);
     g_par.icon_size_y = xfce_rc_read_int_entry(rc, "Dynamic icon Y", 32);
-    g_par.ical_weekstartday = 
-            xfce_rc_read_int_entry(rc, "Ical week start day", 0); /* monday */
+    /* 0 = monday, ..., 6 = sunday */
+    g_par.ical_weekstartday = xfce_rc_read_int_entry(rc, "Ical week start day"
+            , get_first_weekday_from_locale());
     g_par.show_days = xfce_rc_read_bool_entry(rc, "Show days", FALSE);
     g_par.foreign_count = 
             xfce_rc_read_int_entry(rc, "Foreign file count", 0);

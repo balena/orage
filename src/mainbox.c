@@ -234,21 +234,11 @@ static gboolean upd_calendar(GtkCalendar *calendar)
 {
 #undef P_N
 #define P_N "upd_calendar: "
-    static guint year=-1, month=-1;
-    guint year_n, month_n, day_n;
 
 #ifdef ORAGE_DEBUG
     orage_message(-100, P_N);
 #endif
-    /* we only need to do this if it is really a new month. We may get
-     * many of these while calender is changing months and it is enough
-     * to show only the last one, which is visible */
-    gtk_calendar_get_date(calendar, &year_n, &month_n, &day_n);
-    if (month != month_n || year != year_n) { /* need really do it */
-        orage_mark_appointments();
-        year = year_n;
-        month = month_n;
-    }
+    orage_mark_appointments();
     return(FALSE); /* we do this only once */
 }
 
@@ -256,14 +246,22 @@ void mCalendar_month_changed_cb(GtkCalendar *calendar, gpointer user_data)
 {
 #undef P_N
 #define P_N "mCalendar_month_changed_cb: "
+    static guint timer=0;
 #ifdef ORAGE_DEBUG
     orage_message(-100, P_N);
 #endif
     /* orage_mark_appointments is rather heavy (=slow), so doing
      * it here is not a good idea. We can't keep up with the autorepeat
-     * speed if we do the whole thing here. bug 2080 proofs it. so let's
-     * throw it to background and do it later */
-    g_timeout_add(500, (GtkFunction)upd_calendar, calendar);
+     * speed if we do the whole thing here. Bug 2080 prooves it. So let's
+     * throw it to background and do it later. We stop previously 
+     * running updates since this new one will overwrite them anyway.
+     * Let's clear still the view to fix bug 3913 (only needed 
+     * if there are changes in the calendar) */
+    if (timer)
+        g_source_remove(timer);
+    if (calendar->num_marked_dates) /* undocumented, internal field; ugly */
+        gtk_calendar_clear_marks(calendar);
+    timer = g_timeout_add(500, (GtkFunction)upd_calendar, calendar);
 }
 
 static void build_menu(void)
