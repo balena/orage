@@ -475,9 +475,17 @@ gint orage_days_between(struct tm *t1, struct tm *t2)
 void orage_select_date(GtkCalendar *cal
     , guint year, guint month, guint day)
 {
-    gtk_calendar_select_day(cal, 0); /* needed to avoid illegal day/month */
-    gtk_calendar_select_month(cal, month, year);
-    gtk_calendar_select_day(cal, day);
+    guint cur_year, cur_month, cur_mday;
+
+    gtk_calendar_get_date(cal, &cur_year, &cur_month, &cur_mday);
+
+    if (cur_year == year && cur_month == month)
+        gtk_calendar_select_day(cal, day);
+    else {
+        gtk_calendar_select_day(cal, 0); /* needed to avoid illegal day/month */
+        gtk_calendar_select_month(cal, month, year);
+        gtk_calendar_select_day(cal, day);
+    }
 }
 
 void orage_select_today(GtkCalendar *cal)

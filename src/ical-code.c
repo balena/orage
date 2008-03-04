@@ -3040,7 +3040,7 @@ static void xfical_alarm_build_list_internal(gboolean first_list_today)
     /* order list */
     g_par.alarm_list = g_list_sort(g_par.alarm_list, alarm_order);
     setup_orage_alarm_clock(); /* keep reminders upto date */
-    build_mainbox_info();      /* refresh main calendar window todo list */
+    build_mainbox_info();      /* refresh main calendar window lists */
     /* moved to reminder in setup_orage_alarm_clock
     store_persistent_alarms(); / * keep track of alarms when orage is down * /
     */

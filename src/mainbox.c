@@ -210,26 +210,6 @@ static void mCalendar_day_selected_double_click_cb(GtkCalendar *calendar
         create_el_win(NULL);
 }
 
-void orage_show_events_for_selected_date(void)
-{
-    /* rebuild the info for the selected date */
-    if (!xfical_file_open(TRUE))
-        return;
-    build_mainbox_info();
-    xfical_file_close(TRUE);   
-}
-
-static void mCalendar_day_selected_cb(GtkCalendar *calendar
-        , gpointer user_data)
-{
-#undef P_N
-#define P_N "mCalendar_day_selected_cb: "
-#ifdef ORAGE_DEBUG
-    orage_message(-100, P_N);
-#endif
-    orage_show_events_for_selected_date();
-}
-
 static gboolean upd_calendar(GtkCalendar *calendar)
 {
 #undef P_N
@@ -485,7 +465,7 @@ static void info_process(gpointer a, gpointer pbox)
     xfical_appt_free(appt);
 }
 
-void create_mainbox_todo_info(void)
+static void create_mainbox_todo_info(void)
 {
 #undef P_N
 #define P_N "create_mainbox_todo_info: "
@@ -513,7 +493,7 @@ void create_mainbox_todo_info(void)
             GTK_SCROLLED_WINDOW(cal->mTodo_scrolledWin), cal->mTodo_rows_vbox);
 }
 
-void create_mainbox_event_info(void)
+static void create_mainbox_event_info(void)
 {
 #undef P_N
 #define P_N "create_mainbox_event_info: "
@@ -546,29 +526,22 @@ void create_mainbox_event_info(void)
             GTK_SCROLLED_WINDOW(cal->mEvent_scrolledWin), cal->mEvent_rows_vbox);
 }
 
-/**********************************************************************
- * This routine is called from ical-code xfical_alarm_build_list_internal
- * and ical files are already open at that time. So make sure ical files
- * are opened before and closed after this call.
- **********************************************************************/
-void build_mainbox_info(void)
+static void build_mainbox_todo_info(void)
 {
 #undef P_N
-#define P_N "build_mainbox_info: "
+#define P_N "build_mainbox_todo_info: "
     CalWin *cal = g_par.xfcal;
     char      *s_time;
     char      a_day[9];  /* yyyymmdd */
-    struct tm *t, tt;
+    struct tm *t;
     xfical_type ical_type;
     gchar file_type[8];
     gint i;
     GList *todo_list=NULL;
-    GList *event_list=NULL;
 
 #ifdef ORAGE_DEBUG
     orage_message(-100, P_N);
 #endif
-
     if (g_par.show_todos) {
         t = orage_localtime();
         s_time = orage_tm_time_to_icaltime(t);
@@ -585,22 +558,6 @@ void build_mainbox_info(void)
             insert_rows(&todo_list, a_day, ical_type, file_type);
         }
     }
-    if (g_par.show_events) {
-        gtk_calendar_get_date(GTK_CALENDAR(cal->mCalendar)
-                , &(tt.tm_year), &(tt.tm_mon), &(tt.tm_mday));
-        tt.tm_year -= 1900;
-        s_time = orage_tm_time_to_icaltime(&tt);
-        strncpy(a_day, s_time, 8);
-        a_day[8] = '\0';
-    
-        ical_type = XFICAL_TYPE_EVENT;
-        strcpy(file_type, "O00.");
-        insert_rows(&event_list, a_day, ical_type, file_type);
-        for (i = 0; i < g_par.foreign_count; i++) {
-            g_sprintf(file_type, "F%02d.", i);
-            insert_rows(&event_list, a_day, ical_type, file_type);
-        }
-    }
     if (todo_list) {
         gtk_widget_destroy(cal->mTodo_vbox);
         create_mainbox_todo_info();
@@ -613,6 +570,42 @@ void build_mainbox_info(void)
     }
     else {
         gtk_widget_hide_all(cal->mTodo_vbox);
+    }
+}
+
+static void build_mainbox_event_info(void)
+{
+#undef P_N
+#define P_N "build_mainbox_event_info: "
+    CalWin *cal = g_par.xfcal;
+    char      *s_time;
+    char      a_day[9];  /* yyyymmdd */
+    struct tm tt= {0,0,0,0,0,0,0,0,0};
+    xfical_type ical_type;
+    gchar file_type[8];
+    gint i;
+    GList *event_list=NULL;
+
+#ifdef ORAGE_DEBUG
+    orage_message(-100, P_N);
+#endif
+    if (g_par.show_events) {
+        gtk_calendar_get_date(GTK_CALENDAR(cal->mCalendar)
+                , (unsigned int *)&tt.tm_year
+                , (unsigned int *)&tt.tm_mon
+                , (unsigned int *)&tt.tm_mday);
+        tt.tm_year -= 1900;
+        s_time = orage_tm_time_to_icaltime(&tt);
+        strncpy(a_day, s_time, 8);
+        a_day[8] = '\0';
+    
+        ical_type = XFICAL_TYPE_EVENT;
+        strcpy(file_type, "O00.");
+        insert_rows(&event_list, a_day, ical_type, file_type);
+        for (i = 0; i < g_par.foreign_count; i++) {
+            g_sprintf(file_type, "F%02d.", i);
+            insert_rows(&event_list, a_day, ical_type, file_type);
+        }
     }
     if (event_list) {
         gtk_widget_destroy(cal->mEvent_vbox);
@@ -627,6 +620,39 @@ void build_mainbox_info(void)
     else {
         gtk_widget_hide_all(cal->mEvent_vbox);
     }
+}
+
+static void mCalendar_day_selected_cb(GtkCalendar *calendar
+        , gpointer user_data)
+{
+#undef P_N
+#define P_N "mCalendar_day_selected_cb: "
+#ifdef ORAGE_DEBUG
+    orage_message(-100, P_N);
+#endif
+    /* rebuild the info for the selected date */
+    if (!xfical_file_open(TRUE))
+        return;
+    build_mainbox_event_info();
+    xfical_file_close(TRUE);   
+}
+
+/**********************************************************************
+ * This routine is called from ical-code xfical_alarm_build_list_internal
+ * and ical files are already open at that time. So make sure ical files
+ * are opened before and closed after this call.
+ **********************************************************************/
+void build_mainbox_info(void)
+{
+#undef P_N
+#define P_N "build_mainbox_info: "
+
+#ifdef ORAGE_DEBUG
+    orage_message(-100, P_N);
+#endif
+
+    build_mainbox_todo_info();
+    build_mainbox_event_info();
 }
 
 void build_mainWin()
