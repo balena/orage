@@ -632,6 +632,7 @@ static void refresh_foreign_files(intf_win *intf_w, gboolean first)
         for (i = 0; i < g_par.foreign_count; i++) {
             hbox = gtk_hbox_new(FALSE, 0);
             label = gtk_label_new(g_par.foreign_data[i].file);
+            gtk_misc_set_alignment(GTK_MISC(label), 0, 0.5);
             gtk_box_pack_start(GTK_BOX(hbox), label, TRUE, TRUE, 5);
             if (g_par.foreign_data[i].read_only)
                 label = gtk_label_new(_("READ ONLY"));
@@ -1282,7 +1283,7 @@ static void create_foreign_file_tab(intf_win *intf_w)
     gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 5);
 
     gtk_tooltips_set_tip(intf_w->tooltips, intf_w->for_new_read_only
-            , _("Set this if you want to make sure that this file is never modified by Orage."), NULL);
+            , _("Set this if you want to make sure that this file is never modified by Orage.\nNote that modifying foreign files may make them incompatible with the original tool, where they came from!"), NULL);
 
     /***** Current files *****/
     refresh_foreign_files(intf_w, TRUE);
