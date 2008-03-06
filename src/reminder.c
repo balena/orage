@@ -57,7 +57,6 @@
 #include "tray_icon.h"
 #include "parameters.h"
 
-#define ORAGE_PERSISTENT_ALARMS "orage_persistent_alarms.txt"
 
 static void create_notify_reminder(alarm_struct *alarm);
 static void create_reminders(alarm_struct *alarm);
@@ -106,116 +105,73 @@ static void alarm_free_memory(alarm_struct *alarm)
         alarm->repeat_cnt = 0;
 }
 
-static int orage_persistent_file_open(gboolean write)
-{
-    int p_file;
-    char *file_name;
+/************************************************************/
+/* persistent alarms start                                  */
+/************************************************************/
 
-    file_name = orage_data_file_location(ORAGE_PERSISTENT_ALARMS);
-    if (!file_name) {
-        g_warning("orage_persistent_file_open: Persistent alarms filename build failed, alarms not saved (%s)\n", file_name);
-        return(-1);
-    }
-    if (write)
-        p_file = g_open(file_name, O_WRONLY|O_CREAT|O_APPEND|O_TRUNC
-                , S_IRUSR|S_IWUSR);
-    else
-        p_file = g_open(file_name, O_RDONLY|O_CREAT, S_IRUSR|S_IWUSR);
-    g_free(file_name);
-    if (p_file == -1)
-        g_warning("orage_persistent_file_open: Persistent alarms file open failed, alarms not saved (%s)\n", file_name);
-    return(p_file);
-}
-
-static gboolean alarm_read_next_value(int p_file, char *buf)
+static OrageRc *orage_persistent_file_open(gboolean read_only)
 {
 #undef P_N
-#define P_N "alarm_read_next_value: "
-    int len;
+#define P_N "orage_persistent_file_open: "
+    gchar *fpath;
+    OrageRc *orc;
 
 #ifdef ORAGE_DEBUG
     g_print(P_N "\n");
 #endif
-    if (read(p_file, buf, 3) == 0)
-        return(FALSE);
-    buf[3] = '\0';
-    len = atoi(buf);
-    for (read(p_file, buf, 1); buf[0] != '='; read(p_file, buf, 1))
-        ; /* skip until =, which starts the value */
-    read(p_file, buf, len);
-    buf[len] = '\0';
-    lseek(p_file, 1, SEEK_CUR); /* skip new line */
-    return(TRUE);
+    fpath = orage_data_file_location(ORAGE_PERSISTENT_ALARMS_FILE);
+    if (!read_only)  /* we need to empty it before each write */
+        g_remove(fpath);
+    if ((orc = (OrageRc *)orage_rc_file_open(fpath, read_only)) == NULL) {
+        orage_message(150, "orage_persistent_file_open: persistent alarms file open failed.");
+    }
+    g_free(fpath);
+
+    return(orc);
 }
 
-static gboolean alarm_read_boolean(char *buf)
-{
-    if (!strncmp(buf, "TRUE", 4))
-        return(TRUE);
-    else
-        return(FALSE);
-}
-
-static alarm_struct *alarm_read_next_alarm(int p_file, char *buf)
+static alarm_struct *alarm_read_next_alarm(OrageRc *orc, gchar *time_now)
 {
 #undef P_N
 #define P_N "alarm_read_next_alarm: "
     alarm_struct *new_alarm;
+    gchar *alarm_time;
 
 #ifdef ORAGE_DEBUG
     g_print(P_N "\n");
 #endif
 
-    /* We trust here that the order is the same than what we used in writing */
-    if (!alarm_read_next_value(p_file, buf))
+    /* let's first check if the time has gone so that we need to
+     * send that delayed alarm or can we just ignore it since it is
+     * still in the future */
+    alarm_time = orage_rc_get_str(orc, "ALARM_TIME", "0000");
+    if (strcmp(time_now, alarm_time) < 0) { /* alarm has not happened, ignore */
+        g_free(alarm_time);
         return(NULL);
+    }
+
+    /* this alarm has gone, so read it and show it */
     new_alarm = g_new0(alarm_struct, 1);
+    new_alarm->alarm_time = alarm_time;
 
-    new_alarm->alarm_time = strdup(buf);
-
-    alarm_read_next_value(p_file, buf);
-    new_alarm->uid = strdup(buf);
-
-    alarm_read_next_value(p_file, buf);
-    new_alarm->title = strdup(buf);
-
-    alarm_read_next_value(p_file, buf);
-    new_alarm->description = strdup(buf);
-
-    alarm_read_next_value(p_file, buf);
+    new_alarm->title = orage_rc_get_str(orc, "TITLE", NULL);
+    new_alarm->description = orage_rc_get_str(orc, "DESCRIPTION", NULL);
     new_alarm->persistent = TRUE; /* this must be */
-
-    alarm_read_next_value(p_file, buf);
-    new_alarm->display_orage = alarm_read_boolean(buf);
+    new_alarm->display_orage = orage_rc_get_bool(orc, "DISPLAY_ORAGE", FALSE);
 
 #ifdef HAVE_NOTIFY
-    alarm_read_next_value(p_file, buf);
-    new_alarm->display_notify = alarm_read_boolean(buf);
-
-    alarm_read_next_value(p_file, buf);
-    new_alarm->notify_refresh = alarm_read_boolean(buf);
-
-    alarm_read_next_value(p_file, buf);
-    new_alarm->notify_timeout = atoi(buf);
+    new_alarm->display_notify = orage_rc_get_bool(orc, "DISPLAY_NOTIFY", FALSE);
+    new_alarm->notify_refresh = orage_rc_get_bool(orc, "NOTIFY_REFRESH", FALSE);
+    new_alarm->notify_timeout = orage_rc_get_int(orc, "NOTIFY_TIMEOUT", FALSE);
 #endif
 
-    alarm_read_next_value(p_file, buf);
-    new_alarm->audio = alarm_read_boolean(buf);
+    new_alarm->audio = orage_rc_get_bool(orc, "AUDIO", FALSE);
+    new_alarm->sound = orage_rc_get_str(orc, "SOUND", NULL);
+    new_alarm->repeat_cnt = orage_rc_get_int(orc, "REPEAT_CNT", 0);
+    new_alarm->repeat_delay = orage_rc_get_int(orc, "REPEAT_DELAY", 2);
+    new_alarm->procedure = orage_rc_get_bool(orc, "PROCEDURE", FALSE);
+    new_alarm->cmd = orage_rc_get_str(orc, "CMD", NULL);
 
-    alarm_read_next_value(p_file, buf);
-    new_alarm->sound = strdup(buf);
-
-    alarm_read_next_value(p_file, buf);
-    new_alarm->repeat_cnt = atoi(buf);
-
-    alarm_read_next_value(p_file, buf);
-    new_alarm->repeat_delay = atoi(buf);
-
-    alarm_read_next_value(p_file, buf);
-    new_alarm->procedure = alarm_read_boolean(buf);
-
-    alarm_read_next_value(p_file, buf);
-    new_alarm->cmd = strdup(buf);
     return(new_alarm);
 }
 
@@ -223,37 +179,39 @@ void alarm_read()
 {
 #undef P_N
 #define P_N "alarm_read: "
-    int p_file;
-    char buf[1000];
     alarm_struct *new_alarm;
+    OrageRc *orc;
     struct tm *t;
     gchar *time_now;
+    gchar **alarm_groups;
+    gint i;
 
 #ifdef ORAGE_DEBUG
     g_print(P_N "\n");
 #endif
 
-    if ((p_file = orage_persistent_file_open(FALSE)) == -1)
-        return;
     t = orage_localtime();
     time_now = orage_tm_time_to_icaltime(t);
-    for (new_alarm = alarm_read_next_alarm(p_file, buf);
-            new_alarm;
-            new_alarm = alarm_read_next_alarm(p_file, buf)) {
-        if (strcmp(time_now, new_alarm->alarm_time) > 0) {
+    orc = orage_persistent_file_open(TRUE);
+    alarm_groups = orage_rc_get_groups(orc);
+    /* alarm_groups[0] is special [NULL] entry always */
+    for (i=1; alarm_groups[i] != NULL; i++) {
+        orage_rc_set_group(orc, alarm_groups[i]);
+        if ((new_alarm = alarm_read_next_alarm(orc, time_now)) != NULL) {
+            new_alarm->uid =  alarm_groups[i];
             create_reminders(new_alarm);
+            alarm_free(new_alarm, NULL);
         }
-        alarm_free(new_alarm, NULL);
     }
-    close(p_file);
+    orage_rc_file_close(orc);
 }
 
-static void alarm_store(gpointer galarm, gpointer gfile)
+static void alarm_store(gpointer galarm, gpointer par)
 {
 #undef P_N
 #define P_N "alarm_store: "
     alarm_struct *alarm = (alarm_struct *)galarm;
-    int file = (int)gfile;
+    OrageRc *orc = (OrageRc *)par;
     char buf[1000], *s_boolean, s_num[20];
 
 #ifdef ORAGE_DEBUG
@@ -262,89 +220,46 @@ static void alarm_store(gpointer galarm, gpointer gfile)
     if (!alarm->persistent)
         return; /* only store persistent alarms */
 
-    g_sprintf(buf, "%03dALARM_TIME=%s\n"
-            , strlen(alarm->alarm_time), alarm->alarm_time);
-    write(file, buf, strlen(buf));
+    orage_rc_set_group(par, alarm->uid);
 
-    g_snprintf(buf, 999, "%03dUID=%s\n"
-            , strlen(alarm->uid), alarm->uid);
-    write(file, buf, strlen(buf));
-
-    g_snprintf(buf, 999, "%03dTITLE=%s\n"
-            , strlen(alarm->title), alarm->title);
-    write(file, buf, strlen(buf));
-
-    g_snprintf(buf, 999, "%03dDESCRIPTION=%s\n"
-            , strlen(alarm->description), alarm->description);
-    write(file, buf, strlen(buf));
-
-    /* this is TRUE since we are here */
-    g_sprintf(buf, "%03dPERSISTENT=%s\n", strlen("TRUE"), "TRUE");
-    write(file, buf, strlen(buf));
-
-    s_boolean = alarm->display_orage ? "TRUE" : "FALSE";
-    g_sprintf(buf, "%03dDISPLAY_ORAGE=%s\n", strlen(s_boolean), s_boolean);
-    write(file, buf, strlen(buf));
+    orage_rc_put_str(orc, "ALARM_TIME", alarm->alarm_time);
+    orage_rc_put_str(orc, "TITLE", alarm->title);
+    orage_rc_put_str(orc, "DESCRIPTION", alarm->description);
+    orage_rc_put_bool(orc, "DISPLAY_ORAGE", alarm->display_orage);
 
 #ifdef HAVE_NOTIFY
-    s_boolean = alarm->display_notify ? "TRUE" : "FALSE";
-    g_sprintf(buf, "%03dDISPLAY_NOTIFY=%s\n", strlen(s_boolean), s_boolean);
-    write(file, buf, strlen(buf));
-
-    s_boolean = alarm->notify_refresh ? "TRUE" : "FALSE";
-    g_sprintf(buf, "%03dNOTIFY_REFRESH=%s\n", strlen(s_boolean), s_boolean);
-    write(file, buf, strlen(buf));
-
-    g_sprintf(s_num, "%d", alarm->notify_timeout);
-    g_sprintf(buf, "%03dNOTIFY_TIMEOUT=%s\n", strlen(s_num), s_num);
-    write(file, buf, strlen(buf));
+    orage_rc_put_bool(orc, "DISPLAY_NOTIFY", alarm->display_notify);
+    /* FIXME: is NOTIFY_REFRESH really needed here? I doubt that.
+     * Probably should be set to TRUE ?? */
+    orage_rc_put_bool(orc, "NOTIFY_REFRESH", alarm->notify_refresh);
+    orage_rc_put_int(orc, "NOTIFY_TIMEOUT", alarm->notify_timeout);
 #endif
 
-    s_boolean = alarm->audio ? "TRUE" : "FALSE";
-    g_sprintf(buf, "%03dAUDIO=%s\n", strlen(s_boolean), s_boolean);
-    write(file, buf, strlen(buf));
-
-    if (alarm->audio)
-        g_snprintf(buf, 999, "%03dSOUND=%s\n"
-                , strlen(alarm->sound), alarm->sound);
-    else
-        g_sprintf(buf, "000SOUND=\n");
-    write(file, buf, strlen(buf));
-
-    g_sprintf(s_num, "%d", alarm->repeat_cnt);
-    g_sprintf(buf, "%03dREPEAT_CNT=%s\n", strlen(s_num), s_num);
-    write(file, buf, strlen(buf));
-
-    g_sprintf(s_num, "%d", alarm->repeat_delay);
-    g_sprintf(buf, "%03dREPEAT_DELAY=%s\n", strlen(s_num), s_num);
-    write(file, buf, strlen(buf));
-
-    s_boolean = alarm->procedure ? "TRUE" : "FALSE";
-    g_sprintf(buf, "%03dPROCEDURE=%s\n", strlen(s_boolean), s_boolean);
-    write(file, buf, strlen(buf));
-
-    if (alarm->procedure)
-        g_snprintf(buf, 999, "%03dCMD=%s\n"
-                , strlen(alarm->cmd), alarm->cmd);
-    else
-        g_sprintf(buf, "000CMD=\n");
-    write(file, buf, strlen(buf));
+    orage_rc_put_bool(orc, "AUDIO", alarm->audio);
+    orage_rc_put_str(orc, "SOUND", alarm->sound);
+    orage_rc_put_int(orc, "REPEAT_CNT", alarm->repeat_cnt);
+    orage_rc_put_int(orc, "REPEAT_DELAY", alarm->repeat_delay);
+    orage_rc_put_bool(orc, "PROCEDURE", alarm->procedure);
+    orage_rc_put_str(orc, "CMD", alarm->cmd);
 }
 
 static void store_persistent_alarms()
 {
 #undef P_N
 #define P_N "store_persistent_alarms: "
-    int p_file;
+    OrageRc *orc;
 
 #ifdef ORAGE_DEBUG
     g_print(P_N "\n");
 #endif
-    if ((p_file = orage_persistent_file_open(TRUE)) == -1)
-        return;
-    g_list_foreach(g_par.alarm_list, alarm_store, (gpointer)p_file);
-    close(p_file);
+    orc = orage_persistent_file_open(FALSE);
+    g_list_foreach(g_par.alarm_list, alarm_store, (gpointer)orc);
+    orage_rc_file_close(orc);
 }
+
+/************************************************************/
+/* persistent alarms end                                    */
+/************************************************************/
 
 #ifdef HAVE_NOTIFY
 static void notify_action_open(NotifyNotification *n, const char *action

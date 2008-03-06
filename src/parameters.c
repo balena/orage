@@ -38,7 +38,6 @@
 #include <gdk/gdk.h>
 
 #include <libxfcegui4/libxfcegui4.h>
-#include <libxfce4util/libxfce4util.h>
 
 #include "functions.h"
 #include "tray_icon.h"
@@ -867,146 +866,135 @@ Itf *create_parameter_dialog()
     return(dialog);
 }
 
-void write_parameters()
+OrageRc *orage_parameters_file_open(gboolean read_only)
 {
     gchar *fpath;
-    XfceRc *rc;
+    OrageRc *orc;
+
+    fpath = orage_config_file_location(ORAGE_PAR_FILE);
+    if ((orc = (OrageRc *)orage_rc_file_open(fpath, read_only)) == NULL) {
+        orage_message(150, "orage_category_file_open: Parameter file open failed.");
+    }
+    g_free(fpath);
+
+    return(orc);
+}
+
+void write_parameters()
+{
+    OrageRc *orc;
     gint i;
     gchar f_par[50];
 
-    fpath = xfce_resource_save_location(XFCE_RESOURCE_CONFIG
-            , ORAGE_DIR ORAGE_PARFILE, TRUE);
-    if ((rc = xfce_rc_simple_open(fpath, FALSE)) == NULL) {
-        g_warning("Unable to open RC file.");
-        return;
-    }
-    xfce_rc_write_entry(rc, "Timezone", g_par.local_timezone);
+    orc = orage_parameters_file_open(FALSE);
+
+    orage_rc_put_str(orc, "Timezone", g_par.local_timezone);
 #ifdef HAVE_ARCHIVE
-    xfce_rc_write_int_entry(rc, "Archive limit", g_par.archive_limit);
-    xfce_rc_write_entry(rc, "Archive file", g_par.archive_file);
+    orage_rc_put_int(orc, "Archive limit", g_par.archive_limit);
+    orage_rc_put_str(orc, "Archive file", g_par.archive_file);
 #endif
-    xfce_rc_write_entry(rc, "Orage file", g_par.orage_file);
-    xfce_rc_write_entry(rc, "Sound application", g_par.sound_application);
+    orage_rc_put_str(orc, "Orage file", g_par.orage_file);
+    orage_rc_put_str(orc, "Sound application", g_par.sound_application);
     gtk_window_get_position(GTK_WINDOW(g_par.xfcal->mWindow)
             , &g_par.pos_x, &g_par.pos_y);
-    xfce_rc_write_int_entry(rc, "Main window X", g_par.pos_x);
-    xfce_rc_write_int_entry(rc, "Main window Y", g_par.pos_y);
-    xfce_rc_write_int_entry(rc, "Eventlist window X", g_par.el_size_x);
-    xfce_rc_write_int_entry(rc, "Eventlist window Y", g_par.el_size_y);
-    xfce_rc_write_bool_entry(rc, "Show Main Window Menu", g_par.show_menu);
-    xfce_rc_write_bool_entry(rc, "Select Always Today"
+    orage_rc_put_int(orc, "Main window X", g_par.pos_x);
+    orage_rc_put_int(orc, "Main window Y", g_par.pos_y);
+    orage_rc_put_int(orc, "Eventlist window X", g_par.el_size_x);
+    orage_rc_put_int(orc, "Eventlist window Y", g_par.el_size_y);
+    orage_rc_put_bool(orc, "Show Main Window Menu", g_par.show_menu);
+    orage_rc_put_bool(orc, "Select Always Today"
             , g_par.select_always_today);
-    xfce_rc_write_bool_entry(rc, "Show borders", g_par.show_borders);
-    xfce_rc_write_bool_entry(rc, "Show todos", g_par.show_todos);
-    xfce_rc_write_bool_entry(rc, "Show events", g_par.show_events);
-    xfce_rc_write_bool_entry(rc, "Show in pager", g_par.show_pager);
-    xfce_rc_write_bool_entry(rc, "Show in systray", g_par.show_systray);
-    xfce_rc_write_bool_entry(rc, "Show in taskbar", g_par.show_taskbar);
-    xfce_rc_write_bool_entry(rc, "Start visible", g_par.start_visible);
-    xfce_rc_write_bool_entry(rc, "Start minimized", g_par.start_minimized);
-    xfce_rc_write_bool_entry(rc, "Set sticked", g_par.set_stick);
-    xfce_rc_write_bool_entry(rc, "Set ontop", g_par.set_ontop);
-    xfce_rc_write_int_entry(rc, "Dynamic icon X", g_par.icon_size_x);
-    xfce_rc_write_int_entry(rc, "Dynamic icon Y", g_par.icon_size_y);
+    orage_rc_put_bool(orc, "Show borders", g_par.show_borders);
+    orage_rc_put_bool(orc, "Show todos", g_par.show_todos);
+    orage_rc_put_bool(orc, "Show events", g_par.show_events);
+    orage_rc_put_bool(orc, "Show in pager", g_par.show_pager);
+    orage_rc_put_bool(orc, "Show in systray", g_par.show_systray);
+    orage_rc_put_bool(orc, "Show in taskbar", g_par.show_taskbar);
+    orage_rc_put_bool(orc, "Start visible", g_par.start_visible);
+    orage_rc_put_bool(orc, "Start minimized", g_par.start_minimized);
+    orage_rc_put_bool(orc, "Set sticked", g_par.set_stick);
+    orage_rc_put_bool(orc, "Set ontop", g_par.set_ontop);
+    orage_rc_put_int(orc, "Dynamic icon X", g_par.icon_size_x);
+    orage_rc_put_int(orc, "Dynamic icon Y", g_par.icon_size_y);
     /* we write this with X so that we do not read it back unless
      * it is manually changed. It should need changes really seldom. */
-    xfce_rc_write_int_entry(rc, "XIcal week start day"
+    orage_rc_put_int(orc, "XIcal week start day"
             , g_par.ical_weekstartday);
-    xfce_rc_write_bool_entry(rc, "Show days", g_par.show_days);
-    xfce_rc_write_int_entry(rc, "Foreign file count", g_par.foreign_count);
+    orage_rc_put_bool(orc, "Show days", g_par.show_days);
+    orage_rc_put_int(orc, "Foreign file count", g_par.foreign_count);
     /* add what we have and remove the rest */
     for (i = 0; i < g_par.foreign_count;  i++) {
         g_sprintf(f_par, "Foreign file %02d name", i);
-        xfce_rc_write_entry(rc, f_par, g_par.foreign_data[i].file);
+        orage_rc_put_str(orc, f_par, g_par.foreign_data[i].file);
         g_sprintf(f_par, "Foreign file %02d read-only", i);
-        xfce_rc_write_bool_entry(rc, f_par, g_par.foreign_data[i].read_only);
+        orage_rc_put_bool(orc, f_par, g_par.foreign_data[i].read_only);
     }
     for (i = g_par.foreign_count; i < 10;  i++) {
         g_sprintf(f_par, "Foreign file %02d name", i);
-        if (!xfce_rc_has_entry(rc, f_par))
+        if (!orage_rc_exists_item(orc, f_par))
             break; /* it is in order, so we know that the rest are missing */
-        xfce_rc_delete_entry(rc, f_par, TRUE);
+        orage_rc_del_item(orc, f_par);
         g_sprintf(f_par, "Foreign file %02d read-only", i);
-        xfce_rc_delete_entry(rc, f_par, TRUE);
+        orage_rc_del_item(orc, f_par);
     }
-    xfce_rc_write_int_entry(rc, "Logging level", g_par.log_level);
+    orage_rc_put_int(orc, "Logging level", g_par.log_level);
 
-    g_free(fpath);
-    xfce_rc_close(rc);
+    orage_rc_file_close(orc);
 }
 
 void read_parameters(void)
 {
-    gchar *fpath, *fpath2;
-    XfceRc *rc;
+    gchar *fpath;
+    OrageRc *orc;
     gint i;
     gchar f_par[100];
 
-    fpath = xfce_resource_save_location(XFCE_RESOURCE_CONFIG
-            , ORAGE_DIR ORAGE_PARFILE, TRUE);
+    orc = orage_parameters_file_open(TRUE);
 
-    if ((rc = xfce_rc_simple_open(fpath, TRUE)) == NULL) {
-        g_warning("Unable to open (read) RC file.");
-        /* let's try to build it */
-        if ((rc = xfce_rc_simple_open(fpath, FALSE)) == NULL) {
-            /* still failed, can't do more */
-            g_warning("Unable to open (write) RC file.");
-            return;
-        }
-    }
-    g_par.local_timezone = 
-            g_strdup(xfce_rc_read_entry(rc, "Timezone", "floating"));
+    g_par.local_timezone = orage_rc_get_str(orc, "Timezone", "floating");
 #ifdef HAVE_ARCHIVE
-    g_par.archive_limit = xfce_rc_read_int_entry(rc, "Archive limit", 0);
-    fpath2 = orage_data_file_location(ORAGE_ARCFILE);
-    g_par.archive_file = 
-            g_strdup(xfce_rc_read_entry(rc, "Archive file", fpath2));
-    g_free(fpath2);
+    g_par.archive_limit = orage_rc_get_int(orc, "Archive limit", 0);
+    fpath = orage_data_file_location(ORAGE_ARC_FILE);
+    g_par.archive_file = orage_rc_get_str(orc, "Archive file", fpath);
+    g_free(fpath);
 #endif
-    fpath2 = orage_data_file_location(ORAGE_APPFILE);
-    g_par.orage_file = g_strdup(xfce_rc_read_entry(rc, "Orage file", fpath2));
-    g_free(fpath2);
-    g_par.sound_application = 
-            g_strdup(xfce_rc_read_entry(rc, "Sound application", "play"));
-    g_par.pos_x = xfce_rc_read_int_entry(rc, "Main window X", 0);
-    g_par.pos_y = xfce_rc_read_int_entry(rc, "Main window Y", 0);
-    g_par.el_size_x = xfce_rc_read_int_entry(rc, "Eventlist window X", 500);
-    g_par.el_size_y = xfce_rc_read_int_entry(rc, "Eventlist window Y", 350);
-    g_par.show_menu = 
-            xfce_rc_read_bool_entry(rc, "Show Main Window Menu", TRUE);
+    fpath = orage_data_file_location(ORAGE_APP_FILE);
+    g_par.orage_file = orage_rc_get_str(orc, "Orage file", fpath);
+    g_free(fpath);
+    g_par.sound_application=orage_rc_get_str(orc, "Sound application", "play");
+    g_par.pos_x = orage_rc_get_int(orc, "Main window X", 0);
+    g_par.pos_y = orage_rc_get_int(orc, "Main window Y", 0);
+    g_par.el_size_x = orage_rc_get_int(orc, "Eventlist window X", 500);
+    g_par.el_size_y = orage_rc_get_int(orc, "Eventlist window Y", 350);
+    g_par.show_menu = orage_rc_get_bool(orc, "Show Main Window Menu", TRUE);
     g_par.select_always_today = 
-            xfce_rc_read_bool_entry(rc, "Select Always Today", FALSE);
-    g_par.show_borders = xfce_rc_read_bool_entry(rc, "Show borders", TRUE);
-    g_par.show_todos = xfce_rc_read_bool_entry(rc, "Show todos", TRUE);
-    g_par.show_events = xfce_rc_read_bool_entry(rc, "Show events", TRUE);
-    g_par.show_pager = xfce_rc_read_bool_entry(rc, "Show in pager", TRUE);
-    g_par.show_systray = xfce_rc_read_bool_entry(rc, "Show in systray", TRUE);
-    g_par.show_taskbar = xfce_rc_read_bool_entry(rc, "Show in taskbar", TRUE);
-    g_par.start_visible = xfce_rc_read_bool_entry(rc, "Start visible", TRUE);
-    g_par.start_minimized = 
-            xfce_rc_read_bool_entry(rc, "Start minimized", FALSE);
-    g_par.set_stick = xfce_rc_read_bool_entry(rc, "Set sticked", TRUE);
-    g_par.set_ontop = xfce_rc_read_bool_entry(rc, "Set ontop", FALSE);
-    g_par.icon_size_x = xfce_rc_read_int_entry(rc, "Dynamic icon X", 42);
-    g_par.icon_size_y = xfce_rc_read_int_entry(rc, "Dynamic icon Y", 32);
+            orage_rc_get_bool(orc, "Select Always Today", FALSE);
+    g_par.show_borders = orage_rc_get_bool(orc, "Show borders", TRUE);
+    g_par.show_todos = orage_rc_get_bool(orc, "Show todos", TRUE);
+    g_par.show_events = orage_rc_get_bool(orc, "Show events", TRUE);
+    g_par.show_pager = orage_rc_get_bool(orc, "Show in pager", TRUE);
+    g_par.show_systray = orage_rc_get_bool(orc, "Show in systray", TRUE);
+    g_par.show_taskbar = orage_rc_get_bool(orc, "Show in taskbar", TRUE);
+    g_par.start_visible = orage_rc_get_bool(orc, "Start visible", TRUE);
+    g_par.start_minimized = orage_rc_get_bool(orc, "Start minimized", FALSE);
+    g_par.set_stick = orage_rc_get_bool(orc, "Set sticked", TRUE);
+    g_par.set_ontop = orage_rc_get_bool(orc, "Set ontop", FALSE);
+    g_par.icon_size_x = orage_rc_get_int(orc, "Dynamic icon X", 42);
+    g_par.icon_size_y = orage_rc_get_int(orc, "Dynamic icon Y", 32);
     /* 0 = monday, ..., 6 = sunday */
-    g_par.ical_weekstartday = xfce_rc_read_int_entry(rc, "Ical week start day"
+    g_par.ical_weekstartday = orage_rc_get_int(orc, "Ical week start day"
             , get_first_weekday_from_locale());
-    g_par.show_days = xfce_rc_read_bool_entry(rc, "Show days", FALSE);
-    g_par.foreign_count = 
-            xfce_rc_read_int_entry(rc, "Foreign file count", 0);
+    g_par.show_days = orage_rc_get_bool(orc, "Show days", FALSE);
+    g_par.foreign_count = orage_rc_get_int(orc, "Foreign file count", 0);
     for (i = 0; i < g_par.foreign_count; i++) {
         g_sprintf(f_par, "Foreign file %02d name", i);
-        g_par.foreign_data[i].file = 
-                g_strdup(xfce_rc_read_entry(rc, f_par, NULL));
+        g_par.foreign_data[i].file = orage_rc_get_str(orc, f_par, NULL);
         g_sprintf(f_par, "Foreign file %02d read-only", i);
-        g_par.foreign_data[i].read_only = 
-                xfce_rc_read_bool_entry(rc, f_par, TRUE);
+        g_par.foreign_data[i].read_only = orage_rc_get_bool(orc, f_par, TRUE);
     }
-    g_par.log_level = xfce_rc_read_int_entry(rc, "Logging level", 0);
+    g_par.log_level = orage_rc_get_int(orc, "Logging level", 0);
 
-    g_free(fpath);
-    xfce_rc_close(rc);
+    orage_rc_file_close(orc);
 }
 
 void show_parameters()

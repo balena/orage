@@ -323,7 +323,7 @@ static void orage_file_open_button_clicked(GtkButton *button
 
     rcfile = orage_data_file_location(NULL);
     f_chooser = orage_file_chooser(intf_w->main_window, TRUE
-            , g_par.orage_file, rcfile, ORAGE_APPFILE);
+            , g_par.orage_file, rcfile, ORAGE_APP_FILE);
     g_free(rcfile);
 
     if (gtk_dialog_run(GTK_DIALOG(f_chooser)) == GTK_RESPONSE_ACCEPT) {
@@ -350,7 +350,7 @@ static void archive_file_open_button_clicked(GtkButton *button
 
     rcfile = orage_data_file_location(NULL);
     f_chooser = orage_file_chooser(intf_w->main_window, TRUE
-            , g_par.archive_file, rcfile, ORAGE_ARCFILE);
+            , g_par.archive_file, rcfile, ORAGE_ARC_FILE);
     g_free(rcfile);
 
     if (gtk_dialog_run(GTK_DIALOG(f_chooser)) == GTK_RESPONSE_ACCEPT) {

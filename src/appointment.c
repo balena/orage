@@ -47,7 +47,6 @@
 #include <glib/gstdio.h>
 
 #include <libxfcegui4/libxfcegui4.h>
-#include <libxfce4util/libxfce4util.h>
 
 #include "functions.h"
 #include "mainbox.h"
@@ -1437,39 +1436,21 @@ static xfical_appt *fill_appt_window_get_appt(appt_win *apptw
 }
 
 /************************************************************/
-/* categories start. this will go to functions.c when ready */
+/* categories start.                                        */
 /************************************************************/
 
-#define ORAGE_CATEGORIES "orage_categories.txt"
-#define ORAGE_COLOR_FORMAT "%uR %uG %uB"
-
-XfceRc *orage_category_file_open(gboolean read_only)
+static OrageRc *orage_category_file_open(gboolean read_only)
 {
     gchar *fpath;
-    XfceRc *rc;
+    OrageRc *orc;
 
-    fpath = orage_data_file_location(ORAGE_CATEGORIES);
-    if (!fpath) {
-        g_warning("orage_category_file_open: category filename build failed (%s)\n", fpath);
-        return(NULL);
+    fpath = orage_data_file_location(ORAGE_CATEGORIES_FILE);
+    if ((orc = (OrageRc *)orage_rc_file_open(fpath, read_only)) == NULL) {
+        orage_message(150, "orage_category_file_open: category file open failed.");
     }
-    if ((rc = xfce_rc_simple_open(fpath, read_only)) == NULL) {
-        g_warning("Unable to open RC file.");
-        /* let's try to build it if we opened in read mode */
-        if (read_only && (rc = xfce_rc_simple_open(fpath, FALSE)) == NULL) {
-            /* still failed, can't do more */
-            g_warning("Unable to open (write) RC file.");
-            return(NULL);
-        }
-    }
-
     g_free(fpath);
-    return(rc);
-}
 
-void orage_category_file_close(XfceRc *rc)
-{
-    xfce_rc_close(rc);
+    return(orc);
 }
 
 typedef struct _orage_category
@@ -1501,7 +1482,7 @@ GdkColor *orage_category_list_contains(char *categories)
     return(NULL);
 }
 
-void orage_category_free(gpointer gcat, gpointer dummy)
+static void orage_category_free(gpointer gcat, gpointer dummy)
 {
     orage_category_struct *cat = (orage_category_struct *)gcat;
 
@@ -1518,7 +1499,7 @@ void orage_category_free_list()
 
 void orage_category_get_list()
 {
-    XfceRc *rc;
+    OrageRc *orc;
     gchar **cat_groups, *color;
     gint i;
     orage_category_struct *cat;
@@ -1527,34 +1508,35 @@ void orage_category_get_list()
     if (orage_category_list != NULL)
         orage_category_free_list();
     pic1_cmap = gdk_colormap_get_system();
-    rc = orage_category_file_open(TRUE);
-    cat_groups = xfce_rc_get_groups(rc);
+    orc = orage_category_file_open(TRUE);
+    cat_groups = orage_rc_get_groups(orc);
     for (i=1; cat_groups[i] != NULL; i++) {
-        xfce_rc_set_group(rc, cat_groups[i]);
-        color = (char *)xfce_rc_read_entry(rc, "Color", NULL);
+        orage_rc_set_group(orc, cat_groups[i]);
+        color = orage_rc_get_str(orc, "Color", NULL);
         if (color) {
-            cat= g_new(orage_category_struct, 1);
+            cat = g_new(orage_category_struct, 1);
             cat->category = g_strdup(cat_groups[i]);
             sscanf(color, ORAGE_COLOR_FORMAT, &(cat->color.red)
                     , &(cat->color.green), &(cat->color.blue));
             gdk_colormap_alloc_color(pic1_cmap, &cat->color, FALSE, TRUE);
             orage_category_list = g_list_prepend(orage_category_list, cat);
+            g_free(color);
         }
     }
     g_strfreev(cat_groups);
-    orage_category_file_close(rc);
+    orage_rc_file_close(orc);
 }
 
 gboolean category_fill_cb(GtkComboBox *cb, char *select)
 {
-    XfceRc *rc;
+    OrageRc *orc;
     gchar **cat_gourps;
     gint i;
     gboolean found=FALSE;
 
-    rc = orage_category_file_open(TRUE);
-    cat_gourps = xfce_rc_get_groups(rc);
-    /* cat_gourps[0] is special [NULL] entry always */
+    orc = orage_category_file_open(TRUE);
+    cat_gourps = orage_rc_get_groups(orc);
+    /* cat_groups[0] is special [NULL] entry always */
     gtk_combo_box_append_text(cb, _("Not set"));
     gtk_combo_box_set_active(cb, 0);
     for (i=1; cat_gourps[i] != NULL; i++) {
@@ -1565,7 +1547,7 @@ gboolean category_fill_cb(GtkComboBox *cb, char *select)
         }
     }
     g_strfreev(cat_gourps);
-    orage_category_file_close(rc);
+    orage_rc_file_close(orc);
     return(found);
 }
 
@@ -1614,7 +1596,7 @@ void fill_category_data(appt_win *apptw, xfical_appt *appt)
 
 void orage_category_write_entry(gchar *category, GdkColor *color)
 {
-    XfceRc *rc;
+    OrageRc *orc;
     char *color_str;
 
     if (!ORAGE_STR_EXISTS(category)) {
@@ -1623,24 +1605,24 @@ void orage_category_write_entry(gchar *category, GdkColor *color)
     }
     color_str = g_strdup_printf(ORAGE_COLOR_FORMAT
             , color->red, color->green, color->blue);
-    rc = orage_category_file_open(FALSE);
-    xfce_rc_set_group(rc, category);
-    xfce_rc_write_entry(rc, "Color", color_str);
+    orc = orage_category_file_open(FALSE);
+    orage_rc_set_group(orc, category);
+    orage_rc_put_str(orc, "Color", color_str);
     g_free(color_str);
-    orage_category_file_close(rc);
+    orage_rc_file_close(orc);
 }
 
 static void orage_category_remove_entry(gchar *category)
 {
-    XfceRc *rc;
+    OrageRc *orc;
 
     if (!ORAGE_STR_EXISTS(category)) {
         orage_message(50, "orage_category_write_entry: empty category. Not removed");
         return;
     }
-    rc = orage_category_file_open(FALSE);
-    xfce_rc_delete_group(rc, category, FALSE);
-    orage_category_file_close(rc);
+    orc = orage_category_file_open(FALSE);
+    orage_rc_del_group(orc, category);
+    orage_rc_file_close(orc);
 }
 
 static void close_cat_window(gpointer user_data)
