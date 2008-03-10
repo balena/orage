@@ -404,10 +404,22 @@ static void on_button_press_event_cb(GtkWidget *widget
     day_win *dw = (day_win *)user_data;
     gchar *uid;
 
-    if (event->type==GDK_2BUTTON_PRESS) {
+    if (event->type == GDK_2BUTTON_PRESS) {
         uid = g_object_get_data(G_OBJECT(widget), "UID");
         do_appt_win("UPDATE", uid, dw);
     }
+}
+
+static void on_arrow_left_press_event_cb(GtkWidget *widget
+        , GdkEventButton *event, gpointer *user_data)
+{
+    changeSelectedDate((day_win *)user_data, -1);
+}
+
+static void on_arrow_right_press_event_cb(GtkWidget *widget
+        , GdkEventButton *event, gpointer *user_data)
+{
+    changeSelectedDate((day_win *)user_data, 1);
 }
 
 static void add_row(day_win *dw, xfical_appt *appt, char *a_day, gint days)
@@ -764,12 +776,30 @@ static void fill_hour(day_win *dw, gint col, gint row, char *text)
         gtk_widget_modify_bg(ev, GTK_STATE_NORMAL, &dw->bg1);
     gtk_widget_set_size_request(ev, dw->hour_req.width
             , dw->StartDate_button_req.height);
-    if (text)
-        gtk_table_attach(GTK_TABLE(dw->dtable), ev, col, col+1, row, row+1
-             , (GTK_FILL), (0), 0, 0);
-    else  /* special, needed for header table full day events */
-        gtk_table_attach(GTK_TABLE(dw->dtable_h), ev, col, col+1, row, row+1
-             , (GTK_FILL), (0), 0, 0);
+    gtk_table_attach(GTK_TABLE(dw->dtable), ev, col, col+1, row, row+1
+         , (GTK_FILL), (0), 0, 0);
+}
+
+static void fill_hour_arrow(day_win *dw, gint col)
+{
+    GtkWidget *arrow, *ev;
+
+    ev = gtk_event_box_new();
+    if (col == 0) {
+        arrow = gtk_arrow_new(GTK_ARROW_LEFT, GTK_SHADOW_NONE);
+        g_signal_connect((gpointer)ev, "button-press-event"
+                , G_CALLBACK(on_arrow_left_press_event_cb), dw);
+    }
+    else {
+        arrow = gtk_arrow_new(GTK_ARROW_RIGHT, GTK_SHADOW_NONE);
+        g_signal_connect((gpointer)ev, "button-press-event"
+                , G_CALLBACK(on_arrow_right_press_event_cb), dw);
+    }
+    gtk_container_add(GTK_CONTAINER(ev), arrow);
+    gtk_widget_set_size_request(ev, dw->hour_req.width
+            , dw->StartDate_button_req.height);
+    gtk_table_attach(GTK_TABLE(dw->dtable_h), ev, col, col+1, 0, 1
+            , (GTK_FILL), (0), 0, 0);
 }
 
 static void build_day_view_table(day_win *dw)
@@ -777,7 +807,7 @@ static void build_day_view_table(day_win *dw)
     gint days;   /* number of days to show */
     int year, month, day;
     gint i, sunday;
-    GtkWidget *label, *button;
+    GtkWidget *label, *button, *arrow;
     char text[5+1], *date, *today;
     struct tm tm_date;
     guint monthdays[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
@@ -815,8 +845,9 @@ static void build_day_view_table(day_win *dw)
     if (((tm_date.tm_year%4) == 0) && (((tm_date.tm_year%100) != 0) 
             || ((tm_date.tm_year%400) == 0)))
         ++monthdays[1];
-    fill_hour(dw, 0, 0, NULL);
     today = g_strdup(orage_localdate_i18());
+
+    fill_hour_arrow(dw, 0);
     for (i = 1; i <  days+1; i++) {
         date = orage_tm_date_to_i18_date(&tm_date);
         button = gtk_button_new();
@@ -842,8 +873,8 @@ static void build_day_view_table(day_win *dw)
             tm_date.tm_mday = 1;
         }
     }
+    fill_hour_arrow(dw, days+1);
     g_free(today);
-    fill_hour(dw, days+1, 0, NULL);
 
     /****** body of day table ******/
     dw->scroll_win = gtk_scrolled_window_new(NULL, NULL);

@@ -212,7 +212,6 @@ static void alarm_store(gpointer galarm, gpointer par)
 #define P_N "alarm_store: "
     alarm_struct *alarm = (alarm_struct *)galarm;
     OrageRc *orc = (OrageRc *)par;
-    char buf[1000], *s_boolean, s_num[20];
 
 #ifdef ORAGE_DEBUG
     g_print(P_N "\n");

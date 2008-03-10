@@ -1238,11 +1238,7 @@ xfical_appt *xfical_appt_alloc()
     orage_message(-100, P_N);
 #endif
     appt = g_new0(xfical_appt, 1);
-    appt->alarm_before = TRUE;
-    appt->alarm_related_start = TRUE;
     appt->availability = 1;
-    appt->soundrepeat_cnt = 500;
-    appt->soundrepeat_len = 2;
     appt->freq = XFICAL_FREQ_NONE;
     appt->interval = 1;
     for (i=0; i <= 6; i++)

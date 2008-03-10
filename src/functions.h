@@ -36,6 +36,7 @@
 #define ORAGE_ARC_FILE  "orage_archive.ics"
 #define ORAGE_CATEGORIES_FILE "orage_categories.txt"
 #define ORAGE_PERSISTENT_ALARMS_FILE "orage_persistent_alarms.txt"
+#define ORAGE_DEFAULT_ALARM_FILE "orage_default_alarm.txt"
 
 #define ORAGE_STR_EXISTS(str) ((str != NULL) && (str[0] != 0))
 

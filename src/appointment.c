@@ -80,6 +80,7 @@ typedef struct _orage_category_win
 } category_win_struct;
 
 static void refresh_categories(category_win_struct *catw);
+static void read_default_alarm(xfical_appt *appt);
 
 static void fill_appt_window(appt_win *apptw, char *action, char *par);
 /*  
@@ -566,6 +567,15 @@ static void app_checkbutton_clicked_cb(GtkCheckButton *cb, gpointer user_data)
     mark_appointment_changed((appt_win *)user_data);
 }
 
+static void refresh_dependent_data(appt_win *apptw)
+{
+    if (apptw->el != NULL)
+        refresh_el_win((el_win *)apptw->el);
+    if (apptw->dw != NULL)
+        refresh_day_win((day_win *)apptw->dw);
+    orage_mark_appointments();
+}
+
 static void on_appNote_buffer_changed_cb(GtkTextBuffer *b, gpointer user_data)
 {
     appt_win *apptw = (appt_win *)user_data;
@@ -763,6 +773,125 @@ static gboolean orage_validate_datetime(appt_win *apptw, xfical_appt *appt)
     }
 }
 
+static gboolean fill_appt_from_apptw_alarm(xfical_appt *appt, appt_win *apptw)
+{
+    gint i, j, k;
+    gchar *tmp;
+
+    /* reminder time */
+    appt->alarmtime = gtk_spin_button_get_value_as_int(
+            GTK_SPIN_BUTTON(apptw->Alarm_spin_dd)) * 24*60*60
+                    + gtk_spin_button_get_value_as_int(
+            GTK_SPIN_BUTTON(apptw->Alarm_spin_hh)) *    60*60
+                    + gtk_spin_button_get_value_as_int(
+            GTK_SPIN_BUTTON(apptw->Alarm_spin_mm)) *       60
+                    ;
+    appt->display_alarm_orage = appt->alarmtime ? TRUE : FALSE;
+
+    /* reminder before/after related to start/end */
+    /*
+    char *when_array[4] = {_("Before Start"), _("Before End")
+        , _("After Start"), _("After End")};
+        */
+    switch (gtk_combo_box_get_active(GTK_COMBO_BOX(apptw->Alarm_when_cb))) {
+        case 0:
+            appt->alarm_before = TRUE;
+            appt->alarm_related_start = TRUE;
+            break;
+        case 1:
+            appt->alarm_before = TRUE;
+            appt->alarm_related_start = FALSE;
+            break;
+        case 2:
+            appt->alarm_before = FALSE;
+            appt->alarm_related_start = TRUE;
+            break;
+        case 3:
+            appt->alarm_before = FALSE;
+            appt->alarm_related_start = FALSE;
+            break;
+        default:
+            appt->alarm_before = TRUE;
+            appt->alarm_related_start = TRUE;
+            break;
+    }
+
+    /* Do we use persistent alarm */
+    appt->alarm_persistent = gtk_toggle_button_get_active(
+            GTK_TOGGLE_BUTTON(apptw->Per_checkbutton));
+
+    /* Do we use audio alarm */
+    appt->sound_alarm = gtk_toggle_button_get_active(
+            GTK_TOGGLE_BUTTON(apptw->Sound_checkbutton));
+
+    /* Which sound file will be played */
+    if (appt->sound) {
+        g_free(appt->sound);
+        appt->sound = NULL;
+    }
+    appt->sound = g_strdup(gtk_entry_get_text(GTK_ENTRY(apptw->Sound_entry)));
+
+    /* the alarm will repeat until someone shuts it off 
+     * or it has been played soundrepeat_cnt times */
+    appt->soundrepeat = gtk_toggle_button_get_active(
+            GTK_TOGGLE_BUTTON(apptw->SoundRepeat_checkbutton));
+    appt->soundrepeat_cnt = gtk_spin_button_get_value_as_int(
+            GTK_SPIN_BUTTON(apptw->SoundRepeat_spin_cnt));
+    appt->soundrepeat_len = gtk_spin_button_get_value_as_int(
+            GTK_SPIN_BUTTON(apptw->SoundRepeat_spin_len));
+
+    /* Do we use orage display alarm */
+    appt->display_alarm_orage = gtk_toggle_button_get_active(
+            GTK_TOGGLE_BUTTON(apptw->Display_checkbutton_orage));
+
+    /* Do we use notify display alarm */
+#ifdef HAVE_NOTIFY
+    appt->display_alarm_notify = gtk_toggle_button_get_active(
+            GTK_TOGGLE_BUTTON(apptw->Display_checkbutton_notify));
+#else
+    appt->display_alarm_notify = FALSE;
+#endif
+
+    /* notify display alarm timeout */
+#ifdef HAVE_NOTIFY
+    if (gtk_toggle_button_get_active(
+            GTK_TOGGLE_BUTTON(apptw->Display_checkbutton_expire_notify)))
+        appt->display_notify_timeout = gtk_spin_button_get_value_as_int(
+                GTK_SPIN_BUTTON(apptw->Display_spin_expire_notify));
+    else 
+        appt->display_notify_timeout = -1;
+#else
+    appt->display_notify_timeout = -1;
+#endif
+
+    /* Do we use procedure alarm */
+    appt->procedure_alarm = gtk_toggle_button_get_active(
+            GTK_TOGGLE_BUTTON(apptw->Proc_checkbutton));
+
+    /* The actual command. 
+     * Note that we need to split this into cmd and the parameters 
+     * since that is how libical stores it */
+    if (appt->procedure_cmd) {
+        g_free(appt->procedure_cmd);
+        appt->procedure_cmd = NULL;
+    }
+    if (appt->procedure_params) {
+        g_free(appt->procedure_params);
+        appt->procedure_params = NULL;
+    }
+    tmp = (char *)gtk_entry_get_text(GTK_ENTRY(apptw->Proc_entry));
+    j = strlen(tmp);
+    for (i = 0; i < j && g_ascii_isspace(tmp[i]); i++)
+        ; /* skip blanks */
+    for (k = i; k < j && !g_ascii_isspace(tmp[k]); k++)
+        ; /* find first blank after the cmd */
+        /* now i points to start of cmd and k points to end of cmd */
+    if (k-i)
+        appt->procedure_cmd = g_strndup(tmp+i, k-i);
+    if (j-k)
+        appt->procedure_params = g_strndup(tmp+k, j-k);
+}
+
 /*
  * Function fills an appointment with the contents of an appointment 
  * window
@@ -773,7 +902,7 @@ static gboolean fill_appt_from_apptw(xfical_appt *appt, appt_win *apptw)
     const char *time_format="%H:%M";
     struct tm current_t;
     gchar starttime[6], endtime[6], completedtime[6];
-    gint i, j, k;
+    gint i;
     gchar *tmp, *tmp2;
 
 /* Next line is fix for bug 2811.
@@ -903,108 +1032,7 @@ static gboolean fill_appt_from_apptw(xfical_appt *appt, appt_win *apptw)
     appt->note = gtk_text_iter_get_text(&start, &end);
 
             /*********** ALARM TAB ***********/
-    /* reminder time */
-    appt->alarmtime = gtk_spin_button_get_value_as_int(
-            GTK_SPIN_BUTTON(apptw->Alarm_spin_dd)) * 24*60*60
-                    + gtk_spin_button_get_value_as_int(
-            GTK_SPIN_BUTTON(apptw->Alarm_spin_hh)) *    60*60
-                    + gtk_spin_button_get_value_as_int(
-            GTK_SPIN_BUTTON(apptw->Alarm_spin_mm)) *       60
-                    ;
-    appt->display_alarm_orage = appt->alarmtime ? TRUE : FALSE;
-
-    /* reminder before/after related to start/end */
-    /*
-    char *when_array[4] = {_("Before Start"), _("Before End")
-        , _("After Start"), _("After End")};
-        */
-    switch (gtk_combo_box_get_active(GTK_COMBO_BOX(apptw->Alarm_when_cb))) {
-        case 0:
-            appt->alarm_before = TRUE;
-            appt->alarm_related_start = TRUE;
-            break;
-        case 1:
-            appt->alarm_before = TRUE;
-            appt->alarm_related_start = FALSE;
-            break;
-        case 2:
-            appt->alarm_before = FALSE;
-            appt->alarm_related_start = TRUE;
-            break;
-        case 3:
-            appt->alarm_before = FALSE;
-            appt->alarm_related_start = FALSE;
-            break;
-        default:
-            appt->alarm_before = TRUE;
-            appt->alarm_related_start = TRUE;
-            break;
-    }
-
-    /* Do we use persistent alarm */
-    appt->alarm_persistent = gtk_toggle_button_get_active(
-            GTK_TOGGLE_BUTTON(apptw->Per_checkbutton));
-
-    /* Do we use audio alarm */
-    appt->sound_alarm = gtk_toggle_button_get_active(
-            GTK_TOGGLE_BUTTON(apptw->Sound_checkbutton));
-
-    /* Which sound file will be played */
-    appt->sound = g_strdup(gtk_entry_get_text(GTK_ENTRY(apptw->Sound_entry)));
-
-    /* the alarm will repeat until someone shuts it off 
-     * or it has been played soundrepeat_cnt times */
-    appt->soundrepeat = gtk_toggle_button_get_active(
-            GTK_TOGGLE_BUTTON(apptw->SoundRepeat_checkbutton));
-    appt->soundrepeat_cnt = gtk_spin_button_get_value_as_int(
-            GTK_SPIN_BUTTON(apptw->SoundRepeat_spin_cnt));
-    appt->soundrepeat_len = gtk_spin_button_get_value_as_int(
-            GTK_SPIN_BUTTON(apptw->SoundRepeat_spin_len));
-
-    /* Do we use orage display alarm */
-    appt->display_alarm_orage = gtk_toggle_button_get_active(
-            GTK_TOGGLE_BUTTON(apptw->Display_checkbutton_orage));
-
-    /* Do we use notify display alarm */
-#ifdef HAVE_NOTIFY
-    appt->display_alarm_notify = gtk_toggle_button_get_active(
-            GTK_TOGGLE_BUTTON(apptw->Display_checkbutton_notify));
-#else
-    appt->display_alarm_notify = FALSE;
-#endif
-
-    /* notify display alarm timeout */
-#ifdef HAVE_NOTIFY
-    if (gtk_toggle_button_get_active(
-            GTK_TOGGLE_BUTTON(apptw->Display_checkbutton_expire_notify)))
-        appt->display_notify_timeout = gtk_spin_button_get_value_as_int(
-                GTK_SPIN_BUTTON(apptw->Display_spin_expire_notify));
-    else 
-        appt->display_notify_timeout = -1;
-#else
-    appt->display_notify_timeout = -1;
-#endif
-
-    /* Do we use procedure alarm */
-    appt->procedure_alarm = gtk_toggle_button_get_active(
-            GTK_TOGGLE_BUTTON(apptw->Proc_checkbutton));
-
-    /* The actual command. 
-     * Note that we need to split this into cmd and the parameters 
-     * since that is how libical stores it */
-    appt->procedure_cmd =  NULL;
-    appt->procedure_params =  NULL;
-    tmp = (char *)gtk_entry_get_text(GTK_ENTRY(apptw->Proc_entry));
-    j = strlen(tmp);
-    for (i = 0; i < j && g_ascii_isspace(tmp[i]); i++)
-        ; /* skip blanks */
-    for (k = i; k < j && !g_ascii_isspace(tmp[k]); k++)
-        ; /* find first blank after the cmd */
-        /* now i points to start of cmd and k points to end of cmd */
-    if (k-i)
-        appt->procedure_cmd = g_strndup(tmp+i, k-i);
-    if (j-k)
-        appt->procedure_params = g_strndup(tmp+k, j-k);
+    fill_appt_from_apptw_alarm(appt, apptw);
 
             /*********** RECURRENCE TAB ***********/
     /* recurrence */
@@ -1052,21 +1080,6 @@ static gboolean fill_appt_from_apptw(xfical_appt *appt, appt_win *apptw)
     }
 
     return(TRUE);
-}
-
-static void on_appFileClose_menu_activate_cb(GtkMenuItem *mi
-        , gpointer user_data)
-{
-    appWindow_check_and_close((appt_win *)user_data);
-}
-
-static void refresh_dependent_data(appt_win *apptw)
-{
-    if (apptw->el != NULL)
-        refresh_el_win((el_win *)apptw->el);
-    if (apptw->dw != NULL)
-        refresh_day_win((day_win *)apptw->dw);
-    orage_mark_appointments();
 }
 
 static gboolean save_xfical_from_appt_win(appt_win *apptw)
@@ -1174,6 +1187,12 @@ static void on_appFileDelete_menu_activate_cb(GtkMenuItem *mi
         , gpointer user_data)
 {
     delete_xfical_from_appt_win((appt_win *)user_data);
+}
+
+static void on_appFileClose_menu_activate_cb(GtkMenuItem *mi
+        , gpointer user_data)
+{
+    appWindow_check_and_close((appt_win *)user_data);
 }
 
 static void duplicate_xfical_from_appt_win(appt_win *apptw)
@@ -1400,17 +1419,7 @@ static xfical_appt *fill_appt_window_get_appt(appt_win *apptw
                     , today, t->tm_hour, t->tm_min);
         appt->completed_tz_loc = g_strdup(appt->start_tz_loc);
 
-        /* default alarm time is 5 mins before event (Bug 3425) */
-        appt->alarmtime = 5*60;
-
-        /* default alarm time is 500 cnt & 2 secs each */
-        appt->soundrepeat_cnt = 500;
-        appt->soundrepeat_len = 2;
-
-        /* default alarm type is orage window and sound */
-        appt->display_alarm_orage = TRUE;
-        appt->sound_alarm = TRUE; 
-        /* default sound file is set in fill_appt_window */
+        read_default_alarm(appt);
     }
     else if ((strcmp(action, "UPDATE") == 0) || (strcmp(action, "COPY") == 0)) {
         /* par contains ical uid */
@@ -1791,15 +1800,101 @@ static void on_categories_button_clicked_cb(GtkWidget *button
 /* categories end.                                        */
 /**********************************************************/
 
+static void fill_appt_window_alarm(xfical_appt *appt, appt_win *apptw)
+{
+    int day, hours, minutes;
+    char *tmp;
+
+    /* alarmtime (comes in seconds) */
+    day = appt->alarmtime/(24*60*60);
+    hours = (appt->alarmtime-day*(24*60*60))/(60*60);
+    minutes = (appt->alarmtime-day*(24*60*60)-hours*(60*60))/(60);
+    gtk_spin_button_set_value(GTK_SPIN_BUTTON(apptw->Alarm_spin_dd)
+                , (gdouble)day);
+    gtk_spin_button_set_value(GTK_SPIN_BUTTON(apptw->Alarm_spin_hh)
+                , (gdouble)hours);
+    gtk_spin_button_set_value(GTK_SPIN_BUTTON(apptw->Alarm_spin_mm)
+                , (gdouble)minutes);
+
+    /* alarmrelation */
+    /*
+    char *when_array[4] = {
+    _("Before Start"), _("Before End"), _("After Start"), _("After End")};
+    */
+    if (appt->alarm_before)
+        if (appt->alarm_related_start)
+            gtk_combo_box_set_active(GTK_COMBO_BOX(apptw->Alarm_when_cb), 0);
+        else
+            gtk_combo_box_set_active(GTK_COMBO_BOX(apptw->Alarm_when_cb), 1);
+    else
+        if (appt->alarm_related_start)
+            gtk_combo_box_set_active(GTK_COMBO_BOX(apptw->Alarm_when_cb), 2);
+        else
+            gtk_combo_box_set_active(GTK_COMBO_BOX(apptw->Alarm_when_cb), 3);
+
+    /* persistent */
+    gtk_toggle_button_set_active(
+            GTK_TOGGLE_BUTTON(apptw->Per_checkbutton), appt->alarm_persistent);
+
+    /* sound */
+    gtk_toggle_button_set_active(
+            GTK_TOGGLE_BUTTON(apptw->Sound_checkbutton), appt->sound_alarm);
+    gtk_entry_set_text(GTK_ENTRY(apptw->Sound_entry)
+            , (appt->sound ? appt->sound : 
+                PACKAGE_DATA_DIR "/orage/sounds/Spo.wav"));
+
+    /* sound repeat */
+    gtk_toggle_button_set_active(
+            GTK_TOGGLE_BUTTON(apptw->SoundRepeat_checkbutton)
+                    , appt->soundrepeat);
+    gtk_spin_button_set_value(GTK_SPIN_BUTTON(apptw->SoundRepeat_spin_cnt)
+            , (gdouble)appt->soundrepeat_cnt);
+    gtk_spin_button_set_value(GTK_SPIN_BUTTON(apptw->SoundRepeat_spin_len)
+            , (gdouble)appt->soundrepeat_len);
+
+    /* display */
+    gtk_toggle_button_set_active(
+            GTK_TOGGLE_BUTTON(apptw->Display_checkbutton_orage)
+                    , appt->display_alarm_orage);
+    /* display:notify */
+#ifdef HAVE_NOTIFY
+    gtk_toggle_button_set_active(
+            GTK_TOGGLE_BUTTON(apptw->Display_checkbutton_notify)
+                    , appt->display_alarm_notify);
+    if (!appt->display_alarm_notify || appt->display_notify_timeout == -1) { 
+        /* no timeout */
+        gtk_toggle_button_set_active(
+                GTK_TOGGLE_BUTTON(apptw->Display_checkbutton_expire_notify)
+                        , FALSE);
+        gtk_spin_button_set_value(
+                GTK_SPIN_BUTTON(apptw->Display_spin_expire_notify)
+                , (gdouble)0);
+    }
+    else {
+        gtk_toggle_button_set_active(
+                GTK_TOGGLE_BUTTON(apptw->Display_checkbutton_expire_notify)
+                        , TRUE);
+        gtk_spin_button_set_value(
+                GTK_SPIN_BUTTON(apptw->Display_spin_expire_notify)
+                , (gdouble)appt->display_notify_timeout);
+    }
+#endif
+
+    /* procedure */
+    gtk_toggle_button_set_active(
+            GTK_TOGGLE_BUTTON(apptw->Proc_checkbutton), appt->procedure_alarm);
+    tmp = g_strconcat(appt->procedure_cmd, " ", appt->procedure_params, NULL);
+    gtk_entry_set_text(GTK_ENTRY(apptw->Proc_entry), tmp ? tmp : "");
+    g_free(tmp);
+}
+
 /* Fill appointment window with data */
 static void fill_appt_window(appt_win *apptw, char *action, char *par)
 {
-    int day, hours, minutes;
     xfical_appt *appt;
     struct tm *t, tm_date;
-    char *untildate_to_display, *tmp;
+    char *untildate_to_display;
     int i;
-    GdkColor color;
 
     orage_message(30, "%s appointment: %s", action, par);
     if ((appt = fill_appt_window_get_appt(apptw, action, par)) == NULL) {
@@ -1893,87 +1988,7 @@ static void fill_appt_window(appt_win *apptw, char *action, char *par)
             , (appt->note ? (const gchar *) appt->note : ""), -1);
 
     /********************* ALARM tab *********************/
-    /* alarmtime (comes in seconds) */
-    day = appt->alarmtime/(24*60*60);
-    hours = (appt->alarmtime-day*(24*60*60))/(60*60);
-    minutes = (appt->alarmtime-day*(24*60*60)-hours*(60*60))/(60);
-    gtk_spin_button_set_value(GTK_SPIN_BUTTON(apptw->Alarm_spin_dd)
-                , (gdouble)day);
-    gtk_spin_button_set_value(GTK_SPIN_BUTTON(apptw->Alarm_spin_hh)
-                , (gdouble)hours);
-    gtk_spin_button_set_value(GTK_SPIN_BUTTON(apptw->Alarm_spin_mm)
-                , (gdouble)minutes);
-
-    /* alarmrelation */
-    /*
-    char *when_array[4] = {
-    _("Before Start"), _("Before End"), _("After Start"), _("After End")};
-    */
-    if (appt->alarm_before)
-        if (appt->alarm_related_start)
-            gtk_combo_box_set_active(GTK_COMBO_BOX(apptw->Alarm_when_cb), 0);
-        else
-            gtk_combo_box_set_active(GTK_COMBO_BOX(apptw->Alarm_when_cb), 1);
-    else
-        if (appt->alarm_related_start)
-            gtk_combo_box_set_active(GTK_COMBO_BOX(apptw->Alarm_when_cb), 2);
-        else
-            gtk_combo_box_set_active(GTK_COMBO_BOX(apptw->Alarm_when_cb), 3);
-
-    /* persistent */
-    gtk_toggle_button_set_active(
-            GTK_TOGGLE_BUTTON(apptw->Per_checkbutton), appt->alarm_persistent);
-
-    /* sound */
-    gtk_toggle_button_set_active(
-            GTK_TOGGLE_BUTTON(apptw->Sound_checkbutton), appt->sound_alarm);
-    gtk_entry_set_text(GTK_ENTRY(apptw->Sound_entry)
-            , (appt->sound ? appt->sound : 
-                PACKAGE_DATA_DIR "/orage/sounds/Spo.wav"));
-
-    /* sound repeat */
-    gtk_toggle_button_set_active(
-            GTK_TOGGLE_BUTTON(apptw->SoundRepeat_checkbutton)
-                    , appt->soundrepeat);
-    gtk_spin_button_set_value(GTK_SPIN_BUTTON(apptw->SoundRepeat_spin_cnt)
-            , (gdouble)appt->soundrepeat_cnt);
-    gtk_spin_button_set_value(GTK_SPIN_BUTTON(apptw->SoundRepeat_spin_len)
-            , (gdouble)appt->soundrepeat_len);
-
-    /* display */
-    gtk_toggle_button_set_active(
-            GTK_TOGGLE_BUTTON(apptw->Display_checkbutton_orage)
-                    , appt->display_alarm_orage);
-    /* display:notify */
-#ifdef HAVE_NOTIFY
-    gtk_toggle_button_set_active(
-            GTK_TOGGLE_BUTTON(apptw->Display_checkbutton_notify)
-                    , appt->display_alarm_notify);
-    if (!appt->display_alarm_notify || appt->display_notify_timeout == -1) { 
-        /* no timeout */
-        gtk_toggle_button_set_active(
-                GTK_TOGGLE_BUTTON(apptw->Display_checkbutton_expire_notify)
-                        , FALSE);
-        gtk_spin_button_set_value(
-                GTK_SPIN_BUTTON(apptw->Display_spin_expire_notify)
-                , (gdouble)0);
-    }
-    else {
-        gtk_toggle_button_set_active(
-                GTK_TOGGLE_BUTTON(apptw->Display_checkbutton_expire_notify)
-                        , TRUE);
-        gtk_spin_button_set_value(
-                GTK_SPIN_BUTTON(apptw->Display_spin_expire_notify)
-                , (gdouble)appt->display_notify_timeout);
-    }
-#endif
-
-    /* procedure */
-    gtk_toggle_button_set_active(
-            GTK_TOGGLE_BUTTON(apptw->Proc_checkbutton), appt->procedure_alarm);
-    tmp = g_strconcat(appt->procedure_cmd, " ", appt->procedure_params, NULL);
-    gtk_entry_set_text(GTK_ENTRY(apptw->Proc_entry), tmp ? tmp : "");
-    g_free(tmp);
+    fill_appt_window_alarm(appt, apptw);
 
     /********************* RECURRENCE tab *********************/
     /* recurrence */
@@ -2106,6 +2121,99 @@ static void build_menu(appt_win *apptw)
             , G_CALLBACK(on_appFileDelete_menu_activate_cb), apptw);
     g_signal_connect((gpointer)apptw->File_menu_close, "activate"
             , G_CALLBACK(on_appFileClose_menu_activate_cb), apptw);
+}
+
+static OrageRc *orage_alarm_file_open(gboolean read_only)
+{
+    gchar *fpath;
+    OrageRc *orc;
+
+    fpath = orage_config_file_location(ORAGE_DEFAULT_ALARM_FILE);
+    if (!read_only)  /* we need to empty it before each write */
+        g_remove(fpath);
+    if ((orc = (OrageRc *)orage_rc_file_open(fpath, read_only)) == NULL) {
+        orage_message(150, "orage_alarm_file_open: default alarm file open failed.");
+    }
+    g_free(fpath);
+
+    return(orc);
+}
+
+static void store_default_alarm(xfical_appt *appt)
+{
+    OrageRc *orc;
+
+    orc = orage_alarm_file_open(FALSE);
+    orage_rc_put_int(orc, "TIME", appt->alarmtime);
+    orage_rc_put_bool(orc, "BEFORE", appt->alarm_before);
+    orage_rc_put_bool(orc, "RELATED_START", appt->alarm_related_start);
+    orage_rc_put_bool(orc, "PERSISTENT", appt->alarm_persistent);
+    orage_rc_put_bool(orc, "SOUND_USE", appt->sound_alarm);
+    orage_rc_put_str(orc, "SOUND", appt->sound);
+    orage_rc_put_bool(orc, "SOUND_REPEAT_USE", appt->soundrepeat);
+    orage_rc_put_int(orc, "SOUND_REPEAT_CNT", appt->soundrepeat_cnt);
+    orage_rc_put_int(orc, "SOUND_REPEAT_LEN", appt->soundrepeat_len);
+    orage_rc_put_bool(orc, "DISPLAY_ORAGE_USE", appt->display_alarm_orage);
+    orage_rc_put_bool(orc, "DISPLAY_NOTIFY_USE", appt->display_alarm_notify);
+    orage_rc_put_int(orc, "DISPLAY_NOTIFY_TIMEOUT"
+            , appt->display_notify_timeout);
+    orage_rc_put_bool(orc, "PROCEDURE_USE", appt->procedure_alarm);
+    orage_rc_put_str(orc, "PROCEDURE_CMD", appt->procedure_cmd);
+    orage_rc_put_str(orc, "PROCEDURE_PARAMS", appt->procedure_params);
+    orage_rc_file_close(orc);
+}
+
+static void read_default_alarm(xfical_appt *appt)
+{
+    OrageRc *orc;
+
+    orc = orage_alarm_file_open(TRUE);
+    appt->alarmtime = orage_rc_get_int(orc, "TIME", 5*60); /* 5 mins */
+    appt->alarm_before = orage_rc_get_bool(orc, "BEFORE", TRUE);
+    appt->alarm_related_start = orage_rc_get_bool(orc, "RELATED_START", TRUE);
+    appt->alarm_persistent = orage_rc_get_bool(orc, "PERSISTENT", FALSE);
+    appt->sound_alarm = orage_rc_get_bool(orc, "SOUND_USE", TRUE);
+    if (appt->sound)
+        g_free(appt->sound);
+    appt->sound = orage_rc_get_str(orc, "SOUND"
+            , PACKAGE_DATA_DIR "/orage/sounds/Spo.wav");
+    appt->soundrepeat = orage_rc_get_bool(orc, "SOUND_REPEAT_USE", FALSE);
+    appt->soundrepeat_cnt = orage_rc_get_int(orc, "SOUND_REPEAT_CNT", 500);
+    appt->soundrepeat_len = orage_rc_get_int(orc, "SOUND_REPEAT_LEN", 2);
+    appt->display_alarm_orage = orage_rc_get_bool(orc, "DISPLAY_ORAGE_USE"
+            , TRUE);
+    appt->display_alarm_notify = orage_rc_get_bool(orc, "DISPLAY_NOTIFY_USE"
+            , FALSE);
+    appt->display_notify_timeout = orage_rc_get_int(orc
+            , "DISPLAY_NOTIFY_TIMEOUT", 0);
+    appt->procedure_alarm = orage_rc_get_bool(orc, "PROCEDURE_USE", FALSE);
+    if (appt->procedure_cmd)
+        g_free(appt->procedure_cmd);
+    appt->procedure_cmd = orage_rc_get_str(orc, "PROCEDURE_CMD", "");
+    if (appt->procedure_params)
+        g_free(appt->procedure_params);
+    appt->procedure_params = orage_rc_get_str(orc, "PROCEDURE_PARAMS", "");
+    orage_rc_file_close(orc);
+}
+
+static void on_appDefault_save_button_clicked_cb(GtkButton *button
+        , gpointer user_data)
+{
+    appt_win *apptw = (appt_win *)user_data;
+    xfical_appt *appt = apptw->appt;
+
+    fill_appt_from_apptw_alarm(appt, apptw);
+    store_default_alarm(appt);
+}
+
+static void on_appDefault_read_button_clicked_cb(GtkButton *button
+        , gpointer user_data)
+{
+    appt_win *apptw = (appt_win *)user_data;
+    xfical_appt *appt = apptw->appt;
+
+    read_default_alarm(appt);
+    fill_appt_window_alarm(appt, apptw);
 }
 
 static void build_toolbar(appt_win *apptw)
@@ -2591,6 +2699,26 @@ static void build_alarm_page(appt_win *apptw)
             , apptw->Proc_label, apptw->Proc_hbox
             , ++row, (GTK_FILL), (GTK_FILL));
 
+    /***** Default Alarm Settings *****/
+    apptw->Default_label = gtk_label_new(_("Default alarm"));
+
+    apptw->Default_hbox = gtk_hbox_new(FALSE, 6);
+    apptw->Default_savebutton =gtk_button_new_from_stock("gtk-save");
+    gtk_box_pack_start(GTK_BOX(apptw->Default_hbox), apptw->Default_savebutton
+            , FALSE, FALSE, 0);
+    gtk_tooltips_set_tip(apptw->Tooltips, apptw->Default_savebutton
+            , _("Store current settings as default alarm"), NULL);
+    apptw->Default_readbutton =gtk_button_new_from_stock("gtk-revert-to-saved");
+    gtk_box_pack_start(GTK_BOX(apptw->Default_hbox), apptw->Default_readbutton
+            , FALSE, TRUE, 0);
+    gtk_tooltips_set_tip(apptw->Tooltips, apptw->Default_readbutton
+            , _("Set current settings from default alarm"), NULL);
+
+    orage_table_add_row(apptw->TableAlarm
+            , apptw->Default_label, apptw->Default_hbox
+            , ++row, (GTK_FILL), (GTK_FILL));
+    gtk_table_set_row_spacing(GTK_TABLE(apptw->TableAlarm), row-1, 50);
+
     g_signal_connect((gpointer)apptw->Alarm_spin_dd, "value-changed"
             , G_CALLBACK(on_app_spin_button_changed_cb), apptw);
     g_signal_connect((gpointer)apptw->Alarm_spin_hh, "value-changed"
@@ -2630,6 +2758,11 @@ static void build_alarm_page(appt_win *apptw)
             , G_CALLBACK(app_proc_checkbutton_clicked_cb), apptw);
     g_signal_connect((gpointer)apptw->Proc_entry, "changed"
             , G_CALLBACK(on_app_entry_changed_cb), apptw);
+
+    g_signal_connect((gpointer)apptw->Default_savebutton, "clicked"
+            , G_CALLBACK(on_appDefault_save_button_clicked_cb), apptw);
+    g_signal_connect((gpointer)apptw->Default_readbutton, "clicked"
+            , G_CALLBACK(on_appDefault_read_button_clicked_cb), apptw);
 }
 
 static void build_recurrence_page(appt_win *apptw)
