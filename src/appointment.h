@@ -64,14 +64,16 @@ typedef struct _appt_win
     GtkWidget *Location_entry;
     GtkWidget *AllDay_checkbutton;
     GtkWidget *Start_label;
-    GtkWidget *StartDate_button;
     GtkWidget *StartTime_hbox;
+    GtkWidget *StartDate_button;
     GtkWidget *StartTime_spin_hh;
     GtkWidget *StartTime_spin_mm;
     GtkWidget *StartTimezone_button;
     GtkWidget *End_label;
-    GtkWidget *EndDate_button;
+    GtkWidget *End_hbox;
+    GtkWidget *End_checkbutton;
     GtkWidget *EndTime_hbox;
+    GtkWidget *EndDate_button;
     GtkWidget *EndTime_spin_hh;
     GtkWidget *EndTime_spin_mm;
     GtkWidget *EndTimezone_button;
@@ -87,8 +89,8 @@ typedef struct _appt_win
     GtkWidget *Completed_label;
     GtkWidget *Completed_hbox;
     GtkWidget *Completed_checkbutton;
-    GtkWidget *CompletedDate_button;
     GtkWidget *CompletedTime_hbox;
+    GtkWidget *CompletedDate_button;
     GtkWidget *CompletedTime_spin_hh;
     GtkWidget *CompletedTime_spin_mm;
     GtkWidget *CompletedTimezone_button;

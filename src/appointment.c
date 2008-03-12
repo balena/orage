@@ -186,15 +186,24 @@ static void mark_appointment_unchanged(appt_win *apptw)
 
 static void set_time_sensitivity(appt_win *apptw)
 {
-    gboolean dur_act, allDay_act, completed_act;
+    gboolean dur_act, allDay_act, comp_act, due_act;
 
     dur_act = gtk_toggle_button_get_active(
-	    GTK_TOGGLE_BUTTON(apptw->Dur_checkbutton));
+            GTK_TOGGLE_BUTTON(apptw->Dur_checkbutton));
     allDay_act = gtk_toggle_button_get_active(
-	    GTK_TOGGLE_BUTTON(apptw->AllDay_checkbutton));
-    completed_act = gtk_toggle_button_get_active(
+            GTK_TOGGLE_BUTTON(apptw->AllDay_checkbutton));
+    comp_act = gtk_toggle_button_get_active(
             GTK_TOGGLE_BUTTON(apptw->Completed_checkbutton));
+        /* todo can be without due date, but event always has end date.
+         * Journal has none, but we show it similarly than event */
+    if (gtk_toggle_button_get_active(
+            GTK_TOGGLE_BUTTON(apptw->Type_todo_rb)))
+        due_act = gtk_toggle_button_get_active(
+                GTK_TOGGLE_BUTTON(apptw->End_checkbutton));
+    else 
+        due_act = TRUE;
 
+    gtk_widget_set_sensitive(apptw->Dur_checkbutton, due_act);
     if (allDay_act) {
         gtk_widget_set_sensitive(apptw->StartTime_spin_hh, FALSE);
         gtk_widget_set_sensitive(apptw->StartTime_spin_mm, FALSE);
@@ -209,21 +218,16 @@ static void set_time_sensitivity(appt_win *apptw)
         gtk_widget_set_sensitive(apptw->CompletedTime_spin_hh, FALSE);
         gtk_widget_set_sensitive(apptw->CompletedTime_spin_mm, FALSE);
         gtk_widget_set_sensitive(apptw->CompletedTimezone_button, FALSE);
+        gtk_widget_set_sensitive(apptw->CompletedDate_button, comp_act);
         if (dur_act) {
             gtk_widget_set_sensitive(apptw->EndDate_button, FALSE);
-            gtk_widget_set_sensitive(apptw->Dur_spin_dd, TRUE);
-            gtk_widget_set_sensitive(apptw->Dur_spin_dd_label, TRUE);
+            gtk_widget_set_sensitive(apptw->Dur_spin_dd, due_act);
+            gtk_widget_set_sensitive(apptw->Dur_spin_dd_label, due_act);
         }
         else {
-            gtk_widget_set_sensitive(apptw->EndDate_button, TRUE);
+            gtk_widget_set_sensitive(apptw->EndDate_button, due_act);
             gtk_widget_set_sensitive(apptw->Dur_spin_dd, FALSE);
             gtk_widget_set_sensitive(apptw->Dur_spin_dd_label, FALSE);
-        }
-        if (completed_act) {
-            gtk_widget_set_sensitive(apptw->CompletedDate_button, TRUE);
-        }
-        else {
-            gtk_widget_set_sensitive(apptw->CompletedDate_button, FALSE);
         }
     }
     else {
@@ -235,18 +239,18 @@ static void set_time_sensitivity(appt_win *apptw)
             gtk_widget_set_sensitive(apptw->EndTime_spin_hh, FALSE);
             gtk_widget_set_sensitive(apptw->EndTime_spin_mm, FALSE);
             gtk_widget_set_sensitive(apptw->EndTimezone_button, FALSE);
-            gtk_widget_set_sensitive(apptw->Dur_spin_dd, TRUE);
-            gtk_widget_set_sensitive(apptw->Dur_spin_dd_label, TRUE);
-            gtk_widget_set_sensitive(apptw->Dur_spin_hh, TRUE);
-            gtk_widget_set_sensitive(apptw->Dur_spin_hh_label, TRUE);
-            gtk_widget_set_sensitive(apptw->Dur_spin_mm, TRUE);
-            gtk_widget_set_sensitive(apptw->Dur_spin_mm_label, TRUE);
+            gtk_widget_set_sensitive(apptw->Dur_spin_dd, due_act);
+            gtk_widget_set_sensitive(apptw->Dur_spin_dd_label, due_act);
+            gtk_widget_set_sensitive(apptw->Dur_spin_hh, due_act);
+            gtk_widget_set_sensitive(apptw->Dur_spin_hh_label, due_act);
+            gtk_widget_set_sensitive(apptw->Dur_spin_mm, due_act);
+            gtk_widget_set_sensitive(apptw->Dur_spin_mm_label, due_act);
         }
         else {
-            gtk_widget_set_sensitive(apptw->EndDate_button, TRUE);
-            gtk_widget_set_sensitive(apptw->EndTime_spin_hh, TRUE);
-            gtk_widget_set_sensitive(apptw->EndTime_spin_mm, TRUE);
-            gtk_widget_set_sensitive(apptw->EndTimezone_button, TRUE);
+            gtk_widget_set_sensitive(apptw->EndDate_button, due_act);
+            gtk_widget_set_sensitive(apptw->EndTime_spin_hh, due_act);
+            gtk_widget_set_sensitive(apptw->EndTime_spin_mm, due_act);
+            gtk_widget_set_sensitive(apptw->EndTimezone_button, due_act);
             gtk_widget_set_sensitive(apptw->Dur_spin_dd, FALSE);
             gtk_widget_set_sensitive(apptw->Dur_spin_dd_label, FALSE);
             gtk_widget_set_sensitive(apptw->Dur_spin_hh, FALSE);
@@ -254,18 +258,10 @@ static void set_time_sensitivity(appt_win *apptw)
             gtk_widget_set_sensitive(apptw->Dur_spin_mm, FALSE);
             gtk_widget_set_sensitive(apptw->Dur_spin_mm_label, FALSE);
         }
-        if (completed_act) {
-            gtk_widget_set_sensitive(apptw->CompletedDate_button, TRUE);
-            gtk_widget_set_sensitive(apptw->CompletedTime_spin_hh, TRUE);
-            gtk_widget_set_sensitive(apptw->CompletedTime_spin_mm, TRUE);
-            gtk_widget_set_sensitive(apptw->CompletedTimezone_button, TRUE);
-        }
-        else {
-            gtk_widget_set_sensitive(apptw->CompletedDate_button, FALSE);
-            gtk_widget_set_sensitive(apptw->CompletedTime_spin_hh, FALSE);
-            gtk_widget_set_sensitive(apptw->CompletedTime_spin_mm, FALSE);
-            gtk_widget_set_sensitive(apptw->CompletedTimezone_button, FALSE);
-        }
+        gtk_widget_set_sensitive(apptw->CompletedDate_button, comp_act);
+        gtk_widget_set_sensitive(apptw->CompletedTime_spin_hh, comp_act);
+        gtk_widget_set_sensitive(apptw->CompletedTime_spin_mm, comp_act);
+        gtk_widget_set_sensitive(apptw->CompletedTimezone_button, comp_act);
     }
 }
 
@@ -352,6 +348,7 @@ static void type_hide_show(appt_win *apptw)
         gtk_label_set_text(GTK_LABEL(apptw->End_label), _("End"));
         gtk_widget_show(apptw->Availability_label);
         gtk_widget_show(apptw->Availability_cb);
+        gtk_widget_hide(apptw->End_checkbutton);
         gtk_widget_hide(apptw->Completed_label);
         gtk_widget_hide(apptw->Completed_hbox);
         gtk_widget_set_sensitive(apptw->Alarm_notebook_page, TRUE);
@@ -369,6 +366,7 @@ static void type_hide_show(appt_win *apptw)
         gtk_label_set_text(GTK_LABEL(apptw->End_label), _("Due"));
         gtk_widget_hide(apptw->Availability_label);
         gtk_widget_hide(apptw->Availability_cb);
+        gtk_widget_show(apptw->End_checkbutton);
         gtk_widget_show(apptw->Completed_label);
         gtk_widget_show(apptw->Completed_hbox);
         gtk_widget_set_sensitive(apptw->Alarm_notebook_page, TRUE);
@@ -386,6 +384,7 @@ static void type_hide_show(appt_win *apptw)
         gtk_label_set_text(GTK_LABEL(apptw->End_label), _("End"));
         gtk_widget_hide(apptw->Availability_label);
         gtk_widget_hide(apptw->Availability_cb);
+        gtk_widget_hide(apptw->End_checkbutton);
         gtk_widget_hide(apptw->Completed_label);
         gtk_widget_hide(apptw->Completed_hbox);
         gtk_widget_set_sensitive(apptw->Alarm_notebook_page, FALSE);
@@ -398,6 +397,7 @@ static void type_hide_show(appt_win *apptw)
         gtk_widget_set_sensitive(apptw->EndTime_hbox, FALSE);
         gtk_widget_set_sensitive(apptw->Dur_hbox, FALSE);
     }
+    set_time_sensitivity(apptw); /* todo has different settings */
 }
 
 static void set_sound_sensitivity(appt_win *apptw)
@@ -511,14 +511,7 @@ static void on_appTitle_entry_changed_cb(GtkEditable *entry
     mark_appointment_changed((appt_win *)user_data);
 }
 
-static void appDur_checkbutton_clicked_cb(GtkCheckButton *cb
-        , gpointer user_data)
-{
-    set_time_sensitivity((appt_win *)user_data);
-    mark_appointment_changed((appt_win *)user_data);
-}
-
-static void appCompleted_checkbutton_clicked_cb(GtkCheckButton *cb
+static void app_time_checkbutton_clicked_cb(GtkCheckButton *cb
         , gpointer user_data)
 {
     set_time_sensitivity((appt_win *)user_data);
@@ -695,12 +688,6 @@ static void on_appSound_button_clicked_cb(GtkButton *button, gpointer user_data)
 
     gtk_widget_destroy(file_chooser);
     g_free(appSound_entry_filename);
-}
-
-static void on_appAllDay_clicked_cb(GtkCheckButton *cb, gpointer user_data)
-{
-    set_time_sensitivity((appt_win *)user_data);
-    mark_appointment_changed((appt_win *)user_data);
 }
 
 static void app_free_memory(appt_win *apptw)
@@ -961,6 +948,8 @@ static gboolean fill_appt_from_apptw(xfical_appt *appt, appt_win *apptw)
     /* end date and time. 
      * Note that timezone is kept upto date all the time 
      */ 
+    appt->use_due_time = gtk_toggle_button_get_active(
+            GTK_TOGGLE_BUTTON(apptw->End_checkbutton));
     current_t = orage_i18_date_to_tm_date(gtk_button_get_label(
             GTK_BUTTON(apptw->EndDate_button)));
     g_sprintf(endtime, "%02d:%02d"
@@ -1314,6 +1303,8 @@ static void fill_appt_window_times(appt_win *apptw, xfical_appt *appt)
         g_warning("fill_appt_window_times: starttime wrong %s", appt->uid);
 
     /* end time */
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
+            apptw->End_checkbutton), appt->use_due_time);
     if (strlen(appt->endtime) > 6 ) {
         tm_date = orage_icaltime_to_tm_time(appt->endtime, TRUE);
         enddate_to_display = orage_tm_date_to_i18_date(&tm_date);
@@ -2331,6 +2322,13 @@ static void build_general_page(appt_win *apptw)
 
     /* end time */
     apptw->End_label = gtk_label_new(_("End"));
+    apptw->End_hbox = gtk_hbox_new(FALSE, 0);
+    /* translators: leave some spaces after this so that it looks better on
+     * the screen */
+    apptw->End_checkbutton = 
+            gtk_check_button_new_with_mnemonic(_("Set      "));
+    gtk_box_pack_start(GTK_BOX(apptw->End_hbox)
+            , apptw->End_checkbutton, FALSE, FALSE, 0);
     apptw->EndDate_button = gtk_button_new();
     apptw->EndTime_spin_hh = gtk_spin_button_new_with_range(0, 23, 1);
     apptw->EndTime_spin_mm = gtk_spin_button_new_with_range(0, 59, 1);
@@ -2340,8 +2338,10 @@ static void build_general_page(appt_win *apptw)
             apptw->EndTime_spin_hh, 
             apptw->EndTime_spin_mm, 
             apptw->EndTimezone_button);
+    gtk_box_pack_end(GTK_BOX(apptw->End_hbox)
+            , apptw->EndTime_hbox, TRUE, TRUE, 0);
     orage_table_add_row(apptw->TableGeneral
-            , apptw->End_label, apptw->EndTime_hbox
+            , apptw->End_label, apptw->End_hbox
             , ++row, (GTK_SHRINK | GTK_FILL), (GTK_SHRINK | GTK_FILL));
 
     /* duration */
@@ -2450,7 +2450,7 @@ static void build_general_page(appt_win *apptw)
     g_signal_connect((gpointer)apptw->Type_journal_rb, "clicked"
             , G_CALLBACK(app_type_checkbutton_clicked_cb), apptw);
     g_signal_connect((gpointer)apptw->AllDay_checkbutton, "clicked"
-            , G_CALLBACK(on_appAllDay_clicked_cb), apptw);
+            , G_CALLBACK(app_time_checkbutton_clicked_cb), apptw);
     g_signal_connect((gpointer)apptw->StartDate_button, "clicked"
             , G_CALLBACK(on_Date_button_clicked_cb), apptw);
     g_signal_connect((gpointer)apptw->StartTime_spin_hh, "changed"
@@ -2459,6 +2459,8 @@ static void build_general_page(appt_win *apptw)
             , G_CALLBACK(on_app_spin_button_changed_cb), apptw);
     g_signal_connect((gpointer)apptw->StartTimezone_button, "clicked"
             , G_CALLBACK(on_appStartTimezone_clicked_cb), apptw);
+    g_signal_connect((gpointer)apptw->End_checkbutton, "clicked"
+            , G_CALLBACK(app_time_checkbutton_clicked_cb), apptw);
     g_signal_connect((gpointer)apptw->EndDate_button, "clicked"
             , G_CALLBACK(on_Date_button_clicked_cb), apptw);
     g_signal_connect((gpointer)apptw->EndTime_spin_hh, "changed"
@@ -2468,7 +2470,7 @@ static void build_general_page(appt_win *apptw)
     g_signal_connect((gpointer)apptw->EndTimezone_button, "clicked"
             , G_CALLBACK(on_appEndTimezone_clicked_cb), apptw);
     g_signal_connect((gpointer)apptw->Dur_checkbutton, "clicked"
-            , G_CALLBACK(appDur_checkbutton_clicked_cb), apptw);
+            , G_CALLBACK(app_time_checkbutton_clicked_cb), apptw);
     g_signal_connect((gpointer)apptw->Dur_spin_dd, "value-changed"
             , G_CALLBACK(on_app_spin_button_changed_cb), apptw);
     g_signal_connect((gpointer)apptw->Dur_spin_hh, "value-changed"
@@ -2476,7 +2478,7 @@ static void build_general_page(appt_win *apptw)
     g_signal_connect((gpointer)apptw->Dur_spin_mm, "value-changed"
             , G_CALLBACK(on_app_spin_button_changed_cb), apptw);
     g_signal_connect((gpointer)apptw->Completed_checkbutton, "clicked"
-            , G_CALLBACK(appCompleted_checkbutton_clicked_cb), apptw);
+            , G_CALLBACK(app_time_checkbutton_clicked_cb), apptw);
     g_signal_connect((gpointer)apptw->CompletedDate_button, "clicked"
             , G_CALLBACK(on_Date_button_clicked_cb), apptw);
     g_signal_connect((gpointer)apptw->CompletedTime_spin_hh, "changed"

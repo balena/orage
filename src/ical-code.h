@@ -66,6 +66,7 @@ typedef struct _xfical_appt
          */
     gchar  starttime[17];
     gchar *start_tz_loc;
+    gboolean use_due_time;  /* VTODO has due date or not */
     gchar  endtime[17];
     gchar *end_tz_loc;
     gboolean use_duration;

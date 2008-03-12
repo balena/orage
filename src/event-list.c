@@ -198,19 +198,29 @@ static char *format_time(el_win *el, xfical_appt *appt, char *par)
             result[i++] = ' ';
             i += append_time(result, start_ical_time, i);
             i = g_strlcat(result, "- ", 50);
-            if (!same_date) {
-                t = orage_icaltime_to_tm_time(appt->endtimecur, TRUE);
-                tmp = orage_tm_date_to_i18_date(&t);
-                i = g_strlcat(result, tmp, 50);
-                result[i++] = ' ';
+            if (el->page == TODO_PAGE && !appt->use_due_time) {
+                i = g_strlcat(result, "...", 50);
             }
-            i += append_time(result, end_ical_time, i);
+            else {
+                if (!same_date) {
+                    t = orage_icaltime_to_tm_time(appt->endtimecur, TRUE);
+                    tmp = orage_tm_date_to_i18_date(&t);
+                    i = g_strlcat(result, tmp, 50);
+                    result[i++] = ' ';
+                }
+                i += append_time(result, end_ical_time, i);
+            }
         }
         else {/* date only */
             i = g_strlcat(result, " - ", 50);
-            t = orage_icaltime_to_tm_time(appt->endtimecur, TRUE);
-            tmp = orage_tm_date_to_i18_date(&t);
-            i = g_strlcat(result, tmp, 50);
+            if (el->page == TODO_PAGE && !appt->use_due_time) {
+                i = g_strlcat(result, "...", 50);
+            }
+            else {
+                t = orage_icaltime_to_tm_time(appt->endtimecur, TRUE);
+                tmp = orage_tm_date_to_i18_date(&t);
+                i = g_strlcat(result, tmp, 50);
+            }
         }
     }
 
@@ -239,7 +249,7 @@ static void start_time_data_func(GtkTreeViewColumn *col, GtkCellRenderer *rend
         , GtkTreeModel *model, GtkTreeIter *iter, gpointer user_data)
 {
     el_win *el = (el_win *)user_data;
-    gchar *stime, *etime;
+    gchar *stime, *etime, *stime2;
     gchar start_time[17], end_time[17];
     gint len;
 
@@ -303,7 +313,11 @@ static void start_time_data_func(GtkTreeViewColumn *col, GtkCellRenderer *rend
             len = 8;
         }
         strncpy(start_time, stime, len);
-        strncpy(end_time, stime+len, len);
+        gtk_tree_model_get(model, iter, COL_TIME, &stime2, -1);
+        if (g_str_has_suffix(stime2, "- ...")) /* no due time */
+            strncpy(end_time, "99999", len); /* long in the future*/
+        else /* normal due time*/
+            strncpy(end_time, stime+len, len);
         if (strncmp(end_time, el->date_now, len) < 0) { /* gone */
             g_object_set(rend
                      , "foreground",        "Red"
@@ -385,7 +399,7 @@ static void add_el_row(el_win *el, xfical_appt *appt, char *par)
         flags[4] = 'E';
     else if (appt->type == XFICAL_TYPE_TODO)
         flags[4] = 'T';
-    else
+    else /* Journal */
         flags[4] = 'J';
 
     flags[5] = '\0';

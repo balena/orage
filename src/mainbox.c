@@ -383,18 +383,24 @@ static void add_info_row(xfical_appt *appt, GtkBox *parentBox, gboolean todo)
             len = 15;
         else /* date only */
             len = 8;
-        if (strncmp(appt->endtimecur,  l_time, len) < 0) /* gone */
+        if (appt->use_due_time)
+            e_time = g_strndup(appt->endtimecur, len);
+        else
+            e_time = g_strdup("99999");
+        if (strncmp(e_time,  l_time, len) < 0) /* gone */
             gtk_widget_modify_fg(label, GTK_STATE_NORMAL, &cal->mRed);
-        else if (strncmp(appt->starttimecur,  l_time, len) <= 0
-             &&  strncmp(appt->endtimecur,  l_time, len) >= 0)
+        else if (strncmp(appt->starttimecur, l_time, len) <= 0
+             &&  strncmp(e_time, l_time, len) >= 0)
             gtk_widget_modify_fg(label, GTK_STATE_NORMAL, &cal->mBlue);
+        g_free(e_time);
     }
 
     /***** set hint *****/
     s_time = g_strdup(orage_icaltime_to_i18_time(appt->starttimecur));
-    e_time = g_strdup(orage_icaltime_to_i18_time(appt->endtimecur));
     if (todo) {
         na = _("Never");
+        e_time = g_strdup(appt->use_due_time
+                ? orage_icaltime_to_i18_time(appt->endtimecur) : na);
         c_time = g_strdup(appt->completed
                 ? orage_icaltime_to_i18_time(appt->completedtime) : na);
         tip = g_strdup_printf(_("Title: %s\n Start:\t%s\n Due:\t%s\n Done:\t%s\nNote:\n%s")
@@ -402,6 +408,7 @@ static void add_info_row(xfical_appt *appt, GtkBox *parentBox, gboolean todo)
         g_free(c_time);
     }
     else { /* it is event */
+        e_time = g_strdup(orage_icaltime_to_i18_time(appt->endtimecur));
         tip = g_strdup_printf(_("Title: %s\n Start:\t%s\n End:\t%s\n Note:\n%s")
                 , appt->title, s_time, e_time, appt->note);
     }

@@ -1719,7 +1719,10 @@ static char *appt_add_internal(xfical_appt *appt, gboolean add, char *uid
         /* journal has no duration nor enddate or due 
          * journal also has no priority or transparent setting
          * journal also has not alarms or repeat settings */
-        if (appt->use_duration) { 
+        if (!appt->use_due_time && (appt->type == XFICAL_TYPE_TODO)) { 
+            ; /* done with due time */
+        }
+        else if (appt->use_duration) { 
             /* both event and todo can have duration */
             duration = icaldurationtype_from_int(appt->duration);
             icalcomponent_add_property(icmp
@@ -1834,8 +1837,8 @@ static char *appt_add_internal(xfical_appt *appt, gboolean add, char *uid
 }
 
  /* add EVENT/TODO/JOURNAL type ical appointment to ical file
-  * app: pointer to filled xfical_appt structure, which is stored
-  *      Caller is responsible for filling and allocating and freeing it.
+  * appt: pointer to filled xfical_appt structure, which is to be stored
+  *       Caller is responsible for filling and allocating and freeing it.
   *  returns: NULL if failed and new ical id if successfully added. 
   *           This ical id is owned by the routine. Do not deallocate it.
   *           It will be overwrittewritten by next invocation of this function.
@@ -2107,6 +2110,7 @@ static void process_end_date(xfical_appt *appt, icalproperty *p
             appt->end_tz_loc = "floating";
         }
     }
+    appt->use_due_time = TRUE;
 }
 
 static void process_completed_date(xfical_appt *appt, icalproperty *p)
@@ -2275,6 +2279,7 @@ static xfical_appt *xfical_appt_get_internal(char *ical_uid
             appt.allDay = FALSE;
             appt.starttime[0] = '\0';
             appt.start_tz_loc = NULL;
+            appt.use_due_time = FALSE;
             appt.endtime[0] = '\0';
             appt.end_tz_loc = NULL;
             appt.use_duration = FALSE;
@@ -2359,6 +2364,7 @@ static xfical_appt *xfical_appt_get_internal(char *ical_uid
                         break;
                     case ICAL_DURATION_PROPERTY:
                         appt.use_duration = TRUE;
+                        appt.use_due_time = TRUE;
                         duration = icalproperty_get_duration(p);
                         appt.duration = icaldurationtype_as_int(duration);
                         break;
@@ -4235,12 +4241,6 @@ static xfical_appt *xfical_appt_get_next_with_string_internal(char *str
     if (!ORAGE_STR_EXISTS(str))
         return(NULL);
     if (first) {
-        /* FIXME: it would be good idea to convert to upper case.
-         * then we should not need to care about case and search would
-         * be more user friendly.
-         * Note: This is not easy since UID must not be converted upper case
-         * or it will not be found.
-         */
         if (!g_file_get_contents(search_file, &text, &text_len, NULL)) {
             orage_message(250, P_N "Could not open Orage ical file (%s)", search_file);
             return(NULL);
