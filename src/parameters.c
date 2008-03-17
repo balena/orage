@@ -43,6 +43,7 @@
 #include "tray_icon.h"
 #include "ical-code.h"
 #include "parameters.h"
+#include "mainbox.h"
 
 
 static gboolean is_running = FALSE;
@@ -185,7 +186,7 @@ static void sound_application_changed(GtkWidget *dialog, gpointer user_data)
 
 static void set_border()
 {
-    gtk_window_set_decorated(GTK_WINDOW(g_par.xfcal->mWindow)
+    gtk_window_set_decorated(GTK_WINDOW(((CalWin *)g_par.xfcal)->mWindow)
             , g_par.show_borders);
 }
 
@@ -201,9 +202,9 @@ static void borders_changed(GtkWidget *dialog, gpointer user_data)
 static void set_menu()
 {
     if (g_par.show_menu)
-        gtk_widget_show(g_par.xfcal->mMenubar);
+        gtk_widget_show(((CalWin *)g_par.xfcal)->mMenubar);
     else
-        gtk_widget_hide(g_par.xfcal->mMenubar);
+        gtk_widget_hide(((CalWin *)g_par.xfcal)->mMenubar);
 }
 
 static void menu_changed(GtkWidget *dialog, gpointer user_data)
@@ -218,9 +219,9 @@ static void menu_changed(GtkWidget *dialog, gpointer user_data)
 static void set_todos()
 {
     if (g_par.show_todos)
-        gtk_widget_show_all(g_par.xfcal->mTodo_vbox);
+        gtk_widget_show_all(((CalWin *)g_par.xfcal)->mTodo_vbox);
     else
-        gtk_widget_hide_all(g_par.xfcal->mTodo_vbox);
+        gtk_widget_hide_all(((CalWin *)g_par.xfcal)->mTodo_vbox);
 }
 
 static void todos_changed(GtkWidget *dialog, gpointer user_data)
@@ -235,9 +236,9 @@ static void todos_changed(GtkWidget *dialog, gpointer user_data)
 static void set_events()
 {
     if (g_par.show_events)
-        gtk_widget_show_all(g_par.xfcal->mEvent_vbox);
+        gtk_widget_show_all(((CalWin *)g_par.xfcal)->mEvent_vbox);
     else
-        gtk_widget_hide_all(g_par.xfcal->mEvent_vbox);
+        gtk_widget_hide_all(((CalWin *)g_par.xfcal)->mEvent_vbox);
 }
 
 static void events_changed(GtkWidget *dialog, gpointer user_data)
@@ -252,9 +253,9 @@ static void events_changed(GtkWidget *dialog, gpointer user_data)
 static void set_stick()
 {
     if (g_par.set_stick)
-        gtk_window_stick(GTK_WINDOW(g_par.xfcal->mWindow));
+        gtk_window_stick(GTK_WINDOW(((CalWin *)g_par.xfcal)->mWindow));
     else
-        gtk_window_unstick(GTK_WINDOW(g_par.xfcal->mWindow));
+        gtk_window_unstick(GTK_WINDOW(((CalWin *)g_par.xfcal)->mWindow));
 }
 
 static void stick_changed(GtkWidget *dialog, gpointer user_data)
@@ -268,7 +269,7 @@ static void stick_changed(GtkWidget *dialog, gpointer user_data)
 
 static void set_ontop()
 {
-    gtk_window_set_keep_above(GTK_WINDOW(g_par.xfcal->mWindow)
+    gtk_window_set_keep_above(GTK_WINDOW(((CalWin *)g_par.xfcal)->mWindow)
             , g_par.set_ontop);
 }
 
@@ -283,8 +284,8 @@ static void ontop_changed(GtkWidget *dialog, gpointer user_data)
 
 static void set_taskbar()
 {
-    gtk_window_set_skip_taskbar_hint(GTK_WINDOW(g_par.xfcal->mWindow)
-            , !g_par.show_taskbar);
+    gtk_window_set_skip_taskbar_hint(
+            GTK_WINDOW(((CalWin *)g_par.xfcal)->mWindow), !g_par.show_taskbar);
 }
 
 static void taskbar_changed(GtkWidget *dialog, gpointer user_data)
@@ -298,7 +299,7 @@ static void taskbar_changed(GtkWidget *dialog, gpointer user_data)
 
 static void set_pager()
 {
-    gtk_window_set_skip_pager_hint(GTK_WINDOW(g_par.xfcal->mWindow)
+    gtk_window_set_skip_pager_hint(GTK_WINDOW(((CalWin *)g_par.xfcal)->mWindow)
             , !g_par.show_pager);
 }
 
@@ -313,14 +314,15 @@ static void pager_changed(GtkWidget *dialog, gpointer user_data)
 
 static void set_systray()
 {
-    if (!(g_par.trayIcon && NETK_IS_TRAY_ICON(g_par.trayIcon->tray))) {
-        g_par.trayIcon = create_TrayIcon(g_par.xfcal);
+    if (!(g_par.trayIcon 
+    && NETK_IS_TRAY_ICON(((XfceTrayIcon *)g_par.trayIcon)->tray))) {
+        g_par.trayIcon = create_TrayIcon();
     }
 
     if (g_par.show_systray)
-        xfce_tray_icon_connect(g_par.trayIcon);
+        xfce_tray_icon_connect((XfceTrayIcon *)g_par.trayIcon);
     else
-        xfce_tray_icon_disconnect(g_par.trayIcon);
+        xfce_tray_icon_disconnect((XfceTrayIcon *)g_par.trayIcon);
 }
 
 static void systray_changed(GtkWidget *dialog, gpointer user_data)
@@ -425,13 +427,7 @@ static void ical_weekstartday_changed(GtkWidget *dialog, gpointer user_data)
 
 static void set_icon_size()
 {
-    if (g_par.trayIcon && NETK_IS_TRAY_ICON(g_par.trayIcon->tray)) {
-        /* refresh date in tray icon */
-        xfce_tray_icon_disconnect(g_par.trayIcon);
-        destroy_TrayIcon(g_par.trayIcon);
-        g_par.trayIcon = create_TrayIcon(g_par.xfcal);
-        xfce_tray_icon_connect(g_par.trayIcon);
-    }
+    refresh_TrayIcon();
 }
 
 static void icon_size_x_spin_changed(GtkSpinButton *sb, gpointer user_data)
@@ -895,7 +891,7 @@ void write_parameters()
 #endif
     orage_rc_put_str(orc, "Orage file", g_par.orage_file);
     orage_rc_put_str(orc, "Sound application", g_par.sound_application);
-    gtk_window_get_position(GTK_WINDOW(g_par.xfcal->mWindow)
+    gtk_window_get_position(GTK_WINDOW(((CalWin *)g_par.xfcal)->mWindow)
             , &g_par.pos_x, &g_par.pos_y);
     orage_rc_put_int(orc, "Main window X", g_par.pos_x);
     orage_rc_put_int(orc, "Main window Y", g_par.pos_y);

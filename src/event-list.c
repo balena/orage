@@ -695,7 +695,8 @@ static void set_el_data_from_cal(el_win *el)
 {
     char *title;
 
-    title = orage_cal_to_i18_date(GTK_CALENDAR(g_par.xfcal->mCalendar));
+    title = orage_cal_to_i18_date(
+            GTK_CALENDAR(((CalWin *)g_par.xfcal)->mCalendar));
     set_el_data(el, title);
 }
 
@@ -814,7 +815,7 @@ static void changeSelectedDate(el_win *el, gint day)
     tm_date = orage_i18_date_to_tm_date(
             gtk_window_get_title(GTK_WINDOW(el->Window)));
     orage_move_day(&tm_date, day);
-    orage_select_date(GTK_CALENDAR(g_par.xfcal->mCalendar)
+    orage_select_date(GTK_CALENDAR(((CalWin *)g_par.xfcal)->mCalendar)
             , tm_date.tm_year + 1900, tm_date.tm_mon, tm_date.tm_mday);
     set_el_data_from_cal(el);
 }
@@ -831,7 +832,7 @@ static void on_Go_previous_activate_cb(GtkMenuItem *mi, gpointer user_data)
 
 static void go_to_today(el_win *el)
 {
-    orage_select_today(GTK_CALENDAR(g_par.xfcal->mCalendar));
+    orage_select_today(GTK_CALENDAR(((CalWin *)g_par.xfcal)->mCalendar));
     set_el_data_from_cal(el);
 }
 
@@ -1346,7 +1347,7 @@ el_win *create_el_win(char *start_date)
 
     gtk_drag_source_set(el->TreeView, GDK_BUTTON1_MASK
             , drag_targets, DRAG_TARGET_COUNT, GDK_ACTION_COPY);
-    pixbuf = orage_create_icon(g_par.xfcal, TRUE, 16, 16);
+    pixbuf = orage_create_icon(TRUE, 16, 16);
     gtk_drag_source_set_icon_pixbuf(el->TreeView, pixbuf);
     g_object_unref(pixbuf);
     g_signal_connect(el->TreeView, "drag_data_get"

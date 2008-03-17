@@ -103,29 +103,32 @@ static void raise_window()
 {
     GdkScreen *screen = NULL;
     GdkWindow *window;
+    CalWin *cal = (CalWin *)g_par.xfcal;
 
     /*
     screen = xfce_gdk_display_locate_monitor_with_pointer(NULL, NULL);
     */
-    gtk_window_set_screen(GTK_WINDOW(g_par.xfcal->mWindow)
+    gtk_window_set_screen(GTK_WINDOW(cal->mWindow)
             , screen ? screen : gdk_screen_get_default());
     if (g_par.pos_x || g_par.pos_y)
-        gtk_window_move(GTK_WINDOW(g_par.xfcal->mWindow)
+        gtk_window_move(GTK_WINDOW(cal->mWindow)
                 , g_par.pos_x, g_par.pos_y);
     if (g_par.select_always_today)
-        orage_select_today(GTK_CALENDAR(g_par.xfcal->mCalendar));
+        orage_select_today(GTK_CALENDAR(cal->mCalendar));
     if (g_par.set_stick)
-        gtk_window_stick(GTK_WINDOW(g_par.xfcal->mWindow));
-    gtk_window_set_keep_above(GTK_WINDOW(g_par.xfcal->mWindow)
+        gtk_window_stick(GTK_WINDOW(cal->mWindow));
+    gtk_window_set_keep_above(GTK_WINDOW(cal->mWindow)
             , g_par.set_ontop);
-    window = GTK_WIDGET(g_par.xfcal->mWindow)->window;
+    window = GTK_WIDGET(cal->mWindow)->window;
     gdk_x11_window_set_user_time(window, gdk_x11_get_server_time(window));
-    gtk_window_present(GTK_WINDOW(g_par.xfcal->mWindow));
+    gtk_window_present(GTK_WINDOW(cal->mWindow));
 }
 
 static gboolean client_message_received(GtkWidget *widget
         , GdkEventClient *event, gpointer user_data)
 {
+    CalWin *cal = (CalWin *)g_par.xfcal;
+
     if (event->message_type ==
             gdk_atom_intern("_XFCE_CALENDAR_RAISE", FALSE)) {
         raise_window();
@@ -133,9 +136,9 @@ static gboolean client_message_received(GtkWidget *widget
     }
     else if (event->message_type ==
             gdk_atom_intern("_XFCE_CALENDAR_TOGGLE_HERE", FALSE)) {
-        if (GTK_WIDGET_VISIBLE(g_par.xfcal->mWindow)) {
+        if (GTK_WIDGET_VISIBLE(cal->mWindow)) {
             write_parameters();
-            gtk_widget_hide(g_par.xfcal->mWindow);
+            gtk_widget_hide(cal->mWindow);
             return TRUE;
         }
         else {
@@ -433,8 +436,8 @@ int main(int argc, char *argv[])
 
     g_par.xfcal = g_new(CalWin, 1);
     /* Create the main window */
-    g_par.xfcal->mWindow = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-    g_signal_connect((gpointer) g_par.xfcal->mWindow, "delete_event"
+    ((CalWin *)g_par.xfcal)->mWindow = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+    g_signal_connect((gpointer) ((CalWin *)g_par.xfcal)->mWindow, "delete_event"
             , G_CALLBACK(mWindow_delete_event_cb), (gpointer)g_par.xfcal);
 
     /* 
@@ -461,19 +464,20 @@ int main(int argc, char *argv[])
     build_mainWin();
     set_parameters();
     if (g_par.start_visible) {
-        gtk_widget_show(g_par.xfcal->mWindow);
+        gtk_widget_show(((CalWin *)g_par.xfcal)->mWindow);
     }
     else if (g_par.start_minimized) {
-        gtk_window_iconify(GTK_WINDOW(g_par.xfcal->mWindow));
-        gtk_widget_show(g_par.xfcal->mWindow);
+        gtk_window_iconify(GTK_WINDOW(((CalWin *)g_par.xfcal)->mWindow));
+        gtk_widget_show(((CalWin *)g_par.xfcal)->mWindow);
     }
     else { /* hidden */
-        gtk_widget_realize(g_par.xfcal->mWindow);
-        gtk_widget_hide(g_par.xfcal->mWindow);
+        gtk_widget_realize(((CalWin *)g_par.xfcal)->mWindow);
+        gtk_widget_hide(((CalWin *)g_par.xfcal)->mWindow);
     }
     reset_orage_day_change(FALSE); /* first day change after we start */
     alarm_read();
-    mCalendar_month_changed_cb((GtkCalendar *)g_par.xfcal->mCalendar, NULL);
+    mCalendar_month_changed_cb(
+            (GtkCalendar *)((CalWin *)g_par.xfcal)->mCalendar, NULL);
 
     /* start monitoring foreign file updates if we have foreign files */
     if (g_par.foreign_count)

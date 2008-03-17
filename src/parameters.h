@@ -23,9 +23,6 @@
 #ifndef __ORAGE_PARAMETERS_H__
 #define __ORAGE_PARAMETERS_H__
 
-#include "xfce_trayicon.h"
-#include "mainbox.h"
-
 #define BORDER 5
 typedef struct _foreign_file
 {
@@ -78,11 +75,11 @@ typedef struct _parameters
     guint tooltip_timer; /* keeps tooltips upto date */
 
     /* main window */
-    CalWin *xfcal;
+    void *xfcal;     /* this is main calendar CalWin * */
     gint pos_x, pos_y;
 
     /* tray icon */
-    XfceTrayIcon *trayIcon;
+    void *trayIcon; /* this is XfceTrayIcon * */
     gint icon_size_x, icon_size_y;
 
     /* event-list window */

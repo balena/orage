@@ -65,7 +65,7 @@ gboolean orage_mark_appointments()
 #endif
     if (!xfical_file_open(TRUE))
         return(FALSE);
-    xfical_mark_calendar(GTK_CALENDAR(g_par.xfcal->mCalendar));
+    xfical_mark_calendar(GTK_CALENDAR(((CalWin *)g_par.xfcal)->mCalendar));
     xfical_file_close(TRUE);
     return(TRUE);
 }
@@ -249,7 +249,7 @@ static void build_menu(void)
 #undef P_N
 #define P_N "build_menu: "
     GtkWidget *menu_separator;
-    CalWin *cal = g_par.xfcal;
+    CalWin *cal = (CalWin *)g_par.xfcal;
 
 #ifdef ORAGE_DEBUG
     orage_message(-100, P_N);
@@ -306,7 +306,7 @@ static void build_menu(void)
     cal->mHelp_about = orage_image_menu_item_new_from_stock("gtk-about"
             , cal->mHelp_menu, cal->mAccel_group);
 
-    gtk_widget_show_all(g_par.xfcal->mMenubar);
+    gtk_widget_show_all(((CalWin *)g_par.xfcal)->mMenubar);
 
     /* Signals */
     g_signal_connect((gpointer) cal->mFile_newApp, "activate"
@@ -352,7 +352,7 @@ static void add_info_row(xfical_appt *appt, GtkBox *parentBox, gboolean todo)
 #undef P_N
 #define P_N "add_info_row: "
     GtkWidget *ev, *label;
-    CalWin *cal = g_par.xfcal;
+    CalWin *cal = (CalWin *)g_par.xfcal;
     gchar *tip, *tmp;
     struct tm *t;
     char      *l_time, *s_time, *e_time, *c_time, *na;
@@ -458,7 +458,7 @@ static void info_process(gpointer a, gpointer pbox)
 #define P_N "info_process: "
     xfical_appt *appt = (xfical_appt *)a;;
     GtkBox *box = GTK_BOX(pbox);
-    CalWin *cal = g_par.xfcal;
+    CalWin *cal = (CalWin *)g_par.xfcal;
     gboolean todo;
 
 #ifdef ORAGE_DEBUG
@@ -476,7 +476,7 @@ static void create_mainbox_todo_info(void)
 {
 #undef P_N
 #define P_N "create_mainbox_todo_info: "
-    CalWin *cal = g_par.xfcal;
+    CalWin *cal = (CalWin *)g_par.xfcal;
 
 #ifdef ORAGE_DEBUG
     orage_message(-100, P_N);
@@ -504,7 +504,7 @@ static void create_mainbox_event_info(void)
 {
 #undef P_N
 #define P_N "create_mainbox_event_info: "
-    CalWin *cal = g_par.xfcal;
+    CalWin *cal = (CalWin *)g_par.xfcal;
     gchar *tmp;
 
 #ifdef ORAGE_DEBUG
@@ -537,7 +537,7 @@ static void build_mainbox_todo_info(void)
 {
 #undef P_N
 #define P_N "build_mainbox_todo_info: "
-    CalWin *cal = g_par.xfcal;
+    CalWin *cal = (CalWin *)g_par.xfcal;
     char      *s_time;
     char      a_day[9];  /* yyyymmdd */
     struct tm *t;
@@ -584,7 +584,7 @@ static void build_mainbox_event_info(void)
 {
 #undef P_N
 #define P_N "build_mainbox_event_info: "
-    CalWin *cal = g_par.xfcal;
+    CalWin *cal = (CalWin *)g_par.xfcal;
     char      *s_time;
     char      a_day[9];  /* yyyymmdd */
     struct tm tt= {0,0,0,0,0,0,0,0,0};
@@ -667,7 +667,7 @@ void build_mainWin()
 #undef P_N
 #define P_N "build_mainWin: "
     GdkPixbuf *orage_logo;
-    CalWin *cal = g_par.xfcal;
+    CalWin *cal = (CalWin *)g_par.xfcal;
     GdkColormap *pic1_cmap;
 
 #ifdef ORAGE_DEBUG
@@ -682,7 +682,7 @@ void build_mainWin()
     /* using static icon here since this dynamic icon is not updated
      * when date changes. Could be added, but not worth it.
      * Dynamic icon is used in systray and about windows */
-    orage_logo = orage_create_icon(cal, TRUE, 48, 48); 
+    orage_logo = orage_create_icon(TRUE, 48, 48); 
     cal->mAccel_group = gtk_accel_group_new();
     cal->Tooltips = gtk_tooltips_new();
 

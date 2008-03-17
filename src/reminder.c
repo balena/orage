@@ -426,8 +426,10 @@ static void create_notify_reminder(alarm_struct *alarm)
     strncat(heading, alarm->title, 50);
     n = notify_notification_new(heading, alarm->description, NULL, NULL);
     alarm->active_alarm->active_notify = n;
-    if (g_par.trayIcon && NETK_IS_TRAY_ICON(g_par.trayIcon->tray)) 
-        notify_notification_attach_to_widget(n, g_par.trayIcon->image);
+    if (g_par.trayIcon 
+    && NETK_IS_TRAY_ICON(((XfceTrayIcon *)g_par.trayIcon)->tray)) 
+        notify_notification_attach_to_widget(n
+                , ((XfceTrayIcon *)g_par.trayIcon)->image);
 
     if (alarm->notify_timeout == -1)
         notify_notification_set_timeout(n, NOTIFY_EXPIRES_NEVER);
@@ -648,7 +650,6 @@ static gboolean orage_day_change(gpointer user_data)
 {
 #undef P_N
 #define P_N "orage_day_change: "
-    CalWin *xfcal;
     struct tm *t;
     static guint previous_year=0, previous_month=0, previous_day=0;
     guint selected_year=0, selected_month=0, selected_day=0;
@@ -666,29 +667,20 @@ static gboolean orage_day_change(gpointer user_data)
         current_month = t->tm_mon;
         current_day   = t->tm_mday;
       /* Get the selected date from calendar */
-        xfcal = g_par.xfcal;
-        gtk_calendar_get_date(GTK_CALENDAR (xfcal->mCalendar),
+        gtk_calendar_get_date(GTK_CALENDAR(((CalWin *)g_par.xfcal)->mCalendar),
                  &selected_year, &selected_month, &selected_day);
         if (selected_year == previous_year 
         && selected_month == previous_month 
         && selected_day == previous_day) {
             /* previous day was indeed selected, 
                keep it current automatically */
-            orage_select_date(GTK_CALENDAR(xfcal->mCalendar)
+            orage_select_date(GTK_CALENDAR(((CalWin *)g_par.xfcal)->mCalendar)
                     , current_year, current_month, current_day);
         }
         previous_year  = current_year;
         previous_month = current_month;
         previous_day   = current_day;
-        if (g_par.show_systray) {
-            /* refresh date in tray icon */
-            if (g_par.trayIcon && NETK_IS_TRAY_ICON(g_par.trayIcon->tray)) { 
-                xfce_tray_icon_disconnect(g_par.trayIcon);
-                destroy_TrayIcon(g_par.trayIcon);
-            }
-            g_par.trayIcon = create_TrayIcon(xfcal);
-            xfce_tray_icon_connect(g_par.trayIcon);
-        }
+        refresh_TrayIcon();
         xfical_alarm_build_list(TRUE);  /* new alarm list when date changed */
         reset_orage_day_change(TRUE); /* setup for next time */
     }
@@ -821,7 +813,8 @@ gboolean orage_tooltip_update(gpointer user_data)
 #ifdef ORAGE_DEBUG
     orage_message(-100, P_N);
 #endif
-    if (!(g_par.trayIcon && NETK_IS_TRAY_ICON(g_par.trayIcon->tray))) { 
+    if (!(g_par.trayIcon 
+    && NETK_IS_TRAY_ICON(((XfceTrayIcon *)g_par.trayIcon)->tray))) { 
            /* no trayicon => no need to update the tooltip */
         return(FALSE);
     }
@@ -863,7 +856,8 @@ gboolean orage_tooltip_update(gpointer user_data)
     }
     if (alarm_cnt == 0)
         g_string_append_printf(tooltip, _("\nNo active alarms found"));
-    xfce_tray_icon_set_tooltip(g_par.trayIcon, tooltip->str, NULL);
+    xfce_tray_icon_set_tooltip((XfceTrayIcon *)g_par.trayIcon, tooltip->str
+            , NULL);
     g_string_free(tooltip, TRUE);
     return(TRUE);
 }

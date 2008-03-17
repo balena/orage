@@ -24,8 +24,6 @@
 #ifndef __APPOINTMENT_H__
 #define __APPOINTMENT_H__
 
-#include "ical-code.h"
-
 typedef struct _appt_win
 {
     GtkAccelGroup *accel_group;
@@ -181,7 +179,7 @@ typedef struct _appt_win
     GtkWidget *Recur_byday_spin_hbox;
     GtkWidget *Recur_byday_spin[7];  /* 0=Mo, 1=Tu ... 6=Su */
 
-    xfical_appt *appt;
+    void *xf_appt; /* this is xfical_appt * */
     gchar *xf_uid;
     gchar *par;
     void  *el;          /* used to refresh calling event list */

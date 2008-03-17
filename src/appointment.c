@@ -704,7 +704,7 @@ static void app_free_memory(appt_win *apptw)
     gtk_object_destroy(GTK_OBJECT(apptw->Tooltips));
     g_free(apptw->xf_uid);
     g_free(apptw->par);
-    xfical_appt_free(apptw->appt);
+    xfical_appt_free((xfical_appt *)apptw->xf_appt);
     g_free(apptw);
 }
 
@@ -1074,7 +1074,7 @@ static gboolean fill_appt_from_apptw(xfical_appt *appt, appt_win *apptw)
 static gboolean save_xfical_from_appt_win(appt_win *apptw)
 {
     gboolean ok = FALSE;
-    xfical_appt *appt = apptw->appt;
+    xfical_appt *appt = (xfical_appt *)apptw->xf_appt;
 
     if (fill_appt_from_apptw(appt, apptw)) {
         /* Here we try to save the event... */
@@ -1241,7 +1241,7 @@ static void on_appStartTimezone_clicked_cb(GtkButton *button
     appt_win *apptw = (appt_win *)user_data;
     xfical_appt *appt;
 
-    appt = apptw->appt;
+    appt = (xfical_appt *)apptw->xf_appt;
     if (xfical_timezone_button_clicked(button, GTK_WINDOW(apptw->Window)
             , &appt->start_tz_loc))
         mark_appointment_changed(apptw);
@@ -1253,7 +1253,7 @@ static void on_appEndTimezone_clicked_cb(GtkButton *button
     appt_win *apptw = (appt_win *)user_data;
     xfical_appt *appt;
 
-    appt = apptw->appt;
+    appt = (xfical_appt *)apptw->xf_appt;
     if (xfical_timezone_button_clicked(button, GTK_WINDOW(apptw->Window)
             , &appt->end_tz_loc))
         mark_appointment_changed(apptw);
@@ -1265,7 +1265,7 @@ static void on_appCompletedTimezone_clicked_cb(GtkButton *button
     appt_win *apptw = (appt_win *)user_data;
     xfical_appt *appt;
 
-    appt = apptw->appt;
+    appt = (xfical_appt *)apptw->xf_appt;
     if (xfical_timezone_button_clicked(button, GTK_WINDOW(apptw->Window)
             , &appt->completed_tz_loc))
         mark_appointment_changed(apptw);
@@ -1888,10 +1888,10 @@ static void fill_appt_window(appt_win *apptw, char *action, char *par)
 
     orage_message(10, "%s appointment: %s", action, par);
     if ((appt = fill_appt_window_get_appt(apptw, action, par)) == NULL) {
-        apptw->appt = NULL;
+        apptw->xf_appt = NULL;
         return;
     }
-    apptw->appt = appt;
+    apptw->xf_appt = appt;
 
     /* first flags */
     apptw->xf_uid = g_strdup(appt->uid);
@@ -2190,7 +2190,7 @@ static void on_appDefault_save_button_clicked_cb(GtkButton *button
         , gpointer user_data)
 {
     appt_win *apptw = (appt_win *)user_data;
-    xfical_appt *appt = apptw->appt;
+    xfical_appt *appt = (xfical_appt *)apptw->xf_appt;
 
     fill_appt_from_apptw_alarm(appt, apptw);
     store_default_alarm(appt);
@@ -2200,7 +2200,7 @@ static void on_appDefault_read_button_clicked_cb(GtkButton *button
         , gpointer user_data)
 {
     appt_win *apptw = (appt_win *)user_data;
-    xfical_appt *appt = apptw->appt;
+    xfical_appt *appt = (xfical_appt *)apptw->xf_appt;
 
     read_default_alarm(appt);
     fill_appt_window_alarm(appt, apptw);
@@ -2923,7 +2923,7 @@ appt_win *create_appt_win(char *action, char *par)
     apptw = g_new(appt_win, 1);
     apptw->xf_uid = NULL;
     apptw->par = NULL;
-    apptw->appt = NULL;
+    apptw->xf_appt = NULL;
     apptw->el = NULL;
     apptw->dw = NULL;
     apptw->appointment_changed = FALSE;
@@ -2955,7 +2955,7 @@ appt_win *create_appt_win(char *action, char *par)
             , G_CALLBACK(on_appWindow_delete_event_cb), apptw);
 
     fill_appt_window(apptw, action, par);
-    if (apptw->appt) { /* all fine */
+    if (apptw->xf_appt) { /* all fine */
         gtk_widget_show_all(apptw->Window);
         recur_hide_show(apptw);
         type_hide_show(apptw);
