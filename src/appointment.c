@@ -1087,17 +1087,17 @@ static gboolean save_xfical_from_appt_win(appt_win *apptw)
                 apptw->appointment_add = FALSE;
                 gtk_widget_set_sensitive(apptw->Duplicate, TRUE);
                 gtk_widget_set_sensitive(apptw->File_menu_duplicate, TRUE);
-                orage_message(30, "Added: %s", apptw->xf_uid);
+                orage_message(10, "Added: %s", apptw->xf_uid);
             }
             else
-                g_warning("Addition failed: %s", apptw->xf_uid);
+                orage_message(150, "Addition failed: %s", apptw->xf_uid);
             }
         else {
             ok = xfical_appt_mod(apptw->xf_uid, appt);
             if (ok)
-                orage_message(30, "Modified: %s", apptw->xf_uid);
+                orage_message(10, "Modified: %s", apptw->xf_uid);
             else
-                g_warning("Modification failed: %s", apptw->xf_uid);
+                orage_message(150, "Modification failed: %s", apptw->xf_uid);
         }
         xfical_file_close(TRUE);
         if (ok) {
@@ -1156,7 +1156,7 @@ static void delete_xfical_from_appt_win(appt_win *apptw)
                     return;
             result = xfical_appt_del(apptw->xf_uid);
             if (result)
-                orage_message(30, "Removed: %s", apptw->xf_uid);
+                orage_message(10, "Removed: %s", apptw->xf_uid);
             else
                 g_warning("Removal failed: %s", apptw->xf_uid);
             xfical_file_close(TRUE);
@@ -1417,7 +1417,6 @@ static xfical_appt *fill_appt_window_get_appt(appt_win *apptw
         if (!xfical_file_open(TRUE))
             return(NULL);
         if ((appt = xfical_appt_get(par)) == NULL) {
-            orage_message(120, "appointment not found: %s", par);
             xfce_message_dialog(GTK_WINDOW(apptw->Window)
                 , _("Info")
                 , GTK_STOCK_DIALOG_INFO
@@ -1887,7 +1886,7 @@ static void fill_appt_window(appt_win *apptw, char *action, char *par)
     char *untildate_to_display;
     int i;
 
-    orage_message(30, "%s appointment: %s", action, par);
+    orage_message(10, "%s appointment: %s", action, par);
     if ((appt = fill_appt_window_get_appt(apptw, action, par)) == NULL) {
         apptw->appt = NULL;
         return;
