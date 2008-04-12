@@ -1,23 +1,27 @@
+# translation of lv.po to Latvian
 # Latvian translations for orage package.
 # Copyright (C) 2003-2007 The Xfce development team.
 # This file is distributed under the same license as the orage package.
-# Rihards Prieditis <rprieditis@inbox.lv>, 2007.
 #
+# Rihards Prieditis <rprieditis@inbox.lv>, 2007.
+# Rihards Prieditis <RPrieditis@gmail.com>, 2008.
 msgid ""
 msgstr ""
-"Project-Id-Version: orage 4.4.0\n"
+"Project-Id-Version: lv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-01-24 03:54+0200\n"
-"PO-Revision-Date: 2007-10-28 17:49+0300\n"
-"Last-Translator: Rihards Priedītis <rprieditis@inbox.lv>\n"
-"Language-Team: Latvian <rprieditis@inbox.lv>\n"
+"PO-Revision-Date: 2008-04-06 20:23+0300\n"
+"Last-Translator: Rihards Prieditis <RPrieditis@gmail.com>\n"
+"Language-Team: Latvian <RPrieditis@gmail.com>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms:  nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2);\n"
 
 #: ../globaltime/globaltime.c:100
 msgid "Raising GlobalTime window..."
-msgstr "Ceļu PasaulesLaika logu..."
+msgstr "PasaulesLaika loga celšana..."
 
 #: ../globaltime/globaltime.c:102
 msgid "GlobalTime window raise failed"
@@ -88,7 +92,7 @@ msgstr "JAUNA KOPIJA"
 
 #: ../globaltime/gt_prefs.c:312
 msgid "Not possible to delete the last clock."
-msgstr "Nav iespējams dzēst pēdējo pulksteni."
+msgstr "Nevar dzēst pēdējo pulksteni."
 
 #: ../globaltime/gt_prefs.c:367 ../panel-plugin/oc_config.c:114
 msgid "Select timezone"
@@ -141,7 +145,7 @@ msgstr "Modificēt pulksteni"
 #. -----------------------HEADING-------------------------------------------
 #: ../globaltime/gt_prefs.c:600
 msgid "Clock Parameters"
-msgstr "Pulksteņa Parametri"
+msgstr "Pulksteņa parametri"
 
 #: ../globaltime/gt_prefs.c:604
 msgid "Name of the clock:"
@@ -165,7 +169,7 @@ msgstr ""
 
 #: ../globaltime/gt_prefs.c:643
 msgid "Text Formatting"
-msgstr "Teksta Formatēšana"
+msgstr "Teksta formatēšana"
 
 #. ------------------------background-------------------------
 #: ../globaltime/gt_prefs.c:649 ../globaltime/gt_prefs.c:856
@@ -229,7 +233,7 @@ msgstr "Pasvītrot pulksteņa ciparnīcu:"
 
 #: ../globaltime/gt_prefs.c:850
 msgid "Text Default Formatting"
-msgstr "Teksta Noklusētais Formatējums"
+msgstr "Teksta noklusētais formatējums"
 
 #: ../globaltime/gt_prefs.c:863
 msgid "Click to change default background colour for clocks"
@@ -237,8 +241,7 @@ msgstr "Uzklikšķiniet, lai mainītu noklusēto pulksteņa fona krāsu"
 
 #: ../globaltime/gt_prefs.c:877 ../globaltime/gt_prefs.c:910
 msgid "Cross this to use system default instead of selected color"
-msgstr ""
-"Atzīmējiet, ja vēlaties izmantot sistēmas noklusēto krāsu, nevis izvēlēto"
+msgstr "Atzīmējiet, ja vēlaties izmantot sistēmas noklusēto krāsu, nevis izvēlēto"
 
 #: ../globaltime/gt_prefs.c:896
 msgid "Click to change default text colour for clocks"
@@ -272,12 +275,12 @@ msgstr "atjaunināt uzstādījumus"
 
 #: ../globaltime/gt_prefs.c:1062
 msgid "Modify Preferences"
-msgstr "Mainīt Uzstādījumus"
+msgstr "Mainīt uzstādījumus"
 
 #. -----------------------HEADING--------------------------------------
 #: ../globaltime/gt_prefs.c:1073
 msgid "General Preferences"
-msgstr "Vispārīgie Uzstādījumi"
+msgstr "Vispārīgie uzstādījumi"
 
 #: ../globaltime/gt_prefs.c:1077
 msgid "Decorations:"
@@ -349,7 +352,7 @@ msgstr "uzstādīt _platumu:"
 
 #: ../panel-plugin/oc_config.c:275
 msgid "Clock Options"
-msgstr "Pulksteņa Uzstādījumi"
+msgstr "Pulksteņa uzstādījumi"
 
 #. timezone
 #: ../panel-plugin/oc_config.c:286
@@ -358,8 +361,7 @@ msgstr "uzstādīt laikazonu uz:"
 
 #: ../panel-plugin/oc_config.c:295
 msgid "Set any valid timezone (=TZ) value or pick one from the list."
-msgstr ""
-"Uzstādiet jebkādu derīgu laikazonas (=TZ) vērtību vai norādiet no saraksta."
+msgstr "Uzstādiet jebkādu derīgu laikazonas (=TZ) vērtību vai norādiet no saraksta."
 
 #. line 1
 #: ../panel-plugin/oc_config.c:304
@@ -474,7 +476,7 @@ msgstr "Skaņas fails"
 
 #: ../src/appointment.c:638 ../src/interface.c:290
 msgid "All Files"
-msgstr "Visus Failus"
+msgstr "Visus failus"
 
 #: ../src/appointment.c:687 ../src/appointment.c:1091 ../src/event-list.c:827
 msgid "Warning"
@@ -490,7 +492,7 @@ msgstr "Vēlaties turpināt?"
 
 #: ../src/appointment.c:720
 msgid "Error"
-msgstr ""
+msgstr "Kļūda"
 
 #: ../src/appointment.c:722
 msgid "The end of this appointment is earlier than the beginning."
@@ -498,20 +500,19 @@ msgstr "Tikšanās beigas ir ātrākās par sākumu."
 
 #: ../src/appointment.c:1093
 msgid "This appointment will be permanently removed."
-msgstr "Šī tikšanās tiks galīgi dzēsta."
+msgstr "Šī tikšanās tiks pilnīgi dzēsta."
 
 #: ../src/appointment.c:1371 ../src/event-list.c:672
 msgid "Info"
-msgstr ""
+msgstr "Informācija"
 
 #: ../src/appointment.c:1373
-#, fuzzy
 msgid "This appointment does not exist."
-msgstr "Šī tikšanās tiks galīgi dzēsta."
+msgstr "Šī tikšanās neeksistē."
 
 #: ../src/appointment.c:1374
 msgid "It was probably removed, please refresh your screen."
-msgstr ""
+msgstr "Iespējams tika noņemta, lūdzu atsvaidziniet savu ekrānu."
 
 #: ../src/appointment.c:1440
 msgid "New appointment - Orage"
@@ -519,7 +520,7 @@ msgstr "Jauna tikšanās - Orage"
 
 #: ../src/appointment.c:1464
 msgid " *** COPY ***"
-msgstr " *** KOPĒT ***"
+msgstr " *** KOPIJA ***"
 
 #. File menu stuff
 #. ********* File menu *********
@@ -676,19 +677,19 @@ msgstr ""
 
 #: ../src/appointment.c:1964
 msgid "Before Start"
-msgstr "Pirms Sākuma"
+msgstr "Pirms sākuma"
 
 #: ../src/appointment.c:1964
 msgid "Before End"
-msgstr "Pirms Beigām"
+msgstr "Pirms beigām"
 
 #: ../src/appointment.c:1965
 msgid "After Start"
-msgstr "Pēc Sākums"
+msgstr "Pēc sākums"
 
 #: ../src/appointment.c:1965
 msgid "After End"
-msgstr "Pēc Beigām"
+msgstr "Pēc beigām"
 
 #: ../src/appointment.c:1970
 msgid "Alarm"
@@ -706,20 +707,20 @@ msgid ""
 " 2) before Todo end\n"
 " 3) after Todo start"
 msgstr ""
-"Bieži Jūs vēlaties trauksmi:\n"
-" 1) pirms Notikuma sākuma\n"
-" 2) pirms Darītā beigām\n"
-" 3) pēc Darītā sākuma"
+"Ja vēlaties trauksmi:\n"
+" 1) pirms notikuma sākuma\n"
+" 2) pirms darītā beigām\n"
+" 3) pēc darītā sākuma"
 
 #: ../src/appointment.c:2005
 msgid "Persistent alarm"
-msgstr ""
+msgstr "Nepiekāpīga trauksme"
 
 #: ../src/appointment.c:2007
 msgid ""
 "Select this if you want Orage to remind you even if it has not been active "
 "when the alarm happened."
-msgstr ""
+msgstr "Atlasiet, ja vēlaties, lai Orage atgādina pat tad, kad tas nebija aktīvs, kad notika trauksme."
 
 #. **** Audio Alarm ****
 #: ../src/appointment.c:2016
@@ -753,7 +754,7 @@ msgstr "Vizuāla"
 
 #: ../src/appointment.c:2085
 msgid "Use Orage window"
-msgstr "Izmantot Orage logs"
+msgstr "Izmantot Orage logu"
 
 #: ../src/appointment.c:2087
 msgid "Select this if you want Orage window alarm"
@@ -773,8 +774,7 @@ msgstr "Uzstādīt noildzi"
 
 #: ../src/appointment.c:2110
 msgid "Select this if you want notification to expire automatically"
-msgstr ""
-"Izvēlaties šo, ja vēlaties, lai paziņošanas termiņš izbeidzas automātiski"
+msgstr "Izvēlaties šo, ja vēlaties, lai paziņošanas termiņš izbeidzas automātiski"
 
 #: ../src/appointment.c:2121
 msgid "0 = system default expiration time"
@@ -798,7 +798,7 @@ msgid ""
 "You must enter all escape etc characters yourself.\n"
 " This string is just given to shell to process"
 msgstr ""
-"Jums jāievada visas rakstzīmes pašam.\n"
+"Jums jāievada visas rakstzīmes, to skaitā pārtraukuma, pašam.\n"
 " Šī virkne tiks nodota tālāk izpildei čaulai"
 
 #: ../src/appointment.c:2202
@@ -859,7 +859,7 @@ msgstr "Pamata"
 
 #: ../src/appointment.c:2222
 msgid "Advanced"
-msgstr "Paplašināts"
+msgstr "Paplašināta"
 
 #: ../src/appointment.c:2229
 msgid "Use this if you want regular repeating event"
@@ -963,7 +963,7 @@ msgstr "Šodien"
 
 #: ../src/day-view.c:301 ../src/event-list.c:1026
 msgid "Forward"
-msgstr "Uzpriekšu"
+msgstr "Uz priekšu"
 
 #: ../src/day-view.c:306 ../src/event-list.c:1031
 msgid "Refresh"
@@ -976,16 +976,15 @@ msgstr "Aizvērt"
 #. then add the appointment
 #: ../src/day-view.c:408
 msgid "Unknown"
-msgstr ""
+msgstr "Nezināms"
 
 #: ../src/day-view.c:638 ../src/parameters.c:568
 msgid "Show"
 msgstr "Parādīt"
 
 #: ../src/day-view.c:853
-#, fuzzy
 msgid "Orage - day view"
-msgstr "Orage - Kalendārs"
+msgstr "Orage - dienas skats"
 
 #. date only appointment
 #: ../src/event-list.c:175
@@ -998,18 +997,18 @@ msgstr "Laiks"
 
 #: ../src/event-list.c:674
 msgid "No rows have been selected."
-msgstr ""
+msgstr "Neviena rinda nav atlasīta"
 
 #: ../src/event-list.c:675
 msgid "Click a row to select it and after that you can copy it."
-msgstr ""
+msgstr "Uzklikšķiniet uz rindas, lai to atlasītu, tad varat kopēt."
 
 #: ../src/event-list.c:829
 msgid ""
 "You will permanently remove all\n"
 "selected appointments."
 msgstr ""
-"Jūs izdzēsīsiet galīgi visas\n"
+"Jūs izdzēsīsiet pilnīgi visas\n"
 "izvēlētās tikšanās."
 
 #: ../src/event-list.c:1033
@@ -1018,7 +1017,7 @@ msgstr "Atrast"
 
 #: ../src/event-list.c:1040
 msgid "Dayview"
-msgstr ""
+msgstr "Dienasskats"
 
 #: ../src/event-list.c:1072
 msgid "Extra days to show "
@@ -1045,7 +1044,6 @@ msgid "Title"
 msgstr "Virsraksts"
 
 #: ../src/event-list.c:1225
-#, fuzzy
 msgid ""
 "Double click line to edit it.\n"
 "\n"
@@ -1067,8 +1065,11 @@ msgstr ""
 "\t\tA=vizuāla Trauksme S=arī Skaņas trauksme\n"
 "\t 2. Atkārtošana: n=neatkārtot\n"
 "\t\t D=Katru dienu W=Katru nedēļu M=Katru mēnesi Y=Katru gadu\n"
-"\t 3. Tips: f=brīvs B=Aizņemts\t 4. Atrašanās failā: O=Orage\n"
-"\t\t  A=Arhīvs F=Ārzemju"
+"\t 3. Tips: f=brīvs B=Aizņemts\n "
+"\t 4. Atrašanās failā: \n"
+"\t\tO=Orag A=Arhīvs F=Ārzemju\n"
+"\t 5 Tikšanās tips:\n"
+"\t\tE=Notikums T=Darbu saraksts J=Žurnāls"
 
 #: ../src/functions.c:145
 msgid "Pick the date"
@@ -2613,13 +2614,11 @@ msgstr "Orage noklusētā trauksme"
 #: ../src/ical-code.c:2961
 #, c-format
 msgid "Build alarm list: Added %d alarms. Processed %d events."
-msgstr ""
-"Veidot trauksmes sarakstu: Pievienotas %d trauksmes. Apstrādāti %d notikumi."
+msgstr "Veidot trauksmes sarakstu: Pievienotas %d trauksmes. Apstrādāti %d notikumi."
 
 #: ../src/ical-code.c:2963
 #, c-format
-msgid ""
-"\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
+msgid "\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
 msgstr ""
 "\tAtradu %d trauksmes, no kurām %d ir aktīvas. (Meklēt %d atkārtojošās "
 "trauksmes.)"
@@ -2631,7 +2630,7 @@ msgstr "\tAtkārtošanās beidzās, pārvietoju uz arhīva failu."
 
 #: ../src/ical-code.c:3549
 msgid "Archiving not enabled. Exiting"
-msgstr "Arhivēšana nav iespējot. Izeju"
+msgstr "Arhivēšana nav iespējota. Iziešana"
 
 #: ../src/ical-code.c:3567
 #, c-format
@@ -2685,16 +2684,16 @@ msgstr "Arhīva noņemšana pabeigta\n"
 
 #: ../src/ical-code.c:3780
 msgid "Starting import file preprocessing"
-msgstr ""
+msgstr "Tiek sākta importa faila pirmsapstrāde"
 
 #: ../src/ical-code.c:3816
 #, c-format
 msgid "... Patched DCREATED to be CREATED (%s)"
-msgstr ""
+msgstr "... Labots DCREATED uz CREATED (%s)"
 
 #: ../src/ical-code.c:3825
 msgid "Import file preprocessing done"
-msgstr ""
+msgstr "Pabeigta importa faila pirmsapstrāde"
 
 #. show it
 #: ../src/ical-code.c:4417
@@ -2770,22 +2769,20 @@ msgid "Named appointments: "
 msgstr "Nosauktās tikšanās:"
 
 #: ../src/interface.c:1055
-#, fuzzy
 msgid ""
 "Note that only main file appointments are read.\n"
 "Archived and Foreign events are not exported."
 msgstr ""
 "Tikai galvenie faila tikšanās tiek lasītas.\n"
-"Arhīva notikumi netiek eksportēti."
+"Arhivētie un ārzemju notikumu netiek eksportēti."
 
 #: ../src/interface.c:1058
-#, fuzzy
 msgid ""
 "Note that only main file appointments are read.\n"
 "Foreign events are not exported."
 msgstr ""
 "Tikai galvenie faila tikšanās tiek lasītas.\n"
-"Arhīva notikumi netiek eksportēti."
+"Ārzemju notikumi netiek eksportēti."
 
 #: ../src/interface.c:1061
 msgid "You can easily drag these from event-list window."
@@ -2898,8 +2895,7 @@ msgid "Read only"
 msgstr "Tikai lasīt"
 
 #: ../src/interface.c:1285
-msgid ""
-"Set this if you want to make sure that this file is never modified by Orage."
+msgid "Set this if you want to make sure that this file is never modified by Orage."
 msgstr "Uzstādiet šo, ja vēlaties, lai šo failu Orage nekad nemaina"
 
 #: ../src/interface.c:1299
@@ -2939,20 +2935,19 @@ msgstr "\tNeizmanto DBUS. Imports strādā tikai daļēji.\n"
 
 #: ../src/main.c:203
 msgid "\tUsing libnotify.\n"
-msgstr ""
+msgstr "\tIzmantoju libnotify.\n"
 
 #: ../src/main.c:205
 msgid "\tNot using libnotify.\n"
-msgstr ""
+msgstr "\tNeizmantoju libnotify.\n"
 
 #: ../src/main.c:208
 msgid "\tUsing automatic archving.\n"
-msgstr ""
+msgstr "\tIzmanto automātisko arhivēšanu.\n"
 
 #: ../src/main.c:210
-#, fuzzy
 msgid "\tNot using archiving.\n"
-msgstr "(0 = nearhivēt)"
+msgstr "\tNeizmanto arhivēšanu.\n"
 
 #: ../src/main.c:223
 msgid ""
@@ -3031,13 +3026,12 @@ msgid "View selected _date"
 msgstr "Apskatīt izvēlēto _datumu"
 
 #: ../src/mainbox.c:242
-#, fuzzy
 msgid "View selected _week"
-msgstr "Apskatīt izvēlēto _datumu"
+msgstr "Apskatīt atlasīto _nedēļu"
 
 #: ../src/mainbox.c:248
 msgid "Select _Today"
-msgstr "Norādiet Š_odienu"
+msgstr "Norādiet š_odienu"
 
 #. Help menu
 #: ../src/mainbox.c:252
@@ -3046,7 +3040,7 @@ msgstr "_Palīdzība"
 
 #: ../src/mainbox.c:320
 msgid "Not defined"
-msgstr ""
+msgstr "Nav definēts"
 
 #: ../src/mainbox.c:325
 #, c-format
@@ -3058,6 +3052,12 @@ msgid ""
 "Note:\n"
 "%s"
 msgstr ""
+"Virsraksts: %s\n"
+" Sākt:\t%s\n"
+" Kavēts:\t%s\n"
+" Padarīts:\t%s\n"
+"Piezīme:\n"
+"%s"
 
 #: ../src/parameters.c:396
 msgid "Main setups"
@@ -3069,7 +3069,7 @@ msgstr "Laikazona"
 
 #: ../src/parameters.c:421
 msgid "You should always define your local timezone."
-msgstr ""
+msgstr "Vienmēr vajadzētu definēt vietējo laikazonu."
 
 #: ../src/parameters.c:430
 msgid "Archive threshold (months)"
@@ -3081,7 +3081,7 @@ msgstr "(0 = nearhivēt)"
 
 #: ../src/parameters.c:443
 msgid "Archiving is used to save time and space when handling events."
-msgstr ""
+msgstr "Arhivēšana tiek izmantota, lai samazinu laiku un vietu, kad darbojas ar notikumiem."
 
 #: ../src/parameters.c:452
 msgid "Sound command"
@@ -3089,7 +3089,7 @@ msgstr "Skaņas kommanda"
 
 #: ../src/parameters.c:467
 msgid "This command is given to shell to make sound in alarms."
-msgstr ""
+msgstr "Komanda tiek izsniegta čaulai, lai rada trauksmes skaņu."
 
 #: ../src/parameters.c:482
 msgid "Display"
@@ -3179,7 +3179,7 @@ msgstr "Vienmēr izvēlēties šodienu"
 msgid ""
 "When showing main calendar, set pointer to either previously selected day or "
 "always to current day."
-msgstr ""
+msgstr "Kad rāda galveno kalendāru, uzstādiet norādi uz iepriekšējo atlasīto dienu vai vienmēr uz šodienu."
 
 #: ../src/parameters.c:645
 msgid "Ical week start day"
@@ -3189,7 +3189,7 @@ msgstr "Ical nedēļa sākšanās diena"
 msgid ""
 "This is used in some weekly repeating appointment rules. Just set it to the "
 "start day of the week for your country and forget it."
-msgstr ""
+msgstr "Lieto dažos iknedēļas tikšanās noteikumos. Uzstādiet pirmo darba dienu jūsu valsti un aizmirstiet par to."
 
 #: ../src/parameters.c:666
 msgid "Dynamic icon size"
@@ -3204,24 +3204,23 @@ msgid ""
 "Dynamic icon shows current day and month. It is visible only in tray. If "
 "tray is too small for dynamic icon size, Orage switches automatically back "
 "to static icon."
-msgstr ""
+msgstr "Dinamiska ikona, kura rāda dienas un mēnešus. Redzama tikai sistēmas joslā. Ja sistēmas josla ir par mazu dinamiskai ikonai, Orage automātiski pārslēdzas atpakaļ uz statisko ikonu."
 
 #: ../src/parameters.c:705
 msgid "Main Calendar double click shows"
-msgstr ""
+msgstr "Galvenā kalendāra dubultklikšķis rāda"
 
 #: ../src/parameters.c:710
 msgid "Days view"
-msgstr ""
+msgstr "Dienas skats"
 
 #: ../src/parameters.c:722
-#, fuzzy
 msgid "Event list"
-msgstr "Notikums"
+msgstr "Notikumu saraksts"
 
 #: ../src/parameters.c:747
 msgid "Orage Preferences"
-msgstr "Orage Uzstādījumi"
+msgstr "Orage uzstādījumi"
 
 #: ../src/reminder.c:472
 msgid "Reminder "
@@ -3232,9 +3231,8 @@ msgid "Open"
 msgstr "Atvērt"
 
 #: ../src/reminder.c:551
-#, fuzzy
 msgid "Reminder - Orage"
-msgstr "Atgādinātājs"
+msgstr "Atgādinātājs - Orage"
 
 #: ../src/reminder.c:816
 msgid "Next active alarms:"
@@ -3267,7 +3265,7 @@ msgstr "Par Orage"
 
 #: ../panel-plugin/orageclock.desktop.in.in.h:1
 msgid "Orage Clock"
-msgstr "Orage Pulkstenis"
+msgstr "Orage pulkstenis"
 
 #: ../panel-plugin/orageclock.desktop.in.in.h:2
 msgid "What time and date is it?"
@@ -3275,15 +3273,15 @@ msgstr "Kāds tagad ir laiks un datums?"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:1
 msgid "Calendar Settings"
-msgstr "Kalendāra Uzstādījumi"
+msgstr "Kalendāra uzstādījumi"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:2
 msgid "Settings for the Xfce 4 Calendar Application"
-msgstr "Uzstādījumi Xfce 4 Kalendāra Lietotnei"
+msgstr "Uzstādījumi Xfce 4 kalendāra lietotnei"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:3
 msgid "Xfce 4 Calendar Settings"
-msgstr "Xfce 4 Kalendāra Uzstādījumi"
+msgstr "Xfce 4 kalendāra uzstādījumi"
 
 #: ../xfcalendar.desktop.in.h:1
 msgid "Calendar"
@@ -3293,6 +3291,3 @@ msgstr "Kalendārs"
 msgid "Desktop calendar"
 msgstr "Darbavirsmas kalendārs"
 
-#, fuzzy
-#~ msgid "Days"
-#~ msgstr "dienas"
