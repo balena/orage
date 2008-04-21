@@ -1438,6 +1438,14 @@ static xfical_appt *fill_appt_window_get_appt(appt_win *apptw
 /* categories start.                                        */
 /************************************************************/
 
+typedef struct _orage_category
+{
+    gchar *category;
+    GdkColor color;
+} orage_category_struct;
+
+GList *orage_category_list = NULL;
+
 static OrageRc *orage_category_file_open(gboolean read_only)
 {
     gchar *fpath;
@@ -1451,15 +1459,6 @@ static OrageRc *orage_category_file_open(gboolean read_only)
 
     return(orc);
 }
-
-typedef struct _orage_category
-{
-    gchar *category;
-    GdkColor color;
-} orage_category_struct;
-
-
-GList *orage_category_list = NULL;
 
 GdkColor *orage_category_list_contains(char *categories)
 {
@@ -1616,7 +1615,7 @@ static void orage_category_remove_entry(gchar *category)
     OrageRc *orc;
 
     if (!ORAGE_STR_EXISTS(category)) {
-        orage_message(50, "orage_category_write_entry: empty category. Not removed");
+        orage_message(50, "orage_category_remove_entry: empty category. Not removed");
         return;
     }
     orc = orage_category_file_open(FALSE);

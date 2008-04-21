@@ -481,7 +481,7 @@ int main(int argc, char *argv[])
 
     /* start monitoring foreign file updates if we have foreign files */
     if (g_par.foreign_count)
-        g_timeout_add(30*1000, (GtkFunction) orage_foreign_files_check, NULL);
+        g_timeout_add(30*1000, (GtkFunction)orage_foreign_files_check, NULL);
                                                         
     /* let's check if I got filename as a parameter */
     initialized = TRUE;

@@ -423,7 +423,8 @@ static void create_notify_reminder(alarm_struct *alarm)
     }
 
     strncpy(heading,  _("Reminder "), 199);
-    strncat(heading, alarm->title, 50);
+    if (alarm->title)
+        g_strlcat(heading, alarm->title, 50);
     n = notify_notification_new(heading, alarm->description, NULL, NULL);
     alarm->active_alarm->active_notify = n;
     if (g_par.trayIcon 
