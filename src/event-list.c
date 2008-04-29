@@ -243,6 +243,7 @@ static void flags_data_func(GtkTreeViewColumn *col, GtkCellRenderer *rend
                  , "background-gdk",    color
                  , "background-set",    TRUE
                  , NULL);
+    g_free(categories);
 }
 
 static void start_time_data_func(GtkTreeViewColumn *col, GtkCellRenderer *rend
@@ -346,6 +347,7 @@ static void start_time_data_func(GtkTreeViewColumn *col, GtkCellRenderer *rend
                      , NULL);
         }
         g_free(stime);
+        g_free(stime2);
     }
     else {
         g_object_set(rend
