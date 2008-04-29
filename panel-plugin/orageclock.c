@@ -121,12 +121,20 @@ gboolean oc_start_timer(Clock *clock)
 {
     time_t t;
     gint   delay_time =  0;
+    /* if we are using longer than 1 minute (= 60000) interval, we need
+     * to delay the first start so that clock changes when minute or hour
+     * changes */
 
     oc_get_time(clock);
     time(&t);
     localtime_r(&t, &clock->now);
-    if (clock->interval >= 60000) 
-        delay_time = (clock->interval-clock->now.tm_sec*1000);
+    if (clock->interval >= 60000) {
+        if (clock->interval >= 3600000) /* match to next full hour */
+            delay_time = (clock->interval -
+                    (clock->now.tm_min*60000 + clock->now.tm_sec*1000));
+        else /* match to next full minute */
+            delay_time = (clock->interval - clock->now.tm_sec*1000);
+    }
     if (clock->delay_timeout_id) {
         g_source_remove(clock->delay_timeout_id);
         clock->delay_timeout_id = 0;
@@ -137,21 +145,31 @@ gboolean oc_start_timer(Clock *clock)
     }
     clock->delay_timeout_id = g_timeout_add_full(G_PRIORITY_DEFAULT_IDLE
             , delay_time, (GSourceFunc)oc_get_time_delay, clock, NULL);
-    return(TRUE);
+    /* if we have longer than 1 sec timer, we need to reschedule 
+     * it regularly since it will fall down slowly but surely, so
+     * we keep this running. */
+    if (clock->interval >= 60000) {
+        if (delay_time > 60000)
+        /* let's run it once in case we happened to kill it
+           just when it was supposed to start */
+            oc_get_time(clock); 
+        return(FALSE);
+    }
+    else
+        return(TRUE);
 }
 
 static gboolean oc_end_tuning(Clock *clock)
 {
-    /* if we have longer than 1 sec timer, we need to reschedule it regularly 
-     * since it will fall down slowly but surely 
-     * */
+    /* if we have longer than 1 sec timer, we need to reschedule 
+     * it regularly since it will fall down slowly but surely */
     if (clock->adjust_timeout_id) {
         g_source_remove(clock->adjust_timeout_id);
         clock->adjust_timeout_id = 0;
     }
-    if (clock->interval >= 60000) {
+    if (clock->interval >= 60000) { /* resync it after each 6 hours */
         clock->adjust_timeout_id = g_timeout_add_full(G_PRIORITY_DEFAULT_IDLE
-                , 60*60*1000, (GSourceFunc)oc_start_timer, clock, NULL);
+                , 6*60*60*1000, (GSourceFunc)oc_start_timer, clock, NULL);
     }
     g_free(clock->tune);
     clock->tune = NULL;
