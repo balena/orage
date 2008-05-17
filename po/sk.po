@@ -9,12 +9,12 @@ msgstr ""
 "Project-Id-Version: orage 4.4.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-01-20 17:42+0100\n"
-"PO-Revision-Date: 2006-05-02 21:55+0200\n"
+"PO-Revision-Date: 2008-05-17 18:09-0700\n"
 "Last-Translator: Roman Moravcik <roman.moravcik@gmail.com>\n"
 "Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: 8bit"
 
 #: ../panel-plugin/oc_config.c:114
 msgid "Select timezone"
@@ -42,11 +42,11 @@ msgstr "Nastaviť _farbu pozadia:"
 #. clock size (=vbox size): height and width
 #: ../panel-plugin/oc_config.c:242
 msgid "set _height:"
-msgstr ""
+msgstr "nastav _výšku:"
 
 #: ../panel-plugin/oc_config.c:254
 msgid "set _width:"
-msgstr ""
+msgstr "nastav _dĺžku:"
 
 #: ../panel-plugin/oc_config.c:275
 msgid "Clock Options"
@@ -84,7 +84,7 @@ msgstr "Zobraziť riadok _3:"
 #. Tooltip hint
 #: ../panel-plugin/oc_config.c:375
 msgid "Tooltip:"
-msgstr ""
+msgstr "Tip:"
 
 #: ../panel-plugin/oc_config.c:392
 msgid ""
@@ -438,35 +438,32 @@ msgid "Yearly"
 msgstr "Ročne"
 
 #: ../src/appointment.c:1623
-#, fuzzy
 msgid "Mon"
-msgstr "Mesačne"
+msgstr "Po"
 
 #: ../src/appointment.c:1623
 msgid "Tue"
-msgstr ""
+msgstr "Ut"
 
 #: ../src/appointment.c:1623
 msgid "Wed"
-msgstr ""
+msgstr "St"
 
 #: ../src/appointment.c:1623
 msgid "Thu"
-msgstr ""
+msgstr "Št"
 
 #: ../src/appointment.c:1623
 msgid "Fri"
-msgstr ""
+msgstr "Pi"
 
 #: ../src/appointment.c:1623
-#, fuzzy
 msgid "Sat"
-msgstr "Začiatok"
+msgstr "So"
 
 #: ../src/appointment.c:1623
-#, fuzzy
 msgid "Sun"
-msgstr "Zvuk"
+msgstr "Ne"
 
 #: ../src/appointment.c:1628
 msgid "Recurrence"
@@ -474,20 +471,19 @@ msgstr "Opakovanie"
 
 #: ../src/appointment.c:1633
 msgid "Complexity"
-msgstr ""
+msgstr "Zložitosť"
 
 #: ../src/appointment.c:1636
-#, fuzzy
 msgid "Basic"
-msgstr "Predchádzajúci deň"
+msgstr "Základné"
 
 #: ../src/appointment.c:1642
 msgid "Advanced"
-msgstr ""
+msgstr "Pokročilé"
 
 #: ../src/appointment.c:1650
 msgid "Use this if you want regular repeating event"
-msgstr ""
+msgstr "Použite túto možnosť pre jednoduché opakovanie"
 
 #: ../src/appointment.c:1652
 msgid ""
@@ -495,36 +491,37 @@ msgid ""
 " Every second week or \n"
 " Every Saturday and Sunday or \n"
 " First Tuesday every month"
-msgstr ""
+msgstr "Použite túto možnosť pre zložité opakovanie:\n"
+"Každý druhý týždeň alebo \n"
+"Každá sobota a nedeľa alebo \n"
+"Prvý utorok každého mesiaca"
 
 #: ../src/appointment.c:1655
-#, fuzzy
 msgid "Frequency"
-msgstr "Voľný"
+msgstr "Frekvencia"
 
 #: ../src/appointment.c:1664
-#, fuzzy
 msgid "Interval"
-msgstr "Základné"
+msgstr "Interval"
 
 #: ../src/appointment.c:1666
 msgid "Each"
-msgstr ""
+msgstr "Každý"
 
 #: ../src/appointment.c:1673
-#, fuzzy
 msgid "occurrence"
-msgstr "Opakovanie"
+msgstr "opakovanie"
 
 #: ../src/appointment.c:1681
 msgid ""
 "Limit frequency to certain interval. For example:\n"
 " Every third day: Frequency = Daily and Interval = 3"
-msgstr ""
+msgstr "Obmedzí frekvenciu na daný interval. Napríklad: \n"
+" Každý tretí deň: Frekvencia = Denne a Interval = 3"
 
 #: ../src/appointment.c:1684
 msgid "Limit"
-msgstr ""
+msgstr "Limit"
 
 #: ../src/appointment.c:1686
 msgid "Repeat forever"
@@ -543,13 +540,12 @@ msgid "Repeat until "
 msgstr "Opakovať do "
 
 #: ../src/appointment.c:1723
-#, fuzzy
 msgid "Weekdays"
-msgstr "Týždenne"
+msgstr "Dni v týždni"
 
 #: ../src/appointment.c:1736
 msgid "Which day"
-msgstr ""
+msgstr "Ktorý deň"
 
 #: ../src/appointment.c:1744
 msgid ""
@@ -559,7 +555,12 @@ msgid ""
 "\tFrequency = Monthly,\n"
 "\tWeekdays = check only Wednesday,\n"
 "\tWhich day = select 2 from the number below Wednesday"
-msgstr ""
+msgstr "Zadajte deň v týždni pre mesačné a ročné udalosti.\n\""
+"\" Napríklad:\n\""
+"\" Druhá streda každého mesiaca:\n\""
+"\"\tFrekvencia = Mesačne,\n\""
+"\"\tDni týždňa = zaškrtnite len stredu,\n\""
+"\"\tKtorý deň = vyberte číslo 2 z čísiel pod stredou\""
 
 #. date only appointment
 #: ../src/event-list.c:199
@@ -2221,23 +2222,23 @@ msgstr "Pripomienka"
 #. GtkTooltipsData *cur_tooltip;
 #: ../src/reminder.c:320
 msgid "Next active alarms:"
-msgstr ""
+msgstr "Nasledujúce aktívne výstrahy"
 
 #: ../src/reminder.c:328
 #, c-format
 msgid ""
 "\n"
 "%02d d %02d h %02d min to: %s"
-msgstr ""
+msgstr "\n"
+"%02d d %02d h %02d min do: %s"
 
 #: ../src/reminder.c:334
-#, fuzzy
 msgid ""
 "\n"
 "No active alarms found"
 msgstr ""
 "\n"
-"Opakovať zvukový alarm"
+"Nenašiel sa aktívny alarm"
 
 #: ../src/tray_icon.c:310
 msgid "New appointment"
@@ -2274,3 +2275,4 @@ msgstr "Kalendár"
 #: ../xfcalendar.desktop.in.h:2
 msgid "Desktop calendar"
 msgstr "Kalendár pracovnej plochy"
+
