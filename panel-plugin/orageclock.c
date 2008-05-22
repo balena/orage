@@ -311,7 +311,8 @@ static void oc_update_size(Clock *clock, int size)
     }
 }
 
-static gboolean popup_program(GtkWidget *widget, gchar *program, Clock *clock)
+static gboolean popup_program(GtkWidget *widget, gchar *program, Clock *clock
+        , guint event_time)
 {
     GdkAtom atom;
     Window xwindow;
@@ -350,6 +351,14 @@ static gboolean popup_program(GtkWidget *widget, gchar *program, Clock *clock)
         return(TRUE);
     }
     else { /* not running, let's try to start it. Need to reset TZ! */
+        static guint prev_event_time = 0; /* prevenst double start (BUG 4096) */
+
+        if (prev_event_time && ((event_time - prev_event_time) < 1000)) {
+            g_message("%s: double start of %s prevented", OC_NAME, program);
+            return(FALSE);
+        }
+            
+        prev_event_time = event_time;
         if (clock->TZ_orig != NULL)  /* we had TZ when we started */
             g_setenv("TZ", clock->TZ_orig, 1);
         else  /* TZ was not set so take it out */
@@ -374,10 +383,12 @@ static gboolean popup_program(GtkWidget *widget, gchar *program, Clock *clock)
 static gboolean on_button_press_event_cb(GtkWidget *widget
         , GdkEventButton *event, Clock *clock)
 {
+    if (event->type != GDK_BUTTON_PRESS) /* double or triple click */
+        return(FALSE); /* ignore */
     if (event->button == 1)
-        return(popup_program(widget, "orage", clock));
+        return(popup_program(widget, "orage", clock, event->time));
     else if (event->button == 2)
-        return(popup_program(widget, "globaltime", clock));
+        return(popup_program(widget, "globaltime", clock, event->time));
 
     return(FALSE);
 }
