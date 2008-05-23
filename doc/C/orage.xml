@@ -1,9 +1,9 @@
 <?xml version='1.0'?> 
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
           "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
-  <!ENTITY manrevision "1.4"> 
-  <!ENTITY date "January 2008"> 
-  <!ENTITY appversion "4.5.12"> 
+  <!ENTITY manrevision "1.5"> 
+  <!ENTITY date "May 2008"> 
+  <!ENTITY appversion "4.5.13"> 
   <!ENTITY app "<application>orage</application>">
 ]>
 
@@ -178,7 +178,8 @@ maintainers, etc. Commented out by default.
     The calendar window provides you a menu bar giving access to different
     functions. 
     Below that is a standard calendar showing the month, the year, day names 
-    and week numbers. At the bottom there is small window showing active TODOs.
+    and week numbers. At the bottom there is small window showing active 
+    TODOs and EVENTs on the selected day. (Empty parts are not shown.)
   </para>
 
   <sect2 id="calendar-menu-bar">
@@ -345,6 +346,15 @@ maintainers, etc. Commented out by default.
       which show more details about the TODO.
     </para>
   </sect2>
+
+  <sect2 id="calendar-events-window">
+    <title>The EVENT list</title>
+    <para>
+      Below the TODO list you see your events from the selected date.
+      Check the tooltip for more details of the event. Also events can be 
+      edited by double clikcing them.
+    </para>
+  </sect2>
 </sect1>
 
 <sect1 id="orage-eventlist-window">
@@ -482,9 +492,11 @@ maintainers, etc. Commented out by default.
         events are shown with blue colour and future events are bold. 
       </listitem>
       <listitem>
-        Flags: gives information about the appointment. (Note that the
-        explanations are visible as a hint when you move your cursor into the
-        appointment list.) There are five flags in order:
+        Flags: gives information about the appointment. If your appointment
+        has a category which has been associated with a clour, flags field has
+        that colour background. (Note that the explanations are visible as
+        a hint when you move your cursor into the appointment list.)
+        There are five flags in order:
         <itemizedlist>
           <listitem>
             Alarm: what kind of action happens when alarm time passes.
@@ -836,6 +848,17 @@ maintainers, etc. Commented out by default.
         </listitem>
       </varlistentry>
       <varlistentry>
+        <term>Categories</term>
+        <listitem>
+          <para>
+            Free format text, which you can use to categorize your appointment.
+            It is also possible to create a list of categories and associate
+            those to colours. You can then pick one of those and get your
+            appointment to be show with that colour in the event list window.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
         <term>Note</term>
         <listitem>
           <para>
@@ -955,6 +978,16 @@ maintainers, etc. Commented out by default.
             This makes it possible to use external alarms. You can run any
             operating system command or script. Common use for this is sending
             email.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Default alarm</term>
+        <listitem>
+          <para>
+            You can either set alarm back to default options or you can store
+            current settings to be default alarm for all new appointments.
+            There is only one default alarm, which applies to all appointments.
           </para>
         </listitem>
       </varlistentry>
@@ -1398,6 +1431,22 @@ maintainers, etc. Commented out by default.
         </listitem>
       </varlistentry>
       <varlistentry>
+        <term>Show todo list</term>
+        <listitem>
+          <para>
+            You can hide TODO list in the main calendar by deselecting this.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Show event list</term>
+        <listitem>
+          <para>
+            You can hide EVENT list in the main calendar by deselecting this.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
         <term>Set sticked</term>
         <listitem>
           <para>
@@ -1488,17 +1537,6 @@ maintainers, etc. Commented out by default.
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>Ical week start day</term>
-        <listitem>
-          <para>
-            Defines what is the first day of week in libical. Note, that 
-            it is <emphasis>only</emphasis> used in weekly repeating
-            appointments. It will <emphasis>not</emphasis> change the
-            calendar view anyway.
-          </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
         <term>Dynamic icon size</term>
         <listitem>
           <para>
@@ -1572,8 +1610,18 @@ maintainers, etc. Commented out by default.
         <listitem>
           300-    = Error (these cause &app; to abort)
         </listitem>
-
       </itemizedlist>
+    </listitem>
+    <listitem>
+      <para>
+        Ical week start day: Defines what is the first day of week in libical.
+        Note, that 
+        it is <emphasis>only</emphasis> used in weekly repeating
+        appointments. It will <emphasis>not</emphasis> change the
+        calendar view anyway. &app; tries is best to find this setting 
+        automatically, but if your weekly repeating appointments seem to be
+        wrong, you can try to set this. 0 = Monday, 1 = Tuesday...
+      </para>
     </listitem>
   </itemizedlist>
 </sect1>
