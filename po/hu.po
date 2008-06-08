@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.3.90.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-28 22:43+0300\n"
+"POT-Creation-Date: 2008-06-08 23:11+0300\n"
 "PO-Revision-Date: 2007-06-14 08:30+0100\n"
 "Last-Translator: SZERVÁC Attila <sas@321.hu>\n"
 "Language-Team: Hungarian <translation-team-hu@lists.sourceforge.net>\n"
@@ -422,18 +422,9 @@ msgstr "Orage óra"
 #. * %Y  : four digit year
 #. * %V  : ISO week number
 #.
-#: ../panel-plugin/orageclock.c:598
+#: ../panel-plugin/orageclock.c:627
 msgid "%A %d %B %Y/%V"
 msgstr "%Y./%V., %B %d., %A"
-
-#: ../plugin/xfcalendar_plugin.c:43
-msgid "Failed to launch 'orage -p'"
-msgstr ""
-
-#. the button label in the xfce-mcs-manager dialog
-#: ../plugin/xfcalendar_plugin.c:61
-msgid "Orage - Calendar"
-msgstr "Orage - Naptár"
 
 #: ../src/about-xfcalendar.c:42
 msgid "Manage your time with Xfce4"
@@ -480,7 +471,7 @@ msgstr "Hangfájlok"
 msgid "All Files"
 msgstr "Minden fájl"
 
-#: ../src/appointment.c:717 ../src/appointment.c:1145 ../src/event-list.c:895
+#: ../src/appointment.c:717 ../src/appointment.c:1145 ../src/event-list.c:897
 msgid "Warning"
 msgstr "Figyelmeztetés"
 
@@ -488,7 +479,7 @@ msgstr "Figyelmeztetés"
 msgid "The appointment information has been modified."
 msgstr "A találkozó adatai módosultak."
 
-#: ../src/appointment.c:720 ../src/appointment.c:1148 ../src/event-list.c:898
+#: ../src/appointment.c:720 ../src/appointment.c:1148 ../src/event-list.c:900
 msgid "Do you want to continue?"
 msgstr "Folytatod?"
 
@@ -510,7 +501,7 @@ msgstr "Megjegyzés"
 msgid "This appointment will be permanently removed."
 msgstr "Végleg törölve lesz ez a találkozó."
 
-#: ../src/appointment.c:1421 ../src/event-list.c:724
+#: ../src/appointment.c:1421 ../src/event-list.c:726
 msgid "Info"
 msgstr ""
 
@@ -551,7 +542,7 @@ msgstr ""
 #. File menu stuff
 #. ********* File menu *********
 #. File menu
-#: ../src/appointment.c:2066 ../src/day-view.c:254 ../src/event-list.c:992
+#: ../src/appointment.c:2066 ../src/day-view.c:254 ../src/event-list.c:994
 #: ../src/interface.c:762 ../src/mainbox.c:261
 msgid "_File"
 msgstr "_Fájl"
@@ -560,7 +551,7 @@ msgstr "_Fájl"
 msgid "Sav_e and close"
 msgstr "M_entés és bezárás"
 
-#: ../src/appointment.c:2085 ../src/event-list.c:998
+#: ../src/appointment.c:2085 ../src/event-list.c:1000
 msgid "D_uplicate"
 msgstr "Megkettőzés"
 
@@ -576,11 +567,11 @@ msgstr "Mentés és bezárás"
 msgid "Revert"
 msgstr "Visszavonás"
 
-#: ../src/appointment.c:2228 ../src/event-list.c:1083
+#: ../src/appointment.c:2228 ../src/event-list.c:1085
 msgid "Duplicate"
 msgstr "Megkettőzés"
 
-#: ../src/appointment.c:2233 ../src/event-list.c:1085
+#: ../src/appointment.c:2233 ../src/event-list.c:1087
 msgid "Delete"
 msgstr "Törlés"
 
@@ -601,7 +592,7 @@ msgstr "Általános"
 msgid "Type "
 msgstr ""
 
-#: ../src/appointment.c:2263 ../src/event-list.c:1137
+#: ../src/appointment.c:2263 ../src/event-list.c:1139
 msgid "Event"
 msgstr ""
 
@@ -611,7 +602,7 @@ msgid ""
 "Meeting or birthday or TV show."
 msgstr ""
 
-#: ../src/appointment.c:2269 ../src/event-list.c:1158
+#: ../src/appointment.c:2269 ../src/event-list.c:1160
 msgid "Todo"
 msgstr "Teendők"
 
@@ -621,7 +612,7 @@ msgid ""
 "Wash your car or test new version of Orage."
 msgstr ""
 
-#: ../src/appointment.c:2275 ../src/event-list.c:1173
+#: ../src/appointment.c:2275 ../src/event-list.c:1175
 msgid "Journal"
 msgstr ""
 
@@ -978,37 +969,37 @@ msgstr ""
 
 #. ********* View menu *********
 #. View menu
-#: ../src/day-view.c:264 ../src/event-list.c:1015 ../src/mainbox.c:287
+#: ../src/day-view.c:264 ../src/event-list.c:1017 ../src/mainbox.c:287
 msgid "_View"
 msgstr "_Nézet"
 
 #. ********* Go menu   *********
-#: ../src/day-view.c:278 ../src/event-list.c:1034
+#: ../src/day-view.c:278 ../src/event-list.c:1036
 msgid "_Go"
 msgstr "_Ugrás"
 
-#: ../src/day-view.c:319 ../src/event-list.c:1081
+#: ../src/day-view.c:319 ../src/event-list.c:1083
 msgid "New"
 msgstr "Új"
 
-#: ../src/day-view.c:324 ../src/event-list.c:1090
+#: ../src/day-view.c:324 ../src/event-list.c:1092
 msgid "Back"
 msgstr "Vissza"
 
-#: ../src/day-view.c:326 ../src/event-list.c:1092 ../src/functions.c:132
+#: ../src/day-view.c:326 ../src/event-list.c:1094 ../src/functions.c:132
 #: ../src/tray_icon.c:314
 msgid "Today"
 msgstr "Ma"
 
-#: ../src/day-view.c:328 ../src/event-list.c:1094
+#: ../src/day-view.c:328 ../src/event-list.c:1096
 msgid "Forward"
 msgstr "Előre"
 
-#: ../src/day-view.c:333 ../src/event-list.c:1099
+#: ../src/day-view.c:333 ../src/event-list.c:1101
 msgid "Refresh"
 msgstr "Frissítés"
 
-#: ../src/day-view.c:338 ../src/event-list.c:1106 ../src/interface.c:804
+#: ../src/day-view.c:338 ../src/event-list.c:1108 ../src/interface.c:804
 msgid "Close"
 msgstr "Bezárás"
 
@@ -1031,57 +1022,57 @@ msgstr "Orage - Naptár"
 msgid "All day"
 msgstr "Egész nap"
 
-#: ../src/event-list.c:555 ../src/event-list.c:1264
+#: ../src/event-list.c:557 ../src/event-list.c:1266
 msgid "Time"
 msgstr "Idő"
 
-#: ../src/event-list.c:726
+#: ../src/event-list.c:728
 msgid "No rows have been selected."
 msgstr ""
 
-#: ../src/event-list.c:727
+#: ../src/event-list.c:729
 msgid "Click a row to select it and after that you can copy it."
 msgstr ""
 
-#: ../src/event-list.c:897
+#: ../src/event-list.c:899
 msgid ""
 "You will permanently remove all\n"
 "selected appointments."
 msgstr ""
 
-#: ../src/event-list.c:1101
+#: ../src/event-list.c:1103
 msgid "Find"
 msgstr ""
 
-#: ../src/event-list.c:1108
+#: ../src/event-list.c:1110
 msgid "Dayview"
 msgstr ""
 
-#: ../src/event-list.c:1141
+#: ../src/event-list.c:1143
 msgid "Extra days to show "
 msgstr ""
 
-#: ../src/event-list.c:1177
+#: ../src/event-list.c:1179
 msgid "Journal entries starting from:"
 msgstr ""
 
-#: ../src/event-list.c:1202
+#: ../src/event-list.c:1204
 msgid "Search"
 msgstr ""
 
-#: ../src/event-list.c:1206
+#: ../src/event-list.c:1208
 msgid "Search text "
 msgstr ""
 
-#: ../src/event-list.c:1272
+#: ../src/event-list.c:1274
 msgid "Flags"
 msgstr "Jelzők"
 
-#: ../src/event-list.c:1280
+#: ../src/event-list.c:1282
 msgid "Title"
 msgstr "Cím"
 
-#: ../src/event-list.c:1306
+#: ../src/event-list.c:1308
 #, fuzzy
 msgid ""
 "Double click line to edit it.\n"
@@ -3342,6 +3333,9 @@ msgstr "Naptár"
 #: ../xfcalendar.desktop.in.h:2
 msgid "Desktop calendar"
 msgstr "Asztali naptár"
+
+#~ msgid "Orage - Calendar"
+#~ msgstr "Orage - Naptár"
 
 #~ msgid "Monday"
 #~ msgstr "Hétfő"

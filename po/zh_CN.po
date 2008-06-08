@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.3.90.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-28 22:43+0300\n"
+"POT-Creation-Date: 2008-06-08 23:11+0300\n"
 "PO-Revision-Date: 2006-02-16 22:14+0800\n"
 "Last-Translator: Huang Huan <unicon221@gmail.com>\n"
 "Language-Team: Simplified Chinese <i18n-translation@lists.linux.net.cn>\n"
@@ -419,19 +419,9 @@ msgstr ""
 #. * %Y  : four digit year
 #. * %V  : ISO week number
 #.
-#: ../panel-plugin/orageclock.c:598
+#: ../panel-plugin/orageclock.c:627
 msgid "%A %d %B %Y/%V"
 msgstr ""
-
-#: ../plugin/xfcalendar_plugin.c:43
-msgid "Failed to launch 'orage -p'"
-msgstr ""
-
-#. the button label in the xfce-mcs-manager dialog
-#: ../plugin/xfcalendar_plugin.c:61
-#, fuzzy
-msgid "Orage - Calendar"
-msgstr "日历"
 
 #: ../src/about-xfcalendar.c:42
 msgid "Manage your time with Xfce4"
@@ -478,7 +468,7 @@ msgstr "声音文件"
 msgid "All Files"
 msgstr "所有文件"
 
-#: ../src/appointment.c:717 ../src/appointment.c:1145 ../src/event-list.c:895
+#: ../src/appointment.c:717 ../src/appointment.c:1145 ../src/event-list.c:897
 msgid "Warning"
 msgstr "警告"
 
@@ -486,7 +476,7 @@ msgstr "警告"
 msgid "The appointment information has been modified."
 msgstr "约会信息已被修改"
 
-#: ../src/appointment.c:720 ../src/appointment.c:1148 ../src/event-list.c:898
+#: ../src/appointment.c:720 ../src/appointment.c:1148 ../src/event-list.c:900
 msgid "Do you want to continue?"
 msgstr "你想继续吗？"
 
@@ -508,7 +498,7 @@ msgstr "备注"
 msgid "This appointment will be permanently removed."
 msgstr "当前约会将被永久清除。"
 
-#: ../src/appointment.c:1421 ../src/event-list.c:724
+#: ../src/appointment.c:1421 ../src/event-list.c:726
 msgid "Info"
 msgstr ""
 
@@ -550,7 +540,7 @@ msgstr ""
 #. File menu stuff
 #. ********* File menu *********
 #. File menu
-#: ../src/appointment.c:2066 ../src/day-view.c:254 ../src/event-list.c:992
+#: ../src/appointment.c:2066 ../src/day-view.c:254 ../src/event-list.c:994
 #: ../src/interface.c:762 ../src/mainbox.c:261
 msgid "_File"
 msgstr "文件(_F)"
@@ -559,7 +549,7 @@ msgstr "文件(_F)"
 msgid "Sav_e and close"
 msgstr "保存(_E)并关闭"
 
-#: ../src/appointment.c:2085 ../src/event-list.c:998
+#: ../src/appointment.c:2085 ../src/event-list.c:1000
 msgid "D_uplicate"
 msgstr "导出(_U)"
 
@@ -575,11 +565,11 @@ msgstr "保存并关闭"
 msgid "Revert"
 msgstr "还原"
 
-#: ../src/appointment.c:2228 ../src/event-list.c:1083
+#: ../src/appointment.c:2228 ../src/event-list.c:1085
 msgid "Duplicate"
 msgstr "导出"
 
-#: ../src/appointment.c:2233 ../src/event-list.c:1085
+#: ../src/appointment.c:2233 ../src/event-list.c:1087
 msgid "Delete"
 msgstr "删除"
 
@@ -600,7 +590,7 @@ msgstr "通常"
 msgid "Type "
 msgstr ""
 
-#: ../src/appointment.c:2263 ../src/event-list.c:1137
+#: ../src/appointment.c:2263 ../src/event-list.c:1139
 msgid "Event"
 msgstr ""
 
@@ -610,7 +600,7 @@ msgid ""
 "Meeting or birthday or TV show."
 msgstr ""
 
-#: ../src/appointment.c:2269 ../src/event-list.c:1158
+#: ../src/appointment.c:2269 ../src/event-list.c:1160
 #, fuzzy
 msgid "Todo"
 msgstr "今天"
@@ -621,7 +611,7 @@ msgid ""
 "Wash your car or test new version of Orage."
 msgstr ""
 
-#: ../src/appointment.c:2275 ../src/event-list.c:1173
+#: ../src/appointment.c:2275 ../src/event-list.c:1175
 msgid "Journal"
 msgstr ""
 
@@ -983,37 +973,37 @@ msgstr ""
 
 #. ********* View menu *********
 #. View menu
-#: ../src/day-view.c:264 ../src/event-list.c:1015 ../src/mainbox.c:287
+#: ../src/day-view.c:264 ../src/event-list.c:1017 ../src/mainbox.c:287
 msgid "_View"
 msgstr "查看(_V)"
 
 #. ********* Go menu   *********
-#: ../src/day-view.c:278 ../src/event-list.c:1034
+#: ../src/day-view.c:278 ../src/event-list.c:1036
 msgid "_Go"
 msgstr "开始(_G)"
 
-#: ../src/day-view.c:319 ../src/event-list.c:1081
+#: ../src/day-view.c:319 ../src/event-list.c:1083
 msgid "New"
 msgstr "新建"
 
-#: ../src/day-view.c:324 ../src/event-list.c:1090
+#: ../src/day-view.c:324 ../src/event-list.c:1092
 msgid "Back"
 msgstr "退回"
 
-#: ../src/day-view.c:326 ../src/event-list.c:1092 ../src/functions.c:132
+#: ../src/day-view.c:326 ../src/event-list.c:1094 ../src/functions.c:132
 #: ../src/tray_icon.c:314
 msgid "Today"
 msgstr "今天"
 
-#: ../src/day-view.c:328 ../src/event-list.c:1094
+#: ../src/day-view.c:328 ../src/event-list.c:1096
 msgid "Forward"
 msgstr "前进"
 
-#: ../src/day-view.c:333 ../src/event-list.c:1099
+#: ../src/day-view.c:333 ../src/event-list.c:1101
 msgid "Refresh"
 msgstr "刷新"
 
-#: ../src/day-view.c:338 ../src/event-list.c:1106 ../src/interface.c:804
+#: ../src/day-view.c:338 ../src/event-list.c:1108 ../src/interface.c:804
 msgid "Close"
 msgstr "关闭"
 
@@ -1036,57 +1026,57 @@ msgstr "日历"
 msgid "All day"
 msgstr "所有天"
 
-#: ../src/event-list.c:555 ../src/event-list.c:1264
+#: ../src/event-list.c:557 ../src/event-list.c:1266
 msgid "Time"
 msgstr "时间"
 
-#: ../src/event-list.c:726
+#: ../src/event-list.c:728
 msgid "No rows have been selected."
 msgstr ""
 
-#: ../src/event-list.c:727
+#: ../src/event-list.c:729
 msgid "Click a row to select it and after that you can copy it."
 msgstr ""
 
-#: ../src/event-list.c:897
+#: ../src/event-list.c:899
 msgid ""
 "You will permanently remove all\n"
 "selected appointments."
 msgstr ""
 
-#: ../src/event-list.c:1101
+#: ../src/event-list.c:1103
 msgid "Find"
 msgstr ""
 
-#: ../src/event-list.c:1108
+#: ../src/event-list.c:1110
 msgid "Dayview"
 msgstr ""
 
-#: ../src/event-list.c:1141
+#: ../src/event-list.c:1143
 msgid "Extra days to show "
 msgstr ""
 
-#: ../src/event-list.c:1177
+#: ../src/event-list.c:1179
 msgid "Journal entries starting from:"
 msgstr ""
 
-#: ../src/event-list.c:1202
+#: ../src/event-list.c:1204
 msgid "Search"
 msgstr ""
 
-#: ../src/event-list.c:1206
+#: ../src/event-list.c:1208
 msgid "Search text "
 msgstr ""
 
-#: ../src/event-list.c:1272
+#: ../src/event-list.c:1274
 msgid "Flags"
 msgstr "标签"
 
-#: ../src/event-list.c:1280
+#: ../src/event-list.c:1282
 msgid "Title"
 msgstr "标题"
 
-#: ../src/event-list.c:1306
+#: ../src/event-list.c:1308
 msgid ""
 "Double click line to edit it.\n"
 "\n"
@@ -3348,6 +3338,10 @@ msgstr "日历"
 #: ../xfcalendar.desktop.in.h:2
 msgid "Desktop calendar"
 msgstr "桌面日历"
+
+#, fuzzy
+#~ msgid "Orage - Calendar"
+#~ msgstr "日历"
 
 #, fuzzy
 #~ msgid "Monday"

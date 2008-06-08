@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.3.90.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-28 22:43+0300\n"
+"POT-Creation-Date: 2008-06-08 23:11+0300\n"
 "PO-Revision-Date: 2006-08-28 13:00+0200\n"
 "Last-Translator: Szymon Kałasz <szymon_maestro@gazeta.pl>\n"
 "Language-Team: Polish <translation-team-pl@lists.sourceforge.net>\n"
@@ -431,19 +431,9 @@ msgstr "Zegar Orage"
 #. * %Y  : four digit year
 #. * %V  : ISO week number
 #.
-#: ../panel-plugin/orageclock.c:598
+#: ../panel-plugin/orageclock.c:627
 msgid "%A %d %B %Y/%V"
 msgstr "%A %d %B %Y/%V"
-
-#: ../plugin/xfcalendar_plugin.c:43
-msgid "Failed to launch 'orage -p'"
-msgstr ""
-
-#. the button label in the xfce-mcs-manager dialog
-#: ../plugin/xfcalendar_plugin.c:61
-#, fuzzy
-msgid "Orage - Calendar"
-msgstr "Kalendarz"
 
 #: ../src/about-xfcalendar.c:42
 msgid "Manage your time with Xfce4"
@@ -491,7 +481,7 @@ msgstr "Pliki dźwiękowe"
 msgid "All Files"
 msgstr "Wszystkie pliki"
 
-#: ../src/appointment.c:717 ../src/appointment.c:1145 ../src/event-list.c:895
+#: ../src/appointment.c:717 ../src/appointment.c:1145 ../src/event-list.c:897
 msgid "Warning"
 msgstr "Uwaga"
 
@@ -499,7 +489,7 @@ msgstr "Uwaga"
 msgid "The appointment information has been modified."
 msgstr "Informacja o spotkaniu została zmodyfikowana"
 
-#: ../src/appointment.c:720 ../src/appointment.c:1148 ../src/event-list.c:898
+#: ../src/appointment.c:720 ../src/appointment.c:1148 ../src/event-list.c:900
 msgid "Do you want to continue?"
 msgstr "Kontynuować?"
 
@@ -521,7 +511,7 @@ msgstr "Notka"
 msgid "This appointment will be permanently removed."
 msgstr "Spotkanie zostanie usunięte"
 
-#: ../src/appointment.c:1421 ../src/event-list.c:724
+#: ../src/appointment.c:1421 ../src/event-list.c:726
 msgid "Info"
 msgstr ""
 
@@ -562,7 +552,7 @@ msgstr ""
 #. File menu stuff
 #. ********* File menu *********
 #. File menu
-#: ../src/appointment.c:2066 ../src/day-view.c:254 ../src/event-list.c:992
+#: ../src/appointment.c:2066 ../src/day-view.c:254 ../src/event-list.c:994
 #: ../src/interface.c:762 ../src/mainbox.c:261
 msgid "_File"
 msgstr "_Plik"
@@ -571,7 +561,7 @@ msgstr "_Plik"
 msgid "Sav_e and close"
 msgstr "Z_apisz i zamknij"
 
-#: ../src/appointment.c:2085 ../src/event-list.c:998
+#: ../src/appointment.c:2085 ../src/event-list.c:1000
 msgid "D_uplicate"
 msgstr "D_uplikuj"
 
@@ -587,11 +577,11 @@ msgstr "Zapisz i zamknij"
 msgid "Revert"
 msgstr "Odwróć"
 
-#: ../src/appointment.c:2228 ../src/event-list.c:1083
+#: ../src/appointment.c:2228 ../src/event-list.c:1085
 msgid "Duplicate"
 msgstr "Duplikuj"
 
-#: ../src/appointment.c:2233 ../src/event-list.c:1085
+#: ../src/appointment.c:2233 ../src/event-list.c:1087
 msgid "Delete"
 msgstr "Kasuj"
 
@@ -612,7 +602,7 @@ msgstr "Ogólne"
 msgid "Type "
 msgstr ""
 
-#: ../src/appointment.c:2263 ../src/event-list.c:1137
+#: ../src/appointment.c:2263 ../src/event-list.c:1139
 msgid "Event"
 msgstr ""
 
@@ -622,7 +612,7 @@ msgid ""
 "Meeting or birthday or TV show."
 msgstr ""
 
-#: ../src/appointment.c:2269 ../src/event-list.c:1158
+#: ../src/appointment.c:2269 ../src/event-list.c:1160
 #, fuzzy
 msgid "Todo"
 msgstr "Dziś"
@@ -633,7 +623,7 @@ msgid ""
 "Wash your car or test new version of Orage."
 msgstr ""
 
-#: ../src/appointment.c:2275 ../src/event-list.c:1173
+#: ../src/appointment.c:2275 ../src/event-list.c:1175
 msgid "Journal"
 msgstr ""
 
@@ -1008,37 +998,37 @@ msgstr ""
 
 #. ********* View menu *********
 #. View menu
-#: ../src/day-view.c:264 ../src/event-list.c:1015 ../src/mainbox.c:287
+#: ../src/day-view.c:264 ../src/event-list.c:1017 ../src/mainbox.c:287
 msgid "_View"
 msgstr "_Zobacz"
 
 #. ********* Go menu   *********
-#: ../src/day-view.c:278 ../src/event-list.c:1034
+#: ../src/day-view.c:278 ../src/event-list.c:1036
 msgid "_Go"
 msgstr "_Idź"
 
-#: ../src/day-view.c:319 ../src/event-list.c:1081
+#: ../src/day-view.c:319 ../src/event-list.c:1083
 msgid "New"
 msgstr "Nowe"
 
-#: ../src/day-view.c:324 ../src/event-list.c:1090
+#: ../src/day-view.c:324 ../src/event-list.c:1092
 msgid "Back"
 msgstr "Wstecz"
 
-#: ../src/day-view.c:326 ../src/event-list.c:1092 ../src/functions.c:132
+#: ../src/day-view.c:326 ../src/event-list.c:1094 ../src/functions.c:132
 #: ../src/tray_icon.c:314
 msgid "Today"
 msgstr "Dziś"
 
-#: ../src/day-view.c:328 ../src/event-list.c:1094
+#: ../src/day-view.c:328 ../src/event-list.c:1096
 msgid "Forward"
 msgstr "Naprzód"
 
-#: ../src/day-view.c:333 ../src/event-list.c:1099
+#: ../src/day-view.c:333 ../src/event-list.c:1101
 msgid "Refresh"
 msgstr "Odśwież"
 
-#: ../src/day-view.c:338 ../src/event-list.c:1106 ../src/interface.c:804
+#: ../src/day-view.c:338 ../src/event-list.c:1108 ../src/interface.c:804
 msgid "Close"
 msgstr "Zamknij"
 
@@ -1061,58 +1051,58 @@ msgstr "Kalendarz"
 msgid "All day"
 msgstr "Cały dzień"
 
-#: ../src/event-list.c:555 ../src/event-list.c:1264
+#: ../src/event-list.c:557 ../src/event-list.c:1266
 msgid "Time"
 msgstr "Czas"
 
-#: ../src/event-list.c:726
+#: ../src/event-list.c:728
 msgid "No rows have been selected."
 msgstr ""
 
-#: ../src/event-list.c:727
+#: ../src/event-list.c:729
 msgid "Click a row to select it and after that you can copy it."
 msgstr ""
 
-#: ../src/event-list.c:897
+#: ../src/event-list.c:899
 msgid ""
 "You will permanently remove all\n"
 "selected appointments."
 msgstr ""
 
-#: ../src/event-list.c:1101
+#: ../src/event-list.c:1103
 msgid "Find"
 msgstr ""
 
-#: ../src/event-list.c:1108
+#: ../src/event-list.c:1110
 msgid "Dayview"
 msgstr ""
 
-#: ../src/event-list.c:1141
+#: ../src/event-list.c:1143
 msgid "Extra days to show "
 msgstr ""
 
-#: ../src/event-list.c:1177
+#: ../src/event-list.c:1179
 msgid "Journal entries starting from:"
 msgstr ""
 
-#: ../src/event-list.c:1202
+#: ../src/event-list.c:1204
 #, fuzzy
 msgid "Search"
 msgstr "Każdego"
 
-#: ../src/event-list.c:1206
+#: ../src/event-list.c:1208
 msgid "Search text "
 msgstr ""
 
-#: ../src/event-list.c:1272
+#: ../src/event-list.c:1274
 msgid "Flags"
 msgstr "Flagi"
 
-#: ../src/event-list.c:1280
+#: ../src/event-list.c:1282
 msgid "Title"
 msgstr "Tytuł"
 
-#: ../src/event-list.c:1306
+#: ../src/event-list.c:1308
 #, fuzzy
 msgid ""
 "Double click line to edit it.\n"
@@ -3392,6 +3382,10 @@ msgstr "Kalendarz"
 #: ../xfcalendar.desktop.in.h:2
 msgid "Desktop calendar"
 msgstr "Kalendarz pulpitu"
+
+#, fuzzy
+#~ msgid "Orage - Calendar"
+#~ msgstr "Kalendarz"
 
 #, fuzzy
 #~ msgid "Monday"

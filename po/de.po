@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orage 4.5.9.6-svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-28 22:43+0300\n"
+"POT-Creation-Date: 2008-06-08 23:11+0300\n"
 "PO-Revision-Date: 2008-05-27 02:30+0200\n"
 "Last-Translator: Nico Schümann <nico@prog.nico22.de>\n"
 "Language-Team: German <xfce-i18n@xfce.org>\n"
@@ -424,18 +424,9 @@ msgstr "Orage-Uhr"
 #. * %Y  : four digit year
 #. * %V  : ISO week number
 #.
-#: ../panel-plugin/orageclock.c:598
+#: ../panel-plugin/orageclock.c:627
 msgid "%A %d %B %Y/%V"
 msgstr "%A, %d. %B %Y (KW %V)"
-
-#: ../plugin/xfcalendar_plugin.c:43
-msgid "Failed to launch 'orage -p'"
-msgstr "Konnte den Befehl »orage -p« nicht ausführen"
-
-#. the button label in the xfce-mcs-manager dialog
-#: ../plugin/xfcalendar_plugin.c:61
-msgid "Orage - Calendar"
-msgstr "Orage-Kalender"
 
 #: ../src/about-xfcalendar.c:42
 msgid "Manage your time with Xfce4"
@@ -482,7 +473,7 @@ msgstr "Klangdateien"
 msgid "All Files"
 msgstr "Alle Dateien"
 
-#: ../src/appointment.c:717 ../src/appointment.c:1145 ../src/event-list.c:895
+#: ../src/appointment.c:717 ../src/appointment.c:1145 ../src/event-list.c:897
 msgid "Warning"
 msgstr "Warnung"
 
@@ -490,7 +481,7 @@ msgstr "Warnung"
 msgid "The appointment information has been modified."
 msgstr "Die Termin-Information wurde geändert."
 
-#: ../src/appointment.c:720 ../src/appointment.c:1148 ../src/event-list.c:898
+#: ../src/appointment.c:720 ../src/appointment.c:1148 ../src/event-list.c:900
 msgid "Do you want to continue?"
 msgstr "Möchten Sie fortfahren?"
 
@@ -511,7 +502,7 @@ msgstr "Nicht eingestellt"
 msgid "This appointment will be permanently removed."
 msgstr "Dieser Termin wird endgültig gelöscht."
 
-#: ../src/appointment.c:1421 ../src/event-list.c:724
+#: ../src/appointment.c:1421 ../src/event-list.c:726
 msgid "Info"
 msgstr "Info"
 
@@ -521,7 +512,8 @@ msgstr "Dieser Termin existiert nicht."
 
 #: ../src/appointment.c:1424
 msgid "It was probably removed, please refresh your screen."
-msgstr "Er wurde wahrscheinlich entfernt, bitte klicken Sie auf »Aktualisieren«."
+msgstr ""
+"Er wurde wahrscheinlich entfernt, bitte klicken Sie auf »Aktualisieren«."
 
 #: ../src/appointment.c:1721
 msgid "Current categories"
@@ -550,7 +542,7 @@ msgstr " *** KOPIE ***"
 #. File menu stuff
 #. ********* File menu *********
 #. File menu
-#: ../src/appointment.c:2066 ../src/day-view.c:254 ../src/event-list.c:992
+#: ../src/appointment.c:2066 ../src/day-view.c:254 ../src/event-list.c:994
 #: ../src/interface.c:762 ../src/mainbox.c:261
 msgid "_File"
 msgstr "_Datei"
@@ -559,7 +551,7 @@ msgstr "_Datei"
 msgid "Sav_e and close"
 msgstr "Sp_eichern und schließen"
 
-#: ../src/appointment.c:2085 ../src/event-list.c:998
+#: ../src/appointment.c:2085 ../src/event-list.c:1000
 msgid "D_uplicate"
 msgstr "D_uplizieren"
 
@@ -575,11 +567,11 @@ msgstr "Speichern und schließen"
 msgid "Revert"
 msgstr "Wiederherstellen"
 
-#: ../src/appointment.c:2228 ../src/event-list.c:1083
+#: ../src/appointment.c:2228 ../src/event-list.c:1085
 msgid "Duplicate"
 msgstr "Duplizieren"
 
-#: ../src/appointment.c:2233 ../src/event-list.c:1085
+#: ../src/appointment.c:2233 ../src/event-list.c:1087
 msgid "Delete"
 msgstr "Entfernen"
 
@@ -600,7 +592,7 @@ msgstr "Allgemein"
 msgid "Type "
 msgstr "Typ "
 
-#: ../src/appointment.c:2263 ../src/event-list.c:1137
+#: ../src/appointment.c:2263 ../src/event-list.c:1139
 msgid "Event"
 msgstr "Ereignis "
 
@@ -612,7 +604,7 @@ msgstr ""
 "Irgendwann stattfindendes Ereignis. Zum Beispiel:\n"
 "Treffen, Geburtstag oder Fernsehsendung."
 
-#: ../src/appointment.c:2269 ../src/event-list.c:1158
+#: ../src/appointment.c:2269 ../src/event-list.c:1160
 msgid "Todo"
 msgstr "Aufgaben"
 
@@ -624,7 +616,7 @@ msgstr ""
 "Etwas, das Sie irgendwann tun sollten. Zum Beispiel:\n"
 "Auto waschen, die neuste Orage-Version testen."
 
-#: ../src/appointment.c:2275 ../src/event-list.c:1173
+#: ../src/appointment.c:2275 ../src/event-list.c:1175
 msgid "Journal"
 msgstr "Protokoll"
 
@@ -998,37 +990,37 @@ msgstr ""
 
 #. ********* View menu *********
 #. View menu
-#: ../src/day-view.c:264 ../src/event-list.c:1015 ../src/mainbox.c:287
+#: ../src/day-view.c:264 ../src/event-list.c:1017 ../src/mainbox.c:287
 msgid "_View"
 msgstr "_Ansicht"
 
 #. ********* Go menu   *********
-#: ../src/day-view.c:278 ../src/event-list.c:1034
+#: ../src/day-view.c:278 ../src/event-list.c:1036
 msgid "_Go"
 msgstr "_Gehe zu"
 
-#: ../src/day-view.c:319 ../src/event-list.c:1081
+#: ../src/day-view.c:319 ../src/event-list.c:1083
 msgid "New"
 msgstr "Neu"
 
-#: ../src/day-view.c:324 ../src/event-list.c:1090
+#: ../src/day-view.c:324 ../src/event-list.c:1092
 msgid "Back"
 msgstr "Zurück"
 
-#: ../src/day-view.c:326 ../src/event-list.c:1092 ../src/functions.c:132
+#: ../src/day-view.c:326 ../src/event-list.c:1094 ../src/functions.c:132
 #: ../src/tray_icon.c:314
 msgid "Today"
 msgstr "Heute"
 
-#: ../src/day-view.c:328 ../src/event-list.c:1094
+#: ../src/day-view.c:328 ../src/event-list.c:1096
 msgid "Forward"
 msgstr "Vor"
 
-#: ../src/day-view.c:333 ../src/event-list.c:1099
+#: ../src/day-view.c:333 ../src/event-list.c:1101
 msgid "Refresh"
 msgstr "Auffrischen"
 
-#: ../src/day-view.c:338 ../src/event-list.c:1106 ../src/interface.c:804
+#: ../src/day-view.c:338 ../src/event-list.c:1108 ../src/interface.c:804
 msgid "Close"
 msgstr "Schließen"
 
@@ -1050,19 +1042,19 @@ msgstr "Orage - Tagesansicht"
 msgid "All day"
 msgstr "Ganzer Tag"
 
-#: ../src/event-list.c:555 ../src/event-list.c:1264
+#: ../src/event-list.c:557 ../src/event-list.c:1266
 msgid "Time"
 msgstr "Zeit"
 
-#: ../src/event-list.c:726
+#: ../src/event-list.c:728
 msgid "No rows have been selected."
 msgstr "Es wurden keine Zeilen ausgewählt."
 
-#: ../src/event-list.c:727
+#: ../src/event-list.c:729
 msgid "Click a row to select it and after that you can copy it."
 msgstr "Um eine Zeile zu markieren oder zu kopieren, klicken Sie sie an."
 
-#: ../src/event-list.c:897
+#: ../src/event-list.c:899
 msgid ""
 "You will permanently remove all\n"
 "selected appointments."
@@ -1070,39 +1062,39 @@ msgstr ""
 "Sie entfernen alle ausgewählten\n"
 "Termine dauerhaft."
 
-#: ../src/event-list.c:1101
+#: ../src/event-list.c:1103
 msgid "Find"
 msgstr "Finden"
 
-#: ../src/event-list.c:1108
+#: ../src/event-list.c:1110
 msgid "Dayview"
 msgstr "Tagesansicht"
 
-#: ../src/event-list.c:1141
+#: ../src/event-list.c:1143
 msgid "Extra days to show "
 msgstr "Zu anzeigende Extratage"
 
-#: ../src/event-list.c:1177
+#: ../src/event-list.c:1179
 msgid "Journal entries starting from:"
 msgstr "Protokolleinträge seit:"
 
-#: ../src/event-list.c:1202
+#: ../src/event-list.c:1204
 msgid "Search"
 msgstr "Suchen"
 
-#: ../src/event-list.c:1206
+#: ../src/event-list.c:1208
 msgid "Search text "
 msgstr "Text suchen "
 
-#: ../src/event-list.c:1272
+#: ../src/event-list.c:1274
 msgid "Flags"
 msgstr "Kennzeichen"
 
-#: ../src/event-list.c:1280
+#: ../src/event-list.c:1282
 msgid "Title"
 msgstr "Titel"
 
-#: ../src/event-list.c:1306
+#: ../src/event-list.c:1308
 msgid ""
 "Double click line to edit it.\n"
 "\n"
@@ -2985,11 +2977,11 @@ msgid ""
 "Note that modifying foreign files may make them incompatible with the "
 "original tool, where they came from!"
 msgstr ""
-"Aktivieren Sie dies, wenn Sie sichergehen wollen, dass diese Datei nie "
-"von Orage geändert wird.\n"
+"Aktivieren Sie dies, wenn Sie sichergehen wollen, dass diese Datei nie von "
+"Orage geändert wird.\n"
 "Beachten Sie, dass eine Fremddatei unter Umständen nicht mehr mit dem "
-"ursprünglich verwendeten Programm funktioniert, wenn Sie das Verändern "
-"von Fremddateien erlauben!"
+"ursprünglich verwendeten Programm funktioniert, wenn Sie das Verändern von "
+"Fremddateien erlauben!"
 
 #: ../src/interface.c:1300
 msgid "Exchange data - Orage"
@@ -3046,6 +3038,7 @@ msgid "\tUsing automatic archving.\n"
 msgstr "\tautomatische Archivierung\n"
 
 #: ../src/main.c:212
+#, c-format
 msgid "\tNot using archiving.\n"
 msgstr "\tkeine Archivierung\n"
 
@@ -3226,8 +3219,7 @@ msgstr "Befehl zur Tonwiedergabe"
 
 #: ../src/parameters.c:523
 msgid "This command is given to shell to make sound in alarms."
-msgstr ""
-"Dieser Befehl wird verwendet, um einen Klang bei Alarmen abzuspielen."
+msgstr "Dieser Befehl wird verwendet, um einen Klang bei Alarmen abzuspielen."
 
 #: ../src/parameters.c:538
 msgid "Display"
@@ -3315,9 +3307,9 @@ msgid ""
 "tray is too small for dynamic icon size, Orage switches automatically back "
 "to static icon."
 msgstr ""
-"Das dynamische Symbol zeigt den Tag und den Monat. Es ist nur in der "
-"Tray-Leiste sichtbar. Sollte diese für das dynamische Symbol zu klein "
-"sein, zeigt Orage automatisch das statische Symbol an."
+"Das dynamische Symbol zeigt den Tag und den Monat. Es ist nur in der Tray-"
+"Leiste sichtbar. Sollte diese für das dynamische Symbol zu klein sein, zeigt "
+"Orage automatisch das statische Symbol an."
 
 #: ../src/parameters.c:783
 msgid "Main Calendar double click shows"
@@ -3404,6 +3396,12 @@ msgstr "Kalender"
 #: ../xfcalendar.desktop.in.h:2
 msgid "Desktop calendar"
 msgstr "Arbeitsplatz-Kalender"
+
+#~ msgid "Failed to launch 'orage -p'"
+#~ msgstr "Konnte den Befehl »orage -p« nicht ausführen"
+
+#~ msgid "Orage - Calendar"
+#~ msgstr "Orage-Kalender"
 
 #~ msgid ""
 #~ "Set this if you want to make sure that this file is never modified by "
