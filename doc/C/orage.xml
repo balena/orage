@@ -2,7 +2,7 @@
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
           "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
   <!ENTITY manrevision "1.5"> 
-  <!ENTITY date "May 2008"> 
+  <!ENTITY date "July 2008"> 
   <!ENTITY appversion "4.5.13"> 
   <!ENTITY app "<application>orage</application>">
 ]>
@@ -978,6 +978,15 @@ maintainers, etc. Commented out by default.
             This makes it possible to use external alarms. You can run any
             operating system command or script. Common use for this is sending
             email.
+          </para>
+          <para>
+            Note that &app; can not handle normal linux redirection. So to send
+            email you can not set command to: 
+            <command>mail -s hi first.last@address &lt; send_this_file.txt
+            </command> because &lt; is not interpreted as redirection of 
+            standard input, but it is normal parameter instead. You need to 
+            write a shell script to do this and give the file name as a 
+            parameter to your script.
           </para>
         </listitem>
       </varlistentry>

@@ -7,8 +7,6 @@ noinst_DATA = \
 man_MANS = \
 	orage.1
 
-mandir = ${prefix}/man
-
 if MAINTAINER_MODE
 %.1: %.xml
 	xsltproc -nonet http://docbook.sourceforge.net/release/xsl/current/manpages/docbook.xsl $<
