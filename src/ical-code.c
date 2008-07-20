@@ -2587,6 +2587,7 @@ void xfical_appt_free(xfical_appt *appt)
     g_free(appt->sound);
     g_free(appt->procedure_cmd);
     g_free(appt->procedure_params);
+    g_free(appt->categories);
     /*
     g_free(appt->email_attendees);
     */

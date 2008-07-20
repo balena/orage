@@ -596,7 +596,7 @@ static void create_procedure_reminder(alarm_struct *alarm)
 #endif
     status = orage_exec(alarm->cmd, &active, &error);
     if (!status)
-        g_warning("create_procedure_reminder: cmd failed(%s)", alarm->cmd);
+        g_warning(P_N "cmd failed(%s)", alarm->cmd);
 }
 
 static void create_reminders(alarm_struct *alarm)
