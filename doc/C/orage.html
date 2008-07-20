@@ -431,14 +431,6 @@
             This makes it possible to use external alarms. You can run any
             operating system command or script. Common use for this is sending
             email.
-          </p><p>
-            Note that <strong class="application"><code>orage</code></strong> can not handle normal linux redirection. So to send
-            email you can not set command to: 
-            <span class="command"><strong>mail -s hi first.last@address &lt; send_this_file.txt
-            </strong></span> because &lt; is not interpreted as redirection of 
-            standard input, but it is normal parameter instead. You need to 
-            write a shell script to do this and give the file name as a 
-            parameter to your script.
           </p></dd><dt><span class="term">Default alarm</span></dt><dd><p>
             You can either set alarm back to default options or you can store
             current settings to be default alarm for all new appointments.
@@ -717,20 +709,20 @@
         wrong, you can try to set this. 0 = Monday, 1 = Tuesday...
       </p></li></ul></div></div><div class="sect1" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="orage-faq"></a>Frequently Asked Questions</h2></div></div></div><p>
     Some common questions and answers.
-  </p><tr class="qandadiv"><td align="left" valign="top" colspan="2"><h4 class="title"><a name="id2574147"></a>1. Frequently Asked Questions</h4></td></tr><tr class="toc"><td align="left" valign="top" colspan="2"><dl><dt>1.1. <a href="#id2574151">
+  </p><tr class="qandadiv"><td align="left" valign="top" colspan="2"><h4 class="title"><a name="id2574133"></a>1. Frequently Asked Questions</h4></td></tr><tr class="toc"><td align="left" valign="top" colspan="2"><dl><dt>1.1. <a href="#id2574137">
           Why does my week start on Saturday?
-        </a></dt><dt>1.2. <a href="#id2574245">
+        </a></dt><dt>1.2. <a href="#id2574231">
           How can I insert my ical file into orage?
-        </a></dt><dt>1.3. <a href="#id2574283">
+        </a></dt><dt>1.3. <a href="#id2574269">
           How can skip my repeating appointment from happening during some 
           period of time?
-        </a></dt><dt>1.4. <a href="#id2574315">
+        </a></dt><dt>1.4. <a href="#id2574302">
           I have found a bug in orage or would like to see a new feature. How
           can I inform that to the developers?
-        </a></dt><dt>1.5. <a href="#id2574365">
+        </a></dt><dt>1.5. <a href="#id2574351">
           I upgraded to Orage 4.5 from Orage 4.4 and now my old appointments 
           are missing. Are they permanetly lost?
-        </a></dt></dl></td></tr><tr class="question"><td align="left" valign="top"><a name="id2574151"></a><a name="id2574153"></a><p><b>1.1.</b></p></td><td align="left" valign="top"><p>
+        </a></dt></dl></td></tr><tr class="question"><td align="left" valign="top"><a name="id2574137"></a><a name="id2574139"></a><p><b>1.1.</b></p></td><td align="left" valign="top"><p>
           Why does my week start on Saturday?
         </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
           This really is a problem in your distro. You can check how your
@@ -756,7 +748,7 @@
           After that you can check what the setting is: 
           <span class="command"><strong>grep first_weekday fi_FI</strong></span> and change that if it is
           wrong and after that you need to recompile your locale database.
-        </p></td></tr><tr class="question"><td align="left" valign="top"><a name="id2574245"></a><a name="id2574247"></a><p><b>1.2.</b></p></td><td align="left" valign="top"><p>
+        </p></td></tr><tr class="question"><td align="left" valign="top"><a name="id2574231"></a><a name="id2574233"></a><p><b>1.2.</b></p></td><td align="left" valign="top"><p>
           How can I insert my ical file into <strong class="application"><code>orage</code></strong>?
         </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
           You can do this with so called foreig files. Add your file as
@@ -764,7 +756,7 @@
           and <strong class="application"><code>orage</code></strong> includes the appointmemts (After this you can not tell
           the difference anymore, so you can not easily move them back to
           where they came form.)
-        </p></td></tr><tr class="question"><td align="left" valign="top"><a name="id2574283"></a><a name="id2574285"></a><p><b>1.3.</b></p></td><td align="left" valign="top"><p>
+        </p></td></tr><tr class="question"><td align="left" valign="top"><a name="id2574269"></a><a name="id2574271"></a><p><b>1.3.</b></p></td><td align="left" valign="top"><p>
           How can skip my repeating appointment from happening during some 
           period of time?
         </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
@@ -775,7 +767,7 @@
           feature, but unfortunately <strong class="application"><code>orage</code></strong> does not include that feature.
           The easiest way probably is to end those appointment with end date
           and then after the holiday remove the end date again.
-        </p></td></tr><tr class="question"><td align="left" valign="top"><a name="id2574315"></a><a name="id2574317"></a><p><b>1.4.</b></p></td><td align="left" valign="top"><p>
+        </p></td></tr><tr class="question"><td align="left" valign="top"><a name="id2574302"></a><a name="id2574304"></a><p><b>1.4.</b></p></td><td align="left" valign="top"><p>
           I have found a bug in <strong class="application"><code>orage</code></strong> or would like to see a new feature. How
           can I inform that to the developers?
         </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>
@@ -787,7 +779,7 @@
           to include your full <strong class="application"><code>orage</code></strong> version (preferable the results from
           <span class="command"><strong>orage -v</strong></span> or look the version from the about
           window).
-        </p></td></tr><tr class="question"><td align="left" valign="top"><a name="id2574365"></a><a name="id2574367"></a><p><b>1.5.</b></p></td><td align="left" valign="top"><p>
+        </p></td></tr><tr class="question"><td align="left" valign="top"><a name="id2574351"></a><a name="id2574353"></a><p><b>1.5.</b></p></td><td align="left" valign="top"><p>
           I upgraded to Orage 4.5 from Orage 4.4 and now my old appointments 
           are missing. Are they permanetly lost?
         </p></td></tr><tr class="answer"><td align="left" valign="top"></td><td align="left" valign="top"><p>

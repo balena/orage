@@ -588,15 +588,24 @@ static void create_procedure_reminder(alarm_struct *alarm)
 {
 #undef P_N
 #define P_N "create_procedure_reminder: "
-    gboolean status, active; /* active not used */
+    /*
+    gboolean status, active; / * active not used * /
     GError *error = NULL;
+    */
+    gchar *cmd;
+    gint status;
 
 #ifdef ORAGE_DEBUG
     orage_message(-100, P_N);
 #endif
+    /*
     status = orage_exec(alarm->cmd, &active, &error);
-    if (!status)
-        g_warning(P_N "cmd failed(%s)", alarm->cmd);
+        */
+    cmd = g_strconcat(alarm->cmd, " &", NULL);
+    status = system(cmd);
+    if (status)
+        g_warning(P_N "cmd failed(%s) status:%d", alarm->cmd, status);
+    g_free(cmd);
 }
 
 static void create_reminders(alarm_struct *alarm)
