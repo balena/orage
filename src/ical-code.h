@@ -48,9 +48,10 @@ typedef struct _xfical_appt
     /* note that version 4.5.9 changed uid format.
      * new format starts with 3 char source id (plus separator '.'), 
      * which tells the file where the id is found:
-     * "O01." = Orage file (normal file)
-     * "A01." = Archive file
+     * "O00." = Orage file (normal file)
+     * "A00." = Archive file
      * "F10." = Foreign file number 10
+     * "H08." = Holiday file number 08
      */
     gchar *uid; 
     gchar *title;
@@ -65,6 +66,7 @@ typedef struct _xfical_appt
          */
     gchar  starttime[17];
     gchar *start_tz_loc;
+    gboolean use_due_time;  /* VTODO has due date or not */
     gchar  endtime[17];
     gchar *end_tz_loc;
     gboolean use_duration;
@@ -75,6 +77,7 @@ typedef struct _xfical_appt
 
     gint availability;
     gint priority;
+    gchar *categories;
     gchar *note;
 
         /* alarm */

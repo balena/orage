@@ -28,18 +28,22 @@
 #include <string.h>
 #endif
 
+#include <stdio.h>
+#include <locale.h>
+#include <langinfo.h>
+
 #include <glib.h>
 #include <glib/gprintf.h>
 #include <gtk/gtk.h>
 #include <gdk/gdk.h>
 
 #include <libxfcegui4/libxfcegui4.h>
-#include <libxfce4util/libxfce4util.h>
 
 #include "functions.h"
 #include "tray_icon.h"
 #include "ical-code.h"
 #include "parameters.h"
+#include "mainbox.h"
 
 
 static gboolean is_running = FALSE;
@@ -82,6 +86,8 @@ typedef struct _Itf
     GtkWidget *show_taskbar_checkbutton;
     GtkWidget *show_pager_checkbutton;
     GtkWidget *show_systray_checkbutton;
+    GtkWidget *show_todos_checkbutton;
+    GtkWidget *show_events_checkbutton;
     /* Start visibity show or hide */
     GtkWidget *visibility_frame;
     GSList    *visibility_radiobutton_group;
@@ -95,9 +101,13 @@ typedef struct _Itf
     /* select_always_today */
     GtkWidget *always_today_frame;
     GtkWidget *always_today_checkbutton;
-    /* ical week start day (0 = Monday, 1 = Tuesday,... 6 = Sunday) */
-    GtkWidget *ical_weekstartday_frame;
-    GtkWidget *ical_weekstartday_combobox;
+
+/* code removed. relying in get_first_weekday_from_locale now
+/ * ical week start day (0 = Monday, 1 = Tuesday,... 6 = Sunday) * /
+GtkWidget *ical_weekstartday_frame;
+GtkWidget *ical_weekstartday_combobox;
+*/
+
     /* icon size */
     GtkWidget *icon_size_frame;
     GtkWidget *icon_size_x_spin;
@@ -114,14 +124,29 @@ typedef struct _Itf
     GtkWidget *dialog_action_area1;
 } Itf;
 
-
-gchar *orage_resource_file_location(char *name)
+/* Return the first day of the week, where 0=monday, 6=sunday.
+ *     Borrowed from GTK+:s Calendar Widget, but modified
+ *     to return 0..6 mon..sun, which is what libical uses */
+int get_first_weekday_from_locale()
 {
-    char *file_name;
+    union { unsigned int word; char *string; } langinfo;
+    int week_1stday = 0;
+    int first_weekday = 1;
+    unsigned int week_origin;
 
-    file_name = xfce_resource_save_location(XFCE_RESOURCE_DATA
-            , name, TRUE);
-    return(file_name);
+    setlocale(LC_TIME, "");
+    langinfo.string = nl_langinfo(_NL_TIME_FIRST_WEEKDAY);
+    first_weekday = langinfo.string[0];
+    langinfo.string = nl_langinfo(_NL_TIME_WEEK_1STDAY);
+    week_origin = langinfo.word;
+    if (week_origin == 19971130) /* Sunday */
+        week_1stday = 0;
+    else if (week_origin == 19971201) /* Monday */
+        week_1stday = 1;
+    else
+        orage_message(150, "get_first_weekday: unknown value of _NL_TIME_WEEK_1STDAY.");
+
+    return((week_1stday + first_weekday - 2 + 7) % 7);
 }
 
 static void dialog_response(GtkWidget *dialog, gint response_id
@@ -161,7 +186,7 @@ static void sound_application_changed(GtkWidget *dialog, gpointer user_data)
 
 static void set_border()
 {
-    gtk_window_set_decorated(GTK_WINDOW(g_par.xfcal->mWindow)
+    gtk_window_set_decorated(GTK_WINDOW(((CalWin *)g_par.xfcal)->mWindow)
             , g_par.show_borders);
 }
 
@@ -177,9 +202,9 @@ static void borders_changed(GtkWidget *dialog, gpointer user_data)
 static void set_menu()
 {
     if (g_par.show_menu)
-        gtk_widget_show(g_par.xfcal->mMenubar);
+        gtk_widget_show(((CalWin *)g_par.xfcal)->mMenubar);
     else
-        gtk_widget_hide(g_par.xfcal->mMenubar);
+        gtk_widget_hide(((CalWin *)g_par.xfcal)->mMenubar);
 }
 
 static void menu_changed(GtkWidget *dialog, gpointer user_data)
@@ -191,12 +216,46 @@ static void menu_changed(GtkWidget *dialog, gpointer user_data)
     set_menu();
 }
 
+static void set_todos()
+{
+    if (g_par.show_todos)
+        gtk_widget_show_all(((CalWin *)g_par.xfcal)->mTodo_vbox);
+    else
+        gtk_widget_hide_all(((CalWin *)g_par.xfcal)->mTodo_vbox);
+}
+
+static void todos_changed(GtkWidget *dialog, gpointer user_data)
+{
+    Itf *itf = (Itf *)user_data;
+
+    g_par.show_todos = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(
+            itf->show_todos_checkbutton));
+    set_todos();
+}
+
+static void set_events()
+{
+    if (g_par.show_events)
+        gtk_widget_show_all(((CalWin *)g_par.xfcal)->mEvent_vbox);
+    else
+        gtk_widget_hide_all(((CalWin *)g_par.xfcal)->mEvent_vbox);
+}
+
+static void events_changed(GtkWidget *dialog, gpointer user_data)
+{
+    Itf *itf = (Itf *)user_data;
+
+    g_par.show_events = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(
+            itf->show_events_checkbutton));
+    set_events();
+}
+
 static void set_stick()
 {
     if (g_par.set_stick)
-        gtk_window_stick(GTK_WINDOW(g_par.xfcal->mWindow));
+        gtk_window_stick(GTK_WINDOW(((CalWin *)g_par.xfcal)->mWindow));
     else
-        gtk_window_unstick(GTK_WINDOW(g_par.xfcal->mWindow));
+        gtk_window_unstick(GTK_WINDOW(((CalWin *)g_par.xfcal)->mWindow));
 }
 
 static void stick_changed(GtkWidget *dialog, gpointer user_data)
@@ -205,12 +264,12 @@ static void stick_changed(GtkWidget *dialog, gpointer user_data)
 
     g_par.set_stick = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(
             itf->set_stick_checkbutton));
-    set_menu();
+    set_stick();
 }
 
 static void set_ontop()
 {
-    gtk_window_set_keep_above(GTK_WINDOW(g_par.xfcal->mWindow)
+    gtk_window_set_keep_above(GTK_WINDOW(((CalWin *)g_par.xfcal)->mWindow)
             , g_par.set_ontop);
 }
 
@@ -220,13 +279,13 @@ static void ontop_changed(GtkWidget *dialog, gpointer user_data)
 
     g_par.set_ontop = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(
             itf->set_ontop_checkbutton));
-    set_menu();
+    set_ontop();
 }
 
 static void set_taskbar()
 {
-    gtk_window_set_skip_taskbar_hint(GTK_WINDOW(g_par.xfcal->mWindow)
-            , !g_par.show_taskbar);
+    gtk_window_set_skip_taskbar_hint(
+            GTK_WINDOW(((CalWin *)g_par.xfcal)->mWindow), !g_par.show_taskbar);
 }
 
 static void taskbar_changed(GtkWidget *dialog, gpointer user_data)
@@ -240,7 +299,7 @@ static void taskbar_changed(GtkWidget *dialog, gpointer user_data)
 
 static void set_pager()
 {
-    gtk_window_set_skip_pager_hint(GTK_WINDOW(g_par.xfcal->mWindow)
+    gtk_window_set_skip_pager_hint(GTK_WINDOW(((CalWin *)g_par.xfcal)->mWindow)
             , !g_par.show_pager);
 }
 
@@ -255,14 +314,15 @@ static void pager_changed(GtkWidget *dialog, gpointer user_data)
 
 static void set_systray()
 {
-    if (!(g_par.trayIcon && NETK_IS_TRAY_ICON(g_par.trayIcon->tray))) {
-        g_par.trayIcon = create_TrayIcon(g_par.xfcal);
+    if (!(g_par.trayIcon 
+    && NETK_IS_TRAY_ICON(((XfceTrayIcon *)g_par.trayIcon)->tray))) {
+        g_par.trayIcon = create_TrayIcon();
     }
 
     if (g_par.show_systray)
-        xfce_tray_icon_connect(g_par.trayIcon);
+        xfce_tray_icon_connect((XfceTrayIcon *)g_par.trayIcon);
     else
-        xfce_tray_icon_disconnect(g_par.trayIcon);
+        xfce_tray_icon_disconnect((XfceTrayIcon *)g_par.trayIcon);
 }
 
 static void systray_changed(GtkWidget *dialog, gpointer user_data)
@@ -355,6 +415,7 @@ static void always_today_changed(GtkWidget *dialog, gpointer user_data)
             GTK_TOGGLE_BUTTON(itf->always_today_checkbutton));
 }
 
+/* code removed. relying in get_first_weekday_from_locale now
 static void ical_weekstartday_changed(GtkWidget *dialog, gpointer user_data)
 {
     Itf *itf = (Itf *)user_data;
@@ -362,16 +423,11 @@ static void ical_weekstartday_changed(GtkWidget *dialog, gpointer user_data)
     g_par.ical_weekstartday = gtk_combo_box_get_active(
             GTK_COMBO_BOX(itf->ical_weekstartday_combobox));
 }
+*/
 
 static void set_icon_size()
 {
-    if (g_par.trayIcon && NETK_IS_TRAY_ICON(g_par.trayIcon->tray)) {
-        /* refresh date in tray icon */
-        xfce_tray_icon_disconnect(g_par.trayIcon);
-        destroy_TrayIcon(g_par.trayIcon);
-        g_par.trayIcon = create_TrayIcon(g_par.xfcal);
-        xfce_tray_icon_connect(g_par.trayIcon);
-    }
+    refresh_TrayIcon();
 }
 
 static void icon_size_x_spin_changed(GtkSpinButton *sb, gpointer user_data)
@@ -490,29 +546,43 @@ static void create_parameter_dialog_display_tab(Itf *dialog)
     gtk_box_pack_start(GTK_BOX(dialog->display_vbox), dialog->mode_frame
             , FALSE, FALSE, 5);
 
-    dialog->show_borders_checkbutton = 
-            gtk_check_button_new_with_mnemonic(_("Show borders"));
+    dialog->show_borders_checkbutton = gtk_check_button_new_with_mnemonic(
+            _("Show borders"));
     gtk_box_pack_start(GTK_BOX(vbox)
             , dialog->show_borders_checkbutton, FALSE, FALSE, 0);
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
             dialog->show_borders_checkbutton), g_par.show_borders);
 
-    dialog->show_menu_checkbutton = 
-            gtk_check_button_new_with_mnemonic(_("Show menu"));
+    dialog->show_menu_checkbutton = gtk_check_button_new_with_mnemonic(
+            _("Show menu"));
     gtk_box_pack_start(GTK_BOX(vbox)
             , dialog->show_menu_checkbutton, FALSE, FALSE, 0);
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
             dialog->show_menu_checkbutton), g_par.show_menu);
 
-    dialog->set_stick_checkbutton = 
-            gtk_check_button_new_with_mnemonic(_("Set sticked"));
+    dialog->show_todos_checkbutton = gtk_check_button_new_with_mnemonic(
+            _("Show todo list"));
+    gtk_box_pack_start(GTK_BOX(vbox)
+            , dialog->show_todos_checkbutton, FALSE, FALSE, 0);
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
+            dialog->show_todos_checkbutton), g_par.show_todos);
+
+    dialog->show_events_checkbutton = gtk_check_button_new_with_mnemonic(
+            _("Show event list"));
+    gtk_box_pack_start(GTK_BOX(vbox)
+            , dialog->show_events_checkbutton, FALSE, FALSE, 0);
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
+            dialog->show_events_checkbutton), g_par.show_events);
+
+    dialog->set_stick_checkbutton = gtk_check_button_new_with_mnemonic(
+            _("Set sticked"));
     gtk_box_pack_start(GTK_BOX(vbox)
             , dialog->set_stick_checkbutton, FALSE, FALSE, 0);
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
             dialog->set_stick_checkbutton), g_par.set_stick);
 
-    dialog->set_ontop_checkbutton = 
-            gtk_check_button_new_with_mnemonic(_("Set on top"));
+    dialog->set_ontop_checkbutton = gtk_check_button_new_with_mnemonic(
+            _("Set on top"));
     gtk_box_pack_start(GTK_BOX(vbox)
             , dialog->set_ontop_checkbutton, FALSE, FALSE, 0);
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
@@ -522,6 +592,10 @@ static void create_parameter_dialog_display_tab(Itf *dialog)
             , G_CALLBACK(borders_changed), dialog);
     g_signal_connect(G_OBJECT(dialog->show_menu_checkbutton), "toggled"
             , G_CALLBACK(menu_changed), dialog);
+    g_signal_connect(G_OBJECT(dialog->show_todos_checkbutton), "toggled"
+            , G_CALLBACK(todos_changed), dialog);
+    g_signal_connect(G_OBJECT(dialog->show_events_checkbutton), "toggled"
+            , G_CALLBACK(events_changed), dialog);
     g_signal_connect(G_OBJECT(dialog->set_stick_checkbutton), "toggled"
             , G_CALLBACK(stick_changed), dialog);
     g_signal_connect(G_OBJECT(dialog->set_ontop_checkbutton), "toggled"
@@ -609,9 +683,11 @@ static void create_parameter_dialog_display_tab(Itf *dialog)
 static void create_parameter_dialog_extra_setup_tab(Itf *dialog)
 {
     GtkWidget *hbox, *vbox, *label, *event;
+    /* code removed. relying in get_first_weekday_from_locale now
     gchar *weekday_array[7] = {
             _("Monday"), _("Tuesday"), _("Wednesday"), _("Thursday")
           , _("Friday"), _("Saturday"), _("Sunday")};
+     */
 
     dialog->extra_vbox = gtk_vbox_new(FALSE, 0);
     dialog->extra_tab = 
@@ -639,7 +715,8 @@ static void create_parameter_dialog_extra_setup_tab(Itf *dialog)
     g_signal_connect(G_OBJECT(dialog->always_today_checkbutton), "toggled"
             , G_CALLBACK(always_today_changed), dialog);
 
-    /***** ical week start day (0 = Monday, 1 = Tuesday,... 6 = Sunday) *****/
+    /* code removed. relying in get_first_weekday_from_locale now
+    / ***** ical week start day (0 = Monday, 1 = Tuesday,... 6 = Sunday) ***** /
     hbox = gtk_hbox_new(FALSE, 0);
     dialog->ical_weekstartday_frame = xfce_create_framebox_with_content(
             _("Ical week start day"), hbox);
@@ -648,7 +725,7 @@ static void create_parameter_dialog_extra_setup_tab(Itf *dialog)
 
     dialog->ical_weekstartday_combobox = orage_create_combo_box_with_content(
             weekday_array, 7);
-    event =  gtk_event_box_new(); /* only needed for tooltips */
+    event =  gtk_event_box_new(); / * only needed for tooltips * /
     gtk_container_add(GTK_CONTAINER(event), dialog->ical_weekstartday_combobox);
     gtk_box_pack_start(GTK_BOX(hbox)
             , event, FALSE, FALSE, 5);
@@ -659,6 +736,7 @@ static void create_parameter_dialog_extra_setup_tab(Itf *dialog)
             , NULL);
     g_signal_connect(G_OBJECT(dialog->ical_weekstartday_combobox), "changed"
             , G_CALLBACK(ical_weekstartday_changed), dialog);
+    */
 
     /***** tray icon size  (0 = use static icon) *****/
     vbox = gtk_vbox_new(FALSE, 0);
@@ -784,137 +862,135 @@ Itf *create_parameter_dialog()
     return(dialog);
 }
 
-void write_parameters()
+OrageRc *orage_parameters_file_open(gboolean read_only)
 {
     gchar *fpath;
-    XfceRc *rc;
+    OrageRc *orc;
+
+    fpath = orage_config_file_location(ORAGE_PAR_FILE);
+    if ((orc = (OrageRc *)orage_rc_file_open(fpath, read_only)) == NULL) {
+        orage_message(150, "orage_category_file_open: Parameter file open failed.");
+    }
+    g_free(fpath);
+
+    return(orc);
+}
+
+void write_parameters()
+{
+    OrageRc *orc;
     gint i;
     gchar f_par[50];
 
-    fpath = xfce_resource_save_location(XFCE_RESOURCE_CONFIG
-            , ORAGE_DIR PARFILE, TRUE);
-    if ((rc = xfce_rc_simple_open(fpath, FALSE)) == NULL) {
-        g_warning("Unable to open RC file.");
-        return;
-    }
-    xfce_rc_write_entry(rc, "Timezone", g_par.local_timezone);
+    orc = orage_parameters_file_open(FALSE);
+
+    orage_rc_put_str(orc, "Timezone", g_par.local_timezone);
 #ifdef HAVE_ARCHIVE
-    xfce_rc_write_int_entry(rc, "Archive limit", g_par.archive_limit);
-    xfce_rc_write_entry(rc, "Archive file", g_par.archive_file);
+    orage_rc_put_int(orc, "Archive limit", g_par.archive_limit);
+    orage_rc_put_str(orc, "Archive file", g_par.archive_file);
 #endif
-    xfce_rc_write_entry(rc, "Orage file", g_par.orage_file);
-    xfce_rc_write_entry(rc, "Sound application", g_par.sound_application);
-    gtk_window_get_position(GTK_WINDOW(g_par.xfcal->mWindow)
+    orage_rc_put_str(orc, "Orage file", g_par.orage_file);
+    orage_rc_put_str(orc, "Sound application", g_par.sound_application);
+    gtk_window_get_position(GTK_WINDOW(((CalWin *)g_par.xfcal)->mWindow)
             , &g_par.pos_x, &g_par.pos_y);
-    xfce_rc_write_int_entry(rc, "Main window X", g_par.pos_x);
-    xfce_rc_write_int_entry(rc, "Main window Y", g_par.pos_y);
-    xfce_rc_write_int_entry(rc, "Eventlist window X", g_par.el_size_x);
-    xfce_rc_write_int_entry(rc, "Eventlist window Y", g_par.el_size_y);
-    xfce_rc_write_bool_entry(rc, "Show Main Window Menu", g_par.show_menu);
-    xfce_rc_write_bool_entry(rc, "Select Always Today"
+    orage_rc_put_int(orc, "Main window X", g_par.pos_x);
+    orage_rc_put_int(orc, "Main window Y", g_par.pos_y);
+    orage_rc_put_int(orc, "Eventlist window X", g_par.el_size_x);
+    orage_rc_put_int(orc, "Eventlist window Y", g_par.el_size_y);
+    orage_rc_put_bool(orc, "Show Main Window Menu", g_par.show_menu);
+    orage_rc_put_bool(orc, "Select Always Today"
             , g_par.select_always_today);
-    xfce_rc_write_bool_entry(rc, "Show borders", g_par.show_borders);
-    xfce_rc_write_bool_entry(rc, "Show in pager", g_par.show_pager);
-    xfce_rc_write_bool_entry(rc, "Show in systray", g_par.show_systray);
-    xfce_rc_write_bool_entry(rc, "Show in taskbar", g_par.show_taskbar);
-    xfce_rc_write_bool_entry(rc, "Start visible", g_par.start_visible);
-    xfce_rc_write_bool_entry(rc, "Start minimized", g_par.start_minimized);
-    xfce_rc_write_bool_entry(rc, "Set sticked", g_par.set_stick);
-    xfce_rc_write_bool_entry(rc, "Set ontop", g_par.set_ontop);
-    xfce_rc_write_int_entry(rc, "Dynamic icon X", g_par.icon_size_x);
-    xfce_rc_write_int_entry(rc, "Dynamic icon Y", g_par.icon_size_y);
-    xfce_rc_write_int_entry(rc, "Ical week start day", g_par.ical_weekstartday);
-    xfce_rc_write_bool_entry(rc, "Show days", g_par.show_days);
-    xfce_rc_write_int_entry(rc, "Foreign file count", g_par.foreign_count);
+    orage_rc_put_bool(orc, "Show borders", g_par.show_borders);
+    orage_rc_put_bool(orc, "Show todos", g_par.show_todos);
+    orage_rc_put_bool(orc, "Show events", g_par.show_events);
+    orage_rc_put_bool(orc, "Show in pager", g_par.show_pager);
+    orage_rc_put_bool(orc, "Show in systray", g_par.show_systray);
+    orage_rc_put_bool(orc, "Show in taskbar", g_par.show_taskbar);
+    orage_rc_put_bool(orc, "Start visible", g_par.start_visible);
+    orage_rc_put_bool(orc, "Start minimized", g_par.start_minimized);
+    orage_rc_put_bool(orc, "Set sticked", g_par.set_stick);
+    orage_rc_put_bool(orc, "Set ontop", g_par.set_ontop);
+    orage_rc_put_int(orc, "Dynamic icon X", g_par.icon_size_x);
+    orage_rc_put_int(orc, "Dynamic icon Y", g_par.icon_size_y);
+    /* we write this with X so that we do not read it back unless
+     * it is manually changed. It should need changes really seldom. */
+    orage_rc_put_int(orc, "XIcal week start day"
+            , g_par.ical_weekstartday);
+    orage_rc_put_bool(orc, "Show days", g_par.show_days);
+    orage_rc_put_int(orc, "Foreign file count", g_par.foreign_count);
+    /* add what we have and remove the rest */
     for (i = 0; i < g_par.foreign_count;  i++) {
         g_sprintf(f_par, "Foreign file %02d name", i);
-        xfce_rc_write_entry(rc, f_par, g_par.foreign_data[i].file);
+        orage_rc_put_str(orc, f_par, g_par.foreign_data[i].file);
         g_sprintf(f_par, "Foreign file %02d read-only", i);
-        xfce_rc_write_bool_entry(rc, f_par, g_par.foreign_data[i].read_only);
+        orage_rc_put_bool(orc, f_par, g_par.foreign_data[i].read_only);
     }
     for (i = g_par.foreign_count; i < 10;  i++) {
         g_sprintf(f_par, "Foreign file %02d name", i);
-        if (!xfce_rc_has_entry(rc, f_par))
+        if (!orage_rc_exists_item(orc, f_par))
             break; /* it is in order, so we know that the rest are missing */
-        xfce_rc_delete_entry(rc, f_par, TRUE);
+        orage_rc_del_item(orc, f_par);
         g_sprintf(f_par, "Foreign file %02d read-only", i);
-        xfce_rc_delete_entry(rc, f_par, TRUE);
+        orage_rc_del_item(orc, f_par);
     }
-    xfce_rc_write_int_entry(rc, "Logging level", g_par.log_level);
+    orage_rc_put_int(orc, "Logging level", g_par.log_level);
 
-    g_free(fpath);
-    xfce_rc_close(rc);
+    orage_rc_file_close(orc);
 }
 
 void read_parameters(void)
 {
-    gchar *fpath, *fpath2;
-    XfceRc *rc;
+    gchar *fpath;
+    OrageRc *orc;
     gint i;
     gchar f_par[100];
 
-    fpath = xfce_resource_save_location(XFCE_RESOURCE_CONFIG
-            , ORAGE_DIR PARFILE, TRUE);
+    orc = orage_parameters_file_open(TRUE);
 
-    if ((rc = xfce_rc_simple_open(fpath, TRUE)) == NULL) {
-        g_warning("Unable to open (read) RC file.");
-        /* let's try to build it */
-        if ((rc = xfce_rc_simple_open(fpath, FALSE)) == NULL) {
-            /* still failed, can't do more */
-            g_warning("Unable to open (write) RC file.");
-            return;
-        }
-    }
-    g_par.local_timezone = 
-            g_strdup(xfce_rc_read_entry(rc, "Timezone", "floating"));
+    g_par.local_timezone = orage_rc_get_str(orc, "Timezone", "floating");
 #ifdef HAVE_ARCHIVE
-    g_par.archive_limit = xfce_rc_read_int_entry(rc, "Archive limit", 0);
-    fpath2 = orage_resource_file_location(ORAGE_DIR ARCFILE);
-    g_par.archive_file = 
-            g_strdup(xfce_rc_read_entry(rc, "Archive file", fpath2));
-    g_free(fpath2);
+    g_par.archive_limit = orage_rc_get_int(orc, "Archive limit", 0);
+    fpath = orage_data_file_location(ORAGE_ARC_FILE);
+    g_par.archive_file = orage_rc_get_str(orc, "Archive file", fpath);
+    g_free(fpath);
 #endif
-    fpath2 = orage_resource_file_location(ORAGE_DIR APPFILE);
-    g_par.orage_file = g_strdup(xfce_rc_read_entry(rc, "Orage file", fpath2));
-    g_free(fpath2);
-    g_par.sound_application = 
-            g_strdup(xfce_rc_read_entry(rc, "Sound application", "play"));
-    g_par.pos_x = xfce_rc_read_int_entry(rc, "Main window X", 0);
-    g_par.pos_y = xfce_rc_read_int_entry(rc, "Main window Y", 0);
-    g_par.el_size_x = xfce_rc_read_int_entry(rc, "Eventlist window X", 500);
-    g_par.el_size_y = xfce_rc_read_int_entry(rc, "Eventlist window Y", 350);
-    g_par.show_menu = 
-            xfce_rc_read_bool_entry(rc, "Show Main Window Menu", TRUE);
+    fpath = orage_data_file_location(ORAGE_APP_FILE);
+    g_par.orage_file = orage_rc_get_str(orc, "Orage file", fpath);
+    g_free(fpath);
+    g_par.sound_application=orage_rc_get_str(orc, "Sound application", "play");
+    g_par.pos_x = orage_rc_get_int(orc, "Main window X", 0);
+    g_par.pos_y = orage_rc_get_int(orc, "Main window Y", 0);
+    g_par.el_size_x = orage_rc_get_int(orc, "Eventlist window X", 500);
+    g_par.el_size_y = orage_rc_get_int(orc, "Eventlist window Y", 350);
+    g_par.show_menu = orage_rc_get_bool(orc, "Show Main Window Menu", TRUE);
     g_par.select_always_today = 
-            xfce_rc_read_bool_entry(rc, "Select Always Today", FALSE);
-    g_par.show_borders = xfce_rc_read_bool_entry(rc, "Show borders", TRUE);
-    g_par.show_pager = xfce_rc_read_bool_entry(rc, "Show in pager", TRUE);
-    g_par.show_systray = xfce_rc_read_bool_entry(rc, "Show in systray", TRUE);
-    g_par.show_taskbar = xfce_rc_read_bool_entry(rc, "Show in taskbar", TRUE);
-    g_par.start_visible = xfce_rc_read_bool_entry(rc, "Start visible", TRUE);
-    g_par.start_minimized = 
-            xfce_rc_read_bool_entry(rc, "Start minimized", FALSE);
-    g_par.set_stick = xfce_rc_read_bool_entry(rc, "Set sticked", TRUE);
-    g_par.set_ontop = xfce_rc_read_bool_entry(rc, "Set ontop", FALSE);
-    g_par.icon_size_x = xfce_rc_read_int_entry(rc, "Dynamic icon X", 42);
-    g_par.icon_size_y = xfce_rc_read_int_entry(rc, "Dynamic icon Y", 32);
-    g_par.ical_weekstartday = 
-            xfce_rc_read_int_entry(rc, "Ical week start day", 0); /* monday */
-    g_par.show_days = xfce_rc_read_bool_entry(rc, "Show days", FALSE);
-    g_par.foreign_count = 
-            xfce_rc_read_int_entry(rc, "Foreign file count", 0);
+            orage_rc_get_bool(orc, "Select Always Today", FALSE);
+    g_par.show_borders = orage_rc_get_bool(orc, "Show borders", TRUE);
+    g_par.show_todos = orage_rc_get_bool(orc, "Show todos", TRUE);
+    g_par.show_events = orage_rc_get_bool(orc, "Show events", TRUE);
+    g_par.show_pager = orage_rc_get_bool(orc, "Show in pager", TRUE);
+    g_par.show_systray = orage_rc_get_bool(orc, "Show in systray", TRUE);
+    g_par.show_taskbar = orage_rc_get_bool(orc, "Show in taskbar", TRUE);
+    g_par.start_visible = orage_rc_get_bool(orc, "Start visible", TRUE);
+    g_par.start_minimized = orage_rc_get_bool(orc, "Start minimized", FALSE);
+    g_par.set_stick = orage_rc_get_bool(orc, "Set sticked", TRUE);
+    g_par.set_ontop = orage_rc_get_bool(orc, "Set ontop", FALSE);
+    g_par.icon_size_x = orage_rc_get_int(orc, "Dynamic icon X", 42);
+    g_par.icon_size_y = orage_rc_get_int(orc, "Dynamic icon Y", 32);
+    /* 0 = monday, ..., 6 = sunday */
+    g_par.ical_weekstartday = orage_rc_get_int(orc, "Ical week start day"
+            , get_first_weekday_from_locale());
+    g_par.show_days = orage_rc_get_bool(orc, "Show days", FALSE);
+    g_par.foreign_count = orage_rc_get_int(orc, "Foreign file count", 0);
     for (i = 0; i < g_par.foreign_count; i++) {
         g_sprintf(f_par, "Foreign file %02d name", i);
-        g_par.foreign_data[i].file = 
-                g_strdup(xfce_rc_read_entry(rc, f_par, NULL));
+        g_par.foreign_data[i].file = orage_rc_get_str(orc, f_par, NULL);
         g_sprintf(f_par, "Foreign file %02d read-only", i);
-        g_par.foreign_data[i].read_only = 
-                xfce_rc_read_bool_entry(rc, f_par, TRUE);
+        g_par.foreign_data[i].read_only = orage_rc_get_bool(orc, f_par, TRUE);
     }
-    g_par.log_level = xfce_rc_read_int_entry(rc, "Logging level", 0);
+    g_par.log_level = orage_rc_get_int(orc, "Logging level", 0);
 
-    g_free(fpath);
-    xfce_rc_close(rc);
+    orage_rc_file_close(orc);
 }
 
 void show_parameters()

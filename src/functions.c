@@ -21,22 +21,22 @@
 
  */
 
+#define _XOPEN_SOURCE /* glibc2 needs this */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#define _XOPEN_SOURCE /* glibc2 needs this */
 #include <time.h>
 #include <string.h>
 #include <sys/types.h>
 #include <sys/wait.h>
 
 #include <glib.h>
+#include <glib/gprintf.h>
 #include <gtk/gtk.h>
 #include <gdk/gdk.h>
 
-/*
 #include <libxfce4util/libxfce4util.h>
-*/
 
 #include "orage-i18n.h"
 #include "functions.h"
@@ -103,21 +103,6 @@ void orage_message(gint level, const char *format, ...)
         g_error("Orage **: %s", formatted);
     g_free(formatted);
 }
-
-/*
-void orage_message(const char *format, ...)
-{
-    va_list args;
-    char *formatted, *str;
-
-    va_start(args, format);
-    formatted = g_strdup_vprintf(format, args);
-    va_end(args);
-
-    g_message("Orage **: %s", formatted);
-    g_free(formatted);
-}
-*/
 
 GtkWidget *orage_create_combo_box_with_content(char *text[], int size)
 {
@@ -490,9 +475,17 @@ gint orage_days_between(struct tm *t1, struct tm *t2)
 void orage_select_date(GtkCalendar *cal
     , guint year, guint month, guint day)
 {
-    gtk_calendar_select_day(cal, 0); /* needed to avoid illegal day/month */
-    gtk_calendar_select_month(cal, month, year);
-    gtk_calendar_select_day(cal, day);
+    guint cur_year, cur_month, cur_mday;
+
+    gtk_calendar_get_date(cal, &cur_year, &cur_month, &cur_mday);
+
+    if (cur_year == year && cur_month == month)
+        gtk_calendar_select_day(cal, day);
+    else {
+        gtk_calendar_select_day(cal, 0); /* needed to avoid illegal day/month */
+        gtk_calendar_select_month(cal, month, year);
+        gtk_calendar_select_day(cal, day);
+    }
 }
 
 void orage_select_today(GtkCalendar *cal)
@@ -501,4 +494,115 @@ void orage_select_today(GtkCalendar *cal)
 
     t = orage_localtime();
     orage_select_date(cal, t->tm_year+1900, t->tm_mon, t->tm_mday);
+}
+
+/*******************************************************
+ * rc file interface
+ *******************************************************/
+
+gchar *orage_data_file_location(char *name)
+{
+    char *file_name, *dir_name;
+
+    dir_name = g_strconcat(ORAGE_DIR, name, NULL);
+    file_name = xfce_resource_save_location(XFCE_RESOURCE_DATA, dir_name
+            , TRUE);
+    g_free(dir_name);
+    return(file_name);
+}
+
+gchar *orage_config_file_location(char *name)
+{
+    char *file_name, *dir_name;
+
+    dir_name = g_strconcat(ORAGE_DIR, name, NULL);
+    file_name = xfce_resource_save_location(XFCE_RESOURCE_CONFIG, dir_name
+            , TRUE);
+    g_free(dir_name);
+    return(file_name);
+}
+
+OrageRc *orage_rc_file_open(char *fpath, gboolean read_only)
+{
+    XfceRc *rc;
+    OrageRc *orc = NULL;
+
+    if ((rc = xfce_rc_simple_open(fpath, read_only)) == NULL && read_only) {
+        orage_message(-90, "orage_rc_open: Unable to open (read) RC file (%s). Creating it.", fpath);
+        /* let's try to build it */
+        if ((rc = xfce_rc_simple_open(fpath, FALSE)) == NULL) {
+            /* still failed, can't do more */
+            orage_message(150, "orage_rc_open: Unable to open (write) RC file (%s).", fpath);
+        }
+    }
+
+    if (rc) { /* we managed to open it */
+        orc = g_new(OrageRc, 1);
+        orc->rc = rc;
+    }
+    return(orc);
+}
+
+void orage_rc_file_close(OrageRc *orc)
+{
+    if (orc) {
+        xfce_rc_close((XfceRc *)orc->rc);
+        g_free(orc);
+    }
+}
+
+gchar **orage_rc_get_groups(OrageRc *orc)
+{
+    return(xfce_rc_get_groups((XfceRc *)orc->rc));
+}
+
+void orage_rc_set_group(OrageRc *orc, char *grp)
+{
+    xfce_rc_set_group((XfceRc *)orc->rc, grp);
+}
+
+void orage_rc_del_group(OrageRc *orc, char *grp)
+{
+    xfce_rc_delete_group((XfceRc *)orc->rc, grp, FALSE);
+}
+
+gchar *orage_rc_get_str(OrageRc *orc, char *key, char *def)
+{
+    return(g_strdup(xfce_rc_read_entry((XfceRc *)orc->rc, key, def)));
+}
+
+gint orage_rc_get_int(OrageRc *orc, char *key, gint def)
+{
+    return(xfce_rc_read_int_entry((XfceRc *)orc->rc, key, def));
+}
+
+gboolean orage_rc_get_bool(OrageRc *orc, char *key, gboolean def)
+{
+    return(xfce_rc_read_bool_entry((XfceRc *)orc->rc, key, def));
+}
+
+void orage_rc_put_str(OrageRc *orc, char *key, char *val)
+{
+    if (val != NULL)
+        xfce_rc_write_entry((XfceRc *)orc->rc, key, val);
+}
+
+void orage_rc_put_int(OrageRc *orc, char *key, gint val)
+{
+    xfce_rc_write_int_entry((XfceRc *)orc->rc, key, val);
+}
+
+void orage_rc_put_bool(OrageRc *orc, char *key, gboolean val)
+{
+    xfce_rc_write_bool_entry((XfceRc *)orc->rc, key, val);
+}
+
+gboolean orage_rc_exists_item(OrageRc *orc, char *key)
+{
+    return(xfce_rc_has_entry((XfceRc *)orc->rc, key));
+}
+
+void orage_rc_del_item(OrageRc *orc, char *key)
+{
+    xfce_rc_delete_entry((XfceRc *)orc->rc, key, FALSE);
 }

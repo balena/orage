@@ -25,13 +25,11 @@
 #define __TRAY_ICON_H__
 
 #include "xfce_trayicon.h"
-#include "mainbox.h"
 
-GdkPixbuf *orage_create_icon(CalWin *xfcal, gboolean static_icon
-        , gint x, gint y);
+GdkPixbuf *orage_create_icon(gboolean static_icon, gint x, gint y);
 
-XfceTrayIcon *create_TrayIcon(CalWin *xfcal);
+XfceTrayIcon *create_TrayIcon(void);
 
-void destroy_TrayIcon(XfceTrayIcon *trayIcon);
+void refresh_TrayIcon(void);
 
 #endif /* !__TRAY_ICON_H__ */

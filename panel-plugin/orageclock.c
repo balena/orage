@@ -121,12 +121,20 @@ gboolean oc_start_timer(Clock *clock)
 {
     time_t t;
     gint   delay_time =  0;
+    /* if we are using longer than 1 minute (= 60000) interval, we need
+     * to delay the first start so that clock changes when minute or hour
+     * changes */
 
     oc_get_time(clock);
     time(&t);
     localtime_r(&t, &clock->now);
-    if (clock->interval >= 60000) 
-        delay_time = (clock->interval-clock->now.tm_sec*1000);
+    if (clock->interval >= 60000) {
+        if (clock->interval >= 3600000) /* match to next full hour */
+            delay_time = (clock->interval -
+                    (clock->now.tm_min*60000 + clock->now.tm_sec*1000));
+        else /* match to next full minute */
+            delay_time = (clock->interval - clock->now.tm_sec*1000);
+    }
     if (clock->delay_timeout_id) {
         g_source_remove(clock->delay_timeout_id);
         clock->delay_timeout_id = 0;
@@ -137,21 +145,31 @@ gboolean oc_start_timer(Clock *clock)
     }
     clock->delay_timeout_id = g_timeout_add_full(G_PRIORITY_DEFAULT_IDLE
             , delay_time, (GSourceFunc)oc_get_time_delay, clock, NULL);
-    return(TRUE);
+    /* if we have longer than 1 sec timer, we need to reschedule 
+     * it regularly since it will fall down slowly but surely, so
+     * we keep this running. */
+    if (clock->interval >= 60000) {
+        if (delay_time > 60000)
+        /* let's run it once in case we happened to kill it
+           just when it was supposed to start */
+            oc_get_time(clock); 
+        return(FALSE);
+    }
+    else
+        return(TRUE);
 }
 
 static gboolean oc_end_tuning(Clock *clock)
 {
-    /* if we have longer than 1 sec timer, we need to reschedule it regularly 
-     * since it will fall down slowly but surely 
-     * */
+    /* if we have longer than 1 sec timer, we need to reschedule 
+     * it regularly since it will fall down slowly but surely */
     if (clock->adjust_timeout_id) {
         g_source_remove(clock->adjust_timeout_id);
         clock->adjust_timeout_id = 0;
     }
-    if (clock->interval >= 60000) {
+    if (clock->interval >= 60000) { /* resync it after each 6 hours */
         clock->adjust_timeout_id = g_timeout_add_full(G_PRIORITY_DEFAULT_IDLE
-                , 60*60*1000, (GSourceFunc)oc_start_timer, clock, NULL);
+                , 6*60*60*1000, (GSourceFunc)oc_start_timer, clock, NULL);
     }
     g_free(clock->tune);
     clock->tune = NULL;
@@ -293,7 +311,8 @@ static void oc_update_size(Clock *clock, int size)
     }
 }
 
-static gboolean popup_program(GtkWidget *widget, gchar *program, Clock *clock)
+static gboolean popup_program(GtkWidget *widget, gchar *program, Clock *clock
+        , guint event_time)
 {
     GdkAtom atom;
     Window xwindow;
@@ -332,6 +351,14 @@ static gboolean popup_program(GtkWidget *widget, gchar *program, Clock *clock)
         return(TRUE);
     }
     else { /* not running, let's try to start it. Need to reset TZ! */
+        static guint prev_event_time = 0; /* prevenst double start (BUG 4096) */
+
+        if (prev_event_time && ((event_time - prev_event_time) < 1000)) {
+            g_message("%s: double start of %s prevented", OC_NAME, program);
+            return(FALSE);
+        }
+            
+        prev_event_time = event_time;
         if (clock->TZ_orig != NULL)  /* we had TZ when we started */
             g_setenv("TZ", clock->TZ_orig, 1);
         else  /* TZ was not set so take it out */
@@ -356,10 +383,12 @@ static gboolean popup_program(GtkWidget *widget, gchar *program, Clock *clock)
 static gboolean on_button_press_event_cb(GtkWidget *widget
         , GdkEventButton *event, Clock *clock)
 {
+    if (event->type != GDK_BUTTON_PRESS) /* double or triple click */
+        return(FALSE); /* ignore */
     if (event->button == 1)
-        return(popup_program(widget, "orage", clock));
+        return(popup_program(widget, "orage", clock, event->time));
     else if (event->button == 2)
-        return(popup_program(widget, "globaltime", clock));
+        return(popup_program(widget, "globaltime", clock, event->time));
 
     return(FALSE);
 }
@@ -386,7 +415,9 @@ static void oc_free_data(XfcePanelPlugin *plugin, Clock *clock)
     if (dlg)
         gtk_widget_destroy(dlg);
     
-    g_source_remove(clock->timeout_id);
+    if (clock->timeout_id) {
+        g_source_remove(clock->timeout_id);
+    }
     g_object_unref(clock->tips);
     g_object_unref(clock->line[0].label);
     g_object_unref(clock->line[1].label);

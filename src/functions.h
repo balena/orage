@@ -28,8 +28,22 @@
 #define XFICAL_APPT_TIME_FORMAT_LEN 16
 #define XFICAL_APPT_DATE_FORMAT "%04d%02d%02d"
 #define XFICAL_APPT_DATE_FORMAT_LEN 9
+#define ORAGE_COLOR_FORMAT "%uR %uG %uB"
+
+#define ORAGE_DIR "orage" G_DIR_SEPARATOR_S
+#define ORAGE_PAR_FILE  "oragerc"
+#define ORAGE_APP_FILE  "orage.ics"
+#define ORAGE_ARC_FILE  "orage_archive.ics"
+#define ORAGE_CATEGORIES_FILE "orage_categories.txt"
+#define ORAGE_PERSISTENT_ALARMS_FILE "orage_persistent_alarms.txt"
+#define ORAGE_DEFAULT_ALARM_FILE "orage_default_alarm.txt"
 
 #define ORAGE_STR_EXISTS(str) ((str != NULL) && (str[0] != 0))
+
+typedef struct _OrageRc
+{
+    void *rc;
+} OrageRc;
 
 void orage_message(gint level, const char *format, ...);
 
@@ -71,5 +85,21 @@ gint orage_days_between(struct tm *t1, struct tm *t2);
 
 void orage_select_date(GtkCalendar *cal, guint year, guint month, guint day);
 void orage_select_today(GtkCalendar *cal);
+
+gchar *orage_data_file_location(char *name);
+gchar *orage_config_file_location(char *name);
+OrageRc *orage_rc_file_open(char *fpath, gboolean read_only);
+void orage_rc_file_close(OrageRc *orc);
+gchar **orage_rc_get_groups(OrageRc *orc);
+void orage_rc_set_group(OrageRc *orc, char *grp);
+void orage_rc_del_group(OrageRc *orc, char *grp);
+gchar *orage_rc_get_str(OrageRc *orc, char *key, char *def);
+gint   orage_rc_get_int(OrageRc *orc, char *key, gint def);
+gboolean orage_rc_get_bool(OrageRc *orc, char *key, gboolean def);
+void orage_rc_put_str(OrageRc *orc, char *key, char *val);
+void orage_rc_put_int(OrageRc *orc, char *key, gint val);
+void orage_rc_put_bool(OrageRc *orc, char *key, gboolean val);
+gboolean orage_rc_exists_item(OrageRc *orc, char *key);
+void orage_rc_del_item(OrageRc *orc, char *key);
 
 #endif /* !__ORAGE_FUNCTIONS_H__ */

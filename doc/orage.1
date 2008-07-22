@@ -1,0 +1,95 @@
+.\"     Title: orage
+.\"    Author: 
+.\" Generator: DocBook XSL Stylesheets v1.72.0 <http://docbook.sf.net/>
+.\"      Date: 03/10/2008
+.\"    Manual: 
+.\"    Source: 
+.\"
+.TH "ORAGE" "1" "03/10/2008" "" ""
+.\" disable hyphenation
+.nh
+.\" disable justification (adjust text to left margin only)
+.ad l
+.SH "NAME"
+orage \- Calendar for the Xfce Desktop Environment
+.SH "SYNOPSIS"
+.HP 6
+\fBorage\fR [options] [[FILE]...]
+.SH "DESCRIPTION"
+.PP
+
+\fBorage\fR
+is a fast and easy to use graphical calendar for the Xfce Desktop Environment. It uses portable ical format and includes common calendar features like repeating appointments and multiple alarming possibilities.
+\fBorage\fR
+does not have group calendar features, but can only be used for single user.
+.PP
+
+\fBorage\fR
+takes a list of
+\fIFILE\fRs for ical files that should be imported. Contents of those files are read and converted into
+\fBorage\fR, but those files are left untouched.
+.PP
+For a more detailed explanation of
+\fBorage\fR, please see the Help menu.
+.SH "OPTIONS"
+.PP
+\fB\-v\fR, \fB\-\-version\fR
+.RS 4
+Print version information and exit.
+.RE
+.PP
+\fB\-?\fR, \fB\-\-help\fR
+.RS 4
+Print brief help and exit.
+.RE
+.PP
+\fB\-p\fR, \fB\-\-\-\-preferences\fR
+.RS 4
+Open the preferences setting window.
+.RE
+.PP
+\fB\-t\fR, \fB\-\-toggle\fR
+.RS 4
+Hide
+\fBorage\fR
+if it is visible and show it if it is hidden.
+.RE
+.PP
+\fB\-a\fR, \fB\-\-\-\-add\-foreign file [RW]\fR
+.RS 4
+Add a foreign file into
+\fBorage\fR. By default this file is read\-only but adding RW after the filename makes it writeable.
+.RE
+.PP
+\fB\-r\fR, \fB\-\-\-\-remove\-foreign file\fR
+.RS 4
+Remove foreign file from
+\fBorage\fR. The file itself is not removed or modified. If you want to remove it, you need to do that separately using proper operating system command.
+.RE
+.SH "FILES"
+.PP
+All
+\fBorage\fR
+datafiles are by default in
+\fI~/.local/share/orage\fR
+and all configuration files are in
+\fI~/.config/orage\fR. (Note that you can change these locations, so if you do not find them, check from the UI.)
+.SH "BUGS"
+.PP
+Please report any bugs and enhancement requests to
+\fIhttp://bugzilla.xfce.org/\fR. Usage related questions can be sent to
+\fIxfce@xfce.org\fR
+email list.
+.SH "HOMEPAGE"
+.PP
+
+\fIhttp://www.xfce.org/projects/orage/\fR
+.SH "AUTHOR"
+.PP
+
+\fBorage\fR
+was originally written by Mickael Graf and is now being maintained by Juha Kautto
+<juha@xfce.org>.
+.PP
+This manual page was written by Juha Kautto
+<juha@xfce.org>.

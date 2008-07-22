@@ -63,6 +63,7 @@
 #include "tray_icon.h"
 #include "day-view.h"
 
+#define BORDER_SIZE 10
 
 enum {
     COL_TIME = 0
@@ -70,6 +71,7 @@ enum {
    ,COL_HEAD
    ,COL_UID
    ,COL_SORT
+   ,CAL_CATEGORIES
    ,NUM_COLS
 };
 
@@ -80,6 +82,19 @@ enum {
 static const GtkTargetEntry drag_targets[] =
 {
     { "STRING", 0, DRAG_TARGET_STRING }
+};
+
+static void do_appt_win(char *mode, char *uid, el_win *el)
+{
+    appt_win *apptw;
+
+    apptw = create_appt_win(mode, uid);
+    if (apptw) {
+        /* we started this, so keep track of it */
+        el->apptw_list = g_list_prepend(el->apptw_list, apptw);
+        /* inform the appointment that we are interested in it */
+        apptw->el = el; 
+    }
 };
 
 static void start_appt_win(char *mode,  el_win *el
@@ -99,7 +114,7 @@ static void start_appt_win(char *mode,  el_win *el
         }
         g_free(flags);
 #endif
-        create_appt_win(mode, uid, el);
+        do_appt_win(mode, uid, el);
         g_free(uid);
     }
 }
@@ -183,30 +198,59 @@ static char *format_time(el_win *el, xfical_appt *appt, char *par)
             result[i++] = ' ';
             i += append_time(result, start_ical_time, i);
             i = g_strlcat(result, "- ", 50);
-            if (!same_date) {
-                t = orage_icaltime_to_tm_time(appt->endtimecur, TRUE);
-                tmp = orage_tm_date_to_i18_date(&t);
-                i = g_strlcat(result, tmp, 50);
-                result[i++] = ' ';
+            if (el->page == TODO_PAGE && !appt->use_due_time) {
+                i = g_strlcat(result, "...", 50);
             }
-            i += append_time(result, end_ical_time, i);
+            else {
+                if (!same_date) {
+                    t = orage_icaltime_to_tm_time(appt->endtimecur, TRUE);
+                    tmp = orage_tm_date_to_i18_date(&t);
+                    i = g_strlcat(result, tmp, 50);
+                    result[i++] = ' ';
+                }
+                i += append_time(result, end_ical_time, i);
+            }
         }
         else {/* date only */
             i = g_strlcat(result, " - ", 50);
-            t = orage_icaltime_to_tm_time(appt->endtimecur, TRUE);
-            tmp = orage_tm_date_to_i18_date(&t);
-            i = g_strlcat(result, tmp, 50);
+            if (el->page == TODO_PAGE && !appt->use_due_time) {
+                i = g_strlcat(result, "...", 50);
+            }
+            else {
+                t = orage_icaltime_to_tm_time(appt->endtimecur, TRUE);
+                tmp = orage_tm_date_to_i18_date(&t);
+                i = g_strlcat(result, tmp, 50);
+            }
         }
     }
 
     return(result);
 }
 
+static void flags_data_func(GtkTreeViewColumn *col, GtkCellRenderer *rend
+        , GtkTreeModel *model, GtkTreeIter *iter, gpointer user_data)
+{
+    gchar *categories;
+    GdkColor *color;
+
+    gtk_tree_model_get(model, iter, CAL_CATEGORIES, &categories, -1);
+    if ((color = orage_category_list_contains(categories)) == NULL)
+        g_object_set(rend
+                 , "background-set",    FALSE
+                 , NULL);
+    else
+        g_object_set(rend
+                 , "background-gdk",    color
+                 , "background-set",    TRUE
+                 , NULL);
+    g_free(categories);
+}
+
 static void start_time_data_func(GtkTreeViewColumn *col, GtkCellRenderer *rend
         , GtkTreeModel *model, GtkTreeIter *iter, gpointer user_data)
 {
     el_win *el = (el_win *)user_data;
-    gchar *stime, *etime;
+    gchar *stime, *etime, *stime2;
     gchar start_time[17], end_time[17];
     gint len;
 
@@ -259,6 +303,7 @@ static void start_time_data_func(GtkTreeViewColumn *col, GtkCellRenderer *rend
                      , "weight-set",        TRUE
                      , NULL);
         }
+        g_free(stime);
     }
     else if (el->page == TODO_PAGE) {
         gtk_tree_model_get(model, iter, COL_SORT, &stime, -1);
@@ -269,7 +314,11 @@ static void start_time_data_func(GtkTreeViewColumn *col, GtkCellRenderer *rend
             len = 8;
         }
         strncpy(start_time, stime, len);
-        strncpy(end_time, stime+len, len);
+        gtk_tree_model_get(model, iter, COL_TIME, &stime2, -1);
+        if (g_str_has_suffix(stime2, "- ...")) /* no due time */
+            strncpy(end_time, "99999", len); /* long in the future*/
+        else /* normal due time*/
+            strncpy(end_time, stime+len, len);
         if (strncmp(end_time, el->date_now, len) < 0) { /* gone */
             g_object_set(rend
                      , "foreground",        "Red"
@@ -297,6 +346,8 @@ static void start_time_data_func(GtkTreeViewColumn *col, GtkCellRenderer *rend
                      , "weight-set",        TRUE
                      , NULL);
         }
+        g_free(stime);
+        g_free(stime2);
     }
     else {
         g_object_set(rend
@@ -350,7 +401,7 @@ static void add_el_row(el_win *el, xfical_appt *appt, char *par)
         flags[4] = 'E';
     else if (appt->type == XFICAL_TYPE_TODO)
         flags[4] = 'T';
-    else
+    else /* Journal */
         flags[4] = 'J';
 
     flags[5] = '\0';
@@ -380,6 +431,7 @@ static void add_el_row(el_win *el, xfical_appt *appt, char *par)
             , COL_HEAD,  title
             , COL_UID,   appt->uid
             , COL_SORT,  s_sort1
+            , CAL_CATEGORIES,   appt->categories
             , -1);
     g_free(title);
     g_free(s_sort1);
@@ -551,7 +603,7 @@ static void todo_data(el_win *el)
     app_data(el, a_day, NULL);
 }
 
-void journal_data(el_win *el)
+static void journal_data(el_win *el)
 {
     char      a_day[9];  /* yyyymmdd */
 
@@ -564,6 +616,7 @@ void journal_data(el_win *el)
 
 void refresh_el_win(el_win *el)
 {
+    orage_category_get_list();
     if (el->Window && el->ListStore && el->TreeView) {
         gtk_list_store_clear(el->ListStore);
         el->page = gtk_notebook_get_current_page(GTK_NOTEBOOK(el->Notebook));
@@ -644,7 +697,8 @@ static void set_el_data_from_cal(el_win *el)
 {
     char *title;
 
-    title = orage_cal_to_i18_date(GTK_CALENDAR(g_par.xfcal->mCalendar));
+    title = orage_cal_to_i18_date(
+            GTK_CALENDAR(((CalWin *)g_par.xfcal)->mCalendar));
     set_el_data(el, title);
 }
 
@@ -692,9 +746,26 @@ static void on_File_duplicate_activate_cb(GtkMenuItem *mi, gpointer user_data)
 
 static void close_window(el_win *el)
 {
+    appt_win *apptw;
+    GList *apptw_list;
+
     gtk_window_get_size(GTK_WINDOW(el->Window)
             , &g_par.el_size_x, &g_par.el_size_y);
     write_parameters();
+
+    /* need to clean the appointment list and inform all appointments that
+     * we are not interested anymore (= should not get updated) */
+    apptw_list = el->apptw_list;
+    for (apptw_list = g_list_first(apptw_list);
+         apptw_list != NULL;
+         apptw_list = g_list_next(apptw_list)) {
+        apptw = (appt_win *)apptw_list->data;
+        if (apptw) /* appointment window is still alive */
+            apptw->el = NULL; /* not interested anymore */
+        else
+            orage_message(110, "close_window: not null appt window");
+    }
+    g_list_free(el->apptw_list);
 
     gtk_widget_destroy(el->Window); /* destroy the eventlist window */
     gtk_object_destroy(GTK_OBJECT(el->Tooltips));
@@ -746,7 +817,7 @@ static void changeSelectedDate(el_win *el, gint day)
     tm_date = orage_i18_date_to_tm_date(
             gtk_window_get_title(GTK_WINDOW(el->Window)));
     orage_move_day(&tm_date, day);
-    orage_select_date(GTK_CALENDAR(g_par.xfcal->mCalendar)
+    orage_select_date(GTK_CALENDAR(((CalWin *)g_par.xfcal)->mCalendar)
             , tm_date.tm_year + 1900, tm_date.tm_mon, tm_date.tm_mday);
     set_el_data_from_cal(el);
 }
@@ -763,7 +834,7 @@ static void on_Go_previous_activate_cb(GtkMenuItem *mi, gpointer user_data)
 
 static void go_to_today(el_win *el)
 {
-    orage_select_today(GTK_CALENDAR(g_par.xfcal->mCalendar));
+    orage_select_today(GTK_CALENDAR(((CalWin *)g_par.xfcal)->mCalendar));
     set_el_data_from_cal(el);
 }
 
@@ -793,8 +864,7 @@ static void create_new_appointment(el_win *el)
 
     title = (char *)gtk_window_get_title(GTK_WINDOW(el->Window));
     strcpy(a_day, orage_i18_date_to_icaltime(title));
-
-    create_appt_win("NEW", a_day, el);
+    do_appt_win("NEW", a_day, el);
 }
 
 static void on_File_newApp_activate_cb(GtkMenuItem *mi, gpointer user_data)
@@ -828,8 +898,8 @@ static void delete_appointment(el_win *el)
             , GTK_STOCK_DIALOG_WARNING
             , _("You will permanently remove all\nselected appointments.")
             , _("Do you want to continue?")
-            , GTK_STOCK_YES, GTK_RESPONSE_ACCEPT
             , GTK_STOCK_NO, GTK_RESPONSE_CANCEL
+            , GTK_STOCK_YES, GTK_RESPONSE_ACCEPT
             , NULL);
 
     if (result == GTK_RESPONSE_ACCEPT) {
@@ -1067,7 +1137,8 @@ static void build_event_tab(el_win *el)
     GtkWidget *label, *hbox;
 
     el->event_tab_label = gtk_label_new(_("Event"));
-    el->event_notebook_page = orage_table_new(2, 10);
+    /* FIXME: remove these tables, which are not needed anymore */
+    el->event_notebook_page = orage_table_new(1, BORDER_SIZE);
 
     label = gtk_label_new(_("Extra days to show "));
     hbox =  gtk_hbox_new(FALSE, 0);
@@ -1087,7 +1158,8 @@ static void build_event_tab(el_win *el)
 static void build_todo_tab(el_win *el)
 {
     el->todo_tab_label = gtk_label_new(_("Todo"));
-    el->todo_notebook_page = orage_table_new(2, 10);
+    /* FIXME: remove these tables, which are not needed anymore */
+    el->todo_notebook_page = orage_table_new(1, BORDER_SIZE);
 
     gtk_notebook_append_page(GTK_NOTEBOOK(el->Notebook)
             , el->todo_notebook_page, el->todo_tab_label);
@@ -1101,7 +1173,8 @@ static void build_journal_tab(el_win *el)
     gchar *sdate;
 
     el->journal_tab_label = gtk_label_new(_("Journal"));
-    el->journal_notebook_page = orage_table_new(2, 10);
+    /* FIXME: remove these tables, which are not needed anymore */
+    el->journal_notebook_page = orage_table_new(1, BORDER_SIZE);
 
     label = gtk_label_new(_("Journal entries starting from:"));
     hbox =  gtk_hbox_new(FALSE, 0);
@@ -1129,7 +1202,8 @@ static void build_search_tab(el_win *el)
     GtkWidget *label;
 
     el->search_tab_label = gtk_label_new(_("Search"));
-    el->search_notebook_page = orage_table_new(1, 10);
+    /* FIXME: remove these tables, which are not needed anymore */
+    el->search_notebook_page = orage_table_new(1, BORDER_SIZE);
 
     label = gtk_label_new(_("Search text "));
     el->search_entry = gtk_entry_new();
@@ -1170,7 +1244,7 @@ static void build_event_list(el_win *el)
     /* Tree view */
     el->ListStore = gtk_list_store_new(NUM_COLS
             , G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING
-            , G_TYPE_STRING);
+            , G_TYPE_STRING, G_TYPE_STRING);
     el->TreeView = gtk_tree_view_new();
     gtk_tree_view_set_rules_hint(GTK_TREE_VIEW(el->TreeView), TRUE);
 
@@ -1200,6 +1274,8 @@ static void build_event_list(el_win *el)
     col = gtk_tree_view_column_new_with_attributes( _("Flags"), rend
                 , "text", COL_FLAGS
                 , NULL);
+    gtk_tree_view_column_set_cell_data_func(col, rend, flags_data_func
+                , el, NULL);
     gtk_tree_view_append_column(GTK_TREE_VIEW(el->TreeView), col);
 
     rend = gtk_cell_renderer_text_new();
@@ -1222,6 +1298,13 @@ static void build_event_list(el_win *el)
     gtk_tree_view_append_column(GTK_TREE_VIEW(el->TreeView), col);
     gtk_tree_view_column_set_visible(col, FALSE);
 
+    rend = gtk_cell_renderer_text_new();
+    col = gtk_tree_view_column_new_with_attributes("cat", rend
+                , "text", CAL_CATEGORIES
+                , NULL);
+    gtk_tree_view_append_column(GTK_TREE_VIEW(el->TreeView), col);
+    gtk_tree_view_column_set_visible(col, FALSE);
+
     gtk_tooltips_set_tip(el->Tooltips, el->TreeView, _("Double click line to edit it.\n\nFlags in order:\n\t 1. Alarm: n=no alarm\n\t\t A=visual Alarm S=also Sound alarm\n\t 2. Recurrence: n=no recurrence\n\t\t D=Daily W=Weekly M=Monthly Y=Yearly\n\t 3. Type: f=free B=Busy\n\t 4. Located in file:\n\t\tO=Orage A=Archive F=Foreign\n\t 5. Appointment type:\n\t\tE=Event T=Todo J=Journal"), NULL);
 
     g_signal_connect(el->TreeView, "row-activated",
@@ -1238,6 +1321,7 @@ el_win *create_el_win(char *start_date)
     el->today = FALSE;
     el->days = 0;
     el->time_now[0] = 0;
+    el->apptw_list = NULL;
     el->Tooltips = gtk_tooltips_new();
     el->accel_group = gtk_accel_group_new();
 
@@ -1265,7 +1349,7 @@ el_win *create_el_win(char *start_date)
 
     gtk_drag_source_set(el->TreeView, GDK_BUTTON1_MASK
             , drag_targets, DRAG_TARGET_COUNT, GDK_ACTION_COPY);
-    pixbuf = orage_create_icon(g_par.xfcal, TRUE, 16, 16);
+    pixbuf = orage_create_icon(TRUE, 16, 16);
     gtk_drag_source_set_icon_pixbuf(el->TreeView, pixbuf);
     g_object_unref(pixbuf);
     g_signal_connect(el->TreeView, "drag_data_get"

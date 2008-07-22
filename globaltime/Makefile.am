@@ -1,5 +1,13 @@
 bin_PROGRAMS = globaltime
 
+man_MANS =                             		 \
+	globaltime.1
+
+if MAINTAINER_MODE
+%.1: %.xml
+	xsltproc -nonet http://docbook.sourceforge.net/release/xsl/current/manpages/docbook.xsl $<
+endif
+
 globaltime_SOURCES =						\
 	globaltime.c							\
 	globaltime.h							\
@@ -14,7 +22,11 @@ globaltime_CFLAGS =						\
 globaltime_LDADD =						\
 	$(LIBXFCEGUI4_LIBS)						\
 	$(LIBXFCEUTIL_LIBS)						\
-	$(INTLLIBS)
+	$(INTLLIBS) 
+
+EXTRA_DIST =							\
+	$(man_MANS)								\
+	globaltime.xml
 
 
 # vi:set ts=8 sw=8 noet ai:

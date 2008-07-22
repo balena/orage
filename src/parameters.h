@@ -23,14 +23,6 @@
 #ifndef __ORAGE_PARAMETERS_H__
 #define __ORAGE_PARAMETERS_H__
 
-#include "xfce_trayicon.h"
-#include "mainbox.h"
-
-#define ORAGE_DIR "orage" G_DIR_SEPARATOR_S
-#define PARFILE  "oragerc"
-#define APPFILE  "orage.ics"
-#define ARCFILE  "orage_archive.ics"
-
 #define BORDER 5
 typedef struct _foreign_file
 {
@@ -45,6 +37,8 @@ typedef struct _parameters
     gboolean select_always_today;
     gboolean show_menu;
     gboolean show_borders;
+    gboolean show_todos;
+    gboolean show_events;
     gboolean show_pager;
     gboolean show_systray;
     gboolean show_taskbar;
@@ -81,11 +75,11 @@ typedef struct _parameters
     guint tooltip_timer; /* keeps tooltips upto date */
 
     /* main window */
-    CalWin *xfcal;
+    void *xfcal;     /* this is main calendar CalWin * */
     gint pos_x, pos_y;
 
     /* tray icon */
-    XfceTrayIcon *trayIcon;
+    void *trayIcon; /* this is XfceTrayIcon * */
     gint icon_size_x, icon_size_y;
 
     /* event-list window */
@@ -104,7 +98,6 @@ global_parameters g_par; /* real, static global parameters. Only in main !!! */
 extern global_parameters g_par; /* refer to existing global parameters */
 #endif
 
-gchar *orage_resource_file_location(char *name);
 void show_parameters(void);
 void write_parameters(void);
 void read_parameters(void);

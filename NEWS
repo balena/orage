@@ -1,13 +1,58 @@
+20080718: differences between 4.6 and 4.4 Version or Orage
+---------
+        * Man page created for orage and globaltime
+        * Globaltime added.
+            - shows several clocks from different timezones
+            - can be raised and hidden by clicking middle mouse
+              button on orage clock panel plugin
+            - has timetune feature, which makes it easy to see what
+              the time is in other clocks on certain time
+        * All visible dates are now in country native format (strftime (%x))
+        * All parameters now visible in preferences 
+            - restructured parameter screens
+        * New appointment types: TODO and JOURNAL
+            - TODO can be used to remember things that needs to done
+            - JOURNALs are for notes and things to remember
+        * Possible to rename Orage calendar files
+        * External files can be used
+            - it is possible to add files from other sources
+              and Orage keeps track on those.
+        * Export and import appointments.
+        * Text search in event list
+        * Orage is now dependent on local libical.
+            - standard libical cannot be used due to several fixes
+              done to Orage's private copy
+        * Daylist view
+            - possible to see calendar in day view format in addition 
+              to the old list view.
+        * New alarms.
+            - libnotify alarms
+            - script type alarms
+        * Possibility to set alarm based on end time also
+        * Possible to define default alarm
+        * Persistent alarms
+            - persistent alarms are raised after Orage is started
+              even if your computer or Orage has been turned off when the 
+              alarm happened.
+        * Orage and orageclock now only wake up when needed.
+            - saves battery in laptops when timer wakes up only when
+              needed instead of regularly every second.
+        * Main calendar now has list of events and todos.
+        * Better compatibility with evolution ical files
+        * Categories added
+            - also possible to give colour to certain category
+              and then colour is shown in even list view
+            
 20070104:
 ---------
         * Orage version 4.5.9 released 
         * globaltime added. Can show times in several timezones
 
-20072101:
+20070121:
 ---------
         * Orage version 4.4.0 released together with Xfce 4.4.0
 
-20061904:
+20060419:
 ---------
         * xfcalendar renamed to orage
         * production version of orage (4.3) available 

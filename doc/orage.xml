@@ -1,0 +1,147 @@
+<!--
+  $Id: orage.xml 22971 2008-03-06 23:14:10Z juha $
+
+  Copyright (c) 2008 Juha Kautto <juha@xfce.org>
+-->
+
+<refentry id="Orage">
+  <refmeta>
+    <refentrytitle>orage</refentrytitle>
+    <manvolnum>1</manvolnum>
+  </refmeta>
+
+  <refnamediv>
+    <refname>orage</refname>
+    <refpurpose>Calendar for the Xfce Desktop Environment</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <cmdsynopsis>
+      <command>orage</command>
+      <arg choice="opt">options</arg>
+      <arg rep="repeat">
+        <arg>FILE</arg>
+      </arg>
+    </cmdsynopsis>
+  </refsynopsisdiv>
+
+  <refsect1>
+    <title>Description</title>
+    <para>
+      <command>orage</command> is a fast and easy to use graphical calendar 
+      for the Xfce Desktop Environment. It uses portable ical format and 
+      includes common calendar features like repeating appointments and 
+      multiple alarming possibilities. <command>orage</command> does not have
+      group calendar features, but can only be used for single user.
+    </para>
+    <para>
+      <command>orage</command> takes a list of <replaceable>FILE</replaceable>s
+      for ical files that should be imported. Contents of those files are read
+      and converted into <command>orage</command>, but those files are left
+      untouched.
+    </para>
+    <para>
+      For a more detailed explanation of <command>orage</command>, please see 
+      the Help menu.
+    </para>
+  </refsect1>
+
+  <refsect1>
+    <title>Options</title>
+    <variablelist>
+      <varlistentry>
+        <term><option>-v</option>, <option>--version</option></term>
+        <listitem>
+          <para>Print version information and exit.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><option>-?</option>, <option>--help</option></term>
+        <listitem>
+          <para>Print brief help and exit.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><option>-p</option>, <option>----preferences</option></term>
+        <listitem>
+          <para>
+            Open the preferences setting window.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><option>-t</option>, <option>--toggle</option></term>
+        <listitem>
+          <para>
+            Hide <command>orage</command> if it is visible and show it if 
+            it is hidden.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><option>-a</option>, <option>----add-foreign file [RW]</option></term>
+        <listitem>
+          <para>
+            Add a foreign file into <command>orage</command>. By default this
+            file is read-only but adding RW after the filename makes it 
+            writeable.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><option>-r</option>, <option>----remove-foreign file</option></term>
+        <listitem>
+          <para>
+            Remove foreign file from <command>orage</command>. The file itself
+            is not removed or modified. If you want to remove it, you need to
+            do that separately using proper operating system command.
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsect1>
+
+  <refsect1>
+    <title>Files</title>
+    <para>
+      All <command>orage</command> datafiles are by default in 
+      <replaceable>~/.local/share/orage</replaceable> and all configuration
+      files are in  <replaceable>~/.config/orage</replaceable>.
+      (Note that you can change these locations, so if you do not find them,
+       check from the UI.)
+    </para>
+  </refsect1>
+
+  <refsect1>
+    <title>BUGS</title>
+    <para>
+      Please  report any bugs and enhancement requests to 
+      <replaceable>http://bugzilla.xfce.org/</replaceable>. Usage related
+      questions can be sent to <replaceable>xfce@xfce.org</replaceable>
+      email list.
+    </para>
+  </refsect1>
+
+  <refsect1>
+    <title>HOMEPAGE</title>
+    <para>
+      <replaceable>http://www.xfce.org/projects/orage/</replaceable>
+    </para>
+  </refsect1>
+
+  <refsect1>
+    <title>Author</title>
+    <para>
+      <command>orage</command> was originally written by Mickael Graf and
+      is now being maintained by Juha Kautto <email>juha@xfce.org</email>.
+    </para>
+    <para>
+      This manual page was written by Juha Kautto <email>juha@xfce.org</email>.
+    </para>
+  </refsect1>
+</refentry>
