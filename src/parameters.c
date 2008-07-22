@@ -30,7 +30,10 @@
 
 #include <stdio.h>
 #include <locale.h>
+
+#ifdef HAVE__NL_TIME_FIRST_WEEKDAY
 #include <langinfo.h>
+#endif
 
 #include <glib.h>
 #include <glib/gprintf.h>
@@ -129,6 +132,7 @@ GtkWidget *ical_weekstartday_combobox;
  *     to return 0..6 mon..sun, which is what libical uses */
 int get_first_weekday_from_locale()
 {
+#ifdef HAVE__NL_TIME_FIRST_WEEKDAY
     union { unsigned int word; char *string; } langinfo;
     int week_1stday = 0;
     int first_weekday = 1;
@@ -147,6 +151,10 @@ int get_first_weekday_from_locale()
         orage_message(150, "get_first_weekday: unknown value of _NL_TIME_WEEK_1STDAY.");
 
     return((week_1stday + first_weekday - 2 + 7) % 7);
+#else
+    orage_message(150, "get_first_weekday: Can not find first weekday. Using default: Monday=0. If this is wrong guess. please set undocumented parameter: Ical week start day (Sunday=6)");
+    return(0);
+#endif
 }
 
 static void dialog_response(GtkWidget *dialog, gint response_id
@@ -682,8 +690,9 @@ static void create_parameter_dialog_display_tab(Itf *dialog)
 
 static void create_parameter_dialog_extra_setup_tab(Itf *dialog)
 {
-    GtkWidget *hbox, *vbox, *label, *event;
+    GtkWidget *hbox, *vbox, *label;
     /* code removed. relying in get_first_weekday_from_locale now
+    GtkWidget *event;
     gchar *weekday_array[7] = {
             _("Monday"), _("Tuesday"), _("Wednesday"), _("Thursday")
           , _("Friday"), _("Saturday"), _("Sunday")};
