@@ -350,6 +350,12 @@ char *orage_cal_to_i18_date(GtkCalendar *cal)
             , (unsigned int *)&tm_date.tm_mon
             , (unsigned int *)&tm_date.tm_mday);
     tm_date.tm_year -= 1900;
+    /* need to fill missing tm_wday and tm_yday, which are in use 
+     * in some locale's default date. For example in en_IN. mktime does it */
+    if (mktime(&tm_date) == (time_t) -1) {
+        g_warning("orage: orage_cal_to_i18_date mktime failed %d %d %d"
+                , tm_date.tm_year, tm_date.tm_mon, tm_date.tm_mday);
+    }
     return(orage_tm_date_to_i18_date(&tm_date));
 }
 
@@ -357,25 +363,51 @@ struct tm orage_icaltime_to_tm_time(const char *icaltime, gboolean real_tm)
 {
     int i;
     struct tm t = {0,0,0,0,0,0,0,0,0};
+    char *ret;
 
+    /*
     i = sscanf(icaltime, XFICAL_APPT_TIME_FORMAT
             , &t.tm_year, &t.tm_mon, &t.tm_mday
             , &t.tm_hour, &t.tm_min, &t.tm_sec);
     switch (i) {
-        case 3: /* date */
+        case 3: / * date * /
             t.tm_hour = -1;
             t.tm_min = -1;
             t.tm_sec = -1;
             break;
-        case 6: /* time */
+        case 6: / * time * /
             break;
-        default: /* error */
+        default: / * error * /
             g_error("orage: orage_icaltime_to_tm_time error %s %d", icaltime, i);
             break;
     }
-    if (real_tm) { /* normalise to standard tm format */
+
+    if (real_tm) { / * normalise to standard tm format * /
         t.tm_year -= 1900;
         t.tm_mon -= 1;
+    }
+            */
+    ret = strptime(icaltime, "%Y%m%dT%H%M%S", &t);
+    if (ret == NULL) {
+        /* not all format string matched, so it must be DATE */
+        /* and tm_wday is not calculated ! */
+    /* need to fill missing tm_wday and tm_yday, which are in use 
+     * in some locale's default date. For example in en_IN. mktime does it */
+        if (mktime(&t) == (time_t) -1) {
+            g_warning("orage: orage_icaltime_to_tm_time mktime failed %d %d %d"
+                    , t.tm_year, t.tm_mon, t.tm_mday);
+        }
+        t.tm_hour = -1;
+        t.tm_min = -1;
+        t.tm_sec = -1;
+    }
+    else if (ret[0] != 0) { /* icaltime was not processed completely */
+        g_error("orage: orage_icaltime_to_tm_time error %s %s", icaltime, ret);
+    }
+
+    if (!real_tm) { /* convert from standard tm format to "normal" format */
+        t.tm_year += 1900;
+        t.tm_mon += 1;
     }
     return(t);
 }
@@ -457,6 +489,12 @@ void orage_move_day(struct tm *t, int day)
         t->tm_mday = 1;
     }
     t->tm_year -= 1900;
+    /* need to fill missing tm_wday and tm_yday, which are in use 
+     * in some locale's default date. For example in en_IN. mktime does it */
+    if (mktime(t) == (time_t) -1) {
+        g_warning("orage: orage_icaltime_to_tm_time mktime failed %d %d %d"
+                , t->tm_year, t->tm_mon, t->tm_mday);
+    }
 }
 
 gint orage_days_between(struct tm *t1, struct tm *t2)
