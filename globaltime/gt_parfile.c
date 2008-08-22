@@ -18,6 +18,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <unistd.h>
 #include <string.h>
 #include <time.h>
 #include <glib.h>
@@ -106,7 +107,6 @@ void write_file(void)
 
 static gboolean read_string(XfceRc *rc, gchar *prop, GString *result)
 {
-    gchar *tmp;
     gboolean found = FALSE;
 
     if (xfce_rc_has_entry(rc, prop)) {
@@ -120,11 +120,18 @@ static gboolean read_color(XfceRc *rc, gchar *prop, GdkColor **result)
 {
     gchar *tmp;
     gboolean found = FALSE;
+    unsigned int red, green, blue;
 
     if (xfce_rc_has_entry(rc, prop)) {
         tmp = (gchar *)xfce_rc_read_entry(rc, prop, "");
+        /*
         sscanf(tmp, "%uR %uG %uB", &(*result)->red, &(*result)->green
                 , &(*result)->blue);
+                */
+        sscanf(tmp, "%uR %uG %uB", &red, &green, &blue);
+        (*result)->red = red;
+        (*result)->green = green;
+        (*result)->blue = blue;
         (*result)->pixel = 0;
         found = TRUE;
     }
@@ -133,9 +140,6 @@ static gboolean read_color(XfceRc *rc, gchar *prop, GdkColor **result)
 
 static void read_attr(XfceRc *rc, text_attr_struct *attr)
 {
-    gchar *tmp;
-
-
     attr->clock_fg_modified = read_color(rc, "fg", &attr->clock_fg);
     attr->clock_bg_modified = read_color(rc, "bg", &attr->clock_bg);
     attr->name_font_modified = 

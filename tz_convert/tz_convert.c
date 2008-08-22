@@ -22,6 +22,9 @@
 #include <libgen.h>
     /* dirname, basename */
 
+/* This define is needed to get nftw instead if ftw.
+ * Documentation says the define is _XOPEN_SOURCE, but it
+ * does not work. __USE_XOPEN_EXTENDED works */
 #define _XOPEN_SOURCE 500
 #define __USE_XOPEN_EXTENDED 1
 #include <ftw.h>

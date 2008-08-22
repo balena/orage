@@ -434,6 +434,7 @@ static void oc_read_rc_file(XfcePanelPlugin *plugin, Clock *clock)
     const gchar  *ret;
     gchar tmp[100];
     gint i;
+    unsigned int red, green, blue;
 
     if (!(file = xfce_panel_plugin_lookup_rc_file(plugin)))
         return; /* if it does not exist, we use defaults from orage_oc_new */
@@ -448,20 +449,32 @@ static void oc_read_rc_file(XfcePanelPlugin *plugin, Clock *clock)
     clock->fg_set = xfce_rc_read_bool_entry(rc, "fg_set", FALSE);
     if (clock->fg_set) {
         ret = xfce_rc_read_entry(rc, "fg", NULL);
+        /*
         sscanf(ret, "%uR %uG %uB"
                 , (unsigned int *)&clock->fg.red
                 , (unsigned int *)&clock->fg.green
                 , (unsigned int *)&clock->fg.blue);
+                */
+        sscanf(ret, "%uR %uG %uB", &red, &green, &blue);
+        clock->fg.red = red;
+        clock->fg.green = green;
+        clock->fg.blue = blue;
         clock->fg.pixel = 0;
     }
 
     clock->bg_set = xfce_rc_read_bool_entry(rc, "bg_set", FALSE);
     if (clock->bg_set) {
         ret = xfce_rc_read_entry(rc, "bg", NULL);
+        /*
         sscanf(ret, "%uR %uG %uB"
                 , (unsigned int *)&clock->bg.red
                 , (unsigned int *)&clock->bg.green
                 , (unsigned int *)&clock->bg.blue);
+                */
+        sscanf(ret, "%uR %uG %uB", &red, &green, &blue);
+        clock->fg.red = red;
+        clock->fg.green = green;
+        clock->fg.blue = blue;
         clock->bg.pixel = 0;
     }
 

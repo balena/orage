@@ -1502,6 +1502,7 @@ void orage_category_get_list()
     gint i;
     orage_category_struct *cat;
     GdkColormap *pic1_cmap;
+    unsigned int red, green, blue;
 
     if (orage_category_list != NULL)
         orage_category_free_list();
@@ -1514,10 +1515,16 @@ void orage_category_get_list()
         if (color) {
             cat = g_new(orage_category_struct, 1);
             cat->category = g_strdup(cat_groups[i]);
+            /*
             sscanf(color, ORAGE_COLOR_FORMAT
                     , (unsigned int *)&(cat->color.red)
                     , (unsigned int *)&(cat->color.green)
                     , (unsigned int *)&(cat->color.blue));
+                    */
+            sscanf(color, ORAGE_COLOR_FORMAT, &red, &green, &blue);
+            cat->color.red = red;
+            cat->color.green = green;
+            cat->color.blue = blue;
             gdk_colormap_alloc_color(pic1_cmap, &cat->color, FALSE, TRUE);
             orage_category_list = g_list_prepend(orage_category_list, cat);
             g_free(color);

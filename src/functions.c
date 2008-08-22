@@ -83,7 +83,7 @@ void program_log (const char *format, ...)
 void orage_message(gint level, const char *format, ...)
 {
     va_list args;
-    char *formatted, *str;
+    char *formatted;
 
     if (level < g_par.log_level)
         return;
@@ -361,7 +361,9 @@ char *orage_cal_to_i18_date(GtkCalendar *cal)
 
 struct tm orage_icaltime_to_tm_time(const char *icaltime, gboolean real_tm)
 {
+    /*
     int i;
+    */
     struct tm t = {0,0,0,0,0,0,0,0,0};
     char *ret;
 
