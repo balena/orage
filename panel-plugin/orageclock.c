@@ -159,7 +159,7 @@ gboolean oc_start_timer(Clock *clock)
         return(TRUE);
 }
 
-static gboolean oc_end_tuning(Clock *clock)
+static void oc_end_tuning(Clock *clock)
 {
     /* if we have longer than 1 sec timer, we need to reschedule 
      * it regularly since it will fall down slowly but surely */
@@ -247,11 +247,12 @@ static gboolean oc_tune_time(Clock *clock)
         default:
             break;
     }
-    if (continue_tuning)
+    if (continue_tuning) {
         if (tune->cnt == 3) 
             continue_tuning = oc_next_level_tuning(clock);
         else 
             tune->cnt++;
+    }
 
     return(continue_tuning);
 }
@@ -490,7 +491,7 @@ static void oc_read_rc_file(XfcePanelPlugin *plugin, Clock *clock)
         }
     }
 
-    if (ret = xfce_rc_read_entry(rc, "tooltip", NULL))
+    if ((ret = xfce_rc_read_entry(rc, "tooltip", NULL)))
         g_string_assign(clock->tooltip_data, ret); 
 
     xfce_rc_close(rc);

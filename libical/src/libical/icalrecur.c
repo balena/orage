@@ -744,6 +744,7 @@ static int icalrecur_one_byrule(icalrecur_iterator* impl,enum byrule one)
     return passes;
 } 
 
+/*
 static int count_byrules(icalrecur_iterator* impl)
 {
     int count = 0;
@@ -757,6 +758,7 @@ static int count_byrules(icalrecur_iterator* impl)
 
     return count;
 }
+*/
 
 
 static void setup_defaults(icalrecur_iterator* impl, 
@@ -992,7 +994,7 @@ icalrecur_iterator* icalrecur_iterator_new(struct icalrecurrencetype rule,
     /* If this is a monthly interval with by day data, then we need to
        set the last value to the appropriate day of the month */
 
-    if(impl->rule.freq == ICAL_MONTHLY_RECURRENCE)
+    if(impl->rule.freq == ICAL_MONTHLY_RECURRENCE) {
 	if (has_by_data(impl,BY_DAY)) {
 
 	    int dow = icalrecurrencetype_day_day_of_week(
@@ -1043,6 +1045,7 @@ icalrecur_iterator* icalrecur_iterator_new(struct icalrecurrencetype rule,
 	} else if (has_by_data(impl,BY_MONTH_DAY)) {
 	    impl->last = icaltime_normalize(impl->last);
 	}
+    }
 
 
 
@@ -1374,6 +1377,7 @@ static int next_day(icalrecur_iterator* impl)
 }
 
 
+/*
 static int next_yearday(icalrecur_iterator* impl)
 {
 
@@ -1406,6 +1410,7 @@ static int next_yearday(icalrecur_iterator* impl)
   return end_of_data;
 
 }
+*/
 
 
 /* Returns the day of the month for the current month of t that is the

@@ -807,7 +807,7 @@ static void build_day_view_table(day_win *dw)
     gint days;   /* number of days to show */
     int year, month, day;
     gint i, sunday;
-    GtkWidget *label, *button, *arrow;
+    GtkWidget *label, *button;
     char text[5+1], *date, *today;
     struct tm tm_date;
     guint monthdays[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};

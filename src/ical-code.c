@@ -904,7 +904,7 @@ static char *get_char_timezone(icalproperty *p)
 #ifdef ORAGE_DEBUG
     orage_message(-300, P_N);
 #endif
-    if (itime_tz = icalproperty_get_first_parameter(p, ICAL_TZID_PARAMETER))
+    if ((itime_tz = icalproperty_get_first_parameter(p, ICAL_TZID_PARAMETER)))
         tz_loc = (char *)icalparameter_get_tzid(itime_tz);
     return(tz_loc);
 }
@@ -949,7 +949,7 @@ static struct icaltimetype convert_to_timezone(struct icaltimetype t
 #ifdef ORAGE_DEBUG
     orage_message(-300, P_N);
 #endif
-    if (tz_loc = get_char_timezone(p)) {
+    if ((tz_loc = get_char_timezone(p))) {
         /* FIXME: could we now call convert_to_zone or is it a problem
          * if we always move to zone format ? */
         if (!(l_icaltimezone = get_builtin_timezone(tz_loc))) {
@@ -2513,7 +2513,7 @@ static xfical_appt *appt_get_any(char *ical_uid, icalcomponent *base
 #ifdef ORAGE_DEBUG
     orage_message(-200, P_N);
 #endif
-    if (appt = xfical_appt_get_internal(ical_uid, base)) {
+    if ((appt = xfical_appt_get_internal(ical_uid, base))) {
         xfical_appt_get_fill_internal(appt, file_type);
     }
     return(appt);
@@ -3826,7 +3826,7 @@ static gboolean pre_format(char *file_name_in, char *file_name_out)
 #undef P_N
 #define P_N "pre_format: "
     gchar *text, *tmp, *tmp2, *tmp3;
-    gsize text_len, i;
+    gsize text_len;
     GError *error = NULL;
 
 #ifdef ORAGE_DEBUG
@@ -4229,7 +4229,7 @@ static xfical_appt *xfical_appt_get_next_with_string_internal(char *str
 #undef P_N
 #define P_N "xfical_appt_get_next_with_string_internal: "
     static gchar *text_upper, *text, *beg, *end;
-    static upper_text;
+    static gboolean upper_text;
     gchar *cur, *tmp, mem;
     gsize text_len, len;
     char *uid, ical_uid[XFICAL_UID_LEN+1];

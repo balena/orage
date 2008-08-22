@@ -106,7 +106,7 @@ static gboolean global_time_active_already(GdkAtom *atom)
         return(FALSE); 
 }
 
-static show_globaltime()
+static void show_globaltime()
 {
     GdkWindow *window;
 

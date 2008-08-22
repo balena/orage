@@ -829,10 +829,12 @@ icaltime_adjust(struct icaltimetype *tt, const int days, const int hours,
         tt->hour = 0;
     }
 
-IS_DATE:
     /* Normalize the month. We do this before handling the day since we may
        need to know what month it is to get the number of days in it.
        Note that months are 1 to 12, so we have to be a bit careful. */
+    /*
+IS_DATE:
+    */
     if (tt->month >= 13) {
 	years_overflow = (tt->month - 1) / 12;
 	tt->year += years_overflow;

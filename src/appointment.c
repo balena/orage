@@ -760,7 +760,7 @@ static gboolean orage_validate_datetime(appt_win *apptw, xfical_appt *appt)
     }
 }
 
-static gboolean fill_appt_from_apptw_alarm(xfical_appt *appt, appt_win *apptw)
+static void fill_appt_from_apptw_alarm(xfical_appt *appt, appt_win *apptw)
 {
     gint i, j, k;
     gchar *tmp;
@@ -1514,8 +1514,10 @@ void orage_category_get_list()
         if (color) {
             cat = g_new(orage_category_struct, 1);
             cat->category = g_strdup(cat_groups[i]);
-            sscanf(color, ORAGE_COLOR_FORMAT, &(cat->color.red)
-                    , &(cat->color.green), &(cat->color.blue));
+            sscanf(color, ORAGE_COLOR_FORMAT
+                    , (unsigned int *)&(cat->color.red)
+                    , (unsigned int *)&(cat->color.green)
+                    , (unsigned int *)&(cat->color.blue));
             gdk_colormap_alloc_color(pic1_cmap, &cat->color, FALSE, TRUE);
             orage_category_list = g_list_prepend(orage_category_list, cat);
             g_free(color);
@@ -1658,7 +1660,6 @@ static void cat_add_button_clicked(GtkButton *button, gpointer user_data)
 static void cat_color_button_changed(GtkColorButton *color_button
         , gpointer user_data)
 {
-    category_win_struct *catw = (category_win_struct *)user_data;
     gchar *category;
     GdkColor color;
 

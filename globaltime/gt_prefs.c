@@ -326,7 +326,7 @@ static void delete_clock(GtkWidget *widget, modify_struct *modify_clock)
 static void move_clock(GtkWidget *widget, modify_struct *modify_clock)
 {
     clock_struct *clockp = modify_clock->clock;
-    gint pos, new_pos, len;
+    gint pos, new_pos = 0, len;
     const gchar *button_text;
 
     if ((len = g_list_length(clocks.clock_list)) == 1) 
@@ -359,7 +359,6 @@ static void move_clock(GtkWidget *widget, modify_struct *modify_clock)
 
 static void ask_timezone(GtkWidget *widget, modify_struct *modify_clock)
 {
-    clock_struct *clockp = modify_clock->clock;
     GtkWidget *dialog;
     gchar *filename = NULL;
     gchar *clockname = NULL;
@@ -378,7 +377,7 @@ static void ask_timezone(GtkWidget *widget, modify_struct *modify_clock)
         gtk_entry_set_text(GTK_ENTRY(modify_clock->tz_entry), filename);
         if (strlen(gtk_entry_get_text(GTK_ENTRY(modify_clock->name_entry))) 
                 == 0) {
-            if (clockname = strrchr(filename, (int)'/'))
+            if ((clockname = strrchr(filename, (int)'/')))
                 gtk_entry_set_text(GTK_ENTRY(modify_clock->name_entry)
                         , clockname+1);
             else
