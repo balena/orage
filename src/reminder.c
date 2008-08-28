@@ -427,10 +427,17 @@ static void create_notify_reminder(alarm_struct *alarm)
         g_strlcat(heading, alarm->title, 50);
     n = notify_notification_new(heading, alarm->description, NULL, NULL);
     alarm->active_alarm->active_notify = n;
+#if GTK_CHECK_VERSION(2,10,0)
+    if (g_par.trayIcon 
+    && gtk_status_icon_is_embedded((GtkStatusIcon *)g_par.trayIcon))
+        notify_notification_attach_to_status_icon(n
+                , (GtkStatusIcon *)g_par.trayIcon);
+#else
     if (g_par.trayIcon 
     && NETK_IS_TRAY_ICON(((XfceTrayIcon *)g_par.trayIcon)->tray)) 
         notify_notification_attach_to_widget(n
                 , ((XfceTrayIcon *)g_par.trayIcon)->image);
+#endif
 
     if (alarm->notify_timeout == -1)
         notify_notification_set_timeout(n, NOTIFY_EXPIRES_NEVER);
@@ -823,8 +830,13 @@ gboolean orage_tooltip_update(gpointer user_data)
 #ifdef ORAGE_DEBUG
     orage_message(-100, P_N);
 #endif
+#if GTK_CHECK_VERSION(2,10,0)
+    if (!(g_par.trayIcon 
+    && gtk_status_icon_is_embedded((GtkStatusIcon *)g_par.trayIcon))) {
+#else
     if (!(g_par.trayIcon 
     && NETK_IS_TRAY_ICON(((XfceTrayIcon *)g_par.trayIcon)->tray))) { 
+#endif
            /* no trayicon => no need to update the tooltip */
         return(FALSE);
     }
@@ -866,8 +878,12 @@ gboolean orage_tooltip_update(gpointer user_data)
     }
     if (alarm_cnt == 0)
         g_string_append_printf(tooltip, _("\nNo active alarms found"));
+#if GTK_CHECK_VERSION(2,10,0)
+    gtk_status_icon_set_tooltip((GtkStatusIcon *)g_par.trayIcon, tooltip->str);
+#else
     xfce_tray_icon_set_tooltip((XfceTrayIcon *)g_par.trayIcon, tooltip->str
             , NULL);
+#endif
     g_string_free(tooltip, TRUE);
     return(TRUE);
 }

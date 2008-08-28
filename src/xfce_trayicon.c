@@ -24,6 +24,11 @@
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include <gtk/gtk.h>
+
+#if !GTK_CHECK_VERSION(2,10,0)
+/* Gtk 2.10 has status icons (=tray icons) so we only need these for older versions */
+
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif /* !HAVE_CONFIG_H */
@@ -401,3 +406,4 @@ xfce_tray_icon_set_tooltip(XfceTrayIcon *icon, const gchar *text,
         */
 }
 
+#endif  /* !GTK_CHECK_VERSION(2,10,0) */

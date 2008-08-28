@@ -24,6 +24,9 @@
  * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#if GTK_CHECK_VERSION(2,10,0)
+#define XfceTrayIcon GtkStatusIcon
+#else
 /*
  * This is a wrapper class to NetkTrayIcon.
  */
@@ -95,3 +98,4 @@ extern void		xfce_tray_icon_set_tooltip(XfceTrayIcon *,
 G_END_DECLS
 
 #endif	/* !__XFCE_TRAY_ICON_H__ */
+#endif	/* !GTK_CHECK_VERSION(2,10,0) */

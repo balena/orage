@@ -322,6 +322,17 @@ static void pager_changed(GtkWidget *dialog, gpointer user_data)
 
 static void set_systray()
 {
+#if GTK_CHECK_VERSION(2,10,0)
+    if (!(g_par.trayIcon 
+    && gtk_status_icon_is_embedded((GtkStatusIcon *)g_par.trayIcon))) {
+        g_par.trayIcon = create_TrayIcon();
+    }
+
+    if (g_par.show_systray)
+        gtk_status_icon_set_visible((GtkStatusIcon *)g_par.trayIcon, TRUE);
+    else
+        gtk_status_icon_set_visible((GtkStatusIcon *)g_par.trayIcon, FALSE);
+#else
     if (!(g_par.trayIcon 
     && NETK_IS_TRAY_ICON(((XfceTrayIcon *)g_par.trayIcon)->tray))) {
         g_par.trayIcon = create_TrayIcon();
@@ -331,6 +342,7 @@ static void set_systray()
         xfce_tray_icon_connect((XfceTrayIcon *)g_par.trayIcon);
     else
         xfce_tray_icon_disconnect((XfceTrayIcon *)g_par.trayIcon);
+#endif
 }
 
 static void systray_changed(GtkWidget *dialog, gpointer user_data)
