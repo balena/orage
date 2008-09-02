@@ -1,3 +1,24 @@
+/*      Orage - Calendar and alarm handler
+ *
+ * Copyright (c) 2008 Juha Kautto  (juha at xfce.org)
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2, or (at your option)
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the 
+        Free Software Foundation
+        51 Franklin Street, 5th Floor
+        Boston, MA 02110-1301 USA
+ */
+
 #include <error.h>
 #include <errno.h>
     /* errno */
@@ -63,6 +84,15 @@ unsigned long leapcnt;
 unsigned long timecnt;  /* points when time changes */
 unsigned long typecnt;  /* table of different time changes = types */
 unsigned long charcnt;  /* length of timezone name table */
+
+struct ical_data {
+    /* check and write needs these */
+    struct tm start_time;
+    long gmt_offset_hh, gmt_offset_mm;
+    unsigned int is_dst;
+    unsigned char *tz;
+    int hh_diff, mm_diff;
+};
 
 read_file(const char *file_name, const struct stat *file_stat)
 {
@@ -285,7 +315,8 @@ int create_ical_directory(const char *in_file_name)
     ical_dir_name = strdup(&in_file_name[in_file_base_offset]);
     if (mkdir(ical_dir_name, 0777))
     {
-        printf("creating directory=(%s) failed\n", ical_dir_name);
+        printf("create_ical_directory: creating directory=(%s) failed\n"
+                , ical_dir_name);
         perror("\tmkdir");
     }
     free(ical_dir_name);
@@ -334,12 +365,20 @@ int create_ical_file(const char *in_file_name)
             for (s_dir = strchr(s_dir, '/'); s_dir != NULL
                     ; s_dir = strchr(s_dir, '/')) {
                 *s_dir = '\0';
-                printf("creating directory=(%s)\n", out_file);
+                printf("create_ical_file: creating directory=(%s)\n", out_file);
                 if (mkdir(out_file, 0777))
                 {
-                    printf("creating directory=(%s) failed\n", out_file);
-                    perror("\tmkdir");
-                    return(2);
+                    if (errno == EEXIST) {
+                        printf("create_ical_file: ignoring error (%s)\n"
+                                , out_file);
+                        perror("\tmkdir");
+                    }
+                    else {
+                        printf("create_ical_file: creating directory=(%s) failed\n"
+                                , out_file);
+                        perror("\tmkdir");
+                        return(2);
+                    }
                 }
                 *s_dir = '/';
                 *s_dir++;
@@ -362,46 +401,73 @@ int create_ical_file(const char *in_file_name)
     return(0);
 }
 
+void write_ical_str(char *data)
+{
+    int len;
+
+    len = strlen(data);
+    fwrite(data, 1, len, ical_file);
+}
+
 void write_ical_header()
 {
     char *vcalendar = "BEGIN:VCALENDAR\nPRODID:-//Xfce//NONSGML Orage Olson-VTIMEZONE Converter//EN\nVERSION:2.0\n";
     char *vtimezone = "BEGIN:VTIMEZONE\nTZID:/softwarestudio.org/Olson_20011030_5/";
     char *xlic = "X-LIC-LOCATION:";
     char *line = "\n";
-    int len;
 
-    len = strlen(vcalendar);
-    fwrite(vcalendar, 1, len, ical_file);
+    write_ical_str(vcalendar);
+    write_ical_str(vtimezone);
+    write_ical_str(timezone_name);
+    write_ical_str(line);
+    write_ical_str(xlic);
+    write_ical_str(timezone_name);
+    write_ical_str(line);
+}
 
-    len = strlen(vtimezone);
-    fwrite(vtimezone, 1, len, ical_file);
+struct ical_data wit_get_data(int i) {
+    unsigned long tc_time;
+    long gmt_offset;
+    unsigned int tct_i, abbr_i;
+    struct ical_data data;
 
-    len = strlen(timezone_name);
-    fwrite(timezone_name, 1, len, ical_file);
+    /* get timechange time */
+    in_head = begin_timechanges;
+    in_head += 4*i; /* point to our row */
+    tc_time = get_long();
+    localtime_r(&tc_time, &data.start_time );
 
-    len = strlen(line);
-    fwrite(line, 1, len, ical_file);
+    /* get timechange type index */
+    in_head = begin_timechangetypeindexes;
+    tct_i = (unsigned int)in_head[i];
 
-    len = strlen(xlic);
-    fwrite(xlic, 1, len, ical_file);
+    /* get timechange type */
+    in_head = begin_timechangetypes;
+    in_head += 6*tct_i;
+    gmt_offset = get_long();
+    data.gmt_offset_hh = gmt_offset / (60*60);
+    data.gmt_offset_mm = (gmt_offset - data.gmt_offset_hh * (60*60)) / 60;
+    data.is_dst = in_head[0];
+    abbr_i =  in_head[1];
 
-    len = strlen(timezone_name);
-    fwrite(timezone_name, 1, len, ical_file);
-
-    len = strlen(line);
-    fwrite(line, 1, len, ical_file);
+    /* get timezone name */
+    in_head = begin_timezonenames;
+    data.tz = in_head + abbr_i;
+    return(data);
 }
 
 void write_ical_timezones()
 {
-    unsigned long tc_time;
-    struct tm *start_time;
-    long gmt_offset, gmt_offset_hh, gmt_offset_mm;
-    static long prev_gmt_offset_hh=0, prev_gmt_offset_mm=0;
-    unsigned int tct_i, is_dst, abbr_i;
-    unsigned char *tz;
+    int i;
+    struct ical_data ical_data
+        , ical_data_prev = { {0, 0, 0, 0, 0, 0, 0}, 0, 0, 0, NULL, 0, 0}
+        , data_cur_std
+        , data_prev_std = { {0, 0, 0, 0, 0, 0, 0}, 0, 0, 0, NULL, 0, 0}
+        , data_cur_dst
+        , data_prev_dst = { {0, 0, 0, 0, 0, 0, 0}, 0, 0, 0, NULL, 0, 0};
+    /* only write needs these */
     char str[100];
-    int i, len, hh_diff, mm_diff;
+    int len;
     char *dst_begin="BEGIN:DAYLIGHT\n";
     char *dst_end="END:DAYLIGHT\n";
     char *std_begin="BEGIN:STANDARD\n";
@@ -417,104 +483,103 @@ void write_ical_timezones()
     }
     for (i = 0; i < timecnt; i++) {
 
-    /***** get data *****/
-
-    /* get timechange time */
-    in_head = begin_timechanges;
-    in_head += 4*i;
-    tc_time = get_long();
-    start_time = localtime(&tc_time);
-
-    /* get timechange type index */
-    in_head = begin_timechangetypeindexes;
-    tct_i = (unsigned int)in_head[i];
-
-    /* get timechange type */
-    in_head = begin_timechangetypes;
-    in_head += 6*tct_i;
-    gmt_offset = get_long();
-    gmt_offset_hh = gmt_offset / (60*60);
-    gmt_offset_mm = (gmt_offset - gmt_offset_hh * (60*60)) / 60;
-    is_dst = in_head[0];
-    abbr_i =  in_head[1];
+        /***** get data *****/
+        ical_data = wit_get_data(i);
+        if (ical_data.is_dst) {
+            data_cur_dst = ical_data;
+        }
+        else {
+            data_cur_std = ical_data;
+        }
+        if (i == 0) { /* first round, do starting values */
+            ical_data_prev = ical_data;
+            /*
+            if (ical_data.is_dst) {
+                data_prev_dst = ical_data_prev;
+            }
+            else {
+                data_prev_std = ical_data_prev;
+            }
+            */
+        }
 
     /* ical needs the startime in the previous (=current) time, so we need to
      * adjust by the difference */
-    if (i==0) {
-        prev_gmt_offset_hh = gmt_offset_hh;
-        prev_gmt_offset_mm = gmt_offset_mm;
-    }
-    hh_diff = prev_gmt_offset_hh - gmt_offset_hh;
-    mm_diff = prev_gmt_offset_mm - gmt_offset_mm;
+        ical_data.hh_diff = ical_data_prev.gmt_offset_hh 
+                - ical_data.gmt_offset_hh;
+        ical_data.mm_diff = ical_data_prev.gmt_offset_mm 
+                - ical_data.gmt_offset_mm;
 
-    if (hh_diff + start_time->tm_hour < 0 || hh_diff + start_time->tm_hour > 23
-    ||  mm_diff + start_time->tm_min < 0 || mm_diff + start_time->tm_min > 59) {
-        if (debug > 1)
-            printf("Error counting startime %s:\n", timezone_name);
-        hh_diff = 0;
-        mm_diff = 0;
-    }
+        if (ical_data.hh_diff + ical_data.start_time.tm_hour < 0 
+        ||  ical_data.hh_diff + ical_data.start_time.tm_hour > 23
+        ||  ical_data.mm_diff + ical_data.start_time.tm_min < 0 
+        ||  ical_data.mm_diff + ical_data.start_time.tm_min > 59) {
+            if (debug > 1)
+                printf("Error counting startime %s:\n", timezone_name);
+            ical_data.hh_diff = 0;
+            ical_data.mm_diff = 0;
+        }
 
-    /* get timezone name */
-    in_head = begin_timezonenames;
-    tz = in_head + abbr_i;
+    /***** check if we need this data *****/
+        if (ical_data.start_time.tm_year + 1900 < ignore_older) {
+            /* too old, we are not interested */
+            if (debug > 2)
+                printf("\tskip %d =  %s", i, asctime(&ical_data.start_time));
+            ical_data_prev = ical_data;
+            if (ical_data.is_dst) {
+                data_prev_dst = ical_data;
+            }
+            else {
+                data_prev_std = ical_data;
+            }
+
+            continue;
+        }
 
     /***** write data *****/
-
-    if (start_time->tm_year + 1900 < ignore_older) {
-        if (debug > 2)
-            printf("\tskip %d: %u =  %s", i, tc_time, asctime(start_time));
-        prev_gmt_offset_hh = gmt_offset_hh;
-        prev_gmt_offset_mm = gmt_offset_mm;
-        continue;
-    }
-
-    /* write timezone entry */
-    if (is_dst) {
-        len = strlen(dst_begin);
-        fwrite(dst_begin, 1, len, ical_file);
+    if (ical_data.is_dst) {
+        write_ical_str(dst_begin);
     }
     else {
-        len = strlen(std_begin);
-        fwrite(std_begin, 1, len, ical_file);
+        write_ical_str(std_begin);
     }
 
-    snprintf(str, 99, "TZOFFSETFROM:%+03d%02d\n"
-            , prev_gmt_offset_hh, prev_gmt_offset_mm);
-    len = strlen(str);
+    len = snprintf(str, 30, "TZOFFSETFROM:%+03d%02d\n"
+            , ical_data_prev.gmt_offset_hh, ical_data_prev.gmt_offset_mm);
     fwrite(str, 1, len, ical_file);
 
-    snprintf(str, 99, "TZOFFSETTO:%+03d%02d\n", gmt_offset_hh, gmt_offset_mm);
-    len = strlen(str);
+    len = snprintf(str, 30, "TZOFFSETTO:%+03d%02d\n"
+            , ical_data.gmt_offset_hh, ical_data.gmt_offset_mm);
     fwrite(str, 1, len, ical_file);
 
-    prev_gmt_offset_hh = gmt_offset_hh;
-    prev_gmt_offset_mm = gmt_offset_mm;
+    ical_data_prev = ical_data;
 
-    len = snprintf(str, 99, "TZNAME:%s\n", tz);
+    len = snprintf(str, 99, "TZNAME:%s\n", ical_data.tz);
     fwrite(str, 1, len, ical_file);
 
-    len = snprintf(str, 99, "DTSTART:%04d%02d%02dT%02d%02d%02d\n"
-            , start_time->tm_year + 1900, start_time->tm_mon + 1
-            , start_time->tm_mday
-            , start_time->tm_hour + hh_diff, start_time->tm_min + mm_diff
-            , start_time->tm_sec);
+    len = snprintf(str, 30, "DTSTART:%04d%02d%02dT%02d%02d%02d\n"
+            , ical_data.start_time.tm_year + 1900
+            , ical_data.start_time.tm_mon  + 1
+            , ical_data.start_time.tm_mday
+            , ical_data.start_time.tm_hour + ical_data.hh_diff
+            , ical_data.start_time.tm_min  + ical_data.mm_diff
+            , ical_data.start_time.tm_sec);
     fwrite(str, 1, len, ical_file);
 
-    len = snprintf(str, 99, "RDATE:%04d%02d%02dT%02d%02d%02d\n"
-            , start_time->tm_year + 1900, start_time->tm_mon + 1
-            , start_time->tm_mday
-            , start_time->tm_hour + hh_diff, start_time->tm_min + mm_diff
-            , start_time->tm_sec);
+    len = snprintf(str, 30, "RDATE:%04d%02d%02dT%02d%02d%02d\n"
+            , ical_data.start_time.tm_year + 1900
+            , ical_data.start_time.tm_mon  + 1
+            , ical_data.start_time.tm_mday
+            , ical_data.start_time.tm_hour + ical_data.hh_diff
+            , ical_data.start_time.tm_min  + ical_data.mm_diff
+            , ical_data.start_time.tm_sec);
     fwrite(str, 1, len, ical_file);
 
-    if (is_dst) {
-        len = strlen(dst_end);
-        fwrite(dst_end, 1, len, ical_file);
+    if (ical_data.is_dst) {
+        write_ical_str(dst_end);
     }
     else {
-        len = strlen(std_end);
-        fwrite(std_end, 1, len, ical_file);
+        write_ical_str(std_end);
     }
     }
     printf("write_ical_timezones: end\n");
@@ -523,10 +588,8 @@ void write_ical_timezones()
 void write_ical_ending()
 {
     char *end= "END:VTIMEZONE\nEND:VCALENDAR\n";
-    int len;
 
-    len = strlen(end);
-    fwrite(end, 1, len, ical_file);
+    write_ical_str(end);
 }
 
 /* FIXME: need to check that if OUTFILE is given as a parameter,
