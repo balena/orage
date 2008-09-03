@@ -125,7 +125,7 @@ int process_header()
 {
     if (debug > 1)
         printf("file id: %s\n", in_head);
-    if (strncmp(in_head, "TZif", 4)) { /* we accept version 1 and 2 */
+    if (strncmp((char *)in_head, "TZif", 4)) { /* we accept version 1 and 2 */
         printf("tz infile does not look like tz file. Ending\n"
                 , in_file, in_head);
         return(1);
@@ -166,8 +166,10 @@ process_local_time_table()
     for (i = 0; i < timecnt; i++) {
         tmp = get_long();
         if (debug > 1) {
-            printf("GMT %d: %u =  %s", i, tmp, asctime(gmtime(&tmp)));
-            printf("LOC %d: %u =  %s", i, tmp, asctime(localtime(&tmp)));
+            printf("GMT %d: %u =  %s", i, tmp
+                    , asctime(gmtime((const time_t*)&tmp)));
+            printf("LOC %d: %u =  %s", i, tmp
+                    , asctime(localtime((const time_t*)&tmp)));
         }
     }
 }
@@ -220,8 +222,8 @@ process_abbr_table()
     tmp = in_head;
     for (i = 0; i < charcnt; i++) { /* we need to walk over the table */
         if (debug > 1)
-            printf("Abbr:%d (%d) (%s)\n", i, strlen(tmp + i), tmp + i);
-        i += strlen(tmp + i);
+            printf("Abbr:%d (%d)(%s)\n", i, strlen((char *)(tmp + i)), tmp + i);
+        i += strlen((char *)(tmp + i));
     }
     in_head += charcnt;
 }
@@ -237,8 +239,8 @@ process_leap_table()
         tmp = get_long();
         tmp2 = get_long();
         if (debug > 1)
-            printf("leaps %d: %u =  %s (%u)", i, tmp, asctime(localtime(&tmp))
-                    , tmp2);
+            printf("leaps %d: %u =  %s (%u)", i, tmp
+                    , asctime(localtime((const time_t *)&tmp)), tmp2);
     }
 }
 
@@ -435,7 +437,7 @@ struct ical_data wit_get_data(int i) {
     in_head = begin_timechanges;
     in_head += 4*i; /* point to our row */
     tc_time = get_long();
-    localtime_r(&tc_time, &data.start_time );
+    localtime_r((const time_t *)&tc_time, &data.start_time );
 
     /* get timechange type index */
     in_head = begin_timechangetypeindexes;
@@ -472,6 +474,10 @@ void write_ical_timezones()
     char *dst_end="END:DAYLIGHT\n";
     char *std_begin="BEGIN:STANDARD\n";
     char *std_end="END:STANDARD\n";
+    int dst_init_done = 0;
+    int dst_start = 0;
+    int std_init_done = 0;
+    int std_start = 0;
 
     printf("write_ical_timezones: start\n");
     /* we are processing "timezone_name" so we know it exists in this system,
@@ -482,8 +488,7 @@ void write_ical_timezones()
         return;
     }
     for (i = 0; i < timecnt; i++) {
-
-        /***** get data *****/
+    /***** get data *****/
         ical_data = wit_get_data(i);
         if (ical_data.is_dst) {
             data_cur_dst = ical_data;
@@ -493,14 +498,14 @@ void write_ical_timezones()
         }
         if (i == 0) { /* first round, do starting values */
             ical_data_prev = ical_data;
-            /*
-            if (ical_data.is_dst) {
-                data_prev_dst = ical_data_prev;
-            }
-            else {
-                data_prev_std = ical_data_prev;
-            }
-            */
+        }
+        if (!dst_init_done && ical_data.is_dst) {
+            data_prev_dst = ical_data;
+            dst_init_done = 1;
+        }
+        else if (!std_init_done && !ical_data.is_dst) {
+            data_prev_std = ical_data;
+            std_init_done = 1;
         }
 
     /* ical needs the startime in the previous (=current) time, so we need to
@@ -521,19 +526,21 @@ void write_ical_timezones()
         }
 
     /***** check if we need this data *****/
+        /* we only take newer than threshold values */
         if (ical_data.start_time.tm_year + 1900 < ignore_older) {
-            /* too old, we are not interested */
             if (debug > 2)
                 printf("\tskip %d =  %s", i, asctime(&ical_data.start_time));
             ical_data_prev = ical_data;
-            if (ical_data.is_dst) {
+            if (ical_data.is_dst)
                 data_prev_dst = ical_data;
-            }
-            else {
+            else
                 data_prev_std = ical_data;
-            }
 
             continue;
+        }
+    /***** check if we can shortcut the entry with RRULE or RDATE *****/
+        /* 1) check if it is similar to the previous values */
+        if () {
         }
 
     /***** write data *****/
