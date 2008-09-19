@@ -460,7 +460,7 @@ struct ical_timezone_data wit_get_data(int i
 
     /* get timezone name */
     in_head = begin_timezonenames;
-    data.tz = in_head + abbr_i;
+    data.tz = (char *)in_head + abbr_i;
 
     /* ical needs the startime in the previous (=current) time, so we need to
      * adjust by the difference */
@@ -477,7 +477,7 @@ struct ical_timezone_data wit_get_data(int i
         data.mm_diff = 0;
     }
     /* we need to remember also the previous value. Note that this is from
-     * dst if we are not in std and vice versa */
+     * dst if we are in std and vice versa */
     data.prev_gmt_offset_hh = prev.gmt_offset_hh;
     data.prev_gmt_offset_mm = prev.gmt_offset_mm;
 
@@ -571,7 +571,6 @@ int wit_get_rrule(struct ical_timezone_data prev
 }
 
 void wit_write_data(int rrule_day_cnt, struct rdate_prev_data *rdate
-        , struct ical_timezone_data old
         , struct ical_timezone_data first
         , struct ical_timezone_data prev)
 {
@@ -668,18 +667,12 @@ void write_ical_timezones()
     int i;
     struct ical_timezone_data ical_data
         , ical_data_prev = { {0, 0, 0, 0, 0, 0, 0}, 0, 0, 0, 0, 0, NULL, 0, 0}
-        , data_cur_std
         , data_prev_std = { {0, 0, 0, 0, 0, 0, 0}, 0, 0, 0, 0, 0, NULL, 0, 0}
         , data_first_std = { {0, 0, 0, 0, 0, 0, 0}, 0, 0, 0, 0, 0, NULL, 0, 0}
-        , data_old_std = { {0, 0, 0, 0, 0, 0, 0}, 0, 0, 0, 0, 0, NULL, 0, 0}
-        , data_cur_dst
         , data_prev_dst = { {0, 0, 0, 0, 0, 0, 0}, 0, 0, 0, 0, 0, NULL, 0, 0}
-        , data_first_dst = { {0, 0, 0, 0, 0, 0, 0}, 0, 0, 0, 0, 0, NULL, 0, 0}
-        , data_old_dst = { {0, 0, 0, 0, 0, 0, 0}, 0, 0, 0, 0, 0, NULL, 0, 0};
+        , data_first_dst = { {0, 0, 0, 0, 0, 0, 0}, 0, 0, 0, 0, 0, NULL, 0, 0};
     int dst_init_done = 0;
-    int dst_start = 0;
     int std_init_done = 0;
-    int std_start = 0;
     int rrule_day_cnt_dst = 0, rrule_day_cnt_dst_prev = 0;
     int rrule_day_cnt_std = 0, rrule_day_cnt_std_prev = 0;
     struct rdate_prev_data *prev_dst_data = NULL, *prev_std_data = NULL
@@ -696,40 +689,33 @@ void write_ical_timezones()
     for (i = 0; i < timecnt; i++) {
     /***** get data *****/
         ical_data = wit_get_data(i, ical_data_prev);
-        if (ical_data.is_dst) {
-            data_cur_dst = ical_data;
-            dst_start = 1;
-        }
-        else {
-            data_cur_std = ical_data;
-            std_start = 1;
-        }
         if (i == 0) { /* first round, do starting values */
             ical_data_prev = ical_data;
         }
-        if (!dst_init_done && ical_data.is_dst) {
-            data_old_dst   = ical_data;
-            data_first_dst = ical_data;
-            data_prev_dst  = ical_data;
-            dst_init_done  = 1;
-            if (debug > 0)
-                printf("init %d =  (%s)%s", i
-                        , ical_data.is_dst ? "dst" : "std"
-                        , asctime(&ical_data.start_time));
-            continue; /* we never write the first record */
+        if (ical_data.is_dst) {
+            if (!dst_init_done) {
+                data_first_dst = ical_data;
+                data_prev_dst  = ical_data;
+                dst_init_done  = 1;
+                if (debug > 0)
+                    printf("init %d =  (%s)%s", i
+                            , ical_data.is_dst ? "dst" : "std"
+                            , asctime(&ical_data.start_time));
+                continue; /* we never write the first record */
+            }
         }
-        else if (!std_init_done && !ical_data.is_dst) {
-            data_old_std   = ical_data;
-            data_first_std = ical_data;
-            data_prev_std  = ical_data;
-            std_init_done = 1;
-            if (debug > 0)
-                printf("init %d =  (%s)%s", i
-                        , ical_data.is_dst ? "dst" : "std"
-                        , asctime(&ical_data.start_time));
-            continue;
+        else { /* !dst == std */
+            if (!std_init_done) {
+                data_first_std = ical_data;
+                data_prev_std  = ical_data;
+                std_init_done  = 1;
+                if (debug > 0)
+                    printf("init %d =  (%s)%s", i
+                            , ical_data.is_dst ? "dst" : "std"
+                            , asctime(&ical_data.start_time));
+                continue; /* we never write the first record */
+            }
         }
-
 
     /***** check if we need this data *****/
         /* we only take newer than threshold values */
@@ -740,14 +726,12 @@ void write_ical_timezones()
                         , asctime(&ical_data.start_time));
             ical_data_prev = ical_data;
             if (ical_data.is_dst) {
-                data_old_dst   = data_prev_dst;
                 data_first_dst = ical_data;
                 data_prev_dst  = ical_data;
                 rrule_day_cnt_dst_prev = rrule_day_cnt_dst;
                 rrule_day_cnt_dst = wit_get_rrule(data_prev_dst, ical_data);
             }
             else {
-                data_old_std   = data_prev_std;
                 data_first_std = ical_data;
                 data_prev_std  = ical_data;
                 rrule_day_cnt_std_prev = rrule_day_cnt_std;
@@ -797,22 +781,19 @@ void write_ical_timezones()
                     else {
                         tmp_data2->next = tmp_data;
                     }
-                    data_old_dst  = data_prev_dst;
                     data_prev_dst = ical_data;
                 }
             }
             else { /* not RRULE or we changed to/from RRULE from/to RDATE, 
                     * so write previous and init new round */
                 wit_write_data(rrule_day_cnt_dst_prev, prev_dst_data
-                        , data_old_dst, data_first_dst, data_prev_dst);
+                        , data_first_dst, data_prev_dst);
                 if (rrule_day_cnt_dst_prev > 10 && rrule_day_cnt_dst < 10) {
                     /* we had RDATE and now we found RRULE */
-                    /* data_old_dst stays to point the previous RDATE */
                     /* this was actually the first RRULE */
                     data_first_dst = data_prev_dst; 
                 }
                 else {
-                    data_old_dst   = data_prev_dst;
                     data_first_dst = ical_data;
                 }
                 data_prev_dst  = ical_data;
@@ -852,22 +833,19 @@ void write_ical_timezones()
                     else {
                         tmp_data2->next = tmp_data;
                     }
-                    data_old_std  = data_prev_std;
                     data_prev_std = ical_data;
                 }
             }
             else { /* not RRULE or we changed to/from RRULE from/to RDATE, 
                     * so write previous and init new round */
                 wit_write_data(rrule_day_cnt_std_prev, prev_std_data
-                        , data_old_std, data_first_std, data_prev_std);
+                        , data_first_std, data_prev_std);
                 if (rrule_day_cnt_std_prev > 10 && rrule_day_cnt_std < 10) {
-                    /* we had RDATE and now we founf RRULE */
-                    /* data_old_std stays to point the previous RDATE */
+                    /* we had RDATE and now we found RRULE */
                     /* this was actually the first RRULE */
                     data_first_std = data_prev_std; 
                 }
                 else {
-                    data_old_std   = data_prev_std;
                     data_first_std = ical_data;
                 }
                 data_prev_std  = ical_data;
@@ -879,9 +857,9 @@ void write_ical_timezones()
     /* need to write the last one also */
     printf("*****writing last entry*****\n");
     wit_write_data(rrule_day_cnt_std_prev, prev_std_data
-            , data_old_std, data_first_std, data_prev_std);
+            , data_first_std, data_prev_std);
     wit_write_data(rrule_day_cnt_dst_prev, prev_dst_data
-            , data_old_dst, data_first_dst, data_prev_dst);
+            , data_first_dst, data_prev_dst);
     printf("write_ical_timezones: end\n");
 }
 
