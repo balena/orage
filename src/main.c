@@ -207,7 +207,7 @@ static void print_version(void)
     g_print(_("\tNot using libnotify.\n"));
 #endif
 #ifdef HAVE_ARCHIVE
-    g_print(_("\tUsing automatic archving.\n"));
+    g_print(_("\tUsing automatic archiving.\n"));
 #else
     g_print(_("\tNot using archiving.\n"));
 #endif

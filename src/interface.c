@@ -1098,7 +1098,7 @@ void create_import_export_tab(intf_win *intf_w)
     g_signal_connect((gpointer)intf_w->iea_arc_button2, "clicked"
             , G_CALLBACK(on_unarchive_button_clicked_cb), intf_w);
     gtk_tooltips_set_tip(intf_w->tooltips, intf_w->iea_arc_button2
-            , _("Return all archived events into main orage file and remove arch file.\nThis is usefull for example when doing export and moving orage\nappointments to another system."), NULL);
+            , _("Return all archived events into main orage file and remove arch file.\nThis is useful for example when doing export and moving orage\nappointments to another system."), NULL);
 #endif
 }
 
