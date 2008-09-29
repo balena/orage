@@ -36,6 +36,7 @@
 #endif
 
 #include <glib.h>
+#include <glib/gstdio.h>
 #include <glib/gprintf.h>
 #include <gtk/gtk.h>
 #include <gdk/gdk.h>
@@ -410,7 +411,7 @@ static void timezone_button_clicked(GtkButton *button, gpointer user_data)
 {
     Itf *itf = (Itf *)user_data;
 
-    if (g_par.local_timezone == NULL || strlen(g_par.local_timezone) == 0) {
+    if (!ORAGE_STR_EXISTS(g_par.local_timezone)) {
         g_warning("timezone pressed: local timezone missing");
         g_par.local_timezone = g_strdup("floating");
     }
@@ -959,6 +960,25 @@ void write_parameters()
     orage_rc_file_close(orc);
 }
 
+void init_default_timezone()
+{
+    gsize len;
+
+    g_free(g_par.local_timezone);
+    if (g_file_get_contents("/etc/timezone", &g_par.local_timezone
+                , &len, NULL)) {
+        /* success! let's check it */
+        if (len > 2) /* get rid of the \n at the end */
+            g_par.local_timezone[len-1] = 0;
+        if (!xfical_set_local_timezone()) { /* test that ical knows it */
+            g_free(g_par.local_timezone);
+            g_par.local_timezone = NULL;
+        }
+    }
+    if (!ORAGE_STR_EXISTS(g_par.local_timezone))
+        g_par.local_timezone = g_strdup("floating");
+}
+
 void read_parameters(void)
 {
     gchar *fpath;
@@ -968,7 +988,10 @@ void read_parameters(void)
 
     orc = orage_parameters_file_open(TRUE);
 
-    g_par.local_timezone = orage_rc_get_str(orc, "Timezone", "floating");
+    g_par.local_timezone = orage_rc_get_str(orc, "Timezone", "not found");
+    if (!strcmp(g_par.local_timezone, "not found")) { 
+        init_default_timezone();
+    }
 #ifdef HAVE_ARCHIVE
     g_par.archive_limit = orage_rc_get_int(orc, "Archive limit", 0);
     fpath = orage_data_file_location(ORAGE_ARC_FILE);
