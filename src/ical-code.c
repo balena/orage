@@ -560,7 +560,7 @@ gboolean xfical_set_local_timezone()
                 icaltimezone_get_builtin_timezone(g_par.local_timezone);
 
     if (!local_icaltimezone) {
-        orage_message(250, P_N "builtin timezone %s not found"
+        orage_message(150, P_N "builtin timezone %s not found"
                 , g_par.local_timezone);
         return (FALSE);
     }

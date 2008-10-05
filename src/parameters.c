@@ -960,20 +960,79 @@ void write_parameters()
     orage_rc_file_close(orc);
 }
 
+/* let's try to find the timezone name by comparing this file to
+ * timezone files from the default location. This does not work
+ * always, but is the best trial we can do */
+void init_dtz_check_dir(gchar *tz_dirname, gchar *tz_local, gint len)
+{
+    gint tz_offset = strlen("/usr/share/zoneinfo/");
+    gsize tz_len;         /* file lengths */
+    GDir *tz_dir;         /* location of timezone data /usr/share/zoneinfo */
+    const gchar *tz_file; /* filename containing timezone data */
+    gchar *tz_fullfile;   /* full filename */
+    gchar *tz_data;       /* contents of the timezone data file */
+    GError *error = NULL;
+
+    if ((tz_dir = g_dir_open(tz_dirname, 0, NULL))) {
+        while ((tz_file = g_dir_read_name(tz_dir)) 
+                && g_par.local_timezone == NULL) {
+            tz_fullfile = g_strconcat(tz_dirname, "/", tz_file, NULL);
+            if (g_file_test(tz_fullfile, G_FILE_TEST_IS_SYMLINK))
+                ; /* we do not accept these, just continue searching */
+            else if (g_file_test(tz_fullfile, G_FILE_TEST_IS_DIR)) {
+                init_dtz_check_dir(tz_fullfile, tz_local, len);
+            }
+            else if (g_file_get_contents(tz_fullfile, &tz_data, &tz_len
+                    , &error)) {
+                if (len == tz_len && !memcmp(tz_local, tz_data, len)) {
+                    /* this is a match (length is tested first since that 
+                     * test is quick and it eliminates most) */
+                    g_par.local_timezone = g_strdup(tz_fullfile+tz_offset);
+                }
+                g_free(tz_data);
+            }
+            else { /* we should never come here */
+                g_warning("init_default_timezone: can not read (%s) %s"
+                        , tz_fullfile, error->message);
+                g_error_free(error);
+                error = NULL;
+            }
+            /* if we found a candidate, test that libical knows it */
+            if (g_par.local_timezone && !xfical_set_local_timezone()) { 
+                /* candidate is not known by libical, remove it */
+                g_warning("init_default_timezone: found match (%s) but libical can not use that, skipping it."
+                        , g_par.local_timezone);
+                g_free(g_par.local_timezone);
+                g_par.local_timezone = NULL;
+            }
+            g_free(tz_fullfile);
+        } /* while */
+        g_dir_close(tz_dir);
+    }
+}
+
 void init_default_timezone()
 {
-    gsize len;
+    gsize len;            /* file lengths */
+    gchar *tz_local;      /* local timezone data */
 
     g_free(g_par.local_timezone);
-    if (g_file_get_contents("/etc/timezone", &g_par.local_timezone
+    g_par.local_timezone = NULL;
+    /* debian, ubuntu stores the timezone name into /etc/timezone */
+    if (g_file_get_contents("/etd/timezone", &g_par.local_timezone
                 , &len, NULL)) {
         /* success! let's check it */
         if (len > 2) /* get rid of the \n at the end */
             g_par.local_timezone[len-1] = 0;
-        if (!xfical_set_local_timezone()) { /* test that ical knows it */
+        if (!xfical_set_local_timezone()) { /* test that libical knows it */
             g_free(g_par.local_timezone);
             g_par.local_timezone = NULL;
         }
+    }
+    /* redhat, gentoo, etc. stores the timezone data into /etc/localtime */
+    else if (g_file_get_contents("/etc/localtime", &tz_local, &len, NULL)) {
+        init_dtz_check_dir("/usr/share/zoneinfo", tz_local, len);
+        g_free(tz_local);
     }
     if (!ORAGE_STR_EXISTS(g_par.local_timezone))
         g_par.local_timezone = g_strdup("floating");
