@@ -8,11 +8,11 @@ msgstr ""
 "Project-Id-Version: Orage 4.5.9.6-svn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-09-27 23:53+0300\n"
-"PO-Revision-Date: 2008-05-30 15:13+0700\n"
+"PO-Revision-Date: 2008-09-10 22:51+0700\n"
 "Last-Translator: Andhika Padmawan <andhika.padmawan@gmail.com>\n"
 "Language-Team: Indonesian <id@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../globaltime/globaltime.c:100
@@ -428,7 +428,7 @@ msgstr "%A %d %B %Y/%V"
 
 #: ../plugin/xfcalendar_plugin.c:43
 msgid "Failed to launch 'orage -p'"
-msgstr ""
+msgstr "Gagal meluncurkan 'orage -o'"
 
 #. the button label in the xfce-mcs-manager dialog
 #: ../plugin/xfcalendar_plugin.c:61
@@ -502,9 +502,8 @@ msgstr "Akhir janji ini lebih awal dari pada awalnya."
 
 #. cat_groups[0] is special [NULL] entry always
 #: ../src/appointment.c:1007 ../src/appointment.c:1547
-#, fuzzy
 msgid "Not set"
-msgstr "Catatan"
+msgstr "Tak diatur"
 
 #: ../src/appointment.c:1147
 msgid "This appointment will be permanently removed."
@@ -523,21 +522,20 @@ msgid "It was probably removed, please refresh your screen."
 msgstr "Janji mungkin telah dihapus, tolong segarkan layar anda."
 
 #: ../src/appointment.c:1729
-#, fuzzy
 msgid "Current categories"
-msgstr "Berkas asing saat ini"
+msgstr "Kategori saat ini"
 
 #: ../src/appointment.c:1744
 msgid "Add new category with color"
-msgstr ""
+msgstr "Tambah kategori baru dengan warna"
 
 #: ../src/appointment.c:1748
 msgid "Category:"
-msgstr ""
+msgstr "Kategori:"
 
 #: ../src/appointment.c:1779
 msgid "Colors of categories - Orage"
-msgstr ""
+msgstr "Warna kategori - Orage"
 
 #: ../src/appointment.c:1940
 msgid "New appointment - Orage"
@@ -657,7 +655,7 @@ msgstr "Mulai"
 
 #: ../src/appointment.c:2335
 msgid "Set      "
-msgstr ""
+msgstr "Atur      "
 
 #: ../src/appointment.c:2356
 msgid "Duration"
@@ -692,17 +690,19 @@ msgstr "Selesai"
 #. categories
 #: ../src/appointment.c:2408
 msgid "Categories"
-msgstr ""
+msgstr "Kategori"
 
 #: ../src/appointment.c:2420
 msgid ""
 "This is special category, which can be used to color this appointment in "
 "list views."
 msgstr ""
+"Ini adalah kategori spesial, yang dapat digunakan untuk mewarnai janji ini "
+"di tampilan senarai."
 
 #: ../src/appointment.c:2425
 msgid "update colors for categories."
-msgstr ""
+msgstr "mutakhirkan warna untuk kategori."
 
 #. note
 #: ../src/appointment.c:2431
@@ -849,17 +849,16 @@ msgstr ""
 
 #. **** Default Alarm Settings ****
 #: ../src/appointment.c:2711
-#, fuzzy
 msgid "Default alarm"
-msgstr "Alarm standar Orage"
+msgstr "Alarm standar"
 
 #: ../src/appointment.c:2718
 msgid "Store current settings as default alarm"
-msgstr ""
+msgstr "Simpan pengaturan saat ini sebagai alarm standar"
 
 #: ../src/appointment.c:2723
 msgid "Set current settings from default alarm"
-msgstr ""
+msgstr "Atur pengaturan saat ini dari alarm standar"
 
 #: ../src/appointment.c:2780
 msgid "Daily"
@@ -1372,29 +1371,24 @@ msgid "America/Araguaina"
 msgstr "Amerika/Araguaina"
 
 #: ../src/ical-code.c:174
-#, fuzzy
 msgid "America/Argentina/Buenos_Aires"
-msgstr "Amerika/Buenos_Aires"
+msgstr "Amerika/Argentina/Buenos_Aires"
 
 #: ../src/ical-code.c:175
-#, fuzzy
 msgid "America/Argentina/Catamarca"
-msgstr "Amerika/Catamarca"
+msgstr "Amerika/Argentina/Catamarca"
 
 #: ../src/ical-code.c:176
-#, fuzzy
 msgid "America/Argentina/Cordoba"
-msgstr "Amerika/Cordoba"
+msgstr "Amerika/Argentina/Cordoba"
 
 #: ../src/ical-code.c:177
-#, fuzzy
 msgid "America/Argentina/Jujuy"
-msgstr "Amerika/Jujuy"
+msgstr "Amerika/Argentina/Jujuy"
 
 #: ../src/ical-code.c:178
-#, fuzzy
 msgid "America/Argentina/Mendoza"
-msgstr "Amerika/Mendoza"
+msgstr "Amerika/Argentina/Mendoza"
 
 #: ../src/ical-code.c:179
 msgid "America/Aruba"
@@ -2773,13 +2767,12 @@ msgid "Starting import file preprocessing"
 msgstr "Memulai impor praproses berkas"
 
 #: ../src/ical-code.c:3870
-#, fuzzy
 msgid "... Patched DCREATED to be CREATED."
-msgstr "... Patch DCREATED akan di CREATED (%s)"
+msgstr "... Patch DCREATED akan di CREATED."
 
 #: ../src/ical-code.c:3909
 msgid "... Patched timezone to Orage format."
-msgstr ""
+msgstr "... Zona waktu ditambal ke format Orage."
 
 #: ../src/ical-code.c:3918
 msgid "Import file preprocessing done"
@@ -2993,6 +2986,10 @@ msgid ""
 "Note that modifying foreign files may make them incompatible with the "
 "original tool, where they came from!"
 msgstr ""
+"Atur ini jika anda ingin memastikan bahwa berkas ini tak pernah dimodifikasi "
+"oleh Orage.\n"
+"Perlu dicatat bahwa memodifikasi berkas asing dapat menyebabkan berkas tidak "
+"cocok lagi dengan alat aslinya, alat tempat mereka berasal!"
 
 #: ../src/interface.c:1300
 msgid "Exchange data - Orage"
@@ -3153,9 +3150,8 @@ msgid "_Help"
 msgstr "Bantuan (_H)"
 
 #: ../src/mainbox.c:401
-#, fuzzy
 msgid "Never"
-msgstr "Kembalikan"
+msgstr "Tak pernah"
 
 #: ../src/mainbox.c:406
 #, c-format
@@ -3175,7 +3171,7 @@ msgstr ""
 "%s"
 
 #: ../src/mainbox.c:412
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Title: %s\n"
 " Start:\t%s\n"
@@ -3185,19 +3181,18 @@ msgid ""
 msgstr ""
 "Judul: %s\n"
 " Mulai:\t%s\n"
-" Sampai:\t%s\n"
 " Selesai:\t%s\n"
-"Catatan:\n"
+" Catatan:\n"
 "%s"
 
 #: ../src/mainbox.c:487
 msgid "<b>To do:</b>"
-msgstr ""
+msgstr "<b>Harus dikerjakan:</b>"
 
 #: ../src/mainbox.c:516
 #, c-format
 msgid "<b>Events for %s:</b>"
-msgstr ""
+msgstr "<b>Even untuk %s:</b>"
 
 #: ../src/parameters.c:472
 msgid "Main setups"
@@ -3249,14 +3244,12 @@ msgid "Show menu"
 msgstr "Tampilkan menu"
 
 #: ../src/parameters.c:584
-#, fuzzy
 msgid "Show todo list"
-msgstr "Tampilkan batas"
+msgstr "Tampilkan senarai harus dikerjakan"
 
 #: ../src/parameters.c:591
-#, fuzzy
 msgid "Show event list"
-msgstr "Senarai even"
+msgstr "Senarai senarai even"
 
 #: ../src/parameters.c:598
 msgid "Set sticked"
