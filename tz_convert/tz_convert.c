@@ -38,10 +38,10 @@
     /* localtime, gmtime, asctime */
 
 #include <string.h>
-    /* strncmp, strcmp, strlen, strcat, strncat, strncpy, strdup, strtok */
+    /* strncmp, strcmp, strlen, strncat, strncpy, strdup, strstr */
 
-#include <libgen.h>
-    /* dirname, basename */
+#include <popt.h>
+    /* poptGetContext */
 
 /* This define is needed to get nftw instead if ftw.
  * Documentation says the define is _XOPEN_SOURCE, but it
@@ -51,9 +51,10 @@
 #include <ftw.h>
     /* nftw */
 
-#define DEFAULT_ZONEINFO_DIRECTORY "/usr/share/zoneinfo"
+#define DEFAULT_ZONEINFO_DIRECTORY  "/usr/share/zoneinfo"
+#define DEFAULT_ZONETAB_FILE        "/usr/share/zoneinfo/zone.tab"
 
-int debug = 2; /* more output */
+int debug = 1; /* more output */
 
 unsigned char *in_buf, *in_head, *in_tail;
 int in_file_base_offset = 0;
@@ -173,7 +174,7 @@ process_local_time_table()
         if (debug > 1) {
             printf("GMT %d: %u =  %s", i, tmp
                     , asctime(gmtime((const time_t*)&tmp)));
-            printf("LOC %d: %u =  %s", i, tmp
+            printf("\tLOC %d: %u =  %s", i, tmp
                     , asctime(localtime((const time_t*)&tmp)));
         }
     }
@@ -347,8 +348,11 @@ int create_ical_file(const char *in_file_name)
 
         timezone_name = strdup(&in_file_name[in_file_base_offset 
                 + strlen("zoneinfo/")]);
-        printf("create_ical_file: infile:(%s). infile-ending:(%s) time_zone:(%s)\n"
-                , in_file_name, out_file, timezone_name);
+        if (debug > 1) {
+            printf("\n***** creating ical file *****\n");
+            printf("create_ical_file:\n\tinfile:(%s)\n\toutfile:(%s)\n\ttimezone:(%s)\n"
+                    , in_file_name, out_file, timezone_name);
+        }
     }
 
     if (stat(out_file, &out_stat) == -1) { /* error */
@@ -433,7 +437,7 @@ void write_ical_header()
 }
 
 struct ical_timezone_data wit_get_data(int i
-        , struct ical_timezone_data prev) {
+        , struct ical_timezone_data *prev) {
     unsigned long tc_time;
     long gmt_offset;
     unsigned int tct_i, abbr_i;
@@ -464,8 +468,8 @@ struct ical_timezone_data wit_get_data(int i
 
     /* ical needs the startime in the previous (=current) time, so we need to
      * adjust by the difference */
-    data.hh_diff = prev.gmt_offset_hh - data.gmt_offset_hh;
-    data.mm_diff = prev.gmt_offset_mm - data.gmt_offset_mm;
+    data.hh_diff = prev->gmt_offset_hh - data.gmt_offset_hh;
+    data.mm_diff = prev->gmt_offset_mm - data.gmt_offset_mm;
 
     if (data.hh_diff + data.start_time.tm_hour < 0 
     ||  data.hh_diff + data.start_time.tm_hour > 23
@@ -478,71 +482,67 @@ struct ical_timezone_data wit_get_data(int i
     }
     /* we need to remember also the previous value. Note that this is from
      * dst if we are in std and vice versa */
-    data.prev_gmt_offset_hh = prev.gmt_offset_hh;
-    data.prev_gmt_offset_mm = prev.gmt_offset_mm;
+    data.prev_gmt_offset_hh = prev->gmt_offset_hh;
+    data.prev_gmt_offset_mm = prev->gmt_offset_mm;
 
     return(data);
 }
 
-int wit_get_rrule(struct ical_timezone_data prev
-        , struct ical_timezone_data cur) {
+int wit_get_rrule(struct ical_timezone_data *prev
+        , struct ical_timezone_data *cur) {
     int monthdays[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
     int rrule_day_cnt;
     int leap_year = 0, prev_leap_year = 0;
 
-    printf("wit_get_rrule: start (%d/%d/%d)\n",cur.start_time.tm_year+1900,cur.start_time.tm_mon+1,cur.start_time.tm_mday);
-    if (cur.gmt_offset_hh == prev.gmt_offset_hh
-    &&  cur.gmt_offset_mm == prev.gmt_offset_mm
-    &&  !strcmp(cur.tz, prev.tz)) {
+    if (cur->gmt_offset_hh == prev->gmt_offset_hh
+    &&  cur->gmt_offset_mm == prev->gmt_offset_mm
+    &&  !strcmp(cur->tz, prev->tz)) {
         /* 2) check if we can use RRULE. 
          * We only check yearly same month and same week day changing
          * rules (which should cover most real world cases). */
-        if (cur.start_time.tm_year == prev.start_time.tm_year + 1
-        &&  cur.start_time.tm_mon  == prev.start_time.tm_mon
-        &&  cur.start_time.tm_wday == prev.start_time.tm_wday
-        &&  cur.start_time.tm_hour == prev.start_time.tm_hour
-        &&  cur.start_time.tm_min  == prev.start_time.tm_min
-        &&  cur.start_time.tm_sec  == prev.start_time.tm_sec
-        &&  cur.hh_diff == prev.hh_diff
-        &&  cur.mm_diff == prev.mm_diff) {
-    printf("\twit_get_rrule: yes\n");
+        if (cur->start_time.tm_year == prev->start_time.tm_year + 1
+        &&  cur->start_time.tm_mon  == prev->start_time.tm_mon
+        &&  cur->start_time.tm_wday == prev->start_time.tm_wday
+        &&  cur->start_time.tm_hour == prev->start_time.tm_hour
+        &&  cur->start_time.tm_min  == prev->start_time.tm_min
+        &&  cur->start_time.tm_sec  == prev->start_time.tm_sec
+        &&  cur->hh_diff == prev->hh_diff
+        &&  cur->mm_diff == prev->mm_diff) {
             /* so far so good, now check that our weekdays are on
              * the same week */
-            if (prev.start_time.tm_mon == 1) {
-                /* hopefully we never come here FIXME */
-                printf("leap year danger. I can not handle this!\n");
-                if (((prev.start_time.tm_year%4) == 0)
-                && (((prev.start_time.tm_year%100) != 0) 
-                    || ((prev.start_time.tm_year%400) == 0)))
+            if (prev->start_time.tm_mon == 1) {
+                if (((prev->start_time.tm_year%4) == 0)
+                && (((prev->start_time.tm_year%100) != 0) 
+                    || ((prev->start_time.tm_year%400) == 0)))
                     prev_leap_year = 1; /* leap year, february has 29 days */
             }
             /* most often these change on the last week day
              * (and on sunday, but that does not matter now) */
-            if ((monthdays[cur.start_time.tm_mon] + leap_year - 
-                    cur.start_time.tm_mday) < 7
-            &&  (monthdays[prev.start_time.tm_mon] + prev_leap_year - 
-                    prev.start_time.tm_mday) < 7) {
+            if ((monthdays[cur->start_time.tm_mon] + leap_year - 
+                    cur->start_time.tm_mday) < 7
+            &&  (monthdays[prev->start_time.tm_mon] + prev_leap_year - 
+                    prev->start_time.tm_mday) < 7) {
                 /* yep, it is last */
                 rrule_day_cnt = -1;
             }
-            else if (cur.start_time.tm_mday < 8
-                 &&  prev.start_time.tm_mday < 8) {
+            else if (cur->start_time.tm_mday < 8
+                 &&  prev->start_time.tm_mday < 8) {
                 /* ok, it is first */
                 rrule_day_cnt = 1;
             }
-            else if (cur.start_time.tm_mday < 15
-                 &&  prev.start_time.tm_mday < 15
+            else if (cur->start_time.tm_mday < 15
+                 &&  prev->start_time.tm_mday < 15
                  /* prevent moving from rule 1 (prev) to rule 2 (cur) */
-                 &&  cur.start_time.tm_mday >= 8 
-                 &&  prev.start_time.tm_mday >= 8) {
+                 &&  cur->start_time.tm_mday >= 8 
+                 &&  prev->start_time.tm_mday >= 8) {
                 /* fine, it is second */
                 rrule_day_cnt = 2;
             }
-            else if (cur.start_time.tm_mday < 22
-                 &&  prev.start_time.tm_mday < 22
+            else if (cur->start_time.tm_mday < 22
+                 &&  prev->start_time.tm_mday < 22
                  /* prevent moving from rule 1 or 2 (prev) to rule 3 (cur) */
-                 &&  cur.start_time.tm_mday >= 15 
-                 &&  prev.start_time.tm_mday >= 15) {
+                 &&  cur->start_time.tm_mday >= 15 
+                 &&  prev->start_time.tm_mday >= 15) {
                 /* must be the third then */
                 rrule_day_cnt = 3;
             }
@@ -550,17 +550,10 @@ int wit_get_rrule(struct ical_timezone_data prev
                 /* give up, it did not work after all.
                  * It is quite possible that rule changed, but
                  * in that case we need to write this out anyway */
-                printf("failed in finding RRULE! (%d->%d)\n"
-                        , prev.start_time.tm_mday, cur.start_time.tm_mday);
                 rrule_day_cnt = 100; /* RDATE is still possible */
             }
-            if (rrule_day_cnt < 10)
-    printf("\t\twit_get_rrule: rrule\n");
-            else
-    printf("\t\twit_get_rrule: rdate !\n");
         }
         else { /* 2) failed, need to use RDATE */
-    printf("\twit_get_rrule: rdate\n");
             rrule_day_cnt = 100;
         }
     }
@@ -571,8 +564,8 @@ int wit_get_rrule(struct ical_timezone_data prev
 }
 
 void wit_write_data(int rrule_day_cnt, struct rdate_prev_data *rdate
-        , struct ical_timezone_data first
-        , struct ical_timezone_data prev)
+        , struct ical_timezone_data *first
+        , struct ical_timezone_data *prev)
 {
     char str[100];
     int len;
@@ -584,7 +577,6 @@ void wit_write_data(int rrule_day_cnt, struct rdate_prev_data *rdate
     struct rdate_prev_data *tmp_data = NULL, *tmp_data2;
     struct ical_timezone_data tmp_prev;
 
-    printf("wit_write_data: start(%d)\n", rrule_day_cnt);
     if (rrule_day_cnt > 10 && rdate == NULL) {
         /* we actually have nothing to print. This happens seldom, but
          * is possible if we found RDATE rule, but after that we actually
@@ -592,43 +584,41 @@ void wit_write_data(int rrule_day_cnt, struct rdate_prev_data *rdate
          * anything into the rdate store */
         return;
     }
-    if (prev.is_dst)
+    if (prev->is_dst)
         write_ical_str(dst_begin);
     else
         write_ical_str(std_begin);
 
     len = snprintf(str, 30, "TZOFFSETFROM:%+03d%02d\n"
-            , prev.prev_gmt_offset_hh, prev.prev_gmt_offset_mm);
+            , prev->prev_gmt_offset_hh, prev->prev_gmt_offset_mm);
     fwrite(str, 1, len, ical_file);
 
     len = snprintf(str, 30, "TZOFFSETTO:%+03d%02d\n"
-            , prev.gmt_offset_hh, prev.gmt_offset_mm);
+            , prev->gmt_offset_hh, prev->gmt_offset_mm);
     fwrite(str, 1, len, ical_file);
 
-    len = snprintf(str, 99, "TZNAME:%s\n", prev.tz);
+    len = snprintf(str, 99, "TZNAME:%s\n", prev->tz);
     fwrite(str, 1, len, ical_file);
 
     len = snprintf(str, 30, "DTSTART:%04d%02d%02dT%02d%02d%02d\n"
-            , first.start_time.tm_year + 1900
-            , first.start_time.tm_mon  + 1
-            , first.start_time.tm_mday
-            , first.start_time.tm_hour + first.hh_diff
-            , first.start_time.tm_min  + first.mm_diff
-            , first.start_time.tm_sec);
+            , first->start_time.tm_year + 1900
+            , first->start_time.tm_mon  + 1
+            , first->start_time.tm_mday
+            , first->start_time.tm_hour + first->hh_diff
+            , first->start_time.tm_min  + first->mm_diff
+            , first->start_time.tm_sec);
     fwrite(str, 1, len, ical_file);
 
     if (rrule_day_cnt) { /* we had repeating appointment */
         if (rrule_day_cnt < 10) { /* RRULE */
             len = snprintf(str, 50, "RRULE:FREQ=YEARLY;BYMONTH=%d;BYDAY=%d%s\n"
-                    , first.start_time.tm_mon + 1
+                    , first->start_time.tm_mon + 1
                     , rrule_day_cnt
-                    , day[first.start_time.tm_wday]);
+                    , day[first->start_time.tm_wday]);
             fwrite(str, 1, len, ical_file);
         }
         else { /* RDATE */
-    printf("\twit_write_data: rdate(%d) (%x)\n", rrule_day_cnt, rdate);
             for (tmp_data = rdate; tmp_data ; ) {
-    printf("\twit_write_data: pop(%d)\n", rrule_day_cnt);
                 tmp_prev = tmp_data->data;
                 len = snprintf(str, 30, "RDATE:%04d%02d%02dT%02d%02d%02d\n"
                         , tmp_prev.start_time.tm_year + 1900
@@ -647,16 +637,16 @@ void wit_write_data(int rrule_day_cnt, struct rdate_prev_data *rdate
     }
     else {
         len = snprintf(str, 30, "RDATE:%04d%02d%02dT%02d%02d%02d\n"
-                , prev.start_time.tm_year + 1900
-                , prev.start_time.tm_mon  + 1
-                , prev.start_time.tm_mday
-                , prev.start_time.tm_hour + prev.hh_diff
-                , prev.start_time.tm_min  + prev.mm_diff
-                , prev.start_time.tm_sec);
+                , prev->start_time.tm_year + 1900
+                , prev->start_time.tm_mon  + 1
+                , prev->start_time.tm_mday
+                , prev->start_time.tm_hour + prev->hh_diff
+                , prev->start_time.tm_min  + prev->mm_diff
+                , prev->start_time.tm_sec);
         fwrite(str, 1, len, ical_file);
     }
 
-    if (prev.is_dst)
+    if (prev->is_dst)
         write_ical_str(dst_end);
     else
         write_ical_str(std_end);
@@ -671,14 +661,24 @@ void write_ical_timezones()
         , data_first_std = { {0, 0, 0, 0, 0, 0, 0}, 0, 0, 0, 0, 0, NULL, 0, 0}
         , data_prev_dst = { {0, 0, 0, 0, 0, 0, 0}, 0, 0, 0, 0, 0, NULL, 0, 0}
         , data_first_dst = { {0, 0, 0, 0, 0, 0, 0}, 0, 0, 0, 0, 0, NULL, 0, 0};
-    int dst_init_done = 0;
+        /* pointers either to data_prev_std and data_first_std
+         * or to data_prev_dst and data_first_dst. 
+         * These avoid having separate code paths for std and dst */
+    struct ical_timezone_data *p_data_prev, *p_data_first;
+
     int std_init_done = 0;
-    int rrule_day_cnt_dst = 0, rrule_day_cnt_dst_prev = 0;
+    int dst_init_done = 0;
     int rrule_day_cnt_std = 0, rrule_day_cnt_std_prev = 0;
+    int rrule_day_cnt_dst = 0, rrule_day_cnt_dst_prev = 0;
+        /* pointers either to rrule_day_cnt_std and rrule_day_cnt_std_prev
+         * or to rrule_day_cnt_dst and rrule_day_cnt_dst_prev. 
+         * These avoid having separate code paths for std and dst */
+    int *p_rrule_day_cnt = 0, *p_rrule_day_cnt_prev = 0;
     struct rdate_prev_data *prev_dst_data = NULL, *prev_std_data = NULL
+        /* points either to prev_dst_data or to prev_std_data */
+        , **p_prev_data 
         , *tmp_data = NULL, *tmp_data2 = NULL;
 
-    printf("write_ical_timezones: start\n");
     /* we are processing "timezone_name" so we know it exists in this system,
      * so that it is safe to use that in the localtime conversion */
     if (setenv("TZ", timezone_name, 1)) {
@@ -688,10 +688,11 @@ void write_ical_timezones()
     }
     for (i = 0; i < timecnt; i++) {
     /***** get data *****/
-        ical_data = wit_get_data(i, ical_data_prev);
+        ical_data = wit_get_data(i, &ical_data_prev);
         if (i == 0) { /* first round, do starting values */
             ical_data_prev = ical_data;
         }
+
         if (ical_data.is_dst) {
             if (!dst_init_done) {
                 data_first_dst = ical_data;
@@ -703,6 +704,11 @@ void write_ical_timezones()
                             , asctime(&ical_data.start_time));
                 continue; /* we never write the first record */
             }
+            p_data_first = &data_first_dst;
+            p_data_prev = &data_prev_dst;
+            p_rrule_day_cnt = &rrule_day_cnt_dst;
+            p_rrule_day_cnt_prev = &rrule_day_cnt_dst_prev;
+            p_prev_data = &prev_dst_data;
         }
         else { /* !dst == std */
             if (!std_init_done) {
@@ -715,6 +721,11 @@ void write_ical_timezones()
                             , asctime(&ical_data.start_time));
                 continue; /* we never write the first record */
             }
+            p_data_first = &data_first_std;
+            p_data_prev = &data_prev_std;
+            p_rrule_day_cnt = &rrule_day_cnt_std;
+            p_rrule_day_cnt_prev = &rrule_day_cnt_std_prev;
+            p_prev_data = &prev_std_data;
         }
 
     /***** check if we need this data *****/
@@ -725,18 +736,24 @@ void write_ical_timezones()
                         , ical_data.is_dst ? "dst" : "std"
                         , asctime(&ical_data.start_time));
             ical_data_prev = ical_data;
+            *p_data_first = ical_data;
+            *p_data_prev = ical_data;
+            *p_rrule_day_cnt_prev = *p_rrule_day_cnt;
+            *p_rrule_day_cnt = wit_get_rrule(p_data_prev, &ical_data);
+            /* without p_ variables this looked like:
             if (ical_data.is_dst) {
                 data_first_dst = ical_data;
                 data_prev_dst  = ical_data;
                 rrule_day_cnt_dst_prev = rrule_day_cnt_dst;
-                rrule_day_cnt_dst = wit_get_rrule(data_prev_dst, ical_data);
+                rrule_day_cnt_dst = wit_get_rrule(&data_prev_dst, &ical_data);
             }
             else {
                 data_first_std = ical_data;
                 data_prev_std  = ical_data;
                 rrule_day_cnt_std_prev = rrule_day_cnt_std;
-                rrule_day_cnt_std = wit_get_rrule(data_prev_std, ical_data);
+                rrule_day_cnt_std = wit_get_rrule(&data_prev_std, &ical_data);
             }
+            */
             continue;
         }
         if (debug > 0)
@@ -748,119 +765,67 @@ void write_ical_timezones()
                     , asctime(&ical_data.start_time));
     /***** check if we can shortcut the entry with RRULE or RDATE *****/
         /* 1) check if it is similar to the previous values */
-        if (ical_data.is_dst) {
-            rrule_day_cnt_dst_prev = rrule_day_cnt_dst;
-            rrule_day_cnt_dst = wit_get_rrule(data_prev_dst, ical_data);
-            if (rrule_day_cnt_dst
-            && (rrule_day_cnt_dst == rrule_day_cnt_dst_prev
-                && rrule_day_cnt_dst_prev)) {
-                if (rrule_day_cnt_dst < 10) {
-                    /* if we found RRULE, we do not have to do anything 
-                     * since this just continues. */
-                    data_prev_dst = ical_data;
-                }
-                else { 
-                    /* we actually found RDATE */
-            printf("\t\tpush %d =  (%s)%s", i
-                    , data_prev_dst.is_dst ? "dst" : "std"
-                    , asctime(&data_prev_dst.start_time));
-                    for (tmp_data = prev_dst_data; tmp_data ; ) {
-            printf("\t\t\tpush skip %d =  (%s)%s", i
-                    , tmp_data->data.is_dst ? "dst" : "std"
-                    , asctime(&tmp_data->data.start_time));
-                        /* find the last one, which is still empty */
-                        tmp_data2 = tmp_data;
-                        tmp_data  = tmp_data->next;
-                    }
-                    tmp_data = malloc(sizeof(struct rdate_prev_data));
-                    tmp_data->data = data_prev_dst;
-                    tmp_data->next = NULL; /* last */
-                    if (!prev_dst_data) {
-                        prev_dst_data = tmp_data;
-                    }
-                    else {
-                        tmp_data2->next = tmp_data;
-                    }
-                    data_prev_dst = ical_data;
-                }
+        *p_rrule_day_cnt_prev = *p_rrule_day_cnt;
+        *p_rrule_day_cnt = wit_get_rrule(p_data_prev, &ical_data);
+        if (*p_rrule_day_cnt
+        && (*p_rrule_day_cnt == *p_rrule_day_cnt_prev
+            && *p_rrule_day_cnt_prev)) {
+            /* we continue wither real RRULE or RDATE */
+            if (*p_rrule_day_cnt < 10) {
+                /* we found RRULE, so we do not have to do anything 
+                 * since this just continues. */
+                *p_data_prev = ical_data;
             }
-            else { /* not RRULE or we changed to/from RRULE from/to RDATE, 
-                    * so write previous and init new round */
-                wit_write_data(rrule_day_cnt_dst_prev, prev_dst_data
-                        , data_first_dst, data_prev_dst);
-                if (rrule_day_cnt_dst_prev > 10 && rrule_day_cnt_dst < 10) {
-                    /* we had RDATE and now we found RRULE */
-                    /* this was actually the first RRULE */
-                    data_first_dst = data_prev_dst; 
+            else { /* we actually found RDATE */
+                /*
+        printf("\t\tpush %d =  (%s)%s", i
+                , p_data_prev->is_dst ? "dst" : "std"
+                , asctime(&p_data_prev->start_time));
+                */
+                for (tmp_data = *p_prev_data; tmp_data ; ) {
+                    /*
+        printf("\t\t\tpush skip %d =  (%s)%s", i
+                , tmp_data->data.is_dst ? "dst" : "std"
+                , asctime(&tmp_data->data.start_time));
+                */
+                    /* find the last one, which is still empty */
+                    tmp_data2 = tmp_data;
+                    tmp_data  = tmp_data->next;
+                }
+                tmp_data = malloc(sizeof(struct rdate_prev_data));
+                tmp_data->data = *p_data_prev;
+                tmp_data->next = NULL; /* last */
+                if (!*p_prev_data) {
+                    *p_prev_data = tmp_data;
                 }
                 else {
-                    data_first_dst = ical_data;
+                    tmp_data2->next = tmp_data;
                 }
-                data_prev_dst  = ical_data;
-                prev_dst_data  = NULL;
-            } 
-        }
-        else { /* !(ical_data.is_dst) */
-            rrule_day_cnt_std_prev = rrule_day_cnt_std;
-            rrule_day_cnt_std = wit_get_rrule(data_prev_std, ical_data);
-            if (rrule_day_cnt_std
-            && (rrule_day_cnt_std == rrule_day_cnt_std_prev
-                && rrule_day_cnt_std_prev)) {
-                if (rrule_day_cnt_std < 10) {
-                    /* if we found RRULE, we do not have to do anything 
-                     * since this just continues. */
-                    data_prev_std = ical_data;
-                }
-                else { 
-                    /* we actually found RDATE */
-            printf("\t\tpush %d =  (%s)%s", i
-                    , data_prev_std.is_dst ? "dst" : "std"
-                    , asctime(&data_prev_std.start_time));
-                    for (tmp_data = prev_std_data; tmp_data ; ) {
-            printf("\t\t\tpush skip %d =  (%s)%s", i
-                    , tmp_data->data.is_dst ? "dst" : "std"
-                    , asctime(&tmp_data->data.start_time));
-                        /* find the last one, which is still empty */
-                        tmp_data2 = tmp_data;
-                        tmp_data  = tmp_data->next;
-                    }
-                    tmp_data = malloc(sizeof(struct rdate_prev_data));
-                    tmp_data->data = data_prev_std;
-                    tmp_data->next = NULL; /* last */
-                    if (!prev_std_data) {
-                        prev_std_data = tmp_data;
-                    }
-                    else {
-                        tmp_data2->next = tmp_data;
-                    }
-                    data_prev_std = ical_data;
-                }
+                *p_data_prev = ical_data;
             }
-            else { /* not RRULE or we changed to/from RRULE from/to RDATE, 
-                    * so write previous and init new round */
-                wit_write_data(rrule_day_cnt_std_prev, prev_std_data
-                        , data_first_std, data_prev_std);
-                if (rrule_day_cnt_std_prev > 10 && rrule_day_cnt_std < 10) {
-                    /* we had RDATE and now we found RRULE */
-                    /* this was actually the first RRULE */
-                    data_first_std = data_prev_std; 
-                }
-                else {
-                    data_first_std = ical_data;
-                }
-                data_prev_std  = ical_data;
-                prev_std_data  = NULL;
-            } 
         }
+        else { /* not RRULE or we changed to/from RRULE from/to RDATE, 
+                * so write previous and init new round */
+            wit_write_data(*p_rrule_day_cnt_prev, *p_prev_data
+                    , p_data_first, p_data_prev);
+            if (*p_rrule_day_cnt_prev > 10 && *p_rrule_day_cnt < 10) {
+                /* we had RDATE and now we found RRULE */
+                /* so this was actually the first RRULE */
+                *p_data_first = *p_data_prev; 
+            }
+            else {
+                *p_data_first = ical_data;
+            }
+            *p_data_prev  = ical_data;
+            *p_prev_data  = NULL;
+        } 
         ical_data_prev = ical_data;
     } /* for (i = 0; i < timecnt; i++) */
     /* need to write the last one also */
-    printf("*****writing last entry*****\n");
     wit_write_data(rrule_day_cnt_std_prev, prev_std_data
-            , data_first_std, data_prev_std);
+            , &data_first_std, &data_prev_std);
     wit_write_data(rrule_day_cnt_dst_prev, prev_dst_data
-            , data_first_dst, data_prev_dst);
-    printf("write_ical_timezones: end\n");
+            , &data_first_dst, &data_prev_dst);
 }
 
 void write_ical_ending()
@@ -915,11 +880,42 @@ int par_help()
     return(1);
 }
 
-int process_parameters(int argc, char *argv[])
+int process_parameters_popt(int argc, const char **argv)
+{
+    int par_type = 0, val;
+    poptContext popt_con;
+    struct poptOption parameters[] = {
+        /*
+        {"help", 'h', POPT_ARG_NONE, &par_type, 1
+            , "this help text", NULL}
+            */
+      {"version", 'v', POPT_ARG_NONE, &par_type, 2
+            , "orage_tz_to_ical_convert version", NULL}
+      , POPT_AUTOHELP
+        {NULL, '\0', POPT_ARG_NONE, NULL, 0, NULL, NULL}
+    };
+
+    popt_con = poptGetContext("Orage", argc, argv, parameters, 0);
+    while (val = poptGetNextOpt(popt_con) > 0) {
+        switch (val) {
+            case 1:
+                par_help();
+                break;
+            case 2:
+                par_version();
+                break;
+            default:
+                printf("unknown parameter\n");
+        }
+    }
+    poptFreeContext(popt_con);
+    return(1);
+}
+
+int process_parameters(int argc, const char **argv)
 {
     int i, ret = 0;
 
-	printf("process_parameters: alkoi argc=%i\n", argc);
     for (i=1; i < argc; i++) { /* skip own program name and start from 1 */
         if (i == 1 && argv[1][0] != '-') {
         /* asume that we got infile name in first parameter */
@@ -980,20 +976,91 @@ int process_parameters(int argc, char *argv[])
             ret = 2;
         }
     }
-	printf("process_parameters: loppui\n");
     return(ret);
 }
 
+void add_zone_tabs()
+{
+    /* ical index filename is zoneinfo/zones.tab 
+     * and os file is zone.tab */
+    char ical_zone[]="zoneinfo/zones.tab";
+    FILE *os_zone_tab, *ical_zone_tab;
+    struct stat ical_zone_stat;
+    char *ical_zone_buf, *line_end, *buf;
+    int offset; /* offset to next timezone in libical zones.tab */
+    int before; /* current timezone appears before ours in zones.tab */
+    int len = strlen(timezone_name), buf_len;
+
+    ical_zone_tab = fopen(ical_zone, "r+"); 
+    if (ical_zone_tab == NULL) { /* does not exist or other error */
+        printf("Error opening (%s) file. Update it manually.\n", ical_zone);
+        perror("\tfopen");
+        return; /* we do not update it */
+    }
+    if (stat(ical_zone, &ical_zone_stat) == -1) {
+        perror("\tstat");
+        return;
+    }
+
+    ical_zone_buf = malloc(ical_zone_stat.st_size+1);
+    fread(ical_zone_buf, 1, ical_zone_stat.st_size, ical_zone_tab);
+    if (ferror(ical_zone_tab)) {
+        printf("add_zone_tabs: error reading (%s).\n", ical_zone);
+        perror("\tfread");
+        free(ical_zone_buf);
+        return;
+    }
+    ical_zone_buf[ical_zone_stat.st_size] = 0; /* end with null */
+    if (strstr(ical_zone_buf, timezone_name)) {
+        printf("add_zone_tabs: timezone exists already.\n");
+        free(ical_zone_buf);
+        return;
+    }
+    for (offset = 18, before = 1; 
+            offset < ical_zone_stat.st_size && before;
+            offset = line_end - ical_zone_buf + 19) {
+        line_end = strchr(&ical_zone_buf[offset], '\n');
+        if (line_end == NULL)
+            break; /* end of file */
+        if (strncmp(&ical_zone_buf[offset], timezone_name, len) > 0) {
+            before = 0;
+            break;
+        }
+    }
+    buf_len=len+18+1; /* +1=add \n */
+    buf = malloc(buf_len+1); /* +1=add \0 */
+    sprintf(buf, "+0000000 -0000000 %s\n", timezone_name);
+    if (before) {
+        if (fseek(ical_zone_tab, 0l, SEEK_END))
+            perror("\tfseek-end");
+        else
+            fwrite(buf, 1, buf_len, ical_zone_tab);
+    }
+    else {
+        if (fseek(ical_zone_tab, offset-18, SEEK_SET))
+            perror("\tfseek-set");
+        else {
+            fwrite(buf, 1, buf_len, ical_zone_tab);
+            buf_len = strlen(&ical_zone_buf[offset-18]);
+            fwrite(&ical_zone_buf[offset-18], 1, buf_len, ical_zone_tab);
+        }
+    }
+
+    free(buf);
+    free(ical_zone_buf);
+    fclose(ical_zone_tab);
+}
+
+/* The main code. This is called once per each file found */
 int file_call(const char *file_name, const struct stat *sb, int flags
         , struct FTW *f)
 {
-    printf("\tfile_call: name=(%s)\n", file_name);
     /* we are only interested about files and directories we can access */
     if (flags == FTW_F) {
-        printf("\t\tfile_call: processing file=(%s)\n", file_name);
         read_file(file_name, sb);
         process_file();
         write_ical_file(file_name, sb);
+        add_zone_tabs();
         free(in_buf);
         free(out_file);
         out_file = NULL;
@@ -1016,7 +1083,6 @@ int extract_base_directory()
     char *s_tz, *last_tz = NULL, tz[]="/zoneinfo";
     int tz_len;
 
-        printf("starting \n");
     if (in_file[0] != '/') {
         printf("in_file name (%s) is not absolute file name. Ending\n"
                 , in_file);
@@ -1028,7 +1094,6 @@ int extract_base_directory()
     tz_len = strlen(tz);
     s_tz = in_file;
     for (s_tz = strstr(s_tz, tz); s_tz != NULL; s_tz = strstr(s_tz, tz)) {
-        printf("looping (%s)\n", s_tz);
         if (s_tz[tz_len] == '\0' || s_tz[tz_len] == '/')
             last_tz = s_tz;
         *s_tz++;
@@ -1044,18 +1109,19 @@ int extract_base_directory()
     return(0); /* continue */
 }
 
-main(int argc, char *argv[])
+main(int argc, const char **argv)
 {
     int exit_code = 0;
 
-	printf("alkoi\n");
+    /*
+    if (exit_code = process_parameters_popt(argc, argv))
+    */
     if (exit_code = process_parameters(argc, argv))
         exit(EXIT_FAILURE); /* help, version or error => end processing */
 
     if (in_file == NULL) /* in file not found */
         in_file = strdup(DEFAULT_ZONEINFO_DIRECTORY);
 
-    printf("directory handing starts\n");
     if (extract_base_directory()) {
         exit(EXIT_FAILURE);
     }
@@ -1066,9 +1132,7 @@ main(int argc, char *argv[])
         perror("nftw error in file handling");
         exit(EXIT_FAILURE);
     }
-    printf("directory handing ends\n");
 
     free(in_file);
-	printf("loppui\n");
     exit(EXIT_SUCCESS);
 }
