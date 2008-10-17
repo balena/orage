@@ -472,9 +472,9 @@ static void oc_read_rc_file(XfcePanelPlugin *plugin, Clock *clock)
                 , (unsigned int *)&clock->bg.blue);
                 */
         sscanf(ret, "%uR %uG %uB", &red, &green, &blue);
-        clock->fg.red = red;
-        clock->fg.green = green;
-        clock->fg.blue = blue;
+        clock->bg.red = red;
+        clock->bg.green = green;
+        clock->bg.blue = blue;
         clock->bg.pixel = 0;
     }
 
