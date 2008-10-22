@@ -2,21 +2,26 @@
 # Copyright (C) 2003-2005 Mickaël Graf and The Xfce development team.
 # This file is distributed under the same license as the xfcalendar package.
 # Jesper Berth <bigsanta@berthit.dk>, 2005.
-#
+# Per Kongstad <p_kongstad@op.pl>, 2008
 msgid ""
 msgstr ""
 "Project-Id-Version: xfcalendar 4.2.4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2005-10-08 06:12+0900\n"
-"PO-Revision-Date: 2005-09-24 17:45+0900\n"
-"Last-Translator: Jesper Berth <bigsanta@berthit.dk>\n"
-"Language-Team: Danish <dansk@klid.dk>\n"
+"PO-Revision-Date: 2008-10-22 14:16+0100\n"
+"Last-Translator: Per Kongstad <p_kongstad@op.pl>\n"
+"Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Danish\n"
+"X-Poedit-Country: DENMARK\n"
+"X-Poedit-SourceCharset: utf-8\n"
 
-#: plugin/xfcalendar_plugin.c:175 plugin/xfcalendar_plugin.c:186
-#: plugin/xfcalendar_plugin.c:300 src/mainbox.c:374
+#: plugin/xfcalendar_plugin.c:175
+#: plugin/xfcalendar_plugin.c:186
+#: plugin/xfcalendar_plugin.c:300
+#: src/mainbox.c:374
 msgid "Xfcalendar"
 msgstr "XFcalendar"
 
@@ -33,35 +38,34 @@ msgstr "Normal"
 msgid "Compact"
 msgstr "Kompakt"
 
-#.
 #: plugin/xfcalendar_plugin.c:224
 msgid "Show in..."
-msgstr ""
+msgstr "Vis i..."
 
 #: plugin/xfcalendar_plugin.c:232
 msgid "Taskbar"
-msgstr ""
+msgstr "Opgavebjælke"
 
 #: plugin/xfcalendar_plugin.c:237
 msgid "Pager"
-msgstr ""
+msgstr "Personsøger"
 
 #: plugin/xfcalendar_plugin.c:242
 msgid "Systray"
-msgstr ""
+msgstr "Statusfelt"
 
 #.
 #: plugin/xfcalendar_plugin.c:248
 msgid "Start visibility"
-msgstr ""
+msgstr "Start synlighed"
 
 #: plugin/xfcalendar_plugin.c:256
 msgid "Show"
-msgstr ""
+msgstr "Vis"
 
 #: plugin/xfcalendar_plugin.c:263
 msgid "Hide"
-msgstr ""
+msgstr "Skjul"
 
 #: src/about-xfcalendar.c:39
 msgid "Manage your time with Xfce4"
@@ -69,16 +73,17 @@ msgstr "Styr din tid med Xfce4"
 
 #: src/about-xfcalendar.c:49
 msgid "Core developer"
-msgstr "Hoved udvikler"
+msgstr "Hovedudvikler"
 
-#: src/about-xfcalendar.c:54 src/about-xfcalendar.c:59
+#: src/about-xfcalendar.c:54
+#: src/about-xfcalendar.c:59
 #: src/about-xfcalendar.c:64
 msgid "Contributor"
 msgstr "Bidragsyder"
 
 #: src/callbacks.c:233
 msgid "Question"
-msgstr ""
+msgstr "Spørgsmål"
 
 #: src/callbacks.c:242
 msgid ""
@@ -86,6 +91,9 @@ msgid ""
 "The information has been modified.\n"
 " Do you want to continue ?\n"
 msgstr ""
+"\n"
+"Information er blevet ændret.\n"
+" Ønsker du at fortsætte ?\n"
 
 #: src/interface.c:56
 msgid "Appointment"
@@ -101,7 +109,7 @@ msgstr "Forrige dag (Ctrl+p)"
 
 #: src/interface.c:102
 msgid "Today (Alt+Home)"
-msgstr "Idag (Alt+Home)"
+msgstr "I dag (Alt+Home)"
 
 #: src/interface.c:114
 msgid "Next day (Ctrl+n)"
@@ -124,39 +132,39 @@ msgid ""
 "You will remove all information \n"
 "associated with this date."
 msgstr ""
-"Du vil fjerne alt information \n"
-"assosieret med denne dato"
+"Du vil fjerne al information \n"
+"tilknyttet denne dato."
 
 #. File menu
 #: src/mainbox.c:404
 msgid "_File"
-msgstr "Fil"
+msgstr "_Fil"
 
 #: src/mainbox.c:413
 msgid "_Close window"
-msgstr "Luk vindue"
+msgstr "_Luk vindue"
 
 #. Settings menu
 #: src/mainbox.c:430
 msgid "_Settings"
-msgstr "Opsætning"
+msgstr "_Opsætning"
 
 #: src/mainbox.c:439
 msgid "_Preferences"
-msgstr "Indstillinger"
+msgstr "_Indstillinger"
 
 #: src/mainbox.c:450
 msgid "Select _Today"
-msgstr "Vælg idag"
+msgstr "Vælg _i dag"
 
 #. Help menu
 #: src/mainbox.c:457
 msgid "_Help"
-msgstr "Hjælp"
+msgstr "_Hjælp"
 
 #: src/mainbox.c:466
 msgid "_About"
-msgstr "Om"
+msgstr "_Om"
 
 #: src/main.c:127
 msgid "This should not happen"
@@ -164,20 +172,22 @@ msgstr "Dette skulle ikke ske"
 
 #: src/main.c:390
 msgid "Cannot create MCS client channel"
-msgstr "Kan ikke lave MCS klient kanal"
+msgstr "Kan ikke oprette MCS-klientkanal"
 
-#: src/reminder.c:56 src/reminder.c:64
+#: src/reminder.c:56
+#: src/reminder.c:64
 msgid "Reminder"
-msgstr "Påminder"
+msgstr "Påmindelse"
 
-#: src/support.c:91 src/support.c:115
+#: src/support.c:91
+#: src/support.c:115
 #, c-format
 msgid "Couldn't find pixmap file: %s"
-msgstr "Kunne ikke finde pixmap fil: %s"
+msgstr "Kunne ikke finde pixmap-fil: %s"
 
 #: src/tray_icon.c:95
 msgid "Today"
-msgstr "Idag"
+msgstr "I dag"
 
 #: src/tray_icon.c:105
 msgid "Preferences"
@@ -186,3 +196,4 @@ msgstr "Indstillinger"
 #: src/tray_icon.c:114
 msgid "About Xfcalendar"
 msgstr "Om Xfcalendar"
+
