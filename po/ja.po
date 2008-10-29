@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: orage 4.5.9.6\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-10-20 22:08+0900\n"
-"PO-Revision-Date: 2008-10-23 22:39+0900\n"
+"PO-Revision-Date: 2008-10-30 00:16+0900\n"
 "Last-Translator: Masato Hashimoto <cabezon.hashimoto@gmail.com>\n"
 "Language-Team: Japanese <xfce-users-jp@ml.fdiary.net>\n"
 "MIME-Version: 1.0\n"
@@ -422,12 +422,12 @@ msgid ""
 msgstr ""
 "このプログラムは時間を取得するのに関数 strftime(3) を利用します。\n"
 "有効なコードを使用すれば、お好きな表示方式で時間を表示できます。\n"
-"以下に、一般的なコードの一部を掲載します:\n"
+"以下に一般的なコードの一部を掲載します:\n"
 "\t%A = 曜日\t\t\t\t%B = 月\n"
-"\t%c = 日付と時間\t\t\t%R = 時間と分\n"
-"\t%V = 年頭からの経過週\t%Z = 現在の等時帯\n"
-"\t%H = 時間\t\t\t\t%M = 分\n"
-"\t%X = 現地の時間\t\t\t%x = 現地の日付"
+"\t%c = 日付と時間\t\t\t%R = 時と分\n"
+"\t%V = 年頭からの経過週\t%Z = 現在のタイムゾーン\n"
+"\t%H = 時\t\t\t\t%M = 分\n"
+"\t%X = 現地の時間\t\t%x = 現地の日付"
 
 #: ../panel-plugin/oc_config.c:416
 msgid "Properties"
@@ -449,11 +449,11 @@ msgstr "Orage クロック"
 #.
 #: ../panel-plugin/orageclock.c:641
 msgid "%A %d %B %Y/%V"
-msgstr "%A %d %B %Y/%V"
+msgstr "%x %A"
 
 #: ../plugin/xfcalendar_plugin.c:43
 msgid "Failed to launch 'orage -p'"
-msgstr "'orange -p' の起動に失敗しました"
+msgstr "'orage -p' の起動に失敗しました"
 
 #. the button label in the xfce-mcs-manager dialog
 #: ../plugin/xfcalendar_plugin.c:61
@@ -664,7 +664,7 @@ msgid ""
 "Wash your car or test new version of Orage."
 msgstr ""
 "いつかやらなければならないことです。\n"
-"例: 洗車、新しいバージョンの Orange のテストなど"
+"例: 洗車、新しいバージョンの Orage のテストなど"
 
 #: ../src/appointment.c:2283
 #: ../src/event-list.c:1175
@@ -812,7 +812,7 @@ msgstr "持続アラーム"
 
 #: ../src/appointment.c:2560
 msgid "Select this if you want Orage to remind you even if it has not been active when the alarm happened."
-msgstr "アラームが発生したときに Orange が起動していなかった場合、後で Orange 起動時に通知させたいときに設定します。"
+msgstr "アラームが発生したときに Orage が起動していなかった場合、後の Orage 起動時に通知させたいときに設定します。"
 
 #. **** Audio Alarm ****
 #: ../src/appointment.c:2569
@@ -848,11 +848,11 @@ msgstr "視覚"
 
 #: ../src/appointment.c:2638
 msgid "Use Orage window"
-msgstr "Orange ウィンドウを使用する"
+msgstr "Orage ウィンドウを使用する"
 
 #: ../src/appointment.c:2640
 msgid "Select this if you want Orage window alarm"
-msgstr "Orange ウィンドウで通知させたいときに設定します"
+msgstr "Orage ウィンドウで通知させたいときに設定します"
 
 #: ../src/appointment.c:2652
 msgid "Use notification"
@@ -1102,7 +1102,7 @@ msgstr "不明"
 #: ../src/day-view.c:694
 #: ../src/parameters.c:663
 msgid "Show"
-msgstr "表示する日数:"
+msgstr "表示する"
 
 #: ../src/day-view.c:931
 msgid "Orage - day view"
@@ -2760,7 +2760,7 @@ msgstr "登録アラームリスト: %d 個のアラーム追加、%d 個の予�
 #: ../src/ical-code.c:3025
 #, c-format
 msgid "\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
-msgstr "\t%d 個のアラームが見つかり、そのうち %d 個が動作中です。( %d 個の繰り返しアラームを検索しました)"
+msgstr "\t%2$d 個が動作中の内、 %1$d 個のアラームが見つかりました。( %3$d 個の繰り返しアラームを検索しました)"
 
 #. remove since it has ended
 #: ../src/ical-code.c:3542
@@ -2774,7 +2774,7 @@ msgstr "アーカイブが有効になっていません。終了しています
 #: ../src/ical-code.c:3622
 #, c-format
 msgid "Archiving threshold: %d month(s)"
-msgstr "アーカイブ化するまでの期間: %d ヵ月"
+msgstr "アーカイブするまでの期間: %d ヵ月"
 
 #. yy mon day
 #: ../src/ical-code.c:3625
@@ -3022,7 +3022,7 @@ msgstr "現在のファイルは移動され元の場所は消去されます。
 
 #: ../src/interface.c:1183
 msgid "Archive file"
-msgstr "書庫ファイル"
+msgstr "アーカイブファイル"
 
 #: ../src/interface.c:1246
 msgid "Foreign files"
@@ -3049,7 +3049,7 @@ msgid ""
 "Set this if you want to make sure that this file is never modified by Orage.\n"
 "Note that modifying foreign files may make them incompatible with the original tool, where they came from!"
 msgstr ""
-"このファイルを Orange によって変更されたくない場合に設定してください。\n"
+"このファイルを Orage によって変更されたくない場合に設定してください。\n"
 "外部ファイルを変更するとオリジナルのアプリケーションとの互換性が失われるかもしれないことに注意してください。"
 
 #: ../src/interface.c:1300
@@ -3062,7 +3062,7 @@ msgid ""
 "\tThis is %s version %s for Xfce %s\n"
 "\n"
 msgstr ""
-"\tこれは Xfce %s3$ 用の %s1$ バージョン %s2$ です\n"
+"\tこれは Xfce %3$s 用の %1$s バージョン %2$s です\n"
 "\n"
 
 #: ../src/main.c:194
@@ -3103,7 +3103,7 @@ msgstr "\tlibnotify を使用していません。\n"
 #: ../src/main.c:210
 #, c-format
 msgid "\tUsing automatic archiving.\n"
-msgstr "\t自動アーカイブ化を使用しています。\n"
+msgstr "\t自動アーカイブを使用しています。\n"
 
 #: ../src/main.c:212
 #, c-format
@@ -3157,7 +3157,7 @@ msgstr "--remove-foreign (-r) file \t外部ファイルを削除します\n"
 #: ../src/main.c:234
 #, c-format
 msgid "files=ical files to load into orage\n"
-msgstr "file= orage が読み込む iCal ファイル\n"
+msgstr "file = orage が読み込む iCal ファイル\n"
 
 #: ../src/main.c:236
 #, c-format
@@ -3221,9 +3221,9 @@ msgid ""
 "%s"
 msgstr ""
 "件名: %s\n"
-" 開始:\t%s\n"
-" 締切:\t%s\n"
-" 完了:\t%s\n"
+" 開始: %s\n"
+" 締切: %s\n"
+" 完了: %s\n"
 "備考:\n"
 "%s"
 
@@ -3237,8 +3237,8 @@ msgid ""
 "%s"
 msgstr ""
 "件名: %s\n"
-" 開始:\t%s\n"
-" 終了:\t%s\n"
+" 開始: %s\n"
+" 終了: %s\n"
 " 備考:\n"
 "%s"
 
@@ -3269,7 +3269,7 @@ msgstr "アーカイブまでの期間 (月)"
 
 #: ../src/parameters.c:517
 msgid "(0 = no archiving)"
-msgstr "(0 = アーカイブ化しません)"
+msgstr "(0 = アーカイブしません)"
 
 #: ../src/parameters.c:520
 msgid "Archiving is used to save time and space when handling events."
@@ -3301,7 +3301,7 @@ msgstr "メニューを表示する"
 
 #: ../src/parameters.c:585
 msgid "Show todo list"
-msgstr "ToDoリストを表示する"
+msgstr "ToDo リストを表示する"
 
 #: ../src/parameters.c:592
 msgid "Show event list"
@@ -3341,7 +3341,7 @@ msgstr "最小化する"
 
 #: ../src/parameters.c:717
 msgid "Extra setups"
-msgstr "追加設定"
+msgstr "拡張設定"
 
 #: ../src/parameters.c:724
 #: ../src/parameters.c:729
@@ -3379,7 +3379,7 @@ msgstr "予定リスト"
 
 #: ../src/parameters.c:847
 msgid "Orage Preferences"
-msgstr "Orage の環境設定"
+msgstr "Orage の設定"
 
 #: ../src/reminder.c:425
 msgid "Reminder "
