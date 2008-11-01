@@ -128,7 +128,6 @@ gboolean oc_start_timer(Clock *clock)
     oc_get_time(clock);
     time(&t);
     localtime_r(&t, &clock->now);
-    g_message("oc_start_timer: %d:%d:%d", clock->now.tm_hour, clock->now.tm_min, clock->now.tm_sec);
     if (clock->interval >= 60000) {
         if (clock->interval >= 3600000) /* match to next full hour */
             delay_time = (clock->interval -
