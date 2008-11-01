@@ -128,6 +128,7 @@ gboolean oc_start_timer(Clock *clock)
     oc_get_time(clock);
     time(&t);
     localtime_r(&t, &clock->now);
+    g_message("oc_start_timer: %d:%d:%d", clock->now.tm_hour, clock->now.tm_min, clock->now.tm_sec);
     if (clock->interval >= 60000) {
         if (clock->interval >= 3600000) /* match to next full hour */
             delay_time = (clock->interval -
@@ -153,10 +154,10 @@ gboolean oc_start_timer(Clock *clock)
         /* let's run it once in case we happened to kill it
            just when it was supposed to start */
             oc_get_time(clock); 
-        return(FALSE);
+        return(TRUE);
     }
     else
-        return(TRUE);
+        return(FALSE);
 }
 
 static void oc_end_tuning(Clock *clock)
@@ -167,9 +168,9 @@ static void oc_end_tuning(Clock *clock)
         g_source_remove(clock->adjust_timeout_id);
         clock->adjust_timeout_id = 0;
     }
-    if (clock->interval >= 60000) { /* resync it after each 6 hours */
+    if (clock->interval >= 60000) { /* resync it after each 4 hours */
         clock->adjust_timeout_id = g_timeout_add_full(G_PRIORITY_DEFAULT_IDLE
-                , 6*60*60*1000, (GSourceFunc)oc_start_timer, clock, NULL);
+                , 4*60*60*1000, (GSourceFunc)oc_start_timer, clock, NULL);
     }
     g_free(clock->tune);
     clock->tune = NULL;
