@@ -168,6 +168,7 @@ static void oc_end_tuning(Clock *clock)
         clock->adjust_timeout_id = 0;
     }
     if (clock->interval >= 60000) { /* resync it after each 4 hours */
+        oc_start_timer(clock);
         clock->adjust_timeout_id = g_timeout_add_full(G_PRIORITY_DEFAULT_IDLE
                 , 4*60*60*1000, (GSourceFunc)oc_start_timer, clock, NULL);
     }
