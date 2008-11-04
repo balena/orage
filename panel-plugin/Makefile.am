@@ -17,9 +17,7 @@ orageclock_SOURCES = 						\
 if HAVE_CYGWIN
 orageclock_LDFLAGS +=                        	                \
 	-no-undefined                                                   \
-	@LIBX11_LDFLAGS@                                                \
-	@LIBXFCEGUI4_LIBS@                                              \
-	@LIBX11_LIBS@
+	@LIBXFCEGUI4_LIBS@
 endif
 
 # .desktop file
