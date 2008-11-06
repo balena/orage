@@ -8,14 +8,15 @@ msgstr ""
 "Project-Id-Version: eu\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-09-27 23:53+0300\n"
-"PO-Revision-Date: 2008-10-30 12:05+0100\n"
+"PO-Revision-Date: 2008-11-06 12:41+0200\n"
 "Last-Translator: Piarres Beobide <pi@beobide.net>\n"
 "Language-Team: Euskara <debian-l10n-basque@lists.debian.org>\n"
+"Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 1.2.0\n"
 
 #: ../globaltime/globaltime.c:100
 msgid "Raising GlobalTime window..."
@@ -78,7 +79,7 @@ msgstr "Berdin"
 
 #: ../globaltime/gt_prefs.c:86
 msgid "Vary"
-msgstr ""
+msgstr "Alda"
 
 #: ../globaltime/gt_prefs.c:267 ../globaltime/gt_prefs.c:268
 msgid "NEW"
@@ -199,73 +200,77 @@ msgstr "Lehen planoko (=testua) kolorea:"
 
 #: ../globaltime/gt_prefs.c:687
 msgid "Click to change foreground colour for clock"
-msgstr ""
+msgstr "Klikatu ordulariaren aurreko planoko kolorea aldatzeko"
 
 #. ------------------------name font-------------------------
 #: ../globaltime/gt_prefs.c:712 ../globaltime/gt_prefs.c:921
 msgid "Font for name of clock:"
-msgstr ""
+msgstr "Ordulari izenaren letra-tipoa:"
 
 #: ../globaltime/gt_prefs.c:719
 msgid "Click to change font for clock name"
-msgstr ""
+msgstr "Klikatu ordulariaren izenaren letra-tipoa aldatzeko"
 
 #. ------------------------time font-------------------------
 #: ../globaltime/gt_prefs.c:745 ../globaltime/gt_prefs.c:955
 msgid "Font for time of clock:"
-msgstr ""
+msgstr "Ordulariaren orduaren letra-tipoa:"
 
 #: ../globaltime/gt_prefs.c:752
 msgid "Click to change font for clock time"
-msgstr ""
+msgstr "Klikatu ordulariko orduaren letra-tipoa aldatzeko"
 
 #. ------------------------underline name--------------------
 #: ../globaltime/gt_prefs.c:779
 msgid "Underline name of clock:"
-msgstr ""
+msgstr "Ordulari izenaren azpimarratua:"
 
 #. ------------------------underline time--------------------
 #: ../globaltime/gt_prefs.c:809
 msgid "Underline time of clock:"
-msgstr ""
+msgstr "Ordulariaren ordu azpimarratua:"
 
 #: ../globaltime/gt_prefs.c:849
 msgid "Text Default Formatting"
-msgstr ""
+msgstr "Testuaren lehenetsitako formatua"
 
 #: ../globaltime/gt_prefs.c:862
 msgid "Click to change default background colour for clocks"
-msgstr ""
+msgstr "Klikatu ordularien lehenetsitako atzeko-planoko kolorea aldatzeko"
 
 #: ../globaltime/gt_prefs.c:876 ../globaltime/gt_prefs.c:909
 msgid "Cross this to use system default instead of selected color"
 msgstr ""
+"Gurutze baten bidez markatu hautatutakoaren ordez sisteman lehenetsitako "
+"kolorea erabiltzeko"
 
 #: ../globaltime/gt_prefs.c:895
 msgid "Click to change default text colour for clocks"
-msgstr ""
+msgstr "Klikatu ordularien testuaren lehenetsitako kolorea aldatzeko"
 
 #: ../globaltime/gt_prefs.c:928
 msgid "Click to change default font for clock name"
-msgstr ""
+msgstr "Klikatu ordularien izenaren lehenetsitako letra-tipoa aldatzeko"
 
 #: ../globaltime/gt_prefs.c:943 ../globaltime/gt_prefs.c:977
 msgid "Cross this to use system default font instead of selected font"
 msgstr ""
+"Gurutze baten bidez markatu hautatutakoaren ordez sisteman lehenetsitako "
+"letra-tipoa erabiltzeko"
 
 #: ../globaltime/gt_prefs.c:962
 msgid "Click to change default font for clock time"
-msgstr ""
+msgstr "Klikatu ordulariko orduaren lehenetsitako letra-tipoa aldatzeko"
 
 #. ------------------------underline name--------------------
 #: ../globaltime/gt_prefs.c:989
 msgid "Underline for name of clock:"
-msgstr ""
+msgstr "Ordulariko izenaren azpimarratua:"
 
 #. ------------------------underline time--------------------
 #: ../globaltime/gt_prefs.c:1003
 msgid "Underline for time of clock:"
-msgstr ""
+msgstr "Ordulariko orduaren azpimarratua:"
 
 #: ../globaltime/gt_prefs.c:1026
 msgid "update preferences"
@@ -317,6 +322,8 @@ msgid ""
 "Enter local timezone. (it is used to show if time is on previous(-) or next "
 "date(+) by adding a +/- after the time)"
 msgstr ""
+"Idatzi ordu-zonalde lokala. (ordua aurrekoa edo beranduagokoa den +/- "
+"erabiliaz ezartzeko)"
 
 #: ../panel-plugin/oc_config.c:193
 msgid "Appearance"
@@ -605,6 +612,8 @@ msgid ""
 "Event that will happen sometime. For example:\n"
 "Meeting or birthday or TV show."
 msgstr ""
+"Noizbait gertatuko den gertaera bat. Adibidez:\n"
+"Bilera bat edo urtemuga bat edo TB saio bat."
 
 #: ../src/appointment.c:2277 ../src/event-list.c:1160
 msgid "Todo"
@@ -693,10 +702,12 @@ msgid ""
 "This is special category, which can be used to color this appointment in "
 "list views."
 msgstr ""
+"Hau kategoria berezi bat da, zerrenda ikuspegietan hitzordu hau kolorez "
+"ipintzeko erabili daitekeena."
 
 #: ../src/appointment.c:2425
 msgid "update colors for categories."
-msgstr ""
+msgstr "eguneratu kategoria koloreak"
 
 #. note
 #: ../src/appointment.c:2431
@@ -709,6 +720,9 @@ msgid ""
 "<T> inserts time and\n"
 "<DT> inserts date and time."
 msgstr ""
+"<D> txertatu uneko data ordu lokal formatuan.\n"
+"<T> txertatu ordua eta\n"
+"<DT> txertatu ordua eta data."
 
 #: ../src/appointment.c:2517
 msgid "Before Start"
@@ -742,6 +756,10 @@ msgid ""
 " 2) before Todo end\n"
 " 3) after Todo start"
 msgstr ""
+"Sarri alarma aktibatu:\n"
+" 1) Gertaera gertatu aurretik\n"
+" 2) Egiteko amaitu aurretik\n"
+" 3) Egitekoa hasi ondoren"
 
 #: ../src/appointment.c:2558
 msgid "Persistent alarm"
@@ -752,6 +770,8 @@ msgid ""
 "Select this if you want Orage to remind you even if it has not been active "
 "when the alarm happened."
 msgstr ""
+"Hautatu hau Orage nahiz alarma gertatzen denean aktibo ez egon gogoraraztea "
+"nahi baduzu"
 
 #. **** Audio Alarm ****
 #: ../src/appointment.c:2569
@@ -797,7 +817,7 @@ msgstr "Erabili berri-ematea"
 
 #: ../src/appointment.c:2654
 msgid "Select this if you want notification alarm"
-msgstr ""
+msgstr "Hautatu hau alarma jakinarazpena nahi baduzu"
 
 #: ../src/appointment.c:2660
 msgid "Set timeout"
@@ -805,11 +825,11 @@ msgstr "Ezarri denbora-muga"
 
 #: ../src/appointment.c:2663
 msgid "Select this if you want notification to expire automatically"
-msgstr ""
+msgstr "Hautatu hau jakinarazpena automatikoki iraungitzea nahi baduzu"
 
 #: ../src/appointment.c:2674
 msgid "0 = system default expiration time"
-msgstr ""
+msgstr "0 = sistemako lehenetsitako iraungitzea"
 
 #: ../src/appointment.c:2679
 msgid "seconds"
@@ -822,13 +842,15 @@ msgstr "Prozedura"
 
 #: ../src/appointment.c:2696
 msgid "Select this if you want procedure or script alarm"
-msgstr ""
+msgstr "hautatu hau prozedura edo script bidezko alarma nahi baduzu"
 
 #: ../src/appointment.c:2702
 msgid ""
 "You must enter all escape etc characters yourself.\n"
 " This string is just given to shell to process"
 msgstr ""
+"Irteera etab karaktere guztiak idatzi behar dituzu.\n"
+" Kate hau shell-era bidaltzen da prozesatzeko"
 
 #. **** Default Alarm Settings ****
 #: ../src/appointment.c:2711
@@ -905,7 +927,7 @@ msgstr "Aurreratua"
 
 #: ../src/appointment.c:2807
 msgid "Use this if you want regular repeating event"
-msgstr ""
+msgstr "Hau erabili errepikapen erregularreko gertaera bat nahi baduzu"
 
 #: ../src/appointment.c:2809
 msgid ""
@@ -913,6 +935,9 @@ msgid ""
 " Every Saturday and Sunday or \n"
 " First Tuesday every month"
 msgstr ""
+"Aukera hau erabili horrelako data konplexuak nahi badituzu:\n"
+" Larunbat edo igandero edo \n"
+" hilabeteko lehen osteguna"
 
 #: ../src/appointment.c:2812
 msgid "Frequency"
@@ -954,11 +979,11 @@ msgstr "Errepikapenak: "
 
 #: ../src/appointment.c:2871
 msgid "Weekdays"
-msgstr "Astegunetan"
+msgstr "Asteko egunak"
 
 #: ../src/appointment.c:2883
 msgid "Which day"
-msgstr ""
+msgstr "Zein egun"
 
 #: ../src/appointment.c:2891
 msgid ""
@@ -969,6 +994,11 @@ msgid ""
 "\tWeekdays = check only Wednesday,\n"
 "\tWhich day = select 2 from the number below Wednesday"
 msgstr ""
+"Ezarri asteko zein egun hilabeteroko edo urteroko gertaeratan.\n"
+" Adibidez:\n"
+" Hilabete bakoitzeko bigarren asteazkeneean:\n"
+"\tMaiztasuna = Hilabetero\tAsteko-egunak = Asteazkena bakarrik hautatu,\n"
+"\tZein egun= 2 hautatu asteazkenaren azpiko zenbakietan"
 
 #. ********* View menu *********
 #. View menu
@@ -1030,17 +1060,19 @@ msgstr "Ordua"
 
 #: ../src/event-list.c:728
 msgid "No rows have been selected."
-msgstr ""
+msgstr "Ez da errenkadarik hautatu"
 
 #: ../src/event-list.c:729
 msgid "Click a row to select it and after that you can copy it."
-msgstr ""
+msgstr "Klikatu herrenkada bat kopiatu aurretik berau hautatzeko"
 
 #: ../src/event-list.c:899
 msgid ""
 "You will permanently remove all\n"
 "selected appointments."
 msgstr ""
+"Betirako kenduko dituzu hautatutako\n"
+"hitzordu guztiak."
 
 #: ../src/event-list.c:1103
 msgid "Find"
@@ -1056,7 +1088,7 @@ msgstr "Ikusteko egun gehigarriak "
 
 #: ../src/event-list.c:1179
 msgid "Journal entries starting from:"
-msgstr ""
+msgstr "Eguneko sarrera hasiera:"
 
 #: ../src/event-list.c:1204
 msgid "Search"
@@ -1192,7 +1224,7 @@ msgstr "Afrika/Duala"
 
 #: ../src/ical-code.c:136
 msgid "Africa/El_Aaiun"
-msgstr "Afrika/Aaiun"
+msgstr "Afrika/EL_Aaiun"
 
 #: ../src/ical-code.c:137
 msgid "Africa/Freetown"
@@ -2168,7 +2200,7 @@ msgstr "Atlantikoa/Kanariak"
 
 #: ../src/ical-code.c:380
 msgid "Atlantic/Cape_Verde"
-msgstr "Atlantikoa/Cabo Verde"
+msgstr "Atlantikoa/Cabo_Verde"
 
 #: ../src/ical-code.c:381
 msgid "Atlantic/Faeroe"
@@ -2188,7 +2220,7 @@ msgstr "Atlantikoa/Reykjavik"
 
 #: ../src/ical-code.c:385
 msgid "Atlantic/South_Georgia"
-msgstr "Atlantikoa/Hegoaldeko Georgiak"
+msgstr "Atlantikoa/Hegoaldeko_Georgia"
 
 #: ../src/ical-code.c:386
 msgid "Atlantic/St_Helena"
@@ -2666,16 +2698,18 @@ msgstr "Orage lehenetsiriko alarma"
 #, c-format
 msgid "Build alarm list: Added %d alarms. Processed %d events."
 msgstr ""
+"Alarma zerrenda eraikia. %d alarma gehitu dira. %d gertaera prozesatu dira."
 
 #: ../src/ical-code.c:3025
 #, c-format
 msgid "\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
 msgstr ""
+"\t%d alarma aurkitu dira, %d aktibo daude. (%d alarma errepikapen bilatuak)"
 
 #. remove since it has ended
 #: ../src/ical-code.c:3542
 msgid "\tRecur ended, moving to archive file."
-msgstr ""
+msgstr "\\Errepikapena amaitu da, fitxategi batetara mugitzen."
 
 #: ../src/ical-code.c:3604
 msgid "Archiving not enabled. Exiting"
@@ -2700,13 +2734,13 @@ msgstr "Artxibatze uid-a: %s"
 #. VTODO not completed, do not archive
 #: ../src/ical-code.c:3658
 msgid "\tVTODO not complete; not archived"
-msgstr ""
+msgstr "\tVTODO ez da osatu, ez da artxibatuko"
 
 #. it is recurrent event
 #: ../src/ical-code.c:3663
 #, c-format
 msgid "\tRecurring. End year: %04d, month: %02d, day: %02d"
-msgstr ""
+msgstr "\tErrepikapena. Amaiera urtea: %04d, hilabetea: %02d eguna: %02d"
 
 #: ../src/ical-code.c:3680
 msgid "Archiving done\n"
@@ -2719,13 +2753,13 @@ msgstr "Artxibo ezabatzea abiarazten."
 
 #: ../src/ical-code.c:3697
 msgid "\tPHASE 1: reset recurring appointments"
-msgstr ""
+msgstr "\t1 URRATSA: berrabiarazi hitzordu errepikapenak"
 
 #. PHASE 2: go through archive file and add everything back to base orage.
 #. * After that delete the whole arch file
 #: ../src/ical-code.c:3719
 msgid "\tPHASE 2: return archived appointments"
-msgstr ""
+msgstr " \t2 URRATSA: berreskuratu artxibatutako hitzorduak"
 
 #: ../src/ical-code.c:3745
 msgid "Archive removal done\n"
@@ -2737,15 +2771,15 @@ msgstr "Inportatze fitxategi aurreprozesatzea abiarazten"
 
 #: ../src/ical-code.c:3870
 msgid "... Patched DCREATED to be CREATED."
-msgstr ""
+msgstr "... DCREATED eraldatua CREATED izateko."
 
 #: ../src/ical-code.c:3909
 msgid "... Patched timezone to Orage format."
-msgstr ""
+msgstr "... Ordu-zonaldeak Orage formatura aldatua."
 
 #: ../src/ical-code.c:3918
 msgid "Import file preprocessing done"
-msgstr ""
+msgstr "Inportazio fitxategi aurreprozesatzea eginda"
 
 #. show it
 #: ../src/ical-code.c:4506
@@ -2766,23 +2800,23 @@ msgstr "Egutegi fitxategiak"
 
 #: ../src/interface.c:626
 msgid "Current foreign files"
-msgstr ""
+msgstr "Uneko kanpo fitxategiak"
 
 #: ../src/interface.c:638
 msgid "READ ONLY"
-msgstr ""
+msgstr "IRAKURRI BAKARRIK"
 
 #: ../src/interface.c:640
 msgid "READ WRITE"
-msgstr ""
+msgstr "IRAKURRI-IDATZI"
 
 #: ../src/interface.c:658
 msgid "***** No foreign files *****"
-msgstr ""
+msgstr "***** ez dago kanpo fitxategirik *****"
 
 #: ../src/interface.c:968
 msgid "Import/export"
-msgstr ""
+msgstr "Inportatu/esportatu"
 
 #: ../src/interface.c:975
 msgid "Import"
@@ -2842,7 +2876,7 @@ msgstr "Erraz arrastatu ditzakezu gerattera-zerrenda leihotik."
 
 #: ../src/interface.c:1064
 msgid "Orage appointment UIDs separated by commas."
-msgstr ""
+msgstr "Orage hitzordua UIDak gakoz bereizirik."
 
 #: ../src/interface.c:1070
 msgid "Archive"
@@ -2867,6 +2901,10 @@ msgid ""
 "This is useful for example when doing export and moving orage\n"
 "appointments to another system."
 msgstr ""
+"Itzuli artxibatutako gertaera guztiak orage fitxategi nagusira eta kendu "
+"artxibo fitxategia\n"
+"Hau erabilgarri da adibidez orage hitzorduak beste sistema batetara "
+"mugitzeko esportatzeko."
 
 #: ../src/interface.c:1111
 msgid "Orage files"
@@ -2909,6 +2947,8 @@ msgstr "Kopiatu"
 #: ../src/interface.c:1161
 msgid "Current file is copied and stays unmodified in the old place."
 msgstr ""
+"Uneko fitxategia kopiatua izango da eta aldatu gabe lehengo kokalekuan "
+"gordeko da."
 
 #: ../src/interface.c:1165 ../src/interface.c:1225
 msgid "Move"
@@ -2916,7 +2956,7 @@ msgstr "Lekuz aldatu"
 
 #: ../src/interface.c:1169
 msgid "Current file is moved and vanishes from the old place."
-msgstr ""
+msgstr "Uneko fitxategia kopiatu eta lehengo kokalekutik desagertuko da."
 
 #: ../src/interface.c:1183
 msgid "Archive file"
@@ -2924,15 +2964,15 @@ msgstr "Artxibo fitxategia"
 
 #: ../src/interface.c:1246
 msgid "Foreign files"
-msgstr ""
+msgstr "Kanpoko fitxategiak"
 
 #: ../src/interface.c:1253
 msgid "Add new foreign file"
-msgstr ""
+msgstr "Gehitu kanpoko fitxategi berria"
 
 #: ../src/interface.c:1258
 msgid "Foreign file:"
-msgstr ""
+msgstr "Kanpo fitxategia:"
 
 #: ../src/interface.c:1276
 msgid "Options"
@@ -2949,10 +2989,13 @@ msgid ""
 "Note that modifying foreign files may make them incompatible with the "
 "original tool, where they came from!"
 msgstr ""
+"Hau ezarri Orage-k inoiz fitxategia aldatuko ez duela ziurtatzeko.\n"
+"Kontutan izan urruneko fitxategien aldaketak jatorrizko tresnarekin "
+"bateraezin bihurtu ditzakeela!"
 
 #: ../src/interface.c:1300
 msgid "Exchange data - Orage"
-msgstr ""
+msgstr "Datu trukaketa - Orage"
 
 #: ../src/main.c:192
 #, c-format
@@ -2960,31 +3003,33 @@ msgid ""
 "\tThis is %s version %s for Xfce %s\n"
 "\n"
 msgstr ""
+"\t Hau %s %s bertsioa da Xfce %s-rako\n"
+"\n"
 
 #: ../src/main.c:194
 #, c-format
 msgid "\tReleased under the terms of the GNU General Public License.\n"
-msgstr ""
+msgstr "\tGNU lizentzia publiko orokorrak ezartzen dituen baldintzetan argitaraturik.\n"
 
 #: ../src/main.c:195
 #, c-format
 msgid "\tCompiled against GTK+-%d.%d.%d, "
-msgstr ""
+msgstr "\tGTK+-%d.%d.%d bidez konpilaturik"
 
 #: ../src/main.c:197
 #, c-format
 msgid "using GTK+-%d.%d.%d.\n"
-msgstr ""
+msgstr "GTK+-%d.%d.%d erabiltzen.\n"
 
 #: ../src/main.c:200
 #, c-format
 msgid "\tUsing DBUS for import.\n"
-msgstr ""
+msgstr "\tDBUS erabiltzen inportatzeko.\n"
 
 #: ../src/main.c:202
 #, c-format
 msgid "\tNot using DBUS. Import works only partially.\n"
-msgstr ""
+msgstr "\tEz da DBUS erabiliko. Inportazeak ez du guztiz funtzionatuko.\n"
 
 #: ../src/main.c:205
 #, c-format
@@ -2999,12 +3044,12 @@ msgstr "\tlibnotify ez erabiltzen.\n"
 #: ../src/main.c:210
 #, c-format
 msgid "\tUsing automatic archiving.\n"
-msgstr ""
+msgstr "\tArtxibatze automatikoa erabiliaz.\n"
 
 #: ../src/main.c:212
 #, c-format
 msgid "\tNot using archiving.\n"
-msgstr ""
+msgstr "\tArtxibatzea erabili gabe.\n"
 
 #: ../src/main.c:225
 #, c-format
@@ -3012,6 +3057,8 @@ msgid ""
 "Usage: orage [options] [files]\n"
 "\n"
 msgstr ""
+"Erabilera: orage [aukerak] [fitxategiak]\n"
+"\n"
 
 #: ../src/main.c:226
 #, c-format
@@ -3021,49 +3068,50 @@ msgstr "Aukerak:\n"
 #: ../src/main.c:227
 #, c-format
 msgid "--version (-v) \t\tshow version of orage\n"
-msgstr ""
+msgstr "--version (-v) \t\tikusi orage bertsioa\n"
 
 #: ../src/main.c:228
 #, c-format
 msgid "--help (-h) \t\tprint this text\n"
-msgstr ""
+msgstr "--help (-h) \t\\inprimatu testu hau\n"
 
 #: ../src/main.c:229
 #, c-format
 msgid "--preferences (-p) \tshow preferences form\n"
-msgstr ""
+msgstr "--preferences (-p) \tikusi hobespen inprimakia\n"
 
 #: ../src/main.c:230
 #, c-format
 msgid "--toggle (-t) \t\tmake orage visible/unvisible\n"
-msgstr ""
+msgstr "--toggle (-t) \t\torage ezkutatu/erakutsi\n"
 
 #: ../src/main.c:231
 #, c-format
 msgid "--add-foreign (-a) file [RW] \tadd a foreign file\n"
-msgstr ""
+msgstr "--add-foreign (-a) fitx [RW] \tgehitu kanpoko fitxategia\n"
 
 #: ../src/main.c:232
 #, c-format
 msgid "--remove-foreign (-r) file \tremove a foreign file\n"
-msgstr ""
+msgstr "--remove-foreign (-r) file \tkendu kanpo fitxategi bat\n"
 
 #: ../src/main.c:234
 #, c-format
 msgid "files=ical files to load into orage\n"
-msgstr ""
+msgstr "Fitxategiak=oragen kargatzeko ical fitxategiak\n"
 
 #: ../src/main.c:236
 #, c-format
 msgid "\tdbus not included in orage. \n"
-msgstr ""
+msgstr "\tdbus ez dago oragen barneraturik. \n"
 
 #: ../src/main.c:237
 #, c-format
 msgid ""
 "\twithout dbus [files] and foreign file options(-a & -r) can only be used "
 "when starting orage \n"
-msgstr ""
+msgstr "\tdbus gabe fitxategi aukerak (-a eta -r) orage abiaraztean bakarrik erabili "
+"daitezke \n"
 
 #: ../src/main.c:380
 #, c-format
@@ -3078,7 +3126,7 @@ msgstr ""
 
 #: ../src/mainbox.c:269
 msgid "_Exchange data"
-msgstr ""
+msgstr "_Trukatze datuak"
 
 #. Edit menu
 #: ../src/mainbox.c:280
@@ -3355,4 +3403,3 @@ msgstr "Xfce 4 Egutegi Ezarpenak"
 #: ../xfcalendar.desktop.in.h:2
 msgid "Desktop calendar"
 msgstr "Idazmahai egutegia"
-
