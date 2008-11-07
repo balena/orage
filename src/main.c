@@ -318,7 +318,8 @@ static gboolean process_args(int argc, char *argv[], gboolean running
             argi++; /* skip the parameter also */
         }
         else if (!strcmp(argv[argi], "--version") || 
-                 !strcmp(argv[argi], "-v")) {
+                 !strcmp(argv[argi], "-v")        ||
+                 !strcmp(argv[argi], "-V")) {
             print_version();
             end = TRUE;
         }
