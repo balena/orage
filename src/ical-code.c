@@ -530,7 +530,7 @@ static xfical_timezone_array xfical_get_timezones()
     return (tz);
 }
 
-gboolean xfical_set_local_timezone()
+gboolean xfical_set_local_timezone(gboolean testing)
 {
 #undef P_N
 #define P_N "xfical_set_local_timezone: "
@@ -560,8 +560,9 @@ gboolean xfical_set_local_timezone()
                 icaltimezone_get_builtin_timezone(g_par.local_timezone);
 
     if (!local_icaltimezone) {
-        orage_message(150, P_N "builtin timezone %s not found"
-                , g_par.local_timezone);
+        if (!testing)
+            orage_message(150, P_N "builtin timezone %s not found"
+                    , g_par.local_timezone);
         return (FALSE);
     }
     return (TRUE); 

@@ -120,7 +120,7 @@ typedef struct _xfical_appt
     gint    recur_byday_cnt[7]; /* monthly/early: 1=first -1=last 2=second... */    gint   interval;    /* 1=every day/week..., 2=every second day/week,... */
 } xfical_appt;
 
-gboolean xfical_set_local_timezone();
+gboolean xfical_set_local_timezone(gboolean testing);
 
 gboolean xfical_file_open(gboolean foreign);
 void xfical_file_close(gboolean foreign);

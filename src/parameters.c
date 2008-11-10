@@ -417,7 +417,7 @@ static void timezone_button_clicked(GtkButton *button, gpointer user_data)
     }
     if (xfical_timezone_button_clicked(button, GTK_WINDOW(itf->orage_dialog)
             , &g_par.local_timezone))
-        xfical_set_local_timezone();
+        xfical_set_local_timezone(FALSE);
 }
 
 #ifdef HAVE_ARCHIVE
@@ -998,10 +998,8 @@ void init_dtz_check_dir(gchar *tz_dirname, gchar *tz_local, gint len)
                 error = NULL;
             }
             /* if we found a candidate, test that libical knows it */
-            if (g_par.local_timezone && !xfical_set_local_timezone()) { 
+            if (g_par.local_timezone && !xfical_set_local_timezone(TRUE)) { 
                 /* candidate is not known by libical, remove it */
-                g_warning("init_default_timezone: found match (%s) but libical can not use that, skipping it."
-                        , g_par.local_timezone);
                 g_free(g_par.local_timezone);
                 g_par.local_timezone = NULL;
             }
@@ -1018,13 +1016,15 @@ void init_default_timezone()
 
     g_free(g_par.local_timezone);
     g_par.local_timezone = NULL;
+    g_message(_("First Orage start. Searching default timezone."));
     /* debian, ubuntu stores the timezone name into /etc/timezone */
-    if (g_file_get_contents("/etd/timezone", &g_par.local_timezone
+    if (g_file_get_contents("/etc/timezone", &g_par.local_timezone
                 , &len, NULL)) {
         /* success! let's check it */
         if (len > 2) /* get rid of the \n at the end */
             g_par.local_timezone[len-1] = 0;
-        if (!xfical_set_local_timezone()) { /* test that libical knows it */
+            /* we have a candidate, test that libical knows it */
+        if (!xfical_set_local_timezone(TRUE)) { 
             g_free(g_par.local_timezone);
             g_par.local_timezone = NULL;
         }
@@ -1034,8 +1034,12 @@ void init_default_timezone()
         init_dtz_check_dir("/usr/share/zoneinfo", tz_local, len);
         g_free(tz_local);
     }
-    if (!ORAGE_STR_EXISTS(g_par.local_timezone))
+    if (ORAGE_STR_EXISTS(g_par.local_timezone))
+        g_message(_("Set default timezone to %s."), g_par.local_timezone);
+    else {
         g_par.local_timezone = g_strdup("floating");
+        g_message(_("Default timezone not found, please, set it manually."));
+    }
 }
 
 void read_parameters(void)
@@ -1120,5 +1124,5 @@ void set_parameters()
     */
     set_stick();
     set_ontop();
-    xfical_set_local_timezone();
+    xfical_set_local_timezone(FALSE);
 }
