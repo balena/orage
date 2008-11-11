@@ -148,6 +148,12 @@ static void oc_show3(GtkToggleButton *cb, Clock *clock)
     oc_show_line_set(clock, 2);
 }
 
+static void oc_hib_timing_toggled(GtkToggleButton *cb, Clock *clock)
+{
+    clock->hib_timing = gtk_toggle_button_get_active(cb);
+    oc_hib_timing_set(clock);
+}
+
 static gboolean oc_line_changed(GtkWidget *entry, GdkEventKey *key
         , GString *data)
 {
@@ -276,7 +282,7 @@ static void oc_properties_options(GtkWidget *dlg, Clock *clock)
     gtk_container_set_border_width(GTK_CONTAINER(frame), 6);
     gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), frame, FALSE, FALSE, 0);
 
-    table = gtk_table_new(5, 3, FALSE);
+    table = gtk_table_new(6, 3, FALSE);
     gtk_container_set_border_width(GTK_CONTAINER(table), 10);
     gtk_table_set_row_spacings(GTK_TABLE(table), 6);
     gtk_table_set_col_spacings(GTK_TABLE(table), 6);
@@ -380,6 +386,15 @@ static void oc_properties_options(GtkWidget *dlg, Clock *clock)
     oc_table_add(table, entry, 1, 4);
     g_signal_connect(entry, "key-release-event", G_CALLBACK(oc_line_changed)
             , clock->tooltip_data);
+    
+    /* special timing for SUSPEND/HIBERNATE */
+    cb = gtk_check_button_new_with_mnemonic(_("fix time after suspend/hibernate"));
+    oc_table_add(table, cb, 1, 5);
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(cb), clock->hib_timing);
+    gtk_tooltips_set_tip(clock->tips, GTK_WIDGET(cb),
+            _("You only need this if you do short term (less than 5 hours) suspend or hibernate and your visible time does not include seconds. Under these circumstances it is possible that Orageclock shows time inaccurately unless you have this selected. (Selecting this prevents cpu and interrupt saving features from working.)")
+            , NULL);
+    g_signal_connect(cb, "toggled", G_CALLBACK(oc_hib_timing_toggled), clock);
 
     /* Instructions */
     hbox = gtk_hbox_new(FALSE, 0);
@@ -411,7 +426,6 @@ void oc_properties_dialog(XfcePanelPlugin *plugin, Clock *clock)
     
     clock->interval = 200; /* 0,2 sec, so that we can show quick feedback
                             * on the panel */
-    oc_disable_tuning(clock);
     oc_start_timer(clock);
     dlg = gtk_dialog_new_with_buttons(_("Properties"), 
             GTK_WINDOW(gtk_widget_get_toplevel(GTK_WIDGET(plugin))),
