@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce4-trunk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-14 22:23+0300\n"
+"POT-Creation-Date: 2008-11-11 09:18+0200\n"
 "PO-Revision-Date: 2008-09-30 10:53-0700\n"
 "Last-Translator: Kristjan Siimson <epost@ksiimson.se>\n"
 "Language-Team: Estonian <et@li.org>\n"
@@ -30,8 +30,12 @@ msgstr "GlobalTime'i akna tõstmine ebaõnnestus"
 #. ********** timezone tooltip **********
 #: ../globaltime/globaltime.c:278
 #, c-format
-msgid "%s\nclick to modify clock"
-msgstr "%s\nkella muutmiseks klõpsa"
+msgid ""
+"%s\n"
+"click to modify clock"
+msgstr ""
+"%s\n"
+"kella muutmiseks klõpsa"
 
 #. trick to refresh clocks once
 #: ../globaltime/globaltime.c:358
@@ -47,8 +51,12 @@ msgid "Localtime"
 msgstr "Kohalik aeg"
 
 #: ../globaltime/globaltime.c:456
-msgid "button 1 to change preferences \nbutton 2 to adjust time of clocks"
-msgstr "1. klahv eelistuste muutmiseks \n2. klahv kellaaja sättimiseks"
+msgid ""
+"button 1 to change preferences \n"
+"button 2 to adjust time of clocks"
+msgstr ""
+"1. klahv eelistuste muutmiseks \n"
+"2. klahv kellaaja sättimiseks"
 
 #: ../globaltime/globaltime.c:472
 msgid "adjust to change hour"
@@ -58,15 +66,15 @@ msgstr "sättida tundide muutmiseks"
 msgid "adjust to change minute"
 msgstr "sättida minutite muutmiseks"
 
-#: ../globaltime/gt_prefs.c:69 ../globaltime/gt_prefs.c:1078
+#: ../globaltime/gt_prefs.c:69 ../globaltime/gt_prefs.c:1077
 msgid "Standard"
 msgstr "Tavaline"
 
-#: ../globaltime/gt_prefs.c:71 ../src/appointment.c:2772
+#: ../globaltime/gt_prefs.c:71 ../src/appointment.c:2780
 msgid "None"
 msgstr "Puudub"
 
-#: ../globaltime/gt_prefs.c:84 ../globaltime/gt_prefs.c:1101
+#: ../globaltime/gt_prefs.c:84 ../globaltime/gt_prefs.c:1100
 msgid "Equal"
 msgstr "Võrdne"
 
@@ -86,300 +94,339 @@ msgstr "UUS KOOPIA"
 msgid "Not possible to delete the last clock."
 msgstr "Viimast kella ei ole võimalik kustutada."
 
-#: ../globaltime/gt_prefs.c:367 ../panel-plugin/oc_config.c:114
+#: ../globaltime/gt_prefs.c:366 ../panel-plugin/oc_config.c:114
 msgid "Select timezone"
 msgstr "Valige ajavöönd välja"
 
-#: ../globaltime/gt_prefs.c:512
+#: ../globaltime/gt_prefs.c:511
 msgid "update this clock"
 msgstr "uuendada seda kella"
 
-#: ../globaltime/gt_prefs.c:517 ../globaltime/gt_prefs.c:1034
+#: ../globaltime/gt_prefs.c:516 ../globaltime/gt_prefs.c:1033
 msgid "add new empty clock"
 msgstr "lisada uus tühi kell"
 
-#: ../globaltime/gt_prefs.c:522
+#: ../globaltime/gt_prefs.c:521
 msgid "add new clock using this clock as model"
 msgstr "lisada uus kell, kasutades mudelina käesolevat kella"
 
-#: ../globaltime/gt_prefs.c:527
+#: ../globaltime/gt_prefs.c:526
 msgid "delete this clock"
 msgstr "kustutada see kell"
 
-#: ../globaltime/gt_prefs.c:535
+#: ../globaltime/gt_prefs.c:534
 msgid "move this clock first"
 msgstr "esmalt liigutada seda kella"
 
-#: ../globaltime/gt_prefs.c:540
+#: ../globaltime/gt_prefs.c:539
 msgid "move this clock left"
 msgstr "liigutada seda kella vasakule"
 
-#: ../globaltime/gt_prefs.c:545
+#: ../globaltime/gt_prefs.c:544
 msgid "move this clock right"
 msgstr "liigutada seda kella paremale"
 
-#: ../globaltime/gt_prefs.c:550
+#: ../globaltime/gt_prefs.c:549
 msgid "move this clock last"
 msgstr "liigutada seda kella viimasena"
 
-#: ../globaltime/gt_prefs.c:558
+#: ../globaltime/gt_prefs.c:557
 msgid "set the timezone of this clock to be local timezone"
 msgstr "määrata selle kella ajavööndiks kohalik ajavöönd"
 
-#: ../globaltime/gt_prefs.c:564 ../globaltime/gt_prefs.c:1042
+#: ../globaltime/gt_prefs.c:563 ../globaltime/gt_prefs.c:1041
 msgid "close window and exit"
 msgstr "sulgeda aken ja väljuda"
 
-#: ../globaltime/gt_prefs.c:587
+#: ../globaltime/gt_prefs.c:586
 msgid "Modify Clock "
 msgstr "Muuta kella "
 
 #. -----------------------HEADING-------------------------------------------
-#: ../globaltime/gt_prefs.c:600
+#: ../globaltime/gt_prefs.c:599
 msgid "Clock Parameters"
 msgstr "Kella parameetrid"
 
-#: ../globaltime/gt_prefs.c:604
+#: ../globaltime/gt_prefs.c:603
 msgid "Name of the clock:"
 msgstr "Selle kella nimetus:"
 
-#: ../globaltime/gt_prefs.c:610
+#: ../globaltime/gt_prefs.c:609
 msgid "enter name of clock"
 msgstr "sisestage kellale nimetus"
 
-#: ../globaltime/gt_prefs.c:613
+#: ../globaltime/gt_prefs.c:612
 msgid "Timezone of the clock:"
 msgstr "Selle kella ajavöönd:"
 
-#: ../globaltime/gt_prefs.c:619
-msgid "enter timezone of clock,\n(=any valid TZ value)"
-msgstr "sisestage kellale ajavöönd,\n(=iga korrektne TZ väärtus)"
+#: ../globaltime/gt_prefs.c:618
+msgid ""
+"enter timezone of clock,\n"
+"(=any valid TZ value)"
+msgstr ""
+"sisestage kellale ajavöönd,\n"
+"(=iga korrektne TZ väärtus)"
 
-#: ../globaltime/gt_prefs.c:643
+#: ../globaltime/gt_prefs.c:642
 msgid "Text Formatting"
 msgstr "Teksti vormindamine"
 
 #. ------------------------background-------------------------
-#: ../globaltime/gt_prefs.c:649 ../globaltime/gt_prefs.c:856
+#: ../globaltime/gt_prefs.c:648 ../globaltime/gt_prefs.c:855
 msgid "Background color:"
 msgstr "Taustavärv:"
 
-#: ../globaltime/gt_prefs.c:656
+#: ../globaltime/gt_prefs.c:655
 msgid "Click to change background colour for clock"
 msgstr "Klõpsake, et muuta kella taustavärvi"
 
-#: ../globaltime/gt_prefs.c:665 ../globaltime/gt_prefs.c:697
-#: ../globaltime/gt_prefs.c:729 ../globaltime/gt_prefs.c:762
-#: ../globaltime/gt_prefs.c:796 ../globaltime/gt_prefs.c:826
-#: ../globaltime/gt_prefs.c:872 ../globaltime/gt_prefs.c:905
-#: ../globaltime/gt_prefs.c:938 ../globaltime/gt_prefs.c:972
+#: ../globaltime/gt_prefs.c:664 ../globaltime/gt_prefs.c:696
+#: ../globaltime/gt_prefs.c:728 ../globaltime/gt_prefs.c:761
+#: ../globaltime/gt_prefs.c:795 ../globaltime/gt_prefs.c:825
+#: ../globaltime/gt_prefs.c:871 ../globaltime/gt_prefs.c:904
+#: ../globaltime/gt_prefs.c:937 ../globaltime/gt_prefs.c:971
 msgid "Use default"
 msgstr "Kasutada vaikeseadet"
 
-#: ../globaltime/gt_prefs.c:670 ../globaltime/gt_prefs.c:702
-#: ../globaltime/gt_prefs.c:735 ../globaltime/gt_prefs.c:768
-#: ../globaltime/gt_prefs.c:802 ../globaltime/gt_prefs.c:832
+#: ../globaltime/gt_prefs.c:669 ../globaltime/gt_prefs.c:701
+#: ../globaltime/gt_prefs.c:734 ../globaltime/gt_prefs.c:767
+#: ../globaltime/gt_prefs.c:801 ../globaltime/gt_prefs.c:831
 msgid "Cross this to use default instead of selected value"
 msgstr "Märkige, et kasutada vaikeseadet, mitte valitud väärtust"
 
 #. ------------------------foreground-------------------------
-#: ../globaltime/gt_prefs.c:681 ../globaltime/gt_prefs.c:889
+#: ../globaltime/gt_prefs.c:680 ../globaltime/gt_prefs.c:888
 msgid "Foreground (=text) color:"
 msgstr "Esiplaani (=tekst) värv:"
 
-#: ../globaltime/gt_prefs.c:688
+#: ../globaltime/gt_prefs.c:687
 msgid "Click to change foreground colour for clock"
 msgstr "Klõpsake, et muuta kella esiplaani värvi"
 
 #. ------------------------name font-------------------------
-#: ../globaltime/gt_prefs.c:713 ../globaltime/gt_prefs.c:922
+#: ../globaltime/gt_prefs.c:712 ../globaltime/gt_prefs.c:921
 msgid "Font for name of clock:"
 msgstr "Kellanime font:"
 
-#: ../globaltime/gt_prefs.c:720
+#: ../globaltime/gt_prefs.c:719
 msgid "Click to change font for clock name"
 msgstr "Klõpsake, et muuta kella nime fonti"
 
 #. ------------------------time font-------------------------
-#: ../globaltime/gt_prefs.c:746 ../globaltime/gt_prefs.c:956
+#: ../globaltime/gt_prefs.c:745 ../globaltime/gt_prefs.c:955
 msgid "Font for time of clock:"
 msgstr "Kellaaja font:"
 
-#: ../globaltime/gt_prefs.c:753
+#: ../globaltime/gt_prefs.c:752
 msgid "Click to change font for clock time"
 msgstr "Klõpsake, et muuta kellaaja fonti"
 
 #. ------------------------underline name--------------------
-#: ../globaltime/gt_prefs.c:780
+#: ../globaltime/gt_prefs.c:779
 msgid "Underline name of clock:"
 msgstr "Jooni kella nimi alla:"
 
 #. ------------------------underline time--------------------
-#: ../globaltime/gt_prefs.c:810
+#: ../globaltime/gt_prefs.c:809
 msgid "Underline time of clock:"
 msgstr "Jooni kellaaeg alla:"
 
-#: ../globaltime/gt_prefs.c:850
+#: ../globaltime/gt_prefs.c:849
 msgid "Text Default Formatting"
 msgstr "Vaikimisi vormistus tekstile"
 
-#: ../globaltime/gt_prefs.c:863
+#: ../globaltime/gt_prefs.c:862
 msgid "Click to change default background colour for clocks"
 msgstr "Klõpsake, et muuta kellade vaikimisi taustavärvi"
 
-#: ../globaltime/gt_prefs.c:877 ../globaltime/gt_prefs.c:910
+#: ../globaltime/gt_prefs.c:876 ../globaltime/gt_prefs.c:909
 msgid "Cross this to use system default instead of selected color"
 msgstr "Märkige, et kasutada vaikeseadet, mitte valitud värvi"
 
-#: ../globaltime/gt_prefs.c:896
+#: ../globaltime/gt_prefs.c:895
 msgid "Click to change default text colour for clocks"
 msgstr "Klõpsake, et muuta kellade vaikimisi tekstivärvi"
 
-#: ../globaltime/gt_prefs.c:929
+#: ../globaltime/gt_prefs.c:928
 msgid "Click to change default font for clock name"
 msgstr "Klõpsake, et muuta kellanimede vaikimisi fonti"
 
-#: ../globaltime/gt_prefs.c:944 ../globaltime/gt_prefs.c:978
+#: ../globaltime/gt_prefs.c:943 ../globaltime/gt_prefs.c:977
 msgid "Cross this to use system default font instead of selected font"
 msgstr "Märkige, et kasutada vaikeseadet, mitte valitud fonti"
 
-#: ../globaltime/gt_prefs.c:963
+#: ../globaltime/gt_prefs.c:962
 msgid "Click to change default font for clock time"
 msgstr "Klõpsa muutmaks vaikimisi kellaaja fonti"
 
 #. ------------------------underline name--------------------
-#: ../globaltime/gt_prefs.c:990
+#: ../globaltime/gt_prefs.c:989
 msgid "Underline for name of clock:"
 msgstr "Kellanime allajoonimine:"
 
 #. ------------------------underline time--------------------
-#: ../globaltime/gt_prefs.c:1004
+#: ../globaltime/gt_prefs.c:1003
 msgid "Underline for time of clock:"
 msgstr "Kellaaja allajoonimine:"
 
-#: ../globaltime/gt_prefs.c:1027
+#: ../globaltime/gt_prefs.c:1026
 msgid "update preferences"
 msgstr "uuendada eelistusi"
 
-#: ../globaltime/gt_prefs.c:1062
+#: ../globaltime/gt_prefs.c:1061
 msgid "Modify Preferences"
 msgstr "Muuta eelistusi"
 
 #. -----------------------HEADING--------------------------------------
-#: ../globaltime/gt_prefs.c:1073
+#: ../globaltime/gt_prefs.c:1072
 msgid "General Preferences"
 msgstr "Üldised eelistused"
 
-#: ../globaltime/gt_prefs.c:1077
+#: ../globaltime/gt_prefs.c:1076
 msgid "Decorations:"
 msgstr "Dekoratsioonid:"
 
-#: ../globaltime/gt_prefs.c:1083
+#: ../globaltime/gt_prefs.c:1082
 msgid "Use normal decorations"
 msgstr "Kasutada harilike dekoratsioone"
 
-#: ../globaltime/gt_prefs.c:1094
+#: ../globaltime/gt_prefs.c:1093
 msgid "Do not show window decorations (borders)"
 msgstr "Mitte näidata akende dekoratsioone (raame)"
 
-#: ../globaltime/gt_prefs.c:1100
+#: ../globaltime/gt_prefs.c:1099
 msgid "Clock size:"
 msgstr "Kella suurus:"
 
-#: ../globaltime/gt_prefs.c:1106
+#: ../globaltime/gt_prefs.c:1105
 msgid "All clocks have same size"
 msgstr "Kõik kellad on sama suured"
 
-#: ../globaltime/gt_prefs.c:1111
+#: ../globaltime/gt_prefs.c:1110
 msgid "Varying"
 msgstr "Vahelduv"
 
-#: ../globaltime/gt_prefs.c:1116
+#: ../globaltime/gt_prefs.c:1115
 msgid "Clock sizes vary"
 msgstr "Kellade suurused vahelduvad"
 
-#: ../globaltime/gt_prefs.c:1122
+#: ../globaltime/gt_prefs.c:1121
 msgid "Local timezone:"
 msgstr "Kohalik ajavöönd:"
 
-#: ../globaltime/gt_prefs.c:1129
-msgid "Enter local timezone. (it is used to show if time is on previous(-) or next date(+) by adding a +/- after the time)"
-msgstr "Sisestage kohalik ajavöönd.(kasutatakse näitamaks kas aeg on eelmisel(-) või järgmisel kuupäeval(+) lisades pärast aega vastavalt + või -)"
+#: ../globaltime/gt_prefs.c:1128
+msgid ""
+"Enter local timezone. (it is used to show if time is on previous(-) or next "
+"date(+) by adding a +/- after the time)"
+msgstr ""
+"Sisestage kohalik ajavöönd.(kasutatakse näitamaks kas aeg on eelmisel(-) või "
+"järgmisel kuupäeval(+) lisades pärast aega vastavalt + või -)"
 
-#: ../panel-plugin/oc_config.c:193
+#: ../panel-plugin/oc_config.c:199
 msgid "Appearance"
 msgstr "Välimus"
 
 #. show frame
-#: ../panel-plugin/oc_config.c:204
+#: ../panel-plugin/oc_config.c:210
 msgid "Show _frame"
 msgstr "_Näidata raami"
 
 #. foreground color
-#: ../panel-plugin/oc_config.c:214
+#: ../panel-plugin/oc_config.c:220
 msgid "set foreground _color:"
 msgstr "_määrata esiplaanile värv:"
 
 #. background color
-#: ../panel-plugin/oc_config.c:228
+#: ../panel-plugin/oc_config.c:234
 msgid "set _background color:"
 msgstr "_määrata tagaplaanile värv:"
 
 #. clock size (=vbox size): height and width
-#: ../panel-plugin/oc_config.c:242
+#: ../panel-plugin/oc_config.c:248
 msgid "set _height:"
 msgstr "_määrata kõrgus:"
 
-#: ../panel-plugin/oc_config.c:254
+#: ../panel-plugin/oc_config.c:260
 msgid "set _width:"
 msgstr "määrata _laius:"
 
-#: ../panel-plugin/oc_config.c:275
+#: ../panel-plugin/oc_config.c:281
 msgid "Clock Options"
 msgstr "Kella valikud"
 
 #. timezone
-#: ../panel-plugin/oc_config.c:286
+#: ../panel-plugin/oc_config.c:292
 msgid "set timezone to:"
 msgstr "määrata ajavööndiks:"
 
-#: ../panel-plugin/oc_config.c:295
+#: ../panel-plugin/oc_config.c:301
 msgid "Set any valid timezone (=TZ) value or pick one from the list."
 msgstr "Määrake ajavööndile korrektne (=TZ) väärtus või valige see loendist."
 
 #. line 1
-#: ../panel-plugin/oc_config.c:304
+#: ../panel-plugin/oc_config.c:310
 msgid "show line _1:"
 msgstr "näidata _1. rida:"
 
-#: ../panel-plugin/oc_config.c:315
+#: ../panel-plugin/oc_config.c:321
 msgid "Enter any valid strftime function parameter."
 msgstr "Sisesta ükskõik milline korrektne funktsiooni „strftime” parameeter."
 
 #. line 2
-#: ../panel-plugin/oc_config.c:331
+#: ../panel-plugin/oc_config.c:337
 msgid "show line _2:"
 msgstr "näidata _2. rida:"
 
 #. line 3
-#: ../panel-plugin/oc_config.c:353
+#: ../panel-plugin/oc_config.c:359
 msgid "show line _3:"
 msgstr "näidata _3. rida:"
 
 #. Tooltip hint
-#: ../panel-plugin/oc_config.c:375
+#: ../panel-plugin/oc_config.c:381
 msgid "Tooltip:"
 msgstr "Vahendivihje:"
 
-#: ../panel-plugin/oc_config.c:392
-msgid "This program uses strftime function to get time.\nUse any valid code to get time in the format you prefer.\nSome common codes are:\n\t%A = weekday\t\t\t%B = month\n\t%c = date & time\t\t%R = hour & minute\n\t%V = week number\t\t%Z = timezone in use\n\t%H = hours \t\t\t\t%M = minute\n\t%X = local time\t\t\t%x = local date"
-msgstr "Selles programmis kasutatakse aja hankimiseks strftime funktsiooni.\nKasutage ükskõik millist korrektset koodi, et saada soovikohaselt vormistatud aeg.\nMõned levinumad koodid on:\n\t%A = nädalapäev\t\t\t%B = kuu\n\t%c= kuupäev ja aeg\t\t%R = tund ja minut\n\t%V = nädalaarv\t\t%Z = kasutatav ajavöönd\n\t%H = tunnid \t\t\t\t%M = minut\n\t%X = kohalik aeg\t\t\t%x = kohalik kuupäev"
+#. special timing for SUSPEND/HIBERNATE
+#: ../panel-plugin/oc_config.c:391
+msgid "fix time after suspend/hibernate"
+msgstr ""
 
-#: ../panel-plugin/oc_config.c:416
+#: ../panel-plugin/oc_config.c:395
+msgid ""
+"You only need this if you do short term (less than 5 hours) suspend or "
+"hibernate and your visible time does not include seconds. Under these "
+"circumstances it is possible that Orageclock shows time inaccurately unless "
+"you have this selected. (Selecting this prevents cpu and interrupt saving "
+"features from working.)"
+msgstr ""
+
+#: ../panel-plugin/oc_config.c:407
+msgid ""
+"This program uses strftime function to get time.\n"
+"Use any valid code to get time in the format you prefer.\n"
+"Some common codes are:\n"
+"\t%A = weekday\t\t\t%B = month\n"
+"\t%c = date & time\t\t%R = hour & minute\n"
+"\t%V = week number\t\t%Z = timezone in use\n"
+"\t%H = hours \t\t\t\t%M = minute\n"
+"\t%X = local time\t\t\t%x = local date"
+msgstr ""
+"Selles programmis kasutatakse aja hankimiseks strftime funktsiooni.\n"
+"Kasutage ükskõik millist korrektset koodi, et saada soovikohaselt "
+"vormistatud aeg.\n"
+"Mõned levinumad koodid on:\n"
+"\t%A = nädalapäev\t\t\t%B = kuu\n"
+"\t%c= kuupäev ja aeg\t\t%R = tund ja minut\n"
+"\t%V = nädalaarv\t\t%Z = kasutatav ajavöönd\n"
+"\t%H = tunnid \t\t\t\t%M = minut\n"
+"\t%X = kohalik aeg\t\t\t%x = kohalik kuupäev"
+
+#: ../panel-plugin/oc_config.c:430
 msgid "Properties"
 msgstr "Omadused"
 
-#: ../panel-plugin/oc_config.c:431
+#: ../panel-plugin/oc_config.c:445
 msgid "Orage clock"
 msgstr "Orage'i kell"
 
@@ -392,7 +439,7 @@ msgstr "Orage'i kell"
 #. * %Y  : four digit year
 #. * %V  : ISO week number
 #.
-#: ../panel-plugin/orageclock.c:627
+#: ../panel-plugin/orageclock.c:596
 msgid "%A %d %B %Y/%V"
 msgstr "%A. %d %B %Y/%V"
 
@@ -424,7 +471,7 @@ msgstr "Kaasaaitaja"
 #. if (gtk_toggle_button_get_active(
 #. GTK_TOGGLE_BUTTON(apptw->Type_journal_rb)))
 #. end time
-#: ../src/appointment.c:348 ../src/appointment.c:384 ../src/appointment.c:2322
+#: ../src/appointment.c:348 ../src/appointment.c:384 ../src/appointment.c:2330
 msgid "End"
 msgstr "Lõpp"
 
@@ -438,7 +485,7 @@ msgstr "Orage"
 
 #. to avoid timing problems when updating entry
 #. Create file chooser
-#: ../src/appointment.c:651 ../src/interface.c:277 ../src/parameters.c:371
+#: ../src/appointment.c:651 ../src/interface.c:277 ../src/parameters.c:384
 msgid "Select a file..."
 msgstr "Valige fail..."
 
@@ -471,7 +518,7 @@ msgid "The end of this appointment is earlier than the beginning."
 msgstr "Kohtumine lõpeb enne selle algust."
 
 #. cat_groups[0] is special [NULL] entry always
-#: ../src/appointment.c:1007 ../src/appointment.c:1538
+#: ../src/appointment.c:1007 ../src/appointment.c:1547
 msgid "Not set"
 msgstr "Sättimata"
 
@@ -491,418 +538,479 @@ msgstr "Seda kohtumist pole olemas."
 msgid "It was probably removed, please refresh your screen."
 msgstr "See on tõenäoliselt eemaldatud, palun värskenda oma ekraani."
 
-#: ../src/appointment.c:1721
+#: ../src/appointment.c:1729
 msgid "Current categories"
 msgstr "Praegused jaotised"
 
-#: ../src/appointment.c:1736
+#: ../src/appointment.c:1744
 msgid "Add new category with color"
 msgstr "Lisa uus värviga jaotis"
 
-#: ../src/appointment.c:1740
+#: ../src/appointment.c:1748
 msgid "Category:"
 msgstr "Jaotis:"
 
-#: ../src/appointment.c:1771
+#: ../src/appointment.c:1779
 msgid "Colors of categories - Orage"
 msgstr "Jaotiste värvid - Orage"
 
-#: ../src/appointment.c:1932
+#: ../src/appointment.c:1940
 msgid "New appointment - Orage"
 msgstr "Uus kohtumine - Orage"
 
-#: ../src/appointment.c:1956
+#: ../src/appointment.c:1964
 msgid " *** COPY ***"
 msgstr " *** KOPEERI ***"
 
 #. File menu stuff
 #. ********* File menu *********
 #. File menu
-#: ../src/appointment.c:2066 ../src/day-view.c:254 ../src/event-list.c:994
+#: ../src/appointment.c:2074 ../src/day-view.c:254 ../src/event-list.c:994
 #: ../src/interface.c:762 ../src/mainbox.c:261
 msgid "_File"
 msgstr "_Fail"
 
-#: ../src/appointment.c:2072
+#: ../src/appointment.c:2080
 msgid "Sav_e and close"
 msgstr "Salv_estada ja sulgeda"
 
-#: ../src/appointment.c:2085 ../src/event-list.c:1000
+#: ../src/appointment.c:2093 ../src/event-list.c:1000
 msgid "D_uplicate"
 msgstr "_Kloonida"
 
-#: ../src/appointment.c:2219
+#: ../src/appointment.c:2227
 msgid "Save"
 msgstr "Salvestada"
 
-#: ../src/appointment.c:2221
+#: ../src/appointment.c:2229
 msgid "Save and close"
 msgstr "Salvestada ja sulgeda"
 
-#: ../src/appointment.c:2226
+#: ../src/appointment.c:2234
 msgid "Revert"
 msgstr "Taastada"
 
-#: ../src/appointment.c:2228 ../src/event-list.c:1085
+#: ../src/appointment.c:2236 ../src/event-list.c:1085
 msgid "Duplicate"
 msgstr "Kloonida"
 
-#: ../src/appointment.c:2233 ../src/event-list.c:1087
+#: ../src/appointment.c:2241 ../src/event-list.c:1087
 msgid "Delete"
 msgstr "Kustutada"
 
-#: ../src/appointment.c:2251
+#: ../src/appointment.c:2259
 msgid "Free"
 msgstr "Vaba"
 
-#: ../src/appointment.c:2251
+#: ../src/appointment.c:2259
 msgid "Busy"
 msgstr "Hõivatud"
 
-#: ../src/appointment.c:2255
+#: ../src/appointment.c:2263
 msgid "General"
 msgstr "Üldine"
 
 #. type
-#: ../src/appointment.c:2261
+#: ../src/appointment.c:2269
 msgid "Type "
 msgstr "Liik "
 
-#: ../src/appointment.c:2263 ../src/event-list.c:1139
+#: ../src/appointment.c:2271 ../src/event-list.c:1139
 msgid "Event"
 msgstr "Sündmus"
 
-#: ../src/appointment.c:2266
-msgid "Event that will happen sometime. For example:\nMeeting or birthday or TV show."
-msgstr "Millalgi toimuv sündmus. Näiteks:\nKohtumine, sünnipäev, või telekasaade."
+#: ../src/appointment.c:2274
+msgid ""
+"Event that will happen sometime. For example:\n"
+"Meeting or birthday or TV show."
+msgstr ""
+"Millalgi toimuv sündmus. Näiteks:\n"
+"Kohtumine, sünnipäev, või telekasaade."
 
-#: ../src/appointment.c:2269 ../src/event-list.c:1160
+#: ../src/appointment.c:2277 ../src/event-list.c:1160
 msgid "Todo"
 msgstr "Agenda"
 
-#: ../src/appointment.c:2272
-msgid "Something that you should do sometime. For example:\nWash your car or test new version of Orage."
-msgstr "Asjad mida sa peaksid kunagi tegema. Näiteks:\nAutot pesta või uut Orage'i versiooni katsetada."
+#: ../src/appointment.c:2280
+msgid ""
+"Something that you should do sometime. For example:\n"
+"Wash your car or test new version of Orage."
+msgstr ""
+"Asjad mida sa peaksid kunagi tegema. Näiteks:\n"
+"Autot pesta või uut Orage'i versiooni katsetada."
 
-#: ../src/appointment.c:2275 ../src/event-list.c:1175
+#: ../src/appointment.c:2283 ../src/event-list.c:1175
 msgid "Journal"
 msgstr "Päevik"
 
-#: ../src/appointment.c:2279
-msgid "Make a note that something happened. For example:\nRemark that your mother called or first snow came."
-msgstr "Juba toimunud sündmuste ülesmärkimine. Näiteks:\nTähelda, et sinu ema helistas, või sadas esimest korda lund."
+#: ../src/appointment.c:2287
+msgid ""
+"Make a note that something happened. For example:\n"
+"Remark that your mother called or first snow came."
+msgstr ""
+"Juba toimunud sündmuste ülesmärkimine. Näiteks:\n"
+"Tähelda, et sinu ema helistas, või sadas esimest korda lund."
 
 #. title
-#: ../src/appointment.c:2286
+#: ../src/appointment.c:2294
 msgid "Title "
 msgstr "Pealkiri"
 
 #. location
-#: ../src/appointment.c:2293 ../src/ical-code.c:4495 ../src/ical-code.c:4500
+#: ../src/appointment.c:2301 ../src/ical-code.c:4496 ../src/ical-code.c:4501
 msgid "Location"
 msgstr "Asukoht"
 
-#: ../src/appointment.c:2301
+#: ../src/appointment.c:2309
 msgid "All day event"
 msgstr "Terve päeva sündmus"
 
 #. start time
-#: ../src/appointment.c:2307 ../src/day-view.c:681
+#: ../src/appointment.c:2315 ../src/day-view.c:681
 msgid "Start"
 msgstr "Algus"
 
-#: ../src/appointment.c:2327
+#: ../src/appointment.c:2335
 msgid "Set      "
 msgstr "Määrata      "
 
-#: ../src/appointment.c:2348
+#: ../src/appointment.c:2356
 msgid "Duration"
 msgstr "Kestvus"
 
-#: ../src/appointment.c:2352 ../src/appointment.c:2524 ../src/day-view.c:702
+#: ../src/appointment.c:2360 ../src/appointment.c:2532 ../src/day-view.c:702
 msgid "days"
 msgstr "päeva"
 
-#: ../src/appointment.c:2354 ../src/appointment.c:2526
+#: ../src/appointment.c:2362 ../src/appointment.c:2534
 msgid "hours"
 msgstr "tundi"
 
-#: ../src/appointment.c:2356 ../src/appointment.c:2528
+#: ../src/appointment.c:2364 ../src/appointment.c:2536
 msgid "mins"
 msgstr "minutit"
 
 #. Availability (only for EVENT)
-#: ../src/appointment.c:2368
+#: ../src/appointment.c:2376
 msgid "Availability"
 msgstr "Kättesaadavus"
 
 #. completed (only for TODO)
-#: ../src/appointment.c:2376
+#: ../src/appointment.c:2384
 msgid "Completed"
 msgstr "Valmis"
 
-#: ../src/appointment.c:2379
+#: ../src/appointment.c:2387
 msgid "Done"
 msgstr "Tehtud"
 
 #. categories
-#: ../src/appointment.c:2400
+#: ../src/appointment.c:2408
 msgid "Categories"
 msgstr "Jaotised"
 
-#: ../src/appointment.c:2412
-msgid "This is special category, which can be used to color this appointment in list views."
-msgstr "See on erijaotis, mida kasutatakse selle kohtumise värvimiseks loendivaates."
+#: ../src/appointment.c:2420
+msgid ""
+"This is special category, which can be used to color this appointment in "
+"list views."
+msgstr ""
+"See on erijaotis, mida kasutatakse selle kohtumise värvimiseks loendivaates."
 
-#: ../src/appointment.c:2417
+#: ../src/appointment.c:2425
 msgid "update colors for categories."
 msgstr "uuendada jaotiste värve."
 
 #. note
-#: ../src/appointment.c:2423
+#: ../src/appointment.c:2431
 msgid "Note"
 msgstr "Märge"
 
-#: ../src/appointment.c:2442
-msgid "<D> inserts current date in local date format.\n<T> inserts time and\n<DT> inserts date and time."
-msgstr "<D> sisestab käesoleva kuupäeva kohalikus ajavormingus.\n<T> sisestab aja ja\n<DT> sisestab kuupäeva ja aja."
+#: ../src/appointment.c:2450
+msgid ""
+"<D> inserts current date in local date format.\n"
+"<T> inserts time and\n"
+"<DT> inserts date and time."
+msgstr ""
+"<D> sisestab käesoleva kuupäeva kohalikus ajavormingus.\n"
+"<T> sisestab aja ja\n"
+"<DT> sisestab kuupäeva ja aja."
 
-#: ../src/appointment.c:2509
+#: ../src/appointment.c:2517
 msgid "Before Start"
 msgstr "Enne algust"
 
-#: ../src/appointment.c:2509
+#: ../src/appointment.c:2517
 msgid "Before End"
 msgstr "Enne lõppu"
 
-#: ../src/appointment.c:2510
+#: ../src/appointment.c:2518
 msgid "After Start"
 msgstr "Pärast algust"
 
-#: ../src/appointment.c:2510
+#: ../src/appointment.c:2518
 msgid "After End"
 msgstr "Pärast lõppu"
 
-#: ../src/appointment.c:2515
+#: ../src/appointment.c:2523
 msgid "Alarm"
 msgstr "Alarm"
 
 #. **** ALARM TIME ****
-#: ../src/appointment.c:2521
+#: ../src/appointment.c:2529
 msgid "Alarm time"
 msgstr "Alarmi aeg"
 
-#: ../src/appointment.c:2545
-msgid "Often you want to get alarm:\n 1) before Event start\n 2) before Todo end\n 3) after Todo start"
-msgstr "Tavaliselt läheb sul alarmi vaja:\n 1) enne sündmuse algust\n 2) enne ülesande lõppu\n 3) pärast ülesande algust"
+#: ../src/appointment.c:2553
+msgid ""
+"Often you want to get alarm:\n"
+" 1) before Event start\n"
+" 2) before Todo end\n"
+" 3) after Todo start"
+msgstr ""
+"Tavaliselt läheb sul alarmi vaja:\n"
+" 1) enne sündmuse algust\n"
+" 2) enne ülesande lõppu\n"
+" 3) pärast ülesande algust"
 
-#: ../src/appointment.c:2550
+#: ../src/appointment.c:2558
 msgid "Persistent alarm"
 msgstr "Järjekindel alarm"
 
-#: ../src/appointment.c:2552
-msgid "Select this if you want Orage to remind you even if it has not been active when the alarm happened."
-msgstr "Valige juhul, kui soovite meeletuletust, isegi kui Orage ei olnud alarmi ajal aktiivne."
+#: ../src/appointment.c:2560
+msgid ""
+"Select this if you want Orage to remind you even if it has not been active "
+"when the alarm happened."
+msgstr ""
+"Valige juhul, kui soovite meeletuletust, isegi kui Orage ei olnud alarmi "
+"ajal aktiivne."
 
 #. **** Audio Alarm ****
-#: ../src/appointment.c:2561
+#: ../src/appointment.c:2569
 msgid "Sound"
 msgstr "Helin"
 
-#: ../src/appointment.c:2565 ../src/appointment.c:2686
+#: ../src/appointment.c:2573 ../src/appointment.c:2694
 msgid "Use"
 msgstr "Kasutada"
 
-#: ../src/appointment.c:2567
+#: ../src/appointment.c:2575
 msgid "Select this if you want audible alarm"
 msgstr "Valige juhul, kui soovite kuuldavat alarmi"
 
-#: ../src/appointment.c:2584
+#: ../src/appointment.c:2592
 msgid "Repeat alarm sound"
 msgstr "Korrata alarmi helinat"
 
-#: ../src/appointment.c:2600 ../src/appointment.c:2844
+#: ../src/appointment.c:2608 ../src/appointment.c:2852
 msgid "times"
 msgstr "kordi"
 
-#: ../src/appointment.c:2616
+#: ../src/appointment.c:2624
 msgid "sec interval"
 msgstr "ajavahemik sekundites"
 
 #. **** Display Alarm ****
-#: ../src/appointment.c:2626
+#: ../src/appointment.c:2634
 msgid "Visual"
 msgstr "Visuaalne"
 
-#: ../src/appointment.c:2630
+#: ../src/appointment.c:2638
 msgid "Use Orage window"
 msgstr "Kasutada Orage'i akent"
 
-#: ../src/appointment.c:2632
+#: ../src/appointment.c:2640
 msgid "Select this if you want Orage window alarm"
 msgstr "Valige juhul, kui soovite alarmi Orage'i aknas"
 
-#: ../src/appointment.c:2644
+#: ../src/appointment.c:2652
 msgid "Use notification"
 msgstr "Kasutada märguannet"
 
-#: ../src/appointment.c:2646
+#: ../src/appointment.c:2654
 msgid "Select this if you want notification alarm"
 msgstr "Valige juhul, kui soovite alarmi märguandena"
 
-#: ../src/appointment.c:2652
+#: ../src/appointment.c:2660
 msgid "Set timeout"
 msgstr "Määrata ajakatkestus"
 
-#: ../src/appointment.c:2655
+#: ../src/appointment.c:2663
 msgid "Select this if you want notification to expire automatically"
 msgstr "Valige juhul, kui soovite automaatselt aeguvat märguannet"
 
-#: ../src/appointment.c:2666
+#: ../src/appointment.c:2674
 msgid "0 = system default expiration time"
 msgstr "0 = süsteemi vaikimisi aegumisperiood"
 
-#: ../src/appointment.c:2671
+#: ../src/appointment.c:2679
 msgid "seconds"
 msgstr "sekundit"
 
 #. **** Procedure Alarm ****
-#: ../src/appointment.c:2682
+#: ../src/appointment.c:2690
 msgid "Procedure"
 msgstr "Toiming"
 
-#: ../src/appointment.c:2688
+#: ../src/appointment.c:2696
 msgid "Select this if you want procedure or script alarm"
 msgstr "Valige juhul, kui soovite protseduuri- või skriptialarmi"
 
-#: ../src/appointment.c:2694
-msgid "You must enter all escape etc characters yourself.\n This string is just given to shell to process"
-msgstr "Peate ise kõik katkestusmärgid jms. sisestama.\n Sõne edastatakse lihtsalt Shellile käsitlemiseks"
+#: ../src/appointment.c:2702
+msgid ""
+"You must enter all escape etc characters yourself.\n"
+" This string is just given to shell to process"
+msgstr ""
+"Peate ise kõik katkestusmärgid jms. sisestama.\n"
+" Sõne edastatakse lihtsalt Shellile käsitlemiseks"
 
 #. **** Default Alarm Settings ****
-#: ../src/appointment.c:2703
+#: ../src/appointment.c:2711
 msgid "Default alarm"
 msgstr "Vaikimisi alarm"
 
-#: ../src/appointment.c:2710
+#: ../src/appointment.c:2718
 msgid "Store current settings as default alarm"
 msgstr "Säilitada käesolevad seadistused vaikimisi alarmina"
 
-#: ../src/appointment.c:2715
+#: ../src/appointment.c:2723
 msgid "Set current settings from default alarm"
 msgstr "Määrata käesolevad seadistused vaikimisi alarmi põhjal"
 
-#: ../src/appointment.c:2772
+#: ../src/appointment.c:2780
 msgid "Daily"
 msgstr "Päeviti"
 
-#: ../src/appointment.c:2772
+#: ../src/appointment.c:2780
 msgid "Weekly"
 msgstr "Nädalati"
 
-#: ../src/appointment.c:2772
+#: ../src/appointment.c:2780
 msgid "Monthly"
 msgstr "Kuiselt"
 
-#: ../src/appointment.c:2772
+#: ../src/appointment.c:2780
 msgid "Yearly"
 msgstr "Aastati"
 
-#: ../src/appointment.c:2774
+#: ../src/appointment.c:2782
 msgid "Mon"
 msgstr "Esmp"
 
-#: ../src/appointment.c:2774
+#: ../src/appointment.c:2782
 msgid "Tue"
 msgstr "Teisip"
 
-#: ../src/appointment.c:2774
+#: ../src/appointment.c:2782
 msgid "Wed"
 msgstr "Kolmap"
 
-#: ../src/appointment.c:2774
+#: ../src/appointment.c:2782
 msgid "Thu"
 msgstr "Neljap"
 
-#: ../src/appointment.c:2774
+#: ../src/appointment.c:2782
 msgid "Fri"
 msgstr "Reede"
 
-#: ../src/appointment.c:2774
+#: ../src/appointment.c:2782
 msgid "Sat"
 msgstr "Laup"
 
-#: ../src/appointment.c:2774
+#: ../src/appointment.c:2782
 msgid "Sun"
 msgstr "Pühap"
 
-#: ../src/appointment.c:2778
+#: ../src/appointment.c:2786
 msgid "Recurrence"
 msgstr "Korduvus"
 
-#: ../src/appointment.c:2783
+#: ../src/appointment.c:2791
 msgid "Complexity"
 msgstr "Keerukus"
 
-#: ../src/appointment.c:2786
+#: ../src/appointment.c:2794
 msgid "Basic"
 msgstr "Algeline"
 
-#: ../src/appointment.c:2792
+#: ../src/appointment.c:2800
 msgid "Advanced"
 msgstr "Täpsem"
 
-#: ../src/appointment.c:2799
+#: ../src/appointment.c:2807
 msgid "Use this if you want regular repeating event"
 msgstr "Kasutada kui soovid regulaarselt korduvat sündmust"
 
-#: ../src/appointment.c:2801
-msgid "Use this if you need complex times like:\n Every Saturday and Sunday or \n First Tuesday every month"
-msgstr "Kasutada kui vajate keerukamaid aegu nagu:\n Iga laupäev ja pühapäev või \n Iga kuu esimene teisipäev"
+#: ../src/appointment.c:2809
+msgid ""
+"Use this if you need complex times like:\n"
+" Every Saturday and Sunday or \n"
+" First Tuesday every month"
+msgstr ""
+"Kasutada kui vajate keerukamaid aegu nagu:\n"
+" Iga laupäev ja pühapäev või \n"
+" Iga kuu esimene teisipäev"
 
-#: ../src/appointment.c:2804
+#: ../src/appointment.c:2812
 msgid "Frequency"
 msgstr "Sagedus"
 
-#: ../src/appointment.c:2810
+#: ../src/appointment.c:2818
 msgid "Each"
 msgstr "Iga"
 
-#: ../src/appointment.c:2817
+#: ../src/appointment.c:2825
 msgid "occurrence"
 msgstr "juhtum"
 
-#: ../src/appointment.c:2821
-msgid "Limit frequency to certain interval.\n For example: Every third day:\n Frequency = Daily and Interval = 3"
-msgstr "Piirata sagedus kindla vahemikuga.\n Näiteks: Iga kolmas päev:\n Sagedus = Iga päev ja Vahemik = 3"
+#: ../src/appointment.c:2829
+msgid ""
+"Limit frequency to certain interval.\n"
+" For example: Every third day:\n"
+" Frequency = Daily and Interval = 3"
+msgstr ""
+"Piirata sagedus kindla vahemikuga.\n"
+" Näiteks: Iga kolmas päev:\n"
+" Sagedus = Iga päev ja Vahemik = 3"
 
-#: ../src/appointment.c:2827
+#: ../src/appointment.c:2835
 msgid "Limit"
 msgstr "Piir"
 
-#: ../src/appointment.c:2829
+#: ../src/appointment.c:2837
 msgid "Repeat forever"
 msgstr "Korrata lõpmatult"
 
-#: ../src/appointment.c:2836
+#: ../src/appointment.c:2844
 msgid "Repeat "
 msgstr "Korrata "
 
-#: ../src/appointment.c:2853
+#: ../src/appointment.c:2861
 msgid "Repeat until "
 msgstr "Korrata kuni "
 
-#: ../src/appointment.c:2863
+#: ../src/appointment.c:2871
 msgid "Weekdays"
 msgstr "Nädalapäevad"
 
-#: ../src/appointment.c:2875
+#: ../src/appointment.c:2883
 msgid "Which day"
 msgstr "Milline päev"
 
-#: ../src/appointment.c:2883
-msgid "Specify which weekday for monthly and yearly events.\n For example:\n Second Wednesday each month:\n\tFrequency = Monthly,\n\tWeekdays = check only Wednesday,\n\tWhich day = select 2 from the number below Wednesday"
-msgstr "Määrake igakuustele- ja aastastele sündmustele nädalapäev.\n Näiteks:\n Iga kuu teine kolmapäev:\n\tSagedus = Iga kuu,\n\tNädalapäevad = vali ainult kolmapäev,\n\tMilline päev = vali kolmapäeva all olevast numbrist 2"
+#: ../src/appointment.c:2891
+msgid ""
+"Specify which weekday for monthly and yearly events.\n"
+" For example:\n"
+" Second Wednesday each month:\n"
+"\tFrequency = Monthly,\n"
+"\tWeekdays = check only Wednesday,\n"
+"\tWhich day = select 2 from the number below Wednesday"
+msgstr ""
+"Määrake igakuustele- ja aastastele sündmustele nädalapäev.\n"
+" Näiteks:\n"
+" Iga kuu teine kolmapäev:\n"
+"\tSagedus = Iga kuu,\n"
+"\tNädalapäevad = vali ainult kolmapäev,\n"
+"\tMilline päev = vali kolmapäeva all olevast numbrist 2"
 
 #. ********* View menu *********
 #. View menu
@@ -924,7 +1032,7 @@ msgid "Back"
 msgstr "Tagasi"
 
 #: ../src/day-view.c:326 ../src/event-list.c:1094 ../src/functions.c:132
-#: ../src/tray_icon.c:314
+#: ../src/tray_icon.c:330
 msgid "Today"
 msgstr "Täna"
 
@@ -945,11 +1053,11 @@ msgstr "Sulgeda"
 msgid "Unknown"
 msgstr "Tundmatu"
 
-#: ../src/day-view.c:694 ../src/parameters.c:650
+#: ../src/day-view.c:694 ../src/parameters.c:663
 msgid "Show"
 msgstr "Näidata"
 
-#: ../src/day-view.c:928
+#: ../src/day-view.c:931
 msgid "Orage - day view"
 msgstr "Orage - päevavaade"
 
@@ -971,8 +1079,12 @@ msgid "Click a row to select it and after that you can copy it."
 msgstr "Klõpsake veerul, et see välja valida, siis saate seda kopeerida."
 
 #: ../src/event-list.c:899
-msgid "You will permanently remove all\nselected appointments."
-msgstr "Kustutate jäädavalt kõik\nvalitud kohtumised."
+msgid ""
+"You will permanently remove all\n"
+"selected appointments."
+msgstr ""
+"Kustutate jäädavalt kõik\n"
+"valitud kohtumised."
 
 #: ../src/event-list.c:1103
 msgid "Find"
@@ -1007,8 +1119,32 @@ msgid "Title"
 msgstr "Pealkiri"
 
 #: ../src/event-list.c:1308
-msgid "Double click line to edit it.\n\nFlags in order:\n\t 1. Alarm: n=no alarm\n\t\t A=visual Alarm S=also Sound alarm\n\t 2. Recurrence: n=no recurrence\n\t\t D=Daily W=Weekly M=Monthly Y=Yearly\n\t 3. Type: f=free B=Busy\n\t 4. Located in file:\n\t\tO=Orage A=Archive F=Foreign\n\t 5. Appointment type:\n\t\tE=Event T=Todo J=Journal"
-msgstr "Rea toimetamiseks topeltklõpsake.\n\nJärjestatud valikud:\n\t 1. Alarm: n=Alarmi pole\n\t\t A=Nähtav alarm S=Ka helialarm\n\t 2. Kordumine: n=ei kordu\n\t\t D=Päevas W=Nädalas M=Kuus Y=Aastas\n\t 3. Liik: f=Vaba B=Hõivatud\n\t 4. Paikneb failis:\n\t\tO=Orage A=Arhiiv F=Väline\n\t 5. Kohtumise liik:\n\t\tE=Sündmus T=Ülesanne J=Päevik"
+msgid ""
+"Double click line to edit it.\n"
+"\n"
+"Flags in order:\n"
+"\t 1. Alarm: n=no alarm\n"
+"\t\t A=visual Alarm S=also Sound alarm\n"
+"\t 2. Recurrence: n=no recurrence\n"
+"\t\t D=Daily W=Weekly M=Monthly Y=Yearly\n"
+"\t 3. Type: f=free B=Busy\n"
+"\t 4. Located in file:\n"
+"\t\tO=Orage A=Archive F=Foreign\n"
+"\t 5. Appointment type:\n"
+"\t\tE=Event T=Todo J=Journal"
+msgstr ""
+"Rea toimetamiseks topeltklõpsake.\n"
+"\n"
+"Järjestatud valikud:\n"
+"\t 1. Alarm: n=Alarmi pole\n"
+"\t\t A=Nähtav alarm S=Ka helialarm\n"
+"\t 2. Kordumine: n=ei kordu\n"
+"\t\t D=Päevas W=Nädalas M=Kuus Y=Aastas\n"
+"\t 3. Liik: f=Vaba B=Hõivatud\n"
+"\t 4. Paikneb failis:\n"
+"\t\tO=Orage A=Arhiiv F=Väline\n"
+"\t 5. Kohtumise liik:\n"
+"\t\tE=Sündmus T=Ülesanne J=Päevik"
 
 #: ../src/functions.c:130
 msgid "Pick the date"
@@ -2566,105 +2702,107 @@ msgstr "Vaikne ookean/Wallis"
 msgid "Pacific/Yap"
 msgstr "Vaikne ookean/Yap"
 
-#: ../src/ical-code.c:1329
+#: ../src/ical-code.c:1330
 msgid "Orage default alarm"
 msgstr "Orage'i vaikimisi alarm"
 
-#: ../src/ical-code.c:3023
+#: ../src/ical-code.c:3024
 #, c-format
 msgid "Build alarm list: Added %d alarms. Processed %d events."
 msgstr "Alarmide loendi koostamine: Lisatud %d alarmi. Käideldud %d sündmust."
 
-#: ../src/ical-code.c:3025
+#: ../src/ical-code.c:3026
 #, c-format
-msgid "\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
-msgstr "\tLeitud %d alarmi, millest %d on aktiivsed. (Leitud %d korduvat alarmi.)"
+msgid ""
+"\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
+msgstr ""
+"\tLeitud %d alarmi, millest %d on aktiivsed. (Leitud %d korduvat alarmi.)"
 
 #. remove since it has ended
-#: ../src/ical-code.c:3542
+#: ../src/ical-code.c:3543
 msgid "\tRecur ended, moving to archive file."
 msgstr "\tKordamine läbi, liigutatakse arhiivifaili."
 
-#: ../src/ical-code.c:3604
+#: ../src/ical-code.c:3605
 msgid "Archiving not enabled. Exiting"
 msgstr "Arhiivimine pole lubatud. Väljumine"
 
-#: ../src/ical-code.c:3622
+#: ../src/ical-code.c:3623
 #, c-format
 msgid "Archiving threshold: %d month(s)"
 msgstr "Arhiivimise lävi: %d kuu(d)"
 
 #. yy mon day
-#: ../src/ical-code.c:3625
+#: ../src/ical-code.c:3626
 #, c-format
 msgid "\tArchiving events, which are older than: %04d-%02d-%02d"
 msgstr "\tSündmuste arhiveerimine, mis on vanemad kui: %04d-%02d-%02d"
 
-#: ../src/ical-code.c:3652
+#: ../src/ical-code.c:3653
 #, c-format
 msgid "Archiving uid: %s"
 msgstr "Arhiivimise uid: %s"
 
 #. VTODO not completed, do not archive
-#: ../src/ical-code.c:3658
+#: ../src/ical-code.c:3659
 msgid "\tVTODO not complete; not archived"
 msgstr "\tAGENDA pole lõpetatud; ei arhiveeritud"
 
 #. it is recurrent event
-#: ../src/ical-code.c:3663
+#: ../src/ical-code.c:3664
 #, c-format
 msgid "\tRecurring. End year: %04d, month: %02d, day: %02d"
 msgstr "\tKorduv. Lõpuaasta: %04d, -kuu: %02d, -päev: %02d"
 
-#: ../src/ical-code.c:3680
+#: ../src/ical-code.c:3681
 msgid "Archiving done\n"
 msgstr "Arhiivimine tehtud\n"
 
 #. PHASE 1: go through base orage file and remove "repeat" shortcuts
-#: ../src/ical-code.c:3696
+#: ../src/ical-code.c:3697
 msgid "Starting archive removal."
 msgstr "Arhiivieemalduse alustamine."
 
-#: ../src/ical-code.c:3697
+#: ../src/ical-code.c:3698
 msgid "\tPHASE 1: reset recurring appointments"
 msgstr "\t1. FAAS: korduvkohtumiste lähtestamine"
 
 #. PHASE 2: go through archive file and add everything back to base orage.
 #. * After that delete the whole arch file
-#: ../src/ical-code.c:3719
+#: ../src/ical-code.c:3720
 msgid "\tPHASE 2: return archived appointments"
 msgstr "\t2. FAAS: tagastada arhiveeritud kohtumised"
 
-#: ../src/ical-code.c:3745
+#: ../src/ical-code.c:3746
 msgid "Archive removal done\n"
 msgstr "Arhiivieemaldus valmis\n"
 
-#: ../src/ical-code.c:3835
+#: ../src/ical-code.c:3836
 msgid "Starting import file preprocessing"
 msgstr "Imporditud faili eelkäitluse alustamine"
 
-#: ../src/ical-code.c:3870
+#: ../src/ical-code.c:3871
 msgid "... Patched DCREATED to be CREATED."
 msgstr "... LUUAKSE paigatud DCREATED."
 
-#: ../src/ical-code.c:3909
+#: ../src/ical-code.c:3910
 msgid "... Patched timezone to Orage format."
 msgstr "... Ajavöönd paigati Orage'i vormingusse."
 
-#: ../src/ical-code.c:3918
+#: ../src/ical-code.c:3919
 msgid "Import file preprocessing done"
 msgstr "Imporditud faili eelkäitlus sai tehtud"
 
 #. show it
-#: ../src/ical-code.c:4506
+#: ../src/ical-code.c:4507
 msgid "Pick timezone"
 msgstr "Valige ajavöönd"
 
-#: ../src/ical-code.c:4509 ../src/ical-code.c:4537
+#: ../src/ical-code.c:4510 ../src/ical-code.c:4538
 msgid "UTC"
 msgstr "UTC"
 
-#: ../src/ical-code.c:4510 ../src/ical-code.c:4541 ../src/parameters.c:480
+#: ../src/ical-code.c:4511 ../src/ical-code.c:4542 ../src/parameters.c:493
 msgid "floating"
 msgstr "nihkuv"
 
@@ -2701,8 +2839,12 @@ msgid "Read from file:"
 msgstr "Lugeda failist:"
 
 #: ../src/interface.c:997
-msgid "Separate filenames with comma(,).\n NOTE: comma is not valid character in filenames for Orage."
-msgstr "Failinimed eraldatakse komaga(,).\n MÄRKUS: koma ei ole kehtiv tähemärk Orage'i failinimedes."
+msgid ""
+"Separate filenames with comma(,).\n"
+" NOTE: comma is not valid character in filenames for Orage."
+msgstr ""
+"Failinimed eraldatakse komaga(,).\n"
+" MÄRKUS: koma ei ole kehtiv tähemärk Orage'i failinimedes."
 
 #: ../src/interface.c:1002
 msgid "Export"
@@ -2725,12 +2867,20 @@ msgid "Named appointments: "
 msgstr "Nimetatud kohtumised: "
 
 #: ../src/interface.c:1056
-msgid "Note that only main file appointments are read.\nArchived and Foreign events are not exported."
-msgstr "Pange tähele, et kohtumisi loetakse ainult põhifailist.\nArhiveeritud ja väliseid nimesid ei ekspordita."
+msgid ""
+"Note that only main file appointments are read.\n"
+"Archived and Foreign events are not exported."
+msgstr ""
+"Pange tähele, et kohtumisi loetakse ainult põhifailist.\n"
+"Arhiveeritud ja väliseid nimesid ei ekspordita."
 
 #: ../src/interface.c:1059
-msgid "Note that only main file appointments are read.\nForeign events are not exported."
-msgstr "Pange tähele, et kohtumisi loetakse ainult põhifailist.\nVäliseid sündmuseid ei ekspordita."
+msgid ""
+"Note that only main file appointments are read.\n"
+"Foreign events are not exported."
+msgstr ""
+"Pange tähele, et kohtumisi loetakse ainult põhifailist.\n"
+"Väliseid sündmuseid ei ekspordita."
 
 #: ../src/interface.c:1062
 msgid "You can easily drag these from event-list window."
@@ -2758,8 +2908,16 @@ msgid "Revert archive now"
 msgstr "Tühistada arhiiv kohe"
 
 #: ../src/interface.c:1101
-msgid "Return all archived events into main orage file and remove arch file.\nThis is usefull for example when doing export and moving orage\nappointments to another system."
-msgstr "Tagastada kõik arhiveeritud sündmused Orage'i põhifaili ja eemalda arhiivifail.\nSee on kasulik näiteks Orage'i kohtumiste eksportimisel\nvõi teise süsteemi liigutamisel."
+#, fuzzy
+msgid ""
+"Return all archived events into main orage file and remove arch file.\n"
+"This is useful for example when doing export and moving orage\n"
+"appointments to another system."
+msgstr ""
+"Tagastada kõik arhiveeritud sündmused Orage'i põhifaili ja eemalda "
+"arhiivifail.\n"
+"See on kasulik näiteks Orage'i kohtumiste eksportimisel\n"
+"või teise süsteemi liigutamisel."
 
 #: ../src/interface.c:1111
 msgid "Orage files"
@@ -2786,8 +2944,14 @@ msgid "Rename"
 msgstr "Nimetada ümber"
 
 #: ../src/interface.c:1153
-msgid "Orage internal file rename only.\nDoes not touch external filesystem at all.\nNew file must exist."
-msgstr "Ainult Orage'i sisefaili nime muutmine.\nEi mõjuta mingil määral välist failisüsteemi.\nUus fail peab olemas olema."
+msgid ""
+"Orage internal file rename only.\n"
+"Does not touch external filesystem at all.\n"
+"New file must exist."
+msgstr ""
+"Ainult Orage'i sisefaili nime muutmine.\n"
+"Ei mõjuta mingil määral välist failisüsteemi.\n"
+"Uus fail peab olemas olema."
 
 #: ../src/interface.c:1157 ../src/interface.c:1220
 msgid "Copy"
@@ -2830,8 +2994,15 @@ msgid "Read only"
 msgstr "Ainult lugemiseks"
 
 #: ../src/interface.c:1286
-msgid "Set this if you want to make sure that this file is never modified by Orage.\nNote that modifying foreign files may make them incompatible with the original tool, where they came from!"
-msgstr "Valige, kui soovite veenduda, et Orage ei muudaks kunagi seda faili.\nPanna tähele, et välisfailide muutmine võib need muuta kasutuskõlbmatuks algsetes vahendites, kust need pärinevad!"
+msgid ""
+"Set this if you want to make sure that this file is never modified by "
+"Orage.\n"
+"Note that modifying foreign files may make them incompatible with the "
+"original tool, where they came from!"
+msgstr ""
+"Valige, kui soovite veenduda, et Orage ei muudaks kunagi seda faili.\n"
+"Panna tähele, et välisfailide muutmine võib need muuta kasutuskõlbmatuks "
+"algsetes vahendites, kust need pärinevad!"
 
 #: ../src/interface.c:1300
 msgid "Exchange data - Orage"
@@ -2839,8 +3010,12 @@ msgstr "Andmevahetus - Orage"
 
 #: ../src/main.c:192
 #, c-format
-msgid "\tThis is %s version %s for Xfce %s\n\n"
-msgstr "\tSee on %s versioon %s Xfce-le %s\n\n"
+msgid ""
+"\tThis is %s version %s for Xfce %s\n"
+"\n"
+msgstr ""
+"\tSee on %s versioon %s Xfce-le %s\n"
+"\n"
 
 #: ../src/main.c:194
 #, c-format
@@ -2878,8 +3053,8 @@ msgid "\tNot using libnotify.\n"
 msgstr "\tEi kasutata libnotify'd.\n"
 
 #: ../src/main.c:210
-#, c-format
-msgid "\tUsing automatic archving.\n"
+#, fuzzy, c-format
+msgid "\tUsing automatic archiving.\n"
 msgstr "\tKasutatakse automaatset arhiveerimist.\n"
 
 #: ../src/main.c:212
@@ -2889,8 +3064,12 @@ msgstr "\tArhiveerimist ei kasutata.\n"
 
 #: ../src/main.c:225
 #, c-format
-msgid "Usage: orage [options] [files]\n\n"
-msgstr "Kasutamine: orage [valikud] [failid]\n\n"
+msgid ""
+"Usage: orage [options] [files]\n"
+"\n"
+msgstr ""
+"Kasutamine: orage [valikud] [failid]\n"
+"\n"
 
 #: ../src/main.c:226
 #, c-format
@@ -2939,13 +3118,23 @@ msgstr "\torage ei sisalda dbusi. \n"
 
 #: ../src/main.c:237
 #, c-format
-msgid "\twithout dbus [files] and foreign file options(-a & -r) can only be used when starting orage \n"
-msgstr "\tilma dbus-ita [failid] ja välisfailide valikuteta saab orage'i käivitamisel kaustada ainult (-a ja -r) \n"
+msgid ""
+"\twithout dbus [files] and foreign file options(-a & -r) can only be used "
+"when starting orage \n"
+msgstr ""
+"\tilma dbus-ita [failid] ja välisfailide valikuteta saab orage'i "
+"käivitamisel kaustada ainult (-a ja -r) \n"
 
-#: ../src/main.c:380
+#: ../src/main.c:381
 #, c-format
-msgid "\nUnknown option %s\n\n"
-msgstr "\nTundmatu valik %s\n\n"
+msgid ""
+"\n"
+"Unknown option %s\n"
+"\n"
+msgstr ""
+"\n"
+"Tundmatu valik %s\n"
+"\n"
 
 #: ../src/mainbox.c:269
 msgid "_Exchange data"
@@ -2979,13 +3168,35 @@ msgstr "Mitte kunagi"
 
 #: ../src/mainbox.c:406
 #, c-format
-msgid "Title: %s\n Start:\t%s\n Due:\t%s\n Done:\t%s\nNote:\n%s"
-msgstr "Pealkiri: %s\n Algus:\t%s\n Tähtaeg:\t%s\n Tehtud:\t%s\nMärkus:\n%s"
+msgid ""
+"Title: %s\n"
+" Start:\t%s\n"
+" Due:\t%s\n"
+" Done:\t%s\n"
+"Note:\n"
+"%s"
+msgstr ""
+"Pealkiri: %s\n"
+" Algus:\t%s\n"
+" Tähtaeg:\t%s\n"
+" Tehtud:\t%s\n"
+"Märkus:\n"
+"%s"
 
 #: ../src/mainbox.c:412
 #, c-format
-msgid "Title: %s\n Start:\t%s\n End:\t%s\n Note:\n%s"
-msgstr "Pealkiri: %s\n Algus:\t%s\n Lõpp:\t%s\n Märkus:\n%s"
+msgid ""
+"Title: %s\n"
+" Start:\t%s\n"
+" End:\t%s\n"
+" Note:\n"
+"%s"
+msgstr ""
+"Pealkiri: %s\n"
+" Algus:\t%s\n"
+" Lõpp:\t%s\n"
+" Märkus:\n"
+"%s"
 
 #: ../src/mainbox.c:487
 msgid "<b>To do:</b>"
@@ -2996,165 +3207,197 @@ msgstr "<b>Agenda:</b>"
 msgid "<b>Events for %s:</b>"
 msgstr "<b>%s sündmused:</b>"
 
-#: ../src/parameters.c:460
+#: ../src/parameters.c:473
 msgid "Main setups"
 msgstr "Põhiseadistused"
 
-#: ../src/parameters.c:466
+#: ../src/parameters.c:479
 msgid "Timezone"
 msgstr "Ajavöönd"
 
-#: ../src/parameters.c:485
+#: ../src/parameters.c:498
 msgid "You should always define your local timezone."
 msgstr "Peaksite alati oma kohaliku ajavööndi defineerima."
 
-#: ../src/parameters.c:494
+#: ../src/parameters.c:507
 msgid "Archive threshold (months)"
 msgstr "Arhiveerimise lävi (kuudes)"
 
-#: ../src/parameters.c:504
+#: ../src/parameters.c:517
 msgid "(0 = no archiving)"
 msgstr "(0 = ei arhiveerita)"
 
-#: ../src/parameters.c:507
+#: ../src/parameters.c:520
 msgid "Archiving is used to save time and space when handling events."
-msgstr "Arhiveerimist kasutatakse aja ja ruumi säästmiseks sündmuste käsitlemisel."
+msgstr ""
+"Arhiveerimist kasutatakse aja ja ruumi säästmiseks sündmuste käsitlemisel."
 
-#: ../src/parameters.c:516
+#: ../src/parameters.c:529
 msgid "Sound command"
 msgstr "Heli käsk"
 
-#: ../src/parameters.c:531
+#: ../src/parameters.c:544
 msgid "This command is given to shell to make sound in alarms."
 msgstr "See käsk edastatakse Shellile, et alarmides heli tekitada."
 
-#: ../src/parameters.c:546
+#: ../src/parameters.c:559
 msgid "Display"
 msgstr "Ekraan"
 
-#: ../src/parameters.c:553
+#: ../src/parameters.c:566
 msgid "Calendar main window"
 msgstr "Kalendri põhiaken"
 
-#: ../src/parameters.c:558
+#: ../src/parameters.c:571
 msgid "Show borders"
 msgstr "Näidata raame"
 
-#: ../src/parameters.c:565
+#: ../src/parameters.c:578
 msgid "Show menu"
 msgstr "Näidata menüüd"
 
-#: ../src/parameters.c:572
+#: ../src/parameters.c:585
 msgid "Show todo list"
 msgstr "Näidata agendat"
 
-#: ../src/parameters.c:579
+#: ../src/parameters.c:592
 msgid "Show event list"
 msgstr "Näidata sündmuste loendit"
 
-#: ../src/parameters.c:586
+#: ../src/parameters.c:599
 msgid "Set sticked"
 msgstr "Määrata kinnistatuks"
 
-#: ../src/parameters.c:593
+#: ../src/parameters.c:606
 msgid "Set on top"
 msgstr "Määrata pealmiseks"
 
-#: ../src/parameters.c:614
+#: ../src/parameters.c:627
 msgid "Show in taskbar"
 msgstr "Näidata tegumiribal"
 
-#: ../src/parameters.c:621
+#: ../src/parameters.c:634
 msgid "Show in pager"
 msgstr "Näidata piiparis"
 
-#: ../src/parameters.c:628
+#: ../src/parameters.c:641
 msgid "Show in systray"
 msgstr "Näidata teatealas"
 
-#: ../src/parameters.c:645
+#: ../src/parameters.c:658
 msgid "Calendar start"
 msgstr "Kalendri algus"
 
-#: ../src/parameters.c:662
+#: ../src/parameters.c:675
 msgid "Hide"
 msgstr "Peita"
 
-#: ../src/parameters.c:674
+#: ../src/parameters.c:687
 msgid "Minimized"
 msgstr "Minimeeritud"
 
-#: ../src/parameters.c:704
+#: ../src/parameters.c:717
 msgid "Extra setups"
 msgstr "Lisaseadistused"
 
-#: ../src/parameters.c:711 ../src/parameters.c:716
+#: ../src/parameters.c:724 ../src/parameters.c:729
 msgid "Select always today"
 msgstr "Alati selekteerida tänane päev"
 
-#: ../src/parameters.c:722
-msgid "When showing main calendar, set pointer to either previously selected day or always to current day."
-msgstr "Näidates peakalendrit, määratakse osuti kas eelnevalt välja valitud päevale, või alati käesolevale päevale."
+#: ../src/parameters.c:735
+msgid ""
+"When showing main calendar, set pointer to either previously selected day or "
+"always to current day."
+msgstr ""
+"Näidates peakalendrit, määratakse osuti kas eelnevalt välja valitud päevale, "
+"või alati käesolevale päevale."
 
-#: ../src/parameters.c:753
+#: ../src/parameters.c:766
 msgid "Dynamic icon size"
 msgstr "Dünaamiline ikoonisuurus"
 
-#: ../src/parameters.c:766 ../src/parameters.c:783
+#: ../src/parameters.c:779 ../src/parameters.c:796
 msgid "(0 = use static icon)"
 msgstr "(0 = kasutada staatilist ikooni)"
 
-#: ../src/parameters.c:769
-msgid "Dynamic icon shows current day and month. It is visible only in tray. If tray is too small for dynamic icon size, Orage switches automatically back to static icon."
-msgstr "Dünaamiline ikoon näitab käesolevat päeva ja kuud. Seda näeb ainult salvest. Kui salv on dünaamilise ikoonisuuruse jaoks liiga pisike, siis Orage lülitab staatilise ikooni uuesti sisse."
+#: ../src/parameters.c:782
+msgid ""
+"Dynamic icon shows current day and month. It is visible only in tray. If "
+"tray is too small for dynamic icon size, Orage switches automatically back "
+"to static icon."
+msgstr ""
+"Dünaamiline ikoon näitab käesolevat päeva ja kuud. Seda näeb ainult salvest. "
+"Kui salv on dünaamilise ikoonisuuruse jaoks liiga pisike, siis Orage lülitab "
+"staatilise ikooni uuesti sisse."
 
-#: ../src/parameters.c:792
+#: ../src/parameters.c:805
 msgid "Main Calendar double click shows"
 msgstr "Topeltklõpsates põhikalendrile näidatakse"
 
-#: ../src/parameters.c:797
+#: ../src/parameters.c:810
 msgid "Days view"
 msgstr "Päevavaade"
 
-#: ../src/parameters.c:809
+#: ../src/parameters.c:822
 msgid "Event list"
 msgstr "Sündmuste loend"
 
-#: ../src/parameters.c:834
+#: ../src/parameters.c:847
 msgid "Orage Preferences"
 msgstr "Orage'i seadistused"
+
+#: ../src/parameters.c:1019
+msgid "First Orage start. Searching default timezone."
+msgstr ""
+
+#: ../src/parameters.c:1038
+#, fuzzy, c-format
+msgid "Default timezone set to %s."
+msgstr "määrata ajavööndiks:"
+
+#: ../src/parameters.c:1041
+msgid "Default timezone not found, please, set it manually."
+msgstr ""
 
 #: ../src/reminder.c:425
 msgid "Reminder "
 msgstr "Meeldetuletus "
 
-#: ../src/reminder.c:442
+#: ../src/reminder.c:449
 msgid "Open"
 msgstr "Avada"
 
-#: ../src/reminder.c:532
+#: ../src/reminder.c:539
 msgid "Reminder - Orage"
 msgstr "Meeldetuletus - Orage"
 
-#: ../src/reminder.c:832
+#: ../src/reminder.c:844
 msgid "Next active alarms:"
 msgstr "Järgmised aktiivsed alarmid:"
 
-#: ../src/reminder.c:860
+#: ../src/reminder.c:872
 #, c-format
-msgid "\n%02d d %02d h %02d min to: %s"
-msgstr "\n%02d p %02d t %02d min kuni: %s"
+msgid ""
+"\n"
+"%02d d %02d h %02d min to: %s"
+msgstr ""
+"\n"
+"%02d p %02d t %02d min kuni: %s"
 
-#: ../src/reminder.c:868
+#: ../src/reminder.c:880
 #, c-format
-msgid "\nNo active alarms found"
-msgstr "\nAktiivseid alarme ei leitud"
+msgid ""
+"\n"
+"No active alarms found"
+msgstr ""
+"\n"
+"Aktiivseid alarme ei leitud"
 
-#: ../src/tray_icon.c:325
+#: ../src/tray_icon.c:341
 msgid "New appointment"
 msgstr "Uus kohtumine"
 
-#: ../src/tray_icon.c:345
+#: ../src/tray_icon.c:361
 msgid "About Orage"
 msgstr "Orage'i teave"
 
@@ -3167,22 +3410,22 @@ msgid "What time and date is it?"
 msgstr "Mis aeg on?"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:1
-msgid "Calendar Settings"
-msgstr "Kalendri seaded"
-
-#: ../plugin/xfce-xfcalendar-settings.desktop.in.h:2
-msgid "Settings for the Xfce 4 Calendar Application"
-msgstr "Xfce 4 kalendri seaded"
-
-#: ../plugin/xfce-xfcalendar-settings.desktop.in.h:3
-msgid "Xfce 4 Calendar Settings"
-msgstr "Xfce 4 kalendri seaded"
-
 #: ../xfcalendar.desktop.in.h:1
 msgid "Calendar"
 msgstr "Kalender"
 
+#: ../plugin/xfce-xfcalendar-settings.desktop.in.h:2
+msgid "Calendar Settings"
+msgstr "Kalendri seaded"
+
+#: ../plugin/xfce-xfcalendar-settings.desktop.in.h:3
+msgid "Settings for the Xfce 4 Calendar Application"
+msgstr "Xfce 4 kalendri seaded"
+
+#: ../plugin/xfce-xfcalendar-settings.desktop.in.h:4
+msgid "Xfce 4 Calendar Settings"
+msgstr "Xfce 4 kalendri seaded"
+
 #: ../xfcalendar.desktop.in.h:2
 msgid "Desktop calendar"
 msgstr "Töölaua kalender"
-

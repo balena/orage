@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: orage\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-27 23:53+0300\n"
+"POT-Creation-Date: 2008-11-11 09:18+0200\n"
 "PO-Revision-Date: 2007-11-01 18:25+0500\n"
 "Last-Translator: Muhammad Ali Makki <makki.ma@gmai.com>\n"
 "Language-Team: urdu <makki.ma@gmail.com>\n"
@@ -322,73 +322,87 @@ msgstr ""
 "لوکل ٹائم زون لکھیں. (یہ دیکھنے کے لیے استعمال ہوتا ہے کہ کیا وقت سابقہ (-) "
 "یا اگلی تاریخ (+) پر ہے، اس کے لیے وقت کے بعد +/- لکھیں)"
 
-#: ../panel-plugin/oc_config.c:193
+#: ../panel-plugin/oc_config.c:199
 msgid "Appearance"
 msgstr "مظہر"
 
 #. show frame
-#: ../panel-plugin/oc_config.c:204
+#: ../panel-plugin/oc_config.c:210
 msgid "Show _frame"
 msgstr "_فریم دکھائیں"
 
 #. foreground color
-#: ../panel-plugin/oc_config.c:214
+#: ../panel-plugin/oc_config.c:220
 msgid "set foreground _color:"
 msgstr "پیش من_ظر رنگ:"
 
 #. background color
-#: ../panel-plugin/oc_config.c:228
+#: ../panel-plugin/oc_config.c:234
 msgid "set _background color:"
 msgstr "پ_س منظر رنگ:"
 
 #. clock size (=vbox size): height and width
-#: ../panel-plugin/oc_config.c:242
+#: ../panel-plugin/oc_config.c:248
 msgid "set _height:"
 msgstr "اونچائی:"
 
-#: ../panel-plugin/oc_config.c:254
+#: ../panel-plugin/oc_config.c:260
 msgid "set _width:"
 msgstr "چوڑائی:"
 
-#: ../panel-plugin/oc_config.c:275
+#: ../panel-plugin/oc_config.c:281
 msgid "Clock Options"
 msgstr "گھڑے کے آپشن"
 
 #. timezone
-#: ../panel-plugin/oc_config.c:286
+#: ../panel-plugin/oc_config.c:292
 msgid "set timezone to:"
 msgstr "ٹائم زون:"
 
-#: ../panel-plugin/oc_config.c:295
+#: ../panel-plugin/oc_config.c:301
 msgid "Set any valid timezone (=TZ) value or pick one from the list."
 msgstr ""
 "کوئی بھی ٹائم زون ویلیو (=TZ) مرتب کریں یا فہرست میں سے ایک منتخب کریں."
 
 #. line 1
-#: ../panel-plugin/oc_config.c:304
+#: ../panel-plugin/oc_config.c:310
 msgid "show line _1:"
 msgstr "لائن _1 ظاہر کریں:"
 
-#: ../panel-plugin/oc_config.c:315
+#: ../panel-plugin/oc_config.c:321
 msgid "Enter any valid strftime function parameter."
 msgstr "کوئی بھی موزوں strftime فنگشن پیرامیٹر لکھیں."
 
 #. line 2
-#: ../panel-plugin/oc_config.c:331
+#: ../panel-plugin/oc_config.c:337
 msgid "show line _2:"
 msgstr "لائن _2 ظاہر کریں:"
 
 #. line 3
-#: ../panel-plugin/oc_config.c:353
+#: ../panel-plugin/oc_config.c:359
 msgid "show line _3:"
 msgstr "لائن _3 ظاہر کریں:"
 
 #. Tooltip hint
-#: ../panel-plugin/oc_config.c:375
+#: ../panel-plugin/oc_config.c:381
 msgid "Tooltip:"
 msgstr "ٹول ٹپ:"
 
-#: ../panel-plugin/oc_config.c:392
+#. special timing for SUSPEND/HIBERNATE
+#: ../panel-plugin/oc_config.c:391
+msgid "fix time after suspend/hibernate"
+msgstr ""
+
+#: ../panel-plugin/oc_config.c:395
+msgid ""
+"You only need this if you do short term (less than 5 hours) suspend or "
+"hibernate and your visible time does not include seconds. Under these "
+"circumstances it is possible that Orageclock shows time inaccurately unless "
+"you have this selected. (Selecting this prevents cpu and interrupt saving "
+"features from working.)"
+msgstr ""
+
+#: ../panel-plugin/oc_config.c:407
 msgid ""
 "This program uses strftime function to get time.\n"
 "Use any valid code to get time in the format you prefer.\n"
@@ -407,11 +421,11 @@ msgstr ""
 "\t%H = hours \t\t\t\t%M = minute\n"
 "\t%X = local time\t\t\t%x = local date"
 
-#: ../panel-plugin/oc_config.c:416
+#: ../panel-plugin/oc_config.c:430
 msgid "Properties"
 msgstr "خصوصیات"
 
-#: ../panel-plugin/oc_config.c:431
+#: ../panel-plugin/oc_config.c:445
 msgid "Orage clock"
 msgstr "Orage گھڑی"
 
@@ -424,7 +438,7 @@ msgstr "Orage گھڑی"
 #. * %Y  : four digit year
 #. * %V  : ISO week number
 #.
-#: ../panel-plugin/orageclock.c:641
+#: ../panel-plugin/orageclock.c:596
 msgid "%A %d %B %Y/%V"
 msgstr "%A %d %B %Y/%V"
 
@@ -470,7 +484,7 @@ msgstr "کیلینڈر"
 
 #. to avoid timing problems when updating entry
 #. Create file chooser
-#: ../src/appointment.c:651 ../src/interface.c:277 ../src/parameters.c:383
+#: ../src/appointment.c:651 ../src/interface.c:277 ../src/parameters.c:384
 msgid "Select a file..."
 msgstr "فائل منتخب کریں..."
 
@@ -645,7 +659,7 @@ msgid "Title "
 msgstr "عنوان"
 
 #. location
-#: ../src/appointment.c:2301 ../src/ical-code.c:4495 ../src/ical-code.c:4500
+#: ../src/appointment.c:2301 ../src/ical-code.c:4496 ../src/ical-code.c:4501
 msgid "Location"
 msgstr "مقام"
 
@@ -1041,7 +1055,7 @@ msgstr "بند کریں"
 msgid "Unknown"
 msgstr ""
 
-#: ../src/day-view.c:694 ../src/parameters.c:662
+#: ../src/day-view.c:694 ../src/parameters.c:663
 msgid "Show"
 msgstr "ظاہر کریں"
 
@@ -2695,16 +2709,16 @@ msgstr "پیسیفک/والس"
 msgid "Pacific/Yap"
 msgstr "پیسیفک/یاپ"
 
-#: ../src/ical-code.c:1329
+#: ../src/ical-code.c:1330
 msgid "Orage default alarm"
 msgstr "Orage کا طے شدہ الارم"
 
-#: ../src/ical-code.c:3023
+#: ../src/ical-code.c:3024
 #, c-format
 msgid "Build alarm list: Added %d alarms. Processed %d events."
 msgstr "الارم فہرست بنائیں: %d الارم شامل کیے گئے %d واقعات کی عمل کاری ہوئی."
 
-#: ../src/ical-code.c:3025
+#: ../src/ical-code.c:3026
 #, c-format
 msgid ""
 "\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
@@ -2713,90 +2727,90 @@ msgstr ""
 "گئے)"
 
 #. remove since it has ended
-#: ../src/ical-code.c:3542
+#: ../src/ical-code.c:3543
 msgid "\tRecur ended, moving to archive file."
 msgstr "\tRecur ختم، محفوظہ فائل میں منتقل کیا جارہا ہے."
 
-#: ../src/ical-code.c:3604
+#: ../src/ical-code.c:3605
 msgid "Archiving not enabled. Exiting"
 msgstr "محفوظہ فعال نہیں ہے. بند کیا جارہا ہے"
 
-#: ../src/ical-code.c:3622
+#: ../src/ical-code.c:3623
 #, c-format
 msgid "Archiving threshold: %d month(s)"
 msgstr "Archiving threshold: %d مہینہ/مہینے"
 
 #. yy mon day
-#: ../src/ical-code.c:3625
+#: ../src/ical-code.c:3626
 #, c-format
 msgid "\tArchiving events, which are older than: %04d-%02d-%02d"
 msgstr "\t%04d-%02d-%02d سے پرانے واقعات محفوظہ میں محفوظ کیے جارہے ہیں"
 
-#: ../src/ical-code.c:3652
+#: ../src/ical-code.c:3653
 #, c-format
 msgid "Archiving uid: %s"
 msgstr "محفوظہ میں محفوظ کیے جارہے ہیں uid: %s"
 
 #. VTODO not completed, do not archive
-#: ../src/ical-code.c:3658
+#: ../src/ical-code.c:3659
 msgid "\tVTODO not complete; not archived"
 msgstr "\tبرائے ادا مکمل نہیں، محفوظہ میں محفوظ نہیں کیے جائیں گے"
 
 #. it is recurrent event
-#: ../src/ical-code.c:3663
+#: ../src/ical-code.c:3664
 #, c-format
 msgid "\tRecurring. End year: %04d, month: %02d, day: %02d"
 msgstr "\tRecurring اختتام سال: %04d، مہینہ: %02d، دن: %02d"
 
-#: ../src/ical-code.c:3680
+#: ../src/ical-code.c:3681
 msgid "Archiving done\n"
 msgstr "محفوظہ میں محفوظگی مکمل\n"
 
 #. PHASE 1: go through base orage file and remove "repeat" shortcuts
-#: ../src/ical-code.c:3696
+#: ../src/ical-code.c:3697
 msgid "Starting archive removal."
 msgstr "محفوظہ حذف کرنا شروع کیا جارہا ہے"
 
-#: ../src/ical-code.c:3697
+#: ../src/ical-code.c:3698
 msgid "\tPHASE 1: reset recurring appointments"
 msgstr "\tPHASE 1: reset recurring appointments"
 
 #. PHASE 2: go through archive file and add everything back to base orage.
 #. * After that delete the whole arch file
-#: ../src/ical-code.c:3719
+#: ../src/ical-code.c:3720
 msgid "\tPHASE 2: return archived appointments"
 msgstr "\tPHASE 2: return archived appointments"
 
-#: ../src/ical-code.c:3745
+#: ../src/ical-code.c:3746
 msgid "Archive removal done\n"
 msgstr "محفوظہ کی حذف کاری مکمل\n"
 
-#: ../src/ical-code.c:3835
+#: ../src/ical-code.c:3836
 msgid "Starting import file preprocessing"
 msgstr ""
 
-#: ../src/ical-code.c:3870
+#: ../src/ical-code.c:3871
 msgid "... Patched DCREATED to be CREATED."
 msgstr ""
 
-#: ../src/ical-code.c:3909
+#: ../src/ical-code.c:3910
 msgid "... Patched timezone to Orage format."
 msgstr ""
 
-#: ../src/ical-code.c:3918
+#: ../src/ical-code.c:3919
 msgid "Import file preprocessing done"
 msgstr ""
 
 #. show it
-#: ../src/ical-code.c:4506
+#: ../src/ical-code.c:4507
 msgid "Pick timezone"
 msgstr "ٹائم زون اٹھائیں"
 
-#: ../src/ical-code.c:4509 ../src/ical-code.c:4537
+#: ../src/ical-code.c:4510 ../src/ical-code.c:4538
 msgid "UTC"
 msgstr "UTC"
 
-#: ../src/ical-code.c:4510 ../src/ical-code.c:4541 ../src/parameters.c:492
+#: ../src/ical-code.c:4511 ../src/ical-code.c:4542 ../src/parameters.c:493
 msgid "floating"
 msgstr "فلوٹنگ"
 
@@ -3117,7 +3131,7 @@ msgstr ""
 "\tبغیر dbus [فائلیں] اور اجنبی فائل اختیارات(-a اور -r) صرف orage کو چلانے "
 "پر استعمال کی جاسکتی ہیں \n"
 
-#: ../src/main.c:380
+#: ../src/main.c:381
 #, c-format
 msgid ""
 "\n"
@@ -3190,141 +3204,154 @@ msgstr ""
 msgid "<b>Events for %s:</b>"
 msgstr ""
 
-#: ../src/parameters.c:472
+#: ../src/parameters.c:473
 msgid "Main setups"
 msgstr "مین سیٹ اپ"
 
-#: ../src/parameters.c:478
+#: ../src/parameters.c:479
 msgid "Timezone"
 msgstr "ٹائم زون"
 
-#: ../src/parameters.c:497
+#: ../src/parameters.c:498
 msgid "You should always define your local timezone."
 msgstr ""
 
-#: ../src/parameters.c:506
+#: ../src/parameters.c:507
 msgid "Archive threshold (months)"
 msgstr "محفوظہ threshold (مہینے)"
 
-#: ../src/parameters.c:516
+#: ../src/parameters.c:517
 msgid "(0 = no archiving)"
 msgstr "(0 = محفوظگی نہیں)"
 
-#: ../src/parameters.c:519
+#: ../src/parameters.c:520
 msgid "Archiving is used to save time and space when handling events."
 msgstr ""
 
-#: ../src/parameters.c:528
+#: ../src/parameters.c:529
 msgid "Sound command"
 msgstr "صوتی کمانڈ"
 
-#: ../src/parameters.c:543
+#: ../src/parameters.c:544
 msgid "This command is given to shell to make sound in alarms."
 msgstr ""
 
-#: ../src/parameters.c:558
+#: ../src/parameters.c:559
 msgid "Display"
 msgstr "ڈسپلے"
 
-#: ../src/parameters.c:565
+#: ../src/parameters.c:566
 msgid "Calendar main window"
 msgstr "کیلینڈر کی مین ونڈو"
 
-#: ../src/parameters.c:570
+#: ../src/parameters.c:571
 msgid "Show borders"
 msgstr "بارڈر دکھائیں"
 
-#: ../src/parameters.c:577
+#: ../src/parameters.c:578
 msgid "Show menu"
 msgstr "مینیو دکھائیں"
 
-#: ../src/parameters.c:584
+#: ../src/parameters.c:585
 #, fuzzy
 msgid "Show todo list"
 msgstr "بارڈر دکھائیں"
 
-#: ../src/parameters.c:591
+#: ../src/parameters.c:592
 #, fuzzy
 msgid "Show event list"
 msgstr "واقعہ"
 
-#: ../src/parameters.c:598
+#: ../src/parameters.c:599
 msgid "Set sticked"
 msgstr "چپکا ہوا سیٹ کریں"
 
-#: ../src/parameters.c:605
+#: ../src/parameters.c:606
 msgid "Set on top"
 msgstr "ٹاپ پر سیٹ کریں"
 
-#: ../src/parameters.c:626
+#: ../src/parameters.c:627
 msgid "Show in taskbar"
 msgstr "ٹاسک بار میں دکھائیں"
 
-#: ../src/parameters.c:633
+#: ../src/parameters.c:634
 msgid "Show in pager"
 msgstr "پیجر میں دکھائیں"
 
-#: ../src/parameters.c:640
+#: ../src/parameters.c:641
 msgid "Show in systray"
 msgstr "نظام کی ٹرے میں دکھائیں"
 
-#: ../src/parameters.c:657
+#: ../src/parameters.c:658
 msgid "Calendar start"
 msgstr "کیلنڈر شروعات"
 
-#: ../src/parameters.c:674
+#: ../src/parameters.c:675
 msgid "Hide"
 msgstr "چھپائیں"
 
-#: ../src/parameters.c:686
+#: ../src/parameters.c:687
 msgid "Minimized"
 msgstr "چھوٹا کریں"
 
-#: ../src/parameters.c:716
+#: ../src/parameters.c:717
 msgid "Extra setups"
 msgstr "اضافی ترتیبات"
 
-#: ../src/parameters.c:723 ../src/parameters.c:728
+#: ../src/parameters.c:724 ../src/parameters.c:729
 msgid "Select always today"
 msgstr "ہمیشہ آج منتخب کریں"
 
-#: ../src/parameters.c:734
+#: ../src/parameters.c:735
 msgid ""
 "When showing main calendar, set pointer to either previously selected day or "
 "always to current day."
 msgstr ""
 
-#: ../src/parameters.c:765
+#: ../src/parameters.c:766
 msgid "Dynamic icon size"
 msgstr "متحرک آئکن حجم"
 
-#: ../src/parameters.c:778 ../src/parameters.c:795
+#: ../src/parameters.c:779 ../src/parameters.c:796
 msgid "(0 = use static icon)"
 msgstr "(0 = ثابت آئکن استعمال کریں)"
 
-#: ../src/parameters.c:781
+#: ../src/parameters.c:782
 msgid ""
 "Dynamic icon shows current day and month. It is visible only in tray. If "
 "tray is too small for dynamic icon size, Orage switches automatically back "
 "to static icon."
 msgstr ""
 
-#: ../src/parameters.c:804
+#: ../src/parameters.c:805
 msgid "Main Calendar double click shows"
 msgstr ""
 
-#: ../src/parameters.c:809
+#: ../src/parameters.c:810
 msgid "Days view"
 msgstr ""
 
-#: ../src/parameters.c:821
+#: ../src/parameters.c:822
 #, fuzzy
 msgid "Event list"
 msgstr "واقعہ"
 
-#: ../src/parameters.c:846
+#: ../src/parameters.c:847
 msgid "Orage Preferences"
 msgstr "Orage کی ترجیحات"
+
+#: ../src/parameters.c:1019
+msgid "First Orage start. Searching default timezone."
+msgstr ""
+
+#: ../src/parameters.c:1038
+#, fuzzy, c-format
+msgid "Default timezone set to %s."
+msgstr "ٹائم زون:"
+
+#: ../src/parameters.c:1041
+msgid "Default timezone not found, please, set it manually."
+msgstr ""
 
 #: ../src/reminder.c:425
 msgid "Reminder "

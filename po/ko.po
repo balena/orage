@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.4.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-27 23:53+0300\n"
+"POT-Creation-Date: 2008-11-11 09:18+0200\n"
 "PO-Revision-Date: 2008-08-26 01:36+0900\n"
 "Last-Translator: ByungHyun Choi<byunghyunchoi@debianusers.org>\n"
 "Language-Team: xfce4-users-kr-i18n <xfce4-users-kr-i18n@lists.sourceforge."
@@ -319,72 +319,86 @@ msgstr ""
 "지역 시간대를 입력하세요. (시간뒤에 +/-를 붙여서 이전날짜(-) 또는 이후날짜(+)"
 "를 알려줍니다."
 
-#: ../panel-plugin/oc_config.c:193
+#: ../panel-plugin/oc_config.c:199
 msgid "Appearance"
 msgstr "겉 모양"
 
 #. show frame
-#: ../panel-plugin/oc_config.c:204
+#: ../panel-plugin/oc_config.c:210
 msgid "Show _frame"
 msgstr "틀보이기(_f)"
 
 #. foreground color
-#: ../panel-plugin/oc_config.c:214
+#: ../panel-plugin/oc_config.c:220
 msgid "set foreground _color:"
 msgstr "글자색(_c)"
 
 #. background color
-#: ../panel-plugin/oc_config.c:228
+#: ../panel-plugin/oc_config.c:234
 msgid "set _background color:"
 msgstr "바탕색(_b)"
 
 #. clock size (=vbox size): height and width
-#: ../panel-plugin/oc_config.c:242
+#: ../panel-plugin/oc_config.c:248
 msgid "set _height:"
 msgstr "높이(_h)"
 
-#: ../panel-plugin/oc_config.c:254
+#: ../panel-plugin/oc_config.c:260
 msgid "set _width:"
 msgstr "폭(_w)"
 
-#: ../panel-plugin/oc_config.c:275
+#: ../panel-plugin/oc_config.c:281
 msgid "Clock Options"
 msgstr "시계 선택사항"
 
 #. timezone
-#: ../panel-plugin/oc_config.c:286
+#: ../panel-plugin/oc_config.c:292
 msgid "set timezone to:"
 msgstr "시간대 설정:"
 
-#: ../panel-plugin/oc_config.c:295
+#: ../panel-plugin/oc_config.c:301
 msgid "Set any valid timezone (=TZ) value or pick one from the list."
 msgstr "시간대 코드(TZ)를 입력하시거나 아래 목록에서 선택하십시오."
 
 #. line 1
-#: ../panel-plugin/oc_config.c:304
+#: ../panel-plugin/oc_config.c:310
 msgid "show line _1:"
 msgstr "line_1 표시:"
 
-#: ../panel-plugin/oc_config.c:315
+#: ../panel-plugin/oc_config.c:321
 msgid "Enter any valid strftime function parameter."
 msgstr "strftime 함수의 파라미터를 입력하시면 됩니다."
 
 #. line 2
-#: ../panel-plugin/oc_config.c:331
+#: ../panel-plugin/oc_config.c:337
 msgid "show line _2:"
 msgstr "line_2 표시:"
 
 #. line 3
-#: ../panel-plugin/oc_config.c:353
+#: ../panel-plugin/oc_config.c:359
 msgid "show line _3:"
 msgstr "line_3 표시:"
 
 #. Tooltip hint
-#: ../panel-plugin/oc_config.c:375
+#: ../panel-plugin/oc_config.c:381
 msgid "Tooltip:"
 msgstr "힌트"
 
-#: ../panel-plugin/oc_config.c:392
+#. special timing for SUSPEND/HIBERNATE
+#: ../panel-plugin/oc_config.c:391
+msgid "fix time after suspend/hibernate"
+msgstr ""
+
+#: ../panel-plugin/oc_config.c:395
+msgid ""
+"You only need this if you do short term (less than 5 hours) suspend or "
+"hibernate and your visible time does not include seconds. Under these "
+"circumstances it is possible that Orageclock shows time inaccurately unless "
+"you have this selected. (Selecting this prevents cpu and interrupt saving "
+"features from working.)"
+msgstr ""
+
+#: ../panel-plugin/oc_config.c:407
 msgid ""
 "This program uses strftime function to get time.\n"
 "Use any valid code to get time in the format you prefer.\n"
@@ -404,11 +418,11 @@ msgstr ""
 "\t%H = 시 \t\t\t\t%M = 분\n"
 "\t%X = 현지 시간\t\t\t%x = 현지 날짜"
 
-#: ../panel-plugin/oc_config.c:416
+#: ../panel-plugin/oc_config.c:430
 msgid "Properties"
 msgstr "속성"
 
-#: ../panel-plugin/oc_config.c:431
+#: ../panel-plugin/oc_config.c:445
 msgid "Orage clock"
 msgstr "Orage 시계"
 
@@ -421,7 +435,7 @@ msgstr "Orage 시계"
 #. * %Y  : four digit year
 #. * %V  : ISO week number
 #.
-#: ../panel-plugin/orageclock.c:641
+#: ../panel-plugin/orageclock.c:596
 msgid "%A %d %B %Y/%V"
 msgstr "%Y-%m-%d %A/%V"
 
@@ -467,7 +481,7 @@ msgstr "Orage"
 
 #. to avoid timing problems when updating entry
 #. Create file chooser
-#: ../src/appointment.c:651 ../src/interface.c:277 ../src/parameters.c:383
+#: ../src/appointment.c:651 ../src/interface.c:277 ../src/parameters.c:384
 msgid "Select a file..."
 msgstr "화일을 선택하시지요."
 
@@ -639,7 +653,7 @@ msgid "Title "
 msgstr "제목"
 
 #. location
-#: ../src/appointment.c:2301 ../src/ical-code.c:4495 ../src/ical-code.c:4500
+#: ../src/appointment.c:2301 ../src/ical-code.c:4496 ../src/ical-code.c:4501
 msgid "Location"
 msgstr "위치"
 
@@ -1033,7 +1047,7 @@ msgstr "닫기"
 msgid "Unknown"
 msgstr "모름"
 
-#: ../src/day-view.c:694 ../src/parameters.c:662
+#: ../src/day-view.c:694 ../src/parameters.c:663
 msgid "Show"
 msgstr "보여줌"
 
@@ -2682,106 +2696,106 @@ msgstr "태평양/Wallis"
 msgid "Pacific/Yap"
 msgstr "태평양/Yap"
 
-#: ../src/ical-code.c:1329
+#: ../src/ical-code.c:1330
 msgid "Orage default alarm"
 msgstr "Orage 기본 알리미"
 
-#: ../src/ical-code.c:3023
+#: ../src/ical-code.c:3024
 #, c-format
 msgid "Build alarm list: Added %d alarms. Processed %d events."
 msgstr "알리미 목록 만들기: 추가한 알리미 %d개. 처리한 이벤트 %d개."
 
-#: ../src/ical-code.c:3025
+#: ../src/ical-code.c:3026
 #, c-format
 msgid ""
 "\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
 msgstr "\t알리미 %d개 발견(동작중인 전체 알리미  %d, 반복 알리미  %d개 검색)"
 
 #. remove since it has ended
-#: ../src/ical-code.c:3542
+#: ../src/ical-code.c:3543
 msgid "\tRecur ended, moving to archive file."
 msgstr "\t"
 
-#: ../src/ical-code.c:3604
+#: ../src/ical-code.c:3605
 msgid "Archiving not enabled. Exiting"
 msgstr "압축기능을 켜지 않았습니다. 종료"
 
-#: ../src/ical-code.c:3622
+#: ../src/ical-code.c:3623
 #, c-format
 msgid "Archiving threshold: %d month(s)"
 msgstr "압축 주기: %d 개월"
 
 #. yy mon day
-#: ../src/ical-code.c:3625
+#: ../src/ical-code.c:3626
 #, c-format
 msgid "\tArchiving events, which are older than: %04d-%02d-%02d"
 msgstr "\t %04d-%02d-%02d보다 오래된 이벤트를 압축합니다."
 
-#: ../src/ical-code.c:3652
+#: ../src/ical-code.c:3653
 #, c-format
 msgid "Archiving uid: %s"
 msgstr "압축 uid: %s"
 
 #. VTODO not completed, do not archive
-#: ../src/ical-code.c:3658
+#: ../src/ical-code.c:3659
 msgid "\tVTODO not complete; not archived"
 msgstr "\tVTOD 진행 중이므로 압축하지 않습니다"
 
 #. it is recurrent event
-#: ../src/ical-code.c:3663
+#: ../src/ical-code.c:3664
 #, c-format
 msgid "\tRecurring. End year: %04d, month: %02d, day: %02d"
 msgstr "\t반복하기. 종료 연: %04d, 월: %02d, 일: %02d"
 
-#: ../src/ical-code.c:3680
+#: ../src/ical-code.c:3681
 msgid "Archiving done\n"
 msgstr "압축 완료\n"
 
 #. PHASE 1: go through base orage file and remove "repeat" shortcuts
-#: ../src/ical-code.c:3696
+#: ../src/ical-code.c:3697
 msgid "Starting archive removal."
 msgstr "압축 제거 개시."
 
-#: ../src/ical-code.c:3697
+#: ../src/ical-code.c:3698
 msgid "\tPHASE 1: reset recurring appointments"
 msgstr "\t1단계: 반복일정 리셋"
 
 #. PHASE 2: go through archive file and add everything back to base orage.
 #. * After that delete the whole arch file
-#: ../src/ical-code.c:3719
+#: ../src/ical-code.c:3720
 msgid "\tPHASE 2: return archived appointments"
 msgstr "\t2단계: 압축된 일정을 가져옴"
 
-#: ../src/ical-code.c:3745
+#: ../src/ical-code.c:3746
 msgid "Archive removal done\n"
 msgstr "압축 제거 완료\n"
 
-#: ../src/ical-code.c:3835
+#: ../src/ical-code.c:3836
 msgid "Starting import file preprocessing"
 msgstr "화일 가져오기 전처리 개시"
 
-#: ../src/ical-code.c:3870
+#: ../src/ical-code.c:3871
 msgid "... Patched DCREATED to be CREATED."
 msgstr "... DCREATED를 CREATED로 변경"
 
-#: ../src/ical-code.c:3909
+#: ../src/ical-code.c:3910
 msgid "... Patched timezone to Orage format."
 msgstr "... 시간대를 Orage 혁식으로 변경"
 
-#: ../src/ical-code.c:3918
+#: ../src/ical-code.c:3919
 msgid "Import file preprocessing done"
 msgstr "화일 가져오기 완료"
 
 #. show it
-#: ../src/ical-code.c:4506
+#: ../src/ical-code.c:4507
 msgid "Pick timezone"
 msgstr "시간대 선택"
 
-#: ../src/ical-code.c:4509 ../src/ical-code.c:4537
+#: ../src/ical-code.c:4510 ../src/ical-code.c:4538
 msgid "UTC"
 msgstr "UTC"
 
-#: ../src/ical-code.c:4510 ../src/ical-code.c:4541 ../src/parameters.c:492
+#: ../src/ical-code.c:4511 ../src/ical-code.c:4542 ../src/parameters.c:493
 msgid "floating"
 msgstr "모름"
 
@@ -3102,7 +3116,7 @@ msgstr ""
 "\t'dbus [화일] 제외'와 '외부화일 제외' 선택사항(-a와 -r)은 orage를 실행시킬 "
 "때만 사용할 수 있습니다.\n"
 
-#: ../src/main.c:380
+#: ../src/main.c:381
 #, c-format
 msgid ""
 "\n"
@@ -3184,103 +3198,103 @@ msgstr "<b>할일:</b>"
 msgid "<b>Events for %s:</b>"
 msgstr "<b>%s에 대한 이벤트:</b>"
 
-#: ../src/parameters.c:472
+#: ../src/parameters.c:473
 msgid "Main setups"
 msgstr "메인 설정"
 
-#: ../src/parameters.c:478
+#: ../src/parameters.c:479
 msgid "Timezone"
 msgstr "시간대"
 
-#: ../src/parameters.c:497
+#: ../src/parameters.c:498
 msgid "You should always define your local timezone."
 msgstr "시간대를 반드시 설정하셔야합니다."
 
-#: ../src/parameters.c:506
+#: ../src/parameters.c:507
 msgid "Archive threshold (months)"
 msgstr "압축 기준(개월)"
 
-#: ../src/parameters.c:516
+#: ../src/parameters.c:517
 msgid "(0 = no archiving)"
 msgstr "(0 = 압축안함)"
 
-#: ../src/parameters.c:519
+#: ../src/parameters.c:520
 msgid "Archiving is used to save time and space when handling events."
 msgstr "압축기능을 이용해서 시간과 공간을 절약하십시오."
 
-#: ../src/parameters.c:528
+#: ../src/parameters.c:529
 msgid "Sound command"
 msgstr "소리 명령어"
 
-#: ../src/parameters.c:543
+#: ../src/parameters.c:544
 msgid "This command is given to shell to make sound in alarms."
 msgstr "알리미 기능에서 소리를 내도록 쉘에 전달하는 명령어입니다."
 
-#: ../src/parameters.c:558
+#: ../src/parameters.c:559
 msgid "Display"
 msgstr "표시"
 
-#: ../src/parameters.c:565
+#: ../src/parameters.c:566
 msgid "Calendar main window"
 msgstr "달력 창"
 
-#: ../src/parameters.c:570
+#: ../src/parameters.c:571
 msgid "Show borders"
 msgstr "틀보이기"
 
-#: ../src/parameters.c:577
+#: ../src/parameters.c:578
 msgid "Show menu"
 msgstr "메뉴 보이기"
 
-#: ../src/parameters.c:584
+#: ../src/parameters.c:585
 msgid "Show todo list"
 msgstr "할일 목록 보이기"
 
-#: ../src/parameters.c:591
+#: ../src/parameters.c:592
 msgid "Show event list"
 msgstr "이벤트 목록 보이기"
 
-#: ../src/parameters.c:598
+#: ../src/parameters.c:599
 msgid "Set sticked"
 msgstr "고정"
 
-#: ../src/parameters.c:605
+#: ../src/parameters.c:606
 msgid "Set on top"
 msgstr "맨위로 설정"
 
-#: ../src/parameters.c:626
+#: ../src/parameters.c:627
 msgid "Show in taskbar"
 msgstr "태스크바에 보이기"
 
-#: ../src/parameters.c:633
+#: ../src/parameters.c:634
 msgid "Show in pager"
 msgstr "페이저에 보이기"
 
-#: ../src/parameters.c:640
+#: ../src/parameters.c:641
 msgid "Show in systray"
 msgstr "트레이에 보이기"
 
-#: ../src/parameters.c:657
+#: ../src/parameters.c:658
 msgid "Calendar start"
 msgstr "시작하면서 달력을"
 
-#: ../src/parameters.c:674
+#: ../src/parameters.c:675
 msgid "Hide"
 msgstr "숨김"
 
-#: ../src/parameters.c:686
+#: ../src/parameters.c:687
 msgid "Minimized"
 msgstr "최소화"
 
-#: ../src/parameters.c:716
+#: ../src/parameters.c:717
 msgid "Extra setups"
 msgstr "기타"
 
-#: ../src/parameters.c:723 ../src/parameters.c:728
+#: ../src/parameters.c:724 ../src/parameters.c:729
 msgid "Select always today"
 msgstr "항상 오늘을 선택합니다."
 
-#: ../src/parameters.c:734
+#: ../src/parameters.c:735
 msgid ""
 "When showing main calendar, set pointer to either previously selected day or "
 "always to current day."
@@ -3288,15 +3302,15 @@ msgstr ""
 "달력을 보일때, 전에 선택한 날짜를 보여줄 지 오늘을 가리키도록 할 지 결정합니"
 "다."
 
-#: ../src/parameters.c:765
+#: ../src/parameters.c:766
 msgid "Dynamic icon size"
 msgstr "동정 아이콘 크기"
 
-#: ../src/parameters.c:778 ../src/parameters.c:795
+#: ../src/parameters.c:779 ../src/parameters.c:796
 msgid "(0 = use static icon)"
 msgstr "(0 = 고정크기 아이콘 사용)"
 
-#: ../src/parameters.c:781
+#: ../src/parameters.c:782
 msgid ""
 "Dynamic icon shows current day and month. It is visible only in tray. If "
 "tray is too small for dynamic icon size, Orage switches automatically back "
@@ -3305,21 +3319,34 @@ msgstr ""
 "동적 아이콘은 트레이에 현재 날짜를 보여줍니다. 트레이가 작으면 고정 아이콘으"
 "로 전환합니다."
 
-#: ../src/parameters.c:804
+#: ../src/parameters.c:805
 msgid "Main Calendar double click shows"
 msgstr "메인 달력을 따닥하면 보입니다."
 
-#: ../src/parameters.c:809
+#: ../src/parameters.c:810
 msgid "Days view"
 msgstr "일 단위 보기"
 
-#: ../src/parameters.c:821
+#: ../src/parameters.c:822
 msgid "Event list"
 msgstr "이벤트 목록"
 
-#: ../src/parameters.c:846
+#: ../src/parameters.c:847
 msgid "Orage Preferences"
 msgstr "Orage 속성"
+
+#: ../src/parameters.c:1019
+msgid "First Orage start. Searching default timezone."
+msgstr ""
+
+#: ../src/parameters.c:1038
+#, fuzzy, c-format
+msgid "Default timezone set to %s."
+msgstr "시간대 설정:"
+
+#: ../src/parameters.c:1041
+msgid "Default timezone not found, please, set it manually."
+msgstr ""
 
 #: ../src/reminder.c:425
 msgid "Reminder "

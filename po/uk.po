@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfcalendar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-27 23:53+0300\n"
+"POT-Creation-Date: 2008-11-11 09:18+0200\n"
 "PO-Revision-Date: 2008-06-30 21:02+0300\n"
 "Last-Translator: Dmitry Nikitin <luckas_fb@mail.ru>\n"
 "Language-Team: Ukrainian <xfce4-dev@xfce.org>\n"
@@ -322,74 +322,88 @@ msgstr ""
 "Введіть місцевий ЧП. (це для показу часу попередньої (-) або наступної (+)  "
 "дати з додаванням +/- після годин)     "
 
-#: ../panel-plugin/oc_config.c:193
+#: ../panel-plugin/oc_config.c:199
 msgid "Appearance"
 msgstr "Зовнішній вигляд"
 
 #. show frame
-#: ../panel-plugin/oc_config.c:204
+#: ../panel-plugin/oc_config.c:210
 msgid "Show _frame"
 msgstr "Показувати _фрейм"
 
 #. foreground color
-#: ../panel-plugin/oc_config.c:214
+#: ../panel-plugin/oc_config.c:220
 msgid "set foreground _color:"
 msgstr "встановити основний _колір:"
 
 #. background color
-#: ../panel-plugin/oc_config.c:228
+#: ../panel-plugin/oc_config.c:234
 msgid "set _background color:"
 msgstr "встановити колір _тла:"
 
 #. clock size (=vbox size): height and width
-#: ../panel-plugin/oc_config.c:242
+#: ../panel-plugin/oc_config.c:248
 msgid "set _height:"
 msgstr "встановити _висоту:"
 
-#: ../panel-plugin/oc_config.c:254
+#: ../panel-plugin/oc_config.c:260
 msgid "set _width:"
 msgstr "встановити _ширину:"
 
-#: ../panel-plugin/oc_config.c:275
+#: ../panel-plugin/oc_config.c:281
 msgid "Clock Options"
 msgstr "Опції годинника"
 
 #. timezone
-#: ../panel-plugin/oc_config.c:286
+#: ../panel-plugin/oc_config.c:292
 msgid "set timezone to:"
 msgstr "встановити часовий пояс в:"
 
-#: ../panel-plugin/oc_config.c:295
+#: ../panel-plugin/oc_config.c:301
 msgid "Set any valid timezone (=TZ) value or pick one from the list."
 msgstr ""
 "Ввести будь-яке правильне значення часового поясу (=ЧП) або вибрати одне зі "
 "списку."
 
 #. line 1
-#: ../panel-plugin/oc_config.c:304
+#: ../panel-plugin/oc_config.c:310
 msgid "show line _1:"
 msgstr "показувати стрічку _1:"
 
-#: ../panel-plugin/oc_config.c:315
+#: ../panel-plugin/oc_config.c:321
 msgid "Enter any valid strftime function parameter."
 msgstr "Введіть будь-який правильний параметр функції strftime."
 
 #. line 2
-#: ../panel-plugin/oc_config.c:331
+#: ../panel-plugin/oc_config.c:337
 msgid "show line _2:"
 msgstr "показувати стрічку _2:"
 
 #. line 3
-#: ../panel-plugin/oc_config.c:353
+#: ../panel-plugin/oc_config.c:359
 msgid "show line _3:"
 msgstr "показувати стрічку _3:"
 
 #. Tooltip hint
-#: ../panel-plugin/oc_config.c:375
+#: ../panel-plugin/oc_config.c:381
 msgid "Tooltip:"
 msgstr "Спливаючі:"
 
-#: ../panel-plugin/oc_config.c:392
+#. special timing for SUSPEND/HIBERNATE
+#: ../panel-plugin/oc_config.c:391
+msgid "fix time after suspend/hibernate"
+msgstr ""
+
+#: ../panel-plugin/oc_config.c:395
+msgid ""
+"You only need this if you do short term (less than 5 hours) suspend or "
+"hibernate and your visible time does not include seconds. Under these "
+"circumstances it is possible that Orageclock shows time inaccurately unless "
+"you have this selected. (Selecting this prevents cpu and interrupt saving "
+"features from working.)"
+msgstr ""
+
+#: ../panel-plugin/oc_config.c:407
 msgid ""
 "This program uses strftime function to get time.\n"
 "Use any valid code to get time in the format you prefer.\n"
@@ -410,11 +424,11 @@ msgstr ""
 "\t%H = година \t\t\t\t%M = хвилина\n"
 "\t%X = місцевий час\t\t\t%x = місцева дата"
 
-#: ../panel-plugin/oc_config.c:416
+#: ../panel-plugin/oc_config.c:430
 msgid "Properties"
 msgstr "Властивості"
 
-#: ../panel-plugin/oc_config.c:431
+#: ../panel-plugin/oc_config.c:445
 msgid "Orage clock"
 msgstr "Годинник Orage"
 
@@ -427,7 +441,7 @@ msgstr "Годинник Orage"
 #. * %Y  : four digit year
 #. * %V  : ISO week number
 #.
-#: ../panel-plugin/orageclock.c:641
+#: ../panel-plugin/orageclock.c:596
 msgid "%A %d %B %Y/%V"
 msgstr "%A %d %B %Y/%V"
 
@@ -474,7 +488,7 @@ msgstr "Менеджер Orage"
 
 #. to avoid timing problems when updating entry
 #. Create file chooser
-#: ../src/appointment.c:651 ../src/interface.c:277 ../src/parameters.c:383
+#: ../src/appointment.c:651 ../src/interface.c:277 ../src/parameters.c:384
 msgid "Select a file..."
 msgstr "Вибрати файл..."
 
@@ -646,7 +660,7 @@ msgid "Title "
 msgstr "Назва "
 
 #. location
-#: ../src/appointment.c:2301 ../src/ical-code.c:4495 ../src/ical-code.c:4500
+#: ../src/appointment.c:2301 ../src/ical-code.c:4496 ../src/ical-code.c:4501
 msgid "Location"
 msgstr "Місце"
 
@@ -1044,7 +1058,7 @@ msgstr "Закрити"
 msgid "Unknown"
 msgstr "Невідомий"
 
-#: ../src/day-view.c:694 ../src/parameters.c:662
+#: ../src/day-view.c:694 ../src/parameters.c:663
 msgid "Show"
 msgstr "Показати"
 
@@ -2694,16 +2708,16 @@ msgstr "Тихоокеанський/Уолліс"
 msgid "Pacific/Yap"
 msgstr "Тихоокеанський/Яп"
 
-#: ../src/ical-code.c:1329
+#: ../src/ical-code.c:1330
 msgid "Orage default alarm"
 msgstr "Звичайний сигнал Orage"
 
-#: ../src/ical-code.c:3023
+#: ../src/ical-code.c:3024
 #, c-format
 msgid "Build alarm list: Added %d alarms. Processed %d events."
 msgstr "Побудова списку дзвінків: Додано %d сигналів. Опрацьовано %d подій."
 
-#: ../src/ical-code.c:3025
+#: ../src/ical-code.c:3026
 #, c-format
 msgid ""
 "\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
@@ -2712,90 +2726,90 @@ msgstr ""
 "дзвінків.)"
 
 #. remove since it has ended
-#: ../src/ical-code.c:3542
+#: ../src/ical-code.c:3543
 msgid "\tRecur ended, moving to archive file."
 msgstr "\tПовторюваність завершилась, переміщена в архівний файл."
 
-#: ../src/ical-code.c:3604
+#: ../src/ical-code.c:3605
 msgid "Archiving not enabled. Exiting"
 msgstr "Архівування не завершено. Вихід"
 
-#: ../src/ical-code.c:3622
+#: ../src/ical-code.c:3623
 #, c-format
 msgid "Archiving threshold: %d month(s)"
 msgstr "Поріг архівування: %d місяць(ів)"
 
 #. yy mon day
-#: ../src/ical-code.c:3625
+#: ../src/ical-code.c:3626
 #, c-format
 msgid "\tArchiving events, which are older than: %04d-%02d-%02d"
 msgstr "\tПодії для архівування старіші за: %04d-%02d-%02d"
 
-#: ../src/ical-code.c:3652
+#: ../src/ical-code.c:3653
 #, c-format
 msgid "Archiving uid: %s"
 msgstr "Додання до архіву з uid: %s"
 
 #. VTODO not completed, do not archive
-#: ../src/ical-code.c:3658
+#: ../src/ical-code.c:3659
 msgid "\tVTODO not complete; not archived"
 msgstr "\tVTODO неповний; не підлягає архівації"
 
 #. it is recurrent event
-#: ../src/ical-code.c:3663
+#: ../src/ical-code.c:3664
 #, c-format
 msgid "\tRecurring. End year: %04d, month: %02d, day: %02d"
 msgstr "\tПовторюваність. Кінцевий рік: %04d, місяць: %02d, день: %02d"
 
-#: ../src/ical-code.c:3680
+#: ../src/ical-code.c:3681
 msgid "Archiving done\n"
 msgstr "Архівування завершено\n"
 
 #. PHASE 1: go through base orage file and remove "repeat" shortcuts
-#: ../src/ical-code.c:3696
+#: ../src/ical-code.c:3697
 msgid "Starting archive removal."
 msgstr "Починається видалення архіву."
 
-#: ../src/ical-code.c:3697
+#: ../src/ical-code.c:3698
 msgid "\tPHASE 1: reset recurring appointments"
 msgstr "\tФАЗА 1: скидання повторюваних подій"
 
 #. PHASE 2: go through archive file and add everything back to base orage.
 #. * After that delete the whole arch file
-#: ../src/ical-code.c:3719
+#: ../src/ical-code.c:3720
 msgid "\tPHASE 2: return archived appointments"
 msgstr "\tФАЗА 2: повернення архівованих подій"
 
-#: ../src/ical-code.c:3745
+#: ../src/ical-code.c:3746
 msgid "Archive removal done\n"
 msgstr "Видалення архіву завершено\n"
 
-#: ../src/ical-code.c:3835
+#: ../src/ical-code.c:3836
 msgid "Starting import file preprocessing"
 msgstr "Починається попередній імпорт файлу"
 
-#: ../src/ical-code.c:3870
+#: ../src/ical-code.c:3871
 msgid "... Patched DCREATED to be CREATED."
 msgstr "... Накладено зміни DCREATED для CREATED."
 
-#: ../src/ical-code.c:3909
+#: ../src/ical-code.c:3910
 msgid "... Patched timezone to Orage format."
 msgstr "... Накладаються зміни часового поясу в формат Orage."
 
-#: ../src/ical-code.c:3918
+#: ../src/ical-code.c:3919
 msgid "Import file preprocessing done"
 msgstr "Попередній імпорт файлу завершено"
 
 #. show it
-#: ../src/ical-code.c:4506
+#: ../src/ical-code.c:4507
 msgid "Pick timezone"
 msgstr "Встановіть часовий пояс"
 
-#: ../src/ical-code.c:4509 ../src/ical-code.c:4537
+#: ../src/ical-code.c:4510 ../src/ical-code.c:4538
 msgid "UTC"
 msgstr "Світовий час UTC"
 
-#: ../src/ical-code.c:4510 ../src/ical-code.c:4541 ../src/parameters.c:492
+#: ../src/ical-code.c:4511 ../src/ical-code.c:4542 ../src/parameters.c:493
 msgid "floating"
 msgstr "плаваюче"
 
@@ -3117,7 +3131,7 @@ msgstr ""
 "\tбез dbus [файли] і опцій (-a & -r) зовнішнього файлу можна використовувати "
 "тільки коли стартує orage \n"
 
-#: ../src/main.c:380
+#: ../src/main.c:381
 #, c-format
 msgid ""
 "\n"
@@ -3199,105 +3213,105 @@ msgstr "<b>Зробити:</b>"
 msgid "<b>Events for %s:</b>"
 msgstr "<b>Події для %s:</b>"
 
-#: ../src/parameters.c:472
+#: ../src/parameters.c:473
 msgid "Main setups"
 msgstr "Основні налаштування"
 
-#: ../src/parameters.c:478
+#: ../src/parameters.c:479
 msgid "Timezone"
 msgstr "Часовий пояс"
 
-#: ../src/parameters.c:497
+#: ../src/parameters.c:498
 msgid "You should always define your local timezone."
 msgstr "Вам завжди варто визначати ваш часовий пояс."
 
-#: ../src/parameters.c:506
+#: ../src/parameters.c:507
 msgid "Archive threshold (months)"
 msgstr "Поріг архівації (місяців)"
 
-#: ../src/parameters.c:516
+#: ../src/parameters.c:517
 msgid "(0 = no archiving)"
 msgstr "(0 = не архівувати)"
 
-#: ../src/parameters.c:519
+#: ../src/parameters.c:520
 msgid "Archiving is used to save time and space when handling events."
 msgstr ""
 "Архівація використовується для збереження часу і місця при обробці подій."
 
-#: ../src/parameters.c:528
+#: ../src/parameters.c:529
 msgid "Sound command"
 msgstr "Команда для програвання звуку"
 
-#: ../src/parameters.c:543
+#: ../src/parameters.c:544
 msgid "This command is given to shell to make sound in alarms."
 msgstr ""
 "Ця команда передається командній оболонці для створення звукових попереджень."
 
-#: ../src/parameters.c:558
+#: ../src/parameters.c:559
 msgid "Display"
 msgstr "Відображення"
 
-#: ../src/parameters.c:565
+#: ../src/parameters.c:566
 msgid "Calendar main window"
 msgstr "Головне вікно календаря"
 
-#: ../src/parameters.c:570
+#: ../src/parameters.c:571
 msgid "Show borders"
 msgstr "Показувати рамки"
 
-#: ../src/parameters.c:577
+#: ../src/parameters.c:578
 msgid "Show menu"
 msgstr "Показувати меню"
 
-#: ../src/parameters.c:584
+#: ../src/parameters.c:585
 msgid "Show todo list"
 msgstr "Показувати список Зробити"
 
-#: ../src/parameters.c:591
+#: ../src/parameters.c:592
 msgid "Show event list"
 msgstr "Показувати список подій"
 
-#: ../src/parameters.c:598
+#: ../src/parameters.c:599
 msgid "Set sticked"
 msgstr "Зробити липучим"
 
-#: ../src/parameters.c:605
+#: ../src/parameters.c:606
 msgid "Set on top"
 msgstr "На передній план"
 
-#: ../src/parameters.c:626
+#: ../src/parameters.c:627
 msgid "Show in taskbar"
 msgstr "Показувати в панелі задач"
 
-#: ../src/parameters.c:633
+#: ../src/parameters.c:634
 msgid "Show in pager"
 msgstr "Показувати в пейджері"
 
-#: ../src/parameters.c:640
+#: ../src/parameters.c:641
 msgid "Show in systray"
 msgstr "Показувати в системному лотку"
 
-#: ../src/parameters.c:657
+#: ../src/parameters.c:658
 msgid "Calendar start"
 msgstr "Старт календаря"
 
-#: ../src/parameters.c:674
+#: ../src/parameters.c:675
 msgid "Hide"
 msgstr "Прихований"
 
-#: ../src/parameters.c:686
+#: ../src/parameters.c:687
 msgid "Minimized"
 msgstr "Мінімізований"
 
-#: ../src/parameters.c:716
+#: ../src/parameters.c:717
 msgid "Extra setups"
 msgstr "Додаткові уподобання"
 
-#: ../src/parameters.c:723 ../src/parameters.c:728
+#: ../src/parameters.c:724 ../src/parameters.c:729
 msgid "Select always today"
 msgstr "Завжди вибирати Сьогодні"
 
-#: ../src/parameters.c:734
+#: ../src/parameters.c:735
 msgid ""
 "When showing main calendar, set pointer to either previously selected day or "
 "always to current day."
@@ -3305,15 +3319,15 @@ msgstr ""
 "Коли відображається основне вікно календаря, вказівник встановлюється на "
 "раніше вибраний день або завжди на поточний день."
 
-#: ../src/parameters.c:765
+#: ../src/parameters.c:766
 msgid "Dynamic icon size"
 msgstr "Динамічний розмір значків"
 
-#: ../src/parameters.c:778 ../src/parameters.c:795
+#: ../src/parameters.c:779 ../src/parameters.c:796
 msgid "(0 = use static icon)"
 msgstr "(0 = використовувати статичний значок)"
 
-#: ../src/parameters.c:781
+#: ../src/parameters.c:782
 msgid ""
 "Dynamic icon shows current day and month. It is visible only in tray. If "
 "tray is too small for dynamic icon size, Orage switches automatically back "
@@ -3323,21 +3337,34 @@ msgstr ""
 "системному лотку. Якщо системний лоток не вміщає динамічний розмір значка, "
 "Orage автоматично перемикається до статичного значка."
 
-#: ../src/parameters.c:804
+#: ../src/parameters.c:805
 msgid "Main Calendar double click shows"
 msgstr "Основне вікно календаря відображається за подвійним клацанням"
 
-#: ../src/parameters.c:809
+#: ../src/parameters.c:810
 msgid "Days view"
 msgstr "Перегляд по дням"
 
-#: ../src/parameters.c:821
+#: ../src/parameters.c:822
 msgid "Event list"
 msgstr "Список подій"
 
-#: ../src/parameters.c:846
+#: ../src/parameters.c:847
 msgid "Orage Preferences"
 msgstr "Уподобання Orage"
+
+#: ../src/parameters.c:1019
+msgid "First Orage start. Searching default timezone."
+msgstr ""
+
+#: ../src/parameters.c:1038
+#, fuzzy, c-format
+msgid "Default timezone set to %s."
+msgstr "встановити часовий пояс в:"
+
+#: ../src/parameters.c:1041
+msgid "Default timezone not found, please, set it manually."
+msgstr ""
 
 #: ../src/reminder.c:425
 msgid "Reminder "

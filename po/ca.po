@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.3.90.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-27 23:53+0300\n"
+"POT-Creation-Date: 2008-11-11 09:18+0200\n"
 "PO-Revision-Date: 2008-10-19 14:35+0100\n"
 "Last-Translator: Carles Muñoz Gorriz <carlesmu@internautas.org>\n"
 "Language-Team: Catalan\n"
@@ -326,72 +326,86 @@ msgstr ""
 "Introduïu el fus horari local. (s'empra per mostrar si l'hora és prèvia (-) "
 "o posterior (+) a la data al afegir +/- després de l'hora)"
 
-#: ../panel-plugin/oc_config.c:193
+#: ../panel-plugin/oc_config.c:199
 msgid "Appearance"
 msgstr "Aparença"
 
 #. show frame
-#: ../panel-plugin/oc_config.c:204
+#: ../panel-plugin/oc_config.c:210
 msgid "Show _frame"
 msgstr "Mostra el _marc de línia"
 
 #. foreground color
-#: ../panel-plugin/oc_config.c:214
+#: ../panel-plugin/oc_config.c:220
 msgid "set foreground _color:"
 msgstr "Defineix el _color del primer pla:"
 
 #. background color
-#: ../panel-plugin/oc_config.c:228
+#: ../panel-plugin/oc_config.c:234
 msgid "set _background color:"
 msgstr "Defineix _el color del rerefons:"
 
 #. clock size (=vbox size): height and width
-#: ../panel-plugin/oc_config.c:242
+#: ../panel-plugin/oc_config.c:248
 msgid "set _height:"
 msgstr "fixa _alçada:"
 
-#: ../panel-plugin/oc_config.c:254
+#: ../panel-plugin/oc_config.c:260
 msgid "set _width:"
 msgstr "fixa a_mplada:"
 
-#: ../panel-plugin/oc_config.c:275
+#: ../panel-plugin/oc_config.c:281
 msgid "Clock Options"
 msgstr "Opcions del rellotge"
 
 #. timezone
-#: ../panel-plugin/oc_config.c:286
+#: ../panel-plugin/oc_config.c:292
 msgid "set timezone to:"
 msgstr "Trieu el fus horari:"
 
-#: ../panel-plugin/oc_config.c:295
+#: ../panel-plugin/oc_config.c:301
 msgid "Set any valid timezone (=TZ) value or pick one from the list."
 msgstr "Informeu un fus horari (=TZ) vàlid o trieu-lo de la llista."
 
 #. line 1
-#: ../panel-plugin/oc_config.c:304
+#: ../panel-plugin/oc_config.c:310
 msgid "show line _1:"
 msgstr "Mostra la línia _1:"
 
-#: ../panel-plugin/oc_config.c:315
+#: ../panel-plugin/oc_config.c:321
 msgid "Enter any valid strftime function parameter."
 msgstr "Entreu un paràmetre correcte de la funció «strftime»."
 
 #. line 2
-#: ../panel-plugin/oc_config.c:331
+#: ../panel-plugin/oc_config.c:337
 msgid "show line _2:"
 msgstr "Mostra la línia _2:"
 
 #. line 3
-#: ../panel-plugin/oc_config.c:353
+#: ../panel-plugin/oc_config.c:359
 msgid "show line _3:"
 msgstr "Mostra la línia _3:"
 
 #. Tooltip hint
-#: ../panel-plugin/oc_config.c:375
+#: ../panel-plugin/oc_config.c:381
 msgid "Tooltip:"
 msgstr "Rètol indicador:"
 
-#: ../panel-plugin/oc_config.c:392
+#. special timing for SUSPEND/HIBERNATE
+#: ../panel-plugin/oc_config.c:391
+msgid "fix time after suspend/hibernate"
+msgstr ""
+
+#: ../panel-plugin/oc_config.c:395
+msgid ""
+"You only need this if you do short term (less than 5 hours) suspend or "
+"hibernate and your visible time does not include seconds. Under these "
+"circumstances it is possible that Orageclock shows time inaccurately unless "
+"you have this selected. (Selecting this prevents cpu and interrupt saving "
+"features from working.)"
+msgstr ""
+
+#: ../panel-plugin/oc_config.c:407
 msgid ""
 "This program uses strftime function to get time.\n"
 "Use any valid code to get time in the format you prefer.\n"
@@ -411,11 +425,11 @@ msgstr ""
 "\t%H = Hores\t\t\t\t\t%M = minuts\n"
 "\t%X = Hora local\t\t\t\t%x = Data local"
 
-#: ../panel-plugin/oc_config.c:416
+#: ../panel-plugin/oc_config.c:430
 msgid "Properties"
 msgstr "Propietats"
 
-#: ../panel-plugin/oc_config.c:431
+#: ../panel-plugin/oc_config.c:445
 msgid "Orage clock"
 msgstr "Rellotge «Orage»"
 
@@ -428,7 +442,7 @@ msgstr "Rellotge «Orage»"
 #. * %Y  : four digit year
 #. * %V  : ISO week number
 #.
-#: ../panel-plugin/orageclock.c:641
+#: ../panel-plugin/orageclock.c:596
 msgid "%A %d %B %Y/%V"
 msgstr "%A %d %B %Y/%V"
 
@@ -474,7 +488,7 @@ msgstr "Orage"
 
 #. to avoid timing problems when updating entry
 #. Create file chooser
-#: ../src/appointment.c:651 ../src/interface.c:277 ../src/parameters.c:383
+#: ../src/appointment.c:651 ../src/interface.c:277 ../src/parameters.c:384
 msgid "Select a file..."
 msgstr "Seleccioneu un fitxer…"
 
@@ -646,7 +660,7 @@ msgid "Title "
 msgstr "Títol "
 
 #. location
-#: ../src/appointment.c:2301 ../src/ical-code.c:4495 ../src/ical-code.c:4500
+#: ../src/appointment.c:2301 ../src/ical-code.c:4496 ../src/ical-code.c:4501
 msgid "Location"
 msgstr "Ubicació"
 
@@ -1044,7 +1058,7 @@ msgstr "Tanca"
 msgid "Unknown"
 msgstr "Desconegut"
 
-#: ../src/day-view.c:694 ../src/parameters.c:662
+#: ../src/day-view.c:694 ../src/parameters.c:663
 msgid "Show"
 msgstr "Mostra"
 
@@ -2693,18 +2707,18 @@ msgstr "Pacífic/Wallis"
 msgid "Pacific/Yap"
 msgstr "Pacífic/Yap"
 
-#: ../src/ical-code.c:1329
+#: ../src/ical-code.c:1330
 msgid "Orage default alarm"
 msgstr "Alarma per defecte d'«Orage»"
 
-#: ../src/ical-code.c:3023
+#: ../src/ical-code.c:3024
 #, c-format
 msgid "Build alarm list: Added %d alarms. Processed %d events."
 msgstr ""
 "Construeix una llista d'alarmes: Afegides %d alarmes. Processades %d "
 "esdeveniments."
 
-#: ../src/ical-code.c:3025
+#: ../src/ical-code.c:3026
 #, c-format
 msgid ""
 "\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
@@ -2713,92 +2727,92 @@ msgstr ""
 "alarmes recurrents)."
 
 #. remove since it has ended
-#: ../src/ical-code.c:3542
+#: ../src/ical-code.c:3543
 msgid "\tRecur ended, moving to archive file."
 msgstr "\tRepetició finalitzada, movent-lo a l'arxiu."
 
-#: ../src/ical-code.c:3604
+#: ../src/ical-code.c:3605
 msgid "Archiving not enabled. Exiting"
 msgstr "Arxivament no habilitat. Eixint"
 
-#: ../src/ical-code.c:3622
+#: ../src/ical-code.c:3623
 #, c-format
 msgid "Archiving threshold: %d month(s)"
 msgstr "Llindar de temps de per l'arxivament de cites: %d mesos"
 
 #. yy mon day
-#: ../src/ical-code.c:3625
+#: ../src/ical-code.c:3626
 #, c-format
 msgid "\tArchiving events, which are older than: %04d-%02d-%02d"
 msgstr "\tEsdeveniments d'arxiu, els quals són més antics que %04d-%02d-%02d"
 
 # En el contexte crec que la millor traducció de Archives és «arx[iu] de cites»
-#: ../src/ical-code.c:3652
+#: ../src/ical-code.c:3653
 #, c-format
 msgid "Archiving uid: %s"
 msgstr "Uid de l'arxiu de cites: %s"
 
 #. VTODO not completed, do not archive
-#: ../src/ical-code.c:3658
+#: ../src/ical-code.c:3659
 msgid "\tVTODO not complete; not archived"
 msgstr "\tPendent de fer no completat; no s'ha arxivat"
 
 #. it is recurrent event
-#: ../src/ical-code.c:3663
+#: ../src/ical-code.c:3664
 #, c-format
 msgid "\tRecurring. End year: %04d, month: %02d, day: %02d"
 msgstr "\tRepetint-se. Fi l'any: %04d, mes: %02d, day: %02d"
 
 # En el contexte crec que la millor traducció de Archives és «arx[iu] de cites»
-#: ../src/ical-code.c:3680
+#: ../src/ical-code.c:3681
 msgid "Archiving done\n"
 msgstr "Arxivament de cites acabat.\n"
 
 #. PHASE 1: go through base orage file and remove "repeat" shortcuts
-#: ../src/ical-code.c:3696
+#: ../src/ical-code.c:3697
 msgid "Starting archive removal."
 msgstr "Iniciant l'eliminació de l'arxiu de cites."
 
-#: ../src/ical-code.c:3697
+#: ../src/ical-code.c:3698
 msgid "\tPHASE 1: reset recurring appointments"
 msgstr "\tFASE 1: netejant cites recursives"
 
 #. PHASE 2: go through archive file and add everything back to base orage.
 #. * After that delete the whole arch file
-#: ../src/ical-code.c:3719
+#: ../src/ical-code.c:3720
 msgid "\tPHASE 2: return archived appointments"
 msgstr "\tFASE 2: recuperant cites arxivades."
 
-#: ../src/ical-code.c:3745
+#: ../src/ical-code.c:3746
 msgid "Archive removal done\n"
 msgstr "S'ha esborrat el fitxer de cites\n"
 
-#: ../src/ical-code.c:3835
+#: ../src/ical-code.c:3836
 msgid "Starting import file preprocessing"
 msgstr "Iniciant el procés previ per importar"
 
-#: ../src/ical-code.c:3870
+#: ../src/ical-code.c:3871
 msgid "... Patched DCREATED to be CREATED."
 msgstr "… Pedaç DCREATED per a CREATED."
 
-#: ../src/ical-code.c:3909
+#: ../src/ical-code.c:3910
 msgid "... Patched timezone to Orage format."
 msgstr "… Actualitzat el fus horari amb el format d'Orage."
 
-#: ../src/ical-code.c:3918
+#: ../src/ical-code.c:3919
 msgid "Import file preprocessing done"
 msgstr "Procés d'importar fitxer fet"
 
 #. show it
-#: ../src/ical-code.c:4506
+#: ../src/ical-code.c:4507
 msgid "Pick timezone"
 msgstr "Seleccioneu fus horari"
 
-#: ../src/ical-code.c:4509 ../src/ical-code.c:4537
+#: ../src/ical-code.c:4510 ../src/ical-code.c:4538
 msgid "UTC"
 msgstr "UTC"
 
-#: ../src/ical-code.c:4510 ../src/ical-code.c:4541 ../src/parameters.c:492
+#: ../src/ical-code.c:4511 ../src/ical-code.c:4542 ../src/parameters.c:493
 msgid "floating"
 msgstr "Flotant"
 
@@ -3120,7 +3134,7 @@ msgstr ""
 "\tsense dbus [fitxers] ni opcions de fitxers forans (-a i -r) només es pot "
 "emprar quan s'inicia «orage» \n"
 
-#: ../src/main.c:380
+#: ../src/main.c:381
 #, c-format
 msgid ""
 "\n"
@@ -3202,104 +3216,104 @@ msgstr "<b>Pendent de fer:</b>"
 msgid "<b>Events for %s:</b>"
 msgstr "<b>Esdeveniments per %s:</b>"
 
-#: ../src/parameters.c:472
+#: ../src/parameters.c:473
 msgid "Main setups"
 msgstr "Configuracions principals"
 
-#: ../src/parameters.c:478
+#: ../src/parameters.c:479
 msgid "Timezone"
 msgstr "Fus horari"
 
-#: ../src/parameters.c:497
+#: ../src/parameters.c:498
 msgid "You should always define your local timezone."
 msgstr "CSempra s'ha de definir el fus horari local."
 
-#: ../src/parameters.c:506
+#: ../src/parameters.c:507
 msgid "Archive threshold (months)"
 msgstr "Llindar de l'arxiu de cites (mesos)"
 
-#: ../src/parameters.c:516
+#: ../src/parameters.c:517
 msgid "(0 = no archiving)"
 msgstr "(0 = no arxivar)"
 
-#: ../src/parameters.c:519
+#: ../src/parameters.c:520
 msgid "Archiving is used to save time and space when handling events."
 msgstr ""
 "Arxivament s'empra per desar hores i llocs quan es manipulen esdeveniments."
 
-#: ../src/parameters.c:528
+#: ../src/parameters.c:529
 msgid "Sound command"
 msgstr "Ordre per sons"
 
-#: ../src/parameters.c:543
+#: ../src/parameters.c:544
 msgid "This command is given to shell to make sound in alarms."
 msgstr "Aquesta ordre s'empra per executar sons i alarmes."
 
-#: ../src/parameters.c:558
+#: ../src/parameters.c:559
 msgid "Display"
 msgstr "Pantalla"
 
-#: ../src/parameters.c:565
+#: ../src/parameters.c:566
 msgid "Calendar main window"
 msgstr "Finestra principal del calendari"
 
-#: ../src/parameters.c:570
+#: ../src/parameters.c:571
 msgid "Show borders"
 msgstr "Mostra les vores"
 
-#: ../src/parameters.c:577
+#: ../src/parameters.c:578
 msgid "Show menu"
 msgstr "Mostra el menú"
 
-#: ../src/parameters.c:584
+#: ../src/parameters.c:585
 msgid "Show todo list"
 msgstr "Mostra la llista del pendent de fer"
 
-#: ../src/parameters.c:591
+#: ../src/parameters.c:592
 msgid "Show event list"
 msgstr "Mostra la llista d'esdeveniments"
 
-#: ../src/parameters.c:598
+#: ../src/parameters.c:599
 msgid "Set sticked"
 msgstr "Mostra'l omnipresent"
 
-#: ../src/parameters.c:605
+#: ../src/parameters.c:606
 msgid "Set on top"
 msgstr "Resta al damunt"
 
-#: ../src/parameters.c:626
+#: ../src/parameters.c:627
 msgid "Show in taskbar"
 msgstr "Mostra a la barra de tasques"
 
-#: ../src/parameters.c:633
+#: ../src/parameters.c:634
 msgid "Show in pager"
 msgstr "Mostra al paginador"
 
-#: ../src/parameters.c:640
+#: ../src/parameters.c:641
 msgid "Show in systray"
 msgstr "Mostra a la safata del sistema"
 
-#: ../src/parameters.c:657
+#: ../src/parameters.c:658
 msgid "Calendar start"
 msgstr "Inici del calendari"
 
-#: ../src/parameters.c:674
+#: ../src/parameters.c:675
 msgid "Hide"
 msgstr "Oculta"
 
-#: ../src/parameters.c:686
+#: ../src/parameters.c:687
 msgid "Minimized"
 msgstr "Minimitzada"
 
-#: ../src/parameters.c:716
+#: ../src/parameters.c:717
 msgid "Extra setups"
 msgstr "Opcions extres"
 
-#: ../src/parameters.c:723 ../src/parameters.c:728
+#: ../src/parameters.c:724 ../src/parameters.c:729
 msgid "Select always today"
 msgstr "Seleccioneu sempre avui"
 
-#: ../src/parameters.c:734
+#: ../src/parameters.c:735
 msgid ""
 "When showing main calendar, set pointer to either previously selected day or "
 "always to current day."
@@ -3307,15 +3321,15 @@ msgstr ""
 "Quan es mostra el calendari principal, coŀloca sempre el punter al dia "
 "seleccionat o al anterior."
 
-#: ../src/parameters.c:765
+#: ../src/parameters.c:766
 msgid "Dynamic icon size"
 msgstr "Mida d'icona dinàmica"
 
-#: ../src/parameters.c:778 ../src/parameters.c:795
+#: ../src/parameters.c:779 ../src/parameters.c:796
 msgid "(0 = use static icon)"
 msgstr "(0 = empra icones estàtiques)"
 
-#: ../src/parameters.c:781
+#: ../src/parameters.c:782
 msgid ""
 "Dynamic icon shows current day and month. It is visible only in tray. If "
 "tray is too small for dynamic icon size, Orage switches automatically back "
@@ -3325,21 +3339,34 @@ msgstr ""
 "safata del sistema. Si la safata del sistema és massa petita per mides "
 "d'icones dinàmiques, Orage canviarà automàticament a icones estàtiques."
 
-#: ../src/parameters.c:804
+#: ../src/parameters.c:805
 msgid "Main Calendar double click shows"
 msgstr "Mostra el calendari principal amb doble clic"
 
-#: ../src/parameters.c:809
+#: ../src/parameters.c:810
 msgid "Days view"
 msgstr "Dies mostrats"
 
-#: ../src/parameters.c:821
+#: ../src/parameters.c:822
 msgid "Event list"
 msgstr "Llista d'esdeveniments"
 
-#: ../src/parameters.c:846
+#: ../src/parameters.c:847
 msgid "Orage Preferences"
 msgstr "Preferències Orage"
+
+#: ../src/parameters.c:1019
+msgid "First Orage start. Searching default timezone."
+msgstr ""
+
+#: ../src/parameters.c:1038
+#, fuzzy, c-format
+msgid "Default timezone set to %s."
+msgstr "Trieu el fus horari:"
+
+#: ../src/parameters.c:1041
+msgid "Default timezone not found, please, set it manually."
+msgstr ""
 
 #: ../src/reminder.c:425
 msgid "Reminder "

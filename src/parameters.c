@@ -1035,7 +1035,7 @@ void init_default_timezone()
         g_free(tz_local);
     }
     if (ORAGE_STR_EXISTS(g_par.local_timezone))
-        g_message(_("Set default timezone to %s."), g_par.local_timezone);
+        g_message(_("Default timezone set to %s."), g_par.local_timezone);
     else {
         g_par.local_timezone = g_strdup("floating");
         g_message(_("Default timezone not found, please, set it manually."));
