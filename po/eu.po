@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-11 09:18+0200\n"
-"PO-Revision-Date: 2008-11-06 12:41+0200\n"
+"POT-Creation-Date: 2008-09-27 23:53+0300\n"
+"PO-Revision-Date: 2008-11-09 15:48+0200\n"
 "Last-Translator: Piarres Beobide <pi@beobide.net>\n"
 "Language-Team: Euskara <debian-l10n-basque@lists.debian.org>\n"
+"Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: eu\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 1.2.0\n"
 
@@ -139,7 +139,7 @@ msgstr "itxi leihoa eta irten"
 
 #: ../globaltime/gt_prefs.c:586
 msgid "Modify Clock "
-msgstr "Aldatu ordularia"
+msgstr "Aldatu ordularia "
 
 #. -----------------------HEADING-------------------------------------------
 #: ../globaltime/gt_prefs.c:599
@@ -325,86 +325,72 @@ msgstr ""
 "Idatzi ordu-zonalde lokala. (ordua aurrekoa edo beranduagokoa den +/- "
 "erabiliaz ezartzeko)"
 
-#: ../panel-plugin/oc_config.c:199
+#: ../panel-plugin/oc_config.c:193
 msgid "Appearance"
 msgstr "Itxura"
 
 #. show frame
-#: ../panel-plugin/oc_config.c:210
+#: ../panel-plugin/oc_config.c:204
 msgid "Show _frame"
 msgstr "_Markoa bistarazi"
 
 #. foreground color
-#: ../panel-plugin/oc_config.c:220
+#: ../panel-plugin/oc_config.c:214
 msgid "set foreground _color:"
 msgstr "Lehen planoko _kolorea ezarri:"
 
 #. background color
-#: ../panel-plugin/oc_config.c:234
+#: ../panel-plugin/oc_config.c:228
 msgid "set _background color:"
 msgstr "Atzeko planoko _kolorea ezarri:"
 
 #. clock size (=vbox size): height and width
-#: ../panel-plugin/oc_config.c:248
+#: ../panel-plugin/oc_config.c:242
 msgid "set _height:"
 msgstr "a_lktuera ezarri:"
 
-#: ../panel-plugin/oc_config.c:260
+#: ../panel-plugin/oc_config.c:254
 msgid "set _width:"
 msgstr "_zabalera ezarri:"
 
-#: ../panel-plugin/oc_config.c:281
+#: ../panel-plugin/oc_config.c:275
 msgid "Clock Options"
 msgstr "Ordulari Aukerak"
 
 #. timezone
-#: ../panel-plugin/oc_config.c:292
+#: ../panel-plugin/oc_config.c:286
 msgid "set timezone to:"
 msgstr "Ordu zonalde hau ezarri:"
 
-#: ../panel-plugin/oc_config.c:301
+#: ../panel-plugin/oc_config.c:295
 msgid "Set any valid timezone (=TZ) value or pick one from the list."
 msgstr "Ezarri balioz ordu zonalde bat (=TZ) edo zerrendako bat aukeratu."
 
 #. line 1
-#: ../panel-plugin/oc_config.c:310
+#: ../panel-plugin/oc_config.c:304
 msgid "show line _1:"
 msgstr "_1 lerroa bistarazi:"
 
-#: ../panel-plugin/oc_config.c:321
+#: ../panel-plugin/oc_config.c:315
 msgid "Enter any valid strftime function parameter."
 msgstr "Baliozko strftime funtzio parametro bat idatzi."
 
 #. line 2
-#: ../panel-plugin/oc_config.c:337
+#: ../panel-plugin/oc_config.c:331
 msgid "show line _2:"
 msgstr "_2 lerroa bistarazi:"
 
 #. line 3
-#: ../panel-plugin/oc_config.c:359
+#: ../panel-plugin/oc_config.c:353
 msgid "show line _3:"
 msgstr "_3 lerroa bistarazi:"
 
 #. Tooltip hint
-#: ../panel-plugin/oc_config.c:381
+#: ../panel-plugin/oc_config.c:375
 msgid "Tooltip:"
 msgstr "Argibidea:"
 
-#. special timing for SUSPEND/HIBERNATE
-#: ../panel-plugin/oc_config.c:391
-msgid "fix time after suspend/hibernate"
-msgstr ""
-
-#: ../panel-plugin/oc_config.c:395
-msgid ""
-"You only need this if you do short term (less than 5 hours) suspend or "
-"hibernate and your visible time does not include seconds. Under these "
-"circumstances it is possible that Orageclock shows time inaccurately unless "
-"you have this selected. (Selecting this prevents cpu and interrupt saving "
-"features from working.)"
-msgstr ""
-
-#: ../panel-plugin/oc_config.c:407
+#: ../panel-plugin/oc_config.c:392
 msgid ""
 "This program uses strftime function to get time.\n"
 "Use any valid code to get time in the format you prefer.\n"
@@ -424,11 +410,11 @@ msgstr ""
 "\t%H = ordu \t\t\t\t%M = minutu\n"
 "\t%X = lokala time\t\t\t%x = data lokala"
 
-#: ../panel-plugin/oc_config.c:430
+#: ../panel-plugin/oc_config.c:416
 msgid "Properties"
 msgstr "Propietateak"
 
-#: ../panel-plugin/oc_config.c:445
+#: ../panel-plugin/oc_config.c:431
 msgid "Orage clock"
 msgstr "Orage ordularia"
 
@@ -441,7 +427,7 @@ msgstr "Orage ordularia"
 #. * %Y  : four digit year
 #. * %V  : ISO week number
 #.
-#: ../panel-plugin/orageclock.c:596
+#: ../panel-plugin/orageclock.c:641
 msgid "%A %d %B %Y/%V"
 msgstr "%A, %Y/%V-eko %B %d"
 
@@ -487,7 +473,7 @@ msgstr "Orage"
 
 #. to avoid timing problems when updating entry
 #. Create file chooser
-#: ../src/appointment.c:651 ../src/interface.c:277 ../src/parameters.c:384
+#: ../src/appointment.c:651 ../src/interface.c:277 ../src/parameters.c:383
 msgid "Select a file..."
 msgstr "Fitxategi bat hautatu..."
 
@@ -659,7 +645,7 @@ msgid "Title "
 msgstr "Izenburua "
 
 #. location
-#: ../src/appointment.c:2301 ../src/ical-code.c:4496 ../src/ical-code.c:4501
+#: ../src/appointment.c:2301 ../src/ical-code.c:4495 ../src/ical-code.c:4500
 msgid "Location"
 msgstr "Kokalekua"
 
@@ -1055,7 +1041,7 @@ msgstr "Itxi"
 msgid "Unknown"
 msgstr "Ezezaguna"
 
-#: ../src/day-view.c:694 ../src/parameters.c:663
+#: ../src/day-view.c:694 ../src/parameters.c:662
 msgid "Show"
 msgstr "Ikusi"
 
@@ -2704,108 +2690,107 @@ msgstr "Pazifikoa/Wallis"
 msgid "Pacific/Yap"
 msgstr "Pazifikoa/Yap"
 
-#: ../src/ical-code.c:1330
+#: ../src/ical-code.c:1329
 msgid "Orage default alarm"
 msgstr "Orage lehenetsiriko alarma"
 
-#: ../src/ical-code.c:3024
+#: ../src/ical-code.c:3023
 #, c-format
 msgid "Build alarm list: Added %d alarms. Processed %d events."
 msgstr ""
 "Alarma zerrenda eraikia. %d alarma gehitu dira. %d gertaera prozesatu dira."
 
-#: ../src/ical-code.c:3026
+#: ../src/ical-code.c:3025
 #, c-format
-msgid ""
-"\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
+msgid "\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
 msgstr ""
 "\t%d alarma aurkitu dira, %d aktibo daude. (%d alarma errepikapen bilatuak)"
 
 #. remove since it has ended
-#: ../src/ical-code.c:3543
+#: ../src/ical-code.c:3542
 msgid "\tRecur ended, moving to archive file."
-msgstr "\\Errepikapena amaitu da, fitxategi batetara mugitzen."
+msgstr "\tErrepikapena amaitu da, fitxategi batetara mugitzen."
 
-#: ../src/ical-code.c:3605
+#: ../src/ical-code.c:3604
 msgid "Archiving not enabled. Exiting"
 msgstr "Artxibatzea ez dago gaiturik. Uzten"
 
-#: ../src/ical-code.c:3623
+#: ../src/ical-code.c:3622
 #, c-format
 msgid "Archiving threshold: %d month(s)"
 msgstr "Artxibatze muga: %d hilabete"
 
 #. yy mon day
-#: ../src/ical-code.c:3626
+#: ../src/ical-code.c:3625
 #, c-format
 msgid "\tArchiving events, which are older than: %04d-%02d-%02d"
 msgstr "\tHau baino zaharragoak diren gertaerak artxibatzen: %04d-%02d-%02d"
 
-#: ../src/ical-code.c:3653
+#: ../src/ical-code.c:3652
 #, c-format
 msgid "Archiving uid: %s"
 msgstr "Artxibatze uid-a: %s"
 
 #. VTODO not completed, do not archive
-#: ../src/ical-code.c:3659
+#: ../src/ical-code.c:3658
 msgid "\tVTODO not complete; not archived"
 msgstr "\tVTODO ez da osatu, ez da artxibatuko"
 
 #. it is recurrent event
-#: ../src/ical-code.c:3664
+#: ../src/ical-code.c:3663
 #, c-format
 msgid "\tRecurring. End year: %04d, month: %02d, day: %02d"
 msgstr "\tErrepikapena. Amaiera urtea: %04d, hilabetea: %02d eguna: %02d"
 
-#: ../src/ical-code.c:3681
+#: ../src/ical-code.c:3680
 msgid "Archiving done\n"
 msgstr "Artxibatzea eginda\n"
 
 #. PHASE 1: go through base orage file and remove "repeat" shortcuts
-#: ../src/ical-code.c:3697
+#: ../src/ical-code.c:3696
 msgid "Starting archive removal."
 msgstr "Artxibo ezabatzea abiarazten."
 
-#: ../src/ical-code.c:3698
+#: ../src/ical-code.c:3697
 msgid "\tPHASE 1: reset recurring appointments"
 msgstr "\t1 URRATSA: berrabiarazi hitzordu errepikapenak"
 
 #. PHASE 2: go through archive file and add everything back to base orage.
 #. * After that delete the whole arch file
-#: ../src/ical-code.c:3720
+#: ../src/ical-code.c:3719
 msgid "\tPHASE 2: return archived appointments"
 msgstr " \t2 URRATSA: berreskuratu artxibatutako hitzorduak"
 
-#: ../src/ical-code.c:3746
+#: ../src/ical-code.c:3745
 msgid "Archive removal done\n"
 msgstr "Artxibo ezabatzea eginda\n"
 
-#: ../src/ical-code.c:3836
+#: ../src/ical-code.c:3835
 msgid "Starting import file preprocessing"
 msgstr "Inportatze fitxategi aurreprozesatzea abiarazten"
 
-#: ../src/ical-code.c:3871
+#: ../src/ical-code.c:3870
 msgid "... Patched DCREATED to be CREATED."
 msgstr "... DCREATED eraldatua CREATED izateko."
 
-#: ../src/ical-code.c:3910
+#: ../src/ical-code.c:3909
 msgid "... Patched timezone to Orage format."
 msgstr "... Ordu-zonaldeak Orage formatura aldatua."
 
-#: ../src/ical-code.c:3919
+#: ../src/ical-code.c:3918
 msgid "Import file preprocessing done"
 msgstr "Inportazio fitxategi aurreprozesatzea eginda"
 
 #. show it
-#: ../src/ical-code.c:4507
+#: ../src/ical-code.c:4506
 msgid "Pick timezone"
 msgstr "Ordu zonaldea aukeratu"
 
-#: ../src/ical-code.c:4510 ../src/ical-code.c:4538
+#: ../src/ical-code.c:4509 ../src/ical-code.c:4537
 msgid "UTC"
 msgstr "UTC"
 
-#: ../src/ical-code.c:4511 ../src/ical-code.c:4542 ../src/parameters.c:493
+#: ../src/ical-code.c:4510 ../src/ical-code.c:4541 ../src/parameters.c:492
 msgid "floating"
 msgstr "mugikorra"
 
@@ -2867,7 +2852,7 @@ msgstr "Hitzordu guztiak"
 
 #: ../src/interface.c:1044
 msgid "Named appointments: "
-msgstr "Izena duten hitzorduak:"
+msgstr "Izena duten hitzorduak: "
 
 #: ../src/interface.c:1056
 msgid ""
@@ -3024,14 +3009,12 @@ msgstr ""
 #: ../src/main.c:194
 #, c-format
 msgid "\tReleased under the terms of the GNU General Public License.\n"
-msgstr ""
-"\tGNU lizentzia publiko orokorrak ezartzen dituen baldintzetan "
-"argitaraturik.\n"
+msgstr "\tGNU lizentzia publiko orokorrak ezartzen dituen baldintzetan argitaraturik.\n"
 
 #: ../src/main.c:195
 #, c-format
 msgid "\tCompiled against GTK+-%d.%d.%d, "
-msgstr "\tGTK+-%d.%d.%d bidez konpilaturik"
+msgstr "\tGTK+-%d.%d.%d bidez konpilaturik, "
 
 #: ../src/main.c:197
 #, c-format
@@ -3090,7 +3073,7 @@ msgstr "--version (-v) \t\tikusi orage bertsioa\n"
 #: ../src/main.c:228
 #, c-format
 msgid "--help (-h) \t\tprint this text\n"
-msgstr "--help (-h) \t\\inprimatu testu hau\n"
+msgstr "--help (-h) \t\tinprimatu testu hau\n"
 
 #: ../src/main.c:229
 #, c-format
@@ -3127,11 +3110,10 @@ msgstr "\tdbus ez dago oragen barneraturik. \n"
 msgid ""
 "\twithout dbus [files] and foreign file options(-a & -r) can only be used "
 "when starting orage \n"
-msgstr ""
-"\tdbus gabe fitxategi aukerak (-a eta -r) orage abiaraztean bakarrik erabili "
+msgstr "\tdbus gabe fitxategi aukerak (-a eta -r) orage abiaraztean bakarrik erabili "
 "daitezke \n"
 
-#: ../src/main.c:381
+#: ../src/main.c:380
 #, c-format
 msgid ""
 "\n"
@@ -3213,157 +3195,143 @@ msgstr "<b>Egiteko:</b>"
 msgid "<b>Events for %s:</b>"
 msgstr "<b>%s-ren geraterak:</b>"
 
-#: ../src/parameters.c:473
+#: ../src/parameters.c:472
 msgid "Main setups"
 msgstr "Konfigurazio nagusiak"
 
-#: ../src/parameters.c:479
+#: ../src/parameters.c:478
 msgid "Timezone"
 msgstr "Ordu-zonaldea"
 
-#: ../src/parameters.c:498
+#: ../src/parameters.c:497
 msgid "You should always define your local timezone."
 msgstr "Beti zehaztu beharko zenuke zure ordu-zonaldea."
 
-#: ../src/parameters.c:507
+#: ../src/parameters.c:506
 msgid "Archive threshold (months)"
 msgstr "Artxibo Muga (hilabeteak)"
 
-#: ../src/parameters.c:517
+#: ../src/parameters.c:516
 msgid "(0 = no archiving)"
 msgstr "(0 = ez gordetzen)"
 
-#: ../src/parameters.c:520
+#: ../src/parameters.c:519
 msgid "Archiving is used to save time and space when handling events."
-msgstr ""
-"Artxibatzea gerftaerak kudeatzean denbora eta lekua aurrezteko erabiltzen da."
+msgstr "Artxibatzea gerftaerak kudeatzean denbora eta lekua aurrezteko erabiltzen da."
 
-#: ../src/parameters.c:529
+#: ../src/parameters.c:528
 msgid "Sound command"
 msgstr "Soinu komandoa"
 
-#: ../src/parameters.c:544
+#: ../src/parameters.c:543
 msgid "This command is given to shell to make sound in alarms."
 msgstr "Komando hau bidaltzen zaio shell-ari alarmetan soinua egin dezan"
 
-#: ../src/parameters.c:559
+#: ../src/parameters.c:558
 msgid "Display"
 msgstr "Bistarazi"
 
-#: ../src/parameters.c:566
+#: ../src/parameters.c:565
 msgid "Calendar main window"
 msgstr "Egutegi leiho nagusia"
 
-#: ../src/parameters.c:571
+#: ../src/parameters.c:570
 msgid "Show borders"
 msgstr "Ikusi ertzak"
 
-#: ../src/parameters.c:578
+#: ../src/parameters.c:577
 msgid "Show menu"
 msgstr "Ikusi menua"
 
-#: ../src/parameters.c:585
+#: ../src/parameters.c:584
 msgid "Show todo list"
 msgstr "Ikusi egitekoen zerrenda"
 
-#: ../src/parameters.c:592
+#: ../src/parameters.c:591
 msgid "Show event list"
 msgstr "Ikusi gertaera zerrenda"
 
-#: ../src/parameters.c:599
+#: ../src/parameters.c:598
 msgid "Set sticked"
 msgstr "Ezarri itsatsirik"
 
-#: ../src/parameters.c:606
+#: ../src/parameters.c:605
 msgid "Set on top"
 msgstr "Ezarri goian:"
 
-#: ../src/parameters.c:627
+#: ../src/parameters.c:626
 msgid "Show in taskbar"
 msgstr "Ikusi ataza-barran"
 
-#: ../src/parameters.c:634
+#: ../src/parameters.c:633
 msgid "Show in pager"
 msgstr "Ikusi orrialdekatzailean"
 
-#: ../src/parameters.c:641
+#: ../src/parameters.c:640
 msgid "Show in systray"
 msgstr "Ikusi sistema-barran"
 
-#: ../src/parameters.c:658
+#: ../src/parameters.c:657
 msgid "Calendar start"
 msgstr "Egutegia abiarazi"
 
-#: ../src/parameters.c:675
+#: ../src/parameters.c:674
 msgid "Hide"
 msgstr "Ezkutatu"
 
-#: ../src/parameters.c:687
+#: ../src/parameters.c:686
 msgid "Minimized"
 msgstr "Txikiturik"
 
-#: ../src/parameters.c:717
+#: ../src/parameters.c:716
 msgid "Extra setups"
 msgstr "Ezarpen gehigarriak"
 
-#: ../src/parameters.c:724 ../src/parameters.c:729
+#: ../src/parameters.c:723 ../src/parameters.c:728
 msgid "Select always today"
 msgstr "Bati gaur hautatu"
 
-#: ../src/parameters.c:735
+#: ../src/parameters.c:734
 msgid ""
 "When showing main calendar, set pointer to either previously selected day or "
 "always to current day."
 msgstr ""
-"Egutegi nagusia ikustean markatzailea aurretik hautatutako egunean edo beti "
-"egunekora joatea ezarri."
+"Egutegi nagusia ikustean markatzailea aurretik hautatutako egunean edo "
+"beti egunekora joatea ezarri."
 
-#: ../src/parameters.c:766
+#: ../src/parameters.c:765
 msgid "Dynamic icon size"
 msgstr "Ikono dinamiko tamaina"
 
-#: ../src/parameters.c:779 ../src/parameters.c:796
+#: ../src/parameters.c:778 ../src/parameters.c:795
 msgid "(0 = use static icon)"
 msgstr "(0 = erabili ikono finkoa)"
 
-#: ../src/parameters.c:782
+#: ../src/parameters.c:781
 msgid ""
 "Dynamic icon shows current day and month. It is visible only in tray. If "
 "tray is too small for dynamic icon size, Orage switches automatically back "
 "to static icon."
 msgstr ""
-"Ikono dinamikoak eguna eta hilabetea erakusten ditu. Erretiluan bakarrik "
-"ikus daiteke. Erretilua ikono dinamikoaren tamainarako txikiegia bada "
-"automatikoki ikono finkoa erabiliko da."
+"Ikono dinamikoak eguna eta hilabetea erakusten ditu. Erretiluan bakarrik ikus daiteke. "
+"Erretilua ikono dinamikoaren tamainarako txikiegia bada automatikoki ikono finkoa "
+"erabiliko da."
 
-#: ../src/parameters.c:805
+#: ../src/parameters.c:804
 msgid "Main Calendar double click shows"
-msgstr "Egutegi orokorrean klik bikotza egitean "
+msgstr "Egutegi orokorrean klik bikoitza egitean"
 
-#: ../src/parameters.c:810
+#: ../src/parameters.c:809
 msgid "Days view"
 msgstr "Egun ikuspegia"
 
-#: ../src/parameters.c:822
+#: ../src/parameters.c:821
 msgid "Event list"
 msgstr "Gertaera zerrenda"
 
-#: ../src/parameters.c:847
+#: ../src/parameters.c:846
 msgid "Orage Preferences"
 msgstr "Orage hobespenak"
-
-#: ../src/parameters.c:1019
-msgid "First Orage start. Searching default timezone."
-msgstr ""
-
-#: ../src/parameters.c:1038
-#, fuzzy, c-format
-msgid "Default timezone set to %s."
-msgstr "Ordu zonalde hau ezarri:"
-
-#: ../src/parameters.c:1041
-msgid "Default timezone not found, please, set it manually."
-msgstr ""
 
 #: ../src/reminder.c:425
 msgid "Reminder "
