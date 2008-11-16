@@ -96,7 +96,8 @@ static gboolean oc_get_time(Clock *clock)
              * 100 % of the time wasted in this procedure 
              * Note that even though we only wake up when needed, we 
              * may not have to update all lines, so this check still
-             * probably is worth doing
+             * probably is worth doing. Specially after we added the
+             * hibernate update option.
              * */
             if (strcmp(res,  line->prev)) {
                 gtk_label_set_text(GTK_LABEL(line->label), res);
@@ -109,18 +110,29 @@ static gboolean oc_get_time(Clock *clock)
     return(TRUE);
 }
 
+static gboolean oc_get_time_and_tune(Clock *clock)
+{
+    oc_get_time(clock);
+    if (clock->now.tm_sec > 1 && clock->now.tm_sec < 59) {
+        /* we are more than 1 sec off => fix the timing 
+         * FIXME: we might be 59 secs off and will not see that! */
+        oc_start_timer(clock);
+    }
+
+    return(TRUE);
+}
+
 static gboolean oc_get_time_delay(Clock *clock)
 {
+    oc_get_time(clock); /* update clock */
     /* now we really start the clock */
-    oc_get_time(clock);
     clock->timeout_id = g_timeout_add_full(G_PRIORITY_DEFAULT_IDLE
-            , clock->interval, (GSourceFunc)oc_get_time, clock, NULL);
+            , clock->interval, (GSourceFunc)oc_get_time_and_tune, clock, NULL);
     return(FALSE); /* this is one time only timer */
 }
 
-gboolean oc_start_timer(Clock *clock)
+void oc_start_timer(Clock *clock)
 {
-    time_t t;
     gint delay_time; /* this is used to set the clock start tie correct */
 
     /*
@@ -131,29 +143,28 @@ gboolean oc_start_timer(Clock *clock)
         g_source_remove(clock->timeout_id);
         clock->timeout_id = 0;
     }
-    oc_get_time(clock); /* put time on the clock and also fill clock->now */
-    /* if we are using longer than 1 second (== 1000) interval, we need
-     * to delay the first start so that clock changes when minute or hour
-     * changes */
-    if (clock->interval <= 1000) /* no adjustment needed, we show seconds */
-        delay_time = 100; /* small delay since 0 is a bit scary */
-    else if (clock->interval <= 60000) /* adjust to next full minute */
-        delay_time = (clock->interval - clock->now.tm_sec*1000);
-    else /* if (clock->interval <= 3600000) */ /* adjust to next full hour */
-        delay_time = (clock->interval -
-                    (clock->now.tm_min*60000 + clock->now.tm_sec*1000));
-
     if (clock->delay_timeout_id) {
         g_source_remove(clock->delay_timeout_id);
         clock->delay_timeout_id = 0;
     }
-    clock->delay_timeout_id = g_timeout_add_full(G_PRIORITY_DEFAULT_IDLE
-            , delay_time, (GSourceFunc)oc_get_time_delay, clock, NULL);
+    oc_get_time(clock); /* put time on the clock and also fill clock->now */
+    /* if we are using longer than 1 second (== 1000) interval, we need
+     * to delay the first start so that clock changes when minute or hour
+     * changes */
+    if (clock->interval <= 1000) { /* no adjustment needed, we show seconds */
+        clock->timeout_id = g_timeout_add_full(G_PRIORITY_DEFAULT_IDLE
+                , clock->interval, (GSourceFunc)oc_get_time, clock, NULL);
+    }
+    else { /* need to tune time */
+        if (clock->interval <= 60000) /* adjust to next full minute */
+            delay_time = (clock->interval - clock->now.tm_sec*1000);
+        else /* if (clock->interval <= 3600000) *//* adjust to next full hour */
+            delay_time = (clock->interval -
+                    (clock->now.tm_min*60000 + clock->now.tm_sec*1000));
 
-    /* if we have longer than 1 sec timer, we need to reschedule 
-     * it regularly since it will fall wrong slowly but surely, so
-     * we keep this running. */
-    return(TRUE);
+        clock->delay_timeout_id = g_timeout_add_full(G_PRIORITY_DEFAULT_IDLE
+                , delay_time, (GSourceFunc)oc_get_time_delay, clock, NULL);
+    }
 }
 
 gboolean oc_check_if_same(Clock *clock, int diff)
@@ -214,17 +225,11 @@ gboolean oc_check_if_same(Clock *clock, int diff)
 
 void oc_tune_interval(Clock *clock)
 {
-    gboolean same_time;
-
-    if (clock->adjust_timeout_id) {
-        g_source_remove(clock->adjust_timeout_id);
-        clock->adjust_timeout_id = 0;
-    }
     /* check if clock changes after 2 secs */
-    if ((same_time = oc_check_if_same(clock, 2))) { /* Continue checking */
+    if (oc_check_if_same(clock, 2)) { /* Continue checking */
         /* We know now that clock does not change every second. 
          * Let's check 2 minutes next: */
-        if ((same_time = oc_check_if_same(clock, 2*60))) {
+        if (oc_check_if_same(clock, 2*60)) {
             /* We know now that clock does not change every minute. 
              * We could check hours next, but cpu saving between 1 hour and 24
              * hours would be minimal. But keeping 24 hour wake up time clock
@@ -235,10 +240,6 @@ void oc_tune_interval(Clock *clock)
         else { /* we schedule clock to fire every minute */
             clock->interval = 60000;
         }
-        /* Our timer runs slow ( every minute or every hour only), so we need
-         * to resync time regularly (every 4 hours) to keep clock in time: */
-        clock->adjust_timeout_id = g_timeout_add_full(G_PRIORITY_DEFAULT_IDLE
-                , 4*60*60*1000, (GSourceFunc)oc_start_timer, clock, NULL);
     }
 }
 

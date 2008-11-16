@@ -59,7 +59,6 @@ typedef struct _clock
     GtkTooltips *tips;
     int timeout_id;  /* timer id for the clock */
     int delay_timeout_id;
-    int adjust_timeout_id;
     int interval;
     struct tm   now;
 } Clock;
@@ -75,6 +74,6 @@ void oc_show_line_set(Clock *clock, gint lno);
 void oc_line_font_set(Clock *clock, gint lno);
 void oc_hib_timing_set(Clock *clock);
 void oc_write_rc_file(XfcePanelPlugin *plugin, Clock *clock);
-gboolean oc_start_timer(Clock *clock);
+void oc_start_timer(Clock *clock);
 void oc_init_timer(Clock *clock);
 
