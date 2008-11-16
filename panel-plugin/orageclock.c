@@ -118,7 +118,10 @@ static gboolean oc_get_time_and_tune(Clock *clock)
          * FIXME: we might be 59 secs off and will not see that! */
         oc_start_timer(clock);
     }
-
+    else if (clock->interval > 60000 && clock->now.tm_min != 0) {
+        /* we need to check also minutes if we are using hour timer */
+        oc_start_timer(clock);
+    }
     return(TRUE);
 }
 
