@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: orage 4.3.90.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-11-11 09:18+0200\n"
-"PO-Revision-Date: 2008-10-19 14:35+0100\n"
+"PO-Revision-Date: 2008-11-16 10:39+0100\n"
 "Last-Translator: Carles Muñoz Gorriz <carlesmu@internautas.org>\n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
@@ -394,7 +394,7 @@ msgstr "Rètol indicador:"
 #. special timing for SUSPEND/HIBERNATE
 #: ../panel-plugin/oc_config.c:391
 msgid "fix time after suspend/hibernate"
-msgstr ""
+msgstr "primer cop després d'una suspensió/hibernació"
 
 #: ../panel-plugin/oc_config.c:395
 msgid ""
@@ -404,6 +404,11 @@ msgid ""
 "you have this selected. (Selecting this prevents cpu and interrupt saving "
 "features from working.)"
 msgstr ""
+"Només us cal això si empreu suspensions o hibernacions curtes (menys de 5 "
+"hores) i l'hora que es mostra no ensenya els segons. Si es donen aquestes "
+"circumstàncies, i no marqueu aquesta opció, pot passar que el rellotge "
+"d'Orage mostri un hora no prou acurada. (Marcant-la evita que les funcions "
+"de desament de la CPU i les interrupcions funcionin.)"
 
 #: ../panel-plugin/oc_config.c:407
 msgid ""
@@ -3357,16 +3362,16 @@ msgstr "Preferències Orage"
 
 #: ../src/parameters.c:1019
 msgid "First Orage start. Searching default timezone."
-msgstr ""
+msgstr "Primera arrancada d'Orage. Cercant el fus horari per defecte."
 
 #: ../src/parameters.c:1038
-#, fuzzy, c-format
+#, c-format
 msgid "Default timezone set to %s."
-msgstr "Trieu el fus horari:"
+msgstr "Fus horari per defecte fixat a %s."
 
 #: ../src/parameters.c:1041
 msgid "Default timezone not found, please, set it manually."
-msgstr ""
+msgstr "Fus horari per defecte no trobat. Informeu-lo manualment."
 
 #: ../src/reminder.c:425
 msgid "Reminder "
@@ -3408,7 +3413,7 @@ msgstr "Nova cita"
 
 #: ../src/tray_icon.c:361
 msgid "About Orage"
-msgstr "Quant a «Orage»"
+msgstr "Quant a Orage"
 
 #: ../panel-plugin/orageclock.desktop.in.in.h:1
 msgid "Orage Clock"
@@ -3429,11 +3434,11 @@ msgstr "Paràmetres de calendari"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:3
 msgid "Settings for the Xfce 4 Calendar Application"
-msgstr "Paràmetres per l'aplicació de calendari d'Xfce4"
+msgstr "Paràmetres de l'aplicació de calendari de Xfce 4"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:4
 msgid "Xfce 4 Calendar Settings"
-msgstr "Paràmetres del calendari d'Xfce4"
+msgstr "Paràmetres del calendari de Xfce 4"
 
 #: ../xfcalendar.desktop.in.h:2
 msgid "Desktop calendar"
