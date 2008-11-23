@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: xfcalendar\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-11-11 09:18+0200\n"
-"PO-Revision-Date: 2008-06-30 21:02+0300\n"
+"PO-Revision-Date: 2008-11-17 11:35+0200\n"
 "Last-Translator: Dmitry Nikitin <luckas_fb@mail.ru>\n"
 "Language-Team: Ukrainian <xfce4-dev@xfce.org>\n"
 "MIME-Version: 1.0\n"
@@ -239,8 +239,7 @@ msgstr "Клацніть щоб вибрати типовий колір тла 
 
 #: ../globaltime/gt_prefs.c:876 ../globaltime/gt_prefs.c:909
 msgid "Cross this to use system default instead of selected color"
-msgstr ""
-"Перейшовши сюди використовуєте типовий системний колір замість вибраного"
+msgstr "Перейшовши сюди використовуєте типовий системний колір замість вибраного"
 
 #: ../globaltime/gt_prefs.c:895
 msgid "Click to change default text colour for clocks"
@@ -252,8 +251,7 @@ msgstr "Клацніть щоб вибрати типовий шрифт для 
 
 #: ../globaltime/gt_prefs.c:943 ../globaltime/gt_prefs.c:977
 msgid "Cross this to use system default font instead of selected font"
-msgstr ""
-"Перейшовши сюди використовуєте типовий системний шрифт замість вибраного"
+msgstr "Перейшовши сюди використовуєте типовий системний шрифт замість вибраного"
 
 #: ../globaltime/gt_prefs.c:962
 msgid "Click to change default font for clock time"
@@ -392,7 +390,7 @@ msgstr "Спливаючі:"
 #. special timing for SUSPEND/HIBERNATE
 #: ../panel-plugin/oc_config.c:391
 msgid "fix time after suspend/hibernate"
-msgstr ""
+msgstr "скоригувати час після призупинення/сплячки"
 
 #: ../panel-plugin/oc_config.c:395
 msgid ""
@@ -402,6 +400,11 @@ msgid ""
 "you have this selected. (Selecting this prevents cpu and interrupt saving "
 "features from working.)"
 msgstr ""
+"Вам це потрібно якщо це відбувається в короткому проміжку часу (менше  "
+"5 годин) призупинення чи сплячки і Ваш видимий час не включає секунд. "
+"В цих випадках можливо, Orageclock відображатиме неточний час ніж вибраний  "
+"Вами. (Виберіть цю опцію для правильної роботи повідомлень з допомогою    "
+"процесора і системного переривання)"
 
 #: ../panel-plugin/oc_config.c:407
 msgid ""
@@ -447,13 +450,12 @@ msgstr "%A %d %B %Y/%V"
 
 #: ../plugin/xfcalendar_plugin.c:43
 msgid "Failed to launch 'orage -p'"
-msgstr ""
+msgstr "Невдача запуску 'orage -p'"
 
 #. the button label in the xfce-mcs-manager dialog
 #: ../plugin/xfcalendar_plugin.c:61
-#, fuzzy
 msgid "Orage - Calendar"
-msgstr "Основний файл календаря Orage"
+msgstr "Календар Orage"
 
 #: ../src/about-xfcalendar.c:42
 msgid "Manage your time with Xfce4"
@@ -840,8 +842,7 @@ msgstr "Встановити затримку"
 
 #: ../src/appointment.c:2663
 msgid "Select this if you want notification to expire automatically"
-msgstr ""
-"Виберіть це, якщо хочете отримувати автоматичні повідомлення про прострочення"
+msgstr "Виберіть це, якщо хочете отримувати автоматичні повідомлення про прострочення"
 
 #: ../src/appointment.c:2674
 msgid "0 = system default expiration time"
@@ -1081,8 +1082,7 @@ msgstr "Не було вибрано рядка."
 
 #: ../src/event-list.c:729
 msgid "Click a row to select it and after that you can copy it."
-msgstr ""
-"Клацніть на рядку для його вибору і після цього Ви зможете його скопіювати."
+msgstr "Клацніть на рядку для його вибору і після цього Ви зможете його скопіювати."
 
 #: ../src/event-list.c:899
 msgid ""
@@ -2719,8 +2719,7 @@ msgstr "Побудова списку дзвінків: Додано %d сигн
 
 #: ../src/ical-code.c:3026
 #, c-format
-msgid ""
-"\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
+msgid "\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
 msgstr ""
 "\tЗнайдено %d дзвінків і з них %d є активними. (Знайдено %d повторюваних "
 "дзвінків.)"
@@ -3235,8 +3234,7 @@ msgstr "(0 = не архівувати)"
 
 #: ../src/parameters.c:520
 msgid "Archiving is used to save time and space when handling events."
-msgstr ""
-"Архівація використовується для збереження часу і місця при обробці подій."
+msgstr "Архівація використовується для збереження часу і місця при обробці подій."
 
 #: ../src/parameters.c:529
 msgid "Sound command"
@@ -3244,8 +3242,7 @@ msgstr "Команда для програвання звуку"
 
 #: ../src/parameters.c:544
 msgid "This command is given to shell to make sound in alarms."
-msgstr ""
-"Ця команда передається командній оболонці для створення звукових попереджень."
+msgstr "Ця команда передається командній оболонці для створення звукових попереджень."
 
 #: ../src/parameters.c:559
 msgid "Display"
@@ -3355,16 +3352,16 @@ msgstr "Уподобання Orage"
 
 #: ../src/parameters.c:1019
 msgid "First Orage start. Searching default timezone."
-msgstr ""
+msgstr "Перший запуск Orage. Пошук типового часового поясу."
 
 #: ../src/parameters.c:1038
-#, fuzzy, c-format
+#, c-format
 msgid "Default timezone set to %s."
-msgstr "встановити часовий пояс в:"
+msgstr "Встановлено типовий часовий пояс в %s."
 
 #: ../src/parameters.c:1041
 msgid "Default timezone not found, please, set it manually."
-msgstr ""
+msgstr "Не знайдено типового часового поясу, будь ласка встановіть його вручну."
 
 #: ../src/reminder.c:425
 msgid "Reminder "
@@ -3436,3 +3433,4 @@ msgstr "Параметри календаря Xfce 4"
 #: ../xfcalendar.desktop.in.h:2
 msgid "Desktop calendar"
 msgstr "Календар стільниці"
+
