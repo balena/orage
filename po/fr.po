@@ -6,10 +6,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Orage 4.5.9.6-svn\n"
+"Project-Id-Version: Orage\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-11-11 09:18+0200\n"
-"PO-Revision-Date: 2008-10-07 22:33+0100\n"
+"PO-Revision-Date: 2008-12-04 22:11+0100\n"
 "Last-Translator: Maximilian Schleiss <maximilian@xfce.org>\n"
 "Language-Team: French <xfce-i18n@xfce.org>\n"
 "MIME-Version: 1.0\n"
@@ -18,11 +18,11 @@ msgstr ""
 
 #: ../globaltime/globaltime.c:100
 msgid "Raising GlobalTime window..."
-msgstr ""
+msgstr "Afficher la fenêtre heure globale..."
 
 #: ../globaltime/globaltime.c:102
 msgid "GlobalTime window raise failed"
-msgstr ""
+msgstr "La fenêtre heure globale n'a pas pu être affichée"
 
 #. ********** timezone tooltip **********
 #: ../globaltime/globaltime.c:278
@@ -31,6 +31,8 @@ msgid ""
 "%s\n"
 "click to modify clock"
 msgstr ""
+"%s\n"
+"Modifier l'horloge"
 
 #. trick to refresh clocks once
 #: ../globaltime/globaltime.c:358
@@ -39,7 +41,7 @@ msgstr ""
 
 #: ../globaltime/globaltime.c:366
 msgid "Starting time adjustment mode"
-msgstr ""
+msgstr "Mode d'ajustement de l'heure de départ"
 
 #: ../globaltime/globaltime.c:381
 msgid "Localtime"
@@ -50,199 +52,241 @@ msgid ""
 "button 1 to change preferences \n"
 "button 2 to adjust time of clocks"
 msgstr ""
+"Bouton 1 pour modifier les préférences \n"
+"Bouton 2 pour ajuster le l'heure"
 
 #: ../globaltime/globaltime.c:472
 msgid "adjust to change hour"
-msgstr ""
+msgstr "ajuster pour changer l'heure"
 
 #: ../globaltime/globaltime.c:487
 msgid "adjust to change minute"
-msgstr ""
+msgstr "ajuster pour changer les minutes"
 
-#: ../globaltime/gt_prefs.c:69 ../globaltime/gt_prefs.c:1077
+#: ../globaltime/gt_prefs.c:69
+#: ../globaltime/gt_prefs.c:1077
 msgid "Standard"
 msgstr "Standard"
 
-#: ../globaltime/gt_prefs.c:71 ../src/appointment.c:2780
+#: ../globaltime/gt_prefs.c:71
+#: ../src/appointment.c:2780
 msgid "None"
 msgstr "Aucune"
 
-#: ../globaltime/gt_prefs.c:84 ../globaltime/gt_prefs.c:1100
+#: ../globaltime/gt_prefs.c:84
+#: ../globaltime/gt_prefs.c:1100
 msgid "Equal"
-msgstr ""
+msgstr "Égal"
 
 #: ../globaltime/gt_prefs.c:86
 msgid "Vary"
 msgstr "Changeant"
 
-#: ../globaltime/gt_prefs.c:267 ../globaltime/gt_prefs.c:268
+#: ../globaltime/gt_prefs.c:267
+#: ../globaltime/gt_prefs.c:268
 msgid "NEW"
 msgstr "NOUVEAU"
 
 #: ../globaltime/gt_prefs.c:291
 msgid "NEW COPY"
-msgstr ""
+msgstr "NOUVELLE COPIE"
 
 #: ../globaltime/gt_prefs.c:312
 msgid "Not possible to delete the last clock."
-msgstr ""
+msgstr "La dernière horloge ne peut être supprimée."
 
-#: ../globaltime/gt_prefs.c:366 ../panel-plugin/oc_config.c:114
+#: ../globaltime/gt_prefs.c:366
+#: ../panel-plugin/oc_config.c:114
 msgid "Select timezone"
 msgstr "Choisir une zone horaire"
 
 #: ../globaltime/gt_prefs.c:511
 msgid "update this clock"
-msgstr ""
+msgstr "mettre cette horloge à jour"
 
-#: ../globaltime/gt_prefs.c:516 ../globaltime/gt_prefs.c:1033
+#: ../globaltime/gt_prefs.c:516
+#: ../globaltime/gt_prefs.c:1033
+#, fuzzy
 msgid "add new empty clock"
-msgstr ""
+msgstr "Ajoute un nouveau fichier vide"
 
 #: ../globaltime/gt_prefs.c:521
 msgid "add new clock using this clock as model"
-msgstr ""
+msgstr "ajouter une nouvelle horloge en prenant celle-ci comme modèle"
 
 #: ../globaltime/gt_prefs.c:526
+#, fuzzy
 msgid "delete this clock"
-msgstr ""
+msgstr "Supprimer ce profil"
 
 #: ../globaltime/gt_prefs.c:534
+#, fuzzy
 msgid "move this clock first"
-msgstr ""
+msgstr "ceci est la première définition"
 
 #: ../globaltime/gt_prefs.c:539
+#, fuzzy
 msgid "move this clock left"
-msgstr ""
+msgstr "Vous avez quitté la discussion."
 
 #: ../globaltime/gt_prefs.c:544
+#, fuzzy
 msgid "move this clock right"
-msgstr ""
+msgstr "Se déplacer d'un lien vers la droite"
 
 #: ../globaltime/gt_prefs.c:549
+#, fuzzy
 msgid "move this clock last"
-msgstr ""
+msgstr "aller à la dernière entrée"
 
 #: ../globaltime/gt_prefs.c:557
 msgid "set the timezone of this clock to be local timezone"
-msgstr ""
+msgstr "Définir le fuseau horaire de cette horloge comme heure locale"
 
-#: ../globaltime/gt_prefs.c:563 ../globaltime/gt_prefs.c:1041
+#: ../globaltime/gt_prefs.c:563
+#: ../globaltime/gt_prefs.c:1041
+#, fuzzy
 msgid "close window and exit"
-msgstr ""
+msgstr "Ouvrir le fichier et fermer la fenêtre"
 
 #: ../globaltime/gt_prefs.c:586
+#, fuzzy
 msgid "Modify Clock "
-msgstr ""
+msgstr "Options d'Horloge"
 
 #. -----------------------HEADING-------------------------------------------
 #: ../globaltime/gt_prefs.c:599
+#, fuzzy
 msgid "Clock Parameters"
-msgstr ""
+msgstr "Paramètres de l'effet"
 
 #: ../globaltime/gt_prefs.c:603
+#, fuzzy
 msgid "Name of the clock:"
-msgstr ""
+msgstr "Entrez le nom de l'horloge"
 
 #: ../globaltime/gt_prefs.c:609
 msgid "enter name of clock"
 msgstr "Entrez le nom de l'horloge"
 
 #: ../globaltime/gt_prefs.c:612
+#, fuzzy
 msgid "Timezone of the clock:"
-msgstr ""
+msgstr "Options d'Horloge"
 
 #: ../globaltime/gt_prefs.c:618
 msgid ""
 "enter timezone of clock,\n"
 "(=any valid TZ value)"
 msgstr ""
+"saisir le fuseau horaire de cette horloge,\n"
+"(=toute valeur TZ)"
 
 #: ../globaltime/gt_prefs.c:642
+#, fuzzy
 msgid "Text Formatting"
-msgstr ""
+msgstr "Écriture du noeud « %s »...\n"
 
 #. ------------------------background-------------------------
-#: ../globaltime/gt_prefs.c:648 ../globaltime/gt_prefs.c:855
+#: ../globaltime/gt_prefs.c:648
+#: ../globaltime/gt_prefs.c:855
 msgid "Background color:"
 msgstr "Couleur d'arrière-plan :"
 
 #: ../globaltime/gt_prefs.c:655
 msgid "Click to change background colour for clock"
-msgstr ""
+msgstr "Cliquez pour changer la couleur de fond de l'horloge"
 
-#: ../globaltime/gt_prefs.c:664 ../globaltime/gt_prefs.c:696
-#: ../globaltime/gt_prefs.c:728 ../globaltime/gt_prefs.c:761
-#: ../globaltime/gt_prefs.c:795 ../globaltime/gt_prefs.c:825
-#: ../globaltime/gt_prefs.c:871 ../globaltime/gt_prefs.c:904
-#: ../globaltime/gt_prefs.c:937 ../globaltime/gt_prefs.c:971
+#: ../globaltime/gt_prefs.c:664
+#: ../globaltime/gt_prefs.c:696
+#: ../globaltime/gt_prefs.c:728
+#: ../globaltime/gt_prefs.c:761
+#: ../globaltime/gt_prefs.c:795
+#: ../globaltime/gt_prefs.c:825
+#: ../globaltime/gt_prefs.c:871
+#: ../globaltime/gt_prefs.c:904
+#: ../globaltime/gt_prefs.c:937
+#: ../globaltime/gt_prefs.c:971
 msgid "Use default"
 msgstr "Valeur par défaut"
 
-#: ../globaltime/gt_prefs.c:669 ../globaltime/gt_prefs.c:701
-#: ../globaltime/gt_prefs.c:734 ../globaltime/gt_prefs.c:767
-#: ../globaltime/gt_prefs.c:801 ../globaltime/gt_prefs.c:831
+#: ../globaltime/gt_prefs.c:669
+#: ../globaltime/gt_prefs.c:701
+#: ../globaltime/gt_prefs.c:734
+#: ../globaltime/gt_prefs.c:767
+#: ../globaltime/gt_prefs.c:801
+#: ../globaltime/gt_prefs.c:831
 msgid "Cross this to use default instead of selected value"
-msgstr ""
+msgstr "Cochez pour utiliser la valeur par défaut"
 
 #. ------------------------foreground-------------------------
-#: ../globaltime/gt_prefs.c:680 ../globaltime/gt_prefs.c:888
+#: ../globaltime/gt_prefs.c:680
+#: ../globaltime/gt_prefs.c:888
 msgid "Foreground (=text) color:"
 msgstr "Couleur de premier plan (=texte) :"
 
 #: ../globaltime/gt_prefs.c:687
 msgid "Click to change foreground colour for clock"
-msgstr ""
+msgstr "Cliquez pour changer la couleur de premier plan de l'horloge"
 
 #. ------------------------name font-------------------------
-#: ../globaltime/gt_prefs.c:712 ../globaltime/gt_prefs.c:921
+#: ../globaltime/gt_prefs.c:712
+#: ../globaltime/gt_prefs.c:921
+#, fuzzy
 msgid "Font for name of clock:"
-msgstr ""
+msgstr "Nom de la police par défaut pour les nouveaux classeurs."
 
 #: ../globaltime/gt_prefs.c:719
 msgid "Click to change font for clock name"
-msgstr ""
+msgstr "Cliquez pour changer la police d'écriture du nom de l'horloge"
 
 #. ------------------------time font-------------------------
-#: ../globaltime/gt_prefs.c:745 ../globaltime/gt_prefs.c:955
+#: ../globaltime/gt_prefs.c:745
+#: ../globaltime/gt_prefs.c:955
+#, fuzzy
 msgid "Font for time of clock:"
-msgstr ""
+msgstr "En attente d'un tic d'horloge...\n"
 
 #: ../globaltime/gt_prefs.c:752
 msgid "Click to change font for clock time"
-msgstr ""
+msgstr "Cliquez pour changer la police d'écriture de l'horloge"
 
 #. ------------------------underline name--------------------
 #: ../globaltime/gt_prefs.c:779
+#, fuzzy
 msgid "Underline name of clock:"
-msgstr ""
+msgstr "Entrez le nom de l'horloge"
 
 #. ------------------------underline time--------------------
 #: ../globaltime/gt_prefs.c:809
+#, fuzzy
 msgid "Underline time of clock:"
-msgstr ""
+msgstr "L'horloge matérielle fonctionne selon le temps %s\n"
 
 #: ../globaltime/gt_prefs.c:849
+#, fuzzy
 msgid "Text Default Formatting"
-msgstr ""
+msgstr "Mode de formatage par défaut"
 
 #: ../globaltime/gt_prefs.c:862
 msgid "Click to change default background colour for clocks"
-msgstr ""
+msgstr "Cliquez pour changer la couleur de fond par défaut des horloges"
 
-#: ../globaltime/gt_prefs.c:876 ../globaltime/gt_prefs.c:909
+#: ../globaltime/gt_prefs.c:876
+#: ../globaltime/gt_prefs.c:909
 msgid "Cross this to use system default instead of selected color"
-msgstr ""
+msgstr "Cochez pour utiliser les couleurs par défaut du système"
 
 #: ../globaltime/gt_prefs.c:895
 msgid "Click to change default text colour for clocks"
-msgstr ""
+msgstr "Cliquez pour changer la couleur par défaut du texte pour les horloges"
 
 #: ../globaltime/gt_prefs.c:928
 msgid "Click to change default font for clock name"
 msgstr ""
 
-#: ../globaltime/gt_prefs.c:943 ../globaltime/gt_prefs.c:977
+#: ../globaltime/gt_prefs.c:943
+#: ../globaltime/gt_prefs.c:977
 msgid "Cross this to use system default font instead of selected font"
 msgstr ""
 
@@ -252,13 +296,15 @@ msgstr ""
 
 #. ------------------------underline name--------------------
 #: ../globaltime/gt_prefs.c:989
+#, fuzzy
 msgid "Underline for name of clock:"
-msgstr ""
+msgstr "En attente d'un tic d'horloge...\n"
 
 #. ------------------------underline time--------------------
 #: ../globaltime/gt_prefs.c:1003
+#, fuzzy
 msgid "Underline for time of clock:"
-msgstr ""
+msgstr "En attente d'un tic d'horloge...\n"
 
 #: ../globaltime/gt_prefs.c:1026
 msgid "update preferences"
@@ -278,8 +324,9 @@ msgid "Decorations:"
 msgstr "Décorations :"
 
 #: ../globaltime/gt_prefs.c:1082
+#, fuzzy
 msgid "Use normal decorations"
-msgstr ""
+msgstr "Utiliser une distribution normale"
 
 #: ../globaltime/gt_prefs.c:1093
 msgid "Do not show window decorations (borders)"
@@ -290,25 +337,25 @@ msgid "Clock size:"
 msgstr "Taille de l'horloge :"
 
 #: ../globaltime/gt_prefs.c:1105
+#, fuzzy
 msgid "All clocks have same size"
-msgstr ""
+msgstr "Toutes les pages avec la _même taille"
 
 #: ../globaltime/gt_prefs.c:1110
 msgid "Varying"
 msgstr "Changeant"
 
 #: ../globaltime/gt_prefs.c:1115
+#, fuzzy
 msgid "Clock sizes vary"
-msgstr ""
+msgstr "Taille cumulée des pages"
 
 #: ../globaltime/gt_prefs.c:1121
 msgid "Local timezone:"
 msgstr "Fuseau horaire :"
 
 #: ../globaltime/gt_prefs.c:1128
-msgid ""
-"Enter local timezone. (it is used to show if time is on previous(-) or next "
-"date(+) by adding a +/- after the time)"
+msgid "Enter local timezone. (it is used to show if time is on previous(-) or next date(+) by adding a +/- after the time)"
 msgstr ""
 
 #: ../panel-plugin/oc_config.c:199
@@ -373,8 +420,9 @@ msgstr "Montrer la ligne_3 :"
 
 #. Tooltip hint
 #: ../panel-plugin/oc_config.c:381
+#, fuzzy
 msgid "Tooltip:"
-msgstr ""
+msgstr "Bulle d'aide :"
 
 #. special timing for SUSPEND/HIBERNATE
 #: ../panel-plugin/oc_config.c:391
@@ -382,12 +430,7 @@ msgid "fix time after suspend/hibernate"
 msgstr ""
 
 #: ../panel-plugin/oc_config.c:395
-msgid ""
-"You only need this if you do short term (less than 5 hours) suspend or "
-"hibernate and your visible time does not include seconds. Under these "
-"circumstances it is possible that Orageclock shows time inaccurately unless "
-"you have this selected. (Selecting this prevents cpu and interrupt saving "
-"features from working.)"
+msgid "You only need this if you do short term (less than 5 hours) suspend or hibernate and your visible time does not include seconds. Under these circumstances it is possible that Orageclock shows time inaccurately unless you have this selected. (Selecting this prevents cpu and interrupt saving features from working.)"
 msgstr ""
 
 #: ../panel-plugin/oc_config.c:407
@@ -432,8 +475,9 @@ msgid "%A %d %B %Y/%V"
 msgstr "%A %d %B %Y/%V"
 
 #: ../plugin/xfcalendar_plugin.c:43
+#, fuzzy
 msgid "Failed to launch 'orage -p'"
-msgstr ""
+msgstr "Échec à l'exécution de l'application !"
 
 #. the button label in the xfce-mcs-manager dialog
 #: ../plugin/xfcalendar_plugin.c:61
@@ -445,8 +489,9 @@ msgid "Manage your time with Xfce4"
 msgstr "Gérer votre temps avec Xfce4"
 
 #: ../src/about-xfcalendar.c:52
+#, fuzzy
 msgid "Maintainer"
-msgstr ""
+msgstr "Mainteneur"
 
 #: ../src/about-xfcalendar.c:57
 msgid "Original creator, retired maintainer"
@@ -459,21 +504,28 @@ msgstr "Contributeur"
 #. if (gtk_toggle_button_get_active(
 #. GTK_TOGGLE_BUTTON(apptw->Type_journal_rb)))
 #. end time
-#: ../src/appointment.c:348 ../src/appointment.c:384 ../src/appointment.c:2330
+#: ../src/appointment.c:348
+#: ../src/appointment.c:384
+#: ../src/appointment.c:2330
 msgid "End"
 msgstr "Fin"
 
 #: ../src/appointment.c:366
+#, fuzzy
 msgid "Due"
-msgstr ""
+msgstr "Échéance"
 
-#: ../src/appointment.c:501 ../src/mainbox.c:689 ../xfcalendar.desktop.in.h:3
+#: ../src/appointment.c:501
+#: ../src/mainbox.c:689
+#: ../xfcalendar.desktop.in.h:3
 msgid "Orage"
 msgstr "Orage"
 
 #. to avoid timing problems when updating entry
 #. Create file chooser
-#: ../src/appointment.c:651 ../src/interface.c:277 ../src/parameters.c:384
+#: ../src/appointment.c:651
+#: ../src/interface.c:277
+#: ../src/parameters.c:384
 msgid "Select a file..."
 msgstr "Choisir un fichier..."
 
@@ -481,11 +533,14 @@ msgstr "Choisir un fichier..."
 msgid "Sound Files"
 msgstr "Fichier Son"
 
-#: ../src/appointment.c:666 ../src/interface.c:290
+#: ../src/appointment.c:666
+#: ../src/interface.c:290
 msgid "All Files"
 msgstr "Tous les fichiers"
 
-#: ../src/appointment.c:717 ../src/appointment.c:1145 ../src/event-list.c:897
+#: ../src/appointment.c:717
+#: ../src/appointment.c:1145
+#: ../src/event-list.c:897
 msgid "Warning"
 msgstr "Attention"
 
@@ -493,20 +548,24 @@ msgstr "Attention"
 msgid "The appointment information has been modified."
 msgstr "Les infos du rendez-vous ont été modifiées."
 
-#: ../src/appointment.c:720 ../src/appointment.c:1148 ../src/event-list.c:900
+#: ../src/appointment.c:720
+#: ../src/appointment.c:1148
+#: ../src/event-list.c:900
 msgid "Do you want to continue?"
 msgstr "Voulez vous continuer?"
 
 #: ../src/appointment.c:750
+#, fuzzy
 msgid "Error"
-msgstr ""
+msgstr "Erreur"
 
 #: ../src/appointment.c:752
 msgid "The end of this appointment is earlier than the beginning."
 msgstr "L'heure de fin du rendez-vous précède l'heure de début. "
 
 #. cat_groups[0] is special [NULL] entry always
-#: ../src/appointment.c:1007 ../src/appointment.c:1547
+#: ../src/appointment.c:1007
+#: ../src/appointment.c:1547
 msgid "Not set"
 msgstr "Non défini"
 
@@ -514,9 +573,11 @@ msgstr "Non défini"
 msgid "This appointment will be permanently removed."
 msgstr "Ce rendez-vous sera enlevé définitivement."
 
-#: ../src/appointment.c:1421 ../src/event-list.c:726
+#: ../src/appointment.c:1421
+#: ../src/event-list.c:726
+#, fuzzy
 msgid "Info"
-msgstr ""
+msgstr "Informations"
 
 #: ../src/appointment.c:1423
 msgid "This appointment does not exist."
@@ -535,26 +596,32 @@ msgid "Add new category with color"
 msgstr ""
 
 #: ../src/appointment.c:1748
+#, fuzzy
 msgid "Category:"
-msgstr ""
+msgstr "Catégorie :"
 
 #: ../src/appointment.c:1779
+#, fuzzy
 msgid "Colors of categories - Orage"
-msgstr ""
+msgstr "Nouveau rendez-vous - Orage"
 
 #: ../src/appointment.c:1940
 msgid "New appointment - Orage"
 msgstr "Nouveau rendez-vous - Orage"
 
 #: ../src/appointment.c:1964
+#, fuzzy
 msgid " *** COPY ***"
-msgstr ""
+msgstr "Coller"
 
 #. File menu stuff
 #. ********* File menu *********
 #. File menu
-#: ../src/appointment.c:2074 ../src/day-view.c:254 ../src/event-list.c:994
-#: ../src/interface.c:762 ../src/mainbox.c:261
+#: ../src/appointment.c:2074
+#: ../src/day-view.c:254
+#: ../src/event-list.c:994
+#: ../src/interface.c:762
+#: ../src/mainbox.c:261
 msgid "_File"
 msgstr "_Fichier"
 
@@ -562,7 +629,8 @@ msgstr "_Fichier"
 msgid "Sav_e and close"
 msgstr "Enr_egistrer et fermer"
 
-#: ../src/appointment.c:2093 ../src/event-list.c:1000
+#: ../src/appointment.c:2093
+#: ../src/event-list.c:1000
 msgid "D_uplicate"
 msgstr "D_upliquer"
 
@@ -578,11 +646,13 @@ msgstr "Enregistrer et fermer"
 msgid "Revert"
 msgstr "Revenir"
 
-#: ../src/appointment.c:2236 ../src/event-list.c:1085
+#: ../src/appointment.c:2236
+#: ../src/event-list.c:1085
 msgid "Duplicate"
 msgstr "Dupliquer"
 
-#: ../src/appointment.c:2241 ../src/event-list.c:1087
+#: ../src/appointment.c:2241
+#: ../src/event-list.c:1087
 msgid "Delete"
 msgstr "Effacer"
 
@@ -600,12 +670,15 @@ msgstr "Infos générales"
 
 #. type
 #: ../src/appointment.c:2269
+#, fuzzy
 msgid "Type "
-msgstr ""
+msgstr "Type :"
 
-#: ../src/appointment.c:2271 ../src/event-list.c:1139
+#: ../src/appointment.c:2271
+#: ../src/event-list.c:1139
+#, fuzzy
 msgid "Event"
-msgstr ""
+msgstr "Événement"
 
 #: ../src/appointment.c:2274
 msgid ""
@@ -613,7 +686,8 @@ msgid ""
 "Meeting or birthday or TV show."
 msgstr ""
 
-#: ../src/appointment.c:2277 ../src/event-list.c:1160
+#: ../src/appointment.c:2277
+#: ../src/event-list.c:1160
 msgid "Todo"
 msgstr "À faire"
 
@@ -623,9 +697,11 @@ msgid ""
 "Wash your car or test new version of Orage."
 msgstr ""
 
-#: ../src/appointment.c:2283 ../src/event-list.c:1175
+#: ../src/appointment.c:2283
+#: ../src/event-list.c:1175
+#, fuzzy
 msgid "Journal"
-msgstr ""
+msgstr "%s : récupération du journal\n"
 
 #: ../src/appointment.c:2287
 msgid ""
@@ -639,7 +715,9 @@ msgid "Title "
 msgstr "Titre"
 
 #. location
-#: ../src/appointment.c:2301 ../src/ical-code.c:4496 ../src/ical-code.c:4501
+#: ../src/appointment.c:2301
+#: ../src/ical-code.c:4496
+#: ../src/ical-code.c:4501
 msgid "Location"
 msgstr "Localisation"
 
@@ -648,27 +726,33 @@ msgid "All day event"
 msgstr "Évènement du quotidien"
 
 #. start time
-#: ../src/appointment.c:2315 ../src/day-view.c:681
+#: ../src/appointment.c:2315
+#: ../src/day-view.c:681
 msgid "Start"
 msgstr "Début"
 
 #: ../src/appointment.c:2335
+#, fuzzy
 msgid "Set      "
-msgstr ""
+msgstr "Coucher "
 
 #: ../src/appointment.c:2356
 msgid "Duration"
 msgstr "Durée"
 
-#: ../src/appointment.c:2360 ../src/appointment.c:2532 ../src/day-view.c:702
+#: ../src/appointment.c:2360
+#: ../src/appointment.c:2532
+#: ../src/day-view.c:702
 msgid "days"
 msgstr "jours"
 
-#: ../src/appointment.c:2362 ../src/appointment.c:2534
+#: ../src/appointment.c:2362
+#: ../src/appointment.c:2534
 msgid "hours"
 msgstr "heures"
 
-#: ../src/appointment.c:2364 ../src/appointment.c:2536
+#: ../src/appointment.c:2364
+#: ../src/appointment.c:2536
 msgid "mins"
 msgstr "mins"
 
@@ -679,8 +763,9 @@ msgstr "Disponibilité"
 
 #. completed (only for TODO)
 #: ../src/appointment.c:2384
+#, fuzzy
 msgid "Completed"
-msgstr ""
+msgstr "Terminé"
 
 #: ../src/appointment.c:2387
 msgid "Done"
@@ -688,18 +773,18 @@ msgstr "Fait"
 
 #. categories
 #: ../src/appointment.c:2408
+#, fuzzy
 msgid "Categories"
-msgstr ""
+msgstr "Catégories"
 
 #: ../src/appointment.c:2420
-msgid ""
-"This is special category, which can be used to color this appointment in "
-"list views."
+msgid "This is special category, which can be used to color this appointment in list views."
 msgstr ""
 
 #: ../src/appointment.c:2425
+#, fuzzy
 msgid "update colors for categories."
-msgstr ""
+msgstr "Utiliser des couleurs aléatoires pour les particules"
 
 #. note
 #: ../src/appointment.c:2431
@@ -714,20 +799,23 @@ msgid ""
 msgstr ""
 
 #: ../src/appointment.c:2517
+#, fuzzy
 msgid "Before Start"
-msgstr ""
+msgstr "%s %s avant le début du rendez-vous"
 
 #: ../src/appointment.c:2517
+#, fuzzy
 msgid "Before End"
-msgstr ""
+msgstr "%s %s avant la fin du rendez-vous"
 
 #: ../src/appointment.c:2518
 msgid "After Start"
 msgstr "Après le début"
 
 #: ../src/appointment.c:2518
+#, fuzzy
 msgid "After End"
-msgstr ""
+msgstr "%s %s après la fin du rendez-vous"
 
 #: ../src/appointment.c:2523
 msgid "Alarm"
@@ -747,13 +835,12 @@ msgid ""
 msgstr ""
 
 #: ../src/appointment.c:2558
+#, fuzzy
 msgid "Persistent alarm"
-msgstr ""
+msgstr "Arrêter l'alarme"
 
 #: ../src/appointment.c:2560
-msgid ""
-"Select this if you want Orage to remind you even if it has not been active "
-"when the alarm happened."
+msgid "Select this if you want Orage to remind you even if it has not been active when the alarm happened."
 msgstr ""
 
 #. **** Audio Alarm ****
@@ -761,9 +848,11 @@ msgstr ""
 msgid "Sound"
 msgstr "Son"
 
-#: ../src/appointment.c:2573 ../src/appointment.c:2694
+#: ../src/appointment.c:2573
+#: ../src/appointment.c:2694
+#, fuzzy
 msgid "Use"
-msgstr ""
+msgstr "Utiliser"
 
 #: ../src/appointment.c:2575
 msgid "Select this if you want audible alarm"
@@ -773,7 +862,8 @@ msgstr ""
 msgid "Repeat alarm sound"
 msgstr "Répéter le son de l'alarme"
 
-#: ../src/appointment.c:2608 ../src/appointment.c:2852
+#: ../src/appointment.c:2608
+#: ../src/appointment.c:2852
 msgid "times"
 msgstr "fois"
 
@@ -783,20 +873,23 @@ msgstr "intervalle sec."
 
 #. **** Display Alarm ****
 #: ../src/appointment.c:2634
+#, fuzzy
 msgid "Visual"
-msgstr ""
+msgstr "Visuel"
 
 #: ../src/appointment.c:2638
+#, fuzzy
 msgid "Use Orage window"
-msgstr ""
+msgstr "Utiliser la fenêtre d'informations"
 
 #: ../src/appointment.c:2640
 msgid "Select this if you want Orage window alarm"
 msgstr ""
 
 #: ../src/appointment.c:2652
+#, fuzzy
 msgid "Use notification"
-msgstr ""
+msgstr "Utili_ser la notification de démarrage"
 
 #: ../src/appointment.c:2654
 msgid "Select this if you want notification alarm"
@@ -811,12 +904,14 @@ msgid "Select this if you want notification to expire automatically"
 msgstr ""
 
 #: ../src/appointment.c:2674
+#, fuzzy
 msgid "0 = system default expiration time"
-msgstr ""
+msgstr "Valeur de temps par défaut invalide: %s\n"
 
 #: ../src/appointment.c:2679
+#, fuzzy
 msgid "seconds"
-msgstr ""
+msgstr "secondes"
 
 #. **** Procedure Alarm ****
 #: ../src/appointment.c:2690
@@ -867,20 +962,24 @@ msgid "Mon"
 msgstr "Lun"
 
 #: ../src/appointment.c:2782
+#, fuzzy
 msgid "Tue"
-msgstr ""
+msgstr "Mar"
 
 #: ../src/appointment.c:2782
+#, fuzzy
 msgid "Wed"
-msgstr ""
+msgstr "Mer"
 
 #: ../src/appointment.c:2782
+#, fuzzy
 msgid "Thu"
-msgstr ""
+msgstr "Jeu"
 
 #: ../src/appointment.c:2782
+#, fuzzy
 msgid "Fri"
-msgstr ""
+msgstr "Ven"
 
 #: ../src/appointment.c:2782
 msgid "Sat"
@@ -895,50 +994,63 @@ msgid "Recurrence"
 msgstr "Périodicité"
 
 #: ../src/appointment.c:2791
+#, fuzzy
 msgid "Complexity"
-msgstr ""
+msgstr "Complexité"
 
 #: ../src/appointment.c:2794
 msgid "Basic"
 msgstr "De base"
 
 #: ../src/appointment.c:2800
+#, fuzzy
 msgid "Advanced"
-msgstr ""
+msgstr "Avancé"
 
 #: ../src/appointment.c:2807
+#, fuzzy
 msgid "Use this if you want regular repeating event"
-msgstr ""
+msgstr "Utilisez ceci si vous voulez un évènement régulier et répété"
 
 #: ../src/appointment.c:2809
+#, fuzzy
 msgid ""
 "Use this if you need complex times like:\n"
 " Every Saturday and Sunday or \n"
 " First Tuesday every month"
 msgstr ""
+"Utilisez ceci pour des fréquences complexes comme : \n"
+" Toutes les deuxièmes semaines ou \n"
+" Tous les Samedis et Dimanches ou \n"
+" Le premier Mardi de chaque mois"
 
 #: ../src/appointment.c:2812
 msgid "Frequency"
 msgstr "Fréquence"
 
 #: ../src/appointment.c:2818
+#, fuzzy
 msgid "Each"
-msgstr ""
+msgstr "Chacun"
 
 #: ../src/appointment.c:2825
 msgid "occurrence"
 msgstr "périodicité"
 
 #: ../src/appointment.c:2829
+#, fuzzy
 msgid ""
 "Limit frequency to certain interval.\n"
 " For example: Every third day:\n"
 " Frequency = Daily and Interval = 3"
 msgstr ""
+"Limite la fréquence à un intervalle défini. Par exemple :\n"
+" Tous les trois jours : Fréquence = Quotidienne et Intervalle = 3"
 
 #: ../src/appointment.c:2835
+#, fuzzy
 msgid "Limit"
-msgstr ""
+msgstr "Limite"
 
 #: ../src/appointment.c:2837
 msgid "Repeat forever"
@@ -957,10 +1069,12 @@ msgid "Weekdays"
 msgstr "Jours de la semaine"
 
 #: ../src/appointment.c:2883
+#, fuzzy
 msgid "Which day"
-msgstr ""
+msgstr "Quel jour"
 
 #: ../src/appointment.c:2891
+#, fuzzy
 msgid ""
 "Specify which weekday for monthly and yearly events.\n"
 " For example:\n"
@@ -969,49 +1083,68 @@ msgid ""
 "\tWeekdays = check only Wednesday,\n"
 "\tWhich day = select 2 from the number below Wednesday"
 msgstr ""
+"Spécifier quel jour de la semaine pour des événements mensuels ou annuels.\n"
+"\" Par exemple : \n"
+" Le second Mercredi de chaque mois : \n"
+"\tFréquence = Mensuelle, \n"
+"\tJour de la semaine = cocher seulement Mercredi, \n"
+"\tQuel jour = choisir 2 sous Mercredi"
 
 #. ********* View menu *********
 #. View menu
-#: ../src/day-view.c:264 ../src/event-list.c:1017 ../src/mainbox.c:287
+#: ../src/day-view.c:264
+#: ../src/event-list.c:1017
+#: ../src/mainbox.c:287
 msgid "_View"
 msgstr "_Voir"
 
 #. ********* Go menu   *********
-#: ../src/day-view.c:278 ../src/event-list.c:1036
+#: ../src/day-view.c:278
+#: ../src/event-list.c:1036
 msgid "_Go"
 msgstr "_Aller"
 
-#: ../src/day-view.c:319 ../src/event-list.c:1083
+#: ../src/day-view.c:319
+#: ../src/event-list.c:1083
 msgid "New"
 msgstr "Nouveau"
 
-#: ../src/day-view.c:324 ../src/event-list.c:1092
+#: ../src/day-view.c:324
+#: ../src/event-list.c:1092
 msgid "Back"
 msgstr "Revenir"
 
-#: ../src/day-view.c:326 ../src/event-list.c:1094 ../src/functions.c:132
+#: ../src/day-view.c:326
+#: ../src/event-list.c:1094
+#: ../src/functions.c:132
 #: ../src/tray_icon.c:330
 msgid "Today"
 msgstr "Aujourd'hui"
 
-#: ../src/day-view.c:328 ../src/event-list.c:1096
+#: ../src/day-view.c:328
+#: ../src/event-list.c:1096
 msgid "Forward"
 msgstr "Avancer"
 
-#: ../src/day-view.c:333 ../src/event-list.c:1101
+#: ../src/day-view.c:333
+#: ../src/event-list.c:1101
 msgid "Refresh"
 msgstr "Rafraîchir"
 
-#: ../src/day-view.c:338 ../src/event-list.c:1108 ../src/interface.c:804
+#: ../src/day-view.c:338
+#: ../src/event-list.c:1108
+#: ../src/interface.c:804
 msgid "Close"
 msgstr "Fermer"
 
 #. then add the appointment
 #: ../src/day-view.c:452
+#, fuzzy
 msgid "Unknown"
-msgstr ""
+msgstr "Inconnu"
 
-#: ../src/day-view.c:694 ../src/parameters.c:663
+#: ../src/day-view.c:694
+#: ../src/parameters.c:663
 msgid "Show"
 msgstr "Montrer"
 
@@ -1024,13 +1157,15 @@ msgstr "Orage - vue journalière"
 msgid "All day"
 msgstr "Toute la journée"
 
-#: ../src/event-list.c:557 ../src/event-list.c:1266
+#: ../src/event-list.c:557
+#: ../src/event-list.c:1266
 msgid "Time"
 msgstr "Temps"
 
 #: ../src/event-list.c:728
+#, fuzzy
 msgid "No rows have been selected."
-msgstr ""
+msgstr "Aucun serveur n'a été sélectionné."
 
 #: ../src/event-list.c:729
 msgid "Click a row to select it and after that you can copy it."
@@ -1043,28 +1178,33 @@ msgid ""
 msgstr ""
 
 #: ../src/event-list.c:1103
+#, fuzzy
 msgid "Find"
-msgstr ""
+msgstr "Trouver"
 
 #: ../src/event-list.c:1110
 msgid "Dayview"
 msgstr ""
 
 #: ../src/event-list.c:1143
+#, fuzzy
 msgid "Extra days to show "
-msgstr ""
+msgstr "Pour afficher une barre de menu cachée :"
 
 #: ../src/event-list.c:1179
+#, fuzzy
 msgid "Journal entries starting from:"
-msgstr ""
+msgstr "enlèvement de %d entrées à l'index %s.\n"
 
 #: ../src/event-list.c:1204
+#, fuzzy
 msgid "Search"
-msgstr ""
+msgstr "Fouiller"
 
 #: ../src/event-list.c:1208
+#, fuzzy
 msgid "Search text "
-msgstr ""
+msgstr "Recherche de texte"
 
 #: ../src/event-list.c:1274
 msgid "Flags"
@@ -2666,8 +2806,7 @@ msgstr ""
 
 #: ../src/ical-code.c:3026
 #, c-format
-msgid ""
-"\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
+msgid "\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
 msgstr ""
 
 #. remove since it has ended
@@ -2676,8 +2815,9 @@ msgid "\tRecur ended, moving to archive file."
 msgstr ""
 
 #: ../src/ical-code.c:3605
+#, fuzzy
 msgid "Archiving not enabled. Exiting"
-msgstr ""
+msgstr "Outils d'accessibilité non activés"
 
 #: ../src/ical-code.c:3623
 #, c-format
@@ -2697,8 +2837,9 @@ msgstr "uid d'archivage : %s"
 
 #. VTODO not completed, do not archive
 #: ../src/ical-code.c:3659
+#, fuzzy
 msgid "\tVTODO not complete; not archived"
-msgstr ""
+msgstr "L'article n'a pas de pièces jointes complètes"
 
 #. it is recurrent event
 #: ../src/ical-code.c:3664
@@ -2730,31 +2871,37 @@ msgid "Archive removal done\n"
 msgstr "Archive effacée\n"
 
 #: ../src/ical-code.c:3836
+#, fuzzy
 msgid "Starting import file preprocessing"
-msgstr ""
+msgstr "Sélectionner un fichier à importer"
 
 #: ../src/ical-code.c:3871
+#, fuzzy
 msgid "... Patched DCREATED to be CREATED."
-msgstr ""
+msgstr "_Liste des segments qui vont être créés :"
 
 #: ../src/ical-code.c:3910
 msgid "... Patched timezone to Orage format."
 msgstr ""
 
 #: ../src/ical-code.c:3919
+#, fuzzy
 msgid "Import file preprocessing done"
-msgstr ""
+msgstr "Script complélé, le fichier est %s\n"
 
 #. show it
 #: ../src/ical-code.c:4507
 msgid "Pick timezone"
 msgstr "Choisir la zone horaire"
 
-#: ../src/ical-code.c:4510 ../src/ical-code.c:4538
+#: ../src/ical-code.c:4510
+#: ../src/ical-code.c:4538
 msgid "UTC"
 msgstr "UTC"
 
-#: ../src/ical-code.c:4511 ../src/ical-code.c:4542 ../src/parameters.c:493
+#: ../src/ical-code.c:4511
+#: ../src/ical-code.c:4542
+#: ../src/parameters.c:493
 msgid "floating"
 msgstr "flottante"
 
@@ -2763,28 +2910,34 @@ msgid "Calendar files"
 msgstr "Fichiers du calendrier"
 
 #: ../src/interface.c:626
+#, fuzzy
 msgid "Current foreign files"
-msgstr ""
+msgstr "Le nombre courant de fichier sur le Volume est : %u\n"
 
 #: ../src/interface.c:638
+#, fuzzy
 msgid "READ ONLY"
-msgstr ""
+msgstr "Lecture seulement"
 
 #: ../src/interface.c:640
+#, fuzzy
 msgid "READ WRITE"
-msgstr ""
+msgstr "Lecture & Écriture"
 
 #: ../src/interface.c:658
+#, fuzzy
 msgid "***** No foreign files *****"
-msgstr ""
+msgstr "Aucun fichiers inclus"
 
 #: ../src/interface.c:968
+#, fuzzy
 msgid "Import/export"
-msgstr ""
+msgstr "Importer/Exporter"
 
 #: ../src/interface.c:975
+#, fuzzy
 msgid "Import"
-msgstr ""
+msgstr "Importer"
 
 #: ../src/interface.c:980
 msgid "Read from file:"
@@ -2797,14 +2950,16 @@ msgid ""
 msgstr ""
 
 #: ../src/interface.c:1002
+#, fuzzy
 msgid "Export"
-msgstr ""
+msgstr "Exporter"
 
 #: ../src/interface.c:1007
 msgid "Write to file:"
 msgstr "Écrire dans le fichier :"
 
-#: ../src/interface.c:1028 ../src/interface.c:1040
+#: ../src/interface.c:1028
+#: ../src/interface.c:1040
 msgid "Select"
 msgstr "Sélectionner"
 
@@ -2850,8 +3005,9 @@ msgid "You can change archive threshold in parameters"
 msgstr ""
 
 #: ../src/interface.c:1095
+#, fuzzy
 msgid "Revert archive now"
-msgstr ""
+msgstr "Archiver maintenant (seuil d'archivage : %d mois)"
 
 #: ../src/interface.c:1101
 msgid ""
@@ -2868,21 +3024,27 @@ msgstr "Fichiers d'Orage"
 msgid "Orage main calendar file"
 msgstr "Fichier calendrier principal d'Orage"
 
-#: ../src/interface.c:1123 ../src/interface.c:1188
+#: ../src/interface.c:1123
+#: ../src/interface.c:1188
 msgid "Current file"
 msgstr "Fichier actuel"
 
-#: ../src/interface.c:1130 ../src/interface.c:1195
+#: ../src/interface.c:1130
+#: ../src/interface.c:1195
 msgid "New file"
 msgstr "Nouveau fichier"
 
-#: ../src/interface.c:1146 ../src/interface.c:1212
+#: ../src/interface.c:1146
+#: ../src/interface.c:1212
+#, fuzzy
 msgid "Action options"
-msgstr ""
+msgstr "Options d'Horloge"
 
-#: ../src/interface.c:1149 ../src/interface.c:1215
+#: ../src/interface.c:1149
+#: ../src/interface.c:1215
+#, fuzzy
 msgid "Rename"
-msgstr ""
+msgstr "renommer"
 
 #: ../src/interface.c:1153
 msgid ""
@@ -2891,17 +3053,21 @@ msgid ""
 "New file must exist."
 msgstr ""
 
-#: ../src/interface.c:1157 ../src/interface.c:1220
+#: ../src/interface.c:1157
+#: ../src/interface.c:1220
+#, fuzzy
 msgid "Copy"
-msgstr ""
+msgstr "Coller"
 
 #: ../src/interface.c:1161
 msgid "Current file is copied and stays unmodified in the old place."
 msgstr ""
 
-#: ../src/interface.c:1165 ../src/interface.c:1225
+#: ../src/interface.c:1165
+#: ../src/interface.c:1225
+#, fuzzy
 msgid "Move"
-msgstr ""
+msgstr "Déplacer"
 
 #: ../src/interface.c:1169
 msgid "Current file is moved and vanishes from the old place."
@@ -2912,63 +3078,66 @@ msgid "Archive file"
 msgstr "Fichier archive"
 
 #: ../src/interface.c:1246
+#, fuzzy
 msgid "Foreign files"
-msgstr ""
+msgstr "Tous les fichiers"
 
 #: ../src/interface.c:1253
+#, fuzzy
 msgid "Add new foreign file"
-msgstr ""
+msgstr "Ajoute un nouveau fichier vide"
 
 #: ../src/interface.c:1258
+#, fuzzy
 msgid "Foreign file:"
-msgstr ""
+msgstr "[FILE|FOLDER]"
 
 #: ../src/interface.c:1276
 msgid "Options"
 msgstr "Options"
 
 #: ../src/interface.c:1278
+#, fuzzy
 msgid "Read only"
-msgstr ""
+msgstr "Lecture seulement"
 
 #: ../src/interface.c:1286
 msgid ""
-"Set this if you want to make sure that this file is never modified by "
-"Orage.\n"
-"Note that modifying foreign files may make them incompatible with the "
-"original tool, where they came from!"
+"Set this if you want to make sure that this file is never modified by Orage.\n"
+"Note that modifying foreign files may make them incompatible with the original tool, where they came from!"
 msgstr ""
 
 #: ../src/interface.c:1300
+#, fuzzy
 msgid "Exchange data - Orage"
-msgstr ""
+msgstr "Nouveau rendez-vous - Orage"
 
 #: ../src/main.c:192
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "\tThis is %s version %s for Xfce %s\n"
 "\n"
-msgstr ""
+msgstr "Ceci est %s version %s, s'exécutant sur Xfce %s.\n"
 
 #: ../src/main.c:194
-#, c-format
+#, fuzzy, c-format
 msgid "\tReleased under the terms of the GNU General Public License.\n"
-msgstr ""
+msgstr "Distribué sous les termes de la Licence Publique Générale GNU.\n"
 
 #: ../src/main.c:195
-#, c-format
+#, fuzzy, c-format
 msgid "\tCompiled against GTK+-%d.%d.%d, "
-msgstr ""
+msgstr "Afficher les _raccourcis GTK"
 
 #: ../src/main.c:197
-#, c-format
+#, fuzzy, c-format
 msgid "using GTK+-%d.%d.%d.\n"
-msgstr ""
+msgstr "Fermer"
 
 #: ../src/main.c:200
-#, c-format
+#, fuzzy, c-format
 msgid "\tUsing DBUS for import.\n"
-msgstr ""
+msgstr "Choisissez la destination de cette importation"
 
 #: ../src/main.c:202
 #, c-format
@@ -2976,31 +3145,31 @@ msgid "\tNot using DBUS. Import works only partially.\n"
 msgstr ""
 
 #: ../src/main.c:205
-#, c-format
+#, fuzzy, c-format
 msgid "\tUsing libnotify.\n"
-msgstr ""
+msgstr "Erreur lors de l'initialisation de libnotify\n"
 
 #: ../src/main.c:207
-#, c-format
+#, fuzzy, c-format
 msgid "\tNot using libnotify.\n"
-msgstr ""
+msgstr "Erreur lors de l'initialisation de libnotify\n"
 
 #: ../src/main.c:210
-#, c-format
+#, fuzzy, c-format
 msgid "\tUsing automatic archiving.\n"
-msgstr ""
+msgstr "Seuil d'archivage : %d mois"
 
 #: ../src/main.c:212
-#, c-format
+#, fuzzy, c-format
 msgid "\tNot using archiving.\n"
-msgstr ""
+msgstr "Seuil d'archivage : %d mois"
 
 #: ../src/main.c:225
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "Usage: orage [options] [files]\n"
 "\n"
-msgstr ""
+msgstr "Utilisation: gpg [options] [fichiers] (-h pour l'aide)"
 
 #: ../src/main.c:226
 #, c-format
@@ -3008,19 +3177,19 @@ msgid "Options:\n"
 msgstr "Options :\n"
 
 #: ../src/main.c:227
-#, c-format
+#, fuzzy, c-format
 msgid "--version (-v) \t\tshow version of orage\n"
-msgstr ""
+msgstr "Nouveau rendez-vous - Orage"
 
 #: ../src/main.c:228
-#, c-format
+#, fuzzy, c-format
 msgid "--help (-h) \t\tprint this text\n"
-msgstr ""
+msgstr "Affiche de message"
 
 #: ../src/main.c:229
-#, c-format
+#, fuzzy, c-format
 msgid "--preferences (-p) \tshow preferences form\n"
-msgstr ""
+msgstr "Envoyer automatiquement le premier formulaire"
 
 #: ../src/main.c:230
 #, c-format
@@ -3033,9 +3202,9 @@ msgid "--add-foreign (-a) file [RW] \tadd a foreign file\n"
 msgstr ""
 
 #: ../src/main.c:232
-#, c-format
+#, fuzzy, c-format
 msgid "--remove-foreign (-r) file \tremove a foreign file\n"
-msgstr ""
+msgstr "n'a pas pu supprimer le fichier « %s » : %m"
 
 #: ../src/main.c:234
 #, c-format
@@ -3043,24 +3212,22 @@ msgid "files=ical files to load into orage\n"
 msgstr ""
 
 #: ../src/main.c:236
-#, c-format
+#, fuzzy, c-format
 msgid "\tdbus not included in orage. \n"
-msgstr ""
+msgstr "la commande « %s » est interdite dans un fichier inclus"
 
 #: ../src/main.c:237
 #, c-format
-msgid ""
-"\twithout dbus [files] and foreign file options(-a & -r) can only be used "
-"when starting orage \n"
+msgid "\twithout dbus [files] and foreign file options(-a & -r) can only be used when starting orage \n"
 msgstr ""
 
 #: ../src/main.c:381
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "\n"
 "Unknown option %s\n"
 "\n"
-msgstr ""
+msgstr "%s: Option inconnue : %s\n"
 
 #: ../src/mainbox.c:269
 msgid "_Exchange data"
@@ -3104,23 +3271,24 @@ msgid ""
 msgstr ""
 
 #: ../src/mainbox.c:412
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "Title: %s\n"
 " Start:\t%s\n"
 " End:\t%s\n"
 " Note:\n"
 "%s"
-msgstr ""
+msgstr "Arc : déplacer début/fin"
 
 #: ../src/mainbox.c:487
+#, fuzzy
 msgid "<b>To do:</b>"
-msgstr ""
+msgstr "À faire"
 
 #: ../src/mainbox.c:516
-#, c-format
+#, fuzzy, c-format
 msgid "<b>Events for %s:</b>"
-msgstr ""
+msgstr "Effets sonores pour les événements"
 
 #: ../src/parameters.c:473
 msgid "Main setups"
@@ -3214,29 +3382,26 @@ msgstr "Réduire"
 msgid "Extra setups"
 msgstr "Paramètres avancés"
 
-#: ../src/parameters.c:724 ../src/parameters.c:729
+#: ../src/parameters.c:724
+#: ../src/parameters.c:729
 msgid "Select always today"
 msgstr "Toujours sélectionner aujourd'hui"
 
 #: ../src/parameters.c:735
-msgid ""
-"When showing main calendar, set pointer to either previously selected day or "
-"always to current day."
+msgid "When showing main calendar, set pointer to either previously selected day or always to current day."
 msgstr ""
 
 #: ../src/parameters.c:766
 msgid "Dynamic icon size"
 msgstr "Taille de l'icône dynamique"
 
-#: ../src/parameters.c:779 ../src/parameters.c:796
+#: ../src/parameters.c:779
+#: ../src/parameters.c:796
 msgid "(0 = use static icon)"
 msgstr "(0 = icône statique)"
 
 #: ../src/parameters.c:782
-msgid ""
-"Dynamic icon shows current day and month. It is visible only in tray. If "
-"tray is too small for dynamic icon size, Orage switches automatically back "
-"to static icon."
+msgid "Dynamic icon shows current day and month. It is visible only in tray. If tray is too small for dynamic icon size, Orage switches automatically back to static icon."
 msgstr ""
 
 #: ../src/parameters.c:805
@@ -3262,7 +3427,7 @@ msgstr ""
 #: ../src/parameters.c:1038
 #, fuzzy, c-format
 msgid "Default timezone set to %s."
-msgstr "choisir la zone horaire :"
+msgstr "_Remettre à zéro"
 
 #: ../src/parameters.c:1041
 msgid "Default timezone not found, please, set it manually."
@@ -3273,23 +3438,27 @@ msgid "Reminder "
 msgstr "Rappel"
 
 #: ../src/reminder.c:449
+#, fuzzy
 msgid "Open"
-msgstr ""
+msgstr "Ouvrir"
 
 #: ../src/reminder.c:539
 msgid "Reminder - Orage"
 msgstr "Rappel - Orage"
 
 #: ../src/reminder.c:844
+#, fuzzy
 msgid "Next active alarms:"
-msgstr ""
+msgstr "Prochaines alarmes actives :"
 
 #: ../src/reminder.c:872
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "\n"
 "%02d d %02d h %02d min to: %s"
 msgstr ""
+"\n"
+"%02d j %02d h %02d min à : %s"
 
 #: ../src/reminder.c:880
 #, c-format
@@ -3339,25 +3508,18 @@ msgstr "Calendrier du bureau"
 
 #~ msgid "Monday"
 #~ msgstr "Lundi"
-
 #~ msgid "Tuesday"
 #~ msgstr "Mardi"
-
 #~ msgid "Wednesday"
 #~ msgstr "Mercredi"
-
 #~ msgid "Thursday"
 #~ msgstr "Jeudi"
-
 #~ msgid "Friday"
 #~ msgstr "Vendredi"
-
 #~ msgid "Saturday"
 #~ msgstr "Dimanche"
-
 #~ msgid "Sunday"
 #~ msgstr "Dimanche"
-
 #~ msgid "Ical week start day"
 #~ msgstr "Début de semaine Ical"
 
@@ -3368,62 +3530,46 @@ msgstr "Calendrier du bureau"
 #, fuzzy
 #~ msgid "normal"
 #~ msgstr "Infos générales"
-
 #~ msgid "%m/%d/%Y"
 #~ msgstr "%m/%d/%Y"
 
 #, fuzzy
 #~ msgid "Calendar Files"
 #~ msgstr "Fichiers du calendrier"
-
 #~ msgid "Calendar borders"
 #~ msgstr "Bordures du calendrier"
-
 #~ msgid "Displayed"
 #~ msgstr "Affiché"
-
 #~ msgid "Hidden"
 #~ msgstr "Caché"
-
 #~ msgid "3 months"
 #~ msgstr "3 mois"
-
 #~ msgid "6 months"
 #~ msgstr "6 mois"
-
 #~ msgid "1 year"
 #~ msgstr "1 an"
-
 #~ msgid "Application"
 #~ msgstr "Application"
-
 #~ msgid "Button Label|Orage"
 #~ msgstr "Orage"
-
 #~ msgid "Core developer"
 #~ msgstr "Développeur principal"
-
 #~ msgid ""
 #~ "You will remove all information \n"
 #~ "associated with this date."
 #~ msgstr ""
 #~ "Vous allez effacer toute information \n"
 #~ "associée à cette date."
-
 #~ msgid "Clear"
 #~ msgstr "Effacer"
-
 #~ msgid "uid"
 #~ msgstr "uid"
-
 #~ msgid "This should not happen"
 #~ msgstr "Cela ne devrait pas arriver"
-
 #~ msgid "Cannot create MCS client channel"
 #~ msgstr "Impossible de créer un canal client MCS"
-
 #~ msgid "Open archive file..."
 #~ msgstr "Ouvrir un fichier archive..."
-
 #~ msgid "Close archive file"
 #~ msgstr "Fermer un fichier archive"
+
