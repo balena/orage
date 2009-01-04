@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Orage\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-11-11 09:18+0200\n"
-"PO-Revision-Date: 2008-12-21 00:00+0100\n"
+"PO-Revision-Date: 2008-12-27 21:52+0100\n"
 "Last-Translator: Maximilian Schleiss <maximilian@xfce.org>\n"
 "Language-Team: French <xfce-i18n@xfce.org>\n"
 "MIME-Version: 1.0\n"
@@ -904,7 +904,7 @@ msgstr "Alarme par défaut"
 
 #: ../src/appointment.c:2718
 msgid "Store current settings as default alarm"
-msgstr ""
+msgstr "Enregistrer les paramètres comme alarme par défaut"
 
 #: ../src/appointment.c:2723
 msgid "Set current settings from default alarm"
@@ -1129,7 +1129,7 @@ msgstr ""
 msgid ""
 "You will permanently remove all\n"
 "selected appointments."
-msgstr ""
+msgstr "Tous les rendez-vous seront supprimés."
 
 #: ../src/event-list.c:1103
 msgid "Find"
@@ -2755,17 +2755,17 @@ msgstr "Alarme Orage par défaut"
 #: ../src/ical-code.c:3024
 #, c-format
 msgid "Build alarm list: Added %d alarms. Processed %d events."
-msgstr ""
+msgstr "Création d'une liste d'alarmes : %d alarmes ajoutées. %d évènements traités."
 
 #: ../src/ical-code.c:3026
 #, c-format
 msgid "\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
-msgstr ""
+msgstr "\t%d alarmes trouvées dont %d sont actives. (cherché dans %d alarmes périodiques.)"
 
 #. remove since it has ended
 #: ../src/ical-code.c:3543
 msgid "\tRecur ended, moving to archive file."
-msgstr ""
+msgstr "\tPériodicité terminée, archivage du fichier."
 
 #: ../src/ical-code.c:3605
 msgid "Archiving not enabled. Exiting"
@@ -2780,7 +2780,7 @@ msgstr "Seuil d'archivage : %d mois"
 #: ../src/ical-code.c:3626
 #, c-format
 msgid "\tArchiving events, which are older than: %04d-%02d-%02d"
-msgstr ""
+msgstr "\tArchivage d'évènements plus ancien que : %04d-%02d-%02d"
 
 #: ../src/ical-code.c:3653
 #, c-format
@@ -2796,7 +2796,7 @@ msgstr "\tVTODO incomplet; non archivé"
 #: ../src/ical-code.c:3664
 #, c-format
 msgid "\tRecurring. End year: %04d, month: %02d, day: %02d"
-msgstr ""
+msgstr "\tPériodicité. Année de fin : %04d, mois : %02d, jour : %02d"
 
 #: ../src/ical-code.c:3681
 msgid "Archiving done\n"
@@ -2809,13 +2809,13 @@ msgstr "Effacement de l'archive."
 
 #: ../src/ical-code.c:3698
 msgid "\tPHASE 1: reset recurring appointments"
-msgstr ""
+msgstr "\tPHASE 1 : annuler les rendez-vous périodiques"
 
 #. PHASE 2: go through archive file and add everything back to base orage.
 #. * After that delete the whole arch file
 #: ../src/ical-code.c:3720
 msgid "\tPHASE 2: return archived appointments"
-msgstr ""
+msgstr "\tPHASE 2 : restaurer les rendez-vous archivés"
 
 #: ../src/ical-code.c:3746
 msgid "Archive removal done\n"
@@ -2832,7 +2832,7 @@ msgstr "_Liste des segments qui vont être créés :"
 
 #: ../src/ical-code.c:3910
 msgid "... Patched timezone to Orage format."
-msgstr ""
+msgstr "... Fuseau horaire modifié au format Orage."
 
 #: ../src/ical-code.c:3919
 msgid "Import file preprocessing done"
@@ -2891,6 +2891,8 @@ msgid ""
 "Separate filenames with comma(,).\n"
 " NOTE: comma is not valid character in filenames for Orage."
 msgstr ""
+"Séparer les noms de fichiers avec une virgule(,).\n"
+" NOTE : les virgules ne sont pas tolérées pour les noms de fichiers Orage."
 
 #: ../src/interface.c:1002
 msgid "Export"
@@ -2927,7 +2929,7 @@ msgstr ""
 
 #: ../src/interface.c:1062
 msgid "You can easily drag these from event-list window."
-msgstr ""
+msgstr "Vous pouvez les glisser depuis la fenêtre liste des évènements."
 
 #: ../src/interface.c:1064
 msgid "Orage appointment UIDs separated by commas."
