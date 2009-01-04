@@ -387,7 +387,7 @@ msgstr "Tooltip:"
 #. special timing for SUSPEND/HIBERNATE
 #: ../panel-plugin/oc_config.c:391
 msgid "fix time after suspend/hibernate"
-msgstr ""
+msgstr "fix time after suspend/hibernate"
 
 #: ../panel-plugin/oc_config.c:395
 msgid ""
@@ -397,6 +397,11 @@ msgid ""
 "you have this selected. (Selecting this prevents cpu and interrupt saving "
 "features from working.)"
 msgstr ""
+"You only need this if you do short term (less than 5 hours) suspend or "
+"hibernate and your visible time does not include seconds. Under these "
+"circumstances it is possible that Orageclock shows time inaccurately unless "
+"you have this selected. (Selecting this prevents cpu and interrupt saving "
+"features from working.)"
 
 #: ../panel-plugin/oc_config.c:407
 msgid ""
@@ -3343,16 +3348,15 @@ msgstr "Orage Preferences"
 
 #: ../src/parameters.c:1019
 msgid "First Orage start. Searching default timezone."
-msgstr ""
+msgstr "First Orage start. Searching default timezone."
 
 #: ../src/parameters.c:1038
-#, fuzzy, c-format
 msgid "Default timezone set to %s."
-msgstr "set timezone to:"
+msgstr "Default timezone set to %s."
 
 #: ../src/parameters.c:1041
 msgid "Default timezone not found, please, set it manually."
-msgstr ""
+msgstr "Default timezone not found, please, set it manually."
 
 #: ../src/reminder.c:425
 msgid "Reminder "

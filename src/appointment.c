@@ -742,8 +742,10 @@ static gboolean orage_validate_datetime(appt_win *apptw, xfical_appt *appt)
 {
     gint result;
 
-    /* Journal does not have end time so no need to check */
-    if (appt->type == XFICAL_TYPE_JOURNAL)
+    /* Journal does not have end time so no need to check.
+     * Or if TODO has no end time no need to check. */
+    if (appt->type == XFICAL_TYPE_JOURNAL
+    ||  (appt->type == XFICAL_TYPE_TODO && !appt->use_due_time))
         return(TRUE);
     if (xfical_compare_times(appt) > 0) {
         result = xfce_message_dialog(GTK_WINDOW(apptw->Window)
