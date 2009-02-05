@@ -59,6 +59,4 @@ rpm: dist
 html: Makefile
 	make -C doc html
 
-ACLOCAL_AMFLAGS = -I m4
-
 # vi:set ts=8 sw=8 noet ai nocindent:
