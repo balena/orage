@@ -3463,7 +3463,6 @@ void process_one_app(icalcomponent *comp, struct icaltime_span *span
 #define P_N "process_one_app: "
     time_t start, end;
     struct tm start_tm, end_tm;
-    char start_s[40], end_s[40];
     struct time_data {
         char starttimecur[17];
         char endtimecur[17];
