@@ -564,6 +564,11 @@ static void app_rows(day_win *dw, char *a_day , xfical_type ical_type
 {
     xfical_appt *appt;
     int days = 1;
+    GList *date_list, *tmp; /* recurring event times */
+    struct time_data {
+        char starttimecur[17];
+        char endtimecur[17];
+    } *time_datap;
 
     days = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(dw->day_spin));
     /* xfical_appt_get_next_on_day uses extra days so to show 7 days we need
@@ -573,7 +578,24 @@ static void app_rows(day_win *dw, char *a_day , xfical_type ical_type
          appt;
          appt = xfical_appt_get_next_on_day(a_day, FALSE, days-1
                 , ical_type , file_type)) {
-        add_row(dw, appt, a_day, days);
+        if (appt->freq) { /* complex, need to process all events */
+            date_list = NULL;
+            xfical_process_each_app(appt, a_day, days, &date_list);
+            for (tmp = g_list_first(date_list);
+                 tmp != NULL;
+                 tmp = g_list_next(tmp)) {
+                time_datap = (struct time_data *)tmp->data;
+                /* Only use date since time is the same always */
+                strncpy(appt->starttimecur, time_datap->starttimecur, 8);
+                strncpy(appt->endtimecur, time_datap->endtimecur, 8);
+                add_row(dw, appt, a_day, days);
+                g_free(time_datap);
+            }
+            g_list_free(date_list);
+        }
+        else { /* simple case, only one event */
+            add_row(dw, appt, a_day, days);
+        }
         xfical_appt_free(appt);
     }
 }

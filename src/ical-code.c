@@ -1478,8 +1478,8 @@ static icalcomponent *appt_add_alarm_internal_base(xfical_appt *appt
     return(ialarm);
 }
 
-/* Add VALARM. We know we need one when we come here. 
- * We also assume all alarms start and stop same time = have same trigger
+/* Add VALARM.
+ * FIXME: We assume all alarms start and stop same time = have same trigger
  */
 static void appt_add_alarm_internal(xfical_appt *appt, icalcomponent *ievent)
 {
@@ -1492,6 +1492,9 @@ static void appt_add_alarm_internal(xfical_appt *appt, icalcomponent *ievent)
 #ifdef ORAGE_DEBUG
     orage_message(-200, P_N);
 #endif
+    if (appt->alarmtime == 0) { /* no alarm */
+        return;
+    }
     duration = appt->alarmtime;
     trg.time = icaltime_null_time();
     if (appt->alarm_before)
@@ -1530,7 +1533,7 @@ static void appt_add_alarm_internal(xfical_appt *appt, icalcomponent *ievent)
     }
 }
 
-static void appt_add_recur_internal(xfical_appt *appt, icalcomponent *ievent)
+static void appt_add_recur_internal(xfical_appt *appt, icalcomponent *icmp)
 {
 #undef P_N
 #define P_N "appt_add_recur_internal: "
@@ -1545,6 +1548,9 @@ static void appt_add_recur_internal(xfical_appt *appt, icalcomponent *ievent)
 #ifdef ORAGE_DEBUG
     orage_message(-200, P_N);
 #endif
+    if (appt->freq == XFICAL_FREQ_NONE) {
+        return;
+    }
     recur_p = g_stpcpy(recur_str, "FREQ=");
     switch(appt->freq) {
         case XFICAL_FREQ_DAILY:
@@ -1624,7 +1630,149 @@ static void appt_add_recur_internal(xfical_appt *appt, icalcomponent *ievent)
                     , byday_a[g_par.ical_weekstartday]);
     }
     rrule = icalrecurrencetype_from_string(recur_str);
-    icalcomponent_add_property(ievent, icalproperty_new_rrule(rrule));
+    icalcomponent_add_property(icmp, icalproperty_new_rrule(rrule));
+}
+
+static void appt_add_starttime_internal(xfical_appt *appt, icalcomponent *icmp)
+{
+#undef P_N
+#define P_N "appt_add_starttime_internal: "
+    struct icaltimetype wtime;
+
+#ifdef ORAGE_DEBUG
+    orage_message(-200, P_N);
+#endif
+    if (appt->allDay) { /* cut the string after Date: yyyymmdd */
+        appt->starttime[8] = '\0';
+        appt->endtime[8] = '\0';
+    }
+
+    if ORAGE_STR_EXISTS(appt->starttime) {
+        wtime=icaltime_from_string(appt->starttime);
+        if (appt->allDay) { /* date */
+            icalcomponent_add_property(icmp
+                    , icalproperty_new_dtstart(wtime));
+        }
+        else if ORAGE_STR_EXISTS(appt->start_tz_loc) {
+            if (strcmp(appt->start_tz_loc, "UTC") == 0) {
+                wtime=icaltime_convert_to_zone(wtime, utc_icaltimezone);
+                icalcomponent_add_property(icmp
+                    , icalproperty_new_dtstart(wtime));
+            }
+            else if (strcmp(appt->start_tz_loc, "floating") == 0) {
+                icalcomponent_add_property(icmp
+                    , icalproperty_new_dtstart(wtime));
+            }
+            else {
+            /* FIXME: add this vtimezone to vcalendar if it is not there */
+                icalcomponent_add_property(icmp
+                    , icalproperty_vanew_dtstart(wtime
+                            , icalparameter_new_tzid(appt->start_tz_loc)
+                            , 0));
+            }
+        }
+        else { /* floating time */
+            icalcomponent_add_property(icmp
+                    , icalproperty_new_dtstart(wtime));
+        }
+    }
+}
+
+static void appt_add_endtime_internal(xfical_appt *appt, icalcomponent *icmp)
+{
+#undef P_N
+#define P_N "appt_add_endtime_internal: "
+    struct icaltimetype wtime;
+    gboolean end_time_done;
+    struct icaldurationtype duration;
+
+#ifdef ORAGE_DEBUG
+    orage_message(-200, P_N);
+#endif
+    if (!appt->use_due_time && (appt->type == XFICAL_TYPE_TODO)) { 
+        ; /* done with due time */
+    }
+    else if (appt->use_duration) { 
+        /* both event and todo can have duration */
+        duration = icaldurationtype_from_int(appt->duration);
+        icalcomponent_add_property(icmp
+                , icalproperty_new_duration(duration));
+    }
+    else if ORAGE_STR_EXISTS(appt->endtime) {
+        end_time_done = FALSE;
+        wtime = icaltime_from_string(appt->endtime);
+        if (appt->allDay) { 
+            /* need to add 1 day. For example:
+             * DTSTART=20070221 & DTEND=20070223
+             * means only 21 and 22 February */
+            duration = icaldurationtype_from_int(60*60*24);
+            wtime = icaltime_add(wtime, duration);
+        }
+        else if ORAGE_STR_EXISTS(appt->end_tz_loc) {
+        /* Null == floating => no special action needed */
+            if (strcmp(appt->end_tz_loc, "UTC") == 0)
+                wtime = icaltime_convert_to_zone(wtime, utc_icaltimezone);
+            else if (strcmp(appt->end_tz_loc, "floating") != 0) {
+            /* FIXME: add this vtimezone to vcalendar if it is not there */
+                if (appt->type == XFICAL_TYPE_EVENT)
+                    icalcomponent_add_property(icmp
+                        , icalproperty_vanew_dtend(wtime
+                                , icalparameter_new_tzid(appt->end_tz_loc)
+                                , 0));
+                else if (appt->type == XFICAL_TYPE_TODO)
+                    icalcomponent_add_property(icmp
+                        , icalproperty_vanew_due(wtime
+                                , icalparameter_new_tzid(appt->end_tz_loc)
+                                , 0));
+                end_time_done = TRUE;
+            }
+        }
+        if (!end_time_done) {
+            if (appt->type == XFICAL_TYPE_EVENT)
+                icalcomponent_add_property(icmp
+                        , icalproperty_new_dtend(wtime));
+            else if (appt->type == XFICAL_TYPE_TODO)
+                icalcomponent_add_property(icmp
+                        , icalproperty_new_due(wtime));
+        }
+    }
+}
+
+static void appt_add_completedtime_internal(xfical_appt *appt
+        , icalcomponent *icmp)
+{
+#undef P_N
+#define P_N "appt_add_completedtime_internal: "
+    struct icaltimetype wtime;
+    icaltimezone *l_icaltimezone = NULL;
+
+#ifdef ORAGE_DEBUG
+    orage_message(-200, P_N);
+#endif
+    if (appt->type != XFICAL_TYPE_TODO) {
+        return; /* only VTODO can have completed time */
+    }
+    if (appt->completed) {
+        wtime = icaltime_from_string(appt->completedtime);
+        if ORAGE_STR_EXISTS(appt->completed_tz_loc) {
+        /* Null == floating => no special action needed */
+            if (strcmp(appt->completed_tz_loc, "floating") == 0) {
+                wtime = icaltime_convert_to_zone(wtime
+                        , local_icaltimezone);
+            }
+            else if (strcmp(appt->completed_tz_loc, "UTC") != 0) {
+        /* FIXME: add this vtimezone to vcalendar if it is not there */
+                l_icaltimezone = icaltimezone_get_builtin_timezone(
+                        appt->completed_tz_loc);
+                wtime = icaltime_convert_to_zone(wtime, l_icaltimezone);
+            }
+        }
+        else
+            wtime = icaltime_convert_to_zone(wtime, local_icaltimezone);
+        wtime = icaltime_convert_to_zone(wtime, utc_icaltimezone);
+        icalcomponent_add_property(icmp
+                , icalproperty_new_completed(wtime));
+    }
 }
 
 static char *appt_add_internal(xfical_appt *appt, gboolean add, char *uid
@@ -1633,14 +1781,11 @@ static char *appt_add_internal(xfical_appt *appt, gboolean add, char *uid
 #undef P_N
 #define P_N "appt_add_internal: "
     icalcomponent *icmp;
-    struct icaltimetype dtstamp, create_time, wtime;
-    gboolean end_time_done;
+    struct icaltimetype dtstamp, create_time;
     gchar *int_uid, *ext_uid;
     gchar **tmp_cat;
-    struct icaldurationtype duration;
     int i;
     icalcomponent_kind ikind = ICAL_VEVENT_COMPONENT;
-    icaltimezone *l_icaltimezone = NULL;
 
 #ifdef ORAGE_DEBUG
     orage_message(-200, P_N);
@@ -1699,92 +1844,14 @@ static char *appt_add_internal(xfical_appt *appt, gboolean add, char *uid
         }
         g_strfreev(tmp_cat);
     }
-    if (appt->allDay) { /* cut the string after Date: yyyymmdd */
-        appt->starttime[8] = '\0';
-        appt->endtime[8] = '\0';
-    }
-
-    if ORAGE_STR_EXISTS(appt->starttime) {
-        wtime=icaltime_from_string(appt->starttime);
-        if (appt->allDay) { /* date */
-            icalcomponent_add_property(icmp
-                    , icalproperty_new_dtstart(wtime));
-        }
-        else if ORAGE_STR_EXISTS(appt->start_tz_loc) {
-            if (strcmp(appt->start_tz_loc, "UTC") == 0) {
-                wtime=icaltime_convert_to_zone(wtime, utc_icaltimezone);
-                icalcomponent_add_property(icmp
-                    , icalproperty_new_dtstart(wtime));
-            }
-            else if (strcmp(appt->start_tz_loc, "floating") == 0) {
-                icalcomponent_add_property(icmp
-                    , icalproperty_new_dtstart(wtime));
-            }
-            else {
-            /* FIXME: add this vtimezone to vcalendar if it is not there */
-                icalcomponent_add_property(icmp
-                    , icalproperty_vanew_dtstart(wtime
-                            , icalparameter_new_tzid(appt->start_tz_loc)
-                            , 0));
-            }
-        }
-        else { /* floating time */
-            icalcomponent_add_property(icmp
-                    , icalproperty_new_dtstart(wtime));
-        }
-    }
+    appt_add_starttime_internal(appt, icmp);
 
     if (appt->type != XFICAL_TYPE_JOURNAL) { 
         /* journal has no duration nor enddate or due 
          * journal also has no priority or transparent setting
          * journal also has not alarms or repeat settings */
-        if (!appt->use_due_time && (appt->type == XFICAL_TYPE_TODO)) { 
-            ; /* done with due time */
-        }
-        else if (appt->use_duration) { 
-            /* both event and todo can have duration */
-            duration = icaldurationtype_from_int(appt->duration);
-            icalcomponent_add_property(icmp
-                    , icalproperty_new_duration(duration));
-        }
-        else if ORAGE_STR_EXISTS(appt->endtime) {
-            end_time_done = FALSE;
-            wtime = icaltime_from_string(appt->endtime);
-            if (appt->allDay) { 
-                /* need to add 1 day. For example:
-                 * DTSTART=20070221 & DTEND=20070223
-                 * means only 21 and 22 February */
-                duration = icaldurationtype_from_int(60*60*24);
-                wtime = icaltime_add(wtime, duration);
-            }
-            else if ORAGE_STR_EXISTS(appt->end_tz_loc) {
-            /* Null == floating => no special action needed */
-                if (strcmp(appt->end_tz_loc, "UTC") == 0)
-                    wtime = icaltime_convert_to_zone(wtime, utc_icaltimezone);
-                else if (strcmp(appt->end_tz_loc, "floating") != 0) {
-                /* FIXME: add this vtimezone to vcalendar if it is not there */
-                    if (appt->type == XFICAL_TYPE_EVENT)
-                        icalcomponent_add_property(icmp
-                            , icalproperty_vanew_dtend(wtime
-                                    , icalparameter_new_tzid(appt->end_tz_loc)
-                                    , 0));
-                    else if (appt->type == XFICAL_TYPE_TODO)
-                        icalcomponent_add_property(icmp
-                            , icalproperty_vanew_due(wtime
-                                    , icalparameter_new_tzid(appt->end_tz_loc)
-                                    , 0));
-                    end_time_done = TRUE;
-                }
-            }
-            if (!end_time_done) {
-                if (appt->type == XFICAL_TYPE_EVENT)
-                    icalcomponent_add_property(icmp
-                            , icalproperty_new_dtend(wtime));
-                else if (appt->type == XFICAL_TYPE_TODO)
-                    icalcomponent_add_property(icmp
-                            , icalproperty_new_due(wtime));
-            }
-        }
+        appt_add_endtime_internal(appt, icmp);
+        appt_add_completedtime_internal(appt, icmp);
 
         if (appt->priority != 0)
             icalcomponent_add_property(icmp
@@ -1797,38 +1864,11 @@ static char *appt_add_internal(xfical_appt *appt, gboolean add, char *uid
                 icalcomponent_add_property(icmp
                        , icalproperty_new_transp(ICAL_TRANSP_OPAQUE));
         }
-        else if (appt->type == XFICAL_TYPE_TODO) {
-            if (appt->completed) {
-                wtime = icaltime_from_string(appt->completedtime);
-                if ORAGE_STR_EXISTS(appt->completed_tz_loc) {
-                /* Null == floating => no special action needed */
-                    if (strcmp(appt->completed_tz_loc, "floating") == 0) {
-                        wtime = icaltime_convert_to_zone(wtime
-                                , local_icaltimezone);
-                    }
-                    else if (strcmp(appt->completed_tz_loc, "UTC") != 0) {
-                /* FIXME: add this vtimezone to vcalendar if it is not there */
-                        l_icaltimezone = icaltimezone_get_builtin_timezone(
-                                appt->start_tz_loc);
-                        wtime = icaltime_convert_to_zone(wtime, l_icaltimezone);
-                    }
-                }
-                else
-                    wtime = icaltime_convert_to_zone(wtime, local_icaltimezone);
-                wtime = icaltime_convert_to_zone(wtime, utc_icaltimezone);
-                icalcomponent_add_property(icmp
-                        , icalproperty_new_completed(wtime));
-            }
-        }
-        if (appt->freq != XFICAL_FREQ_NONE) {
-            /* NOTE: according to standard VJOURNAL _has_ recurrency, 
-             * but I can't understand how it could be usefull, 
-             * so Orage takes it away */
-            appt_add_recur_internal(appt, icmp);
-        }
-        if (appt->alarmtime != 0) {
-            appt_add_alarm_internal(appt, icmp);
-        }
+        /* NOTE: according to standard VJOURNAL _has_ recurrency, 
+         * but I can't understand how it could be usefull, 
+         * so Orage takes it away */
+        appt_add_recur_internal(appt, icmp);
+        appt_add_alarm_internal(appt, icmp);
     }
 
     if (ext_uid[0] == 'O') {
@@ -2601,7 +2641,7 @@ void xfical_appt_free(xfical_appt *appt)
   *      Caller is responsible for filling and allocating and freeing it.
   * returns: TRUE is successfull, FALSE if failed
   */
-gboolean xfical_appt_mod(char *ical_uid, xfical_appt *app)
+gboolean xfical_appt_mod(char *ical_uid, xfical_appt *appt)
 {
 #undef P_N
 #define P_N "xfical_appt_mod: "
@@ -2656,7 +2696,7 @@ gboolean xfical_appt_mod(char *ical_uid, xfical_appt *app)
         return(FALSE);
     }
 
-    appt_add_internal(app, FALSE, ical_uid, create_time);
+    appt_add_internal(appt, FALSE, ical_uid, create_time);
     return(TRUE);
 }
 
@@ -2756,7 +2796,7 @@ static  alarm_struct *process_alarm_trigger(icalcomponent *c
     xfical_period per;
     struct icaltimetype alarm_time, next_time;
     gboolean trg_active = FALSE;
-    alarm_struct *new_alarm;;
+    alarm_struct *new_alarm;
 
 #ifdef ORAGE_DEBUG
     orage_message(-200, P_N);
@@ -3074,7 +3114,7 @@ void xfical_alarm_build_list(gboolean first_list_today)
  /* Read next EVENT/TODO/JOURNAL component on the specified date from 
   * ical datafile.
   * a_day:  start date of ical component which is to be read
-  * first:  get first appointment is TRUE, if not get next.
+  * first:  get first appointment if TRUE, if not get next.
   * days:   how many more days to check forward. 0 = only one day
   * type:   EVENT/TODO/JOURNAL to be read
   * returns: NULL if failed and xfical_appt pointer to xfical_appt struct 
@@ -3092,7 +3132,7 @@ static xfical_appt *xfical_appt_get_next_on_day_internal(char *a_day
             , nsdate, nedate;   /* repeating event occurrency start and end */
     xfical_period per; /* event start and end times with duration */
     icalcomponent *c=NULL;
-    icalproperty *p = NULL;
+    icalproperty *p=NULL;
     static icalcompiter ci;
     gboolean date_found=FALSE;
     gboolean recurrent_date_found=FALSE;
@@ -3312,7 +3352,7 @@ static gboolean xfical_mark_calendar_days(GtkCalendar *gtkcal
     return(marked);
 }
 
- /* Mark days with appointments into calendar
+ /* Mark days from appointment c into calendar
   * year: Year to be searched
   * month: Month to be searched
   */
@@ -3413,6 +3453,68 @@ void xfical_mark_calendar(GtkCalendar *gtkcal)
     for (i = 0; i < g_par.foreign_count; i++) {
         xfical_mark_calendar_internal(gtkcal, f_ical[i].ical, year, month+1);
     }
+}
+/* FIXME: seems like this does not understand timezones, but returns
+ * always raw time */
+void process_one_app(icalcomponent *comp, struct icaltime_span *span
+        , void *data)
+{
+#undef P_N
+#define P_N "process_one_app: "
+    time_t start, end;
+    struct tm start_tm, end_tm;
+    char start_s[40], end_s[40];
+    struct time_data {
+        char starttimecur[17];
+        char endtimecur[17];
+    } *time_datap;
+    GList **list;
+
+#ifdef ORAGE_DEBUG
+    orage_message(-100, P_N);
+#endif
+    list = (GList **)data;
+    start = span->start;
+    end = span->end;
+    gmtime_r(&start, &start_tm);
+    gmtime_r(&end, &end_tm);
+    time_datap = g_new0(struct time_data, 1);
+    strcpy(time_datap->starttimecur, orage_tm_time_to_icaltime(&start_tm));
+    strcpy(time_datap->endtimecur, orage_tm_time_to_icaltime(&end_tm));
+    *list = g_list_prepend(*list, time_datap);
+/*
+ *  g_print("callme: Start:%s End:%s \n"
+ *         , time_datap->starttimecur, time_datap->endtimecur);
+ */
+}
+
+void xfical_process_each_app(xfical_appt *appt, char *a_day, int days
+        , GList **data)
+{
+#undef P_N
+#define P_N "xfical_process_each_app: "
+    icalcomponent_kind ikind = ICAL_VEVENT_COMPONENT;
+    icalcomponent *icmp;
+    struct icaltimetype asdate, aedate;
+
+#ifdef ORAGE_DEBUG
+    orage_message(-100, P_N);
+#endif
+    icmp = icalcomponent_vanew(ikind
+               , icalproperty_new_uid("RECUR_TEST")
+               , NULL);
+    appt_add_starttime_internal(appt, icmp);
+    appt_add_endtime_internal(appt, icmp);
+    appt_add_recur_internal(appt, icmp);
+
+    asdate = icaltime_from_string(a_day);
+    aedate = asdate;
+    if (days)
+        icaltime_adjust(&aedate, days, 0, 0, 0);
+
+    icalcomponent_foreach_recurrence(icmp, asdate, aedate, process_one_app
+            , (void *)data);
+    icalcomponent_free(icmp);
 }
 
 #ifdef HAVE_ARCHIVE

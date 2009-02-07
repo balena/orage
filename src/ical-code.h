@@ -117,7 +117,8 @@ typedef struct _xfical_appt
     gint   recur_count;
     gchar  recur_until[17];
     gboolean recur_byday[7]; /* 0=Mo, 1=Tu, 2=We, 3=Th, 4=Fr, 5=Sa, 6=Su */
-    gint    recur_byday_cnt[7]; /* monthly/early: 1=first -1=last 2=second... */    gint   interval;    /* 1=every day/week..., 2=every second day/week,... */
+    gint   recur_byday_cnt[7]; /* monthly/early: 1=first -1=last 2=second... */
+    gint   interval;    /* 1=every day/week..., 2=every second day/week,... */
 } xfical_appt;
 
 gboolean xfical_set_local_timezone(gboolean testing);
@@ -127,22 +128,22 @@ void xfical_file_close(gboolean foreign);
 void xfical_file_close_force(void);
 
 xfical_appt *xfical_appt_alloc();
-char *xfical_appt_add(xfical_appt *app);
+char *xfical_appt_add(xfical_appt *appt);
 xfical_appt *xfical_appt_get(char *ical_id);
 void xfical_appt_free(xfical_appt *appt);
-gboolean xfical_appt_mod(char *ical_id, xfical_appt *app);
+gboolean xfical_appt_mod(char *ical_id, xfical_appt *appt);
 gboolean xfical_appt_del(char *ical_id);
 xfical_appt *xfical_appt_get_next_on_day(char *a_day, gboolean first, gint days
         , xfical_type type,  gchar *file_type);
 xfical_appt *xfical_appt_get_next_with_string(char *str, gboolean first
         , gchar *file_type);
+void xfical_process_each_app(xfical_appt *appt, char *a_day, int days
+        , GList **data);
 
 void xfical_mark_calendar(GtkCalendar *gtkcal);
 
 void xfical_alarm_build_list(gboolean first_list_today);
-gboolean xfical_alarm_passed(char *alarm_stime);
 
-gboolean xfical_duration(char *alarm_stime, int *days, int *hours, int *mins);
 int xfical_compare_times(xfical_appt *appt);
 #ifdef HAVE_ARCHIVE
 gboolean xfical_archive_open(void);
