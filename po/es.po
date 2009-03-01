@@ -2,14 +2,14 @@
 # Copyright (C) 2003-2006 The Xfce development team.
 # This file is distributed under the same license as the orage package.
 # Edscott Wilson Garcia <edscott@xfce.org>, 2004.
-# Abel Martín <abel.martin.ruiz@gmail.com>, 2008
+# Abel Martín <abel.martin.ruiz@gmail.com>, 2008-2009.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.3.90.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-11-11 09:18+0200\n"
-"PO-Revision-Date: 2008-11-18 23:52+0100\n"
+"PO-Revision-Date: 2009-02-24 13:39+0100\n"
 "Last-Translator: Abel Martín <abel.martin.ruiz@gmail.com>\n"
 "Language-Team: Spanish/ES <xfce-i18n@xfce.org>\n"
 "MIME-Version: 1.0\n"
@@ -18,11 +18,11 @@ msgstr ""
 
 #: ../globaltime/globaltime.c:100
 msgid "Raising GlobalTime window..."
-msgstr "Mostrando ventana Hora Global..."
+msgstr "Mostrando ventana de hora global..."
 
 #: ../globaltime/globaltime.c:102
 msgid "GlobalTime window raise failed"
-msgstr "Fallo al mostrar la ventana Hora Global"
+msgstr "Fallo al mostrar la ventana de hora global"
 
 #. ********** timezone tooltip **********
 #: ../globaltime/globaltime.c:278
@@ -131,7 +131,7 @@ msgstr "mover este reloj a la derecha"
 
 #: ../globaltime/gt_prefs.c:549
 msgid "move this clock last"
-msgstr "mover este reloj a la última posición"
+msgstr "mover este reloj al final"
 
 #: ../globaltime/gt_prefs.c:557
 msgid "set the timezone of this clock to be local timezone"
@@ -205,7 +205,7 @@ msgstr "Usar predeterminado"
 #: ../globaltime/gt_prefs.c:801
 #: ../globaltime/gt_prefs.c:831
 msgid "Cross this to use default instead of selected value"
-msgstr "Marcar con una cruz para utilizar valor predeterminado en lugar del seleccionado"
+msgstr "Marcar con una cruz para utilizar el valor predeterminado en lugar del seleccionado"
 
 #. ------------------------foreground-------------------------
 #: ../globaltime/gt_prefs.c:680
@@ -362,7 +362,7 @@ msgstr "establecer _altura:"
 
 #: ../panel-plugin/oc_config.c:260
 msgid "set _width:"
-msgstr "establecer _anchura:"
+msgstr "establecer a_nchura:"
 
 #: ../panel-plugin/oc_config.c:281
 msgid "Clock Options"
@@ -872,7 +872,7 @@ msgstr "Seleccione esta opción si quiere que las notificaciones expiren automá
 
 #: ../src/appointment.c:2674
 msgid "0 = system default expiration time"
-msgstr "0 = tiempo de expiración del sistema predeterminado"
+msgstr "0 = tiempo de expiración predeterminado del sistema"
 
 #: ../src/appointment.c:2679
 msgid "seconds"
@@ -1014,11 +1014,11 @@ msgstr "Repetir para siempre"
 
 #: ../src/appointment.c:2844
 msgid "Repeat "
-msgstr "Repetir"
+msgstr "Repetir "
 
 #: ../src/appointment.c:2861
 msgid "Repeat until "
-msgstr "Repetir hasta"
+msgstr "Repetir hasta "
 
 #: ../src/appointment.c:2871
 msgid "Weekdays"
@@ -2759,7 +2759,7 @@ msgstr "Crear lista de alarmas: %d alarmas añadidas. %d eventos procesados."
 #: ../src/ical-code.c:3026
 #, c-format
 msgid "\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
-msgstr "\t%d alarmas encontradas, de las cuales %d están activas (%d alarmas repetitivas buscadas)."
+msgstr "\tSe encontraron %d alarmas, de las cuales %d están activas (%d alarmas repetitivas buscadas)."
 
 #. remove since it has ended
 #: ../src/ical-code.c:3543
@@ -2779,17 +2779,17 @@ msgstr "Umbral de archivado: %d mes(es)"
 #: ../src/ical-code.c:3626
 #, c-format
 msgid "\tArchiving events, which are older than: %04d-%02d-%02d"
-msgstr "\tRegistrando eventos más antiguos que: %04d-%02d-%02d"
+msgstr "\tArchivando eventos más antiguos que: %04d-%02d-%02d"
 
 #: ../src/ical-code.c:3653
 #, c-format
 msgid "Archiving uid: %s"
-msgstr "Identificador de archivo: %s"
+msgstr "Identificador de archivado: %s"
 
 #. VTODO not completed, do not archive
 #: ../src/ical-code.c:3659
 msgid "\tVTODO not complete; not archived"
-msgstr "\tVTODO no completado; no registrado"
+msgstr "\tVTODO no completado; no archivado"
 
 #. it is recurrent event
 #: ../src/ical-code.c:3664
@@ -2804,11 +2804,11 @@ msgstr "Archivado completado\n"
 #. PHASE 1: go through base orage file and remove "repeat" shortcuts
 #: ../src/ical-code.c:3697
 msgid "Starting archive removal."
-msgstr "Comenzando eliminación de archivo."
+msgstr "Comenzando eliminación del archivo."
 
 #: ../src/ical-code.c:3698
 msgid "\tPHASE 1: reset recurring appointments"
-msgstr "\tFASE 1: restablecer citas repetitivas"
+msgstr "\tFASE 1: reiniciar citas repetitivas"
 
 #. PHASE 2: go through archive file and add everything back to base orage.
 #. * After that delete the whole arch file
@@ -2911,7 +2911,7 @@ msgstr "Todas las citas"
 
 #: ../src/interface.c:1044
 msgid "Named appointments: "
-msgstr "Citas con nombre:"
+msgstr "Citas con nombre: "
 
 #: ../src/interface.c:1056
 msgid ""
@@ -3132,7 +3132,7 @@ msgstr "--version (-v) \t\tmuestra la versión de orage\n"
 #: ../src/main.c:228
 #, c-format
 msgid "--help (-h) \t\tprint this text\n"
-msgstr "--help (-h) \t\timprime este texto\n"
+msgstr "--help (-h) \t\tmuestra este texto\n"
 
 #: ../src/main.c:229
 #, c-format
@@ -3208,7 +3208,7 @@ msgstr "Ay_uda"
 
 #: ../src/mainbox.c:401
 msgid "Never"
-msgstr "Nuna"
+msgstr "Nunca"
 
 #: ../src/mainbox.c:406
 #, c-format
@@ -3253,7 +3253,7 @@ msgstr "<b>Eventos para %s:</b>"
 
 #: ../src/parameters.c:473
 msgid "Main setups"
-msgstr "Configuraciones principales"
+msgstr "Opciones principales"
 
 #: ../src/parameters.c:479
 msgid "Timezone"
@@ -3285,7 +3285,7 @@ msgstr "Este comando se ejecuta en el intérprete de comandos para hacer sonar l
 
 #: ../src/parameters.c:559
 msgid "Display"
-msgstr "Visualización"
+msgstr "Vista"
 
 #: ../src/parameters.c:566
 msgid "Calendar main window"
@@ -3341,7 +3341,7 @@ msgstr "Minimizado"
 
 #: ../src/parameters.c:717
 msgid "Extra setups"
-msgstr "Configuración extra"
+msgstr "Opciones extra"
 
 #: ../src/parameters.c:724
 #: ../src/parameters.c:729
@@ -3350,7 +3350,7 @@ msgstr "Siempre seleccionar hoy"
 
 #: ../src/parameters.c:735
 msgid "When showing main calendar, set pointer to either previously selected day or always to current day."
-msgstr "Al mostrar el calendario principal, bien colocar el puntero en el día previamente seleccionado o siempre en el día actual."
+msgstr "Al mostrar el calendario principal, colocar el puntero en el día previamente seleccionado o siempre en el día actual."
 
 #: ../src/parameters.c:766
 msgid "Dynamic icon size"
@@ -3457,11 +3457,11 @@ msgstr "Configuración del calendario"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:3
 msgid "Settings for the Xfce 4 Calendar Application"
-msgstr "Configuración para la aplicación de calendario Xfce4"
+msgstr "Configuración para la aplicación de calendario de Xfce 4"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:4
 msgid "Xfce 4 Calendar Settings"
-msgstr "Configuración para el calendario Xfce4"
+msgstr "Configuración para el calendario de Xfce 4"
 
 #: ../xfcalendar.desktop.in.h:2
 msgid "Desktop calendar"
