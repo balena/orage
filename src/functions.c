@@ -404,7 +404,9 @@ struct tm orage_icaltime_to_tm_time(const char *icaltime, gboolean real_tm)
         t.tm_sec = -1;
     }
     else if (ret[0] != 0) { /* icaltime was not processed completely */
-        g_error("orage: orage_icaltime_to_tm_time error %s %s", icaltime, ret);
+        if (ret[0] != 'Z' || ret[1] != 0) /* UTC times end to Z, which is ok */
+            g_error("orage: orage_icaltime_to_tm_time error %s %s", icaltime
+                    , ret);
     }
 
     if (!real_tm) { /* convert from standard tm format to "normal" format */
@@ -494,7 +496,7 @@ void orage_move_day(struct tm *t, int day)
     /* need to fill missing tm_wday and tm_yday, which are in use 
      * in some locale's default date. For example in en_IN. mktime does it */
     if (mktime(t) == (time_t) -1) {
-        g_warning("orage: orage_icaltime_to_tm_time mktime failed %d %d %d"
+        g_warning("orage: orage_move_day mktime failed %d %d %d"
                 , t->tm_year, t->tm_mon, t->tm_mday);
     }
 }
