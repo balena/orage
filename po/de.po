@@ -4,14 +4,15 @@
 # Moritz Heiber <moe@xfce.org>, 2003.
 # Fabian Nowak <timystery@arcor.de>, 2005-2008.
 # Nico Schümann <nico@prog.nico22.de>, 2007.
+# Simon Schneider <simon@schneiderimtal.de>, 2009
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Orage 4.5.9.6-svn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-11-14 22:12+0100\n"
-"PO-Revision-Date: 2008-11-14 20:52+0100\n"
-"Last-Translator: Fabian Nowak <timystery@arcor.de>\n"
+"PO-Revision-Date: 2009-02-11 15:51+0000\n"
+"Last-Translator: Simon Schneider <simon@schneiderimtal.de>\n"
 "Language-Team: German <xfce-i18n@xfce.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -359,8 +360,7 @@ msgstr "Zeitzone setzen auf:"
 
 #: ../panel-plugin/oc_config.c:301
 msgid "Set any valid timezone (=TZ) value or pick one from the list."
-msgstr ""
-"Geben Sie eine gültige Zeitone (TZ) ein oder wählen Sie eine aus der Liste."
+msgstr "Geben Sie eine gültige Zeitone (TZ) ein oder wählen Sie eine aus der Liste."
 
 #. line 1
 #: ../panel-plugin/oc_config.c:310
@@ -392,6 +392,7 @@ msgid "fix time after suspend/hibernate"
 msgstr "Zeit korrigieren nach Ruhemodus/Tiefschlaf"
 
 #: ../panel-plugin/oc_config.c:395
+#, fuzzy
 msgid ""
 "You only need this if you do short term (less than 5 hours) suspend or "
 "hibernate and your visible time does not include seconds. Under these "
@@ -827,7 +828,7 @@ msgstr "Orage-Fenster benutzen"
 
 #: ../src/appointment.c:2640
 msgid "Select this if you want Orage window alarm"
-msgstr "Wählen Sie dies aus, um die Erinnerung am Fenster von Orage zu zeigen"
+msgstr "Wählen Sie dies aus, um die Erinnerung am Fenster von Orage zu zeigen."
 
 #: ../src/appointment.c:2652
 msgid "Use notification"
@@ -835,7 +836,7 @@ msgstr "Benachrichtigung verwenden"
 
 #: ../src/appointment.c:2654
 msgid "Select this if you want notification alarm"
-msgstr "Dies für Benachrichtigung bei der Erinnerung markieren"
+msgstr "Wählen Sie dies für eine Benachrichtigung bei der Erinnerung aus."
 
 #: ../src/appointment.c:2660
 msgid "Set timeout"
@@ -843,7 +844,7 @@ msgstr "Ablaufzeit setzen"
 
 #: ../src/appointment.c:2663
 msgid "Select this if you want notification to expire automatically"
-msgstr "Dies für eine automatisch auslaufende Benachrichtigung markieren"
+msgstr "Wählen Sie dies für eine automatisch auslaufende Benachrichtigung aus."
 
 #: ../src/appointment.c:2674
 msgid "0 = system default expiration time"
@@ -860,9 +861,8 @@ msgstr "Anwendung"
 
 #: ../src/appointment.c:2696
 msgid "Select this if you want procedure or script alarm"
-msgstr ""
-"Dies markieren, um eine Anwendung oder ein Skript bei der Erinnerung "
-"auszuführen"
+msgstr "Wählen Sie dies aus, um eine Anwendung oder ein Skript bei der Erinnerung "
+"auszuführen."
 
 #: ../src/appointment.c:2702
 msgid ""
@@ -870,7 +870,7 @@ msgid ""
 " This string is just given to shell to process"
 msgstr ""
 "Sie müssen alle Escape-Zeichen selbst eingeben.\n"
-" Diese Zeichenkette wird nur der Shell oder dem Prozess übergeben"
+" Diese Zeichenkette wird direkt der Shell zum verarbeiten übergeben"
 
 #. **** Default Alarm Settings ****
 #: ../src/appointment.c:2711
@@ -1094,7 +1094,7 @@ msgid ""
 "selected appointments."
 msgstr ""
 "Sie entfernen alle ausgewählten\n"
-"Termine dauerhaft."
+"Termine endgültig."
 
 #: ../src/event-list.c:1103
 msgid "Find"
@@ -1894,7 +1894,7 @@ msgstr "Antarktis/Palmer"
 
 #: ../src/ical-code.c:298
 msgid "Antarctica/South_Pole"
-msgstr "Antarktis/Südpol"
+msgstr "Antarktis/Süd_pol"
 
 #: ../src/ical-code.c:299
 msgid "Antarctica/Syowa"
@@ -2242,7 +2242,7 @@ msgstr "Atlantik/Reykjavik"
 
 #: ../src/ical-code.c:385
 msgid "Atlantic/South_Georgia"
-msgstr "Atlantik/Südgeorgien"
+msgstr "Atlantik/Süd_georgien"
 
 #: ../src/ical-code.c:386
 msgid "Atlantic/St_Helena"
@@ -2747,7 +2747,7 @@ msgstr "Schwellwert für Archivierung: %d Monat(e)"
 
 #. yy mon day
 #: ../src/ical-code.c:3626
-#, c-format
+#, fuzzy, c-format
 msgid "\tArchiving events, which are older than: %04d-%02d-%02d"
 msgstr "\tEreignisse archivieren, die älter als %04d-%02d-%02d sind"
 
@@ -2759,7 +2759,7 @@ msgstr "Archiv-UID: %s"
 #. VTODO not completed, do not archive
 #: ../src/ical-code.c:3659
 msgid "\tVTODO not complete; not archived"
-msgstr "\tVTODO vollständig; nicht archiviert."
+msgstr "\tVTODO nicht vollständig; nicht archiviert."
 
 #. it is recurrent event
 #: ../src/ical-code.c:3664
@@ -2856,7 +2856,7 @@ msgid ""
 "Separate filenames with comma(,).\n"
 " NOTE: comma is not valid character in filenames for Orage."
 msgstr ""
-"Dateinamen durch Komma trennen\n"
+"Dateinamen durch Kommata trennen\n"
 " Anmerkung: Das Komma ist kein gültiges Zeichen für Orage-Dateinamen."
 
 #: ../src/interface.c:1002
@@ -2961,7 +2961,7 @@ msgid ""
 "New file must exist."
 msgstr ""
 "Interne Orage-Datei nur umbenennen.\n"
-"Dies berührt das externe Filesystem nicht.\n"
+"Dies berührt das externe Dateisystem nicht.\n"
 "Die neue Datei muss existieren."
 
 #: ../src/interface.c:1157 ../src/interface.c:1220
@@ -3033,8 +3033,7 @@ msgstr ""
 #: ../src/main.c:194
 #, c-format
 msgid "\tReleased under the terms of the GNU General Public License.\n"
-msgstr ""
-"\tUnter den Bedingungen der GNU General Public License veröffentlicht.\n"
+msgstr "\tUnter den Bedingungen der GNU General Public License veröffentlicht.\n"
 
 #: ../src/main.c:195
 #, c-format
@@ -3243,8 +3242,7 @@ msgstr "(0 = keine Archivierung)"
 
 #: ../src/parameters.c:520
 msgid "Archiving is used to save time and space when handling events."
-msgstr ""
-"Die Archivierung wird verwendet, um Zeit und Platz beim Bearbeiten von "
+msgstr "Die Archivierung wird verwendet, um Zeit und Platz beim Bearbeiten von "
 "Terminen zu sparen."
 
 #: ../src/parameters.c:529
@@ -3253,8 +3251,7 @@ msgstr "Befehl zur Tonwiedergabe"
 
 #: ../src/parameters.c:544
 msgid "This command is given to shell to make sound in alarms."
-msgstr ""
-"Dieser Befehl wird verwendet, um einen Klang bei Erinnerungen abzuspielen."
+msgstr "Dieser Befehl wird verwendet, um einen Klang bei Erinnerungen abzuspielen."
 
 #: ../src/parameters.c:559
 msgid "Display"
@@ -3373,9 +3370,7 @@ msgstr "Standardmäßige Zeitzone auf »%s« setzen"
 
 #: ../src/parameters.c:1041
 msgid "Default timezone not found, please, set it manually."
-msgstr ""
-"Standardmäßige Zeitzone nicht gefunden; Sie möchten diese bitte manuell "
-"setzen."
+msgstr "Standardmäßige Zeitzone nicht gefunden; Bitte setzen Sie sie manuell."
 
 #: ../src/reminder.c:425
 msgid "Reminder "
