@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orage 4.5.9.6-svn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-14 22:12+0100\n"
-"PO-Revision-Date: 2009-02-11 15:51+0000\n"
+"POT-Creation-Date: 2008-11-11 09:18+0200\n"
+"PO-Revision-Date: 2009-04-12 11:58+0200\n"
 "Last-Translator: Simon Schneider <simon@schneiderimtal.de>\n"
 "Language-Team: German <xfce-i18n@xfce.org>\n"
 "MIME-Version: 1.0\n"
@@ -360,7 +360,8 @@ msgstr "Zeitzone setzen auf:"
 
 #: ../panel-plugin/oc_config.c:301
 msgid "Set any valid timezone (=TZ) value or pick one from the list."
-msgstr "Geben Sie eine gültige Zeitone (TZ) ein oder wählen Sie eine aus der Liste."
+msgstr ""
+"Geben Sie eine gültige Zeitone (TZ) ein oder wählen Sie eine aus der Liste."
 
 #. line 1
 #: ../panel-plugin/oc_config.c:310
@@ -392,7 +393,6 @@ msgid "fix time after suspend/hibernate"
 msgstr "Zeit korrigieren nach Ruhemodus/Tiefschlaf"
 
 #: ../panel-plugin/oc_config.c:395
-#, fuzzy
 msgid ""
 "You only need this if you do short term (less than 5 hours) suspend or "
 "hibernate and your visible time does not include seconds. Under these "
@@ -405,7 +405,7 @@ msgstr ""
 "Zeit keine Sekunden enthält. Unter diesen Umständen ist es nämlich möglich, "
 "dass die Uhr von Orage die Zeit etwas verfälscht wiedergibt, wenn Sie dies "
 "nicht ausgewählt haben. (Wählt man dies aus, werden einige Fähigkeiten der "
-"CPU und das Speichern von Unterbrechungen nicht mehr funktionieren.)"
+"CPU und das Vermeiden von Interrupts nicht mehr funktionieren.)"
 
 #: ../panel-plugin/oc_config.c:407
 msgid ""
@@ -861,7 +861,8 @@ msgstr "Anwendung"
 
 #: ../src/appointment.c:2696
 msgid "Select this if you want procedure or script alarm"
-msgstr "Wählen Sie dies aus, um eine Anwendung oder ein Skript bei der Erinnerung "
+msgstr ""
+"Wählen Sie dies aus, um eine Anwendung oder ein Skript bei der Erinnerung "
 "auszuführen."
 
 #: ../src/appointment.c:2702
@@ -2747,9 +2748,9 @@ msgstr "Schwellwert für Archivierung: %d Monat(e)"
 
 #. yy mon day
 #: ../src/ical-code.c:3626
-#, fuzzy, c-format
+#, c-format
 msgid "\tArchiving events, which are older than: %04d-%02d-%02d"
-msgstr "\tEreignisse archivieren, die älter als %04d-%02d-%02d sind"
+msgstr "\tEreignisse archivieren, die älter sind als: %04d-%02d-%02d"
 
 #: ../src/ical-code.c:3653
 #, c-format
@@ -3033,7 +3034,8 @@ msgstr ""
 #: ../src/main.c:194
 #, c-format
 msgid "\tReleased under the terms of the GNU General Public License.\n"
-msgstr "\tUnter den Bedingungen der GNU General Public License veröffentlicht.\n"
+msgstr ""
+"\tUnter den Bedingungen der GNU General Public License veröffentlicht.\n"
 
 #: ../src/main.c:195
 #, c-format
@@ -3242,7 +3244,8 @@ msgstr "(0 = keine Archivierung)"
 
 #: ../src/parameters.c:520
 msgid "Archiving is used to save time and space when handling events."
-msgstr "Die Archivierung wird verwendet, um Zeit und Platz beim Bearbeiten von "
+msgstr ""
+"Die Archivierung wird verwendet, um Zeit und Platz beim Bearbeiten von "
 "Terminen zu sparen."
 
 #: ../src/parameters.c:529
@@ -3251,7 +3254,8 @@ msgstr "Befehl zur Tonwiedergabe"
 
 #: ../src/parameters.c:544
 msgid "This command is given to shell to make sound in alarms."
-msgstr "Dieser Befehl wird verwendet, um einen Klang bei Erinnerungen abzuspielen."
+msgstr ""
+"Dieser Befehl wird verwendet, um einen Klang bei Erinnerungen abzuspielen."
 
 #: ../src/parameters.c:559
 msgid "Display"
