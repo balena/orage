@@ -53,7 +53,6 @@
 #include "event-list.h"
 #include "appointment.h"
 #include "reminder.h"
-#include "xfce_trayicon.h"
 #include "tray_icon.h"
 #include "parameters.h"
 
@@ -360,8 +359,7 @@ static void create_sound_reminder(alarm_struct *alarm)
         alarm->repeat_cnt++; /* need to do it once */
     }
 
-    g_timeout_add(alarm->repeat_delay*1000
-            , (GtkFunction) sound_alarm
+    g_timeout_add_seconds(alarm->repeat_delay, (GtkFunction) sound_alarm
             , (gpointer) alarm);
 }
 
@@ -427,17 +425,10 @@ static void create_notify_reminder(alarm_struct *alarm)
         g_strlcat(heading, alarm->title, 50);
     n = notify_notification_new(heading, alarm->description, NULL, NULL);
     alarm->active_alarm->active_notify = n;
-#if GTK_CHECK_VERSION(2,10,0)
     if (g_par.trayIcon 
     && gtk_status_icon_is_embedded((GtkStatusIcon *)g_par.trayIcon))
         notify_notification_attach_to_status_icon(n
                 , (GtkStatusIcon *)g_par.trayIcon);
-#else
-    if (g_par.trayIcon 
-    && NETK_IS_TRAY_ICON(((XfceTrayIcon *)g_par.trayIcon)->tray)) 
-        notify_notification_attach_to_widget(n
-                , ((XfceTrayIcon *)g_par.trayIcon)->image);
-#endif
 
     if (alarm->notify_timeout == -1)
         notify_notification_set_timeout(n, NOTIFY_EXPIRES_NEVER);
@@ -731,7 +722,7 @@ void reset_orage_day_change(gboolean changed)
     else { /* the change did not happen. Need to try again asap. */
         secs_left = 1;
     }
-    g_par.day_timer = g_timeout_add(secs_left * 1000
+    g_par.day_timer = g_timeout_add_seconds(secs_left
             , (GtkFunction) orage_day_change, NULL);
 }
 
@@ -806,7 +797,7 @@ static void reset_orage_alarm_clock()
         secs_to_alarm += 1; /* alarm needs to come a bit later */
         if (secs_to_alarm < 1) /* were rare, but possible */
             secs_to_alarm = 1;
-        g_par.alarm_timer = g_timeout_add(secs_to_alarm * 1000
+        g_par.alarm_timer = g_timeout_add_seconds(secs_to_alarm
                 , (GtkFunction) orage_alarm_clock, NULL);
     }
 }
@@ -830,13 +821,8 @@ gboolean orage_tooltip_update(gpointer user_data)
 #ifdef ORAGE_DEBUG
     orage_message(-100, P_N);
 #endif
-#if GTK_CHECK_VERSION(2,10,0)
     if (!(g_par.trayIcon 
     && gtk_status_icon_is_embedded((GtkStatusIcon *)g_par.trayIcon))) {
-#else
-    if (!(g_par.trayIcon 
-    && NETK_IS_TRAY_ICON(((XfceTrayIcon *)g_par.trayIcon)->tray))) { 
-#endif
            /* no trayicon => no need to update the tooltip */
         return(FALSE);
     }
@@ -878,12 +864,7 @@ gboolean orage_tooltip_update(gpointer user_data)
     }
     if (alarm_cnt == 0)
         g_string_append_printf(tooltip, _("\nNo active alarms found"));
-#if GTK_CHECK_VERSION(2,10,0)
     gtk_status_icon_set_tooltip((GtkStatusIcon *)g_par.trayIcon, tooltip->str);
-#else
-    xfce_tray_icon_set_tooltip((XfceTrayIcon *)g_par.trayIcon, tooltip->str
-            , NULL);
-#endif
     g_string_free(tooltip, TRUE);
     return(TRUE);
 }
@@ -902,7 +883,7 @@ gboolean start_orage_tooltip_update(gpointer user_data)
     }
 
     orage_tooltip_update(NULL);
-    g_par.tooltip_timer = g_timeout_add(60*1000
+    g_par.tooltip_timer = g_timeout_add_seconds(60
             , (GtkFunction) orage_tooltip_update, NULL);
     return(FALSE);
 }
@@ -927,7 +908,7 @@ gboolean reset_orage_tooltip_update()
      * only when appoinments are updated in less than 1 minute apart. 
      * Perhaps not worth fixing. 
      * Should add another timer or static time to keep track of this */
-    g_timeout_add(secs_left*1000
+    g_timeout_add_seconds(secs_left
             , (GtkFunction) start_orage_tooltip_update, NULL);
     return(FALSE);
 }
@@ -944,5 +925,5 @@ void setup_orage_alarm_clock()
     store_persistent_alarms(); /* keep track of alarms when orage is down */
     /* We need to use timer since for some reason it does not work if we
      * do it here directly. Ugly, I know, but it works. */
-    g_timeout_add(1*1000, (GtkFunction) reset_orage_tooltip_update, NULL);
+    g_timeout_add_seconds(1, (GtkFunction) reset_orage_tooltip_update, NULL);
 }

@@ -100,6 +100,8 @@ typedef struct _appt_win
     GtkWidget *Categories_cb;
     GtkWidget *Categories_cb_event;
     GtkWidget *Categories_button;
+    GtkWidget *Priority_label;
+    GtkWidget *Priority_spin;
     GtkWidget *Note;
     GtkWidget *Note_Scrolledwindow;
     GtkWidget *Note_textview;
@@ -178,6 +180,15 @@ typedef struct _appt_win
     GtkWidget *Recur_byday_spin_label;
     GtkWidget *Recur_byday_spin_hbox;
     GtkWidget *Recur_byday_spin[7];  /* 0=Mo, 1=Tu ... 6=Su */
+    GtkWidget *Recur_todo_base_label;
+    GtkWidget *Recur_todo_base_hbox;
+    GtkWidget *Recur_todo_base_start_rb;
+    GtkWidget *Recur_todo_base_done_rb;
+    GtkWidget *Recur_calendar_label;
+    GtkWidget *Recur_calendar_hbox;
+    GtkWidget *Recur_calendar1;
+    GtkWidget *Recur_calendar2;
+    GtkWidget *Recur_calendar3;
 
     void *xf_appt; /* this is xfical_appt * */
     gchar *xf_uid;

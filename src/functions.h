@@ -40,6 +40,11 @@
 
 #define ORAGE_STR_EXISTS(str) ((str != NULL) && (str[0] != 0))
 
+#if !GLIB_CHECK_VERSION(2,14,0)
+#define g_timeout_add_seconds(interval,func,data) \
+        g_timeout_add((interval)*1000, func, data)
+#endif
+
 typedef struct _OrageRc
 {
     void *rc;
@@ -101,5 +106,14 @@ void orage_rc_put_int(OrageRc *orc, char *key, gint val);
 void orage_rc_put_bool(OrageRc *orc, char *key, gboolean val);
 gboolean orage_rc_exists_item(OrageRc *orc, char *key);
 void orage_rc_del_item(OrageRc *orc, char *key);
+
+gint orage_info_dialog(GtkWindow *parent
+        , char *primary_text, char *secondary_text);
+gint orage_warning_dialog(GtkWindow *parent
+        , char *primary_text, char *secondary_text);
+gint orage_error_dialog(GtkWindow *parent
+        , char *primary_text, char *secondary_text);
+GtkWidget *orage_create_framebox_with_content(const gchar *title
+        , GtkWidget *content);
 
 #endif /* !__ORAGE_FUNCTIONS_H__ */

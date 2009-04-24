@@ -33,19 +33,17 @@
 #include <gdk/gdk.h>
 #include <gtk/gtk.h>
 #include <glib/gprintf.h>
-#include <libxfcegui4/libxfcegui4.h>
-#include <libxfcegui4/netk-trayicon.h>
 
+#include "orage-i18n.h"
 #include "functions.h"
 #include "mainbox.h"
 #include "about-xfcalendar.h"
 #include "ical-code.h"
 #include "event-list.h"
 #include "appointment.h"
-#include "xfce_trayicon.h"
 #include "parameters.h"
 
-#define ORAGE_TRAYICON ((XfceTrayIcon *)g_par.trayIcon)
+#define ORAGE_TRAYICON ((GtkStatusIcon *)g_par.trayIcon)
 
 void orage_toggle_visible();
 
@@ -83,22 +81,20 @@ void on_about_activate(GtkMenuItem *menuitem, gpointer user_data)
     create_wAbout((GtkWidget *)menuitem, user_data);
 }
 
-#if GTK_CHECK_VERSION(2,10,0)
 void toggle_visible_cb(GtkStatusIcon *status_icon, gpointer user_data)
-#else
-void toggle_visible_cb ()
-#endif
 {
     orage_toggle_visible ();
 }
 
-#if GTK_CHECK_VERSION(2,10,0)
 void show_menu(GtkStatusIcon *status_icon, guint button, guint activate_time
         , gpointer user_data)
 {
     gtk_menu_popup((GtkMenu *)user_data, NULL, NULL, NULL, NULL, button, activate_time);
 }
-#endif
+
+GdkPixbuf *orage_create_icon2(gboolean static_icon, gint x, gint y)
+{
+}
 
 GdkPixbuf *orage_create_icon(gboolean static_icon, gint x, gint y)
 {
@@ -296,29 +292,15 @@ GdkPixbuf *orage_create_icon(gboolean static_icon, gint x, gint y)
     return(pixbuf);
 }
 
-void destroy_TrayIcon(XfceTrayIcon *trayIcon)
+void destroy_TrayIcon(GtkStatusIcon *trayIcon)
 {
-#if GTK_CHECK_VERSION(2,10,0)
     g_object_unref(trayIcon);
-#else
-    if (trayIcon == NULL) 
-        return;
-    if (trayIcon->tip_text != NULL)
-        g_free(trayIcon->tip_text);
-    if (trayIcon->tip_private != NULL)
-        g_free(trayIcon->tip_private);
-    g_object_unref(G_OBJECT(trayIcon->tooltips));
-    g_object_unref(G_OBJECT(trayIcon->image));
-    /*
-    g_object_unref(GTK_OBJECT(trayIcon));
-    */
-#endif
 }
 
-XfceTrayIcon* create_TrayIcon()
+GtkStatusIcon* create_TrayIcon()
 {
     CalWin *xfcal = (CalWin *)g_par.xfcal;
-    XfceTrayIcon *trayIcon = NULL;
+    GtkStatusIcon *trayIcon = NULL;
     GtkWidget *menuItem;
     GtkWidget *trayMenu;
     GdkPixbuf *pixbuf;
@@ -379,49 +361,27 @@ XfceTrayIcon* create_TrayIcon()
      */
 
     pixbuf = orage_create_icon(FALSE, g_par.icon_size_x, g_par.icon_size_y);
-#if GTK_CHECK_VERSION(2,10,0)
     trayIcon = gtk_status_icon_new_from_pixbuf(pixbuf);
-#else
-    trayIcon = xfce_tray_icon_new_with_menu_from_pixbuf(trayMenu, pixbuf);
-#endif
 
     g_object_ref(trayIcon);
-#if GTK_CHECK_VERSION(2,10,0)
     g_object_ref_sink(trayIcon);
-#else
-    gtk_object_sink(GTK_OBJECT(trayIcon));
-#endif
     g_object_unref(pixbuf);
 
-#if GTK_CHECK_VERSION(2,10,0)
     g_signal_connect(G_OBJECT(trayIcon), "activate",
     			   G_CALLBACK(toggle_visible_cb), xfcal);
     g_signal_connect(G_OBJECT(trayIcon), "popup_menu",
     			   G_CALLBACK(show_menu), trayMenu);
-#else
-    g_signal_connect_swapped(G_OBJECT(trayIcon), "clicked",
-    			   G_CALLBACK(toggle_visible_cb), xfcal);
-#endif
     return(trayIcon);
 }
 
 void refresh_TrayIcon()
 {
     if (g_par.show_systray) { /* refresh tray icon */
-#if GTK_CHECK_VERSION(2,10,0)
         if (ORAGE_TRAYICON && gtk_status_icon_is_embedded(ORAGE_TRAYICON)) {
             gtk_status_icon_set_visible(ORAGE_TRAYICON, FALSE);
             destroy_TrayIcon(ORAGE_TRAYICON);
         }
         g_par.trayIcon = create_TrayIcon();
         gtk_status_icon_set_visible(ORAGE_TRAYICON, TRUE);
-#else
-        if (ORAGE_TRAYICON && NETK_IS_TRAY_ICON(ORAGE_TRAYICON->tray)) {
-            xfce_tray_icon_disconnect(ORAGE_TRAYICON);
-            destroy_TrayIcon(ORAGE_TRAYICON);
-        }
-        g_par.trayIcon = create_TrayIcon();
-        xfce_tray_icon_connect(ORAGE_TRAYICON);
-#endif
     }
 }

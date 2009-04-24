@@ -79,7 +79,7 @@ typedef struct _parameters
     gint pos_x, pos_y;
 
     /* tray icon */
-    void *trayIcon; /* this is XfceTrayIcon * */
+    void *trayIcon; /* this is GtkStatusIcon * */
     gint icon_size_x, icon_size_y;
 
     /* event-list window */
@@ -90,6 +90,9 @@ typedef struct _parameters
 
     /* Controls which messages are printed */
     gint log_level;
+
+    /* Controls which appointment priorities are shown in lists */
+    gint priority_list_limit;
 } global_parameters; /* global parameters */
 
 #ifdef ORAGE_MAIN

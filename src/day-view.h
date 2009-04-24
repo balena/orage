@@ -73,6 +73,8 @@ typedef struct _day_win
 
     GdkColor bg1, bg2, line_color, bg_today, fg_sunday;
     GList    *apptw_list; /* keep track of appointments being updated */
+    gchar a_day[9]; /* start date yyyymmdd */
+    gint days;      /* how many days to show */
 } day_win;
 
 day_win *create_day_win(char *start_date);

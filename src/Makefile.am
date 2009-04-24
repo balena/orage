@@ -25,9 +25,7 @@ orage_SOURCES =							\
 	reminder.c							\
 	reminder.h							\
 	tray_icon.c                                                     \
-	tray_icon.h                                                     \
-	xfce_trayicon.c							\
-	xfce_trayicon.h
+	tray_icon.h
 
 orage_CFLAGS =							\
 	$(LIBXFCEGUI4_CFLAGS)						\

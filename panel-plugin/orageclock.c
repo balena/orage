@@ -580,6 +580,9 @@ Clock *orage_oc_new(XfcePanelPlugin *plugin)
 
     for (i = 0; i < OC_MAX_LINES; i++) {
         clock->line[i].label = gtk_label_new("");
+        /* clicking does not work after this
+        gtk_label_set_selectable(GTK_LABEL(clock->line[i].label), TRUE);
+        */
         g_object_ref(clock->line[i].label); /* it is not always in the vbox */
         gtk_widget_show(clock->line[i].label);
         clock->line[i].show = show_init[i];

@@ -241,7 +241,7 @@ void mCalendar_month_changed_cb(GtkCalendar *calendar, gpointer user_data)
         g_source_remove(timer);
     if (calendar->num_marked_dates) /* undocumented, internal field; ugly */
         gtk_calendar_clear_marks(calendar);
-    timer = g_timeout_add(500, (GtkFunction)upd_calendar, calendar);
+    timer = g_timeout_add(400, (GtkFunction)upd_calendar, calendar);
 }
 
 static void build_menu(void)

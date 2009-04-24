@@ -1,16 +1,16 @@
 Time-managing application for the Xfce desktop environment.
 
-Orage 4.3 uses new ical interface instead of old dbh to store and
-utilize calender appointments. 
+Orage uses ical interface instead of old dbh to store and
+utilize calender appointments.ince version 4.3
 
 libical-0.24RC4 version is needed and it comes together with Orage
 package.  It contains several fixes so you must use this version instead
 of any base libical version.
 
 Note that there is no conversion routine to migrate your old data into 
-the new format, but you will loose all old appointments and start from
-clean table.
+the new version (from 4.4 to 4.6 for example) so after each major version
+you need to manually add appointments.
 
-First thing you want to do is add your local timezone in the preferces,
+First thing you want to do is add your local timezone in the preferences,
 If you do not set local timezone, do not use timezones in any appointments
 either. It will cause just problems.

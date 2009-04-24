@@ -119,6 +119,7 @@ typedef struct _xfical_appt
     gboolean recur_byday[7]; /* 0=Mo, 1=Tu, 2=We, 3=Th, 4=Fr, 5=Sa, 6=Su */
     gint   recur_byday_cnt[7]; /* monthly/early: 1=first -1=last 2=second... */
     gint   interval;    /* 1=every day/week..., 2=every second day/week,... */
+    gboolean recur_todo_base_start; /* TRUE=start time, FALSE=completed time */
 } xfical_appt;
 
 gboolean xfical_set_local_timezone(gboolean testing);
@@ -141,6 +142,7 @@ void xfical_process_each_app(xfical_appt *appt, char *a_day, int days
         , GList **data);
 
 void xfical_mark_calendar(GtkCalendar *gtkcal);
+void xfical_mark_calendar_recur(GtkCalendar *gtkcal, xfical_appt *appt);
 
 void xfical_alarm_build_list(gboolean first_list_today);
 

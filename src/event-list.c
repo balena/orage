@@ -46,12 +46,12 @@
 #include <unistd.h>
 #include <time.h>
 
-#include <libxfcegui4/libxfcegui4.h>
 #include <gdk/gdkkeysyms.h>
 #include <gdk/gdk.h>
 #include <gtk/gtk.h>
 #include <glib/gprintf.h>
 
+#include "orage-i18n.h"
 #include "functions.h"
 #include "mainbox.h"
 #include "reminder.h"
@@ -265,6 +265,9 @@ static void start_time_data_func(GtkTreeViewColumn *col, GtkCellRenderer *rend
         }
 
         gtk_tree_model_get(model, iter, COL_TIME, &stime, -1);
+        /* we need to remember the real address in case we increment it, 
+         * so that we can free the correct pointer */
+        stime2 = stime; 
         if (stime[0] == '+')
             stime++;
         etime = stime + 8; /* hh:mm - hh:mm */
@@ -303,7 +306,7 @@ static void start_time_data_func(GtkTreeViewColumn *col, GtkCellRenderer *rend
                      , "weight-set",        TRUE
                      , NULL);
         }
-        g_free(stime);
+        g_free(stime2);
     }
     else if (el->page == TODO_PAGE) {
         gtk_tree_model_get(model, iter, COL_SORT, &stime, -1);
@@ -721,14 +724,10 @@ static void duplicate_appointment(el_win *el)
         start_appt_win("COPY", el, model, &iter, path);
     }
     else {
-        g_warning("Copy: No row selected\n");
-        xfce_message_dialog(GTK_WINDOW(el->Window)
-                , _("Info")
-                , GTK_STOCK_DIALOG_INFO
+        orage_info_dialog(GTK_WINDOW(el->Window)
                 , _("No rows have been selected.")
                 , _("Click a row to select it and after that you can copy it.")
-                , GTK_STOCK_OK, GTK_RESPONSE_ACCEPT
-                , NULL);
+                );
     }
     g_list_foreach(list, (GFunc)gtk_tree_path_free, NULL);
     g_list_free(list);
@@ -893,15 +892,9 @@ static void delete_appointment(el_win *el)
     gint  list_len, i;
     gchar *uid = NULL;
 
-    result = xfce_message_dialog(GTK_WINDOW(el->Window)
-            , _("Warning")
-            , GTK_STOCK_DIALOG_WARNING
+    result = orage_warning_dialog(GTK_WINDOW(el->Window)
             , _("You will permanently remove all\nselected appointments.")
-            , _("Do you want to continue?")
-            , GTK_STOCK_NO, GTK_RESPONSE_CANCEL
-            , GTK_STOCK_YES, GTK_RESPONSE_ACCEPT
-            , NULL);
-
+            , _("Do you want to continue?"));
     if (result == GTK_RESPONSE_ACCEPT) {
         if (!xfical_file_open(TRUE))
             return;

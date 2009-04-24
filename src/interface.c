@@ -38,8 +38,7 @@
 #include <gdk/gdk.h>
 #include <gdk/gdkkeysyms.h>
 
-#include <libxfcegui4/libxfcegui4.h>
-
+#include "orage-i18n.h"
 #include "functions.h"
 #include "mainbox.h"
 #include "interface.h"
@@ -622,7 +621,7 @@ static void refresh_foreign_files(intf_win *intf_w, gboolean first)
     if (!first)
         gtk_widget_destroy(intf_w->for_cur_frame);
     vbox = gtk_vbox_new(FALSE, 0);
-    intf_w->for_cur_frame = xfce_create_framebox_with_content(
+    intf_w->for_cur_frame = orage_create_framebox_with_content(
             _("Current foreign files"), vbox);
     gtk_box_pack_start(GTK_BOX(intf_w->for_tab_main_vbox)
             , intf_w->for_cur_frame, FALSE, FALSE, 5);
@@ -693,7 +692,7 @@ gboolean orage_foreign_file_add_internal(gchar *filename, gboolean read_only)
     orage_mark_appointments();
     xfical_alarm_build_list(FALSE);
     if (g_par.foreign_count == 1) /* we just added our first foreign file */
-        g_timeout_add(30*1000, (GtkFunction) orage_foreign_files_check, NULL);
+        g_timeout_add_seconds(30, (GtkFunction)orage_foreign_files_check, NULL);
     return(TRUE);
 }
 
@@ -964,14 +963,14 @@ void create_import_export_tab(intf_win *intf_w)
     gchar *str;
 
     m_vbox = gtk_vbox_new(FALSE, 0);
-    intf_w->iea_notebook_page = xfce_create_framebox_with_content(NULL, m_vbox);
+    intf_w->iea_notebook_page = orage_create_framebox_with_content(NULL, m_vbox);
     intf_w->iea_tab_label = gtk_label_new(_("Import/export"));
     gtk_notebook_append_page(GTK_NOTEBOOK(intf_w->notebook)
             , intf_w->iea_notebook_page, intf_w->iea_tab_label);
 
     /***** import *****/
     vbox = gtk_vbox_new(FALSE, 0);
-    intf_w->iea_imp_frame = xfce_create_framebox_with_content(
+    intf_w->iea_imp_frame = orage_create_framebox_with_content(
             _("Import"), vbox);
     gtk_box_pack_start(GTK_BOX(m_vbox)
             , intf_w->iea_imp_frame, FALSE, FALSE, 5);
@@ -998,7 +997,7 @@ void create_import_export_tab(intf_win *intf_w)
 
     /***** export *****/
     vbox = gtk_vbox_new(FALSE, 0);
-    intf_w->iea_exp_frame = xfce_create_framebox_with_content(
+    intf_w->iea_exp_frame = orage_create_framebox_with_content(
             _("Export"), vbox);
     gtk_box_pack_start(GTK_BOX(m_vbox)
             , intf_w->iea_exp_frame, FALSE, FALSE, 5);
@@ -1066,7 +1065,7 @@ void create_import_export_tab(intf_win *intf_w)
 #ifdef HAVE_ARCHIVE
     /***** archive *****/
     vbox = gtk_vbox_new(FALSE, 0);
-    intf_w->iea_arc_frame = xfce_create_framebox_with_content(
+    intf_w->iea_arc_frame = orage_create_framebox_with_content(
             _("Archive"), vbox);
     gtk_box_pack_start(GTK_BOX(m_vbox)
             , intf_w->iea_arc_frame, FALSE, FALSE, 5);
@@ -1107,14 +1106,14 @@ void create_orage_file_tab(intf_win *intf_w)
     GtkWidget *label, *hbox, *vbox, *m_vbox;
 
     m_vbox = gtk_vbox_new(FALSE, 0);
-    intf_w->fil_notebook_page = xfce_create_framebox_with_content(NULL, m_vbox);
+    intf_w->fil_notebook_page = orage_create_framebox_with_content(NULL, m_vbox);
     intf_w->fil_tab_label = gtk_label_new(_("Orage files"));
     gtk_notebook_append_page(GTK_NOTEBOOK(intf_w->notebook)
             , intf_w->fil_notebook_page, intf_w->fil_tab_label);
 
     /***** main file *****/
     vbox = gtk_vbox_new(FALSE, 0);
-    intf_w->orage_file_frame = xfce_create_framebox_with_content(
+    intf_w->orage_file_frame = orage_create_framebox_with_content(
             _("Orage main calendar file"), vbox);
     gtk_box_pack_start(GTK_BOX(m_vbox)
             , intf_w->orage_file_frame, FALSE, FALSE, 5);
@@ -1179,7 +1178,7 @@ void create_orage_file_tab(intf_win *intf_w)
 #ifdef HAVE_ARCHIVE
     /***** archive file *****/
     vbox = gtk_vbox_new(FALSE, 0);
-    intf_w->archive_file_frame = xfce_create_framebox_with_content(
+    intf_w->archive_file_frame = orage_create_framebox_with_content(
             _("Archive file"), vbox);
     gtk_box_pack_start(GTK_BOX(m_vbox)
             , intf_w->archive_file_frame, FALSE, FALSE, 5);
@@ -1241,7 +1240,7 @@ static void create_foreign_file_tab(intf_win *intf_w)
     GtkWidget *label, *hbox, *vbox;
 
     intf_w->for_tab_main_vbox = gtk_vbox_new(FALSE, 0);
-    intf_w->for_notebook_page = xfce_create_framebox_with_content(NULL
+    intf_w->for_notebook_page = orage_create_framebox_with_content(NULL
             , intf_w->for_tab_main_vbox);
     intf_w->for_tab_label = gtk_label_new(_("Foreign files"));
     gtk_notebook_append_page(GTK_NOTEBOOK(intf_w->notebook)
@@ -1249,7 +1248,7 @@ static void create_foreign_file_tab(intf_win *intf_w)
 
     /***** Add new file *****/
     vbox = gtk_vbox_new(FALSE, 0);
-    intf_w->for_new_frame = xfce_create_framebox_with_content(
+    intf_w->for_new_frame = orage_create_framebox_with_content(
             _("Add new foreign file"), vbox);
     gtk_box_pack_start(GTK_BOX(intf_w->for_tab_main_vbox)
             , intf_w->for_new_frame, FALSE, FALSE, 5);

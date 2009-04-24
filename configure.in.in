@@ -9,10 +9,10 @@ dnl Written for Xfce by Juha Kautto <juha@xfce.org>
 dnl
 
 dnl Version information
-m4_define([orage_version], [4.7.0.0-svn])
+m4_define([orage_version], [4.7.1.1-svn])
 
-m4_define([gtk_minimum_version], [2.6.0])
-m4_define([xfce_minimum_version], [4.4.0])
+m4_define([gtk_minimum_version], [2.10.0])
+m4_define([xfce_minimum_version], [4.6.0])
 m4_define([dbus_minimum_version], [0.34])
 m4_define([notify_minimum_version], [0.3.2])
 m4_define([intltool_minimum_version], [0.31])
@@ -204,18 +204,6 @@ XDT_CHECK_OPTIONAL_PACKAGE([NOTIFY], [libnotify],
                            [notify_minimum_version], [libnotify], 
                            [LIBNOTIFY support])
 
-dnl ********************************
-dnl *** Optional support for MCS ***
-dnl ********************************
-XDT_CHECK_OPTIONAL_PACKAGE([XFCEMCS], [libxfce4mcs-client-1.0],
-                           [xfce_minimum_version], [libxfce4mcs], 
-                           [XFCE_MCS_MANAGER support])
-
-if test x"$XFCEMCS_FOUND" = x"yes"; then
-dnl configure the mcs plugin
-XDT_XFCE_MCS_PLUGIN([XFCE_MCS_MANAGER], [xfce_minimum_version])
-fi
-
 dnl ************************************************
 dnl *** Optional support for automatic archiving ***
 dnl ************************************************
@@ -275,11 +263,6 @@ if test x"$NOTIFY_FOUND" = x"yes"; then
 echo "* LIBNOTIFY support:         yes"
 else
 echo "* LIBNOTIFY support:         no"
-fi
-if test x"$XFCEMCS_FOUND" = x"yes"; then
-echo "* XFCE MCS support:          yes"
-else
-echo "* XFCE MCS support:          no"
 fi
 echo "* Automatic archiving:       $have_archive"
 echo

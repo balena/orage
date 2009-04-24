@@ -24,11 +24,9 @@
 #ifndef __TRAY_ICON_H__
 #define __TRAY_ICON_H__
 
-#include "xfce_trayicon.h"
-
 GdkPixbuf *orage_create_icon(gboolean static_icon, gint x, gint y);
 
-XfceTrayIcon *create_TrayIcon(void);
+GtkStatusIcon *create_TrayIcon(void);
 
 void refresh_TrayIcon(void);
 

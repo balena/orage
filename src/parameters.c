@@ -323,7 +323,6 @@ static void pager_changed(GtkWidget *dialog, gpointer user_data)
 
 static void set_systray()
 {
-#if GTK_CHECK_VERSION(2,10,0)
     if (!(g_par.trayIcon 
     && gtk_status_icon_is_embedded((GtkStatusIcon *)g_par.trayIcon))) {
         g_par.trayIcon = create_TrayIcon();
@@ -333,17 +332,6 @@ static void set_systray()
         gtk_status_icon_set_visible((GtkStatusIcon *)g_par.trayIcon, TRUE);
     else
         gtk_status_icon_set_visible((GtkStatusIcon *)g_par.trayIcon, FALSE);
-#else
-    if (!(g_par.trayIcon 
-    && NETK_IS_TRAY_ICON(((XfceTrayIcon *)g_par.trayIcon)->tray))) {
-        g_par.trayIcon = create_TrayIcon();
-    }
-
-    if (g_par.show_systray)
-        xfce_tray_icon_connect((XfceTrayIcon *)g_par.trayIcon);
-    else
-        xfce_tray_icon_disconnect((XfceTrayIcon *)g_par.trayIcon);
-#endif
 }
 
 static void systray_changed(GtkWidget *dialog, gpointer user_data)
@@ -469,14 +457,14 @@ static void create_parameter_dialog_main_setup_tab(Itf *dialog)
 
     dialog->setup_vbox = gtk_vbox_new(FALSE, 0);
     dialog->setup_tab = 
-            xfce_create_framebox_with_content(NULL, dialog->setup_vbox);
+            orage_create_framebox_with_content(NULL, dialog->setup_vbox);
     dialog->setup_tab_label = gtk_label_new(_("Main setups"));
     gtk_notebook_append_page(GTK_NOTEBOOK(dialog->notebook)
           , dialog->setup_tab, dialog->setup_tab_label);
 
     /* Choose a timezone to be used in appointments */
     vbox = gtk_vbox_new(TRUE, 0);
-    dialog->timezone_frame = xfce_create_framebox_with_content(_("Timezone")
+    dialog->timezone_frame = orage_create_framebox_with_content(_("Timezone")
             , vbox);
     gtk_box_pack_start(GTK_BOX(dialog->setup_vbox)
             , dialog->timezone_frame, FALSE, FALSE, 5);
@@ -504,7 +492,7 @@ static void create_parameter_dialog_main_setup_tab(Itf *dialog)
     /* Choose archiving threshold */
     hbox = gtk_hbox_new(FALSE, 0);
     dialog->archive_threshold_frame = 
-            xfce_create_framebox_with_content(_("Archive threshold (months)")
+            orage_create_framebox_with_content(_("Archive threshold (months)")
                     , hbox);
     gtk_box_pack_start(GTK_BOX(dialog->setup_vbox)
             , dialog->archive_threshold_frame, FALSE, FALSE, 5);
@@ -526,7 +514,7 @@ static void create_parameter_dialog_main_setup_tab(Itf *dialog)
     /* Choose a sound application for reminders */
     hbox = gtk_hbox_new(FALSE, 0);
     dialog->sound_application_frame = 
-            xfce_create_framebox_with_content(_("Sound command"), hbox);
+            orage_create_framebox_with_content(_("Sound command"), hbox);
     gtk_box_pack_start(GTK_BOX(dialog->setup_vbox)
             , dialog->sound_application_frame, FALSE, FALSE, 5);
 
@@ -555,7 +543,7 @@ static void create_parameter_dialog_display_tab(Itf *dialog)
 
     dialog->display_vbox = gtk_vbox_new(FALSE, 0);
     dialog->display_tab = 
-        xfce_create_framebox_with_content(NULL, dialog->display_vbox);
+        orage_create_framebox_with_content(NULL, dialog->display_vbox);
     dialog->display_tab_label = gtk_label_new(_("Display"));
     gtk_notebook_append_page(GTK_NOTEBOOK(dialog->notebook)
           , dialog->display_tab, dialog->display_tab_label);
@@ -563,7 +551,7 @@ static void create_parameter_dialog_display_tab(Itf *dialog)
     /* Display calendar borders and menu or not and set stick or ontop */
     vbox = gtk_vbox_new(TRUE, 0);
     dialog->mode_frame = 
-            xfce_create_framebox_with_content(_("Calendar main window"), vbox);
+            orage_create_framebox_with_content(_("Calendar main window"), vbox);
     gtk_box_pack_start(GTK_BOX(dialog->display_vbox), dialog->mode_frame
             , FALSE, FALSE, 5);
 
@@ -654,7 +642,7 @@ static void create_parameter_dialog_display_tab(Itf *dialog)
     /* how to show when started (show/hide/minimize) */
     dialog->visibility_radiobutton_group = NULL;
     hbox = gtk_hbox_new(TRUE, 0);
-    dialog->visibility_frame = xfce_create_framebox_with_content(
+    dialog->visibility_frame = orage_create_framebox_with_content(
             _("Calendar start") , hbox);
     gtk_box_pack_start(GTK_BOX(dialog->display_vbox), dialog->visibility_frame
             , FALSE, FALSE, 5);
@@ -713,14 +701,14 @@ static void create_parameter_dialog_extra_setup_tab(Itf *dialog)
 
     dialog->extra_vbox = gtk_vbox_new(FALSE, 0);
     dialog->extra_tab = 
-            xfce_create_framebox_with_content(NULL, dialog->extra_vbox);
+            orage_create_framebox_with_content(NULL, dialog->extra_vbox);
     dialog->extra_tab_label = gtk_label_new(_("Extra setups"));
     gtk_notebook_append_page(GTK_NOTEBOOK(dialog->notebook)
           , dialog->extra_tab, dialog->extra_tab_label);
 
     /****** select_always_today ******/
     hbox = gtk_hbox_new(FALSE, 0);
-    dialog->always_today_frame = xfce_create_framebox_with_content(
+    dialog->always_today_frame = orage_create_framebox_with_content(
             _("Select always today"), hbox);
     gtk_box_pack_start(GTK_BOX(dialog->extra_vbox)
             , dialog->always_today_frame, FALSE, FALSE, 5);
@@ -740,7 +728,7 @@ static void create_parameter_dialog_extra_setup_tab(Itf *dialog)
     /* code removed. relying in get_first_weekday_from_locale now
     / ***** ical week start day (0 = Monday, 1 = Tuesday,... 6 = Sunday) ***** /
     hbox = gtk_hbox_new(FALSE, 0);
-    dialog->ical_weekstartday_frame = xfce_create_framebox_with_content(
+    dialog->ical_weekstartday_frame = orage_create_framebox_with_content(
             _("Ical week start day"), hbox);
     gtk_box_pack_start(GTK_BOX(dialog->extra_vbox)
             , dialog->ical_weekstartday_frame, FALSE, FALSE, 5);
@@ -762,7 +750,7 @@ static void create_parameter_dialog_extra_setup_tab(Itf *dialog)
 
     /***** tray icon size  (0 = use static icon) *****/
     vbox = gtk_vbox_new(FALSE, 0);
-    dialog->icon_size_frame = xfce_create_framebox_with_content(
+    dialog->icon_size_frame = orage_create_framebox_with_content(
             _("Dynamic icon size"), vbox);
     gtk_box_pack_start(GTK_BOX(dialog->extra_vbox)
             , dialog->icon_size_frame, FALSE, FALSE, 5);
@@ -801,7 +789,7 @@ static void create_parameter_dialog_extra_setup_tab(Itf *dialog)
     /***** Start event or day window from main calendar *****/
     dialog->click_to_show_radiobutton_group = NULL;
     hbox = gtk_vbox_new(FALSE, 0);
-    dialog->click_to_show_frame = xfce_create_framebox_with_content(
+    dialog->click_to_show_frame = orage_create_framebox_with_content(
             _("Main Calendar double click shows"), hbox);
     gtk_box_pack_start(GTK_BOX(dialog->extra_vbox)
             , dialog->click_to_show_frame, FALSE, FALSE, 5);
@@ -956,6 +944,7 @@ void write_parameters()
         orage_rc_del_item(orc, f_par);
     }
     orage_rc_put_int(orc, "Logging level", g_par.log_level);
+    orage_rc_put_int(orc, "Priority list limit", g_par.priority_list_limit);
 
     orage_rc_file_close(orc);
 }
@@ -1096,6 +1085,7 @@ void read_parameters(void)
         g_par.foreign_data[i].read_only = orage_rc_get_bool(orc, f_par, TRUE);
     }
     g_par.log_level = orage_rc_get_int(orc, "Logging level", 0);
+    g_par.priority_list_limit = orage_rc_get_int(orc, "Priority list limit", 8);
 
     orage_rc_file_close(orc);
 }

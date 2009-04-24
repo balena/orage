@@ -37,6 +37,7 @@
 #include <gdk/gdk.h>
 
 #include <libxfce4util/libxfce4util.h>
+#include <libxfcegui4/libxfcegui4.h>
 
 #include "orage-i18n.h"
 #include "functions.h"
@@ -51,9 +52,8 @@
  * strace -ttt -f -o /tmp/logfile.strace ./orage
  * And then you can check results:
  * grep MARK /tmp/logfile.strace
- * grep MARK /tmp/logfile.strace|sed s/", F_OK) = -1 ENOENT (No such file or directory)"//
+ * grep MARK /tmp/logfile.strace|sed s/", F_OK) = -1 ENOENT (No such file or directory)"/\)/
  * */
-/*
 void program_log (const char *format, ...)
 {
         va_list args;
@@ -69,7 +69,6 @@ void program_log (const char *format, ...)
         access (str, F_OK);
         g_free (str);
 }
-*/
 
 /* Print message at various level:
  * < 0     = Debug (Use only in special debug code which should not be in 
@@ -404,7 +403,8 @@ struct tm orage_icaltime_to_tm_time(const char *icaltime, gboolean real_tm)
         t.tm_sec = -1;
     }
     else if (ret[0] != 0) { /* icaltime was not processed completely */
-        if (ret[0] != 'Z' || ret[1] != 0) /* UTC times end to Z, which is ok */
+        /* UTC times end to Z, which is ok */
+        if (ret[0] != 'Z' || ret[1] != 0) /* real error */
             g_error("orage: orage_icaltime_to_tm_time error %s %s", icaltime
                     , ret);
     }
@@ -647,4 +647,51 @@ gboolean orage_rc_exists_item(OrageRc *orc, char *key)
 void orage_rc_del_item(OrageRc *orc, char *key)
 {
     xfce_rc_delete_entry((XfceRc *)orc->rc, key, FALSE);
+}
+
+/*******************************************************
+ * xfce functions
+ *******************************************************/
+
+gint orage_info_dialog(GtkWindow *parent
+        , char *primary_text, char *secondary_text)
+{
+    return(xfce_message_dialog(parent
+        , _("Info")
+        , GTK_STOCK_DIALOG_INFO
+        , primary_text
+        , secondary_text
+        , GTK_STOCK_OK, GTK_RESPONSE_ACCEPT
+        , NULL));
+}
+
+gint orage_warning_dialog(GtkWindow *parent
+        , char *primary_text, char *secondary_text)
+{
+    return(xfce_message_dialog(parent
+        , _("Warning")
+        , GTK_STOCK_DIALOG_WARNING
+        , primary_text
+        , secondary_text
+        , GTK_STOCK_NO, GTK_RESPONSE_CANCEL
+        , GTK_STOCK_YES, GTK_RESPONSE_ACCEPT
+        , NULL));
+}
+
+gint orage_error_dialog(GtkWindow *parent
+        , char *primary_text, char *secondary_text)
+{
+    return(xfce_message_dialog(parent
+        , _("Error")
+        , GTK_STOCK_DIALOG_ERROR
+        , primary_text
+        , secondary_text
+        , GTK_STOCK_OK, GTK_RESPONSE_ACCEPT
+        , NULL));
+}
+
+GtkWidget *orage_create_framebox_with_content(const gchar *title
+        , GtkWidget *content)
+{
+    return(xfce_create_framebox_with_content (title, content));
 }

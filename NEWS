@@ -1,3 +1,20 @@
+20091504: differences between 4.7.1 and 4.6 Version or Orage
+---------
+        * Removed Xfce trayicon code and replaced it with gtk trayicon
+        * Now dependent on GTK 2.10
+        * Removed 4.4 Xfce dependency MCS
+        * clarified default alarm setting in appointment alarm page
+        * Using g_timeout_add_seconds in orage if available (Bug 4723) 
+        * Possibility to have TODOs repeating based on completed time (Bug 4713)
+        * Added visual presentation of recurring appointments
+        * Added priority and possibility to omit low priority appointments from
+          day list view and calendar
+        * Fixed core dump in event-list when event crossed days on "today"
+        * Import no longer creates dublicate entries (Debian BUG 517548)
+
+20090227: 4.6.0 Version of Orage published
+---------
+
 20080718: differences between 4.6 and 4.4 Version or Orage
 ---------
         * Man page created for orage and globaltime

@@ -422,7 +422,7 @@ static void on_arrow_right_press_event_cb(GtkWidget *widget
     changeSelectedDate((day_win *)user_data, 1);
 }
 
-static void add_row(day_win *dw, xfical_appt *appt, char *a_day, gint days)
+static void add_row(day_win *dw, xfical_appt *appt)
 {
     gint row, start_row, end_row;
     gint col, start_col, end_col, first_col, last_col;
@@ -435,7 +435,7 @@ static void add_row(day_win *dw, xfical_appt *appt, char *a_day, gint days)
     /* First clarify timings */
     tm_start = orage_icaltime_to_tm_time(appt->starttimecur, FALSE);
     tm_end   = orage_icaltime_to_tm_time(appt->endtimecur, FALSE);
-    tm_first = orage_icaltime_to_tm_time(a_day, FALSE);
+    tm_first = orage_icaltime_to_tm_time(dw->a_day, FALSE);
     start_col = orage_days_between(&tm_first, &tm_start)+1;
     end_col   = orage_days_between(&tm_first, &tm_end)+1;
 
@@ -530,8 +530,8 @@ static void add_row(day_win *dw, xfical_appt *appt, char *a_day, gint days)
             first_col = 1;
         else
             first_col = start_col;
-        if (end_col > days)
-            last_col = days;
+        if (end_col > dw->days)
+            last_col = dw->days;
         else
             last_col = end_col;
         for (col = first_col; col <= last_col; col++) {
@@ -559,42 +559,42 @@ static void add_row(day_win *dw, xfical_appt *appt, char *a_day, gint days)
     }
 }
 
-static void app_rows(day_win *dw, char *a_day , xfical_type ical_type
-        , gchar *file_type)
+static void app_rows(day_win *dw, xfical_type ical_type, gchar *file_type)
 {
     xfical_appt *appt;
-    int days = 1;
     GList *date_list, *tmp; /* recurring event times */
     struct time_data {
         char starttimecur[17];
         char endtimecur[17];
     } *time_datap;
 
-    days = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(dw->day_spin));
     /* xfical_appt_get_next_on_day uses extra days so to show 7 days we need
      * to pass days=6, which means 6 days in addition to the one */
-    for (appt = xfical_appt_get_next_on_day(a_day, TRUE, days-1
+    for (appt = xfical_appt_get_next_on_day(dw->a_day, TRUE, dw->days-1
                 , ical_type , file_type);
          appt;
-         appt = xfical_appt_get_next_on_day(a_day, FALSE, days-1
+         appt = xfical_appt_get_next_on_day(dw->a_day, FALSE, dw->days-1
                 , ical_type , file_type)) {
-        if (appt->freq) { /* complex, need to process all events */
-            date_list = NULL;
-            xfical_process_each_app(appt, a_day, days, &date_list);
-            for (tmp = g_list_first(date_list);
-                 tmp != NULL;
-                 tmp = g_list_next(tmp)) {
-                time_datap = (struct time_data *)tmp->data;
-                /* Only use date since time is the same always */
-                strncpy(appt->starttimecur, time_datap->starttimecur, 8);
-                strncpy(appt->endtimecur, time_datap->endtimecur, 8);
-                add_row(dw, appt, a_day, days);
-                g_free(time_datap);
+        if (appt->priority < g_par.priority_list_limit) {
+            /* we only show high enough priority and 0 (=undefned) */
+            if (appt->freq) { /* complex, need to process all events */
+                date_list = NULL;
+                xfical_process_each_app(appt, dw->a_day, dw->days, &date_list);
+                for (tmp = g_list_first(date_list);
+                     tmp != NULL;
+                     tmp = g_list_next(tmp)) {
+                    time_datap = (struct time_data *)tmp->data;
+                    /* Only use date since time is the same always */
+                    strncpy(appt->starttimecur, time_datap->starttimecur, 8);
+                    strncpy(appt->endtimecur, time_datap->endtimecur, 8);
+                    add_row(dw, appt);
+                    g_free(time_datap);
+                }
+                g_list_free(date_list);
             }
-            g_list_free(date_list);
-        }
-        else { /* simple case, only one event */
-            add_row(dw, appt, a_day, days);
+            else { /* simple case, only one event */
+                add_row(dw, appt);
+            }
         }
         xfical_appt_free(appt);
     }
@@ -605,21 +605,21 @@ static void app_data(day_win *dw)
     xfical_type ical_type;
     gchar file_type[8];
     gint i;
-    gchar a_day[9]; /* yyyymmdd */
 
     ical_type = XFICAL_TYPE_EVENT;
-    strcpy(a_day, orage_i18_date_to_icaltime(gtk_button_get_label(
+    strcpy(dw->a_day, orage_i18_date_to_icaltime(gtk_button_get_label(
             GTK_BUTTON(dw->StartDate_button))));
+    dw->days = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(dw->day_spin));
 
     /* first search base orage file */
     if (!xfical_file_open(TRUE))
         return;
     strcpy(file_type, "O00.");
-    app_rows(dw, a_day, ical_type, file_type);
+    app_rows(dw, ical_type, file_type);
     /* then process all foreign files */
     for (i = 0; i < g_par.foreign_count; i++) {
         g_sprintf(file_type, "F%02d.", i);
-        app_rows(dw, a_day, ical_type, file_type);
+        app_rows(dw, ical_type, file_type);
     }
     xfical_file_close(TRUE);
 }
