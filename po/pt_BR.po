@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the orage package.
 # Felix da Silva Costa <felix@online.eti.br>, 2004.
 # Adriano Winter Bess <awbess@gmail.com>, 2005.
-# Og Maciel <ogmaciel@gnome.org>, 2008.
+# Og Maciel <ogmaciel@gnome.org>, 2008, 2009.
 # Fábio Nogueira <deb-user-ba@ubuntu.com>, 2008.
 #
 msgid ""
@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: orage 4.3.90.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-11-11 09:18+0200\n"
-"PO-Revision-Date: 2008-11-26 18:24-0500\n"
+"PO-Revision-Date: 2009-04-25 09:36-0500\n"
 "Last-Translator: Og Maciel <ogmaciel@gnome.org>\n"
 "Language-Team: Brazilian Portuguese <ldp-br@bazar2.conectiva.com.br>\n"
 "MIME-Version: 1.0\n"
@@ -403,9 +403,9 @@ msgid ""
 msgstr ""
 "Você só precisa disso se você suspende ou hiberna (por menos de 5 horas) e o "
 "seu tempo de visibilidade não inclui segundos. Sob estas circunstâncias é "
-"possível que o relógio do Orage mostre o horário de forma incorreta caso você "
-"não tenha isso selecionado. (Selecionando isso previne que recursos de economia "
-"de cpu e interrupt funcionem.)"
+"possível que o relógio do Orage mostre o horário de forma incorreta caso "
+"você não tenha isso selecionado. (Selecionando isso previne que recursos de "
+"economia de cpu e interrupt funcionem.)"
 
 #: ../panel-plugin/oc_config.c:407
 msgid ""
@@ -2979,7 +2979,7 @@ msgstr "O arquivo atual é movido e desaparece do local original."
 
 #: ../src/interface.c:1183
 msgid "Archive file"
-msgstr "Arquivo de fichário"
+msgstr "Arquivar o arquivo"
 
 #: ../src/interface.c:1246
 msgid "Foreign files"
@@ -3357,7 +3357,8 @@ msgstr "Preferências do Orage"
 
 #: ../src/parameters.c:1019
 msgid "First Orage start. Searching default timezone."
-msgstr "Orage iniciado pela primeira vez. Pesquisando pelo fuso horário padrão."
+msgstr ""
+"Orage iniciado pela primeira vez. Pesquisando pelo fuso horário padrão."
 
 #: ../src/parameters.c:1038
 #, c-format
@@ -3366,7 +3367,8 @@ msgstr "Fuso horário padrão definido para %s"
 
 #: ../src/parameters.c:1041
 msgid "Default timezone not found, please, set it manually."
-msgstr "O fuso horário padrão não foi encontrado, por favor definí-lo manualmente."
+msgstr ""
+"O fuso horário padrão não foi encontrado, por favor definí-lo manualmente."
 
 #: ../src/reminder.c:425
 msgid "Reminder "
@@ -3438,6 +3440,63 @@ msgstr "Configurações do Calendário do Xfce 4"
 #: ../xfcalendar.desktop.in.h:2
 msgid "Desktop calendar"
 msgstr "Calendário do Ambiente de Trabalho"
+
+#~ msgid "Priority"
+#~ msgstr "Prioridade"
+
+#~ msgid "(0 = undefined, 1 = highest, 9 = lowest)"
+#~ msgstr "(0 = indefinido, 1 = mais alta, 9 = mais baixa)"
+
+#~ msgid "TODO base"
+#~ msgstr "Tarefa base"
+
+#~ msgid ""
+#~ "TODO reoccurs regularly starting on start time and repeating after each "
+#~ "interval no matter when it was last completed"
+#~ msgstr ""
+#~ "Uma TAREFA ocorre regularmente começando no horário inicial e repetindo a "
+#~ "cada intervalo sem levar em conta quando foi a última vez concluída"
+
+#~ msgid ""
+#~ "TODO reoccurrency is based on complete time and repeats after the "
+#~ "interval counted from the last completed time.\n"
+#~ "(Note that you can not tell anything about the history of the TODO since "
+#~ "reoccurrence base changes after each completion.)"
+#~ msgstr ""
+#~ "A ocorrência de uma TAREFA é baseada no horário concluído e repete depois "
+#~ "que o intervalo conta a partir de quando foi a última vez concluída.\n"
+#~ "(Note que não é possível entender o histórico das TAREFAS já que a base "
+#~ "de occorrência muda depois de cada conclusão.)"
+
+#~ msgid "Action dates"
+#~ msgstr "Datas de ação"
+
+#~ msgid "Generated UID %s"
+#~ msgstr "UID %s gerado"
+
+#~ msgid "import: adding component %s"
+#~ msgstr "importando: adicionando componente %s"
+
+#~ msgid "\timport: Unarchived component"
+#~ msgstr "\timportando: Componente não arquivado"
+
+#~ msgid "\timport: component exists already"
+#~ msgstr "\timportando: componente já existe"
+
+#~ msgid "\timport: new last modified time %s old last modified time %s"
+#~ msgstr ""
+#~ "\timportando: nova data de modificação %s data antiga de modificação %s"
+
+#~ msgid "import: Not added as the new appointment is not newer than the old"
+#~ msgstr ""
+#~ "importando: Não foi adicionado já que o novo compromisso não é mais novo "
+#~ "que o antigo"
+
+#~ msgid "import: added"
+#~ msgstr "importando: adicionado"
+
+#~ msgid "Imported %d calendars including %d appointments"
+#~ msgstr "%d calendários importados incluindo %d compromissos"
 
 #, fuzzy
 #~ msgid "Monday"
