@@ -184,6 +184,16 @@ typedef struct _appt_win
     GtkWidget *Recur_todo_base_hbox;
     GtkWidget *Recur_todo_base_start_rb;
     GtkWidget *Recur_todo_base_done_rb;
+    GtkWidget *Recur_exception_label;
+    GtkWidget *Recur_exception_hbox;
+    GtkWidget *Recur_exception_scroll_win;
+    GtkWidget *Recur_exception_rows_vbox;
+    GtkWidget *Recur_exception_type_vbox;
+    GtkWidget *Recur_exception_excl_rb;
+    GtkWidget *Recur_exception_incl_rb;
+    GtkWidget *Recur_exception_incl_time_hbox;;
+    GtkWidget *Recur_exception_incl_spin_hh;
+    GtkWidget *Recur_exception_incl_spin_mm;
     GtkWidget *Recur_calendar_label;
     GtkWidget *Recur_calendar_hbox;
     GtkWidget *Recur_calendar1;

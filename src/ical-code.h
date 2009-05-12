@@ -42,6 +42,12 @@ typedef enum
    ,XFICAL_TYPE_JOURNAL
 } xfical_type;
 
+typedef struct _xfical_exception
+{
+    gchar  time[17]; /* Orage uses no timezones here */
+    gchar  type[7]; /* EXDATE, RDATE */
+} xfical_exception;
+
 typedef struct _xfical_appt
 {
     xfical_type type;
@@ -120,6 +126,7 @@ typedef struct _xfical_appt
     gint   recur_byday_cnt[7]; /* monthly/early: 1=first -1=last 2=second... */
     gint   interval;    /* 1=every day/week..., 2=every second day/week,... */
     gboolean recur_todo_base_start; /* TRUE=start time, FALSE=completed time */
+    GList  *recur_exceptions; /* EXDATE and RDATE list xfical_exception */
 } xfical_appt;
 
 gboolean xfical_set_local_timezone(gboolean testing);
@@ -138,8 +145,8 @@ xfical_appt *xfical_appt_get_next_on_day(char *a_day, gboolean first, gint days
         , xfical_type type,  gchar *file_type);
 xfical_appt *xfical_appt_get_next_with_string(char *str, gboolean first
         , gchar *file_type);
-void xfical_process_each_app(xfical_appt *appt, char *a_day, int days
-        , GList **data);
+void xfical_get_each_app_within_time(char *a_day, int days
+        , xfical_type type, gchar *file_type , GList **data);
 
 void xfical_mark_calendar(GtkCalendar *gtkcal);
 void xfical_mark_calendar_recur(GtkCalendar *gtkcal, xfical_appt *appt);

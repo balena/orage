@@ -112,9 +112,11 @@ static GtkWidget *datetime_hbox_new(GtkWidget *date_button
     gtk_widget_set_size_request(spin_mm, 40, -1);
     gtk_box_pack_start(GTK_BOX(hbox), spin_mm, FALSE, FALSE, 0);
 
-    space_label = gtk_label_new("  ");
-    gtk_box_pack_start(GTK_BOX(hbox), space_label, FALSE, FALSE, 0);
-    gtk_box_pack_start(GTK_BOX(hbox), timezone_button, TRUE, TRUE, 0);
+    if (timezone_button) {
+        space_label = gtk_label_new("  ");
+        gtk_box_pack_start(GTK_BOX(hbox), space_label, FALSE, FALSE, 0);
+        gtk_box_pack_start(GTK_BOX(hbox), timezone_button, TRUE, TRUE, 0);
+    }
 
     return(hbox);
 }
@@ -279,6 +281,8 @@ static void set_repeat_sensitivity(appt_win *apptw)
         gtk_widget_set_sensitive(apptw->Recur_int_spin_label1, FALSE);
         gtk_widget_set_sensitive(apptw->Recur_int_spin_label2, FALSE);
         gtk_widget_set_sensitive(apptw->Recur_todo_base_hbox, FALSE);
+        gtk_widget_set_sensitive(apptw->Recur_exception_hbox, FALSE);
+        gtk_widget_set_sensitive(apptw->Recur_calendar_hbox, FALSE);
     }
     else {
         gtk_widget_set_sensitive(apptw->Recur_limit_rb, TRUE);
@@ -317,6 +321,8 @@ static void set_repeat_sensitivity(appt_win *apptw)
         gtk_widget_set_sensitive(apptw->Recur_int_spin_label1, TRUE);
         gtk_widget_set_sensitive(apptw->Recur_int_spin_label2, TRUE);
         gtk_widget_set_sensitive(apptw->Recur_todo_base_hbox, TRUE);
+        gtk_widget_set_sensitive(apptw->Recur_exception_hbox, TRUE);
+        gtk_widget_set_sensitive(apptw->Recur_calendar_hbox, TRUE);
     }
 }
 
@@ -915,6 +921,9 @@ static gboolean fill_appt_from_apptw(xfical_appt *appt, appt_win *apptw)
     gchar starttime[6], endtime[6], completedtime[6];
     gint i;
     gchar *tmp, *tmp2;
+    /*
+    GList *tmp_gl;
+    */
 
 /* Next line is fix for bug 2811.
  * We need to make sure spin buttons do not have values which are not
@@ -1099,6 +1108,17 @@ static gboolean fill_appt_from_apptw(xfical_appt *appt, appt_win *apptw)
     /* recurrence todo base */
     appt->recur_todo_base_start = gtk_toggle_button_get_active(
             GTK_TOGGLE_BUTTON(apptw->Recur_todo_base_start_rb));
+
+    /* recurrence exceptions */
+    /* is kept upto date all the time */
+    /*
+    g_print("fill_appt_from_apptw: checking data start\n");
+    for (tmp_gl = g_list_first(appt->recur_exceptions);
+         tmp_gl != NULL;
+         tmp_gl = g_list_next(tmp_gl)) {
+        g_print("fill_appt_from_apptw: checking data (%s)\n", ((xfical_exception *)tmp_gl->data)->time);
+    }
+    */
 
     return(TRUE);
 }
@@ -1308,6 +1328,133 @@ static void on_appCompletedTimezone_clicked_cb(GtkButton *button
         mark_appointment_changed(apptw);
 }
 
+static gint check_exists(gconstpointer a, gconstpointer b)
+{
+   /*  We actually only care about match or no match.*/
+    if (!strcmp(((xfical_exception *)a)->time
+              , ((xfical_exception *)b)->time)) {
+        return(strcmp(((xfical_exception *)a)->type
+                    , ((xfical_exception *)b)->type));
+    }
+    else {
+        return(1); /* does not matter if it is smaller or bigger */
+    }
+}
+
+static xfical_exception *new_exception(char *text)
+{
+    xfical_exception *recur_exception;
+    gint i;
+
+    recur_exception = g_new(xfical_exception, 1);
+    i = strlen(text);
+    text[i-2] = '\0';
+    if (text[i-1] == '+') {
+        strcpy(recur_exception->type, "RDATE");
+        strcpy(recur_exception->time, orage_i18_time_to_icaltime(text));
+    }
+    else {
+        strcpy(recur_exception->type, "EXDATE");
+        strcpy(recur_exception->time, orage_i18_date_to_icaltime(text));
+    }
+    text[i-2] = ' ';
+    return(recur_exception);
+}
+
+static void recur_row_clicked(GtkWidget *widget
+        , GdkEventButton *event, gpointer *user_data)
+{
+    appt_win *apptw = (appt_win *)user_data;
+    xfical_appt *appt;
+    gchar *text;
+    GList *children;
+    GtkWidget *lab;
+    xfical_exception *recur_exception, *recur_exception_cur;
+    GList *gl_pos;
+
+    if (event->type == GDK_2BUTTON_PRESS) {
+        /* first find the text */
+        children = gtk_container_get_children(GTK_CONTAINER(widget));
+        children = g_list_first(children);
+        lab = (GtkWidget *)children->data;
+        text = g_strdup(gtk_label_get_text(GTK_LABEL(lab)));
+
+         /* Then, let's keep the GList updated */
+        recur_exception = new_exception(text);
+        appt = (xfical_appt *)apptw->xf_appt;
+        g_free(text);
+        if (gl_pos = g_list_find_custom(appt->recur_exceptions
+                    , recur_exception, check_exists)) {
+            /* let's remove it */
+            recur_exception_cur = gl_pos->data;
+            appt->recur_exceptions = 
+                    g_list_remove(appt->recur_exceptions, recur_exception_cur);
+            g_free(recur_exception_cur);
+        }
+        else { 
+            g_warning("recur_row_clicked: non existent row (%s)\n", recur_exception->time);
+        }
+        g_free(recur_exception);
+
+        /* and finally update the display */
+        gtk_widget_destroy(widget);
+        mark_appointment_changed(apptw);
+        refresh_recur_calendars(apptw);
+    }
+}
+
+
+static gboolean add_recur_exception_row(char *p_time, char *p_type
+        , appt_win *apptw, gboolean only_window)
+{
+    GtkWidget *ev, *label;
+    gchar *text, tmp_type[2];
+    xfical_appt *appt;
+    xfical_exception *recur_exception;
+
+    /* First build the data */
+    if (!strcmp(p_type, "EXDATE"))
+        strcpy(tmp_type, "-");
+    else if (!strcmp(p_type, "RDATE"))
+        strcpy(tmp_type, "+");
+    else
+        strcpy(tmp_type, p_type);
+    text = g_strdup_printf("%s %s", p_time, tmp_type);
+
+    /* Then, let's keep the GList updated */
+    if (!only_window) {
+        recur_exception = new_exception(text);
+        appt = (xfical_appt *)apptw->xf_appt;
+        if (g_list_find_custom(appt->recur_exceptions, recur_exception
+                    , check_exists)) {
+            /* this element is already in the list, so no need to add it again.
+             * we just clean the memory and leave */
+            g_free(recur_exception);
+            g_free(text);
+            return(FALSE);
+        }
+        else { /* need to add it */
+            appt->recur_exceptions = g_list_prepend(appt->recur_exceptions
+                    , recur_exception);
+        }
+    }
+
+    /* finally put the value visible also */
+    label = gtk_label_new(text);
+    g_free(text);
+    gtk_misc_set_alignment(GTK_MISC(label), 0, 0.5);
+    ev = gtk_event_box_new();
+    gtk_container_add(GTK_CONTAINER(ev), label);
+    gtk_box_pack_start(GTK_BOX(apptw->Recur_exception_rows_vbox), ev
+            , FALSE, FALSE, 0);
+    g_signal_connect((gpointer)ev, "button-press-event"
+            , G_CALLBACK(recur_row_clicked), apptw);
+    gtk_widget_show(label);
+    gtk_widget_show(ev);
+    return(TRUE); /* we added the value */
+}
+
+
 static void recur_month_changed_cb(GtkCalendar *calendar, gpointer user_data)
 {
     appt_win *apptw = (appt_win *)user_data;
@@ -1318,6 +1465,36 @@ static void recur_month_changed_cb(GtkCalendar *calendar, gpointer user_data)
      * but as we are not keeping track of changes, we just do it always */
     fill_appt_from_apptw(appt, apptw);
     xfical_mark_calendar_recur(calendar, appt);
+}
+
+static void recur_day_selected_double_click_cb(GtkCalendar *calendar
+        , gpointer user_data)
+{
+    appt_win *apptw = (appt_win *)user_data;
+    char *cal_date, *type;
+    gint hh, mm;
+
+    if (gtk_toggle_button_get_active(
+            GTK_TOGGLE_BUTTON(apptw->Recur_exception_excl_rb))) {
+        type = "-";
+        cal_date = g_strdup(orage_cal_to_i18_date(calendar));
+    }
+    else { /* extra day. This needs also time */
+        type = "+";
+        hh =  gtk_spin_button_get_value_as_int(
+                GTK_SPIN_BUTTON(apptw->Recur_exception_incl_spin_hh));
+        mm =  gtk_spin_button_get_value_as_int(
+                GTK_SPIN_BUTTON(apptw->Recur_exception_incl_spin_mm));
+        g_print("recur_day_selected_double_click_cb: hour:%d\n", hh);
+        cal_date = g_strdup(orage_cal_to_i18_time(calendar, hh, mm));
+        g_print("recur_day_selected_double_click_cb: hour:(%s)\n", cal_date);
+    }
+
+    if (add_recur_exception_row(cal_date, type, apptw, FALSE)) { /* new data */
+        mark_appointment_changed((appt_win *)user_data);
+        refresh_recur_calendars((appt_win *)user_data);
+    }
+    g_free(cal_date);
 }
 
 static void fill_appt_window_times(appt_win *apptw, xfical_appt *appt)
@@ -1340,7 +1517,13 @@ static void fill_appt_window_times(appt_win *apptw, xfical_appt *appt)
                 GTK_SPIN_BUTTON(apptw->StartTime_spin_hh)
                         , (gdouble)tm_date.tm_hour);
         gtk_spin_button_set_value(
+                GTK_SPIN_BUTTON(apptw->Recur_exception_incl_spin_hh)
+                        , (gdouble)tm_date.tm_hour);
+        gtk_spin_button_set_value(
                 GTK_SPIN_BUTTON(apptw->StartTime_spin_mm)
+                        , (gdouble)tm_date.tm_min);
+        gtk_spin_button_set_value(
+                GTK_SPIN_BUTTON(apptw->Recur_exception_incl_spin_mm)
                         , (gdouble)tm_date.tm_min);
         if (appt->start_tz_loc)
             gtk_button_set_label(GTK_BUTTON(apptw->StartTimezone_button)
@@ -1989,6 +2172,8 @@ static void fill_appt_window_alarm(appt_win *apptw, xfical_appt *appt)
 static void fill_appt_window_recurrence(appt_win *apptw, xfical_appt *appt)
 {
     char *untildate_to_display, *text;
+    GList *tmp;
+    xfical_exception *recur_exception;
     struct tm tm_date;
     int i;
 
@@ -2063,6 +2248,17 @@ static void fill_appt_window_recurrence(appt_win *apptw, xfical_appt *appt)
     else
         gtk_toggle_button_set_active(
                 GTK_TOGGLE_BUTTON(apptw->Recur_todo_base_done_rb), TRUE);
+
+    /* exceptions */
+    for (tmp = g_list_first(appt->recur_exceptions);
+         tmp != NULL;
+         tmp = g_list_next(tmp)) {
+        recur_exception = (xfical_exception *)tmp->data;
+        text = g_strdup(orage_icaltime_to_i18_time(recur_exception->time));
+        add_recur_exception_row(text, recur_exception->type, apptw, TRUE);
+        g_free(text);
+    }
+    /* note: include times is setup in the fill_appt_window_times */
 }
 
 /* Fill appointment window with data */
@@ -2507,8 +2703,6 @@ static void build_general_page(appt_win *apptw)
     gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(apptw->Priority_spin), TRUE);
     hbox = gtk_hbox_new(FALSE, 0);
     gtk_box_pack_start(GTK_BOX(hbox), apptw->Priority_spin, FALSE, FALSE, 0);
-    label = gtk_label_new(_("(0 = undefined, 1 = highest, 9 = lowest)"));
-    gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 5);
     orage_table_add_row(apptw->TableGeneral
             , apptw->Priority_label, hbox
             , ++row, (GTK_FILL), (GTK_FILL));
@@ -3058,6 +3252,52 @@ static void build_recurrence_page(appt_win *apptw)
             , apptw->Recur_todo_base_label, apptw->Recur_todo_base_hbox
             , ++row ,(GTK_EXPAND | GTK_FILL), (0));
 
+    /* exceptions */
+    apptw->Recur_exception_label = gtk_label_new(_("Exceptions"));
+    apptw->Recur_exception_hbox = gtk_hbox_new(FALSE, 0);
+    apptw->Recur_exception_scroll_win = gtk_scrolled_window_new(NULL, NULL);
+    gtk_box_pack_start(GTK_BOX(apptw->Recur_exception_hbox)
+            , apptw->Recur_exception_scroll_win, TRUE, TRUE, 0);
+    gtk_scrolled_window_set_policy(
+            GTK_SCROLLED_WINDOW(apptw->Recur_exception_scroll_win)
+            , GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);
+    apptw->Recur_exception_rows_vbox = gtk_vbox_new(FALSE, 0);
+    gtk_scrolled_window_add_with_viewport(
+            GTK_SCROLLED_WINDOW(apptw->Recur_exception_scroll_win)
+            , apptw->Recur_exception_rows_vbox);
+    gtk_tooltips_set_tip(apptw->Tooltips, apptw->Recur_exception_scroll_win
+            , _("Add more exception dates by clicking the calendar days below.\nException is either exclusion(-) or inclusion(+) depending on the selection.\nRemove by clicking the data."), NULL);
+    apptw->Recur_exception_type_vbox = gtk_vbox_new(FALSE, 0);
+    gtk_box_pack_start(GTK_BOX(apptw->Recur_exception_hbox)
+            , apptw->Recur_exception_type_vbox, TRUE, TRUE, 5);
+    apptw->Recur_exception_excl_rb = gtk_radio_button_new_with_label(NULL
+            , _("Add excluded date (-)"));
+    gtk_tooltips_set_tip(apptw->Tooltips, apptw->Recur_exception_excl_rb
+            , _("Excluded days are full days where this appointment is not happening"), NULL);
+    gtk_box_pack_start(GTK_BOX(apptw->Recur_exception_type_vbox)
+            , apptw->Recur_exception_excl_rb, FALSE, FALSE, 0);
+    apptw->Recur_exception_incl_rb = 
+            gtk_radio_button_new_with_mnemonic_from_widget(
+                    GTK_RADIO_BUTTON(apptw->Recur_exception_excl_rb)
+                    , _("Add included time (+)"));
+    gtk_tooltips_set_tip(apptw->Tooltips, apptw->Recur_exception_incl_rb
+            , _("Included times have same timezone than start time, but they may have different time"), NULL);
+    apptw->Recur_exception_incl_spin_hh = 
+            gtk_spin_button_new_with_range(0, 23, 1);
+    apptw->Recur_exception_incl_spin_mm = 
+            gtk_spin_button_new_with_range(0, 59, 1);
+    apptw->Recur_exception_incl_time_hbox = datetime_hbox_new(
+            apptw->Recur_exception_incl_rb
+            , apptw->Recur_exception_incl_spin_hh
+            , apptw->Recur_exception_incl_spin_mm, NULL);
+    gtk_box_pack_start(GTK_BOX(apptw->Recur_exception_type_vbox)
+            , apptw->Recur_exception_incl_time_hbox, FALSE, FALSE, 0);
+
+    orage_table_add_row(apptw->TableRecur
+            , apptw->Recur_exception_label, apptw->Recur_exception_hbox
+            , ++row ,(GTK_EXPAND | GTK_FILL), (0));
+
+    /* calendars showing the action days */
     apptw->Recur_calendar_label = gtk_label_new(_("Action dates"));
     apptw->Recur_calendar_hbox = gtk_hbox_new(FALSE, 0);
     apptw->Recur_calendar1 = gtk_calendar_new();
@@ -3133,6 +3373,15 @@ static void enable_recurrence_page_signals(appt_win *apptw)
             , G_CALLBACK(recur_month_changed_cb), apptw);
     g_signal_connect((gpointer)apptw->Recur_calendar3, "month-changed"
             , G_CALLBACK(recur_month_changed_cb), apptw);
+    g_signal_connect((gpointer)apptw->Recur_calendar1
+            , "day_selected_double_click"
+            , G_CALLBACK(recur_day_selected_double_click_cb), apptw);
+    g_signal_connect((gpointer)apptw->Recur_calendar2
+            , "day_selected_double_click"
+            , G_CALLBACK(recur_day_selected_double_click_cb), apptw);
+    g_signal_connect((gpointer)apptw->Recur_calendar3
+            , "day_selected_double_click"
+            , G_CALLBACK(recur_day_selected_double_click_cb), apptw);
 }
 
 appt_win *create_appt_win(char *action, char *par)

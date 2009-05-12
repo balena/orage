@@ -19,7 +19,15 @@
 
   The original code is icalcomponent.c
 
+
 ======================================================================*/
+
+    /* JK 11-Feb-2009: Changed icalproperty_recurrence_is_excluded to compare 
+     * only dates. Like EXDATE says, it really makes more sense to exclude 
+     * full dates instead of times. Standard seems to disagree to this and 
+     * say that this can be time also */
+    /* JK: 02-Mar-2009 Added test to icalcomponent_foreach_recurrence to check 
+     * that RDATE is within the limits also */
 
 
 #ifdef HAVE_CONFIG_H
@@ -839,7 +847,14 @@ int icalproperty_recurrence_is_excluded(icalcomponent *comp,
 	 
     struct icaltimetype exdatetime = icalproperty_get_exdate(exdate);
 
+    /* JK 11-Feb-2009: Changed this to compare only dates. Like EXDATE
+     * says, it really makes more sense to exclude full dates instead of
+     * times. Standard seems to disagree to this and say that this can be
+     * time also */
+    /*
     if (icaltime_compare(*recurtime, exdatetime) == 0) {
+    */
+    if (icaltime_compare_date_only(*recurtime, exdatetime) == 0) {
       /** MATCHED **/
       return 1;
     }
@@ -1069,6 +1084,9 @@ void icalcomponent_foreach_recurrence(icalcomponent* comp,
 
     if (!icalproperty_recurrence_is_excluded(comp, &dtstart, &rdate_period.time)) {
       /** call callback action **/
+        /* JK: 02-Mar-2009 Added test to check that this RDATE is 
+         * within the limits */
+	if (icaltime_span_overlaps(&recurspan, &limit_span))
       (*callback) (comp, &recurspan, callback_data);
     }
     comp->property_iterator = property_iterator;

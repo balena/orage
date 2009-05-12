@@ -491,15 +491,30 @@ static void search_data(el_win *el)
 static void app_rows(el_win *el, char *a_day, char *par, xfical_type ical_type
         , gchar *file_type)
 {
+    GList *appt_list=NULL, *tmp;
     xfical_appt *appt;
 
-    for (appt = xfical_appt_get_next_on_day(a_day, TRUE, el->days
-                , ical_type , file_type);
-         appt;
-         appt = xfical_appt_get_next_on_day(a_day, FALSE, el->days
-                , ical_type , file_type)) {
-        add_el_row(el, appt, par);
-        xfical_appt_free(appt);
+    if (ical_type == XFICAL_TYPE_EVENT) {
+        xfical_get_each_app_within_time(a_day, el->days+1
+                , ical_type, file_type, &appt_list);
+        for (tmp = g_list_first(appt_list);
+             tmp != NULL;
+             tmp = g_list_next(tmp)) {
+            appt = (xfical_appt *)tmp->data;
+            add_el_row(el, appt, par);
+            xfical_appt_free(appt);
+        }
+        g_list_free(appt_list);
+    }
+    else {
+        for (appt = xfical_appt_get_next_on_day(a_day, TRUE, el->days
+                    , ical_type, file_type);
+             appt;
+             appt = xfical_appt_get_next_on_day(a_day, FALSE, el->days
+                    , ical_type, file_type)) {
+            add_el_row(el, appt, par);
+            xfical_appt_free(appt);
+        }
     }
 }
 

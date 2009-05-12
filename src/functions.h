@@ -76,13 +76,16 @@ GtkWidget *orage_menu_item_new_with_mnemonic(const gchar *label
         , GtkWidget *menu);
 
 struct tm *orage_localtime();
-struct tm orage_i18_date_to_tm_date(const char *display);
+struct tm orage_i18_time_to_tm_time(const char *i18_time);
+struct tm orage_i18_date_to_tm_date(const char *i18_date);
 char *orage_tm_time_to_i18_time(struct tm *tm_date);
 char *orage_tm_date_to_i18_date(struct tm *tm_date);
 struct tm orage_icaltime_to_tm_time(const char *i18_date, gboolean real_tm);
 char *orage_tm_time_to_icaltime(struct tm *t);
 char *orage_icaltime_to_i18_time(const char *icaltime);
+char *orage_i18_time_to_icaltime(const char *i18_time);
 char *orage_i18_date_to_icaltime(const char *i18_date);
+char *orage_cal_to_i18_time(GtkCalendar *cal, gint hh, gint mm);
 char *orage_cal_to_i18_date(GtkCalendar *cal);
 char *orage_localdate_i18();
 void orage_move_day(struct tm *t, int day);

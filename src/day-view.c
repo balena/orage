@@ -561,43 +561,21 @@ static void add_row(day_win *dw, xfical_appt *appt)
 
 static void app_rows(day_win *dw, xfical_type ical_type, gchar *file_type)
 {
+    GList *appt_list=NULL, *tmp;
     xfical_appt *appt;
-    GList *date_list, *tmp; /* recurring event times */
-    struct time_data {
-        char starttimecur[17];
-        char endtimecur[17];
-    } *time_datap;
 
-    /* xfical_appt_get_next_on_day uses extra days so to show 7 days we need
-     * to pass days=6, which means 6 days in addition to the one */
-    for (appt = xfical_appt_get_next_on_day(dw->a_day, TRUE, dw->days-1
-                , ical_type , file_type);
-         appt;
-         appt = xfical_appt_get_next_on_day(dw->a_day, FALSE, dw->days-1
-                , ical_type , file_type)) {
-        if (appt->priority < g_par.priority_list_limit) {
-            /* we only show high enough priority and 0 (=undefned) */
-            if (appt->freq) { /* complex, need to process all events */
-                date_list = NULL;
-                xfical_process_each_app(appt, dw->a_day, dw->days, &date_list);
-                for (tmp = g_list_first(date_list);
-                     tmp != NULL;
-                     tmp = g_list_next(tmp)) {
-                    time_datap = (struct time_data *)tmp->data;
-                    /* Only use date since time is the same always */
-                    strncpy(appt->starttimecur, time_datap->starttimecur, 8);
-                    strncpy(appt->endtimecur, time_datap->endtimecur, 8);
-                    add_row(dw, appt);
-                    g_free(time_datap);
-                }
-                g_list_free(date_list);
-            }
-            else { /* simple case, only one event */
-                add_row(dw, appt);
-            }
+    xfical_get_each_app_within_time(dw->a_day, dw->days
+            , ical_type, file_type, &appt_list);
+    for (tmp = g_list_first(appt_list);
+         tmp != NULL;
+         tmp = g_list_next(tmp)) {
+        appt = (xfical_appt *)tmp->data;
+        if (appt->priority < g_par.priority_list_limit) { 
+            add_row(dw, appt);
         }
         xfical_appt_free(appt);
     }
+    g_list_free(appt_list);
 }
 
 static void app_data(day_win *dw)

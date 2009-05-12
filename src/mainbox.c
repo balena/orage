@@ -418,7 +418,7 @@ static void add_info_row(xfical_appt *appt, GtkBox *parentBox, gboolean todo)
     g_free(tip);
 }
 
-static void insert_rows(GList **todo_list, char *a_day, xfical_type ical_type
+static void insert_rows(GList **list, char *a_day, xfical_type ical_type
         , gchar *file_type)
 {
 #undef P_N
@@ -433,7 +433,7 @@ static void insert_rows(GList **todo_list, char *a_day, xfical_type ical_type
          appt;
          appt = xfical_appt_get_next_on_day(a_day, FALSE, 0
                 , ical_type , file_type)) {
-        *todo_list = g_list_prepend(*todo_list, appt);
+        *list = g_list_prepend(*list, appt);
     }
 }
 
@@ -500,10 +500,10 @@ static void create_mainbox_todo_info(void)
             GTK_SCROLLED_WINDOW(cal->mTodo_scrolledWin), cal->mTodo_rows_vbox);
 }
 
-static void create_mainbox_event_info(void)
+static void create_mainbox_event_info_box(void)
 {
 #undef P_N
-#define P_N "create_mainbox_event_info: "
+#define P_N "create_mainbox_event_info_box: "
     CalWin *cal = (CalWin *)g_par.xfcal;
     gchar *tmp;
 
@@ -530,7 +530,8 @@ static void create_mainbox_event_info(void)
             , TRUE, TRUE, 0);
     cal->mEvent_rows_vbox = gtk_vbox_new(FALSE, 0);
     gtk_scrolled_window_add_with_viewport(
-            GTK_SCROLLED_WINDOW(cal->mEvent_scrolledWin), cal->mEvent_rows_vbox);
+            GTK_SCROLLED_WINDOW(cal->mEvent_scrolledWin)
+            , cal->mEvent_rows_vbox);
 }
 
 static void build_mainbox_todo_info(void)
@@ -608,15 +609,23 @@ static void build_mainbox_event_info(void)
     
         ical_type = XFICAL_TYPE_EVENT;
         strcpy(file_type, "O00.");
+        /*
         insert_rows(&event_list, a_day, ical_type, file_type);
+        */
+        xfical_get_each_app_within_time(a_day, 1
+                , ical_type, file_type, &event_list);
         for (i = 0; i < g_par.foreign_count; i++) {
             g_sprintf(file_type, "F%02d.", i);
+            /*
             insert_rows(&event_list, a_day, ical_type, file_type);
+            */
+            xfical_get_each_app_within_time(a_day, 1
+                    , ical_type, file_type, &event_list);
         }
     }
     if (event_list) {
         gtk_widget_destroy(cal->mEvent_vbox);
-        create_mainbox_event_info();
+        create_mainbox_event_info_box();
         event_list = g_list_sort(event_list, list_order);
         g_list_foreach(event_list, (GFunc)info_process
                 , cal->mEvent_rows_vbox);
@@ -715,7 +724,7 @@ void build_mainWin()
 
     /* Build the Info boxes */
     create_mainbox_todo_info();
-    create_mainbox_event_info();
+    create_mainbox_event_info_box();
 
     /* Signals */
     g_signal_connect((gpointer) cal->mCalendar, "day_selected_double_click"

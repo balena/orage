@@ -308,6 +308,20 @@ GtkWidget *orage_menu_item_new_with_mnemonic(const gchar *label
     return menu_item;
 }
 
+struct tm orage_i18_time_to_tm_time(const char *i18_time)
+{
+    char *ret;
+    struct tm tm_time = {0,0,0,0,0,0,0,0,0};
+
+    ret = (char *)strptime(i18_time, "%x %R", &tm_time);
+    if (ret == NULL)
+        g_error("Orage: orage_i18_time_to_tm_time wrong format (%s)", i18_time);
+    else if (ret[0] != '\0')
+        g_error("Orage: orage_i18_time_to_tm_time too long format (%s-%s)"
+                , i18_time, ret);
+    return(tm_time);
+}
+
 struct tm orage_i18_date_to_tm_date(const char *i18_date)
 {
     char *ret;
@@ -340,9 +354,35 @@ char *orage_tm_date_to_i18_date(struct tm *tm_date)
     return(i18_date);
 }
 
+char *orage_cal_to_i18_time(GtkCalendar *cal, gint hh, gint mm)
+{
+    /* dst needs to -1 or mktime adjusts time if we are in another
+     * dst setting */
+    struct tm tm_date = {0,0,0,0,0,0,0,0,-1};
+
+    gtk_calendar_get_date(cal
+            , (unsigned int *)&tm_date.tm_year
+            , (unsigned int *)&tm_date.tm_mon
+            , (unsigned int *)&tm_date.tm_mday);
+    tm_date.tm_year -= 1900;
+    tm_date.tm_hour = hh;
+    tm_date.tm_min = mm;
+    g_print("***** orage_cal_to_i18_time: hour:%d dst:%d\n", tm_date.tm_hour, tm_date.tm_isdst);
+    /* need to fill missing tm_wday and tm_yday, which are in use 
+     * in some locale's default date. For example in en_IN. mktime does it */
+    if (mktime(&tm_date) == (time_t) -1) {
+        g_warning("orage: orage_cal_to_i18_time mktime failed %d %d %d"
+                , tm_date.tm_year, tm_date.tm_mon, tm_date.tm_mday);
+    }
+    g_print("***** orage_cal_to_i18_time: hour:%d dst:%d\n", tm_date.tm_hour, tm_date.tm_isdst);
+    return(orage_tm_time_to_i18_time(&tm_date));
+}
+
 char *orage_cal_to_i18_date(GtkCalendar *cal)
 {
-    struct tm tm_date = {0,0,0,0,0,0,0,0,0};
+    /* dst needs to -1 or mktime adjusts time if we are in another
+     * dst setting */
+    struct tm tm_date = {0,0,0,0,0,0,0,0,-1};
 
     gtk_calendar_get_date(cal
             , (unsigned int *)&tm_date.tm_year
@@ -437,6 +477,16 @@ char *orage_icaltime_to_i18_time(const char *icaltime)
         ct = orage_tm_date_to_i18_date(&t);
     else
         ct = orage_tm_time_to_i18_time(&t);
+    return(ct);
+}
+
+char *orage_i18_time_to_icaltime(const char *i18_time)
+{
+    struct tm t;
+    char      *ct;
+
+    t = orage_i18_time_to_tm_time(i18_time);
+    ct = orage_tm_time_to_icaltime(&t);
     return(ct);
 }
 
