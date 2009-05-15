@@ -281,8 +281,10 @@ static void set_repeat_sensitivity(appt_win *apptw)
         gtk_widget_set_sensitive(apptw->Recur_int_spin_label1, FALSE);
         gtk_widget_set_sensitive(apptw->Recur_int_spin_label2, FALSE);
         gtk_widget_set_sensitive(apptw->Recur_todo_base_hbox, FALSE);
+        /*
         gtk_widget_set_sensitive(apptw->Recur_exception_hbox, FALSE);
         gtk_widget_set_sensitive(apptw->Recur_calendar_hbox, FALSE);
+        */
     }
     else {
         gtk_widget_set_sensitive(apptw->Recur_limit_rb, TRUE);
@@ -321,8 +323,10 @@ static void set_repeat_sensitivity(appt_win *apptw)
         gtk_widget_set_sensitive(apptw->Recur_int_spin_label1, TRUE);
         gtk_widget_set_sensitive(apptw->Recur_int_spin_label2, TRUE);
         gtk_widget_set_sensitive(apptw->Recur_todo_base_hbox, TRUE);
+        /*
         gtk_widget_set_sensitive(apptw->Recur_exception_hbox, TRUE);
         gtk_widget_set_sensitive(apptw->Recur_calendar_hbox, TRUE);
+        */
     }
 }
 
@@ -1485,9 +1489,7 @@ static void recur_day_selected_double_click_cb(GtkCalendar *calendar
                 GTK_SPIN_BUTTON(apptw->Recur_exception_incl_spin_hh));
         mm =  gtk_spin_button_get_value_as_int(
                 GTK_SPIN_BUTTON(apptw->Recur_exception_incl_spin_mm));
-        g_print("recur_day_selected_double_click_cb: hour:%d\n", hh);
         cal_date = g_strdup(orage_cal_to_i18_time(calendar, hh, mm));
-        g_print("recur_day_selected_double_click_cb: hour:(%s)\n", cal_date);
     }
 
     if (add_recur_exception_row(cal_date, type, apptw, FALSE)) { /* new data */
@@ -3307,6 +3309,7 @@ static void build_recurrence_page(appt_win *apptw)
     gtk_calendar_select_day(GTK_CALENDAR(apptw->Recur_calendar1), 0);
     gtk_box_pack_start(GTK_BOX(apptw->Recur_calendar_hbox)
             , apptw->Recur_calendar1, FALSE, FALSE, 0);
+
     apptw->Recur_calendar2 = gtk_calendar_new();
     gtk_calendar_set_display_options(GTK_CALENDAR(apptw->Recur_calendar2)
             , GTK_CALENDAR_SHOW_HEADING | GTK_CALENDAR_SHOW_DAY_NAMES);
@@ -3318,6 +3321,7 @@ static void build_recurrence_page(appt_win *apptw)
     gtk_calendar_select_day(GTK_CALENDAR(apptw->Recur_calendar2), 0);
     gtk_box_pack_start(GTK_BOX(apptw->Recur_calendar_hbox)
             , apptw->Recur_calendar2, FALSE, FALSE, 0);
+    
     apptw->Recur_calendar3 = gtk_calendar_new();
     gtk_calendar_set_display_options(GTK_CALENDAR(apptw->Recur_calendar3)
             , GTK_CALENDAR_SHOW_HEADING | GTK_CALENDAR_SHOW_DAY_NAMES);
