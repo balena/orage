@@ -367,14 +367,12 @@ char *orage_cal_to_i18_time(GtkCalendar *cal, gint hh, gint mm)
     tm_date.tm_year -= 1900;
     tm_date.tm_hour = hh;
     tm_date.tm_min = mm;
-    g_print("***** orage_cal_to_i18_time: hour:%d dst:%d\n", tm_date.tm_hour, tm_date.tm_isdst);
     /* need to fill missing tm_wday and tm_yday, which are in use 
      * in some locale's default date. For example in en_IN. mktime does it */
     if (mktime(&tm_date) == (time_t) -1) {
         g_warning("orage: orage_cal_to_i18_time mktime failed %d %d %d"
                 , tm_date.tm_year, tm_date.tm_mon, tm_date.tm_mday);
     }
-    g_print("***** orage_cal_to_i18_time: hour:%d dst:%d\n", tm_date.tm_hour, tm_date.tm_isdst);
     return(orage_tm_time_to_i18_time(&tm_date));
 }
 
