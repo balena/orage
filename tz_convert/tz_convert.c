@@ -58,7 +58,7 @@
 #define DEFAULT_ZONETAB_FILE        "/usr/share/zoneinfo/zone.tab"
 
 int debug = 1; /* bigger number => more output */
-char version[] = "1.0.0";
+char version[] = "1.4.3";
 int file_cnt = 0; /* number of processed files */
 
 unsigned char *in_buf, *in_head, *in_tail;
@@ -68,6 +68,7 @@ char *in_file = NULL, *out_file = NULL;
 int in_file_is_dir = 0;
 int only_one_level = 0;
 int excl_dir_cnt = 5;
+int no_rrule = 0;
 char **excl_dir = NULL;
 
 FILE *ical_file;
@@ -301,7 +302,7 @@ process_gmt_table()
 int process_file(const char *file_name)
 {
     if (debug > 1)
-        printf("process_file: start\n");
+        printf("\n\nprocess_file: start\n");
     if (process_header(file_name)) {
         printf("File (%s) does not look like tz file. Skipping it.\n"
                 , file_name);
@@ -315,7 +316,8 @@ int process_file(const char *file_name)
     process_std_table();
     process_gmt_table();
     if (debug > 1)
-        printf("process_file: end\n");
+        printf("\nprocess_file: end\n\n\n");
+    return(0); /* ok */
 }
 
 void create_backup_file(char *out_file)
@@ -447,7 +449,7 @@ int create_ical_file(const char *in_file_name)
         }
     }
     if (debug > 1)
-        printf("create_ical_file: end\n");
+        printf("create_ical_file: end\n\n");
     return(0);
 }
 
@@ -498,7 +500,11 @@ struct ical_timezone_data wit_get_data(int i
     in_head += 6*tct_i;
     data.gmt_offset = (int)get_long();
     data.gmt_offset_hh = data.gmt_offset / (60*60);
+    /*
     data.gmt_offset_mm = (data.gmt_offset - data.gmt_offset_hh * (60*60)) / 60;
+    */
+    data.gmt_offset_mm = abs((data.gmt_offset - data.gmt_offset_hh * (60*60)) 
+            / 60);
     data.is_dst = in_head[0];
     abbr_i =  in_head[1];
 
@@ -521,18 +527,26 @@ struct ical_timezone_data wit_get_data(int i
     return(data);
 }
 
-int wit_get_rrule(struct ical_timezone_data *prev
+/* Check if we can use repeat rules. We can use them if entries are 
+ * similar enough. Possible values to return:
+ * RRULE < 10 (We only check if the time happens in same weekday on same week:)
+ *          (-1 == last week, 1 == first week, 2 == second week, 3 == 3rd week)
+ * RDATE == 100
+ * no repeat possible == 0
+ * */
+int wit_get_repeat_rule(struct ical_timezone_data *prev
         , struct ical_timezone_data *cur) {
     int monthdays[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-    int rrule_day_cnt;
-    int leap_year = 0, prev_leap_year = 0;
+    int repeat_rule;
+    int cur_leap_year = 0, prev_leap_year = 0;
 
     if (cur->gmt_offset == prev->gmt_offset
     &&  !strcmp(cur->tz, prev->tz)) {
         /* 2) check if we can use RRULE. 
          * We only check yearly same month and same week day changing
          * rules (which should cover most real world cases). */
-        if (cur->start_time.tm_year == prev->start_time.tm_year + 1
+        if (!no_rrule
+        &&  cur->start_time.tm_year == prev->start_time.tm_year + 1
         &&  cur->start_time.tm_mon  == prev->start_time.tm_mon
         &&  cur->start_time.tm_wday == prev->start_time.tm_wday
         &&  cur->start_time.tm_hour == prev->start_time.tm_hour
@@ -540,6 +554,12 @@ int wit_get_rrule(struct ical_timezone_data *prev
         &&  cur->start_time.tm_sec  == prev->start_time.tm_sec) {
             /* so far so good, now check that our weekdays are on
              * the same week */
+            if (cur->start_time.tm_mon == 1) {
+                if (((cur->start_time.tm_year%4) == 0)
+                && (((cur->start_time.tm_year%100) != 0) 
+                    || ((cur->start_time.tm_year%400) == 0)))
+                    cur_leap_year = 1; /* leap year, february has 29 days */
+            }
             if (prev->start_time.tm_mon == 1) {
                 if (((prev->start_time.tm_year%4) == 0)
                 && (((prev->start_time.tm_year%100) != 0) 
@@ -548,17 +568,17 @@ int wit_get_rrule(struct ical_timezone_data *prev
             }
             /* most often these change on the last week day
              * (and on sunday, but that does not matter now) */
-            if ((monthdays[cur->start_time.tm_mon] + leap_year - 
+            if ((monthdays[cur->start_time.tm_mon] + cur_leap_year - 
                     cur->start_time.tm_mday) < 7
             &&  (monthdays[prev->start_time.tm_mon] + prev_leap_year - 
                     prev->start_time.tm_mday) < 7) {
                 /* yep, it is last */
-                rrule_day_cnt = -1;
+                repeat_rule = -1;
             }
             else if (cur->start_time.tm_mday < 8
                  &&  prev->start_time.tm_mday < 8) {
                 /* ok, it is first */
-                rrule_day_cnt = 1;
+                repeat_rule = 1;
             }
             else if (cur->start_time.tm_mday < 15
                  &&  prev->start_time.tm_mday < 15
@@ -566,7 +586,7 @@ int wit_get_rrule(struct ical_timezone_data *prev
                  &&  cur->start_time.tm_mday >= 8 
                  &&  prev->start_time.tm_mday >= 8) {
                 /* fine, it is second */
-                rrule_day_cnt = 2;
+                repeat_rule = 2;
             }
             else if (cur->start_time.tm_mday < 22
                  &&  prev->start_time.tm_mday < 22
@@ -574,64 +594,83 @@ int wit_get_rrule(struct ical_timezone_data *prev
                  &&  cur->start_time.tm_mday >= 15 
                  &&  prev->start_time.tm_mday >= 15) {
                 /* must be the third then */
-                rrule_day_cnt = 3;
+                repeat_rule = 3;
             }
             else { 
                 /* give up, it did not work after all.
                  * It is quite possible that rule changed, but
                  * in that case we need to write this out anyway */
-                rrule_day_cnt = 100; /* RDATE is still possible */
+                repeat_rule = 100; /* RDATE is still possible */
             }
         }
         else { /* 2) failed, need to use RDATE */
-            rrule_day_cnt = 100;
+            repeat_rule = 100;
         }
     }
     else { /* 1) not possible to use RRULE nor RDATE, need new entry */
-        rrule_day_cnt = 0;
+        repeat_rule = 0;
     }
-    return(rrule_day_cnt);
+    return(repeat_rule);
 }
 
-void wit_write_data(int rrule_day_cnt, struct rdate_prev_data *rdate
-        , struct ical_timezone_data *first
-        , struct ical_timezone_data *prev)
+void wit_write_data(int repeat_rule, struct rdate_prev_data **rdate
+        , struct ical_timezone_data *first, struct ical_timezone_data *prev
+        , struct ical_timezone_data *ical_data)
 {
-    char str[100];
-    int len;
+    char str[100], until_date[20];
+    int len, until_day;
     char *dst_begin="BEGIN:DAYLIGHT\n";
     char *dst_end="END:DAYLIGHT\n";
     char *std_begin="BEGIN:STANDARD\n";
     char *std_end="END:STANDARD\n";
     char *day[] = {"SU", "MO", "TU", "WE", "TH", "FR", "SA" };
+    int monthdays[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
     struct rdate_prev_data *tmp_data = NULL, *tmp_data2;
     struct ical_timezone_data tmp_prev;
+    struct tm until_time;
 
     if (debug > 3)
         printf("\tWriting data (%s) %s"
                 , first->is_dst ? "dst" : "std"
                 , asctime(&first->start_time));
 
-    /****** First Check that we really need to write this record *****/
-    if (rrule_day_cnt == 100) { /* RDATE rule */
-        if (rdate == NULL) {
-        /* we actually have nothing to print. This happens seldom, but
-         * is possible if we found RDATE rule, but after that we actually
-         * found that it is the first RRULE element and we did not push
-         * anything into the rdate store */
-            if (debug > 3)
-                printf("\tWrite aborted. RDATE rule changed to RRULE\n");
-            return;
+    /****** First check that we really need to write this record *****/
+    /* when we have last write (ical_data == NULL), we always need to write */
+    if (ical_data) { /* not last, check if write can be omitted */
+        if (repeat_rule == 100) { /* RDATE rule */
+            for (tmp_data = *rdate; tmp_data ; ) {
+                tmp_prev = tmp_data->data;
+                if ((tmp_prev.start_time.tm_year + 1900) <= ignore_older) {
+                    tmp_data2 = tmp_data;
+                    tmp_data = tmp_data->next;
+                    *rdate = tmp_data; /* new start */
+                    free(tmp_data2);
+                    if (debug > 3)
+                        printf("\tWrite skipped. Too old RDATE row\n");
+                }
+                else { /* rows are in order, so we are done */
+                    tmp_data = tmp_data->next;
+                    if (debug > 3)
+                        printf("\tWrite kept. Fresh RDATE row\n");
+                }
+            }
+            if (*rdate == NULL) {
+            /* we actually have nothing left to print. */
+                if (debug > 2)
+                    printf("\tWrite skipped. Too old RDATE entry\n");
+                return;
+            }
         }
-    }
-    else if (rrule_day_cnt == 0) { /* non repeating rule */
-        if ((prev->start_time.tm_year + 1900) <= ignore_older) {
-        /* We again have nothing to print. We got non repeating case, which
-         * happens before our limit year */
-            if (debug > 3)
-                printf("\tWrite aborted. Too old non repeating year\n");
-            return;
+        else if (repeat_rule == 0) { /* non repeating rule */
+            if ((prev->start_time.tm_year + 1900) <= ignore_older) {
+            /* We have nothing to print. We got non repeating case, which
+             * happens before our limit year */
+                if (debug > 2)
+                    printf("\tWrite skipped. Too old non repeating year\n");
+                return;
+            }
         }
+        /* FIXME: adjust DTSTART with RDATE but also with RRULE */
     }
 
     /****** Write the data ******/
@@ -660,20 +699,45 @@ void wit_write_data(int rrule_day_cnt, struct rdate_prev_data *rdate
             , first->start_time.tm_sec);
     fwrite(str, 1, len, ical_file);
 
-    if (rrule_day_cnt) { /* we had repeating appointment */
-        if (rrule_day_cnt < 10) { /* RRULE */
+    if (repeat_rule) { /* we had repeating appointment */
+        if (repeat_rule < 10) { /* RRULE */
             if (debug > 3)
                 printf("\t\t...RRULE\n");
-            len = snprintf(str, 50, "RRULE:FREQ=YEARLY;BYMONTH=%d;BYDAY=%d%s\n"
+            /* All RRULE ends. We invent end time to be close after last 
+             * included date = prev */
+            until_time = prev->start_time;
+            if (until_time.tm_mday > 28 && until_time.tm_mon == 1) {
+                /* we are in february, which is special */
+                if (((until_time.tm_year%4) == 0)
+                && (((until_time.tm_year%100) != 0) 
+                    || ((until_time.tm_year%400) == 0)))
+                    ++monthdays[1]; /* leap year, february has 29 days */
+            }
+            /* goto next day. Note that all our RRULE are yearly, so this
+             * is very safe. (We set time also to the end of the day.) */
+            if (++until_time.tm_mday > monthdays[until_time.tm_mon]) {
+                if (++until_time.tm_mon > 11) {
+                    ++until_time.tm_year;
+                    until_time.tm_mon = 0;
+                }
+                until_time.tm_mday = 1;
+            }
+            len = snprintf(until_date, 30, "%04d%02d%02dT235959Z"
+                    , until_time.tm_year + 1900
+                    , until_time.tm_mon  + 1
+                    , until_time.tm_mday);
+            len = snprintf(str, 80
+                    , "RRULE:FREQ=YEARLY;BYMONTH=%d;BYDAY=%d%s;UNTIL=%s\n"
                     , first->start_time.tm_mon + 1
-                    , rrule_day_cnt
-                    , day[first->start_time.tm_wday]);
+                    , repeat_rule
+                    , day[first->start_time.tm_wday]
+                    , until_date);
             fwrite(str, 1, len, ical_file);
         }
         else { /* RDATE */
             if (debug > 3)
                 printf("\t\t...RDATE\n");
-            for (tmp_data = rdate; tmp_data ; ) {
+            for (tmp_data = *rdate; tmp_data ; ) {
                 tmp_prev = tmp_data->data;
                 len = snprintf(str, 30, "RDATE:%04d%02d%02dT%02d%02d%02d\n"
                         , tmp_prev.start_time.tm_year + 1900
@@ -693,14 +757,7 @@ void wit_write_data(int rrule_day_cnt, struct rdate_prev_data *rdate
     else {
         if (debug > 3)
             printf("\t\t...single\n");
-        len = snprintf(str, 30, "RDATE:%04d%02d%02dT%02d%02d%02d\n"
-                , prev->start_time.tm_year + 1900
-                , prev->start_time.tm_mon  + 1
-                , prev->start_time.tm_mday
-                , prev->start_time.tm_hour
-                , prev->start_time.tm_min
-                , prev->start_time.tm_sec);
-        fwrite(str, 1, len, ical_file);
+        /* dtstart tells the first time */
     }
 
     if (prev->is_dst)
@@ -709,9 +766,40 @@ void wit_write_data(int rrule_day_cnt, struct rdate_prev_data *rdate
         write_ical_str(std_end);
 }
 
+wit_push_to_rdate_queue(struct rdate_prev_data **p_rdate_data
+        , struct ical_timezone_data *p_data_prev)
+{
+    struct rdate_prev_data *tmp_data = NULL, *tmp_data2 = NULL;
+
+    for (tmp_data = *p_rdate_data; tmp_data ; ) {
+        /* find the last one, which is still empty */
+        tmp_data2 = tmp_data;
+        tmp_data  = tmp_data->next;
+    }
+    tmp_data = malloc(sizeof(struct rdate_prev_data));
+    tmp_data->data = *p_data_prev;
+    tmp_data->next = NULL; /* last */
+    if (!*p_rdate_data) {
+        *p_rdate_data = tmp_data;
+    }
+    else {
+        tmp_data2->next = tmp_data;
+    }
+}
+
 void write_ical_timezones()
 {
     int i;
+    /* ical_data        contains the just read new record being processed
+     * ical_data_prev   is previous record (needed when getting next data)
+     * data_prev_std    is previous std (standard time) record
+     * data_prev_dst    is previous dst (daylight saving time) record
+     * data_first_std   is first std record before within repeating group.
+     * data_first_dst   is first dst record before within repeating group
+     *                  DTSTART is based on "first", so it is needed always,
+     *                  but it stops incrementing with RRULE and RDATE. For non 
+     *                  repeating groups, it is actually the same than prev.
+     *                  */
     struct ical_timezone_data ical_data
         , ical_data_prev = { {0, 0, 0, 0, 0, 0, 0}, 0, 0, 0, 0, 0, 0, 0, NULL}
         , data_prev_std = { {0, 0, 0, 0, 0, 0, 0}, 0, 0, 0, 0, 0, 0, 0, NULL}
@@ -725,16 +813,15 @@ void write_ical_timezones()
 
     int std_init_done = 0;
     int dst_init_done = 0;
-    int rrule_day_cnt_std = 0, rrule_day_cnt_std_prev = 0;
-    int rrule_day_cnt_dst = 0, rrule_day_cnt_dst_prev = 0;
-        /* pointers either to rrule_day_cnt_std and rrule_day_cnt_std_prev
-         * or to rrule_day_cnt_dst and rrule_day_cnt_dst_prev. 
+    int repeat_rule_std_cur = 0, repeat_rule_std_prev = 0;
+    int repeat_rule_dst_cur = 0, repeat_rule_dst_prev = 0;
+        /* pointers either to repeat_rule_std_cur and repeat_rule_std_prev
+         * or to repeat_rule_dst_cur and repeat_rule_dst_prev. 
          * These avoid having separate code paths for std and dst */
-    int *p_rrule_day_cnt = 0, *p_rrule_day_cnt_prev = 0;
-    struct rdate_prev_data *prev_dst_data = NULL, *prev_std_data = NULL
-        /* points either to prev_dst_data or to prev_std_data */
-        , **p_prev_data 
-        , *tmp_data = NULL, *tmp_data2 = NULL;
+    int *p_repeat_rule_cur = NULL, *p_repeat_rule_prev = NULL;
+    /* lists to maintain repeating RDATE group actual dates */
+    struct rdate_prev_data *rdate_data_dst = NULL, *rdate_data_std = NULL
+        , **p_rdate_data; /* points to rdate_data_dst or to rdate_data_std */
 
     /* we are processing "in_timezone_name" so we know it exists in this 
      * system and it is then safe to use that in the localtime conversion */
@@ -756,16 +843,19 @@ void write_ical_timezones()
                 data_prev_dst  = ical_data;
                 dst_init_done  = 1;
                 if (debug > 2)
-                    printf("init %d = (%s) %s", i
-                            , ical_data.is_dst ? "dst" : "std"
+                    printf("init time change %d: (%s) from %02d:%02d to %02d:%02d (%s) %s"
+                            , i, ical_data.is_dst ? "dst" : "std"
+                            , ical_data.prev_gmt_offset_hh, ical_data.prev_gmt_offset_mm
+                            , ical_data.gmt_offset_hh, ical_data.gmt_offset_mm
+                            , ical_data.tz
                             , asctime(&ical_data.start_time));
-                continue; /* we never write the first record */
-            }
+                        continue; /* we never write the first record */
+                    }
             p_data_first = &data_first_dst;
             p_data_prev = &data_prev_dst;
-            p_rrule_day_cnt = &rrule_day_cnt_dst;
-            p_rrule_day_cnt_prev = &rrule_day_cnt_dst_prev;
-            p_prev_data = &prev_dst_data;
+            p_repeat_rule_cur = &repeat_rule_dst_cur;
+            p_repeat_rule_prev = &repeat_rule_dst_prev;
+            p_rdate_data = &rdate_data_dst;
         }
         else { /* !dst == std */
             if (!std_init_done) {
@@ -773,147 +863,192 @@ void write_ical_timezones()
                 data_prev_std  = ical_data;
                 std_init_done  = 1;
                 if (debug > 2)
-                    printf("init %d = (%s) %s", i
-                            , ical_data.is_dst ? "dst" : "std"
+                    printf("int time change %d: (%s) from %02d:%02d to %02d:%02d (%s) %s"
+                            , i, ical_data.is_dst ? "dst" : "std"
+                            , ical_data.prev_gmt_offset_hh, ical_data.prev_gmt_offset_mm
+                            , ical_data.gmt_offset_hh, ical_data.gmt_offset_mm
+                            , ical_data.tz
                             , asctime(&ical_data.start_time));
                 continue; /* we never write the first record */
             }
             p_data_first = &data_first_std;
             p_data_prev = &data_prev_std;
-            p_rrule_day_cnt = &rrule_day_cnt_std;
-            p_rrule_day_cnt_prev = &rrule_day_cnt_std_prev;
-            p_prev_data = &prev_std_data;
+            p_repeat_rule_cur = &repeat_rule_std_cur;
+            p_repeat_rule_prev = &repeat_rule_std_prev;
+            p_rdate_data = &rdate_data_std;
         }
 
-    /***** check if we need this data *****/
-        /* we only take newer than threshold values */
-        if (ical_data.start_time.tm_year + 1900 <= ignore_older) {
-            if (debug > 2)
-                printf("skip %d = (%s) %s", i
-                        , ical_data.is_dst ? "dst" : "std"
-                        , asctime(&ical_data.start_time));
-            ical_data_prev = ical_data;
-            *p_data_first = ical_data;
-            *p_data_prev = ical_data;
-            *p_rrule_day_cnt_prev = *p_rrule_day_cnt;
-            *p_rrule_day_cnt = wit_get_rrule(p_data_prev, &ical_data);
-            /* without p_ variables this looked like:
-            if (ical_data.is_dst) {
-                data_first_dst = ical_data;
-                data_prev_dst  = ical_data;
-                rrule_day_cnt_dst_prev = rrule_day_cnt_dst;
-                rrule_day_cnt_dst = wit_get_rrule(&data_prev_dst, &ical_data);
-            }
-            else {
-                data_first_std = ical_data;
-                data_prev_std  = ical_data;
-                rrule_day_cnt_std_prev = rrule_day_cnt_std;
-                rrule_day_cnt_std = wit_get_rrule(&data_prev_std, &ical_data);
-            }
-            */
-            continue;
-        }
+
         if (debug > 2)
-            printf("process %d: (%s) from %02d:%02d to %02d:%02d (%s) %s", i
-                    , ical_data.is_dst ? "dst" : "std"
-                    , ical_data.prev_gmt_offset_hh,ical_data.prev_gmt_offset_mm
+            printf("time change %d: (%s) from %02d:%02d to %02d:%02d (%s) %s"
+                    , i, ical_data.is_dst ? "dst" : "std"
+                    , ical_data.prev_gmt_offset_hh, ical_data.prev_gmt_offset_mm
                     , ical_data.gmt_offset_hh, ical_data.gmt_offset_mm
                     , ical_data.tz
                     , asctime(&ical_data.start_time));
+
     /***** check if we can shortcut the entry with RRULE or RDATE *****/
-        /* 1) check if it is similar to the previous values */
-        *p_rrule_day_cnt_prev = *p_rrule_day_cnt;
-        *p_rrule_day_cnt = wit_get_rrule(p_data_prev, &ical_data);
-        if (*p_rrule_day_cnt
-        && (*p_rrule_day_cnt == *p_rrule_day_cnt_prev
-            && *p_rrule_day_cnt_prev)) {
-            /* we continue with either real RRULE or RDATE */
-            if (*p_rrule_day_cnt < 10) {
-                /* we found RRULE, so we do not have to do anything 
-                 * since this just continues. */
-                if (debug > 3)
-                    printf("\tRRULE value found\n");
-                *p_data_prev = ical_data;
-            }
-            else { /* we actually found RDATE */
-                if (debug > 3)
-                    printf("\tRDATE value found\n");
-                if (p_data_prev->start_time.tm_year + 1900 <= ignore_older) {
-                    /* do not push old values into queue, ignore them */
-                    if (debug > 3)
-                        printf("\tAborted push to RRULE queue, too old (%s) %s"
-                                , p_data_prev->is_dst ? "dst" : "std"
-                                , asctime(&p_data_prev->start_time));
-                }
-                else {
-                    if (debug > 3)
-                        printf("\tpushed to RRULE queue (%s) %s"
-                                , p_data_prev->is_dst ? "dst" : "std"
-                                , asctime(&p_data_prev->start_time));
-                    for (tmp_data = *p_prev_data; tmp_data ; ) {
-                        /* find the last one, which is still empty */
-                        tmp_data2 = tmp_data;
-                        tmp_data  = tmp_data->next;
-                    }
-                    tmp_data = malloc(sizeof(struct rdate_prev_data));
-                    tmp_data->data = *p_data_prev;
-                    tmp_data->next = NULL; /* last */
-                    if (!*p_prev_data) {
-                        *p_prev_data = tmp_data;
-                    }
-                    else {
-                        tmp_data2->next = tmp_data;
-                    }
-                }
-                *p_data_prev = ical_data;
-            }
-        }
-        else { /* not RRULE or we changed to/from RRULE from/to RDATE, 
-                * so write previous and init new round */
-            if (debug > 3)
-                printf("\tnon repeating value found\n");
-            wit_write_data(*p_rrule_day_cnt_prev, *p_prev_data
-                    , p_data_first, p_data_prev);
-            if (*p_rrule_day_cnt_prev > 10 && *p_rrule_day_cnt < 10) {
-                /* we had RDATE and now we found RRULE */
-                /* so this was actually the first RRULE */
-                if (debug > 3)
-                    printf("\tchanged from RDATE to RRULE\n");
-                if (p_data_prev->start_time.tm_year + 1900 <= ignore_older) {
-                    /* we ignore too old record and take current as first */
-                    if (debug > 3) {
-                        printf("\tIgnoring too old (%s) %s"
-                                , p_data_prev->is_dst ? "dst" : "std"
-                                , asctime(&p_data_prev->start_time));
-                        printf("\tUsing RRULE (%s) %s"
-                                , ical_data.is_dst ? "dst" : "std"
-                                , asctime(&ical_data.start_time));
-                    }
-                    *p_data_first = ical_data; 
-                }
-                else {
-                    if (debug > 3)
-                        printf("\tUsing RRULE (%s) %s"
-                                , p_data_prev->is_dst ? "dst" : "std"
-                                , asctime(&p_data_prev->start_time));
-                    *p_data_first = *p_data_prev; 
-                }
-            }
-            else {
+        /* We have the following possibilities shown by p_repeat_rule_prev/cur:
+         *      RRULE == < 10    RDATE == 100     NONE == 0
+         *      remember to check first == 0 as RRULE matches that, too
+         * (We also know that those pointers always have a value, so null check
+         *  is not needed)
+         * prev     cur     action
+         * RRULE    RRULE   => a) same rule => continue
+         *                     b) different rule => write, init new RRULE
+         *                          (not possible now as we do not have 
+         *                          overlappin rules)
+         * RDATE    RRULE   => write, end RDATE, init RRULE
+         * NONE     RRULE   => init RRULE
+         * RRULE    RDATE   => write, init RDATE
+         * RDATE    RDATE   => push RDATE to queue, continue
+         * NONE     RDATE   => init RDATE
+         * RRULE    NONE    => write
+         * RDATE    NONE    => write
+         * NONE     NONE    => write
+         * */
+        *p_repeat_rule_prev = *p_repeat_rule_cur;
+        *p_repeat_rule_cur = wit_get_repeat_rule(p_data_prev, &ical_data);
+        if (debug > 3)
+            printf("\t\t\t***** repeating values prev:%d cur:%d\n"
+                    , *p_repeat_rule_prev, *p_repeat_rule_cur);
+
+        if (*p_repeat_rule_cur == 0) {
+        /***** NONE begin *****/
+            if (*p_repeat_rule_prev == 0) { /* also previously NONE */
+                wit_write_data(*p_repeat_rule_prev, p_rdate_data
+                        , p_data_first, p_data_prev, &ical_data);
                 *p_data_first = ical_data;
+                *p_data_prev  = ical_data;
+                if (debug > 3)
+                    printf("\tNONE -> NONE\n");
+            } /* end-ef NONE */
+            else if (*p_repeat_rule_prev < 10) { /* previously RRULE */
+                wit_write_data(*p_repeat_rule_prev, p_rdate_data
+                        , p_data_first, p_data_prev, &ical_data);
+                *p_data_first = ical_data;
+                *p_data_prev  = ical_data;
+                if (debug > 3)
+                    printf("\tRRULE -> NONE\n");
+            } /* end-of RRULE */
+            else if (*p_repeat_rule_prev == 100) { /* previously RDATE */
+                /* need to push the last RDATE and write them all. 
+                   If we had only one RDATE, it is not mandatory to push it,
+                   but it works equally well, so not worth special check */
+                wit_push_to_rdate_queue(p_rdate_data, p_data_prev);
+                wit_write_data(*p_repeat_rule_prev, p_rdate_data
+                        , p_data_first, p_data_prev, &ical_data);
+                /* wit_write_data freed rdate memory already */
+                *p_rdate_data = NULL;
+                *p_data_first = ical_data;
+                *p_data_prev  = ical_data;
+                if (debug > 3)
+                    printf("\tRDATE -> NONE\n");
+            } /* end-of RDATE */
+            else { /* error, unknown value */
+                perror("***** Unknown value in repeating rule *****");
             }
-            *p_data_prev  = ical_data;
-            *p_prev_data  = NULL;
+        /***** NONE end *****/
         } 
+        else if (*p_repeat_rule_cur < 10 ) {  
+        /***** RRULE begin *****/
+            if (*p_repeat_rule_prev == 0) { /* previously NONE */
+                /* do not write the previous, use it as first RRULE element */
+                *p_data_first = *p_data_prev;
+                *p_data_prev  = ical_data;
+                if (debug > 3)
+                    printf("\tNONE -> RRULE\n");
+            } /* end-ef NONE */
+            else if (*p_repeat_rule_prev < 10) { /* also previously RRULE */
+                if (*p_repeat_rule_prev == *p_repeat_rule_cur) {
+                /* we had same RRULE previously, so we do not have to do 
+                 * anything since this just continues. */
+                    *p_data_prev = ical_data;
+                }
+                else { /* different RRULE (not possible now as we do
+                          not have overlapping rules) */
+                    printf("\t***** ERROR: change from RRULE to different RRULE \n");
+                    wit_write_data(*p_repeat_rule_prev, p_rdate_data
+                            , p_data_first, p_data_prev, &ical_data);
+                    *p_data_first = ical_data;
+                    *p_data_prev  = ical_data;
+                }
+                if (debug > 3)
+                    printf("\tRULE -> RRULE\n");
+            } /* end-of RRULE */
+            else if (*p_repeat_rule_prev == 100) { /* previously RDATE */
+                /* Note that we have not pushed the previous RDATE into the 
+                 * rdate queue yet. As we now see that it fist our RRULE, 
+                 * we will steal it and use in RRULE.
+                 * We do not have to write anything if we only had this one
+                 * RDATE */
+                if (*p_rdate_data != NULL) {
+                    /* we had more than one rdate, need to write those */
+                    wit_write_data(*p_repeat_rule_prev, p_rdate_data
+                            , p_data_first, p_data_prev, &ical_data);
+                }
+                /* wit_write_data freed rdate memory already */
+                *p_rdate_data = NULL;
+                *p_data_first = *p_data_prev;
+                *p_data_prev  = ical_data;
+                if (debug > 3)
+                    printf("\tRDATE -> RRULE\n");
+            } /* end-of RDATE */
+            else { /* error, unknown value */
+                perror("***** Unknown value in repeating rule *****");
+            }
+        /***** RRULE end *****/
+        }
+        else if (*p_repeat_rule_cur == 100) {  
+        /***** RDATE begin *****/
+            if (*p_repeat_rule_prev == 0) { /* previously NONE */
+                /* do not write the previous, use it as first RDATE element */
+                wit_push_to_rdate_queue(p_rdate_data, p_data_prev);
+                *p_data_first = *p_data_prev;
+                *p_data_prev  = ical_data;
+                if (debug > 3)
+                    printf("\tNONE -> RDATE\n");
+            } /* end-ef NONE */
+            else if (*p_repeat_rule_prev < 10) { /* previously RRULE */
+                /* write old RRULE as we rather use it than RDATE, but do not 
+                 * push this new value to rdate queue as it is now our first 
+                 * rdate and we may not get more. */
+                wit_write_data(*p_repeat_rule_prev, p_rdate_data
+                        , p_data_first, p_data_prev, &ical_data);
+                *p_data_first = ical_data;
+                *p_data_prev  = ical_data;
+                if (debug > 3)
+                    printf("\tRRULE -> RDATE\n");
+            } /* end-of RRULE */
+            else if (*p_repeat_rule_prev == 100) { /* also previously RDATE */
+                /* we only add prev data into the queue and that is it */
+                wit_push_to_rdate_queue(p_rdate_data, p_data_prev);
+                *p_data_prev  = ical_data;
+                if (debug > 3)
+                    printf("\tRDATE -> RDATE\n");
+            } /* end-of RDATE */
+            else { /* error, unknown value */
+                perror("***** Unknown value in repeating rule *****");
+            }
+        /***** RDATE end *****/
+        }
         ical_data_prev = ical_data;
     } /* for (i = 0; i < timecnt; i++) */
+
     /* need to write the last one also */
     if (debug > 3)
         printf("writing last values:\n");
-    wit_write_data(rrule_day_cnt_std_prev, prev_std_data
-            , &data_first_std, &data_prev_std);
-    wit_write_data(rrule_day_cnt_dst_prev, prev_dst_data
-            , &data_first_dst, &data_prev_dst);
+    if (std_init_done)
+        wit_write_data(repeat_rule_std_prev, &rdate_data_std
+                , &data_first_std, &data_prev_std, NULL);
+    else if (debug > 3)
+        printf("\tskipping last std write as std init has not been done:\n");
+
+    if (dst_init_done)
+        wit_write_data(repeat_rule_dst_prev, &rdate_data_dst
+                , &data_first_dst, &data_prev_dst, NULL);
+    else if (debug > 3)
+        printf("\tskipping last dst write as dst init has not been done:\n");
 }
 
 void write_ical_ending()
@@ -928,7 +1063,7 @@ void write_ical_ending()
 int write_ical_file(const char *in_file_name, const struct stat *in_file_stat)
 {
     if (debug > 1)
-        printf("write_ical_file: start\n");
+        printf("***** write_ical_file: start *****\n\n");
     if (create_ical_file(in_file_name))
         return(1);
     write_ical_header();
@@ -936,7 +1071,7 @@ int write_ical_file(const char *in_file_name, const struct stat *in_file_stat)
     write_ical_ending();
     fclose(ical_file);
     if (debug > 1)
-        printf("write_ical_file: end\n");
+        printf("\n***** write_ical_file: end *****\n\n\n");
     return(0);
 }
 
@@ -999,7 +1134,7 @@ int get_parameters_popt(int argc, const char **argv)
               " 0 is least and 10 is highest (1=default)."
             , "level"},
         {"limit", 'l', POPT_ARG_INT, &ignore_older, 6
-            , "limit proocessing to newer than this year."
+            , "limit processing to newer than this year."
             , "year"},
         {"timezone", 't', POPT_ARG_STRING, &tmp_str, 7
             , "timezone name. For example Europe/Helsinki"
@@ -1019,6 +1154,13 @@ int get_parameters_popt(int argc, const char **argv)
               " By default directories right and posix are excluded, but if"
               " you use this parameter, you have to specify those also."
             , "directory"},
+        {"norrule", 'u', POPT_ARG_INT, &no_rrule, 11
+            , "do not use RRULE ical repeating rule, but use RDATE instead."
+              " Not all calendars are able to understand RDATE correctly"
+              " with timezones. "
+              " (Orage should work fine with RRULE)"
+              " 0 = use RRULE  1 = do not use RRULE (0=default)."
+            , "level"},
         POPT_AUTOHELP
         {NULL, '\0', POPT_ARG_NONE, NULL, 0, NULL, NULL}
     };
@@ -1082,6 +1224,12 @@ int get_parameters_popt(int argc, const char **argv)
                             , tmp_str);
                     res = val;
                 }
+                break;
+            case 11:
+                if (no_rrule)
+                    printf("Not using RRULE (using RDATE instead)\n");
+                else
+                    printf("Using RRULE when possible\n");
                 break;
             default:
                 res = val;
@@ -1216,7 +1364,7 @@ int file_call(const char *file_name, const struct stat *sb, int flags
         printf("file_call: start\n");
     file_cnt++;
     /* we are only interested about files and directories we can access */
-    if (flags == FTW_F) {
+    if (flags == FTW_F) { /* we got file */
         if (debug > 0)
             printf("\t\tfile_call: processing file=(%s)\n", file_name);
         if (only_one_level && (f->level > 1)) {
@@ -1227,16 +1375,20 @@ int file_call(const char *file_name, const struct stat *sb, int flags
             return(FTW_CONTINUE);
         }
         read_file(file_name, sb);
-        process_file(file_name);
+        if (process_file(file_name)) { /* we skipped this file */
+            free(in_buf);
+            return(FTW_CONTINUE);
+        }
         write_ical_file(file_name, sb);
         add_zone_tabs();
+
         free(in_buf);
         free(out_file);
         out_file = NULL;
         free(in_timezone_name);
         free(timezone_name);
     }
-    else if (flags == FTW_D) {
+    else if (flags == FTW_D) { /* this is directory */
         if (debug > 0)
             printf("\tfile_call: processing directory=(%s)\n", file_name);
         if (only_one_level && f->level > 0) {
@@ -1361,6 +1513,8 @@ int check_parameters()
         for (i = 0; (i <= excl_dir_cnt) && excl_dir[i];i++)
             printf("\t\texclude directory %d: (%s)\n"
                     , i, excl_dir[i]);
+        printf("\tusing rrule: %s\n"
+                , no_rrule ? "NO" : "YES");
         printf("***** Parameters *****\n\n");
     }
     if (debug > 1)

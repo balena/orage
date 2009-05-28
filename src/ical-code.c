@@ -70,6 +70,15 @@ static void xfical_alarm_build_list_internal(gboolean first_list_today);
 #define ORAGE_DEBUG 1
 */
 
+/** This is the toplevel directory where the timezone data is installed in. */
+#define ZONEINFO_DIRECTORY  PACKAGE_DATA_DIR "/zoneinfo"
+
+/** This is the filename of the file containing the city names and
+ *     coordinates of all the builtin timezones. */
+#define ZONES_TAB_FILENAME  "zones.tab"
+
+#define ORAGE_ZONES_TAB  ZONEINFO_DIRECTORY "/" ZONES_TAB_FILENAME
+
 typedef struct
 {
     struct icaltimetype stime; /* start time */
@@ -83,6 +92,8 @@ typedef struct
 {
     int    count;     /* how many timezones we have */
     char **city;      /* pointer to timezone location name strings */
+    int  *utc_offset; /* pointer to int array holding utc offsets */
+    int  *dst;        /* pointer to int array holding dst settings */
 } xfical_timezone_array;
 
 static icalset *fical = NULL;
@@ -502,15 +513,49 @@ const gchar *trans_timezone[] = {
     N_("Pacific/Yap"),
 };
 
-static xfical_timezone_array xfical_get_timezones()
+static struct icaltimetype ical_get_current_local_time()
+{
+#undef P_N
+#define P_N "ical_get_current_local_time: "
+    struct tm *tm;
+    struct icaltimetype ctime;
+
+#ifdef ORAGE_DEBUG
+    orage_message(-300, P_N);
+#endif
+    if (g_par.local_timezone_utc)
+        ctime = icaltime_current_time_with_zone(utc_icaltimezone);
+    else if ((g_par.local_timezone)
+        &&   (strcmp(g_par.local_timezone, "floating") != 0))
+        ctime = icaltime_current_time_with_zone(local_icaltimezone);
+    else { /* use floating time */
+        ctime.is_utc      = 0;
+        ctime.is_date     = 0;
+        ctime.is_daylight = 0;
+        ctime.zone        = NULL;
+    }
+    /* and at the end we need to change the clock to be correct */
+    tm = orage_localtime();
+    ctime.year        = tm->tm_year+1900;
+    ctime.month       = tm->tm_mon+1;
+    ctime.day         = tm->tm_mday;
+    ctime.hour        = tm->tm_hour;
+    ctime.minute      = tm->tm_min;
+    ctime.second      = tm->tm_sec;
+
+    return(ctime);
+}
+static xfical_timezone_array get_ical_timezones()
 {
 #undef P_N
 #define P_N "xfical_timezone_array: "
-    static xfical_timezone_array tz={0, NULL};
+    static xfical_timezone_array tz={0, NULL, NULL};
     static char tz_utc[]="UTC";
     static char tz_floating[]="floating";
     icalarray *tz_array;
     icaltimezone *l_tz;
+    int dst; /* daylight saving time = summer time */
+    struct icaltimetype ctime;
 
 #ifdef ORAGE_DEBUG
     orage_message(-100, P_N);
@@ -518,13 +563,28 @@ static xfical_timezone_array xfical_get_timezones()
     if (tz.count == 0) {
         tz_array = icaltimezone_get_builtin_timezones();
         tz.city = (char **)g_malloc(sizeof(char *)*(2+tz_array->num_elements));
+        tz.utc_offset = (int *)g_malloc(sizeof(int)*(2+tz_array->num_elements));
+        tz.dst = (int *)g_malloc(sizeof(int)*(2+tz_array->num_elements));
+        ctime = ical_get_current_local_time();
         for (tz.count = 0; tz.count <  tz_array->num_elements; tz.count++) {
             l_tz = (icaltimezone *)icalarray_element_at(tz_array, tz.count);
             /* ical timezones are static so this is safe although not
              * exactly pretty */
             tz.city[tz.count] = icaltimezone_get_location(l_tz);
+            /*
+            g_print(P_N "before %d %s\n", tz.count, tz.city[tz.count]);
+            */
+            tz.utc_offset[tz.count] = icaltimezone_get_utc_offset(
+                    l_tz, &ctime, &tz.dst[tz.count]);
+            /*
+            g_print(P_N "after %d %s offset:%d dst: %d\n", tz.count, tz.city[tz.count], tz.utc_offset[tz.count], tz.dst[tz.count]);
+            */
         }
+        tz.utc_offset[tz.count] = 0;
+        tz.dst[tz.count] = 0;
         tz.city[tz.count++] = tz_utc;
+        tz.utc_offset[tz.count] = 0;
+        tz.dst[tz.count] = 0;
         tz.city[tz.count++] = tz_floating;
     }
     return (tz);
@@ -861,39 +921,6 @@ void xfical_archive_close(void)
     afical = NULL;
 }
 #endif
-
-static struct icaltimetype ical_get_current_local_time()
-{
-#undef P_N
-#define P_N "ical_get_current_local_time: "
-    struct tm *tm;
-    struct icaltimetype ctime;
-
-#ifdef ORAGE_DEBUG
-    orage_message(-300, P_N);
-#endif
-    if (g_par.local_timezone_utc)
-        ctime = icaltime_current_time_with_zone(utc_icaltimezone);
-    else if ((g_par.local_timezone)
-        &&   (strcmp(g_par.local_timezone, "floating") != 0))
-        ctime = icaltime_current_time_with_zone(local_icaltimezone);
-    else { /* use floating time */
-        ctime.is_utc      = 0;
-        ctime.is_date     = 0;
-        ctime.is_daylight = 0;
-        ctime.zone        = NULL;
-    }
-    /* and at the end we need to change the clock to be correct */
-    tm = orage_localtime();
-    ctime.year        = tm->tm_year+1900;
-    ctime.month       = tm->tm_mon+1;
-    ctime.day         = tm->tm_mday;
-    ctime.hour        = tm->tm_hour;
-    ctime.minute      = tm->tm_min;
-    ctime.second      = tm->tm_sec;
-
-    return(ctime);
-}
 
 static char *get_char_timezone(icalproperty *p)
 {
@@ -5000,12 +5027,232 @@ xfical_appt *xfical_appt_get_next_with_string(char *str, gboolean first
     }
 }
 
+static GtkTreeStore *tz_button_create_store(void)
+{
+#undef P_N
+#define P_N "tz_button_create_store: "
+#define MAX_AREA_LENGTH 100
+
+enum {
+    LOCATION,
+    LOCATION_ENG,
+    OFFSET,
+    N_COLUMNS
+};
+
+    GtkTreeStore *store;
+    GtkTreeIter iter1, iter2, main;
+    gboolean main_created = FALSE;
+    xfical_timezone_array tz_a;
+    char area_old[MAX_AREA_LENGTH+2]; /*+2 = / + null */
+    char s_offset[100];
+    gint i, j, offs_hour, offs_min;
+
+    store = gtk_tree_store_new(N_COLUMNS
+            , G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
+    strcpy(area_old, "S T a R T"); /* this never matches */
+    tz_a = get_ical_timezones();
+    g_print(P_N "number of timezones %d\n", tz_a.count);
+    g_print(P_N "name of zone file full location %s\n", ORAGE_ZONES_TAB);
+    /* Create special "area" for first level timezones, which do not have
+     * any real area */
+    gtk_tree_store_append(store, &iter1, NULL);
+    gtk_tree_store_set(store, &iter1
+            , LOCATION, _("Other")
+            , LOCATION_ENG, "Other"
+            , OFFSET, " "
+            , -1);
+    main = iter1; /* need to remember that */
+
+    for (i=0; i < tz_a.count-2; i++) {
+        /* first check area */
+        if (! g_str_has_prefix(tz_a.city[i], area_old)) {
+            /* we have new area, let's add it */
+            for (j=0; tz_a.city[i][j] && tz_a.city[i][j] != '/' 
+                      && j < MAX_AREA_LENGTH; j++) {
+                area_old[j] = tz_a.city[i][j];
+            }
+        /* now tz_a.city[i][j] is either / or 0 which means not found / */
+            if (!tz_a.city[i][j]) { /* end of name = no are code */
+                iter1 = main;
+            }
+            else if (j < MAX_AREA_LENGTH) { /* new area, let's add it */
+                area_old[j] = 0;
+                gtk_tree_store_append(store, &iter1, NULL);
+                gtk_tree_store_set(store, &iter1
+                        , LOCATION, _(area_old)
+                        , LOCATION_ENG, area_old
+                        , OFFSET, " "
+                        , -1);
+                /* let's make sure we do not match accidentally to those 
+                 * plain names on main level. We do this by adding / */
+                area_old[j++] = '/'; 
+                area_old[j] = 0;
+            }
+            else {
+                orage_message(310, P_N "too long line in zones.tab %s", tz_a.city[i]);
+            }
+
+        }
+        /* then city translated and in base form used internally */
+        gtk_tree_store_append(store, &iter2, &iter1);
+        offs_hour = tz_a.utc_offset[i] / (60*60);
+        offs_min = abs((tz_a.utc_offset[i] - offs_hour * (60*60)) / 60);
+        /*
+        offs_min = ((abs(tz_a.utc_offset[i]) / 36) % 100) / 60;
+        if (offs_min)
+            g_print(P_N " %s offset main bef %d offset minutes %d\n", tz_a.city[i], offs_hour, offs_min);
+        if (offs_min)
+            switch (offs_min) {
+                case 25:
+                    offs_min = 15;
+                    break;
+                case 50:
+                    offs_min = 30;
+                    break;
+                case 75:
+                    offs_min = 45;
+                    break;
+                default:
+                    orage_message(10, P_N "strange offset %d in zones.tab %s"
+                            , tz_a.utc_offset[i], tz_a.city[i]);
+                    break;
+            }
+            */
+        if (offs_min)
+            g_print(P_N " %s offset %d hour %d minutes %d\n", tz_a.city[i], tz_a.utc_offset[i], offs_hour, offs_min);
+        g_sprintf(s_offset, "%+03d:%02d %s", offs_hour, offs_min
+                , (tz_a.dst[i]) ? "dst" : "std");
+        gtk_tree_store_set(store, &iter2
+                , LOCATION, _(tz_a.city[i])
+                , LOCATION_ENG, tz_a.city[i]
+                , OFFSET, s_offset
+                , -1);
+    }
+    return(store);
+}
+
 gboolean xfical_timezone_button_clicked(GtkButton *button, GtkWindow *parent
         , gchar **tz)
 {
 #undef P_N
 #define P_N "xfical_timezone_button_clicked: "
-#define MAX_AREA_LENGTH 20
+
+enum {
+    LOCATION,
+    LOCATION_ENG,
+    OFFSET,
+    N_COLUMNS
+};
+
+    GtkTreeStore *store;
+    GtkWidget *tree;
+    GtkCellRenderer *rend;
+    GtkTreeViewColumn *col;
+    GtkWidget *window;
+    GtkWidget *sw;
+    int result;
+    char *loc, *loc_eng;
+    GtkTreeSelection *sel;
+    GtkTreeModel     *model;
+    GtkTreeIter       iter;
+    gboolean    changed = FALSE;
+
+#ifdef ORAGE_DEBUG
+    orage_message(-100, P_N);
+#endif
+    /* enter data */
+    store = tz_button_create_store();
+
+    /* create view */
+    tree = gtk_tree_view_new_with_model(GTK_TREE_MODEL(store));
+    rend = gtk_cell_renderer_text_new();
+    col  = gtk_tree_view_column_new_with_attributes(_("Location")
+                , rend, "text", LOCATION, NULL);
+    gtk_tree_view_append_column(GTK_TREE_VIEW(tree), col);
+
+    rend = gtk_cell_renderer_text_new();
+    col  = gtk_tree_view_column_new_with_attributes(_("Location")
+                , rend, "text", LOCATION_ENG, NULL);
+    gtk_tree_view_append_column(GTK_TREE_VIEW(tree), col);
+    gtk_tree_view_column_set_visible(col, FALSE);
+
+    rend = gtk_cell_renderer_text_new();
+    col  = gtk_tree_view_column_new_with_attributes(_("GMT Offset")
+                , rend, "text", OFFSET, NULL);
+    gtk_tree_view_append_column(GTK_TREE_VIEW(tree), col);
+
+    /* show it */
+    window =  gtk_dialog_new_with_buttons(_("Pick timezone")
+            , parent
+            , GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT
+            , _("UTC"), 1
+            , _("floating"), 2
+            , _(g_par.local_timezone), 3
+            , GTK_STOCK_OK, GTK_RESPONSE_ACCEPT
+            , NULL);
+    sw = gtk_scrolled_window_new(NULL, NULL);
+    gtk_container_add(GTK_CONTAINER(sw), tree);
+    gtk_box_pack_start(GTK_BOX(GTK_DIALOG(window)->vbox), sw, TRUE, TRUE, 0);
+    /*
+    gtk_window_set_default_size(GTK_WINDOW(window), 300, 500);
+    */
+
+    gtk_widget_show_all(window);
+    do {
+        result = gtk_dialog_run(GTK_DIALOG(window));
+        switch (result) {
+            case GTK_RESPONSE_ACCEPT:
+                sel = gtk_tree_view_get_selection(GTK_TREE_VIEW(tree));
+                if (gtk_tree_selection_get_selected(sel, &model, &iter))
+                    if (gtk_tree_model_iter_has_child(model, &iter))
+                        result = 0;
+                    else {
+                        gtk_tree_model_get(model, &iter, LOCATION, &loc, -1);
+                        gtk_tree_model_get(model, &iter, LOCATION_ENG, &loc_eng
+                                , -1);                     }
+                else {
+                    loc = g_strdup(_(*tz));
+                    loc_eng = g_strdup(*tz);
+                }
+                break;
+            case 1:
+                loc = g_strdup(_("UTC"));
+                loc_eng = g_strdup("UTC");
+                break;
+            case 2:
+                loc = g_strdup(_("floating"));
+                loc_eng = g_strdup("floating");
+                break;
+            case 3:
+                loc = g_strdup(_(g_par.local_timezone));
+                loc_eng = g_strdup(g_par.local_timezone);
+                break;
+            default:
+                loc = g_strdup(_(*tz));
+                loc_eng = g_strdup(*tz);
+                break;
+        }
+    } while (result == 0);
+    if (g_ascii_strcasecmp(loc, (gchar *)gtk_button_get_label(button)) != 0)
+        changed = TRUE;
+    gtk_button_set_label(button, loc);
+
+    if (*tz)
+        g_free(*tz);
+    *tz = g_strdup(loc_eng);
+    g_free(loc);
+    g_free(loc_eng);
+    gtk_widget_destroy(window);
+    return(changed);
+}
+
+gboolean xfical_timezone_button_clicked2(GtkButton *button, GtkWindow *parent
+        , gchar **tz)
+{
+#undef P_N
+#define P_N "xfical_timezone_button_clicked: "
+#define MAX_AREA_LENGTH 100
 
 enum {
     LOCATION,
@@ -5034,17 +5281,23 @@ enum {
     /* enter data */
     store = gtk_tree_store_new(N_COLUMNS, G_TYPE_STRING, G_TYPE_STRING);
     strcpy(area_old, "S T a R T");
-    tz_a = xfical_get_timezones();
+    tz_a = get_ical_timezones();
+    g_print(P_N "number of timezones %d\n", tz_a.count);
     for (i=0; i < tz_a.count-2; i++) {
         /* first area */
         if (! g_str_has_prefix(tz_a.city[i], area_old)) {
-            for (j=0; tz_a.city[i][j] != '/' && j < MAX_AREA_LENGTH; j++) {
+            for (j=0; tz_a.city[i][j] && tz_a.city[i][j] != '/' && j < MAX_AREA_LENGTH; j++) {
                 area_old[j] = tz_a.city[i][j];
             }
-            if (j < MAX_AREA_LENGTH)
+            if (!tz_a.city[i][j]) { /* end of name = no are code */
+                strcpy(area_old, tz_a.city[i]);
+                orage_message(10, P_N "no / found in name %s", tz_a.city[i]);
+            }
+            else if (j < MAX_AREA_LENGTH)
                 area_old[j] = 0;
-            else
+            else {
                 orage_message(310, P_N "too long line in zones.tab %s", tz_a.city[i]);
+            }
 
             gtk_tree_store_append(store, &iter1, NULL);
             gtk_tree_store_set(store, &iter1
