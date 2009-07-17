@@ -1,31 +1,30 @@
-# Hungarian translations for orage package.
-# Copyright (C) 2003-2006 The Xfce development team.
-# This file is distributed under the same license as the orage package.
+# Hungarian translation of xfcalendar
+# Copyright 2003-2009. Free Software Foundation, Inc.
+# This file is distributed under the same license as the xfcalendar package.
 # SZERVÁC Attila <sas@321.hu>, 2006.
 # András Mohari <mayday@mailpoint.hu>, 2006.
-#
+# Gabor Kelemen <kelemeng at gnome dot hu>, 2009.
 msgid ""
 msgstr ""
-"Project-Id-Version: orage 4.3.90.2\n"
+"Project-Id-Version: xfcalendar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-11 09:18+0200\n"
-"PO-Revision-Date: 2008-12-30 08:39+0100\n"
-"Last-Translator: SZERVÁC Attila <sas@321.hu>\n"
-"Language-Team: Hungarian <translation-team-hu@lists.sourceforge.net>\n"
+"POT-Creation-Date: 2009-07-14 14:19+0200\n"
+"PO-Revision-Date: 2009-07-17 14:13+0200\n"
+"Last-Translator: Gabor Kelemen <kelemeng at gnome dot hu>\n"
+"Language-Team: Hungarian <gnome at gnome dot hu>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
-"X-Poedit-Country: HUNGARY\n"
-"X-Poedit-Language: Hungarian\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
 #: ../globaltime/globaltime.c:100
 msgid "Raising GlobalTime window..."
-msgstr "GlobalTime ablak megnyitása"
+msgstr "Globális idő ablak előtérbe hozása…"
 
 #: ../globaltime/globaltime.c:102
 msgid "GlobalTime window raise failed"
-msgstr "A GlobalTime ablak megnyitása nem sikerült"
+msgstr "A Globális idő ablak előtérbe hozása meghiúsult"
 
 #. ********** timezone tooltip **********
 #: ../globaltime/globaltime.c:278
@@ -35,16 +34,16 @@ msgid ""
 "click to modify clock"
 msgstr ""
 "%s\n"
-"kattints az óra módosításához"
+"kattintson az óra módosításához"
 
 #. trick to refresh clocks once
 #: ../globaltime/globaltime.c:358
 msgid "Ending time adjustment mode"
-msgstr "Az idő beállító mód befejezése"
+msgstr "Befejezőidő-módosítási mód"
 
 #: ../globaltime/globaltime.c:366
 msgid "Starting time adjustment mode"
-msgstr "Az idő beállító mód indítása"
+msgstr "Kezdőidő-módosítási mód"
 
 #: ../globaltime/globaltime.c:381
 msgid "Localtime"
@@ -55,22 +54,22 @@ msgid ""
 "button 1 to change preferences \n"
 "button 2 to adjust time of clocks"
 msgstr ""
-"gomb 1 beállítások módosítása \n"
-"gomb 2 az órák idejének beállítása"
+"1. gomb a beállítások módosításához\n"
+"2. gomb az órák idejének módosításához"
 
 #: ../globaltime/globaltime.c:472
 msgid "adjust to change hour"
-msgstr "óra módosítása"
+msgstr "Az óra megváltoztatása"
 
 #: ../globaltime/globaltime.c:487
 msgid "adjust to change minute"
-msgstr "perc módosítása"
+msgstr "A perc megváltoztatása"
 
 #: ../globaltime/gt_prefs.c:69 ../globaltime/gt_prefs.c:1077
 msgid "Standard"
-msgstr "Szabvány"
+msgstr "Szabványos"
 
-#: ../globaltime/gt_prefs.c:71 ../src/appointment.c:2780
+#: ../globaltime/gt_prefs.c:71 ../src/appointment.c:2782
 msgid "None"
 msgstr "Nincs"
 
@@ -80,7 +79,7 @@ msgstr "Egyenlő"
 
 #: ../globaltime/gt_prefs.c:86
 msgid "Vary"
-msgstr "Változik"
+msgstr "Változó"
 
 #: ../globaltime/gt_prefs.c:267 ../globaltime/gt_prefs.c:268
 msgid "NEW"
@@ -92,51 +91,51 @@ msgstr "ÚJ MÁSOLAT"
 
 #: ../globaltime/gt_prefs.c:312
 msgid "Not possible to delete the last clock."
-msgstr "Nem lehet az utolsó órát törölni."
+msgstr "Az utolsó óra törlése nem lehetséges."
 
 #: ../globaltime/gt_prefs.c:366 ../panel-plugin/oc_config.c:114
 msgid "Select timezone"
-msgstr "Válassz időzónát"
+msgstr "Válasszon időzónát"
 
 #: ../globaltime/gt_prefs.c:511
 msgid "update this clock"
-msgstr "ezen óra frissítése"
+msgstr "Ezen óra frissítése"
 
 #: ../globaltime/gt_prefs.c:516 ../globaltime/gt_prefs.c:1033
 msgid "add new empty clock"
-msgstr "üres óra hozzáadása"
+msgstr "Új üres óra hozzáadása"
 
 #: ../globaltime/gt_prefs.c:521
 msgid "add new clock using this clock as model"
-msgstr "új óra hozzáadása ez alapján"
+msgstr "Új óra hozzáadása ezen óra használatával modellként"
 
 #: ../globaltime/gt_prefs.c:526
 msgid "delete this clock"
-msgstr "ezen óra törlése"
+msgstr "Ezen óra törlése"
 
 #: ../globaltime/gt_prefs.c:534
 msgid "move this clock first"
-msgstr "mozgasd ezt legelőbbre"
+msgstr "Ezen óra mozgatása elsőnek"
 
 #: ../globaltime/gt_prefs.c:539
 msgid "move this clock left"
-msgstr "mozgasd ezt balra"
+msgstr "Ezen óra mozgatása balra"
 
 #: ../globaltime/gt_prefs.c:544
 msgid "move this clock right"
-msgstr "mozgasd ezt jobbra"
+msgstr "Ezen óra mozgatása jobbra"
 
 #: ../globaltime/gt_prefs.c:549
 msgid "move this clock last"
-msgstr "mozgasd ezt a legvégére"
+msgstr "Ezen óra mozgatása utolsónak"
 
 #: ../globaltime/gt_prefs.c:557
 msgid "set the timezone of this clock to be local timezone"
-msgstr "ezen óra időzónája legyen a helyi időzóna"
+msgstr "Ezen óra időzónájának beállítása a helyi időzónára"
 
 #: ../globaltime/gt_prefs.c:563 ../globaltime/gt_prefs.c:1041
 msgid "close window and exit"
-msgstr "ablak bezárása és kilépés"
+msgstr "Ablak bezárása és kilépés"
 
 #: ../globaltime/gt_prefs.c:586
 msgid "Modify Clock "
@@ -149,36 +148,36 @@ msgstr "Óra paraméterei"
 
 #: ../globaltime/gt_prefs.c:603
 msgid "Name of the clock:"
-msgstr "Óra neve:"
+msgstr "Az óra neve:"
 
 #: ../globaltime/gt_prefs.c:609
 msgid "enter name of clock"
-msgstr "Add meg az óra nevét"
+msgstr "Adja meg az óra nevét"
 
 #: ../globaltime/gt_prefs.c:612
 msgid "Timezone of the clock:"
-msgstr "Óra időzónája:"
+msgstr "Az óra időzónája:"
 
 #: ../globaltime/gt_prefs.c:618
 msgid ""
 "enter timezone of clock,\n"
 "(=any valid TZ value)"
 msgstr ""
-"óra időzóna beállítása,\n"
-"(=bármilyen valós TZ érték)"
+"Adja meg az óra időzónáját\n"
+"(bármely érvényes TZ érték)"
 
 #: ../globaltime/gt_prefs.c:642
 msgid "Text Formatting"
-msgstr "Szöveg formázás"
+msgstr "Szövegformázás"
 
 #. ------------------------background-------------------------
 #: ../globaltime/gt_prefs.c:648 ../globaltime/gt_prefs.c:855
 msgid "Background color:"
-msgstr "Háttér színe:"
+msgstr "Háttérszín:"
 
 #: ../globaltime/gt_prefs.c:655
 msgid "Click to change background colour for clock"
-msgstr "Kattints az óra háttér szín módosításához"
+msgstr "Az óra háttérszínének megváltoztatása"
 
 #: ../globaltime/gt_prefs.c:664 ../globaltime/gt_prefs.c:696
 #: ../globaltime/gt_prefs.c:728 ../globaltime/gt_prefs.c:761
@@ -186,91 +185,88 @@ msgstr "Kattints az óra háttér szín módosításához"
 #: ../globaltime/gt_prefs.c:871 ../globaltime/gt_prefs.c:904
 #: ../globaltime/gt_prefs.c:937 ../globaltime/gt_prefs.c:971
 msgid "Use default"
-msgstr "Alap használata"
+msgstr "Alapértelmezés használata"
 
 #: ../globaltime/gt_prefs.c:669 ../globaltime/gt_prefs.c:701
 #: ../globaltime/gt_prefs.c:734 ../globaltime/gt_prefs.c:767
 #: ../globaltime/gt_prefs.c:801 ../globaltime/gt_prefs.c:831
 msgid "Cross this to use default instead of selected value"
-msgstr "Jelöld be, hogy az alapértelmezett legyen a kiválasztott helyett"
+msgstr "A kiválasztott érték helyett a beállított használata"
 
 #. ------------------------foreground-------------------------
 #: ../globaltime/gt_prefs.c:680 ../globaltime/gt_prefs.c:888
 msgid "Foreground (=text) color:"
-msgstr "Előtér (=szöveg) színe:"
+msgstr "Előtérszín:"
 
 #: ../globaltime/gt_prefs.c:687
 msgid "Click to change foreground colour for clock"
-msgstr "Kattints az óra előtér színének módosításához"
+msgstr "Az óra előtérszínének megváltoztatása"
 
 #. ------------------------name font-------------------------
 #: ../globaltime/gt_prefs.c:712 ../globaltime/gt_prefs.c:921
 msgid "Font for name of clock:"
-msgstr "Óra nevének betűje:"
+msgstr "Az óra nevének betűkészlete:"
 
 #: ../globaltime/gt_prefs.c:719
 msgid "Click to change font for clock name"
-msgstr "Kattints az óranév betűjének módosításához"
+msgstr "Az óranév betűkészletének megváltoztatása"
 
 #. ------------------------time font-------------------------
 #: ../globaltime/gt_prefs.c:745 ../globaltime/gt_prefs.c:955
 msgid "Font for time of clock:"
-msgstr "Betű az óra idejéhez:"
+msgstr "Az óra idejének betűkészlete:"
 
 #: ../globaltime/gt_prefs.c:752
 msgid "Click to change font for clock time"
-msgstr "Kattints az idő betűjének módosításához"
+msgstr "Az óraidő betűkészletének megváltoztatása"
 
 #. ------------------------underline name--------------------
 #: ../globaltime/gt_prefs.c:779
 msgid "Underline name of clock:"
-msgstr "Az óra neve aláhúzással:"
+msgstr "Óra nevének aláhúzása:"
 
 #. ------------------------underline time--------------------
 #: ../globaltime/gt_prefs.c:809
 msgid "Underline time of clock:"
-msgstr "Az óra ideje aláhúzva:"
+msgstr "Óra idejének aláhúzása:"
 
 #: ../globaltime/gt_prefs.c:849
 msgid "Text Default Formatting"
-msgstr "Szöveg alap formázása"
+msgstr "Szöveg alapértelmezett formázása"
 
 #: ../globaltime/gt_prefs.c:862
 msgid "Click to change default background colour for clocks"
-msgstr "Kattints az órák alap háttér színének módosításához"
+msgstr "Az órák alapértelmezett háttérszínének módosítása"
 
 #: ../globaltime/gt_prefs.c:876 ../globaltime/gt_prefs.c:909
 msgid "Cross this to use system default instead of selected color"
-msgstr ""
-"Jelöld ki a rendszer alapértelmezettje használatához a választott szín "
-"helyett"
+msgstr "A rendszer alapértelmezésének használata a kiválasztott szín helyett"
 
 #: ../globaltime/gt_prefs.c:895
 msgid "Click to change default text colour for clocks"
-msgstr "Kattints az órák alap szöveg színének módosításához"
+msgstr "Az órák alapértelmezett szövegszínének módosítása"
 
 #: ../globaltime/gt_prefs.c:928
 msgid "Click to change default font for clock name"
-msgstr "Kattints az óra neve alap betűjének módosításához"
+msgstr "Az óranév alapértelmezett betűkészletének módosítása"
 
 #: ../globaltime/gt_prefs.c:943 ../globaltime/gt_prefs.c:977
 msgid "Cross this to use system default font instead of selected font"
-msgstr ""
-"Jelöld ki a rendszer alap betűje használatához a választott betű helyett"
+msgstr "A rendszer alapértelmezett betűkészletének használata a kiválasztott helyett"
 
 #: ../globaltime/gt_prefs.c:962
 msgid "Click to change default font for clock time"
-msgstr "Kattints az idő alap betűje módosításához"
+msgstr "Az óraidő alapértelmezett betűkészletének módosítása"
 
 #. ------------------------underline name--------------------
 #: ../globaltime/gt_prefs.c:989
 msgid "Underline for name of clock:"
-msgstr "Az óra nevének jelölése aláhúzással:"
+msgstr "Az óra nevének aláhúzása:"
 
 #. ------------------------underline time--------------------
 #: ../globaltime/gt_prefs.c:1003
 msgid "Underline for time of clock:"
-msgstr "Az óra idejének jelölése aláhúzással:"
+msgstr "Az óra idejének aláhúzása:"
 
 #: ../globaltime/gt_prefs.c:1026
 msgid "update preferences"
@@ -287,15 +283,15 @@ msgstr "Általános beállítások"
 
 #: ../globaltime/gt_prefs.c:1076
 msgid "Decorations:"
-msgstr "Díszek:"
+msgstr "Dekorációk:"
 
 #: ../globaltime/gt_prefs.c:1082
 msgid "Use normal decorations"
-msgstr "Normál díszítések használata"
+msgstr "Normál dekorációk használata"
 
 #: ../globaltime/gt_prefs.c:1093
 msgid "Do not show window decorations (borders)"
-msgstr "Ablakok díszítéseinek elrejtése (keretek)"
+msgstr "Ne jelenjenek meg az ablakdekorációk"
 
 #: ../globaltime/gt_prefs.c:1099
 msgid "Clock size:"
@@ -307,21 +303,21 @@ msgstr "Minden óra azonos méretű"
 
 #: ../globaltime/gt_prefs.c:1110
 msgid "Varying"
-msgstr "Változás"
+msgstr "Változó"
 
 #: ../globaltime/gt_prefs.c:1115
 msgid "Clock sizes vary"
-msgstr "Óra méretek eltérnek"
+msgstr "Az órák mérete változik"
 
 #: ../globaltime/gt_prefs.c:1121
 msgid "Local timezone:"
-msgstr "Helyi időzóna"
+msgstr "Helyi időzóna:"
 
 #: ../globaltime/gt_prefs.c:1128
 msgid ""
 "Enter local timezone. (it is used to show if time is on previous(-) or next "
 "date(+) by adding a +/- after the time)"
-msgstr "Adja meg a helyi időzónát. "
+msgstr "Adja meg a helyi időzónát (ha az idő az előző(-) vagy következő(+) dátumra esik, az idő után +/- jel jelenik meg)"
 
 #: ../panel-plugin/oc_config.c:199
 msgid "Appearance"
@@ -330,69 +326,68 @@ msgstr "Megjelenés"
 #. show frame
 #: ../panel-plugin/oc_config.c:210
 msgid "Show _frame"
-msgstr "Keret mutatása"
+msgstr "Ke_ret megjelenítése"
 
 #. foreground color
 #: ../panel-plugin/oc_config.c:220
 msgid "set foreground _color:"
-msgstr "_Előtérszín:"
+msgstr "_Előtérszín beállítása:"
 
 #. background color
 #: ../panel-plugin/oc_config.c:234
 msgid "set _background color:"
-msgstr "_Háttérszín:"
+msgstr "_Háttérszín beállítása:"
 
 #. clock size (=vbox size): height and width
 #: ../panel-plugin/oc_config.c:248
 msgid "set _height:"
-msgstr "_Magasság:"
+msgstr "_Magasság beállítása:"
 
 #: ../panel-plugin/oc_config.c:260
 msgid "set _width:"
-msgstr "_Szélesség:"
+msgstr "S_zélesség beállítása:"
 
 #: ../panel-plugin/oc_config.c:281
 msgid "Clock Options"
-msgstr "Az óra beállításai"
+msgstr "Óra beállításai"
 
 #. timezone
 #: ../panel-plugin/oc_config.c:292
 msgid "set timezone to:"
-msgstr "Időzóna:"
+msgstr "Időzóna beálítása:"
 
 #: ../panel-plugin/oc_config.c:301
 msgid "Set any valid timezone (=TZ) value or pick one from the list."
-msgstr ""
-"Állíts be egy érvényes időzóna (=TZ) értéket vagy válassz egyet a listából."
+msgstr "Állítson be egy érvényes időzónát vagy válasszon a listából."
 
 #. line 1
 #: ../panel-plugin/oc_config.c:310
 msgid "show line _1:"
-msgstr "_1. sor mutatása:"
+msgstr "_1. sor megjelenítése:"
 
 #: ../panel-plugin/oc_config.c:321
 msgid "Enter any valid strftime function parameter."
-msgstr "Adj meg az strftime függvény által használható paramétereket."
+msgstr "Adjon meg érvényes srtftime függvényparamétereket."
 
 #. line 2
 #: ../panel-plugin/oc_config.c:337
 msgid "show line _2:"
-msgstr "_2. sor mutatása:"
+msgstr "_2. sor megjelenítése:"
 
 #. line 3
 #: ../panel-plugin/oc_config.c:359
 msgid "show line _3:"
-msgstr "_3. sor mutatása:"
+msgstr "_3. sor megjelenítése:"
 
 #. Tooltip hint
 #: ../panel-plugin/oc_config.c:381
 msgid "Tooltip:"
-msgstr "Eszköztipp:"
+msgstr "Buboréksúgó:"
 
 #. special timing for SUSPEND/HIBERNATE
 #: ../panel-plugin/oc_config.c:391
 msgid "fix time after suspend/hibernate"
-msgstr ""
+msgstr "Idő javítása felfüggesztés/hibernálás után"
 
 #: ../panel-plugin/oc_config.c:395
 msgid ""
@@ -401,7 +396,7 @@ msgid ""
 "circumstances it is possible that Orageclock shows time inaccurately unless "
 "you have this selected. (Selecting this prevents cpu and interrupt saving "
 "features from working.)"
-msgstr ""
+msgstr "Erre csak akkor van szükség, ha rövid idejű (5 óránál rövidebb) felfüggesztést vagy hibernálást végez és a látható idő nem tartalmazza a másodperceket. Ebben az esetben előfordulhat, hogy az Orage óra az időt helytelenül jeleníti meg, ha ez nincs kiválasztva. Ez a beállítás megakadályozza a processzor- és megszakításmentési szolgáltatások működését."
 
 #: ../panel-plugin/oc_config.c:407
 msgid ""
@@ -414,13 +409,13 @@ msgid ""
 "\t%H = hours \t\t\t\t%M = minute\n"
 "\t%X = local time\t\t\t%x = local date"
 msgstr ""
-"E program az strftime függvénytől kapja az időt.\n"
-"Bármilyen érvényes kódot használhatsz a kedvenc formátumodhoz.\n"
-"Pár szokásos kód:\n"
-"\t%A = a hét napja\t\t\t%B = hónap\n"
-"\t%c = dátum és idő\t\t%R = óra és perc\n"
-"\t%V = a hét száma\t\t%Z = használt időzóna\n"
-"\t%H = óra \t\t\t\t%M = perc\n"
+"Ez a program az strftime függvényt használja az idő lekérésére.\n"
+"Tetszőleges érvényes kód használható, az idő kívánt formátumban való megjelenítéséhez.\n"
+"Néhány gyakori kód:\n"
+"\t%A = hétköznap\t\t\t%B = hónap\n"
+"\t%c = dátum és idő\t\t\t%R = óra és perc\n"
+"\t%V = hét száma\t\t%Z = használt időzóna\n"
+"\t%H = órák \t\t\t\t%M = perc\n"
 "\t%X = helyi idő\t\t\t%x = helyi dátum"
 
 #: ../panel-plugin/oc_config.c:430
@@ -440,22 +435,22 @@ msgstr "Orage óra"
 #. * %Y  : four digit year
 #. * %V  : ISO week number
 #.
-#: ../panel-plugin/orageclock.c:596
+#: ../panel-plugin/orageclock.c:599
 msgid "%A %d %B %Y/%V"
-msgstr "%Y./%V., %B %d., %A"
+msgstr "%Y/%V, %B %d., %A"
 
 #: ../plugin/xfcalendar_plugin.c:43
 msgid "Failed to launch 'orage -p'"
-msgstr "'orage -p' indítása nem sikerült"
+msgstr "Az „orage -p” indítása meghiúsult"
 
 #. the button label in the xfce-mcs-manager dialog
 #: ../plugin/xfcalendar_plugin.c:61
 msgid "Orage - Calendar"
-msgstr "Orage - Naptár"
+msgstr "Orage – Naptár"
 
 #: ../src/about-xfcalendar.c:42
 msgid "Manage your time with Xfce4"
-msgstr "Oszd be az időd az Xfce4-gyel"
+msgstr "Ossza be idejét az Xfce4-gyel"
 
 #: ../src/about-xfcalendar.c:52
 msgid "Maintainer"
@@ -463,18 +458,18 @@ msgstr "Karbantartó"
 
 #: ../src/about-xfcalendar.c:57
 msgid "Original creator, retired maintainer"
-msgstr "Eredeti alkotó, nyugalmazott karbantartó"
+msgstr "Eredeti készítő, visszavonult karbantartó"
 
 #: ../src/about-xfcalendar.c:62
 msgid "Contributor"
-msgstr "Közreműködő"
+msgstr "Hozzájáruló"
 
 #. if (gtk_toggle_button_get_active(
 #. GTK_TOGGLE_BUTTON(apptw->Type_journal_rb)))
 #. end time
-#: ../src/appointment.c:348 ../src/appointment.c:384 ../src/appointment.c:2330
+#: ../src/appointment.c:348 ../src/appointment.c:384 ../src/appointment.c:2332
 msgid "End"
-msgstr "Vége"
+msgstr "Befejezés"
 
 #: ../src/appointment.c:366
 msgid "Due"
@@ -488,7 +483,7 @@ msgstr "Orage"
 #. Create file chooser
 #: ../src/appointment.c:651 ../src/interface.c:277 ../src/parameters.c:384
 msgid "Select a file..."
-msgstr "Válassz fájlt..."
+msgstr "Válasszon fájlt…"
 
 #: ../src/appointment.c:659
 msgid "Sound Files"
@@ -498,507 +493,503 @@ msgstr "Hangfájlok"
 msgid "All Files"
 msgstr "Minden fájl"
 
-#: ../src/appointment.c:717 ../src/appointment.c:1145 ../src/event-list.c:897
+#: ../src/appointment.c:717 ../src/appointment.c:1147 ../src/event-list.c:897
 msgid "Warning"
 msgstr "Figyelmeztetés"
 
 #: ../src/appointment.c:719
 msgid "The appointment information has been modified."
-msgstr "A találkozó adatai módosultak."
+msgstr "Az értekezlet információi megváltoztak."
 
-#: ../src/appointment.c:720 ../src/appointment.c:1148 ../src/event-list.c:900
+#: ../src/appointment.c:720 ../src/appointment.c:1150 ../src/event-list.c:900
 msgid "Do you want to continue?"
-msgstr "Folytatod?"
+msgstr "Folytatni akarja?"
 
-#: ../src/appointment.c:750
+#: ../src/appointment.c:752
 msgid "Error"
 msgstr "Hiba"
 
-#: ../src/appointment.c:752
+#: ../src/appointment.c:754
 msgid "The end of this appointment is earlier than the beginning."
-msgstr "A találkozó vége korábban van a kezdeténél."
+msgstr "Az értekezlet vége megelőzi a kezdetét."
 
 #. cat_groups[0] is special [NULL] entry always
-#: ../src/appointment.c:1007 ../src/appointment.c:1547
+#: ../src/appointment.c:1009 ../src/appointment.c:1549
 msgid "Not set"
 msgstr "Nincs beállítva"
 
-#: ../src/appointment.c:1147
+#: ../src/appointment.c:1149
 msgid "This appointment will be permanently removed."
-msgstr "Végleg törölve lesz ez a találkozó."
+msgstr "Ez az értekezlet véglegesen el lesz távolítva."
 
-#: ../src/appointment.c:1421 ../src/event-list.c:726
+#: ../src/appointment.c:1423 ../src/event-list.c:726
 msgid "Info"
-msgstr "Infó"
+msgstr "Információk"
 
-#: ../src/appointment.c:1423
+#: ../src/appointment.c:1425
 msgid "This appointment does not exist."
-msgstr "Ez a találkozó nem létezik"
+msgstr "Ez az értekezlet nem létezik."
 
-#: ../src/appointment.c:1424
+#: ../src/appointment.c:1426
 msgid "It was probably removed, please refresh your screen."
-msgstr "Valószínűleg eltávolításra került, frissítsd a képernyőt."
+msgstr "Valószínűleg eltávolították, frissítse a képernyőt."
 
-#: ../src/appointment.c:1729
+#: ../src/appointment.c:1731
 msgid "Current categories"
-msgstr "Jelen kategória"
+msgstr "Meglévő kategóriák"
 
-#: ../src/appointment.c:1744
+#: ../src/appointment.c:1746
 msgid "Add new category with color"
 msgstr "Új kategória hozzáadása színnel"
 
-#: ../src/appointment.c:1748
+#: ../src/appointment.c:1750
 msgid "Category:"
 msgstr "Kategória:"
 
-#: ../src/appointment.c:1779
+#: ../src/appointment.c:1781
 msgid "Colors of categories - Orage"
-msgstr "A kategóriák színei - Orage"
+msgstr "Kategóriák színei – Orage"
 
-#: ../src/appointment.c:1940
+#: ../src/appointment.c:1942
 msgid "New appointment - Orage"
-msgstr "Új találkozó - Orage"
+msgstr "Új értekezlet – Orage"
 
-#: ../src/appointment.c:1964
+#: ../src/appointment.c:1966
 msgid " *** COPY ***"
-msgstr "*** MÁSOLAT ***"
+msgstr " *** MÁSOLAT ***"
 
 #. File menu stuff
 #. ********* File menu *********
 #. File menu
-#: ../src/appointment.c:2074 ../src/day-view.c:254 ../src/event-list.c:994
+#: ../src/appointment.c:2076 ../src/day-view.c:254 ../src/event-list.c:994
 #: ../src/interface.c:762 ../src/mainbox.c:261
 msgid "_File"
 msgstr "_Fájl"
 
-#: ../src/appointment.c:2080
+#: ../src/appointment.c:2082
 msgid "Sav_e and close"
-msgstr "M_entés és bezárás"
+msgstr "_Mentés és bezárás"
 
-#: ../src/appointment.c:2093 ../src/event-list.c:1000
+#: ../src/appointment.c:2095 ../src/event-list.c:1000
 msgid "D_uplicate"
-msgstr "Megkettőzés"
+msgstr "Kettő_zés"
 
-#: ../src/appointment.c:2227
+#: ../src/appointment.c:2229
 msgid "Save"
 msgstr "Mentés"
 
-#: ../src/appointment.c:2229
+#: ../src/appointment.c:2231
 msgid "Save and close"
 msgstr "Mentés és bezárás"
 
-#: ../src/appointment.c:2234
+#: ../src/appointment.c:2236
 msgid "Revert"
-msgstr "Visszavonás"
+msgstr "Visszaállítás"
 
-#: ../src/appointment.c:2236 ../src/event-list.c:1085
+#: ../src/appointment.c:2238 ../src/event-list.c:1085
 msgid "Duplicate"
-msgstr "Megkettőzés"
+msgstr "Kettőzés"
 
-#: ../src/appointment.c:2241 ../src/event-list.c:1087
+#: ../src/appointment.c:2243 ../src/event-list.c:1087
 msgid "Delete"
 msgstr "Törlés"
 
-#: ../src/appointment.c:2259
+#: ../src/appointment.c:2261
 msgid "Free"
 msgstr "Szabad"
 
-#: ../src/appointment.c:2259
+#: ../src/appointment.c:2261
 msgid "Busy"
 msgstr "Elfoglalt"
 
-#: ../src/appointment.c:2263
+#: ../src/appointment.c:2265
 msgid "General"
 msgstr "Általános"
 
 #. type
-#: ../src/appointment.c:2269
+#: ../src/appointment.c:2271
 msgid "Type "
 msgstr "Típus"
 
-#: ../src/appointment.c:2271 ../src/event-list.c:1139
+#: ../src/appointment.c:2273 ../src/event-list.c:1139
 msgid "Event"
 msgstr "Esemény"
 
-#: ../src/appointment.c:2274
+#: ../src/appointment.c:2276
 msgid ""
 "Event that will happen sometime. For example:\n"
 "Meeting or birthday or TV show."
 msgstr ""
-"Valami esemény ami következik majd. Például:\n"
-"Találkozó vagy születésnap vagy TV műsor."
+"Adott időpontban bekövetkező esemény. Például:\n"
+"Találkozó vagy születésnap vagy TV-műsor."
 
-#: ../src/appointment.c:2277 ../src/event-list.c:1160
+#: ../src/appointment.c:2279 ../src/event-list.c:1160
 msgid "Todo"
-msgstr "Teendők"
+msgstr "Teendő"
 
-#: ../src/appointment.c:2280
+#: ../src/appointment.c:2282
 msgid ""
 "Something that you should do sometime. For example:\n"
 "Wash your car or test new version of Orage."
 msgstr ""
-"Valami amit valamikor el kell végezned. Például:\n"
-"Mosd le a kocsit vagy próbáld ki az Orage új verzióját."
+"Adott időpontban elvégzendő tevékenység. Például:\n"
+"A kocsi lemosása, vagy az Orage új verziójának tesztelése."
 
-#: ../src/appointment.c:2283 ../src/event-list.c:1175
+#: ../src/appointment.c:2285 ../src/event-list.c:1175
 msgid "Journal"
-msgstr "Naplókönyv"
+msgstr "Napló"
 
-#: ../src/appointment.c:2287
+#: ../src/appointment.c:2289
 msgid ""
 "Make a note that something happened. For example:\n"
 "Remark that your mother called or first snow came."
 msgstr ""
-"Valamilyen történés rögzítése. Például:\n"
-"Hívott az édesanyád vagy idén először esett a hó."
+"Feljegyzés esemény bekövetkezéséről. Például:\n"
+"Valaki felhívta vagy leesett az első hó."
 
 #. title
-#: ../src/appointment.c:2294
+#: ../src/appointment.c:2296
 msgid "Title "
 msgstr "Cím"
 
 #. location
-#: ../src/appointment.c:2301 ../src/ical-code.c:4496 ../src/ical-code.c:4501
+#: ../src/appointment.c:2303 ../src/ical-code.c:4597 ../src/ical-code.c:4602
 msgid "Location"
 msgstr "Hely"
 
-#: ../src/appointment.c:2309
+#: ../src/appointment.c:2311
 msgid "All day event"
 msgstr "Egész napos esemény"
 
 #. start time
-#: ../src/appointment.c:2315 ../src/day-view.c:681
+#: ../src/appointment.c:2317 ../src/day-view.c:703
 msgid "Start"
-msgstr "Kezdete"
+msgstr "Kezdés"
 
-#: ../src/appointment.c:2335
+#: ../src/appointment.c:2337
 msgid "Set      "
 msgstr "Beállítva"
 
-#: ../src/appointment.c:2356
+#: ../src/appointment.c:2358
 msgid "Duration"
-msgstr "Hossza"
+msgstr "Időtartam"
 
-#: ../src/appointment.c:2360 ../src/appointment.c:2532 ../src/day-view.c:702
+#: ../src/appointment.c:2362 ../src/appointment.c:2534 ../src/day-view.c:724
 msgid "days"
 msgstr "nap"
 
-#: ../src/appointment.c:2362 ../src/appointment.c:2534
+#: ../src/appointment.c:2364 ../src/appointment.c:2536
 msgid "hours"
 msgstr "óra"
 
-#: ../src/appointment.c:2364 ../src/appointment.c:2536
+#: ../src/appointment.c:2366 ../src/appointment.c:2538
 msgid "mins"
 msgstr "perc"
 
 #. Availability (only for EVENT)
-#: ../src/appointment.c:2376
+#: ../src/appointment.c:2378
 msgid "Availability"
 msgstr "Elérhetőség"
 
 #. completed (only for TODO)
-#: ../src/appointment.c:2384
+#: ../src/appointment.c:2386
 msgid "Completed"
 msgstr "Befejezve"
 
-#: ../src/appointment.c:2387
+#: ../src/appointment.c:2389
 msgid "Done"
 msgstr "Kész"
 
 #. categories
-#: ../src/appointment.c:2408
+#: ../src/appointment.c:2410
 msgid "Categories"
 msgstr "Kategóriák"
 
-#: ../src/appointment.c:2420
+#: ../src/appointment.c:2422
 msgid ""
 "This is special category, which can be used to color this appointment in "
 "list views."
-msgstr ""
-"Ez egy különleges kategória, amellyel kiszínezheted ezt az eseményt a lista "
-"nézeteknél."
+msgstr "Ez egy speciális kategória, az értekezlet színezésére használható a listanézetekben."
 
-#: ../src/appointment.c:2425
+#: ../src/appointment.c:2427
 msgid "update colors for categories."
-msgstr "Kategória színek frissítése."
+msgstr "Kategóriák színeinek frissítése."
 
 #. note
-#: ../src/appointment.c:2431
+#: ../src/appointment.c:2433
 msgid "Note"
 msgstr "Megjegyzés"
 
-#: ../src/appointment.c:2450
+#: ../src/appointment.c:2452
 msgid ""
 "<D> inserts current date in local date format.\n"
 "<T> inserts time and\n"
 "<DT> inserts date and time."
 msgstr ""
-"<D> Beilleszti a mai dátumota helyi időformátumnak megfelelően.\n"
-"<T> beilleszti az időt\n"
-"<DT> beilleszti az időt és dátumot."
+"<D> aktuális dátum beszúrása helyi dátumformátumban.\n"
+"<T> idő beszúrása és\n"
+"<DT> dátum és idő beszúrása."
 
-#: ../src/appointment.c:2517
+#: ../src/appointment.c:2519
 msgid "Before Start"
 msgstr "Kezdés előtt"
 
-#: ../src/appointment.c:2517
+#: ../src/appointment.c:2519
 msgid "Before End"
 msgstr "Befejezés előtt"
 
-#: ../src/appointment.c:2518
+#: ../src/appointment.c:2520
 msgid "After Start"
-msgstr "Kezdés"
+msgstr "Kezdés után"
 
-#: ../src/appointment.c:2518
+#: ../src/appointment.c:2520
 msgid "After End"
 msgstr "Befejezés után"
 
-#: ../src/appointment.c:2523
+#: ../src/appointment.c:2525
 msgid "Alarm"
-msgstr "Riasztás"
+msgstr "Figyelmeztetés"
 
 #. **** ALARM TIME ****
-#: ../src/appointment.c:2529
+#: ../src/appointment.c:2531
 msgid "Alarm time"
-msgstr "Riasztás ideje"
+msgstr "Figyelmeztetés ideje"
 
-#: ../src/appointment.c:2553
+#: ../src/appointment.c:2555
 msgid ""
 "Often you want to get alarm:\n"
 " 1) before Event start\n"
 " 2) before Todo end\n"
 " 3) after Todo start"
 msgstr ""
-"Gyakran szükséged lehet riasztásra:\n"
-"1) az esemény előtt\n"
-"2) a tennivaló befejezése előtt\n"
-"3) a tennivaló kezdete után"
-
-#: ../src/appointment.c:2558
-msgid "Persistent alarm"
-msgstr "Állandó riasztás"
+"Gyakran szükség lehet figyelmeztetésre:\n"
+"– az esemény kezdete előtt\n"
+"– teendő befejezése előtt\n"
+"– teendő kezdete után"
 
 #: ../src/appointment.c:2560
+msgid "Persistent alarm"
+msgstr "Folyamatos figyelmeztetés"
+
+#: ../src/appointment.c:2562
 msgid ""
 "Select this if you want Orage to remind you even if it has not been active "
 "when the alarm happened."
-msgstr ""
-"Válaszd ezt ha szeretnéd, hogy az Orage emlékeztessen akkor is ha nem futott "
-"a riasztáskor."
+msgstr "Az Orage akkor is emlékeztessen, ha nem volt aktív a figyelmeztetés bekövetkeztekor."
 
 #. **** Audio Alarm ****
-#: ../src/appointment.c:2569
+#: ../src/appointment.c:2571
 msgid "Sound"
 msgstr "Hang"
 
-#: ../src/appointment.c:2573 ../src/appointment.c:2694
+#: ../src/appointment.c:2575 ../src/appointment.c:2696
 msgid "Use"
-msgstr "Használ"
+msgstr "Használandó:"
 
-#: ../src/appointment.c:2575
+#: ../src/appointment.c:2577
 msgid "Select this if you want audible alarm"
-msgstr "Válaszd ezt ha hallható riasztást szeretnél"
+msgstr "Hallható hang bekapcsolása"
 
-#: ../src/appointment.c:2592
+#: ../src/appointment.c:2594
 msgid "Repeat alarm sound"
-msgstr "Hangriasztás ismétlése"
+msgstr "Figyelmeztető hang ismétlése"
 
-#: ../src/appointment.c:2608 ../src/appointment.c:2852
+#: ../src/appointment.c:2610 ../src/appointment.c:2854
 msgid "times"
 msgstr "alkalommal"
 
-#: ../src/appointment.c:2624
+#: ../src/appointment.c:2626
 msgid "sec interval"
-msgstr "mp intervallum"
+msgstr "mp időközzel"
 
 #. **** Display Alarm ****
-#: ../src/appointment.c:2634
+#: ../src/appointment.c:2636
 msgid "Visual"
-msgstr "Látható"
-
-#: ../src/appointment.c:2638
-msgid "Use Orage window"
-msgstr "Használd az Orage ablakot"
+msgstr "Vizuális"
 
 #: ../src/appointment.c:2640
-msgid "Select this if you want Orage window alarm"
-msgstr "Válaszd ezt ha az Orage ablakban legyen a riasztás"
+msgid "Use Orage window"
+msgstr "Orage ablak használata"
 
-#: ../src/appointment.c:2652
-msgid "Use notification"
-msgstr "Emlékeztetőt használ"
+#: ../src/appointment.c:2642
+msgid "Select this if you want Orage window alarm"
+msgstr "Az Orage ablak használata figyelmeztetésre"
 
 #: ../src/appointment.c:2654
+msgid "Use notification"
+msgstr "Értesítés használata"
+
+#: ../src/appointment.c:2656
 msgid "Select this if you want notification alarm"
-msgstr "Válaszd ezt ha emlékeztetőt szeretnél"
+msgstr "Értesítés ablak használata a figyelmeztetésre"
 
-#: ../src/appointment.c:2660
+#: ../src/appointment.c:2662
 msgid "Set timeout"
-msgstr "Időtúllépés"
+msgstr "Időtúllépés beállítása"
 
-#: ../src/appointment.c:2663
+#: ../src/appointment.c:2665
 msgid "Select this if you want notification to expire automatically"
-msgstr "Válaszd ezt a szeretnéd, hogy az emlékeztetés automatikusan lejárjon"
+msgstr "Az értesítés automatikusan járjon le"
 
-#: ../src/appointment.c:2674
+#: ../src/appointment.c:2676
 msgid "0 = system default expiration time"
 msgstr "0 = a rendszer alapértelmezett lejárati ideje"
 
-#: ../src/appointment.c:2679
+#: ../src/appointment.c:2681
 msgid "seconds"
 msgstr "másodperc"
 
 #. **** Procedure Alarm ****
-#: ../src/appointment.c:2690
+#: ../src/appointment.c:2692
 msgid "Procedure"
-msgstr "Művelet"
+msgstr "Eljárás"
 
-#: ../src/appointment.c:2696
+#: ../src/appointment.c:2698
 msgid "Select this if you want procedure or script alarm"
-msgstr "Válaszd ezt ha szeretnél valami eljárást vagy szkriptet is "
+msgstr "Eljárás vagy figyelmeztető parancsfájl használata"
 
-#: ../src/appointment.c:2702
+#: ../src/appointment.c:2704
 msgid ""
 "You must enter all escape etc characters yourself.\n"
 " This string is just given to shell to process"
 msgstr ""
-"Magadnak kell beírnod az escape karaktereket.\n"
-"Ez a sztring módosítatlanul kerül a parancsértelmezőhöz."
+"Minden escape, stb. karaktert Önnek kell megadnia.\n"
+"Ez a karakterlánc átadásra kerül feldolgozásra a parancsértelmezőnek."
 
 #. **** Default Alarm Settings ****
-#: ../src/appointment.c:2711
+#: ../src/appointment.c:2713
 msgid "Default alarm"
-msgstr "Alapértelmezett riasztás"
+msgstr "Alapértelmezett figyelmeztetés"
 
-#: ../src/appointment.c:2718
+#: ../src/appointment.c:2720
 msgid "Store current settings as default alarm"
-msgstr "Tárolja a jelenlegi beállításokat alapértelmezett riasztásként"
+msgstr "Aktuális beállítások mentése alapértelmezett figyelmeztetésként"
 
-#: ../src/appointment.c:2723
+#: ../src/appointment.c:2725
 msgid "Set current settings from default alarm"
-msgstr "A mostani beállításokat az alapértelmezett riasztásból vegye."
+msgstr "Aktuális beállítások betöltése az alapértelmezett figyelmeztetésből"
 
-#: ../src/appointment.c:2780
+#: ../src/appointment.c:2782
 msgid "Daily"
 msgstr "Naponta"
 
-#: ../src/appointment.c:2780
+#: ../src/appointment.c:2782
 msgid "Weekly"
 msgstr "Hetente"
 
-#: ../src/appointment.c:2780
+#: ../src/appointment.c:2782
 msgid "Monthly"
 msgstr "Havonta"
 
-#: ../src/appointment.c:2780
+#: ../src/appointment.c:2782
 msgid "Yearly"
 msgstr "Évente"
 
-#: ../src/appointment.c:2782
+#: ../src/appointment.c:2784
 msgid "Mon"
 msgstr "Hé"
 
-#: ../src/appointment.c:2782
+#: ../src/appointment.c:2784
 msgid "Tue"
 msgstr "Ke"
 
-#: ../src/appointment.c:2782
+#: ../src/appointment.c:2784
 msgid "Wed"
 msgstr "Sze"
 
-#: ../src/appointment.c:2782
+#: ../src/appointment.c:2784
 msgid "Thu"
 msgstr "Csü"
 
-#: ../src/appointment.c:2782
+#: ../src/appointment.c:2784
 msgid "Fri"
 msgstr "Pé"
 
-#: ../src/appointment.c:2782
+#: ../src/appointment.c:2784
 msgid "Sat"
 msgstr "Szo"
 
-#: ../src/appointment.c:2782
+#: ../src/appointment.c:2784
 msgid "Sun"
-msgstr "Va"
+msgstr "Vas"
 
-#: ../src/appointment.c:2786
+#: ../src/appointment.c:2788
 msgid "Recurrence"
 msgstr "Ismétlődés"
 
-#: ../src/appointment.c:2791
+#: ../src/appointment.c:2793
 msgid "Complexity"
 msgstr "Összetettség"
 
-#: ../src/appointment.c:2794
+#: ../src/appointment.c:2796
 msgid "Basic"
 msgstr "Alap"
 
-#: ../src/appointment.c:2800
+#: ../src/appointment.c:2802
 msgid "Advanced"
-msgstr "Haladó"
-
-#: ../src/appointment.c:2807
-msgid "Use this if you want regular repeating event"
-msgstr "Használd ezt ha egy általánosan ismétlődő eseményt szeretnél"
+msgstr "Speciális"
 
 #: ../src/appointment.c:2809
+msgid "Use this if you want regular repeating event"
+msgstr "Egyszerű ismétlődő esemény"
+
+#: ../src/appointment.c:2811
 msgid ""
 "Use this if you need complex times like:\n"
 " Every Saturday and Sunday or \n"
 " First Tuesday every month"
 msgstr ""
-"Használd ezt ha összetettebb időpontot szeretnél mint például:\n"
-"Minden szombat és vasárnap vagy \n"
-"minden hónap első keddje"
+"Összetett időpontok, például:\n"
+" Minden szombat és vasárnap\n"
+" Minden hónap első keddje"
 
-#: ../src/appointment.c:2812
+#: ../src/appointment.c:2814
 msgid "Frequency"
 msgstr "Gyakoriság"
 
-#: ../src/appointment.c:2818
+#: ../src/appointment.c:2820
 msgid "Each"
-msgstr "Egyenként"
+msgstr "Minden"
 
-#: ../src/appointment.c:2825
+#: ../src/appointment.c:2827
 msgid "occurrence"
-msgstr "Előfordulás"
+msgstr "alkalommal"
 
-#: ../src/appointment.c:2829
+#: ../src/appointment.c:2831
 msgid ""
 "Limit frequency to certain interval.\n"
 " For example: Every third day:\n"
 " Frequency = Daily and Interval = 3"
 msgstr ""
-"Ismétlődés korlátozása bizonyos időtartamra.\n"
-"Például: Minden harmadik napon:\n"
-"Ismétlődés = Napi és Időköz = 3"
-
-#: ../src/appointment.c:2835
-msgid "Limit"
-msgstr "Limit"
+"Gyakoriság korlátozása bizonyos időközre.\n"
+" Például: minden harmadik nap:\n"
+" Gyakoriság = naponta, intervallum = 3"
 
 #: ../src/appointment.c:2837
+msgid "Limit"
+msgstr "Korlátozás"
+
+#: ../src/appointment.c:2839
 msgid "Repeat forever"
-msgstr "Ismétlés örökké"
+msgstr "Ismétlés végtelenségig"
 
-#: ../src/appointment.c:2844
+#: ../src/appointment.c:2846
 msgid "Repeat "
-msgstr "Ismétlés"
+msgstr "Ismétlés "
 
-#: ../src/appointment.c:2861
+#: ../src/appointment.c:2863
 msgid "Repeat until "
 msgstr "Ismétlés eddig: "
 
-#: ../src/appointment.c:2871
+#: ../src/appointment.c:2873
 msgid "Weekdays"
 msgstr "Hét napjai"
 
-#: ../src/appointment.c:2883
+#: ../src/appointment.c:2885
 msgid "Which day"
-msgstr "Melyik napon"
+msgstr "Mely napon"
 
-#: ../src/appointment.c:2891
+#: ../src/appointment.c:2893
 msgid ""
 "Specify which weekday for monthly and yearly events.\n"
 " For example:\n"
@@ -1007,12 +998,12 @@ msgid ""
 "\tWeekdays = check only Wednesday,\n"
 "\tWhich day = select 2 from the number below Wednesday"
 msgstr ""
-"Add meg a hét napját a havi és éves eseményekhez.\n"
-"Például:\n"
-"Minden hónap második szerdája:\n"
-"\tGyakoriság = Havi,\n"
-"\tHét napjai = csak a szerdát jelöld be,\n"
-"\tmelyik nap = válasszd a 2-t a szerda alatti számokból"
+"Adja meg a hét napjait havi és éves eseményekhez.\n"
+" Például:\n"
+" Minden hónap második szerdája:\n"
+"\tGyakoriság = Havonta\n"
+"\tHét napjai = csak Sze\n"
+"\tMely napon = A Sze alatti mezőben adja meg a 2 értéket"
 
 #. ********* View menu *********
 #. View menu
@@ -1055,13 +1046,13 @@ msgstr "Bezárás"
 msgid "Unknown"
 msgstr "Ismeretlen"
 
-#: ../src/day-view.c:694 ../src/parameters.c:663
+#: ../src/day-view.c:716 ../src/parameters.c:663
 msgid "Show"
-msgstr "Látható"
+msgstr "Megjelenítés"
 
-#: ../src/day-view.c:931
+#: ../src/day-view.c:953
 msgid "Orage - day view"
-msgstr "Orage - napi nézet"
+msgstr "Orage – napi nézet"
 
 #. date only appointment
 #: ../src/event-list.c:190
@@ -1074,35 +1065,35 @@ msgstr "Idő"
 
 #: ../src/event-list.c:728
 msgid "No rows have been selected."
-msgstr "Nincs sor kiválasztva."
+msgstr "Nincsenek kiválasztva sorok."
 
 #: ../src/event-list.c:729
 msgid "Click a row to select it and after that you can copy it."
-msgstr "A sor kiválasztásához kattints rá, majd utána másolhatod."
+msgstr "Kattintson egy sorra annak kiválasztásához, ami után másolhatja azt."
 
 #: ../src/event-list.c:899
 msgid ""
 "You will permanently remove all\n"
 "selected appointments."
 msgstr ""
-"Véglegesen eltávolítod az összes\n"
-"kijelölt találkozókat."
+"Minden kijelölt értekezletet\n"
+"véglegesen törölni fog."
 
 #: ../src/event-list.c:1103
 msgid "Find"
-msgstr "Talál"
+msgstr "Keresés"
 
 #: ../src/event-list.c:1110
 msgid "Dayview"
-msgstr "Napnézet"
+msgstr "Napi nézet"
 
 #: ../src/event-list.c:1143
 msgid "Extra days to show "
-msgstr "Extra napok mutatása"
+msgstr "További megjelenítendő napok "
 
 #: ../src/event-list.c:1179
 msgid "Journal entries starting from:"
-msgstr "Naplókönyv bejegyzések innen:"
+msgstr "Naplóbejegyzések ettől:"
 
 #: ../src/event-list.c:1204
 msgid "Search"
@@ -1110,7 +1101,7 @@ msgstr "Keresés"
 
 #: ../src/event-list.c:1208
 msgid "Search text "
-msgstr "Szöveg keresése"
+msgstr "Keresendő szöveg:"
 
 #: ../src/event-list.c:1274
 msgid "Flags"
@@ -1135,22 +1126,22 @@ msgid ""
 "\t 5. Appointment type:\n"
 "\t\tE=Event T=Todo J=Journal"
 msgstr ""
-"Kattints duplán a sorra a szerkesztéséhez.\n"
+"Kattintson duplán a sorra a szerkesztéséhez.\n"
 "\n"
-"A jelzések jelentése (sorrendben):\n"
-"\t 1. Riasztás: n=nincs riasztás\n"
-"  \t\tA=látható riasztás S=hangosan is riasszon\n"
-"\t 2. Ismétlődés: n=nem ismétlődik\n"
-"\t\t D=naponta W=hetente M=havonta Y=évente\n"
-"\t 3. Típus: f=szabad B=elfoglalt\t 4. Fájl:\n"
-"\t 4. Ebben a fájlban:\n"
-"\t\tO=Orage A=Archív F=Idegen\n"
-"\t 5.Esemény típusa:\n"
-"\t\tE=Esemény T=Tennivaló J=Naplókönyv"
+"Jelzők sorrendben:\n"
+"\t 1. Figyelmeztetés: n=nincs figyelmeztetés\n"
+"\t\t A=látható figyelmeztetés S=hangos figyelmeztetés is\n"
+"\t 2. Ismétlődés: n=nincs ismétlődés\n"
+"\t\t D=napi W=heti M=havi Y=évi\n"
+"\t 3. Típus: f=szabad B=elfoglalt\n"
+"\t 4. Előfordulás fájlban:\n"
+"\t\tO=Orage A=archívum F=külső\n"
+"\t 5. Bejegyzés típusa:\n"
+"\t\tE=esemény T=teendő J=napló"
 
 #: ../src/functions.c:130
 msgid "Pick the date"
-msgstr "Válassz napot"
+msgstr "Válasszon dátumot"
 
 #: ../src/ical-code.c:115
 msgid "Africa"
@@ -1166,7 +1157,7 @@ msgstr "Afrika/Accra"
 
 #: ../src/ical-code.c:118
 msgid "Africa/Addis_Ababa"
-msgstr "Afrika/Addis Ababa"
+msgstr "Afrika/Addis_Ababa"
 
 #: ../src/ical-code.c:119
 msgid "Africa/Algiers"
@@ -1230,7 +1221,7 @@ msgstr "Afrika/Dar_es_Salaam"
 
 #: ../src/ical-code.c:134
 msgid "Africa/Djibouti"
-msgstr "Afrika/Djibouti"
+msgstr "Afrika/Dzsibuti"
 
 #: ../src/ical-code.c:135
 msgid "Africa/Douala"
@@ -1262,7 +1253,7 @@ msgstr "Afrika/Kampala"
 
 #: ../src/ical-code.c:142
 msgid "Africa/Khartoum"
-msgstr "Afrika/Khartoum"
+msgstr "Afrika/Kartúm"
 
 #: ../src/ical-code.c:143
 msgid "Africa/Kigali"
@@ -1390,23 +1381,23 @@ msgstr "Amerika/Araguaina"
 
 #: ../src/ical-code.c:174
 msgid "America/Argentina/Buenos_Aires"
-msgstr "America/Argentina/Buenos_Aires"
+msgstr "Amerika/Argentína/Buenos_Aires"
 
 #: ../src/ical-code.c:175
 msgid "America/Argentina/Catamarca"
-msgstr "America/Argentina/Catamarca"
+msgstr "Amerika/Argentína/Catamarca"
 
 #: ../src/ical-code.c:176
 msgid "America/Argentina/Cordoba"
-msgstr "America/Argentina/Cordoba"
+msgstr "Amerika/Argentína/Cordoba"
 
 #: ../src/ical-code.c:177
 msgid "America/Argentina/Jujuy"
-msgstr "America/Argentina/Jujuy"
+msgstr "Amerika/Argentína/Jujuy"
 
 #: ../src/ical-code.c:178
 msgid "America/Argentina/Mendoza"
-msgstr "America/Argentina/Mendoza"
+msgstr "Amerika/Argentína/Mendoza"
 
 #: ../src/ical-code.c:179
 msgid "America/Aruba"
@@ -1510,7 +1501,7 @@ msgstr "Amerika/Detroit"
 
 #: ../src/ical-code.c:204
 msgid "America/Dominica"
-msgstr "Amerika/Dominica"
+msgstr "Amerika/Dominika"
 
 #: ../src/ical-code.c:205
 msgid "America/Edmonton"
@@ -1570,7 +1561,7 @@ msgstr "Amerika/Halifax"
 
 #: ../src/ical-code.c:219
 msgid "America/Havana"
-msgstr "Amerika/Havana"
+msgstr "Amerika/Havanna"
 
 #: ../src/ical-code.c:220
 msgid "America/Hermosillo"
@@ -1674,7 +1665,7 @@ msgstr "Amerika/Merida"
 
 #: ../src/ical-code.c:245
 msgid "America/Mexico_City"
-msgstr "Amerika/Mexico_City"
+msgstr "Amerika/Mexikóváros"
 
 #: ../src/ical-code.c:246
 msgid "America/Miquelon"
@@ -1886,7 +1877,7 @@ msgstr "Antarktisz/Palmer"
 
 #: ../src/ical-code.c:298
 msgid "Antarctica/South_Pole"
-msgstr "Antarktisz/Déli-sark"
+msgstr "Antarktisz/Déli_sark"
 
 #: ../src/ical-code.c:299
 msgid "Antarctica/Syowa"
@@ -1894,15 +1885,15 @@ msgstr "Antarktisz/Syowa"
 
 #: ../src/ical-code.c:300
 msgid "Antarctica/Vostok"
-msgstr "Antarktisz/Vostok"
+msgstr "Antarktisz/Vosztok"
 
 #: ../src/ical-code.c:301
 msgid "Arctic"
-msgstr "Északi-sark"
+msgstr "Sarkvidék"
 
 #: ../src/ical-code.c:302
 msgid "Arctic/Longyearbyen"
-msgstr "Északi-sark/Longyearbyen"
+msgstr "Sarkvidék/Longyearbyen"
 
 #: ../src/ical-code.c:303
 msgid "Asia"
@@ -1910,7 +1901,7 @@ msgstr "Ázsia"
 
 #: ../src/ical-code.c:304
 msgid "Asia/Aden"
-msgstr "Ázsia/Áden"
+msgstr "Ázsia/Aden"
 
 #: ../src/ical-code.c:305
 msgid "Asia/Almaty"
@@ -1918,7 +1909,7 @@ msgstr "Ázsia/Almaty"
 
 #: ../src/ical-code.c:306
 msgid "Asia/Amman"
-msgstr "Ázsia/Ammán"
+msgstr "Ázsia/Amman"
 
 #: ../src/ical-code.c:307
 msgid "Asia/Anadyr"
@@ -1926,7 +1917,7 @@ msgstr "Ázsia/Anadyr"
 
 #: ../src/ical-code.c:308
 msgid "Asia/Aqtau"
-msgstr "Ázsia/Aktau"
+msgstr "Ázsia/Aqtau"
 
 #: ../src/ical-code.c:309
 msgid "Asia/Aqtobe"
@@ -1966,11 +1957,11 @@ msgstr "Ázsia/Brunei"
 
 #: ../src/ical-code.c:318
 msgid "Asia/Calcutta"
-msgstr "Ázsia/Kalkutta"
+msgstr "Ázsia/Calcutta"
 
 #: ../src/ical-code.c:319
 msgid "Asia/Chungking"
-msgstr "Ázsia/Chungking"
+msgstr "Ázsia/Csunking"
 
 #: ../src/ical-code.c:320
 msgid "Asia/Colombo"
@@ -1994,7 +1985,7 @@ msgstr "Ázsia/Dubai"
 
 #: ../src/ical-code.c:325
 msgid "Asia/Dushanbe"
-msgstr "Ázsia/Dushanbe"
+msgstr "Ázsia/Dusanbe"
 
 #: ../src/ical-code.c:326
 msgid "Asia/Gaza"
@@ -2006,7 +1997,7 @@ msgstr "Ázsia/Harbin"
 
 #: ../src/ical-code.c:328
 msgid "Asia/Hong_Kong"
-msgstr "Ázsia/Hongkong"
+msgstr "Ázsia/Hong_Kong"
 
 #: ../src/ical-code.c:329
 msgid "Asia/Hovd"
@@ -2126,7 +2117,7 @@ msgstr "Ázsia/Saigon"
 
 #: ../src/ical-code.c:358
 msgid "Asia/Samarkand"
-msgstr "Ázsia/Samarkand"
+msgstr "Ázsia/Szamarkand"
 
 #: ../src/ical-code.c:359
 msgid "Asia/Seoul"
@@ -2138,15 +2129,15 @@ msgstr "Ázsia/Sanghaj"
 
 #: ../src/ical-code.c:361
 msgid "Asia/Singapore"
-msgstr "Ázsia/Singapore"
+msgstr "Ázsia/Szingapúr"
 
 #: ../src/ical-code.c:362
 msgid "Asia/Taipei"
-msgstr "Ázsia/Tajpej"
+msgstr "Ázsia/Taipei"
 
 #: ../src/ical-code.c:363
 msgid "Asia/Tashkent"
-msgstr "Ázsia/Tashkent"
+msgstr "Ázsia/Taskent"
 
 #: ../src/ical-code.c:364
 msgid "Asia/Tbilisi"
@@ -2174,7 +2165,7 @@ msgstr "Ázsia/Ulánbátor"
 
 #: ../src/ical-code.c:370
 msgid "Asia/Urumqi"
-msgstr "Ázsia/Urumqi"
+msgstr "Ázsia/Urumcsi"
 
 #: ../src/ical-code.c:371
 msgid "Asia/Vientiane"
@@ -2202,19 +2193,19 @@ msgstr "Atlanti-óceán"
 
 #: ../src/ical-code.c:377
 msgid "Atlantic/Azores"
-msgstr "Atlanti-óceán/Azores"
+msgstr "Atlanti-óceán/Azori-szigetek"
 
 #: ../src/ical-code.c:378
 msgid "Atlantic/Bermuda"
-msgstr "Atlanti-óceán/Bermuda"
+msgstr "Atlanti-óceán/Bermuda-szigetek"
 
 #: ../src/ical-code.c:379
 msgid "Atlantic/Canary"
-msgstr "Atlanti-óceán/Canary"
+msgstr "Atlanti-óceán/Kanári-szigetek"
 
 #: ../src/ical-code.c:380
 msgid "Atlantic/Cape_Verde"
-msgstr "Atlanti-óceán/Cape_Verde"
+msgstr "Atlanti-óceán/Zöldfoki-_szigetek"
 
 #: ../src/ical-code.c:381
 msgid "Atlantic/Faeroe"
@@ -2230,7 +2221,7 @@ msgstr "Atlanti-óceán/Madeira"
 
 #: ../src/ical-code.c:384
 msgid "Atlantic/Reykjavik"
-msgstr "Atlanti-óceán/Reykjavík"
+msgstr "Atlanti-óceán/Reykjavik"
 
 #: ../src/ical-code.c:385
 msgid "Atlantic/South_Georgia"
@@ -2238,7 +2229,7 @@ msgstr "Atlanti-óceán/South_Georgia"
 
 #: ../src/ical-code.c:386
 msgid "Atlantic/St_Helena"
-msgstr "Atlanti-óceán/Szent_Ilona"
+msgstr "Atlanti-óceán/Szent _Ilona"
 
 #: ../src/ical-code.c:387
 msgid "Atlantic/Stanley"
@@ -2334,7 +2325,7 @@ msgstr "Európa/Budapest"
 
 #: ../src/ical-code.c:410
 msgid "Europe/Chisinau"
-msgstr "Európa/Kisinau (Moldávia)"
+msgstr "Európa/Chisinau"
 
 #: ../src/ical-code.c:411
 msgid "Europe/Copenhagen"
@@ -2342,7 +2333,7 @@ msgstr "Európa/Koppenhága"
 
 #: ../src/ical-code.c:412
 msgid "Europe/Dublin"
-msgstr "Európa/Dublin"
+msgstr "Europa/Dublin"
 
 #: ../src/ical-code.c:413
 msgid "Europe/Gibraltar"
@@ -2510,11 +2501,11 @@ msgstr "Indiai-óceán/Chagos"
 
 #: ../src/ical-code.c:454
 msgid "Indian/Christmas"
-msgstr "Indiai-óceán/Karácsony-sziget"
+msgstr "Indiai-óceán/Karácsony-szigetek"
 
 #: ../src/ical-code.c:455
 msgid "Indian/Cocos"
-msgstr "Indiai-óceán/Kókusz-szigetek"
+msgstr "Indiai-óceán/Cocos"
 
 #: ../src/ical-code.c:456
 msgid "Indian/Comoro"
@@ -2542,7 +2533,7 @@ msgstr "Indiai-óceán/Mayotte"
 
 #: ../src/ical-code.c:462
 msgid "Indian/Reunion"
-msgstr "Indiai-óceán/Réunion"
+msgstr "Indiai-óceán/Reunion"
 
 #: ../src/ical-code.c:463
 msgid "Pacific"
@@ -2562,7 +2553,7 @@ msgstr "Csendes-óceán/Chatham"
 
 #: ../src/ical-code.c:467
 msgid "Pacific/Easter"
-msgstr "Csendes-óceán/Húsvét-sziget"
+msgstr "Csendes-óceán/Húsvét-szigetek"
 
 #: ../src/ical-code.c:468
 msgid "Pacific/Efate"
@@ -2586,7 +2577,7 @@ msgstr "Csendes-óceán/Funafuti"
 
 #: ../src/ical-code.c:473
 msgid "Pacific/Galapagos"
-msgstr "Csendes-óceán/Galápagos-szigetek"
+msgstr "Csendes-óceán/Galapagos-szigetek"
 
 #: ../src/ical-code.c:474
 msgid "Pacific/Gambier"
@@ -2606,7 +2597,7 @@ msgstr "Csendes-óceán/Honolulu"
 
 #: ../src/ical-code.c:478
 msgid "Pacific/Johnston"
-msgstr "Csendes-óceán/Johnston-atoll"
+msgstr "Csendes-óceán/Johnston"
 
 #: ../src/ical-code.c:479
 msgid "Pacific/Kiritimati"
@@ -2618,7 +2609,7 @@ msgstr "Csendes-óceán/Kosrae"
 
 #: ../src/ical-code.c:481
 msgid "Pacific/Kwajalein"
-msgstr "Csendes-óceán/Kwajalein"
+msgstr "Csendes-óceán/Kwajelein"
 
 #: ../src/ical-code.c:482
 msgid "Pacific/Majuro"
@@ -2630,7 +2621,7 @@ msgstr "Csendes-óceán/Marquesas"
 
 #: ../src/ical-code.c:484
 msgid "Pacific/Midway"
-msgstr "Csendes-óceán/Midway-szigetek"
+msgstr "Csendes-óceán/Midway"
 
 #: ../src/ical-code.c:485
 msgid "Pacific/Nauru"
@@ -2642,7 +2633,7 @@ msgstr "Csendes-óceán/Niue"
 
 #: ../src/ical-code.c:487
 msgid "Pacific/Norfolk"
-msgstr "Csendes-óceán/Norfolk-sziget"
+msgstr "Csendes-óceán/Norfolk"
 
 #: ../src/ical-code.c:488
 msgid "Pacific/Noumea"
@@ -2658,7 +2649,7 @@ msgstr "Csendes-óceán/Palau"
 
 #: ../src/ical-code.c:491
 msgid "Pacific/Pitcairn"
-msgstr "Csendes-óceán/Pitcairn-szigetek"
+msgstr "Csendes-óceán/Pitcairn"
 
 #: ../src/ical-code.c:492
 msgid "Pacific/Ponape"
@@ -2694,7 +2685,7 @@ msgstr "Csendes-óceán/Truk"
 
 #: ../src/ical-code.c:500
 msgid "Pacific/Wake"
-msgstr "Csendes-óceán/Wake-sziget"
+msgstr "Csendes-óceán/Wake"
 
 #: ../src/ical-code.c:501
 msgid "Pacific/Wallis"
@@ -2706,110 +2697,105 @@ msgstr "Csendes-óceán/Yap"
 
 #: ../src/ical-code.c:1330
 msgid "Orage default alarm"
-msgstr "Az Orage alapértelmezett riasztása"
+msgstr "Orage alapértelmezett figyelmeztetés"
 
-#: ../src/ical-code.c:3024
+#: ../src/ical-code.c:3064
 #, c-format
 msgid "Build alarm list: Added %d alarms. Processed %d events."
-msgstr ""
-"Riasztás lista összeállítása: %d riasztás hozzáadva. %d esemény lett "
-"feldolgozva."
+msgstr "Figyelmeztetéslista építése: %d figyelmeztetés felvéve. %d esemény feldolgozva."
 
-#: ../src/ical-code.c:3026
+#: ../src/ical-code.c:3066
 #, c-format
-msgid ""
-"\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
-msgstr ""
-"\t%d riasztást találtam  amiből %d aktív. (%d visszatérő riasztás keresve.)"
+msgid "\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
+msgstr "\t%d figyelmeztetés található, amiből %d aktív. (%d ismétlődő figyelmeztetés keresése kész.)"
 
 #. remove since it has ended
-#: ../src/ical-code.c:3543
+#: ../src/ical-code.c:3644
 msgid "\tRecur ended, moving to archive file."
-msgstr "\tIsmétlődés vége, archív fájlba mozgatás."
+msgstr "\tIsmétlődés befejeződött, áthelyezés archívumfájlba."
 
-#: ../src/ical-code.c:3605
+#: ../src/ical-code.c:3706
 msgid "Archiving not enabled. Exiting"
-msgstr "Archiválás nincs engedélyezve. Kilépek"
+msgstr "Az archiválás nem engedélyezett, kilépés."
 
-#: ../src/ical-code.c:3623
+#: ../src/ical-code.c:3724
 #, c-format
 msgid "Archiving threshold: %d month(s)"
-msgstr "Archiválás küszöbe: %d hó"
+msgstr "Archiválási küszöb: %d hónap"
 
 #. yy mon day
-#: ../src/ical-code.c:3626
+#: ../src/ical-code.c:3727
 #, c-format
 msgid "\tArchiving events, which are older than: %04d-%02d-%02d"
-msgstr "\tEsemények archiválása amelyek régebbiek mint: %04d-%02d-%02d"
+msgstr "\tEsemények archiválása, amelyek régebbiek mint: %04d. %02d. %02d."
 
-#: ../src/ical-code.c:3653
+#: ../src/ical-code.c:3754
 #, c-format
 msgid "Archiving uid: %s"
-msgstr "Archiváló uid: %s"
+msgstr "Archiválási felhasználóazonosító: %s"
 
 #. VTODO not completed, do not archive
-#: ../src/ical-code.c:3659
+#: ../src/ical-code.c:3760
 msgid "\tVTODO not complete; not archived"
-msgstr "\tVTODO nincs befejezve; nincs archiválva"
+msgstr "\tA VTODO nincs kész, nem kerül archiválásra"
 
 #. it is recurrent event
-#: ../src/ical-code.c:3664
+#: ../src/ical-code.c:3765
 #, c-format
 msgid "\tRecurring. End year: %04d, month: %02d, day: %02d"
-msgstr "\tIsmétlődő. Befejező év: %04d, hónap: %02d, nap: %02d"
+msgstr "\tIsmétlődő. Befejezési év, hónap, nap: %04d. %02d. %02d."
 
-#: ../src/ical-code.c:3681
+#: ../src/ical-code.c:3782
 msgid "Archiving done\n"
 msgstr "Archiválás kész\n"
 
 #. PHASE 1: go through base orage file and remove "repeat" shortcuts
-#: ../src/ical-code.c:3697
+#: ../src/ical-code.c:3798
 msgid "Starting archive removal."
-msgstr "Archívok törlésének indítása."
+msgstr "Archívum eltávolításának megkezdése."
 
-#: ../src/ical-code.c:3698
+#: ../src/ical-code.c:3799
 msgid "\tPHASE 1: reset recurring appointments"
-msgstr "\tPHASE 1: ismétlődő események törlése"
+msgstr "\t1. fázis: ismétlődő értekezletek visszaállítása"
 
 #. PHASE 2: go through archive file and add everything back to base orage.
 #. * After that delete the whole arch file
-#: ../src/ical-code.c:3720
+#: ../src/ical-code.c:3821
 msgid "\tPHASE 2: return archived appointments"
-msgstr "\tPHASE 2: archivált események visszaállítása"
+msgstr "\t2. fázis: archivált értekezletek visszaadása"
 
-#: ../src/ical-code.c:3746
+#: ../src/ical-code.c:3847
 msgid "Archive removal done\n"
-msgstr "Archívok törlése befejezve.\n"
+msgstr "Archívumok eltávolítása kész\n"
 
-#: ../src/ical-code.c:3836
+#: ../src/ical-code.c:3937
 msgid "Starting import file preprocessing"
-msgstr "Import fájl előfeldolgozás indítása"
+msgstr "Importálási fájl előfeldolgozásának megkezdése"
 
-#: ../src/ical-code.c:3871
+#: ../src/ical-code.c:3972
 msgid "... Patched DCREATED to be CREATED."
-msgstr "... Patched DCREATED to be CREATED."
+msgstr "... A DCREATED átalakítva CREATED-dé."
 
-#: ../src/ical-code.c:3910
+#: ../src/ical-code.c:4011
 msgid "... Patched timezone to Orage format."
-msgstr "... Az időzóna az Orage formátumára hozva"
+msgstr "... Időzóna átalakítva Orage formátumra."
 
-#: ../src/ical-code.c:3919
+#: ../src/ical-code.c:4020
 msgid "Import file preprocessing done"
-msgstr "Import fájl előfeldolgozás kész."
+msgstr "Importálási fájl előfeldolgozása kész"
 
 #. show it
-#: ../src/ical-code.c:4507
+#: ../src/ical-code.c:4608
 msgid "Pick timezone"
-msgstr "Válassz időzónát"
+msgstr "Válasszon időzónát"
 
-#: ../src/ical-code.c:4510 ../src/ical-code.c:4538
+#: ../src/ical-code.c:4611 ../src/ical-code.c:4639
 msgid "UTC"
 msgstr "UTC"
 
-# XXX [mayday]: Ez bizony az időzónára vonatkozik. A forrás alapján: floating = local = no timezone
-#: ../src/ical-code.c:4511 ../src/ical-code.c:4542 ../src/parameters.c:493
+#: ../src/ical-code.c:4612 ../src/ical-code.c:4643 ../src/parameters.c:493
 msgid "floating"
-msgstr "lebegő"
+msgstr "Lebegő"
 
 #: ../src/interface.c:284
 msgid "Calendar files"
@@ -2817,7 +2803,7 @@ msgstr "Naptárfájlok"
 
 #: ../src/interface.c:626
 msgid "Current foreign files"
-msgstr "Jelenlegi idegen fájlok"
+msgstr "Aktuális külső fájlok"
 
 #: ../src/interface.c:638
 msgid "READ ONLY"
@@ -2825,15 +2811,15 @@ msgstr "CSAK OLVASHATÓ"
 
 #: ../src/interface.c:640
 msgid "READ WRITE"
-msgstr "ÍRÁS OLVASÁS"
+msgstr "OLVASÁS-ÍRÁS"
 
 #: ../src/interface.c:658
 msgid "***** No foreign files *****"
-msgstr "***** Nincsnek idegen fájlok *****"
+msgstr "***** Nincsenek külső fájlok *****"
 
 #: ../src/interface.c:968
 msgid "Import/export"
-msgstr "Importálás/Exportálás"
+msgstr "Importálás/exportálás"
 
 #: ../src/interface.c:975
 msgid "Import"
@@ -2848,8 +2834,8 @@ msgid ""
 "Separate filenames with comma(,).\n"
 " NOTE: comma is not valid character in filenames for Orage."
 msgstr ""
-"A fájlneveket vesszővel(,) válasszd el.\n"
-"FONTOS: az Orage fájlnevekben nem lehet vessző."
+"A fájlneveket vesszővel (,) válassza el.\n"
+" MEGJEGYZÉS: az Orage számára a vessző nem érvényes karakter a fájlnevekben."
 
 #: ../src/interface.c:1002
 msgid "Export"
@@ -2857,72 +2843,70 @@ msgstr "Exportálás"
 
 #: ../src/interface.c:1007
 msgid "Write to file:"
-msgstr "Fájlba írás:"
+msgstr "Írás fájlba:"
 
 #: ../src/interface.c:1028 ../src/interface.c:1040
 msgid "Select"
-msgstr "Válassz"
+msgstr "Kijelölés"
 
 #: ../src/interface.c:1031
 msgid "All appointments"
-msgstr "Minden találkozó"
+msgstr "Minden értekezlet"
 
 #: ../src/interface.c:1044
 msgid "Named appointments: "
-msgstr "Adott találkozó:"
+msgstr "Megadott értekezletek: "
 
 #: ../src/interface.c:1056
 msgid ""
 "Note that only main file appointments are read.\n"
 "Archived and Foreign events are not exported."
 msgstr ""
-"Vedd figyelembe, hogy csak a fő naptár fájl lesz beolvasva.\n"
-"Az archív és idegen események nem kerülnek exportálásra."
+"Csak az elsődleges fájl értekezletei lesznek beolvasva.\n"
+"Az archivált és külső események nem lesznek exportálva."
 
 #: ../src/interface.c:1059
 msgid ""
 "Note that only main file appointments are read.\n"
 "Foreign events are not exported."
 msgstr ""
-"Vedd figyelembe, hogy csak a fő naptár fájl lesz beolvasva.\n"
-"Az idegen események nem kerülnek exportálásra."
+"Csak az elsődleges fájl értekezletei lesznek beolvasva.\n"
+"A külső események nem lesznek exportálva."
 
 #: ../src/interface.c:1062
 msgid "You can easily drag these from event-list window."
-msgstr "Ezeket az esemény lista ablakából könnyen áthúzhatod."
+msgstr "Ezeket egyszerűen áthúzhatja az eseménylista ablakból."
 
 #: ../src/interface.c:1064
 msgid "Orage appointment UIDs separated by commas."
-msgstr "Orage találkozók UID-i (belső azonosítói) vesszővel elválasztva."
+msgstr "Orage értekezletek vesszőkkel elválasztott UID-jai."
 
 #: ../src/interface.c:1070
 msgid "Archive"
-msgstr "Archívok"
+msgstr "Archiválás"
 
 #: ../src/interface.c:1078
 #, c-format
 msgid "Archive now (threshold: %d months)"
-msgstr "Archiváld most (küszöbe: %d hó)"
+msgstr "Archiválás most (küszöb: %d hónap)"
 
 #: ../src/interface.c:1088
 msgid "You can change archive threshold in parameters"
-msgstr "Megváltoztathatod az archív küszöböt a paraméterekben."
+msgstr "A beállítások közt, módosítható az archiválási küszöb"
 
 #: ../src/interface.c:1095
 msgid "Revert archive now"
-msgstr "Archív visszaállítása"
+msgstr "Archívum visszaállítása most"
 
 #: ../src/interface.c:1101
-#, fuzzy
 msgid ""
 "Return all archived events into main orage file and remove arch file.\n"
 "This is useful for example when doing export and moving orage\n"
 "appointments to another system."
 msgstr ""
-"Az összes archív esemény visszamásolása a fő naptár fájlba és az archív fájl "
-"törlése.\n"
-"Ez például akkor hasznos ha az Orage-ből\n"
-"a tartalmat egy másik rendszerbe visszük át."
+"Az archivált események visszaállítása az elsődleges Orage fájlba és az\n"
+"archívumfájl eltávolítása. Ez például exportáláskor és az Orage\n"
+"találkozók másik rendszerre mozgatásakor hasznos."
 
 #: ../src/interface.c:1111
 msgid "Orage files"
@@ -2930,11 +2914,11 @@ msgstr "Orage fájlok"
 
 #: ../src/interface.c:1118
 msgid "Orage main calendar file"
-msgstr "Orage fő naptár fájl"
+msgstr "Orage elsődleges naptárfájl"
 
 #: ../src/interface.c:1123 ../src/interface.c:1188
 msgid "Current file"
-msgstr "Jelen fájl"
+msgstr "Aktuális fájl"
 
 #: ../src/interface.c:1130 ../src/interface.c:1195
 msgid "New file"
@@ -2942,7 +2926,7 @@ msgstr "Új fájl"
 
 #: ../src/interface.c:1146 ../src/interface.c:1212
 msgid "Action options"
-msgstr "Lehetőségek"
+msgstr "Művelet beállításai"
 
 #: ../src/interface.c:1149 ../src/interface.c:1215
 msgid "Rename"
@@ -2954,8 +2938,8 @@ msgid ""
 "Does not touch external filesystem at all.\n"
 "New file must exist."
 msgstr ""
-"Orage belső fájl, csak átnevezni szabad.\n"
-"A külső fájlrendszer nem lesz módosítva.\n"
+"Csak az Orage belső fájlátnevezése.\n"
+"Egyáltalán nem érinti a külső fájlrendszereket.\n"
 "Az új fájlnak léteznie kell."
 
 #: ../src/interface.c:1157 ../src/interface.c:1220
@@ -2964,35 +2948,35 @@ msgstr "Másolás"
 
 #: ../src/interface.c:1161
 msgid "Current file is copied and stays unmodified in the old place."
-msgstr "A jelenlegi fájl átmásolva és változatlan állapotban a régi helyén."
+msgstr "Aktuális fájl átmásolása és megtartása változatlanul a régi helyen."
 
 #: ../src/interface.c:1165 ../src/interface.c:1225
 msgid "Move"
-msgstr "Mozgatás"
+msgstr "Áthelyezés"
 
 #: ../src/interface.c:1169
 msgid "Current file is moved and vanishes from the old place."
-msgstr "A jelenlegi fájl átmozgatva és a régi helyéről törölve."
+msgstr "Az aktuális fájl áthelyezése és törlése a régi helyről."
 
 #: ../src/interface.c:1183
 msgid "Archive file"
-msgstr "Archív fájl"
+msgstr "Fájl archiválása"
 
 #: ../src/interface.c:1246
 msgid "Foreign files"
-msgstr "Idegen fájlok"
+msgstr "Külső fájlok"
 
 #: ../src/interface.c:1253
 msgid "Add new foreign file"
-msgstr "Új idegen fájl hozzáadása"
+msgstr "Új külső fájl hozzáadása"
 
 #: ../src/interface.c:1258
 msgid "Foreign file:"
-msgstr "Idegen fájl:"
+msgstr "Külső fájlok:"
 
 #: ../src/interface.c:1276
 msgid "Options"
-msgstr "Lehetőségek"
+msgstr "Beállítások"
 
 #: ../src/interface.c:1278
 msgid "Read only"
@@ -3005,14 +2989,12 @@ msgid ""
 "Note that modifying foreign files may make them incompatible with the "
 "original tool, where they came from!"
 msgstr ""
-"Kapcsold be ha biztosan szeretnéd, hogy az Orage soha ne módosíthassa a "
-"fájlt.\n"
-"Vedd figyelembe, hogy az idegen fájlok a módosítások után nem biztos hogy "
-"működnek az eredeti programjukkal amiből származnak!"
+"Az Orage soha ne módosíthassa a fájlt.\n"
+"Ne feledje, hogy a külső fájlok módosítása inkompatibilissé teheti azokat az eredeti eszközzel, ahonnan származnak."
 
 #: ../src/interface.c:1300
 msgid "Exchange data - Orage"
-msgstr "Adatok cseréje - Orage"
+msgstr "Adatcsere – Orage"
 
 #: ../src/main.c:192
 #, c-format
@@ -3020,53 +3002,53 @@ msgid ""
 "\tThis is %s version %s for Xfce %s\n"
 "\n"
 msgstr ""
-"\tEz a verzió %s, %s megfelel az Xfce %s\n"
+"\tEz az %s %s verziója az Xfce %s kiadásához\n"
 "\n"
 
 #: ../src/main.c:194
 #, c-format
 msgid "\tReleased under the terms of the GNU General Public License.\n"
-msgstr "\tA kiadás megfelel a GNU Általános Közreadási Feltételeknek .\n"
+msgstr "\tKiadva a GNU General Public License feltételei szerint.\n"
 
 #: ../src/main.c:195
 #, c-format
 msgid "\tCompiled against GTK+-%d.%d.%d, "
-msgstr "\tGTK+ -al fordítva-%d.%d.%d, "
+msgstr "\tÖsszeállítva a GTK+-%d.%d.%d használatával,"
 
 #: ../src/main.c:197
 #, c-format
 msgid "using GTK+-%d.%d.%d.\n"
-msgstr "GTK+ használatával-%d.%d.%d\n"
+msgstr "fut a GTK+-%d.%d.%d használatával.\n"
 
 #: ../src/main.c:200
 #, c-format
 msgid "\tUsing DBUS for import.\n"
-msgstr "\tDBUS használata importáláshoz.\n"
+msgstr "\tD-Bus használatban az importáláshoz.\n"
 
 #: ../src/main.c:202
 #, c-format
 msgid "\tNot using DBUS. Import works only partially.\n"
-msgstr "\tDBUS nincs használatban. Az import csak részben működik.\n"
+msgstr "\tA D-Bus nincs használatban. Az importálás csak részben működik.\n"
 
 #: ../src/main.c:205
 #, c-format
 msgid "\tUsing libnotify.\n"
-msgstr "\tLibnotify-t használja.\n"
+msgstr "\tA libnotify használatban.\n"
 
 #: ../src/main.c:207
 #, c-format
 msgid "\tNot using libnotify.\n"
-msgstr "\tLibnotify nincs használatban.\n"
+msgstr "\tA libnotify nincs használatban.\n"
 
 #: ../src/main.c:210
 #, c-format
 msgid "\tUsing automatic archiving.\n"
-msgstr "\tAutomatikus archiválást használ.\n"
+msgstr "\tAutomatikus archiválás használatban.\n"
 
 #: ../src/main.c:212
 #, c-format
 msgid "\tNot using archiving.\n"
-msgstr "\tNincs automatikus archiválás.\n"
+msgstr "\tAz archiválás nincs használatban.\n"
 
 #: ../src/main.c:225
 #, c-format
@@ -3074,64 +3056,60 @@ msgid ""
 "Usage: orage [options] [files]\n"
 "\n"
 msgstr ""
-"Használat: orage [opciók] [fájlok]\n"
+"Használat: orage [kapcsolók] [fájlok]\n"
 "\n"
 
 #: ../src/main.c:226
 #, c-format
 msgid "Options:\n"
-msgstr "Lehetőségek:\n"
+msgstr "Kapcsolók:\n"
 
 #: ../src/main.c:227
 #, c-format
 msgid "--version (-v) \t\tshow version of orage\n"
-msgstr "--version (-v) \t\tOrage verzió megjelenítése\n"
+msgstr "--version (-v) \t\tAz orage verziójának megjelenítése\n"
 
 #: ../src/main.c:228
 #, c-format
 msgid "--help (-h) \t\tprint this text\n"
-msgstr "--help (-h)\t\tez a szöveg\n"
+msgstr "--help (-h) \t\tEzen súgó kiírása\n"
 
 #: ../src/main.c:229
 #, c-format
 msgid "--preferences (-p) \tshow preferences form\n"
-msgstr "--preferences (-p) \tbeállítások mutatása\n"
+msgstr "--preferences (-p) \tA beállítások ablak megjelenítése\n"
 
 #: ../src/main.c:230
 #, c-format
 msgid "--toggle (-t) \t\tmake orage visible/unvisible\n"
-msgstr ""
-"--toggle (-t) \t\tOrage látható\n"
-"em látható\n"
+msgstr "--toggle (-t) \t\tAz Orage megjelenítése/elrejtése\n"
 
 #: ../src/main.c:231
 #, c-format
 msgid "--add-foreign (-a) file [RW] \tadd a foreign file\n"
-msgstr "--add-foreign (-a) file [RW] \t idegen fájl hozzáadása\n"
+msgstr "--add-foreign (-a) fájl [RW] \tKülső fájl hozzáadása\n"
 
 #: ../src/main.c:232
 #, c-format
 msgid "--remove-foreign (-r) file \tremove a foreign file\n"
-msgstr "--remove-foreign (-r) file \tidegen fájl eltávolítása\n"
+msgstr "--remove-foreign (-r) fájl \tKülső fájl eltávolítása\n"
 
 #: ../src/main.c:234
 #, c-format
 msgid "files=ical files to load into orage\n"
-msgstr "files=ical fájlok [a naptárfájlok ált. neve] betöltése az Orage-ba\n"
+msgstr "fájlok = Az Orage-be betöltendő ical fájlok\n"
 
 #: ../src/main.c:236
 #, c-format
 msgid "\tdbus not included in orage. \n"
-msgstr "\tdbus nincs az Orage-ban. \n"
+msgstr "\tAz Orage nem tartalmazza a D-Bus támogatást.\n"
 
 #: ../src/main.c:237
 #, c-format
 msgid ""
 "\twithout dbus [files] and foreign file options(-a & -r) can only be used "
 "when starting orage \n"
-msgstr ""
-"\twithout dbus [fájlok] és idegen fájl opciók (-a és -r) csak az Orage "
-"indításakor használhatók \n"
+msgstr "\tA D-Bus nélkül a [fájlok] és külső fájl kapcsolók (-a és -r) csak az Orage indításakor használhatók.\n"
 
 #: ../src/main.c:381
 #, c-format
@@ -3141,29 +3119,29 @@ msgid ""
 "\n"
 msgstr ""
 "\n"
-"Ismeretlen opció %s\n"
+"Ismeretlen kapcsoló: %s\n"
 "\n"
 
 #: ../src/mainbox.c:269
 msgid "_Exchange data"
-msgstr "_Adatcsere"
+msgstr "A_datcsere"
 
 #. Edit menu
 #: ../src/mainbox.c:280
 msgid "_Edit"
-msgstr "_Szerkesztés"
+msgstr "S_zerkesztés"
 
 #: ../src/mainbox.c:290
 msgid "View selected _date"
-msgstr "Kijelölt _dátum megtekintése"
+msgstr "Kijelölt _dátum megjelenítése"
 
 #: ../src/mainbox.c:293
 msgid "View selected _week"
-msgstr "Kijelölt _hét megtekintése"
+msgstr "Kijelölt _hét megjelenítése"
 
 #: ../src/mainbox.c:299
 msgid "Select _Today"
-msgstr "Ugrás mára"
+msgstr "_Mai nap kijelölése"
 
 #. Help menu
 #: ../src/mainbox.c:303
@@ -3185,7 +3163,7 @@ msgid ""
 "%s"
 msgstr ""
 "Cím: %s\n"
-" Kezdet:\t%s\n"
+" Kezdés:\t%s\n"
 " Esedékes:\t%s\n"
 " Kész:\t%s\n"
 "Megjegyzés:\n"
@@ -3201,23 +3179,23 @@ msgid ""
 "%s"
 msgstr ""
 "Cím: %s\n"
-" Kezdet:\t%s\n"
-" Befejezés:\t%s\n"
-" Megjegyzés:\n"
+" Kezdés:\t%s\n"
+" Kész:\t%s\n"
+"Megjegyzés:\n"
 "%s"
 
 #: ../src/mainbox.c:487
 msgid "<b>To do:</b>"
-msgstr "<b>Tennivalók:</b>"
+msgstr "<b>Teendő:</b>"
 
 #: ../src/mainbox.c:516
 #, c-format
 msgid "<b>Events for %s:</b>"
-msgstr "<b>Események %s:</b>"
+msgstr "<b>%s eseményei:</b>"
 
 #: ../src/parameters.c:473
 msgid "Main setups"
-msgstr "Fő beállítások"
+msgstr "Elsődleges beállítások"
 
 #: ../src/parameters.c:479
 msgid "Timezone"
@@ -3225,11 +3203,11 @@ msgstr "Időzóna"
 
 #: ../src/parameters.c:498
 msgid "You should always define your local timezone."
-msgstr "Mindig állítsd be a helyi időzónát."
+msgstr "Mindig meg kell adnia a helyi időzónáját."
 
 #: ../src/parameters.c:507
 msgid "Archive threshold (months)"
-msgstr "Archiválás küszöbe (hónapok)"
+msgstr "Archiválási küszöb (hónap)"
 
 #: ../src/parameters.c:517
 msgid "(0 = no archiving)"
@@ -3237,16 +3215,15 @@ msgstr "(0 = nincs archiválás)"
 
 #: ../src/parameters.c:520
 msgid "Archiving is used to save time and space when handling events."
-msgstr ""
-"Az archiválás időt és lemezterületet takarít meg az események kezelésekor."
+msgstr "Az archiválás célja az események kezelésekor történő idő- és helyspórolás."
 
 #: ../src/parameters.c:529
 msgid "Sound command"
-msgstr "Hang parancsa"
+msgstr "Hang parancs"
 
 #: ../src/parameters.c:544
 msgid "This command is given to shell to make sound in alarms."
-msgstr "Ez a parancs a héjnak lesz átadva, hogy hangot adjon a riasztás."
+msgstr "Ezen parancs futtatása a figyelmeztetések hangjának megszólaltatásához."
 
 #: ../src/parameters.c:559
 msgid "Display"
@@ -3254,43 +3231,44 @@ msgstr "Megjelenítés"
 
 #: ../src/parameters.c:566
 msgid "Calendar main window"
-msgstr "Naptár főablak"
+msgstr "Naptár főablaka"
 
 #: ../src/parameters.c:571
 msgid "Show borders"
-msgstr "Keretek mutatása"
+msgstr "Szegélyek megjelenítése"
 
 #: ../src/parameters.c:578
 msgid "Show menu"
-msgstr "Menü mutatása"
+msgstr "Menü megjelenítése"
 
 #: ../src/parameters.c:585
 msgid "Show todo list"
-msgstr "Tennivalók mutatása"
+msgstr "Teendőlista megjelenítése"
 
 #: ../src/parameters.c:592
 msgid "Show event list"
-msgstr "Események mutatása"
+msgstr "Eseménylista megjelenítése"
 
+# FIXME: wtf?
 #: ../src/parameters.c:599
 msgid "Set sticked"
-msgstr "Legyen ragadós"
+msgstr "Tapadás beállítása"
 
 #: ../src/parameters.c:606
 msgid "Set on top"
-msgstr "Mindig felül"
+msgstr "Mindig felül beállítása"
 
 #: ../src/parameters.c:627
 msgid "Show in taskbar"
-msgstr "Látszik a feladatlistában"
+msgstr "Megjelenítés a feladatsávon"
 
 #: ../src/parameters.c:634
 msgid "Show in pager"
-msgstr "Látszik a lapozóban"
+msgstr "Megjelenítés a lapozóban"
 
 #: ../src/parameters.c:641
 msgid "Show in systray"
-msgstr "Látszik a rendszertálcán"
+msgstr "Megjelenítés az értesítési területen"
 
 #: ../src/parameters.c:658
 msgid "Calendar start"
@@ -3298,48 +3276,44 @@ msgstr "Naptár indítása"
 
 #: ../src/parameters.c:675
 msgid "Hide"
-msgstr "Rejtett"
+msgstr "Elrejtés"
 
 #: ../src/parameters.c:687
 msgid "Minimized"
-msgstr "Minimalizált"
+msgstr "Minimalizálás"
 
 #: ../src/parameters.c:717
 msgid "Extra setups"
-msgstr "Különleges beállítások"
+msgstr "További beállítások"
 
 #: ../src/parameters.c:724 ../src/parameters.c:729
 msgid "Select always today"
-msgstr "Mindig mát válassz"
+msgstr "Mindig a mai nap megjelenítése"
 
 #: ../src/parameters.c:735
 msgid ""
 "When showing main calendar, set pointer to either previously selected day or "
 "always to current day."
-msgstr ""
-"Amikor a naptárat mutatja, a mutatót vagy az előzőleg kiválasztott vagy "
-"mindig a mai napra állítja. "
+msgstr "Az elsődleges naptár megjelenítésekor a mutató beállítása a korábban kiválasztott vagy a mai napra."
 
 #: ../src/parameters.c:766
 msgid "Dynamic icon size"
-msgstr "Dinamikus ikon mérete"
+msgstr "Dinamikus ikonméret"
 
 #: ../src/parameters.c:779 ../src/parameters.c:796
 msgid "(0 = use static icon)"
-msgstr "(0 = statikus ikont használ)"
+msgstr "(0 = statikus ikonméret használata)"
 
 #: ../src/parameters.c:782
 msgid ""
 "Dynamic icon shows current day and month. It is visible only in tray. If "
 "tray is too small for dynamic icon size, Orage switches automatically back "
 "to static icon."
-msgstr ""
-"A dinamikus ikon a mai napot és hónapot mutatja és csak a Tálcán látható. Ha "
-"a Tálca túl keskeny, az Orage automatikusan a statikus ikont mutatja."
+msgstr "A dinamikus ikon megjeleníti az aktuális napot és hónapot. Csak az értesítési területen látható. Ha az túl kicsi a dinamikus ikonmérethez, az Orage automatikusan visszavált a statikus ikonra."
 
 #: ../src/parameters.c:805
 msgid "Main Calendar double click shows"
-msgstr "A naptár főablakban dupla kattintásra megjelenik a"
+msgstr "Az elsődleges naptárra dupla kattintáskor megjelenik"
 
 #: ../src/parameters.c:810
 msgid "Days view"
@@ -3347,7 +3321,7 @@ msgstr "Napi nézet"
 
 #: ../src/parameters.c:822
 msgid "Event list"
-msgstr "Esemény lista"
+msgstr "Eseménylista"
 
 #: ../src/parameters.c:847
 msgid "Orage Preferences"
@@ -3355,16 +3329,16 @@ msgstr "Orage beállításai"
 
 #: ../src/parameters.c:1019
 msgid "First Orage start. Searching default timezone."
-msgstr ""
+msgstr "Az Orage első indítása. Alapértelmezett időzóna keresése."
 
 #: ../src/parameters.c:1038
 #, c-format
 msgid "Default timezone set to %s."
-msgstr "Alap időzóna beállítva erre: %s."
+msgstr "Az alapértelmezett időzóna beállítva: %s."
 
 #: ../src/parameters.c:1041
 msgid "Default timezone not found, please, set it manually."
-msgstr "Nincs alap időzóna. kérlek, adj meg egyet,"
+msgstr "Nem található alapértelmezett időzóna, állítsa be saját kezűleg."
 
 #: ../src/reminder.c:425
 msgid "Reminder "
@@ -3372,15 +3346,15 @@ msgstr "Emlékeztető"
 
 #: ../src/reminder.c:449
 msgid "Open"
-msgstr "Megnyit"
+msgstr "Megnyitás"
 
 #: ../src/reminder.c:539
 msgid "Reminder - Orage"
-msgstr "Emlékeztető - Orage"
+msgstr "Emlékeztető – Orage"
 
 #: ../src/reminder.c:844
 msgid "Next active alarms:"
-msgstr "Következő aktív riasztás"
+msgstr "Következő aktív figyelmeztetések:"
 
 #: ../src/reminder.c:872
 #, c-format
@@ -3389,7 +3363,7 @@ msgid ""
 "%02d d %02d h %02d min to: %s"
 msgstr ""
 "\n"
-"%02d nap %02d óra %02d perc: %s-ig"
+"%02d n %02d ó %02d perc eddig: %s"
 
 #: ../src/reminder.c:880
 #, c-format
@@ -3398,11 +3372,11 @@ msgid ""
 "No active alarms found"
 msgstr ""
 "\n"
-"No active alarms found"
+"Nem találhatók aktív figyelmeztetések"
 
 #: ../src/tray_icon.c:341
 msgid "New appointment"
-msgstr "Új találkozó"
+msgstr "Új értekezlet"
 
 #: ../src/tray_icon.c:361
 msgid "About Orage"
@@ -3414,7 +3388,7 @@ msgstr "Orage óra"
 
 #: ../panel-plugin/orageclock.desktop.in.in.h:2
 msgid "What time and date is it?"
-msgstr "Mi a pontos idő és dátum?"
+msgstr "A pontos idő és dátum"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:1
 #: ../xfcalendar.desktop.in.h:1
@@ -3427,7 +3401,7 @@ msgstr "Naptár beállításai"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:3
 msgid "Settings for the Xfce 4 Calendar Application"
-msgstr "Az Xfce 4 naptárának beállításai"
+msgstr "Az Xfce 4 naptáralkalmazás beállításai"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:4
 msgid "Xfce 4 Calendar Settings"
@@ -3437,71 +3411,3 @@ msgstr "Xfce 4 naptár beállításai"
 msgid "Desktop calendar"
 msgstr "Asztali naptár"
 
-#~ msgid "Monday"
-#~ msgstr "Hétfő"
-
-#~ msgid "Tuesday"
-#~ msgstr "Kedd"
-
-#~ msgid "Wednesday"
-#~ msgstr "Szerda"
-
-#~ msgid "Thursday"
-#~ msgstr "Csütörtök"
-
-#~ msgid "Friday"
-#~ msgstr "Péntek"
-
-#~ msgid "Sunday"
-#~ msgstr "Vasárnap"
-
-#, fuzzy
-#~ msgid "Days"
-#~ msgstr "nap"
-
-#~ msgid "normal"
-#~ msgstr "normál"
-
-#~ msgid "%m/%d/%Y"
-#~ msgstr "%Y-%m-%d"
-
-#, fuzzy
-#~ msgid "Calendar Files"
-#~ msgstr "Naptárfájlok"
-
-#~ msgid "Calendar borders"
-#~ msgstr "Naptár kerete"
-
-#~ msgid "Displayed"
-#~ msgstr "Látszik"
-
-#~ msgid "Hidden"
-#~ msgstr "Rejtett"
-
-#~ msgid "3 months"
-#~ msgstr "3 hónap"
-
-#~ msgid "6 months"
-#~ msgstr "6 hónap"
-
-#~ msgid "1 year"
-#~ msgstr "1 év"
-
-#~ msgid "Application"
-#~ msgstr "Alkalmazás"
-
-#~ msgid "Button Label|Orage"
-#~ msgstr "Naptár (Orage)"
-
-#~ msgid "Core developer"
-#~ msgstr "Fő fejlesztő"
-
-#~ msgid ""
-#~ "You will remove all information \n"
-#~ "associated with this date."
-#~ msgstr ""
-#~ "Törölve lesz az ehhez a dátumhoz\n"
-#~ "kapcsolódó összes adat."
-
-#~ msgid "Clear"
-#~ msgstr "Törlés"
