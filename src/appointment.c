@@ -102,14 +102,14 @@ static GtkWidget *datetime_hbox_new(GtkWidget *date_button
     gtk_box_pack_start(GTK_BOX(hbox), space_label, FALSE, FALSE, 0);
 
     gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(spin_hh), TRUE);
-    gtk_widget_set_size_request(spin_hh, 40, -1);
+    /* gtk_widget_set_size_request(spin_hh, 40, -1); */
     gtk_box_pack_start(GTK_BOX(hbox), spin_hh, FALSE, FALSE, 0);
 
     space_label = gtk_label_new(":");
     gtk_box_pack_start(GTK_BOX(hbox), space_label, FALSE, FALSE, 0);
 
     gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(spin_mm), TRUE);
-    gtk_widget_set_size_request(spin_mm, 40, -1);
+    /* gtk_widget_set_size_request(spin_mm, 40, -1); */
     gtk_box_pack_start(GTK_BOX(hbox), spin_mm, FALSE, FALSE, 0);
 
     if (timezone_button) {
@@ -144,7 +144,7 @@ static GtkWidget *period_hbox_new(gboolean head_space, gboolean tail_space
     gtk_box_pack_start(GTK_BOX(hbox), space_label, FALSE, FALSE, 0);
 
     gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(spin_hh), TRUE);
-    gtk_widget_set_size_request(spin_hh, 40, -1);
+    /* gtk_widget_set_size_request(spin_hh, 40, -1); */
     gtk_box_pack_start(GTK_BOX(hbox), spin_hh, FALSE, FALSE, 0);
 
     gtk_box_pack_start(GTK_BOX(hbox), hh_label, FALSE, FALSE, 5);
@@ -153,7 +153,7 @@ static GtkWidget *period_hbox_new(gboolean head_space, gboolean tail_space
     gtk_box_pack_start(GTK_BOX(hbox), space_label, FALSE, FALSE, 0);
 
     gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(spin_mm), TRUE);
-    gtk_widget_set_size_request(spin_mm, 40, -1);
+    /* gtk_widget_set_size_request(spin_mm, 40, -1); */
     gtk_box_pack_start(GTK_BOX(hbox), spin_mm, FALSE, FALSE, 0);
 
     gtk_box_pack_start(GTK_BOX(hbox), mm_label, FALSE, FALSE, 5);

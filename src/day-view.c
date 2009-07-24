@@ -697,7 +697,6 @@ static void build_day_view_header(day_win *dw, char *start_date)
     /* show days spin = how many days to show */
     dw->day_spin = gtk_spin_button_new_with_range(1, MAX_DAYS, 1);
     gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(dw->day_spin), TRUE);
-    gtk_widget_set_size_request(dw->day_spin, 40, -1);
     gtk_box_pack_start(GTK_BOX(hbox), dw->day_spin, FALSE, FALSE, 0);
     label = gtk_label_new(_("days"));
     gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 5);
