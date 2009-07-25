@@ -1,6 +1,7 @@
 # Hungarian translation of xfcalendar
 # Copyright 2003-2009. Free Software Foundation, Inc.
 # This file is distributed under the same license as the xfcalendar package.
+#
 # SZERVÁC Attila <sas@321.hu>, 2006.
 # András Mohari <mayday@mailpoint.hu>, 2006.
 # Gabor Kelemen <kelemeng at gnome dot hu>, 2009.
@@ -8,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: xfcalendar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-07-14 14:19+0200\n"
-"PO-Revision-Date: 2009-07-17 14:13+0200\n"
+"POT-Creation-Date: 2009-07-25 12:13+0200\n"
+"PO-Revision-Date: 2009-07-25 12:13+0200\n"
 "Last-Translator: Gabor Kelemen <kelemeng at gnome dot hu>\n"
 "Language-Team: Hungarian <gnome at gnome dot hu>\n"
 "MIME-Version: 1.0\n"
@@ -252,7 +253,8 @@ msgstr "Az óranév alapértelmezett betűkészletének módosítása"
 
 #: ../globaltime/gt_prefs.c:943 ../globaltime/gt_prefs.c:977
 msgid "Cross this to use system default font instead of selected font"
-msgstr "A rendszer alapértelmezett betűkészletének használata a kiválasztott helyett"
+msgstr ""
+"A rendszer alapértelmezett betűkészletének használata a kiválasztott helyett"
 
 #: ../globaltime/gt_prefs.c:962
 msgid "Click to change default font for clock time"
@@ -317,7 +319,9 @@ msgstr "Helyi időzóna:"
 msgid ""
 "Enter local timezone. (it is used to show if time is on previous(-) or next "
 "date(+) by adding a +/- after the time)"
-msgstr "Adja meg a helyi időzónát (ha az idő az előző(-) vagy következő(+) dátumra esik, az idő után +/- jel jelenik meg)"
+msgstr ""
+"Adja meg a helyi időzónát (ha az idő az előző(-) vagy következő(+) dátumra "
+"esik, az idő után +/- jel jelenik meg)"
 
 #: ../panel-plugin/oc_config.c:199
 msgid "Appearance"
@@ -396,7 +400,12 @@ msgid ""
 "circumstances it is possible that Orageclock shows time inaccurately unless "
 "you have this selected. (Selecting this prevents cpu and interrupt saving "
 "features from working.)"
-msgstr "Erre csak akkor van szükség, ha rövid idejű (5 óránál rövidebb) felfüggesztést vagy hibernálást végez és a látható idő nem tartalmazza a másodperceket. Ebben az esetben előfordulhat, hogy az Orage óra az időt helytelenül jeleníti meg, ha ez nincs kiválasztva. Ez a beállítás megakadályozza a processzor- és megszakításmentési szolgáltatások működését."
+msgstr ""
+"Erre csak akkor van szükség, ha rövid idejű (5 óránál rövidebb) "
+"felfüggesztést vagy hibernálást végez és a látható idő nem tartalmazza a "
+"másodperceket. Ebben az esetben előfordulhat, hogy az Orage óra az időt "
+"helytelenül jeleníti meg, ha ez nincs kiválasztva. Ez a beállítás "
+"megakadályozza a processzor- és megszakításmentési szolgáltatások működését."
 
 #: ../panel-plugin/oc_config.c:407
 msgid ""
@@ -410,7 +419,8 @@ msgid ""
 "\t%X = local time\t\t\t%x = local date"
 msgstr ""
 "Ez a program az strftime függvényt használja az idő lekérésére.\n"
-"Tetszőleges érvényes kód használható, az idő kívánt formátumban való megjelenítéséhez.\n"
+"Tetszőleges érvényes kód használható, az idő kívánt formátumban való "
+"megjelenítéséhez.\n"
 "Néhány gyakori kód:\n"
 "\t%A = hétköznap\t\t\t%B = hónap\n"
 "\t%c = dátum és idő\t\t\t%R = óra és perc\n"
@@ -709,7 +719,9 @@ msgstr "Kategóriák"
 msgid ""
 "This is special category, which can be used to color this appointment in "
 "list views."
-msgstr "Ez egy speciális kategória, az értekezlet színezésére használható a listanézetekben."
+msgstr ""
+"Ez egy speciális kategória, az értekezlet színezésére használható a "
+"listanézetekben."
 
 #: ../src/appointment.c:2427
 msgid "update colors for categories."
@@ -775,7 +787,9 @@ msgstr "Folyamatos figyelmeztetés"
 msgid ""
 "Select this if you want Orage to remind you even if it has not been active "
 "when the alarm happened."
-msgstr "Az Orage akkor is emlékeztessen, ha nem volt aktív a figyelmeztetés bekövetkeztekor."
+msgstr ""
+"Az Orage akkor is emlékeztessen, ha nem volt aktív a figyelmeztetés "
+"bekövetkeztekor."
 
 #. **** Audio Alarm ****
 #: ../src/appointment.c:2571
@@ -2702,12 +2716,17 @@ msgstr "Orage alapértelmezett figyelmeztetés"
 #: ../src/ical-code.c:3064
 #, c-format
 msgid "Build alarm list: Added %d alarms. Processed %d events."
-msgstr "Figyelmeztetéslista építése: %d figyelmeztetés felvéve. %d esemény feldolgozva."
+msgstr ""
+"Figyelmeztetéslista építése: %d figyelmeztetés felvéve. %d esemény "
+"feldolgozva."
 
 #: ../src/ical-code.c:3066
 #, c-format
-msgid "\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
-msgstr "\t%d figyelmeztetés található, amiből %d aktív. (%d ismétlődő figyelmeztetés keresése kész.)"
+msgid ""
+"\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
+msgstr ""
+"\t%d figyelmeztetés található, amiből %d aktív. (%d ismétlődő figyelmeztetés "
+"keresése kész.)"
 
 #. remove since it has ended
 #: ../src/ical-code.c:3644
@@ -2990,7 +3009,8 @@ msgid ""
 "original tool, where they came from!"
 msgstr ""
 "Az Orage soha ne módosíthassa a fájlt.\n"
-"Ne feledje, hogy a külső fájlok módosítása inkompatibilissé teheti azokat az eredeti eszközzel, ahonnan származnak."
+"Ne feledje, hogy a külső fájlok módosítása inkompatibilissé teheti azokat az "
+"eredeti eszközzel, ahonnan származnak."
 
 #: ../src/interface.c:1300
 msgid "Exchange data - Orage"
@@ -3109,7 +3129,9 @@ msgstr "\tAz Orage nem tartalmazza a D-Bus támogatást.\n"
 msgid ""
 "\twithout dbus [files] and foreign file options(-a & -r) can only be used "
 "when starting orage \n"
-msgstr "\tA D-Bus nélkül a [fájlok] és külső fájl kapcsolók (-a és -r) csak az Orage indításakor használhatók.\n"
+msgstr ""
+"\tA D-Bus nélkül a [fájlok] és külső fájl kapcsolók (-a és -r) csak az Orage "
+"indításakor használhatók.\n"
 
 #: ../src/main.c:381
 #, c-format
@@ -3215,7 +3237,8 @@ msgstr "(0 = nincs archiválás)"
 
 #: ../src/parameters.c:520
 msgid "Archiving is used to save time and space when handling events."
-msgstr "Az archiválás célja az események kezelésekor történő idő- és helyspórolás."
+msgstr ""
+"Az archiválás célja az események kezelésekor történő idő- és helyspórolás."
 
 #: ../src/parameters.c:529
 msgid "Sound command"
@@ -3223,7 +3246,8 @@ msgstr "Hang parancs"
 
 #: ../src/parameters.c:544
 msgid "This command is given to shell to make sound in alarms."
-msgstr "Ezen parancs futtatása a figyelmeztetések hangjának megszólaltatásához."
+msgstr ""
+"Ezen parancs futtatása a figyelmeztetések hangjának megszólaltatásához."
 
 #: ../src/parameters.c:559
 msgid "Display"
@@ -3252,7 +3276,7 @@ msgstr "Eseménylista megjelenítése"
 # FIXME: wtf?
 #: ../src/parameters.c:599
 msgid "Set sticked"
-msgstr "Tapadás beállítása"
+msgstr "Mindig látható beállítása"
 
 #: ../src/parameters.c:606
 msgid "Set on top"
@@ -3294,7 +3318,9 @@ msgstr "Mindig a mai nap megjelenítése"
 msgid ""
 "When showing main calendar, set pointer to either previously selected day or "
 "always to current day."
-msgstr "Az elsődleges naptár megjelenítésekor a mutató beállítása a korábban kiválasztott vagy a mai napra."
+msgstr ""
+"Az elsődleges naptár megjelenítésekor a mutató beállítása a korábban "
+"kiválasztott vagy a mai napra."
 
 #: ../src/parameters.c:766
 msgid "Dynamic icon size"
@@ -3309,7 +3335,10 @@ msgid ""
 "Dynamic icon shows current day and month. It is visible only in tray. If "
 "tray is too small for dynamic icon size, Orage switches automatically back "
 "to static icon."
-msgstr "A dinamikus ikon megjeleníti az aktuális napot és hónapot. Csak az értesítési területen látható. Ha az túl kicsi a dinamikus ikonmérethez, az Orage automatikusan visszavált a statikus ikonra."
+msgstr ""
+"A dinamikus ikon megjeleníti az aktuális napot és hónapot. Csak az "
+"értesítési területen látható. Ha az túl kicsi a dinamikus ikonmérethez, az "
+"Orage automatikusan visszavált a statikus ikonra."
 
 #: ../src/parameters.c:805
 msgid "Main Calendar double click shows"
@@ -3410,4 +3439,3 @@ msgstr "Xfce 4 naptár beállításai"
 #: ../xfcalendar.desktop.in.h:2
 msgid "Desktop calendar"
 msgstr "Asztali naptár"
-
