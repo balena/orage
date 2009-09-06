@@ -50,6 +50,7 @@
 #include "functions.h"
 #include "mainbox.h"
 #include "ical-code.h"
+#include "timezone_selection.h"
 #include "event-list.h"
 #include "day-view.h"
 #include "appointment.h"
@@ -1303,7 +1304,7 @@ static void on_appStartTimezone_clicked_cb(GtkButton *button
     xfical_appt *appt;
 
     appt = (xfical_appt *)apptw->xf_appt;
-    if (xfical_timezone_button_clicked(button, GTK_WINDOW(apptw->Window)
+    if (orage_timezone_button_clicked(button, GTK_WINDOW(apptw->Window)
             , &appt->start_tz_loc))
         mark_appointment_changed(apptw);
 }
@@ -1315,7 +1316,7 @@ static void on_appEndTimezone_clicked_cb(GtkButton *button
     xfical_appt *appt;
 
     appt = (xfical_appt *)apptw->xf_appt;
-    if (xfical_timezone_button_clicked(button, GTK_WINDOW(apptw->Window)
+    if (orage_timezone_button_clicked(button, GTK_WINDOW(apptw->Window)
             , &appt->end_tz_loc))
         mark_appointment_changed(apptw);
 }
@@ -1327,7 +1328,7 @@ static void on_appCompletedTimezone_clicked_cb(GtkButton *button
     xfical_appt *appt;
 
     appt = (xfical_appt *)apptw->xf_appt;
-    if (xfical_timezone_button_clicked(button, GTK_WINDOW(apptw->Window)
+    if (orage_timezone_button_clicked(button, GTK_WINDOW(apptw->Window)
             , &appt->completed_tz_loc))
         mark_appointment_changed(apptw);
 }

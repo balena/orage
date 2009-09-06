@@ -1,22 +1,33 @@
 
 zoneinfodatadir = $(datadir)/$(PACKAGE)/zoneinfo
 
-zoneinfodata_DATA = zones.tab
+zoneinfodata_DATA = zones.tab \
+					tz_convert.par
 
 DIRS = \
+	.			\
 	Africa			\
 	America			\
-	America/Argentina	\
-	America/Indiana		\
-	America/Kentucky	\
+	America/Argentina		\
+	America/Indiana			\
+	America/Kentucky		\
+	America/North_Dakota	\
 	Antarctica		\
 	Arctic			\
 	Asia			\
 	Atlantic		\
 	Australia		\
+	Brazil			\
+	Canada			\
+	Chile			\
+	Etc				\
 	Europe			\
 	Indian			\
-	Pacific
+	Mexico			\
+	Mideast			\
+	Pacific			\
+	SystemV			\
+	US
 
 
 install-data-local:

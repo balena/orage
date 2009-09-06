@@ -1,22 +1,27 @@
 plugindir = $(libexecdir)/xfce4/panel-plugins
 
-plugin_PROGRAMS = orageclock
+plugin_PROGRAMS = xfce4-orageclock-plugin
 
-orageclock_CFLAGS =							\
-	-DPACKAGE_LOCALE_DIR=\"$(localedir)\"\
+xfce4_orageclock_plugin_CFLAGS =							\
+	-DPACKAGE_DATA_DIR=\"$(datadir)\"				\
+	-DPACKAGE_LOCALE_DIR=\"$(localedir)\"			\
 	@LIBXFCE4PANEL_CFLAGS@
 
-orageclock_LDFLAGS =						\
+xfce4_orageclock_plugin_LDFLAGS =						\
 	@LIBXFCE4PANEL_LIBS@
 
-orageclock_SOURCES = 						\
-	orageclock.c	\
-	oc_config.c	\
-	orageclock.h
+xfce4_orageclock_plugin_SOURCES = 						\
+	oc_config.c										\
+	timezone_selection.c							\
+	timezone_selection.h							\
+	tz_zoneinfo_read.c								\
+	tz_zoneinfo_read.h								\
+	xfce4-orageclock-plugin.c							\
+	xfce4-orageclock-plugin.h
 
 if HAVE_CYGWIN
-orageclock_LDFLAGS +=                        	                \
-	-no-undefined                                                   \
+xfce4_orageclock_plugin_LDFLAGS +=                      \
+	-no-undefined                                  \
 	@LIBXFCEGUI4_LIBS@
 endif
 
@@ -27,7 +32,7 @@ endif
 # We also need to let intltool merge the translated fields, so we add an
 # additional level of indirection: a <name>.desktop.in.in file.
 # 
-desktop_in_in_files = orageclock.desktop.in.in
+desktop_in_in_files = xfce4-orageclock-plugin.desktop.in.in
 desktop_in_files = $(desktop_in_in_files:.desktop.in.in=.desktop.in)
 	
 desktopdir = $(datadir)/xfce4/panel-plugins

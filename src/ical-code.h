@@ -165,9 +165,6 @@ gboolean xfical_unarchive_uid(char *uid);
 gboolean xfical_import_file(char *file_name);
 gboolean xfical_export_file(char *file_name, int type, char *uids);
 
-gboolean xfical_timezone_button_clicked(GtkButton *button, GtkWindow *parent
-        , gchar **tz);
-
 gboolean xfical_file_check(gchar *file_name);
 
 #endif /* !__ICAL_CODE_H__ */

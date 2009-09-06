@@ -46,6 +46,7 @@
 #include "functions.h"
 #include "tray_icon.h"
 #include "ical-code.h"
+#include "timezone_selection.h"
 #include "parameters.h"
 #include "mainbox.h"
 
@@ -403,7 +404,7 @@ static void timezone_button_clicked(GtkButton *button, gpointer user_data)
         g_warning("timezone pressed: local timezone missing");
         g_par.local_timezone = g_strdup("floating");
     }
-    if (xfical_timezone_button_clicked(button, GTK_WINDOW(itf->orage_dialog)
+    if (orage_timezone_button_clicked(button, GTK_WINDOW(itf->orage_dialog)
             , &g_par.local_timezone))
         xfical_set_local_timezone(FALSE);
 }

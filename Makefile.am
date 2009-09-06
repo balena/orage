@@ -14,6 +14,7 @@ SUBDIRS = 								\
 	src								\
 	panel-plugin							\
 	globaltime							\
+	tz_convert							\
 	plugin
 
 desktopdir = $(datadir)/applications

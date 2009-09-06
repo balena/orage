@@ -37,7 +37,9 @@
 #include <libxfcegui4/libxfcegui4.h>
 #include <libxfce4panel/xfce-panel-plugin.h>
 
-#include "orageclock.h"
+#include "xfce4-orageclock-plugin.h"
+#include "tz_zoneinfo_read.h"
+#include "timezone_selection.h"
 
 
 /* -------------------------------------------------------------------- *
@@ -106,16 +108,24 @@ static void oc_timezone_changed(GtkWidget *widget, GdkEventKey *key
     oc_timezone_set(clock);
 }
 
-static void oc_timezone_selected(GtkWidget *widget, Clock *clock)
+static void oc_timezone_selected(GtkButton *button, Clock *clock)
 {
     GtkWidget *dialog;
     gchar *filename = NULL;
 
+    dialog = g_object_get_data(G_OBJECT(clock->plugin), "dialog");
+    if (orage_timezone_button_clicked(button, GTK_WINDOW(dialog), &filename)) {
+        gtk_entry_set_text(GTK_ENTRY(clock->tz_entry), filename);
+        g_string_assign(clock->timezone, filename);
+        oc_timezone_set(clock);
+        g_free(filename);
+    }
+/*
     dialog = gtk_file_chooser_dialog_new(_("Select timezone"), NULL
             , GTK_FILE_CHOOSER_ACTION_OPEN
             , GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL
             , GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT, NULL);
-/* let's try to start on few standard positions */
+/ * let's try to start on few standard positions * /
     if (gtk_file_chooser_set_filename(GTK_FILE_CHOOSER(dialog)
             , "/usr/share/zoneinfo/GMT") == FALSE)
         gtk_file_chooser_set_filename(GTK_FILE_CHOOSER(dialog)
@@ -128,6 +138,7 @@ static void oc_timezone_selected(GtkWidget *widget, Clock *clock)
         g_free(filename);
     }
     gtk_widget_destroy(dialog);
+    */
 }
 
 static void oc_show1(GtkToggleButton *cb, Clock *clock)
@@ -409,7 +420,7 @@ static void oc_properties_options(GtkWidget *dlg, Clock *clock)
     gtk_box_pack_start(GTK_BOX(hbox), label, TRUE, TRUE, 0);
 }
 
-static void oc_dialog_response(GtkWidget *dlg, int reponse, Clock *clock)
+static void oc_dialog_response(GtkWidget *dlg, int response, Clock *clock)
 {
     g_object_set_data(G_OBJECT(clock->plugin), "dialog", NULL);
     gtk_widget_destroy(dlg);
@@ -448,7 +459,6 @@ void oc_properties_dialog(XfcePanelPlugin *plugin, Clock *clock)
     gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), header, FALSE, TRUE, 0);
     
     oc_properties_appearance(dlg, clock);
-
     oc_properties_options(dlg, clock);
 
     gtk_widget_show_all(dlg);

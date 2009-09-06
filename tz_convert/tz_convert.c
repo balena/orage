@@ -56,9 +56,10 @@
 
 #define DEFAULT_ZONEINFO_DIRECTORY  "/usr/share/zoneinfo"
 #define DEFAULT_ZONETAB_FILE        "/usr/share/zoneinfo/zone.tab"
+#define TZ_CONVERT_PARAMETER_FILE_NAME "zoneinfo/tz_convert.par"
 
 int debug = 1; /* bigger number => more output */
-char version[] = "1.4.3";
+char version[] = "1.4.4";
 int file_cnt = 0; /* number of processed files */
 
 unsigned char *in_buf, *in_head, *in_tail;
@@ -75,11 +76,11 @@ FILE *ical_file;
 
 /* in_timezone_name is the real timezone name from the infile 
  * we are processing.
- * in_timezone_name is the timezone we are writing. Usually it is the same
+ * timezone_name is the timezone we are writing. Usually it is the same
  * than in_timezone_name. 
  * timezone name is for example Europe/Helsinki */
-char *timezone_name = NULL;  
 char *in_timezone_name = NULL;
+char *timezone_name = NULL;  
 
 int ignore_older = 1970; /* Ignore rules which are older or equal than this */
 
@@ -385,6 +386,8 @@ int create_ical_file(const char *in_file_name)
         out_file[in_file_name_len] = '\0';
         strncat(out_file, ical_ending, ical_ending_len);
 
+        /* FIXME: it is possible that in_timezone_name and timezone_name
+         * do not get any value! Move them outside of this if */
         in_timezone_name = strdup(&in_file_name[in_file_base_offset 
                 + strlen("zoneinfo/")]);
         timezone_name = strdup(in_timezone_name);
@@ -863,7 +866,7 @@ void write_ical_timezones()
                 data_prev_std  = ical_data;
                 std_init_done  = 1;
                 if (debug > 2)
-                    printf("int time change %d: (%s) from %02d:%02d to %02d:%02d (%s) %s"
+                    printf("init time change %d: (%s) from %02d:%02d to %02d:%02d (%s) %s"
                             , i, ical_data.is_dst ? "dst" : "std"
                             , ical_data.prev_gmt_offset_hh, ical_data.prev_gmt_offset_mm
                             , ical_data.gmt_offset_hh, ical_data.gmt_offset_mm
@@ -1075,11 +1078,78 @@ int write_ical_file(const char *in_file_name, const struct stat *in_file_stat)
     return(0);
 }
 
+void write_parameters(const char *par_file_name)
+{
+    /* FIXME: currently only writing the location of system tz files.
+     * It would be good to have a way to influence other parameters also.*/
+    FILE *par_file;
+    struct stat par_file_stat;
+    int len;
+
+    if (debug > 1)
+        printf("write_parameters: start\n");
+    par_file = fopen(par_file_name, "w");
+    if (par_file == NULL) { /* error */
+        perror("\fopen");
+        return; 
+    }
+
+    len = in_file_base_offset + strlen("zoneinfo");
+    if (in_file[len-1] == '/')
+        len--; /* remove trailing / */
+    if (len <= strlen(in_file)) {
+        fwrite(in_file, 1, len, par_file);
+    }
+    else {
+        printf("write_parameters: error with (%s) %d (%d).\n"
+                , in_file, len, in_file_base_offset);
+    }
+
+    fclose(par_file);
+    if (debug > 1)
+        printf("write_parameters: end\n");
+}
+
+/*
+void read_parameters(const char *par_file_name)
+{
+    FILE *par_file;
+    struct stat par_file_stat;
+    char *par_buf;
+
+    if (debug > 1)
+        printf("read_parameters: start\n");
+    par_file = fopen(ical_zone, "r");
+    if (par_file == NULL) { / * does not exist or other error * /
+        return; / *nothing to read, just return * /
+    }
+    if (stat(par_file_name, &par_file_stat) == -1) {
+        perror("\tstat");
+        fclose(par_file);
+        return;
+    }
+
+    par_buf = malloc(par_file_stat.st_size+1);
+    fread(par_buf, 1, par_file_stat.st_size, par_file);
+    if (ferror(par_file)) {
+        printf("read_parameters: error reading (%s).\n", par_file_name);
+        perror("\tfread");
+        free(par_buf);
+        fclose(par_file);
+        return;
+    }
+
+    fclose(ical_zone, "r");
+    if (debug > 1)
+        printf("read_parameters: end\n");
+}
+*/
+
 int par_version()
 {
     printf(
-        "orage_tz_to_ical_convert version (Orage utility) %s\n"
-        "Copyright © 2008 Juha Kautto\n"
+        "tz_convert version (Orage utility) %s\n"
+        "Copyright © 2008-2009 Juha Kautto\n"
         "License: GNU GPL <http://gnu.org/licenses/gpl.html>\n"
         "This is free software: you are free to change and redistribute it.\n"
         "There is NO WARRANTY.\n"
@@ -1091,12 +1161,12 @@ int par_version()
 int par_help()
 {
     printf(
-        "orage_tz_to_ical_convert converts operating system timezone (tz) files\n"
+        "tz_convert converts operating system timezone (tz) files\n"
         "to ical format. Often you find tz files in /usr/share/zoneinfo/\n\n"
-        "Usage: orage_tz_to_ical_convert [in_file] [out_file] [parameters]...\n"
+        "Usage: tz_convert [in_file] [out_file] [parameters]...\n"
         "parameters:\n"
         "\t -h, -?, --help\t\t this help text\n"
-        "\t -V, --version\t\t orage_tz_to_ical_convert version\n"
+        "\t -V, --version\t\t tz_convert version\n"
         "\t -i, --infile\t\t tz file name from operating system.\n"
         "\t\t\t\t If this is directory, all files in it are\n"
         "\t\t\t\t processed\n"
@@ -1119,7 +1189,7 @@ int get_parameters_popt(int argc, const char **argv)
             , "this help text", NULL}
             */
         {"version", 'V', POPT_ARG_NONE, &par_type, 2
-            , "orage_tz_to_ical_convert version", NULL},
+            , "tz_convert version", NULL},
         {"infile", 'i', POPT_ARG_STRING, &tmp_str, 3
             , "tz file name from operating system."
               " If this is directory, all files in it are processed"
@@ -1143,7 +1213,7 @@ int get_parameters_popt(int argc, const char **argv)
             , "process only main directory, instead of all subdirectories."
               " 0 = recursive  1 = only main directory (0=default)."
             , "level"},
-        {"excluce count", 'c', POPT_ARG_INT, &excl_dir_cnt, 9
+        {"exclude count", 'c', POPT_ARG_INT, &excl_dir_cnt, 9
             , "number of excluded directories."
               " 5 = default (You only need this if you have more"
               " than 5 excluded directories)."
@@ -1156,7 +1226,7 @@ int get_parameters_popt(int argc, const char **argv)
             , "directory"},
         {"norrule", 'u', POPT_ARG_INT, &no_rrule, 11
             , "do not use RRULE ical repeating rule, but use RDATE instead."
-              " Not all calendars are able to understand RDATE correctly"
+              " Not all calendars are able to understand RRULE correctly"
               " with timezones. "
               " (Orage should work fine with RRULE)"
               " 0 = use RRULE  1 = do not use RRULE (0=default)."
@@ -1527,6 +1597,9 @@ main(int argc, const char **argv)
     if (debug > 1)
         printf("main: start\n");
     /* if (exit_code = process_parameters(argc, argv)) */
+    /*
+    read_parameters(TZ_CONVERT_PARAMETER_FILE_NAME);
+    */
     if (get_parameters_popt(argc, argv))
         exit(EXIT_FAILURE); /* help, version or error => end processing */
     if (check_parameters())
@@ -1541,6 +1614,7 @@ main(int argc, const char **argv)
     }
 
     printf("Processed %d files\n", file_cnt);
+    write_parameters(TZ_CONVERT_PARAMETER_FILE_NAME);
 
     free(in_file);
     if (debug > 1)

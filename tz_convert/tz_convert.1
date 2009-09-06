@@ -1,0 +1,124 @@
+.\"     Title: tz_convert
+.\"    Author: 
+.\" Generator: DocBook XSL Stylesheets v1.73.2 <http://docbook.sf.net/>
+.\"      Date: 05/28/2009
+.\"    Manual: 
+.\"    Source: 
+.\"
+.TH "TZ_CONVERT" "1" "05/28/2009" "" ""
+.\" disable hyphenation
+.nh
+.\" disable justification (adjust text to left margin only)
+.ad l
+.SH "NAME"
+tz_convert - Timezone converter from operating system tz format into libical format used by Orage and several other calander tools.
+.SH "SYNOPSIS"
+.HP 32
+\fBtz_convert [OPTION\.\.\.] [INFILE]\fR
+.SH "DESCRIPTION"
+.PP
+
+\fBtz_convert\fR
+is a command line tool, which can be used to convert timezone data from so called tz binary format, usually used in operating systems, to libical format, used by several calenders like Orage\.
+.PP
+There are several options available to only convert certain files or files in certain directory\. Or only convert part of the file and ignore for example old data\. It is also possible to add new timezone files, which are based on old timezone data\.
+.PP
+There are tools, which generate ical timezones data from tz source database, but those are often not available for normal users and are difficult to use\. So often libical timezones are not upto date\.
+\fBtz_convert\fR
+reads directly the binary tz data and makes it possible to keep libical timezones up to date\. The tool is mainly meant to be used by distro maintainers, but it should be easy and clear enough for all users\.
+.SH "FILES"
+.PP
+tz timezone files often can be found in directory
+\fI/usr/share/zoneinfo\fR\. For example Europe/Helsinki\. libical timezone files needs to be where you calendar can find them\. For Xfce and Orage systems they are located under your Xfce directory in
+\fIshare/orage/libical/zoneinfo\fR\. For example Europe/Helsinki\.ics\. (use
+\fBlocate\fR
+to find them\.)
+.SH "OPTIONS"
+.PP
+\fB\-V\fR, \fB\-\-version\fR
+.RS 4
+Print version information and exit\.
+.RE
+.PP
+\fB\-?\fR, \fB\-\-help\fR
+.RS 4
+Show this help message and exit\.
+.RE
+.PP
+\fB\-\-usage\fR
+.RS 4
+Show short usage summary\.
+.RE
+.PP
+\fB\-i\fR, \fB\-\-infile\fR
+.RS 4
+tz file name from operating system to convert from\. If this is directory, all files in it are processed\. Default is
+\fI/usr/share/zoneinfo\fR
+.RE
+.PP
+\fB\-o\fR, \fB\-\-outfile\fR
+.RS 4
+ical timezone file name to be written\. This can not be directory\. It is meant to be used together with timezone parameter\. This is very seldom used\. Default is timezone/\fIinfile\fR\.ics
+.RE
+.PP
+\fB\-m\fR, \fB\-\-message\fR
+.RS 4
+debug message level\. How much exra information is shown\. 0 is least and 10 is highest (1=default)\. May give usefull information when things do not work as expected\.
+.RE
+.PP
+\fB\-l\fR, \fB\-\-limit\fR
+.RS 4
+limit processing to newer than this year\. Often there is a lot of old data available, which is not needed in normal day to day work and skipping unused years helps to improve performance\. Default is to ignore older than year 1970 time changes\.
+.RE
+.PP
+\fB\-t\fR, \fB\-\-timezone\fR
+.RS 4
+timezone name to be used in the actual file\. Normally file name is the same as timezone name, but if you want to create your own timezone, you need new file name, which contains some known timezone name\. This is used together with outfile parameter\.
+.RE
+.PP
+\fB\-r\fR, \fB\-\-norecursive\fR
+.RS 4
+process only main directory, instead of all subdirectories\. 0 = recursive 1 = only main directory (0=default)\.
+.RE
+.PP
+\fB\-c\fR, \fB\-\-exclude count\fR
+.RS 4
+number of excluded directories\. 5 = default (You only need this if you have more than 5 excluded directories)\. This is used together with exclude parameter\.
+.RE
+.PP
+\fB\-x\fR, \fB\-\-exclude\fR
+.RS 4
+do not process this directory, skip it\. You can give several directories with separate parameters\. By default directories
+\fIright\fR
+and
+\fIposix\fR
+are excluded, but if you use this parameter, you have to specify those also\. You need to use exclude count if you have more than 5 exclude directories\.
+.RE
+.PP
+\fB\-u\fR, \fB\-\-norrule\fR
+.RS 4
+do not use RRULE ical repeating rule, but use RDATE instead\. Not all calendars are able to understand RRULE correctly with timezones\. (Orage should work fine with RRULE)\. 0 = use RRULE 1 = do not use RRULE (0=default)\.
+.RE
+.SH "BUGS"
+.PP
+Please report any bugs and enhancement requests to
+\fIhttp://bugzilla\.xfce\.org/\fR\. Note that
+\fBtz_convert\fR
+is part of
+\fBorage\fR
+so bugs are reported against orage and component tz_convert\. Usage related questions can be sent to
+\fIxfce@xfce\.org\fR
+email list\.
+.SH "HOMEPAGE"
+.PP
+
+\fIhttp://www\.xfce\.org/projects/orage/\fR
+.SH "AUTHOR"
+.PP
+
+\fBtz_convert\fR
+was written by Juha Kautto
+<juha@xfce\.org>\.
+.PP
+This manual page was written by Juha Kautto
+<juha@xfce\.org>\.

@@ -357,17 +357,34 @@ static void move_clock(GtkWidget *widget, modify_struct *modify_clock)
     write_file();
 }
 
-static void ask_timezone(GtkWidget *widget, modify_struct *modify_clock)
+static void ask_timezone(GtkButton *button, modify_struct *modify_clock)
+/* static void ask_timezone(GtkWidget *widget, modify_struct *modify_clock) */
 {
-    GtkWidget *dialog;
+    /* GtkWidget *dialog; */
     gchar *filename = NULL;
     gchar *clockname = NULL;
 
+    if (orage_timezone_button_clicked(button, GTK_WINDOW(modify_clock->window)
+                , &filename)) {
+        gtk_entry_set_text(GTK_ENTRY(modify_clock->tz_entry), filename);
+        if (strlen(gtk_entry_get_text(GTK_ENTRY(modify_clock->name_entry))) 
+                == 0) {
+            if ((clockname = strrchr(filename, (int)'/')))
+                gtk_entry_set_text(GTK_ENTRY(modify_clock->name_entry)
+                        , clockname+1);
+            else
+                gtk_entry_set_text(GTK_ENTRY(modify_clock->name_entry)
+                        , filename);
+        }
+        g_free(filename);
+    }
+
+    /*
     dialog = gtk_file_chooser_dialog_new(_("Select timezone"), NULL
             , GTK_FILE_CHOOSER_ACTION_OPEN
             , GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL
             , GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT, NULL);
-/* let's try to start on few standard positions */
+/ * let's try to start on few standard positions * /
     if (gtk_file_chooser_set_filename(GTK_FILE_CHOOSER(dialog)
                 , "/usr/share/zoneinfo/GMT") == FALSE)
         gtk_file_chooser_set_filename(GTK_FILE_CHOOSER(dialog)
@@ -387,6 +404,7 @@ static void ask_timezone(GtkWidget *widget, modify_struct *modify_clock)
         g_free(filename);
     }
     gtk_widget_destroy(dialog);
+    */
 }
 
 static void set_font(GtkWidget *widget, GString *font)

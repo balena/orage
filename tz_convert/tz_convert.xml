@@ -1,0 +1,225 @@
+<!--
+  $Id: tz_convert.xml 22971 2008-03-06 23:14:10Z juha $
+
+  Copyright (c) 2008 Juha Kautto <juha@xfce.org>
+-->
+
+<refentry id="Tz_convert">
+  <refmeta>
+    <refentrytitle>tz_convert</refentrytitle>
+    <manvolnum>1</manvolnum>
+  </refmeta>
+
+  <refnamediv>
+    <refname>tz_convert</refname>
+    <refpurpose>Timezone converter from operating system tz format into libical format used by Orage and several other calander tools.</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <cmdsynopsis>
+      <command>tz_convert [OPTION...] [INFILE]</command>
+    </cmdsynopsis>
+  </refsynopsisdiv>
+
+  <refsect1>
+    <title>Description</title>
+    <para>
+      <command>tz_convert</command> is a command line tool, which can be used
+      to convert timezone data from so called tz binary format, usually used 
+      in operating systems, to libical format, used by several calenders 
+      like Orage.
+    </para>
+    <para>
+      There are several options available to only convert certain files or
+      files in certain directory. Or only convert part of the file and ignore
+      for example old data. It is also possible to add new timezone files, 
+      which are based on old timezone data.
+    </para>
+    <para>
+      There are tools, which generate ical timezones data from tz source
+      database, but those are often not available for normal users and are
+      difficult to use. So often libical timezones are not upto date.
+      <command>tz_convert</command> reads directly the binary tz data and 
+      makes it possible to keep libical timezones up to date. The tool is 
+      mainly meant to be used by distro maintainers, but it should be easy 
+      and clear enough for all users.
+    </para>
+  </refsect1>
+
+  <refsect1>
+    <title>Files</title>
+    <para>
+      tz timezone files often can be found in directory
+      <replaceable>/usr/share/zoneinfo</replaceable>. For example 
+      Europe/Helsinki.
+      libical timezone files needs to be where you calendar can find them. 
+      For Xfce and Orage systems they are located under your Xfce directory in
+      <replaceable>share/orage/libical/zoneinfo</replaceable>. For example
+      Europe/Helsinki.ics. (use <command>locate</command> to find them.)
+    </para>
+  </refsect1>
+
+  <refsect1>
+    <title>Options</title>
+    <variablelist>
+
+      <varlistentry>
+        <term><option>-V</option>, <option>--version</option></term>
+        <listitem>
+          <para>Print version information and exit.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><option>-?</option>, <option>--help</option></term>
+        <listitem>
+          <para>Show this help message and exit.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><option>--usage</option></term>
+        <listitem>
+          <para>Show short usage summary.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><option>-i</option>, <option>--infile</option></term>
+        <listitem>
+          <para>
+            tz file name from operating system to convert from. If this is 
+            directory, all files in it are processed. Default is 
+            <replaceable>/usr/share/zoneinfo</replaceable>
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><option>-o</option>, <option>--outfile</option></term>
+        <listitem>
+          <para>
+            ical timezone file name to be written. This can not be directory. 
+            It is meant to be used together with timezone parameter. This is
+            very seldom used. 
+            Default is timezone/<replaceable>infile</replaceable>.ics
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><option>-m</option>, <option>--message</option></term>
+        <listitem>
+          <para>
+            debug message level. How much exra information is shown. 
+            0 is least and 10 is highest (1=default). May give usefull
+            information when things do not work as expected.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><option>-l</option>, <option>--limit</option></term>
+        <listitem>
+          <para>
+            limit processing to newer than this year. Often there is a lot
+            of old data available, which is not needed in normal day to day
+            work and skipping unused years helps to improve performance.
+            Default is to ignore older than year 1970 time changes.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><option>-t</option>, <option>--timezone</option></term>
+        <listitem>
+          <para>
+            timezone name to be used in the actual file. Normally file name
+            is the same as timezone name, but if you want to create your own
+            timezone, you need new file name, which contains some known
+            timezone name. This is used together with outfile parameter.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><option>-r</option>, <option>--norecursive</option></term>
+        <listitem>
+          <para>
+            process only main directory, instead of all subdirectories. 
+            0 = recursive  1 = only main directory (0=default).
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><option>-c</option>, <option>--exclude count</option></term>
+        <listitem>
+          <para>
+            number of excluded directories. 5 = default (You only need this 
+            if you have more than 5 excluded directories). This is used 
+            together with exclude parameter.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><option>-x</option>, <option>--exclude</option></term>
+        <listitem>
+          <para>
+            do not process this directory, skip it. You can give several 
+            directories with separate parameters. By default directories
+            <replaceable>right</replaceable> and 
+            <replaceable>posix</replaceable> are excluded, but if you use 
+            this parameter, you have to specify those also. You need to use
+            exclude count if you have more than 5 exclude directories.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term><option>-u</option>, <option>--norrule</option></term>
+        <listitem>
+          <para>
+            do not use RRULE ical repeating rule, but use RDATE instead. 
+            Not all calendars are able to understand RRULE correctly with 
+            timezones. (Orage should work fine with RRULE).
+            0 = use RRULE    1 = do not use RRULE    (0=default).
+          </para>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+  </refsect1>
+
+  <refsect1>
+    <title>BUGS</title>
+    <para>
+      Please report any bugs and enhancement requests to 
+      <replaceable>http://bugzilla.xfce.org/</replaceable>.
+      Note that <command>tz_convert</command> is part of
+      <command>orage</command> so bugs are reported against orage and component
+      tz_convert.
+      Usage related questions can be sent to
+      <replaceable>xfce@xfce.org</replaceable> email list.
+    </para>
+  </refsect1>
+
+  <refsect1>
+    <title>HOMEPAGE</title>
+    <para>
+      <replaceable>http://www.xfce.org/projects/orage/</replaceable>
+    </para>
+  </refsect1>
+
+  <refsect1>
+    <title>Author</title>
+    <para>
+      <command>tz_convert</command> was written by Juha Kautto
+      <email>juha@xfce.org</email>.
+    </para>
+    <para>
+      This manual page was written by Juha Kautto <email>juha@xfce.org</email>.
+    </para>
+  </refsect1>
+</refentry>

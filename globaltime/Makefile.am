@@ -12,19 +12,24 @@ globaltime_SOURCES =						\
 	globaltime.c							\
 	globaltime.h							\
 	gt_parfile.c							\
-	gt_prefs.c
+	gt_prefs.c								\
+	timezone_selection.c                    \
+	timezone_selection.h                    \
+	tz_zoneinfo_read.c                      \
+	tz_zoneinfo_read.h
 
-globaltime_CFLAGS =						\
-	$(LIBXFCEGUI4_CFLAGS)						\
-	-DPACKAGE_DATA_DIR=\""$(datadir)"\"				\
+
+globaltime_CFLAGS =							\
+	$(LIBXFCEGUI4_CFLAGS)					\
+	-DPACKAGE_DATA_DIR=\""$(datadir)"\"		\
 	-DPACKAGE_LOCALE_DIR=\""$(localedir)"\"
 
-globaltime_LDADD =						\
+globaltime_LDADD =							\
 	$(LIBXFCEGUI4_LIBS)						\
 	$(LIBXFCEUTIL_LIBS)						\
 	$(INTLLIBS) 
 
-EXTRA_DIST =							\
+EXTRA_DIST =								\
 	$(man_MANS)								\
 	globaltime.xml
 
