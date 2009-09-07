@@ -8,6 +8,11 @@ if MAINTAINER_MODE
 	xsltproc -nonet http://docbook.sourceforge.net/release/xsl/current/manpages/docbook.xsl $<
 endif
 
+desktopdir = $(datadir)/applications
+desktop_in_files = globaltime.desktop.in
+desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
+@INTLTOOL_DESKTOP_RULE@
+
 globaltime_SOURCES =						\
 	globaltime.c							\
 	globaltime.h							\
@@ -31,6 +36,7 @@ globaltime_LDADD =							\
 
 EXTRA_DIST =								\
 	$(man_MANS)								\
+	$(desktop_in_files)						\
 	globaltime.xml
 
 

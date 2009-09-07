@@ -3243,7 +3243,7 @@ static void build_recurrence_page(appt_win *apptw)
     apptw->Recur_todo_base_done_rb = 
             gtk_radio_button_new_with_mnemonic_from_widget(
                     GTK_RADIO_BUTTON(apptw->Recur_todo_base_start_rb)
-                    , _("Done"));
+                            , _("Completed"));
     gtk_box_pack_start(GTK_BOX(apptw->Recur_todo_base_hbox)
             , apptw->Recur_todo_base_done_rb, FALSE, FALSE, 15);
     gtk_tooltips_set_tip(apptw->Tooltips, apptw->Recur_todo_base_start_rb
