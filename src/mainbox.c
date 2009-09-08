@@ -717,9 +717,11 @@ void build_mainWin()
     /* Build the calendar */
     cal->mCalendar = gtk_calendar_new();
     gtk_box_pack_start(GTK_BOX(cal->mVbox), cal->mCalendar, TRUE, TRUE, 0);
+    /*
     gtk_calendar_set_display_options(GTK_CALENDAR(cal->mCalendar)
             , GTK_CALENDAR_SHOW_HEADING | GTK_CALENDAR_SHOW_DAY_NAMES
             | GTK_CALENDAR_SHOW_WEEK_NUMBERS);
+    */
     gtk_widget_show(cal->mCalendar);
 
     /* Build the Info boxes */

@@ -85,6 +85,9 @@ typedef struct _Itf
     GtkWidget *mode_frame;
     GtkWidget *show_borders_checkbutton;
     GtkWidget *show_menu_checkbutton;
+    GtkWidget *show_heading_checkbutton;
+    GtkWidget *show_day_names_checkbutton;
+    GtkWidget *show_weeks_checkbutton;
     GtkWidget *set_stick_checkbutton;
     GtkWidget *set_ontop_checkbutton;
     /* Show in... taskbar pager systray */
@@ -224,6 +227,42 @@ static void menu_changed(GtkWidget *dialog, gpointer user_data)
     g_par.show_menu = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(
             itf->show_menu_checkbutton));
     set_menu();
+}
+
+static void set_calendar()
+{
+    gtk_calendar_set_display_options(
+            GTK_CALENDAR(((CalWin *)g_par.xfcal)->mCalendar)
+                    , (g_par.show_heading ? GTK_CALENDAR_SHOW_HEADING : 0)
+                    | (g_par.show_day_names ? GTK_CALENDAR_SHOW_DAY_NAMES : 0)
+                    | (g_par.show_weeks ? GTK_CALENDAR_SHOW_WEEK_NUMBERS : 0));
+}
+
+static void heading_changed(GtkWidget *dialog, gpointer user_data)
+{
+    Itf *itf = (Itf *)user_data;
+
+    g_par.show_heading = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(
+            itf->show_heading_checkbutton));
+    set_calendar();
+}
+
+static void days_changed(GtkWidget *dialog, gpointer user_data)
+{
+    Itf *itf = (Itf *)user_data;
+
+    g_par.show_day_names = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(
+            itf->show_day_names_checkbutton));
+    set_calendar();
+}
+
+static void weeks_changed(GtkWidget *dialog, gpointer user_data)
+{
+    Itf *itf = (Itf *)user_data;
+
+    g_par.show_weeks = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(
+            itf->show_weeks_checkbutton));
+    set_calendar();
 }
 
 static void set_todos()
@@ -549,7 +588,8 @@ static void create_parameter_dialog_display_tab(Itf *dialog)
     gtk_notebook_append_page(GTK_NOTEBOOK(dialog->notebook)
           , dialog->display_tab, dialog->display_tab_label);
 
-    /* Display calendar borders and menu or not and set stick or ontop */
+    /* Display calendar borders and menu and calendar options or not 
+     * and set stick or ontop */
     vbox = gtk_vbox_new(TRUE, 0);
     dialog->mode_frame = 
             orage_create_framebox_with_content(_("Calendar main window"), vbox);
@@ -569,6 +609,27 @@ static void create_parameter_dialog_display_tab(Itf *dialog)
             , dialog->show_menu_checkbutton, FALSE, FALSE, 0);
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
             dialog->show_menu_checkbutton), g_par.show_menu);
+
+    dialog->show_heading_checkbutton = gtk_check_button_new_with_mnemonic(
+            _("Show month and year"));
+    gtk_box_pack_start(GTK_BOX(vbox)
+            , dialog->show_heading_checkbutton, FALSE, FALSE, 0);
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
+            dialog->show_heading_checkbutton), g_par.show_heading);
+
+    dialog->show_day_names_checkbutton = gtk_check_button_new_with_mnemonic(
+            _("Show day names"));
+    gtk_box_pack_start(GTK_BOX(vbox)
+            , dialog->show_day_names_checkbutton, FALSE, FALSE, 0);
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
+            dialog->show_day_names_checkbutton), g_par.show_day_names);
+
+    dialog->show_weeks_checkbutton = gtk_check_button_new_with_mnemonic(
+            _("Show week numbers"));
+    gtk_box_pack_start(GTK_BOX(vbox)
+            , dialog->show_weeks_checkbutton, FALSE, FALSE, 0);
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
+            dialog->show_weeks_checkbutton), g_par.show_weeks);
 
     dialog->show_todos_checkbutton = gtk_check_button_new_with_mnemonic(
             _("Show todo list"));
@@ -602,6 +663,12 @@ static void create_parameter_dialog_display_tab(Itf *dialog)
             , G_CALLBACK(borders_changed), dialog);
     g_signal_connect(G_OBJECT(dialog->show_menu_checkbutton), "toggled"
             , G_CALLBACK(menu_changed), dialog);
+    g_signal_connect(G_OBJECT(dialog->show_heading_checkbutton), "toggled"
+            , G_CALLBACK(heading_changed), dialog);
+    g_signal_connect(G_OBJECT(dialog->show_day_names_checkbutton), "toggled"
+            , G_CALLBACK(days_changed), dialog);
+    g_signal_connect(G_OBJECT(dialog->show_weeks_checkbutton), "toggled"
+            , G_CALLBACK(weeks_changed), dialog);
     g_signal_connect(G_OBJECT(dialog->show_todos_checkbutton), "toggled"
             , G_CALLBACK(todos_changed), dialog);
     g_signal_connect(G_OBJECT(dialog->show_events_checkbutton), "toggled"
@@ -912,6 +979,9 @@ void write_parameters()
     orage_rc_put_bool(orc, "Select Always Today"
             , g_par.select_always_today);
     orage_rc_put_bool(orc, "Show borders", g_par.show_borders);
+    orage_rc_put_bool(orc, "Show heading", g_par.show_heading);
+    orage_rc_put_bool(orc, "Show day names", g_par.show_day_names);
+    orage_rc_put_bool(orc, "Show weeks", g_par.show_weeks);
     orage_rc_put_bool(orc, "Show todos", g_par.show_todos);
     orage_rc_put_bool(orc, "Show events", g_par.show_events);
     orage_rc_put_bool(orc, "Show in pager", g_par.show_pager);
@@ -1063,6 +1133,9 @@ void read_parameters(void)
     g_par.select_always_today = 
             orage_rc_get_bool(orc, "Select Always Today", FALSE);
     g_par.show_borders = orage_rc_get_bool(orc, "Show borders", TRUE);
+    g_par.show_heading = orage_rc_get_bool(orc, "Show heading", TRUE);
+    g_par.show_day_names = orage_rc_get_bool(orc, "Show day names", TRUE);
+    g_par.show_weeks = orage_rc_get_bool(orc, "Show weeks", TRUE);
     g_par.show_todos = orage_rc_get_bool(orc, "Show todos", TRUE);
     g_par.show_events = orage_rc_get_bool(orc, "Show events", TRUE);
     g_par.show_pager = orage_rc_get_bool(orc, "Show in pager", TRUE);
@@ -1110,6 +1183,7 @@ void set_parameters()
     set_border();
     set_taskbar();
     set_pager();
+    set_calendar();
     /*
     set_systray();
     */

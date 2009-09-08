@@ -37,6 +37,9 @@ typedef struct _parameters
     gboolean select_always_today;
     gboolean show_menu;
     gboolean show_borders;
+    gboolean show_heading;
+    gboolean show_day_names;
+    gboolean show_weeks;
     gboolean show_todos;
     gboolean show_events;
     gboolean show_pager;
