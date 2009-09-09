@@ -12,8 +12,10 @@ orage_SOURCES =					\
 	event-list.h						\
 	functions.c							\
 	functions.h							\
+	ical-archive.c						\
 	ical-code.c							\
 	ical-code.h							\
+	ical-expimp.c						\
 	interface.c							\
 	interface.h							\
 	main.c								\

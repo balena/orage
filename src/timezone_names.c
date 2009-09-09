@@ -29,8 +29,8 @@
 #include "orage-i18n.h"
 
 /* Remember to keep this string table in sync with zones.tab
- * This is used only for translations purposes. It makes
- * possible to translate these timezones.
+ * This file is used only for translations purposes. 
+ * It makes it possible to translate these timezones.
  */
 const gchar *trans_timezone[] = {
     N_("Africa"),
