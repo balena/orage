@@ -88,7 +88,7 @@ static GtkTreeStore *tz_button_create_store(gboolean details)
             , G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING
             , G_TYPE_STRING, G_TYPE_STRING);
     strcpy(area_old, "S T a R T"); /* this never matches */
-    tz_a = get_orage_timezones(details);
+    tz_a = get_orage_timezones(details, 1);
     /*
     g_print(P_N "number of timezones %d\n", tz_a.count);
     */
