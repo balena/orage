@@ -333,7 +333,7 @@ static int process_file(const char *file_name)
 static void get_country()
 { /* tz_array.city[tz_array.count] contains the city name.
      We will find corresponding country and fill it to the table */
-    char *str, *str_nl;
+    char *str, *str_nl, cc[4];
 
     if (!(str = strstr(zone_tab_buf, tz_array.city[tz_array.count])))
         return; /* not found */
@@ -350,12 +350,19 @@ static void get_country()
     strncpy(tz_array.cc[tz_array.count], ++str_nl, 2);
     tz_array.cc[tz_array.count][2] = '\0';
 
-    /* then search the country */
-    if (!(str = strstr(country_buf, tz_array.cc[tz_array.count])))
+    /********** then search the country **********/
+    /* Need to search line, which starts with country code.
+     * Note that it is not enough to search any country coed, but it really
+     * needs to be the first two chars in the line */
+    cc[0] = '\n'; 
+    cc[1] = tz_array.cc[tz_array.count][0];
+    cc[2] = tz_array.cc[tz_array.count][1];
+    cc[3] = '\0';
+    if (!(str = strstr(country_buf, cc)))
         return; /* not found */
     /* country name is after the country code and a single tab */
     str += 3;
-    /* but w still need to find how long it is.
+    /* but we still need to find how long it is.
      * It ends in the line end. 
      * (There is a line end at the end of the file also.) */
     for (str_nl = str; str_nl[0] != '\n'; str_nl++)
@@ -385,8 +392,8 @@ static int write_ical_file(const char *in_file_name
     unsigned int tct_i, abbr_i;
     struct tm cur_gm_time;
     time_t tt_now = time(NULL);
-    long tc_time = 0; /* TimeChange time */
-    char s_next[101];
+    long tc_time = 0, prev_tc_time; /* TimeChange times */
+    char s_next[101], s_prev[101];
 
     if (debug > 1)
         printf("***** write_ical_file: start *****\n\n");
@@ -403,6 +410,7 @@ static int write_ical_file(const char *in_file_name
         /* search for current time setting.
          * timecnt tells how many changes we have in the tz file.
          * i points to the next value to read. */
+        prev_tc_time = tc_time;
         tc_time = get_long(); /* start time of this timechange */
     }
     /* i points to the next value to be read, so need to -- */
@@ -412,6 +420,7 @@ static int write_ical_file(const char *in_file_name
         tz_array.utc_offset[tz_array.count] = 0;
         tz_array.dst[tz_array.count] = 0;
         tz_array.tz[tz_array.count] = "UTC";
+        tz_array.prev[tz_array.count] = NULL;
         tz_array.next[tz_array.count] = NULL;
         tz_array.count++;
         return(1); /* done */
@@ -420,16 +429,29 @@ static int write_ical_file(const char *in_file_name
         /* we found previous and next value */
         /* tc_time has the next change time */
         if (details) {
+            localtime_r((const time_t *)&prev_tc_time, &cur_gm_time);
+            strftime(s_prev, 100, "%c", &cur_gm_time);
+            tz_array.prev[tz_array.count] = strdup(s_prev);
             localtime_r((const time_t *)&tc_time, &cur_gm_time);
             strftime(s_next, 100, "%c", &cur_gm_time);
             tz_array.next[tz_array.count] = strdup(s_next);
         }
-        else 
+        else {
             tz_array.next[tz_array.count] = NULL;
+            tz_array.prev[tz_array.count] = NULL;
+        }
         i--; /* we need to take the previous value */
     }
-    else 
+    else { /* no next value, but previous may exist */
         tz_array.next[tz_array.count] = NULL;
+        if (details && prev_tc_time) {
+            localtime_r((const time_t *)&prev_tc_time, &cur_gm_time);
+            strftime(s_prev, 100, "%c", &cur_gm_time);
+            tz_array.prev[tz_array.count] = strdup(s_prev);
+        }
+        else
+            tz_array.prev[tz_array.count] = NULL;
+    }
 
     /* i now points to latest time change and shows current time.
      * So we found our result and can start collecting real data: */
@@ -476,7 +498,6 @@ static int file_call(const char *file_name, const struct stat *sb, int flags
                 + strlen("zoneinfo/")]);
         timezone_name = strdup(in_timezone_name);
         if (check_ical && !timezone_exists_in_ical()) {
-            printf("\t\tfile_call: skipped file=(%s)\n", file_name);
             free(in_timezone_name);
             free(timezone_name);
             return(FTW_CONTINUE);
@@ -807,6 +828,7 @@ orage_timezone_array get_orage_timezones(int show_details, int ical)
         tz_array.utc_offset = (int *)malloc(sizeof(int)*(tz_array_size+2));
         tz_array.dst = (int *)malloc(sizeof(int)*(tz_array_size+2));
         tz_array.tz = (char **)malloc(sizeof(char *)*(tz_array_size+2));
+        tz_array.prev = (char **)malloc(sizeof(char *)*(tz_array_size+2));
         tz_array.next = (char **)malloc(sizeof(char *)*(tz_array_size+2));
         tz_array.country = (char **)malloc(sizeof(char *)*(tz_array_size+2));
         tz_array.cc = (char **)malloc(sizeof(char *)*(tz_array_size+2));
@@ -832,6 +854,7 @@ orage_timezone_array get_orage_timezones(int show_details, int ical)
         tz_array.utc_offset[tz_array.count] = 0;
         tz_array.dst[tz_array.count] = 0;
         tz_array.tz[tz_array.count] = strdup("UTC");
+        tz_array.prev[tz_array.count] = NULL;
         tz_array.next[tz_array.count] = NULL;
         tz_array.country[tz_array.count] = NULL;
         tz_array.cc[tz_array.count] = NULL;
@@ -840,6 +863,7 @@ orage_timezone_array get_orage_timezones(int show_details, int ical)
         tz_array.utc_offset[tz_array.count] = 0;
         tz_array.dst[tz_array.count] = 0;
         tz_array.tz[tz_array.count] = NULL;
+        tz_array.prev[tz_array.count] = NULL;
         tz_array.next[tz_array.count] = NULL;
         tz_array.country[tz_array.count] = NULL;
         tz_array.cc[tz_array.count] = NULL;
@@ -857,6 +881,8 @@ void free_orage_timezones(int show_details)
             free(tz_array.city[i]);
         if (tz_array.tz[i])
             free(tz_array.tz[i]);
+        if (tz_array.prev[i])
+            free(tz_array.prev[i]);
         if (tz_array.next[i])
             free(tz_array.next[i]);
         if (tz_array.country[i])
@@ -868,6 +894,7 @@ void free_orage_timezones(int show_details)
     free(tz_array.utc_offset);
     free(tz_array.dst);
     free(tz_array.tz);
+    free(tz_array.prev);
     free(tz_array.next);
     free(tz_array.country);
     free(tz_array.cc);

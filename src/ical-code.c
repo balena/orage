@@ -580,7 +580,7 @@ static struct icaltimetype convert_to_local_timezone(struct icaltimetype t
     return (tl);
 }
 
-xfical_period ic_get_period(icalcomponent *c) 
+xfical_period ic_get_period(icalcomponent *c, gboolean local) 
 {
 #undef  P_N 
 #define P_N "ic_get_period: "
@@ -596,7 +596,10 @@ xfical_period ic_get_period(icalcomponent *c)
     p = icalcomponent_get_first_property(c, ICAL_DTSTART_PROPERTY);
     if (p != NULL) {
         per.stime = icalproperty_get_dtstart(p);
-        per.stime = convert_to_local_timezone(per.stime, p);
+        if (local)
+            per.stime = convert_to_local_timezone(per.stime, p);
+        else
+            per.stime = ic_convert_to_timezone(per.stime, p);
     }
     else {
         per.stime = icaltime_null_time();
@@ -625,7 +628,10 @@ xfical_period ic_get_period(icalcomponent *c)
             per.etime = icalproperty_get_dtend(p);
         else if (per.ikind == ICAL_VTODO_COMPONENT)
             per.etime = icalproperty_get_due(p);
-        per.etime = convert_to_local_timezone(per.etime, p);
+        if (local)
+            per.etime = convert_to_local_timezone(per.etime, p);
+        else
+            per.etime = ic_convert_to_timezone(per.etime, p);
         per.duration = icaltime_subtract(per.etime, per.stime);
         if (icaltime_is_date(per.stime) 
             && icaldurationtype_as_int(per.duration) != 0) {
@@ -653,7 +659,10 @@ xfical_period ic_get_period(icalcomponent *c)
 
     if (p2 != NULL) {
         per.ctime = icalproperty_get_completed(p2);
-        per.ctime = convert_to_local_timezone(per.ctime, p2);
+        if (local)
+            per.ctime = convert_to_local_timezone(per.ctime, p2);
+        else
+            per.ctime = ic_convert_to_timezone(per.ctime, p);
     }
     else
         per.ctime = icaltime_null_time();
@@ -2517,6 +2526,7 @@ static void set_todo_times(icalcomponent *c, xfical_period *per)
     }
 }
 
+/* this works in UTC times */
 struct icaltimetype count_alarm_time(xfical_period per
         , struct icaltimetype cur_time
         , struct icaldurationtype dur
@@ -2529,18 +2539,18 @@ struct icaltimetype count_alarm_time(xfical_period per
  * when counting alarm time. */
         if (rel == ICAL_RELATED_START) {
             per.stime.is_date       = 0;
-            per.stime.is_utc        = cur_time.is_utc;
-            per.stime.is_daylight   = cur_time.is_daylight;
-            per.stime.zone          = cur_time.zone;
+            per.stime.is_utc        = 1;
+            per.stime.is_daylight   = 0;
+            per.stime.zone          = utc_icaltimezone;
             per.stime.hour          = 0;
             per.stime.minute        = 0;
             per.stime.second        = 0;
         }
         else {
             per.etime.is_date       = 0;
-            per.etime.is_utc        = cur_time.is_utc;
-            per.etime.is_daylight   = cur_time.is_daylight;
-            per.etime.zone          = cur_time.zone;
+            per.etime.is_utc        = 1;
+            per.etime.is_daylight   = 0;
+            per.etime.zone          = utc_icaltimezone;
             per.etime.hour          = 0;
             per.etime.minute        = 0;
             per.etime.second        = 0;
@@ -2558,7 +2568,7 @@ struct icaltimetype count_alarm_time(xfical_period per
  * FIXME: We assume all alarms have similar trigger, which 
  * may not be true for other than Orage appointments
  */
-static  alarm_struct *process_alarm_trigger(icalcomponent *c
+alarm_struct *process_alarm_trigger(icalcomponent *c
         , icalcomponent *ca, struct icaltimetype cur_time, int *cnt_repeat)
 { /* c == main component; ca == alarm component */
 #undef P_N
@@ -2592,7 +2602,7 @@ static  alarm_struct *process_alarm_trigger(icalcomponent *c
         rel = icalparameter_get_related(trg_related_par);
     else
         rel = ICAL_RELATED_START;
-    per = ic_get_period(c);
+    per = ic_get_period(c, FALSE);
     next_alarm_time = count_alarm_time(per, cur_time, trg.duration, rel);
     alarm_start_diff = icaltime_subtract(per.stime, next_alarm_time);
     /* we only have ctime for TODOs and only if todo has been completed.
@@ -2600,7 +2610,7 @@ static  alarm_struct *process_alarm_trigger(icalcomponent *c
      * current date */
     if (per.ikind == ICAL_VTODO_COMPONENT) {
         if (icaltime_is_null_time(per.ctime)
-        || local_compare(per.ctime, per.stime) < 0) {
+        || icaltime_compare(per.ctime, per.stime) < 0) {
         /* VTODO is never completed  */
         /* or it has completed before start, so
          * this one is not done and needs to be counted */
@@ -2625,9 +2635,9 @@ static  alarm_struct *process_alarm_trigger(icalcomponent *c
              next_start_time = icaltime_add(next_alarm_time, alarm_start_diff);
              !icaltime_is_null_time(next_alarm_time)
              && ((per.ikind == ICAL_VTODO_COMPONENT
-                  && local_compare(next_start_time, per.ctime) <= 0)
+                  && icaltime_compare(next_start_time, per.ctime) <= 0)
                  || (per.ikind != ICAL_VTODO_COMPONENT 
-                     && local_compare(next_alarm_time, cur_time) <= 0)
+                     && icaltime_compare(next_alarm_time, cur_time) <= 0)
                  || icalproperty_recurrence_is_excluded(c
                          , &per.stime, &next_start_time));
             next_alarm_time = icalrecur_iterator_next(ri),
@@ -2677,6 +2687,7 @@ static  alarm_struct *process_alarm_trigger(icalcomponent *c
             continue;
 
         /* it has same timezone than startdate, convert to local time */
+        /* FIXME: this should not convert, but just set the timezone */
         if (icaltime_is_utc(next_start_time)) {
             /* FIXME: tarkista että convert_to_local_timezone toimii oikein
              * UTC:llä. se ei toimi kuten tässä */
@@ -2716,6 +2727,7 @@ static  alarm_struct *process_alarm_trigger(icalcomponent *c
 
     if (trg_active) {
         new_alarm = g_new0(alarm_struct, 1);
+        next_alarm_time = icaltime_convert_to_zone(next_alarm_time, local_icaltimezone);
         new_alarm->alarm_time = g_strdup(icaltime_as_ical_string(next_alarm_time));
         return(new_alarm);
     }
@@ -2873,7 +2885,8 @@ static void xfical_alarm_build_list_internal_real(gboolean first_list_today
 #ifdef ORAGE_DEBUG
     orage_message(-200, P_N);
 #endif
-    cur_time = ical_get_current_local_time();
+    /* cur_time = ical_get_current_local_time(); */
+    cur_time = icaltime_current_time_with_zone(utc_icaltimezone);
 
     for (c = icalcomponent_get_first_component(base, ICAL_ANY_COMPONENT);
             c != 0;
@@ -2914,9 +2927,6 @@ static void xfical_alarm_build_list_internal_real(gboolean first_list_today
                         (char *)icalcomponent_get_description(c));
             g_par.alarm_list = g_list_prepend(g_par.alarm_list, new_alarm);
             cnt_alarm_add++;
-            /*
-            g_print(P_N "added alarm (%s) at (%s)\n", new_alarm->title, new_alarm->alarm_time);
-            */
         }
     }  /* COMPONENT */
     if (first_list_today) {
@@ -3027,7 +3037,7 @@ static xfical_appt *xfical_appt_get_next_on_day_internal(char *a_day
          icalcompiter_next(&ci)) {
         /* next appointment loop. check if it is ok */
         c = icalcompiter_deref(&ci);
-        per = ic_get_period(c);
+        per = ic_get_period(c, TRUE);
         if (type == XFICAL_TYPE_TODO) {
             if (icaltime_is_null_time(per.ctime)
             || local_compare(per.ctime, per.stime) <= 0)
@@ -3323,7 +3333,7 @@ static void xfical_mark_calendar_from_component(GtkCalendar *gtkcal
     */
     } /* ICAL_VEVENT_COMPONENT */
     else if (kind == ICAL_VTODO_COMPONENT) {
-        per = ic_get_period(c);
+        per = ic_get_period(c, TRUE);
         marked = FALSE;
         if (icaltime_is_null_time(per.ctime)
         || (local_compare(per.ctime, per.stime) < 0)) {

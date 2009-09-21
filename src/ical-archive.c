@@ -85,7 +85,7 @@ typedef struct
 char *ic_get_char_timezone(icalproperty *p);
 struct icaltimetype ic_convert_to_timezone(struct icaltimetype t
         , icalproperty *p);
-xfical_period ic_get_period(icalcomponent *c) ;
+xfical_period ic_get_period(icalcomponent *c, gboolean local);
 gboolean ic_internal_file_open(icalcomponent **p_ical
         , icalset **p_fical, gchar *file_icalpath, gboolean test);
 
@@ -388,7 +388,7 @@ gboolean xfical_archive(void)
             edate = sdate;
         }
         */
-        per =  ic_get_period(c);
+        per =  ic_get_period(c, TRUE);
         uid = (char *)icalcomponent_get_uid(c);
         /* Items with endate before threshold => archived.
          * Recurring events are marked in the main file by adding special

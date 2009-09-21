@@ -67,6 +67,7 @@ enum {
     LOCATION_ENG,
     OFFSET,
     COUNTRY,
+    PREV_CHANGE,
     NEXT_CHANGE,
     N_COLUMNS
 };
@@ -81,12 +82,12 @@ static GtkTreeStore *tz_button_create_store(gboolean details)
     GtkTreeIter iter1, iter2, main;
     orage_timezone_array tz_a;
     char area_old[MAX_AREA_LENGTH+2]; /*+2 = / + null */
-    char s_offset[100], s_country[100], s_next[100];
+    char s_offset[100], s_country[100], s_next[100], s_prev[100];
     gint i, j, offs_hour, offs_min;
 
     store = gtk_tree_store_new(N_COLUMNS
             , G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING
-            , G_TYPE_STRING, G_TYPE_STRING);
+            , G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
     strcpy(area_old, "S T a R T"); /* this never matches */
     tz_a = get_orage_timezones(details, 1);
     /*
@@ -100,6 +101,7 @@ static GtkTreeStore *tz_button_create_store(gboolean details)
             , LOCATION_ENG, " Other"
             , OFFSET, " "
             , COUNTRY, " "
+            , PREV_CHANGE, " "
             , NEXT_CHANGE, " "
             , -1);
     main = iter1; /* need to remember that */
@@ -124,6 +126,7 @@ static GtkTreeStore *tz_button_create_store(gboolean details)
                         , LOCATION_ENG, area_old
                         , OFFSET, " "
                         , COUNTRY, " "
+                        , PREV_CHANGE, " "
                         , NEXT_CHANGE, " "
                         , -1);
                 /* let's make sure we do not match accidentally to those 
@@ -147,21 +150,29 @@ static GtkTreeStore *tz_button_create_store(gboolean details)
                 , offs_hour, offs_min
                 , (tz_a.dst[i]) ? "dst" : "std"
                 , (tz_a.tz[i]) ? tz_a.tz[i] : "-");
-        if (details && tz_a.country[i] && tz_a.cc[i])
-            g_snprintf(s_country, 100, "%s (%s)", tz_a.country[i], tz_a.cc[i]);
-        else
-            strcpy(s_country, " ");
-        if (details)
+        if (details) {
+            if (tz_a.country[i] && tz_a.cc[i])
+                g_snprintf(s_country, 100, "%s (%s)"
+                        , tz_a.country[i], tz_a.cc[i]);
+            else 
+                strcpy(s_country, " ");
+            g_snprintf(s_prev, 100, "%s"
+                    , (tz_a.prev[i]) ? tz_a.prev[i] : _("not changed"));
             g_snprintf(s_next, 100, "%s"
                     , (tz_a.next[i]) ? tz_a.next[i] : _("not changing"));
-        else
+        }
+        else {
+            strcpy(s_country, " ");
+            strcpy(s_prev, " ");
             strcpy(s_next, " ");
+        }
 
         gtk_tree_store_set(store, &iter2
                 , LOCATION, _(tz_a.city[i])
                 , LOCATION_ENG, tz_a.city[i]
                 , OFFSET, s_offset
                 , COUNTRY, s_country
+                , PREV_CHANGE, s_prev
                 , NEXT_CHANGE, s_next
                 , -1);
     }
@@ -221,6 +232,11 @@ GtkWidget *tz_button_create_view(gboolean details, GtkTreeStore *store)
         rend = gtk_cell_renderer_text_new();
         col  = gtk_tree_view_column_new_with_attributes(_("Country")
                 , rend, "text", COUNTRY, NULL);
+        gtk_tree_view_append_column(GTK_TREE_VIEW(tree), col);
+
+        rend = gtk_cell_renderer_text_new();
+        col  = gtk_tree_view_column_new_with_attributes(_("Previous Change")
+                , rend, "text", PREV_CHANGE, NULL);
         gtk_tree_view_append_column(GTK_TREE_VIEW(tree), col);
 
         rend = gtk_cell_renderer_text_new();
