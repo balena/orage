@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: 0.01\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-11-11 09:18+0200\n"
-"PO-Revision-Date: 2009-04-18 19:07+0100\n"
+"PO-Revision-Date: 2009-08-20 14:51+0100\n"
 "Last-Translator: Leandro Regueiro <leandro.regueiro@gmail.com>\n"
 "Language-Team: Galician <proxecto@trasno.net>\n"
 "MIME-Version: 1.0\n"
@@ -21,14 +21,12 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
 #: ../globaltime/globaltime.c:100
-#, fuzzy
 msgid "Raising GlobalTime window..."
-msgstr "xanela de método de entrada"
+msgstr "Elevando a fiestra de GlobalTime..."
 
 #: ../globaltime/globaltime.c:102
-#, fuzzy
 msgid "GlobalTime window raise failed"
-msgstr "Subir a ventá se xa está aberta"
+msgstr "Produciuse un erro ao elevar a fiestra de GlobalTime"
 
 #. ********** timezone tooltip **********
 #: ../globaltime/globaltime.c:278
@@ -83,9 +81,8 @@ msgid "Equal"
 msgstr "Igual"
 
 #: ../globaltime/gt_prefs.c:86
-#, fuzzy
 msgid "Vary"
-msgstr "Karlovy Vary"
+msgstr ""
 
 #: ../globaltime/gt_prefs.c:267
 #: ../globaltime/gt_prefs.c:268
@@ -214,7 +211,7 @@ msgstr "Usar predeterminado"
 #: ../globaltime/gt_prefs.c:801
 #: ../globaltime/gt_prefs.c:831
 msgid "Cross this to use default instead of selected value"
-msgstr ""
+msgstr "Marque isto para usar a predefinición en vez do valor seleccionado"
 
 #. ------------------------foreground-------------------------
 #: ../globaltime/gt_prefs.c:680
@@ -225,7 +222,7 @@ msgstr "Cor de primeiro plano do texto"
 
 #: ../globaltime/gt_prefs.c:687
 msgid "Click to change foreground colour for clock"
-msgstr ""
+msgstr "Prema para cambiar a cor de primeiro plano do reloxo"
 
 #. ------------------------name font-------------------------
 #: ../globaltime/gt_prefs.c:712
@@ -269,7 +266,7 @@ msgstr "Prema para cambiar a cor de fondo predeterminada dos reloxos"
 #: ../globaltime/gt_prefs.c:876
 #: ../globaltime/gt_prefs.c:909
 msgid "Cross this to use system default instead of selected color"
-msgstr ""
+msgstr "Marque isto para usar a predefinición do sistema en vez da cor seleccionada"
 
 #: ../globaltime/gt_prefs.c:895
 msgid "Click to change default text colour for clocks"
@@ -282,7 +279,7 @@ msgstr "Prema para cambiar o tipo de letra predeterminada do nome do reloxo"
 #: ../globaltime/gt_prefs.c:943
 #: ../globaltime/gt_prefs.c:977
 msgid "Cross this to use system default font instead of selected font"
-msgstr ""
+msgstr "Marque isto para usar o tipo de letra predeterminado do sistema en vez do tipo de letra seleccionado"
 
 #: ../globaltime/gt_prefs.c:962
 msgid "Click to change default font for clock time"
@@ -312,19 +309,16 @@ msgid "General Preferences"
 msgstr "Preferencias xerais"
 
 #: ../globaltime/gt_prefs.c:1076
-#, fuzzy
 msgid "Decorations:"
-msgstr "Incluír decoracións"
+msgstr "Decoracións:"
 
 #: ../globaltime/gt_prefs.c:1082
-#, fuzzy
 msgid "Use normal decorations"
-msgstr "Usar o tamaño de texto normal"
+msgstr "Usar as decoracións normais"
 
 #: ../globaltime/gt_prefs.c:1093
-#, fuzzy
 msgid "Do not show window decorations (borders)"
-msgstr "Non mostrar os usuarios coñecidos na xanela de inicio"
+msgstr "Non mostrar as decoracións de fiestra (bordos)"
 
 #: ../globaltime/gt_prefs.c:1099
 msgid "Clock size:"
@@ -399,7 +393,7 @@ msgstr "Mostrar os números de liña"
 
 #: ../panel-plugin/oc_config.c:321
 msgid "Enter any valid strftime function parameter."
-msgstr ""
+msgstr "Introduza calquera parámetro válido para a función strftime."
 
 #. line 2
 #: ../panel-plugin/oc_config.c:337
@@ -422,7 +416,7 @@ msgstr "Consello:"
 #. special timing for SUSPEND/HIBERNATE
 #: ../panel-plugin/oc_config.c:391
 msgid "fix time after suspend/hibernate"
-msgstr ""
+msgstr "arranxar a hora despois de suspender/hibernar"
 
 #: ../panel-plugin/oc_config.c:395
 msgid "You only need this if you do short term (less than 5 hours) suspend or hibernate and your visible time does not include seconds. Under these circumstances it is possible that Orageclock shows time inaccurately unless you have this selected. (Selecting this prevents cpu and interrupt saving features from working.)"
@@ -498,7 +492,7 @@ msgstr "Fin"
 #: ../src/appointment.c:366
 #, fuzzy
 msgid "Due"
-msgstr "Vence"
+msgstr "debido"
 
 #: ../src/appointment.c:501
 #: ../src/mainbox.c:689
@@ -530,9 +524,8 @@ msgid "Warning"
 msgstr "Advertencia"
 
 #: ../src/appointment.c:719
-#, fuzzy
 msgid "The appointment information has been modified."
-msgstr "O ficheiro de proxecto %s modificouse externamente"
+msgstr "Modificouse a información da cita."
 
 #: ../src/appointment.c:720
 #: ../src/appointment.c:1148
@@ -555,9 +548,8 @@ msgid "Not set"
 msgstr "Non definido"
 
 #: ../src/appointment.c:1147
-#, fuzzy
 msgid "This appointment will be permanently removed."
-msgstr "Este calendario eliminarase permanentemente."
+msgstr "Esta cita eliminarase permanentemente."
 
 #: ../src/appointment.c:1421
 #: ../src/event-list.c:726
@@ -565,13 +557,12 @@ msgid "Info"
 msgstr "Información"
 
 #: ../src/appointment.c:1423
-#, fuzzy
 msgid "This appointment does not exist."
-msgstr "A axenda de enderezos non existe"
+msgstr "Esta cita non existe."
 
 #: ../src/appointment.c:1424
 msgid "It was probably removed, please refresh your screen."
-msgstr ""
+msgstr "Probablemente se eliminou, actualice a pantalla."
 
 #: ../src/appointment.c:1729
 msgid "Current categories"
@@ -610,7 +601,6 @@ msgid "_File"
 msgstr "_Ficheiro"
 
 #: ../src/appointment.c:2080
-#, fuzzy
 msgid "Sav_e and close"
 msgstr "_Gardar e saír"
 
@@ -668,6 +658,8 @@ msgid ""
 "Event that will happen sometime. For example:\n"
 "Meeting or birthday or TV show."
 msgstr ""
+"O evento ocorrerá algunha vez. Por exemplo:\n"
+"Reunión ou aniversario ou programa de TV."
 
 #: ../src/appointment.c:2277
 #: ../src/event-list.c:1160
@@ -679,6 +671,8 @@ msgid ""
 "Something that you should do sometime. For example:\n"
 "Wash your car or test new version of Orage."
 msgstr ""
+"Algo que ten que facer nalgún momento. Por exemplo\n"
+"Limpar o coche ou probar a nova versión de Orage."
 
 #: ../src/appointment.c:2283
 #: ../src/event-list.c:1175
@@ -690,6 +684,8 @@ msgid ""
 "Make a note that something happened. For example:\n"
 "Remark that your mother called or first snow came."
 msgstr ""
+"Crear unha nota indicando que algo ocurriu. Por exemplo:\n"
+"Remarcar que a túa nai chamou ou que nevou por primeira vez."
 
 #. title
 #: ../src/appointment.c:2294
@@ -777,24 +773,20 @@ msgid ""
 msgstr ""
 
 #: ../src/appointment.c:2517
-#, fuzzy
 msgid "Before Start"
-msgstr "%s %s antes do comezo da cita"
+msgstr "Antes do comezo"
 
 #: ../src/appointment.c:2517
-#, fuzzy
 msgid "Before End"
-msgstr "%s %s antes de finalizar a cita"
+msgstr "Antes de finalizar"
 
 #: ../src/appointment.c:2518
-#, fuzzy
 msgid "After Start"
-msgstr "%s %s despois do comezo da cita"
+msgstr "Despois do comezo"
 
 #: ../src/appointment.c:2518
-#, fuzzy
 msgid "After End"
-msgstr "%s %s despois de finalizar a cita"
+msgstr "Despois de finalizar"
 
 #: ../src/appointment.c:2523
 msgid "Alarm"
@@ -1119,19 +1111,20 @@ msgid "Time"
 msgstr "Hora"
 
 #: ../src/event-list.c:728
-#, fuzzy
 msgid "No rows have been selected."
-msgstr "Non se seleccionou ningún destino"
+msgstr "Non se seleccionou ningunha fila."
 
 #: ../src/event-list.c:729
 msgid "Click a row to select it and after that you can copy it."
-msgstr ""
+msgstr "Prema nunha fila para seleccionala e despois diso poderá copiala."
 
 #: ../src/event-list.c:899
 msgid ""
 "You will permanently remove all\n"
 "selected appointments."
 msgstr ""
+"Eliminará de xeito permanente\n"
+"tódalas citas seleccionadas."
 
 #: ../src/event-list.c:1103
 msgid "Find"
@@ -2740,7 +2733,6 @@ msgid "Pacific/Honolulu"
 msgstr "Pacífico/Honolulú"
 
 #: ../src/ical-code.c:478
-#, fuzzy
 msgid "Pacific/Johnston"
 msgstr "Pacífico/Johnston"
 
@@ -2780,7 +2772,6 @@ msgid "Pacific/Niue"
 msgstr "Pacífico/Niue"
 
 #: ../src/ical-code.c:487
-#, fuzzy
 msgid "Pacific/Norfolk"
 msgstr "Pacífico/Norfolk"
 
@@ -2836,7 +2827,6 @@ msgid "Pacific/Truk"
 msgstr "Pacífico/Truk"
 
 #: ../src/ical-code.c:500
-#, fuzzy
 msgid "Pacific/Wake"
 msgstr "Pacífico/Wake"
 
@@ -2909,9 +2899,8 @@ msgstr "%s, feito %02i%%"
 
 #. PHASE 1: go through base orage file and remove "repeat" shortcuts
 #: ../src/ical-code.c:3697
-#, fuzzy
 msgid "Starting archive removal."
-msgstr "Quitar ollos ve_rmellos..."
+msgstr "Iniciando a eliminación do arquivo."
 
 #: ../src/ical-code.c:3698
 msgid "\tPHASE 1: reset recurring appointments"
@@ -2924,9 +2913,8 @@ msgid "\tPHASE 2: return archived appointments"
 msgstr ""
 
 #: ../src/ical-code.c:3746
-#, fuzzy
 msgid "Archive removal done\n"
-msgstr "%s, feito %02i%%, queda %s"
+msgstr "Rematouse a eliminación de arquivo\n"
 
 #: ../src/ical-code.c:3836
 #, fuzzy
@@ -2949,7 +2937,6 @@ msgstr "Importar marcadores desde un ficheiro"
 
 #. show it
 #: ../src/ical-code.c:4507
-#, fuzzy
 msgid "Pick timezone"
 msgstr "Seleccionar fuso horario"
 
@@ -2973,7 +2960,7 @@ msgstr "Todos os ficheros"
 #: ../src/interface.c:626
 #, fuzzy
 msgid "Current foreign files"
-msgstr "Amosar fic_heiros agochados"
+msgstr "Engadir ficheiros ao actual"
 
 #: ../src/interface.c:638
 #, fuzzy
@@ -2999,9 +2986,8 @@ msgid "Import"
 msgstr "Importar"
 
 #: ../src/interface.c:980
-#, fuzzy
 msgid "Read from file:"
-msgstr "Ler o teclado desde o ficheiro:"
+msgstr "Ler dende o ficheiro:"
 
 #: ../src/interface.c:997
 msgid ""
@@ -3014,9 +3000,8 @@ msgid "Export"
 msgstr "Exportar"
 
 #: ../src/interface.c:1007
-#, fuzzy
 msgid "Write to file:"
-msgstr "Escribir os _metadatos no ficheiro"
+msgstr "Escribir no ficheiro:"
 
 #: ../src/interface.c:1028
 #: ../src/interface.c:1040
@@ -3174,6 +3159,8 @@ msgid ""
 "\tThis is %s version %s for Xfce %s\n"
 "\n"
 msgstr ""
+"\tIsto é %s versión %s para Xfce %s\n"
+"\n"
 
 #: ../src/main.c:194
 #, c-format
@@ -3213,12 +3200,12 @@ msgstr "\tNon usa libnotify.\n"
 #: ../src/main.c:210
 #, fuzzy, c-format
 msgid "\tUsing automatic archiving.\n"
-msgstr "Activar a sangría automática"
+msgstr "Arquivo (320 kbps)"
 
 #: ../src/main.c:212
 #, fuzzy, c-format
 msgid "\tNot using archiving.\n"
-msgstr "Creando %s (usando o AutoGen)... %s"
+msgstr "Arquivo (320 kbps)"
 
 #: ../src/main.c:225
 #, c-format
@@ -3252,7 +3239,7 @@ msgstr "Manipulador de acción do formulario"
 #: ../src/main.c:230
 #, c-format
 msgid "--toggle (-t) \t\tmake orage visible/unvisible\n"
-msgstr ""
+msgstr "--toggle (-t) \t\tfacer a oraga visible/invisible\n"
 
 #: ../src/main.c:231
 #, c-format
@@ -3291,8 +3278,9 @@ msgstr ""
 "\n"
 
 #: ../src/mainbox.c:269
+#, fuzzy
 msgid "_Exchange data"
-msgstr ""
+msgstr "Composición de datos"
 
 #. Edit menu
 #: ../src/mainbox.c:280
@@ -3388,7 +3376,7 @@ msgstr "Seleccione orde"
 
 #: ../src/parameters.c:544
 msgid "This command is given to shell to make sound in alarms."
-msgstr ""
+msgstr "Proporciónaselle este comando ao intérprete de comandos para reproducir os sons das alarmas."
 
 #: ../src/parameters.c:559
 #, fuzzy
@@ -3421,9 +3409,8 @@ msgid "Set sticked"
 msgstr "Establecer preferencias"
 
 #: ../src/parameters.c:606
-#, fuzzy
 msgid "Set on top"
-msgstr "Examinador enriba"
+msgstr "Poñer enriba"
 
 #: ../src/parameters.c:627
 msgid "Show in taskbar"
@@ -3447,9 +3434,8 @@ msgid "Hide"
 msgstr "Agochar"
 
 #: ../src/parameters.c:687
-#, fuzzy
 msgid "Minimized"
-msgstr "minimizada"
+msgstr "Minimizada"
 
 #: ../src/parameters.c:717
 msgid "Extra setups"
@@ -3501,9 +3487,9 @@ msgid "First Orage start. Searching default timezone."
 msgstr "Primeiro inicio de Orage. Buscando o fuso horario predeterminado."
 
 #: ../src/parameters.c:1038
-#, fuzzy, c-format
+#, c-format
 msgid "Default timezone set to %s."
-msgstr "Fallou ao definir o sistema do fuso horario"
+msgstr "O fuso predeterminado é %s."
 
 #: ../src/parameters.c:1041
 msgid "Default timezone not found, please, set it manually."
