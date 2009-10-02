@@ -27,6 +27,7 @@ typedef struct _orage_timezone_array
     char **tz;        /* pointer to timezone name strings */
     char **prev;      /* pointer to previous time change strings */
     char **next;      /* pointer to next time change strings */
+    int  *next_utc_offset; /* pointer to int array holding utc offsets */
     char **country;   /* pointer to country name strings */
     char **cc;        /* pointer to country code strings */
 } orage_timezone_array;

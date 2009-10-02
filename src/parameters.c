@@ -444,7 +444,7 @@ static void timezone_button_clicked(GtkButton *button, gpointer user_data)
         g_par.local_timezone = g_strdup("floating");
     }
     if (orage_timezone_button_clicked(button, GTK_WINDOW(itf->orage_dialog)
-            , &g_par.local_timezone))
+            , &g_par.local_timezone, TRUE, g_par.local_timezone))
         xfical_set_local_timezone(FALSE);
 }
 

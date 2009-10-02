@@ -50,7 +50,6 @@ typedef struct _clock
     GdkColor   bg;
     GString   *timezone;
     gchar     *TZ_orig;
-    GtkWidget *tz_entry;
     ClockLine  line[OC_MAX_LINES];
     GString   *tooltip_data;
     gchar      tooltip_prev[OC_MAX_LINE_LENGTH+1];

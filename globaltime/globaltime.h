@@ -32,10 +32,11 @@ typedef struct
 typedef struct
 { /* all clocks */
     GList *clock_list;      /* list of clock_structs */
-    gchar time_now[16];     /* 88:88 null terminated */
+    gchar time_now[8];      /* 88:88+ null terminated */
     gint previous_secs;
     time_t previous_t;
     gboolean time_adj_act;  /* manual time adjustment active or not */
+    gboolean no_update;     /* do not update clocks */
     gint hh_adj;            /* adjustment hours */
     gint mm_adj;            /* adjustment hours */
     GString *local_tz;      /* local timezone. Used to set local_mday */

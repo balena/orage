@@ -49,7 +49,7 @@
 #include "globaltime.h"
 
 
-#define NAME_VERSION "Global Time (2.0)"
+#define NAME_VERSION "Global Time (2.1)"
 
 
 global_times_struct clocks;
@@ -342,6 +342,8 @@ void show_clock(clock_struct *clockp, gint *pos)
 static gboolean preferences_button_pressed(GtkWidget *widget
         , GdkEventButton *event, gpointer dummy)
 {
+    struct tm *now;
+
     if (event->button == 2) { /* toggle spinbox sensitivity */
         if (clocks.time_adj_act) { /* end it */
             gtk_widget_hide(clocks.hdr_adj_mm);
@@ -355,15 +357,19 @@ static gboolean preferences_button_pressed(GtkWidget *widget
             clocks.mm_adj = 0;
             clocks.hh_adj = 0;
             clocks.previous_secs = 70; /* trick to refresh clocks once */
-            g_message(_("Ending time adjustment mode"));
             gtk_window_resize(GTK_WINDOW(clocks.window), 10, 10);
         }
         else { /* start hour adjusting mode */
+            /* let's try to guess good starting value = to get times to 
+             * 0 or 30 minutes. */
+            now = gmtime(&clocks.previous_t);
+            clocks.mm_adj = (now->tm_min < 30 ? 0 : 60) - now->tm_min;
+            gtk_spin_button_set_value(GTK_SPIN_BUTTON(clocks.hdr_adj_mm)
+                    , (gdouble)clocks.mm_adj);
             gtk_widget_show(clocks.hdr_adj_mm);
             gtk_widget_show(clocks.hdr_adj_sep);
             gtk_widget_show(clocks.hdr_adj_hh);
             clocks.time_adj_act = TRUE;
-            g_message(_("Starting time adjustment mode"));
         }
         return(FALSE);
     }
@@ -408,6 +414,9 @@ static gboolean upd_clocks(void)
     struct tm *now;
     gint secs_now;
 
+    if (clocks.no_update)
+        return(TRUE);
+
     now = get_time(clocks.local_tz->str); /* GMT is returmed if not found */
     if (!clocks.time_adj_act) {
         time(&clocks.previous_t);
@@ -424,7 +433,7 @@ static gboolean upd_clocks(void)
         /* minute changed => need to update visible clocks */
         g_list_foreach(clocks.clock_list, (GFunc) upd_clock, NULL);
     clocks.previous_secs = secs_now;
-    return (TRUE);
+    return(TRUE);
 }
 
 void adj_hh_changed(GtkSpinButton *cb, gpointer user_data)
@@ -462,7 +471,7 @@ static void init_hdr_button(void)
     gtk_widget_show(image);
     gtk_widget_show(clocks.hdr_button);
 
-    clocks.hdr_adj_hh = gtk_spin_button_new_with_range(-23, 23, 1);
+    clocks.hdr_adj_hh = gtk_spin_button_new_with_range(-24, 24, 1);
     gtk_box_pack_start(GTK_BOX(clocks.hdr_hbox)
             , clocks.hdr_adj_hh, FALSE, FALSE, 0);
     gtk_spin_button_set_value(GTK_SPIN_BUTTON(clocks.hdr_adj_hh), (gdouble)0);
@@ -477,14 +486,15 @@ static void init_hdr_button(void)
     gtk_box_pack_start(GTK_BOX(clocks.hdr_hbox)
             , clocks.hdr_adj_sep, FALSE, FALSE, 0);
 
-    clocks.hdr_adj_mm = gtk_spin_button_new_with_range(-59, 59, 1);
+    clocks.hdr_adj_mm = gtk_spin_button_new_with_range(-60, 60, 1);
     gtk_box_pack_start(GTK_BOX(clocks.hdr_hbox)
             , clocks.hdr_adj_mm, FALSE, FALSE, 0);
     gtk_spin_button_set_value(GTK_SPIN_BUTTON(clocks.hdr_adj_mm), (gdouble)0);
     gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(clocks.hdr_adj_mm), TRUE);
+    gtk_spin_button_set_increments(GTK_SPIN_BUTTON(clocks.hdr_adj_mm), 30, 1);
     gtk_widget_set_size_request(clocks.hdr_adj_mm, 40, -1);
     gtk_tooltips_set_tip(clocks.tips, clocks.hdr_adj_mm
-            , _("adjust to change minute"), NULL);
+            , _("adjust to change minute. Click arrows with button 2 to change only 1 minute."), NULL);
     g_signal_connect((gpointer) clocks.hdr_adj_mm, "changed"
             , G_CALLBACK(adj_mm_changed), NULL);
     /* We want it to be hidden initially, it is special thing to do...
@@ -507,6 +517,7 @@ static void initialize_clocks()
     strcpy(clocks.time_now, "88:88");
     clocks.previous_secs = 61;      
     clocks.time_adj_act = FALSE;      
+    clocks.no_update = FALSE;
     clocks.hh_adj = 0;      
     clocks.mm_adj = 0;      
     /* done in read_file
@@ -605,7 +616,7 @@ static void create_global_time(void)
 int main(int argc, char *argv[])
 {
     xfce_textdomain(GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8");
-    gtk_init (&argc, &argv);
+    gtk_init(&argc, &argv);
     create_global_time();
     gtk_main();
 

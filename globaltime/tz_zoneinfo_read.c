@@ -59,63 +59,71 @@
 
 
 /** This is the toplevel directory where the timezone data is installed in. */
-#define ORAGE_ZONEINFO_DIRECTORY  PACKAGE_DATA_DIR "/orage/zoneinfo"
+#define ORAGE_ZONEINFO_DIRECTORY  PACKAGE_DATA_DIR "/orage/zoneinfo/"
 
 /** This is the filename of the file containing tz_convert parameters
  * This file contains the location of the os zoneinfo data.
  * the same than the above DEFAULT_OS_ZONEINFO_DIRECTORY */
 #define TZ_CONVERT_PAR_FILENAME  "tz_convert.par"
-#define TZ_CONVERT_PAR_FILE_LOC  ORAGE_ZONEINFO_DIRECTORY "/" TZ_CONVERT_PAR_FILENAME
+#define TZ_CONVERT_PAR_FILE_LOC  ORAGE_ZONEINFO_DIRECTORY TZ_CONVERT_PAR_FILENAME
+
+/** This is the filename of the file containing orage ical timezone names */
+#define ICAL_ZONES_TAB_FILENAME  "zones.tab"
+#define ICAL_ZONES_TAB_FILE_LOC  ORAGE_ZONEINFO_DIRECTORY ICAL_ZONES_TAB_FILENAME
 
 
 
 /* this contains all timezone data */
 orage_timezone_array tz_array={0, NULL, NULL, NULL, NULL, NULL, NULL};
 
-char *zone_tab_buf = NULL, *country_buf = NULL;
+static char *zone_tab_buf = NULL, *country_buf = NULL, *zones_tab_buf = NULL;
 
-int debug = 0; /* bigger number => more output */
-char version[] = "1.4.4";
-int file_cnt = 0; /* number of processed files */
+static int debug = 0; /* bigger number => more output */
+static char version[] = "1.4.4";
+static int file_cnt = 0; /* number of processed files */
 
-unsigned char *in_buf, *in_head, *in_tail;
-int in_file_base_offset = 0;
+static unsigned char *in_buf, *in_head, *in_tail;
+static int in_file_base_offset = 0;
 
-int details;
+static int details;     /* show extra data (country and next change time) */
+static int check_ical;  /* check that we have also the ical timezone data */
 
-char *in_file = NULL, *out_file = NULL;
-int in_file_is_dir = 0;
-int excl_dir_cnt = -1;
-char **excl_dir = NULL;
+static char *in_file = NULL, *out_file = NULL;
+static int in_file_is_dir = 0;
+static int excl_dir_cnt = -1;
+static char **excl_dir = NULL;
 
 /* in_timezone_name is the real timezone name from the infile 
  * we are processing.
- * in_timezone_name is the timezone we are writing. Usually it is the same
+ * timezone_name is the timezone we are writing. Usually it is the same
  * than in_timezone_name. 
- * timezone name is for example Europe/Helsinki */
-char *timezone_name = NULL;  
-char *in_timezone_name = NULL;
+ * timezone_name is for example Europe/Helsinki */
+/* FIXME: we do not need both timezone_name and in_timezone_name here.
+ * Remove one */
+static char *timezone_name = NULL;  
+static char *in_timezone_name = NULL;
 
-int ignore_older = 1970; /* Ignore rules which are older or equal than this */
+/* Ignore rules which are older or equal than this */
+static int ignore_older = 1970; 
 
 /* time change table starts here */
-unsigned char *begin_timechanges;           
+static unsigned char *begin_timechanges;           
 
 /* time change type index table starts here */
-unsigned char *begin_timechangetypeindexes; 
+static unsigned char *begin_timechangetypeindexes; 
 
 /* time change type table starts here */
-unsigned char *begin_timechangetypes;       
+static unsigned char *begin_timechangetypes;       
 
 /* timezone name table */
-unsigned char *begin_timezonenames;         
+static unsigned char *begin_timezonenames;         
 
-unsigned long gmtcnt;
-unsigned long stdcnt;
-unsigned long leapcnt;
-unsigned long timecnt;  /* points when time changes */
-unsigned long typecnt;  /* table of different time changes = types */
-unsigned long charcnt;  /* length of timezone name table */
+static unsigned long gmtcnt;
+static unsigned long stdcnt;
+static unsigned long leapcnt;
+static unsigned long timecnt;  /* points when time changes */
+static unsigned long typecnt;  /* table of different time changes = types */
+static unsigned long charcnt;  /* length of timezone name table */
 
 static void read_file(const char *file_name, const struct stat *file_stat)
 {
@@ -136,7 +144,7 @@ static void read_file(const char *file_name, const struct stat *file_stat)
         printf("read_file: end\n");
 }
 
-long get_long()
+static long get_long()
 {
     unsigned long tmp;
 
@@ -148,7 +156,7 @@ long get_long()
     return(tmp);
 }
 
-int process_header()
+static int process_header()
 {
     if (debug > 2)
         printf("file id: %s\n", in_head);
@@ -180,7 +188,7 @@ int process_header()
     return(0);
 }
 
-process_local_time_table()
+static process_local_time_table()
 { /* points when time changes */
     unsigned long tmp;
     int i;
@@ -199,7 +207,7 @@ process_local_time_table()
     }
 }
 
-process_local_time_type_table()
+static process_local_time_type_table()
 { /* pointers to table, which explain how time changes */
     unsigned char tmp;
     int i;
@@ -215,7 +223,7 @@ process_local_time_type_table()
     }
 }
 
-process_ttinfo_table()
+static process_ttinfo_table()
 { /* table of different time changes = types */
     long tmp;
     unsigned char tmp2, tmp3;
@@ -236,7 +244,7 @@ process_ttinfo_table()
     }
 }
 
-process_abbr_table()
+static process_abbr_table()
 {
     unsigned char *tmp;
     int i;
@@ -253,7 +261,7 @@ process_abbr_table()
     in_head += charcnt;
 }
 
-process_leap_table()
+static process_leap_table()
 {
     unsigned long tmp, tmp2;
     int i;
@@ -269,7 +277,7 @@ process_leap_table()
     }
 }
 
-process_std_table()
+static process_std_table()
 {
     unsigned char tmp;
     int i;
@@ -284,7 +292,7 @@ process_std_table()
     }
 }
 
-process_gmt_table()
+static process_gmt_table()
 {
     unsigned char tmp;
     int i;
@@ -301,7 +309,7 @@ process_gmt_table()
 
 /* go through the contents of the file and find the positions of 
  * needed data. Uses global pointer: in_head */
-int process_file(const char *file_name)
+static int process_file(const char *file_name)
 {
     if (debug > 1)
         printf("\n\nprocess_file: start\n");
@@ -323,10 +331,10 @@ int process_file(const char *file_name)
     return(0); /* ok */
 }
 
-void get_country()
+static void get_country()
 { /* tz_array.city[tz_array.count] contains the city name.
      We will find corresponding country and fill it to the table */
-    char *str, *str_nl;
+    char *str, *str_nl, cc[4];
 
     if (!(str = strstr(zone_tab_buf, tz_array.city[tz_array.count])))
         return; /* not found */
@@ -343,12 +351,19 @@ void get_country()
     strncpy(tz_array.cc[tz_array.count], ++str_nl, 2);
     tz_array.cc[tz_array.count][2] = '\0';
 
-    /* then search the country */
-    if (!(str = strstr(country_buf, tz_array.cc[tz_array.count])))
+    /********** then search the country **********/
+    /* Need to search line, which starts with country code.
+     * Note that it is not enough to search any country coed, but it really
+     * needs to be the first two chars in the line */
+    cc[0] = '\n';
+    cc[1] = tz_array.cc[tz_array.count][0];
+    cc[2] = tz_array.cc[tz_array.count][1];
+    cc[3] = '\0';
+    if (!(str = strstr(country_buf, cc)))
         return; /* not found */
     /* country name is after the country code and a single tab */
-    str += 3;
-    /* but w still need to find how long it is.
+    str += 4;
+    /* but we still need to find how long it is.
      * It ends in the line end. 
      * (There is a line end at the end of the file also.) */
     for (str_nl = str; str_nl[0] != '\n'; str_nl++)
@@ -358,16 +373,28 @@ void get_country()
     tz_array.country[tz_array.count][(str_nl - str)] = '\0';
 }
 
+static int timezone_exists_in_ical()
+{ /* in_timezone_name contains the timezone name.
+     We will search if it exists also in the ical zones.tab file */
+    char *str;
+
+    if (str = strstr(zones_tab_buf, in_timezone_name))
+        return(1); /* yes, it is there */
+    else
+        return(0); /* not found */
+}
+
 /* FIXME: need to check that if OUTFILE is given as a parameter,
  * INFILE is not a directory (or make outfile to act like directory also ? */
-int write_ical_file(const char *in_file_name, const struct stat *in_file_stat)
+static int write_ical_file(const char *in_file_name
+        , const struct stat *in_file_stat)
 {
     int i;
     unsigned int tct_i, abbr_i;
     struct tm cur_gm_time;
     time_t tt_now = time(NULL);
-    long tc_time = 0; /* TimeChange time */
-    char s_next[101];
+    long tc_time = 0, prev_tc_time; /* TimeChange times */
+    char s_next[101], s_prev[101];
 
     if (debug > 1)
         printf("***** write_ical_file: start *****\n\n");
@@ -384,6 +411,7 @@ int write_ical_file(const char *in_file_name, const struct stat *in_file_stat)
         /* search for current time setting.
          * timecnt tells how many changes we have in the tz file.
          * i points to the next value to read. */
+        prev_tc_time = tc_time;
         tc_time = get_long(); /* start time of this timechange */
     }
     /* i points to the next value to be read, so need to -- */
@@ -393,7 +421,9 @@ int write_ical_file(const char *in_file_name, const struct stat *in_file_stat)
         tz_array.utc_offset[tz_array.count] = 0;
         tz_array.dst[tz_array.count] = 0;
         tz_array.tz[tz_array.count] = "UTC";
+        tz_array.prev[tz_array.count] = NULL;
         tz_array.next[tz_array.count] = NULL;
+        tz_array.next_utc_offset[tz_array.count] = 0;
         tz_array.count++;
         return(1); /* done */
     }
@@ -401,16 +431,52 @@ int write_ical_file(const char *in_file_name, const struct stat *in_file_stat)
         /* we found previous and next value */
         /* tc_time has the next change time */
         if (details) {
+            /* NOTE: If the time change happens for example at 04:00
+             * and goes one hour backward, the new time is 03:00 and this
+             * is what localtime_r reports. In real life we want to show
+             * here 04:00, so let's subtract 1 sec to get close to that.
+             * This is a bit similar than 24:00 or 00:00. Summary:
+             * 04:00 is returned as 03:00 (change happened already) but
+             * 03:59 is returned as 03:59 (change did not yet happen) */
+            prev_tc_time -= 1;
+            localtime_r((const time_t *)&prev_tc_time, &cur_gm_time);
+            strftime(s_prev, 100, "%c", &cur_gm_time);
+            tz_array.prev[tz_array.count] = strdup(s_prev);
+
+            tc_time -= 1;
             localtime_r((const time_t *)&tc_time, &cur_gm_time);
             strftime(s_next, 100, "%c", &cur_gm_time);
             tz_array.next[tz_array.count] = strdup(s_next);
+            /* get timechange type index */
+            if (timecnt) {
+                in_head = begin_timechangetypeindexes;
+                tct_i = (unsigned int)in_head[i];
+            }
+            else
+                tct_i = 0;
+
+            /* get timechange type */
+            in_head = begin_timechangetypes;
+            in_head += 6*tct_i;
+            tz_array.next_utc_offset[tz_array.count] = (int)get_long();
         }
-        else 
+        else {
+            tz_array.prev[tz_array.count] = NULL;
             tz_array.next[tz_array.count] = NULL;
+        }
         i--; /* we need to take the previous value */
     }
-    else 
+    else { /* no next value, but previous may exist */
         tz_array.next[tz_array.count] = NULL;
+        if (details && prev_tc_time) {
+            prev_tc_time -= 1;
+            localtime_r((const time_t *)&prev_tc_time, &cur_gm_time);
+            strftime(s_prev, 100, "%c", &cur_gm_time);
+            tz_array.prev[tz_array.count] = strdup(s_prev);
+        }
+        else
+            tz_array.prev[tz_array.count] = NULL;
+    }
 
     /* i now points to latest time change and shows current time.
      * So we found our result and can start collecting real data: */
@@ -441,7 +507,7 @@ int write_ical_file(const char *in_file_name, const struct stat *in_file_stat)
 }
 
 /* The main code. This is called once per each file found */
-int file_call(const char *file_name, const struct stat *sb, int flags
+static int file_call(const char *file_name, const struct stat *sb, int flags
         , struct FTW *f)
 {
     int i;
@@ -453,14 +519,21 @@ int file_call(const char *file_name, const struct stat *sb, int flags
     if (flags == FTW_F) { /* we got file */
         if (debug > 0)
             printf("\t\tfile_call: processing file=(%s)\n", file_name);
+        in_timezone_name = strdup(&file_name[in_file_base_offset
+                + strlen("zoneinfo/")]);
+        timezone_name = strdup(in_timezone_name);
+        if (check_ical && !timezone_exists_in_ical()) {
+            free(in_timezone_name);
+            free(timezone_name);
+            return(FTW_CONTINUE);
+        }
         read_file(file_name, sb);
         if (process_file(file_name)) { /* we skipped this file */
+            free(in_timezone_name);
+            free(timezone_name);
             free(in_buf);
             return(FTW_CONTINUE);
         }
-        in_timezone_name = strdup(&file_name[in_file_base_offset 
-                + strlen("zoneinfo/")]);
-        timezone_name = strdup(in_timezone_name);
         write_ical_file(file_name, sb);
 
         free(in_buf);
@@ -499,7 +572,7 @@ int file_call(const char *file_name, const struct stat *sb, int flags
 }
 
 /* check the parameters and use defaults when possible */
-int check_parameters()
+static int check_parameters()
 {
     char *s_tz, *last_tz = NULL, tz[]="/zoneinfo", tz2[]="zoneinfo/";
     int tz_len, i;
@@ -630,7 +703,7 @@ int check_parameters()
     return(0); /* continue */
 }
 
-void read_countries()
+static void read_countries()
 {
     char *tz_dir, *zone_tab_file_name, *country_file_name;
     int zoneinfo_len=strlen("zoneinfo/");
@@ -730,7 +803,40 @@ void read_countries()
     fclose(country_file);
 }
 
-orage_timezone_array get_orage_timezones(int show_details)
+static void read_ical_timezones()
+{
+    FILE *zones_tab_file;
+    struct stat zones_tab_file_stat;
+
+    /****** zones.tab file ******/
+    if (!(zones_tab_file = fopen(ICAL_ZONES_TAB_FILE_LOC, "r"))) {
+        printf("read_ical_timezones: zones.tab file open failed (%s)\n"
+                , ICAL_ZONES_TAB_FILE_LOC);
+        perror("\tfopen");
+        return;
+    }
+    if (stat(ICAL_ZONES_TAB_FILE_LOC, &zones_tab_file_stat) == -1) {
+        printf("read_ical_timezones: zones.tab file stat failed (%s)\n"
+                , ICAL_ZONES_TAB_FILE_LOC);
+        fclose(zones_tab_file);
+        perror("\tstat");
+        return;
+    }
+    zones_tab_buf = malloc(zones_tab_file_stat.st_size+1);
+    fread(zones_tab_buf, 1, zones_tab_file_stat.st_size, zones_tab_file);
+    if (ferror(zones_tab_file)) {
+        printf("read_ical_timezones: zones.tab file read failed (%s)\n"
+                , ICAL_ZONES_TAB_FILE_LOC);
+        perror("\tfread");
+        return;
+    }
+    zones_tab_buf[zones_tab_file_stat.st_size] = '\0';
+    printf("read_ical_timezones: zones.tab file read (%s) (%d bytes)\n"
+                , ICAL_ZONES_TAB_FILE_LOC, strlen(zones_tab_buf));
+    fclose(zones_tab_file);
+}
+
+orage_timezone_array get_orage_timezones(int show_details, int ical)
 {
     int tz_array_size = 1000; /* FIXME: this needs to be counted */
     /*
@@ -740,12 +846,15 @@ orage_timezone_array get_orage_timezones(int show_details)
    */
 
     details = show_details;
+    check_ical = ical;
     if (tz_array.count == 0) {
         tz_array.city = (char **)malloc(sizeof(char *)*(tz_array_size+2));
         tz_array.utc_offset = (int *)malloc(sizeof(int)*(tz_array_size+2));
         tz_array.dst = (int *)malloc(sizeof(int)*(tz_array_size+2));
         tz_array.tz = (char **)malloc(sizeof(char *)*(tz_array_size+2));
+        tz_array.prev = (char **)malloc(sizeof(char *)*(tz_array_size+2));
         tz_array.next = (char **)malloc(sizeof(char *)*(tz_array_size+2));
+        tz_array.next_utc_offset = (int *)malloc(sizeof(int)*(tz_array_size+2));
         tz_array.country = (char **)malloc(sizeof(char *)*(tz_array_size+2));
         tz_array.cc = (char **)malloc(sizeof(char *)*(tz_array_size+2));
     /* nftw goes through the whole file structure and calls "file_call"
@@ -756,6 +865,8 @@ orage_timezone_array get_orage_timezones(int show_details)
             printf("Processing %s files\n", in_file);
         if (details)
             read_countries();
+        if (check_ical)
+            read_ical_timezones();
         if (nftw(in_file, file_call, 10, FTW_PHYS | FTW_ACTIONRETVAL) == -1) {
             perror("nftw error in file handling");
             exit(EXIT_FAILURE);
@@ -768,7 +879,9 @@ orage_timezone_array get_orage_timezones(int show_details)
         tz_array.utc_offset[tz_array.count] = 0;
         tz_array.dst[tz_array.count] = 0;
         tz_array.tz[tz_array.count] = strdup("UTC");
+        tz_array.prev[tz_array.count] = NULL;
         tz_array.next[tz_array.count] = NULL;
+        tz_array.next_utc_offset[tz_array.count] = 0;
         tz_array.country[tz_array.count] = NULL;
         tz_array.cc[tz_array.count] = NULL;
         tz_array.city[tz_array.count++] = strdup("UTC");
@@ -776,12 +889,14 @@ orage_timezone_array get_orage_timezones(int show_details)
         tz_array.utc_offset[tz_array.count] = 0;
         tz_array.dst[tz_array.count] = 0;
         tz_array.tz[tz_array.count] = NULL;
+        tz_array.prev[tz_array.count] = NULL;
         tz_array.next[tz_array.count] = NULL;
+        tz_array.next_utc_offset[tz_array.count] = 0;
         tz_array.country[tz_array.count] = NULL;
         tz_array.cc[tz_array.count] = NULL;
         tz_array.city[tz_array.count++] = strdup("floating");
     }
-    return (tz_array);
+    return(tz_array);
 }
 
 void free_orage_timezones(int show_details)
@@ -793,6 +908,8 @@ void free_orage_timezones(int show_details)
             free(tz_array.city[i]);
         if (tz_array.tz[i])
             free(tz_array.tz[i]);
+        if (tz_array.prev[i])
+            free(tz_array.prev[i]);
         if (tz_array.next[i])
             free(tz_array.next[i]);
         if (tz_array.country[i])
@@ -804,10 +921,24 @@ void free_orage_timezones(int show_details)
     free(tz_array.utc_offset);
     free(tz_array.dst);
     free(tz_array.tz);
+    free(tz_array.prev);
     free(tz_array.next);
+    free(tz_array.next_utc_offset);
     free(tz_array.country);
     free(tz_array.cc);
     tz_array.count = 0;
     timezone_name = NULL;
+    if (zone_tab_buf) {
+        free(zone_tab_buf);
+        zone_tab_buf = NULL;
+    }
+    if (country_buf) {
+        free(country_buf);
+        country_buf = NULL;
+    }
+    if (zones_tab_buf) {
+        free(zones_tab_buf);
+        zones_tab_buf = NULL;
+    }
     file_cnt = 0; /* number of processed files */
 }

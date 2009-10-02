@@ -100,45 +100,18 @@ static void oc_set_width_changed(GtkSpinButton *sb, Clock *clock)
     oc_size_set(clock);
 }
 
-static void oc_timezone_changed(GtkWidget *widget, GdkEventKey *key
-        , Clock *clock)
-{
-    /* is it better to change only with GDK_Tab GDK_Return GDK_KP_Enter ? */
-    g_string_assign(clock->timezone, gtk_entry_get_text(GTK_ENTRY(widget)));
-    oc_timezone_set(clock);
-}
-
 static void oc_timezone_selected(GtkButton *button, Clock *clock)
 {
     GtkWidget *dialog;
     gchar *filename = NULL;
 
     dialog = g_object_get_data(G_OBJECT(clock->plugin), "dialog");
-    if (orage_timezone_button_clicked(button, GTK_WINDOW(dialog), &filename)) {
-        gtk_entry_set_text(GTK_ENTRY(clock->tz_entry), filename);
+    if (orage_timezone_button_clicked(button, GTK_WINDOW(dialog)
+            , &filename, FALSE, NULL)) {
         g_string_assign(clock->timezone, filename);
         oc_timezone_set(clock);
         g_free(filename);
     }
-/*
-    dialog = gtk_file_chooser_dialog_new(_("Select timezone"), NULL
-            , GTK_FILE_CHOOSER_ACTION_OPEN
-            , GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL
-            , GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT, NULL);
-/ * let's try to start on few standard positions * /
-    if (gtk_file_chooser_set_filename(GTK_FILE_CHOOSER(dialog)
-            , "/usr/share/zoneinfo/GMT") == FALSE)
-        gtk_file_chooser_set_filename(GTK_FILE_CHOOSER(dialog)
-                , "/usr/lib/zoneinfo/GMT");
-    if (gtk_dialog_run(GTK_DIALOG (dialog)) == GTK_RESPONSE_ACCEPT) {
-        filename = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(dialog));
-        gtk_entry_set_text(GTK_ENTRY(clock->tz_entry), filename);
-        g_string_assign(clock->timezone, filename);
-        oc_timezone_set(clock);
-        g_free(filename);
-    }
-    gtk_widget_destroy(dialog);
-    */
 }
 
 static void oc_show1(GtkToggleButton *cb, Clock *clock)
@@ -303,17 +276,10 @@ static void oc_properties_options(GtkWidget *dlg, Clock *clock)
     label = gtk_label_new(_("set timezone to:"));
     oc_table_add(table, label, 0, 0);
 
-    clock->tz_entry = gtk_entry_new();
-    gtk_entry_set_text(GTK_ENTRY(clock->tz_entry), clock->timezone->str);
-    oc_table_add(table, clock->tz_entry, 1, 0);
-    g_signal_connect(clock->tz_entry, "key-release-event"
-            , G_CALLBACK(oc_timezone_changed), clock);
-    gtk_tooltips_set_tip(clock->tips, GTK_WIDGET(clock->tz_entry),
-            _("Set any valid timezone (=TZ) value or pick one from the list.")
-            , NULL);
-
     button = gtk_button_new_from_stock(GTK_STOCK_OPEN);
-    oc_table_add(table, button, 2, 0);
+    if (clock->timezone->str && clock->timezone->len)
+         gtk_button_set_label(GTK_BUTTON(button), _(clock->timezone->str));
+    oc_table_add(table, button, 1, 0);
     g_signal_connect(G_OBJECT(button), "clicked"
             , G_CALLBACK(oc_timezone_selected), clock);
 

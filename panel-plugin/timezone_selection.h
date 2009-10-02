@@ -24,6 +24,6 @@
 #define __TIMEZONE_SELECTION_H__
 
 gboolean orage_timezone_button_clicked(GtkButton *button, GtkWindow *parent
-        , gchar **tz);
+        , gchar **tz, gboolean check_ical, char *local_tz);
 
 #endif /* !__TIMEZONE_SELECTION_H__ */

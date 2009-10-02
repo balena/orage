@@ -1,3 +1,16 @@
+20091002: Globaltime and panel plugin updates
+---------
+        * Change timezone selection to be exactly the same than in Orage
+            - Removed the entry box and only include the button now. 
+            - It is not as flexible, but it is easier to use for non-gurus.
+        * Modified time adjust mode in globaltime to start from zero minute.
+            - By default it now changes 30 mins per click.
+            - Page Up and Page Down can be used to tune only 1 minute.
+            - Removed message informing time change mode is starting.
+        * Timezone extra information now shows correct time change time
+            - wel, it is 1 sec off, but close enough...
+        * Timezone extra information now shows also next time and how it changes
+
 20090906: Version 4.7.4 
 ---------
         * New timezone selection dialog (Bug 3876)

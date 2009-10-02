@@ -1305,7 +1305,7 @@ static void on_appStartTimezone_clicked_cb(GtkButton *button
 
     appt = (xfical_appt *)apptw->xf_appt;
     if (orage_timezone_button_clicked(button, GTK_WINDOW(apptw->Window)
-            , &appt->start_tz_loc))
+            , &appt->start_tz_loc, TRUE, g_par.local_timezone))
         mark_appointment_changed(apptw);
 }
 
@@ -1317,7 +1317,7 @@ static void on_appEndTimezone_clicked_cb(GtkButton *button
 
     appt = (xfical_appt *)apptw->xf_appt;
     if (orage_timezone_button_clicked(button, GTK_WINDOW(apptw->Window)
-            , &appt->end_tz_loc))
+            , &appt->end_tz_loc, TRUE, g_par.local_timezone))
         mark_appointment_changed(apptw);
 }
 
@@ -1329,7 +1329,7 @@ static void on_appCompletedTimezone_clicked_cb(GtkButton *button
 
     appt = (xfical_appt *)apptw->xf_appt;
     if (orage_timezone_button_clicked(button, GTK_WINDOW(apptw->Window)
-            , &appt->completed_tz_loc))
+            , &appt->completed_tz_loc, TRUE, g_par.local_timezone))
         mark_appointment_changed(apptw);
 }
 

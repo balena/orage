@@ -42,7 +42,7 @@ typedef struct modify
     clock_struct *clock;
     GtkWidget *window;
     GtkWidget *name_entry;
-    GtkWidget *tz_entry;
+    GtkWidget *button_tz;
     GtkWidget *button_clock_fg;
     GtkWidget *check_button_default_fg;
     GtkWidget *button_clock_bg;
@@ -66,9 +66,9 @@ static void create_parameter_formatting(GtkWidget *vbox
 static gboolean decoration_radio_button_pressed(GtkWidget *widget, gchar *label)
 {
     if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(widget))) {
-        if (strcmp(label, _("Standard")) == 0)
+        if (strcmp(label, "Standard") == 0)
             clocks.decorations = TRUE;
-        else if (strcmp(label, _("None")) == 0)
+        else if (strcmp(label, "None") == 0)
             clocks.decorations = FALSE;
         else 
             g_warning("Unknown selection in decoration radio button\n");
@@ -81,9 +81,9 @@ static gboolean decoration_radio_button_pressed(GtkWidget *widget, gchar *label)
 static gboolean clocksize_radio_button_pressed(GtkWidget *widget, gchar *label)
 {
     if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(widget))) {
-        if (strcmp(label, _("Equal")) == 0)
+        if (strcmp(label, "Equal") == 0)
             clocks.expand = TRUE;
-        else if (strcmp(label, _("Vary")) == 0)
+        else if (strcmp(label, "Vary") == 0)
             clocks.expand = FALSE;
         else 
             g_warning("Unknown selection in clock size radio button\n");
@@ -108,8 +108,6 @@ static void close_preferences_window(GtkWidget *widget, GtkWidget *window)
 static gboolean save_preferences(GtkWidget *widget
         , modify_struct *modify_default)
 {
-    g_string_assign(clocks.local_tz
-            , gtk_entry_get_text(GTK_ENTRY(modify_default->tz_entry)));
     write_file();
     return(FALSE);
 }
@@ -183,8 +181,6 @@ static gboolean save_clock(GtkWidget *widget
     g_string_assign(clockp->name
             , gtk_entry_get_text(GTK_ENTRY(modify_clock->name_entry)));
     gtk_label_set_text(GTK_LABEL(clockp->name_label), clockp->name->str);
-    g_string_assign(clockp->tz
-            , gtk_entry_get_text(GTK_ENTRY(modify_clock->tz_entry)));
     write_file();
     return(FALSE);
 }
@@ -202,7 +198,7 @@ static gboolean set_timezone_from_clock(GtkWidget *widget
         , modify_struct *modify_clock)
 {
     g_string_assign(clocks.local_tz
-            , gtk_entry_get_text(GTK_ENTRY(modify_clock->tz_entry)));
+            , gtk_button_get_label((GTK_BUTTON(modify_clock->button_tz))));
     write_file();
     return(FALSE);
 }
@@ -286,8 +282,8 @@ static void copy_clock(GtkWidget *widget, modify_struct *modify_clock)
 
     new_pos = g_list_index(clocks.clock_list, clockp_old)+1;
     clockp_new = g_new(clock_struct, 1);
-    clockp_new->tz = g_string_new(gtk_entry_get_text(
-            GTK_ENTRY(modify_clock->tz_entry)));
+    clockp_new->tz = g_string_new(gtk_button_get_label(
+            GTK_BUTTON(modify_clock->button_tz)));
     clockp_new->name = g_string_new(_("NEW COPY"));
     clockp_new->modified = FALSE;
     init_attr(&clockp_new->clock_attr);
@@ -357,54 +353,43 @@ static void move_clock(GtkWidget *widget, modify_struct *modify_clock)
     write_file();
 }
 
+/* We handle here timezone setting for individual clocks, but also
+ * the generic (default) setting. We know we are doing defaults when there is no
+ * clock pointer */
 static void ask_timezone(GtkButton *button, modify_struct *modify_clock)
-/* static void ask_timezone(GtkWidget *widget, modify_struct *modify_clock) */
 {
-    /* GtkWidget *dialog; */
-    gchar *filename = NULL;
+    gchar *tz_name = NULL;
     gchar *clockname = NULL;
+    char env_tz[256];
 
+    /* first stop all clocks and reset time to local timezone because
+     * timezone list needs to be shown in local timezone (details show time) */
+    clocks.no_update = TRUE; 
+    if (clocks.local_tz && clocks.local_tz->str && clocks.local_tz->len) {
+        g_snprintf(env_tz, 256, "TZ=%s", clocks.local_tz->str);
+        putenv(env_tz);
+        tzset();
+    }
     if (orage_timezone_button_clicked(button, GTK_WINDOW(modify_clock->window)
-                , &filename)) {
-        gtk_entry_set_text(GTK_ENTRY(modify_clock->tz_entry), filename);
-        if (strlen(gtk_entry_get_text(GTK_ENTRY(modify_clock->name_entry))) 
-                == 0) {
-            if ((clockname = strrchr(filename, (int)'/')))
-                gtk_entry_set_text(GTK_ENTRY(modify_clock->name_entry)
-                        , clockname+1);
-            else
-                gtk_entry_set_text(GTK_ENTRY(modify_clock->name_entry)
-                        , filename);
+                , &tz_name, FALSE, NULL)) {
+        if (modify_clock->clock) { /* individual, real clock */
+            g_string_assign(modify_clock->clock->tz, tz_name);
+            if (strlen(gtk_entry_get_text(GTK_ENTRY(modify_clock->name_entry))) 
+                    == 0) {
+                if ((clockname = strrchr(tz_name, (int)'/')))
+                    gtk_entry_set_text(GTK_ENTRY(modify_clock->name_entry)
+                            , clockname+1);
+                else
+                    gtk_entry_set_text(GTK_ENTRY(modify_clock->name_entry)
+                            , tz_name);
+            }
         }
-        g_free(filename);
-    }
-
-    /*
-    dialog = gtk_file_chooser_dialog_new(_("Select timezone"), NULL
-            , GTK_FILE_CHOOSER_ACTION_OPEN
-            , GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL
-            , GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT, NULL);
-/ * let's try to start on few standard positions * /
-    if (gtk_file_chooser_set_filename(GTK_FILE_CHOOSER(dialog)
-                , "/usr/share/zoneinfo/GMT") == FALSE)
-        gtk_file_chooser_set_filename(GTK_FILE_CHOOSER(dialog)
-                , "/usr/lib/zoneinfo/GMT");
-    if (gtk_dialog_run(GTK_DIALOG (dialog)) == GTK_RESPONSE_ACCEPT) {
-        filename = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(dialog));
-        gtk_entry_set_text(GTK_ENTRY(modify_clock->tz_entry), filename);
-        if (strlen(gtk_entry_get_text(GTK_ENTRY(modify_clock->name_entry))) 
-                == 0) {
-            if ((clockname = strrchr(filename, (int)'/')))
-                gtk_entry_set_text(GTK_ENTRY(modify_clock->name_entry)
-                        , clockname+1);
-            else
-                gtk_entry_set_text(GTK_ENTRY(modify_clock->name_entry)
-                        , filename);
+        else { /* default timezone in main setup */
+            g_string_assign(clocks.local_tz, tz_name);
         }
-        g_free(filename);
+        g_free(tz_name);
     }
-    gtk_widget_destroy(dialog);
-    */
+    clocks.no_update = FALSE; 
 }
 
 static void set_font(GtkWidget *widget, GString *font)
@@ -588,7 +573,6 @@ gboolean clock_parameters(GtkWidget *widget, clock_struct *clockp)
 {
     modify_struct *modify_clock;
     GtkWidget *vbox, *hbox;
-    GtkWidget *button;
     gchar     *window_name;
 
     if (clockp->modified)
@@ -628,15 +612,12 @@ gboolean clock_parameters(GtkWidget *widget, clock_struct *clockp)
 
     hbox = add_box(vbox, 'H');
     add_header(hbox, _("Timezone of the clock:"), TRUE);
-    modify_clock->tz_entry = gtk_entry_new();
-    gtk_entry_set_text(GTK_ENTRY(modify_clock->tz_entry), clockp->tz->str);
-    gtk_box_pack_start(GTK_BOX(hbox), modify_clock->tz_entry
-            , FALSE, FALSE, 5);
-    gtk_tooltips_set_tip(clocks.tips, modify_clock->tz_entry
-            , _("enter timezone of clock,\n(=any valid TZ value)"), NULL);
-    button = gtk_button_new_from_stock(GTK_STOCK_OPEN);
-    gtk_box_pack_start(GTK_BOX(hbox), button, FALSE, FALSE, 2);
-    g_signal_connect(G_OBJECT(button), "clicked"
+    modify_clock->button_tz = gtk_button_new_from_stock(GTK_STOCK_OPEN);
+    if (clockp->tz->str && clockp->tz->len)
+         gtk_button_set_label(GTK_BUTTON(modify_clock->button_tz)
+                 , _(clockp->tz->str));
+    gtk_box_pack_start(GTK_BOX(hbox), modify_clock->button_tz, FALSE, FALSE, 2);
+    g_signal_connect(G_OBJECT(modify_clock->button_tz), "clicked"
             , G_CALLBACK(ask_timezone), modify_clock);
 
 /* ---------------------Text Formatting--------------------------------- */
@@ -1076,7 +1057,7 @@ gboolean default_preferences(GtkWidget *widget)
     modify_default = g_new0(modify_struct, 1);
     modify_default->window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
     gtk_window_set_title(GTK_WINDOW (modify_default->window)
-            , _("Modify Preferences"));
+            , _("Modify Globaltime Preferences"));
     g_signal_connect(G_OBJECT(modify_default->window) , "destroy"
             , G_CALLBACK(release_preferences_window), modify_default);
                                                                                 
@@ -1137,20 +1118,14 @@ gboolean default_preferences(GtkWidget *widget)
 /* -----------------------Local timezone------------------------------ */
     hbox = add_box(vbox, 'H');
     add_header(hbox, _("Local timezone:"), TRUE);
-    modify_default->tz_entry = gtk_entry_new();
-    gtk_entry_set_text(GTK_ENTRY(modify_default->tz_entry)
-            , clocks.local_tz->str);
-    gtk_box_pack_start(GTK_BOX(hbox), modify_default->tz_entry
-            , FALSE, FALSE, 5);
-    gtk_tooltips_set_tip(clocks.tips, modify_default->tz_entry
-            , _("Enter local timezone. (it is used to show if time is on previous(-) or next date(+) by adding a +/- after the time)"), NULL);
-    button = gtk_button_new_from_stock(GTK_STOCK_OPEN);
-    gtk_box_pack_start(GTK_BOX(hbox), button, FALSE, FALSE, 2);
-    g_signal_connect(G_OBJECT(button), "clicked"
+    modify_default->button_tz = gtk_button_new_from_stock(GTK_STOCK_OPEN);
+    if (clocks.local_tz->str)
+         gtk_button_set_label(GTK_BUTTON(modify_default->button_tz)
+                 , _(clocks.local_tz->str));
+    gtk_box_pack_start(GTK_BOX(hbox), modify_default->button_tz, FALSE, FALSE
+            , 2);
+    g_signal_connect(G_OBJECT(modify_default->button_tz), "clicked"
             , G_CALLBACK(ask_timezone), modify_default);
-    /* these are needed by ask_timezone */
-    modify_default->name_entry = gtk_entry_new();
-    gtk_entry_set_text(GTK_ENTRY(modify_default->name_entry), "dummy");
 
 /* ---------------------Text Formatting--------------------------------- */
     preferences_formatting(vbox, modify_default);
