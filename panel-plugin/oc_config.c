@@ -135,7 +135,7 @@ static void oc_show3(GtkToggleButton *cb, Clock *clock)
 static void oc_hib_timing_toggled(GtkToggleButton *cb, Clock *clock)
 {
     clock->hib_timing = gtk_toggle_button_get_active(cb);
-    oc_hib_timing_set(clock);
+    /* oc_hib_timing_set(clock); */
 }
 
 static gboolean oc_line_changed(GtkWidget *entry, GdkEventKey *key
@@ -404,7 +404,7 @@ void oc_properties_dialog(XfcePanelPlugin *plugin, Clock *clock)
     clock->interval = 200; /* 0,2 sec, so that we can show quick feedback
                             * on the panel */
     oc_start_timer(clock);
-    dlg = gtk_dialog_new_with_buttons(_("Properties"), 
+    dlg = gtk_dialog_new_with_buttons(_("Orage clock Preferences"), 
             GTK_WINDOW(gtk_widget_get_toplevel(GTK_WIDGET(plugin))),
             GTK_DIALOG_DESTROY_WITH_PARENT |
             GTK_DIALOG_NO_SEPARATOR,

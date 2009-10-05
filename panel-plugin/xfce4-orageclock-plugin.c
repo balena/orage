@@ -548,7 +548,6 @@ void oc_write_rc_file(XfcePanelPlugin *plugin, Clock *clock)
 }
 
 /* Create widgets and connect to signals */
-
 Clock *orage_oc_new(XfcePanelPlugin *plugin)
 {
     Clock *clock = g_new0(Clock, 1);
@@ -614,10 +613,6 @@ void oc_show_frame_set(Clock *clock)
 {
     gtk_frame_set_shadow_type(GTK_FRAME(clock->frame)
             , clock->show_frame ? GTK_SHADOW_IN : GTK_SHADOW_NONE);
-}
-
-void oc_hib_timing_set(Clock *clock)
-{
 }
 
 void oc_fg_set(Clock *clock)

@@ -536,6 +536,7 @@ static void create_orage_reminder(alarm_struct *alarm)
     vbReminder = GTK_DIALOG(wReminder)->vbox;
 
     hdReminder = gtk_label_new(alarm->title);
+    gtk_label_set_selectable(GTK_LABEL(hdReminder), TRUE);
     gtk_box_pack_start(GTK_BOX(vbReminder), hdReminder, FALSE, TRUE, 0);
 
     swReminder = gtk_scrolled_window_new(NULL, NULL);
@@ -547,6 +548,7 @@ static void create_orage_reminder(alarm_struct *alarm)
 
     lbReminder = gtk_label_new(alarm->description);
     gtk_label_set_line_wrap(GTK_LABEL(lbReminder), TRUE);
+    gtk_label_set_selectable(GTK_LABEL(lbReminder), TRUE);
     gtk_scrolled_window_add_with_viewport(GTK_SCROLLED_WINDOW(swReminder)
             , lbReminder);
 

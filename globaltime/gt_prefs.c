@@ -585,7 +585,7 @@ gboolean clock_parameters(GtkWidget *widget, clock_struct *clockp)
     modify_clock->clock = clockp;
     clockp->modify_data = modify_clock;
     modify_clock->window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-    window_name = g_strconcat(_("Modify Clock "), clockp->name->str, NULL);
+    window_name = g_strconcat(_("Globaltime preferences "), clockp->name->str, NULL);
     gtk_window_set_title(GTK_WINDOW(modify_clock->window), window_name);
     g_free(window_name);
     g_signal_connect(G_OBJECT(modify_clock->window) , "destroy"
@@ -1057,7 +1057,7 @@ gboolean default_preferences(GtkWidget *widget)
     modify_default = g_new0(modify_struct, 1);
     modify_default->window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
     gtk_window_set_title(GTK_WINDOW (modify_default->window)
-            , _("Modify Globaltime Preferences"));
+            , _("Globaltime Preferences"));
     g_signal_connect(G_OBJECT(modify_default->window) , "destroy"
             , G_CALLBACK(release_preferences_window), modify_default);
                                                                                 
