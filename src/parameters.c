@@ -95,7 +95,7 @@ typedef struct _Itf
     GtkWidget *show_pager_checkbutton;
     GtkWidget *show_systray_checkbutton;
     GtkWidget *show_todos_checkbutton;
-    GtkWidget *show_events_checkbutton;
+    GtkWidget *show_events_spin;
     /* Start visibity show or hide */
     GtkWidget *visibility_frame;
     GSList    *visibility_radiobutton_group;
@@ -110,12 +110,6 @@ typedef struct _Itf
     GtkWidget *always_today_frame;
     GtkWidget *always_today_checkbutton;
 
-/* code removed. relying in get_first_weekday_from_locale now
-/ * ical week start day (0 = Monday, 1 = Tuesday,... 6 = Sunday) * /
-GtkWidget *ical_weekstartday_frame;
-GtkWidget *ical_weekstartday_combobox;
-*/
-
     /* icon size */
     GtkWidget *icon_size_frame;
     GtkWidget *icon_size_x_spin;
@@ -125,6 +119,10 @@ GtkWidget *ical_weekstartday_combobox;
     GSList    *click_to_show_radiobutton_group;
     GtkWidget *click_to_show_days_radiobutton;
     GtkWidget *click_to_show_events_radiobutton;
+
+    /* eventlist window number of extra days to show */
+    GtkWidget *el_extra_days_frame;
+    GtkWidget *el_extra_days_spin;
 
     /* the rest */
     GtkWidget *close_button;
@@ -282,21 +280,13 @@ static void todos_changed(GtkWidget *dialog, gpointer user_data)
     set_todos();
 }
 
-static void set_events()
+static void show_events_spin_changed(GtkSpinButton *sb, gpointer user_data)
 {
-    if (g_par.show_events)
-        gtk_widget_show_all(((CalWin *)g_par.xfcal)->mEvent_vbox);
+    g_par.show_event_days = gtk_spin_button_get_value(sb);
+    if (g_par.show_event_days)
+        build_mainbox_event_box();
     else
         gtk_widget_hide_all(((CalWin *)g_par.xfcal)->mEvent_vbox);
-}
-
-static void events_changed(GtkWidget *dialog, gpointer user_data)
-{
-    Itf *itf = (Itf *)user_data;
-
-    g_par.show_events = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(
-            itf->show_events_checkbutton));
-    set_events();
 }
 
 static void set_stick()
@@ -464,16 +454,6 @@ static void always_today_changed(GtkWidget *dialog, gpointer user_data)
             GTK_TOGGLE_BUTTON(itf->always_today_checkbutton));
 }
 
-/* code removed. relying in get_first_weekday_from_locale now
-static void ical_weekstartday_changed(GtkWidget *dialog, gpointer user_data)
-{
-    Itf *itf = (Itf *)user_data;
-
-    g_par.ical_weekstartday = gtk_combo_box_get_active(
-            GTK_COMBO_BOX(itf->ical_weekstartday_combobox));
-}
-*/
-
 static void set_icon_size()
 {
     refresh_TrayIcon();
@@ -489,6 +469,11 @@ static void icon_size_y_spin_changed(GtkSpinButton *sb, gpointer user_data)
 {
     g_par.icon_size_y = gtk_spin_button_get_value(sb);
     set_icon_size();
+}
+
+static void el_extra_days_spin_changed(GtkSpinButton *sb, gpointer user_data)
+{
+    g_par.el_days = gtk_spin_button_get_value(sb);
 }
 
 static void create_parameter_dialog_main_setup_tab(Itf *dialog)
@@ -579,7 +564,7 @@ static void create_parameter_dialog_main_setup_tab(Itf *dialog)
 
 static void create_parameter_dialog_display_tab(Itf *dialog)
 {
-    GtkWidget *hbox, *vbox;
+    GtkWidget *hbox, *vbox, *label;
 
     dialog->display_vbox = gtk_vbox_new(FALSE, 0);
     dialog->display_tab = 
@@ -638,12 +623,19 @@ static void create_parameter_dialog_display_tab(Itf *dialog)
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
             dialog->show_todos_checkbutton), g_par.show_todos);
 
-    dialog->show_events_checkbutton = gtk_check_button_new_with_mnemonic(
-            _("Show event list"));
-    gtk_box_pack_start(GTK_BOX(vbox)
-            , dialog->show_events_checkbutton, FALSE, FALSE, 0);
-    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
-            dialog->show_events_checkbutton), g_par.show_events);
+    hbox = gtk_hbox_new(FALSE, 0);
+    label = gtk_label_new(_("Show"));
+    gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 5);
+    dialog->show_events_spin = gtk_spin_button_new_with_range(0, 31, 1);
+    gtk_spin_button_set_value(GTK_SPIN_BUTTON(dialog->show_events_spin)
+            , g_par.show_event_days);
+    gtk_tooltips_set_tip(dialog->Tooltips, dialog->show_events_spin
+            , _("0 = do not show event list at all"), NULL);
+    gtk_box_pack_start(GTK_BOX(hbox)
+            , dialog->show_events_spin, FALSE, FALSE, 5);
+    gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
+    label = gtk_label_new(_("days in event list"));
+    gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 5);
 
     dialog->set_stick_checkbutton = gtk_check_button_new_with_mnemonic(
             _("Set sticked"));
@@ -659,26 +651,6 @@ static void create_parameter_dialog_display_tab(Itf *dialog)
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
             dialog->set_ontop_checkbutton), g_par.set_ontop);
 
-    g_signal_connect(G_OBJECT(dialog->show_borders_checkbutton), "toggled"
-            , G_CALLBACK(borders_changed), dialog);
-    g_signal_connect(G_OBJECT(dialog->show_menu_checkbutton), "toggled"
-            , G_CALLBACK(menu_changed), dialog);
-    g_signal_connect(G_OBJECT(dialog->show_heading_checkbutton), "toggled"
-            , G_CALLBACK(heading_changed), dialog);
-    g_signal_connect(G_OBJECT(dialog->show_day_names_checkbutton), "toggled"
-            , G_CALLBACK(days_changed), dialog);
-    g_signal_connect(G_OBJECT(dialog->show_weeks_checkbutton), "toggled"
-            , G_CALLBACK(weeks_changed), dialog);
-    g_signal_connect(G_OBJECT(dialog->show_todos_checkbutton), "toggled"
-            , G_CALLBACK(todos_changed), dialog);
-    g_signal_connect(G_OBJECT(dialog->show_events_checkbutton), "toggled"
-            , G_CALLBACK(events_changed), dialog);
-    g_signal_connect(G_OBJECT(dialog->set_stick_checkbutton), "toggled"
-            , G_CALLBACK(stick_changed), dialog);
-    g_signal_connect(G_OBJECT(dialog->set_ontop_checkbutton), "toggled"
-            , G_CALLBACK(ontop_changed), dialog);
-    
-    /* Show in... taskbar pager systray */
     dialog->show_taskbar_checkbutton = gtk_check_button_new_with_mnemonic(
             _("Show in taskbar"));
     gtk_box_pack_start(GTK_BOX(vbox)
@@ -700,6 +672,24 @@ static void create_parameter_dialog_display_tab(Itf *dialog)
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
             dialog->show_systray_checkbutton), g_par.show_systray);
 
+    g_signal_connect(G_OBJECT(dialog->show_borders_checkbutton), "toggled"
+            , G_CALLBACK(borders_changed), dialog);
+    g_signal_connect(G_OBJECT(dialog->show_menu_checkbutton), "toggled"
+            , G_CALLBACK(menu_changed), dialog);
+    g_signal_connect(G_OBJECT(dialog->show_heading_checkbutton), "toggled"
+            , G_CALLBACK(heading_changed), dialog);
+    g_signal_connect(G_OBJECT(dialog->show_day_names_checkbutton), "toggled"
+            , G_CALLBACK(days_changed), dialog);
+    g_signal_connect(G_OBJECT(dialog->show_weeks_checkbutton), "toggled"
+            , G_CALLBACK(weeks_changed), dialog);
+    g_signal_connect(G_OBJECT(dialog->show_todos_checkbutton), "toggled"
+            , G_CALLBACK(todos_changed), dialog);
+    g_signal_connect(G_OBJECT(dialog->show_events_spin), "value-changed"
+            , G_CALLBACK(show_events_spin_changed), dialog);
+    g_signal_connect(G_OBJECT(dialog->set_stick_checkbutton), "toggled"
+            , G_CALLBACK(stick_changed), dialog);
+    g_signal_connect(G_OBJECT(dialog->set_ontop_checkbutton), "toggled"
+            , G_CALLBACK(ontop_changed), dialog);
     g_signal_connect(G_OBJECT(dialog->show_taskbar_checkbutton), "toggled"
             , G_CALLBACK(taskbar_changed), dialog);
     g_signal_connect(G_OBJECT(dialog->show_pager_checkbutton), "toggled"
@@ -760,12 +750,6 @@ static void create_parameter_dialog_display_tab(Itf *dialog)
 static void create_parameter_dialog_extra_setup_tab(Itf *dialog)
 {
     GtkWidget *hbox, *vbox, *label;
-    /* code removed. relying in get_first_weekday_from_locale now
-    GtkWidget *event;
-    gchar *weekday_array[7] = {
-            _("Monday"), _("Tuesday"), _("Wednesday"), _("Thursday")
-          , _("Friday"), _("Saturday"), _("Sunday")};
-     */
 
     dialog->extra_vbox = gtk_vbox_new(FALSE, 0);
     dialog->extra_tab = 
@@ -792,29 +776,6 @@ static void create_parameter_dialog_extra_setup_tab(Itf *dialog)
             , NULL);
     g_signal_connect(G_OBJECT(dialog->always_today_checkbutton), "toggled"
             , G_CALLBACK(always_today_changed), dialog);
-
-    /* code removed. relying in get_first_weekday_from_locale now
-    / ***** ical week start day (0 = Monday, 1 = Tuesday,... 6 = Sunday) ***** /
-    hbox = gtk_hbox_new(FALSE, 0);
-    dialog->ical_weekstartday_frame = orage_create_framebox_with_content(
-            _("Ical week start day"), hbox);
-    gtk_box_pack_start(GTK_BOX(dialog->extra_vbox)
-            , dialog->ical_weekstartday_frame, FALSE, FALSE, 5);
-
-    dialog->ical_weekstartday_combobox = orage_create_combo_box_with_content(
-            weekday_array, 7);
-    event =  gtk_event_box_new(); / * only needed for tooltips * /
-    gtk_container_add(GTK_CONTAINER(event), dialog->ical_weekstartday_combobox);
-    gtk_box_pack_start(GTK_BOX(hbox)
-            , event, FALSE, FALSE, 5);
-    gtk_combo_box_set_active(GTK_COMBO_BOX(dialog->ical_weekstartday_combobox)
-            , g_par.ical_weekstartday);
-    gtk_tooltips_set_tip(dialog->Tooltips, event
-            , _("This is used in some weekly repeating appointment rules. Just set it to the start day of the week for your country and forget it.")
-            , NULL);
-    g_signal_connect(G_OBJECT(dialog->ical_weekstartday_combobox), "changed"
-            , G_CALLBACK(ical_weekstartday_changed), dialog);
-    */
 
     /***** tray icon size  (0 = use static icon) *****/
     vbox = gtk_vbox_new(FALSE, 0);
@@ -856,15 +817,15 @@ static void create_parameter_dialog_extra_setup_tab(Itf *dialog)
 
     /***** Start event or day window from main calendar *****/
     dialog->click_to_show_radiobutton_group = NULL;
-    hbox = gtk_vbox_new(FALSE, 0);
+    vbox = gtk_vbox_new(FALSE, 0);
     dialog->click_to_show_frame = orage_create_framebox_with_content(
-            _("Main Calendar double click shows"), hbox);
+            _("Main Calendar double click shows"), vbox);
     gtk_box_pack_start(GTK_BOX(dialog->extra_vbox)
             , dialog->click_to_show_frame, FALSE, FALSE, 5);
 
     dialog->click_to_show_days_radiobutton =
             gtk_radio_button_new_with_mnemonic(NULL, _("Days view"));
-    gtk_box_pack_start(GTK_BOX(hbox)
+    gtk_box_pack_start(GTK_BOX(vbox)
             , dialog->click_to_show_days_radiobutton, FALSE, FALSE, 0);
     gtk_radio_button_set_group(
             GTK_RADIO_BUTTON(dialog->click_to_show_days_radiobutton)
@@ -876,7 +837,7 @@ static void create_parameter_dialog_extra_setup_tab(Itf *dialog)
 
     dialog->click_to_show_events_radiobutton =
             gtk_radio_button_new_with_mnemonic(NULL, _("Event list"));
-    gtk_box_pack_start(GTK_BOX(hbox)
+    gtk_box_pack_start(GTK_BOX(vbox)
             , dialog->click_to_show_events_radiobutton, FALSE, FALSE, 0);
     gtk_radio_button_set_group(
             GTK_RADIO_BUTTON(dialog->click_to_show_events_radiobutton)
@@ -888,6 +849,28 @@ static void create_parameter_dialog_extra_setup_tab(Itf *dialog)
 
     g_signal_connect(G_OBJECT(dialog->click_to_show_days_radiobutton), "toggled"
             , G_CALLBACK(show_changed), dialog);
+
+    /***** Eventlist window number of extra days to show *****/
+    hbox = gtk_hbox_new(FALSE, 0);
+    dialog->el_extra_days_frame = orage_create_framebox_with_content(
+            _("Eventlist window"), hbox);
+    gtk_box_pack_start(GTK_BOX(dialog->extra_vbox)
+            , dialog->el_extra_days_frame, FALSE, FALSE, 5);
+
+    label = gtk_label_new(_("Show:"));
+    gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 5);
+    dialog->el_extra_days_spin = gtk_spin_button_new_with_range(0, 999, 1);
+    gtk_box_pack_start(GTK_BOX(hbox)
+            , dialog->el_extra_days_spin, FALSE, FALSE, 5);
+    gtk_spin_button_set_value(GTK_SPIN_BUTTON(dialog->el_extra_days_spin)
+            , g_par.el_days);
+    label = gtk_label_new(_("extra days"));
+    gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 5);
+    gtk_tooltips_set_tip(dialog->Tooltips, dialog->el_extra_days_spin
+            , _("This is just the default value, you can change it in the actual eventlist window.")
+            , NULL);
+    g_signal_connect(G_OBJECT(dialog->el_extra_days_spin), "value-changed"
+            , G_CALLBACK(el_extra_days_spin_changed), dialog);
 }
 
 Itf *create_parameter_dialog()
@@ -975,6 +958,7 @@ void write_parameters()
     orage_rc_put_int(orc, "Main window Y", g_par.pos_y);
     orage_rc_put_int(orc, "Eventlist window X", g_par.el_size_x);
     orage_rc_put_int(orc, "Eventlist window Y", g_par.el_size_y);
+    orage_rc_put_int(orc, "Eventlist extra days", g_par.el_days);
     orage_rc_put_bool(orc, "Show Main Window Menu", g_par.show_menu);
     orage_rc_put_bool(orc, "Select Always Today"
             , g_par.select_always_today);
@@ -983,7 +967,7 @@ void write_parameters()
     orage_rc_put_bool(orc, "Show day names", g_par.show_day_names);
     orage_rc_put_bool(orc, "Show weeks", g_par.show_weeks);
     orage_rc_put_bool(orc, "Show todos", g_par.show_todos);
-    orage_rc_put_bool(orc, "Show events", g_par.show_events);
+    orage_rc_put_int(orc, "Show event days", g_par.show_event_days);
     orage_rc_put_bool(orc, "Show in pager", g_par.show_pager);
     orage_rc_put_bool(orc, "Show in systray", g_par.show_systray);
     orage_rc_put_bool(orc, "Show in taskbar", g_par.show_taskbar);
@@ -1129,6 +1113,7 @@ void read_parameters(void)
     g_par.pos_y = orage_rc_get_int(orc, "Main window Y", 0);
     g_par.el_size_x = orage_rc_get_int(orc, "Eventlist window X", 500);
     g_par.el_size_y = orage_rc_get_int(orc, "Eventlist window Y", 350);
+    g_par.el_days = orage_rc_get_int(orc, "Eventlist extra days", 0);
     g_par.show_menu = orage_rc_get_bool(orc, "Show Main Window Menu", TRUE);
     g_par.select_always_today = 
             orage_rc_get_bool(orc, "Select Always Today", FALSE);
@@ -1137,7 +1122,7 @@ void read_parameters(void)
     g_par.show_day_names = orage_rc_get_bool(orc, "Show day names", TRUE);
     g_par.show_weeks = orage_rc_get_bool(orc, "Show weeks", TRUE);
     g_par.show_todos = orage_rc_get_bool(orc, "Show todos", TRUE);
-    g_par.show_events = orage_rc_get_bool(orc, "Show events", TRUE);
+    g_par.show_event_days = orage_rc_get_int(orc, "Show event days", 1);
     g_par.show_pager = orage_rc_get_bool(orc, "Show in pager", TRUE);
     g_par.show_systray = orage_rc_get_bool(orc, "Show in systray", TRUE);
     g_par.show_taskbar = orage_rc_get_bool(orc, "Show in taskbar", TRUE);

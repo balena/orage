@@ -1151,6 +1151,8 @@ static void build_event_tab(el_win *el)
     label = gtk_label_new(_("Extra days to show "));
     hbox =  gtk_hbox_new(FALSE, 0);
     el->event_spin = gtk_spin_button_new_with_range(0, 999, 1);
+    gtk_spin_button_set_value(GTK_SPIN_BUTTON(el->event_spin)
+            , (gdouble)el->days);
     gtk_box_pack_start(GTK_BOX(hbox), el->event_spin, FALSE, FALSE, 15);
     orage_table_add_row(el->event_notebook_page
             , label, hbox
@@ -1327,7 +1329,7 @@ el_win *create_el_win(char *start_date)
     /* initialisation + main window + base vbox */
     el = g_new(el_win, 1);
     el->today = FALSE;
-    el->days = 0;
+    el->days = g_par.el_days;
     el->time_now[0] = 0;
     el->apptw_list = NULL;
     el->Tooltips = gtk_tooltips_new();

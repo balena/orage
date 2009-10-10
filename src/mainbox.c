@@ -506,15 +506,26 @@ static void create_mainbox_event_info_box(void)
 #define P_N "create_mainbox_event_info_box: "
     CalWin *cal = (CalWin *)g_par.xfcal;
     gchar *tmp;
+    struct tm tm_date_start, tm_date_end;
 
 #ifdef ORAGE_DEBUG
     orage_message(-100, P_N);
 #endif
+    tm_date_start = orage_cal_to_tm_time(GTK_CALENDAR(cal->mCalendar), 1, 1);
+
     cal->mEvent_vbox = gtk_vbox_new(FALSE, 0);
     gtk_box_pack_start(GTK_BOX(cal->mVbox), cal->mEvent_vbox, FALSE, FALSE, 0);
     cal->mEvent_label = gtk_label_new(NULL);
-    tmp = g_strdup_printf(_("<b>Events for %s:</b>")
-            , orage_cal_to_i18_date(GTK_CALENDAR(cal->mCalendar)));
+    if (g_par.show_event_days == 1) 
+        tmp = g_strdup_printf(_("<b>Events for %s:</b>")
+                , orage_tm_date_to_i18_date(&tm_date_start));
+    else {
+        tm_date_end = tm_date_start;
+        orage_move_day(&tm_date_end, g_par.show_event_days-1);
+        tmp = g_strdup_printf(_("<b>Events for %s - %s:</b>")
+                , orage_tm_date_to_i18_date(&tm_date_start)
+                , orage_tm_date_to_i18_date(&tm_date_end));
+    }
     gtk_label_set_markup(GTK_LABEL(cal->mEvent_label), tmp);
     g_free(tmp);
 
@@ -597,7 +608,7 @@ static void build_mainbox_event_info(void)
 #ifdef ORAGE_DEBUG
     orage_message(-100, P_N);
 #endif
-    if (g_par.show_events) {
+    if (g_par.show_event_days) {
         gtk_calendar_get_date(GTK_CALENDAR(cal->mCalendar)
                 , (unsigned int *)&tt.tm_year
                 , (unsigned int *)&tt.tm_mon
@@ -612,14 +623,14 @@ static void build_mainbox_event_info(void)
         /*
         insert_rows(&event_list, a_day, ical_type, file_type);
         */
-        xfical_get_each_app_within_time(a_day, 1
+        xfical_get_each_app_within_time(a_day, g_par.show_event_days
                 , ical_type, file_type, &event_list);
         for (i = 0; i < g_par.foreign_count; i++) {
             g_sprintf(file_type, "F%02d.", i);
             /*
             insert_rows(&event_list, a_day, ical_type, file_type);
             */
-            xfical_get_each_app_within_time(a_day, 1
+            xfical_get_each_app_within_time(a_day, g_par.show_event_days
                     , ical_type, file_type, &event_list);
         }
     }
@@ -647,6 +658,16 @@ static void mCalendar_day_selected_cb(GtkCalendar *calendar
     orage_message(-100, P_N);
 #endif
     /* rebuild the info for the selected date */
+    build_mainbox_event_box();
+}
+
+void build_mainbox_event_box()
+{
+#undef P_N
+#define P_N "build_mainbox_event_box: "
+#ifdef ORAGE_DEBUG
+    orage_message(-100, P_N);
+#endif
     if (!xfical_file_open(TRUE))
         return;
     build_mainbox_event_info();

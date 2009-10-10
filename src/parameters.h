@@ -41,7 +41,7 @@ typedef struct _parameters
     gboolean show_day_names;
     gboolean show_weeks;
     gboolean show_todos;
-    gboolean show_events;
+    gint     show_event_days;
     gboolean show_pager;
     gboolean show_systray;
     gboolean show_taskbar;
@@ -87,6 +87,7 @@ typedef struct _parameters
 
     /* event-list window */
     gint el_size_x, el_size_y;
+    gint el_days;
 
     /* show days window from main calendar */
     gboolean show_days; /* true=show days false=show events */
@@ -94,7 +95,7 @@ typedef struct _parameters
     /* Controls which messages are printed */
     gint log_level;
 
-    /* Controls which appointment priorities are shown in lists */
+    /* Controls which appointment priorities are shown in daylist */
     gint priority_list_limit;
 } global_parameters; /* global parameters */
 

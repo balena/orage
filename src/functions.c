@@ -354,7 +354,7 @@ char *orage_tm_date_to_i18_date(struct tm *tm_date)
     return(i18_date);
 }
 
-char *orage_cal_to_i18_time(GtkCalendar *cal, gint hh, gint mm)
+struct tm orage_cal_to_tm_time(GtkCalendar *cal, gint hh, gint mm)
 {
     /* dst needs to -1 or mktime adjusts time if we are in another
      * dst setting */
@@ -370,62 +370,33 @@ char *orage_cal_to_i18_time(GtkCalendar *cal, gint hh, gint mm)
     /* need to fill missing tm_wday and tm_yday, which are in use 
      * in some locale's default date. For example in en_IN. mktime does it */
     if (mktime(&tm_date) == (time_t) -1) {
-        g_warning("orage: orage_cal_to_i18_time mktime failed %d %d %d"
+        g_warning("orage: orage_cal_to_tm_time mktime failed %d %d %d"
                 , tm_date.tm_year, tm_date.tm_mon, tm_date.tm_mday);
     }
+    return(tm_date);
+}
+
+char *orage_cal_to_i18_time(GtkCalendar *cal, gint hh, gint mm)
+{
+    struct tm tm_date = {0,0,0,0,0,0,0,0,-1};
+
+    tm_date = orage_cal_to_tm_time(cal, hh, mm);
     return(orage_tm_time_to_i18_time(&tm_date));
 }
 
 char *orage_cal_to_i18_date(GtkCalendar *cal)
 {
-    /* dst needs to -1 or mktime adjusts time if we are in another
-     * dst setting */
     struct tm tm_date = {0,0,0,0,0,0,0,0,-1};
 
-    gtk_calendar_get_date(cal
-            , (unsigned int *)&tm_date.tm_year
-            , (unsigned int *)&tm_date.tm_mon
-            , (unsigned int *)&tm_date.tm_mday);
-    tm_date.tm_year -= 1900;
-    /* need to fill missing tm_wday and tm_yday, which are in use 
-     * in some locale's default date. For example in en_IN. mktime does it */
-    if (mktime(&tm_date) == (time_t) -1) {
-        g_warning("orage: orage_cal_to_i18_date mktime failed %d %d %d"
-                , tm_date.tm_year, tm_date.tm_mon, tm_date.tm_mday);
-    }
+    tm_date = orage_cal_to_tm_time(cal, 1, 1);
     return(orage_tm_date_to_i18_date(&tm_date));
 }
 
 struct tm orage_icaltime_to_tm_time(const char *icaltime, gboolean real_tm)
 {
-    /*
-    int i;
-    */
     struct tm t = {0,0,0,0,0,0,0,0,0};
     char *ret;
 
-    /*
-    i = sscanf(icaltime, XFICAL_APPT_TIME_FORMAT
-            , &t.tm_year, &t.tm_mon, &t.tm_mday
-            , &t.tm_hour, &t.tm_min, &t.tm_sec);
-    switch (i) {
-        case 3: / * date * /
-            t.tm_hour = -1;
-            t.tm_min = -1;
-            t.tm_sec = -1;
-            break;
-        case 6: / * time * /
-            break;
-        default: / * error * /
-            g_error("orage: orage_icaltime_to_tm_time error %s %d", icaltime, i);
-            break;
-    }
-
-    if (real_tm) { / * normalise to standard tm format * /
-        t.tm_year -= 1900;
-        t.tm_mon -= 1;
-    }
-            */
     ret = strptime(icaltime, "%Y%m%dT%H%M%S", &t);
     if (ret == NULL) {
         /* not all format string matched, so it must be DATE */

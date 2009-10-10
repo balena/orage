@@ -65,6 +65,7 @@ typedef struct _CalWin
 void build_mainWin();
 gboolean orage_mark_appointments();
 void build_mainbox_info();
+void build_mainbox_event_box();
 void mCalendar_month_changed_cb(GtkCalendar *calendar, gpointer user_data);
 
 #endif /* !__MAINBOX_H__ */
