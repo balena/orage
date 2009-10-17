@@ -2762,7 +2762,7 @@ static void process_alarm_data(icalcomponent *ca, alarm_struct *new_alarm)
         new_alarm->display_notify = appt->display_alarm_notify;
         new_alarm->notify_timeout = appt->display_notify_timeout;
         if (ORAGE_STR_EXISTS(appt->note))
-            new_alarm->description = g_strdup(appt->note);
+            new_alarm->description = orage_process_text_commands(appt->note);
     }
     else if (appt->sound_alarm) {
         new_alarm->audio = appt->sound_alarm;
@@ -2906,7 +2906,7 @@ static void xfical_alarm_build_list_internal_real(gboolean first_list_today
                     trg_active = TRUE;
                     suid = (char *)icalcomponent_get_uid(c);
                     new_alarm->uid = g_strconcat(file_type, suid, NULL);
-                    new_alarm->title = g_strdup(
+                    new_alarm->title = orage_process_text_commands(
                             (char *)icalcomponent_get_summary(c));
                 }
             }
@@ -2923,7 +2923,7 @@ static void xfical_alarm_build_list_internal_real(gboolean first_list_today
         }  /* ALARM */
         if (trg_active) {
             if (!new_alarm->description)
-                new_alarm->description = g_strdup(
+                new_alarm->description = orage_process_text_commands(
                         (char *)icalcomponent_get_description(c));
             g_par.alarm_list = g_list_prepend(g_par.alarm_list, new_alarm);
             cnt_alarm_add++;

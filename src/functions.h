@@ -74,21 +74,23 @@ GtkWidget *orage_image_menu_item_new_from_stock(const gchar *stock_id
 GtkWidget *orage_separator_menu_item_new(GtkWidget *menu);
 GtkWidget *orage_menu_item_new_with_mnemonic(const gchar *label
         , GtkWidget *menu);
+char *orage_process_text_commands(char *text);
 
 struct tm *orage_localtime();
+char *orage_localdate_i18();
 struct tm orage_i18_time_to_tm_time(const char *i18_time);
 struct tm orage_i18_date_to_tm_date(const char *i18_date);
+char *orage_i18_time_to_icaltime(const char *i18_time);
+char *orage_i18_date_to_icaldate(const char *i18_date);
 char *orage_tm_time_to_i18_time(struct tm *tm_date);
 char *orage_tm_date_to_i18_date(struct tm *tm_date);
-struct tm orage_icaltime_to_tm_time(const char *i18_date, gboolean real_tm);
 char *orage_tm_time_to_icaltime(struct tm *t);
+struct tm orage_icaltime_to_tm_time(const char *i18_date, gboolean real_tm);
 char *orage_icaltime_to_i18_time(const char *icaltime);
-char *orage_i18_time_to_icaltime(const char *i18_time);
-char *orage_i18_date_to_icaltime(const char *i18_date);
 struct tm orage_cal_to_tm_time(GtkCalendar *cal, gint hh, gint mm);
 char *orage_cal_to_i18_time(GtkCalendar *cal, gint hh, gint mm);
 char *orage_cal_to_i18_date(GtkCalendar *cal);
-char *orage_localdate_i18();
+char *orage_cal_to_icaldate(GtkCalendar *cal);
 void orage_move_day(struct tm *t, int day);
 gint orage_days_between(struct tm *t1, struct tm *t2);
 

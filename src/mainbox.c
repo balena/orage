@@ -74,16 +74,15 @@ static void mFile_newApp_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
 {
 #undef P_N
 #define P_N "mFile_newApp_activate_cb: "
-    struct tm *t;
+    CalWin *cal = (CalWin *)user_data;
     char cur_date[9];
 
 #ifdef ORAGE_DEBUG
     orage_message(-100, P_N);
 #endif
-    t = orage_localtime();
-    g_snprintf(cur_date, 9, "%04d%02d%02d", t->tm_year+1900
-            , t->tm_mon+1, t->tm_mday);
-    create_appt_win("NEW", cur_date);  
+    /* cal has always a day selected here, so it is safe to read it */
+    strcpy(cur_date, orage_cal_to_icaldate(GTK_CALENDAR(cal->mCalendar)));
+    create_appt_win("NEW", cur_date);
 }
 
 static void mFile_interface_activate_cb(GtkMenuItem *menuitem
@@ -353,7 +352,7 @@ static void add_info_row(xfical_appt *appt, GtkBox *parentBox, gboolean todo)
 #define P_N "add_info_row: "
     GtkWidget *ev, *label;
     CalWin *cal = (CalWin *)g_par.xfcal;
-    gchar *tip, *tmp;
+    gchar *tip, *tmp, *tmp_title, *tmp_note;
     struct tm *t;
     char      *l_time, *s_time, *e_time, *c_time, *na;
     gint  len;
@@ -363,7 +362,8 @@ static void add_info_row(xfical_appt *appt, GtkBox *parentBox, gboolean todo)
 #endif
     /***** add data into the vbox *****/
     ev = gtk_event_box_new();
-    tmp = g_strdup_printf("  %s", appt->title);
+    tmp_title = orage_process_text_commands(appt->title);
+    tmp = g_strdup_printf("  %s", tmp_title);
     label = gtk_label_new(tmp);
     g_free(tmp);
     gtk_label_set_ellipsize(GTK_LABEL(label), PANGO_ELLIPSIZE_END);
@@ -396,6 +396,7 @@ static void add_info_row(xfical_appt *appt, GtkBox *parentBox, gboolean todo)
     }
 
     /***** set hint *****/
+    tmp_note = orage_process_text_commands(appt->note);
     s_time = g_strdup(orage_icaltime_to_i18_time(appt->starttimecur));
     if (todo) {
         na = _("Never");
@@ -404,15 +405,17 @@ static void add_info_row(xfical_appt *appt, GtkBox *parentBox, gboolean todo)
         c_time = g_strdup(appt->completed
                 ? orage_icaltime_to_i18_time(appt->completedtime) : na);
         tip = g_strdup_printf(_("Title: %s\n Start:\t%s\n Due:\t%s\n Done:\t%s\nNote:\n%s")
-                , appt->title, s_time, e_time, c_time, appt->note);
+                , tmp_title, s_time, e_time, c_time, tmp_note);
         g_free(c_time);
     }
     else { /* it is event */
         e_time = g_strdup(orage_icaltime_to_i18_time(appt->endtimecur));
         tip = g_strdup_printf(_("Title: %s\n Start:\t%s\n End:\t%s\n Note:\n%s")
-                , appt->title, s_time, e_time, appt->note);
+                , tmp_title, s_time, e_time, tmp_note);
     }
     gtk_tooltips_set_tip(cal->Tooltips, ev, tip, NULL);
+    g_free(tmp_title);
+    g_free(tmp_note);
     g_free(s_time);
     g_free(e_time);
     g_free(tip);
@@ -505,7 +508,7 @@ static void create_mainbox_event_info_box(void)
 #undef P_N
 #define P_N "create_mainbox_event_info_box: "
     CalWin *cal = (CalWin *)g_par.xfcal;
-    gchar *tmp;
+    gchar *tmp, *tmp2, *tmp3;
     struct tm tm_date_start, tm_date_end;
 
 #ifdef ORAGE_DEBUG
@@ -516,15 +519,19 @@ static void create_mainbox_event_info_box(void)
     cal->mEvent_vbox = gtk_vbox_new(FALSE, 0);
     gtk_box_pack_start(GTK_BOX(cal->mVbox), cal->mEvent_vbox, FALSE, FALSE, 0);
     cal->mEvent_label = gtk_label_new(NULL);
-    if (g_par.show_event_days == 1) 
-        tmp = g_strdup_printf(_("<b>Events for %s:</b>")
-                , orage_tm_date_to_i18_date(&tm_date_start));
+    if (g_par.show_event_days == 1) {
+        tmp2 = g_strdup(orage_tm_date_to_i18_date(&tm_date_start));
+        tmp = g_strdup_printf(_("<b>Events for %s:</b>"), tmp2);
+        g_free(tmp2);
+    }
     else {
         tm_date_end = tm_date_start;
         orage_move_day(&tm_date_end, g_par.show_event_days-1);
-        tmp = g_strdup_printf(_("<b>Events for %s - %s:</b>")
-                , orage_tm_date_to_i18_date(&tm_date_start)
-                , orage_tm_date_to_i18_date(&tm_date_end));
+        tmp2 = g_strdup(orage_tm_date_to_i18_date(&tm_date_start));
+        tmp3 = g_strdup(orage_tm_date_to_i18_date(&tm_date_end));
+        tmp = g_strdup_printf(_("<b>Events for %s - %s:</b>"), tmp2, tmp3);
+        g_free(tmp2);
+        g_free(tmp3);
     }
     gtk_label_set_markup(GTK_LABEL(cal->mEvent_label), tmp);
     g_free(tmp);

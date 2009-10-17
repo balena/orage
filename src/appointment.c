@@ -1360,7 +1360,7 @@ static xfical_exception *new_exception(char *text)
     }
     else {
         strcpy(recur_exception->type, "EXDATE");
-        strcpy(recur_exception->time, orage_i18_date_to_icaltime(text));
+        strcpy(recur_exception->time, orage_i18_date_to_icaldate(text));
     }
     text[i-2] = ' ';
     return(recur_exception);
@@ -2730,7 +2730,7 @@ static void build_general_page(appt_win *apptw)
             , ++row, (GTK_EXPAND | GTK_FILL), (GTK_EXPAND | GTK_FILL));
 
     gtk_tooltips_set_tip(apptw->Tooltips, event
-            , _("<D> inserts current date in local date format.\n<T> inserts time and\n<DT> inserts date and time."), NULL);
+            , _("These shorthand commands take effect immediately:\n    <D> inserts current date in local date format\n    <T> inserts time and\n    <DT> inserts date and time.\n\nThese are converted only later when they are seen:\n    <&Ynnnn> is translated to current year minus nnnn.\n(This can be used for example in birthday reminders to tell how old the person will be.)"), NULL);
 
     /* Take care of the title entry to build the appointment window title */
     g_signal_connect((gpointer)apptw->Title_entry, "changed"

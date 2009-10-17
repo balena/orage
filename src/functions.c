@@ -308,6 +308,84 @@ GtkWidget *orage_menu_item_new_with_mnemonic(const gchar *label
     return menu_item;
 }
 
+/* this will change <&Xnnn> type commands to numbers or text as defined.
+ * Currently the only command is 
+ * <&Ynnnn> which calculates years between current year and nnnn */
+char *orage_process_text_commands(char *text)
+{
+#undef P_N
+#define P_N "process_text_commands: "
+    /* these point to the original string and travel it until no more commands 
+     * are found:
+     * cur points to the current head
+     * cmd points to the start of new command
+     * end points to the end of new command */
+    char *cur, *end, *cmd;
+    /* these point to the new string, which has commands in processed form:
+     * new is the new fragment to be added
+     * beq is the total new string. */
+    char *new=NULL, *beq=NULL;
+    char *tmp; /* temporary pointer to handle freeing */
+    int start_year = -1, year_diff, res;
+    struct tm *cur_time;
+
+    /**** RULE <&Ynnnn> difference of the nnnn year and current year *****/
+    /* This is usefull in birthdays for example: I will be <&Y1980>
+     * translates to "I will be 29" if the alarm is raised on 2009 */
+    for (cur = text; cur && (cmd = strstr(cur, "<&Y")); cur = end) {
+        if (end = strstr(cmd, ">")) {
+            end[0] = '\0'; /* temporarily. */
+            res = sscanf(cmd, "<&Y%d", &start_year);
+            end[0] = '>'; /* put it back. */
+            if (res == 1 && start_year > 0) { /* we assume success */
+                cur_time = orage_localtime();
+                year_diff = cur_time->tm_year + 1900 - start_year;
+                if (year_diff > 0) { /* sane value */
+                    end++; /* next char after > */
+                    cmd[0] = '\0'; /* temporarily. (this ends cur) */
+                    new = g_strdup_printf("%s%d", cur, year_diff);
+                    cmd[0] = '<'; /* put it back */
+                    if (beq) { /* this is normal round after first */
+                        tmp = beq;
+                        beq = g_strdup_printf("%s%s", tmp, new);
+                        g_free(tmp);
+                    }
+                    else { /* first round, we do not have beq yet */
+                        beq = g_strdup(new);
+                    }
+                    g_free(new);
+                }
+                else
+                    orage_message(150, P_N "start year is too big (%d)."
+                            , start_year);
+            }
+            else
+                orage_message(150, P_N "failed to understand parameter (%s)."
+                        , cmd);
+        }
+        else
+            orage_message(150, P_N "parameter (%s) misses ending >.", cmd);
+    }
+
+    if (beq) {
+        /* we found and processed at least one command, 
+         * add the remaining fragment and return it */
+        tmp = beq;
+        beq = g_strdup_printf("%s%s", tmp, cur);
+        g_free(tmp);
+    }
+    else {
+        /* we did not find any commands,
+         * so just return duplicate of the original string */
+        beq = g_strdup(text);
+    }
+    return(beq);
+}
+
+/*******************************************************
+ * time convert and manipulation functions
+ *******************************************************/
+
 struct tm orage_i18_time_to_tm_time(const char *i18_time)
 {
     char *ret;
@@ -392,6 +470,17 @@ char *orage_cal_to_i18_date(GtkCalendar *cal)
     return(orage_tm_date_to_i18_date(&tm_date));
 }
 
+char *orage_cal_to_icaldate(GtkCalendar *cal)
+{
+    struct tm tm_date = {0,0,0,0,0,0,0,0,-1};
+    char *icalt;
+
+    tm_date = orage_cal_to_tm_time(cal, 1, 1);
+    icalt = orage_tm_time_to_icaltime(&tm_date);
+    icalt[8] = '\0'; /* we know it is date */
+    return(icalt);
+}
+
 struct tm orage_icaltime_to_tm_time(const char *icaltime, gboolean real_tm)
 {
     struct tm t = {0,0,0,0,0,0,0,0,0};
@@ -459,15 +548,15 @@ char *orage_i18_time_to_icaltime(const char *i18_time)
     return(ct);
 }
 
-char *orage_i18_date_to_icaltime(const char *i18_date)
+char *orage_i18_date_to_icaldate(const char *i18_date)
 {
     struct tm t;
-    char      *ct;
+    char      *icalt;
 
     t = orage_i18_date_to_tm_date(i18_date);
-    ct = orage_tm_time_to_icaltime(&t);
-    ct[8] = '\0'; /* we know it is date */
-    return(ct);
+    icalt = orage_tm_time_to_icaltime(&t);
+    icalt[8] = '\0'; /* we know it is date */
+    return(icalt);
 }
 
 struct tm *orage_localtime()

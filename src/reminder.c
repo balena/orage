@@ -131,7 +131,7 @@ static OrageRc *orage_persistent_file_open(gboolean read_only)
     if (!read_only)  /* we need to empty it before each write */
         g_remove(fpath);
     if ((orc = (OrageRc *)orage_rc_file_open(fpath, read_only)) == NULL) {
-        orage_message(150, "orage_persistent_file_open: persistent alarms file open failed.");
+        orage_message(150, P_N "persistent alarms file open failed.");
     }
     g_free(fpath);
 
@@ -521,6 +521,7 @@ static void create_orage_reminder(alarm_struct *alarm)
     GtkWidget *btOkReminder;
     GtkWidget *swReminder;
     GtkWidget *hdReminder;
+    gchar *tmp;
 
 #ifdef ORAGE_DEBUG
     orage_message(-100, P_N);
@@ -535,8 +536,11 @@ static void create_orage_reminder(alarm_struct *alarm)
 
     vbReminder = GTK_DIALOG(wReminder)->vbox;
 
-    hdReminder = gtk_label_new(alarm->title);
+    hdReminder = gtk_label_new(NULL);
     gtk_label_set_selectable(GTK_LABEL(hdReminder), TRUE);
+    tmp = g_markup_printf_escaped("<b>%s</b>", alarm->title);
+    gtk_label_set_markup(GTK_LABEL(hdReminder), tmp);
+    g_free(tmp);
     gtk_box_pack_start(GTK_BOX(vbReminder), hdReminder, FALSE, TRUE, 0);
 
     swReminder = gtk_scrolled_window_new(NULL, NULL);

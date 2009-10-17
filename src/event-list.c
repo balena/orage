@@ -365,10 +365,11 @@ static void add_el_row(el_win *el, xfical_appt *appt, char *par)
 {
     GtkTreeIter     iter1;
     GtkListStore   *list1;
-    gchar          *title = NULL;
+    gchar          *title = NULL, *tmp;
     gchar           flags[6]; 
     gchar          *stime;
     gchar          /* *s_sort,*/ *s_sort1;
+    gchar          *tmp_note;
     gint            len = 50;
 
     stime = format_time(el, appt, par);
@@ -410,15 +411,17 @@ static void add_el_row(el_win *el, xfical_appt *appt, char *par)
     flags[5] = '\0';
 
     if (appt->title != NULL)
-        title = g_strdup(appt->title);
+        title = orage_process_text_commands(appt->title);
     else if (appt->note != NULL) { 
     /* let's take len chars of the first line from the text */
-        if ((title = g_strstr_len(appt->note, strlen(appt->note), "\n")) 
-            != NULL) {
-            if ((strlen(appt->note)-strlen(title)) < len)
-                len = strlen(appt->note)-strlen(title);
+        tmp_note = orage_process_text_commands(appt->note);
+        if ((tmp = g_strstr_len(tmp_note, strlen(tmp_note), "\n")) != NULL) {
+            /* there is line change. take text only up to that */
+            if ((strlen(tmp_note)-strlen(tmp)) < len)
+                len = strlen(tmp_note)-strlen(tmp);
         }
-        title = g_strndup(appt->note, len);
+        title = g_strndup(tmp_note, len);
+        g_free(tmp_note);
     }
 
     s_sort1 = g_strconcat(appt->starttimecur, appt->endtimecur, NULL);
@@ -623,10 +626,10 @@ static void todo_data(el_win *el)
 
 static void journal_data(el_win *el)
 {
-    char      a_day[9];  /* yyyymmdd */
+    char     a_day[9];  /* yyyymmdd */
 
     el->days = 10*365; /* long enough time to get everything from future */
-    strcpy(a_day, orage_i18_date_to_icaltime(gtk_button_get_label(
+    strcpy(a_day, orage_i18_date_to_icaldate(gtk_button_get_label(
             GTK_BUTTON(el->journal_start_button))));
 
     app_data(el, a_day, NULL);
@@ -877,7 +880,7 @@ static void create_new_appointment(el_win *el)
     char *title, a_day[10];
 
     title = (char *)gtk_window_get_title(GTK_WINDOW(el->Window));
-    strcpy(a_day, orage_i18_date_to_icaltime(title));
+    strcpy(a_day, orage_i18_date_to_icaldate(title));
     do_appt_win("NEW", a_day, el);
 }
 
