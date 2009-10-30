@@ -580,6 +580,9 @@ void orage_move_day(struct tm *t, int day)
 {
     guint monthdays[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
+    if (day < -1 || day > 1) {
+        g_warning("orage: orage_move_day wrong parameter %d", day);
+    }
     t->tm_year += 1900;
     if (((t->tm_year%4) == 0) 
     && (((t->tm_year%100) != 0) || ((t->tm_year%400) == 0)))

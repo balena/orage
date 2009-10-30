@@ -485,7 +485,7 @@ static void create_mainbox_todo_info(void)
     orage_message(-100, P_N);
 #endif
     cal->mTodo_vbox = gtk_vbox_new(FALSE, 0);
-    gtk_box_pack_start(GTK_BOX(cal->mVbox), cal->mTodo_vbox, FALSE, FALSE, 0);
+    gtk_box_pack_start(GTK_BOX(cal->mVbox), cal->mTodo_vbox, TRUE, TRUE, 0);
     cal->mTodo_label = gtk_label_new(NULL);
     gtk_label_set_markup(GTK_LABEL(cal->mTodo_label), _("<b>To do:</b>"));
     gtk_box_pack_start(GTK_BOX(cal->mTodo_vbox), cal->mTodo_label
@@ -517,7 +517,7 @@ static void create_mainbox_event_info_box(void)
     tm_date_start = orage_cal_to_tm_time(GTK_CALENDAR(cal->mCalendar), 1, 1);
 
     cal->mEvent_vbox = gtk_vbox_new(FALSE, 0);
-    gtk_box_pack_start(GTK_BOX(cal->mVbox), cal->mEvent_vbox, FALSE, FALSE, 0);
+    gtk_box_pack_start(GTK_BOX(cal->mVbox), cal->mEvent_vbox, TRUE, TRUE, 0);
     cal->mEvent_label = gtk_label_new(NULL);
     if (g_par.show_event_days == 1) {
         tmp2 = g_strdup(orage_tm_date_to_i18_date(&tm_date_start));
@@ -525,8 +525,11 @@ static void create_mainbox_event_info_box(void)
         g_free(tmp2);
     }
     else {
+        int i;
+
         tm_date_end = tm_date_start;
-        orage_move_day(&tm_date_end, g_par.show_event_days-1);
+        for (i = g_par.show_event_days-1; i; i--)
+            orage_move_day(&tm_date_end, 1);
         tmp2 = g_strdup(orage_tm_date_to_i18_date(&tm_date_start));
         tmp3 = g_strdup(orage_tm_date_to_i18_date(&tm_date_end));
         tmp = g_strdup_printf(_("<b>Events for %s - %s:</b>"), tmp2, tmp3);
@@ -725,7 +728,7 @@ void build_mainWin()
 
     gtk_window_set_title(GTK_WINDOW(cal->mWindow), _("Orage"));
     gtk_window_set_position(GTK_WINDOW(cal->mWindow), GTK_WIN_POS_NONE);
-    gtk_window_set_resizable(GTK_WINDOW(cal->mWindow), FALSE);
+    gtk_window_set_resizable(GTK_WINDOW(cal->mWindow), TRUE);
     gtk_window_set_destroy_with_parent(GTK_WINDOW(cal->mWindow), TRUE);
 
     if (orage_logo != NULL) {
@@ -744,7 +747,7 @@ void build_mainWin()
 
     /* Build the calendar */
     cal->mCalendar = gtk_calendar_new();
-    gtk_box_pack_start(GTK_BOX(cal->mVbox), cal->mCalendar, TRUE, TRUE, 0);
+    gtk_box_pack_start(GTK_BOX(cal->mVbox), cal->mCalendar, FALSE, FALSE, 0);
     /*
     gtk_calendar_set_display_options(GTK_CALENDAR(cal->mCalendar)
             , GTK_CALENDAR_SHOW_HEADING | GTK_CALENDAR_SHOW_DAY_NAMES
@@ -769,6 +772,9 @@ void build_mainWin()
 
     gtk_window_add_accel_group(GTK_WINDOW(cal->mWindow), cal->mAccel_group);
 
+    if (g_par.size_x || g_par.size_y)
+        gtk_window_set_default_size(GTK_WINDOW(cal->mWindow)
+                , g_par.size_x, g_par.size_y);
     if (g_par.pos_x || g_par.pos_y)
         gtk_window_move(GTK_WINDOW(cal->mWindow), g_par.pos_x, g_par.pos_y);
     /*

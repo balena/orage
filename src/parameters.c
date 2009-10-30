@@ -952,10 +952,16 @@ void write_parameters()
 #endif
     orage_rc_put_str(orc, "Orage file", g_par.orage_file);
     orage_rc_put_str(orc, "Sound application", g_par.sound_application);
+    gtk_window_get_size(GTK_WINDOW(((CalWin *)g_par.xfcal)->mWindow)
+            , &g_par.size_x, &g_par.size_y);
     gtk_window_get_position(GTK_WINDOW(((CalWin *)g_par.xfcal)->mWindow)
             , &g_par.pos_x, &g_par.pos_y);
     orage_rc_put_int(orc, "Main window X", g_par.pos_x);
     orage_rc_put_int(orc, "Main window Y", g_par.pos_y);
+    orage_rc_put_int(orc, "Main window size X", g_par.size_x);
+    orage_rc_put_int(orc, "Main window size Y", g_par.size_y);
+    orage_rc_put_int(orc, "Eventlist window pos X", g_par.el_pos_x);
+    orage_rc_put_int(orc, "Eventlist window pos Y", g_par.el_pos_y);
     orage_rc_put_int(orc, "Eventlist window X", g_par.el_size_x);
     orage_rc_put_int(orc, "Eventlist window Y", g_par.el_size_y);
     orage_rc_put_int(orc, "Eventlist extra days", g_par.el_days);
@@ -1111,6 +1117,10 @@ void read_parameters(void)
     g_par.sound_application=orage_rc_get_str(orc, "Sound application", "play");
     g_par.pos_x = orage_rc_get_int(orc, "Main window X", 0);
     g_par.pos_y = orage_rc_get_int(orc, "Main window Y", 0);
+    g_par.size_x = orage_rc_get_int(orc, "Main window size X", 0);
+    g_par.size_y = orage_rc_get_int(orc, "Main window size Y", 0);
+    g_par.el_pos_x = orage_rc_get_int(orc, "Eventlist window pos X", 0);
+    g_par.el_pos_y = orage_rc_get_int(orc, "Eventlist window pos Y", 0);
     g_par.el_size_x = orage_rc_get_int(orc, "Eventlist window X", 500);
     g_par.el_size_y = orage_rc_get_int(orc, "Eventlist window Y", 350);
     g_par.el_days = orage_rc_get_int(orc, "Eventlist extra days", 0);

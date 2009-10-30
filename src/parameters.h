@@ -80,12 +80,14 @@ typedef struct _parameters
     /* main window */
     void *xfcal;     /* this is main calendar CalWin * */
     gint pos_x, pos_y;
+    gint size_x, size_y;
 
     /* tray icon */
     void *trayIcon; /* this is GtkStatusIcon * */
     gint icon_size_x, icon_size_y;
 
     /* event-list window */
+    gint el_pos_x, el_pos_y;
     gint el_size_x, el_size_y;
     gint el_days;
 

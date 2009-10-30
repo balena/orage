@@ -768,6 +768,8 @@ static void close_window(el_win *el)
 
     gtk_window_get_size(GTK_WINDOW(el->Window)
             , &g_par.el_size_x, &g_par.el_size_y);
+    gtk_window_get_position(GTK_WINDOW(el->Window)
+            , &g_par.el_pos_x, &g_par.el_pos_y);
     write_parameters();
 
     /* need to clean the appointment list and inform all appointments that
@@ -1339,8 +1341,11 @@ el_win *create_el_win(char *start_date)
     el->accel_group = gtk_accel_group_new();
 
     el->Window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-    gtk_window_set_default_size(GTK_WINDOW(el->Window)
-            , g_par.el_size_x, g_par.el_size_y);
+    if (g_par.el_size_x || g_par.el_size_y)
+        gtk_window_set_default_size(GTK_WINDOW(el->Window)
+                , g_par.el_size_x, g_par.el_size_y);
+    if (g_par.el_pos_x || g_par.el_pos_y)
+        gtk_window_move(GTK_WINDOW(el->Window), g_par.el_pos_x, g_par.el_pos_y);
     gtk_window_add_accel_group(GTK_WINDOW(el->Window), el->accel_group);
 
     el->Vbox = gtk_vbox_new(FALSE, 0);
