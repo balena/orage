@@ -854,7 +854,9 @@ int icalproperty_recurrence_is_excluded(icalcomponent *comp,
     /*
     if (icaltime_compare(*recurtime, exdatetime) == 0) {
     */
-    if (icaltime_compare_date_only(*recurtime, exdatetime) == 0) {
+    if ((icaltime_is_date(exdatetime) 
+    &&   icaltime_compare_date_only(*recurtime, exdatetime) == 0)
+        || (icaltime_compare(*recurtime, exdatetime) == 0)) {
       /** MATCHED **/
       return 1;
     }
@@ -862,8 +864,8 @@ int icalproperty_recurrence_is_excluded(icalcomponent *comp,
 
   /** Now test against the EXRULEs **/
   for (exrule = icalcomponent_get_first_property(comp,ICAL_EXRULE_PROPERTY);
-       exdate != NULL;
-       exdate = icalcomponent_get_next_property(comp,ICAL_EXRULE_PROPERTY)) {
+       exrule != NULL;
+       exrule = icalcomponent_get_next_property(comp,ICAL_EXRULE_PROPERTY)) {
 	 
     struct icalrecurrencetype recur = icalproperty_get_exrule(exrule);
     icalrecur_iterator *exrule_itr  = icalrecur_iterator_new(recur, *dtstart);
