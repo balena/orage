@@ -1162,11 +1162,10 @@ static void appt_add_exception_internal(xfical_appt *appt
         wtime = icaltime_from_string(excp->time); 
         if (strcmp(excp->type, "EXDATE") == 0) {
         /* Orage only supports date as EXDATE */
-            if (icaltime_is_date(wtime))
-                icalcomponent_add_property(icmp
-                        , icalproperty_new_exdate(wtime));
-            else /* error */
-                orage_message(110, "appt_add_exceptions_internal: EXDATE/RDATE not date (%s) (%d), ignoring", excp->time, strlen(excp->time));
+            if (!icaltime_is_date(wtime))
+                orage_message(110, "appt_add_exceptions_internal: EXDATE not date (%s) (%d). Orage can handle dates only.", excp->time, strlen(excp->time));
+            icalcomponent_add_property(icmp
+                    , icalproperty_new_exdate(wtime));
         }
         else if (strcmp(excp->type, "RDATE") == 0) {
             /* Orage does not support rdate periods */
