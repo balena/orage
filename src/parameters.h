@@ -84,7 +84,7 @@ typedef struct _parameters
 
     /* tray icon */
     void *trayIcon; /* this is GtkStatusIcon * */
-    gint icon_size_x, icon_size_y;
+    gboolean use_dynamic_icon;
 
     /* event-list window */
     gint el_pos_x, el_pos_y;

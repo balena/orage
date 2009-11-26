@@ -62,6 +62,7 @@ typedef struct _Itf
     GtkWidget *notebook;
 
     /* Tabs */
+    /***** Main Tab *****/
     GtkWidget *setup_tab;
     GtkWidget *setup_tab_label;
     GtkWidget *setup_vbox;
@@ -78,6 +79,7 @@ typedef struct _Itf
     GtkWidget *sound_application_entry;
     GtkWidget *sound_application_open_button;
 
+    /***** Display Tab *****/
     GtkWidget *display_tab;
     GtkWidget *display_tab_label;
     GtkWidget *display_vbox;
@@ -103,27 +105,24 @@ typedef struct _Itf
     GtkWidget *visibility_hide_radiobutton;
     GtkWidget *visibility_minimized_radiobutton;
 
+    /***** Extra Tab *****/
     GtkWidget *extra_tab;
     GtkWidget *extra_tab_label;
     GtkWidget *extra_vbox;
     /* select_always_today */
     GtkWidget *always_today_frame;
     GtkWidget *always_today_checkbutton;
-
     /* icon size */
     GtkWidget *icon_size_frame;
-    GtkWidget *icon_size_x_spin;
-    GtkWidget *icon_size_y_spin;
+    GtkWidget *use_dynamic_icon_checkbutton;
     /* show event/days window from main calendar */
     GtkWidget *click_to_show_frame;
     GSList    *click_to_show_radiobutton_group;
     GtkWidget *click_to_show_days_radiobutton;
     GtkWidget *click_to_show_events_radiobutton;
-
     /* eventlist window number of extra days to show */
     GtkWidget *el_extra_days_frame;
     GtkWidget *el_extra_days_spin;
-
     /* the rest */
     GtkWidget *close_button;
     GtkWidget *help_button;
@@ -454,21 +453,13 @@ static void always_today_changed(GtkWidget *dialog, gpointer user_data)
             GTK_TOGGLE_BUTTON(itf->always_today_checkbutton));
 }
 
-static void set_icon_size()
+static void use_dynamic_icon_changed(GtkWidget *dialog, gpointer user_data)
 {
+    Itf *itf = (Itf *)user_data;
+
+    g_par.use_dynamic_icon = gtk_toggle_button_get_active(
+            GTK_TOGGLE_BUTTON(itf->use_dynamic_icon_checkbutton));
     refresh_TrayIcon();
-}
-
-static void icon_size_x_spin_changed(GtkSpinButton *sb, gpointer user_data)
-{
-    g_par.icon_size_x = gtk_spin_button_get_value(sb);
-    set_icon_size();
-}
-
-static void icon_size_y_spin_changed(GtkSpinButton *sb, gpointer user_data)
-{
-    g_par.icon_size_y = gtk_spin_button_get_value(sb);
-    set_icon_size();
 }
 
 static void el_extra_days_spin_changed(GtkSpinButton *sb, gpointer user_data)
@@ -777,43 +768,24 @@ static void create_parameter_dialog_extra_setup_tab(Itf *dialog)
     g_signal_connect(G_OBJECT(dialog->always_today_checkbutton), "toggled"
             , G_CALLBACK(always_today_changed), dialog);
 
-    /***** tray icon size  (0 = use static icon) *****/
-    vbox = gtk_vbox_new(FALSE, 0);
+    /***** use dynamic tray icon *****/
+    hbox = gtk_vbox_new(FALSE, 0);
     dialog->icon_size_frame = orage_create_framebox_with_content(
-            _("Dynamic icon size"), vbox);
+            _("Use dynamic tray icon"), hbox);
     gtk_box_pack_start(GTK_BOX(dialog->extra_vbox)
             , dialog->icon_size_frame, FALSE, FALSE, 5);
 
-    hbox = gtk_hbox_new(FALSE, 0);
-    gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 5);
-    label = gtk_label_new("X:");
-    gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 5);
-    dialog->icon_size_x_spin = gtk_spin_button_new_with_range(0, 128, 1);
+    dialog->use_dynamic_icon_checkbutton = 
+            gtk_check_button_new_with_mnemonic(_("Use dynamic icon"));
     gtk_box_pack_start(GTK_BOX(hbox)
-            , dialog->icon_size_x_spin, FALSE, FALSE, 5);
-    gtk_spin_button_set_value(GTK_SPIN_BUTTON(dialog->icon_size_x_spin)
-            , g_par.icon_size_x);
-    label = gtk_label_new(_("(0 = use static icon)"));
-    gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 5);
-    gtk_tooltips_set_tip(dialog->Tooltips, dialog->icon_size_x_spin
-            , _("Dynamic icon shows current day and month. It is visible only in tray. If tray is too small for dynamic icon size, Orage switches automatically back to static icon.")
+            , dialog->use_dynamic_icon_checkbutton, FALSE, FALSE, 5);
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
+            dialog->use_dynamic_icon_checkbutton), g_par.use_dynamic_icon);
+    gtk_tooltips_set_tip(dialog->Tooltips, dialog->use_dynamic_icon_checkbutton
+            , _("Dynamic icon shows current month and day of the month. It is visible only in system tray.")
             , NULL);
-    g_signal_connect(G_OBJECT(dialog->icon_size_x_spin), "value-changed"
-            , G_CALLBACK(icon_size_x_spin_changed), dialog);
-
-    hbox = gtk_hbox_new(FALSE, 0);
-    gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 5);
-    label = gtk_label_new("Y:");
-    gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 5);
-    dialog->icon_size_y_spin = gtk_spin_button_new_with_range(0, 128, 1);
-    gtk_box_pack_start(GTK_BOX(hbox)
-            , dialog->icon_size_y_spin, FALSE, FALSE, 5);
-    gtk_spin_button_set_value(GTK_SPIN_BUTTON(dialog->icon_size_y_spin)
-            , g_par.icon_size_y);
-    label = gtk_label_new(_("(0 = use static icon)"));
-    gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 5);
-    g_signal_connect(G_OBJECT(dialog->icon_size_y_spin), "value-changed"
-            , G_CALLBACK(icon_size_y_spin_changed), dialog);
+    g_signal_connect(G_OBJECT(dialog->use_dynamic_icon_checkbutton), "toggled"
+            , G_CALLBACK(use_dynamic_icon_changed), dialog);
 
     /***** Start event or day window from main calendar *****/
     dialog->click_to_show_radiobutton_group = NULL;
@@ -981,8 +953,7 @@ void write_parameters()
     orage_rc_put_bool(orc, "Start minimized", g_par.start_minimized);
     orage_rc_put_bool(orc, "Set sticked", g_par.set_stick);
     orage_rc_put_bool(orc, "Set ontop", g_par.set_ontop);
-    orage_rc_put_int(orc, "Dynamic icon X", g_par.icon_size_x);
-    orage_rc_put_int(orc, "Dynamic icon Y", g_par.icon_size_y);
+    orage_rc_put_bool(orc, "Use dynamic icon", g_par.use_dynamic_icon);
     /* we write this with X so that we do not read it back unless
      * it is manually changed. It should need changes really seldom. */
     orage_rc_put_int(orc, "XIcal week start day"
@@ -1140,8 +1111,7 @@ void read_parameters(void)
     g_par.start_minimized = orage_rc_get_bool(orc, "Start minimized", FALSE);
     g_par.set_stick = orage_rc_get_bool(orc, "Set sticked", TRUE);
     g_par.set_ontop = orage_rc_get_bool(orc, "Set ontop", FALSE);
-    g_par.icon_size_x = orage_rc_get_int(orc, "Dynamic icon X", 42);
-    g_par.icon_size_y = orage_rc_get_int(orc, "Dynamic icon Y", 32);
+    g_par.use_dynamic_icon = orage_rc_get_bool(orc, "Use dynamic icon", TRUE);
     /* 0 = monday, ..., 6 = sunday */
     g_par.ical_weekstartday = orage_rc_get_int(orc, "Ical week start day"
             , get_first_weekday_from_locale());

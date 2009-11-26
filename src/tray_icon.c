@@ -89,61 +89,161 @@ void toggle_visible_cb(GtkStatusIcon *status_icon, gpointer user_data)
 void show_menu(GtkStatusIcon *status_icon, guint button, guint activate_time
         , gpointer user_data)
 {
-    gtk_menu_popup((GtkMenu *)user_data, NULL, NULL, NULL, NULL, button, activate_time);
+    gtk_menu_popup((GtkMenu *)user_data, NULL, NULL, NULL, NULL
+            , button, activate_time);
 }
 
-GdkPixbuf *orage_create_icon2(gboolean static_icon, gint x, gint y)
+void create_icon_pango_layout(gint line, PangoLayout *pl, struct tm *t
+        , gint width, gint height
+        , gint *x_offset, gint *y_offset, gint *y_size)
 {
+    gchar ts[200], row[20];
+    PangoRectangle real_rect, log_rect;
+    gint x_size;
+    gboolean first_try = TRUE, done = FALSE;
+
+    while (!done) {
+        switch (line) {
+            case 1:
+                if (first_try) {
+                    if (strftime(row, 19, "%^A", t) == 0) {
+                        g_warning("create_icon_pango_layout: strftime %%^A failed");
+                        if (strftime(row, 19, "%A", t) == 0) {
+                            g_warning("create_icon_pango_layout: strftime %%A failed");
+                            g_sprintf(row, "orage");
+                        }
+                    }
+                }
+                else { /* we failed once, let's try shorter string */
+                    if (strftime(row, 19, "%^a", t) == 0) {
+                        g_warning("create_icon_pango_layout: strftime %%^a failed");
+                        if (strftime(row, 19, "%a", t) == 0) {
+                            g_warning("create_icon_pango_layout: strftime %%a failed");
+                            g_sprintf(row, "orage");
+                        }
+                    }
+                }
+                g_snprintf(ts, 199
+                        , "<span foreground=\"black\" font_desc=\"Ariel bold 20\">%s</span>"
+                        , row);
+                break;
+            case 2:
+                g_snprintf(ts, 199
+                        , "<span foreground=\"red\" font_desc=\"Sans bold 72\">%02d</span>"
+                        , t->tm_mday);
+                break;
+            case 3:
+                if (first_try) {
+                    if (strftime(row, 19, "%^B", t) == 0) {
+                        g_warning("create_icon_pango_layout: strftime %%^B failed");
+                        if (strftime(row, 19, "%B", t) == 0) {
+                            g_warning("create_icon_pango_layout: strftime %%B failed");
+                            g_sprintf(row, "orage");
+                        }
+                    }
+                }
+                else { /* we failed once, let's try shorter string */
+                    if (strftime(row, 19, "%^b", t) == 0) {
+                        g_warning("create_icon_pango_layout: strftime %%^b failed");
+                        if (strftime(row, 19, "%b", t) == 0) {
+                            g_warning("create_icon_pango_layout: strftime %%b failed");
+                            g_sprintf(row, "orage");
+                        }
+                    }
+                }
+                g_snprintf(ts, 199
+                        , "<span foreground=\"black\" font_desc=\"Ariel bold 24\">%s</span>"
+                        , row);
+                break;
+            default:
+                g_warning("create_icon_pango_layout: wrong line number %d", line);
+        }
+        pango_layout_set_markup(pl, ts, -1);
+        pango_layout_set_alignment(pl, PANGO_ALIGN_CENTER);
+        pango_layout_get_extents(pl, &real_rect, &log_rect);
+        /* real_rect is smaller than log_rect. real is the minimal rectangular
+           to cover the text while log has some room around it. It is safer to
+           use log since it is hard to position real.
+           */
+        /* x_offset, y_offset = free space left after this layout 
+           divided equally to start and end */
+        x_size = PANGO_PIXELS(log_rect.width);
+        *y_size = PANGO_PIXELS(log_rect.height);
+        *x_offset = (width - x_size)/2;
+        if (line == 1)
+            *y_offset = 2; /* we have 1 pixel border line */
+        else if (line == 2)
+            *y_offset = (height - *y_size)/2;
+        else if (line == 3)
+            *y_offset = (height - *y_size);
+        if (*x_offset < 0) { /* it does not fit */
+            if (first_try) {
+                first_try = FALSE;
+            }
+            else {
+                orage_message(110, "trayicon: row %d does not fit in dynamic icon", line);
+                done = TRUE; /* failed */
+            }
+        }
+        else 
+            done = TRUE;
+    }
+    /*
+    g_print("\n\norage row %d offset\n"
+            "width=%d x-offset=%d\n"
+            "\t(real pixel text width=%d logical pixel text width=%d)\n"
+            "height=%d y-offset=%d\n"
+            "\t(real pixel text height=%d logical pixel text height=%d)\n"
+            "\n" 
+            , line
+            , width, *x_offset
+            , PANGO_PIXELS(real_rect.width), x_size
+            , height, *y_offset
+            , PANGO_PIXELS(real_rect.height), *y_size
+            ); 
+            */
+    /*
+    gdk_draw_rectangle(pic1, pic1_gc2, FALSE
+            , *x_offset+(x_size-PANGO_PIXELS(real_rect.width))/2
+            , *y_offset+(*y_size-PANGO_PIXELS(real_rect.height))/2
+            , PANGO_PIXELS(real_rect.width), PANGO_PIXELS(real_rect.height));
+    gdk_draw_rectangle(pic1, pic1_gc2, FALSE
+            , *x_offset, *y_offset, x_size, *y_size);
+            */
 }
 
-GdkPixbuf *orage_create_icon(gboolean static_icon, gint x, gint y)
+GdkPixbuf *orage_create_icon(gboolean static_icon, gint size)
 {
     CalWin *xfcal = (CalWin *)g_par.xfcal;
     GtkIconTheme *icon_theme = NULL;
-    GdkPixbuf *pixbuf;
+    GdkPixbuf *pixbuf, *pixbuf2;
     GdkPixmap *pic1;
     GdkGC *pic1_gc1, *pic1_gc2;
     GdkColormap *pic1_cmap;
     GdkColor color;
     GdkVisual *pic1_vis;
-    PangoLayout *pl_day, *pl_head, *pl_month;
+    PangoLayout *pl_day, *pl_weekday, *pl_month;
     gint width = 0, height = 0, depth = 16;
     gint red = 239, green = 235, blue = 230;
-    PangoRectangle real_rect, log_rect;
     struct tm *t;
-    gchar ts[200], month[50];
-    gint x_offset = 0, y_offset = 0, y_used = 0, i, limit;
-    gint x_day = 0, y_day = 0;
-    gint x_head = 0, y_head = 0, y_used_head = 0;
-    gint x_month = 0, y_month = 0, y_used_month = 0;
-    gboolean draw_head = FALSE, draw_month = FALSE;
-    gboolean draw_dynamic = FALSE, work_in_progress = TRUE;
-    gchar *day_sizes[] = {"xx-large", "x-large", "large", "medium"
-                         , "small", "x-small", "xx-small", "END"};
+    gint x_used = 0, y_used = 0;
+    gint x_offset_day = 0, y_offset_day = 0, y_size_day = 0;
+    gint x_offset_weekday = 0, y_offset_weekday = 0, y_size_weekday = 0;
+    gint x_offset_month = 0, y_offset_month = 0, y_size_month = 0;
+    gboolean draw_dynamic = FALSE;
 
     icon_theme = gtk_icon_theme_get_default();
-    if (static_icon) {
-        pixbuf = gtk_icon_theme_load_icon(icon_theme, "xfcalendar", x
-                , GTK_ICON_LOOKUP_USE_BUILTIN, NULL);
-        return(pixbuf);
-    }
-    if (x <= 12 || y <= 12) {
-        orage_message(110, "Too small icon size, using static icon\n");
-        pixbuf = gtk_icon_theme_load_icon(icon_theme, "xfcalendar", 16
-                , GTK_ICON_LOOKUP_USE_BUILTIN, NULL);
-        return(pixbuf);
-    }
-    if (g_par.icon_size_x == 0 
-    ||  g_par.icon_size_y == 0) { /* signal to use static icon */
-        orage_message(110, "Icon size set to zero, using static icon\n");
-        pixbuf = gtk_icon_theme_load_icon(icon_theme, "xfcalendar", x
+    if (static_icon || !g_par.use_dynamic_icon) {
+        pixbuf = gtk_icon_theme_load_icon(icon_theme, "xfcalendar", size
                 , GTK_ICON_LOOKUP_USE_BUILTIN, NULL);
         return(pixbuf);
     }
 
+    /* dynamic icon build starts now */
+    draw_dynamic = TRUE;
     t = orage_localtime();
-    width = x; 
-    height = y;
+    width = 160; 
+    height = 160;
     pic1_cmap = gdk_colormap_get_system();
     pic1_vis = gdk_colormap_get_visual(pic1_cmap);
     depth = pic1_vis->depth;
@@ -161,121 +261,60 @@ GdkPixbuf *orage_create_icon(gboolean static_icon, gint x, gint y)
     */
     gdk_colormap_alloc_color(pic1_cmap, &color, FALSE, TRUE);
     gdk_gc_set_foreground(pic1_gc1, &color);
+    /*
     gdk_draw_rectangle(pic1, pic1_gc1, TRUE, 0, 0, width, height);
     gdk_draw_rectangle(pic1, pic1_gc2, FALSE, 0, 0, width-1, height-1);
     gdk_draw_rectangle(pic1, pic1_gc2, FALSE, 0, 0, width-3, height-3);
+    gdk_draw_rectangle(pic1, pic1_gc2, FALSE, 0, 0, width-5, height-5);
+    */
+    gdk_draw_rectangle(pic1, pic1_gc1, TRUE, 0, 0, width, height);
+    gdk_draw_line(pic1, pic1_gc2, 4, height-1, width-1, height-1);
+    gdk_draw_line(pic1, pic1_gc2, width-1, 4, width-1, height-1);
+    gdk_draw_line(pic1, pic1_gc2, 2, height-3, width-3, height-3);
+    gdk_draw_line(pic1, pic1_gc2, width-3, 2, width-3, height-3);
+    gdk_draw_rectangle(pic1, pic1_gc2, FALSE, 0, 0, width-5, height-5);
+    x_used = 6;
+    y_used = 6;
 
     /* gdk_draw_line(pic1, pic1_gc1, 10, 20, 30, 38); */
 
     /* create any valid pango layout to get things started */
-    /* this does not quite work, but almost
-    pl_day = pango_layout_new(gdk_pango_context_get_for_screen(gdk_screen_get_default()));
-    */
     pl_day = gtk_widget_create_pango_layout(xfcal->mWindow, "x");
-    pl_head = pango_layout_copy(pl_day);
+    pl_weekday = pango_layout_copy(pl_day);
     pl_month = pango_layout_copy(pl_day);
 
-    /* heading: orage */
-    g_snprintf(ts, 199
-            , "<span foreground=\"blue\" size=\"x-small\">Orage</span>");
-    pango_layout_set_markup(pl_head, ts, -1);
-    pango_layout_set_alignment(pl_head, PANGO_ALIGN_CENTER);
-    pango_layout_get_extents(pl_head, &real_rect, &log_rect);
-    x_offset = (width - PANGO_PIXELS(log_rect.width) - 2)/2;
-    y_offset = -2;
-    /* g_print("orage offset x=%d y=%d height=%d text height=%d real text height=%d\n" , x_offset, y_offset, height, PANGO_PIXELS(log_rect.height), PANGO_PIXELS(real_rect.height)); */
-    if (x_offset > 0 && (height-PANGO_PIXELS(log_rect.height)-y_offset) > 0) {
-        draw_head = TRUE; /* fits */
-        x_head = x_offset;
-        y_head = y_offset;
-        y_used_head = PANGO_PIXELS(real_rect.height);
-    }
-    else
-        orage_message(110, "trayicon: heading does not fit in dynamic icon");
-
-    /* month */
-    if (strftime(month, 19, "%^b", t) == 0) {
-        g_warning("orage_create_icon: strftime %%^b failed");
-        if (strftime(month, 19, "%b", t) == 0) {
-            g_warning("orage_create_icon: strftime %%b failed");
-            g_sprintf(month, "orage");
-        }
-    }
-    g_snprintf(ts, 199
-            , "<span foreground=\"blue\" size=\"x-small\">%s</span>", month);
-    pango_layout_set_markup(pl_month, ts, -1);
-    pango_layout_set_alignment(pl_month, PANGO_ALIGN_CENTER);
-    pango_layout_get_extents(pl_month, &real_rect, &log_rect);
-    x_offset = (width - PANGO_PIXELS(real_rect.width) - 2)/2;
-    y_offset = (height - PANGO_PIXELS(log_rect.height) - 2);
-    if (x_offset > 0 && (height - y_offset - PANGO_PIXELS(log_rect.height))) {
-        draw_month = TRUE; /* fits */
-        x_month = x_offset;
-        y_month = y_offset;
-        y_used_month = PANGO_PIXELS(real_rect.height);
-    }
-    else
-        orage_message(110, "trayicon: month does not fit in dynamic icon");
-
-    do { /* main loop where we try our best to fit header+day+month into icon */
-        y_used = 0;
-        if (draw_month || draw_head) {
-            limit = 3; /* = medium */
-            if (draw_head)
-                y_used += y_used_head;
-            if (draw_month)
-                y_used += y_used_month;
-        }
-        else
-            limit = 10; /* no limit */
+    /* weekday */
+    create_icon_pango_layout(1, pl_weekday, t
+            , width-x_used, height-y_used
+            , &x_offset_weekday, &y_offset_weekday, &y_size_weekday);
 
     /* day */
-        for (i = 0, x_offset = 0, y_offset = 0; 
-             (strcmp(day_sizes[i], "END") != 0) 
-                  && (i <= limit)
-                  && ((x_offset <= 0) || ((y_offset) <= 0));
-             i++) {
-            g_snprintf(ts, 199
-                    , "<span foreground=\"red\" weight=\"bold\" size=\"%s\">%02d</span>"
-                    , day_sizes[i], t->tm_mday);
-            pango_layout_set_markup(pl_day, ts, -1);
-            pango_layout_set_alignment(pl_day, PANGO_ALIGN_CENTER);
-            pango_layout_get_extents(pl_day, &real_rect, &log_rect);
-            x_offset = (width - PANGO_PIXELS(log_rect.width))/2;
-            y_offset = (height - y_used - PANGO_PIXELS(log_rect.height))/2;
-        } /* for */
-        if (x_offset >= 0 && (y_offset) >= 0) { /* it fits */
-            draw_dynamic = TRUE;
-            work_in_progress = FALSE; /* done! */
-            x_day = x_offset;
-            y_day = (height - PANGO_PIXELS(log_rect.height) - 2)/2;
-            if (!draw_head && draw_month)
-                y_day -= y_used_head/2;
-            if (draw_head && !draw_month)
-                y_day += y_used_head/2;
-        }
-        else {
-            if (draw_head)
-                draw_head = FALSE; /* does not fit */
-            else if (draw_month)
-                draw_month = FALSE; /* does not fit */
-            else
-                work_in_progress = FALSE; /* done! */
-        }
-    } while (work_in_progress);
+    create_icon_pango_layout(2, pl_day, t
+            , width-x_used, height-y_used
+            , &x_offset_day, &y_offset_day, &y_size_day);
+
+    /* month */
+    create_icon_pango_layout(3, pl_month, t
+            , width-x_used, height-y_used
+            , &x_offset_month, &y_offset_month, &y_size_month);
 
     if (draw_dynamic) {
-        if (draw_head)
-            gdk_draw_layout(pic1, pic1_gc1, x_head, y_head, pl_head);
-        if (draw_month)
-            gdk_draw_layout(pic1, pic1_gc1, x_month, y_month, pl_month);
-        gdk_draw_layout(pic1, pic1_gc1, x_day, y_day, pl_day);
-
+        gdk_draw_layout(pic1, pic1_gc1, x_offset_weekday, y_offset_weekday
+                , pl_weekday);
+        gdk_draw_layout(pic1, pic1_gc1, x_offset_day, y_offset_day, pl_day);
+        gdk_draw_layout(pic1, pic1_gc1, x_offset_month, y_offset_month
+                , pl_month);
         pixbuf = gdk_pixbuf_get_from_drawable(NULL, pic1, pic1_cmap
                 , 0, 0, 0, 0, width, height);
+        if (size) {
+            pixbuf2 = gdk_pixbuf_scale_simple(pixbuf, size, size
+                    , GDK_INTERP_BILINEAR);
+            g_object_unref(pixbuf);
+            pixbuf = pixbuf2;
+        }
     }
     else {
-        pixbuf = gtk_icon_theme_load_icon(icon_theme, "xfcalendar", x
+        pixbuf = gtk_icon_theme_load_icon(icon_theme, "xfcalendar", size
                 , GTK_ICON_LOOKUP_USE_BUILTIN, NULL);
     }
 
@@ -285,29 +324,19 @@ GdkPixbuf *orage_create_icon(gboolean static_icon, gint x, gint y)
     g_object_unref(pic1_gc1);
     g_object_unref(pic1_gc2);
     g_object_unref(pl_day);
-    g_object_unref(pl_head);
+    g_object_unref(pl_weekday);
     g_object_unref(pl_month);
     g_object_unref(pic1);
   
     return(pixbuf);
 }
 
-void destroy_TrayIcon(GtkStatusIcon *trayIcon)
-{
-    g_object_unref(trayIcon);
-}
-
-GtkStatusIcon* create_TrayIcon()
+GtkWidget *create_TrayIcon_menu()
 {
     CalWin *xfcal = (CalWin *)g_par.xfcal;
-    GtkStatusIcon *trayIcon = NULL;
-    GtkWidget *menuItem;
     GtkWidget *trayMenu;
-    GdkPixbuf *pixbuf;
+    GtkWidget *menuItem;
 
-    /*
-     * Create the tray icon popup menu
-     */
     trayMenu = gtk_menu_new();
     menuItem = gtk_image_menu_item_new_with_mnemonic(_("Today"));
     gtk_image_menu_item_set_image(GTK_IMAGE_MENU_ITEM(menuItem)
@@ -356,11 +385,30 @@ GtkStatusIcon* create_TrayIcon()
     gtk_menu_shell_append(GTK_MENU_SHELL(trayMenu), menuItem);
     gtk_widget_show(menuItem);
 
+    return(trayMenu);
+}
+
+void destroy_TrayIcon(GtkStatusIcon *trayIcon)
+{
+    g_object_unref(trayIcon);
+}
+
+GtkStatusIcon* create_TrayIcon()
+{
+    CalWin *xfcal = (CalWin *)g_par.xfcal;
+    GtkWidget *trayMenu;
+    GtkStatusIcon *trayIcon = NULL;
+    GdkPixbuf *pixbuf;
+
+    /*
+     * Create the tray icon popup menu
+     */
+    trayMenu = create_TrayIcon_menu();
+
     /*
      * Create the tray icon
      */
-
-    pixbuf = orage_create_icon(FALSE, g_par.icon_size_x, g_par.icon_size_y);
+    pixbuf = orage_create_icon(FALSE, 0); /* 0 = no scaling */
     trayIcon = gtk_status_icon_new_from_pixbuf(pixbuf);
 
     g_object_ref(trayIcon);

@@ -817,7 +817,7 @@ gboolean orage_tooltip_update(gpointer user_data)
     GList *alarm_l;
     alarm_struct *cur_alarm;
     gboolean more_alarms=TRUE;
-    GString *tooltip=NULL;
+    GString *tooltip=NULL, *tooltip_highlight_helper=NULL;
     gint alarm_cnt=0;
     gint tooltip_alarm_limit=5;
     gint year, month, day, hour, minute, second;
@@ -834,6 +834,10 @@ gboolean orage_tooltip_update(gpointer user_data)
     }
     t = orage_localtime();
     tooltip = g_string_new(_("Next active alarms:"));
+#if GTK_CHECK_VERSION(2,16,0)
+    g_string_prepend(tooltip, ("<span foreground=\"blue\" weight=\"bold\" underline=\"single\">"));
+    g_string_append_printf(tooltip, (" </span>"));
+#endif
   /* Check if there are any alarms to show */
     alarm_l = g_par.alarm_list;
     for (alarm_l = g_list_first(alarm_l);
@@ -860,9 +864,20 @@ gboolean orage_tooltip_update(gpointer user_data)
                 hh += 24;
                 dd -= 1;
             }
+#if GTK_CHECK_VERSION(2,16,0)
+            g_string_append_printf(tooltip, ("<span weight=\"bold\">"));
+            tooltip_highlight_helper = g_string_new(" </span>");
+            g_string_append_printf(tooltip_highlight_helper, 
+                    (" %s"), cur_alarm->title);
+            g_string_append_printf(tooltip, 
+                    _("\n%02d d %02d h %02d min to: %s"),
+                    dd, hh, min, tooltip_highlight_helper->str);
+            g_string_free(tooltip_highlight_helper, TRUE);
+#else
             g_string_append_printf(tooltip, 
                     _("\n%02d d %02d h %02d min to: %s"),
                     dd, hh, min, cur_alarm->title);
+#endif
             alarm_cnt++;
         }
         else /* sorted so scan can be stopped */
@@ -870,7 +885,13 @@ gboolean orage_tooltip_update(gpointer user_data)
     }
     if (alarm_cnt == 0)
         g_string_append_printf(tooltip, _("\nNo active alarms found"));
+    /* deprecated since version 2.16 */
+    /* after 2.16 use gtk_status_icon_set_tooltip_markup to get nicer text */
+#if GTK_CHECK_VERSION(2,16,0)
+    gtk_status_icon_set_tooltip_markup((GtkStatusIcon *)g_par.trayIcon, tooltip->str);
+#else
     gtk_status_icon_set_tooltip((GtkStatusIcon *)g_par.trayIcon, tooltip->str);
+#endif
     g_string_free(tooltip, TRUE);
     return(TRUE);
 }

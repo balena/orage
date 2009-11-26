@@ -1367,7 +1367,7 @@ el_win *create_el_win(char *start_date)
 
     gtk_drag_source_set(el->TreeView, GDK_BUTTON1_MASK
             , drag_targets, DRAG_TARGET_COUNT, GDK_ACTION_COPY);
-    pixbuf = orage_create_icon(TRUE, 16, 16);
+    pixbuf = orage_create_icon(TRUE, 16);
     gtk_drag_source_set_icon_pixbuf(el->TreeView, pixbuf);
     g_object_unref(pixbuf);
     g_signal_connect(el->TreeView, "drag_data_get"

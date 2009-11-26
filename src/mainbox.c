@@ -722,7 +722,7 @@ void build_mainWin()
     /* using static icon here since this dynamic icon is not updated
      * when date changes. Could be added, but not worth it.
      * Dynamic icon is used in systray and about windows */
-    orage_logo = orage_create_icon(TRUE, 48, 48); 
+    orage_logo = orage_create_icon(TRUE, 48); 
     cal->mAccel_group = gtk_accel_group_new();
     cal->Tooltips = gtk_tooltips_new();
 
