@@ -101,59 +101,70 @@ void create_icon_pango_layout(gint line, PangoLayout *pl, struct tm *t
     PangoRectangle real_rect, log_rect;
     gint x_size;
     gboolean first_try = TRUE, done = FALSE;
+    gchar *row1_1_data = "%^A";
+    gchar *row1_1b_data = "%A";
+    gchar *row1_2_data = "%^a";
+    gchar *row1_2b_data = "%a";
+    gchar *row1_color = "black";
+    gchar *row1_font = "Ariel bold 24";
+    gchar *row2_color = "red";
+    gchar *row2_font = "Sans bold 72";
+    gchar *row3_1_data = "%^B";
+    gchar *row3_1b_data = "%B";
+    gchar *row3_2_data = "%^b";
+    gchar *row3_2b_data = "%b";
+    gchar *row3_color = "black";
+    gchar *row3_font = "Ariel bold 26";
+    gchar *row_format = "<span foreground=\"%s\" font_desc=\"%s\">%s</span>";
+    gchar *strfttime_failed = "create_icon_pango_layout: strftime %s failed";
 
     while (!done) {
         switch (line) {
             case 1:
                 if (first_try) {
-                    if (strftime(row, 19, "%^A", t) == 0) {
-                        g_warning("create_icon_pango_layout: strftime %%^A failed");
-                        if (strftime(row, 19, "%A", t) == 0) {
-                            g_warning("create_icon_pango_layout: strftime %%A failed");
+                    if (strftime(row, 19, row1_1_data, t) == 0) {
+                        g_warning(strfttime_failed, row1_1_data);
+                        if (strftime(row, 19, row1_1b_data, t) == 0) {
+                            g_warning(strfttime_failed, row1_1b_data);
                             g_sprintf(row, "orage");
                         }
                     }
                 }
                 else { /* we failed once, let's try shorter string */
-                    if (strftime(row, 19, "%^a", t) == 0) {
-                        g_warning("create_icon_pango_layout: strftime %%^a failed");
-                        if (strftime(row, 19, "%a", t) == 0) {
-                            g_warning("create_icon_pango_layout: strftime %%a failed");
+                    if (strftime(row, 19, row1_2_data, t) == 0) {
+                        g_warning(strfttime_failed, row1_2_data);
+                        if (strftime(row, 19, row1_2b_data, t) == 0) {
+                            g_warning(strfttime_failed, row1_2b_data);
                             g_sprintf(row, "orage");
                         }
                     }
                 }
-                g_snprintf(ts, 199
-                        , "<span foreground=\"black\" font_desc=\"Ariel bold 20\">%s</span>"
-                        , row);
+                g_snprintf(ts, 199, row_format, row1_color, row1_font, row);
                 break;
             case 2:
-                g_snprintf(ts, 199
-                        , "<span foreground=\"red\" font_desc=\"Sans bold 72\">%02d</span>"
-                        , t->tm_mday);
+                g_snprintf(row, 19, "%02d", t->tm_mday);
+                g_snprintf(ts, 199, row_format, row2_color, row2_font, row);
                 break;
             case 3:
                 if (first_try) {
-                    if (strftime(row, 19, "%^B", t) == 0) {
-                        g_warning("create_icon_pango_layout: strftime %%^B failed");
-                        if (strftime(row, 19, "%B", t) == 0) {
-                            g_warning("create_icon_pango_layout: strftime %%B failed");
+                    if (strftime(row, 19, row3_1_data, t) == 0) {
+                        g_warning(strfttime_failed, row3_1_data);
+                        if (strftime(row, 19, row3_1b_data, t) == 0) {
+                            g_warning(strfttime_failed, row3_1b_data);
                             g_sprintf(row, "orage");
                         }
                     }
                 }
                 else { /* we failed once, let's try shorter string */
-                    if (strftime(row, 19, "%^b", t) == 0) {
-                        g_warning("create_icon_pango_layout: strftime %%^b failed");
-                        if (strftime(row, 19, "%b", t) == 0) {
-                            g_warning("create_icon_pango_layout: strftime %%b failed");
+                    if (strftime(row, 19, row3_2_data, t) == 0) {
+                        g_warning(strfttime_failed, row3_2_data);
+                        if (strftime(row, 19, row3_2b_data, t) == 0) {
+                            g_warning(strfttime_failed, row3_2b_data);
                             g_sprintf(row, "orage");
                         }
                     }
                 }
-                g_snprintf(ts, 199
-                        , "<span foreground=\"black\" font_desc=\"Ariel bold 24\">%s</span>"
-                        , row);
+                g_snprintf(ts, 199, row_format, row3_color, row3_font, row);
                 break;
             default:
                 g_warning("create_icon_pango_layout: wrong line number %d", line);
@@ -171,11 +182,25 @@ void create_icon_pango_layout(gint line, PangoLayout *pl, struct tm *t
         *y_size = PANGO_PIXELS(log_rect.height);
         *x_offset = (width - x_size)/2;
         if (line == 1)
-            *y_offset = 2; /* we have 1 pixel border line */
+            *y_offset = 4; /* we have 1 pixel border line */
         else if (line == 2)
-            *y_offset = (height - *y_size)/2;
+            *y_offset = (height - *y_size + 2)/2;
         else if (line == 3)
             *y_offset = (height - *y_size);
+        /*
+    g_print("\n\norage row %d offset. First trial %d\n"
+            "width=%d x-offset=%d\n"
+            "\t(real pixel text width=%d logical pixel text width=%d)\n"
+            "height=%d y-offset=%d\n"
+            "\t(real pixel text height=%d logical pixel text height=%d)\n"
+            "\n" 
+            , line, first_try
+            , width, *x_offset
+            , PANGO_PIXELS(real_rect.width), x_size
+            , height, *y_offset
+            , PANGO_PIXELS(real_rect.height), *y_size
+            ); 
+            */
         if (*x_offset < 0) { /* it does not fit */
             if (first_try) {
                 first_try = FALSE;
@@ -188,20 +213,6 @@ void create_icon_pango_layout(gint line, PangoLayout *pl, struct tm *t
         else 
             done = TRUE;
     }
-    /*
-    g_print("\n\norage row %d offset\n"
-            "width=%d x-offset=%d\n"
-            "\t(real pixel text width=%d logical pixel text width=%d)\n"
-            "height=%d y-offset=%d\n"
-            "\t(real pixel text height=%d logical pixel text height=%d)\n"
-            "\n" 
-            , line
-            , width, *x_offset
-            , PANGO_PIXELS(real_rect.width), x_size
-            , height, *y_offset
-            , PANGO_PIXELS(real_rect.height), *y_size
-            ); 
-            */
     /*
     gdk_draw_rectangle(pic1, pic1_gc2, FALSE
             , *x_offset+(x_size-PANGO_PIXELS(real_rect.width))/2
@@ -249,6 +260,10 @@ GdkPixbuf *orage_create_icon(gboolean static_icon, gint size)
     depth = pic1_vis->depth;
     pic1 = gdk_pixmap_new(NULL, width, height, depth);
     gdk_drawable_set_colormap(pic1, pic1_cmap);
+    /*
+    pic1 = gdk_pixmap_colormap_create_from_xpm(NULL, pic1_cmap, NULL, NULL
+            , "/home/juha/ohjelmat/Orage/dev/orage/icons/orage.xpm");
+    */
     /* pic1_cmap = gtk_widget_get_colormap(xfcal->mWindow); */
     pic1_gc1 = gdk_gc_new(pic1);
     pic1_gc2 = gdk_gc_new(pic1);

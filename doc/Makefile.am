@@ -8,7 +8,7 @@ man_MANS = \
 	orage.1
 
 if MAINTAINER_MODE
-%.1: %.xml
+orage.1: orage.xml
 	xsltproc -nonet http://docbook.sourceforge.net/release/xsl/current/manpages/docbook.xsl $<
 endif
 

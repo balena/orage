@@ -179,15 +179,12 @@ static xfical_timezone_array get_ical_timezones()
             l_tz = (icaltimezone *)icalarray_element_at(tz_array, tz.count);
             /* ical timezones are static so this is safe although not
              * exactly pretty */
-            tz.city[tz.count] = icaltimezone_get_location(l_tz);
+            tz.city[tz.count] = (char *)icaltimezone_get_location(l_tz);
             /*
             g_print(P_N "before %d %s\n", tz.count, tz.city[tz.count]);
             */
             tz.utc_offset[tz.count] = icaltimezone_get_utc_offset(
                     l_tz, &ctime, &tz.dst[tz.count]);
-            /*
-            g_print(P_N "after %d %s offset:%d dst: %d\n", tz.count, tz.city[tz.count], tz.utc_offset[tz.count], tz.dst[tz.count]);
-            */
         }
         tz.utc_offset[tz.count] = 0;
         tz.dst[tz.count] = 0;
@@ -3213,7 +3210,7 @@ static gboolean xfical_mark_calendar_days(GtkCalendar *gtkcal
 
 /* note that this not understand timezones, but gets always raw time,
  * which we need to convert to correct timezone */
-void mark_calendar(icalcomponent *c, struct icaltime_span *span , void *data)
+void mark_calendar(icalcomponent *c, icaltime_span *span , void *data)
 {
 #undef P_N
 #define P_N "mark_calendar: "
@@ -3440,7 +3437,7 @@ void xfical_mark_calendar(GtkCalendar *gtkcal)
 
 /* note that this not understand timezones, but gets always raw time,
  * which we need to convert to correct timezone */
-void add_appt_to_list(icalcomponent *c, struct icaltime_span *span , void *data)
+void add_appt_to_list(icalcomponent *c, icaltime_span *span , void *data)
 {
 #undef P_N
 #define P_N "add_appt_to_list: "
@@ -3453,8 +3450,18 @@ void add_appt_to_list(icalcomponent *c, struct icaltime_span *span , void *data)
     {
         GList **list;
         gchar *file_type;
+#ifdef HAVE_LIBICAL
+        /* Need to check that returned value is withing limits.
+           Check more from BUG 5764. */
+        struct icaltimetype asdate, aedate;
+#endif
     } app_data;
     app_data *data1;
+#ifdef HAVE_LIBICAL
+        /* Need to check that returned value is withing limits.
+           Check more from BUG 5764. */
+    icaltime_span limit_span;
+#endif
 
 #ifdef ORAGE_DEBUG
     orage_message(-100, P_N);
@@ -3474,13 +3481,27 @@ void add_appt_to_list(icalcomponent *c, struct icaltime_span *span , void *data)
     end = icaltime_from_string(orage_tm_time_to_icaltime(&end_tm));
     end = convert_to_zone(end, appt->end_tz_loc);
     end = icaltime_convert_to_zone(end, local_icaltimezone);
+
     strcpy(appt->starttimecur, icaltime_as_ical_string(start));
     strcpy(appt->endtimecur, icaltime_as_ical_string(end));
-    *data1->list = g_list_prepend(*data1->list, appt);
+#ifdef HAVE_LIBICAL
     /*
-    orage_message(10, P_N "Title (%s) Start:%s End:%s \n"
-            , appt->title, appt->starttimecur, appt->endtimecur);
+    orage_message(10, P_N "Title (%s)\n\tfound Start:%s End:%s\n\tlimit Start:%s End:%s"
+            , appt->title, appt->starttimecur, appt->endtimecur, icaltime_as_ical_string(data1->asdate), icaltime_as_ical_string(data1->aedate));
             */
+        /* Need to check that returned value is withing limits.
+           Check more from BUG 5764. */
+    limit_span = icaltime_span_new(data1->asdate, data1->aedate, TRUE);
+    if (!icaltime_span_overlaps(span, &limit_span)) {
+        /* we do not need this. Free the memory */
+        xfical_appt_free(appt);
+        /*
+    orage_message(10, P_N "\n\tDROPped");
+    */
+    } 
+    else /* add to list like with internal libical */
+#endif
+    *data1->list = g_list_prepend(*data1->list, appt);
 }
 
 /* Fetch each appointment within the specified time period and add those
@@ -3502,6 +3523,11 @@ static void xfical_get_each_app_within_time_internal(char *a_day, gint days
     {
         GList **list;
         gchar *file_type;
+#ifdef HAVE_LIBICAL
+        /* Need to check that returned value is withing limits.
+           Check more from BUG 5764. */
+        struct icaltimetype asdate, aedate;
+#endif
     } app_data;
     app_data data1;
 
@@ -3524,6 +3550,12 @@ static void xfical_get_each_app_within_time_internal(char *a_day, gint days
 
     data1.list = data;
     data1.file_type = file_type;
+#ifdef HAVE_LIBICAL
+        /* Need to check that returned value is withing limits.
+           Check more from BUG 5764. */
+    data1.asdate = asdate;
+    data1.aedate = aedate;
+#endif
     for (c = icalcomponent_get_first_component(base, ikind);
          c != 0;
          c = icalcomponent_get_next_component(base, ikind)) {

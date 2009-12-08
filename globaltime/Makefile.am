@@ -1,18 +1,5 @@
 bin_PROGRAMS = globaltime
 
-man_MANS =                             		 \
-	globaltime.1
-
-if MAINTAINER_MODE
-%.1: %.xml
-	xsltproc -nonet http://docbook.sourceforge.net/release/xsl/current/manpages/docbook.xsl $<
-endif
-
-desktopdir = $(datadir)/applications
-desktop_in_files = globaltime.desktop.in
-desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
-@INTLTOOL_DESKTOP_RULE@
-
 globaltime_SOURCES =						\
 	globaltime.c							\
 	globaltime.h							\
@@ -22,6 +9,19 @@ globaltime_SOURCES =						\
 	timezone_selection.h                    \
 	tz_zoneinfo_read.c                      \
 	tz_zoneinfo_read.h
+
+man_MANS =                             		 \
+	globaltime.1
+
+if MAINTAINER_MODE
+globaltime.1: globaltime.xml
+	xsltproc -nonet http://docbook.sourceforge.net/release/xsl/current/manpages/docbook.xsl $<
+endif
+
+desktopdir = $(datadir)/applications
+desktop_in_files = globaltime.desktop.in
+desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
+@INTLTOOL_DESKTOP_RULE@
 
 
 globaltime_CFLAGS =							\

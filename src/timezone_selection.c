@@ -95,6 +95,7 @@ static GtkTreeStore *tz_button_create_store(gboolean details
     /*
     g_print(P_N "number of timezones %d\n", tz_a.count);
     */
+#ifndef HAVE_LIBICAL
     /* Create special "area" for first level timezones, which do not have
      * any real area */
     gtk_tree_store_append(store, &iter1, NULL);
@@ -106,6 +107,7 @@ static GtkTreeStore *tz_button_create_store(gboolean details
             , COUNTRY, " "
             , -1);
     main = iter1; /* need to remember that */
+#endif
 
     for (i=0; i < tz_a.count-2; i++) {
         /* first check area */
@@ -133,6 +135,9 @@ static GtkTreeStore *tz_button_create_store(gboolean details
                  * plain names on main level. We do this by adding / */
                 area_old[j++] = '/';
                 area_old[j] = 0;
+#ifdef HAVE_LIBICAL
+                main = iter1; /* need to remember that */
+#endif
             }
             else {
                 g_print(P_N "too long line in zones.tab %s", tz_a.city[i]);

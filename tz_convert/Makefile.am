@@ -4,7 +4,7 @@ man_MANS =                             		 \
 	tz_convert.1
 
 if MAINTAINER_MODE
-%.1: %.xml
+tz_convert.1: tz_convert.xml
 	xsltproc -nonet http://docbook.sourceforge.net/release/xsl/current/manpages/docbook.xsl $<
 endif
 

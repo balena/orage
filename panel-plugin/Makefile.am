@@ -46,7 +46,8 @@ DISTCLEANFILES =							\
 	$(desktop_DATA) $(desktop_in_files)
 	
 # get full path into .desktop file
-%.desktop.in: %.desktop.in.in
+#%.desktop.in: %.desktop.in.in
+xfce4-orageclock-plugin.desktop.in: xfce4-orageclock-plugin.desktop.in.in
 	sed -e "s^@PLUGIN_PATH@^$(libexecdir)/xfce4/panel-plugins^" \
 		$< > $@
 

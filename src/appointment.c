@@ -1360,7 +1360,14 @@ static xfical_exception *new_exception(char *text)
     }
     else {
         strcpy(recur_exception->type, "EXDATE");
+#ifdef HAVE_LIBICAL
+        /* need to add time also as standard libical can not handle dates
+           correctly yet. Check more from BUG 5764.
+           We use start time from appointment. */
+        strcpy(recur_exception->time, orage_i18_time_to_icaltime(text));
+#else
         strcpy(recur_exception->time, orage_i18_date_to_icaldate(text));
+#endif
     }
     text[i-2] = ' ';
     return(recur_exception);
@@ -1482,7 +1489,19 @@ static void recur_day_selected_double_click_cb(GtkCalendar *calendar
     if (gtk_toggle_button_get_active(
             GTK_TOGGLE_BUTTON(apptw->Recur_exception_excl_rb))) {
         type = "-";
+#ifdef HAVE_LIBICAL
+        /* need to add time also as standard libical can not handle dates
+           correctly yet. Check more from BUG 5764.
+           We use start time from appointment. */
+        hh =  gtk_spin_button_get_value_as_int(
+                GTK_SPIN_BUTTON(apptw->StartTime_spin_hh));
+        mm =  gtk_spin_button_get_value_as_int(
+                GTK_SPIN_BUTTON(apptw->StartTime_spin_mm));
+        cal_date = g_strdup(orage_cal_to_i18_time(calendar, hh, mm));
+#else
+        /* date is enough */
         cal_date = g_strdup(orage_cal_to_i18_date(calendar));
+#endif
     }
     else { /* extra day. This needs also time */
         type = "+";

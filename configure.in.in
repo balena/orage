@@ -9,13 +9,14 @@ dnl Written for Xfce by Juha Kautto <juha@xfce.org>
 dnl
 
 dnl Version information
-m4_define([orage_version], [4.7.4.11-test])
+m4_define([orage_version], [4.7.5.0-git])
 
 m4_define([gtk_minimum_version], [2.10.0])
 m4_define([xfce_minimum_version], [4.6.0])
 m4_define([dbus_minimum_version], [0.34])
 m4_define([notify_minimum_version], [0.3.2])
 m4_define([intltool_minimum_version], [0.31])
+m4_define([libical_minimum_version], [0.43])
 
 
 dnl # DO NOT MODIFY ANYTHING BELOW THIS LINE, UNLESS YOU KNOW WHAT
@@ -23,7 +24,7 @@ dnl # YOU ARE DOING.
 
 
 dnl Initialize autoconf
-AC_COPYRIGHT([Copyright (c) 2003-2007
+AC_COPYRIGHT([Copyright (c) 2003-2010
         The Xfce development team. All rights reserved.
 
 Written for Xfce by Juha Kautto <juha@xfce.org>.])
@@ -52,10 +53,7 @@ AC_PROG_LIBTOOL()
 AC_PROG_YACC()
 AC_PROG_LN_S()
 AM_PROG_LEX()
-
-dnl Check for additional programs (libical)
-AC_CHECK_PROGS([AR], [ar aal], [ar])
-AC_CHECK_PROGS([PERL], [perl5 perl])  
+AM_PROG_CC_C_O()
  
 dnl Check for standard header files
 AC_HEADER_STDC()
@@ -79,8 +77,26 @@ XDT_CHECK_PACKAGE([LIBXFCEGUI4], [libxfcegui4-1.0], [xfce_minimum_version])
 dnl Needed for panel plugin
 XDT_CHECK_PACKAGE([LIBXFCE4PANEL], [libxfce4panel-1.0], [xfce_minimum_version])
 
+dnl *********************************************
+dnl *** Optional support for external libical ***
+dnl *********************************************
+dnl *** This is optional NOW, but will become mandatory after external
+dnl *** libical can do what Orage internal version can do or Orage works
+dnl *** with it.
+XDT_CHECK_OPTIONAL_PACKAGE([LIBICAL], [libical],
+                           [libical_minimum_version], [libical],
+                           [LIBICAL support])
+
+if test x"$LIBICAL_FOUND" = x"yes"; then
+echo "* LIBICAL support:           yes"
+else
+echo "* LIBICAL support:           no"
 dnl the ical magic
 ac_INCLUDED_LIBICAL=yes
+
+dnl Check for additional programs (libical)
+AC_CHECK_PROGS([AR], [ar aal], [ar])
+AC_CHECK_PROGS([PERL], [perl5 perl])  
  
 AC_MSG_CHECKING(for Berkeley DB4 support)
 AC_ARG_WITH(bdb4, [  --with-bdb4             Add support for Berkeley DB 4.0],
@@ -171,6 +187,17 @@ case "${host}" in
   fi;;
 esac
 AC_SUBST([PTHREAD_LIBS])
+LIBICAL_DIRS="
+libical/Makefile
+libical/design-data/Makefile
+libical/doc/Makefile
+libical/scripts/Makefile
+libical/src/Makefile
+libical/src/libical/Makefile
+libical/src/libical/icalversion.h
+libical/src/libicalss/Makefile
+libical/zoneinfo/Makefile"
+fi
 
 dnl **********************************
 dnl *** check if we have _NL_TIME_FIRST_WEEKDAY 
@@ -195,14 +222,16 @@ dnl **********************************
 dnl *** Optional support for D-BUS ***
 dnl **********************************
 XDT_CHECK_OPTIONAL_PACKAGE([DBUS], [dbus-glib-1],
-                           [dbus_minimum_version], [dbus], [D-BUS support])
+                           [dbus_minimum_version], [dbus],
+                           [D-BUS support])
 
 dnl **************************************
 dnl *** Optional support for libnotify ***
 dnl **************************************
 XDT_CHECK_OPTIONAL_PACKAGE([NOTIFY], [libnotify],
-                           [notify_minimum_version], [libnotify], 
+                           [notify_minimum_version], [libnotify],
                            [LIBNOTIFY support])
+
 
 dnl ************************************************
 dnl *** Optional support for automatic archiving ***
@@ -224,15 +253,7 @@ XDT_FEATURE_DEBUG
 
 AC_OUTPUT([ 
 Makefile
-libical/Makefile
-libical/design-data/Makefile
-libical/doc/Makefile
-libical/scripts/Makefile
-libical/src/Makefile
-libical/src/libical/Makefile
-libical/src/libical/icalversion.h
-libical/src/libicalss/Makefile
-libical/zoneinfo/Makefile
+$LIBICAL_DIRS
 xfcalendar.spec
 icons/Makefile
 icons/48x48/Makefile
@@ -264,6 +285,11 @@ if test x"$NOTIFY_FOUND" = x"yes"; then
 echo "* LIBNOTIFY support:         yes"
 else
 echo "* LIBNOTIFY support:         no"
+fi
+if test x"$LIBICAL_FOUND" = x"yes"; then
+echo "* LIBICAL support:           External package"
+else
+echo "* LIBICAL support:           Orage local"
 fi
 echo "* Automatic archiving:       $have_archive"
 echo

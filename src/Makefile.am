@@ -36,14 +36,12 @@ orage_SOURCES =					\
 
 orage_CFLAGS =							\
 	$(LIBXFCEGUI4_CFLAGS)						\
-	$(ICAL_CFLAGS)								\
 	-DPACKAGE_DATA_DIR=\""$(datadir)"\"			\
 	-DPACKAGE_LOCALE_DIR=\""$(localedir)"\"
 
 orage_LDADD =							\
 	$(LIBXFCEGUI4_LIBS)						\
 	$(LIBXFCEUTIL_LIBS)						\
-	$(ICAL_LIBS)							\
 	$(INTLLIBS)
 
 if INCLUDED_LIBICAL
@@ -57,6 +55,12 @@ orage_LDADD +=							\
 	$(PTHREAD_LIBS)											\
 	$(top_builddir)/libical/src/libical/libical.la			\
 	$(top_builddir)/libical/src/libicalss/libicalss.la
+else
+orage_CFLAGS +=							\
+	$(LIBICAL_CFLAGS)
+
+orage_LDADD +=							\
+	$(LIBICAL_LIBS)
 endif
 
 if HAVE_DBUS
