@@ -154,6 +154,7 @@ static struct icaltimetype ical_get_current_local_time()
 
     return(ctime);
 }
+
 static xfical_timezone_array get_ical_timezones()
 {
 #undef P_N
@@ -3035,8 +3036,9 @@ static xfical_appt *xfical_appt_get_next_on_day_internal(char *a_day
         c = icalcompiter_deref(&ci);
         per = ic_get_period(c, TRUE);
         if (type == XFICAL_TYPE_TODO) {
+            set_todo_times(c, &per); /* may change per.stime to be per.ctime */
             if (icaltime_is_null_time(per.ctime)
-            || local_compare(per.ctime, per.stime) <= 0)
+            || local_compare(per.ctime, per.stime) < 0)
             /* VTODO is never completed  */
             /* or it has completed before start, so
              * this one is not done and needs to be counted 
@@ -3056,7 +3058,6 @@ static xfical_appt *xfical_appt_get_next_on_day_internal(char *a_day
                 , ICAL_RRULE_PROPERTY)) != 0) { /* check recurring */
             nsdate = icaltime_null_time();
             rrule = icalproperty_get_rrule(p);
-            set_todo_times(c, &per); /* may change per.stime to be per.ctime */
             ri = icalrecur_iterator_new(rrule, per.stime);
             for (nsdate = icalrecur_iterator_next(ri),
                     nedate = icaltime_add(nsdate, per.duration);
