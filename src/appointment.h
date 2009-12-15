@@ -147,6 +147,7 @@ typedef struct _appt_win
     GtkWidget *Proc_hbox;
     GtkWidget *Proc_checkbutton;
     GtkWidget *Proc_entry;
+    GtkWidget *Test_button;;
     GtkWidget *Default_label;
     GtkWidget *Default_hbox;
     GtkWidget *Default_savebutton;

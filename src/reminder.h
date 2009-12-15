@@ -64,5 +64,6 @@ void reset_orage_day_change(gboolean changed);
 void setup_orage_alarm_clock(void);
 void alarm_read();
 void alarm_list_free();
+void create_reminders(alarm_struct *alarm);
 
 #endif /* !__REMINDER_H__ */

@@ -55,6 +55,7 @@
 #include "day-view.h"
 #include "appointment.h"
 #include "parameters.h"
+#include "reminder.h"
 
 #define BORDER_SIZE 20
 #define FILETYPE_SIZE 38
@@ -1670,6 +1671,10 @@ static xfical_appt *fill_appt_window_get_appt(appt_win *apptw
     }
     else if ((strcmp(action, "UPDATE") == 0) || (strcmp(action, "COPY") == 0)) {
         /* par contains ical uid */
+        if (!par) {
+            orage_message(10, "%s appointment with null id. Ending.", action);
+            return(NULL);
+        }
         if (!xfical_file_open(TRUE))
             return(NULL);
         if ((appt = xfical_appt_get(par)) == NULL) {
@@ -2485,6 +2490,46 @@ static void read_default_alarm(xfical_appt *appt)
     orage_rc_file_close(orc);
 }
 
+static void on_test_button_clicked_cb(GtkButton *button
+        , gpointer user_data)
+{
+    appt_win *apptw = (appt_win *)user_data;
+    xfical_appt *appt = (xfical_appt *)apptw->xf_appt;
+    alarm_struct cur_alarm;
+
+    fill_appt_from_apptw(appt, apptw);
+
+    /* no need for alarm time as we are doing this now */
+    if (appt->uid)
+        cur_alarm.uid = g_strdup(appt->uid);
+    else
+        cur_alarm.uid = NULL;
+    cur_alarm.title = g_strdup(appt->title);
+    cur_alarm.description = g_strdup(appt->note);
+    cur_alarm.display_orage = appt->display_alarm_orage;
+    cur_alarm.display_notify = appt->display_alarm_notify;
+    cur_alarm.notify_refresh = TRUE; /* not needed ? */
+    cur_alarm.notify_timeout = appt->display_notify_timeout;
+    cur_alarm.audio = appt->sound_alarm;
+    if (appt->sound)
+        cur_alarm.sound = g_strdup(appt->sound);
+    else 
+        cur_alarm.sound = NULL;
+    cur_alarm.repeat_cnt = appt->soundrepeat_cnt;
+    cur_alarm.repeat_delay = appt->soundrepeat_len;
+    cur_alarm.procedure = appt->procedure_alarm;
+    if (appt->procedure_alarm)
+        cur_alarm.cmd = g_strdup(appt->procedure_cmd);
+    else
+        cur_alarm.cmd = NULL;
+    create_reminders(&cur_alarm);
+    g_free(cur_alarm.uid);
+    g_free(cur_alarm.title);
+    g_free(cur_alarm.description);
+    g_free(cur_alarm.sound);
+    g_free(cur_alarm.cmd);
+}
+
 static void on_appDefault_save_button_clicked_cb(GtkButton *button
         , gpointer user_data)
 {
@@ -3015,6 +3060,13 @@ static void build_alarm_page(appt_win *apptw)
             , apptw->Proc_label, apptw->Proc_hbox
             , ++row, (GTK_FILL), (GTK_FILL));
 
+    /***** Test Alarm *****/
+    gtk_box_pack_start(GTK_BOX(vbox), gtk_hseparator_new(), FALSE, FALSE, 3);
+    apptw->Test_button = gtk_button_new_from_stock("gtk-execute");
+    gtk_tooltips_set_tip(apptw->Tooltips, apptw->Test_button
+            , _("Test this alarm by raising it now"), NULL);
+    gtk_box_pack_start(GTK_BOX(vbox), apptw->Test_button, FALSE, FALSE, 0);
+
     /***** Default Alarm Settings *****/
     apptw->Default_hbox = gtk_hbox_new(FALSE, 6);
     apptw->Default_label = gtk_label_new(NULL);
@@ -3079,6 +3131,9 @@ static void enable_alarm_page_signals(appt_win *apptw)
             , G_CALLBACK(app_proc_checkbutton_clicked_cb), apptw);
     g_signal_connect((gpointer)apptw->Proc_entry, "changed"
             , G_CALLBACK(on_app_entry_changed_cb), apptw);
+
+    g_signal_connect((gpointer)apptw->Test_button, "clicked"
+            , G_CALLBACK(on_test_button_clicked_cb), apptw);
 
     g_signal_connect((gpointer)apptw->Default_savebutton, "clicked"
             , G_CALLBACK(on_appDefault_save_button_clicked_cb), apptw);

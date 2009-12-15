@@ -61,7 +61,7 @@
 */
 
 static void create_notify_reminder(alarm_struct *alarm);
-static void create_reminders(alarm_struct *alarm);
+void create_reminders(alarm_struct *alarm);
 static void reset_orage_alarm_clock();
 
 static void alarm_free(gpointer galarm, gpointer dummy)
@@ -437,9 +437,10 @@ static void create_notify_reminder(alarm_struct *alarm)
     else
         notify_notification_set_timeout(n, alarm->notify_timeout*1000);
 
-    notify_notification_add_action(n, "open", _("Open")
-            , (NotifyActionCallback)notify_action_open
-            , alarm, NULL);
+    if (alarm->uid) 
+        notify_notification_add_action(n, "open", _("Open")
+                , (NotifyActionCallback)notify_action_open
+                , alarm, NULL);
     if ((alarm->audio) && (alarm->repeat_cnt > 1)) {
         notify_notification_add_action(n, "stop", "Silence"
                 , (NotifyActionCallback)notify_action_silence
@@ -560,17 +561,18 @@ static void create_orage_reminder(alarm_struct *alarm)
     gtk_dialog_set_has_separator(GTK_DIALOG(wReminder), FALSE);
     gtk_button_box_set_layout(GTK_BUTTON_BOX(daaReminder), GTK_BUTTONBOX_END);
 
-    btOpenReminder = gtk_button_new_from_stock("gtk-open");
-    gtk_dialog_add_action_widget(GTK_DIALOG(wReminder), btOpenReminder
-            , GTK_RESPONSE_OK);
+    if (alarm->uid) {
+        btOpenReminder = gtk_button_new_from_stock("gtk-open");
+        gtk_dialog_add_action_widget(GTK_DIALOG(wReminder), btOpenReminder
+                , GTK_RESPONSE_OK);
+        g_signal_connect((gpointer) btOpenReminder, "clicked"
+                , G_CALLBACK(on_btOpenReminder_clicked), alarm);
+    }
 
     btOkReminder = gtk_button_new_from_stock("gtk-close");
     gtk_dialog_add_action_widget(GTK_DIALOG(wReminder), btOkReminder
             , GTK_RESPONSE_OK);
     GTK_WIDGET_SET_FLAGS(btOkReminder, GTK_CAN_DEFAULT);
-
-    g_signal_connect((gpointer) btOpenReminder, "clicked"
-            , G_CALLBACK(on_btOpenReminder_clicked), alarm);
 
     g_signal_connect((gpointer) btOkReminder, "clicked"
             , G_CALLBACK(on_btOkReminder_clicked), wReminder);
@@ -612,7 +614,7 @@ static void create_procedure_reminder(alarm_struct *alarm)
     g_free(cmd);
 }
 
-static void create_reminders(alarm_struct *alarm)
+void create_reminders(alarm_struct *alarm)
 {
 #undef P_N
 #define P_N "create_reminders: "
@@ -809,7 +811,7 @@ static void reset_orage_alarm_clock()
 }
 
 /* refresh trayicon tooltip once per minute */
-gboolean orage_tooltip_update(gpointer user_data)
+static gboolean orage_tooltip_update(gpointer user_data)
 {
 #undef P_N
 #define P_N "orage_tooltip_update: "
@@ -897,7 +899,7 @@ gboolean orage_tooltip_update(gpointer user_data)
 }
 
 /* start timer to fire every minute to keep tooltip accurate */
-gboolean start_orage_tooltip_update(gpointer user_data)
+static gboolean start_orage_tooltip_update(gpointer user_data)
 {
 #undef P_N
 #define P_N "start_orage_tooltip_update: "
@@ -916,7 +918,7 @@ gboolean start_orage_tooltip_update(gpointer user_data)
 }
 
 /* adjust the call to happen when minute changes */
-gboolean reset_orage_tooltip_update()
+static gboolean reset_orage_tooltip_update()
 {
 #undef P_N
 #define P_N "reset_orage_tooltip_update: "
