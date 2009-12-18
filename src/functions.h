@@ -75,6 +75,10 @@ GtkWidget *orage_separator_menu_item_new(GtkWidget *menu);
 GtkWidget *orage_menu_item_new_with_mnemonic(const gchar *label
         , GtkWidget *menu);
 char *orage_process_text_commands(char *text);
+GtkWidget *orage_period_hbox_new(gboolean head_space, gboolean tail_space
+        , GtkWidget *spin_dd, GtkWidget *dd_label
+        , GtkWidget *spin_hh, GtkWidget *hh_label
+        , GtkWidget *spin_mm, GtkWidget *mm_label);
 
 struct tm *orage_localtime();
 char *orage_localdate_i18();
@@ -104,6 +108,7 @@ void orage_rc_file_close(OrageRc *orc);
 gchar **orage_rc_get_groups(OrageRc *orc);
 void orage_rc_set_group(OrageRc *orc, char *grp);
 void orage_rc_del_group(OrageRc *orc, char *grp);
+gchar *orage_rc_get_group(OrageRc *orc);
 gchar *orage_rc_get_str(OrageRc *orc, char *key, char *def);
 gint   orage_rc_get_int(OrageRc *orc, char *key, gint def);
 gboolean orage_rc_get_bool(OrageRc *orc, char *key, gboolean def);

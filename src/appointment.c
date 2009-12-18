@@ -123,51 +123,6 @@ static GtkWidget *datetime_hbox_new(GtkWidget *date_button
     return(hbox);
 }
 
-static GtkWidget *period_hbox_new(gboolean head_space, gboolean tail_space
-        , GtkWidget *spin_dd, GtkWidget *dd_label
-        , GtkWidget *spin_hh, GtkWidget *hh_label
-        , GtkWidget *spin_mm, GtkWidget *mm_label)
-{
-    GtkWidget *hbox, *space_label;
-
-    hbox = gtk_hbox_new(FALSE, 0);
-
-    if (head_space) {
-        space_label = gtk_label_new("   ");
-        gtk_box_pack_start(GTK_BOX(hbox), space_label, FALSE, FALSE, 0);
-    }
-
-    gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(spin_dd), TRUE);
-    gtk_box_pack_start(GTK_BOX(hbox), spin_dd, FALSE, FALSE, 0);
-
-    gtk_box_pack_start(GTK_BOX(hbox), dd_label, FALSE, FALSE, 5);
-    
-    space_label = gtk_label_new("   ");
-    gtk_box_pack_start(GTK_BOX(hbox), space_label, FALSE, FALSE, 0);
-
-    gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(spin_hh), TRUE);
-    /* gtk_widget_set_size_request(spin_hh, 40, -1); */
-    gtk_box_pack_start(GTK_BOX(hbox), spin_hh, FALSE, FALSE, 0);
-
-    gtk_box_pack_start(GTK_BOX(hbox), hh_label, FALSE, FALSE, 5);
-    
-    space_label = gtk_label_new("   ");
-    gtk_box_pack_start(GTK_BOX(hbox), space_label, FALSE, FALSE, 0);
-
-    gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(spin_mm), TRUE);
-    /* gtk_widget_set_size_request(spin_mm, 40, -1); */
-    gtk_box_pack_start(GTK_BOX(hbox), spin_mm, FALSE, FALSE, 0);
-
-    gtk_box_pack_start(GTK_BOX(hbox), mm_label, FALSE, FALSE, 5);
-
-    if (tail_space) {
-        space_label = gtk_label_new("   ");
-        gtk_box_pack_start(GTK_BOX(hbox), space_label, FALSE, FALSE, 0);
-    }
-
-    return hbox;
-}
-
 static void mark_appointment_changed(appt_win *apptw)
 {
     if (!apptw->appointment_changed) {
@@ -2500,12 +2455,14 @@ static void on_test_button_clicked_cb(GtkButton *button
     fill_appt_from_apptw(appt, apptw);
 
     /* no need for alarm time as we are doing this now */
+    cur_alarm.alarm_time = NULL;
     if (appt->uid)
         cur_alarm.uid = g_strdup(appt->uid);
     else
         cur_alarm.uid = NULL;
     cur_alarm.title = g_strdup(appt->title);
     cur_alarm.description = g_strdup(appt->note);
+    cur_alarm.persistent = appt->alarm_persistent;
     cur_alarm.display_orage = appt->display_alarm_orage;
     cur_alarm.display_notify = appt->display_alarm_notify;
     cur_alarm.notify_refresh = TRUE; /* not needed ? */
@@ -2699,7 +2656,7 @@ static void build_general_page(appt_win *apptw)
     apptw->Dur_spin_hh_label = gtk_label_new(_("hours"));
     apptw->Dur_spin_mm = gtk_spin_button_new_with_range(0, 59, 5);
     apptw->Dur_spin_mm_label = gtk_label_new(_("mins"));
-    apptw->Dur_time_hbox = period_hbox_new(TRUE, FALSE
+    apptw->Dur_time_hbox = orage_period_hbox_new(TRUE, FALSE
             , apptw->Dur_spin_dd, apptw->Dur_spin_dd_label
             , apptw->Dur_spin_hh, apptw->Dur_spin_hh_label
             , apptw->Dur_spin_mm, apptw->Dur_spin_mm_label);
@@ -2887,7 +2844,7 @@ static void build_alarm_page(appt_win *apptw)
     apptw->Alarm_spin_hh_label = gtk_label_new(_("hours"));
     apptw->Alarm_spin_mm = gtk_spin_button_new_with_range(0, 59, 5);
     apptw->Alarm_spin_mm_label = gtk_label_new(_("mins"));
-    apptw->Alarm_time_hbox = period_hbox_new(FALSE, TRUE
+    apptw->Alarm_time_hbox = orage_period_hbox_new(FALSE, TRUE
             , apptw->Alarm_spin_dd, apptw->Alarm_spin_dd_label
             , apptw->Alarm_spin_hh, apptw->Alarm_spin_hh_label
             , apptw->Alarm_spin_mm, apptw->Alarm_spin_mm_label);

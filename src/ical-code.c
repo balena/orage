@@ -1922,19 +1922,6 @@ static void ical_appt_get_rrule_internal(icalcomponent *c, xfical_appt *appt
     appt->interval = rrule.interval;
 }
 
-static gint alarm_order(gconstpointer a, gconstpointer b)
-{
-#undef P_N
-#define P_N "alarm_order: "
-
-#ifdef ORAGE_DEBUG
-    orage_message(-300, P_N);
-#endif
-
-    return(strcmp(((alarm_struct *)a)->alarm_time
-                , ((alarm_struct *)b)->alarm_time));
-}
-
 gboolean get_appt_from_icalcomponent(icalcomponent *c, xfical_appt *appt)
 {
 #undef P_N
@@ -2922,7 +2909,7 @@ static void xfical_alarm_build_list_internal_real(gboolean first_list_today
             if (!new_alarm->description)
                 new_alarm->description = orage_process_text_commands(
                         (char *)icalcomponent_get_description(c));
-            g_par.alarm_list = g_list_prepend(g_par.alarm_list, new_alarm);
+            alarm_add(new_alarm);
             cnt_alarm_add++;
         }
     }  /* COMPONENT */
@@ -2956,13 +2943,8 @@ static void xfical_alarm_build_list_internal(gboolean first_list_today)
         xfical_alarm_build_list_internal_real(first_list_today, ic_f_ical[i].ical
                 , file_type);
     }
-    /* order list */
-    g_par.alarm_list = g_list_sort(g_par.alarm_list, alarm_order);
     setup_orage_alarm_clock(); /* keep reminders upto date */
     build_mainbox_info();      /* refresh main calendar window lists */
-    /* moved to reminder in setup_orage_alarm_clock
-    store_persistent_alarms(); / * keep track of alarms when orage is down * /
-    */
 }
 
 void xfical_alarm_build_list(gboolean first_list_today)
@@ -3621,8 +3603,11 @@ static gchar *find_next(gchar *cur, gchar *end, gchar *str)
           * First skip BEGIN: or END: and point to the component type */
             next += strlen(str);
             if (g_str_has_prefix(next, "VEVENT\n")
+            ||  g_str_has_prefix(next, "VEVENT\r\n")
             ||  g_str_has_prefix(next, "VTODO\n")
-            ||  g_str_has_prefix(next, "VJOURNAL\n"))
+            ||  g_str_has_prefix(next, "VTODO\r\n")
+            ||  g_str_has_prefix(next, "VJOURNAL\n")
+            ||  g_str_has_prefix(next, "VJOURNAL\r\n"))
                 found_valid = TRUE;
         }
     } while (next && !found_valid);
@@ -3653,8 +3638,11 @@ static gchar *find_prev(gchar *beg, gchar *cur, gchar *str)
           * First skip BEGIN: or END: and point to the component type */
             prev += strlen(str);
             if (g_str_has_prefix(prev, "VEVENT\n")
+            ||  g_str_has_prefix(prev, "VEVENT\r\n")
             ||  g_str_has_prefix(prev, "VTODO\n")
-            ||  g_str_has_prefix(prev, "VJOURNAL\n"))
+            ||  g_str_has_prefix(prev, "VTODO\r\n")
+            ||  g_str_has_prefix(prev, "VJOURNAL\n")
+            ||  g_str_has_prefix(prev, "VJOURNAL\r\n"))
                 found_valid = TRUE;
             else
                 prev -= strlen(str);

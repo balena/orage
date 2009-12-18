@@ -382,6 +382,51 @@ char *orage_process_text_commands(char *text)
     return(beq);
 }
 
+GtkWidget *orage_period_hbox_new(gboolean head_space, gboolean tail_space
+        , GtkWidget *spin_dd, GtkWidget *dd_label
+        , GtkWidget *spin_hh, GtkWidget *hh_label
+        , GtkWidget *spin_mm, GtkWidget *mm_label)
+{
+    GtkWidget *hbox, *space_label;
+
+    hbox = gtk_hbox_new(FALSE, 0);
+
+    if (head_space) {
+        space_label = gtk_label_new("   ");
+        gtk_box_pack_start(GTK_BOX(hbox), space_label, FALSE, FALSE, 0);
+    }
+
+    gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(spin_dd), TRUE);
+    gtk_box_pack_start(GTK_BOX(hbox), spin_dd, FALSE, FALSE, 0);
+
+    gtk_box_pack_start(GTK_BOX(hbox), dd_label, FALSE, FALSE, 5);
+
+    space_label = gtk_label_new("   ");
+    gtk_box_pack_start(GTK_BOX(hbox), space_label, FALSE, FALSE, 0);
+
+    gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(spin_hh), TRUE);
+    /* gtk_widget_set_size_request(spin_hh, 40, -1); */
+    gtk_box_pack_start(GTK_BOX(hbox), spin_hh, FALSE, FALSE, 0);
+
+    gtk_box_pack_start(GTK_BOX(hbox), hh_label, FALSE, FALSE, 5);
+
+    space_label = gtk_label_new("   ");
+    gtk_box_pack_start(GTK_BOX(hbox), space_label, FALSE, FALSE, 0);
+
+    gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(spin_mm), TRUE);
+    /* gtk_widget_set_size_request(spin_mm, 40, -1); */
+    gtk_box_pack_start(GTK_BOX(hbox), spin_mm, FALSE, FALSE, 0);
+
+    gtk_box_pack_start(GTK_BOX(hbox), mm_label, FALSE, FALSE, 5);
+
+    if (tail_space) {
+        space_label = gtk_label_new("   ");
+        gtk_box_pack_start(GTK_BOX(hbox), space_label, FALSE, FALSE, 0);
+    }
+
+    return hbox;
+}
+
 /*******************************************************
  * time convert and manipulation functions
  *******************************************************/
@@ -717,6 +762,11 @@ void orage_rc_set_group(OrageRc *orc, char *grp)
 void orage_rc_del_group(OrageRc *orc, char *grp)
 {
     xfce_rc_delete_group((XfceRc *)orc->rc, grp, FALSE);
+}
+
+gchar *orage_rc_get_group(OrageRc *orc)
+{
+    return(g_strdup(xfce_rc_get_group((XfceRc *)orc->rc)));
 }
 
 gchar *orage_rc_get_str(OrageRc *orc, char *key, char *def)
