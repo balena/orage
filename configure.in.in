@@ -9,7 +9,7 @@ dnl Written for Xfce by Juha Kautto <juha@xfce.org>
 dnl
 
 dnl Version information
-m4_define([orage_version], [4.7.5.3-git])
+m4_define([orage_version], [4.7.5.4-git])
 
 m4_define([gtk_minimum_version], [2.10.0])
 m4_define([xfce_minimum_version], [4.6.0])
@@ -239,7 +239,7 @@ dnl ************************************************
 have_archive="no"
 AC_ARG_ENABLE([archive],
 AC_HELP_STRING([--enable-archive], [use automatic archiving (defaut=yes)])
-AC_HELP_STRING([--disable-archive], [don't use automatic archiving]),
+AC_HELP_STRING([--disable-archive], [do not use automatic archiving]),
   [], [enable_archive=yes])
 if test x"$enable_archive" = x"yes"; then
     AC_DEFINE([HAVE_ARCHIVE], [1], [Define to enable archiving])
@@ -251,9 +251,25 @@ dnl Check for debugging support
 dnl BM_DEBUG_SUPPORT()
 XDT_FEATURE_DEBUG
 
+dnl the intention was to use variable
+dnl $LIBICAL_DIRS
+dnl to control if libical is being compiled or not, but only very
+dnl recent autotools can have such variables in AC_OUTPUT.
+dnl Revertign back to full list until time is right for using it.
+dnl This causes some extra work at compile time, but should not cause
+dnl any issues to users.
+
 AC_OUTPUT([ 
 Makefile
-$LIBICAL_DIRS
+libical/Makefile
+libical/design-data/Makefile
+libical/doc/Makefile
+libical/scripts/Makefile
+libical/src/Makefile
+libical/src/libical/Makefile
+libical/src/libical/icalversion.h
+libical/src/libicalss/Makefile
+libical/zoneinfo/Makefile
 xfcalendar.spec
 icons/Makefile
 icons/48x48/Makefile

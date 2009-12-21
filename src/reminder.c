@@ -738,11 +738,6 @@ static void create_orage_reminder(alarm_struct *alarm)
     gtk_box_pack_end(GTK_BOX(vbReminder), e_hbox, FALSE, FALSE, 0);
     ddmmhh_hbox->dialog = wReminder;
 
-#if GTK_CHECK_VERSION(2,16,0)
-    e_label = gtk_label_new(_("Remind me again after the specified time:"));
-    gtk_box_pack_end(GTK_BOX(vbReminder), e_label, FALSE, FALSE, 5);
-#endif
-
  /* ACTION AREA */
     daaReminder = GTK_DIALOG(wReminder)->action_area;
     gtk_dialog_set_has_separator(GTK_DIALOG(wReminder), FALSE);
@@ -774,7 +769,11 @@ static void create_orage_reminder(alarm_struct *alarm)
     btRecreateReminder = gtk_button_new_from_stock("gtk-execute");
 #if GTK_CHECK_VERSION(2,16,0)
     gtk_widget_set_tooltip_text(btRecreateReminder
-            , _("Remind me again after the specified time:"));
+            , _("Remind me again after the specified time"));
+#else
+    /* Note that this goes to the main area. Temporary for the version */
+    e_label = gtk_label_new(_("Press <Execute> to remind me again after the specified time:"));
+    gtk_box_pack_end(GTK_BOX(vbReminder), e_label, FALSE, FALSE, 5);
 #endif
     gtk_dialog_add_action_widget(GTK_DIALOG(wReminder)
             , btRecreateReminder, GTK_RESPONSE_OK);
