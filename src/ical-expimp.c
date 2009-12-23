@@ -86,6 +86,8 @@ typedef struct _foreign_ical_files
 
 extern ic_foreign_ical_files ic_f_ical[10];
 
+gboolean ic_internal_file_open(icalcomponent **p_ical
+                , icalset **p_fical, gchar *file_icalpath, gboolean test);
 
 static gboolean add_event(icalcomponent *c)
 {

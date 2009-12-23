@@ -198,7 +198,7 @@ static int process_header()
     return(0);
 }
 
-static process_local_time_table()
+static void process_local_time_table()
 { /* points when time changes */
     unsigned long tmp;
     int i;
@@ -217,7 +217,7 @@ static process_local_time_table()
     }
 }
 
-static process_local_time_type_table()
+static void process_local_time_type_table()
 { /* pointers to table, which explain how time changes */
     unsigned char tmp;
     int i;
@@ -233,7 +233,7 @@ static process_local_time_type_table()
     }
 }
 
-static process_ttinfo_table()
+static void process_ttinfo_table()
 { /* table of different time changes = types */
     long tmp;
     unsigned char tmp2, tmp3;
@@ -254,7 +254,7 @@ static process_ttinfo_table()
     }
 }
 
-static process_abbr_table()
+static void process_abbr_table()
 {
     unsigned char *tmp;
     int i;
@@ -271,7 +271,7 @@ static process_abbr_table()
     in_head += charcnt;
 }
 
-static process_leap_table()
+static void process_leap_table()
 {
     unsigned long tmp, tmp2;
     int i;
@@ -287,7 +287,7 @@ static process_leap_table()
     }
 }
 
-static process_std_table()
+static void process_std_table()
 {
     unsigned char tmp;
     int i;
@@ -302,7 +302,7 @@ static process_std_table()
     }
 }
 
-static process_gmt_table()
+static void process_gmt_table()
 {
     unsigned char tmp;
     int i;
@@ -397,7 +397,7 @@ static int timezone_exists_in_ical()
     else
         return(0); /* not found */
 #else
-    if (str = strstr(zones_tab_buf, in_timezone_name))
+    if ((str = strstr(zones_tab_buf, in_timezone_name)))
         return(1); /* yes, it is there */
     else
         return(0); /* not found */
@@ -678,7 +678,7 @@ static int check_parameters()
     for (s_tz = strstr(s_tz, tz); s_tz != NULL; s_tz = strstr(s_tz, tz)) {
         if (s_tz[tz_len] == '\0' || s_tz[tz_len] == '/')
             last_tz = s_tz;
-        *s_tz++;
+        s_tz++;
     }
     if (last_tz == NULL) {
         printf("check_parameters: in_file name (%s) does not contain (%s). Ending\n"
@@ -828,6 +828,7 @@ static void read_countries()
     fclose(country_file);
 }
 
+#ifndef HAVE_LIBICAL
 static void read_ical_timezones()
 {
     FILE *zones_tab_file;
@@ -856,12 +857,9 @@ static void read_ical_timezones()
         return;
     }
     zones_tab_buf[zones_tab_file_stat.st_size] = '\0';
-    /*
-    printf("read_ical_timezones: zones.tab file read (%s) (%d bytes)\n"
-                , ICAL_ZONES_TAB_FILE_LOC, strlen(zones_tab_buf));
-                */
     fclose(zones_tab_file);
 }
+#endif
 
 orage_timezone_array get_orage_timezones(int show_details, int ical)
 {

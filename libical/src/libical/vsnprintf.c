@@ -164,9 +164,11 @@ snprintf(str, n, fmt, va_alist)
 #else
 
 /* ANSI C forbids an empty source file... */
-
+/* Juha 023.12.2009: does not get through compiler check when there is 
+   function which is not used, commented it out
 static void vsnprintf_dummy_func() {
    vsnprintf_dummy_func();
 }
+*/
 
 #endif

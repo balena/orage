@@ -32,6 +32,7 @@
 #include <libxfce4util/libxfce4util.h>
 
 #include "globaltime.h"
+#include "timezone_selection.h"
 
 
 extern global_times_struct clocks;

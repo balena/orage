@@ -615,7 +615,7 @@ static void create_parameter_dialog_display_tab(Itf *dialog)
             dialog->show_todos_checkbutton), g_par.show_todos);
 
     hbox = gtk_hbox_new(FALSE, 0);
-    label = gtk_label_new(_("Show"));
+    label = gtk_label_new(_("Number of days to show in event window"));
     gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 5);
     dialog->show_events_spin = gtk_spin_button_new_with_range(0, 31, 1);
     gtk_spin_button_set_value(GTK_SPIN_BUTTON(dialog->show_events_spin)
@@ -625,8 +625,10 @@ static void create_parameter_dialog_display_tab(Itf *dialog)
     gtk_box_pack_start(GTK_BOX(hbox)
             , dialog->show_events_spin, FALSE, FALSE, 5);
     gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
+    /*
     label = gtk_label_new(_("days in event list"));
     gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 5);
+    */
 
     dialog->set_stick_checkbutton = gtk_check_button_new_with_mnemonic(
             _("Set sticked"));
@@ -829,15 +831,17 @@ static void create_parameter_dialog_extra_setup_tab(Itf *dialog)
     gtk_box_pack_start(GTK_BOX(dialog->extra_vbox)
             , dialog->el_extra_days_frame, FALSE, FALSE, 5);
 
-    label = gtk_label_new(_("Show:"));
+    label = gtk_label_new(_("Number of extra days to show in event list"));
     gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 5);
     dialog->el_extra_days_spin = gtk_spin_button_new_with_range(0, 999, 1);
     gtk_box_pack_start(GTK_BOX(hbox)
             , dialog->el_extra_days_spin, FALSE, FALSE, 5);
     gtk_spin_button_set_value(GTK_SPIN_BUTTON(dialog->el_extra_days_spin)
             , g_par.el_days);
+    /*
     label = gtk_label_new(_("extra days"));
     gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 5);
+    */
     gtk_tooltips_set_tip(dialog->Tooltips, dialog->el_extra_days_spin
             , _("This is just the default value, you can change it in the actual eventlist window.")
             , NULL);

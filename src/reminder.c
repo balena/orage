@@ -683,7 +683,7 @@ static void create_orage_reminder(alarm_struct *alarm)
     GtkWidget *swReminder;
     GtkWidget *hdReminder;
     orage_ddmmhh_hbox_struct *ddmmhh_hbox;
-    GtkWidget *e_label, *e_hbox;
+    GtkWidget *e_hbox;
     gchar *tmp;
 
 #ifdef ORAGE_DEBUG
@@ -779,10 +779,6 @@ static void create_orage_reminder(alarm_struct *alarm)
             , btRecreateReminder, GTK_RESPONSE_OK);
     g_signal_connect((gpointer) btRecreateReminder, "clicked"
             , G_CALLBACK(on_btRecreateReminder_clicked), alarm);
-    /*
-    g_signal_connect_after((gpointer) btRecreateReminder, "clicked"
-            , G_CALLBACK(on_btOkReminder_clicked), wReminder);
-            */
 
     g_signal_connect(G_OBJECT(wReminder), "destroy",
         G_CALLBACK(destroy_orage_reminder), alarm);

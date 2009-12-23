@@ -674,7 +674,7 @@ static void fill_days(day_win *dw, gint days)
 
 static void build_day_view_header(day_win *dw, char *start_date)
 {
-    GtkWidget *hbox, *label, *space_label;
+    GtkWidget *hbox, *label;
 
     hbox = gtk_hbox_new(FALSE, 0);
     gtk_box_pack_start(GTK_BOX(dw->Vbox), hbox, FALSE, FALSE, 10);
@@ -686,24 +686,13 @@ static void build_day_view_header(day_win *dw, char *start_date)
     dw->StartDate_button = gtk_button_new();
     gtk_box_pack_start(GTK_BOX(hbox), dw->StartDate_button, FALSE, FALSE, 0);
 
-    space_label = gtk_label_new("  ");
-    gtk_box_pack_start(GTK_BOX(hbox), space_label, FALSE, FALSE, 0);
-
-    space_label = gtk_label_new("     ");
-    gtk_box_pack_start(GTK_BOX(hbox), space_label, FALSE, FALSE, 0);
-
-    label = gtk_label_new(_("Show"));
+    label = gtk_label_new(_("       Number of days to show"));
     gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 10);
 
     /* show days spin = how many days to show */
     dw->day_spin = gtk_spin_button_new_with_range(1, MAX_DAYS, 1);
     gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(dw->day_spin), TRUE);
     gtk_box_pack_start(GTK_BOX(hbox), dw->day_spin, FALSE, FALSE, 0);
-    label = gtk_label_new(_("days"));
-    gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 5);
-
-    space_label = gtk_label_new("   ");
-    gtk_box_pack_start(GTK_BOX(hbox), space_label, FALSE, FALSE, 0);
 
     /* initial values */
     gtk_button_set_label(GTK_BUTTON(dw->StartDate_button)

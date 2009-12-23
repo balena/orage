@@ -42,6 +42,7 @@
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
 #include <gdk/gdk.h>
+#include <gdk/gdkx.h>
 #include <glib.h>
 #include <glib/gprintf.h>
 #include <glib/gstdio.h>
@@ -1351,8 +1352,8 @@ static void recur_row_clicked(GtkWidget *widget
         recur_exception = new_exception(text);
         appt = (xfical_appt *)apptw->xf_appt;
         g_free(text);
-        if (gl_pos = g_list_find_custom(appt->recur_exceptions
-                    , recur_exception, check_exists)) {
+        if ((gl_pos = g_list_find_custom(appt->recur_exceptions
+                    , recur_exception, check_exists))) {
             /* let's remove it */
             recur_exception_cur = gl_pos->data;
             appt->recur_exceptions = 
@@ -3100,7 +3101,8 @@ static void enable_alarm_page_signals(appt_win *apptw)
 
 static void build_recurrence_page(appt_win *apptw)
 {
-    gint row, i, y, m, d;
+    gint row, i;
+    guint y, m;
     char *recur_freq_array[5] = {
         _("None"), _("Daily"), _("Weekly"), _("Monthly"), _("Yearly")};
     char *weekday_array[7] = {
@@ -3337,7 +3339,7 @@ static void build_recurrence_page(appt_win *apptw)
     apptw->Recur_calendar1 = gtk_calendar_new();
     gtk_calendar_set_display_options(GTK_CALENDAR(apptw->Recur_calendar1)
             , GTK_CALENDAR_SHOW_HEADING | GTK_CALENDAR_SHOW_DAY_NAMES);
-    gtk_calendar_get_date(GTK_CALENDAR(apptw->Recur_calendar1), &y, &m, &d);
+    gtk_calendar_get_date(GTK_CALENDAR(apptw->Recur_calendar1), &y, &m, NULL);
     gtk_calendar_select_day(GTK_CALENDAR(apptw->Recur_calendar1), 0);
     gtk_box_pack_start(GTK_BOX(apptw->Recur_calendar_hbox)
             , apptw->Recur_calendar1, FALSE, FALSE, 0);

@@ -122,6 +122,7 @@ static icaltimezone *local_icaltimezone = NULL;
 /* in timezone_names.c */
 extern const gchar *trans_timezone[];
 
+/*
 static struct icaltimetype ical_get_current_local_time()
 {
 #undef P_N
@@ -137,13 +138,13 @@ static struct icaltimetype ical_get_current_local_time()
     else if ((g_par.local_timezone)
         &&   (strcmp(g_par.local_timezone, "floating") != 0))
         ctime = icaltime_current_time_with_zone(local_icaltimezone);
-    else { /* use floating time */
+    else { / * use floating time * /
         ctime.is_utc      = 0;
         ctime.is_date     = 0;
         ctime.is_daylight = 0;
         ctime.zone        = NULL;
     }
-    /* and at the end we need to change the clock to be correct */
+    / * and at the end we need to change the clock to be correct * /
     tm = orage_localtime();
     ctime.year        = tm->tm_year+1900;
     ctime.month       = tm->tm_mon+1;
@@ -154,7 +155,9 @@ static struct icaltimetype ical_get_current_local_time()
 
     return(ctime);
 }
+*/
 
+/*
 static xfical_timezone_array get_ical_timezones()
 {
 #undef P_N
@@ -164,7 +167,6 @@ static xfical_timezone_array get_ical_timezones()
     static char tz_floating[]="floating";
     icalarray *tz_array;
     icaltimezone *l_tz;
-    int dst; /* daylight saving time = summer time */
     struct icaltimetype ctime;
 
 #ifdef ORAGE_DEBUG
@@ -178,12 +180,9 @@ static xfical_timezone_array get_ical_timezones()
         ctime = ical_get_current_local_time();
         for (tz.count = 0; tz.count <  tz_array->num_elements; tz.count++) {
             l_tz = (icaltimezone *)icalarray_element_at(tz_array, tz.count);
-            /* ical timezones are static so this is safe although not
-             * exactly pretty */
+            / * ical timezones are static so this is safe although not
+             * exactly pretty * /
             tz.city[tz.count] = (char *)icaltimezone_get_location(l_tz);
-            /*
-            g_print(P_N "before %d %s\n", tz.count, tz.city[tz.count]);
-            */
             tz.utc_offset[tz.count] = icaltimezone_get_utc_offset(
                     l_tz, &ctime, &tz.dst[tz.count]);
         }
@@ -196,6 +195,7 @@ static xfical_timezone_array get_ical_timezones()
     }
     return (tz);
 }
+*/
 
 gboolean xfical_set_local_timezone(gboolean testing)
 {
@@ -1926,7 +1926,6 @@ gboolean get_appt_from_icalcomponent(icalcomponent *c, xfical_appt *appt)
 {
 #undef P_N
 #define P_N "get_appt_from_icalcomponent: "
-    gboolean key_found = TRUE;
     const char *text;
     icalproperty *p = NULL;
     struct icaltimetype itime, stime, etime, sltime, eltime, wtime;
@@ -2569,7 +2568,7 @@ alarm_struct *process_alarm_trigger(icalcomponent *c
     alarm_struct *new_alarm;
     struct icaldurationtype alarm_start_diff;
     struct icaldatetimeperiodtype rdate_period;
-    pvl_elem property_iterator;   /* for saving the iterator */
+    /* pvl_elem property_iterator;   */ /* for saving the iterator */
 
 #ifdef ORAGE_DEBUG
     orage_message(-200, P_N);
@@ -3199,7 +3198,6 @@ void mark_calendar(icalcomponent *c, icaltime_span *span , void *data)
 #define P_N "mark_calendar: "
     struct icaltimetype sdate, edate;
     struct tm start_tm, end_tm;
-    gboolean key_found;
     struct mark_calendar_data {
         GtkCalendar *cal;
         guint year; 
@@ -3425,7 +3423,6 @@ void add_appt_to_list(icalcomponent *c, icaltime_span *span , void *data)
 #undef P_N
 #define P_N "add_appt_to_list: "
     xfical_appt *appt;
-    GList **list = (GList **)data;
     struct icaltimetype start, end;
     struct tm start_tm, end_tm;
     gboolean key_found;
@@ -3495,12 +3492,8 @@ static void xfical_get_each_app_within_time_internal(char *a_day, gint days
 {
 #undef P_N
 #define P_N "xfical_get_each_app_within_time_internal: "
-    struct icaltimetype asdate, aedate    /* period to check */
-            , nsdate, nedate;   /* repeating event occurrency start and end */
-    xfical_period per; /* event start and end times with duration */
+    struct icaltimetype asdate, aedate;    /* period to check */
     icalcomponent *c=NULL;
-    char *uid;
-    xfical_appt *appt;
     icalcomponent_kind ikind = ICAL_VEVENT_COMPONENT;
     typedef struct _app_data
     {

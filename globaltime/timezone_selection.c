@@ -80,7 +80,7 @@ static GtkTreeStore *tz_button_create_store(gboolean details
 #define MAX_AREA_LENGTH 100
 
     GtkTreeStore *store;
-    GtkTreeIter iter1, iter2, main;
+    GtkTreeIter iter1, iter2, main_iter;
     orage_timezone_array tz_a;
     char area_old[MAX_AREA_LENGTH+2]; /*+2 = / + null */
     char s_offset[100], s_country[100], s_changes[200], s_change[50]
@@ -106,7 +106,7 @@ static GtkTreeStore *tz_button_create_store(gboolean details
             , CHANGES, " "
             , COUNTRY, " "
             , -1);
-    main = iter1; /* need to remember that */
+    main_iter = iter1; /* need to remember that */
 
     for (i=0; i < tz_a.count-2; i++) {
         /* first check area */
@@ -118,7 +118,7 @@ static GtkTreeStore *tz_button_create_store(gboolean details
             }
         /* now tz_a.city[i][j] is either / or 0 which means not found / */
             if (!tz_a.city[i][j]) { /* end of name = no are code */
-                iter1 = main;
+                iter1 = main_iter;
             }
             else if (j < MAX_AREA_LENGTH) { /* new area, let's add it */
                 area_old[j] = 0;
@@ -131,7 +131,7 @@ static GtkTreeStore *tz_button_create_store(gboolean details
                         , COUNTRY, " "
                         , -1);
                 /* let's make sure we do not match accidentally to those 
-                 * plain names on main level. We do this by adding / */
+                 * plain names on main_iter level. We do this by adding / */
                 area_old[j++] = '/';
                 area_old[j] = 0;
             }
