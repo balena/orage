@@ -7,14 +7,13 @@
 # Sergey Fedoseev <fedoseev.sergey@gmail.com>, 2006.
 # Andrey Fedoseev <andrey.fedoseev@gmail.com>, 2006
 # Ilya Shestopalov <yast4ik@yahoo.com>, 2009
-
 msgid ""
 msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-11-11 09:18+0200\n"
-"PO-Revision-Date: 2009-01-31 17:44+0300\n"
-"Last-Translator: Ilya Shestopalov <yast4ik@yahoo.com>\n"
+"PO-Revision-Date: 2009-12-26 07:52+0700\n"
+"Last-Translator: Алекс <dwqwt3i02@sneakemail.com>\n"
 "Language-Team: ru_RU <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -665,7 +664,7 @@ msgstr ""
 #: ../src/appointment.c:2277
 #: ../src/event-list.c:1160
 msgid "Todo"
-msgstr "Сделать"
+msgstr "Задача"
 
 #: ../src/appointment.c:2280
 msgid ""
@@ -673,12 +672,12 @@ msgid ""
 "Wash your car or test new version of Orage."
 msgstr ""
 "Что-либо, что необходимо когда-либо сделать. Например,\n"
-"помыть машину или тротестировать новую версию Orage."
+"помыть машину или протестировать новую версию Orage."
 
 #: ../src/appointment.c:2283
 #: ../src/event-list.c:1175
 msgid "Journal"
-msgstr "Журнал"
+msgstr "Дневник"
 
 #: ../src/appointment.c:2287
 msgid ""
@@ -698,7 +697,7 @@ msgstr "Название "
 #: ../src/ical-code.c:4496
 #: ../src/ical-code.c:4501
 msgid "Location"
-msgstr "Месторасположения"
+msgstr "Место проведения"
 
 #: ../src/appointment.c:2309
 msgid "All day event"
@@ -782,7 +781,7 @@ msgstr "Перед началом"
 
 #: ../src/appointment.c:2517
 msgid "Before End"
-msgstr "Перед концом"
+msgstr "Перед окончанием"
 
 #: ../src/appointment.c:2518
 msgid "After Start"
@@ -790,7 +789,7 @@ msgstr "После начала"
 
 #: ../src/appointment.c:2518
 msgid "After End"
-msgstr "После конца"
+msgstr "После окончания"
 
 #: ../src/appointment.c:2523
 msgid "Alarm"
@@ -810,8 +809,8 @@ msgid ""
 msgstr ""
 "Обычно будильник необходим:\n"
 " 1) перед началом события\n"
-" 2) перед завершениме события\n"
-" 3) после начала дел"
+" 2) перед завершением задачи\n"
+" 3) после начала задачи"
 
 #: ../src/appointment.c:2558
 msgid "Persistent alarm"
@@ -965,7 +964,7 @@ msgstr "Повтор"
 
 #: ../src/appointment.c:2791
 msgid "Complexity"
-msgstr "Сложный"
+msgstr "Шаблон"
 
 #: ../src/appointment.c:2794
 msgid "Basic"
@@ -973,7 +972,7 @@ msgstr "Простой"
 
 #: ../src/appointment.c:2800
 msgid "Advanced"
-msgstr "Продвинутый"
+msgstr "Расширенный"
 
 #: ../src/appointment.c:2807
 msgid "Use this if you want regular repeating event"
@@ -999,7 +998,7 @@ msgstr "Каждый"
 
 #: ../src/appointment.c:2825
 msgid "occurrence"
-msgstr "возникновение"
+msgstr "интервал"
 
 #: ../src/appointment.c:2829
 msgid ""
@@ -1029,7 +1028,7 @@ msgstr "Повторять до"
 
 #: ../src/appointment.c:2871
 msgid "Weekdays"
-msgstr "Будни"
+msgstr "Дни недели"
 
 #: ../src/appointment.c:2883
 msgid "Which day"
@@ -1044,12 +1043,12 @@ msgid ""
 "\tWeekdays = check only Wednesday,\n"
 "\tWhich day = select 2 from the number below Wednesday"
 msgstr ""
-"Укажите в какой день недели ежемесячных или ежегодных событий.\n"
+"Укажите, в какой день недели наступает ежемесячное или ежегодное событие.\n"
 " Например,\n"
 " Вторая среда каждого месяца:\n"
 " Частота = Ежемесячно,\n"
-" Дни недели = проверить только среду,\n"
-" В какой день = выбрать 2 из числа до среды"
+" Дни недели = отметьте только среду,\n"
+" В какой день = укажите 2 в поле для среды"
 
 #. ********* View menu *********
 #. View menu
@@ -1106,11 +1105,11 @@ msgstr "Неизвестно"
 #: ../src/day-view.c:694
 #: ../src/parameters.c:663
 msgid "Show"
-msgstr "Отображён"
+msgstr "Показывать"
 
 #: ../src/day-view.c:931
 msgid "Orage - day view"
-msgstr "Orage - дневной вид"
+msgstr "Orage - Просмотр дней"
 
 #. date only appointment
 #: ../src/event-list.c:190
@@ -1148,11 +1147,11 @@ msgstr "Дневной вид"
 
 #: ../src/event-list.c:1143
 msgid "Extra days to show "
-msgstr "Дополнительные дни для отображения"
+msgstr "Включать последующие дни"
 
 #: ../src/event-list.c:1179
 msgid "Journal entries starting from:"
-msgstr "Записи журнала, начиная с:"
+msgstr "Записи в дневнике, начиная с:"
 
 #: ../src/event-list.c:1204
 msgid "Search"
@@ -1185,18 +1184,18 @@ msgid ""
 "\t 5. Appointment type:\n"
 "\t\tE=Event T=Todo J=Journal"
 msgstr ""
-"Дважды кликните на линии для редактирования.\n"
+"Дважды кликните на строке для изменения.\n"
 "\n"
-"Флаги в порядке:\n"
+"Флаги (по порядку):\n"
 "\t 1. Будильник: n=без будильника\n"
 "\t\t A=визуальный будильник S=также звуковой будильник\n"
 "\t 2. Повторяемость: n=без повторения\n"
 "\t\t D=ежедневно W=еженедельно M=ежемесячно Y=ежегодно\n"
 "\t 3. Тип: f=свободный B=занятый\n"
-"\t 4. Располагатьв файле:\n"
-"\t\tO=Orage A=Архив F=Внешний\n"
+"\t 4. Расположение:\n"
+"\t\tO=Orage A=Архив F=Внешний файл\n"
 "\t 5. Тип встречи:\n"
-"\t\tE=Событие T=Задача J=Журнал"
+"\t\tE=Событие T=Задача J=Дневник"
 
 #: ../src/functions.c:130
 msgid "Pick the date"
@@ -1628,7 +1627,7 @@ msgstr "Америка/Эрмосильо"
 
 #: ../src/ical-code.c:221
 msgid "America/Indiana/Indianapolis"
-msgstr "Америка/Индиана/Индианполис"
+msgstr "Америка/Индиана/Индианаполис"
 
 #: ../src/ical-code.c:222
 msgid "America/Indiana/Knox"
@@ -1640,7 +1639,7 @@ msgstr "Америка/Индиана/Маренго"
 
 #: ../src/ical-code.c:224
 msgid "America/Indiana/Vevay"
-msgstr "Америка/Индиана/Vevay"
+msgstr "Америка/Индиана/Вевей"
 
 #: ../src/ical-code.c:225
 msgid "America/Indianapolis"
@@ -1804,7 +1803,7 @@ msgstr "Америка/Рейни-Ривер"
 
 #: ../src/ical-code.c:265
 msgid "America/Rankin_Inlet"
-msgstr "Америка/Rankin_Inlet"
+msgstr "Америка/Ренкин-Инлет"
 
 #: ../src/ical-code.c:266
 msgid "America/Recife"
@@ -2752,7 +2751,7 @@ msgstr "Тихий океан/Уоллис"
 
 #: ../src/ical-code.c:502
 msgid "Pacific/Yap"
-msgstr "Тихий океан/Яп, о-ва"
+msgstr "Тихий океан/Яп. о-ва"
 
 #: ../src/ical-code.c:1330
 msgid "Orage default alarm"
@@ -2761,12 +2760,12 @@ msgstr "Будильник по умолчанию"
 #: ../src/ical-code.c:3024
 #, c-format
 msgid "Build alarm list: Added %d alarms. Processed %d events."
-msgstr "Построение спсика будлильников: добавлено %d будильников, обработано %d событий."
+msgstr "Построение списка будильников: добавлено %d будильников, обработано %d событий."
 
 #: ../src/ical-code.c:3026
 #, c-format
 msgid "\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
-msgstr "\tНайдено %d юудильников, %d из которых активны (просмотрено %d повторяющихся будильников)."
+msgstr "\tНайдено %d будильников, из них активных: %d (просмотрено %d повторяющихся будильников)."
 
 #. remove since it has ended
 #: ../src/ical-code.c:3543
@@ -2802,7 +2801,7 @@ msgstr "\tVTODO не выполнен, не архивирован."
 #: ../src/ical-code.c:3664
 #, c-format
 msgid "\tRecurring. End year: %04d, month: %02d, day: %02d"
-msgstr "\tРекурсия. Конечный год: %04d, месяц: %02d, день: %02d"
+msgstr "\tПовторяется. Конечный год: %04d, месяц: %02d, день: %02d"
 
 #: ../src/ical-code.c:3681
 msgid "Archiving done\n"
@@ -2873,7 +2872,7 @@ msgstr "ТОЛЬКО ДЛЯ ЧТЕНИЯ"
 
 #: ../src/interface.c:640
 msgid "READ WRITE"
-msgstr "ЧТЕНИЕ ЗАПИСЬ"
+msgstr "ЧТЕНИЕ И ЗАПИСЬ"
 
 #: ../src/interface.c:658
 msgid "***** No foreign files *****"
@@ -3061,7 +3060,7 @@ msgstr ""
 
 #: ../src/interface.c:1300
 msgid "Exchange data - Orage"
-msgstr "Данные Exchange - Orage"
+msgstr "Обмен данными - Orage"
 
 #: ../src/main.c:192
 #, c-format
@@ -3189,7 +3188,7 @@ msgstr ""
 
 #: ../src/mainbox.c:269
 msgid "_Exchange data"
-msgstr "Данные Exchange"
+msgstr "Об_мен данными"
 
 #. Edit menu
 #: ../src/mainbox.c:280
@@ -3260,7 +3259,7 @@ msgstr "<b>События для %s:</b>"
 
 #: ../src/parameters.c:473
 msgid "Main setups"
-msgstr "Основные настройки"
+msgstr "Основные"
 
 #: ../src/parameters.c:479
 msgid "Timezone"
@@ -3348,7 +3347,7 @@ msgstr "Свёрнут"
 
 #: ../src/parameters.c:717
 msgid "Extra setups"
-msgstr "Дополнительные настройки"
+msgstr "Дополнительные"
 
 #: ../src/parameters.c:724
 #: ../src/parameters.c:729
@@ -3361,20 +3360,20 @@ msgstr "При открытии главного календаря, указа�
 
 #: ../src/parameters.c:766
 msgid "Dynamic icon size"
-msgstr "Динамический размер иконки"
+msgstr "Размер динамического значка"
 
 #: ../src/parameters.c:779
 #: ../src/parameters.c:796
 msgid "(0 = use static icon)"
-msgstr "(0 = использовать статическую иконку)"
+msgstr "(0 = статический значок)"
 
 #: ../src/parameters.c:782
 msgid "Dynamic icon shows current day and month. It is visible only in tray. If tray is too small for dynamic icon size, Orage switches automatically back to static icon."
-msgstr "Динамическая иконка показывает сегодняшнее число и месяц. Она видима в систмном лотке. Если лоток слишком мал для динамического размера иконки, Orage автоматически переключается на статическую иконку."
+msgstr "Динамический значок показывает сегодняшнее число и месяц. Он видима в системном лотке. Если лоток слишком мал для динамического размера, Orage автоматически переключается на статический значок."
 
 #: ../src/parameters.c:805
 msgid "Main Calendar double click shows"
-msgstr "Двойной клин на главном календаре показывает"
+msgstr "Двойной щелчок в окне календаря показывает"
 
 #: ../src/parameters.c:810
 msgid "Days view"
@@ -3395,7 +3394,7 @@ msgstr "Первый запуск Orage. Поиск используемого �
 #: ../src/parameters.c:1038
 #, c-format
 msgid "Default timezone set to %s."
-msgstr "Используемый часовой пояс установлен на %s."
+msgstr "Выбран часовой пояс: %s."
 
 #: ../src/parameters.c:1041
 msgid "Default timezone not found, please, set it manually."
