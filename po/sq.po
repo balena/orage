@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.4.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-11 09:18+0200\n"
+"POT-Creation-Date: 2009-12-30 17:07+0200\n"
 "PO-Revision-Date: 2008-11-11 00:16+0200\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: Albanian <translation-team-sq@lists.sourceforge.net>\n"
@@ -32,20 +32,11 @@ msgstr ""
 "%s\n"
 "klikoni për ndryshimin e orës"
 
-#. trick to refresh clocks once
-#: ../globaltime/globaltime.c:358
-msgid "Ending time adjustment mode"
-msgstr "Po mbyllet mënyra rregullim kohe"
-
-#: ../globaltime/globaltime.c:366
-msgid "Starting time adjustment mode"
-msgstr "Po fillohet mënyra rregullim kohe"
-
-#: ../globaltime/globaltime.c:381
+#: ../globaltime/globaltime.c:387
 msgid "Localtime"
 msgstr "Kohë vendore"
 
-#: ../globaltime/globaltime.c:456
+#: ../globaltime/globaltime.c:465
 msgid ""
 "button 1 to change preferences \n"
 "button 2 to adjust time of clocks"
@@ -53,114 +44,88 @@ msgstr ""
 "butoni 1 për ndryshim parapëlqimesh \n"
 "butoni 2 për rregullim kohe të orëve"
 
-#: ../globaltime/globaltime.c:472
+#: ../globaltime/globaltime.c:481
 msgid "adjust to change hour"
 msgstr ""
 
-#: ../globaltime/globaltime.c:487
-msgid "adjust to change minute"
+#: ../globaltime/globaltime.c:497
+msgid ""
+"adjust to change minute. Click arrows with button 2 to change only 1 minute."
 msgstr ""
 
-#: ../globaltime/gt_prefs.c:69 ../globaltime/gt_prefs.c:1077
-msgid "Standard"
-msgstr "Standard"
-
-#: ../globaltime/gt_prefs.c:71 ../src/appointment.c:2780
-msgid "None"
-msgstr "Asnjë"
-
-#: ../globaltime/gt_prefs.c:84 ../globaltime/gt_prefs.c:1100
-msgid "Equal"
-msgstr "Baras"
-
-#: ../globaltime/gt_prefs.c:86
-msgid "Vary"
-msgstr ""
-
-#: ../globaltime/gt_prefs.c:267 ../globaltime/gt_prefs.c:268
+#: ../globaltime/gt_prefs.c:264 ../globaltime/gt_prefs.c:265
 msgid "NEW"
 msgstr "E RE"
 
-#: ../globaltime/gt_prefs.c:291
+#: ../globaltime/gt_prefs.c:288
 msgid "NEW COPY"
 msgstr "KOPJE E RE"
 
-#: ../globaltime/gt_prefs.c:312
+#: ../globaltime/gt_prefs.c:309
 msgid "Not possible to delete the last clock."
 msgstr "E pamundur të fshihet ora e fundit."
 
-#: ../globaltime/gt_prefs.c:366 ../panel-plugin/oc_config.c:114
-msgid "Select timezone"
-msgstr "Përzgjidhni zonë kohore"
-
-#: ../globaltime/gt_prefs.c:511
+#: ../globaltime/gt_prefs.c:515
 msgid "update this clock"
 msgstr "përditësoje këtë orë"
 
-#: ../globaltime/gt_prefs.c:516 ../globaltime/gt_prefs.c:1033
+#: ../globaltime/gt_prefs.c:520 ../globaltime/gt_prefs.c:1033
 msgid "add new empty clock"
 msgstr "shto orë të re bosh"
 
-#: ../globaltime/gt_prefs.c:521
+#: ../globaltime/gt_prefs.c:525
 msgid "add new clock using this clock as model"
 msgstr "shto orë të re duke përdorur si model këtë orë"
 
-#: ../globaltime/gt_prefs.c:526
+#: ../globaltime/gt_prefs.c:530
 msgid "delete this clock"
 msgstr "fshije këtë orë"
 
-#: ../globaltime/gt_prefs.c:534
+#: ../globaltime/gt_prefs.c:538
 msgid "move this clock first"
 msgstr "zhvendose këtë orë të parën"
 
-#: ../globaltime/gt_prefs.c:539
+#: ../globaltime/gt_prefs.c:543
 msgid "move this clock left"
 msgstr "kaloje këtë orë majtas"
 
-#: ../globaltime/gt_prefs.c:544
+#: ../globaltime/gt_prefs.c:548
 msgid "move this clock right"
 msgstr "kaloje këtë orë djathtas"
 
-#: ../globaltime/gt_prefs.c:549
+#: ../globaltime/gt_prefs.c:553
 msgid "move this clock last"
 msgstr "zhvendose këtë orë të fundit"
 
-#: ../globaltime/gt_prefs.c:557
+#: ../globaltime/gt_prefs.c:561
 msgid "set the timezone of this clock to be local timezone"
 msgstr "vëre zonën kohore të kësaj ore të jetë edhe zona vendore kohore"
 
-#: ../globaltime/gt_prefs.c:563 ../globaltime/gt_prefs.c:1041
+#: ../globaltime/gt_prefs.c:567 ../globaltime/gt_prefs.c:1041
 msgid "close window and exit"
 msgstr "mbylle dritaren dhe dil"
 
-#: ../globaltime/gt_prefs.c:586
-msgid "Modify Clock "
-msgstr "Ndryshoni Orën"
+#: ../globaltime/gt_prefs.c:589
+#, fuzzy
+msgid "Globaltime preferences "
+msgstr "përditësoni parapëlqimet"
 
 #. -----------------------HEADING-------------------------------------------
-#: ../globaltime/gt_prefs.c:599
+#: ../globaltime/gt_prefs.c:602
 msgid "Clock Parameters"
 msgstr "Parametra Ore"
 
-#: ../globaltime/gt_prefs.c:603
+#: ../globaltime/gt_prefs.c:606
 msgid "Name of the clock:"
 msgstr "Emri i orës:"
 
-#: ../globaltime/gt_prefs.c:609
+#: ../globaltime/gt_prefs.c:612
 msgid "enter name of clock"
 msgstr "jepni emrin e orës"
 
-#: ../globaltime/gt_prefs.c:612
+#: ../globaltime/gt_prefs.c:615
 msgid "Timezone of the clock:"
 msgstr "Zonë kohore e orës:"
-
-#: ../globaltime/gt_prefs.c:618
-msgid ""
-"enter timezone of clock,\n"
-"(=any valid TZ value)"
-msgstr ""
-"jepni zonë kohore të orës,\n"
-"(=çfarëdo vlere e vlefshme ZK)"
 
 #: ../globaltime/gt_prefs.c:642
 msgid "Text Formatting"
@@ -275,8 +240,9 @@ msgid "update preferences"
 msgstr "përditësoni parapëlqimet"
 
 #: ../globaltime/gt_prefs.c:1061
-msgid "Modify Preferences"
-msgstr "Ndryshoni Parapëlqimet"
+#, fuzzy
+msgid "Globaltime Preferences"
+msgstr "Parapëlqime të Përgjithshme"
 
 #. -----------------------HEADING--------------------------------------
 #: ../globaltime/gt_prefs.c:1072
@@ -286,6 +252,10 @@ msgstr "Parapëlqime të Përgjithshme"
 #: ../globaltime/gt_prefs.c:1076
 msgid "Decorations:"
 msgstr "Zbukurime:"
+
+#: ../globaltime/gt_prefs.c:1077
+msgid "Standard"
+msgstr "Standard"
 
 #: ../globaltime/gt_prefs.c:1082
 msgid "Use normal decorations"
@@ -298,6 +268,10 @@ msgstr "Mos shfaq zbukurime dritareje (anë)"
 #: ../globaltime/gt_prefs.c:1099
 msgid "Clock size:"
 msgstr "Madhësi ore:"
+
+#: ../globaltime/gt_prefs.c:1100
+msgid "Equal"
+msgstr "Baras"
 
 #: ../globaltime/gt_prefs.c:1105
 msgid "All clocks have same size"
@@ -315,87 +289,174 @@ msgstr "Madhësitë e orëve ndryshojnë"
 msgid "Local timezone:"
 msgstr "Zonë kohore vendore:"
 
-#: ../globaltime/gt_prefs.c:1128
-msgid ""
-"Enter local timezone. (it is used to show if time is on previous(-) or next "
-"date(+) by adding a +/- after the time)"
+#: ../globaltime/timezone_selection.c:103
+#: ../panel-plugin/timezone_selection.c:103 ../src/timezone_selection.c:103
+msgid " Other"
 msgstr ""
-"Jepni zonën kohore vendore. (Përdoret për të treguar nëse koha është në "
-"datën e mëparshme(-) ose pasuesen(+) duke shtuar një +/- pas kohës)"
 
-#: ../panel-plugin/oc_config.c:199
+#: ../globaltime/timezone_selection.c:158
+#: ../panel-plugin/timezone_selection.c:158 ../src/timezone_selection.c:169
+#, c-format
+msgid "%d hour %d mins"
+msgstr ""
+
+#: ../globaltime/timezone_selection.c:161
+#: ../panel-plugin/timezone_selection.c:161 ../src/timezone_selection.c:172
+#, fuzzy, c-format
+msgid "%d hour"
+msgstr "orë"
+
+#: ../globaltime/timezone_selection.c:163
+#: ../panel-plugin/timezone_selection.c:163 ../src/timezone_selection.c:174
+#, fuzzy, c-format
+msgid "%d mins"
+msgstr "min"
+
+#: ../globaltime/timezone_selection.c:169
+#: ../panel-plugin/timezone_selection.c:169 ../src/timezone_selection.c:180
+msgid "backward"
+msgstr ""
+
+#: ../globaltime/timezone_selection.c:172
+#: ../panel-plugin/timezone_selection.c:172 ../src/timezone_selection.c:183
+#, fuzzy
+msgid "forward"
+msgstr "Përpara"
+
+#: ../globaltime/timezone_selection.c:196
+#: ../panel-plugin/timezone_selection.c:196 ../src/timezone_selection.c:207
+msgid "not changed"
+msgstr ""
+
+#: ../globaltime/timezone_selection.c:197
+#: ../panel-plugin/timezone_selection.c:197 ../src/timezone_selection.c:208
+msgid "not changing"
+msgstr ""
+
+#. location
+#: ../globaltime/timezone_selection.c:249
+#: ../globaltime/timezone_selection.c:254
+#: ../panel-plugin/timezone_selection.c:249
+#: ../panel-plugin/timezone_selection.c:254 ../src/appointment.c:2595
+#: ../src/timezone_selection.c:260 ../src/timezone_selection.c:265
+msgid "Location"
+msgstr "Vendndodhje"
+
+#: ../globaltime/timezone_selection.c:260
+#: ../panel-plugin/timezone_selection.c:260 ../src/timezone_selection.c:271
+msgid "GMT Offset"
+msgstr ""
+
+#: ../globaltime/timezone_selection.c:266
+#: ../panel-plugin/timezone_selection.c:266 ../src/timezone_selection.c:277
+msgid "Previous/Next Change"
+msgstr ""
+
+#: ../globaltime/timezone_selection.c:271
+#: ../panel-plugin/timezone_selection.c:271 ../src/timezone_selection.c:282
+msgid "Country"
+msgstr ""
+
+#: ../globaltime/timezone_selection.c:301
+#: ../globaltime/timezone_selection.c:311
+#: ../panel-plugin/timezone_selection.c:301
+#: ../panel-plugin/timezone_selection.c:311 ../src/timezone_selection.c:312
+#: ../src/timezone_selection.c:322
+msgid "Pick timezone"
+msgstr "Merrni zonë kohore"
+
+#: ../globaltime/timezone_selection.c:304
+#: ../globaltime/timezone_selection.c:314
+#: ../panel-plugin/timezone_selection.c:304
+#: ../panel-plugin/timezone_selection.c:314 ../src/timezone_selection.c:315
+#: ../src/timezone_selection.c:325
+msgid "Change mode"
+msgstr ""
+
+#: ../globaltime/timezone_selection.c:305
+#: ../globaltime/timezone_selection.c:315
+#: ../globaltime/timezone_selection.c:354
+#: ../panel-plugin/timezone_selection.c:305
+#: ../panel-plugin/timezone_selection.c:315
+#: ../panel-plugin/timezone_selection.c:354 ../src/timezone_selection.c:316
+#: ../src/timezone_selection.c:326 ../src/timezone_selection.c:365
+msgid "UTC"
+msgstr "UTC"
+
+#. NOTE: this exists only if ical timezones are being used
+#: ../globaltime/timezone_selection.c:306
+#: ../globaltime/timezone_selection.c:359
+#: ../panel-plugin/timezone_selection.c:306
+#: ../panel-plugin/timezone_selection.c:359 ../src/parameters.c:497
+#: ../src/timezone_selection.c:317 ../src/timezone_selection.c:370
+msgid "floating"
+msgstr "pezull"
+
+#: ../panel-plugin/oc_config.c:219
 msgid "Appearance"
 msgstr "Dukje"
 
 #. show frame
-#: ../panel-plugin/oc_config.c:210
+#: ../panel-plugin/oc_config.c:230
 msgid "Show _frame"
 msgstr "Shfaq _kornizë"
 
 #. foreground color
-#: ../panel-plugin/oc_config.c:220
+#: ../panel-plugin/oc_config.c:240
 msgid "set foreground _color:"
 msgstr "caktoni _ngjyrë paraskene:"
 
 #. background color
-#: ../panel-plugin/oc_config.c:234
+#: ../panel-plugin/oc_config.c:254
 msgid "set _background color:"
 msgstr "caktoni ngjyrë _prapaskene :"
 
 #. clock size (=vbox size): height and width
-#: ../panel-plugin/oc_config.c:248
+#: ../panel-plugin/oc_config.c:268
 msgid "set _height:"
 msgstr "caktoni lartësi:"
 
-#: ../panel-plugin/oc_config.c:260
+#: ../panel-plugin/oc_config.c:278
+msgid "Note that you can not change the height of horizontal panels"
+msgstr ""
+
+#: ../panel-plugin/oc_config.c:283
 msgid "set _width:"
 msgstr "caktoni gjerësi:"
 
-#: ../panel-plugin/oc_config.c:281
+#: ../panel-plugin/oc_config.c:294
+msgid "Note that you can not change the width of vertical panels"
+msgstr ""
+
+#: ../panel-plugin/oc_config.c:311
 msgid "Clock Options"
 msgstr "Mundësi Ore"
 
 #. timezone
-#: ../panel-plugin/oc_config.c:292
+#: ../panel-plugin/oc_config.c:328
 msgid "set timezone to:"
 msgstr "vendose zonën kohore si:"
 
-#: ../panel-plugin/oc_config.c:301
-msgid "Set any valid timezone (=TZ) value or pick one from the list."
+#: ../panel-plugin/oc_config.c:349
+#, c-format
+msgid "Line %d:"
 msgstr ""
-"Caktoni çfarëdo vlere zone kohore (=TZ) të vlefshme ose zgjidhni një prej "
-"listës."
 
-#. line 1
-#: ../panel-plugin/oc_config.c:310
-msgid "show line _1:"
-msgstr "shfaq rreshtin _1:"
-
-#: ../panel-plugin/oc_config.c:321
+#: ../panel-plugin/oc_config.c:359
 msgid "Enter any valid strftime function parameter."
 msgstr "Jepni çfarëdo parametri të vlefshëm strftime."
 
-#. line 2
-#: ../panel-plugin/oc_config.c:337
-msgid "show line _2:"
-msgstr "shfaq rreshtin _2:"
-
-#. line 3
-#: ../panel-plugin/oc_config.c:359
-msgid "show line _3:"
-msgstr "shfaq rreshtin _3:"
-
 #. Tooltip hint
-#: ../panel-plugin/oc_config.c:381
+#: ../panel-plugin/oc_config.c:401
 msgid "Tooltip:"
 msgstr "Ndihmëz:"
 
 #. special timing for SUSPEND/HIBERNATE
-#: ../panel-plugin/oc_config.c:391
+#: ../panel-plugin/oc_config.c:411
 msgid "fix time after suspend/hibernate"
 msgstr ""
 
-#: ../panel-plugin/oc_config.c:395
+#: ../panel-plugin/oc_config.c:415
 msgid ""
 "You only need this if you do short term (less than 5 hours) suspend or "
 "hibernate and your visible time does not include seconds. Under these "
@@ -404,7 +465,7 @@ msgid ""
 "features from working.)"
 msgstr ""
 
-#: ../panel-plugin/oc_config.c:407
+#: ../panel-plugin/oc_config.c:432
 msgid ""
 "This program uses strftime function to get time.\n"
 "Use any valid code to get time in the format you prefer.\n"
@@ -425,14 +486,16 @@ msgstr ""
 "\t%H = orë \t\t\t\t%M = minutë\n"
 "\t%X = kohë vendore\t\t\t%x = datë vendore"
 
-#: ../panel-plugin/oc_config.c:430
-msgid "Properties"
-msgstr "Veti"
+#: ../panel-plugin/oc_config.c:456
+#, fuzzy
+msgid "Orage clock Preferences"
+msgstr "Parapëlqime për Orage-in"
 
-#: ../panel-plugin/oc_config.c:445
+#: ../panel-plugin/oc_config.c:471
 msgid "Orage clock"
 msgstr "Orë e Orage-it"
 
+#. no lines yet
 #. TRANSLATORS: Use format characters from strftime(3)
 #. * to get the proper string for your locale.
 #. * I used these:
@@ -442,18 +505,9 @@ msgstr "Orë e Orage-it"
 #. * %Y  : four digit year
 #. * %V  : ISO week number
 #.
-#: ../panel-plugin/orageclock.c:596
+#: ../panel-plugin/xfce4-orageclock-plugin.c:622
 msgid "%A %d %B %Y/%V"
 msgstr "%A %d %B %Y/%V"
-
-#: ../plugin/xfcalendar_plugin.c:43
-msgid "Failed to launch 'orage -p'"
-msgstr "Dështoi në dhënien e 'orage -p'"
-
-#. the button label in the xfce-mcs-manager dialog
-#: ../plugin/xfcalendar_plugin.c:61
-msgid "Orage - Calendar"
-msgstr "Orage - Kalendar"
 
 #: ../src/about-xfcalendar.c:42
 msgid "Manage your time with Xfce4"
@@ -474,155 +528,143 @@ msgstr "Ndihmoi"
 #. if (gtk_toggle_button_get_active(
 #. GTK_TOGGLE_BUTTON(apptw->Type_journal_rb)))
 #. end time
-#: ../src/appointment.c:348 ../src/appointment.c:384 ../src/appointment.c:2330
+#: ../src/appointment.c:312 ../src/appointment.c:352 ../src/appointment.c:2624
 msgid "End"
 msgstr "Fund"
 
-#: ../src/appointment.c:366
+#: ../src/appointment.c:332
 msgid "Due"
 msgstr ""
 
-#: ../src/appointment.c:501 ../src/mainbox.c:689 ../xfcalendar.desktop.in.h:3
+#: ../src/appointment.c:471 ../src/mainbox.c:729
 msgid "Orage"
 msgstr "Orage"
 
 #. to avoid timing problems when updating entry
 #. Create file chooser
-#: ../src/appointment.c:651 ../src/interface.c:277 ../src/parameters.c:384
+#: ../src/appointment.c:650 ../src/interface.c:276 ../src/parameters.c:401
 msgid "Select a file..."
 msgstr "Përzgjidhni një kartelë..."
 
-#: ../src/appointment.c:659
+#: ../src/appointment.c:658
 msgid "Sound Files"
 msgstr "Kartela Tingulli"
 
-#: ../src/appointment.c:666 ../src/interface.c:290
+#: ../src/appointment.c:665 ../src/interface.c:289
 msgid "All Files"
 msgstr "Tërë Kartelat"
 
-#: ../src/appointment.c:717 ../src/appointment.c:1145 ../src/event-list.c:897
-msgid "Warning"
-msgstr "Kujdes"
-
-#: ../src/appointment.c:719
+#: ../src/appointment.c:716
 msgid "The appointment information has been modified."
 msgstr "Të dhënat për takimin u ndryshuan."
 
-#: ../src/appointment.c:720 ../src/appointment.c:1148 ../src/event-list.c:900
+#: ../src/appointment.c:717 ../src/appointment.c:1160 ../src/event-list.c:917
 msgid "Do you want to continue?"
 msgstr "Doni të vazhdohet?"
 
-#: ../src/appointment.c:750
-msgid "Error"
-msgstr "Gabim"
-
-#: ../src/appointment.c:752
+#: ../src/appointment.c:746
 msgid "The end of this appointment is earlier than the beginning."
 msgstr "Fundi i këtij takimi bie më herët se fillimi."
 
 #. cat_groups[0] is special [NULL] entry always
-#: ../src/appointment.c:1007 ../src/appointment.c:1547
+#: ../src/appointment.c:1002 ../src/appointment.c:1759
 msgid "Not set"
 msgstr "E parregulluar"
 
-#: ../src/appointment.c:1147
+#: ../src/appointment.c:1159
 msgid "This appointment will be permanently removed."
 msgstr "Ky takim do të hiqet përfundimisht."
 
-#: ../src/appointment.c:1421 ../src/event-list.c:726
-msgid "Info"
-msgstr "Të dhëna"
-
-#: ../src/appointment.c:1423
+#: ../src/appointment.c:1638
 msgid "This appointment does not exist."
 msgstr "Ky takim nuk ekziston"
 
-#: ../src/appointment.c:1424
+#: ../src/appointment.c:1639
 msgid "It was probably removed, please refresh your screen."
 msgstr "Ndoshta qe hequr, ju lutem rifreskoni ekranin."
 
-#: ../src/appointment.c:1729
+#: ../src/appointment.c:1941
 msgid "Current categories"
 msgstr "Kategoritë e tanishme"
 
-#: ../src/appointment.c:1744
+#: ../src/appointment.c:1956
 msgid "Add new category with color"
 msgstr "Shto kategori të re me ngjyrë"
 
-#: ../src/appointment.c:1748
+#: ../src/appointment.c:1960
 msgid "Category:"
 msgstr "Kategori:"
 
-#: ../src/appointment.c:1779
+#: ../src/appointment.c:1991
 msgid "Colors of categories - Orage"
 msgstr "Ngjyra të kategorive - Orage"
 
-#: ../src/appointment.c:1940
-msgid "New appointment - Orage"
-msgstr "Takim i ri - Orage"
-
-#: ../src/appointment.c:1964
+#: ../src/appointment.c:2038
 msgid " *** COPY ***"
 msgstr " *** KOPJOJE ***"
+
+#: ../src/appointment.c:2297
+msgid "New appointment - Orage"
+msgstr "Takim i ri - Orage"
 
 #. File menu stuff
 #. ********* File menu *********
 #. File menu
-#: ../src/appointment.c:2074 ../src/day-view.c:254 ../src/event-list.c:994
-#: ../src/interface.c:762 ../src/mainbox.c:261
+#: ../src/appointment.c:2326 ../src/day-view.c:254 ../src/event-list.c:1007
+#: ../src/interface.c:761 ../src/mainbox.c:260
 msgid "_File"
 msgstr "_Kartelë"
 
-#: ../src/appointment.c:2080
+#: ../src/appointment.c:2332
 msgid "Sav_e and close"
 msgstr "R_uaje dhe mbylle"
 
-#: ../src/appointment.c:2093 ../src/event-list.c:1000
+#: ../src/appointment.c:2345 ../src/event-list.c:1013
 msgid "D_uplicate"
 msgstr "D_yfishoje"
 
-#: ../src/appointment.c:2227
+#: ../src/appointment.c:2521
 msgid "Save"
 msgstr "Ruaj"
 
-#: ../src/appointment.c:2229
+#: ../src/appointment.c:2523
 msgid "Save and close"
 msgstr "Ruaj dhe mbyll"
 
-#: ../src/appointment.c:2234
+#: ../src/appointment.c:2528
 msgid "Revert"
 msgstr "Rikthe"
 
-#: ../src/appointment.c:2236 ../src/event-list.c:1085
+#: ../src/appointment.c:2530 ../src/event-list.c:1098
 msgid "Duplicate"
 msgstr "Dyfisho"
 
-#: ../src/appointment.c:2241 ../src/event-list.c:1087
+#: ../src/appointment.c:2535 ../src/event-list.c:1100
 msgid "Delete"
 msgstr "Fshij"
 
-#: ../src/appointment.c:2259
+#: ../src/appointment.c:2553
 msgid "Free"
 msgstr "E lirë"
 
-#: ../src/appointment.c:2259
+#: ../src/appointment.c:2553
 msgid "Busy"
 msgstr "I zënë"
 
-#: ../src/appointment.c:2263
+#: ../src/appointment.c:2557
 msgid "General"
 msgstr "Të përgjithshme"
 
 #. type
-#: ../src/appointment.c:2269
+#: ../src/appointment.c:2563
 msgid "Type "
 msgstr "Lloj"
 
-#: ../src/appointment.c:2271 ../src/event-list.c:1139
+#: ../src/appointment.c:2565 ../src/event-list.c:1152
 msgid "Event"
 msgstr "Ngjarje"
 
-#: ../src/appointment.c:2274
+#: ../src/appointment.c:2568
 msgid ""
 "Event that will happen sometime. For example:\n"
 "Meeting or birthday or TV show."
@@ -630,11 +672,11 @@ msgstr ""
 "Ngjarje që do të ndodhë një ditë. Për shembull:\n"
 "Mbledhje ose ditëlindje ose shfaqje në TV."
 
-#: ../src/appointment.c:2277 ../src/event-list.c:1160
+#: ../src/appointment.c:2571 ../src/event-list.c:1175
 msgid "Todo"
 msgstr ""
 
-#: ../src/appointment.c:2280
+#: ../src/appointment.c:2574
 msgid ""
 "Something that you should do sometime. For example:\n"
 "Wash your car or test new version of Orage."
@@ -642,11 +684,11 @@ msgstr ""
 "Diçka që do të duhej ta bënit dikur. Për shembull:\n"
 "Lani makinën ose provoni versionin e ri të Orage-it."
 
-#: ../src/appointment.c:2283 ../src/event-list.c:1175
+#: ../src/appointment.c:2577 ../src/event-list.c:1190
 msgid "Journal"
 msgstr "Ditar"
 
-#: ../src/appointment.c:2287
+#: ../src/appointment.c:2581
 msgid ""
 "Make a note that something happened. For example:\n"
 "Remark that your mother called or first snow came."
@@ -655,64 +697,59 @@ msgstr ""
 "Shënoni që ju telefoni prindi ose ra bora e parë."
 
 #. title
-#: ../src/appointment.c:2294
+#: ../src/appointment.c:2588
 msgid "Title "
 msgstr "Titull "
 
-#. location
-#: ../src/appointment.c:2301 ../src/ical-code.c:4496 ../src/ical-code.c:4501
-msgid "Location"
-msgstr "Vendndodhje"
-
-#: ../src/appointment.c:2309
+#: ../src/appointment.c:2603
 msgid "All day event"
 msgstr "Ngjare për tërë ditën"
 
 #. start time
-#: ../src/appointment.c:2315 ../src/day-view.c:681
+#: ../src/appointment.c:2609 ../src/appointment.c:3272 ../src/day-view.c:682
 msgid "Start"
 msgstr "Fillim"
 
-#: ../src/appointment.c:2335
+#: ../src/appointment.c:2629
 msgid "Set      "
 msgstr "Caktoni"
 
-#: ../src/appointment.c:2356
+#: ../src/appointment.c:2650
 msgid "Duration"
 msgstr "Kohëzgjatje"
 
-#: ../src/appointment.c:2360 ../src/appointment.c:2532 ../src/day-view.c:702
+#: ../src/appointment.c:2654 ../src/appointment.c:2842 ../src/reminder.c:725
 msgid "days"
 msgstr "ditë"
 
-#: ../src/appointment.c:2362 ../src/appointment.c:2534
+#: ../src/appointment.c:2656 ../src/appointment.c:2844 ../src/reminder.c:727
 msgid "hours"
 msgstr "orë"
 
-#: ../src/appointment.c:2364 ../src/appointment.c:2536
+#: ../src/appointment.c:2658 ../src/appointment.c:2846 ../src/reminder.c:729
 msgid "mins"
 msgstr "min"
 
 #. Availability (only for EVENT)
-#: ../src/appointment.c:2376
+#: ../src/appointment.c:2670
 msgid "Availability"
 msgstr "Pasje"
 
 #. completed (only for TODO)
-#: ../src/appointment.c:2384
+#: ../src/appointment.c:2678 ../src/appointment.c:3278
 msgid "Completed"
 msgstr "U plotësua"
 
-#: ../src/appointment.c:2387
+#: ../src/appointment.c:2681
 msgid "Done"
 msgstr "U krye"
 
 #. categories
-#: ../src/appointment.c:2408
+#: ../src/appointment.c:2702
 msgid "Categories"
 msgstr "Kategori"
 
-#: ../src/appointment.c:2420
+#: ../src/appointment.c:2714
 msgid ""
 "This is special category, which can be used to color this appointment in "
 "list views."
@@ -720,51 +757,59 @@ msgstr ""
 "Kjo është një kategori speciale, e cila mund të përdoret për të ngjyrosur "
 "këtë takim te paraqitjet në formë listash."
 
-#: ../src/appointment.c:2425
+#: ../src/appointment.c:2719
 msgid "update colors for categories."
 msgstr "përditëso ngjyra për kategoritë."
 
+#. priority
+#: ../src/appointment.c:2725
+msgid "Priority"
+msgstr ""
+
 #. note
-#: ../src/appointment.c:2431
+#: ../src/appointment.c:2735
 msgid "Note"
 msgstr "Shënim"
 
-#: ../src/appointment.c:2450
+#: ../src/appointment.c:2754
 msgid ""
-"<D> inserts current date in local date format.\n"
-"<T> inserts time and\n"
-"<DT> inserts date and time."
+"These shorthand commands take effect immediately:\n"
+"    <D> inserts current date in local date format\n"
+"    <T> inserts time and\n"
+"    <DT> inserts date and time.\n"
+"\n"
+"These are converted only later when they are seen:\n"
+"    <&Ynnnn> is translated to current year minus nnnn.\n"
+"(This can be used for example in birthday reminders to tell how old the "
+"person will be.)"
 msgstr ""
-"<D> fut datën e tanishme në format date vendore.\n"
-"<T> fut kohën dhe\n"
-"<DT> fut datën dhe kohën."
 
-#: ../src/appointment.c:2517
+#: ../src/appointment.c:2825
 msgid "Before Start"
 msgstr "Para Fillimit"
 
-#: ../src/appointment.c:2517
+#: ../src/appointment.c:2825
 msgid "Before End"
 msgstr "Para Fundit"
 
-#: ../src/appointment.c:2518
+#: ../src/appointment.c:2826
 msgid "After Start"
 msgstr "Pas Nisjes"
 
-#: ../src/appointment.c:2518
+#: ../src/appointment.c:2826
 msgid "After End"
 msgstr "Pas Fundit"
 
-#: ../src/appointment.c:2523
+#: ../src/appointment.c:2833
 msgid "Alarm"
 msgstr "Alarm"
 
 #. **** ALARM TIME ****
-#: ../src/appointment.c:2529
+#: ../src/appointment.c:2839
 msgid "Alarm time"
 msgstr "Kohë alarmi"
 
-#: ../src/appointment.c:2553
+#: ../src/appointment.c:2863
 msgid ""
 "Often you want to get alarm:\n"
 " 1) before Event start\n"
@@ -776,11 +821,11 @@ msgstr ""
 " 2) përpara se të përfundojë një Todo\n"
 " 3) pas fillimit të një Todo-je"
 
-#: ../src/appointment.c:2558
+#: ../src/appointment.c:2868
 msgid "Persistent alarm"
 msgstr "Alarm i Përhershëm"
 
-#: ../src/appointment.c:2560
+#: ../src/appointment.c:2870
 msgid ""
 "Select this if you want Orage to remind you even if it has not been active "
 "when the alarm happened."
@@ -789,160 +834,169 @@ msgstr ""
 "ndodh alarmi."
 
 #. **** Audio Alarm ****
-#: ../src/appointment.c:2569
+#: ../src/appointment.c:2879
 msgid "Sound"
 msgstr "Tingull"
 
-#: ../src/appointment.c:2573 ../src/appointment.c:2694
+#: ../src/appointment.c:2883 ../src/appointment.c:3004
 msgid "Use"
 msgstr "Përdor"
 
-#: ../src/appointment.c:2575
+#: ../src/appointment.c:2885
 msgid "Select this if you want audible alarm"
 msgstr "Përzgjidheni këtë nëse doni alarm të dëgjueshëm"
 
-#: ../src/appointment.c:2592
+#: ../src/appointment.c:2902
 msgid "Repeat alarm sound"
 msgstr "Përsërit tingullin e alarmit"
 
-#: ../src/appointment.c:2608 ../src/appointment.c:2852
+#: ../src/appointment.c:2918 ../src/appointment.c:3220
 msgid "times"
 msgstr "kohë"
 
-#: ../src/appointment.c:2624
+#: ../src/appointment.c:2934
 msgid "sec interval"
 msgstr ""
 
 #. **** Display Alarm ****
-#: ../src/appointment.c:2634
+#: ../src/appointment.c:2944
 msgid "Visual"
 msgstr "Pamore"
 
-#: ../src/appointment.c:2638
+#: ../src/appointment.c:2948
 msgid "Use Orage window"
 msgstr "Përdor dritare Orage-i"
 
-#: ../src/appointment.c:2640
+#: ../src/appointment.c:2950
 msgid "Select this if you want Orage window alarm"
 msgstr "Përzgjidheni nëse doni dritare alarmi Orage"
 
-#: ../src/appointment.c:2652
+#: ../src/appointment.c:2962
 msgid "Use notification"
 msgstr "Përdor njoftim"
 
-#: ../src/appointment.c:2654
+#: ../src/appointment.c:2964
 msgid "Select this if you want notification alarm"
 msgstr "Përzgjidheni këtë nëse doni alarm njoftimi"
 
-#: ../src/appointment.c:2660
+#: ../src/appointment.c:2970
 msgid "Set timeout"
 msgstr "Caktoni skadimin"
 
-#: ../src/appointment.c:2663
+#: ../src/appointment.c:2973
 msgid "Select this if you want notification to expire automatically"
 msgstr "Përzgjidheni këtë nëse doni ëe njoftimi të skadojë vetvetiu"
 
-#: ../src/appointment.c:2674
+#: ../src/appointment.c:2984
 msgid "0 = system default expiration time"
 msgstr "0 = kohës skadimi parazgjedhje e sistemit"
 
-#: ../src/appointment.c:2679
+#: ../src/appointment.c:2989
 msgid "seconds"
 msgstr "sekonda"
 
 #. **** Procedure Alarm ****
-#: ../src/appointment.c:2690
+#: ../src/appointment.c:3000
 msgid "Procedure"
 msgstr "Procedurë"
 
-#: ../src/appointment.c:2696
+#: ../src/appointment.c:3006
 msgid "Select this if you want procedure or script alarm"
 msgstr "Përdoreni këtë nëse doni alarm procedure ose programthi"
 
-#: ../src/appointment.c:2702
+#: ../src/appointment.c:3012
 msgid ""
 "You must enter all escape etc characters yourself.\n"
 " This string is just given to shell to process"
 msgstr ""
 
-#. **** Default Alarm Settings ****
-#: ../src/appointment.c:2711
-msgid "Default alarm"
+#: ../src/appointment.c:3024
+msgid "Test this alarm by raising it now"
+msgstr ""
+
+#: ../src/appointment.c:3031
+#, fuzzy
+msgid "<b>Default alarm</b>"
 msgstr "Alarm parazgjedhje"
 
-#: ../src/appointment.c:2718
+#: ../src/appointment.c:3039
 msgid "Store current settings as default alarm"
 msgstr "Depozitoji rregullimet e tanishme si alarm parazgjedhje"
 
-#: ../src/appointment.c:2723
+#: ../src/appointment.c:3044
 msgid "Set current settings from default alarm"
 msgstr "Caktoji rregullimet e tanishme nga alarm parazgjedhje"
 
-#: ../src/appointment.c:2780
+#: ../src/appointment.c:3106
+msgid "None"
+msgstr "Asnjë"
+
+#: ../src/appointment.c:3106
 msgid "Daily"
 msgstr "Ditore"
 
-#: ../src/appointment.c:2780
+#: ../src/appointment.c:3106
 msgid "Weekly"
 msgstr "Javore"
 
-#: ../src/appointment.c:2780
+#: ../src/appointment.c:3106
 msgid "Monthly"
 msgstr "Mujore"
 
-#: ../src/appointment.c:2780
+#: ../src/appointment.c:3106
 msgid "Yearly"
 msgstr "Vjetore"
 
-#: ../src/appointment.c:2782
+#: ../src/appointment.c:3108
 msgid "Mon"
 msgstr "Hën"
 
-#: ../src/appointment.c:2782
+#: ../src/appointment.c:3108
 msgid "Tue"
 msgstr "Mar"
 
-#: ../src/appointment.c:2782
+#: ../src/appointment.c:3108
 msgid "Wed"
 msgstr "Mër"
 
-#: ../src/appointment.c:2782
+#: ../src/appointment.c:3108
 msgid "Thu"
 msgstr "Enj"
 
-#: ../src/appointment.c:2782
+#: ../src/appointment.c:3108
 msgid "Fri"
 msgstr "Pre"
 
-#: ../src/appointment.c:2782
+#: ../src/appointment.c:3108
 msgid "Sat"
 msgstr "Sht"
 
-#: ../src/appointment.c:2782
+#: ../src/appointment.c:3108
 msgid "Sun"
 msgstr "Die"
 
-#: ../src/appointment.c:2786
+#: ../src/appointment.c:3113
 msgid "Recurrence"
 msgstr "Përsëritje"
 
-#: ../src/appointment.c:2791
+#. complexity
+#: ../src/appointment.c:3119
 msgid "Complexity"
 msgstr "Ndërlikueshmëri"
 
-#: ../src/appointment.c:2794
+#: ../src/appointment.c:3122
 msgid "Basic"
 msgstr "Bazë"
 
-#: ../src/appointment.c:2800
+#: ../src/appointment.c:3128
 msgid "Advanced"
 msgstr "Të mëtejshme"
 
-#: ../src/appointment.c:2807
+#: ../src/appointment.c:3132
 msgid "Use this if you want regular repeating event"
 msgstr "Përdoreni këtë kur dëshironi përsëritje të rregullt të një ngjarjeje"
 
-#: ../src/appointment.c:2809
+#: ../src/appointment.c:3134
 msgid ""
 "Use this if you need complex times like:\n"
 " Every Saturday and Sunday or \n"
@@ -952,19 +1006,20 @@ msgstr ""
 " Çdo të Shtunë dhe të Dielë ose\n"
 " Të Martën e parë të çdo muaji"
 
-#: ../src/appointment.c:2812
+#. frequency
+#: ../src/appointment.c:3141
 msgid "Frequency"
 msgstr "Shpeshti"
 
-#: ../src/appointment.c:2818
+#: ../src/appointment.c:3147
 msgid "Each"
 msgstr "Çdo"
 
-#: ../src/appointment.c:2825
+#: ../src/appointment.c:3154
 msgid "occurrence"
 msgstr "hasje"
 
-#: ../src/appointment.c:2829
+#: ../src/appointment.c:3158
 msgid ""
 "Limit frequency to certain interval.\n"
 " For example: Every third day:\n"
@@ -974,31 +1029,32 @@ msgstr ""
 " Për shembull: Çdo ditën e tretë:\n"
 " Shpeshti = Përditë dhe Interval = 3"
 
-#: ../src/appointment.c:2835
+#: ../src/appointment.c:3204
 msgid "Limit"
 msgstr "Kufi"
 
-#: ../src/appointment.c:2837
+#: ../src/appointment.c:3206
 msgid "Repeat forever"
 msgstr "Përsërit përherë"
 
-#: ../src/appointment.c:2844
+#: ../src/appointment.c:3212
 msgid "Repeat "
 msgstr "Përsëri"
 
-#: ../src/appointment.c:2861
+#: ../src/appointment.c:3228
 msgid "Repeat until "
 msgstr "Përsërit derisa"
 
-#: ../src/appointment.c:2871
+#. weekdays (only for complex settings)
+#: ../src/appointment.c:3241
 msgid "Weekdays"
 msgstr "Ditë të javës"
 
-#: ../src/appointment.c:2883
+#: ../src/appointment.c:3253
 msgid "Which day"
 msgstr "Cilën ditë"
 
-#: ../src/appointment.c:2891
+#: ../src/appointment.c:3261
 msgid ""
 "Specify which weekday for monthly and yearly events.\n"
 " For example:\n"
@@ -1014,52 +1070,108 @@ msgstr ""
 "\tDitë të javës = kontrollo vetëm të Mërkurave,\n"
 "\tCilën ditë = përzgjidhni 2 nga numrat poshtë të Mërkurës"
 
+#. TODO base (only for TODOs)
+#: ../src/appointment.c:3269
+msgid "TODO base"
+msgstr ""
+
+#: ../src/appointment.c:3282
+msgid ""
+"TODO reoccurs regularly starting on start time and repeating after each "
+"interval no matter when it was last completed"
+msgstr ""
+
+#: ../src/appointment.c:3284
+msgid ""
+"TODO reoccurrency is based on complete time and repeats after the interval "
+"counted from the last completed time.\n"
+"(Note that you can not tell anything about the history of the TODO since "
+"reoccurrence base changes after each completion.)"
+msgstr ""
+
+#. exceptions
+#: ../src/appointment.c:3291
+#, fuzzy
+msgid "Exceptions"
+msgstr "Mundësi"
+
+#: ../src/appointment.c:3304
+msgid ""
+"Add more exception dates by clicking the calendar days below.\n"
+"Exception is either exclusion(-) or inclusion(+) depending on the "
+"selection.\n"
+"Remove by clicking the data."
+msgstr ""
+
+#: ../src/appointment.c:3309
+msgid "Add excluded date (-)"
+msgstr ""
+
+#: ../src/appointment.c:3311
+msgid "Excluded days are full days where this appointment is not happening"
+msgstr ""
+
+#: ../src/appointment.c:3317
+msgid "Add included time (+)"
+msgstr ""
+
+#: ../src/appointment.c:3319
+msgid ""
+"Included times have same timezone than start time, but they may have "
+"different time"
+msgstr ""
+
+#. calendars showing the action days
+#: ../src/appointment.c:3336
+#, fuzzy
+msgid "Action dates"
+msgstr "Mundësi veprimi"
+
 #. ********* View menu *********
 #. View menu
-#: ../src/day-view.c:264 ../src/event-list.c:1017 ../src/mainbox.c:287
+#: ../src/day-view.c:264 ../src/event-list.c:1030 ../src/mainbox.c:286
 msgid "_View"
 msgstr "_Parje"
 
 #. ********* Go menu   *********
-#: ../src/day-view.c:278 ../src/event-list.c:1036
+#: ../src/day-view.c:278 ../src/event-list.c:1049
 msgid "_Go"
 msgstr "_Shko"
 
-#: ../src/day-view.c:319 ../src/event-list.c:1083
+#: ../src/day-view.c:319 ../src/event-list.c:1096
 msgid "New"
 msgstr "e Re"
 
-#: ../src/day-view.c:324 ../src/event-list.c:1092
+#: ../src/day-view.c:324 ../src/event-list.c:1105
 msgid "Back"
 msgstr "Prapa"
 
-#: ../src/day-view.c:326 ../src/event-list.c:1094 ../src/functions.c:132
-#: ../src/tray_icon.c:330
+#: ../src/day-view.c:326 ../src/event-list.c:1107 ../src/functions.c:131
+#: ../src/tray_icon.c:356
 msgid "Today"
 msgstr "Sot"
 
-#: ../src/day-view.c:328 ../src/event-list.c:1096
+#: ../src/day-view.c:328 ../src/event-list.c:1109
 msgid "Forward"
 msgstr "Përpara"
 
-#: ../src/day-view.c:333 ../src/event-list.c:1101
+#: ../src/day-view.c:333 ../src/event-list.c:1114
 msgid "Refresh"
 msgstr "Rifresko"
 
-#: ../src/day-view.c:338 ../src/event-list.c:1108 ../src/interface.c:804
+#: ../src/day-view.c:338 ../src/event-list.c:1121 ../src/interface.c:803
 msgid "Close"
 msgstr "Mbylle"
 
-#. then add the appointment
-#: ../src/day-view.c:452
+#: ../src/day-view.c:453
 msgid "Unknown"
 msgstr "E panjohur"
 
-#: ../src/day-view.c:694 ../src/parameters.c:663
-msgid "Show"
-msgstr "Shfaq"
+#: ../src/day-view.c:689
+msgid "       Number of days to show"
+msgstr ""
 
-#: ../src/day-view.c:931
+#: ../src/day-view.c:920
 msgid "Orage - day view"
 msgstr "Orage - parje ditësh"
 
@@ -1068,20 +1180,20 @@ msgstr "Orage - parje ditësh"
 msgid "All day"
 msgstr "Tërë ditën"
 
-#: ../src/event-list.c:557 ../src/event-list.c:1266
+#: ../src/event-list.c:578 ../src/event-list.c:1281
 msgid "Time"
 msgstr "Kohë"
 
-#: ../src/event-list.c:728
+#: ../src/event-list.c:746
 msgid "No rows have been selected."
 msgstr "Nuk u përzgjodhën rreshta"
 
-#: ../src/event-list.c:729
+#: ../src/event-list.c:747
 msgid "Click a row to select it and after that you can copy it."
 msgstr ""
 "Klikoni mbi një rresht për ta përzgjedhur dhe pas kësaj mund ta kopjoni."
 
-#: ../src/event-list.c:899
+#: ../src/event-list.c:916
 msgid ""
 "You will permanently remove all\n"
 "selected appointments."
@@ -1089,39 +1201,39 @@ msgstr ""
 "Do të hiqni përgjithmonë tërë\n"
 "takimet e përzgjedhura."
 
-#: ../src/event-list.c:1103
+#: ../src/event-list.c:1116
 msgid "Find"
 msgstr "Gjej"
 
-#: ../src/event-list.c:1110
+#: ../src/event-list.c:1123
 msgid "Dayview"
 msgstr ""
 
-#: ../src/event-list.c:1143
+#: ../src/event-list.c:1156
 msgid "Extra days to show "
 msgstr "Ditë ekstra për shfaqje"
 
-#: ../src/event-list.c:1179
+#: ../src/event-list.c:1194
 msgid "Journal entries starting from:"
 msgstr "Zëra ditari që fillojnë prej:"
 
-#: ../src/event-list.c:1204
+#: ../src/event-list.c:1219
 msgid "Search"
 msgstr "Kërko"
 
-#: ../src/event-list.c:1208
+#: ../src/event-list.c:1223
 msgid "Search text "
 msgstr "Kërko tekst"
 
-#: ../src/event-list.c:1274
+#: ../src/event-list.c:1289
 msgid "Flags"
 msgstr "Flamurka"
 
-#: ../src/event-list.c:1282
+#: ../src/event-list.c:1297
 msgid "Title"
 msgstr "Titull"
 
-#: ../src/event-list.c:1308
+#: ../src/event-list.c:1323
 msgid ""
 "Double click line to edit it.\n"
 "\n"
@@ -1146,1572 +1258,92 @@ msgstr ""
 "\t 3. Tip: f=i lirë B=i zënë\t 4. Gjendet në kartelë: O=Orage\n"
 "\t\t  A=Arkivë F=I huaj"
 
-#: ../src/functions.c:130
+#: ../src/functions.c:129
 msgid "Pick the date"
 msgstr "Zgjidhni një datë"
 
-#: ../src/ical-code.c:115
-msgid "Africa"
-msgstr "Afrikë"
-
-#: ../src/ical-code.c:116
-msgid "Africa/Abidjan"
-msgstr "Afrikë/Abixhan"
-
-#: ../src/ical-code.c:117
-msgid "Africa/Accra"
-msgstr "Afrikë/Akra"
-
-#: ../src/ical-code.c:118
-msgid "Africa/Addis_Ababa"
-msgstr "Afrikë/Adis_Abeba"
-
-#: ../src/ical-code.c:119
-msgid "Africa/Algiers"
-msgstr "Afrikë/Algjer"
-
-#: ../src/ical-code.c:120
-msgid "Africa/Asmera"
-msgstr "Afrikë/Asmera"
-
-#: ../src/ical-code.c:121
-msgid "Africa/Bamako"
-msgstr "Afrikë/Bamako"
-
-#: ../src/ical-code.c:122
-msgid "Africa/Bangui"
-msgstr "Afrikë/Bangui"
-
-#: ../src/ical-code.c:123
-msgid "Africa/Banjul"
-msgstr "Afrikë/Banxhul"
-
-#: ../src/ical-code.c:124
-msgid "Africa/Bissau"
-msgstr "Afrikë/Bisau"
-
-#: ../src/ical-code.c:125
-msgid "Africa/Blantyre"
-msgstr "Afrikë/Blentajër"
-
-#: ../src/ical-code.c:126
-msgid "Africa/Brazzaville"
-msgstr "Afrikë/Brazavil"
-
-#: ../src/ical-code.c:127
-msgid "Africa/Bujumbura"
-msgstr "Afrikë/Bujumbura"
-
-#: ../src/ical-code.c:128
-msgid "Africa/Cairo"
-msgstr "Afrikë/Kairo"
-
-#: ../src/ical-code.c:129
-msgid "Africa/Casablanca"
-msgstr "Afrikë/Kazablanka"
-
-#: ../src/ical-code.c:130
-msgid "Africa/Ceuta"
-msgstr "Afrikë/Ceuta"
-
-#: ../src/ical-code.c:131
-msgid "Africa/Conakry"
-msgstr "Afrikë/Konakri"
-
-#: ../src/ical-code.c:132
-msgid "Africa/Dakar"
-msgstr "Afrikë/Dakar"
-
-#: ../src/ical-code.c:133
-msgid "Africa/Dar_es_Salaam"
-msgstr "Afrikë/Dar_es_Salam"
-
-#: ../src/ical-code.c:134
-msgid "Africa/Djibouti"
-msgstr "Afrikë/Xhibut"
-
-#: ../src/ical-code.c:135
-msgid "Africa/Douala"
-msgstr "Afrikë/Duala"
-
-#: ../src/ical-code.c:136
-msgid "Africa/El_Aaiun"
-msgstr "Afrikë/El_Ajun"
-
-#: ../src/ical-code.c:137
-msgid "Africa/Freetown"
-msgstr "Afrikë/Fritaun"
-
-#: ../src/ical-code.c:138
-msgid "Africa/Gaborone"
-msgstr "Afrikë/Gaborone"
-
-#: ../src/ical-code.c:139
-msgid "Africa/Harare"
-msgstr "Afrikë/Harare"
-
-#: ../src/ical-code.c:140
-msgid "Africa/Johannesburg"
-msgstr "Afrikë/Johanesburg"
-
-#: ../src/ical-code.c:141
-msgid "Africa/Kampala"
-msgstr "Afrikë/Kampala"
-
-#: ../src/ical-code.c:142
-msgid "Africa/Khartoum"
-msgstr "Afrikë/Kartum"
-
-#: ../src/ical-code.c:143
-msgid "Africa/Kigali"
-msgstr "Afrikë/Kigali"
-
-#: ../src/ical-code.c:144
-msgid "Africa/Kinshasa"
-msgstr "Afrikë/Kinshasa"
-
-#: ../src/ical-code.c:145
-msgid "Africa/Lagos"
-msgstr "Afrikë/Lagos"
-
-#: ../src/ical-code.c:146
-msgid "Africa/Libreville"
-msgstr "Afrikë/Librëvil"
-
-#: ../src/ical-code.c:147
-msgid "Africa/Lome"
-msgstr "Afrikë/Lome"
-
-#: ../src/ical-code.c:148
-msgid "Africa/Luanda"
-msgstr "Afrikë/Luanda"
-
-#: ../src/ical-code.c:149
-msgid "Africa/Lubumbashi"
-msgstr "Afrikë/Lubumbashi"
-
-#: ../src/ical-code.c:150
-msgid "Africa/Lusaka"
-msgstr "Afrikë/Lusaka"
-
-#: ../src/ical-code.c:151
-msgid "Africa/Malabo"
-msgstr "Afrikë/Malabo"
-
-#: ../src/ical-code.c:152
-msgid "Africa/Maputo"
-msgstr "Afrikë/Maputo"
-
-#: ../src/ical-code.c:153
-msgid "Africa/Maseru"
-msgstr "Afrikë/Maseru"
-
-#: ../src/ical-code.c:154
-msgid "Africa/Mbabane"
-msgstr "Afrikë/Mbabane"
-
-#: ../src/ical-code.c:155
-msgid "Africa/Mogadishu"
-msgstr "Afrikë/Mogadishu"
-
-#: ../src/ical-code.c:156
-msgid "Africa/Monrovia"
-msgstr "Afrikë/Monrovia"
-
-#: ../src/ical-code.c:157
-msgid "Africa/Nairobi"
-msgstr "Afrikë/Najrobi"
-
-#: ../src/ical-code.c:158
-msgid "Africa/Ndjamena"
-msgstr "Afrikë/Nxhamena"
-
-#: ../src/ical-code.c:159
-msgid "Africa/Niamey"
-msgstr "Afrikë/Niamei"
-
-#: ../src/ical-code.c:160
-msgid "Africa/Nouakchott"
-msgstr "Afrikë/Nuakshot"
-
-#: ../src/ical-code.c:161
-msgid "Africa/Ouagadougou"
-msgstr "Afrikë/Uagadugu"
-
-#: ../src/ical-code.c:162
-msgid "Africa/Porto-Novo"
-msgstr "Afrikë/Porto-Novo"
-
-#: ../src/ical-code.c:163
-msgid "Africa/Sao_Tome"
-msgstr "Afrikë/Sao_Tome"
-
-#: ../src/ical-code.c:164
-msgid "Africa/Timbuktu"
-msgstr "Afrikë/Timbuktu"
-
-#: ../src/ical-code.c:165
-msgid "Africa/Tripoli"
-msgstr "Afrikë/Tripoli"
-
-#: ../src/ical-code.c:166
-msgid "Africa/Tunis"
-msgstr "Afrikë/Tunis"
-
-#: ../src/ical-code.c:167
-msgid "Africa/Windhoek"
-msgstr "Afrikë/Uindhoek"
-
-#: ../src/ical-code.c:168
-msgid "America"
-msgstr "Amerikë"
-
-#: ../src/ical-code.c:169
-msgid "America/Adak"
-msgstr "Amerikë/Adak"
-
-#: ../src/ical-code.c:170
-msgid "America/Anchorage"
-msgstr "Amerikë/Ankorazh"
-
-#: ../src/ical-code.c:171
-msgid "America/Anguilla"
-msgstr "Amerikë/Anguila"
-
-#: ../src/ical-code.c:172
-msgid "America/Antigua"
-msgstr "Amerikë/Antigua"
-
-#: ../src/ical-code.c:173
-msgid "America/Araguaina"
-msgstr "Amerikë/Araguaina"
-
-#: ../src/ical-code.c:174
-msgid "America/Argentina/Buenos_Aires"
-msgstr "Amerikë/Argjentinë/Buenos_Aires"
-
-#: ../src/ical-code.c:175
-msgid "America/Argentina/Catamarca"
-msgstr "Amerikë/Argjentinë/Katamarka"
-
-#: ../src/ical-code.c:176
-msgid "America/Argentina/Cordoba"
-msgstr "Amerikë/Argjentinë/Kordoba"
-
-#: ../src/ical-code.c:177
-msgid "America/Argentina/Jujuy"
-msgstr "Amerikë/Argjentinë/Huhui"
-
-#: ../src/ical-code.c:178
-msgid "America/Argentina/Mendoza"
-msgstr "Amerikë/Argjentinë/Mendoza"
-
-#: ../src/ical-code.c:179
-msgid "America/Aruba"
-msgstr "Amerikë/Aruba"
-
-#: ../src/ical-code.c:180
-msgid "America/Asuncion"
-msgstr "Amerikë/Asuncion"
-
-#: ../src/ical-code.c:181
-msgid "America/Barbados"
-msgstr "Amerikë/Barbados"
-
-#: ../src/ical-code.c:182
-msgid "America/Belem"
-msgstr "Amerikë/Belem"
-
-#: ../src/ical-code.c:183
-msgid "America/Belize"
-msgstr "Amerikë/Belize"
-
-#: ../src/ical-code.c:184
-msgid "America/Boa_Vista"
-msgstr "Amerikë/Boa_Vista"
-
-#: ../src/ical-code.c:185
-msgid "America/Bogota"
-msgstr "Amerikë/Bogota"
-
-#: ../src/ical-code.c:186
-msgid "America/Boise"
-msgstr "Amerikë/Buazë"
-
-#: ../src/ical-code.c:187
-msgid "America/Buenos_Aires"
-msgstr "Amerikë/Buenos_Aires"
-
-#: ../src/ical-code.c:188
-msgid "America/Cambridge_Bay"
-msgstr "Amerikë/Kembrixh_Bej"
-
-#: ../src/ical-code.c:189
-msgid "America/Cancun"
-msgstr "Amerikë/Kankun"
-
-#: ../src/ical-code.c:190
-msgid "America/Caracas"
-msgstr "Amerikë/Karakas"
-
-#: ../src/ical-code.c:191
-msgid "America/Catamarca"
-msgstr "Amerikë/Katamarka"
-
-#: ../src/ical-code.c:192
-msgid "America/Cayenne"
-msgstr "Amerikë/Kajen"
-
-#: ../src/ical-code.c:193
-msgid "America/Cayman"
-msgstr "Amerikë/Kajmën"
-
-#: ../src/ical-code.c:194
-msgid "America/Chicago"
-msgstr "Amerikë/Çikago"
-
-#: ../src/ical-code.c:195
-msgid "America/Chihuahua"
-msgstr "Amerikë/Çiuaua"
-
-#: ../src/ical-code.c:196
-msgid "America/Cordoba"
-msgstr "Amerikë/Kordoba "
-
-#: ../src/ical-code.c:197
-msgid "America/Costa_Rica"
-msgstr "Amerikë/Kosta_Rika"
-
-#: ../src/ical-code.c:198
-msgid "America/Cuiaba"
-msgstr "Amerikë/Kujaba"
-
-#: ../src/ical-code.c:199
-msgid "America/Curacao"
-msgstr "Amerikë/Kuraçao"
-
-#: ../src/ical-code.c:200
-msgid "America/Dawson"
-msgstr "Amerikë/Douson"
-
-#: ../src/ical-code.c:201
-msgid "America/Dawson_Creek"
-msgstr "Amerikë/Douson_Krik"
-
-#: ../src/ical-code.c:202
-msgid "America/Denver"
-msgstr "Amerikë/Denver"
-
-#: ../src/ical-code.c:203
-msgid "America/Detroit"
-msgstr "Amerikë/Detroit"
-
-#: ../src/ical-code.c:204
-msgid "America/Dominica"
-msgstr "Amerikë/Dominika"
-
-#: ../src/ical-code.c:205
-msgid "America/Edmonton"
-msgstr "Amerikë/Edmonton"
-
-#: ../src/ical-code.c:206
-msgid "America/Eirunepe"
-msgstr "Amerikë/Irunepe"
-
-#: ../src/ical-code.c:207
-msgid "America/El_Salvador"
-msgstr "Amerikë/El_Salvador"
-
-#: ../src/ical-code.c:208
-msgid "America/Fortaleza"
-msgstr "Amerikë/Fortaleza"
-
-#: ../src/ical-code.c:209
-msgid "America/Glace_Bay"
-msgstr "Amerikë/Glas_Bej"
-
-#: ../src/ical-code.c:210
-msgid "America/Godthab"
-msgstr "Amerikë/Gotab"
-
-#: ../src/ical-code.c:211
-msgid "America/Goose_Bay"
-msgstr "Amerikë/Gus_Bej"
-
-#: ../src/ical-code.c:212
-msgid "America/Grand_Turk"
-msgstr "Amerikë/Grand_Turk"
-
-#: ../src/ical-code.c:213
-msgid "America/Grenada"
-msgstr "Amerikë/Grenada"
-
-#: ../src/ical-code.c:214
-msgid "America/Guadeloupe"
-msgstr "Amerikë/Guadalupë"
-
-#: ../src/ical-code.c:215
-msgid "America/Guatemala"
-msgstr "Amerikë/Guatemala"
-
-#: ../src/ical-code.c:216
-msgid "America/Guayaquil"
-msgstr "Amerikë/Guajakil"
-
-#: ../src/ical-code.c:217
-msgid "America/Guyana"
-msgstr "Amerikë/Guajana"
-
-#: ../src/ical-code.c:218
-msgid "America/Halifax"
-msgstr "Amerikë/Halifaks"
-
-#: ../src/ical-code.c:219
-msgid "America/Havana"
-msgstr "Amerikë/Havana"
-
-#: ../src/ical-code.c:220
-msgid "America/Hermosillo"
-msgstr "Amerikë/Hermosilo"
-
-#: ../src/ical-code.c:221
-msgid "America/Indiana/Indianapolis"
-msgstr "Amerikë/Indiana/Indianapolis"
-
-#: ../src/ical-code.c:222
-msgid "America/Indiana/Knox"
-msgstr "Amerikë/Indiana/Noks"
-
-#: ../src/ical-code.c:223
-msgid "America/Indiana/Marengo"
-msgstr "Amerikë/Indiana/Marengo"
-
-#: ../src/ical-code.c:224
-msgid "America/Indiana/Vevay"
-msgstr "Amerikë/Indiana/Vevej"
-
-#: ../src/ical-code.c:225
-msgid "America/Indianapolis"
-msgstr "Amerikë/Indianapolis"
-
-#: ../src/ical-code.c:226
-msgid "America/Inuvik"
-msgstr "Amerikë/Inuvik"
-
-#: ../src/ical-code.c:227
-msgid "America/Iqaluit"
-msgstr "Amerikë/Ikaluit"
-
-#: ../src/ical-code.c:228
-msgid "America/Jamaica"
-msgstr "Amerikë/Xhamaika"
-
-#: ../src/ical-code.c:229
-msgid "America/Jujuy"
-msgstr "Amerikë/Jujui"
-
-#: ../src/ical-code.c:230
-msgid "America/Juneau"
-msgstr "Amerikë/Zhuno"
-
-#: ../src/ical-code.c:231
-msgid "America/Kentucky/Louisville"
-msgstr "Amerikë/Kentaki/Luisvil"
-
-#: ../src/ical-code.c:232
-msgid "America/Kentucky/Monticello"
-msgstr "Amerikë/Kentaki/Montiçelo"
-
-#: ../src/ical-code.c:233
-msgid "America/La_Paz"
-msgstr "Amerikë/La_Paz"
-
-#: ../src/ical-code.c:234
-msgid "America/Lima"
-msgstr "Amerikë/Lima"
-
-#: ../src/ical-code.c:235
-msgid "America/Los_Angeles"
-msgstr "Amerikë/Los_Anxhelos"
-
-#: ../src/ical-code.c:236
-msgid "America/Louisville"
-msgstr "Amerikë/Luisvil"
-
-#: ../src/ical-code.c:237
-msgid "America/Maceio"
-msgstr "Amerikë/Maceio"
-
-#: ../src/ical-code.c:238
-msgid "America/Managua"
-msgstr "Amerikë/Managua"
-
-#: ../src/ical-code.c:239
-msgid "America/Manaus"
-msgstr "Amerikë/Manaus"
-
-#: ../src/ical-code.c:240
-msgid "America/Martinique"
-msgstr "Amerikë/Martinikë"
-
-#: ../src/ical-code.c:241
-msgid "America/Mazatlan"
-msgstr "Amerikë/Mazatlan"
-
-#: ../src/ical-code.c:242
-msgid "America/Mendoza"
-msgstr "Amerikë/Mendoza"
-
-#: ../src/ical-code.c:243
-msgid "America/Menominee"
-msgstr "Amerikë/Menomini"
-
-#: ../src/ical-code.c:244
-msgid "America/Merida"
-msgstr "Amerikë/Merida"
-
-#: ../src/ical-code.c:245
-msgid "America/Mexico_City"
-msgstr "Amerikë/Meksiko_Siti"
-
-#: ../src/ical-code.c:246
-msgid "America/Miquelon"
-msgstr "Amerikë/Mikëlon"
-
-#: ../src/ical-code.c:247
-msgid "America/Monterrey"
-msgstr "Amerikë/Monterrej"
-
-#: ../src/ical-code.c:248
-msgid "America/Montevideo"
-msgstr "Amerikë/Montevideo"
-
-#: ../src/ical-code.c:249
-msgid "America/Montreal"
-msgstr "Amerikë/Montreal"
-
-#: ../src/ical-code.c:250
-msgid "America/Montserrat"
-msgstr "Amerikë/Montserrat"
-
-#: ../src/ical-code.c:251
-msgid "America/Nassau"
-msgstr "Amerikë/Nasau"
-
-#: ../src/ical-code.c:252
-msgid "America/New_York"
-msgstr "Amerikë/Nju_Jork"
-
-#: ../src/ical-code.c:253
-msgid "America/Nipigon"
-msgstr "Amerikë/Nipigon"
-
-#: ../src/ical-code.c:254
-msgid "America/Nome"
-msgstr "Amerikë/Nome"
-
-#: ../src/ical-code.c:255
-msgid "America/Noronha"
-msgstr "Amerikë/Noronja"
-
-#: ../src/ical-code.c:256
-msgid "America/Panama"
-msgstr "Amerikë/Panama"
-
-#: ../src/ical-code.c:257
-msgid "America/Pangnirtung"
-msgstr "Amerikë/Pangnirtung"
-
-#: ../src/ical-code.c:258
-msgid "America/Paramaribo"
-msgstr "Amerikë/Paramaribo"
-
-#: ../src/ical-code.c:259
-msgid "America/Phoenix"
-msgstr "Amerikë/Feniks"
-
-#: ../src/ical-code.c:260
-msgid "America/Port-au-Prince"
-msgstr "Amerikë/Port-o-Prins"
-
-#: ../src/ical-code.c:261
-msgid "America/Port_of_Spain"
-msgstr "Amerikë/Port_of_Spain"
-
-#: ../src/ical-code.c:262
-msgid "America/Porto_Velho"
-msgstr "Amerikë/Porto_Velo"
-
-#: ../src/ical-code.c:263
-msgid "America/Puerto_Rico"
-msgstr "Amerikë/Porto_Riko"
-
-#: ../src/ical-code.c:264
-msgid "America/Rainy_River"
-msgstr "Amerikë/Reini_Rivë r"
-
-#: ../src/ical-code.c:265
-msgid "America/Rankin_Inlet"
-msgstr "Amerikë/Rankin_Inlet"
-
-#: ../src/ical-code.c:266
-msgid "America/Recife"
-msgstr "Amerikë/Recife"
-
-#: ../src/ical-code.c:267
-msgid "America/Regina"
-msgstr "Amerikë/Rexhina"
-
-#: ../src/ical-code.c:268
-msgid "America/Rio_Branco"
-msgstr "Amerikë/Rio_Branko"
-
-#: ../src/ical-code.c:269
-msgid "America/Rosario"
-msgstr "Amerikë/Rozario"
-
-#: ../src/ical-code.c:270
-msgid "America/Santiago"
-msgstr "Amerikë/Santiago"
-
-#: ../src/ical-code.c:271
-msgid "America/Santo_Domingo"
-msgstr "Amerikë/Santo_Domingo"
-
-#: ../src/ical-code.c:272
-msgid "America/Sao_Paulo"
-msgstr "Amerikë/San_Paolo"
-
-#: ../src/ical-code.c:273
-msgid "America/Scoresbysund"
-msgstr "Amerikë/Skorsbajsund"
-
-#: ../src/ical-code.c:274
-msgid "America/Shiprock"
-msgstr "Amerikë/Shiprok"
-
-#: ../src/ical-code.c:275
-msgid "America/St_Johns"
-msgstr "Amerikë/St_Xhons"
-
-#: ../src/ical-code.c:276
-msgid "America/St_Kitts"
-msgstr "Amerikë/St_Kits"
-
-#: ../src/ical-code.c:277
-msgid "America/St_Lucia"
-msgstr "Amerikë/Santa_Luçia"
-
-#: ../src/ical-code.c:278
-msgid "America/St_Thomas"
-msgstr "Amerikë/St_Tomas"
-
-#: ../src/ical-code.c:279
-msgid "America/St_Vincent"
-msgstr "Amerikë/St_Vincent"
-
-#: ../src/ical-code.c:280
-msgid "America/Swift_Current"
-msgstr "Amerikë/Suift_Kurrent"
-
-#: ../src/ical-code.c:281
-msgid "America/Tegucigalpa"
-msgstr "Amerikë/Teguçigalpa"
-
-#: ../src/ical-code.c:282
-msgid "America/Thule"
-msgstr "Amerikë/Tjul"
-
-#: ../src/ical-code.c:283
-msgid "America/Thunder_Bay"
-msgstr "Amerikë/Thandër_Bej"
-
-#: ../src/ical-code.c:284
-msgid "America/Tijuana"
-msgstr "Amerikë/Tihuana"
-
-#: ../src/ical-code.c:285
-msgid "America/Tortola"
-msgstr "Amerikë/Tortola"
-
-#: ../src/ical-code.c:286
-msgid "America/Vancouver"
-msgstr "Amerikë/Vankuver"
-
-#: ../src/ical-code.c:287
-msgid "America/Whitehorse"
-msgstr "Amerikë/Uajthors"
-
-#: ../src/ical-code.c:288
-msgid "America/Winnipeg"
-msgstr "Amerikë/Uinipeg"
-
-#: ../src/ical-code.c:289
-msgid "America/Yakutat"
-msgstr "Amerikë/Jakutat"
-
-#: ../src/ical-code.c:290
-msgid "America/Yellowknife"
-msgstr "Amerikë/Jellounajf"
-
-#: ../src/ical-code.c:291
-msgid "Antarctica"
-msgstr "Antarktidë"
-
-#: ../src/ical-code.c:292
-msgid "Antarctica/Casey"
-msgstr "Antarktidë/Kasi"
-
-#: ../src/ical-code.c:293
-msgid "Antarctica/Davis"
-msgstr "Antarktidë/Dejvis"
-
-#: ../src/ical-code.c:294
-msgid "Antarctica/DumontDUrville"
-msgstr "Antarktidë/DymoDYrvil"
-
-#: ../src/ical-code.c:295
-msgid "Antarctica/Mawson"
-msgstr "Antarktidë/Mouson"
-
-#: ../src/ical-code.c:296
-msgid "Antarctica/McMurdo"
-msgstr "Antarktidë/MkMërdo"
-
-#: ../src/ical-code.c:297
-msgid "Antarctica/Palmer"
-msgstr "Antarktidë/Palmer"
-
-#: ../src/ical-code.c:298
-msgid "Antarctica/South_Pole"
-msgstr "Antarktidë/Poli_i_Jugut"
-
-#: ../src/ical-code.c:299
-msgid "Antarctica/Syowa"
-msgstr "Antarktidë/Sjoua"
-
-#: ../src/ical-code.c:300
-msgid "Antarctica/Vostok"
-msgstr "Antarktidë/Vostok"
-
-#: ../src/ical-code.c:301
-msgid "Arctic"
-msgstr "Arktik"
-
-#: ../src/ical-code.c:302
-msgid "Arctic/Longyearbyen"
-msgstr "Arktik/Longjirbajën"
-
-#: ../src/ical-code.c:303
-msgid "Asia"
-msgstr "Azi"
-
-#: ../src/ical-code.c:304
-msgid "Asia/Aden"
-msgstr "Azi/Aden"
-
-#: ../src/ical-code.c:305
-msgid "Asia/Almaty"
-msgstr "Azi/Almati"
-
-#: ../src/ical-code.c:306
-msgid "Asia/Amman"
-msgstr "Azi/Aman"
-
-#: ../src/ical-code.c:307
-msgid "Asia/Anadyr"
-msgstr "Azi/Anadir"
-
-#: ../src/ical-code.c:308
-msgid "Asia/Aqtau"
-msgstr "Azi/Aktau"
-
-#: ../src/ical-code.c:309
-msgid "Asia/Aqtobe"
-msgstr "Azi/Aktobe"
-
-#: ../src/ical-code.c:310
-msgid "Asia/Ashgabat"
-msgstr "Azi/Ashkabad"
-
-#: ../src/ical-code.c:311
-msgid "Asia/Baghdad"
-msgstr "Azi/Bagdad"
-
-#: ../src/ical-code.c:312
-msgid "Asia/Bahrain"
-msgstr "Azi/Bahrein"
-
-#: ../src/ical-code.c:313
-msgid "Asia/Baku"
-msgstr "Azi/Baku"
-
-#: ../src/ical-code.c:314
-msgid "Asia/Bangkok"
-msgstr "Azi/Bangkok"
-
-#: ../src/ical-code.c:315
-msgid "Asia/Beirut"
-msgstr "Azi/Bejrut"
-
-#: ../src/ical-code.c:316
-msgid "Asia/Bishkek"
-msgstr "Azi/Bishkek"
-
-#: ../src/ical-code.c:317
-msgid "Asia/Brunei"
-msgstr "Azi/Brunei"
-
-#: ../src/ical-code.c:318
-msgid "Asia/Calcutta"
-msgstr "Azi/Kalkuta"
-
-#: ../src/ical-code.c:319
-msgid "Asia/Chungking"
-msgstr "Azi/Çungking"
-
-#: ../src/ical-code.c:320
-msgid "Asia/Colombo"
-msgstr "Azi/Kolombo"
-
-#: ../src/ical-code.c:321
-msgid "Asia/Damascus"
-msgstr "Azi/Damask"
-
-#: ../src/ical-code.c:322
-msgid "Asia/Dhaka"
-msgstr "Azi/Daka"
-
-#: ../src/ical-code.c:323
-msgid "Asia/Dili"
-msgstr "Azi/Dili"
-
-#: ../src/ical-code.c:324
-msgid "Asia/Dubai"
-msgstr "Azi/Dubai"
-
-#: ../src/ical-code.c:325
-msgid "Asia/Dushanbe"
-msgstr "Azi/Dushanbe"
-
-#: ../src/ical-code.c:326
-msgid "Asia/Gaza"
-msgstr "Azi/Gaza"
-
-#: ../src/ical-code.c:327
-msgid "Asia/Harbin"
-msgstr "Azi/Harbin"
-
-#: ../src/ical-code.c:328
-msgid "Asia/Hong_Kong"
-msgstr "Azi/Hong_Kong"
-
-#: ../src/ical-code.c:329
-msgid "Asia/Hovd"
-msgstr "Azi/Hovd"
-
-#: ../src/ical-code.c:330
-msgid "Asia/Irkutsk"
-msgstr "Azi/Irkutsk"
-
-#: ../src/ical-code.c:331
-msgid "Asia/Istanbul"
-msgstr "Azi/Stamboll"
-
-#: ../src/ical-code.c:332
-msgid "Asia/Jakarta"
-msgstr "Azi/Xhakartë"
-
-#: ../src/ical-code.c:333
-msgid "Asia/Jayapura"
-msgstr "Azi/Xhajapura"
-
-#: ../src/ical-code.c:334
-msgid "Asia/Jerusalem"
-msgstr "Azi/Jerusalem"
-
-#: ../src/ical-code.c:335
-msgid "Asia/Kabul"
-msgstr "Azi/Kabul"
-
-#: ../src/ical-code.c:336
-msgid "Asia/Kamchatka"
-msgstr "Azi/Kamçatka"
-
-#: ../src/ical-code.c:337
-msgid "Asia/Karachi"
-msgstr "Azi/Karashi"
-
-#: ../src/ical-code.c:338
-msgid "Asia/Kashgar"
-msgstr "Azi/Kashgar"
-
-#: ../src/ical-code.c:339
-msgid "Asia/Katmandu"
-msgstr "Azi/Katmandu"
-
-#: ../src/ical-code.c:340
-msgid "Asia/Krasnoyarsk"
-msgstr "Azi/Krasnojarsk"
-
-#: ../src/ical-code.c:341
-msgid "Asia/Kuala_Lumpur"
-msgstr "Azi/Kuala_Lumpur"
-
-#: ../src/ical-code.c:342
-msgid "Asia/Kuching"
-msgstr "Azi/Kushing"
-
-#: ../src/ical-code.c:343
-msgid "Asia/Kuwait"
-msgstr "Azi/Kuvait"
-
-#: ../src/ical-code.c:344
-msgid "Asia/Macao"
-msgstr "Azi/Moldavi"
-
-#: ../src/ical-code.c:345
-msgid "Asia/Magadan"
-msgstr "Azi/Magadan"
-
-#: ../src/ical-code.c:346
-msgid "Asia/Manila"
-msgstr "Azi/Manila"
-
-#: ../src/ical-code.c:347
-msgid "Asia/Muscat"
-msgstr "Azi/Muskat"
-
-#: ../src/ical-code.c:348
-msgid "Asia/Nicosia"
-msgstr "Azi/Nikozia"
-
-#: ../src/ical-code.c:349
-msgid "Asia/Novosibirsk"
-msgstr "Azi/Novosibirsk"
-
-#: ../src/ical-code.c:350
-msgid "Asia/Omsk"
-msgstr "Azi/Omsk"
-
-#: ../src/ical-code.c:351
-msgid "Asia/Phnom_Penh"
-msgstr "Azi/Phnom_Pen"
-
-#: ../src/ical-code.c:352
-msgid "Asia/Pontianak"
-msgstr "Azi/Pontianak"
-
-#: ../src/ical-code.c:353
-msgid "Asia/Pyongyang"
-msgstr "Azi/Pjongjang"
-
-#: ../src/ical-code.c:354
-msgid "Asia/Qatar"
-msgstr "Azi/Katar"
-
-#: ../src/ical-code.c:355
-msgid "Asia/Rangoon"
-msgstr "Azi/Rangun"
-
-#: ../src/ical-code.c:356
-msgid "Asia/Riyadh"
-msgstr "Azi//Riad"
-
-#: ../src/ical-code.c:357
-msgid "Asia/Saigon"
-msgstr "Azi/Sajgon"
-
-#: ../src/ical-code.c:358
-msgid "Asia/Samarkand"
-msgstr "Azi/Samarkand"
-
-#: ../src/ical-code.c:359
-msgid "Asia/Seoul"
-msgstr "Azi/Seul"
-
-#: ../src/ical-code.c:360
-msgid "Asia/Shanghai"
-msgstr "Azi/Shangai"
-
-#: ../src/ical-code.c:361
-msgid "Asia/Singapore"
-msgstr "Azi/Singapor"
-
-#: ../src/ical-code.c:362
-msgid "Asia/Taipei"
-msgstr "Azi/Taipei"
-
-#: ../src/ical-code.c:363
-msgid "Asia/Tashkent"
-msgstr "Azi/Tashkent"
-
-#: ../src/ical-code.c:364
-msgid "Asia/Tbilisi"
-msgstr "Azi/Tbilis"
-
-#: ../src/ical-code.c:365
-msgid "Asia/Tehran"
-msgstr "Azi/Teheran"
-
-#: ../src/ical-code.c:366
-msgid "Asia/Thimphu"
-msgstr "Azi/Timpu"
-
-#: ../src/ical-code.c:367
-msgid "Asia/Tokyo"
-msgstr "Azi/Tokio"
-
-#: ../src/ical-code.c:368
-msgid "Asia/Ujung_Pandang"
-msgstr "Azi/Ujung_Pandang"
-
-#: ../src/ical-code.c:369
-msgid "Asia/Ulaanbaatar"
-msgstr "Azi/Ulan_Bator"
-
-#: ../src/ical-code.c:370
-msgid "Asia/Urumqi"
-msgstr "Azi/Urumqi"
-
-#: ../src/ical-code.c:371
-msgid "Asia/Vientiane"
-msgstr "Azi/Vientiane"
-
-#: ../src/ical-code.c:372
-msgid "Asia/Vladivostok"
-msgstr "Azi/Vladivostok"
-
-#: ../src/ical-code.c:373
-msgid "Asia/Yakutsk"
-msgstr "Azi/Jakutsk"
-
-#: ../src/ical-code.c:374
-msgid "Asia/Yekaterinburg"
-msgstr "Azi/Ekaterinburg"
-
-#: ../src/ical-code.c:375
-msgid "Asia/Yerevan"
-msgstr "Azi/Erevan"
-
-#: ../src/ical-code.c:376
-msgid "Atlantic"
-msgstr "Atlantik"
-
-#: ../src/ical-code.c:377
-msgid "Atlantic/Azores"
-msgstr "Atlantik/Azoret"
-
-#: ../src/ical-code.c:378
-msgid "Atlantic/Bermuda"
-msgstr "Atlantik/Bermuda"
-
-#: ../src/ical-code.c:379
-msgid "Atlantic/Canary"
-msgstr "Atlantik/Kanarie"
-
-#: ../src/ical-code.c:380
-msgid "Atlantic/Cape_Verde"
-msgstr "Atlantik/Kepi_i_Gjelbër"
-
-#: ../src/ical-code.c:381
-msgid "Atlantic/Faeroe"
-msgstr "Atlantik/Faroe"
-
-#: ../src/ical-code.c:382
-msgid "Atlantic/Jan_Mayen"
-msgstr "Atlantik/Jan_Majen"
-
-#: ../src/ical-code.c:383
-msgid "Atlantic/Madeira"
-msgstr "Atlantik/Madeira"
-
-#: ../src/ical-code.c:384
-msgid "Atlantic/Reykjavik"
-msgstr "Atlantik/Reikjavik"
-
-#: ../src/ical-code.c:385
-msgid "Atlantic/South_Georgia"
-msgstr "Atlantik/Georgji"
-
-#: ../src/ical-code.c:386
-msgid "Atlantic/St_Helena"
-msgstr "Atlantik/Shën_Helena"
-
-#: ../src/ical-code.c:387
-msgid "Atlantic/Stanley"
-msgstr "Atlantik/Stanlei"
-
-#: ../src/ical-code.c:388
-msgid "Australia"
-msgstr "Australi"
-
-#: ../src/ical-code.c:389
-msgid "Australia/Adelaide"
-msgstr "Australi/Adelaide"
-
-#: ../src/ical-code.c:390
-msgid "Australia/Brisbane"
-msgstr "Australi/Brisbën"
-
-#: ../src/ical-code.c:391
-msgid "Australia/Broken_Hill"
-msgstr "Australi/Kodr_´_e_Thyer"
-
-#: ../src/ical-code.c:392
-msgid "Australia/Darwin"
-msgstr "Australi/Darvin"
-
-#: ../src/ical-code.c:393
-msgid "Australia/Hobart"
-msgstr "Australi/Hobart"
-
-#: ../src/ical-code.c:394
-msgid "Australia/Lindeman"
-msgstr "Australi/Lindeman"
-
-#: ../src/ical-code.c:395
-msgid "Australia/Lord_Howe"
-msgstr "Australi/Lord_Houv"
-
-#: ../src/ical-code.c:396
-msgid "Australia/Melbourne"
-msgstr "Australi/Melburn"
-
-#: ../src/ical-code.c:397
-msgid "Australia/Perth"
-msgstr "Australi/Perth"
-
-#: ../src/ical-code.c:398
-msgid "Australia/Sydney"
-msgstr "Australi/Sidni"
-
-#: ../src/ical-code.c:399
-msgid "Europe"
-msgstr "Europë"
-
-#: ../src/ical-code.c:400
-msgid "Europe/Amsterdam"
-msgstr "Europë/Amsterdam"
-
-#: ../src/ical-code.c:401
-msgid "Europe/Andorra"
-msgstr "Europë/Andorra"
-
-#: ../src/ical-code.c:402
-msgid "Europe/Athens"
-msgstr "Europë/Athinë"
-
-#: ../src/ical-code.c:403
-msgid "Europe/Belfast"
-msgstr "Europë/Belfast"
-
-#: ../src/ical-code.c:404
-msgid "Europe/Belgrade"
-msgstr "Europë/Beograd"
-
-#: ../src/ical-code.c:405
-msgid "Europe/Berlin"
-msgstr "Europë/Berlin"
-
-#: ../src/ical-code.c:406
-msgid "Europe/Bratislava"
-msgstr "Europë/Bratislavë"
-
-#: ../src/ical-code.c:407
-msgid "Europe/Brussels"
-msgstr "Europë/Bruksel"
-
-#: ../src/ical-code.c:408
-msgid "Europe/Bucharest"
-msgstr "Europë/Bukuresht"
-
-#: ../src/ical-code.c:409
-msgid "Europe/Budapest"
-msgstr "Europë/Budapest"
-
-#: ../src/ical-code.c:410
-msgid "Europe/Chisinau"
-msgstr "Europë/Kishinau"
-
-#: ../src/ical-code.c:411
-msgid "Europe/Copenhagen"
-msgstr "Europë/Kopenhagen"
-
-#: ../src/ical-code.c:412
-msgid "Europe/Dublin"
-msgstr "Europë/Dublin"
-
-#: ../src/ical-code.c:413
-msgid "Europe/Gibraltar"
-msgstr "Europë/Gjibraltar"
-
-#: ../src/ical-code.c:414
-msgid "Europe/Helsinki"
-msgstr "Europë/Helsinki"
-
-#: ../src/ical-code.c:415
-msgid "Europe/Istanbul"
-msgstr "Europë/Stamboll"
-
-#: ../src/ical-code.c:416
-msgid "Europe/Kaliningrad"
-msgstr "Europë/Kaliningrad"
-
-#: ../src/ical-code.c:417
-msgid "Europe/Kiev"
-msgstr "Europë/Kiev"
-
-#: ../src/ical-code.c:418
-msgid "Europe/Lisbon"
-msgstr "Europë/Lisbonë"
-
-#: ../src/ical-code.c:419
-msgid "Europe/Ljubljana"
-msgstr "Europë/Ljubljanë"
-
-#: ../src/ical-code.c:420
-msgid "Europe/London"
-msgstr "Europë/Londër"
-
-#: ../src/ical-code.c:421
-msgid "Europe/Luxembourg"
-msgstr "Europë/Luksemburg"
-
-#: ../src/ical-code.c:422
-msgid "Europe/Madrid"
-msgstr "Europë/Madrid"
-
-#: ../src/ical-code.c:423
-msgid "Europe/Malta"
-msgstr "Europë/Maltë"
-
-#: ../src/ical-code.c:424
-msgid "Europe/Minsk"
-msgstr "Europë/Minsk"
-
-#: ../src/ical-code.c:425
-msgid "Europe/Monaco"
-msgstr "Europë/Monako"
-
-#: ../src/ical-code.c:426
-msgid "Europe/Moscow"
-msgstr "Europë/Moskë"
-
-#: ../src/ical-code.c:427
-msgid "Europe/Nicosia"
-msgstr "Europë/Nikozi"
-
-#: ../src/ical-code.c:428
-msgid "Europe/Oslo"
-msgstr "Europë/Oslo"
-
-#: ../src/ical-code.c:429
-msgid "Europe/Paris"
-msgstr "Europë/Paris"
-
-#: ../src/ical-code.c:430
-msgid "Europe/Prague"
-msgstr "Europë/Pragë"
-
-#: ../src/ical-code.c:431
-msgid "Europe/Riga"
-msgstr "Europë/Rigë"
-
-#: ../src/ical-code.c:432
-msgid "Europe/Rome"
-msgstr "Europë/Romë"
-
-#: ../src/ical-code.c:433
-msgid "Europe/Samara"
-msgstr "Europë/Samara"
-
-#: ../src/ical-code.c:434
-msgid "Europe/San_Marino"
-msgstr "Europë/San_Marino"
-
-#: ../src/ical-code.c:435
-msgid "Europe/Sarajevo"
-msgstr "Europë/Sarajevo"
-
-#: ../src/ical-code.c:436
-msgid "Europe/Simferopol"
-msgstr "Europë/Simferopol"
-
-#: ../src/ical-code.c:437
-msgid "Europe/Skopje"
-msgstr "Europë/Shkup"
-
-#: ../src/ical-code.c:438
-msgid "Europe/Sofia"
-msgstr "Europë/Sofie"
-
-#: ../src/ical-code.c:439
-msgid "Europe/Stockholm"
-msgstr "Europë/Stokholm"
-
-#: ../src/ical-code.c:440
-msgid "Europe/Tallinn"
-msgstr "Europë/Talin"
-
-#: ../src/ical-code.c:441
-msgid "Europe/Tirane"
-msgstr "Europë/Tiranë"
-
-#: ../src/ical-code.c:442
-msgid "Europe/Uzhgorod"
-msgstr "Europë/Uzhgorod"
-
-#: ../src/ical-code.c:443
-msgid "Europe/Vaduz"
-msgstr "Europë/Vaduz"
-
-#: ../src/ical-code.c:444
-msgid "Europe/Vatican"
-msgstr "Europë/Vatikan"
-
-#: ../src/ical-code.c:445
-msgid "Europe/Vienna"
-msgstr "Europë/Vienë"
-
-#: ../src/ical-code.c:446
-msgid "Europe/Vilnius"
-msgstr "Europë/Vilnius"
-
-#: ../src/ical-code.c:447
-msgid "Europe/Warsaw"
-msgstr "Europë/Varshavë"
-
-#: ../src/ical-code.c:448
-msgid "Europe/Zagreb"
-msgstr "Europë/Zagreb"
-
-#: ../src/ical-code.c:449
-msgid "Europe/Zaporozhye"
-msgstr "Europë/Zaporozhje"
-
-#: ../src/ical-code.c:450
-msgid "Europe/Zurich"
-msgstr "Europë/Zyrih"
-
-#: ../src/ical-code.c:451
-msgid "Indian"
-msgstr "Indi"
-
-#: ../src/ical-code.c:452
-msgid "Indian/Antananarivo"
-msgstr "Indi/Antananarivo"
-
-#: ../src/ical-code.c:453
-msgid "Indian/Chagos"
-msgstr "Indi/Çagos"
-
-#: ../src/ical-code.c:454
-msgid "Indian/Christmas"
-msgstr "Indi/Kristmas"
-
-#: ../src/ical-code.c:455
-msgid "Indian/Cocos"
-msgstr "Indi/Kokos"
-
-#: ../src/ical-code.c:456
-msgid "Indian/Comoro"
-msgstr "Indi/Komoro"
-
-#: ../src/ical-code.c:457
-msgid "Indian/Kerguelen"
-msgstr "Indi/Kerguelen"
-
-#: ../src/ical-code.c:458
-msgid "Indian/Mahe"
-msgstr "Indi/Mahe"
-
-#: ../src/ical-code.c:459
-msgid "Indian/Maldives"
-msgstr "Indi/Maldive"
-
-#: ../src/ical-code.c:460
-msgid "Indian/Mauritius"
-msgstr "Indi/Mauricius"
-
-#: ../src/ical-code.c:461
-msgid "Indian/Mayotte"
-msgstr "Indi/Majot"
-
-#: ../src/ical-code.c:462
-msgid "Indian/Reunion"
-msgstr "Indi/Reunion"
-
-#: ../src/ical-code.c:463
-msgid "Pacific"
-msgstr "Paqësor"
-
-#: ../src/ical-code.c:464
-msgid "Pacific/Apia"
-msgstr "Paqësor/Apia"
-
-#: ../src/ical-code.c:465
-msgid "Pacific/Auckland"
-msgstr "Paqësor/Okland"
-
-#: ../src/ical-code.c:466
-msgid "Pacific/Chatham"
-msgstr "Paqësor/Çatëm"
-
-#: ../src/ical-code.c:467
-msgid "Pacific/Easter"
-msgstr "Paqësor/Pashkë"
-
-#: ../src/ical-code.c:468
-msgid "Pacific/Efate"
-msgstr "Paqësor/Efat"
-
-#: ../src/ical-code.c:469
-msgid "Pacific/Enderbury"
-msgstr "Paqësor/Enderbëri"
-
-#: ../src/ical-code.c:470
-msgid "Pacific/Fakaofo"
-msgstr "Paqësor/Fakaofo"
-
-#: ../src/ical-code.c:471
-msgid "Pacific/Fiji"
-msgstr "Paqësor/Fixhi"
-
-#: ../src/ical-code.c:472
-msgid "Pacific/Funafuti"
-msgstr "Paqësor/Funafuti"
-
-#: ../src/ical-code.c:473
-msgid "Pacific/Galapagos"
-msgstr "Paqësor/Galapagos"
-
-#: ../src/ical-code.c:474
-msgid "Pacific/Gambier"
-msgstr "Paqësor/Gambier"
-
-#: ../src/ical-code.c:475
-msgid "Pacific/Guadalcanal"
-msgstr "Paqësor/Guadalkanal"
-
-#: ../src/ical-code.c:476
-msgid "Pacific/Guam"
-msgstr "Paqësor/Guam"
-
-#: ../src/ical-code.c:477
-msgid "Pacific/Honolulu"
-msgstr "Paqësor/Honolulu"
-
-#: ../src/ical-code.c:478
-msgid "Pacific/Johnston"
-msgstr "Paqësor/Xhonston"
-
-#: ../src/ical-code.c:479
-msgid "Pacific/Kiritimati"
-msgstr "Paqësor/Kiritimati"
-
-#: ../src/ical-code.c:480
-msgid "Pacific/Kosrae"
-msgstr "Paqësor/Kosrae"
-
-#: ../src/ical-code.c:481
-msgid "Pacific/Kwajalein"
-msgstr "Paqësor/Kuajalin"
-
-#: ../src/ical-code.c:482
-msgid "Pacific/Majuro"
-msgstr "Paqësor/Majuro"
-
-#: ../src/ical-code.c:483
-msgid "Pacific/Marquesas"
-msgstr "Paqësor/Markuezas"
-
-#: ../src/ical-code.c:484
-msgid "Pacific/Midway"
-msgstr "Paqësor/Miduej"
-
-#: ../src/ical-code.c:485
-msgid "Pacific/Nauru"
-msgstr "Paqësor/Nauru"
-
-#: ../src/ical-code.c:486
-msgid "Pacific/Niue"
-msgstr "Paqësor/Niue"
-
-#: ../src/ical-code.c:487
-msgid "Pacific/Norfolk"
-msgstr "Paqësor/Norfolk"
-
-#: ../src/ical-code.c:488
-msgid "Pacific/Noumea"
-msgstr "Paqësor/Numea"
-
-#: ../src/ical-code.c:489
-msgid "Pacific/Pago_Pago"
-msgstr "Paqësor/Pago_Pago"
-
-#: ../src/ical-code.c:490
-msgid "Pacific/Palau"
-msgstr "Paqësor/Palau"
-
-#: ../src/ical-code.c:491
-msgid "Pacific/Pitcairn"
-msgstr "Paqësor/Pitkern"
-
-#: ../src/ical-code.c:492
-msgid "Pacific/Ponape"
-msgstr "Paqësor/Ponape"
-
-#: ../src/ical-code.c:493
-msgid "Pacific/Port_Moresby"
-msgstr "Paqësor/Port_Moresbi"
-
-#: ../src/ical-code.c:494
-msgid "Pacific/Rarotonga"
-msgstr "Paqësor/Rarotonga"
-
-#: ../src/ical-code.c:495
-msgid "Pacific/Saipan"
-msgstr "Paqësor/Saipan"
-
-#: ../src/ical-code.c:496
-msgid "Pacific/Tahiti"
-msgstr "Paqësor/Tahiti"
-
-#: ../src/ical-code.c:497
-msgid "Pacific/Tarawa"
-msgstr "Paqësor/Taraua"
-
-#: ../src/ical-code.c:498
-msgid "Pacific/Tongatapu"
-msgstr "Paqësor/Tongatapu"
-
-#: ../src/ical-code.c:499
-msgid "Pacific/Truk"
-msgstr "Paqësor/Truk"
-
-#: ../src/ical-code.c:500
-msgid "Pacific/Wake"
-msgstr "Paqësor/Uejk"
-
-#: ../src/ical-code.c:501
-msgid "Pacific/Wallis"
-msgstr "Paqësor/Ualis"
-
-#: ../src/ical-code.c:502
-msgid "Pacific/Yap"
-msgstr "Paqësor/Jap"
-
-#: ../src/ical-code.c:1330
+#: ../src/functions.c:821
+msgid "Info"
+msgstr "Të dhëna"
+
+#: ../src/functions.c:833
+msgid "Warning"
+msgstr "Kujdes"
+
+#: ../src/functions.c:846
+msgid "Error"
+msgstr "Gabim"
+
+#. remove since it has ended
+#: ../src/ical-archive.c:291
+msgid "\tRecur ended, moving to archive file."
+msgstr "\tRipërsëritja mbaroi, po kalohet te kartelë arkive."
+
+#: ../src/ical-archive.c:353
+msgid "Archiving not enabled. Exiting"
+msgstr "Arkivimi nuk është veprues. Po dilet"
+
+#: ../src/ical-archive.c:371
+#, c-format
+msgid "Archiving threshold: %d month(s)"
+msgstr "Prag arkivimi: %d muaj"
+
+#. yy mon day
+#: ../src/ical-archive.c:374
+#, c-format
+msgid "\tArchiving events, which are older than: %04d-%02d-%02d"
+msgstr "\tPo arkivohen ngjarje që janë më të vjetra se: %04d-%02d-%02d"
+
+#: ../src/ical-archive.c:401
+#, c-format
+msgid "Archiving uid: %s"
+msgstr "Uid arkivimi: %s"
+
+#. VTODO not completed, do not archive
+#: ../src/ical-archive.c:407
+#, fuzzy
+msgid "\tVTODO not complete; not archived"
+msgstr "\tVTODO jo e plotë; e paarkivuar"
+
+#. it is recurrent event
+#: ../src/ical-archive.c:412
+#, c-format
+msgid "\tRecurring. End year: %04d, month: %02d, day: %02d"
+msgstr "\tNë ripërsëritje. Mbarimi në vitin: %04d, muajin: %02d, ditën: %02d"
+
+#: ../src/ical-archive.c:429
+msgid "Archiving done\n"
+msgstr "Arkivimi u krye\n"
+
+#. PHASE 1: go through base orage file and remove "repeat" shortcuts
+#: ../src/ical-archive.c:445
+msgid "Starting archive removal."
+msgstr "Po niset heqje arkive."
+
+#: ../src/ical-archive.c:446
+msgid "\tPHASE 1: reset recurring appointments"
+msgstr "\tFAZA 1: ricaktoni takime ripërsëritëse"
+
+#. PHASE 2: go through archive file and add everything back to base orage.
+#. * After that delete the whole arch file
+#: ../src/ical-archive.c:468
+msgid "\tPHASE 2: return archived appointments"
+msgstr "\tFAZA 2: rikthe takime të arkivuara"
+
+#: ../src/ical-archive.c:494
+msgid "Archive removal done\n"
+msgstr "U përfundua heqja e arkivës\n"
+
+#: ../src/ical-code.c:937
 msgid "Orage default alarm"
 msgstr "Alarm parazgjedhje i Orage-it"
 
-#: ../src/ical-code.c:3024
+#: ../src/ical-code.c:2916
 #, c-format
 msgid "Build alarm list: Added %d alarms. Processed %d events."
 msgstr "Krijo listë alarmesh: U shtuan %d alarme. U përpunuar %d ngjarje."
 
-#: ../src/ical-code.c:3026
+#: ../src/ical-code.c:2918
 #, c-format
 msgid ""
 "\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
@@ -2719,128 +1351,55 @@ msgstr ""
 "\tU gjetën %d alarme nga të cilat %d janë aktive. (U kërkua nëpër %d alarme "
 "ripërsëritëse.)"
 
-#. remove since it has ended
-#: ../src/ical-code.c:3543
-msgid "\tRecur ended, moving to archive file."
-msgstr "\tRipërsëritja mbaroi, po kalohet te kartelë arkive."
-
-#: ../src/ical-code.c:3605
-msgid "Archiving not enabled. Exiting"
-msgstr "Arkivimi nuk është veprues. Po dilet"
-
-#: ../src/ical-code.c:3623
-#, c-format
-msgid "Archiving threshold: %d month(s)"
-msgstr "Prag arkivimi: %d muaj"
-
-#. yy mon day
-#: ../src/ical-code.c:3626
-#, c-format
-msgid "\tArchiving events, which are older than: %04d-%02d-%02d"
-msgstr "\tPo arkivohen ngjarje që janë më të vjetra se: %04d-%02d-%02d"
-
-#: ../src/ical-code.c:3653
-#, c-format
-msgid "Archiving uid: %s"
-msgstr "Uid arkivimi: %s"
-
-#. VTODO not completed, do not archive
-#: ../src/ical-code.c:3659
-#, fuzzy
-msgid "\tVTODO not complete; not archived"
-msgstr "\tVTODO jo e plotë; e paarkivuar"
-
-#. it is recurrent event
-#: ../src/ical-code.c:3664
-#, c-format
-msgid "\tRecurring. End year: %04d, month: %02d, day: %02d"
-msgstr "\tNë ripërsëritje. Mbarimi në vitin: %04d, muajin: %02d, ditën: %02d"
-
-#: ../src/ical-code.c:3681
-msgid "Archiving done\n"
-msgstr "Arkivimi u krye\n"
-
-#. PHASE 1: go through base orage file and remove "repeat" shortcuts
-#: ../src/ical-code.c:3697
-msgid "Starting archive removal."
-msgstr "Po niset heqje arkive."
-
-#: ../src/ical-code.c:3698
-msgid "\tPHASE 1: reset recurring appointments"
-msgstr "\tFAZA 1: ricaktoni takime ripërsëritëse"
-
-#. PHASE 2: go through archive file and add everything back to base orage.
-#. * After that delete the whole arch file
-#: ../src/ical-code.c:3720
-msgid "\tPHASE 2: return archived appointments"
-msgstr "\tFAZA 2: rikthe takime të arkivuara"
-
-#: ../src/ical-code.c:3746
-msgid "Archive removal done\n"
-msgstr "U përfundua heqja e arkivës\n"
-
-#: ../src/ical-code.c:3836
+#: ../src/ical-expimp.c:136
 msgid "Starting import file preprocessing"
 msgstr "Po fillon parapërpunimi i kartelës së importit"
 
-#: ../src/ical-code.c:3871
+#: ../src/ical-expimp.c:171
 msgid "... Patched DCREATED to be CREATED."
 msgstr ""
 
-#: ../src/ical-code.c:3910
+#: ../src/ical-expimp.c:210
 msgid "... Patched timezone to Orage format."
 msgstr "... U arnua zona kohore sipas formatit të Orage-it."
 
-#: ../src/ical-code.c:3919
+#: ../src/ical-expimp.c:219
 msgid "Import file preprocessing done"
 msgstr "U bë parapërpunimi i kartelës së importit"
 
-#. show it
-#: ../src/ical-code.c:4507
-msgid "Pick timezone"
-msgstr "Merrni zonë kohore"
-
-#: ../src/ical-code.c:4510 ../src/ical-code.c:4538
-msgid "UTC"
-msgstr "UTC"
-
-#: ../src/ical-code.c:4511 ../src/ical-code.c:4542 ../src/parameters.c:493
-msgid "floating"
-msgstr "pezull"
-
-#: ../src/interface.c:284
+#: ../src/interface.c:283
 msgid "Calendar files"
 msgstr "Kartela kalendari"
 
-#: ../src/interface.c:626
+#: ../src/interface.c:625
 msgid "Current foreign files"
 msgstr "Kartela të tanishme të huaja"
 
-#: ../src/interface.c:638
+#: ../src/interface.c:637
 msgid "READ ONLY"
 msgstr "VETËM LEXIM"
 
-#: ../src/interface.c:640
+#: ../src/interface.c:639
 msgid "READ WRITE"
 msgstr "LEXIM SHKRIM"
 
-#: ../src/interface.c:658
+#: ../src/interface.c:657
 msgid "***** No foreign files *****"
 msgstr "***** Pa kartela të huaja *****"
 
-#: ../src/interface.c:968
+#: ../src/interface.c:967
 msgid "Import/export"
 msgstr "Import/eskport"
 
-#: ../src/interface.c:975
+#: ../src/interface.c:974
 msgid "Import"
 msgstr "Importo"
 
-#: ../src/interface.c:980
+#: ../src/interface.c:979
 msgid "Read from file:"
 msgstr "Lexoji prej kartelës:"
 
-#: ../src/interface.c:997
+#: ../src/interface.c:996
 msgid ""
 "Separate filenames with comma(,).\n"
 " NOTE: comma is not valid character in filenames for Orage."
@@ -2848,27 +1407,27 @@ msgstr ""
 "Ndajini emrat e kartelave me presje (,).\n"
 "SHËNIM: presja nuk është shenjë e vlefshme për emrat e kartelave në Orage."
 
-#: ../src/interface.c:1002
+#: ../src/interface.c:1001
 msgid "Export"
 msgstr "Eksporto"
 
-#: ../src/interface.c:1007
+#: ../src/interface.c:1006
 msgid "Write to file:"
 msgstr "Shkruaje te kartela:"
 
-#: ../src/interface.c:1028 ../src/interface.c:1040
+#: ../src/interface.c:1027 ../src/interface.c:1039
 msgid "Select"
 msgstr "Përzgjidhni"
 
-#: ../src/interface.c:1031
+#: ../src/interface.c:1030
 msgid "All appointments"
 msgstr "Tërë takimet"
 
-#: ../src/interface.c:1044
+#: ../src/interface.c:1043
 msgid "Named appointments: "
 msgstr "Takime të emërtuara:"
 
-#: ../src/interface.c:1056
+#: ../src/interface.c:1055
 msgid ""
 "Note that only main file appointments are read.\n"
 "Archived and Foreign events are not exported."
@@ -2876,7 +1435,7 @@ msgstr ""
 "Kini parasysh që lexohen vetëm takimet prej kartelës kryesore.\n"
 "Ngjarjet e arkivuara nuk eksportohen."
 
-#: ../src/interface.c:1059
+#: ../src/interface.c:1058
 msgid ""
 "Note that only main file appointments are read.\n"
 "Foreign events are not exported."
@@ -2884,32 +1443,32 @@ msgstr ""
 "Mbani parasysh që vetëm lexohen vetëm takimet prej kartelës kryesore.\n"
 "Ngjarjet e huaja nuk eksportohen."
 
-#: ../src/interface.c:1062
+#: ../src/interface.c:1061
 msgid "You can easily drag these from event-list window."
 msgstr "Mund t'i tërhiqni kollaj prej dritares së listës së ngjarjeve."
 
-#: ../src/interface.c:1064
+#: ../src/interface.c:1063
 msgid "Orage appointment UIDs separated by commas."
 msgstr "UID-ra takimesh Orage, ndarë me presje."
 
-#: ../src/interface.c:1070
+#: ../src/interface.c:1069
 msgid "Archive"
 msgstr "Arkivë"
 
-#: ../src/interface.c:1078
+#: ../src/interface.c:1077
 #, c-format
 msgid "Archive now (threshold: %d months)"
 msgstr "Arkivoji tani (prag: %d muaj)"
 
-#: ../src/interface.c:1088
+#: ../src/interface.c:1087
 msgid "You can change archive threshold in parameters"
 msgstr "Pragun e arkivave mund ta ndryshoni te parametrat"
 
-#: ../src/interface.c:1095
+#: ../src/interface.c:1094
 msgid "Revert archive now"
 msgstr "Rikthe arkivën tani"
 
-#: ../src/interface.c:1101
+#: ../src/interface.c:1100
 msgid ""
 "Return all archived events into main orage file and remove arch file.\n"
 "This is useful for example when doing export and moving orage\n"
@@ -2921,31 +1480,31 @@ msgstr ""
 "Orage-i\n"
 "në një tjetër sistem."
 
-#: ../src/interface.c:1111
+#: ../src/interface.c:1110
 msgid "Orage files"
 msgstr "Kartela Orage-i"
 
-#: ../src/interface.c:1118
+#: ../src/interface.c:1117
 msgid "Orage main calendar file"
 msgstr "Kartela kryesore e kalendarit Orage"
 
-#: ../src/interface.c:1123 ../src/interface.c:1188
+#: ../src/interface.c:1122 ../src/interface.c:1187
 msgid "Current file"
 msgstr "Kartela e çastit"
 
-#: ../src/interface.c:1130 ../src/interface.c:1195
+#: ../src/interface.c:1129 ../src/interface.c:1194
 msgid "New file"
 msgstr "Kartelë e re"
 
-#: ../src/interface.c:1146 ../src/interface.c:1212
+#: ../src/interface.c:1145 ../src/interface.c:1211
 msgid "Action options"
 msgstr "Mundësi veprimi"
 
-#: ../src/interface.c:1149 ../src/interface.c:1215
+#: ../src/interface.c:1148 ../src/interface.c:1214
 msgid "Rename"
 msgstr "Riemërtoje"
 
-#: ../src/interface.c:1153
+#: ../src/interface.c:1152
 msgid ""
 "Orage internal file rename only.\n"
 "Does not touch external filesystem at all.\n"
@@ -2955,48 +1514,48 @@ msgstr ""
 "Nuk prek fare sisteme të jashtëm kartelash.\n"
 "Kartela e re duhet të ekzistojë."
 
-#: ../src/interface.c:1157 ../src/interface.c:1220
+#: ../src/interface.c:1156 ../src/interface.c:1219
 msgid "Copy"
 msgstr "Kopjoje"
 
-#: ../src/interface.c:1161
+#: ../src/interface.c:1160
 msgid "Current file is copied and stays unmodified in the old place."
 msgstr ""
 "Kartela e tanishme kopjohet dhe qëndron e pandryshuar te vendi i vjetër."
 
-#: ../src/interface.c:1165 ../src/interface.c:1225
+#: ../src/interface.c:1164 ../src/interface.c:1224
 msgid "Move"
 msgstr "Lëvize"
 
-#: ../src/interface.c:1169
+#: ../src/interface.c:1168
 msgid "Current file is moved and vanishes from the old place."
 msgstr "Kartela e tanishme lëvizet dhe avullon prej vendit të vjetër."
 
-#: ../src/interface.c:1183
+#: ../src/interface.c:1182
 msgid "Archive file"
 msgstr "Kartelë arkivash"
 
-#: ../src/interface.c:1246
+#: ../src/interface.c:1245
 msgid "Foreign files"
 msgstr "Kartela të huaja"
 
-#: ../src/interface.c:1253
+#: ../src/interface.c:1252
 msgid "Add new foreign file"
 msgstr "Shto kartelë të huaj të re"
 
-#: ../src/interface.c:1258
+#: ../src/interface.c:1257
 msgid "Foreign file:"
 msgstr "Kartelë e huaj."
 
-#: ../src/interface.c:1276
+#: ../src/interface.c:1275
 msgid "Options"
 msgstr "Mundësi"
 
-#: ../src/interface.c:1278
+#: ../src/interface.c:1277
 msgid "Read only"
 msgstr "Vetëm lexim"
 
-#: ../src/interface.c:1286
+#: ../src/interface.c:1285
 msgid ""
 "Set this if you want to make sure that this file is never modified by "
 "Orage.\n"
@@ -3008,7 +1567,7 @@ msgstr ""
 "Kini parasysh që ndryshimi i kartelave të huaja mund t'i bëjë ato të "
 "papërputhshme me mjetin origjinal, prej andej nga erdhën!"
 
-#: ../src/interface.c:1300
+#: ../src/interface.c:1299
 msgid "Exchange data - Orage"
 msgstr "Shkëmbeni të dhëna - Orage"
 
@@ -3066,7 +1625,17 @@ msgstr "\tDuke përdorur arkivim të vetvetishëm.\n"
 msgid "\tNot using archiving.\n"
 msgstr "\tPa përdorur arkivim.\n"
 
-#: ../src/main.c:225
+#: ../src/main.c:215
+#, c-format
+msgid "\tUsing operating system package libical.\n"
+msgstr ""
+
+#: ../src/main.c:217
+#, c-format
+msgid "\tUsing Orage local version of libical.\n"
+msgstr ""
+
+#: ../src/main.c:230
 #, c-format
 msgid ""
 "Usage: orage [options] [files]\n"
@@ -3075,52 +1644,52 @@ msgstr ""
 "Përdorimi: orage [mundësi] [kartela]\n"
 "\n"
 
-#: ../src/main.c:226
+#: ../src/main.c:231
 #, c-format
 msgid "Options:\n"
 msgstr "Mundësi:\n"
 
-#: ../src/main.c:227
+#: ../src/main.c:232
 #, c-format
 msgid "--version (-v) \t\tshow version of orage\n"
 msgstr "--version (-v) \t\tshfaq versionin e orage-it\n"
 
-#: ../src/main.c:228
+#: ../src/main.c:233
 #, c-format
 msgid "--help (-h) \t\tprint this text\n"
 msgstr "--help (-h) \t\tshtyp këtë tekst\n"
 
-#: ../src/main.c:229
+#: ../src/main.c:234
 #, c-format
 msgid "--preferences (-p) \tshow preferences form\n"
 msgstr "--parapëlqime (-p) \tshfaq formë parapëlqimesh\n"
 
-#: ../src/main.c:230
+#: ../src/main.c:235
 #, c-format
 msgid "--toggle (-t) \t\tmake orage visible/unvisible\n"
 msgstr "--toggle (-t) \t\tbëje orage-in të dukshëm/të padukshëm\n"
 
-#: ../src/main.c:231
+#: ../src/main.c:236
 #, c-format
 msgid "--add-foreign (-a) file [RW] \tadd a foreign file\n"
 msgstr "--add-foreign (-a) kartelë [RW] \tshto një kartelë të huaj\n"
 
-#: ../src/main.c:232
+#: ../src/main.c:237
 #, c-format
 msgid "--remove-foreign (-r) file \tremove a foreign file\n"
 msgstr "--remove-foreign (-r) kartelë \thiq një kartelë të huaj\n"
 
-#: ../src/main.c:234
+#: ../src/main.c:239
 #, c-format
 msgid "files=ical files to load into orage\n"
 msgstr "kartela=kartela ical për ngarkim te orage-i\n"
 
-#: ../src/main.c:236
+#: ../src/main.c:241
 #, c-format
 msgid "\tdbus not included in orage. \n"
 msgstr "\tdbus nuk përfshihet në orage. \n"
 
-#: ../src/main.c:237
+#: ../src/main.c:242
 #, c-format
 msgid ""
 "\twithout dbus [files] and foreign file options(-a & -r) can only be used "
@@ -3129,7 +1698,7 @@ msgstr ""
 "\tpa dbus [kartela] dhe mundësi kartelash të huaja(-a & -r) mund të përdoren "
 "vetëm kur niset orage-i \n"
 
-#: ../src/main.c:381
+#: ../src/main.c:386
 #, c-format
 msgid ""
 "\n"
@@ -3140,37 +1709,37 @@ msgstr ""
 "Mundësi e panjohur %s\n"
 "\n"
 
-#: ../src/mainbox.c:269
+#: ../src/mainbox.c:268
 msgid "_Exchange data"
 msgstr "_Shkëmbe të dhëna"
 
 #. Edit menu
-#: ../src/mainbox.c:280
+#: ../src/mainbox.c:279
 msgid "_Edit"
 msgstr "_Përpunoni"
 
-#: ../src/mainbox.c:290
+#: ../src/mainbox.c:289
 msgid "View selected _date"
 msgstr "Shihni _datën e përzgjedhur"
 
-#: ../src/mainbox.c:293
+#: ../src/mainbox.c:292
 msgid "View selected _week"
 msgstr "Shihni _javën e përzgjedhur"
 
-#: ../src/mainbox.c:299
+#: ../src/mainbox.c:298
 msgid "Select _Today"
 msgstr "Përzgjidhni _Sot"
 
 #. Help menu
-#: ../src/mainbox.c:303
+#: ../src/mainbox.c:302
 msgid "_Help"
 msgstr "_Ndihmë"
 
-#: ../src/mainbox.c:401
+#: ../src/mainbox.c:402
 msgid "Never"
 msgstr "Kurrë"
 
-#: ../src/mainbox.c:406
+#: ../src/mainbox.c:407
 #, c-format
 msgid ""
 "Title: %s\n"
@@ -3187,7 +1756,7 @@ msgstr ""
 "Shënim:\n"
 "%s"
 
-#: ../src/mainbox.c:412
+#: ../src/mainbox.c:413
 #, c-format
 msgid ""
 "Title: %s\n"
@@ -3202,114 +1771,142 @@ msgstr ""
 " Shënim:\n"
 "%s"
 
-#: ../src/mainbox.c:487
+#: ../src/mainbox.c:490
 msgid "<b>To do:</b>"
 msgstr "<b>Për t'u bërë:</b>"
 
-#: ../src/mainbox.c:516
+#: ../src/mainbox.c:524
 #, c-format
 msgid "<b>Events for %s:</b>"
 msgstr "<b>Ngjarje për %s:</b>"
 
-#: ../src/parameters.c:473
+#: ../src/mainbox.c:535
+#, fuzzy, c-format
+msgid "<b>Events for %s - %s:</b>"
+msgstr "<b>Ngjarje për %s:</b>"
+
+#: ../src/parameters.c:477
 msgid "Main setups"
 msgstr "Rregullimet kryesore"
 
-#: ../src/parameters.c:479
+#: ../src/parameters.c:483
 msgid "Timezone"
 msgstr "Zonë kohe"
 
-#: ../src/parameters.c:498
+#: ../src/parameters.c:502
 msgid "You should always define your local timezone."
 msgstr "Duhet të përcaktoni gjithmonë zonën kohore. "
 
-#: ../src/parameters.c:507
+#: ../src/parameters.c:511
 msgid "Archive threshold (months)"
 msgstr "Prag arkive (muaj)"
 
-#: ../src/parameters.c:517
+#: ../src/parameters.c:521
 msgid "(0 = no archiving)"
 msgstr "(0 = pa arkivim)"
 
-#: ../src/parameters.c:520
+#: ../src/parameters.c:524
 msgid "Archiving is used to save time and space when handling events."
 msgstr ""
 "Arkivimi përdoret për të kursyer kohë dhe hapësirë gjatë trajtimit të "
 "ngjarjeve."
 
-#: ../src/parameters.c:529
+#: ../src/parameters.c:533
 msgid "Sound command"
 msgstr "Urdhër tingulli"
 
-#: ../src/parameters.c:544
+#: ../src/parameters.c:548
 msgid "This command is given to shell to make sound in alarms."
 msgstr "Ky urdhër i kalohet shellit për të prodhuar tingull gjatë alarmesh."
 
-#: ../src/parameters.c:559
+#: ../src/parameters.c:563
 msgid "Display"
 msgstr "Shfaq"
 
-#: ../src/parameters.c:566
+#: ../src/parameters.c:571
 msgid "Calendar main window"
 msgstr "Dritarja kryesore e kalendarit"
 
-#: ../src/parameters.c:571
+#: ../src/parameters.c:576
 msgid "Show borders"
 msgstr "Shfaq anë"
 
-#: ../src/parameters.c:578
+#: ../src/parameters.c:583
 msgid "Show menu"
 msgstr "Shfaq menu"
 
-#: ../src/parameters.c:585
+#: ../src/parameters.c:590
+#, fuzzy
+msgid "Show month and year"
+msgstr "Shfaq në faques"
+
+#: ../src/parameters.c:597
+#, fuzzy
+msgid "Show day names"
+msgstr "Shfaq _kornizë"
+
+#: ../src/parameters.c:604
+#, fuzzy
+msgid "Show week numbers"
+msgstr "Shfaq anë"
+
+#: ../src/parameters.c:611
 msgid "Show todo list"
 msgstr "Shfaq listë veprimesh"
 
-#: ../src/parameters.c:592
-msgid "Show event list"
-msgstr "Shfaq listë ngjarjesh"
+#: ../src/parameters.c:618
+msgid "Number of days to show in event window"
+msgstr ""
 
-#: ../src/parameters.c:599
+#: ../src/parameters.c:624
+msgid "0 = do not show event list at all"
+msgstr ""
+
+#: ../src/parameters.c:634
 msgid "Set sticked"
 msgstr "Caktoje të ngjitur"
 
-#: ../src/parameters.c:606
+#: ../src/parameters.c:641
 msgid "Set on top"
 msgstr "Vëre në majë"
 
-#: ../src/parameters.c:627
+#: ../src/parameters.c:648
 msgid "Show in taskbar"
 msgstr "Shfaq në shtyllë veprimesh"
 
-#: ../src/parameters.c:634
+#: ../src/parameters.c:655
 msgid "Show in pager"
 msgstr "Shfaq në faques"
 
-#: ../src/parameters.c:641
+#: ../src/parameters.c:662
 msgid "Show in systray"
 msgstr "Shfaq në shtyllë sistemi"
 
-#: ../src/parameters.c:658
+#: ../src/parameters.c:697
 msgid "Calendar start"
 msgstr "Fillim kalendari"
 
-#: ../src/parameters.c:675
+#: ../src/parameters.c:702
+msgid "Show"
+msgstr "Shfaq"
+
+#: ../src/parameters.c:714
 msgid "Hide"
 msgstr "Fshih"
 
-#: ../src/parameters.c:687
+#: ../src/parameters.c:726
 msgid "Minimized"
 msgstr "Minimizuar"
 
-#: ../src/parameters.c:717
+#: ../src/parameters.c:750
 msgid "Extra setups"
 msgstr "Rregullime ekstra"
 
-#: ../src/parameters.c:724 ../src/parameters.c:729
+#: ../src/parameters.c:757 ../src/parameters.c:762
 msgid "Select always today"
 msgstr "Përzgjidh përherë sot"
 
-#: ../src/parameters.c:735
+#: ../src/parameters.c:768
 msgid ""
 "When showing main calendar, set pointer to either previously selected day or "
 "always to current day."
@@ -3317,70 +1914,91 @@ msgstr ""
 "Kur shfaqet kalendari kryesor, cakto treguesin ose te dita e përzgjedhur më "
 "parë ose përherë te dita e sotshme."
 
-#: ../src/parameters.c:766
-msgid "Dynamic icon size"
+#: ../src/parameters.c:776
+msgid "Use dynamic tray icon"
+msgstr ""
+
+#: ../src/parameters.c:781
+#, fuzzy
+msgid "Use dynamic icon"
 msgstr "Madhësi ikone dinamike"
 
-#: ../src/parameters.c:779 ../src/parameters.c:796
-msgid "(0 = use static icon)"
-msgstr "(0 = përdor ikonë statike)"
-
-#: ../src/parameters.c:782
+#: ../src/parameters.c:787
 msgid ""
-"Dynamic icon shows current day and month. It is visible only in tray. If "
-"tray is too small for dynamic icon size, Orage switches automatically back "
-"to static icon."
+"Dynamic icon shows current month and day of the month. It is visible only in "
+"system tray."
 msgstr ""
-"Ikona dinamike shfaq ditën dhe muajin e tanishëm. Është e dukshme vetëm në "
-"shtyllë. Po qe se shtylla është shumë e vogël për madhësinë e ikonave "
-"dinamike, Orage-i kalon vetvetiu te ikonat statike."
 
-#: ../src/parameters.c:805
+#: ../src/parameters.c:796
 msgid "Main Calendar double click shows"
 msgstr "Dyklikimi mbi Kalendarin Kryesor shfaq"
 
-#: ../src/parameters.c:810
+#: ../src/parameters.c:801
 msgid "Days view"
 msgstr "Parje ditësh"
 
-#: ../src/parameters.c:822
+#: ../src/parameters.c:813
 msgid "Event list"
 msgstr "Listë ngjarjesh"
 
-#: ../src/parameters.c:847
+#: ../src/parameters.c:830
+#, fuzzy
+msgid "Eventlist window"
+msgstr "Listë ngjarjesh"
+
+#: ../src/parameters.c:834
+msgid "Number of extra days to show in event list"
+msgstr ""
+
+#: ../src/parameters.c:846
+msgid ""
+"This is just the default value, you can change it in the actual eventlist "
+"window."
+msgstr ""
+
+#: ../src/parameters.c:862
 msgid "Orage Preferences"
 msgstr "Parapëlqime për Orage-in"
 
-#: ../src/parameters.c:1019
+#: ../src/parameters.c:1044
 msgid "First Orage start. Searching default timezone."
 msgstr ""
 
-#: ../src/parameters.c:1038
+#: ../src/parameters.c:1063
 #, fuzzy, c-format
 msgid "Default timezone set to %s."
 msgstr "vendose zonën kohore si:"
 
-#: ../src/parameters.c:1041
+#: ../src/parameters.c:1066
 msgid "Default timezone not found, please, set it manually."
 msgstr ""
 
-#: ../src/reminder.c:425
+#: ../src/reminder.c:549
 msgid "Reminder "
 msgstr "Kujtues "
 
-#: ../src/reminder.c:449
+#: ../src/reminder.c:567
 msgid "Open"
 msgstr "Hap"
 
-#: ../src/reminder.c:539
+#: ../src/reminder.c:694
 msgid "Reminder - Orage"
 msgstr "Përkujtues - Orage"
 
-#: ../src/reminder.c:844
+#: ../src/reminder.c:772
+msgid "Remind me again after the specified time"
+msgstr ""
+
+#. Note that this goes to the main area. Temporary for the version
+#: ../src/reminder.c:775
+msgid "Press <Execute> to remind me again after the specified time:"
+msgstr ""
+
+#: ../src/reminder.c:1012
 msgid "Next active alarms:"
 msgstr "Alarmet pasues veprues:"
 
-#: ../src/reminder.c:872
+#: ../src/reminder.c:1054 ../src/reminder.c:1059
 #, c-format
 msgid ""
 "\n"
@@ -3389,7 +2007,7 @@ msgstr ""
 "\n"
 "%02d d %02d h %02d miuta deri në: %s"
 
-#: ../src/reminder.c:880
+#: ../src/reminder.c:1068
 #, c-format
 msgid ""
 "\n"
@@ -3398,20 +2016,1574 @@ msgstr ""
 "\n"
 "Nuk u gjet alarm veprues"
 
-#: ../src/tray_icon.c:341
+#: ../src/timezone_names.c:36
+msgid "Africa"
+msgstr "Afrikë"
+
+#: ../src/timezone_names.c:37
+msgid "Africa/Abidjan"
+msgstr "Afrikë/Abixhan"
+
+#: ../src/timezone_names.c:38
+msgid "Africa/Accra"
+msgstr "Afrikë/Akra"
+
+#: ../src/timezone_names.c:39
+msgid "Africa/Addis_Ababa"
+msgstr "Afrikë/Adis_Abeba"
+
+#: ../src/timezone_names.c:40
+msgid "Africa/Algiers"
+msgstr "Afrikë/Algjer"
+
+#: ../src/timezone_names.c:41
+msgid "Africa/Asmera"
+msgstr "Afrikë/Asmera"
+
+#: ../src/timezone_names.c:42
+msgid "Africa/Bamako"
+msgstr "Afrikë/Bamako"
+
+#: ../src/timezone_names.c:43
+msgid "Africa/Bangui"
+msgstr "Afrikë/Bangui"
+
+#: ../src/timezone_names.c:44
+msgid "Africa/Banjul"
+msgstr "Afrikë/Banxhul"
+
+#: ../src/timezone_names.c:45
+msgid "Africa/Bissau"
+msgstr "Afrikë/Bisau"
+
+#: ../src/timezone_names.c:46
+msgid "Africa/Blantyre"
+msgstr "Afrikë/Blentajër"
+
+#: ../src/timezone_names.c:47
+msgid "Africa/Brazzaville"
+msgstr "Afrikë/Brazavil"
+
+#: ../src/timezone_names.c:48
+msgid "Africa/Bujumbura"
+msgstr "Afrikë/Bujumbura"
+
+#: ../src/timezone_names.c:49
+msgid "Africa/Cairo"
+msgstr "Afrikë/Kairo"
+
+#: ../src/timezone_names.c:50
+msgid "Africa/Casablanca"
+msgstr "Afrikë/Kazablanka"
+
+#: ../src/timezone_names.c:51
+msgid "Africa/Ceuta"
+msgstr "Afrikë/Ceuta"
+
+#: ../src/timezone_names.c:52
+msgid "Africa/Conakry"
+msgstr "Afrikë/Konakri"
+
+#: ../src/timezone_names.c:53
+msgid "Africa/Dakar"
+msgstr "Afrikë/Dakar"
+
+#: ../src/timezone_names.c:54
+msgid "Africa/Dar_es_Salaam"
+msgstr "Afrikë/Dar_es_Salam"
+
+#: ../src/timezone_names.c:55
+msgid "Africa/Djibouti"
+msgstr "Afrikë/Xhibut"
+
+#: ../src/timezone_names.c:56
+msgid "Africa/Douala"
+msgstr "Afrikë/Duala"
+
+#: ../src/timezone_names.c:57
+msgid "Africa/El_Aaiun"
+msgstr "Afrikë/El_Ajun"
+
+#: ../src/timezone_names.c:58
+msgid "Africa/Freetown"
+msgstr "Afrikë/Fritaun"
+
+#: ../src/timezone_names.c:59
+msgid "Africa/Gaborone"
+msgstr "Afrikë/Gaborone"
+
+#: ../src/timezone_names.c:60
+msgid "Africa/Harare"
+msgstr "Afrikë/Harare"
+
+#: ../src/timezone_names.c:61
+msgid "Africa/Johannesburg"
+msgstr "Afrikë/Johanesburg"
+
+#: ../src/timezone_names.c:62
+msgid "Africa/Kampala"
+msgstr "Afrikë/Kampala"
+
+#: ../src/timezone_names.c:63
+msgid "Africa/Khartoum"
+msgstr "Afrikë/Kartum"
+
+#: ../src/timezone_names.c:64
+msgid "Africa/Kigali"
+msgstr "Afrikë/Kigali"
+
+#: ../src/timezone_names.c:65
+msgid "Africa/Kinshasa"
+msgstr "Afrikë/Kinshasa"
+
+#: ../src/timezone_names.c:66
+msgid "Africa/Lagos"
+msgstr "Afrikë/Lagos"
+
+#: ../src/timezone_names.c:67
+msgid "Africa/Libreville"
+msgstr "Afrikë/Librëvil"
+
+#: ../src/timezone_names.c:68
+msgid "Africa/Lome"
+msgstr "Afrikë/Lome"
+
+#: ../src/timezone_names.c:69
+msgid "Africa/Luanda"
+msgstr "Afrikë/Luanda"
+
+#: ../src/timezone_names.c:70
+msgid "Africa/Lubumbashi"
+msgstr "Afrikë/Lubumbashi"
+
+#: ../src/timezone_names.c:71
+msgid "Africa/Lusaka"
+msgstr "Afrikë/Lusaka"
+
+#: ../src/timezone_names.c:72
+msgid "Africa/Malabo"
+msgstr "Afrikë/Malabo"
+
+#: ../src/timezone_names.c:73
+msgid "Africa/Maputo"
+msgstr "Afrikë/Maputo"
+
+#: ../src/timezone_names.c:74
+msgid "Africa/Maseru"
+msgstr "Afrikë/Maseru"
+
+#: ../src/timezone_names.c:75
+msgid "Africa/Mbabane"
+msgstr "Afrikë/Mbabane"
+
+#: ../src/timezone_names.c:76
+msgid "Africa/Mogadishu"
+msgstr "Afrikë/Mogadishu"
+
+#: ../src/timezone_names.c:77
+msgid "Africa/Monrovia"
+msgstr "Afrikë/Monrovia"
+
+#: ../src/timezone_names.c:78
+msgid "Africa/Nairobi"
+msgstr "Afrikë/Najrobi"
+
+#: ../src/timezone_names.c:79
+msgid "Africa/Ndjamena"
+msgstr "Afrikë/Nxhamena"
+
+#: ../src/timezone_names.c:80
+msgid "Africa/Niamey"
+msgstr "Afrikë/Niamei"
+
+#: ../src/timezone_names.c:81
+msgid "Africa/Nouakchott"
+msgstr "Afrikë/Nuakshot"
+
+#: ../src/timezone_names.c:82
+msgid "Africa/Ouagadougou"
+msgstr "Afrikë/Uagadugu"
+
+#: ../src/timezone_names.c:83
+msgid "Africa/Porto-Novo"
+msgstr "Afrikë/Porto-Novo"
+
+#: ../src/timezone_names.c:84
+msgid "Africa/Sao_Tome"
+msgstr "Afrikë/Sao_Tome"
+
+#: ../src/timezone_names.c:85
+msgid "Africa/Timbuktu"
+msgstr "Afrikë/Timbuktu"
+
+#: ../src/timezone_names.c:86
+msgid "Africa/Tripoli"
+msgstr "Afrikë/Tripoli"
+
+#: ../src/timezone_names.c:87
+msgid "Africa/Tunis"
+msgstr "Afrikë/Tunis"
+
+#: ../src/timezone_names.c:88
+msgid "Africa/Windhoek"
+msgstr "Afrikë/Uindhoek"
+
+#: ../src/timezone_names.c:89
+msgid "America"
+msgstr "Amerikë"
+
+#: ../src/timezone_names.c:90
+msgid "America/Adak"
+msgstr "Amerikë/Adak"
+
+#: ../src/timezone_names.c:91
+msgid "America/Anchorage"
+msgstr "Amerikë/Ankorazh"
+
+#: ../src/timezone_names.c:92
+msgid "America/Anguilla"
+msgstr "Amerikë/Anguila"
+
+#: ../src/timezone_names.c:93
+msgid "America/Antigua"
+msgstr "Amerikë/Antigua"
+
+#: ../src/timezone_names.c:94
+msgid "America/Araguaina"
+msgstr "Amerikë/Araguaina"
+
+#: ../src/timezone_names.c:95
+msgid "America/Argentina/Buenos_Aires"
+msgstr "Amerikë/Argjentinë/Buenos_Aires"
+
+#: ../src/timezone_names.c:96
+msgid "America/Argentina/Catamarca"
+msgstr "Amerikë/Argjentinë/Katamarka"
+
+#: ../src/timezone_names.c:97
+msgid "America/Argentina/Cordoba"
+msgstr "Amerikë/Argjentinë/Kordoba"
+
+#: ../src/timezone_names.c:98
+msgid "America/Argentina/Jujuy"
+msgstr "Amerikë/Argjentinë/Huhui"
+
+#: ../src/timezone_names.c:99
+msgid "America/Argentina/Mendoza"
+msgstr "Amerikë/Argjentinë/Mendoza"
+
+#: ../src/timezone_names.c:100
+msgid "America/Aruba"
+msgstr "Amerikë/Aruba"
+
+#: ../src/timezone_names.c:101
+msgid "America/Asuncion"
+msgstr "Amerikë/Asuncion"
+
+#: ../src/timezone_names.c:102
+msgid "America/Barbados"
+msgstr "Amerikë/Barbados"
+
+#: ../src/timezone_names.c:103
+msgid "America/Belem"
+msgstr "Amerikë/Belem"
+
+#: ../src/timezone_names.c:104
+msgid "America/Belize"
+msgstr "Amerikë/Belize"
+
+#: ../src/timezone_names.c:105
+msgid "America/Boa_Vista"
+msgstr "Amerikë/Boa_Vista"
+
+#: ../src/timezone_names.c:106
+msgid "America/Bogota"
+msgstr "Amerikë/Bogota"
+
+#: ../src/timezone_names.c:107
+msgid "America/Boise"
+msgstr "Amerikë/Buazë"
+
+#: ../src/timezone_names.c:108
+msgid "America/Buenos_Aires"
+msgstr "Amerikë/Buenos_Aires"
+
+#: ../src/timezone_names.c:109
+msgid "America/Cambridge_Bay"
+msgstr "Amerikë/Kembrixh_Bej"
+
+#: ../src/timezone_names.c:110
+msgid "America/Cancun"
+msgstr "Amerikë/Kankun"
+
+#: ../src/timezone_names.c:111
+msgid "America/Caracas"
+msgstr "Amerikë/Karakas"
+
+#: ../src/timezone_names.c:112
+msgid "America/Catamarca"
+msgstr "Amerikë/Katamarka"
+
+#: ../src/timezone_names.c:113
+msgid "America/Cayenne"
+msgstr "Amerikë/Kajen"
+
+#: ../src/timezone_names.c:114
+msgid "America/Cayman"
+msgstr "Amerikë/Kajmën"
+
+#: ../src/timezone_names.c:115
+msgid "America/Chicago"
+msgstr "Amerikë/Çikago"
+
+#: ../src/timezone_names.c:116
+msgid "America/Chihuahua"
+msgstr "Amerikë/Çiuaua"
+
+#: ../src/timezone_names.c:117
+msgid "America/Cordoba"
+msgstr "Amerikë/Kordoba "
+
+#: ../src/timezone_names.c:118
+msgid "America/Costa_Rica"
+msgstr "Amerikë/Kosta_Rika"
+
+#: ../src/timezone_names.c:119
+msgid "America/Cuiaba"
+msgstr "Amerikë/Kujaba"
+
+#: ../src/timezone_names.c:120
+msgid "America/Curacao"
+msgstr "Amerikë/Kuraçao"
+
+#: ../src/timezone_names.c:121
+msgid "America/Dawson"
+msgstr "Amerikë/Douson"
+
+#: ../src/timezone_names.c:122
+msgid "America/Dawson_Creek"
+msgstr "Amerikë/Douson_Krik"
+
+#: ../src/timezone_names.c:123
+msgid "America/Denver"
+msgstr "Amerikë/Denver"
+
+#: ../src/timezone_names.c:124
+msgid "America/Detroit"
+msgstr "Amerikë/Detroit"
+
+#: ../src/timezone_names.c:125
+msgid "America/Dominica"
+msgstr "Amerikë/Dominika"
+
+#: ../src/timezone_names.c:126
+msgid "America/Edmonton"
+msgstr "Amerikë/Edmonton"
+
+#: ../src/timezone_names.c:127
+msgid "America/Eirunepe"
+msgstr "Amerikë/Irunepe"
+
+#: ../src/timezone_names.c:128
+msgid "America/El_Salvador"
+msgstr "Amerikë/El_Salvador"
+
+#: ../src/timezone_names.c:129
+msgid "America/Fortaleza"
+msgstr "Amerikë/Fortaleza"
+
+#: ../src/timezone_names.c:130
+msgid "America/Glace_Bay"
+msgstr "Amerikë/Glas_Bej"
+
+#: ../src/timezone_names.c:131
+msgid "America/Godthab"
+msgstr "Amerikë/Gotab"
+
+#: ../src/timezone_names.c:132
+msgid "America/Goose_Bay"
+msgstr "Amerikë/Gus_Bej"
+
+#: ../src/timezone_names.c:133
+msgid "America/Grand_Turk"
+msgstr "Amerikë/Grand_Turk"
+
+#: ../src/timezone_names.c:134
+msgid "America/Grenada"
+msgstr "Amerikë/Grenada"
+
+#: ../src/timezone_names.c:135
+msgid "America/Guadeloupe"
+msgstr "Amerikë/Guadalupë"
+
+#: ../src/timezone_names.c:136
+msgid "America/Guatemala"
+msgstr "Amerikë/Guatemala"
+
+#: ../src/timezone_names.c:137
+msgid "America/Guayaquil"
+msgstr "Amerikë/Guajakil"
+
+#: ../src/timezone_names.c:138
+msgid "America/Guyana"
+msgstr "Amerikë/Guajana"
+
+#: ../src/timezone_names.c:139
+msgid "America/Halifax"
+msgstr "Amerikë/Halifaks"
+
+#: ../src/timezone_names.c:140
+msgid "America/Havana"
+msgstr "Amerikë/Havana"
+
+#: ../src/timezone_names.c:141
+msgid "America/Hermosillo"
+msgstr "Amerikë/Hermosilo"
+
+#: ../src/timezone_names.c:142
+msgid "America/Indiana/Indianapolis"
+msgstr "Amerikë/Indiana/Indianapolis"
+
+#: ../src/timezone_names.c:143
+msgid "America/Indiana/Knox"
+msgstr "Amerikë/Indiana/Noks"
+
+#: ../src/timezone_names.c:144
+msgid "America/Indiana/Marengo"
+msgstr "Amerikë/Indiana/Marengo"
+
+#: ../src/timezone_names.c:145
+msgid "America/Indiana/Vevay"
+msgstr "Amerikë/Indiana/Vevej"
+
+#: ../src/timezone_names.c:146
+msgid "America/Indianapolis"
+msgstr "Amerikë/Indianapolis"
+
+#: ../src/timezone_names.c:147
+msgid "America/Inuvik"
+msgstr "Amerikë/Inuvik"
+
+#: ../src/timezone_names.c:148
+msgid "America/Iqaluit"
+msgstr "Amerikë/Ikaluit"
+
+#: ../src/timezone_names.c:149
+msgid "America/Jamaica"
+msgstr "Amerikë/Xhamaika"
+
+#: ../src/timezone_names.c:150
+msgid "America/Jujuy"
+msgstr "Amerikë/Jujui"
+
+#: ../src/timezone_names.c:151
+msgid "America/Juneau"
+msgstr "Amerikë/Zhuno"
+
+#: ../src/timezone_names.c:152
+msgid "America/Kentucky/Louisville"
+msgstr "Amerikë/Kentaki/Luisvil"
+
+#: ../src/timezone_names.c:153
+msgid "America/Kentucky/Monticello"
+msgstr "Amerikë/Kentaki/Montiçelo"
+
+#: ../src/timezone_names.c:154
+msgid "America/La_Paz"
+msgstr "Amerikë/La_Paz"
+
+#: ../src/timezone_names.c:155
+msgid "America/Lima"
+msgstr "Amerikë/Lima"
+
+#: ../src/timezone_names.c:156
+msgid "America/Los_Angeles"
+msgstr "Amerikë/Los_Anxhelos"
+
+#: ../src/timezone_names.c:157
+msgid "America/Louisville"
+msgstr "Amerikë/Luisvil"
+
+#: ../src/timezone_names.c:158
+msgid "America/Maceio"
+msgstr "Amerikë/Maceio"
+
+#: ../src/timezone_names.c:159
+msgid "America/Managua"
+msgstr "Amerikë/Managua"
+
+#: ../src/timezone_names.c:160
+msgid "America/Manaus"
+msgstr "Amerikë/Manaus"
+
+#: ../src/timezone_names.c:161
+msgid "America/Martinique"
+msgstr "Amerikë/Martinikë"
+
+#: ../src/timezone_names.c:162
+msgid "America/Mazatlan"
+msgstr "Amerikë/Mazatlan"
+
+#: ../src/timezone_names.c:163
+msgid "America/Mendoza"
+msgstr "Amerikë/Mendoza"
+
+#: ../src/timezone_names.c:164
+msgid "America/Menominee"
+msgstr "Amerikë/Menomini"
+
+#: ../src/timezone_names.c:165
+msgid "America/Merida"
+msgstr "Amerikë/Merida"
+
+#: ../src/timezone_names.c:166
+msgid "America/Mexico_City"
+msgstr "Amerikë/Meksiko_Siti"
+
+#: ../src/timezone_names.c:167
+msgid "America/Miquelon"
+msgstr "Amerikë/Mikëlon"
+
+#: ../src/timezone_names.c:168
+msgid "America/Monterrey"
+msgstr "Amerikë/Monterrej"
+
+#: ../src/timezone_names.c:169
+msgid "America/Montevideo"
+msgstr "Amerikë/Montevideo"
+
+#: ../src/timezone_names.c:170
+msgid "America/Montreal"
+msgstr "Amerikë/Montreal"
+
+#: ../src/timezone_names.c:171
+msgid "America/Montserrat"
+msgstr "Amerikë/Montserrat"
+
+#: ../src/timezone_names.c:172
+msgid "America/Nassau"
+msgstr "Amerikë/Nasau"
+
+#: ../src/timezone_names.c:173
+msgid "America/New_York"
+msgstr "Amerikë/Nju_Jork"
+
+#: ../src/timezone_names.c:174
+msgid "America/Nipigon"
+msgstr "Amerikë/Nipigon"
+
+#: ../src/timezone_names.c:175
+msgid "America/Nome"
+msgstr "Amerikë/Nome"
+
+#: ../src/timezone_names.c:176
+msgid "America/Noronha"
+msgstr "Amerikë/Noronja"
+
+#: ../src/timezone_names.c:177
+msgid "America/Panama"
+msgstr "Amerikë/Panama"
+
+#: ../src/timezone_names.c:178
+msgid "America/Pangnirtung"
+msgstr "Amerikë/Pangnirtung"
+
+#: ../src/timezone_names.c:179
+msgid "America/Paramaribo"
+msgstr "Amerikë/Paramaribo"
+
+#: ../src/timezone_names.c:180
+msgid "America/Phoenix"
+msgstr "Amerikë/Feniks"
+
+#: ../src/timezone_names.c:181
+msgid "America/Port-au-Prince"
+msgstr "Amerikë/Port-o-Prins"
+
+#: ../src/timezone_names.c:182
+msgid "America/Port_of_Spain"
+msgstr "Amerikë/Port_of_Spain"
+
+#: ../src/timezone_names.c:183
+msgid "America/Porto_Velho"
+msgstr "Amerikë/Porto_Velo"
+
+#: ../src/timezone_names.c:184
+msgid "America/Puerto_Rico"
+msgstr "Amerikë/Porto_Riko"
+
+#: ../src/timezone_names.c:185
+msgid "America/Rainy_River"
+msgstr "Amerikë/Reini_Rivë r"
+
+#: ../src/timezone_names.c:186
+msgid "America/Rankin_Inlet"
+msgstr "Amerikë/Rankin_Inlet"
+
+#: ../src/timezone_names.c:187
+msgid "America/Recife"
+msgstr "Amerikë/Recife"
+
+#: ../src/timezone_names.c:188
+msgid "America/Regina"
+msgstr "Amerikë/Rexhina"
+
+#: ../src/timezone_names.c:189
+msgid "America/Rio_Branco"
+msgstr "Amerikë/Rio_Branko"
+
+#: ../src/timezone_names.c:190
+msgid "America/Rosario"
+msgstr "Amerikë/Rozario"
+
+#: ../src/timezone_names.c:191
+msgid "America/Santiago"
+msgstr "Amerikë/Santiago"
+
+#: ../src/timezone_names.c:192
+msgid "America/Santo_Domingo"
+msgstr "Amerikë/Santo_Domingo"
+
+#: ../src/timezone_names.c:193
+msgid "America/Sao_Paulo"
+msgstr "Amerikë/San_Paolo"
+
+#: ../src/timezone_names.c:194
+msgid "America/Scoresbysund"
+msgstr "Amerikë/Skorsbajsund"
+
+#: ../src/timezone_names.c:195
+msgid "America/Shiprock"
+msgstr "Amerikë/Shiprok"
+
+#: ../src/timezone_names.c:196
+msgid "America/St_Johns"
+msgstr "Amerikë/St_Xhons"
+
+#: ../src/timezone_names.c:197
+msgid "America/St_Kitts"
+msgstr "Amerikë/St_Kits"
+
+#: ../src/timezone_names.c:198
+msgid "America/St_Lucia"
+msgstr "Amerikë/Santa_Luçia"
+
+#: ../src/timezone_names.c:199
+msgid "America/St_Thomas"
+msgstr "Amerikë/St_Tomas"
+
+#: ../src/timezone_names.c:200
+msgid "America/St_Vincent"
+msgstr "Amerikë/St_Vincent"
+
+#: ../src/timezone_names.c:201
+msgid "America/Swift_Current"
+msgstr "Amerikë/Suift_Kurrent"
+
+#: ../src/timezone_names.c:202
+msgid "America/Tegucigalpa"
+msgstr "Amerikë/Teguçigalpa"
+
+#: ../src/timezone_names.c:203
+msgid "America/Thule"
+msgstr "Amerikë/Tjul"
+
+#: ../src/timezone_names.c:204
+msgid "America/Thunder_Bay"
+msgstr "Amerikë/Thandër_Bej"
+
+#: ../src/timezone_names.c:205
+msgid "America/Tijuana"
+msgstr "Amerikë/Tihuana"
+
+#: ../src/timezone_names.c:206
+msgid "America/Tortola"
+msgstr "Amerikë/Tortola"
+
+#: ../src/timezone_names.c:207
+msgid "America/Vancouver"
+msgstr "Amerikë/Vankuver"
+
+#: ../src/timezone_names.c:208
+msgid "America/Whitehorse"
+msgstr "Amerikë/Uajthors"
+
+#: ../src/timezone_names.c:209
+msgid "America/Winnipeg"
+msgstr "Amerikë/Uinipeg"
+
+#: ../src/timezone_names.c:210
+msgid "America/Yakutat"
+msgstr "Amerikë/Jakutat"
+
+#: ../src/timezone_names.c:211
+msgid "America/Yellowknife"
+msgstr "Amerikë/Jellounajf"
+
+#: ../src/timezone_names.c:212
+msgid "Antarctica"
+msgstr "Antarktidë"
+
+#: ../src/timezone_names.c:213
+msgid "Antarctica/Casey"
+msgstr "Antarktidë/Kasi"
+
+#: ../src/timezone_names.c:214
+msgid "Antarctica/Davis"
+msgstr "Antarktidë/Dejvis"
+
+#: ../src/timezone_names.c:215
+msgid "Antarctica/DumontDUrville"
+msgstr "Antarktidë/DymoDYrvil"
+
+#: ../src/timezone_names.c:216
+msgid "Antarctica/Mawson"
+msgstr "Antarktidë/Mouson"
+
+#: ../src/timezone_names.c:217
+msgid "Antarctica/McMurdo"
+msgstr "Antarktidë/MkMërdo"
+
+#: ../src/timezone_names.c:218
+msgid "Antarctica/Palmer"
+msgstr "Antarktidë/Palmer"
+
+#: ../src/timezone_names.c:219
+msgid "Antarctica/South_Pole"
+msgstr "Antarktidë/Poli_i_Jugut"
+
+#: ../src/timezone_names.c:220
+msgid "Antarctica/Syowa"
+msgstr "Antarktidë/Sjoua"
+
+#: ../src/timezone_names.c:221
+msgid "Antarctica/Vostok"
+msgstr "Antarktidë/Vostok"
+
+#: ../src/timezone_names.c:222
+msgid "Arctic"
+msgstr "Arktik"
+
+#: ../src/timezone_names.c:223
+msgid "Arctic/Longyearbyen"
+msgstr "Arktik/Longjirbajën"
+
+#: ../src/timezone_names.c:224
+msgid "Asia"
+msgstr "Azi"
+
+#: ../src/timezone_names.c:225
+msgid "Asia/Aden"
+msgstr "Azi/Aden"
+
+#: ../src/timezone_names.c:226
+msgid "Asia/Almaty"
+msgstr "Azi/Almati"
+
+#: ../src/timezone_names.c:227
+msgid "Asia/Amman"
+msgstr "Azi/Aman"
+
+#: ../src/timezone_names.c:228
+msgid "Asia/Anadyr"
+msgstr "Azi/Anadir"
+
+#: ../src/timezone_names.c:229
+msgid "Asia/Aqtau"
+msgstr "Azi/Aktau"
+
+#: ../src/timezone_names.c:230
+msgid "Asia/Aqtobe"
+msgstr "Azi/Aktobe"
+
+#: ../src/timezone_names.c:231
+msgid "Asia/Ashgabat"
+msgstr "Azi/Ashkabad"
+
+#: ../src/timezone_names.c:232
+msgid "Asia/Baghdad"
+msgstr "Azi/Bagdad"
+
+#: ../src/timezone_names.c:233
+msgid "Asia/Bahrain"
+msgstr "Azi/Bahrein"
+
+#: ../src/timezone_names.c:234
+msgid "Asia/Baku"
+msgstr "Azi/Baku"
+
+#: ../src/timezone_names.c:235
+msgid "Asia/Bangkok"
+msgstr "Azi/Bangkok"
+
+#: ../src/timezone_names.c:236
+msgid "Asia/Beirut"
+msgstr "Azi/Bejrut"
+
+#: ../src/timezone_names.c:237
+msgid "Asia/Bishkek"
+msgstr "Azi/Bishkek"
+
+#: ../src/timezone_names.c:238
+msgid "Asia/Brunei"
+msgstr "Azi/Brunei"
+
+#: ../src/timezone_names.c:239
+msgid "Asia/Calcutta"
+msgstr "Azi/Kalkuta"
+
+#: ../src/timezone_names.c:240
+msgid "Asia/Chungking"
+msgstr "Azi/Çungking"
+
+#: ../src/timezone_names.c:241
+msgid "Asia/Colombo"
+msgstr "Azi/Kolombo"
+
+#: ../src/timezone_names.c:242
+msgid "Asia/Damascus"
+msgstr "Azi/Damask"
+
+#: ../src/timezone_names.c:243
+msgid "Asia/Dhaka"
+msgstr "Azi/Daka"
+
+#: ../src/timezone_names.c:244
+msgid "Asia/Dili"
+msgstr "Azi/Dili"
+
+#: ../src/timezone_names.c:245
+msgid "Asia/Dubai"
+msgstr "Azi/Dubai"
+
+#: ../src/timezone_names.c:246
+msgid "Asia/Dushanbe"
+msgstr "Azi/Dushanbe"
+
+#: ../src/timezone_names.c:247
+msgid "Asia/Gaza"
+msgstr "Azi/Gaza"
+
+#: ../src/timezone_names.c:248
+msgid "Asia/Harbin"
+msgstr "Azi/Harbin"
+
+#: ../src/timezone_names.c:249
+msgid "Asia/Hong_Kong"
+msgstr "Azi/Hong_Kong"
+
+#: ../src/timezone_names.c:250
+msgid "Asia/Hovd"
+msgstr "Azi/Hovd"
+
+#: ../src/timezone_names.c:251
+msgid "Asia/Irkutsk"
+msgstr "Azi/Irkutsk"
+
+#: ../src/timezone_names.c:252
+msgid "Asia/Istanbul"
+msgstr "Azi/Stamboll"
+
+#: ../src/timezone_names.c:253
+msgid "Asia/Jakarta"
+msgstr "Azi/Xhakartë"
+
+#: ../src/timezone_names.c:254
+msgid "Asia/Jayapura"
+msgstr "Azi/Xhajapura"
+
+#: ../src/timezone_names.c:255
+msgid "Asia/Jerusalem"
+msgstr "Azi/Jerusalem"
+
+#: ../src/timezone_names.c:256
+msgid "Asia/Kabul"
+msgstr "Azi/Kabul"
+
+#: ../src/timezone_names.c:257
+msgid "Asia/Kamchatka"
+msgstr "Azi/Kamçatka"
+
+#: ../src/timezone_names.c:258
+msgid "Asia/Karachi"
+msgstr "Azi/Karashi"
+
+#: ../src/timezone_names.c:259
+msgid "Asia/Kashgar"
+msgstr "Azi/Kashgar"
+
+#: ../src/timezone_names.c:260
+msgid "Asia/Katmandu"
+msgstr "Azi/Katmandu"
+
+#: ../src/timezone_names.c:261
+msgid "Asia/Krasnoyarsk"
+msgstr "Azi/Krasnojarsk"
+
+#: ../src/timezone_names.c:262
+msgid "Asia/Kuala_Lumpur"
+msgstr "Azi/Kuala_Lumpur"
+
+#: ../src/timezone_names.c:263
+msgid "Asia/Kuching"
+msgstr "Azi/Kushing"
+
+#: ../src/timezone_names.c:264
+msgid "Asia/Kuwait"
+msgstr "Azi/Kuvait"
+
+#: ../src/timezone_names.c:265
+msgid "Asia/Macao"
+msgstr "Azi/Moldavi"
+
+#: ../src/timezone_names.c:266
+msgid "Asia/Magadan"
+msgstr "Azi/Magadan"
+
+#: ../src/timezone_names.c:267
+msgid "Asia/Manila"
+msgstr "Azi/Manila"
+
+#: ../src/timezone_names.c:268
+msgid "Asia/Muscat"
+msgstr "Azi/Muskat"
+
+#: ../src/timezone_names.c:269
+msgid "Asia/Nicosia"
+msgstr "Azi/Nikozia"
+
+#: ../src/timezone_names.c:270
+msgid "Asia/Novosibirsk"
+msgstr "Azi/Novosibirsk"
+
+#: ../src/timezone_names.c:271
+msgid "Asia/Omsk"
+msgstr "Azi/Omsk"
+
+#: ../src/timezone_names.c:272
+msgid "Asia/Phnom_Penh"
+msgstr "Azi/Phnom_Pen"
+
+#: ../src/timezone_names.c:273
+msgid "Asia/Pontianak"
+msgstr "Azi/Pontianak"
+
+#: ../src/timezone_names.c:274
+msgid "Asia/Pyongyang"
+msgstr "Azi/Pjongjang"
+
+#: ../src/timezone_names.c:275
+msgid "Asia/Qatar"
+msgstr "Azi/Katar"
+
+#: ../src/timezone_names.c:276
+msgid "Asia/Rangoon"
+msgstr "Azi/Rangun"
+
+#: ../src/timezone_names.c:277
+msgid "Asia/Riyadh"
+msgstr "Azi//Riad"
+
+#: ../src/timezone_names.c:278
+msgid "Asia/Saigon"
+msgstr "Azi/Sajgon"
+
+#: ../src/timezone_names.c:279
+msgid "Asia/Samarkand"
+msgstr "Azi/Samarkand"
+
+#: ../src/timezone_names.c:280
+msgid "Asia/Seoul"
+msgstr "Azi/Seul"
+
+#: ../src/timezone_names.c:281
+msgid "Asia/Shanghai"
+msgstr "Azi/Shangai"
+
+#: ../src/timezone_names.c:282
+msgid "Asia/Singapore"
+msgstr "Azi/Singapor"
+
+#: ../src/timezone_names.c:283
+msgid "Asia/Taipei"
+msgstr "Azi/Taipei"
+
+#: ../src/timezone_names.c:284
+msgid "Asia/Tashkent"
+msgstr "Azi/Tashkent"
+
+#: ../src/timezone_names.c:285
+msgid "Asia/Tbilisi"
+msgstr "Azi/Tbilis"
+
+#: ../src/timezone_names.c:286
+msgid "Asia/Tehran"
+msgstr "Azi/Teheran"
+
+#: ../src/timezone_names.c:287
+msgid "Asia/Thimphu"
+msgstr "Azi/Timpu"
+
+#: ../src/timezone_names.c:288
+msgid "Asia/Tokyo"
+msgstr "Azi/Tokio"
+
+#: ../src/timezone_names.c:289
+msgid "Asia/Ujung_Pandang"
+msgstr "Azi/Ujung_Pandang"
+
+#: ../src/timezone_names.c:290
+msgid "Asia/Ulaanbaatar"
+msgstr "Azi/Ulan_Bator"
+
+#: ../src/timezone_names.c:291
+msgid "Asia/Urumqi"
+msgstr "Azi/Urumqi"
+
+#: ../src/timezone_names.c:292
+msgid "Asia/Vientiane"
+msgstr "Azi/Vientiane"
+
+#: ../src/timezone_names.c:293
+msgid "Asia/Vladivostok"
+msgstr "Azi/Vladivostok"
+
+#: ../src/timezone_names.c:294
+msgid "Asia/Yakutsk"
+msgstr "Azi/Jakutsk"
+
+#: ../src/timezone_names.c:295
+msgid "Asia/Yekaterinburg"
+msgstr "Azi/Ekaterinburg"
+
+#: ../src/timezone_names.c:296
+msgid "Asia/Yerevan"
+msgstr "Azi/Erevan"
+
+#: ../src/timezone_names.c:297
+msgid "Atlantic"
+msgstr "Atlantik"
+
+#: ../src/timezone_names.c:298
+msgid "Atlantic/Azores"
+msgstr "Atlantik/Azoret"
+
+#: ../src/timezone_names.c:299
+msgid "Atlantic/Bermuda"
+msgstr "Atlantik/Bermuda"
+
+#: ../src/timezone_names.c:300
+msgid "Atlantic/Canary"
+msgstr "Atlantik/Kanarie"
+
+#: ../src/timezone_names.c:301
+msgid "Atlantic/Cape_Verde"
+msgstr "Atlantik/Kepi_i_Gjelbër"
+
+#: ../src/timezone_names.c:302
+msgid "Atlantic/Faeroe"
+msgstr "Atlantik/Faroe"
+
+#: ../src/timezone_names.c:303
+msgid "Atlantic/Jan_Mayen"
+msgstr "Atlantik/Jan_Majen"
+
+#: ../src/timezone_names.c:304
+msgid "Atlantic/Madeira"
+msgstr "Atlantik/Madeira"
+
+#: ../src/timezone_names.c:305
+msgid "Atlantic/Reykjavik"
+msgstr "Atlantik/Reikjavik"
+
+#: ../src/timezone_names.c:306
+msgid "Atlantic/South_Georgia"
+msgstr "Atlantik/Georgji"
+
+#: ../src/timezone_names.c:307
+msgid "Atlantic/St_Helena"
+msgstr "Atlantik/Shën_Helena"
+
+#: ../src/timezone_names.c:308
+msgid "Atlantic/Stanley"
+msgstr "Atlantik/Stanlei"
+
+#: ../src/timezone_names.c:309
+msgid "Australia"
+msgstr "Australi"
+
+#: ../src/timezone_names.c:310
+msgid "Australia/Adelaide"
+msgstr "Australi/Adelaide"
+
+#: ../src/timezone_names.c:311
+msgid "Australia/Brisbane"
+msgstr "Australi/Brisbën"
+
+#: ../src/timezone_names.c:312
+msgid "Australia/Broken_Hill"
+msgstr "Australi/Kodr_´_e_Thyer"
+
+#: ../src/timezone_names.c:313
+msgid "Australia/Darwin"
+msgstr "Australi/Darvin"
+
+#: ../src/timezone_names.c:314
+msgid "Australia/Hobart"
+msgstr "Australi/Hobart"
+
+#: ../src/timezone_names.c:315
+msgid "Australia/Lindeman"
+msgstr "Australi/Lindeman"
+
+#: ../src/timezone_names.c:316
+msgid "Australia/Lord_Howe"
+msgstr "Australi/Lord_Houv"
+
+#: ../src/timezone_names.c:317
+msgid "Australia/Melbourne"
+msgstr "Australi/Melburn"
+
+#: ../src/timezone_names.c:318
+msgid "Australia/Perth"
+msgstr "Australi/Perth"
+
+#: ../src/timezone_names.c:319
+msgid "Australia/Sydney"
+msgstr "Australi/Sidni"
+
+#: ../src/timezone_names.c:320
+msgid "Europe"
+msgstr "Europë"
+
+#: ../src/timezone_names.c:321
+msgid "Europe/Amsterdam"
+msgstr "Europë/Amsterdam"
+
+#: ../src/timezone_names.c:322
+msgid "Europe/Andorra"
+msgstr "Europë/Andorra"
+
+#: ../src/timezone_names.c:323
+msgid "Europe/Athens"
+msgstr "Europë/Athinë"
+
+#: ../src/timezone_names.c:324
+msgid "Europe/Belfast"
+msgstr "Europë/Belfast"
+
+#: ../src/timezone_names.c:325
+msgid "Europe/Belgrade"
+msgstr "Europë/Beograd"
+
+#: ../src/timezone_names.c:326
+msgid "Europe/Berlin"
+msgstr "Europë/Berlin"
+
+#: ../src/timezone_names.c:327
+msgid "Europe/Bratislava"
+msgstr "Europë/Bratislavë"
+
+#: ../src/timezone_names.c:328
+msgid "Europe/Brussels"
+msgstr "Europë/Bruksel"
+
+#: ../src/timezone_names.c:329
+msgid "Europe/Bucharest"
+msgstr "Europë/Bukuresht"
+
+#: ../src/timezone_names.c:330
+msgid "Europe/Budapest"
+msgstr "Europë/Budapest"
+
+#: ../src/timezone_names.c:331
+msgid "Europe/Chisinau"
+msgstr "Europë/Kishinau"
+
+#: ../src/timezone_names.c:332
+msgid "Europe/Copenhagen"
+msgstr "Europë/Kopenhagen"
+
+#: ../src/timezone_names.c:333
+msgid "Europe/Dublin"
+msgstr "Europë/Dublin"
+
+#: ../src/timezone_names.c:334
+msgid "Europe/Gibraltar"
+msgstr "Europë/Gjibraltar"
+
+#: ../src/timezone_names.c:335
+msgid "Europe/Helsinki"
+msgstr "Europë/Helsinki"
+
+#: ../src/timezone_names.c:336
+msgid "Europe/Istanbul"
+msgstr "Europë/Stamboll"
+
+#: ../src/timezone_names.c:337
+msgid "Europe/Kaliningrad"
+msgstr "Europë/Kaliningrad"
+
+#: ../src/timezone_names.c:338
+msgid "Europe/Kiev"
+msgstr "Europë/Kiev"
+
+#: ../src/timezone_names.c:339
+msgid "Europe/Lisbon"
+msgstr "Europë/Lisbonë"
+
+#: ../src/timezone_names.c:340
+msgid "Europe/Ljubljana"
+msgstr "Europë/Ljubljanë"
+
+#: ../src/timezone_names.c:341
+msgid "Europe/London"
+msgstr "Europë/Londër"
+
+#: ../src/timezone_names.c:342
+msgid "Europe/Luxembourg"
+msgstr "Europë/Luksemburg"
+
+#: ../src/timezone_names.c:343
+msgid "Europe/Madrid"
+msgstr "Europë/Madrid"
+
+#: ../src/timezone_names.c:344
+msgid "Europe/Malta"
+msgstr "Europë/Maltë"
+
+#: ../src/timezone_names.c:345
+msgid "Europe/Minsk"
+msgstr "Europë/Minsk"
+
+#: ../src/timezone_names.c:346
+msgid "Europe/Monaco"
+msgstr "Europë/Monako"
+
+#: ../src/timezone_names.c:347
+msgid "Europe/Moscow"
+msgstr "Europë/Moskë"
+
+#: ../src/timezone_names.c:348
+msgid "Europe/Nicosia"
+msgstr "Europë/Nikozi"
+
+#: ../src/timezone_names.c:349
+msgid "Europe/Oslo"
+msgstr "Europë/Oslo"
+
+#: ../src/timezone_names.c:350
+msgid "Europe/Paris"
+msgstr "Europë/Paris"
+
+#: ../src/timezone_names.c:351
+msgid "Europe/Prague"
+msgstr "Europë/Pragë"
+
+#: ../src/timezone_names.c:352
+msgid "Europe/Riga"
+msgstr "Europë/Rigë"
+
+#: ../src/timezone_names.c:353
+msgid "Europe/Rome"
+msgstr "Europë/Romë"
+
+#: ../src/timezone_names.c:354
+msgid "Europe/Samara"
+msgstr "Europë/Samara"
+
+#: ../src/timezone_names.c:355
+msgid "Europe/San_Marino"
+msgstr "Europë/San_Marino"
+
+#: ../src/timezone_names.c:356
+msgid "Europe/Sarajevo"
+msgstr "Europë/Sarajevo"
+
+#: ../src/timezone_names.c:357
+msgid "Europe/Simferopol"
+msgstr "Europë/Simferopol"
+
+#: ../src/timezone_names.c:358
+msgid "Europe/Skopje"
+msgstr "Europë/Shkup"
+
+#: ../src/timezone_names.c:359
+msgid "Europe/Sofia"
+msgstr "Europë/Sofie"
+
+#: ../src/timezone_names.c:360
+msgid "Europe/Stockholm"
+msgstr "Europë/Stokholm"
+
+#: ../src/timezone_names.c:361
+msgid "Europe/Tallinn"
+msgstr "Europë/Talin"
+
+#: ../src/timezone_names.c:362
+msgid "Europe/Tirane"
+msgstr "Europë/Tiranë"
+
+#: ../src/timezone_names.c:363
+msgid "Europe/Uzhgorod"
+msgstr "Europë/Uzhgorod"
+
+#: ../src/timezone_names.c:364
+msgid "Europe/Vaduz"
+msgstr "Europë/Vaduz"
+
+#: ../src/timezone_names.c:365
+msgid "Europe/Vatican"
+msgstr "Europë/Vatikan"
+
+#: ../src/timezone_names.c:366
+msgid "Europe/Vienna"
+msgstr "Europë/Vienë"
+
+#: ../src/timezone_names.c:367
+msgid "Europe/Vilnius"
+msgstr "Europë/Vilnius"
+
+#: ../src/timezone_names.c:368
+msgid "Europe/Warsaw"
+msgstr "Europë/Varshavë"
+
+#: ../src/timezone_names.c:369
+msgid "Europe/Zagreb"
+msgstr "Europë/Zagreb"
+
+#: ../src/timezone_names.c:370
+msgid "Europe/Zaporozhye"
+msgstr "Europë/Zaporozhje"
+
+#: ../src/timezone_names.c:371
+msgid "Europe/Zurich"
+msgstr "Europë/Zyrih"
+
+#: ../src/timezone_names.c:372
+msgid "Indian"
+msgstr "Indi"
+
+#: ../src/timezone_names.c:373
+msgid "Indian/Antananarivo"
+msgstr "Indi/Antananarivo"
+
+#: ../src/timezone_names.c:374
+msgid "Indian/Chagos"
+msgstr "Indi/Çagos"
+
+#: ../src/timezone_names.c:375
+msgid "Indian/Christmas"
+msgstr "Indi/Kristmas"
+
+#: ../src/timezone_names.c:376
+msgid "Indian/Cocos"
+msgstr "Indi/Kokos"
+
+#: ../src/timezone_names.c:377
+msgid "Indian/Comoro"
+msgstr "Indi/Komoro"
+
+#: ../src/timezone_names.c:378
+msgid "Indian/Kerguelen"
+msgstr "Indi/Kerguelen"
+
+#: ../src/timezone_names.c:379
+msgid "Indian/Mahe"
+msgstr "Indi/Mahe"
+
+#: ../src/timezone_names.c:380
+msgid "Indian/Maldives"
+msgstr "Indi/Maldive"
+
+#: ../src/timezone_names.c:381
+msgid "Indian/Mauritius"
+msgstr "Indi/Mauricius"
+
+#: ../src/timezone_names.c:382
+msgid "Indian/Mayotte"
+msgstr "Indi/Majot"
+
+#: ../src/timezone_names.c:383
+msgid "Indian/Reunion"
+msgstr "Indi/Reunion"
+
+#: ../src/timezone_names.c:384
+msgid "Pacific"
+msgstr "Paqësor"
+
+#: ../src/timezone_names.c:385
+msgid "Pacific/Apia"
+msgstr "Paqësor/Apia"
+
+#: ../src/timezone_names.c:386
+msgid "Pacific/Auckland"
+msgstr "Paqësor/Okland"
+
+#: ../src/timezone_names.c:387
+msgid "Pacific/Chatham"
+msgstr "Paqësor/Çatëm"
+
+#: ../src/timezone_names.c:388
+msgid "Pacific/Easter"
+msgstr "Paqësor/Pashkë"
+
+#: ../src/timezone_names.c:389
+msgid "Pacific/Efate"
+msgstr "Paqësor/Efat"
+
+#: ../src/timezone_names.c:390
+msgid "Pacific/Enderbury"
+msgstr "Paqësor/Enderbëri"
+
+#: ../src/timezone_names.c:391
+msgid "Pacific/Fakaofo"
+msgstr "Paqësor/Fakaofo"
+
+#: ../src/timezone_names.c:392
+msgid "Pacific/Fiji"
+msgstr "Paqësor/Fixhi"
+
+#: ../src/timezone_names.c:393
+msgid "Pacific/Funafuti"
+msgstr "Paqësor/Funafuti"
+
+#: ../src/timezone_names.c:394
+msgid "Pacific/Galapagos"
+msgstr "Paqësor/Galapagos"
+
+#: ../src/timezone_names.c:395
+msgid "Pacific/Gambier"
+msgstr "Paqësor/Gambier"
+
+#: ../src/timezone_names.c:396
+msgid "Pacific/Guadalcanal"
+msgstr "Paqësor/Guadalkanal"
+
+#: ../src/timezone_names.c:397
+msgid "Pacific/Guam"
+msgstr "Paqësor/Guam"
+
+#: ../src/timezone_names.c:398
+msgid "Pacific/Honolulu"
+msgstr "Paqësor/Honolulu"
+
+#: ../src/timezone_names.c:399
+msgid "Pacific/Johnston"
+msgstr "Paqësor/Xhonston"
+
+#: ../src/timezone_names.c:400
+msgid "Pacific/Kiritimati"
+msgstr "Paqësor/Kiritimati"
+
+#: ../src/timezone_names.c:401
+msgid "Pacific/Kosrae"
+msgstr "Paqësor/Kosrae"
+
+#: ../src/timezone_names.c:402
+msgid "Pacific/Kwajalein"
+msgstr "Paqësor/Kuajalin"
+
+#: ../src/timezone_names.c:403
+msgid "Pacific/Majuro"
+msgstr "Paqësor/Majuro"
+
+#: ../src/timezone_names.c:404
+msgid "Pacific/Marquesas"
+msgstr "Paqësor/Markuezas"
+
+#: ../src/timezone_names.c:405
+msgid "Pacific/Midway"
+msgstr "Paqësor/Miduej"
+
+#: ../src/timezone_names.c:406
+msgid "Pacific/Nauru"
+msgstr "Paqësor/Nauru"
+
+#: ../src/timezone_names.c:407
+msgid "Pacific/Niue"
+msgstr "Paqësor/Niue"
+
+#: ../src/timezone_names.c:408
+msgid "Pacific/Norfolk"
+msgstr "Paqësor/Norfolk"
+
+#: ../src/timezone_names.c:409
+msgid "Pacific/Noumea"
+msgstr "Paqësor/Numea"
+
+#: ../src/timezone_names.c:410
+msgid "Pacific/Pago_Pago"
+msgstr "Paqësor/Pago_Pago"
+
+#: ../src/timezone_names.c:411
+msgid "Pacific/Palau"
+msgstr "Paqësor/Palau"
+
+#: ../src/timezone_names.c:412
+msgid "Pacific/Pitcairn"
+msgstr "Paqësor/Pitkern"
+
+#: ../src/timezone_names.c:413
+msgid "Pacific/Ponape"
+msgstr "Paqësor/Ponape"
+
+#: ../src/timezone_names.c:414
+msgid "Pacific/Port_Moresby"
+msgstr "Paqësor/Port_Moresbi"
+
+#: ../src/timezone_names.c:415
+msgid "Pacific/Rarotonga"
+msgstr "Paqësor/Rarotonga"
+
+#: ../src/timezone_names.c:416
+msgid "Pacific/Saipan"
+msgstr "Paqësor/Saipan"
+
+#: ../src/timezone_names.c:417
+msgid "Pacific/Tahiti"
+msgstr "Paqësor/Tahiti"
+
+#: ../src/timezone_names.c:418
+msgid "Pacific/Tarawa"
+msgstr "Paqësor/Taraua"
+
+#: ../src/timezone_names.c:419
+msgid "Pacific/Tongatapu"
+msgstr "Paqësor/Tongatapu"
+
+#: ../src/timezone_names.c:420
+msgid "Pacific/Truk"
+msgstr "Paqësor/Truk"
+
+#: ../src/timezone_names.c:421
+msgid "Pacific/Wake"
+msgstr "Paqësor/Uejk"
+
+#: ../src/timezone_names.c:422
+msgid "Pacific/Wallis"
+msgstr "Paqësor/Ualis"
+
+#: ../src/timezone_names.c:423
+msgid "Pacific/Yap"
+msgstr "Paqësor/Jap"
+
+#: ../src/tray_icon.c:367
 msgid "New appointment"
 msgstr "Takim i Ri"
 
-#: ../src/tray_icon.c:361
+#: ../src/tray_icon.c:387
 msgid "About Orage"
 msgstr "Rreth Orage-it"
 
-#: ../panel-plugin/orageclock.desktop.in.in.h:1
-msgid "Orage Clock"
+#: ../panel-plugin/xfce4-orageclock-plugin.desktop.in.in.h:1
+#, fuzzy
+msgid "Orage Panel Clock"
 msgstr "Orë Orage"
 
-#: ../panel-plugin/orageclock.desktop.in.in.h:2
-msgid "What time and date is it?"
+#: ../panel-plugin/xfce4-orageclock-plugin.desktop.in.in.h:2
+#, fuzzy
+msgid "Show time and date?"
 msgstr "Çfarë date është dhe sa është ora?"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:1
@@ -3420,23 +3592,110 @@ msgid "Calendar"
 msgstr "Kalendar"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:2
-msgid "Calendar Settings"
-msgstr "Rregullime Kalendari"
+#, fuzzy
+msgid "Orage Calendar Preferences"
+msgstr "Parapëlqime për Orage-in"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:3
-msgid "Settings for the Xfce 4 Calendar Application"
-msgstr "Rregullimet për Zbatimin Kalendar Xfce 4"
+#, fuzzy
+msgid "Orage preferences"
+msgstr "Parapëlqime për Orage-in"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:4
-msgid "Xfce 4 Calendar Settings"
-msgstr "Rregullime për Kalendarin Xfce"
+#, fuzzy
+msgid "Settings for the Xfce 4 Calendar Application (Orage)"
+msgstr "Rregullimet për Zbatimin Kalendar Xfce 4"
 
 #: ../xfcalendar.desktop.in.h:2
 msgid "Desktop calendar"
 msgstr "Kalendar desktopi"
 
-msgid "Saturday"
-msgstr "e Shtunë"
+#: ../xfcalendar.desktop.in.h:3
+#, fuzzy
+msgid "Orage Calendar"
+msgstr "Orage - Kalendar"
+
+#~ msgid "Ending time adjustment mode"
+#~ msgstr "Po mbyllet mënyra rregullim kohe"
+
+#~ msgid "Starting time adjustment mode"
+#~ msgstr "Po fillohet mënyra rregullim kohe"
+
+#~ msgid "Select timezone"
+#~ msgstr "Përzgjidhni zonë kohore"
+
+#~ msgid "Modify Clock "
+#~ msgstr "Ndryshoni Orën"
+
+#~ msgid ""
+#~ "enter timezone of clock,\n"
+#~ "(=any valid TZ value)"
+#~ msgstr ""
+#~ "jepni zonë kohore të orës,\n"
+#~ "(=çfarëdo vlere e vlefshme ZK)"
+
+#~ msgid "Modify Preferences"
+#~ msgstr "Ndryshoni Parapëlqimet"
+
+#~ msgid ""
+#~ "Enter local timezone. (it is used to show if time is on previous(-) or "
+#~ "next date(+) by adding a +/- after the time)"
+#~ msgstr ""
+#~ "Jepni zonën kohore vendore. (Përdoret për të treguar nëse koha është në "
+#~ "datën e mëparshme(-) ose pasuesen(+) duke shtuar një +/- pas kohës)"
+
+#~ msgid "Set any valid timezone (=TZ) value or pick one from the list."
+#~ msgstr ""
+#~ "Caktoni çfarëdo vlere zone kohore (=TZ) të vlefshme ose zgjidhni një prej "
+#~ "listës."
+
+#~ msgid "show line _1:"
+#~ msgstr "shfaq rreshtin _1:"
+
+#~ msgid "show line _2:"
+#~ msgstr "shfaq rreshtin _2:"
+
+#~ msgid "show line _3:"
+#~ msgstr "shfaq rreshtin _3:"
+
+#~ msgid "Properties"
+#~ msgstr "Veti"
+
+#~ msgid "Failed to launch 'orage -p'"
+#~ msgstr "Dështoi në dhënien e 'orage -p'"
+
+#~ msgid ""
+#~ "<D> inserts current date in local date format.\n"
+#~ "<T> inserts time and\n"
+#~ "<DT> inserts date and time."
+#~ msgstr ""
+#~ "<D> fut datën e tanishme në format date vendore.\n"
+#~ "<T> fut kohën dhe\n"
+#~ "<DT> fut datën dhe kohën."
+
+#~ msgid "Show event list"
+#~ msgstr "Shfaq listë ngjarjesh"
+
+#~ msgid "(0 = use static icon)"
+#~ msgstr "(0 = përdor ikonë statike)"
+
+#~ msgid ""
+#~ "Dynamic icon shows current day and month. It is visible only in tray. If "
+#~ "tray is too small for dynamic icon size, Orage switches automatically "
+#~ "back to static icon."
+#~ msgstr ""
+#~ "Ikona dinamike shfaq ditën dhe muajin e tanishëm. Është e dukshme vetëm "
+#~ "në shtyllë. Po qe se shtylla është shumë e vogël për madhësinë e ikonave "
+#~ "dinamike, Orage-i kalon vetvetiu te ikonat statike."
+
+#~ msgid "Calendar Settings"
+#~ msgstr "Rregullime Kalendari"
+
+#~ msgid "Xfce 4 Calendar Settings"
+#~ msgstr "Rregullime për Kalendarin Xfce"
+
+#~ msgid "Saturday"
+#~ msgstr "e Shtunë"
 
 #, fuzzy
 #~ msgid "Monday"

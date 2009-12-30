@@ -372,22 +372,22 @@ void oc_properties_options(GtkWidget *dlg, Clock *clock)
         toolbar = gtk_toolbar_new();
         if (line_cnt < OC_MAX_LINES) { /* no real reason to limit this though */
             tool_button = gtk_tool_button_new_from_stock(GTK_STOCK_ADD);
-            gtk_toolbar_insert(GTK_TOOLBAR(toolbar), tool_button, 0);
+            gtk_toolbar_insert(GTK_TOOLBAR(toolbar), tool_button, -1);
             g_signal_connect(tool_button, "clicked"
                     , G_CALLBACK(oc_new_line), line);
         }
         if (line_cnt > 1) { /* do not delete last line */
             tool_button = gtk_tool_button_new_from_stock(GTK_STOCK_DELETE);
-            gtk_toolbar_insert(GTK_TOOLBAR(toolbar), tool_button, 1);
+            gtk_toolbar_insert(GTK_TOOLBAR(toolbar), tool_button, -1);
             g_signal_connect(tool_button, "clicked"
                     , G_CALLBACK(oc_delete_line), line);
             /* we do not need these if we only have 1 line */
             tool_button = gtk_tool_button_new_from_stock(GTK_STOCK_GO_UP);
-            gtk_toolbar_insert(GTK_TOOLBAR(toolbar), tool_button, 2);
+            gtk_toolbar_insert(GTK_TOOLBAR(toolbar), tool_button, -1);
             g_signal_connect(tool_button, "clicked"
                     , G_CALLBACK(oc_move_up_line), line);
             tool_button = gtk_tool_button_new_from_stock(GTK_STOCK_GO_DOWN);
-            gtk_toolbar_insert(GTK_TOOLBAR(toolbar), tool_button, 3);
+            gtk_toolbar_insert(GTK_TOOLBAR(toolbar), tool_button, -1);
             g_signal_connect(tool_button, "clicked"
                     , G_CALLBACK(oc_move_down_line), line);
         }

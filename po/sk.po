@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.3.90.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-11 09:18+0200\n"
+"POT-Creation-Date: 2009-12-30 17:07+0200\n"
 "PO-Revision-Date: 2009-10-12 16:29+0200\n"
 "Last-Translator: Robert Hartl <hartl.robert@gmail.com>\n"
 "Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
@@ -34,20 +34,11 @@ msgstr ""
 "%s\n"
 "kliknite pre zmenu času"
 
-#. trick to refresh clocks once
-#: ../globaltime/globaltime.c:358
-msgid "Ending time adjustment mode"
-msgstr "Režim nastavenia koncového času"
-
-#: ../globaltime/globaltime.c:366
-msgid "Starting time adjustment mode"
-msgstr "Režim nastavenia počiatočného času"
-
-#: ../globaltime/globaltime.c:381
+#: ../globaltime/globaltime.c:387
 msgid "Localtime"
 msgstr "Miestny čas"
 
-#: ../globaltime/globaltime.c:456
+#: ../globaltime/globaltime.c:465
 msgid ""
 "button 1 to change preferences \n"
 "button 2 to adjust time of clocks"
@@ -55,112 +46,88 @@ msgstr ""
 "tlačidlo 1 pre zmenu nastavení.\n"
 "tlačidlo 2 pre nastavenie času"
 
-#: ../globaltime/globaltime.c:472
+#: ../globaltime/globaltime.c:481
 msgid "adjust to change hour"
 msgstr ""
 
-#: ../globaltime/globaltime.c:487
-msgid "adjust to change minute"
+#: ../globaltime/globaltime.c:497
+msgid ""
+"adjust to change minute. Click arrows with button 2 to change only 1 minute."
 msgstr ""
 
-#: ../globaltime/gt_prefs.c:69 ../globaltime/gt_prefs.c:1077
-msgid "Standard"
-msgstr "Štandardné"
-
-#: ../globaltime/gt_prefs.c:71 ../src/appointment.c:2780
-msgid "None"
-msgstr "Žiadne"
-
-#: ../globaltime/gt_prefs.c:84 ../globaltime/gt_prefs.c:1100
-msgid "Equal"
-msgstr "Totožné"
-
-#: ../globaltime/gt_prefs.c:86
-msgid "Vary"
-msgstr ""
-
-#: ../globaltime/gt_prefs.c:267 ../globaltime/gt_prefs.c:268
+#: ../globaltime/gt_prefs.c:264 ../globaltime/gt_prefs.c:265
 msgid "NEW"
 msgstr "NOVÁ"
 
-#: ../globaltime/gt_prefs.c:291
+#: ../globaltime/gt_prefs.c:288
 msgid "NEW COPY"
 msgstr "NOVÁ KÓPIA"
 
-#: ../globaltime/gt_prefs.c:312
+#: ../globaltime/gt_prefs.c:309
 msgid "Not possible to delete the last clock."
 msgstr ""
 
-#: ../globaltime/gt_prefs.c:366 ../panel-plugin/oc_config.c:114
-msgid "Select timezone"
-msgstr "Zvoľte časové pásmo"
-
-#: ../globaltime/gt_prefs.c:511
+#: ../globaltime/gt_prefs.c:515
 msgid "update this clock"
 msgstr "aktualizovať tieto hodiny"
 
-#: ../globaltime/gt_prefs.c:516 ../globaltime/gt_prefs.c:1033
+#: ../globaltime/gt_prefs.c:520 ../globaltime/gt_prefs.c:1033
 msgid "add new empty clock"
 msgstr "pridať nové prázdne hodiny"
 
-#: ../globaltime/gt_prefs.c:521
+#: ../globaltime/gt_prefs.c:525
 msgid "add new clock using this clock as model"
 msgstr ""
 
-#: ../globaltime/gt_prefs.c:526
+#: ../globaltime/gt_prefs.c:530
 msgid "delete this clock"
 msgstr "zmazať tieto hodiny"
 
-#: ../globaltime/gt_prefs.c:534
+#: ../globaltime/gt_prefs.c:538
 msgid "move this clock first"
 msgstr ""
 
-#: ../globaltime/gt_prefs.c:539
+#: ../globaltime/gt_prefs.c:543
 msgid "move this clock left"
 msgstr ""
 
-#: ../globaltime/gt_prefs.c:544
+#: ../globaltime/gt_prefs.c:548
 msgid "move this clock right"
 msgstr ""
 
-#: ../globaltime/gt_prefs.c:549
+#: ../globaltime/gt_prefs.c:553
 msgid "move this clock last"
 msgstr ""
 
-#: ../globaltime/gt_prefs.c:557
+#: ../globaltime/gt_prefs.c:561
 msgid "set the timezone of this clock to be local timezone"
 msgstr "nastaviť časové pásmo týchto hodín na miestny"
 
-#: ../globaltime/gt_prefs.c:563 ../globaltime/gt_prefs.c:1041
+#: ../globaltime/gt_prefs.c:567 ../globaltime/gt_prefs.c:1041
 msgid "close window and exit"
 msgstr "zatvoriť okno a ukončiť"
 
-#: ../globaltime/gt_prefs.c:586
-msgid "Modify Clock "
-msgstr "Upraviť hodiny "
+#: ../globaltime/gt_prefs.c:589
+#, fuzzy
+msgid "Globaltime preferences "
+msgstr "aktualizovať predvoľby"
 
 #. -----------------------HEADING-------------------------------------------
-#: ../globaltime/gt_prefs.c:599
+#: ../globaltime/gt_prefs.c:602
 msgid "Clock Parameters"
 msgstr "Parametre hodín"
 
-#: ../globaltime/gt_prefs.c:603
+#: ../globaltime/gt_prefs.c:606
 msgid "Name of the clock:"
 msgstr "Názov hodín:"
 
-#: ../globaltime/gt_prefs.c:609
+#: ../globaltime/gt_prefs.c:612
 msgid "enter name of clock"
 msgstr "zadajte názov hodín"
 
-#: ../globaltime/gt_prefs.c:612
+#: ../globaltime/gt_prefs.c:615
 msgid "Timezone of the clock:"
 msgstr "Časové pásmo hodín:"
-
-#: ../globaltime/gt_prefs.c:618
-msgid ""
-"enter timezone of clock,\n"
-"(=any valid TZ value)"
-msgstr ""
 
 #: ../globaltime/gt_prefs.c:642
 msgid "Text Formatting"
@@ -269,8 +236,9 @@ msgid "update preferences"
 msgstr "aktualizovať predvoľby"
 
 #: ../globaltime/gt_prefs.c:1061
-msgid "Modify Preferences"
-msgstr "Upraviť predvoľby"
+#, fuzzy
+msgid "Globaltime Preferences"
+msgstr "Všeobecné predvoľby"
 
 #. -----------------------HEADING--------------------------------------
 #: ../globaltime/gt_prefs.c:1072
@@ -280,6 +248,10 @@ msgstr "Všeobecné predvoľby"
 #: ../globaltime/gt_prefs.c:1076
 msgid "Decorations:"
 msgstr "Dekorácie:"
+
+#: ../globaltime/gt_prefs.c:1077
+msgid "Standard"
+msgstr "Štandardné"
 
 #: ../globaltime/gt_prefs.c:1082
 msgid "Use normal decorations"
@@ -292,6 +264,10 @@ msgstr "Nezobrazovať dekorácie (okraje) okna"
 #: ../globaltime/gt_prefs.c:1099
 msgid "Clock size:"
 msgstr "Veľkosť hodín"
+
+#: ../globaltime/gt_prefs.c:1100
+msgid "Equal"
+msgstr "Totožné"
 
 #: ../globaltime/gt_prefs.c:1105
 msgid "All clocks have same size"
@@ -309,87 +285,174 @@ msgstr "Veľkosť hodín sa líši"
 msgid "Local timezone:"
 msgstr "Miestna časová zóna:"
 
-#: ../globaltime/gt_prefs.c:1128
-msgid ""
-"Enter local timezone. (it is used to show if time is on previous(-) or next "
-"date(+) by adding a +/- after the time)"
+#: ../globaltime/timezone_selection.c:103
+#: ../panel-plugin/timezone_selection.c:103 ../src/timezone_selection.c:103
+msgid " Other"
 msgstr ""
-"Zadajte mieste časové pásmo (Používa sa pre zistenie, či je čas "
-"predchádzajúceho (-) alebo nasledujúceho dátumu (+), pridaním znamienka + "
-"alebo - za dátum"
 
-#: ../panel-plugin/oc_config.c:199
+#: ../globaltime/timezone_selection.c:158
+#: ../panel-plugin/timezone_selection.c:158 ../src/timezone_selection.c:169
+#, c-format
+msgid "%d hour %d mins"
+msgstr ""
+
+#: ../globaltime/timezone_selection.c:161
+#: ../panel-plugin/timezone_selection.c:161 ../src/timezone_selection.c:172
+#, fuzzy, c-format
+msgid "%d hour"
+msgstr "hodín"
+
+#: ../globaltime/timezone_selection.c:163
+#: ../panel-plugin/timezone_selection.c:163 ../src/timezone_selection.c:174
+#, fuzzy, c-format
+msgid "%d mins"
+msgstr "minút"
+
+#: ../globaltime/timezone_selection.c:169
+#: ../panel-plugin/timezone_selection.c:169 ../src/timezone_selection.c:180
+msgid "backward"
+msgstr ""
+
+#: ../globaltime/timezone_selection.c:172
+#: ../panel-plugin/timezone_selection.c:172 ../src/timezone_selection.c:183
+#, fuzzy
+msgid "forward"
+msgstr "Nasledujúci deň"
+
+#: ../globaltime/timezone_selection.c:196
+#: ../panel-plugin/timezone_selection.c:196 ../src/timezone_selection.c:207
+msgid "not changed"
+msgstr ""
+
+#: ../globaltime/timezone_selection.c:197
+#: ../panel-plugin/timezone_selection.c:197 ../src/timezone_selection.c:208
+msgid "not changing"
+msgstr ""
+
+#. location
+#: ../globaltime/timezone_selection.c:249
+#: ../globaltime/timezone_selection.c:254
+#: ../panel-plugin/timezone_selection.c:249
+#: ../panel-plugin/timezone_selection.c:254 ../src/appointment.c:2595
+#: ../src/timezone_selection.c:260 ../src/timezone_selection.c:265
+msgid "Location"
+msgstr "Miesto"
+
+#: ../globaltime/timezone_selection.c:260
+#: ../panel-plugin/timezone_selection.c:260 ../src/timezone_selection.c:271
+msgid "GMT Offset"
+msgstr ""
+
+#: ../globaltime/timezone_selection.c:266
+#: ../panel-plugin/timezone_selection.c:266 ../src/timezone_selection.c:277
+msgid "Previous/Next Change"
+msgstr ""
+
+#: ../globaltime/timezone_selection.c:271
+#: ../panel-plugin/timezone_selection.c:271 ../src/timezone_selection.c:282
+msgid "Country"
+msgstr ""
+
+#: ../globaltime/timezone_selection.c:301
+#: ../globaltime/timezone_selection.c:311
+#: ../panel-plugin/timezone_selection.c:301
+#: ../panel-plugin/timezone_selection.c:311 ../src/timezone_selection.c:312
+#: ../src/timezone_selection.c:322
+msgid "Pick timezone"
+msgstr "Vyberte si časovú zónu"
+
+#: ../globaltime/timezone_selection.c:304
+#: ../globaltime/timezone_selection.c:314
+#: ../panel-plugin/timezone_selection.c:304
+#: ../panel-plugin/timezone_selection.c:314 ../src/timezone_selection.c:315
+#: ../src/timezone_selection.c:325
+msgid "Change mode"
+msgstr ""
+
+#: ../globaltime/timezone_selection.c:305
+#: ../globaltime/timezone_selection.c:315
+#: ../globaltime/timezone_selection.c:354
+#: ../panel-plugin/timezone_selection.c:305
+#: ../panel-plugin/timezone_selection.c:315
+#: ../panel-plugin/timezone_selection.c:354 ../src/timezone_selection.c:316
+#: ../src/timezone_selection.c:326 ../src/timezone_selection.c:365
+msgid "UTC"
+msgstr "UTC"
+
+#. NOTE: this exists only if ical timezones are being used
+#: ../globaltime/timezone_selection.c:306
+#: ../globaltime/timezone_selection.c:359
+#: ../panel-plugin/timezone_selection.c:306
+#: ../panel-plugin/timezone_selection.c:359 ../src/parameters.c:497
+#: ../src/timezone_selection.c:317 ../src/timezone_selection.c:370
+msgid "floating"
+msgstr "pohyblivá"
+
+#: ../panel-plugin/oc_config.c:219
 msgid "Appearance"
 msgstr "Vzhľad"
 
 #. show frame
-#: ../panel-plugin/oc_config.c:210
+#: ../panel-plugin/oc_config.c:230
 msgid "Show _frame"
 msgstr "Zobraziť _rám"
 
 #. foreground color
-#: ../panel-plugin/oc_config.c:220
+#: ../panel-plugin/oc_config.c:240
 msgid "set foreground _color:"
 msgstr "Nastaviť farbu _popredia:"
 
 #. background color
-#: ../panel-plugin/oc_config.c:234
+#: ../panel-plugin/oc_config.c:254
 msgid "set _background color:"
 msgstr "Nastaviť _farbu pozadia:"
 
 #. clock size (=vbox size): height and width
-#: ../panel-plugin/oc_config.c:248
+#: ../panel-plugin/oc_config.c:268
 msgid "set _height:"
 msgstr "Nastaviť _výšku:"
 
-#: ../panel-plugin/oc_config.c:260
+#: ../panel-plugin/oc_config.c:278
+msgid "Note that you can not change the height of horizontal panels"
+msgstr ""
+
+#: ../panel-plugin/oc_config.c:283
 msgid "set _width:"
 msgstr "Nastaviť ší_rku:"
 
-#: ../panel-plugin/oc_config.c:281
+#: ../panel-plugin/oc_config.c:294
+msgid "Note that you can not change the width of vertical panels"
+msgstr ""
+
+#: ../panel-plugin/oc_config.c:311
 msgid "Clock Options"
 msgstr "Nastavenie hodín"
 
 #. timezone
-#: ../panel-plugin/oc_config.c:292
+#: ../panel-plugin/oc_config.c:328
 msgid "set timezone to:"
 msgstr "nastaviť časovú zónu na:"
 
-#: ../panel-plugin/oc_config.c:301
-msgid "Set any valid timezone (=TZ) value or pick one from the list."
+#: ../panel-plugin/oc_config.c:349
+#, c-format
+msgid "Line %d:"
 msgstr ""
-"Zvoľte správnu hodnotu časovej zóny (=TZ)  alebo vyberte jednu zo zoznamu."
 
-#. line 1
-#: ../panel-plugin/oc_config.c:310
-msgid "show line _1:"
-msgstr "Zobraziť riadok _1:"
-
-#: ../panel-plugin/oc_config.c:321
+#: ../panel-plugin/oc_config.c:359
 msgid "Enter any valid strftime function parameter."
 msgstr "Zadajte správny parameter funkcie strftime."
 
-#. line 2
-#: ../panel-plugin/oc_config.c:337
-msgid "show line _2:"
-msgstr "Zobraziť riadok _2:"
-
-#. line 3
-#: ../panel-plugin/oc_config.c:359
-msgid "show line _3:"
-msgstr "Zobraziť riadok _3:"
-
 #. Tooltip hint
-#: ../panel-plugin/oc_config.c:381
+#: ../panel-plugin/oc_config.c:401
 msgid "Tooltip:"
 msgstr "Tip:"
 
 #. special timing for SUSPEND/HIBERNATE
-#: ../panel-plugin/oc_config.c:391
+#: ../panel-plugin/oc_config.c:411
 msgid "fix time after suspend/hibernate"
 msgstr "opraviť nastavenie času pri prejdení z režimu spánku alebo hibernácie"
 
-#: ../panel-plugin/oc_config.c:395
+#: ../panel-plugin/oc_config.c:415
 msgid ""
 "You only need this if you do short term (less than 5 hours) suspend or "
 "hibernate and your visible time does not include seconds. Under these "
@@ -398,7 +461,7 @@ msgid ""
 "features from working.)"
 msgstr ""
 
-#: ../panel-plugin/oc_config.c:407
+#: ../panel-plugin/oc_config.c:432
 msgid ""
 "This program uses strftime function to get time.\n"
 "Use any valid code to get time in the format you prefer.\n"
@@ -418,14 +481,16 @@ msgstr ""
 "\t%H = hodiny \t\t\t%M = minúty\n"
 "\t%X = miestny čas\t\t%x = miestny dátum"
 
-#: ../panel-plugin/oc_config.c:430
-msgid "Properties"
-msgstr "Vlastnosti"
+#: ../panel-plugin/oc_config.c:456
+#, fuzzy
+msgid "Orage clock Preferences"
+msgstr "Predvoľby Orage"
 
-#: ../panel-plugin/oc_config.c:445
+#: ../panel-plugin/oc_config.c:471
 msgid "Orage clock"
 msgstr "Hodiny Orage"
 
+#. no lines yet
 #. TRANSLATORS: Use format characters from strftime(3)
 #. * to get the proper string for your locale.
 #. * I used these:
@@ -435,18 +500,9 @@ msgstr "Hodiny Orage"
 #. * %Y  : four digit year
 #. * %V  : ISO week number
 #.
-#: ../panel-plugin/orageclock.c:596
+#: ../panel-plugin/xfce4-orageclock-plugin.c:622
 msgid "%A %d %B %Y/%V"
 msgstr "%A %d %B %Y/%V"
-
-#: ../plugin/xfcalendar_plugin.c:43
-msgid "Failed to launch 'orage -p'"
-msgstr "Nepodarilo sa spustiť 'orage -p'"
-
-#. the button label in the xfce-mcs-manager dialog
-#: ../plugin/xfcalendar_plugin.c:61
-msgid "Orage - Calendar"
-msgstr "Orage - Kalendár"
 
 #: ../src/about-xfcalendar.c:42
 msgid "Manage your time with Xfce4"
@@ -467,239 +523,222 @@ msgstr "Prispievateľ"
 #. if (gtk_toggle_button_get_active(
 #. GTK_TOGGLE_BUTTON(apptw->Type_journal_rb)))
 #. end time
-#: ../src/appointment.c:348 ../src/appointment.c:384 ../src/appointment.c:2330
+#: ../src/appointment.c:312 ../src/appointment.c:352 ../src/appointment.c:2624
 msgid "End"
 msgstr "Koniec"
 
-#: ../src/appointment.c:366
+#: ../src/appointment.c:332
 msgid "Due"
 msgstr "Kvôli"
 
-#: ../src/appointment.c:501 ../src/mainbox.c:689 ../xfcalendar.desktop.in.h:3
+#: ../src/appointment.c:471 ../src/mainbox.c:729
 msgid "Orage"
 msgstr "Orage"
 
 #. to avoid timing problems when updating entry
 #. Create file chooser
-#: ../src/appointment.c:651 ../src/interface.c:277 ../src/parameters.c:384
+#: ../src/appointment.c:650 ../src/interface.c:276 ../src/parameters.c:401
 msgid "Select a file..."
 msgstr "Vyberte súbor..."
 
-#: ../src/appointment.c:659
+#: ../src/appointment.c:658
 msgid "Sound Files"
 msgstr "Zvukové súbory"
 
-#: ../src/appointment.c:666 ../src/interface.c:290
+#: ../src/appointment.c:665 ../src/interface.c:289
 msgid "All Files"
 msgstr "Všetky súbory"
 
-#: ../src/appointment.c:717 ../src/appointment.c:1145 ../src/event-list.c:897
-msgid "Warning"
-msgstr "Upozornenie"
-
-#: ../src/appointment.c:719
+#: ../src/appointment.c:716
 msgid "The appointment information has been modified."
 msgstr "Údaje o udalosti boli upravené."
 
-#: ../src/appointment.c:720 ../src/appointment.c:1148 ../src/event-list.c:900
+#: ../src/appointment.c:717 ../src/appointment.c:1160 ../src/event-list.c:917
 msgid "Do you want to continue?"
 msgstr "Chcete pokračovať?"
 
-#: ../src/appointment.c:750
-msgid "Error"
-msgstr "Chyba"
-
-#: ../src/appointment.c:752
+#: ../src/appointment.c:746
 msgid "The end of this appointment is earlier than the beginning."
 msgstr "Koniec udalosti nastane skôr ako jej začiatok."
 
 #. cat_groups[0] is special [NULL] entry always
-#: ../src/appointment.c:1007 ../src/appointment.c:1547
+#: ../src/appointment.c:1002 ../src/appointment.c:1759
 msgid "Not set"
 msgstr "Nie je nastavené"
 
-#: ../src/appointment.c:1147
+#: ../src/appointment.c:1159
 msgid "This appointment will be permanently removed."
 msgstr "Udalosť bude odstránená."
 
-#: ../src/appointment.c:1421 ../src/event-list.c:726
-msgid "Info"
-msgstr "Informácie"
-
-#: ../src/appointment.c:1423
+#: ../src/appointment.c:1638
 msgid "This appointment does not exist."
 msgstr "Táto schôdzka neexistuje."
 
-#: ../src/appointment.c:1424
+#: ../src/appointment.c:1639
 msgid "It was probably removed, please refresh your screen."
 msgstr ""
 
-#: ../src/appointment.c:1729
+#: ../src/appointment.c:1941
 msgid "Current categories"
 msgstr "Aktuálne kategórie"
 
-#: ../src/appointment.c:1744
+#: ../src/appointment.c:1956
 msgid "Add new category with color"
 msgstr "Pridať novú farebnú kategóriu"
 
-#: ../src/appointment.c:1748
+#: ../src/appointment.c:1960
 msgid "Category:"
 msgstr "Kategória:"
 
-#: ../src/appointment.c:1779
+#: ../src/appointment.c:1991
 msgid "Colors of categories - Orage"
 msgstr "Farby kategórií - Orage"
 
-#: ../src/appointment.c:1940
-msgid "New appointment - Orage"
-msgstr "Nová schôdzka - Orage"
-
-#: ../src/appointment.c:1964
+#: ../src/appointment.c:2038
 msgid " *** COPY ***"
 msgstr " *** KÓPIA ***"
+
+#: ../src/appointment.c:2297
+msgid "New appointment - Orage"
+msgstr "Nová schôdzka - Orage"
 
 #. File menu stuff
 #. ********* File menu *********
 #. File menu
-#: ../src/appointment.c:2074 ../src/day-view.c:254 ../src/event-list.c:994
-#: ../src/interface.c:762 ../src/mainbox.c:261
+#: ../src/appointment.c:2326 ../src/day-view.c:254 ../src/event-list.c:1007
+#: ../src/interface.c:761 ../src/mainbox.c:260
 msgid "_File"
 msgstr "_Záznam"
 
-#: ../src/appointment.c:2080
+#: ../src/appointment.c:2332
 msgid "Sav_e and close"
 msgstr "U_ložiť a zatvoriť"
 
-#: ../src/appointment.c:2093 ../src/event-list.c:1000
+#: ../src/appointment.c:2345 ../src/event-list.c:1013
 msgid "D_uplicate"
 msgstr "_Kópia"
 
-#: ../src/appointment.c:2227
+#: ../src/appointment.c:2521
 msgid "Save"
 msgstr "Uložiť"
 
-#: ../src/appointment.c:2229
+#: ../src/appointment.c:2523
 msgid "Save and close"
 msgstr "Uložiť a zatvoriť"
 
-#: ../src/appointment.c:2234
+#: ../src/appointment.c:2528
 msgid "Revert"
 msgstr "Obnoviť"
 
-#: ../src/appointment.c:2236 ../src/event-list.c:1085
+#: ../src/appointment.c:2530 ../src/event-list.c:1098
 msgid "Duplicate"
 msgstr "Kópia"
 
-#: ../src/appointment.c:2241 ../src/event-list.c:1087
+#: ../src/appointment.c:2535 ../src/event-list.c:1100
 msgid "Delete"
 msgstr "Odstrániť"
 
-#: ../src/appointment.c:2259
+#: ../src/appointment.c:2553
 msgid "Free"
 msgstr "Dostupný"
 
-#: ../src/appointment.c:2259
+#: ../src/appointment.c:2553
 msgid "Busy"
 msgstr "Zaneprázdnený"
 
-#: ../src/appointment.c:2263
+#: ../src/appointment.c:2557
 msgid "General"
 msgstr "Základné"
 
 #. type
-#: ../src/appointment.c:2269
+#: ../src/appointment.c:2563
 msgid "Type "
 msgstr "Typ "
 
-#: ../src/appointment.c:2271 ../src/event-list.c:1139
+#: ../src/appointment.c:2565 ../src/event-list.c:1152
 msgid "Event"
 msgstr "Udalosť"
 
-#: ../src/appointment.c:2274
+#: ../src/appointment.c:2568
 msgid ""
 "Event that will happen sometime. For example:\n"
 "Meeting or birthday or TV show."
 msgstr ""
 
-#: ../src/appointment.c:2277 ../src/event-list.c:1160
+#: ../src/appointment.c:2571 ../src/event-list.c:1175
 msgid "Todo"
 msgstr "Úlohy"
 
-#: ../src/appointment.c:2280
+#: ../src/appointment.c:2574
 msgid ""
 "Something that you should do sometime. For example:\n"
 "Wash your car or test new version of Orage."
 msgstr ""
 
-#: ../src/appointment.c:2283 ../src/event-list.c:1175
+#: ../src/appointment.c:2577 ../src/event-list.c:1190
 msgid "Journal"
 msgstr "Zápisok"
 
-#: ../src/appointment.c:2287
+#: ../src/appointment.c:2581
 msgid ""
 "Make a note that something happened. For example:\n"
 "Remark that your mother called or first snow came."
 msgstr ""
 
 #. title
-#: ../src/appointment.c:2294
+#: ../src/appointment.c:2588
 msgid "Title "
 msgstr "Názov "
 
-#. location
-#: ../src/appointment.c:2301 ../src/ical-code.c:4496 ../src/ical-code.c:4501
-msgid "Location"
-msgstr "Miesto"
-
-#: ../src/appointment.c:2309
+#: ../src/appointment.c:2603
 msgid "All day event"
 msgstr "Celodenná udalosť"
 
 #. start time
-#: ../src/appointment.c:2315 ../src/day-view.c:681
+#: ../src/appointment.c:2609 ../src/appointment.c:3272 ../src/day-view.c:682
 msgid "Start"
 msgstr "Začiatok"
 
-#: ../src/appointment.c:2335
+#: ../src/appointment.c:2629
 msgid "Set      "
 msgstr "Nastaviť"
 
-#: ../src/appointment.c:2356
+#: ../src/appointment.c:2650
 msgid "Duration"
 msgstr "Trvanie"
 
-#: ../src/appointment.c:2360 ../src/appointment.c:2532 ../src/day-view.c:702
+#: ../src/appointment.c:2654 ../src/appointment.c:2842 ../src/reminder.c:725
 msgid "days"
 msgstr "dní"
 
-#: ../src/appointment.c:2362 ../src/appointment.c:2534
+#: ../src/appointment.c:2656 ../src/appointment.c:2844 ../src/reminder.c:727
 msgid "hours"
 msgstr "hodín"
 
-#: ../src/appointment.c:2364 ../src/appointment.c:2536
+#: ../src/appointment.c:2658 ../src/appointment.c:2846 ../src/reminder.c:729
 msgid "mins"
 msgstr "minút"
 
 #. Availability (only for EVENT)
-#: ../src/appointment.c:2376
+#: ../src/appointment.c:2670
 msgid "Availability"
 msgstr "Dostupnosť"
 
 #. completed (only for TODO)
-#: ../src/appointment.c:2384
+#: ../src/appointment.c:2678 ../src/appointment.c:3278
 msgid "Completed"
 msgstr "Dokončené"
 
-#: ../src/appointment.c:2387
+#: ../src/appointment.c:2681
 msgid "Done"
 msgstr "Hotovo"
 
 #. categories
-#: ../src/appointment.c:2408
+#: ../src/appointment.c:2702
 msgid "Categories"
 msgstr "Kategórie"
 
-#: ../src/appointment.c:2420
+#: ../src/appointment.c:2714
 msgid ""
 "This is special category, which can be used to color this appointment in "
 "list views."
@@ -707,51 +746,59 @@ msgstr ""
 "Táto špeciálna kategória, ktorú je možno použiť k zafarbeniu tejto schôdzky "
 "v pohľade na ich zoznam."
 
-#: ../src/appointment.c:2425
+#: ../src/appointment.c:2719
 msgid "update colors for categories."
 msgstr "aktualizovať farby kategórií."
 
+#. priority
+#: ../src/appointment.c:2725
+msgid "Priority"
+msgstr ""
+
 #. note
-#: ../src/appointment.c:2431
+#: ../src/appointment.c:2735
 msgid "Note"
 msgstr "Poznámka"
 
-#: ../src/appointment.c:2450
+#: ../src/appointment.c:2754
 msgid ""
-"<D> inserts current date in local date format.\n"
-"<T> inserts time and\n"
-"<DT> inserts date and time."
+"These shorthand commands take effect immediately:\n"
+"    <D> inserts current date in local date format\n"
+"    <T> inserts time and\n"
+"    <DT> inserts date and time.\n"
+"\n"
+"These are converted only later when they are seen:\n"
+"    <&Ynnnn> is translated to current year minus nnnn.\n"
+"(This can be used for example in birthday reminders to tell how old the "
+"person will be.)"
 msgstr ""
-"<D> vkladá aktuálny čas v miestnom formáte.\n"
-"<T> vkladá čas a\n"
-"<DT> vkladá dátum a čas."
 
-#: ../src/appointment.c:2517
+#: ../src/appointment.c:2825
 msgid "Before Start"
 msgstr "Pred začatím"
 
-#: ../src/appointment.c:2517
+#: ../src/appointment.c:2825
 msgid "Before End"
 msgstr "Pred koncom"
 
-#: ../src/appointment.c:2518
+#: ../src/appointment.c:2826
 msgid "After Start"
 msgstr "Po začatí"
 
-#: ../src/appointment.c:2518
+#: ../src/appointment.c:2826
 msgid "After End"
 msgstr "Po skončení"
 
-#: ../src/appointment.c:2523
+#: ../src/appointment.c:2833
 msgid "Alarm"
 msgstr "Alarm"
 
 #. **** ALARM TIME ****
-#: ../src/appointment.c:2529
+#: ../src/appointment.c:2839
 msgid "Alarm time"
 msgstr "Čas budenia"
 
-#: ../src/appointment.c:2553
+#: ../src/appointment.c:2863
 msgid ""
 "Often you want to get alarm:\n"
 " 1) before Event start\n"
@@ -759,221 +806,232 @@ msgid ""
 " 3) after Todo start"
 msgstr ""
 
-#: ../src/appointment.c:2558
+#: ../src/appointment.c:2868
 msgid "Persistent alarm"
 msgstr "Trvalý alarm"
 
-#: ../src/appointment.c:2560
+#: ../src/appointment.c:2870
 msgid ""
 "Select this if you want Orage to remind you even if it has not been active "
 "when the alarm happened."
 msgstr ""
 
 #. **** Audio Alarm ****
-#: ../src/appointment.c:2569
+#: ../src/appointment.c:2879
 msgid "Sound"
 msgstr "Zvuk"
 
-#: ../src/appointment.c:2573 ../src/appointment.c:2694
+#: ../src/appointment.c:2883 ../src/appointment.c:3004
 msgid "Use"
 msgstr "Použiť"
 
-#: ../src/appointment.c:2575
+#: ../src/appointment.c:2885
 msgid "Select this if you want audible alarm"
 msgstr ""
 
-#: ../src/appointment.c:2592
+#: ../src/appointment.c:2902
 msgid "Repeat alarm sound"
 msgstr "Opakovať zvukový alarm"
 
-#: ../src/appointment.c:2608 ../src/appointment.c:2852
+#: ../src/appointment.c:2918 ../src/appointment.c:3220
 msgid "times"
 msgstr "krát"
 
-#: ../src/appointment.c:2624
+#: ../src/appointment.c:2934
 msgid "sec interval"
 msgstr "sekundový interval"
 
 #. **** Display Alarm ****
-#: ../src/appointment.c:2634
+#: ../src/appointment.c:2944
 msgid "Visual"
 msgstr "Vizuálny"
 
-#: ../src/appointment.c:2638
+#: ../src/appointment.c:2948
 msgid "Use Orage window"
 msgstr "Použiť okno Orage"
 
-#: ../src/appointment.c:2640
+#: ../src/appointment.c:2950
 msgid "Select this if you want Orage window alarm"
 msgstr ""
 
-#: ../src/appointment.c:2652
+#: ../src/appointment.c:2962
 msgid "Use notification"
 msgstr "Použiť oznámenie"
 
-#: ../src/appointment.c:2654
+#: ../src/appointment.c:2964
 msgid "Select this if you want notification alarm"
 msgstr ""
 
-#: ../src/appointment.c:2660
+#: ../src/appointment.c:2970
 msgid "Set timeout"
 msgstr "Nastaviť dobu vypršania"
 
-#: ../src/appointment.c:2663
+#: ../src/appointment.c:2973
 msgid "Select this if you want notification to expire automatically"
 msgstr ""
 
-#: ../src/appointment.c:2674
+#: ../src/appointment.c:2984
 msgid "0 = system default expiration time"
 msgstr "0 = predvolená systémová doba vyprašania"
 
-#: ../src/appointment.c:2679
+#: ../src/appointment.c:2989
 msgid "seconds"
 msgstr "sekúnd"
 
 #. **** Procedure Alarm ****
-#: ../src/appointment.c:2690
+#: ../src/appointment.c:3000
 msgid "Procedure"
 msgstr "Procedúra"
 
-#: ../src/appointment.c:2696
+#: ../src/appointment.c:3006
 msgid "Select this if you want procedure or script alarm"
 msgstr ""
 
-#: ../src/appointment.c:2702
+#: ../src/appointment.c:3012
 msgid ""
 "You must enter all escape etc characters yourself.\n"
 " This string is just given to shell to process"
 msgstr ""
 
-#. **** Default Alarm Settings ****
-#: ../src/appointment.c:2711
-msgid "Default alarm"
+#: ../src/appointment.c:3024
+msgid "Test this alarm by raising it now"
+msgstr ""
+
+#: ../src/appointment.c:3031
+#, fuzzy
+msgid "<b>Default alarm</b>"
 msgstr "Predvolený alarm"
 
-#: ../src/appointment.c:2718
+#: ../src/appointment.c:3039
 msgid "Store current settings as default alarm"
 msgstr ""
 
-#: ../src/appointment.c:2723
+#: ../src/appointment.c:3044
 msgid "Set current settings from default alarm"
 msgstr ""
 
-#: ../src/appointment.c:2780
+#: ../src/appointment.c:3106
+msgid "None"
+msgstr "Žiadne"
+
+#: ../src/appointment.c:3106
 msgid "Daily"
 msgstr "Denne"
 
-#: ../src/appointment.c:2780
+#: ../src/appointment.c:3106
 msgid "Weekly"
 msgstr "Týždenne"
 
-#: ../src/appointment.c:2780
+#: ../src/appointment.c:3106
 msgid "Monthly"
 msgstr "Mesačne"
 
-#: ../src/appointment.c:2780
+#: ../src/appointment.c:3106
 msgid "Yearly"
 msgstr "Ročne"
 
-#: ../src/appointment.c:2782
+#: ../src/appointment.c:3108
 msgid "Mon"
 msgstr "Pon"
 
-#: ../src/appointment.c:2782
+#: ../src/appointment.c:3108
 msgid "Tue"
 msgstr "Uto"
 
-#: ../src/appointment.c:2782
+#: ../src/appointment.c:3108
 msgid "Wed"
 msgstr "Str"
 
-#: ../src/appointment.c:2782
+#: ../src/appointment.c:3108
 msgid "Thu"
 msgstr "Štv"
 
-#: ../src/appointment.c:2782
+#: ../src/appointment.c:3108
 msgid "Fri"
 msgstr "Pia"
 
-#: ../src/appointment.c:2782
+#: ../src/appointment.c:3108
 msgid "Sat"
 msgstr "Sob"
 
-#: ../src/appointment.c:2782
+#: ../src/appointment.c:3108
 msgid "Sun"
 msgstr "Neď"
 
-#: ../src/appointment.c:2786
+#: ../src/appointment.c:3113
 msgid "Recurrence"
 msgstr "Opakovanie"
 
-#: ../src/appointment.c:2791
+#. complexity
+#: ../src/appointment.c:3119
 msgid "Complexity"
 msgstr "Zložitosť"
 
-#: ../src/appointment.c:2794
+#: ../src/appointment.c:3122
 msgid "Basic"
 msgstr "Základné"
 
-#: ../src/appointment.c:2800
+#: ../src/appointment.c:3128
 msgid "Advanced"
 msgstr "Rozšírené"
 
-#: ../src/appointment.c:2807
+#: ../src/appointment.c:3132
 msgid "Use this if you want regular repeating event"
 msgstr ""
 
-#: ../src/appointment.c:2809
+#: ../src/appointment.c:3134
 msgid ""
 "Use this if you need complex times like:\n"
 " Every Saturday and Sunday or \n"
 " First Tuesday every month"
 msgstr ""
 
-#: ../src/appointment.c:2812
+#. frequency
+#: ../src/appointment.c:3141
 msgid "Frequency"
 msgstr "Opakovať"
 
-#: ../src/appointment.c:2818
+#: ../src/appointment.c:3147
 msgid "Each"
 msgstr "Káždý"
 
-#: ../src/appointment.c:2825
+#: ../src/appointment.c:3154
 msgid "occurrence"
 msgstr "výskyt"
 
-#: ../src/appointment.c:2829
+#: ../src/appointment.c:3158
 msgid ""
 "Limit frequency to certain interval.\n"
 " For example: Every third day:\n"
 " Frequency = Daily and Interval = 3"
 msgstr ""
 
-#: ../src/appointment.c:2835
+#: ../src/appointment.c:3204
 msgid "Limit"
 msgstr "Obmedzenie"
 
-#: ../src/appointment.c:2837
+#: ../src/appointment.c:3206
 msgid "Repeat forever"
 msgstr "Opakovať stále"
 
-#: ../src/appointment.c:2844
+#: ../src/appointment.c:3212
 msgid "Repeat "
 msgstr "Opakovať "
 
-#: ../src/appointment.c:2861
+#: ../src/appointment.c:3228
 msgid "Repeat until "
 msgstr "Opakovať do "
 
-#: ../src/appointment.c:2871
+#. weekdays (only for complex settings)
+#: ../src/appointment.c:3241
 msgid "Weekdays"
 msgstr "Všedné dni"
 
-#: ../src/appointment.c:2883
+#: ../src/appointment.c:3253
 msgid "Which day"
 msgstr "Ktorý deň"
 
-#: ../src/appointment.c:2891
+#: ../src/appointment.c:3261
 msgid ""
 "Specify which weekday for monthly and yearly events.\n"
 " For example:\n"
@@ -983,52 +1041,108 @@ msgid ""
 "\tWhich day = select 2 from the number below Wednesday"
 msgstr ""
 
+#. TODO base (only for TODOs)
+#: ../src/appointment.c:3269
+msgid "TODO base"
+msgstr ""
+
+#: ../src/appointment.c:3282
+msgid ""
+"TODO reoccurs regularly starting on start time and repeating after each "
+"interval no matter when it was last completed"
+msgstr ""
+
+#: ../src/appointment.c:3284
+msgid ""
+"TODO reoccurrency is based on complete time and repeats after the interval "
+"counted from the last completed time.\n"
+"(Note that you can not tell anything about the history of the TODO since "
+"reoccurrence base changes after each completion.)"
+msgstr ""
+
+#. exceptions
+#: ../src/appointment.c:3291
+#, fuzzy
+msgid "Exceptions"
+msgstr "Voľby"
+
+#: ../src/appointment.c:3304
+msgid ""
+"Add more exception dates by clicking the calendar days below.\n"
+"Exception is either exclusion(-) or inclusion(+) depending on the "
+"selection.\n"
+"Remove by clicking the data."
+msgstr ""
+
+#: ../src/appointment.c:3309
+msgid "Add excluded date (-)"
+msgstr ""
+
+#: ../src/appointment.c:3311
+msgid "Excluded days are full days where this appointment is not happening"
+msgstr ""
+
+#: ../src/appointment.c:3317
+msgid "Add included time (+)"
+msgstr ""
+
+#: ../src/appointment.c:3319
+msgid ""
+"Included times have same timezone than start time, but they may have "
+"different time"
+msgstr ""
+
+#. calendars showing the action days
+#: ../src/appointment.c:3336
+#, fuzzy
+msgid "Action dates"
+msgstr "Voľby akcie"
+
 #. ********* View menu *********
 #. View menu
-#: ../src/day-view.c:264 ../src/event-list.c:1017 ../src/mainbox.c:287
+#: ../src/day-view.c:264 ../src/event-list.c:1030 ../src/mainbox.c:286
 msgid "_View"
 msgstr "Zo_braziť"
 
 #. ********* Go menu   *********
-#: ../src/day-view.c:278 ../src/event-list.c:1036
+#: ../src/day-view.c:278 ../src/event-list.c:1049
 msgid "_Go"
 msgstr "P_rejsť"
 
-#: ../src/day-view.c:319 ../src/event-list.c:1083
+#: ../src/day-view.c:319 ../src/event-list.c:1096
 msgid "New"
 msgstr "Nový"
 
-#: ../src/day-view.c:324 ../src/event-list.c:1092
+#: ../src/day-view.c:324 ../src/event-list.c:1105
 msgid "Back"
 msgstr "Predchádzajúci deň"
 
-#: ../src/day-view.c:326 ../src/event-list.c:1094 ../src/functions.c:132
-#: ../src/tray_icon.c:330
+#: ../src/day-view.c:326 ../src/event-list.c:1107 ../src/functions.c:131
+#: ../src/tray_icon.c:356
 msgid "Today"
 msgstr "Dnes"
 
-#: ../src/day-view.c:328 ../src/event-list.c:1096
+#: ../src/day-view.c:328 ../src/event-list.c:1109
 msgid "Forward"
 msgstr "Nasledujúci deň"
 
-#: ../src/day-view.c:333 ../src/event-list.c:1101
+#: ../src/day-view.c:333 ../src/event-list.c:1114
 msgid "Refresh"
 msgstr "Obnoviť"
 
-#: ../src/day-view.c:338 ../src/event-list.c:1108 ../src/interface.c:804
+#: ../src/day-view.c:338 ../src/event-list.c:1121 ../src/interface.c:803
 msgid "Close"
 msgstr "Zatvoriť"
 
-#. then add the appointment
-#: ../src/day-view.c:452
+#: ../src/day-view.c:453
 msgid "Unknown"
 msgstr ""
 
-#: ../src/day-view.c:694 ../src/parameters.c:663
-msgid "Show"
-msgstr "Zobrazený"
+#: ../src/day-view.c:689
+msgid "       Number of days to show"
+msgstr ""
 
-#: ../src/day-view.c:931
+#: ../src/day-view.c:920
 msgid "Orage - day view"
 msgstr "Orage - denný prehľad"
 
@@ -1037,57 +1151,57 @@ msgstr "Orage - denný prehľad"
 msgid "All day"
 msgstr "Celodenná udalosť"
 
-#: ../src/event-list.c:557 ../src/event-list.c:1266
+#: ../src/event-list.c:578 ../src/event-list.c:1281
 msgid "Time"
 msgstr "Čas"
 
-#: ../src/event-list.c:728
+#: ../src/event-list.c:746
 msgid "No rows have been selected."
 msgstr "Neboli vybrané žiadne riadky"
 
-#: ../src/event-list.c:729
+#: ../src/event-list.c:747
 msgid "Click a row to select it and after that you can copy it."
 msgstr ""
 
-#: ../src/event-list.c:899
+#: ../src/event-list.c:916
 msgid ""
 "You will permanently remove all\n"
 "selected appointments."
 msgstr ""
 
-#: ../src/event-list.c:1103
+#: ../src/event-list.c:1116
 msgid "Find"
 msgstr "Nájsť"
 
-#: ../src/event-list.c:1110
+#: ../src/event-list.c:1123
 msgid "Dayview"
 msgstr "Prehľad dňa"
 
-#: ../src/event-list.c:1143
+#: ../src/event-list.c:1156
 msgid "Extra days to show "
 msgstr "Dni navyše pre zobrazenie"
 
-#: ../src/event-list.c:1179
+#: ../src/event-list.c:1194
 msgid "Journal entries starting from:"
 msgstr "Položky zápisu začínajúce od:"
 
-#: ../src/event-list.c:1204
+#: ../src/event-list.c:1219
 msgid "Search"
 msgstr "Hľadať"
 
-#: ../src/event-list.c:1208
+#: ../src/event-list.c:1223
 msgid "Search text "
 msgstr "Hľadať ďalšie"
 
-#: ../src/event-list.c:1274
+#: ../src/event-list.c:1289
 msgid "Flags"
 msgstr "Značky"
 
-#: ../src/event-list.c:1282
+#: ../src/event-list.c:1297
 msgid "Title"
 msgstr "Názov"
 
-#: ../src/event-list.c:1308
+#: ../src/event-list.c:1323
 msgid ""
 "Double click line to edit it.\n"
 "\n"
@@ -1115,1839 +1229,286 @@ msgstr ""
 "\t 5. Typ schôdzky:\n"
 "\t\tE=Udalosť T=Úlohy J=Zápisok"
 
-#: ../src/functions.c:130
+#: ../src/functions.c:129
 msgid "Pick the date"
 msgstr "Vyberte si dátum"
 
-#: ../src/ical-code.c:115
-msgid "Africa"
-msgstr "Afrika"
-
-#: ../src/ical-code.c:116
-msgid "Africa/Abidjan"
-msgstr "Afrika/Abidjan"
-
-#: ../src/ical-code.c:117
-msgid "Africa/Accra"
-msgstr "Afrika/Accra"
-
-#: ../src/ical-code.c:118
-msgid "Africa/Addis_Ababa"
-msgstr "Afrika/Addis_Ababa"
-
-#: ../src/ical-code.c:119
-msgid "Africa/Algiers"
-msgstr "Afrika/Algiers"
-
-#: ../src/ical-code.c:120
-msgid "Africa/Asmera"
-msgstr "Afrika/Asmera"
-
-#: ../src/ical-code.c:121
-msgid "Africa/Bamako"
-msgstr "Afrika/Bamako"
-
-#: ../src/ical-code.c:122
-msgid "Africa/Bangui"
-msgstr "Afrika/Bangui"
-
-#: ../src/ical-code.c:123
-msgid "Africa/Banjul"
-msgstr "Afrika/Banjul"
-
-#: ../src/ical-code.c:124
-msgid "Africa/Bissau"
-msgstr "Afrika/Bissau"
-
-#: ../src/ical-code.c:125
-msgid "Africa/Blantyre"
-msgstr "Afrika/Blantyre"
-
-#: ../src/ical-code.c:126
-msgid "Africa/Brazzaville"
-msgstr "Afrika/Brazzaville"
-
-#: ../src/ical-code.c:127
-msgid "Africa/Bujumbura"
-msgstr "Afrika/Bujumbura"
-
-#: ../src/ical-code.c:128
-msgid "Africa/Cairo"
-msgstr "Afrika/Cairo"
-
-#: ../src/ical-code.c:129
-msgid "Africa/Casablanca"
-msgstr "Afrika/Casablanca"
-
-#: ../src/ical-code.c:130
-msgid "Africa/Ceuta"
-msgstr "Afrika/Ceuta"
-
-#: ../src/ical-code.c:131
-msgid "Africa/Conakry"
-msgstr "Afrika/Conakry"
-
-#: ../src/ical-code.c:132
-msgid "Africa/Dakar"
-msgstr "Afrika/Dakar"
-
-#: ../src/ical-code.c:133
-msgid "Africa/Dar_es_Salaam"
-msgstr "Afrika/Dar_es_Salaam"
-
-#: ../src/ical-code.c:134
-msgid "Africa/Djibouti"
-msgstr "Afrika/Djibouti"
-
-#: ../src/ical-code.c:135
-msgid "Africa/Douala"
-msgstr "Afrika/Douala"
-
-#: ../src/ical-code.c:136
-msgid "Africa/El_Aaiun"
-msgstr "Afrika/El_Aaiun"
-
-#: ../src/ical-code.c:137
-msgid "Africa/Freetown"
-msgstr "Afrika/Freetown"
-
-#: ../src/ical-code.c:138
-msgid "Africa/Gaborone"
-msgstr "Afrika/Gaborone"
-
-#: ../src/ical-code.c:139
-msgid "Africa/Harare"
-msgstr "Afrika/Harare"
-
-#: ../src/ical-code.c:140
-msgid "Africa/Johannesburg"
-msgstr "Afrika/Johannesburg"
-
-#: ../src/ical-code.c:141
-msgid "Africa/Kampala"
-msgstr "Afrika/Kampala"
-
-#: ../src/ical-code.c:142
-msgid "Africa/Khartoum"
-msgstr "Afrika/Khartoum"
-
-#: ../src/ical-code.c:143
-msgid "Africa/Kigali"
-msgstr "Afrika/Kigali"
-
-#: ../src/ical-code.c:144
-msgid "Africa/Kinshasa"
-msgstr "Afrika/Kinshasa"
-
-#: ../src/ical-code.c:145
-msgid "Africa/Lagos"
-msgstr "Afrika/Lagos"
-
-#: ../src/ical-code.c:146
-msgid "Africa/Libreville"
-msgstr "Afrika/Libreville"
-
-#: ../src/ical-code.c:147
-msgid "Africa/Lome"
-msgstr "Afrika/Lome"
-
-#: ../src/ical-code.c:148
-msgid "Africa/Luanda"
-msgstr "Afrika/Luanda"
-
-#: ../src/ical-code.c:149
-msgid "Africa/Lubumbashi"
-msgstr "Afrika/Lubumbashi"
-
-#: ../src/ical-code.c:150
-msgid "Africa/Lusaka"
-msgstr "Afrika/Lusaka"
-
-#: ../src/ical-code.c:151
-msgid "Africa/Malabo"
-msgstr "Afrika/Malabo"
-
-#: ../src/ical-code.c:152
-msgid "Africa/Maputo"
-msgstr "Afrika/Maputo"
-
-#: ../src/ical-code.c:153
-msgid "Africa/Maseru"
-msgstr "Afrika/Maseru"
-
-#: ../src/ical-code.c:154
-msgid "Africa/Mbabane"
-msgstr "Afrika/Mbabane"
-
-#: ../src/ical-code.c:155
-msgid "Africa/Mogadishu"
-msgstr "Afrika/Mogadishu"
-
-#: ../src/ical-code.c:156
-msgid "Africa/Monrovia"
-msgstr "Afrika/Monrovia"
-
-#: ../src/ical-code.c:157
-msgid "Africa/Nairobi"
-msgstr "Afrika/Nairobi"
-
-#: ../src/ical-code.c:158
-msgid "Africa/Ndjamena"
-msgstr "Afrika/Ndjamena"
-
-#: ../src/ical-code.c:159
-msgid "Africa/Niamey"
-msgstr "Afrika/Niamey"
-
-#: ../src/ical-code.c:160
-msgid "Africa/Nouakchott"
-msgstr "Afrika/Nouakchott"
-
-#: ../src/ical-code.c:161
-msgid "Africa/Ouagadougou"
-msgstr "Afrika/Ouagadougou"
-
-#: ../src/ical-code.c:162
-msgid "Africa/Porto-Novo"
-msgstr "Afrika/Porto-Novo"
-
-#: ../src/ical-code.c:163
-msgid "Africa/Sao_Tome"
-msgstr "Afrika/Sao_Tome"
-
-#: ../src/ical-code.c:164
-msgid "Africa/Timbuktu"
-msgstr "Afrika/Timbuktu"
-
-#: ../src/ical-code.c:165
-msgid "Africa/Tripoli"
-msgstr "Afrika/Tripoli"
-
-#: ../src/ical-code.c:166
-msgid "Africa/Tunis"
-msgstr "Afrika/Tunis"
-
-#: ../src/ical-code.c:167
-msgid "Africa/Windhoek"
-msgstr "Afrika/Windhoek"
-
-#: ../src/ical-code.c:168
-msgid "America"
-msgstr "Amerika"
-
-#: ../src/ical-code.c:169
-msgid "America/Adak"
-msgstr "Amerika/Adak"
-
-#: ../src/ical-code.c:170
-msgid "America/Anchorage"
-msgstr "Amerika/Anchorage"
-
-#: ../src/ical-code.c:171
-msgid "America/Anguilla"
-msgstr "Amerika/Anguilla"
-
-#: ../src/ical-code.c:172
-msgid "America/Antigua"
-msgstr "Amerika/Antigua"
-
-#: ../src/ical-code.c:173
-msgid "America/Araguaina"
-msgstr "Amerika/Araguaina"
-
-#: ../src/ical-code.c:174
-msgid "America/Argentina/Buenos_Aires"
-msgstr "Amerika/Argentína/Buenos_Aires"
-
-#: ../src/ical-code.c:175
-msgid "America/Argentina/Catamarca"
-msgstr "Amerika/Argentína/Catamarca"
-
-#: ../src/ical-code.c:176
-msgid "America/Argentina/Cordoba"
-msgstr "Amerika/Argentína/Cordoba"
-
-#: ../src/ical-code.c:177
-msgid "America/Argentina/Jujuy"
-msgstr "Amerika/Argentína/Jujuy"
-
-#: ../src/ical-code.c:178
-msgid "America/Argentina/Mendoza"
-msgstr "Amerika/Argentína/Mendoza"
-
-#: ../src/ical-code.c:179
-msgid "America/Aruba"
-msgstr "Amerika/Aruba"
-
-#: ../src/ical-code.c:180
-msgid "America/Asuncion"
-msgstr "Amerika/Asuncion"
-
-#: ../src/ical-code.c:181
-msgid "America/Barbados"
-msgstr "Amerika/Barbados"
-
-#: ../src/ical-code.c:182
-msgid "America/Belem"
-msgstr "Amerika/Belem"
-
-#: ../src/ical-code.c:183
-msgid "America/Belize"
-msgstr "Amerika/Belize"
-
-#: ../src/ical-code.c:184
-msgid "America/Boa_Vista"
-msgstr "Amerika/Boa_Vista"
-
-#: ../src/ical-code.c:185
-msgid "America/Bogota"
-msgstr "Amerika/Bogota"
-
-#: ../src/ical-code.c:186
-msgid "America/Boise"
-msgstr "Amerika/Boise"
-
-#: ../src/ical-code.c:187
-msgid "America/Buenos_Aires"
-msgstr "Amerika/Buenos_Aires"
-
-#: ../src/ical-code.c:188
-msgid "America/Cambridge_Bay"
-msgstr "Amerika/Cambridge_Bay"
-
-#: ../src/ical-code.c:189
-msgid "America/Cancun"
-msgstr "Amerika/Cancun"
-
-#: ../src/ical-code.c:190
-msgid "America/Caracas"
-msgstr "Amerika/Caracas"
-
-#: ../src/ical-code.c:191
-msgid "America/Catamarca"
-msgstr "Amerika/Catamarca"
-
-#: ../src/ical-code.c:192
-msgid "America/Cayenne"
-msgstr "Amerika/Cayenne"
-
-#: ../src/ical-code.c:193
-msgid "America/Cayman"
-msgstr "Amerika/Cayman"
-
-#: ../src/ical-code.c:194
-msgid "America/Chicago"
-msgstr "Amerika/Chicago"
-
-#: ../src/ical-code.c:195
-msgid "America/Chihuahua"
-msgstr "Amerika/Chihuahua"
-
-#: ../src/ical-code.c:196
-msgid "America/Cordoba"
-msgstr "Amerika/Cordoba"
-
-#: ../src/ical-code.c:197
-msgid "America/Costa_Rica"
-msgstr "Amerika/Costa_Rica"
-
-#: ../src/ical-code.c:198
-msgid "America/Cuiaba"
-msgstr "Amerika/Cuiaba"
-
-#: ../src/ical-code.c:199
-msgid "America/Curacao"
-msgstr "Amerika/Curacao"
-
-#: ../src/ical-code.c:200
-msgid "America/Dawson"
-msgstr "Amerika/Dawson"
-
-#: ../src/ical-code.c:201
-msgid "America/Dawson_Creek"
-msgstr "Amerika/Dawson_Creek"
-
-#: ../src/ical-code.c:202
-msgid "America/Denver"
-msgstr "Amerika/Denver"
-
-#: ../src/ical-code.c:203
-msgid "America/Detroit"
-msgstr "Amerika/Detroit"
-
-#: ../src/ical-code.c:204
-msgid "America/Dominica"
-msgstr "Amerika/Dominica"
-
-#: ../src/ical-code.c:205
-msgid "America/Edmonton"
-msgstr "Amerika/Edmonton"
-
-#: ../src/ical-code.c:206
-msgid "America/Eirunepe"
-msgstr "Amerika/Eirunepe"
-
-#: ../src/ical-code.c:207
-msgid "America/El_Salvador"
-msgstr "Amerika/El_Salvador"
-
-#: ../src/ical-code.c:208
-msgid "America/Fortaleza"
-msgstr "Amerika/Fortaleza"
-
-#: ../src/ical-code.c:209
-msgid "America/Glace_Bay"
-msgstr "Amerika/Glace_Bay"
-
-#: ../src/ical-code.c:210
-msgid "America/Godthab"
-msgstr "Amerika/Godthab"
-
-#: ../src/ical-code.c:211
-msgid "America/Goose_Bay"
-msgstr "Amerika/Goose_Bay"
-
-#: ../src/ical-code.c:212
-msgid "America/Grand_Turk"
-msgstr "Amerika/Grand_Turk"
-
-#: ../src/ical-code.c:213
-msgid "America/Grenada"
-msgstr "Amerika/Grenada"
-
-#: ../src/ical-code.c:214
-msgid "America/Guadeloupe"
-msgstr "Amerika/Guadeloupe"
-
-#: ../src/ical-code.c:215
-msgid "America/Guatemala"
-msgstr "Amerika/Guatemala"
-
-#: ../src/ical-code.c:216
-msgid "America/Guayaquil"
-msgstr "Amerika/Guayaquil"
-
-#: ../src/ical-code.c:217
-msgid "America/Guyana"
-msgstr "Amerika/Guyana"
-
-#: ../src/ical-code.c:218
-msgid "America/Halifax"
-msgstr "Amerika/Halifax"
-
-#: ../src/ical-code.c:219
-msgid "America/Havana"
-msgstr "Amerika/Havana"
-
-#: ../src/ical-code.c:220
-msgid "America/Hermosillo"
-msgstr "Amerika/Hermosillo"
-
-#: ../src/ical-code.c:221
-msgid "America/Indiana/Indianapolis"
-msgstr "Amerika/Indiaa/Indiaapolis"
-
-#: ../src/ical-code.c:222
-msgid "America/Indiana/Knox"
-msgstr "Amerika/Indiaa/Knox"
-
-#: ../src/ical-code.c:223
-msgid "America/Indiana/Marengo"
-msgstr "Amerika/Indiaa/Marengo"
-
-#: ../src/ical-code.c:224
-msgid "America/Indiana/Vevay"
-msgstr "Amerika/Indiaa/Vevay"
-
-#: ../src/ical-code.c:225
-msgid "America/Indianapolis"
-msgstr "Amerika/Indiaapolis"
-
-#: ../src/ical-code.c:226
-msgid "America/Inuvik"
-msgstr "Amerika/Inuvik"
-
-#: ../src/ical-code.c:227
-msgid "America/Iqaluit"
-msgstr "Amerika/Iqaluit"
-
-#: ../src/ical-code.c:228
-msgid "America/Jamaica"
-msgstr "Amerika/Jamaica"
-
-#: ../src/ical-code.c:229
-msgid "America/Jujuy"
-msgstr "Amerika/Jujuy"
-
-#: ../src/ical-code.c:230
-msgid "America/Juneau"
-msgstr "Amerika/Juneau"
-
-#: ../src/ical-code.c:231
-msgid "America/Kentucky/Louisville"
-msgstr "Amerika/Kentucky/Louisville"
-
-#: ../src/ical-code.c:232
-msgid "America/Kentucky/Monticello"
-msgstr "Amerika/Kentucky/Monticello"
-
-#: ../src/ical-code.c:233
-msgid "America/La_Paz"
-msgstr "Amerika/La_Paz"
-
-#: ../src/ical-code.c:234
-msgid "America/Lima"
-msgstr "Amerika/Lima"
-
-#: ../src/ical-code.c:235
-msgid "America/Los_Angeles"
-msgstr "Amerika/Los_Angeles"
-
-#: ../src/ical-code.c:236
-msgid "America/Louisville"
-msgstr "Amerika/Louisville"
-
-#: ../src/ical-code.c:237
-msgid "America/Maceio"
-msgstr "Amerika/Maceio"
-
-#: ../src/ical-code.c:238
-msgid "America/Managua"
-msgstr "Amerika/Managua"
-
-#: ../src/ical-code.c:239
-msgid "America/Manaus"
-msgstr "Amerika/Manaus"
-
-#: ../src/ical-code.c:240
-msgid "America/Martinique"
-msgstr "Amerika/Martinique"
-
-#: ../src/ical-code.c:241
-msgid "America/Mazatlan"
-msgstr "Amerika/Mazatlan"
-
-#: ../src/ical-code.c:242
-msgid "America/Mendoza"
-msgstr "Amerika/Mendoza"
-
-#: ../src/ical-code.c:243
-msgid "America/Menominee"
-msgstr "Amerika/Menominee"
-
-#: ../src/ical-code.c:244
-msgid "America/Merida"
-msgstr "Amerika/Merida"
-
-#: ../src/ical-code.c:245
-msgid "America/Mexico_City"
-msgstr "Amerika/Mexico_City"
-
-#: ../src/ical-code.c:246
-msgid "America/Miquelon"
-msgstr "Amerika/Miquelon"
-
-#: ../src/ical-code.c:247
-msgid "America/Monterrey"
-msgstr "Amerika/Monterrey"
-
-#: ../src/ical-code.c:248
-msgid "America/Montevideo"
-msgstr "Amerika/Montevideo"
-
-#: ../src/ical-code.c:249
-msgid "America/Montreal"
-msgstr "Amerika/Montreal"
-
-#: ../src/ical-code.c:250
-msgid "America/Montserrat"
-msgstr "Amerika/Montserrat"
-
-#: ../src/ical-code.c:251
-msgid "America/Nassau"
-msgstr "Amerika/Nassau"
-
-#: ../src/ical-code.c:252
-msgid "America/New_York"
-msgstr "Amerika/New_York"
-
-#: ../src/ical-code.c:253
-msgid "America/Nipigon"
-msgstr "Amerika/Nipigon"
-
-#: ../src/ical-code.c:254
-msgid "America/Nome"
-msgstr "Amerika/Nome"
-
-#: ../src/ical-code.c:255
-msgid "America/Noronha"
-msgstr "Amerika/Noronha"
-
-#: ../src/ical-code.c:256
-msgid "America/Panama"
-msgstr "Amerika/Panama"
-
-#: ../src/ical-code.c:257
-msgid "America/Pangnirtung"
-msgstr "Amerika/Pangnirtung"
-
-#: ../src/ical-code.c:258
-msgid "America/Paramaribo"
-msgstr "Amerika/Paramaribo"
-
-#: ../src/ical-code.c:259
-msgid "America/Phoenix"
-msgstr "Amerika/Phoenix"
-
-#: ../src/ical-code.c:260
-msgid "America/Port-au-Prince"
-msgstr "Amerika/Port-au-Prince"
-
-#: ../src/ical-code.c:261
-msgid "America/Port_of_Spain"
-msgstr "Amerika/Port_of_Spain"
-
-#: ../src/ical-code.c:262
-msgid "America/Porto_Velho"
-msgstr "Amerika/Porto_Velho"
-
-#: ../src/ical-code.c:263
-msgid "America/Puerto_Rico"
-msgstr "Amerika/Puerto_Rico"
-
-#: ../src/ical-code.c:264
-msgid "America/Rainy_River"
-msgstr "Amerika/Rainy_River"
-
-#: ../src/ical-code.c:265
-msgid "America/Rankin_Inlet"
-msgstr "Amerika/Rankin_Inlet"
-
-#: ../src/ical-code.c:266
-msgid "America/Recife"
-msgstr "Amerika/Recife"
-
-#: ../src/ical-code.c:267
-msgid "America/Regina"
-msgstr "Amerika/Regina"
-
-#: ../src/ical-code.c:268
-msgid "America/Rio_Branco"
-msgstr "Amerika/Rio_Branco"
-
-#: ../src/ical-code.c:269
-msgid "America/Rosario"
-msgstr "Amerika/Rosario"
-
-#: ../src/ical-code.c:270
-msgid "America/Santiago"
-msgstr "Amerika/Santiago"
-
-#: ../src/ical-code.c:271
-msgid "America/Santo_Domingo"
-msgstr "Amerika/Santo_Domingo"
-
-#: ../src/ical-code.c:272
-msgid "America/Sao_Paulo"
-msgstr "Amerika/Sao_Paulo"
-
-#: ../src/ical-code.c:273
-msgid "America/Scoresbysund"
-msgstr "Amerika/Scoresbysund"
-
-#: ../src/ical-code.c:274
-msgid "America/Shiprock"
-msgstr "Amerika/Shiprock"
-
-#: ../src/ical-code.c:275
-msgid "America/St_Johns"
-msgstr "Amerika/St_Johns"
-
-#: ../src/ical-code.c:276
-msgid "America/St_Kitts"
-msgstr "Amerika/St_Kitts"
-
-#: ../src/ical-code.c:277
-msgid "America/St_Lucia"
-msgstr "Amerika/St_Lucia"
-
-#: ../src/ical-code.c:278
-msgid "America/St_Thomas"
-msgstr "Amerika/St_Thomas"
-
-#: ../src/ical-code.c:279
-msgid "America/St_Vincent"
-msgstr "Amerika/St_Vincent"
-
-#: ../src/ical-code.c:280
-msgid "America/Swift_Current"
-msgstr "Amerika/Swift_Current"
-
-#: ../src/ical-code.c:281
-msgid "America/Tegucigalpa"
-msgstr "Amerika/Tegucigalpa"
-
-#: ../src/ical-code.c:282
-msgid "America/Thule"
-msgstr "Amerika/Thule"
-
-#: ../src/ical-code.c:283
-msgid "America/Thunder_Bay"
-msgstr "Amerika/Thunder_Bay"
-
-#: ../src/ical-code.c:284
-msgid "America/Tijuana"
-msgstr "Amerika/Tijuana"
-
-#: ../src/ical-code.c:285
-msgid "America/Tortola"
-msgstr "Amerika/Tortola"
-
-#: ../src/ical-code.c:286
-msgid "America/Vancouver"
-msgstr "Amerika/Vancouver"
-
-#: ../src/ical-code.c:287
-msgid "America/Whitehorse"
-msgstr "Amerika/Whitehorse"
-
-#: ../src/ical-code.c:288
-msgid "America/Winnipeg"
-msgstr "Amerika/Winnipeg"
-
-#: ../src/ical-code.c:289
-msgid "America/Yakutat"
-msgstr "Amerika/Yakutat"
-
-#: ../src/ical-code.c:290
-msgid "America/Yellowknife"
-msgstr "Amerika/Yellowknife"
-
-#: ../src/ical-code.c:291
-msgid "Antarctica"
-msgstr "Antarktída"
-
-#: ../src/ical-code.c:292
-msgid "Antarctica/Casey"
-msgstr "Antarktída/Casey"
-
-#: ../src/ical-code.c:293
-msgid "Antarctica/Davis"
-msgstr "Antarktída/Davis"
-
-#: ../src/ical-code.c:294
-msgid "Antarctica/DumontDUrville"
-msgstr "Antarktída/DumontDUrville"
-
-#: ../src/ical-code.c:295
-msgid "Antarctica/Mawson"
-msgstr "Antarktída/Mawson"
-
-#: ../src/ical-code.c:296
-msgid "Antarctica/McMurdo"
-msgstr "Antarktída/McMurdo"
-
-#: ../src/ical-code.c:297
-msgid "Antarctica/Palmer"
-msgstr "Antarktída/Palmer"
-
-#: ../src/ical-code.c:298
-msgid "Antarctica/South_Pole"
-msgstr "Antarktída/South_Pole"
-
-#: ../src/ical-code.c:299
-msgid "Antarctica/Syowa"
-msgstr "Antarktída/Syowa"
-
-#: ../src/ical-code.c:300
-msgid "Antarctica/Vostok"
-msgstr "Antarktída/Vostok"
-
-#: ../src/ical-code.c:301
-msgid "Arctic"
-msgstr "Arktída"
-
-#: ../src/ical-code.c:302
-msgid "Arctic/Longyearbyen"
-msgstr "Arktída/Longyearbyen"
-
-#: ../src/ical-code.c:303
-msgid "Asia"
-msgstr "Ázia"
-
-#: ../src/ical-code.c:304
-msgid "Asia/Aden"
-msgstr "Ázia/Aden"
-
-#: ../src/ical-code.c:305
-msgid "Asia/Almaty"
-msgstr "Ázia/Almaty"
-
-#: ../src/ical-code.c:306
-msgid "Asia/Amman"
-msgstr "Ázia/Amman"
-
-#: ../src/ical-code.c:307
-msgid "Asia/Anadyr"
-msgstr "Ázia/Anadyr"
-
-#: ../src/ical-code.c:308
-msgid "Asia/Aqtau"
-msgstr "Ázia/Aqtau"
-
-#: ../src/ical-code.c:309
-msgid "Asia/Aqtobe"
-msgstr "Ázia/Aqtobe"
-
-#: ../src/ical-code.c:310
-msgid "Asia/Ashgabat"
-msgstr "Ázia/Ashgabat"
-
-#: ../src/ical-code.c:311
-msgid "Asia/Baghdad"
-msgstr "Ázia/Baghdad"
-
-#: ../src/ical-code.c:312
-msgid "Asia/Bahrain"
-msgstr "Ázia/Bahrain"
-
-#: ../src/ical-code.c:313
-msgid "Asia/Baku"
-msgstr "Ázia/Baku"
-
-#: ../src/ical-code.c:314
-msgid "Asia/Bangkok"
-msgstr "Ázia/Bangkok"
-
-#: ../src/ical-code.c:315
-msgid "Asia/Beirut"
-msgstr "Ázia/Beirut"
-
-#: ../src/ical-code.c:316
-msgid "Asia/Bishkek"
-msgstr "Ázia/Bishkek"
-
-#: ../src/ical-code.c:317
-msgid "Asia/Brunei"
-msgstr "Ázia/Brunei"
-
-#: ../src/ical-code.c:318
-msgid "Asia/Calcutta"
-msgstr "Ázia/Calcutta"
-
-#: ../src/ical-code.c:319
-msgid "Asia/Chungking"
-msgstr "Ázia/Chungking"
-
-#: ../src/ical-code.c:320
-msgid "Asia/Colombo"
-msgstr "Ázia/Colombo"
-
-#: ../src/ical-code.c:321
-msgid "Asia/Damascus"
-msgstr "Ázia/Damascus"
-
-#: ../src/ical-code.c:322
-msgid "Asia/Dhaka"
-msgstr "Ázia/Dhaka"
-
-#: ../src/ical-code.c:323
-msgid "Asia/Dili"
-msgstr "Ázia/Dili"
-
-#: ../src/ical-code.c:324
-msgid "Asia/Dubai"
-msgstr "Ázia/Dubai"
-
-#: ../src/ical-code.c:325
-msgid "Asia/Dushanbe"
-msgstr "Ázia/Dushanbe"
-
-#: ../src/ical-code.c:326
-msgid "Asia/Gaza"
-msgstr "Ázia/Gaza"
-
-#: ../src/ical-code.c:327
-msgid "Asia/Harbin"
-msgstr "Ázia/Harbin"
-
-#: ../src/ical-code.c:328
-msgid "Asia/Hong_Kong"
-msgstr "Ázia/Hong_Kong"
-
-#: ../src/ical-code.c:329
-msgid "Asia/Hovd"
-msgstr "Ázia/Hovd"
-
-#: ../src/ical-code.c:330
-msgid "Asia/Irkutsk"
-msgstr "Ázia/Irkutsk"
-
-#: ../src/ical-code.c:331
-msgid "Asia/Istanbul"
-msgstr "Ázia/Istanbul"
-
-#: ../src/ical-code.c:332
-msgid "Asia/Jakarta"
-msgstr "Ázia/Jakarta"
-
-#: ../src/ical-code.c:333
-msgid "Asia/Jayapura"
-msgstr "Ázia/Jayapura"
-
-#: ../src/ical-code.c:334
-msgid "Asia/Jerusalem"
-msgstr "Ázia/Jerusalem"
-
-#: ../src/ical-code.c:335
-msgid "Asia/Kabul"
-msgstr "Ázia/Kabul"
-
-#: ../src/ical-code.c:336
-msgid "Asia/Kamchatka"
-msgstr "Ázia/Kamchatka"
-
-#: ../src/ical-code.c:337
-msgid "Asia/Karachi"
-msgstr "Ázia/Karachi"
-
-#: ../src/ical-code.c:338
-msgid "Asia/Kashgar"
-msgstr "Ázia/Kashgar"
-
-#: ../src/ical-code.c:339
-msgid "Asia/Katmandu"
-msgstr "Ázia/Katmandu"
-
-#: ../src/ical-code.c:340
-msgid "Asia/Krasnoyarsk"
-msgstr "Ázia/Krasnoyarsk"
-
-#: ../src/ical-code.c:341
-msgid "Asia/Kuala_Lumpur"
-msgstr "Ázia/Kuala_Lumpur"
-
-#: ../src/ical-code.c:342
-msgid "Asia/Kuching"
-msgstr "Ázia/Kuching"
-
-#: ../src/ical-code.c:343
-msgid "Asia/Kuwait"
-msgstr "Ázia/Kuwait"
-
-#: ../src/ical-code.c:344
-msgid "Asia/Macao"
-msgstr "Ázia/Macao"
-
-#: ../src/ical-code.c:345
-msgid "Asia/Magadan"
-msgstr "Ázia/Magadan"
-
-#: ../src/ical-code.c:346
-msgid "Asia/Manila"
-msgstr "Ázia/Manila"
-
-#: ../src/ical-code.c:347
-msgid "Asia/Muscat"
-msgstr "Ázia/Muscat"
-
-#: ../src/ical-code.c:348
-msgid "Asia/Nicosia"
-msgstr "Ázia/Nicosia"
-
-#: ../src/ical-code.c:349
-msgid "Asia/Novosibirsk"
-msgstr "Ázia/Novosibirsk"
-
-#: ../src/ical-code.c:350
-msgid "Asia/Omsk"
-msgstr "Ázia/Omsk"
-
-#: ../src/ical-code.c:351
-msgid "Asia/Phnom_Penh"
-msgstr "Ázia/Phnom_Penh"
-
-#: ../src/ical-code.c:352
-msgid "Asia/Pontianak"
-msgstr "Ázia/Pontianak"
-
-#: ../src/ical-code.c:353
-msgid "Asia/Pyongyang"
-msgstr "Ázia/Pyongyang"
-
-#: ../src/ical-code.c:354
-msgid "Asia/Qatar"
-msgstr "Ázia/Qatar"
-
-#: ../src/ical-code.c:355
-msgid "Asia/Rangoon"
-msgstr "Ázia/Rangoon"
-
-#: ../src/ical-code.c:356
-msgid "Asia/Riyadh"
-msgstr "Ázia/Riyadh"
-
-#: ../src/ical-code.c:357
-msgid "Asia/Saigon"
-msgstr "Ázia/Saigon"
-
-#: ../src/ical-code.c:358
-msgid "Asia/Samarkand"
-msgstr "Ázia/Samarkand"
-
-#: ../src/ical-code.c:359
-msgid "Asia/Seoul"
-msgstr "Ázia/Seoul"
-
-#: ../src/ical-code.c:360
-msgid "Asia/Shanghai"
-msgstr "Ázia/Shanghai"
-
-#: ../src/ical-code.c:361
-msgid "Asia/Singapore"
-msgstr "Ázia/Singapore"
-
-#: ../src/ical-code.c:362
-msgid "Asia/Taipei"
-msgstr "Ázia/Taipei"
-
-#: ../src/ical-code.c:363
-msgid "Asia/Tashkent"
-msgstr "Ázia/Tashkent"
-
-#: ../src/ical-code.c:364
-msgid "Asia/Tbilisi"
-msgstr "Ázia/Tbilisi"
-
-#: ../src/ical-code.c:365
-msgid "Asia/Tehran"
-msgstr "Ázia/Tehran"
-
-#: ../src/ical-code.c:366
-msgid "Asia/Thimphu"
-msgstr "Ázia/Thimphu"
-
-#: ../src/ical-code.c:367
-msgid "Asia/Tokyo"
-msgstr "Ázia/Tokyo"
-
-#: ../src/ical-code.c:368
-msgid "Asia/Ujung_Pandang"
-msgstr "Ázia/Ujung_Pandang"
-
-#: ../src/ical-code.c:369
-msgid "Asia/Ulaanbaatar"
-msgstr "Ázia/Ulaanbaatar"
-
-#: ../src/ical-code.c:370
-msgid "Asia/Urumqi"
-msgstr "Ázia/Urumqi"
-
-#: ../src/ical-code.c:371
-msgid "Asia/Vientiane"
-msgstr "Ázia/Vientiane"
-
-#: ../src/ical-code.c:372
-msgid "Asia/Vladivostok"
-msgstr "Ázia/Vladivostok"
-
-#: ../src/ical-code.c:373
-msgid "Asia/Yakutsk"
-msgstr "Ázia/Yakutsk"
-
-#: ../src/ical-code.c:374
-msgid "Asia/Yekaterinburg"
-msgstr "Ázia/Yekaterinburg"
-
-#: ../src/ical-code.c:375
-msgid "Asia/Yerevan"
-msgstr "Ázia/Yerevan"
-
-#: ../src/ical-code.c:376
-msgid "Atlantic"
-msgstr "Atlantik"
-
-#: ../src/ical-code.c:377
-msgid "Atlantic/Azores"
-msgstr "Atlantik/Azores"
-
-#: ../src/ical-code.c:378
-msgid "Atlantic/Bermuda"
-msgstr "Atlantik/Bermuda"
-
-#: ../src/ical-code.c:379
-msgid "Atlantic/Canary"
-msgstr "Atlantik/Canary"
-
-#: ../src/ical-code.c:380
-msgid "Atlantic/Cape_Verde"
-msgstr "Atlantik/Cape_Verde"
-
-#: ../src/ical-code.c:381
-msgid "Atlantic/Faeroe"
-msgstr "Atlantik/Faeroe"
-
-#: ../src/ical-code.c:382
-msgid "Atlantic/Jan_Mayen"
-msgstr "Atlantik/Jan_Mayen"
-
-#: ../src/ical-code.c:383
-msgid "Atlantic/Madeira"
-msgstr "Atlantik/Madeira"
-
-#: ../src/ical-code.c:384
-msgid "Atlantic/Reykjavik"
-msgstr "Atlantik/Reykjavik"
-
-#: ../src/ical-code.c:385
-msgid "Atlantic/South_Georgia"
-msgstr "Atlantik/South_Georgia"
-
-#: ../src/ical-code.c:386
-msgid "Atlantic/St_Helena"
-msgstr "Atlantik/St_Helena"
-
-#: ../src/ical-code.c:387
-msgid "Atlantic/Stanley"
-msgstr "Atlantik/Stanley"
-
-#: ../src/ical-code.c:388
-msgid "Australia"
-msgstr "Austrália"
-
-#: ../src/ical-code.c:389
-msgid "Australia/Adelaide"
-msgstr "Austrália/Adelaide"
-
-#: ../src/ical-code.c:390
-msgid "Australia/Brisbane"
-msgstr "Austrália/Brisbane"
-
-#: ../src/ical-code.c:391
-msgid "Australia/Broken_Hill"
-msgstr "Austrália/Broken_Hill"
-
-#: ../src/ical-code.c:392
-msgid "Australia/Darwin"
-msgstr "Austrália/Darwin"
-
-#: ../src/ical-code.c:393
-msgid "Australia/Hobart"
-msgstr "Austrália/Hobart"
-
-#: ../src/ical-code.c:394
-msgid "Australia/Lindeman"
-msgstr "Austrália/Lindeman"
-
-#: ../src/ical-code.c:395
-msgid "Australia/Lord_Howe"
-msgstr "Austrália/Lord_Howe"
-
-#: ../src/ical-code.c:396
-msgid "Australia/Melbourne"
-msgstr "Austrália/Melbourne"
-
-#: ../src/ical-code.c:397
-msgid "Australia/Perth"
-msgstr "Austrália/Perth"
-
-#: ../src/ical-code.c:398
-msgid "Australia/Sydney"
-msgstr "Austrália/Sydney"
-
-#: ../src/ical-code.c:399
-msgid "Europe"
-msgstr "Európa"
-
-#: ../src/ical-code.c:400
-msgid "Europe/Amsterdam"
-msgstr "Európa/Amsterdam"
-
-#: ../src/ical-code.c:401
-msgid "Europe/Andorra"
-msgstr "Európa/Andorra"
-
-#: ../src/ical-code.c:402
-msgid "Europe/Athens"
-msgstr "Európa/Athens"
-
-#: ../src/ical-code.c:403
-msgid "Europe/Belfast"
-msgstr "Európa/Belfast"
-
-#: ../src/ical-code.c:404
-msgid "Europe/Belgrade"
-msgstr "Európa/Belgrade"
-
-#: ../src/ical-code.c:405
-msgid "Europe/Berlin"
-msgstr "Európa/Berlin"
-
-#: ../src/ical-code.c:406
-msgid "Europe/Bratislava"
-msgstr "Európa/Bratislava"
-
-#: ../src/ical-code.c:407
-msgid "Europe/Brussels"
-msgstr "Európa/Brussels"
-
-#: ../src/ical-code.c:408
-msgid "Europe/Bucharest"
-msgstr "Európa/Bucharest"
-
-#: ../src/ical-code.c:409
-msgid "Europe/Budapest"
-msgstr "Európa/Budapest"
-
-#: ../src/ical-code.c:410
-msgid "Europe/Chisinau"
-msgstr "Európa/Chisinau"
-
-#: ../src/ical-code.c:411
-msgid "Europe/Copenhagen"
-msgstr "Európa/Copenhagen"
-
-#: ../src/ical-code.c:412
-msgid "Europe/Dublin"
-msgstr "Európa/Dublin"
-
-#: ../src/ical-code.c:413
-msgid "Europe/Gibraltar"
-msgstr "Európa/Gibraltar"
-
-#: ../src/ical-code.c:414
-msgid "Europe/Helsinki"
-msgstr "Európa/Helsinki"
-
-#: ../src/ical-code.c:415
-msgid "Europe/Istanbul"
-msgstr "Európa/Istanbul"
-
-#: ../src/ical-code.c:416
-msgid "Europe/Kaliningrad"
-msgstr "Európa/Kaliningrad"
-
-#: ../src/ical-code.c:417
-msgid "Europe/Kiev"
-msgstr "Európa/Kiev"
-
-#: ../src/ical-code.c:418
-msgid "Europe/Lisbon"
-msgstr "Európa/Lisbon"
-
-#: ../src/ical-code.c:419
-msgid "Europe/Ljubljana"
-msgstr "Európa/Ljubljana"
-
-#: ../src/ical-code.c:420
-msgid "Europe/London"
-msgstr "Európa/London"
-
-#: ../src/ical-code.c:421
-msgid "Europe/Luxembourg"
-msgstr "Európa/Luxembourg"
-
-#: ../src/ical-code.c:422
-msgid "Europe/Madrid"
-msgstr "Európa/Madrid"
-
-#: ../src/ical-code.c:423
-msgid "Europe/Malta"
-msgstr "Európa/Malta"
-
-#: ../src/ical-code.c:424
-msgid "Europe/Minsk"
-msgstr "Európa/Minsk"
-
-#: ../src/ical-code.c:425
-msgid "Europe/Monaco"
-msgstr "Európa/Monaco"
-
-#: ../src/ical-code.c:426
-msgid "Europe/Moscow"
-msgstr "Európa/Moscow"
-
-#: ../src/ical-code.c:427
-msgid "Europe/Nicosia"
-msgstr "Európa/Nicosia"
-
-#: ../src/ical-code.c:428
-msgid "Europe/Oslo"
-msgstr "Európa/Oslo"
-
-#: ../src/ical-code.c:429
-msgid "Europe/Paris"
-msgstr "Európa/Paris"
-
-#: ../src/ical-code.c:430
-msgid "Europe/Prague"
-msgstr "Európa/Prague"
-
-#: ../src/ical-code.c:431
-msgid "Europe/Riga"
-msgstr "Európa/Riga"
-
-#: ../src/ical-code.c:432
-msgid "Europe/Rome"
-msgstr "Európa/Rome"
-
-#: ../src/ical-code.c:433
-msgid "Europe/Samara"
-msgstr "Európa/Samara"
-
-#: ../src/ical-code.c:434
-msgid "Europe/San_Marino"
-msgstr "Európa/San_Marino"
-
-#: ../src/ical-code.c:435
-msgid "Europe/Sarajevo"
-msgstr "Európa/Sarajevo"
-
-#: ../src/ical-code.c:436
-msgid "Europe/Simferopol"
-msgstr "Európa/Simferopol"
-
-#: ../src/ical-code.c:437
-msgid "Europe/Skopje"
-msgstr "Európa/Skopje"
-
-#: ../src/ical-code.c:438
-msgid "Europe/Sofia"
-msgstr "Európa/Sofia"
-
-#: ../src/ical-code.c:439
-msgid "Europe/Stockholm"
-msgstr "Európa/Stockholm"
-
-#: ../src/ical-code.c:440
-msgid "Europe/Tallinn"
-msgstr "Európa/Tallinn"
-
-#: ../src/ical-code.c:441
-msgid "Europe/Tirane"
-msgstr "Európa/Tirane"
-
-#: ../src/ical-code.c:442
-msgid "Europe/Uzhgorod"
-msgstr "Európa/Uzhgorod"
-
-#: ../src/ical-code.c:443
-msgid "Europe/Vaduz"
-msgstr "Európa/Vaduz"
-
-#: ../src/ical-code.c:444
-msgid "Europe/Vatican"
-msgstr "Európa/Vatican"
-
-#: ../src/ical-code.c:445
-msgid "Europe/Vienna"
-msgstr "Európa/Vienna"
-
-#: ../src/ical-code.c:446
-msgid "Europe/Vilnius"
-msgstr "Európa/Vilnius"
-
-#: ../src/ical-code.c:447
-msgid "Europe/Warsaw"
-msgstr "Európa/Warsaw"
-
-#: ../src/ical-code.c:448
-msgid "Europe/Zagreb"
-msgstr "Európa/Zagreb"
-
-#: ../src/ical-code.c:449
-msgid "Europe/Zaporozhye"
-msgstr "Európa/Zaporozhye"
-
-#: ../src/ical-code.c:450
-msgid "Europe/Zurich"
-msgstr "Európa/Zurich"
-
-#: ../src/ical-code.c:451
-msgid "Indian"
-msgstr "India"
-
-#: ../src/ical-code.c:452
-msgid "Indian/Antananarivo"
-msgstr "India/Antananarivo"
-
-#: ../src/ical-code.c:453
-msgid "Indian/Chagos"
-msgstr "India/Chagos"
-
-#: ../src/ical-code.c:454
-msgid "Indian/Christmas"
-msgstr "India/Christmas"
-
-#: ../src/ical-code.c:455
-msgid "Indian/Cocos"
-msgstr "India/Cocos"
-
-#: ../src/ical-code.c:456
-msgid "Indian/Comoro"
-msgstr "India/Comoro"
-
-#: ../src/ical-code.c:457
-msgid "Indian/Kerguelen"
-msgstr "India/Kerguelen"
-
-#: ../src/ical-code.c:458
-msgid "Indian/Mahe"
-msgstr "India/Mahe"
-
-#: ../src/ical-code.c:459
-msgid "Indian/Maldives"
-msgstr "India/Maldives"
-
-#: ../src/ical-code.c:460
-msgid "Indian/Mauritius"
-msgstr "India/Mauritius"
-
-#: ../src/ical-code.c:461
-msgid "Indian/Mayotte"
-msgstr "India/Mayotte"
-
-#: ../src/ical-code.c:462
-msgid "Indian/Reunion"
-msgstr "India/Reunion"
-
-#: ../src/ical-code.c:463
-msgid "Pacific"
-msgstr "Pacifik"
-
-#: ../src/ical-code.c:464
-msgid "Pacific/Apia"
-msgstr "Pacifik/Apia"
-
-#: ../src/ical-code.c:465
-msgid "Pacific/Auckland"
-msgstr "Pacifik/Auckland"
-
-#: ../src/ical-code.c:466
-msgid "Pacific/Chatham"
-msgstr "Pacifik/Chatham"
-
-#: ../src/ical-code.c:467
-msgid "Pacific/Easter"
-msgstr "Pacifik/Easter"
-
-#: ../src/ical-code.c:468
-msgid "Pacific/Efate"
-msgstr "Pacifik/Efate"
-
-#: ../src/ical-code.c:469
-msgid "Pacific/Enderbury"
-msgstr "Pacifik/Enderbury"
-
-#: ../src/ical-code.c:470
-msgid "Pacific/Fakaofo"
-msgstr "Pacifik/Fakaofo"
-
-#: ../src/ical-code.c:471
-msgid "Pacific/Fiji"
-msgstr "Pacifik/Fiji"
-
-#: ../src/ical-code.c:472
-msgid "Pacific/Funafuti"
-msgstr "Pacifik/Funafuti"
-
-#: ../src/ical-code.c:473
-msgid "Pacific/Galapagos"
-msgstr "Pacifik/Galapagos"
-
-#: ../src/ical-code.c:474
-msgid "Pacific/Gambier"
-msgstr "Pacifik/Gambier"
-
-#: ../src/ical-code.c:475
-msgid "Pacific/Guadalcanal"
-msgstr "Pacifik/Guadalcanal"
-
-#: ../src/ical-code.c:476
-msgid "Pacific/Guam"
-msgstr "Pacifik/Guam"
-
-#: ../src/ical-code.c:477
-msgid "Pacific/Honolulu"
-msgstr "Pacifik/Honolulu"
-
-#: ../src/ical-code.c:478
-msgid "Pacific/Johnston"
-msgstr "Pacifik/Johnston"
-
-#: ../src/ical-code.c:479
-msgid "Pacific/Kiritimati"
-msgstr "Pacifik/Kiritimati"
-
-#: ../src/ical-code.c:480
-msgid "Pacific/Kosrae"
-msgstr "Pacifik/Kosrae"
-
-#: ../src/ical-code.c:481
-msgid "Pacific/Kwajalein"
-msgstr "Pacifik/Kwajalein"
-
-#: ../src/ical-code.c:482
-msgid "Pacific/Majuro"
-msgstr "Pacifik/Majuro"
-
-#: ../src/ical-code.c:483
-msgid "Pacific/Marquesas"
-msgstr "Pacifik/Marquesas"
-
-#: ../src/ical-code.c:484
-msgid "Pacific/Midway"
-msgstr "Pacifik/Midway"
-
-#: ../src/ical-code.c:485
-msgid "Pacific/Nauru"
-msgstr "Pacifik/Nauru"
-
-#: ../src/ical-code.c:486
-msgid "Pacific/Niue"
-msgstr "Pacifik/Niue"
-
-#: ../src/ical-code.c:487
-msgid "Pacific/Norfolk"
-msgstr "Pacifik/Norfolk"
-
-#: ../src/ical-code.c:488
-msgid "Pacific/Noumea"
-msgstr "Pacifik/Noumea"
-
-#: ../src/ical-code.c:489
-msgid "Pacific/Pago_Pago"
-msgstr "Pacifik/Pago_Pago"
-
-#: ../src/ical-code.c:490
-msgid "Pacific/Palau"
-msgstr "Pacifik/Palau"
-
-#: ../src/ical-code.c:491
-msgid "Pacific/Pitcairn"
-msgstr "Pacifik/Pitcairn"
-
-#: ../src/ical-code.c:492
-msgid "Pacific/Ponape"
-msgstr "Pacifik/Ponape"
-
-#: ../src/ical-code.c:493
-msgid "Pacific/Port_Moresby"
-msgstr "Pacifik/Port_Moresby"
-
-#: ../src/ical-code.c:494
-msgid "Pacific/Rarotonga"
-msgstr "Pacifik/Rarotonga"
-
-#: ../src/ical-code.c:495
-msgid "Pacific/Saipan"
-msgstr "Pacifik/Saipan"
-
-#: ../src/ical-code.c:496
-msgid "Pacific/Tahiti"
-msgstr "Pacifik/Tahiti"
-
-#: ../src/ical-code.c:497
-msgid "Pacific/Tarawa"
-msgstr "Pacifik/Tarawa"
-
-#: ../src/ical-code.c:498
-msgid "Pacific/Tongatapu"
-msgstr "Pacifik/Tongatapu"
-
-#: ../src/ical-code.c:499
-msgid "Pacific/Truk"
-msgstr "Pacifik/Truk"
-
-#: ../src/ical-code.c:500
-msgid "Pacific/Wake"
-msgstr "Pacifik/Wake"
-
-#: ../src/ical-code.c:501
-msgid "Pacific/Wallis"
-msgstr "Pacifik/Wallis"
-
-#: ../src/ical-code.c:502
-msgid "Pacific/Yap"
-msgstr "Pacifik/Yap"
-
-#: ../src/ical-code.c:1330
-msgid "Orage default alarm"
-msgstr "Prednastavený alarm kalendára"
-
-#: ../src/ical-code.c:3024
-#, c-format
-msgid "Build alarm list: Added %d alarms. Processed %d events."
-msgstr ""
-
-#: ../src/ical-code.c:3026
-#, c-format
-msgid ""
-"\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
-msgstr ""
+#: ../src/functions.c:821
+msgid "Info"
+msgstr "Informácie"
+
+#: ../src/functions.c:833
+msgid "Warning"
+msgstr "Upozornenie"
+
+#: ../src/functions.c:846
+msgid "Error"
+msgstr "Chyba"
 
 #. remove since it has ended
-#: ../src/ical-code.c:3543
+#: ../src/ical-archive.c:291
 msgid "\tRecur ended, moving to archive file."
 msgstr ""
 
-#: ../src/ical-code.c:3605
+#: ../src/ical-archive.c:353
 msgid "Archiving not enabled. Exiting"
 msgstr ""
 
-#: ../src/ical-code.c:3623
+#: ../src/ical-archive.c:371
 #, c-format
 msgid "Archiving threshold: %d month(s)"
 msgstr "Prah archívu: %d mesiac(ov)"
 
 #. yy mon day
-#: ../src/ical-code.c:3626
+#: ../src/ical-archive.c:374
 #, c-format
 msgid "\tArchiving events, which are older than: %04d-%02d-%02d"
 msgstr ""
 
-#: ../src/ical-code.c:3653
+#: ../src/ical-archive.c:401
 #, c-format
 msgid "Archiving uid: %s"
 msgstr ""
 
 #. VTODO not completed, do not archive
-#: ../src/ical-code.c:3659
+#: ../src/ical-archive.c:407
 msgid "\tVTODO not complete; not archived"
 msgstr "\tVTODO nie je úplné a nebolo archivované"
 
 #. it is recurrent event
-#: ../src/ical-code.c:3664
+#: ../src/ical-archive.c:412
 #, c-format
 msgid "\tRecurring. End year: %04d, month: %02d, day: %02d"
 msgstr ""
 
-#: ../src/ical-code.c:3681
+#: ../src/ical-archive.c:429
 msgid "Archiving done\n"
 msgstr "Archivácia hotová\n"
 
 #. PHASE 1: go through base orage file and remove "repeat" shortcuts
-#: ../src/ical-code.c:3697
+#: ../src/ical-archive.c:445
 msgid "Starting archive removal."
 msgstr ""
 
-#: ../src/ical-code.c:3698
+#: ../src/ical-archive.c:446
 msgid "\tPHASE 1: reset recurring appointments"
 msgstr ""
 
 #. PHASE 2: go through archive file and add everything back to base orage.
 #. * After that delete the whole arch file
-#: ../src/ical-code.c:3720
+#: ../src/ical-archive.c:468
 msgid "\tPHASE 2: return archived appointments"
 msgstr ""
 
-#: ../src/ical-code.c:3746
+#: ../src/ical-archive.c:494
 msgid "Archive removal done\n"
 msgstr "Odobranie archívu dokončené\n"
 
-#: ../src/ical-code.c:3836
+#: ../src/ical-code.c:937
+msgid "Orage default alarm"
+msgstr "Prednastavený alarm kalendára"
+
+#: ../src/ical-code.c:2916
+#, c-format
+msgid "Build alarm list: Added %d alarms. Processed %d events."
+msgstr ""
+
+#: ../src/ical-code.c:2918
+#, c-format
+msgid ""
+"\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
+msgstr ""
+
+#: ../src/ical-expimp.c:136
 msgid "Starting import file preprocessing"
 msgstr ""
 
-#: ../src/ical-code.c:3871
+#: ../src/ical-expimp.c:171
 msgid "... Patched DCREATED to be CREATED."
 msgstr ""
 
-#: ../src/ical-code.c:3910
+#: ../src/ical-expimp.c:210
 msgid "... Patched timezone to Orage format."
 msgstr ""
 
-#: ../src/ical-code.c:3919
+#: ../src/ical-expimp.c:219
 msgid "Import file preprocessing done"
 msgstr ""
 
-#. show it
-#: ../src/ical-code.c:4507
-msgid "Pick timezone"
-msgstr "Vyberte si časovú zónu"
-
-#: ../src/ical-code.c:4510 ../src/ical-code.c:4538
-msgid "UTC"
-msgstr "UTC"
-
-#: ../src/ical-code.c:4511 ../src/ical-code.c:4542 ../src/parameters.c:493
-msgid "floating"
-msgstr "pohyblivá"
-
-#: ../src/interface.c:284
+#: ../src/interface.c:283
 msgid "Calendar files"
 msgstr "Súbory kalendára"
 
-#: ../src/interface.c:626
+#: ../src/interface.c:625
 msgid "Current foreign files"
 msgstr "Aktuálne externé súbory"
 
-#: ../src/interface.c:638
+#: ../src/interface.c:637
 msgid "READ ONLY"
 msgstr "LEN NA ČÍTANIE"
 
-#: ../src/interface.c:640
+#: ../src/interface.c:639
 msgid "READ WRITE"
 msgstr "PRE ČÍTANIE AJ ZÁPIS"
 
-#: ../src/interface.c:658
+#: ../src/interface.c:657
 msgid "***** No foreign files *****"
 msgstr "***** Žiadne externé súbory *****"
 
-#: ../src/interface.c:968
+#: ../src/interface.c:967
 msgid "Import/export"
 msgstr "Import/export"
 
-#: ../src/interface.c:975
+#: ../src/interface.c:974
 msgid "Import"
 msgstr "Import"
 
-#: ../src/interface.c:980
+#: ../src/interface.c:979
 msgid "Read from file:"
 msgstr "Čítať zo súboru:"
 
-#: ../src/interface.c:997
+#: ../src/interface.c:996
 msgid ""
 "Separate filenames with comma(,).\n"
 " NOTE: comma is not valid character in filenames for Orage."
 msgstr ""
 
-#: ../src/interface.c:1002
+#: ../src/interface.c:1001
 msgid "Export"
 msgstr "Export"
 
-#: ../src/interface.c:1007
+#: ../src/interface.c:1006
 msgid "Write to file:"
 msgstr "Zapísať do súboru:"
 
-#: ../src/interface.c:1028 ../src/interface.c:1040
+#: ../src/interface.c:1027 ../src/interface.c:1039
 msgid "Select"
 msgstr "Vybrať"
 
-#: ../src/interface.c:1031
+#: ../src/interface.c:1030
 msgid "All appointments"
 msgstr "Všetky schôdzky"
 
-#: ../src/interface.c:1044
+#: ../src/interface.c:1043
 msgid "Named appointments: "
 msgstr "Pomenované schôdzky"
 
-#: ../src/interface.c:1056
+#: ../src/interface.c:1055
 msgid ""
 "Note that only main file appointments are read.\n"
 "Archived and Foreign events are not exported."
 msgstr ""
 
-#: ../src/interface.c:1059
+#: ../src/interface.c:1058
 msgid ""
 "Note that only main file appointments are read.\n"
 "Foreign events are not exported."
 msgstr ""
 
-#: ../src/interface.c:1062
+#: ../src/interface.c:1061
 msgid "You can easily drag these from event-list window."
 msgstr ""
 
-#: ../src/interface.c:1064
+#: ../src/interface.c:1063
 msgid "Orage appointment UIDs separated by commas."
 msgstr ""
 
-#: ../src/interface.c:1070
+#: ../src/interface.c:1069
 msgid "Archive"
 msgstr "Archivovanie"
 
-#: ../src/interface.c:1078
+#: ../src/interface.c:1077
 #, c-format
 msgid "Archive now (threshold: %d months)"
 msgstr "Archivovať teraz (prah: %d mesiacov)"
 
-#: ../src/interface.c:1088
+#: ../src/interface.c:1087
 msgid "You can change archive threshold in parameters"
 msgstr ""
 
-#: ../src/interface.c:1095
+#: ../src/interface.c:1094
 msgid "Revert archive now"
 msgstr "Obnovenie archívu do pôvodného stavu"
 
-#: ../src/interface.c:1101
+#: ../src/interface.c:1100
 msgid ""
 "Return all archived events into main orage file and remove arch file.\n"
 "This is useful for example when doing export and moving orage\n"
 "appointments to another system."
 msgstr ""
 
-#: ../src/interface.c:1111
+#: ../src/interface.c:1110
 msgid "Orage files"
 msgstr "Súbory Orage"
 
-#: ../src/interface.c:1118
+#: ../src/interface.c:1117
 msgid "Orage main calendar file"
 msgstr "Hlavný súbor kalendára Orage"
 
-#: ../src/interface.c:1123 ../src/interface.c:1188
+#: ../src/interface.c:1122 ../src/interface.c:1187
 msgid "Current file"
 msgstr "Aktuálny súbor"
 
-#: ../src/interface.c:1130 ../src/interface.c:1195
+#: ../src/interface.c:1129 ../src/interface.c:1194
 msgid "New file"
 msgstr "Nový súbor"
 
-#: ../src/interface.c:1146 ../src/interface.c:1212
+#: ../src/interface.c:1145 ../src/interface.c:1211
 msgid "Action options"
 msgstr "Voľby akcie"
 
-#: ../src/interface.c:1149 ../src/interface.c:1215
+#: ../src/interface.c:1148 ../src/interface.c:1214
 msgid "Rename"
 msgstr "Premenovať"
 
-#: ../src/interface.c:1153
+#: ../src/interface.c:1152
 msgid ""
 "Orage internal file rename only.\n"
 "Does not touch external filesystem at all.\n"
 "New file must exist."
 msgstr ""
 
-#: ../src/interface.c:1157 ../src/interface.c:1220
+#: ../src/interface.c:1156 ../src/interface.c:1219
 msgid "Copy"
 msgstr "Kopírovať"
 
-#: ../src/interface.c:1161
+#: ../src/interface.c:1160
 msgid "Current file is copied and stays unmodified in the old place."
 msgstr ""
 
-#: ../src/interface.c:1165 ../src/interface.c:1225
+#: ../src/interface.c:1164 ../src/interface.c:1224
 msgid "Move"
 msgstr "Presunúť"
 
-#: ../src/interface.c:1169
+#: ../src/interface.c:1168
 msgid "Current file is moved and vanishes from the old place."
 msgstr ""
 
-#: ../src/interface.c:1183
+#: ../src/interface.c:1182
 msgid "Archive file"
 msgstr "Archívny súbor"
 
-#: ../src/interface.c:1246
+#: ../src/interface.c:1245
 msgid "Foreign files"
 msgstr "Externé súbory"
 
-#: ../src/interface.c:1253
+#: ../src/interface.c:1252
 msgid "Add new foreign file"
 msgstr "Pridať nový externý súbor"
 
-#: ../src/interface.c:1258
+#: ../src/interface.c:1257
 msgid "Foreign file:"
 msgstr "Externý súbor:"
 
-#: ../src/interface.c:1276
+#: ../src/interface.c:1275
 msgid "Options"
 msgstr "Voľby"
 
-#: ../src/interface.c:1278
+#: ../src/interface.c:1277
 msgid "Read only"
 msgstr "Len na čítanie"
 
-#: ../src/interface.c:1286
+#: ../src/interface.c:1285
 msgid ""
 "Set this if you want to make sure that this file is never modified by "
 "Orage.\n"
@@ -2955,7 +1516,7 @@ msgid ""
 "original tool, where they came from!"
 msgstr ""
 
-#: ../src/interface.c:1300
+#: ../src/interface.c:1299
 msgid "Exchange data - Orage"
 msgstr "Výmena dát - Orage"
 
@@ -3011,7 +1572,17 @@ msgstr "\tPoužíva sa automatické archivovanie.\n"
 msgid "\tNot using archiving.\n"
 msgstr "\tNepoužíva sa archivácia.\n"
 
-#: ../src/main.c:225
+#: ../src/main.c:215
+#, c-format
+msgid "\tUsing operating system package libical.\n"
+msgstr ""
+
+#: ../src/main.c:217
+#, c-format
+msgid "\tUsing Orage local version of libical.\n"
+msgstr ""
+
+#: ../src/main.c:230
 #, c-format
 msgid ""
 "Usage: orage [options] [files]\n"
@@ -3020,59 +1591,59 @@ msgstr ""
 "Použitie: orage [voľby] [súbory]\n"
 "\n"
 
-#: ../src/main.c:226
+#: ../src/main.c:231
 #, c-format
 msgid "Options:\n"
 msgstr "Voľby:\n"
 
-#: ../src/main.c:227
+#: ../src/main.c:232
 #, c-format
 msgid "--version (-v) \t\tshow version of orage\n"
 msgstr "--version (-v) \t\tzobrazí verziu orage\n"
 
-#: ../src/main.c:228
+#: ../src/main.c:233
 #, c-format
 msgid "--help (-h) \t\tprint this text\n"
 msgstr "--help (-h) \t\tvypíšte tento text\n"
 
-#: ../src/main.c:229
+#: ../src/main.c:234
 #, c-format
 msgid "--preferences (-p) \tshow preferences form\n"
 msgstr "--preferences (-p) \tzobrazí formulár možností\n"
 
-#: ../src/main.c:230
+#: ../src/main.c:235
 #, c-format
 msgid "--toggle (-t) \t\tmake orage visible/unvisible\n"
 msgstr "--toggle (-t) \t\tprepne orage na viditeľné/neviditeľné\n"
 
-#: ../src/main.c:231
+#: ../src/main.c:236
 #, c-format
 msgid "--add-foreign (-a) file [RW] \tadd a foreign file\n"
 msgstr "--add-foreign (-a) súbor [RW] \tpridá externý súbor\n"
 
-#: ../src/main.c:232
+#: ../src/main.c:237
 #, c-format
 msgid "--remove-foreign (-r) file \tremove a foreign file\n"
 msgstr "--remove-foreign (-r) súbor \todoberie externý súbor\n"
 
-#: ../src/main.c:234
+#: ../src/main.c:239
 #, c-format
 msgid "files=ical files to load into orage\n"
 msgstr ""
 
-#: ../src/main.c:236
+#: ../src/main.c:241
 #, c-format
 msgid "\tdbus not included in orage. \n"
 msgstr ""
 
-#: ../src/main.c:237
+#: ../src/main.c:242
 #, c-format
 msgid ""
 "\twithout dbus [files] and foreign file options(-a & -r) can only be used "
 "when starting orage \n"
 msgstr ""
 
-#: ../src/main.c:381
+#: ../src/main.c:386
 #, c-format
 msgid ""
 "\n"
@@ -3083,37 +1654,37 @@ msgstr ""
 "Neznáma voľba %s\n"
 "\n"
 
-#: ../src/mainbox.c:269
+#: ../src/mainbox.c:268
 msgid "_Exchange data"
 msgstr "_Výmena dát"
 
 #. Edit menu
-#: ../src/mainbox.c:280
+#: ../src/mainbox.c:279
 msgid "_Edit"
 msgstr "_Upraviť"
 
-#: ../src/mainbox.c:290
+#: ../src/mainbox.c:289
 msgid "View selected _date"
 msgstr "Zobraziť zvolený _dátum"
 
-#: ../src/mainbox.c:293
+#: ../src/mainbox.c:292
 msgid "View selected _week"
 msgstr "Zobraziť zvolený _týždeň"
 
-#: ../src/mainbox.c:299
+#: ../src/mainbox.c:298
 msgid "Select _Today"
 msgstr "Vybrať _dnešný dátum"
 
 #. Help menu
-#: ../src/mainbox.c:303
+#: ../src/mainbox.c:302
 msgid "_Help"
 msgstr "_Pomocník"
 
-#: ../src/mainbox.c:401
+#: ../src/mainbox.c:402
 msgid "Never"
 msgstr "Nikdy"
 
-#: ../src/mainbox.c:406
+#: ../src/mainbox.c:407
 #, c-format
 msgid ""
 "Title: %s\n"
@@ -3130,7 +1701,7 @@ msgstr ""
 " Poznámka:\n"
 "%s"
 
-#: ../src/mainbox.c:412
+#: ../src/mainbox.c:413
 #, c-format
 msgid ""
 "Title: %s\n"
@@ -3145,113 +1716,141 @@ msgstr ""
 " Poznámka:\n"
 "%s"
 
-#: ../src/mainbox.c:487
+#: ../src/mainbox.c:490
 msgid "<b>To do:</b>"
 msgstr "<b>Zoznam úloh:</b>"
 
-#: ../src/mainbox.c:516
+#: ../src/mainbox.c:524
 #, c-format
 msgid "<b>Events for %s:</b>"
 msgstr "<b>Udalosti pre %s:</b>"
 
-#: ../src/parameters.c:473
+#: ../src/mainbox.c:535
+#, fuzzy, c-format
+msgid "<b>Events for %s - %s:</b>"
+msgstr "<b>Udalosti pre %s:</b>"
+
+#: ../src/parameters.c:477
 msgid "Main setups"
 msgstr "Hlavné nastavenia"
 
-#: ../src/parameters.c:479
+#: ../src/parameters.c:483
 msgid "Timezone"
 msgstr "Časová zóna"
 
-#: ../src/parameters.c:498
+#: ../src/parameters.c:502
 msgid "You should always define your local timezone."
 msgstr "Vždy by ste mali definovať Vaše časové pásmo."
 
-#: ../src/parameters.c:507
+#: ../src/parameters.c:511
 msgid "Archive threshold (months)"
 msgstr "Prah archivácie (v mesiacoch)"
 
-#: ../src/parameters.c:517
+#: ../src/parameters.c:521
 msgid "(0 = no archiving)"
 msgstr "(0 = nearchivuje sa)"
 
-#: ../src/parameters.c:520
+#: ../src/parameters.c:524
 msgid "Archiving is used to save time and space when handling events."
 msgstr ""
 "Archivácia sa používa pre úsporu času a miesta pri spracovaní udalostí."
 
-#: ../src/parameters.c:529
+#: ../src/parameters.c:533
 msgid "Sound command"
 msgstr "Zvukový príkaz"
 
-#: ../src/parameters.c:544
+#: ../src/parameters.c:548
 msgid "This command is given to shell to make sound in alarms."
 msgstr "Tento príkaz je daný shellu za účelom prehrania zvuku alarmu."
 
-#: ../src/parameters.c:559
+#: ../src/parameters.c:563
 msgid "Display"
 msgstr "Zobrazenie"
 
-#: ../src/parameters.c:566
+#: ../src/parameters.c:571
 msgid "Calendar main window"
 msgstr "Hlavné okno kalendára"
 
-#: ../src/parameters.c:571
+#: ../src/parameters.c:576
 msgid "Show borders"
 msgstr "Zobraziť rám okna"
 
-#: ../src/parameters.c:578
+#: ../src/parameters.c:583
 msgid "Show menu"
 msgstr "Zobraziť ponuku"
 
-#: ../src/parameters.c:585
+#: ../src/parameters.c:590
+#, fuzzy
+msgid "Show month and year"
+msgstr "Zobraziť v pagery"
+
+#: ../src/parameters.c:597
+#, fuzzy
+msgid "Show day names"
+msgstr "Zobraziť _rám"
+
+#: ../src/parameters.c:604
+#, fuzzy
+msgid "Show week numbers"
+msgstr "Zobraziť rám okna"
+
+#: ../src/parameters.c:611
 msgid "Show todo list"
 msgstr "Zobraziť zoznam úloh"
 
-#: ../src/parameters.c:592
-msgid "Show event list"
-msgstr "Zobraziť zoznam udalostí"
+#: ../src/parameters.c:618
+msgid "Number of days to show in event window"
+msgstr ""
 
-#: ../src/parameters.c:599
+#: ../src/parameters.c:624
+msgid "0 = do not show event list at all"
+msgstr ""
+
+#: ../src/parameters.c:634
 msgid "Set sticked"
 msgstr "Nastaviť prilepené"
 
-#: ../src/parameters.c:606
+#: ../src/parameters.c:641
 msgid "Set on top"
 msgstr "Nastaviť na vrchu"
 
-#: ../src/parameters.c:627
+#: ../src/parameters.c:648
 msgid "Show in taskbar"
 msgstr "Zobraziť v taskbare"
 
-#: ../src/parameters.c:634
+#: ../src/parameters.c:655
 msgid "Show in pager"
 msgstr "Zobraziť v pagery"
 
-#: ../src/parameters.c:641
+#: ../src/parameters.c:662
 msgid "Show in systray"
 msgstr "Zobraziť v oznamovacej oblasti"
 
-#: ../src/parameters.c:658
+#: ../src/parameters.c:697
 msgid "Calendar start"
 msgstr "Kalendár sa spúšťa"
 
-#: ../src/parameters.c:675
+#: ../src/parameters.c:702
+msgid "Show"
+msgstr "Zobrazený"
+
+#: ../src/parameters.c:714
 msgid "Hide"
 msgstr "Skrytý"
 
-#: ../src/parameters.c:687
+#: ../src/parameters.c:726
 msgid "Minimized"
 msgstr "Minimalizovaný"
 
-#: ../src/parameters.c:717
+#: ../src/parameters.c:750
 msgid "Extra setups"
 msgstr "Ďalšie nastavenia"
 
-#: ../src/parameters.c:724 ../src/parameters.c:729
+#: ../src/parameters.c:757 ../src/parameters.c:762
 msgid "Select always today"
 msgstr "Vždy vybrať dnešný deň"
 
-#: ../src/parameters.c:735
+#: ../src/parameters.c:768
 msgid ""
 "When showing main calendar, set pointer to either previously selected day or "
 "always to current day."
@@ -3259,67 +1858,91 @@ msgstr ""
 "Pri zobrazovaní hlavného kalendára bude ukazovateľ nastavený na posledný "
 "vybraný deň alebo vždy dnešný deň"
 
-#: ../src/parameters.c:766
-msgid "Dynamic icon size"
-msgstr "Dynamická veľkosť ikony"
-
-#: ../src/parameters.c:779 ../src/parameters.c:796
-msgid "(0 = use static icon)"
-msgstr "(0 = použiť statickú ikonu)"
-
-#: ../src/parameters.c:782
-msgid ""
-"Dynamic icon shows current day and month. It is visible only in tray. If "
-"tray is too small for dynamic icon size, Orage switches automatically back "
-"to static icon."
+#: ../src/parameters.c:776
+msgid "Use dynamic tray icon"
 msgstr ""
 
-#: ../src/parameters.c:805
+#: ../src/parameters.c:781
+#, fuzzy
+msgid "Use dynamic icon"
+msgstr "Dynamická veľkosť ikony"
+
+#: ../src/parameters.c:787
+msgid ""
+"Dynamic icon shows current month and day of the month. It is visible only in "
+"system tray."
+msgstr ""
+
+#: ../src/parameters.c:796
 msgid "Main Calendar double click shows"
 msgstr "Dvojité kliknutie v hlavnom kalendári zobrazí"
 
-#: ../src/parameters.c:810
+#: ../src/parameters.c:801
 msgid "Days view"
 msgstr "Denný prehľad"
 
-#: ../src/parameters.c:822
+#: ../src/parameters.c:813
 msgid "Event list"
 msgstr "Zoznam udalostí"
 
-#: ../src/parameters.c:847
+#: ../src/parameters.c:830
+#, fuzzy
+msgid "Eventlist window"
+msgstr "Zoznam udalostí"
+
+#: ../src/parameters.c:834
+msgid "Number of extra days to show in event list"
+msgstr ""
+
+#: ../src/parameters.c:846
+msgid ""
+"This is just the default value, you can change it in the actual eventlist "
+"window."
+msgstr ""
+
+#: ../src/parameters.c:862
 msgid "Orage Preferences"
 msgstr "Predvoľby Orage"
 
-#: ../src/parameters.c:1019
+#: ../src/parameters.c:1044
 msgid "First Orage start. Searching default timezone."
 msgstr "Prvé spustenie aplikácie Orage. Vyhľadáva sa predvolená časová zóna."
 
-#: ../src/parameters.c:1038
+#: ../src/parameters.c:1063
 #, c-format
 msgid "Default timezone set to %s."
 msgstr "Predvolené časové pásmo nastavená na %s."
 
-#: ../src/parameters.c:1041
+#: ../src/parameters.c:1066
 msgid "Default timezone not found, please, set it manually."
 msgstr "Predvolené časové pásmo sa nenašlo, nastavte ho ručne."
 
-#: ../src/reminder.c:425
+#: ../src/reminder.c:549
 msgid "Reminder "
 msgstr "Pripomienkovač"
 
-#: ../src/reminder.c:449
+#: ../src/reminder.c:567
 msgid "Open"
 msgstr "Otvoriť"
 
-#: ../src/reminder.c:539
+#: ../src/reminder.c:694
 msgid "Reminder - Orage"
 msgstr "Pripomienkovač - Orage"
 
-#: ../src/reminder.c:844
+#: ../src/reminder.c:772
+msgid "Remind me again after the specified time"
+msgstr ""
+
+#. Note that this goes to the main area. Temporary for the version
+#: ../src/reminder.c:775
+msgid "Press <Execute> to remind me again after the specified time:"
+msgstr ""
+
+#: ../src/reminder.c:1012
 msgid "Next active alarms:"
 msgstr "Nasledujúce aktívne alarmy:"
 
-#: ../src/reminder.c:872
+#: ../src/reminder.c:1054 ../src/reminder.c:1059
 #, c-format
 msgid ""
 "\n"
@@ -3328,7 +1951,7 @@ msgstr ""
 "\n"
 "%02d d %02d h %02d minút do: %s"
 
-#: ../src/reminder.c:880
+#: ../src/reminder.c:1068
 #, c-format
 msgid ""
 "\n"
@@ -3337,20 +1960,1574 @@ msgstr ""
 "\n"
 "Nenašli sa žiadne aktívne alarmy"
 
-#: ../src/tray_icon.c:341
+#: ../src/timezone_names.c:36
+msgid "Africa"
+msgstr "Afrika"
+
+#: ../src/timezone_names.c:37
+msgid "Africa/Abidjan"
+msgstr "Afrika/Abidjan"
+
+#: ../src/timezone_names.c:38
+msgid "Africa/Accra"
+msgstr "Afrika/Accra"
+
+#: ../src/timezone_names.c:39
+msgid "Africa/Addis_Ababa"
+msgstr "Afrika/Addis_Ababa"
+
+#: ../src/timezone_names.c:40
+msgid "Africa/Algiers"
+msgstr "Afrika/Algiers"
+
+#: ../src/timezone_names.c:41
+msgid "Africa/Asmera"
+msgstr "Afrika/Asmera"
+
+#: ../src/timezone_names.c:42
+msgid "Africa/Bamako"
+msgstr "Afrika/Bamako"
+
+#: ../src/timezone_names.c:43
+msgid "Africa/Bangui"
+msgstr "Afrika/Bangui"
+
+#: ../src/timezone_names.c:44
+msgid "Africa/Banjul"
+msgstr "Afrika/Banjul"
+
+#: ../src/timezone_names.c:45
+msgid "Africa/Bissau"
+msgstr "Afrika/Bissau"
+
+#: ../src/timezone_names.c:46
+msgid "Africa/Blantyre"
+msgstr "Afrika/Blantyre"
+
+#: ../src/timezone_names.c:47
+msgid "Africa/Brazzaville"
+msgstr "Afrika/Brazzaville"
+
+#: ../src/timezone_names.c:48
+msgid "Africa/Bujumbura"
+msgstr "Afrika/Bujumbura"
+
+#: ../src/timezone_names.c:49
+msgid "Africa/Cairo"
+msgstr "Afrika/Cairo"
+
+#: ../src/timezone_names.c:50
+msgid "Africa/Casablanca"
+msgstr "Afrika/Casablanca"
+
+#: ../src/timezone_names.c:51
+msgid "Africa/Ceuta"
+msgstr "Afrika/Ceuta"
+
+#: ../src/timezone_names.c:52
+msgid "Africa/Conakry"
+msgstr "Afrika/Conakry"
+
+#: ../src/timezone_names.c:53
+msgid "Africa/Dakar"
+msgstr "Afrika/Dakar"
+
+#: ../src/timezone_names.c:54
+msgid "Africa/Dar_es_Salaam"
+msgstr "Afrika/Dar_es_Salaam"
+
+#: ../src/timezone_names.c:55
+msgid "Africa/Djibouti"
+msgstr "Afrika/Djibouti"
+
+#: ../src/timezone_names.c:56
+msgid "Africa/Douala"
+msgstr "Afrika/Douala"
+
+#: ../src/timezone_names.c:57
+msgid "Africa/El_Aaiun"
+msgstr "Afrika/El_Aaiun"
+
+#: ../src/timezone_names.c:58
+msgid "Africa/Freetown"
+msgstr "Afrika/Freetown"
+
+#: ../src/timezone_names.c:59
+msgid "Africa/Gaborone"
+msgstr "Afrika/Gaborone"
+
+#: ../src/timezone_names.c:60
+msgid "Africa/Harare"
+msgstr "Afrika/Harare"
+
+#: ../src/timezone_names.c:61
+msgid "Africa/Johannesburg"
+msgstr "Afrika/Johannesburg"
+
+#: ../src/timezone_names.c:62
+msgid "Africa/Kampala"
+msgstr "Afrika/Kampala"
+
+#: ../src/timezone_names.c:63
+msgid "Africa/Khartoum"
+msgstr "Afrika/Khartoum"
+
+#: ../src/timezone_names.c:64
+msgid "Africa/Kigali"
+msgstr "Afrika/Kigali"
+
+#: ../src/timezone_names.c:65
+msgid "Africa/Kinshasa"
+msgstr "Afrika/Kinshasa"
+
+#: ../src/timezone_names.c:66
+msgid "Africa/Lagos"
+msgstr "Afrika/Lagos"
+
+#: ../src/timezone_names.c:67
+msgid "Africa/Libreville"
+msgstr "Afrika/Libreville"
+
+#: ../src/timezone_names.c:68
+msgid "Africa/Lome"
+msgstr "Afrika/Lome"
+
+#: ../src/timezone_names.c:69
+msgid "Africa/Luanda"
+msgstr "Afrika/Luanda"
+
+#: ../src/timezone_names.c:70
+msgid "Africa/Lubumbashi"
+msgstr "Afrika/Lubumbashi"
+
+#: ../src/timezone_names.c:71
+msgid "Africa/Lusaka"
+msgstr "Afrika/Lusaka"
+
+#: ../src/timezone_names.c:72
+msgid "Africa/Malabo"
+msgstr "Afrika/Malabo"
+
+#: ../src/timezone_names.c:73
+msgid "Africa/Maputo"
+msgstr "Afrika/Maputo"
+
+#: ../src/timezone_names.c:74
+msgid "Africa/Maseru"
+msgstr "Afrika/Maseru"
+
+#: ../src/timezone_names.c:75
+msgid "Africa/Mbabane"
+msgstr "Afrika/Mbabane"
+
+#: ../src/timezone_names.c:76
+msgid "Africa/Mogadishu"
+msgstr "Afrika/Mogadishu"
+
+#: ../src/timezone_names.c:77
+msgid "Africa/Monrovia"
+msgstr "Afrika/Monrovia"
+
+#: ../src/timezone_names.c:78
+msgid "Africa/Nairobi"
+msgstr "Afrika/Nairobi"
+
+#: ../src/timezone_names.c:79
+msgid "Africa/Ndjamena"
+msgstr "Afrika/Ndjamena"
+
+#: ../src/timezone_names.c:80
+msgid "Africa/Niamey"
+msgstr "Afrika/Niamey"
+
+#: ../src/timezone_names.c:81
+msgid "Africa/Nouakchott"
+msgstr "Afrika/Nouakchott"
+
+#: ../src/timezone_names.c:82
+msgid "Africa/Ouagadougou"
+msgstr "Afrika/Ouagadougou"
+
+#: ../src/timezone_names.c:83
+msgid "Africa/Porto-Novo"
+msgstr "Afrika/Porto-Novo"
+
+#: ../src/timezone_names.c:84
+msgid "Africa/Sao_Tome"
+msgstr "Afrika/Sao_Tome"
+
+#: ../src/timezone_names.c:85
+msgid "Africa/Timbuktu"
+msgstr "Afrika/Timbuktu"
+
+#: ../src/timezone_names.c:86
+msgid "Africa/Tripoli"
+msgstr "Afrika/Tripoli"
+
+#: ../src/timezone_names.c:87
+msgid "Africa/Tunis"
+msgstr "Afrika/Tunis"
+
+#: ../src/timezone_names.c:88
+msgid "Africa/Windhoek"
+msgstr "Afrika/Windhoek"
+
+#: ../src/timezone_names.c:89
+msgid "America"
+msgstr "Amerika"
+
+#: ../src/timezone_names.c:90
+msgid "America/Adak"
+msgstr "Amerika/Adak"
+
+#: ../src/timezone_names.c:91
+msgid "America/Anchorage"
+msgstr "Amerika/Anchorage"
+
+#: ../src/timezone_names.c:92
+msgid "America/Anguilla"
+msgstr "Amerika/Anguilla"
+
+#: ../src/timezone_names.c:93
+msgid "America/Antigua"
+msgstr "Amerika/Antigua"
+
+#: ../src/timezone_names.c:94
+msgid "America/Araguaina"
+msgstr "Amerika/Araguaina"
+
+#: ../src/timezone_names.c:95
+msgid "America/Argentina/Buenos_Aires"
+msgstr "Amerika/Argentína/Buenos_Aires"
+
+#: ../src/timezone_names.c:96
+msgid "America/Argentina/Catamarca"
+msgstr "Amerika/Argentína/Catamarca"
+
+#: ../src/timezone_names.c:97
+msgid "America/Argentina/Cordoba"
+msgstr "Amerika/Argentína/Cordoba"
+
+#: ../src/timezone_names.c:98
+msgid "America/Argentina/Jujuy"
+msgstr "Amerika/Argentína/Jujuy"
+
+#: ../src/timezone_names.c:99
+msgid "America/Argentina/Mendoza"
+msgstr "Amerika/Argentína/Mendoza"
+
+#: ../src/timezone_names.c:100
+msgid "America/Aruba"
+msgstr "Amerika/Aruba"
+
+#: ../src/timezone_names.c:101
+msgid "America/Asuncion"
+msgstr "Amerika/Asuncion"
+
+#: ../src/timezone_names.c:102
+msgid "America/Barbados"
+msgstr "Amerika/Barbados"
+
+#: ../src/timezone_names.c:103
+msgid "America/Belem"
+msgstr "Amerika/Belem"
+
+#: ../src/timezone_names.c:104
+msgid "America/Belize"
+msgstr "Amerika/Belize"
+
+#: ../src/timezone_names.c:105
+msgid "America/Boa_Vista"
+msgstr "Amerika/Boa_Vista"
+
+#: ../src/timezone_names.c:106
+msgid "America/Bogota"
+msgstr "Amerika/Bogota"
+
+#: ../src/timezone_names.c:107
+msgid "America/Boise"
+msgstr "Amerika/Boise"
+
+#: ../src/timezone_names.c:108
+msgid "America/Buenos_Aires"
+msgstr "Amerika/Buenos_Aires"
+
+#: ../src/timezone_names.c:109
+msgid "America/Cambridge_Bay"
+msgstr "Amerika/Cambridge_Bay"
+
+#: ../src/timezone_names.c:110
+msgid "America/Cancun"
+msgstr "Amerika/Cancun"
+
+#: ../src/timezone_names.c:111
+msgid "America/Caracas"
+msgstr "Amerika/Caracas"
+
+#: ../src/timezone_names.c:112
+msgid "America/Catamarca"
+msgstr "Amerika/Catamarca"
+
+#: ../src/timezone_names.c:113
+msgid "America/Cayenne"
+msgstr "Amerika/Cayenne"
+
+#: ../src/timezone_names.c:114
+msgid "America/Cayman"
+msgstr "Amerika/Cayman"
+
+#: ../src/timezone_names.c:115
+msgid "America/Chicago"
+msgstr "Amerika/Chicago"
+
+#: ../src/timezone_names.c:116
+msgid "America/Chihuahua"
+msgstr "Amerika/Chihuahua"
+
+#: ../src/timezone_names.c:117
+msgid "America/Cordoba"
+msgstr "Amerika/Cordoba"
+
+#: ../src/timezone_names.c:118
+msgid "America/Costa_Rica"
+msgstr "Amerika/Costa_Rica"
+
+#: ../src/timezone_names.c:119
+msgid "America/Cuiaba"
+msgstr "Amerika/Cuiaba"
+
+#: ../src/timezone_names.c:120
+msgid "America/Curacao"
+msgstr "Amerika/Curacao"
+
+#: ../src/timezone_names.c:121
+msgid "America/Dawson"
+msgstr "Amerika/Dawson"
+
+#: ../src/timezone_names.c:122
+msgid "America/Dawson_Creek"
+msgstr "Amerika/Dawson_Creek"
+
+#: ../src/timezone_names.c:123
+msgid "America/Denver"
+msgstr "Amerika/Denver"
+
+#: ../src/timezone_names.c:124
+msgid "America/Detroit"
+msgstr "Amerika/Detroit"
+
+#: ../src/timezone_names.c:125
+msgid "America/Dominica"
+msgstr "Amerika/Dominica"
+
+#: ../src/timezone_names.c:126
+msgid "America/Edmonton"
+msgstr "Amerika/Edmonton"
+
+#: ../src/timezone_names.c:127
+msgid "America/Eirunepe"
+msgstr "Amerika/Eirunepe"
+
+#: ../src/timezone_names.c:128
+msgid "America/El_Salvador"
+msgstr "Amerika/El_Salvador"
+
+#: ../src/timezone_names.c:129
+msgid "America/Fortaleza"
+msgstr "Amerika/Fortaleza"
+
+#: ../src/timezone_names.c:130
+msgid "America/Glace_Bay"
+msgstr "Amerika/Glace_Bay"
+
+#: ../src/timezone_names.c:131
+msgid "America/Godthab"
+msgstr "Amerika/Godthab"
+
+#: ../src/timezone_names.c:132
+msgid "America/Goose_Bay"
+msgstr "Amerika/Goose_Bay"
+
+#: ../src/timezone_names.c:133
+msgid "America/Grand_Turk"
+msgstr "Amerika/Grand_Turk"
+
+#: ../src/timezone_names.c:134
+msgid "America/Grenada"
+msgstr "Amerika/Grenada"
+
+#: ../src/timezone_names.c:135
+msgid "America/Guadeloupe"
+msgstr "Amerika/Guadeloupe"
+
+#: ../src/timezone_names.c:136
+msgid "America/Guatemala"
+msgstr "Amerika/Guatemala"
+
+#: ../src/timezone_names.c:137
+msgid "America/Guayaquil"
+msgstr "Amerika/Guayaquil"
+
+#: ../src/timezone_names.c:138
+msgid "America/Guyana"
+msgstr "Amerika/Guyana"
+
+#: ../src/timezone_names.c:139
+msgid "America/Halifax"
+msgstr "Amerika/Halifax"
+
+#: ../src/timezone_names.c:140
+msgid "America/Havana"
+msgstr "Amerika/Havana"
+
+#: ../src/timezone_names.c:141
+msgid "America/Hermosillo"
+msgstr "Amerika/Hermosillo"
+
+#: ../src/timezone_names.c:142
+msgid "America/Indiana/Indianapolis"
+msgstr "Amerika/Indiaa/Indiaapolis"
+
+#: ../src/timezone_names.c:143
+msgid "America/Indiana/Knox"
+msgstr "Amerika/Indiaa/Knox"
+
+#: ../src/timezone_names.c:144
+msgid "America/Indiana/Marengo"
+msgstr "Amerika/Indiaa/Marengo"
+
+#: ../src/timezone_names.c:145
+msgid "America/Indiana/Vevay"
+msgstr "Amerika/Indiaa/Vevay"
+
+#: ../src/timezone_names.c:146
+msgid "America/Indianapolis"
+msgstr "Amerika/Indiaapolis"
+
+#: ../src/timezone_names.c:147
+msgid "America/Inuvik"
+msgstr "Amerika/Inuvik"
+
+#: ../src/timezone_names.c:148
+msgid "America/Iqaluit"
+msgstr "Amerika/Iqaluit"
+
+#: ../src/timezone_names.c:149
+msgid "America/Jamaica"
+msgstr "Amerika/Jamaica"
+
+#: ../src/timezone_names.c:150
+msgid "America/Jujuy"
+msgstr "Amerika/Jujuy"
+
+#: ../src/timezone_names.c:151
+msgid "America/Juneau"
+msgstr "Amerika/Juneau"
+
+#: ../src/timezone_names.c:152
+msgid "America/Kentucky/Louisville"
+msgstr "Amerika/Kentucky/Louisville"
+
+#: ../src/timezone_names.c:153
+msgid "America/Kentucky/Monticello"
+msgstr "Amerika/Kentucky/Monticello"
+
+#: ../src/timezone_names.c:154
+msgid "America/La_Paz"
+msgstr "Amerika/La_Paz"
+
+#: ../src/timezone_names.c:155
+msgid "America/Lima"
+msgstr "Amerika/Lima"
+
+#: ../src/timezone_names.c:156
+msgid "America/Los_Angeles"
+msgstr "Amerika/Los_Angeles"
+
+#: ../src/timezone_names.c:157
+msgid "America/Louisville"
+msgstr "Amerika/Louisville"
+
+#: ../src/timezone_names.c:158
+msgid "America/Maceio"
+msgstr "Amerika/Maceio"
+
+#: ../src/timezone_names.c:159
+msgid "America/Managua"
+msgstr "Amerika/Managua"
+
+#: ../src/timezone_names.c:160
+msgid "America/Manaus"
+msgstr "Amerika/Manaus"
+
+#: ../src/timezone_names.c:161
+msgid "America/Martinique"
+msgstr "Amerika/Martinique"
+
+#: ../src/timezone_names.c:162
+msgid "America/Mazatlan"
+msgstr "Amerika/Mazatlan"
+
+#: ../src/timezone_names.c:163
+msgid "America/Mendoza"
+msgstr "Amerika/Mendoza"
+
+#: ../src/timezone_names.c:164
+msgid "America/Menominee"
+msgstr "Amerika/Menominee"
+
+#: ../src/timezone_names.c:165
+msgid "America/Merida"
+msgstr "Amerika/Merida"
+
+#: ../src/timezone_names.c:166
+msgid "America/Mexico_City"
+msgstr "Amerika/Mexico_City"
+
+#: ../src/timezone_names.c:167
+msgid "America/Miquelon"
+msgstr "Amerika/Miquelon"
+
+#: ../src/timezone_names.c:168
+msgid "America/Monterrey"
+msgstr "Amerika/Monterrey"
+
+#: ../src/timezone_names.c:169
+msgid "America/Montevideo"
+msgstr "Amerika/Montevideo"
+
+#: ../src/timezone_names.c:170
+msgid "America/Montreal"
+msgstr "Amerika/Montreal"
+
+#: ../src/timezone_names.c:171
+msgid "America/Montserrat"
+msgstr "Amerika/Montserrat"
+
+#: ../src/timezone_names.c:172
+msgid "America/Nassau"
+msgstr "Amerika/Nassau"
+
+#: ../src/timezone_names.c:173
+msgid "America/New_York"
+msgstr "Amerika/New_York"
+
+#: ../src/timezone_names.c:174
+msgid "America/Nipigon"
+msgstr "Amerika/Nipigon"
+
+#: ../src/timezone_names.c:175
+msgid "America/Nome"
+msgstr "Amerika/Nome"
+
+#: ../src/timezone_names.c:176
+msgid "America/Noronha"
+msgstr "Amerika/Noronha"
+
+#: ../src/timezone_names.c:177
+msgid "America/Panama"
+msgstr "Amerika/Panama"
+
+#: ../src/timezone_names.c:178
+msgid "America/Pangnirtung"
+msgstr "Amerika/Pangnirtung"
+
+#: ../src/timezone_names.c:179
+msgid "America/Paramaribo"
+msgstr "Amerika/Paramaribo"
+
+#: ../src/timezone_names.c:180
+msgid "America/Phoenix"
+msgstr "Amerika/Phoenix"
+
+#: ../src/timezone_names.c:181
+msgid "America/Port-au-Prince"
+msgstr "Amerika/Port-au-Prince"
+
+#: ../src/timezone_names.c:182
+msgid "America/Port_of_Spain"
+msgstr "Amerika/Port_of_Spain"
+
+#: ../src/timezone_names.c:183
+msgid "America/Porto_Velho"
+msgstr "Amerika/Porto_Velho"
+
+#: ../src/timezone_names.c:184
+msgid "America/Puerto_Rico"
+msgstr "Amerika/Puerto_Rico"
+
+#: ../src/timezone_names.c:185
+msgid "America/Rainy_River"
+msgstr "Amerika/Rainy_River"
+
+#: ../src/timezone_names.c:186
+msgid "America/Rankin_Inlet"
+msgstr "Amerika/Rankin_Inlet"
+
+#: ../src/timezone_names.c:187
+msgid "America/Recife"
+msgstr "Amerika/Recife"
+
+#: ../src/timezone_names.c:188
+msgid "America/Regina"
+msgstr "Amerika/Regina"
+
+#: ../src/timezone_names.c:189
+msgid "America/Rio_Branco"
+msgstr "Amerika/Rio_Branco"
+
+#: ../src/timezone_names.c:190
+msgid "America/Rosario"
+msgstr "Amerika/Rosario"
+
+#: ../src/timezone_names.c:191
+msgid "America/Santiago"
+msgstr "Amerika/Santiago"
+
+#: ../src/timezone_names.c:192
+msgid "America/Santo_Domingo"
+msgstr "Amerika/Santo_Domingo"
+
+#: ../src/timezone_names.c:193
+msgid "America/Sao_Paulo"
+msgstr "Amerika/Sao_Paulo"
+
+#: ../src/timezone_names.c:194
+msgid "America/Scoresbysund"
+msgstr "Amerika/Scoresbysund"
+
+#: ../src/timezone_names.c:195
+msgid "America/Shiprock"
+msgstr "Amerika/Shiprock"
+
+#: ../src/timezone_names.c:196
+msgid "America/St_Johns"
+msgstr "Amerika/St_Johns"
+
+#: ../src/timezone_names.c:197
+msgid "America/St_Kitts"
+msgstr "Amerika/St_Kitts"
+
+#: ../src/timezone_names.c:198
+msgid "America/St_Lucia"
+msgstr "Amerika/St_Lucia"
+
+#: ../src/timezone_names.c:199
+msgid "America/St_Thomas"
+msgstr "Amerika/St_Thomas"
+
+#: ../src/timezone_names.c:200
+msgid "America/St_Vincent"
+msgstr "Amerika/St_Vincent"
+
+#: ../src/timezone_names.c:201
+msgid "America/Swift_Current"
+msgstr "Amerika/Swift_Current"
+
+#: ../src/timezone_names.c:202
+msgid "America/Tegucigalpa"
+msgstr "Amerika/Tegucigalpa"
+
+#: ../src/timezone_names.c:203
+msgid "America/Thule"
+msgstr "Amerika/Thule"
+
+#: ../src/timezone_names.c:204
+msgid "America/Thunder_Bay"
+msgstr "Amerika/Thunder_Bay"
+
+#: ../src/timezone_names.c:205
+msgid "America/Tijuana"
+msgstr "Amerika/Tijuana"
+
+#: ../src/timezone_names.c:206
+msgid "America/Tortola"
+msgstr "Amerika/Tortola"
+
+#: ../src/timezone_names.c:207
+msgid "America/Vancouver"
+msgstr "Amerika/Vancouver"
+
+#: ../src/timezone_names.c:208
+msgid "America/Whitehorse"
+msgstr "Amerika/Whitehorse"
+
+#: ../src/timezone_names.c:209
+msgid "America/Winnipeg"
+msgstr "Amerika/Winnipeg"
+
+#: ../src/timezone_names.c:210
+msgid "America/Yakutat"
+msgstr "Amerika/Yakutat"
+
+#: ../src/timezone_names.c:211
+msgid "America/Yellowknife"
+msgstr "Amerika/Yellowknife"
+
+#: ../src/timezone_names.c:212
+msgid "Antarctica"
+msgstr "Antarktída"
+
+#: ../src/timezone_names.c:213
+msgid "Antarctica/Casey"
+msgstr "Antarktída/Casey"
+
+#: ../src/timezone_names.c:214
+msgid "Antarctica/Davis"
+msgstr "Antarktída/Davis"
+
+#: ../src/timezone_names.c:215
+msgid "Antarctica/DumontDUrville"
+msgstr "Antarktída/DumontDUrville"
+
+#: ../src/timezone_names.c:216
+msgid "Antarctica/Mawson"
+msgstr "Antarktída/Mawson"
+
+#: ../src/timezone_names.c:217
+msgid "Antarctica/McMurdo"
+msgstr "Antarktída/McMurdo"
+
+#: ../src/timezone_names.c:218
+msgid "Antarctica/Palmer"
+msgstr "Antarktída/Palmer"
+
+#: ../src/timezone_names.c:219
+msgid "Antarctica/South_Pole"
+msgstr "Antarktída/South_Pole"
+
+#: ../src/timezone_names.c:220
+msgid "Antarctica/Syowa"
+msgstr "Antarktída/Syowa"
+
+#: ../src/timezone_names.c:221
+msgid "Antarctica/Vostok"
+msgstr "Antarktída/Vostok"
+
+#: ../src/timezone_names.c:222
+msgid "Arctic"
+msgstr "Arktída"
+
+#: ../src/timezone_names.c:223
+msgid "Arctic/Longyearbyen"
+msgstr "Arktída/Longyearbyen"
+
+#: ../src/timezone_names.c:224
+msgid "Asia"
+msgstr "Ázia"
+
+#: ../src/timezone_names.c:225
+msgid "Asia/Aden"
+msgstr "Ázia/Aden"
+
+#: ../src/timezone_names.c:226
+msgid "Asia/Almaty"
+msgstr "Ázia/Almaty"
+
+#: ../src/timezone_names.c:227
+msgid "Asia/Amman"
+msgstr "Ázia/Amman"
+
+#: ../src/timezone_names.c:228
+msgid "Asia/Anadyr"
+msgstr "Ázia/Anadyr"
+
+#: ../src/timezone_names.c:229
+msgid "Asia/Aqtau"
+msgstr "Ázia/Aqtau"
+
+#: ../src/timezone_names.c:230
+msgid "Asia/Aqtobe"
+msgstr "Ázia/Aqtobe"
+
+#: ../src/timezone_names.c:231
+msgid "Asia/Ashgabat"
+msgstr "Ázia/Ashgabat"
+
+#: ../src/timezone_names.c:232
+msgid "Asia/Baghdad"
+msgstr "Ázia/Baghdad"
+
+#: ../src/timezone_names.c:233
+msgid "Asia/Bahrain"
+msgstr "Ázia/Bahrain"
+
+#: ../src/timezone_names.c:234
+msgid "Asia/Baku"
+msgstr "Ázia/Baku"
+
+#: ../src/timezone_names.c:235
+msgid "Asia/Bangkok"
+msgstr "Ázia/Bangkok"
+
+#: ../src/timezone_names.c:236
+msgid "Asia/Beirut"
+msgstr "Ázia/Beirut"
+
+#: ../src/timezone_names.c:237
+msgid "Asia/Bishkek"
+msgstr "Ázia/Bishkek"
+
+#: ../src/timezone_names.c:238
+msgid "Asia/Brunei"
+msgstr "Ázia/Brunei"
+
+#: ../src/timezone_names.c:239
+msgid "Asia/Calcutta"
+msgstr "Ázia/Calcutta"
+
+#: ../src/timezone_names.c:240
+msgid "Asia/Chungking"
+msgstr "Ázia/Chungking"
+
+#: ../src/timezone_names.c:241
+msgid "Asia/Colombo"
+msgstr "Ázia/Colombo"
+
+#: ../src/timezone_names.c:242
+msgid "Asia/Damascus"
+msgstr "Ázia/Damascus"
+
+#: ../src/timezone_names.c:243
+msgid "Asia/Dhaka"
+msgstr "Ázia/Dhaka"
+
+#: ../src/timezone_names.c:244
+msgid "Asia/Dili"
+msgstr "Ázia/Dili"
+
+#: ../src/timezone_names.c:245
+msgid "Asia/Dubai"
+msgstr "Ázia/Dubai"
+
+#: ../src/timezone_names.c:246
+msgid "Asia/Dushanbe"
+msgstr "Ázia/Dushanbe"
+
+#: ../src/timezone_names.c:247
+msgid "Asia/Gaza"
+msgstr "Ázia/Gaza"
+
+#: ../src/timezone_names.c:248
+msgid "Asia/Harbin"
+msgstr "Ázia/Harbin"
+
+#: ../src/timezone_names.c:249
+msgid "Asia/Hong_Kong"
+msgstr "Ázia/Hong_Kong"
+
+#: ../src/timezone_names.c:250
+msgid "Asia/Hovd"
+msgstr "Ázia/Hovd"
+
+#: ../src/timezone_names.c:251
+msgid "Asia/Irkutsk"
+msgstr "Ázia/Irkutsk"
+
+#: ../src/timezone_names.c:252
+msgid "Asia/Istanbul"
+msgstr "Ázia/Istanbul"
+
+#: ../src/timezone_names.c:253
+msgid "Asia/Jakarta"
+msgstr "Ázia/Jakarta"
+
+#: ../src/timezone_names.c:254
+msgid "Asia/Jayapura"
+msgstr "Ázia/Jayapura"
+
+#: ../src/timezone_names.c:255
+msgid "Asia/Jerusalem"
+msgstr "Ázia/Jerusalem"
+
+#: ../src/timezone_names.c:256
+msgid "Asia/Kabul"
+msgstr "Ázia/Kabul"
+
+#: ../src/timezone_names.c:257
+msgid "Asia/Kamchatka"
+msgstr "Ázia/Kamchatka"
+
+#: ../src/timezone_names.c:258
+msgid "Asia/Karachi"
+msgstr "Ázia/Karachi"
+
+#: ../src/timezone_names.c:259
+msgid "Asia/Kashgar"
+msgstr "Ázia/Kashgar"
+
+#: ../src/timezone_names.c:260
+msgid "Asia/Katmandu"
+msgstr "Ázia/Katmandu"
+
+#: ../src/timezone_names.c:261
+msgid "Asia/Krasnoyarsk"
+msgstr "Ázia/Krasnoyarsk"
+
+#: ../src/timezone_names.c:262
+msgid "Asia/Kuala_Lumpur"
+msgstr "Ázia/Kuala_Lumpur"
+
+#: ../src/timezone_names.c:263
+msgid "Asia/Kuching"
+msgstr "Ázia/Kuching"
+
+#: ../src/timezone_names.c:264
+msgid "Asia/Kuwait"
+msgstr "Ázia/Kuwait"
+
+#: ../src/timezone_names.c:265
+msgid "Asia/Macao"
+msgstr "Ázia/Macao"
+
+#: ../src/timezone_names.c:266
+msgid "Asia/Magadan"
+msgstr "Ázia/Magadan"
+
+#: ../src/timezone_names.c:267
+msgid "Asia/Manila"
+msgstr "Ázia/Manila"
+
+#: ../src/timezone_names.c:268
+msgid "Asia/Muscat"
+msgstr "Ázia/Muscat"
+
+#: ../src/timezone_names.c:269
+msgid "Asia/Nicosia"
+msgstr "Ázia/Nicosia"
+
+#: ../src/timezone_names.c:270
+msgid "Asia/Novosibirsk"
+msgstr "Ázia/Novosibirsk"
+
+#: ../src/timezone_names.c:271
+msgid "Asia/Omsk"
+msgstr "Ázia/Omsk"
+
+#: ../src/timezone_names.c:272
+msgid "Asia/Phnom_Penh"
+msgstr "Ázia/Phnom_Penh"
+
+#: ../src/timezone_names.c:273
+msgid "Asia/Pontianak"
+msgstr "Ázia/Pontianak"
+
+#: ../src/timezone_names.c:274
+msgid "Asia/Pyongyang"
+msgstr "Ázia/Pyongyang"
+
+#: ../src/timezone_names.c:275
+msgid "Asia/Qatar"
+msgstr "Ázia/Qatar"
+
+#: ../src/timezone_names.c:276
+msgid "Asia/Rangoon"
+msgstr "Ázia/Rangoon"
+
+#: ../src/timezone_names.c:277
+msgid "Asia/Riyadh"
+msgstr "Ázia/Riyadh"
+
+#: ../src/timezone_names.c:278
+msgid "Asia/Saigon"
+msgstr "Ázia/Saigon"
+
+#: ../src/timezone_names.c:279
+msgid "Asia/Samarkand"
+msgstr "Ázia/Samarkand"
+
+#: ../src/timezone_names.c:280
+msgid "Asia/Seoul"
+msgstr "Ázia/Seoul"
+
+#: ../src/timezone_names.c:281
+msgid "Asia/Shanghai"
+msgstr "Ázia/Shanghai"
+
+#: ../src/timezone_names.c:282
+msgid "Asia/Singapore"
+msgstr "Ázia/Singapore"
+
+#: ../src/timezone_names.c:283
+msgid "Asia/Taipei"
+msgstr "Ázia/Taipei"
+
+#: ../src/timezone_names.c:284
+msgid "Asia/Tashkent"
+msgstr "Ázia/Tashkent"
+
+#: ../src/timezone_names.c:285
+msgid "Asia/Tbilisi"
+msgstr "Ázia/Tbilisi"
+
+#: ../src/timezone_names.c:286
+msgid "Asia/Tehran"
+msgstr "Ázia/Tehran"
+
+#: ../src/timezone_names.c:287
+msgid "Asia/Thimphu"
+msgstr "Ázia/Thimphu"
+
+#: ../src/timezone_names.c:288
+msgid "Asia/Tokyo"
+msgstr "Ázia/Tokyo"
+
+#: ../src/timezone_names.c:289
+msgid "Asia/Ujung_Pandang"
+msgstr "Ázia/Ujung_Pandang"
+
+#: ../src/timezone_names.c:290
+msgid "Asia/Ulaanbaatar"
+msgstr "Ázia/Ulaanbaatar"
+
+#: ../src/timezone_names.c:291
+msgid "Asia/Urumqi"
+msgstr "Ázia/Urumqi"
+
+#: ../src/timezone_names.c:292
+msgid "Asia/Vientiane"
+msgstr "Ázia/Vientiane"
+
+#: ../src/timezone_names.c:293
+msgid "Asia/Vladivostok"
+msgstr "Ázia/Vladivostok"
+
+#: ../src/timezone_names.c:294
+msgid "Asia/Yakutsk"
+msgstr "Ázia/Yakutsk"
+
+#: ../src/timezone_names.c:295
+msgid "Asia/Yekaterinburg"
+msgstr "Ázia/Yekaterinburg"
+
+#: ../src/timezone_names.c:296
+msgid "Asia/Yerevan"
+msgstr "Ázia/Yerevan"
+
+#: ../src/timezone_names.c:297
+msgid "Atlantic"
+msgstr "Atlantik"
+
+#: ../src/timezone_names.c:298
+msgid "Atlantic/Azores"
+msgstr "Atlantik/Azores"
+
+#: ../src/timezone_names.c:299
+msgid "Atlantic/Bermuda"
+msgstr "Atlantik/Bermuda"
+
+#: ../src/timezone_names.c:300
+msgid "Atlantic/Canary"
+msgstr "Atlantik/Canary"
+
+#: ../src/timezone_names.c:301
+msgid "Atlantic/Cape_Verde"
+msgstr "Atlantik/Cape_Verde"
+
+#: ../src/timezone_names.c:302
+msgid "Atlantic/Faeroe"
+msgstr "Atlantik/Faeroe"
+
+#: ../src/timezone_names.c:303
+msgid "Atlantic/Jan_Mayen"
+msgstr "Atlantik/Jan_Mayen"
+
+#: ../src/timezone_names.c:304
+msgid "Atlantic/Madeira"
+msgstr "Atlantik/Madeira"
+
+#: ../src/timezone_names.c:305
+msgid "Atlantic/Reykjavik"
+msgstr "Atlantik/Reykjavik"
+
+#: ../src/timezone_names.c:306
+msgid "Atlantic/South_Georgia"
+msgstr "Atlantik/South_Georgia"
+
+#: ../src/timezone_names.c:307
+msgid "Atlantic/St_Helena"
+msgstr "Atlantik/St_Helena"
+
+#: ../src/timezone_names.c:308
+msgid "Atlantic/Stanley"
+msgstr "Atlantik/Stanley"
+
+#: ../src/timezone_names.c:309
+msgid "Australia"
+msgstr "Austrália"
+
+#: ../src/timezone_names.c:310
+msgid "Australia/Adelaide"
+msgstr "Austrália/Adelaide"
+
+#: ../src/timezone_names.c:311
+msgid "Australia/Brisbane"
+msgstr "Austrália/Brisbane"
+
+#: ../src/timezone_names.c:312
+msgid "Australia/Broken_Hill"
+msgstr "Austrália/Broken_Hill"
+
+#: ../src/timezone_names.c:313
+msgid "Australia/Darwin"
+msgstr "Austrália/Darwin"
+
+#: ../src/timezone_names.c:314
+msgid "Australia/Hobart"
+msgstr "Austrália/Hobart"
+
+#: ../src/timezone_names.c:315
+msgid "Australia/Lindeman"
+msgstr "Austrália/Lindeman"
+
+#: ../src/timezone_names.c:316
+msgid "Australia/Lord_Howe"
+msgstr "Austrália/Lord_Howe"
+
+#: ../src/timezone_names.c:317
+msgid "Australia/Melbourne"
+msgstr "Austrália/Melbourne"
+
+#: ../src/timezone_names.c:318
+msgid "Australia/Perth"
+msgstr "Austrália/Perth"
+
+#: ../src/timezone_names.c:319
+msgid "Australia/Sydney"
+msgstr "Austrália/Sydney"
+
+#: ../src/timezone_names.c:320
+msgid "Europe"
+msgstr "Európa"
+
+#: ../src/timezone_names.c:321
+msgid "Europe/Amsterdam"
+msgstr "Európa/Amsterdam"
+
+#: ../src/timezone_names.c:322
+msgid "Europe/Andorra"
+msgstr "Európa/Andorra"
+
+#: ../src/timezone_names.c:323
+msgid "Europe/Athens"
+msgstr "Európa/Athens"
+
+#: ../src/timezone_names.c:324
+msgid "Europe/Belfast"
+msgstr "Európa/Belfast"
+
+#: ../src/timezone_names.c:325
+msgid "Europe/Belgrade"
+msgstr "Európa/Belgrade"
+
+#: ../src/timezone_names.c:326
+msgid "Europe/Berlin"
+msgstr "Európa/Berlin"
+
+#: ../src/timezone_names.c:327
+msgid "Europe/Bratislava"
+msgstr "Európa/Bratislava"
+
+#: ../src/timezone_names.c:328
+msgid "Europe/Brussels"
+msgstr "Európa/Brussels"
+
+#: ../src/timezone_names.c:329
+msgid "Europe/Bucharest"
+msgstr "Európa/Bucharest"
+
+#: ../src/timezone_names.c:330
+msgid "Europe/Budapest"
+msgstr "Európa/Budapest"
+
+#: ../src/timezone_names.c:331
+msgid "Europe/Chisinau"
+msgstr "Európa/Chisinau"
+
+#: ../src/timezone_names.c:332
+msgid "Europe/Copenhagen"
+msgstr "Európa/Copenhagen"
+
+#: ../src/timezone_names.c:333
+msgid "Europe/Dublin"
+msgstr "Európa/Dublin"
+
+#: ../src/timezone_names.c:334
+msgid "Europe/Gibraltar"
+msgstr "Európa/Gibraltar"
+
+#: ../src/timezone_names.c:335
+msgid "Europe/Helsinki"
+msgstr "Európa/Helsinki"
+
+#: ../src/timezone_names.c:336
+msgid "Europe/Istanbul"
+msgstr "Európa/Istanbul"
+
+#: ../src/timezone_names.c:337
+msgid "Europe/Kaliningrad"
+msgstr "Európa/Kaliningrad"
+
+#: ../src/timezone_names.c:338
+msgid "Europe/Kiev"
+msgstr "Európa/Kiev"
+
+#: ../src/timezone_names.c:339
+msgid "Europe/Lisbon"
+msgstr "Európa/Lisbon"
+
+#: ../src/timezone_names.c:340
+msgid "Europe/Ljubljana"
+msgstr "Európa/Ljubljana"
+
+#: ../src/timezone_names.c:341
+msgid "Europe/London"
+msgstr "Európa/London"
+
+#: ../src/timezone_names.c:342
+msgid "Europe/Luxembourg"
+msgstr "Európa/Luxembourg"
+
+#: ../src/timezone_names.c:343
+msgid "Europe/Madrid"
+msgstr "Európa/Madrid"
+
+#: ../src/timezone_names.c:344
+msgid "Europe/Malta"
+msgstr "Európa/Malta"
+
+#: ../src/timezone_names.c:345
+msgid "Europe/Minsk"
+msgstr "Európa/Minsk"
+
+#: ../src/timezone_names.c:346
+msgid "Europe/Monaco"
+msgstr "Európa/Monaco"
+
+#: ../src/timezone_names.c:347
+msgid "Europe/Moscow"
+msgstr "Európa/Moscow"
+
+#: ../src/timezone_names.c:348
+msgid "Europe/Nicosia"
+msgstr "Európa/Nicosia"
+
+#: ../src/timezone_names.c:349
+msgid "Europe/Oslo"
+msgstr "Európa/Oslo"
+
+#: ../src/timezone_names.c:350
+msgid "Europe/Paris"
+msgstr "Európa/Paris"
+
+#: ../src/timezone_names.c:351
+msgid "Europe/Prague"
+msgstr "Európa/Prague"
+
+#: ../src/timezone_names.c:352
+msgid "Europe/Riga"
+msgstr "Európa/Riga"
+
+#: ../src/timezone_names.c:353
+msgid "Europe/Rome"
+msgstr "Európa/Rome"
+
+#: ../src/timezone_names.c:354
+msgid "Europe/Samara"
+msgstr "Európa/Samara"
+
+#: ../src/timezone_names.c:355
+msgid "Europe/San_Marino"
+msgstr "Európa/San_Marino"
+
+#: ../src/timezone_names.c:356
+msgid "Europe/Sarajevo"
+msgstr "Európa/Sarajevo"
+
+#: ../src/timezone_names.c:357
+msgid "Europe/Simferopol"
+msgstr "Európa/Simferopol"
+
+#: ../src/timezone_names.c:358
+msgid "Europe/Skopje"
+msgstr "Európa/Skopje"
+
+#: ../src/timezone_names.c:359
+msgid "Europe/Sofia"
+msgstr "Európa/Sofia"
+
+#: ../src/timezone_names.c:360
+msgid "Europe/Stockholm"
+msgstr "Európa/Stockholm"
+
+#: ../src/timezone_names.c:361
+msgid "Europe/Tallinn"
+msgstr "Európa/Tallinn"
+
+#: ../src/timezone_names.c:362
+msgid "Europe/Tirane"
+msgstr "Európa/Tirane"
+
+#: ../src/timezone_names.c:363
+msgid "Europe/Uzhgorod"
+msgstr "Európa/Uzhgorod"
+
+#: ../src/timezone_names.c:364
+msgid "Europe/Vaduz"
+msgstr "Európa/Vaduz"
+
+#: ../src/timezone_names.c:365
+msgid "Europe/Vatican"
+msgstr "Európa/Vatican"
+
+#: ../src/timezone_names.c:366
+msgid "Europe/Vienna"
+msgstr "Európa/Vienna"
+
+#: ../src/timezone_names.c:367
+msgid "Europe/Vilnius"
+msgstr "Európa/Vilnius"
+
+#: ../src/timezone_names.c:368
+msgid "Europe/Warsaw"
+msgstr "Európa/Warsaw"
+
+#: ../src/timezone_names.c:369
+msgid "Europe/Zagreb"
+msgstr "Európa/Zagreb"
+
+#: ../src/timezone_names.c:370
+msgid "Europe/Zaporozhye"
+msgstr "Európa/Zaporozhye"
+
+#: ../src/timezone_names.c:371
+msgid "Europe/Zurich"
+msgstr "Európa/Zurich"
+
+#: ../src/timezone_names.c:372
+msgid "Indian"
+msgstr "India"
+
+#: ../src/timezone_names.c:373
+msgid "Indian/Antananarivo"
+msgstr "India/Antananarivo"
+
+#: ../src/timezone_names.c:374
+msgid "Indian/Chagos"
+msgstr "India/Chagos"
+
+#: ../src/timezone_names.c:375
+msgid "Indian/Christmas"
+msgstr "India/Christmas"
+
+#: ../src/timezone_names.c:376
+msgid "Indian/Cocos"
+msgstr "India/Cocos"
+
+#: ../src/timezone_names.c:377
+msgid "Indian/Comoro"
+msgstr "India/Comoro"
+
+#: ../src/timezone_names.c:378
+msgid "Indian/Kerguelen"
+msgstr "India/Kerguelen"
+
+#: ../src/timezone_names.c:379
+msgid "Indian/Mahe"
+msgstr "India/Mahe"
+
+#: ../src/timezone_names.c:380
+msgid "Indian/Maldives"
+msgstr "India/Maldives"
+
+#: ../src/timezone_names.c:381
+msgid "Indian/Mauritius"
+msgstr "India/Mauritius"
+
+#: ../src/timezone_names.c:382
+msgid "Indian/Mayotte"
+msgstr "India/Mayotte"
+
+#: ../src/timezone_names.c:383
+msgid "Indian/Reunion"
+msgstr "India/Reunion"
+
+#: ../src/timezone_names.c:384
+msgid "Pacific"
+msgstr "Pacifik"
+
+#: ../src/timezone_names.c:385
+msgid "Pacific/Apia"
+msgstr "Pacifik/Apia"
+
+#: ../src/timezone_names.c:386
+msgid "Pacific/Auckland"
+msgstr "Pacifik/Auckland"
+
+#: ../src/timezone_names.c:387
+msgid "Pacific/Chatham"
+msgstr "Pacifik/Chatham"
+
+#: ../src/timezone_names.c:388
+msgid "Pacific/Easter"
+msgstr "Pacifik/Easter"
+
+#: ../src/timezone_names.c:389
+msgid "Pacific/Efate"
+msgstr "Pacifik/Efate"
+
+#: ../src/timezone_names.c:390
+msgid "Pacific/Enderbury"
+msgstr "Pacifik/Enderbury"
+
+#: ../src/timezone_names.c:391
+msgid "Pacific/Fakaofo"
+msgstr "Pacifik/Fakaofo"
+
+#: ../src/timezone_names.c:392
+msgid "Pacific/Fiji"
+msgstr "Pacifik/Fiji"
+
+#: ../src/timezone_names.c:393
+msgid "Pacific/Funafuti"
+msgstr "Pacifik/Funafuti"
+
+#: ../src/timezone_names.c:394
+msgid "Pacific/Galapagos"
+msgstr "Pacifik/Galapagos"
+
+#: ../src/timezone_names.c:395
+msgid "Pacific/Gambier"
+msgstr "Pacifik/Gambier"
+
+#: ../src/timezone_names.c:396
+msgid "Pacific/Guadalcanal"
+msgstr "Pacifik/Guadalcanal"
+
+#: ../src/timezone_names.c:397
+msgid "Pacific/Guam"
+msgstr "Pacifik/Guam"
+
+#: ../src/timezone_names.c:398
+msgid "Pacific/Honolulu"
+msgstr "Pacifik/Honolulu"
+
+#: ../src/timezone_names.c:399
+msgid "Pacific/Johnston"
+msgstr "Pacifik/Johnston"
+
+#: ../src/timezone_names.c:400
+msgid "Pacific/Kiritimati"
+msgstr "Pacifik/Kiritimati"
+
+#: ../src/timezone_names.c:401
+msgid "Pacific/Kosrae"
+msgstr "Pacifik/Kosrae"
+
+#: ../src/timezone_names.c:402
+msgid "Pacific/Kwajalein"
+msgstr "Pacifik/Kwajalein"
+
+#: ../src/timezone_names.c:403
+msgid "Pacific/Majuro"
+msgstr "Pacifik/Majuro"
+
+#: ../src/timezone_names.c:404
+msgid "Pacific/Marquesas"
+msgstr "Pacifik/Marquesas"
+
+#: ../src/timezone_names.c:405
+msgid "Pacific/Midway"
+msgstr "Pacifik/Midway"
+
+#: ../src/timezone_names.c:406
+msgid "Pacific/Nauru"
+msgstr "Pacifik/Nauru"
+
+#: ../src/timezone_names.c:407
+msgid "Pacific/Niue"
+msgstr "Pacifik/Niue"
+
+#: ../src/timezone_names.c:408
+msgid "Pacific/Norfolk"
+msgstr "Pacifik/Norfolk"
+
+#: ../src/timezone_names.c:409
+msgid "Pacific/Noumea"
+msgstr "Pacifik/Noumea"
+
+#: ../src/timezone_names.c:410
+msgid "Pacific/Pago_Pago"
+msgstr "Pacifik/Pago_Pago"
+
+#: ../src/timezone_names.c:411
+msgid "Pacific/Palau"
+msgstr "Pacifik/Palau"
+
+#: ../src/timezone_names.c:412
+msgid "Pacific/Pitcairn"
+msgstr "Pacifik/Pitcairn"
+
+#: ../src/timezone_names.c:413
+msgid "Pacific/Ponape"
+msgstr "Pacifik/Ponape"
+
+#: ../src/timezone_names.c:414
+msgid "Pacific/Port_Moresby"
+msgstr "Pacifik/Port_Moresby"
+
+#: ../src/timezone_names.c:415
+msgid "Pacific/Rarotonga"
+msgstr "Pacifik/Rarotonga"
+
+#: ../src/timezone_names.c:416
+msgid "Pacific/Saipan"
+msgstr "Pacifik/Saipan"
+
+#: ../src/timezone_names.c:417
+msgid "Pacific/Tahiti"
+msgstr "Pacifik/Tahiti"
+
+#: ../src/timezone_names.c:418
+msgid "Pacific/Tarawa"
+msgstr "Pacifik/Tarawa"
+
+#: ../src/timezone_names.c:419
+msgid "Pacific/Tongatapu"
+msgstr "Pacifik/Tongatapu"
+
+#: ../src/timezone_names.c:420
+msgid "Pacific/Truk"
+msgstr "Pacifik/Truk"
+
+#: ../src/timezone_names.c:421
+msgid "Pacific/Wake"
+msgstr "Pacifik/Wake"
+
+#: ../src/timezone_names.c:422
+msgid "Pacific/Wallis"
+msgstr "Pacifik/Wallis"
+
+#: ../src/timezone_names.c:423
+msgid "Pacific/Yap"
+msgstr "Pacifik/Yap"
+
+#: ../src/tray_icon.c:367
 msgid "New appointment"
 msgstr "Nová udalosť"
 
-#: ../src/tray_icon.c:361
+#: ../src/tray_icon.c:387
 msgid "About Orage"
 msgstr "O programe"
 
-#: ../panel-plugin/orageclock.desktop.in.in.h:1
-msgid "Orage Clock"
+#: ../panel-plugin/xfce4-orageclock-plugin.desktop.in.in.h:1
+#, fuzzy
+msgid "Orage Panel Clock"
 msgstr "Hodiny Orage"
 
-#: ../panel-plugin/orageclock.desktop.in.in.h:2
-msgid "What time and date is it?"
+#: ../panel-plugin/xfce4-orageclock-plugin.desktop.in.in.h:2
+#, fuzzy
+msgid "Show time and date?"
 msgstr "Aký je čas a dátum?"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:1
@@ -3359,20 +3536,91 @@ msgid "Calendar"
 msgstr "Kalendár"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:2
-msgid "Calendar Settings"
-msgstr "Nastavenia kalendára"
+#, fuzzy
+msgid "Orage Calendar Preferences"
+msgstr "Predvoľby Orage"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:3
-msgid "Settings for the Xfce 4 Calendar Application"
-msgstr "Nastavenia pre aplikáciu Kalendár Xfce 4"
+#, fuzzy
+msgid "Orage preferences"
+msgstr "Predvoľby Orage"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:4
-msgid "Xfce 4 Calendar Settings"
-msgstr "Nastavenia pre Kalendár Xfce 4"
+#, fuzzy
+msgid "Settings for the Xfce 4 Calendar Application (Orage)"
+msgstr "Nastavenia pre aplikáciu Kalendár Xfce 4"
 
 #: ../xfcalendar.desktop.in.h:2
 msgid "Desktop calendar"
 msgstr "Kalendár pracovnej plochy"
+
+#: ../xfcalendar.desktop.in.h:3
+#, fuzzy
+msgid "Orage Calendar"
+msgstr "Orage - Kalendár"
+
+#~ msgid "Ending time adjustment mode"
+#~ msgstr "Režim nastavenia koncového času"
+
+#~ msgid "Starting time adjustment mode"
+#~ msgstr "Režim nastavenia počiatočného času"
+
+#~ msgid "Select timezone"
+#~ msgstr "Zvoľte časové pásmo"
+
+#~ msgid "Modify Clock "
+#~ msgstr "Upraviť hodiny "
+
+#~ msgid "Modify Preferences"
+#~ msgstr "Upraviť predvoľby"
+
+#~ msgid ""
+#~ "Enter local timezone. (it is used to show if time is on previous(-) or "
+#~ "next date(+) by adding a +/- after the time)"
+#~ msgstr ""
+#~ "Zadajte mieste časové pásmo (Používa sa pre zistenie, či je čas "
+#~ "predchádzajúceho (-) alebo nasledujúceho dátumu (+), pridaním znamienka + "
+#~ "alebo - za dátum"
+
+#~ msgid "Set any valid timezone (=TZ) value or pick one from the list."
+#~ msgstr ""
+#~ "Zvoľte správnu hodnotu časovej zóny (=TZ)  alebo vyberte jednu zo zoznamu."
+
+#~ msgid "show line _1:"
+#~ msgstr "Zobraziť riadok _1:"
+
+#~ msgid "show line _2:"
+#~ msgstr "Zobraziť riadok _2:"
+
+#~ msgid "show line _3:"
+#~ msgstr "Zobraziť riadok _3:"
+
+#~ msgid "Properties"
+#~ msgstr "Vlastnosti"
+
+#~ msgid "Failed to launch 'orage -p'"
+#~ msgstr "Nepodarilo sa spustiť 'orage -p'"
+
+#~ msgid ""
+#~ "<D> inserts current date in local date format.\n"
+#~ "<T> inserts time and\n"
+#~ "<DT> inserts date and time."
+#~ msgstr ""
+#~ "<D> vkladá aktuálny čas v miestnom formáte.\n"
+#~ "<T> vkladá čas a\n"
+#~ "<DT> vkladá dátum a čas."
+
+#~ msgid "Show event list"
+#~ msgstr "Zobraziť zoznam udalostí"
+
+#~ msgid "(0 = use static icon)"
+#~ msgstr "(0 = použiť statickú ikonu)"
+
+#~ msgid "Calendar Settings"
+#~ msgstr "Nastavenia kalendára"
+
+#~ msgid "Xfce 4 Calendar Settings"
+#~ msgstr "Nastavenia pre Kalendár Xfce 4"
 
 #, fuzzy
 #~ msgid "Monday"
