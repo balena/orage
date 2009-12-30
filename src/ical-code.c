@@ -2740,7 +2740,7 @@ static void process_alarm_data(icalcomponent *ca, alarm_struct *new_alarm)
     get_alarm_data(ca, appt);
 
     new_alarm->persistent = appt->alarm_persistent;
-    if (appt->display_alarm_orage ||  appt->display_alarm_notify) {
+    if (appt->display_alarm_orage || appt->display_alarm_notify) {
         new_alarm->display_orage = appt->display_alarm_orage;
         new_alarm->display_notify = appt->display_alarm_notify;
         new_alarm->notify_timeout = appt->display_notify_timeout;

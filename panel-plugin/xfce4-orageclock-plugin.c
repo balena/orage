@@ -44,7 +44,7 @@
  *                               Clock                                  *
  * -------------------------------------------------------------------- */
 
-static void utf8_strftime(char *res, int res_l, char *format, struct tm *tm)
+static void oc_utf8_strftime(char *res, int res_l, char *format, struct tm *tm)
 {
     char *tmp = NULL;
 
@@ -68,11 +68,47 @@ static void utf8_strftime(char *res, int res_l, char *format, struct tm *tm)
     }
 }
 
+void oc_line_font_set(ClockLine *line)
+{
+    PangoFontDescription *font;
+
+    if (line->font->str) {
+        font = pango_font_description_from_string(line->font->str);
+        gtk_widget_modify_font(line->label, font);
+        pango_font_description_free(font);
+    }
+    else
+        gtk_widget_modify_font(line->label, NULL);
+}
+
+void oc_add_line(Clock *clock, char *data, char *font, int pos)
+{
+    ClockLine *clock_line;
+
+    clock_line = g_new0(ClockLine, 1);
+
+    clock_line->data = g_string_new(data);
+    clock_line->font = g_string_new(font);
+    strcpy(clock_line->prev, "New line");
+    clock_line->clock = clock;
+
+    clock_line->label = gtk_label_new("");
+    gtk_box_pack_start(GTK_BOX(clock->vbox), clock_line->label
+            , FALSE, FALSE, 0);
+    gtk_box_reorder_child(GTK_BOX(clock->vbox), clock_line->label, pos);
+    oc_line_font_set(clock_line);
+    gtk_widget_show(clock_line->label);
+    /* clicking does not work after this
+    gtk_label_set_selectable(GTK_LABEL(clock_line->label), TRUE);
+    */
+    clock->lines = g_list_insert(clock->lines, clock_line, pos);
+}
+
 static void oc_tooltip_set(Clock *clock)
 {
     char res[OC_MAX_LINE_LENGTH-1];
 
-    utf8_strftime(res, sizeof(res), clock->tooltip_data->str, &clock->now);
+    oc_utf8_strftime(res, sizeof(res), clock->tooltip_data->str, &clock->now);
     if (strcmp(res,  clock->tooltip_prev)) {
         gtk_tooltips_set_tip(clock->tips, GTK_WIDGET(clock->plugin),res, NULL);
         strcpy(clock->tooltip_prev, res);
@@ -83,26 +119,26 @@ static gboolean oc_get_time(Clock *clock)
 {
     time_t  t;
     char    res[OC_MAX_LINE_LENGTH-1];
-    int     i;
     ClockLine *line;
+    GList   *tmp_list;
 
     time(&t);
     localtime_r(&t, &clock->now);
-    for (i = 0; i < OC_MAX_LINES; i++) {
-        line = &clock->line[i];
-        if (line->show) {
-            utf8_strftime(res, sizeof(res), line->data->str, &clock->now);
-            /* gtk_label_set_text call takes almost
-             * 100 % of the time wasted in this procedure 
-             * Note that even though we only wake up when needed, we 
-             * may not have to update all lines, so this check still
-             * probably is worth doing. Specially after we added the
-             * hibernate update option.
-             * */
-            if (strcmp(res,  line->prev)) {
-                gtk_label_set_text(GTK_LABEL(line->label), res);
-                strcpy(line->prev, res);
-            }
+    for (tmp_list = g_list_first(clock->lines); 
+            tmp_list;
+         tmp_list = g_list_next(tmp_list)) {
+        line = tmp_list->data;
+        oc_utf8_strftime(res, sizeof(res), line->data->str, &clock->now);
+        /* gtk_label_set_text call takes almost
+         * 100 % of the time used in this procedure.
+         * Note that even though we only wake up when needed, we 
+         * may not have to update all lines, so this check still
+         * probably is worth doing. Specially after we added the
+         * hibernate update option.
+         * */
+        if (strcmp(res, line->prev)) {
+            gtk_label_set_text(GTK_LABEL(line->label), res);
+            strcpy(line->prev, res);
         }
     }
     oc_tooltip_set(clock);
@@ -135,7 +171,7 @@ static gboolean oc_get_time_delay(Clock *clock)
 
 void oc_start_timer(Clock *clock)
 {
-    gint delay_time; /* this is used to set the clock start tie correct */
+    gint delay_time; /* this is used to set the clock start time correct */
 
     /*
     g_message("oc_start_timer: (%s) interval %d  %d:%d:%d", clock->tooltip_prev, clock->interval, clock->now.tm_hour, clock->now.tm_min, clock->now.tm_sec);
@@ -160,7 +196,7 @@ void oc_start_timer(Clock *clock)
     else { /* need to tune time */
         if (clock->interval <= 60000) /* adjust to next full minute */
             delay_time = (clock->interval - clock->now.tm_sec*1000);
-        else /* if (clock->interval <= 3600000) *//* adjust to next full hour */
+        else /* adjust to next full hour */
             delay_time = (clock->interval -
                     (clock->now.tm_min*60000 + clock->now.tm_sec*1000));
 
@@ -177,8 +213,9 @@ gboolean oc_check_if_same(Clock *clock, int diff)
     time_t  t, t_next;
     struct tm tm, tm_next;
     char    res[OC_MAX_LINE_LENGTH-1], res_next[OC_MAX_LINE_LENGTH-1];
-    int     i, max_len;
+    int     max_len;
     ClockLine *line;
+    GList   *tmp_list;
     gboolean same_time = TRUE, first_check = TRUE, result_known = FALSE;
     
     max_len = sizeof(res); 
@@ -187,21 +224,22 @@ gboolean oc_check_if_same(Clock *clock, int diff)
         t_next = t + diff;  /* diff secs forward */
         localtime_r(&t, &tm);
         localtime_r(&t_next, &tm_next);
-        for (i = 0; (i < OC_MAX_LINES) && same_time; i++) {
-            line = &clock->line[i];
-            if (line->show) {
-                utf8_strftime(res, max_len, line->data->str, &tm);
-                utf8_strftime(res_next, max_len, line->data->str, &tm_next);
-                if (strcmp(res,  res_next)) { /* differ */
-                    same_time = FALSE;
-                }
+        for (tmp_list = g_list_first(clock->lines);
+                (tmp_list && same_time);
+             tmp_list = g_list_next(tmp_list)) {
+            line = tmp_list->data;
+            oc_utf8_strftime(res, max_len, line->data->str, &tm);
+            oc_utf8_strftime(res_next, max_len, line->data->str, &tm_next);
+            if (strcmp(res, res_next)) { /* differ */
+                same_time = FALSE;
             }
         }
         /* Need to check also tooltip */
         if (same_time) { /* we only check tooltip if needed */
-            utf8_strftime(res, max_len, clock->tooltip_data->str, &tm);
-            utf8_strftime(res_next, max_len, clock->tooltip_data->str,&tm_next);
-            if (strcmp(res,  res_next)) { /* differ */
+            oc_utf8_strftime(res, max_len, clock->tooltip_data->str, &tm);
+            oc_utf8_strftime(res_next, max_len, clock->tooltip_data->str
+                    , &tm_next);
+            if (strcmp(res, res_next)) { /* differ */
                 same_time = FALSE;
             }
         }
@@ -248,7 +286,6 @@ void oc_tune_interval(Clock *clock)
 void oc_init_timer(Clock *clock)
 {
     clock->interval = OC_BASE_INTERVAL;
-    oc_get_time(clock); /* update clock once */
     if (!clock->hib_timing) /* using suspend/hibernate, do not tune time */
         oc_tune_interval(clock);
     oc_start_timer(clock);
@@ -306,7 +343,7 @@ static gboolean popup_program(GtkWidget *widget, gchar *program, Clock *clock
         return(TRUE);
     }
     else { /* not running, let's try to start it. Need to reset TZ! */
-        static guint prev_event_time = 0; /* prevenst double start (BUG 4096) */
+        static guint prev_event_time = 0; /* prevents double start (BUG 4096) */
 
         if (prev_event_time && ((event_time - prev_event_time) < 1000)) {
             g_message("%s: double start of %s prevented", OC_NAME, program);
@@ -373,22 +410,39 @@ static void oc_free_data(XfcePanelPlugin *plugin, Clock *clock)
     if (clock->timeout_id) {
         g_source_remove(clock->timeout_id);
     }
-    g_object_unref(clock->tips);
-    g_object_unref(clock->line[0].label);
-    g_object_unref(clock->line[1].label);
-    g_object_unref(clock->line[2].label);
+    g_list_free(clock->lines);
     g_free(clock->TZ_orig);
+    g_object_unref(clock->tips);
     g_free(clock);
+}
+
+static GdkColor oc_rc_read_color(XfceRc *rc, char *par, char *def)
+{
+    const gchar *ret;
+    GdkColor color;
+
+    ret = xfce_rc_read_entry(rc, par, def);
+    color.pixel = 0;
+    if (!strcmp(ret, def)
+    ||  sscanf(ret, OC_RC_COLOR
+                , (unsigned int *)&color.red
+                , (unsigned int *)&color.green
+                , (unsigned int *)&color.blue) != 3) {
+        gint i = sscanf(ret, OC_RC_COLOR , (unsigned int *)&color.red , (unsigned int *)&color.green , (unsigned int *)&color.blue);
+        g_warning("unable to read %s colour from rc file ret=(%s) def=(%s) cnt=%d", par, ret, def, i);
+        gdk_color_parse(ret, &color);
+    }
+    return(color);
 }
 
 static void oc_read_rc_file(XfcePanelPlugin *plugin, Clock *clock)
 {
     gchar  *file;
     XfceRc *rc;
-    const gchar  *ret;
+    const gchar  *ret, *data, *font;
     gchar tmp[100];
+    gboolean more_lines;
     gint i;
-    unsigned int red, green, blue;
 
     if (!(file = xfce_panel_plugin_lookup_rc_file(plugin)))
         return; /* if it does not exist, we use defaults from orage_oc_new */
@@ -396,41 +450,19 @@ static void oc_read_rc_file(XfcePanelPlugin *plugin, Clock *clock)
         g_warning("unable to read-open rc file (%s)", file);
         return;
     }
-    g_free(file);
 
     clock->show_frame = xfce_rc_read_bool_entry(rc, "show_frame", TRUE);
 
     clock->fg_set = xfce_rc_read_bool_entry(rc, "fg_set", FALSE);
     if (clock->fg_set) {
-        ret = xfce_rc_read_entry(rc, "fg", NULL);
-        /*
-        sscanf(ret, "%uR %uG %uB"
-                , (unsigned int *)&clock->fg.red
-                , (unsigned int *)&clock->fg.green
-                , (unsigned int *)&clock->fg.blue);
-                */
-        sscanf(ret, "%uR %uG %uB", &red, &green, &blue);
-        clock->fg.red = red;
-        clock->fg.green = green;
-        clock->fg.blue = blue;
-        clock->fg.pixel = 0;
+        clock->fg = oc_rc_read_color(rc, "fg", "black");
     }
 
     clock->bg_set = xfce_rc_read_bool_entry(rc, "bg_set", FALSE);
     if (clock->bg_set) {
-        ret = xfce_rc_read_entry(rc, "bg", NULL);
-        /*
-        sscanf(ret, "%uR %uG %uB"
-                , (unsigned int *)&clock->bg.red
-                , (unsigned int *)&clock->bg.green
-                , (unsigned int *)&clock->bg.blue);
-                */
-        sscanf(ret, "%uR %uG %uB", &red, &green, &blue);
-        clock->bg.red = red;
-        clock->bg.green = green;
-        clock->bg.blue = blue;
-        clock->bg.pixel = 0;
+        clock->bg = oc_rc_read_color(rc, "bg", "white");
     }
+    g_free(file);
 
     ret = xfce_rc_read_entry(rc, "timezone", NULL);
     g_string_assign(clock->timezone, ret); 
@@ -444,19 +476,19 @@ static void oc_read_rc_file(XfcePanelPlugin *plugin, Clock *clock)
         clock->height = xfce_rc_read_int_entry(rc, "height", -1);
     }
     
-    for (i = 0; i < OC_MAX_LINES; i++) {
-        sprintf(tmp, "show%d", i);
-        clock->line[i].show = xfce_rc_read_bool_entry(rc, tmp, FALSE);
-        if (clock->line[i].show) {
-            sprintf(tmp, "data%d", i);
-            ret = xfce_rc_read_entry(rc, tmp, NULL);
-            g_string_assign(clock->line[i].data, ret);
-
+    for (i = 0, more_lines = TRUE; more_lines; i++) {
+        sprintf(tmp, "data%d", i);
+        data = xfce_rc_read_entry(rc, tmp, NULL);
+        if (data) { /* let's add it */
             sprintf(tmp, "font%d", i);
-            ret = xfce_rc_read_entry(rc, tmp, NULL);
-            g_string_assign(clock->line[i].font, ret);
+            font = xfce_rc_read_entry(rc, tmp, NULL);
+            oc_add_line(clock, (char *)data, (char *)font, -1);
+        }
+        else { /* no more clock lines */
+            more_lines = FALSE;
         }
     }
+    clock->orig_line_cnt = i; 
 
     if ((ret = xfce_rc_read_entry(rc, "tooltip", NULL)))
         g_string_assign(clock->tooltip_data, ret); 
@@ -471,7 +503,9 @@ void oc_write_rc_file(XfcePanelPlugin *plugin, Clock *clock)
     gchar  *file;
     XfceRc *rc;
     gchar   tmp[100];
-    gint i;
+    int     i;
+    ClockLine *line;
+    GList   *tmp_list;
 
     if (!(file = xfce_panel_plugin_save_location(plugin, TRUE))) {
         g_warning("unable to write rc file");
@@ -523,21 +557,21 @@ void oc_write_rc_file(XfcePanelPlugin *plugin, Clock *clock)
         xfce_rc_delete_entry(rc, "height", TRUE);
     }
 
-    for (i = 0; i < OC_MAX_LINES; i++) {
-        sprintf(tmp, "show%d", i);
-        xfce_rc_write_bool_entry(rc, tmp, clock->line[i].show);
-        if (clock->line[i].show) {
-            sprintf(tmp, "data%d", i);
-            xfce_rc_write_entry(rc, tmp,  clock->line[i].data->str);
-            sprintf(tmp, "font%d", i);
-            xfce_rc_write_entry(rc, tmp,  clock->line[i].font->str);
-        }
-        else {
-            sprintf(tmp, "data%d", i);
-            xfce_rc_delete_entry(rc, tmp,  FALSE);
-            sprintf(tmp, "font%d", i);
-            xfce_rc_delete_entry(rc, tmp,  FALSE);
-        }
+    for (i = 0, tmp_list = g_list_first(clock->lines);
+            tmp_list;
+         i++, tmp_list = g_list_next(tmp_list)) {
+        line = tmp_list->data;
+        sprintf(tmp, "data%d", i);
+        xfce_rc_write_entry(rc, tmp,  line->data->str);
+        sprintf(tmp, "font%d", i);
+        xfce_rc_write_entry(rc, tmp,  line->font->str);
+    }
+    /* delete extra lines */
+    for (; i <= clock->orig_line_cnt; i++) {
+        sprintf(tmp, "data%d", i);
+        xfce_rc_delete_entry(rc, tmp,  FALSE);
+        sprintf(tmp, "font%d", i);
+        xfce_rc_delete_entry(rc, tmp,  FALSE);
     }
 
     xfce_rc_write_entry(rc, "tooltip",  clock->tooltip_data->str);
@@ -550,10 +584,7 @@ void oc_write_rc_file(XfcePanelPlugin *plugin, Clock *clock)
 /* Create widgets and connect to signals */
 Clock *orage_oc_new(XfcePanelPlugin *plugin)
 {
-    Clock *clock = g_new0(Clock, 1);
-    gchar *data_init[] = {"%X", "%A", "%x"};
-    gboolean show_init[] = {TRUE, FALSE, FALSE};
-    gint  i;
+    Clock     *clock = g_new0(Clock, 1);
 
     clock->plugin = plugin;
 
@@ -577,17 +608,7 @@ Clock *orage_oc_new(XfcePanelPlugin *plugin)
     clock->timezone = g_string_new(""); /* = not set */
     clock->TZ_orig = g_strdup(g_getenv("TZ"));
 
-    for (i = 0; i < OC_MAX_LINES; i++) {
-        clock->line[i].label = gtk_label_new("");
-        /* clicking does not work after this
-        gtk_label_set_selectable(GTK_LABEL(clock->line[i].label), TRUE);
-        */
-        g_object_ref(clock->line[i].label); /* it is not always in the vbox */
-        gtk_widget_show(clock->line[i].label);
-        clock->line[i].show = show_init[i];
-        clock->line[i].data = g_string_new(data_init[i]);
-        clock->line[i].font = g_string_new("");
-    }
+    clock->lines = NULL; /* no lines yet */
 
     /* TRANSLATORS: Use format characters from strftime(3)
      * to get the proper string for your locale.
@@ -618,13 +639,18 @@ void oc_show_frame_set(Clock *clock)
 void oc_fg_set(Clock *clock)
 {
     GdkColor *fg = NULL;
-    gint      i;
+    ClockLine *line;
+    GList   *tmp_list;
 
     if (clock->fg_set)
         fg = &clock->fg;
 
-    for (i = 0; i < OC_MAX_LINES; i++)
-        gtk_widget_modify_fg(clock->line[i].label, GTK_STATE_NORMAL, fg);
+    for (tmp_list = g_list_first(clock->lines);
+            tmp_list;
+         tmp_list = g_list_next(tmp_list)) {
+        line = tmp_list->data;
+        gtk_widget_modify_fg(line->label, GTK_STATE_NORMAL, fg);
+    }
 }
 
 void oc_bg_set(Clock *clock)
@@ -661,51 +687,9 @@ void oc_size_set(Clock *clock)
     gtk_widget_set_size_request(clock->vbox, w, h);
 }
 
-void oc_show_line_set(Clock *clock, gint lno)
-{
-    GtkWidget *line_label = clock->line[lno].label;
-
-    if (clock->line[lno].show) {
-        gtk_box_pack_start(GTK_BOX(clock->vbox), line_label, FALSE, FALSE, 0);
-        switch (lno) {
-            case 0: /* always on top */
-                gtk_box_reorder_child(GTK_BOX(clock->vbox), line_label, 0);
-                break;
-            case 1: /* if line 0 is missing, we are first */
-                if (clock->line[0].show)  /* we are second line */
-                    gtk_box_reorder_child(GTK_BOX(clock->vbox), line_label, 1);
-                else /* we are top line */
-                    gtk_box_reorder_child(GTK_BOX(clock->vbox), line_label, 0);
-                break;
-            case 2: /* always last */
-                break;
-        }
-    }
-    else {
-        gtk_container_remove(GTK_CONTAINER(clock->vbox), line_label);
-    }
-
-    oc_update_size(clock,
-            xfce_panel_plugin_get_size(XFCE_PANEL_PLUGIN(clock->plugin)));
-}
-
-void oc_line_font_set(Clock *clock, gint lno)
-{
-    PangoFontDescription *font;
-
-    if (clock->line[lno].font->str) {
-        font = pango_font_description_from_string(clock->line[lno].font->str);
-        gtk_widget_modify_font(clock->line[lno].label, font);
-        pango_font_description_free(font);
-    }
-    else
-        gtk_widget_modify_font(clock->line[lno].label, NULL);
-}
-
 static void oc_construct(XfcePanelPlugin *plugin)
 {
     Clock *clock;
-    gint i;
 
     xfce_textdomain(GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8");
 
@@ -714,18 +698,16 @@ static void oc_construct(XfcePanelPlugin *plugin)
     gtk_container_add(GTK_CONTAINER(plugin), clock->ebox);
 
     oc_read_rc_file(plugin, clock);
-    oc_init_timer(clock);
+    if (clock->lines == NULL) /* Let's setup a default clock_line */
+        oc_add_line(clock, "%X", "", -1);
 
     oc_show_frame_set(clock);
     oc_fg_set(clock);
     oc_bg_set(clock);
     oc_timezone_set(clock);
     oc_size_set(clock);
-    for (i = 0; i < OC_MAX_LINES; i++) {
-        if (clock->line[i].show)  /* need to add */
-            oc_show_line_set(clock, i);
-        oc_line_font_set(clock, i);
-    }
+
+    oc_init_timer(clock);
 
     oc_update_size(clock, 
             xfce_panel_plugin_get_size(XFCE_PANEL_PLUGIN(plugin)));
@@ -749,7 +731,6 @@ static void oc_construct(XfcePanelPlugin *plugin)
 /* callback for calendar and globaltime popup */
     g_signal_connect(clock->ebox, "button-press-event",
             G_CALLBACK(on_button_press_event_cb), clock);
-
 }
 
 /* Register with the panel */

@@ -1,5 +1,5 @@
 /*  xfce4
- *  Copyright (C) 2006-2007 Juha Kautto (juha@xfce.org)
+ *  Copyright (C) 2006-2010 Juha Kautto (juha@xfce.org)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -18,19 +18,11 @@
  */
 
 #define OC_NAME "orageclock panel plugin"
-#define OC_MAX_LINES 3 /* changing this causes trouble. don't do it */
+#define OC_MAX_LINES 10             /* max number of lines in the plugin */
 #define OC_MAX_LINE_LENGTH 100 
-#define OC_BASE_INTERVAL 1000  /* best accurance of the clock = 1 sec */
-#define OC_CONFIG_INTERVAL 200 /* special fast interval used in setup */
-
-typedef struct _clockline
-{
-    GtkWidget *label;
-    gboolean   show;
-    GString   *data; /* the time formatting data */
-    GString   *font;
-    gchar      prev[OC_MAX_LINE_LENGTH+1];
-} ClockLine;
+#define OC_BASE_INTERVAL 1000       /* best accurance of the clock = 1 sec */
+#define OC_CONFIG_INTERVAL 200      /* special fast interval used in setup */
+#define OC_RC_COLOR "%uR %uG %uB"   /* this is how we store colors */
 
 typedef struct _clock
 {
@@ -39,18 +31,19 @@ typedef struct _clock
     GtkWidget *ebox;
     GtkWidget *frame;
     GtkWidget *vbox;
-    gboolean   width_set;
-    gint       width;
-    gboolean   height_set;
-    gint       height;
     gboolean   show_frame;
     gboolean   fg_set;
     GdkColor   fg;
     gboolean   bg_set;
     GdkColor   bg;
+    gboolean   width_set;
+    gint       width;
+    gboolean   height_set;
+    gint       height;
     GString   *timezone;
     gchar     *TZ_orig;
-    ClockLine  line[OC_MAX_LINES];
+    GList     *lines;
+    gint       orig_line_cnt;
     GString   *tooltip_data;
     gchar      tooltip_prev[OC_MAX_LINE_LENGTH+1];
     gboolean   hib_timing;
@@ -59,8 +52,17 @@ typedef struct _clock
     int timeout_id;  /* timer id for the clock */
     int delay_timeout_id;
     int interval;
-    struct tm   now;
+    struct tm  now;
 } Clock;
+
+typedef struct _clockline
+{
+    GtkWidget *label;
+    GString   *data; /* the time formatting data */
+    GString   *font;
+    gchar      prev[OC_MAX_LINE_LENGTH+1];
+    Clock     *clock; /* pointer back to main clock structure */
+} ClockLine;
 
 void oc_properties_dialog(XfcePanelPlugin *plugin, Clock *clock);
 
@@ -69,10 +71,8 @@ void oc_fg_set(Clock *clock);
 void oc_bg_set(Clock *clock);
 void oc_size_set(Clock *clock);
 void oc_timezone_set(Clock *clock);
-void oc_show_line_set(Clock *clock, gint lno);
-void oc_line_font_set(Clock *clock, gint lno);
-void oc_hib_timing_set(Clock *clock);
+void oc_line_font_set(ClockLine *line);
 void oc_write_rc_file(XfcePanelPlugin *plugin, Clock *clock);
 void oc_start_timer(Clock *clock);
 void oc_init_timer(Clock *clock);
-
+void oc_add_line(Clock *clock, char *data, char *font, int pos);

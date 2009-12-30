@@ -199,9 +199,9 @@ static alarm_struct *alarm_copy(alarm_struct *alarm, gboolean init)
     if (alarm->uid != NULL)
         n_alarm->uid = g_strdup(alarm->uid);
     if (alarm->title != NULL)
-        n_alarm->title = g_strdup(alarm->title);
+        n_alarm->title = orage_process_text_commands(alarm->title);
     if (alarm->description != NULL)
-        n_alarm->description = g_strdup(alarm->description);
+        n_alarm->description = orage_process_text_commands(alarm->description);
     n_alarm->persistent = alarm->persistent;
     n_alarm->temporary = FALSE;
     n_alarm->notify_timeout = alarm->notify_timeout;
@@ -927,8 +927,7 @@ static gboolean orage_alarm_clock(gpointer user_data)
     t = orage_localtime();
     time_now = orage_tm_time_to_icaltime(t);
   /* Check if there are any alarms to show */
-    alarm_l = g_par.alarm_list;
-    for (alarm_l = g_list_first(alarm_l);
+    for (alarm_l = g_list_first(g_par.alarm_list);
          alarm_l != NULL && more_alarms;
          alarm_l = g_list_next(alarm_l)) {
         /* remember that it is sorted list */
@@ -1016,8 +1015,7 @@ static gboolean orage_tooltip_update(gpointer user_data)
     g_string_append(tooltip, " </span>");
 #endif
   /* Check if there are any alarms to show */
-    alarm_l = g_par.alarm_list;
-    for (alarm_l = g_list_first(alarm_l);
+    for (alarm_l = g_list_first(g_par.alarm_list);
          alarm_l != NULL && more_alarms;
          alarm_l = g_list_next(alarm_l)) {
         /* remember that it is sorted list */

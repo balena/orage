@@ -214,7 +214,7 @@ static void print_version(void)
 #ifdef HAVE_LIBICAL
     g_print(_("\tUsing operating system package libical.\n"));
 #else
-    g_print(_("\tUsing Oracle local version of libical.\n"));
+    g_print(_("\tUsing Orage local version of libical.\n"));
 #endif
     g_print("\n");
 }

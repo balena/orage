@@ -1680,8 +1680,7 @@ GdkColor *orage_category_list_contains(char *categories)
     
     if (categories == NULL)
         return(NULL);
-    cat_l = orage_category_list;
-    for (cat_l = g_list_first(cat_l);
+    for (cat_l = g_list_first(orage_category_list);
          cat_l != NULL;
          cat_l = g_list_next(cat_l)) {
         cat = (orage_category_struct *)cat_l->data;
