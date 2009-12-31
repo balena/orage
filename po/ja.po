@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.5.9.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-12-30 17:07+0200\n"
-"PO-Revision-Date: 2009-09-12 15:43+0900\n"
+"POT-Creation-Date: 2009-12-31 14:43+0900\n"
+"PO-Revision-Date: 2009-12-31 14:42+0900\n"
 "Last-Translator: Masato Hashimoto <cabezon.hashimoto@gmail.com>\n"
 "Language-Team: Japanese <xfce-users-jp@ml.fdiary.net>\n"
 "MIME-Version: 1.0\n"
@@ -26,11 +26,11 @@ msgstr ""
 
 #: ../globaltime/globaltime.c:100
 msgid "Raising GlobalTime window..."
-msgstr "グローバルタイムウィンドウを生成しています..."
+msgstr "世界時計ウィンドウを生成しています..."
 
 #: ../globaltime/globaltime.c:102
 msgid "GlobalTime window raise failed"
-msgstr "グローバルタイムウィンドウの生成に失敗しました"
+msgstr "世界時計ウィンドウの生成に失敗しました"
 
 #. ********** timezone tooltip **********
 #: ../globaltime/globaltime.c:278
@@ -56,12 +56,14 @@ msgstr ""
 
 #: ../globaltime/globaltime.c:481
 msgid "adjust to change hour"
-msgstr "時を設定してください"
+msgstr "時を調整してください"
 
 #: ../globaltime/globaltime.c:497
 msgid ""
 "adjust to change minute. Click arrows with button 2 to change only 1 minute."
 msgstr ""
+"分を調整してください。ボタン 2 で矢印ボタンをクリックすると 1 分ずつ変更しま"
+"す。"
 
 #: ../globaltime/gt_prefs.c:264 ../globaltime/gt_prefs.c:265
 msgid "NEW"
@@ -116,9 +118,8 @@ msgid "close window and exit"
 msgstr "ウィンドウを閉じて終了します"
 
 #: ../globaltime/gt_prefs.c:589
-#, fuzzy
 msgid "Globaltime preferences "
-msgstr "設定を更新します"
+msgstr "世界時計設定 "
 
 #. -----------------------HEADING-------------------------------------------
 #: ../globaltime/gt_prefs.c:602
@@ -244,9 +245,8 @@ msgid "update preferences"
 msgstr "設定を更新します"
 
 #: ../globaltime/gt_prefs.c:1061
-#, fuzzy
 msgid "Globaltime Preferences"
-msgstr "全体設定"
+msgstr "世界時計の設定"
 
 #. -----------------------HEADING--------------------------------------
 #: ../globaltime/gt_prefs.c:1072
@@ -296,25 +296,25 @@ msgstr "現地のタイムゾーン:"
 #: ../globaltime/timezone_selection.c:103
 #: ../panel-plugin/timezone_selection.c:103 ../src/timezone_selection.c:103
 msgid " Other"
-msgstr ""
+msgstr " その他"
 
 #: ../globaltime/timezone_selection.c:158
 #: ../panel-plugin/timezone_selection.c:158 ../src/timezone_selection.c:169
 #, c-format
 msgid "%d hour %d mins"
-msgstr ""
+msgstr "%d 時間 %d 分"
 
 #: ../globaltime/timezone_selection.c:161
 #: ../panel-plugin/timezone_selection.c:161 ../src/timezone_selection.c:172
-#, fuzzy, c-format
+#, c-format
 msgid "%d hour"
-msgstr "時"
+msgstr "%d 時間"
 
 #: ../globaltime/timezone_selection.c:163
 #: ../panel-plugin/timezone_selection.c:163 ../src/timezone_selection.c:174
-#, fuzzy, c-format
+#, c-format
 msgid "%d mins"
-msgstr "分"
+msgstr "%d 分"
 
 #: ../globaltime/timezone_selection.c:169
 #: ../panel-plugin/timezone_selection.c:169 ../src/timezone_selection.c:180
@@ -323,19 +323,20 @@ msgstr ""
 
 #: ../globaltime/timezone_selection.c:172
 #: ../panel-plugin/timezone_selection.c:172 ../src/timezone_selection.c:183
-#, fuzzy
 msgid "forward"
-msgstr "翌日に移動します"
+msgstr ""
 
+# Summer time shift - previous
 #: ../globaltime/timezone_selection.c:196
 #: ../panel-plugin/timezone_selection.c:196 ../src/timezone_selection.c:207
 msgid "not changed"
-msgstr ""
+msgstr "変更なし"
 
+# Summer time shift - next
 #: ../globaltime/timezone_selection.c:197
 #: ../panel-plugin/timezone_selection.c:197 ../src/timezone_selection.c:208
 msgid "not changing"
-msgstr ""
+msgstr "変更なし"
 
 #. location
 #: ../globaltime/timezone_selection.c:249
@@ -349,17 +350,17 @@ msgstr "現在地"
 #: ../globaltime/timezone_selection.c:260
 #: ../panel-plugin/timezone_selection.c:260 ../src/timezone_selection.c:271
 msgid "GMT Offset"
-msgstr ""
+msgstr "GMT との時差"
 
 #: ../globaltime/timezone_selection.c:266
 #: ../panel-plugin/timezone_selection.c:266 ../src/timezone_selection.c:277
 msgid "Previous/Next Change"
-msgstr ""
+msgstr "前回/次回の変更"
 
 #: ../globaltime/timezone_selection.c:271
 #: ../panel-plugin/timezone_selection.c:271 ../src/timezone_selection.c:282
 msgid "Country"
-msgstr ""
+msgstr "国"
 
 #: ../globaltime/timezone_selection.c:301
 #: ../globaltime/timezone_selection.c:311
@@ -369,13 +370,14 @@ msgstr ""
 msgid "Pick timezone"
 msgstr "タイムゾーンを選択してください"
 
+# Change timezone view
 #: ../globaltime/timezone_selection.c:304
 #: ../globaltime/timezone_selection.c:314
 #: ../panel-plugin/timezone_selection.c:304
 #: ../panel-plugin/timezone_selection.c:314 ../src/timezone_selection.c:315
 #: ../src/timezone_selection.c:325
 msgid "Change mode"
-msgstr ""
+msgstr "モード変更"
 
 #: ../globaltime/timezone_selection.c:305
 #: ../globaltime/timezone_selection.c:315
@@ -422,7 +424,7 @@ msgstr "縦幅(_H):"
 
 #: ../panel-plugin/oc_config.c:278
 msgid "Note that you can not change the height of horizontal panels"
-msgstr ""
+msgstr "水平パネルの高さは変更されないことに注意してください"
 
 #: ../panel-plugin/oc_config.c:283
 msgid "set _width:"
@@ -430,7 +432,7 @@ msgstr "横幅(_W):"
 
 #: ../panel-plugin/oc_config.c:294
 msgid "Note that you can not change the width of vertical panels"
-msgstr ""
+msgstr "垂直パネルの幅は変更されないことに注意してください"
 
 #: ../panel-plugin/oc_config.c:311
 msgid "Clock Options"
@@ -444,7 +446,7 @@ msgstr "タイムゾーン:"
 #: ../panel-plugin/oc_config.c:349
 #, c-format
 msgid "Line %d:"
-msgstr ""
+msgstr "%d 行目:"
 
 #: ../panel-plugin/oc_config.c:359
 msgid "Enter any valid strftime function parameter."
@@ -470,8 +472,8 @@ msgid ""
 msgstr ""
 "このオプションは短時間 (5時間以下) のサスペンドまたはハイバネートを行い、時刻"
 "に秒を表示していない場合にのみ必要となります。その条件下でこのオプションを設"
-"定していない場合、 Orage クロックは不正確な時刻を表示する可能性があります (こ"
-"れを設定すると CPU および割り込み保存が動作するのを抑止します)。"
+"定していない場合、 Orage 時計は不正確な時刻を表示する可能性があります (これを"
+"設定すると CPU および割り込み保存が動作するのを抑止します)。"
 
 #: ../panel-plugin/oc_config.c:432
 msgid ""
@@ -494,13 +496,12 @@ msgstr ""
 "\t%X = 現地の時間\t\t%x = 現地の日付"
 
 #: ../panel-plugin/oc_config.c:456
-#, fuzzy
 msgid "Orage clock Preferences"
-msgstr "Orage の設定"
+msgstr "Orage 時計の設定"
 
 #: ../panel-plugin/oc_config.c:471
 msgid "Orage clock"
-msgstr "Orage クロック"
+msgstr "Orage 時計"
 
 # FIXME: On IRIX, it makes sense at least
 #. no lines yet
@@ -789,6 +790,15 @@ msgid ""
 "(This can be used for example in birthday reminders to tell how old the "
 "person will be.)"
 msgstr ""
+"以下のショートハンドコマンドは即座に解釈されます:\n"
+"    <D> 現在の日付をローカル日付フォーマットで挿入します\n"
+"    <T> 時刻を挿入します\n"
+"    <DT> 日付と時刻を挿入します\n"
+"\n"
+"以下はそれらが表示された時のみ変換されます:\n"
+"    <&Ynnnn> は現在の年から nnnn を引いたものに変換されます。\n"
+"(これは例えば誕生日の通知などで、その人が何歳になったかを表示する場合に使用で"
+"きます)"
 
 #: ../src/appointment.c:2825
 msgid "Before Start"
@@ -920,7 +930,7 @@ msgstr ""
 
 #: ../src/appointment.c:3024
 msgid "Test this alarm by raising it now"
-msgstr ""
+msgstr "このアラームを今すぐテストします"
 
 #: ../src/appointment.c:3031
 msgid "<b>Default alarm</b>"
@@ -1188,7 +1198,7 @@ msgstr "不明"
 
 #: ../src/day-view.c:689
 msgid "       Number of days to show"
-msgstr ""
+msgstr "       表示日数"
 
 #: ../src/day-view.c:920
 msgid "Orage - day view"
@@ -1354,7 +1364,7 @@ msgstr "アーカイブの除去が終了しました\n"
 
 #: ../src/ical-code.c:937
 msgid "Orage default alarm"
-msgstr "Orage の標準アラーム"
+msgstr "Orage のデフォルトアラーム"
 
 #: ../src/ical-code.c:2916
 #, c-format
@@ -1463,7 +1473,7 @@ msgstr ""
 
 #: ../src/interface.c:1061
 msgid "You can easily drag these from event-list window."
-msgstr "これらを用件リストウィンドウから簡単にドラッグできます。"
+msgstr "これらを予定リストウィンドウから簡単にドラッグできます。"
 
 #: ../src/interface.c:1063
 msgid "Orage appointment UIDs separated by commas."
@@ -1642,12 +1652,12 @@ msgstr "\tアーカイブ化を使用していません。\n"
 #: ../src/main.c:215
 #, c-format
 msgid "\tUsing operating system package libical.\n"
-msgstr ""
+msgstr "\tオペレーティングシステムの libical パッケージを使用しています。\n"
 
 #: ../src/main.c:217
 #, c-format
 msgid "\tUsing Orage local version of libical.\n"
-msgstr ""
+msgstr "\tOrage ローカルバージョン の libical を使用しています。\n"
 
 #: ../src/main.c:230
 #, c-format
@@ -1795,9 +1805,9 @@ msgid "<b>Events for %s:</b>"
 msgstr "<b>%s の予定:</b>"
 
 #: ../src/mainbox.c:535
-#, fuzzy, c-format
+#, c-format
 msgid "<b>Events for %s - %s:</b>"
-msgstr "<b>%s の予定:</b>"
+msgstr "<b>%s - %s の予定:</b>"
 
 #: ../src/parameters.c:477
 msgid "Main setups"
@@ -1821,7 +1831,7 @@ msgstr "(0 = アーカイブしません)"
 
 #: ../src/parameters.c:524
 msgid "Archiving is used to save time and space when handling events."
-msgstr "アーカイブ化は用件を扱う際の時間と領域を節約します。"
+msgstr "アーカイブ化は予定を扱う際の時間と領域を節約します。"
 
 #: ../src/parameters.c:533
 msgid "Sound command"
@@ -1865,11 +1875,11 @@ msgstr "ToDo リストを表示する"
 
 #: ../src/parameters.c:618
 msgid "Number of days to show in event window"
-msgstr ""
+msgstr "予定ウィンドウに表示する日数"
 
 #: ../src/parameters.c:624
 msgid "0 = do not show event list at all"
-msgstr ""
+msgstr "0 = 全ての予定リストを表示しません"
 
 #: ../src/parameters.c:634
 msgid "Set sticked"
@@ -1923,18 +1933,19 @@ msgstr "メインカレンダが表示される時、ポインタを今日の日
 
 #: ../src/parameters.c:776
 msgid "Use dynamic tray icon"
-msgstr ""
+msgstr "動的トレイアイコンの使用"
 
 #: ../src/parameters.c:781
-#, fuzzy
 msgid "Use dynamic icon"
-msgstr "ダイナミックアイコンのサイズ"
+msgstr "ダイナミックアイコンを使用する"
 
 #: ../src/parameters.c:787
 msgid ""
 "Dynamic icon shows current month and day of the month. It is visible only in "
 "system tray."
 msgstr ""
+"ダイナミックアイコンは現在の月と日を表示します。これはシステムトレイにのみ表"
+"示されます。"
 
 #: ../src/parameters.c:796
 msgid "Main Calendar double click shows"
@@ -1949,19 +1960,19 @@ msgid "Event list"
 msgstr "予定リスト"
 
 #: ../src/parameters.c:830
-#, fuzzy
 msgid "Eventlist window"
-msgstr "予定リスト"
+msgstr "予定リストウィンドウ"
 
 #: ../src/parameters.c:834
 msgid "Number of extra days to show in event list"
-msgstr ""
+msgstr "予定リストに表示する拡張日数"
 
 #: ../src/parameters.c:846
 msgid ""
 "This is just the default value, you can change it in the actual eventlist "
 "window."
 msgstr ""
+"これはデフォルト値になります。実際の予定リストウィンドウで変更できます。"
 
 #: ../src/parameters.c:862
 msgid "Orage Preferences"
@@ -1996,12 +2007,12 @@ msgstr "備忘録 - Orage"
 
 #: ../src/reminder.c:772
 msgid "Remind me again after the specified time"
-msgstr ""
+msgstr "指定時刻後に再度通知します"
 
 #. Note that this goes to the main area. Temporary for the version
 #: ../src/reminder.c:775
 msgid "Press <Execute> to remind me again after the specified time:"
-msgstr ""
+msgstr "<実行> を押すと指定時刻後に再度通知します。"
 
 #: ../src/reminder.c:1012
 msgid "Next active alarms:"
@@ -3586,12 +3597,10 @@ msgid "About Orage"
 msgstr "Orage について"
 
 #: ../panel-plugin/xfce4-orageclock-plugin.desktop.in.in.h:1
-#, fuzzy
 msgid "Orage Panel Clock"
-msgstr "Orage クロック"
+msgstr "Orage パネル時計"
 
 #: ../panel-plugin/xfce4-orageclock-plugin.desktop.in.in.h:2
-#, fuzzy
 msgid "Show time and date?"
 msgstr "今の日付と時刻は?"
 
@@ -3601,9 +3610,8 @@ msgid "Calendar"
 msgstr "カレンダ"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:2
-#, fuzzy
 msgid "Orage Calendar Preferences"
-msgstr "Orage の設定"
+msgstr "Orage カレンダ設定"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:3
 msgid "Orage preferences"
@@ -3618,9 +3626,44 @@ msgid "Desktop calendar"
 msgstr "卓上カレンダ"
 
 #: ../xfcalendar.desktop.in.h:3
-#, fuzzy
 msgid "Orage Calendar"
-msgstr "Orage - カレンダ"
+msgstr "Orage カレンダ"
+
+#~ msgid "show line _1:"
+#~ msgstr "1行表示(_1):"
+
+#~ msgid "show line _2:"
+#~ msgstr "2行表示(_2):"
+
+#~ msgid "show line _3:"
+#~ msgstr "3行表示(_3):"
+
+#~ msgid "Show:"
+#~ msgstr "表示日数:"
+
+#~ msgid "extra days"
+#~ msgstr "日"
+
+#~ msgid "(0 = use static icon)"
+#~ msgstr "(0 = スタティックアイコンを使用)"
+
+#~ msgid ""
+#~ "Dynamic icon shows current day and month. It is visible only in tray. If "
+#~ "tray is too small for dynamic icon size, Orage switches automatically "
+#~ "back to static icon."
+#~ msgstr ""
+#~ "ダイナミックアイコンは現在の月日を表示します。これはシステムトレイでのみ表"
+#~ "示されます。システムトレイがダイナミックアイコンのサイズより小さい場合 "
+#~ "Orage は自動的にスタティックアイコンに戻します。"
+
+#~ msgid ""
+#~ "<D> inserts current date in local date format.\n"
+#~ "<T> inserts time and\n"
+#~ "<DT> inserts date and time."
+#~ msgstr ""
+#~ "<D> 現地の日付フォーマットで現在の日付を挿入します。\n"
+#~ "<T> 時刻を挿入します。\n"
+#~ "<DT> 日付と時刻を挿入します。"
 
 #~ msgid "Ending time adjustment mode"
 #~ msgstr "終了時間調整モード"
@@ -3659,41 +3702,8 @@ msgstr "Orage - カレンダ"
 #~ "いずれか有効なタイムゾーン (TZ 値) を設定するか、このリストから一つ選んで"
 #~ "ください。"
 
-#~ msgid "show line _1:"
-#~ msgstr "1行表示(_1):"
-
-#~ msgid "show line _2:"
-#~ msgstr "2行表示(_2):"
-
-#~ msgid "show line _3:"
-#~ msgstr "3行表示(_3):"
-
 #~ msgid "Properties"
 #~ msgstr "プロパティ"
-
-#~ msgid ""
-#~ "<D> inserts current date in local date format.\n"
-#~ "<T> inserts time and\n"
-#~ "<DT> inserts date and time."
-#~ msgstr ""
-#~ "<D> 現地の日付フォーマットで現在の日付を挿入します。\n"
-#~ "<T> 時刻を挿入します。\n"
-#~ "<DT> 日付と時刻を挿入します。"
-
-#~ msgid "Show event list"
-#~ msgstr "予定リストを表示する"
-
-#~ msgid "(0 = use static icon)"
-#~ msgstr "(0 = スタティックアイコンを使用)"
-
-#~ msgid ""
-#~ "Dynamic icon shows current day and month. It is visible only in tray. If "
-#~ "tray is too small for dynamic icon size, Orage switches automatically "
-#~ "back to static icon."
-#~ msgstr ""
-#~ "ダイナミックアイコンは現在の月日を表示します。これはシステムトレイでのみ表"
-#~ "示されます。システムトレイがダイナミックアイコンのサイズより小さい場合 "
-#~ "Orage は自動的にスタティックアイコンに戻します。"
 
 #~ msgid "Calendar Settings"
 #~ msgstr "カレンダ設定"
