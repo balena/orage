@@ -234,11 +234,13 @@ gboolean xfical_import_file(char *file_name)
 #endif
     ical_file_name = g_strdup_printf("%s.orage", file_name);
     if (!pre_format(file_name, ical_file_name)) {
+        g_free(ical_file_name);
         return(FALSE);
     }
     if ((file_ical = icalset_new_file(ical_file_name)) == NULL) {
         orage_message(250, P_N "Could not open ical file (%s) %s"
                 , ical_file_name, icalerror_strerror(icalerrno));
+        g_free(ical_file_name);
         return(FALSE);
     }
     for (c1 = icalset_get_first_component(file_ical);
@@ -272,10 +274,12 @@ gboolean xfical_import_file(char *file_name)
     }
     if (cnt1 == 0) {
         orage_message(150, P_N "No valid icalset components found");
+        g_free(ical_file_name);
         return(FALSE);
     }
     if (cnt2 == 0) {
         orage_message(150, P_N "No valid ical components found");
+        g_free(ical_file_name);
         return(FALSE);
     }
 

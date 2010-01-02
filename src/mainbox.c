@@ -181,8 +181,10 @@ static void mHelp_help_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
            , G_DIR_SEPARATOR_S, "orage"
            , G_DIR_SEPARATOR_S, "doc"
            , G_DIR_SEPARATOR_S, "C"
-           , G_DIR_SEPARATOR_S, "orage.html", NULL);
+           , G_DIR_SEPARATOR_S, "orage.html"
+           , NULL);
     orage_exec(helpdoc, NULL, NULL);
+    g_free(helpdoc);
 }
 
 static void mHelp_about_activate_cb(GtkMenuItem *menuitem, gpointer user_data)

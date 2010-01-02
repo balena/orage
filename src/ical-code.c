@@ -819,9 +819,7 @@ int xfical_compare_times(xfical_appt *appt)
         etime = icaltime_add(stime, duration);
         text  = icaltime_as_ical_string(etime);
         g_strlcpy(appt->endtime, text, 17);
-        /*
         g_free(appt->end_tz_loc);
-        */
         appt->end_tz_loc = g_strdup(appt->start_tz_loc);
         return(0); /* ok */
 
@@ -3283,6 +3281,7 @@ static void xfical_mark_calendar_from_component(GtkCalendar *gtkcal
         key_found = get_appt_from_icalcomponent(c, &cal_data.appt);
         icalcomponent_foreach_recurrence(c, nsdate, nedate, mark_calendar
                 , (void *)&cal_data);
+        g_free(cal_data.appt.categories);
         /*
                 , (void *)gtkcal);
         xfical_mark_calendar_days(gtkcal, year, month

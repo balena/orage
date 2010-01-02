@@ -548,6 +548,7 @@ void for_open_button_clicked(GtkButton *button, gpointer user_data)
             gtk_entry_set_text(GTK_ENTRY(intf_w->for_new_entry), cal_file);
             gtk_widget_grab_focus(intf_w->for_new_entry);
             gtk_editable_set_position(GTK_EDITABLE(intf_w->for_new_entry), -1);
+            g_free(cal_file);
         }
     }
 

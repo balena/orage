@@ -682,6 +682,7 @@ static void on_appSound_button_clicked_cb(GtkButton *button, gpointer user_data)
         if (sound_file) {
             gtk_entry_set_text(GTK_ENTRY(apptw->Sound_entry), sound_file);
             gtk_editable_set_position(GTK_EDITABLE(apptw->Sound_entry), -1);
+            g_free(sound_file);
         }
     }
 
@@ -915,9 +916,11 @@ static gboolean fill_appt_from_apptw(xfical_appt *appt, appt_win *apptw)
         g_warning("fill_appt_from_apptw: coding error, illegal type");
 
     /* title */
+    g_free(appt->title);
     appt->title = g_strdup(gtk_entry_get_text(GTK_ENTRY(apptw->Title_entry)));
 
     /* location */
+    g_free(appt->location);
     appt->location = g_strdup(gtk_entry_get_text(
             GTK_ENTRY(apptw->Location_entry)));
 
@@ -997,6 +1000,8 @@ static gboolean fill_appt_from_apptw(xfical_appt *appt, appt_win *apptw)
             GTK_COMBO_BOX(apptw->Availability_cb));
 
     /* categories */
+    /* Note that gtk_entry_get_text returns empty string, which is not
+       the same as null, so tmp must always be freen */
     tmp = g_strdup(gtk_entry_get_text(GTK_ENTRY(apptw->Categories_entry)));
     tmp2 = gtk_combo_box_get_active_text(GTK_COMBO_BOX(apptw->Categories_cb));
     if (!strcmp(tmp2, _("Not set"))) {
@@ -1004,12 +1009,13 @@ static gboolean fill_appt_from_apptw(xfical_appt *appt, appt_win *apptw)
         tmp2 = NULL;
     }
     if (ORAGE_STR_EXISTS(tmp)) {
+        g_free(appt->categories);
         appt->categories = g_strjoin(",", tmp, tmp2, NULL);
-        g_free(tmp);
         g_free(tmp2);
     }
     else
         appt->categories = tmp2;
+    g_free(tmp);
 
     /* priority */
     appt->priority = gtk_spin_button_get_value_as_int(
@@ -1017,6 +1023,7 @@ static gboolean fill_appt_from_apptw(xfical_appt *appt, appt_win *apptw)
 
     /* notes */
     gtk_text_buffer_get_bounds(apptw->Note_buffer, &start, &end);
+    g_free(appt->note);
     appt->note = gtk_text_iter_get_text(&start, &end);
 
             /*********** ALARM TAB ***********/
@@ -2284,6 +2291,7 @@ static void fill_appt_window(appt_win *apptw, char *action, char *par)
         g_sprintf(appt->completedtime, XFICAL_APPT_TIME_FORMAT
                 , t->tm_year+1900, t->tm_mon+1 , t->tm_mday
                 , t->tm_hour, t->tm_min, 0);
+        g_free(appt->completed_tz_loc);
         appt->completed_tz_loc = g_strdup(appt->start_tz_loc);
     }
     /* we only want to enable duplication if we are working with an old
