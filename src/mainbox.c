@@ -708,7 +708,6 @@ void build_mainWin()
 {
 #undef P_N
 #define P_N "build_mainWin: "
-    GdkPixbuf *orage_logo;
     CalWin *cal = (CalWin *)g_par.xfcal;
     GdkColormap *pic1_cmap;
 
@@ -721,10 +720,6 @@ void build_mainWin()
     gdk_color_parse("blue", &cal->mBlue);
     gdk_colormap_alloc_color(pic1_cmap, &cal->mBlue, FALSE, TRUE);
 
-    /* using static icon here since this dynamic icon is not updated
-     * when date changes. Could be added, but not worth it.
-     * Dynamic icon is used in systray and about windows */
-    orage_logo = orage_create_icon(TRUE, 48); 
     cal->mAccel_group = gtk_accel_group_new();
     cal->Tooltips = gtk_tooltips_new();
 
@@ -732,12 +727,6 @@ void build_mainWin()
     gtk_window_set_position(GTK_WINDOW(cal->mWindow), GTK_WIN_POS_NONE);
     gtk_window_set_resizable(GTK_WINDOW(cal->mWindow), TRUE);
     gtk_window_set_destroy_with_parent(GTK_WINDOW(cal->mWindow), TRUE);
-
-    if (orage_logo != NULL) {
-        gtk_window_set_icon(GTK_WINDOW(cal->mWindow), orage_logo);
-        gtk_window_set_default_icon(orage_logo);
-        g_object_unref(orage_logo);
-    }
 
     /* Build the vertical box */
     cal->mVbox = gtk_vbox_new(FALSE, 0);

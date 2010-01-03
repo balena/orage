@@ -50,6 +50,8 @@ typedef struct _OrageRc
     void *rc;
 } OrageRc;
 
+void program_log (const char *format, ...);
+
 void orage_message(gint level, const char *format, ...);
 
 GtkWidget *orage_create_combo_box_with_content(char *text[], int size);

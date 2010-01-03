@@ -480,8 +480,8 @@ int main(int argc, char *argv[])
         gtk_widget_realize(((CalWin *)g_par.xfcal)->mWindow);
         gtk_widget_hide(((CalWin *)g_par.xfcal)->mWindow);
     }
-    reset_orage_day_change(FALSE); /* first day change after we start */
     alarm_read();
+    orage_day_change(FALSE); /* first day change after we start */
     mCalendar_month_changed_cb(
             (GtkCalendar *)((CalWin *)g_par.xfcal)->mCalendar, NULL);
 

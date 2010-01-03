@@ -26,7 +26,7 @@
 
 GdkPixbuf *orage_create_icon(gboolean static_icon, gint size);
 
-GtkStatusIcon *create_TrayIcon(void);
+GtkStatusIcon *create_TrayIcon(GdkPixbuf *orage_logo);
 
 void refresh_TrayIcon(void);
 

@@ -985,6 +985,7 @@ static void appt_add_alarm_internal_audio(xfical_appt *appt
                 , icalproperty_new_duration(
                         icaldurationtype_from_int(appt->soundrepeat_len)));
     }
+    icalattach_unref(attach);
 }
 
 /* emailprop  = 5*(
@@ -1054,6 +1055,7 @@ static void appt_add_alarm_internal_procedure(xfical_appt *appt
     if ORAGE_STR_EXISTS(appt->procedure_params)
         icalcomponent_add_property(ialarm
                 , icalproperty_new_description(appt->procedure_params));
+    icalattach_unref(attach);
 }
 
 /* Create new alarm and add trigger to it.

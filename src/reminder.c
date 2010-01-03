@@ -833,10 +833,34 @@ void create_reminders(alarm_struct *alarm)
         create_procedure_reminder(n_alarm);
 }
 
+static void reset_orage_day_change(gboolean changed)
+{
+#undef P_N
+#define P_N "reset_orage_day_change: "
+    struct tm *t;
+    gint secs_left;
+
+#ifdef ORAGE_DEBUG
+    orage_message(-100, P_N);
+#endif
+    if (changed) { /* date was change, need to count next change time */
+        t = orage_localtime();
+        /* t format is 23:59:59 -> 00:00:00 so we can use 
+         * 24:00:00 to represent next day.
+         * Let's find out how much time we have until it happens */
+        secs_left = 60*60*(24 - t->tm_hour) - 60*t->tm_min - t->tm_sec;
+    }
+    else { /* the change did not happen. Need to try again asap. */
+        secs_left = 1;
+    }
+    g_par.day_timer = g_timeout_add_seconds(secs_left
+            , (GtkFunction) orage_day_change, NULL);
+}
+
 /* fire after the date has changed and setup the icon 
  * and change the date in the mainwindow
  */
-static gboolean orage_day_change(gpointer user_data)
+gboolean orage_day_change(gpointer user_data)
 {
 #undef P_N
 #define P_N "orage_day_change: "
@@ -873,7 +897,7 @@ static gboolean orage_day_change(gpointer user_data)
         previous_day   = current_day;
         refresh_TrayIcon();
         xfical_alarm_build_list(TRUE);  /* new alarm list when date changed */
-        reset_orage_day_change(TRUE); /* setup for next time */
+        reset_orage_day_change(TRUE);   /* setup for next time */
     }
     else { 
         /* we should very seldom come here since we schedule us to happen
@@ -883,30 +907,6 @@ static gboolean orage_day_change(gpointer user_data)
         reset_orage_day_change(FALSE);
     }
     return(FALSE); /* we started new timer, so we end here */
-}
-
-void reset_orage_day_change(gboolean changed)
-{
-#undef P_N
-#define P_N "reset_orage_day_change: "
-    struct tm *t;
-    gint secs_left;
-
-#ifdef ORAGE_DEBUG
-    orage_message(-100, P_N);
-#endif
-    if (changed) { /* date was change, need to count next change time */
-        t = orage_localtime();
-        /* t format is 23:59:59 -> 00:00:00 so we can use 
-         * 24:00:00 to represent next day.
-         * Let's find out how much time we have until it happens */
-        secs_left = 60*60*(24 - t->tm_hour) - 60*t->tm_min - t->tm_sec;
-    }
-    else { /* the change did not happen. Need to try again asap. */
-        secs_left = 1;
-    }
-    g_par.day_timer = g_timeout_add_seconds(secs_left
-            , (GtkFunction) orage_day_change, NULL);
 }
 
 /* check and raise alarms if there are any */

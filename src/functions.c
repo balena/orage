@@ -333,7 +333,7 @@ char *orage_process_text_commands(char *text)
     /* This is usefull in birthdays for example: I will be <&Y1980>
      * translates to "I will be 29" if the alarm is raised on 2009 */
     for (cur = text; cur && (cmd = strstr(cur, "<&Y")); cur = end) {
-        if (end = strstr(cmd, ">")) {
+        if ((end = strstr(cmd, ">"))) {
             end[0] = '\0'; /* temporarily. */
             res = sscanf(cmd, "<&Y%d", &start_year);
             end[0] = '>'; /* put it back. */

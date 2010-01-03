@@ -106,7 +106,7 @@ void create_icon_pango_layout(gint line, PangoLayout *pl, struct tm *t
     gchar *row1_2_data = "%^a";
     gchar *row1_2b_data = "%a";
     gchar *row1_color = "black";
-    gchar *row1_font = "Ariel bold 24";
+    gchar *row1_font = "Ariel 24";
     gchar *row2_color = "red";
     gchar *row2_font = "Sans bold 72";
     gchar *row3_1_data = "%^B";
@@ -114,7 +114,7 @@ void create_icon_pango_layout(gint line, PangoLayout *pl, struct tm *t
     gchar *row3_2_data = "%^b";
     gchar *row3_2b_data = "%b";
     gchar *row3_color = "black";
-    gchar *row3_font = "Ariel bold 26";
+    gchar *row3_font = "Ariel 26";
     gchar *row_format = "<span foreground=\"%s\" font_desc=\"%s\">%s</span>";
     gchar *strfttime_failed = "create_icon_pango_layout: strftime %s failed";
 
@@ -241,7 +241,6 @@ GdkPixbuf *orage_create_icon(gboolean static_icon, gint size)
     gint x_offset_day = 0, y_offset_day = 0, y_size_day = 0;
     gint x_offset_weekday = 0, y_offset_weekday = 0, y_size_weekday = 0;
     gint x_offset_month = 0, y_offset_month = 0, y_size_month = 0;
-    gboolean draw_dynamic = FALSE;
 
     icon_theme = gtk_icon_theme_get_default();
     if (static_icon || !g_par.use_dynamic_icon) {
@@ -250,8 +249,7 @@ GdkPixbuf *orage_create_icon(gboolean static_icon, gint size)
         return(pixbuf);
     }
 
-    /* dynamic icon build starts now */
-    draw_dynamic = TRUE;
+    /***** dynamic icon build starts now *****/
     t = orage_localtime();
     width = 160; 
     height = 160;
@@ -300,41 +298,39 @@ GdkPixbuf *orage_create_icon(gboolean static_icon, gint size)
 
     /* weekday */
     create_icon_pango_layout(1, pl_weekday, t
-            , width-x_used, height-y_used
+            , width - x_used, height - y_used
             , &x_offset_weekday, &y_offset_weekday, &y_size_weekday);
 
     /* day */
     create_icon_pango_layout(2, pl_day, t
-            , width-x_used, height-y_used
+            , width - x_used, height - y_used
             , &x_offset_day, &y_offset_day, &y_size_day);
 
     /* month */
     create_icon_pango_layout(3, pl_month, t
-            , width-x_used, height-y_used
+            , width - x_used, height - y_used
             , &x_offset_month, &y_offset_month, &y_size_month);
 
-    if (draw_dynamic) {
-        gdk_draw_layout(pic1, pic1_gc1, x_offset_weekday, y_offset_weekday
-                , pl_weekday);
-        gdk_draw_layout(pic1, pic1_gc1, x_offset_day, y_offset_day, pl_day);
-        gdk_draw_layout(pic1, pic1_gc1, x_offset_month, y_offset_month
-                , pl_month);
-        pixbuf = gdk_pixbuf_get_from_drawable(NULL, pic1, pic1_cmap
-                , 0, 0, 0, 0, width, height);
-        if (size) {
-            pixbuf2 = gdk_pixbuf_scale_simple(pixbuf, size, size
-                    , GDK_INTERP_BILINEAR);
-            g_object_unref(pixbuf);
-            pixbuf = pixbuf2;
-        }
+    gdk_draw_layout(pic1, pic1_gc1, x_offset_weekday, y_offset_weekday
+            , pl_weekday);
+    gdk_draw_layout(pic1, pic1_gc1, x_offset_day, y_offset_day
+            , pl_day);
+    gdk_draw_layout(pic1, pic1_gc1, x_offset_month, y_offset_month
+            , pl_month);
+    pixbuf = gdk_pixbuf_get_from_drawable(NULL, pic1, pic1_cmap
+            , 0, 0, 0, 0, width, height);
+    if (size) {
+        pixbuf2 = gdk_pixbuf_scale_simple(pixbuf, size, size
+                , GDK_INTERP_BILINEAR);
+        g_object_unref(pixbuf);
+        pixbuf = pixbuf2;
     }
-    else {
+
+    if (pixbuf == NULL) {
+        g_warning("orage_create_icon: dynamic icon creation failed\n");
         pixbuf = gtk_icon_theme_load_icon(icon_theme, "xfcalendar", size
                 , GTK_ICON_LOOKUP_USE_BUILTIN, NULL);
     }
-
-    if (pixbuf == NULL)
-        g_warning("orage_create_icon: load failed\n");
 
     g_object_unref(pic1_gc1);
     g_object_unref(pic1_gc2);
@@ -408,12 +404,11 @@ void destroy_TrayIcon(GtkStatusIcon *trayIcon)
     g_object_unref(trayIcon);
 }
 
-GtkStatusIcon* create_TrayIcon()
+GtkStatusIcon* create_TrayIcon(GdkPixbuf *orage_logo)
 {
     CalWin *xfcal = (CalWin *)g_par.xfcal;
     GtkWidget *trayMenu;
     GtkStatusIcon *trayIcon = NULL;
-    GdkPixbuf *pixbuf;
 
     /*
      * Create the tray icon popup menu
@@ -423,12 +418,9 @@ GtkStatusIcon* create_TrayIcon()
     /*
      * Create the tray icon
      */
-    pixbuf = orage_create_icon(FALSE, 0); /* 0 = no scaling */
-    trayIcon = gtk_status_icon_new_from_pixbuf(pixbuf);
-
+    trayIcon = gtk_status_icon_new_from_pixbuf(orage_logo);
     g_object_ref(trayIcon);
     g_object_ref_sink(trayIcon);
-    g_object_unref(pixbuf);
 
     g_signal_connect(G_OBJECT(trayIcon), "activate",
     			   G_CALLBACK(toggle_visible_cb), xfcal);
@@ -439,12 +431,20 @@ GtkStatusIcon* create_TrayIcon()
 
 void refresh_TrayIcon()
 {
+    GdkPixbuf *orage_logo;
+
+    orage_logo = orage_create_icon(FALSE, 0);
     if (g_par.show_systray) { /* refresh tray icon */
         if (ORAGE_TRAYICON && gtk_status_icon_is_embedded(ORAGE_TRAYICON)) {
             gtk_status_icon_set_visible(ORAGE_TRAYICON, FALSE);
             destroy_TrayIcon(ORAGE_TRAYICON);
         }
-        g_par.trayIcon = create_TrayIcon();
+        g_par.trayIcon = create_TrayIcon(orage_logo);
         gtk_status_icon_set_visible(ORAGE_TRAYICON, TRUE);
     }
+    gtk_window_set_default_icon(orage_logo);
+    /* main window is always active so we need to change it's icon also */
+    gtk_window_set_icon(GTK_WINDOW(((CalWin *)g_par.xfcal)->mWindow)
+            , orage_logo);
+    g_object_unref(orage_logo);
 }

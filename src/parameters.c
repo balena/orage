@@ -352,9 +352,13 @@ static void pager_changed(GtkWidget *dialog, gpointer user_data)
 
 static void set_systray()
 {
+    GdkPixbuf *orage_logo;
+
     if (!(g_par.trayIcon 
     && gtk_status_icon_is_embedded((GtkStatusIcon *)g_par.trayIcon))) {
-        g_par.trayIcon = create_TrayIcon();
+        orage_logo = orage_create_icon(FALSE, 0);
+        g_par.trayIcon = create_TrayIcon(orage_logo);
+        g_object_unref(orage_logo);
     }
 
     if (g_par.show_systray)
@@ -852,6 +856,7 @@ static void create_parameter_dialog_extra_setup_tab(Itf *dialog)
 Itf *create_parameter_dialog()
 {
     Itf *dialog;
+    GdkPixbuf *orage_logo;
 
     dialog = g_new(Itf, 1);
     dialog->Tooltips = gtk_tooltips_new();
@@ -864,7 +869,12 @@ Itf *create_parameter_dialog()
             , GTK_WIN_POS_CENTER);
     gtk_window_set_modal(GTK_WINDOW(dialog->orage_dialog), FALSE);
     gtk_window_set_resizable(GTK_WINDOW(dialog->orage_dialog), TRUE);
+    orage_logo = orage_create_icon(FALSE, 48);
+    gtk_window_set_icon(GTK_WINDOW(dialog->orage_dialog), orage_logo);
+    g_object_unref(orage_logo);
+    /*
     gtk_window_set_icon_name(GTK_WINDOW(dialog->orage_dialog), "xfcalendar");
+    */
 
     gtk_dialog_set_has_separator(GTK_DIALOG(dialog->orage_dialog), FALSE);
 
