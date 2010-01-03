@@ -3,14 +3,16 @@
 # Copyright (C) 2003-2006 The Xfce development team.
 # This file is distributed under the same license as the orage package.
 #
-# Carles Muñoz Gorriz <carlesmu@internuatas.org>, 2003-2004, 2006, 2008.
+# Carles Muñoz Gorriz <carlesmu@internuatas.org>, 2003-2004, 2006,
+# 2008-2010.
 # Pau Rul·lan Ferragut <paurullan@bulma.net> 2005, 2006.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.3.90.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-12-30 17:07+0200\n"
-"PO-Revision-Date: 2008-11-16 10:39+0100\n"
+"PO-Revision-Date: 2010-01-03 22:22+0100\n"
 "Last-Translator: Carles Muñoz Gorriz <carlesmu@internautas.org>\n"
 "Language-Team: Catalan\n"
 "MIME-Version: 1.0\n"
@@ -18,6 +20,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: KBabel 1.11.2\n"
+"X-Poedit-Language: Catalan\n"
+"X-Poedit-Country: SPAIN\n"
+"X-Poedit-SourceCharset: utf-8\n"
 
 #: ../globaltime/globaltime.c:100
 msgid "Raising GlobalTime window..."
@@ -57,6 +62,8 @@ msgstr "ajustament per canviar l'hora"
 msgid ""
 "adjust to change minute. Click arrows with button 2 to change only 1 minute."
 msgstr ""
+"ajusteu per canviar el minut. Feu clic-dret a les fletxes per canviar només "
+"1 minut."
 
 #: ../globaltime/gt_prefs.c:264 ../globaltime/gt_prefs.c:265
 msgid "NEW"
@@ -111,9 +118,8 @@ msgid "close window and exit"
 msgstr "tanca la finestra i surt"
 
 #: ../globaltime/gt_prefs.c:589
-#, fuzzy
 msgid "Globaltime preferences "
-msgstr "actualitza les preferències"
+msgstr "Preferències generals horàries"
 
 #. -----------------------HEADING-------------------------------------------
 #: ../globaltime/gt_prefs.c:602
@@ -243,9 +249,8 @@ msgid "update preferences"
 msgstr "actualitza les preferències"
 
 #: ../globaltime/gt_prefs.c:1061
-#, fuzzy
 msgid "Globaltime Preferences"
-msgstr "Preferències generals"
+msgstr "Preferències generals horàries"
 
 #. -----------------------HEADING--------------------------------------
 #: ../globaltime/gt_prefs.c:1072
@@ -295,46 +300,45 @@ msgstr "Fus horari local:"
 #: ../globaltime/timezone_selection.c:103
 #: ../panel-plugin/timezone_selection.c:103 ../src/timezone_selection.c:103
 msgid " Other"
-msgstr ""
+msgstr " Altre"
 
 #: ../globaltime/timezone_selection.c:158
 #: ../panel-plugin/timezone_selection.c:158 ../src/timezone_selection.c:169
 #, c-format
 msgid "%d hour %d mins"
-msgstr ""
+msgstr "%d h. %d min."
 
 #: ../globaltime/timezone_selection.c:161
 #: ../panel-plugin/timezone_selection.c:161 ../src/timezone_selection.c:172
-#, fuzzy, c-format
+#, c-format
 msgid "%d hour"
-msgstr "hores"
+msgstr "%d h."
 
 #: ../globaltime/timezone_selection.c:163
 #: ../panel-plugin/timezone_selection.c:163 ../src/timezone_selection.c:174
-#, fuzzy, c-format
+#, c-format
 msgid "%d mins"
-msgstr "minuts"
+msgstr "%d min."
 
 #: ../globaltime/timezone_selection.c:169
 #: ../panel-plugin/timezone_selection.c:169 ../src/timezone_selection.c:180
 msgid "backward"
-msgstr ""
+msgstr "endarrere"
 
 #: ../globaltime/timezone_selection.c:172
 #: ../panel-plugin/timezone_selection.c:172 ../src/timezone_selection.c:183
-#, fuzzy
 msgid "forward"
-msgstr "Endavant"
+msgstr "endavant"
 
 #: ../globaltime/timezone_selection.c:196
 #: ../panel-plugin/timezone_selection.c:196 ../src/timezone_selection.c:207
 msgid "not changed"
-msgstr ""
+msgstr "sense canvi"
 
 #: ../globaltime/timezone_selection.c:197
 #: ../panel-plugin/timezone_selection.c:197 ../src/timezone_selection.c:208
 msgid "not changing"
-msgstr ""
+msgstr "no està canviant"
 
 #. location
 #: ../globaltime/timezone_selection.c:249
@@ -348,17 +352,17 @@ msgstr "Ubicació"
 #: ../globaltime/timezone_selection.c:260
 #: ../panel-plugin/timezone_selection.c:260 ../src/timezone_selection.c:271
 msgid "GMT Offset"
-msgstr ""
+msgstr "Diferència amb GMT"
 
 #: ../globaltime/timezone_selection.c:266
 #: ../panel-plugin/timezone_selection.c:266 ../src/timezone_selection.c:277
 msgid "Previous/Next Change"
-msgstr ""
+msgstr "Canvi previ/següent"
 
 #: ../globaltime/timezone_selection.c:271
 #: ../panel-plugin/timezone_selection.c:271 ../src/timezone_selection.c:282
 msgid "Country"
-msgstr ""
+msgstr "País"
 
 #: ../globaltime/timezone_selection.c:301
 #: ../globaltime/timezone_selection.c:311
@@ -374,7 +378,7 @@ msgstr "Seleccioneu fus horari"
 #: ../panel-plugin/timezone_selection.c:314 ../src/timezone_selection.c:315
 #: ../src/timezone_selection.c:325
 msgid "Change mode"
-msgstr ""
+msgstr "Mode de canvi"
 
 #: ../globaltime/timezone_selection.c:305
 #: ../globaltime/timezone_selection.c:315
@@ -422,6 +426,7 @@ msgstr "fixa _alçada:"
 #: ../panel-plugin/oc_config.c:278
 msgid "Note that you can not change the height of horizontal panels"
 msgstr ""
+"Tingueu en compte que no podeu canviar l'alçada dels quadres horitzontals"
 
 #: ../panel-plugin/oc_config.c:283
 msgid "set _width:"
@@ -430,6 +435,7 @@ msgstr "fixa a_mplada:"
 #: ../panel-plugin/oc_config.c:294
 msgid "Note that you can not change the width of vertical panels"
 msgstr ""
+"Tingueu en compte que no podeu canviar l'amplada dels quadres verticals"
 
 #: ../panel-plugin/oc_config.c:311
 msgid "Clock Options"
@@ -443,7 +449,7 @@ msgstr "Trieu el fus horari:"
 #: ../panel-plugin/oc_config.c:349
 #, c-format
 msgid "Line %d:"
-msgstr ""
+msgstr "Línia %d:"
 
 #: ../panel-plugin/oc_config.c:359
 msgid "Enter any valid strftime function parameter."
@@ -494,9 +500,8 @@ msgstr ""
 "\t%X = Hora local\t\t\t\t%x = Data local"
 
 #: ../panel-plugin/oc_config.c:456
-#, fuzzy
 msgid "Orage clock Preferences"
-msgstr "Preferències Orage"
+msgstr "Preferències del rellotge d'Orage"
 
 #: ../panel-plugin/oc_config.c:471
 msgid "Orage clock"
@@ -771,7 +776,7 @@ msgstr "Actualitza els colors de les categories."
 #. priority
 #: ../src/appointment.c:2725
 msgid "Priority"
-msgstr ""
+msgstr "Prioritat"
 
 #. note
 #: ../src/appointment.c:2735
@@ -790,6 +795,15 @@ msgid ""
 "(This can be used for example in birthday reminders to tell how old the "
 "person will be.)"
 msgstr ""
+"Aquest ordres tenen efecte inmediat:\n"
+"    <D> insereix la data actual en el format local\n"
+"    <T> insereix l'hora i\n"
+"    <DT> insereix la data i hora.\n"
+"\n"
+"Aquestes es converteixen després, quan es mostrin:\n"
+"    <&Ynnnn> es tradueix com l'any menys «nnnn».\n"
+"(e.g.: El podeu emprar com recordatoris d'aniversaris per que us digui "
+"quants anys compleix.)"
 
 #: ../src/appointment.c:2825
 msgid "Before Start"
@@ -922,12 +936,11 @@ msgstr ""
 
 #: ../src/appointment.c:3024
 msgid "Test this alarm by raising it now"
-msgstr ""
+msgstr "Comproveu l'alarma provant-la ara"
 
 #: ../src/appointment.c:3031
-#, fuzzy
 msgid "<b>Default alarm</b>"
-msgstr "Alarma per defecte"
+msgstr "<b>Alarma per defecte</b>"
 
 #: ../src/appointment.c:3039
 msgid "Store current settings as default alarm"
@@ -1083,13 +1096,16 @@ msgstr ""
 #. TODO base (only for TODOs)
 #: ../src/appointment.c:3269
 msgid "TODO base"
-msgstr ""
+msgstr "Pendent de fer - base"
 
 #: ../src/appointment.c:3282
 msgid ""
 "TODO reoccurs regularly starting on start time and repeating after each "
 "interval no matter when it was last completed"
 msgstr ""
+"Pendent de fer torna a succeir regularment iniciant-se a l'hora d'inici i "
+"repetint-se després de cada interval independentment de si es va completar "
+"la darrera vegada"
 
 #: ../src/appointment.c:3284
 msgid ""
@@ -1098,12 +1114,17 @@ msgid ""
 "(Note that you can not tell anything about the history of the TODO since "
 "reoccurrence base changes after each completion.)"
 msgstr ""
+"La recurrència dels pendents de fer es basa en períodes sencers i es "
+"repeteix després de l'interval contant-lo des de el darrer cop que es va "
+"completar.\n"
+"(Tingueu en compte que no podeu canviar res respecte a l'historial del "
+"pendent de fer des de la darrera ocurrència fins a cada una de les seves "
+"finalitzacions.)"
 
 #. exceptions
 #: ../src/appointment.c:3291
-#, fuzzy
 msgid "Exceptions"
-msgstr "Opcions"
+msgstr "Excepcions"
 
 #: ../src/appointment.c:3304
 msgid ""
@@ -1112,30 +1133,34 @@ msgid ""
 "selection.\n"
 "Remove by clicking the data."
 msgstr ""
+"Afegiu més dades d'excepció fent clic als dies del calendari.\n"
+"L'excepció pot ser d'exclusió (-) o d'inclusió (+) depenent de la selecció.\n"
+"La podeu treure fent clic a la data."
 
 #: ../src/appointment.c:3309
 msgid "Add excluded date (-)"
-msgstr ""
+msgstr "Afegeix un data d'exclusió (-)"
 
 #: ../src/appointment.c:3311
 msgid "Excluded days are full days where this appointment is not happening"
-msgstr ""
+msgstr "Els dies exclosos són dies sencers on la cita no succeeix."
 
 #: ../src/appointment.c:3317
 msgid "Add included time (+)"
-msgstr ""
+msgstr "Afegeix una hora d'inclusió (+)"
 
 #: ../src/appointment.c:3319
 msgid ""
 "Included times have same timezone than start time, but they may have "
 "different time"
 msgstr ""
+"Les hores d'inclusió tenen el mateix fus horari que la hora d'inici, però "
+"poden ser una hora diferent"
 
 #. calendars showing the action days
 #: ../src/appointment.c:3336
-#, fuzzy
 msgid "Action dates"
-msgstr "Opcions d'accions"
+msgstr "Dades d'accions"
 
 #. ********* View menu *********
 #. View menu
@@ -1179,7 +1204,7 @@ msgstr "Desconegut"
 
 #: ../src/day-view.c:689
 msgid "       Number of days to show"
-msgstr ""
+msgstr "       Nombre de dies a mostrar"
 
 #: ../src/day-view.c:920
 msgid "Orage - day view"
@@ -1640,12 +1665,12 @@ msgstr "\tNo emprant arxivament.\n"
 #: ../src/main.c:215
 #, c-format
 msgid "\tUsing operating system package libical.\n"
-msgstr ""
+msgstr "\tEmprant el paquet del sistema operatiu «libical».\n"
 
 #: ../src/main.c:217
 #, c-format
 msgid "\tUsing Orage local version of libical.\n"
-msgstr ""
+msgstr "\tEmprant la versió local d'Orage de «libical».\n"
 
 #: ../src/main.c:230
 #, c-format
@@ -1793,9 +1818,9 @@ msgid "<b>Events for %s:</b>"
 msgstr "<b>Esdeveniments per %s:</b>"
 
 #: ../src/mainbox.c:535
-#, fuzzy, c-format
+#, c-format
 msgid "<b>Events for %s - %s:</b>"
-msgstr "<b>Esdeveniments per %s:</b>"
+msgstr "<b>Esdeveniments per %s - %s:</b>"
 
 #: ../src/parameters.c:477
 msgid "Main setups"
@@ -1847,19 +1872,16 @@ msgid "Show menu"
 msgstr "Mostra el menú"
 
 #: ../src/parameters.c:590
-#, fuzzy
 msgid "Show month and year"
-msgstr "Mostra al paginador"
+msgstr "Mostra mes i any"
 
 #: ../src/parameters.c:597
-#, fuzzy
 msgid "Show day names"
-msgstr "Mostra el _marc de línia"
+msgstr "Mostra els noms dels dies"
 
 #: ../src/parameters.c:604
-#, fuzzy
 msgid "Show week numbers"
-msgstr "Mostra les vores"
+msgstr "Mostra els números de les setmanes"
 
 #: ../src/parameters.c:611
 msgid "Show todo list"
@@ -1867,11 +1889,11 @@ msgstr "Mostra la llista del pendent de fer"
 
 #: ../src/parameters.c:618
 msgid "Number of days to show in event window"
-msgstr ""
+msgstr "Nombre de dies a mostrar a la finestra d'esdeveniments"
 
 #: ../src/parameters.c:624
 msgid "0 = do not show event list at all"
-msgstr ""
+msgstr "0 = no mostra cap llista d'esdeveniments"
 
 #: ../src/parameters.c:634
 msgid "Set sticked"
@@ -1927,18 +1949,19 @@ msgstr ""
 
 #: ../src/parameters.c:776
 msgid "Use dynamic tray icon"
-msgstr ""
+msgstr "Empra una icona dinàmica a l'àrea de notificació"
 
 #: ../src/parameters.c:781
-#, fuzzy
 msgid "Use dynamic icon"
-msgstr "Mida d'icona dinàmica"
+msgstr "Empra icona dinàmica"
 
 #: ../src/parameters.c:787
 msgid ""
 "Dynamic icon shows current month and day of the month. It is visible only in "
 "system tray."
 msgstr ""
+"La icona dinàmica mostra el mes actual i el dia del mes. Només es mostra a "
+"la safata del sistema."
 
 #: ../src/parameters.c:796
 msgid "Main Calendar double click shows"
@@ -1953,19 +1976,20 @@ msgid "Event list"
 msgstr "Llista d'esdeveniments"
 
 #: ../src/parameters.c:830
-#, fuzzy
 msgid "Eventlist window"
-msgstr "Llista d'esdeveniments"
+msgstr "Finestra de llista d'esdeveniments"
 
 #: ../src/parameters.c:834
 msgid "Number of extra days to show in event list"
-msgstr ""
+msgstr "Nombre de dies extres a mostrar en el llistat d'esdeveniments"
 
 #: ../src/parameters.c:846
 msgid ""
 "This is just the default value, you can change it in the actual eventlist "
 "window."
 msgstr ""
+"Aquest només és el valor per defecte, podeu canviar-lo en la finestra de la "
+"llista d'esdeveniments."
 
 #: ../src/parameters.c:862
 msgid "Orage Preferences"
@@ -1998,12 +2022,13 @@ msgstr "Recordatori - Orage"
 
 #: ../src/reminder.c:772
 msgid "Remind me again after the specified time"
-msgstr ""
+msgstr "Recorda-m'ho un altre cop després del temps especificat"
 
 #. Note that this goes to the main area. Temporary for the version
 #: ../src/reminder.c:775
 msgid "Press <Execute> to remind me again after the specified time:"
 msgstr ""
+"Pitgeu <Executa> per recordar-m'ho un altre cop desés del temps especificat:"
 
 #: ../src/reminder.c:1012
 msgid "Next active alarms:"
@@ -3588,14 +3613,12 @@ msgid "About Orage"
 msgstr "Quant a Orage"
 
 #: ../panel-plugin/xfce4-orageclock-plugin.desktop.in.in.h:1
-#, fuzzy
 msgid "Orage Panel Clock"
-msgstr "Rellotge Orage"
+msgstr "Rellotge de quadre Orage"
 
 #: ../panel-plugin/xfce4-orageclock-plugin.desktop.in.in.h:2
-#, fuzzy
 msgid "Show time and date?"
-msgstr "Quina és l'hora i el dia?"
+msgstr "Mostra l'hora i la data?"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:1
 #: ../xfcalendar.desktop.in.h:1
@@ -3603,28 +3626,24 @@ msgid "Calendar"
 msgstr "Calendari"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:2
-#, fuzzy
 msgid "Orage Calendar Preferences"
-msgstr "Preferències Orage"
+msgstr "Preferències del calendari d'Orage"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:3
-#, fuzzy
 msgid "Orage preferences"
-msgstr "Preferències Orage"
+msgstr "Preferències d'Orage"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:4
-#, fuzzy
 msgid "Settings for the Xfce 4 Calendar Application (Orage)"
-msgstr "Paràmetres de l'aplicació de calendari de Xfce 4"
+msgstr "Paràmetres de l'aplicació de calendari de Xfce 4 (Orage)"
 
 #: ../xfcalendar.desktop.in.h:2
 msgid "Desktop calendar"
 msgstr "Calendari d'escriptori"
 
 #: ../xfcalendar.desktop.in.h:3
-#, fuzzy
 msgid "Orage Calendar"
-msgstr "Orage - Calendari"
+msgstr "Calendari Orage"
 
 #~ msgid "Ending time adjustment mode"
 #~ msgstr "Acabant el mode d'ajustament d'hora"
