@@ -684,6 +684,9 @@ static void create_orage_reminder(alarm_struct *alarm)
     GtkWidget *hdReminder;
     orage_ddmmhh_hbox_struct *ddmmhh_hbox;
     GtkWidget *e_hbox;
+#if !GTK_CHECK_VERSION(2,16,0)
+    GtkWidget *e_label;
+#endif
     gchar *tmp;
 
 #ifdef ORAGE_DEBUG
