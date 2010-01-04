@@ -460,10 +460,14 @@ static void always_today_changed(GtkWidget *dialog, gpointer user_data)
 static void use_dynamic_icon_changed(GtkWidget *dialog, gpointer user_data)
 {
     Itf *itf = (Itf *)user_data;
+    GdkPixbuf *orage_logo;
 
     g_par.use_dynamic_icon = gtk_toggle_button_get_active(
             GTK_TOGGLE_BUTTON(itf->use_dynamic_icon_checkbutton));
     refresh_TrayIcon();
+    orage_logo = orage_create_icon(FALSE, 48);
+    gtk_window_set_icon(GTK_WINDOW(itf->orage_dialog), orage_logo);
+    g_object_unref(orage_logo);
 }
 
 static void el_extra_days_spin_changed(GtkSpinButton *sb, gpointer user_data)
@@ -788,7 +792,7 @@ static void create_parameter_dialog_extra_setup_tab(Itf *dialog)
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
             dialog->use_dynamic_icon_checkbutton), g_par.use_dynamic_icon);
     gtk_tooltips_set_tip(dialog->Tooltips, dialog->use_dynamic_icon_checkbutton
-            , _("Dynamic icon shows current month and day of the month. It is visible only in system tray.")
+            , _("Dynamic icon shows current month and day of the month.")
             , NULL);
     g_signal_connect(G_OBJECT(dialog->use_dynamic_icon_checkbutton), "toggled"
             , G_CALLBACK(use_dynamic_icon_changed), dialog);

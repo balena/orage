@@ -1112,7 +1112,7 @@ static gboolean reset_orage_tooltip_update()
 #endif
     t = orage_localtime();
     secs_left = 60 - t->tm_sec;
-    if (secs_left > 10) 
+    if (secs_left > 2) 
         orage_tooltip_update(NULL);
     /* FIXME: do not start this, if it is already in progress.
      * Minor thing and does not cause any real trouble and happens
