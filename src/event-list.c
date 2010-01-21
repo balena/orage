@@ -467,7 +467,7 @@ static void search_data(el_win *el)
     gint i;
 
     search_string = g_utf8_strup(gtk_entry_get_text(
-                (GtkEntry *)el->search_entry),-1);
+                (GtkEntry *)el->search_entry), -1);
     /* first search base orage file */
     if (!xfical_file_open(TRUE))
         return;
@@ -1146,26 +1146,22 @@ static void build_toolbar(el_win *el)
 
 static void build_event_tab(el_win *el)
 {
-    gint row;
-    GtkWidget *label, *hbox;
+    GtkWidget *label;
 
     el->event_tab_label = gtk_label_new(_("Event"));
-    /* FIXME: remove these tables, which are not needed anymore */
+    /* we do not really need table, but it is efficient and easy way to
+       do this. Using hboxes takes actually more memory */
     el->event_notebook_page = orage_table_new(1, BORDER_SIZE);
 
     label = gtk_label_new(_("Extra days to show "));
-    hbox =  gtk_hbox_new(FALSE, 0);
     el->event_spin = gtk_spin_button_new_with_range(0, 999, 1);
     gtk_spin_button_set_value(GTK_SPIN_BUTTON(el->event_spin)
             , (gdouble)el->days);
-    gtk_box_pack_start(GTK_BOX(hbox), el->event_spin, FALSE, FALSE, 15);
     orage_table_add_row(el->event_notebook_page
-            , label, hbox
-            , row = 0, (GTK_FILL), (0));
+            , label, el->event_spin, 0, (GTK_FILL), (0));
 
     gtk_notebook_append_page(GTK_NOTEBOOK(el->Notebook)
             , el->event_notebook_page, el->event_tab_label);
-
     g_signal_connect((gpointer)el->event_spin, "value-changed"
             , G_CALLBACK(on_spin_changed), el);
 }
@@ -1173,8 +1169,7 @@ static void build_event_tab(el_win *el)
 static void build_todo_tab(el_win *el)
 {
     el->todo_tab_label = gtk_label_new(_("Todo"));
-    /* FIXME: remove these tables, which are not needed anymore */
-    el->todo_notebook_page = orage_table_new(1, BORDER_SIZE);
+    el->todo_notebook_page = gtk_hbox_new(FALSE, 0);
 
     gtk_notebook_append_page(GTK_NOTEBOOK(el->Notebook)
             , el->todo_notebook_page, el->todo_tab_label);
@@ -1182,28 +1177,22 @@ static void build_todo_tab(el_win *el)
 
 static void build_journal_tab(el_win *el)
 {
-    gint row;
-    GtkWidget *label, *hbox;
+    GtkWidget *label;
     struct tm *tm;
     gchar *sdate;
 
     el->journal_tab_label = gtk_label_new(_("Journal"));
-    /* FIXME: remove these tables, which are not needed anymore */
     el->journal_notebook_page = orage_table_new(1, BORDER_SIZE);
 
     label = gtk_label_new(_("Journal entries starting from:"));
-    hbox =  gtk_hbox_new(FALSE, 0);
     el->journal_start_button = gtk_button_new();
     tm = orage_localtime();
     tm->tm_year -= 1;
     sdate = orage_tm_date_to_i18_date(tm);
     gtk_button_set_label(GTK_BUTTON(el->journal_start_button)
             , (const gchar *)sdate);
-    gtk_box_pack_start(GTK_BOX(hbox), el->journal_start_button
-            , FALSE, FALSE, 15);
     orage_table_add_row(el->journal_notebook_page
-            , label, hbox
-            , row = 0, (GTK_FILL), (0));
+            , label, el->journal_start_button, 0, (GTK_FILL), (0));
 
     gtk_notebook_append_page(GTK_NOTEBOOK(el->Notebook)
             , el->journal_notebook_page, el->journal_tab_label);
@@ -1213,18 +1202,15 @@ static void build_journal_tab(el_win *el)
 
 static void build_search_tab(el_win *el)
 {
-    gint row;
     GtkWidget *label;
 
     el->search_tab_label = gtk_label_new(_("Search"));
-    /* FIXME: remove these tables, which are not needed anymore */
     el->search_notebook_page = orage_table_new(1, BORDER_SIZE);
 
     label = gtk_label_new(_("Search text "));
     el->search_entry = gtk_entry_new();
     orage_table_add_row(el->search_notebook_page
-            , label, el->search_entry
-            , row = 0, (GTK_EXPAND | GTK_FILL), (0));
+            , label, el->search_entry, 0, (GTK_EXPAND | GTK_FILL), (0));
 
     gtk_notebook_append_page(GTK_NOTEBOOK(el->Notebook)
             , el->search_notebook_page, el->search_tab_label);

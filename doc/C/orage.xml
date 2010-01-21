@@ -1,9 +1,9 @@
 <?xml version='1.0'?> 
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN" 
           "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
-  <!ENTITY manrevision "1.5"> 
-  <!ENTITY date "January 2009"> 
-  <!ENTITY appversion "4.6.0"> 
+  <!ENTITY manrevision "1.6"> 
+  <!ENTITY date "January 2010"> 
+  <!ENTITY appversion "4.8.0"> 
   <!ENTITY app "<application>orage</application>">
 ]>
 
@@ -14,7 +14,7 @@
 
   <title>Orage</title>
   <copyright>
-    <year>2006-2009</year> <holder>Juha Kautto</holder>
+    <year>2006-2010</year> <holder>Juha Kautto</holder>
   </copyright>
 
 <!-- translators: uncomment this:
@@ -39,18 +39,6 @@
       <firstname>Juha</firstname> <surname>Kautto</surname>
       <affiliation>
         <address><email>juha@xfce.org</email></address>
-      </affiliation>
-    </author>
-    <author>
-      <firstname>Mickael</firstname> <surname>Graf</surname>
-      <affiliation>
-        <address><email>korbinus@xfce.org</email></address>
-      </affiliation>
-    </author>
-    <author>
-      <firstname>Benedikt</firstname> <surname>Meurer</surname>
-      <affiliation>
-        <address><email>benny@xfce.org</email></address>
       </affiliation>
     </author>
 <!-- This is appropriate place for other contributors: translators,
@@ -87,6 +75,7 @@ maintainers, etc. Commented out by default.
 
 </articleinfo>
 
+
   <!-- extra space -->
   <para>&nbsp;</para>
   
@@ -102,6 +91,7 @@ maintainers, etc. Commented out by default.
   </para>
 </sect1>
 
+
   <!-- extra space -->
   <para>&nbsp;</para>
   
@@ -109,7 +99,7 @@ maintainers, etc. Commented out by default.
   <title>Getting started</title>
   <para>
     Orage is started by typing &app; on the command line or in the run
-    application window. The command line accepts some optins like -v, which
+    application window. The command line accepts some options like -v, which
     tells the version and -h, which shows short usage help. You can also start
     &app; by clicking on the item &app; in the submenu "Office" from the
     desktop menu. Another handy way of starting &app; is to click button 1 on
@@ -151,6 +141,10 @@ maintainers, etc. Commented out by default.
   </para>
 </sect1>
 
+
+  <!-- extra space -->
+  <para>&nbsp;</para>
+  
 <sect1 id="orage-calendar-window">
   <title>The calendar window</title>
   <figure id="default-calendar-fig">
@@ -179,7 +173,7 @@ maintainers, etc. Commented out by default.
     functions. 
     Below that is a standard calendar showing the month, the year, day names 
     and week numbers. At the bottom there is small window showing active 
-    TODOs and EVENTs on the selected day. (Empty parts are not shown.)
+    TODOs and EVENTs on the selected day.
   </para>
 
   <sect2 id="calendar-menu-bar">
@@ -217,16 +211,16 @@ maintainers, etc. Commented out by default.
         </listitem>
         <listitem>
           Exchange data: creates window where you can do file level operations
-          to Orage data. (1) import and export appointments between
-          Orage and operating system files or 2) rename Orage files or 3) add 
+          to &app; data. (1) import and export appointments between
+          &app; and operating system files or 2) rename &app; files or 3) add 
           and remove foreign calendar files.);
         </listitem>
         <listitem>
-          Close: hide the calendar window but keep Orage running in the 
+          Close: hide the calendar window but keep &app; running in the 
           background;
         </listitem>
         <listitem>
-          Quit: end Orage;
+          Quit: end &app;;
         </listitem>
       </itemizedlist>
     </sect3>
@@ -327,11 +321,12 @@ maintainers, etc. Commented out by default.
       Calendar view presents you one month, which you can change by pressing
       the arrow beside the month name or the year number or using the mouse 
       wheel.
-      Days where you have appointments or where you have ending TODO are
-      marked as bold. One day is always selected and shown with a block.
-      You can change the selected day by single clicking any day number.
-      Double clicking a day number causes event list window for that day to be
-      activated.
+      Days where you have appointments or where you have 
+      <emphasis>Ending</emphasis> TODO are marked as bold. One day is always 
+      selected and shown with a block. You can change the selected day by 
+      single clicking any day number. Double clicking a day number causes 
+      event list window for that day to be activated (or day list if you 
+      changed your preferences).
     </para>
   </sect2>
 
@@ -350,13 +345,18 @@ maintainers, etc. Commented out by default.
   <sect2 id="calendar-events-window">
     <title>The EVENT list</title>
     <para>
-      Below the TODO list you see your events from the selected date.
-      Check the tooltip for more details of the event. Also events can be 
-      edited by double clicking them.
+      Below the TODO list you see your events from the selected date. (Or from
+      several days depending on your settings in the preferences.) Check the
+      tooltip for more details of the event. Also events can be edited by
+      double clicking them.
     </para>
   </sect2>
 </sect1>
 
+
+  <!-- extra space -->
+  <para>&nbsp;</para>
+  
 <sect1 id="orage-eventlist-window">
   <title>The event list window</title>
   <figure id="orage-eventlist-fig">
@@ -443,9 +443,10 @@ maintainers, etc. Commented out by default.
       <listitem>
         Event: the event tab shows all EVENT type appointments happening on 
         this day. It is possible to see more than one day in this tab 
-        by setting "Extra days to show" number to larger than 0. Each number
+        by setting "Extra days to show" number to larger than 0. 
+        (You can change the default 0 in the preferences dialog.) Each number
         shows one more day. (It causes the Time column in the event listing 
-        to show also the date.)
+        to show also the date.) 
       </listitem>
       <listitem>
         Todo: shows your active TODOs similarly than in the main calendar
@@ -473,15 +474,13 @@ maintainers, etc. Commented out by default.
       The list shows all appointments satisfying the conditions and tab type.
       Scrollbars will appear if there are more lines or longer lines than 
       what fits into the window. You can edit any appointment by double 
-      clicking the row. Note that each repeating appointment is shown only 
-      once (=first time) instead of everytime it happens in the specified days.
-      Each line has three fields:
+      clicking the row. Each line has three fields:
     </para>
     <itemizedlist>
       <listitem>
         Time: the starting and ending times of the appointment (the format
         varies depending on tab and appointment). All times are always shown
-        in our local timezone. It is possible to define special whole day
+        in your local timezone. It is possible to define special whole day
         appointments and they have a text "All day" instead of real start and
         end times. Rows appear in start time order.
         +sign in front of the time means that the appointment started on some
@@ -506,7 +505,7 @@ maintainers, etc. Commented out by default.
             (If both visual and sound alarm is defined, S is shown)
           </listitem>
           <listitem>
-            Repeat: how often is that appointment happening.
+            Recurrence: how often is that appointment happening.
             <keycap>n</keycap> means no repeating so that this event only
             happens once. 
             <keycap>D</keycap> means daily repeat,
@@ -552,6 +551,10 @@ maintainers, etc. Commented out by default.
   </sect2>
 </sect1>
 
+
+  <!-- extra space -->
+  <para>&nbsp;</para>
+  
 <sect1 id="orage-daylist-window">
   <title>The day list window</title>
   <figure id="orage-daylist-fig">
@@ -629,12 +632,16 @@ maintainers, etc. Commented out by default.
       the event is taking time (availability=Busy), there is vertical line
       in front of it showing its length. These lines show how full your
       calendar is and makes it easier to find free time quickly. If more than
-      one events starts at the same hour, they all are added to the same row /
-      column after each other and the reservation line is the sum of them.
+      one event starts at the same hour, they all are added to the same row /
+      column after each other and the reservation line is the overlap of them.
     </para>
   </sect2>
 </sect1>
 
+
+  <!-- extra space -->
+  <para>&nbsp;</para>
+  
 <sect1 id="orage-appointment-window">
   <title>The appointment window</title>
   <para>
@@ -859,6 +866,15 @@ maintainers, etc. Commented out by default.
         </listitem>
       </varlistentry>
       <varlistentry>
+        <term>Priority</term>
+        <listitem>
+          <para>
+            Priority of the appointment. &app; is not using this, so treat it
+            just like a comment.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
         <term>Note</term>
         <listitem>
           <para>
@@ -965,9 +981,9 @@ maintainers, etc. Commented out by default.
             &app; can show two kinds of internal visual alarms. Orage window
             is a small alarm window showing the heading and note text. 
             Notification is more fancy notification using libnotify. You need
-            to have libnotify installed before you can define this kind of
-            visual alarm. <command>orage -v</command> shows if you have
-            libnotify support included.
+            to have libnotify installed before you can define notification 
+            kind of visual alarm. <command>orage -v</command> shows if you
+            have libnotify support included.
           </para>
         </listitem>
       </varlistentry>
@@ -979,17 +995,15 @@ maintainers, etc. Commented out by default.
             operating system command or script. Common use for this is sending
             email.
           </para>
-<!--  fixed now to use system, so this works now 
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Execute</term>
+        <listitem>
           <para>
-            Note that &app; can not handle normal linux redirection. So to send
-            email you can not set command to: 
-            <command>mail -s hi first.last@address &lt; send_this_file.txt
-            </command> because &lt; is not interpreted as redirection of 
-            standard input, but it is normal parameter instead. You need to 
-            write a shell script to do this and give the file name as a 
-            parameter to your script.
+            You can test your alarm by pressing this. It raises the alarms
+            immediately so that you can listen the sounds and see the windows.
           </para>
--->
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -1027,11 +1041,11 @@ maintainers, etc. Commented out by default.
       In this tab you can define repeating appointments. Often it makes
       sense that the same appointment happens every day or every month instead
       of creating a new appointment for each event. Note that &app; does not 
-      support exclusions (like you would like to skip holiday period from you
-      work related appointments), so you have to end the whole recurrency
-      and enable it again after it need to resume. &app; also misses the 
-      possibility to modify only one specific event from a recurring set. All
-      changes affect the whole set of appointments.
+      support exclusion day ranges (like you would like to skip holiday period 
+      from you work related appointments), so you have to end the whole 
+      recurrency and enable it again after it need to resume. &app; also 
+      misses the possibility to modify only one specific event from a 
+      recurring set. All changes affect the whole set of appointments.
     </para>
     <variablelist>
       <varlistentry>
@@ -1138,10 +1152,47 @@ maintainers, etc. Commented out by default.
           </para>
         </listitem>
       </varlistentry>
+      <varlistentry>
+        <term>Exceptions</term>
+        <listitem>
+          <para>
+            Here is list of exception times. - sign at the end of the row means
+            exclusion where the appointment does not happen even though it was
+            included in the repeat set. + sign means it is extra time to 
+            do the appointment.
+          </para>
+          <para>
+            You can remove the exception by double clicking it in the listing
+            window. You can add new exception by first selecting the type
+            (either excluded or included times) and then double clicking a day
+            in one of the calendars below.
+          </para>
+          <para>
+            (Note that even though excluded time should be date, it can be shown
+            as time in some systems. This is a way to workaround a bug where
+            some calendar backend systems are not able to handle full date
+            exclusions properly.)
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Action dates</term>
+        <listitem>
+          <para>
+            Three small helper calendars, which show when the appointment
+            will happen next. They show real time data, which is not stored
+            in the system until you press save button.
+          </para>
+        </listitem>
+      </varlistentry>
     </variablelist>
   </sect2>
 </sect1>
 
+
+  <!-- extra space -->
+  <para>&nbsp;</para>
+  
 <sect1 id="orage-exchangedata-window">
   <title>The exchange data window</title>
   <para>
@@ -1177,7 +1228,7 @@ maintainers, etc. Commented out by default.
           <para>
             Enter the name of the file which you want to copy into &app;.
             You can do several files in a row by separating names with comma.
-            After you hae the file name in place, press Save and &app; reads
+            After you have the file name in place, press Save and &app; reads
             the contents in. After the file has been imported, those 
             appointmenst are part of &app; and can't be differentiated or
             put back into the file.
@@ -1296,14 +1347,14 @@ maintainers, etc. Commented out by default.
             where they came from. This is mainly meant to be used when you
             need to maintain your calendar also in other than &app;. Sometimes
             it is good idea to mark the file as read only, which prevents
-            you from modifying any of the appoinments in the corresposnding
+            you from modifying any of the appointments in the corresponding
             file. (Orage uses some private ical components, which are not
             necessarily understood by the other system, so updates may cause
             problems for the other tool.)
           </para>
           <para>
             You can also add foreign files from the operating system using
-            command line.
+            command line: <command>orage --add-foreign file</command>
           </para>
         </listitem>
       </varlistentry>
@@ -1311,12 +1362,16 @@ maintainers, etc. Commented out by default.
   </sect2>
 </sect1>
 
+
+  <!-- extra space -->
+  <para>&nbsp;</para>
+  
 <sect1 id="orage-preferences-window">
   <title>The preferences window</title>
   <para>
     The preferences window is used to enter initial values for &app;.
     You can define for example several display options, how old appointments
-    should be archived and what is the play command to be used for playing
+    should be archived and what is the command to be used for playing
     sound alarms and also you can set the local timezone for &app;.
   </para>
 
@@ -1442,6 +1497,31 @@ maintainers, etc. Commented out by default.
         </listitem>
       </varlistentry>
       <varlistentry>
+        <term>Show month and year</term>
+        <listitem>
+          <para>
+            Select whether you want to see month and year controls in 
+            the main calendar window.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Show day names</term>
+        <listitem>
+          <para>
+            Controls day names visibility on top of the calendar window.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Show week numbers</term>
+        <listitem>
+          <para>
+            Controls visibility of week numbers on left of calendar.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
         <term>Show todo list</term>
         <listitem>
           <para>
@@ -1450,10 +1530,11 @@ maintainers, etc. Commented out by default.
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>Show event list</term>
+        <term>Number of days to show in event window</term>
         <listitem>
           <para>
-            You can hide EVENT list in the main calendar by deselecting this.
+            You can hide EVENT list in the main calendar by setting this to
+            zero. Non zero values means the number of days to show events for.
           </para>
         </listitem>
       </varlistentry>
@@ -1494,7 +1575,7 @@ maintainers, etc. Commented out by default.
         <listitem>
           <para>
             Controls if calendar is visible in the systray. A small 
-            window is presented in the systray if this is selected. It is
+            icon is presented in the systray if this is selected. It is
             recommended that you enable this feature. By clicking this icon
             &app; is toggled visible or hidden. If you do not have &app; in
             the systray, you have two other options to make the main calendar
@@ -1543,23 +1624,22 @@ maintainers, etc. Commented out by default.
             and comes visible again (for example by clicking orageclock panel
             plugin). Default value is off, which means that previously
             selected day will remain selected. Crossing this causes
-            current date always being selected.
+            current date instead being selected.
           </para>
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>Dynamic icon size</term>
+        <term>Use dynamic tray icon</term>
         <listitem>
           <para>
-            Setting these X and Y sizes to nonzero causes &app; to use dynamic
-            icon in taskbar (if you have taskbar and you have selected to use
-            taskbar in the Display tab). Dynamic icon includes real month day
-            number and also lists &app; in the top and month name at the
-            bottom if those fit in. &app; tries to fit all those three pieces
-            of information in the available icon size using proper fonts, but
-            if there is not enough space, top and bottom texts can be omitted.
-            Finally &app; switches to static icon if not even the number fits
-            into the icon. Good values to test are 32 (like X=32 Y=32).
+            Setting this causes &app; to use dynamic icon in taskbar (if you
+            have taskbar and you have selected to use taskbar in the Display
+            tab).  Note that this icon is used also other places where icon 
+            is used.
+            Dynamic icon includes real month day number and also shows weekday
+            in the top and month name at the bottom. (&app; uses appreviations
+            if real names are too long to fit to the available space.)
+            You can revert back to old static icon by deselecting this. 
           </para>
         </listitem>
       </varlistentry>
@@ -1573,10 +1653,23 @@ maintainers, etc. Commented out by default.
           </para>
         </listitem>
       </varlistentry>
+      <varlistentry>
+        <term>Eventlist window</term>
+        <listitem>
+          <para>
+            Define how many days to show in the event list when it starts.
+            (It is possible to change the number in the event list window.)
+          </para>
+        </listitem>
+      </varlistentry>
     </variablelist>
   </sect2>
 </sect1>
 
+
+  <!-- extra space -->
+  <para>&nbsp;</para>
+  
 <sect1 id="orage-undocumented">
   <title>Undocumented Features</title>
   <para>
@@ -1588,14 +1681,18 @@ maintainers, etc. Commented out by default.
   </para>
   <itemizedlist>
     <listitem>
-      Main Window Position: normally you do not want to change this. It is the
-      location of <link linkend="orage-calendar-window">calendar window</link>
+      Main Window Position (Main window X, Main window Y)
+      and Size (Main window size X, Main window size Y): normally you do
+      not want to change these. It is the location and size of
+      <link linkend="orage-calendar-window">calendar window</link>
       in the screen. &app; updates this automatically, so your setting will be
       overwritten.
     </listitem>
     <listitem>
-      Event Window Size: normally you do not want to change this. It is the
-      size of <link linkend="orage-eventlist-window">event list window</link>
+      Event Window Position (Eventlist window pos X, Eventlist window pos Y)
+      and Size(Eventlist window X, Eventlist window X): normally you do
+      not want to change these. It is the location and size of
+      <link linkend="orage-eventlist-window">event list window</link>
       in the screen. &app; updates this automatically, so your setting will be
       overwritten.
     </listitem>
@@ -1624,19 +1721,25 @@ maintainers, etc. Commented out by default.
       </itemizedlist>
     </listitem>
     <listitem>
-      <para>
-        Ical week start day: Defines what is the first day of week in libical.
-        Note, that 
-        it is <emphasis>only</emphasis> used in weekly repeating
-        appointments. It will <emphasis>not</emphasis> change the
-        calendar view anyway. &app; tries is best to find this setting 
-        automatically, but if your weekly repeating appointments seem to be
-        wrong, you can try to set this. 0 = Monday, 1 = Tuesday...
-      </para>
+      Ical week start day: Defines what is the first day of week in libical.
+      Note, that it is <emphasis>only</emphasis> used in weekly repeating
+      appointments. It will <emphasis>not</emphasis> change the
+      calendar view anyway. &app; tries is best to find this setting 
+      automatically, but if your weekly repeating appointments seem to be
+      wrong, you can try to set this. 0 = Monday, 1 = Tuesday...
+    </listitem>
+    <listitem>
+      Priority list limit: Day view listing only shows appointments, which have
+      priority smaller than this limit. It is adviced to keep it as a high 
+      value or you will not see all your appointments in the day view window.
     </listitem>
   </itemizedlist>
 </sect1>
 
+
+  <!-- extra space -->
+  <para>&nbsp;</para>
+  
 <sect1 id="orage-faq">
   <title>Frequently Asked Questions</title>
   <para>
@@ -1713,6 +1816,10 @@ maintainers, etc. Commented out by default.
           The easiest way probably is to end those appointment with end date
           and then after the holiday remove the end date again.
         </para>
+        <para>
+          &app; has excluded date feature, so you can exclude full days, but
+          only one day at a time. &app; still does not support excluded periods.
+        </para>
       </answer>
     </qandaentry>
     <qandaentry>
@@ -1739,23 +1846,36 @@ maintainers, etc. Commented out by default.
     <qandaentry>
       <question>
         <para>
-          I upgraded to Orage 4.6 from Orage 4.4 and now my old appointments 
-          are missing. Are they permanently lost?
+          I upgraded to Orage 4.6 or 4.8 from Orage 4.4 and now my old
+          appointments are missing. Are they permanently lost?
         </para>
       </question>
       <answer>
         <para>
-          &app; 4.6 uses different default location for appointments than
-          the previous version. And there is no automatic upgrade partly
-          because it is safer to leave the old data as it is in case you need
-          revert back. &app; 4.6 appointments are not compatible with older 
-          &app;. You can however copy your old file to the new place or export
-          its contents. You can do that either manually from operating system
-          (make sure &app; is not running) or using the interface menus.
-          Old default location is 
+          Since version 4.6 &app; uses different default location for
+          appointments than the previous version. And there is no automatic
+          upgrade partly because it is safer to leave the old data as it is
+          in case you need revert back. &app; 4.6 appointments are not
+          compatible with older &app;. You can however copy your old file to
+          the new place or export its contents. You can do that either manually
+          from operating system (make sure &app; is not running) or using the
+          interface menus.
+          Old default location (in 4.4) is 
           ~/.config/xfce4/orage/orage.ics
-          and new location is
+          and new location (after 4.6) is
           ~/.local/share/orage/orage.ics
+        </para>
+      </answer>
+    </qandaentry>
+    <qandaentry>
+      <question>
+        <para>
+          Does &app; support group schedules?
+        </para>
+      </question>
+      <answer>
+        <para>
+          No. Not yet at least.
         </para>
       </answer>
     </qandaentry>

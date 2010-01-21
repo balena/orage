@@ -3716,6 +3716,7 @@ static xfical_appt *xfical_appt_get_next_with_string_internal(char *str
              * We only accept SUMMARY, DESCRIPTION and LOCATION ical strings
              * to be valid. */
             /* First we need to find the beginning of our row */
+            /* FIXME: this does not work if description has line changes */
             for (tmp = cur; tmp > beg && *tmp != '\n'; tmp--)
                 ;
             tmp++; /* skip the '\n' */
