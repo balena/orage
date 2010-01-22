@@ -4,7 +4,7 @@
 # Jasper Huijsmans <jasper@xfce.org>, 2004.
 # Vincent Tunru <imnotb@gmail.com>, 2006.
 # Stephan Arts <psybsd@gmail.com>, 2006.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.3.90.2\n"
@@ -103,11 +103,11 @@ msgstr ""
 
 #: ../globaltime/gt_prefs.c:516 ../globaltime/gt_prefs.c:1033
 msgid "add new empty clock"
-msgstr ""
+msgstr "voegen een nieuwe lege klok toe"
 
 #: ../globaltime/gt_prefs.c:521
 msgid "add new clock using this clock as model"
-msgstr ""
+msgstr "voeg een nieuwe klok toe met deze klok als model"
 
 #: ../globaltime/gt_prefs.c:526
 msgid "delete this clock"
@@ -119,36 +119,38 @@ msgstr ""
 
 #: ../globaltime/gt_prefs.c:539
 msgid "move this clock left"
-msgstr ""
+msgstr "zet deze klok naar links"
 
 #: ../globaltime/gt_prefs.c:544
 msgid "move this clock right"
-msgstr ""
+msgstr "zet deze klok naar rechts"
 
 #: ../globaltime/gt_prefs.c:549
 msgid "move this clock last"
-msgstr ""
+msgstr "zet deze klok als laatste"
 
 #: ../globaltime/gt_prefs.c:557
 msgid "set the timezone of this clock to be local timezone"
-msgstr ""
+msgstr "Stel de tijdzone van deze klok gelijk aan de lokale tijdzone"
 
 #: ../globaltime/gt_prefs.c:563 ../globaltime/gt_prefs.c:1041
 msgid "close window and exit"
-msgstr ""
+msgstr "Venster sluiten en afsluiten"
 
 #: ../globaltime/gt_prefs.c:586
 msgid "Modify Clock "
-msgstr ""
+msgstr "Wijzig de Klok"
 
 #. -----------------------HEADING-------------------------------------------
 #: ../globaltime/gt_prefs.c:599
+#, fuzzy
 msgid "Clock Parameters"
-msgstr ""
+msgstr "Klok Parameters"
 
 #: ../globaltime/gt_prefs.c:603
+#, fuzzy
 msgid "Name of the clock:"
-msgstr ""
+msgstr "Naam van de klok:"
 
 #: ../globaltime/gt_prefs.c:609
 #, fuzzy
@@ -157,7 +159,7 @@ msgstr "Orage"
 
 #: ../globaltime/gt_prefs.c:612
 msgid "Timezone of the clock:"
-msgstr ""
+msgstr "Tijdzone van de klok:"
 
 #: ../globaltime/gt_prefs.c:618
 msgid ""
@@ -172,7 +174,7 @@ msgstr ""
 #. ------------------------background-------------------------
 #: ../globaltime/gt_prefs.c:648 ../globaltime/gt_prefs.c:855
 msgid "Background color:"
-msgstr ""
+msgstr "Achtergrondkleur:"
 
 #: ../globaltime/gt_prefs.c:655
 msgid "Click to change background colour for clock"
@@ -196,7 +198,7 @@ msgstr ""
 #. ------------------------foreground-------------------------
 #: ../globaltime/gt_prefs.c:680 ../globaltime/gt_prefs.c:888
 msgid "Foreground (=text) color:"
-msgstr ""
+msgstr "Voorgrond (= tekst) kleur:"
 
 #: ../globaltime/gt_prefs.c:687
 msgid "Click to change foreground colour for clock"
@@ -321,9 +323,7 @@ msgid "Local timezone:"
 msgstr "Selecteer een lokale tijdzone"
 
 #: ../globaltime/gt_prefs.c:1128
-msgid ""
-"Enter local timezone. (it is used to show if time is on previous(-) or next "
-"date(+) by adding a +/- after the time)"
+msgid "Enter local timezone. (it is used to show if time is on previous(-) or next date(+) by adding a +/- after the time)"
 msgstr ""
 
 #: ../panel-plugin/oc_config.c:199
@@ -398,12 +398,7 @@ msgid "fix time after suspend/hibernate"
 msgstr ""
 
 #: ../panel-plugin/oc_config.c:395
-msgid ""
-"You only need this if you do short term (less than 5 hours) suspend or "
-"hibernate and your visible time does not include seconds. Under these "
-"circumstances it is possible that Orageclock shows time inaccurately unless "
-"you have this selected. (Selecting this prevents cpu and interrupt saving "
-"features from working.)"
+msgid "You only need this if you do short term (less than 5 hours) suspend or hibernate and your visible time does not include seconds. Under these circumstances it is possible that Orageclock shows time inaccurately unless you have this selected. (Selecting this prevents cpu and interrupt saving features from working.)"
 msgstr ""
 
 #: ../panel-plugin/oc_config.c:407
@@ -436,7 +431,7 @@ msgstr "Orage"
 #. * %B  : full month name
 #. * %Y  : four digit year
 #. * %V  : ISO week number
-#.
+#. 
 #: ../panel-plugin/orageclock.c:596
 msgid "%A %d %B %Y/%V"
 msgstr ""
@@ -708,9 +703,7 @@ msgid "Categories"
 msgstr ""
 
 #: ../src/appointment.c:2420
-msgid ""
-"This is special category, which can be used to color this appointment in "
-"list views."
+msgid "This is special category, which can be used to color this appointment in list views."
 msgstr ""
 
 #: ../src/appointment.c:2425
@@ -769,9 +762,7 @@ msgid "Persistent alarm"
 msgstr ""
 
 #: ../src/appointment.c:2560
-msgid ""
-"Select this if you want Orage to remind you even if it has not been active "
-"when the alarm happened."
+msgid "Select this if you want Orage to remind you even if it has not been active when the alarm happened."
 msgstr ""
 
 #. **** Audio Alarm ****
@@ -2786,8 +2777,7 @@ msgstr ""
 
 #: ../src/ical-code.c:3026
 #, c-format
-msgid ""
-"\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
+msgid "\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
 msgstr ""
 
 #. remove since it has ended
@@ -3066,10 +3056,8 @@ msgstr ""
 
 #: ../src/interface.c:1286
 msgid ""
-"Set this if you want to make sure that this file is never modified by "
-"Orage.\n"
-"Note that modifying foreign files may make them incompatible with the "
-"original tool, where they came from!"
+"Set this if you want to make sure that this file is never modified by Orage.\n"
+"Note that modifying foreign files may make them incompatible with the original tool, where they came from!"
 msgstr ""
 
 #: ../src/interface.c:1300
@@ -3182,9 +3170,7 @@ msgstr ""
 
 #: ../src/main.c:237
 #, c-format
-msgid ""
-"\twithout dbus [files] and foreign file options(-a & -r) can only be used "
-"when starting orage \n"
+msgid "\twithout dbus [files] and foreign file options(-a & -r) can only be used when starting orage \n"
 msgstr ""
 
 #: ../src/main.c:381
@@ -3360,9 +3346,7 @@ msgid "Select always today"
 msgstr "_Vandaag Selecteren"
 
 #: ../src/parameters.c:735
-msgid ""
-"When showing main calendar, set pointer to either previously selected day or "
-"always to current day."
+msgid "When showing main calendar, set pointer to either previously selected day or always to current day."
 msgstr ""
 
 #: ../src/parameters.c:766
@@ -3374,10 +3358,7 @@ msgid "(0 = use static icon)"
 msgstr ""
 
 #: ../src/parameters.c:782
-msgid ""
-"Dynamic icon shows current day and month. It is visible only in tray. If "
-"tray is too small for dynamic icon size, Orage switches automatically back "
-"to static icon."
+msgid "Dynamic icon shows current day and month. It is visible only in tray. If tray is too small for dynamic icon size, Orage switches automatically back to static icon."
 msgstr ""
 
 #: ../src/parameters.c:805
@@ -3478,42 +3459,33 @@ msgstr "Xfce 4 Calender Instellingen"
 msgid "Desktop calendar"
 msgstr "Bureau-calender"
 
-#, fuzzy
 #~ msgid "Monday"
 #~ msgstr "Vandaag"
 
-#, fuzzy
 #~ msgid "Tuesday"
 #~ msgstr "Vandaag"
 
-#, fuzzy
 #~ msgid "Wednesday"
 #~ msgstr "Wekelijks"
 
-#, fuzzy
 #~ msgid "Thursday"
 #~ msgstr "Vandaag"
 
-#, fuzzy
 #~ msgid "Friday"
 #~ msgstr "dagen"
 
-#, fuzzy
 #~ msgid "Sunday"
 #~ msgstr "Geluid"
 
-#, fuzzy
 #~ msgid "Days"
 #~ msgstr "dagen"
 
-#, fuzzy
 #~ msgid "normal"
 #~ msgstr "Algemeen"
 
 #~ msgid "%m/%d/%Y"
 #~ msgstr "%d/%m/%Y"
 
-#, fuzzy
 #~ msgid "Calendar Files"
 #~ msgstr "Kalenderbestanden"
 
