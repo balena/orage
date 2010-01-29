@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the orage package.
 #
 # Piarres Beobide Egaña <pi@beobide.net>, 2004, 2005, 2006, 2008, 2009.
+# Piarres Beobide <pi+debian@beobide.net>, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: eu\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-12-30 17:07+0200\n"
-"PO-Revision-Date: 2009-09-21 23:03+0200\n"
-"Last-Translator: Piarres Beobide <pi@beobide.net>\n"
-"Language-Team: Basque <debian-l10n-eu@debian.lists.org>\n"
+"PO-Revision-Date: 2010-01-29 09:22+0100\n"
+"Last-Translator: Piarres Beobide <pi+debian@beobide.net>\n"
+"Language-Team: Basque <debian-l10n-basque@lists.debian.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -56,6 +57,8 @@ msgstr "doitu orduak aldatzeko"
 msgid ""
 "adjust to change minute. Click arrows with button 2 to change only 1 minute."
 msgstr ""
+"doitu minutua aldatzeko. Sakatu geziak 2 botoiarekin minutu bakar bat "
+"aldatzeko."
 
 #: ../globaltime/gt_prefs.c:264 ../globaltime/gt_prefs.c:265
 msgid "NEW"
@@ -110,9 +113,8 @@ msgid "close window and exit"
 msgstr "itxi leihoa eta irten"
 
 #: ../globaltime/gt_prefs.c:589
-#, fuzzy
 msgid "Globaltime preferences "
-msgstr "eguneratu hobespenak"
+msgstr "Ordu-global hobespenak "
 
 #. -----------------------HEADING-------------------------------------------
 #: ../globaltime/gt_prefs.c:602
@@ -242,9 +244,8 @@ msgid "update preferences"
 msgstr "eguneratu hobespenak"
 
 #: ../globaltime/gt_prefs.c:1061
-#, fuzzy
 msgid "Globaltime Preferences"
-msgstr "Hobespen orokorrak"
+msgstr "Ordu-global hobespenak"
 
 #. -----------------------HEADING--------------------------------------
 #: ../globaltime/gt_prefs.c:1072
@@ -294,46 +295,45 @@ msgstr "Ordu-zonalde lokala:"
 #: ../globaltime/timezone_selection.c:103
 #: ../panel-plugin/timezone_selection.c:103 ../src/timezone_selection.c:103
 msgid " Other"
-msgstr ""
+msgstr " Besteak"
 
 #: ../globaltime/timezone_selection.c:158
 #: ../panel-plugin/timezone_selection.c:158 ../src/timezone_selection.c:169
 #, c-format
 msgid "%d hour %d mins"
-msgstr ""
+msgstr "%d ordu %d minutu"
 
 #: ../globaltime/timezone_selection.c:161
 #: ../panel-plugin/timezone_selection.c:161 ../src/timezone_selection.c:172
-#, fuzzy, c-format
+#, c-format
 msgid "%d hour"
-msgstr "ordu"
+msgstr "%d ordu"
 
 #: ../globaltime/timezone_selection.c:163
 #: ../panel-plugin/timezone_selection.c:163 ../src/timezone_selection.c:174
-#, fuzzy, c-format
+#, c-format
 msgid "%d mins"
-msgstr "minutu"
+msgstr "%d minutu"
 
 #: ../globaltime/timezone_selection.c:169
 #: ../panel-plugin/timezone_selection.c:169 ../src/timezone_selection.c:180
 msgid "backward"
-msgstr ""
+msgstr "atzera"
 
 #: ../globaltime/timezone_selection.c:172
 #: ../panel-plugin/timezone_selection.c:172 ../src/timezone_selection.c:183
-#, fuzzy
 msgid "forward"
-msgstr "Aurrera"
+msgstr "aurrera"
 
 #: ../globaltime/timezone_selection.c:196
 #: ../panel-plugin/timezone_selection.c:196 ../src/timezone_selection.c:207
 msgid "not changed"
-msgstr ""
+msgstr "aldatu gabe"
 
 #: ../globaltime/timezone_selection.c:197
 #: ../panel-plugin/timezone_selection.c:197 ../src/timezone_selection.c:208
 msgid "not changing"
-msgstr ""
+msgstr "aldatzen"
 
 #. location
 #: ../globaltime/timezone_selection.c:249
@@ -347,17 +347,17 @@ msgstr "Kokalekua"
 #: ../globaltime/timezone_selection.c:260
 #: ../panel-plugin/timezone_selection.c:260 ../src/timezone_selection.c:271
 msgid "GMT Offset"
-msgstr ""
+msgstr "GMT ezberdintasuna"
 
 #: ../globaltime/timezone_selection.c:266
 #: ../panel-plugin/timezone_selection.c:266 ../src/timezone_selection.c:277
 msgid "Previous/Next Change"
-msgstr ""
+msgstr "Aurreko/Hurrengo aldaketa"
 
 #: ../globaltime/timezone_selection.c:271
 #: ../panel-plugin/timezone_selection.c:271 ../src/timezone_selection.c:282
 msgid "Country"
-msgstr ""
+msgstr "Estatua"
 
 #: ../globaltime/timezone_selection.c:301
 #: ../globaltime/timezone_selection.c:311
@@ -373,7 +373,7 @@ msgstr "Ordu zonaldea aukeratu"
 #: ../panel-plugin/timezone_selection.c:314 ../src/timezone_selection.c:315
 #: ../src/timezone_selection.c:325
 msgid "Change mode"
-msgstr ""
+msgstr "Aldatu modua"
 
 #: ../globaltime/timezone_selection.c:305
 #: ../globaltime/timezone_selection.c:315
@@ -416,11 +416,11 @@ msgstr "Atzeko planoko _kolorea ezarri:"
 #. clock size (=vbox size): height and width
 #: ../panel-plugin/oc_config.c:268
 msgid "set _height:"
-msgstr "a_lktuera ezarri:"
+msgstr "a_ltuera ezarri:"
 
 #: ../panel-plugin/oc_config.c:278
 msgid "Note that you can not change the height of horizontal panels"
-msgstr ""
+msgstr "Kontutan izan ezin duzu panel horizontalen altuera aldatu"
 
 #: ../panel-plugin/oc_config.c:283
 msgid "set _width:"
@@ -428,11 +428,11 @@ msgstr "_zabalera ezarri:"
 
 #: ../panel-plugin/oc_config.c:294
 msgid "Note that you can not change the width of vertical panels"
-msgstr ""
+msgstr "Kontutan izan ezin duzu panel bertikalen zabalera aldatu"
 
 #: ../panel-plugin/oc_config.c:311
 msgid "Clock Options"
-msgstr "Ordulari Aukerak"
+msgstr "Ordulari aukerak"
 
 #. timezone
 #: ../panel-plugin/oc_config.c:328
@@ -442,7 +442,7 @@ msgstr "Ordu zonalde hau ezarri:"
 #: ../panel-plugin/oc_config.c:349
 #, c-format
 msgid "Line %d:"
-msgstr ""
+msgstr "%d lerroa:"
 
 #: ../panel-plugin/oc_config.c:359
 msgid "Enter any valid strftime function parameter."
@@ -497,9 +497,8 @@ msgstr ""
 "\t%X = lokala time\t\t\t%x = data lokala"
 
 #: ../panel-plugin/oc_config.c:456
-#, fuzzy
 msgid "Orage clock Preferences"
-msgstr "Orage hobespenak"
+msgstr "Orage ordulari hobespenak"
 
 #: ../panel-plugin/oc_config.c:471
 msgid "Orage clock"
@@ -774,7 +773,7 @@ msgstr "eguneratu kategoria koloreak"
 #. priority
 #: ../src/appointment.c:2725
 msgid "Priority"
-msgstr ""
+msgstr "Lehentasuna"
 
 #. note
 #: ../src/appointment.c:2735
@@ -924,12 +923,11 @@ msgstr ""
 
 #: ../src/appointment.c:3024
 msgid "Test this alarm by raising it now"
-msgstr ""
+msgstr "Probatu alarma hau orain jo-arazten"
 
 #: ../src/appointment.c:3031
-#, fuzzy
 msgid "<b>Default alarm</b>"
-msgstr "Lehenetsiriko abisua"
+msgstr "<b>Lehenetsiriko alarma</b>"
 
 #: ../src/appointment.c:3039
 msgid "Store current settings as default alarm"
@@ -1102,9 +1100,8 @@ msgstr ""
 
 #. exceptions
 #: ../src/appointment.c:3291
-#, fuzzy
 msgid "Exceptions"
-msgstr "Aukerak"
+msgstr "Salbuespenak"
 
 #: ../src/appointment.c:3304
 msgid ""
@@ -1113,14 +1110,18 @@ msgid ""
 "selection.\n"
 "Remove by clicking the data."
 msgstr ""
+"Salbuespen data gehiago gehitu beheko egutegi egunak klikatuaz.\\ "
+"Salbuespenak edo kentzea (-) edo jartzea (+) dira hautapenaren "
+"arabera.\n"
+"Ezabatzeko data klikatu."
 
 #: ../src/appointment.c:3309
 msgid "Add excluded date (-)"
-msgstr ""
+msgstr "Gehitu kendutako data (-)"
 
 #: ../src/appointment.c:3311
 msgid "Excluded days are full days where this appointment is not happening"
-msgstr ""
+msgstr "Kendutako egunak egun osoak dira gertaera ez denean gertatzen ari"
 
 #: ../src/appointment.c:3317
 msgid "Add included time (+)"
@@ -1131,12 +1132,13 @@ msgid ""
 "Included times have same timezone than start time, but they may have "
 "different time"
 msgstr ""
+"Txertatuko orduak hasiera orduaren ordu-zonalde berdina dute, baina "
+"ordu ezberdina eduki dezakete"
 
 #. calendars showing the action days
 #: ../src/appointment.c:3336
-#, fuzzy
 msgid "Action dates"
-msgstr "Ekintza aukerak"
+msgstr "Ekintza datak"
 
 #. ********* View menu *********
 #. View menu
@@ -1180,7 +1182,7 @@ msgstr "Ezezaguna"
 
 #: ../src/day-view.c:689
 msgid "       Number of days to show"
-msgstr ""
+msgstr "       Bistaratzeko egun kopurua"
 
 #: ../src/day-view.c:920
 msgid "Orage - day view"
@@ -1641,12 +1643,12 @@ msgstr "\tArtxibatzea erabili gabe.\n"
 #: ../src/main.c:215
 #, c-format
 msgid "\tUsing operating system package libical.\n"
-msgstr ""
+msgstr "\tSistema eragilearen libical erabiltzen.\n"
 
 #: ../src/main.c:217
 #, c-format
 msgid "\tUsing Orage local version of libical.\n"
-msgstr ""
+msgstr "\tLibical-en Orage bertsio lokala erabiltzen.\n"
 
 #: ../src/main.c:230
 #, c-format
@@ -1794,9 +1796,9 @@ msgid "<b>Events for %s:</b>"
 msgstr "<b>%s-ren geraterak:</b>"
 
 #: ../src/mainbox.c:535
-#, fuzzy, c-format
+#, c-format
 msgid "<b>Events for %s - %s:</b>"
-msgstr "<b>%s-ren geraterak:</b>"
+msgstr "<b>%s - %s-ren gertaerak:</b>"
 
 #: ../src/parameters.c:477
 msgid "Main setups"
@@ -1848,19 +1850,16 @@ msgid "Show menu"
 msgstr "Ikusi menua"
 
 #: ../src/parameters.c:590
-#, fuzzy
 msgid "Show month and year"
-msgstr "Ikusi orrialdekatzailean"
+msgstr "Ikusi hilabete eta ordua"
 
 #: ../src/parameters.c:597
-#, fuzzy
 msgid "Show day names"
-msgstr "_Markoa bistarazi"
+msgstr "Ikusi egun izenak"
 
 #: ../src/parameters.c:604
-#, fuzzy
 msgid "Show week numbers"
-msgstr "Ikusi ertzak"
+msgstr "Ikusi aste zenbakiak"
 
 #: ../src/parameters.c:611
 msgid "Show todo list"
@@ -1868,11 +1867,11 @@ msgstr "Ikusi egitekoen zerrenda"
 
 #: ../src/parameters.c:618
 msgid "Number of days to show in event window"
-msgstr ""
+msgstr "Gertaera leihoan ikusi beharreko egun kopurua"
 
 #: ../src/parameters.c:624
 msgid "0 = do not show event list at all"
-msgstr ""
+msgstr "0 = ez erakutsi gertaera zerrenda"
 
 #: ../src/parameters.c:634
 msgid "Set sticked"
@@ -1880,7 +1879,7 @@ msgstr "Ezarri itsatsirik"
 
 #: ../src/parameters.c:641
 msgid "Set on top"
-msgstr "Ezarri goian:"
+msgstr "Ezarri goian"
 
 #: ../src/parameters.c:648
 msgid "Show in taskbar"
@@ -1928,18 +1927,19 @@ msgstr ""
 
 #: ../src/parameters.c:776
 msgid "Use dynamic tray icon"
-msgstr ""
+msgstr "Erabiliko ataza-barra ikono dinamikoa"
 
 #: ../src/parameters.c:781
-#, fuzzy
 msgid "Use dynamic icon"
-msgstr "Ikono dinamiko tamaina"
+msgstr "Erabili Ikono dinamikoa"
 
 #: ../src/parameters.c:787
 msgid ""
 "Dynamic icon shows current month and day of the month. It is visible only in "
 "system tray."
 msgstr ""
+"Ikono dinamikoak hilabetea eta hilabeteko egunak bistaratzen ditu. Sistema "
+"barran bakarrik da ikusgarria."
 
 #: ../src/parameters.c:796
 msgid "Main Calendar double click shows"
@@ -1954,19 +1954,20 @@ msgid "Event list"
 msgstr "Gertaera zerrenda"
 
 #: ../src/parameters.c:830
-#, fuzzy
 msgid "Eventlist window"
-msgstr "Gertaera zerrenda"
+msgstr "Gertaera-zerrenda leihoa"
 
 #: ../src/parameters.c:834
 msgid "Number of extra days to show in event list"
-msgstr ""
+msgstr "Gertaera zerrenda ikusi behar diren egun gehigarri kopurua"
 
 #: ../src/parameters.c:846
 msgid ""
 "This is just the default value, you can change it in the actual eventlist "
 "window."
 msgstr ""
+"Hau lehenetsitako balioa da, berau gertaera-zerrenda leihoan aldatu "
+"dezakezu."
 
 #: ../src/parameters.c:862
 msgid "Orage Preferences"
@@ -1999,7 +2000,7 @@ msgstr "Gogorarazlea - Orage"
 
 #: ../src/reminder.c:772
 msgid "Remind me again after the specified time"
-msgstr ""
+msgstr "Gogoratu berriz ezarritako denboraren ondoren"
 
 #. Note that this goes to the main area. Temporary for the version
 #: ../src/reminder.c:775
@@ -3589,14 +3590,12 @@ msgid "About Orage"
 msgstr "Orage-ri buruz"
 
 #: ../panel-plugin/xfce4-orageclock-plugin.desktop.in.in.h:1
-#, fuzzy
 msgid "Orage Panel Clock"
-msgstr "Orage Ordularia"
+msgstr "Orage panel ordularia"
 
 #: ../panel-plugin/xfce4-orageclock-plugin.desktop.in.in.h:2
-#, fuzzy
 msgid "Show time and date?"
-msgstr "Zein data eta ordu da?"
+msgstr "Ikusi data eta ordua?"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:1
 #: ../xfcalendar.desktop.in.h:1
@@ -3604,28 +3603,24 @@ msgid "Calendar"
 msgstr "Egutegia"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:2
-#, fuzzy
 msgid "Orage Calendar Preferences"
-msgstr "Orage hobespenak"
+msgstr "Orage egutegi hobespenak"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:3
-#, fuzzy
 msgid "Orage preferences"
 msgstr "Orage hobespenak"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:4
-#, fuzzy
 msgid "Settings for the Xfce 4 Calendar Application (Orage)"
-msgstr "Xfce 4 Egutegi Aplikazioaren Ezarpenak"
+msgstr "Xfce 4 egutegi aplikazioaren (Orage) ezarpenak"
 
 #: ../xfcalendar.desktop.in.h:2
 msgid "Desktop calendar"
 msgstr "Idazmahai egutegia"
 
 #: ../xfcalendar.desktop.in.h:3
-#, fuzzy
 msgid "Orage Calendar"
-msgstr "Orage - Egutegia"
+msgstr "Orage egutegia"
 
 #~ msgid "Ending time adjustment mode"
 #~ msgstr "Ordu doitze modua amaitzen"
