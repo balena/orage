@@ -356,7 +356,7 @@ static void add_info_row(xfical_appt *appt, GtkBox *parentBox, gboolean todo)
     CalWin *cal = (CalWin *)g_par.xfcal;
     gchar *tip, *tmp, *tmp_title, *tmp_note;
     struct tm *t;
-    char      *l_time, *s_time, *e_time, *c_time, *na;
+    char  *l_time, *s_time, *s_timeonly, *e_time, *c_time, *na, *today;
     gint  len;
 
 #ifdef ORAGE_DEBUG
@@ -365,7 +365,19 @@ static void add_info_row(xfical_appt *appt, GtkBox *parentBox, gboolean todo)
     /***** add data into the vbox *****/
     ev = gtk_event_box_new();
     tmp_title = orage_process_text_commands(appt->title);
-    tmp = g_strdup_printf("  %s", tmp_title);
+    if (appt->allDay || todo) {
+        tmp = g_strdup_printf("  %s", tmp_title);
+    }
+    else {
+        s_timeonly = g_strdup(orage_icaltime_to_i18_time_short(
+                    appt->starttimecur));
+        today = orage_tm_time_to_icaltime(orage_localtime());
+        if (!strncmp(today, appt->starttimecur, 8)) /* today */
+            tmp = g_strdup_printf(" %s* %s", s_timeonly, appt->title);
+        else
+            tmp = g_strdup_printf(" %s  %s", s_timeonly, appt->title);
+        g_free(s_timeonly);
+    }
     label = gtk_label_new(tmp);
     g_free(tmp);
     gtk_label_set_ellipsize(GTK_LABEL(label), PANGO_ELLIPSIZE_END);

@@ -583,6 +583,17 @@ char *orage_icaltime_to_i18_time(const char *icaltime)
     return(ct);
 }
 
+char *orage_icaltime_to_i18_time_short(const char *icaltime)
+{
+    struct tm t;
+    static char i18_time[10];
+
+    t = orage_icaltime_to_tm_time(icaltime, TRUE);
+    if (strftime(i18_time, 10, "%R", &t) == 0)
+        g_error("Orage: orage_icaltime_to_i18_time_short too long string in strftime");
+    return(i18_time);
+}
+
 char *orage_i18_time_to_icaltime(const char *i18_time)
 {
     struct tm t;
