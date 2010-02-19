@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Orage 4.5.9.6-svn\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2009-12-30 17:07+0200\n"
-"PO-Revision-Date: 2009-04-12 11:58+0200\n"
+"PO-Revision-Date: 2010-02-18 15:49+0100\n"
 "Last-Translator: Simon Schneider <simon@schneiderimtal.de>\n"
 "Language-Team: German <xfce-i18n@xfce.org>\n"
 "MIME-Version: 1.0\n"
@@ -289,13 +289,13 @@ msgstr "Lokale Zeitzone:"
 #: ../globaltime/timezone_selection.c:103
 #: ../panel-plugin/timezone_selection.c:103 ../src/timezone_selection.c:103
 msgid " Other"
-msgstr ""
+msgstr "Andere"
 
 #: ../globaltime/timezone_selection.c:158
 #: ../panel-plugin/timezone_selection.c:158 ../src/timezone_selection.c:169
-#, c-format
+#, c-format, fuzzy
 msgid "%d hour %d mins"
-msgstr ""
+msgstr "%d:%d Uhr"
 
 #: ../globaltime/timezone_selection.c:161
 #: ../panel-plugin/timezone_selection.c:161 ../src/timezone_selection.c:172
@@ -343,12 +343,12 @@ msgstr "Ort"
 #: ../globaltime/timezone_selection.c:260
 #: ../panel-plugin/timezone_selection.c:260 ../src/timezone_selection.c:271
 msgid "GMT Offset"
-msgstr ""
+msgstr "GMT Unterschied"
 
 #: ../globaltime/timezone_selection.c:266
 #: ../panel-plugin/timezone_selection.c:266 ../src/timezone_selection.c:277
 msgid "Previous/Next Change"
-msgstr ""
+msgstr "Voriger/Nächster Wechsel"
 
 #: ../globaltime/timezone_selection.c:271
 #: ../panel-plugin/timezone_selection.c:271 ../src/timezone_selection.c:282
@@ -897,7 +897,7 @@ msgstr ""
 
 #: ../src/appointment.c:3024
 msgid "Test this alarm by raising it now"
-msgstr ""
+msgstr "Diesen Alarm jetzt testen"
 
 #: ../src/appointment.c:3031
 #, fuzzy
@@ -1061,14 +1061,18 @@ msgid "TODO base"
 msgstr ""
 
 #: ../src/appointment.c:3282
+#, fuzzy
 msgid "TODO reoccurs regularly starting on start time and repeating after each interval no matter when it was last completed"
-msgstr ""
+msgstr "Aufgabe tritt regelmäßig auf. Beginnend mit der Startzeit und wiederholt nach jedem Intervall unabhängig davon, wann sie zuletzt beendet wurde "
 
 #: ../src/appointment.c:3284
+#, fuzzy
 msgid ""
 "TODO reoccurrency is based on complete time and repeats after the interval counted from the last completed time.\n"
 "(Note that you can not tell anything about the history of the TODO since reoccurrence base changes after each completion.)"
 msgstr ""
+"Wiederauftreten der Aufgabe hängt von der Zeit der letzten Beendung ab und wiederholt sich ein Intervall nach der letzten Beendung.\\n\n"
+"(Beachten Sie, dass sie nichts über den vergangenen Verlauf der Aufgabe sagen können, da das Wiederauftreten sich nach jeder Beendung ändert.)"
 
 #. exceptions
 #: ../src/appointment.c:3291
@@ -1819,11 +1823,11 @@ msgstr "Liste zu erledigender Aufgaben anzeigen"
 
 #: ../src/parameters.c:618
 msgid "Number of days to show in event window"
-msgstr ""
+msgstr "Anzahl der Tage, die im Ereignisfenster angezeigt werden"
 
 #: ../src/parameters.c:624
 msgid "0 = do not show event list at all"
-msgstr ""
+msgstr "0 = keine Tage anzeigen"
 
 #: ../src/parameters.c:634
 msgid "Set sticked"
@@ -1875,7 +1879,7 @@ msgstr "Wenn die Hauptseite des Kalenders gezeigt wird, wird entweder der zuletz
 
 #: ../src/parameters.c:776
 msgid "Use dynamic tray icon"
-msgstr ""
+msgstr "Dynamisches Systemleistenlogo verwenden"
 
 #: ../src/parameters.c:781
 #, fuzzy
@@ -1884,7 +1888,7 @@ msgstr "Größe des dynamischen Symbols"
 
 #: ../src/parameters.c:787
 msgid "Dynamic icon shows current month and day of the month. It is visible only in system tray."
-msgstr ""
+msgstr "Das dynamische Systemleistenlogo zeigt den aktuellen Monat und Tag. Es ist nur in der Systemleiste sichtbar."
 
 #: ../src/parameters.c:796
 msgid "Main Calendar double click shows"
@@ -1905,11 +1909,12 @@ msgstr "Ereignisliste"
 
 #: ../src/parameters.c:834
 msgid "Number of extra days to show in event list"
-msgstr ""
+msgstr "Anzahl zusätzlicher Tage, die in der Ereignisliste angezeigt werden sollen"
 
 #: ../src/parameters.c:846
+#, fuzzy
 msgid "This is just the default value, you can change it in the actual eventlist window."
-msgstr ""
+msgstr "Dies ist der Standardwert, Sie können ihn im jeweiligen Ereignisfenster ändern."
 
 #: ../src/parameters.c:862
 msgid "Orage Preferences"
@@ -1942,7 +1947,7 @@ msgstr "Erinnerungen - Orage"
 
 #: ../src/reminder.c:772
 msgid "Remind me again after the specified time"
-msgstr ""
+msgstr "Nach gewisser Zeit wieder erinnern"
 
 #. Note that this goes to the main area. Temporary for the version
 #: ../src/reminder.c:775
