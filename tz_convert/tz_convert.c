@@ -116,20 +116,26 @@ struct rdate_prev_data {
     struct rdate_prev_data   *next;
 };
 
-read_file(const char *file_name, const struct stat *file_stat)
+void read_file(const char *file_name, const struct stat *file_stat)
 {
     FILE *file;
 
     if (debug > 1) {
         printf("read_file: start\n");
         printf("\n***** size of file %s is %d bytes *****\n\n", file_name
-                , file_stat->st_size);
+                , (int)file_stat->st_size);
     }
     in_buf = malloc(file_stat->st_size);
     in_head = in_buf;
     in_tail = in_buf + file_stat->st_size - 1;
     file = fopen(file_name, "r");
-    fread(in_buf, 1, file_stat->st_size, file);
+    if (!fread(in_buf, 1, file_stat->st_size, file))
+        if (ferror(file)) {
+            printf("read_file: file read failed (%s)\n", file_name);
+            fclose(file);
+            perror("\tfread");
+            return;
+        }
     fclose(file);
     if (debug > 1)
         printf("read_file: end\n");
@@ -159,27 +165,27 @@ int process_header()
     in_head += 16; /* reserved */
     gmtcnt  = get_long();
     if (debug > 2)
-        printf("gmtcnt=%u \n", gmtcnt);
+        printf("gmtcnt=%lu \n", gmtcnt);
     stdcnt  = get_long();
     if (debug > 2)
-        printf("stdcnt=%u \n", stdcnt);
+        printf("stdcnt=%lu \n", stdcnt);
     leapcnt = get_long();
     if (debug > 2)
-        printf("leapcnt=%u \n", leapcnt);
+        printf("leapcnt=%lu \n", leapcnt);
     timecnt = get_long();
     if (debug > 2)
-        printf("number of time changes: timecnt=%u \n", timecnt);
+        printf("number of time changes: timecnt=%lu \n", timecnt);
     typecnt = get_long();
     if (debug > 2)
-        printf("number of time change types: typecnt=%u \n", typecnt);
+        printf("number of time change types: typecnt=%lu \n", typecnt);
     charcnt = get_long();
     if (debug > 2)
-        printf("lenght of different timezone names table: charcnt=%u \n"
+        printf("lenght of different timezone names table: charcnt=%lu \n"
                 , charcnt);
     return(0);
 }
 
-process_local_time_table()
+void process_local_time_table()
 { /* points when time changes */
     unsigned long tmp;
     int i;
@@ -190,15 +196,15 @@ process_local_time_table()
     for (i = 0; i < timecnt; i++) {
         tmp = get_long();
         if (debug > 3) {
-            printf("GMT %d: %u =  %s", i, tmp
+            printf("GMT %d: %lu =  %s", i, tmp
                     , asctime(gmtime((const time_t*)&tmp)));
-            printf("\tLOC %d: %u =  %s", i, tmp
+            printf("\tLOC %d: %lu =  %s", i, tmp
                     , asctime(localtime((const time_t*)&tmp)));
         }
     }
 }
 
-process_local_time_type_table()
+void process_local_time_type_table()
 { /* pointers to table, which explain how time changes */
     unsigned char tmp;
     int i;
@@ -214,7 +220,7 @@ process_local_time_type_table()
     }
 }
 
-process_ttinfo_table()
+void process_ttinfo_table()
 { /* table of different time changes = types */
     long tmp;
     unsigned char tmp2, tmp3;
@@ -230,12 +236,12 @@ process_ttinfo_table()
         tmp3 = in_head[0];
         in_head++;
         if (debug > 3)
-            printf("%d: gmtoffset:%d isdst:%d abbr:%d\n", i, tmp
+            printf("%d: gmtoffset:%ld isdst:%d abbr:%d\n", i, tmp
                     , (unsigned int)tmp2, (unsigned int)tmp3);
     }
 }
 
-process_abbr_table()
+void process_abbr_table()
 {
     unsigned char *tmp;
     int i;
@@ -252,7 +258,7 @@ process_abbr_table()
     in_head += charcnt;
 }
 
-process_leap_table()
+void process_leap_table()
 {
     unsigned long tmp, tmp2;
     int i;
@@ -263,12 +269,12 @@ process_leap_table()
         tmp = get_long();
         tmp2 = get_long();
         if (debug > 3)
-            printf("leaps %d: %u =  %s (%u)", i, tmp
+            printf("leaps %d: %lu =  %s (%lu)", i, tmp
                     , asctime(localtime((const time_t *)&tmp)), tmp2);
     }
 }
 
-process_std_table()
+void process_std_table()
 {
     unsigned char tmp;
     int i;
@@ -283,7 +289,7 @@ process_std_table()
     }
 }
 
-process_gmt_table()
+void process_gmt_table()
 {
     unsigned char tmp;
     int i;
@@ -434,7 +440,7 @@ int create_ical_file(const char *in_file_name)
                     }
                 }
                 *s_dir = '/';
-                *s_dir++;
+                s_dir++;
             }
             if (!(ical_file = fopen(out_file, "w"))) {
                 /* still failed; real error, which we can not fix */
@@ -620,8 +626,8 @@ void wit_write_data(int repeat_rule, struct rdate_prev_data **rdate
         , struct ical_timezone_data *first, struct ical_timezone_data *prev
         , struct ical_timezone_data *ical_data)
 {
-    char str[100], until_date[20];
-    int len, until_day;
+    char str[100], until_date[31];
+    int len;
     char *dst_begin="BEGIN:DAYLIGHT\n";
     char *dst_end="END:DAYLIGHT\n";
     char *std_begin="BEGIN:STANDARD\n";
@@ -769,7 +775,7 @@ void wit_write_data(int repeat_rule, struct rdate_prev_data **rdate
         write_ical_str(std_end);
 }
 
-wit_push_to_rdate_queue(struct rdate_prev_data **p_rdate_data
+void wit_push_to_rdate_queue(struct rdate_prev_data **p_rdate_data
         , struct ical_timezone_data *p_data_prev)
 {
     struct rdate_prev_data *tmp_data = NULL, *tmp_data2 = NULL;
@@ -1083,7 +1089,6 @@ void write_parameters(const char *par_file_name)
     /* FIXME: currently only writing the location of system tz files.
      * It would be good to have a way to influence other parameters also.*/
     FILE *par_file;
-    struct stat par_file_stat;
     int len;
 
     if (debug > 1)
@@ -1333,7 +1338,7 @@ void add_zone_tabs()
     /* ical index filename is zoneinfo/zones.tab 
      * and os file is zone.tab */
     char ical_zone[]="zoneinfo/zones.tab";
-    FILE *os_zone_tab, *ical_zone_tab;
+    FILE *ical_zone_tab;
     struct stat ical_zone_stat;
     char *ical_zone_buf, *line_end, *buf;
     int offset; /* offset to next timezone in libical zones.tab */
@@ -1371,8 +1376,8 @@ void add_zone_tabs()
     }
 
     ical_zone_buf = malloc(ical_zone_stat.st_size+1);
-    fread(ical_zone_buf, 1, ical_zone_stat.st_size, ical_zone_tab);
-    if (ferror(ical_zone_tab)) {
+    if (!fread(ical_zone_buf, 1, ical_zone_stat.st_size, ical_zone_tab)
+    && (ferror(ical_zone_tab))) {
         printf("add_zone_tabs: error reading (%s).\n", ical_zone);
         perror("\tfread");
         free(ical_zone_buf);
@@ -1551,7 +1556,7 @@ int check_parameters()
     for (s_tz = strstr(s_tz, tz); s_tz != NULL; s_tz = strstr(s_tz, tz)) {
         if (s_tz[tz_len] == '\0' || s_tz[tz_len] == '/')
             last_tz = s_tz;
-        *s_tz++;
+        s_tz++;
     }
     if (last_tz == NULL) {
         printf("check_parameters: in_file name (%s) does not contain (%s). Ending\n"
@@ -1592,7 +1597,7 @@ int check_parameters()
     return(0); /* continue */
 }
 
-main(int argc, const char **argv)
+int main(int argc, const char **argv)
 {
     if (debug > 1)
         printf("main: start\n");

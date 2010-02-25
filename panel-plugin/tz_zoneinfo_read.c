@@ -19,6 +19,10 @@
         Boston, MA 02110-1301 USA
  */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include <error.h>
 #include <errno.h>
     /* errno */
@@ -46,7 +50,7 @@
  * Documentation says the define is _XOPEN_SOURCE, but it
  * does not work. __USE_XOPEN_EXTENDED works 
  * Same with _GNU_SOURCE and __USE_GNU */
-#define _XOPEN_SOURCE 500
+/* #define _XOPEN_SOURCE 500 */
 #define __USE_XOPEN_EXTENDED 1
 #define _GNU_SOURCE 1
 #define __USE_GNU 1
@@ -132,13 +136,19 @@ static void read_file(const char *file_name, const struct stat *file_stat)
     if (debug > 1) {
         printf("read_file: start\n");
         printf("\n***** size of file %s is %d bytes *****\n\n", file_name
-                , file_stat->st_size);
+                , (int)file_stat->st_size);
     }
     in_buf = malloc(file_stat->st_size);
     in_head = in_buf;
     in_tail = in_buf + file_stat->st_size - 1;
     file = fopen(file_name, "r");
-    fread(in_buf, 1, file_stat->st_size, file);
+    if (!fread(in_buf, 1, file_stat->st_size, file))
+        if (ferror(file)) {
+            printf("read_file: file read failed (%s)\n", file_name);
+            fclose(file);
+            perror("\tfread");
+            return;
+        }
     fclose(file);
     if (debug > 1)
         printf("read_file: end\n");
@@ -168,27 +178,27 @@ static int process_header()
     in_head += 16; /* reserved */
     gmtcnt  = get_long();
     if (debug > 2)
-        printf("gmtcnt=%u \n", gmtcnt);
+        printf("gmtcnt=%lu \n", gmtcnt);
     stdcnt  = get_long();
     if (debug > 2)
-        printf("stdcnt=%u \n", stdcnt);
+        printf("stdcnt=%lu \n", stdcnt);
     leapcnt = get_long();
     if (debug > 2)
-        printf("leapcnt=%u \n", leapcnt);
+        printf("leapcnt=%lu \n", leapcnt);
     timecnt = get_long();
     if (debug > 2)
-        printf("number of time changes: timecnt=%u \n", timecnt);
+        printf("number of time changes: timecnt=%lu \n", timecnt);
     typecnt = get_long();
     if (debug > 2)
-        printf("number of time change types: typecnt=%u \n", typecnt);
+        printf("number of time change types: typecnt=%lu \n", typecnt);
     charcnt = get_long();
     if (debug > 2)
-        printf("lenght of different timezone names table: charcnt=%u \n"
+        printf("lenght of different timezone names table: charcnt=%lu \n"
                 , charcnt);
     return(0);
 }
 
-static process_local_time_table()
+static void process_local_time_table()
 { /* points when time changes */
     unsigned long tmp;
     int i;
@@ -199,15 +209,15 @@ static process_local_time_table()
     for (i = 0; i < timecnt; i++) {
         tmp = get_long();
         if (debug > 3) {
-            printf("GMT %d: %u =  %s", i, tmp
+            printf("GMT %d: %lu =  %s", i, tmp
                     , asctime(gmtime((const time_t*)&tmp)));
-            printf("\tLOC %d: %u =  %s", i, tmp
+            printf("\tLOC %d: %lu =  %s", i, tmp
                     , asctime(localtime((const time_t*)&tmp)));
         }
     }
 }
 
-static process_local_time_type_table()
+static void process_local_time_type_table()
 { /* pointers to table, which explain how time changes */
     unsigned char tmp;
     int i;
@@ -223,7 +233,7 @@ static process_local_time_type_table()
     }
 }
 
-static process_ttinfo_table()
+static void process_ttinfo_table()
 { /* table of different time changes = types */
     long tmp;
     unsigned char tmp2, tmp3;
@@ -239,12 +249,12 @@ static process_ttinfo_table()
         tmp3 = in_head[0];
         in_head++;
         if (debug > 3)
-            printf("%d: gmtoffset:%d isdst:%d abbr:%d\n", i, tmp
+            printf("%d: gmtoffset:%ld isdst:%d abbr:%d\n", i, tmp
                     , (unsigned int)tmp2, (unsigned int)tmp3);
     }
 }
 
-static process_abbr_table()
+static void process_abbr_table()
 {
     unsigned char *tmp;
     int i;
@@ -261,7 +271,7 @@ static process_abbr_table()
     in_head += charcnt;
 }
 
-static process_leap_table()
+static void process_leap_table()
 {
     unsigned long tmp, tmp2;
     int i;
@@ -272,12 +282,12 @@ static process_leap_table()
         tmp = get_long();
         tmp2 = get_long();
         if (debug > 3)
-            printf("leaps %d: %u =  %s (%u)", i, tmp
+            printf("leaps %d: %lu =  %s (%lu)", i, tmp
                     , asctime(localtime((const time_t *)&tmp)), tmp2);
     }
 }
 
-static process_std_table()
+static void process_std_table()
 {
     unsigned char tmp;
     int i;
@@ -292,7 +302,7 @@ static process_std_table()
     }
 }
 
-static process_gmt_table()
+static void process_gmt_table()
 {
     unsigned char tmp;
     int i;
@@ -376,12 +386,22 @@ static void get_country()
 static int timezone_exists_in_ical()
 { /* in_timezone_name contains the timezone name.
      We will search if it exists also in the ical zones.tab file */
+  /* new libical checks os zone.tab file, so we need to use that if using
+     that library instead of our own private libical */
     char *str;
 
-    if (str = strstr(zones_tab_buf, in_timezone_name))
+#ifdef HAVE_LIBICAL
+    if ((str = strchr(in_timezone_name, '/')) 
+    &&  (str = strstr(zone_tab_buf, in_timezone_name)))
         return(1); /* yes, it is there */
     else
         return(0); /* not found */
+#else
+    if ((str = strstr(zones_tab_buf, in_timezone_name)))
+        return(1); /* yes, it is there */
+    else
+        return(0); /* not found */
+#endif
 }
 
 /* FIXME: need to check that if OUTFILE is given as a parameter,
@@ -593,8 +613,8 @@ static int check_parameters()
         }
         else { /* no errors */
             in_file = malloc(par_file_stat.st_size+1);
-            fread(in_file, 1, par_file_stat.st_size, par_file);
-            if (ferror(par_file)) {
+            if (!fread(in_file, 1, par_file_stat.st_size, par_file)
+            && (ferror(par_file))) {
                 printf("check_parameters: error reading (%s)\n"
                         , TZ_CONVERT_PAR_FILE_LOC);
                 free(in_file);
@@ -658,7 +678,7 @@ static int check_parameters()
     for (s_tz = strstr(s_tz, tz); s_tz != NULL; s_tz = strstr(s_tz, tz)) {
         if (s_tz[tz_len] == '\0' || s_tz[tz_len] == '/')
             last_tz = s_tz;
-        *s_tz++;
+        s_tz++;
     }
     if (last_tz == NULL) {
         printf("check_parameters: in_file name (%s) does not contain (%s). Ending\n"
@@ -703,13 +723,17 @@ static int check_parameters()
     return(0); /* continue */
 }
 
-static void read_countries()
+static void read_os_timezones()
 {
-    char *tz_dir, *zone_tab_file_name, *country_file_name;
+    char *tz_dir, *zone_tab_file_name;
     int zoneinfo_len=strlen("zoneinfo/");
-    FILE *zone_tab_file, *country_file;
-    struct stat zone_tab_file_stat, country_file_stat;
+    FILE *zone_tab_file;
+    struct stat zone_tab_file_stat;
 
+    /****** zone.tab file ******/
+    if (zone_tab_buf) {
+        return;
+    }
     tz_dir = malloc(in_file_base_offset + zoneinfo_len + 1); /* '\0' */
     strncpy(tz_dir, in_file, in_file_base_offset);
     tz_dir[in_file_base_offset] = '\0'; 
@@ -719,47 +743,29 @@ static void read_countries()
     strcpy(zone_tab_file_name, tz_dir);
     strcat(zone_tab_file_name, ZONETAB_FILE);
 
-    country_file_name = malloc(strlen(tz_dir) + strlen(COUNTRY_FILE) + 1);
-    strcpy(country_file_name, tz_dir);
-    strcat(country_file_name, COUNTRY_FILE);
-
-    /*
-    printf("read_countries: tzdir:(%s) zone.tab:(%s) iso.tab:(%s)\n"
-            , tz_dir, zone_tab_file_name, country_file_name);
-    */
-
     free(tz_dir);
 
-    /****** zone.tab file ******/
-    if (zone_tab_buf) {
-        free(zone_tab_file_name);
-        free(country_file_name);
-        return;
-    }
     if (!(zone_tab_file = fopen(zone_tab_file_name, "r"))) {
-        printf("read_countries: zone.tab file open failed (%s)\n"
+        printf("read_os_timezones: zone.tab file open failed (%s)\n"
                 , zone_tab_file_name);
         free(zone_tab_file_name);
-        free(country_file_name);
         perror("\tfopen");
         return;
     }
     if (stat(zone_tab_file_name, &zone_tab_file_stat) == -1) {
-        printf("read_countries: zone.tab file stat failed (%s)\n"
+        printf("read_os_timezones: zone.tab file stat failed (%s)\n"
                 , zone_tab_file_name);
         free(zone_tab_file_name);
-        free(country_file_name);
         fclose(zone_tab_file);
         perror("\tstat");
         return;
     }
     zone_tab_buf = malloc(zone_tab_file_stat.st_size+1);
-    fread(zone_tab_buf, 1, zone_tab_file_stat.st_size, zone_tab_file);
-    if (ferror(zone_tab_file)) {
-        printf("read_countries: zone.tab file read failed (%s)\n"
+    if (!fread(zone_tab_buf, 1, zone_tab_file_stat.st_size, zone_tab_file)
+    && (ferror(zone_tab_file))) {
+        printf("read_os_timezones: zone.tab file read failed (%s)\n"
                 , zone_tab_file_name);
         free(zone_tab_file_name);
-        free(country_file_name);
         fclose(zone_tab_file);
         perror("\tfread");
         return;
@@ -767,8 +773,27 @@ static void read_countries()
     zone_tab_buf[zone_tab_file_stat.st_size] = '\0';
     free(zone_tab_file_name);
     fclose(zone_tab_file);
+}
+
+static void read_countries()
+{
+    char *tz_dir, *country_file_name;
+    int zoneinfo_len=strlen("zoneinfo/");
+    FILE *country_file;
+    struct stat country_file_stat;
 
     /****** country=iso3166.tab file ******/
+    tz_dir = malloc(in_file_base_offset + zoneinfo_len + 1); /* '\0' */
+    strncpy(tz_dir, in_file, in_file_base_offset);
+    tz_dir[in_file_base_offset] = '\0'; 
+    strcat(tz_dir, "zoneinfo/"); /* now we have the base directory */
+
+    country_file_name = malloc(strlen(tz_dir) + strlen(COUNTRY_FILE) + 1);
+    strcpy(country_file_name, tz_dir);
+    strcat(country_file_name, COUNTRY_FILE);
+
+    free(tz_dir);
+
     if (country_buf) {
         free(country_file_name);
         return;
@@ -789,8 +814,8 @@ static void read_countries()
         return;
     }
     country_buf = malloc(country_file_stat.st_size+1);
-    fread(country_buf, 1, country_file_stat.st_size, country_file);
-    if (ferror(country_file)) {
+    if (fread(country_buf, 1, country_file_stat.st_size, country_file)
+    && (ferror(country_file))) {
         printf("read_countries: iso3166.tab file read failed (%s)\n"
                 , country_file_name);
         free(country_file_name);
@@ -803,6 +828,7 @@ static void read_countries()
     fclose(country_file);
 }
 
+#ifndef HAVE_LIBICAL
 static void read_ical_timezones()
 {
     FILE *zones_tab_file;
@@ -823,18 +849,17 @@ static void read_ical_timezones()
         return;
     }
     zones_tab_buf = malloc(zones_tab_file_stat.st_size+1);
-    fread(zones_tab_buf, 1, zones_tab_file_stat.st_size, zones_tab_file);
-    if (ferror(zones_tab_file)) {
+    if (!fread(zones_tab_buf, 1, zones_tab_file_stat.st_size, zones_tab_file)
+    && (ferror(zones_tab_file))) {
         printf("read_ical_timezones: zones.tab file read failed (%s)\n"
                 , ICAL_ZONES_TAB_FILE_LOC);
         perror("\tfread");
         return;
     }
     zones_tab_buf[zones_tab_file_stat.st_size] = '\0';
-    printf("read_ical_timezones: zones.tab file read (%s) (%d bytes)\n"
-                , ICAL_ZONES_TAB_FILE_LOC, strlen(zones_tab_buf));
     fclose(zones_tab_file);
 }
+#endif
 
 orage_timezone_array get_orage_timezones(int show_details, int ical)
 {
@@ -863,10 +888,17 @@ orage_timezone_array get_orage_timezones(int show_details, int ical)
         check_parameters();
         if (debug > 0)
             printf("Processing %s files\n", in_file);
-        if (details)
+        if (details) {
+            read_os_timezones();
             read_countries();
-        if (check_ical)
+        }
+        if (check_ical) {
+#ifdef HAVE_LIBICAL
+            read_os_timezones();
+#else
             read_ical_timezones();
+#endif
+        }
         if (nftw(in_file, file_call, 10, FTW_PHYS | FTW_ACTIONRETVAL) == -1) {
             perror("nftw error in file handling");
             exit(EXIT_FAILURE);

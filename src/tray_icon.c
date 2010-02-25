@@ -114,7 +114,7 @@ void create_icon_pango_layout(gint line, PangoLayout *pl, struct tm *t
     gchar *row3_2_data = "%^b";
     gchar *row3_2b_data = "%b";
     gchar *row3_color = "black";
-    gchar *row3_font = "Ariel 26";
+    gchar *row3_font = "Ariel bold 26";
     gchar *row_format = "<span foreground=\"%s\" font_desc=\"%s\">%s</span>";
     gchar *strfttime_failed = "create_icon_pango_layout: strftime %s failed";
 

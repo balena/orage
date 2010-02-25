@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.5.9.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-01-10 22:27+0900\n"
+"POT-Creation-Date: 2010-02-25 14:03+0200\n"
 "PO-Revision-Date: 2010-01-06 16:57+0900\n"
 "Last-Translator: Masato Hashimoto <cabezon.hashimoto@gmail.com>\n"
 "Language-Team: Japanese <xfce-users-jp@ml.fdiary.net>\n"
@@ -398,6 +398,20 @@ msgstr "UTC"
 msgid "floating"
 msgstr "フローティング"
 
+#: ../globaltime/globaltime.desktop.in.h:1
+#, fuzzy
+msgid "Globaltime"
+msgstr "現地時間"
+
+#: ../globaltime/globaltime.desktop.in.h:2
+#, fuzzy
+msgid "Orage Globaltime"
+msgstr "Orage カレンダ"
+
+#: ../globaltime/globaltime.desktop.in.h:3
+msgid "Show clocks from different countries"
+msgstr ""
+
 #: ../panel-plugin/oc_config.c:219
 msgid "Appearance"
 msgstr "外観"
@@ -545,7 +559,7 @@ msgstr "終了"
 msgid "Due"
 msgstr "締切り"
 
-#: ../src/appointment.c:471 ../src/mainbox.c:726
+#: ../src/appointment.c:471 ../src/mainbox.c:738
 msgid "Orage"
 msgstr "Orage"
 
@@ -669,7 +683,7 @@ msgstr "一般"
 msgid "Type "
 msgstr "タイプ "
 
-#: ../src/appointment.c:2573 ../src/event-list.c:1152
+#: ../src/appointment.c:2573 ../src/event-list.c:1151
 msgid "Event"
 msgstr "予定"
 
@@ -679,7 +693,7 @@ msgid ""
 "Meeting or birthday or TV show."
 msgstr "いつか起こる出来事です。例: 会議、誕生日、TV番組など"
 
-#: ../src/appointment.c:2579 ../src/event-list.c:1175
+#: ../src/appointment.c:2579 ../src/event-list.c:1171
 msgid "Todo"
 msgstr "ToDo"
 
@@ -691,7 +705,7 @@ msgstr ""
 "いつかやらなければならないことです。\n"
 "例: 洗車、新しいバージョンの Orage のテストなど"
 
-#: ../src/appointment.c:2585 ../src/event-list.c:1190
+#: ../src/appointment.c:2585 ../src/event-list.c:1184
 msgid "Journal"
 msgstr "記録"
 
@@ -1209,7 +1223,7 @@ msgstr "Orage - 日別表示"
 msgid "All day"
 msgstr "一日中"
 
-#: ../src/event-list.c:578 ../src/event-list.c:1281
+#: ../src/event-list.c:578 ../src/event-list.c:1267
 msgid "Time"
 msgstr "時間"
 
@@ -1239,27 +1253,27 @@ msgstr "日ごとの一覧を表示します"
 msgid "Extra days to show "
 msgstr "表示する日数"
 
-#: ../src/event-list.c:1194
+#: ../src/event-list.c:1187
 msgid "Journal entries starting from:"
 msgstr "エントリの表示開始日"
 
-#: ../src/event-list.c:1219
+#: ../src/event-list.c:1207
 msgid "Search"
 msgstr "検索"
 
-#: ../src/event-list.c:1223
+#: ../src/event-list.c:1210
 msgid "Search text "
 msgstr "検索文字列: "
 
-#: ../src/event-list.c:1289
+#: ../src/event-list.c:1275
 msgid "Flags"
 msgstr "フラグ"
 
-#: ../src/event-list.c:1297
+#: ../src/event-list.c:1283
 msgid "Title"
 msgstr "件名"
 
-#: ../src/event-list.c:1323
+#: ../src/event-list.c:1309
 msgid ""
 "Double click line to edit it.\n"
 "\n"
@@ -1291,15 +1305,15 @@ msgstr ""
 msgid "Pick the date"
 msgstr "日付を選択して下さい"
 
-#: ../src/functions.c:821
+#: ../src/functions.c:832
 msgid "Info"
 msgstr "情報"
 
-#: ../src/functions.c:833
+#: ../src/functions.c:844
 msgid "Warning"
 msgstr "警告"
 
-#: ../src/functions.c:846
+#: ../src/functions.c:857
 msgid "Error"
 msgstr "エラー"
 
@@ -1759,11 +1773,11 @@ msgstr "今日の日付を選択(_T)"
 msgid "_Help"
 msgstr "ヘルプ(_H)"
 
-#: ../src/mainbox.c:404
+#: ../src/mainbox.c:416
 msgid "Never"
 msgstr "なし"
 
-#: ../src/mainbox.c:409
+#: ../src/mainbox.c:421
 #, c-format
 msgid ""
 "Title: %s\n"
@@ -1780,7 +1794,7 @@ msgstr ""
 "備考:\n"
 "%s"
 
-#: ../src/mainbox.c:415
+#: ../src/mainbox.c:427
 #, c-format
 msgid ""
 "Title: %s\n"
@@ -1795,16 +1809,16 @@ msgstr ""
 " 備考:\n"
 "%s"
 
-#: ../src/mainbox.c:492
+#: ../src/mainbox.c:504
 msgid "<b>To do:</b>"
 msgstr "<b>To do:</b>"
 
-#: ../src/mainbox.c:526
+#: ../src/mainbox.c:538
 #, c-format
 msgid "<b>Events for %s:</b>"
 msgstr "<b>%s の予定:</b>"
 
-#: ../src/mainbox.c:537
+#: ../src/mainbox.c:549
 #, c-format
 msgid "<b>Events for %s - %s:</b>"
 msgstr "<b>%s - %s の予定:</b>"
