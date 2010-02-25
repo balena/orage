@@ -314,7 +314,7 @@ gboolean ic_internal_file_open(icalcomponent **p_ical
             orage_message(150, P_N "Could not open ical file (%s) %s"
                     , file_icalpath, icalerror_strerror(icalerrno));
         else
-            orage_message(350, P_N "Could not open ical file (%s) %s"
+            orage_message(250, P_N "Could not open ical file (%s) %s"
                     , file_icalpath, icalerror_strerror(icalerrno));
         return(FALSE);
     }
