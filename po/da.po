@@ -15,8 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Language: Danish\n"
-"X-Poedit-Country: DENMARK\n"
 "X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-Country: DENMARK\n"
 
 #: ../globaltime/globaltime.c:100
 msgid "Raising GlobalTime window..."
@@ -53,11 +53,8 @@ msgid "adjust to change hour"
 msgstr "justér time"
 
 #: ../globaltime/globaltime.c:497
-msgid ""
-"adjust to change minute. Click arrows with button 2 to change only 1 minute."
-msgstr ""
-"justèr for at ændre minut. Klik på pilene med knap 2 for at ændre kun med et "
-"minut."
+msgid "adjust to change minute. Click arrows with button 2 to change only 1 minute."
+msgstr "justèr for at ændre minut. Klik på pilene med knap 2 for at ændre kun med et minut."
 
 #: ../globaltime/gt_prefs.c:264 ../globaltime/gt_prefs.c:265
 msgid "NEW"
@@ -218,8 +215,7 @@ msgstr "Klik for at ændre urnavns standardskrifttype"
 
 #: ../globaltime/gt_prefs.c:943 ../globaltime/gt_prefs.c:977
 msgid "Cross this to use system default font instead of selected font"
-msgstr ""
-"Afkryds denne for brug af systemstandardskrifttype fremfor valgte skrifttype"
+msgstr "Afkryds denne for brug af systemstandardskrifttype fremfor valgte skrifttype"
 
 #: ../globaltime/gt_prefs.c:962
 msgid "Click to change default font for clock time"
@@ -391,18 +387,16 @@ msgid "floating"
 msgstr "flydende"
 
 #: ../globaltime/globaltime.desktop.in.h:1
-#, fuzzy
 msgid "Globaltime"
-msgstr "Lokaltid"
+msgstr "Global tid"
 
 #: ../globaltime/globaltime.desktop.in.h:2
-#, fuzzy
 msgid "Orage Globaltime"
-msgstr "Orage - kalender"
+msgstr "Orage global tid"
 
 #: ../globaltime/globaltime.desktop.in.h:3
 msgid "Show clocks from different countries"
-msgstr ""
+msgstr "Viser klokken for forskellige lande"
 
 #: ../panel-plugin/oc_config.c:219
 msgid "Appearance"
@@ -469,18 +463,8 @@ msgid "fix time after suspend/hibernate"
 msgstr "korrigér tid efter hvile/dvale"
 
 #: ../panel-plugin/oc_config.c:415
-msgid ""
-"You only need this if you do short term (less than 5 hours) suspend or "
-"hibernate and your visible time does not include seconds. Under these "
-"circumstances it is possible that Orageclock shows time inaccurately unless "
-"you have this selected. (Selecting this prevents cpu and interrupt saving "
-"features from working.)"
-msgstr ""
-"Du har kun brug for denne, hvis du bruger i kort tid (mindre end 5 timer) "
-"hvile eller dvale og dit synlige ur ikke indeholder sekunder. Under disse "
-"omstændigheder er det muligt, at Orageuret viser tiden upræcist med mindre "
-"du har denne indstilling valgt. (Denne indstilling gør, at processor- og "
-"interrupt-sparemuligheder ikke fungerer.)"
+msgid "You only need this if you do short term (less than 5 hours) suspend or hibernate and your visible time does not include seconds. Under these circumstances it is possible that Orageclock shows time inaccurately unless you have this selected. (Selecting this prevents cpu and interrupt saving features from working.)"
+msgstr "Du har kun brug for denne, hvis du bruger i kort tid (mindre end 5 timer) hvile eller dvale og dit synlige ur ikke indeholder sekunder. Under disse omstændigheder er det muligt, at Orageuret viser tiden upræcist med mindre du har denne indstilling valgt. (Denne indstilling gør, at processor- og interrupt-sparemuligheder ikke fungerer.)"
 
 #: ../panel-plugin/oc_config.c:432
 msgid ""
@@ -519,7 +503,7 @@ msgstr "Orage ur"
 #. * %B  : full month name
 #. * %Y  : four digit year
 #. * %V  : ISO week number
-#.
+#. 
 #: ../panel-plugin/xfce4-orageclock-plugin.c:622
 msgid "%A %d %B %Y/%V"
 msgstr "%A %d %B %Y/%V"
@@ -765,12 +749,8 @@ msgid "Categories"
 msgstr "Kategorier"
 
 #: ../src/appointment.c:2722
-msgid ""
-"This is special category, which can be used to color this appointment in "
-"list views."
-msgstr ""
-"Dette er en særlig kategori, som kan bruges til at farvegive denne aftale i "
-"listevisninger."
+msgid "This is special category, which can be used to color this appointment in list views."
+msgstr "Dette er en særlig kategori, som kan bruges til at farvegive denne aftale i listevisninger."
 
 #: ../src/appointment.c:2727
 msgid "update colors for categories."
@@ -795,8 +775,7 @@ msgid ""
 "\n"
 "These are converted only later when they are seen:\n"
 "    <&Ynnnn> is translated to current year minus nnnn.\n"
-"(This can be used for example in birthday reminders to tell how old the "
-"person will be.)"
+"(This can be used for example in birthday reminders to tell how old the person will be.)"
 msgstr ""
 "Disse korte kommandoer træder i kraft øjeblikkeligt:\n"
 "    <D> indsæt nuværende data i lokalt datoformat\n"
@@ -805,8 +784,7 @@ msgstr ""
 "\n"
 "Disse er konverteret senere hvis de bliver observeret:\n"
 "    <&Ynnnn> bliver oversat til nuværende år minus nnnn.\n"
-"(Dette kan eksempelvis blive brugt i påmindelser til fødselsdage for at "
-"informere om personens alder.)"
+"(Dette kan eksempelvis blive brugt i påmindelser til fødselsdage for at informere om personens alder.)"
 
 #: ../src/appointment.c:2833
 msgid "Before Start"
@@ -850,12 +828,8 @@ msgid "Persistent alarm"
 msgstr "Vedvarende alarm"
 
 #: ../src/appointment.c:2878
-msgid ""
-"Select this if you want Orage to remind you even if it has not been active "
-"when the alarm happened."
-msgstr ""
-"Vælg denne hvis du ønsker Orage skal påminde dig, selv om den ikke har været "
-"aktiv, på alarmtidspunktet."
+msgid "Select this if you want Orage to remind you even if it has not been active when the alarm happened."
+msgstr "Vælg denne hvis du ønsker Orage skal påminde dig, selv om den ikke har været aktiv, på alarmtidspunktet."
 
 #. **** Audio Alarm ****
 #: ../src/appointment.c:2887
@@ -1101,24 +1075,16 @@ msgid "TODO base"
 msgstr "Base til OPGAVER"
 
 #: ../src/appointment.c:3290
-msgid ""
-"TODO reoccurs regularly starting on start time and repeating after each "
-"interval no matter when it was last completed"
-msgstr ""
-"OPGAVE gentages normalt med starttidspunkt og gentages efter hvert interval "
-"uanset hvornår den sidst blev afsluttet"
+msgid "TODO reoccurs regularly starting on start time and repeating after each interval no matter when it was last completed"
+msgstr "OPGAVE gentages normalt med starttidspunkt og gentages efter hvert interval uanset hvornår den sidst blev afsluttet"
 
 #: ../src/appointment.c:3292
 msgid ""
-"TODO reoccurrency is based on complete time and repeats after the interval "
-"counted from the last completed time.\n"
-"(Note that you can not tell anything about the history of the TODO since "
-"reoccurrence base changes after each completion.)"
+"TODO reoccurrency is based on complete time and repeats after the interval counted from the last completed time.\n"
+"(Note that you can not tell anything about the history of the TODO since reoccurrence base changes after each completion.)"
 msgstr ""
-"OPGAVE gentages er baseret på afsluttet tid og gentages igen efter interval "
-"fra sidst afsluttet tid.\n"
-"(Bemærk, at du ikke kan udlede noget omkring historikken af OPGAVEN eftersom "
-"gentagelsesbasen ændres efter hver afslutning.)"
+"OPGAVE gentages er baseret på afsluttet tid og gentages igen efter interval fra sidst afsluttet tid.\n"
+"(Bemærk, at du ikke kan udlede noget omkring historikken af OPGAVEN eftersom gentagelsesbasen ændres efter hver afslutning.)"
 
 #. exceptions
 #: ../src/appointment.c:3299
@@ -1128,13 +1094,11 @@ msgstr "Undtagelser"
 #: ../src/appointment.c:3312
 msgid ""
 "Add more exception dates by clicking the calendar days below.\n"
-"Exception is either exclusion(-) or inclusion(+) depending on the "
-"selection.\n"
+"Exception is either exclusion(-) or inclusion(+) depending on the selection.\n"
 "Remove by clicking the data."
 msgstr ""
 "Føj flere undtagelselsesdatoer til ved at klikke på kalenderdage forneden:\n"
-"Undtagelse er enten udelukkelse(-) eller medtagelse(+) afhængig af "
-"markeringen.\n"
+"Undtagelse er enten udelukkelse(-) eller medtagelse(+) afhængig af markeringen.\n"
 "Fjern ved at klikke på datoen."
 
 #: ../src/appointment.c:3317
@@ -1150,11 +1114,8 @@ msgid "Add included time (+)"
 msgstr "Tilføj inkludér tid (+)"
 
 #: ../src/appointment.c:3327
-msgid ""
-"Included times have same timezone than start time, but they may have "
-"different time"
-msgstr ""
-"Inkluderet tid har samme tidszone som starttid, men de kan forskellig tid"
+msgid "Included times have same timezone than start time, but they may have different time"
+msgstr "Inkluderet tid har samme tidszone som starttid, men de kan forskellig tid"
 
 #. calendars showing the action days
 #: ../src/appointment.c:3344
@@ -1380,11 +1341,8 @@ msgstr "Opret alarmliste: Tilføjet %d alarmer. Behandlet %d begivenheder."
 
 #: ../src/ical-code.c:2918
 #, c-format
-msgid ""
-"\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
-msgstr ""
-"\tFandt %d alarmer af hvilke %d er aktive. (Gennemsøgte %d "
-"gentagelsesalarmer.)"
+msgid "\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
+msgstr "\tFandt %d alarmer af hvilke %d er aktive. (Gennemsøgte %d gentagelsesalarmer.)"
 
 #: ../src/ical-expimp.c:136
 msgid "Starting import file preprocessing"
@@ -1509,8 +1467,7 @@ msgid ""
 "This is useful for example when doing export and moving orage\n"
 "appointments to another system."
 msgstr ""
-"Tilbagefør alle arkiverede begivenheder til Orages hovedfil og fjern "
-"arkivfil.\n"
+"Tilbagefør alle arkiverede begivenheder til Orages hovedfil og fjern arkivfil.\n"
 "Dette er brugbart for eksempel ved en eksport  og flytning af Orage\n"
 "aftaler til et andet system."
 
@@ -1590,15 +1547,11 @@ msgstr "Læs kun"
 
 #: ../src/interface.c:1286
 msgid ""
-"Set this if you want to make sure that this file is never modified by "
-"Orage.\n"
-"Note that modifying foreign files may make them incompatible with the "
-"original tool, where they came from!"
+"Set this if you want to make sure that this file is never modified by Orage.\n"
+"Note that modifying foreign files may make them incompatible with the original tool, where they came from!"
 msgstr ""
-"Indstil denne hvis du vil være sikker på, at denne fil aldrig bliver ændret "
-"af Orage.\n"
-"Husk at ændring af eksterne filer kan gøre dem ikke kompatible med "
-"originalværktøjet, hvor de kom fra!"
+"Indstil denne hvis du vil være sikker på, at denne fil aldrig bliver ændret af Orage.\n"
+"Husk at ændring af eksterne filer kan gøre dem ikke kompatible med originalværktøjet, hvor de kom fra!"
 
 #: ../src/interface.c:1300
 msgid "Exchange data - Orage"
@@ -1724,12 +1677,8 @@ msgstr "\tdbus er ikke inkluderet i orage. \n"
 
 #: ../src/main.c:242
 #, c-format
-msgid ""
-"\twithout dbus [files] and foreign file options(-a & -r) can only be used "
-"when starting orage \n"
-msgstr ""
-"\tuden dbus [filer] og eksterne filtilvalg(-a & -r) kan kun bruges ved "
-"opstart af orage \n"
+msgid "\twithout dbus [files] and foreign file options(-a & -r) can only be used when starting orage \n"
+msgstr "\tuden dbus [filer] og eksterne filtilvalg(-a & -r) kan kun bruges ved opstart af orage \n"
 
 #: ../src/main.c:386
 #, c-format
@@ -1840,8 +1789,7 @@ msgstr "(0 = ingen arkivering)"
 
 #: ../src/parameters.c:532
 msgid "Archiving is used to save time and space when handling events."
-msgstr ""
-"Arkivering bruges til at spare tid og plads ved håndtering af begivenheder."
+msgstr "Arkivering bruges til at spare tid og plads ved håndtering af begivenheder."
 
 #: ../src/parameters.c:541
 msgid "Sound command"
@@ -1944,12 +1892,8 @@ msgid "Select always today"
 msgstr "Vælg altid i dag"
 
 #: ../src/parameters.c:776
-msgid ""
-"When showing main calendar, set pointer to either previously selected day or "
-"always to current day."
-msgstr ""
-"Ved visning af hovedkalender, stil markøren på enten tidligere valgte dag "
-"eller altid til nuværende dag."
+msgid "When showing main calendar, set pointer to either previously selected day or always to current day."
+msgstr "Ved visning af hovedkalender, stil markøren på enten tidligere valgte dag eller altid til nuværende dag."
 
 #: ../src/parameters.c:784
 msgid "Use dynamic tray icon"
@@ -1960,11 +1904,8 @@ msgid "Use dynamic icon"
 msgstr "Brug dynamisk ikon"
 
 #: ../src/parameters.c:795
-#, fuzzy
 msgid "Dynamic icon shows current month and day of the month."
-msgstr ""
-"Dynamisk ikon viser nuværende måned og månedsdag. Det er kun synlig på "
-"proceslinjen."
+msgstr "Dynamisk ikon viser nuværende måned og månedsdag. "
 
 #: ../src/parameters.c:804
 msgid "Main Calendar double click shows"
@@ -1987,12 +1928,8 @@ msgid "Number of extra days to show in event list"
 msgstr "Antal ekstra dage som vises i begivenhedslisten"
 
 #: ../src/parameters.c:854
-msgid ""
-"This is just the default value, you can change it in the actual eventlist "
-"window."
-msgstr ""
-"Dette er kun standardværdien. Du kan ændre dette i det aktuelle "
-"begivenhedsvindue."
+msgid "This is just the default value, you can change it in the actual eventlist window."
+msgstr "Dette er kun standardværdien. Du kan ændre dette i det aktuelle begivenhedsvindue."
 
 #: ../src/parameters.c:871
 msgid "Orage Preferences"
@@ -3675,12 +3612,8 @@ msgstr "Orage - kalender"
 #~ msgid "Modify Preferences"
 #~ msgstr "Ændre indstillinger"
 
-#~ msgid ""
-#~ "Enter local timezone. (it is used to show if time is on previous(-) or "
-#~ "next date(+) by adding a +/- after the time)"
-#~ msgstr ""
-#~ "Angiv lokal tidszone. (dette er brugt til visning, hvis tiden er på "
-#~ "tidligere(-) eller næste dato(+) ved tilføjning af +/- efter tiden)"
+#~ msgid "Enter local timezone. (it is used to show if time is on previous(-) or next date(+) by adding a +/- after the time)"
+#~ msgstr "Angiv lokal tidszone. (dette er brugt til visning, hvis tiden er på tidligere(-) eller næste dato(+) ved tilføjning af +/- efter tiden)"
 
 #~ msgid "Set any valid timezone (=TZ) value or pick one from the list."
 #~ msgstr "Indstil en gyldig tidszone (=TZ) værdi eller vælg en fra listen."
@@ -3715,14 +3648,8 @@ msgstr "Orage - kalender"
 #~ msgid "(0 = use static icon)"
 #~ msgstr "(0 = Brug statisk ikon)"
 
-#~ msgid ""
-#~ "Dynamic icon shows current day and month. It is visible only in tray. If "
-#~ "tray is too small for dynamic icon size, Orage switches automatically "
-#~ "back to static icon."
-#~ msgstr ""
-#~ "Dynamiske ikoner viser nuværende dato og måned. De er kun synlige i "
-#~ "statusfelt. Hvis statusfelt er for småt for dynamisk ikonstørrelse, vil "
-#~ "Orage automatiskskifte tilbage til statisk ikon."
+#~ msgid "Dynamic icon shows current day and month. It is visible only in tray. If tray is too small for dynamic icon size, Orage switches automatically back to static icon."
+#~ msgstr "Dynamiske ikoner viser nuværende dato og måned. De er kun synlige i statusfelt. Hvis statusfelt er for småt for dynamisk ikonstørrelse, vil Orage automatiskskifte tilbage til statisk ikon."
 
 #~ msgid "Calendar Settings"
 #~ msgstr "Kalenderindstillinger"
