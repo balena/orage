@@ -32,6 +32,7 @@ globaltime_CFLAGS =							\
 globaltime_LDADD =							\
 	$(LIBXFCEGUI4_LIBS)						\
 	$(LIBXFCEUTIL_LIBS)						\
+	-lX11		            				\
 	$(INTLLIBS) 
 
 EXTRA_DIST =								\

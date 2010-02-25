@@ -42,6 +42,8 @@ orage_CFLAGS =							\
 orage_LDADD =							\
 	$(LIBXFCEGUI4_LIBS)						\
 	$(LIBXFCEUTIL_LIBS)						\
+	-lX11            						\
+	-lm              						\
 	$(INTLLIBS)
 
 if INCLUDED_LIBICAL

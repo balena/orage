@@ -8,7 +8,8 @@ xfce4_orageclock_plugin_CFLAGS =							\
 	@LIBXFCE4PANEL_CFLAGS@
 
 xfce4_orageclock_plugin_LDFLAGS =						\
-	@LIBXFCE4PANEL_LIBS@
+	@LIBXFCE4PANEL_LIBS@                            \
+	-lX11
 
 xfce4_orageclock_plugin_SOURCES = 						\
 	oc_config.c										\
