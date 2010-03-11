@@ -603,6 +603,7 @@ static int check_parameters()
     if (debug > 1)
         printf("check_parameters: start\n");
 
+    in_file = NULL;
     par_file = fopen(TZ_CONVERT_PAR_FILE_LOC, "r");
     if (par_file != NULL) { /* does exist and no error */
         if (stat(TZ_CONVERT_PAR_FILE_LOC, &par_file_stat) == -1) {
@@ -618,6 +619,7 @@ static int check_parameters()
                 printf("check_parameters: error reading (%s)\n"
                         , TZ_CONVERT_PAR_FILE_LOC);
                 free(in_file);
+                in_file = NULL;
                 fclose(par_file);
             }
             else { 
@@ -882,9 +884,6 @@ orage_timezone_array get_orage_timezones(int show_details, int ical)
         tz_array.next_utc_offset = (int *)malloc(sizeof(int)*(tz_array_size+2));
         tz_array.country = (char **)malloc(sizeof(char *)*(tz_array_size+2));
         tz_array.cc = (char **)malloc(sizeof(char *)*(tz_array_size+2));
-    /* nftw goes through the whole file structure and calls "file_call"
-     * with each file. It returns 0 when everything has been done and -1
-     * if it run into an error. */
         check_parameters();
         if (debug > 0)
             printf("Processing %s files\n", in_file);
@@ -899,6 +898,9 @@ orage_timezone_array get_orage_timezones(int show_details, int ical)
             read_ical_timezones();
 #endif
         }
+    /* nftw goes through the whole file structure and calls "file_call"
+     * with each file. It returns 0 when everything has been done and -1
+     * if it run into an error. */
         if (nftw(in_file, file_call, 10, FTW_PHYS | FTW_ACTIONRETVAL) == -1) {
             perror("nftw error in file handling");
             exit(EXIT_FAILURE);
