@@ -1,4 +1,6 @@
+if HAVE_LIBPOTPT
 bin_PROGRAMS = tz_convert
+endif
 
 man_MANS =                             		 \
 	tz_convert.1
