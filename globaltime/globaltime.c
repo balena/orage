@@ -106,7 +106,7 @@ static gboolean global_time_active_already(GdkAtom *atom)
         return(FALSE); 
 }
 
-static void show_globaltime()
+static void raise_window()
 {
     GdkWindow *window;
 
@@ -116,6 +116,7 @@ static void show_globaltime()
     window = GTK_WIDGET(clocks.window)->window;
     gdk_x11_window_set_user_time(window, gdk_x11_get_server_time(window));
     gtk_widget_show(clocks.window);
+    gtk_window_present(GTK_WINDOW(clocks.window));
 }
 
 static gboolean client_message_received(GtkWidget *widget
@@ -123,9 +124,7 @@ static gboolean client_message_received(GtkWidget *widget
 {
     if (event->message_type == 
             gdk_atom_intern("_XFCE_GLOBALTIME_RAISE", FALSE)) {
-        /* we need to hide it first since minimized windows are visible ! */
-        gtk_widget_hide(clocks.window); 
-        show_globaltime();
+        raise_window();
         return(TRUE);
     }
     else if (event->message_type ==
@@ -134,7 +133,7 @@ static gboolean client_message_received(GtkWidget *widget
             gtk_widget_hide(clocks.window);
             return(TRUE);
         }
-        show_globaltime();
+        raise_window();
         return(TRUE);
     }
                                                                                 

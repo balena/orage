@@ -107,9 +107,9 @@ static void raise_window()
 
     /*
     screen = xfce_gdk_display_locate_monitor_with_pointer(NULL, NULL);
-    */
     gtk_window_set_screen(GTK_WINDOW(cal->mWindow)
             , screen ? screen : gdk_screen_get_default());
+    */
     if (g_par.pos_x || g_par.pos_y)
         gtk_window_move(GTK_WINDOW(cal->mWindow)
                 , g_par.pos_x, g_par.pos_y);
@@ -121,6 +121,7 @@ static void raise_window()
             , g_par.set_ontop);
     window = GTK_WIDGET(cal->mWindow)->window;
     gdk_x11_window_set_user_time(window, gdk_x11_get_server_time(window));
+    gtk_widget_show(cal->mWindow);
     gtk_window_present(GTK_WINDOW(cal->mWindow));
 }
 
@@ -132,27 +133,27 @@ static gboolean client_message_received(GtkWidget *widget
     if (event->message_type ==
             gdk_atom_intern("_XFCE_CALENDAR_RAISE", FALSE)) {
         raise_window();
-        return TRUE;
+        return(TRUE);
     }
     else if (event->message_type ==
             gdk_atom_intern("_XFCE_CALENDAR_TOGGLE_HERE", FALSE)) {
         if (GTK_WIDGET_VISIBLE(cal->mWindow)) {
             write_parameters();
             gtk_widget_hide(cal->mWindow);
-            return TRUE;
+            return(TRUE);
         }
         else {
             raise_window();
-            return TRUE;
+            return(TRUE);
         }
     }
     else if (event->message_type ==
             gdk_atom_intern("_XFCE_CALENDAR_PREFERENCES", FALSE)) {
         show_parameters();
-        return TRUE;
+        return(TRUE);
     }
 
-    return FALSE;
+    return(FALSE);
 }
 
 gboolean keep_tidy(void)
@@ -162,7 +163,7 @@ gboolean keep_tidy(void)
        calendar file smaller and faster */
     xfical_archive();
 #endif
-    return TRUE;
+    return(TRUE);
 }
 
 /*
