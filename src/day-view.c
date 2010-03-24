@@ -863,7 +863,7 @@ static void build_day_view_table(day_win *dw)
         }
         /* some rare locales show weekday in the default date, so we need to 
          * make it correct. Safer would be to call mktime() */
-        tm_date.tm_wday = ++tm_date.tm_wday%7;
+        tm_date.tm_wday = (tm_date.tm_wday+1)%7;
     }
     fill_hour_arrow(dw, days+1);
     g_free(today);
