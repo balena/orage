@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.5.9.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-25 14:03+0200\n"
-"PO-Revision-Date: 2010-01-06 16:57+0900\n"
+"POT-Creation-Date: 2010-03-27 19:23+0900\n"
+"PO-Revision-Date: 2010-03-27 19:23+0900\n"
 "Last-Translator: Masato Hashimoto <cabezon.hashimoto@gmail.com>\n"
 "Language-Team: Japanese <xfce-users-jp@ml.fdiary.net>\n"
 "MIME-Version: 1.0\n"
@@ -33,7 +33,7 @@ msgid "GlobalTime window raise failed"
 msgstr "世界時計ウィンドウの生成に失敗しました"
 
 #. ********** timezone tooltip **********
-#: ../globaltime/globaltime.c:278
+#: ../globaltime/globaltime.c:277
 #, c-format
 msgid ""
 "%s\n"
@@ -42,11 +42,11 @@ msgstr ""
 "%s\n"
 "クリックで時刻を修正します"
 
-#: ../globaltime/globaltime.c:387
+#: ../globaltime/globaltime.c:386
 msgid "Localtime"
 msgstr "現地時間"
 
-#: ../globaltime/globaltime.c:465
+#: ../globaltime/globaltime.c:464
 msgid ""
 "button 1 to change preferences \n"
 "button 2 to adjust time of clocks"
@@ -54,11 +54,11 @@ msgstr ""
 "マウスボタン1 で設定を変更します\n"
 "マウスボタン2 で時刻を調整します"
 
-#: ../globaltime/globaltime.c:481
+#: ../globaltime/globaltime.c:480
 msgid "adjust to change hour"
 msgstr "時を調整してください"
 
-#: ../globaltime/globaltime.c:497
+#: ../globaltime/globaltime.c:496
 msgid ""
 "adjust to change minute. Click arrows with button 2 to change only 1 minute."
 msgstr ""
@@ -399,18 +399,16 @@ msgid "floating"
 msgstr "フローティング"
 
 #: ../globaltime/globaltime.desktop.in.h:1
-#, fuzzy
 msgid "Globaltime"
-msgstr "現地時間"
+msgstr "世界時計"
 
 #: ../globaltime/globaltime.desktop.in.h:2
-#, fuzzy
 msgid "Orage Globaltime"
-msgstr "Orage カレンダ"
+msgstr "Orage 世界時計"
 
 #: ../globaltime/globaltime.desktop.in.h:3
 msgid "Show clocks from different countries"
-msgstr ""
+msgstr "様々な地域の時刻を表示します。"
 
 #: ../panel-plugin/oc_config.c:219
 msgid "Appearance"
@@ -1318,74 +1316,74 @@ msgid "Error"
 msgstr "エラー"
 
 #. remove since it has ended
-#: ../src/ical-archive.c:291
+#: ../src/ical-archive.c:296
 msgid "\tRecur ended, moving to archive file."
 msgstr "\t繰り返しが終了し、アーカイブファイルに移動しています。"
 
-#: ../src/ical-archive.c:353
+#: ../src/ical-archive.c:358
 msgid "Archiving not enabled. Exiting"
 msgstr "アーカイブが有効になっていません。終了しています"
 
-#: ../src/ical-archive.c:371
+#: ../src/ical-archive.c:376
 #, c-format
 msgid "Archiving threshold: %d month(s)"
 msgstr "アーカイブするまでの期間: %d ヵ月"
 
 #. yy mon day
-#: ../src/ical-archive.c:374
+#: ../src/ical-archive.c:379
 #, c-format
 msgid "\tArchiving events, which are older than: %04d-%02d-%02d"
 msgstr "\t%04d年 %02d月 %02d日 より古い予定をアーカイブしています"
 
-#: ../src/ical-archive.c:401
+#: ../src/ical-archive.c:406
 #, c-format
 msgid "Archiving uid: %s"
 msgstr "アーカイブ UID: %s"
 
 #. VTODO not completed, do not archive
-#: ../src/ical-archive.c:407
+#: ../src/ical-archive.c:412
 msgid "\tVTODO not complete; not archived"
 msgstr "\tVTODO が不完全です。アーカイブされませんでした"
 
 #. it is recurrent event
-#: ../src/ical-archive.c:412
+#: ../src/ical-archive.c:417
 #, c-format
 msgid "\tRecurring. End year: %04d, month: %02d, day: %02d"
 msgstr "\t繰り返します。終了年月日: %04d年 %02d月 %02d日"
 
-#: ../src/ical-archive.c:429
+#: ../src/ical-archive.c:434
 msgid "Archiving done\n"
 msgstr "アーカイブしました\n"
 
 #. PHASE 1: go through base orage file and remove "repeat" shortcuts
-#: ../src/ical-archive.c:445
+#: ../src/ical-archive.c:450
 msgid "Starting archive removal."
 msgstr "アーカイブの除去を開始しています。"
 
-#: ../src/ical-archive.c:446
+#: ../src/ical-archive.c:451
 msgid "\tPHASE 1: reset recurring appointments"
 msgstr "\tフェイズ 1: 繰り返し用件のリセット"
 
 #. PHASE 2: go through archive file and add everything back to base orage.
 #. * After that delete the whole arch file
-#: ../src/ical-archive.c:468
+#: ../src/ical-archive.c:473
 msgid "\tPHASE 2: return archived appointments"
 msgstr "\tフェイズ 2: アーカイブされた用件の復帰"
 
-#: ../src/ical-archive.c:494
+#: ../src/ical-archive.c:499
 msgid "Archive removal done\n"
 msgstr "アーカイブの除去が終了しました\n"
 
-#: ../src/ical-code.c:935
+#: ../src/ical-code.c:940
 msgid "Orage default alarm"
 msgstr "Orage のデフォルトアラーム"
 
-#: ../src/ical-code.c:2916
+#: ../src/ical-code.c:2921
 #, c-format
 msgid "Build alarm list: Added %d alarms. Processed %d events."
 msgstr "登録アラームリスト: %d 個のアラーム追加、%d 個の予定進行"
 
-#: ../src/ical-code.c:2918
+#: ../src/ical-code.c:2923
 #, c-format
 msgid ""
 "\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
@@ -1393,19 +1391,19 @@ msgstr ""
 "\t%2$d 個が動作中の内、 %1$d 個のアラームが見つかりました。( %3$d 個の繰り返"
 "しアラームを検索しました)"
 
-#: ../src/ical-expimp.c:136
+#: ../src/ical-expimp.c:141
 msgid "Starting import file preprocessing"
 msgstr "ファイルインポートの前処理を開始しています"
 
-#: ../src/ical-expimp.c:171
+#: ../src/ical-expimp.c:176
 msgid "... Patched DCREATED to be CREATED."
 msgstr "... DCREATED を CREATED に修正しました。"
 
-#: ../src/ical-expimp.c:210
+#: ../src/ical-expimp.c:215
 msgid "... Patched timezone to Orage format."
 msgstr "... タイムゾーンを Orage 形式に修正しました。"
 
-#: ../src/ical-expimp.c:219
+#: ../src/ical-expimp.c:224
 msgid "Import file preprocessing done"
 msgstr "ファイルのインポート処理が終了しました。"
 
@@ -1609,7 +1607,7 @@ msgstr ""
 msgid "Exchange data - Orage"
 msgstr "データ交換 - Orage"
 
-#: ../src/main.c:192
+#: ../src/main.c:193
 #, c-format
 msgid ""
 "\tThis is %s version %s for Xfce %s\n"
@@ -1618,62 +1616,62 @@ msgstr ""
 "\tこれは Xfce %3$s 用の %1$s バージョン %2$s です\n"
 "\n"
 
-#: ../src/main.c:194
+#: ../src/main.c:195
 #, c-format
 msgid "\tReleased under the terms of the GNU General Public License.\n"
 msgstr "\tGNU一般公有使用許諾書の制約の下にリリースされています。\n"
 
-#: ../src/main.c:195
+#: ../src/main.c:196
 #, c-format
 msgid "\tCompiled against GTK+-%d.%d.%d, "
 msgstr "\tGTK+-%d.%d.%d に対してコンパイルしたものであり、"
 
-#: ../src/main.c:197
+#: ../src/main.c:198
 #, c-format
 msgid "using GTK+-%d.%d.%d.\n"
 msgstr "GTK+-%d.%d.%d を使用しています。\n"
 
-#: ../src/main.c:200
+#: ../src/main.c:201
 #, c-format
 msgid "\tUsing DBUS for import.\n"
 msgstr "\tインポートに D-Bus を使用しています。\n"
 
-#: ../src/main.c:202
+#: ../src/main.c:203
 #, c-format
 msgid "\tNot using DBUS. Import works only partially.\n"
 msgstr "\tD-Bus を使用していません。インポート機能は一部のみ動作します。\n"
 
-#: ../src/main.c:205
+#: ../src/main.c:206
 #, c-format
 msgid "\tUsing libnotify.\n"
 msgstr "\tlibnotify を使用しています。\n"
 
-#: ../src/main.c:207
+#: ../src/main.c:208
 #, c-format
 msgid "\tNot using libnotify.\n"
 msgstr "\tlibnotify を使用していません。\n"
 
-#: ../src/main.c:210
+#: ../src/main.c:211
 #, c-format
 msgid "\tUsing automatic archiving.\n"
 msgstr "\t自動アーカイブを使用しています。\n"
 
-#: ../src/main.c:212
+#: ../src/main.c:213
 #, c-format
 msgid "\tNot using archiving.\n"
 msgstr "\tアーカイブ化を使用していません。\n"
 
-#: ../src/main.c:215
+#: ../src/main.c:216
 #, c-format
 msgid "\tUsing operating system package libical.\n"
 msgstr "\tオペレーティングシステムの libical パッケージを使用しています。\n"
 
-#: ../src/main.c:217
+#: ../src/main.c:218
 #, c-format
 msgid "\tUsing Orage local version of libical.\n"
 msgstr "\tOrage ローカルバージョン の libical を使用しています。\n"
 
-#: ../src/main.c:230
+#: ../src/main.c:231
 #, c-format
 msgid ""
 "Usage: orage [options] [files]\n"
@@ -1682,52 +1680,52 @@ msgstr ""
 "使用法: orage [オプション] [ファイル]\n"
 "\n"
 
-#: ../src/main.c:231
+#: ../src/main.c:232
 #, c-format
 msgid "Options:\n"
 msgstr "オプション:\n"
 
-#: ../src/main.c:232
+#: ../src/main.c:233
 #, c-format
 msgid "--version (-v) \t\tshow version of orage\n"
 msgstr "--version (-v)\t\t\torage のバージョンを表示します\n"
 
-#: ../src/main.c:233
+#: ../src/main.c:234
 #, c-format
 msgid "--help (-h) \t\tprint this text\n"
 msgstr "--help (-h)\t\t\tこのメッセージを表示します\n"
 
-#: ../src/main.c:234
+#: ../src/main.c:235
 #, c-format
 msgid "--preferences (-p) \tshow preferences form\n"
 msgstr "--preferences (-p) \t\t設定フォームを表示します\n"
 
-#: ../src/main.c:235
+#: ../src/main.c:236
 #, c-format
 msgid "--toggle (-t) \t\tmake orage visible/unvisible\n"
 msgstr "--toggle (-t) \t\t\torage の表示/非表示を切り替えます\n"
 
-#: ../src/main.c:236
+#: ../src/main.c:237
 #, c-format
 msgid "--add-foreign (-a) file [RW] \tadd a foreign file\n"
 msgstr "--add-foreign (-a) file [RW] \t外部ファイルを追加します\n"
 
-#: ../src/main.c:237
+#: ../src/main.c:238
 #, c-format
 msgid "--remove-foreign (-r) file \tremove a foreign file\n"
 msgstr "--remove-foreign (-r) file \t外部ファイルを削除します\n"
 
-#: ../src/main.c:239
+#: ../src/main.c:240
 #, c-format
 msgid "files=ical files to load into orage\n"
 msgstr "file = orage が読み込む iCal ファイル\n"
 
-#: ../src/main.c:241
+#: ../src/main.c:242
 #, c-format
 msgid "\tdbus not included in orage. \n"
 msgstr "\tD-Bus は orage に含まれていません。\n"
 
-#: ../src/main.c:242
+#: ../src/main.c:243
 #, c-format
 msgid ""
 "\twithout dbus [files] and foreign file options(-a & -r) can only be used "
@@ -1736,7 +1734,7 @@ msgstr ""
 "\tD-Bus [ファイル] が無い外部ファイルオプション (-a & -r) は orage 起動後のみ"
 "使用可能です\n"
 
-#: ../src/main.c:386
+#: ../src/main.c:387
 #, c-format
 msgid ""
 "\n"
