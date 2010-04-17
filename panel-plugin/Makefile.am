@@ -5,10 +5,12 @@ plugin_PROGRAMS = xfce4-orageclock-plugin
 xfce4_orageclock_plugin_CFLAGS =							\
 	-DPACKAGE_DATA_DIR=\"$(datadir)\"				\
 	-DPACKAGE_LOCALE_DIR=\"$(localedir)\"			\
-	@LIBXFCE4PANEL_CFLAGS@
+	@LIBXFCE4PANEL_CFLAGS@                          \
+	@LIBXFCEGUI4_CFLAGS@
 
 xfce4_orageclock_plugin_LDFLAGS =						\
 	@LIBXFCE4PANEL_LIBS@                            \
+	@LIBXFCEGUI4_LIBS@                            \
 	-lX11
 
 xfce4_orageclock_plugin_SOURCES = 						\
