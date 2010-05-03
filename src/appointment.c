@@ -2218,10 +2218,9 @@ static void fill_appt_window_recurrence(appt_win *apptw, xfical_appt *appt)
             GTK_SPIN_BUTTON(apptw->Recur_int_spin)
                     , (gdouble)appt->interval);
 
-    if (appt->interval > 1
-    || !appt->recur_byday[0] || !appt->recur_byday[1] || !appt->recur_byday[2] 
-    || !appt->recur_byday[3] || !appt->recur_byday[4] || !appt->recur_byday[5] 
-    || !appt->recur_byday[6]) {
+    if (!appt->recur_byday[0] || !appt->recur_byday[1] || !appt->recur_byday[2] 
+    ||  !appt->recur_byday[3] || !appt->recur_byday[4] || !appt->recur_byday[5] 
+    ||  !appt->recur_byday[6]) {
         gtk_toggle_button_set_active(
                 GTK_TOGGLE_BUTTON(apptw->Recur_feature_advanced_rb), TRUE);
     }
