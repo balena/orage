@@ -54,7 +54,7 @@ msgstr "Einstellen, um Stunde zu ändern"
 
 #: ../globaltime/globaltime.c:497
 msgid "adjust to change minute. Click arrows with button 2 to change only 1 minute."
-msgstr ""
+msgstr "Minuten einstellen. Klicken Sie die Pfeile mit Taste 2 an, um nur 1 Minute "
 
 #: ../globaltime/gt_prefs.c:264 ../globaltime/gt_prefs.c:265
 msgid "NEW"
@@ -291,21 +291,21 @@ msgstr "Andere"
 
 #: ../globaltime/timezone_selection.c:158
 #: ../panel-plugin/timezone_selection.c:158 ../src/timezone_selection.c:169
-#, fuzzy, c-format
+#, c-format
 msgid "%d hour %d mins"
-msgstr "%d:%d Uhr"
+msgstr "%d Stunden %d Minuten"
 
 #: ../globaltime/timezone_selection.c:161
 #: ../panel-plugin/timezone_selection.c:161 ../src/timezone_selection.c:172
 #, c-format
 msgid "%d hour"
-msgstr "%d Stunden"
+msgstr "%d Stunde(n)"
 
 #: ../globaltime/timezone_selection.c:163
 #: ../panel-plugin/timezone_selection.c:163 ../src/timezone_selection.c:174
 #, c-format
 msgid "%d mins"
-msgstr "%d Minuten"
+msgstr "%d Minute(n)"
 
 #: ../globaltime/timezone_selection.c:169
 #: ../panel-plugin/timezone_selection.c:169 ../src/timezone_selection.c:180
@@ -1072,19 +1072,20 @@ msgstr ""
 #. TODO base (only for TODOs)
 #: ../src/appointment.c:3277
 msgid "TODO base"
-msgstr ""
+msgstr "Basis für Aufgaben"
 
 #: ../src/appointment.c:3290
-#, fuzzy
 msgid "TODO reoccurs regularly starting on start time and repeating after each interval no matter when it was last completed"
-msgstr "Aufgabe tritt regelmäßig auf. Beginnend mit der Startzeit und wiederholt nach jedem Intervall unabhängig davon, wann sie zuletzt beendet wurde "
+msgstr "Aufgabe tritt regelmäßig auf. Beginnend mit der Startzeit und wiederholt nach jedem Intervall unabhängig davon, wann sie zuletzt beendet wurde"
 
 #: ../src/appointment.c:3292
-#, fuzzy
 msgid ""
 "TODO reoccurrency is based on complete time and repeats after the interval counted from the last completed time.\n"
 "(Note that you can not tell anything about the history of the TODO since reoccurrence base changes after each completion.)"
-msgstr "Wiederauftreten der Aufgabe hängt von der Zeit der letzten Beendung ab und wiederholt sich ein Intervall nach der letzten Beendung.\\n\\n(Beachten Sie, dass sie nichts über den vergangenen Verlauf der Aufgabe sagen können, da das Wiederauftreten sich nach jeder Beendung ändert.)"
+msgstr ""
+"Wiederauftreten der Aufgabe hängt von der Zeit der letzten Beendung ab und wiederholt sich ein Intervall nach der letzten Beendung.\n"
+"\n"
+"(Beachten Sie, dass Sie nichts über den vergangenen Verlauf der Aufgabe sagen können, da das Wiederauftreten sich nach jeder Beendigung ändert.)"
 
 #. exceptions
 #: ../src/appointment.c:3299
@@ -1972,7 +1973,7 @@ msgid ""
 "%02d d %02d h %02d min to: %s"
 msgstr ""
 "\n"
-"%02d Tage, %02d Stunden, %02d Minuten bis: %s"
+"%02d Tag(e), %02d Stunde(n), %02d Minute(n) bis: %s"
 
 #: ../src/reminder.c:1071
 #, c-format
@@ -3561,7 +3562,6 @@ msgid "Orage Calendar Preferences"
 msgstr "Einstellungen für den Kalender Orage"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:3
-#, fuzzy
 msgid "Orage preferences"
 msgstr "Einstellungen für Orage"
 
