@@ -25,13 +25,44 @@
 #  include <config.h>
 #endif
 
-#include <libxfcegui4/libxfcegui4.h>
+#include <gtk/gtk.h>
 
+#include "orage-i18n.h"
 #include "mainbox.h"
 #include "tray_icon.h"
 
 
 void create_wAbout(GtkWidget *widget, gpointer user_data)
+{
+  CalWin *xfcal = (CalWin *)user_data;
+  GtkWidget *dialog;
+  GdkPixbuf *orage_logo;
+  GtkAboutDialog *about;
+  const gchar *authors[] = {"Juha Kautto <juha@xfce.org>", _("Maintainer"), NULL};
+
+  dialog = gtk_about_dialog_new();
+  about = (GtkAboutDialog *) dialog;
+  gtk_about_dialog_set_program_name(about, "Orage");
+  gtk_about_dialog_set_version(about, VERSION);
+  gtk_about_dialog_set_copyright(about, "Copyright © 2003-2010 Juha Kautto");
+  gtk_about_dialog_set_comments(about, _("Manage your time with Orage"));
+  /*
+  gtk_about_dialog_set_license(about, XFCE_LICENSE_GPL);
+  */
+  gtk_about_dialog_set_website(about, "http://www.xfce.org");
+  gtk_about_dialog_set_authors(about, authors);
+  gtk_about_dialog_set_documenters(about, authors);
+  orage_logo = orage_create_icon(FALSE, 48);
+  gtk_about_dialog_set_logo(about, orage_logo);
+
+  gtk_window_set_default_size(GTK_WINDOW(dialog), 520, 440);
+
+  gtk_dialog_run(GTK_DIALOG(dialog));
+  gtk_widget_destroy(dialog);
+  g_object_unref(orage_logo);
+}
+/*
+void create_wAbout_old(GtkWidget *widget, gpointer user_data)
 {
   CalWin *xfcal = (CalWin *)user_data;
   GtkWidget *dialog;
@@ -45,7 +76,6 @@ void create_wAbout(GtkWidget *widget, gpointer user_data)
   orage_logo = orage_create_icon(FALSE, 48);
   xfce_about_info_set_homepage(about, "http://www.xfce.org");
 
-  /* Credits */
   xfce_about_info_add_credit(about,
 			     "Juha Kautto",
 			     "juha@xfce.org",
@@ -71,3 +101,4 @@ void create_wAbout(GtkWidget *widget, gpointer user_data)
   xfce_about_info_free(about);
   g_object_unref(orage_logo);
 }
+*/

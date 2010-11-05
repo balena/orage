@@ -915,7 +915,7 @@ static void delete_appointment(el_win *el)
     result = orage_warning_dialog(GTK_WINDOW(el->Window)
             , _("You will permanently remove all\nselected appointments.")
             , _("Do you want to continue?"));
-    if (result == GTK_RESPONSE_ACCEPT) {
+    if (result == GTK_RESPONSE_YES) {
         if (!xfical_file_open(TRUE))
             return;
         sel = gtk_tree_view_get_selection(GTK_TREE_VIEW(el->TreeView));

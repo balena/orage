@@ -43,10 +43,12 @@
 #include "functions.h"
 #include "parameters.h"
 
-/**************************************
- *  General purpose helper functions  *
- **************************************/
+/* message logging level */
+int g_log_level=0;
 
+/**************************************
+ *  Debugging helping functions       *
+ **************************************/
 /* this is for testing only. it can be used to see where time is spent.
  * Add call program_log("dbus started") in the code and run orage like:
  * strace -ttt -f -o /tmp/logfile.strace ./orage
@@ -77,14 +79,14 @@ void program_log (const char *format, ...)
  * 100-199 = Warning
  * 200-299 = Critical warning
  * 300-    = Error
- * variable g_par.log_level can be used to control how much data is printed
+ * variable g_log_level can be used to control how much data is printed
  */
 void orage_message(gint level, const char *format, ...)
 {
     va_list args;
     char *formatted;
 
-    if (level < g_par.log_level)
+    if (level < g_log_level)
         return;
     va_start(args, format);
     formatted = g_strdup_vprintf(format, args);
@@ -102,6 +104,10 @@ void orage_message(gint level, const char *format, ...)
         g_error("Orage **: %s", formatted);
     g_free(formatted);
 }
+
+/**************************************
+ *  General purpose helper functions  *
+ **************************************/
 
 GtkWidget *orage_create_combo_box_with_content(char *text[], int size)
 {
@@ -427,6 +433,38 @@ GtkWidget *orage_period_hbox_new(gboolean head_space, gboolean tail_space
     return hbox;
 }
 
+GtkWidget *orage_create_framebox_with_content(const gchar *title
+        , GtkWidget *content)
+{
+    GtkWidget *framebox;
+    GtkWidget *frame_bin;
+    gchar *tmp;
+    GtkWidget *label;
+
+    framebox = gtk_frame_new(NULL);
+    gtk_frame_set_shadow_type(GTK_FRAME(framebox), GTK_SHADOW_NONE);
+    gtk_frame_set_label_align(GTK_FRAME(framebox), 0.0, 1.0);
+    gtk_widget_show(framebox);
+
+    if (title) {
+        tmp = g_strdup_printf("<b>%s</b>", title);
+        label = gtk_label_new(tmp);
+        gtk_label_set_use_markup(GTK_LABEL(label), TRUE);
+        gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
+        gtk_widget_show(label);
+        gtk_frame_set_label_widget(GTK_FRAME(framebox), label);
+        g_free(tmp);
+    }
+
+    frame_bin = gtk_alignment_new(0.0, 0.0, 1.0, 1.0);
+    gtk_alignment_set_padding(GTK_ALIGNMENT(frame_bin), 5, 5, 21, 5);
+    gtk_widget_show(frame_bin);
+    gtk_container_add(GTK_CONTAINER(framebox), frame_bin);
+    gtk_container_add(GTK_CONTAINER(frame_bin), content);
+
+    return(framebox);
+}
+
 /*******************************************************
  * time convert and manipulation functions
  *******************************************************/
@@ -706,30 +744,32 @@ void orage_select_today(GtkCalendar *cal)
 }
 
 /*******************************************************
- * rc file interface
+ * cata and config file locations
  *******************************************************/
 
-gchar *orage_data_file_location(char *name)
+gchar *orage_data_file_location(char *dir_name)
 {
-    char *file_name, *dir_name;
+    char *file_name;
 
-    dir_name = g_strconcat(ORAGE_DIR, name, NULL);
-    file_name = xfce_resource_save_location(XFCE_RESOURCE_DATA, dir_name
-            , TRUE);
-    g_free(dir_name);
+    file_name = xfce_resource_save_location(XFCE_RESOURCE_DATA, dir_name, TRUE);
+    g_print("orage_data_file_location (%s) (%s)\n", file_name, g_get_user_data_dir());
     return(file_name);
 }
 
-gchar *orage_config_file_location(char *name)
+gchar *orage_config_file_location(char *dir_name)
 {
-    char *file_name, *dir_name;
+    /* g_get_system_config_dirs */
+    char *file_name;
 
-    dir_name = g_strconcat(ORAGE_DIR, name, NULL);
     file_name = xfce_resource_save_location(XFCE_RESOURCE_CONFIG, dir_name
             , TRUE);
-    g_free(dir_name);
+    g_print("orage_config_file_location (%s) (%s)\n", file_name, g_get_user_config_dir());
     return(file_name);
 }
+
+/*******************************************************
+ * rc file interface
+ *******************************************************/
 
 OrageRc *orage_rc_file_open(char *fpath, gboolean read_only)
 {
@@ -822,48 +862,62 @@ void orage_rc_del_item(OrageRc *orc, char *key)
 }
 
 /*******************************************************
- * xfce functions
+ * dialog functions
  *******************************************************/
 
 gint orage_info_dialog(GtkWindow *parent
         , char *primary_text, char *secondary_text)
 {
-    return(xfce_message_dialog(parent
-        , _("Info")
-        , GTK_STOCK_DIALOG_INFO
-        , primary_text
-        , secondary_text
-        , GTK_STOCK_OK, GTK_RESPONSE_ACCEPT
-        , NULL));
+    GtkWidget *dialog;
+    gint result;
+
+    dialog = gtk_message_dialog_new(parent
+            , GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT
+            , GTK_MESSAGE_INFO
+            , GTK_BUTTONS_OK
+            , "%s", primary_text);
+    if (secondary_text) 
+        gtk_message_dialog_format_secondary_text(GTK_MESSAGE_DIALOG(dialog)
+                , "%s", secondary_text);
+    result = gtk_dialog_run(GTK_DIALOG(dialog));
+    gtk_widget_destroy(dialog);
+    return(result);
 }
 
 gint orage_warning_dialog(GtkWindow *parent
         , char *primary_text, char *secondary_text)
 {
-    return(xfce_message_dialog(parent
-        , _("Warning")
-        , GTK_STOCK_DIALOG_WARNING
-        , primary_text
-        , secondary_text
-        , GTK_STOCK_NO, GTK_RESPONSE_CANCEL
-        , GTK_STOCK_YES, GTK_RESPONSE_ACCEPT
-        , NULL));
+    GtkWidget *dialog;
+    gint result;
+
+    dialog = gtk_message_dialog_new(parent
+            , GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT
+            , GTK_MESSAGE_WARNING
+            , GTK_BUTTONS_YES_NO
+            , "%s", primary_text);
+    if (secondary_text) 
+        gtk_message_dialog_format_secondary_text(GTK_MESSAGE_DIALOG(dialog)
+                , "%s", secondary_text);
+    result = gtk_dialog_run(GTK_DIALOG(dialog));
+    gtk_widget_destroy(dialog);
+    return(result);
 }
 
 gint orage_error_dialog(GtkWindow *parent
         , char *primary_text, char *secondary_text)
 {
-    return(xfce_message_dialog(parent
-        , _("Error")
-        , GTK_STOCK_DIALOG_ERROR
-        , primary_text
-        , secondary_text
-        , GTK_STOCK_OK, GTK_RESPONSE_ACCEPT
-        , NULL));
-}
+    GtkWidget *dialog;
+    gint result;
 
-GtkWidget *orage_create_framebox_with_content(const gchar *title
-        , GtkWidget *content)
-{
-    return(xfce_create_framebox_with_content (title, content));
+    dialog = gtk_message_dialog_new(parent
+            , GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT
+            , GTK_MESSAGE_ERROR
+            , GTK_BUTTONS_OK
+            , "%s", primary_text);
+    if (secondary_text) 
+        gtk_message_dialog_format_secondary_text(GTK_MESSAGE_DIALOG(dialog)
+                , "%s", secondary_text);
+    result = gtk_dialog_run(GTK_DIALOG(dialog));
+    gtk_widget_destroy(dialog);
+    return(result);
 }

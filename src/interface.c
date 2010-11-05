@@ -320,7 +320,7 @@ static void orage_file_open_button_clicked(GtkButton *button
     gchar *rcfile;
     gchar *s;
 
-    rcfile = orage_data_file_location(NULL);
+    rcfile = orage_data_file_location(ORAGE_DIR);
     f_chooser = orage_file_chooser(intf_w->main_window, TRUE
             , g_par.orage_file, rcfile, ORAGE_APP_FILE);
     g_free(rcfile);
@@ -347,7 +347,7 @@ static void archive_file_open_button_clicked(GtkButton *button
     gchar *rcfile;
     gchar *s;
 
-    rcfile = orage_data_file_location(NULL);
+    rcfile = orage_data_file_location(ORAGE_DIR);
     f_chooser = orage_file_chooser(intf_w->main_window, TRUE
             , g_par.archive_file, rcfile, ORAGE_ARC_FILE);
     g_free(rcfile);
@@ -964,6 +964,7 @@ void create_import_export_tab(intf_win *intf_w)
     gchar *str;
 
     m_vbox = gtk_vbox_new(FALSE, 0);
+    /* FIXME: this could be simpler than framebox */
     intf_w->iea_notebook_page = orage_create_framebox_with_content(NULL, m_vbox);
     intf_w->iea_tab_label = gtk_label_new(_("Import/export"));
     gtk_notebook_append_page(GTK_NOTEBOOK(intf_w->notebook)
@@ -1107,6 +1108,7 @@ void create_orage_file_tab(intf_win *intf_w)
     GtkWidget *label, *hbox, *vbox, *m_vbox;
 
     m_vbox = gtk_vbox_new(FALSE, 0);
+    /* FIXME: this could be simpler than framebox */
     intf_w->fil_notebook_page = orage_create_framebox_with_content(NULL, m_vbox);
     intf_w->fil_tab_label = gtk_label_new(_("Orage files"));
     gtk_notebook_append_page(GTK_NOTEBOOK(intf_w->notebook)
@@ -1241,6 +1243,7 @@ static void create_foreign_file_tab(intf_win *intf_w)
     GtkWidget *label, *hbox, *vbox;
 
     intf_w->for_tab_main_vbox = gtk_vbox_new(FALSE, 0);
+    /* FIXME: this could be simpler than framebox */
     intf_w->for_notebook_page = orage_create_framebox_with_content(NULL
             , intf_w->for_tab_main_vbox);
     intf_w->for_tab_label = gtk_label_new(_("Foreign files"));

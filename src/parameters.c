@@ -41,8 +41,7 @@
 #include <gtk/gtk.h>
 #include <gdk/gdk.h>
 
-#include <libxfcegui4/libxfcegui4.h>
-
+#include "orage-i18n.h"
 #include "functions.h"
 #include "tray_icon.h"
 #include "ical-code.h"
@@ -50,6 +49,7 @@
 #include "parameters.h"
 #include "mainbox.h"
 
+extern g_log_level;
 
 static gboolean is_running = FALSE;
 
@@ -480,6 +480,7 @@ static void create_parameter_dialog_main_setup_tab(Itf *dialog)
     GtkWidget *hbox, *vbox, *label;
 
     dialog->setup_vbox = gtk_vbox_new(FALSE, 0);
+    /* FIXME: this could be something simpler than framebox */
     dialog->setup_tab = 
             orage_create_framebox_with_content(NULL, dialog->setup_vbox);
     dialog->setup_tab_label = gtk_label_new(_("Main setups"));
@@ -566,6 +567,7 @@ static void create_parameter_dialog_display_tab(Itf *dialog)
     GtkWidget *hbox, *vbox, *label;
 
     dialog->display_vbox = gtk_vbox_new(FALSE, 0);
+    /* FIXME: this could be something simpler than framebox */
     dialog->display_tab = 
         orage_create_framebox_with_content(NULL, dialog->display_vbox);
     dialog->display_tab_label = gtk_label_new(_("Display"));
@@ -753,6 +755,7 @@ static void create_parameter_dialog_extra_setup_tab(Itf *dialog)
     GtkWidget *hbox, *vbox, *label;
 
     dialog->extra_vbox = gtk_vbox_new(FALSE, 0);
+    /* FIXME: this could be something simpler than framebox */
     dialog->extra_tab = 
             orage_create_framebox_with_content(NULL, dialog->extra_vbox);
     dialog->extra_tab_label = gtk_label_new(_("Extra setups"));
@@ -865,7 +868,7 @@ Itf *create_parameter_dialog()
     dialog = g_new(Itf, 1);
     dialog->Tooltips = gtk_tooltips_new();
 
-    dialog->orage_dialog = xfce_titled_dialog_new();
+    dialog->orage_dialog = gtk_dialog_new();
     gtk_window_set_default_size(GTK_WINDOW(dialog->orage_dialog), 300, 350);
     gtk_window_set_title(GTK_WINDOW(dialog->orage_dialog)
             , _("Orage Preferences"));
@@ -918,7 +921,7 @@ OrageRc *orage_parameters_file_open(gboolean read_only)
     gchar *fpath;
     OrageRc *orc;
 
-    fpath = orage_config_file_location(ORAGE_PAR_FILE);
+    fpath = orage_config_file_location(ORAGE_PAR_DIR_FILE);
     if ((orc = (OrageRc *)orage_rc_file_open(fpath, read_only)) == NULL) {
         orage_message(150, "orage_category_file_open: Parameter file open failed.");
     }
@@ -993,7 +996,7 @@ void write_parameters()
         g_sprintf(f_par, "Foreign file %02d read-only", i);
         orage_rc_del_item(orc, f_par);
     }
-    orage_rc_put_int(orc, "Logging level", g_par.log_level);
+    orage_rc_put_int(orc, "Logging level", g_log_level);
     orage_rc_put_int(orc, "Priority list limit", g_par.priority_list_limit);
 
     orage_rc_file_close(orc);
@@ -1096,11 +1099,11 @@ void read_parameters(void)
     }
 #ifdef HAVE_ARCHIVE
     g_par.archive_limit = orage_rc_get_int(orc, "Archive limit", 0);
-    fpath = orage_data_file_location(ORAGE_ARC_FILE);
+    fpath = orage_data_file_location(ORAGE_ARC_DIR_FILE);
     g_par.archive_file = orage_rc_get_str(orc, "Archive file", fpath);
     g_free(fpath);
 #endif
-    fpath = orage_data_file_location(ORAGE_APP_FILE);
+    fpath = orage_data_file_location(ORAGE_APP_DIR_FILE);
     g_par.orage_file = orage_rc_get_str(orc, "Orage file", fpath);
     g_free(fpath);
     g_par.sound_application=orage_rc_get_str(orc, "Sound application", "play");
@@ -1141,7 +1144,7 @@ void read_parameters(void)
         g_sprintf(f_par, "Foreign file %02d read-only", i);
         g_par.foreign_data[i].read_only = orage_rc_get_bool(orc, f_par, TRUE);
     }
-    g_par.log_level = orage_rc_get_int(orc, "Logging level", 0);
+    g_log_level = orage_rc_get_int(orc, "Logging level", 0);
     g_par.priority_list_limit = orage_rc_get_int(orc, "Priority list limit", 8);
 
     orage_rc_file_close(orc);

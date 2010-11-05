@@ -26,34 +26,35 @@
 #include <gdk/gdkkeysyms.h>
 #include <gdk/gdkx.h>
 #include <gtk/gtk.h>
-#include <libxfce4util/libxfce4util.h>
 #include "globaltime.h"
+#include "../src/functions.h"
 
 
-#define CONFIG_DATA_DIR_NAME  "globaltime" G_DIR_SEPARATOR_S
-#define CONFIG_DATA_FILE_NAME "globaltimerc"
+#define CONFIG_DIR_NAME  "globaltime" G_DIR_SEPARATOR_S
+#define CONFIG_FILE_NAME "globaltimerc"
+#define CONFIG_DIR_FILE_NAME CONFIG_DIR_NAME CONFIG_FILE_NAME
 #define WIN_HEADING_SIZE 30
 
 
 extern global_times_struct clocks;
 
-static void write_string(XfceRc *rc, gchar *prop, GString *string)
+static void write_string(OrageRc *rc, gchar *prop, GString *string)
 {
     if (string && string->len)
-        xfce_rc_write_entry(rc, prop, string->str);
+        orage_rc_put_str(rc, prop, string->str);
 }
 
-static void write_color(XfceRc *rc, gchar *prop, GdkColor *color)
+static void write_color(OrageRc *rc, gchar *prop, GdkColor *color)
 {
     gchar tmp[100];
 
     if (color) {
         sprintf(tmp, "%uR %uG %uB", color->red, color->green, color->blue);
-        xfce_rc_write_entry(rc, prop, tmp);
+        orage_rc_put_str(rc, prop, tmp);
     }
 }
 
-static void write_attr(XfceRc *rc, text_attr_struct *attr)
+static void write_attr(OrageRc *rc, text_attr_struct *attr)
 {
     if (attr->clock_fg_modified)
         write_color(rc, "fg", attr->clock_fg);
@@ -71,9 +72,9 @@ static void write_attr(XfceRc *rc, text_attr_struct *attr)
         write_string(rc, "time_underline", attr->time_underline);
 }
 
-static void write_clock(clock_struct *clockp, XfceRc *rc)
+static void write_clock(clock_struct *clockp, OrageRc *rc)
 {
-    xfce_rc_set_group(rc, clockp->name->str);
+    orage_rc_set_group(rc, clockp->name->str);
     write_string(rc, "name", clockp->name);
     write_string(rc, "tz", clockp->tz);
     write_attr(rc, &clockp->clock_attr);
@@ -82,48 +83,47 @@ static void write_clock(clock_struct *clockp, XfceRc *rc)
 void write_file(void)
 {
     gchar *fpath;
-    XfceRc *rc;
+    OrageRc *rc;
 
-    fpath = xfce_resource_save_location(XFCE_RESOURCE_CONFIG
-            , CONFIG_DATA_DIR_NAME CONFIG_DATA_FILE_NAME, TRUE);
+    fpath = orage_config_file_location(CONFIG_DIR_FILE_NAME);
     unlink(fpath);
-    if ((rc = xfce_rc_simple_open(fpath, FALSE)) == NULL) {
+    if ((rc = orage_rc_file_open(fpath, FALSE)) == NULL) {
         g_warning("Unable to open RC file.");
         return;
     }
     g_free(fpath);
     gtk_window_get_position(GTK_WINDOW(clocks.window), &clocks.x, &clocks.y);
-    xfce_rc_set_group(rc, "Default Values");
-    xfce_rc_write_int_entry(rc, "X-pos", clocks.x);
-    xfce_rc_write_int_entry(rc, "Y-pos", clocks.y);
-    xfce_rc_write_int_entry(rc, "Decorations", clocks.decorations);
-    xfce_rc_write_int_entry(rc, "Expand", clocks.expand);
+    orage_rc_set_group(rc, "Default Values");
+    orage_rc_put_int(rc, "X-pos", clocks.x);
+    orage_rc_put_int(rc, "Y-pos", clocks.y);
+    orage_rc_put_int(rc, "Decorations", clocks.decorations);
+    orage_rc_put_int(rc, "Expand", clocks.expand);
     write_string(rc, "tz", clocks.local_tz);
     write_attr(rc, &clocks.clock_default_attr);
 
     g_list_foreach(clocks.clock_list, (GFunc) write_clock, rc);
-    xfce_rc_close(rc);
+    orage_rc_file_close(rc);
 }
 
-static gboolean read_string(XfceRc *rc, gchar *prop, GString *result)
+static gboolean read_string(OrageRc *rc, gchar *prop, GString *result)
 {
     gboolean found = FALSE;
 
-    if (xfce_rc_has_entry(rc, prop)) {
-        result = g_string_assign(result, xfce_rc_read_entry(rc, prop, ""));
+    if (orage_rc_exists_item(rc, prop)) {
+        result = g_string_assign(result, orage_rc_get_str(rc, prop, ""));
         found = TRUE;
     }
     return(found);
 }
 
-static gboolean read_color(XfceRc *rc, gchar *prop, GdkColor **result)
+static gboolean read_color(OrageRc *rc, gchar *prop, GdkColor **result)
 {
     gchar *tmp;
     gboolean found = FALSE;
     unsigned int red, green, blue;
 
-    if (xfce_rc_has_entry(rc, prop)) {
-        tmp = (gchar *)xfce_rc_read_entry(rc, prop, "");
+    if (orage_rc_exists_item(rc, prop)) {
+        tmp = (gchar *)orage_rc_get_str(rc, prop, "");
         /*
         sscanf(tmp, "%uR %uG %uB", &(*result)->red, &(*result)->green
                 , &(*result)->blue);
@@ -138,7 +138,7 @@ static gboolean read_color(XfceRc *rc, gchar *prop, GdkColor **result)
     return(found);
 }
 
-static void read_attr(XfceRc *rc, text_attr_struct *attr)
+static void read_attr(OrageRc *rc, text_attr_struct *attr)
 {
     attr->clock_fg_modified = read_color(rc, "fg", &attr->clock_fg);
     attr->clock_bg_modified = read_color(rc, "bg", &attr->clock_bg);
@@ -152,15 +152,15 @@ static void read_attr(XfceRc *rc, text_attr_struct *attr)
             read_string(rc, "time_underline", attr->time_underline);
 }
 
-static void read_clock(XfceRc *rc)
+static void read_clock(OrageRc *rc)
 {
     clock_struct *clockp;
 
     clockp = g_new0(clock_struct, 1);
     clockp->name = g_string_new(
-            xfce_rc_read_entry(rc, "name", "no name"));
+            orage_rc_get_str(rc, "name", "no name"));
     clockp->tz = g_string_new(
-            xfce_rc_read_entry(rc, "tz", "/etc/localtime"));
+            orage_rc_get_str(rc, "tz", "/etc/localtime"));
     clockp->modified = FALSE;
 
     init_attr(&clockp->clock_attr);
@@ -173,44 +173,38 @@ void read_file(void)
 {
     gchar *fpath;
     gchar **groups;
-    XfceRc *rc;
+    OrageRc *rc;
     gint i;
 
-    fpath = xfce_resource_save_location(XFCE_RESOURCE_CONFIG
-            , CONFIG_DATA_DIR_NAME CONFIG_DATA_FILE_NAME, TRUE);
+    fpath = orage_config_file_location(CONFIG_DIR_FILE_NAME);
 
-    if ((rc = xfce_rc_simple_open(fpath, TRUE)) == NULL) {
-        g_warning("Unable to open (read) RC file.");
-        /* let's try to build it */
-        if ((rc = xfce_rc_simple_open(fpath, FALSE)) == NULL) {
-            /* still failed, can't do more */
-            g_warning("Unable to open (write) RC file.");
-            return;
-        }
+    if ((rc = orage_rc_file_open(fpath, TRUE)) == NULL) {
+        g_warning("Unable to open RC file.");
+        return;
     }
     g_free(fpath);
 
     /* read first default values without group name */
-    xfce_rc_set_group(rc, "Default Values");
-    clocks.x = xfce_rc_read_int_entry(rc, "X-pos", 0);
-    clocks.y = xfce_rc_read_int_entry(rc, "Y-pos", 0);
-    clocks.decorations = xfce_rc_read_int_entry(rc, "Decorations", 1);
-    clocks.expand = xfce_rc_read_int_entry(rc, "Expand", 0);
+    orage_rc_set_group(rc, "Default Values");
+    clocks.x = orage_rc_get_int(rc, "X-pos", 0);
+    clocks.y = orage_rc_get_int(rc, "Y-pos", 0);
+    clocks.decorations = orage_rc_get_int(rc, "Decorations", 1);
+    clocks.expand = orage_rc_get_int(rc, "Expand", 0);
     clocks.local_tz = g_string_new(
-            xfce_rc_read_entry(rc, "tz", "/etc/localtime"));
+            orage_rc_get_str(rc, "tz", "/etc/localtime"));
     read_attr(rc, &clocks.clock_default_attr);
 
     /* then clocks */
-    groups = xfce_rc_get_groups(rc);
+    groups = orage_rc_get_groups(rc);
     for (i = 0; groups[i] != NULL; i++) {
         if ((strcmp(groups[i], "[NULL]") != 0)
         &&  (strcmp(groups[i], "Default Values") != 0)) {
-            xfce_rc_set_group(rc, groups[i]);
+            orage_rc_set_group(rc, groups[i]);
             read_clock(rc);
         }
     }
 
     g_strfreev(groups);
-    xfce_rc_close(rc);
+    orage_rc_file_close(rc);
 }
 

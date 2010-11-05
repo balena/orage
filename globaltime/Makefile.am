@@ -8,7 +8,9 @@ globaltime_SOURCES =						\
 	timezone_selection.c                    \
 	timezone_selection.h                    \
 	tz_zoneinfo_read.c                      \
-	tz_zoneinfo_read.h
+	tz_zoneinfo_read.h                      \
+	../src/functions.c                      \
+	../src/functions.h
 
 man_MANS =                             		 \
 	globaltime.1

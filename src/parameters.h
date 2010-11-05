@@ -94,9 +94,6 @@ typedef struct _parameters
     /* show days window from main calendar */
     gboolean show_days; /* true=show days false=show events */
 
-    /* Controls which messages are printed */
-    gint log_level;
-
     /* Controls which appointment priorities are shown in daylist */
     gint priority_list_limit;
 } global_parameters; /* global parameters */

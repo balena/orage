@@ -717,7 +717,7 @@ static gboolean appWindow_check_and_close(appt_win *apptw)
                 , _("The appointment information has been modified.")
                 , _("Do you want to continue?"));
 
-        if (result == GTK_RESPONSE_ACCEPT) {
+        if (result == GTK_RESPONSE_YES) {
             app_free_memory(apptw);
         }
     }
@@ -735,17 +735,15 @@ static gboolean on_appWindow_delete_event_cb(GtkWidget *widget, GdkEvent *event
 
 static gboolean orage_validate_datetime(appt_win *apptw, xfical_appt *appt)
 {
-    gint result;
-
     /* Journal does not have end time so no need to check */
     if (appt->type == XFICAL_TYPE_JOURNAL
     ||  (appt->type == XFICAL_TYPE_TODO && !appt->use_due_time))
         return(TRUE);
 
     if (xfical_compare_times(appt) > 0) {
-        result = orage_error_dialog(GTK_WINDOW(apptw->Window)
-                , _("The end of this appointment is earlier than the beginning.")
-                , NULL);
+        orage_error_dialog(GTK_WINDOW(apptw->Window)
+            , _("The end of this appointment is earlier than the beginning.")
+            , NULL);
         return(FALSE);
     }
     else {
@@ -1166,7 +1164,7 @@ static void delete_xfical_from_appt_win(appt_win *apptw)
             , _("This appointment will be permanently removed.")
             , _("Do you want to continue?"));
                                  
-    if (result == GTK_RESPONSE_ACCEPT) {
+    if (result == GTK_RESPONSE_YES) {
         if (!apptw->appointment_add) {
             if (!xfical_file_open(TRUE))
                     return;
@@ -1671,7 +1669,7 @@ static OrageRc *orage_category_file_open(gboolean read_only)
     gchar *fpath;
     OrageRc *orc;
 
-    fpath = orage_data_file_location(ORAGE_CATEGORIES_FILE);
+    fpath = orage_data_file_location(ORAGE_CATEGORIES_DIR_FILE);
     if ((orc = (OrageRc *)orage_rc_file_open(fpath, read_only)) == NULL) {
         orage_message(150, "orage_category_file_open: category file open failed.");
     }
@@ -2384,7 +2382,7 @@ static OrageRc *orage_alarm_file_open(gboolean read_only)
     gchar *fpath;
     OrageRc *orc;
 
-    fpath = orage_config_file_location(ORAGE_DEFAULT_ALARM_FILE);
+    fpath = orage_config_file_location(ORAGE_DEFAULT_ALARM_DIR_FILE);
     if (!read_only)  /* we need to empty it before each write */
         g_remove(fpath);
     if ((orc = (OrageRc *)orage_rc_file_open(fpath, read_only)) == NULL) {

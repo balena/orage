@@ -32,11 +32,17 @@
 
 #define ORAGE_DIR "orage" G_DIR_SEPARATOR_S
 #define ORAGE_PAR_FILE  "oragerc"
+#define ORAGE_PAR_DIR_FILE ORAGE_DIR ORAGE_PAR_FILE
 #define ORAGE_APP_FILE  "orage.ics"
+#define ORAGE_APP_DIR_FILE ORAGE_DIR ORAGE_APP_FILE
 #define ORAGE_ARC_FILE  "orage_archive.ics"
+#define ORAGE_ARC_DIR_FILE ORAGE_DIR ORAGE_ARC_FILE
 #define ORAGE_CATEGORIES_FILE "orage_categories.txt"
+#define ORAGE_CATEGORIES_DIR_FILE ORAGE_DIR ORAGE_CATEGORIES_FILE
 #define ORAGE_PERSISTENT_ALARMS_FILE "orage_persistent_alarms.txt"
+#define ORAGE_PERSISTENT_ALARMS_DIR_FILE ORAGE_DIR ORAGE_PERSISTENT_ALARMS_FILE
 #define ORAGE_DEFAULT_ALARM_FILE "orage_default_alarm.txt"
+#define ORAGE_DEFAULT_ALARM_DIR_FILE ORAGE_DIR ORAGE_DEFAULT_ALARM_FILE
 
 #define ORAGE_STR_EXISTS(str) ((str != NULL) && (str[0] != 0))
 
@@ -104,8 +110,8 @@ gint orage_days_between(struct tm *t1, struct tm *t2);
 void orage_select_date(GtkCalendar *cal, guint year, guint month, guint day);
 void orage_select_today(GtkCalendar *cal);
 
-gchar *orage_data_file_location(char *name);
-gchar *orage_config_file_location(char *name);
+gchar *orage_data_file_location(char *dir_name);
+gchar *orage_config_file_location(char *dir_name);
 OrageRc *orage_rc_file_open(char *fpath, gboolean read_only);
 void orage_rc_file_close(OrageRc *orc);
 gchar **orage_rc_get_groups(OrageRc *orc);

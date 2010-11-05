@@ -51,8 +51,8 @@
 #include <glib/gprintf.h>
 #include <glib/gstdio.h>
 
-#include <libxfce4util/libxfce4util.h>
-#include <libxfcegui4/libxfcegui4.h>
+#include "../src/orage-i18n.h"
+#include "../src/functions.h"
 
 #include "tz_zoneinfo_read.h"
 #include "timezone_selection.h"

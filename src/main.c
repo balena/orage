@@ -39,14 +39,14 @@
 #endif
 #include <time.h>
 
-#include <libxfcegui4/libxfcegui4.h>
-
 #include <glib.h>
 #include <gtk/gtk.h>
 #include <gdk/gdk.h>
+#include <gdk/gdkx.h>
 
 #define ORAGE_MAIN  "orage"
 
+#include "orage-i18n.h"
 #include "functions.h"
 #include "mainbox.h"
 #include "reminder.h"
@@ -59,7 +59,9 @@
 #endif
 
 /* session client handler */
+/*
 static SessionClient	*session_client = NULL;
+*/
 static GdkAtom atom_alive;
 
 
@@ -172,26 +174,30 @@ gboolean keep_tidy(void)
  * This is called when the session manager requests the client to save its
  * state.
  */
+/*
 void save_yourself_cb(gpointer data, int save_style, gboolean shutdown
         , int interact_style, gboolean fast)
 {
     write_parameters();
 }
+*/
 
 /*
  * Die callback
  *
  * This is called when the session manager requests the client to go down.
  */
+/*
 void die_cb(gpointer data)
 {
     gtk_main_quit();
 }
+*/
 
 static void print_version(void)
 {
-    g_print(_("\tThis is %s version %s for Xfce %s\n\n")
-            , PACKAGE, VERSION, xfce_version_string());
+    g_print(_("\tThis is %s version %s\n\n")
+            , PACKAGE, VERSION);
     g_print(_("\tReleased under the terms of the GNU General Public License.\n"));
     g_print(_("\tCompiled against GTK+-%d.%d.%d, ")
             , GTK_MAJOR_VERSION, GTK_MINOR_VERSION, GTK_MICRO_VERSION);
@@ -450,11 +456,13 @@ int main(int argc, char *argv[])
     /* 
     * try to connect to the session manager
     */
+    /*
     session_client = client_session_new(argc, argv, NULL
             , SESSION_RESTART_IF_RUNNING, 50);
     session_client->save_yourself = save_yourself_cb;
     session_client->die = die_cb;
     (void)session_init(session_client);
+    */
 
     /*
     * Now it's serious, the application is running, so we create the RC

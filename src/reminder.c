@@ -255,7 +255,7 @@ static OrageRc *orage_persistent_file_open(gboolean read_only)
 #ifdef ORAGE_DEBUG
     orage_message(-100, P_N);
 #endif
-    fpath = orage_data_file_location(ORAGE_PERSISTENT_ALARMS_FILE);
+    fpath = orage_data_file_location(ORAGE_PERSISTENT_ALARMS_DIR_FILE);
     if (!read_only)  /* we need to empty it before each write */
         g_remove(fpath);
     if ((orc = (OrageRc *)orage_rc_file_open(fpath, read_only)) == NULL) {

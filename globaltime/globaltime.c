@@ -45,8 +45,8 @@
 #include <gdk/gdkkeysyms.h>
 #include <gdk/gdkx.h>
 #include <gtk/gtk.h>
-#include <libxfce4util/libxfce4util.h>
 #include "globaltime.h"
+#include "../src/orage-i18n.h"
 
 
 #define NAME_VERSION "Global Time (2.1)"
@@ -614,7 +614,13 @@ static void create_global_time(void)
 
 int main(int argc, char *argv[])
 {
-    xfce_textdomain(GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR, "UTF-8");
+    /* init i18n = nls to use gettext */
+    bindtextdomain(GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR);
+#ifdef HAVE_BIND_TEXTDOMAIN_CODESET
+    bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8");
+#endif
+    textdomain(GETTEXT_PACKAGE);
+
     gtk_init(&argc, &argv);
     create_global_time();
     gtk_main();
