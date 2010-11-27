@@ -1,18 +1,18 @@
-# Hungarian translation of xfcalendar
+# Hungarian translation of orage
 # Copyright 2003-2009. Free Software Foundation, Inc.
-# This file is distributed under the same license as the xfcalendar package.
+# This file is distributed under the same license as the orage package.
 #
-# SZERVÁC Attila <sas@321.hu>, 2006.
-# András Mohari <mayday@mailpoint.hu>, 2006.
-# Gabor Kelemen <kelemeng at gnome dot hu>, 2009.
+# SZERVÁC Attila <sas at 321 dot hu>, 2006.
+# András Mohari <mayday at mailpoint dot hu>, 2006.
+# Gabor Kelemen <kelemeng at gnome dot hu>, 2009, 2010.
 msgid ""
 msgstr ""
-"Project-Id-Version: xfcalendar\n"
+"Project-Id-Version: orage\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-02-25 14:03+0200\n"
-"PO-Revision-Date: 2009-07-25 12:13+0200\n"
+"PO-Revision-Date: 2010-11-27 01:57+0100\n"
 "Last-Translator: Gabor Kelemen <kelemeng at gnome dot hu>\n"
-"Language-Team: Hungarian <gnome at gnome dot hu>\n"
+"Language-Team: Hungarian <gnome at fsf dot hu>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -54,9 +54,8 @@ msgid "adjust to change hour"
 msgstr "Az óra megváltoztatása"
 
 #: ../globaltime/globaltime.c:497
-msgid ""
-"adjust to change minute. Click arrows with button 2 to change only 1 minute."
-msgstr ""
+msgid "adjust to change minute. Click arrows with button 2 to change only 1 minute."
+msgstr "A perc megváltoztatása. Kattintson a nyilakra a jobb gombbal az 1 percre váltáshoz."
 
 #: ../globaltime/gt_prefs.c:264 ../globaltime/gt_prefs.c:265
 msgid "NEW"
@@ -111,9 +110,8 @@ msgid "close window and exit"
 msgstr "Ablak bezárása és kilépés"
 
 #: ../globaltime/gt_prefs.c:589
-#, fuzzy
 msgid "Globaltime preferences "
-msgstr "Beállítások frissítése"
+msgstr "Globális idő beállításai"
 
 #. -----------------------HEADING-------------------------------------------
 #: ../globaltime/gt_prefs.c:602
@@ -218,8 +216,7 @@ msgstr "Az óranév alapértelmezett betűkészletének módosítása"
 
 #: ../globaltime/gt_prefs.c:943 ../globaltime/gt_prefs.c:977
 msgid "Cross this to use system default font instead of selected font"
-msgstr ""
-"A rendszer alapértelmezett betűkészletének használata a kiválasztott helyett"
+msgstr "A rendszer alapértelmezett betűkészletének használata a kiválasztott helyett"
 
 #: ../globaltime/gt_prefs.c:962
 msgid "Click to change default font for clock time"
@@ -240,9 +237,8 @@ msgid "update preferences"
 msgstr "Beállítások frissítése"
 
 #: ../globaltime/gt_prefs.c:1061
-#, fuzzy
 msgid "Globaltime Preferences"
-msgstr "Általános beállítások"
+msgstr "Globális idő beállításai"
 
 #. -----------------------HEADING--------------------------------------
 #: ../globaltime/gt_prefs.c:1072
@@ -292,46 +288,45 @@ msgstr "Helyi időzóna:"
 #: ../globaltime/timezone_selection.c:103
 #: ../panel-plugin/timezone_selection.c:103 ../src/timezone_selection.c:103
 msgid " Other"
-msgstr ""
+msgstr " Másik"
 
 #: ../globaltime/timezone_selection.c:158
 #: ../panel-plugin/timezone_selection.c:158 ../src/timezone_selection.c:169
 #, c-format
 msgid "%d hour %d mins"
-msgstr ""
+msgstr "%d óra %d perc"
 
 #: ../globaltime/timezone_selection.c:161
 #: ../panel-plugin/timezone_selection.c:161 ../src/timezone_selection.c:172
-#, fuzzy, c-format
+#, c-format
 msgid "%d hour"
-msgstr "óra"
+msgstr "%d óra"
 
 #: ../globaltime/timezone_selection.c:163
 #: ../panel-plugin/timezone_selection.c:163 ../src/timezone_selection.c:174
-#, fuzzy, c-format
+#, c-format
 msgid "%d mins"
-msgstr "perc"
+msgstr "%d perc"
 
 #: ../globaltime/timezone_selection.c:169
 #: ../panel-plugin/timezone_selection.c:169 ../src/timezone_selection.c:180
 msgid "backward"
-msgstr ""
+msgstr "vissza"
 
 #: ../globaltime/timezone_selection.c:172
 #: ../panel-plugin/timezone_selection.c:172 ../src/timezone_selection.c:183
-#, fuzzy
 msgid "forward"
-msgstr "Előre"
+msgstr "előre"
 
 #: ../globaltime/timezone_selection.c:196
 #: ../panel-plugin/timezone_selection.c:196 ../src/timezone_selection.c:207
 msgid "not changed"
-msgstr ""
+msgstr "nem változott"
 
 #: ../globaltime/timezone_selection.c:197
 #: ../panel-plugin/timezone_selection.c:197 ../src/timezone_selection.c:208
 msgid "not changing"
-msgstr ""
+msgstr "nem változik"
 
 #. location
 #: ../globaltime/timezone_selection.c:249
@@ -345,17 +340,17 @@ msgstr "Hely"
 #: ../globaltime/timezone_selection.c:260
 #: ../panel-plugin/timezone_selection.c:260 ../src/timezone_selection.c:271
 msgid "GMT Offset"
-msgstr ""
+msgstr "GMT eltolás"
 
 #: ../globaltime/timezone_selection.c:266
 #: ../panel-plugin/timezone_selection.c:266 ../src/timezone_selection.c:277
 msgid "Previous/Next Change"
-msgstr ""
+msgstr "Előző/következő változás"
 
 #: ../globaltime/timezone_selection.c:271
 #: ../panel-plugin/timezone_selection.c:271 ../src/timezone_selection.c:282
 msgid "Country"
-msgstr ""
+msgstr "Ország"
 
 #: ../globaltime/timezone_selection.c:301
 #: ../globaltime/timezone_selection.c:311
@@ -371,7 +366,7 @@ msgstr "Válasszon időzónát"
 #: ../panel-plugin/timezone_selection.c:314 ../src/timezone_selection.c:315
 #: ../src/timezone_selection.c:325
 msgid "Change mode"
-msgstr ""
+msgstr "Módváltoztatás"
 
 #: ../globaltime/timezone_selection.c:305
 #: ../globaltime/timezone_selection.c:315
@@ -393,18 +388,16 @@ msgid "floating"
 msgstr "Lebegő"
 
 #: ../globaltime/globaltime.desktop.in.h:1
-#, fuzzy
 msgid "Globaltime"
-msgstr "Helyi idő"
+msgstr "Globális idő"
 
 #: ../globaltime/globaltime.desktop.in.h:2
-#, fuzzy
 msgid "Orage Globaltime"
-msgstr "Orage – Naptár"
+msgstr "Orage globális idő"
 
 #: ../globaltime/globaltime.desktop.in.h:3
 msgid "Show clocks from different countries"
-msgstr ""
+msgstr "Különböző országok óráinak megjelenítése"
 
 #: ../panel-plugin/oc_config.c:219
 msgid "Appearance"
@@ -432,7 +425,7 @@ msgstr "_Magasság beállítása:"
 
 #: ../panel-plugin/oc_config.c:278
 msgid "Note that you can not change the height of horizontal panels"
-msgstr ""
+msgstr "A vízszintes panelek magasságát nem módosíthatja"
 
 #: ../panel-plugin/oc_config.c:283
 msgid "set _width:"
@@ -440,7 +433,7 @@ msgstr "S_zélesség beállítása:"
 
 #: ../panel-plugin/oc_config.c:294
 msgid "Note that you can not change the width of vertical panels"
-msgstr ""
+msgstr "A függőleges panelek szélességét nem módosíthatja"
 
 #: ../panel-plugin/oc_config.c:311
 msgid "Clock Options"
@@ -454,7 +447,7 @@ msgstr "Időzóna beállítása:"
 #: ../panel-plugin/oc_config.c:349
 #, c-format
 msgid "Line %d:"
-msgstr ""
+msgstr "%d. sor:"
 
 #: ../panel-plugin/oc_config.c:359
 msgid "Enter any valid strftime function parameter."
@@ -506,9 +499,8 @@ msgstr ""
 "\t%X = helyi idő\t\t\t%x = helyi dátum"
 
 #: ../panel-plugin/oc_config.c:456
-#, fuzzy
 msgid "Orage clock Preferences"
-msgstr "Orage beállításai"
+msgstr "Orage óra beállításai"
 
 #: ../panel-plugin/oc_config.c:471
 msgid "Orage clock"
@@ -783,7 +775,7 @@ msgstr "Kategóriák színeinek frissítése."
 #. priority
 #: ../src/appointment.c:2733
 msgid "Priority"
-msgstr ""
+msgstr "Prioritás"
 
 #. note
 #: ../src/appointment.c:2743
@@ -802,6 +794,14 @@ msgid ""
 "(This can be used for example in birthday reminders to tell how old the "
 "person will be.)"
 msgstr ""
+"Ezek a rövid parancsok azonnal életbe lépnek:\n"
+"    <D> jelenlegi dátum beszúrása helyi dátumformátumban\n"
+"    <T> idő beszúrása\n"
+"    <DT> dátum és idő beszúrása.\n"
+"\n"
+"Ezek csak később, megjelenítésükkor kerülnek átalakításra:\n"
+"    <&Ynnnn> a jelenlegi év mínusz nnnn.\n"
+"(Ez például születésnap-emlékeztetőkben használható az adott személy életkorának meghatározására.)"
 
 #: ../src/appointment.c:2833
 msgid "Before Start"
@@ -928,17 +928,16 @@ msgid ""
 "You must enter all escape etc characters yourself.\n"
 " This string is just given to shell to process"
 msgstr ""
-"Minden escape, stb. karaktert Önnek kell megadnia.\n"
+"Minden escape stb. karaktert Önnek kell megadnia.\n"
 "Ez a karakterlánc átadásra kerül feldolgozásra a parancsértelmezőnek."
 
 #: ../src/appointment.c:3032
 msgid "Test this alarm by raising it now"
-msgstr ""
+msgstr "Figyelmeztetés tesztelése az azonnali aktiválásával"
 
 #: ../src/appointment.c:3039
-#, fuzzy
 msgid "<b>Default alarm</b>"
-msgstr "Alapértelmezett figyelmeztetés"
+msgstr "<b>Alapértelmezett figyelmeztetés</b>"
 
 #: ../src/appointment.c:3047
 msgid "Store current settings as default alarm"
@@ -1094,13 +1093,13 @@ msgstr ""
 #. TODO base (only for TODOs)
 #: ../src/appointment.c:3277
 msgid "TODO base"
-msgstr ""
+msgstr "Teendő alapja"
 
 #: ../src/appointment.c:3290
 msgid ""
 "TODO reoccurs regularly starting on start time and repeating after each "
 "interval no matter when it was last completed"
-msgstr ""
+msgstr "A teendő rendszeresen ismétlődik a kezdési idővel kezdődően, és minden időköz után ismétlődik az utolsó befejezés idejétől függetlenül"
 
 #: ../src/appointment.c:3292
 msgid ""
@@ -1109,12 +1108,13 @@ msgid ""
 "(Note that you can not tell anything about the history of the TODO since "
 "reoccurrence base changes after each completion.)"
 msgstr ""
+"A teendő ismétlődése a befejezési időn alapul, és az utolsó befejezési időtől számított időköz eltelte után ismétlődik.\n"
+"(A teendő előzményeiről semmit nem lehet tudni, mivel az ismétlődés alapja minden befejezés után változik.)"
 
 #. exceptions
 #: ../src/appointment.c:3299
-#, fuzzy
 msgid "Exceptions"
-msgstr "Beállítások"
+msgstr "Kivételek"
 
 #: ../src/appointment.c:3312
 msgid ""
@@ -1123,30 +1123,32 @@ msgid ""
 "selection.\n"
 "Remove by clicking the data."
 msgstr ""
+"A lenti naptári napok kiválasztásával kivételdátumokat vehet fel.\n"
+"A kivétel kizárás(-) vagy felvétel(+) lehet, a választásától függően.\n"
+"Az adatokra kattintva eltávolíthatja azokat."
 
 #: ../src/appointment.c:3317
 msgid "Add excluded date (-)"
-msgstr ""
+msgstr "Kizárt dátum hozzáadása(-)"
 
 #: ../src/appointment.c:3319
 msgid "Excluded days are full days where this appointment is not happening"
-msgstr ""
+msgstr "A kizárt napok azok a teljes napok, amelyeken ez a találkozó nem jön létre"
 
 #: ../src/appointment.c:3325
 msgid "Add included time (+)"
-msgstr ""
+msgstr "Felvett idő hozzáadása(+)"
 
 #: ../src/appointment.c:3327
 msgid ""
 "Included times have same timezone than start time, but they may have "
 "different time"
-msgstr ""
+msgstr "A felvett idők a kezdési idővel azonos időzónában lévő, de attól eltérő időpontok"
 
 #. calendars showing the action days
 #: ../src/appointment.c:3344
-#, fuzzy
 msgid "Action dates"
-msgstr "Művelet beállításai"
+msgstr "Művelet dátumai"
 
 #. ********* View menu *********
 #. View menu
@@ -1190,7 +1192,7 @@ msgstr "Ismeretlen"
 
 #: ../src/day-view.c:689
 msgid "       Number of days to show"
-msgstr ""
+msgstr "Megjelenítendő napok száma"
 
 #: ../src/day-view.c:920
 msgid "Orage - day view"
@@ -1369,8 +1371,7 @@ msgstr ""
 
 #: ../src/ical-code.c:2918
 #, c-format
-msgid ""
-"\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
+msgid "\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
 msgstr ""
 "\t%d figyelmeztetés található, amiből %d aktív. (%d ismétlődő figyelmeztetés "
 "keresése kész.)"
@@ -1648,12 +1649,12 @@ msgstr "\tAz archiválás nincs használatban.\n"
 #: ../src/main.c:215
 #, c-format
 msgid "\tUsing operating system package libical.\n"
-msgstr ""
+msgstr "\tA libical operációs rendszerbeli verziójának használata.\n"
 
 #: ../src/main.c:217
 #, c-format
 msgid "\tUsing Orage local version of libical.\n"
-msgstr ""
+msgstr "\tA libical Orage-beli helyi verziójának használata.\n"
 
 #: ../src/main.c:230
 #, c-format
@@ -1801,9 +1802,9 @@ msgid "<b>Events for %s:</b>"
 msgstr "<b>%s eseményei:</b>"
 
 #: ../src/mainbox.c:549
-#, fuzzy, c-format
+#, c-format
 msgid "<b>Events for %s - %s:</b>"
-msgstr "<b>%s eseményei:</b>"
+msgstr "<b>%s eseményei – %s:</b>"
 
 #: ../src/parameters.c:485
 msgid "Main setups"
@@ -1827,8 +1828,7 @@ msgstr "(0 = nincs archiválás)"
 
 #: ../src/parameters.c:532
 msgid "Archiving is used to save time and space when handling events."
-msgstr ""
-"Az archiválás célja az események kezelésekor történő idő- és helyspórolás."
+msgstr "Az archiválás célja az események kezelésekor történő idő- és helyspórolás."
 
 #: ../src/parameters.c:541
 msgid "Sound command"
@@ -1836,8 +1836,7 @@ msgstr "Hang parancs"
 
 #: ../src/parameters.c:556
 msgid "This command is given to shell to make sound in alarms."
-msgstr ""
-"Ezen parancs futtatása a figyelmeztetések hangjának megszólaltatásához."
+msgstr "Ezen parancs futtatása a figyelmeztetések hangjának megszólaltatásához."
 
 #: ../src/parameters.c:571
 msgid "Display"
@@ -1856,19 +1855,16 @@ msgid "Show menu"
 msgstr "Menü megjelenítése"
 
 #: ../src/parameters.c:598
-#, fuzzy
 msgid "Show month and year"
-msgstr "Megjelenítés a lapozóban"
+msgstr "Hónap és év megjelenítése"
 
 #: ../src/parameters.c:605
-#, fuzzy
 msgid "Show day names"
-msgstr "Ke_ret megjelenítése"
+msgstr "Napnevek megjelenítése"
 
 #: ../src/parameters.c:612
-#, fuzzy
 msgid "Show week numbers"
-msgstr "Szegélyek megjelenítése"
+msgstr "Hétszámok megjelenítése"
 
 #: ../src/parameters.c:619
 msgid "Show todo list"
@@ -1876,11 +1872,11 @@ msgstr "Teendőlista megjelenítése"
 
 #: ../src/parameters.c:626
 msgid "Number of days to show in event window"
-msgstr ""
+msgstr "Az eseményablakban megjelenítendő napok száma"
 
 #: ../src/parameters.c:632
 msgid "0 = do not show event list at all"
-msgstr ""
+msgstr "0 = ne jelenjen meg az eseménylista"
 
 # FIXME: wtf?
 #: ../src/parameters.c:642
@@ -1937,16 +1933,15 @@ msgstr ""
 
 #: ../src/parameters.c:784
 msgid "Use dynamic tray icon"
-msgstr ""
+msgstr "Dinamikus értesítőikon használata"
 
 #: ../src/parameters.c:789
-#, fuzzy
 msgid "Use dynamic icon"
-msgstr "Dinamikus ikonméret"
+msgstr "Dinamikus ikon használata"
 
 #: ../src/parameters.c:795
 msgid "Dynamic icon shows current month and day of the month."
-msgstr ""
+msgstr "A dinamikus ikon a hónapot és a napot jeleníti meg."
 
 #: ../src/parameters.c:804
 msgid "Main Calendar double click shows"
@@ -1961,19 +1956,18 @@ msgid "Event list"
 msgstr "Eseménylista"
 
 #: ../src/parameters.c:838
-#, fuzzy
 msgid "Eventlist window"
-msgstr "Eseménylista"
+msgstr "Eseménylista ablak"
 
 #: ../src/parameters.c:842
 msgid "Number of extra days to show in event list"
-msgstr ""
+msgstr "Az eseménylistában megjelenítendő további napok száma"
 
 #: ../src/parameters.c:854
 msgid ""
 "This is just the default value, you can change it in the actual eventlist "
 "window."
-msgstr ""
+msgstr "Ez csak az alapértelmezett érték, az eseménylista ablakban módosítható."
 
 #: ../src/parameters.c:871
 msgid "Orage Preferences"
@@ -2006,12 +2000,12 @@ msgstr "Emlékeztető – Orage"
 
 #: ../src/reminder.c:775
 msgid "Remind me again after the specified time"
-msgstr ""
+msgstr "Emlékeztessen a megadott idő után"
 
 #. Note that this goes to the main area. Temporary for the version
 #: ../src/reminder.c:778
 msgid "Press <Execute> to remind me again after the specified time:"
-msgstr ""
+msgstr "Nyomja meg a <Végrehajtás> gombot a megadott idő utáni ismételt emlékeztetéshez:"
 
 #: ../src/reminder.c:1015
 msgid "Next active alarms:"
@@ -3596,14 +3590,12 @@ msgid "About Orage"
 msgstr "Az Orage névjegye"
 
 #: ../panel-plugin/xfce4-orageclock-plugin.desktop.in.in.h:1
-#, fuzzy
 msgid "Orage Panel Clock"
-msgstr "Orage óra"
+msgstr "Orage panelóra"
 
 #: ../panel-plugin/xfce4-orageclock-plugin.desktop.in.in.h:2
-#, fuzzy
 msgid "Show time and date?"
-msgstr "A pontos idő és dátum"
+msgstr "Idő és dátum megjelenítése"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:1
 #: ../xfcalendar.desktop.in.h:1
@@ -3611,108 +3603,22 @@ msgid "Calendar"
 msgstr "Naptár"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:2
-#, fuzzy
 msgid "Orage Calendar Preferences"
-msgstr "Orage beállításai"
+msgstr "Orage naptár beállításai"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:3
-#, fuzzy
 msgid "Orage preferences"
 msgstr "Orage beállításai"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:4
-#, fuzzy
 msgid "Settings for the Xfce 4 Calendar Application (Orage)"
-msgstr "Az Xfce 4 naptáralkalmazás beállításai"
+msgstr "Az Xfce 4 naptáralkalmazás (Orage) beállításai"
 
 #: ../xfcalendar.desktop.in.h:2
 msgid "Desktop calendar"
 msgstr "Asztali naptár"
 
 #: ../xfcalendar.desktop.in.h:3
-#, fuzzy
 msgid "Orage Calendar"
-msgstr "Orage – Naptár"
+msgstr "Orage naptár"
 
-#~ msgid "Ending time adjustment mode"
-#~ msgstr "Befejezőidő-módosítási mód"
-
-#~ msgid "Starting time adjustment mode"
-#~ msgstr "Kezdőidő-módosítási mód"
-
-#~ msgid "adjust to change minute"
-#~ msgstr "A perc megváltoztatása"
-
-#~ msgid "Vary"
-#~ msgstr "Változó"
-
-#~ msgid "Select timezone"
-#~ msgstr "Válasszon időzónát"
-
-#~ msgid "Modify Clock "
-#~ msgstr "Óra módosítása"
-
-#~ msgid ""
-#~ "enter timezone of clock,\n"
-#~ "(=any valid TZ value)"
-#~ msgstr ""
-#~ "Adja meg az óra időzónáját\n"
-#~ "(bármely érvényes TZ érték)"
-
-#~ msgid "Modify Preferences"
-#~ msgstr "Beállítások módosítása"
-
-#~ msgid ""
-#~ "Enter local timezone. (it is used to show if time is on previous(-) or "
-#~ "next date(+) by adding a +/- after the time)"
-#~ msgstr ""
-#~ "Adja meg a helyi időzónát (ha az idő az előző(-) vagy következő(+) "
-#~ "dátumra esik, az idő után +/- jel jelenik meg)"
-
-#~ msgid "Set any valid timezone (=TZ) value or pick one from the list."
-#~ msgstr "Állítson be egy érvényes időzónát vagy válasszon a listából."
-
-#~ msgid "show line _1:"
-#~ msgstr "_1. sor megjelenítése:"
-
-#~ msgid "show line _2:"
-#~ msgstr "_2. sor megjelenítése:"
-
-#~ msgid "show line _3:"
-#~ msgstr "_3. sor megjelenítése:"
-
-#~ msgid "Properties"
-#~ msgstr "Tulajdonságok"
-
-#~ msgid "Failed to launch 'orage -p'"
-#~ msgstr "Az „orage -p” indítása meghiúsult"
-
-#~ msgid ""
-#~ "<D> inserts current date in local date format.\n"
-#~ "<T> inserts time and\n"
-#~ "<DT> inserts date and time."
-#~ msgstr ""
-#~ "<D> aktuális dátum beszúrása helyi dátumformátumban.\n"
-#~ "<T> idő beszúrása és\n"
-#~ "<DT> dátum és idő beszúrása."
-
-#~ msgid "Show event list"
-#~ msgstr "Eseménylista megjelenítése"
-
-#~ msgid "(0 = use static icon)"
-#~ msgstr "(0 = statikus ikonméret használata)"
-
-#~ msgid ""
-#~ "Dynamic icon shows current day and month. It is visible only in tray. If "
-#~ "tray is too small for dynamic icon size, Orage switches automatically "
-#~ "back to static icon."
-#~ msgstr ""
-#~ "A dinamikus ikon megjeleníti az aktuális napot és hónapot. Csak az "
-#~ "értesítési területen látható. Ha az túl kicsi a dinamikus ikonmérethez, "
-#~ "az Orage automatikusan visszavált a statikus ikonra."
-
-#~ msgid "Calendar Settings"
-#~ msgstr "Naptár beállításai"
-
-#~ msgid "Xfce 4 Calendar Settings"
-#~ msgstr "Xfce 4 naptár beállításai"
