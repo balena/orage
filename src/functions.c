@@ -753,7 +753,7 @@ gchar *orage_data_file_location(char *name)
 {
     char *file_name, *dir_name;
     const char *base_dir;
-    int mode = 700;
+    int mode = 0700;
 
     /*
     file_name = xfce_resource_save_location(XFCE_RESOURCE_DATA, name, TRUE);
@@ -766,7 +766,6 @@ gchar *orage_data_file_location(char *name)
     if (g_mkdir_with_parents(dir_name, mode)) {
         g_print("orage_data_file_location: (%s) (%s) directory creation failed.\n", base_dir, file_name);
     }
-    g_print("orage_data_file_location end (%s) (%s)\n", file_name, dir_name);
     g_free(dir_name);
 
     return(file_name);
@@ -776,7 +775,7 @@ gchar *orage_config_file_location(char *name)
 {
     char *file_name, *dir_name;
     const char *base_dir;
-    int mode = 700;
+    int mode = 0700;
 
     /*
     file_name = xfce_resource_save_location(XFCE_RESOURCE_CONFIG, name
@@ -790,7 +789,6 @@ gchar *orage_config_file_location(char *name)
     if (g_mkdir_with_parents(dir_name, mode)) {
         g_print("orage_config_file_location: (%s) (%s) directory creation failed.\n", base_dir, file_name);
     }
-    g_print("orage_config_file_location end (%s) (%s)\n", file_name, dir_name);
     g_free(dir_name);
 
     return(file_name);
@@ -864,7 +862,6 @@ void orage_rc_file_close(OrageRc *orc)
         /* xfce_rc_close((XfceRc *)orc->rc); */
         if (!orc->read_only) { /* need to write it */
             file_content = g_key_file_to_data(orc->rc, &length, NULL);
-            orage_message(150, "orage_rc_file_close: File (%s). String (%s)", orc->file_name, file_content);
             if (file_content 
             && !g_file_set_contents(orc->file_name, file_content, -1
                 , &error)) { /* write needed and failed */
@@ -891,7 +888,6 @@ gchar **orage_rc_get_groups(OrageRc *orc)
 void orage_rc_set_group(OrageRc *orc, char *grp)
 {
     /* xfce_rc_set_group((XfceRc *)orc->rc, grp); */
-    orage_message(150, "orage_rc_set_group: old group (%s) new group (%s).", orc->cur_group, grp);
     g_free((void *)orc->cur_group);
     orc->cur_group = g_strdup(grp);
 }
@@ -919,7 +915,6 @@ gchar *orage_rc_get_str(OrageRc *orc, char *key, char *def)
     gchar *ret;
 
     /* return(g_strdup(xfce_rc_read_entry((XfceRc *)orc->rc, key, def))); */
-        orage_message(150, "orage_rc_get_str: str (%s) group (%s) in RC file (%s) not found, using default (%s)", key, orc->cur_group, orc->file_name, def);
     ret = g_key_file_get_string((GKeyFile *)orc->rc, orc->cur_group
             , (const gchar *)key, &error);
     if (!ret && error) {
@@ -965,8 +960,9 @@ void orage_rc_put_str(OrageRc *orc, char *key, char *val)
     if (val != NULL)
         xfce_rc_write_entry((XfceRc *)orc->rc, key, val);
         */
-    g_key_file_set_string((GKeyFile *)orc->rc, orc->cur_group
-            , (const gchar *)key, (const gchar *)val);
+    if (ORAGE_STR_EXISTS(val))
+        g_key_file_set_string((GKeyFile *)orc->rc, orc->cur_group
+                , (const gchar *)key, (const gchar *)val);
 }
 
 void orage_rc_put_int(OrageRc *orc, char *key, gint val)

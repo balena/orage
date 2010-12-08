@@ -1726,7 +1726,7 @@ void orage_category_get_list()
     pic1_cmap = gdk_colormap_get_system();
     orc = orage_category_file_open(TRUE);
     cat_groups = orage_rc_get_groups(orc);
-    for (i=1; cat_groups[i] != NULL; i++) {
+    for (i = 0; cat_groups[i] != NULL; i++) {
         orage_rc_set_group(orc, cat_groups[i]);
         color = orage_rc_get_str(orc, "Color", NULL);
         if (color) {
@@ -1756,14 +1756,13 @@ gboolean category_fill_cb(GtkComboBox *cb, char *select)
     OrageRc *orc;
     gchar **cat_gourps;
     gint i;
-    gboolean found=FALSE;
+    gboolean found = FALSE;
 
     orc = orage_category_file_open(TRUE);
     cat_gourps = orage_rc_get_groups(orc);
-    /* cat_groups[0] is special [NULL] entry always */
     gtk_combo_box_append_text(cb, _("Not set"));
     gtk_combo_box_set_active(cb, 0);
-    for (i=1; cat_gourps[i] != NULL; i++) {
+    for (i = 0; cat_gourps[i] != NULL; i++) {
         gtk_combo_box_append_text(cb, (const gchar *)cat_gourps[i]);
         if (!found && select && !strcmp(select, cat_gourps[i])) {
             gtk_combo_box_set_active(cb, i);
@@ -2398,6 +2397,8 @@ static void store_default_alarm(xfical_appt *appt)
     OrageRc *orc;
 
     orc = orage_alarm_file_open(FALSE);
+
+    orage_rc_set_group(orc, "DEFAULT ALARM");
     orage_rc_put_int(orc, "TIME", appt->alarmtime);
     orage_rc_put_bool(orc, "BEFORE", appt->alarm_before);
     orage_rc_put_bool(orc, "RELATED_START", appt->alarm_related_start);
@@ -2422,6 +2423,8 @@ static void read_default_alarm(xfical_appt *appt)
     OrageRc *orc;
 
     orc = orage_alarm_file_open(TRUE);
+
+    orage_rc_set_group(orc, "DEFAULT ALARM");
     appt->alarmtime = orage_rc_get_int(orc, "TIME", 5*60); /* 5 mins */
     appt->alarm_before = orage_rc_get_bool(orc, "BEFORE", TRUE);
     appt->alarm_related_start = orage_rc_get_bool(orc, "RELATED_START", TRUE);

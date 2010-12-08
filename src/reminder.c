@@ -331,8 +331,7 @@ void alarm_read()
     time_now = orage_tm_time_to_icaltime(orage_localtime());
     orc = orage_persistent_file_open(TRUE);
     alarm_groups = orage_rc_get_groups(orc);
-    /* alarm_groups[0] is special [NULL] entry always */
-    for (i=1; alarm_groups[i] != NULL; i++) {
+    for (i = 0; alarm_groups[i] != NULL; i++) {
         orage_rc_set_group(orc, alarm_groups[i]);
         if ((new_alarm = alarm_read_next_alarm(orc, time_now)) != NULL) {
             create_reminders(new_alarm);

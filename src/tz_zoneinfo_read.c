@@ -398,6 +398,8 @@ static int timezone_exists_in_ical()
     else
         return(0); /* not found */
 #else
+    if (!zones_tab_buf)
+        return(0);
     if ((str = strstr(zones_tab_buf, in_timezone_name)))
         return(1); /* yes, it is there */
     else

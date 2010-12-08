@@ -957,7 +957,7 @@ OrageRc *orage_parameters_file_open(gboolean read_only)
 
     fpath = orage_config_file_location(ORAGE_PAR_DIR_FILE);
     if ((orc = orage_rc_file_open(fpath, read_only)) == NULL) {
-        orage_message(150, "orage_category_file_open: Parameter file open failed.");
+        orage_message(150, "orage_parameters_file_open: Parameter file open failed.(%s)", fpath);
     }
     g_free(fpath);
 
