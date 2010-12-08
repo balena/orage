@@ -110,8 +110,11 @@ typedef struct _Itf
     GtkWidget *extra_tab_label;
     GtkWidget *extra_vbox;
     /* select_always_today */
-    GtkWidget *always_today_frame;
-    GtkWidget *always_today_checkbutton;
+    GtkWidget *select_day_frame;
+    /* GtkWidget *always_today_checkbutton; */
+    GSList    *select_day_radiobutton_group;
+    GtkWidget *select_day_today_radiobutton;
+    GtkWidget *select_day_old_radiobutton;
     /* icon size */
     GtkWidget *icon_size_frame;
     GtkWidget *use_dynamic_icon_checkbutton;
@@ -449,12 +452,12 @@ static void archive_threshold_spin_changed(GtkSpinButton *sb
 }
 #endif
 
-static void always_today_changed(GtkWidget *dialog, gpointer user_data)
+static void select_day_changed(GtkWidget *dialog, gpointer user_data)
 {
     Itf *itf = (Itf *)user_data;
 
     g_par.select_always_today = gtk_toggle_button_get_active(
-            GTK_TOGGLE_BUTTON(itf->always_today_checkbutton));
+            GTK_TOGGLE_BUTTON(itf->select_day_today_radiobutton));
 }
 
 static void use_dynamic_icon_changed(GtkWidget *dialog, gpointer user_data)
@@ -483,7 +486,7 @@ static void create_parameter_dialog_main_setup_tab(Itf *dialog)
     /* FIXME: this could be something simpler than framebox */
     dialog->setup_tab = 
             orage_create_framebox_with_content(NULL, dialog->setup_vbox);
-    dialog->setup_tab_label = gtk_label_new(_("Main setups"));
+    dialog->setup_tab_label = gtk_label_new(_("Main settings"));
     gtk_notebook_append_page(GTK_NOTEBOOK(dialog->notebook)
           , dialog->setup_tab, dialog->setup_tab_label);
 
@@ -570,7 +573,7 @@ static void create_parameter_dialog_display_tab(Itf *dialog)
     /* FIXME: this could be something simpler than framebox */
     dialog->display_tab = 
         orage_create_framebox_with_content(NULL, dialog->display_vbox);
-    dialog->display_tab_label = gtk_label_new(_("Display"));
+    dialog->display_tab_label = gtk_label_new(_("Display settings"));
     gtk_notebook_append_page(GTK_NOTEBOOK(dialog->notebook)
           , dialog->display_tab, dialog->display_tab_label);
 
@@ -641,14 +644,14 @@ static void create_parameter_dialog_display_tab(Itf *dialog)
     */
 
     dialog->set_stick_checkbutton = gtk_check_button_new_with_mnemonic(
-            _("Set sticked"));
+            _("Show on all desktops"));
     gtk_box_pack_start(GTK_BOX(vbox)
             , dialog->set_stick_checkbutton, FALSE, FALSE, 0);
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
             dialog->set_stick_checkbutton), g_par.set_stick);
 
     dialog->set_ontop_checkbutton = gtk_check_button_new_with_mnemonic(
-            _("Set on top"));
+            _("Keep on top"));
     gtk_box_pack_start(GTK_BOX(vbox)
             , dialog->set_ontop_checkbutton, FALSE, FALSE, 0);
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
@@ -758,17 +761,19 @@ static void create_parameter_dialog_extra_setup_tab(Itf *dialog)
     /* FIXME: this could be something simpler than framebox */
     dialog->extra_tab = 
             orage_create_framebox_with_content(NULL, dialog->extra_vbox);
-    dialog->extra_tab_label = gtk_label_new(_("Extra setups"));
+    dialog->extra_tab_label = gtk_label_new(_("Extra settings"));
     gtk_notebook_append_page(GTK_NOTEBOOK(dialog->notebook)
           , dialog->extra_tab, dialog->extra_tab_label);
 
-    /****** select_always_today ******/
-    hbox = gtk_hbox_new(FALSE, 0);
-    dialog->always_today_frame = orage_create_framebox_with_content(
-            _("Select always today"), hbox);
+    /****** On Calendar Window Open ******/
+    dialog->select_day_radiobutton_group = NULL;
+    vbox = gtk_vbox_new(FALSE, 0);
+    dialog->select_day_frame = orage_create_framebox_with_content(
+            _("On Calendar Window Open"), vbox);
     gtk_box_pack_start(GTK_BOX(dialog->extra_vbox)
-            , dialog->always_today_frame, FALSE, FALSE, 5);
+            , dialog->select_day_frame, FALSE, FALSE, 5);
 
+    /*
     dialog->always_today_checkbutton = 
             gtk_check_button_new_with_mnemonic(_("Select always today"));
     gtk_box_pack_start(GTK_BOX(hbox)
@@ -780,6 +785,35 @@ static void create_parameter_dialog_extra_setup_tab(Itf *dialog)
             , NULL);
     g_signal_connect(G_OBJECT(dialog->always_today_checkbutton), "toggled"
             , G_CALLBACK(always_today_changed), dialog);
+            */
+
+    dialog->select_day_today_radiobutton =
+            gtk_radio_button_new_with_mnemonic(NULL, _("Select Today's Date"));
+    gtk_box_pack_start(GTK_BOX(vbox)
+            , dialog->select_day_today_radiobutton, FALSE, FALSE, 0);
+    gtk_radio_button_set_group(
+            GTK_RADIO_BUTTON(dialog->select_day_today_radiobutton)
+            , dialog->select_day_radiobutton_group);
+    dialog->select_day_radiobutton_group = gtk_radio_button_get_group(
+            GTK_RADIO_BUTTON(dialog->select_day_today_radiobutton));
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
+            dialog->select_day_today_radiobutton), g_par.select_always_today);
+
+    dialog->select_day_old_radiobutton =
+            gtk_radio_button_new_with_mnemonic(NULL
+                    , _("Select Previously Selected Date"));
+    gtk_box_pack_start(GTK_BOX(vbox)
+            , dialog->select_day_old_radiobutton, FALSE, FALSE, 0);
+    gtk_radio_button_set_group(
+            GTK_RADIO_BUTTON(dialog->select_day_old_radiobutton)
+            , dialog->select_day_radiobutton_group);
+    dialog->select_day_radiobutton_group = gtk_radio_button_get_group(
+            GTK_RADIO_BUTTON(dialog->select_day_old_radiobutton));
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
+            dialog->select_day_old_radiobutton), !g_par.select_always_today);
+
+    g_signal_connect(G_OBJECT(dialog->select_day_today_radiobutton), "toggled"
+            , G_CALLBACK(select_day_changed), dialog);
 
     /***** use dynamic tray icon *****/
     hbox = gtk_vbox_new(FALSE, 0);
