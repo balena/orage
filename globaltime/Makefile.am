@@ -42,7 +42,7 @@ EXTRA_DIST =								\
 	globaltime.xml
 
 DISTCLEANFILES =                            \
-    $(desktop_DATA) $(desktop_in_files)
+    $(desktop_DATA)
 
 
 # vi:set ts=8 sw=8 noet ai:
