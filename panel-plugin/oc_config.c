@@ -33,10 +33,10 @@
 #include <gtk/gtk.h>
 #include <gdk/gdkevents.h>
 
-#include <libxfce4util/libxfce4util.h>
-#include <libxfcegui4/libxfcegui4.h>
 #include <libxfce4panel/xfce-panel-plugin.h>
 
+#include "../src/orage-i18n.h"
+#include "../src/functions.h"
 #include "xfce4-orageclock-plugin.h"
 #include "tz_zoneinfo_read.h"
 #include "timezone_selection.h"
@@ -211,20 +211,19 @@ static void oc_table_add(GtkWidget *table, GtkWidget *widget, int col, int row)
 
 static void oc_properties_appearance(GtkWidget *dlg, Clock *clock)
 {
-    GtkWidget *frame, *bin, *cb, *color, *sb;
+    GtkWidget *frame, *cb, *color, *sb;
     GdkColor def_fg, def_bg;
     GtkStyle *def_style;
     GtkWidget *table;
 
-    frame = xfce_create_framebox(_("Appearance"), &bin);
-    gtk_container_set_border_width(GTK_CONTAINER(frame), 6);
-    gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), frame, FALSE, FALSE, 0);
-    
     table = gtk_table_new(3, 4, FALSE);
     gtk_container_set_border_width(GTK_CONTAINER(table), 10);
     gtk_table_set_row_spacings(GTK_TABLE(table), 6);
     gtk_table_set_col_spacings(GTK_TABLE(table), 6);
-    gtk_container_add(GTK_CONTAINER(bin), table);
+    
+    frame = orage_create_framebox_with_content(_("Appearance"), table);
+    gtk_container_set_border_width(GTK_CONTAINER(frame), 6);
+    gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), frame, FALSE, FALSE, 0);
 
     /* show frame */
     cb = gtk_check_button_new_with_mnemonic(_("Show _frame"));
@@ -299,7 +298,7 @@ static void oc_properties_appearance(GtkWidget *dlg, Clock *clock)
 
 void oc_properties_options(GtkWidget *dlg, Clock *clock)
 {
-    GtkWidget *frame, *bin, *cb, *label, *entry, *font, *button;
+    GtkWidget *frame, *cb, *label, *entry, *font, *button;
     GtkStyle *def_style;
     gchar *def_font, tmp[100];
     GtkWidget *table, *toolbar;
@@ -308,21 +307,20 @@ void oc_properties_options(GtkWidget *dlg, Clock *clock)
     ClockLine *line;
     GList   *tmp_list;
 
-    frame = xfce_create_framebox(_("Clock Options"), &bin);
-    gtk_container_set_border_width(GTK_CONTAINER(frame), 6);
-    gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), frame, FALSE, FALSE, 0);
-    /* we sometimes call this function again, so we need to put it to the 
-       correct position */
-    gtk_box_reorder_child(GTK_BOX(GTK_DIALOG(dlg)->vbox), frame, 3);
-    /* this is needed when we restructure this frame */
-    g_object_set_data(G_OBJECT(clock->plugin), "properties_frame", frame);
-
     line_cnt = g_list_length(clock->lines);
     table = gtk_table_new(3+line_cnt, 4, FALSE);
     gtk_container_set_border_width(GTK_CONTAINER(table), 10);
     gtk_table_set_row_spacings(GTK_TABLE(table), 6);
     gtk_table_set_col_spacings(GTK_TABLE(table), 6);
-    gtk_container_add(GTK_CONTAINER(bin), table);
+
+    frame = orage_create_framebox_with_content(_("Clock Options"), table);
+    gtk_container_set_border_width(GTK_CONTAINER(frame), 6);
+    gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), frame, FALSE, FALSE, 0);
+    /* we sometimes call this function again, so we need to put it to the 
+       correct position */
+    gtk_box_reorder_child(GTK_BOX(GTK_DIALOG(dlg)->vbox), frame, 2);
+    /* this is needed when we restructure this frame */
+    g_object_set_data(G_OBJECT(clock->plugin), "properties_frame", frame);
 
     /* timezone */
     label = gtk_label_new(_("set timezone to:"));
@@ -393,7 +391,9 @@ void oc_properties_options(GtkWidget *dlg, Clock *clock)
         }
         oc_table_add(table, toolbar, 3, cur_line);
 
+        /*
         button = gtk_button_new_from_stock(GTK_STOCK_DELETE);
+        */
     }
 
 
@@ -446,13 +446,14 @@ static void oc_dialog_response(GtkWidget *dlg, int response, Clock *clock)
 
 void oc_properties_dialog(XfcePanelPlugin *plugin, Clock *clock)
 {
-    GtkWidget *dlg, *header;
+    GtkWidget *dlg;
 
     xfce_panel_plugin_block_menu(plugin);
     
     /* change interval to show quick feedback on panel */
     clock->interval = OC_CONFIG_INTERVAL; 
     oc_start_timer(clock);
+
     dlg = gtk_dialog_new_with_buttons(_("Orage clock Preferences"), 
             GTK_WINDOW(gtk_widget_get_toplevel(GTK_WIDGET(plugin))),
             GTK_DIALOG_DESTROY_WITH_PARENT |
@@ -461,17 +462,9 @@ void oc_properties_dialog(XfcePanelPlugin *plugin, Clock *clock)
             NULL);
     
     g_object_set_data(G_OBJECT(plugin), "dialog", dlg);
-
     gtk_window_set_position(GTK_WINDOW(dlg), GTK_WIN_POS_CENTER);
-    
-    g_signal_connect(dlg, "response", G_CALLBACK(oc_dialog_response), clock);
-
     gtk_container_set_border_width(GTK_CONTAINER(dlg), 2);
-    
-    header = xfce_create_header(NULL, _("Orage clock"));
-    gtk_widget_set_size_request(GTK_BIN(header)->child, 200, 32);
-    gtk_container_set_border_width(GTK_CONTAINER(header), 6);
-    gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), header, FALSE, TRUE, 0);
+    g_signal_connect(dlg, "response", G_CALLBACK(oc_dialog_response), clock);
     
     oc_properties_appearance(dlg, clock);
     oc_properties_options(dlg, clock);

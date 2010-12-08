@@ -601,7 +601,7 @@ gboolean orage_foreign_file_remove(gchar *filename)
 
 static void for_remove_button_clicked(GtkButton *button, gpointer user_data)
 {
-    gint del_line = (gint) user_data;
+    gint del_line = GPOINTER_TO_INT(user_data);
 
     orage_foreign_file_remove_line(del_line);
 }
@@ -647,7 +647,7 @@ static void refresh_foreign_files(intf_win *intf_w, gboolean first)
                     , label, hbox
                     , i, (GTK_EXPAND | GTK_FILL), (0));
             g_signal_connect((gpointer)button, "clicked"
-                    , G_CALLBACK(for_remove_button_clicked), (void *)i);
+                    , G_CALLBACK(for_remove_button_clicked),GINT_TO_POINTER(i));
             g_signal_connect_after((gpointer)button, "clicked"
                     , G_CALLBACK(for_remove_button_clicked2), intf_w);
         }

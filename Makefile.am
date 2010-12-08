@@ -1,20 +1,20 @@
 # $Id$
 
 if INCLUDED_LIBICAL
-LIBICAL_SUBDIR=								\
+LIBICAL_SUBDIR=						\
 	libical
 endif
 
-SUBDIRS = 								\
-	$(LIBICAL_SUBDIR)						\
+SUBDIRS = 							\
+	$(LIBICAL_SUBDIR)				\
 	doc								\
-	icons								\
+	icons							\
 	po								\
-	sounds								\
+	sounds							\
 	src								\
-	panel-plugin							\
-	globaltime							\
-	tz_convert							\
+	panel-plugin					\
+	globaltime						\
+	tz_convert						\
 	plugin
 
 desktopdir = $(datadir)/applications
@@ -47,7 +47,7 @@ DISTCLEANFILES =							\
 	$(service_DATA)
 
 AUTOMAKE_OPTIONS =							\
-	1.8								\
+	1.8							        	\
 	dist-bzip2
 
 distclean-local:

@@ -265,7 +265,8 @@ static void process_abbr_table()
     tmp = in_head;
     for (i = 0; i < charcnt; i++) { /* we need to walk over the table */
         if (debug > 3)
-            printf("Abbr:%d (%d)(%s)\n", i, strlen((char *)(tmp + i)), tmp + i);
+            printf("Abbr:%d (%d)(%s)\n", i, (int)strlen((char *)(tmp + i))
+                    , tmp + i);
         i += strlen((char *)(tmp + i));
     }
     in_head += charcnt;

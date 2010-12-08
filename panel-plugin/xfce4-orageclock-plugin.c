@@ -33,11 +33,12 @@
 #include <glib.h>
 #include <gtk/gtk.h>
 #include <gdk/gdkevents.h>
+#include <gdk/gdkx.h>
 
 #include <libxfce4util/libxfce4util.h>
-#include <libxfcegui4/libxfcegui4.h>
 #include <libxfce4panel/xfce-panel-plugin.h>
 
+#include "../src/functions.h"
 #include "xfce4-orageclock-plugin.h"
 
 /* -------------------------------------------------------------------- *
@@ -357,7 +358,7 @@ static gboolean popup_program(GtkWidget *widget, gchar *program, Clock *clock
             g_unsetenv("TZ");
         tzset();
 
-        if (!xfce_exec(program, FALSE, FALSE, &error)) 
+        if (!orage_exec(program, FALSE, &error)) 
             g_message("%s: start of %s failed", OC_NAME, program);
 
         if ((clock->timezone->str != NULL) && (clock->timezone->len > 0)) {

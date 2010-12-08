@@ -1,31 +1,32 @@
+if HAVE_LIBXFCE4PANEL
+plugin_PROGRAMS = xfce4-orageclock-plugin
+endif
+
 plugindir = $(libexecdir)/xfce4/panel-plugins
 
-plugin_PROGRAMS = xfce4-orageclock-plugin
-
-xfce4_orageclock_plugin_CFLAGS =							\
+xfce4_orageclock_plugin_CFLAGS =					\
 	-DPACKAGE_DATA_DIR=\"$(datadir)\"				\
 	-DPACKAGE_LOCALE_DIR=\"$(localedir)\"			\
-	@LIBXFCE4PANEL_CFLAGS@                          \
-	@LIBXFCEGUI4_CFLAGS@
+	@LIBXFCE4PANEL_CFLAGS@
 
-xfce4_orageclock_plugin_LDFLAGS =						\
+xfce4_orageclock_plugin_LDFLAGS =					\
 	@LIBXFCE4PANEL_LIBS@                            \
-	@LIBXFCEGUI4_LIBS@                            \
 	-lX11
 
-xfce4_orageclock_plugin_SOURCES = 						\
+xfce4_orageclock_plugin_SOURCES = 					\
 	oc_config.c										\
 	timezone_selection.c							\
 	timezone_selection.h							\
 	tz_zoneinfo_read.c								\
 	tz_zoneinfo_read.h								\
-	xfce4-orageclock-plugin.c							\
-	xfce4-orageclock-plugin.h
+	xfce4-orageclock-plugin.c						\
+	xfce4-orageclock-plugin.h                       \
+    ../src/functions.c                              \
+    ../src/functions.h
 
 if HAVE_CYGWIN
-xfce4_orageclock_plugin_LDFLAGS +=                      \
-	-no-undefined                                  \
-	@LIBXFCEGUI4_LIBS@
+xfce4_orageclock_plugin_LDFLAGS +=                 \
+	-no-undefined
 endif
 
 # .desktop file

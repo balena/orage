@@ -33,11 +33,13 @@
 
 #include <glib.h>
 #include <glib/gprintf.h>
+#include <glib/gstdio.h>
 #include <gtk/gtk.h>
 #include <gdk/gdk.h>
-
+/*
 #include <libxfce4util/libxfce4util.h>
 #include <libxfcegui4/libxfcegui4.h>
+*/
 
 #include "orage-i18n.h"
 #include "functions.h"
@@ -744,26 +746,53 @@ void orage_select_today(GtkCalendar *cal)
 }
 
 /*******************************************************
- * cata and config file locations
+ * data and config file locations
  *******************************************************/
 
-gchar *orage_data_file_location(char *dir_name)
+gchar *orage_data_file_location(char *name)
 {
-    char *file_name;
+    char *file_name, *dir_name;
+    const char *base_dir;
+    int mode = 700;
 
-    file_name = xfce_resource_save_location(XFCE_RESOURCE_DATA, dir_name, TRUE);
+    /*
+    file_name = xfce_resource_save_location(XFCE_RESOURCE_DATA, name, TRUE);
     g_print("orage_data_file_location (%s) (%s)\n", file_name, g_get_user_data_dir());
+    */
+
+    base_dir = g_get_user_data_dir();
+    file_name = g_build_filename(base_dir, name, NULL);
+    dir_name = g_path_get_dirname((const gchar *)file_name);
+    if (g_mkdir_with_parents(dir_name, mode)) {
+        g_print("orage_data_file_location: (%s) (%s) directory creation failed.\n", base_dir, file_name);
+    }
+    g_print("orage_data_file_location end (%s) (%s)\n", file_name, dir_name);
+    g_free(dir_name);
+
     return(file_name);
 }
 
-gchar *orage_config_file_location(char *dir_name)
+gchar *orage_config_file_location(char *name)
 {
-    /* g_get_system_config_dirs */
-    char *file_name;
+    char *file_name, *dir_name;
+    const char *base_dir;
+    int mode = 700;
 
-    file_name = xfce_resource_save_location(XFCE_RESOURCE_CONFIG, dir_name
+    /*
+    file_name = xfce_resource_save_location(XFCE_RESOURCE_CONFIG, name
             , TRUE);
     g_print("orage_config_file_location (%s) (%s)\n", file_name, g_get_user_config_dir());
+    */
+
+    base_dir = g_get_user_config_dir();
+    file_name = g_build_filename(base_dir, name, NULL);
+    dir_name = g_path_get_dirname((const gchar *)file_name);
+    if (g_mkdir_with_parents(dir_name, mode)) {
+        g_print("orage_config_file_location: (%s) (%s) directory creation failed.\n", base_dir, file_name);
+    }
+    g_print("orage_config_file_location end (%s) (%s)\n", file_name, dir_name);
+    g_free(dir_name);
+
     return(file_name);
 }
 
@@ -773,92 +802,199 @@ gchar *orage_config_file_location(char *dir_name)
 
 OrageRc *orage_rc_file_open(char *fpath, gboolean read_only)
 {
-    XfceRc *rc;
+    /* XfceRc *rc; */
     OrageRc *orc = NULL;
+    GKeyFile *grc;
+    GError *error = NULL;
 
+    /*
     if ((rc = xfce_rc_simple_open(fpath, read_only)) == NULL && read_only) {
         orage_message(-90, "orage_rc_open: Unable to open (read) RC file (%s). Creating it.", fpath);
-        /* let's try to build it */
+        / * let's try to build it * /
         if ((rc = xfce_rc_simple_open(fpath, FALSE)) == NULL) {
-            /* still failed, can't do more */
+            / * still failed, can't do more * /
             orage_message(150, "orage_rc_open: Unable to open (write) RC file (%s).", fpath);
         }
     }
-
-    if (rc) { /* we managed to open it */
+    if (rc) { / * we managed to open it * /
         orc = g_new(OrageRc, 1);
         orc->rc = rc;
     }
     return(orc);
+    */
+
+    grc = g_key_file_new();
+    if (g_key_file_load_from_file(grc, (const gchar *)fpath
+            , G_KEY_FILE_KEEP_COMMENTS, &error)) { /* success */
+        orc = g_new(OrageRc, 1);
+        orc->rc = grc;
+        orc->read_only = read_only;
+        orc->file_name = g_strdup(fpath);
+        orc->cur_group = NULL;
+    }
+    else {
+        orage_message(-90, "orage_rc_file_open: Unable to open RC file (%s). Creating it. (%s)", fpath, error->message);
+        g_clear_error(&error);
+        if (g_file_set_contents((const gchar *)fpath, "#Created by Orage", -1
+                    , &error)) { /* successfully created new file */
+            orc = g_new(OrageRc, 1);
+            orc->rc = grc;
+            orc->read_only = read_only;
+            orc->file_name = g_strdup(fpath);
+            orc->cur_group = NULL;
+        }
+        else {
+            orage_message(150, "orage_rc_file_open: Unable to open (create) RC file (%s). (%s)", fpath, error->message);
+            g_key_file_free(grc);
+        }
+    }
+
+    return(orc);
 }
 
 void orage_rc_file_close(OrageRc *orc)
+    /* FIXME: check if file contents have been changed and only write when
+       needed or build separate save function */
 {
+    GError *error = NULL;
+    gchar *file_content = NULL;
+    gsize length;
+
     if (orc) {
-        xfce_rc_close((XfceRc *)orc->rc);
+        /* xfce_rc_close((XfceRc *)orc->rc); */
+        if (!orc->read_only) { /* need to write it */
+            file_content = g_key_file_to_data(orc->rc, &length, NULL);
+            orage_message(150, "orage_rc_file_close: File (%s). String (%s)", orc->file_name, file_content);
+            if (file_content 
+            && !g_file_set_contents(orc->file_name, file_content, -1
+                , &error)) { /* write needed and failed */
+                orage_message(150, "orage_rc_file_close: File save failed. RC file (%s). (%s)", orc->file_name, error->message);
+            }
+            g_free(file_content);
+        }
+        g_key_file_free(orc->rc);
+        g_free((void *)orc->file_name);
+        g_free((void *)orc->cur_group);
         g_free(orc);
+    }
+    else {
+        orage_message(-90, "orage_rc_file_close: closing empty file.");
     }
 }
 
 gchar **orage_rc_get_groups(OrageRc *orc)
 {
-    return(xfce_rc_get_groups((XfceRc *)orc->rc));
+    /* return(xfce_rc_get_groups((XfceRc *)orc->rc)); */
+    return(g_key_file_get_groups((GKeyFile *)orc->rc, NULL));
 }
 
 void orage_rc_set_group(OrageRc *orc, char *grp)
 {
-    xfce_rc_set_group((XfceRc *)orc->rc, grp);
+    /* xfce_rc_set_group((XfceRc *)orc->rc, grp); */
+    orage_message(150, "orage_rc_set_group: old group (%s) new group (%s).", orc->cur_group, grp);
+    g_free((void *)orc->cur_group);
+    orc->cur_group = g_strdup(grp);
 }
 
 void orage_rc_del_group(OrageRc *orc, char *grp)
 {
-    xfce_rc_delete_group((XfceRc *)orc->rc, grp, FALSE);
+    GError *error = NULL;
+
+    /* xfce_rc_delete_group((XfceRc *)orc->rc, grp, FALSE); */
+    if (!g_key_file_remove_group((GKeyFile *)orc->rc, (const gchar *)grp
+                , &error)) {
+        orage_message(150, "orage_rc_del_group: Group remove failed. RC file (%s). group (%s) (%s)", orc->file_name, grp, error->message);
+    }
 }
 
 gchar *orage_rc_get_group(OrageRc *orc)
 {
-    return(g_strdup(xfce_rc_get_group((XfceRc *)orc->rc)));
+    /* return(g_strdup(xfce_rc_get_group((XfceRc *)orc->rc))); */
+    return(g_strdup(orc->cur_group));
 }
 
 gchar *orage_rc_get_str(OrageRc *orc, char *key, char *def)
 {
-    return(g_strdup(xfce_rc_read_entry((XfceRc *)orc->rc, key, def)));
+    GError *error = NULL;
+    gchar *ret;
+
+    /* return(g_strdup(xfce_rc_read_entry((XfceRc *)orc->rc, key, def))); */
+        orage_message(150, "orage_rc_get_str: str (%s) group (%s) in RC file (%s) not found, using default (%s)", key, orc->cur_group, orc->file_name, def);
+    ret = g_key_file_get_string((GKeyFile *)orc->rc, orc->cur_group
+            , (const gchar *)key, &error);
+    if (!ret && error) {
+        ret = g_strdup(def);
+        orage_message(-90, "orage_rc_get_str: str (%s) group (%s) in RC file (%s) not found, using default (%s)", key, orc->cur_group, orc->file_name, ret);
+    }
+    return(ret);
 }
 
 gint orage_rc_get_int(OrageRc *orc, char *key, gint def)
 {
-    return(xfce_rc_read_int_entry((XfceRc *)orc->rc, key, def));
+    GError *error = NULL;
+    gint ret;
+
+    /* return(xfce_rc_read_int_entry((XfceRc *)orc->rc, key, def)); */
+    ret = g_key_file_get_integer((GKeyFile *)orc->rc, orc->cur_group
+            , (const gchar *)key, &error);
+    if (!ret && error) {
+        ret = def;
+        orage_message(-90, "orage_rc_get_int: str (%s) group (%s) in RC file (%s) not found, using default (%d)", key, orc->cur_group, orc->file_name, ret);
+    }
+    return(ret);
 }
 
 gboolean orage_rc_get_bool(OrageRc *orc, char *key, gboolean def)
 {
-    return(xfce_rc_read_bool_entry((XfceRc *)orc->rc, key, def));
+    GError *error = NULL;
+    gboolean ret;
+
+    /* return(xfce_rc_read_bool_entry((XfceRc *)orc->rc, key, def)); */
+    ret = g_key_file_get_boolean((GKeyFile *)orc->rc, orc->cur_group
+            , (const gchar *)key, &error);
+    if (!ret && error) {
+        ret = def;
+        orage_message(-90, "orage_rc_get_bool: str (%s) group (%s) in RC file (%s) not found, using default (%d)", key, orc->cur_group, orc->file_name, ret);
+    }
+    return(ret);
 }
 
 void orage_rc_put_str(OrageRc *orc, char *key, char *val)
 {
+    /*
     if (val != NULL)
         xfce_rc_write_entry((XfceRc *)orc->rc, key, val);
+        */
+    g_key_file_set_string((GKeyFile *)orc->rc, orc->cur_group
+            , (const gchar *)key, (const gchar *)val);
 }
 
 void orage_rc_put_int(OrageRc *orc, char *key, gint val)
 {
-    xfce_rc_write_int_entry((XfceRc *)orc->rc, key, val);
+    /* xfce_rc_write_int_entry((XfceRc *)orc->rc, key, val); */
+    g_key_file_set_integer((GKeyFile *)orc->rc, orc->cur_group
+            , (const gchar *)key, val);
 }
 
 void orage_rc_put_bool(OrageRc *orc, char *key, gboolean val)
 {
-    xfce_rc_write_bool_entry((XfceRc *)orc->rc, key, val);
+    /* xfce_rc_write_bool_entry((XfceRc *)orc->rc, key, val); */
+    g_key_file_set_boolean((GKeyFile *)orc->rc, orc->cur_group
+            , (const gchar *)key, val);
 }
 
 gboolean orage_rc_exists_item(OrageRc *orc, char *key)
 {
-    return(xfce_rc_has_entry((XfceRc *)orc->rc, key));
+    /* return(xfce_rc_has_entry((XfceRc *)orc->rc, key)); */
+    return(g_key_file_has_key((GKeyFile *)orc->rc, orc->cur_group
+            , (const gchar *)key, NULL));
 }
 
 void orage_rc_del_item(OrageRc *orc, char *key)
 {
-    xfce_rc_delete_entry((XfceRc *)orc->rc, key, FALSE);
+    /* xfce_rc_delete_entry((XfceRc *)orc->rc, key, FALSE); */
+    g_key_file_remove_key((GKeyFile *)orc->rc, orc->cur_group
+            , (const gchar *)key, NULL);
 }
 
 /*******************************************************

@@ -922,7 +922,7 @@ OrageRc *orage_parameters_file_open(gboolean read_only)
     OrageRc *orc;
 
     fpath = orage_config_file_location(ORAGE_PAR_DIR_FILE);
-    if ((orc = (OrageRc *)orage_rc_file_open(fpath, read_only)) == NULL) {
+    if ((orc = orage_rc_file_open(fpath, read_only)) == NULL) {
         orage_message(150, "orage_category_file_open: Parameter file open failed.");
     }
     g_free(fpath);
@@ -938,6 +938,7 @@ void write_parameters()
 
     orc = orage_parameters_file_open(FALSE);
 
+    orage_rc_set_group(orc, "PARAMETERS");
     orage_rc_put_str(orc, "Timezone", g_par.local_timezone);
 #ifdef HAVE_ARCHIVE
     orage_rc_put_int(orc, "Archive limit", g_par.archive_limit);
@@ -1093,6 +1094,7 @@ void read_parameters(void)
 
     orc = orage_parameters_file_open(TRUE);
 
+    orage_rc_set_group(orc, "PARAMETERS");
     g_par.local_timezone = orage_rc_get_str(orc, "Timezone", "not found");
     if (!strcmp(g_par.local_timezone, "not found")) { 
         init_default_timezone();

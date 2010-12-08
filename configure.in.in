@@ -2,14 +2,14 @@ dnl $Id$
 dnl
 dnl Orage - Calendar application for Xfce
 dnl
-dnl Copyright (c) 2003-2006
+dnl Copyright (c) 2003-2011
 dnl         The Xfce development team. All rights reserved.
 dnl
 dnl Written for Xfce by Juha Kautto <juha@xfce.org>
 dnl
 
 dnl Version information
-m4_define([orage_version], [4.7.6.0-git])
+m4_define([orage_version], [4.7.6.1-git])
 
 m4_define([gtk_minimum_version], [2.10.0])
 m4_define([xfce_minimum_version], [4.6.0])
@@ -72,10 +72,18 @@ dnl Check for i18n support
 XDT_I18N([@LINGUAS@])
 
 dnl Check for required packages
-XDT_CHECK_PACKAGE([LIBXFCEGUI4], [libxfcegui4-1.0], [xfce_minimum_version])
+#XDT_CHECK_PACKAGE([LIBXFCEGUI4], [libxfcegui4-1.0], [xfce_minimum_version])
+XDT_CHECK_PACKAGE([LIBGTK], [gtk+-2.0], [gtk_minimum_version])
 
 dnl Needed for panel plugin
-XDT_CHECK_PACKAGE([LIBXFCE4PANEL], [libxfce4panel-1.0], [xfce_minimum_version])
+#XDT_CHECK_PACKAGE([LIBXFCE4PANEL], [libxfce4panel-1.0], [xfce_minimum_version])
+
+dnl ************************************************
+dnl *** Optional support for Xfce Panel          ***
+dnl ************************************************
+XDT_CHECK_OPTIONAL_PACKAGE([LIBXFCE4PANEL], [libxfce4panel-1.0],
+                            [xfce_minimum_version], [libxfce4panel],
+                            [LIBXFCE4PANEL support])
 
 dnl *********************************************
 dnl *** Optional support for external libical ***
@@ -254,6 +262,19 @@ if test x"$enable_archive" = x"yes"; then
     have_archive="yes"
 fi
 
+dnl ************************************************
+dnl *** Optional support for 4.6 Xfce            ***
+dnl ************************************************
+dnl XDT_CHECK_OPTIONAL_PACKAGE([LIBXFCEGUI4], [libxfcegui4-1.0],
+dnl                            [xfce_minimum_version], [libxfcegui4],
+dnl                            [LIBXFCEGUI4 support])
+
+dnl ************************************************
+dnl *** Optional support for 4.8 Xfce            ***
+dnl ************************************************
+dnl XDT_CHECK_OPTIONAL_PACKAGE([LIBXFCE4UI], [libxfce4ui-1],
+dnl                            [xfce_minimum_version], [libxfce4ui],
+dnl                            [LIBXFCE4UI support])
 
 dnl Check for debugging support
 dnl BM_DEBUG_SUPPORT()
@@ -263,7 +284,7 @@ dnl the intention was to use variable
 dnl $LIBICAL_DIRS
 dnl to control if libical is being compiled or not, but only very
 dnl recent autotools can have such variables in AC_OUTPUT.
-dnl Revertign back to full list until time is right for using it.
+dnl Reverting back to full list until time is right for using it.
 dnl This causes some extra work at compile time, but should not cause
 dnl any issues to users.
 
@@ -311,14 +332,20 @@ else
 echo "* LIBNOTIFY support:         no"
 fi
 if test x"$LIBICAL_FOUND" = x"yes"; then
-echo "* LIBICAL support:           External package"
+echo "* LIBICAL support:           yes"
 else
-echo "* LIBICAL support:           Orage local"
+echo "* LIBICAL support:           no. Using Orage local libical"
 fi
 echo "* Automatic archiving:       $have_archive"
 if test x"$have_popt" = x"yes"; then
-echo "* libpopt available:         building tz_convert"
+echo "* libpopt available:         yes, building tz_convert"
 else
-echo "* libpopt not available:     not building tz_convert"
+echo "* libpopt not available:     no, not building tz_convert"
+fi
+if test x"$LIBXFCE4PANEL_FOUND" = x"yes"; then
+echo "* LIBXFCE4PANEL support:     yes, building xfce panel plugin"
+else
+echo "* LIBXFCE4PANEL support:     no, not building xfce panel plugin"
 fi
 echo
+

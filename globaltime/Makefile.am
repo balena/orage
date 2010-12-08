@@ -27,13 +27,12 @@ desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 
 
 globaltime_CFLAGS =							\
-	$(LIBXFCEGUI4_CFLAGS)					\
+    $(LIBGTK_CFLAGS)                        \
 	-DPACKAGE_DATA_DIR=\""$(datadir)"\"		\
 	-DPACKAGE_LOCALE_DIR=\""$(localedir)"\"
 
 globaltime_LDADD =							\
-	$(LIBXFCEGUI4_LIBS)						\
-	$(LIBXFCEUTIL_LIBS)						\
+    $(LIBGTK_LIBS)                          \
 	-lX11		            				\
 	$(INTLLIBS) 
 

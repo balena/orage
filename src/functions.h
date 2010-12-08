@@ -54,6 +54,9 @@
 typedef struct _OrageRc
 {
     void *rc;
+    gboolean read_only;
+    const char *file_name;
+    const char *cur_group;
 } OrageRc;
 
 void program_log (const char *format, ...);

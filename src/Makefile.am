@@ -21,29 +21,28 @@ orage_SOURCES =					\
 	main.c								\
 	mainbox.c							\
 	mainbox.h							\
-	orage-i18n.h							\
+	orage-i18n.h						\
 	parameters.c						\
 	parameters.h						\
 	reminder.c							\
 	reminder.h							\
 	timezone_names.c					\
-	timezone_selection.c					\
-	timezone_selection.h					\
+	timezone_selection.c				\
+	timezone_selection.h				\
 	tray_icon.c							\
 	tray_icon.h							\
 	tz_zoneinfo_read.c					\
 	tz_zoneinfo_read.h
 
 orage_CFLAGS =							\
-	$(LIBXFCEGUI4_CFLAGS)						\
-	-DPACKAGE_DATA_DIR=\""$(datadir)"\"			\
+    $(LIBGTK_CFLAGS)                    \
+	-DPACKAGE_DATA_DIR=\""$(datadir)"\"	\
 	-DPACKAGE_LOCALE_DIR=\""$(localedir)"\"
 
 orage_LDADD =							\
-	$(LIBXFCEGUI4_LIBS)						\
-	$(LIBXFCEUTIL_LIBS)						\
-	-lX11            						\
-	-lm              						\
+    $(LIBGTK_LIBS)                      \
+	-lX11            					\
+	-lm              					\
 	$(INTLLIBS)
 
 if INCLUDED_LIBICAL
@@ -54,8 +53,8 @@ orage_CFLAGS +=							\
 	-I$(top_srcdir)/libical/src/libicalss
 
 orage_LDADD +=							\
-	$(PTHREAD_LIBS)											\
-	$(top_builddir)/libical/src/libical/libical.la			\
+	$(PTHREAD_LIBS)										\
+	$(top_builddir)/libical/src/libical/libical.la		\
 	$(top_builddir)/libical/src/libicalss/libicalss.la
 else
 orage_CFLAGS +=							\

@@ -1670,7 +1670,7 @@ static OrageRc *orage_category_file_open(gboolean read_only)
     OrageRc *orc;
 
     fpath = orage_data_file_location(ORAGE_CATEGORIES_DIR_FILE);
-    if ((orc = (OrageRc *)orage_rc_file_open(fpath, read_only)) == NULL) {
+    if ((orc = orage_rc_file_open(fpath, read_only)) == NULL) {
         orage_message(150, "orage_category_file_open: category file open failed.");
     }
     g_free(fpath);
@@ -2385,7 +2385,7 @@ static OrageRc *orage_alarm_file_open(gboolean read_only)
     fpath = orage_config_file_location(ORAGE_DEFAULT_ALARM_DIR_FILE);
     if (!read_only)  /* we need to empty it before each write */
         g_remove(fpath);
-    if ((orc = (OrageRc *)orage_rc_file_open(fpath, read_only)) == NULL) {
+    if ((orc = orage_rc_file_open(fpath, read_only)) == NULL) {
         orage_message(150, "orage_alarm_file_open: default alarm file open failed.");
     }
     g_free(fpath);
