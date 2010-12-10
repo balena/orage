@@ -154,14 +154,14 @@ static void read_file(const char *file_name, const struct stat *file_stat)
         printf("read_file: end\n");
 }
 
-static long get_long()
+static int get_long()
 {
-    unsigned long tmp;
+    int tmp;
 
-    tmp = (((long)in_head[0]<<24)
-         + ((long)in_head[1]<<16)
-         + ((long)in_head[2]<<8)
-         +  (long)in_head[3]);
+    tmp = (((int)in_head[0]<<24)
+         + ((int)in_head[1]<<16)
+         + ((int)in_head[2]<<8)
+         +  (int)in_head[3]);
     in_head += 4;
     return(tmp);
 }
@@ -200,7 +200,7 @@ static int process_header()
 
 static void process_local_time_table()
 { /* points when time changes */
-    unsigned long tmp;
+    time_t tmp;
     int i;
 
     begin_timechanges = in_head;
@@ -209,9 +209,9 @@ static void process_local_time_table()
     for (i = 0; i < timecnt; i++) {
         tmp = get_long();
         if (debug > 3) {
-            printf("GMT %d: %lu =  %s", i, tmp
+            printf("GMT %d: %d =  %s", i, (int)tmp
                     , asctime(gmtime((const time_t*)&tmp)));
-            printf("\tLOC %d: %lu =  %s", i, tmp
+            printf("\tLOC %d: %d =  %s", i, (int)tmp
                     , asctime(localtime((const time_t*)&tmp)));
         }
     }
