@@ -4,7 +4,7 @@
 # Eskild Hustvedt <zerodogg@skolelinux.no>, 2005.
 # Terje Uriasnrud <ter@operamail.com>, 2007.
 # Christian Lomsdalen <christian@vindstille.net>, 2007.
-# Terje Uriansrud <terje@uriansrud.net>, 2009.
+# Terje Uriansrud <terje@uriansrud.net>, 2010.
 #
 msgid ""
 msgstr ""
@@ -56,6 +56,8 @@ msgstr "Juster for å endre time"
 msgid ""
 "adjust to change minute. Click arrows with button 2 to change only 1 minute."
 msgstr ""
+"juster for å endre minutt. Klikk pilene med knapp 2 for å endre "
+"med ett minutt"
 
 #: ../globaltime/gt_prefs.c:264 ../globaltime/gt_prefs.c:265
 msgid "NEW"
@@ -110,9 +112,8 @@ msgid "close window and exit"
 msgstr "Lukk vindu og avslutt"
 
 #: ../globaltime/gt_prefs.c:589
-#, fuzzy
 msgid "Globaltime preferences "
-msgstr "Uppdater innstillinger"
+msgstr "Globaltime innstillinger"
 
 #. -----------------------HEADING-------------------------------------------
 #: ../globaltime/gt_prefs.c:602
@@ -240,9 +241,8 @@ msgid "update preferences"
 msgstr "Uppdater innstillinger"
 
 #: ../globaltime/gt_prefs.c:1061
-#, fuzzy
 msgid "Globaltime Preferences"
-msgstr "Generelle innstillinger"
+msgstr "Globaltime Innstillinger"
 
 #. -----------------------HEADING--------------------------------------
 #: ../globaltime/gt_prefs.c:1072
@@ -292,46 +292,45 @@ msgstr "Lokal tidssone:"
 #: ../globaltime/timezone_selection.c:103
 #: ../panel-plugin/timezone_selection.c:103 ../src/timezone_selection.c:103
 msgid " Other"
-msgstr ""
+msgstr "Annen"
 
 #: ../globaltime/timezone_selection.c:158
 #: ../panel-plugin/timezone_selection.c:158 ../src/timezone_selection.c:169
 #, c-format
 msgid "%d hour %d mins"
-msgstr ""
+msgstr "%d timer %d min"
 
 #: ../globaltime/timezone_selection.c:161
 #: ../panel-plugin/timezone_selection.c:161 ../src/timezone_selection.c:172
-#, fuzzy, c-format
+# c-format
 msgid "%d hour"
-msgstr "timer"
+msgstr "%d timer"
 
 #: ../globaltime/timezone_selection.c:163
 #: ../panel-plugin/timezone_selection.c:163 ../src/timezone_selection.c:174
-#, fuzzy, c-format
+#, c-format
 msgid "%d mins"
-msgstr "minutter"
+msgstr "%d minutter"
 
 #: ../globaltime/timezone_selection.c:169
 #: ../panel-plugin/timezone_selection.c:169 ../src/timezone_selection.c:180
 msgid "backward"
-msgstr ""
+msgstr "bakover"
 
 #: ../globaltime/timezone_selection.c:172
 #: ../panel-plugin/timezone_selection.c:172 ../src/timezone_selection.c:183
-#, fuzzy
 msgid "forward"
-msgstr "Fremover"
+msgstr "fremover"
 
 #: ../globaltime/timezone_selection.c:196
 #: ../panel-plugin/timezone_selection.c:196 ../src/timezone_selection.c:207
 msgid "not changed"
-msgstr ""
+msgstr "ikke endret"
 
 #: ../globaltime/timezone_selection.c:197
 #: ../panel-plugin/timezone_selection.c:197 ../src/timezone_selection.c:208
 msgid "not changing"
-msgstr ""
+msgstr "uforandret"
 
 #. location
 #: ../globaltime/timezone_selection.c:249
@@ -345,17 +344,17 @@ msgstr "Plassering"
 #: ../globaltime/timezone_selection.c:260
 #: ../panel-plugin/timezone_selection.c:260 ../src/timezone_selection.c:271
 msgid "GMT Offset"
-msgstr ""
+msgstr "GMT justering"
 
 #: ../globaltime/timezone_selection.c:266
 #: ../panel-plugin/timezone_selection.c:266 ../src/timezone_selection.c:277
 msgid "Previous/Next Change"
-msgstr ""
+msgstr "Forrige/Neste Endring"
 
 #: ../globaltime/timezone_selection.c:271
 #: ../panel-plugin/timezone_selection.c:271 ../src/timezone_selection.c:282
 msgid "Country"
-msgstr ""
+msgstr "Land"
 
 #: ../globaltime/timezone_selection.c:301
 #: ../globaltime/timezone_selection.c:311
@@ -371,7 +370,7 @@ msgstr "Velg tidssone"
 #: ../panel-plugin/timezone_selection.c:314 ../src/timezone_selection.c:315
 #: ../src/timezone_selection.c:325
 msgid "Change mode"
-msgstr ""
+msgstr "Endre modus"
 
 #: ../globaltime/timezone_selection.c:305
 #: ../globaltime/timezone_selection.c:315
@@ -393,18 +392,16 @@ msgid "floating"
 msgstr "flytende"
 
 #: ../globaltime/globaltime.desktop.in.h:1
-#, fuzzy
 msgid "Globaltime"
-msgstr "Lokal tid"
+msgstr "Globaltid"
 
 #: ../globaltime/globaltime.desktop.in.h:2
-#, fuzzy
 msgid "Orage Globaltime"
-msgstr "Orage - Kalender"
+msgstr "Orage Globaltid"
 
 #: ../globaltime/globaltime.desktop.in.h:3
 msgid "Show clocks from different countries"
-msgstr ""
+msgstr "Vis klokker fra forskjellige land"
 
 #: ../panel-plugin/oc_config.c:219
 msgid "Appearance"
@@ -432,7 +429,7 @@ msgstr "Sett _høyde"
 
 #: ../panel-plugin/oc_config.c:278
 msgid "Note that you can not change the height of horizontal panels"
-msgstr ""
+msgstr "Merk at du ikke kan endre høyden til horisontale paneler"
 
 #: ../panel-plugin/oc_config.c:283
 msgid "set _width:"
@@ -440,7 +437,7 @@ msgstr "Sett _bredde"
 
 #: ../panel-plugin/oc_config.c:294
 msgid "Note that you can not change the width of vertical panels"
-msgstr ""
+msgstr "Merk at du ikke kan endre bredden til vertikale paneler"
 
 #: ../panel-plugin/oc_config.c:311
 msgid "Clock Options"
@@ -454,7 +451,7 @@ msgstr "Sett tidssone til:"
 #: ../panel-plugin/oc_config.c:349
 #, c-format
 msgid "Line %d:"
-msgstr ""
+msgstr "Linje %d:"
 
 #: ../panel-plugin/oc_config.c:359
 msgid "Enter any valid strftime function parameter."
@@ -504,9 +501,8 @@ msgstr ""
 "\t%X = lokal tid\t\t\t%x = lokal dato"
 
 #: ../panel-plugin/oc_config.c:456
-#, fuzzy
 msgid "Orage clock Preferences"
-msgstr "Orage Innstillinger"
+msgstr "Orage Klokkeinnstillinger"
 
 #: ../panel-plugin/oc_config.c:471
 msgid "Orage clock"
@@ -781,7 +777,7 @@ msgstr "Oppdater farger for kategorier."
 #. priority
 #: ../src/appointment.c:2733
 msgid "Priority"
-msgstr ""
+msgstr "Prioritet"
 
 #. note
 #: ../src/appointment.c:2743
@@ -800,6 +796,15 @@ msgid ""
 "(This can be used for example in birthday reminders to tell how old the "
 "person will be.)"
 msgstr ""
+"Disse hurtigkommandoene oppdateres umiddelbart:\n"
+"    <D> setter inn dagens dato med lokalt datoformat\n"
+"    <T> setter inn klokkeslett og\n"
+"    <DT> setter ikke dato og klokkeslett.\n"
+"\n"
+"Disse konverteres senere når de vises:\n"
+"    <&Ynnnn> oversettes til gjeldende år minus nnnn.\n"
+"(Dette kan for eksempel brukes til bursdagspåminnelser som vil vise alder "
+"for den som har bursdag.)"
 
 #: ../src/appointment.c:2833
 msgid "Before Start"
@@ -931,12 +936,11 @@ msgstr ""
 
 #: ../src/appointment.c:3032
 msgid "Test this alarm by raising it now"
-msgstr ""
+msgstr "Test dette varselet"
 
 #: ../src/appointment.c:3039
-#, fuzzy
 msgid "<b>Default alarm</b>"
-msgstr "Standard påminnelse"
+msgstr "<b>Standard påminnelse</b>"
 
 #: ../src/appointment.c:3047
 msgid "Store current settings as default alarm"
@@ -1092,13 +1096,15 @@ msgstr ""
 #. TODO base (only for TODOs)
 #: ../src/appointment.c:3277
 msgid "TODO base"
-msgstr ""
+msgstr "TODO base"
 
 #: ../src/appointment.c:3290
 msgid ""
 "TODO reoccurs regularly starting on start time and repeating after each "
 "interval no matter when it was last completed"
 msgstr ""
+"TODO gjentagende og starter på starttidspunkt og gjentar seg ved "
+"hvert intervall uansett når forrige ble fullført"
 
 #: ../src/appointment.c:3292
 msgid ""
@@ -1107,12 +1113,15 @@ msgid ""
 "(Note that you can not tell anything about the history of the TODO since "
 "reoccurrence base changes after each completion.)"
 msgstr ""
+"TODO gjentagelser er basert på tid og gjentagelser etter intervall telt "
+"fra forrige fullførte tidspunkt.\n"
+"(Merk at du ikke vet noe om hitorikk for TODO siden "
+"gjentagelse basis endret hvert gang det fullføres.)"
 
 #. exceptions
 #: ../src/appointment.c:3299
-#, fuzzy
 msgid "Exceptions"
-msgstr "Innstillinger"
+msgstr "Unntak"
 
 #: ../src/appointment.c:3312
 msgid ""
@@ -1121,30 +1130,35 @@ msgid ""
 "selection.\n"
 "Remove by clicking the data."
 msgstr ""
+"Legg til flere dager med unntak ved å klikke kalenderdager under.\n"
+"Unntak er enten eksklusjon(-) eller inkludering(+) avhengig av hva som er "
+"valgt.\n"
+"Fjern ved å klikke på dataene."
 
 #: ../src/appointment.c:3317
 msgid "Add excluded date (-)"
-msgstr ""
+msgstr "Legg til ekskludert dato (-)"
 
 #: ../src/appointment.c:3319
 msgid "Excluded days are full days where this appointment is not happening"
-msgstr ""
+msgstr "Unntaksdager er fulle dager hvor denne avtalen ikke gjelder"
 
 #: ../src/appointment.c:3325
 msgid "Add included time (+)"
-msgstr ""
+msgstr "Legg til inkludert tid (+)"
 
 #: ../src/appointment.c:3327
 msgid ""
 "Included times have same timezone than start time, but they may have "
 "different time"
 msgstr ""
+"Inkluderte tider har samme tidssone som starttiden, men kan ha et annet "
+"tidspunkt"
 
 #. calendars showing the action days
 #: ../src/appointment.c:3344
-#, fuzzy
 msgid "Action dates"
-msgstr "Hendelsesopsjoner"
+msgstr "Hendelsedatoer"
 
 #. ********* View menu *********
 #. View menu
@@ -1188,7 +1202,7 @@ msgstr "Ukjent"
 
 #: ../src/day-view.c:689
 msgid "       Number of days to show"
-msgstr ""
+msgstr "      Antall dager som vises"
 
 #: ../src/day-view.c:920
 msgid "Orage - day view"
@@ -1645,12 +1659,12 @@ msgstr "\tIngen arkivering.\n"
 #: ../src/main.c:215
 #, c-format
 msgid "\tUsing operating system package libical.\n"
-msgstr ""
+msgstr "\tBruker systempakke libical.\n"
 
 #: ../src/main.c:217
 #, c-format
 msgid "\tUsing Orage local version of libical.\n"
-msgstr ""
+msgstr "\tBruker Orage lokal versjon av libical.\n"
 
 #: ../src/main.c:230
 #, c-format
@@ -1798,9 +1812,9 @@ msgid "<b>Events for %s:</b>"
 msgstr "<b>Hendelser for %s:</b>"
 
 #: ../src/mainbox.c:549
-#, fuzzy, c-format
+#, c-format
 msgid "<b>Events for %s - %s:</b>"
-msgstr "<b>Hendelser for %s:</b>"
+msgstr "<b>Hendelser for %s - %s:</b>"
 
 #: ../src/parameters.c:485
 msgid "Main setups"
@@ -1853,19 +1867,16 @@ msgid "Show menu"
 msgstr "Vis meny"
 
 #: ../src/parameters.c:598
-#, fuzzy
 msgid "Show month and year"
-msgstr "Vis i skrivebordsoversikt"
+msgstr "Vis måned og år"
 
 #: ../src/parameters.c:605
-#, fuzzy
 msgid "Show day names"
-msgstr "Vis _ramme"
+msgstr "Vis navn på dag"
 
 #: ../src/parameters.c:612
-#, fuzzy
 msgid "Show week numbers"
-msgstr "Vis ramme"
+msgstr "Vis ukenummer"
 
 #: ../src/parameters.c:619
 msgid "Show todo list"
@@ -1873,11 +1884,11 @@ msgstr "Vis oppgaveliste"
 
 #: ../src/parameters.c:626
 msgid "Number of days to show in event window"
-msgstr ""
+msgstr "Antall dager å vise i hendelsesvindu"
 
 #: ../src/parameters.c:632
 msgid "0 = do not show event list at all"
-msgstr ""
+msgstr "0 = ikke vis hendelsesliste"
 
 #: ../src/parameters.c:642
 msgid "Set sticked"
@@ -1933,16 +1944,15 @@ msgstr ""
 
 #: ../src/parameters.c:784
 msgid "Use dynamic tray icon"
-msgstr ""
+msgstr "Bruk dynamisk systemkurvikon"
 
 #: ../src/parameters.c:789
-#, fuzzy
 msgid "Use dynamic icon"
-msgstr "Dynamisk ikonstørrelse"
+msgstr "Bruk dynamisk ikon"
 
 #: ../src/parameters.c:795
 msgid "Dynamic icon shows current month and day of the month."
-msgstr ""
+msgstr "Dynamisk ikon viser gjeldende måned og dag i måneden."
 
 #: ../src/parameters.c:804
 msgid "Main Calendar double click shows"
@@ -1957,19 +1967,19 @@ msgid "Event list"
 msgstr "Hendelsesliste"
 
 #: ../src/parameters.c:838
-#, fuzzy
 msgid "Eventlist window"
-msgstr "Hendelsesliste"
+msgstr "Hendelseslistevindu"
 
 #: ../src/parameters.c:842
 msgid "Number of extra days to show in event list"
-msgstr ""
+msgstr "Antall ekstra dager å vise i hendelsesliste"
 
 #: ../src/parameters.c:854
 msgid ""
 "This is just the default value, you can change it in the actual eventlist "
 "window."
 msgstr ""
+"Dette er standardverdien, du kan endre den i hendelseslistevinduet."
 
 #: ../src/parameters.c:871
 msgid "Orage Preferences"
@@ -2002,12 +2012,12 @@ msgstr "Påminnelse - Orage"
 
 #: ../src/reminder.c:775
 msgid "Remind me again after the specified time"
-msgstr ""
+msgstr "Påminnelse på nytt etter angitt tid"
 
 #. Note that this goes to the main area. Temporary for the version
 #: ../src/reminder.c:778
 msgid "Press <Execute> to remind me again after the specified time:"
-msgstr ""
+msgstr "Trykk <Utfør> for ny påminnelse etter angitt tid"
 
 #: ../src/reminder.c:1015
 msgid "Next active alarms:"
@@ -3592,14 +3602,12 @@ msgid "About Orage"
 msgstr "Om Orage"
 
 #: ../panel-plugin/xfce4-orageclock-plugin.desktop.in.in.h:1
-#, fuzzy
 msgid "Orage Panel Clock"
-msgstr "Orage klokke"
+msgstr "Orage Panelklokke"
 
 #: ../panel-plugin/xfce4-orageclock-plugin.desktop.in.in.h:2
-#, fuzzy
 msgid "Show time and date?"
-msgstr "Hva er klokken og dagens dato?"
+msgstr "Hvis tid og dato"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:1
 #: ../xfcalendar.desktop.in.h:1
@@ -3607,108 +3615,21 @@ msgid "Calendar"
 msgstr "Kalender"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:2
-#, fuzzy
 msgid "Orage Calendar Preferences"
-msgstr "Orage Innstillinger"
+msgstr "Orage Kalenderinnstillinger"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:3
-#, fuzzy
 msgid "Orage preferences"
 msgstr "Orage Innstillinger"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:4
-#, fuzzy
 msgid "Settings for the Xfce 4 Calendar Application (Orage)"
-msgstr "Innstillinger for Xfce 4 kalender program"
+msgstr "Innstillinger for Xfce 4 Kalenderprogram (Orage)"
 
 #: ../xfcalendar.desktop.in.h:2
 msgid "Desktop calendar"
 msgstr "Skrivebordskalender"
 
 #: ../xfcalendar.desktop.in.h:3
-#, fuzzy
 msgid "Orage Calendar"
-msgstr "Orage - Kalender"
-
-#~ msgid "Ending time adjustment mode"
-#~ msgstr "Avslutter tidsjusteringsmodus"
-
-#~ msgid "Starting time adjustment mode"
-#~ msgstr "Starter tidsjusteringsmodus"
-
-#~ msgid "adjust to change minute"
-#~ msgstr "Juster for å endre minutt"
-
-#~ msgid "Vary"
-#~ msgstr "Varier"
-
-#~ msgid "Select timezone"
-#~ msgstr "Velg tidssone"
-
-#~ msgid "Modify Clock "
-#~ msgstr "Endre klokke "
-
-#~ msgid ""
-#~ "enter timezone of clock,\n"
-#~ "(=any valid TZ value)"
-#~ msgstr ""
-#~ "angi tidssone for klokken,\n"
-#~ "(=alle gyldige tidssone verdier)"
-
-#~ msgid "Modify Preferences"
-#~ msgstr "Endre innstillinger"
-
-#~ msgid ""
-#~ "Enter local timezone. (it is used to show if time is on previous(-) or "
-#~ "next date(+) by adding a +/- after the time)"
-#~ msgstr ""
-#~ "Skriv inn lokal tidssone. (Denne brukes til å vise om tiden er på forrige"
-#~ "(-) eller eller neste(+) dato ved å legge til +/- etter tiden)"
-
-#~ msgid "Set any valid timezone (=TZ) value or pick one from the list."
-#~ msgstr "Velg tidssone fra listen eller angi en gyldig tidssone."
-
-#~ msgid "show line _1:"
-#~ msgstr "Vis linje _1"
-
-#~ msgid "show line _2:"
-#~ msgstr "Vis linje _2"
-
-#~ msgid "show line _3:"
-#~ msgstr "Vis linje _3"
-
-#~ msgid "Properties"
-#~ msgstr "Egenskaper"
-
-#~ msgid "Failed to launch 'orage -p'"
-#~ msgstr "Klarte ikke å starte 'orage -p'"
-
-#~ msgid ""
-#~ "<D> inserts current date in local date format.\n"
-#~ "<T> inserts time and\n"
-#~ "<DT> inserts date and time."
-#~ msgstr ""
-#~ "<D> setter inn dagens dato i ditt lokale datoformat.\n"
-#~ "<T> setter inn tid og\n"
-#~ "<DT> setter inn dato og tid."
-
-#~ msgid "Show event list"
-#~ msgstr "Vis hendelsesliste"
-
-#~ msgid "(0 = use static icon)"
-#~ msgstr "(0 = Bruk statisk ikon)"
-
-#~ msgid ""
-#~ "Dynamic icon shows current day and month. It is visible only in tray. If "
-#~ "tray is too small for dynamic icon size, Orage switches automatically "
-#~ "back to static icon."
-#~ msgstr ""
-#~ "Dynamisk ikon som viser den aktuelle dagen og måneden. Den er synlig kun "
-#~ "i panelet. Hvis panelet er for lite for det dynamiske ikonets størrelse "
-#~ "så bytter Orage det automatisk tilbake til et statisk ikon."
-
-#~ msgid "Calendar Settings"
-#~ msgstr "Kalenderinnstillinger"
-
-#~ msgid "Xfce 4 Calendar Settings"
-#~ msgstr "Xfce 4 Kalender Innstillinger"
+msgstr "Orage Kalender"
