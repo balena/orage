@@ -265,7 +265,8 @@ static void process_abbr_table()
     tmp = in_head;
     for (i = 0; i < charcnt; i++) { /* we need to walk over the table */
         if (debug > 3)
-            printf("Abbr:%d (%d)(%s)\n", i, strlen((char *)(tmp + i)), tmp + i);
+            printf("Abbr:%d (%d)(%s)\n", i, (int)strlen((char *)(tmp + i))
+                    ,tmp + i);
         i += strlen((char *)(tmp + i));
     }
     in_head += charcnt;
@@ -397,6 +398,8 @@ static int timezone_exists_in_ical()
     else
         return(0); /* not found */
 #else
+    if (!zones_tab_buf)
+        return(0);
     if ((str = strstr(zones_tab_buf, in_timezone_name)))
         return(1); /* yes, it is there */
     else

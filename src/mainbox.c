@@ -168,11 +168,27 @@ static void mView_selectToday_activate_cb(GtkMenuItem *menuitem
     orage_select_today(GTK_CALENDAR(cal->mCalendar));
 }
 
+static void mView_StartGlobaltime_activate_cb(GtkMenuItem *menuitem
+        , gpointer user_data)
+{
+#undef P_N
+#define P_N "mView_StartGlobaltime_activate_cb: "
+    GError *error = NULL;
+
+#ifdef ORAGE_DEBUG
+    orage_message(-100, P_N);
+#endif
+    if (!orage_exec("globaltime", FALSE, &error))
+        orage_message(100, "%s: start of %s failed: %s", "Orage", "globaltime"
+                , error->message);
+}
+
 static void mHelp_help_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
 {
 #undef P_N
 #define P_N "mHelp_help_activate_cb: "
     gchar *helpdoc;
+    GError *error = NULL;
 
 #ifdef ORAGE_DEBUG
     orage_message(-100, P_N);
@@ -183,7 +199,9 @@ static void mHelp_help_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
            , G_DIR_SEPARATOR_S, "C"
            , G_DIR_SEPARATOR_S, "orage.html"
            , NULL);
-    orage_exec(helpdoc, NULL, NULL);
+    if (!orage_exec(helpdoc, FALSE, NULL))
+        orage_message(100, "%s: start of %s failed: %s", "Orage", helpdoc
+                    , error->message);
     g_free(helpdoc);
 }
 
@@ -300,6 +318,12 @@ static void build_menu(void)
             orage_menu_item_new_with_mnemonic(_("Select _Today")
                     , cal->mView_menu);
 
+    menu_separator = orage_separator_menu_item_new(cal->mView_menu);
+
+    cal->mView_StartGlobaltime = 
+            orage_menu_item_new_with_mnemonic(_("Show _Globaltime")
+                    , cal->mView_menu);
+
     /* Help menu */
     cal->mHelp_menu = orage_menu_new(_("_Help"), cal->mMenubar);
     cal->mHelp_help = orage_image_menu_item_new_from_stock("gtk-help"
@@ -326,6 +350,8 @@ static void build_menu(void)
             , G_CALLBACK(mView_ViewSelectedWeek_activate_cb),(gpointer) cal);
     g_signal_connect((gpointer) cal->mView_selectToday, "activate"
             , G_CALLBACK(mView_selectToday_activate_cb),(gpointer) cal);
+    g_signal_connect((gpointer) cal->mView_StartGlobaltime, "activate"
+            , G_CALLBACK(mView_StartGlobaltime_activate_cb),(gpointer) cal);
     g_signal_connect((gpointer) cal->mHelp_help, "activate"
             , G_CALLBACK(mHelp_help_activate_cb), NULL);
     g_signal_connect((gpointer) cal->mHelp_about, "activate"

@@ -33,6 +33,8 @@
 #include <gdk/gdk.h>
 #include <gtk/gtk.h>
 #include <glib/gprintf.h>
+#include <gdk/gdkevents.h>
+#include <gdk/gdkx.h>
 
 #include "orage-i18n.h"
 #include "functions.h"
@@ -81,9 +83,55 @@ void on_about_activate(GtkMenuItem *menuitem, gpointer user_data)
     create_wAbout((GtkWidget *)menuitem, user_data);
 }
 
+void on_globaltime_activate(GtkMenuItem *menuitem, gpointer user_data)
+{
+    GError *error = NULL;
+
+    if (!orage_exec("globaltime", FALSE, &error))
+        g_message("%s: start of %s failed: %s", "Orage", "globaltime"
+                , error->message);
+}
+
+gboolean button_press_cb(GtkStatusIcon *status_icon, GdkEventButton *event
+        , gpointer user_data)
+{
+    GdkAtom atom;
+    GdkEventClient gev;
+    Window xwindow;
+
+    if (event->type != GDK_BUTTON_PRESS) /* double or triple click */
+        return(FALSE); /* ignore */
+    else if (event->button == 2) {
+        /* send message to program to check if it is running */
+        atom = gdk_atom_intern("_XFCE_GLOBALTIME_RUNNING", FALSE);
+        if ((xwindow = XGetSelectionOwner(GDK_DISPLAY(),
+                gdk_x11_atom_to_xatom(atom))) != None) { /* yes, then toggle */
+            gev.type = GDK_CLIENT_EVENT;
+            gev.window = NULL;
+            gev.send_event = TRUE;
+            gev.message_type = gdk_atom_intern("_XFCE_GLOBALTIME_TOGGLE_HERE"
+                    , FALSE);
+            gev.data_format = 8;
+
+            if (!gdk_event_send_client_message((GdkEvent *) &gev,
+                    (GdkNativeWindow)xwindow))
+                 g_message("%s: send message to %s failed", "Orage"
+                         , "globaltime");
+
+            return(TRUE);
+        }
+        else { /* not running, let's try to start it. Need to reset TZ! */
+            on_globaltime_activate(NULL, NULL);
+            return(TRUE);
+        }
+    }
+
+    return(FALSE);
+}
+
 void toggle_visible_cb(GtkStatusIcon *status_icon, gpointer user_data)
 {
-    orage_toggle_visible ();
+    orage_toggle_visible();
 }
 
 void show_menu(GtkStatusIcon *status_icon, guint button, guint activate_time
@@ -349,53 +397,53 @@ GtkWidget *create_TrayIcon_menu()
     GtkWidget *menuItem;
 
     trayMenu = gtk_menu_new();
+
     menuItem = gtk_image_menu_item_new_with_mnemonic(_("Today"));
     gtk_image_menu_item_set_image(GTK_IMAGE_MENU_ITEM(menuItem)
             , gtk_image_new_from_stock(GTK_STOCK_HOME, GTK_ICON_SIZE_MENU));
-    g_signal_connect(menuItem, "activate", G_CALLBACK(on_Today_activate)
-            , xfcal);
+    g_signal_connect(menuItem, "activate"
+            , G_CALLBACK(on_Today_activate), xfcal);
     gtk_menu_shell_append(GTK_MENU_SHELL(trayMenu), menuItem);
-    gtk_widget_show_all(menuItem);
+
     menuItem = gtk_separator_menu_item_new();
     gtk_menu_shell_append(GTK_MENU_SHELL(trayMenu), menuItem);
-    gtk_widget_show(menuItem);
-
     menuItem = gtk_image_menu_item_new_with_label(_("New appointment"));
     gtk_image_menu_item_set_image(GTK_IMAGE_MENU_ITEM(menuItem)
             , gtk_image_new_from_stock(GTK_STOCK_NEW, GTK_ICON_SIZE_MENU));
     g_signal_connect(menuItem, "activate"
             , G_CALLBACK(on_new_appointment_activate), NULL);
     gtk_menu_shell_append(GTK_MENU_SHELL(trayMenu), menuItem);
-    gtk_widget_show(menuItem);
-    menuItem = gtk_separator_menu_item_new();
-    gtk_menu_shell_append(GTK_MENU_SHELL(trayMenu), menuItem);
-    gtk_widget_show(menuItem);
   
-    menuItem = gtk_image_menu_item_new_from_stock(GTK_STOCK_PREFERENCES, NULL);
-    g_signal_connect(menuItem, "activate", G_CALLBACK(on_preferences_activate)
-            , NULL);
-    gtk_menu_shell_append(GTK_MENU_SHELL(trayMenu), menuItem);
-    gtk_widget_show(menuItem);
     menuItem = gtk_separator_menu_item_new();
     gtk_menu_shell_append(GTK_MENU_SHELL(trayMenu), menuItem);
-    gtk_widget_show(menuItem);
+    menuItem = gtk_image_menu_item_new_from_stock(GTK_STOCK_PREFERENCES, NULL);
+    g_signal_connect(menuItem, "activate"
+            , G_CALLBACK(on_preferences_activate), NULL);
+    gtk_menu_shell_append(GTK_MENU_SHELL(trayMenu), menuItem);
 
+    menuItem = gtk_separator_menu_item_new();
+    gtk_menu_shell_append(GTK_MENU_SHELL(trayMenu), menuItem);
     menuItem = gtk_image_menu_item_new_with_label(_("About Orage"));
     gtk_image_menu_item_set_image(GTK_IMAGE_MENU_ITEM(menuItem)
             , gtk_image_new_from_stock(GTK_STOCK_ABOUT, GTK_ICON_SIZE_MENU));
-    g_signal_connect(menuItem, "activate", G_CALLBACK(on_about_activate)
-            , xfcal);
+    g_signal_connect(menuItem, "activate"
+            , G_CALLBACK(on_about_activate), xfcal);
     gtk_menu_shell_append(GTK_MENU_SHELL(trayMenu), menuItem);
-    gtk_widget_show(menuItem);
+
     menuItem = gtk_separator_menu_item_new();
     gtk_menu_shell_append(GTK_MENU_SHELL(trayMenu), menuItem);
-    gtk_widget_show(menuItem);
-
     menuItem = gtk_image_menu_item_new_from_stock(GTK_STOCK_QUIT, NULL);
     g_signal_connect(menuItem, "activate", G_CALLBACK(gtk_main_quit), NULL);
     gtk_menu_shell_append(GTK_MENU_SHELL(trayMenu), menuItem);
-    gtk_widget_show(menuItem);
+  
+    menuItem = gtk_separator_menu_item_new();
+    gtk_menu_shell_append(GTK_MENU_SHELL(trayMenu), menuItem);
+    menuItem = gtk_image_menu_item_new_with_label(_("Globaltime"));
+    g_signal_connect(menuItem, "activate"
+            , G_CALLBACK(on_globaltime_activate), NULL);
+    gtk_menu_shell_append(GTK_MENU_SHELL(trayMenu), menuItem);
 
+    gtk_widget_show_all(trayMenu);
     return(trayMenu);
 }
 
@@ -422,6 +470,8 @@ GtkStatusIcon* create_TrayIcon(GdkPixbuf *orage_logo)
     g_object_ref(trayIcon);
     g_object_ref_sink(trayIcon);
 
+    g_signal_connect(G_OBJECT(trayIcon), "button-press-event",
+    			   G_CALLBACK(button_press_cb), xfcal);
     g_signal_connect(G_OBJECT(trayIcon), "activate",
     			   G_CALLBACK(toggle_visible_cb), xfcal);
     g_signal_connect(G_OBJECT(trayIcon), "popup_menu",

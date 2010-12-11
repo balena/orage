@@ -731,7 +731,7 @@ void orage_select_date(GtkCalendar *cal
     if (cur_year == year && cur_month == month)
         gtk_calendar_select_day(cal, day);
     else {
-        gtk_calendar_select_day(cal, 0); /* needed to avoid illegal day/month */
+        gtk_calendar_select_day(cal, 0); /* need to avoid illegal day/month */
         gtk_calendar_select_month(cal, month, year);
         gtk_calendar_select_day(cal, day);
     }
@@ -805,22 +805,6 @@ OrageRc *orage_rc_file_open(char *fpath, gboolean read_only)
     GKeyFile *grc;
     GError *error = NULL;
 
-    /*
-    if ((rc = xfce_rc_simple_open(fpath, read_only)) == NULL && read_only) {
-        orage_message(-90, "orage_rc_open: Unable to open (read) RC file (%s). Creating it.", fpath);
-        / * let's try to build it * /
-        if ((rc = xfce_rc_simple_open(fpath, FALSE)) == NULL) {
-            / * still failed, can't do more * /
-            orage_message(150, "orage_rc_open: Unable to open (write) RC file (%s).", fpath);
-        }
-    }
-    if (rc) { / * we managed to open it * /
-        orc = g_new(OrageRc, 1);
-        orc->rc = rc;
-    }
-    return(orc);
-    */
-
     grc = g_key_file_new();
     if (g_key_file_load_from_file(grc, (const gchar *)fpath
             , G_KEY_FILE_KEEP_COMMENTS, &error)) { /* success */
@@ -881,13 +865,11 @@ void orage_rc_file_close(OrageRc *orc)
 
 gchar **orage_rc_get_groups(OrageRc *orc)
 {
-    /* return(xfce_rc_get_groups((XfceRc *)orc->rc)); */
     return(g_key_file_get_groups((GKeyFile *)orc->rc, NULL));
 }
 
 void orage_rc_set_group(OrageRc *orc, char *grp)
 {
-    /* xfce_rc_set_group((XfceRc *)orc->rc, grp); */
     g_free((void *)orc->cur_group);
     orc->cur_group = g_strdup(grp);
 }
@@ -896,7 +878,6 @@ void orage_rc_del_group(OrageRc *orc, char *grp)
 {
     GError *error = NULL;
 
-    /* xfce_rc_delete_group((XfceRc *)orc->rc, grp, FALSE); */
     if (!g_key_file_remove_group((GKeyFile *)orc->rc, (const gchar *)grp
                 , &error)) {
         orage_message(150, "orage_rc_del_group: Group remove failed. RC file (%s). group (%s) (%s)", orc->file_name, grp, error->message);
@@ -905,7 +886,6 @@ void orage_rc_del_group(OrageRc *orc, char *grp)
 
 gchar *orage_rc_get_group(OrageRc *orc)
 {
-    /* return(g_strdup(xfce_rc_get_group((XfceRc *)orc->rc))); */
     return(g_strdup(orc->cur_group));
 }
 
@@ -914,7 +894,6 @@ gchar *orage_rc_get_str(OrageRc *orc, char *key, char *def)
     GError *error = NULL;
     gchar *ret;
 
-    /* return(g_strdup(xfce_rc_read_entry((XfceRc *)orc->rc, key, def))); */
     ret = g_key_file_get_string((GKeyFile *)orc->rc, orc->cur_group
             , (const gchar *)key, &error);
     if (!ret && error) {
@@ -929,7 +908,6 @@ gint orage_rc_get_int(OrageRc *orc, char *key, gint def)
     GError *error = NULL;
     gint ret;
 
-    /* return(xfce_rc_read_int_entry((XfceRc *)orc->rc, key, def)); */
     ret = g_key_file_get_integer((GKeyFile *)orc->rc, orc->cur_group
             , (const gchar *)key, &error);
     if (!ret && error) {
@@ -944,7 +922,6 @@ gboolean orage_rc_get_bool(OrageRc *orc, char *key, gboolean def)
     GError *error = NULL;
     gboolean ret;
 
-    /* return(xfce_rc_read_bool_entry((XfceRc *)orc->rc, key, def)); */
     ret = g_key_file_get_boolean((GKeyFile *)orc->rc, orc->cur_group
             , (const gchar *)key, &error);
     if (!ret && error) {
@@ -956,10 +933,6 @@ gboolean orage_rc_get_bool(OrageRc *orc, char *key, gboolean def)
 
 void orage_rc_put_str(OrageRc *orc, char *key, char *val)
 {
-    /*
-    if (val != NULL)
-        xfce_rc_write_entry((XfceRc *)orc->rc, key, val);
-        */
     if (ORAGE_STR_EXISTS(val))
         g_key_file_set_string((GKeyFile *)orc->rc, orc->cur_group
                 , (const gchar *)key, (const gchar *)val);
@@ -967,28 +940,24 @@ void orage_rc_put_str(OrageRc *orc, char *key, char *val)
 
 void orage_rc_put_int(OrageRc *orc, char *key, gint val)
 {
-    /* xfce_rc_write_int_entry((XfceRc *)orc->rc, key, val); */
     g_key_file_set_integer((GKeyFile *)orc->rc, orc->cur_group
             , (const gchar *)key, val);
 }
 
 void orage_rc_put_bool(OrageRc *orc, char *key, gboolean val)
 {
-    /* xfce_rc_write_bool_entry((XfceRc *)orc->rc, key, val); */
     g_key_file_set_boolean((GKeyFile *)orc->rc, orc->cur_group
             , (const gchar *)key, val);
 }
 
 gboolean orage_rc_exists_item(OrageRc *orc, char *key)
 {
-    /* return(xfce_rc_has_entry((XfceRc *)orc->rc, key)); */
     return(g_key_file_has_key((GKeyFile *)orc->rc, orc->cur_group
             , (const gchar *)key, NULL));
 }
 
 void orage_rc_del_item(OrageRc *orc, char *key)
 {
-    /* xfce_rc_delete_entry((XfceRc *)orc->rc, key, FALSE); */
     g_key_file_remove_key((GKeyFile *)orc->rc, orc->cur_group
             , (const gchar *)key, NULL);
 }
