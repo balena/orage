@@ -36,6 +36,7 @@ typedef struct _active_alarm_struct
 typedef struct _alarm_struct
 {
     gchar   *alarm_time;
+    gchar   *action_time; /* alarm is based on this time */
     gchar   *uid;
     gchar   *title;
     gchar   *description;

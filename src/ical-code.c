@@ -2568,11 +2568,13 @@ alarm_struct *process_alarm_trigger(icalcomponent *c
     struct icalrecurrencetype rrule;
     icalrecur_iterator* ri;
     xfical_period per;
-    struct icaltimetype next_alarm_time, next_start_time, rdate_alarm_time;
+    struct icaltimetype next_alarm_time, next_start_time, next_end_time, 
+                        rdate_alarm_time;
     gboolean trg_active = FALSE;
     alarm_struct *new_alarm;
     struct icaldurationtype alarm_start_diff;
     struct icaldatetimeperiodtype rdate_period;
+    gchar *tmp1, *tmp2;
     /* pvl_elem property_iterator;   */ /* for saving the iterator */
 
 #ifdef ORAGE_DEBUG
@@ -2648,7 +2650,7 @@ alarm_struct *process_alarm_trigger(icalcomponent *c
 
     /* alarm_start_diff goes from alarm to start, so we need to revert it
      * 1) here (temporarily) since rdate is start time and we need to get the 
-     * alarm time. We do not use it after this so we can leave it wrong. */
+     * alarm time. */
     if (alarm_start_diff.is_neg)
         alarm_start_diff.is_neg = 0;
     else 
@@ -2717,6 +2719,21 @@ alarm_struct *process_alarm_trigger(icalcomponent *c
         new_alarm = g_new0(alarm_struct, 1);
         next_alarm_time = icaltime_convert_to_zone(next_alarm_time, local_icaltimezone);
         new_alarm->alarm_time = g_strdup(icaltime_as_ical_string(next_alarm_time));
+        /* convert the diff back */
+        if (alarm_start_diff.is_neg)
+            alarm_start_diff.is_neg = 0;
+        else 
+            alarm_start_diff.is_neg = 1;
+
+        next_start_time = icaltime_add(next_alarm_time, alarm_start_diff);
+        next_end_time = icaltime_add(next_start_time, per.duration);
+        tmp1 = g_strdup(orage_icaltime_to_i18_time(
+                        icaltime_as_ical_string(next_start_time)));
+        tmp2 = g_strdup(orage_icaltime_to_i18_time(
+                        icaltime_as_ical_string(next_end_time)));
+        new_alarm->action_time = g_strconcat(tmp1, " - ", tmp2, NULL);
+        g_free(tmp1);
+        g_free(tmp2);
         return(new_alarm);
     }
     else {

@@ -83,6 +83,7 @@ static void alarm_free(gpointer galarm)
     orage_message(-100, P_N);
 #endif
     g_free(alarm->alarm_time);
+    g_free(alarm->action_time);
     g_free(alarm->uid);
     g_free(alarm->title);
     g_free(alarm->description);
@@ -196,6 +197,8 @@ static alarm_struct *alarm_copy(alarm_struct *alarm, gboolean init)
     /* first alarm values which are not modified */
     if (alarm->alarm_time != NULL)
         n_alarm->alarm_time = g_strdup(alarm->alarm_time);
+    if (alarm->action_time != NULL)
+        n_alarm->action_time = g_strdup(alarm->action_time);
     if (alarm->uid != NULL)
         n_alarm->uid = g_strdup(alarm->uid);
     if (alarm->title != NULL)
@@ -280,6 +283,7 @@ static alarm_struct *alarm_read_next_alarm(OrageRc *orc, gchar *time_now)
 
     new_alarm->uid = orage_rc_get_group(orc);
     new_alarm->alarm_time = orage_rc_get_str(orc, "ALARM_TIME", "0000");
+    new_alarm->action_time = orage_rc_get_str(orc, "ACTION_TIME", "0000");
     new_alarm->title = orage_rc_get_str(orc, "TITLE", NULL);
     new_alarm->description = orage_rc_get_str(orc, "DESCRIPTION", NULL);
     new_alarm->persistent = TRUE; /* this must be */
@@ -358,6 +362,7 @@ static void alarm_store(gpointer galarm, gpointer par)
     orage_rc_set_group(par, alarm->uid);
 
     orage_rc_put_str(orc, "ALARM_TIME", alarm->alarm_time);
+    orage_rc_put_str(orc, "ACTION_TIME", alarm->action_time);
     orage_rc_put_str(orc, "TITLE", alarm->title);
     orage_rc_put_str(orc, "DESCRIPTION", alarm->description);
     orage_rc_put_bool(orc, "DISPLAY_ORAGE", alarm->display_orage);
@@ -545,9 +550,14 @@ static void create_notify_reminder(alarm_struct *alarm)
         return;
     }
 
-    strncpy(heading,  _("Reminder "), 199);
+    strncpy(heading,  _("Reminder "), 99);
     if (alarm->title)
         g_strlcat(heading, alarm->title, 50);
+    if (alarm->action_time) {
+        g_strlcat(heading, "\n<b>", 10);
+        g_strlcat(heading, alarm->action_time, 90);
+        g_strlcat(heading, "<\b>", 10);
+    }
     n = notify_notification_new(heading, alarm->description, NULL, NULL);
     alarm->active_alarm->active_notify = n;
     if (g_par.trayIcon 
@@ -681,6 +691,7 @@ static void create_orage_reminder(alarm_struct *alarm)
     GtkWidget *btRecreateReminder;
     GtkWidget *swReminder;
     GtkWidget *hdReminder;
+    GtkWidget *hdtReminder;
     orage_ddmmhh_hbox_struct *ddmmhh_hbox;
     GtkWidget *e_hbox;
 #if !GTK_CHECK_VERSION(2,16,0)
@@ -709,6 +720,13 @@ static void create_orage_reminder(alarm_struct *alarm)
     g_free(tmp);
     gtk_box_pack_start(GTK_BOX(vbReminder), hdReminder, FALSE, TRUE, 0);
 
+    hdtReminder = gtk_label_new(NULL);
+    gtk_label_set_selectable(GTK_LABEL(hdtReminder), TRUE);
+    tmp = g_markup_printf_escaped("<i>%s</i>", alarm->action_time);
+    gtk_label_set_markup(GTK_LABEL(hdtReminder), tmp);
+    g_free(tmp);
+    gtk_box_pack_start(GTK_BOX(vbReminder), hdtReminder, FALSE, TRUE, 0);
+
     swReminder = gtk_scrolled_window_new(NULL, NULL);
     gtk_scrolled_window_set_shadow_type(GTK_SCROLLED_WINDOW(swReminder)
             , GTK_SHADOW_NONE);
@@ -722,6 +740,7 @@ static void create_orage_reminder(alarm_struct *alarm)
     gtk_scrolled_window_add_with_viewport(GTK_SCROLLED_WINDOW(swReminder)
             , lbReminder);
     
+ /* TIME AREA */
     ddmmhh_hbox = (orage_ddmmhh_hbox_struct *)alarm->orage_display_data;
     ddmmhh_hbox->spin_dd = gtk_spin_button_new_with_range(0, 100, 1);
     ddmmhh_hbox->spin_dd_label = gtk_label_new(_("days"));
