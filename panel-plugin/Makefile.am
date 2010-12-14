@@ -17,8 +17,8 @@ xfce4_orageclock_plugin_SOURCES = 					\
 	oc_config.c										\
 	timezone_selection.c							\
 	timezone_selection.h							\
-	tz_zoneinfo_read.c								\
-	tz_zoneinfo_read.h								\
+	../src/tz_zoneinfo_read.c						\
+	../src/tz_zoneinfo_read.h						\
 	xfce4-orageclock-plugin.c						\
 	xfce4-orageclock-plugin.h                       \
     ../src/functions.c                              \

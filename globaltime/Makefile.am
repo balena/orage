@@ -7,8 +7,8 @@ globaltime_SOURCES =						\
 	gt_prefs.c								\
 	timezone_selection.c                    \
 	timezone_selection.h                    \
-	tz_zoneinfo_read.c                      \
-	tz_zoneinfo_read.h                      \
+	../src/tz_zoneinfo_read.c               \
+	../src/tz_zoneinfo_read.h               \
 	../src/functions.c                      \
 	../src/functions.h
 

@@ -33,12 +33,12 @@
 #include <gtk/gtk.h>
 #include <gdk/gdkevents.h>
 
-#include <libxfce4panel/xfce-panel-plugin.h>
+#include <libxfce4panel/libxfce4panel.h>
 
 #include "../src/orage-i18n.h"
 #include "../src/functions.h"
 #include "xfce4-orageclock-plugin.h"
-#include "tz_zoneinfo_read.h"
+#include "../src/tz_zoneinfo_read.h"
 #include "timezone_selection.h"
 
 

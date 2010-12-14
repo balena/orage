@@ -53,8 +53,7 @@
 
 #include "../src/orage-i18n.h"
 #include "../src/functions.h"
-
-#include "tz_zoneinfo_read.h"
+#include "../src/tz_zoneinfo_read.h"
 #include "timezone_selection.h"
 
 
