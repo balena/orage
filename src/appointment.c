@@ -2459,6 +2459,7 @@ static void on_test_button_clicked_cb(GtkButton *button
     appt_win *apptw = (appt_win *)user_data;
     xfical_appt *appt = (xfical_appt *)apptw->xf_appt;
     alarm_struct cur_alarm;
+    gchar *tmp1, *tmp2;
 
     fill_appt_from_apptw(appt, apptw);
 
@@ -2468,6 +2469,11 @@ static void on_test_button_clicked_cb(GtkButton *button
         cur_alarm.uid = g_strdup(appt->uid);
     else
         cur_alarm.uid = NULL;
+    tmp1  = g_strdup(orage_icaltime_to_i18_time(appt->starttime));
+    tmp2  = g_strdup(orage_icaltime_to_i18_time(appt->endtime));
+    cur_alarm.action_time = g_strconcat(tmp1, " - ", tmp2, NULL);
+    g_free(tmp1);
+    g_free(tmp2);
     cur_alarm.title = g_strdup(appt->title);
     cur_alarm.description = g_strdup(appt->note);
     cur_alarm.persistent = appt->alarm_persistent;
@@ -2489,6 +2495,7 @@ static void on_test_button_clicked_cb(GtkButton *button
         cur_alarm.cmd = NULL;
     create_reminders(&cur_alarm);
     g_free(cur_alarm.uid);
+    g_free(cur_alarm.action_time);
     g_free(cur_alarm.title);
     g_free(cur_alarm.description);
     g_free(cur_alarm.sound);

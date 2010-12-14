@@ -929,6 +929,7 @@ static void appt_add_alarm_internal_display(xfical_appt *appt
 #endif
     icalcomponent_add_property(ialarm
             , icalproperty_new_action(ICAL_ACTION_DISPLAY));
+    /* FIXME: add real alarm description and use the below as default only */
     if ORAGE_STR_EXISTS(appt->note)
         icalcomponent_add_property(ialarm
                 , icalproperty_new_description(appt->note));
@@ -1673,9 +1674,12 @@ static void get_alarm_data(icalcomponent *ca,  xfical_appt *appt)
     act = icalproperty_get_action(p);
     if (act == ICAL_ACTION_DISPLAY) {
         get_alarm_data_x(ca, appt);
+        /* fixing bug 6643 by commenting next 3 lines */
+        /* FIXME properly by adding real alarm description
         p = icalcomponent_get_first_property(ca, ICAL_DESCRIPTION_PROPERTY);
         if (p)
             appt->note = (char *)icalproperty_get_description(p);
+            */
         /* default display alarm is orage if none is set */
         if (!appt->display_alarm_orage && !appt->display_alarm_notify)	
             appt->display_alarm_orage = TRUE;
@@ -2766,6 +2770,7 @@ static void process_alarm_data(icalcomponent *ca, alarm_struct *new_alarm)
         new_alarm->display_orage = appt->display_alarm_orage;
         new_alarm->display_notify = appt->display_alarm_notify;
         new_alarm->notify_timeout = appt->display_notify_timeout;
+        /* FIXME: use real alarm data */
         if (ORAGE_STR_EXISTS(appt->note))
             new_alarm->description = orage_process_text_commands(appt->note);
     }
