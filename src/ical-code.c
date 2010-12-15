@@ -1105,9 +1105,8 @@ static void appt_add_alarm_internal(xfical_appt *appt, icalcomponent *ievent)
 #ifdef ORAGE_DEBUG
     orage_message(-200, P_N);
 #endif
-    if (appt->alarmtime == 0) { /* no alarm */
-        return;
-    }
+    /* these lines may not be needed if there are no alarms defined, but
+       they are fast so it does not make sense to test */
     duration = appt->alarmtime;
     trg.time = icaltime_null_time();
     if (appt->alarm_before)
