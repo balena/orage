@@ -15,6 +15,7 @@ orage_SOURCES =					\
 	ical-archive.c						\
 	ical-code.c							\
 	ical-code.h							\
+	ical-internal.h						\
 	ical-expimp.c						\
 	interface.c							\
 	interface.h							\

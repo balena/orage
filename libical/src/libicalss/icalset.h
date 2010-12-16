@@ -117,9 +117,10 @@ icalset* icalset_new_file(const char* path);
 icalset* icalset_new_file_reader(const char* path);
 icalset* icalset_new_file_writer(const char* path);
 
+/* fixed by Juha on 16.12.2010 */
 icalset* icalset_new_dir(const char* path);
-icalset* icalset_new_file_reader(const char* path);
-icalset* icalset_new_file_writer(const char* path);
+icalset* icalset_new_dir_reader(const char* path);
+icalset* icalset_new_dir_writer(const char* path);
 
 void icalset_free(icalset* set);
 
