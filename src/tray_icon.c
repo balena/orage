@@ -44,13 +44,12 @@
 #include "event-list.h"
 #include "appointment.h"
 #include "parameters.h"
+#include "tray_icon.h"
 
 #define ORAGE_TRAYICON ((GtkStatusIcon *)g_par.trayIcon)
 
-void orage_toggle_visible();
 
-
-void on_Today_activate(GtkMenuItem *menuitem, gpointer user_data)
+static void on_Today_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
     struct tm *t;
     CalWin *xfcal = (CalWin *)user_data;
@@ -62,12 +61,12 @@ void on_Today_activate(GtkMenuItem *menuitem, gpointer user_data)
     el = create_el_win(NULL);
 }
 
-void on_preferences_activate(GtkMenuItem *menuitem, gpointer user_data)
+static void on_preferences_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
     show_parameters();
 }
 
-void on_new_appointment_activate(GtkMenuItem *menuitem, gpointer user_data)
+static void on_new_appointment_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
     struct tm *t;
     char cur_date[9];
@@ -78,12 +77,12 @@ void on_new_appointment_activate(GtkMenuItem *menuitem, gpointer user_data)
     create_appt_win("NEW", cur_date);  
 }
 
-void on_about_activate(GtkMenuItem *menuitem, gpointer user_data)
+static void on_about_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
     create_wAbout((GtkWidget *)menuitem, user_data);
 }
 
-void on_globaltime_activate(GtkMenuItem *menuitem, gpointer user_data)
+static void on_globaltime_activate(GtkMenuItem *menuitem, gpointer user_data)
 {
     GError *error = NULL;
 
@@ -92,7 +91,7 @@ void on_globaltime_activate(GtkMenuItem *menuitem, gpointer user_data)
                 , error->message);
 }
 
-gboolean button_press_cb(GtkStatusIcon *status_icon, GdkEventButton *event
+static gboolean button_press_cb(GtkStatusIcon *status_icon, GdkEventButton *event
         , gpointer user_data)
 {
     GdkAtom atom;
@@ -129,19 +128,19 @@ gboolean button_press_cb(GtkStatusIcon *status_icon, GdkEventButton *event
     return(FALSE);
 }
 
-void toggle_visible_cb(GtkStatusIcon *status_icon, gpointer user_data)
+static void toggle_visible_cb(GtkStatusIcon *status_icon, gpointer user_data)
 {
     orage_toggle_visible();
 }
 
-void show_menu(GtkStatusIcon *status_icon, guint button, guint activate_time
+static void show_menu(GtkStatusIcon *status_icon, guint button, guint activate_time
         , gpointer user_data)
 {
     gtk_menu_popup((GtkMenu *)user_data, NULL, NULL, NULL, NULL
             , button, activate_time);
 }
 
-void create_icon_pango_layout(gint line, PangoLayout *pl, struct tm *t
+static void create_icon_pango_layout(gint line, PangoLayout *pl, struct tm *t
         , gint width, gint height
         , gint *x_offset, gint *y_offset, gint *y_size)
 {
@@ -390,7 +389,7 @@ GdkPixbuf *orage_create_icon(gboolean static_icon, gint size)
     return(pixbuf);
 }
 
-GtkWidget *create_TrayIcon_menu()
+static GtkWidget *create_TrayIcon_menu(void)
 {
     CalWin *xfcal = (CalWin *)g_par.xfcal;
     GtkWidget *trayMenu;
@@ -447,7 +446,7 @@ GtkWidget *create_TrayIcon_menu()
     return(trayMenu);
 }
 
-void destroy_TrayIcon(GtkStatusIcon *trayIcon)
+static void destroy_TrayIcon(GtkStatusIcon *trayIcon)
 {
     g_object_unref(trayIcon);
 }
@@ -479,7 +478,7 @@ GtkStatusIcon* create_TrayIcon(GdkPixbuf *orage_logo)
     return(trayIcon);
 }
 
-void refresh_TrayIcon()
+void refresh_TrayIcon(void)
 {
     GdkPixbuf *orage_logo;
 

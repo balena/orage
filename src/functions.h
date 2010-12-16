@@ -139,4 +139,7 @@ gint orage_error_dialog(GtkWindow *parent
 GtkWidget *orage_create_framebox_with_content(const gchar *title
         , GtkWidget *content);
 
+/* NOTE: the following is in main.c */
+void orage_toggle_visible(void);
+
 #endif /* !__ORAGE_FUNCTIONS_H__ */

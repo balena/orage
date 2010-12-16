@@ -799,7 +799,7 @@ static void build_day_view_table(day_win *dw)
     GtkWidget *label, *button;
     char text[5+1], *date, *today;
     struct tm tm_date;
-    guint monthdays[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    gint monthdays[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
     GtkWidget *vp;
     
     orage_category_get_list();

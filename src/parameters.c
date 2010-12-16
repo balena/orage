@@ -49,7 +49,7 @@
 #include "parameters.h"
 #include "mainbox.h"
 
-extern g_log_level;
+extern int g_log_level;
 
 static gboolean is_running = FALSE;
 
@@ -135,7 +135,7 @@ typedef struct _Itf
 /* Return the first day of the week, where 0=monday, 6=sunday.
  *     Borrowed from GTK+:s Calendar Widget, but modified
  *     to return 0..6 mon..sun, which is what libical uses */
-int get_first_weekday_from_locale()
+static int get_first_weekday_from_locale(void)
 {
 #ifdef HAVE__NL_TIME_FIRST_WEEKDAY
     union { unsigned int word; char *string; } langinfo;
@@ -167,16 +167,19 @@ static void dialog_response(GtkWidget *dialog, gint response_id
 {
     Itf *itf = (Itf *)user_data;
     gchar *helpdoc;
+    GError *error = NULL;
 
     if (response_id == GTK_RESPONSE_HELP) {
         /* Needs to be in " to keep # */
-        helpdoc = g_strconcat("xfbrowser4 \"", PACKAGE_DATA_DIR
+        helpdoc = g_strconcat("firefox \"", PACKAGE_DATA_DIR
                 , G_DIR_SEPARATOR_S, "orage"
                 , G_DIR_SEPARATOR_S, "doc"
                 , G_DIR_SEPARATOR_S, "C"
                 , G_DIR_SEPARATOR_S, "orage.html#orage-preferences-window\""
                 , NULL);
-        orage_exec(helpdoc, NULL, NULL);
+        if (!orage_exec(helpdoc, FALSE, &error))
+            orage_message(100, "start of %s failed: %s", helpdoc
+                    , error->message);
     }
     else { /* delete signal or close response */
         write_parameters();
@@ -197,7 +200,7 @@ static void sound_application_changed(GtkWidget *dialog, gpointer user_data)
             GTK_ENTRY(itf->sound_application_entry)));
 }
 
-static void set_border()
+static void set_border(void)
 {
     gtk_window_set_decorated(GTK_WINDOW(((CalWin *)g_par.xfcal)->mWindow)
             , g_par.show_borders);
@@ -212,7 +215,7 @@ static void borders_changed(GtkWidget *dialog, gpointer user_data)
     set_border();
 }
 
-static void set_menu()
+static void set_menu(void)
 {
     if (g_par.show_menu)
         gtk_widget_show(((CalWin *)g_par.xfcal)->mMenubar);
@@ -229,7 +232,7 @@ static void menu_changed(GtkWidget *dialog, gpointer user_data)
     set_menu();
 }
 
-static void set_calendar()
+static void set_calendar(void)
 {
     gtk_calendar_set_display_options(
             GTK_CALENDAR(((CalWin *)g_par.xfcal)->mCalendar)
@@ -265,7 +268,7 @@ static void weeks_changed(GtkWidget *dialog, gpointer user_data)
     set_calendar();
 }
 
-static void set_todos()
+static void set_todos(void)
 {
     if (g_par.show_todos)
         gtk_widget_show_all(((CalWin *)g_par.xfcal)->mTodo_vbox);
@@ -291,7 +294,7 @@ static void show_events_spin_changed(GtkSpinButton *sb, gpointer user_data)
         gtk_widget_hide_all(((CalWin *)g_par.xfcal)->mEvent_vbox);
 }
 
-static void set_stick()
+static void set_stick(void)
 {
     if (g_par.set_stick)
         gtk_window_stick(GTK_WINDOW(((CalWin *)g_par.xfcal)->mWindow));
@@ -308,7 +311,7 @@ static void stick_changed(GtkWidget *dialog, gpointer user_data)
     set_stick();
 }
 
-static void set_ontop()
+static void set_ontop(void)
 {
     gtk_window_set_keep_above(GTK_WINDOW(((CalWin *)g_par.xfcal)->mWindow)
             , g_par.set_ontop);
@@ -323,7 +326,7 @@ static void ontop_changed(GtkWidget *dialog, gpointer user_data)
     set_ontop();
 }
 
-static void set_taskbar()
+static void set_taskbar(void)
 {
     gtk_window_set_skip_taskbar_hint(
             GTK_WINDOW(((CalWin *)g_par.xfcal)->mWindow), !g_par.show_taskbar);
@@ -338,7 +341,7 @@ static void taskbar_changed(GtkWidget *dialog, gpointer user_data)
     set_taskbar();
 }
 
-static void set_pager()
+static void set_pager(void)
 {
     gtk_window_set_skip_pager_hint(GTK_WINDOW(((CalWin *)g_par.xfcal)->mWindow)
             , !g_par.show_pager);
@@ -353,7 +356,7 @@ static void pager_changed(GtkWidget *dialog, gpointer user_data)
     set_pager();
 }
 
-static void set_systray()
+static void set_systray(void)
 {
     GdkPixbuf *orage_logo;
 
@@ -894,7 +897,7 @@ static void create_parameter_dialog_extra_setup_tab(Itf *dialog)
             , G_CALLBACK(el_extra_days_spin_changed), dialog);
 }
 
-Itf *create_parameter_dialog()
+static Itf *create_parameter_dialog(void)
 {
     Itf *dialog;
     GdkPixbuf *orage_logo;
@@ -950,7 +953,7 @@ Itf *create_parameter_dialog()
     return(dialog);
 }
 
-OrageRc *orage_parameters_file_open(gboolean read_only)
+static OrageRc *orage_parameters_file_open(gboolean read_only)
 {
     gchar *fpath;
     OrageRc *orc;
@@ -964,7 +967,7 @@ OrageRc *orage_parameters_file_open(gboolean read_only)
     return(orc);
 }
 
-void write_parameters()
+void write_parameters(void)
 {
     OrageRc *orc;
     gint i;
@@ -1040,7 +1043,7 @@ void write_parameters()
 /* let's try to find the timezone name by comparing this file to
  * timezone files from the default location. This does not work
  * always, but is the best trial we can do */
-void init_dtz_check_dir(gchar *tz_dirname, gchar *tz_local, gint len)
+static void init_dtz_check_dir(gchar *tz_dirname, gchar *tz_local, gint len)
 {
     gint tz_offset = strlen("/usr/share/zoneinfo/");
     gsize tz_len;         /* file lengths */
@@ -1061,7 +1064,7 @@ void init_dtz_check_dir(gchar *tz_dirname, gchar *tz_local, gint len)
             }
             else if (g_file_get_contents(tz_fullfile, &tz_data, &tz_len
                     , &error)) {
-                if (len == tz_len && !memcmp(tz_local, tz_data, len)) {
+                if (len == (int)tz_len && !memcmp(tz_local, tz_data, len)) {
                     /* this is a match (length is tested first since that 
                      * test is quick and it eliminates most) */
                     g_par.local_timezone = g_strdup(tz_fullfile+tz_offset);
@@ -1086,7 +1089,7 @@ void init_dtz_check_dir(gchar *tz_dirname, gchar *tz_local, gint len)
     }
 }
 
-void init_default_timezone()
+static void init_default_timezone(void)
 {
     gsize len;            /* file lengths */
     gchar *tz_local;      /* local timezone data */
@@ -1186,7 +1189,7 @@ void read_parameters(void)
     orage_rc_file_close(orc);
 }
 
-void show_parameters()
+void show_parameters(void)
 {
     static Itf *dialog = NULL;
 
@@ -1199,7 +1202,7 @@ void show_parameters()
     }
 }
 
-void set_parameters()
+void set_parameters(void)
 {
     set_menu();
     set_border();

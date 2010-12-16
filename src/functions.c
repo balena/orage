@@ -655,7 +655,7 @@ char *orage_i18_date_to_icaldate(const char *i18_date)
     return(icalt);
 }
 
-struct tm *orage_localtime()
+struct tm *orage_localtime(void)
 {
     time_t tt;
 
@@ -663,7 +663,7 @@ struct tm *orage_localtime()
     return(localtime(&tt));
 }
 
-char *orage_localdate_i18()
+char *orage_localdate_i18(void)
 {
     struct tm *t;
 
@@ -674,7 +674,7 @@ char *orage_localdate_i18()
 /* move one day forward or backward */
 void orage_move_day(struct tm *t, int day)
 {
-    guint monthdays[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    gint monthdays[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
     if (day < -1 || day > 1) {
         g_warning("orage: orage_move_day wrong parameter %d", day);

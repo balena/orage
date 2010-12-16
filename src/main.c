@@ -84,34 +84,28 @@ static void send_event(char *event)
     gdk_event_send_client_message((GdkEvent *)&gev, (GdkNativeWindow)xwindow);
 }
 
-void orage_toggle_visible()
+void orage_toggle_visible(void)
 {
     send_event("_XFCE_CALENDAR_TOGGLE_HERE");
 }
 
-void raise_orage()
+static void raise_orage(void)
 {
     send_event("_XFCE_CALENDAR_RAISE");
 }
 
-gboolean mWindow_delete_event_cb(GtkWidget *widget, GdkEvent *event
+static gboolean mWindow_delete_event_cb(GtkWidget *widget, GdkEvent *event
         , gpointer user_data)
 {
     orage_toggle_visible();
     return(TRUE);
 }
 
-static void raise_window()
+static void raise_window(void)
 {
-    GdkScreen *screen = NULL;
     GdkWindow *window;
     CalWin *cal = (CalWin *)g_par.xfcal;
 
-    /*
-    screen = xfce_gdk_display_locate_monitor_with_pointer(NULL, NULL);
-    gtk_window_set_screen(GTK_WINDOW(cal->mWindow)
-            , screen ? screen : gdk_screen_get_default());
-    */
     if (g_par.pos_x || g_par.pos_y)
         gtk_window_move(GTK_WINDOW(cal->mWindow)
                 , g_par.pos_x, g_par.pos_y);
@@ -158,7 +152,7 @@ static gboolean client_message_received(GtkWidget *widget
     return(FALSE);
 }
 
-gboolean keep_tidy(void)
+static gboolean keep_tidy(void)
 {
 #ifdef HAVE_ARCHIVE
     /* move old appointment to other file to keep the active
@@ -402,7 +396,7 @@ static gboolean process_args(int argc, char *argv[], gboolean running
     return(end);
 }
 
-static gboolean check_orage_alive()
+static gboolean check_orage_alive(void)
 {
     Window xwindow;
 
@@ -413,7 +407,7 @@ static gboolean check_orage_alive()
         return(FALSE);
 }
 
-static void mark_orage_alive()
+static void mark_orage_alive(void)
 {
     GtkWidget *hidden;
 

@@ -565,7 +565,7 @@ static void on_appNote_buffer_changed_cb(GtkTextBuffer *b, gpointer user_data)
     appt_win *apptw = (appt_win *)user_data;
     GtkTextIter start, end, match_start, match_end;
     GtkTextBuffer *tb;
-    gchar *cdate, ctime[6], *cdatetime;
+    gchar *cdate, c_time[6], *cdatetime;
     struct tm *tm;
 
     tb = apptw->Note_buffer;
@@ -581,17 +581,17 @@ static void on_appNote_buffer_changed_cb(GtkTextBuffer *b, gpointer user_data)
                 , GTK_TEXT_SEARCH_TEXT_ONLY
                 , &match_start, &match_end, &end)) { /* found it */
         tm = orage_localtime();
-        g_sprintf(ctime, "%02d:%02d", tm->tm_hour, tm->tm_min);
+        g_sprintf(c_time, "%02d:%02d", tm->tm_hour, tm->tm_min);
         gtk_text_buffer_delete(tb, &match_start, &match_end);
-        gtk_text_buffer_insert(tb, &match_start, ctime, -1);
+        gtk_text_buffer_insert(tb, &match_start, c_time, -1);
     }
     else if (gtk_text_iter_forward_search(&start, "<DT>"
                 , GTK_TEXT_SEARCH_TEXT_ONLY
                 , &match_start, &match_end, &end)) { /* found it */
         tm = orage_localtime();
         cdate = orage_tm_date_to_i18_date(tm);
-        g_sprintf(ctime, "%02d:%02d", tm->tm_hour, tm->tm_min);
-        cdatetime = g_strconcat(cdate, " ", ctime, NULL);
+        g_sprintf(c_time, "%02d:%02d", tm->tm_hour, tm->tm_min);
+        cdatetime = g_strconcat(cdate, " ", c_time, NULL);
         gtk_text_buffer_delete(tb, &match_start, &match_end);
         gtk_text_buffer_insert(tb, &match_start, cdatetime, -1);
         g_free(cdatetime);
@@ -1705,14 +1705,14 @@ static void orage_category_free(gpointer gcat, gpointer dummy)
     g_free(cat);
 }
 
-void orage_category_free_list()
+static void orage_category_free_list(void)
 {
     g_list_foreach(orage_category_list, orage_category_free, NULL);
     g_list_free(orage_category_list);
     orage_category_list = NULL;
 }
 
-void orage_category_get_list()
+void orage_category_get_list(void)
 {
     OrageRc *orc;
     gchar **cat_groups, *color;
@@ -1751,7 +1751,7 @@ void orage_category_get_list()
     orage_rc_file_close(orc);
 }
 
-gboolean category_fill_cb(GtkComboBox *cb, char *select)
+static gboolean category_fill_cb(GtkComboBox *cb, char *selection)
 {
     OrageRc *orc;
     gchar **cat_gourps;
@@ -1764,7 +1764,7 @@ gboolean category_fill_cb(GtkComboBox *cb, char *select)
     gtk_combo_box_set_active(cb, 0);
     for (i = 0; cat_gourps[i] != NULL; i++) {
         gtk_combo_box_append_text(cb, (const gchar *)cat_gourps[i]);
-        if (!found && select && !strcmp(select, cat_gourps[i])) {
+        if (!found && selection && !strcmp(selection, cat_gourps[i])) {
             gtk_combo_box_set_active(cb, i);
             found = TRUE;
         }
@@ -1774,7 +1774,7 @@ gboolean category_fill_cb(GtkComboBox *cb, char *select)
     return(found);
 }
 
-void orage_category_refill_cb(appt_win *apptw)
+static void orage_category_refill_cb(appt_win *apptw)
 {
     gchar *tmp;
 
@@ -1794,7 +1794,7 @@ void orage_category_refill_cb(appt_win *apptw)
     gtk_widget_show(apptw->Categories_cb);
 }
 
-void fill_category_data(appt_win *apptw, xfical_appt *appt)
+static void fill_category_data(appt_win *apptw, xfical_appt *appt)
 {
     gchar *tmp = NULL;
 
@@ -1817,7 +1817,7 @@ void fill_category_data(appt_win *apptw, xfical_appt *appt)
             , (appt->categories ? appt->categories : ""));
 }
 
-void orage_category_write_entry(gchar *category, GdkColor *color)
+static void orage_category_write_entry(gchar *category, GdkColor *color)
 {
     OrageRc *orc;
     char *color_str;

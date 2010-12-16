@@ -50,6 +50,8 @@ gboolean orage_dbus_service_remove_foreign(DBusGProxy *proxy
                 , const char *IN_file
                 , GError **error);
 
+void orage_dbus_start(void);
+
 
 G_END_DECLS;
 

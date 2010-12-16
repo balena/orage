@@ -225,7 +225,7 @@ static gint sortEvent_comp(GtkTreeModel *model
     return(ret);
 }
 
-GtkWidget *tz_button_create_view(gboolean details, GtkTreeStore *store)
+static GtkWidget *tz_button_create_view(gboolean details, GtkTreeStore *store)
 {
 #undef P_N
 #define P_N "tz_button_create_view: "

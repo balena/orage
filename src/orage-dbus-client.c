@@ -28,6 +28,7 @@
 
 #include <dbus/dbus-glib-lowlevel.h>
 
+#include "orage-dbus.h"
 /*
 #include "orage-dbus-object.h"
 #include "orage-dbus-service.h"

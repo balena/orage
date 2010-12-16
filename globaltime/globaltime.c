@@ -106,7 +106,7 @@ static gboolean global_time_active_already(GdkAtom *atom)
         return(FALSE); 
 }
 
-static void raise_window()
+static void raise_window(void)
 {
     GdkWindow *window;
 
@@ -390,7 +390,7 @@ static void add_default_clock(void)
     write_file();
 }
 
-void upd_clock(clock_struct *clockp)
+static void upd_clock(clock_struct *clockp)
 {
     struct tm *now;
 
@@ -435,12 +435,12 @@ static gboolean upd_clocks(void)
     return(TRUE);
 }
 
-void adj_hh_changed(GtkSpinButton *cb, gpointer user_data)
+static void adj_hh_changed(GtkSpinButton *cb, gpointer user_data)
 {
     clocks.hh_adj = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(cb));
 }
 
-void adj_mm_changed(GtkSpinButton *cb, gpointer user_data)
+static void adj_mm_changed(GtkSpinButton *cb, gpointer user_data)
 {
     clocks.mm_adj = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(cb));
 }
@@ -508,7 +508,7 @@ static gboolean clean_up(GtkObject *obj, GdkEvent *event, gint g)
     return(FALSE);
 }
 
-static void initialize_clocks()
+static void initialize_clocks(void)
 {
     GtkWidget *button;
 

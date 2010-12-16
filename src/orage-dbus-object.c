@@ -58,13 +58,13 @@ static void orage_dbus_class_init(OrageDBusClass *orage_class)
             , &dbus_glib_orage_object_info);
 }
 
-static void orage_dbus_init(OrageDBus *orage_dbus)
+static void orage_dbus_init(OrageDBus *o_dbus)
 {
     GError *error = NULL;
 
   /* try to connect to the session bus */
-    orage_dbus->connection = dbus_g_bus_get(DBUS_BUS_SESSION, &error);
-    if (orage_dbus->connection == NULL) {
+    o_dbus->connection = dbus_g_bus_get(DBUS_BUS_SESSION, &error);
+    if (o_dbus->connection == NULL) {
       /* notify the user that D-BUS service won't be available */
         g_warning("Failed to connect to the D-BUS session bus: %s"
                 , error->message);
@@ -72,17 +72,17 @@ static void orage_dbus_init(OrageDBus *orage_dbus)
     }
     else {
       /* register the /org/xfce/calendar object for orage */
-        dbus_g_connection_register_g_object(orage_dbus->connection
-              , "/org/xfce/calendar", G_OBJECT(orage_dbus));
+        dbus_g_connection_register_g_object(o_dbus->connection
+              , "/org/xfce/calendar", G_OBJECT(o_dbus));
 
       /* request the org.xfce.calendar name for orage */
         dbus_bus_request_name(dbus_g_connection_get_connection(
-                  orage_dbus->connection), "org.xfce.calendar"
+                  o_dbus->connection), "org.xfce.calendar"
               , DBUS_NAME_FLAG_REPLACE_EXISTING, NULL);
 
       /* request the org.xfce.orage name for orage */
         dbus_bus_request_name(dbus_g_connection_get_connection(
-                  orage_dbus->connection), "org.xfce.orage"
+                  o_dbus->connection), "org.xfce.orage"
               , DBUS_NAME_FLAG_REPLACE_EXISTING, NULL);
     }
 }
@@ -107,7 +107,7 @@ gboolean orage_dbus_service_add_foreign(DBusGProxy *proxy
         , const char *IN_file, const gboolean *IN_mode
         , GError **error)
 {
-    if (orage_foreign_file_add((char *)IN_file, (gboolean)IN_mode)) {
+    if (orage_foreign_file_add((char *)IN_file, (gboolean)*IN_mode)) {
         g_message("Orage **: DBUS Foreign file added %s", IN_file);
         return(TRUE);
     }
@@ -132,7 +132,7 @@ gboolean orage_dbus_service_remove_foreign(DBusGProxy *proxy
 }
 
 
-void orage_dbus_start()
+void orage_dbus_start(void)
 {
     orage_dbus = g_object_new(ORAGE_DBUS_TYPE, NULL);
 }

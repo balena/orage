@@ -154,8 +154,9 @@ static void add_header(GtkWidget *box, gchar *text, gboolean bold)
     gtk_widget_show(label);
 }
 
-GtkWidget *toolbar_append_button(GtkWidget *toolbar, const gchar *stock_id
-        , GtkTooltips *tooltips, const char *tooltip_text)
+static GtkWidget *toolbar_append_button(GtkWidget *toolbar
+        , const gchar *stock_id, GtkTooltips *tooltips
+        , const char *tooltip_text)
 {
     GtkWidget *button;
             

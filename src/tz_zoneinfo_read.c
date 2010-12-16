@@ -154,7 +154,7 @@ static void read_file(const char *file_name, const struct stat *file_stat)
         printf("read_file: end\n");
 }
 
-static int get_long()
+static int get_long(void)
 {
     int tmp;
 
@@ -166,7 +166,7 @@ static int get_long()
     return(tmp);
 }
 
-static int process_header()
+static int process_header(void)
 {
     if (debug > 2)
         printf("file id: %s\n", in_head);
@@ -198,10 +198,10 @@ static int process_header()
     return(0);
 }
 
-static void process_local_time_table()
+static void process_local_time_table(void)
 { /* points when time changes */
     time_t tmp;
-    int i;
+    unsigned int i;
 
     begin_timechanges = in_head;
     if (debug > 3)
@@ -217,10 +217,10 @@ static void process_local_time_table()
     }
 }
 
-static void process_local_time_type_table()
+static void process_local_time_type_table(void)
 { /* pointers to table, which explain how time changes */
     unsigned char tmp;
-    int i;
+    unsigned int i;
 
     begin_timechangetypeindexes = in_head;
     if (debug > 3)
@@ -233,11 +233,11 @@ static void process_local_time_type_table()
     }
 }
 
-static void process_ttinfo_table()
+static void process_ttinfo_table(void)
 { /* table of different time changes = types */
     long tmp;
     unsigned char tmp2, tmp3;
-    int i;
+    unsigned int i;
 
     begin_timechangetypes = in_head;
     if (debug > 3)
@@ -254,10 +254,10 @@ static void process_ttinfo_table()
     }
 }
 
-static void process_abbr_table()
+static void process_abbr_table(void)
 {
     unsigned char *tmp;
-    int i;
+    unsigned int i;
 
     begin_timezonenames = in_head;
     if (debug > 3)
@@ -272,10 +272,10 @@ static void process_abbr_table()
     in_head += charcnt;
 }
 
-static void process_leap_table()
+static void process_leap_table(void)
 {
     unsigned long tmp, tmp2;
-    int i;
+    unsigned int i;
 
     if (debug > 3)
         printf("\n***** printing leap time table *****\n");
@@ -288,10 +288,10 @@ static void process_leap_table()
     }
 }
 
-static void process_std_table()
+static void process_std_table(void)
 {
     unsigned char tmp;
-    int i;
+    unsigned int i;
 
     if (debug > 3)
         printf("\n***** printing std table *****\n");
@@ -303,10 +303,10 @@ static void process_std_table()
     }
 }
 
-static void process_gmt_table()
+static void process_gmt_table(void)
 {
     unsigned char tmp;
-    int i;
+    unsigned int i;
 
     if (debug > 3)
         printf("\n***** printing gmt table *****\n");
@@ -324,7 +324,7 @@ static int process_file(const char *file_name)
 {
     if (debug > 1)
         printf("\n\nprocess_file: start\n");
-    if (process_header(file_name)) {
+    if (process_header()) {
         if (debug > 0)
             printf("File (%s) does not look like tz file. Skipping it.\n"
                     , file_name);
@@ -342,7 +342,7 @@ static int process_file(const char *file_name)
     return(0); /* ok */
 }
 
-static void get_country()
+static void get_country(void)
 { /* tz_array.city[tz_array.count] contains the city name.
      We will find corresponding country and fill it to the table */
     char *str, *str_nl, cc[4];
@@ -384,7 +384,7 @@ static void get_country()
     tz_array.country[tz_array.count][(str_nl - str)] = '\0';
 }
 
-static int timezone_exists_in_ical()
+static int timezone_exists_in_ical(void)
 { /* in_timezone_name contains the timezone name.
      We will search if it exists also in the ical zones.tab file */
   /* new libical checks os zone.tab file, so we need to use that if using
@@ -430,7 +430,7 @@ static int write_ical_file(const char *in_file_name
         get_country();
 
     in_head = begin_timechanges;
-    for (i = 0; (i < timecnt) && (tc_time <= tt_now); i++) {
+    for (i = 0; (i < (int)timecnt) && (tc_time <= tt_now); i++) {
         /* search for current time setting.
          * timecnt tells how many changes we have in the tz file.
          * i points to the next value to read. */
@@ -595,7 +595,7 @@ static int file_call(const char *file_name, const struct stat *sb, int flags
 }
 
 /* check the parameters and use defaults when possible */
-static int check_parameters()
+static int check_parameters(void)
 {
     char *s_tz, *last_tz = NULL, tz[]="/zoneinfo", tz2[]="zoneinfo/";
     int tz_len, i;
@@ -728,7 +728,7 @@ static int check_parameters()
     return(0); /* continue */
 }
 
-static void read_os_timezones()
+static void read_os_timezones(void)
 {
     char *tz_dir, *zone_tab_file_name;
     int zoneinfo_len=strlen("zoneinfo/");
@@ -780,7 +780,7 @@ static void read_os_timezones()
     fclose(zone_tab_file);
 }
 
-static void read_countries()
+static void read_countries(void)
 {
     char *tz_dir, *country_file_name;
     int zoneinfo_len=strlen("zoneinfo/");
@@ -834,7 +834,7 @@ static void read_countries()
 }
 
 #ifndef HAVE_LIBICAL
-static void read_ical_timezones()
+static void read_ical_timezones(void)
 {
     FILE *zones_tab_file;
     struct stat zones_tab_file_stat;

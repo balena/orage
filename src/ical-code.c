@@ -64,6 +64,7 @@
 #include "mainbox.h"
 #include "reminder.h"
 #include "ical-code.h"
+#include "ical-internal.h"
 #include "event-list.h"
 #include "appointment.h"
 #include "parameters.h"
@@ -84,15 +85,6 @@ static void xfical_alarm_build_list_internal(gboolean first_list_today);
 
 #define ZONES_TAB_FILE_LOC  ZONEINFO_DIRECTORY "/" ZONES_TAB_FILENAME
 
-
-typedef struct
-{
-    struct icaltimetype stime; /* start time */
-    struct icaltimetype etime; /* end time */
-    struct icaldurationtype duration;
-    struct icaltimetype ctime; /* completed time for VTODO appointmnets */
-    icalcomponent_kind ikind;  /* type of component, VEVENt, VTODO... */
-} xfical_period;
 
 typedef struct
 {
@@ -803,7 +795,7 @@ int xfical_compare_times(xfical_appt *appt)
 {
 #undef  P_N 
 #define P_N "xfical_compare_times: "
-    struct icaltimetype stime, etime;
+    struct icaltimetype s_time, etime;
     const char *text;
     struct icaldurationtype duration;
 
@@ -819,9 +811,9 @@ int xfical_compare_times(xfical_appt *appt)
             orage_message(250, P_N "null start time");
             return(0); /* should be error ! */
         }
-        stime = icaltime_from_string(appt->starttime);
+        s_time = icaltime_from_string(appt->starttime);
         duration = icaldurationtype_from_int(appt->duration);
-        etime = icaltime_add(stime, duration);
+        etime = icaltime_add(s_time, duration);
         text  = icaltime_as_ical_string(etime);
         g_strlcpy(appt->endtime, text, 17);
         g_free(appt->end_tz_loc);
@@ -832,17 +824,17 @@ int xfical_compare_times(xfical_appt *appt)
     else {
         if (ORAGE_STR_EXISTS(appt->starttime) 
         &&  ORAGE_STR_EXISTS(appt->endtime)) {
-            stime = icaltime_from_string(appt->starttime);
+            s_time = icaltime_from_string(appt->starttime);
             etime = icaltime_from_string(appt->endtime);
 
-            stime = convert_to_zone(stime, appt->start_tz_loc);
-            stime = icaltime_convert_to_zone(stime, local_icaltimezone);
+            s_time = convert_to_zone(s_time, appt->start_tz_loc);
+            s_time = icaltime_convert_to_zone(s_time, local_icaltimezone);
             etime = convert_to_zone(etime, appt->end_tz_loc);
             etime = icaltime_convert_to_zone(etime, local_icaltimezone);
 
-            duration = icaltime_subtract(etime, stime);
+            duration = icaltime_subtract(etime, s_time);
             appt->duration = icaldurationtype_as_int(duration);
-            return(icaltime_compare(stime, etime));
+            return(icaltime_compare(s_time, etime));
         }
         else {
             orage_message(250, P_N "null time %s %s"
@@ -856,7 +848,7 @@ int xfical_compare_times(xfical_appt *appt)
   * returns: NULL if failed and pointer to xfical_appt if successfull.
   *         You must free it after not being used anymore. (g_free())
   */
-xfical_appt *xfical_appt_alloc()
+xfical_appt *xfical_appt_alloc(void)
 {
 #undef P_N
 #define P_N "xfical_appt_alloc: "
@@ -875,7 +867,7 @@ xfical_appt *xfical_appt_alloc()
     return(appt);
 }
 
-char *ic_generate_uid()
+char *ic_generate_uid(void)
 {
 #undef P_N
 #define P_N "ic_generate_uid: "
@@ -1758,7 +1750,7 @@ static void get_appt_alarm_from_icalcomponent(icalcomponent *c
 }
 
 static void process_start_date(xfical_appt *appt, icalproperty *p
-        , struct icaltimetype *itime, struct icaltimetype *stime
+        , struct icaltimetype *itime, struct icaltimetype *s_time
         , struct icaltimetype *sltime, struct icaltimetype *etime)
 {
 #undef P_N
@@ -1770,7 +1762,7 @@ static void process_start_date(xfical_appt *appt, icalproperty *p
 #endif
     text = icalproperty_get_value_as_string(p);
     *itime = icaltime_from_string(text);
-    *stime = ic_convert_to_timezone(*itime, p);
+    *s_time = ic_convert_to_timezone(*itime, p);
     *sltime = convert_to_local_timezone(*itime, p);
     g_strlcpy(appt->starttime, text, 17);
     if (icaltime_is_date(*itime)) {
@@ -1788,7 +1780,7 @@ static void process_start_date(xfical_appt *appt, icalproperty *p
     if (appt->endtime[0] == '\0') {
         g_strlcpy(appt->endtime,  appt->starttime, 17);
         appt->end_tz_loc = appt->start_tz_loc;
-        etime = stime;
+        etime = s_time;
     }
 }
 
@@ -1930,13 +1922,13 @@ static void ical_appt_get_rrule_internal(icalcomponent *c, xfical_appt *appt
     appt->interval = rrule.interval;
 }
 
-gboolean get_appt_from_icalcomponent(icalcomponent *c, xfical_appt *appt)
+static gboolean get_appt_from_icalcomponent(icalcomponent *c, xfical_appt *appt)
 {
 #undef P_N
 #define P_N "get_appt_from_icalcomponent: "
     const char *text;
     icalproperty *p = NULL;
-    struct icaltimetype itime, stime, etime, sltime, eltime, wtime;
+    struct icaltimetype itime, s_time, etime, sltime, eltime, wtime;
     icaltimezone *l_icaltimezone = NULL;
     icalproperty_transp xf_transp;
     struct icaldurationtype duration, duration_tmp;
@@ -1962,7 +1954,7 @@ gboolean get_appt_from_icalcomponent(icalcomponent *c, xfical_appt *appt)
         return(FALSE);
     }
         /*********** Defaults ***********/
-    stime = icaltime_null_time();
+    s_time = icaltime_null_time();
     sltime = icaltime_null_time();
     eltime = icaltime_null_time();
     duration = icaldurationtype_null_duration();
@@ -2047,7 +2039,7 @@ gboolean get_appt_from_icalcomponent(icalcomponent *c, xfical_appt *appt)
             case ICAL_DTSTART_PROPERTY:
                 if (!stime_found)
                     process_start_date(appt, p 
-                            , &itime, &stime, &sltime, &etime);
+                            , &itime, &s_time, &sltime, &etime);
                 break;
             case ICAL_DTEND_PROPERTY:
             case ICAL_DUE_PROPERTY:
@@ -2074,7 +2066,7 @@ g_print("X PROPERTY: %s\n", text);
                 text = icalproperty_get_x_name(p);
                 if (g_str_has_prefix(text, "X-ORAGE-ORIG-DTSTART")) {
                     process_start_date(appt, p 
-                            , &itime, &stime, &sltime, &etime);
+                            , &itime, &s_time, &sltime, &etime);
                     stime_found = TRUE;
                     break;
                 }
@@ -2157,7 +2149,7 @@ g_print("X PROPERTY: %s\n", text);
 
     /* need to set missing endtime or duration */
     if (appt->use_duration) { 
-        etime = icaltime_add(stime, duration);
+        etime = icaltime_add(s_time, duration);
         text  = icaltime_as_ical_string(etime);
         g_strlcpy(appt->endtime, text, 17);
         appt->end_tz_loc = appt->start_tz_loc;
@@ -2171,7 +2163,7 @@ g_print("X PROPERTY: %s\n", text);
             duration_tmp = icaldurationtype_from_int(60*60*24);
             appt->duration -= icaldurationtype_as_int(duration_tmp);
             duration = icaldurationtype_from_int(appt->duration);
-            etime = icaltime_add(stime, duration);
+            etime = icaltime_add(s_time, duration);
             text  = icaltime_as_ical_string(etime);
             g_strlcpy(appt->endtime, text, 17);
         }
@@ -2518,7 +2510,7 @@ static void set_todo_times(icalcomponent *c, xfical_period *per)
 }
 
 /* this works in UTC times */
-struct icaltimetype count_alarm_time(xfical_period per
+static struct icaltimetype count_alarm_time(xfical_period per
         , struct icaltimetype cur_time
         , struct icaldurationtype dur
         , icalparameter_related rel) 
@@ -2559,7 +2551,7 @@ struct icaltimetype count_alarm_time(xfical_period per
  * FIXME: We assume all alarms have similar trigger, which 
  * may not be true for other than Orage appointments
  */
-alarm_struct *process_alarm_trigger(icalcomponent *c
+static alarm_struct *process_alarm_trigger(icalcomponent *c
         , icalcomponent *ca, struct icaltimetype cur_time, int *cnt_repeat)
 { /* c == main component; ca == alarm component */
 #undef P_N
@@ -3218,7 +3210,7 @@ static gboolean xfical_mark_calendar_days(GtkCalendar *gtkcal
 
 /* note that this not understand timezones, but gets always raw time,
  * which we need to convert to correct timezone */
-void mark_calendar(icalcomponent *c, icaltime_span *span , void *data)
+static void mark_calendar(icalcomponent *c, icaltime_span *span , void *data)
 {
 #undef P_N
 #define P_N "mark_calendar: "
@@ -3445,7 +3437,7 @@ void xfical_mark_calendar(GtkCalendar *gtkcal)
 
 /* note that this not understand timezones, but gets always raw time,
  * which we need to convert to correct timezone */
-void add_appt_to_list(icalcomponent *c, icaltime_span *span , void *data)
+static void add_appt_to_list(icalcomponent *c, icaltime_span *span , void *data)
 {
 #undef P_N
 #define P_N "add_appt_to_list: "
@@ -3694,7 +3686,7 @@ static xfical_appt *xfical_appt_get_next_with_string_internal(char *str
     xfical_appt *appt;
     gboolean found_valid, search_done = FALSE;
     struct icaltimetype it;
-    const char *stime;
+    const char *s_time;
 
 #ifdef ORAGE_DEBUG
     orage_message(-200, P_N);
@@ -3812,14 +3804,14 @@ static xfical_appt *xfical_appt_get_next_with_string_internal(char *str
                             it = convert_to_zone(it, appt->start_tz_loc);
                             it = icaltime_convert_to_zone(it
                                     , local_icaltimezone);
-                            stime = icaltime_as_ical_string(it);
-                            g_strlcpy(appt->starttimecur, stime, 17);
+                            s_time = icaltime_as_ical_string(it);
+                            g_strlcpy(appt->starttimecur, s_time, 17);
                             it = icaltime_from_string(appt->endtime);
                             it = convert_to_zone(it, appt->end_tz_loc);
                             it = icaltime_convert_to_zone(it
                                     , local_icaltimezone);
-                            stime = icaltime_as_ical_string(it);
-                            g_strlcpy(appt->endtimecur, stime, 17);
+                            s_time = icaltime_as_ical_string(it);
+                            g_strlcpy(appt->endtimecur, s_time, 17);
                         }
                         beg = find_next(uid, end, "\nEND:");
                         if (!beg) {

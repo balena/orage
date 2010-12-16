@@ -250,7 +250,7 @@ static void start_time_data_func(GtkTreeViewColumn *col, GtkCellRenderer *rend
         , GtkTreeModel *model, GtkTreeIter *iter, gpointer user_data)
 {
     el_win *el = (el_win *)user_data;
-    gchar *stime, *etime, *stime2;
+    gchar *s_time, *etime, *stime2;
     gchar start_time[17], end_time[17];
     gint len;
 
@@ -264,15 +264,15 @@ static void start_time_data_func(GtkTreeViewColumn *col, GtkCellRenderer *rend
             return;
         }
 
-        gtk_tree_model_get(model, iter, COL_TIME, &stime, -1);
+        gtk_tree_model_get(model, iter, COL_TIME, &s_time, -1);
         /* we need to remember the real address in case we increment it, 
          * so that we can free the correct pointer */
-        stime2 = stime; 
-        if (stime[0] == '+')
-            stime++;
-        etime = stime + 8; /* hh:mm - hh:mm */
+        stime2 = s_time; 
+        if (s_time[0] == '+')
+            s_time++;
+        etime = s_time + 8; /* hh:mm - hh:mm */
         /* only add special highlight if we are on today (=start with time) */
-        if (stime[2] != ':') { 
+        if (s_time[2] != ':') { 
             g_object_set(rend
                      , "foreground-set",    FALSE
                      , "strikethrough-set", FALSE
@@ -288,7 +288,7 @@ static void start_time_data_func(GtkTreeViewColumn *col, GtkCellRenderer *rend
                      , "weight-set",        TRUE
                      , NULL);
         }
-        else if (strncmp(stime, el->time_now, 5) <= 0 
+        else if (strncmp(s_time, el->time_now, 5) <= 0 
               && strncmp(etime, el->time_now, 5) >= 0) { /* current */
             g_object_set(rend
                      , "foreground",        "Blue"
@@ -309,19 +309,19 @@ static void start_time_data_func(GtkTreeViewColumn *col, GtkCellRenderer *rend
         g_free(stime2);
     }
     else if (el->page == TODO_PAGE) {
-        gtk_tree_model_get(model, iter, COL_SORT, &stime, -1);
-        if (stime[8] == 'T') { /* date+time */
+        gtk_tree_model_get(model, iter, COL_SORT, &s_time, -1);
+        if (s_time[8] == 'T') { /* date+time */
             len = 15;
         }
         else { /* date only */
             len = 8;
         }
-        strncpy(start_time, stime, len);
+        strncpy(start_time, s_time, len);
         gtk_tree_model_get(model, iter, COL_TIME, &stime2, -1);
         if (g_str_has_suffix(stime2, "- ...")) /* no due time */
             strncpy(end_time, "99999", len); /* long in the future*/
         else /* normal due time*/
-            strncpy(end_time, stime+len, len);
+            strncpy(end_time, s_time+len, len);
         if (strncmp(end_time, el->date_now, len) < 0) { /* gone */
             g_object_set(rend
                      , "foreground",        "Red"
@@ -349,7 +349,7 @@ static void start_time_data_func(GtkTreeViewColumn *col, GtkCellRenderer *rend
                      , "weight-set",        TRUE
                      , NULL);
         }
-        g_free(stime);
+        g_free(s_time);
         g_free(stime2);
     }
     else {
@@ -367,12 +367,12 @@ static void add_el_row(el_win *el, xfical_appt *appt, char *par)
     GtkListStore   *list1;
     gchar          *title = NULL, *tmp;
     gchar           flags[6]; 
-    gchar          *stime;
+    gchar          *s_time;
     gchar          /* *s_sort,*/ *s_sort1;
     gchar          *tmp_note;
-    gint            len = 50;
+    guint           len = 50;
 
-    stime = format_time(el, appt, par);
+    s_time = format_time(el, appt, par);
     if (appt->alarmtime != 0)
         if (appt->sound != NULL)
             flags[0] = 'S';
@@ -432,7 +432,7 @@ static void add_el_row(el_win *el, xfical_appt *appt, char *par)
     list1 = el->ListStore;
     gtk_list_store_append(list1, &iter1);
     gtk_list_store_set(list1, &iter1
-            , COL_TIME,  stime
+            , COL_TIME,  s_time
             , COL_FLAGS, flags
             , COL_HEAD,  title
             , COL_UID,   appt->uid
@@ -441,7 +441,7 @@ static void add_el_row(el_win *el, xfical_appt *appt, char *par)
             , -1);
     g_free(title);
     g_free(s_sort1);
-    g_free(stime);
+    g_free(s_time);
     /*
     g_free(s_sort);
     */
@@ -960,7 +960,7 @@ static void on_journal_start_button_clicked(GtkWidget *button
 }
 
 static void drag_data_get(GtkWidget *widget, GdkDragContext *context
-        , GtkSelectionData *selection_data, guint info, guint time
+        , GtkSelectionData *selection_data, guint info, guint i_time
         , gpointer user_data)
 {
     GtkTreeSelection *sel;

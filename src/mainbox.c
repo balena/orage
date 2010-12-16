@@ -56,7 +56,7 @@
 */
 
 
-gboolean orage_mark_appointments()
+gboolean orage_mark_appointments(void)
 {
 #undef P_N
 #define P_N "orage_mark_appointments: "
@@ -193,15 +193,14 @@ static void mHelp_help_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
 #ifdef ORAGE_DEBUG
     orage_message(-100, P_N);
 #endif
-    helpdoc = g_strconcat("xfbrowser4 ", PACKAGE_DATA_DIR
+    helpdoc = g_strconcat("firefox ", PACKAGE_DATA_DIR
            , G_DIR_SEPARATOR_S, "orage"
            , G_DIR_SEPARATOR_S, "doc"
            , G_DIR_SEPARATOR_S, "C"
            , G_DIR_SEPARATOR_S, "orage.html"
            , NULL);
-    if (!orage_exec(helpdoc, FALSE, NULL))
-        orage_message(100, "%s: start of %s failed: %s", "Orage", helpdoc
-                    , error->message);
+    if (!orage_exec(helpdoc, FALSE, &error))
+        orage_message(100, "start of %s failed: %s", helpdoc, error->message);
     g_free(helpdoc);
 }
 
@@ -499,8 +498,8 @@ static void info_process(gpointer a, gpointer pbox)
 {
 #undef P_N
 #define P_N "info_process: "
-    xfical_appt *appt = (xfical_appt *)a;;
-    GtkBox *box = GTK_BOX(pbox);
+    xfical_appt *appt = (xfical_appt *)a;
+    GtkBox *box= GTK_BOX(pbox);
     CalWin *cal = (CalWin *)g_par.xfcal;
     gboolean todo;
 
@@ -711,7 +710,7 @@ static void mCalendar_day_selected_cb(GtkCalendar *calendar
     build_mainbox_event_box();
 }
 
-void build_mainbox_event_box()
+void build_mainbox_event_box(void)
 {
 #undef P_N
 #define P_N "build_mainbox_event_box: "
@@ -742,7 +741,7 @@ void build_mainbox_info(void)
     build_mainbox_event_info();
 }
 
-void build_mainWin()
+void build_mainWin(void)
 {
 #undef P_N
 #define P_N "build_mainWin: "

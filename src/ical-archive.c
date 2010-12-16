@@ -64,6 +64,7 @@
 #include "mainbox.h"
 #include "reminder.h"
 #include "ical-code.h"
+#include "ical-internal.h"
 #include "event-list.h"
 #include "appointment.h"
 #include "parameters.h"
@@ -74,25 +75,6 @@
 #define ORAGE_DEBUG 1
 */
 
-
-
-/* this is in ical-code.c, too. ugly. should be in h file */
-typedef struct
-{
-    struct icaltimetype stime; /* start time */
-    struct icaltimetype etime; /* end time */
-    struct icaldurationtype duration;
-    struct icaltimetype ctime; /* completed time for VTODO appointmnets */
-    icalcomponent_kind ikind;  /* type of component, VEVENt, VTODO... */
-} xfical_period;
-
-/* in ical-code.c: */
-char *ic_get_char_timezone(icalproperty *p);
-struct icaltimetype ic_convert_to_timezone(struct icaltimetype t
-        , icalproperty *p);
-xfical_period ic_get_period(icalcomponent *c, gboolean local);
-gboolean ic_internal_file_open(icalcomponent **p_ical
-        , icalset **p_fical, gchar *file_icalpath, gboolean test);
 
 
 extern icalset *ic_fical;

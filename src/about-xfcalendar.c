@@ -28,13 +28,12 @@
 #include <gtk/gtk.h>
 
 #include "orage-i18n.h"
-#include "mainbox.h"
 #include "tray_icon.h"
+#include "about-xfcalendar.h"
 
 
 void create_wAbout(GtkWidget *widget, gpointer user_data)
 {
-  CalWin *xfcal = (CalWin *)user_data;
   GtkWidget *dialog;
   GdkPixbuf *orage_logo;
   GtkAboutDialog *about;
