@@ -4,7 +4,7 @@
 # Johan Hammar <johan.hammar@swipnet.se>, 2003.
 # Alexander Toresson <alexander.toresson@gmail.com>, 2006.
 # Daniel Nylander <po@danielnylander.se>, 2008.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: xfcalendar\n"
@@ -53,8 +53,7 @@ msgid "adjust to change hour"
 msgstr "Justera för att ändra timme"
 
 #: ../globaltime/globaltime.c:496
-msgid ""
-"adjust to change minute. Click arrows with button 2 to change only 1 minute."
+msgid "adjust to change minute. Click arrows with button 2 to change only 1 minute."
 msgstr ""
 
 #: ../globaltime/gt_prefs.c:265 ../globaltime/gt_prefs.c:266
@@ -217,9 +216,7 @@ msgstr "Klicka för att ändra standardtypsnitt för klocknamn"
 
 #: ../globaltime/gt_prefs.c:944 ../globaltime/gt_prefs.c:978
 msgid "Cross this to use system default font instead of selected font"
-msgstr ""
-"Kryssa denna för att använda systemets standardtypsnitt istället för valt "
-"typsnitt"
+msgstr "Kryssa denna för att använda systemets standardtypsnitt istället för valt typsnitt"
 
 #: ../globaltime/gt_prefs.c:963
 msgid "Click to change default font for clock time"
@@ -298,30 +295,29 @@ msgstr ""
 #: ../panel-plugin/timezone_selection.c:157 ../src/timezone_selection.c:168
 #, c-format
 msgid "%d hour %d mins"
-msgstr ""
+msgstr "%d timme %d minuter"
 
 #: ../globaltime/timezone_selection.c:159
 #: ../panel-plugin/timezone_selection.c:160 ../src/timezone_selection.c:171
-#, fuzzy, c-format
+#, c-format
 msgid "%d hour"
-msgstr "timmar"
+msgstr "%d timme"
 
 #: ../globaltime/timezone_selection.c:161
 #: ../panel-plugin/timezone_selection.c:162 ../src/timezone_selection.c:173
-#, fuzzy, c-format
+#, c-format
 msgid "%d mins"
-msgstr "minuter"
+msgstr "%d minuter"
 
 #: ../globaltime/timezone_selection.c:167
 #: ../panel-plugin/timezone_selection.c:168 ../src/timezone_selection.c:179
 msgid "backward"
-msgstr ""
+msgstr "bakåt"
 
 #: ../globaltime/timezone_selection.c:170
 #: ../panel-plugin/timezone_selection.c:171 ../src/timezone_selection.c:182
-#, fuzzy
 msgid "forward"
-msgstr "Framåt"
+msgstr "framåt"
 
 #: ../globaltime/timezone_selection.c:194
 #: ../panel-plugin/timezone_selection.c:195 ../src/timezone_selection.c:206
@@ -355,7 +351,7 @@ msgstr ""
 #: ../globaltime/timezone_selection.c:269
 #: ../panel-plugin/timezone_selection.c:270 ../src/timezone_selection.c:281
 msgid "Country"
-msgstr ""
+msgstr "Land"
 
 #: ../globaltime/timezone_selection.c:299
 #: ../globaltime/timezone_selection.c:309
@@ -471,18 +467,8 @@ msgid "fix time after suspend/hibernate"
 msgstr "korrigera tiden efter viloläge/vänteläge"
 
 #: ../panel-plugin/oc_config.c:415
-msgid ""
-"You only need this if you do short term (less than 5 hours) suspend or "
-"hibernate and your visible time does not include seconds. Under these "
-"circumstances it is possible that Orageclock shows time inaccurately unless "
-"you have this selected. (Selecting this prevents cpu and interrupt saving "
-"features from working.)"
-msgstr ""
-"Du behöver endast denna om du gör korta (mindre än 5 timmar) vänteläge eller "
-"viloläge och din synliga tid inte inkluderar sekunder. Under dessa "
-"förhållanden är det möjligt att Orageclock visar tiden felaktigt såvida du "
-"inte har valt detta alternativ. (Välja detta förhindrar sparfunktioner för "
-"processor och avbrott från att fungera.)"
+msgid "You only need this if you do short term (less than 5 hours) suspend or hibernate and your visible time does not include seconds. Under these circumstances it is possible that Orageclock shows time inaccurately unless you have this selected. (Selecting this prevents cpu and interrupt saving features from working.)"
+msgstr "Du behöver endast denna om du gör korta (mindre än 5 timmar) vänteläge eller viloläge och din synliga tid inte inkluderar sekunder. Under dessa förhållanden är det möjligt att Orageclock visar tiden felaktigt såvida du inte har valt detta alternativ. (Välja detta förhindrar sparfunktioner för processor och avbrott från att fungera.)"
 
 #: ../panel-plugin/oc_config.c:432
 msgid ""
@@ -518,7 +504,7 @@ msgstr "Inställningar för Orage"
 #. * %B  : full month name
 #. * %Y  : four digit year
 #. * %V  : ISO week number
-#.
+#. 
 #: ../panel-plugin/xfce4-orageclock-plugin.c:623
 msgid "%A %d %B %Y/%V"
 msgstr "%A %d %B %Y/%V"
@@ -756,12 +742,8 @@ msgid "Categories"
 msgstr "Kategorier"
 
 #: ../src/appointment.c:2729
-msgid ""
-"This is special category, which can be used to color this appointment in "
-"list views."
-msgstr ""
-"Detta är en speciell kategori som kan användas för att färga detta möte i "
-"listvyer."
+msgid "This is special category, which can be used to color this appointment in list views."
+msgstr "Detta är en speciell kategori som kan användas för att färga detta möte i listvyer."
 
 #: ../src/appointment.c:2734
 msgid "update colors for categories."
@@ -770,7 +752,7 @@ msgstr "uppdatera färger för kategorier."
 #. priority
 #: ../src/appointment.c:2740
 msgid "Priority"
-msgstr ""
+msgstr "Prioritet"
 
 #. note
 #: ../src/appointment.c:2750
@@ -786,8 +768,7 @@ msgid ""
 "\n"
 "These are converted only later when they are seen:\n"
 "    <&Ynnnn> is translated to current year minus nnnn.\n"
-"(This can be used for example in birthday reminders to tell how old the "
-"person will be.)"
+"(This can be used for example in birthday reminders to tell how old the person will be.)"
 msgstr ""
 
 #: ../src/appointment.c:2840
@@ -832,12 +813,8 @@ msgid "Persistent alarm"
 msgstr "Bestående alarm"
 
 #: ../src/appointment.c:2885
-msgid ""
-"Select this if you want Orage to remind you even if it has not been active "
-"when the alarm happened."
-msgstr ""
-"Välj denna om du vill att Orage ska påminna dig även om den inte har varit "
-"aktiv när alarmet skedde."
+msgid "Select this if you want Orage to remind you even if it has not been active when the alarm happened."
+msgstr "Välj denna om du vill att Orage ska påminna dig även om den inte har varit aktiv när alarmet skedde."
 
 #. **** Audio Alarm ****
 #: ../src/appointment.c:2894
@@ -923,9 +900,8 @@ msgid "Test this alarm by raising it now"
 msgstr ""
 
 #: ../src/appointment.c:3046
-#, fuzzy
 msgid "<b>Default alarm</b>"
-msgstr "Standardalarm"
+msgstr "<b>Standardalarm</b>"
 
 #: ../src/appointment.c:3054
 msgid "Store current settings as default alarm"
@@ -1084,30 +1060,24 @@ msgid "TODO base"
 msgstr ""
 
 #: ../src/appointment.c:3297
-msgid ""
-"TODO reoccurs regularly starting on start time and repeating after each "
-"interval no matter when it was last completed"
+msgid "TODO reoccurs regularly starting on start time and repeating after each interval no matter when it was last completed"
 msgstr ""
 
 #: ../src/appointment.c:3299
 msgid ""
-"TODO reoccurrency is based on complete time and repeats after the interval "
-"counted from the last completed time.\n"
-"(Note that you can not tell anything about the history of the TODO since "
-"reoccurrence base changes after each completion.)"
+"TODO reoccurrency is based on complete time and repeats after the interval counted from the last completed time.\n"
+"(Note that you can not tell anything about the history of the TODO since reoccurrence base changes after each completion.)"
 msgstr ""
 
 #. exceptions
 #: ../src/appointment.c:3306
-#, fuzzy
 msgid "Exceptions"
-msgstr "Alternativ"
+msgstr "Undantag"
 
 #: ../src/appointment.c:3319
 msgid ""
 "Add more exception dates by clicking the calendar days below.\n"
-"Exception is either exclusion(-) or inclusion(+) depending on the "
-"selection.\n"
+"Exception is either exclusion(-) or inclusion(+) depending on the selection.\n"
 "Remove by clicking the data."
 msgstr ""
 
@@ -1124,9 +1094,7 @@ msgid "Add included time (+)"
 msgstr ""
 
 #: ../src/appointment.c:3334
-msgid ""
-"Included times have same timezone than start time, but they may have "
-"different time"
+msgid "Included times have same timezone than start time, but they may have different time"
 msgstr ""
 
 #. calendars showing the action days
@@ -1198,8 +1166,7 @@ msgstr "Inga rader har markerats."
 
 #: ../src/event-list.c:747
 msgid "Click a row to select it and after that you can copy it."
-msgstr ""
-"Klicka på en rad för att markera den och efter det så kan du kopiera den."
+msgstr "Klicka på en rad för att markera den och efter det så kan du kopiera den."
 
 #: ../src/event-list.c:916
 msgid ""
@@ -1343,11 +1310,8 @@ msgstr "Bygger alarmlista: Lade till %d alarm. Behandlade %d händelser."
 
 #: ../src/ical-code.c:2936
 #, c-format
-msgid ""
-"\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
-msgstr ""
-"\tHittade %d alarm av vilka %d är aktiva. (Sökte igenom %d återkommande "
-"alarm.)"
+msgid "\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
+msgstr "\tHittade %d alarm av vilka %d är aktiva. (Sökte igenom %d återkommande alarm.)"
 
 #: ../src/ical-expimp.c:141
 msgid "Starting import file preprocessing"
@@ -1472,8 +1436,7 @@ msgid ""
 "This is useful for example when doing export and moving orage\n"
 "appointments to another system."
 msgstr ""
-"Återskapa alla arkiverade händelser till Orages huvudfil och ta bort "
-"arkiveringsfilen.\n"
+"Återskapa alla arkiverade händelser till Orages huvudfil och ta bort arkiveringsfilen.\n"
 "Detta är användbart till exempel när man exporterar och flyttar Orage-möten\n"
 "till andra system."
 
@@ -1553,15 +1516,11 @@ msgstr "Skrivskyddad"
 
 #: ../src/interface.c:1289
 msgid ""
-"Set this if you want to make sure that this file is never modified by "
-"Orage.\n"
-"Note that modifying foreign files may make them incompatible with the "
-"original tool, where they came from!"
+"Set this if you want to make sure that this file is never modified by Orage.\n"
+"Note that modifying foreign files may make them incompatible with the original tool, where they came from!"
 msgstr ""
-"Ställ in denna om du vill försäkra dig om att denna fil aldrig kommer att "
-"ändras av Orage.\n"
-"Observera att ändring av externa filer kan göra dem inkompatibila med "
-"ursprungsverktyget, alltså där de kom från!"
+"Ställ in denna om du vill försäkra dig om att denna fil aldrig kommer att ändras av Orage.\n"
+"Observera att ändring av externa filer kan göra dem inkompatibila med ursprungsverktyget, alltså där de kom från!"
 
 #: ../src/interface.c:1303
 msgid "Exchange data - Orage"
@@ -1687,12 +1646,8 @@ msgstr "\tdbus inte inkluderat i orage. \n"
 
 #: ../src/main.c:243
 #, c-format
-msgid ""
-"\twithout dbus [files] and foreign file options(-a & -r) can only be used "
-"when starting orage \n"
-msgstr ""
-"\tflaggor för \"utan dbus [filer]\" och externa filer(-a & -r) får endast "
-"användas när orage startas \n"
+msgid "\twithout dbus [files] and foreign file options(-a & -r) can only be used when starting orage \n"
+msgstr "\tflaggor för \"utan dbus [filer]\" och externa filer(-a & -r) får endast användas när orage startas \n"
 
 #: ../src/main.c:387
 #, c-format
@@ -1782,14 +1737,13 @@ msgid "<b>Events for %s:</b>"
 msgstr "<b>Händelser för %s:</b>"
 
 #: ../src/mainbox.c:574
-#, fuzzy, c-format
+#, c-format
 msgid "<b>Events for %s - %s:</b>"
-msgstr "<b>Händelser för %s:</b>"
+msgstr "<b>Händelser för %s - %s:</b>"
 
 #: ../src/parameters.c:492
-#, fuzzy
 msgid "Main settings"
-msgstr "Huvudkonfiguration"
+msgstr "Huvudinställningar"
 
 #: ../src/parameters.c:498
 msgid "Timezone"
@@ -1809,8 +1763,7 @@ msgstr "(0 = ingen arkivering)"
 
 #: ../src/parameters.c:539
 msgid "Archiving is used to save time and space when handling events."
-msgstr ""
-"Arkivering används för att spara tid och utrymme vid hantering av händelser."
+msgstr "Arkivering används för att spara tid och utrymme vid hantering av händelser."
 
 #: ../src/parameters.c:548
 msgid "Sound command"
@@ -1818,9 +1771,7 @@ msgstr "Ljudkommando"
 
 #: ../src/parameters.c:563
 msgid "This command is given to shell to make sound in alarms."
-msgstr ""
-"Detta kommando skickas till kommandoradsskalet för att spela upp ljud i "
-"alarm."
+msgstr "Detta kommando skickas till kommandoradsskalet för att spela upp ljud i alarm."
 
 #: ../src/parameters.c:579
 #, fuzzy
@@ -1840,19 +1791,16 @@ msgid "Show menu"
 msgstr "Visa meny"
 
 #: ../src/parameters.c:606
-#, fuzzy
 msgid "Show month and year"
-msgstr "Visa i skrivbordsbläddraren"
+msgstr "Visa månad och år"
 
 #: ../src/parameters.c:613
-#, fuzzy
 msgid "Show day names"
-msgstr "Visa _ram"
+msgstr "Visa namn på dagar"
 
 #: ../src/parameters.c:620
-#, fuzzy
 msgid "Show week numbers"
-msgstr "Visa ramar"
+msgstr "Visa veckonummer"
 
 #: ../src/parameters.c:627
 msgid "Show todo list"
@@ -1868,12 +1816,11 @@ msgstr ""
 
 #: ../src/parameters.c:650
 msgid "Show on all desktops"
-msgstr ""
+msgstr "Visa på alla skrivbord"
 
 #: ../src/parameters.c:657
-#, fuzzy
 msgid "Keep on top"
-msgstr "Lägg överst"
+msgstr "Behåll överst"
 
 #: ../src/parameters.c:664
 msgid "Show in taskbar"
@@ -1914,9 +1861,8 @@ msgid "On Calendar Window Open"
 msgstr "Huvudfönstret"
 
 #: ../src/parameters.c:794
-#, fuzzy
 msgid "Select Today's Date"
-msgstr "Markera _idag"
+msgstr "Välj dagens datum"
 
 #: ../src/parameters.c:807
 msgid "Select Previously Selected Date"
@@ -1927,9 +1873,8 @@ msgid "Use dynamic tray icon"
 msgstr ""
 
 #: ../src/parameters.c:829
-#, fuzzy
 msgid "Use dynamic icon"
-msgstr "Dynamisk ikonstorlek"
+msgstr "Använd dynamisk ikon"
 
 #: ../src/parameters.c:835
 msgid "Dynamic icon shows current month and day of the month."
@@ -1957,9 +1902,7 @@ msgid "Number of extra days to show in event list"
 msgstr ""
 
 #: ../src/parameters.c:894
-msgid ""
-"This is just the default value, you can change it in the actual eventlist "
-"window."
+msgid "This is just the default value, you can change it in the actual eventlist window."
 msgstr ""
 
 #: ../src/parameters.c:911
@@ -3583,14 +3526,12 @@ msgid "About Orage"
 msgstr "Om Orage"
 
 #: ../panel-plugin/xfce4-orageclock-plugin.desktop.in.in.h:1
-#, fuzzy
 msgid "Orage Panel Clock"
-msgstr "Orage-klocka"
+msgstr "Panelklockan Orage"
 
 #: ../panel-plugin/xfce4-orageclock-plugin.desktop.in.in.h:2
-#, fuzzy
 msgid "Show time and date?"
-msgstr "Vad är klockan och datumet?"
+msgstr "Visa tid och datum?"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:1
 #: ../xfcalendar.desktop.in.h:1
@@ -3598,28 +3539,24 @@ msgid "Calendar"
 msgstr "Kalender"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:2
-#, fuzzy
 msgid "Orage Calendar Preferences"
-msgstr "Inställningar för Orage"
+msgstr "Inställningar för Orage-kalendern"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:3
-#, fuzzy
 msgid "Orage preferences"
 msgstr "Inställningar för Orage"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:4
-#, fuzzy
 msgid "Settings for the Xfce 4 Calendar Application (Orage)"
-msgstr "Inställningar för Xfce 4-kalenderprogrammet"
+msgstr "Inställningar för Xfce 4-kalendern (Orage)"
 
 #: ../xfcalendar.desktop.in.h:2
 msgid "Desktop calendar"
 msgstr "Skrivbordskalender"
 
 #: ../xfcalendar.desktop.in.h:3
-#, fuzzy
 msgid "Orage Calendar"
-msgstr "Orage - Kalender"
+msgstr "Orage-kalendern"
 
 #~ msgid "Orage clock"
 #~ msgstr "Orage-klocka"
@@ -3648,12 +3585,8 @@ msgstr "Orage - Kalender"
 #~ msgid "Select always today"
 #~ msgstr "Välj alltid idag"
 
-#~ msgid ""
-#~ "When showing main calendar, set pointer to either previously selected day "
-#~ "or always to current day."
-#~ msgstr ""
-#~ "När huvudkalendern visas så ställ in pekaren till antingen tidigare "
-#~ "markerade dag eller alltid till dagens datum."
+#~ msgid "When showing main calendar, set pointer to either previously selected day or always to current day."
+#~ msgstr "När huvudkalendern visas så ställ in pekaren till antingen tidigare markerade dag eller alltid till dagens datum."
 
 #~ msgid "Ending time adjustment mode"
 #~ msgstr "Avslutar tidsjusteringsläge"
@@ -3683,12 +3616,8 @@ msgstr "Orage - Kalender"
 #~ msgid "Modify Preferences"
 #~ msgstr "Ändra inställningar"
 
-#~ msgid ""
-#~ "Enter local timezone. (it is used to show if time is on previous(-) or "
-#~ "next date(+) by adding a +/- after the time)"
-#~ msgstr ""
-#~ "Ange lokal tidszon. (den visas om tiden är på tidigare(-) eller nästa "
-#~ "datum(+) genom att lägga till ett +/- efter tiden)"
+#~ msgid "Enter local timezone. (it is used to show if time is on previous(-) or next date(+) by adding a +/- after the time)"
+#~ msgstr "Ange lokal tidszon. (den visas om tiden är på tidigare(-) eller nästa datum(+) genom att lägga till ett +/- efter tiden)"
 
 #~ msgid "Set any valid timezone (=TZ) value or pick one from the list."
 #~ msgstr "Ange en giltig tidszon (=TZ) eller välj en från listan."
@@ -3723,14 +3652,8 @@ msgstr "Orage - Kalender"
 #~ msgid "(0 = use static icon)"
 #~ msgstr "(0 = använd statisk ikon)"
 
-#~ msgid ""
-#~ "Dynamic icon shows current day and month. It is visible only in tray. If "
-#~ "tray is too small for dynamic icon size, Orage switches automatically "
-#~ "back to static icon."
-#~ msgstr ""
-#~ "Dynamisk ikon visar aktuell dag och månad. Den är endast synlig i "
-#~ "notifieringsfältet. Om notifieringsfältet är för litet för den dynamiska "
-#~ "ikonen så kommer Orage att automatiskt växla tillbaka till statisk ikon."
+#~ msgid "Dynamic icon shows current day and month. It is visible only in tray. If tray is too small for dynamic icon size, Orage switches automatically back to static icon."
+#~ msgstr "Dynamisk ikon visar aktuell dag och månad. Den är endast synlig i notifieringsfältet. Om notifieringsfältet är för litet för den dynamiska ikonen så kommer Orage att automatiskt växla tillbaka till statisk ikon."
 
 #~ msgid "Calendar Settings"
 #~ msgstr "Kalenderinställningar"
@@ -3738,42 +3661,33 @@ msgstr "Orage - Kalender"
 #~ msgid "Xfce 4 Calendar Settings"
 #~ msgstr "Inställningar för Xfce 4 Kalender"
 
-#, fuzzy
 #~ msgid "Monday"
 #~ msgstr "Idag"
 
-#, fuzzy
 #~ msgid "Tuesday"
 #~ msgstr "Idag"
 
-#, fuzzy
 #~ msgid "Wednesday"
 #~ msgstr "En gång i veckan"
 
-#, fuzzy
 #~ msgid "Thursday"
 #~ msgstr "Idag"
 
-#, fuzzy
 #~ msgid "Friday"
 #~ msgstr "dagar"
 
-#, fuzzy
 #~ msgid "Sunday"
 #~ msgstr "Ljud"
 
-#, fuzzy
 #~ msgid "Days"
 #~ msgstr "dagar"
 
-#, fuzzy
 #~ msgid "normal"
 #~ msgstr "Generellt"
 
 #~ msgid "%m/%d/%Y"
 #~ msgstr "%Y/%m/%d"
 
-#, fuzzy
 #~ msgid "Calendar Files"
 #~ msgstr "Kalenderfiler"
 
