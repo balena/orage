@@ -475,7 +475,7 @@ static void init_hdr_button(void)
             , clocks.hdr_adj_hh, FALSE, FALSE, 0);
     gtk_spin_button_set_value(GTK_SPIN_BUTTON(clocks.hdr_adj_hh), (gdouble)0);
     gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(clocks.hdr_adj_hh), TRUE);
-    gtk_widget_set_size_request(clocks.hdr_adj_hh, 40, -1);
+    gtk_widget_set_size_request(clocks.hdr_adj_hh, 45, -1);
     gtk_tooltips_set_tip(clocks.tips, clocks.hdr_adj_hh
             , _("adjust to change hour"), NULL);
     g_signal_connect((gpointer) clocks.hdr_adj_hh, "changed"
@@ -491,7 +491,7 @@ static void init_hdr_button(void)
     gtk_spin_button_set_value(GTK_SPIN_BUTTON(clocks.hdr_adj_mm), (gdouble)0);
     gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(clocks.hdr_adj_mm), TRUE);
     gtk_spin_button_set_increments(GTK_SPIN_BUTTON(clocks.hdr_adj_mm), 30, 1);
-    gtk_widget_set_size_request(clocks.hdr_adj_mm, 40, -1);
+    gtk_widget_set_size_request(clocks.hdr_adj_mm, 45, -1);
     gtk_tooltips_set_tip(clocks.tips, clocks.hdr_adj_mm
             , _("adjust to change minute. Click arrows with button 2 to change only 1 minute."), NULL);
     g_signal_connect((gpointer) clocks.hdr_adj_mm, "changed"

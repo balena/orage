@@ -416,7 +416,7 @@ static int write_ical_file(const char *in_file_name
     unsigned int tct_i, abbr_i;
     struct tm cur_gm_time;
     time_t tt_now = time(NULL);
-    long tc_time = 0, prev_tc_time; /* TimeChange times */
+    long tc_time = 0, prev_tc_time = 0; /* TimeChange times */
     char s_next[101], s_prev[101];
 
     if (debug > 1)
