@@ -1,7 +1,7 @@
 # Hungarian translation of orage
 # Copyright 2003-2009. Free Software Foundation, Inc.
 # This file is distributed under the same license as the orage package.
-#
+# 
 # SZERVÁC Attila <sas at 321 dot hu>, 2006.
 # András Mohari <mayday at mailpoint dot hu>, 2006.
 # Gabor Kelemen <kelemeng at gnome dot hu>, 2009, 2010.
@@ -16,8 +16,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
 #: ../globaltime/globaltime.c:100
 msgid "Raising GlobalTime window..."
@@ -54,11 +54,8 @@ msgid "adjust to change hour"
 msgstr "Az óra megváltoztatása"
 
 #: ../globaltime/globaltime.c:496
-msgid ""
-"adjust to change minute. Click arrows with button 2 to change only 1 minute."
-msgstr ""
-"A perc megváltoztatása. Kattintson a nyilakra a jobb gombbal az 1 percre "
-"váltáshoz."
+msgid "adjust to change minute. Click arrows with button 2 to change only 1 minute."
+msgstr "A perc megváltoztatása. Kattintson a nyilakra a jobb gombbal az 1 percre váltáshoz."
 
 #: ../globaltime/gt_prefs.c:265 ../globaltime/gt_prefs.c:266
 msgid "NEW"
@@ -219,8 +216,7 @@ msgstr "Az óranév alapértelmezett betűkészletének módosítása"
 
 #: ../globaltime/gt_prefs.c:944 ../globaltime/gt_prefs.c:978
 msgid "Cross this to use system default font instead of selected font"
-msgstr ""
-"A rendszer alapértelmezett betűkészletének használata a kiválasztott helyett"
+msgstr "A rendszer alapértelmezett betűkészletének használata a kiválasztott helyett"
 
 #: ../globaltime/gt_prefs.c:963
 msgid "Click to change default font for clock time"
@@ -468,18 +464,8 @@ msgid "fix time after suspend/hibernate"
 msgstr "Idő javítása felfüggesztés/hibernálás után"
 
 #: ../panel-plugin/oc_config.c:415
-msgid ""
-"You only need this if you do short term (less than 5 hours) suspend or "
-"hibernate and your visible time does not include seconds. Under these "
-"circumstances it is possible that Orageclock shows time inaccurately unless "
-"you have this selected. (Selecting this prevents cpu and interrupt saving "
-"features from working.)"
-msgstr ""
-"Erre csak akkor van szükség, ha rövid idejű (5 óránál rövidebb) "
-"felfüggesztést vagy hibernálást végez és a látható idő nem tartalmazza a "
-"másodperceket. Ebben az esetben előfordulhat, hogy az Orage óra az időt "
-"helytelenül jeleníti meg, ha ez nincs kiválasztva. Ez a beállítás "
-"megakadályozza a processzor- és megszakításmentési szolgáltatások működését."
+msgid "You only need this if you do short term (less than 5 hours) suspend or hibernate and your visible time does not include seconds. Under these circumstances it is possible that Orageclock shows time inaccurately unless you have this selected. (Selecting this prevents cpu and interrupt saving features from working.)"
+msgstr "Erre csak akkor van szükség, ha rövid idejű (5 óránál rövidebb) felfüggesztést vagy hibernálást végez és a látható idő nem tartalmazza a másodperceket. Ebben az esetben előfordulhat, hogy az Orage óra az időt helytelenül jeleníti meg, ha ez nincs kiválasztva. Ez a beállítás megakadályozza a processzor- és megszakításmentési szolgáltatások működését."
 
 #: ../panel-plugin/oc_config.c:432
 msgid ""
@@ -493,8 +479,7 @@ msgid ""
 "\t%X = local time\t\t\t%x = local date"
 msgstr ""
 "Ez a program az strftime függvényt használja az idő lekérésére.\n"
-"Tetszőleges érvényes kód használható, az idő kívánt formátumban való "
-"megjelenítéséhez.\n"
+"Tetszőleges érvényes kód használható, az idő kívánt formátumban való megjelenítéséhez.\n"
 "Néhány gyakori kód:\n"
 "\t%A = hétköznap\t\t\t%B = hónap\n"
 "\t%c = dátum és idő\t\t\t%R = óra és perc\n"
@@ -515,7 +500,7 @@ msgstr "Orage óra beállításai"
 #. * %B  : full month name
 #. * %Y  : four digit year
 #. * %V  : ISO week number
-#.
+#. 
 #: ../panel-plugin/xfce4-orageclock-plugin.c:623
 msgid "%A %d %B %Y/%V"
 msgstr "%Y/%V, %B %d., %A"
@@ -525,9 +510,8 @@ msgid "Maintainer"
 msgstr "Karbantartó"
 
 #: ../src/about-xfcalendar.c:47
-#, fuzzy
 msgid "Manage your time with Orage"
-msgstr "Ossza be idejét az Xfce4-gyel"
+msgstr "Ossza be idejét az Orage-dzsel"
 
 #. if (gtk_toggle_button_get_active(
 #. GTK_TOGGLE_BUTTON(apptw->Type_journal_rb)))
@@ -753,12 +737,8 @@ msgid "Categories"
 msgstr "Kategóriák"
 
 #: ../src/appointment.c:2729
-msgid ""
-"This is special category, which can be used to color this appointment in "
-"list views."
-msgstr ""
-"Ez egy speciális kategória, az értekezlet színezésére használható a "
-"listanézetekben."
+msgid "This is special category, which can be used to color this appointment in list views."
+msgstr "Ez egy speciális kategória, az értekezlet színezésére használható a listanézetekben."
 
 #: ../src/appointment.c:2734
 msgid "update colors for categories."
@@ -783,8 +763,7 @@ msgid ""
 "\n"
 "These are converted only later when they are seen:\n"
 "    <&Ynnnn> is translated to current year minus nnnn.\n"
-"(This can be used for example in birthday reminders to tell how old the "
-"person will be.)"
+"(This can be used for example in birthday reminders to tell how old the person will be.)"
 msgstr ""
 "Ezek a rövid parancsok azonnal életbe lépnek:\n"
 "    <D> jelenlegi dátum beszúrása helyi dátumformátumban\n"
@@ -793,8 +772,7 @@ msgstr ""
 "\n"
 "Ezek csak később, megjelenítésükkor kerülnek átalakításra:\n"
 "    <&Ynnnn> a jelenlegi év mínusz nnnn.\n"
-"(Ez például születésnap-emlékeztetőkben használható az adott személy "
-"életkorának meghatározására.)"
+"(Ez például születésnap-emlékeztetőkben használható az adott személy életkorának meghatározására.)"
 
 #: ../src/appointment.c:2840
 msgid "Before Start"
@@ -838,12 +816,8 @@ msgid "Persistent alarm"
 msgstr "Folyamatos figyelmeztetés"
 
 #: ../src/appointment.c:2885
-msgid ""
-"Select this if you want Orage to remind you even if it has not been active "
-"when the alarm happened."
-msgstr ""
-"Az Orage akkor is emlékeztessen, ha nem volt aktív a figyelmeztetés "
-"bekövetkeztekor."
+msgid "Select this if you want Orage to remind you even if it has not been active when the alarm happened."
+msgstr "Az Orage akkor is emlékeztessen, ha nem volt aktív a figyelmeztetés bekövetkeztekor."
 
 #. **** Audio Alarm ****
 #: ../src/appointment.c:2894
@@ -1089,24 +1063,16 @@ msgid "TODO base"
 msgstr "Teendő alapja"
 
 #: ../src/appointment.c:3297
-msgid ""
-"TODO reoccurs regularly starting on start time and repeating after each "
-"interval no matter when it was last completed"
-msgstr ""
-"A teendő rendszeresen ismétlődik a kezdési idővel kezdődően, és minden "
-"időköz után ismétlődik az utolsó befejezés idejétől függetlenül"
+msgid "TODO reoccurs regularly starting on start time and repeating after each interval no matter when it was last completed"
+msgstr "A teendő rendszeresen ismétlődik a kezdési idővel kezdődően, és minden időköz után ismétlődik az utolsó befejezés idejétől függetlenül"
 
 #: ../src/appointment.c:3299
 msgid ""
-"TODO reoccurrency is based on complete time and repeats after the interval "
-"counted from the last completed time.\n"
-"(Note that you can not tell anything about the history of the TODO since "
-"reoccurrence base changes after each completion.)"
+"TODO reoccurrency is based on complete time and repeats after the interval counted from the last completed time.\n"
+"(Note that you can not tell anything about the history of the TODO since reoccurrence base changes after each completion.)"
 msgstr ""
-"A teendő ismétlődése a befejezési időn alapul, és az utolsó befejezési "
-"időtől számított időköz eltelte után ismétlődik.\n"
-"(A teendő előzményeiről semmit nem lehet tudni, mivel az ismétlődés alapja "
-"minden befejezés után változik.)"
+"A teendő ismétlődése a befejezési időn alapul, és az utolsó befejezési időtől számított időköz eltelte után ismétlődik.\n"
+"(A teendő előzményeiről semmit nem lehet tudni, mivel az ismétlődés alapja minden befejezés után változik.)"
 
 #. exceptions
 #: ../src/appointment.c:3306
@@ -1116,8 +1082,7 @@ msgstr "Kivételek"
 #: ../src/appointment.c:3319
 msgid ""
 "Add more exception dates by clicking the calendar days below.\n"
-"Exception is either exclusion(-) or inclusion(+) depending on the "
-"selection.\n"
+"Exception is either exclusion(-) or inclusion(+) depending on the selection.\n"
 "Remove by clicking the data."
 msgstr ""
 "A lenti naptári napok kiválasztásával kivételdátumokat vehet fel.\n"
@@ -1130,20 +1095,15 @@ msgstr "Kizárt dátum hozzáadása(-)"
 
 #: ../src/appointment.c:3326
 msgid "Excluded days are full days where this appointment is not happening"
-msgstr ""
-"A kizárt napok azok a teljes napok, amelyeken ez a találkozó nem jön létre"
+msgstr "A kizárt napok azok a teljes napok, amelyeken ez a találkozó nem jön létre"
 
 #: ../src/appointment.c:3332
 msgid "Add included time (+)"
 msgstr "Felvett idő hozzáadása(+)"
 
 #: ../src/appointment.c:3334
-msgid ""
-"Included times have same timezone than start time, but they may have "
-"different time"
-msgstr ""
-"A felvett idők a kezdési idővel azonos időzónában lévő, de attól eltérő "
-"időpontok"
+msgid "Included times have same timezone than start time, but they may have different time"
+msgstr "A felvett idők a kezdési idővel azonos időzónában lévő, de attól eltérő időpontok"
 
 #. calendars showing the action days
 #: ../src/appointment.c:3351
@@ -1353,17 +1313,12 @@ msgstr "Orage alapértelmezett figyelmeztetés"
 #: ../src/ical-code.c:2934
 #, c-format
 msgid "Build alarm list: Added %d alarms. Processed %d events."
-msgstr ""
-"Figyelmeztetéslista építése: %d figyelmeztetés felvéve. %d esemény "
-"feldolgozva."
+msgstr "Figyelmeztetéslista építése: %d figyelmeztetés felvéve. %d esemény feldolgozva."
 
 #: ../src/ical-code.c:2936
 #, c-format
-msgid ""
-"\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
-msgstr ""
-"\t%d figyelmeztetés található, amiből %d aktív. (%d ismétlődő figyelmeztetés "
-"keresése kész.)"
+msgid "\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
+msgstr "\t%d figyelmeztetés található, amiből %d aktív. (%d ismétlődő figyelmeztetés keresése kész.)"
 
 #: ../src/ical-expimp.c:141
 msgid "Starting import file preprocessing"
@@ -1487,10 +1442,7 @@ msgid ""
 "Return all archived events into main orage file and remove arch file.\n"
 "This is useful for example when doing export and moving orage\n"
 "appointments to another system."
-msgstr ""
-"Az archivált események visszaállítása az elsődleges Orage fájlba és az "
-"archívumfájl eltávolítása. Ez például exportáláskor és az Orage találkozók "
-"másik rendszerre mozgatásakor hasznos."
+msgstr "Az archivált események visszaállítása az elsődleges Orage fájlba és az archívumfájl eltávolítása. Ez például exportáláskor és az Orage találkozók másik rendszerre mozgatásakor hasznos."
 
 #: ../src/interface.c:1113
 msgid "Orage files"
@@ -1568,26 +1520,23 @@ msgstr "Csak olvasható"
 
 #: ../src/interface.c:1289
 msgid ""
-"Set this if you want to make sure that this file is never modified by "
-"Orage.\n"
-"Note that modifying foreign files may make them incompatible with the "
-"original tool, where they came from!"
+"Set this if you want to make sure that this file is never modified by Orage.\n"
+"Note that modifying foreign files may make them incompatible with the original tool, where they came from!"
 msgstr ""
 "Az Orage soha ne módosíthassa a fájlt.\n"
-"Ne feledje, hogy a külső fájlok módosítása inkompatibilissé teheti azokat az "
-"eredeti eszközzel, ahonnan származnak."
+"Ne feledje, hogy a külső fájlok módosítása inkompatibilissé teheti azokat az eredeti eszközzel, ahonnan származnak."
 
 #: ../src/interface.c:1303
 msgid "Exchange data - Orage"
 msgstr "Adatcsere – Orage"
 
 #: ../src/main.c:193
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "\tThis is %s version %s\n"
 "\n"
 msgstr ""
-"\tEz az %s %s verziója az Xfce %s kiadásához\n"
+"\tEz az %s %s verziója\n"
 "\n"
 
 #: ../src/main.c:195
@@ -1701,12 +1650,8 @@ msgstr "\tAz Orage nem tartalmazza a D-Bus támogatást.\n"
 
 #: ../src/main.c:243
 #, c-format
-msgid ""
-"\twithout dbus [files] and foreign file options(-a & -r) can only be used "
-"when starting orage \n"
-msgstr ""
-"\tA D-Bus nélkül a [fájlok] és külső fájl kapcsolók (-a és -r) csak az Orage "
-"indításakor használhatók.\n"
+msgid "\twithout dbus [files] and foreign file options(-a & -r) can only be used when starting orage \n"
+msgstr "\tA D-Bus nélkül a [fájlok] és külső fájl kapcsolók (-a és -r) csak az Orage indításakor használhatók.\n"
 
 #: ../src/main.c:387
 #, c-format
@@ -1741,9 +1686,8 @@ msgid "Select _Today"
 msgstr "_Mai nap kijelölése"
 
 #: ../src/mainbox.c:323
-#, fuzzy
 msgid "Show _Globaltime"
-msgstr "Globális idő"
+msgstr "Gl_obális idő megjelenítése"
 
 #. Help menu
 #: ../src/mainbox.c:327
@@ -1801,7 +1745,6 @@ msgid "<b>Events for %s - %s:</b>"
 msgstr "<b>%s eseményei – %s:</b>"
 
 #: ../src/parameters.c:492
-#, fuzzy
 msgid "Main settings"
 msgstr "Elsődleges beállítások"
 
@@ -1823,8 +1766,7 @@ msgstr "(0 = nincs archiválás)"
 
 #: ../src/parameters.c:539
 msgid "Archiving is used to save time and space when handling events."
-msgstr ""
-"Az archiválás célja az események kezelésekor történő idő- és helyspórolás."
+msgstr "Az archiválás célja az események kezelésekor történő idő- és helyspórolás."
 
 #: ../src/parameters.c:548
 msgid "Sound command"
@@ -1832,13 +1774,11 @@ msgstr "Hang parancs"
 
 #: ../src/parameters.c:563
 msgid "This command is given to shell to make sound in alarms."
-msgstr ""
-"Ezen parancs futtatása a figyelmeztetések hangjának megszólaltatásához."
+msgstr "Ezen parancs futtatása a figyelmeztetések hangjának megszólaltatásához."
 
 #: ../src/parameters.c:579
-#, fuzzy
 msgid "Display settings"
-msgstr "Megjelenítés"
+msgstr "Megjelenítési beállítások"
 
 #: ../src/parameters.c:587
 msgid "Calendar main window"
@@ -1878,12 +1818,11 @@ msgstr "0 = ne jelenjen meg az eseménylista"
 
 #: ../src/parameters.c:650
 msgid "Show on all desktops"
-msgstr ""
+msgstr "Megjelenítés minden asztalon"
 
 #: ../src/parameters.c:657
-#, fuzzy
 msgid "Keep on top"
-msgstr "Mindig felül beállítása"
+msgstr "Mindig felül tartás"
 
 #: ../src/parameters.c:664
 msgid "Show in taskbar"
@@ -1914,23 +1853,20 @@ msgid "Minimized"
 msgstr "Minimalizálás"
 
 #: ../src/parameters.c:767
-#, fuzzy
 msgid "Extra settings"
 msgstr "További beállítások"
 
 #: ../src/parameters.c:775
-#, fuzzy
 msgid "On Calendar Window Open"
-msgstr "Naptár főablaka"
+msgstr "Naptár főablakának megnyitásakor"
 
 #: ../src/parameters.c:794
-#, fuzzy
 msgid "Select Today's Date"
-msgstr "_Mai nap kijelölése"
+msgstr "Mai dátum kijelölése"
 
 #: ../src/parameters.c:807
 msgid "Select Previously Selected Date"
-msgstr ""
+msgstr "Korábban kijelölt dátum kijelölése"
 
 #: ../src/parameters.c:824
 msgid "Use dynamic tray icon"
@@ -1965,11 +1901,8 @@ msgid "Number of extra days to show in event list"
 msgstr "Az eseménylistában megjelenítendő további napok száma"
 
 #: ../src/parameters.c:894
-msgid ""
-"This is just the default value, you can change it in the actual eventlist "
-"window."
-msgstr ""
-"Ez csak az alapértelmezett érték, az eseménylista ablakban módosítható."
+msgid "This is just the default value, you can change it in the actual eventlist window."
+msgstr "Ez csak az alapértelmezett érték, az eseménylista ablakban módosítható."
 
 #: ../src/parameters.c:911
 msgid "Orage Preferences"
@@ -2007,9 +1940,7 @@ msgstr "Emlékeztessen a megadott idő után"
 #. Note that this goes to the main area. Temporary for the version
 #: ../src/reminder.c:795
 msgid "Press <Execute> to remind me again after the specified time:"
-msgstr ""
-"Nyomja meg a <Végrehajtás> gombot a megadott idő utáni ismételt "
-"emlékeztetéshez:"
+msgstr "Nyomja meg a <Végrehajtás> gombot a megadott idő utáni ismételt emlékeztetéshez:"
 
 #: ../src/reminder.c:1032
 msgid "Next active alarms:"
@@ -3644,16 +3575,11 @@ msgstr "Orage naptár"
 #~ msgid "Error"
 #~ msgstr "Hiba"
 
-# FIXME: wtf?
 #~ msgid "Set sticked"
 #~ msgstr "Mindig látható beállítása"
 
 #~ msgid "Select always today"
 #~ msgstr "Mindig a mai nap megjelenítése"
 
-#~ msgid ""
-#~ "When showing main calendar, set pointer to either previously selected day "
-#~ "or always to current day."
-#~ msgstr ""
-#~ "Az elsődleges naptár megjelenítésekor a mutató beállítása a korábban "
-#~ "kiválasztott vagy a mai napra."
+#~ msgid "When showing main calendar, set pointer to either previously selected day or always to current day."
+#~ msgstr "Az elsődleges naptár megjelenítésekor a mutató beállítása a korábban kiválasztott vagy a mai napra."
