@@ -1,5 +1,5 @@
 /*  xfce4
- *  Copyright (C) 2006-2007 Juha Kautto (juha@xfce.org)
+ *  Copyright (C) 2006-2011 Juha Kautto (juha@xfce.org)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public

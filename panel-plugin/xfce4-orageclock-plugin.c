@@ -1,7 +1,7 @@
 /* vim: set expandtab ts=4 sw=4: */
 /*
  *
- *  Copyright © 2006-2007 Juha Kautto <juha@xfce.org>
+ *  Copyright © 2006-2011 Juha Kautto <juha@xfce.org>
  *
  *  it under the terms of the GNU Library General Public License as published 
  *  by the Free Software Foundation; either version 2 of the License, or

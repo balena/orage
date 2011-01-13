@@ -1,6 +1,6 @@
 /*  
  *  Global Time - Set of clocks showing time in different parts of world.
- *  Copyright 2006 Juha Kautto (kautto.juha@kolumbus.fi)
+ *  Copyright 2006-2011 Juha Kautto (kautto.juha@kolumbus.fi)
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
