@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the orage package.
 # Lukáš Konarovský <daeltar@daeltar.org>, 2003.
 # Alois Nespor <Alois.Nespor@seznam.cz>, 2004.
-# Michal Várady <miko.vaji@gmail.com>, 2006-2010.
+# Michal Várady <miko.vaji@gmail.com>, 2006-2011.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.3.90.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-12-17 16:36+0200\n"
-"PO-Revision-Date: 2010-03-15 20:35+0100\n"
+"PO-Revision-Date: 2011-01-15 22:07+0100\n"
 "Last-Translator: Michal Várady <miko.vaji@gmail.com>\n"
 "Language-Team: Czech <translation-team-cs@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -53,13 +53,11 @@ msgid "adjust to change hour"
 msgstr "nastavením změníte hodinu"
 
 #: ../globaltime/globaltime.c:496
-msgid ""
-"adjust to change minute. Click arrows with button 2 to change only 1 minute."
-msgstr ""
-"nastavením změníte minutu. Pro změnu pouze o jednu minutu klikněte na šipky "
-"s tlačítkem 2 ."
+msgid "adjust to change minute. Click arrows with button 2 to change only 1 minute."
+msgstr "nastavením změníte minutu. Pro změnu pouze o jednu minutu klikněte na šipky s tlačítkem 2 ."
 
-#: ../globaltime/gt_prefs.c:265 ../globaltime/gt_prefs.c:266
+#: ../globaltime/gt_prefs.c:265
+#: ../globaltime/gt_prefs.c:266
 msgid "NEW"
 msgstr "NOVÁ"
 
@@ -75,7 +73,8 @@ msgstr "Smazání posledních hodin není možné."
 msgid "update this clock"
 msgstr "aktualizovat tyto hodiny"
 
-#: ../globaltime/gt_prefs.c:521 ../globaltime/gt_prefs.c:1034
+#: ../globaltime/gt_prefs.c:521
+#: ../globaltime/gt_prefs.c:1034
 msgid "add new empty clock"
 msgstr "přidat nové prázdné hodiny"
 
@@ -107,7 +106,8 @@ msgstr "přesunout tyto hodiny na konec"
 msgid "set the timezone of this clock to be local timezone"
 msgstr "nastavit časové pásmo těchto hodin na místní"
 
-#: ../globaltime/gt_prefs.c:568 ../globaltime/gt_prefs.c:1042
+#: ../globaltime/gt_prefs.c:568
+#: ../globaltime/gt_prefs.c:1042
 msgid "close window and exit"
 msgstr "zavřít okno a ukončit"
 
@@ -137,7 +137,8 @@ msgid "Text Formatting"
 msgstr "Formátování textu"
 
 #. ------------------------background-------------------------
-#: ../globaltime/gt_prefs.c:649 ../globaltime/gt_prefs.c:856
+#: ../globaltime/gt_prefs.c:649
+#: ../globaltime/gt_prefs.c:856
 msgid "Background color:"
 msgstr "Barva pozadí:"
 
@@ -145,22 +146,31 @@ msgstr "Barva pozadí:"
 msgid "Click to change background colour for clock"
 msgstr "Klikněte pro změnu barvy pozadí hodin"
 
-#: ../globaltime/gt_prefs.c:665 ../globaltime/gt_prefs.c:697
-#: ../globaltime/gt_prefs.c:729 ../globaltime/gt_prefs.c:762
-#: ../globaltime/gt_prefs.c:796 ../globaltime/gt_prefs.c:826
-#: ../globaltime/gt_prefs.c:872 ../globaltime/gt_prefs.c:905
-#: ../globaltime/gt_prefs.c:938 ../globaltime/gt_prefs.c:972
+#: ../globaltime/gt_prefs.c:665
+#: ../globaltime/gt_prefs.c:697
+#: ../globaltime/gt_prefs.c:729
+#: ../globaltime/gt_prefs.c:762
+#: ../globaltime/gt_prefs.c:796
+#: ../globaltime/gt_prefs.c:826
+#: ../globaltime/gt_prefs.c:872
+#: ../globaltime/gt_prefs.c:905
+#: ../globaltime/gt_prefs.c:938
+#: ../globaltime/gt_prefs.c:972
 msgid "Use default"
 msgstr "Použít výchozí"
 
-#: ../globaltime/gt_prefs.c:670 ../globaltime/gt_prefs.c:702
-#: ../globaltime/gt_prefs.c:735 ../globaltime/gt_prefs.c:768
-#: ../globaltime/gt_prefs.c:802 ../globaltime/gt_prefs.c:832
+#: ../globaltime/gt_prefs.c:670
+#: ../globaltime/gt_prefs.c:702
+#: ../globaltime/gt_prefs.c:735
+#: ../globaltime/gt_prefs.c:768
+#: ../globaltime/gt_prefs.c:802
+#: ../globaltime/gt_prefs.c:832
 msgid "Cross this to use default instead of selected value"
 msgstr "Zaškrtněte pro použití vybrané hodnoty namísto výchozí"
 
 #. ------------------------foreground-------------------------
-#: ../globaltime/gt_prefs.c:681 ../globaltime/gt_prefs.c:889
+#: ../globaltime/gt_prefs.c:681
+#: ../globaltime/gt_prefs.c:889
 msgid "Foreground (=text) color:"
 msgstr "Barva popředí (textu):"
 
@@ -169,7 +179,8 @@ msgid "Click to change foreground colour for clock"
 msgstr "Klikněte pro změnu barvy popředí hodin"
 
 #. ------------------------name font-------------------------
-#: ../globaltime/gt_prefs.c:713 ../globaltime/gt_prefs.c:922
+#: ../globaltime/gt_prefs.c:713
+#: ../globaltime/gt_prefs.c:922
 msgid "Font for name of clock:"
 msgstr "Písmo pro název hodin:"
 
@@ -178,7 +189,8 @@ msgid "Click to change font for clock name"
 msgstr "Klikněte pro změnu písma názvu hodin"
 
 #. ------------------------time font-------------------------
-#: ../globaltime/gt_prefs.c:746 ../globaltime/gt_prefs.c:956
+#: ../globaltime/gt_prefs.c:746
+#: ../globaltime/gt_prefs.c:956
 msgid "Font for time of clock:"
 msgstr "Písmo pro čas hodin:"
 
@@ -204,7 +216,8 @@ msgstr "Výchozí formátování textu"
 msgid "Click to change default background colour for clocks"
 msgstr "Klikněte pro změnu výchozí barvy pozadí hodin"
 
-#: ../globaltime/gt_prefs.c:877 ../globaltime/gt_prefs.c:910
+#: ../globaltime/gt_prefs.c:877
+#: ../globaltime/gt_prefs.c:910
 msgid "Cross this to use system default instead of selected color"
 msgstr "Zaškrtněte pro použití vybrané barvy místo výchozí"
 
@@ -216,7 +229,8 @@ msgstr "Klikněte pro změnu výchozí barvy textu hodin"
 msgid "Click to change default font for clock name"
 msgstr "Klikněte pro změnu výchozího písma hodin"
 
-#: ../globaltime/gt_prefs.c:944 ../globaltime/gt_prefs.c:978
+#: ../globaltime/gt_prefs.c:944
+#: ../globaltime/gt_prefs.c:978
 msgid "Cross this to use system default font instead of selected font"
 msgstr "Zaškrtněte pro použití výchozího systémového písma místo vybraného"
 
@@ -288,45 +302,53 @@ msgid "Local timezone:"
 msgstr "Místní časové pásmo:"
 
 #: ../globaltime/timezone_selection.c:101
-#: ../panel-plugin/timezone_selection.c:102 ../src/timezone_selection.c:102
+#: ../panel-plugin/timezone_selection.c:102
+#: ../src/timezone_selection.c:102
 msgid " Other"
 msgstr " Jiný"
 
 #: ../globaltime/timezone_selection.c:156
-#: ../panel-plugin/timezone_selection.c:157 ../src/timezone_selection.c:168
+#: ../panel-plugin/timezone_selection.c:157
+#: ../src/timezone_selection.c:168
 #, c-format
 msgid "%d hour %d mins"
 msgstr "%d hodin %d minut"
 
 #: ../globaltime/timezone_selection.c:159
-#: ../panel-plugin/timezone_selection.c:160 ../src/timezone_selection.c:171
+#: ../panel-plugin/timezone_selection.c:160
+#: ../src/timezone_selection.c:171
 #, c-format
 msgid "%d hour"
 msgstr "%d hodin"
 
 #: ../globaltime/timezone_selection.c:161
-#: ../panel-plugin/timezone_selection.c:162 ../src/timezone_selection.c:173
+#: ../panel-plugin/timezone_selection.c:162
+#: ../src/timezone_selection.c:173
 #, c-format
 msgid "%d mins"
 msgstr "%d minut"
 
 #: ../globaltime/timezone_selection.c:167
-#: ../panel-plugin/timezone_selection.c:168 ../src/timezone_selection.c:179
+#: ../panel-plugin/timezone_selection.c:168
+#: ../src/timezone_selection.c:179
 msgid "backward"
 msgstr "zpět"
 
 #: ../globaltime/timezone_selection.c:170
-#: ../panel-plugin/timezone_selection.c:171 ../src/timezone_selection.c:182
+#: ../panel-plugin/timezone_selection.c:171
+#: ../src/timezone_selection.c:182
 msgid "forward"
 msgstr "vpřed"
 
 #: ../globaltime/timezone_selection.c:194
-#: ../panel-plugin/timezone_selection.c:195 ../src/timezone_selection.c:206
+#: ../panel-plugin/timezone_selection.c:195
+#: ../src/timezone_selection.c:206
 msgid "not changed"
 msgstr "nezměněno"
 
 #: ../globaltime/timezone_selection.c:195
-#: ../panel-plugin/timezone_selection.c:196 ../src/timezone_selection.c:207
+#: ../panel-plugin/timezone_selection.c:196
+#: ../src/timezone_selection.c:207
 msgid "not changing"
 msgstr "nemění se"
 
@@ -334,30 +356,36 @@ msgstr "nemění se"
 #: ../globaltime/timezone_selection.c:247
 #: ../globaltime/timezone_selection.c:252
 #: ../panel-plugin/timezone_selection.c:248
-#: ../panel-plugin/timezone_selection.c:253 ../src/appointment.c:2610
-#: ../src/timezone_selection.c:259 ../src/timezone_selection.c:264
+#: ../panel-plugin/timezone_selection.c:253
+#: ../src/appointment.c:2610
+#: ../src/timezone_selection.c:259
+#: ../src/timezone_selection.c:264
 msgid "Location"
 msgstr "Umístění"
 
 #: ../globaltime/timezone_selection.c:258
-#: ../panel-plugin/timezone_selection.c:259 ../src/timezone_selection.c:270
+#: ../panel-plugin/timezone_selection.c:259
+#: ../src/timezone_selection.c:270
 msgid "GMT Offset"
 msgstr "Rozdíl proti času GMT"
 
 #: ../globaltime/timezone_selection.c:264
-#: ../panel-plugin/timezone_selection.c:265 ../src/timezone_selection.c:276
+#: ../panel-plugin/timezone_selection.c:265
+#: ../src/timezone_selection.c:276
 msgid "Previous/Next Change"
 msgstr "Předchozí nebo další změna"
 
 #: ../globaltime/timezone_selection.c:269
-#: ../panel-plugin/timezone_selection.c:270 ../src/timezone_selection.c:281
+#: ../panel-plugin/timezone_selection.c:270
+#: ../src/timezone_selection.c:281
 msgid "Country"
 msgstr "Země"
 
 #: ../globaltime/timezone_selection.c:299
 #: ../globaltime/timezone_selection.c:309
 #: ../panel-plugin/timezone_selection.c:300
-#: ../panel-plugin/timezone_selection.c:310 ../src/timezone_selection.c:311
+#: ../panel-plugin/timezone_selection.c:310
+#: ../src/timezone_selection.c:311
 #: ../src/timezone_selection.c:321
 msgid "Pick timezone"
 msgstr "Zvolte časové pásmo"
@@ -365,7 +393,8 @@ msgstr "Zvolte časové pásmo"
 #: ../globaltime/timezone_selection.c:302
 #: ../globaltime/timezone_selection.c:312
 #: ../panel-plugin/timezone_selection.c:303
-#: ../panel-plugin/timezone_selection.c:313 ../src/timezone_selection.c:314
+#: ../panel-plugin/timezone_selection.c:313
+#: ../src/timezone_selection.c:314
 #: ../src/timezone_selection.c:324
 msgid "Change mode"
 msgstr "Režim změny"
@@ -375,8 +404,10 @@ msgstr "Režim změny"
 #: ../globaltime/timezone_selection.c:352
 #: ../panel-plugin/timezone_selection.c:304
 #: ../panel-plugin/timezone_selection.c:314
-#: ../panel-plugin/timezone_selection.c:353 ../src/timezone_selection.c:315
-#: ../src/timezone_selection.c:325 ../src/timezone_selection.c:364
+#: ../panel-plugin/timezone_selection.c:353
+#: ../src/timezone_selection.c:315
+#: ../src/timezone_selection.c:325
+#: ../src/timezone_selection.c:364
 msgid "UTC"
 msgstr "UTC"
 
@@ -384,12 +415,15 @@ msgstr "UTC"
 #: ../globaltime/timezone_selection.c:304
 #: ../globaltime/timezone_selection.c:357
 #: ../panel-plugin/timezone_selection.c:305
-#: ../panel-plugin/timezone_selection.c:358 ../src/parameters.c:512
-#: ../src/timezone_selection.c:316 ../src/timezone_selection.c:369
+#: ../panel-plugin/timezone_selection.c:358
+#: ../src/parameters.c:512
+#: ../src/timezone_selection.c:316
+#: ../src/timezone_selection.c:369
 msgid "floating"
 msgstr "plovoucí"
 
-#: ../globaltime/globaltime.desktop.in.h:1 ../src/tray_icon.c:440
+#: ../globaltime/globaltime.desktop.in.h:1
+#: ../src/tray_icon.c:440
 msgid "Globaltime"
 msgstr "Globální čas"
 
@@ -466,18 +500,8 @@ msgid "fix time after suspend/hibernate"
 msgstr "opravit nastavení času po přechodu z režimu spánku nebo hibernace"
 
 #: ../panel-plugin/oc_config.c:415
-msgid ""
-"You only need this if you do short term (less than 5 hours) suspend or "
-"hibernate and your visible time does not include seconds. Under these "
-"circumstances it is possible that Orageclock shows time inaccurately unless "
-"you have this selected. (Selecting this prevents cpu and interrupt saving "
-"features from working.)"
-msgstr ""
-"Tuto akci je nutné provést pouze v případě krátkodobě přepnutí do režimu "
-"spánku nebo hibernace a v případě, že viditelný čas neobsahuje sekundy. Za "
-"těchto podmínek je možné, že hodiny aplikace Orage zobrazují čas nepřesně, "
-"dokud nevyberete tuto volbu. (Vybráním této volby bráníte správné činnosti "
-"úsporných vlastností procesoru.)"
+msgid "You only need this if you do short term (less than 5 hours) suspend or hibernate and your visible time does not include seconds. Under these circumstances it is possible that Orageclock shows time inaccurately unless you have this selected. (Selecting this prevents cpu and interrupt saving features from working.)"
+msgstr "Tuto akci je nutné provést pouze v případě krátkodobě přepnutí do režimu spánku nebo hibernace a v případě, že viditelný čas neobsahuje sekundy. Za těchto podmínek je možné, že hodiny aplikace Orage zobrazují čas nepřesně, dokud nevyberete tuto volbu. (Vybráním této volby bráníte správné činnosti úsporných vlastností procesoru.)"
 
 #: ../panel-plugin/oc_config.c:432
 msgid ""
@@ -522,14 +546,15 @@ msgid "Maintainer"
 msgstr "Správce"
 
 #: ../src/about-xfcalendar.c:47
-#, fuzzy
 msgid "Manage your time with Orage"
-msgstr "Uspořádejte si svůj čas s Xfce4"
+msgstr "Řiďte si svůj čas v aplikaci Orage"
 
 #. if (gtk_toggle_button_get_active(
 #. GTK_TOGGLE_BUTTON(apptw->Type_journal_rb)))
 #. end time
-#: ../src/appointment.c:312 ../src/appointment.c:352 ../src/appointment.c:2639
+#: ../src/appointment.c:312
+#: ../src/appointment.c:352
+#: ../src/appointment.c:2639
 msgid "End"
 msgstr "Konec"
 
@@ -537,13 +562,16 @@ msgstr "Konec"
 msgid "Due"
 msgstr "Kvůli"
 
-#: ../src/appointment.c:471 ../src/mainbox.c:763
+#: ../src/appointment.c:471
+#: ../src/mainbox.c:763
 msgid "Orage"
 msgstr "Orage - kalendář"
 
 #. to avoid timing problems when updating entry
 #. Create file chooser
-#: ../src/appointment.c:650 ../src/interface.c:276 ../src/parameters.c:411
+#: ../src/appointment.c:650
+#: ../src/interface.c:276
+#: ../src/parameters.c:411
 msgid "Select a file..."
 msgstr "Vyberte soubor..."
 
@@ -551,7 +579,8 @@ msgstr "Vyberte soubor..."
 msgid "Sound Files"
 msgstr "Zvukové soubory"
 
-#: ../src/appointment.c:665 ../src/interface.c:289
+#: ../src/appointment.c:665
+#: ../src/interface.c:289
 msgid "All Files"
 msgstr "Všechny soubory"
 
@@ -559,7 +588,9 @@ msgstr "Všechny soubory"
 msgid "The appointment information has been modified."
 msgstr "Informace o schůzce byla změněna."
 
-#: ../src/appointment.c:718 ../src/appointment.c:1165 ../src/event-list.c:917
+#: ../src/appointment.c:718
+#: ../src/appointment.c:1165
+#: ../src/event-list.c:917
 msgid "Do you want to continue?"
 msgstr "Chcete pokračovat?"
 
@@ -567,7 +598,8 @@ msgstr "Chcete pokračovat?"
 msgid "The end of this appointment is earlier than the beginning."
 msgstr "Konec schůzky je dříve než její začátek."
 
-#: ../src/appointment.c:1005 ../src/appointment.c:1763
+#: ../src/appointment.c:1005
+#: ../src/appointment.c:1763
 msgid "Not set"
 msgstr "Nenastaveno"
 
@@ -610,8 +642,11 @@ msgstr "Nová schůzka - Orage"
 #. File menu stuff
 #. ********* File menu *********
 #. File menu
-#: ../src/appointment.c:2330 ../src/day-view.c:254 ../src/event-list.c:1007
-#: ../src/interface.c:762 ../src/mainbox.c:279
+#: ../src/appointment.c:2330
+#: ../src/day-view.c:254
+#: ../src/event-list.c:1007
+#: ../src/interface.c:762
+#: ../src/mainbox.c:279
 msgid "_File"
 msgstr "_Soubor"
 
@@ -619,7 +654,8 @@ msgstr "_Soubor"
 msgid "Sav_e and close"
 msgstr "Uložit _a zavřít"
 
-#: ../src/appointment.c:2349 ../src/event-list.c:1013
+#: ../src/appointment.c:2349
+#: ../src/event-list.c:1013
 msgid "D_uplicate"
 msgstr "D_uplikovat"
 
@@ -635,11 +671,13 @@ msgstr "Uložit a zavřít"
 msgid "Revert"
 msgstr "Obnovit původní"
 
-#: ../src/appointment.c:2545 ../src/event-list.c:1098
+#: ../src/appointment.c:2545
+#: ../src/event-list.c:1098
 msgid "Duplicate"
 msgstr "Duplikovat"
 
-#: ../src/appointment.c:2550 ../src/event-list.c:1100
+#: ../src/appointment.c:2550
+#: ../src/event-list.c:1100
 msgid "Delete"
 msgstr "Smazat"
 
@@ -660,7 +698,8 @@ msgstr "Hlavní"
 msgid "Type "
 msgstr "Typ "
 
-#: ../src/appointment.c:2580 ../src/event-list.c:1151
+#: ../src/appointment.c:2580
+#: ../src/event-list.c:1151
 msgid "Event"
 msgstr "Událost"
 
@@ -672,7 +711,8 @@ msgstr ""
 "Událost, která nastane. Například:\n"
 "Schůzka, narozeniny nebo televizní pořad."
 
-#: ../src/appointment.c:2586 ../src/event-list.c:1171
+#: ../src/appointment.c:2586
+#: ../src/event-list.c:1171
 msgid "Todo"
 msgstr "Úkoly"
 
@@ -684,7 +724,8 @@ msgstr ""
 "Něco, co byste měli udělat. Například:\n"
 "Umyjte si auto nebo otestujte novou verzi aplikace Orage."
 
-#: ../src/appointment.c:2592 ../src/event-list.c:1184
+#: ../src/appointment.c:2592
+#: ../src/event-list.c:1184
 msgid "Journal"
 msgstr "Žurnál"
 
@@ -706,7 +747,9 @@ msgid "All day event"
 msgstr "Celodenní událost"
 
 #. start time
-#: ../src/appointment.c:2624 ../src/appointment.c:3287 ../src/day-view.c:682
+#: ../src/appointment.c:2624
+#: ../src/appointment.c:3287
+#: ../src/day-view.c:682
 msgid "Start"
 msgstr "Začátek"
 
@@ -718,15 +761,21 @@ msgstr "Nastavit"
 msgid "Duration"
 msgstr "Trvání"
 
-#: ../src/appointment.c:2669 ../src/appointment.c:2857 ../src/reminder.c:745
+#: ../src/appointment.c:2669
+#: ../src/appointment.c:2857
+#: ../src/reminder.c:745
 msgid "days"
 msgstr "dnů"
 
-#: ../src/appointment.c:2671 ../src/appointment.c:2859 ../src/reminder.c:747
+#: ../src/appointment.c:2671
+#: ../src/appointment.c:2859
+#: ../src/reminder.c:747
 msgid "hours"
 msgstr "hodin"
 
-#: ../src/appointment.c:2673 ../src/appointment.c:2861 ../src/reminder.c:749
+#: ../src/appointment.c:2673
+#: ../src/appointment.c:2861
+#: ../src/reminder.c:749
 msgid "mins"
 msgstr "minut"
 
@@ -736,7 +785,8 @@ msgid "Availability"
 msgstr "Dostupnost"
 
 #. completed (only for TODO)
-#: ../src/appointment.c:2693 ../src/appointment.c:3293
+#: ../src/appointment.c:2693
+#: ../src/appointment.c:3293
 msgid "Completed"
 msgstr "Dokončeno"
 
@@ -750,12 +800,8 @@ msgid "Categories"
 msgstr "Kategorie"
 
 #: ../src/appointment.c:2729
-msgid ""
-"This is special category, which can be used to color this appointment in "
-"list views."
-msgstr ""
-"Toto je speciální kategorie, kterou lze použít k obarvení této schůzky v "
-"pohledu na jejich seznam."
+msgid "This is special category, which can be used to color this appointment in list views."
+msgstr "Toto je speciální kategorie, kterou lze použít k obarvení této schůzky v pohledu na jejich seznam."
 
 #: ../src/appointment.c:2734
 msgid "update colors for categories."
@@ -780,8 +826,7 @@ msgid ""
 "\n"
 "These are converted only later when they are seen:\n"
 "    <&Ynnnn> is translated to current year minus nnnn.\n"
-"(This can be used for example in birthday reminders to tell how old the "
-"person will be.)"
+"(This can be used for example in birthday reminders to tell how old the person will be.)"
 msgstr ""
 "Tyto zjednodušené příkazy pracují okamžitě:\n"
 "    <D> vkládá současné datum ve formátu místního data\n"
@@ -790,8 +835,7 @@ msgstr ""
 "\n"
 "Tyto hodnoty se později konvertují pouze pokud se:\n"
 "    <&Ynnnn> překládá na současný rok minus nnnn.\n"
-"(Tuto vlastnost lze použít například pro připomenutí narozenin a informaci o "
-"věku osoby.)"
+"(Tuto vlastnost lze použít například pro připomenutí narozenin a informaci o věku osoby.)"
 
 #: ../src/appointment.c:2840
 msgid "Before Start"
@@ -835,19 +879,16 @@ msgid "Persistent alarm"
 msgstr "Trvalá výstraha"
 
 #: ../src/appointment.c:2885
-msgid ""
-"Select this if you want Orage to remind you even if it has not been active "
-"when the alarm happened."
-msgstr ""
-"Vyberte tuto možnost, chcete-li, aby vám aplikace Orage připomněla událost, "
-"i když v tu dobu nebyla aktivní"
+msgid "Select this if you want Orage to remind you even if it has not been active when the alarm happened."
+msgstr "Vyberte tuto možnost, chcete-li, aby vám aplikace Orage připomněla událost, i když v tu dobu nebyla aktivní"
 
 #. **** Audio Alarm ****
 #: ../src/appointment.c:2894
 msgid "Sound"
 msgstr "Zvuk"
 
-#: ../src/appointment.c:2898 ../src/appointment.c:3019
+#: ../src/appointment.c:2898
+#: ../src/appointment.c:3019
 msgid "Use"
 msgstr "Použít"
 
@@ -859,7 +900,8 @@ msgstr "Chcete-li povolit akustickou výstrahu, vyberte tuto možnost"
 msgid "Repeat alarm sound"
 msgstr "Opakovat výstražný zvuk"
 
-#: ../src/appointment.c:2933 ../src/appointment.c:3235
+#: ../src/appointment.c:2933
+#: ../src/appointment.c:3235
 msgid "times"
 msgstr "krát"
 
@@ -1012,8 +1054,7 @@ msgid ""
 " Every Saturday and Sunday or \n"
 " First Tuesday every month"
 msgstr ""
-"Použijte tuto volbu, chcete-li nastait složitější časové udaje, jako "
-"například:\n"
+"Použijte tuto volbu, chcete-li nastait složitější časové udaje, jako například:\n"
 " Každou sobotu a neděli nebo \n"
 " První úterý v měsíci"
 
@@ -1087,24 +1128,16 @@ msgid "TODO base"
 msgstr "Seznam úkolů TODO"
 
 #: ../src/appointment.c:3297
-msgid ""
-"TODO reoccurs regularly starting on start time and repeating after each "
-"interval no matter when it was last completed"
-msgstr ""
-"Seznam úkolů TODO opakovaně začíná v čase zahájení a opakuje se v každém "
-"intervalu, bez ověření zda byl dokončen"
+msgid "TODO reoccurs regularly starting on start time and repeating after each interval no matter when it was last completed"
+msgstr "Seznam úkolů TODO opakovaně začíná v čase zahájení a opakuje se v každém intervalu, bez ověření zda byl dokončen"
 
 #: ../src/appointment.c:3299
 msgid ""
-"TODO reoccurrency is based on complete time and repeats after the interval "
-"counted from the last completed time.\n"
-"(Note that you can not tell anything about the history of the TODO since "
-"reoccurrence base changes after each completion.)"
+"TODO reoccurrency is based on complete time and repeats after the interval counted from the last completed time.\n"
+"(Note that you can not tell anything about the history of the TODO since reoccurrence base changes after each completion.)"
 msgstr ""
-"Opakování seznamu úkolů TODO je založeno na čase dokončení a opakuje se po "
-"intervalu vypočítaném z předchozího času dokončení.\n"
-"(Historii seznamu úkolů TODO nelze vypsat, protože opakování úkolu se mění "
-"po každém dokončení.)"
+"Opakování seznamu úkolů TODO je založeno na čase dokončení a opakuje se po intervalu vypočítaném z předchozího času dokončení.\n"
+"(Historii seznamu úkolů TODO nelze vypsat, protože opakování úkolu se mění po každém dokončení.)"
 
 #. exceptions
 #: ../src/appointment.c:3306
@@ -1114,8 +1147,7 @@ msgstr "Výjimky"
 #: ../src/appointment.c:3319
 msgid ""
 "Add more exception dates by clicking the calendar days below.\n"
-"Exception is either exclusion(-) or inclusion(+) depending on the "
-"selection.\n"
+"Exception is either exclusion(-) or inclusion(+) depending on the selection.\n"
 "Remove by clicking the data."
 msgstr ""
 "Více dnů s výjimkami přidáte kliknutím na dny v kalendáři níže.\n"
@@ -1135,12 +1167,8 @@ msgid "Add included time (+)"
 msgstr "Přidat zahrnutý čas (+)"
 
 #: ../src/appointment.c:3334
-msgid ""
-"Included times have same timezone than start time, but they may have "
-"different time"
-msgstr ""
-"Zahrnuté časy jsou ve stejné časové zóně jako počáteční čas, ale mohou mít "
-"jiný čas"
+msgid "Included times have same timezone than start time, but they may have different time"
+msgstr "Zahrnuté časy jsou ve stejné časové zóně jako počáteční čas, ale mohou mít jiný čas"
 
 #. calendars showing the action days
 #: ../src/appointment.c:3351
@@ -1149,37 +1177,48 @@ msgstr "Data akcí"
 
 #. ********* View menu *********
 #. View menu
-#: ../src/day-view.c:264 ../src/event-list.c:1030 ../src/mainbox.c:305
+#: ../src/day-view.c:264
+#: ../src/event-list.c:1030
+#: ../src/mainbox.c:305
 msgid "_View"
 msgstr "_Zobrazit"
 
 #. ********* Go menu   *********
-#: ../src/day-view.c:278 ../src/event-list.c:1049
+#: ../src/day-view.c:278
+#: ../src/event-list.c:1049
 msgid "_Go"
 msgstr "_Přejít"
 
-#: ../src/day-view.c:319 ../src/event-list.c:1096
+#: ../src/day-view.c:319
+#: ../src/event-list.c:1096
 msgid "New"
 msgstr "Nový"
 
-#: ../src/day-view.c:324 ../src/event-list.c:1105
+#: ../src/day-view.c:324
+#: ../src/event-list.c:1105
 msgid "Back"
 msgstr "Zpět"
 
-#: ../src/day-view.c:326 ../src/event-list.c:1107 ../src/functions.c:139
+#: ../src/day-view.c:326
+#: ../src/event-list.c:1107
+#: ../src/functions.c:139
 #: ../src/tray_icon.c:400
 msgid "Today"
 msgstr "Dnes"
 
-#: ../src/day-view.c:328 ../src/event-list.c:1109
+#: ../src/day-view.c:328
+#: ../src/event-list.c:1109
 msgid "Forward"
 msgstr "Vpřed"
 
-#: ../src/day-view.c:333 ../src/event-list.c:1114
+#: ../src/day-view.c:333
+#: ../src/event-list.c:1114
 msgid "Refresh"
 msgstr "Aktualizovvat"
 
-#: ../src/day-view.c:338 ../src/event-list.c:1121 ../src/interface.c:804
+#: ../src/day-view.c:338
+#: ../src/event-list.c:1121
+#: ../src/interface.c:804
 msgid "Close"
 msgstr "Zavřít"
 
@@ -1200,7 +1239,8 @@ msgstr "Orage - pohled na den"
 msgid "All day"
 msgstr "Celý den"
 
-#: ../src/event-list.c:578 ../src/event-list.c:1267
+#: ../src/event-list.c:578
+#: ../src/event-list.c:1267
 msgid "Time"
 msgstr "Čas"
 
@@ -1354,11 +1394,8 @@ msgstr "Sestavit seznam výstrah: Přidáno %d výstrah. Zpracováno %d výstrah
 
 #: ../src/ical-code.c:2936
 #, c-format
-msgid ""
-"\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
-msgstr ""
-"\tBylo nalezeno %d výstrah, z nichž %d je aktivních. (Bylo prohledáno %d "
-"opakujících se výstrah.)"
+msgid "\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
+msgstr "\tBylo nalezeno %d výstrah, z nichž %d je aktivních. (Bylo prohledáno %d opakujících se výstrah.)"
 
 #: ../src/ical-expimp.c:141
 msgid "Starting import file preprocessing"
@@ -1424,7 +1461,8 @@ msgstr "Export"
 msgid "Write to file:"
 msgstr "Zapsat do souboru:"
 
-#: ../src/interface.c:1029 ../src/interface.c:1041
+#: ../src/interface.c:1029
+#: ../src/interface.c:1041
 msgid "Select"
 msgstr "Vybrat"
 
@@ -1495,19 +1533,23 @@ msgstr "Soubory aplikace Orage"
 msgid "Orage main calendar file"
 msgstr "Hlavní soubor kalendáře aplikace Orage"
 
-#: ../src/interface.c:1125 ../src/interface.c:1190
+#: ../src/interface.c:1125
+#: ../src/interface.c:1190
 msgid "Current file"
 msgstr "Aktuální soubor"
 
-#: ../src/interface.c:1132 ../src/interface.c:1197
+#: ../src/interface.c:1132
+#: ../src/interface.c:1197
 msgid "New file"
 msgstr "Nový soubor"
 
-#: ../src/interface.c:1148 ../src/interface.c:1214
+#: ../src/interface.c:1148
+#: ../src/interface.c:1214
 msgid "Action options"
 msgstr "Dostupné akce"
 
-#: ../src/interface.c:1151 ../src/interface.c:1217
+#: ../src/interface.c:1151
+#: ../src/interface.c:1217
 msgid "Rename"
 msgstr "Přejmenovat"
 
@@ -1521,7 +1563,8 @@ msgstr ""
 "Nezasahuje do vnějšího systémů souborů.\n"
 "Nový soubor již musí existovat."
 
-#: ../src/interface.c:1159 ../src/interface.c:1222
+#: ../src/interface.c:1159
+#: ../src/interface.c:1222
 msgid "Copy"
 msgstr "Kopírovat"
 
@@ -1531,7 +1574,8 @@ msgstr ""
 "Aktuální soubor se zkopíruje a\n"
 "v původním umístění zůstane nezměněn."
 
-#: ../src/interface.c:1167 ../src/interface.c:1227
+#: ../src/interface.c:1167
+#: ../src/interface.c:1227
 msgid "Move"
 msgstr "Přesunout"
 
@@ -1567,27 +1611,23 @@ msgstr "Pouze pro čtení"
 
 #: ../src/interface.c:1289
 msgid ""
-"Set this if you want to make sure that this file is never modified by "
-"Orage.\n"
-"Note that modifying foreign files may make them incompatible with the "
-"original tool, where they came from!"
+"Set this if you want to make sure that this file is never modified by Orage.\n"
+"Note that modifying foreign files may make them incompatible with the original tool, where they came from!"
 msgstr ""
-"Tuto možnost nastavte, chcete-li si být jisti, že tento aplikace Orage tento "
-"soubor nikdy nepozmění.\n"
-"Zapamatujte si, že pozměněním externích souborů je můžete učinit "
-"nekompatibilními s původními nástroji, v nichž byly vytvořeny!"
+"Tuto možnost nastavte, chcete-li si být jisti, že tento aplikace Orage tento soubor nikdy nepozmění.\n"
+"Zapamatujte si, že pozměněním externích souborů je můžete učinit nekompatibilními s původními nástroji, v nichž byly vytvořeny!"
 
 #: ../src/interface.c:1303
 msgid "Exchange data - Orage"
 msgstr "Správa datových souborů - Orage"
 
 #: ../src/main.c:193
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "\tThis is %s version %s\n"
 "\n"
 msgstr ""
-"\tToto je %s verze %s pro prostředí Xfce %s\n"
+"\tToto je %s verze %s\n"
 "\n"
 
 #: ../src/main.c:195
@@ -1677,9 +1717,7 @@ msgstr "--preferences (-p) \tzobrazí formulář možnosti\n"
 #: ../src/main.c:236
 #, c-format
 msgid "--toggle (-t) \t\tmake orage visible/unvisible\n"
-msgstr ""
-"--toggle (-t) \t\tpřepne aplikaci orage do viditelného nebo neviditelného "
-"stavu\n"
+msgstr "--toggle (-t) \t\tpřepne aplikaci orage do viditelného nebo neviditelného stavu\n"
 
 #: ../src/main.c:237
 #, c-format
@@ -1703,12 +1741,8 @@ msgstr "\tv aplikace orage nebyla sestavena s podporou dbus. \n"
 
 #: ../src/main.c:243
 #, c-format
-msgid ""
-"\twithout dbus [files] and foreign file options(-a & -r) can only be used "
-"when starting orage \n"
-msgstr ""
-"\tbez podpory dbus se mohou [soubory] a volby externích souborů (-a a -r) "
-"použít pouze při spouštění aplikace orage \n"
+msgid "\twithout dbus [files] and foreign file options(-a & -r) can only be used when starting orage \n"
+msgstr "\tbez podpory dbus se mohou [soubory] a volby externích souborů (-a a -r) použít pouze při spouštění aplikace orage \n"
 
 #: ../src/main.c:387
 #, c-format
@@ -1743,9 +1777,8 @@ msgid "Select _Today"
 msgstr "_Přejít na dnešní den"
 
 #: ../src/mainbox.c:323
-#, fuzzy
 msgid "Show _Globaltime"
-msgstr "Globální čas"
+msgstr "Zobrazit _globální čas"
 
 #. Help menu
 #: ../src/mainbox.c:327
@@ -1803,7 +1836,6 @@ msgid "<b>Events for %s - %s:</b>"
 msgstr "<b>Události pro %s - %s:</b>"
 
 #: ../src/parameters.c:492
-#, fuzzy
 msgid "Main settings"
 msgstr "Hlavní nastavení"
 
@@ -1836,9 +1868,8 @@ msgid "This command is given to shell to make sound in alarms."
 msgstr "Tento příkaz je předán shellu za účelem přehrání zvuku výstrah."
 
 #: ../src/parameters.c:579
-#, fuzzy
 msgid "Display settings"
-msgstr "Zobrazené"
+msgstr "Zobrazit nastavení"
 
 #: ../src/parameters.c:587
 msgid "Calendar main window"
@@ -1878,12 +1909,11 @@ msgstr "0 = nezobrazovat seznam událostí"
 
 #: ../src/parameters.c:650
 msgid "Show on all desktops"
-msgstr ""
+msgstr "Zobrazit na všech pracovních plochách"
 
 #: ../src/parameters.c:657
-#, fuzzy
 msgid "Keep on top"
-msgstr "Nastavit \"Vždy nahoře\""
+msgstr "Vždy navrchu"
 
 #: ../src/parameters.c:664
 msgid "Show in taskbar"
@@ -1914,23 +1944,20 @@ msgid "Minimized"
 msgstr "Minimalizovaný"
 
 #: ../src/parameters.c:767
-#, fuzzy
 msgid "Extra settings"
 msgstr "Další nastavení"
 
 #: ../src/parameters.c:775
-#, fuzzy
 msgid "On Calendar Window Open"
-msgstr "Hlavní okno kalendáře"
+msgstr "Při otevření okna kalendáře"
 
 #: ../src/parameters.c:794
-#, fuzzy
 msgid "Select Today's Date"
-msgstr "_Přejít na dnešní den"
+msgstr "Vybrat dnešní datum"
 
 #: ../src/parameters.c:807
 msgid "Select Previously Selected Date"
-msgstr ""
+msgstr "Vybrat předchozí zvolené datum"
 
 #: ../src/parameters.c:824
 msgid "Use dynamic tray icon"
@@ -1965,12 +1992,8 @@ msgid "Number of extra days to show in event list"
 msgstr "Počet zbývajících dní ke zobrazení v seznau událostí"
 
 #: ../src/parameters.c:894
-msgid ""
-"This is just the default value, you can change it in the actual eventlist "
-"window."
-msgstr ""
-"Toto je pouze výchozí hodnota, kterou můžete změnit v okně seznamu "
-"aktuálních událostí."
+msgid "This is just the default value, you can change it in the actual eventlist window."
+msgstr "Toto je pouze výchozí hodnota, kterou můžete změnit v okně seznamu aktuálních událostí."
 
 #: ../src/parameters.c:911
 msgid "Orage Preferences"
@@ -2014,7 +2037,8 @@ msgstr "Stiskněte <Spustit> pro opětovné připomenutí po zadaném čase:"
 msgid "Next active alarms:"
 msgstr "Následující aktivní výstrahy:"
 
-#: ../src/reminder.c:1074 ../src/reminder.c:1079
+#: ../src/reminder.c:1074
+#: ../src/reminder.c:1079
 #, c-format
 msgid ""
 "\n"
