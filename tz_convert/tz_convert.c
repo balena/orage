@@ -19,7 +19,6 @@
         Boston, MA 02110-1301 USA
  */
 
-#include <error.h>
 #include <errno.h>
     /* errno */
 
@@ -53,6 +52,11 @@
 #define __USE_GNU 1
 #include <ftw.h>
     /* nftw */
+#ifndef FTW_ACTIONRETVAL
+/* BSD systems lack FTW_ACTIONRETVAL, so we need to define needed
+ * things like FTW_CONTINUE locally */
+#define FTW_CONTINUE 0
+#endif
 
 #define DEFAULT_ZONEINFO_DIRECTORY  "/usr/share/zoneinfo"
 #define DEFAULT_ZONETAB_FILE        "/usr/share/zoneinfo/zone.tab"
@@ -1229,13 +1233,15 @@ int get_parameters_popt(int argc, const char **argv)
               " You can give several directories with separate parameters."
               " By default directories right and posix are excluded, but if"
               " you use this parameter, you have to specify those also."
+              " *** NOTE: This does not work in BSD due to lack of"
+              " FTW_ACTIONRETVAL feature in nftw function ***"
             , "directory"},
         {"norrule", 'u', POPT_ARG_INT, &no_rrule, 11
             , "do not use RRULE ical repeating rule, but use RDATE instead."
               " Not all calendars are able to understand RRULE correctly"
               " with timezones. "
               " (Orage should work fine with RRULE)"
-              " 0 = use RRULE  1 = do not use RRULE (0=default)."
+              "    0 = use RRULE   1 = do not use RRULE (0=default)."
             , "level"},
         POPT_AUTOHELP
         {NULL, '\0', POPT_ARG_NONE, NULL, 0, NULL, NULL}
@@ -1472,6 +1478,7 @@ int file_call(const char *file_name, const struct stat *sb, int flags
                 printf("\t\tfile_call: skipping it, not on top level\n");
             return(FTW_SKIP_SUBTREE);
         }
+#ifdef FTW_ACTIONRETVAL
         /* need to check if we have excluded directory */
         for (i = 0; (i <= excl_dir_cnt) && excl_dir[i]; i++) {
             if (strcmp(excl_dir[i],  file_name+f->base) == 0) {
@@ -1481,6 +1488,12 @@ int file_call(const char *file_name, const struct stat *sb, int flags
                 return(FTW_SKIP_SUBTREE);
             }
         }
+#else
+        /* not easy to do that in BSD, where we do not have FTW_ACTIONRETVAL
+         * features. It can be done by checking differently */
+        if (debug > 0)
+            printf("FIXME: this directory should be skipped\n");
+#endif
         create_ical_directory(file_name);
     }
     else if (flags == FTW_SL) {
@@ -1613,8 +1626,13 @@ int main(int argc, const char **argv)
 
     /* nftw goes through the whole file structure and calls "file_call"
      * with each file. It returns 0 when everything has been done and -1
-     * if it run into an error. */
+     * if it run into an error.
+     * BSD lacks FTW_ACTIONRETVAL, so we only use it when available. */
+#ifdef FTW_ACTIONRETVAL
     if (nftw(in_file, file_call, 10, FTW_PHYS | FTW_ACTIONRETVAL) == -1) {
+#else
+    if (nftw(in_file, file_call, 10, FTW_PHYS) == -1) {
+#endif
         perror("nftw error in file handling");
         exit(EXIT_FAILURE);
     }

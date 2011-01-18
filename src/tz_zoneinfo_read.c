@@ -23,7 +23,6 @@
 #include <config.h>
 #endif
 
-#include <error.h>
 #include <errno.h>
     /* errno */
 
@@ -56,6 +55,11 @@
 #define __USE_GNU 1
 #include <ftw.h>
     /* nftw */
+#ifndef FTW_ACTIONRETVAL
+/* BSD systems lack FTW_ACTIONRETVAL, so we need to define needed
+ * things like FTW_CONTINUE locally */
+#define FTW_CONTINUE 0
+#endif
 
 #define DEFAULT_OS_ZONEINFO_DIRECTORY  "/usr/share/zoneinfo"
 #define ZONETAB_FILE        "zone.tab"
@@ -135,7 +139,7 @@ static void read_file(const char *file_name, const struct stat *file_stat)
 
     if (debug > 1) {
         printf("read_file: start\n");
-        printf("\n***** size of file %s is %d bytes *****\n\n", file_name
+        printf("***** size of file %s is %d bytes *****\n", file_name
                 , (int)file_stat->st_size);
     }
     in_buf = malloc(file_stat->st_size);
@@ -323,7 +327,7 @@ static void process_gmt_table(void)
 static int process_file(const char *file_name)
 {
     if (debug > 1)
-        printf("\n\nprocess_file: start\n");
+        printf("process_file: start\n");
     if (process_header()) {
         if (debug > 0)
             printf("File (%s) does not look like tz file. Skipping it.\n"
@@ -338,7 +342,7 @@ static int process_file(const char *file_name)
     process_std_table();
     process_gmt_table();
     if (debug > 1)
-        printf("\nprocess_file: end\n\n\n");
+        printf("process_file: end\n");
     return(0); /* ok */
 }
 
@@ -420,7 +424,7 @@ static int write_ical_file(const char *in_file_name
     char s_next[101], s_prev[101];
 
     if (debug > 1)
-        printf("***** write_ical_file: start *****\n\n");
+        printf("***** write_ical_file: start *****\n");
 
     tz_array.city[tz_array.count] = strdup(in_timezone_name);
 
@@ -525,7 +529,7 @@ static int write_ical_file(const char *in_file_name
 
     tz_array.count++;
     if (debug > 1)
-        printf("\n***** write_ical_file: end *****\n\n\n");
+        printf("***** write_ical_file: end *****\n");
     return(0);
 }
 
@@ -536,7 +540,7 @@ static int file_call(const char *file_name, const struct stat *sb, int flags
     int i;
 
     if (debug > 1)
-        printf("file_call: start\n");
+        printf("\nfile_call: start\n");
     file_cnt++;
     /* we are only interested about files and directories we can access */
     if (flags == FTW_F) { /* we got file */
@@ -568,6 +572,7 @@ static int file_call(const char *file_name, const struct stat *sb, int flags
     else if (flags == FTW_D) { /* this is directory */
         if (debug > 0)
             printf("\tfile_call: processing directory=(%s)\n", file_name);
+#ifdef FTW_ACTIONRETVAL
         /* need to check if we have excluded directory */
         for (i = 0; (i <= excl_dir_cnt) && excl_dir[i]; i++) {
             if (strcmp(excl_dir[i],  file_name+f->base) == 0) {
@@ -577,6 +582,12 @@ static int file_call(const char *file_name, const struct stat *sb, int flags
                 return(FTW_SKIP_SUBTREE);
             }
         }
+#else
+        /* not easy to do that in BSD, where we do not have FTW_ACTIONRETVAL
+           features. It can be done by checking differently */
+    if (debug > 0)
+        printf("FIXME: this directory should be skipped\n");
+#endif
     }
     else if (flags == FTW_SL) {
         if (debug > 0) {
@@ -590,7 +601,7 @@ static int file_call(const char *file_name, const struct stat *sb, int flags
     }
 
     if (debug > 1)
-        printf("file_call: end\n");
+        printf("file_call: end\n\n");
     return(FTW_CONTINUE);
 }
 
@@ -724,7 +735,7 @@ static int check_parameters(void)
     }
 
     if (debug > 1)
-        printf("check_parameters: end\n");
+        printf("check_parameters: end\n\n\n");
     return(0); /* continue */
 }
 
@@ -889,7 +900,7 @@ orage_timezone_array get_orage_timezones(int show_details, int ical)
         tz_array.cc = (char **)malloc(sizeof(char *)*(tz_array_size+2));
         check_parameters();
         if (debug > 0)
-            printf("Processing %s files\n", in_file);
+            printf("Processing %s files\n\n\n", in_file);
         if (details) {
             read_os_timezones();
             read_countries();
@@ -903,8 +914,13 @@ orage_timezone_array get_orage_timezones(int show_details, int ical)
         }
     /* nftw goes through the whole file structure and calls "file_call"
      * with each file. It returns 0 when everything has been done and -1
-     * if it run into an error. */
+     * if it run into an error. 
+     * BSD lacks FTW_ACTIONRETVAL, so we only use it when available. */
+#ifdef FTW_ACTIONRETVAL
         if (nftw(in_file, file_call, 10, FTW_PHYS | FTW_ACTIONRETVAL) == -1) {
+#else
+        if (nftw(in_file, file_call, 10, FTW_PHYS) == -1) {
+#endif
             perror("nftw error in file handling");
             exit(EXIT_FAILURE);
         }
