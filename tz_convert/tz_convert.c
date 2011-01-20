@@ -1473,12 +1473,12 @@ int file_call(const char *file_name, const struct stat *sb, int flags
     else if (flags == FTW_D) { /* this is directory */
         if (debug > 0)
             printf("\tfile_call: processing directory=(%s)\n", file_name);
+#ifdef FTW_ACTIONRETVAL
         if (only_one_level && f->level > 0) {
             if (debug > 0)
                 printf("\t\tfile_call: skipping it, not on top level\n");
             return(FTW_SKIP_SUBTREE);
         }
-#ifdef FTW_ACTIONRETVAL
         /* need to check if we have excluded directory */
         for (i = 0; (i <= excl_dir_cnt) && excl_dir[i]; i++) {
             if (strcmp(excl_dir[i],  file_name+f->base) == 0) {

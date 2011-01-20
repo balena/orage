@@ -368,13 +368,13 @@ static void get_country(void)
 
     /********** then search the country **********/
     /* Need to search line, which starts with country code.
-     * Note that it is not enough to search any country coed, but it really
+     * Note that it is not enough to search any country code, but it really
      * needs to be the first two chars in the line */
     cc[0] = '\n';
     cc[1] = tz_array.cc[tz_array.count][0];
     cc[2] = tz_array.cc[tz_array.count][1];
     cc[3] = '\0';
-    if (!(str = strstr(country_buf, cc)))
+    if (!country_buf || !(str = strstr(country_buf, cc)))
         return; /* not found */
     /* country name is after the country code and a single tab */
     str += 4;
@@ -799,21 +799,24 @@ static void read_countries(void)
     struct stat country_file_stat;
 
     /****** country=iso3166.tab file ******/
+    if (country_buf) { /* we have read it already */
+        return;
+    }
+
     tz_dir = malloc(in_file_base_offset + zoneinfo_len + 1); /* '\0' */
     strncpy(tz_dir, in_file, in_file_base_offset);
     tz_dir[in_file_base_offset] = '\0'; 
+#ifdef __OpenBSD__ 
+    strcat(tz_dir, "misc/"); /* this is shorter than "zoneinfo" so it is safe */
+#else
     strcat(tz_dir, "zoneinfo/"); /* now we have the base directory */
+#endif
 
     country_file_name = malloc(strlen(tz_dir) + strlen(COUNTRY_FILE) + 1);
     strcpy(country_file_name, tz_dir);
     strcat(country_file_name, COUNTRY_FILE);
-
     free(tz_dir);
 
-    if (country_buf) {
-        free(country_file_name);
-        return;
-    }
     if (!(country_file = fopen(country_file_name, "r"))) {
         printf("read_countries: iso3166.tab file open failed (%s)\n"
                 , country_file_name);
@@ -879,7 +882,11 @@ static void read_ical_timezones(void)
 
 orage_timezone_array get_orage_timezones(int show_details, int ical)
 {
+#ifdef FTW_ACTIONRETVAL
     int tz_array_size = 1000; /* FIXME: this needs to be counted */
+#else
+    int tz_array_size = 2000; /* BSD can not skip unneeded directories */
+#endif
     /*
      icalarray *tz_array;
      icaltimezone *l_tz;
@@ -924,8 +931,9 @@ orage_timezone_array get_orage_timezones(int show_details, int ical)
             perror("nftw error in file handling");
             exit(EXIT_FAILURE);
         }
-        printf("Orage: Processed %d timezone files from (%s)\n"
-                , file_cnt, in_file);
+        if (debug > 0)
+            printf("Orage: Processed %d timezone files from (%s)\n"
+                    , file_cnt, in_file);
 
         free(in_file);
 
