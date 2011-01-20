@@ -424,7 +424,7 @@ static void on_arrow_right_press_event_cb(GtkWidget *widget
 
 static void add_row(day_win *dw, xfical_appt *appt)
 {
-    gint row, start_row, end_row;
+    gint row, start_row, end_row, days;
     gint col, start_col, end_col, first_col, last_col;
     gint height, start_height, end_height;
     gchar *tip, *start_date, *end_date, *tmp_title, *tmp_note;
@@ -438,6 +438,7 @@ static void add_row(day_win *dw, xfical_appt *appt)
     tm_first = orage_icaltime_to_tm_time(dw->a_day, FALSE);
     start_col = orage_days_between(&tm_first, &tm_start)+1;
     end_col   = orage_days_between(&tm_first, &tm_end)+1;
+    days      = orage_days_between(&tm_start, &tm_end);
 
     if (start_col < 1) {
         col = 1;
@@ -456,7 +457,7 @@ static void add_row(day_win *dw, xfical_appt *appt)
     lab = gtk_label_new(tmp_title);
     gtk_container_add(GTK_CONTAINER(ev), lab);
 
-    if (appt->starttimecur[8] != 'T') { /* whole day event */
+    if (appt->allDay) { /* whole day event */
         gtk_widget_modify_bg(ev, GTK_STATE_NORMAL, &dw->bg2);
         if (dw->header[col] == NULL) { /* first data */
             hb = gtk_hbox_new(TRUE, 3);
@@ -468,8 +469,22 @@ static void add_row(day_win *dw, xfical_appt *appt)
              * have more than 1 appointment here
              */
         }
-        tip = g_strdup_printf("%s\n%s - %s\n%s"
-                , tmp_title, appt->starttimecur, appt->endtimecur, tmp_note);
+    /* we took the date in unnormalized format, so we need to do that now */
+        tm_start.tm_year -= 1900;
+        tm_start.tm_mon -= 1;
+        start_date = g_strdup(orage_tm_date_to_i18_date(&tm_start));
+        if (days == 0)
+            tip = g_strdup_printf("%s\n%s\n%s"
+                    , tmp_title, start_date, tmp_note);
+        else {
+            tm_end.tm_year -= 1900;
+            tm_end.tm_mon -= 1;
+            end_date = g_strdup(orage_tm_date_to_i18_date(&tm_end));
+            tip = g_strdup_printf("%s\n%s - %s\n%s"
+                    , tmp_title, start_date, end_date, tmp_note);
+            g_free(end_date);
+        }
+        g_free(start_date);
     }
     else {
         if ((color = orage_category_list_contains(appt->categories)) != NULL)
@@ -486,7 +501,7 @@ static void add_row(day_win *dw, xfical_appt *appt)
              * have more than 1 appointment here
              */
         }
-        if (orage_days_between(&tm_start, &tm_end) == 0)
+        if (days == 0)
             tip = g_strdup_printf("%s\n%02d:%02d-%02d:%02d\n%s"
                     , tmp_title, tm_start.tm_hour, tm_start.tm_min
                     , tm_end.tm_hour, tm_end.tm_min, tmp_note);
@@ -522,7 +537,7 @@ static void add_row(day_win *dw, xfical_appt *appt)
     /* and finally draw the line to show how long the appointment is,
      * but only if it is Busy type event (=availability != 0) 
      * and it is not whole day event */
-    if (appt->availability && appt->starttimecur[8] == 'T') {
+    if (appt->availability && !appt->allDay) {
         height = dw->StartDate_button_req.height;
         /*
          * same_date = !strncmp(start_ical_time, end_ical_time, 8);
