@@ -7,7 +7,7 @@
 # Chris K. Zhang <plutino@gmail.com>, 2009.
 # Aron Xu <aronmalache@163.com>, 2009.
 # Hunt Xu <huntxu@live.cn>, 2009.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.3.90.2\n"
@@ -55,8 +55,7 @@ msgid "adjust to change hour"
 msgstr "调整小时"
 
 #: ../globaltime/globaltime.c:496
-msgid ""
-"adjust to change minute. Click arrows with button 2 to change only 1 minute."
+msgid "adjust to change minute. Click arrows with button 2 to change only 1 minute."
 msgstr ""
 
 #: ../globaltime/gt_prefs.c:265 ../globaltime/gt_prefs.c:266
@@ -292,46 +291,45 @@ msgstr "本地时区："
 #: ../globaltime/timezone_selection.c:101
 #: ../panel-plugin/timezone_selection.c:102 ../src/timezone_selection.c:102
 msgid " Other"
-msgstr ""
+msgstr "其他"
 
 #: ../globaltime/timezone_selection.c:156
 #: ../panel-plugin/timezone_selection.c:157 ../src/timezone_selection.c:168
 #, c-format
 msgid "%d hour %d mins"
-msgstr ""
+msgstr "%d 小时 %d 分"
 
 #: ../globaltime/timezone_selection.c:159
 #: ../panel-plugin/timezone_selection.c:160 ../src/timezone_selection.c:171
-#, fuzzy, c-format
+#, c-format
 msgid "%d hour"
-msgstr "小时"
+msgstr "%d 小时"
 
 #: ../globaltime/timezone_selection.c:161
 #: ../panel-plugin/timezone_selection.c:162 ../src/timezone_selection.c:173
-#, fuzzy, c-format
+#, c-format
 msgid "%d mins"
-msgstr "分钟"
+msgstr "%d 分钟"
 
 #: ../globaltime/timezone_selection.c:167
 #: ../panel-plugin/timezone_selection.c:168 ../src/timezone_selection.c:179
 msgid "backward"
-msgstr ""
+msgstr "后退"
 
 #: ../globaltime/timezone_selection.c:170
 #: ../panel-plugin/timezone_selection.c:171 ../src/timezone_selection.c:182
-#, fuzzy
 msgid "forward"
 msgstr "前进"
 
 #: ../globaltime/timezone_selection.c:194
 #: ../panel-plugin/timezone_selection.c:195 ../src/timezone_selection.c:206
 msgid "not changed"
-msgstr ""
+msgstr "没有改变"
 
 #: ../globaltime/timezone_selection.c:195
 #: ../panel-plugin/timezone_selection.c:196 ../src/timezone_selection.c:207
 msgid "not changing"
-msgstr ""
+msgstr "不改变"
 
 #. location
 #: ../globaltime/timezone_selection.c:247
@@ -345,17 +343,17 @@ msgstr "地点"
 #: ../globaltime/timezone_selection.c:258
 #: ../panel-plugin/timezone_selection.c:259 ../src/timezone_selection.c:270
 msgid "GMT Offset"
-msgstr ""
+msgstr "GMT 偏移"
 
 #: ../globaltime/timezone_selection.c:264
 #: ../panel-plugin/timezone_selection.c:265 ../src/timezone_selection.c:276
 msgid "Previous/Next Change"
-msgstr ""
+msgstr "上一个/下一个变化"
 
 #: ../globaltime/timezone_selection.c:269
 #: ../panel-plugin/timezone_selection.c:270 ../src/timezone_selection.c:281
 msgid "Country"
-msgstr ""
+msgstr "国家"
 
 #: ../globaltime/timezone_selection.c:299
 #: ../globaltime/timezone_selection.c:309
@@ -371,7 +369,7 @@ msgstr "选取时区"
 #: ../panel-plugin/timezone_selection.c:313 ../src/timezone_selection.c:314
 #: ../src/timezone_selection.c:324
 msgid "Change mode"
-msgstr ""
+msgstr "更改模式"
 
 #: ../globaltime/timezone_selection.c:303
 #: ../globaltime/timezone_selection.c:313
@@ -404,7 +402,7 @@ msgstr "Orage - 日历"
 
 #: ../globaltime/globaltime.desktop.in.h:3
 msgid "Show clocks from different countries"
-msgstr ""
+msgstr "显示不同国家的时钟"
 
 #: ../panel-plugin/oc_config.c:224
 msgid "Appearance"
@@ -432,7 +430,7 @@ msgstr "设置高度(_H):"
 
 #: ../panel-plugin/oc_config.c:277
 msgid "Note that you can not change the height of horizontal panels"
-msgstr ""
+msgstr "请注意你不能改变水平面板的高度"
 
 #: ../panel-plugin/oc_config.c:282
 msgid "set _width:"
@@ -440,7 +438,7 @@ msgstr "设置宽度(_W):"
 
 #: ../panel-plugin/oc_config.c:293
 msgid "Note that you can not change the width of vertical panels"
-msgstr ""
+msgstr "请注意您不能更改垂直面板的宽度"
 
 #: ../panel-plugin/oc_config.c:316
 msgid "Clock Options"
@@ -471,12 +469,7 @@ msgid "fix time after suspend/hibernate"
 msgstr "挂起/休眠之后修正时间"
 
 #: ../panel-plugin/oc_config.c:415
-msgid ""
-"You only need this if you do short term (less than 5 hours) suspend or "
-"hibernate and your visible time does not include seconds. Under these "
-"circumstances it is possible that Orageclock shows time inaccurately unless "
-"you have this selected. (Selecting this prevents cpu and interrupt saving "
-"features from working.)"
+msgid "You only need this if you do short term (less than 5 hours) suspend or hibernate and your visible time does not include seconds. Under these circumstances it is possible that Orageclock shows time inaccurately unless you have this selected. (Selecting this prevents cpu and interrupt saving features from working.)"
 msgstr ""
 "短期挂起或休眠(小于5小时)而且所显示的时间不包含秒的时候才需要这个选项。\n"
 "这种情况下，除非你选了本选项，Orage 时钟显示的时间可能不准确。(本选项将\n"
@@ -502,9 +495,8 @@ msgstr ""
 "        %X = 本地时间                   %x = 本地日期"
 
 #: ../panel-plugin/oc_config.c:457
-#, fuzzy
 msgid "Orage clock Preferences"
-msgstr "Orage 首选项"
+msgstr "Orage 时钟首选项"
 
 #. no lines yet
 #. TRANSLATORS: Use format characters from strftime(3)
@@ -515,7 +507,7 @@ msgstr "Orage 首选项"
 #. * %B  : full month name
 #. * %Y  : four digit year
 #. * %V  : ISO week number
-#.
+#. 
 #: ../panel-plugin/xfce4-orageclock-plugin.c:623
 msgid "%A %d %B %Y/%V"
 msgstr "%A %d %B %Y/%V"
@@ -525,9 +517,8 @@ msgid "Maintainer"
 msgstr "维护者"
 
 #: ../src/about-xfcalendar.c:47
-#, fuzzy
 msgid "Manage your time with Orage"
-msgstr "用 Xfce4 管理您的时间"
+msgstr "用 Orage 管理您的时间"
 
 #. if (gtk_toggle_button_get_active(
 #. GTK_TOGGLE_BUTTON(apptw->Type_journal_rb)))
@@ -747,9 +738,7 @@ msgid "Categories"
 msgstr "类别"
 
 #: ../src/appointment.c:2729
-msgid ""
-"This is special category, which can be used to color this appointment in "
-"list views."
+msgid "This is special category, which can be used to color this appointment in list views."
 msgstr "这个特殊类别可用来在列表浏览时将本约会显示为彩色"
 
 #: ../src/appointment.c:2734
@@ -759,7 +748,7 @@ msgstr "更新类别的颜色"
 #. priority
 #: ../src/appointment.c:2740
 msgid "Priority"
-msgstr ""
+msgstr "优先"
 
 #. note
 #: ../src/appointment.c:2750
@@ -775,8 +764,7 @@ msgid ""
 "\n"
 "These are converted only later when they are seen:\n"
 "    <&Ynnnn> is translated to current year minus nnnn.\n"
-"(This can be used for example in birthday reminders to tell how old the "
-"person will be.)"
+"(This can be used for example in birthday reminders to tell how old the person will be.)"
 msgstr ""
 
 #: ../src/appointment.c:2840
@@ -821,9 +809,7 @@ msgid "Persistent alarm"
 msgstr "持续闹铃"
 
 #: ../src/appointment.c:2885
-msgid ""
-"Select this if you want Orage to remind you even if it has not been active "
-"when the alarm happened."
+msgid "Select this if you want Orage to remind you even if it has not been active when the alarm happened."
 msgstr "选这里，闹铃发生时即使还没有激活 Orage 也会提醒您。"
 
 #. **** Audio Alarm ****
@@ -908,9 +894,8 @@ msgid "Test this alarm by raising it now"
 msgstr ""
 
 #: ../src/appointment.c:3046
-#, fuzzy
 msgid "<b>Default alarm</b>"
-msgstr "默认闹铃"
+msgstr "<b> 默认闹铃 </b>"
 
 #: ../src/appointment.c:3054
 msgid "Store current settings as default alarm"
@@ -1064,30 +1049,24 @@ msgid "TODO base"
 msgstr ""
 
 #: ../src/appointment.c:3297
-msgid ""
-"TODO reoccurs regularly starting on start time and repeating after each "
-"interval no matter when it was last completed"
+msgid "TODO reoccurs regularly starting on start time and repeating after each interval no matter when it was last completed"
 msgstr ""
 
 #: ../src/appointment.c:3299
 msgid ""
-"TODO reoccurrency is based on complete time and repeats after the interval "
-"counted from the last completed time.\n"
-"(Note that you can not tell anything about the history of the TODO since "
-"reoccurrence base changes after each completion.)"
+"TODO reoccurrency is based on complete time and repeats after the interval counted from the last completed time.\n"
+"(Note that you can not tell anything about the history of the TODO since reoccurrence base changes after each completion.)"
 msgstr ""
 
 #. exceptions
 #: ../src/appointment.c:3306
-#, fuzzy
 msgid "Exceptions"
-msgstr "选项"
+msgstr "例外"
 
 #: ../src/appointment.c:3319
 msgid ""
 "Add more exception dates by clicking the calendar days below.\n"
-"Exception is either exclusion(-) or inclusion(+) depending on the "
-"selection.\n"
+"Exception is either exclusion(-) or inclusion(+) depending on the selection.\n"
 "Remove by clicking the data."
 msgstr ""
 
@@ -1104,9 +1083,7 @@ msgid "Add included time (+)"
 msgstr ""
 
 #: ../src/appointment.c:3334
-msgid ""
-"Included times have same timezone than start time, but they may have "
-"different time"
+msgid "Included times have same timezone than start time, but they may have different time"
 msgstr ""
 
 #. calendars showing the action days
@@ -1316,8 +1293,7 @@ msgstr "生成闹铃列表：添加 %d 个闹铃，处理 %d 个事件。"
 
 #: ../src/ical-code.c:2936
 #, c-format
-msgid ""
-"\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
+msgid "\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
 msgstr "        找到 %d 个闹铃，其中 %d 个已激活。(总共搜索了 %d 个重复闹铃)"
 
 #: ../src/ical-expimp.c:141
@@ -1515,10 +1491,8 @@ msgstr "只读"
 
 #: ../src/interface.c:1289
 msgid ""
-"Set this if you want to make sure that this file is never modified by "
-"Orage.\n"
-"Note that modifying foreign files may make them incompatible with the "
-"original tool, where they came from!"
+"Set this if you want to make sure that this file is never modified by Orage.\n"
+"Note that modifying foreign files may make them incompatible with the original tool, where they came from!"
 msgstr ""
 "选了这个选项后 Orage 将不会修改该文件。注意：如果修改一个外部文件，该\n"
 "文件的来源程序可能不能再使用它。"
@@ -1528,13 +1502,11 @@ msgid "Exchange data - Orage"
 msgstr "交换数据 - Orage"
 
 #: ../src/main.c:193
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "\tThis is %s version %s\n"
 "\n"
 msgstr ""
-"        Xfce %s 的 %s，版本 %s\n"
-"\n"
 
 #: ../src/main.c:195
 #, c-format
@@ -1647,11 +1619,8 @@ msgstr "        orage 无法使用 D-Bus。\n"
 
 #: ../src/main.c:243
 #, c-format
-msgid ""
-"\twithout dbus [files] and foreign file options(-a & -r) can only be used "
-"when starting orage \n"
-msgstr ""
-"        没有 D-Bus，　文件和外部文件选项(-a 和 -r)只能在 orage 启动时使用。\n"
+msgid "\twithout dbus [files] and foreign file options(-a & -r) can only be used when starting orage \n"
+msgstr "        没有 D-Bus，　文件和外部文件选项(-a 和 -r)只能在 orage 启动时使用。\n"
 
 #: ../src/main.c:387
 #, c-format
@@ -1746,7 +1715,6 @@ msgid "<b>Events for %s - %s:</b>"
 msgstr "<b>%s 的事件:</b>"
 
 #: ../src/parameters.c:492
-#, fuzzy
 msgid "Main settings"
 msgstr "主设置"
 
@@ -1779,9 +1747,8 @@ msgid "This command is given to shell to make sound in alarms."
 msgstr "这项命令将被传递给 shell 来放闹铃。"
 
 #: ../src/parameters.c:579
-#, fuzzy
 msgid "Display settings"
-msgstr "已显示"
+msgstr "显示设置"
 
 #: ../src/parameters.c:587
 msgid "Calendar main window"
@@ -1796,19 +1763,16 @@ msgid "Show menu"
 msgstr "显示菜单"
 
 #: ../src/parameters.c:606
-#, fuzzy
 msgid "Show month and year"
-msgstr "在页面切换器中显示"
+msgstr "显示年月"
 
 #: ../src/parameters.c:613
-#, fuzzy
 msgid "Show day names"
-msgstr "显示边框(_F)"
+msgstr "显示日期名称"
 
 #: ../src/parameters.c:620
-#, fuzzy
 msgid "Show week numbers"
-msgstr "显示边框"
+msgstr "显示周数"
 
 #: ../src/parameters.c:627
 msgid "Show todo list"
@@ -1816,7 +1780,7 @@ msgstr "显示要做的事列表"
 
 #: ../src/parameters.c:634
 msgid "Number of days to show in event window"
-msgstr ""
+msgstr "在事件窗口显示天数"
 
 #: ../src/parameters.c:640
 msgid "0 = do not show event list at all"
@@ -1824,12 +1788,11 @@ msgstr ""
 
 #: ../src/parameters.c:650
 msgid "Show on all desktops"
-msgstr ""
+msgstr "在所有桌面显示"
 
 #: ../src/parameters.c:657
-#, fuzzy
 msgid "Keep on top"
-msgstr "总在最前"
+msgstr "置顶"
 
 #: ../src/parameters.c:664
 msgid "Show in taskbar"
@@ -1860,19 +1823,16 @@ msgid "Minimized"
 msgstr "最小化"
 
 #: ../src/parameters.c:767
-#, fuzzy
 msgid "Extra settings"
 msgstr "附加设置"
 
 #: ../src/parameters.c:775
-#, fuzzy
 msgid "On Calendar Window Open"
-msgstr "日历主窗口"
+msgstr "在日历窗口打开"
 
 #: ../src/parameters.c:794
-#, fuzzy
 msgid "Select Today's Date"
-msgstr "选择今天(_T)"
+msgstr "选择今天"
 
 #: ../src/parameters.c:807
 msgid "Select Previously Selected Date"
@@ -1880,16 +1840,15 @@ msgstr ""
 
 #: ../src/parameters.c:824
 msgid "Use dynamic tray icon"
-msgstr ""
+msgstr "使用动态托盘图标"
 
 #: ../src/parameters.c:829
-#, fuzzy
 msgid "Use dynamic icon"
-msgstr "动态图标尺寸"
+msgstr "使用动态图标"
 
 #: ../src/parameters.c:835
 msgid "Dynamic icon shows current month and day of the month."
-msgstr ""
+msgstr "动态图标显示当前月份和该月的一天"
 
 #: ../src/parameters.c:844
 msgid "Main Calendar double click shows"
@@ -1913,9 +1872,7 @@ msgid "Number of extra days to show in event list"
 msgstr ""
 
 #: ../src/parameters.c:894
-msgid ""
-"This is just the default value, you can change it in the actual eventlist "
-"window."
+msgid "This is just the default value, you can change it in the actual eventlist window."
 msgstr ""
 
 #: ../src/parameters.c:911
@@ -1949,12 +1906,12 @@ msgstr "提醒 － Orage"
 
 #: ../src/reminder.c:792
 msgid "Remind me again after the specified time"
-msgstr ""
+msgstr "在指定的时间再次提醒我"
 
 #. Note that this goes to the main area. Temporary for the version
 #: ../src/reminder.c:795
 msgid "Press <Execute> to remind me again after the specified time:"
-msgstr ""
+msgstr "按 <Execute> 在指定的时间后再次提醒我:"
 
 #: ../src/reminder.c:1032
 msgid "Next active alarms:"
@@ -2315,7 +2272,6 @@ msgid "America/Cuiaba"
 msgstr "美洲/库亚巴"
 
 #: ../src/timezone_names.c:120
-#, fuzzy
 msgid "America/Curacao"
 msgstr "美洲/Curacao"
 
@@ -3556,14 +3512,12 @@ msgid "About Orage"
 msgstr "关于 Orage"
 
 #: ../panel-plugin/xfce4-orageclock-plugin.desktop.in.in.h:1
-#, fuzzy
 msgid "Orage Panel Clock"
-msgstr "Orage 时钟"
+msgstr "Orage 面板时钟"
 
 #: ../panel-plugin/xfce4-orageclock-plugin.desktop.in.in.h:2
-#, fuzzy
 msgid "Show time and date?"
-msgstr "现在几月几号几点？"
+msgstr "显示时间和日期？"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:1
 #: ../xfcalendar.desktop.in.h:1
@@ -3571,28 +3525,24 @@ msgid "Calendar"
 msgstr "日历"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:2
-#, fuzzy
 msgid "Orage Calendar Preferences"
-msgstr "Orage 首选项"
+msgstr "Orage 日历首选项"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:3
-#, fuzzy
 msgid "Orage preferences"
 msgstr "Orage 首选项"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:4
-#, fuzzy
 msgid "Settings for the Xfce 4 Calendar Application (Orage)"
-msgstr "Xfce 4日历程序设定"
+msgstr "Xfce 4 日历程序设定 (Orage)"
 
 #: ../xfcalendar.desktop.in.h:2
 msgid "Desktop calendar"
 msgstr "桌面日历"
 
 #: ../xfcalendar.desktop.in.h:3
-#, fuzzy
 msgid "Orage Calendar"
-msgstr "Orage - 日历"
+msgstr "Orage 日历"
 
 #~ msgid "Orage clock"
 #~ msgstr "Orage 时钟"
@@ -3621,9 +3571,7 @@ msgstr "Orage - 日历"
 #~ msgid "Select always today"
 #~ msgstr "总显示今天"
 
-#~ msgid ""
-#~ "When showing main calendar, set pointer to either previously selected day "
-#~ "or always to current day."
+#~ msgid "When showing main calendar, set pointer to either previously selected day or always to current day."
 #~ msgstr "显示日历时指向上次所选那天或者今天。"
 
 #~ msgid "Ending time adjustment mode"
@@ -3654,9 +3602,7 @@ msgstr "Orage - 日历"
 #~ msgid "Modify Preferences"
 #~ msgstr "修改首选项"
 
-#~ msgid ""
-#~ "Enter local timezone. (it is used to show if time is on previous(-) or "
-#~ "next date(+) by adding a +/- after the time)"
+#~ msgid "Enter local timezone. (it is used to show if time is on previous(-) or next date(+) by adding a +/- after the time)"
 #~ msgstr "输入本地时区(习惯上，时间之后跟 +/- 表示前一天(-)或者后一天(+))"
 
 #~ msgid "Set any valid timezone (=TZ) value or pick one from the list."
@@ -3692,10 +3638,7 @@ msgstr "Orage - 日历"
 #~ msgid "(0 = use static icon)"
 #~ msgstr "(０＝使用静态图标)"
 
-#~ msgid ""
-#~ "Dynamic icon shows current day and month. It is visible only in tray. If "
-#~ "tray is too small for dynamic icon size, Orage switches automatically "
-#~ "back to static icon."
+#~ msgid "Dynamic icon shows current day and month. It is visible only in tray. If tray is too small for dynamic icon size, Orage switches automatically back to static icon."
 #~ msgstr ""
 #~ "动态图标显示现在日期，只在系统任务托盘可以看到。如果任务托盘太小，Orage\n"
 #~ "自动切换到静态图标。"
@@ -3706,39 +3649,30 @@ msgstr "Orage - 日历"
 #~ msgid "Xfce 4 Calendar Settings"
 #~ msgstr "Xfce 4日历设定"
 
-#, fuzzy
 #~ msgid "Monday"
 #~ msgstr "今天"
 
-#, fuzzy
 #~ msgid "Tuesday"
 #~ msgstr "今天"
 
-#, fuzzy
 #~ msgid "Wednesday"
 #~ msgstr "每周"
 
-#, fuzzy
 #~ msgid "Thursday"
 #~ msgstr "今天"
 
-#, fuzzy
 #~ msgid "Friday"
 #~ msgstr "天"
 
-#, fuzzy
 #~ msgid "Sunday"
 #~ msgstr "声音"
 
-#, fuzzy
 #~ msgid "Days"
 #~ msgstr "天"
 
-#, fuzzy
 #~ msgid "normal"
 #~ msgstr "通常"
 
-#, fuzzy
 #~ msgid "Calendar Files"
 #~ msgstr "日历文件"
 

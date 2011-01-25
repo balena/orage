@@ -1765,7 +1765,8 @@ static gboolean category_fill_cb(GtkComboBox *cb, char *selection)
     for (i = 0; cat_gourps[i] != NULL; i++) {
         gtk_combo_box_append_text(cb, (const gchar *)cat_gourps[i]);
         if (!found && selection && !strcmp(selection, cat_gourps[i])) {
-            gtk_combo_box_set_active(cb, i);
+            /* +1 as we have _("Not set") there first */
+            gtk_combo_box_set_active(cb, i+1); 
             found = TRUE;
         }
     }

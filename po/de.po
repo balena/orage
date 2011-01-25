@@ -5,7 +5,7 @@
 # Fabian Nowak <timystery@arcor.de>, 2005-2008, 2010.
 # Nico Schümann <nico@prog.nico22.de>, 2007.
 # Simon Schneider <simon@schneiderimtal.de>, 2009
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: Orage 4.5.9.6-svn\n"
@@ -54,10 +54,8 @@ msgid "adjust to change hour"
 msgstr "Einstellen, um Stunde zu ändern"
 
 #: ../globaltime/globaltime.c:496
-msgid ""
-"adjust to change minute. Click arrows with button 2 to change only 1 minute."
-msgstr ""
-"Minuten einstellen. Klicken Sie die Pfeile mit Taste 2 an, um nur 1 Minute "
+msgid "adjust to change minute. Click arrows with button 2 to change only 1 minute."
+msgstr "Minuten einstellen. Klicken Sie die Pfeile mit Taste 2 an, um nur 1 Minute "
 
 #: ../globaltime/gt_prefs.c:265 ../globaltime/gt_prefs.c:266
 msgid "NEW"
@@ -69,7 +67,7 @@ msgstr "NEUE KOPIE"
 
 #: ../globaltime/gt_prefs.c:310
 msgid "Not possible to delete the last clock."
-msgstr "Es ist unmöglich, die letzte Uhr zu löschen."
+msgstr "Die letzte Uhr kann nicht gelöscht werden."
 
 #: ../globaltime/gt_prefs.c:516
 msgid "update this clock"
@@ -81,7 +79,7 @@ msgstr "Neue, leere Uhr hinzufügen"
 
 #: ../globaltime/gt_prefs.c:526
 msgid "add new clock using this clock as model"
-msgstr "Neue Uhr nach Vorlage dieser Uhr erstellen"
+msgstr "Neue Uhr auf Basis dieser Uhr erstellen"
 
 #: ../globaltime/gt_prefs.c:531
 msgid "delete this clock"
@@ -89,7 +87,7 @@ msgstr "Diese Uhr löschen"
 
 #: ../globaltime/gt_prefs.c:539
 msgid "move this clock first"
-msgstr "Diese Uhr zuerst verschieben"
+msgstr "Diese Uhr an die erste Position verschieben"
 
 #: ../globaltime/gt_prefs.c:544
 msgid "move this clock left"
@@ -101,11 +99,11 @@ msgstr "Diese Uhr nach rechts verschieben"
 
 #: ../globaltime/gt_prefs.c:554
 msgid "move this clock last"
-msgstr "Diese Uhr zuletzt verschieben"
+msgstr "Diese Uhr an die letzte Position verschieben"
 
 #: ../globaltime/gt_prefs.c:562
 msgid "set the timezone of this clock to be local timezone"
-msgstr "Zeitzohne dieser Uhr auf Lokalzeit setzen"
+msgstr "Zeitzone dieser Uhr auf Lokalzeit setzen"
 
 #: ../globaltime/gt_prefs.c:568 ../globaltime/gt_prefs.c:1042
 msgid "close window and exit"
@@ -466,19 +464,8 @@ msgid "fix time after suspend/hibernate"
 msgstr "Zeit korrigieren nach Ruhemodus/Tiefschlaf"
 
 #: ../panel-plugin/oc_config.c:415
-msgid ""
-"You only need this if you do short term (less than 5 hours) suspend or "
-"hibernate and your visible time does not include seconds. Under these "
-"circumstances it is possible that Orageclock shows time inaccurately unless "
-"you have this selected. (Selecting this prevents cpu and interrupt saving "
-"features from working.)"
-msgstr ""
-"Sie benötigen dies nur, wenn Sie für eine relativ kurze Zeitspanne (weniger "
-"als 5 Stunden) in den Ruhemodus oder Tiefschlaf gehen und Ihre sichtbare "
-"Zeit keine Sekunden enthält. Unter diesen Umständen ist es nämlich möglich, "
-"dass die Uhr von Orage die Zeit etwas verfälscht wiedergibt, wenn Sie dies "
-"nicht ausgewählt haben. (Wählt man dies aus, werden einige Fähigkeiten der "
-"CPU und das Vermeiden von Interrupts nicht mehr funktionieren.)"
+msgid "You only need this if you do short term (less than 5 hours) suspend or hibernate and your visible time does not include seconds. Under these circumstances it is possible that Orageclock shows time inaccurately unless you have this selected. (Selecting this prevents cpu and interrupt saving features from working.)"
+msgstr "Sie benötigen dies nur, wenn Sie für eine relativ kurze Zeitspanne (weniger als 5 Stunden) in den Ruhemodus oder Tiefschlaf gehen und Ihre sichtbare Zeit keine Sekunden enthält. Unter diesen Umständen ist es nämlich möglich, dass die Uhr von Orage die Zeit etwas verfälscht wiedergibt, wenn Sie dies nicht ausgewählt haben. (Wählt man dies aus, werden einige Fähigkeiten der CPU und das Vermeiden von Interrupts nicht mehr funktionieren.)"
 
 #: ../panel-plugin/oc_config.c:432
 msgid ""
@@ -492,8 +479,7 @@ msgid ""
 "\t%X = local time\t\t\t%x = local date"
 msgstr ""
 "Diese Programm verwendet die Funktion »strftime«, um die Zeit zu erhalten.\n"
-"Verwenden Sie beliebigen gültigen Code, um die Zeit in dem Format zu "
-"erhalten, das Sie bevorzugen.\n"
+"Verwenden Sie beliebigen gültigen Code, um die Zeit in dem Format zu erhalten, das Sie bevorzugen.\n"
 "Einige häufig verwendete Codes sind:\n"
 "\t%A = Wochentag\t\t\t%B = Monat\n"
 "\t%c = Datum und Zeit\t\t%R = Stunde und Minuten\n"
@@ -514,7 +500,7 @@ msgstr "Uhrzeiteinstellungen für Orage"
 #. * %B  : full month name
 #. * %Y  : four digit year
 #. * %V  : ISO week number
-#.
+#. 
 #: ../panel-plugin/xfce4-orageclock-plugin.c:623
 msgid "%A %d %B %Y/%V"
 msgstr "%A, %d. %B %Y (KW %V)"
@@ -582,8 +568,7 @@ msgstr "Dieser Termin existiert nicht."
 
 #: ../src/appointment.c:1644
 msgid "It was probably removed, please refresh your screen."
-msgstr ""
-"Er wurde wahrscheinlich entfernt, bitte klicken Sie auf »Aktualisieren«."
+msgstr "Er wurde wahrscheinlich entfernt, bitte klicken Sie auf »Aktualisieren«."
 
 #: ../src/appointment.c:1945
 msgid "Current categories"
@@ -752,12 +737,8 @@ msgid "Categories"
 msgstr "Rubriken"
 
 #: ../src/appointment.c:2729
-msgid ""
-"This is special category, which can be used to color this appointment in "
-"list views."
-msgstr ""
-"Dies ist die besondere Kategorie, die dazu genutzt werden kann, diesen "
-"Termin in der Listenansicht farbig zu hinterlegen."
+msgid "This is special category, which can be used to color this appointment in list views."
+msgstr "Dies ist die besondere Kategorie, die dazu genutzt werden kann, diesen Termin in der Listenansicht farbig zu hinterlegen."
 
 #: ../src/appointment.c:2734
 msgid "update colors for categories."
@@ -782,8 +763,7 @@ msgid ""
 "\n"
 "These are converted only later when they are seen:\n"
 "    <&Ynnnn> is translated to current year minus nnnn.\n"
-"(This can be used for example in birthday reminders to tell how old the "
-"person will be.)"
+"(This can be used for example in birthday reminders to tell how old the person will be.)"
 msgstr ""
 "Diese Kurzbefehle haben sofortige Auswirkung:\n"
 " <D> fügt das aktuelle Datum im Ortszeitformat ein\n"
@@ -792,8 +772,7 @@ msgstr ""
 "\n"
 "Diese werden nur dann später konvertiert, wenn auf sie gestoßen wird:\n"
 " <&Ynnnn> wird übersetzt in das aktuelle Jahr minus nnnn.\n"
-"(Dies kann z.B. bei Geburtstagserinnerungen eingesetzt werden, um das Alter "
-"der Person zu ermitteln.)"
+"(Dies kann z.B. bei Geburtstagserinnerungen eingesetzt werden, um das Alter der Person zu ermitteln.)"
 
 #: ../src/appointment.c:2840
 msgid "Before Start"
@@ -837,12 +816,8 @@ msgid "Persistent alarm"
 msgstr "Beständige Erinnerung"
 
 #: ../src/appointment.c:2885
-msgid ""
-"Select this if you want Orage to remind you even if it has not been active "
-"when the alarm happened."
-msgstr ""
-"Wählen Sie diese Option, wenn Orage Sie erinnern soll, auch wenn es zum "
-"Zeitpunkt der Erinnerung nicht aktiv war."
+msgid "Select this if you want Orage to remind you even if it has not been active when the alarm happened."
+msgstr "Wählen Sie diese Option, wenn Orage Sie erinnern soll, auch wenn es zum Zeitpunkt der Erinnerung nicht aktiv war."
 
 #. **** Audio Alarm ****
 #: ../src/appointment.c:2894
@@ -913,9 +888,7 @@ msgstr "Anwendung"
 
 #: ../src/appointment.c:3021
 msgid "Select this if you want procedure or script alarm"
-msgstr ""
-"Wählen Sie dies aus, um eine Anwendung oder ein Skript bei der Erinnerung "
-"auszuführen."
+msgstr "Wählen Sie dies aus, um eine Anwendung oder ein Skript bei der Erinnerung auszuführen."
 
 #: ../src/appointment.c:3027
 msgid ""
@@ -935,8 +908,7 @@ msgstr "<b>Standarderinnerung</b>"
 
 #: ../src/appointment.c:3054
 msgid "Store current settings as default alarm"
-msgstr ""
-"Die aktuellen Einstellungen als Standard für zukünfige Erinnerungen speichern"
+msgstr "Die aktuellen Einstellungen als Standard für zukünfige Erinnerungen speichern"
 
 #: ../src/appointment.c:3059
 msgid "Set current settings from default alarm"
@@ -1091,25 +1063,17 @@ msgid "TODO base"
 msgstr "Basis für Aufgaben"
 
 #: ../src/appointment.c:3297
-msgid ""
-"TODO reoccurs regularly starting on start time and repeating after each "
-"interval no matter when it was last completed"
-msgstr ""
-"Aufgabe tritt regelmäßig auf. Beginnend mit der Startzeit und wiederholt "
-"nach jedem Intervall unabhängig davon, wann sie zuletzt beendet wurde"
+msgid "TODO reoccurs regularly starting on start time and repeating after each interval no matter when it was last completed"
+msgstr "Aufgabe tritt regelmäßig auf. Beginnend mit der Startzeit und wiederholt nach jedem Intervall unabhängig davon, wann sie zuletzt beendet wurde"
 
 #: ../src/appointment.c:3299
 msgid ""
-"TODO reoccurrency is based on complete time and repeats after the interval "
-"counted from the last completed time.\n"
-"(Note that you can not tell anything about the history of the TODO since "
-"reoccurrence base changes after each completion.)"
+"TODO reoccurrency is based on complete time and repeats after the interval counted from the last completed time.\n"
+"(Note that you can not tell anything about the history of the TODO since reoccurrence base changes after each completion.)"
 msgstr ""
-"Wiederauftreten der Aufgabe hängt von der Zeit der letzten Beendung ab und "
-"wiederholt sich ein Intervall nach der letzten Beendung.\n"
+"Wiederauftreten der Aufgabe hängt von der Zeit der letzten Beendung ab und wiederholt sich ein Intervall nach der letzten Beendung.\n"
 "\n"
-"(Beachten Sie, dass Sie nichts über den vergangenen Verlauf der Aufgabe "
-"sagen können, da das Wiederauftreten sich nach jeder Beendigung ändert.)"
+"(Beachten Sie, dass Sie nichts über den vergangenen Verlauf der Aufgabe sagen können, da das Wiederauftreten sich nach jeder Beendigung ändert.)"
 
 #. exceptions
 #: ../src/appointment.c:3306
@@ -1119,14 +1083,11 @@ msgstr "Ausnahmen"
 #: ../src/appointment.c:3319
 msgid ""
 "Add more exception dates by clicking the calendar days below.\n"
-"Exception is either exclusion(-) or inclusion(+) depending on the "
-"selection.\n"
+"Exception is either exclusion(-) or inclusion(+) depending on the selection.\n"
 "Remove by clicking the data."
 msgstr ""
-"Mehr Ausnahmetermine hinzufügen, indem die Kalendertage unten angeklickt "
-"werden.\n"
-"Eine Ausnahme ist entweder Ausschluss (-) oder Einschluss (+) abhängig von "
-"der auswahl.\n"
+"Mehr Ausnahmetermine hinzufügen, indem die Kalendertage unten angeklickt werden.\n"
+"Eine Ausnahme ist entweder Ausschluss (-) oder Einschluss (+) abhängig von der auswahl.\n"
 "Entfernen über Anklicken der Daten."
 
 #: ../src/appointment.c:3324
@@ -1135,20 +1096,15 @@ msgstr "Ausnahmen hinzufügen"
 
 #: ../src/appointment.c:3326
 msgid "Excluded days are full days where this appointment is not happening"
-msgstr ""
-"Ausgeschlossene Tage sind ganze Tage, an denen der Termin nicht zutrifft"
+msgstr "Ausgeschlossene Tage sind ganze Tage, an denen der Termin nicht zutrifft"
 
 #: ../src/appointment.c:3332
 msgid "Add included time (+)"
 msgstr "Eingeschlossene Zeit hinzufügen (+)"
 
 #: ../src/appointment.c:3334
-msgid ""
-"Included times have same timezone than start time, but they may have "
-"different time"
-msgstr ""
-"Eingeschlossene Zeiten haben die gleiche Zeitzone wie die Startzeit, aber "
-"sie dürfen eine andere Uhrzeit haben"
+msgid "Included times have same timezone than start time, but they may have different time"
+msgstr "Eingeschlossene Zeiten haben die gleiche Zeitzone wie die Startzeit, aber sie dürfen eine andere Uhrzeit haben"
 
 #. calendars showing the action days
 #: ../src/appointment.c:3351
@@ -1358,17 +1314,12 @@ msgstr "Standarderinnerung"
 #: ../src/ical-code.c:2934
 #, c-format
 msgid "Build alarm list: Added %d alarms. Processed %d events."
-msgstr ""
-"Benachrichtigungsliste: %d Benachrichtigungen hinzugefügt. %d Ereignisse "
-"bearbeitet."
+msgstr "Benachrichtigungsliste: %d Benachrichtigungen hinzugefügt. %d Ereignisse bearbeitet."
 
 #: ../src/ical-code.c:2936
 #, c-format
-msgid ""
-"\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
-msgstr ""
-"\t%d Benachrichtigungen, von denen %d aktiv sind, gefunden (%d "
-"wiederkehrende Benachrichtigungen wurden durchsucht)."
+msgid "\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
+msgstr "\t%d Benachrichtigungen, von denen %d aktiv sind, gefunden (%d wiederkehrende Benachrichtigungen wurden durchsucht)."
 
 #: ../src/ical-expimp.c:141
 msgid "Starting import file preprocessing"
@@ -1573,16 +1524,11 @@ msgstr "Nur-Lesen"
 
 #: ../src/interface.c:1289
 msgid ""
-"Set this if you want to make sure that this file is never modified by "
-"Orage.\n"
-"Note that modifying foreign files may make them incompatible with the "
-"original tool, where they came from!"
+"Set this if you want to make sure that this file is never modified by Orage.\n"
+"Note that modifying foreign files may make them incompatible with the original tool, where they came from!"
 msgstr ""
-"Aktivieren Sie dies, wenn Sie sichergehen wollen, dass diese Datei nie von "
-"Orage geändert wird.\n"
-"Beachten Sie, dass eine Fremddatei unter Umständen nicht mehr mit dem "
-"ursprünglich verwendeten Programm funktioniert, wenn Sie das Verändern von "
-"Fremddateien erlauben!"
+"Aktivieren Sie dies, wenn Sie sichergehen wollen, dass diese Datei nie von Orage geändert wird.\n"
+"Beachten Sie, dass eine Fremddatei unter Umständen nicht mehr mit dem ursprünglich verwendeten Programm funktioniert, wenn Sie das Verändern von Fremddateien erlauben!"
 
 #: ../src/interface.c:1303
 msgid "Exchange data - Orage"
@@ -1600,8 +1546,7 @@ msgstr ""
 #: ../src/main.c:195
 #, c-format
 msgid "\tReleased under the terms of the GNU General Public License.\n"
-msgstr ""
-"\tUnter den Bedingungen der GNU General Public License veröffentlicht.\n"
+msgstr "\tUnter den Bedingungen der GNU General Public License veröffentlicht.\n"
 
 #: ../src/main.c:196
 #, c-format
@@ -1709,12 +1654,8 @@ msgstr "\tD-Bus wird nicht mit Orage mitgeliefert. \n"
 
 #: ../src/main.c:243
 #, c-format
-msgid ""
-"\twithout dbus [files] and foreign file options(-a & -r) can only be used "
-"when starting orage \n"
-msgstr ""
-"\tkann ohne D-Bus [Dateien] und Fremddateioptionen (-a, -r) nur beim Start "
-"benutzt werden \n"
+msgid "\twithout dbus [files] and foreign file options(-a & -r) can only be used when starting orage \n"
+msgstr "\tkann ohne D-Bus [Dateien] und Fremddateioptionen (-a, -r) nur beim Start benutzt werden \n"
 
 #: ../src/main.c:387
 #, c-format
@@ -1829,9 +1770,7 @@ msgstr "(0 = keine Archivierung)"
 
 #: ../src/parameters.c:539
 msgid "Archiving is used to save time and space when handling events."
-msgstr ""
-"Die Archivierung wird verwendet, um Zeit und Platz beim Bearbeiten von "
-"Terminen zu sparen."
+msgstr "Die Archivierung wird verwendet, um Zeit und Platz beim Bearbeiten von Terminen zu sparen."
 
 #: ../src/parameters.c:548
 msgid "Sound command"
@@ -1839,8 +1778,7 @@ msgstr "Befehl zur Tonwiedergabe"
 
 #: ../src/parameters.c:563
 msgid "This command is given to shell to make sound in alarms."
-msgstr ""
-"Dieser Befehl wird verwendet, um einen Klang bei Erinnerungen abzuspielen."
+msgstr "Dieser Befehl wird verwendet, um einen Klang bei Erinnerungen abzuspielen."
 
 #: ../src/parameters.c:579
 msgid "Display settings"
@@ -1964,16 +1902,11 @@ msgstr "Ereignisliste"
 
 #: ../src/parameters.c:882
 msgid "Number of extra days to show in event list"
-msgstr ""
-"Anzahl zusätzlicher Tage, die in der Ereignisliste angezeigt werden sollen"
+msgstr "Anzahl zusätzlicher Tage, die in der Ereignisliste angezeigt werden sollen"
 
 #: ../src/parameters.c:894
-msgid ""
-"This is just the default value, you can change it in the actual eventlist "
-"window."
-msgstr ""
-"Dies ist der Standardwert, Sie können ihn im jeweiligen Ereignisfenster "
-"ändern."
+msgid "This is just the default value, you can change it in the actual eventlist window."
+msgstr "Dies ist der Standardwert, Sie können ihn im jeweiligen Ereignisfenster ändern."
 
 #: ../src/parameters.c:911
 msgid "Orage Preferences"
@@ -2011,8 +1944,7 @@ msgstr "Nach gewisser Zeit wieder erinnern"
 #. Note that this goes to the main area. Temporary for the version
 #: ../src/reminder.c:795
 msgid "Press <Execute> to remind me again after the specified time:"
-msgstr ""
-"Drücken Sie <Ausführen>, um nach der angegebenen Zeit erinnert zu werden:"
+msgstr "Drücken Sie <Ausführen>, um nach der angegebenen Zeit erinnert zu werden:"
 
 #: ../src/reminder.c:1032
 msgid "Next active alarms:"
@@ -3656,12 +3588,8 @@ msgstr "Orage-Kalender"
 #~ msgid "Select always today"
 #~ msgstr "Immer den heutigen Tag wählen"
 
-#~ msgid ""
-#~ "When showing main calendar, set pointer to either previously selected day "
-#~ "or always to current day."
-#~ msgstr ""
-#~ "Wenn die Hauptseite des Kalenders gezeigt wird, wird entweder der zuletzt "
-#~ "markierte oder der aktuelle Tag markiert."
+#~ msgid "When showing main calendar, set pointer to either previously selected day or always to current day."
+#~ msgstr "Wenn die Hauptseite des Kalenders gezeigt wird, wird entweder der zuletzt markierte oder der aktuelle Tag markiert."
 
 #~ msgid "Ending time adjustment mode"
 #~ msgstr "Beende Zeitanpassungsmodus"
@@ -3691,17 +3619,11 @@ msgstr "Orage-Kalender"
 #~ msgid "Modify Preferences"
 #~ msgstr "Einstellungen bearbeiten"
 
-#~ msgid ""
-#~ "Enter local timezone. (it is used to show if time is on previous(-) or "
-#~ "next date(+) by adding a +/- after the time)"
-#~ msgstr ""
-#~ "Lokale Zeitzone eingeben. (Zeigt an, ob die Zeit am vorigen(-)oder "
-#~ "nächsten(+) Datum ist, indem +/- an die Zeit anhängt wird)"
+#~ msgid "Enter local timezone. (it is used to show if time is on previous(-) or next date(+) by adding a +/- after the time)"
+#~ msgstr "Lokale Zeitzone eingeben. (Zeigt an, ob die Zeit am vorigen(-)oder nächsten(+) Datum ist, indem +/- an die Zeit anhängt wird)"
 
 #~ msgid "Set any valid timezone (=TZ) value or pick one from the list."
-#~ msgstr ""
-#~ "Geben Sie eine gültige Zeitone (TZ) ein oder wählen Sie eine aus der "
-#~ "Liste."
+#~ msgstr "Geben Sie eine gültige Zeitone (TZ) ein oder wählen Sie eine aus der Liste."
 
 #~ msgid "show line _1:"
 #~ msgstr "Zeige Zeile _1:"
@@ -3733,14 +3655,8 @@ msgstr "Orage-Kalender"
 #~ msgid "(0 = use static icon)"
 #~ msgstr "(0 = Statisches Symbole verwenden)"
 
-#~ msgid ""
-#~ "Dynamic icon shows current day and month. It is visible only in tray. If "
-#~ "tray is too small for dynamic icon size, Orage switches automatically "
-#~ "back to static icon."
-#~ msgstr ""
-#~ "Das dynamische Symbol zeigt den Tag und den Monat. Es ist nur in der "
-#~ "Systemleiste sichtbar. Sollte diese für das dynamische Symbol zu klein "
-#~ "sein, zeigt Orage automatisch das statische Symbol an."
+#~ msgid "Dynamic icon shows current day and month. It is visible only in tray. If tray is too small for dynamic icon size, Orage switches automatically back to static icon."
+#~ msgstr "Das dynamische Symbol zeigt den Tag und den Monat. Es ist nur in der Systemleiste sichtbar. Sollte diese für das dynamische Symbol zu klein sein, zeigt Orage automatisch das statische Symbol an."
 
 #~ msgid "Calendar Settings"
 #~ msgstr "Kalendereinstellungen"
@@ -3748,9 +3664,7 @@ msgstr "Orage-Kalender"
 #~ msgid "Xfce 4 Calendar Settings"
 #~ msgstr "Kalendereinstellungen"
 
-#~ msgid ""
-#~ "Set this if you want to make sure that this file is never modified by "
-#~ "Orage."
+#~ msgid "Set this if you want to make sure that this file is never modified by Orage."
 #~ msgstr "Dies setzen, damit die Datei nie von Orage verändert wird."
 
 #~ msgid "Not defined"
@@ -3847,7 +3761,5 @@ msgstr "Orage-Kalender"
 #~ msgid "A time value is wrong."
 #~ msgstr "Ein Zeitwert ist falsch."
 
-#~ msgid ""
-#~ "Time values must be written 'hh:mm', for instance '09:36' or '15:23'."
-#~ msgstr ""
-#~ "Zeitwerte müssen als 'hh:mm' eingegeben werden, z.B. '09:36' oder '15:23'."
+#~ msgid "Time values must be written 'hh:mm', for instance '09:36' or '15:23'."
+#~ msgstr "Zeitwerte müssen als 'hh:mm' eingegeben werden, z.B. '09:36' oder '15:23'."
