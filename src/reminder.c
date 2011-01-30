@@ -60,6 +60,12 @@
 #define ORAGE_DEBUG 1
 */
 
+/* Compatibility macro for < libnotify-0.7 */
+/* NOTIFY_CHECK_VERSION was created in 0.5.2 */
+#ifndef NOTIFY_CHECK_VERSION
+#define NOTIFY_CHECK_VERSION(x,y,z) 0
+#endif
+
 typedef struct _orage_ddmmhh_hbox
 {
     GtkWidget *time_hbox
@@ -557,12 +563,19 @@ static void create_notify_reminder(alarm_struct *l_alarm)
         g_strlcat(heading, l_alarm->action_time, 90);
         g_strlcat(heading, "<\b>", 10);
     }
+    /* since version 0.7.0, libnotify does not have the widget parameter in 
+       notify_notification_new and it does not have function
+       notify_notification_attach_to_status_icon at all */
+#if NOTIFY_CHECK_VERSION(0, 7, 0)
+    n = notify_notification_new(heading, l_alarm->description, NULL);
+#else
     n = notify_notification_new(heading, l_alarm->description, NULL, NULL);
-    l_alarm->active_alarm->active_notify = n;
     if (g_par.trayIcon 
     && gtk_status_icon_is_embedded((GtkStatusIcon *)g_par.trayIcon))
         notify_notification_attach_to_status_icon(n
                 , (GtkStatusIcon *)g_par.trayIcon);
+#endif
+    l_alarm->active_alarm->active_notify = n;
 
     if (l_alarm->notify_timeout == -1)
         notify_notification_set_timeout(n, NOTIFY_EXPIRES_NEVER);
