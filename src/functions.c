@@ -58,6 +58,7 @@ int g_log_level=0;
  * grep MARK /tmp/logfile.strace
  * grep MARK /tmp/logfile.strace|sed s/", F_OK) = -1 ENOENT (No such file or directory)"/\)/
  * */
+/*
 void program_log (const char *format, ...)
 {
         va_list args;
@@ -73,6 +74,7 @@ void program_log (const char *format, ...)
         access (str, F_OK);
         g_free (str);
 }
+*/
 
 /* Print message at various level:
  * < 0     = Debug (Use only in special debug code which should not be in 
@@ -749,47 +751,122 @@ void orage_select_today(GtkCalendar *cal)
  * data and config file locations
  *******************************************************/
 
+gboolean orage_copy_file(gchar *source, gchar *target)
+{
+    gchar *text;
+    gsize text_len;
+    GError *error = NULL;
+    gboolean ok = TRUE;
+
+    /* read file */
+    if (!g_file_get_contents(source, &text, &text_len, &error)) {
+        orage_message(150, "orage_copy_file: Could not open file (%s) error:%s"
+                , source, error->message);
+        g_error_free(error);
+        ok = FALSE;
+    }
+    /* write file */
+    if (!g_file_set_contents(target, text, -1, &error)) {
+        orage_message(150, "orage_copy_file: Could not write file (%s) error:%s"
+                , target, error->message);
+        g_error_free(error);
+        ok = FALSE;
+    }
+    g_free(text);
+    return(ok);
+}
+
+gchar *orage_xdg_system_data_file_location(char *name)
+{
+    char *file_name;
+    const gchar * const *base_dirs;
+    int i;
+
+    base_dirs = g_get_system_data_dirs();
+    for (i = 0; base_dirs[i] != NULL; i++) {
+        file_name = g_build_filename(base_dirs[i], name, NULL);
+        if (g_file_test(file_name, G_FILE_TEST_IS_REGULAR)) {
+            return(file_name);
+        }
+        g_free(file_name);
+    }
+
+    /* no system wide data file */
+    return(NULL);
+}
+
+/* Returns valid xdg local data file name. 
+   If the file did not exist, it checks if there are system defaults 
+   and creates it from those */
 gchar *orage_data_file_location(char *name)
 {
-    char *file_name, *dir_name;
+    char *file_name, *dir_name, *sys_name;
     const char *base_dir;
     int mode = 0700;
 
-    /*
-    file_name = xfce_resource_save_location(XFCE_RESOURCE_DATA, name, TRUE);
-    g_print("orage_data_file_location (%s) (%s)\n", file_name, g_get_user_data_dir());
-    */
-
     base_dir = g_get_user_data_dir();
     file_name = g_build_filename(base_dir, name, NULL);
-    dir_name = g_path_get_dirname((const gchar *)file_name);
-    if (g_mkdir_with_parents(dir_name, mode)) {
-        g_print("orage_data_file_location: (%s) (%s) directory creation failed.\n", base_dir, file_name);
+    if (!g_file_test(file_name, G_FILE_TEST_IS_REGULAR)) {
+        /* it does not exist, let's try to create it */
+        dir_name = g_path_get_dirname((const gchar *)file_name);
+        if (g_mkdir_with_parents(dir_name, mode)) {
+            orage_message(150, "orage_data_file_location: (%s) (%s) directory creation failed.\n", base_dir, file_name);
+        }
+        g_free(dir_name);
+        /* now we have the directories ready, let's check for system default */
+        sys_name = orage_xdg_system_data_file_location(name);
+        if (sys_name) { /* we found it, we need to copy it */
+            orage_copy_file(sys_name, file_name);
+        }
     }
-    g_free(dir_name);
 
     return(file_name);
 }
 
+/* these are default files and must only be read */
+gchar *orage_xdg_system_config_file_location(char *name)
+{
+    char *file_name;
+    const gchar * const *base_dirs;
+    int i;
+
+    base_dirs = g_get_system_config_dirs();
+    for (i = 0; base_dirs[i] != NULL; i++) {
+        file_name = g_build_filename(base_dirs[i], name, NULL);
+        if (g_file_test(file_name, G_FILE_TEST_IS_REGULAR)) {
+            return(file_name);
+        }
+        g_free(file_name);
+    }
+
+    /* no system wide config file */
+    return(NULL);
+}
+
+/* Returns valid xdg local config file name. 
+   If the file did not exist, it checks if there are system defaults 
+   and creates it from those */
 gchar *orage_config_file_location(char *name)
 {
-    char *file_name, *dir_name;
+    char *file_name, *dir_name, *sys_name;
     const char *base_dir;
     int mode = 0700;
 
-    /*
-    file_name = xfce_resource_save_location(XFCE_RESOURCE_CONFIG, name
-            , TRUE);
-    g_print("orage_config_file_location (%s) (%s)\n", file_name, g_get_user_config_dir());
-    */
-
     base_dir = g_get_user_config_dir();
     file_name = g_build_filename(base_dir, name, NULL);
-    dir_name = g_path_get_dirname((const gchar *)file_name);
-    if (g_mkdir_with_parents(dir_name, mode)) {
-        g_print("orage_config_file_location: (%s) (%s) directory creation failed.\n", base_dir, file_name);
+    if (!g_file_test(file_name, G_FILE_TEST_IS_REGULAR)) {
+        /* it does not exist, let's try to create it */
+        dir_name = g_path_get_dirname((const gchar *)file_name);
+        if (g_mkdir_with_parents(dir_name, mode)) {
+            orage_message(150, "orage_config_file_location: (%s) (%s) directory creation failed.\n", base_dir, file_name);
+        }
+        g_free(dir_name);
+        /* now we have the directories ready, let's check for system default */
+        sys_name = orage_xdg_system_config_file_location(name);
+        if (sys_name) { /* we found it, we need to copy it */
+            orage_copy_file(sys_name, file_name);
+        }
     }
-    g_free(dir_name);
 
     return(file_name);
 }
