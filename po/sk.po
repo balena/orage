@@ -3,22 +3,24 @@
 # Copyright (C) 2003-2006 The Xfce development team.
 # Juraj Brosz <juro@jurajbrosz.info>, 2004, 2005.
 # Roman Moravcik <roman.moravcik@gmail.com>, 2006.
-# Robert Hartl <hartl.robert@gmail.com>, 2009.
+# Robert Hartl <hartl.robert@gmail.com>, 2009, 2011.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.3.90.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-12-17 16:36+0200\n"
-"PO-Revision-Date: 2009-10-12 16:29+0200\n"
+"PO-Revision-Date: 2011-01-31 12:50+0100\n"
 "Last-Translator: Robert Hartl <hartl.robert@gmail.com>\n"
-"Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
+"Language-Team: Slovak <xfce-i18n@xfce.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
-"Content-Transfer-Encoding: 8-bit\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 1 : (n>=2 && n<=4) ? 2 : 0;\n"
 
 #: ../globaltime/globaltime.c:100
 msgid "Raising GlobalTime window..."
-msgstr ""
+msgstr " "
 
 #: ../globaltime/globaltime.c:102
 msgid "GlobalTime window raise failed"
@@ -77,7 +79,7 @@ msgstr "pridať nové prázdne hodiny"
 
 #: ../globaltime/gt_prefs.c:526
 msgid "add new clock using this clock as model"
-msgstr ""
+msgstr "pridať nové hodiny skopírovaním týchto"
 
 #: ../globaltime/gt_prefs.c:531
 msgid "delete this clock"
@@ -85,19 +87,19 @@ msgstr "zmazať tieto hodiny"
 
 #: ../globaltime/gt_prefs.c:539
 msgid "move this clock first"
-msgstr ""
+msgstr "presunúť tieto hodiny na začiatok"
 
 #: ../globaltime/gt_prefs.c:544
 msgid "move this clock left"
-msgstr ""
+msgstr "presunúť tieto hodiny vľavo"
 
 #: ../globaltime/gt_prefs.c:549
 msgid "move this clock right"
-msgstr ""
+msgstr "presunúť tieto hodiny vpravo"
 
 #: ../globaltime/gt_prefs.c:554
 msgid "move this clock last"
-msgstr ""
+msgstr "Presunúť tieto hodiny na koniec"
 
 #: ../globaltime/gt_prefs.c:562
 msgid "set the timezone of this clock to be local timezone"
@@ -108,9 +110,8 @@ msgid "close window and exit"
 msgstr "zatvoriť okno a ukončiť"
 
 #: ../globaltime/gt_prefs.c:590
-#, fuzzy
 msgid "Globaltime preferences "
-msgstr "aktualizovať predvoľby"
+msgstr "Predvoľby Svetového času"
 
 #. -----------------------HEADING-------------------------------------------
 #: ../globaltime/gt_prefs.c:603
@@ -224,21 +225,20 @@ msgstr ""
 #. ------------------------underline name--------------------
 #: ../globaltime/gt_prefs.c:990
 msgid "Underline for name of clock:"
-msgstr ""
+msgstr "Podčiarknutie názvu hodín:"
 
 #. ------------------------underline time--------------------
 #: ../globaltime/gt_prefs.c:1004
 msgid "Underline for time of clock:"
-msgstr ""
+msgstr "Podčiarknutie času:"
 
 #: ../globaltime/gt_prefs.c:1027
 msgid "update preferences"
 msgstr "aktualizovať predvoľby"
 
 #: ../globaltime/gt_prefs.c:1062
-#, fuzzy
 msgid "Globaltime Preferences"
-msgstr "Všeobecné predvoľby"
+msgstr "Predvoľby Svetového času"
 
 #. -----------------------HEADING--------------------------------------
 #: ../globaltime/gt_prefs.c:1073
@@ -267,7 +267,7 @@ msgstr "Veľkosť hodín"
 
 #: ../globaltime/gt_prefs.c:1101
 msgid "Equal"
-msgstr "Totožné"
+msgstr "Rovnaká"
 
 #: ../globaltime/gt_prefs.c:1106
 msgid "All clocks have same size"
@@ -288,7 +288,7 @@ msgstr "Miestna časová zóna:"
 #: ../globaltime/timezone_selection.c:101
 #: ../panel-plugin/timezone_selection.c:102 ../src/timezone_selection.c:102
 msgid " Other"
-msgstr ""
+msgstr " Ostatné"
 
 #: ../globaltime/timezone_selection.c:156
 #: ../panel-plugin/timezone_selection.c:157 ../src/timezone_selection.c:168
@@ -351,7 +351,7 @@ msgstr ""
 #: ../globaltime/timezone_selection.c:269
 #: ../panel-plugin/timezone_selection.c:270 ../src/timezone_selection.c:281
 msgid "Country"
-msgstr ""
+msgstr "Krajina"
 
 #: ../globaltime/timezone_selection.c:299
 #: ../globaltime/timezone_selection.c:309
@@ -367,7 +367,7 @@ msgstr "Vyberte si časovú zónu"
 #: ../panel-plugin/timezone_selection.c:313 ../src/timezone_selection.c:314
 #: ../src/timezone_selection.c:324
 msgid "Change mode"
-msgstr ""
+msgstr "Zmeniť režim"
 
 #: ../globaltime/timezone_selection.c:303
 #: ../globaltime/timezone_selection.c:313
@@ -389,14 +389,12 @@ msgid "floating"
 msgstr "pohyblivá"
 
 #: ../globaltime/globaltime.desktop.in.h:1 ../src/tray_icon.c:440
-#, fuzzy
 msgid "Globaltime"
-msgstr "Miestny čas"
+msgstr "Svetový čas"
 
 #: ../globaltime/globaltime.desktop.in.h:2
-#, fuzzy
 msgid "Orage Globaltime"
-msgstr "Orage - Kalendár"
+msgstr "Orage - Svetový čas"
 
 #: ../globaltime/globaltime.desktop.in.h:3
 msgid "Show clocks from different countries"
@@ -414,12 +412,12 @@ msgstr "Zobraziť _rám"
 #. foreground color
 #: ../panel-plugin/oc_config.c:239
 msgid "set foreground _color:"
-msgstr "Nastaviť farbu _popredia:"
+msgstr "Nastaviť _farbu popredia:"
 
 #. background color
 #: ../panel-plugin/oc_config.c:253
 msgid "set _background color:"
-msgstr "Nastaviť _farbu pozadia:"
+msgstr "Nastaviť farbu _pozadia:"
 
 #. clock size (=vbox size): height and width
 #: ../panel-plugin/oc_config.c:267
@@ -445,12 +443,12 @@ msgstr "Nastavenie hodín"
 #. timezone
 #: ../panel-plugin/oc_config.c:326
 msgid "set timezone to:"
-msgstr "nastaviť časovú zónu na:"
+msgstr "Nastaviť časovú zónu na:"
 
 #: ../panel-plugin/oc_config.c:347
 #, c-format
 msgid "Line %d:"
-msgstr ""
+msgstr "Riadok %d:"
 
 #: ../panel-plugin/oc_config.c:357
 msgid "Enter any valid strftime function parameter."
@@ -496,9 +494,8 @@ msgstr ""
 "\t%X = miestny čas\t\t%x = miestny dátum"
 
 #: ../panel-plugin/oc_config.c:457
-#, fuzzy
 msgid "Orage clock Preferences"
-msgstr "Predvoľby Orage"
+msgstr "Predvoľby hodín Orage"
 
 #. no lines yet
 #. TRANSLATORS: Use format characters from strftime(3)
@@ -519,9 +516,8 @@ msgid "Maintainer"
 msgstr "Správca"
 
 #: ../src/about-xfcalendar.c:47
-#, fuzzy
 msgid "Manage your time with Orage"
-msgstr "Spravujte svoj čas pomocou Xfce4"
+msgstr "Spravujte svoj čas pomocou Orage"
 
 #. if (gtk_toggle_button_get_active(
 #. GTK_TOGGLE_BUTTON(apptw->Type_journal_rb)))
@@ -793,12 +789,12 @@ msgstr "Po skončení"
 
 #: ../src/appointment.c:2848
 msgid "Alarm"
-msgstr "Alarm"
+msgstr "Pripomienka"
 
 #. **** ALARM TIME ****
 #: ../src/appointment.c:2854
 msgid "Alarm time"
-msgstr "Čas budenia"
+msgstr "Čas pripomienky"
 
 #: ../src/appointment.c:2878
 msgid ""
@@ -810,7 +806,7 @@ msgstr ""
 
 #: ../src/appointment.c:2883
 msgid "Persistent alarm"
-msgstr "Trvalý alarm"
+msgstr "Trvalá pripomienka"
 
 #: ../src/appointment.c:2885
 msgid ""
@@ -833,7 +829,7 @@ msgstr ""
 
 #: ../src/appointment.c:2917
 msgid "Repeat alarm sound"
-msgstr "Opakovať zvukový alarm"
+msgstr "Opakovať zvukovú pripomienku"
 
 #: ../src/appointment.c:2933 ../src/appointment.c:3235
 msgid "times"
@@ -900,9 +896,8 @@ msgid "Test this alarm by raising it now"
 msgstr ""
 
 #: ../src/appointment.c:3046
-#, fuzzy
 msgid "<b>Default alarm</b>"
-msgstr "Predvolený alarm"
+msgstr "Predvolená pripomienka"
 
 #: ../src/appointment.c:3054
 msgid "Store current settings as default alarm"
@@ -1064,9 +1059,8 @@ msgstr ""
 
 #. exceptions
 #: ../src/appointment.c:3306
-#, fuzzy
 msgid "Exceptions"
-msgstr "Voľby"
+msgstr "Výnimky"
 
 #: ../src/appointment.c:3319
 msgid ""
@@ -1142,7 +1136,7 @@ msgstr ""
 
 #: ../src/day-view.c:689
 msgid "       Number of days to show"
-msgstr ""
+msgstr "       Počet zobrazených dní"
 
 #: ../src/day-view.c:920
 msgid "Orage - day view"
@@ -1221,8 +1215,8 @@ msgstr ""
 "Pre úpravu dvakrát kliknite na riadok.\n"
 "\n"
 "Značky:\n"
-"\t 1. Alarm: n=bez alarmu\n"
-"\t\tA=vizuálny alarm S=tiež zvukový alarm\n"
+"\t 1. Pripomienka: n=bez pripomienky\n"
+"\t\tA=vizuálna pripomienka S=aj zvuková pripomienka\n"
 "\t 2. Opakovanie: n=bez opakovania\n"
 "\t\t D=Denne W=Týždenne M=Mesačne Y=Ročne\n"
 "\t 3. Typ: f=dostupný B=Zaneprázdnený\n"
@@ -1296,7 +1290,7 @@ msgstr "Odobranie archívu dokončené\n"
 
 #: ../src/ical-code.c:933
 msgid "Orage default alarm"
-msgstr "Prednastavený alarm kalendára"
+msgstr "Prednastavená pripomienka kalendára"
 
 #: ../src/ical-code.c:2934
 #, c-format
@@ -1511,11 +1505,13 @@ msgid "Exchange data - Orage"
 msgstr "Výmena dát - Orage"
 
 #: ../src/main.c:193
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "\tThis is %s version %s\n"
 "\n"
-msgstr "\tToto je %s verzie %s pre Xfce %s\n"
+msgstr ""
+"\tToto je %s verzie %s\n"
+"\n"
 
 #: ../src/main.c:195
 #, c-format
@@ -1666,9 +1662,8 @@ msgid "Select _Today"
 msgstr "Vybrať _dnešný dátum"
 
 #: ../src/mainbox.c:323
-#, fuzzy
 msgid "Show _Globaltime"
-msgstr "Miestny čas"
+msgstr "Zobraziť _svetový čas"
 
 #. Help menu
 #: ../src/mainbox.c:327
@@ -1721,12 +1716,11 @@ msgid "<b>Events for %s:</b>"
 msgstr "<b>Udalosti pre %s:</b>"
 
 #: ../src/mainbox.c:574
-#, fuzzy, c-format
+#, c-format
 msgid "<b>Events for %s - %s:</b>"
-msgstr "<b>Udalosti pre %s:</b>"
+msgstr "<b>Udalosti pre %s: - %s</b>"
 
 #: ../src/parameters.c:492
-#, fuzzy
 msgid "Main settings"
 msgstr "Hlavné nastavenia"
 
@@ -1757,12 +1751,11 @@ msgstr "Zvukový príkaz"
 
 #: ../src/parameters.c:563
 msgid "This command is given to shell to make sound in alarms."
-msgstr "Tento príkaz je daný shellu za účelom prehrania zvuku alarmu."
+msgstr "Tento príkaz je daný shellu za účelom prehrania zvukovej pripomienky."
 
 #: ../src/parameters.c:579
-#, fuzzy
 msgid "Display settings"
-msgstr "Zobrazený"
+msgstr "Nastavenia zobrazenia"
 
 #: ../src/parameters.c:587
 msgid "Calendar main window"
@@ -1777,19 +1770,16 @@ msgid "Show menu"
 msgstr "Zobraziť ponuku"
 
 #: ../src/parameters.c:606
-#, fuzzy
 msgid "Show month and year"
-msgstr "Zobraziť v pagery"
+msgstr "Zobraziť mesiac a rok"
 
 #: ../src/parameters.c:613
-#, fuzzy
 msgid "Show day names"
-msgstr "Zobraziť _rám"
+msgstr "Zobraziť názvy dní"
 
 #: ../src/parameters.c:620
-#, fuzzy
 msgid "Show week numbers"
-msgstr "Zobraziť rám okna"
+msgstr "Zobraziť čísla týždňov"
 
 #: ../src/parameters.c:627
 msgid "Show todo list"
@@ -1797,7 +1787,7 @@ msgstr "Zobraziť zoznam úloh"
 
 #: ../src/parameters.c:634
 msgid "Number of days to show in event window"
-msgstr ""
+msgstr "Počet dní zobrazených v prehľadovom okne"
 
 #: ../src/parameters.c:640
 msgid "0 = do not show event list at all"
@@ -1805,12 +1795,11 @@ msgstr ""
 
 #: ../src/parameters.c:650
 msgid "Show on all desktops"
-msgstr ""
+msgstr "Zobraziť na všetkých pracovných plochách"
 
 #: ../src/parameters.c:657
-#, fuzzy
 msgid "Keep on top"
-msgstr "Nastaviť na vrchu"
+msgstr "Vždy na vrchu"
 
 #: ../src/parameters.c:664
 msgid "Show in taskbar"
@@ -1841,7 +1830,6 @@ msgid "Minimized"
 msgstr "Minimalizovaný"
 
 #: ../src/parameters.c:767
-#, fuzzy
 msgid "Extra settings"
 msgstr "Ďalšie nastavenia"
 
@@ -1851,17 +1839,16 @@ msgid "On Calendar Window Open"
 msgstr "Hlavné okno kalendára"
 
 #: ../src/parameters.c:794
-#, fuzzy
 msgid "Select Today's Date"
 msgstr "Vybrať _dnešný dátum"
 
 #: ../src/parameters.c:807
 msgid "Select Previously Selected Date"
-msgstr ""
+msgstr "Vybrať naposledy vybraný dátum"
 
 #: ../src/parameters.c:824
 msgid "Use dynamic tray icon"
-msgstr ""
+msgstr "Použiť dynamickú ikonu v oznamovacej oblasti"
 
 #: ../src/parameters.c:829
 #, fuzzy
@@ -1939,7 +1926,7 @@ msgstr ""
 
 #: ../src/reminder.c:1032
 msgid "Next active alarms:"
-msgstr "Nasledujúce aktívne alarmy:"
+msgstr "Nasledujúce aktívne pripomienky:"
 
 #: ../src/reminder.c:1074 ../src/reminder.c:1079
 #, c-format
@@ -1957,7 +1944,7 @@ msgid ""
 "No active alarms found"
 msgstr ""
 "\n"
-"Nenašli sa žiadne aktívne alarmy"
+"Nenašli sa žiadne aktívne pripomienky"
 
 #: ../src/timezone_names.c:36
 msgid "Africa"
@@ -2873,7 +2860,7 @@ msgstr "Ázia/Kuching"
 
 #: ../src/timezone_names.c:264
 msgid "Asia/Kuwait"
-msgstr "Ázia/Kuwait"
+msgstr "Ázia/Kuvajt"
 
 #: ../src/timezone_names.c:265
 msgid "Asia/Macao"
@@ -3037,7 +3024,7 @@ msgstr "Atlantik/Madeira"
 
 #: ../src/timezone_names.c:305
 msgid "Atlantic/Reykjavik"
-msgstr "Atlantik/Reykjavik"
+msgstr "Atlantik/Reykjavík"
 
 #: ../src/timezone_names.c:306
 msgid "Atlantic/South_Georgia"
@@ -3109,7 +3096,7 @@ msgstr "Európa/Andorra"
 
 #: ../src/timezone_names.c:323
 msgid "Europe/Athens"
-msgstr "Európa/Athens"
+msgstr "Európa/Atény"
 
 #: ../src/timezone_names.c:324
 msgid "Europe/Belfast"
@@ -3121,7 +3108,7 @@ msgstr "Európa/Belgrade"
 
 #: ../src/timezone_names.c:326
 msgid "Europe/Berlin"
-msgstr "Európa/Berlin"
+msgstr "Európa/Berlín"
 
 #: ../src/timezone_names.c:327
 msgid "Europe/Bratislava"
@@ -3129,15 +3116,15 @@ msgstr "Európa/Bratislava"
 
 #: ../src/timezone_names.c:328
 msgid "Europe/Brussels"
-msgstr "Európa/Brussels"
+msgstr "Európa/Brusel"
 
 #: ../src/timezone_names.c:329
 msgid "Europe/Bucharest"
-msgstr "Európa/Bucharest"
+msgstr "Európa/Bukurešť"
 
 #: ../src/timezone_names.c:330
 msgid "Europe/Budapest"
-msgstr "Európa/Budapest"
+msgstr "Európa/Budapešt"
 
 #: ../src/timezone_names.c:331
 msgid "Europe/Chisinau"
@@ -3145,7 +3132,7 @@ msgstr "Európa/Chisinau"
 
 #: ../src/timezone_names.c:332
 msgid "Europe/Copenhagen"
-msgstr "Európa/Copenhagen"
+msgstr "Európa/Kodaň"
 
 #: ../src/timezone_names.c:333
 msgid "Europe/Dublin"
@@ -3181,11 +3168,11 @@ msgstr "Európa/Ljubljana"
 
 #: ../src/timezone_names.c:341
 msgid "Europe/London"
-msgstr "Európa/London"
+msgstr "Európa/Londín"
 
 #: ../src/timezone_names.c:342
 msgid "Europe/Luxembourg"
-msgstr "Európa/Luxembourg"
+msgstr "Európa/Luxemburg"
 
 #: ../src/timezone_names.c:343
 msgid "Europe/Madrid"
@@ -3205,7 +3192,7 @@ msgstr "Európa/Monaco"
 
 #: ../src/timezone_names.c:347
 msgid "Europe/Moscow"
-msgstr "Európa/Moscow"
+msgstr "Európa/Moskva"
 
 #: ../src/timezone_names.c:348
 msgid "Europe/Nicosia"
@@ -3217,11 +3204,11 @@ msgstr "Európa/Oslo"
 
 #: ../src/timezone_names.c:350
 msgid "Europe/Paris"
-msgstr "Európa/Paris"
+msgstr "Európa/Paríž"
 
 #: ../src/timezone_names.c:351
 msgid "Europe/Prague"
-msgstr "Európa/Prague"
+msgstr "Európa/Praha"
 
 #: ../src/timezone_names.c:352
 msgid "Europe/Riga"
@@ -3245,7 +3232,7 @@ msgstr "Európa/Sarajevo"
 
 #: ../src/timezone_names.c:357
 msgid "Europe/Simferopol"
-msgstr "Európa/Simferopol"
+msgstr "Európa/Simferopoľ"
 
 #: ../src/timezone_names.c:358
 msgid "Europe/Skopje"
@@ -3257,7 +3244,7 @@ msgstr "Európa/Sofia"
 
 #: ../src/timezone_names.c:360
 msgid "Europe/Stockholm"
-msgstr "Európa/Stockholm"
+msgstr "Európa/Štokholm"
 
 #: ../src/timezone_names.c:361
 msgid "Europe/Tallinn"
@@ -3265,11 +3252,11 @@ msgstr "Európa/Tallinn"
 
 #: ../src/timezone_names.c:362
 msgid "Europe/Tirane"
-msgstr "Európa/Tirane"
+msgstr "Európa/Tirana"
 
 #: ../src/timezone_names.c:363
 msgid "Europe/Uzhgorod"
-msgstr "Európa/Uzhgorod"
+msgstr "Európa/Užhorod"
 
 #: ../src/timezone_names.c:364
 msgid "Europe/Vaduz"
@@ -3277,11 +3264,11 @@ msgstr "Európa/Vaduz"
 
 #: ../src/timezone_names.c:365
 msgid "Europe/Vatican"
-msgstr "Európa/Vatican"
+msgstr "Európa/Vatikán"
 
 #: ../src/timezone_names.c:366
 msgid "Europe/Vienna"
-msgstr "Európa/Vienna"
+msgstr "Európa/Viedeň"
 
 #: ../src/timezone_names.c:367
 msgid "Europe/Vilnius"
@@ -3289,11 +3276,11 @@ msgstr "Európa/Vilnius"
 
 #: ../src/timezone_names.c:368
 msgid "Europe/Warsaw"
-msgstr "Európa/Warsaw"
+msgstr "Európa/Varšava"
 
 #: ../src/timezone_names.c:369
 msgid "Europe/Zagreb"
-msgstr "Európa/Zagreb"
+msgstr "Európa/Záhreb"
 
 #: ../src/timezone_names.c:370
 msgid "Europe/Zaporozhye"
@@ -3337,11 +3324,11 @@ msgstr "India/Mahe"
 
 #: ../src/timezone_names.c:380
 msgid "Indian/Maldives"
-msgstr "India/Maldives"
+msgstr "India/Maldivy"
 
 #: ../src/timezone_names.c:381
 msgid "Indian/Mauritius"
-msgstr "India/Mauritius"
+msgstr "India/Maurícius"
 
 #: ../src/timezone_names.c:382
 msgid "Indian/Mayotte"
@@ -3349,7 +3336,7 @@ msgstr "India/Mayotte"
 
 #: ../src/timezone_names.c:383
 msgid "Indian/Reunion"
-msgstr "India/Reunion"
+msgstr "India/Réunion"
 
 #: ../src/timezone_names.c:384
 msgid "Pacific"
@@ -3520,9 +3507,8 @@ msgid "About Orage"
 msgstr "O programe"
 
 #: ../panel-plugin/xfce4-orageclock-plugin.desktop.in.in.h:1
-#, fuzzy
 msgid "Orage Panel Clock"
-msgstr "Hodiny Orage"
+msgstr "Panel hodín Orage"
 
 #: ../panel-plugin/xfce4-orageclock-plugin.desktop.in.in.h:2
 #, fuzzy
@@ -3540,7 +3526,6 @@ msgid "Orage Calendar Preferences"
 msgstr "Predvoľby Orage"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:3
-#, fuzzy
 msgid "Orage preferences"
 msgstr "Predvoľby Orage"
 
@@ -3553,9 +3538,8 @@ msgid "Desktop calendar"
 msgstr "Kalendár pracovnej plochy"
 
 #: ../xfcalendar.desktop.in.h:3
-#, fuzzy
 msgid "Orage Calendar"
-msgstr "Orage - Kalendár"
+msgstr "Kalendár Orage"
 
 #~ msgid "Orage clock"
 #~ msgstr "Hodiny Orage"
