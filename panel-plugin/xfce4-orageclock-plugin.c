@@ -286,6 +286,8 @@ void oc_tune_interval(Clock *clock)
 
 void oc_init_timer(Clock *clock)
 {
+    /* Fix for bug 7232. Need to make sure timezone is correct. */
+    tzset(); 
     clock->interval = OC_BASE_INTERVAL;
     if (!clock->hib_timing) /* using suspend/hibernate, do not tune time */
         oc_tune_interval(clock);
@@ -376,6 +378,8 @@ static gboolean popup_program(GtkWidget *widget, gchar *program, Clock *clock
 static gboolean on_button_press_event_cb(GtkWidget *widget
         , GdkEventButton *event, Clock *clock)
 {
+    /* Fix for bug 7232. Need to make sure timezone is correct. */
+    tzset(); 
     if (event->type != GDK_BUTTON_PRESS) /* double or triple click */
         return(FALSE); /* ignore */
     if (event->button == 1)
