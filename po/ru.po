@@ -18,8 +18,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: KBabel 1.11.4\n"
 
 #: ../globaltime/globaltime.c:100
@@ -57,8 +56,7 @@ msgid "adjust to change hour"
 msgstr "изменить часы"
 
 #: ../globaltime/globaltime.c:496
-msgid ""
-"adjust to change minute. Click arrows with button 2 to change only 1 minute."
+msgid "adjust to change minute. Click arrows with button 2 to change only 1 minute."
 msgstr "изменяет минуту. Щелчок кнопкой 2 изменяет минуту с шагом 1."
 
 #: ../globaltime/gt_prefs.c:265 ../globaltime/gt_prefs.c:266
@@ -468,18 +466,8 @@ msgid "fix time after suspend/hibernate"
 msgstr "Исправлять время после спящего/ждущего режимов"
 
 #: ../panel-plugin/oc_config.c:415
-msgid ""
-"You only need this if you do short term (less than 5 hours) suspend or "
-"hibernate and your visible time does not include seconds. Under these "
-"circumstances it is possible that Orageclock shows time inaccurately unless "
-"you have this selected. (Selecting this prevents cpu and interrupt saving "
-"features from working.)"
-msgstr ""
-"Это нужно только если вы выключаете на короткий срок (менее 5 часов) "
-"включаете ждущий или спящий режим и в отображаемое время не включаются "
-"секунды. В этих условиях Orageclock возможно будет неаккуратно показывать "
-"время, если не выбрать этот пункт. (Выбор пункта мешает процессору и "
-"прерывает функции сохранения.)"
+msgid "You only need this if you do short term (less than 5 hours) suspend or hibernate and your visible time does not include seconds. Under these circumstances it is possible that Orageclock shows time inaccurately unless you have this selected. (Selecting this prevents cpu and interrupt saving features from working.)"
+msgstr "Это нужно только если вы выключаете на короткий срок (менее 5 часов) включаете ждущий или спящий режим и в отображаемое время не включаются секунды. В этих условиях Orageclock возможно будет неаккуратно показывать время, если не выбрать этот пункт. (Выбор пункта мешает процессору и прерывает функции сохранения.)"
 
 #: ../panel-plugin/oc_config.c:432
 msgid ""
@@ -515,7 +503,7 @@ msgstr "Настройки часов Orage"
 #. * %B  : full month name
 #. * %Y  : four digit year
 #. * %V  : ISO week number
-#.
+#. 
 #: ../panel-plugin/xfce4-orageclock-plugin.c:623
 msgid "%A %d %B %Y/%V"
 msgstr "%A, %d %b, %Y"
@@ -753,12 +741,8 @@ msgid "Categories"
 msgstr "Категории"
 
 #: ../src/appointment.c:2729
-msgid ""
-"This is special category, which can be used to color this appointment in "
-"list views."
-msgstr ""
-"Это особая категория, которая используется для выделения цветом встреч в "
-"спсике."
+msgid "This is special category, which can be used to color this appointment in list views."
+msgstr "Это особая категория, которая используется для выделения цветом встреч в спсике."
 
 #: ../src/appointment.c:2734
 msgid "update colors for categories."
@@ -783,8 +767,7 @@ msgid ""
 "\n"
 "These are converted only later when they are seen:\n"
 "    <&Ynnnn> is translated to current year minus nnnn.\n"
-"(This can be used for example in birthday reminders to tell how old the "
-"person will be.)"
+"(This can be used for example in birthday reminders to tell how old the person will be.)"
 msgstr ""
 "Эти сокращения раскрываются немедленно:\n"
 "    <D> текущая дата в местном формате,\n"
@@ -837,12 +820,8 @@ msgid "Persistent alarm"
 msgstr "Постоянный будильник"
 
 #: ../src/appointment.c:2885
-msgid ""
-"Select this if you want Orage to remind you even if it has not been active "
-"when the alarm happened."
-msgstr ""
-"Выберите, если хотите, чтобы срабатывал будильник Orage, даже если "
-"приложение не активно."
+msgid "Select this if you want Orage to remind you even if it has not been active when the alarm happened."
+msgstr "Выберите, если хотите, чтобы срабатывал будильник Orage, даже если приложение не активно."
 
 #. **** Audio Alarm ****
 #: ../src/appointment.c:2894
@@ -1088,19 +1067,13 @@ msgid "TODO base"
 msgstr "Начальная дата задачи"
 
 #: ../src/appointment.c:3297
-msgid ""
-"TODO reoccurs regularly starting on start time and repeating after each "
-"interval no matter when it was last completed"
-msgstr ""
-"Время повтора задачи отсчитывается от времени ее начала, и не зависит от "
-"того, была ли задача выполнена"
+msgid "TODO reoccurs regularly starting on start time and repeating after each interval no matter when it was last completed"
+msgstr "Время повтора задачи отсчитывается от времени ее начала, и не зависит от того, была ли задача выполнена"
 
 #: ../src/appointment.c:3299
 msgid ""
-"TODO reoccurrency is based on complete time and repeats after the interval "
-"counted from the last completed time.\n"
-"(Note that you can not tell anything about the history of the TODO since "
-"reoccurrence base changes after each completion.)"
+"TODO reoccurrency is based on complete time and repeats after the interval counted from the last completed time.\n"
+"(Note that you can not tell anything about the history of the TODO since reoccurrence base changes after each completion.)"
 msgstr ""
 "Время повтора задачи отсчитывается от времени ее выполнения.\n"
 "(Учтите, что начальная дата задачи будет изменяться с каждым повторением.)"
@@ -1113,8 +1086,7 @@ msgstr "Исключения"
 #: ../src/appointment.c:3319
 msgid ""
 "Add more exception dates by clicking the calendar days below.\n"
-"Exception is either exclusion(-) or inclusion(+) depending on the "
-"selection.\n"
+"Exception is either exclusion(-) or inclusion(+) depending on the selection.\n"
 "Remove by clicking the data."
 msgstr ""
 "Можно добавить исключения, щелкая по дням в календаре.\n"
@@ -1134,12 +1106,8 @@ msgid "Add included time (+)"
 msgstr "Добавить включенное время (+)"
 
 #: ../src/appointment.c:3334
-msgid ""
-"Included times have same timezone than start time, but they may have "
-"different time"
-msgstr ""
-"Событие происходит также во включенное время. Оно задается в том же часовом "
-"поясе, что и время начала события."
+msgid "Included times have same timezone than start time, but they may have different time"
+msgstr "Событие происходит также во включенное время. Оно задается в том же часовом поясе, что и время начала события."
 
 #. calendars showing the action days
 #: ../src/appointment.c:3351
@@ -1349,17 +1317,12 @@ msgstr "Будильник по умолчанию"
 #: ../src/ical-code.c:2934
 #, c-format
 msgid "Build alarm list: Added %d alarms. Processed %d events."
-msgstr ""
-"Построение списка будильников: добавлено %d будильников, обработано %d "
-"событий."
+msgstr "Построение списка будильников: добавлено %d будильников, обработано %d событий."
 
 #: ../src/ical-code.c:2936
 #, c-format
-msgid ""
-"\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
-msgstr ""
-"\tНайдено %d будильников, из них активных: %d (просмотрено %d повторяющихся "
-"будильников)."
+msgid "\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
+msgstr "\tНайдено %d будильников, из них активных: %d (просмотрено %d повторяющихся будильников)."
 
 #: ../src/ical-expimp.c:141
 msgid "Starting import file preprocessing"
@@ -1484,8 +1447,7 @@ msgid ""
 "This is useful for example when doing export and moving orage\n"
 "appointments to another system."
 msgstr ""
-"Вернуть всех архивированные события в главный файл Orage и удалить файл "
-"архива.\n"
+"Вернуть всех архивированные события в главный файл Orage и удалить файл архива.\n"
 "Это полезно, например, при экспорте и перемещении событий Orage \n"
 "на другие системы."
 
@@ -1565,27 +1527,23 @@ msgstr "Только для чтения"
 
 #: ../src/interface.c:1289
 msgid ""
-"Set this if you want to make sure that this file is never modified by "
-"Orage.\n"
-"Note that modifying foreign files may make them incompatible with the "
-"original tool, where they came from!"
+"Set this if you want to make sure that this file is never modified by Orage.\n"
+"Note that modifying foreign files may make them incompatible with the original tool, where they came from!"
 msgstr ""
-"Установите, если необходимо убедиться, что это файл никогда не будет изменет "
-"Orage.\n"
-"Внимание! Изменение внешних файлов может сделать их недоступными для "
-"исходной утилиты, с помощью которой они созданы."
+"Установите, если необходимо убедиться, что это файл никогда не будет изменет Orage.\n"
+"Внимание! Изменение внешних файлов может сделать их недоступными для исходной утилиты, с помощью которой они созданы."
 
 #: ../src/interface.c:1303
 msgid "Exchange data - Orage"
 msgstr "Обмен данными - Orage"
 
 #: ../src/main.c:193
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "\tThis is %s version %s\n"
 "\n"
 msgstr ""
-"\tЭто %s версия %s для Xfce %s\n"
+"\tЭто %s версия %s \n"
 "\n"
 
 #: ../src/main.c:195
@@ -1699,12 +1657,8 @@ msgstr "\tdbus не включён в orage. \n"
 
 #: ../src/main.c:243
 #, c-format
-msgid ""
-"\twithout dbus [files] and foreign file options(-a & -r) can only be used "
-"when starting orage \n"
-msgstr ""
-"\tбез dbus [files] и опции внешних файлов (-a & -r) можно использовать "
-"только при запуске orage \n"
+msgid "\twithout dbus [files] and foreign file options(-a & -r) can only be used when starting orage \n"
+msgstr "\tбез dbus [files] и опции внешних файлов (-a & -r) можно использовать только при запуске orage \n"
 
 #: ../src/main.c:387
 #, c-format
@@ -1821,9 +1775,7 @@ msgstr "(0 = не архивировать)"
 
 #: ../src/parameters.c:539
 msgid "Archiving is used to save time and space when handling events."
-msgstr ""
-"Архивирование используется для сохранения времени и места при обработке "
-"событий."
+msgstr "Архивирование используется для сохранения времени и места при обработке событий."
 
 #: ../src/parameters.c:548
 msgid "Sound command"
@@ -1831,8 +1783,7 @@ msgstr "Команда звука"
 
 #: ../src/parameters.c:563
 msgid "This command is given to shell to make sound in alarms."
-msgstr ""
-"Эта команда передается оболочке для воспроизведения звука в будильнике."
+msgstr "Эта команда передается оболочке для воспроизведения звука в будильнике."
 
 #: ../src/parameters.c:579
 #, fuzzy
@@ -1877,7 +1828,7 @@ msgstr "0 = не отображать список событий"
 
 #: ../src/parameters.c:650
 msgid "Show on all desktops"
-msgstr ""
+msgstr "Показывать на всех рабочих столах"
 
 #: ../src/parameters.c:657
 #, fuzzy
@@ -1928,8 +1879,9 @@ msgid "Select Today's Date"
 msgstr "Перейти к _сегодняшнему дню"
 
 #: ../src/parameters.c:807
+#, fuzzy
 msgid "Select Previously Selected Date"
-msgstr ""
+msgstr "Перейти к предыдущей дате"
 
 #: ../src/parameters.c:824
 msgid "Use dynamic tray icon"
@@ -1941,9 +1893,7 @@ msgstr "Динамический значок"
 
 #: ../src/parameters.c:835
 msgid "Dynamic icon shows current month and day of the month."
-msgstr ""
-"Динамическая иконка показывает текущие месяц и число. Она используется "
-"только на панели оповещений."
+msgstr "Динамическая иконка показывает текущие месяц и число. Она используется только на панели оповещений."
 
 #: ../src/parameters.c:844
 msgid "Main Calendar double click shows"
@@ -1966,11 +1916,8 @@ msgid "Number of extra days to show in event list"
 msgstr "Число последующих дней в списке событий"
 
 #: ../src/parameters.c:894
-msgid ""
-"This is just the default value, you can change it in the actual eventlist "
-"window."
-msgstr ""
-"Это просто значение по умолчанию, его можно изменить в окне списка событий."
+msgid "This is just the default value, you can change it in the actual eventlist window."
+msgstr "Это просто значение по умолчанию, его можно изменить в окне списка событий."
 
 #: ../src/parameters.c:911
 msgid "Orage Preferences"
@@ -3649,12 +3596,8 @@ msgstr "Календарь Orage"
 #~ msgid "Select always today"
 #~ msgstr "Всегда выбирать сегодняшний день"
 
-#~ msgid ""
-#~ "When showing main calendar, set pointer to either previously selected day "
-#~ "or always to current day."
-#~ msgstr ""
-#~ "При открытии главного календаря, указатель будет установлен на предыдущий "
-#~ "выбранный день или на сегодня."
+#~ msgid "When showing main calendar, set pointer to either previously selected day or always to current day."
+#~ msgstr "При открытии главного календаря, указатель будет установлен на предыдущий выбранный день или на сегодня."
 
 #~ msgid "Ending time adjustment mode"
 #~ msgstr "Режим изменения времени окончания"
@@ -3684,12 +3627,8 @@ msgstr "Календарь Orage"
 #~ msgid "Modify Preferences"
 #~ msgstr "Изменить настройки"
 
-#~ msgid ""
-#~ "Enter local timezone. (it is used to show if time is on previous(-) or "
-#~ "next date(+) by adding a +/- after the time)"
-#~ msgstr ""
-#~ "Укажите часовой пояс. (Используется для отображения в случае когда время "
-#~ "в предыдущей(-) или следующей(+) дате, добавляя +/- после времени)"
+#~ msgid "Enter local timezone. (it is used to show if time is on previous(-) or next date(+) by adding a +/- after the time)"
+#~ msgstr "Укажите часовой пояс. (Используется для отображения в случае когда время в предыдущей(-) или следующей(+) дате, добавляя +/- после времени)"
 
 #~ msgid "Set any valid timezone (=TZ) value or pick one from the list."
 #~ msgstr "Укажите часовой пояс (=TZ) или выберите его из списка."
@@ -3724,14 +3663,8 @@ msgstr "Календарь Orage"
 #~ msgid "(0 = use static icon)"
 #~ msgstr "(0 = статический значок)"
 
-#~ msgid ""
-#~ "Dynamic icon shows current day and month. It is visible only in tray. If "
-#~ "tray is too small for dynamic icon size, Orage switches automatically "
-#~ "back to static icon."
-#~ msgstr ""
-#~ "Динамический значок показывает сегодняшнее число и месяц. Он видима в "
-#~ "системном лотке. Если лоток слишком мал для динамического размера, Orage "
-#~ "автоматически переключается на статический значок."
+#~ msgid "Dynamic icon shows current day and month. It is visible only in tray. If tray is too small for dynamic icon size, Orage switches automatically back to static icon."
+#~ msgstr "Динамический значок показывает сегодняшнее число и месяц. Он видима в системном лотке. Если лоток слишком мал для динамического размера, Orage автоматически переключается на статический значок."
 
 #~ msgid "Calendar Settings"
 #~ msgstr "Настройки календаря"

@@ -119,6 +119,7 @@ static void orage_file_entry_changed(GtkWidget *dialog, gpointer user_data)
     }
 }
 
+/* FIXME: This is now available in functions.c as orage_copy_file */
 static gboolean copy_file(gchar *source, gchar *target)
 {
     gchar *text;
@@ -317,12 +318,14 @@ static void orage_file_open_button_clicked(GtkButton *button
 {
     intf_win *intf_w = (intf_win *)user_data;
     GtkWidget *f_chooser;
-    gchar *rcfile;
+    gchar *rcfile, *rcdir;
     gchar *s;
 
-    rcfile = orage_data_file_location(ORAGE_DIR);
+    rcdir = g_path_get_dirname((const gchar *)g_par.orage_file);
+    rcfile = g_path_get_basename((const gchar *)g_par.orage_file);
     f_chooser = orage_file_chooser(intf_w->main_window, TRUE
-            , g_par.orage_file, rcfile, ORAGE_APP_FILE);
+            , g_par.orage_file, rcdir, rcfile);
+    g_free(rcdir);
     g_free(rcfile);
 
     if (gtk_dialog_run(GTK_DIALOG(f_chooser)) == GTK_RESPONSE_ACCEPT) {
@@ -344,12 +347,14 @@ static void archive_file_open_button_clicked(GtkButton *button
 {
     intf_win *intf_w = (intf_win *)user_data;
     GtkWidget *f_chooser;
-    gchar *rcfile;
+    gchar *rcfile, *rcdir;
     gchar *s;
 
-    rcfile = orage_data_file_location(ORAGE_DIR);
+    rcdir = g_path_get_dirname((const gchar *)g_par.archive_file);
+    rcfile = g_path_get_basename((const gchar *)g_par.archive_file);
     f_chooser = orage_file_chooser(intf_w->main_window, TRUE
-            , g_par.archive_file, rcfile, ORAGE_ARC_FILE);
+            , g_par.archive_file, rcdir, rcfile);
+    g_free(rcdir);
     g_free(rcfile);
 
     if (gtk_dialog_run(GTK_DIALOG(f_chooser)) == GTK_RESPONSE_ACCEPT) {
