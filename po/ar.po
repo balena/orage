@@ -2,7 +2,7 @@
 # Copyright (C) 2003-2006 The Xfce development team.
 # This file is distributed under the same license as the orage package.
 # Saleh Alhathal <hathalsal@hotmail.com>, 2004.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: xfcalendar\n"
@@ -30,9 +30,10 @@ msgid ""
 "%s\n"
 "click to modify clock"
 msgstr ""
+"%s\n"
+"إضغط ﻷتحرير الساعة"
 
 #: ../globaltime/globaltime.c:386
-#, fuzzy
 msgid "Localtime"
 msgstr "المكان"
 
@@ -41,35 +42,37 @@ msgid ""
 "button 1 to change preferences \n"
 "button 2 to adjust time of clocks"
 msgstr ""
+"الزر 1 لتحرير الإعدادات \n"
+"الزر 2 لضبظ الساعة"
 
 #: ../globaltime/globaltime.c:480
 msgid "adjust to change hour"
-msgstr ""
+msgstr "ضبط لتغيير الساعة"
 
 #: ../globaltime/globaltime.c:496
-msgid ""
-"adjust to change minute. Click arrows with button 2 to change only 1 minute."
-msgstr ""
+msgid "adjust to change minute. Click arrows with button 2 to change only 1 minute."
+msgstr "لضبط الدقائق. إضغط فوق مع الزر 2 لتغيير دقيقة واحدة."
 
 #: ../globaltime/gt_prefs.c:265 ../globaltime/gt_prefs.c:266
 msgid "NEW"
-msgstr ""
+msgstr "جديد"
 
 #: ../globaltime/gt_prefs.c:289
 msgid "NEW COPY"
-msgstr ""
+msgstr "نسجة جديدة"
 
 #: ../globaltime/gt_prefs.c:310
 msgid "Not possible to delete the last clock."
-msgstr ""
+msgstr "لا يمكن حذف الساعة الماضية."
 
 #: ../globaltime/gt_prefs.c:516
+#, fuzzy
 msgid "update this clock"
-msgstr ""
+msgstr "تحديث هذه الساعة"
 
 #: ../globaltime/gt_prefs.c:521 ../globaltime/gt_prefs.c:1034
 msgid "add new empty clock"
-msgstr ""
+msgstr "إضافة ساعة فارغة"
 
 #: ../globaltime/gt_prefs.c:526
 msgid "add new clock using this clock as model"
@@ -473,12 +476,7 @@ msgid "fix time after suspend/hibernate"
 msgstr ""
 
 #: ../panel-plugin/oc_config.c:415
-msgid ""
-"You only need this if you do short term (less than 5 hours) suspend or "
-"hibernate and your visible time does not include seconds. Under these "
-"circumstances it is possible that Orageclock shows time inaccurately unless "
-"you have this selected. (Selecting this prevents cpu and interrupt saving "
-"features from working.)"
+msgid "You only need this if you do short term (less than 5 hours) suspend or hibernate and your visible time does not include seconds. Under these circumstances it is possible that Orageclock shows time inaccurately unless you have this selected. (Selecting this prevents cpu and interrupt saving features from working.)"
 msgstr ""
 
 #: ../panel-plugin/oc_config.c:432
@@ -507,7 +505,7 @@ msgstr "أداء"
 #. * %B  : full month name
 #. * %Y  : four digit year
 #. * %V  : ISO week number
-#.
+#. 
 #: ../panel-plugin/xfce4-orageclock-plugin.c:623
 msgid "%A %d %B %Y/%V"
 msgstr ""
@@ -744,9 +742,7 @@ msgid "Categories"
 msgstr ""
 
 #: ../src/appointment.c:2729
-msgid ""
-"This is special category, which can be used to color this appointment in "
-"list views."
+msgid "This is special category, which can be used to color this appointment in list views."
 msgstr ""
 
 #: ../src/appointment.c:2734
@@ -772,8 +768,7 @@ msgid ""
 "\n"
 "These are converted only later when they are seen:\n"
 "    <&Ynnnn> is translated to current year minus nnnn.\n"
-"(This can be used for example in birthday reminders to tell how old the "
-"person will be.)"
+"(This can be used for example in birthday reminders to tell how old the person will be.)"
 msgstr ""
 
 #: ../src/appointment.c:2840
@@ -815,9 +810,7 @@ msgid "Persistent alarm"
 msgstr ""
 
 #: ../src/appointment.c:2885
-msgid ""
-"Select this if you want Orage to remind you even if it has not been active "
-"when the alarm happened."
+msgid "Select this if you want Orage to remind you even if it has not been active when the alarm happened."
 msgstr ""
 
 #. **** Audio Alarm ****
@@ -1053,17 +1046,13 @@ msgid "TODO base"
 msgstr ""
 
 #: ../src/appointment.c:3297
-msgid ""
-"TODO reoccurs regularly starting on start time and repeating after each "
-"interval no matter when it was last completed"
+msgid "TODO reoccurs regularly starting on start time and repeating after each interval no matter when it was last completed"
 msgstr ""
 
 #: ../src/appointment.c:3299
 msgid ""
-"TODO reoccurrency is based on complete time and repeats after the interval "
-"counted from the last completed time.\n"
-"(Note that you can not tell anything about the history of the TODO since "
-"reoccurrence base changes after each completion.)"
+"TODO reoccurrency is based on complete time and repeats after the interval counted from the last completed time.\n"
+"(Note that you can not tell anything about the history of the TODO since reoccurrence base changes after each completion.)"
 msgstr ""
 
 #. exceptions
@@ -1075,8 +1064,7 @@ msgstr "خيارات الساعة"
 #: ../src/appointment.c:3319
 msgid ""
 "Add more exception dates by clicking the calendar days below.\n"
-"Exception is either exclusion(-) or inclusion(+) depending on the "
-"selection.\n"
+"Exception is either exclusion(-) or inclusion(+) depending on the selection.\n"
 "Remove by clicking the data."
 msgstr ""
 
@@ -1093,9 +1081,7 @@ msgid "Add included time (+)"
 msgstr ""
 
 #: ../src/appointment.c:3334
-msgid ""
-"Included times have same timezone than start time, but they may have "
-"different time"
+msgid "Included times have same timezone than start time, but they may have different time"
 msgstr ""
 
 #. calendars showing the action days
@@ -1300,8 +1286,7 @@ msgstr ""
 
 #: ../src/ical-code.c:2936
 #, c-format
-msgid ""
-"\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
+msgid "\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
 msgstr ""
 
 #: ../src/ical-expimp.c:141
@@ -1505,10 +1490,8 @@ msgstr ""
 
 #: ../src/interface.c:1289
 msgid ""
-"Set this if you want to make sure that this file is never modified by "
-"Orage.\n"
-"Note that modifying foreign files may make them incompatible with the "
-"original tool, where they came from!"
+"Set this if you want to make sure that this file is never modified by Orage.\n"
+"Note that modifying foreign files may make them incompatible with the original tool, where they came from!"
 msgstr ""
 
 #: ../src/interface.c:1303
@@ -1631,9 +1614,7 @@ msgstr ""
 
 #: ../src/main.c:243
 #, c-format
-msgid ""
-"\twithout dbus [files] and foreign file options(-a & -r) can only be used "
-"when starting orage \n"
+msgid "\twithout dbus [files] and foreign file options(-a & -r) can only be used when starting orage \n"
 msgstr ""
 
 #: ../src/main.c:387
@@ -1884,9 +1865,7 @@ msgid "Number of extra days to show in event list"
 msgstr ""
 
 #: ../src/parameters.c:894
-msgid ""
-"This is just the default value, you can change it in the actual eventlist "
-"window."
+msgid "This is just the default value, you can change it in the actual eventlist window."
 msgstr ""
 
 #: ../src/parameters.c:911
@@ -3555,18 +3534,15 @@ msgstr "ملفات التقويم "
 #~ msgid "Warning"
 #~ msgstr "تحذير"
 
-#, fuzzy
 #~ msgid "Select always today"
 #~ msgstr "إختر اليوم"
 
-#, fuzzy
 #~ msgid "Vary"
 #~ msgstr "سنوي"
 
 #~ msgid "Select timezone"
 #~ msgstr "إختيار النطاق"
 
-#, fuzzy
 #~ msgid "Modify Preferences"
 #~ msgstr "أداء"
 
@@ -3588,27 +3564,21 @@ msgstr "ملفات التقويم "
 #~ msgid "Xfce 4 Calendar Settings"
 #~ msgstr "خيارات التقويم"
 
-#, fuzzy
 #~ msgid "Monday"
 #~ msgstr "اليوم"
 
-#, fuzzy
 #~ msgid "Tuesday"
 #~ msgstr "اليوم"
 
-#, fuzzy
 #~ msgid "Wednesday"
 #~ msgstr "ايام الاسبوع"
 
-#, fuzzy
 #~ msgid "Thursday"
 #~ msgstr "اليوم"
 
-#, fuzzy
 #~ msgid "Friday"
 #~ msgstr "الجمعة"
 
-#, fuzzy
 #~ msgid "Sunday"
 #~ msgstr "صوت"
 
@@ -3652,18 +3622,14 @@ msgstr "ملفات التقويم "
 #~ msgid "Close archive file"
 #~ msgstr "غلق ملف الأرشيف"
 
-#, fuzzy
 #~ msgid "Saturday"
 #~ msgstr "صوت"
 
-#, fuzzy
 #~ msgid "Days"
 #~ msgstr "اليوم"
 
-#, fuzzy
 #~ msgid "Calendar borders"
 #~ msgstr "ملفات التقويم "
 
-#, fuzzy
 #~ msgid "Calendar Files"
 #~ msgstr "ملفات التقويم "
