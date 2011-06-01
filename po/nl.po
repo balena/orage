@@ -1099,11 +1099,15 @@ msgid ""
 "(Note that you can not tell anything about the history of the TODO since "
 "reoccurrence base changes after each completion.)"
 msgstr ""
+"Te Doen-verschijning wordt gebaseerd op voltooiingstijd en herhaalt zich na "
+"de interval, geteld vanaf de laatste voltooiingstijd.\n"
+"Let op: u kunt niets afleiden uit de geschiedenis van Te Doen, aangezien "
+"de gegevensbank voor herhaling, verandert na elke voltooiing."
 
 #. exceptions
 #: ../src/appointment.c:3306
 msgid "Exceptions"
-msgstr ""
+msgstr "Uitzonderingen"
 
 #: ../src/appointment.c:3319
 msgid ""
@@ -1112,29 +1116,35 @@ msgid ""
 "selection.\n"
 "Remove by clicking the data."
 msgstr ""
+"Voeg meer uitzonderingsdata toe, door te klikken op de kalender-\n"
+"dagen hieronder. Uitzondering is of uitsluiting(-) of insluiting(+), "
+"afhankelijk van de keuze.\n"
+"Verwijder door de data aan te klikken."
 
 #: ../src/appointment.c:3324
 msgid "Add excluded date (-)"
-msgstr ""
+msgstr "Voeg uitgesloten datum toe (-)"
 
 #: ../src/appointment.c:3326
 msgid "Excluded days are full days where this appointment is not happening"
-msgstr ""
+msgstr "Uitgesloten dagen zijn volle dagen waarop deze afspraak niet plaatsvindt"
 
 #: ../src/appointment.c:3332
 msgid "Add included time (+)"
-msgstr ""
+msgstr "Voeg ingesloten tijd toe (+)"
 
 #: ../src/appointment.c:3334
 msgid ""
 "Included times have same timezone than start time, but they may have "
 "different time"
 msgstr ""
+"Ingesloten tijden hebben dezelfde tijdzone als de begintijd, maar ze "
+"kunnen een andere tijd hebben"
 
 #. calendars showing the action days
 #: ../src/appointment.c:3351
 msgid "Action dates"
-msgstr ""
+msgstr "Actiedata"
 
 #. ********* View menu *********
 #. View menu
@@ -1174,16 +1184,15 @@ msgstr "Sluiten"
 
 #: ../src/day-view.c:453
 msgid "Unknown"
-msgstr ""
+msgstr "Onbekend"
 
 #: ../src/day-view.c:689
 msgid "       Number of days to show"
-msgstr ""
+msgstr "       Aantal te tonen dagen"
 
 #: ../src/day-view.c:920
-#, fuzzy
 msgid "Orage - day view"
-msgstr "Calender"
+msgstr "Orage - dagweergave"
 
 #. date only appointment
 #: ../src/event-list.c:190
@@ -1196,45 +1205,47 @@ msgstr "Tijd"
 
 #: ../src/event-list.c:746
 msgid "No rows have been selected."
-msgstr ""
+msgstr "Er zijn geen rijen gekozen."
 
 #: ../src/event-list.c:747
 msgid "Click a row to select it and after that you can copy it."
-msgstr ""
+msgstr "Klik op een rij om hem te kiezen, en daarna kunt u hem kopiëren."
 
 #: ../src/event-list.c:916
 msgid ""
 "You will permanently remove all\n"
 "selected appointments."
 msgstr ""
+"U zult alle gekozen afspraken\n"
+"blijvend verwijderen."
 
 #: ../src/event-list.c:1116
 msgid "Find"
-msgstr ""
+msgstr "Zoek"
 
 #: ../src/event-list.c:1123
 msgid "Dayview"
-msgstr ""
+msgstr "Dagweergave"
 
 #: ../src/event-list.c:1156
 msgid "Extra days to show "
-msgstr ""
+msgstr "Extra dagen om te tonen"
 
 #: ../src/event-list.c:1187
 msgid "Journal entries starting from:"
-msgstr ""
+msgstr "Dagboeknotities beginnend op:"
 
 #: ../src/event-list.c:1207
 msgid "Search"
-msgstr ""
+msgstr "Zoek"
 
 #: ../src/event-list.c:1210
 msgid "Search text "
-msgstr ""
+msgstr "Zoek tekst "
 
 #: ../src/event-list.c:1275
 msgid "Flags"
-msgstr "Bladwijzers"
+msgstr "Merktekens"
 
 #: ../src/event-list.c:1283
 msgid "Title"
@@ -1255,6 +1266,18 @@ msgid ""
 "\t 5. Appointment type:\n"
 "\t\tE=Event T=Todo J=Journal"
 msgstr ""
+"Dubbelklik op de regel om hem te bewerken.\n"
+"\n"
+"Merktekens op rij:\n"
+"\t 1. Alarm: n=geen alarm\n"
+"\t\t A=visueel Alarm S=ook Geluidalarm\n"
+"\t 2. Herhaling: n=geen herhaling\n"
+"\t\t D=Dagelijks W=Wekelijks M=Maandelijks Y=Jaarlijks\n"
+"\t 3. Type: f=vrij B=Bezet\n"
+"\t 4. Geplaatst in bestand:\n"
+"\t\tO=Orage A=Archief F=Vreemd\n"
+"\t 5. Afspraaktype:\n"
+"\t\tE=Gebeurtenis T=Te Doen J=Dagboek"
 
 #: ../src/functions.c:137
 msgid "Pick the date"
@@ -1263,95 +1286,93 @@ msgstr "Kies de datum"
 #. remove since it has ended
 #: ../src/ical-archive.c:278
 msgid "\tRecur ended, moving to archive file."
-msgstr ""
+msgstr "\tHerhaling beëindigd, aan het verplaatsen naar archiefbestand"
 
 #: ../src/ical-archive.c:340
 msgid "Archiving not enabled. Exiting"
-msgstr ""
+msgstr "Archiveren niet ingeschakeld. Aan het afsluiten"
 
 #: ../src/ical-archive.c:358
-#, fuzzy, c-format
+#, c-format
 msgid "Archiving threshold: %d month(s)"
-msgstr "Archiefdrempel"
+msgstr "Archiefdrempel: %d (maand(en)"
 
 #. yy mon day
 #: ../src/ical-archive.c:361
 #, c-format
 msgid "\tArchiving events, which are older than: %04d-%02d-%02d"
-msgstr ""
+msgstr "\tGebeurtenissen archiveren, die ouder zijn dan %04d-%02d-%02d"
 
 #: ../src/ical-archive.c:388
-#, fuzzy, c-format
+#, c-format
 msgid "Archiving uid: %s"
-msgstr "Archieven"
+msgstr "uid aan het archiveren: %s"
 
 #. VTODO not completed, do not archive
 #: ../src/ical-archive.c:394
 msgid "\tVTODO not complete; not archived"
-msgstr ""
+msgstr "\tVTe Doen niet compleet; niet gearchiveerd"
 
 #. it is recurrent event
 #: ../src/ical-archive.c:399
 #, c-format
 msgid "\tRecurring. End year: %04d, month: %02d, day: %02d"
-msgstr ""
+msgstr "\tHerhalend. Einde jaar: %04d, maand: %02d, dag: %02d"
 
 #: ../src/ical-archive.c:416
-#, fuzzy
 msgid "Archiving done\n"
-msgstr "Archieven"
+msgstr "Archiveren voltooid\n"
 
 #. PHASE 1: go through base orage file and remove "repeat" shortcuts
 #: ../src/ical-archive.c:432
-#, fuzzy
 msgid "Starting archive removal."
-msgstr "Archiefdrempel"
+msgstr "Beginnend met archiefverwijdering."
 
 #: ../src/ical-archive.c:433
 msgid "\tPHASE 1: reset recurring appointments"
-msgstr ""
+msgstr "\tFASE 1: zet herhalende afspraken terug op standaard"
 
 #. PHASE 2: go through archive file and add everything back to base orage.
 #. * After that delete the whole arch file
 #: ../src/ical-archive.c:455
 msgid "\tPHASE 2: return archived appointments"
-msgstr ""
+msgstr "\tFASE 2: zet gearchiveerde afspraken terug"
 
 #: ../src/ical-archive.c:481
-#, fuzzy
 msgid "Archive removal done\n"
-msgstr "Archiefdrempel"
+msgstr "Archiefverwijdering voltooid\n"
 
 #: ../src/ical-code.c:933
 msgid "Orage default alarm"
-msgstr "Orage standaard alarm"
+msgstr "Orage standaardalarm"
 
 #: ../src/ical-code.c:2934
 #, c-format
 msgid "Build alarm list: Added %d alarms. Processed %d events."
-msgstr ""
+msgstr "Maak alarmlijst: Toegevoegd %d alarmen. Verwerkt %d gebeurtenissen."
 
 #: ../src/ical-code.c:2936
 #, c-format
 msgid ""
 "\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
 msgstr ""
+"\tGevonden %d alarmen, waarvan %d actief (Gezocht %d herhalende alarmen)."
 
 #: ../src/ical-expimp.c:141
 msgid "Starting import file preprocessing"
-msgstr ""
+msgstr "Beginnend met voorbewerking van invoerbestand"
 
 #: ../src/ical-expimp.c:176
 msgid "... Patched DCREATED to be CREATED."
-msgstr ""
+msgstr "... DCREATED hersteld om CREATED te zijn."
 
 #: ../src/ical-expimp.c:215
 msgid "... Patched timezone to Orage format."
-msgstr ""
+msgstr "... Tijdzone hersteld naar Orage-opmaak."
 
 #: ../src/ical-expimp.c:224
 msgid "Import file preprocessing done"
-msgstr ""
+msgstr "Voorbewerking van invoerbestand gereed"
 
 #: ../src/interface.c:283
 msgid "Calendar files"
@@ -1359,100 +1380,102 @@ msgstr "Kalenderbestanden"
 
 #: ../src/interface.c:626
 msgid "Current foreign files"
-msgstr ""
+msgstr "Actuele vreemde bestanden"
 
 #: ../src/interface.c:638
 msgid "READ ONLY"
-msgstr ""
+msgstr "ALLEEN-LEZEN"
 
 #: ../src/interface.c:640
 msgid "READ WRITE"
-msgstr ""
+msgstr "LEZEN-SCHRIJVEN"
 
 #: ../src/interface.c:658
 msgid "***** No foreign files *****"
-msgstr ""
+msgstr "***** Geen vreemde bestanden *****"
 
 #: ../src/interface.c:969
 msgid "Import/export"
-msgstr ""
+msgstr "Invoer/uitvoer"
 
 #: ../src/interface.c:976
 msgid "Import"
-msgstr ""
+msgstr "Invoeren"
 
 #: ../src/interface.c:981
-#, fuzzy
 msgid "Read from file:"
-msgstr "Archiefbestand"
+msgstr "Lees vanuit bestand:"
 
 #: ../src/interface.c:998
 msgid ""
 "Separate filenames with comma(,).\n"
 " NOTE: comma is not valid character in filenames for Orage."
 msgstr ""
+"Scheid bestandnamen met komma(,).\n"
+" Let op: komma is geen geldig teken in bestandnamen voor Orage."
 
 #: ../src/interface.c:1003
 msgid "Export"
-msgstr ""
+msgstr "Uitvoeren"
 
 #: ../src/interface.c:1008
-#, fuzzy
 msgid "Write to file:"
-msgstr "Archiefbestand"
+msgstr "Schrijven naar bestand:"
 
 #: ../src/interface.c:1029 ../src/interface.c:1041
-#, fuzzy
 msgid "Select"
-msgstr "Verwijderen"
+msgstr "Kiezen"
 
 #: ../src/interface.c:1032
-#, fuzzy
 msgid "All appointments"
-msgstr "Nieuwe afspraak"
+msgstr "Alle afspraken"
 
 #: ../src/interface.c:1045
-#, fuzzy
 msgid "Named appointments: "
-msgstr "Nieuwe afspraak"
+msgstr "Genoemde afspraken: "
 
 #: ../src/interface.c:1057
 msgid ""
 "Note that only main file appointments are read.\n"
 "Archived and Foreign events are not exported."
 msgstr ""
+"Let op: alleen hoofdbestandafspraken worden gelezen.\n"
+"Gearchiveerde en Vreemde gebeurtenissen worden niet "
+"uitgevoerd."
 
 #: ../src/interface.c:1060
 msgid ""
 "Note that only main file appointments are read.\n"
 "Foreign events are not exported."
 msgstr ""
+"Let op: alleen hoofdbestandafspraken worden gelezen.\n"
+"Vreemde gebeurtenissen worden niet uitgevoerd."
 
 #: ../src/interface.c:1063
 msgid "You can easily drag these from event-list window."
-msgstr ""
+msgstr "U kunt deze gemakkelijk slepen vanuit het venster "
+"van de gebeurtenissenlijst."
 
 #: ../src/interface.c:1065
 msgid "Orage appointment UIDs separated by commas."
-msgstr ""
+msgstr "Orage afspraak-UID's gescheiden door komma's."
 
 #: ../src/interface.c:1071
-#, fuzzy
 msgid "Archive"
-msgstr "Archieven"
+msgstr "Archiveren"
 
 #: ../src/interface.c:1079
-#, fuzzy, c-format
+#, c-format
 msgid "Archive now (threshold: %d months)"
-msgstr "Archiefdrempel"
+msgstr "Archiveer nu (drempel: %d maanden)"
 
 #: ../src/interface.c:1089
 msgid "You can change archive threshold in parameters"
-msgstr ""
+msgstr "U kunt archiveringsdrempel in parameters veranderen"
 
 #: ../src/interface.c:1096
 msgid "Revert archive now"
-msgstr ""
+msgstr "Draai archief nu terug"
 
 #: ../src/interface.c:1102
 msgid ""
@@ -1460,34 +1483,33 @@ msgid ""
 "This is useful for example when doing export and moving orage\n"
 "appointments to another system."
 msgstr ""
+"Zet alle gearchiveerde gebeurtenissen terug in hoofd-orage-bestand en \n"
+"verwijder arch-bestand. Dit is bijvoorbeeld nuttig bij uitvoeren en bij\n"
+"het verplaatsen van orage-afspraken naar een ander systeem."
 
 #: ../src/interface.c:1113
-#, fuzzy
 msgid "Orage files"
-msgstr "Orage Voorkeuren"
+msgstr "Orage-bestanden"
 
 #: ../src/interface.c:1120
-#, fuzzy
 msgid "Orage main calendar file"
-msgstr "Calender"
+msgstr "Orage hoofdkalenderbestand"
 
 #: ../src/interface.c:1125 ../src/interface.c:1190
-#, fuzzy
 msgid "Current file"
-msgstr "Archiefbestand"
+msgstr "Huidig bestand"
 
 #: ../src/interface.c:1132 ../src/interface.c:1197
-#, fuzzy
 msgid "New file"
-msgstr "Archiefbestand"
+msgstr "Nieuw bestand"
 
 #: ../src/interface.c:1148 ../src/interface.c:1214
 msgid "Action options"
-msgstr ""
+msgstr "Actie-opties"
 
 #: ../src/interface.c:1151 ../src/interface.c:1217
 msgid "Rename"
-msgstr ""
+msgstr "Hernoemen"
 
 #: ../src/interface.c:1155
 msgid ""
@@ -1495,22 +1517,25 @@ msgid ""
 "Does not touch external filesystem at all.\n"
 "New file must exist."
 msgstr ""
+"Uitsluitend hernoemen van interne Orage-bestanden.\n"
+"Raakt extern bestandssysteem totaal niet.\n"
+"Nieuw bestand moet bestaan."
 
 #: ../src/interface.c:1159 ../src/interface.c:1222
 msgid "Copy"
-msgstr ""
+msgstr "Kopiëren"
 
 #: ../src/interface.c:1163
 msgid "Current file is copied and stays unmodified in the old place."
-msgstr ""
+msgstr "Huidig bestand wordt gekopieerd en blijft ongewijzigd op oude plek."
 
 #: ../src/interface.c:1167 ../src/interface.c:1227
 msgid "Move"
-msgstr ""
+msgstr "Verplaatsen"
 
 #: ../src/interface.c:1171
 msgid "Current file is moved and vanishes from the old place."
-msgstr ""
+msgstr "Huidig bestand wordt verplaatst en verdwijnt van oude plek."
 
 #: ../src/interface.c:1185
 msgid "Archive file"
@@ -1518,23 +1543,23 @@ msgstr "Archiefbestand"
 
 #: ../src/interface.c:1249
 msgid "Foreign files"
-msgstr ""
+msgstr "Vreemde bestanden"
 
 #: ../src/interface.c:1256
 msgid "Add new foreign file"
-msgstr ""
+msgstr "Voeg nieuw vreemd bestand toe"
 
 #: ../src/interface.c:1261
 msgid "Foreign file:"
-msgstr ""
+msgstr "Vreemd bestand:"
 
 #: ../src/interface.c:1279
 msgid "Options"
-msgstr ""
+msgstr "Opties"
 
 #: ../src/interface.c:1281
 msgid "Read only"
-msgstr ""
+msgstr "Alleen-lezen"
 
 #: ../src/interface.c:1289
 msgid ""
@@ -1543,10 +1568,14 @@ msgid ""
 "Note that modifying foreign files may make them incompatible with the "
 "original tool, where they came from!"
 msgstr ""
+"Stel dit in wanneer u er zeker van wil zijn dat dit bestand nooit zal "
+"worden aangepast door Orage.\n"
+"Let op: aanpassen van vreemde bestanden zou deze onverenigbaar kunnen "
+"maken met het oorspronkelijke gereedschap waar ze vandaan komen!"
 
 #: ../src/interface.c:1303
 msgid "Exchange data - Orage"
-msgstr ""
+msgstr "Wissel gegevens uit - Orage"
 
 #: ../src/main.c:193
 #, c-format
@@ -1554,61 +1583,63 @@ msgid ""
 "\tThis is %s version %s\n"
 "\n"
 msgstr ""
+"\tDit is %s versie %s\n"
+"\n"
 
 #: ../src/main.c:195
 #, c-format
 msgid "\tReleased under the terms of the GNU General Public License.\n"
-msgstr ""
+msgstr "\tUitgegeven onder de voorwaarden van de GNU General Public License.\n"
 
 #: ../src/main.c:196
 #, c-format
 msgid "\tCompiled against GTK+-%d.%d.%d, "
-msgstr ""
+msgstr "\tGecompileerd tegen GTK+-%d.%d.%d, "
 
 #: ../src/main.c:198
 #, c-format
 msgid "using GTK+-%d.%d.%d.\n"
-msgstr ""
+msgstr "met gebruik van GTK+-%d.%d.%d.\n"
 
 #: ../src/main.c:201
 #, c-format
 msgid "\tUsing DBUS for import.\n"
-msgstr ""
+msgstr "\tMet gebruik van DBUS voor invoer.\n"
 
 #: ../src/main.c:203
 #, c-format
 msgid "\tNot using DBUS. Import works only partially.\n"
-msgstr ""
+msgstr "\tNiet met gebruik van DBUS. Invoer werkt alleen gedeeltelijk.\n"
 
 #: ../src/main.c:206
 #, c-format
 msgid "\tUsing libnotify.\n"
-msgstr ""
+msgstr "\tMet gebruik van libnotify.\n"
 
 #: ../src/main.c:208
 #, c-format
 msgid "\tNot using libnotify.\n"
-msgstr ""
+msgstr "\tNiet met gebruik van libnotify.\n"
 
 #: ../src/main.c:211
 #, c-format
 msgid "\tUsing automatic archiving.\n"
-msgstr ""
+msgstr "\tMet gebruik van automatische archivering.\n"
 
 #: ../src/main.c:213
 #, c-format
 msgid "\tNot using archiving.\n"
-msgstr ""
+msgstr "\tNiet met gebruik van archivering.\n"
 
 #: ../src/main.c:216
 #, c-format
 msgid "\tUsing operating system package libical.\n"
-msgstr ""
+msgstr "\tMet gebruik van besturingssysteempakket libical.\n"
 
 #: ../src/main.c:218
 #, c-format
 msgid "\tUsing Orage local version of libical.\n"
-msgstr ""
+msgstr "\tMet gebruik van Orage lokale versie van libical.\n"
 
 #: ../src/main.c:231
 #, c-format
@@ -1616,51 +1647,53 @@ msgid ""
 "Usage: orage [options] [files]\n"
 "\n"
 msgstr ""
+"Gebruik: orage [opties] [bestanden]\n"
+"\n"
 
 #: ../src/main.c:232
 #, c-format
 msgid "Options:\n"
-msgstr ""
+msgstr "Opties:\n"
 
 #: ../src/main.c:233
 #, c-format
 msgid "--version (-v) \t\tshow version of orage\n"
-msgstr ""
+msgstr "--version (-v) \t\ttoon versie van orage\n"
 
 #: ../src/main.c:234
 #, c-format
 msgid "--help (-h) \t\tprint this text\n"
-msgstr ""
+msgstr "--help (-h) \t\tdruk deze tekst af\n"
 
 #: ../src/main.c:235
 #, c-format
 msgid "--preferences (-p) \tshow preferences form\n"
-msgstr ""
+msgstr "--preferences (-p) \ttoon voorkeurenformulier\n"
 
 #: ../src/main.c:236
 #, c-format
 msgid "--toggle (-t) \t\tmake orage visible/unvisible\n"
-msgstr ""
+msgstr "--toggle (-t) \t\tmaak orage zichtbaar/onzichtbaar\n"
 
 #: ../src/main.c:237
 #, c-format
 msgid "--add-foreign (-a) file [RW] \tadd a foreign file\n"
-msgstr ""
+msgstr "--add-foreign (-a) file [RW] \tvoeg een vreemd bestand toe\n"
 
 #: ../src/main.c:238
 #, c-format
 msgid "--remove-foreign (-r) file \tremove a foreign file\n"
-msgstr ""
+msgstr "--remove-foreign (-r) file \tverwijder een vreemd bestand\n"
 
 #: ../src/main.c:240
 #, c-format
 msgid "files=ical files to load into orage\n"
-msgstr ""
+msgstr "files=ical bestanden om in orage te laden\n"
 
 #: ../src/main.c:242
 #, c-format
 msgid "\tdbus not included in orage. \n"
-msgstr ""
+msgstr "\tdbus niet vervat in orage. \n"
 
 #: ../src/main.c:243
 #, c-format
@@ -1668,6 +1701,8 @@ msgid ""
 "\twithout dbus [files] and foreign file options(-a & -r) can only be used "
 "when starting orage \n"
 msgstr ""
+"\tzonder dbus [bestanden] and opties voor vreemde bestanden (-a & -r) kan "
+"alleen worden gebruikt bij het starten van orage \n"
 
 #: ../src/main.c:387
 #, c-format
@@ -1676,41 +1711,41 @@ msgid ""
 "Unknown option %s\n"
 "\n"
 msgstr ""
+"\n"
+"Onbekende optie %s\n"
+"\n"
 
 #: ../src/mainbox.c:287
 msgid "_Exchange data"
-msgstr ""
+msgstr "_Gegevens uitwisselen"
 
 #. Edit menu
 #: ../src/mainbox.c:298
 msgid "_Edit"
-msgstr "_Aanpassen"
+msgstr "_Bewerken"
 
 #: ../src/mainbox.c:308
 msgid "View selected _date"
 msgstr "Geselecteerde _datum bekijken"
 
 #: ../src/mainbox.c:311
-#, fuzzy
 msgid "View selected _week"
-msgstr "Geselecteerde _datum bekijken"
+msgstr "Geselecteerde _week bekijken"
 
 #: ../src/mainbox.c:317
 msgid "Select _Today"
 msgstr "_Vandaag Selecteren"
 
 #: ../src/mainbox.c:323
-#, fuzzy
 msgid "Show _Globaltime"
-msgstr "Locatie"
+msgstr "Toon _Wereldtijd"
 
 #. Help menu
 #: ../src/mainbox.c:327
 msgid "_Help"
-msgstr "_Help"
+msgstr "_Hulp"
 
 #: ../src/mainbox.c:441
-#, fuzzy
 msgid "Never"
 msgstr "nooit"
 
@@ -1724,6 +1759,12 @@ msgid ""
 "Note:\n"
 "%s"
 msgstr ""
+"Titel: %s\n"
+" Begin:\t%s\n"
+" Verwacht:\t%s\n"
+" Gedaan:\t%s\n"
+"Let op:\n"
+"%s"
 
 #: ../src/mainbox.c:452
 #, c-format
@@ -1734,25 +1775,29 @@ msgid ""
 " Note:\n"
 "%s"
 msgstr ""
+"Titel: %s\n"
+" Begin:\t%s\n"
+" Einde:\t%s\n"
+" Let op:\n"
+"%s"
 
 #: ../src/mainbox.c:529
 msgid "<b>To do:</b>"
-msgstr ""
+msgstr "<b>Te doen:</b>"
 
 #: ../src/mainbox.c:563
 #, c-format
 msgid "<b>Events for %s:</b>"
-msgstr ""
+msgstr "<b>Gebeurtenissen voor %s:</b>"
 
 #: ../src/mainbox.c:574
 #, c-format
 msgid "<b>Events for %s - %s:</b>"
-msgstr ""
+msgstr "<b>Gebeurtenissen voor %s - %s:</b>"
 
 #: ../src/parameters.c:492
-#, fuzzy
 msgid "Main settings"
-msgstr "Calender Instellingen"
+msgstr "Hoofdinstellingen"
 
 #: ../src/parameters.c:498
 msgid "Timezone"
@@ -1760,83 +1805,76 @@ msgstr "Tijdzone"
 
 #: ../src/parameters.c:517
 msgid "You should always define your local timezone."
-msgstr ""
+msgstr "U zou altijd uw plaatselijke tijdzone moeten bepalen."
 
 #: ../src/parameters.c:526
-#, fuzzy
 msgid "Archive threshold (months)"
-msgstr "Archiefdrempel"
+msgstr "Archiefdrempel (maanden)"
 
 #: ../src/parameters.c:536
 msgid "(0 = no archiving)"
-msgstr ""
+msgstr "(0 = geen archivering)"
 
 #: ../src/parameters.c:539
 msgid "Archiving is used to save time and space when handling events."
-msgstr ""
+msgstr "Archiveren wordt gebruikt om tijd en ruimte te besparen bij het "
+"afhandelen van gebeurtenissen."
 
 #: ../src/parameters.c:548
 msgid "Sound command"
-msgstr ""
+msgstr "Geluidopdracht"
 
 #: ../src/parameters.c:563
 msgid "This command is given to shell to make sound in alarms."
-msgstr ""
+msgstr "Deze opdracht wordt gegeven aan shell om geluid te maken bij alarmen."
 
 #: ../src/parameters.c:579
-#, fuzzy
 msgid "Display settings"
-msgstr "Weergegeven"
+msgstr "Weergave-instellingen"
 
 #: ../src/parameters.c:587
-#, fuzzy
 msgid "Calendar main window"
-msgstr "Calendervenster"
+msgstr "Kalender hoofdvenster"
 
 #: ../src/parameters.c:592
 msgid "Show borders"
-msgstr ""
+msgstr "Toon randen"
 
 #: ../src/parameters.c:599
-#, fuzzy
 msgid "Show menu"
-msgstr "Weergeven"
+msgstr "Menu weergeven"
 
 #: ../src/parameters.c:606
-#, fuzzy
 msgid "Show month and year"
-msgstr "In pager weergeven"
+msgstr "Toon maand en jaar"
 
 #: ../src/parameters.c:613
-#, fuzzy
 msgid "Show day names"
-msgstr "Weergeven"
+msgstr "Dagnamen weergeven"
 
 #: ../src/parameters.c:620
-#, fuzzy
 msgid "Show week numbers"
-msgstr "Weergeven"
+msgstr "Weeknummers weergeven"
 
 #: ../src/parameters.c:627
 msgid "Show todo list"
-msgstr ""
+msgstr "Te Doen-lijst tonen"
 
 #: ../src/parameters.c:634
 msgid "Number of days to show in event window"
-msgstr ""
+msgstr "Aantal dagen om te tonen in gebeurtenisvenster"
 
 #: ../src/parameters.c:640
 msgid "0 = do not show event list at all"
-msgstr ""
+msgstr "0 = toon überhaupt geen gebeurtenissenlijst"
 
 #: ../src/parameters.c:650
 msgid "Show on all desktops"
-msgstr ""
+msgstr "Toon op alle werkbladen"
 
 #: ../src/parameters.c:657
-#, fuzzy
 msgid "Keep on top"
-msgstr "Kies tijdzone"
+msgstr "Hou bovenaan"
 
 #: ../src/parameters.c:664
 msgid "Show in taskbar"
@@ -1852,7 +1890,7 @@ msgstr "In systeemvak weergeven"
 
 #: ../src/parameters.c:713
 msgid "Calendar start"
-msgstr "Calenderbegin"
+msgstr "Kalenderbegin"
 
 #: ../src/parameters.c:718
 msgid "Show"
@@ -1867,61 +1905,60 @@ msgid "Minimized"
 msgstr "Geminimaliseerd"
 
 #: ../src/parameters.c:767
-#, fuzzy
 msgid "Extra settings"
-msgstr "Tekstopmaak"
+msgstr "Extra instellingen"
 
 #: ../src/parameters.c:775
-#, fuzzy
 msgid "On Calendar Window Open"
-msgstr "Calendervenster"
+msgstr "Bij het openen van kalendervenster"
 
 #: ../src/parameters.c:794
-#, fuzzy
 msgid "Select Today's Date"
-msgstr "_Vandaag Selecteren"
+msgstr "Datum van vandaag kiezen"
 
 #: ../src/parameters.c:807
 msgid "Select Previously Selected Date"
-msgstr ""
+msgstr "Kies voorheen gekozen datum"
 
 #: ../src/parameters.c:824
 msgid "Use dynamic tray icon"
-msgstr ""
+msgstr "Gebruik dynamisch systeemvakpictogram"
 
 #: ../src/parameters.c:829
 msgid "Use dynamic icon"
-msgstr ""
+msgstr "Gebruik dynamisch pictogram"
 
 #: ../src/parameters.c:835
 msgid "Dynamic icon shows current month and day of the month."
-msgstr ""
+msgstr "Dynamisch pictogram toont huidige maand en dag"
 
 #: ../src/parameters.c:844
 msgid "Main Calendar double click shows"
-msgstr ""
+msgstr "Een dubbelklik op de hoofdkalender toont"
 
 #: ../src/parameters.c:849
 msgid "Days view"
-msgstr ""
+msgstr "Dagweergave"
 
 #: ../src/parameters.c:861
 msgid "Event list"
-msgstr ""
+msgstr "Gebeurtenissenlijst"
 
 #: ../src/parameters.c:878
 msgid "Eventlist window"
-msgstr ""
+msgstr "Gebeurtenissenlijst-venster"
 
 #: ../src/parameters.c:882
 msgid "Number of extra days to show in event list"
-msgstr ""
+msgstr "Aantal extra dagen te tonen in gebeurtenissenlijst"
 
 #: ../src/parameters.c:894
 msgid ""
 "This is just the default value, you can change it in the actual eventlist "
 "window."
 msgstr ""
+"Dit is slechts de standaardwaarde, u kunt die veranderen in het eigenlijke "
+"venster van de gebeurtensissenlijst"
 
 #: ../src/parameters.c:911
 msgid "Orage Preferences"
@@ -1929,16 +1966,16 @@ msgstr "Orage Voorkeuren"
 
 #: ../src/parameters.c:1099
 msgid "First Orage start. Searching default timezone."
-msgstr ""
+msgstr "Eerste start van Orage. Aan het zoeken naar de standaard-tijdzone."
 
 #: ../src/parameters.c:1118
-#, fuzzy, c-format
+#, c-format
 msgid "Default timezone set to %s."
-msgstr "Kies tijdzone"
+msgstr "Standaard-tijdzone ingesteld op %s."
 
 #: ../src/parameters.c:1121
 msgid "Default timezone not found, please, set it manually."
-msgstr ""
+msgstr "Standaard-tijdzone niet gevonden, stel deze a.u.b. handmatig in."
 
 #: ../src/reminder.c:552
 msgid "Reminder "
@@ -1946,39 +1983,42 @@ msgstr "Herinnering"
 
 #: ../src/reminder.c:575
 msgid "Open"
-msgstr ""
+msgstr "Open"
 
 #: ../src/reminder.c:706
-#, fuzzy
 msgid "Reminder - Orage"
-msgstr "Herinnering"
+msgstr "Herinnering - Orage"
 
 #: ../src/reminder.c:792
 msgid "Remind me again after the specified time"
-msgstr ""
+msgstr "Herinner me weer na de opgegeven tijd"
 
 #. Note that this goes to the main area. Temporary for the version
 #: ../src/reminder.c:795
 msgid "Press <Execute> to remind me again after the specified time:"
-msgstr ""
+msgstr "Druk op <Execute> om me weer te herinneren na de opgegeven tijd:"
 
 #: ../src/reminder.c:1032
 msgid "Next active alarms:"
-msgstr ""
+msgstr "Volgende actieve alarmen:"
 
 #: ../src/reminder.c:1074 ../src/reminder.c:1079
 #, c-format
 msgid ""
 "\n"
-"%02d d %02d h %02d min to: %s"
+"%02d d %02d u %02d min tot: %s"
 msgstr ""
+"\n"
+"%02d d %02d u %02d min tot: %s"
 
 #: ../src/reminder.c:1088
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "\n"
 "No active alarms found"
-msgstr "Alarmgeluid herhalen"
+msgstr ""
+"\n"
+"Geen actieve alarmen gevonden"
 
 #: ../src/timezone_names.c:36
 msgid "Africa"
@@ -1994,7 +2034,7 @@ msgstr "Afrika/Accra"
 
 #: ../src/timezone_names.c:39
 msgid "Africa/Addis_Ababa"
-msgstr "Afrika/Addis_Ababa"
+msgstr "Afrika/Addis_Abeba"
 
 #: ../src/timezone_names.c:40
 msgid "Africa/Algiers"
@@ -2002,7 +2042,7 @@ msgstr "Afrika/Algiers"
 
 #: ../src/timezone_names.c:41
 msgid "Africa/Asmera"
-msgstr "Afrika/Asmara"
+msgstr "Afrika/Asmera"
 
 #: ../src/timezone_names.c:42
 msgid "Africa/Bamako"
@@ -2021,17 +2061,14 @@ msgid "Africa/Bissau"
 msgstr "Afrika/Bissau"
 
 #: ../src/timezone_names.c:46
-#, fuzzy
 msgid "Africa/Blantyre"
 msgstr "Afrika/Blantyre"
 
 #: ../src/timezone_names.c:47
-#, fuzzy
 msgid "Africa/Brazzaville"
 msgstr "Afrika/Brazzaville"
 
 #: ../src/timezone_names.c:48
-#, fuzzy
 msgid "Africa/Bujumbura"
 msgstr "Afrika/Bujumbura"
 
@@ -2044,7 +2081,6 @@ msgid "Africa/Casablanca"
 msgstr "Afrika/Casablanca"
 
 #: ../src/timezone_names.c:51
-#, fuzzy
 msgid "Africa/Ceuta"
 msgstr "Afrika/Ceuta"
 
@@ -2121,7 +2157,6 @@ msgid "Africa/Luanda"
 msgstr "Afrika/Luanda"
 
 #: ../src/timezone_names.c:70
-#, fuzzy
 msgid "Africa/Lubumbashi"
 msgstr "Afrika/Lubumbashi"
 
@@ -2174,12 +2209,10 @@ msgid "Africa/Ouagadougou"
 msgstr "Afrika/Ouagadougou"
 
 #: ../src/timezone_names.c:83
-#, fuzzy
 msgid "Africa/Porto-Novo"
 msgstr "Afrika/Porto-Novo"
 
 #: ../src/timezone_names.c:84
-#, fuzzy
 msgid "Africa/Sao_Tome"
 msgstr "Afrika/Sao_Tome"
 
@@ -2224,29 +2257,24 @@ msgid "America/Araguaina"
 msgstr "Amerika/Araguaina"
 
 #: ../src/timezone_names.c:95
-#, fuzzy
 msgid "America/Argentina/Buenos_Aires"
-msgstr "Amerika/Buenos_Aires"
+msgstr "Amerika/Argentinië/Buenos_Aires"
 
 #: ../src/timezone_names.c:96
-#, fuzzy
 msgid "America/Argentina/Catamarca"
-msgstr "Amerika/Catamarca"
+msgstr "Amerika/Argentinië/Catamarca"
 
 #: ../src/timezone_names.c:97
-#, fuzzy
 msgid "America/Argentina/Cordoba"
-msgstr "Amerika/Cordoba"
+msgstr "Amerika/Argentinië/Cordoba"
 
 #: ../src/timezone_names.c:98
-#, fuzzy
 msgid "America/Argentina/Jujuy"
-msgstr "Amerika/Jujuy"
+msgstr "Amerika/Argentinië/Jujuy"
 
 #: ../src/timezone_names.c:99
-#, fuzzy
 msgid "America/Argentina/Mendoza"
-msgstr "Amerika/Mendoza"
+msgstr "Amerika/Argentinië/Mendoza"
 
 #: ../src/timezone_names.c:100
 msgid "America/Aruba"
@@ -2765,17 +2793,14 @@ msgid "Asia/Anadyr"
 msgstr "Azië/Anadyr"
 
 #: ../src/timezone_names.c:229
-#, fuzzy
 msgid "Asia/Aqtau"
 msgstr "Azië/Aqtau"
 
 #: ../src/timezone_names.c:230
-#, fuzzy
 msgid "Asia/Aqtobe"
 msgstr "Azië/Aqtobe"
 
 #: ../src/timezone_names.c:231
-#, fuzzy
 msgid "Asia/Ashgabat"
 msgstr "Azië/Ashgabat"
 
@@ -2788,9 +2813,8 @@ msgid "Asia/Bahrain"
 msgstr "Azië/Bahrein"
 
 #: ../src/timezone_names.c:234
-#, fuzzy
 msgid "Asia/Baku"
-msgstr "Azië/Baku"
+msgstr "Azië/Bakoe"
 
 #: ../src/timezone_names.c:235
 msgid "Asia/Bangkok"
@@ -2801,7 +2825,6 @@ msgid "Asia/Beirut"
 msgstr "Azië/Beiroet"
 
 #: ../src/timezone_names.c:237
-#, fuzzy
 msgid "Asia/Bishkek"
 msgstr "Azië/Bishkek"
 
@@ -2814,7 +2837,6 @@ msgid "Asia/Calcutta"
 msgstr "Azië/Calcutta"
 
 #: ../src/timezone_names.c:240
-#, fuzzy
 msgid "Asia/Chungking"
 msgstr "Azië/Chungking"
 
@@ -2831,7 +2853,6 @@ msgid "Asia/Dhaka"
 msgstr "Azië/Dhaka"
 
 #: ../src/timezone_names.c:244
-#, fuzzy
 msgid "Asia/Dili"
 msgstr "Azië/Dili"
 
@@ -2848,7 +2869,6 @@ msgid "Asia/Gaza"
 msgstr "Azië/Gaza"
 
 #: ../src/timezone_names.c:248
-#, fuzzy
 msgid "Asia/Harbin"
 msgstr "Azië/Harbin"
 
@@ -2857,7 +2877,6 @@ msgid "Asia/Hong_Kong"
 msgstr "Azië/Hong_Kong"
 
 #: ../src/timezone_names.c:250
-#, fuzzy
 msgid "Asia/Hovd"
 msgstr "Azië/Hovd"
 
@@ -2866,7 +2885,6 @@ msgid "Asia/Irkutsk"
 msgstr "Azië/Irkoetsk"
 
 #: ../src/timezone_names.c:252
-#, fuzzy
 msgid "Asia/Istanbul"
 msgstr "Azië/Istanbul"
 
@@ -2875,7 +2893,6 @@ msgid "Asia/Jakarta"
 msgstr "Azië/Jakarta"
 
 #: ../src/timezone_names.c:254
-#, fuzzy
 msgid "Asia/Jayapura"
 msgstr "Azië/Jayapura"
 
@@ -2885,40 +2902,33 @@ msgstr "Azië/Jeruzalem"
 
 #: ../src/timezone_names.c:256
 msgid "Asia/Kabul"
-msgstr "Azië/Kabul"
+msgstr "Azië/Kaboel"
 
 #: ../src/timezone_names.c:257
-#, fuzzy
 msgid "Asia/Kamchatka"
-msgstr "Azië/Kamchatka"
+msgstr "Azië/Kamtsjatka"
 
 #: ../src/timezone_names.c:258
-#, fuzzy
 msgid "Asia/Karachi"
 msgstr "Azië/Karachi"
 
 #: ../src/timezone_names.c:259
-#, fuzzy
 msgid "Asia/Kashgar"
 msgstr "Azië/Kashgar"
 
 #: ../src/timezone_names.c:260
-#, fuzzy
 msgid "Asia/Katmandu"
 msgstr "Azië/Katmandu"
 
 #: ../src/timezone_names.c:261
-#, fuzzy
 msgid "Asia/Krasnoyarsk"
 msgstr "Azië/Krasnoyarsk"
 
 #: ../src/timezone_names.c:262
-#, fuzzy
 msgid "Asia/Kuala_Lumpur"
 msgstr "Azië/Kuala_Lumpur"
 
 #: ../src/timezone_names.c:263
-#, fuzzy
 msgid "Asia/Kuching"
 msgstr "Azië/Kuching"
 
@@ -2939,7 +2949,6 @@ msgid "Asia/Manila"
 msgstr "Azië/Manilla"
 
 #: ../src/timezone_names.c:268
-#, fuzzy
 msgid "Asia/Muscat"
 msgstr "Azië/Muscat"
 
@@ -2948,22 +2957,18 @@ msgid "Asia/Nicosia"
 msgstr "Azië/Nicosia"
 
 #: ../src/timezone_names.c:270
-#, fuzzy
 msgid "Asia/Novosibirsk"
 msgstr "Azië/Novosibirsk"
 
 #: ../src/timezone_names.c:271
-#, fuzzy
 msgid "Asia/Omsk"
 msgstr "Azië/Omsk"
 
 #: ../src/timezone_names.c:272
-#, fuzzy
 msgid "Asia/Phnom_Penh"
 msgstr "Azië/Phnom_Penh"
 
 #: ../src/timezone_names.c:273
-#, fuzzy
 msgid "Asia/Pontianak"
 msgstr "Azië/Pontianak"
 
@@ -2980,17 +2985,14 @@ msgid "Asia/Rangoon"
 msgstr "Azië/Rangoon"
 
 #: ../src/timezone_names.c:277
-#, fuzzy
 msgid "Asia/Riyadh"
 msgstr "Azië/Riyadh"
 
 #: ../src/timezone_names.c:278
-#, fuzzy
 msgid "Asia/Saigon"
 msgstr "Azië/Saigon"
 
 #: ../src/timezone_names.c:279
-#, fuzzy
 msgid "Asia/Samarkand"
 msgstr "Azië/Samarkand"
 
@@ -3028,7 +3030,7 @@ msgstr "Azië/Thimphu"
 
 #: ../src/timezone_names.c:288
 msgid "Asia/Tokyo"
-msgstr "Azië/Tokyo"
+msgstr "Azië/Tokio"
 
 #: ../src/timezone_names.c:289
 msgid "Asia/Ujung_Pandang"
@@ -3043,13 +3045,12 @@ msgid "Asia/Urumqi"
 msgstr "Azië/Urumqi"
 
 #: ../src/timezone_names.c:292
-#, fuzzy
 msgid "Asia/Vientiane"
 msgstr "Azië/Vientiane"
 
 #: ../src/timezone_names.c:293
 msgid "Asia/Vladivostok"
-msgstr "Azië/Vladivostok"
+msgstr "Azië/Wladiwostok"
 
 #: ../src/timezone_names.c:294
 msgid "Asia/Yakutsk"
@@ -3057,7 +3058,7 @@ msgstr "Azië/Jakoetsk"
 
 #: ../src/timezone_names.c:295
 msgid "Asia/Yekaterinburg"
-msgstr "Azië/Jekaterinenburg"
+msgstr "Azië/Jekaterinaburg"
 
 #: ../src/timezone_names.c:296
 msgid "Asia/Yerevan"
@@ -3101,11 +3102,11 @@ msgstr "Atlantische Oceaan/Reykjavik"
 
 #: ../src/timezone_names.c:306
 msgid "Atlantic/South_Georgia"
-msgstr "Atlantische Oceaan/Zuid-Georgië"
+msgstr "Atlantische Oceaan/Zuid-_Georgië"
 
 #: ../src/timezone_names.c:307
 msgid "Atlantic/St_Helena"
-msgstr "Atlantische Oceaan/Sint-Helena"
+msgstr "Atlantische Oceaan/Sint-_Helena"
 
 #: ../src/timezone_names.c:308
 msgid "Atlantic/Stanley"
@@ -3193,11 +3194,11 @@ msgstr "Europa/Brussel"
 
 #: ../src/timezone_names.c:329
 msgid "Europe/Bucharest"
-msgstr "Europa/Bukarest"
+msgstr "Europa/Boekarest"
 
 #: ../src/timezone_names.c:330
 msgid "Europe/Budapest"
-msgstr "Europa/Budapest"
+msgstr "Europa/Boedapest"
 
 #: ../src/timezone_names.c:331
 msgid "Europe/Chisinau"
@@ -3221,12 +3222,11 @@ msgstr "Europa/Helsinki"
 
 #: ../src/timezone_names.c:336
 msgid "Europe/Istanbul"
-msgstr "Europa/Istanbul"
+msgstr "Europa/Istanboel"
 
 #: ../src/timezone_names.c:337
-#, fuzzy
 msgid "Europe/Kaliningrad"
-msgstr "Europa/Kaliningrad"
+msgstr "Europa/Kaliningrad (Königsberg)"
 
 #: ../src/timezone_names.c:338
 msgid "Europe/Kiev"
@@ -3237,7 +3237,6 @@ msgid "Europe/Lisbon"
 msgstr "Europa/Lissabon"
 
 #: ../src/timezone_names.c:340
-#, fuzzy
 msgid "Europe/Ljubljana"
 msgstr "Europa/Ljubljana"
 
@@ -3270,7 +3269,6 @@ msgid "Europe/Moscow"
 msgstr "Europa/Moskou"
 
 #: ../src/timezone_names.c:348
-#, fuzzy
 msgid "Europe/Nicosia"
 msgstr "Europa/Nicosia"
 
@@ -3295,22 +3293,18 @@ msgid "Europe/Rome"
 msgstr "Europa/Rome"
 
 #: ../src/timezone_names.c:354
-#, fuzzy
 msgid "Europe/Samara"
 msgstr "Europa/Samara"
 
 #: ../src/timezone_names.c:355
-#, fuzzy
 msgid "Europe/San_Marino"
 msgstr "Europa/San_Marino"
 
 #: ../src/timezone_names.c:356
-#, fuzzy
 msgid "Europe/Sarajevo"
 msgstr "Europa/Sarajevo"
 
 #: ../src/timezone_names.c:357
-#, fuzzy
 msgid "Europe/Simferopol"
 msgstr "Europa/Simferopol"
 
@@ -3327,24 +3321,20 @@ msgid "Europe/Stockholm"
 msgstr "Europa/Stockholm"
 
 #: ../src/timezone_names.c:361
-#, fuzzy
 msgid "Europe/Tallinn"
 msgstr "Europa/Talinn"
 
 #: ../src/timezone_names.c:362
-#, fuzzy
 msgid "Europe/Tirane"
-msgstr "Europa/Tirane"
+msgstr "Europa/Tirana"
 
 #: ../src/timezone_names.c:363
-#, fuzzy
 msgid "Europe/Uzhgorod"
 msgstr "Europa/Uzhgorod"
 
 #: ../src/timezone_names.c:364
-#, fuzzy
 msgid "Europe/Vaduz"
-msgstr "Europa/Valduz"
+msgstr "Europa/Vaduz"
 
 #: ../src/timezone_names.c:365
 msgid "Europe/Vatican"
@@ -3367,269 +3357,220 @@ msgid "Europe/Zagreb"
 msgstr "Europa/Zagreb"
 
 #: ../src/timezone_names.c:370
-#, fuzzy
 msgid "Europe/Zaporozhye"
 msgstr "Europa/Zaporozhye"
 
 #: ../src/timezone_names.c:371
-#, fuzzy
 msgid "Europe/Zurich"
-msgstr "Europa/Zurich"
+msgstr "Europa/Zürich"
 
 #: ../src/timezone_names.c:372
 msgid "Indian"
-msgstr "India"
+msgstr "Indische Oceaan"
 
 #: ../src/timezone_names.c:373
-#, fuzzy
 msgid "Indian/Antananarivo"
-msgstr "India/Antananarivo"
+msgstr "Indische Oceaan/Antananarivo"
 
 #: ../src/timezone_names.c:374
-#, fuzzy
 msgid "Indian/Chagos"
-msgstr "India/Chagos"
+msgstr "Indische Oceaan/Chagos"
 
 #: ../src/timezone_names.c:375
-#, fuzzy
 msgid "Indian/Christmas"
-msgstr "India/Christmas"
+msgstr "Indische Oceaan/Christmas"
 
 #: ../src/timezone_names.c:376
-#, fuzzy
 msgid "Indian/Cocos"
-msgstr "India/Cocos"
+msgstr "Indische Oceaan/Cocos"
 
 #: ../src/timezone_names.c:377
-#, fuzzy
 msgid "Indian/Comoro"
-msgstr "India/Comoro"
+msgstr "Indische Oceaan/Comoro"
 
 #: ../src/timezone_names.c:378
-#, fuzzy
 msgid "Indian/Kerguelen"
-msgstr "India/Kerguelen"
+msgstr "Indische Oceaan/Kerguelen"
 
 #: ../src/timezone_names.c:379
-#, fuzzy
 msgid "Indian/Mahe"
-msgstr "India/Mahe"
+msgstr "Indische Oceaan/Mahe"
 
 #: ../src/timezone_names.c:380
 msgid "Indian/Maldives"
-msgstr "India/Malediven"
+msgstr "Indische Oceaan/Malediven"
 
 #: ../src/timezone_names.c:381
-#, fuzzy
 msgid "Indian/Mauritius"
-msgstr "India/Mauritius"
+msgstr "Indische Oceaan/Mauritius"
 
 #: ../src/timezone_names.c:382
-#, fuzzy
 msgid "Indian/Mayotte"
-msgstr "India/Mayotte"
+msgstr "Indische Oceaan/Mayotte"
 
 #: ../src/timezone_names.c:383
-#, fuzzy
 msgid "Indian/Reunion"
-msgstr "India/Reunion"
+msgstr "Indische Oceaan/Reunion"
 
 #: ../src/timezone_names.c:384
 msgid "Pacific"
 msgstr "Grote Oceaan"
 
 #: ../src/timezone_names.c:385
-#, fuzzy
 msgid "Pacific/Apia"
-msgstr "Grote Oceaan/Apia"
+msgstr "Stille Oceaan/Apia"
 
 #: ../src/timezone_names.c:386
-#, fuzzy
 msgid "Pacific/Auckland"
-msgstr "Grote Oceaan/Auckland"
+msgstr "Stille Oceaan/Auckland"
 
 #: ../src/timezone_names.c:387
-#, fuzzy
 msgid "Pacific/Chatham"
-msgstr "Grote Oceaan/Chatham"
+msgstr "Stille Oceaan/Chatham"
 
 #: ../src/timezone_names.c:388
 msgid "Pacific/Easter"
-msgstr "Grote Oceaan/Paaseiland"
+msgstr "Stille Oceaan/Paaseiland"
 
 #: ../src/timezone_names.c:389
-#, fuzzy
 msgid "Pacific/Efate"
-msgstr "Grote Oceaan/Efate"
+msgstr "Stille Oceaan/Efate"
 
 #: ../src/timezone_names.c:390
-#, fuzzy
 msgid "Pacific/Enderbury"
-msgstr "Grote Oceaan/Enderbury"
+msgstr "Stille Oceaan/Enderbury"
 
 #: ../src/timezone_names.c:391
-#, fuzzy
 msgid "Pacific/Fakaofo"
-msgstr "Grote Oceaan/Fakaofo"
+msgstr "Stille Oceaan/Fakaofo"
 
 #: ../src/timezone_names.c:392
-#, fuzzy
 msgid "Pacific/Fiji"
-msgstr "Grote Oceaan/Fiji"
+msgstr "Stille Oceaan/Fiji"
 
 #: ../src/timezone_names.c:393
-#, fuzzy
 msgid "Pacific/Funafuti"
-msgstr "Grote Oceaan/Funafuti"
+msgstr "Stille Oceaan/Funafuti"
 
 #: ../src/timezone_names.c:394
-#, fuzzy
 msgid "Pacific/Galapagos"
-msgstr "Grote Oceaan/Galapagos"
+msgstr "Stille Oceaan/Galapagos"
 
 #: ../src/timezone_names.c:395
-#, fuzzy
 msgid "Pacific/Gambier"
-msgstr "Grote Oceaan/Gabier"
+msgstr "Stille Oceaan/Gabier"
 
 #: ../src/timezone_names.c:396
-#, fuzzy
 msgid "Pacific/Guadalcanal"
-msgstr "Grote Oceaan/Guadalcanal"
+msgstr "Stille Oceaan/Guadalcanal"
 
 #: ../src/timezone_names.c:397
-#, fuzzy
 msgid "Pacific/Guam"
-msgstr "Grote Oceaan/Guam"
+msgstr "Stille Oceaan/Guam"
 
 #: ../src/timezone_names.c:398
 msgid "Pacific/Honolulu"
-msgstr "Grote Oceaan/Honolulu"
+msgstr "Stille Oceaan/Honolulu"
 
 #: ../src/timezone_names.c:399
-#, fuzzy
 msgid "Pacific/Johnston"
-msgstr "Grote Oceaan/Johnston"
+msgstr "Stille Oceaan/Johnston"
 
 #: ../src/timezone_names.c:400
-#, fuzzy
 msgid "Pacific/Kiritimati"
-msgstr "Grote Oceaan/Kiritimati"
+msgstr "Stille Oceaan/Kiritimati"
 
 #: ../src/timezone_names.c:401
-#, fuzzy
 msgid "Pacific/Kosrae"
-msgstr "Grote Oceaan/Kosrae"
+msgstr "Stille Oceaan/Kosrae"
 
 #: ../src/timezone_names.c:402
-#, fuzzy
 msgid "Pacific/Kwajalein"
-msgstr "Grote Oceaan/Kwajalein"
+msgstr "Stille Oceaan/Kwajalein"
 
 #: ../src/timezone_names.c:403
-#, fuzzy
 msgid "Pacific/Majuro"
-msgstr "Grote Oceaan/Majuro"
+msgstr "Stille Oceaan/Majuro"
 
 #: ../src/timezone_names.c:404
-#, fuzzy
 msgid "Pacific/Marquesas"
-msgstr "Grote Oceaan/Marguesas"
+msgstr "Stille Oceaan/Marguesas"
 
 #: ../src/timezone_names.c:405
-#, fuzzy
 msgid "Pacific/Midway"
-msgstr "Grote Oceaan/Midway"
+msgstr "Stille Oceaan/Midway"
 
 #: ../src/timezone_names.c:406
-#, fuzzy
 msgid "Pacific/Nauru"
-msgstr "Grote Oceaan/Nauru"
+msgstr "Stille Oceaan/Nauru"
 
 #: ../src/timezone_names.c:407
-#, fuzzy
 msgid "Pacific/Niue"
-msgstr "Grote Oceaan/Niue"
+msgstr "Stille Oceaan/Niue"
 
 #: ../src/timezone_names.c:408
-#, fuzzy
 msgid "Pacific/Norfolk"
-msgstr "Grote Oceaan/Norfolk"
+msgstr "Stille Oceaan/Norfolk"
 
 #: ../src/timezone_names.c:409
-#, fuzzy
 msgid "Pacific/Noumea"
-msgstr "Grote Oceaan/Noumea"
+msgstr "Stille Oceaan/Noumea"
 
 #: ../src/timezone_names.c:410
-#, fuzzy
 msgid "Pacific/Pago_Pago"
-msgstr "Grote Oceaan/Pago_Pago"
+msgstr "Stille Oceaan/Pago_Pago"
 
 #: ../src/timezone_names.c:411
-#, fuzzy
 msgid "Pacific/Palau"
-msgstr "Grote Oceaan/Palau"
+msgstr "Stille Oceaan/Palau"
 
 #: ../src/timezone_names.c:412
-#, fuzzy
 msgid "Pacific/Pitcairn"
-msgstr "Grote Oceaan/Pitcairn"
+msgstr "Stille Oceaan/Pitcairn"
 
 #: ../src/timezone_names.c:413
-#, fuzzy
 msgid "Pacific/Ponape"
-msgstr "Grote Oceaan/Ponape"
+msgstr "Stille Oceaan/Ponape"
 
 #: ../src/timezone_names.c:414
-#, fuzzy
 msgid "Pacific/Port_Moresby"
-msgstr "Grote Oceaan/Port_Moresby"
+msgstr "Stille Oceaan/Port_Moresby"
 
 #: ../src/timezone_names.c:415
-#, fuzzy
 msgid "Pacific/Rarotonga"
-msgstr "Grote Oceaan/Rarotonga"
+msgstr "Stille Oceaan/Rarotonga"
 
 #: ../src/timezone_names.c:416
-#, fuzzy
 msgid "Pacific/Saipan"
-msgstr "Grote Oceaan/Saipan"
+msgstr "Stille Oceaan/Saipan"
 
 #: ../src/timezone_names.c:417
-#, fuzzy
 msgid "Pacific/Tahiti"
-msgstr "Grote Oceaan/Tahiti"
+msgstr "Stille Oceaan/Tahiti"
 
 #: ../src/timezone_names.c:418
-#, fuzzy
 msgid "Pacific/Tarawa"
-msgstr "Grote Oceaan/Tarawa"
+msgstr "Stille Oceaan/Tarawa"
 
 #: ../src/timezone_names.c:419
-#, fuzzy
 msgid "Pacific/Tongatapu"
-msgstr "Grote Oceaan/Tongatapu"
+msgstr "Stille Oceaan/Tongatapu"
 
 #: ../src/timezone_names.c:420
-#, fuzzy
 msgid "Pacific/Truk"
-msgstr "Grote Oceaan/Truk"
+msgstr "Stille Oceaan/Truk"
 
 #: ../src/timezone_names.c:421
-#, fuzzy
 msgid "Pacific/Wake"
-msgstr "Grote Oceaan/Wake"
+msgstr "Stille Oceaan/Wake"
 
 #: ../src/timezone_names.c:422
-#, fuzzy
 msgid "Pacific/Wallis"
-msgstr "Grote Oceaan/Wallis"
+msgstr "Stille Oceaan/Wallis"
 
 #: ../src/timezone_names.c:423
-#, fuzzy
 msgid "Pacific/Yap"
-msgstr "Grote Oceaan/Yap"
+msgstr "Stille Oceaan/Yap"
 
 #: ../src/tray_icon.c:409
 msgid "New appointment"
@@ -3640,47 +3581,40 @@ msgid "About Orage"
 msgstr "Over Orage"
 
 #: ../panel-plugin/xfce4-orageclock-plugin.desktop.in.in.h:1
-#, fuzzy
 msgid "Orage Panel Clock"
-msgstr "Orage"
+msgstr "Orage Werkbalkklok"
 
 #: ../panel-plugin/xfce4-orageclock-plugin.desktop.in.in.h:2
-#, fuzzy
 msgid "Show time and date?"
-msgstr "In pager weergeven"
+msgstr "Tijd en datum tonen?"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:1
 #: ../xfcalendar.desktop.in.h:1
 msgid "Calendar"
-msgstr "Calender"
+msgstr "Kalender"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:2
-#, fuzzy
 msgid "Orage Calendar Preferences"
-msgstr "Orage Voorkeuren"
+msgstr "Orage Kalendervoorkeuren"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:3
-#, fuzzy
 msgid "Orage preferences"
-msgstr "Orage Voorkeuren"
+msgstr "Orage voorkeuren"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:4
-#, fuzzy
 msgid "Settings for the Xfce 4 Calendar Application (Orage)"
-msgstr "Instellingen voor het  Xfce 4 Calender-programma"
+msgstr "Instellingen voor de Xfce4 Kalendertoepassing (Orage)"
 
 #: ../xfcalendar.desktop.in.h:2
 msgid "Desktop calendar"
-msgstr "Bureau-calender"
+msgstr "Bureaubladkalender"
 
 #: ../xfcalendar.desktop.in.h:3
-#, fuzzy
 msgid "Orage Calendar"
-msgstr "Calender"
+msgstr "Orage Kalender"
 
-#, fuzzy
 #~ msgid "Orage clock"
-#~ msgstr "Orage"
+#~ msgstr "Orage klok"
 
 #~ msgid "Contributor"
 #~ msgstr "Medewerker"
@@ -3691,60 +3625,62 @@ msgstr "Calender"
 #~ msgid "Display"
 #~ msgstr "Weergave"
 
-#, fuzzy
 #~ msgid "Select always today"
-#~ msgstr "_Vandaag Selecteren"
+#~ msgstr "Altijd vandaag selecteren"
 
 #~ msgid "Vary"
-#~ msgstr "Jaarlijks"
+#~ msgstr "Varieer"
 
 #~ msgid "Select timezone"
 #~ msgstr "Kies tijdzone"
 
 #~ msgid "Modify Preferences"
-#~ msgstr "Orage Voorkeuren"
+#~ msgstr "Wijzig Voorkeuren"
 
 #~ msgid "Properties"
-#~ msgstr "Europa/Parijs"
+#~ msgstr "Eigenschappen"
 
 #~ msgid "Show event list"
-#~ msgstr "In systeemvak weergeven"
+#~ msgstr "Toon gebeurtenissenlijst"
 
 #~ msgid "Xfce 4 Calendar Settings"
-#~ msgstr "Xfce 4 Calender Instellingen"
+#~ msgstr "Xfce4 Kalenderinstellingen"
 
 #~ msgid "Monday"
-#~ msgstr "Vandaag"
+#~ msgstr "Maandag"
 
 #~ msgid "Tuesday"
-#~ msgstr "Vandaag"
+#~ msgstr "Dinsdag"
 
 #~ msgid "Wednesday"
-#~ msgstr "Wekelijks"
+#~ msgstr "Woensdag"
 
 #~ msgid "Thursday"
-#~ msgstr "Vandaag"
+#~ msgstr "Donderdag"
 
 #~ msgid "Friday"
-#~ msgstr "dagen"
+#~ msgstr "Vrijdag"
+
+#~ msgid "Saturday"
+#~ msgstr "Zaterdag"
 
 #~ msgid "Sunday"
-#~ msgstr "Geluid"
+#~ msgstr "Zondag"
 
 #~ msgid "Days"
-#~ msgstr "dagen"
+#~ msgstr "Dagen"
 
 #~ msgid "normal"
-#~ msgstr "Algemeen"
+#~ msgstr "normaal"
 
 #~ msgid "%m/%d/%Y"
-#~ msgstr "%d/%m/%Y"
+#~ msgstr "%d/%m/%J"
 
 #~ msgid "Calendar Files"
 #~ msgstr "Kalenderbestanden"
 
 #~ msgid "Calendar borders"
-#~ msgstr "Calender-randen"
+#~ msgstr "Kalender-randen"
 
 #~ msgid "Hidden"
 #~ msgstr "Verborgen"
@@ -3759,7 +3695,7 @@ msgstr "Calender"
 #~ msgstr "een jaar"
 
 #~ msgid "Application"
-#~ msgstr "Applicatie"
+#~ msgstr "Toepassing"
 
 #~ msgid "Core developer"
 #~ msgstr "Hoofdontwikkelaar"
