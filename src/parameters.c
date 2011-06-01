@@ -440,7 +440,7 @@ static void timezone_button_clicked(GtkButton *button, gpointer user_data)
 
     if (!ORAGE_STR_EXISTS(g_par.local_timezone)) {
         g_warning("timezone pressed: local timezone missing");
-        g_par.local_timezone = g_strdup("floating");
+        g_par.local_timezone = g_strdup("UTC");
     }
     if (orage_timezone_button_clicked(button, GTK_WINDOW(itf->orage_dialog)
             , &g_par.local_timezone, TRUE, g_par.local_timezone))
@@ -501,16 +501,12 @@ static void create_parameter_dialog_main_setup_tab(Itf *dialog)
             , dialog->timezone_frame, FALSE, FALSE, 5);
 
     dialog->timezone_button = gtk_button_new();
-    if (g_par.local_timezone) {
-        gtk_button_set_label(GTK_BUTTON(dialog->timezone_button)
-                , _(g_par.local_timezone));
+    if (!ORAGE_STR_EXISTS(g_par.local_timezone)) {
+        g_warning("parameters: local timezone missing");
+        g_par.local_timezone = g_strdup("UTC");
     }
-    else { /* we should never arrive here */
-        g_warning("parameters: timezone not set.");
-        g_par.local_timezone = g_strdup("floating");
-        gtk_button_set_label(GTK_BUTTON(dialog->timezone_button)
-                , _("floating"));
-    }
+    gtk_button_set_label(GTK_BUTTON(dialog->timezone_button)
+            , _(g_par.local_timezone));
     gtk_box_pack_start(GTK_BOX(vbox)
             , dialog->timezone_button, FALSE, FALSE, 5);
     gtk_tooltips_set_tip(dialog->Tooltips, dialog->timezone_button
@@ -1117,7 +1113,7 @@ static void init_default_timezone(void)
     if (ORAGE_STR_EXISTS(g_par.local_timezone))
         g_message(_("Default timezone set to %s."), g_par.local_timezone);
     else {
-        g_par.local_timezone = g_strdup("floating");
+        g_par.local_timezone = g_strdup("UTC");
         g_message(_("Default timezone not found, please, set it manually."));
     }
 }

@@ -233,7 +233,7 @@ gboolean xfical_set_local_timezone(gboolean testing)
 }
 
 /*
- * Basically standard says that timezone should be added alwasy
+ * Basically standard says that timezone should be added always
  * when it is used, but in real life these are not needed since
  * all systems have their own timezone data, so let's save time
  * and space and comment this out. 
@@ -2587,7 +2587,7 @@ static alarm_struct *process_alarm_trigger(icalcomponent *c
         rel = icalparameter_get_related(trg_related_par);
     else
         rel = ICAL_RELATED_START;
-    per = ic_get_period(c, FALSE);
+    per = ic_get_period(c, TRUE);
     next_alarm_time = count_alarm_time(per, cur_time, trg.duration, rel);
     alarm_start_diff = icaltime_subtract(per.stime, next_alarm_time);
     /* we only have ctime for TODOs and only if todo has been completed.

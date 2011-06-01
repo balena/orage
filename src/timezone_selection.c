@@ -307,16 +307,31 @@ gboolean orage_timezone_button_clicked(GtkButton *button, GtkWindow *parent
     tree = tz_button_create_view(details, store);
 
     /* show it */
-    if (check_ical)
-        window =  gtk_dialog_new_with_buttons(_("Pick timezone")
-                , parent
-                , GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT
-                , _("Change mode"), 1
-                , _("UTC"), 2
-                , _("floating"), 3
-                , _(local_tz), 4
-                , GTK_STOCK_OK, GTK_RESPONSE_ACCEPT
-                , NULL);
+    if (check_ical) {
+        if (local_tz == *tz) 
+        /* We are actually setting the g_par parameter. In other words
+           we are setting the global default timezone for Orage. This is
+           done very seldom and we do not want to allow "floating" here.
+           This test is ugly, but it is not worth an extra parameter. */
+            window =  gtk_dialog_new_with_buttons(_("Pick timezone")
+                    , parent
+                    , GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT
+                    , _("Change mode"), 1
+                    , _("UTC"), 2
+                    , _(local_tz), 4
+                    , GTK_STOCK_OK, GTK_RESPONSE_ACCEPT
+                    , NULL);
+        else /* this is normal appointment */
+            window =  gtk_dialog_new_with_buttons(_("Pick timezone")
+                    , parent
+                    , GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT
+                    , _("Change mode"), 1
+                    , _("UTC"), 2
+                    , _("floating"), 3
+                    , _(local_tz), 4
+                    , GTK_STOCK_OK, GTK_RESPONSE_ACCEPT
+                    , NULL);
+    }
     else
         window =  gtk_dialog_new_with_buttons(_("Pick timezone")
                 , parent
