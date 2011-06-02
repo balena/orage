@@ -58,7 +58,8 @@ msgstr "Stel bij om uur te veranderen"
 msgid ""
 "adjust to change minute. Click arrows with button 2 to change only 1 minute."
 msgstr ""
-"Stel bij om minuut te veranderen. Klik pijlen met knop 2 om slechts 1 minuut te veranderen."
+"Stel bij om minuut te veranderen. Klik pijlen met knop 2 om slechts 1 minuut "
+"te veranderen."
 
 #: ../globaltime/gt_prefs.c:265 ../globaltime/gt_prefs.c:266
 msgid "NEW"
@@ -219,7 +220,8 @@ msgstr "Klik om standaard-lettertype voor kloknaam te wijzigen"
 
 #: ../globaltime/gt_prefs.c:944 ../globaltime/gt_prefs.c:978
 msgid "Cross this to use system default font instead of selected font"
-msgstr "Streep dit door om systeemstandaard te gebruiken i.p.v. gekozen lettertype"
+msgstr ""
+"Streep dit door om systeemstandaard te gebruiken i.p.v. gekozen lettertype"
 
 #: ../globaltime/gt_prefs.c:963
 msgid "Click to change default font for clock time"
@@ -428,7 +430,8 @@ msgstr "stel _hoogte in:"
 
 #: ../panel-plugin/oc_config.c:277
 msgid "Note that you can not change the height of horizontal panels"
-msgstr "Let op dat u de hoogte van de horizontale werkbalken niet kunt wijzigen"
+msgstr ""
+"Let op dat u de hoogte van de horizontale werkbalken niet kunt wijzigen"
 
 #: ../panel-plugin/oc_config.c:282
 msgid "set _width:"
@@ -1102,8 +1105,8 @@ msgid ""
 msgstr ""
 "Te Doen-verschijning wordt gebaseerd op voltooiingstijd en herhaalt zich na "
 "de interval, geteld vanaf de laatste voltooiingstijd.\n"
-"Let op: u kunt niets afleiden uit de geschiedenis van Te Doen, aangezien "
-"de gegevensbank voor herhaling, verandert na elke voltooiing."
+"Let op: u kunt niets afleiden uit de geschiedenis van Te Doen, aangezien de "
+"gegevensbank voor herhaling, verandert na elke voltooiing."
 
 #. exceptions
 #: ../src/appointment.c:3306
@@ -1128,7 +1131,8 @@ msgstr "Voeg uitgesloten datum toe (-)"
 
 #: ../src/appointment.c:3326
 msgid "Excluded days are full days where this appointment is not happening"
-msgstr "Uitgesloten dagen zijn volle dagen waarop deze afspraak niet plaatsvindt"
+msgstr ""
+"Uitgesloten dagen zijn volle dagen waarop deze afspraak niet plaatsvindt"
 
 #: ../src/appointment.c:3332
 msgid "Add included time (+)"
@@ -1139,8 +1143,8 @@ msgid ""
 "Included times have same timezone than start time, but they may have "
 "different time"
 msgstr ""
-"Ingesloten tijden hebben dezelfde tijdzone als de begintijd, maar ze "
-"kunnen een andere tijd hebben"
+"Ingesloten tijden hebben dezelfde tijdzone als de begintijd, maar ze kunnen "
+"een andere tijd hebben"
 
 #. calendars showing the action days
 #: ../src/appointment.c:3351
@@ -1441,8 +1445,7 @@ msgid ""
 "Archived and Foreign events are not exported."
 msgstr ""
 "Let op: alleen hoofdbestandafspraken worden gelezen.\n"
-"Gearchiveerde en Vreemde gebeurtenissen worden niet "
-"uitgevoerd."
+"Gearchiveerde en Vreemde gebeurtenissen worden niet uitgevoerd."
 
 #: ../src/interface.c:1060
 msgid ""
@@ -1454,8 +1457,8 @@ msgstr ""
 
 #: ../src/interface.c:1063
 msgid "You can easily drag these from event-list window."
-msgstr "U kunt deze gemakkelijk slepen vanuit het venster "
-"van de gebeurtenissenlijst."
+msgstr ""
+"U kunt deze gemakkelijk slepen vanuit het venster van de gebeurtenissenlijst."
 
 #: ../src/interface.c:1065
 msgid "Orage appointment UIDs separated by commas."
@@ -1569,10 +1572,10 @@ msgid ""
 "Note that modifying foreign files may make them incompatible with the "
 "original tool, where they came from!"
 msgstr ""
-"Stel dit in wanneer u er zeker van wil zijn dat dit bestand nooit zal "
-"worden aangepast door Orage.\n"
-"Let op: aanpassen van vreemde bestanden zou deze onverenigbaar kunnen "
-"maken met het oorspronkelijke gereedschap waar ze vandaan komen!"
+"Stel dit in wanneer u er zeker van wil zijn dat dit bestand nooit zal worden "
+"aangepast door Orage.\n"
+"Let op: aanpassen van vreemde bestanden zou deze onverenigbaar kunnen maken "
+"met het oorspronkelijke gereedschap waar ze vandaan komen!"
 
 #: ../src/interface.c:1303
 msgid "Exchange data - Orage"
@@ -1818,8 +1821,9 @@ msgstr "(0 = geen archivering)"
 
 #: ../src/parameters.c:539
 msgid "Archiving is used to save time and space when handling events."
-msgstr "Archiveren wordt gebruikt om tijd en ruimte te besparen bij het "
-"afhandelen van gebeurtenissen."
+msgstr ""
+"Archiveren wordt gebruikt om tijd en ruimte te besparen bij het afhandelen "
+"van gebeurtenissen."
 
 #: ../src/parameters.c:548
 msgid "Sound command"
@@ -1959,7 +1963,7 @@ msgid ""
 "window."
 msgstr ""
 "Dit is slechts de standaardwaarde, u kunt die veranderen in het eigenlijke "
-"venster van de gebeurtensissenlijst"
+"venster van de gebeurtenissenlijst"
 
 #: ../src/parameters.c:911
 msgid "Orage Preferences"
@@ -2004,10 +2008,10 @@ msgid "Next active alarms:"
 msgstr "Volgende actieve alarmen:"
 
 #: ../src/reminder.c:1074 ../src/reminder.c:1079
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "\n"
-"%02d d %02d u %02d min tot: %s"
+"%02d d %02d h %02d min to: %s"
 msgstr ""
 "\n"
 "%02d d %02d u %02d min tot: %s"
