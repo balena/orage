@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: orage 4.3.90.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-12-17 16:36+0200\n"
-"PO-Revision-Date: 2011-06-19 10:12+0530\n"
+"PO-Revision-Date: 2011-06-19 14:40+0530\n"
 "Last-Translator: Anurag Garg <ang.astronomy@gmail.com>\n"
 "Language-Team: Hindi <indlinux-group@lists.sourceforge.net>\n"
 "Language: hi\n"
@@ -413,67 +413,67 @@ msgstr "भिन्न देशों की घड़ियाँ दिख�
 
 #: ../panel-plugin/oc_config.c:224
 msgid "Appearance"
-msgstr ""
+msgstr "दिखावट"
 
 #. show frame
 #: ../panel-plugin/oc_config.c:229
 msgid "Show _frame"
-msgstr ""
+msgstr "फ्रेम दिखाए"
 
 #. foreground color
 #: ../panel-plugin/oc_config.c:239
 msgid "set foreground _color:"
-msgstr ""
+msgstr "अग्रभूमि रंग निर्धारित करें:"
 
 #. background color
 #: ../panel-plugin/oc_config.c:253
 msgid "set _background color:"
-msgstr ""
+msgstr "पृष्ठभूमि रंग निर्धारित करें:"
 
 #. clock size (=vbox size): height and width
 #: ../panel-plugin/oc_config.c:267
 msgid "set _height:"
-msgstr ""
+msgstr "ऊंचाई निर्धारित करें:"
 
 #: ../panel-plugin/oc_config.c:277
 msgid "Note that you can not change the height of horizontal panels"
-msgstr ""
+msgstr "ध्यान दें कि आप क्षैतिज पैनलों की ऊंचाई को नहीं बदल सकते"
 
 #: ../panel-plugin/oc_config.c:282
 msgid "set _width:"
-msgstr ""
+msgstr "चौड़ाई निर्धारित करें:"
 
 #: ../panel-plugin/oc_config.c:293
 msgid "Note that you can not change the width of vertical panels"
-msgstr ""
+msgstr "ध्यान दें कि आप क्षैतिज पैनलों की चौड़ाई को नहीं बदल सकते"
 
 #: ../panel-plugin/oc_config.c:316
 msgid "Clock Options"
-msgstr ""
+msgstr "घड़ी के विकल्प"
 
 #. timezone
 #: ../panel-plugin/oc_config.c:326
 msgid "set timezone to:"
-msgstr ""
+msgstr "समयक्षेत्र को निर्धारित करे:"
 
 #: ../panel-plugin/oc_config.c:347
 #, c-format
 msgid "Line %d:"
-msgstr ""
+msgstr "पंक्ति %d:"
 
 #: ../panel-plugin/oc_config.c:357
 msgid "Enter any valid strftime function parameter."
-msgstr ""
+msgstr "किसी भी मान्य strftime function पैरामीटर को दर्ज करें"
 
 #. Tooltip hint
 #: ../panel-plugin/oc_config.c:401
 msgid "Tooltip:"
-msgstr ""
+msgstr "टूलटिप:"
 
 #. special timing for SUSPEND/HIBERNATE
 #: ../panel-plugin/oc_config.c:411
 msgid "fix time after suspend/hibernate"
-msgstr ""
+msgstr "निलंबित या शीतनिद्रा में होने के बाद समय तय करें"
 
 #: ../panel-plugin/oc_config.c:415
 msgid ""
@@ -483,6 +483,11 @@ msgid ""
 "you have this selected. (Selecting this prevents cpu and interrupt saving "
 "features from working.)"
 msgstr ""
+"आप को इसकी जरूरत तब है अगर आप निलंबित या शीतनिद्रा केवल अल्पावधि के लिए करना "
+"(5 घंटे से कम समय) चाहते है और अपके दृश्यमान समय मे सेकंड शामिल नहीं है। इन "
+"परिस्थितियों में यह संभव है कि अगर आपने इसका चुनाव नहीं किया है तो "
+"Orageclock गलत समय बता सकती है। (इसका चयन करने से सीपीयू काम नहीं करता और "
+"सहेज़ने की सुविधा को रोकता है।)"
 
 #: ../panel-plugin/oc_config.c:432
 msgid ""
@@ -495,11 +500,20 @@ msgid ""
 "\t%H = hours \t\t\t\t%M = minute\n"
 "\t%X = local time\t\t\t%x = local date"
 msgstr ""
+"यह प्रोग्रैम strftime function का उपयोग कर समय मिलता है।\n"
+"आप समय को मन चाहे प्रारूप मे प्रदर्शित करने के लिए किसी भी मान्य कोड का "
+"प्रयोग कर सकते है।\n"
+"कुछ आम कोड हैं:\n"
+"%A = काम करने के दिन\t%B = माह \n"
+"%c = दिनांक एवं समय\t\t%R = मिनट और घंटे\n"
+"%V = सप्ताह के नंबर\t\t%Z = उपयोक्त समयक्षेत्र\n"
+"%H = घंटे\t\t\t%M = मिनट\n"
+"%X = स्थानीय समय\t\t%x = स्थानीय तारीख"
 
 #: ../panel-plugin/oc_config.c:457
 #, fuzzy
 msgid "Orage clock Preferences"
-msgstr "एक्सएफ पंचांग (कैलेंडर)"
+msgstr "Orage घड़ी की प्राथमिकताएं"
 
 #. no lines yet
 #. TRANSLATORS: Use format characters from strftime(3)
@@ -517,94 +531,94 @@ msgstr ""
 
 #: ../src/about-xfcalendar.c:40
 msgid "Maintainer"
-msgstr ""
+msgstr "अनुरक्षक"
 
 #: ../src/about-xfcalendar.c:47
 msgid "Manage your time with Orage"
-msgstr ""
+msgstr "Orage के साथ अपने समय का प्रबंधन करें"
 
 #. if (gtk_toggle_button_get_active(
 #. GTK_TOGGLE_BUTTON(apptw->Type_journal_rb)))
 #. end time
 #: ../src/appointment.c:312 ../src/appointment.c:352 ../src/appointment.c:2639
 msgid "End"
-msgstr ""
+msgstr "समाप्त"
 
 #: ../src/appointment.c:332
 msgid "Due"
-msgstr ""
+msgstr "देय"
 
 #: ../src/appointment.c:471 ../src/mainbox.c:763
 msgid "Orage"
-msgstr ""
+msgstr "Orage"
 
 #. to avoid timing problems when updating entry
 #. Create file chooser
 #: ../src/appointment.c:650 ../src/interface.c:276 ../src/parameters.c:411
 msgid "Select a file..."
-msgstr ""
+msgstr "एक फ़ाइल चुनें ..."
 
 #: ../src/appointment.c:658
 msgid "Sound Files"
-msgstr ""
+msgstr "ध्वनिफ़ाइलें"
 
 #: ../src/appointment.c:665 ../src/interface.c:289
 msgid "All Files"
-msgstr ""
+msgstr "सभी फ़ाइलें"
 
 #: ../src/appointment.c:717
 msgid "The appointment information has been modified."
-msgstr ""
+msgstr "नियुक्ति जानकारी संशोधित की गई है।"
 
 #: ../src/appointment.c:718 ../src/appointment.c:1165 ../src/event-list.c:917
 msgid "Do you want to continue?"
-msgstr ""
+msgstr "क्या आप जारी रखना चाहते हैं?"
 
 #: ../src/appointment.c:745
 msgid "The end of this appointment is earlier than the beginning."
-msgstr ""
+msgstr "इस नियुक्ति का अंत इसकी मूल शुरूआत से पहले है।"
 
 #: ../src/appointment.c:1005 ../src/appointment.c:1763
 msgid "Not set"
-msgstr ""
+msgstr "निर्धारित नहीं है।"
 
 #: ../src/appointment.c:1164
 msgid "This appointment will be permanently removed."
-msgstr ""
+msgstr "यह नियुक्ति स्थायी रूप से हटाई जा चुकी है।"
 
 #: ../src/appointment.c:1643
 msgid "This appointment does not exist."
-msgstr ""
+msgstr "इस नियुक्ति मौजूद नहीं है।"
 
 #: ../src/appointment.c:1644
 msgid "It was probably removed, please refresh your screen."
-msgstr ""
+msgstr "इसे शायद हटा दिया गया है, कृपया अपनी स्क्रीन ताज़ा करें।"
 
 #: ../src/appointment.c:1945
 #, fuzzy
 msgid "Current categories"
-msgstr "एक्सएफ पंचांग (कैलेंडर)"
+msgstr "वर्तमान श्रेणियां"
 
 #: ../src/appointment.c:1960
 msgid "Add new category with color"
-msgstr ""
+msgstr "रंग के साथ नई श्रेणी जोड़ें"
 
 #: ../src/appointment.c:1964
 msgid "Category:"
-msgstr ""
+msgstr "श्रेणी:"
 
 #: ../src/appointment.c:1995
 msgid "Colors of categories - Orage"
-msgstr ""
+msgstr "श्रेणियों की रंग - orage"
 
 #: ../src/appointment.c:2042
 msgid " *** COPY ***"
-msgstr ""
+msgstr "*** नक़ल करें ***"
 
 #: ../src/appointment.c:2301
 #, fuzzy
 msgid "New appointment - Orage"
-msgstr "नियुक्ति"
+msgstr "नई नियुक्ति - Orage"
 
 #. File menu stuff
 #. ********* File menu *********
@@ -616,27 +630,27 @@ msgstr "फाइल (_F)"
 
 #: ../src/appointment.c:2336
 msgid "Sav_e and close"
-msgstr ""
+msgstr "सहेजें और बंद करें (_e)"
 
 #: ../src/appointment.c:2349 ../src/event-list.c:1013
 msgid "D_uplicate"
-msgstr ""
+msgstr "प्रतिलिपि (_u)"
 
 #: ../src/appointment.c:2536
 msgid "Save"
-msgstr "संचित करें"
+msgstr "सहेजें"
 
 #: ../src/appointment.c:2538
 msgid "Save and close"
-msgstr ""
+msgstr "सहेजें और बंद करें"
 
 #: ../src/appointment.c:2543
 msgid "Revert"
-msgstr ""
+msgstr "वापस लाए"
 
 #: ../src/appointment.c:2545 ../src/event-list.c:1098
 msgid "Duplicate"
-msgstr ""
+msgstr "प्रतिलिपि"
 
 #: ../src/appointment.c:2550 ../src/event-list.c:1100
 msgid "Delete"
@@ -644,78 +658,84 @@ msgstr ""
 
 #: ../src/appointment.c:2568
 msgid "Free"
-msgstr ""
+msgstr "मुफ्त"
 
 #: ../src/appointment.c:2568
 msgid "Busy"
-msgstr ""
+msgstr "व्यस्त"
 
 #: ../src/appointment.c:2572
 msgid "General"
-msgstr ""
+msgstr "सामान्य"
 
 #. type
 #: ../src/appointment.c:2578
 msgid "Type "
-msgstr ""
+msgstr "टाइप"
 
 #: ../src/appointment.c:2580 ../src/event-list.c:1151
 msgid "Event"
-msgstr ""
+msgstr "कार्यक्रम"
 
 #: ../src/appointment.c:2583
 msgid ""
 "Event that will happen sometime. For example:\n"
 "Meeting or birthday or TV show."
 msgstr ""
+"कार्यक्रम जो कभी-कभी होगा। उदाहरण के लिए:\n"
+"बैठक, जन्मदिन या टीवी का शो।"
 
 #: ../src/appointment.c:2586 ../src/event-list.c:1171
 #, fuzzy
 msgid "Todo"
-msgstr "आज"
+msgstr "करने वाले कार्य"
 
 #: ../src/appointment.c:2589
 msgid ""
 "Something that you should do sometime. For example:\n"
 "Wash your car or test new version of Orage."
 msgstr ""
+"कुछ कार्य जो कि आप कभी-कभी ही करते है। उदाहरण के लिए:\n"
+"आपकी कार की सफाई या orage के नए संस्करण का परीक्षण।"
 
 #: ../src/appointment.c:2592 ../src/event-list.c:1184
 msgid "Journal"
-msgstr ""
+msgstr "दैनिकी"
 
 #: ../src/appointment.c:2596
 msgid ""
 "Make a note that something happened. For example:\n"
 "Remark that your mother called or first snow came."
 msgstr ""
+"किसी हो चुकि गतिविधि का एक लेख बनाए। उदाहरण के लिए:\n"
+"टिप्पणी कि आपकी माँ ने कॉल किया या पहली बर्फ गिर पड़ी।"
 
 #. title
 #: ../src/appointment.c:2603
 msgid "Title "
-msgstr ""
+msgstr "शीर्षक"
 
 #: ../src/appointment.c:2618
 msgid "All day event"
-msgstr ""
+msgstr "पूरे दिन का कार्यक्रम"
 
 #. start time
 #: ../src/appointment.c:2624 ../src/appointment.c:3287 ../src/day-view.c:682
 msgid "Start"
-msgstr ""
+msgstr "शुरूआत"
 
 #: ../src/appointment.c:2644
 msgid "Set      "
-msgstr ""
+msgstr "निर्धारित करें"
 
 #: ../src/appointment.c:2665
 msgid "Duration"
-msgstr ""
+msgstr "अवधि"
 
 #: ../src/appointment.c:2669 ../src/appointment.c:2857 ../src/reminder.c:745
 #, fuzzy
 msgid "days"
-msgstr "आज"
+msgstr "दिन"
 
 #: ../src/appointment.c:2671 ../src/appointment.c:2859 ../src/reminder.c:747
 msgid "hours"
