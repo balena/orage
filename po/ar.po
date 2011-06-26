@@ -503,7 +503,7 @@ msgstr "%A %d %B %Y/%V"
 
 #: ../src/about-xfcalendar.c:40
 msgid "Maintainer"
-msgstr ""
+msgstr "مشرف"
 
 #: ../src/about-xfcalendar.c:47
 msgid "Manage your time with Orage"
@@ -658,20 +658,24 @@ msgid "Todo"
 msgstr "يجب فعله"
 
 #: ../src/appointment.c:2589
+#, fuzzy
 msgid ""
 "Something that you should do sometime. For example:\n"
 "Wash your car or test new version of Orage."
 msgstr ""
+"شيء يجب عليك فعله في وقت ما. مثالاً :\n"
+"تغسل سيارتك  أو تجرب نسخة جديدة من Orage."
 
 #: ../src/appointment.c:2592 ../src/event-list.c:1184
 msgid "Journal"
 msgstr "مجلة"
 
 #: ../src/appointment.c:2596
+#, fuzzy
 msgid ""
 "Make a note that something happened. For example:\n"
 "Remark that your mother called or first snow came."
-msgstr ""
+msgstr "تقديم مذكرة بأن شيئا ما حدث. على سبيل المثال : \\ nRemark أن والدتك أو ودعا جاء أول الثلوج."
 
 #. title
 #: ../src/appointment.c:2603
@@ -727,8 +731,11 @@ msgid "Categories"
 msgstr "الفئات"
 
 #: ../src/appointment.c:2729
+#, fuzzy
 msgid "This is special category, which can be used to color this appointment in list views."
 msgstr ""
+"عمل مذكرة بشيئ حدث. مثلاً:\n"
+"دعاء والدتك أو مولود لصديق."
 
 #: ../src/appointment.c:2734
 msgid "update colors for categories."
@@ -745,6 +752,7 @@ msgid "Note"
 msgstr "لاحظ"
 
 #: ../src/appointment.c:2769
+#, fuzzy
 msgid ""
 "These shorthand commands take effect immediately:\n"
 "    <D> inserts current date in local date format\n"
@@ -755,6 +763,13 @@ msgid ""
 "    <&Ynnnn> is translated to current year minus nnnn.\n"
 "(This can be used for example in birthday reminders to tell how old the person will be.)"
 msgstr ""
+"اختزال هذه الأوامر يسري مفعوله فورا:\n"
+" <D> إدراج التاريخ الحالي في تنسيق التاريخ المحلي:\n"
+" <T> إدراج الوقت و:\n"
+" <DT>إدراج التاريخ والوقت يتم تحويل:\n"
+" لاحقا عند النظر إليها:\n"
+" <&Ynnnn>ترجم إلى السنة الحالية ناقص nnnn.\n"
+"(يمكن استخدام هذا مثلاً في تذكير عيد ميلاد لمعرفة عمر الشخص)"
 
 #: ../src/appointment.c:2840
 msgid "Before Start"
@@ -782,20 +797,26 @@ msgid "Alarm time"
 msgstr "ساعة المنبه"
 
 #: ../src/appointment.c:2878
+#, fuzzy
 msgid ""
 "Often you want to get alarm:\n"
 " 1) before Event start\n"
 " 2) before Todo end\n"
 " 3) after Todo start"
 msgstr ""
+"كثيرا ما ترغب في الحصول على تنبيه:\n"
+"1-قبل بدء الحدث:\n"
+"2-قيب أن تعمل شيئ:\n"
+"3-بعد عمل شيئ"
 
 #: ../src/appointment.c:2883
 msgid "Persistent alarm"
 msgstr "استمرار التنبيه"
 
 #: ../src/appointment.c:2885
+#, fuzzy
 msgid "Select this if you want Orage to remind you even if it has not been active when the alarm happened."
-msgstr ""
+msgstr "حدد هذا إذا كنت تريد أن يذكرك Orage بحدث حتى عندما يكون لا يكون مفعلاً عند وقت التنبيه."
 
 #. **** Audio Alarm ****
 #: ../src/appointment.c:2894
@@ -852,8 +873,9 @@ msgid "Select this if you want notification to expire automatically"
 msgstr "حدد هذا إذا كنت تريد أن ينتهي الإعلام تلقائيا"
 
 #: ../src/appointment.c:2999
+#, fuzzy
 msgid "0 = system default expiration time"
-msgstr ""
+msgstr "0=انتهاء الوقت النظام الافتراضي"
 
 #: ../src/appointment.c:3004
 msgid "seconds"
@@ -873,6 +895,8 @@ msgid ""
 "You must enter all escape etc characters yourself.\n"
 " This string is just given to shell to process"
 msgstr ""
+"يجب عليك إدخال كل حروف الهروب وغيرها نفسك.\n"
+"هذا يبدأ فور الانتهاء من المعالجة في الطرفية"
 
 #: ../src/appointment.c:3039
 msgid "Test this alarm by raising it now"
@@ -2684,11 +2708,11 @@ msgstr ""
 
 #: ../src/timezone_names.c:234
 msgid "Asia/Baku"
-msgstr ""
+msgstr "Asia/Baku"
 
 #: ../src/timezone_names.c:235
 msgid "Asia/Bangkok"
-msgstr ""
+msgstr "Asia/Bangkok"
 
 #: ../src/timezone_names.c:236
 msgid "Asia/Beirut"
@@ -2696,23 +2720,23 @@ msgstr ""
 
 #: ../src/timezone_names.c:237
 msgid "Asia/Bishkek"
-msgstr ""
+msgstr "Asia/Bishkek"
 
 #: ../src/timezone_names.c:238
 msgid "Asia/Brunei"
-msgstr ""
+msgstr "Asia/Brunei"
 
 #: ../src/timezone_names.c:239
 msgid "Asia/Calcutta"
-msgstr ""
+msgstr "Asia/Calcutta"
 
 #: ../src/timezone_names.c:240
 msgid "Asia/Chungking"
-msgstr ""
+msgstr "Asia/Chungking"
 
 #: ../src/timezone_names.c:241
 msgid "Asia/Colombo"
-msgstr ""
+msgstr "Asia/Colombo"
 
 #: ../src/timezone_names.c:242
 msgid "Asia/Damascus"
@@ -2720,11 +2744,11 @@ msgstr ""
 
 #: ../src/timezone_names.c:243
 msgid "Asia/Dhaka"
-msgstr ""
+msgstr "Asia/Dhaka"
 
 #: ../src/timezone_names.c:244
 msgid "Asia/Dili"
-msgstr ""
+msgstr "Asia/Dili"
 
 #: ../src/timezone_names.c:245
 msgid "Asia/Dubai"
@@ -2732,7 +2756,7 @@ msgstr ""
 
 #: ../src/timezone_names.c:246
 msgid "Asia/Dushanbe"
-msgstr ""
+msgstr "Asia/Dushanbe"
 
 #: ../src/timezone_names.c:247
 msgid "Asia/Gaza"
@@ -2740,31 +2764,31 @@ msgstr ""
 
 #: ../src/timezone_names.c:248
 msgid "Asia/Harbin"
-msgstr ""
+msgstr "Asia/Harbin"
 
 #: ../src/timezone_names.c:249
 msgid "Asia/Hong_Kong"
-msgstr ""
+msgstr "Asia/Hong_Kong"
 
 #: ../src/timezone_names.c:250
 msgid "Asia/Hovd"
-msgstr ""
+msgstr "Asia/Hovd"
 
 #: ../src/timezone_names.c:251
 msgid "Asia/Irkutsk"
-msgstr ""
+msgstr "Asia/Irkutsk"
 
 #: ../src/timezone_names.c:252
 msgid "Asia/Istanbul"
-msgstr ""
+msgstr "Asia/Istanbul"
 
 #: ../src/timezone_names.c:253
 msgid "Asia/Jakarta"
-msgstr ""
+msgstr "Asia/Jakarta"
 
 #: ../src/timezone_names.c:254
 msgid "Asia/Jayapura"
-msgstr ""
+msgstr "Asia/Jayapura"
 
 #: ../src/timezone_names.c:255
 msgid "Asia/Jerusalem"
@@ -2772,38 +2796,33 @@ msgstr ""
 
 #: ../src/timezone_names.c:256
 msgid "Asia/Kabul"
-msgstr ""
+msgstr "Asia/Kabul"
 
 #: ../src/timezone_names.c:257
 msgid "Asia/Kamchatka"
-msgstr ""
+msgstr "Asia/Kamchatka"
 
 #: ../src/timezone_names.c:258
 msgid "Asia/Karachi"
-msgstr ""
+msgstr "Asia/Karachi"
 
 #: ../src/timezone_names.c:259
-#, fuzzy
 msgid "Asia/Kashgar"
 msgstr "Asia/Kashgar"
 
 #: ../src/timezone_names.c:260
-#, fuzzy
 msgid "Asia/Katmandu"
 msgstr "Asia/Katmandu"
 
 #: ../src/timezone_names.c:261
-#, fuzzy
 msgid "Asia/Krasnoyarsk"
 msgstr "Asia/Krasnoyarsk"
 
 #: ../src/timezone_names.c:262
-#, fuzzy
 msgid "Asia/Kuala_Lumpur"
 msgstr "Asia/Kuala_Lumpur"
 
 #: ../src/timezone_names.c:263
-#, fuzzy
 msgid "Asia/Kuching"
 msgstr "Asia/Kuching"
 
@@ -2812,52 +2831,42 @@ msgid "Asia/Kuwait"
 msgstr ""
 
 #: ../src/timezone_names.c:265
-#, fuzzy
 msgid "Asia/Macao"
 msgstr "Asia/Macao"
 
 #: ../src/timezone_names.c:266
-#, fuzzy
 msgid "Asia/Magadan"
 msgstr "Asia/Magadan"
 
 #: ../src/timezone_names.c:267
-#, fuzzy
 msgid "Asia/Manila"
 msgstr "Asia/Manila"
 
 #: ../src/timezone_names.c:268
-#, fuzzy
 msgid "Asia/Muscat"
 msgstr "Asia/Muscat"
 
 #: ../src/timezone_names.c:269
-#, fuzzy
 msgid "Asia/Nicosia"
 msgstr "Asia/Nicosia"
 
 #: ../src/timezone_names.c:270
-#, fuzzy
 msgid "Asia/Novosibirsk"
 msgstr "Asia/Novosibirsk"
 
 #: ../src/timezone_names.c:271
-#, fuzzy
 msgid "Asia/Omsk"
 msgstr "Asia/Omsk"
 
 #: ../src/timezone_names.c:272
-#, fuzzy
 msgid "Asia/Phnom_Penh"
 msgstr "Asia/Phnom_Penh"
 
 #: ../src/timezone_names.c:273
-#, fuzzy
 msgid "Asia/Pontianak"
 msgstr "Asia/Pontianak"
 
 #: ../src/timezone_names.c:274
-#, fuzzy
 msgid "Asia/Pyongyang"
 msgstr "Asia/Pyongyang"
 
@@ -2866,7 +2875,6 @@ msgid "Asia/Qatar"
 msgstr ""
 
 #: ../src/timezone_names.c:276
-#, fuzzy
 msgid "Asia/Rangoon"
 msgstr "Asia/Rangoon"
 
@@ -2875,732 +2883,586 @@ msgid "Asia/Riyadh"
 msgstr ""
 
 #: ../src/timezone_names.c:278
-#, fuzzy
 msgid "Asia/Saigon"
 msgstr "Asia/Saigon"
 
 #: ../src/timezone_names.c:279
-#, fuzzy
 msgid "Asia/Samarkand"
 msgstr "Asia/Samarkand"
 
 #: ../src/timezone_names.c:280
-#, fuzzy
 msgid "Asia/Seoul"
 msgstr "Asia/Seoul"
 
 #: ../src/timezone_names.c:281
-#, fuzzy
 msgid "Asia/Shanghai"
 msgstr "Asia/Shanghai"
 
 #: ../src/timezone_names.c:282
-#, fuzzy
 msgid "Asia/Singapore"
 msgstr "Asia/Singapore"
 
 #: ../src/timezone_names.c:283
-#, fuzzy
 msgid "Asia/Taipei"
 msgstr "Asia/Taipei"
 
 #: ../src/timezone_names.c:284
-#, fuzzy
 msgid "Asia/Tashkent"
 msgstr "Asia/Tashkent"
 
 #: ../src/timezone_names.c:285
-#, fuzzy
 msgid "Asia/Tbilisi"
 msgstr "Asia/Tbilisi"
 
 #: ../src/timezone_names.c:286
-#, fuzzy
 msgid "Asia/Tehran"
 msgstr "Asia/Tehran"
 
 #: ../src/timezone_names.c:287
-#, fuzzy
 msgid "Asia/Thimphu"
 msgstr "Asia/Thimphu"
 
 #: ../src/timezone_names.c:288
-#, fuzzy
 msgid "Asia/Tokyo"
 msgstr "Asia/Tokyo"
 
 #: ../src/timezone_names.c:289
-#, fuzzy
 msgid "Asia/Ujung_Pandang"
 msgstr "Asia/Ujung_Pandang"
 
 #: ../src/timezone_names.c:290
-#, fuzzy
 msgid "Asia/Ulaanbaatar"
 msgstr "Asia/Ulaanbaatar"
 
 #: ../src/timezone_names.c:291
-#, fuzzy
 msgid "Asia/Urumqi"
 msgstr "Asia/Urumqi"
 
 #: ../src/timezone_names.c:292
-#, fuzzy
 msgid "Asia/Vientiane"
 msgstr "Asia/Vientiane"
 
 #: ../src/timezone_names.c:293
-#, fuzzy
 msgid "Asia/Vladivostok"
 msgstr "Asia/Vladivostok"
 
 #: ../src/timezone_names.c:294
-#, fuzzy
 msgid "Asia/Yakutsk"
 msgstr "Asia/Yakutsk"
 
 #: ../src/timezone_names.c:295
-#, fuzzy
 msgid "Asia/Yekaterinburg"
 msgstr "Asia/Yekaterinburg"
 
 #: ../src/timezone_names.c:296
-#, fuzzy
 msgid "Asia/Yerevan"
 msgstr "Asia/Yerevan"
 
 #: ../src/timezone_names.c:297
-#, fuzzy
 msgid "Atlantic"
 msgstr "Atlantic"
 
 #: ../src/timezone_names.c:298
-#, fuzzy
 msgid "Atlantic/Azores"
 msgstr "Atlantic/Azores"
 
 #: ../src/timezone_names.c:299
-#, fuzzy
 msgid "Atlantic/Bermuda"
 msgstr "Atlantic/Bermuda"
 
 #: ../src/timezone_names.c:300
-#, fuzzy
 msgid "Atlantic/Canary"
 msgstr "Atlantic/Canary"
 
 #: ../src/timezone_names.c:301
-#, fuzzy
 msgid "Atlantic/Cape_Verde"
 msgstr "Atlantic/Cape_Verde"
 
 #: ../src/timezone_names.c:302
-#, fuzzy
 msgid "Atlantic/Faeroe"
 msgstr "Atlantic/Faeroe"
 
 #: ../src/timezone_names.c:303
-#, fuzzy
 msgid "Atlantic/Jan_Mayen"
 msgstr "Atlantic/Jan_Mayen"
 
 #: ../src/timezone_names.c:304
-#, fuzzy
 msgid "Atlantic/Madeira"
 msgstr "Atlantic/Madeira"
 
 #: ../src/timezone_names.c:305
-#, fuzzy
 msgid "Atlantic/Reykjavik"
 msgstr "Atlantic/Reykjavik"
 
 #: ../src/timezone_names.c:306
-#, fuzzy
 msgid "Atlantic/South_Georgia"
 msgstr "Atlantic/South_Georgia"
 
 #: ../src/timezone_names.c:307
-#, fuzzy
 msgid "Atlantic/St_Helena"
 msgstr "Atlantic/St_Helena"
 
 #: ../src/timezone_names.c:308
-#, fuzzy
 msgid "Atlantic/Stanley"
 msgstr "Atlantic/Stanley"
 
 #: ../src/timezone_names.c:309
-#, fuzzy
 msgid "Australia"
 msgstr "Australia"
 
 #: ../src/timezone_names.c:310
-#, fuzzy
 msgid "Australia/Adelaide"
 msgstr "Australia/Adelaide"
 
 #: ../src/timezone_names.c:311
-#, fuzzy
 msgid "Australia/Brisbane"
 msgstr "Australia/Brisbane"
 
 #: ../src/timezone_names.c:312
-#, fuzzy
 msgid "Australia/Broken_Hill"
 msgstr "Australia/Broken_Hill"
 
 #: ../src/timezone_names.c:313
-#, fuzzy
 msgid "Australia/Darwin"
 msgstr "Australia/Darwin"
 
 #: ../src/timezone_names.c:314
-#, fuzzy
 msgid "Australia/Hobart"
 msgstr "Australia/Hobart"
 
 #: ../src/timezone_names.c:315
-#, fuzzy
 msgid "Australia/Lindeman"
 msgstr "Australia/Lindeman"
 
 #: ../src/timezone_names.c:316
-#, fuzzy
 msgid "Australia/Lord_Howe"
 msgstr "Australia/Lord_Howe"
 
 #: ../src/timezone_names.c:317
-#, fuzzy
 msgid "Australia/Melbourne"
 msgstr "Australia/Melbourne"
 
 #: ../src/timezone_names.c:318
-#, fuzzy
 msgid "Australia/Perth"
 msgstr "Australia/Perth"
 
 #: ../src/timezone_names.c:319
-#, fuzzy
 msgid "Australia/Sydney"
 msgstr "Australia/Sydney"
 
 #: ../src/timezone_names.c:320
-#, fuzzy
 msgid "Europe"
 msgstr "Europe"
 
 #: ../src/timezone_names.c:321
-#, fuzzy
 msgid "Europe/Amsterdam"
 msgstr "Europe/Amsterdam"
 
 #: ../src/timezone_names.c:322
-#, fuzzy
 msgid "Europe/Andorra"
 msgstr "Europe/Andorra"
 
 #: ../src/timezone_names.c:323
-#, fuzzy
 msgid "Europe/Athens"
 msgstr "Europe/Athens"
 
 #: ../src/timezone_names.c:324
-#, fuzzy
 msgid "Europe/Belfast"
 msgstr "Europe/Belfast"
 
 #: ../src/timezone_names.c:325
-#, fuzzy
 msgid "Europe/Belgrade"
 msgstr "Europe/Belgrade"
 
 #: ../src/timezone_names.c:326
-#, fuzzy
 msgid "Europe/Berlin"
 msgstr "Europe/Berlin"
 
 #: ../src/timezone_names.c:327
-#, fuzzy
 msgid "Europe/Bratislava"
 msgstr "Europe/Bratislava"
 
 #: ../src/timezone_names.c:328
-#, fuzzy
 msgid "Europe/Brussels"
 msgstr "Europe/Brussels"
 
 #: ../src/timezone_names.c:329
-#, fuzzy
 msgid "Europe/Bucharest"
 msgstr "Europe/Bucharest"
 
 #: ../src/timezone_names.c:330
-#, fuzzy
 msgid "Europe/Budapest"
 msgstr "Europe/Budapest"
 
 #: ../src/timezone_names.c:331
-#, fuzzy
 msgid "Europe/Chisinau"
 msgstr "Europe/Chisinau"
 
 #: ../src/timezone_names.c:332
-#, fuzzy
 msgid "Europe/Copenhagen"
 msgstr "Europe/Copenhagen"
 
 #: ../src/timezone_names.c:333
-#, fuzzy
 msgid "Europe/Dublin"
 msgstr "Europe/Dublin"
 
 #: ../src/timezone_names.c:334
-#, fuzzy
 msgid "Europe/Gibraltar"
 msgstr "Europe/Gibraltar"
 
 #: ../src/timezone_names.c:335
-#, fuzzy
 msgid "Europe/Helsinki"
 msgstr "Europe/Helsinki"
 
 #: ../src/timezone_names.c:336
-#, fuzzy
 msgid "Europe/Istanbul"
 msgstr "Europe/Istanbul"
 
 #: ../src/timezone_names.c:337
-#, fuzzy
 msgid "Europe/Kaliningrad"
 msgstr "Europe/Kaliningrad"
 
 #: ../src/timezone_names.c:338
-#, fuzzy
 msgid "Europe/Kiev"
 msgstr "Europe/Kiev"
 
 #: ../src/timezone_names.c:339
-#, fuzzy
 msgid "Europe/Lisbon"
 msgstr "Europe/Lisbon"
 
 #: ../src/timezone_names.c:340
-#, fuzzy
 msgid "Europe/Ljubljana"
 msgstr "Europe/Ljubljana"
 
 #: ../src/timezone_names.c:341
-#, fuzzy
 msgid "Europe/London"
 msgstr "Europe/London"
 
 #: ../src/timezone_names.c:342
-#, fuzzy
 msgid "Europe/Luxembourg"
 msgstr "Europe/Luxembourg"
 
 #: ../src/timezone_names.c:343
-#, fuzzy
 msgid "Europe/Madrid"
 msgstr "Europe/Madrid"
 
 #: ../src/timezone_names.c:344
-#, fuzzy
 msgid "Europe/Malta"
 msgstr "Europe/Malta"
 
 #: ../src/timezone_names.c:345
-#, fuzzy
 msgid "Europe/Minsk"
 msgstr "Europe/Minsk"
 
 #: ../src/timezone_names.c:346
-#, fuzzy
 msgid "Europe/Monaco"
 msgstr "Europe/Monaco"
 
 #: ../src/timezone_names.c:347
-#, fuzzy
 msgid "Europe/Moscow"
 msgstr "Europe/Moscow"
 
 #: ../src/timezone_names.c:348
-#, fuzzy
 msgid "Europe/Nicosia"
 msgstr "Europe/Nicosia"
 
 #: ../src/timezone_names.c:349
-#, fuzzy
 msgid "Europe/Oslo"
 msgstr "Europe/Oslo"
 
 #: ../src/timezone_names.c:350
-#, fuzzy
 msgid "Europe/Paris"
 msgstr "Europe/Paris"
 
 #: ../src/timezone_names.c:351
-#, fuzzy
 msgid "Europe/Prague"
 msgstr "Europe/Prague"
 
 #: ../src/timezone_names.c:352
-#, fuzzy
 msgid "Europe/Riga"
 msgstr "Europe/Riga"
 
 #: ../src/timezone_names.c:353
-#, fuzzy
 msgid "Europe/Rome"
 msgstr "Europe/Rome"
 
 #: ../src/timezone_names.c:354
-#, fuzzy
 msgid "Europe/Samara"
 msgstr "Europe/Samara"
 
 #: ../src/timezone_names.c:355
-#, fuzzy
 msgid "Europe/San_Marino"
 msgstr "Europe/San_Marino"
 
 #: ../src/timezone_names.c:356
-#, fuzzy
 msgid "Europe/Sarajevo"
 msgstr "Europe/Sarajevo"
 
 #: ../src/timezone_names.c:357
-#, fuzzy
 msgid "Europe/Simferopol"
 msgstr "Europe/Simferopol"
 
 #: ../src/timezone_names.c:358
-#, fuzzy
 msgid "Europe/Skopje"
 msgstr "Europe/Skopje"
 
 #: ../src/timezone_names.c:359
-#, fuzzy
 msgid "Europe/Sofia"
 msgstr "Europe/Sofia"
 
 #: ../src/timezone_names.c:360
-#, fuzzy
 msgid "Europe/Stockholm"
 msgstr "Europe/Stockholm"
 
 #: ../src/timezone_names.c:361
-#, fuzzy
 msgid "Europe/Tallinn"
 msgstr "Europe/Tallinn"
 
 #: ../src/timezone_names.c:362
-#, fuzzy
 msgid "Europe/Tirane"
 msgstr "Europe/Tirane"
 
 #: ../src/timezone_names.c:363
-#, fuzzy
 msgid "Europe/Uzhgorod"
 msgstr "Europe/Uzhgorod"
 
 #: ../src/timezone_names.c:364
-#, fuzzy
 msgid "Europe/Vaduz"
 msgstr "Europe/Vaduz"
 
 #: ../src/timezone_names.c:365
-#, fuzzy
 msgid "Europe/Vatican"
 msgstr "Europe/Vatican"
 
 #: ../src/timezone_names.c:366
-#, fuzzy
 msgid "Europe/Vienna"
 msgstr "Europe/Vienna"
 
 #: ../src/timezone_names.c:367
-#, fuzzy
 msgid "Europe/Vilnius"
 msgstr "Europe/Vilnius"
 
 #: ../src/timezone_names.c:368
-#, fuzzy
 msgid "Europe/Warsaw"
 msgstr "Europe/Warsaw"
 
 #: ../src/timezone_names.c:369
-#, fuzzy
 msgid "Europe/Zagreb"
 msgstr "Europe/Zagreb"
 
 #: ../src/timezone_names.c:370
-#, fuzzy
 msgid "Europe/Zaporozhye"
 msgstr "Europe/Zaporozhye"
 
 #: ../src/timezone_names.c:371
-#, fuzzy
 msgid "Europe/Zurich"
 msgstr "Europe/Zurich"
 
 #: ../src/timezone_names.c:372
-#, fuzzy
 msgid "Indian"
 msgstr "Indian"
 
 #: ../src/timezone_names.c:373
-#, fuzzy
 msgid "Indian/Antananarivo"
 msgstr "Indian/Antananarivo"
 
 #: ../src/timezone_names.c:374
-#, fuzzy
 msgid "Indian/Chagos"
 msgstr "Indian/Chagos"
 
 #: ../src/timezone_names.c:375
-#, fuzzy
 msgid "Indian/Christmas"
 msgstr "Indian/Christmas"
 
 #: ../src/timezone_names.c:376
-#, fuzzy
 msgid "Indian/Cocos"
 msgstr "Indian/Cocos"
 
 #: ../src/timezone_names.c:377
-#, fuzzy
 msgid "Indian/Comoro"
 msgstr "Indian/Comoro"
 
 #: ../src/timezone_names.c:378
-#, fuzzy
 msgid "Indian/Kerguelen"
 msgstr "Indian/Kerguelen"
 
 #: ../src/timezone_names.c:379
-#, fuzzy
 msgid "Indian/Mahe"
 msgstr "Indian/Mahe"
 
 #: ../src/timezone_names.c:380
-#, fuzzy
 msgid "Indian/Maldives"
 msgstr "Indian/Maldives"
 
 #: ../src/timezone_names.c:381
-#, fuzzy
 msgid "Indian/Mauritius"
 msgstr "Indian/Mauritius"
 
 #: ../src/timezone_names.c:382
-#, fuzzy
 msgid "Indian/Mayotte"
 msgstr "Indian/Mayotte"
 
 #: ../src/timezone_names.c:383
-#, fuzzy
 msgid "Indian/Reunion"
 msgstr "Indian/Reunion"
 
 #: ../src/timezone_names.c:384
-#, fuzzy
 msgid "Pacific"
 msgstr "Pacific"
 
 #: ../src/timezone_names.c:385
-#, fuzzy
 msgid "Pacific/Apia"
 msgstr "Pacific/Apia"
 
 #: ../src/timezone_names.c:386
-#, fuzzy
 msgid "Pacific/Auckland"
 msgstr "Pacific/Auckland"
 
 #: ../src/timezone_names.c:387
-#, fuzzy
 msgid "Pacific/Chatham"
 msgstr "Pacific/Chatham"
 
 #: ../src/timezone_names.c:388
-#, fuzzy
 msgid "Pacific/Easter"
 msgstr "Pacific/Easter"
 
 #: ../src/timezone_names.c:389
-#, fuzzy
 msgid "Pacific/Efate"
 msgstr "Pacific/Efate"
 
 #: ../src/timezone_names.c:390
-#, fuzzy
 msgid "Pacific/Enderbury"
 msgstr "Pacific/Enderbury"
 
 #: ../src/timezone_names.c:391
-#, fuzzy
 msgid "Pacific/Fakaofo"
 msgstr "Pacific/Fakaofo"
 
 #: ../src/timezone_names.c:392
-#, fuzzy
 msgid "Pacific/Fiji"
 msgstr "Pacific/Fiji"
 
 #: ../src/timezone_names.c:393
-#, fuzzy
 msgid "Pacific/Funafuti"
 msgstr "Pacific/Funafuti"
 
 #: ../src/timezone_names.c:394
-#, fuzzy
 msgid "Pacific/Galapagos"
 msgstr "Pacific/Galapagos"
 
 #: ../src/timezone_names.c:395
-#, fuzzy
 msgid "Pacific/Gambier"
 msgstr "Pacific/Gambier"
 
 #: ../src/timezone_names.c:396
-#, fuzzy
 msgid "Pacific/Guadalcanal"
 msgstr "Pacific/Guadalcanal"
 
 #: ../src/timezone_names.c:397
-#, fuzzy
 msgid "Pacific/Guam"
 msgstr "Pacific/Guam"
 
 #: ../src/timezone_names.c:398
-#, fuzzy
 msgid "Pacific/Honolulu"
 msgstr "Pacific/Honolulu"
 
 #: ../src/timezone_names.c:399
-#, fuzzy
 msgid "Pacific/Johnston"
 msgstr "Pacific/Johnston"
 
 #: ../src/timezone_names.c:400
-#, fuzzy
 msgid "Pacific/Kiritimati"
 msgstr "Pacific/Kiritimati"
 
 #: ../src/timezone_names.c:401
-#, fuzzy
 msgid "Pacific/Kosrae"
 msgstr "Pacific/Kosrae"
 
 #: ../src/timezone_names.c:402
-#, fuzzy
 msgid "Pacific/Kwajalein"
 msgstr "Pacific/Kwajalein"
 
 #: ../src/timezone_names.c:403
-#, fuzzy
 msgid "Pacific/Majuro"
 msgstr "Pacific/Majuro"
 
 #: ../src/timezone_names.c:404
-#, fuzzy
 msgid "Pacific/Marquesas"
 msgstr "Pacific/Marquesas"
 
 #: ../src/timezone_names.c:405
-#, fuzzy
 msgid "Pacific/Midway"
 msgstr "Pacific/Midway"
 
 #: ../src/timezone_names.c:406
-#, fuzzy
 msgid "Pacific/Nauru"
 msgstr "Pacific/Nauru"
 
 #: ../src/timezone_names.c:407
-#, fuzzy
 msgid "Pacific/Niue"
 msgstr "Pacific/Niue"
 
 #: ../src/timezone_names.c:408
-#, fuzzy
 msgid "Pacific/Norfolk"
 msgstr "Pacific/Norfolk"
 
 #: ../src/timezone_names.c:409
-#, fuzzy
 msgid "Pacific/Noumea"
 msgstr "Pacific/Noumea"
 
 #: ../src/timezone_names.c:410
-#, fuzzy
 msgid "Pacific/Pago_Pago"
 msgstr "Pacific/Pago_Pago"
 
 #: ../src/timezone_names.c:411
-#, fuzzy
 msgid "Pacific/Palau"
 msgstr "Pacific/Palau"
 
 #: ../src/timezone_names.c:412
-#, fuzzy
 msgid "Pacific/Pitcairn"
 msgstr "Pacific/Pitcairn"
 
 #: ../src/timezone_names.c:413
-#, fuzzy
 msgid "Pacific/Ponape"
 msgstr "Pacific/Ponape"
 
 #: ../src/timezone_names.c:414
-#, fuzzy
 msgid "Pacific/Port_Moresby"
 msgstr "Pacific/Port_Moresby"
 
 #: ../src/timezone_names.c:415
-#, fuzzy
 msgid "Pacific/Rarotonga"
 msgstr "Pacific/Rarotonga"
 
 #: ../src/timezone_names.c:416
-#, fuzzy
 msgid "Pacific/Saipan"
 msgstr "Pacific/Saipan"
 
 #: ../src/timezone_names.c:417
-#, fuzzy
 msgid "Pacific/Tahiti"
 msgstr "Pacific/Tahiti"
 
 #: ../src/timezone_names.c:418
-#, fuzzy
 msgid "Pacific/Tarawa"
 msgstr "Pacific/Tarawa"
 
 #: ../src/timezone_names.c:419
-#, fuzzy
 msgid "Pacific/Tongatapu"
 msgstr "Pacific/Tongatapu"
 
 #: ../src/timezone_names.c:420
-#, fuzzy
 msgid "Pacific/Truk"
 msgstr "Pacific/Truk"
 
 #: ../src/timezone_names.c:421
-#, fuzzy
 msgid "Pacific/Wake"
 msgstr "Pacific/Wake"
 
 #: ../src/timezone_names.c:422
-#, fuzzy
 msgid "Pacific/Wallis"
 msgstr "Pacific/Wallis"
 
 #: ../src/timezone_names.c:423
-#, fuzzy
 msgid "Pacific/Yap"
 msgstr "Pacific/Yap"
 
