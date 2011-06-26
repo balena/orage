@@ -518,7 +518,7 @@ msgstr "نهاية"
 
 #: ../src/appointment.c:332
 msgid "Due"
-msgstr ""
+msgstr "استحقاق"
 
 #: ../src/appointment.c:471 ../src/mainbox.c:763
 msgid "Orage"
@@ -982,6 +982,9 @@ msgid ""
 " Every Saturday and Sunday or \n"
 " First Tuesday every month"
 msgstr ""
+"استخدام هذا اذا كنت بحاجة الى تركيبة معقدة مثل\n"
+"كل السبت والأحد أو\n"
+"الثلاثاء أول كل شهر."
 
 #. frequency
 #: ../src/appointment.c:3156
@@ -1067,7 +1070,7 @@ msgstr ""
 
 #: ../src/appointment.c:3324
 msgid "Add excluded date (-)"
-msgstr ""
+msgstr "إضافة تاريخ مستبعد (-)"
 
 #: ../src/appointment.c:3326
 msgid "Excluded days are full days where this appointment is not happening"
@@ -1075,7 +1078,7 @@ msgstr ""
 
 #: ../src/appointment.c:3332
 msgid "Add included time (+)"
-msgstr ""
+msgstr "أضيف المزيد من الوقت (+)"
 
 #: ../src/appointment.c:3334
 msgid "Included times have same timezone than start time, but they may have different time"
@@ -1552,9 +1555,9 @@ msgid ""
 msgstr ""
 
 #: ../src/main.c:232
-#, fuzzy, c-format
+#, c-format
 msgid "Options:\n"
-msgstr "خيارات الساعة"
+msgstr "خيارات:\n"
 
 #: ../src/main.c:233
 #, c-format
@@ -1623,9 +1626,8 @@ msgid "View selected _date"
 msgstr "أظهر التاريخ المختار"
 
 #: ../src/mainbox.c:311
-#, fuzzy
 msgid "View selected _week"
-msgstr "أظهر التاريخ المختار"
+msgstr "أظهر الأسبوع المحدد"
 
 #: ../src/mainbox.c:317
 msgid "Select _Today"
@@ -1694,7 +1696,7 @@ msgstr ""
 
 #: ../src/parameters.c:526
 msgid "Archive threshold (months)"
-msgstr ""
+msgstr "بداية الأرشيف (أشهر)"
 
 #: ../src/parameters.c:536
 msgid "(0 = no archiving)"
@@ -1717,38 +1719,32 @@ msgid "Display settings"
 msgstr "إعدادات العرض"
 
 #: ../src/parameters.c:587
-#, fuzzy
 msgid "Calendar main window"
-msgstr "نافذة التقويم"
+msgstr "إطار التقويم الرئيسي"
 
 #: ../src/parameters.c:592
-#, fuzzy
 msgid "Show borders"
-msgstr "أظهر النافذة"
+msgstr "تظهر حدود"
 
 #: ../src/parameters.c:599
-#, fuzzy
 msgid "Show menu"
-msgstr "أظهر النافذة"
+msgstr "تظهر القائمة"
 
 #: ../src/parameters.c:606
 msgid "Show month and year"
-msgstr ""
+msgstr "عرض الشهر والسنة"
 
 #: ../src/parameters.c:613
-#, fuzzy
 msgid "Show day names"
-msgstr "أظهر النافذة"
+msgstr "تظهر أسماء اليوم"
 
 #: ../src/parameters.c:620
-#, fuzzy
 msgid "Show week numbers"
-msgstr "أظهر النافذة"
+msgstr "تظهر أرقام الأسبوع"
 
 #: ../src/parameters.c:627
-#, fuzzy
 msgid "Show todo list"
-msgstr "أظهر النافذة"
+msgstr "تظهر قائمة المهام"
 
 #: ../src/parameters.c:634
 msgid "Number of days to show in event window"
@@ -1763,21 +1759,20 @@ msgid "Show on all desktops"
 msgstr ""
 
 #: ../src/parameters.c:657
-#, fuzzy
 msgid "Keep on top"
-msgstr "اختر النطاق الزمني"
+msgstr "تبقي في الأعلى"
 
 #: ../src/parameters.c:664
 msgid "Show in taskbar"
-msgstr ""
+msgstr "تظهر في شريط المهام"
 
 #: ../src/parameters.c:671
 msgid "Show in pager"
-msgstr ""
+msgstr "تظهر في البيجر"
 
 #: ../src/parameters.c:678
 msgid "Show in systray"
-msgstr ""
+msgstr "تظهر في صينية النظام"
 
 #: ../src/parameters.c:713
 msgid "Calendar start"
@@ -1797,63 +1792,59 @@ msgstr "تصغير"
 
 #: ../src/parameters.c:767
 msgid "Extra settings"
-msgstr ""
+msgstr "إعدادات إضافية"
 
 #: ../src/parameters.c:775
-#, fuzzy
 msgid "On Calendar Window Open"
 msgstr "نافذة التقويم"
 
 #: ../src/parameters.c:794
-#, fuzzy
 msgid "Select Today's Date"
 msgstr "إختر اليوم"
 
 #: ../src/parameters.c:807
 msgid "Select Previously Selected Date"
-msgstr ""
+msgstr "اختر الموعد المحدد سابقا"
 
 #: ../src/parameters.c:824
 msgid "Use dynamic tray icon"
-msgstr ""
+msgstr "استخدام رموز  الدينامية"
 
 #: ../src/parameters.c:829
-#, fuzzy
 msgid "Use dynamic icon"
 msgstr "استخدام الرمز الديناميكي"
 
 #: ../src/parameters.c:835
 msgid "Dynamic icon shows current month and day of the month."
-msgstr ""
+msgstr "يظهر الرمز الديناميكي الشهر الحالي واليوم من الشهر."
 
 #: ../src/parameters.c:844
 msgid "Main Calendar double click shows"
-msgstr ""
+msgstr "التقويم الرئيسي عرض النقر المزدوج"
 
 #: ../src/parameters.c:849
 msgid "Days view"
-msgstr ""
+msgstr "عرض أيام"
 
 #: ../src/parameters.c:861
 msgid "Event list"
-msgstr ""
+msgstr "قائمة الحدث"
 
 #: ../src/parameters.c:878
 msgid "Eventlist window"
-msgstr ""
+msgstr " النافذة قائمة الاحداث"
 
 #: ../src/parameters.c:882
 msgid "Number of extra days to show in event list"
-msgstr ""
+msgstr "عدد أيام إضافية لتظهر في قائمة الأحداث"
 
 #: ../src/parameters.c:894
 msgid "This is just the default value, you can change it in the actual eventlist window."
 msgstr ""
 
 #: ../src/parameters.c:911
-#, fuzzy
 msgid "Orage Preferences"
-msgstr "أداء"
+msgstr "تفضيلات Orage"
 
 #: ../src/parameters.c:1099
 msgid "First Orage start. Searching default timezone."
@@ -1874,12 +1865,11 @@ msgstr "مذكر"
 
 #: ../src/reminder.c:575
 msgid "Open"
-msgstr ""
+msgstr "فتح"
 
 #: ../src/reminder.c:706
-#, fuzzy
 msgid "Reminder - Orage"
-msgstr "مذكر"
+msgstr ""
 
 #: ../src/reminder.c:792
 msgid "Remind me again after the specified time"
