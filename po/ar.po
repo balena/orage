@@ -1033,6 +1033,7 @@ msgid "Which day"
 msgstr "اي يوم"
 
 #: ../src/appointment.c:3276
+#, fuzzy
 msgid ""
 "Specify which weekday for monthly and yearly events.\n"
 " For example:\n"
@@ -1041,6 +1042,12 @@ msgid ""
 "\tWeekdays = check only Wednesday,\n"
 "\tWhich day = select 2 from the number below Wednesday"
 msgstr ""
+"تحديد أي يوم من أيام الأسبوع لحدث شهري وسنوي.\n"
+"مثلاً:\n"
+"ثاني اربعاء كل شهر:\n"
+"\tتكرار =شهرياً\n"
+"\tيوم الاسبوع= حدد فقط الاربعاء,\n"
+"\tأي يوم =اختر 2 من ترتيب يوم الاربعاء"
 
 #. TODO base (only for TODOs)
 #: ../src/appointment.c:3284
@@ -1065,11 +1072,15 @@ msgid "Exceptions"
 msgstr "الاستثناءات"
 
 #: ../src/appointment.c:3319
+#, fuzzy
 msgid ""
 "Add more exception dates by clicking the calendar days below.\n"
 "Exception is either exclusion(-) or inclusion(+) depending on the selection.\n"
 "Remove by clicking the data."
 msgstr ""
+"أضف تواريخ استثناء أكثر بالنقر على أيام في التقويم أدناه.\n"
+"إستثناء أو استبعاد(-) أو إضافة(+) يعتمد على الاختيار.\n"
+"إزالة بالنقر على البيانات"
 
 #: ../src/appointment.c:3324
 msgid "Add excluded date (-)"
@@ -1159,10 +1170,11 @@ msgid "Click a row to select it and after that you can copy it."
 msgstr "انقر فوق صف لتحديده وبعد ذلك يمكنك نسخها."
 
 #: ../src/event-list.c:916
+#, fuzzy
 msgid ""
 "You will permanently remove all\n"
 "selected appointments."
-msgstr ""
+msgstr "ستقوم بإزالة جميع \\ nالتعيينات بشكل دائم"
 
 #: ../src/event-list.c:1116
 msgid "Find"
@@ -1197,6 +1209,7 @@ msgid "Title"
 msgstr "عنوان"
 
 #: ../src/event-list.c:1309
+#, fuzzy
 msgid ""
 "Double click line to edit it.\n"
 "\n"
@@ -1211,6 +1224,18 @@ msgid ""
 "\t 5. Appointment type:\n"
 "\t\tE=Event T=Todo J=Journal"
 msgstr ""
+"النقر مرتين فوق خط لتحريره\n"
+"\n"
+"الاعلام بالترتيب\n"
+"\t1.تنبيه: n=بدون تنبيه\n"
+"\t\t A=تنبيه بصري S= أيضاً تنبيه صوتي\n"
+"\t2.تكرار: n=بدوت تكرار\n"
+"\t\t d=d,ld W= اسبوعي M=شهري Y=سنوي\n"
+"\t3. نوع: f=متاح B=مشغول\n"
+"\t 4.موجود في ملف\n"
+"\t\tO=Orage A=ارشيف F=خارجي\n"
+"\t 5.نوع الموعد:\n"
+"\t\tE=تنبيه T=مهمه J= جريدة"
 
 #: ../src/functions.c:137
 msgid "Pick the date"
@@ -1218,17 +1243,18 @@ msgstr "اختر تاريخ"
 
 #. remove since it has ended
 #: ../src/ical-archive.c:278
+#, fuzzy
 msgid "\tRecur ended, moving to archive file."
-msgstr ""
+msgstr "\tانتهى التكرار، الانتقال إلى ملف أرشيف."
 
 #: ../src/ical-archive.c:340
 msgid "Archiving not enabled. Exiting"
 msgstr "لم يتم تمكين الأرشفة. خروج"
 
 #: ../src/ical-archive.c:358
-#, c-format
+#, c-format, fuzzy
 msgid "Archiving threshold: %d month(s)"
-msgstr ""
+msgstr "  للأرشفة الحد الأدنى: %d شهر(s)"
 
 #. yy mon day
 #: ../src/ical-archive.c:361
@@ -1239,7 +1265,7 @@ msgstr ""
 #: ../src/ical-archive.c:388
 #, c-format
 msgid "Archiving uid: %s"
-msgstr ""
+msgstr "أرشفة uid: %s"
 
 #. VTODO not completed, do not archive
 #: ../src/ical-archive.c:394
@@ -1365,20 +1391,27 @@ msgid "Named appointments: "
 msgstr "اسمه التعيينات :"
 
 #: ../src/interface.c:1057
+#, fuzzy
 msgid ""
 "Note that only main file appointments are read.\n"
 "Archived and Foreign events are not exported."
 msgstr ""
+"لاحظ أنه يقرأ الملف المحدد الرئيسي فقط.\n"
+"الارشيف والملفات الخارجية لا تقبل."
 
 #: ../src/interface.c:1060
+#, fuzzy
 msgid ""
 "Note that only main file appointments are read.\n"
 "Foreign events are not exported."
 msgstr ""
+"لاحظ أنه يقرأ الملف المحدد الرئيسي فقط.\n"
+" والملفات الخارجية لا تقبل."
 
 #: ../src/interface.c:1063
+#, fuzzy
 msgid "You can easily drag these from event-list window."
-msgstr ""
+msgstr "يمكنك بسهولة سحب المهمة من نافذة لائحة المهام"
 
 #: ../src/interface.c:1065
 msgid "Orage appointment UIDs separated by commas."
