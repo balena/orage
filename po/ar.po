@@ -1413,24 +1413,28 @@ msgid "Archive"
 msgstr "أرشيف"
 
 #: ../src/interface.c:1079
-#, c-format
+#, c-format, fuzzy
 msgid "Archive now (threshold: %d months)"
-msgstr ""
+msgstr "أرشف الآن (الحد الأدنى : %d أشهر)"
 
 #: ../src/interface.c:1089
 msgid "You can change archive threshold in parameters"
-msgstr ""
+msgstr "يمكنك تغيير حدود الأرشيف في معايير"
 
 #: ../src/interface.c:1096
 msgid "Revert archive now"
 msgstr "رجوع الأرشيف الآن"
 
 #: ../src/interface.c:1102
+#, fuzzy
 msgid ""
 "Return all archived events into main orage file and remove arch file.\n"
 "This is useful for example when doing export and moving orage\n"
 "appointments to another system."
 msgstr ""
+"إرجاع  جميع الأحداث المؤرشفة في ملف orage الرئيسي وإزالة ملفات الفهرس.\n"
+"هذا مفيد مثلاً عند تصدير أونقل مواعيد\n"
+"orage إلى نظام آخر."
 
 #: ../src/interface.c:1113
 msgid "Orage files"
@@ -1457,19 +1461,24 @@ msgid "Rename"
 msgstr "إعادة تسمية"
 
 #: ../src/interface.c:1155
+#, fuzzy
 msgid ""
 "Orage internal file rename only.\n"
 "Does not touch external filesystem at all.\n"
 "New file must exist."
 msgstr ""
+"إعادة اسم الملف Orage الداخلي فقط.\n"
+"لا يمس نظام الملفات الخارجية.\n"
+"الملفات الجديدة يجب أن تبقى."
 
 #: ../src/interface.c:1159 ../src/interface.c:1222
 msgid "Copy"
 msgstr "نسخة"
 
 #: ../src/interface.c:1163
+#, fuzzy
 msgid "Current file is copied and stays unmodified in the old place."
-msgstr ""
+msgstr "يتم نسخ الملف الحالي ويبقى غير معدل في مكانه القديم."
 
 #: ../src/interface.c:1167 ../src/interface.c:1227
 msgid "Move"
@@ -1504,83 +1513,91 @@ msgid "Read only"
 msgstr "قراءة فقط"
 
 #: ../src/interface.c:1289
+#, fuzzy
 msgid ""
 "Set this if you want to make sure that this file is never modified by Orage.\n"
 "Note that modifying foreign files may make them incompatible with the original tool, where they came from!"
 msgstr ""
+"عين هذا إذا رغبت في التأكد من عدم تعديل هذا الملف من قبلOrage.\n"
+"لاحظ أن تعديل الملفات الخارجية ، قد يجعلها غير متوافقة مع الأداة الأصلية ، من حيث أتوا!"
 
 #: ../src/interface.c:1303
+#, fuzzy
 msgid "Exchange data - Orage"
-msgstr ""
+msgstr "تبادل البيانات - Orage"
 
 #: ../src/main.c:193
-#, c-format
+#, c-format, fuzzy
 msgid ""
 "\tThis is %s version %s\n"
 "\n"
 msgstr ""
+"\tهذا %s إصدار %s\n"
+"\n"
 
 #: ../src/main.c:195
-#, c-format
+#, c-format, fuzzy
 msgid "\tReleased under the terms of the GNU General Public License.\n"
-msgstr ""
+msgstr "\tصدر بموجب شروط رخصة جنو العمومية.\n"
 
 #: ../src/main.c:196
-#, c-format
+#, c-format, fuzzy
 msgid "\tCompiled against GTK+-%d.%d.%d, "
-msgstr ""
+msgstr "\tالمترجمة من GTK+-%d.%d.%d, "
 
 #: ../src/main.c:198
-#, c-format
+#, c-format, fuzzy
 msgid "using GTK+-%d.%d.%d.\n"
-msgstr ""
+msgstr "باستخدام GTK+-%d.%d.%d.\n"
 
 #: ../src/main.c:201
-#, c-format
+#, c-format, fuzzy
 msgid "\tUsing DBUS for import.\n"
-msgstr ""
+msgstr "\tاستخدم DBUS للاستيراد.\n"
 
 #: ../src/main.c:203
-#, c-format
+#, c-format, fuzzy
 msgid "\tNot using DBUS. Import works only partially.\n"
-msgstr ""
+msgstr "\tلاحظ استخدام DBUS. يعمل على الاستيراد جزئياً.\n"
 
 #: ../src/main.c:206
-#, c-format
+#, c-format, fuzzy
 msgid "\tUsing libnotify.\n"
-msgstr ""
+msgstr "\tباستخدام libnotify.\n"
 
 #: ../src/main.c:208
-#, c-format
+#, c-format, fuzzy
 msgid "\tNot using libnotify.\n"
-msgstr ""
+msgstr "\tبدون استخدام libnotify.\n"
 
 #: ../src/main.c:211
-#, c-format
+#, c-format, fuzzy
 msgid "\tUsing automatic archiving.\n"
-msgstr ""
+msgstr "\tاستخدام الارشفة التلقائية.\n"
 
 #: ../src/main.c:213
-#, c-format
+#, c-format, fuzzy
 msgid "\tNot using archiving.\n"
-msgstr ""
+msgstr "\tبدون استخدام الأرشفة.\n"
 
 #: ../src/main.c:216
-#, c-format
+#, c-format, fuzzy
 msgid "\tUsing operating system package libical.\n"
-msgstr ""
+msgstr "\tاستخدام حزم النظام libical.\n"
 
 #: ../src/main.c:218
-#, c-format
+#, c-format, fuzzy
 msgid "\tUsing Orage local version of libical.\n"
-msgstr ""
+msgstr "\tاستخدام حزمة نظام التشغيل لتفعيل libical.\n"
 
 #: ../src/main.c:231
-#, c-format
+#, c-format, fuzzy
 msgid ""
 "Usage: orage [options] [files]\n"
 "\n"
 msgstr ""
+"الاستعمال: orage [خيارات] [ملفات]\n"
+"\n"
 
 #: ../src/main.c:232
 #, c-format
@@ -1588,61 +1605,65 @@ msgid "Options:\n"
 msgstr "خيارات:\n"
 
 #: ../src/main.c:233
-#, c-format
+#, c-format, fuzzy
 msgid "--version (-v) \t\tshow version of orage\n"
-msgstr ""
+msgstr "--إصدار (-v) \t\tعرض إصدار orage\n"
 
 #: ../src/main.c:234
-#, c-format
+#, c-format, fuzzy
 msgid "--help (-h) \t\tprint this text\n"
-msgstr ""
+msgstr "--مساعدة (-h) \t\tإطبع هذا النص\n"
 
 #: ../src/main.c:235
-#, c-format
+#, c-format, fuzzy
 msgid "--preferences (-p) \tshow preferences form\n"
-msgstr ""
+msgstr "--تفضيلات (-p) \tصيغة عرض التفضيلات\n"
 
 #: ../src/main.c:236
-#, c-format
+#, c-format, fuzzy
 msgid "--toggle (-t) \t\tmake orage visible/unvisible\n"
-msgstr ""
+msgstr "--تبديل (-t) \t\tإجعل orage مرئي\\خفي\n"
 
 #: ../src/main.c:237
-#, c-format
+#, c-format, fuzzy
 msgid "--add-foreign (-a) file [RW] \tadd a foreign file\n"
-msgstr ""
+msgstr "--إضافة-خارجي (-a) file [RW] \\إضافة لملف خارجي\n"
 
 #: ../src/main.c:238
-#, c-format
+#, c-format, fuzzy
 msgid "--remove-foreign (-r) file \tremove a foreign file\n"
-msgstr ""
+msgstr "--إزالة-خارجي (-r) ملف \tإزالة ملف خارجي\n"
 
 #: ../src/main.c:240
-#, c-format
+#, c-format, fuzzy
 msgid "files=ical files to load into orage\n"
-msgstr ""
+msgstr "ملف=تحميل ملفات icalإلى orage\n"
 
 #: ../src/main.c:242
-#, c-format
+#, c-format, fuzzy
 msgid "\tdbus not included in orage. \n"
-msgstr ""
+msgstr "\tdbusغير موجود في orage. \n"
 
 #: ../src/main.c:243
-#, c-format
+#, c-format, fuzzy
 msgid "\twithout dbus [files] and foreign file options(-a & -r) can only be used when starting orage \n"
-msgstr ""
+msgstr "\tبدون dbus [ملفات]وإعداد ملفات خارجية(-a & -r) سيستخدم فقط عند بدء orage \n"
 
 #: ../src/main.c:387
-#, c-format
+#, c-format, fuzzy
 msgid ""
 "\n"
 "Unknown option %s\n"
 "\n"
 msgstr ""
+"\n"
+"إعداد غير معروف %s\n"
+"\n"
 
 #: ../src/mainbox.c:287
+#, fuzzy
 msgid "_Exchange data"
-msgstr ""
+msgstr "تبادل البيانات"
 
 #. Edit menu
 #: ../src/mainbox.c:298
@@ -1675,7 +1696,7 @@ msgid "Never"
 msgstr "أبدا"
 
 #: ../src/mainbox.c:446
-#, c-format
+#, c-format, fuzzy
 msgid ""
 "Title: %s\n"
 " Start:\t%s\n"
@@ -1684,9 +1705,15 @@ msgid ""
 "Note:\n"
 "%s"
 msgstr ""
+"عنوان: %s\n"
+" بدء:\t%s\n"
+" مهمة:\t%s\n"
+" انتهت:\t%s\n"
+"ملاحظة:\n"
+"%s"
 
 #: ../src/mainbox.c:452
-#, c-format
+#, c-format, fuzzy
 msgid ""
 "Title: %s\n"
 " Start:\t%s\n"
@@ -1694,6 +1721,11 @@ msgid ""
 " Note:\n"
 "%s"
 msgstr ""
+"عنوان: %s\n"
+" بدء:\t%s\n"
+" نهاية:\t%s\n"
+" ملاحظة:\n"
+"%s"
 
 #: ../src/mainbox.c:529
 msgid "<b>To do:</b>"
@@ -1726,8 +1758,9 @@ msgid "Archive threshold (months)"
 msgstr "بداية الأرشيف (أشهر)"
 
 #: ../src/parameters.c:536
+#, fuzzy
 msgid "(0 = no archiving)"
-msgstr ""
+msgstr "(0 = لا أرشفة)"
 
 #: ../src/parameters.c:539
 msgid "Archiving is used to save time and space when handling events."
@@ -1778,8 +1811,9 @@ msgid "Number of days to show in event window"
 msgstr "عدد أيام العرض في نافذة الحدث"
 
 #: ../src/parameters.c:640
+#, fuzzy
 msgid "0 = do not show event list at all"
-msgstr ""
+msgstr "= 0 لا تظهر قائمة الأحداث على الإطلاق"
 
 #: ../src/parameters.c:650
 msgid "Show on all desktops"
@@ -1880,11 +1914,12 @@ msgstr "تشغيل Orage أول مرة. بحث عن الزمن الافتراض�
 #: ../src/parameters.c:1118
 #, fuzzy, c-format
 msgid "Default timezone set to %s."
-msgstr "اختر النطاق الزمني"
+msgstr "تعيين الوقت الافتراضي إلى  %s."
 
 #: ../src/parameters.c:1121
+#, fuzzy
 msgid "Default timezone not found, please, set it manually."
-msgstr ""
+msgstr "لم يتم العثور على التوقيت الافتراضي ، من فضلك ، عينه يدوياً."
 
 #: ../src/reminder.c:552
 msgid "Reminder "
@@ -1895,12 +1930,14 @@ msgid "Open"
 msgstr "فتح"
 
 #: ../src/reminder.c:706
+#, fuzzy
 msgid "Reminder - Orage"
-msgstr ""
+msgstr "تذكير - Orage"
 
 #: ../src/reminder.c:792
+#, fuzzy
 msgid "Remind me again after the specified time"
-msgstr ""
+msgstr "أذكر لي مرة اخرى بعد الوقت المحدد"
 
 #. Note that this goes to the main area. Temporary for the version
 #: ../src/reminder.c:795
@@ -1921,11 +1958,13 @@ msgstr ""
 "%02d d %02d h %02d دقيقة إلى: %s"
 
 #: ../src/reminder.c:1088
-#, c-format
+#, c-format, fuzzy
 msgid ""
 "\n"
 "No active alarms found"
 msgstr ""
+"\n"
+"لم يوجد انذارات نشطة"
 
 #: ../src/timezone_names.c:36
 msgid "Africa"
