@@ -1251,7 +1251,7 @@ msgstr "  للأرشفة الحد الأدنى: %d شهر(s)"
 
 #. yy mon day
 #: ../src/ical-archive.c:361
-#, c-format, fuzzy
+#, c-format
 msgid "\tArchiving events, which are older than: %04d-%02d-%02d"
 msgstr "\tالأرشفة الأحداث، والتي مضى عليها أكثر من: %04d-%02d-%02d"
 
@@ -1281,14 +1281,12 @@ msgid "Starting archive removal."
 msgstr "بدء إزالة أرشيف."
 
 #: ../src/ical-archive.c:433
-#, fuzzy
 msgid "\tPHASE 1: reset recurring appointments"
 msgstr "\tالمرحلة 1 : إعادة تعيين المواعيد المتكررة"
 
 #. PHASE 2: go through archive file and add everything back to base orage.
 #. * After that delete the whole arch file
 #: ../src/ical-archive.c:455
-#, fuzzy
 msgid "\tPHASE 2: return archived appointments"
 msgstr "\tالمرحلة 2 : العودة للمواعيد المؤرشفة"
 
@@ -1301,32 +1299,28 @@ msgid "Orage default alarm"
 msgstr "Orage التنبيه الافتراضي"
 
 #: ../src/ical-code.c:2934
-#, c-format, fuzzy
+#, c-format
 msgid "Build alarm list: Added %d alarms. Processed %d events."
 msgstr "بناء قائمة التنبيه : إضافة %d تنبيهات. معالجة %d المهام."
 
 #: ../src/ical-code.c:2936
-#, c-format, fuzzy
+#, c-format
 msgid "\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
 msgstr "العثور على %d تنبيه منها %d مؤرشفة. (بحث %d التنبيهات المتكررة.)"
 
 #: ../src/ical-expimp.c:141
-#, fuzzy
 msgid "Starting import file preprocessing"
 msgstr "بدء استيراد ملف وتجهيزها"
 
 #: ../src/ical-expimp.c:176
-#, fuzzy
 msgid "... Patched DCREATED to be CREATED."
 msgstr "... تصحيح لم تنشأ إلى انشئت"
 
 #: ../src/ical-expimp.c:215
-#, fuzzy
 msgid "... Patched timezone to Orage format."
 msgstr "... تصحيح التوقيت من المحلي إلى  Orage."
 
 #: ../src/ical-expimp.c:224
-#, fuzzy
 msgid "Import file preprocessing done"
 msgstr "انتهي من معالجة استيراد ملف"
 
@@ -1335,7 +1329,6 @@ msgid "Calendar files"
 msgstr "ملفات التقويم "
 
 #: ../src/interface.c:626
-#, fuzzy
 msgid "Current foreign files"
 msgstr "الملفات الحالية الخارجية"
 
@@ -1348,7 +1341,6 @@ msgid "READ WRITE"
 msgstr "القراءة والكتابة"
 
 #: ../src/interface.c:658
-#, fuzzy
 msgid "***** No foreign files *****"
 msgstr "*****لا الملفات الخارجية *****"
 
@@ -1365,7 +1357,6 @@ msgid "Read from file:"
 msgstr "قراءة من الملف :"
 
 #: ../src/interface.c:998
-#, fuzzy
 msgid ""
 "Separate filenames with comma(,).\n"
 " NOTE: comma is not valid character in filenames for Orage."
