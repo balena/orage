@@ -2589,7 +2589,13 @@ static alarm_struct *process_alarm_trigger(icalcomponent *c
         rel = ICAL_RELATED_START;
     per = ic_get_period(c, TRUE);
     next_alarm_time = count_alarm_time(per, cur_time, trg.duration, rel);
-    alarm_start_diff = icaltime_subtract(per.stime, next_alarm_time);
+    alarm_start_diff = icaltime_subtract(next_alarm_time, per.stime);
+/*
+orage_message(120, P_N "current %s", icaltime_as_ical_string(cur_time));
+orage_message(120, P_N "Start %s", icaltime_as_ical_string(per.stime));
+orage_message(120, P_N "End %s", icaltime_as_ical_string(per.etime));
+orage_message(120, P_N "Alarm %s", icaltime_as_ical_string(next_alarm_time));
+*/
     /* we only have ctime for TODOs and only if todo has been completed.
      * So if we have ctime, we need to compare against it instead of 
      * current date */
@@ -2614,42 +2620,46 @@ static alarm_struct *process_alarm_trigger(icalcomponent *c
         rrule = icalproperty_get_rrule(p);
         set_todo_times(c, &per); /* may change per.stime to be per.ctime */
         next_alarm_time = count_alarm_time(per, cur_time, trg.duration, rel);
-        alarm_start_diff = icaltime_subtract(per.stime, next_alarm_time);
-        ri = icalrecur_iterator_new(rrule, next_alarm_time);
-        for (next_alarm_time = icalrecur_iterator_next(ri),
-             next_start_time = icaltime_add(next_alarm_time, alarm_start_diff);
-             !icaltime_is_null_time(next_alarm_time)
+/*
+orage_message(120, P_N "rec Start %s", icaltime_as_ical_string(per.stime));
+orage_message(120, P_N "rec End %s", icaltime_as_ical_string(per.etime));
+orage_message(120, P_N "rec Alarm %s", icaltime_as_ical_string(next_alarm_time));
+*/
+        alarm_start_diff = icaltime_subtract(next_alarm_time, per.stime);
+        ri = icalrecur_iterator_new(rrule, per.stime);
+        for (next_start_time = icalrecur_iterator_next(ri),
+             next_alarm_time = icaltime_add(next_start_time, alarm_start_diff);
+             !icaltime_is_null_time(next_start_time)
              && ((per.ikind == ICAL_VTODO_COMPONENT
                   && icaltime_compare(next_start_time, per.ctime) <= 0)
                  || (per.ikind != ICAL_VTODO_COMPONENT 
                      && icaltime_compare(next_alarm_time, cur_time) <= 0)
                  || icalproperty_recurrence_is_excluded(c
                          , &per.stime, &next_start_time));
-            next_alarm_time = icalrecur_iterator_next(ri),
-            next_start_time = icaltime_add(next_alarm_time, alarm_start_diff)) {
+            next_start_time = icalrecur_iterator_next(ri),
+            next_alarm_time = icaltime_add(next_start_time, alarm_start_diff)) {
             /* we loop = search next active alarm time as long as 
-             * next_alarm_time is not null = real alarm time still found
-             * and if TODO and next_alarm_time before complete time
+             * next_start_time is not null = real start time still found
+             * and if TODO and next_start_time before complete time
              * or if not TODO (= EVENT) and next_alarm_time before current time
              */
             (*cnt_repeat)++;
+/*
+orage_message(120, P_N "rec loop Alarm start:%s alarm:%s", icaltime_as_ical_string(next_start_time), icaltime_as_ical_string(next_alarm_time));
+*/
         }
         icalrecur_iterator_free(ri);
         if (icaltime_compare(cur_time, next_alarm_time) <= 0) {
             trg_active = TRUE;
         }
+/*
+orage_message(120, P_N "rec loop end Alarm start:%s alarm:%s", icaltime_as_ical_string(next_start_time), icaltime_as_ical_string(next_alarm_time));
+*/
     }
 
     if (!trg_active)
         next_alarm_time = icaltime_null_time();
 
-    /* alarm_start_diff goes from alarm to start, so we need to revert it
-     * 1) here (temporarily) since rdate is start time and we need to get the 
-     * alarm time. */
-    if (alarm_start_diff.is_neg)
-        alarm_start_diff.is_neg = 0;
-    else 
-        alarm_start_diff.is_neg = 1;
     /* this is used to convert rdate to local time. We need to read it here
      * so that it does not break the loop handling since it resets the
      * iterator */
@@ -2683,7 +2693,7 @@ static alarm_struct *process_alarm_trigger(icalcomponent *c
             rdate_period.time = convert_to_local_timezone(rdate_period.time, p);
         }
 
-        /* 1) then we still need to convert it from start time to alarm time */
+        /* we still need to convert it from start time to alarm time */
         rdate_alarm_time = icaltime_add(rdate_period.time, alarm_start_diff);
         /*
         g_print(P_N "**** RDATE alarm time (%s) next alarm time (%s) period time (%s)(%s)\n", icaltime_as_ical_string(rdate_alarm_time), icaltime_as_ical_string(next_alarm_time), icaltime_as_ical_string(rdate_period.time), ic_get_char_timezone(p));
@@ -2714,7 +2724,8 @@ static alarm_struct *process_alarm_trigger(icalcomponent *c
         new_alarm = g_new0(alarm_struct, 1);
         next_alarm_time = icaltime_convert_to_zone(next_alarm_time, local_icaltimezone);
         new_alarm->alarm_time = g_strdup(icaltime_as_ical_string(next_alarm_time));
-        /* convert the diff back */
+    /* alarm_start_diff goes from start to alarm, so we need to revert it
+     * here since now we need to get the start time from alarm. */
         if (alarm_start_diff.is_neg)
             alarm_start_diff.is_neg = 0;
         else 
@@ -2927,6 +2938,10 @@ static void xfical_alarm_build_list_internal_real(gboolean first_list_today
                 new_alarm->description = orage_process_text_commands(
                         (char *)icalcomponent_get_description(c));
             alarm_add(new_alarm);
+/*
+	    orage_message(60, "new alarm: alarm:%s action:%s title:%s\n"
+		, new_alarm->alarm_time, new_alarm->action_time, new_alarm->title);
+*/
             cnt_alarm_add++;
         }
     }  /* COMPONENT */
@@ -2936,6 +2951,14 @@ static void xfical_alarm_build_list_internal_real(gboolean first_list_today
         orage_message(60, _("\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)")
                 , cnt_alarm, cnt_act_alarm, cnt_repeat);
     }
+/*
+    else {
+        orage_message(60, _("Build alarm list: Added %d alarms. Processed %d events.")
+                , cnt_alarm_add, cnt_event);
+        orage_message(60, _("\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)")
+                , cnt_alarm, cnt_act_alarm, cnt_repeat);
+    }
+*/
 }
 
 static void xfical_alarm_build_list_internal(gboolean first_list_today)

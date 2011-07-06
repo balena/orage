@@ -1054,8 +1054,16 @@ static gboolean orage_tooltip_update(gpointer user_data)
         /* remember that it is sorted list */
         cur_alarm = (alarm_struct *)alarm_l->data;
         if (alarm_cnt < tooltip_alarm_limit) {
-            sscanf(cur_alarm->alarm_time, XFICAL_APPT_TIME_FORMAT
-                    , &year, &month, &day, &hour, &minute, &second);
+            if (strlen(cur_alarm->alarm_time) < XFICAL_APPT_DATE_FORMAT_LEN) { 
+               /* it is date = full day */
+                sscanf(cur_alarm->alarm_time, XFICAL_APPT_DATE_FORMAT
+                        , &year, &month, &day);
+                hour = 0; minute = 0; second = 0;
+            }
+            else {
+                sscanf(cur_alarm->alarm_time, XFICAL_APPT_TIME_FORMAT
+                        , &year, &month, &day, &hour, &minute, &second);
+            }
             g_now = g_date_new_dmy(t->tm_mday, t->tm_mon + 1
                     , t->tm_year + 1900);
             g_alarm = g_date_new_dmy(day, month, year);
@@ -1072,6 +1080,9 @@ static gboolean orage_tooltip_update(gpointer user_data)
                 hh += 24;
                 dd -= 1;
             }
+/*
+    orage_message(10, P_N "tooltip: alarm=%s hh=%d hh=%d min=%d", cur_alarm->alarm_time, dd, hh, min);
+*/
 #if GTK_CHECK_VERSION(2,16,0)
             g_string_append(tooltip, "<span weight=\"bold\">");
             tooltip_highlight_helper = g_string_new(" </span>");
