@@ -313,8 +313,10 @@ static gboolean export_prepare_write_file(char *file_name)
         return(FALSE);
     }
     g_free(tmp);
-    if (g_remove(file_name) == -1) { /* note that it may not exist */
-        orage_message(150, P_N "Failed to remove export file %s", file_name);
+    if (g_file_test(file_name, G_FILE_TEST_EXISTS)) {
+	if (g_remove(file_name) == -1) {
+            orage_message(150, P_N "Failed to remove export file %s", file_name);
+        }
     }
     return(TRUE);
 }
@@ -405,6 +407,10 @@ static gboolean export_selected(char *file_name, char *uids)
     /* checks done, let's start the real work */
     more_uids = TRUE;
     for (uid = uids; more_uids; ) {
+        if (strlen(uid) < 5) {
+            orage_message(150, P_N "unknown appointment name %s", uid);
+            return(FALSE);
+        }
         uid_int = uid+4;
         uid_end = g_strstr_len((const gchar *)uid, strlen(uid), ",");
         if (uid_end != NULL)
@@ -419,13 +425,13 @@ static gboolean export_selected(char *file_name, char *uids)
                 export_selected_uid(ic_f_ical[i].ical, uid_int, x_ical);
             }
             else {
-                orage_message(250, P_N "unknown foreign file number %s", uid);
+                orage_message(150, P_N "unknown foreign file number %s", uid);
                 return(FALSE);
             }
 
         }
         else {
-            orage_message(250, P_N "Unknown uid type %s", uid);
+            orage_message(150, P_N "Unknown uid type %s", uid);
         }
         
         if (uid_end != NULL)  /* we have more uids */

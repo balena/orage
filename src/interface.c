@@ -456,9 +456,9 @@ gboolean orage_import_file(gchar *entry_filename)
         return(FALSE);
 }
 
-static gboolean orage_export_file(gchar *entry_filename, gint count, gchar *uids) 
+gboolean orage_export_file(gchar *entry_filename, gint type, gchar *uids) 
 {
-    return(xfical_export_file(entry_filename, count, uids));
+    return(xfical_export_file(entry_filename, type, uids));
 }
 
 static void imp_save_button_clicked(GtkButton *button, gpointer user_data)

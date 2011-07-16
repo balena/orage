@@ -101,5 +101,6 @@ gboolean orage_foreign_files_check(gpointer user_data);
 gboolean orage_foreign_file_add(gchar *filename, gboolean read_only);
 gboolean orage_foreign_file_remove(gchar *filename);
 gboolean orage_import_file(gchar *entry_filename);
+gboolean orage_export_file(gchar *entry_filename, gint type, gchar *uids);
 
 #endif /* !__INTERFACE_H__ */
