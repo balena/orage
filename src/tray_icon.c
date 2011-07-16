@@ -133,91 +133,147 @@ static void toggle_visible_cb(GtkStatusIcon *status_icon, gpointer user_data)
     orage_toggle_visible();
 }
 
-static void show_menu(GtkStatusIcon *status_icon, guint button, guint activate_time
-        , gpointer user_data)
+static void show_menu(GtkStatusIcon *status_icon, guint button
+        , guint activate_time, gpointer user_data)
 {
     gtk_menu_popup((GtkMenu *)user_data, NULL, NULL, NULL, NULL
             , button, activate_time);
 }
 
-static void create_icon_pango_layout(gint line, PangoLayout *pl, struct tm *t
-        , gint width, gint height
-        , gint *x_offset, gint *y_offset, gint *y_size)
+static gboolean format_line(PangoLayout *pl, struct tm *t, char *data
+        , char *font, char *color)
 {
-    gchar ts[200], row[20];
-    PangoRectangle real_rect, log_rect;
-    gint x_size;
-    gboolean first_try = TRUE, done = FALSE;
-    gchar *row1_1_data = "%^A";
-    gchar *row1_1b_data = "%A";
-    gchar *row1_2_data = "%^a";
-    gchar *row1_2b_data = "%a";
-    gchar *row1_color = "black";
-    gchar *row1_font = "Ariel 24";
-    gchar *row2_color = "red";
-    gchar *row2_font = "Sans bold 72";
-    gchar *row3_1_data = "%^B";
-    gchar *row3_1b_data = "%B";
-    gchar *row3_2_data = "%^b";
-    gchar *row3_2b_data = "%b";
-    gchar *row3_color = "black";
-    gchar *row3_font = "Ariel bold 26";
+    gchar ts[200];
+    gchar row[20];
     gchar *row_format = "<span foreground=\"%s\" font_desc=\"%s\">%s</span>";
-    gchar *strfttime_failed = "create_icon_pango_layout: strftime %s failed";
+    gchar *strftime_failed = "format_line: strftime %s failed";
 
+    if (ORAGE_STR_EXISTS(data)) {
+        if (strftime(row, 19, data, t) == 0) {
+            g_warning(strftime_failed, data);
+            return(FALSE);
+        }
+        else {
+            g_snprintf(ts, 199, row_format, color, font, row);
+            pango_layout_set_markup(pl, ts, -1);
+            pango_layout_set_alignment(pl, PANGO_ALIGN_CENTER);
+            return(TRUE);
+        }
+    }
+    else
+        return(FALSE);
+}
+
+static void create_own_icon_pango_layout(gint line
+        , GdkPixmap *pic, GdkGC *pic_gc
+        , struct tm *t, gint width, gint height)
+{
+    CalWin *xfcal = (CalWin *)g_par.xfcal;
+    PangoRectangle real_rect, log_rect;
+    gint x_size, y_size, x_offset, y_offset;
+    PangoLayout *pl;
+
+    pl = gtk_widget_create_pango_layout(xfcal->mWindow, "x");
+    switch (line) {
+        case 1:
+            if (format_line(pl, t, g_par.own_icon_row1_data
+                    , g_par.own_icon_row1_font, g_par.own_icon_row1_color)) {
+                pango_layout_get_extents(pl, &real_rect, &log_rect);
+                x_size = PANGO_PIXELS(log_rect.width);
+                x_offset = (width - x_size)/2 + g_par.own_icon_row1_x;
+                y_offset = g_par.own_icon_row1_y;
+                gdk_draw_layout(pic, pic_gc, x_offset, y_offset, pl);
+            }
+            break;
+        case 2:
+            if (format_line(pl, t, g_par.own_icon_row2_data
+                    , g_par.own_icon_row2_font, g_par.own_icon_row2_color)) {
+                pango_layout_get_extents(pl, &real_rect, &log_rect);
+                x_size = PANGO_PIXELS(log_rect.width);
+                x_offset = (width - x_size)/2 + g_par.own_icon_row2_x;
+                y_offset = g_par.own_icon_row2_y;
+                gdk_draw_layout(pic, pic_gc, x_offset, y_offset, pl);
+            }
+            break;
+        case 3:
+            if (format_line(pl, t, g_par.own_icon_row3_data
+                    , g_par.own_icon_row3_font, g_par.own_icon_row3_color)) {
+                pango_layout_get_extents(pl, &real_rect, &log_rect);
+                x_size = PANGO_PIXELS(log_rect.width);
+                x_offset = (width - x_size)/2 + g_par.own_icon_row3_x;
+                y_offset = g_par.own_icon_row3_y;
+                gdk_draw_layout(pic, pic_gc, x_offset, y_offset, pl);
+            }
+            break;
+        default:
+            g_warning("create_own_icon_pango_layout: wrong line number %d", line);
+    }
+    g_object_unref(pl);
+}
+
+static void create_icon_pango_layout(gint line, GdkPixmap *pic, GdkGC *pic_gc
+        , struct tm *t, gint width, gint height)
+{
+    CalWin *xfcal = (CalWin *)g_par.xfcal;
+    PangoRectangle real_rect, log_rect;
+    gint x_size, y_size, x_offset, y_offset;
+    gboolean first_try = TRUE, done = FALSE;
+    char line1_font[] = "Ariel 24";
+    char line3_font[] = "Ariel bold 26";
+    char color[] = "black";
+    char def[] = "Orage";
+    PangoLayout *pl;
+
+    pl = gtk_widget_create_pango_layout(xfcal->mWindow, "x");
     while (!done) {
         switch (line) {
             case 1:
+                /* Try different methods: 
+                   ^ should make the string upper case, but it does not exist 
+                   in all implementations and it may not work well. 
+                   %A may produce too long string, so then on second try we 
+                   try shorter %a. 
+                   And finally last default is string orage. */
                 if (first_try) {
-                    if (strftime(row, 19, row1_1_data, t) == 0) {
-                        g_warning(strfttime_failed, row1_1_data);
-                        if (strftime(row, 19, row1_1b_data, t) == 0) {
-                            g_warning(strfttime_failed, row1_1b_data);
-                            g_sprintf(row, "orage");
+                    if (!format_line(pl, t, "%^A", line1_font, color)) {
+                        if (!format_line(pl, t, "%A", line1_font, color)) {
+                            /* we should never come here */
+                            format_line(pl, t, def, line1_font, color);
                         }
                     }
                 }
-                else { /* we failed once, let's try shorter string */
-                    if (strftime(row, 19, row1_2_data, t) == 0) {
-                        g_warning(strfttime_failed, row1_2_data);
-                        if (strftime(row, 19, row1_2b_data, t) == 0) {
-                            g_warning(strfttime_failed, row1_2b_data);
-                            g_sprintf(row, "orage");
+                else {
+                    if (!format_line(pl, t, "%^a", line1_font, color)) {
+                        if (!format_line(pl, t, "%a", line1_font, color)) {
+                            /* we should never come here */
+                            format_line(pl, t, def, line1_font, color);
                         }
                     }
                 }
-                g_snprintf(ts, 199, row_format, row1_color, row1_font, row);
                 break;
             case 2:
-                g_snprintf(row, 19, "%02d", t->tm_mday);
-                g_snprintf(ts, 199, row_format, row2_color, row2_font, row);
+                /* this %d should always work, so no need to try other */
+                format_line(pl, t, "%d", "Sans bold 72", "red");
                 break;
             case 3:
                 if (first_try) {
-                    if (strftime(row, 19, row3_1_data, t) == 0) {
-                        g_warning(strfttime_failed, row3_1_data);
-                        if (strftime(row, 19, row3_1b_data, t) == 0) {
-                            g_warning(strfttime_failed, row3_1b_data);
-                            g_sprintf(row, "orage");
+                    if (!format_line(pl, t, "%^B", line3_font, color)) {
+                        if (!format_line(pl, t, "%B", line3_font, color)) {
+                            format_line(pl, t, def, line3_font, color);
                         }
                     }
                 }
-                else { /* we failed once, let's try shorter string */
-                    if (strftime(row, 19, row3_2_data, t) == 0) {
-                        g_warning(strfttime_failed, row3_2_data);
-                        if (strftime(row, 19, row3_2b_data, t) == 0) {
-                            g_warning(strfttime_failed, row3_2b_data);
-                            g_sprintf(row, "orage");
+                else {
+                    if (!format_line(pl, t, "%^b", line3_font, color)) {
+                        if (!format_line(pl, t, "%b", line3_font, color)) {
+                            format_line(pl, t, def, line3_font, color);
                         }
                     }
                 }
-                g_snprintf(ts, 199, row_format, row3_color, row3_font, row);
                 break;
             default:
                 g_warning("create_icon_pango_layout: wrong line number %d", line);
         }
-        pango_layout_set_markup(pl, ts, -1);
-        pango_layout_set_alignment(pl, PANGO_ALIGN_CENTER);
         pango_layout_get_extents(pl, &real_rect, &log_rect);
         /* real_rect is smaller than log_rect. real is the minimal rectangular
            to cover the text while log has some room around it. It is safer to
@@ -226,14 +282,14 @@ static void create_icon_pango_layout(gint line, PangoLayout *pl, struct tm *t
         /* x_offset, y_offset = free space left after this layout 
            divided equally to start and end */
         x_size = PANGO_PIXELS(log_rect.width);
-        *y_size = PANGO_PIXELS(log_rect.height);
-        *x_offset = (width - x_size)/2;
+        y_size = PANGO_PIXELS(log_rect.height);
+        x_offset = (width - x_size)/2;
         if (line == 1)
-            *y_offset = 4; /* we have 1 pixel border line */
+            y_offset = 4; /* we have 1 pixel border line */
         else if (line == 2)
-            *y_offset = (height - *y_size + 2)/2;
+            y_offset = (height - y_size + 2)/2;
         else if (line == 3)
-            *y_offset = (height - *y_size);
+            y_offset = (height - y_size);
         /*
     g_print("\n\norage row %d offset. First trial %d\n"
             "width=%d x-offset=%d\n"
@@ -242,13 +298,13 @@ static void create_icon_pango_layout(gint line, PangoLayout *pl, struct tm *t
             "\t(real pixel text height=%d logical pixel text height=%d)\n"
             "\n" 
             , line, first_try
-            , width, *x_offset
+            , width, x_offset
             , PANGO_PIXELS(real_rect.width), x_size
-            , height, *y_offset
-            , PANGO_PIXELS(real_rect.height), *y_size
+            , height, y_offset
+            , PANGO_PIXELS(real_rect.height), y_size
             ); 
             */
-        if (*x_offset < 0) { /* it does not fit */
+        if (x_offset < 0) { /* it does not fit */
             if (first_try) {
                 first_try = FALSE;
             }
@@ -257,17 +313,65 @@ static void create_icon_pango_layout(gint line, PangoLayout *pl, struct tm *t
                 done = TRUE; /* failed */
             }
         }
-        else 
-            done = TRUE;
+        else {
+            done = TRUE; /* success */
+        }
     }
+    gdk_draw_layout(pic, pic_gc, x_offset, y_offset, pl);
+    g_object_unref(pl);
     /*
-    gdk_draw_rectangle(pic1, pic1_gc2, FALSE
-            , *x_offset+(x_size-PANGO_PIXELS(real_rect.width))/2
-            , *y_offset+(*y_size-PANGO_PIXELS(real_rect.height))/2
+    gdk_draw_rectangle(pic, pic_gc2, FALSE
+            , x_offset+(x_size-PANGO_PIXELS(real_rect.width))/2
+            , y_offset+(y_size-PANGO_PIXELS(real_rect.height))/2
             , PANGO_PIXELS(real_rect.width), PANGO_PIXELS(real_rect.height));
-    gdk_draw_rectangle(pic1, pic1_gc2, FALSE
-            , *x_offset, *y_offset, x_size, *y_size);
+    gdk_draw_rectangle(pic, pic_gc2, FALSE
+            , x_offset, y_offset, x_size, y_size);
             */
+}
+
+static GdkPixmap *create_icon_pixmap(GdkColormap *pic_cmap
+        , int width, int height, int depth)
+{
+    GdkPixmap *pic;
+    GdkGC *pic_gc1, *pic_gc2;
+    GdkColor color;
+    gint red = 239, green = 235, blue = 230;
+
+    /* let's build Orage standard icon pixmap */
+    pic = gdk_pixmap_new(NULL, width, height, depth);
+    gdk_drawable_set_colormap(pic, pic_cmap);
+    pic_gc1 = gdk_gc_new(pic);
+    pic_gc2 = gdk_gc_new(pic);
+    color.red = red * (65535/255);
+    color.green = green * (65535/255);
+    color.blue = blue * (65535/255);
+    color.pixel = (gulong)(red*65536 + green*256 + blue);
+    gdk_colormap_alloc_color(pic_cmap, &color, FALSE, TRUE);
+    gdk_gc_set_foreground(pic_gc1, &color);
+    gdk_draw_rectangle(pic, pic_gc1, TRUE, 0, 0, width, height);
+    gdk_draw_line(pic, pic_gc2, 4, height-1, width-1, height-1);
+    gdk_draw_line(pic, pic_gc2, width-1, 4, width-1, height-1);
+    gdk_draw_line(pic, pic_gc2, 2, height-3, width-3, height-3);
+    gdk_draw_line(pic, pic_gc2, width-3, 2, width-3, height-3);
+    gdk_draw_rectangle(pic, pic_gc2, FALSE, 0, 0, width-5, height-5);
+    g_object_unref(pic_gc1);
+    g_object_unref(pic_gc2);
+    return(pic);
+}
+
+static GdkPixmap *create_own_icon_pixmap(GdkColormap *pic_cmap
+        , int width, int height, int depth)
+{
+    GdkPixmap *pic;
+
+    pic = gdk_pixmap_colormap_create_from_xpm(NULL, pic_cmap, NULL, NULL
+            , g_par.own_icon_file);
+    if (pic == NULL) { /* failed, let's use standard instead */
+        orage_message(110, "trayicon: xpm file %s not valid pixmap"
+                , g_par.own_icon_file);
+        pic = create_icon_pixmap(pic_cmap, width, height, depth);
+    }
+    return(pic);
 }
 
 GdkPixbuf *orage_create_icon(gboolean static_icon, gint size)
@@ -275,19 +379,13 @@ GdkPixbuf *orage_create_icon(gboolean static_icon, gint size)
     CalWin *xfcal = (CalWin *)g_par.xfcal;
     GtkIconTheme *icon_theme = NULL;
     GdkPixbuf *pixbuf, *pixbuf2;
-    GdkPixmap *pic1;
-    GdkGC *pic1_gc1, *pic1_gc2;
-    GdkColormap *pic1_cmap;
-    GdkColor color;
-    GdkVisual *pic1_vis;
-    PangoLayout *pl_day, *pl_weekday, *pl_month;
-    gint width = 0, height = 0, depth = 16;
-    gint red = 239, green = 235, blue = 230;
+    GdkPixmap *pic;
+    GdkGC *pic_gc;
+    GdkColormap *pic_cmap;
+    GdkVisual *pic_vis;
     struct tm *t;
-    gint x_used = 0, y_used = 0;
-    gint x_offset_day = 0, y_offset_day = 0, y_size_day = 0;
-    gint x_offset_weekday = 0, y_offset_weekday = 0, y_size_weekday = 0;
-    gint x_offset_month = 0, y_offset_month = 0, y_size_month = 0;
+    gint width = 160, height = 160, depth = 16; /* size of icon */
+    gint real_width = 0, real_height = 0; /* usable size of icon */
 
     icon_theme = gtk_icon_theme_get_default();
     if (static_icon || !g_par.use_dynamic_icon) {
@@ -298,73 +396,35 @@ GdkPixbuf *orage_create_icon(gboolean static_icon, gint size)
 
     /***** dynamic icon build starts now *****/
     t = orage_localtime();
-    width = 160; 
-    height = 160;
-    pic1_cmap = gdk_colormap_get_system();
-    pic1_vis = gdk_colormap_get_visual(pic1_cmap);
-    depth = pic1_vis->depth;
-    pic1 = gdk_pixmap_new(NULL, width, height, depth);
-    gdk_drawable_set_colormap(pic1, pic1_cmap);
-    /*
-    pic1 = gdk_pixmap_colormap_create_from_xpm(NULL, pic1_cmap, NULL, NULL
-            , "/home/juha/ohjelmat/Orage/dev/orage/icons/orage.xpm");
-    */
-    /* pic1_cmap = gtk_widget_get_colormap(xfcal->mWindow); */
-    pic1_gc1 = gdk_gc_new(pic1);
-    pic1_gc2 = gdk_gc_new(pic1);
-    color.red = red * (65535/255);
-    color.green = green * (65535/255);
-    color.blue = blue * (65535/255);
-    color.pixel = (gulong)(red*65536 + green*256 + blue);
-    /*
-    gdk_color_alloc(pic1_cmap, &color);
-    */
-    gdk_colormap_alloc_color(pic1_cmap, &color, FALSE, TRUE);
-    gdk_gc_set_foreground(pic1_gc1, &color);
-    /*
-    gdk_draw_rectangle(pic1, pic1_gc1, TRUE, 0, 0, width, height);
-    gdk_draw_rectangle(pic1, pic1_gc2, FALSE, 0, 0, width-1, height-1);
-    gdk_draw_rectangle(pic1, pic1_gc2, FALSE, 0, 0, width-3, height-3);
-    gdk_draw_rectangle(pic1, pic1_gc2, FALSE, 0, 0, width-5, height-5);
-    */
-    gdk_draw_rectangle(pic1, pic1_gc1, TRUE, 0, 0, width, height);
-    gdk_draw_line(pic1, pic1_gc2, 4, height-1, width-1, height-1);
-    gdk_draw_line(pic1, pic1_gc2, width-1, 4, width-1, height-1);
-    gdk_draw_line(pic1, pic1_gc2, 2, height-3, width-3, height-3);
-    gdk_draw_line(pic1, pic1_gc2, width-3, 2, width-3, height-3);
-    gdk_draw_rectangle(pic1, pic1_gc2, FALSE, 0, 0, width-5, height-5);
-    x_used = 6;
-    y_used = 6;
+    pic_cmap = gdk_colormap_get_system();
+    pic_vis = gdk_colormap_get_visual(pic_cmap);
+    depth = pic_vis->depth;
 
-    /* gdk_draw_line(pic1, pic1_gc1, 10, 20, 30, 38); */
+    if (g_par.use_own_dynamic_icon) {
+        pic = create_own_icon_pixmap(pic_cmap, width, height, depth);
+        pic_gc = gdk_gc_new(pic);
+        create_own_icon_pango_layout(1, pic, pic_gc, t, width, height);
+        create_own_icon_pango_layout(2, pic, pic_gc, t, width, height);
+        create_own_icon_pango_layout(3, pic, pic_gc, t, width, height);
+    }
+    else { /* standard dynamic icon */
+        pic = create_icon_pixmap(pic_cmap, width, height, depth);
+        pic_gc = gdk_gc_new(pic);
+        /* We draw borders so we can't use the whole space */
+        real_width = width - 6; 
+        real_height = height - 6;
 
-    /* create any valid pango layout to get things started */
-    pl_day = gtk_widget_create_pango_layout(xfcal->mWindow, "x");
-    pl_weekday = pango_layout_copy(pl_day);
-    pl_month = pango_layout_copy(pl_day);
+        /* weekday */
+        create_icon_pango_layout(1, pic, pic_gc, t, real_width, real_height);
 
-    /* weekday */
-    create_icon_pango_layout(1, pl_weekday, t
-            , width - x_used, height - y_used
-            , &x_offset_weekday, &y_offset_weekday, &y_size_weekday);
+        /* day */
+        create_icon_pango_layout(2, pic, pic_gc, t, real_width, real_height);
 
-    /* day */
-    create_icon_pango_layout(2, pl_day, t
-            , width - x_used, height - y_used
-            , &x_offset_day, &y_offset_day, &y_size_day);
+        /* month */
+        create_icon_pango_layout(3, pic, pic_gc, t, real_width, real_height);
+    }
 
-    /* month */
-    create_icon_pango_layout(3, pl_month, t
-            , width - x_used, height - y_used
-            , &x_offset_month, &y_offset_month, &y_size_month);
-
-    gdk_draw_layout(pic1, pic1_gc1, x_offset_weekday, y_offset_weekday
-            , pl_weekday);
-    gdk_draw_layout(pic1, pic1_gc1, x_offset_day, y_offset_day
-            , pl_day);
-    gdk_draw_layout(pic1, pic1_gc1, x_offset_month, y_offset_month
-            , pl_month);
-    pixbuf = gdk_pixbuf_get_from_drawable(NULL, pic1, pic1_cmap
+    pixbuf = gdk_pixbuf_get_from_drawable(NULL, pic, pic_cmap
             , 0, 0, 0, 0, width, height);
     if (size) {
         pixbuf2 = gdk_pixbuf_scale_simple(pixbuf, size, size
@@ -378,13 +438,8 @@ GdkPixbuf *orage_create_icon(gboolean static_icon, gint size)
         pixbuf = gtk_icon_theme_load_icon(icon_theme, "xfcalendar", size
                 , GTK_ICON_LOOKUP_USE_BUILTIN, NULL);
     }
-
-    g_object_unref(pic1_gc1);
-    g_object_unref(pic1_gc2);
-    g_object_unref(pl_day);
-    g_object_unref(pl_weekday);
-    g_object_unref(pl_month);
-    g_object_unref(pic1);
+    g_object_unref(pic_gc);
+    g_object_unref(pic);
   
     return(pixbuf);
 }

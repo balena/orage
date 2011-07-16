@@ -963,79 +963,6 @@ static OrageRc *orage_parameters_file_open(gboolean read_only)
     return(orc);
 }
 
-void write_parameters(void)
-{
-    OrageRc *orc;
-    gint i;
-    gchar f_par[50];
-
-    orc = orage_parameters_file_open(FALSE);
-
-    orage_rc_set_group(orc, "PARAMETERS");
-    orage_rc_put_str(orc, "Timezone", g_par.local_timezone);
-#ifdef HAVE_ARCHIVE
-    orage_rc_put_int(orc, "Archive limit", g_par.archive_limit);
-    orage_rc_put_str(orc, "Archive file", g_par.archive_file);
-#endif
-    orage_rc_put_str(orc, "Orage file", g_par.orage_file);
-    orage_rc_put_str(orc, "Sound application", g_par.sound_application);
-    gtk_window_get_size(GTK_WINDOW(((CalWin *)g_par.xfcal)->mWindow)
-            , &g_par.size_x, &g_par.size_y);
-    gtk_window_get_position(GTK_WINDOW(((CalWin *)g_par.xfcal)->mWindow)
-            , &g_par.pos_x, &g_par.pos_y);
-    orage_rc_put_int(orc, "Main window X", g_par.pos_x);
-    orage_rc_put_int(orc, "Main window Y", g_par.pos_y);
-    orage_rc_put_int(orc, "Main window size X", g_par.size_x);
-    orage_rc_put_int(orc, "Main window size Y", g_par.size_y);
-    orage_rc_put_int(orc, "Eventlist window pos X", g_par.el_pos_x);
-    orage_rc_put_int(orc, "Eventlist window pos Y", g_par.el_pos_y);
-    orage_rc_put_int(orc, "Eventlist window X", g_par.el_size_x);
-    orage_rc_put_int(orc, "Eventlist window Y", g_par.el_size_y);
-    orage_rc_put_int(orc, "Eventlist extra days", g_par.el_days);
-    orage_rc_put_bool(orc, "Show Main Window Menu", g_par.show_menu);
-    orage_rc_put_bool(orc, "Select Always Today"
-            , g_par.select_always_today);
-    orage_rc_put_bool(orc, "Show borders", g_par.show_borders);
-    orage_rc_put_bool(orc, "Show heading", g_par.show_heading);
-    orage_rc_put_bool(orc, "Show day names", g_par.show_day_names);
-    orage_rc_put_bool(orc, "Show weeks", g_par.show_weeks);
-    orage_rc_put_bool(orc, "Show todos", g_par.show_todos);
-    orage_rc_put_int(orc, "Show event days", g_par.show_event_days);
-    orage_rc_put_bool(orc, "Show in pager", g_par.show_pager);
-    orage_rc_put_bool(orc, "Show in systray", g_par.show_systray);
-    orage_rc_put_bool(orc, "Show in taskbar", g_par.show_taskbar);
-    orage_rc_put_bool(orc, "Start visible", g_par.start_visible);
-    orage_rc_put_bool(orc, "Start minimized", g_par.start_minimized);
-    orage_rc_put_bool(orc, "Set sticked", g_par.set_stick);
-    orage_rc_put_bool(orc, "Set ontop", g_par.set_ontop);
-    orage_rc_put_bool(orc, "Use dynamic icon", g_par.use_dynamic_icon);
-    /* we write this with X so that we do not read it back unless
-     * it is manually changed. It should need changes really seldom. */
-    orage_rc_put_int(orc, "XIcal week start day"
-            , g_par.ical_weekstartday);
-    orage_rc_put_bool(orc, "Show days", g_par.show_days);
-    orage_rc_put_int(orc, "Foreign file count", g_par.foreign_count);
-    /* add what we have and remove the rest */
-    for (i = 0; i < g_par.foreign_count;  i++) {
-        g_sprintf(f_par, "Foreign file %02d name", i);
-        orage_rc_put_str(orc, f_par, g_par.foreign_data[i].file);
-        g_sprintf(f_par, "Foreign file %02d read-only", i);
-        orage_rc_put_bool(orc, f_par, g_par.foreign_data[i].read_only);
-    }
-    for (i = g_par.foreign_count; i < 10;  i++) {
-        g_sprintf(f_par, "Foreign file %02d name", i);
-        if (!orage_rc_exists_item(orc, f_par))
-            break; /* it is in order, so we know that the rest are missing */
-        orage_rc_del_item(orc, f_par);
-        g_sprintf(f_par, "Foreign file %02d read-only", i);
-        orage_rc_del_item(orc, f_par);
-    }
-    orage_rc_put_int(orc, "Logging level", g_log_level);
-    orage_rc_put_int(orc, "Priority list limit", g_par.priority_list_limit);
-
-    orage_rc_file_close(orc);
-}
-
 /* let's try to find the timezone name by comparing this file to
  * timezone files from the default location. This does not work
  * always, but is the best trial we can do */
@@ -1168,6 +1095,34 @@ void read_parameters(void)
     g_par.set_stick = orage_rc_get_bool(orc, "Set sticked", TRUE);
     g_par.set_ontop = orage_rc_get_bool(orc, "Set ontop", FALSE);
     g_par.use_dynamic_icon = orage_rc_get_bool(orc, "Use dynamic icon", TRUE);
+    g_par.use_own_dynamic_icon = orage_rc_get_bool(orc, "Use own dynamic icon"
+            , FALSE);
+    g_par.own_icon_file = orage_rc_get_str(orc, "Own icon file"
+            , PACKAGE_DATA_DIR "/icons/hicolor/160x160/apps/orage.xpm");
+    g_par.own_icon_row1_data = orage_rc_get_str(orc
+            , "Own icon row1 data", "%a");
+    g_par.own_icon_row1_color = orage_rc_get_str(orc, "Own icon row1 color"
+            , "blue");
+    g_par.own_icon_row1_font = orage_rc_get_str(orc, "Own icon row1 font"
+            , "Ariel 24");
+    g_par.own_icon_row1_x = orage_rc_get_int(orc, "Own icon row1 x", 0);
+    g_par.own_icon_row1_y = orage_rc_get_int(orc, "Own icon row1 y", 0);
+    g_par.own_icon_row2_data = orage_rc_get_str(orc
+            , "Own icon row2 data", "%d");
+    g_par.own_icon_row2_color = orage_rc_get_str(orc, "Own icon row2 color"
+            , "red");
+    g_par.own_icon_row2_font = orage_rc_get_str(orc, "Own icon row2 font"
+            , "Sans bold 72");
+    g_par.own_icon_row2_x = orage_rc_get_int(orc, "Own icon row2 x", 0);
+    g_par.own_icon_row2_y = orage_rc_get_int(orc, "Own icon row2 y", 20);
+    g_par.own_icon_row3_data = orage_rc_get_str(orc
+            , "Own icon row3 data", "%b");
+    g_par.own_icon_row3_color = orage_rc_get_str(orc, "Own icon row3 color"
+            , "blue");
+    g_par.own_icon_row3_font = orage_rc_get_str(orc, "Own icon row3 font"
+            , "Ariel bold 26");
+    g_par.own_icon_row3_x = orage_rc_get_int(orc, "Own icon row3 x", 5);
+    g_par.own_icon_row3_y = orage_rc_get_int(orc, "Own icon row3 y", 120);
     /* 0 = monday, ..., 6 = sunday */
     g_par.ical_weekstartday = orage_rc_get_int(orc, "Ical week start day"
             , get_first_weekday_from_locale());
@@ -1181,6 +1136,99 @@ void read_parameters(void)
     }
     g_log_level = orage_rc_get_int(orc, "Logging level", 0);
     g_par.priority_list_limit = orage_rc_get_int(orc, "Priority list limit", 8);
+
+    orage_rc_file_close(orc);
+}
+
+void write_parameters(void)
+{
+    OrageRc *orc;
+    gint i;
+    gchar f_par[50];
+
+    orc = orage_parameters_file_open(FALSE);
+
+    orage_rc_set_group(orc, "PARAMETERS");
+    orage_rc_put_str(orc, "Timezone", g_par.local_timezone);
+#ifdef HAVE_ARCHIVE
+    orage_rc_put_int(orc, "Archive limit", g_par.archive_limit);
+    orage_rc_put_str(orc, "Archive file", g_par.archive_file);
+#endif
+    orage_rc_put_str(orc, "Orage file", g_par.orage_file);
+    orage_rc_put_str(orc, "Sound application", g_par.sound_application);
+    gtk_window_get_size(GTK_WINDOW(((CalWin *)g_par.xfcal)->mWindow)
+            , &g_par.size_x, &g_par.size_y);
+    gtk_window_get_position(GTK_WINDOW(((CalWin *)g_par.xfcal)->mWindow)
+            , &g_par.pos_x, &g_par.pos_y);
+    orage_rc_put_int(orc, "Main window X", g_par.pos_x);
+    orage_rc_put_int(orc, "Main window Y", g_par.pos_y);
+    orage_rc_put_int(orc, "Main window size X", g_par.size_x);
+    orage_rc_put_int(orc, "Main window size Y", g_par.size_y);
+    orage_rc_put_int(orc, "Eventlist window pos X", g_par.el_pos_x);
+    orage_rc_put_int(orc, "Eventlist window pos Y", g_par.el_pos_y);
+    orage_rc_put_int(orc, "Eventlist window X", g_par.el_size_x);
+    orage_rc_put_int(orc, "Eventlist window Y", g_par.el_size_y);
+    orage_rc_put_int(orc, "Eventlist extra days", g_par.el_days);
+    orage_rc_put_bool(orc, "Show Main Window Menu", g_par.show_menu);
+    orage_rc_put_bool(orc, "Select Always Today"
+            , g_par.select_always_today);
+    orage_rc_put_bool(orc, "Show borders", g_par.show_borders);
+    orage_rc_put_bool(orc, "Show heading", g_par.show_heading);
+    orage_rc_put_bool(orc, "Show day names", g_par.show_day_names);
+    orage_rc_put_bool(orc, "Show weeks", g_par.show_weeks);
+    orage_rc_put_bool(orc, "Show todos", g_par.show_todos);
+    orage_rc_put_int(orc, "Show event days", g_par.show_event_days);
+    orage_rc_put_bool(orc, "Show in pager", g_par.show_pager);
+    orage_rc_put_bool(orc, "Show in systray", g_par.show_systray);
+    orage_rc_put_bool(orc, "Show in taskbar", g_par.show_taskbar);
+    orage_rc_put_bool(orc, "Start visible", g_par.start_visible);
+    orage_rc_put_bool(orc, "Start minimized", g_par.start_minimized);
+    orage_rc_put_bool(orc, "Set sticked", g_par.set_stick);
+    orage_rc_put_bool(orc, "Set ontop", g_par.set_ontop);
+    orage_rc_put_bool(orc, "Use dynamic icon", g_par.use_dynamic_icon);
+    orage_rc_put_bool(orc, "Use own dynamic icon", g_par.use_own_dynamic_icon);
+    orage_rc_put_str(orc, "Own icon file", g_par.own_icon_file);
+    orage_rc_put_str(orc, "Own icon row1 data"
+            , g_par.own_icon_row1_data);
+    orage_rc_put_str(orc, "Own icon row1 color", g_par.own_icon_row1_color);
+    orage_rc_put_str(orc, "Own icon row1 font", g_par.own_icon_row1_font);
+    orage_rc_put_int(orc, "Own icon row1 x", g_par.own_icon_row1_x);
+    orage_rc_put_int(orc, "Own icon row1 y", g_par.own_icon_row1_y);
+    orage_rc_put_str(orc, "Own icon row2 data"
+            , g_par.own_icon_row2_data);
+    orage_rc_put_str(orc, "Own icon row2 color", g_par.own_icon_row2_color);
+    orage_rc_put_str(orc, "Own icon row2 font", g_par.own_icon_row2_font);
+    orage_rc_put_int(orc, "Own icon row2 x", g_par.own_icon_row2_x);
+    orage_rc_put_int(orc, "Own icon row2 y", g_par.own_icon_row2_y);
+    orage_rc_put_str(orc, "Own icon row3 data"
+            , g_par.own_icon_row3_data);
+    orage_rc_put_str(orc, "Own icon row3 color", g_par.own_icon_row3_color);
+    orage_rc_put_str(orc, "Own icon row3 font", g_par.own_icon_row3_font);
+    orage_rc_put_int(orc, "Own icon row3 x", g_par.own_icon_row3_x);
+    orage_rc_put_int(orc, "Own icon row3 y", g_par.own_icon_row3_y);
+    /* we write this with X so that we do not read it back unless
+     * it is manually changed. It should need changes really seldom. */
+    orage_rc_put_int(orc, "XIcal week start day"
+            , g_par.ical_weekstartday);
+    orage_rc_put_bool(orc, "Show days", g_par.show_days);
+    orage_rc_put_int(orc, "Foreign file count", g_par.foreign_count);
+    /* add what we have and remove the rest */
+    for (i = 0; i < g_par.foreign_count;  i++) {
+        g_sprintf(f_par, "Foreign file %02d name", i);
+        orage_rc_put_str(orc, f_par, g_par.foreign_data[i].file);
+        g_sprintf(f_par, "Foreign file %02d read-only", i);
+        orage_rc_put_bool(orc, f_par, g_par.foreign_data[i].read_only);
+    }
+    for (i = g_par.foreign_count; i < 10;  i++) {
+        g_sprintf(f_par, "Foreign file %02d name", i);
+        if (!orage_rc_exists_item(orc, f_par))
+            break; /* it is in order, so we know that the rest are missing */
+        orage_rc_del_item(orc, f_par);
+        g_sprintf(f_par, "Foreign file %02d read-only", i);
+        orage_rc_del_item(orc, f_par);
+    }
+    orage_rc_put_int(orc, "Logging level", g_log_level);
+    orage_rc_put_int(orc, "Priority list limit", g_par.priority_list_limit);
 
     orage_rc_file_close(orc);
 }
