@@ -193,6 +193,7 @@ static void xfical_icalcomponent_archive_recurrent(icalcomponent *e
      * enddates and actually only the date parts since time will stay.
      * Note that we may need to remove limited recurrency events. We only
      * add X-ORAGE-ORIG... dates if those are not there already.
+     * NOTE: these are not added to Archive file.
      */
     sdate = icalcomponent_get_dtstart(e);
     pdtstart = icalcomponent_get_first_property(e, ICAL_DTSTART_PROPERTY);

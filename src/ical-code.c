@@ -3741,7 +3741,10 @@ static xfical_appt *xfical_appt_get_next_with_string_internal(char *str
                     , text_len, strlen(text_upper));
         }
         if (!beg) {
-            orage_message(250, P_N "Could not find initial BEGIN:V-type from Orage ical file (%s)"
+        /* the file can actually be empty and not have any events, so this
+           may be quite ok */
+            if (text_len > 100)
+                orage_message(50, P_N "Could not find initial BEGIN:V-type from Orage ical file (%s). Maybe file is empty."
                     , search_file);
             return(NULL);
         }
