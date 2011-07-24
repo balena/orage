@@ -558,25 +558,28 @@ static void create_mainbox_event_info_box(void)
     cal->mEvent_vbox = gtk_vbox_new(FALSE, 0);
     gtk_box_pack_start(GTK_BOX(cal->mVbox), cal->mEvent_vbox, TRUE, TRUE, 0);
     cal->mEvent_label = gtk_label_new(NULL);
-    if (g_par.show_event_days == 1) {
-        tmp2 = g_strdup(orage_tm_date_to_i18_date(&tm_date_start));
-        tmp = g_strdup_printf(_("<b>Events for %s:</b>"), tmp2);
-        g_free(tmp2);
-    }
-    else {
-        int i;
+    if (g_par.show_event_days) {
+    /* bug 7836: we call this routine also with 0 = no event data at all */
+        if (g_par.show_event_days == 1) {
+            tmp2 = g_strdup(orage_tm_date_to_i18_date(&tm_date_start));
+            tmp = g_strdup_printf(_("<b>Events for %s:</b>"), tmp2);
+            g_free(tmp2);
+        }
+        else {
+            int i;
 
-        tm_date_end = tm_date_start;
-        for (i = g_par.show_event_days-1; i; i--)
-            orage_move_day(&tm_date_end, 1);
-        tmp2 = g_strdup(orage_tm_date_to_i18_date(&tm_date_start));
-        tmp3 = g_strdup(orage_tm_date_to_i18_date(&tm_date_end));
-        tmp = g_strdup_printf(_("<b>Events for %s - %s:</b>"), tmp2, tmp3);
-        g_free(tmp2);
-        g_free(tmp3);
+            tm_date_end = tm_date_start;
+            for (i = g_par.show_event_days-1; i; i--)
+                orage_move_day(&tm_date_end, 1);
+            tmp2 = g_strdup(orage_tm_date_to_i18_date(&tm_date_start));
+            tmp3 = g_strdup(orage_tm_date_to_i18_date(&tm_date_end));
+            tmp = g_strdup_printf(_("<b>Events for %s - %s:</b>"), tmp2, tmp3);
+            g_free(tmp2);
+            g_free(tmp3);
+        }
+        gtk_label_set_markup(GTK_LABEL(cal->mEvent_label), tmp);
+        g_free(tmp);
     }
-    gtk_label_set_markup(GTK_LABEL(cal->mEvent_label), tmp);
-    g_free(tmp);
 
     gtk_box_pack_start(GTK_BOX(cal->mEvent_vbox), cal->mEvent_label
             , FALSE, FALSE, 0);
