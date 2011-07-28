@@ -565,7 +565,7 @@ static void on_appNote_buffer_changed_cb(GtkTextBuffer *b, gpointer user_data)
     appt_win *apptw = (appt_win *)user_data;
     GtkTextIter start, end, match_start, match_end;
     GtkTextBuffer *tb;
-    gchar *cdate, c_time[6], *cdatetime;
+    gchar *cdate, ctime[6], *cdatetime;
     struct tm *tm;
 
     tb = apptw->Note_buffer;
@@ -581,17 +581,17 @@ static void on_appNote_buffer_changed_cb(GtkTextBuffer *b, gpointer user_data)
                 , GTK_TEXT_SEARCH_TEXT_ONLY
                 , &match_start, &match_end, &end)) { /* found it */
         tm = orage_localtime();
-        g_sprintf(c_time, "%02d:%02d", tm->tm_hour, tm->tm_min);
+        g_sprintf(ctime, "%02d:%02d", tm->tm_hour, tm->tm_min);
         gtk_text_buffer_delete(tb, &match_start, &match_end);
-        gtk_text_buffer_insert(tb, &match_start, c_time, -1);
+        gtk_text_buffer_insert(tb, &match_start, ctime, -1);
     }
     else if (gtk_text_iter_forward_search(&start, "<DT>"
                 , GTK_TEXT_SEARCH_TEXT_ONLY
                 , &match_start, &match_end, &end)) { /* found it */
         tm = orage_localtime();
         cdate = orage_tm_date_to_i18_date(tm);
-        g_sprintf(c_time, "%02d:%02d", tm->tm_hour, tm->tm_min);
-        cdatetime = g_strconcat(cdate, " ", c_time, NULL);
+        g_sprintf(ctime, "%02d:%02d", tm->tm_hour, tm->tm_min);
+        cdatetime = g_strconcat(cdate, " ", ctime, NULL);
         gtk_text_buffer_delete(tb, &match_start, &match_end);
         gtk_text_buffer_insert(tb, &match_start, cdatetime, -1);
         g_free(cdatetime);
@@ -3118,8 +3118,8 @@ static void build_recurrence_page(appt_win *apptw)
 {
     gint row, i;
     guint y, m;
-    char *recur_freq_array[5] = {
-        _("None"), _("Daily"), _("Weekly"), _("Monthly"), _("Yearly")};
+    char *recur_freq_array[6] = {
+        _("None"), _("Daily"), _("Weekly"), _("Monthly"), _("Yearly"), _("Hourly")};
     char *weekday_array[7] = {
         _("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun")};
     GtkWidget *hbox;
@@ -3157,7 +3157,7 @@ static void build_recurrence_page(appt_win *apptw)
     apptw->Recur_freq_label = gtk_label_new(_("Frequency"));
     apptw->Recur_freq_hbox = gtk_hbox_new(FALSE, 0);
     apptw->Recur_freq_cb = orage_create_combo_box_with_content(
-            recur_freq_array, 5);
+            recur_freq_array, 6);
     gtk_box_pack_start(GTK_BOX(apptw->Recur_freq_hbox)
             , apptw->Recur_freq_cb, FALSE, FALSE, 0);
     apptw->Recur_int_spin_label1 = gtk_label_new(_("Each"));

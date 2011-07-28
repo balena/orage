@@ -795,7 +795,7 @@ int xfical_compare_times(xfical_appt *appt)
 {
 #undef  P_N 
 #define P_N "xfical_compare_times: "
-    struct icaltimetype s_time, etime;
+    struct icaltimetype stime, etime;
     const char *text;
     struct icaldurationtype duration;
 
@@ -811,9 +811,9 @@ int xfical_compare_times(xfical_appt *appt)
             orage_message(250, P_N "null start time");
             return(0); /* should be error ! */
         }
-        s_time = icaltime_from_string(appt->starttime);
+        stime = icaltime_from_string(appt->starttime);
         duration = icaldurationtype_from_int(appt->duration);
-        etime = icaltime_add(s_time, duration);
+        etime = icaltime_add(stime, duration);
         text  = icaltime_as_ical_string(etime);
         g_strlcpy(appt->endtime, text, 17);
         g_free(appt->end_tz_loc);
@@ -824,17 +824,17 @@ int xfical_compare_times(xfical_appt *appt)
     else {
         if (ORAGE_STR_EXISTS(appt->starttime) 
         &&  ORAGE_STR_EXISTS(appt->endtime)) {
-            s_time = icaltime_from_string(appt->starttime);
+            stime = icaltime_from_string(appt->starttime);
             etime = icaltime_from_string(appt->endtime);
 
-            s_time = convert_to_zone(s_time, appt->start_tz_loc);
-            s_time = icaltime_convert_to_zone(s_time, local_icaltimezone);
+            stime = convert_to_zone(stime, appt->start_tz_loc);
+            stime = icaltime_convert_to_zone(stime, local_icaltimezone);
             etime = convert_to_zone(etime, appt->end_tz_loc);
             etime = icaltime_convert_to_zone(etime, local_icaltimezone);
 
-            duration = icaltime_subtract(etime, s_time);
+            duration = icaltime_subtract(etime, stime);
             appt->duration = icaldurationtype_as_int(duration);
-            return(icaltime_compare(s_time, etime));
+            return(icaltime_compare(stime, etime));
         }
         else {
             orage_message(250, P_N "null time %s %s"
@@ -1205,6 +1205,9 @@ static void appt_add_recur_internal(xfical_appt *appt, icalcomponent *icmp)
             break;
         case XFICAL_FREQ_YEARLY:
             recur_p = g_stpcpy(recur_p, "YEARLY");
+            break;
+        case XFICAL_FREQ_HOURLY:
+            recur_p = g_stpcpy(recur_p, "HOURLY");
             break;
         default:
             orage_message(160, P_N "Unsupported freq");
@@ -1750,7 +1753,7 @@ static void get_appt_alarm_from_icalcomponent(icalcomponent *c
 }
 
 static void process_start_date(xfical_appt *appt, icalproperty *p
-        , struct icaltimetype *itime, struct icaltimetype *s_time
+        , struct icaltimetype *itime, struct icaltimetype *stime
         , struct icaltimetype *sltime, struct icaltimetype *etime)
 {
 #undef P_N
@@ -1762,7 +1765,7 @@ static void process_start_date(xfical_appt *appt, icalproperty *p
 #endif
     text = icalproperty_get_value_as_string(p);
     *itime = icaltime_from_string(text);
-    *s_time = ic_convert_to_timezone(*itime, p);
+    *stime = ic_convert_to_timezone(*itime, p);
     *sltime = convert_to_local_timezone(*itime, p);
     g_strlcpy(appt->starttime, text, 17);
     if (icaltime_is_date(*itime)) {
@@ -1780,7 +1783,7 @@ static void process_start_date(xfical_appt *appt, icalproperty *p
     if (appt->endtime[0] == '\0') {
         g_strlcpy(appt->endtime,  appt->starttime, 17);
         appt->end_tz_loc = appt->start_tz_loc;
-        etime = s_time;
+        etime = stime;
     }
 }
 
@@ -1862,6 +1865,9 @@ static void ical_appt_get_rrule_internal(icalcomponent *c, xfical_appt *appt
         case ICAL_YEARLY_RECURRENCE:
             appt->freq = XFICAL_FREQ_YEARLY;
             break;
+        case ICAL_HOURLY_RECURRENCE:
+            appt->freq = XFICAL_FREQ_HOURLY;
+            break;
         default:
             appt->freq = XFICAL_FREQ_NONE;
             break;
@@ -1928,7 +1934,7 @@ static gboolean get_appt_from_icalcomponent(icalcomponent *c, xfical_appt *appt)
 #define P_N "get_appt_from_icalcomponent: "
     const char *text;
     icalproperty *p = NULL;
-    struct icaltimetype itime, s_time, etime, sltime, eltime, wtime;
+    struct icaltimetype itime, stime, etime, sltime, eltime, wtime;
     icaltimezone *l_icaltimezone = NULL;
     icalproperty_transp xf_transp;
     struct icaldurationtype duration, duration_tmp;
@@ -1954,7 +1960,7 @@ static gboolean get_appt_from_icalcomponent(icalcomponent *c, xfical_appt *appt)
         return(FALSE);
     }
         /*********** Defaults ***********/
-    s_time = icaltime_null_time();
+    stime = icaltime_null_time();
     sltime = icaltime_null_time();
     eltime = icaltime_null_time();
     duration = icaldurationtype_null_duration();
@@ -2039,7 +2045,7 @@ static gboolean get_appt_from_icalcomponent(icalcomponent *c, xfical_appt *appt)
             case ICAL_DTSTART_PROPERTY:
                 if (!stime_found)
                     process_start_date(appt, p 
-                            , &itime, &s_time, &sltime, &etime);
+                            , &itime, &stime, &sltime, &etime);
                 break;
             case ICAL_DTEND_PROPERTY:
             case ICAL_DUE_PROPERTY:
@@ -2066,7 +2072,7 @@ g_print("X PROPERTY: %s\n", text);
                 text = icalproperty_get_x_name(p);
                 if (g_str_has_prefix(text, "X-ORAGE-ORIG-DTSTART")) {
                     process_start_date(appt, p 
-                            , &itime, &s_time, &sltime, &etime);
+                            , &itime, &stime, &sltime, &etime);
                     stime_found = TRUE;
                     break;
                 }
@@ -2149,7 +2155,7 @@ g_print("X PROPERTY: %s\n", text);
 
     /* need to set missing endtime or duration */
     if (appt->use_duration) { 
-        etime = icaltime_add(s_time, duration);
+        etime = icaltime_add(stime, duration);
         text  = icaltime_as_ical_string(etime);
         g_strlcpy(appt->endtime, text, 17);
         appt->end_tz_loc = appt->start_tz_loc;
@@ -2163,7 +2169,7 @@ g_print("X PROPERTY: %s\n", text);
             duration_tmp = icaldurationtype_from_int(60*60*24);
             appt->duration -= icaldurationtype_as_int(duration_tmp);
             duration = icaldurationtype_from_int(appt->duration);
-            etime = icaltime_add(s_time, duration);
+            etime = icaltime_add(stime, duration);
             text  = icaltime_as_ical_string(etime);
             g_strlcpy(appt->endtime, text, 17);
         }
@@ -3709,7 +3715,7 @@ static xfical_appt *xfical_appt_get_next_with_string_internal(char *str
     xfical_appt *appt;
     gboolean found_valid, search_done = FALSE;
     struct icaltimetype it;
-    const char *s_time;
+    const char *stime;
 
 #ifdef ORAGE_DEBUG
     orage_message(-200, P_N);
@@ -3830,14 +3836,14 @@ static xfical_appt *xfical_appt_get_next_with_string_internal(char *str
                             it = convert_to_zone(it, appt->start_tz_loc);
                             it = icaltime_convert_to_zone(it
                                     , local_icaltimezone);
-                            s_time = icaltime_as_ical_string(it);
-                            g_strlcpy(appt->starttimecur, s_time, 17);
+                            stime = icaltime_as_ical_string(it);
+                            g_strlcpy(appt->starttimecur, stime, 17);
                             it = icaltime_from_string(appt->endtime);
                             it = convert_to_zone(it, appt->end_tz_loc);
                             it = icaltime_convert_to_zone(it
                                     , local_icaltimezone);
-                            s_time = icaltime_as_ical_string(it);
-                            g_strlcpy(appt->endtimecur, s_time, 17);
+                            stime = icaltime_as_ical_string(it);
+                            g_strlcpy(appt->endtimecur, stime, 17);
                         }
                         beg = find_next(uid, end, "\nEND:");
                         if (!beg) {

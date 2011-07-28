@@ -506,11 +506,20 @@ static void info_process(gpointer a, gpointer pbox)
 #ifdef ORAGE_DEBUG
     orage_message(-100, P_N);
 #endif
+    /*
+    orage_message(100, "%s %s", P_N, appt->uid);
+    if (appt->freq == XFICAL_FREQ_HOURLY) {
+        orage_message(100, "%s %s", P_N, "HOURLY");
+        if (appt->priority >= g_par.priority_list_limit)
+            orage_message(100, "%s %s", P_N, " low priority HOURLY");
+    }
+    */
     if (pbox == cal->mTodo_rows_vbox)
         todo = TRUE;
     else
         todo = FALSE;
-    add_info_row(appt, box, todo);
+    if (appt->priority < g_par.priority_list_limit)
+        add_info_row(appt, box, todo);
     xfical_appt_free(appt);
 }
 

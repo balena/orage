@@ -33,6 +33,7 @@ typedef enum
    ,XFICAL_FREQ_WEEKLY
    ,XFICAL_FREQ_MONTHLY
    ,XFICAL_FREQ_YEARLY
+   ,XFICAL_FREQ_HOURLY
 } xfical_freq;
 
 typedef enum
