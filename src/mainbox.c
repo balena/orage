@@ -390,6 +390,7 @@ static void add_info_row(xfical_appt *appt, GtkBox *parentBox, gboolean todo)
     /***** add data into the vbox *****/
     ev = gtk_event_box_new();
     tmp_title = orage_process_text_commands(appt->title);
+    s_time = g_strdup(orage_icaltime_to_i18_time(appt->starttimecur));
     if (appt->allDay || todo) {
         tmp = g_strdup_printf("  %s", tmp_title);
     }
@@ -399,8 +400,12 @@ static void add_info_row(xfical_appt *appt, GtkBox *parentBox, gboolean todo)
         today = orage_tm_time_to_icaltime(orage_localtime());
         if (!strncmp(today, appt->starttimecur, 8)) /* today */
             tmp = g_strdup_printf(" %s* %s", s_timeonly, appt->title);
-        else
-            tmp = g_strdup_printf(" %s  %s", s_timeonly, appt->title);
+        else {
+            if (g_par.show_event_days > 1)
+                tmp = g_strdup_printf(" %s  %s", s_time, appt->title);
+            else
+                tmp = g_strdup_printf(" %s  %s", s_timeonly, appt->title);
+        }
         g_free(s_timeonly);
     }
     label = gtk_label_new(tmp);
@@ -436,7 +441,6 @@ static void add_info_row(xfical_appt *appt, GtkBox *parentBox, gboolean todo)
 
     /***** set hint *****/
     tmp_note = orage_process_text_commands(appt->note);
-    s_time = g_strdup(orage_icaltime_to_i18_time(appt->starttimecur));
     if (todo) {
         na = _("Never");
         e_time = g_strdup(appt->use_due_time

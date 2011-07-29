@@ -555,13 +555,12 @@ static void create_notify_reminder(alarm_struct *l_alarm)
         return;
     }
 
-    strncpy(heading,  _("Reminder "), 99);
+    strncpy(heading,  _("Reminder "), 100);
     if (l_alarm->title)
-        g_strlcat(heading, l_alarm->title, 50);
+        g_strlcat(heading, l_alarm->title, 150);
     if (l_alarm->action_time) {
-        g_strlcat(heading, "\n<b>", 10);
-        g_strlcat(heading, l_alarm->action_time, 90);
-        g_strlcat(heading, "<\b>", 10);
+        g_strlcat(heading, "\n", 160);
+        g_strlcat(heading, l_alarm->action_time, 250);
     }
     /* since version 0.7.0, libnotify does not have the widget parameter in 
        notify_notification_new and it does not have function
@@ -834,7 +833,7 @@ static void create_procedure_reminder(alarm_struct *l_alarm)
 #endif
     /*
     status = orage_exec(l_alarm->cmd, &active, &error);
-        */
+    */
     cmd = g_strconcat(l_alarm->cmd, " &", NULL);
     status = system(cmd);
     if (status)

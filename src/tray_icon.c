@@ -385,62 +385,67 @@ GdkPixbuf *orage_create_icon(gboolean static_icon, gint size)
     GdkVisual *pic_vis;
     struct tm *t;
     gint width = 160, height = 160, depth = 16; /* size of icon */
-    gint real_width = 0, real_height = 0; /* usable size of icon */
+    gint r_width = 0, r_height = 0; /* usable size of icon */
 
     icon_theme = gtk_icon_theme_get_default();
-    if (static_icon || !g_par.use_dynamic_icon) {
-        pixbuf = gtk_icon_theme_load_icon(icon_theme, "xfcalendar", size
-                , GTK_ICON_LOOKUP_USE_BUILTIN, NULL);
-        return(pixbuf);
-    }
-
-    /***** dynamic icon build starts now *****/
-    t = orage_localtime();
-    pic_cmap = gdk_colormap_get_system();
-    pic_vis = gdk_colormap_get_visual(pic_cmap);
-    depth = pic_vis->depth;
-
-    if (g_par.use_own_dynamic_icon) {
-        pic = create_own_icon_pixmap(pic_cmap, width, height, depth);
-        pic_gc = gdk_gc_new(pic);
-        create_own_icon_pango_layout(1, pic, pic_gc, t, width, height);
-        create_own_icon_pango_layout(2, pic, pic_gc, t, width, height);
-        create_own_icon_pango_layout(3, pic, pic_gc, t, width, height);
-    }
-    else { /* standard dynamic icon */
-        pic = create_icon_pixmap(pic_cmap, width, height, depth);
-        pic_gc = gdk_gc_new(pic);
-        /* We draw borders so we can't use the whole space */
-        real_width = width - 6; 
-        real_height = height - 6;
-
-        /* weekday */
-        create_icon_pango_layout(1, pic, pic_gc, t, real_width, real_height);
-
-        /* day */
-        create_icon_pango_layout(2, pic, pic_gc, t, real_width, real_height);
-
-        /* month */
-        create_icon_pango_layout(3, pic, pic_gc, t, real_width, real_height);
-    }
-
-    pixbuf = gdk_pixbuf_get_from_drawable(NULL, pic, pic_cmap
-            , 0, 0, 0, 0, width, height);
-    if (size) {
-        pixbuf2 = gdk_pixbuf_scale_simple(pixbuf, size, size
-                , GDK_INTERP_BILINEAR);
-        g_object_unref(pixbuf);
-        pixbuf = pixbuf2;
-    }
-
-    if (pixbuf == NULL) {
-        g_warning("orage_create_icon: dynamic icon creation failed\n");
+    if (static_icon || !g_par.use_dynamic_icon) { /* load static icon */
         pixbuf = gtk_icon_theme_load_icon(icon_theme, "xfcalendar", size
                 , GTK_ICON_LOOKUP_USE_BUILTIN, NULL);
     }
-    g_object_unref(pic_gc);
-    g_object_unref(pic);
+    else { /***** dynamic icon build starts now *****/
+        t = orage_localtime();
+        pic_cmap = gdk_colormap_get_system();
+        pic_vis = gdk_colormap_get_visual(pic_cmap);
+        depth = pic_vis->depth;
+
+        if (g_par.use_own_dynamic_icon) {
+            pic = create_own_icon_pixmap(pic_cmap, width, height, depth);
+            pic_gc = gdk_gc_new(pic);
+            create_own_icon_pango_layout(1, pic, pic_gc, t, width, height);
+            create_own_icon_pango_layout(2, pic, pic_gc, t, width, height);
+            create_own_icon_pango_layout(3, pic, pic_gc, t, width, height);
+        }
+        else { /* standard dynamic icon */
+            pic = create_icon_pixmap(pic_cmap, width, height, depth);
+            pic_gc = gdk_gc_new(pic);
+            /* We draw borders so we can't use the whole space */
+            r_width = width - 6; 
+            r_height = height - 6;
+
+            /* weekday */
+            create_icon_pango_layout(1, pic, pic_gc, t, r_width, r_height);
+
+            /* day */
+            create_icon_pango_layout(2, pic, pic_gc, t, r_width, r_height);
+
+            /* month */
+            create_icon_pango_layout(3, pic, pic_gc, t, r_width, r_height);
+        }
+
+        pixbuf = gdk_pixbuf_get_from_drawable(NULL, pic, pic_cmap
+                , 0, 0, 0, 0, width, height);
+        if (size) {
+            pixbuf2 = gdk_pixbuf_scale_simple(pixbuf, size, size
+                    , GDK_INTERP_BILINEAR);
+            g_object_unref(pixbuf);
+            pixbuf = pixbuf2;
+        }
+
+        if (pixbuf == NULL) {
+            g_warning("orage_create_icon: dynamic icon creation failed\n");
+            pixbuf = gtk_icon_theme_load_icon(icon_theme, "xfcalendar", size
+                    , GTK_ICON_LOOKUP_USE_BUILTIN, NULL);
+        }
+        g_object_unref(pic_gc);
+        g_object_unref(pic);
+    }
   
+    if (pixbuf == NULL) {
+        g_warning("orage_create_icon: static icon creation failed, using stock ABOUT icon\n");
+        /* dynamic icon also tries static before giving up */
+        pixbuf = gtk_icon_theme_load_icon(icon_theme, GTK_STOCK_ABOUT, size
+                , GTK_ICON_LOOKUP_USE_BUILTIN, NULL);
+    }
     return(pixbuf);
 }
 
@@ -538,6 +543,10 @@ void refresh_TrayIcon(void)
     GdkPixbuf *orage_logo;
 
     orage_logo = orage_create_icon(FALSE, 0);
+    if (!orage_logo) {
+        g_warning("refresh_TrayIcon: failed to load icon.");
+        return;
+    }
     if (g_par.show_systray) { /* refresh tray icon */
         if (ORAGE_TRAYICON && gtk_status_icon_is_embedded(ORAGE_TRAYICON)) {
             gtk_status_icon_set_visible(ORAGE_TRAYICON, FALSE);

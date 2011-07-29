@@ -2491,7 +2491,8 @@ static void on_test_button_clicked_cb(GtkButton *button
     cur_alarm.repeat_delay = appt->soundrepeat_len;
     cur_alarm.procedure = appt->procedure_alarm;
     if (appt->procedure_alarm)
-        cur_alarm.cmd = g_strdup(appt->procedure_cmd);
+        cur_alarm.cmd = g_strconcat(appt->procedure_cmd, " "
+                , appt->procedure_params, NULL);
     else
         cur_alarm.cmd = NULL;
     create_reminders(&cur_alarm);
