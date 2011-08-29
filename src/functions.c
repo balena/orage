@@ -96,8 +96,15 @@ void orage_message(gint level, const char *format, ...)
     formatted = g_strdup_vprintf(format, args);
     va_end(args);
 
-    if (level < 0) 
-        g_debug("%s", formatted);
+    if (level < 0) {
+        if (g_log_level < -1000) {
+            struct tm *t = orage_localtime();
+            
+            g_debug("%d:%d:%d %s", t->tm_hour, t->tm_min, t->tm_sec, formatted);
+        }
+        else
+            g_debug("%s", formatted);
+    }
     else if (level < 100) 
         g_message("Orage **: %s", formatted);
     else if (level < 200) 
@@ -482,7 +489,7 @@ struct tm orage_i18_time_to_tm_time(const char *i18_time)
     if (ret == NULL)
         g_error("Orage: orage_i18_time_to_tm_time wrong format (%s)", i18_time);
     else if (ret[0] != '\0')
-        g_error("Orage: orage_i18_time_to_tm_time too long format (%s-%s)"
+        g_warning("Orage: orage_i18_time_to_tm_time too long format (%s). Ignoring:%s)"
                 , i18_time, ret);
     return(tm_time);
 }
@@ -496,7 +503,7 @@ struct tm orage_i18_date_to_tm_date(const char *i18_date)
     if (ret == NULL)
         g_error("Orage: orage_i18_date_to_tm_date wrong format (%s)", i18_date);
     else if (ret[0] != '\0')
-        g_error("Orage: orage_i18_date_to_tm_date too long format (%s-%s)"
+        g_warning("Orage: orage_i18_date_to_tm_date too long format (%s). Ignoring:%s)"
                 , i18_date, ret);
     return(tm_date);
 }
@@ -892,7 +899,9 @@ OrageRc *orage_rc_file_open(char *fpath, gboolean read_only)
         orc->cur_group = NULL;
     }
     else {
+#ifdef ORAGE_DEBUG
         orage_message(-90, "orage_rc_file_open: Unable to open RC file (%s). Creating it. (%s)", fpath, error->message);
+#endif
         g_clear_error(&error);
         if (g_file_set_contents((const gchar *)fpath, "#Created by Orage", -1
                     , &error)) { /* successfully created new file */
@@ -903,7 +912,9 @@ OrageRc *orage_rc_file_open(char *fpath, gboolean read_only)
             orc->cur_group = NULL;
         }
         else {
+#ifdef ORAGE_DEBUG
             orage_message(150, "orage_rc_file_open: Unable to open (create) RC file (%s). (%s)", fpath, error->message);
+#endif
             g_key_file_free(grc);
         }
     }
@@ -936,7 +947,9 @@ void orage_rc_file_close(OrageRc *orc)
         g_free(orc);
     }
     else {
+#ifdef ORAGE_DEBUG
         orage_message(-90, "orage_rc_file_close: closing empty file.");
+#endif
     }
 }
 
@@ -957,7 +970,9 @@ void orage_rc_del_group(OrageRc *orc, char *grp)
 
     if (!g_key_file_remove_group((GKeyFile *)orc->rc, (const gchar *)grp
                 , &error)) {
+#ifdef ORAGE_DEBUG
         orage_message(150, "orage_rc_del_group: Group remove failed. RC file (%s). group (%s) (%s)", orc->file_name, grp, error->message);
+#endif
     }
 }
 
@@ -975,7 +990,9 @@ gchar *orage_rc_get_str(OrageRc *orc, char *key, char *def)
             , (const gchar *)key, &error);
     if (!ret && error) {
         ret = g_strdup(def);
+#ifdef ORAGE_DEBUG
         orage_message(-90, "orage_rc_get_str: str (%s) group (%s) in RC file (%s) not found, using default (%s)", key, orc->cur_group, orc->file_name, ret);
+#endif
     }
     return(ret);
 }
@@ -989,7 +1006,9 @@ gint orage_rc_get_int(OrageRc *orc, char *key, gint def)
             , (const gchar *)key, &error);
     if (!ret && error) {
         ret = def;
+#ifdef ORAGE_DEBUG
         orage_message(-90, "orage_rc_get_int: str (%s) group (%s) in RC file (%s) not found, using default (%d)", key, orc->cur_group, orc->file_name, ret);
+#endif
     }
     return(ret);
 }
@@ -1003,7 +1022,9 @@ gboolean orage_rc_get_bool(OrageRc *orc, char *key, gboolean def)
             , (const gchar *)key, &error);
     if (!ret && error) {
         ret = def;
+#ifdef ORAGE_DEBUG
         orage_message(-90, "orage_rc_get_bool: str (%s) group (%s) in RC file (%s) not found, using default (%d)", key, orc->cur_group, orc->file_name, ret);
+#endif
     }
     return(ret);
 }

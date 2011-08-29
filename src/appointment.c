@@ -1312,6 +1312,8 @@ static xfical_exception *new_exception(char *text)
 {
     xfical_exception *recur_exception;
     gint i;
+    struct tm tm_time = {0,0,0,0,0,0,0,0,0};
+    char *tmp;
 
     recur_exception = g_new(xfical_exception, 1);
     i = strlen(text);
@@ -1326,9 +1328,22 @@ static xfical_exception *new_exception(char *text)
         /* need to add time also as standard libical can not handle dates
            correctly yet. Check more from BUG 5764.
            We use start time from appointment. */
-        strcpy(recur_exception->time, orage_i18_time_to_icaltime(text));
+        /* we should not have dates as we are using standard libical,
+           but if this fails (=return NULL) we may have date from somewhere 
+           else */
+        if ((char *)strptime(text, "%x %R", &tm_time) == NULL)
+            strcpy(recur_exception->time, orage_i18_date_to_icaldate(text));
+        else
+            strcpy(recur_exception->time, orage_i18_time_to_icaltime(text));
 #else
-        strcpy(recur_exception->time, orage_i18_date_to_icaldate(text));
+        /* we should not have date-times as we are using internal libical,
+           which only uses dates, but if this returns non null, we may have 
+           datetime from somewhere else */
+        tmp = (char *)strptime(text, "%x", &tm_time);
+        if (ORAGE_STR_EXISTS(tmp))
+            strcpy(recur_exception->time, orage_i18_time_to_icaltime(text));
+        else
+            strcpy(recur_exception->time, orage_i18_date_to_icaldate(text));
 #endif
     }
     text[i-2] = ' ';
@@ -1455,11 +1470,16 @@ static void recur_day_selected_double_click_cb(GtkCalendar *calendar
         /* need to add time also as standard libical can not handle dates
            correctly yet. Check more from BUG 5764.
            We use start time from appointment. */
-        hh =  gtk_spin_button_get_value_as_int(
-                GTK_SPIN_BUTTON(apptw->StartTime_spin_hh));
-        mm =  gtk_spin_button_get_value_as_int(
-                GTK_SPIN_BUTTON(apptw->StartTime_spin_mm));
-        cal_date = g_strdup(orage_cal_to_i18_time(calendar, hh, mm));
+        if (gtk_toggle_button_get_active(
+                GTK_TOGGLE_BUTTON(apptw->AllDay_checkbutton)))
+            cal_date = g_strdup(orage_cal_to_i18_date(calendar));
+        else {
+            hh =  gtk_spin_button_get_value_as_int(
+                    GTK_SPIN_BUTTON(apptw->StartTime_spin_hh));
+            mm =  gtk_spin_button_get_value_as_int(
+                    GTK_SPIN_BUTTON(apptw->StartTime_spin_mm));
+            cal_date = g_strdup(orage_cal_to_i18_time(calendar, hh, mm));
+        }
 #else
         /* date is enough */
         cal_date = g_strdup(orage_cal_to_i18_date(calendar));

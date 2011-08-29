@@ -86,7 +86,7 @@ static void xfical_alarm_build_list_internal(gboolean first_list_today);
 #define ZONES_TAB_FILE_LOC  ZONEINFO_DIRECTORY "/" ZONES_TAB_FILENAME
 
 
-typedef struct
+typedef struct _xfical_timezone_array
 {
     int    count;     /* how many timezones we have */
     char **city;      /* pointer to timezone location name strings */
@@ -105,12 +105,17 @@ gboolean ic_file_modified = FALSE; /* has any ical file been changed */
 static guint    file_close_timer = 0;  /* delayed file close timer */
 
 typedef struct _foreign_ical_files
-{;
+{
     icalset *fical;
     icalcomponent *ical;
 } ic_foreign_ical_files;
 
 ic_foreign_ical_files ic_f_ical[10];
+
+typedef struct _excluded_time
+{
+    struct icaltimetype e_time;
+} excluded_time;
 
 /* timezone handling */
 static icaltimezone *utc_icaltimezone = NULL;
@@ -1156,9 +1161,10 @@ static void appt_add_exception_internal(xfical_appt *appt
         excp = (xfical_exception *)gl_tmp->data;
         wtime = icaltime_from_string(excp->time); 
         if (strcmp(excp->type, "EXDATE") == 0) {
-        /* Orage only supports date as EXDATE */
-            if (!icaltime_is_date(wtime))
-                orage_message(110, "appt_add_exceptions_internal: EXDATE not date (%s) (%d). Orage can handle dates only.", excp->time, strlen(excp->time));
+#ifdef HAVE_LIBICAL
+            if (icaltime_is_date(wtime))
+                orage_message(110, "appt_add_exceptions_internal: EXDATE is date (%s) (%d). There is libical bug http://sourceforge.net/tracker/?func=detail&aid=2901161&group_id=16077&atid=116077 which causes that excluded dates do not work properly in Orage.", excp->time, strlen(excp->time));
+#endif
             icalcomponent_add_property(icmp
                     , icalproperty_new_exdate(wtime));
         }
@@ -2552,6 +2558,98 @@ static struct icaltimetype count_alarm_time(xfical_period per
     return(alarm_time);
 }
 
+static gint exclude_order(gconstpointer a, gconstpointer b)
+{
+#undef P_N
+#define P_N "exclude_order: "
+    return(icaltime_compare(((excluded_time *)a)->e_time
+                          , ((excluded_time *)b)->e_time));
+}
+
+static icaltimezone *build_excluded_list_dtstart(icalcomponent *c) 
+{
+    const icaltimezone *zone=NULL;
+    icalproperty *p = NULL;
+    const char *text;
+    struct icaltimetype itime;
+
+    p = icalcomponent_get_first_property(c, ICAL_DTSTART_PROPERTY);
+    if (p) {
+        text = icalproperty_get_value_as_string(p);
+        itime = icaltime_from_string(text);
+        itime = ic_convert_to_timezone(itime, p);
+        zone = itime.zone;
+    }
+    if (!zone) /* we have floating time, so let's use local timezone */
+        zone = local_icaltimezone;
+
+    return((icaltimezone *)zone);
+}
+
+static void build_excluded_list(GList **exclude_l, icalcomponent *comp
+        , const icaltimezone *zone)
+{
+#undef P_N
+#define P_N "build_excluded_list: "
+    icalproperty *exdate;
+    struct icaltimetype exdatetime;
+    excluded_time *l_etime;
+
+    for (exdate = icalcomponent_get_first_property(comp,ICAL_EXDATE_PROPERTY);
+         exdate != NULL;
+         exdate = icalcomponent_get_next_property(comp,ICAL_EXDATE_PROPERTY)) {
+        exdatetime = icalproperty_get_exdate(exdate);
+        exdatetime = ic_convert_to_timezone(exdatetime, exdate);
+        if (!exdatetime.zone) 
+            icaltime_set_timezone(&exdatetime, zone);
+
+        l_etime = g_new(excluded_time, 1);
+        l_etime->e_time = exdatetime;
+        *exclude_l = g_list_prepend(*exclude_l, l_etime);
+    }
+}
+
+static void free_exclude_time(gpointer e_t, gpointer dummy)
+{
+    g_free(e_t);
+}
+
+static void free_excluded_list(GList *exclude_l)
+{
+
+    g_list_foreach(exclude_l, free_exclude_time, NULL);
+    g_list_free(exclude_l);
+    exclude_l = NULL;
+}
+
+static gboolean time_is_excluded(GList *exclude_l, struct icaltimetype *time)
+{
+#undef P_N
+#define P_N "time_is_excluded: "
+    GList *e_l=NULL;
+    excluded_time *excl_time;
+    struct icaltimetype e_time;
+
+    if (exclude_l == NULL || time == NULL || icaltime_is_null_time(*time))
+        return 0;
+
+    for (e_l = g_list_first(exclude_l); e_l != NULL; e_l = g_list_next(e_l)) {
+        excl_time = (excluded_time *)e_l->data;
+        e_time = excl_time->e_time;
+        if ((icaltime_is_date(e_time)
+             && icaltime_compare_date_only(e_time, *time) == 0)
+            || (icaltime_compare(e_time, *time) == 0))
+            return(1);
+        else if ((icaltime_is_date(e_time)
+                  && icaltime_compare_date_only(e_time, *time) > 0)
+                 || (icaltime_compare(e_time, *time) > 0))
+        /* remember that it is sorted list, so when e_time is bigger than
+           searched time, we know that we did not find a match */
+            return(0);
+    }
+    return(0); /* end of list reached */
+}
+
 /* let's find the trigger and check that it is active.
  * return new alarm struct if alarm is active and NULL if it is not
  * FIXME: We assume all alarms have similar trigger, which 
@@ -2576,6 +2674,8 @@ static alarm_struct *process_alarm_trigger(icalcomponent *c
     struct icaldurationtype alarm_start_diff;
     struct icaldatetimeperiodtype rdate_period;
     gchar *tmp1, *tmp2;
+    GList *excluded_list = NULL;
+    icaltimezone *dtstart_zone;
     /* pvl_elem property_iterator;   */ /* for saving the iterator */
 
 #ifdef ORAGE_DEBUG
@@ -2596,11 +2696,11 @@ static alarm_struct *process_alarm_trigger(icalcomponent *c
     per = ic_get_period(c, TRUE);
     next_alarm_time = count_alarm_time(per, cur_time, trg.duration, rel);
     alarm_start_diff = icaltime_subtract(next_alarm_time, per.stime);
-/*
-orage_message(120, P_N "current %s", icaltime_as_ical_string(cur_time));
-orage_message(120, P_N "Start %s", icaltime_as_ical_string(per.stime));
-orage_message(120, P_N "End %s", icaltime_as_ical_string(per.etime));
-orage_message(120, P_N "Alarm %s", icaltime_as_ical_string(next_alarm_time));
+    /*
+orage_message(120, P_N "current %s %s", icaltime_as_ical_string(cur_time), icaltime_get_tzid(cur_time));
+orage_message(120, P_N "Start %s %s", icaltime_as_ical_string(per.stime), icaltime_get_tzid(per.stime));
+orage_message(120, P_N "End %s %s", icaltime_as_ical_string(per.etime), icaltime_get_tzid(per.etime));
+orage_message(120, P_N "Alarm %s %s", icaltime_as_ical_string(next_alarm_time), icaltime_get_tzid(next_alarm_time));
 */
     /* we only have ctime for TODOs and only if todo has been completed.
      * So if we have ctime, we need to compare against it instead of 
@@ -2622,7 +2722,12 @@ orage_message(120, P_N "Alarm %s", icaltime_as_ical_string(next_alarm_time));
 
     if (!trg_active 
     && (p = icalcomponent_get_first_property(c, ICAL_RRULE_PROPERTY)) != 0) { 
+icalproperty *exdate;
+struct icaltimetype exdatetime;
         /* check recurring EVENTs */
+        dtstart_zone = build_excluded_list_dtstart(c);
+        build_excluded_list(&excluded_list, c, dtstart_zone);
+        excluded_list = g_list_sort(excluded_list, exclude_order);
         rrule = icalproperty_get_rrule(p);
         set_todo_times(c, &per); /* may change per.stime to be per.ctime */
         next_alarm_time = count_alarm_time(per, cur_time, trg.duration, rel);
@@ -2640,8 +2745,8 @@ orage_message(120, P_N "rec Alarm %s", icaltime_as_ical_string(next_alarm_time))
                   && icaltime_compare(next_start_time, per.ctime) <= 0)
                  || (per.ikind != ICAL_VTODO_COMPONENT 
                      && icaltime_compare(next_alarm_time, cur_time) <= 0)
-                 || icalproperty_recurrence_is_excluded(c
-                         , &per.stime, &next_start_time));
+                 || time_is_excluded(excluded_list, &next_start_time)
+                 );
             next_start_time = icalrecur_iterator_next(ri),
             next_alarm_time = icaltime_add(next_start_time, alarm_start_diff)) {
             /* we loop = search next active alarm time as long as 
@@ -2650,16 +2755,22 @@ orage_message(120, P_N "rec Alarm %s", icaltime_as_ical_string(next_alarm_time))
              * or if not TODO (= EVENT) and next_alarm_time before current time
              */
             (*cnt_repeat)++;
-/*
-orage_message(120, P_N "rec loop Alarm start:%s alarm:%s", icaltime_as_ical_string(next_start_time), icaltime_as_ical_string(next_alarm_time));
+            /*
+orage_message(120, P_N "Alarm rec loop next_start:%s next_alarm:%s per.stime:%s", icaltime_as_ical_string(next_start_time), icaltime_as_ical_string(next_alarm_time), icaltime_as_ical_string(per.stime));
 */
         }
         icalrecur_iterator_free(ri);
         if (icaltime_compare(cur_time, next_alarm_time) <= 0) {
             trg_active = TRUE;
         }
-/*
-orage_message(120, P_N "rec loop end Alarm start:%s alarm:%s", icaltime_as_ical_string(next_start_time), icaltime_as_ical_string(next_alarm_time));
+        free_excluded_list(excluded_list);
+        /*
+orage_message(120, P_N "Alarm rec loop END next_start:%s next_alarm:%s per.stime:%s excluded:%d", icaltime_as_ical_string(next_start_time), icaltime_as_ical_string(next_alarm_time), icaltime_as_ical_string(per.stime), icalproperty_recurrence_is_excluded(c, &per.stime, &next_start_time));
+exdate = icalcomponent_get_first_property(c,ICAL_EXDATE_PROPERTY);
+if (exdate) {
+    exdatetime = icalproperty_get_exdate(exdate);
+    orage_message(120, P_N "Alarm rec loop END exdate:%s compare: %d", icaltime_as_ical_string(exdatetime), icaltime_compare(next_start_time, exdatetime));
+}
 */
     }
 
