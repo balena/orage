@@ -2890,8 +2890,10 @@ static void process_alarm_data(icalcomponent *ca, alarm_struct *new_alarm)
         new_alarm->display_notify = appt->display_alarm_notify;
         new_alarm->notify_timeout = appt->display_notify_timeout;
         /* FIXME: use real alarm data */
+        /* 
         if (ORAGE_STR_EXISTS(appt->note))
             new_alarm->description = orage_process_text_commands(appt->note);
+            */
     }
     else if (appt->sound_alarm) {
         new_alarm->audio = appt->sound_alarm;
@@ -2905,14 +2907,8 @@ static void process_alarm_data(icalcomponent *ca, alarm_struct *new_alarm)
     else if(appt->procedure_alarm) {
         new_alarm->procedure = appt->procedure_alarm;
         if (ORAGE_STR_EXISTS(appt->procedure_cmd)) {
-            new_alarm->cmd = g_strconcat(appt->procedure_cmd
+            new_alarm->cmd = g_strconcat(appt->procedure_cmd, " "
                     , appt->procedure_params, NULL);
-            /*
-            if (ORAGE_STR_EXISTS(appt->procedure_params)) {
-                new_alarm->cmd = 
-                        g_string_append(new_alarm->cmd, appt->procedure_params);
-            }
-            */
         }
     }
 
@@ -3037,6 +3033,8 @@ static void xfical_alarm_build_list_internal_real(gboolean first_list_today
                     new_alarm->uid = g_strconcat(file_type, suid, NULL);
                     new_alarm->title = orage_process_text_commands(
                             (char *)icalcomponent_get_summary(c));
+                    new_alarm->description = orage_process_text_commands(
+                            (char *)icalcomponent_get_description(c));
                 }
             }
             if (trg_processed) {
@@ -3051,9 +3049,6 @@ static void xfical_alarm_build_list_internal_real(gboolean first_list_today
             }
         }  /* ALARM */
         if (trg_active) {
-            if (!new_alarm->description)
-                new_alarm->description = orage_process_text_commands(
-                        (char *)icalcomponent_get_description(c));
             alarm_add(new_alarm);
 /*
 	    orage_message(60, "new alarm: alarm:%s action:%s title:%s\n"

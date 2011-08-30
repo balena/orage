@@ -753,7 +753,7 @@ static gboolean orage_validate_datetime(appt_win *apptw, xfical_appt *appt)
 
 static void fill_appt_from_apptw_alarm(xfical_appt *appt, appt_win *apptw)
 {
-    gint i, j, k;
+    gint i, j, k, l;
     gchar *tmp;
 
     /* reminder time */
@@ -858,16 +858,23 @@ static void fill_appt_from_apptw_alarm(xfical_appt *appt, appt_win *apptw)
         appt->procedure_params = NULL;
     }
     tmp = (char *)gtk_entry_get_text(GTK_ENTRY(apptw->Proc_entry));
-    j = strlen(tmp);
-    for (i = 0; i < j && g_ascii_isspace(tmp[i]); i++)
-        ; /* skip blanks */
-    for (k = i; k < j && !g_ascii_isspace(tmp[k]); k++)
+    l = strlen(tmp);
+    for (i = 0; i < l && g_ascii_isspace(tmp[i]); i++)
+        ; /* skip blanks from cmd */
+    for (j = i; j < l && !g_ascii_isspace(tmp[j]); j++)
         ; /* find first blank after the cmd */
-        /* now i points to start of cmd and k points to end of cmd */
-    if (k-i)
-        appt->procedure_cmd = g_strndup(tmp+i, k-i);
-    if (j-k)
-        appt->procedure_params = g_strndup(tmp+k, j-k);
+        /* now i points to start of cmd and j points to end of cmd */
+    for (k = j; k < l && g_ascii_isspace(tmp[k]); k++)
+        ; /* skip blanks from parameters */
+        /* now k points to start of params and l points to end of params */
+    if (j-i)
+        appt->procedure_cmd = g_strndup(tmp+i, j-i);
+    if (l-k)
+        appt->procedure_params = g_strndup(tmp+k, l-k);
+    /*
+    g_print("parameter reading: tmp=(%s) cmd=(%s) params=(%s) i=%d j=%d k=%d l=%d\n",
+            tmp, appt->procedure_cmd, appt->procedure_params, i, j, k, l);
+    */
 }
 
 /*

@@ -136,7 +136,7 @@ void alarm_list_free(void)
          alarm_l != NULL; 
          alarm_l = g_list_first(g_par.alarm_list)) {
         l_alarm = alarm_l->data;
-        if (l_alarm->temporary && (strcmp(time_now, l_alarm->alarm_time) < 0)) { 
+        if (l_alarm->temporary && (strcmp(time_now, l_alarm->alarm_time) < 0)) {
             /* We keep temporary alarms, which have not yet fired.
                Remove the element from the list, but do not loose it. */
             g_par.alarm_list = g_list_remove_link(g_par.alarm_list, alarm_l);
@@ -446,8 +446,9 @@ static gboolean sound_alarm(gpointer data)
         status = orage_exec(l_alarm->sound_cmd
                 , &l_alarm->active_alarm->sound_active, &error);
         if (!status) {
-            g_warning("reminder: play failed (%s)", l_alarm->sound);
+            g_warning("reminder: play failed (%s) %s", l_alarm->sound, error->message);
             l_alarm->repeat_cnt = 0; /* one warning is enough */
+            status = TRUE; /* we need to come back once to do cleanout */
         }
         else if (l_alarm->repeat_cnt > 0)
             l_alarm->repeat_cnt--;

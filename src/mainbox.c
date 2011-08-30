@@ -399,12 +399,12 @@ static void add_info_row(xfical_appt *appt, GtkBox *parentBox, gboolean todo)
                     appt->starttimecur));
         today = orage_tm_time_to_icaltime(orage_localtime());
         if (!strncmp(today, appt->starttimecur, 8)) /* today */
-            tmp = g_strdup_printf(" %s* %s", s_timeonly, appt->title);
+            tmp = g_strdup_printf(" %s* %s", s_timeonly, tmp_title);
         else {
             if (g_par.show_event_days > 1)
-                tmp = g_strdup_printf(" %s  %s", s_time, appt->title);
+                tmp = g_strdup_printf(" %s  %s", s_time, tmp_title);
             else
-                tmp = g_strdup_printf(" %s  %s", s_timeonly, appt->title);
+                tmp = g_strdup_printf(" %s  %s", s_timeonly, tmp_title);
         }
         g_free(s_timeonly);
     }
