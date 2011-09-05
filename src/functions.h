@@ -85,6 +85,7 @@ GtkWidget *orage_image_menu_item_new_from_stock(const gchar *stock_id
 GtkWidget *orage_separator_menu_item_new(GtkWidget *menu);
 GtkWidget *orage_menu_item_new_with_mnemonic(const gchar *label
         , GtkWidget *menu);
+char *orage_replace_text(char *text, char *old, char *new);
 char *orage_process_text_commands(char *text);
 GtkWidget *orage_period_hbox_new(gboolean head_space, gboolean tail_space
         , GtkWidget *spin_dd, GtkWidget *dd_label

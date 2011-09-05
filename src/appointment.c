@@ -3053,7 +3053,7 @@ static void build_alarm_page(appt_win *apptw)
 
     apptw->Proc_entry = gtk_entry_new();
     gtk_tooltips_set_tip(apptw->Tooltips, apptw->Proc_entry
-            , _("You must enter all escape etc characters yourself.\n This string is just given to shell to process"), NULL);
+            , _("You must enter all escape etc characters yourself.\nThis string is just given to shell to process.\nThe following special commands are replaced at run time:\n\t<&T>  appointment title\n\t<&D>  appointment description\n\t<&AT> alarm time\n\t<&ST> appointment start time\n\t<&ET> appointment end time"), NULL);
     gtk_box_pack_start(GTK_BOX(apptw->Proc_hbox), apptw->Proc_entry
             , TRUE, TRUE, 0);
 

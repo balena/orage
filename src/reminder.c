@@ -826,7 +826,7 @@ static void create_procedure_reminder(alarm_struct *l_alarm)
     gboolean status, active; / * active not used * /
     GError *error = NULL;
     */
-    gchar *cmd;
+    gchar *cmd, *tmp, *atime, *sep;
     gint status;
 
 #ifdef ORAGE_DEBUG
@@ -836,9 +836,47 @@ static void create_procedure_reminder(alarm_struct *l_alarm)
     status = orage_exec(l_alarm->cmd, &active, &error);
     */
     cmd = g_strconcat(l_alarm->cmd, " &", NULL);
+
+    cmd = orage_replace_text(cmd, "<&T>", l_alarm->title);
+
+    cmd = orage_replace_text(cmd, "<&D>", l_alarm->description);
+
+    if (l_alarm->alarm_time)
+        atime = g_strdup(orage_icaltime_to_i18_time(l_alarm->alarm_time));
+    else
+        atime = g_strdup(orage_tm_time_to_i18_time(orage_localtime()));
+    cmd = orage_replace_text(cmd, "<&AT>", atime);
+    g_free(atime);
+
+    /* l_alarm->action_time format is <start-time - end-time>
+    and times are in user format already. Problem is if that format contain
+    string " - " already, but let's hope not.  */
+    sep = strstr(l_alarm->action_time, " - ");
+    if (sep) { /* we should always have this */
+        if (strstr(sep+1, " - ")) {
+            /* this is problem as now we have more than one separator.
+               We could try to find the middle one using strlen, but as
+               there probably is not this kind of issues, it is not worth
+               the trouble */
+            orage_message(10, P_N "<&ST>/<&ET> string conversion failed (%s)"
+                    , l_alarm->action_time);
+        }
+        else {
+            sep[0] = '\0'; /* temporarily to end start-time string */
+            cmd = orage_replace_text(cmd, "<&ST>", l_alarm->action_time);
+            sep[0] = ' '; /* back to real value */
+
+            sep += strlen(" - "); /* points now to the end-time */
+            cmd = orage_replace_text(cmd, "<&ET>", sep);
+        }
+    }
+    else 
+        orage_message(10, P_N "<&ST>/<&ET> string conversion failed 2 (%s)"
+                , l_alarm->action_time);
+
     status = system(cmd);
     if (status)
-        g_warning(P_N "cmd failed(%s) status:%d", l_alarm->cmd, status);
+        g_warning(P_N "cmd failed(%s)->(%s) status:%d", l_alarm->cmd, cmd, status);
     g_free(cmd);
 }
 

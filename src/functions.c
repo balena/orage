@@ -325,6 +325,53 @@ GtkWidget *orage_menu_item_new_with_mnemonic(const gchar *label
     return menu_item;
 }
 
+/* replace old with new string in text.
+   if changes are done, returns newly allocated char *, which needs to be freed
+   if there are no changes, it returns the original string without freeing it.
+   You can always use this like 
+   str=orage_replace_text(str, old, new);
+   but it may point to new place.
+*/
+char *orage_replace_text(char *text, char *old, char *new)
+{
+#undef P_N
+#define P_N "orage_replace_text: "
+    /* these point to the original string and travel it until no more commands 
+     * are found:
+     * cur points to the current head (after each old if any found)
+     * cmd points to the start of next old in text */
+    char *cur, *cmd;
+    char *beq=NULL; /* beq is the total new string. */
+    char *tmp;      /* temporary pointer to handle freeing */
+
+    for (cur = text; cur && (cmd = strstr(cur, old)); cur = cmd + strlen(old)) {
+        cmd[0] = '\0'; /* temporarily */
+        if (beq) { /* we already have done changes */
+            tmp = beq;
+            beq = g_strconcat(tmp, cur, new, NULL);
+            g_free(tmp);
+        }
+        else /* first round */
+            beq = g_strconcat(cur, new, NULL);
+        cmd[0] = old[0]; /* back to real value */
+    }
+
+    if (beq) {
+        /* we found and processed at least one command, 
+         * add the remaining fragment and return it */
+        tmp = beq;
+        beq = g_strconcat(tmp, cur, NULL);
+        g_free(tmp);
+        g_free(text); /* free original string as we changed it */
+    }
+    else {
+        /* we did not find any commands,
+         * so just return the original string */
+        beq = text;
+    }
+    return(beq);
+}
+
 /* this will change <&Xnnn> type commands to numbers or text as defined.
  * Currently the only command is 
  * <&Ynnnn> which calculates years between current year and nnnn */
