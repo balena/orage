@@ -1934,42 +1934,10 @@ static void ical_appt_get_rrule_internal(icalcomponent *c, xfical_appt *appt
     appt->interval = rrule.interval;
 }
 
-static gboolean get_appt_from_icalcomponent(icalcomponent *c, xfical_appt *appt)
+static void appt_init(xfical_appt *appt)
 {
-#undef P_N
-#define P_N "get_appt_from_icalcomponent: "
-    const char *text;
-    icalproperty *p = NULL;
-    struct icaltimetype itime, stime, etime, sltime, eltime, wtime;
-    icaltimezone *l_icaltimezone = NULL;
-    icalproperty_transp xf_transp;
-    struct icaldurationtype duration, duration_tmp;
     int i;
-    gboolean stime_found = FALSE, etime_found = FALSE;
-    xfical_exception *excp;
-    struct icaldatetimeperiodtype rdate;
 
-#ifdef ORAGE_DEBUG
-    orage_message(-200, P_N);
-#endif
-        /********** Component type ********/
-    /* we want isolate all libical calls and features into this file,
-     * so need to remap component type to our own defines */
-    if (icalcomponent_isa(c) == ICAL_VEVENT_COMPONENT)
-        appt->type = XFICAL_TYPE_EVENT;
-    else if (icalcomponent_isa(c) == ICAL_VTODO_COMPONENT)
-        appt->type = XFICAL_TYPE_TODO;
-    else if (icalcomponent_isa(c) == ICAL_VJOURNAL_COMPONENT)
-        appt->type = XFICAL_TYPE_JOURNAL;
-    else {
-        orage_message(160, P_N "Unknown component");
-        return(FALSE);
-    }
-        /*********** Defaults ***********/
-    stime = icaltime_null_time();
-    sltime = icaltime_null_time();
-    eltime = icaltime_null_time();
-    duration = icaldurationtype_null_duration();
     appt->uid = NULL;
     appt->title = NULL;
     appt->location = NULL;
@@ -2020,6 +1988,44 @@ static gboolean get_appt_from_icalcomponent(icalcomponent *c, xfical_appt *appt)
     appt->interval = 1;
     appt->recur_todo_base_start = TRUE;
     appt->recur_exceptions = NULL;
+}
+
+static gboolean get_appt_from_icalcomponent(icalcomponent *c, xfical_appt *appt)
+{
+#undef P_N
+#define P_N "get_appt_from_icalcomponent: "
+    const char *text;
+    icalproperty *p = NULL;
+    struct icaltimetype itime, stime, etime, sltime, eltime, wtime;
+    icaltimezone *l_icaltimezone = NULL;
+    icalproperty_transp xf_transp;
+    struct icaldurationtype duration, duration_tmp;
+    gboolean stime_found = FALSE, etime_found = FALSE;
+    xfical_exception *excp;
+    struct icaldatetimeperiodtype rdate;
+
+#ifdef ORAGE_DEBUG
+    orage_message(-200, P_N);
+#endif
+        /********** Component type ********/
+    /* we want isolate all libical calls and features into this file,
+     * so need to remap component type to our own defines */
+    if (icalcomponent_isa(c) == ICAL_VEVENT_COMPONENT)
+        appt->type = XFICAL_TYPE_EVENT;
+    else if (icalcomponent_isa(c) == ICAL_VTODO_COMPONENT)
+        appt->type = XFICAL_TYPE_TODO;
+    else if (icalcomponent_isa(c) == ICAL_VJOURNAL_COMPONENT)
+        appt->type = XFICAL_TYPE_JOURNAL;
+    else {
+        orage_message(160, P_N "Unknown component");
+        return(FALSE);
+    }
+        /*********** Defaults ***********/
+    stime = icaltime_null_time();
+    sltime = icaltime_null_time();
+    eltime = icaltime_null_time();
+    duration = icaldurationtype_null_duration();
+    appt_init(appt);
 
 /*********** Properties ***********/
     for (p = icalcomponent_get_first_property(c, ICAL_ANY_PROPERTY);
@@ -2522,8 +2528,7 @@ static void set_todo_times(icalcomponent *c, xfical_period *per)
 }
 
 /* this works in UTC times */
-static struct icaltimetype count_alarm_time(xfical_period per
-        , struct icaltimetype cur_time
+static struct icaltimetype count_first_alarm_time(xfical_period per
         , struct icaldurationtype dur
         , icalparameter_related rel) 
 {
@@ -2555,6 +2560,27 @@ static struct icaltimetype count_alarm_time(xfical_period per
         alarm_time = icaltime_add(per.etime, dur);
     else /* default is ICAL_RELATED_START */
         alarm_time = icaltime_add(per.stime, dur);
+    return(alarm_time);
+}
+
+/* this works in UTC times */
+static struct icaltimetype count_next_alarm_time(struct icaltimetype start_time
+        , struct icaldurationtype dur)
+{
+    struct icaltimetype alarm_time;
+
+    if (icaltime_is_date(start_time)) { 
+/* HACK: convert to UTC time so that we can use time arithmetic
+ * when counting alarm time. */
+        start_time.is_date       = 0;
+        start_time.is_utc        = 1;
+        start_time.is_daylight   = 0;
+        start_time.zone          = utc_icaltimezone;
+        start_time.hour          = 0;
+        start_time.minute        = 0;
+        start_time.second        = 0;
+    }
+    alarm_time = icaltime_add(start_time, dur);
     return(alarm_time);
 }
 
@@ -2694,7 +2720,7 @@ static alarm_struct *process_alarm_trigger(icalcomponent *c
     else
         rel = ICAL_RELATED_START;
     per = ic_get_period(c, TRUE);
-    next_alarm_time = count_alarm_time(per, cur_time, trg.duration, rel);
+    next_alarm_time = count_first_alarm_time(per, trg.duration, rel);
     alarm_start_diff = icaltime_subtract(next_alarm_time, per.stime);
     /*
 orage_message(120, P_N "current %s %s", icaltime_as_ical_string(cur_time), icaltime_get_tzid(cur_time));
@@ -2730,16 +2756,18 @@ struct icaltimetype exdatetime;
         excluded_list = g_list_sort(excluded_list, exclude_order);
         rrule = icalproperty_get_rrule(p);
         set_todo_times(c, &per); /* may change per.stime to be per.ctime */
-        next_alarm_time = count_alarm_time(per, cur_time, trg.duration, rel);
-/*
-orage_message(120, P_N "rec Start %s", icaltime_as_ical_string(per.stime));
-orage_message(120, P_N "rec End %s", icaltime_as_ical_string(per.etime));
-orage_message(120, P_N "rec Alarm %s", icaltime_as_ical_string(next_alarm_time));
+        next_alarm_time = count_first_alarm_time(per, trg.duration, rel);
+        /*
+orage_message(120, P_N "rec current %s %s", icaltime_as_ical_string(cur_time), icaltime_get_tzid(cur_time));
+orage_message(120, P_N "rec Start %s %s", icaltime_as_ical_string(per.stime), icaltime_get_tzid(per.stime));
+orage_message(120, P_N "rec End %s %s", icaltime_as_ical_string(per.etime), icaltime_get_tzid(per.etime));
+orage_message(120, P_N "rec Alarm %s %s", icaltime_as_ical_string(next_alarm_time), icaltime_get_tzid(next_alarm_time));
 */
         alarm_start_diff = icaltime_subtract(next_alarm_time, per.stime);
         ri = icalrecur_iterator_new(rrule, per.stime);
         for (next_start_time = icalrecur_iterator_next(ri),
-             next_alarm_time = icaltime_add(next_start_time, alarm_start_diff);
+             next_alarm_time = count_next_alarm_time(next_start_time
+                    , alarm_start_diff);
              !icaltime_is_null_time(next_start_time)
              && ((per.ikind == ICAL_VTODO_COMPONENT
                   && icaltime_compare(next_start_time, per.ctime) <= 0)
@@ -2748,12 +2776,17 @@ orage_message(120, P_N "rec Alarm %s", icaltime_as_ical_string(next_alarm_time))
                  || time_is_excluded(excluded_list, &next_start_time)
                  );
             next_start_time = icalrecur_iterator_next(ri),
-            next_alarm_time = icaltime_add(next_start_time, alarm_start_diff)) {
+            next_alarm_time = count_next_alarm_time(next_start_time
+                    , alarm_start_diff)) {
             /* we loop = search next active alarm time as long as 
              * next_start_time is not null = real start time still found
              * and if TODO and next_start_time before complete time
              * or if not TODO (= EVENT) and next_alarm_time before current time
              */
+            /*
+orage_message(120, P_N "*****In loop Alarm %s %s", icaltime_as_ical_string(next_alarm_time), icaltime_get_tzid(next_alarm_time));
+orage_message(120, P_N "*****In loop Start %s %s", icaltime_as_ical_string(next_start_time), icaltime_get_tzid(next_start_time));
+*/
             (*cnt_repeat)++;
             /*
 orage_message(120, P_N "Alarm rec loop next_start:%s next_alarm:%s per.stime:%s", icaltime_as_ical_string(next_start_time), icaltime_as_ical_string(next_alarm_time), icaltime_as_ical_string(per.stime));
@@ -2776,7 +2809,9 @@ if (exdate) {
 
     if (!trg_active)
         next_alarm_time = icaltime_null_time();
-
+        /*
+orage_message(120, P_N "*****After loop Alarm %s %s", icaltime_as_ical_string(next_alarm_time), icaltime_get_tzid(next_alarm_time));
+*/
     /* this is used to convert rdate to local time. We need to read it here
      * so that it does not break the loop handling since it resets the
      * iterator */
@@ -2839,7 +2874,21 @@ if (exdate) {
 
     if (trg_active) {
         new_alarm = g_new0(alarm_struct, 1);
-        next_alarm_time = icaltime_convert_to_zone(next_alarm_time, local_icaltimezone);
+        /* If we had a date, we now have the time already in local time and
+           no conversion is needed. This is due to the hack in date time
+           calculation in count_first_alarm_time. We just need to set it to
+           local timezone.
+           If it is normal time we need to convert it to local.
+         */
+        if (icaltime_is_date(per.stime)) {
+            if (local_icaltimezone != utc_icaltimezone) {
+                next_alarm_time.is_utc        = 0;
+                next_alarm_time.is_daylight   = 0;
+                next_alarm_time.zone          = local_icaltimezone;
+            }
+        }
+        else
+            next_alarm_time = icaltime_convert_to_zone(next_alarm_time, local_icaltimezone);
         new_alarm->alarm_time = g_strdup(icaltime_as_ical_string(next_alarm_time));
     /* alarm_start_diff goes from start to alarm, so we need to revert it
      * here since now we need to get the start time from alarm. */
@@ -2857,6 +2906,13 @@ if (exdate) {
         new_alarm->action_time = g_strconcat(tmp1, " - ", tmp2, NULL);
         g_free(tmp1);
         g_free(tmp2);
+        /*
+orage_message(120, P_N "new alarm %s", new_alarm->alarm_time);
+orage_message(120, P_N "new action %s", new_alarm->action_time);
+orage_message(120, P_N "Start %s %s", icaltime_as_ical_string(next_start_time), icaltime_get_tzid(next_start_time));
+orage_message(120, P_N "End %s %s", icaltime_as_ical_string(next_end_time), icaltime_get_tzid(next_end_time));
+orage_message(120, P_N "Alarm %s %s", icaltime_as_ical_string(next_alarm_time), icaltime_get_tzid(next_alarm_time));
+*/
         return(new_alarm);
     }
     else {
@@ -3050,10 +3106,10 @@ static void xfical_alarm_build_list_internal_real(gboolean first_list_today
         }  /* ALARM */
         if (trg_active) {
             alarm_add(new_alarm);
-/*
-	    orage_message(60, "new alarm: alarm:%s action:%s title:%s\n"
-		, new_alarm->alarm_time, new_alarm->action_time, new_alarm->title);
-*/
+            /*
+            orage_message(60, "new alarm: alarm:%s action:%s title:%s\n"
+            , new_alarm->alarm_time, new_alarm->action_time, new_alarm->title);
+            */
             cnt_alarm_add++;
         }
     }  /* COMPONENT */
@@ -3357,6 +3413,7 @@ static void mark_calendar(icalcomponent *c, icaltime_span *span , void *data)
         guint month;
         xfical_appt appt;
     } *cal_data;
+    time_t temp;
 
 #ifdef ORAGE_DEBUG
         orage_message(-100, P_N);
@@ -3367,6 +3424,12 @@ static void mark_calendar(icalcomponent *c, icaltime_span *span , void *data)
 
     gmtime_r(&span->start, &start_tm);
     gmtime_r(&span->end, &end_tm);
+    /* check bug 7886 explanation in function add_appt_to_list */
+    if (cal_data->appt.endtime[8] != 'T' && !cal_data->appt.use_duration) {
+        temp = span->end;
+        temp -= 24*60*60;
+        gmtime_r(&temp, &end_tm);
+    }
     sdate = icaltime_from_string(orage_tm_time_to_icaltime(&start_tm));
     sdate = convert_to_zone(sdate, cal_data->appt.start_tz_loc);
     sdate = icaltime_convert_to_zone(sdate, local_icaltimezone);
@@ -3378,7 +3441,6 @@ static void mark_calendar(icalcomponent *c, icaltime_span *span , void *data)
              , sdate.day , sdate.month , sdate.year
              , edate.day , edate.month , edate.year);
              */
-
     xfical_mark_calendar_days(cal_data->cal, cal_data->year, cal_data->month
             , sdate.year, sdate.month, sdate.day
             , edate.year, edate.month, edate.day);
@@ -3584,18 +3646,14 @@ static void add_appt_to_list(icalcomponent *c, icaltime_span *span , void *data)
     {
         GList **list;
         gchar *file_type;
-#ifdef HAVE_LIBICAL
         /* Need to check that returned value is withing limits.
-           Check more from BUG 5764. */
+           Check more from BUG 5764 and 7886. */
         struct icaltimetype asdate, aedate;
-#endif
     } app_data;
     app_data *data1;
-#ifdef HAVE_LIBICAL
         /* Need to check that returned value is withing limits.
-           Check more from BUG 5764. */
-    icaltime_span limit_span;
-#endif
+           Check more from BUG 5764 and 7886. */
+    icaltime_span limit_span, test_span;
 
 #ifdef ORAGE_DEBUG
     orage_message(-100, P_N);
@@ -3608,6 +3666,19 @@ static void add_appt_to_list(icalcomponent *c, icaltime_span *span , void *data)
     xfical_appt_get_fill_internal(appt, data1->file_type);
     gmtime_r(&span->start, &start_tm);
     gmtime_r(&span->end, &end_tm);
+    /* BUG 7886. we are called with wrong span->end when we have full day
+       event. This is libical bug and needs to be fixed properly later, but
+       now I just work around it.
+    FIXME: code whole loop correctly = function icalcomponent_foreach_recurrence
+    */
+    test_span = *span;
+    if (appt->endtime[8] != 'T' && !appt->use_duration) {
+        test_span.end -= 24*60*60;
+        gmtime_r(&test_span.end, &end_tm);
+        /* now end is correct, but we still have been called wrongly on
+           the last day */
+    }
+    /* end of bug workaround */
     start = icaltime_from_string(orage_tm_time_to_icaltime(&start_tm));
     start = convert_to_zone(start, appt->start_tz_loc);
     start = icaltime_convert_to_zone(start, local_icaltimezone);
@@ -3618,24 +3689,20 @@ static void add_appt_to_list(icalcomponent *c, icaltime_span *span , void *data)
 
     strcpy(appt->starttimecur, icaltime_as_ical_string(start));
     strcpy(appt->endtimecur, icaltime_as_ical_string(end));
-#ifdef HAVE_LIBICAL
     /*
+    orage_message(100, P_N "starttimecur:%s endtimecur:%s", appt->starttimecur, appt->endtimecur);
     orage_message(10, P_N "Title (%s)\n\tfound Start:%s End:%s\n\tlimit Start:%s End:%s"
             , appt->title, appt->starttimecur, appt->endtimecur, icaltime_as_ical_string(data1->asdate), icaltime_as_ical_string(data1->aedate));
             */
         /* Need to check that returned value is withing limits.
-           Check more from BUG 5764. */
+           Check more from BUG 5764 and 7886. */
     limit_span = icaltime_span_new(data1->asdate, data1->aedate, TRUE);
-    if (!icaltime_span_overlaps(span, &limit_span)) {
+    if (!icaltime_span_overlaps(&test_span, &limit_span)) {
         /* we do not need this. Free the memory */
         xfical_appt_free(appt);
-        /*
-    orage_message(10, P_N "\n\tDROPped");
-    */
     } 
     else /* add to list like with internal libical */
-#endif
-    *data1->list = g_list_prepend(*data1->list, appt);
+        *data1->list = g_list_prepend(*data1->list, appt);
 }
 
 /* Fetch each appointment within the specified time period and add those
@@ -3653,11 +3720,9 @@ static void xfical_get_each_app_within_time_internal(char *a_day, gint days
     {
         GList **list;
         gchar *file_type;
-#ifdef HAVE_LIBICAL
         /* Need to check that returned value is withing limits.
-           Check more from BUG 5764. */
+           Check more from BUG 5764 and 7886. */
         struct icaltimetype asdate, aedate;
-#endif
     } app_data;
     app_data data1;
 
@@ -3680,12 +3745,10 @@ static void xfical_get_each_app_within_time_internal(char *a_day, gint days
 
     data1.list = data;
     data1.file_type = file_type;
-#ifdef HAVE_LIBICAL
         /* Need to check that returned value is withing limits.
-           Check more from BUG 5764. */
+           Check more from BUG 5764 and 7886. */
     data1.asdate = asdate;
     data1.aedate = aedate;
-#endif
     for (c = icalcomponent_get_first_component(base, ikind);
          c != 0;
          c = icalcomponent_get_next_component(base, ikind)) {

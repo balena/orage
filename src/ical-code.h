@@ -142,6 +142,7 @@ xfical_appt *xfical_appt_get(char *ical_id);
 void xfical_appt_free(xfical_appt *appt);
 gboolean xfical_appt_mod(char *ical_id, xfical_appt *appt);
 gboolean xfical_appt_del(char *ical_id);
+
 xfical_appt *xfical_appt_get_next_on_day(char *a_day, gboolean first, gint days
         , xfical_type type,  gchar *file_type);
 xfical_appt *xfical_appt_get_next_with_string(char *str, gboolean first
