@@ -1,3 +1,1772 @@
+commit 431d0b7c73afe956208488d0de8a280601950011
+Author: Piarres Beobide <pi@beobide.net>
+Date:   Mon Sep 12 01:04:22 2011 +0200
+
+    l10n: Updated Basque (eu) translation to 99%
+    
+    New status: 795 messages complete with 0 fuzzies and 4 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 8b61b48c8262226924c8bf1a972330494e29b357
+Author: Pjotr Anon <pliniusminor@gmail.com>
+Date:   Sun Sep 11 20:08:04 2011 +0200
+
+    l10n: Updated Dutch (Flemish) (nl) translation to 100%
+    
+    New status: 799 messages complete with 0 fuzzies and 0 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 1211794bdf9180bf6fad9fd49ee6bc3f2b8af686
+Author: Juha Kautto <juha@xfce.org>
+Date:   Sun Sep 11 16:51:52 2011 +0300
+
+    4.8.1.14 Update translation strings
+    
+    New strings from source. Preparing for a new release soonish.
+
+commit 81f37edb199f8ee6ec6615e034a3596546804b6a
+Author: Juha Kautto <juha@xfce.org>
+Date:   Sun Sep 11 15:45:33 2011 +0300
+
+    4.8.1.13 Fixed Bug 7886 - .ics all-day-events span over an extra day
+    
+    Full day events were shown one day too long. It was correct in the file
+    and in the appointment window, but all other places had it wrong.
+    Also fixed wrong alarm time for full day events. There still is a bug
+    if alarm is dependent on full day end time.
+
+commit 61307174f5a590fc76b0f79616e109129df3a3bb
+Author: Pjotr Anon <pliniusminor@gmail.com>
+Date:   Thu Sep 8 17:32:28 2011 +0200
+
+    l10n: Updated Dutch (Flemish) (nl) translation to 100%
+    
+    New status: 797 messages complete with 0 fuzzies and 0 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 08b49d1312504bab04b17ed0a9dd1a32c459d5df
+Author: Juha Kautto <juha@xfce.org>
+Date:   Mon Sep 5 15:42:05 2011 +0300
+
+    forgot to increase version.
+
+commit 25595b12290fd5c20ac177f56a4c61a918416cec
+Author: Juha Kautto <juha@xfce.org>
+Date:   Mon Sep 5 15:24:31 2011 +0300
+
+    4.8.1.12 Implemented enhancement 7914 - Alarm Procedure Replacement Codes
+    
+    Created the following codes in procedure alarms, which are replaced by
+    corresponding texts in run time:
+    <&T>  appointment title
+    <&D>  appointment description
+    <&AT> alarm time
+    <&ST> appointment start time
+    <&ET> appointment end time
+
+commit 39df98ebb5ff0fe891b5b7d5e6385e1cc088f85d
+Author: Juha Kautto <juha@xfce.org>
+Date:   Tue Aug 30 15:19:59 2011 +0300
+
+    4.8.1.11 Fixed Bug 7920 - Alarm Procedure unreliable
+    
+    Fixed bug 7920, which basically was error in handling the space in between
+    procedure type alarm cmd and parameters. When using new os libical, it
+    removes spaces and Orage now adds the needed one space back. When using local
+    libical, Orage added one space too much, which is also fixed now.
+
+commit 09df53e97f41c22a1652b2a4367b899432c4d5d0
+Author: Juha Kautto <juha@xfce.org>
+Date:   Mon Aug 29 14:29:26 2011 +0300
+
+    4.8.1.10 fixes to excluded time alarms
+    
+    Made excluded alarms on excluded days and times work correctly and give
+    proper warnings.
+
+commit 19d9f003b8e1c0e4da5d151a7863bdfdbbfca2c4
+Author: كريم أولاد الشلحة <herr.linux88@gmail.com>
+Date:   Mon Aug 1 18:38:55 2011 +0200
+
+    l10n: Updated Arabic (ar) translation to 100%
+    
+    New status: 797 messages complete with 0 fuzzies and 0 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 33fabe1c9f54bc4e181185eae0b6ed51421c064e
+Author: Juha Kautto <juha@xfce.org>
+Date:   Fri Jul 29 11:31:24 2011 +0300
+
+    4.8.1.9 Fixed Bug 7848 Alarm Procedure command run error by "Execute" button.
+    
+    Fixed bug 7848 by adding forgotten parameter part.
+    Also added failback to use stock icon (GTK_STOCK_ABOUT) if everything else
+    fails as Orage really needs tray icon in gnome environment, where the panel
+    plugin is not available.
+    Also removed non working bold setting from libical alarm message.
+    And changed main calendar event box to show also date when several days are
+    selected to be shown.
+
+commit 44c855931730fa582c857ee606613d2fa0f578fa
+Author: Juha Kautto <juha@xfce.org>
+Date:   Thu Jul 28 11:48:00 2011 +0300
+
+    4.8.1.8 Added hourly repeating option and did some code cleaning
+    
+    Added possibity to create events which repeat hourly. Note that those very
+    easily will become very heavy.
+    Also removed low priority events from event window and main calender event
+    box. You can still find those with search.
+
+commit eff744be6887b5758b4d515a3db901990d8f85cf
+Author: Juha Kautto <juha@xfce.org>
+Date:   Sun Jul 24 15:08:07 2011 +0300
+
+    4.8.1.7 Removed unnecessary critical message when searching text
+    
+    Orage gave unnecessary critical warning when appointment file was empty.
+    Added check to only give warning if file is big enough so there is reason
+    to believe it is not empty.
+
+commit 1fc45d628b2f432aff62900d0a0963e175986cdc
+Author: Juha Kautto <juha@xfce.org>
+Date:   Sun Jul 24 13:04:18 2011 +0300
+
+    4.8.1.6: Fixed bug  7836 - orage hangs using 100% cpu at start
+    
+    When event box was disabled by setting number of events to show to 0,
+    Orage was going into cpu loop in startup. Added missing check for 0.
+
+commit 179a8f3ac1e5607e0ba974fc5de9b9947e9080e7
+Author: Juha Kautto <juha@xfce.org>
+Date:   Sat Jul 16 14:22:10 2011 +0300
+
+    4.8.1.5 Implemented enh 7290 flexible icon
+    
+    It is now possible to define own status icon. Background can be changed
+    and all three text lines can be defined with font and color.
+
+commit f0c6e4fefff2a7d09f6cc41756ed0a8f863d40cf
+Author: Juha Kautto <juha@xfce.org>
+Date:   Sat Jul 16 13:57:02 2011 +0300
+
+    4.8.1.4 Implemented enhancement bug 7612 Export .ics programatically
+    
+    Added startup parameter -e which can be used to export either all or only
+    named appointments.
+
+commit d5a4100532b62f045e85e786f99850049afc44c8
+Author: Pjotr Anon <pliniusminor@gmail.com>
+Date:   Sun Jul 10 23:22:30 2011 +0200
+
+    l10n: Updated Dutch (Flemish) (nl) translation to 100%
+    
+    New status: 797 messages complete with 0 fuzzies and 0 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 5c1745f6f2dfc6578574a53bc27f467713656fcd
+Author: Juha Kautto <juha@xfce.org>
+Date:   Wed Jul 6 16:51:19 2011 +0300
+
+    4.8.1.3 Fixed bug 7427 alarms not always working right
+    
+    Two fixes:
+    1) alarms were working wrong when weekday specific repeating appointment was
+    used.
+    2) full day events caused wrong icon tooltip to be shown.
+
+commit 6c8258c3907d8d05fc0dcc9e14d5bf76f97560bb
+Author: Juha Kautto <juha@xfce.org>
+Date:   Fri Jul 1 16:19:34 2011 +0300
+
+    4.8.1.2 fixed Bug 7350: Problems with menu entries / desktop files
+    
+    Removed references to depricated "encoding" and "application" and
+    changed globaltime icon to be clock.
+
+commit 93d17d6fd19487796719d70fc04a843c81819d06
+Author: محمد الحرقان <malham1@gmail.com>
+Date:   Mon Jun 27 15:43:29 2011 +0200
+
+    l10n: Updated Arabic (ar) translation to 100%
+    
+    New status: 797 messages complete with 0 fuzzies and 0 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 6a3c0453344170d5831adb375ca3b066ee7a29ad
+Author: محمد الحرقان <malham1@gmail.com>
+Date:   Mon Jun 27 15:42:34 2011 +0200
+
+    l10n: Updated Arabic (ar) translation to 99%
+    
+    New status: 796 messages complete with 0 fuzzies and 1 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 2170ae83a46c1fc659acd5f362294dbc98d776b4
+Author: محمد الحرقان <malham1@gmail.com>
+Date:   Mon Jun 27 15:41:13 2011 +0200
+
+    l10n: Updated Arabic (ar) translation to 94%
+    
+    New status: 757 messages complete with 39 fuzzies and 1 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 95e2e0e0c69cdb4dd8ee202696fac0150404cfd5
+Author: محمد الحرقان <malham1@gmail.com>
+Date:   Mon Jun 27 14:54:00 2011 +0200
+
+    l10n: Updated Arabic (ar) translation to 94%
+    
+    New status: 756 messages complete with 1 fuzzy and 40 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 0200aee5c8968da16219a842fe94f5d255e7cdd5
+Author: محمد الحرقان <malham1@gmail.com>
+Date:   Mon Jun 27 14:26:36 2011 +0200
+
+    l10n: Updated Arabic (ar) translation to 93%
+    
+    New status: 744 messages complete with 13 fuzzies and 40 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit f3a5c1bdba7045974a7c2e80ecb084a94940e201
+Author: محمد الحرقان <malham1@gmail.com>
+Date:   Mon Jun 27 13:52:53 2011 +0200
+
+    l10n: Updated Arabic (ar) translation to 93%
+    
+    New status: 744 messages complete with 1 fuzzy and 52 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 78cbfb2e94da28f9569a21e1461fdf6a5ba7e7c5
+Author: محمد الحرقان <malham1@gmail.com>
+Date:   Mon Jun 27 13:51:15 2011 +0200
+
+    l10n: Updated Arabic (ar) translation to 91%
+    
+    New status: 731 messages complete with 14 fuzzies and 52 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 3f9eba7fecd66ed603388d776ee2c8cfc6ee42bb
+Author: محمد الحرقان <malham1@gmail.com>
+Date:   Mon Jun 27 13:17:05 2011 +0200
+
+    l10n: Updated Arabic (ar) translation to 91%
+    
+    New status: 730 messages complete with 5 fuzzies and 62 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 4e79cac574ba4b05c287a90d8386976466d1c950
+Author: محمد الحرقان <malham1@gmail.com>
+Date:   Sun Jun 26 23:10:55 2011 +0200
+
+    l10n: Updated Arabic (ar) translation to 91%
+    
+    New status: 730 messages complete with 2 fuzzies and 65 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 18cb7912cd3ef610a3034eaebc66263372386ff6
+Author: محمد الحرقان <malham1@gmail.com>
+Date:   Sun Jun 26 23:07:42 2011 +0200
+
+    l10n: Updated Arabic (ar) translation to 91%
+    
+    New status: 728 messages complete with 2 fuzzies and 67 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 5d3bd3230a6fb4a42617bcaa920bb0316e63cde8
+Author: محمد الحرقان <malham1@gmail.com>
+Date:   Sun Jun 26 16:10:11 2011 +0200
+
+    l10n: Updated Arabic (ar) translation to 89%
+    
+    New status: 712 messages complete with 3 fuzzies and 82 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit aa4a89b2200610841b8826b2270e317487f12440
+Author: محمد الحرقان <malham1@gmail.com>
+Date:   Sun Jun 26 16:06:52 2011 +0200
+
+    l10n: Updated Arabic (ar) translation to 88%
+    
+    New status: 708 messages complete with 3 fuzzies and 86 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit d636dc34bd3c24140c8dfe4852cea187a0f45544
+Author: محمد الحرقان <malham1@gmail.com>
+Date:   Sun Jun 26 15:50:47 2011 +0200
+
+    l10n: Updated Arabic (ar) translation to 88%
+    
+    New status: 704 messages complete with 3 fuzzies and 90 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 6ad90a81b2f49d91dae2cfc8c1efaa2627167dd2
+Author: محمد الحرقان <malham1@gmail.com>
+Date:   Sun Jun 26 15:38:01 2011 +0200
+
+    l10n: Updated Arabic (ar) translation to 84%
+    
+    New status: 672 messages complete with 17 fuzzies and 108 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 10fadaf98c0b370fb10a7d6bb32533aed40786a2
+Author: محمد الحرقان <malham1@gmail.com>
+Date:   Sun Jun 26 15:24:22 2011 +0200
+
+    l10n: Updated Arabic (ar) translation to 59%
+    
+    New status: 471 messages complete with 16 fuzzies and 310 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 64a54113e04dd5f0f2cc06106f47dd04cc967166
+Author: محمد الحرقان <malham1@gmail.com>
+Date:   Sun Jun 26 15:22:26 2011 +0200
+
+    l10n: Updated Arabic (ar) translation to 58%
+    
+    New status: 464 messages complete with 23 fuzzies and 310 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 12562b55a9789692369310fbf607959a8ad88056
+Author: محمد الحرقان <malham1@gmail.com>
+Date:   Sun Jun 26 14:57:07 2011 +0200
+
+    l10n: Updated Arabic (ar) translation to 35%
+    
+    New status: 280 messages complete with 178 fuzzies and 339 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit b4bb58c509a50aa4ea9ecd9046cbfc98df5c9016
+Author: محمد الحرقان <malham1@gmail.com>
+Date:   Sun Jun 26 13:38:22 2011 +0200
+
+    l10n: Updated Arabic (ar) translation to 35%
+    
+    New status: 279 messages complete with 178 fuzzies and 340 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit cca785a2fc496b24c9c575b8f6c5a36cc1e63da1
+Author: محمد الحرقان <malham1@gmail.com>
+Date:   Sat Jun 25 22:58:32 2011 +0200
+
+    l10n: Updated Arabic (ar) translation to 28%
+    
+    New status: 231 messages complete with 197 fuzzies and 369 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 80c484a4c5534fb77fc0de878805a3008a433499
+Author: محمد الحرقان <malham1@gmail.com>
+Date:   Sat Jun 25 22:50:40 2011 +0200
+
+    l10n: Updated Arabic (ar) translation to 28%
+    
+    New status: 225 messages complete with 41 fuzzies and 531 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 838f696985fa97561b8fe9f3e7eebb05b6e3e847
+Author: محمد الحرقان <malham1@gmail.com>
+Date:   Sat Jun 25 22:25:32 2011 +0200
+
+    l10n: Updated Arabic (ar) translation to 22%
+    
+    New status: 177 messages complete with 47 fuzzies and 573 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit d096b31dee34bdc161b5aa2a54440acb5320c987
+Author: محمد الحرقان <malham1@gmail.com>
+Date:   Sat Jun 25 22:04:06 2011 +0200
+
+    l10n: Updated Arabic (ar) translation to 21%
+    
+    New status: 168 messages complete with 49 fuzzies and 580 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 9a589a37f3a40c201e9f5b758d55a6bceaf8d78f
+Author: محمد الحرقان <malham1@gmail.com>
+Date:   Sat Jun 25 21:56:36 2011 +0200
+
+    l10n: Updated Arabic (ar) translation to 18%
+    
+    New status: 148 messages complete with 53 fuzzies and 596 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 8703ae87bd173e5845e0ed1c12c719856b603f86
+Author: محمد الحرقان <malham1@gmail.com>
+Date:   Sat Jun 25 21:49:40 2011 +0200
+
+    l10n: Updated Arabic (ar) translation to 17%
+    
+    New status: 140 messages complete with 58 fuzzies and 599 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 2929e03da51ea8123ac7ece6caea06b70698f964
+Author: محمد الحرقان <malham1@gmail.com>
+Date:   Sat Jun 25 21:34:52 2011 +0200
+
+    l10n: Updated Arabic (ar) translation to 14%
+    
+    New status: 116 messages complete with 64 fuzzies and 617 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 82c286f7ebc5c22b6174156f5294d79b1d73b187
+Author: Anurag Garg <ang.astronomy@gmail.com>
+Date:   Sun Jun 19 17:33:38 2011 +0200
+
+    l10n: Updated Hindi (hi) translation to 26%
+    
+    New status: 210 messages complete with 26 fuzzies and 561 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 16f861db62692590a5046e63ab843db2d416a443
+Author: Anurag Garg <ang.astronomy@gmail.com>
+Date:   Sun Jun 19 16:09:03 2011 +0200
+
+    l10n: Updated Hindi (hi) translation to 20%
+    
+    New status: 160 messages complete with 26 fuzzies and 611 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 8c6cc66befa8d7dd1f2978715522df2463f5fbc3
+Author: Anurag Garg <ang.astronomy@gmail.com>
+Date:   Sun Jun 19 11:10:46 2011 +0200
+
+    l10n: Updated Hindi (hi) translation to 16%
+    
+    New status: 130 messages complete with 39 fuzzies and 628 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 956d776965cc4b6fa5c3d093ab23f7306f8702ec
+Author: Anurag Garg <ang.astronomy@gmail.com>
+Date:   Sun Jun 19 06:46:25 2011 +0200
+
+    l10n: Updated Hindi (hi) translation to 9%
+    
+    New status: 76 messages complete with 39 fuzzies and 682 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 3c688600f44d50fe991c58c0c32f7e6e62a3f0a6
+Author: Anurag Garg <ang.astronomy@gmail.com>
+Date:   Sat Jun 18 15:53:30 2011 +0200
+
+    l10n: Updated Hindi (hi) translation to 5%
+    
+    New status: 44 messages complete with 39 fuzzies and 714 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 8deb27f0ba02f36fd6aeaa2adda570003de12654
+Author: Pjotr Anon <pliniusminor@gmail.com>
+Date:   Fri Jun 17 00:41:19 2011 +0200
+
+    l10n: Updated Dutch (Flemish) (nl) translation to 100%
+    
+    New status: 797 messages complete with 0 fuzzies and 0 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 6d2aae358e5c0018c871aa919d1d1503119edcce
+Author: Pjotr Anon <pliniusminor@gmail.com>
+Date:   Thu Jun 16 00:29:57 2011 +0200
+
+    l10n: Updated Dutch (Flemish) (nl) translation to 100%
+    
+    New status: 797 messages complete with 0 fuzzies and 0 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 98d7b03248e67cf13efed960e0a48a92c04bddbe
+Author: Ivica  Kolić <ikoli@yahoo.com>
+Date:   Mon Jun 13 20:26:47 2011 +0200
+
+    l10n: Updates to Croatian (hr) translation
+    
+    New status: 685 messages complete with 0 fuzzies and 112 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 0b188ad773d3684f3bdebd2ec9db5cd34c4e066c
+Author: Pjotr Anon <pliniusminor@gmail.com>
+Date:   Thu Jun 2 10:30:03 2011 +0200
+
+    l10n: Updated Dutch (Flemish) (nl) translation to 100%
+    
+    New status: 797 messages complete with 0 fuzzies and 0 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit dbdf95ebff08e37dba75900f8561f15fa5f62ce5
+Author: Pjotr Anon <pliniusminor@gmail.com>
+Date:   Thu Jun 2 10:29:01 2011 +0200
+
+    l10n: Updated Dutch (Flemish) (nl) translation to 99%
+    
+    New status: 796 messages complete with 1 fuzzy and 0 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit f8ed0b011b67839eef1c269ddc8494b90257dbc5
+Author: Pjotr Anon <pliniusminor@gmail.com>
+Date:   Wed Jun 1 23:49:43 2011 +0200
+
+    l10n: Updated Dutch (Flemish) (nl) translation to 100%
+    
+    New status: 797 messages complete with 0 fuzzies and 0 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 6d63b1a4a6f073d0ae7b3300f6b33b2348a3ab19
+Author: Pjotr Anon <pliniusminor@gmail.com>
+Date:   Wed Jun 1 21:24:48 2011 +0200
+
+    l10n: Updated Dutch (Flemish) (nl) translation to 100%
+    
+    New status: 797 messages complete with 0 fuzzies and 0 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 022ad2190a16a14cf1f49bba837f99eca5567351
+Author: Pjotr Anon <pliniusminor@gmail.com>
+Date:   Wed Jun 1 20:42:38 2011 +0200
+
+    l10n: Updated Dutch (Flemish) (nl) translation to 100%
+    
+    New status: 797 messages complete with 0 fuzzies and 0 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 8bdafa11187c0919e145916fe3d337c5b83bb7f3
+Author: Pjotr Anon <pliniusminor@gmail.com>
+Date:   Wed Jun 1 20:29:15 2011 +0200
+
+    l10n: Updated Dutch (Flemish) (nl) translation to 100%
+    
+    New status: 797 messages complete with 0 fuzzies and 0 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 81df37858fac50bd09fad948ee52f6862a99ca87
+Author: Pjotr Anon <pliniusminor@gmail.com>
+Date:   Wed Jun 1 20:26:24 2011 +0200
+
+    l10n: Updated Dutch (Flemish) (nl) translation to 100%
+    
+    New status: 797 messages complete with 0 fuzzies and 0 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit c253b10ec6a8709d5ee473214757e80bf251b6c9
+Merge: 52a58e6 716d16b
+Author: Juha Kautto <juha@xfce.org>
+Date:   Wed Jun 1 15:30:43 2011 +0300
+
+    Merge branch 'master' of ssh://git.xfce.org/git/apps/orage
+
+commit 52a58e63cb039338d3365c83cb13e20acefba083
+Author: Juha Kautto <juha@xfce.org>
+Date:   Wed Jun 1 15:26:22 2011 +0300
+
+    fixed Bug 7552 - Orage reminder duplicates infinitely
+    
+    When using default timezone floating, reminders repeated and never ended.
+    Fixed this and prevented using floating as the default value. Using UTC
+    instead.
+
+commit 716d16b3062342b176856fe6a347e5be036ce5ce
+Author: Pjotr Anon <pliniusminor@gmail.com>
+Date:   Wed Jun 1 12:43:41 2011 +0200
+
+    l10n: Updated Dutch (Flemish) (nl) translation to 67%
+    
+    New status: 538 messages complete with 140 fuzzies and 119 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 2baba1792e58fbb272eaeae351eb3f25b28c3173
+Author: كريم أولاد الشلحة <herr.linux88@gmail.com>
+Date:   Sun May 29 15:08:40 2011 +0200
+
+    l10n: Updated Arabic (ar) translation to 11%
+    
+    New status: 93 messages complete with 68 fuzzies and 636 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit ec02830be2ddd4bc11d967c224d6a800a7825c1a
+Author: forfolias <forfolias@gmail.com>
+Date:   Wed May 25 10:06:55 2011 +0200
+
+    l10n: Updated Greek (el) translation to 77%
+    
+    New status: 614 messages complete with 68 fuzzies and 115 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 1183ee98a7da151c208ec33c531e6fd60a4645df
+Author: Tomáš Vadina <kyberdev@gmail.com>
+Date:   Fri May 20 16:21:35 2011 +0200
+
+    l10n: Updated Slovak (sk) translation to 100%
+    
+    New status: 797 messages complete with 0 fuzzies and 0 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit fa44e4cce6c8bc6abd87f69af8d22d08085eeeab
+Author: Gonzalo Lagos <xalo.em@gmail.com>
+Date:   Mon Mar 14 22:45:36 2011 +0100
+
+    l10n: Updated Spanish (Castilian) (es) translation to 100%
+    
+    New status: 797 messages complete with 0 fuzzies and 0 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 2b6da1401ffc50faa53d0f6cc858b23625818d58
+Author: Dmitrij Smirnov <arch@cnc-parts.info>
+Date:   Sun Feb 27 23:39:13 2011 +0100
+
+    l10n: Updated Russian (ru) translation to 100%
+    
+    New status: 797 messages complete with 0 fuzzies and 0 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 39492594a03c4dff8e2ce80619d596792b727cb5
+Author: Dmitrij Smirnov <arch@cnc-parts.info>
+Date:   Sun Feb 27 23:35:54 2011 +0100
+
+    l10n: Updated Russian (ru) translation to 100%
+    
+    New status: 797 messages complete with 0 fuzzies and 0 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 1b6f1df8cba5a7363055014dfbeba2698fae40bc
+Author: Dmitrij Smirnov <arch@cnc-parts.info>
+Date:   Sun Feb 27 23:31:41 2011 +0100
+
+    l10n: Updated Russian (ru) translation to 99%
+    
+    New status: 796 messages complete with 1 fuzzy and 0 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit d916e7524cf87431c1698a3b1eafb485c243d766
+Author: Dmitrij Smirnov <arch@cnc-parts.info>
+Date:   Sun Feb 27 23:30:38 2011 +0100
+
+    l10n: Updated Russian (ru) translation to 99%
+    
+    New status: 796 messages complete with 1 fuzzy and 0 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit df8f270a90447dfd449c0e2374705e654722ce72
+Author: Andhika Padmawan <andhika.padmawan@gmail.com>
+Date:   Sat Feb 26 11:19:33 2011 +0100
+
+    l10n: Updated Indonesian (id) translation to 100%
+    
+    New status: 797 messages complete with 0 fuzzies and 0 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit acfe08d09a6a0b43d2494290ab3fd07e06dd4647
+Author: Juha Kautto <juha@xfce.org>
+Date:   Sat Feb 26 11:18:38 2011 +0200
+
+    4.8.1.0: After release version reset.
+    
+    Release done. Resetting version backto git type.
+
+commit 076eda3592a68c7b4a9119c70e3f955e82218dd9
+Author: Juha Kautto <juha@xfce.org>
+Date:   Sat Feb 26 10:52:05 2011 +0200
+
+    Release 4.8.1
+    
+    Orage production fix release 4.8.1.
+
+commit 88538c258a41f306db9fd802d8150bd081244afe
+Author: Hunt Xu <mhuntxu@gmail.com>
+Date:   Tue Feb 15 14:28:45 2011 +0100
+
+    l10n: Updated Chinese (China) (zh_CN) translation to 94%
+    
+    New status: 755 messages complete with 24 fuzzies and 18 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 236d22104074d8d7492819f548764bcc3f7af2ab
+Author: Andres Kovtunos <kovtunos@yandex.ru>
+Date:   Tue Feb 15 11:42:56 2011 +0100
+
+    l10n: Updated Russian (ru) translation to 98%
+    
+    New status: 788 messages complete with 9 fuzzies and 0 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit b2ded6d139875218e3d269c8becda2fc8d68f78a
+Author: Juha Kautto <juha@xfce.org>
+Date:   Sun Feb 6 17:24:26 2011 +0200
+
+    8.6.0.7: Fixed bug 7232 clock-plugin doesn't reflect system TZ changes
+    
+    Fixed panel plugin so that timezone is checked when button is pressed
+    or configuration is visited.
+
+commit c7372febc25d071659b8d29821956b41938fa7bc
+Author: Juha Kautto <juha@xfce.org>
+Date:   Mon Jan 31 15:24:00 2011 +0200
+
+    4.8.0.6: Fixed bug 7192: Orage does not support the xdg dirs spec
+    
+    Added support for xdg config and data specification, so that default settings
+    can now be utilized.
+
+commit 4786eb856190934bf7a5aeac8bf1a1c95db969a3
+Author: Robert Hartl <hartl.robert@gmail.com>
+Date:   Mon Jan 31 12:54:59 2011 +0100
+
+    l10n: Updated Slovak (sk) translation to 87%
+    
+    New status: 695 messages complete with 9 fuzzies and 93 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit bfa601ba135f84163eded2bb2e060e21d9ca08ce
+Author: Juha Kautto <juha@xfce.org>
+Date:   Sun Jan 30 09:52:54 2011 +0200
+
+    4.8.0.5: Fix BUG 7204: orage-4.8.0 fails to compile with libnotify-0.7 API
+    
+    libnotify was changed quite a lot in version 0.7.0. Making Orage compatible
+    with it.
+
+commit 3f8833c836991b8e2707f8035918ff7d7e630841
+Author: Piarres Beobide <pi@beobide.net>
+Date:   Tue Jan 25 23:17:01 2011 +0100
+
+    l10n: Updated Basque (eu) translation to 99%
+    
+    New status: 794 messages complete with 0 fuzzies and 3 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 8974008d0bc47c9c4895ab50607b042cf9c3a2b6
+Author: Juha Kautto <juha@xfce.org>
+Date:   Thu Jan 20 23:26:36 2011 +0200
+
+    missed update for a commit
+    
+    Missing file from 4.8.0.3 version.
+
+commit ec6d06bbc376ec15ff945ec2bc8bf492c53002cc
+Author: Juha Kautto <juha@xfce.org>
+Date:   Thu Jan 20 20:21:57 2011 +0200
+
+    4.8.0.4: fixed BUG 7141 orage fails to compile on !linux
+    
+    Still issues with non linux systems and timezone data. Fixed iso3166.tab file
+    location and checked that it is fine even if it does not exist at all. Also
+    made tz array bigger in BSD as we can't drop unneeded files.
+
+commit 8a6c2255335d516bd529f73d2048d01ebd7a2328
+Author: Juha Kautto <juha@xfce.org>
+Date:   Thu Jan 20 09:34:58 2011 +0200
+
+    4.8.0.3: Fixed BUG 7116 full day events should be in the extra row in day view
+    
+    Full day (all day) check was done wrong after the format changed.
+    Also formatted the tip data better.
+
+commit 1caf2f503e34b8a81d7515dc6f664365bc535ed0
+Author: Juha Kautto <juha@xfce.org>
+Date:   Tue Jan 18 18:55:00 2011 +0200
+
+    4.8.0.2: fixed bug 7118 orage shows wrong category when editing an event
+    
+    Orage showed wrong category from the list when editing an event with special
+    list selected category.
+
+commit f3dc96f59c14bb58c2ff4dd443f86d851add4f32
+Author: Juha Kautto <juha@xfce.org>
+Date:   Tue Jan 18 14:54:59 2011 +0200
+
+    4.8.0.1: fix for BUG 7108: Orage doesn't compile on Solaris nor BSD
+    
+    Linux only features error.h and FTW_ACTIONRETVAL from nftw removed and fixed
+    with other code.
+
+commit a69c8bbf01d241f5c235286a675229110023ec78
+Author: 微 尘 <yjwork@189.cn>
+Date:   Tue Jan 18 02:31:29 2011 +0100
+
+    l10n: Updated Chinese (China) (zh_CN) translation to 94%
+    
+    New status: 753 messages complete with 24 fuzzies and 20 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 320bc24655d15334ccab7e8c80b3fdee5add779b
+Author: 微 尘 <yjwork@189.cn>
+Date:   Tue Jan 18 02:01:45 2011 +0100
+
+    l10n: Updated Chinese (China) (zh_CN) translation to 91%
+    
+    New status: 728 messages complete with 44 fuzzies and 25 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit e780e6b7635749927ddab23d3652d19766623202
+Author: Michal Várady <miko.vaji@gmail.com>
+Date:   Sat Jan 15 22:08:12 2011 +0100
+
+    l10n: Updated Czech (cs) translation to 100%
+    
+    New status: 797 messages complete with 0 fuzzies and 0 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 0e75e4062b6196f1582435ca5e3071b405b8f7f9
+Author: Christoph Wickert <christoph.wickert@googlemail.com>
+Date:   Sat Jan 15 19:13:57 2011 +0100
+
+    l10n: Updated German (de) translation to 100%
+    
+    New status: 797 messages complete with 0 fuzzies and 0 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit d058606ff07b898722d709b7eaf7a2ceb6cb74f7
+Author: Cristian Marchi <cri.penta@gmail.com>
+Date:   Fri Jan 14 14:40:29 2011 +0100
+
+    l10n: Updated Italian (it) translation to 100%
+    
+    New status: 797 messages complete with 0 fuzzies and 0 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit dd59e962186de9645cf93e7a546c1ecff8b7ea22
+Author: gianluca foddis <gianluca.foddis@gmail.com>
+Date:   Fri Jan 14 09:28:47 2011 +0100
+
+    l10n: Updated Italian (it) translation to 100%
+    
+    New status: 797 messages complete with 0 fuzzies and 0 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit e7debb45e2449f224b6bc6ce089e10534bf53a5c
+Author: Juha Kautto <juha@xfce.org>
+Date:   Thu Jan 13 16:53:51 2011 +0200
+
+    after release version.
+
+commit e1034c7935d018cd9320feecd3ccfc830137d974
+Author: Juha Kautto <juha@xfce.org>
+Date:   Thu Jan 13 14:52:53 2011 +0200
+
+    Release 4.8.0
+    
+    Orage release 4.8.0
+
+commit 13912cad27484b6d955bba28fb208e1b7809eee7
+Author: Juha Kautto <juha@xfce.org>
+Date:   Thu Jan 13 12:32:55 2011 +0200
+
+    copyright updated for coming release
+    
+    Copyright uptodate
+
+commit 2a3cdbf7eb725ff5919624c484aa3a2b90adbb6b
+Author: Masato Hashimoto <hashimo@xfce.org>
+Date:   Wed Jan 12 16:45:56 2011 +0100
+
+    l10n: Updated Japanese (ja) translation to 100%
+    
+    New status: 797 messages complete with 0 fuzzies and 0 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 493faff1dafe25a46b0c9090636a21674c1705dc
+Author: Stavros Giannouris <stavrosg@gmail.com>
+Date:   Sun Jan 9 10:07:25 2011 +0100
+
+    l10n: Updated Greek (el) translation to 77%
+    
+    New status: 614 messages complete with 48 fuzzies and 135 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit d7bf3348295f14ceac2e2b468526e5624a5edeeb
+Author: forfolias <forfolias@gmail.com>
+Date:   Sun Jan 9 00:55:47 2011 +0100
+
+    l10n: Updated Greek (el) translation to 76%
+    
+    New status: 611 messages complete with 49 fuzzies and 137 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit fe2fbb926057d7ccd96f9bc7a24361c9ed44719d
+Author: Stavros Giannouris <stavrosg@gmail.com>
+Date:   Thu Jan 6 22:39:29 2011 +0100
+
+    l10n: Updated Greek (el) translation to 68%
+    
+    New status: 542 messages complete with 85 fuzzies and 170 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 5de1f49e494a9e0b411a83d8f3aa4e3e6242fbc5
+Author: Ivica  Kolić <ikoli@yahoo.com>
+Date:   Wed Jan 5 12:40:44 2011 +0100
+
+    l10n: Updated Croatian (hr) translation to 82%
+    
+    New status: 660 messages complete with 0 fuzzies and 137 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit a636ecb192e6cbf4c19bf74ec303ba182a629188
+Author: Gabor Kelemen <kelemeng@gnome.hu>
+Date:   Fri Dec 24 12:05:04 2010 +0100
+
+    l10n: Updated Hungarian (hu) translation to 100%
+    
+    New status: 797 messages complete with 0 fuzzies and 0 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 778a9e01664ce39e223ef23f623135f271782ea1
+Author: Nuno Miguel <nunis@netcabo.pt>
+Date:   Thu Dec 23 18:09:35 2010 +0100
+
+    l10n: Updated Portuguese (pt) translation to 100%
+    
+    New status: 797 messages complete with 0 fuzzies and 0 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit f7b7e20ae0c00d75f2f3cff89bc16e09a705afa2
+Author: Juha Kautto <juha@xfce.org>
+Date:   Thu Dec 23 13:59:34 2010 +0200
+
+    4.7.6.12 Small tunings after running with valgrind
+    
+    This is ready to be released version.
+
+commit dfb55ccb7c5183a0d099459110bde180a890ae45
+Author: Ivica  Kolić <ikoli@yahoo.com>
+Date:   Wed Dec 22 23:00:38 2010 +0100
+
+    l10n: Updated Croatian (hr) translation to 82%
+    
+    New status: 656 messages complete with 6 fuzzies and 135 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 22855ddf807808454fe86b7528579fcf3ffe1300
+Author: Dmitry Nikitin <luckas_fb@mail.ru>
+Date:   Tue Dec 21 11:52:04 2010 +0100
+
+    l10n: Updated Ukrainian (uk) translation to 100%
+    
+    New status: 797 messages complete with 0 fuzzies and 0 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 25ec93e5b15a97aab857c7f122e0a33eda042b90
+Author: Harald Servat <redcrash@gmail.com>
+Date:   Sun Dec 19 16:53:39 2010 +0100
+
+    l10n: Updated Catalan (Valencian) (ca) translation to 100%
+    
+    New status: 797 messages complete with 0 fuzzies and 0 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 151a9ae0ac7365c544b237197fa7d526c8ed2e37
+Author: Jeff Bailes <thepizzaking@gmail.com>
+Date:   Sun Dec 19 08:46:12 2010 +0100
+
+    l10n: Updated English (United Kingdom) (en_GB) translation to 100%
+    
+    New status: 797 messages complete with 0 fuzzies and 0 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit c3851b0cdc076828f2c388556582f50d120ab1d2
+Author: Daniel Nylander <po@danielnylander.se>
+Date:   Sat Dec 18 19:02:14 2010 +0100
+
+    l10n: Updated Swedish (sv) translation to 94%
+    
+    New status: 751 messages complete with 13 fuzzies and 33 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 603b744b9affe352ddf98b483232b13090d903b7
+Author: Per Kongstad <p_kongstad@op.pl>
+Date:   Sat Dec 18 10:53:47 2010 +0100
+
+    l10n: Updated Danish (da) translation to 100%
+    
+    New status: 797 messages complete with 0 fuzzies and 0 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 9bc0609acbdf110ed77ca86460b027fcce04a589
+Author: Sergio Marques <smarquespt@gmail.com>
+Date:   Fri Dec 17 23:19:46 2010 +0100
+
+    l10n: Updated Portuguese (pt) translation to 100%
+    
+    New status: 797 messages complete with 0 fuzzies and 0 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 411cd31fa0be024a80535ed6c95490ab0f28a01b
+Author: Juha Kautto <juha@xfce.org>
+Date:   Fri Dec 17 17:46:14 2010 +0200
+
+    new translation files
+
+commit d698fcbc064f276263fb138a3e00d733278e056b
+Author: Juha Kautto <juha@xfce.org>
+Date:   Fri Dec 17 00:33:06 2010 +0200
+
+    4.7.6.11: fixes after make distcheck
+    
+    Fixed errors reported by make distcheck
+
+commit 288f617f32a047f1b645ed9c31c2341091cf18b3
+Author: Juha Kautto <juha@xfce.org>
+Date:   Thu Dec 16 23:26:33 2010 +0200
+
+    4.7.6.9: fixes from --enable-debug=full
+    
+    Fixed warnings from --enable-debug=full. Except libical part as there is so
+    many and it basically will go away when external libical works.
+
+commit e94ce125a38eae7e68bd0e3b11a8d103765fd436
+Author: Jeff Bailes <thepizzaking@gmail.com>
+Date:   Thu Dec 16 07:47:26 2010 +0100
+
+    l10n: Updated English (United Kingdom) (en_GB) translation to 100%
+    
+    New status: 801 messages complete with 0 fuzzies and 0 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 9432ac34d6db6fac5ff71c4a764dc261b01f106d
+Author: Jeff Bailes <thepizzaking@gmail.com>
+Date:   Thu Dec 16 07:46:03 2010 +0100
+
+    l10n: Updated English (United Kingdom) (en_GB) translation to 99%
+    
+    New status: 800 messages complete with 1 fuzzy and 0 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 1603a8f63cf564f16ba221cee10a62c5435164c8
+Author: Juha Kautto <juha@xfce.org>
+Date:   Wed Dec 15 23:44:28 2010 +0200
+
+    4.7.6.8: enhancement 6834 Alarms defined to be run less than 2 minutes don't work
+    
+    Now it is possible to create alarm which raises exactly at the event time.
+    Orage no longer checks that time is zero, but instead that some action
+    is defined.
+
+commit 7f13695786a709edf12596721668a86be130cd34
+Author: Juha Kautto <juha@xfce.org>
+Date:   Wed Dec 15 01:42:35 2010 +0200
+
+    4.7.6.7 Fixed Bug 6643 "Note" section displays the description for the alarm
+    
+    Orage does not use alarm description anymore. Orage will overwrite that.
+    It might be a good idea to alarm descriptions sometime, but now it works
+    as planned.
+    
+    Also added reminder date to reminder test function.
+
+commit 5c50355dd9862699ce139be88c9795b7b1639255
+Author: Juha Kautto <juha@xfce.org>
+Date:   Tue Dec 14 15:31:18 2010 +0200
+
+    removed unneeded files, which the last commit missed todo.
+
+commit 670fc12dca29592a69480e19bd8e84f5ad054f37
+Author: Juha Kautto <juha@xfce.org>
+Date:   Tue Dec 14 15:28:51 2010 +0200
+
+    4.7.6.6: internal modification to share timezone selection code.
+    
+    Use same source files tz_zoneinfo_read.c and tz_zoneinfo_read.h instead of
+    maintaining separete files.
+    Should make a library from these and functions.c
+
+commit ee027a9fc352c1fb439bc01102044b921ec23ed1
+Author: Juha Kautto <juha@xfce.org>
+Date:   Mon Dec 13 19:40:27 2010 +0200
+
+    4.7.6.5 enhancement 6845 alarms don't show the date and time of an event
+    
+    Added event/todo start and end time to the header of the Orage alarm window.
+    It is also in the notify alarm window.
+
+commit 855a62f2777ffcbce51525f272f8c10ed8a142c5
+Author: Fabian Nowak <timystery@arcor.de>
+Date:   Sun Dec 12 17:26:40 2010 +0100
+
+    l10n: Updated German (de) translation to 100%
+    
+    New status: 797 messages complete with 0 fuzzies and 0 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 404a5e2893a8581bcdcf8747caa104c76b802109
+Author: Juha Kautto <juha@xfce.org>
+Date:   Sat Dec 11 19:06:55 2010 +0200
+
+    Added Globaltime call to the trayicon menu and to the Orage Show menu
+    
+    Made it possible to call globaltime form the menus. Also mouse middle button
+    now works same way in the trayicon than in Xfce panelplugin (= raises and hides
+    globaltime each time pressed). Also minor missed fix to timezone show in
+    globaltime and panelplugin.
+
+commit 649855e06adf39fd851145b78c6a5aafe08145af
+Author: Terje Uriansrud <terje@uriansrud.net>
+Date:   Fri Dec 10 23:01:59 2010 +0100
+
+    l10n: Updated Norwegian Bokmal (nb) translation to 100%
+    
+    New status: 801 messages complete with 0 fuzzies and 0 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit bfe573f76da9087c66f6b634b55c77290c90b0e5
+Author: Juha Kautto <juha@xfce.org>
+Date:   Fri Dec 10 17:02:02 2010 +0200
+
+    4.7.6.3: Fixed bug 6290 garbage displayed in “GMT Offset” in timezone config
+    
+    This problem happened in 64 systems. Fixed by using int instead of long.
+
+commit 544de244c1537182c916de360198fbfc8b068e96
+Author: Juha Kautto <juha@xfce.org>
+Date:   Thu Dec 9 00:09:41 2010 +0200
+
+    4.6.7.2: Several fixes for file handling
+    
+    Fixed Bugs
+    6933 Incorrect config dir permissions
+    6934 open orage calendar on click
+    6936 Always segfault (panel plugin works)
+
+commit 7417ccbb966e54f85387426c5d49f3f42854326f
+Author: Juha Kautto <juha@xfce.org>
+Date:   Wed Dec 8 17:06:09 2010 +0200
+
+    Fix for Bug 6497: Some grammar and readability for English version of Orage
+    
+    Better english in parameter screen.
+
+commit 3b3b736c7d412d5956f3c05175342ef84172d8ff
+Author: Juha Kautto <juha@xfce.org>
+Date:   Wed Dec 8 15:33:22 2010 +0200
+
+    Fixed BUG 6928 globaltime/globaltime.desktop.in deleted on distclean
+    
+    make distclean cleaned too much. Fixed as suggested in the bug.
+    Thanks to Lionel Le Folgoc for the patch.
+
+commit 7354e507d60651c448bf019435e99f3ea52ddecb
+Author: Juha Kautto <juha@xfce.org>
+Date:   Wed Dec 8 13:08:32 2010 +0200
+
+    4.7.6.1: Xfce 4.8 compatibility patch.
+    
+    Orage is now compatible with Xfce 4.8 (4.7). This version is also still
+    compatible with Xfce 4.6.
+
+commit d600f8a0b17da9dd15791887defd8164893f0eff
+Author: Sergio Marques <smarquespt@gmail.com>
+Date:   Wed Dec 1 14:56:09 2010 +0100
+
+    l10n: Updated Portuguese (pt) translation to 100%
+    
+    New status: 801 messages complete with 0 fuzzies and 0 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit e3eac56a398b37774dbc169782c7b7ae5eae1b18
+Author: Gabor Kelemen <kelemeng@gnome.hu>
+Date:   Sat Nov 27 01:57:29 2010 +0100
+
+    l10n: Updated Hungarian (hu) translation to 100%
+    
+    New status: 801 messages complete with 0 fuzzies and 0 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 730ddce330ecebe59747a849195339f41701d738
+Author: Juha Kautto <juha@xfce.org>
+Date:   Fri Nov 5 16:07:12 2010 +0200
+
+    4.7.6.0: part 1 of Xfce 4.8 compatibility changes. Work in progress! do not use.
+    
+    Making Orage compatible with Xfce 4.8 and keeping it compatible with Xfce 4.6.
+    Do not use this version!
+    It is work in progress save only as I have to change computer...
+
+commit 77a14623d6b25c4ab8b19068be92dc6d8bd95a7a
+Author: Leandro Regueiro <leandro.regueiro@gmail.com>
+Date:   Thu Oct 21 12:34:32 2010 +0200
+
+    l10n: Updated Galician (gl) translation to 70%
+    
+    New status: 567 messages complete with 165 fuzzies and 69 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 192dc105ba962410e35476ba4505ffca3e562a3b
+Author: Bauzhan Muftakhidinov <baurthefirst@gmail.com>
+Date:   Fri Oct 15 07:57:20 2010 +0200
+
+    l10n: Updated Kazakh (kk) translation to 14%
+    
+    New status: 115 messages complete with 0 fuzzies and 686 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit b8fba7f0682f55061d52301442df99e480a1bef8
+Author: Masato Hashimoto <cabezon.hashimoto@gmail.com>
+Date:   Sat Oct 2 16:51:05 2010 +0200
+
+    l10n: Updated Japanese (ja) translation to 100%
+    
+    New status: 801 messages complete with 0 fuzzies and 0 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit a0d9f7945e829125d510d94eff04be300b622325
+Author: Xavier Devlamynck <magicrhesus@ouranos.be>
+Date:   Fri Sep 17 13:44:45 2010 +0200
+
+    l10n: Updated French (fr) translation to 94%
+    
+    New status: 757 messages complete with 22 fuzzies and 22 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 63d7ef38fb731cee9f0263fc242e987c2bfbc55e
+Author: Robert Hartl <hartl.robert@gmail.com>
+Date:   Wed Sep 15 21:39:40 2010 +0200
+
+    l10n: Updated Slovak (sk) translation to 83%
+    
+    New status: 671 messages complete with 22 fuzzies and 108 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 9a28156792eaaa02e70881f2cc5772597132c0ec
+Author: Fabian Nowak <timystery@arcor.de>
+Date:   Tue Sep 14 11:23:55 2010 +0200
+
+    l10n: Updated German (de) translation to 100%
+    
+    New status: 801 messages complete with 0 fuzzies and 0 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 0c845f0377d64f6898d88c82f0a496e3e4eee82a
+Author: Fabian Nowak <timystery@arcor.de>
+Date:   Tue Sep 14 11:20:14 2010 +0200
+
+    l10n: Updated German (de) translation to 100%
+    
+    New status: 801 messages complete with 0 fuzzies and 0 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit fc0f0cee525328835b1b45d5e793c09c86bab35a
+Author: Bauzhan Muftakhidinov <baurthefirst@gmail.com>
+Date:   Fri Sep 3 12:40:51 2010 +0200
+
+    l10n: Updated Kazakh (kk) translation to 14%
+    
+    New status: 113 messages complete with 0 fuzzies and 688 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 93bff09a5552b05aabd30c1c68f103dccf93829b
+Author: Gheyret Kenji <gheyret@yahoo.com>
+Date:   Tue Aug 24 10:16:20 2010 +0200
+
+    l10n: Updated Uyghur (ug) translation to 92%
+    
+    New status: 743 messages complete with 0 fuzzies and 58 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit a906a590ef7c8a3e68b08cfff31f010a80f5416c
+Author: Fabian Nowak <timystery@arcor.de>
+Date:   Sun Aug 22 16:19:02 2010 +0200
+
+    l10n: Updated German (de) translation to 99%
+    
+    New status: 795 messages complete with 4 fuzzies and 2 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit c8d6d5e340ae751fe7dec8c01bfa9d0718832acf
+Author: gianluca foddis <gianluca.foddis@gmail.com>
+Date:   Fri Aug 20 12:25:45 2010 +0200
+
+    l10n: Updated Italian (it) translation to 100%
+    
+    New status: 801 messages complete with 0 fuzzies and 0 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit a113807542b329eac9a301ca2de3dede151e3fdf
+Author: gianluca foddis <gianluca.foddis@gmail.com>
+Date:   Wed Aug 18 17:48:24 2010 +0200
+
+    l10n: Updated Italian (it) translation to 100%
+    
+    New status: 801 messages complete with 0 fuzzies and 0 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit e890ccdcb422267d82db5ce6049a79be4b339025
+Author: Leandro Regueiro <leandro.regueiro@gmail.com>
+Date:   Wed Jul 7 12:58:39 2010 +0200
+
+    l10n: Updated Galician (gl) translation to 69%
+    
+    New status: 556 messages complete with 174 fuzzies and 71 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 424ebfedd4cbb62631444d2b20fc01a4ccaefc4e
+Author: Yarema aka Knedlyk <yupadmin@gmail.com>
+Date:   Thu Jul 1 15:02:52 2010 +0200
+
+    l10n: Updated Ukrainian (uk) translation to 100%
+    
+    New status: 801 messages complete with 0 fuzzies and 0 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 8adeb99f0066ccbb6d565eb54186833cca52b197
+Author: Gheyret Kenji <gheyret@yahoo.com>
+Date:   Fri Jun 18 15:50:03 2010 +0200
+
+    l10n: Updated Uyghur (ug) translation to 44%
+    
+    New status: 358 messages complete with 0 fuzzies and 443 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit ce5186a5a75e272ca6be97dbe68504006737802a
+Author: Yarema aka Knedlyk <yupadmin@gmail.com>
+Date:   Thu Jun 17 15:21:33 2010 +0200
+
+    l10n: Updated Ukrainian (uk) translation to 99%
+    
+    New status: 799 messages complete with 0 fuzzies and 2 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 3d1f12982aaa5e60cf6166e41dbbdaf7b0cd7f28
+Author: Yarema aka Knedlyk <yupadmin@gmail.com>
+Date:   Thu Jun 17 15:12:12 2010 +0200
+
+    l10n: Updated Ukrainian (uk) translation to 99%
+    
+    New status: 797 messages complete with 0 fuzzies and 4 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 99b2f5cd2574447ea0f50d1fa215e59ce4a6b24c
+Author: Ayhan YALÇINSOY <ayhanyalcinsoy@gmail.com>
+Date:   Sun Jun 13 17:44:57 2010 +0200
+
+    l10n: Updated Turkish (tr) translation to 99%
+    
+    New status: 798 messages complete with 0 fuzzies and 3 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 7a9ab08e2b9720be21a6357d93c72bc77f9493fe
+Author: douart patrick <patrick.2@laposte.net>
+Date:   Sun Jun 6 21:20:11 2010 +0200
+
+    l10n: Updated French (fr) translation to 93%
+    
+    New status: 748 messages complete with 30 fuzzies and 23 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 6b22b0396eae624ba4fe11ae1c1ba974d70d2aa9
+Author: Ivica  Kolić <ikoli@yahoo.com>
+Date:   Sat Jun 5 09:29:26 2010 +0200
+
+    l10n: Initial Croatian (hr) translation
+    
+    New status: 661 messages complete with 0 fuzzies and 140 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit f92281d0dc18053bf9d5c2365f6eb11c7474f139
+Author: Yarema aka Knedlyk <yupadmin@gmail.com>
+Date:   Thu Jun 3 18:04:31 2010 +0200
+
+    l10n: Updated Ukrainian (uk) translation to 99%
+    
+    New status: 794 messages complete with 0 fuzzies and 7 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit cdd4c3f7f99cf2481fe814aefd2a82d4ea3f7090
+Author: Yarema aka Knedlyk <yupadmin@gmail.com>
+Date:   Tue Jun 1 01:58:26 2010 +0200
+
+    l10n: Updated Ukrainian (uk) translation to 98%
+    
+    New status: 789 messages complete with 0 fuzzies and 12 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit ea6d92f417b09a0e8220180ec6c2a74a49fe1e0e
+Author: Yarema aka Knedlyk <yupadmin@gmail.com>
+Date:   Tue Jun 1 01:56:53 2010 +0200
+
+    l10n: Updated Ukrainian (uk) translation to 98%
+    
+    New status: 787 messages complete with 1 fuzzy and 13 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 7be2d28c11f838717185889f7c058576ec74e454
+Author: Andhika Padmawan <andhika.padmawan@gmail.com>
+Date:   Mon May 31 18:04:18 2010 +0200
+
+    l10n: Updated Indonesian (id) translation to 100%
+    
+    New status: 801 messages complete with 0 fuzzies and 0 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 30605b7b2efe065ebc3de9ea960883f6234cad07
+Author: Yarema aka Knedlyk <yupadmin@gmail.com>
+Date:   Sat May 29 19:48:10 2010 +0200
+
+    l10n: Updated Ukrainian (uk) translation to 96%
+    
+    New status: 770 messages complete with 12 fuzzies and 19 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit c73ae9c46104c3aceddd8efc35080d1dede090f0
+Author: Gheyret Kenji <gheyret@yahoo.com>
+Date:   Fri May 21 09:51:15 2010 +0200
+
+    l10n: Uyghur Translation
+    
+    New status: 36 messages complete with 0 fuzzies and 765 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 2a8d2c2fd9b217c3f406a32a4a6a02b0dd83107b
+Author: gianluca foddis <gianluca.foddis@gmail.com>
+Date:   Thu May 20 21:05:33 2010 +0200
+
+    l10n: Updated Italian (it) translation to 100%
+    
+    New status: 801 messages complete with 0 fuzzies and 0 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 1c2e8455fe2ef812d0438123e3a0c0a4bde2b7dc
+Author: Piarres Beobide <pi@beobide.net>
+Date:   Wed May 5 10:43:15 2010 +0200
+
+    l10n: Updated Basque (eu) translation to 99%
+    
+    New status: 798 messages complete with 0 fuzzies and 3 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 95f38ca54a29da33461183035763f6db2c568261
+Author: Leandro Regueiro <leandro.regueiro@gmail.com>
+Date:   Tue May 4 17:48:08 2010 +0200
+
+    l10n: Updated Galician (gl) translation to 69%
+    
+    New status: 554 messages complete with 176 fuzzies and 71 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 61d2303af18d0866e73902c67b033c865055fce9
+Author: Juha Kautto <juha@xfce.org>
+Date:   Mon May 3 16:25:25 2010 +0300
+
+    4.7.5.23 Fixed appointment repeat window to show complexity correctly
+    
+    Appointment reoccurrency tab showed several appointments to be advanced
+    complexity even though they were normal. The repeat option was erroneously
+    considered to make the appointment complex.
+
+commit 8e6277b5d2730fa9723e7252d001360092b23ff9
+Author: Nuno Miguel <nunis@netcabo.pt>
+Date:   Wed Apr 28 17:49:40 2010 +0200
+
+    l10n: Updated Portuguese (pt) translation to 100%
+    
+    New status: 801 messages complete with 0 fuzzies and 0 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit fd3ebd7f1cb4d779a049f948eff6cc06a420583d
+Author: Nuno Miguel <nunis@netcabo.pt>
+Date:   Sat Apr 24 16:54:54 2010 +0200
+
+    l10n: Updated Portuguese (pt) translation to 100%
+    
+    New status: 801 messages complete with 0 fuzzies and 0 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit ba8461f78ca98c4b7232dadd0f9de84cb1e2dd5f
+Author: Andres Kovtunos <kovtunos@yandex.ru>
+Date:   Fri Apr 23 06:00:36 2010 +0200
+
+    l10n: Updated Russian (ru) translation to 100%
+    
+    New status: 801 messages complete with 0 fuzzies and 0 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit dc47ada567ed90de61ea6f6170da5a3801b78b4e
+Author: Juha Kautto <juha@xfce.org>
+Date:   Sat Apr 17 18:49:02 2010 +0300
+
+    4.7.5.22: compatibility patch for 4.7 panel (bug 6382)
+    
+        small make file change for new 4.7 panel
+
+commit 4c97617684a366db2b7a384752912c5f10cd3128
+Author: Masato Hashimoto <cabezon.hashimoto@gmail.com>
+Date:   Sat Mar 27 11:24:49 2010 +0100
+
+    l10n: Updated Japanese (ja) translation to 100%
+    
+    New status: 801 messages complete with 0 fuzzies and 0 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 082f3486a52bb26ab6e32cbfdbf9edc0381c93da
+Author: Rihards Prieditis <rprieditis@gmail.com>
+Date:   Thu Mar 25 23:31:05 2010 +0100
+
+    l10n: Updated Latvian (lv) translation to 100%
+    
+    New status: 801 messages complete with 0 fuzzies and 0 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit d853e79b6d1386f6f5ac00d996a4aa5b57831f4b
+Author: Juha Kautto <juha@xfce.org>
+Date:   Wed Mar 24 12:30:27 2010 +0200
+
+    4.5.7.21 Fixed bug 6338
+
+commit 5d1e8d8588d7dfa537ec2868ba8ed43359bf9437
+Author: Abel Martín <abel.martin.ruiz@gmail.com>
+Date:   Sat Mar 20 19:18:15 2010 +0100
+
+    l10n: Updated Spanish (Castilian) (es) translation to 100%
+    
+    New status: 801 messages complete with 0 fuzzies and 0 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 5bd053b76dab09d52812071663ec68964ac5b03b
+Author: Abel Martín <abel.martin.ruiz@gmail.com>
+Date:   Sat Mar 20 19:14:01 2010 +0100
+
+    l10n: Updated Spanish (Castilian) (es) translation to 97%
+    
+    New status: 782 messages complete with 11 fuzzies and 8 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 853aaf72aaf82cec8b4b5854f90578805fec7bf0
+Author: Dmitry Nikitin <luckas_fb@mail.ru>
+Date:   Tue Mar 16 09:29:55 2010 +0100
+
+    l10n: Updated Ukrainian (uk) translation to 95%
+    
+    New status: 762 messages complete with 16 fuzzies and 23 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 5fcf095a8c68d0234bd60612b4af00aaa5366889
+Author: Bauzhan Muftakhidinov <baurthefirst@gmail.com>
+Date:   Tue Mar 16 06:40:39 2010 +0100
+
+    l10n: New translation to Kazakh
+    
+    New status: 81 messages complete with 0 fuzzies and 720 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 555c36e4dab3047db76369c7787215cc9142dc82
+Author: Michal Várady <miko.vaji@gmail.com>
+Date:   Mon Mar 15 20:37:55 2010 +0100
+
+    l10n: Updated Czech (cs) translation to 100%
+    
+    New status: 801 messages complete with 0 fuzzies and 0 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit e36ba8cccc3aad3c48c611afb9901a50f4f0d5ed
+Author: Juha Kautto <juha@xfce.org>
+Date:   Sun Mar 14 14:40:28 2010 +0200
+
+    4.5.7.20: minor fixes to hide show functionality for both Orage and Globatime
+    
+    Fixed some special cases where windows were not visible as expected.
+
+commit c0abe1fc0905135fea21678586ae4788c2f472d2
+Merge: 5ee670e 775c40f
+Author: Juha Kautto <juha@xfce.org>
+Date:   Sat Mar 13 13:32:30 2010 +0200
+
+    Merge branch 'master' of ssh://git.xfce.org/git/apps/orage
+
+commit 5ee670e686d7a6d724146b25c546afc617ee9275
+Author: Juha Kautto <juha@xfce.org>
+Date:   Sat Mar 13 13:29:51 2010 +0200
+
+    4.7.5.19: Added check for libpopt (bug 6287)
+    
+    Now checking libpopt and compiling tz_convert only if it is available.
+    tz_convert is not needed if using systems libical and is not mandatory
+    even if using local libical, so it is safe to leave it out.
+
+commit 775c40fb9dcfcf12a43fa6b359d3746320ce5ab2
+Author: Dmitrij Smirnov <arch@cnc-parts.info>
+Date:   Sat Mar 13 12:25:11 2010 +0100
+
+    l10n: Updated Russian (ru) translation to 99%
+    
+    New status: 798 messages complete with 3 fuzzies and 0 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit c445ea18d96c593e065cf7bdbfcd3b1a259cd40a
+Author: Andres Kovtunos <kovtunos@yandex.ru>
+Date:   Fri Mar 12 18:48:22 2010 +0100
+
+    l10n: Updated Russian (ru) translation to 99%
+    
+    New status: 798 messages complete with 3 fuzzies and 0 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit f8484189b6a39ab15845baa6fdb31f63e2908b42
+Author: Juha Kautto <juha@xfce.org>
+Date:   Thu Mar 11 13:13:37 2010 +0200
+
+    4.5.7.18: Fix for bug 6288: wrong path to libical include files
+    
+    Fixed <ical.h> to be <libical/ical.h> if os package is being used.
+
+commit 51bc004878b82ea625e8955bf614455c894e4c86
+Author: Juha Kautto <juha@xfce.org>
+Date:   Thu Mar 11 11:35:10 2010 +0200
+
+    4.5.7.17: Fix crash in BUG 6290
+    
+    Crash part of that BUG is fixed. Still can't reproduce the garbage.
+
+commit 31488e50165672aa520e9566cbac7ca87a13c486
+Author: Danishka Navin <danishka@gmail.com>
+Date:   Thu Mar 11 06:22:51 2010 +0100
+
+    l10n: updated Sinhala Translation
+    
+    New status: 155 messages complete with 0 fuzzies and 646 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 70ffffff83a79c92d9aa9f030afa1a9d49807233
+Author: Danishka Navin <danishka@gmail.com>
+Date:   Wed Mar 10 17:47:11 2010 +0100
+
+    l10n: added Sinhala (si) translation
+    
+    New status: 90 messages complete with 0 fuzzies and 711 untranslated.
+    
+    Transmitted-via: Transifex (translations.xfce.org).
+
+commit 43739797f4f32cde7427d1cfcbb3425ac506c948
+Author: Juha Kautto <juha@xfce.org>
+Date:   Thu Mar 4 12:02:32 2010 +0200
+
+    post release version change
+
+commit 0b9e57ef8e951b0580c877ea7b2d11b34684b8da
+Author: Juha Kautto <juha@xfce.org>
+Date:   Thu Mar 4 09:34:55 2010 +0200
+
+    Release Orage 4.7.5
+
 commit dfcdf4d149e5cfaedd7a6fa3ca39c9e2824df64b
 Author: Sergio Marques <smarquespt@gmail.com>
 Date:   Mon Mar 1 14:04:48 2010 +0100
