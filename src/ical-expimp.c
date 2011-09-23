@@ -145,7 +145,7 @@ static gboolean pre_format(char *file_name_in, char *file_name_out)
         g_error_free(error);
         return(FALSE);
     }
-    /***** Check utf8 coformtability *****/
+    /***** Check utf8 conformability *****/
     if (!g_utf8_validate(text, -1, NULL)) {
         orage_message(250, P_N "is not in utf8 format. Conversion needed.\n (Use iconv and convert it into UTF-8 and import it again.)\n");
         return(FALSE);

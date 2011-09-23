@@ -24,6 +24,7 @@
 #define __ORAGE_PARAMETERS_H__
 
 #define BORDER 5
+#define ORAGE_WAKEUP_TIMER_PERIOD 10
 typedef struct _foreign_file
 {
     char *file;
@@ -76,6 +77,7 @@ typedef struct _parameters
     guint alarm_timer; /* monitors next alarm */
     guint day_timer;   /* fires when day changes = every 24 hours */
     guint tooltip_timer; /* keeps tooltips upto date */
+    guint wakeup_timer;  /* controls wakeup after suspend/hibernate */
 
     /* main window */
     void *xfcal;     /* this is main calendar CalWin * */
@@ -114,6 +116,10 @@ typedef struct _parameters
 
     /* Controls which appointment priorities are shown in daylist */
     gint priority_list_limit;
+
+    /* some systems are not able to wake up properly from suspend/hibernate
+       and we need to monitor the status ourselves */
+    gboolean use_wakeup_timer;
 } global_parameters; /* global parameters */
 
 #ifdef ORAGE_MAIN

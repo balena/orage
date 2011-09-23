@@ -49,7 +49,9 @@
 #include "parameters.h"
 #include "mainbox.h"
 
-extern int g_log_level;
+extern int g_log_level; /* in function.c */
+
+gboolean check_wakeup(gpointer user_data); /* in main.c*/
 
 static gboolean is_running = FALSE;
 
@@ -116,7 +118,7 @@ typedef struct _Itf
     GtkWidget *select_day_today_radiobutton;
     GtkWidget *select_day_old_radiobutton;
     /* icon size */
-    GtkWidget *icon_size_frame;
+    GtkWidget *use_dynamic_icon_frame;
     GtkWidget *use_dynamic_icon_checkbutton;
     /* show event/days window from main calendar */
     GtkWidget *click_to_show_frame;
@@ -130,6 +132,9 @@ typedef struct _Itf
     GtkWidget *close_button;
     GtkWidget *help_button;
     GtkWidget *dialog_action_area1;
+    /* icon size */
+    GtkWidget *use_wakeup_timer_frame;
+    GtkWidget *use_wakeup_timer_checkbutton;
 } Itf;
 
 /* Return the first day of the week, where 0=monday, 6=sunday.
@@ -481,6 +486,29 @@ static void el_extra_days_spin_changed(GtkSpinButton *sb, gpointer user_data)
     g_par.el_days = gtk_spin_button_get_value(sb);
 }
 
+/* start monitoring lost seconds due to hibernate or suspend */
+static void set_wakeup_timer()
+{
+    if (g_par.wakeup_timer) /* need to stop it if running */
+        g_source_remove(g_par.wakeup_timer);
+    if (g_par.use_wakeup_timer) {
+        check_wakeup(&g_par); /* init */
+        g_par.wakeup_timer = 
+                g_timeout_add_seconds(ORAGE_WAKEUP_TIMER_PERIOD
+                        , (GtkFunction)check_wakeup, NULL);
+    }
+}
+
+static void use_wakeup_timer_changed(GtkWidget *dialog, gpointer user_data)
+{
+    Itf *itf = (Itf *)user_data;
+    GdkPixbuf *orage_logo;
+
+    g_par.use_wakeup_timer = gtk_toggle_button_get_active(
+            GTK_TOGGLE_BUTTON(itf->use_wakeup_timer_checkbutton));
+    set_wakeup_timer();
+}
+
 static void create_parameter_dialog_main_setup_tab(Itf *dialog)
 {
     GtkWidget *hbox, *vbox, *label;
@@ -772,20 +800,6 @@ static void create_parameter_dialog_extra_setup_tab(Itf *dialog)
     gtk_box_pack_start(GTK_BOX(dialog->extra_vbox)
             , dialog->select_day_frame, FALSE, FALSE, 5);
 
-    /*
-    dialog->always_today_checkbutton = 
-            gtk_check_button_new_with_mnemonic(_("Select always today"));
-    gtk_box_pack_start(GTK_BOX(hbox)
-            , dialog->always_today_checkbutton, FALSE, FALSE, 5);
-    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
-            dialog->always_today_checkbutton), g_par.select_always_today);
-    gtk_tooltips_set_tip(dialog->Tooltips, dialog->always_today_checkbutton
-            , _("When showing main calendar, set pointer to either previously selected day or always to current day.")
-            , NULL);
-    g_signal_connect(G_OBJECT(dialog->always_today_checkbutton), "toggled"
-            , G_CALLBACK(always_today_changed), dialog);
-            */
-
     dialog->select_day_today_radiobutton =
             gtk_radio_button_new_with_mnemonic(NULL, _("Select Today's Date"));
     gtk_box_pack_start(GTK_BOX(vbox)
@@ -816,10 +830,10 @@ static void create_parameter_dialog_extra_setup_tab(Itf *dialog)
 
     /***** use dynamic tray icon *****/
     hbox = gtk_vbox_new(FALSE, 0);
-    dialog->icon_size_frame = orage_create_framebox_with_content(
+    dialog->use_dynamic_icon_frame = orage_create_framebox_with_content(
             _("Use dynamic tray icon"), hbox);
     gtk_box_pack_start(GTK_BOX(dialog->extra_vbox)
-            , dialog->icon_size_frame, FALSE, FALSE, 5);
+            , dialog->use_dynamic_icon_frame, FALSE, FALSE, 5);
 
     dialog->use_dynamic_icon_checkbutton = 
             gtk_check_button_new_with_mnemonic(_("Use dynamic icon"));
@@ -882,15 +896,30 @@ static void create_parameter_dialog_extra_setup_tab(Itf *dialog)
             , dialog->el_extra_days_spin, FALSE, FALSE, 5);
     gtk_spin_button_set_value(GTK_SPIN_BUTTON(dialog->el_extra_days_spin)
             , g_par.el_days);
-    /*
-    label = gtk_label_new(_("extra days"));
-    gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 5);
-    */
     gtk_tooltips_set_tip(dialog->Tooltips, dialog->el_extra_days_spin
             , _("This is just the default value, you can change it in the actual eventlist window.")
             , NULL);
     g_signal_connect(G_OBJECT(dialog->el_extra_days_spin), "value-changed"
             , G_CALLBACK(el_extra_days_spin_changed), dialog);
+
+    /***** use wakeup timer *****/
+    hbox = gtk_vbox_new(FALSE, 0);
+    dialog->use_wakeup_timer_frame = orage_create_framebox_with_content(
+            _("Use wakeup timer"), hbox);
+    gtk_box_pack_start(GTK_BOX(dialog->extra_vbox)
+            , dialog->use_wakeup_timer_frame, FALSE, FALSE, 5);
+
+    dialog->use_wakeup_timer_checkbutton = 
+            gtk_check_button_new_with_mnemonic(_("Use wakeup timer"));
+    gtk_box_pack_start(GTK_BOX(hbox)
+            , dialog->use_wakeup_timer_checkbutton, FALSE, FALSE, 5);
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
+            dialog->use_wakeup_timer_checkbutton), g_par.use_dynamic_icon);
+    gtk_tooltips_set_tip(dialog->Tooltips, dialog->use_wakeup_timer_checkbutton
+            , _("Use this timer if Orage has problems waking up properly after suspend or hibernate. (For example tray icon not refreshed or alarms not firing.)")
+            , NULL);
+    g_signal_connect(G_OBJECT(dialog->use_wakeup_timer_checkbutton), "toggled"
+            , G_CALLBACK(use_wakeup_timer_changed), dialog);
 }
 
 static Itf *create_parameter_dialog(void)
@@ -912,9 +941,6 @@ static Itf *create_parameter_dialog(void)
     orage_logo = orage_create_icon(FALSE, 48);
     gtk_window_set_icon(GTK_WINDOW(dialog->orage_dialog), orage_logo);
     g_object_unref(orage_logo);
-    /*
-    gtk_window_set_icon_name(GTK_WINDOW(dialog->orage_dialog), "xfcalendar");
-    */
 
     gtk_dialog_set_has_separator(GTK_DIALOG(dialog->orage_dialog), FALSE);
 
@@ -1095,8 +1121,8 @@ void read_parameters(void)
     g_par.set_stick = orage_rc_get_bool(orc, "Set sticked", TRUE);
     g_par.set_ontop = orage_rc_get_bool(orc, "Set ontop", FALSE);
     g_par.use_dynamic_icon = orage_rc_get_bool(orc, "Use dynamic icon", TRUE);
-    g_par.use_own_dynamic_icon = orage_rc_get_bool(orc, "Use own dynamic icon"
-            , FALSE);
+    g_par.use_own_dynamic_icon = 
+            orage_rc_get_bool(orc, "Use own dynamic icon", FALSE);
     g_par.own_icon_file = orage_rc_get_str(orc, "Own icon file"
             , PACKAGE_DATA_DIR "/icons/hicolor/160x160/apps/orage.xpm");
     g_par.own_icon_row1_data = orage_rc_get_str(orc
@@ -1136,6 +1162,7 @@ void read_parameters(void)
     }
     g_log_level = orage_rc_get_int(orc, "Logging level", 0);
     g_par.priority_list_limit = orage_rc_get_int(orc, "Priority list limit", 8);
+    g_par.use_wakeup_timer = orage_rc_get_bool(orc, "Use wakeup timer", TRUE);
 
     orage_rc_file_close(orc);
 }
@@ -1229,6 +1256,7 @@ void write_parameters(void)
     }
     orage_rc_put_int(orc, "Logging level", g_log_level);
     orage_rc_put_int(orc, "Priority list limit", g_par.priority_list_limit);
+    orage_rc_put_bool(orc, "Use wakeup timer", g_par.use_wakeup_timer);
 
     orage_rc_file_close(orc);
 }
@@ -1258,5 +1286,6 @@ void set_parameters(void)
     */
     set_stick();
     set_ontop();
+    set_wakeup_timer();
     xfical_set_local_timezone(FALSE);
 }

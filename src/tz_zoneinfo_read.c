@@ -87,7 +87,7 @@ orage_timezone_array tz_array={0, NULL, NULL, NULL, NULL, NULL, NULL};
 static char *zone_tab_buf = NULL, *country_buf = NULL, *zones_tab_buf = NULL;
 
 static int debug = 0; /* bigger number => more output */
-static char version[] = "1.4.4";
+static char version[] = "1.5.1";
 static int file_cnt = 0; /* number of processed files */
 
 static unsigned char *in_buf, *in_head, *in_tail;
@@ -533,6 +533,58 @@ static int write_ical_file(const char *in_file_name
     return(0);
 }
 
+static int file_call_process_file(const char *file_name
+        , const struct stat *sb, int flags)
+{
+    struct stat file_stat;
+
+    if (debug > 0) {
+        if (flags == FTW_SL)
+            printf("\t\tfile_call: processing symbolic link=(%s)\n", file_name);
+        else
+            printf("\t\tfile_call: processing file=(%s)\n", file_name);
+    }
+    in_timezone_name = strdup(&file_name[in_file_base_offset
+            + strlen("zoneinfo/")]);
+    timezone_name = strdup(in_timezone_name);
+    if (check_ical && !timezone_exists_in_ical()) {
+        if (debug > 0)
+            printf("\t\tfile_call: skipping file=(%s) as it does not exist in libical\n", file_name);
+        free(in_timezone_name);
+        free(timezone_name);
+        return(1);
+    }
+    if (flags == FTW_SL) {
+        read_file(file_name, sb);
+    /* we know it is symbolic link, so we actually need stat instead of lstat
+    which nftw gives us!
+    (lstat = information from the real file istead of the link) */ 
+        if (stat(file_name, &file_stat)) {
+            perror("\tstat");
+            free(in_timezone_name);
+            free(timezone_name);
+            return(1);
+        }
+        read_file(file_name, &file_stat);
+    }
+    else
+        read_file(file_name, sb);
+    if (process_file(file_name)) { /* we skipped this file */
+        free(in_timezone_name);
+        free(timezone_name);
+        free(in_buf);
+        return(1);
+    }
+    write_ical_file(file_name, sb);
+
+    free(in_buf);
+    free(out_file);
+    out_file = NULL;
+    free(in_timezone_name);
+    free(timezone_name);
+    return(0);
+}
+
 /* The main code. This is called once per each file found */
 static int file_call(const char *file_name, const struct stat *sb, int flags
         , struct FTW *f)
@@ -543,31 +595,9 @@ static int file_call(const char *file_name, const struct stat *sb, int flags
         printf("\nfile_call: start\n");
     file_cnt++;
     /* we are only interested about files and directories we can access */
-    if (flags == FTW_F) { /* we got file */
-        if (debug > 0)
-            printf("\t\tfile_call: processing file=(%s)\n", file_name);
-        in_timezone_name = strdup(&file_name[in_file_base_offset
-                + strlen("zoneinfo/")]);
-        timezone_name = strdup(in_timezone_name);
-        if (check_ical && !timezone_exists_in_ical()) {
-            free(in_timezone_name);
-            free(timezone_name);
-            return(FTW_CONTINUE);
-        }
-        read_file(file_name, sb);
-        if (process_file(file_name)) { /* we skipped this file */
-            free(in_timezone_name);
-            free(timezone_name);
-            free(in_buf);
-            return(FTW_CONTINUE);
-        }
-        write_ical_file(file_name, sb);
-
-        free(in_buf);
-        free(out_file);
-        out_file = NULL;
-        free(in_timezone_name);
-        free(timezone_name);
+    if (flags == FTW_F || flags == FTW_SL) { /* we got file */
+        if (file_call_process_file(file_name, sb, flags))
+            return(FTW_CONTINUE); /* skip this file */
     }
     else if (flags == FTW_D) { /* this is directory */
         if (debug > 0)
@@ -585,14 +615,9 @@ static int file_call(const char *file_name, const struct stat *sb, int flags
 #else
         /* not easy to do that in BSD, where we do not have FTW_ACTIONRETVAL
            features. It can be done by checking differently */
-    if (debug > 0)
-        printf("FIXME: this directory should be skipped\n");
+        if (debug > 0)
+            printf("FIXME: this directory should be skipped\n");
 #endif
-    }
-    else if (flags == FTW_SL) {
-        if (debug > 0) {
-            printf("\t\tfile_call: skipping symbolic link=(%s)\n", file_name);
-        }
     }
     else {
         if (debug > 0) {
@@ -741,6 +766,10 @@ static int check_parameters(void)
 
 static void read_os_timezones(void)
 {
+#undef P_N
+#define P_N "read_os_timezones: "
+#define MAX_AREA_LENGTH 100
+
     char *tz_dir, *zone_tab_file_name;
     int zoneinfo_len=strlen("zoneinfo/");
     FILE *zone_tab_file;

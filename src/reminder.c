@@ -343,6 +343,9 @@ void alarm_read(void)
     for (i = 0; alarm_groups[i] != NULL; i++) {
         orage_rc_set_group(orc, alarm_groups[i]);
         if ((new_alarm = alarm_read_next_alarm(orc, time_now)) != NULL) {
+            /*
+            g_print(P_N "time_now=%s alarm=%s\n", time_now, new_alarm->alarm_time);
+            */
             create_reminders(new_alarm);
             alarm_free(new_alarm);
         }
@@ -945,10 +948,16 @@ gboolean orage_day_change(gpointer user_data)
 #endif
     t = orage_localtime();
   /* See if the day just changed. 
-     Note that when we are called first time we always have day change. */
-    if (previous_day != t->tm_mday
+     Note that when we are called first time we always have day change. 
+     If user_data is not NULL, we also force day change. */
+    if (user_data
+    || previous_day != t->tm_mday
     || previous_month != t->tm_mon
     || previous_year != t->tm_year + 1900) {
+        if (user_data) {
+            if (g_par.day_timer) /* need to stop it if running */
+                g_source_remove(g_par.day_timer);
+        }
         current_year  = t->tm_year + 1900;
         current_month = t->tm_mon;
         current_day   = t->tm_mday;
@@ -1004,6 +1013,9 @@ static gboolean orage_alarm_clock(gpointer user_data)
         /* remember that it is sorted list */
         cur_alarm = (alarm_struct *)alarm_l->data;
         if (strcmp(time_now, cur_alarm->alarm_time) > 0) {
+            /*
+            g_print(P_N "time_now=%s alarm=%s\n", time_now, cur_alarm->alarm_time);
+            */
             create_reminders(cur_alarm);
             alarm_raised = TRUE;
         }
