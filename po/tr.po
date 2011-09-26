@@ -1,8 +1,8 @@
 # Turkish translations for orage package.
 # Copyright (C) 2003-2006 The Xfce development team.
 # This file is distributed under the same license as the orage package.
-#
-#
+# 
+# 
 # Erçin EKER <erc.caldera@gmx.net>, 2003.
 # Gökmen Görgen <gkmngrgn@gmail.com>, 2008.
 # Samed Beyribey <beyribey@gmail.com>, 2008.
@@ -15,16 +15,16 @@ msgstr ""
 "PO-Revision-Date: 2010-06-12 23:20+0300\n"
 "Last-Translator: Ayhan YALÇINSOY <ayhanyalcinsoy@gmail.com>\n"
 "Language-Team: Turkish <xfce-i18n@xfce.org>\n"
-"Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Language: Turkish\n"
-"X-Poedit-Country: TURKEY\n"
+"Language: tr\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "X-Poedit-SourceCharset: iso-8859-9\n"
 "X-Poedit-Basepath: /home/gkmngrgn/archives/others/poedit_tm/tr\n"
+"X-Poedit-Country: TURKEY\n"
+"X-Poedit-Language: Turkish\n"
 "X-Generator: Lokalize 1.0\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
 
 #: ../globaltime/globaltime.c:100
 msgid "Raising GlobalTime window..."
@@ -61,11 +61,8 @@ msgid "adjust to change hour"
 msgstr "saati ayarla"
 
 #: ../globaltime/globaltime.c:496
-msgid ""
-"adjust to change minute. Click arrows with button 2 to change only 1 minute."
-msgstr ""
-"değişim dakikasını ayarla. Sadece 1 dakika değiştirmek için düğme 2 ile "
-"okları tıklayın."
+msgid "adjust to change minute. Click arrows with button 2 to change only 1 minute."
+msgstr "değişim dakikasını ayarla. Sadece 1 dakika değiştirmek için düğme 2 ile okları tıklayın."
 
 #: ../globaltime/gt_prefs.c:265 ../globaltime/gt_prefs.c:266
 msgid "NEW"
@@ -316,7 +313,7 @@ msgstr "%d saat"
 #: ../panel-plugin/timezone_selection.c:162 ../src/timezone_selection.c:173
 #, c-format
 msgid "%d mins"
-msgstr "%n dakika"
+msgstr "%d dakika"
 
 #: ../globaltime/timezone_selection.c:167
 #: ../panel-plugin/timezone_selection.c:168 ../src/timezone_selection.c:179
@@ -480,17 +477,8 @@ msgid "fix time after suspend/hibernate"
 msgstr "askıya alma ve uyku kipinden sonra saati düzelt"
 
 #: ../panel-plugin/oc_config.c:415
-msgid ""
-"You only need this if you do short term (less than 5 hours) suspend or "
-"hibernate and your visible time does not include seconds. Under these "
-"circumstances it is possible that Orageclock shows time inaccurately unless "
-"you have this selected. (Selecting this prevents cpu and interrupt saving "
-"features from working.)"
-msgstr ""
-"Bu seçeneğe kısa süredeki (5 saatten daha az) askıya alma ve uyku kipi "
-"işlemi için ihtiyaç duyabilirsiniz ve saatiniz saniye içermemelidir. Böyle "
-"ayarlamazsanız, Orage saati yanlış gösterebilir. (bu özelliği seçmek, "
-"işlemci ve kaydetme işlemleri kesiminin çalışmasını engeller.)"
+msgid "You only need this if you do short term (less than 5 hours) suspend or hibernate and your visible time does not include seconds. Under these circumstances it is possible that Orageclock shows time inaccurately unless you have this selected. (Selecting this prevents cpu and interrupt saving features from working.)"
+msgstr "Bu seçeneğe kısa süredeki (5 saatten daha az) askıya alma ve uyku kipi işlemi için ihtiyaç duyabilirsiniz ve saatiniz saniye içermemelidir. Böyle ayarlamazsanız, Orage saati yanlış gösterebilir. (bu özelliği seçmek, işlemci ve kaydetme işlemleri kesiminin çalışmasını engeller.)"
 
 #: ../panel-plugin/oc_config.c:432
 msgid ""
@@ -503,10 +491,8 @@ msgid ""
 "\t%H = hours \t\t\t\t%M = minute\n"
 "\t%X = local time\t\t\t%x = local date"
 msgstr ""
-"Bu uygulama zaman ve tarih bilgisini almak için \"strftime\" fonksiyonu "
-"kullanır.\n"
-"Sen de geçerli kodu kullanarak istediğin biçimde zamanı ve tarihi "
-"alabilirsin.\n"
+"Bu uygulama zaman ve tarih bilgisini almak için \"strftime\" fonksiyonu kullanır.\n"
+"Sen de geçerli kodu kullanarak istediğin biçimde zamanı ve tarihi alabilirsin.\n"
 "İşte birkaç örnek:\n"
 "\t%A = haftanın günü \t\t\t%B = ay\n"
 "\t%c = tarih ve zaman \t\t\t%R = saat ve dakika\n"
@@ -527,7 +513,7 @@ msgstr "Orage saat Özellikleri"
 #. * %B  : full month name
 #. * %Y  : four digit year
 #. * %V  : ISO week number
-#.
+#. 
 #: ../panel-plugin/xfce4-orageclock-plugin.c:627
 msgid "%A %d %B %Y/%V"
 msgstr "%A %d %B %Y/%V"
@@ -765,9 +751,7 @@ msgid "Categories"
 msgstr "Bölümler"
 
 #: ../src/appointment.c:2758
-msgid ""
-"This is special category, which can be used to color this appointment in "
-"list views."
+msgid "This is special category, which can be used to color this appointment in list views."
 msgstr "Bu kategori liste görünümünde renkli gösterileceği için özeldir."
 
 #: ../src/appointment.c:2763
@@ -793,8 +777,7 @@ msgid ""
 "\n"
 "These are converted only later when they are seen:\n"
 "    <&Ynnnn> is translated to current year minus nnnn.\n"
-"(This can be used for example in birthday reminders to tell how old the "
-"person will be.)"
+"(This can be used for example in birthday reminders to tell how old the person will be.)"
 msgstr ""
 "Bu kısayol komutları derhal etkilenecek:\n"
 "    <D> yerel tarih biçiminde mevcut tarihi gir\n"
@@ -803,8 +786,7 @@ msgstr ""
 "\n"
 "Bunlar göründüklerinde dönüştürülür:\n"
 "    <&Ynnnn> geçerli dakika nnnn'ye dönüştürülür.\n"
-"(Bu örnek olarak personelin doğum günü hatırlatmasında kaç yaşında olacağını "
-"söyleyecek.)"
+"(Bu örnek olarak personelin doğum günü hatırlatmasında kaç yaşında olacağını söyleyecek.)"
 
 #: ../src/appointment.c:2869
 msgid "Before Start"
@@ -848,12 +830,8 @@ msgid "Persistent alarm"
 msgstr "Sürekli alârm"
 
 #: ../src/appointment.c:2914
-msgid ""
-"Select this if you want Orage to remind you even if it has not been active "
-"when the alarm happened."
-msgstr ""
-"Bu seçeneği eğer alârm devrede olduğu sırada işlem etkin değilse Orage'ın "
-"sizi uyarması için kullanabilirsiniz."
+msgid "Select this if you want Orage to remind you even if it has not been active when the alarm happened."
+msgstr "Bu seçeneği eğer alârm devrede olduğu sırada işlem etkin değilse Orage'ın sizi uyarması için kullanabilirsiniz."
 
 #. **** Audio Alarm ****
 #: ../src/appointment.c:2923
@@ -1107,19 +1085,13 @@ msgid "TODO base"
 msgstr "YAPILACAK temel"
 
 #: ../src/appointment.c:3326
-msgid ""
-"TODO reoccurs regularly starting on start time and repeating after each "
-"interval no matter when it was last completed"
-msgstr ""
-"YAPILACAK başlama zamanında düzenli olarak yeniden başlayacak ve her "
-"aralıkta sorunsuz tamamlandıktan sonra tekrarlayacak."
+msgid "TODO reoccurs regularly starting on start time and repeating after each interval no matter when it was last completed"
+msgstr "YAPILACAK başlama zamanında düzenli olarak yeniden başlayacak ve her aralıkta sorunsuz tamamlandıktan sonra tekrarlayacak."
 
 #: ../src/appointment.c:3328
 msgid ""
-"TODO reoccurrency is based on complete time and repeats after the interval "
-"counted from the last completed time.\n"
-"(Note that you can not tell anything about the history of the TODO since "
-"reoccurrence base changes after each completion.)"
+"TODO reoccurrency is based on complete time and repeats after the interval counted from the last completed time.\n"
+"(Note that you can not tell anything about the history of the TODO since reoccurrence base changes after each completion.)"
 msgstr ""
 
 #. exceptions
@@ -1130,8 +1102,7 @@ msgstr "İstisnalar"
 #: ../src/appointment.c:3348
 msgid ""
 "Add more exception dates by clicking the calendar days below.\n"
-"Exception is either exclusion(-) or inclusion(+) depending on the "
-"selection.\n"
+"Exception is either exclusion(-) or inclusion(+) depending on the selection.\n"
 "Remove by clicking the data."
 msgstr ""
 
@@ -1148,12 +1119,8 @@ msgid "Add included time (+)"
 msgstr "(+) içeren zaman ekle"
 
 #: ../src/appointment.c:3363
-msgid ""
-"Included times have same timezone than start time, but they may have "
-"different time"
-msgstr ""
-"Zaman başladıktan sonra aynı zaman dilimindeki zamanları kapsar, ancak "
-"farklı zamanlar olabilir"
+msgid "Included times have same timezone than start time, but they may have different time"
+msgstr "Zaman başladıktan sonra aynı zaman dilimindeki zamanları kapsar, ancak farklı zamanlar olabilir"
 
 #. calendars showing the action days
 #: ../src/appointment.c:3380
@@ -1223,8 +1190,7 @@ msgstr "Satır seçilmedi."
 
 #: ../src/event-list.c:749
 msgid "Click a row to select it and after that you can copy it."
-msgstr ""
-"Seçmek için bir satıra tıklamalısınız, daha sonra onu kopyalayabilirsiniz."
+msgstr "Seçmek için bir satıra tıklamalısınız, daha sonra onu kopyalayabilirsiniz."
 
 #: ../src/event-list.c:918
 msgid ""
@@ -1362,15 +1328,12 @@ msgstr "Orage öntanımlı alârm"
 #: ../src/ical-code.c:3117
 #, c-format
 msgid "Build alarm list: Added %d alarms. Processed %d events."
-msgstr ""
-"alârm listesi oluşturuldu:  %d alarm eklendi, %d görev gerçekleştirildi."
+msgstr "alârm listesi oluşturuldu:  %d alarm eklendi, %d görev gerçekleştirildi."
 
 #: ../src/ical-code.c:3119
 #, c-format
-msgid ""
-"\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
-msgstr ""
-"\t%2$d etkin uyarıdan %1$d tanesi bulundu. (%3$d tekrarlanan alârm arandı)"
+msgid "\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
+msgstr "\t%2$d etkin uyarıdan %1$d tanesi bulundu. (%3$d tekrarlanan alârm arandı)"
 
 #: ../src/ical-expimp.c:141
 msgid "Starting import file preprocessing"
@@ -1575,14 +1538,11 @@ msgstr "Sadece okuma izni"
 
 #: ../src/interface.c:1294
 msgid ""
-"Set this if you want to make sure that this file is never modified by "
-"Orage.\n"
-"Note that modifying foreign files may make them incompatible with the "
-"original tool, where they came from!"
+"Set this if you want to make sure that this file is never modified by Orage.\n"
+"Note that modifying foreign files may make them incompatible with the original tool, where they came from!"
 msgstr ""
 "Bu özelliği eğer Orage dosyaya hiç müdahale etmemişse kullanın.\n"
-"Eğer harici dosyaya müdahale etmiş iseniz, dosyayı aldığınız programla o "
-"dosya uyumsuzluk gösterebilir!"
+"Eğer harici dosyaya müdahale etmiş iseniz, dosyayı aldığınız programla o dosya uyumsuzluk gösterebilir!"
 
 #: ../src/interface.c:1308
 msgid "Exchange data - Orage"
@@ -1698,9 +1658,7 @@ msgstr "--remove-foreign (-r) dosya \tsonradan eklenmiş dosyayı sil\n"
 
 #: ../src/main.c:239
 #, c-format
-msgid ""
-"--export (-e) file [appointment...] \texport appointments from Orage to "
-"file\n"
+msgid "--export (-e) file [appointment...] \texport appointments from Orage to file\n"
 msgstr ""
 
 #: ../src/main.c:241
@@ -1715,12 +1673,8 @@ msgstr "\torage dbus'ı kapsamamaktadır. \n"
 
 #: ../src/main.c:244
 #, c-format
-msgid ""
-"\twithout dbus [files] and foreign file options(-a & -r) can only be used "
-"when starting orage \n"
-msgstr ""
-"\tdbus olmadığı zaman orage sadece [dosyalar] ve diğer dosya seçenekleri (-a "
-"& -r) parametreleriyle çalışabilir \n"
+msgid "\twithout dbus [files] and foreign file options(-a & -r) can only be used when starting orage \n"
+msgstr "\tdbus olmadığı zaman orage sadece [dosyalar] ve diğer dosya seçenekleri (-a & -r) parametreleriyle çalışabilir \n"
 
 #: ../src/main.c:436
 #, c-format
@@ -1837,8 +1791,7 @@ msgstr "(0 = arşivleme yok)"
 
 #: ../src/parameters.c:535
 msgid "Archiving is used to save time and space when handling events."
-msgstr ""
-"Arşivleme olayların işlenmesinde yer ve zaman kazanmak için kullanılmaktadır."
+msgstr "Arşivleme olayların işlenmesinde yer ve zaman kazanmak için kullanılmaktadır."
 
 #: ../src/parameters.c:544
 msgid "Sound command"
@@ -1978,11 +1931,8 @@ msgid "Number of extra days to show in event list"
 msgstr "Olay listesinde gösterilecek ilave günlerin sayısı"
 
 #: ../src/parameters.c:890
-msgid ""
-"This is just the default value, you can change it in the actual eventlist "
-"window."
-msgstr ""
-"Bu geçerli değer, gerçek olay listesi penceresinde değiştirebilirsiniz."
+msgid "This is just the default value, you can change it in the actual eventlist window."
+msgstr "Bu geçerli değer, gerçek olay listesi penceresinde değiştirebilirsiniz."
 
 #: ../src/parameters.c:907
 msgid "Orage Preferences"
@@ -3668,12 +3618,8 @@ msgstr "Orage  Takvim"
 #~ msgid "Select always today"
 #~ msgstr "Herzaman bugünü seç"
 
-#~ msgid ""
-#~ "When showing main calendar, set pointer to either previously selected day "
-#~ "or always to current day."
-#~ msgstr ""
-#~ "Esas takvim gösterilirken, işaretçiyi önceden seçilmiş bir güne veya "
-#~ "bugüne ayarlar."
+#~ msgid "When showing main calendar, set pointer to either previously selected day or always to current day."
+#~ msgstr "Esas takvim gösterilirken, işaretçiyi önceden seçilmiş bir güne veya bugüne ayarlar."
 
 #~ msgid "Ending time adjustment mode"
 #~ msgstr "Bitiş saati ayarlama modu"
@@ -3703,12 +3649,8 @@ msgstr "Orage  Takvim"
 #~ msgid "Modify Preferences"
 #~ msgstr "Değiştirilmiş Özellikler"
 
-#~ msgid ""
-#~ "Enter local timezone. (it is used to show if time is on previous(-) or "
-#~ "next date(+) by adding a +/- after the time)"
-#~ msgstr ""
-#~ "Yerel saati giriniz. (saatten sonra +/- kullanılmışsa önceki(-) ve sonraki"
-#~ "(+) tarih biçiminde gösterilir)"
+#~ msgid "Enter local timezone. (it is used to show if time is on previous(-) or next date(+) by adding a +/- after the time)"
+#~ msgstr "Yerel saati giriniz. (saatten sonra +/- kullanılmışsa önceki(-) ve sonraki(+) tarih biçiminde gösterilir)"
 
 #~ msgid "Set any valid timezone (=TZ) value or pick one from the list."
 #~ msgstr "Geçerli zaman dilimi (=TZ) değeri belirt veya listeden seç."
@@ -3743,14 +3685,8 @@ msgstr "Orage  Takvim"
 #~ msgid "(0 = use static icon)"
 #~ msgstr "(0 = statik simgeyi kullan)"
 
-#~ msgid ""
-#~ "Dynamic icon shows current day and month. It is visible only in tray. If "
-#~ "tray is too small for dynamic icon size, Orage switches automatically "
-#~ "back to static icon."
-#~ msgstr ""
-#~ "Dinamik simge bugünü ve içinde bulunulan ayı gösterir. Sistem "
-#~ "çekmecesinden gösterilmektedir. Eğer sistem çekmecesi boyutu çok küçük "
-#~ "ise, Orage statik simgeye dönecektir."
+#~ msgid "Dynamic icon shows current day and month. It is visible only in tray. If tray is too small for dynamic icon size, Orage switches automatically back to static icon."
+#~ msgstr "Dinamik simge bugünü ve içinde bulunulan ayı gösterir. Sistem çekmecesinden gösterilmektedir. Eğer sistem çekmecesi boyutu çok küçük ise, Orage statik simgeye dönecektir."
 
 #~ msgid "Calendar Settings"
 #~ msgstr "Takvim Ayarları"
@@ -3758,39 +3694,30 @@ msgstr "Orage  Takvim"
 #~ msgid "Xfce 4 Calendar Settings"
 #~ msgstr "Xfce4 Takvim Ayarları"
 
-#, fuzzy
 #~ msgid "Monday"
 #~ msgstr "Bugün"
 
-#, fuzzy
 #~ msgid "Tuesday"
 #~ msgstr "Bugün"
 
-#, fuzzy
 #~ msgid "Wednesday"
 #~ msgstr "Bugün"
 
-#, fuzzy
 #~ msgid "Thursday"
 #~ msgstr "Bugün"
 
-#, fuzzy
 #~ msgid "Friday"
 #~ msgstr "Bugün"
 
-#, fuzzy
 #~ msgid "Sunday"
 #~ msgstr "Pazar"
 
-#, fuzzy
 #~ msgid "Days"
 #~ msgstr "Bugün"
 
-#, fuzzy
 #~ msgid "Calendar Files"
 #~ msgstr "Xfcalendar"
 
-#, fuzzy
 #~ msgid "Calendar borders"
 #~ msgstr "Xfcalendar"
 
