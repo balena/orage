@@ -11,12 +11,12 @@ msgstr ""
 "Project-Id-Version: orage 4.8.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-09-11 16:42+0300\n"
-"PO-Revision-Date: 2011-05-20 16:20+0100\n"
+"PO-Revision-Date: 2011-10-05 08:02+0200\n"
 "Last-Translator: Tomáš Vadina <kyberdev@gmail.com>\n"
-"Language-Team: Slovak <xfce-i18n@xfce.org>\n"
+"Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 1 : (n>=2 && n<=4) ? 2 : 0;\n"
 "X-Poedit-Language: Slovak\n"
@@ -936,6 +936,14 @@ msgid ""
 "\t<&ST> appointment start time\n"
 "\t<&ET> appointment end time"
 msgstr ""
+"Musíte zadať všetky ukončovacie a podobné znaky.\n"
+"Tento reťazec je jednoducho daný do interpretera do procesu.\n"
+"Nasledujúce špeciálne príkazy sú nahradené počas behu:\n"
+"\t<&T>  názov udalosti\n"
+"\t<&D>  popis udalosti\n"
+"\t<&AT> čas pripomienky\n"
+"\t<&ST> začiatok udalosti\n"
+"\t<&ET> koniec udalosti"
 
 #: ../src/appointment.c:3068
 msgid "Test this alarm by raising it now"
@@ -975,7 +983,7 @@ msgstr "Ročne"
 
 #: ../src/appointment.c:3150
 msgid "Hourly"
-msgstr ""
+msgstr "Po hodine"
 
 #: ../src/appointment.c:3152
 msgid "Mon"
@@ -1712,6 +1720,8 @@ msgid ""
 "--export (-e) file [appointment...] \texport appointments from Orage to "
 "file\n"
 msgstr ""
+"--export (-e) súbor [udalosť...] \texportuje udalosti z aplikácie Orage do "
+"súboru\n"
 
 #: ../src/main.c:241
 #, c-format
