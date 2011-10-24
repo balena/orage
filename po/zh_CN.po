@@ -158,12 +158,12 @@ msgstr "使用默认值"
 #: ../globaltime/gt_prefs.c:735 ../globaltime/gt_prefs.c:768
 #: ../globaltime/gt_prefs.c:802 ../globaltime/gt_prefs.c:832
 msgid "Cross this to use default instead of selected value"
-msgstr "划掉本项取消选中的值而改用缺省值"
+msgstr "划掉本项取消选中的值而改用默认值"
 
 #. ------------------------foreground-------------------------
 #: ../globaltime/gt_prefs.c:681 ../globaltime/gt_prefs.c:889
 msgid "Foreground (=text) color:"
-msgstr "前景(文字)色："
+msgstr "前景(文本)色："
 
 #: ../globaltime/gt_prefs.c:688
 msgid "Click to change foreground colour for clock"
@@ -207,7 +207,7 @@ msgstr "点击更改时钟的默认背景色"
 
 #: ../globaltime/gt_prefs.c:877 ../globaltime/gt_prefs.c:910
 msgid "Cross this to use system default instead of selected color"
-msgstr "划去本项取消所选颜色而用系统默认值"
+msgstr "划掉本项取消选中的颜色而用系统默认值"
 
 #: ../globaltime/gt_prefs.c:896
 msgid "Click to change default text colour for clocks"
@@ -291,7 +291,7 @@ msgstr "本地时区："
 #: ../globaltime/timezone_selection.c:101
 #: ../panel-plugin/timezone_selection.c:102 ../src/timezone_selection.c:102
 msgid " Other"
-msgstr "其它"
+msgstr " 其它"
 
 #: ../globaltime/timezone_selection.c:156
 #: ../panel-plugin/timezone_selection.c:157 ../src/timezone_selection.c:168
@@ -482,7 +482,7 @@ msgid ""
 msgstr ""
 "短期挂起或休眠(小于 5 小时)而且所显示的时间不包含秒的时候才需要"
 "这个选项。这些情况下，除非您选了本选项，Orage 时钟显示的时间可能"
-"不准确。(本选项将使 CPU 和中断保留功能失效。)"
+"不准确。(本选项将使 cpu 和中断保留功能失效。)"
 
 #: ../panel-plugin/oc_config.c:432
 msgid ""
@@ -1236,7 +1236,7 @@ msgstr "查找"
 
 #: ../src/event-list.c:1125
 msgid "Dayview"
-msgstr "按日浏览"
+msgstr "日视图"
 
 #: ../src/event-list.c:1158
 msgid "Extra days to show "
@@ -1280,15 +1280,15 @@ msgstr ""
 "双击编辑本行。\n"
 "\n"
 "标签顺序：\n"
-"\t 1. 闹铃： n - 无闹铃\n"
-"\t\t A - 视觉闹铃，S - 同时声音提示\n"
-"\t 2. 重复发生： n - 不重复\n"
-"\t\t D - 每天，W - 每周，M - 每月，Y - 每年\n"
-"\t 3. 类型： f - 空闲，B - 忙\n"
+"\t 1. 闹铃： n 为无闹铃\n"
+"\t\t A 为视觉闹铃，S 为同时声音提示\n"
+"\t 2. 重复发生： n 为不重复\n"
+"\t\t D 为每天，W 为每周，M 为每月，Y 为每年\n"
+"\t 3. 类型： f 为空闲，B 为忙\n"
 "\t 4. 定位于该文件中：\n"
-"\t\tO - Orage，A - 归档文件，F - 外部文件\n"
+"\t\tO 为Orage，A 为归档文件，F 为外部文件\n"
 "\t 5. 约会类型：\n"
-"\t\tE - 事件，T - 待办事项，J - 日志"
+"\t\tE 为事件，T 为待办事项，J 为日志"
 
 #: ../src/functions.c:146
 msgid "Pick the date"
@@ -1297,7 +1297,7 @@ msgstr "选择日期"
 #. remove since it has ended
 #: ../src/ical-archive.c:278
 msgid "\tRecur ended, moving to archive file."
-msgstr "\t闹铃不再重复，移入归档文件。"
+msgstr "\t重复结束，正在移入归档文件。"
 
 #: ../src/ical-archive.c:340
 msgid "Archiving not enabled. Exiting"
@@ -1306,7 +1306,7 @@ msgstr "没有启用归档功能。正在退出"
 #: ../src/ical-archive.c:358
 #, c-format
 msgid "Archiving threshold: %d month(s)"
-msgstr "归档阈值： %d 月"
+msgstr "归档阈值：%d 月"
 
 #. yy mon day
 #: ../src/ical-archive.c:361
@@ -1317,7 +1317,7 @@ msgstr "\t归档 %04d-%02d-%02d 之前的事件。"
 #: ../src/ical-archive.c:388
 #, c-format
 msgid "Archiving uid: %s"
-msgstr "归档 UID： %s"
+msgstr "归档 UID：%s"
 
 #. VTODO not completed, do not archive
 #: ../src/ical-archive.c:394
@@ -1332,12 +1332,12 @@ msgstr "\t重复发生。结束时间：%04d 年 %02d 月 %02d 日"
 
 #: ../src/ical-archive.c:416
 msgid "Archiving done\n"
-msgstr "完成归档\n"
+msgstr "归档完成\n"
 
 #. PHASE 1: go through base orage file and remove "repeat" shortcuts
 #: ../src/ical-archive.c:432
 msgid "Starting archive removal."
-msgstr "开始移除归档。"
+msgstr "开始归档移除。"
 
 #: ../src/ical-archive.c:433
 msgid "\tPHASE 1: reset recurring appointments"
@@ -1423,7 +1423,7 @@ msgid ""
 " NOTE: comma is not valid character in filenames for Orage."
 msgstr ""
 "用逗号(,)隔开文件名。\n"
-" 注意： 对 Orage 来说在文件名中逗号不是有效的字符。"
+" 注意：对 Orage 来说在文件名中逗号不是有效的字符。"
 
 #: ../src/interface.c:1008
 msgid "Export"
@@ -1543,7 +1543,7 @@ msgstr "移动"
 
 #: ../src/interface.c:1176
 msgid "Current file is moved and vanishes from the old place."
-msgstr "当前文件被移走并在原位置消失。"
+msgstr "当前文件被移走并从原位置消失。"
 
 #: ../src/interface.c:1190
 msgid "Archive file"
@@ -1577,7 +1577,7 @@ msgid ""
 "original tool, where they came from!"
 msgstr ""
 "如果您确定 Orage 将永不修改此文件则设置此项。\n"
-"注意修改外部文件将使它们其来源的源工具不兼容。"
+"注意修改外部文件将使与其来源的源工具不兼容。"
 
 #: ../src/interface.c:1308
 msgid "Exchange data - Orage"
@@ -1701,7 +1701,7 @@ msgstr "--export (-e) 文件 [约会...] \t从 Orage 导出约会至文件\n"
 #: ../src/main.c:241
 #, c-format
 msgid "files=ical files to load into orage\n"
-msgstr "文件 = 要载入进 orage 的 ical 文件\n"
+msgstr "文件为要载入进 orage 的 ical 文件\n"
 
 #: ../src/main.c:243
 #, c-format
@@ -1775,7 +1775,7 @@ msgstr ""
 "标题： %s\n"
 " 开始：\t%s\n"
 " 到期：\t%s\n"
-" 完成：\t%s\n"
+" 做完：\t%s\n"
 "注意：\n"
 "%s"
 
@@ -1804,9 +1804,9 @@ msgid "<b>Events for %s:</b>"
 msgstr "<b>%s 的事件：</b>"
 
 #: ../src/mainbox.c:589
-#, fuzzy, c-format
+#, c-format
 msgid "<b>Events for %s - %s:</b>"
-msgstr "<b>%s 的事件 - %s：</b>"
+msgstr "<b>%s - %s 的事件：</b>"
 
 #: ../src/parameters.c:492
 msgid "Main settings"
@@ -1874,7 +1874,7 @@ msgstr "显示待办事项列表"
 
 #: ../src/parameters.c:630
 msgid "Number of days to show in event window"
-msgstr "在事件窗口显示的天数"
+msgstr "在事件窗口中显示的天数"
 
 #: ../src/parameters.c:636
 msgid "0 = do not show event list at all"
@@ -1942,7 +1942,7 @@ msgstr "使用动态图标"
 
 #: ../src/parameters.c:831
 msgid "Dynamic icon shows current month and day of the month."
-msgstr "动态图标显示该月的当前的月份和天"
+msgstr "动态图标显示该月的当前月份和天"
 
 #: ../src/parameters.c:840
 msgid "Main Calendar double click shows"
