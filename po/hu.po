@@ -1,7 +1,7 @@
 # Hungarian translation of orage
 # Copyright 2003-2009. Free Software Foundation, Inc.
 # This file is distributed under the same license as the orage package.
-#
+# 
 # SZERVÁC Attila <sas at 321 dot hu>, 2006.
 # András Mohari <mayday at mailpoint dot hu>, 2006.
 # Gabor Kelemen <kelemeng at gnome dot hu>, 2009, 2010.
@@ -13,10 +13,10 @@ msgstr ""
 "PO-Revision-Date: 2010-11-27 01:57+0100\n"
 "Last-Translator: Gabor Kelemen <kelemeng at gnome dot hu>\n"
 "Language-Team: Hungarian <gnome at fsf dot hu>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: KBabel 1.11.4\n"
 
@@ -522,7 +522,7 @@ msgstr "Orage óra beállításai"
 #. * %B  : full month name
 #. * %Y  : four digit year
 #. * %V  : ISO week number
-#.
+#. 
 #: ../panel-plugin/xfce4-orageclock-plugin.c:627
 msgid "%A %d %B %Y/%V"
 msgstr "%Y/%V, %B %d., %A"
@@ -933,6 +933,14 @@ msgid ""
 "\t<&ST> appointment start time\n"
 "\t<&ET> appointment end time"
 msgstr ""
+"Minden escape stb. karaktert magának kell megadnia.\n"
+"Ez a karakterlánc átadásra kerül feldolgozásra a parancsértelmezőnek.\n"
+"A következő speciális parancsok helyettesítésre kerülnek futás közben:\n"
+"\t<&T>  találkozó címe\n"
+"\t<&D>  találkozó leírása\n"
+"\t<&AT> értesítés ideje\n"
+"\t<&ST> találkozó kezdési ideje\n"
+"\t<&ET> találkozó befejezési ideje"
 
 #: ../src/appointment.c:3068
 msgid "Test this alarm by raising it now"
@@ -972,7 +980,7 @@ msgstr "Évente"
 
 #: ../src/appointment.c:3150
 msgid "Hourly"
-msgstr ""
+msgstr "Óránként"
 
 #: ../src/appointment.c:3152
 msgid "Mon"
@@ -1708,7 +1716,7 @@ msgstr "--remove-foreign (-r) fájl \tKülső fájl eltávolítása\n"
 msgid ""
 "--export (-e) file [appointment...] \texport appointments from Orage to "
 "file\n"
-msgstr ""
+msgstr "--export (-e) fájl [találkozó…] \ta találkozók exportálása az Orage-ből a fájlba\n"
 
 #: ../src/main.c:241
 #, c-format
