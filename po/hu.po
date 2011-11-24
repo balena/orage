@@ -1,7 +1,7 @@
 # Hungarian translation of orage
 # Copyright 2003-2009. Free Software Foundation, Inc.
 # This file is distributed under the same license as the orage package.
-# 
+#
 # SZERVÁC Attila <sas at 321 dot hu>, 2006.
 # András Mohari <mayday at mailpoint dot hu>, 2006.
 # Gabor Kelemen <kelemeng at gnome dot hu>, 2009, 2010.
@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: orage\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-11 16:42+0300\n"
+"POT-Creation-Date: 2011-11-24 14:48+0200\n"
 "PO-Revision-Date: 2010-11-27 01:57+0100\n"
 "Last-Translator: Gabor Kelemen <kelemeng at gnome dot hu>\n"
 "Language-Team: Hungarian <gnome at fsf dot hu>\n"
@@ -522,7 +522,7 @@ msgstr "Orage óra beállításai"
 #. * %B  : full month name
 #. * %Y  : four digit year
 #. * %V  : ISO week number
-#. 
+#.
 #: ../panel-plugin/xfce4-orageclock-plugin.c:627
 msgid "%A %d %B %Y/%V"
 msgstr "%Y/%V, %B %d., %A"
@@ -552,7 +552,7 @@ msgstr "Orage"
 
 #. to avoid timing problems when updating entry
 #. Create file chooser
-#: ../src/appointment.c:650 ../src/interface.c:277 ../src/parameters.c:411
+#: ../src/appointment.c:650 ../src/interface.c:277 ../src/parameters.c:416
 msgid "Select a file..."
 msgstr "Válasszon fájlt…"
 
@@ -727,15 +727,15 @@ msgstr "Beállítva"
 msgid "Duration"
 msgstr "Időtartam"
 
-#: ../src/appointment.c:2698 ../src/appointment.c:2886 ../src/reminder.c:758
+#: ../src/appointment.c:2698 ../src/appointment.c:2886 ../src/reminder.c:761
 msgid "days"
 msgstr "nap"
 
-#: ../src/appointment.c:2700 ../src/appointment.c:2888 ../src/reminder.c:760
+#: ../src/appointment.c:2700 ../src/appointment.c:2888 ../src/reminder.c:763
 msgid "hours"
 msgstr "óra"
 
-#: ../src/appointment.c:2702 ../src/appointment.c:2890 ../src/reminder.c:762
+#: ../src/appointment.c:2702 ../src/appointment.c:2890 ../src/reminder.c:765
 msgid "mins"
 msgstr "perc"
 
@@ -1603,7 +1603,7 @@ msgstr ""
 msgid "Exchange data - Orage"
 msgstr "Adatcsere – Orage"
 
-#: ../src/main.c:193
+#: ../src/main.c:260
 #, c-format
 msgid ""
 "\tThis is %s version %s\n"
@@ -1612,62 +1612,62 @@ msgstr ""
 "\tEz az %s %s verziója\n"
 "\n"
 
-#: ../src/main.c:195
+#: ../src/main.c:262
 #, c-format
 msgid "\tReleased under the terms of the GNU General Public License.\n"
 msgstr "\tKiadva a GNU General Public License feltételei szerint.\n"
 
-#: ../src/main.c:196
+#: ../src/main.c:263
 #, c-format
 msgid "\tCompiled against GTK+-%d.%d.%d, "
 msgstr "\tÖsszeállítva a GTK+-%d.%d.%d használatával,"
 
-#: ../src/main.c:198
+#: ../src/main.c:265
 #, c-format
 msgid "using GTK+-%d.%d.%d.\n"
 msgstr "fut a GTK+-%d.%d.%d használatával.\n"
 
-#: ../src/main.c:201
+#: ../src/main.c:268
 #, c-format
 msgid "\tUsing DBUS for import.\n"
 msgstr "\tD-Bus használatban az importáláshoz.\n"
 
-#: ../src/main.c:203
+#: ../src/main.c:270
 #, c-format
 msgid "\tNot using DBUS. Import works only partially.\n"
 msgstr "\tA D-Bus nincs használatban. Az importálás csak részben működik.\n"
 
-#: ../src/main.c:206
+#: ../src/main.c:273
 #, c-format
 msgid "\tUsing libnotify.\n"
 msgstr "\tA libnotify használatban.\n"
 
-#: ../src/main.c:208
+#: ../src/main.c:275
 #, c-format
 msgid "\tNot using libnotify.\n"
 msgstr "\tA libnotify nincs használatban.\n"
 
-#: ../src/main.c:211
+#: ../src/main.c:278
 #, c-format
 msgid "\tUsing automatic archiving.\n"
 msgstr "\tAutomatikus archiválás használatban.\n"
 
-#: ../src/main.c:213
+#: ../src/main.c:280
 #, c-format
 msgid "\tNot using archiving.\n"
 msgstr "\tAz archiválás nincs használatban.\n"
 
-#: ../src/main.c:216
+#: ../src/main.c:283
 #, c-format
 msgid "\tUsing operating system package libical.\n"
 msgstr "\tA libical operációs rendszerbeli verziójának használata.\n"
 
-#: ../src/main.c:218
+#: ../src/main.c:285
 #, c-format
 msgid "\tUsing Orage local version of libical.\n"
 msgstr "\tA libical Orage-beli helyi verziójának használata.\n"
 
-#: ../src/main.c:231
+#: ../src/main.c:298
 #, c-format
 msgid ""
 "Usage: orage [options] [files]\n"
@@ -1676,59 +1676,61 @@ msgstr ""
 "Használat: orage [kapcsolók] [fájlok]\n"
 "\n"
 
-#: ../src/main.c:232
+#: ../src/main.c:299
 #, c-format
 msgid "Options:\n"
 msgstr "Kapcsolók:\n"
 
-#: ../src/main.c:233
+#: ../src/main.c:300
 #, c-format
 msgid "--version (-v) \t\tshow version of orage\n"
 msgstr "--version (-v) \t\tAz orage verziójának megjelenítése\n"
 
-#: ../src/main.c:234
+#: ../src/main.c:301
 #, c-format
 msgid "--help (-h) \t\tprint this text\n"
 msgstr "--help (-h) \t\tEzen súgó kiírása\n"
 
-#: ../src/main.c:235
+#: ../src/main.c:302
 #, c-format
 msgid "--preferences (-p) \tshow preferences form\n"
 msgstr "--preferences (-p) \tA beállítások ablak megjelenítése\n"
 
-#: ../src/main.c:236
+#: ../src/main.c:303
 #, c-format
 msgid "--toggle (-t) \t\tmake orage visible/unvisible\n"
 msgstr "--toggle (-t) \t\tAz Orage megjelenítése/elrejtése\n"
 
-#: ../src/main.c:237
+#: ../src/main.c:304
 #, c-format
 msgid "--add-foreign (-a) file [RW] \tadd a foreign file\n"
 msgstr "--add-foreign (-a) fájl [RW] \tKülső fájl hozzáadása\n"
 
-#: ../src/main.c:238
+#: ../src/main.c:305
 #, c-format
 msgid "--remove-foreign (-r) file \tremove a foreign file\n"
 msgstr "--remove-foreign (-r) fájl \tKülső fájl eltávolítása\n"
 
-#: ../src/main.c:239
+#: ../src/main.c:306
 #, c-format
 msgid ""
 "--export (-e) file [appointment...] \texport appointments from Orage to "
 "file\n"
-msgstr "--export (-e) fájl [találkozó…] \ta találkozók exportálása az Orage-ből a fájlba\n"
+msgstr ""
+"--export (-e) fájl [találkozó…] \ta találkozók exportálása az Orage-ből a "
+"fájlba\n"
 
-#: ../src/main.c:241
+#: ../src/main.c:308
 #, c-format
 msgid "files=ical files to load into orage\n"
 msgstr "fájlok = Az Orage-be betöltendő ical fájlok\n"
 
-#: ../src/main.c:243
+#: ../src/main.c:310
 #, c-format
 msgid "\tdbus not included in orage. \n"
 msgstr "\tAz Orage nem tartalmazza a D-Bus támogatást.\n"
 
-#: ../src/main.c:244
+#: ../src/main.c:311
 #, c-format
 msgid ""
 "\twithout dbus [files] and foreign file options(-a & -r) can only be used "
@@ -1737,7 +1739,7 @@ msgstr ""
 "\tA D-Bus nélkül a [fájlok] és külső fájl kapcsolók (-a és -r) csak az Orage "
 "indításakor használhatók.\n"
 
-#: ../src/main.c:436
+#: ../src/main.c:503
 #, c-format
 msgid ""
 "\n"
@@ -1828,216 +1830,226 @@ msgstr "<b>%s eseményei:</b>"
 msgid "<b>Events for %s - %s:</b>"
 msgstr "<b>%s eseményei – %s:</b>"
 
-#: ../src/parameters.c:492
+#: ../src/parameters.c:520
 msgid "Main settings"
 msgstr "Elsődleges beállítások"
 
-#: ../src/parameters.c:498
+#: ../src/parameters.c:526
 msgid "Timezone"
 msgstr "Időzóna"
 
-#: ../src/parameters.c:513
+#: ../src/parameters.c:541
 msgid "You should always define your local timezone."
 msgstr "Mindig meg kell adnia a helyi időzónáját."
 
-#: ../src/parameters.c:522
+#: ../src/parameters.c:550
 msgid "Archive threshold (months)"
 msgstr "Archiválási küszöb (hónap)"
 
-#: ../src/parameters.c:532
+#: ../src/parameters.c:560
 msgid "(0 = no archiving)"
 msgstr "(0 = nincs archiválás)"
 
-#: ../src/parameters.c:535
+#: ../src/parameters.c:563
 msgid "Archiving is used to save time and space when handling events."
 msgstr ""
 "Az archiválás célja az események kezelésekor történő idő- és helyspórolás."
 
-#: ../src/parameters.c:544
+#: ../src/parameters.c:572
 msgid "Sound command"
 msgstr "Hang parancs"
 
-#: ../src/parameters.c:559
+#: ../src/parameters.c:587
 msgid "This command is given to shell to make sound in alarms."
 msgstr ""
 "Ezen parancs futtatása a figyelmeztetések hangjának megszólaltatásához."
 
-#: ../src/parameters.c:575
+#: ../src/parameters.c:603
 msgid "Display settings"
 msgstr "Megjelenítési beállítások"
 
-#: ../src/parameters.c:583
+#: ../src/parameters.c:611
 msgid "Calendar main window"
 msgstr "Naptár főablaka"
 
-#: ../src/parameters.c:588
+#: ../src/parameters.c:616
 msgid "Show borders"
 msgstr "Szegélyek megjelenítése"
 
-#: ../src/parameters.c:595
+#: ../src/parameters.c:623
 msgid "Show menu"
 msgstr "Menü megjelenítése"
 
-#: ../src/parameters.c:602
+#: ../src/parameters.c:630
 msgid "Show month and year"
 msgstr "Hónap és év megjelenítése"
 
-#: ../src/parameters.c:609
+#: ../src/parameters.c:637
 msgid "Show day names"
 msgstr "Napnevek megjelenítése"
 
-#: ../src/parameters.c:616
+#: ../src/parameters.c:644
 msgid "Show week numbers"
 msgstr "Hétszámok megjelenítése"
 
-#: ../src/parameters.c:623
+#: ../src/parameters.c:651
 msgid "Show todo list"
 msgstr "Teendőlista megjelenítése"
 
-#: ../src/parameters.c:630
+#: ../src/parameters.c:658
 msgid "Number of days to show in event window"
 msgstr "Az eseményablakban megjelenítendő napok száma"
 
-#: ../src/parameters.c:636
+#: ../src/parameters.c:664
 msgid "0 = do not show event list at all"
 msgstr "0 = ne jelenjen meg az eseménylista"
 
-#: ../src/parameters.c:646
+#: ../src/parameters.c:674
 msgid "Show on all desktops"
 msgstr "Megjelenítés minden asztalon"
 
-#: ../src/parameters.c:653
+#: ../src/parameters.c:681
 msgid "Keep on top"
 msgstr "Mindig felül tartás"
 
-#: ../src/parameters.c:660
+#: ../src/parameters.c:688
 msgid "Show in taskbar"
 msgstr "Megjelenítés a feladatsávon"
 
-#: ../src/parameters.c:667
+#: ../src/parameters.c:695
 msgid "Show in pager"
 msgstr "Megjelenítés a lapozóban"
 
-#: ../src/parameters.c:674
+#: ../src/parameters.c:702
 msgid "Show in systray"
 msgstr "Megjelenítés az értesítési területen"
 
-#: ../src/parameters.c:709
+#: ../src/parameters.c:737
 msgid "Calendar start"
 msgstr "Naptár indítása"
 
-#: ../src/parameters.c:714
+#: ../src/parameters.c:742
 msgid "Show"
 msgstr "Megjelenítés"
 
-#: ../src/parameters.c:726
+#: ../src/parameters.c:754
 msgid "Hide"
 msgstr "Elrejtés"
 
-#: ../src/parameters.c:738
+#: ../src/parameters.c:766
 msgid "Minimized"
 msgstr "Minimalizálás"
 
-#: ../src/parameters.c:763
+#: ../src/parameters.c:791
 msgid "Extra settings"
 msgstr "További beállítások"
 
-#: ../src/parameters.c:771
+#: ../src/parameters.c:799
 msgid "On Calendar Window Open"
 msgstr "Naptár főablakának megnyitásakor"
 
-#: ../src/parameters.c:790
+#: ../src/parameters.c:804
 msgid "Select Today's Date"
 msgstr "Mai dátum kijelölése"
 
-#: ../src/parameters.c:803
+#: ../src/parameters.c:817
 msgid "Select Previously Selected Date"
 msgstr "Korábban kijelölt dátum kijelölése"
 
-#: ../src/parameters.c:820
+#: ../src/parameters.c:834
 msgid "Use dynamic tray icon"
 msgstr "Dinamikus értesítőikon használata"
 
-#: ../src/parameters.c:825
+#: ../src/parameters.c:839
 msgid "Use dynamic icon"
 msgstr "Dinamikus ikon használata"
 
-#: ../src/parameters.c:831
+#: ../src/parameters.c:845
 msgid "Dynamic icon shows current month and day of the month."
 msgstr "A dinamikus ikon a hónapot és a napot jeleníti meg."
 
-#: ../src/parameters.c:840
+#: ../src/parameters.c:854
 msgid "Main Calendar double click shows"
 msgstr "Az elsődleges naptárra dupla kattintáskor megjelenik"
 
-#: ../src/parameters.c:845
+#: ../src/parameters.c:859
 msgid "Days view"
 msgstr "Napi nézet"
 
-#: ../src/parameters.c:857
+#: ../src/parameters.c:871
 msgid "Event list"
 msgstr "Eseménylista"
 
-#: ../src/parameters.c:874
+#: ../src/parameters.c:888
 msgid "Eventlist window"
 msgstr "Eseménylista ablak"
 
-#: ../src/parameters.c:878
+#: ../src/parameters.c:892
 msgid "Number of extra days to show in event list"
 msgstr "Az eseménylistában megjelenítendő további napok száma"
 
-#: ../src/parameters.c:890
+#: ../src/parameters.c:900
 msgid ""
 "This is just the default value, you can change it in the actual eventlist "
 "window."
 msgstr ""
 "Ez csak az alapértelmezett érték, az eseménylista ablakban módosítható."
 
-#: ../src/parameters.c:907
+#: ../src/parameters.c:908 ../src/parameters.c:913
+msgid "Use wakeup timer"
+msgstr ""
+
+#: ../src/parameters.c:919
+msgid ""
+"Use this timer if Orage has problems waking up properly after suspend or "
+"hibernate. (For example tray icon not refreshed or alarms not firing.)"
+msgstr ""
+
+#: ../src/parameters.c:936
 msgid "Orage Preferences"
 msgstr "Orage beállításai"
 
-#: ../src/parameters.c:1022
+#: ../src/parameters.c:1048
 msgid "First Orage start. Searching default timezone."
 msgstr "Az Orage első indítása. Alapértelmezett időzóna keresése."
 
-#: ../src/parameters.c:1041
+#: ../src/parameters.c:1067
 #, c-format
 msgid "Default timezone set to %s."
 msgstr "Az alapértelmezett időzóna beállítva: %s."
 
-#: ../src/parameters.c:1044
+#: ../src/parameters.c:1070
 msgid "Default timezone not found, please, set it manually."
 msgstr "Nem található alapértelmezett időzóna, állítsa be saját kezűleg."
 
-#: ../src/reminder.c:559
+#: ../src/reminder.c:562
 msgid "Reminder "
 msgstr "Emlékeztető"
 
-#: ../src/reminder.c:588
+#: ../src/reminder.c:591
 msgid "Open"
 msgstr "Megnyitás"
 
-#: ../src/reminder.c:719
+#: ../src/reminder.c:722
 msgid "Reminder - Orage"
 msgstr "Emlékeztető – Orage"
 
-#: ../src/reminder.c:805
+#: ../src/reminder.c:808
 msgid "Remind me again after the specified time"
 msgstr "Emlékeztessen a megadott idő után"
 
 #. Note that this goes to the main area. Temporary for the version
-#: ../src/reminder.c:808
+#: ../src/reminder.c:811
 msgid "Press <Execute> to remind me again after the specified time:"
 msgstr ""
 "Nyomja meg a <Végrehajtás> gombot a megadott idő utáni ismételt "
 "emlékeztetéshez:"
 
-#: ../src/reminder.c:1083
+#: ../src/reminder.c:1095
 msgid "Next active alarms:"
 msgstr "Következő aktív figyelmeztetések:"
 
-#: ../src/reminder.c:1136 ../src/reminder.c:1141
+#: ../src/reminder.c:1148 ../src/reminder.c:1153
 #, c-format
 msgid ""
 "\n"
@@ -2046,7 +2058,7 @@ msgstr ""
 "\n"
 "%02d n %02d ó %02d perc eddig: %s"
 
-#: ../src/reminder.c:1150
+#: ../src/reminder.c:1162
 #, c-format
 msgid ""
 "\n"

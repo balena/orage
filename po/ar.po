@@ -2,12 +2,12 @@
 # Copyright (C) 2003-2006 The Xfce development team.
 # This file is distributed under the same license as the orage package.
 # Saleh Alhathal <hathalsal@hotmail.com>, 2004.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: xfcalendar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-11 16:42+0300\n"
+"POT-Creation-Date: 2011-11-24 14:48+0200\n"
 "PO-Revision-Date: 2011-08-01 16:37-0000\n"
 "Last-Translator: كريم اولاد الشلحة <herr.linux88@gmail.com>\n"
 "Language-Team: Arabeyes Translation & Documentation <admin@arabeyes.org>\n"
@@ -512,7 +512,7 @@ msgstr "إعدادات Orage ساعة"
 #. * %B  : full month name
 #. * %Y  : four digit year
 #. * %V  : ISO week number
-#. 
+#.
 #: ../panel-plugin/xfce4-orageclock-plugin.c:627
 msgid "%A %d %B %Y/%V"
 msgstr "%A %d %B %Y/%V"
@@ -542,7 +542,7 @@ msgstr "Orage"
 
 #. to avoid timing problems when updating entry
 #. Create file chooser
-#: ../src/appointment.c:650 ../src/interface.c:277 ../src/parameters.c:411
+#: ../src/appointment.c:650 ../src/interface.c:277 ../src/parameters.c:416
 msgid "Select a file..."
 msgstr "اختر ملف"
 
@@ -717,15 +717,15 @@ msgstr "ضبط"
 msgid "Duration"
 msgstr "مدة"
 
-#: ../src/appointment.c:2698 ../src/appointment.c:2886 ../src/reminder.c:758
+#: ../src/appointment.c:2698 ../src/appointment.c:2886 ../src/reminder.c:761
 msgid "days"
 msgstr "أيام"
 
-#: ../src/appointment.c:2700 ../src/appointment.c:2888 ../src/reminder.c:760
+#: ../src/appointment.c:2700 ../src/appointment.c:2888 ../src/reminder.c:763
 msgid "hours"
 msgstr "ساعات"
 
-#: ../src/appointment.c:2702 ../src/appointment.c:2890 ../src/reminder.c:762
+#: ../src/appointment.c:2702 ../src/appointment.c:2890 ../src/reminder.c:765
 msgid "mins"
 msgstr "دقائق"
 
@@ -1568,7 +1568,7 @@ msgstr ""
 msgid "Exchange data - Orage"
 msgstr "تبادل البيانات - Orage"
 
-#: ../src/main.c:193
+#: ../src/main.c:260
 #, c-format
 msgid ""
 "\tThis is %s version %s\n"
@@ -1577,62 +1577,62 @@ msgstr ""
 "\tهذا %s إصدار %s\n"
 "\n"
 
-#: ../src/main.c:195
+#: ../src/main.c:262
 #, c-format
 msgid "\tReleased under the terms of the GNU General Public License.\n"
 msgstr "\tصدر بموجب شروط رخصة جنو العمومية.\n"
 
-#: ../src/main.c:196
+#: ../src/main.c:263
 #, c-format
 msgid "\tCompiled against GTK+-%d.%d.%d, "
 msgstr "\tالمترجمة من GTK+-%d.%d.%d, "
 
-#: ../src/main.c:198
+#: ../src/main.c:265
 #, c-format
 msgid "using GTK+-%d.%d.%d.\n"
 msgstr "باستخدام GTK+-%d.%d.%d.\n"
 
-#: ../src/main.c:201
+#: ../src/main.c:268
 #, c-format
 msgid "\tUsing DBUS for import.\n"
 msgstr "\tاستخدم DBUS للاستيراد.\n"
 
-#: ../src/main.c:203
+#: ../src/main.c:270
 #, c-format
 msgid "\tNot using DBUS. Import works only partially.\n"
 msgstr "\tلاحظ استخدام DBUS. يعمل على الاستيراد جزئياً.\n"
 
-#: ../src/main.c:206
+#: ../src/main.c:273
 #, c-format
 msgid "\tUsing libnotify.\n"
 msgstr "\tباستخدام libnotify.\n"
 
-#: ../src/main.c:208
+#: ../src/main.c:275
 #, c-format
 msgid "\tNot using libnotify.\n"
 msgstr "\tبدون استخدام libnotify.\n"
 
-#: ../src/main.c:211
+#: ../src/main.c:278
 #, c-format
 msgid "\tUsing automatic archiving.\n"
 msgstr "\tاستخدام الارشفة التلقائية.\n"
 
-#: ../src/main.c:213
+#: ../src/main.c:280
 #, c-format
 msgid "\tNot using archiving.\n"
 msgstr "\tبدون استخدام الأرشفة.\n"
 
-#: ../src/main.c:216
+#: ../src/main.c:283
 #, c-format
 msgid "\tUsing operating system package libical.\n"
 msgstr "\tاستخدام حزم النظام libical.\n"
 
-#: ../src/main.c:218
+#: ../src/main.c:285
 #, c-format
 msgid "\tUsing Orage local version of libical.\n"
 msgstr "\tاستخدام حزمة نظام التشغيل لتفعيل libical.\n"
 
-#: ../src/main.c:231
+#: ../src/main.c:298
 #, c-format
 msgid ""
 "Usage: orage [options] [files]\n"
@@ -1641,59 +1641,59 @@ msgstr ""
 "الاستعمال: orage [خيارات] [ملفات]\n"
 "\n"
 
-#: ../src/main.c:232
+#: ../src/main.c:299
 #, c-format
 msgid "Options:\n"
 msgstr "خيارات:\n"
 
-#: ../src/main.c:233
+#: ../src/main.c:300
 #, c-format
 msgid "--version (-v) \t\tshow version of orage\n"
 msgstr "--إصدار (-v) \t\tعرض إصدار orage\n"
 
-#: ../src/main.c:234
+#: ../src/main.c:301
 #, c-format
 msgid "--help (-h) \t\tprint this text\n"
 msgstr "--مساعدة (-h) \t\tإطبع هذا النص\n"
 
-#: ../src/main.c:235
+#: ../src/main.c:302
 #, c-format
 msgid "--preferences (-p) \tshow preferences form\n"
 msgstr "--تفضيلات (-p) \tصيغة عرض التفضيلات\n"
 
-#: ../src/main.c:236
+#: ../src/main.c:303
 #, c-format
 msgid "--toggle (-t) \t\tmake orage visible/unvisible\n"
 msgstr "--تبديل (-t) \t\tإجعل orage مرئي\\خفي\n"
 
-#: ../src/main.c:237
+#: ../src/main.c:304
 #, c-format
 msgid "--add-foreign (-a) file [RW] \tadd a foreign file\n"
 msgstr "--إضافة-خارجي (-a) file [RW] \\إضافة لملف خارجي\n"
 
-#: ../src/main.c:238
+#: ../src/main.c:305
 #, c-format
 msgid "--remove-foreign (-r) file \tremove a foreign file\n"
 msgstr "--إزالة-خارجي (-r) ملف \tإزالة ملف خارجي\n"
 
-#: ../src/main.c:239
+#: ../src/main.c:306
 #, c-format
 msgid ""
 "--export (-e) file [appointment...] \texport appointments from Orage to "
 "file\n"
 msgstr ""
 
-#: ../src/main.c:241
+#: ../src/main.c:308
 #, c-format
 msgid "files=ical files to load into orage\n"
 msgstr "ملف=تحميل ملفات icalإلى orage\n"
 
-#: ../src/main.c:243
+#: ../src/main.c:310
 #, c-format
 msgid "\tdbus not included in orage. \n"
 msgstr "\tdbusغير موجود في orage. \n"
 
-#: ../src/main.c:244
+#: ../src/main.c:311
 #, c-format
 msgid ""
 "\twithout dbus [files] and foreign file options(-a & -r) can only be used "
@@ -1701,7 +1701,7 @@ msgid ""
 msgstr ""
 "\tبدون dbus [ملفات]وإعداد ملفات خارجية(-a & -r) سيستخدم فقط عند بدء orage \n"
 
-#: ../src/main.c:436
+#: ../src/main.c:503
 #, c-format
 msgid ""
 "\n"
@@ -1792,211 +1792,221 @@ msgstr "<b>أحداث ل %s:</b>"
 msgid "<b>Events for %s - %s:</b>"
 msgstr "<b>أحداث ل %s - %s:</b>"
 
-#: ../src/parameters.c:492
+#: ../src/parameters.c:520
 msgid "Main settings"
 msgstr "الإعدادات الرئيسية"
 
-#: ../src/parameters.c:498
+#: ../src/parameters.c:526
 msgid "Timezone"
 msgstr "النطاق الزمني"
 
-#: ../src/parameters.c:513
+#: ../src/parameters.c:541
 msgid "You should always define your local timezone."
 msgstr "يجب عليك ان تعرف دائما توقيتك المحلي."
 
-#: ../src/parameters.c:522
+#: ../src/parameters.c:550
 msgid "Archive threshold (months)"
 msgstr "بداية الأرشيف (أشهر)"
 
-#: ../src/parameters.c:532
+#: ../src/parameters.c:560
 msgid "(0 = no archiving)"
 msgstr "(0 = لا أرشفة)"
 
-#: ../src/parameters.c:535
+#: ../src/parameters.c:563
 msgid "Archiving is used to save time and space when handling events."
 msgstr "يستخدم أرشفة لتوفير الوقت والمساحة عند التعامل مع الأحداث."
 
-#: ../src/parameters.c:544
+#: ../src/parameters.c:572
 msgid "Sound command"
 msgstr "أمر الصوت "
 
-#: ../src/parameters.c:559
+#: ../src/parameters.c:587
 msgid "This command is given to shell to make sound in alarms."
 msgstr "هذا الأمر يعطي أمر بإطلاق صوت التنبيه"
 
-#: ../src/parameters.c:575
+#: ../src/parameters.c:603
 msgid "Display settings"
 msgstr "إعدادات العرض"
 
-#: ../src/parameters.c:583
+#: ../src/parameters.c:611
 msgid "Calendar main window"
 msgstr "إطار التقويم الرئيسي"
 
-#: ../src/parameters.c:588
+#: ../src/parameters.c:616
 msgid "Show borders"
 msgstr "تظهر حدود"
 
-#: ../src/parameters.c:595
+#: ../src/parameters.c:623
 msgid "Show menu"
 msgstr "تظهر القائمة"
 
-#: ../src/parameters.c:602
+#: ../src/parameters.c:630
 msgid "Show month and year"
 msgstr "عرض الشهر والسنة"
 
-#: ../src/parameters.c:609
+#: ../src/parameters.c:637
 msgid "Show day names"
 msgstr "تظهر أسماء اليوم"
 
-#: ../src/parameters.c:616
+#: ../src/parameters.c:644
 msgid "Show week numbers"
 msgstr "تظهر أرقام الأسبوع"
 
-#: ../src/parameters.c:623
+#: ../src/parameters.c:651
 msgid "Show todo list"
 msgstr "تظهر قائمة المهام"
 
-#: ../src/parameters.c:630
+#: ../src/parameters.c:658
 msgid "Number of days to show in event window"
 msgstr "عدد أيام العرض في نافذة الحدث"
 
-#: ../src/parameters.c:636
+#: ../src/parameters.c:664
 msgid "0 = do not show event list at all"
 msgstr "= 0 لا تظهر قائمة الأحداث على الإطلاق"
 
-#: ../src/parameters.c:646
+#: ../src/parameters.c:674
 msgid "Show on all desktops"
 msgstr "اظهر على كل اسطح المكاتب"
 
-#: ../src/parameters.c:653
+#: ../src/parameters.c:681
 msgid "Keep on top"
 msgstr "تبقي في الأعلى"
 
-#: ../src/parameters.c:660
+#: ../src/parameters.c:688
 msgid "Show in taskbar"
 msgstr "تظهر في شريط المهام"
 
-#: ../src/parameters.c:667
+#: ../src/parameters.c:695
 msgid "Show in pager"
 msgstr "تظهر في البيجر"
 
-#: ../src/parameters.c:674
+#: ../src/parameters.c:702
 msgid "Show in systray"
 msgstr "تظهر في صينية النظام"
 
-#: ../src/parameters.c:709
+#: ../src/parameters.c:737
 msgid "Calendar start"
 msgstr "بداية تقويم "
 
-#: ../src/parameters.c:714
+#: ../src/parameters.c:742
 msgid "Show"
 msgstr "أظهر"
 
-#: ../src/parameters.c:726
+#: ../src/parameters.c:754
 msgid "Hide"
 msgstr "اخفاء"
 
-#: ../src/parameters.c:738
+#: ../src/parameters.c:766
 msgid "Minimized"
 msgstr "تصغير"
 
-#: ../src/parameters.c:763
+#: ../src/parameters.c:791
 msgid "Extra settings"
 msgstr "إعدادات إضافية"
 
-#: ../src/parameters.c:771
+#: ../src/parameters.c:799
 msgid "On Calendar Window Open"
 msgstr "نافذة التقويم"
 
-#: ../src/parameters.c:790
+#: ../src/parameters.c:804
 msgid "Select Today's Date"
 msgstr "إختر اليوم"
 
-#: ../src/parameters.c:803
+#: ../src/parameters.c:817
 msgid "Select Previously Selected Date"
 msgstr "اختر الموعد المحدد سابقا"
 
-#: ../src/parameters.c:820
+#: ../src/parameters.c:834
 msgid "Use dynamic tray icon"
 msgstr "استخدام رموز  الدينامية"
 
-#: ../src/parameters.c:825
+#: ../src/parameters.c:839
 msgid "Use dynamic icon"
 msgstr "استخدام الرمز الديناميكي"
 
-#: ../src/parameters.c:831
+#: ../src/parameters.c:845
 msgid "Dynamic icon shows current month and day of the month."
 msgstr "يظهر الرمز الديناميكي الشهر الحالي واليوم من الشهر."
 
-#: ../src/parameters.c:840
+#: ../src/parameters.c:854
 msgid "Main Calendar double click shows"
 msgstr "التقويم الرئيسي عرض النقر المزدوج"
 
-#: ../src/parameters.c:845
+#: ../src/parameters.c:859
 msgid "Days view"
 msgstr "عرض أيام"
 
-#: ../src/parameters.c:857
+#: ../src/parameters.c:871
 msgid "Event list"
 msgstr "قائمة الحدث"
 
-#: ../src/parameters.c:874
+#: ../src/parameters.c:888
 msgid "Eventlist window"
 msgstr " النافذة قائمة الاحداث"
 
-#: ../src/parameters.c:878
+#: ../src/parameters.c:892
 msgid "Number of extra days to show in event list"
 msgstr "عدد أيام إضافية لتظهر في قائمة الأحداث"
 
-#: ../src/parameters.c:890
+#: ../src/parameters.c:900
 msgid ""
 "This is just the default value, you can change it in the actual eventlist "
 "window."
 msgstr "هذه قيمة افتراضية ، يمكنك تغييرها في إطار قائمة ألاحدات الفعلية."
 
-#: ../src/parameters.c:907
+#: ../src/parameters.c:908 ../src/parameters.c:913
+msgid "Use wakeup timer"
+msgstr ""
+
+#: ../src/parameters.c:919
+msgid ""
+"Use this timer if Orage has problems waking up properly after suspend or "
+"hibernate. (For example tray icon not refreshed or alarms not firing.)"
+msgstr ""
+
+#: ../src/parameters.c:936
 msgid "Orage Preferences"
 msgstr "تفضيلات Orage"
 
-#: ../src/parameters.c:1022
+#: ../src/parameters.c:1048
 msgid "First Orage start. Searching default timezone."
 msgstr "تشغيل Orage أول مرة. بحث عن الزمن الافتراضي."
 
-#: ../src/parameters.c:1041
+#: ../src/parameters.c:1067
 #, c-format
 msgid "Default timezone set to %s."
 msgstr "تعيين الوقت الافتراضي إلى  %s."
 
-#: ../src/parameters.c:1044
+#: ../src/parameters.c:1070
 msgid "Default timezone not found, please, set it manually."
 msgstr "لم يتم العثور على التوقيت الافتراضي ، من فضلك ، عينه يدوياً."
 
-#: ../src/reminder.c:559
+#: ../src/reminder.c:562
 msgid "Reminder "
 msgstr "مذكر"
 
-#: ../src/reminder.c:588
+#: ../src/reminder.c:591
 msgid "Open"
 msgstr "فتح"
 
-#: ../src/reminder.c:719
+#: ../src/reminder.c:722
 msgid "Reminder - Orage"
 msgstr "تذكير - Orage"
 
-#: ../src/reminder.c:805
+#: ../src/reminder.c:808
 msgid "Remind me again after the specified time"
 msgstr "أذكر لي مرة اخرى بعد الوقت المحدد"
 
 #. Note that this goes to the main area. Temporary for the version
-#: ../src/reminder.c:808
+#: ../src/reminder.c:811
 msgid "Press <Execute> to remind me again after the specified time:"
 msgstr "صحافة <نُفِذ> لتذكيري مرة أخرى بعد وقت محدد :"
 
-#: ../src/reminder.c:1083
+#: ../src/reminder.c:1095
 msgid "Next active alarms:"
 msgstr "نشط التنبيهات التالية :"
 
-#: ../src/reminder.c:1136 ../src/reminder.c:1141
+#: ../src/reminder.c:1148 ../src/reminder.c:1153
 #, c-format
 msgid ""
 "\n"
@@ -2005,7 +2015,7 @@ msgstr ""
 "\n"
 "%02d d %02d h %02d دقيقة إلى: %s"
 
-#: ../src/reminder.c:1150
+#: ../src/reminder.c:1162
 #, c-format
 msgid ""
 "\n"

@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.4.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-11 16:42+0300\n"
+"POT-Creation-Date: 2011-11-24 14:48+0200\n"
 "PO-Revision-Date: 2008-08-26 01:36+0900\n"
 "Last-Translator: ByungHyun Choi<byunghyunchoi@debianusers.org>\n"
 "Language-Team: xfce4-users-kr-i18n <xfce4-users-kr-i18n@lists.sourceforge."
 "net>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
 
 #: ../globaltime/globaltime.c:100
 msgid "Raising GlobalTime window..."
@@ -547,7 +547,7 @@ msgstr "Orage"
 
 #. to avoid timing problems when updating entry
 #. Create file chooser
-#: ../src/appointment.c:650 ../src/interface.c:277 ../src/parameters.c:411
+#: ../src/appointment.c:650 ../src/interface.c:277 ../src/parameters.c:416
 msgid "Select a file..."
 msgstr "화일을 선택하시지요."
 
@@ -722,15 +722,15 @@ msgstr "설정     "
 msgid "Duration"
 msgstr "주기"
 
-#: ../src/appointment.c:2698 ../src/appointment.c:2886 ../src/reminder.c:758
+#: ../src/appointment.c:2698 ../src/appointment.c:2886 ../src/reminder.c:761
 msgid "days"
 msgstr "일"
 
-#: ../src/appointment.c:2700 ../src/appointment.c:2888 ../src/reminder.c:760
+#: ../src/appointment.c:2700 ../src/appointment.c:2888 ../src/reminder.c:763
 msgid "hours"
 msgstr "시간"
 
-#: ../src/appointment.c:2702 ../src/appointment.c:2890 ../src/reminder.c:762
+#: ../src/appointment.c:2702 ../src/appointment.c:2890 ../src/reminder.c:765
 msgid "mins"
 msgstr "분"
 
@@ -1565,7 +1565,7 @@ msgstr ""
 msgid "Exchange data - Orage"
 msgstr "데이터 교환 - Orageㄹ"
 
-#: ../src/main.c:193
+#: ../src/main.c:260
 #, fuzzy, c-format
 msgid ""
 "\tThis is %s version %s\n"
@@ -1574,62 +1574,62 @@ msgstr ""
 "\t%s이고요, 버전은 %s( Xfce %s)\n"
 "\n"
 
-#: ../src/main.c:195
+#: ../src/main.c:262
 #, c-format
 msgid "\tReleased under the terms of the GNU General Public License.\n"
 msgstr "GNU GPL을 준수하면서 릴리즈되었습니다.\n"
 
-#: ../src/main.c:196
+#: ../src/main.c:263
 #, c-format
 msgid "\tCompiled against GTK+-%d.%d.%d, "
 msgstr "\tGTK+-%d.%d.%d로 컴파일했고, "
 
-#: ../src/main.c:198
+#: ../src/main.c:265
 #, c-format
 msgid "using GTK+-%d.%d.%d.\n"
 msgstr "GTK+-%d.%d.%d를 사용합니다.\n"
 
-#: ../src/main.c:201
+#: ../src/main.c:268
 #, c-format
 msgid "\tUsing DBUS for import.\n"
 msgstr "DBUS를 이용해서 가져오기\n"
 
-#: ../src/main.c:203
+#: ../src/main.c:270
 #, c-format
 msgid "\tNot using DBUS. Import works only partially.\n"
 msgstr "\tDBUS를 이용하지 않음. 가져오기의 일부기능만 사용\n"
 
-#: ../src/main.c:206
+#: ../src/main.c:273
 #, c-format
 msgid "\tUsing libnotify.\n"
 msgstr "\t libnotify 사용\n"
 
-#: ../src/main.c:208
+#: ../src/main.c:275
 #, c-format
 msgid "\tNot using libnotify.\n"
 msgstr "\tlibnotify 사용안합\n"
 
-#: ../src/main.c:211
+#: ../src/main.c:278
 #, c-format
 msgid "\tUsing automatic archiving.\n"
 msgstr "\t자동 압축 사용\n"
 
-#: ../src/main.c:213
+#: ../src/main.c:280
 #, c-format
 msgid "\tNot using archiving.\n"
 msgstr "\t자동압축 사용안함\n"
 
-#: ../src/main.c:216
+#: ../src/main.c:283
 #, c-format
 msgid "\tUsing operating system package libical.\n"
 msgstr ""
 
-#: ../src/main.c:218
+#: ../src/main.c:285
 #, c-format
 msgid "\tUsing Orage local version of libical.\n"
 msgstr ""
 
-#: ../src/main.c:231
+#: ../src/main.c:298
 #, c-format
 msgid ""
 "Usage: orage [options] [files]\n"
@@ -1638,59 +1638,59 @@ msgstr ""
 "사용법: orage [선택사항] [화일]\n"
 "\n"
 
-#: ../src/main.c:232
+#: ../src/main.c:299
 #, c-format
 msgid "Options:\n"
 msgstr "선택사항:\n"
 
-#: ../src/main.c:233
+#: ../src/main.c:300
 #, c-format
 msgid "--version (-v) \t\tshow version of orage\n"
 msgstr "--version (-v) \t\torage의 버전을 보여줍니다.\n"
 
-#: ../src/main.c:234
+#: ../src/main.c:301
 #, c-format
 msgid "--help (-h) \t\tprint this text\n"
 msgstr "--help (-h) \t\t지금 보고 있는 것을 보여줍니다.\n"
 
-#: ../src/main.c:235
+#: ../src/main.c:302
 #, c-format
 msgid "--preferences (-p) \tshow preferences form\n"
 msgstr "--preferences (-p) \t속성 설정 창을 보여줍니다.\n"
 
-#: ../src/main.c:236
+#: ../src/main.c:303
 #, c-format
 msgid "--toggle (-t) \t\tmake orage visible/unvisible\n"
 msgstr "--toggle (-t) \t\torage 보여주거나 감춤니다.\n"
 
-#: ../src/main.c:237
+#: ../src/main.c:304
 #, c-format
 msgid "--add-foreign (-a) file [RW] \tadd a foreign file\n"
 msgstr "--add-foreign (-a) 화일 [RW] \t외부화일을 추가합니다.\n"
 
-#: ../src/main.c:238
+#: ../src/main.c:305
 #, c-format
 msgid "--remove-foreign (-r) file \tremove a foreign file\n"
 msgstr "--remove-foreign (-r) 화일 \t외부화일을 제거합니다.\n"
 
-#: ../src/main.c:239
+#: ../src/main.c:306
 #, c-format
 msgid ""
 "--export (-e) file [appointment...] \texport appointments from Orage to "
 "file\n"
 msgstr ""
 
-#: ../src/main.c:241
+#: ../src/main.c:308
 #, c-format
 msgid "files=ical files to load into orage\n"
 msgstr "화일=orage로 읽어들일 화일\n"
 
-#: ../src/main.c:243
+#: ../src/main.c:310
 #, c-format
 msgid "\tdbus not included in orage. \n"
 msgstr "\torage에 dbus를 포함하지 않았습니다.\n"
 
-#: ../src/main.c:244
+#: ../src/main.c:311
 #, c-format
 msgid ""
 "\twithout dbus [files] and foreign file options(-a & -r) can only be used "
@@ -1699,7 +1699,7 @@ msgstr ""
 "\t'dbus [화일] 제외'와 '외부화일 제외' 선택사항(-a와 -r)은 orage를 실행시킬 "
 "때만 사용할 수 있습니다.\n"
 
-#: ../src/main.c:436
+#: ../src/main.c:503
 #, c-format
 msgid ""
 "\n"
@@ -1791,222 +1791,232 @@ msgstr "<b>%s에 대한 이벤트:</b>"
 msgid "<b>Events for %s - %s:</b>"
 msgstr "<b>%s에 대한 이벤트:</b>"
 
-#: ../src/parameters.c:492
+#: ../src/parameters.c:520
 #, fuzzy
 msgid "Main settings"
 msgstr "메인 설정"
 
-#: ../src/parameters.c:498
+#: ../src/parameters.c:526
 msgid "Timezone"
 msgstr "시간대"
 
-#: ../src/parameters.c:513
+#: ../src/parameters.c:541
 msgid "You should always define your local timezone."
 msgstr "시간대를 반드시 설정하셔야합니다."
 
-#: ../src/parameters.c:522
+#: ../src/parameters.c:550
 msgid "Archive threshold (months)"
 msgstr "압축 기준(개월)"
 
-#: ../src/parameters.c:532
+#: ../src/parameters.c:560
 msgid "(0 = no archiving)"
 msgstr "(0 = 압축안함)"
 
-#: ../src/parameters.c:535
+#: ../src/parameters.c:563
 msgid "Archiving is used to save time and space when handling events."
 msgstr "압축기능을 이용해서 시간과 공간을 절약하십시오."
 
-#: ../src/parameters.c:544
+#: ../src/parameters.c:572
 msgid "Sound command"
 msgstr "소리 명령어"
 
-#: ../src/parameters.c:559
+#: ../src/parameters.c:587
 msgid "This command is given to shell to make sound in alarms."
 msgstr "알리미 기능에서 소리를 내도록 쉘에 전달하는 명령어입니다."
 
-#: ../src/parameters.c:575
+#: ../src/parameters.c:603
 #, fuzzy
 msgid "Display settings"
 msgstr "표시"
 
-#: ../src/parameters.c:583
+#: ../src/parameters.c:611
 msgid "Calendar main window"
 msgstr "달력 창"
 
-#: ../src/parameters.c:588
+#: ../src/parameters.c:616
 msgid "Show borders"
 msgstr "틀보이기"
 
-#: ../src/parameters.c:595
+#: ../src/parameters.c:623
 msgid "Show menu"
 msgstr "메뉴 보이기"
 
-#: ../src/parameters.c:602
+#: ../src/parameters.c:630
 #, fuzzy
 msgid "Show month and year"
 msgstr "페이저에 보이기"
 
-#: ../src/parameters.c:609
+#: ../src/parameters.c:637
 #, fuzzy
 msgid "Show day names"
 msgstr "틀보이기(_f)"
 
-#: ../src/parameters.c:616
+#: ../src/parameters.c:644
 #, fuzzy
 msgid "Show week numbers"
 msgstr "틀보이기"
 
-#: ../src/parameters.c:623
+#: ../src/parameters.c:651
 msgid "Show todo list"
 msgstr "할일 목록 보이기"
 
-#: ../src/parameters.c:630
+#: ../src/parameters.c:658
 msgid "Number of days to show in event window"
 msgstr ""
 
-#: ../src/parameters.c:636
+#: ../src/parameters.c:664
 msgid "0 = do not show event list at all"
 msgstr ""
 
-#: ../src/parameters.c:646
+#: ../src/parameters.c:674
 msgid "Show on all desktops"
 msgstr ""
 
-#: ../src/parameters.c:653
+#: ../src/parameters.c:681
 #, fuzzy
 msgid "Keep on top"
 msgstr "맨위로 설정"
 
-#: ../src/parameters.c:660
+#: ../src/parameters.c:688
 msgid "Show in taskbar"
 msgstr "태스크바에 보이기"
 
-#: ../src/parameters.c:667
+#: ../src/parameters.c:695
 msgid "Show in pager"
 msgstr "페이저에 보이기"
 
-#: ../src/parameters.c:674
+#: ../src/parameters.c:702
 msgid "Show in systray"
 msgstr "트레이에 보이기"
 
-#: ../src/parameters.c:709
+#: ../src/parameters.c:737
 msgid "Calendar start"
 msgstr "시작하면서 달력을"
 
-#: ../src/parameters.c:714
+#: ../src/parameters.c:742
 msgid "Show"
 msgstr "보여줌"
 
-#: ../src/parameters.c:726
+#: ../src/parameters.c:754
 msgid "Hide"
 msgstr "숨김"
 
-#: ../src/parameters.c:738
+#: ../src/parameters.c:766
 msgid "Minimized"
 msgstr "최소화"
 
-#: ../src/parameters.c:763
+#: ../src/parameters.c:791
 #, fuzzy
 msgid "Extra settings"
 msgstr "기타"
 
-#: ../src/parameters.c:771
+#: ../src/parameters.c:799
 #, fuzzy
 msgid "On Calendar Window Open"
 msgstr "달력 창"
 
-#: ../src/parameters.c:790
+#: ../src/parameters.c:804
 #, fuzzy
 msgid "Select Today's Date"
 msgstr "오늘을 선택하세요(_T)"
 
-#: ../src/parameters.c:803
+#: ../src/parameters.c:817
 msgid "Select Previously Selected Date"
 msgstr ""
 
-#: ../src/parameters.c:820
+#: ../src/parameters.c:834
 msgid "Use dynamic tray icon"
 msgstr ""
 
-#: ../src/parameters.c:825
+#: ../src/parameters.c:839
 #, fuzzy
 msgid "Use dynamic icon"
 msgstr "동정 아이콘 크기"
 
-#: ../src/parameters.c:831
+#: ../src/parameters.c:845
 msgid "Dynamic icon shows current month and day of the month."
 msgstr ""
 
-#: ../src/parameters.c:840
+#: ../src/parameters.c:854
 msgid "Main Calendar double click shows"
 msgstr "메인 달력을 따닥하면 보입니다."
 
-#: ../src/parameters.c:845
+#: ../src/parameters.c:859
 msgid "Days view"
 msgstr "일 단위 보기"
 
-#: ../src/parameters.c:857
+#: ../src/parameters.c:871
 msgid "Event list"
 msgstr "이벤트 목록"
 
-#: ../src/parameters.c:874
+#: ../src/parameters.c:888
 #, fuzzy
 msgid "Eventlist window"
 msgstr "이벤트 목록"
 
-#: ../src/parameters.c:878
+#: ../src/parameters.c:892
 msgid "Number of extra days to show in event list"
 msgstr ""
 
-#: ../src/parameters.c:890
+#: ../src/parameters.c:900
 msgid ""
 "This is just the default value, you can change it in the actual eventlist "
 "window."
 msgstr ""
 
-#: ../src/parameters.c:907
+#: ../src/parameters.c:908 ../src/parameters.c:913
+msgid "Use wakeup timer"
+msgstr ""
+
+#: ../src/parameters.c:919
+msgid ""
+"Use this timer if Orage has problems waking up properly after suspend or "
+"hibernate. (For example tray icon not refreshed or alarms not firing.)"
+msgstr ""
+
+#: ../src/parameters.c:936
 msgid "Orage Preferences"
 msgstr "Orage 속성"
 
-#: ../src/parameters.c:1022
+#: ../src/parameters.c:1048
 msgid "First Orage start. Searching default timezone."
 msgstr ""
 
-#: ../src/parameters.c:1041
+#: ../src/parameters.c:1067
 #, fuzzy, c-format
 msgid "Default timezone set to %s."
 msgstr "시간대 설정:"
 
-#: ../src/parameters.c:1044
+#: ../src/parameters.c:1070
 msgid "Default timezone not found, please, set it manually."
 msgstr ""
 
-#: ../src/reminder.c:559
+#: ../src/reminder.c:562
 msgid "Reminder "
 msgstr "알리미"
 
-#: ../src/reminder.c:588
+#: ../src/reminder.c:591
 msgid "Open"
 msgstr "열기f"
 
-#: ../src/reminder.c:719
+#: ../src/reminder.c:722
 msgid "Reminder - Orage"
 msgstr "알리미 - Orage"
 
-#: ../src/reminder.c:805
+#: ../src/reminder.c:808
 msgid "Remind me again after the specified time"
 msgstr ""
 
 #. Note that this goes to the main area. Temporary for the version
-#: ../src/reminder.c:808
+#: ../src/reminder.c:811
 msgid "Press <Execute> to remind me again after the specified time:"
 msgstr ""
 
-#: ../src/reminder.c:1083
+#: ../src/reminder.c:1095
 msgid "Next active alarms:"
 msgstr "다음 알리미:"
 
-#: ../src/reminder.c:1136 ../src/reminder.c:1141
+#: ../src/reminder.c:1148 ../src/reminder.c:1153
 #, c-format
 msgid ""
 "\n"
@@ -2015,7 +2025,7 @@ msgstr ""
 "\n"
 "%02d 일 %02d 시간 %02d 분을: %s"
 
-#: ../src/reminder.c:1150
+#: ../src/reminder.c:1162
 #, c-format
 msgid ""
 "\n"

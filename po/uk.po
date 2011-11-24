@@ -2,13 +2,13 @@
 # Copyright (C) 2003-2006 The Xfce development team.
 # This file is distributed under the same license as the orage package.
 # Maxim V. Dziumanenko <mvd@mylinux.com.ua>.
-# 
+#
 # Dmitry Nikitin <luckas_fb@mail.ru>, 2008.
 msgid ""
 msgstr ""
 "Project-Id-Version: xfcalendar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-11 16:42+0300\n"
+"POT-Creation-Date: 2011-11-24 14:48+0200\n"
 "PO-Revision-Date: 2008-11-17 11:35+0200\n"
 "Last-Translator: Dmitry Nikitin <luckas_fb@mail.ru>\n"
 "Language-Team: Ukrainian <xfce4-dev@xfce.org>\n"
@@ -53,8 +53,11 @@ msgid "adjust to change hour"
 msgstr "змінити години"
 
 #: ../globaltime/globaltime.c:496
-msgid "adjust to change minute. Click arrows with button 2 to change only 1 minute."
-msgstr "уточнити на одну хвилину. Натисніть кнопку зі стрілкою 2 щоб змінити тільки на 1 хвилину."
+msgid ""
+"adjust to change minute. Click arrows with button 2 to change only 1 minute."
+msgstr ""
+"уточнити на одну хвилину. Натисніть кнопку зі стрілкою 2 щоб змінити тільки "
+"на 1 хвилину."
 
 #: ../globaltime/gt_prefs.c:265 ../globaltime/gt_prefs.c:266
 msgid "NEW"
@@ -203,7 +206,8 @@ msgstr "Клацніть щоб вибрати типовий колір тла 
 
 #: ../globaltime/gt_prefs.c:877 ../globaltime/gt_prefs.c:910
 msgid "Cross this to use system default instead of selected color"
-msgstr "Перейшовши сюди використовуєте типовий системний колір замість вибраного"
+msgstr ""
+"Перейшовши сюди використовуєте типовий системний колір замість вибраного"
 
 #: ../globaltime/gt_prefs.c:896
 msgid "Click to change default text colour for clocks"
@@ -215,7 +219,8 @@ msgstr "Клацніть щоб вибрати типовий шрифт для 
 
 #: ../globaltime/gt_prefs.c:944 ../globaltime/gt_prefs.c:978
 msgid "Cross this to use system default font instead of selected font"
-msgstr "Перейшовши сюди використовуєте типовий системний шрифт замість вибраного"
+msgstr ""
+"Перейшовши сюди використовуєте типовий системний шрифт замість вибраного"
 
 #: ../globaltime/gt_prefs.c:963
 msgid "Click to change default font for clock time"
@@ -469,8 +474,18 @@ msgid "fix time after suspend/hibernate"
 msgstr "скоригувати час після призупинення/сплячки"
 
 #: ../panel-plugin/oc_config.c:415
-msgid "You only need this if you do short term (less than 5 hours) suspend or hibernate and your visible time does not include seconds. Under these circumstances it is possible that Orageclock shows time inaccurately unless you have this selected. (Selecting this prevents cpu and interrupt saving features from working.)"
-msgstr "Вам це потрібно якщо це відбувається в короткому проміжку часу (менше  5 годин) призупинення чи сплячки і Ваш видимий час не включає секунд. В цих випадках можливо, Orageclock відображатиме неточний час ніж вибраний  Вами. (Виберіть цю опцію для правильної роботи повідомлень з допомогою    процесора і системного переривання)"
+msgid ""
+"You only need this if you do short term (less than 5 hours) suspend or "
+"hibernate and your visible time does not include seconds. Under these "
+"circumstances it is possible that Orageclock shows time inaccurately unless "
+"you have this selected. (Selecting this prevents cpu and interrupt saving "
+"features from working.)"
+msgstr ""
+"Вам це потрібно якщо це відбувається в короткому проміжку часу (менше  5 "
+"годин) призупинення чи сплячки і Ваш видимий час не включає секунд. В цих "
+"випадках можливо, Orageclock відображатиме неточний час ніж вибраний  Вами. "
+"(Виберіть цю опцію для правильної роботи повідомлень з допомогою    "
+"процесора і системного переривання)"
 
 #: ../panel-plugin/oc_config.c:432
 msgid ""
@@ -484,7 +499,8 @@ msgid ""
 "\t%X = local time\t\t\t%x = local date"
 msgstr ""
 "Ця програма використовує strftime для одержання часу.\n"
-"Використовуйте будь-який правильний код щоб отримати час в потрібному форматі\n"
+"Використовуйте будь-який правильний код щоб отримати час в потрібному "
+"форматі\n"
 "Деякі з основних кодів:\n"
 "\t%A = день тижня\t\t\t%B = місяць\n"
 "\t%c = дата і час\t\t%R = години і хвилини\n"
@@ -505,7 +521,7 @@ msgstr "Налаштування Orage"
 #. * %B  : full month name
 #. * %Y  : four digit year
 #. * %V  : ISO week number
-#. 
+#.
 #: ../panel-plugin/xfce4-orageclock-plugin.c:627
 msgid "%A %d %B %Y/%V"
 msgstr "%A %d %B %Y/%V"
@@ -535,7 +551,7 @@ msgstr "Менеджер Orage"
 
 #. to avoid timing problems when updating entry
 #. Create file chooser
-#: ../src/appointment.c:650 ../src/interface.c:277 ../src/parameters.c:411
+#: ../src/appointment.c:650 ../src/interface.c:277 ../src/parameters.c:416
 msgid "Select a file..."
 msgstr "Вибрати файл..."
 
@@ -710,15 +726,15 @@ msgstr "Встановити"
 msgid "Duration"
 msgstr "Тривалість"
 
-#: ../src/appointment.c:2698 ../src/appointment.c:2886 ../src/reminder.c:758
+#: ../src/appointment.c:2698 ../src/appointment.c:2886 ../src/reminder.c:761
 msgid "days"
 msgstr "днів"
 
-#: ../src/appointment.c:2700 ../src/appointment.c:2888 ../src/reminder.c:760
+#: ../src/appointment.c:2700 ../src/appointment.c:2888 ../src/reminder.c:763
 msgid "hours"
 msgstr "годин"
 
-#: ../src/appointment.c:2702 ../src/appointment.c:2890 ../src/reminder.c:762
+#: ../src/appointment.c:2702 ../src/appointment.c:2890 ../src/reminder.c:765
 msgid "mins"
 msgstr "хвилин"
 
@@ -742,8 +758,12 @@ msgid "Categories"
 msgstr "Категорії"
 
 #: ../src/appointment.c:2758
-msgid "This is special category, which can be used to color this appointment in list views."
-msgstr "Це спеціальні категорії, котрі можуть бути використані в кольорі подій в списку перегляду."
+msgid ""
+"This is special category, which can be used to color this appointment in "
+"list views."
+msgstr ""
+"Це спеціальні категорії, котрі можуть бути використані в кольорі подій в "
+"списку перегляду."
 
 #: ../src/appointment.c:2763
 msgid "update colors for categories."
@@ -768,7 +788,8 @@ msgid ""
 "\n"
 "These are converted only later when they are seen:\n"
 "    <&Ynnnn> is translated to current year minus nnnn.\n"
-"(This can be used for example in birthday reminders to tell how old the person will be.)"
+"(This can be used for example in birthday reminders to tell how old the "
+"person will be.)"
 msgstr ""
 "Ці скорочення команд застосовуються негайно:\n"
 "    <D> вставити поточну дату в локальному форматі\n"
@@ -821,8 +842,12 @@ msgid "Persistent alarm"
 msgstr "Стійкий дзвінок"
 
 #: ../src/appointment.c:2914
-msgid "Select this if you want Orage to remind you even if it has not been active when the alarm happened."
-msgstr "Виберіть це щоб Orage нагадував про подію, при його неактивності коли подія вже відбулася."
+msgid ""
+"Select this if you want Orage to remind you even if it has not been active "
+"when the alarm happened."
+msgstr ""
+"Виберіть це щоб Orage нагадував про подію, при його неактивності коли подія "
+"вже відбулася."
 
 #. **** Audio Alarm ****
 #: ../src/appointment.c:2923
@@ -876,7 +901,8 @@ msgstr "Встановити затримку"
 
 #: ../src/appointment.c:3017
 msgid "Select this if you want notification to expire automatically"
-msgstr "Виберіть це, якщо хочете отримувати автоматичні повідомлення про прострочення"
+msgstr ""
+"Виберіть це, якщо хочете отримувати автоматичні повідомлення про прострочення"
 
 #: ../src/appointment.c:3028
 msgid "0 = system default expiration time"
@@ -1084,16 +1110,24 @@ msgid "TODO base"
 msgstr "Що ще зробити"
 
 #: ../src/appointment.c:3326
-msgid "TODO reoccurs regularly starting on start time and repeating after each interval no matter when it was last completed"
-msgstr "ЩоЗробити (TODO) регулярно появляється при завантаженні і повторюється після кожного інтервалу події, без значення коли він був востаннє завершений"
+msgid ""
+"TODO reoccurs regularly starting on start time and repeating after each "
+"interval no matter when it was last completed"
+msgstr ""
+"ЩоЗробити (TODO) регулярно появляється при завантаженні і повторюється після "
+"кожного інтервалу події, без значення коли він був востаннє завершений"
 
 #: ../src/appointment.c:3328
 msgid ""
-"TODO reoccurrency is based on complete time and repeats after the interval counted from the last completed time.\n"
-"(Note that you can not tell anything about the history of the TODO since reoccurrence base changes after each completion.)"
+"TODO reoccurrency is based on complete time and repeats after the interval "
+"counted from the last completed time.\n"
+"(Note that you can not tell anything about the history of the TODO since "
+"reoccurrence base changes after each completion.)"
 msgstr ""
-"Поява ЩоЗробити (TODO) залежить від часу завершення події і повторюється після кожного інтервалу, починаючи від останнього завершеного.\n"
-"(Зауважте, що Ви не зможете нічого сказати про історію ЩоЗробити (TODO), тому що поява змінюється після кожного завершення події.)"
+"Поява ЩоЗробити (TODO) залежить від часу завершення події і повторюється "
+"після кожного інтервалу, починаючи від останнього завершеного.\n"
+"(Зауважте, що Ви не зможете нічого сказати про історію ЩоЗробити (TODO), "
+"тому що поява змінюється після кожного завершення події.)"
 
 #. exceptions
 #: ../src/appointment.c:3335
@@ -1103,7 +1137,8 @@ msgstr "Винятки"
 #: ../src/appointment.c:3348
 msgid ""
 "Add more exception dates by clicking the calendar days below.\n"
-"Exception is either exclusion(-) or inclusion(+) depending on the selection.\n"
+"Exception is either exclusion(-) or inclusion(+) depending on the "
+"selection.\n"
 "Remove by clicking the data."
 msgstr ""
 "Додати більше днів-винятків, клацаючи на дні календаря нижче.\n"
@@ -1123,8 +1158,12 @@ msgid "Add included time (+)"
 msgstr "Додати включений час (+)"
 
 #: ../src/appointment.c:3363
-msgid "Included times have same timezone than start time, but they may have different time"
-msgstr "Включені часи мають ту саму часову зону що й час початку, але але вони можуть мати різний час"
+msgid ""
+"Included times have same timezone than start time, but they may have "
+"different time"
+msgstr ""
+"Включені часи мають ту саму часову зону що й час початку, але але вони "
+"можуть мати різний час"
 
 #. calendars showing the action days
 #: ../src/appointment.c:3380
@@ -1194,7 +1233,8 @@ msgstr "Не було вибрано рядка."
 
 #: ../src/event-list.c:749
 msgid "Click a row to select it and after that you can copy it."
-msgstr "Клацніть на рядку для його вибору і після цього Ви зможете його скопіювати."
+msgstr ""
+"Клацніть на рядку для його вибору і після цього Ви зможете його скопіювати."
 
 #: ../src/event-list.c:918
 msgid ""
@@ -1338,8 +1378,11 @@ msgstr "Побудова списку дзвінків: Додано %d сигн
 
 #: ../src/ical-code.c:3119
 #, c-format
-msgid "\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
-msgstr "\tЗнайдено %d дзвінків і з них %d є активними. (Знайдено %d повторюваних дзвінків.)"
+msgid ""
+"\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
+msgstr ""
+"\tЗнайдено %d дзвінків і з них %d є активними. (Знайдено %d повторюваних "
+"дзвінків.)"
 
 #: ../src/ical-expimp.c:141
 msgid "Starting import file preprocessing"
@@ -1464,7 +1507,8 @@ msgid ""
 "This is useful for example when doing export and moving orage\n"
 "appointments to another system."
 msgstr ""
-"Повернути всі архівовані події в основний файл orage і видалити файл архіву.\n"
+"Повернути всі архівовані події в основний файл orage і видалити файл "
+"архіву.\n"
 "Це буває корисним у випадку коли робиться експорт і перенесення\n"
 "подій orage на іншу систему."
 
@@ -1544,17 +1588,20 @@ msgstr "Тільки читання"
 
 #: ../src/interface.c:1294
 msgid ""
-"Set this if you want to make sure that this file is never modified by Orage.\n"
-"Note that modifying foreign files may make them incompatible with the original tool, where they came from!"
+"Set this if you want to make sure that this file is never modified by "
+"Orage.\n"
+"Note that modifying foreign files may make them incompatible with the "
+"original tool, where they came from!"
 msgstr ""
 "Встановіть таке, якщо впевнені в тому, що цей файл Orage ніколи не змінює.\n"
-"Запам'ятайте, що зміна зовнішніх файлів може зробити їх несумісними з оригінальною утилітою, після модифікації!"
+"Запам'ятайте, що зміна зовнішніх файлів може зробити їх несумісними з "
+"оригінальною утилітою, після модифікації!"
 
 #: ../src/interface.c:1308
 msgid "Exchange data - Orage"
 msgstr "Обмін даними - Orage"
 
-#: ../src/main.c:193
+#: ../src/main.c:260
 #, c-format
 msgid ""
 "\tThis is %s version %s\n"
@@ -1563,62 +1610,62 @@ msgstr ""
 "\tЦе є %s версія %s\n"
 "\n"
 
-#: ../src/main.c:195
+#: ../src/main.c:262
 #, c-format
 msgid "\tReleased under the terms of the GNU General Public License.\n"
 msgstr "\tВипущено під ліцензією GNU General Public License.\n"
 
-#: ../src/main.c:196
+#: ../src/main.c:263
 #, c-format
 msgid "\tCompiled against GTK+-%d.%d.%d, "
 msgstr "\tСкомпільовано з GTK+-%d.%d.%d, "
 
-#: ../src/main.c:198
+#: ../src/main.c:265
 #, c-format
 msgid "using GTK+-%d.%d.%d.\n"
 msgstr "Використовує GTK+-%d.%d.%d.\n"
 
-#: ../src/main.c:201
+#: ../src/main.c:268
 #, c-format
 msgid "\tUsing DBUS for import.\n"
 msgstr "\tДля імпорту використовується DBUS.\n"
 
-#: ../src/main.c:203
+#: ../src/main.c:270
 #, c-format
 msgid "\tNot using DBUS. Import works only partially.\n"
 msgstr "\tНе використовувати DBUS. Імпорт працюватиме тільки частково.\n"
 
-#: ../src/main.c:206
+#: ../src/main.c:273
 #, c-format
 msgid "\tUsing libnotify.\n"
 msgstr "\tВикористовувати libnotify.\n"
 
-#: ../src/main.c:208
+#: ../src/main.c:275
 #, c-format
 msgid "\tNot using libnotify.\n"
 msgstr "\tНе використовувати libnotify.\n"
 
-#: ../src/main.c:211
+#: ../src/main.c:278
 #, c-format
 msgid "\tUsing automatic archiving.\n"
 msgstr "\tВикористовувати автоматичне архівування.\n"
 
-#: ../src/main.c:213
+#: ../src/main.c:280
 #, c-format
 msgid "\tNot using archiving.\n"
 msgstr "\tНе використовувати архівування.\n"
 
-#: ../src/main.c:216
+#: ../src/main.c:283
 #, c-format
 msgid "\tUsing operating system package libical.\n"
 msgstr "\tВикористовуючи системний пакунок libical.\n"
 
-#: ../src/main.c:218
+#: ../src/main.c:285
 #, c-format
 msgid "\tUsing Orage local version of libical.\n"
 msgstr "\tВикористовуючи локальну версію Orage libical.\n"
 
-#: ../src/main.c:231
+#: ../src/main.c:298
 #, c-format
 msgid ""
 "Usage: orage [options] [files]\n"
@@ -1627,62 +1674,68 @@ msgstr ""
 "Використання: orage [опції] [файли]\n"
 "\n"
 
-#: ../src/main.c:232
+#: ../src/main.c:299
 #, c-format
 msgid "Options:\n"
 msgstr "Опції:\n"
 
-#: ../src/main.c:233
+#: ../src/main.c:300
 #, c-format
 msgid "--version (-v) \t\tshow version of orage\n"
 msgstr "--version (-v) \t\tпоказати версію orage\n"
 
-#: ../src/main.c:234
+#: ../src/main.c:301
 #, c-format
 msgid "--help (-h) \t\tprint this text\n"
 msgstr "--help (-h) \t\tнадрукувати цей текст\n"
 
-#: ../src/main.c:235
+#: ../src/main.c:302
 #, c-format
 msgid "--preferences (-p) \tshow preferences form\n"
 msgstr "--preferences (-p) \tпоказати форму уподобань\n"
 
-#: ../src/main.c:236
+#: ../src/main.c:303
 #, c-format
 msgid "--toggle (-t) \t\tmake orage visible/unvisible\n"
 msgstr "--toggle (-t) \t\tзробити orage видимим/невидимим\n"
 
-#: ../src/main.c:237
+#: ../src/main.c:304
 #, c-format
 msgid "--add-foreign (-a) file [RW] \tadd a foreign file\n"
 msgstr "--add-foreign (-a) file [RW] \tдодати зовнішній файл\n"
 
-#: ../src/main.c:238
+#: ../src/main.c:305
 #, c-format
 msgid "--remove-foreign (-r) file \tremove a foreign file\n"
 msgstr "--remove-foreign (-r) file \tвидалити зовнішній файл\n"
 
-#: ../src/main.c:239
+#: ../src/main.c:306
 #, c-format
-msgid "--export (-e) file [appointment...] \texport appointments from Orage to file\n"
+msgid ""
+"--export (-e) file [appointment...] \texport appointments from Orage to "
+"file\n"
 msgstr "--export (-e) файл [подія...] \texport подія з Orage до файлу\n"
 
-#: ../src/main.c:241
+#: ../src/main.c:308
 #, c-format
 msgid "files=ical files to load into orage\n"
 msgstr "files=ical файли для завантаження в orage\n"
 
-#: ../src/main.c:243
+#: ../src/main.c:310
 #, c-format
 msgid "\tdbus not included in orage. \n"
 msgstr "\tdbus не включено в orage. \n"
 
-#: ../src/main.c:244
+#: ../src/main.c:311
 #, c-format
-msgid "\twithout dbus [files] and foreign file options(-a & -r) can only be used when starting orage \n"
-msgstr "\tбез dbus [файли] і опцій (-a & -r) зовнішнього файлу можна використовувати тільки коли стартує orage \n"
+msgid ""
+"\twithout dbus [files] and foreign file options(-a & -r) can only be used "
+"when starting orage \n"
+msgstr ""
+"\tбез dbus [файли] і опцій (-a & -r) зовнішнього файлу можна використовувати "
+"тільки коли стартує orage \n"
 
-#: ../src/main.c:436
+#: ../src/main.c:503
 #, c-format
 msgid ""
 "\n"
@@ -1773,209 +1826,227 @@ msgstr "<b>Події для %s:</b>"
 msgid "<b>Events for %s - %s:</b>"
 msgstr "<b>Події для %s - %s:</b>"
 
-#: ../src/parameters.c:492
+#: ../src/parameters.c:520
 msgid "Main settings"
 msgstr "Головні налаштування"
 
-#: ../src/parameters.c:498
+#: ../src/parameters.c:526
 msgid "Timezone"
 msgstr "Часовий пояс"
 
-#: ../src/parameters.c:513
+#: ../src/parameters.c:541
 msgid "You should always define your local timezone."
 msgstr "Вам завжди варто визначати ваш часовий пояс."
 
-#: ../src/parameters.c:522
+#: ../src/parameters.c:550
 msgid "Archive threshold (months)"
 msgstr "Поріг архівації (місяців)"
 
-#: ../src/parameters.c:532
+#: ../src/parameters.c:560
 msgid "(0 = no archiving)"
 msgstr "(0 = не архівувати)"
 
-#: ../src/parameters.c:535
+#: ../src/parameters.c:563
 msgid "Archiving is used to save time and space when handling events."
-msgstr "Архівація використовується для збереження часу і місця при обробці подій."
+msgstr ""
+"Архівація використовується для збереження часу і місця при обробці подій."
 
-#: ../src/parameters.c:544
+#: ../src/parameters.c:572
 msgid "Sound command"
 msgstr "Команда для програвання звуку"
 
-#: ../src/parameters.c:559
+#: ../src/parameters.c:587
 msgid "This command is given to shell to make sound in alarms."
-msgstr "Ця команда передається командній оболонці для створення звукових попереджень."
+msgstr ""
+"Ця команда передається командній оболонці для створення звукових попереджень."
 
-#: ../src/parameters.c:575
+#: ../src/parameters.c:603
 msgid "Display settings"
 msgstr "Налаштування відображення"
 
-#: ../src/parameters.c:583
+#: ../src/parameters.c:611
 msgid "Calendar main window"
 msgstr "Головне вікно календаря"
 
-#: ../src/parameters.c:588
+#: ../src/parameters.c:616
 msgid "Show borders"
 msgstr "Показувати рамки"
 
-#: ../src/parameters.c:595
+#: ../src/parameters.c:623
 msgid "Show menu"
 msgstr "Показувати меню"
 
-#: ../src/parameters.c:602
+#: ../src/parameters.c:630
 msgid "Show month and year"
 msgstr "Показувати місяць і рік"
 
-#: ../src/parameters.c:609
+#: ../src/parameters.c:637
 msgid "Show day names"
 msgstr "Показувати назви днів"
 
-#: ../src/parameters.c:616
+#: ../src/parameters.c:644
 msgid "Show week numbers"
 msgstr "Показувати номери тижнів"
 
-#: ../src/parameters.c:623
+#: ../src/parameters.c:651
 msgid "Show todo list"
 msgstr "Показувати список Зробити"
 
-#: ../src/parameters.c:630
+#: ../src/parameters.c:658
 msgid "Number of days to show in event window"
 msgstr "Кількість днів для показу у вікні подій"
 
-#: ../src/parameters.c:636
+#: ../src/parameters.c:664
 msgid "0 = do not show event list at all"
 msgstr "0 = не показувати список подій взагалі"
 
-#: ../src/parameters.c:646
+#: ../src/parameters.c:674
 msgid "Show on all desktops"
 msgstr "Показувати на всіх стільницях"
 
-#: ../src/parameters.c:653
+#: ../src/parameters.c:681
 msgid "Keep on top"
 msgstr "Утримувати на передньому плані"
 
-#: ../src/parameters.c:660
+#: ../src/parameters.c:688
 msgid "Show in taskbar"
 msgstr "Показувати в панелі задач"
 
-#: ../src/parameters.c:667
+#: ../src/parameters.c:695
 msgid "Show in pager"
 msgstr "Показувати в пейджері"
 
-#: ../src/parameters.c:674
+#: ../src/parameters.c:702
 msgid "Show in systray"
 msgstr "Показувати в системному лотку"
 
-#: ../src/parameters.c:709
+#: ../src/parameters.c:737
 msgid "Calendar start"
 msgstr "Старт календаря"
 
-#: ../src/parameters.c:714
+#: ../src/parameters.c:742
 msgid "Show"
 msgstr "Показати"
 
-#: ../src/parameters.c:726
+#: ../src/parameters.c:754
 msgid "Hide"
 msgstr "Прихований"
 
-#: ../src/parameters.c:738
+#: ../src/parameters.c:766
 msgid "Minimized"
 msgstr "Мінімізований"
 
-#: ../src/parameters.c:763
+#: ../src/parameters.c:791
 msgid "Extra settings"
 msgstr "Додаткові налаштування"
 
-#: ../src/parameters.c:771
+#: ../src/parameters.c:799
 msgid "On Calendar Window Open"
 msgstr "Відкрити вікно календаря"
 
-#: ../src/parameters.c:790
+#: ../src/parameters.c:804
 msgid "Select Today's Date"
 msgstr "Вибрати сьогоднішню дату"
 
-#: ../src/parameters.c:803
+#: ../src/parameters.c:817
 msgid "Select Previously Selected Date"
 msgstr "Вибрати попередньо вибрану дату"
 
-#: ../src/parameters.c:820
+#: ../src/parameters.c:834
 msgid "Use dynamic tray icon"
 msgstr "Використовувати динамічний значок пейджера"
 
-#: ../src/parameters.c:825
+#: ../src/parameters.c:839
 msgid "Use dynamic icon"
 msgstr "Використовувати динамічний значок"
 
-#: ../src/parameters.c:831
+#: ../src/parameters.c:845
 msgid "Dynamic icon shows current month and day of the month."
 msgstr "Динамічний значок показує поточний місяць і день місяця."
 
-#: ../src/parameters.c:840
+#: ../src/parameters.c:854
 msgid "Main Calendar double click shows"
 msgstr "Основне вікно календаря відображається за подвійним клацанням"
 
-#: ../src/parameters.c:845
+#: ../src/parameters.c:859
 msgid "Days view"
 msgstr "Перегляд по дням"
 
-#: ../src/parameters.c:857
+#: ../src/parameters.c:871
 msgid "Event list"
 msgstr "Список подій"
 
-#: ../src/parameters.c:874
+#: ../src/parameters.c:888
 msgid "Eventlist window"
 msgstr "Вікно списку подій"
 
-#: ../src/parameters.c:878
+#: ../src/parameters.c:892
 msgid "Number of extra days to show in event list"
 msgstr "Кількість додаткових днів для показу в списку подій"
 
-#: ../src/parameters.c:890
-msgid "This is just the default value, you can change it in the actual eventlist window."
-msgstr "Це тільки типове значення, Ви можете змінити його в актуальному вікні списку подій."
+#: ../src/parameters.c:900
+msgid ""
+"This is just the default value, you can change it in the actual eventlist "
+"window."
+msgstr ""
+"Це тільки типове значення, Ви можете змінити його в актуальному вікні списку "
+"подій."
 
-#: ../src/parameters.c:907
+#: ../src/parameters.c:908 ../src/parameters.c:913
+msgid "Use wakeup timer"
+msgstr ""
+
+#: ../src/parameters.c:919
+msgid ""
+"Use this timer if Orage has problems waking up properly after suspend or "
+"hibernate. (For example tray icon not refreshed or alarms not firing.)"
+msgstr ""
+
+#: ../src/parameters.c:936
 msgid "Orage Preferences"
 msgstr "Уподобання Orage"
 
-#: ../src/parameters.c:1022
+#: ../src/parameters.c:1048
 msgid "First Orage start. Searching default timezone."
 msgstr "Перший запуск Orage. Пошук типового часового поясу."
 
-#: ../src/parameters.c:1041
+#: ../src/parameters.c:1067
 #, c-format
 msgid "Default timezone set to %s."
 msgstr "Встановлено типовий часовий пояс в %s."
 
-#: ../src/parameters.c:1044
+#: ../src/parameters.c:1070
 msgid "Default timezone not found, please, set it manually."
-msgstr "Не знайдено типового часового поясу, будь ласка встановіть його вручну."
+msgstr ""
+"Не знайдено типового часового поясу, будь ласка встановіть його вручну."
 
-#: ../src/reminder.c:559
+#: ../src/reminder.c:562
 msgid "Reminder "
 msgstr "Нагадування"
 
-#: ../src/reminder.c:588
+#: ../src/reminder.c:591
 msgid "Open"
 msgstr "Відкрити"
 
-#: ../src/reminder.c:719
+#: ../src/reminder.c:722
 msgid "Reminder - Orage"
 msgstr "Нагадування - Orage"
 
-#: ../src/reminder.c:805
+#: ../src/reminder.c:808
 msgid "Remind me again after the specified time"
 msgstr "Нагадати мені знову після визначеного часу"
 
 #. Note that this goes to the main area. Temporary for the version
-#: ../src/reminder.c:808
+#: ../src/reminder.c:811
 msgid "Press <Execute> to remind me again after the specified time:"
-msgstr "Натисніть <Виконати> для нагадування мені знову після визначеного часу:"
+msgstr ""
+"Натисніть <Виконати> для нагадування мені знову після визначеного часу:"
 
-#: ../src/reminder.c:1083
+#: ../src/reminder.c:1095
 msgid "Next active alarms:"
 msgstr "Наступні активні дзвінки:"
 
-#: ../src/reminder.c:1136 ../src/reminder.c:1141
+#: ../src/reminder.c:1148 ../src/reminder.c:1153
 #, c-format
 msgid ""
 "\n"
@@ -1984,7 +2055,7 @@ msgstr ""
 "\n"
 "%02d д %02d г %02d хв. до: %s"
 
-#: ../src/reminder.c:1150
+#: ../src/reminder.c:1162
 #, c-format
 msgid ""
 "\n"
@@ -3617,8 +3688,12 @@ msgstr "Календар Orage"
 #~ msgid "Select always today"
 #~ msgstr "Завжди вибирати Сьогодні"
 
-#~ msgid "When showing main calendar, set pointer to either previously selected day or always to current day."
-#~ msgstr "Коли відображається основне вікно календаря, вказівник встановлюється на раніше вибраний день або завжди на поточний день."
+#~ msgid ""
+#~ "When showing main calendar, set pointer to either previously selected day "
+#~ "or always to current day."
+#~ msgstr ""
+#~ "Коли відображається основне вікно календаря, вказівник встановлюється на "
+#~ "раніше вибраний день або завжди на поточний день."
 
 #~ msgid "Ending time adjustment mode"
 #~ msgstr "Завершення режиму налаштування часу"
@@ -3648,11 +3723,17 @@ msgstr "Календар Orage"
 #~ msgid "Modify Preferences"
 #~ msgstr "Змінити уподобання"
 
-#~ msgid "Enter local timezone. (it is used to show if time is on previous(-) or next date(+) by adding a +/- after the time)"
-#~ msgstr "Введіть місцевий ЧП. (це для показу часу попередньої (-) або наступної (+)  дати з додаванням +/- після годин)     "
+#~ msgid ""
+#~ "Enter local timezone. (it is used to show if time is on previous(-) or "
+#~ "next date(+) by adding a +/- after the time)"
+#~ msgstr ""
+#~ "Введіть місцевий ЧП. (це для показу часу попередньої (-) або наступної "
+#~ "(+)  дати з додаванням +/- після годин)     "
 
 #~ msgid "Set any valid timezone (=TZ) value or pick one from the list."
-#~ msgstr "Ввести будь-яке правильне значення часового поясу (=ЧП) або вибрати одне зі списку."
+#~ msgstr ""
+#~ "Ввести будь-яке правильне значення часового поясу (=ЧП) або вибрати одне "
+#~ "зі списку."
 
 #~ msgid "show line _1:"
 #~ msgstr "показувати стрічку _1:"
@@ -3684,8 +3765,14 @@ msgstr "Календар Orage"
 #~ msgid "(0 = use static icon)"
 #~ msgstr "(0 = використовувати статичний значок)"
 
-#~ msgid "Dynamic icon shows current day and month. It is visible only in tray. If tray is too small for dynamic icon size, Orage switches automatically back to static icon."
-#~ msgstr "Динамічний значок показує поточний день і місяць. Це видно тільки в системному лотку. Якщо системний лоток не вміщає динамічний розмір значка, Orage автоматично перемикається до статичного значка."
+#~ msgid ""
+#~ "Dynamic icon shows current day and month. It is visible only in tray. If "
+#~ "tray is too small for dynamic icon size, Orage switches automatically "
+#~ "back to static icon."
+#~ msgstr ""
+#~ "Динамічний значок показує поточний день і місяць. Це видно тільки в "
+#~ "системному лотку. Якщо системний лоток не вміщає динамічний розмір "
+#~ "значка, Orage автоматично перемикається до статичного значка."
 
 #~ msgid "Calendar Settings"
 #~ msgstr "Параметри календаря"

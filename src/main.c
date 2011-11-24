@@ -56,6 +56,7 @@
 #include "interface.h"
 #ifdef HAVE_DBUS
 #include "orage-dbus.h"
+#include <dbus/dbus-glib-lowlevel.h>
 #endif
 
 /* session client handler */
@@ -63,6 +64,41 @@
 static SessionClient	*session_client = NULL;
 */
 static GdkAtom atom_alive;
+
+#ifdef HAVE_DBUS
+static void resuming_cb(DBusGProxy *proxy, gpointer user_data)
+{
+    orage_message(10, "Resuming");
+    alarm_read();
+    orage_day_change(&g_par);
+}
+
+static void handle_resuming(void)
+{
+    DBusGConnection *connection;
+    GError *error = NULL;
+    DBusGProxy *proxy;
+
+    g_type_init();
+    connection = dbus_g_bus_get(DBUS_BUS_SYSTEM, &error);
+    if (connection) {
+       proxy = dbus_g_proxy_new_for_name(connection, "org.freedesktop.UPower"
+               , "/org/freedesktop/UPower", "org.freedesktop.UPower");
+       if (proxy) {
+           dbus_g_proxy_add_signal(proxy, "Resuming", G_TYPE_INVALID);
+           dbus_g_proxy_connect_signal(proxy, "Resuming"
+                   , G_CALLBACK(resuming_cb), NULL, NULL);
+       } 
+       else {
+           g_warning("Failed to create proxy object\n");
+       }
+    } 
+    else {
+        g_warning("Failed to connect to D-BUS daemon: %s\n", error->message);
+    }
+}
+#endif
+
 
 /* This function monitors that we do not loose time.  It checks if longer time
    than expected wakeup time has passed and fixes timings if that is the case.
@@ -77,19 +113,19 @@ gboolean check_wakeup(gpointer user_data)
 
     tt_new = time(NULL);
     if (tt_new - tt_prev > ORAGE_WAKEUP_TIMER_PERIOD * 2) {
-        /* we very rarely come here. user_data is normally NULL, but 
-           first call it has some value, which means that this is init call */
+        /* we very rarely come here. */ 
+        /* user_data is normally NULL, but first call it has some value, 
+           which means that this is init call */
         if (!user_data) { /* normal timer call */
+            orage_message(10, "waking up from suspend/resume\n");
             alarm_read();
             /* It is quite possible that day did not change, 
                but we need to reset timers */
             orage_day_change(&tt_prev); 
         }
-        /*
         else {
-    g_print("wakeup timer init %d\n", tt_prev);
+            orage_message(10, "wakeup timer init %d\n", tt_prev);
         }
-        */
     }
     tt_prev = tt_new;
     return(TRUE);
@@ -574,6 +610,11 @@ int main(int argc, char *argv[])
     /* let's check if I got filename as a parameter */
     initialized = TRUE;
     process_args(argc, argv, running, initialized);
+
+#ifdef HAVE_DBUS
+    /* day change after resuming */
+    handle_resuming();
+#endif
 
     gtk_main();
     keep_tidy();

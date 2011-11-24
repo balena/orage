@@ -914,7 +914,7 @@ static void create_parameter_dialog_extra_setup_tab(Itf *dialog)
     gtk_box_pack_start(GTK_BOX(hbox)
             , dialog->use_wakeup_timer_checkbutton, FALSE, FALSE, 5);
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
-            dialog->use_wakeup_timer_checkbutton), g_par.use_dynamic_icon);
+            dialog->use_wakeup_timer_checkbutton), g_par.use_wakeup_timer);
     gtk_tooltips_set_tip(dialog->Tooltips, dialog->use_wakeup_timer_checkbutton
             , _("Use this timer if Orage has problems waking up properly after suspend or hibernate. (For example tray icon not refreshed or alarms not firing.)")
             , NULL);

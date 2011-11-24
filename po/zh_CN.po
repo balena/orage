@@ -12,14 +12,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: orage\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-11 16:42+0300\n"
+"POT-Creation-Date: 2011-11-24 14:48+0200\n"
 "PO-Revision-Date: 2011-02-15 21:29+0800\n"
 "Last-Translator: Chipong Luo <chipong_l@yahoo.com>\n"
 "Language-Team: Chinese (simplified) <xfce-i18n@xfce.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
 
 #: ../globaltime/globaltime.c:100
 msgid "Raising GlobalTime window..."
@@ -480,9 +480,9 @@ msgid ""
 "you have this selected. (Selecting this prevents cpu and interrupt saving "
 "features from working.)"
 msgstr ""
-"短期(少于 5 小时)挂起或休眠而且您可见的时间不包含秒时才需要此选项。"
-"这些情况下，除非您选了此项，Orage 时钟显示的时间可能不准确。(选中"
-"此项将使中央处理器和中断保留功能失效。)"
+"短期(少于 5 小时)挂起或休眠而且您可见的时间不包含秒时才需要此选项。这些情况"
+"下，除非您选了此项，Orage 时钟显示的时间可能不准确。(选中此项将使中央处理器和"
+"中断保留功能失效。)"
 
 #: ../panel-plugin/oc_config.c:432
 msgid ""
@@ -546,7 +546,7 @@ msgstr "Orage 日历"
 
 #. to avoid timing problems when updating entry
 #. Create file chooser
-#: ../src/appointment.c:650 ../src/interface.c:277 ../src/parameters.c:411
+#: ../src/appointment.c:650 ../src/interface.c:277 ../src/parameters.c:416
 msgid "Select a file..."
 msgstr "选择文件..."
 
@@ -721,15 +721,15 @@ msgstr "设置      "
 msgid "Duration"
 msgstr "持续时间"
 
-#: ../src/appointment.c:2698 ../src/appointment.c:2886 ../src/reminder.c:758
+#: ../src/appointment.c:2698 ../src/appointment.c:2886 ../src/reminder.c:761
 msgid "days"
 msgstr "天"
 
-#: ../src/appointment.c:2700 ../src/appointment.c:2888 ../src/reminder.c:760
+#: ../src/appointment.c:2700 ../src/appointment.c:2888 ../src/reminder.c:763
 msgid "hours"
 msgstr "小时"
 
-#: ../src/appointment.c:2702 ../src/appointment.c:2890 ../src/reminder.c:762
+#: ../src/appointment.c:2702 ../src/appointment.c:2890 ../src/reminder.c:765
 msgid "mins"
 msgstr "分钟"
 
@@ -838,8 +838,7 @@ msgstr "持续闹铃"
 msgid ""
 "Select this if you want Orage to remind you even if it has not been active "
 "when the alarm happened."
-msgstr ""
-"闹铃响时，如果您要 Orage 日历即使还没被激活时也提醒您，选择此项。"
+msgstr "闹铃响时，如果您要 Orage 日历即使还没被激活时也提醒您，选择此项。"
 
 #. **** Audio Alarm ****
 #: ../src/appointment.c:2923
@@ -1105,8 +1104,8 @@ msgid ""
 "TODO reoccurs regularly starting on start time and repeating after each "
 "interval no matter when it was last completed"
 msgstr ""
-"待办有规律地在开始时间启动并在每个间隔后重复，它会重复发生而不管上次"
-"是何时完成的。"
+"待办有规律地在开始时间启动并在每个间隔后重复，它会重复发生而不管上次是何时完"
+"成的。"
 
 #: ../src/appointment.c:3328
 msgid ""
@@ -1116,8 +1115,7 @@ msgid ""
 "reoccurrence base changes after each completion.)"
 msgstr ""
 "待办基于完成时间在从上次完成时间计时的间隔后重复发生。\n"
-"(注意重复发生基本在每次完成后改变，所以您不能知道待办"
-"的任何相关历史。)"
+"(注意重复发生基本在每次完成后改变，所以您不能知道待办的任何相关历史。)"
 
 #. exceptions
 #: ../src/appointment.c:3335
@@ -1367,8 +1365,7 @@ msgstr "生成闹铃列表：添加 %d 个闹铃。处理 %d 个事件。"
 #, c-format
 msgid ""
 "\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
-msgstr ""
-"\t找到 %d 个闹铃，其中 %d 个已激活。(搜索了 %d 个重复发生闹铃。)"
+msgstr "\t找到 %d 个闹铃，其中 %d 个已激活。(搜索了 %d 个重复发生闹铃。)"
 
 #: ../src/ical-expimp.c:141
 msgid "Starting import file preprocessing"
@@ -1584,7 +1581,7 @@ msgstr ""
 msgid "Exchange data - Orage"
 msgstr "交换数据-Orage 日历"
 
-#: ../src/main.c:193
+#: ../src/main.c:260
 #, c-format
 msgid ""
 "\tThis is %s version %s\n"
@@ -1593,62 +1590,62 @@ msgstr ""
 "\t这是 %s 版本 %s\n"
 "\n"
 
-#: ../src/main.c:195
+#: ../src/main.c:262
 #, c-format
 msgid "\tReleased under the terms of the GNU General Public License.\n"
 msgstr "\t按 GNU 通用公共许可协议方式发布。\n"
 
-#: ../src/main.c:196
+#: ../src/main.c:263
 #, c-format
 msgid "\tCompiled against GTK+-%d.%d.%d, "
 msgstr "\t相对 GTK+-%d.%d.%d 编译，"
 
-#: ../src/main.c:198
+#: ../src/main.c:265
 #, c-format
 msgid "using GTK+-%d.%d.%d.\n"
 msgstr "使用 GTK+-%d.%d.%d。\n"
 
-#: ../src/main.c:201
+#: ../src/main.c:268
 #, c-format
 msgid "\tUsing DBUS for import.\n"
 msgstr "\t使用数据总线导入。\n"
 
-#: ../src/main.c:203
+#: ../src/main.c:270
 #, c-format
 msgid "\tNot using DBUS. Import works only partially.\n"
 msgstr "\t不使用数据总线。导入只部分可用。\n"
 
-#: ../src/main.c:206
+#: ../src/main.c:273
 #, c-format
 msgid "\tUsing libnotify.\n"
 msgstr "\t使用 libnotify。\n"
 
-#: ../src/main.c:208
+#: ../src/main.c:275
 #, c-format
 msgid "\tNot using libnotify.\n"
 msgstr "\t不使用 libnotify。\n"
 
-#: ../src/main.c:211
+#: ../src/main.c:278
 #, c-format
 msgid "\tUsing automatic archiving.\n"
 msgstr "\t使用自动归档。\n"
 
-#: ../src/main.c:213
+#: ../src/main.c:280
 #, c-format
 msgid "\tNot using archiving.\n"
 msgstr "\t不使用归档。\n"
 
-#: ../src/main.c:216
+#: ../src/main.c:283
 #, c-format
 msgid "\tUsing operating system package libical.\n"
 msgstr "\t使用操作系统软件包 libical。\n"
 
-#: ../src/main.c:218
+#: ../src/main.c:285
 #, c-format
 msgid "\tUsing Orage local version of libical.\n"
 msgstr "\t使用 Orage 日历本地版本 libical。\n"
 
-#: ../src/main.c:231
+#: ../src/main.c:298
 #, c-format
 msgid ""
 "Usage: orage [options] [files]\n"
@@ -1657,68 +1654,67 @@ msgstr ""
 "用法：orage [选项] [文件]\n"
 "\n"
 
-#: ../src/main.c:232
+#: ../src/main.c:299
 #, c-format
 msgid "Options:\n"
 msgstr "选项：\n"
 
-#: ../src/main.c:233
+#: ../src/main.c:300
 #, c-format
 msgid "--version (-v) \t\tshow version of orage\n"
 msgstr "--version (-v) \t\t显示 orage 日历版本\n"
 
-#: ../src/main.c:234
+#: ../src/main.c:301
 #, c-format
 msgid "--help (-h) \t\tprint this text\n"
 msgstr "--help (-h) \t\t列印本文本\n"
 
-#: ../src/main.c:235
+#: ../src/main.c:302
 #, c-format
 msgid "--preferences (-p) \tshow preferences form\n"
 msgstr "--preferences (-p) \t显示首选项表格\n"
 
-#: ../src/main.c:236
+#: ../src/main.c:303
 #, c-format
 msgid "--toggle (-t) \t\tmake orage visible/unvisible\n"
 msgstr "--toggle (-t) \t\t显示/隐藏 orage 日历\n"
 
-#: ../src/main.c:237
+#: ../src/main.c:304
 #, c-format
 msgid "--add-foreign (-a) file [RW] \tadd a foreign file\n"
 msgstr "--add-foreign (-a) 文件 [RW] \t添加外部文件\n"
 
-#: ../src/main.c:238
+#: ../src/main.c:305
 #, c-format
 msgid "--remove-foreign (-r) file \tremove a foreign file\n"
 msgstr "--remove-foreign (-r) 文件 \t移除外部文件\n"
 
-#: ../src/main.c:239
+#: ../src/main.c:306
 #, c-format
 msgid ""
 "--export (-e) file [appointment...] \texport appointments from Orage to "
 "file\n"
 msgstr "--export (-e) 文件 [约会...] \t从 Orage 日历导出约会至文件\n"
 
-#: ../src/main.c:241
+#: ../src/main.c:308
 #, c-format
 msgid "files=ical files to load into orage\n"
 msgstr "文件为要载入进 orage 日历的 ical 文件\n"
 
-#: ../src/main.c:243
+#: ../src/main.c:310
 #, c-format
 msgid "\tdbus not included in orage. \n"
 msgstr "\torage 日历中不包括数据总线。\n"
 
-#: ../src/main.c:244
+#: ../src/main.c:311
 #, c-format
 msgid ""
 "\twithout dbus [files] and foreign file options(-a & -r) can only be used "
 "when starting orage \n"
 msgstr ""
-"\t没有数据总线 [文件] 和外部文件选项(-a 和 -r)"
-"只能在 orage 日历启动时使用\n"
+"\t没有数据总线 [文件] 和外部文件选项(-a 和 -r)只能在 orage 日历启动时使用\n"
 
-#: ../src/main.c:436
+#: ../src/main.c:503
 #, c-format
 msgid ""
 "\n"
@@ -1809,211 +1805,221 @@ msgstr "<b>%s 的事件：</b>"
 msgid "<b>Events for %s - %s:</b>"
 msgstr "<b>%s-%s 的事件：</b>"
 
-#: ../src/parameters.c:492
+#: ../src/parameters.c:520
 msgid "Main settings"
 msgstr "主设置"
 
-#: ../src/parameters.c:498
+#: ../src/parameters.c:526
 msgid "Timezone"
 msgstr "时区"
 
-#: ../src/parameters.c:513
+#: ../src/parameters.c:541
 msgid "You should always define your local timezone."
 msgstr "您应该总是定义您的本地时区。"
 
-#: ../src/parameters.c:522
+#: ../src/parameters.c:550
 msgid "Archive threshold (months)"
 msgstr "归档阈值(月)"
 
-#: ../src/parameters.c:532
+#: ../src/parameters.c:560
 msgid "(0 = no archiving)"
 msgstr "(0 为不归档)"
 
-#: ../src/parameters.c:535
+#: ../src/parameters.c:563
 msgid "Archiving is used to save time and space when handling events."
 msgstr "处理事件时归档用于节省时间和空间。"
 
-#: ../src/parameters.c:544
+#: ../src/parameters.c:572
 msgid "Sound command"
 msgstr "声音命令"
 
-#: ../src/parameters.c:559
+#: ../src/parameters.c:587
 msgid "This command is given to shell to make sound in alarms."
 msgstr "此命令传递给外壳用来放闹铃声音。"
 
-#: ../src/parameters.c:575
+#: ../src/parameters.c:603
 msgid "Display settings"
 msgstr "显示设置"
 
-#: ../src/parameters.c:583
+#: ../src/parameters.c:611
 msgid "Calendar main window"
 msgstr "日历主窗口"
 
-#: ../src/parameters.c:588
+#: ../src/parameters.c:616
 msgid "Show borders"
 msgstr "显示边框"
 
-#: ../src/parameters.c:595
+#: ../src/parameters.c:623
 msgid "Show menu"
 msgstr "显示菜单"
 
-#: ../src/parameters.c:602
+#: ../src/parameters.c:630
 msgid "Show month and year"
 msgstr "显示年月"
 
-#: ../src/parameters.c:609
+#: ../src/parameters.c:637
 msgid "Show day names"
 msgstr "显示天名称"
 
-#: ../src/parameters.c:616
+#: ../src/parameters.c:644
 msgid "Show week numbers"
 msgstr "显示周数"
 
-#: ../src/parameters.c:623
+#: ../src/parameters.c:651
 msgid "Show todo list"
 msgstr "显示待办列表"
 
-#: ../src/parameters.c:630
+#: ../src/parameters.c:658
 msgid "Number of days to show in event window"
 msgstr "在事件窗口中显示的天数"
 
-#: ../src/parameters.c:636
+#: ../src/parameters.c:664
 msgid "0 = do not show event list at all"
 msgstr "0 为绝不显示事件列表"
 
-#: ../src/parameters.c:646
+#: ../src/parameters.c:674
 msgid "Show on all desktops"
 msgstr "在所有桌面显示"
 
-#: ../src/parameters.c:653
+#: ../src/parameters.c:681
 msgid "Keep on top"
 msgstr "置顶"
 
-#: ../src/parameters.c:660
+#: ../src/parameters.c:688
 msgid "Show in taskbar"
 msgstr "在任务栏中显示"
 
-#: ../src/parameters.c:667
+#: ../src/parameters.c:695
 msgid "Show in pager"
 msgstr "在页面中显示"
 
-#: ../src/parameters.c:674
+#: ../src/parameters.c:702
 msgid "Show in systray"
 msgstr "在系统托盘显示"
 
-#: ../src/parameters.c:709
+#: ../src/parameters.c:737
 msgid "Calendar start"
 msgstr "日历开始"
 
-#: ../src/parameters.c:714
+#: ../src/parameters.c:742
 msgid "Show"
 msgstr "显示"
 
-#: ../src/parameters.c:726
+#: ../src/parameters.c:754
 msgid "Hide"
 msgstr "隐藏"
 
-#: ../src/parameters.c:738
+#: ../src/parameters.c:766
 msgid "Minimized"
 msgstr "最小化"
 
-#: ../src/parameters.c:763
+#: ../src/parameters.c:791
 msgid "Extra settings"
 msgstr "额外设置"
 
-#: ../src/parameters.c:771
+#: ../src/parameters.c:799
 msgid "On Calendar Window Open"
 msgstr "在日历窗口打开"
 
-#: ../src/parameters.c:790
+#: ../src/parameters.c:804
 msgid "Select Today's Date"
 msgstr "选择今天的日期"
 
-#: ../src/parameters.c:803
+#: ../src/parameters.c:817
 msgid "Select Previously Selected Date"
 msgstr "选择先前选中的日期"
 
-#: ../src/parameters.c:820
+#: ../src/parameters.c:834
 msgid "Use dynamic tray icon"
 msgstr "使用动态托盘图标"
 
-#: ../src/parameters.c:825
+#: ../src/parameters.c:839
 msgid "Use dynamic icon"
 msgstr "使用动态图标"
 
-#: ../src/parameters.c:831
+#: ../src/parameters.c:845
 msgid "Dynamic icon shows current month and day of the month."
 msgstr "动态图标显示此月的当前月份和天"
 
-#: ../src/parameters.c:840
+#: ../src/parameters.c:854
 msgid "Main Calendar double click shows"
 msgstr "主日历双击显示"
 
-#: ../src/parameters.c:845
+#: ../src/parameters.c:859
 msgid "Days view"
 msgstr "日视图"
 
-#: ../src/parameters.c:857
+#: ../src/parameters.c:871
 msgid "Event list"
 msgstr "事件列表"
 
-#: ../src/parameters.c:874
+#: ../src/parameters.c:888
 msgid "Eventlist window"
 msgstr "事件列表窗口"
 
-#: ../src/parameters.c:878
+#: ../src/parameters.c:892
 msgid "Number of extra days to show in event list"
 msgstr "在事件列表中显示的额外天数"
 
-#: ../src/parameters.c:890
+#: ../src/parameters.c:900
 msgid ""
 "This is just the default value, you can change it in the actual eventlist "
 "window."
 msgstr "这只是默认值，您可以在实际的事件列表窗口中更改它。"
 
-#: ../src/parameters.c:907
+#: ../src/parameters.c:908 ../src/parameters.c:913
+msgid "Use wakeup timer"
+msgstr ""
+
+#: ../src/parameters.c:919
+msgid ""
+"Use this timer if Orage has problems waking up properly after suspend or "
+"hibernate. (For example tray icon not refreshed or alarms not firing.)"
+msgstr ""
+
+#: ../src/parameters.c:936
 msgid "Orage Preferences"
 msgstr "Orage 日历首选项"
 
-#: ../src/parameters.c:1022
+#: ../src/parameters.c:1048
 msgid "First Orage start. Searching default timezone."
 msgstr "Orage 日历第一次启动。正在搜寻默认时区。"
 
-#: ../src/parameters.c:1041
+#: ../src/parameters.c:1067
 #, c-format
 msgid "Default timezone set to %s."
 msgstr "默认时区设为 %s。"
 
-#: ../src/parameters.c:1044
+#: ../src/parameters.c:1070
 msgid "Default timezone not found, please, set it manually."
 msgstr "未找到默认时区，请手动设置。"
 
-#: ../src/reminder.c:559
+#: ../src/reminder.c:562
 msgid "Reminder "
 msgstr "提醒 "
 
-#: ../src/reminder.c:588
+#: ../src/reminder.c:591
 msgid "Open"
 msgstr "打开"
 
-#: ../src/reminder.c:719
+#: ../src/reminder.c:722
 msgid "Reminder - Orage"
 msgstr "提醒-Orage 日历"
 
-#: ../src/reminder.c:805
+#: ../src/reminder.c:808
 msgid "Remind me again after the specified time"
 msgstr "在指定时间后再次提醒我"
 
 #. Note that this goes to the main area. Temporary for the version
-#: ../src/reminder.c:808
+#: ../src/reminder.c:811
 msgid "Press <Execute> to remind me again after the specified time:"
 msgstr "按 <Execute> 在指定的时间后再次提醒我："
 
-#: ../src/reminder.c:1083
+#: ../src/reminder.c:1095
 msgid "Next active alarms:"
 msgstr "下一个活动闹铃："
 
-#: ../src/reminder.c:1136 ../src/reminder.c:1141
+#: ../src/reminder.c:1148 ../src/reminder.c:1153
 #, c-format
 msgid ""
 "\n"
@@ -2022,7 +2028,7 @@ msgstr ""
 "\n"
 "%02d 天 %02d 小时 %02d 分钟到：%s"
 
-#: ../src/reminder.c:1150
+#: ../src/reminder.c:1162
 #, c-format
 msgid ""
 "\n"
