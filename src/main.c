@@ -66,11 +66,20 @@ static SessionClient	*session_client = NULL;
 static GdkAtom atom_alive;
 
 #ifdef HAVE_DBUS
+static gboolean resume_after_sleep(gpointer user_data)
+{
+    orage_message(10, "Resuming after sleep");
+    alarm_read();
+    orage_day_change(&g_par);
+    return(FALSE); /* only once */
+}
+
 static void resuming_cb(DBusGProxy *proxy, gpointer user_data)
 {
     orage_message(10, "Resuming");
-    alarm_read();
-    orage_day_change(&g_par);
+    /* we need this delay to prevent updating tray icon too quickly when
+       the normal code handles it also */
+    g_timeout_add_seconds(2, (GtkFunction) resume_after_sleep, NULL);
 }
 
 static void handle_resuming(void)
@@ -117,14 +126,14 @@ gboolean check_wakeup(gpointer user_data)
         /* user_data is normally NULL, but first call it has some value, 
            which means that this is init call */
         if (!user_data) { /* normal timer call */
-            orage_message(10, "waking up from suspend/resume\n");
+            orage_message(10, "wakeup timer refreshing");
             alarm_read();
             /* It is quite possible that day did not change, 
                but we need to reset timers */
             orage_day_change(&tt_prev); 
         }
         else {
-            orage_message(10, "wakeup timer init %d\n", tt_prev);
+            orage_message(10, "wakeup timer init %d", tt_prev);
         }
     }
     tt_prev = tt_new;

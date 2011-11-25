@@ -89,6 +89,7 @@ void orage_message(gint level, const char *format, ...)
 {
     va_list args;
     char *formatted;
+    struct tm *t = orage_localtime();
 
     if (level < g_log_level)
         return;
@@ -96,15 +97,9 @@ void orage_message(gint level, const char *format, ...)
     formatted = g_strdup_vprintf(format, args);
     va_end(args);
 
-    if (level < 0) {
-        if (g_log_level < -1000) {
-            struct tm *t = orage_localtime();
-            
-            g_debug("%d:%d:%d %s", t->tm_hour, t->tm_min, t->tm_sec, formatted);
-        }
-        else
-            g_debug("%s", formatted);
-    }
+    g_print("%02d:%02d:%02d ", t->tm_hour, t->tm_min, t->tm_sec);
+    if (level < 0)
+        g_debug("%s", formatted);
     else if (level < 100) 
         g_message("Orage **: %s", formatted);
     else if (level < 200) 

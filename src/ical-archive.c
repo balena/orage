@@ -101,7 +101,7 @@ gboolean xfical_archive_open(void)
         return(FALSE);
 
     return(ic_internal_file_open(&ic_aical, &ic_afical, g_par.archive_file
-            , FALSE));
+            , FALSE, FALSE));
 }
 #endif
 

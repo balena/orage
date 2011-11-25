@@ -279,7 +279,8 @@ static void xfical_add_timezone(icalcomponent *p_ical, icalset *p_fical
 */
 
 gboolean ic_internal_file_open(icalcomponent **p_ical
-        , icalset **p_fical, gchar *file_icalpath, gboolean test)
+        , icalset **p_fical, gchar *file_icalpath, gboolean read_only
+        , gboolean test)
 {
 #undef P_N
 #define P_N "ic_internal_file_open: "
@@ -311,7 +312,11 @@ gboolean ic_internal_file_open(icalcomponent **p_ical
             orage_message(350, P_N "file empty");
         return(FALSE);
     }
-    if ((*p_fical = icalset_new_file(file_icalpath)) == NULL) {
+    if (read_only)
+        *p_fical = icalset_new_file_reader(file_icalpath);
+    else 
+        *p_fical = icalset_new_file(file_icalpath);
+    if (*p_fical == NULL) {
         if (test)
             orage_message(150, P_N "Could not open ical file (%s) %s"
                     , file_icalpath, icalerror_strerror(icalerrno));
@@ -381,11 +386,13 @@ gboolean xfical_file_open(gboolean foreign)
 #ifdef ORAGE_DEBUG
     orage_message(-100, P_N);
 #endif
-    ok = ic_internal_file_open(&ic_ical, &ic_fical, g_par.orage_file, FALSE);
+    ok = ic_internal_file_open(&ic_ical, &ic_fical, g_par.orage_file, FALSE
+            , FALSE);
     if (ok && foreign) /* let's open foreign files */
         for (i = 0; i < g_par.foreign_count; i++) {
-            ok = ic_internal_file_open(&(ic_f_ical[i].ical), &(ic_f_ical[i].fical)
-                    , g_par.foreign_data[i].file, FALSE);
+            ok = ic_internal_file_open(&(ic_f_ical[i].ical)
+                    , &(ic_f_ical[i].fical), g_par.foreign_data[i].file
+                    , g_par.foreign_data[i].read_only , FALSE);
             if (!ok) {
                 ic_f_ical[i].ical = NULL;
                 ic_f_ical[i].fical = NULL;
@@ -404,7 +411,7 @@ gboolean xfical_file_check(gchar *file_name)
 #ifdef ORAGE_DEBUG
     orage_message(-100, P_N);
 #endif
-    return(ic_internal_file_open(&x_ical, &x_fical, file_name, TRUE));
+    return(ic_internal_file_open(&x_ical, &x_fical, file_name, FALSE, TRUE));
 }
 
 static gboolean delayed_file_close(gpointer user_data)

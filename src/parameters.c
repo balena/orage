@@ -489,8 +489,10 @@ static void el_extra_days_spin_changed(GtkSpinButton *sb, gpointer user_data)
 /* start monitoring lost seconds due to hibernate or suspend */
 static void set_wakeup_timer()
 {
-    if (g_par.wakeup_timer) /* need to stop it if running */
+    if (g_par.wakeup_timer) { /* need to stop it if running */
         g_source_remove(g_par.wakeup_timer);
+        g_par.wakeup_timer=0;
+    }
     if (g_par.use_wakeup_timer) {
         check_wakeup(&g_par); /* init */
         g_par.wakeup_timer = 

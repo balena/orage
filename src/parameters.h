@@ -24,7 +24,7 @@
 #define __ORAGE_PARAMETERS_H__
 
 #define BORDER 5
-#define ORAGE_WAKEUP_TIMER_PERIOD 10
+#define ORAGE_WAKEUP_TIMER_PERIOD 60
 typedef struct _foreign_file
 {
     char *file;

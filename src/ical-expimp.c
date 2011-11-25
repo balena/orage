@@ -92,7 +92,8 @@ typedef struct _foreign_ical_files
 extern ic_foreign_ical_files ic_f_ical[10];
 
 gboolean ic_internal_file_open(icalcomponent **p_ical
-                , icalset **p_fical, gchar *file_icalpath, gboolean test);
+                , icalset **p_fical, gchar *file_icalpath, gboolean read_only
+                , gboolean test);
 
 static gboolean add_event(icalcomponent *c)
 {
@@ -395,7 +396,7 @@ static gboolean export_selected(char *file_name, char *uids)
         orage_message(150, P_N "UID list is empty");
         return(FALSE);
     }
-    if (!ic_internal_file_open(&x_ical, &x_fical, file_name, FALSE)) {
+    if (!ic_internal_file_open(&x_ical, &x_fical, file_name, FALSE, FALSE)) {
         orage_message(150, P_N "Failed to create export file %s"
                 , file_name);
         return(FALSE);
@@ -425,13 +426,14 @@ static gboolean export_selected(char *file_name, char *uids)
                 export_selected_uid(ic_f_ical[i].ical, uid_int, x_ical);
             }
             else {
-                orage_message(150, P_N "unknown foreign file number %s", uid);
+                orage_message(150, P_N "unknown foreign file number %d, %s"
+                        , i, uid);
                 return(FALSE);
             }
 
         }
         else {
-            orage_message(150, P_N "Unknown uid type %s", uid);
+            orage_message(150, P_N "Unknown uid type (%s)", uid);
         }
         
         if (uid_end != NULL)  /* we have more uids */

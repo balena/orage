@@ -955,8 +955,10 @@ gboolean orage_day_change(gpointer user_data)
     || previous_month != t->tm_mon
     || previous_year != t->tm_year + 1900) {
         if (user_data) {
-            if (g_par.day_timer) /* need to stop it if running */
+            if (g_par.day_timer) { /* need to stop it if running */
                 g_source_remove(g_par.day_timer);
+                g_par.day_timer = 0;
+            }
         }
         current_year  = t->tm_year + 1900;
         current_month = t->tm_mon;
@@ -1043,8 +1045,10 @@ static void reset_orage_alarm_clock(void)
 #ifdef ORAGE_DEBUG
     orage_message(-100, P_N);
 #endif
-    if (g_par.alarm_timer) /* need to stop it if running */
+    if (g_par.alarm_timer) { /* need to stop it if running */
         g_source_remove(g_par.alarm_timer);
+        g_par.alarm_timer = 0;
+    }
     if (g_par.alarm_list) { /* we have alarms */
         t = orage_localtime();
         t->tm_mon++;
