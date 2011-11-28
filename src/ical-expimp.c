@@ -64,6 +64,7 @@
 #include "mainbox.h"
 #include "reminder.h"
 #include "ical-code.h"
+#include "ical-internal.h"
 #include "event-list.h"
 #include "appointment.h"
 #include "parameters.h"
@@ -74,26 +75,6 @@
 */
 
 
-
-/* in ical-code.c: */
-char *ic_generate_uid();
-
-extern icalset *ic_fical;
-extern icalcomponent *ic_ical;
-
-extern gboolean ic_file_modified; /* has any ical file been changed */
-
-typedef struct _foreign_ical_files
-{;
-    icalset *fical;
-    icalcomponent *ical;
-} ic_foreign_ical_files;
-
-extern ic_foreign_ical_files ic_f_ical[10];
-
-gboolean ic_internal_file_open(icalcomponent **p_ical
-                , icalset **p_fical, gchar *file_icalpath, gboolean read_only
-                , gboolean test);
 
 static gboolean add_event(icalcomponent *c)
 {

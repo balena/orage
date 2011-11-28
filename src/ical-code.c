@@ -59,6 +59,8 @@
 #include <icalss.h>
 #endif
 
+#define ICAL_MAIN
+
 #include "orage-i18n.h"
 #include "functions.h"
 #include "mainbox.h"
@@ -94,23 +96,8 @@ typedef struct _xfical_timezone_array
     int  *dst;        /* pointer to int array holding dst settings */
 } xfical_timezone_array;
 
-icalset *ic_fical = NULL;
-icalcomponent *ic_ical = NULL;
-#ifdef HAVE_ARCHIVE
-icalset *ic_afical = NULL;
-icalcomponent *ic_aical = NULL;
-#endif
 
-gboolean ic_file_modified = FALSE; /* has any ical file been changed */
 static guint    file_close_timer = 0;  /* delayed file close timer */
-
-typedef struct _foreign_ical_files
-{
-    icalset *fical;
-    icalcomponent *ical;
-} ic_foreign_ical_files;
-
-ic_foreign_ical_files ic_f_ical[10];
 
 typedef struct _excluded_time
 {

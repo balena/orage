@@ -912,7 +912,7 @@ static void delete_appointment(el_win *el)
     GtkTreeIter       iter;
     GList *list;
     gint  list_len, i;
-    gchar *uid = NULL;
+    gchar *uid = NULL, *flags = NULL;
 
     result = orage_warning_dialog(GTK_WINDOW(el->Window)
             , _("You will permanently remove all\nselected appointments.")
@@ -927,6 +927,18 @@ static void delete_appointment(el_win *el)
             path = (GtkTreePath *)g_list_nth_data(list, i);
             if (gtk_tree_model_get_iter(model, &iter, path)) {
                 gtk_tree_model_get(model, &iter, COL_UID, &uid, -1);
+#ifdef HAVE_ARCHIVE
+                gtk_tree_model_get(model, &iter, COL_FLAGS, &flags, -1);
+                if (flags && flags[3] == 'A') {
+                    xfical_unarchive_uid(uid);
+                    /* note that file id changes after archive */ 
+                    uid[0]='O';
+                    /* xfical_unarchive_uid closes the file */
+                    if (!xfical_file_open(TRUE)) 
+                        return;
+                }
+                g_free(flags);
+#endif
                 result = xfical_appt_del(uid);
                 if (result)
                     orage_message(30, "Removed: %s", uid);

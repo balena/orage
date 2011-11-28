@@ -2,7 +2,8 @@
 
 iconsdir = $(datadir)/icons/hicolor/48x48/apps
 icons_DATA =								\
-	xfcalendar.png
+	xfcalendar.png                          \
+	orage_globaltime.png
 
 EXTRA_DIST =								\
 	$(icons_DATA)

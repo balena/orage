@@ -33,6 +33,32 @@ typedef struct
     icalcomponent_kind ikind;  /* type of component, VEVENt, VTODO... */
 } xfical_period;
 
+typedef struct _foreign_ical_files
+{
+    icalset *fical;
+    icalcomponent *ical;
+} ic_foreign_ical_files;
+
+#ifdef ICAL_MAIN
+icalset *ic_fical = NULL;
+icalcomponent *ic_ical = NULL;
+#ifdef HAVE_ARCHIVE
+icalset *ic_afical = NULL;
+icalcomponent *ic_aical = NULL;
+#endif
+gboolean ic_file_modified = FALSE; /* has any ical file been changed */
+ic_foreign_ical_files ic_f_ical[10];
+#else
+extern icalset *ic_fical;
+extern icalcomponent *ic_ical;
+#ifdef HAVE_ARCHIVE
+extern icalset *ic_afical;
+extern icalcomponent *ic_aical;
+#endif
+extern gboolean ic_file_modified; /* has any ical file been changed */
+extern ic_foreign_ical_files ic_f_ical[10];
+#endif
+
 gboolean ic_internal_file_open(icalcomponent **p_ical
         , icalset **p_fical, gchar *file_icalpath, gboolean read_only
         , gboolean test);

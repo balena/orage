@@ -76,17 +76,6 @@
 */
 
 
-
-extern icalset *ic_fical;
-extern icalcomponent *ic_ical;
-#ifdef HAVE_ARCHIVE
-extern icalset *ic_afical;
-extern icalcomponent *ic_aical;
-#endif
-
-extern gboolean ic_file_modified; /* has any ical file been changed */
-
-
 #ifdef HAVE_ARCHIVE
 gboolean xfical_archive_open(void)
 {
