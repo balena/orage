@@ -508,6 +508,19 @@ static gboolean clean_up(GtkObject *obj, GdkEvent *event, gint g)
     return(FALSE);
 }
 
+static void create_icon(void)
+{
+    GdkPixbuf *clock_logo;
+    GtkIconTheme *icon_theme;
+
+    icon_theme = gtk_icon_theme_get_default();
+    clock_logo = gtk_icon_theme_load_icon(icon_theme, "orage_globaltime", 0
+            , GTK_ICON_LOOKUP_USE_BUILTIN, NULL);
+    gtk_window_set_default_icon(clock_logo);
+    gtk_window_set_icon(GTK_WINDOW(clocks.window), clock_logo);
+    g_object_unref(clock_logo);
+}
+
 static void initialize_clocks(void)
 {
     GtkWidget *button;
@@ -591,7 +604,7 @@ static void create_global_time(void)
     }
 
     initialize_clocks();
-
+    create_icon();
     read_file(); /* fills clock_list non GTK members */
 
     if (g_list_length(clocks.clock_list) == 0)
