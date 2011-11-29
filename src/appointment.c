@@ -370,6 +370,27 @@ static void type_hide_show(appt_win *apptw)
     set_time_sensitivity(apptw); /* todo has different settings */
 }
 
+static void readonly_hide_show(appt_win *apptw)
+{
+    if (((xfical_appt *)apptw->xf_appt)->readonly) {
+        gtk_widget_set_sensitive(apptw->General_notebook_page, FALSE);
+        gtk_widget_set_sensitive(apptw->General_tab_label, FALSE);
+        gtk_widget_set_sensitive(apptw->Alarm_notebook_page, FALSE);
+        gtk_widget_set_sensitive(apptw->Alarm_tab_label, FALSE);
+        gtk_widget_set_sensitive(apptw->Recur_notebook_page, FALSE);
+        gtk_widget_set_sensitive(apptw->Recur_tab_label, FALSE);
+
+        gtk_widget_set_sensitive(apptw->Save, FALSE);
+        gtk_widget_set_sensitive(apptw->File_menu_save, FALSE);
+        gtk_widget_set_sensitive(apptw->SaveClose, FALSE);
+        gtk_widget_set_sensitive(apptw->File_menu_saveclose, FALSE);
+        gtk_widget_set_sensitive(apptw->Revert, FALSE);
+        gtk_widget_set_sensitive(apptw->File_menu_revert, FALSE);
+        gtk_widget_set_sensitive(apptw->Delete, FALSE);
+        gtk_widget_set_sensitive(apptw->File_menu_delete, FALSE);
+    }
+}
+
 static void set_sound_sensitivity(appt_win *apptw)
 {
     gboolean sound_act, repeat_act;
@@ -2301,10 +2322,12 @@ static void fill_appt_window(appt_win *apptw, char *action, char *par)
         apptw->appointment_new = FALSE;
     }
     else if (strcmp(action, "COPY") == 0) {
-            /* COPY uses old uid as base and adds new, so
-             * add == TRUE && new == FALSE */
+        /* COPY uses old uid as base and adds new, so
+         * add == TRUE && new == FALSE */
         apptw->appointment_add = TRUE;
         apptw->appointment_new = FALSE;
+        /* new copy is never readonly even though the original may have been */
+        appt->readonly = FALSE; 
     }
     else {
         g_error("fill_appt_window: unknown parameter\n");
@@ -3513,6 +3536,7 @@ appt_win *create_appt_win(char *action, char *par)
         gtk_widget_show_all(apptw->Window);
         recur_hide_show(apptw);
         type_hide_show(apptw);
+        readonly_hide_show(apptw);
         g_signal_connect((gpointer)apptw->Notebook, "switch-page"
                 , G_CALLBACK(on_notebook_page_switch), apptw);
         gtk_widget_grab_focus(apptw->Title_entry);

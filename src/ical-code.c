@@ -1936,6 +1936,7 @@ static void appt_init(xfical_appt *appt)
     appt->title = NULL;
     appt->location = NULL;
     appt->allDay = FALSE;
+    appt->readonly = FALSE;
     appt->starttime[0] = '\0';
     appt->start_tz_loc = NULL;
     appt->use_due_time = FALSE;
@@ -2310,17 +2311,20 @@ xfical_appt *xfical_appt_get(char *uid)
     file_type[4] = '\0';
     ical_uid = uid+4; /* skip file id */
     if (uid[0] == 'O') {
-        return(appt_get_any(ical_uid, ic_ical, file_type));
+        appt = appt_get_any(ical_uid, ic_ical, file_type);
     }
 #ifdef HAVE_ARCHIVE
     else if (uid[0] == 'A') {
-        return(appt_get_any(ical_uid, ic_aical, file_type));
+        appt = appt_get_any(ical_uid, ic_aical, file_type);
     }
 #endif
     else if (uid[0] == 'F') {
         sscanf(uid, "F%02d", &i);
-        if (i < g_par.foreign_count && ic_f_ical[i].ical != NULL)
-            return(appt_get_any(ical_uid, ic_f_ical[i].ical, file_type));
+        if (i < g_par.foreign_count && ic_f_ical[i].ical != NULL) {
+            appt = appt_get_any(ical_uid, ic_f_ical[i].ical, file_type);
+            if (appt)
+                appt->readonly = g_par.foreign_data[i].read_only;
+        }
         else {
             orage_message(250, P_N "unknown foreign file number %s", uid);
             return(NULL);

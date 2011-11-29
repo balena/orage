@@ -65,6 +65,7 @@ typedef struct _xfical_appt
     gchar *location;
 
     gboolean allDay;
+    gboolean readonly;
 
         /* time format must be:
          * yyyymmdd[Thhmiss[Z]] = %04d%02d%02dT%02d%02d%02d
