@@ -343,7 +343,7 @@ msgstr "位置"
 #: ../globaltime/timezone_selection.c:258
 #: ../panel-plugin/timezone_selection.c:259 ../src/timezone_selection.c:270
 msgid "GMT Offset"
-msgstr "格林威治标准时间补偿"
+msgstr "GMT 时间补偿"
 
 #: ../globaltime/timezone_selection.c:264
 #: ../panel-plugin/timezone_selection.c:265 ../src/timezone_selection.c:276
@@ -385,7 +385,7 @@ msgstr "更改模式"
 #: ../src/timezone_selection.c:329 ../src/timezone_selection.c:340
 #: ../src/timezone_selection.c:379
 msgid "UTC"
-msgstr "世界协调时"
+msgstr "UTC"
 
 #. NOTE: this exists only if ical timezones are being used
 #: ../globaltime/timezone_selection.c:304
@@ -470,7 +470,7 @@ msgstr "工具提示："
 #. special timing for SUSPEND/HIBERNATE
 #: ../panel-plugin/oc_config.c:411
 msgid "fix time after suspend/hibernate"
-msgstr "挂起/休眠之后修正时间"
+msgstr "待机/休眠之后修正时间"
 
 #: ../panel-plugin/oc_config.c:415
 msgid ""
@@ -480,8 +480,8 @@ msgid ""
 "you have this selected. (Selecting this prevents cpu and interrupt saving "
 "features from working.)"
 msgstr ""
-"短期(少于 5 小时)挂起或休眠而且您可见的时间不包含秒时才需要此选项。这些情况"
-"下，除非您选了此项，Orage 时钟显示的时间可能不准确。(选中此项将使中央处理器和"
+"短期(少于 5 小时)待机或休眠而且您可见的时间不包含秒时才需要此选项。这些情况"
+"下，除非您选了此项，Orage 时钟显示的时间可能不准确。(选中此项将使 cpu 和"
 "中断保留功能失效。)"
 
 #: ../panel-plugin/oc_config.c:432
@@ -1608,12 +1608,12 @@ msgstr "使用 GTK+-%d.%d.%d。\n"
 #: ../src/main.c:268
 #, c-format
 msgid "\tUsing DBUS for import.\n"
-msgstr "\t使用数据总线导入。\n"
+msgstr "\t使用 DBUS 导入。\n"
 
 #: ../src/main.c:270
 #, c-format
 msgid "\tNot using DBUS. Import works only partially.\n"
-msgstr "\t不使用数据总线。导入只部分可用。\n"
+msgstr "\t不使用 DBUS 。导入只部分可用。\n"
 
 #: ../src/main.c:273
 #, c-format
@@ -1704,7 +1704,7 @@ msgstr "文件为要载入进 orage 日历的 ical 文件\n"
 #: ../src/main.c:310
 #, c-format
 msgid "\tdbus not included in orage. \n"
-msgstr "\torage 日历中不包括数据总线。\n"
+msgstr "\torage 日历中不包括 dbus 。\n"
 
 #: ../src/main.c:311
 #, c-format
@@ -1712,7 +1712,7 @@ msgid ""
 "\twithout dbus [files] and foreign file options(-a & -r) can only be used "
 "when starting orage \n"
 msgstr ""
-"\t没有数据总线 [文件] 和外部文件选项(-a 和 -r)只能在 orage 日历启动时使用\n"
+"\t没有 dbus [文件] 和外部文件选项(-a 和 -r)只能在 orage 日历启动时使用\n"
 
 #: ../src/main.c:503
 #, c-format
@@ -1835,7 +1835,7 @@ msgstr "声音命令"
 
 #: ../src/parameters.c:587
 msgid "This command is given to shell to make sound in alarms."
-msgstr "此命令传递给外壳用来放闹铃声音。"
+msgstr "此命令传递给 shell 用来放闹铃声音。"
 
 #: ../src/parameters.c:603
 msgid "Display settings"
@@ -1975,7 +1975,9 @@ msgstr "使用唤醒定时器"
 msgid ""
 "Use this timer if Orage has problems waking up properly after suspend or "
 "hibernate. (For example tray icon not refreshed or alarms not firing.)"
-msgstr "如果 Orage 日历在待机或休眠后正常唤醒时有问题则使用此定时器(比如托盘图标没有刷新或闹铃没有启动。)。"
+msgstr ""
+"如果 Orage 日历在待机或休眠后正常唤醒时有问题则使用此定时器"
+"(比如托盘图标没有刷新或闹铃没有启动。)。"
 
 #: ../src/parameters.c:936
 msgid "Orage Preferences"
