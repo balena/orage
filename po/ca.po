@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.3.90.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-24 14:48+0200\n"
+"POT-Creation-Date: 2011-12-05 12:38+0200\n"
 "PO-Revision-Date: 2010-01-03 22:22+0100\n"
 "Last-Translator: Carles Muñoz Gorriz <carlesmu@internautas.org>\n"
 "Language-Team: Catalan\n"
@@ -345,7 +345,7 @@ msgstr "no està canviant"
 #: ../globaltime/timezone_selection.c:247
 #: ../globaltime/timezone_selection.c:252
 #: ../panel-plugin/timezone_selection.c:248
-#: ../panel-plugin/timezone_selection.c:253 ../src/appointment.c:2639
+#: ../panel-plugin/timezone_selection.c:253 ../src/appointment.c:2662
 #: ../src/timezone_selection.c:259 ../src/timezone_selection.c:264
 msgid "Location"
 msgstr "Ubicació"
@@ -547,7 +547,7 @@ msgstr "Gestioneu el vostre temps amb Orage"
 #. if (gtk_toggle_button_get_active(
 #. GTK_TOGGLE_BUTTON(apptw->Type_journal_rb)))
 #. end time
-#: ../src/appointment.c:312 ../src/appointment.c:352 ../src/appointment.c:2668
+#: ../src/appointment.c:312 ../src/appointment.c:352 ../src/appointment.c:2691
 msgid "End"
 msgstr "Final"
 
@@ -555,134 +555,134 @@ msgstr "Final"
 msgid "Due"
 msgstr "Motiu"
 
-#: ../src/appointment.c:471 ../src/mainbox.c:779
+#: ../src/appointment.c:492 ../src/mainbox.c:780
 msgid "Orage"
 msgstr "Orage"
 
 #. to avoid timing problems when updating entry
 #. Create file chooser
-#: ../src/appointment.c:650 ../src/interface.c:277 ../src/parameters.c:416
+#: ../src/appointment.c:671 ../src/interface.c:277 ../src/parameters.c:416
 msgid "Select a file..."
 msgstr "Seleccioneu un fitxer…"
 
-#: ../src/appointment.c:658
+#: ../src/appointment.c:679
 msgid "Sound Files"
 msgstr "Fitxers de so"
 
-#: ../src/appointment.c:665 ../src/interface.c:290
+#: ../src/appointment.c:686 ../src/interface.c:290
 msgid "All Files"
 msgstr "Tots els fitxers"
 
-#: ../src/appointment.c:717
+#: ../src/appointment.c:738
 msgid "The appointment information has been modified."
 msgstr "S'ha modificada la cita."
 
-#: ../src/appointment.c:718 ../src/appointment.c:1172 ../src/event-list.c:919
+#: ../src/appointment.c:739 ../src/appointment.c:1193 ../src/event-list.c:919
 msgid "Do you want to continue?"
 msgstr "Voleu continuar?"
 
-#: ../src/appointment.c:745
+#: ../src/appointment.c:766
 msgid "The end of this appointment is earlier than the beginning."
 msgstr "Aquesta cita acaba abans de començar."
 
-#: ../src/appointment.c:1012 ../src/appointment.c:1790
+#: ../src/appointment.c:1033 ../src/appointment.c:1811
 msgid "Not set"
 msgstr "No establert"
 
-#: ../src/appointment.c:1171
+#: ../src/appointment.c:1192
 msgid "This appointment will be permanently removed."
 msgstr "La cità s'esborrarà permanentment."
 
-#: ../src/appointment.c:1670
+#: ../src/appointment.c:1691
 msgid "This appointment does not exist."
 msgstr "Aquesta cita no existeix."
 
-#: ../src/appointment.c:1671
+#: ../src/appointment.c:1692
 msgid "It was probably removed, please refresh your screen."
 msgstr "És probable que s'hagi esborrat, actualitzeu la pantalla."
 
-#: ../src/appointment.c:1973
+#: ../src/appointment.c:1994
 msgid "Current categories"
 msgstr "Categories actuals"
 
-#: ../src/appointment.c:1988
+#: ../src/appointment.c:2009
 msgid "Add new category with color"
 msgstr "Afegeix una nova categoria amb color"
 
-#: ../src/appointment.c:1992
+#: ../src/appointment.c:2013
 msgid "Category:"
 msgstr "Categoria:"
 
-#: ../src/appointment.c:2023
+#: ../src/appointment.c:2044
 msgid "Colors of categories - Orage"
 msgstr "Colors de les categories - Orage"
 
-#: ../src/appointment.c:2070
+#: ../src/appointment.c:2091
 msgid " *** COPY ***"
 msgstr "*** CÒPIA ***"
 
-#: ../src/appointment.c:2329
+#: ../src/appointment.c:2352
 msgid "New appointment - Orage"
 msgstr "Nova cita - Orage"
 
 #. File menu stuff
 #. ********* File menu *********
 #. File menu
-#: ../src/appointment.c:2358 ../src/day-view.c:254 ../src/event-list.c:1009
+#: ../src/appointment.c:2381 ../src/day-view.c:254 ../src/event-list.c:1021
 #: ../src/interface.c:767 ../src/mainbox.c:279
 msgid "_File"
 msgstr "_Fitxer"
 
-#: ../src/appointment.c:2364
+#: ../src/appointment.c:2387
 msgid "Sav_e and close"
 msgstr "D_esa i tanca"
 
-#: ../src/appointment.c:2377 ../src/event-list.c:1015
+#: ../src/appointment.c:2400 ../src/event-list.c:1027
 msgid "D_uplicate"
 msgstr "D_uplica"
 
-#: ../src/appointment.c:2565
+#: ../src/appointment.c:2588
 msgid "Save"
 msgstr "Desa"
 
-#: ../src/appointment.c:2567
+#: ../src/appointment.c:2590
 msgid "Save and close"
 msgstr "Desa i tanca"
 
-#: ../src/appointment.c:2572
+#: ../src/appointment.c:2595
 msgid "Revert"
 msgstr "Desfés"
 
-#: ../src/appointment.c:2574 ../src/event-list.c:1100
+#: ../src/appointment.c:2597 ../src/event-list.c:1112
 msgid "Duplicate"
 msgstr "Duplica"
 
-#: ../src/appointment.c:2579 ../src/event-list.c:1102
+#: ../src/appointment.c:2602 ../src/event-list.c:1114
 msgid "Delete"
 msgstr "Suprimeix"
 
-#: ../src/appointment.c:2597
+#: ../src/appointment.c:2620
 msgid "Free"
 msgstr "Lliure"
 
-#: ../src/appointment.c:2597
+#: ../src/appointment.c:2620
 msgid "Busy"
 msgstr "Ocupat"
 
-#: ../src/appointment.c:2601
+#: ../src/appointment.c:2624
 msgid "General"
 msgstr "General"
 
 #. type
-#: ../src/appointment.c:2607
+#: ../src/appointment.c:2630
 msgid "Type "
 msgstr "Tipus"
 
-#: ../src/appointment.c:2609 ../src/event-list.c:1153
+#: ../src/appointment.c:2632 ../src/event-list.c:1165
 msgid "Event"
 msgstr "Esdeveniment"
 
-#: ../src/appointment.c:2612
+#: ../src/appointment.c:2635
 msgid ""
 "Event that will happen sometime. For example:\n"
 "Meeting or birthday or TV show."
@@ -690,11 +690,11 @@ msgstr ""
 "Esdeveniment que succeirà algunes vegades. Per exemple:\n"
 "Reunió, aniversari o programa de televisió."
 
-#: ../src/appointment.c:2615 ../src/event-list.c:1173
+#: ../src/appointment.c:2638 ../src/event-list.c:1185
 msgid "Todo"
 msgstr "Pendent de fer"
 
-#: ../src/appointment.c:2618
+#: ../src/appointment.c:2641
 msgid ""
 "Something that you should do sometime. For example:\n"
 "Wash your car or test new version of Orage."
@@ -702,11 +702,11 @@ msgstr ""
 "Coses que fareu algunes vegades. Per exemple:\n"
 "Netejar el cotxe o provar una nova versió d'«Orage»."
 
-#: ../src/appointment.c:2621 ../src/event-list.c:1186
+#: ../src/appointment.c:2644 ../src/event-list.c:1198
 msgid "Journal"
 msgstr "Periòdic"
 
-#: ../src/appointment.c:2625
+#: ../src/appointment.c:2648
 msgid ""
 "Make a note that something happened. For example:\n"
 "Remark that your mother called or first snow came."
@@ -715,59 +715,59 @@ msgstr ""
 "mare va trucar quan les primeres nevades van caure."
 
 #. title
-#: ../src/appointment.c:2632
+#: ../src/appointment.c:2655
 msgid "Title "
 msgstr "Títol "
 
-#: ../src/appointment.c:2647
+#: ../src/appointment.c:2670
 msgid "All day event"
 msgstr "Tot el dia"
 
 #. start time
-#: ../src/appointment.c:2653 ../src/appointment.c:3316 ../src/day-view.c:697
+#: ../src/appointment.c:2676 ../src/appointment.c:3339 ../src/day-view.c:697
 msgid "Start"
 msgstr "Inici"
 
-#: ../src/appointment.c:2673
+#: ../src/appointment.c:2696
 msgid "Set      "
 msgstr "Estableix"
 
-#: ../src/appointment.c:2694
+#: ../src/appointment.c:2717
 msgid "Duration"
 msgstr "Duració"
 
-#: ../src/appointment.c:2698 ../src/appointment.c:2886 ../src/reminder.c:761
+#: ../src/appointment.c:2721 ../src/appointment.c:2909 ../src/reminder.c:761
 msgid "days"
 msgstr "dies"
 
-#: ../src/appointment.c:2700 ../src/appointment.c:2888 ../src/reminder.c:763
+#: ../src/appointment.c:2723 ../src/appointment.c:2911 ../src/reminder.c:763
 msgid "hours"
 msgstr "hores"
 
-#: ../src/appointment.c:2702 ../src/appointment.c:2890 ../src/reminder.c:765
+#: ../src/appointment.c:2725 ../src/appointment.c:2913 ../src/reminder.c:765
 msgid "mins"
 msgstr "minuts"
 
 #. Availability (only for EVENT)
-#: ../src/appointment.c:2714
+#: ../src/appointment.c:2737
 msgid "Availability"
 msgstr "Disponibilitat"
 
 #. completed (only for TODO)
-#: ../src/appointment.c:2722 ../src/appointment.c:3322
+#: ../src/appointment.c:2745 ../src/appointment.c:3345
 msgid "Completed"
 msgstr "Completat"
 
-#: ../src/appointment.c:2725
+#: ../src/appointment.c:2748
 msgid "Done"
 msgstr "Fet"
 
 #. categories
-#: ../src/appointment.c:2746
+#: ../src/appointment.c:2769
 msgid "Categories"
 msgstr "Categories"
 
-#: ../src/appointment.c:2758
+#: ../src/appointment.c:2781
 msgid ""
 "This is special category, which can be used to color this appointment in "
 "list views."
@@ -775,21 +775,21 @@ msgstr ""
 "Aquesta és una categoria especial, es pot emprar per colorejar  aquesta cita "
 "en les vistes de llista."
 
-#: ../src/appointment.c:2763
+#: ../src/appointment.c:2786
 msgid "update colors for categories."
 msgstr "Actualitza els colors de les categories."
 
 #. priority
-#: ../src/appointment.c:2769
+#: ../src/appointment.c:2792
 msgid "Priority"
 msgstr "Prioritat"
 
 #. note
-#: ../src/appointment.c:2779
+#: ../src/appointment.c:2802
 msgid "Note"
 msgstr "Nota"
 
-#: ../src/appointment.c:2798
+#: ../src/appointment.c:2821
 msgid ""
 "These shorthand commands take effect immediately:\n"
 "    <D> inserts current date in local date format\n"
@@ -811,32 +811,32 @@ msgstr ""
 "(e.g.: El podeu emprar com recordatoris d'aniversaris per que us digui "
 "quants anys compleix.)"
 
-#: ../src/appointment.c:2869
+#: ../src/appointment.c:2892
 msgid "Before Start"
 msgstr "Abans de començar"
 
-#: ../src/appointment.c:2869
+#: ../src/appointment.c:2892
 msgid "Before End"
 msgstr "Abans d'acabar"
 
-#: ../src/appointment.c:2870
+#: ../src/appointment.c:2893
 msgid "After Start"
 msgstr "Després d'iniciar"
 
-#: ../src/appointment.c:2870
+#: ../src/appointment.c:2893
 msgid "After End"
 msgstr "Després d'acabar"
 
-#: ../src/appointment.c:2877
+#: ../src/appointment.c:2900
 msgid "Alarm"
 msgstr "Alarma"
 
 #. **** ALARM TIME ****
-#: ../src/appointment.c:2883
+#: ../src/appointment.c:2906
 msgid "Alarm time"
 msgstr "Temps d'alarma"
 
-#: ../src/appointment.c:2907
+#: ../src/appointment.c:2930
 msgid ""
 "Often you want to get alarm:\n"
 " 1) before Event start\n"
@@ -848,11 +848,11 @@ msgstr ""
 " 2) abans que algun pendent de fer acabi\n"
 " 3) després que algun pendent de fer acabi"
 
-#: ../src/appointment.c:2912
+#: ../src/appointment.c:2935
 msgid "Persistent alarm"
 msgstr "Alarma persistent"
 
-#: ../src/appointment.c:2914
+#: ../src/appointment.c:2937
 msgid ""
 "Select this if you want Orage to remind you even if it has not been active "
 "when the alarm happened."
@@ -861,78 +861,78 @@ msgstr ""
 "actiu quan l'alarma s'havia d'activar."
 
 #. **** Audio Alarm ****
-#: ../src/appointment.c:2923
+#: ../src/appointment.c:2946
 msgid "Sound"
 msgstr "So"
 
-#: ../src/appointment.c:2927 ../src/appointment.c:3048
+#: ../src/appointment.c:2950 ../src/appointment.c:3071
 msgid "Use"
 msgstr "Empra"
 
-#: ../src/appointment.c:2929
+#: ../src/appointment.c:2952
 msgid "Select this if you want audible alarm"
 msgstr "Seleccioneu-lo si voleu que l'alarma sigui audible"
 
-#: ../src/appointment.c:2946
+#: ../src/appointment.c:2969
 msgid "Repeat alarm sound"
 msgstr "Repeteix ĺ'alarma sonora"
 
-#: ../src/appointment.c:2962 ../src/appointment.c:3264
+#: ../src/appointment.c:2985 ../src/appointment.c:3287
 msgid "times"
 msgstr "vegades"
 
-#: ../src/appointment.c:2978
+#: ../src/appointment.c:3001
 msgid "sec interval"
 msgstr "Interval en segons"
 
 #. **** Display Alarm ****
-#: ../src/appointment.c:2988
+#: ../src/appointment.c:3011
 msgid "Visual"
 msgstr "Visible"
 
-#: ../src/appointment.c:2992
+#: ../src/appointment.c:3015
 msgid "Use Orage window"
 msgstr "Empra la finestra d'«Orage»"
 
-#: ../src/appointment.c:2994
+#: ../src/appointment.c:3017
 msgid "Select this if you want Orage window alarm"
 msgstr "Seleccioneu-lo si voleu una finestra d'«Orage» amb l'alarma"
 
-#: ../src/appointment.c:3006
+#: ../src/appointment.c:3029
 msgid "Use notification"
 msgstr "Empra notificació"
 
-#: ../src/appointment.c:3008
+#: ../src/appointment.c:3031
 msgid "Select this if you want notification alarm"
 msgstr "Seleccioneu-lo si voleu notificació de l'alarma"
 
-#: ../src/appointment.c:3014
+#: ../src/appointment.c:3037
 msgid "Set timeout"
 msgstr "Fixeu el tems d'aturada"
 
-#: ../src/appointment.c:3017
+#: ../src/appointment.c:3040
 msgid "Select this if you want notification to expire automatically"
 msgstr "Seleccioneu-lo si voleu que la notificació caduqui automàticament"
 
-#: ../src/appointment.c:3028
+#: ../src/appointment.c:3051
 msgid "0 = system default expiration time"
 msgstr "0 = temps de caducitat per defecte del sistema"
 
-#: ../src/appointment.c:3033
+#: ../src/appointment.c:3056
 msgid "seconds"
 msgstr "segons"
 
 #. **** Procedure Alarm ****
-#: ../src/appointment.c:3044
+#: ../src/appointment.c:3067
 msgid "Procedure"
 msgstr "Procediment"
 
-#: ../src/appointment.c:3050
+#: ../src/appointment.c:3073
 msgid "Select this if you want procedure or script alarm"
 msgstr ""
 "Seleccioneu-lo si voleu un procediment o seqüència d'ordres per l'larma"
 
-#: ../src/appointment.c:3056
+#: ../src/appointment.c:3079
 msgid ""
 "You must enter all escape etc characters yourself.\n"
 "This string is just given to shell to process.\n"
@@ -944,96 +944,96 @@ msgid ""
 "\t<&ET> appointment end time"
 msgstr ""
 
-#: ../src/appointment.c:3068
+#: ../src/appointment.c:3091
 msgid "Test this alarm by raising it now"
 msgstr "Comproveu l'alarma provant-la ara"
 
-#: ../src/appointment.c:3075
+#: ../src/appointment.c:3098
 msgid "<b>Default alarm</b>"
 msgstr "<b>Alarma per defecte</b>"
 
-#: ../src/appointment.c:3083
+#: ../src/appointment.c:3106
 msgid "Store current settings as default alarm"
 msgstr "Desa els els paràmetres actuals com els de l'alarma per defecte"
 
-#: ../src/appointment.c:3088
+#: ../src/appointment.c:3111
 msgid "Set current settings from default alarm"
 msgstr "Estableix els paràmetres actuals com els de l'alarma per defecte"
 
-#: ../src/appointment.c:3150
+#: ../src/appointment.c:3173
 msgid "None"
 msgstr "Cap"
 
-#: ../src/appointment.c:3150
+#: ../src/appointment.c:3173
 msgid "Daily"
 msgstr "Diàriament"
 
-#: ../src/appointment.c:3150
+#: ../src/appointment.c:3173
 msgid "Weekly"
 msgstr "Setmanalment"
 
-#: ../src/appointment.c:3150
+#: ../src/appointment.c:3173
 msgid "Monthly"
 msgstr "Mensualment"
 
-#: ../src/appointment.c:3150
+#: ../src/appointment.c:3173
 msgid "Yearly"
 msgstr "Anualment"
 
-#: ../src/appointment.c:3150
+#: ../src/appointment.c:3173
 msgid "Hourly"
 msgstr ""
 
-#: ../src/appointment.c:3152
+#: ../src/appointment.c:3175
 msgid "Mon"
 msgstr "Dil"
 
-#: ../src/appointment.c:3152
+#: ../src/appointment.c:3175
 msgid "Tue"
 msgstr "Dim"
 
-#: ../src/appointment.c:3152
+#: ../src/appointment.c:3175
 msgid "Wed"
 msgstr "Dic"
 
-#: ../src/appointment.c:3152
+#: ../src/appointment.c:3175
 msgid "Thu"
 msgstr "Dij"
 
-#: ../src/appointment.c:3152
+#: ../src/appointment.c:3175
 msgid "Fri"
 msgstr "Div"
 
-#: ../src/appointment.c:3152
+#: ../src/appointment.c:3175
 msgid "Sat"
 msgstr "Dis"
 
-#: ../src/appointment.c:3152
+#: ../src/appointment.c:3175
 msgid "Sun"
 msgstr "Diu"
 
-#: ../src/appointment.c:3157
+#: ../src/appointment.c:3180
 msgid "Recurrence"
 msgstr "Periodicitat"
 
 #. complexity
-#: ../src/appointment.c:3163
+#: ../src/appointment.c:3186
 msgid "Complexity"
 msgstr "Complexitat"
 
-#: ../src/appointment.c:3166
+#: ../src/appointment.c:3189
 msgid "Basic"
 msgstr "Bàsic"
 
-#: ../src/appointment.c:3172
+#: ../src/appointment.c:3195
 msgid "Advanced"
 msgstr "Avançat"
 
-#: ../src/appointment.c:3176
+#: ../src/appointment.c:3199
 msgid "Use this if you want regular repeating event"
 msgstr "Empreu-lo si voleu un esdeveniment que es repeteixi regularment"
 
-#: ../src/appointment.c:3178
+#: ../src/appointment.c:3201
 msgid ""
 "Use this if you need complex times like:\n"
 " Every Saturday and Sunday or \n"
@@ -1044,19 +1044,19 @@ msgstr ""
 " Primer dijous de cada mes"
 
 #. frequency
-#: ../src/appointment.c:3185
+#: ../src/appointment.c:3208
 msgid "Frequency"
 msgstr "Freqüència"
 
-#: ../src/appointment.c:3191
+#: ../src/appointment.c:3214
 msgid "Each"
 msgstr "Cada"
 
-#: ../src/appointment.c:3198
+#: ../src/appointment.c:3221
 msgid "occurrence"
 msgstr "ocurrència"
 
-#: ../src/appointment.c:3202
+#: ../src/appointment.c:3225
 msgid ""
 "Limit frequency to certain interval.\n"
 " For example: Every third day:\n"
@@ -1066,32 +1066,32 @@ msgstr ""
 " Per exemple: Cada tercer dia:\n"
 " Freqüència = Diària i Interval = 3"
 
-#: ../src/appointment.c:3248
+#: ../src/appointment.c:3271
 msgid "Limit"
 msgstr "Límit"
 
-#: ../src/appointment.c:3250
+#: ../src/appointment.c:3273
 msgid "Repeat forever"
 msgstr "Repeteix per sempre"
 
-#: ../src/appointment.c:3256
+#: ../src/appointment.c:3279
 msgid "Repeat "
 msgstr "Repeteix"
 
-#: ../src/appointment.c:3272
+#: ../src/appointment.c:3295
 msgid "Repeat until "
 msgstr "Repeteix fins"
 
 #. weekdays (only for complex settings)
-#: ../src/appointment.c:3285
+#: ../src/appointment.c:3308
 msgid "Weekdays"
 msgstr "Dies de la setmana"
 
-#: ../src/appointment.c:3297
+#: ../src/appointment.c:3320
 msgid "Which day"
 msgstr "Quin dia"
 
-#: ../src/appointment.c:3305
+#: ../src/appointment.c:3328
 msgid ""
 "Specify which weekday for monthly and yearly events.\n"
 " For example:\n"
@@ -1108,11 +1108,11 @@ msgstr ""
 "\tQuin dia = seleccioneu 2 després del Dimecres"
 
 #. TODO base (only for TODOs)
-#: ../src/appointment.c:3313
+#: ../src/appointment.c:3336
 msgid "TODO base"
 msgstr "Pendent de fer - base"
 
-#: ../src/appointment.c:3326
+#: ../src/appointment.c:3349
 msgid ""
 "TODO reoccurs regularly starting on start time and repeating after each "
 "interval no matter when it was last completed"
@@ -1121,7 +1121,7 @@ msgstr ""
 "repetint-se després de cada interval independentment de si es va completar "
 "la darrera vegada"
 
-#: ../src/appointment.c:3328
+#: ../src/appointment.c:3351
 msgid ""
 "TODO reoccurrency is based on complete time and repeats after the interval "
 "counted from the last completed time.\n"
@@ -1136,11 +1136,11 @@ msgstr ""
 "finalitzacions.)"
 
 #. exceptions
-#: ../src/appointment.c:3335
+#: ../src/appointment.c:3358
 msgid "Exceptions"
 msgstr "Excepcions"
 
-#: ../src/appointment.c:3348
+#: ../src/appointment.c:3371
 msgid ""
 "Add more exception dates by clicking the calendar days below.\n"
 "Exception is either exclusion(-) or inclusion(+) depending on the "
@@ -1151,19 +1151,19 @@ msgstr ""
 "L'excepció pot ser d'exclusió (-) o d'inclusió (+) depenent de la selecció.\n"
 "La podeu treure fent clic a la data."
 
-#: ../src/appointment.c:3353
+#: ../src/appointment.c:3376
 msgid "Add excluded date (-)"
 msgstr "Afegeix un data d'exclusió (-)"
 
-#: ../src/appointment.c:3355
+#: ../src/appointment.c:3378
 msgid "Excluded days are full days where this appointment is not happening"
 msgstr "Els dies exclosos són dies sencers on la cita no succeeix."
 
-#: ../src/appointment.c:3361
+#: ../src/appointment.c:3384
 msgid "Add included time (+)"
 msgstr "Afegeix una hora d'inclusió (+)"
 
-#: ../src/appointment.c:3363
+#: ../src/appointment.c:3386
 msgid ""
 "Included times have same timezone than start time, but they may have "
 "different time"
@@ -1172,43 +1172,43 @@ msgstr ""
 "poden ser una hora diferent"
 
 #. calendars showing the action days
-#: ../src/appointment.c:3380
+#: ../src/appointment.c:3403
 msgid "Action dates"
 msgstr "Dades d'accions"
 
 #. ********* View menu *********
 #. View menu
-#: ../src/day-view.c:264 ../src/event-list.c:1032 ../src/mainbox.c:305
+#: ../src/day-view.c:264 ../src/event-list.c:1044 ../src/mainbox.c:305
 msgid "_View"
 msgstr "_Visualitza"
 
 #. ********* Go menu   *********
-#: ../src/day-view.c:278 ../src/event-list.c:1051
+#: ../src/day-view.c:278 ../src/event-list.c:1063
 msgid "_Go"
 msgstr "_Vés"
 
-#: ../src/day-view.c:319 ../src/event-list.c:1098
+#: ../src/day-view.c:319 ../src/event-list.c:1110
 msgid "New"
 msgstr "Nou"
 
-#: ../src/day-view.c:324 ../src/event-list.c:1107
+#: ../src/day-view.c:324 ../src/event-list.c:1119
 msgid "Back"
 msgstr "Enrere"
 
-#: ../src/day-view.c:326 ../src/event-list.c:1109 ../src/functions.c:148
+#: ../src/day-view.c:326 ../src/event-list.c:1121 ../src/functions.c:143
 #: ../src/tray_icon.c:460
 msgid "Today"
 msgstr "Avui"
 
-#: ../src/day-view.c:328 ../src/event-list.c:1111
+#: ../src/day-view.c:328 ../src/event-list.c:1123
 msgid "Forward"
 msgstr "Endavant"
 
-#: ../src/day-view.c:333 ../src/event-list.c:1116
+#: ../src/day-view.c:333 ../src/event-list.c:1128
 msgid "Refresh"
 msgstr "Actualitza"
 
-#: ../src/day-view.c:338 ../src/event-list.c:1123 ../src/interface.c:809
+#: ../src/day-view.c:338 ../src/event-list.c:1135 ../src/interface.c:809
 msgid "Close"
 msgstr "Tanca"
 
@@ -1229,7 +1229,7 @@ msgstr "Orage - vista diària"
 msgid "All day"
 msgstr "Tot el dia"
 
-#: ../src/event-list.c:580 ../src/event-list.c:1269
+#: ../src/event-list.c:580 ../src/event-list.c:1281
 msgid "Time"
 msgstr "Hora"
 
@@ -1249,39 +1249,39 @@ msgstr ""
 "Esborrareu de forma permanent totes\n"
 "les cites seleccionades."
 
-#: ../src/event-list.c:1118
+#: ../src/event-list.c:1130
 msgid "Find"
 msgstr "Cerca"
 
-#: ../src/event-list.c:1125
+#: ../src/event-list.c:1137
 msgid "Dayview"
 msgstr "Vista diària"
 
-#: ../src/event-list.c:1158
+#: ../src/event-list.c:1170
 msgid "Extra days to show "
 msgstr "Dies extres a mostrar"
 
-#: ../src/event-list.c:1189
+#: ../src/event-list.c:1201
 msgid "Journal entries starting from:"
 msgstr "Entrades periòdiques començant per:"
 
-#: ../src/event-list.c:1209
+#: ../src/event-list.c:1221
 msgid "Search"
 msgstr "Cerca"
 
-#: ../src/event-list.c:1212
+#: ../src/event-list.c:1224
 msgid "Search text "
 msgstr "Cerca el text"
 
-#: ../src/event-list.c:1277
+#: ../src/event-list.c:1289
 msgid "Flags"
 msgstr "Etiquetes"
 
-#: ../src/event-list.c:1285
+#: ../src/event-list.c:1297
 msgid "Title"
 msgstr "Títol"
 
-#: ../src/event-list.c:1311
+#: ../src/event-list.c:1323
 msgid ""
 "Double click line to edit it.\n"
 "\n"
@@ -1309,85 +1309,85 @@ msgstr ""
 "\t 5. Tipus de cita:\n"
 "\t\tE=Esdeveniment T=Pendent de fer J=Periòdic"
 
-#: ../src/functions.c:146
+#: ../src/functions.c:141
 msgid "Pick the date"
 msgstr "Seleccioneu una data"
 
 #. remove since it has ended
-#: ../src/ical-archive.c:278
+#: ../src/ical-archive.c:267
 msgid "\tRecur ended, moving to archive file."
 msgstr "\tRepetició finalitzada, movent-lo a l'arxiu."
 
-#: ../src/ical-archive.c:340
+#: ../src/ical-archive.c:329
 msgid "Archiving not enabled. Exiting"
 msgstr "Arxivament no habilitat. Eixint"
 
-#: ../src/ical-archive.c:358
+#: ../src/ical-archive.c:347
 #, c-format
 msgid "Archiving threshold: %d month(s)"
 msgstr "Llindar de temps de per l'arxivament de cites: %d mesos"
 
 #. yy mon day
-#: ../src/ical-archive.c:361
+#: ../src/ical-archive.c:350
 #, c-format
 msgid "\tArchiving events, which are older than: %04d-%02d-%02d"
 msgstr "\tEsdeveniments d'arxiu, els quals són més antics que %04d-%02d-%02d"
 
 # En el contexte crec que la millor traducció de Archives és «arx[iu] de
 # cites»
-#: ../src/ical-archive.c:388
+#: ../src/ical-archive.c:377
 #, c-format
 msgid "Archiving uid: %s"
 msgstr "Uid de l'arxiu de cites: %s"
 
 #. VTODO not completed, do not archive
-#: ../src/ical-archive.c:394
+#: ../src/ical-archive.c:383
 msgid "\tVTODO not complete; not archived"
 msgstr "\tPendent de fer no completat; no s'ha arxivat"
 
 #. it is recurrent event
-#: ../src/ical-archive.c:399
+#: ../src/ical-archive.c:388
 #, c-format
 msgid "\tRecurring. End year: %04d, month: %02d, day: %02d"
 msgstr "\tRepetint-se. Fi l'any: %04d, mes: %02d, day: %02d"
 
 # En el contexte crec que la millor traducció de Archives és «arx[iu] de
 # cites»
-#: ../src/ical-archive.c:416
+#: ../src/ical-archive.c:405
 msgid "Archiving done\n"
 msgstr "Arxivament de cites acabat.\n"
 
 #. PHASE 1: go through base orage file and remove "repeat" shortcuts
-#: ../src/ical-archive.c:432
+#: ../src/ical-archive.c:421
 msgid "Starting archive removal."
 msgstr "Iniciant l'eliminació de l'arxiu de cites."
 
-#: ../src/ical-archive.c:433
+#: ../src/ical-archive.c:422
 msgid "\tPHASE 1: reset recurring appointments"
 msgstr "\tFASE 1: netejant cites recursives"
 
 #. PHASE 2: go through archive file and add everything back to base orage.
 #. * After that delete the whole arch file
-#: ../src/ical-archive.c:455
+#: ../src/ical-archive.c:444
 msgid "\tPHASE 2: return archived appointments"
 msgstr "\tFASE 2: recuperant cites arxivades."
 
-#: ../src/ical-archive.c:481
+#: ../src/ical-archive.c:470
 msgid "Archive removal done\n"
 msgstr "S'ha esborrat el fitxer de cites\n"
 
-#: ../src/ical-code.c:938
+#: ../src/ical-code.c:932
 msgid "Orage default alarm"
 msgstr "Alarma per defecte d'«Orage»"
 
-#: ../src/ical-code.c:3117
+#: ../src/ical-code.c:3115
 #, c-format
 msgid "Build alarm list: Added %d alarms. Processed %d events."
 msgstr ""
 "Construeix una llista d'alarmes: Afegides %d alarmes. Processades %d "
 "esdeveniments."
 
-#: ../src/ical-code.c:3119
+#: ../src/ical-code.c:3117
 #, c-format
 msgid ""
 "\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
@@ -1395,19 +1395,19 @@ msgstr ""
 "\tS'han trobat %d alarmes de les quals %d estan actives. (Cercades %d "
 "alarmes recurrents)."
 
-#: ../src/ical-expimp.c:141
+#: ../src/ical-expimp.c:123
 msgid "Starting import file preprocessing"
 msgstr "Iniciant el procés previ per importar"
 
-#: ../src/ical-expimp.c:176
+#: ../src/ical-expimp.c:158
 msgid "... Patched DCREATED to be CREATED."
 msgstr "… Pedaç DCREATED per a CREATED."
 
-#: ../src/ical-expimp.c:215
+#: ../src/ical-expimp.c:197
 msgid "... Patched timezone to Orage format."
 msgstr "… Actualitzat el fus horari amb el format d'Orage."
 
-#: ../src/ical-expimp.c:224
+#: ../src/ical-expimp.c:206
 msgid "Import file preprocessing done"
 msgstr "Procés d'importar fitxer fet"
 
@@ -1613,7 +1613,7 @@ msgstr ""
 msgid "Exchange data - Orage"
 msgstr "Intercanvi de dades - «Orage»"
 
-#: ../src/main.c:260
+#: ../src/main.c:268
 #, c-format
 msgid ""
 "\tThis is %s version %s\n"
@@ -1622,62 +1622,62 @@ msgstr ""
 "\tAixò és «%s» versió %s\n"
 "\n"
 
-#: ../src/main.c:262
+#: ../src/main.c:270
 #, c-format
 msgid "\tReleased under the terms of the GNU General Public License.\n"
 msgstr "\tDistribuït sota la llicència «GNU General Public License».\n"
 
-#: ../src/main.c:263
+#: ../src/main.c:271
 #, c-format
 msgid "\tCompiled against GTK+-%d.%d.%d, "
 msgstr "\tCompilat mitjançant «GTK+-%d.%d.%d», "
 
-#: ../src/main.c:265
+#: ../src/main.c:273
 #, c-format
 msgid "using GTK+-%d.%d.%d.\n"
 msgstr "emprant GTK+-%d.%d.%d.\n"
 
-#: ../src/main.c:268
+#: ../src/main.c:276
 #, c-format
 msgid "\tUsing DBUS for import.\n"
 msgstr "\tEmprant «DBUS» per importar.\n"
 
-#: ../src/main.c:270
+#: ../src/main.c:278
 #, c-format
 msgid "\tNot using DBUS. Import works only partially.\n"
 msgstr "\tNo emprant «DBUS». Importar funcionar parcialment.\n"
 
-#: ../src/main.c:273
+#: ../src/main.c:281
 #, c-format
 msgid "\tUsing libnotify.\n"
 msgstr "\tEmprant «libnotify».\n"
 
-#: ../src/main.c:275
+#: ../src/main.c:283
 #, c-format
 msgid "\tNot using libnotify.\n"
 msgstr "\tNo emprant «libnotify».\n"
 
-#: ../src/main.c:278
+#: ../src/main.c:286
 #, c-format
 msgid "\tUsing automatic archiving.\n"
 msgstr "\tEmprant arxivament automàtic.\n"
 
-#: ../src/main.c:280
+#: ../src/main.c:288
 #, c-format
 msgid "\tNot using archiving.\n"
 msgstr "\tNo emprant arxivament.\n"
 
-#: ../src/main.c:283
+#: ../src/main.c:291
 #, c-format
 msgid "\tUsing operating system package libical.\n"
 msgstr "\tEmprant el paquet del sistema operatiu «libical».\n"
 
-#: ../src/main.c:285
+#: ../src/main.c:293
 #, c-format
 msgid "\tUsing Orage local version of libical.\n"
 msgstr "\tEmprant la versió local d'Orage de «libical».\n"
 
-#: ../src/main.c:298
+#: ../src/main.c:306
 #, c-format
 msgid ""
 "Usage: orage [options] [files]\n"
@@ -1686,59 +1686,59 @@ msgstr ""
 "Ús: orage [opcions] [fitxers]\n"
 "\n"
 
-#: ../src/main.c:299
+#: ../src/main.c:307
 #, c-format
 msgid "Options:\n"
 msgstr "Opcions:\n"
 
-#: ../src/main.c:300
+#: ../src/main.c:308
 #, c-format
 msgid "--version (-v) \t\tshow version of orage\n"
 msgstr "--version (-v) \t\tmostra la versió d'«orage»\n"
 
-#: ../src/main.c:301
+#: ../src/main.c:309
 #, c-format
 msgid "--help (-h) \t\tprint this text\n"
 msgstr "--help (-h) \t\tmostra aquest text.\n"
 
-#: ../src/main.c:302
+#: ../src/main.c:310
 #, c-format
 msgid "--preferences (-p) \tshow preferences form\n"
 msgstr "--preferences (-p)\tmostra les preferències\n"
 
-#: ../src/main.c:303
+#: ../src/main.c:311
 #, c-format
 msgid "--toggle (-t) \t\tmake orage visible/unvisible\n"
 msgstr "--toggle (-t) \t\tFes «orage» visible/invisible.\n"
 
-#: ../src/main.c:304
+#: ../src/main.c:312
 #, c-format
 msgid "--add-foreign (-a) file [RW] \tadd a foreign file\n"
 msgstr "--add-foreign (-a) file [RW] \tafegeix un fitxer forà.\n"
 
-#: ../src/main.c:305
+#: ../src/main.c:313
 #, c-format
 msgid "--remove-foreign (-r) file \tremove a foreign file\n"
 msgstr "--remove-foreign (-r) file \ttreu un fitxer forà\n"
 
-#: ../src/main.c:306
+#: ../src/main.c:314
 #, c-format
 msgid ""
 "--export (-e) file [appointment...] \texport appointments from Orage to "
 "file\n"
 msgstr ""
 
-#: ../src/main.c:308
+#: ../src/main.c:316
 #, c-format
 msgid "files=ical files to load into orage\n"
 msgstr "files=fitxers «ical» a carregar a «orage»\n"
 
-#: ../src/main.c:310
+#: ../src/main.c:318
 #, c-format
 msgid "\tdbus not included in orage. \n"
 msgstr "\t«dbus» no inclòs a «orage». \n"
 
-#: ../src/main.c:311
+#: ../src/main.c:319
 #, c-format
 msgid ""
 "\twithout dbus [files] and foreign file options(-a & -r) can only be used "
@@ -1747,7 +1747,7 @@ msgstr ""
 "\tsense dbus [fitxers] ni opcions de fitxers forans (-a i -r) només es pot "
 "emprar quan s'inicia «orage» \n"
 
-#: ../src/main.c:503
+#: ../src/main.c:511
 #, c-format
 msgid ""
 "\n"
@@ -1792,27 +1792,11 @@ msgstr "A_juda"
 msgid "Never"
 msgstr "Mai"
 
-#: ../src/mainbox.c:450
-#, c-format
+#: ../src/mainbox.c:450 ../src/mainbox.c:457
+#, fuzzy, c-format
 msgid ""
 "Title: %s\n"
-" Start:\t%s\n"
-" Due:\t%s\n"
-" Done:\t%s\n"
-"Note:\n"
-"%s"
-msgstr ""
-"Títol: %s\n"
-" Inici:\t%s\n"
-" Motiu:\t%s\n"
-" Fet:\t%s\n"
-"Nota:\n"
-"%s"
-
-#: ../src/mainbox.c:456
-#, c-format
-msgid ""
-"Title: %s\n"
+" Location: %s\n"
 " Start:\t%s\n"
 " End:\t%s\n"
 " Note:\n"
@@ -1824,178 +1808,178 @@ msgstr ""
 " Nota:\n"
 "%s"
 
-#: ../src/mainbox.c:542
+#: ../src/mainbox.c:543
 msgid "<b>To do:</b>"
 msgstr "<b>Pendent de fer:</b>"
 
-#: ../src/mainbox.c:578
+#: ../src/mainbox.c:579
 #, c-format
 msgid "<b>Events for %s:</b>"
 msgstr "<b>Esdeveniments per %s:</b>"
 
-#: ../src/mainbox.c:589
+#: ../src/mainbox.c:590
 #, c-format
 msgid "<b>Events for %s - %s:</b>"
 msgstr "<b>Esdeveniments per %s - %s:</b>"
 
-#: ../src/parameters.c:520
+#: ../src/parameters.c:522
 msgid "Main settings"
 msgstr "Configuració principal"
 
-#: ../src/parameters.c:526
+#: ../src/parameters.c:528
 msgid "Timezone"
 msgstr "Fus horari"
 
-#: ../src/parameters.c:541
+#: ../src/parameters.c:543
 msgid "You should always define your local timezone."
 msgstr "CSempra s'ha de definir el fus horari local."
 
-#: ../src/parameters.c:550
+#: ../src/parameters.c:552
 msgid "Archive threshold (months)"
 msgstr "Llindar de l'arxiu de cites (mesos)"
 
-#: ../src/parameters.c:560
+#: ../src/parameters.c:562
 msgid "(0 = no archiving)"
 msgstr "(0 = no arxivar)"
 
-#: ../src/parameters.c:563
+#: ../src/parameters.c:565
 msgid "Archiving is used to save time and space when handling events."
 msgstr ""
 "Arxivament s'empra per desar hores i llocs quan es manipulen esdeveniments."
 
-#: ../src/parameters.c:572
+#: ../src/parameters.c:574
 msgid "Sound command"
 msgstr "Ordre per sons"
 
-#: ../src/parameters.c:587
+#: ../src/parameters.c:589
 msgid "This command is given to shell to make sound in alarms."
 msgstr "Aquesta ordre s'empra per executar sons i alarmes."
 
-#: ../src/parameters.c:603
+#: ../src/parameters.c:605
 msgid "Display settings"
 msgstr "Mostra la configuració"
 
-#: ../src/parameters.c:611
+#: ../src/parameters.c:613
 msgid "Calendar main window"
 msgstr "Finestra principal del calendari"
 
-#: ../src/parameters.c:616
+#: ../src/parameters.c:618
 msgid "Show borders"
 msgstr "Mostra les vores"
 
-#: ../src/parameters.c:623
+#: ../src/parameters.c:625
 msgid "Show menu"
 msgstr "Mostra el menú"
 
-#: ../src/parameters.c:630
+#: ../src/parameters.c:632
 msgid "Show month and year"
 msgstr "Mostra mes i any"
 
-#: ../src/parameters.c:637
+#: ../src/parameters.c:639
 msgid "Show day names"
 msgstr "Mostra els noms dels dies"
 
-#: ../src/parameters.c:644
+#: ../src/parameters.c:646
 msgid "Show week numbers"
 msgstr "Mostra els números de les setmanes"
 
-#: ../src/parameters.c:651
+#: ../src/parameters.c:653
 msgid "Show todo list"
 msgstr "Mostra la llista del pendent de fer"
 
-#: ../src/parameters.c:658
+#: ../src/parameters.c:660
 msgid "Number of days to show in event window"
 msgstr "Nombre de dies a mostrar a la finestra d'esdeveniments"
 
-#: ../src/parameters.c:664
+#: ../src/parameters.c:666
 msgid "0 = do not show event list at all"
 msgstr "0 = no mostra cap llista d'esdeveniments"
 
-#: ../src/parameters.c:674
+#: ../src/parameters.c:676
 msgid "Show on all desktops"
 msgstr "Mostra a tots els escriptoris"
 
-#: ../src/parameters.c:681
+#: ../src/parameters.c:683
 msgid "Keep on top"
 msgstr "Mostra al damunt"
 
-#: ../src/parameters.c:688
+#: ../src/parameters.c:690
 msgid "Show in taskbar"
 msgstr "Mostra a la barra de tasques"
 
-#: ../src/parameters.c:695
+#: ../src/parameters.c:697
 msgid "Show in pager"
 msgstr "Mostra al paginador"
 
-#: ../src/parameters.c:702
+#: ../src/parameters.c:704
 msgid "Show in systray"
 msgstr "Mostra a la safata del sistema"
 
-#: ../src/parameters.c:737
+#: ../src/parameters.c:739
 msgid "Calendar start"
 msgstr "Inici del calendari"
 
-#: ../src/parameters.c:742
+#: ../src/parameters.c:744
 msgid "Show"
 msgstr "Mostra"
 
-#: ../src/parameters.c:754
+#: ../src/parameters.c:756
 msgid "Hide"
 msgstr "Oculta"
 
-#: ../src/parameters.c:766
+#: ../src/parameters.c:768
 msgid "Minimized"
 msgstr "Minimitzada"
 
-#: ../src/parameters.c:791
+#: ../src/parameters.c:793
 msgid "Extra settings"
 msgstr "Configuració addicional"
 
-#: ../src/parameters.c:799
+#: ../src/parameters.c:801
 msgid "On Calendar Window Open"
 msgstr "Obrir en la finestra del calendari"
 
-#: ../src/parameters.c:804
+#: ../src/parameters.c:806
 msgid "Select Today's Date"
 msgstr "Ves a avui"
 
-#: ../src/parameters.c:817
+#: ../src/parameters.c:819
 msgid "Select Previously Selected Date"
 msgstr "Selecciona la data triada anteriorament"
 
-#: ../src/parameters.c:834
+#: ../src/parameters.c:836
 msgid "Use dynamic tray icon"
 msgstr "Empra una icona dinàmica a l'àrea de notificació"
 
-#: ../src/parameters.c:839
+#: ../src/parameters.c:841
 msgid "Use dynamic icon"
 msgstr "Empra icona dinàmica"
 
-#: ../src/parameters.c:845
+#: ../src/parameters.c:847
 msgid "Dynamic icon shows current month and day of the month."
 msgstr "La icona dinàmica mostra el mes actual i el dia del mes."
 
-#: ../src/parameters.c:854
+#: ../src/parameters.c:856
 msgid "Main Calendar double click shows"
 msgstr "Mostra el calendari principal amb doble clic"
 
-#: ../src/parameters.c:859
+#: ../src/parameters.c:861
 msgid "Days view"
 msgstr "Dies mostrats"
 
-#: ../src/parameters.c:871
+#: ../src/parameters.c:873
 msgid "Event list"
 msgstr "Llista d'esdeveniments"
 
-#: ../src/parameters.c:888
+#: ../src/parameters.c:890
 msgid "Eventlist window"
 msgstr "Finestra de llista d'esdeveniments"
 
-#: ../src/parameters.c:892
+#: ../src/parameters.c:894
 msgid "Number of extra days to show in event list"
 msgstr "Nombre de dies extres a mostrar en el llistat d'esdeveniments"
 
-#: ../src/parameters.c:900
+#: ../src/parameters.c:902
 msgid ""
 "This is just the default value, you can change it in the actual eventlist "
 "window."
@@ -2003,30 +1987,30 @@ msgstr ""
 "Aquest només és el valor per defecte, podeu canviar-lo en la finestra de la "
 "llista d'esdeveniments."
 
-#: ../src/parameters.c:908 ../src/parameters.c:913
+#: ../src/parameters.c:910 ../src/parameters.c:915
 msgid "Use wakeup timer"
 msgstr ""
 
-#: ../src/parameters.c:919
+#: ../src/parameters.c:921
 msgid ""
 "Use this timer if Orage has problems waking up properly after suspend or "
 "hibernate. (For example tray icon not refreshed or alarms not firing.)"
 msgstr ""
 
-#: ../src/parameters.c:936
+#: ../src/parameters.c:938
 msgid "Orage Preferences"
 msgstr "Preferències Orage"
 
-#: ../src/parameters.c:1048
+#: ../src/parameters.c:1050
 msgid "First Orage start. Searching default timezone."
 msgstr "Primera arrancada d'Orage. Cercant el fus horari per defecte."
 
-#: ../src/parameters.c:1067
+#: ../src/parameters.c:1069
 #, c-format
 msgid "Default timezone set to %s."
 msgstr "Fus horari per defecte fixat a %s."
 
-#: ../src/parameters.c:1070
+#: ../src/parameters.c:1072
 msgid "Default timezone not found, please, set it manually."
 msgstr "Fus horari per defecte no trobat. Informeu-lo manualment."
 
@@ -2052,11 +2036,11 @@ msgid "Press <Execute> to remind me again after the specified time:"
 msgstr ""
 "Pitgeu <Executa> per recordar-m'ho un altre cop desés del temps especificat:"
 
-#: ../src/reminder.c:1095
+#: ../src/reminder.c:1099
 msgid "Next active alarms:"
 msgstr "Següent alarma activa:"
 
-#: ../src/reminder.c:1148 ../src/reminder.c:1153
+#: ../src/reminder.c:1152 ../src/reminder.c:1157
 #, c-format
 msgid ""
 "\n"
@@ -2065,7 +2049,7 @@ msgstr ""
 "\n"
 "%02d d %02d h %02d min per: %s"
 
-#: ../src/reminder.c:1162
+#: ../src/reminder.c:1166
 #, c-format
 msgid ""
 "\n"
@@ -3666,6 +3650,21 @@ msgstr "Calendari d'escriptori"
 #: ../xfcalendar.desktop.in.h:3
 msgid "Orage Calendar"
 msgstr "Calendari Orage"
+
+#~ msgid ""
+#~ "Title: %s\n"
+#~ " Start:\t%s\n"
+#~ " Due:\t%s\n"
+#~ " Done:\t%s\n"
+#~ "Note:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Títol: %s\n"
+#~ " Inici:\t%s\n"
+#~ " Motiu:\t%s\n"
+#~ " Fet:\t%s\n"
+#~ "Nota:\n"
+#~ "%s"
 
 #~ msgid ""
 #~ "You must enter all escape etc characters yourself.\n"

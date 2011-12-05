@@ -447,14 +447,15 @@ static void add_info_row(xfical_appt *appt, GtkBox *parentBox, gboolean todo)
                 ? orage_icaltime_to_i18_time(appt->endtimecur) : na);
         c_time = g_strdup(appt->completed
                 ? orage_icaltime_to_i18_time(appt->completedtime) : na);
-        tip = g_strdup_printf(_("Title: %s\n Start:\t%s\n Due:\t%s\n Done:\t%s\nNote:\n%s")
-                , tmp_title, s_time, e_time, c_time, tmp_note);
+        tip = g_strdup_printf(_("Title: %s\n Location: %s\n Start:\t%s\n End:\t%s\n Note:\n%s")
+                , tmp_title, appt->location, s_time, e_time, tmp_note);
+
         g_free(c_time);
     }
     else { /* it is event */
         e_time = g_strdup(orage_icaltime_to_i18_time(appt->endtimecur));
-        tip = g_strdup_printf(_("Title: %s\n Start:\t%s\n End:\t%s\n Note:\n%s")
-                , tmp_title, s_time, e_time, tmp_note);
+        tip = g_strdup_printf(_("Title: %s\n Location: %s\n Start:\t%s\n End:\t%s\n Note:\n%s")
+                , tmp_title, appt->location, s_time, e_time, tmp_note);
     }
     gtk_tooltips_set_tip(cal->Tooltips, ev, tip, NULL);
     g_free(tmp_title);
