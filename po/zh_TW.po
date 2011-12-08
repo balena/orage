@@ -5,7 +5,7 @@
 # Ambrose Li <acli@ada.dhs.org>, 2004.
 # Hydonsingore Cia <hydonsingore@educities.edu.tw>, 2005.
 # Cosmo Chene <cosmolax@gmail.com>, 2006
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.3.90.2\n"
@@ -105,7 +105,7 @@ msgstr ""
 
 #: ../globaltime/gt_prefs.c:568 ../globaltime/gt_prefs.c:1042
 msgid "close window and exit"
-msgstr ""
+msgstr "關閉視窗並離開"
 
 #: ../globaltime/gt_prefs.c:590
 #, fuzzy
@@ -309,15 +309,15 @@ msgstr ""
 
 #: ../globaltime/timezone_selection.c:159
 #: ../panel-plugin/timezone_selection.c:160 ../src/timezone_selection.c:171
-#, fuzzy, c-format
+#, c-format
 msgid "%d hour"
-msgstr "小時"
+msgstr "%d 時"
 
 #: ../globaltime/timezone_selection.c:161
 #: ../panel-plugin/timezone_selection.c:162 ../src/timezone_selection.c:173
-#, fuzzy, c-format
+#, c-format
 msgid "%d mins"
-msgstr "分鐘"
+msgstr "%d 分"
 
 #: ../globaltime/timezone_selection.c:167
 #: ../panel-plugin/timezone_selection.c:168 ../src/timezone_selection.c:179
@@ -362,7 +362,7 @@ msgstr ""
 #: ../globaltime/timezone_selection.c:269
 #: ../panel-plugin/timezone_selection.c:270 ../src/timezone_selection.c:281
 msgid "Country"
-msgstr ""
+msgstr "國家"
 
 #. We are actually setting the g_par parameter. In other words
 #. we are setting the global default timezone for Orage. This is
@@ -476,7 +476,7 @@ msgstr "請輸入任一可用的·strftime·函數參數"
 #. Tooltip hint
 #: ../panel-plugin/oc_config.c:401
 msgid "Tooltip:"
-msgstr ""
+msgstr "工具提示:"
 
 #. special timing for SUSPEND/HIBERNATE
 #: ../panel-plugin/oc_config.c:411
@@ -513,9 +513,8 @@ msgstr ""
 "\t%X = 本地時間\t\t\t%x = 本地日期"
 
 #: ../panel-plugin/oc_config.c:457
-#, fuzzy
 msgid "Orage clock Preferences"
-msgstr "Orage 偏好設定"
+msgstr "Orage 時鐘偏好設定"
 
 #. no lines yet
 #. TRANSLATORS: Use format characters from strftime(3)
@@ -526,7 +525,7 @@ msgstr "Orage 偏好設定"
 #. * %B  : full month name
 #. * %Y  : four digit year
 #. * %V  : ISO week number
-#.
+#. 
 #: ../panel-plugin/xfce4-orageclock-plugin.c:627
 msgid "%A %d %B %Y/%V"
 msgstr "%Y %B %d %A/%V"
@@ -536,9 +535,8 @@ msgid "Maintainer"
 msgstr ""
 
 #: ../src/about-xfcalendar.c:47
-#, fuzzy
 msgid "Manage your time with Orage"
-msgstr "使用 XFce4 為您管理時間"
+msgstr "使用 Orage 為您管理時間"
 
 #. if (gtk_toggle_button_get_active(
 #. GTK_TOGGLE_BUTTON(apptw->Type_journal_rb)))
@@ -1451,14 +1449,13 @@ msgid "Orage appointment UIDs separated by commas."
 msgstr ""
 
 #: ../src/interface.c:1076
-#, fuzzy
 msgid "Archive"
 msgstr "封存檔案"
 
 #: ../src/interface.c:1084
-#, fuzzy, c-format
+#, c-format
 msgid "Archive now (threshold: %d months)"
-msgstr "封存門檻"
+msgstr "立即封存 (門檻: %d 個月)"
 
 #: ../src/interface.c:1094
 msgid "You can change archive threshold in parameters"
@@ -1762,9 +1759,8 @@ msgid "<b>Events for %s - %s:</b>"
 msgstr ""
 
 #: ../src/parameters.c:522
-#, fuzzy
 msgid "Main settings"
-msgstr "月曆偏好設定"
+msgstr "主要設定"
 
 #: ../src/parameters.c:528
 msgid "Timezone"
@@ -1775,9 +1771,8 @@ msgid "You should always define your local timezone."
 msgstr ""
 
 #: ../src/parameters.c:552
-#, fuzzy
 msgid "Archive threshold (months)"
-msgstr "封存門檻"
+msgstr "封存門檻 (月)"
 
 #: ../src/parameters.c:562
 msgid "(0 = no archiving)"
@@ -1789,36 +1784,31 @@ msgstr ""
 
 #: ../src/parameters.c:574
 msgid "Sound command"
-msgstr ""
+msgstr "音效命令"
 
 #: ../src/parameters.c:589
 msgid "This command is given to shell to make sound in alarms."
 msgstr ""
 
 #: ../src/parameters.c:605
-#, fuzzy
 msgid "Display settings"
-msgstr "已顯示"
+msgstr "外觀設定"
 
 #: ../src/parameters.c:613
-#, fuzzy
 msgid "Calendar main window"
-msgstr "月曆視窗"
+msgstr "月曆主視窗"
 
 #: ../src/parameters.c:618
-#, fuzzy
 msgid "Show borders"
-msgstr "顯示框格(_F)"
+msgstr "顯示邊框"
 
 #: ../src/parameters.c:625
-#, fuzzy
 msgid "Show menu"
-msgstr "顯示框格(_F)"
+msgstr "顯示選單"
 
 #: ../src/parameters.c:632
-#, fuzzy
 msgid "Show month and year"
-msgstr "在頁面切換器中顯示"
+msgstr "顯示月和年"
 
 #: ../src/parameters.c:639
 #, fuzzy
@@ -1826,9 +1816,8 @@ msgid "Show day names"
 msgstr "顯示框格(_F)"
 
 #: ../src/parameters.c:646
-#, fuzzy
 msgid "Show week numbers"
-msgstr "顯示框格(_F)"
+msgstr "顯示第幾週"
 
 #: ../src/parameters.c:653
 #, fuzzy
@@ -1845,12 +1834,11 @@ msgstr ""
 
 #: ../src/parameters.c:676
 msgid "Show on all desktops"
-msgstr ""
+msgstr "在所有桌面中顯示"
 
 #: ../src/parameters.c:683
-#, fuzzy
 msgid "Keep on top"
-msgstr "設定時區為:"
+msgstr "顯示在最上層"
 
 #: ../src/parameters.c:690
 msgid "Show in taskbar"
@@ -3619,18 +3607,15 @@ msgstr "月曆"
 #~ msgid "Display"
 #~ msgstr "顯示"
 
-#, fuzzy
 #~ msgid "Select always today"
 #~ msgstr "選擇今天日期(_T)"
 
-#, fuzzy
 #~ msgid "Vary"
 #~ msgstr "每年"
 
 #~ msgid "Select timezone"
 #~ msgstr "選擇時區"
 
-#, fuzzy
 #~ msgid "Modify Preferences"
 #~ msgstr "Orage 偏好設定"
 
@@ -3649,49 +3634,39 @@ msgstr "月曆"
 #~ msgid "Properties"
 #~ msgstr "內容"
 
-#, fuzzy
 #~ msgid "Show event list"
 #~ msgstr "在系統匣中顯示"
 
 #~ msgid "Xfce 4 Calendar Settings"
 #~ msgstr "Xfce 4 月曆偏好設定"
 
-#, fuzzy
 #~ msgid "Monday"
 #~ msgstr "今天"
 
-#, fuzzy
 #~ msgid "Tuesday"
 #~ msgstr "今天"
 
-#, fuzzy
 #~ msgid "Wednesday"
 #~ msgstr "每星期"
 
-#, fuzzy
 #~ msgid "Thursday"
 #~ msgstr "今天"
 
-#, fuzzy
 #~ msgid "Friday"
 #~ msgstr "天"
 
-#, fuzzy
 #~ msgid "Sunday"
 #~ msgstr "鈴聲"
 
-#, fuzzy
 #~ msgid "Days"
 #~ msgstr "天"
 
-#, fuzzy
 #~ msgid "normal"
 #~ msgstr "一般"
 
 #~ msgid "%m/%d/%Y"
 #~ msgstr "%m/%d/%Y"
 
-#, fuzzy
 #~ msgid "Calendar Files"
 #~ msgstr "日曆檔案"
 
