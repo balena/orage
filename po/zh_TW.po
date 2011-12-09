@@ -5,14 +5,14 @@
 # Ambrose Li <acli@ada.dhs.org>, 2004.
 # Hydonsingore Cia <hydonsingore@educities.edu.tw>, 2005.
 # Cosmo Chene <cosmolax@gmail.com>, 2006
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.3.90.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-12-05 12:38+0200\n"
-"PO-Revision-Date: 2006-08-20 01:26+0800\n"
-"Last-Translator: Hydonsingore Cia <hydonsingore@educities.edu.tw>\n"
+"PO-Revision-Date: 2011-12-09 18:40+0800\n"
+"Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
 "Language-Team: Chinese (traditional) <zh-l10n@linux.org.tw>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,11 +21,11 @@ msgstr ""
 
 #: ../globaltime/globaltime.c:100
 msgid "Raising GlobalTime window..."
-msgstr ""
+msgstr "正在提升 GlobalTime 視窗..."
 
 #: ../globaltime/globaltime.c:102
 msgid "GlobalTime window raise failed"
-msgstr ""
+msgstr "GlobalTime 視窗提升失敗"
 
 #. ********** timezone tooltip **********
 #: ../globaltime/globaltime.c:277
@@ -34,6 +34,8 @@ msgid ""
 "%s\n"
 "click to modify clock"
 msgstr ""
+"%s\n"
+"點擊以修改時鐘"
 
 #: ../globaltime/globaltime.c:386
 msgid "Localtime"
@@ -47,14 +49,15 @@ msgstr ""
 
 #: ../globaltime/globaltime.c:480
 msgid "adjust to change hour"
-msgstr ""
+msgstr "調整以變更小時"
 
 #: ../globaltime/globaltime.c:496
-msgid ""
-"adjust to change minute. Click arrows with button 2 to change only 1 minute."
-msgstr ""
+#, fuzzy
+msgid "adjust to change minute. Click arrows with button 2 to change only 1 minute."
+msgstr "調整以變更分鐘。點擊按鈕 2 的箭頭來以 1 分鐘為單位更動。"
 
-#: ../globaltime/gt_prefs.c:265 ../globaltime/gt_prefs.c:266
+#: ../globaltime/gt_prefs.c:265
+#: ../globaltime/gt_prefs.c:266
 msgid "NEW"
 msgstr "新時鐘"
 
@@ -70,7 +73,8 @@ msgstr ""
 msgid "update this clock"
 msgstr "更新此時鐘"
 
-#: ../globaltime/gt_prefs.c:521 ../globaltime/gt_prefs.c:1034
+#: ../globaltime/gt_prefs.c:521
+#: ../globaltime/gt_prefs.c:1034
 msgid "add new empty clock"
 msgstr "新增空白的時鐘"
 
@@ -102,7 +106,8 @@ msgstr ""
 msgid "set the timezone of this clock to be local timezone"
 msgstr ""
 
-#: ../globaltime/gt_prefs.c:568 ../globaltime/gt_prefs.c:1042
+#: ../globaltime/gt_prefs.c:568
+#: ../globaltime/gt_prefs.c:1042
 msgid "close window and exit"
 msgstr "關閉視窗並離開"
 
@@ -120,9 +125,8 @@ msgid "Name of the clock:"
 msgstr "時鐘的名稱:"
 
 #: ../globaltime/gt_prefs.c:613
-#, fuzzy
 msgid "enter name of clock"
-msgstr "Orage 時鐘"
+msgstr "輸入時鐘的名稱"
 
 #: ../globaltime/gt_prefs.c:616
 msgid "Timezone of the clock:"
@@ -133,41 +137,50 @@ msgid "Text Formatting"
 msgstr "格式化文字"
 
 #. ------------------------background-------------------------
-#: ../globaltime/gt_prefs.c:649 ../globaltime/gt_prefs.c:856
-#, fuzzy
+#: ../globaltime/gt_prefs.c:649
+#: ../globaltime/gt_prefs.c:856
 msgid "Background color:"
-msgstr "設定背景顏色(_B):"
+msgstr "背景色："
 
 #: ../globaltime/gt_prefs.c:656
 msgid "Click to change background colour for clock"
 msgstr ""
 
-#: ../globaltime/gt_prefs.c:665 ../globaltime/gt_prefs.c:697
-#: ../globaltime/gt_prefs.c:729 ../globaltime/gt_prefs.c:762
-#: ../globaltime/gt_prefs.c:796 ../globaltime/gt_prefs.c:826
-#: ../globaltime/gt_prefs.c:872 ../globaltime/gt_prefs.c:905
-#: ../globaltime/gt_prefs.c:938 ../globaltime/gt_prefs.c:972
+#: ../globaltime/gt_prefs.c:665
+#: ../globaltime/gt_prefs.c:697
+#: ../globaltime/gt_prefs.c:729
+#: ../globaltime/gt_prefs.c:762
+#: ../globaltime/gt_prefs.c:796
+#: ../globaltime/gt_prefs.c:826
+#: ../globaltime/gt_prefs.c:872
+#: ../globaltime/gt_prefs.c:905
+#: ../globaltime/gt_prefs.c:938
+#: ../globaltime/gt_prefs.c:972
 msgid "Use default"
 msgstr "使用預設值"
 
-#: ../globaltime/gt_prefs.c:670 ../globaltime/gt_prefs.c:702
-#: ../globaltime/gt_prefs.c:735 ../globaltime/gt_prefs.c:768
-#: ../globaltime/gt_prefs.c:802 ../globaltime/gt_prefs.c:832
+#: ../globaltime/gt_prefs.c:670
+#: ../globaltime/gt_prefs.c:702
+#: ../globaltime/gt_prefs.c:735
+#: ../globaltime/gt_prefs.c:768
+#: ../globaltime/gt_prefs.c:802
+#: ../globaltime/gt_prefs.c:832
 msgid "Cross this to use default instead of selected value"
 msgstr ""
 
 #. ------------------------foreground-------------------------
-#: ../globaltime/gt_prefs.c:681 ../globaltime/gt_prefs.c:889
-#, fuzzy
+#: ../globaltime/gt_prefs.c:681
+#: ../globaltime/gt_prefs.c:889
 msgid "Foreground (=text) color:"
-msgstr "設定前景顏色(_C):"
+msgstr "前景 (=文字) 色："
 
 #: ../globaltime/gt_prefs.c:688
 msgid "Click to change foreground colour for clock"
 msgstr ""
 
 #. ------------------------name font-------------------------
-#: ../globaltime/gt_prefs.c:713 ../globaltime/gt_prefs.c:922
+#: ../globaltime/gt_prefs.c:713
+#: ../globaltime/gt_prefs.c:922
 msgid "Font for name of clock:"
 msgstr ""
 
@@ -176,7 +189,8 @@ msgid "Click to change font for clock name"
 msgstr ""
 
 #. ------------------------time font-------------------------
-#: ../globaltime/gt_prefs.c:746 ../globaltime/gt_prefs.c:956
+#: ../globaltime/gt_prefs.c:746
+#: ../globaltime/gt_prefs.c:956
 msgid "Font for time of clock:"
 msgstr ""
 
@@ -202,7 +216,8 @@ msgstr ""
 msgid "Click to change default background colour for clocks"
 msgstr ""
 
-#: ../globaltime/gt_prefs.c:877 ../globaltime/gt_prefs.c:910
+#: ../globaltime/gt_prefs.c:877
+#: ../globaltime/gt_prefs.c:910
 msgid "Cross this to use system default instead of selected color"
 msgstr ""
 
@@ -214,7 +229,8 @@ msgstr ""
 msgid "Click to change default font for clock name"
 msgstr ""
 
-#: ../globaltime/gt_prefs.c:944 ../globaltime/gt_prefs.c:978
+#: ../globaltime/gt_prefs.c:944
+#: ../globaltime/gt_prefs.c:978
 msgid "Cross this to use system default font instead of selected font"
 msgstr ""
 
@@ -233,30 +249,25 @@ msgid "Underline for time of clock:"
 msgstr ""
 
 #: ../globaltime/gt_prefs.c:1027
-#, fuzzy
 msgid "update preferences"
-msgstr "Orage 偏好設定"
+msgstr "更新偏好設定"
 
 #: ../globaltime/gt_prefs.c:1062
-#, fuzzy
 msgid "Globaltime Preferences"
-msgstr "Orage 偏好設定"
+msgstr "Globaltime 偏好設定"
 
 #. -----------------------HEADING--------------------------------------
 #: ../globaltime/gt_prefs.c:1073
-#, fuzzy
 msgid "General Preferences"
-msgstr "Orage 偏好設定"
+msgstr "譯安偏好設定"
 
 #: ../globaltime/gt_prefs.c:1077
-#, fuzzy
 msgid "Decorations:"
-msgstr "時間長短"
+msgstr "裝飾："
 
 #: ../globaltime/gt_prefs.c:1078
-#, fuzzy
 msgid "Standard"
-msgstr "月曆"
+msgstr "標準"
 
 #: ../globaltime/gt_prefs.c:1083
 msgid "Use normal decorations"
@@ -267,13 +278,12 @@ msgid "Do not show window decorations (borders)"
 msgstr ""
 
 #: ../globaltime/gt_prefs.c:1100
-#, fuzzy
 msgid "Clock size:"
-msgstr "關閉"
+msgstr "時鐘大小："
 
 #: ../globaltime/gt_prefs.c:1101
 msgid "Equal"
-msgstr ""
+msgstr "等於"
 
 #: ../globaltime/gt_prefs.c:1106
 msgid "All clocks have same size"
@@ -289,51 +299,57 @@ msgid "Clock sizes vary"
 msgstr ""
 
 #: ../globaltime/gt_prefs.c:1122
-#, fuzzy
 msgid "Local timezone:"
-msgstr "選擇本地時區"
+msgstr "本地時區："
 
 #: ../globaltime/timezone_selection.c:101
-#: ../panel-plugin/timezone_selection.c:102 ../src/timezone_selection.c:102
+#: ../panel-plugin/timezone_selection.c:102
+#: ../src/timezone_selection.c:102
 msgid " Other"
 msgstr "其他"
 
 #: ../globaltime/timezone_selection.c:156
-#: ../panel-plugin/timezone_selection.c:157 ../src/timezone_selection.c:168
+#: ../panel-plugin/timezone_selection.c:157
+#: ../src/timezone_selection.c:168
 #, c-format
 msgid "%d hour %d mins"
 msgstr ""
 
 #: ../globaltime/timezone_selection.c:159
-#: ../panel-plugin/timezone_selection.c:160 ../src/timezone_selection.c:171
+#: ../panel-plugin/timezone_selection.c:160
+#: ../src/timezone_selection.c:171
 #, c-format
 msgid "%d hour"
 msgstr "%d 時"
 
 #: ../globaltime/timezone_selection.c:161
-#: ../panel-plugin/timezone_selection.c:162 ../src/timezone_selection.c:173
+#: ../panel-plugin/timezone_selection.c:162
+#: ../src/timezone_selection.c:173
 #, c-format
 msgid "%d mins"
 msgstr "%d 分"
 
 #: ../globaltime/timezone_selection.c:167
-#: ../panel-plugin/timezone_selection.c:168 ../src/timezone_selection.c:179
+#: ../panel-plugin/timezone_selection.c:168
+#: ../src/timezone_selection.c:179
 msgid "backward"
-msgstr ""
+msgstr "返回"
 
 #: ../globaltime/timezone_selection.c:170
-#: ../panel-plugin/timezone_selection.c:171 ../src/timezone_selection.c:182
-#, fuzzy
+#: ../panel-plugin/timezone_selection.c:171
+#: ../src/timezone_selection.c:182
 msgid "forward"
 msgstr "前進"
 
 #: ../globaltime/timezone_selection.c:194
-#: ../panel-plugin/timezone_selection.c:195 ../src/timezone_selection.c:206
+#: ../panel-plugin/timezone_selection.c:195
+#: ../src/timezone_selection.c:206
 msgid "not changed"
 msgstr ""
 
 #: ../globaltime/timezone_selection.c:195
-#: ../panel-plugin/timezone_selection.c:196 ../src/timezone_selection.c:207
+#: ../panel-plugin/timezone_selection.c:196
+#: ../src/timezone_selection.c:207
 msgid "not changing"
 msgstr ""
 
@@ -341,23 +357,28 @@ msgstr ""
 #: ../globaltime/timezone_selection.c:247
 #: ../globaltime/timezone_selection.c:252
 #: ../panel-plugin/timezone_selection.c:248
-#: ../panel-plugin/timezone_selection.c:253 ../src/appointment.c:2662
-#: ../src/timezone_selection.c:259 ../src/timezone_selection.c:264
+#: ../panel-plugin/timezone_selection.c:253
+#: ../src/appointment.c:2662
+#: ../src/timezone_selection.c:259
+#: ../src/timezone_selection.c:264
 msgid "Location"
 msgstr "區域"
 
 #: ../globaltime/timezone_selection.c:258
-#: ../panel-plugin/timezone_selection.c:259 ../src/timezone_selection.c:270
+#: ../panel-plugin/timezone_selection.c:259
+#: ../src/timezone_selection.c:270
 msgid "GMT Offset"
 msgstr "GMT 位移"
 
 #: ../globaltime/timezone_selection.c:264
-#: ../panel-plugin/timezone_selection.c:265 ../src/timezone_selection.c:276
+#: ../panel-plugin/timezone_selection.c:265
+#: ../src/timezone_selection.c:276
 msgid "Previous/Next Change"
 msgstr ""
 
 #: ../globaltime/timezone_selection.c:269
-#: ../panel-plugin/timezone_selection.c:270 ../src/timezone_selection.c:281
+#: ../panel-plugin/timezone_selection.c:270
+#: ../src/timezone_selection.c:281
 msgid "Country"
 msgstr "國家"
 
@@ -369,16 +390,20 @@ msgstr "國家"
 #: ../globaltime/timezone_selection.c:299
 #: ../globaltime/timezone_selection.c:309
 #: ../panel-plugin/timezone_selection.c:300
-#: ../panel-plugin/timezone_selection.c:310 ../src/timezone_selection.c:316
-#: ../src/timezone_selection.c:325 ../src/timezone_selection.c:336
+#: ../panel-plugin/timezone_selection.c:310
+#: ../src/timezone_selection.c:316
+#: ../src/timezone_selection.c:325
+#: ../src/timezone_selection.c:336
 msgid "Pick timezone"
 msgstr "選擇時區"
 
 #: ../globaltime/timezone_selection.c:302
 #: ../globaltime/timezone_selection.c:312
 #: ../panel-plugin/timezone_selection.c:303
-#: ../panel-plugin/timezone_selection.c:313 ../src/timezone_selection.c:319
-#: ../src/timezone_selection.c:328 ../src/timezone_selection.c:339
+#: ../panel-plugin/timezone_selection.c:313
+#: ../src/timezone_selection.c:319
+#: ../src/timezone_selection.c:328
+#: ../src/timezone_selection.c:339
 msgid "Change mode"
 msgstr "變更模式"
 
@@ -387,8 +412,10 @@ msgstr "變更模式"
 #: ../globaltime/timezone_selection.c:352
 #: ../panel-plugin/timezone_selection.c:304
 #: ../panel-plugin/timezone_selection.c:314
-#: ../panel-plugin/timezone_selection.c:353 ../src/timezone_selection.c:320
-#: ../src/timezone_selection.c:329 ../src/timezone_selection.c:340
+#: ../panel-plugin/timezone_selection.c:353
+#: ../src/timezone_selection.c:320
+#: ../src/timezone_selection.c:329
+#: ../src/timezone_selection.c:340
 #: ../src/timezone_selection.c:379
 msgid "UTC"
 msgstr "國際標準時間"
@@ -397,20 +424,20 @@ msgstr "國際標準時間"
 #: ../globaltime/timezone_selection.c:304
 #: ../globaltime/timezone_selection.c:357
 #: ../panel-plugin/timezone_selection.c:305
-#: ../panel-plugin/timezone_selection.c:358 ../src/timezone_selection.c:330
+#: ../panel-plugin/timezone_selection.c:358
+#: ../src/timezone_selection.c:330
 #: ../src/timezone_selection.c:384
 msgid "floating"
 msgstr "浮動"
 
-#: ../globaltime/globaltime.desktop.in.h:1 ../src/tray_icon.c:500
-#, fuzzy
+#: ../globaltime/globaltime.desktop.in.h:1
+#: ../src/tray_icon.c:500
 msgid "Globaltime"
-msgstr "區域"
+msgstr "全球時間"
 
 #: ../globaltime/globaltime.desktop.in.h:2
-#, fuzzy
 msgid "Orage Globaltime"
-msgstr "月曆"
+msgstr "Orage 全球時間"
 
 #: ../globaltime/globaltime.desktop.in.h:3
 msgid "Show clocks from different countries"
@@ -478,15 +505,10 @@ msgstr "工具提示:"
 #. special timing for SUSPEND/HIBERNATE
 #: ../panel-plugin/oc_config.c:411
 msgid "fix time after suspend/hibernate"
-msgstr ""
+msgstr "在暫停/休眠後修正時間"
 
 #: ../panel-plugin/oc_config.c:415
-msgid ""
-"You only need this if you do short term (less than 5 hours) suspend or "
-"hibernate and your visible time does not include seconds. Under these "
-"circumstances it is possible that Orageclock shows time inaccurately unless "
-"you have this selected. (Selecting this prevents cpu and interrupt saving "
-"features from working.)"
+msgid "You only need this if you do short term (less than 5 hours) suspend or hibernate and your visible time does not include seconds. Under these circumstances it is possible that Orageclock shows time inaccurately unless you have this selected. (Selecting this prevents cpu and interrupt saving features from working.)"
 msgstr ""
 
 #: ../panel-plugin/oc_config.c:432
@@ -522,14 +544,14 @@ msgstr "Orage 時鐘偏好設定"
 #. * %B  : full month name
 #. * %Y  : four digit year
 #. * %V  : ISO week number
-#. 
+#.
 #: ../panel-plugin/xfce4-orageclock-plugin.c:627
 msgid "%A %d %B %Y/%V"
 msgstr "%Y %B %d %A/%V"
 
 #: ../src/about-xfcalendar.c:40
 msgid "Maintainer"
-msgstr ""
+msgstr "維護者"
 
 #: ../src/about-xfcalendar.c:47
 msgid "Manage your time with Orage"
@@ -538,21 +560,26 @@ msgstr "使用 Orage 為您管理時間"
 #. if (gtk_toggle_button_get_active(
 #. GTK_TOGGLE_BUTTON(apptw->Type_journal_rb)))
 #. end time
-#: ../src/appointment.c:312 ../src/appointment.c:352 ../src/appointment.c:2691
+#: ../src/appointment.c:312
+#: ../src/appointment.c:352
+#: ../src/appointment.c:2691
 msgid "End"
 msgstr "結束"
 
 #: ../src/appointment.c:332
 msgid "Due"
-msgstr ""
+msgstr "到期"
 
-#: ../src/appointment.c:492 ../src/mainbox.c:780
+#: ../src/appointment.c:492
+#: ../src/mainbox.c:780
 msgid "Orage"
 msgstr "Orage"
 
 #. to avoid timing problems when updating entry
 #. Create file chooser
-#: ../src/appointment.c:671 ../src/interface.c:277 ../src/parameters.c:416
+#: ../src/appointment.c:671
+#: ../src/interface.c:277
+#: ../src/parameters.c:416
 msgid "Select a file..."
 msgstr "選擇一個檔案..."
 
@@ -560,7 +587,8 @@ msgstr "選擇一個檔案..."
 msgid "Sound Files"
 msgstr "音效檔"
 
-#: ../src/appointment.c:686 ../src/interface.c:290
+#: ../src/appointment.c:686
+#: ../src/interface.c:290
 msgid "All Files"
 msgstr "所有檔案"
 
@@ -568,7 +596,9 @@ msgstr "所有檔案"
 msgid "The appointment information has been modified."
 msgstr "本約會資訊已經被修改"
 
-#: ../src/appointment.c:739 ../src/appointment.c:1193 ../src/event-list.c:919
+#: ../src/appointment.c:739
+#: ../src/appointment.c:1193
+#: ../src/event-list.c:919
 msgid "Do you want to continue?"
 msgstr "請問您要繼續嗎？"
 
@@ -576,10 +606,10 @@ msgstr "請問您要繼續嗎？"
 msgid "The end of this appointment is earlier than the beginning."
 msgstr "本次約會的結束時間早於開始時間。"
 
-#: ../src/appointment.c:1033 ../src/appointment.c:1811
-#, fuzzy
+#: ../src/appointment.c:1033
+#: ../src/appointment.c:1811
 msgid "Not set"
-msgstr "備註"
+msgstr "尚未設定"
 
 #: ../src/appointment.c:1192
 msgid "This appointment will be permanently removed."
@@ -595,25 +625,24 @@ msgid "It was probably removed, please refresh your screen."
 msgstr ""
 
 #: ../src/appointment.c:1994
-#, fuzzy
 msgid "Current categories"
-msgstr "封存檔案"
+msgstr "目前分類"
 
 #: ../src/appointment.c:2009
 msgid "Add new category with color"
-msgstr ""
+msgstr "加入新分類與色彩"
 
 #: ../src/appointment.c:2013
 msgid "Category:"
-msgstr ""
+msgstr "分類："
 
 #: ../src/appointment.c:2044
 msgid "Colors of categories - Orage"
-msgstr ""
+msgstr "分類的色彩 - Orage"
 
 #: ../src/appointment.c:2091
 msgid " *** COPY ***"
-msgstr ""
+msgstr " *** 複製 ***"
 
 #: ../src/appointment.c:2352
 msgid "New appointment - Orage"
@@ -622,8 +651,11 @@ msgstr "新約會 - Orage"
 #. File menu stuff
 #. ********* File menu *********
 #. File menu
-#: ../src/appointment.c:2381 ../src/day-view.c:254 ../src/event-list.c:1021
-#: ../src/interface.c:767 ../src/mainbox.c:279
+#: ../src/appointment.c:2381
+#: ../src/day-view.c:254
+#: ../src/event-list.c:1021
+#: ../src/interface.c:767
+#: ../src/mainbox.c:279
 msgid "_File"
 msgstr "檔案(_F)"
 
@@ -631,7 +663,8 @@ msgstr "檔案(_F)"
 msgid "Sav_e and close"
 msgstr "儲存並關閉(_E)"
 
-#: ../src/appointment.c:2400 ../src/event-list.c:1027
+#: ../src/appointment.c:2400
+#: ../src/event-list.c:1027
 msgid "D_uplicate"
 msgstr "複製(_U)"
 
@@ -647,11 +680,13 @@ msgstr "儲存並關閉"
 msgid "Revert"
 msgstr "還原"
 
-#: ../src/appointment.c:2597 ../src/event-list.c:1112
+#: ../src/appointment.c:2597
+#: ../src/event-list.c:1112
 msgid "Duplicate"
 msgstr "複製"
 
-#: ../src/appointment.c:2602 ../src/event-list.c:1114
+#: ../src/appointment.c:2602
+#: ../src/event-list.c:1114
 msgid "Delete"
 msgstr "刪除"
 
@@ -670,9 +705,10 @@ msgstr "一般"
 #. type
 #: ../src/appointment.c:2630
 msgid "Type "
-msgstr ""
+msgstr "類型"
 
-#: ../src/appointment.c:2632 ../src/event-list.c:1165
+#: ../src/appointment.c:2632
+#: ../src/event-list.c:1165
 msgid "Event"
 msgstr ""
 
@@ -682,10 +718,10 @@ msgid ""
 "Meeting or birthday or TV show."
 msgstr ""
 
-#: ../src/appointment.c:2638 ../src/event-list.c:1185
-#, fuzzy
+#: ../src/appointment.c:2638
+#: ../src/event-list.c:1185
 msgid "Todo"
-msgstr "今天"
+msgstr "待辦"
 
 #: ../src/appointment.c:2641
 msgid ""
@@ -693,7 +729,8 @@ msgid ""
 "Wash your car or test new version of Orage."
 msgstr ""
 
-#: ../src/appointment.c:2644 ../src/event-list.c:1198
+#: ../src/appointment.c:2644
+#: ../src/event-list.c:1198
 msgid "Journal"
 msgstr ""
 
@@ -713,7 +750,9 @@ msgid "All day event"
 msgstr "整天的事件"
 
 #. start time
-#: ../src/appointment.c:2676 ../src/appointment.c:3339 ../src/day-view.c:697
+#: ../src/appointment.c:2676
+#: ../src/appointment.c:3339
+#: ../src/day-view.c:697
 msgid "Start"
 msgstr "開始"
 
@@ -725,15 +764,21 @@ msgstr ""
 msgid "Duration"
 msgstr "時間長短"
 
-#: ../src/appointment.c:2721 ../src/appointment.c:2909 ../src/reminder.c:761
+#: ../src/appointment.c:2721
+#: ../src/appointment.c:2909
+#: ../src/reminder.c:761
 msgid "days"
 msgstr "天"
 
-#: ../src/appointment.c:2723 ../src/appointment.c:2911 ../src/reminder.c:763
+#: ../src/appointment.c:2723
+#: ../src/appointment.c:2911
+#: ../src/reminder.c:763
 msgid "hours"
 msgstr "小時"
 
-#: ../src/appointment.c:2725 ../src/appointment.c:2913 ../src/reminder.c:765
+#: ../src/appointment.c:2725
+#: ../src/appointment.c:2913
+#: ../src/reminder.c:765
 msgid "mins"
 msgstr "分鐘"
 
@@ -743,24 +788,22 @@ msgid "Availability"
 msgstr "能赴約否"
 
 #. completed (only for TODO)
-#: ../src/appointment.c:2745 ../src/appointment.c:3345
+#: ../src/appointment.c:2745
+#: ../src/appointment.c:3345
 msgid "Completed"
-msgstr ""
+msgstr "完成"
 
 #: ../src/appointment.c:2748
-#, fuzzy
 msgid "Done"
-msgstr "無"
+msgstr "完成"
 
 #. categories
 #: ../src/appointment.c:2769
 msgid "Categories"
-msgstr ""
+msgstr "分類"
 
 #: ../src/appointment.c:2781
-msgid ""
-"This is special category, which can be used to color this appointment in "
-"list views."
+msgid "This is special category, which can be used to color this appointment in list views."
 msgstr ""
 
 #: ../src/appointment.c:2786
@@ -770,7 +813,7 @@ msgstr ""
 #. priority
 #: ../src/appointment.c:2792
 msgid "Priority"
-msgstr ""
+msgstr "優先序"
 
 #. note
 #: ../src/appointment.c:2802
@@ -786,8 +829,7 @@ msgid ""
 "\n"
 "These are converted only later when they are seen:\n"
 "    <&Ynnnn> is translated to current year minus nnnn.\n"
-"(This can be used for example in birthday reminders to tell how old the "
-"person will be.)"
+"(This can be used for example in birthday reminders to tell how old the person will be.)"
 msgstr ""
 
 #: ../src/appointment.c:2892
@@ -799,9 +841,8 @@ msgid "Before End"
 msgstr ""
 
 #: ../src/appointment.c:2893
-#, fuzzy
 msgid "After Start"
-msgstr "開始"
+msgstr "在這之後開始"
 
 #: ../src/appointment.c:2893
 msgid "After End"
@@ -815,7 +856,7 @@ msgstr "提醒"
 #: ../src/appointment.c:2906
 #, fuzzy
 msgid "Alarm time"
-msgstr "提醒"
+msgstr "提醒時間"
 
 #: ../src/appointment.c:2930
 msgid ""
@@ -830,9 +871,7 @@ msgid "Persistent alarm"
 msgstr ""
 
 #: ../src/appointment.c:2937
-msgid ""
-"Select this if you want Orage to remind you even if it has not been active "
-"when the alarm happened."
+msgid "Select this if you want Orage to remind you even if it has not been active when the alarm happened."
 msgstr ""
 
 #. **** Audio Alarm ****
@@ -840,35 +879,36 @@ msgstr ""
 msgid "Sound"
 msgstr "鈴聲"
 
-#: ../src/appointment.c:2950 ../src/appointment.c:3071
+#: ../src/appointment.c:2950
+#: ../src/appointment.c:3071
 msgid "Use"
-msgstr ""
+msgstr "使用"
 
 #: ../src/appointment.c:2952
 msgid "Select this if you want audible alarm"
-msgstr ""
+msgstr "若您想聽見鬧鈴提醒請選取這個選項"
 
 #: ../src/appointment.c:2969
 msgid "Repeat alarm sound"
 msgstr "重複提醒鈴聲"
 
-#: ../src/appointment.c:2985 ../src/appointment.c:3287
+#: ../src/appointment.c:2985
+#: ../src/appointment.c:3287
 msgid "times"
 msgstr "次數"
 
 #: ../src/appointment.c:3001
-#, fuzzy
 msgid "sec interval"
-msgstr "一般"
+msgstr "秒數間隔"
 
 #. **** Display Alarm ****
 #: ../src/appointment.c:3011
 msgid "Visual"
-msgstr ""
+msgstr "視覺"
 
 #: ../src/appointment.c:3015
 msgid "Use Orage window"
-msgstr ""
+msgstr "使用 Orage 視窗"
 
 #: ../src/appointment.c:3017
 msgid "Select this if you want Orage window alarm"
@@ -883,9 +923,8 @@ msgid "Select this if you want notification alarm"
 msgstr ""
 
 #: ../src/appointment.c:3037
-#, fuzzy
 msgid "Set timeout"
-msgstr "選擇時區"
+msgstr "設定時限"
 
 #: ../src/appointment.c:3040
 msgid "Select this if you want notification to expire automatically"
@@ -897,13 +936,13 @@ msgstr ""
 
 #: ../src/appointment.c:3056
 msgid "seconds"
-msgstr ""
+msgstr "秒"
 
 #. **** Procedure Alarm ****
 #: ../src/appointment.c:3067
 #, fuzzy
 msgid "Procedure"
-msgstr "內容"
+msgstr "處理"
 
 #: ../src/appointment.c:3073
 msgid "Select this if you want procedure or script alarm"
@@ -928,7 +967,7 @@ msgstr ""
 #: ../src/appointment.c:3098
 #, fuzzy
 msgid "<b>Default alarm</b>"
-msgstr "Orage 預設提醒"
+msgstr "<b>預設提醒</b>"
 
 #: ../src/appointment.c:3106
 msgid "Store current settings as default alarm"
@@ -948,7 +987,7 @@ msgstr "每日"
 
 #: ../src/appointment.c:3173
 msgid "Weekly"
-msgstr "每星期"
+msgstr "每週"
 
 #: ../src/appointment.c:3173
 msgid "Monthly"
@@ -960,7 +999,7 @@ msgstr "每年"
 
 #: ../src/appointment.c:3173
 msgid "Hourly"
-msgstr ""
+msgstr "每小時"
 
 #: ../src/appointment.c:3175
 msgid "Mon"
@@ -1020,9 +1059,8 @@ msgstr ""
 
 #. frequency
 #: ../src/appointment.c:3208
-#, fuzzy
 msgid "Frequency"
-msgstr "有閒"
+msgstr "頻率"
 
 #: ../src/appointment.c:3214
 msgid "Each"
@@ -1031,7 +1069,7 @@ msgstr ""
 #: ../src/appointment.c:3221
 #, fuzzy
 msgid "occurrence"
-msgstr "再現"
+msgstr "出現"
 
 #: ../src/appointment.c:3225
 msgid ""
@@ -1042,7 +1080,7 @@ msgstr ""
 
 #: ../src/appointment.c:3271
 msgid "Limit"
-msgstr ""
+msgstr "限制"
 
 #: ../src/appointment.c:3273
 msgid "Repeat forever"
@@ -1058,9 +1096,8 @@ msgstr "重複直到"
 
 #. weekdays (only for complex settings)
 #: ../src/appointment.c:3308
-#, fuzzy
 msgid "Weekdays"
-msgstr "每星期"
+msgstr "週幾"
 
 #: ../src/appointment.c:3320
 msgid "Which day"
@@ -1082,17 +1119,13 @@ msgid "TODO base"
 msgstr ""
 
 #: ../src/appointment.c:3349
-msgid ""
-"TODO reoccurs regularly starting on start time and repeating after each "
-"interval no matter when it was last completed"
+msgid "TODO reoccurs regularly starting on start time and repeating after each interval no matter when it was last completed"
 msgstr ""
 
 #: ../src/appointment.c:3351
 msgid ""
-"TODO reoccurrency is based on complete time and repeats after the interval "
-"counted from the last completed time.\n"
-"(Note that you can not tell anything about the history of the TODO since "
-"reoccurrence base changes after each completion.)"
+"TODO reoccurrency is based on complete time and repeats after the interval counted from the last completed time.\n"
+"(Note that you can not tell anything about the history of the TODO since reoccurrence base changes after each completion.)"
 msgstr ""
 
 #. exceptions
@@ -1103,8 +1136,7 @@ msgstr "例外"
 #: ../src/appointment.c:3371
 msgid ""
 "Add more exception dates by clicking the calendar days below.\n"
-"Exception is either exclusion(-) or inclusion(+) depending on the "
-"selection.\n"
+"Exception is either exclusion(-) or inclusion(+) depending on the selection.\n"
 "Remove by clicking the data."
 msgstr ""
 
@@ -1121,99 +1153,110 @@ msgid "Add included time (+)"
 msgstr "新增包含的日期"
 
 #: ../src/appointment.c:3386
-msgid ""
-"Included times have same timezone than start time, but they may have "
-"different time"
+msgid "Included times have same timezone than start time, but they may have different time"
 msgstr ""
 
 #. calendars showing the action days
 #: ../src/appointment.c:3403
 msgid "Action dates"
-msgstr ""
+msgstr "工作日"
 
 #. ********* View menu *********
 #. View menu
-#: ../src/day-view.c:264 ../src/event-list.c:1044 ../src/mainbox.c:305
+#: ../src/day-view.c:264
+#: ../src/event-list.c:1044
+#: ../src/mainbox.c:305
 msgid "_View"
 msgstr "檢視(_V)"
 
 #. ********* Go menu   *********
-#: ../src/day-view.c:278 ../src/event-list.c:1063
+#: ../src/day-view.c:278
+#: ../src/event-list.c:1063
 msgid "_Go"
 msgstr "前往(_G)"
 
-#: ../src/day-view.c:319 ../src/event-list.c:1110
+#: ../src/day-view.c:319
+#: ../src/event-list.c:1110
 msgid "New"
 msgstr "新增"
 
-#: ../src/day-view.c:324 ../src/event-list.c:1119
+#: ../src/day-view.c:324
+#: ../src/event-list.c:1119
 msgid "Back"
-msgstr "後退"
+msgstr "返回"
 
-#: ../src/day-view.c:326 ../src/event-list.c:1121 ../src/functions.c:143
+#: ../src/day-view.c:326
+#: ../src/event-list.c:1121
+#: ../src/functions.c:143
 #: ../src/tray_icon.c:460
 msgid "Today"
 msgstr "今天"
 
-#: ../src/day-view.c:328 ../src/event-list.c:1123
+#: ../src/day-view.c:328
+#: ../src/event-list.c:1123
 msgid "Forward"
 msgstr "前進"
 
-#: ../src/day-view.c:333 ../src/event-list.c:1128
+#: ../src/day-view.c:333
+#: ../src/event-list.c:1128
 msgid "Refresh"
-msgstr "更新"
+msgstr "重新整理"
 
-#: ../src/day-view.c:338 ../src/event-list.c:1135 ../src/interface.c:809
+#: ../src/day-view.c:338
+#: ../src/event-list.c:1135
+#: ../src/interface.c:809
 msgid "Close"
 msgstr "關閉"
 
 #: ../src/day-view.c:454
 msgid "Unknown"
-msgstr ""
+msgstr "未知"
 
 #: ../src/day-view.c:704
 msgid "       Number of days to show"
-msgstr ""
+msgstr "       要顯示的日數"
 
 #: ../src/day-view.c:935
-#, fuzzy
 msgid "Orage - day view"
-msgstr "月曆"
+msgstr "Orage - 日檢視"
 
 #. date only appointment
 #: ../src/event-list.c:190
 msgid "All day"
 msgstr "全天"
 
-#: ../src/event-list.c:580 ../src/event-list.c:1281
+#: ../src/event-list.c:580
+#: ../src/event-list.c:1281
 msgid "Time"
 msgstr "時間"
 
 #: ../src/event-list.c:748
 msgid "No rows have been selected."
-msgstr ""
+msgstr "尚未選取列。"
 
 #: ../src/event-list.c:749
 msgid "Click a row to select it and after that you can copy it."
-msgstr ""
+msgstr "點擊一列以選取它，之後您就能複製它。"
 
 #: ../src/event-list.c:918
 msgid ""
 "You will permanently remove all\n"
 "selected appointments."
 msgstr ""
+"您將永遠移除所有\n"
+"選取的約會。"
 
 #: ../src/event-list.c:1130
 msgid "Find"
-msgstr ""
+msgstr "尋找"
 
 #: ../src/event-list.c:1137
 msgid "Dayview"
-msgstr ""
+msgstr "日檢視"
 
 #: ../src/event-list.c:1170
 msgid "Extra days to show "
-msgstr ""
+msgstr "要顯示的額外日數"
 
 #: ../src/event-list.c:1201
 msgid "Journal entries starting from:"
@@ -1221,7 +1264,7 @@ msgstr ""
 
 #: ../src/event-list.c:1221
 msgid "Search"
-msgstr ""
+msgstr "搜尋"
 
 #: ../src/event-list.c:1224
 msgid "Search text "
@@ -1262,7 +1305,7 @@ msgstr ""
 
 #: ../src/functions.c:141
 msgid "Pick the date"
-msgstr "選擇日期"
+msgstr "挑選日期"
 
 #. remove since it has ended
 #: ../src/ical-archive.c:267
@@ -1285,9 +1328,9 @@ msgid "\tArchiving events, which are older than: %04d-%02d-%02d"
 msgstr ""
 
 #: ../src/ical-archive.c:377
-#, fuzzy, c-format
+#, c-format
 msgid "Archiving uid: %s"
-msgstr "封存檔案"
+msgstr "正在封存 UID：%s"
 
 #. VTODO not completed, do not archive
 #: ../src/ical-archive.c:383
@@ -1306,9 +1349,8 @@ msgstr "封存完成\n"
 
 #. PHASE 1: go through base orage file and remove "repeat" shortcuts
 #: ../src/ical-archive.c:421
-#, fuzzy
 msgid "Starting archive removal."
-msgstr "封存門檻"
+msgstr "正在開始封存移除。"
 
 #: ../src/ical-archive.c:422
 msgid "\tPHASE 1: reset recurring appointments"
@@ -1321,9 +1363,8 @@ msgid "\tPHASE 2: return archived appointments"
 msgstr ""
 
 #: ../src/ical-archive.c:470
-#, fuzzy
 msgid "Archive removal done\n"
-msgstr "封存門檻"
+msgstr "封存移除完成\n"
 
 #: ../src/ical-code.c:932
 msgid "Orage default alarm"
@@ -1336,8 +1377,7 @@ msgstr ""
 
 #: ../src/ical-code.c:3117
 #, c-format
-msgid ""
-"\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
+msgid "\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
 msgstr ""
 
 #: ../src/ical-expimp.c:123
@@ -1358,7 +1398,7 @@ msgstr ""
 
 #: ../src/interface.c:284
 msgid "Calendar files"
-msgstr "日曆檔案"
+msgstr "行事曆檔案"
 
 #: ../src/interface.c:631
 msgid "Current foreign files"
@@ -1385,9 +1425,8 @@ msgid "Import"
 msgstr "匯入"
 
 #: ../src/interface.c:986
-#, fuzzy
 msgid "Read from file:"
-msgstr "封存檔案"
+msgstr "讀取檔案："
 
 #: ../src/interface.c:1003
 msgid ""
@@ -1400,24 +1439,21 @@ msgid "Export"
 msgstr "匯出"
 
 #: ../src/interface.c:1013
-#, fuzzy
 msgid "Write to file:"
-msgstr "封存檔案"
+msgstr "寫入檔案："
 
-#: ../src/interface.c:1034 ../src/interface.c:1046
-#, fuzzy
+#: ../src/interface.c:1034
+#: ../src/interface.c:1046
 msgid "Select"
-msgstr "刪除"
+msgstr "選取"
 
 #: ../src/interface.c:1037
-#, fuzzy
 msgid "All appointments"
-msgstr "新約會"
+msgstr "所有約會"
 
 #: ../src/interface.c:1050
-#, fuzzy
 msgid "Named appointments: "
-msgstr "新約會"
+msgstr "命名的約會："
 
 #: ../src/interface.c:1062
 msgid ""
@@ -1454,7 +1490,7 @@ msgstr ""
 
 #: ../src/interface.c:1101
 msgid "Revert archive now"
-msgstr ""
+msgstr "立刻還原封存"
 
 #: ../src/interface.c:1107
 msgid ""
@@ -1464,30 +1500,30 @@ msgid ""
 msgstr ""
 
 #: ../src/interface.c:1118
-#, fuzzy
 msgid "Orage files"
-msgstr "Orage 偏好設定"
+msgstr "Orage 檔案"
 
 #: ../src/interface.c:1125
-#, fuzzy
 msgid "Orage main calendar file"
-msgstr "月曆"
+msgstr "Orage 主行事曆檔"
 
-#: ../src/interface.c:1130 ../src/interface.c:1195
-#, fuzzy
+#: ../src/interface.c:1130
+#: ../src/interface.c:1195
 msgid "Current file"
-msgstr "封存檔案"
+msgstr "目前檔案"
 
-#: ../src/interface.c:1137 ../src/interface.c:1202
-#, fuzzy
+#: ../src/interface.c:1137
+#: ../src/interface.c:1202
 msgid "New file"
-msgstr "封存檔案"
+msgstr "新增檔案"
 
-#: ../src/interface.c:1153 ../src/interface.c:1219
+#: ../src/interface.c:1153
+#: ../src/interface.c:1219
 msgid "Action options"
-msgstr ""
+msgstr "動作選項"
 
-#: ../src/interface.c:1156 ../src/interface.c:1222
+#: ../src/interface.c:1156
+#: ../src/interface.c:1222
 msgid "Rename"
 msgstr "重新命名"
 
@@ -1498,7 +1534,8 @@ msgid ""
 "New file must exist."
 msgstr ""
 
-#: ../src/interface.c:1164 ../src/interface.c:1227
+#: ../src/interface.c:1164
+#: ../src/interface.c:1227
 msgid "Copy"
 msgstr "複製"
 
@@ -1506,7 +1543,8 @@ msgstr "複製"
 msgid "Current file is copied and stays unmodified in the old place."
 msgstr ""
 
-#: ../src/interface.c:1172 ../src/interface.c:1232
+#: ../src/interface.c:1172
+#: ../src/interface.c:1232
 msgid "Move"
 msgstr "移動"
 
@@ -1540,15 +1578,13 @@ msgstr "唯讀"
 
 #: ../src/interface.c:1294
 msgid ""
-"Set this if you want to make sure that this file is never modified by "
-"Orage.\n"
-"Note that modifying foreign files may make them incompatible with the "
-"original tool, where they came from!"
+"Set this if you want to make sure that this file is never modified by Orage.\n"
+"Note that modifying foreign files may make them incompatible with the original tool, where they came from!"
 msgstr ""
 
 #: ../src/interface.c:1308
 msgid "Exchange data - Orage"
-msgstr ""
+msgstr "交換資料 - Orage"
 
 #: ../src/main.c:268
 #, c-format
@@ -1620,9 +1656,9 @@ msgid ""
 msgstr ""
 
 #: ../src/main.c:307
-#, fuzzy, c-format
+#, c-format
 msgid "Options:\n"
-msgstr "時鐘選項"
+msgstr "選項：\n"
 
 #: ../src/main.c:308
 #, c-format
@@ -1656,9 +1692,7 @@ msgstr ""
 
 #: ../src/main.c:314
 #, c-format
-msgid ""
-"--export (-e) file [appointment...] \texport appointments from Orage to "
-"file\n"
+msgid "--export (-e) file [appointment...] \texport appointments from Orage to file\n"
 msgstr ""
 
 #: ../src/main.c:316
@@ -1673,9 +1707,7 @@ msgstr ""
 
 #: ../src/main.c:319
 #, c-format
-msgid ""
-"\twithout dbus [files] and foreign file options(-a & -r) can only be used "
-"when starting orage \n"
+msgid "\twithout dbus [files] and foreign file options(-a & -r) can only be used when starting orage \n"
 msgstr ""
 
 #: ../src/main.c:511
@@ -1688,7 +1720,7 @@ msgstr ""
 
 #: ../src/mainbox.c:287
 msgid "_Exchange data"
-msgstr ""
+msgstr "交換資料(_E)"
 
 #. Edit menu
 #: ../src/mainbox.c:298
@@ -1705,7 +1737,7 @@ msgstr "檢視所選的週(_W)"
 
 #: ../src/mainbox.c:317
 msgid "Select _Today"
-msgstr "選擇今天日期(_T)"
+msgstr "選擇今日(_T)"
 
 #: ../src/mainbox.c:323
 msgid "Show _Globaltime"
@@ -1714,13 +1746,14 @@ msgstr "顯示全球時間(_G)"
 #. Help menu
 #: ../src/mainbox.c:327
 msgid "_Help"
-msgstr "說明(_H)"
+msgstr "幫助(_H)"
 
 #: ../src/mainbox.c:445
 msgid "Never"
 msgstr "永不"
 
-#: ../src/mainbox.c:450 ../src/mainbox.c:457
+#: ../src/mainbox.c:450
+#: ../src/mainbox.c:457
 #, c-format
 msgid ""
 "Title: %s\n"
@@ -1730,10 +1763,16 @@ msgid ""
 " Note:\n"
 "%s"
 msgstr ""
+"標題：%s\n"
+" 位置：%s\n"
+" 開始：\t%s\n"
+" 結束：\t%s\n"
+" 備註：\n"
+"%s"
 
 #: ../src/mainbox.c:543
 msgid "<b>To do:</b>"
-msgstr ""
+msgstr "<b>待辦：</b>"
 
 #: ../src/mainbox.c:579
 #, c-format
@@ -1747,7 +1786,7 @@ msgstr ""
 
 #: ../src/parameters.c:522
 msgid "Main settings"
-msgstr "主要設定"
+msgstr "主要設定值"
 
 #: ../src/parameters.c:528
 msgid "Timezone"
@@ -1755,7 +1794,7 @@ msgstr "時區"
 
 #: ../src/parameters.c:543
 msgid "You should always define your local timezone."
-msgstr ""
+msgstr "您應該要定義您的本地時區。"
 
 #: ../src/parameters.c:552
 msgid "Archive threshold (months)"
@@ -1763,7 +1802,7 @@ msgstr "封存門檻 (月)"
 
 #: ../src/parameters.c:562
 msgid "(0 = no archiving)"
-msgstr ""
+msgstr "(0 = 不封存)"
 
 #: ../src/parameters.c:565
 msgid "Archiving is used to save time and space when handling events."
@@ -1771,7 +1810,7 @@ msgstr ""
 
 #: ../src/parameters.c:574
 msgid "Sound command"
-msgstr "音效命令"
+msgstr "音效指令"
 
 #: ../src/parameters.c:589
 msgid "This command is given to shell to make sound in alarms."
@@ -1779,11 +1818,11 @@ msgstr ""
 
 #: ../src/parameters.c:605
 msgid "Display settings"
-msgstr "外觀設定"
+msgstr "外觀設定值"
 
 #: ../src/parameters.c:613
 msgid "Calendar main window"
-msgstr "月曆主視窗"
+msgstr "行事曆主視窗"
 
 #: ../src/parameters.c:618
 msgid "Show borders"
@@ -1798,9 +1837,8 @@ msgid "Show month and year"
 msgstr "顯示月和年"
 
 #: ../src/parameters.c:639
-#, fuzzy
 msgid "Show day names"
-msgstr "顯示框格(_F)"
+msgstr "顯示週幾"
 
 #: ../src/parameters.c:646
 msgid "Show week numbers"
@@ -1808,7 +1846,7 @@ msgstr "顯示第幾週"
 
 #: ../src/parameters.c:653
 msgid "Show todo list"
-msgstr "顯示待辦事項清單"
+msgstr "顯示待辦清單"
 
 #: ../src/parameters.c:660
 msgid "Number of days to show in event window"
@@ -1840,7 +1878,7 @@ msgstr "在系統匣中顯示"
 
 #: ../src/parameters.c:739
 msgid "Calendar start"
-msgstr "月曆啟動"
+msgstr "行事曆啟動"
 
 #: ../src/parameters.c:744
 msgid "Show"
@@ -1856,7 +1894,7 @@ msgstr "最小化"
 
 #: ../src/parameters.c:793
 msgid "Extra settings"
-msgstr "其他設定"
+msgstr "其他設定值"
 
 #: ../src/parameters.c:801
 #, fuzzy
@@ -1865,7 +1903,7 @@ msgstr "月曆視窗"
 
 #: ../src/parameters.c:806
 msgid "Select Today's Date"
-msgstr "選擇今天日期"
+msgstr "選取今天的日期"
 
 #: ../src/parameters.c:819
 msgid "Select Previously Selected Date"
@@ -1873,7 +1911,7 @@ msgstr ""
 
 #: ../src/parameters.c:836
 msgid "Use dynamic tray icon"
-msgstr "使用動態系統列圖示"
+msgstr "使用動態系統匣圖示"
 
 #: ../src/parameters.c:841
 msgid "Use dynamic icon"
@@ -1889,7 +1927,7 @@ msgstr ""
 
 #: ../src/parameters.c:861
 msgid "Days view"
-msgstr ""
+msgstr "日檢視"
 
 #: ../src/parameters.c:873
 msgid "Event list"
@@ -1904,20 +1942,17 @@ msgid "Number of extra days to show in event list"
 msgstr ""
 
 #: ../src/parameters.c:902
-msgid ""
-"This is just the default value, you can change it in the actual eventlist "
-"window."
+msgid "This is just the default value, you can change it in the actual eventlist window."
 msgstr ""
 
-#: ../src/parameters.c:910 ../src/parameters.c:915
+#: ../src/parameters.c:910
+#: ../src/parameters.c:915
 msgid "Use wakeup timer"
-msgstr ""
+msgstr "使用喚醒計時器"
 
 #: ../src/parameters.c:921
-msgid ""
-"Use this timer if Orage has problems waking up properly after suspend or "
-"hibernate. (For example tray icon not refreshed or alarms not firing.)"
-msgstr ""
+msgid "Use this timer if Orage has problems waking up properly after suspend or hibernate. (For example tray icon not refreshed or alarms not firing.)"
+msgstr "若 Orage 在暫停或休眠後有無法正常喚醒的問題，請使用此選項。(舉例來說，系統匣圖示未重新整理，或提醒沒有執行。)"
 
 #: ../src/parameters.c:938
 msgid "Orage Preferences"
@@ -1925,16 +1960,16 @@ msgstr "Orage 偏好設定"
 
 #: ../src/parameters.c:1050
 msgid "First Orage start. Searching default timezone."
-msgstr ""
+msgstr "第一次 Orage 啟動。正在搜尋預設時區。"
 
 #: ../src/parameters.c:1069
-#, fuzzy, c-format
+#, c-format
 msgid "Default timezone set to %s."
-msgstr "設定時區為:"
+msgstr "預設時區設定為 %s。"
 
 #: ../src/parameters.c:1072
 msgid "Default timezone not found, please, set it manually."
-msgstr ""
+msgstr "找不到預設時區，請手動設定。"
 
 #: ../src/reminder.c:562
 msgid "Reminder "
@@ -1945,13 +1980,12 @@ msgid "Open"
 msgstr "開啟"
 
 #: ../src/reminder.c:722
-#, fuzzy
 msgid "Reminder - Orage"
-msgstr "提醒"
+msgstr "提醒 - Orage"
 
 #: ../src/reminder.c:808
 msgid "Remind me again after the specified time"
-msgstr ""
+msgstr "在指定時間請再提醒我一次"
 
 #. Note that this goes to the main area. Temporary for the version
 #: ../src/reminder.c:811
@@ -1959,10 +1993,12 @@ msgid "Press <Execute> to remind me again after the specified time:"
 msgstr ""
 
 #: ../src/reminder.c:1099
+#, fuzzy
 msgid "Next active alarms:"
-msgstr ""
+msgstr "下一個使用中的提醒："
 
-#: ../src/reminder.c:1152 ../src/reminder.c:1157
+#: ../src/reminder.c:1152
+#: ../src/reminder.c:1157
 #, c-format
 msgid ""
 "\n"
@@ -1970,11 +2006,13 @@ msgid ""
 msgstr ""
 
 #: ../src/reminder.c:1166
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "\n"
 "No active alarms found"
-msgstr "重複提醒鈴聲"
+msgstr ""
+"\n"
+"找不到使用中的提醒"
 
 #: ../src/timezone_names.c:36
 msgid "Africa"
@@ -3539,7 +3577,7 @@ msgstr "新約會"
 
 #: ../src/tray_icon.c:485
 msgid "About Orage"
-msgstr "關於Orage"
+msgstr "關於 Orage"
 
 #: ../panel-plugin/xfce4-orageclock-plugin.desktop.in.in.h:1
 msgid "Orage Panel Clock"
@@ -3552,28 +3590,27 @@ msgstr "顯示時間與日期 ?"
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:1
 #: ../xfcalendar.desktop.in.h:1
 msgid "Calendar"
-msgstr "月曆"
+msgstr "行事曆"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:2
 msgid "Orage Calendar Preferences"
-msgstr "Orage 日曆偏好設定"
+msgstr "Orage 行事曆偏好設定"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:3
-#, fuzzy
 msgid "Orage preferences"
 msgstr "Orage 偏好設定"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:4
 msgid "Settings for the Xfce 4 Calendar Application (Orage)"
-msgstr "設定 Xfce 4 的月曆程式"
+msgstr "設定 Xfce 4 行事曆程式 (Orage)"
 
 #: ../xfcalendar.desktop.in.h:2
 msgid "Desktop calendar"
-msgstr "桌面月曆"
+msgstr "桌面行事曆"
 
 #: ../xfcalendar.desktop.in.h:3
 msgid "Orage Calendar"
-msgstr "Orage 月曆"
+msgstr "Orage 行事曆"
 
 #~ msgid "Orage clock"
 #~ msgstr "Orage 時鐘"
