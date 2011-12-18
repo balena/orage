@@ -3,7 +3,7 @@
 # Copyright (C) 2003-2006 The Xfce development team.
 # This file is distributed under the same license as the orage package.
 #
-# Carles Muñoz Gorriz <carlesmu@internuatas.org>, 2003-2004, 2006,
+# Carles Muñoz Gorriz <carlesmu@internuatas.org>, 2003-2004, 2006, 2010-2011.
 # 2008-2010.
 # Pau Rul·lan Ferragut <paurullan@bulma.net> 2005, 2006.
 #
@@ -12,13 +12,13 @@ msgstr ""
 "Project-Id-Version: orage 4.3.90.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-12-05 12:38+0200\n"
-"PO-Revision-Date: 2010-01-03 22:22+0100\n"
+"PO-Revision-Date: 2011-12-18 16:41+0100\n"
 "Last-Translator: Carles Muñoz Gorriz <carlesmu@internautas.org>\n"
 "Language-Team: Catalan\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: \n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-Language: Catalan\n"
 "X-Poedit-SourceCharset: utf-8\n"
@@ -943,6 +943,14 @@ msgid ""
 "\t<&ST> appointment start time\n"
 "\t<&ET> appointment end time"
 msgstr ""
+"Cal que entreu tots els caràcters alterats. Aquest\n"
+"text és només per l'intèrpret. Les següents ordres\n"
+"especials es substitueixen en temps d'execució:\n"
+"\t<&T>  títol de la cita\n"
+"\t<&D>  descripció de la cita\n"
+"\t<&AT> hora de l'alarma\n"
+"\t<&ST> inici de la cita\n"
+"\t<&ET> final de la cita"
 
 #: ../src/appointment.c:3091
 msgid "Test this alarm by raising it now"
@@ -982,7 +990,7 @@ msgstr "Anualment"
 
 #: ../src/appointment.c:3173
 msgid "Hourly"
-msgstr ""
+msgstr "Cada hora"
 
 #: ../src/appointment.c:3175
 msgid "Mon"
@@ -1726,7 +1734,7 @@ msgstr "--remove-foreign (-r) file \ttreu un fitxer forà\n"
 msgid ""
 "--export (-e) file [appointment...] \texport appointments from Orage to "
 "file\n"
-msgstr ""
+msgstr "--export (-e) fitxer [cita…] \texporta cites d'Orage a un fitxer\n"
 
 #: ../src/main.c:316
 #, c-format
@@ -1793,7 +1801,7 @@ msgid "Never"
 msgstr "Mai"
 
 #: ../src/mainbox.c:450 ../src/mainbox.c:457
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Title: %s\n"
 " Location: %s\n"
@@ -1803,6 +1811,7 @@ msgid ""
 "%s"
 msgstr ""
 "Títol: %s\n"
+" Localització: %s\n"
 " Inici:\t%s\n"
 " Fi:\t%s\n"
 " Nota:\n"
@@ -1989,13 +1998,16 @@ msgstr ""
 
 #: ../src/parameters.c:910 ../src/parameters.c:915
 msgid "Use wakeup timer"
-msgstr ""
+msgstr "Empra el rellotge despertador"
 
 #: ../src/parameters.c:921
 msgid ""
 "Use this timer if Orage has problems waking up properly after suspend or "
 "hibernate. (For example tray icon not refreshed or alarms not firing.)"
 msgstr ""
+"Empreu aquest rellotge si Orage té problemes arrancant després de suspendre "
+"o hibernar. (Per exemple, la icona de la safata de missatges no es "
+"refresquen o no sonen les alarmes.)"
 
 #: ../src/parameters.c:938
 msgid "Orage Preferences"
