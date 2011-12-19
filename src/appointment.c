@@ -2811,6 +2811,8 @@ static void build_general_page(appt_win *apptw)
     apptw->Note_buffer = gtk_text_buffer_new(NULL);
     apptw->Note_textview = 
             gtk_text_view_new_with_buffer(GTK_TEXT_BUFFER(apptw->Note_buffer));
+    gtk_text_view_set_wrap_mode(GTK_TEXT_VIEW(apptw->Note_textview)
+            , GTK_WRAP_WORD);
     gtk_container_add(GTK_CONTAINER(apptw->Note_Scrolledwindow)
             , apptw->Note_textview);
     orage_table_add_row(apptw->TableGeneral
