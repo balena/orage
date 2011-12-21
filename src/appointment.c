@@ -112,6 +112,7 @@ static GtkWidget *datetime_hbox_new(GtkWidget *date_button
     gtk_box_pack_start(GTK_BOX(hbox), space_label, FALSE, FALSE, 0);
 
     gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(spin_mm), TRUE);
+    gtk_spin_button_set_increments(GTK_SPIN_BUTTON(spin_mm), 5, 10);
     /* gtk_widget_set_size_request(spin_mm, 40, -1); */
     gtk_box_pack_start(GTK_BOX(hbox), spin_mm, FALSE, FALSE, 0);
 
