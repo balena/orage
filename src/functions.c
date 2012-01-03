@@ -675,7 +675,7 @@ char *orage_icaltime_to_i18_time(const char *icaltime)
     return(ct);
 }
 
-char *orage_icaltime_to_i18_time_short(const char *icaltime)
+char *orage_icaltime_to_i18_time_only(const char *icaltime)
 {
     struct tm t;
     static char i18_time[10];

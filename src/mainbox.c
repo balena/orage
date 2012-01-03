@@ -391,13 +391,16 @@ static void add_info_row(xfical_appt *appt, GtkBox *parentBox, gboolean todo)
     ev = gtk_event_box_new();
     tmp_title = orage_process_text_commands(appt->title);
     s_time = g_strdup(orage_icaltime_to_i18_time(appt->starttimecur));
-    if (appt->allDay || todo) {
-        tmp = g_strdup_printf("  %s", tmp_title);
+    if (todo) {
+        e_time = g_strdup(appt->use_due_time
+                ? orage_icaltime_to_i18_time(appt->endtimecur) : s_time);
+        tmp = g_strdup_printf(" %s  %s", e_time, tmp_title);
+        g_free(e_time);
     }
     else {
-        s_timeonly = g_strdup(orage_icaltime_to_i18_time_short(
-                    appt->starttimecur));
         today = orage_tm_time_to_icaltime(orage_localtime());
+        s_timeonly = g_strdup(orage_icaltime_to_i18_time_only(
+                    appt->starttimecur));
         if (!strncmp(today, appt->starttimecur, 8)) /* today */
             tmp = g_strdup_printf(" %s* %s", s_timeonly, tmp_title);
         else {
@@ -447,8 +450,8 @@ static void add_info_row(xfical_appt *appt, GtkBox *parentBox, gboolean todo)
                 ? orage_icaltime_to_i18_time(appt->endtimecur) : na);
         c_time = g_strdup(appt->completed
                 ? orage_icaltime_to_i18_time(appt->completedtime) : na);
-        tip = g_strdup_printf(_("Title: %s\n Location: %s\n Start:\t%s\n End:\t%s\n Note:\n%s")
-                , tmp_title, appt->location, s_time, e_time, tmp_note);
+        tip = g_strdup_printf(_("Title: %s\n Location: %s\n Start:\t%s\n Due:\t%s\n Done:\t%s\n Note:\n%s")
+                , tmp_title, appt->location, s_time, e_time, c_time, tmp_note);
 
         g_free(c_time);
     }
