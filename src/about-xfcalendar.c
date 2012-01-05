@@ -43,7 +43,7 @@ void create_wAbout(GtkWidget *widget, gpointer user_data)
   about = (GtkAboutDialog *) dialog;
   gtk_about_dialog_set_program_name(about, "Orage");
   gtk_about_dialog_set_version(about, VERSION);
-  gtk_about_dialog_set_copyright(about, "Copyright © 2003-2010 Juha Kautto");
+  gtk_about_dialog_set_copyright(about, "Copyright © 2003-2011 Juha Kautto");
   gtk_about_dialog_set_comments(about, _("Manage your time with Orage"));
   /*
   gtk_about_dialog_set_license(about, XFCE_LICENSE_GPL);
@@ -60,44 +60,3 @@ void create_wAbout(GtkWidget *widget, gpointer user_data)
   gtk_widget_destroy(dialog);
   g_object_unref(orage_logo);
 }
-/*
-void create_wAbout_old(GtkWidget *widget, gpointer user_data)
-{
-  CalWin *xfcal = (CalWin *)user_data;
-  GtkWidget *dialog;
-  GdkPixbuf *orage_logo;
-  XfceAboutInfo *about;
-
-  about = xfce_about_info_new("Orage", VERSION
-          , _("Manage your time with Xfce4")
-          , XFCE_COPYRIGHT_TEXT("2003-2008", " Juha Kautto")
-          , XFCE_LICENSE_GPL);
-  orage_logo = orage_create_icon(FALSE, 48);
-  xfce_about_info_set_homepage(about, "http://www.xfce.org");
-
-  xfce_about_info_add_credit(about,
-			     "Juha Kautto",
-			     "juha@xfce.org",
-			     _("Maintainer"));
-
-  xfce_about_info_add_credit(about,
-			     "Mickael 'Korbinus' Graf",
-			     "korbinus@xfce.org",
-			     _("Original creator, retired maintainer"));
-
-  xfce_about_info_add_credit(about,
-			     "Benedikt Meurer",
-			     "benny@xfce.org",
-			     _("Contributor"));
-
-  dialog = xfce_about_dialog_new_with_values(GTK_WINDOW(xfcal->mWindow)
-          , about, orage_logo);
-
-  gtk_window_set_default_size(GTK_WINDOW(dialog), 520, 440);
-
-  gtk_dialog_run(GTK_DIALOG(dialog));
-  gtk_widget_destroy(dialog);
-  xfce_about_info_free(about);
-  g_object_unref(orage_logo);
-}
-*/

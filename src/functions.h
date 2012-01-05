@@ -85,6 +85,7 @@ GtkWidget *orage_image_menu_item_new_from_stock(const gchar *stock_id
 GtkWidget *orage_separator_menu_item_new(GtkWidget *menu);
 GtkWidget *orage_menu_item_new_with_mnemonic(const gchar *label
         , GtkWidget *menu);
+char *orage_replace_text(char *text, char *old, char *new);
 char *orage_process_text_commands(char *text);
 GtkWidget *orage_period_hbox_new(gboolean head_space, gboolean tail_space
         , GtkWidget *spin_dd, GtkWidget *dd_label
@@ -102,7 +103,7 @@ char *orage_tm_date_to_i18_date(struct tm *tm_date);
 char *orage_tm_time_to_icaltime(struct tm *t);
 struct tm orage_icaltime_to_tm_time(const char *i18_date, gboolean real_tm);
 char *orage_icaltime_to_i18_time(const char *icaltime);
-char *orage_icaltime_to_i18_time_short(const char *icaltime);
+char *orage_icaltime_to_i18_time_only(const char *icaltime);
 struct tm orage_cal_to_tm_time(GtkCalendar *cal, gint hh, gint mm);
 char *orage_cal_to_i18_time(GtkCalendar *cal, gint hh, gint mm);
 char *orage_cal_to_i18_date(GtkCalendar *cal);

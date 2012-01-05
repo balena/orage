@@ -112,6 +112,7 @@ static GtkWidget *datetime_hbox_new(GtkWidget *date_button
     gtk_box_pack_start(GTK_BOX(hbox), space_label, FALSE, FALSE, 0);
 
     gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(spin_mm), TRUE);
+    gtk_spin_button_set_increments(GTK_SPIN_BUTTON(spin_mm), 5, 10);
     /* gtk_widget_set_size_request(spin_mm, 40, -1); */
     gtk_box_pack_start(GTK_BOX(hbox), spin_mm, FALSE, FALSE, 0);
 
@@ -370,6 +371,27 @@ static void type_hide_show(appt_win *apptw)
     set_time_sensitivity(apptw); /* todo has different settings */
 }
 
+static void readonly_hide_show(appt_win *apptw)
+{
+    if (((xfical_appt *)apptw->xf_appt)->readonly) {
+        gtk_widget_set_sensitive(apptw->General_notebook_page, FALSE);
+        gtk_widget_set_sensitive(apptw->General_tab_label, FALSE);
+        gtk_widget_set_sensitive(apptw->Alarm_notebook_page, FALSE);
+        gtk_widget_set_sensitive(apptw->Alarm_tab_label, FALSE);
+        gtk_widget_set_sensitive(apptw->Recur_notebook_page, FALSE);
+        gtk_widget_set_sensitive(apptw->Recur_tab_label, FALSE);
+
+        gtk_widget_set_sensitive(apptw->Save, FALSE);
+        gtk_widget_set_sensitive(apptw->File_menu_save, FALSE);
+        gtk_widget_set_sensitive(apptw->SaveClose, FALSE);
+        gtk_widget_set_sensitive(apptw->File_menu_saveclose, FALSE);
+        gtk_widget_set_sensitive(apptw->Revert, FALSE);
+        gtk_widget_set_sensitive(apptw->File_menu_revert, FALSE);
+        gtk_widget_set_sensitive(apptw->Delete, FALSE);
+        gtk_widget_set_sensitive(apptw->File_menu_delete, FALSE);
+    }
+}
+
 static void set_sound_sensitivity(appt_win *apptw)
 {
     gboolean sound_act, repeat_act;
@@ -565,7 +587,7 @@ static void on_appNote_buffer_changed_cb(GtkTextBuffer *b, gpointer user_data)
     appt_win *apptw = (appt_win *)user_data;
     GtkTextIter start, end, match_start, match_end;
     GtkTextBuffer *tb;
-    gchar *cdate, c_time[6], *cdatetime;
+    gchar *cdate, ctime[6], *cdatetime;
     struct tm *tm;
 
     tb = apptw->Note_buffer;
@@ -581,17 +603,17 @@ static void on_appNote_buffer_changed_cb(GtkTextBuffer *b, gpointer user_data)
                 , GTK_TEXT_SEARCH_TEXT_ONLY
                 , &match_start, &match_end, &end)) { /* found it */
         tm = orage_localtime();
-        g_sprintf(c_time, "%02d:%02d", tm->tm_hour, tm->tm_min);
+        g_sprintf(ctime, "%02d:%02d", tm->tm_hour, tm->tm_min);
         gtk_text_buffer_delete(tb, &match_start, &match_end);
-        gtk_text_buffer_insert(tb, &match_start, c_time, -1);
+        gtk_text_buffer_insert(tb, &match_start, ctime, -1);
     }
     else if (gtk_text_iter_forward_search(&start, "<DT>"
                 , GTK_TEXT_SEARCH_TEXT_ONLY
                 , &match_start, &match_end, &end)) { /* found it */
         tm = orage_localtime();
         cdate = orage_tm_date_to_i18_date(tm);
-        g_sprintf(c_time, "%02d:%02d", tm->tm_hour, tm->tm_min);
-        cdatetime = g_strconcat(cdate, " ", c_time, NULL);
+        g_sprintf(ctime, "%02d:%02d", tm->tm_hour, tm->tm_min);
+        cdatetime = g_strconcat(cdate, " ", ctime, NULL);
         gtk_text_buffer_delete(tb, &match_start, &match_end);
         gtk_text_buffer_insert(tb, &match_start, cdatetime, -1);
         g_free(cdatetime);
@@ -753,7 +775,7 @@ static gboolean orage_validate_datetime(appt_win *apptw, xfical_appt *appt)
 
 static void fill_appt_from_apptw_alarm(xfical_appt *appt, appt_win *apptw)
 {
-    gint i, j, k;
+    gint i, j, k, l;
     gchar *tmp;
 
     /* reminder time */
@@ -858,16 +880,23 @@ static void fill_appt_from_apptw_alarm(xfical_appt *appt, appt_win *apptw)
         appt->procedure_params = NULL;
     }
     tmp = (char *)gtk_entry_get_text(GTK_ENTRY(apptw->Proc_entry));
-    j = strlen(tmp);
-    for (i = 0; i < j && g_ascii_isspace(tmp[i]); i++)
-        ; /* skip blanks */
-    for (k = i; k < j && !g_ascii_isspace(tmp[k]); k++)
+    l = strlen(tmp);
+    for (i = 0; i < l && g_ascii_isspace(tmp[i]); i++)
+        ; /* skip blanks from cmd */
+    for (j = i; j < l && !g_ascii_isspace(tmp[j]); j++)
         ; /* find first blank after the cmd */
-        /* now i points to start of cmd and k points to end of cmd */
-    if (k-i)
-        appt->procedure_cmd = g_strndup(tmp+i, k-i);
-    if (j-k)
-        appt->procedure_params = g_strndup(tmp+k, j-k);
+        /* now i points to start of cmd and j points to end of cmd */
+    for (k = j; k < l && g_ascii_isspace(tmp[k]); k++)
+        ; /* skip blanks from parameters */
+        /* now k points to start of params and l points to end of params */
+    if (j-i)
+        appt->procedure_cmd = g_strndup(tmp+i, j-i);
+    if (l-k)
+        appt->procedure_params = g_strndup(tmp+k, l-k);
+    /*
+    g_print("parameter reading: tmp=(%s) cmd=(%s) params=(%s) i=%d j=%d k=%d l=%d\n",
+            tmp, appt->procedure_cmd, appt->procedure_params, i, j, k, l);
+    */
 }
 
 /*
@@ -1312,6 +1341,8 @@ static xfical_exception *new_exception(char *text)
 {
     xfical_exception *recur_exception;
     gint i;
+    struct tm tm_time = {0,0,0,0,0,0,0,0,0};
+    char *tmp;
 
     recur_exception = g_new(xfical_exception, 1);
     i = strlen(text);
@@ -1326,9 +1357,22 @@ static xfical_exception *new_exception(char *text)
         /* need to add time also as standard libical can not handle dates
            correctly yet. Check more from BUG 5764.
            We use start time from appointment. */
-        strcpy(recur_exception->time, orage_i18_time_to_icaltime(text));
+        /* we should not have dates as we are using standard libical,
+           but if this fails (=return NULL) we may have date from somewhere 
+           else */
+        if ((char *)strptime(text, "%x %R", &tm_time) == NULL)
+            strcpy(recur_exception->time, orage_i18_date_to_icaldate(text));
+        else
+            strcpy(recur_exception->time, orage_i18_time_to_icaltime(text));
 #else
-        strcpy(recur_exception->time, orage_i18_date_to_icaldate(text));
+        /* we should not have date-times as we are using internal libical,
+           which only uses dates, but if this returns non null, we may have 
+           datetime from somewhere else */
+        tmp = (char *)strptime(text, "%x", &tm_time);
+        if (ORAGE_STR_EXISTS(tmp))
+            strcpy(recur_exception->time, orage_i18_time_to_icaltime(text));
+        else
+            strcpy(recur_exception->time, orage_i18_date_to_icaldate(text));
 #endif
     }
     text[i-2] = ' ';
@@ -1455,11 +1499,16 @@ static void recur_day_selected_double_click_cb(GtkCalendar *calendar
         /* need to add time also as standard libical can not handle dates
            correctly yet. Check more from BUG 5764.
            We use start time from appointment. */
-        hh =  gtk_spin_button_get_value_as_int(
-                GTK_SPIN_BUTTON(apptw->StartTime_spin_hh));
-        mm =  gtk_spin_button_get_value_as_int(
-                GTK_SPIN_BUTTON(apptw->StartTime_spin_mm));
-        cal_date = g_strdup(orage_cal_to_i18_time(calendar, hh, mm));
+        if (gtk_toggle_button_get_active(
+                GTK_TOGGLE_BUTTON(apptw->AllDay_checkbutton)))
+            cal_date = g_strdup(orage_cal_to_i18_date(calendar));
+        else {
+            hh =  gtk_spin_button_get_value_as_int(
+                    GTK_SPIN_BUTTON(apptw->StartTime_spin_hh));
+            mm =  gtk_spin_button_get_value_as_int(
+                    GTK_SPIN_BUTTON(apptw->StartTime_spin_mm));
+            cal_date = g_strdup(orage_cal_to_i18_time(calendar, hh, mm));
+        }
 #else
         /* date is enough */
         cal_date = g_strdup(orage_cal_to_i18_date(calendar));
@@ -2274,10 +2323,12 @@ static void fill_appt_window(appt_win *apptw, char *action, char *par)
         apptw->appointment_new = FALSE;
     }
     else if (strcmp(action, "COPY") == 0) {
-            /* COPY uses old uid as base and adds new, so
-             * add == TRUE && new == FALSE */
+        /* COPY uses old uid as base and adds new, so
+         * add == TRUE && new == FALSE */
         apptw->appointment_add = TRUE;
         apptw->appointment_new = FALSE;
+        /* new copy is never readonly even though the original may have been */
+        appt->readonly = FALSE; 
     }
     else {
         g_error("fill_appt_window: unknown parameter\n");
@@ -2491,7 +2542,8 @@ static void on_test_button_clicked_cb(GtkButton *button
     cur_alarm.repeat_delay = appt->soundrepeat_len;
     cur_alarm.procedure = appt->procedure_alarm;
     if (appt->procedure_alarm)
-        cur_alarm.cmd = g_strdup(appt->procedure_cmd);
+        cur_alarm.cmd = g_strconcat(appt->procedure_cmd, " "
+                , appt->procedure_params, NULL);
     else
         cur_alarm.cmd = NULL;
     create_reminders(&cur_alarm);
@@ -2760,6 +2812,8 @@ static void build_general_page(appt_win *apptw)
     apptw->Note_buffer = gtk_text_buffer_new(NULL);
     apptw->Note_textview = 
             gtk_text_view_new_with_buffer(GTK_TEXT_BUFFER(apptw->Note_buffer));
+    gtk_text_view_set_wrap_mode(GTK_TEXT_VIEW(apptw->Note_textview)
+            , GTK_WRAP_WORD);
     gtk_container_add(GTK_CONTAINER(apptw->Note_Scrolledwindow)
             , apptw->Note_textview);
     orage_table_add_row(apptw->TableGeneral
@@ -3025,7 +3079,7 @@ static void build_alarm_page(appt_win *apptw)
 
     apptw->Proc_entry = gtk_entry_new();
     gtk_tooltips_set_tip(apptw->Tooltips, apptw->Proc_entry
-            , _("You must enter all escape etc characters yourself.\n This string is just given to shell to process"), NULL);
+            , _("You must enter all escape etc characters yourself.\nThis string is just given to shell to process.\nThe following special commands are replaced at run time:\n\t<&T>  appointment title\n\t<&D>  appointment description\n\t<&AT> alarm time\n\t<&ST> appointment start time\n\t<&ET> appointment end time"), NULL);
     gtk_box_pack_start(GTK_BOX(apptw->Proc_hbox), apptw->Proc_entry
             , TRUE, TRUE, 0);
 
@@ -3118,8 +3172,8 @@ static void build_recurrence_page(appt_win *apptw)
 {
     gint row, i;
     guint y, m;
-    char *recur_freq_array[5] = {
-        _("None"), _("Daily"), _("Weekly"), _("Monthly"), _("Yearly")};
+    char *recur_freq_array[6] = {
+        _("None"), _("Daily"), _("Weekly"), _("Monthly"), _("Yearly"), _("Hourly")};
     char *weekday_array[7] = {
         _("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun")};
     GtkWidget *hbox;
@@ -3157,7 +3211,7 @@ static void build_recurrence_page(appt_win *apptw)
     apptw->Recur_freq_label = gtk_label_new(_("Frequency"));
     apptw->Recur_freq_hbox = gtk_hbox_new(FALSE, 0);
     apptw->Recur_freq_cb = orage_create_combo_box_with_content(
-            recur_freq_array, 5);
+            recur_freq_array, 6);
     gtk_box_pack_start(GTK_BOX(apptw->Recur_freq_hbox)
             , apptw->Recur_freq_cb, FALSE, FALSE, 0);
     apptw->Recur_int_spin_label1 = gtk_label_new(_("Each"));
@@ -3485,6 +3539,7 @@ appt_win *create_appt_win(char *action, char *par)
         gtk_widget_show_all(apptw->Window);
         recur_hide_show(apptw);
         type_hide_show(apptw);
+        readonly_hide_show(apptw);
         g_signal_connect((gpointer)apptw->Notebook, "switch-page"
                 , G_CALLBACK(on_notebook_page_switch), apptw);
         gtk_widget_grab_focus(apptw->Title_entry);

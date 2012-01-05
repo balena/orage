@@ -250,7 +250,7 @@ static void start_time_data_func(GtkTreeViewColumn *col, GtkCellRenderer *rend
         , GtkTreeModel *model, GtkTreeIter *iter, gpointer user_data)
 {
     el_win *el = (el_win *)user_data;
-    gchar *s_time, *etime, *stime2;
+    gchar *stime, *etime, *stime2;
     gchar start_time[17], end_time[17];
     gint len;
 
@@ -264,15 +264,15 @@ static void start_time_data_func(GtkTreeViewColumn *col, GtkCellRenderer *rend
             return;
         }
 
-        gtk_tree_model_get(model, iter, COL_TIME, &s_time, -1);
+        gtk_tree_model_get(model, iter, COL_TIME, &stime, -1);
         /* we need to remember the real address in case we increment it, 
          * so that we can free the correct pointer */
-        stime2 = s_time; 
-        if (s_time[0] == '+')
-            s_time++;
-        etime = s_time + 8; /* hh:mm - hh:mm */
+        stime2 = stime; 
+        if (stime[0] == '+')
+            stime++;
+        etime = stime + 8; /* hh:mm - hh:mm */
         /* only add special highlight if we are on today (=start with time) */
-        if (s_time[2] != ':') { 
+        if (stime[2] != ':') { 
             g_object_set(rend
                      , "foreground-set",    FALSE
                      , "strikethrough-set", FALSE
@@ -288,7 +288,7 @@ static void start_time_data_func(GtkTreeViewColumn *col, GtkCellRenderer *rend
                      , "weight-set",        TRUE
                      , NULL);
         }
-        else if (strncmp(s_time, el->time_now, 5) <= 0 
+        else if (strncmp(stime, el->time_now, 5) <= 0 
               && strncmp(etime, el->time_now, 5) >= 0) { /* current */
             g_object_set(rend
                      , "foreground",        "Blue"
@@ -309,19 +309,19 @@ static void start_time_data_func(GtkTreeViewColumn *col, GtkCellRenderer *rend
         g_free(stime2);
     }
     else if (el->page == TODO_PAGE) {
-        gtk_tree_model_get(model, iter, COL_SORT, &s_time, -1);
-        if (s_time[8] == 'T') { /* date+time */
+        gtk_tree_model_get(model, iter, COL_SORT, &stime, -1);
+        if (stime[8] == 'T') { /* date+time */
             len = 15;
         }
         else { /* date only */
             len = 8;
         }
-        strncpy(start_time, s_time, len);
+        strncpy(start_time, stime, len);
         gtk_tree_model_get(model, iter, COL_TIME, &stime2, -1);
         if (g_str_has_suffix(stime2, "- ...")) /* no due time */
             strncpy(end_time, "99999", len); /* long in the future*/
         else /* normal due time*/
-            strncpy(end_time, s_time+len, len);
+            strncpy(end_time, stime+len, len);
         if (strncmp(end_time, el->date_now, len) < 0) { /* gone */
             g_object_set(rend
                      , "foreground",        "Red"
@@ -349,7 +349,7 @@ static void start_time_data_func(GtkTreeViewColumn *col, GtkCellRenderer *rend
                      , "weight-set",        TRUE
                      , NULL);
         }
-        g_free(s_time);
+        g_free(stime);
         g_free(stime2);
     }
     else {
@@ -367,12 +367,12 @@ static void add_el_row(el_win *el, xfical_appt *appt, char *par)
     GtkListStore   *list1;
     gchar          *title = NULL, *tmp;
     gchar           flags[6]; 
-    gchar          *s_time;
+    gchar          *stime;
     gchar          /* *s_sort,*/ *s_sort1;
     gchar          *tmp_note;
     guint           len = 50;
 
-    s_time = format_time(el, appt, par);
+    stime = format_time(el, appt, par);
     if (appt->alarmtime != 0)
         if (appt->sound != NULL)
             flags[0] = 'S';
@@ -432,7 +432,7 @@ static void add_el_row(el_win *el, xfical_appt *appt, char *par)
     list1 = el->ListStore;
     gtk_list_store_append(list1, &iter1);
     gtk_list_store_set(list1, &iter1
-            , COL_TIME,  s_time
+            , COL_TIME,  stime
             , COL_FLAGS, flags
             , COL_HEAD,  title
             , COL_UID,   appt->uid
@@ -441,7 +441,7 @@ static void add_el_row(el_win *el, xfical_appt *appt, char *par)
             , -1);
     g_free(title);
     g_free(s_sort1);
-    g_free(s_time);
+    g_free(stime);
     /*
     g_free(s_sort);
     */
@@ -504,7 +504,9 @@ static void app_rows(el_win *el, char *a_day, char *par, xfical_type ical_type
              tmp != NULL;
              tmp = g_list_next(tmp)) {
             appt = (xfical_appt *)tmp->data;
-            add_el_row(el, appt, par);
+            if (appt->priority < g_par.priority_list_limit) {
+                add_el_row(el, appt, par);
+            }
             xfical_appt_free(appt);
         }
         g_list_free(appt_list);
@@ -585,7 +587,7 @@ static void refresh_time_field(el_win *el)
 static void event_data(el_win *el)
 {
     char      *title;  /* in %x strftime format */
-    char      *s_time;  /* in icaltime format */
+    char      *stime;  /* in icaltime format */
     char      a_day[9]; /* yyyymmdd */
     struct tm *t, t_title;
 
@@ -594,8 +596,8 @@ static void event_data(el_win *el)
     el->days = gtk_spin_button_get_value(GTK_SPIN_BUTTON(el->event_spin));
     title = (char *)gtk_window_get_title(GTK_WINDOW(el->Window));
     t_title = orage_i18_date_to_tm_date(title); 
-    s_time = orage_tm_time_to_icaltime(&t_title);
-    strncpy(a_day, s_time, 8);
+    stime = orage_tm_time_to_icaltime(&t_title);
+    strncpy(a_day, stime, 8);
     a_day[8] = '\0';
     t = orage_localtime();
     g_sprintf(el->time_now, "%02d:%02d", t->tm_hour, t->tm_min);
@@ -611,16 +613,16 @@ static void event_data(el_win *el)
 
 static void todo_data(el_win *el)
 {
-    char      *s_time;
+    char      *stime;
     char      a_day[9];  /* yyyymmdd */
     struct tm *t;
 
     el->days = 0; /* not used */
     t = orage_localtime();
-    s_time = orage_tm_time_to_icaltime(t);
-    strncpy(a_day, s_time, 8);
+    stime = orage_tm_time_to_icaltime(t);
+    strncpy(a_day, stime, 8);
     a_day[8] = '\0';
-    strncpy(el->date_now, s_time, XFICAL_APPT_TIME_FORMAT_LEN);
+    strncpy(el->date_now, stime, XFICAL_APPT_TIME_FORMAT_LEN);
     app_data(el, a_day, NULL);
 }
 
@@ -910,7 +912,7 @@ static void delete_appointment(el_win *el)
     GtkTreeIter       iter;
     GList *list;
     gint  list_len, i;
-    gchar *uid = NULL;
+    gchar *uid = NULL, *flags = NULL;
 
     result = orage_warning_dialog(GTK_WINDOW(el->Window)
             , _("You will permanently remove all\nselected appointments.")
@@ -925,6 +927,18 @@ static void delete_appointment(el_win *el)
             path = (GtkTreePath *)g_list_nth_data(list, i);
             if (gtk_tree_model_get_iter(model, &iter, path)) {
                 gtk_tree_model_get(model, &iter, COL_UID, &uid, -1);
+#ifdef HAVE_ARCHIVE
+                gtk_tree_model_get(model, &iter, COL_FLAGS, &flags, -1);
+                if (flags && flags[3] == 'A') {
+                    xfical_unarchive_uid(uid);
+                    /* note that file id changes after archive */ 
+                    uid[0]='O';
+                    /* xfical_unarchive_uid closes the file */
+                    if (!xfical_file_open(TRUE)) 
+                        return;
+                }
+                g_free(flags);
+#endif
                 result = xfical_appt_del(uid);
                 if (result)
                     orage_message(30, "Removed: %s", uid);
@@ -960,7 +974,7 @@ static void on_journal_start_button_clicked(GtkWidget *button
 }
 
 static void drag_data_get(GtkWidget *widget, GdkDragContext *context
-        , GtkSelectionData *selection_data, guint info, guint i_time
+        , GtkSelectionData *selection_data, guint info, guint itime
         , gpointer user_data)
 {
     GtkTreeSelection *sel;

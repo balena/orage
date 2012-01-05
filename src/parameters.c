@@ -49,7 +49,9 @@
 #include "parameters.h"
 #include "mainbox.h"
 
-extern int g_log_level;
+extern int g_log_level; /* in function.c */
+
+gboolean check_wakeup(gpointer user_data); /* in main.c*/
 
 static gboolean is_running = FALSE;
 
@@ -116,7 +118,7 @@ typedef struct _Itf
     GtkWidget *select_day_today_radiobutton;
     GtkWidget *select_day_old_radiobutton;
     /* icon size */
-    GtkWidget *icon_size_frame;
+    GtkWidget *use_dynamic_icon_frame;
     GtkWidget *use_dynamic_icon_checkbutton;
     /* show event/days window from main calendar */
     GtkWidget *click_to_show_frame;
@@ -130,6 +132,9 @@ typedef struct _Itf
     GtkWidget *close_button;
     GtkWidget *help_button;
     GtkWidget *dialog_action_area1;
+    /* icon size */
+    GtkWidget *use_wakeup_timer_frame;
+    GtkWidget *use_wakeup_timer_checkbutton;
 } Itf;
 
 /* Return the first day of the week, where 0=monday, 6=sunday.
@@ -440,7 +445,7 @@ static void timezone_button_clicked(GtkButton *button, gpointer user_data)
 
     if (!ORAGE_STR_EXISTS(g_par.local_timezone)) {
         g_warning("timezone pressed: local timezone missing");
-        g_par.local_timezone = g_strdup("floating");
+        g_par.local_timezone = g_strdup("UTC");
     }
     if (orage_timezone_button_clicked(button, GTK_WINDOW(itf->orage_dialog)
             , &g_par.local_timezone, TRUE, g_par.local_timezone))
@@ -481,6 +486,31 @@ static void el_extra_days_spin_changed(GtkSpinButton *sb, gpointer user_data)
     g_par.el_days = gtk_spin_button_get_value(sb);
 }
 
+/* start monitoring lost seconds due to hibernate or suspend */
+static void set_wakeup_timer()
+{
+    if (g_par.wakeup_timer) { /* need to stop it if running */
+        g_source_remove(g_par.wakeup_timer);
+        g_par.wakeup_timer=0;
+    }
+    if (g_par.use_wakeup_timer) {
+        check_wakeup(&g_par); /* init */
+        g_par.wakeup_timer = 
+                g_timeout_add_seconds(ORAGE_WAKEUP_TIMER_PERIOD
+                        , (GtkFunction)check_wakeup, NULL);
+    }
+}
+
+static void use_wakeup_timer_changed(GtkWidget *dialog, gpointer user_data)
+{
+    Itf *itf = (Itf *)user_data;
+    GdkPixbuf *orage_logo;
+
+    g_par.use_wakeup_timer = gtk_toggle_button_get_active(
+            GTK_TOGGLE_BUTTON(itf->use_wakeup_timer_checkbutton));
+    set_wakeup_timer();
+}
+
 static void create_parameter_dialog_main_setup_tab(Itf *dialog)
 {
     GtkWidget *hbox, *vbox, *label;
@@ -501,16 +531,12 @@ static void create_parameter_dialog_main_setup_tab(Itf *dialog)
             , dialog->timezone_frame, FALSE, FALSE, 5);
 
     dialog->timezone_button = gtk_button_new();
-    if (g_par.local_timezone) {
-        gtk_button_set_label(GTK_BUTTON(dialog->timezone_button)
-                , _(g_par.local_timezone));
+    if (!ORAGE_STR_EXISTS(g_par.local_timezone)) {
+        g_warning("parameters: local timezone missing");
+        g_par.local_timezone = g_strdup("UTC");
     }
-    else { /* we should never arrive here */
-        g_warning("parameters: timezone not set.");
-        g_par.local_timezone = g_strdup("floating");
-        gtk_button_set_label(GTK_BUTTON(dialog->timezone_button)
-                , _("floating"));
-    }
+    gtk_button_set_label(GTK_BUTTON(dialog->timezone_button)
+            , _(g_par.local_timezone));
     gtk_box_pack_start(GTK_BOX(vbox)
             , dialog->timezone_button, FALSE, FALSE, 5);
     gtk_tooltips_set_tip(dialog->Tooltips, dialog->timezone_button
@@ -776,20 +802,6 @@ static void create_parameter_dialog_extra_setup_tab(Itf *dialog)
     gtk_box_pack_start(GTK_BOX(dialog->extra_vbox)
             , dialog->select_day_frame, FALSE, FALSE, 5);
 
-    /*
-    dialog->always_today_checkbutton = 
-            gtk_check_button_new_with_mnemonic(_("Select always today"));
-    gtk_box_pack_start(GTK_BOX(hbox)
-            , dialog->always_today_checkbutton, FALSE, FALSE, 5);
-    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
-            dialog->always_today_checkbutton), g_par.select_always_today);
-    gtk_tooltips_set_tip(dialog->Tooltips, dialog->always_today_checkbutton
-            , _("When showing main calendar, set pointer to either previously selected day or always to current day.")
-            , NULL);
-    g_signal_connect(G_OBJECT(dialog->always_today_checkbutton), "toggled"
-            , G_CALLBACK(always_today_changed), dialog);
-            */
-
     dialog->select_day_today_radiobutton =
             gtk_radio_button_new_with_mnemonic(NULL, _("Select Today's Date"));
     gtk_box_pack_start(GTK_BOX(vbox)
@@ -820,10 +832,10 @@ static void create_parameter_dialog_extra_setup_tab(Itf *dialog)
 
     /***** use dynamic tray icon *****/
     hbox = gtk_vbox_new(FALSE, 0);
-    dialog->icon_size_frame = orage_create_framebox_with_content(
+    dialog->use_dynamic_icon_frame = orage_create_framebox_with_content(
             _("Use dynamic tray icon"), hbox);
     gtk_box_pack_start(GTK_BOX(dialog->extra_vbox)
-            , dialog->icon_size_frame, FALSE, FALSE, 5);
+            , dialog->use_dynamic_icon_frame, FALSE, FALSE, 5);
 
     dialog->use_dynamic_icon_checkbutton = 
             gtk_check_button_new_with_mnemonic(_("Use dynamic icon"));
@@ -886,15 +898,30 @@ static void create_parameter_dialog_extra_setup_tab(Itf *dialog)
             , dialog->el_extra_days_spin, FALSE, FALSE, 5);
     gtk_spin_button_set_value(GTK_SPIN_BUTTON(dialog->el_extra_days_spin)
             , g_par.el_days);
-    /*
-    label = gtk_label_new(_("extra days"));
-    gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 5);
-    */
     gtk_tooltips_set_tip(dialog->Tooltips, dialog->el_extra_days_spin
             , _("This is just the default value, you can change it in the actual eventlist window.")
             , NULL);
     g_signal_connect(G_OBJECT(dialog->el_extra_days_spin), "value-changed"
             , G_CALLBACK(el_extra_days_spin_changed), dialog);
+
+    /***** use wakeup timer *****/
+    hbox = gtk_vbox_new(FALSE, 0);
+    dialog->use_wakeup_timer_frame = orage_create_framebox_with_content(
+            _("Use wakeup timer"), hbox);
+    gtk_box_pack_start(GTK_BOX(dialog->extra_vbox)
+            , dialog->use_wakeup_timer_frame, FALSE, FALSE, 5);
+
+    dialog->use_wakeup_timer_checkbutton = 
+            gtk_check_button_new_with_mnemonic(_("Use wakeup timer"));
+    gtk_box_pack_start(GTK_BOX(hbox)
+            , dialog->use_wakeup_timer_checkbutton, FALSE, FALSE, 5);
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
+            dialog->use_wakeup_timer_checkbutton), g_par.use_wakeup_timer);
+    gtk_tooltips_set_tip(dialog->Tooltips, dialog->use_wakeup_timer_checkbutton
+            , _("Use this timer if Orage has problems waking up properly after suspend or hibernate. (For example tray icon not refreshed or alarms not firing.)")
+            , NULL);
+    g_signal_connect(G_OBJECT(dialog->use_wakeup_timer_checkbutton), "toggled"
+            , G_CALLBACK(use_wakeup_timer_changed), dialog);
 }
 
 static Itf *create_parameter_dialog(void)
@@ -916,9 +943,6 @@ static Itf *create_parameter_dialog(void)
     orage_logo = orage_create_icon(FALSE, 48);
     gtk_window_set_icon(GTK_WINDOW(dialog->orage_dialog), orage_logo);
     g_object_unref(orage_logo);
-    /*
-    gtk_window_set_icon_name(GTK_WINDOW(dialog->orage_dialog), "xfcalendar");
-    */
 
     gtk_dialog_set_has_separator(GTK_DIALOG(dialog->orage_dialog), FALSE);
 
@@ -965,79 +989,6 @@ static OrageRc *orage_parameters_file_open(gboolean read_only)
     g_free(fpath);
 
     return(orc);
-}
-
-void write_parameters(void)
-{
-    OrageRc *orc;
-    gint i;
-    gchar f_par[50];
-
-    orc = orage_parameters_file_open(FALSE);
-
-    orage_rc_set_group(orc, "PARAMETERS");
-    orage_rc_put_str(orc, "Timezone", g_par.local_timezone);
-#ifdef HAVE_ARCHIVE
-    orage_rc_put_int(orc, "Archive limit", g_par.archive_limit);
-    orage_rc_put_str(orc, "Archive file", g_par.archive_file);
-#endif
-    orage_rc_put_str(orc, "Orage file", g_par.orage_file);
-    orage_rc_put_str(orc, "Sound application", g_par.sound_application);
-    gtk_window_get_size(GTK_WINDOW(((CalWin *)g_par.xfcal)->mWindow)
-            , &g_par.size_x, &g_par.size_y);
-    gtk_window_get_position(GTK_WINDOW(((CalWin *)g_par.xfcal)->mWindow)
-            , &g_par.pos_x, &g_par.pos_y);
-    orage_rc_put_int(orc, "Main window X", g_par.pos_x);
-    orage_rc_put_int(orc, "Main window Y", g_par.pos_y);
-    orage_rc_put_int(orc, "Main window size X", g_par.size_x);
-    orage_rc_put_int(orc, "Main window size Y", g_par.size_y);
-    orage_rc_put_int(orc, "Eventlist window pos X", g_par.el_pos_x);
-    orage_rc_put_int(orc, "Eventlist window pos Y", g_par.el_pos_y);
-    orage_rc_put_int(orc, "Eventlist window X", g_par.el_size_x);
-    orage_rc_put_int(orc, "Eventlist window Y", g_par.el_size_y);
-    orage_rc_put_int(orc, "Eventlist extra days", g_par.el_days);
-    orage_rc_put_bool(orc, "Show Main Window Menu", g_par.show_menu);
-    orage_rc_put_bool(orc, "Select Always Today"
-            , g_par.select_always_today);
-    orage_rc_put_bool(orc, "Show borders", g_par.show_borders);
-    orage_rc_put_bool(orc, "Show heading", g_par.show_heading);
-    orage_rc_put_bool(orc, "Show day names", g_par.show_day_names);
-    orage_rc_put_bool(orc, "Show weeks", g_par.show_weeks);
-    orage_rc_put_bool(orc, "Show todos", g_par.show_todos);
-    orage_rc_put_int(orc, "Show event days", g_par.show_event_days);
-    orage_rc_put_bool(orc, "Show in pager", g_par.show_pager);
-    orage_rc_put_bool(orc, "Show in systray", g_par.show_systray);
-    orage_rc_put_bool(orc, "Show in taskbar", g_par.show_taskbar);
-    orage_rc_put_bool(orc, "Start visible", g_par.start_visible);
-    orage_rc_put_bool(orc, "Start minimized", g_par.start_minimized);
-    orage_rc_put_bool(orc, "Set sticked", g_par.set_stick);
-    orage_rc_put_bool(orc, "Set ontop", g_par.set_ontop);
-    orage_rc_put_bool(orc, "Use dynamic icon", g_par.use_dynamic_icon);
-    /* we write this with X so that we do not read it back unless
-     * it is manually changed. It should need changes really seldom. */
-    orage_rc_put_int(orc, "XIcal week start day"
-            , g_par.ical_weekstartday);
-    orage_rc_put_bool(orc, "Show days", g_par.show_days);
-    orage_rc_put_int(orc, "Foreign file count", g_par.foreign_count);
-    /* add what we have and remove the rest */
-    for (i = 0; i < g_par.foreign_count;  i++) {
-        g_sprintf(f_par, "Foreign file %02d name", i);
-        orage_rc_put_str(orc, f_par, g_par.foreign_data[i].file);
-        g_sprintf(f_par, "Foreign file %02d read-only", i);
-        orage_rc_put_bool(orc, f_par, g_par.foreign_data[i].read_only);
-    }
-    for (i = g_par.foreign_count; i < 10;  i++) {
-        g_sprintf(f_par, "Foreign file %02d name", i);
-        if (!orage_rc_exists_item(orc, f_par))
-            break; /* it is in order, so we know that the rest are missing */
-        orage_rc_del_item(orc, f_par);
-        g_sprintf(f_par, "Foreign file %02d read-only", i);
-        orage_rc_del_item(orc, f_par);
-    }
-    orage_rc_put_int(orc, "Logging level", g_log_level);
-    orage_rc_put_int(orc, "Priority list limit", g_par.priority_list_limit);
-
-    orage_rc_file_close(orc);
 }
 
 /* let's try to find the timezone name by comparing this file to
@@ -1117,7 +1068,7 @@ static void init_default_timezone(void)
     if (ORAGE_STR_EXISTS(g_par.local_timezone))
         g_message(_("Default timezone set to %s."), g_par.local_timezone);
     else {
-        g_par.local_timezone = g_strdup("floating");
+        g_par.local_timezone = g_strdup("UTC");
         g_message(_("Default timezone not found, please, set it manually."));
     }
 }
@@ -1172,6 +1123,34 @@ void read_parameters(void)
     g_par.set_stick = orage_rc_get_bool(orc, "Set sticked", TRUE);
     g_par.set_ontop = orage_rc_get_bool(orc, "Set ontop", FALSE);
     g_par.use_dynamic_icon = orage_rc_get_bool(orc, "Use dynamic icon", TRUE);
+    g_par.use_own_dynamic_icon = 
+            orage_rc_get_bool(orc, "Use own dynamic icon", FALSE);
+    g_par.own_icon_file = orage_rc_get_str(orc, "Own icon file"
+            , PACKAGE_DATA_DIR "/icons/hicolor/160x160/apps/orage.xpm");
+    g_par.own_icon_row1_data = orage_rc_get_str(orc
+            , "Own icon row1 data", "%a");
+    g_par.own_icon_row1_color = orage_rc_get_str(orc, "Own icon row1 color"
+            , "blue");
+    g_par.own_icon_row1_font = orage_rc_get_str(orc, "Own icon row1 font"
+            , "Ariel 24");
+    g_par.own_icon_row1_x = orage_rc_get_int(orc, "Own icon row1 x", 0);
+    g_par.own_icon_row1_y = orage_rc_get_int(orc, "Own icon row1 y", 0);
+    g_par.own_icon_row2_data = orage_rc_get_str(orc
+            , "Own icon row2 data", "%d");
+    g_par.own_icon_row2_color = orage_rc_get_str(orc, "Own icon row2 color"
+            , "red");
+    g_par.own_icon_row2_font = orage_rc_get_str(orc, "Own icon row2 font"
+            , "Sans bold 72");
+    g_par.own_icon_row2_x = orage_rc_get_int(orc, "Own icon row2 x", 0);
+    g_par.own_icon_row2_y = orage_rc_get_int(orc, "Own icon row2 y", 20);
+    g_par.own_icon_row3_data = orage_rc_get_str(orc
+            , "Own icon row3 data", "%b");
+    g_par.own_icon_row3_color = orage_rc_get_str(orc, "Own icon row3 color"
+            , "blue");
+    g_par.own_icon_row3_font = orage_rc_get_str(orc, "Own icon row3 font"
+            , "Ariel bold 26");
+    g_par.own_icon_row3_x = orage_rc_get_int(orc, "Own icon row3 x", 5);
+    g_par.own_icon_row3_y = orage_rc_get_int(orc, "Own icon row3 y", 120);
     /* 0 = monday, ..., 6 = sunday */
     g_par.ical_weekstartday = orage_rc_get_int(orc, "Ical week start day"
             , get_first_weekday_from_locale());
@@ -1185,6 +1164,101 @@ void read_parameters(void)
     }
     g_log_level = orage_rc_get_int(orc, "Logging level", 0);
     g_par.priority_list_limit = orage_rc_get_int(orc, "Priority list limit", 8);
+    g_par.use_wakeup_timer = orage_rc_get_bool(orc, "Use wakeup timer", TRUE);
+
+    orage_rc_file_close(orc);
+}
+
+void write_parameters(void)
+{
+    OrageRc *orc;
+    gint i;
+    gchar f_par[50];
+
+    orc = orage_parameters_file_open(FALSE);
+
+    orage_rc_set_group(orc, "PARAMETERS");
+    orage_rc_put_str(orc, "Timezone", g_par.local_timezone);
+#ifdef HAVE_ARCHIVE
+    orage_rc_put_int(orc, "Archive limit", g_par.archive_limit);
+    orage_rc_put_str(orc, "Archive file", g_par.archive_file);
+#endif
+    orage_rc_put_str(orc, "Orage file", g_par.orage_file);
+    orage_rc_put_str(orc, "Sound application", g_par.sound_application);
+    gtk_window_get_size(GTK_WINDOW(((CalWin *)g_par.xfcal)->mWindow)
+            , &g_par.size_x, &g_par.size_y);
+    gtk_window_get_position(GTK_WINDOW(((CalWin *)g_par.xfcal)->mWindow)
+            , &g_par.pos_x, &g_par.pos_y);
+    orage_rc_put_int(orc, "Main window X", g_par.pos_x);
+    orage_rc_put_int(orc, "Main window Y", g_par.pos_y);
+    orage_rc_put_int(orc, "Main window size X", g_par.size_x);
+    orage_rc_put_int(orc, "Main window size Y", g_par.size_y);
+    orage_rc_put_int(orc, "Eventlist window pos X", g_par.el_pos_x);
+    orage_rc_put_int(orc, "Eventlist window pos Y", g_par.el_pos_y);
+    orage_rc_put_int(orc, "Eventlist window X", g_par.el_size_x);
+    orage_rc_put_int(orc, "Eventlist window Y", g_par.el_size_y);
+    orage_rc_put_int(orc, "Eventlist extra days", g_par.el_days);
+    orage_rc_put_bool(orc, "Show Main Window Menu", g_par.show_menu);
+    orage_rc_put_bool(orc, "Select Always Today"
+            , g_par.select_always_today);
+    orage_rc_put_bool(orc, "Show borders", g_par.show_borders);
+    orage_rc_put_bool(orc, "Show heading", g_par.show_heading);
+    orage_rc_put_bool(orc, "Show day names", g_par.show_day_names);
+    orage_rc_put_bool(orc, "Show weeks", g_par.show_weeks);
+    orage_rc_put_bool(orc, "Show todos", g_par.show_todos);
+    orage_rc_put_int(orc, "Show event days", g_par.show_event_days);
+    orage_rc_put_bool(orc, "Show in pager", g_par.show_pager);
+    orage_rc_put_bool(orc, "Show in systray", g_par.show_systray);
+    orage_rc_put_bool(orc, "Show in taskbar", g_par.show_taskbar);
+    orage_rc_put_bool(orc, "Start visible", g_par.start_visible);
+    orage_rc_put_bool(orc, "Start minimized", g_par.start_minimized);
+    orage_rc_put_bool(orc, "Set sticked", g_par.set_stick);
+    orage_rc_put_bool(orc, "Set ontop", g_par.set_ontop);
+    orage_rc_put_bool(orc, "Use dynamic icon", g_par.use_dynamic_icon);
+    orage_rc_put_bool(orc, "Use own dynamic icon", g_par.use_own_dynamic_icon);
+    orage_rc_put_str(orc, "Own icon file", g_par.own_icon_file);
+    orage_rc_put_str(orc, "Own icon row1 data"
+            , g_par.own_icon_row1_data);
+    orage_rc_put_str(orc, "Own icon row1 color", g_par.own_icon_row1_color);
+    orage_rc_put_str(orc, "Own icon row1 font", g_par.own_icon_row1_font);
+    orage_rc_put_int(orc, "Own icon row1 x", g_par.own_icon_row1_x);
+    orage_rc_put_int(orc, "Own icon row1 y", g_par.own_icon_row1_y);
+    orage_rc_put_str(orc, "Own icon row2 data"
+            , g_par.own_icon_row2_data);
+    orage_rc_put_str(orc, "Own icon row2 color", g_par.own_icon_row2_color);
+    orage_rc_put_str(orc, "Own icon row2 font", g_par.own_icon_row2_font);
+    orage_rc_put_int(orc, "Own icon row2 x", g_par.own_icon_row2_x);
+    orage_rc_put_int(orc, "Own icon row2 y", g_par.own_icon_row2_y);
+    orage_rc_put_str(orc, "Own icon row3 data"
+            , g_par.own_icon_row3_data);
+    orage_rc_put_str(orc, "Own icon row3 color", g_par.own_icon_row3_color);
+    orage_rc_put_str(orc, "Own icon row3 font", g_par.own_icon_row3_font);
+    orage_rc_put_int(orc, "Own icon row3 x", g_par.own_icon_row3_x);
+    orage_rc_put_int(orc, "Own icon row3 y", g_par.own_icon_row3_y);
+    /* we write this with X so that we do not read it back unless
+     * it is manually changed. It should need changes really seldom. */
+    orage_rc_put_int(orc, "XIcal week start day"
+            , g_par.ical_weekstartday);
+    orage_rc_put_bool(orc, "Show days", g_par.show_days);
+    orage_rc_put_int(orc, "Foreign file count", g_par.foreign_count);
+    /* add what we have and remove the rest */
+    for (i = 0; i < g_par.foreign_count;  i++) {
+        g_sprintf(f_par, "Foreign file %02d name", i);
+        orage_rc_put_str(orc, f_par, g_par.foreign_data[i].file);
+        g_sprintf(f_par, "Foreign file %02d read-only", i);
+        orage_rc_put_bool(orc, f_par, g_par.foreign_data[i].read_only);
+    }
+    for (i = g_par.foreign_count; i < 10;  i++) {
+        g_sprintf(f_par, "Foreign file %02d name", i);
+        if (!orage_rc_exists_item(orc, f_par))
+            break; /* it is in order, so we know that the rest are missing */
+        orage_rc_del_item(orc, f_par);
+        g_sprintf(f_par, "Foreign file %02d read-only", i);
+        orage_rc_del_item(orc, f_par);
+    }
+    orage_rc_put_int(orc, "Logging level", g_log_level);
+    orage_rc_put_int(orc, "Priority list limit", g_par.priority_list_limit);
+    orage_rc_put_bool(orc, "Use wakeup timer", g_par.use_wakeup_timer);
 
     orage_rc_file_close(orc);
 }
@@ -1214,5 +1288,6 @@ void set_parameters(void)
     */
     set_stick();
     set_ontop();
+    set_wakeup_timer();
     xfical_set_local_timezone(FALSE);
 }

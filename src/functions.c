@@ -89,6 +89,7 @@ void orage_message(gint level, const char *format, ...)
 {
     va_list args;
     char *formatted;
+    struct tm *t = orage_localtime();
 
     if (level < g_log_level)
         return;
@@ -96,7 +97,8 @@ void orage_message(gint level, const char *format, ...)
     formatted = g_strdup_vprintf(format, args);
     va_end(args);
 
-    if (level < 0) 
+    g_print("%02d:%02d:%02d ", t->tm_hour, t->tm_min, t->tm_sec);
+    if (level < 0)
         g_debug("%s", formatted);
     else if (level < 100) 
         g_message("Orage **: %s", formatted);
@@ -318,6 +320,53 @@ GtkWidget *orage_menu_item_new_with_mnemonic(const gchar *label
     return menu_item;
 }
 
+/* replace old with new string in text.
+   if changes are done, returns newly allocated char *, which needs to be freed
+   if there are no changes, it returns the original string without freeing it.
+   You can always use this like 
+   str=orage_replace_text(str, old, new);
+   but it may point to new place.
+*/
+char *orage_replace_text(char *text, char *old, char *new)
+{
+#undef P_N
+#define P_N "orage_replace_text: "
+    /* these point to the original string and travel it until no more commands 
+     * are found:
+     * cur points to the current head (after each old if any found)
+     * cmd points to the start of next old in text */
+    char *cur, *cmd;
+    char *beq=NULL; /* beq is the total new string. */
+    char *tmp;      /* temporary pointer to handle freeing */
+
+    for (cur = text; cur && (cmd = strstr(cur, old)); cur = cmd + strlen(old)) {
+        cmd[0] = '\0'; /* temporarily */
+        if (beq) { /* we already have done changes */
+            tmp = beq;
+            beq = g_strconcat(tmp, cur, new, NULL);
+            g_free(tmp);
+        }
+        else /* first round */
+            beq = g_strconcat(cur, new, NULL);
+        cmd[0] = old[0]; /* back to real value */
+    }
+
+    if (beq) {
+        /* we found and processed at least one command, 
+         * add the remaining fragment and return it */
+        tmp = beq;
+        beq = g_strconcat(tmp, cur, NULL);
+        g_free(tmp);
+        g_free(text); /* free original string as we changed it */
+    }
+    else {
+        /* we did not find any commands,
+         * so just return the original string */
+        beq = text;
+    }
+    return(beq);
+}
+
 /* this will change <&Xnnn> type commands to numbers or text as defined.
  * Currently the only command is 
  * <&Ynnnn> which calculates years between current year and nnnn */
@@ -424,6 +473,7 @@ GtkWidget *orage_period_hbox_new(gboolean head_space, gboolean tail_space
     gtk_box_pack_start(GTK_BOX(hbox), space_label, FALSE, FALSE, 0);
 
     gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(spin_mm), TRUE);
+    gtk_spin_button_set_increments(GTK_SPIN_BUTTON(spin_mm), 5, 10);
     /* gtk_widget_set_size_request(spin_mm, 40, -1); */
     gtk_box_pack_start(GTK_BOX(hbox), spin_mm, FALSE, FALSE, 0);
 
@@ -482,7 +532,7 @@ struct tm orage_i18_time_to_tm_time(const char *i18_time)
     if (ret == NULL)
         g_error("Orage: orage_i18_time_to_tm_time wrong format (%s)", i18_time);
     else if (ret[0] != '\0')
-        g_error("Orage: orage_i18_time_to_tm_time too long format (%s-%s)"
+        g_warning("Orage: orage_i18_time_to_tm_time too long format (%s). Ignoring:%s)"
                 , i18_time, ret);
     return(tm_time);
 }
@@ -496,7 +546,7 @@ struct tm orage_i18_date_to_tm_date(const char *i18_date)
     if (ret == NULL)
         g_error("Orage: orage_i18_date_to_tm_date wrong format (%s)", i18_date);
     else if (ret[0] != '\0')
-        g_error("Orage: orage_i18_date_to_tm_date too long format (%s-%s)"
+        g_warning("Orage: orage_i18_date_to_tm_date too long format (%s). Ignoring:%s)"
                 , i18_date, ret);
     return(tm_date);
 }
@@ -625,7 +675,7 @@ char *orage_icaltime_to_i18_time(const char *icaltime)
     return(ct);
 }
 
-char *orage_icaltime_to_i18_time_short(const char *icaltime)
+char *orage_icaltime_to_i18_time_only(const char *icaltime)
 {
     struct tm t;
     static char i18_time[10];
@@ -892,7 +942,9 @@ OrageRc *orage_rc_file_open(char *fpath, gboolean read_only)
         orc->cur_group = NULL;
     }
     else {
+#ifdef ORAGE_DEBUG
         orage_message(-90, "orage_rc_file_open: Unable to open RC file (%s). Creating it. (%s)", fpath, error->message);
+#endif
         g_clear_error(&error);
         if (g_file_set_contents((const gchar *)fpath, "#Created by Orage", -1
                     , &error)) { /* successfully created new file */
@@ -903,7 +955,9 @@ OrageRc *orage_rc_file_open(char *fpath, gboolean read_only)
             orc->cur_group = NULL;
         }
         else {
+#ifdef ORAGE_DEBUG
             orage_message(150, "orage_rc_file_open: Unable to open (create) RC file (%s). (%s)", fpath, error->message);
+#endif
             g_key_file_free(grc);
         }
     }
@@ -936,7 +990,9 @@ void orage_rc_file_close(OrageRc *orc)
         g_free(orc);
     }
     else {
+#ifdef ORAGE_DEBUG
         orage_message(-90, "orage_rc_file_close: closing empty file.");
+#endif
     }
 }
 
@@ -957,7 +1013,9 @@ void orage_rc_del_group(OrageRc *orc, char *grp)
 
     if (!g_key_file_remove_group((GKeyFile *)orc->rc, (const gchar *)grp
                 , &error)) {
+#ifdef ORAGE_DEBUG
         orage_message(150, "orage_rc_del_group: Group remove failed. RC file (%s). group (%s) (%s)", orc->file_name, grp, error->message);
+#endif
     }
 }
 
@@ -975,7 +1033,9 @@ gchar *orage_rc_get_str(OrageRc *orc, char *key, char *def)
             , (const gchar *)key, &error);
     if (!ret && error) {
         ret = g_strdup(def);
+#ifdef ORAGE_DEBUG
         orage_message(-90, "orage_rc_get_str: str (%s) group (%s) in RC file (%s) not found, using default (%s)", key, orc->cur_group, orc->file_name, ret);
+#endif
     }
     return(ret);
 }
@@ -989,7 +1049,9 @@ gint orage_rc_get_int(OrageRc *orc, char *key, gint def)
             , (const gchar *)key, &error);
     if (!ret && error) {
         ret = def;
+#ifdef ORAGE_DEBUG
         orage_message(-90, "orage_rc_get_int: str (%s) group (%s) in RC file (%s) not found, using default (%d)", key, orc->cur_group, orc->file_name, ret);
+#endif
     }
     return(ret);
 }
@@ -1003,7 +1065,9 @@ gboolean orage_rc_get_bool(OrageRc *orc, char *key, gboolean def)
             , (const gchar *)key, &error);
     if (!ret && error) {
         ret = def;
+#ifdef ORAGE_DEBUG
         orage_message(-90, "orage_rc_get_bool: str (%s) group (%s) in RC file (%s) not found, using default (%d)", key, orc->cur_group, orc->file_name, ret);
+#endif
     }
     return(ret);
 }

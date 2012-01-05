@@ -33,6 +33,7 @@
 
 /* defined in interface.c */
 gboolean orage_import_file(gchar *entry_filename);
+gboolean orage_export_file(gchar *filename, gint type, gchar *uids);
 gboolean orage_foreign_file_add(gchar *filename, gboolean read_only);
 gboolean orage_foreign_file_remove(gchar *filename);
 
@@ -103,11 +104,25 @@ gboolean orage_dbus_service_load_file(DBusGProxy *proxy
     }
 }
 
-gboolean orage_dbus_service_add_foreign(DBusGProxy *proxy
-        , const char *IN_file, const gboolean *IN_mode
+gboolean orage_dbus_service_export_file(DBusGProxy *proxy
+        , const char *IN_file, const int IN_type, const char *IN_uids
         , GError **error)
 {
-    if (orage_foreign_file_add((char *)IN_file, (gboolean)*IN_mode)) {
+    if (orage_export_file((char *)IN_file, (gint)IN_type, (char *)IN_uids)) {
+        g_message("Orage **: DBUS File exported %s", IN_file);
+        return(TRUE);
+    }
+    else {
+        g_warning("DBUS File export failed %s", IN_file);
+        return(FALSE);
+    }
+}
+
+gboolean orage_dbus_service_add_foreign(DBusGProxy *proxy
+        , const char *IN_file, const gboolean IN_mode
+        , GError **error)
+{
+    if (orage_foreign_file_add((char *)IN_file, (gboolean)IN_mode)) {
         g_message("Orage **: DBUS Foreign file added %s", IN_file);
         return(TRUE);
     }

@@ -64,6 +64,7 @@
 #include "mainbox.h"
 #include "reminder.h"
 #include "ical-code.h"
+#include "ical-internal.h"
 #include "event-list.h"
 #include "appointment.h"
 #include "parameters.h"
@@ -74,25 +75,6 @@
 */
 
 
-
-/* in ical-code.c: */
-char *ic_generate_uid();
-
-extern icalset *ic_fical;
-extern icalcomponent *ic_ical;
-
-extern gboolean ic_file_modified; /* has any ical file been changed */
-
-typedef struct _foreign_ical_files
-{;
-    icalset *fical;
-    icalcomponent *ical;
-} ic_foreign_ical_files;
-
-extern ic_foreign_ical_files ic_f_ical[10];
-
-gboolean ic_internal_file_open(icalcomponent **p_ical
-                , icalset **p_fical, gchar *file_icalpath, gboolean test);
 
 static gboolean add_event(icalcomponent *c)
 {
@@ -145,7 +127,7 @@ static gboolean pre_format(char *file_name_in, char *file_name_out)
         g_error_free(error);
         return(FALSE);
     }
-    /***** Check utf8 coformtability *****/
+    /***** Check utf8 conformability *****/
     if (!g_utf8_validate(text, -1, NULL)) {
         orage_message(250, P_N "is not in utf8 format. Conversion needed.\n (Use iconv and convert it into UTF-8 and import it again.)\n");
         return(FALSE);
@@ -313,8 +295,10 @@ static gboolean export_prepare_write_file(char *file_name)
         return(FALSE);
     }
     g_free(tmp);
-    if (g_remove(file_name) == -1) { /* note that it may not exist */
-        orage_message(150, P_N "Failed to remove export file %s", file_name);
+    if (g_file_test(file_name, G_FILE_TEST_EXISTS)) {
+	if (g_remove(file_name) == -1) {
+            orage_message(150, P_N "Failed to remove export file %s", file_name);
+        }
     }
     return(TRUE);
 }
@@ -393,7 +377,7 @@ static gboolean export_selected(char *file_name, char *uids)
         orage_message(150, P_N "UID list is empty");
         return(FALSE);
     }
-    if (!ic_internal_file_open(&x_ical, &x_fical, file_name, FALSE)) {
+    if (!ic_internal_file_open(&x_ical, &x_fical, file_name, FALSE, FALSE)) {
         orage_message(150, P_N "Failed to create export file %s"
                 , file_name);
         return(FALSE);
@@ -405,6 +389,10 @@ static gboolean export_selected(char *file_name, char *uids)
     /* checks done, let's start the real work */
     more_uids = TRUE;
     for (uid = uids; more_uids; ) {
+        if (strlen(uid) < 5) {
+            orage_message(150, P_N "unknown appointment name %s", uid);
+            return(FALSE);
+        }
         uid_int = uid+4;
         uid_end = g_strstr_len((const gchar *)uid, strlen(uid), ",");
         if (uid_end != NULL)
@@ -419,13 +407,14 @@ static gboolean export_selected(char *file_name, char *uids)
                 export_selected_uid(ic_f_ical[i].ical, uid_int, x_ical);
             }
             else {
-                orage_message(250, P_N "unknown foreign file number %s", uid);
+                orage_message(150, P_N "unknown foreign file number %d, %s"
+                        , i, uid);
                 return(FALSE);
             }
 
         }
         else {
-            orage_message(250, P_N "Unknown uid type %s", uid);
+            orage_message(150, P_N "Unknown uid type (%s)", uid);
         }
         
         if (uid_end != NULL)  /* we have more uids */

@@ -76,17 +76,6 @@
 */
 
 
-
-extern icalset *ic_fical;
-extern icalcomponent *ic_ical;
-#ifdef HAVE_ARCHIVE
-extern icalset *ic_afical;
-extern icalcomponent *ic_aical;
-#endif
-
-extern gboolean ic_file_modified; /* has any ical file been changed */
-
-
 #ifdef HAVE_ARCHIVE
 gboolean xfical_archive_open(void)
 {
@@ -101,7 +90,7 @@ gboolean xfical_archive_open(void)
         return(FALSE);
 
     return(ic_internal_file_open(&ic_aical, &ic_afical, g_par.archive_file
-            , FALSE));
+            , FALSE, FALSE));
 }
 #endif
 
@@ -463,9 +452,9 @@ gboolean xfical_unarchive(void)
         xfical_file_close(FALSE);
         return(FALSE);
     }
-    for (c = icalcomponent_get_first_component(ic_aical, ICAL_VEVENT_COMPONENT);
+    for (c = icalcomponent_get_first_component(ic_aical, ICAL_ANY_COMPONENT);
          c != 0;
-         c = icalcomponent_get_next_component(ic_aical, ICAL_VEVENT_COMPONENT)) {
+         c = icalcomponent_get_next_component(ic_aical, ICAL_ANY_COMPONENT)) {
     /* Add to the base file */
         d = icalcomponent_new_clone(c);
         icalcomponent_add_component(ic_ical, d);

@@ -390,17 +390,25 @@ static void add_info_row(xfical_appt *appt, GtkBox *parentBox, gboolean todo)
     /***** add data into the vbox *****/
     ev = gtk_event_box_new();
     tmp_title = orage_process_text_commands(appt->title);
-    if (appt->allDay || todo) {
-        tmp = g_strdup_printf("  %s", tmp_title);
+    s_time = g_strdup(orage_icaltime_to_i18_time(appt->starttimecur));
+    if (todo) {
+        e_time = g_strdup(appt->use_due_time
+                ? orage_icaltime_to_i18_time(appt->endtimecur) : s_time);
+        tmp = g_strdup_printf(" %s  %s", e_time, tmp_title);
+        g_free(e_time);
     }
     else {
-        s_timeonly = g_strdup(orage_icaltime_to_i18_time_short(
-                    appt->starttimecur));
         today = orage_tm_time_to_icaltime(orage_localtime());
+        s_timeonly = g_strdup(orage_icaltime_to_i18_time_only(
+                    appt->starttimecur));
         if (!strncmp(today, appt->starttimecur, 8)) /* today */
-            tmp = g_strdup_printf(" %s* %s", s_timeonly, appt->title);
-        else
-            tmp = g_strdup_printf(" %s  %s", s_timeonly, appt->title);
+            tmp = g_strdup_printf(" %s* %s", s_timeonly, tmp_title);
+        else {
+            if (g_par.show_event_days > 1)
+                tmp = g_strdup_printf(" %s  %s", s_time, tmp_title);
+            else
+                tmp = g_strdup_printf(" %s  %s", s_timeonly, tmp_title);
+        }
         g_free(s_timeonly);
     }
     label = gtk_label_new(tmp);
@@ -436,21 +444,21 @@ static void add_info_row(xfical_appt *appt, GtkBox *parentBox, gboolean todo)
 
     /***** set hint *****/
     tmp_note = orage_process_text_commands(appt->note);
-    s_time = g_strdup(orage_icaltime_to_i18_time(appt->starttimecur));
     if (todo) {
         na = _("Never");
         e_time = g_strdup(appt->use_due_time
                 ? orage_icaltime_to_i18_time(appt->endtimecur) : na);
         c_time = g_strdup(appt->completed
                 ? orage_icaltime_to_i18_time(appt->completedtime) : na);
-        tip = g_strdup_printf(_("Title: %s\n Start:\t%s\n Due:\t%s\n Done:\t%s\nNote:\n%s")
-                , tmp_title, s_time, e_time, c_time, tmp_note);
+        tip = g_strdup_printf(_("Title: %s\n Location: %s\n Start:\t%s\n Due:\t%s\n Done:\t%s\n Note:\n%s")
+                , tmp_title, appt->location, s_time, e_time, c_time, tmp_note);
+
         g_free(c_time);
     }
     else { /* it is event */
         e_time = g_strdup(orage_icaltime_to_i18_time(appt->endtimecur));
-        tip = g_strdup_printf(_("Title: %s\n Start:\t%s\n End:\t%s\n Note:\n%s")
-                , tmp_title, s_time, e_time, tmp_note);
+        tip = g_strdup_printf(_("Title: %s\n Location: %s\n Start:\t%s\n End:\t%s\n Note:\n%s")
+                , tmp_title, appt->location, s_time, e_time, tmp_note);
     }
     gtk_tooltips_set_tip(cal->Tooltips, ev, tip, NULL);
     g_free(tmp_title);
@@ -506,11 +514,20 @@ static void info_process(gpointer a, gpointer pbox)
 #ifdef ORAGE_DEBUG
     orage_message(-100, P_N);
 #endif
+    /*
+    orage_message(100, "%s %s", P_N, appt->uid);
+    if (appt->freq == XFICAL_FREQ_HOURLY) {
+        orage_message(100, "%s %s", P_N, "HOURLY");
+        if (appt->priority >= g_par.priority_list_limit)
+            orage_message(100, "%s %s", P_N, " low priority HOURLY");
+    }
+    */
     if (pbox == cal->mTodo_rows_vbox)
         todo = TRUE;
     else
         todo = FALSE;
-    add_info_row(appt, box, todo);
+    if (appt->priority < g_par.priority_list_limit)
+        add_info_row(appt, box, todo);
     xfical_appt_free(appt);
 }
 
@@ -558,25 +575,28 @@ static void create_mainbox_event_info_box(void)
     cal->mEvent_vbox = gtk_vbox_new(FALSE, 0);
     gtk_box_pack_start(GTK_BOX(cal->mVbox), cal->mEvent_vbox, TRUE, TRUE, 0);
     cal->mEvent_label = gtk_label_new(NULL);
-    if (g_par.show_event_days == 1) {
-        tmp2 = g_strdup(orage_tm_date_to_i18_date(&tm_date_start));
-        tmp = g_strdup_printf(_("<b>Events for %s:</b>"), tmp2);
-        g_free(tmp2);
-    }
-    else {
-        int i;
+    if (g_par.show_event_days) {
+    /* bug 7836: we call this routine also with 0 = no event data at all */
+        if (g_par.show_event_days == 1) {
+            tmp2 = g_strdup(orage_tm_date_to_i18_date(&tm_date_start));
+            tmp = g_strdup_printf(_("<b>Events for %s:</b>"), tmp2);
+            g_free(tmp2);
+        }
+        else {
+            int i;
 
-        tm_date_end = tm_date_start;
-        for (i = g_par.show_event_days-1; i; i--)
-            orage_move_day(&tm_date_end, 1);
-        tmp2 = g_strdup(orage_tm_date_to_i18_date(&tm_date_start));
-        tmp3 = g_strdup(orage_tm_date_to_i18_date(&tm_date_end));
-        tmp = g_strdup_printf(_("<b>Events for %s - %s:</b>"), tmp2, tmp3);
-        g_free(tmp2);
-        g_free(tmp3);
+            tm_date_end = tm_date_start;
+            for (i = g_par.show_event_days-1; i; i--)
+                orage_move_day(&tm_date_end, 1);
+            tmp2 = g_strdup(orage_tm_date_to_i18_date(&tm_date_start));
+            tmp3 = g_strdup(orage_tm_date_to_i18_date(&tm_date_end));
+            tmp = g_strdup_printf(_("<b>Events for %s - %s:</b>"), tmp2, tmp3);
+            g_free(tmp2);
+            g_free(tmp3);
+        }
+        gtk_label_set_markup(GTK_LABEL(cal->mEvent_label), tmp);
+        g_free(tmp);
     }
-    gtk_label_set_markup(GTK_LABEL(cal->mEvent_label), tmp);
-    g_free(tmp);
 
     gtk_box_pack_start(GTK_BOX(cal->mEvent_vbox), cal->mEvent_label
             , FALSE, FALSE, 0);

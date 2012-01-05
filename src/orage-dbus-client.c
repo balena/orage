@@ -71,6 +71,34 @@ gboolean orage_dbus_import_file(gchar *file_name)
     };
 }
 
+gboolean orage_dbus_export_file(gchar *file_name, gint type, gchar *uids)
+{
+    DBusGConnection *connection;
+    GError *error = NULL;
+    DBusGProxy *proxy;
+
+    g_type_init();
+    connection = dbus_g_bus_get(DBUS_BUS_SESSION, &error);
+    if (connection == NULL) {
+        g_warning("Failed to connect to the D-BUS session bus: %s"
+                , error->message);
+        return(FALSE);
+    }
+
+    proxy = dbus_g_proxy_new_for_name(connection
+            , "org.xfce.calendar", "/org/xfce/calendar", "org.xfce.calendar");
+    if (dbus_g_proxy_call(proxy, "ExportFile", &error
+                , G_TYPE_STRING, file_name
+                , G_TYPE_INT, type
+                , G_TYPE_STRING, uids
+                , G_TYPE_INVALID, G_TYPE_INVALID)) {
+        return(TRUE);
+    }
+    else {
+        return(FALSE);
+    };
+}
+
 gboolean orage_dbus_foreign_add(gchar *file_name, gboolean read_only)
 {
     DBusGConnection *connection;

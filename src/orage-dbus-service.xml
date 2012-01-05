@@ -30,6 +30,11 @@
       -->
       <arg type="s" name="file" direction="in" />
     </method>
+    <method name="ExportFile">
+      <arg type="s" name="file" direction="in" />
+      <arg type="i" name="type" direction="in" />
+      <arg type="s" name="uids" direction="in" />
+    </method>
     <method name="AddForeign">
       <arg type="s" name="file" direction="in" />
       <arg type="b" name="mode" direction="in" />

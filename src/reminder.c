@@ -136,7 +136,7 @@ void alarm_list_free(void)
          alarm_l != NULL; 
          alarm_l = g_list_first(g_par.alarm_list)) {
         l_alarm = alarm_l->data;
-        if (l_alarm->temporary && (strcmp(time_now, l_alarm->alarm_time) < 0)) { 
+        if (l_alarm->temporary && (strcmp(time_now, l_alarm->alarm_time) < 0)) {
             /* We keep temporary alarms, which have not yet fired.
                Remove the element from the list, but do not loose it. */
             g_par.alarm_list = g_list_remove_link(g_par.alarm_list, alarm_l);
@@ -343,6 +343,9 @@ void alarm_read(void)
     for (i = 0; alarm_groups[i] != NULL; i++) {
         orage_rc_set_group(orc, alarm_groups[i]);
         if ((new_alarm = alarm_read_next_alarm(orc, time_now)) != NULL) {
+            /*
+            g_print(P_N "time_now=%s alarm=%s\n", time_now, new_alarm->alarm_time);
+            */
             create_reminders(new_alarm);
             alarm_free(new_alarm);
         }
@@ -446,8 +449,9 @@ static gboolean sound_alarm(gpointer data)
         status = orage_exec(l_alarm->sound_cmd
                 , &l_alarm->active_alarm->sound_active, &error);
         if (!status) {
-            g_warning("reminder: play failed (%s)", l_alarm->sound);
+            g_warning("reminder: play failed (%s) %s", l_alarm->sound, error->message);
             l_alarm->repeat_cnt = 0; /* one warning is enough */
+            status = TRUE; /* we need to come back once to do cleanout */
         }
         else if (l_alarm->repeat_cnt > 0)
             l_alarm->repeat_cnt--;
@@ -555,13 +559,12 @@ static void create_notify_reminder(alarm_struct *l_alarm)
         return;
     }
 
-    strncpy(heading,  _("Reminder "), 99);
+    strncpy(heading,  _("Reminder "), 100);
     if (l_alarm->title)
-        g_strlcat(heading, l_alarm->title, 50);
+        g_strlcat(heading, l_alarm->title, 150);
     if (l_alarm->action_time) {
-        g_strlcat(heading, "\n<b>", 10);
-        g_strlcat(heading, l_alarm->action_time, 90);
-        g_strlcat(heading, "<\b>", 10);
+        g_strlcat(heading, "\n", 160);
+        g_strlcat(heading, l_alarm->action_time, 250);
     }
     /* since version 0.7.0, libnotify does not have the widget parameter in 
        notify_notification_new and it does not have function
@@ -826,7 +829,7 @@ static void create_procedure_reminder(alarm_struct *l_alarm)
     gboolean status, active; / * active not used * /
     GError *error = NULL;
     */
-    gchar *cmd;
+    gchar *cmd, *tmp, *atime, *sep;
     gint status;
 
 #ifdef ORAGE_DEBUG
@@ -834,11 +837,49 @@ static void create_procedure_reminder(alarm_struct *l_alarm)
 #endif
     /*
     status = orage_exec(l_alarm->cmd, &active, &error);
-        */
+    */
     cmd = g_strconcat(l_alarm->cmd, " &", NULL);
+
+    cmd = orage_replace_text(cmd, "<&T>", l_alarm->title);
+
+    cmd = orage_replace_text(cmd, "<&D>", l_alarm->description);
+
+    if (l_alarm->alarm_time)
+        atime = g_strdup(orage_icaltime_to_i18_time(l_alarm->alarm_time));
+    else
+        atime = g_strdup(orage_tm_time_to_i18_time(orage_localtime()));
+    cmd = orage_replace_text(cmd, "<&AT>", atime);
+    g_free(atime);
+
+    /* l_alarm->action_time format is <start-time - end-time>
+    and times are in user format already. Problem is if that format contain
+    string " - " already, but let's hope not.  */
+    sep = strstr(l_alarm->action_time, " - ");
+    if (sep) { /* we should always have this */
+        if (strstr(sep+1, " - ")) {
+            /* this is problem as now we have more than one separator.
+               We could try to find the middle one using strlen, but as
+               there probably is not this kind of issues, it is not worth
+               the trouble */
+            orage_message(10, P_N "<&ST>/<&ET> string conversion failed (%s)"
+                    , l_alarm->action_time);
+        }
+        else {
+            sep[0] = '\0'; /* temporarily to end start-time string */
+            cmd = orage_replace_text(cmd, "<&ST>", l_alarm->action_time);
+            sep[0] = ' '; /* back to real value */
+
+            sep += strlen(" - "); /* points now to the end-time */
+            cmd = orage_replace_text(cmd, "<&ET>", sep);
+        }
+    }
+    else 
+        orage_message(10, P_N "<&ST>/<&ET> string conversion failed 2 (%s)"
+                , l_alarm->action_time);
+
     status = system(cmd);
     if (status)
-        g_warning(P_N "cmd failed(%s) status:%d", l_alarm->cmd, status);
+        g_warning(P_N "cmd failed(%s)->(%s) status:%d", l_alarm->cmd, cmd, status);
     g_free(cmd);
 }
 
@@ -907,10 +948,18 @@ gboolean orage_day_change(gpointer user_data)
 #endif
     t = orage_localtime();
   /* See if the day just changed. 
-     Note that when we are called first time we always have day change. */
-    if (previous_day != t->tm_mday
+     Note that when we are called first time we always have day change. 
+     If user_data is not NULL, we also force day change. */
+    if (user_data
+    || previous_day != t->tm_mday
     || previous_month != t->tm_mon
     || previous_year != t->tm_year + 1900) {
+        if (user_data) {
+            if (g_par.day_timer) { /* need to stop it if running */
+                g_source_remove(g_par.day_timer);
+                g_par.day_timer = 0;
+            }
+        }
         current_year  = t->tm_year + 1900;
         current_month = t->tm_mon;
         current_day   = t->tm_mday;
@@ -966,6 +1015,9 @@ static gboolean orage_alarm_clock(gpointer user_data)
         /* remember that it is sorted list */
         cur_alarm = (alarm_struct *)alarm_l->data;
         if (strcmp(time_now, cur_alarm->alarm_time) > 0) {
+            /*
+            g_print(P_N "time_now=%s alarm=%s\n", time_now, cur_alarm->alarm_time);
+            */
             create_reminders(cur_alarm);
             alarm_raised = TRUE;
         }
@@ -993,8 +1045,10 @@ static void reset_orage_alarm_clock(void)
 #ifdef ORAGE_DEBUG
     orage_message(-100, P_N);
 #endif
-    if (g_par.alarm_timer) /* need to stop it if running */
+    if (g_par.alarm_timer) { /* need to stop it if running */
         g_source_remove(g_par.alarm_timer);
+        g_par.alarm_timer = 0;
+    }
     if (g_par.alarm_list) { /* we have alarms */
         t = orage_localtime();
         t->tm_mon++;
@@ -1054,8 +1108,16 @@ static gboolean orage_tooltip_update(gpointer user_data)
         /* remember that it is sorted list */
         cur_alarm = (alarm_struct *)alarm_l->data;
         if (alarm_cnt < tooltip_alarm_limit) {
-            sscanf(cur_alarm->alarm_time, XFICAL_APPT_TIME_FORMAT
-                    , &year, &month, &day, &hour, &minute, &second);
+            if (strlen(cur_alarm->alarm_time) < XFICAL_APPT_DATE_FORMAT_LEN) { 
+               /* it is date = full day */
+                sscanf(cur_alarm->alarm_time, XFICAL_APPT_DATE_FORMAT
+                        , &year, &month, &day);
+                hour = 0; minute = 0; second = 0;
+            }
+            else {
+                sscanf(cur_alarm->alarm_time, XFICAL_APPT_TIME_FORMAT
+                        , &year, &month, &day, &hour, &minute, &second);
+            }
             g_now = g_date_new_dmy(t->tm_mday, t->tm_mon + 1
                     , t->tm_year + 1900);
             g_alarm = g_date_new_dmy(day, month, year);
@@ -1072,6 +1134,9 @@ static gboolean orage_tooltip_update(gpointer user_data)
                 hh += 24;
                 dd -= 1;
             }
+/*
+    orage_message(10, P_N "tooltip: alarm=%s hh=%d hh=%d min=%d", cur_alarm->alarm_time, dd, hh, min);
+*/
 #if GTK_CHECK_VERSION(2,16,0)
             g_string_append(tooltip, "<span weight=\"bold\">");
             tooltip_highlight_helper = g_string_new(" </span>");

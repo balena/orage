@@ -56,6 +56,7 @@
 #include "interface.h"
 #ifdef HAVE_DBUS
 #include "orage-dbus.h"
+#include <dbus/dbus-glib-lowlevel.h>
 #endif
 
 /* session client handler */
@@ -64,6 +65,80 @@ static SessionClient	*session_client = NULL;
 */
 static GdkAtom atom_alive;
 
+#ifdef HAVE_DBUS
+static gboolean resume_after_sleep(gpointer user_data)
+{
+    orage_message(10, "Resuming after sleep");
+    alarm_read();
+    orage_day_change(&g_par);
+    return(FALSE); /* only once */
+}
+
+static void resuming_cb(DBusGProxy *proxy, gpointer user_data)
+{
+    orage_message(10, "Resuming");
+    /* we need this delay to prevent updating tray icon too quickly when
+       the normal code handles it also */
+    g_timeout_add_seconds(2, (GtkFunction) resume_after_sleep, NULL);
+}
+
+static void handle_resuming(void)
+{
+    DBusGConnection *connection;
+    GError *error = NULL;
+    DBusGProxy *proxy;
+
+    g_type_init();
+    connection = dbus_g_bus_get(DBUS_BUS_SYSTEM, &error);
+    if (connection) {
+       proxy = dbus_g_proxy_new_for_name(connection, "org.freedesktop.UPower"
+               , "/org/freedesktop/UPower", "org.freedesktop.UPower");
+       if (proxy) {
+           dbus_g_proxy_add_signal(proxy, "Resuming", G_TYPE_INVALID);
+           dbus_g_proxy_connect_signal(proxy, "Resuming"
+                   , G_CALLBACK(resuming_cb), NULL, NULL);
+       } 
+       else {
+           g_warning("Failed to create proxy object\n");
+       }
+    } 
+    else {
+        g_warning("Failed to connect to D-BUS daemon: %s\n", error->message);
+    }
+}
+#endif
+
+
+/* This function monitors that we do not loose time.  It checks if longer time
+   than expected wakeup time has passed and fixes timings if that is the case.
+   This is needed since sometimes hibernate and suspend does not do a good job
+   in firing Orage timers and timing gets wrong. 
+NOTE: called from parameters.c set_wakeup_timer
+*/
+gboolean check_wakeup(gpointer user_data)
+{
+    static time_t tt_prev=0;
+    time_t tt_new=0;
+
+    tt_new = time(NULL);
+    if (tt_new - tt_prev > ORAGE_WAKEUP_TIMER_PERIOD * 2) {
+        /* we very rarely come here. */ 
+        /* user_data is normally NULL, but first call it has some value, 
+           which means that this is init call */
+        if (!user_data) { /* normal timer call */
+            orage_message(10, "wakeup timer refreshing");
+            alarm_read();
+            /* It is quite possible that day did not change, 
+               but we need to reset timers */
+            orage_day_change(&tt_prev); 
+        }
+        else {
+            orage_message(10, "wakeup timer init %d", tt_prev);
+        }
+    }
+    tt_prev = tt_new;
+    return(TRUE);
+}
 
 static void send_event(char *event)
 {
@@ -236,6 +311,7 @@ static void print_help(void)
     g_print(_("--toggle (-t) \t\tmake orage visible/unvisible\n"));
     g_print(_("--add-foreign (-a) file [RW] \tadd a foreign file\n"));
     g_print(_("--remove-foreign (-r) file \tremove a foreign file\n"));
+    g_print(_("--export (-e) file [appointment...] \texport appointments from Orage to file\n"));
     g_print("\n");
     g_print(_("files=ical files to load into orage\n"));
 #ifndef HAVE_DBUS
@@ -266,10 +342,39 @@ static void import_file(gboolean running, char *file_name, gboolean initialized)
     }
 }
 
+static void export_file(gboolean running, char *file_name, gboolean initialized
+        , gchar *uid_list)
+{
+    gint type = 0;
+    
+    if (uid_list)
+        type = 1;
+    else
+        type = 0;
+    g_print("export_file: running=%d initialized= %d type=%d, file=%s, uids=%s\n", running, initialized, type, file_name, uid_list);
+    if (running && !initialized) {
+        /* let's use dbus since server is running there already */
+#ifdef HAVE_DBUS
+        if (orage_dbus_export_file(file_name, type, uid_list))
+            orage_message(40, "export done to file=%s", file_name);
+        else
+            g_warning("export failed file=%s\n", file_name);
+#else
+        g_warning("Can not do export without dbus. failed file=%s\n", file_name);
+#endif
+    }
+    else if (!running && initialized) { /* do it self directly */
+        if (xfical_export_file(file_name, type, uid_list))
+            orage_message(40, "export done to file=%s", file_name);
+        else
+            g_warning("export failed file=%s\n", file_name);
+    }
+}
+
 static void add_foreign(gboolean running, char *file_name, gboolean initialized
         , gboolean read_only)
 {
-    if (running && !initialized) 
+    if (running && !initialized) {
         /* let's use dbus since server is running there already */
 #ifdef HAVE_DBUS
         if (orage_dbus_foreign_add(file_name, read_only))
@@ -279,6 +384,7 @@ static void add_foreign(gboolean running, char *file_name, gboolean initialized
 #else
         g_warning("Can not do add foreign file without dbus. failed file=%s\n", file_name);
 #endif
+    }
     else if (!running && initialized) { /* do it self directly */
         if (orage_foreign_file_add(file_name, read_only))
             orage_message(40, "add done foreign file=%s", file_name);
@@ -289,7 +395,7 @@ static void add_foreign(gboolean running, char *file_name, gboolean initialized
 
 static void remove_foreign(gboolean running, char *file_name, gboolean initialized)
 {
-    if (running && !initialized) 
+    if (running && !initialized) {
         /* let's use dbus since server is running there already */
 #ifdef HAVE_DBUS
         if (orage_dbus_foreign_remove(file_name))
@@ -299,6 +405,7 @@ static void remove_foreign(gboolean running, char *file_name, gboolean initializ
 #else
         g_warning("Can not do remove foreign file without dbus. failed file=%s\n", file_name);
 #endif
+    }
     else if (!running && initialized) { /* do it self directly */
         if (orage_foreign_file_remove(file_name))
             orage_message(40, "remove done foreign file=%s", file_name);
@@ -313,6 +420,8 @@ static gboolean process_args(int argc, char *argv[], gboolean running
     int argi;
     gboolean end = FALSE;
     gboolean foreign_file_read_only = TRUE;
+    gchar *export_uid_list = NULL;
+    gchar *file_name = NULL;
 
     if (running && argc == 1) { /* no parameters */
         raise_orage();
@@ -381,6 +490,21 @@ static gboolean process_args(int argc, char *argv[], gboolean running
             } 
             else {
                 remove_foreign(running, argv[++argi], initialized);
+            }
+        }
+        else if (!strcmp(argv[argi], "--export") ||
+                 !strcmp(argv[argi], "-e")) {
+            if (argi+1 >= argc) {
+                g_print("\nFile not specified\n\n");
+                print_help();
+                end = TRUE;
+            } 
+            else {
+                file_name = argv[++argi];
+                if (argi+1 < argc) {
+                    export_uid_list = argv[++argi];
+                }
+                export_file(running, file_name, initialized, export_uid_list);
             }
         }
         else if (argv[argi][0] == '-') {
@@ -484,17 +608,22 @@ int main(int argc, char *argv[])
         gtk_widget_hide(((CalWin *)g_par.xfcal)->mWindow);
     }
     alarm_read();
-    orage_day_change(FALSE); /* first day change after we start */
+    orage_day_change(NULL); /* first day change after we start */
     mCalendar_month_changed_cb(
             (GtkCalendar *)((CalWin *)g_par.xfcal)->mCalendar, NULL);
 
     /* start monitoring foreign file updates if we have foreign files */
     if (g_par.foreign_count)
         g_timeout_add_seconds(30, (GtkFunction)orage_foreign_files_check, NULL);
-                                                        
+
     /* let's check if I got filename as a parameter */
     initialized = TRUE;
     process_args(argc, argv, running, initialized);
+
+#ifdef HAVE_DBUS
+    /* day change after resuming */
+    handle_resuming();
+#endif
 
     gtk_main();
     keep_tidy();

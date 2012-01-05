@@ -33,6 +33,7 @@ typedef enum
    ,XFICAL_FREQ_WEEKLY
    ,XFICAL_FREQ_MONTHLY
    ,XFICAL_FREQ_YEARLY
+   ,XFICAL_FREQ_HOURLY
 } xfical_freq;
 
 typedef enum
@@ -64,6 +65,7 @@ typedef struct _xfical_appt
     gchar *location;
 
     gboolean allDay;
+    gboolean readonly;
 
         /* time format must be:
          * yyyymmdd[Thhmiss[Z]] = %04d%02d%02dT%02d%02d%02d
@@ -141,6 +143,7 @@ xfical_appt *xfical_appt_get(char *ical_id);
 void xfical_appt_free(xfical_appt *appt);
 gboolean xfical_appt_mod(char *ical_id, xfical_appt *appt);
 gboolean xfical_appt_del(char *ical_id);
+
 xfical_appt *xfical_appt_get_next_on_day(char *a_day, gboolean first, gint days
         , xfical_type type,  gchar *file_type);
 xfical_appt *xfical_appt_get_next_with_string(char *str, gboolean first
