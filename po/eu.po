@@ -1,7 +1,7 @@
 # translation of eu.po to Euskara
 # Copyright (C) 2003-2006 The Xfce development team.
 # This file is distributed under the same license as the orage package.
-#
+# 
 # Piarres Beobide Egaña <pi@beobide.net>, 2004, 2005, 2006, 2008, 2009.
 # Piarres Beobide <pi+debian@beobide.net>, 2010.
 msgid ""
@@ -523,7 +523,7 @@ msgstr "Orage ordulari hobespenak"
 #. * %B  : full month name
 #. * %Y  : four digit year
 #. * %V  : ISO week number
-#.
+#. 
 #: ../panel-plugin/xfce4-orageclock-plugin.c:627
 msgid "%A %d %B %Y/%V"
 msgstr "%A, %Y/%V-eko %B %d"
@@ -915,6 +915,7 @@ msgid "Select this if you want procedure or script alarm"
 msgstr "hautatu hau prozedura edo script bidezko alarma nahi baduzu"
 
 #: ../src/appointment.c:3082
+#, fuzzy
 msgid ""
 "You must enter all escape etc characters yourself.\n"
 "This string is just given to shell to process.\n"
@@ -925,6 +926,10 @@ msgid ""
 "\t<&ST> appointment start time\n"
 "\t<&ET> appointment end time"
 msgstr ""
+"Irteera karaktere guztiak idatzi behar dituzu.\n"
+" Kate hau shell-era bidaliko da prozesarzeko.\n"
+" Hurrengo komando bereziak ordeztuko dira exekuzio garaian:\n"
+"\t"
 
 #: ../src/appointment.c:3094
 msgid "Test this alarm by raising it now"
@@ -1762,7 +1767,7 @@ msgid "Never"
 msgstr "Inoiz"
 
 #: ../src/mainbox.c:453
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Title: %s\n"
 " Location: %s\n"
@@ -1779,7 +1784,7 @@ msgstr ""
 "%s"
 
 #: ../src/mainbox.c:460
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Title: %s\n"
 " Location: %s\n"
@@ -1974,13 +1979,13 @@ msgstr ""
 
 #: ../src/parameters.c:910 ../src/parameters.c:915
 msgid "Use wakeup timer"
-msgstr ""
+msgstr "Erabili esnatze ordularia"
 
 #: ../src/parameters.c:921
 msgid ""
 "Use this timer if Orage has problems waking up properly after suspend or "
 "hibernate. (For example tray icon not refreshed or alarms not firing.)"
-msgstr ""
+msgstr "Ordulari hau erabili Oragek hibernatu edo eseki ondoren esnatzean arazoak baditu. (Adibidez ataza ikonoa eguneratzen ez bada edo alarmak ez badabiltza.)"
 
 #: ../src/parameters.c:938
 msgid "Orage Preferences"
