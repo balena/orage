@@ -56,7 +56,7 @@ msgstr "ajuste para modificar a hora"
 #: ../globaltime/globaltime.c:496
 msgid ""
 "adjust to change minute. Click arrows with button 2 to change only 1 minute."
-msgstr ""
+msgstr "ajuste para modificar os minutos. Clique na setas com o botão 2 para modificar somente 1 minuto."
 
 #: ../globaltime/gt_prefs.c:265 ../globaltime/gt_prefs.c:266
 msgid "NEW"
@@ -327,8 +327,9 @@ msgstr "sem mudança"
 
 #: ../globaltime/timezone_selection.c:195
 #: ../panel-plugin/timezone_selection.c:196 ../src/timezone_selection.c:207
+#, fuzzy
 msgid "not changing"
-msgstr ""
+msgstr "sem mudança"
 
 #. location
 #: ../globaltime/timezone_selection.c:247
@@ -1127,18 +1128,20 @@ msgid "Add excluded date (-)"
 msgstr "Adicionar data excluída (-)"
 
 #: ../src/appointment.c:3381
+#, fuzzy
 msgid "Excluded days are full days where this appointment is not happening"
-msgstr ""
+msgstr "Dias excluídos são dias cheios quando este compromisso não estiver ocorrendo"
 
 #: ../src/appointment.c:3387
 msgid "Add included time (+)"
 msgstr "Adicionar hora incluída (+)"
 
 #: ../src/appointment.c:3389
+#, fuzzy
 msgid ""
 "Included times have same timezone than start time, but they may have "
 "different time"
-msgstr ""
+msgstr "Horários incluídos têm o mesmo fuso horário que horário inicial, mas podem ter diferentes horas"
 
 #. calendars showing the action days
 #: ../src/appointment.c:3406
@@ -1691,7 +1694,7 @@ msgstr "--remove-foreign (-r) arquivo \tremove um arquivo desconhecido\n"
 msgid ""
 "--export (-e) file [appointment...] \texport appointments from Orage to "
 "file\n"
-msgstr ""
+msgstr "--export (-e) arquivo [compromisso...] \texportar compromissos do Orage para arquivo\n"
 
 #: ../src/main.c:316
 #, c-format
@@ -1967,17 +1970,19 @@ msgstr "Número de dias extra a mostrar na lista de eventos"
 msgid ""
 "This is just the default value, you can change it in the actual eventlist "
 "window."
-msgstr ""
+msgstr "Este é apenas o valor padrão, você pode alterá-lo na atual janela da lista de eventos."
 
 #: ../src/parameters.c:910 ../src/parameters.c:915
+#, fuzzy
 msgid "Use wakeup timer"
-msgstr ""
+msgstr "Usar temporizador de inicialização"
 
 #: ../src/parameters.c:921
+#, fuzzy
 msgid ""
 "Use this timer if Orage has problems waking up properly after suspend or "
 "hibernate. (For example tray icon not refreshed or alarms not firing.)"
-msgstr ""
+msgstr "Use este temporizador se o Orage tiver problemas ao inicializar após o computador ter sido suspendido ou hibernado. (Por exemplo, ícone da bandeja não atualiza ou alarme não sendo ativados.)"
 
 #: ../src/parameters.c:938
 msgid "Orage Preferences"
@@ -2017,7 +2022,7 @@ msgstr "Lembre-me novamente após a hora especificada"
 #. Note that this goes to the main area. Temporary for the version
 #: ../src/reminder.c:811
 msgid "Press <Execute> to remind me again after the specified time:"
-msgstr ""
+msgstr "Pressione <Executar> para lembrar-me novamente após a hora especificada:"
 
 #: ../src/reminder.c:1099
 msgid "Next active alarms:"
