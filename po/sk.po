@@ -4,20 +4,20 @@
 # Juraj Brosz <juro@jurajbrosz.info>, 2004, 2005.
 # Roman Moravcik <roman.moravcik@gmail.com>, 2006.
 # Robert Hartl <hartl.robert@gmail.com>, 2009, 2011.
-# Tomáš Vadina <kyberdev@gmail.com>, 2011.
+# Tomáš Vadina <kyberdev@gmail.com>, 2011, 2012.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.8.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-01-03 14:00+0200\n"
-"PO-Revision-Date: 2011-10-05 08:02+0200\n"
+"PO-Revision-Date: 2012-01-09 10:56+0100\n"
 "Last-Translator: Tomáš Vadina <kyberdev@gmail.com>\n"
-"Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
+"Language-Team: slovenčina <slovenska-lokalizacia-xfce@googlegroups.com>\n"
+"Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: sk\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 1 : (n>=2 && n<=4) ? 2 : 0;\n"
 "X-Poedit-Language: Slovak\n"
 "X-Poedit-Country: SLOVAKIA\n"
@@ -1788,7 +1788,7 @@ msgid "Never"
 msgstr "Nikdy"
 
 #: ../src/mainbox.c:453
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Title: %s\n"
 " Location: %s\n"
@@ -1799,13 +1799,15 @@ msgid ""
 "%s"
 msgstr ""
 "Názov: %s\n"
+" Miesto: %s\n"
 " Začiatok:\t%s\n"
-" Koniec:\t\t%s\n"
+" Do:\t%s\n"
+" Hotovo:\t%s\n"
 " Poznámka:\n"
 "%s"
 
 #: ../src/mainbox.c:460
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Title: %s\n"
 " Location: %s\n"
@@ -1815,8 +1817,9 @@ msgid ""
 "%s"
 msgstr ""
 "Názov: %s\n"
+" Miesto: %s\n"
 " Začiatok:\t%s\n"
-" Koniec:\t\t%s\n"
+" Koniec:\t%s\n"
 " Poznámka:\n"
 "%s"
 
@@ -2002,13 +2005,16 @@ msgstr ""
 
 #: ../src/parameters.c:910 ../src/parameters.c:915
 msgid "Use wakeup timer"
-msgstr ""
+msgstr "Použiť budík"
 
 #: ../src/parameters.c:921
 msgid ""
 "Use this timer if Orage has problems waking up properly after suspend or "
 "hibernate. (For example tray icon not refreshed or alarms not firing.)"
 msgstr ""
+"Tento časovač použite iba v prípade, že nastanú problémy s aplikáciou Orage "
+"po uspaní, alebo hibernácii. (Napríklad ak sa ikona v systémovej oblasti "
+"neprekresľuje, alebo sa nespúšťajú upozornenia.)"
 
 #: ../src/parameters.c:938
 msgid "Orage Preferences"
