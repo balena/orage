@@ -1345,7 +1345,7 @@ msgstr "\t重复发生。结束：%04d 年 %02d 月 %02d 日"
 
 #: ../src/ical-archive.c:405
 msgid "Archiving done\n"
-msgstr "归档完成\n"
+msgstr "归档已完成\n"
 
 #. PHASE 1: go through base orage file and remove "repeat" shortcuts
 #: ../src/ical-archive.c:421
@@ -1364,7 +1364,7 @@ msgstr "\t第二步：返回已归档的约会"
 
 #: ../src/ical-archive.c:470
 msgid "Archive removal done\n"
-msgstr "移除归档完成\n"
+msgstr "归档移除已完成\n"
 
 #: ../src/ical-code.c:932
 msgid "Orage default alarm"
@@ -1373,13 +1373,17 @@ msgstr "Orage 默认闹铃"
 #: ../src/ical-code.c:3115
 #, c-format
 msgid "Build alarm list: Added %d alarms. Processed %d events."
-msgstr "生成闹铃列表：添加 %d 个闹铃。处理 %d 个事件。"
+msgstr ""
+"生成闹铃列表：添加 %d 个闹铃。处理 %d 个"
+"事件。"
 
 #: ../src/ical-code.c:3117
 #, c-format
 msgid ""
 "\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
-msgstr "\t找到 %d 个闹铃，其中 %d 个已激活。(搜索了 %d 个重复发生闹铃。)"
+msgstr ""
+"\t找到 %d 个闹铃，其中 %d 个已激活。"
+"(搜索了 %d 个重复发生闹铃。)"
 
 #: ../src/ical-expimp.c:123
 msgid "Starting import file preprocessing"
@@ -1395,7 +1399,7 @@ msgstr "...将时区修正为 Orage 格式。"
 
 #: ../src/ical-expimp.c:206
 msgid "Import file preprocessing done"
-msgstr "导入文件预处理完成"
+msgstr "导入文件预处理已完成"
 
 #: ../src/interface.c:284
 msgid "Calendar files"
@@ -1415,7 +1419,7 @@ msgstr "读写"
 
 #: ../src/interface.c:663
 msgid "***** No foreign files *****"
-msgstr "***** 没有外部文件 *****"
+msgstr "***** 无外部文件 *****"
 
 #: ../src/interface.c:974
 msgid "Import/export"
@@ -1435,7 +1439,8 @@ msgid ""
 " NOTE: comma is not valid character in filenames for Orage."
 msgstr ""
 "用逗号(，)隔开文件名。\n"
-" 注意：对 Orage 来说在文件名中逗号不是有效的字符。"
+" 注意：对 Orage 来说在文件名中逗号不是\n"
+" 有效的字符。"
 
 #: ../src/interface.c:1008
 msgid "Export"
@@ -1475,11 +1480,12 @@ msgstr ""
 
 #: ../src/interface.c:1068
 msgid "You can easily drag these from event-list window."
-msgstr "您可以很容易地从事件列表窗口中拖动这些。"
+msgstr ""
+"您可以很容易地从事件列表窗口中拖动这些。"
 
 #: ../src/interface.c:1070
 msgid "Orage appointment UIDs separated by commas."
-msgstr "Orage 约会统一标志符用逗号隔开。"
+msgstr "Orage UID 用逗号隔开。"
 
 #: ../src/interface.c:1076
 msgid "Archive"
@@ -1496,7 +1502,7 @@ msgstr "您可以在参数中改变归档阈值"
 
 #: ../src/interface.c:1101
 msgid "Revert archive now"
-msgstr "现在恢复归档"
+msgstr "现在重置归档"
 
 #: ../src/interface.c:1107
 msgid ""
@@ -1504,8 +1510,9 @@ msgid ""
 "This is useful for example when doing export and moving orage\n"
 "appointments to another system."
 msgstr ""
-"导入所有已归档事件至 orage 文件并移除归档文件。\n"
-"这在如导出并移动 Orage 约会至另一系统时有用。"
+"导入所有已归档事件至 orage 文件并移除归档\n"
+"文件。这在如导出并移动 Orage 约会至另一\n"
+"系统时有用。"
 
 #: ../src/interface.c:1118
 msgid "Orage files"
@@ -1547,7 +1554,7 @@ msgstr "复制"
 
 #: ../src/interface.c:1168
 msgid "Current file is copied and stays unmodified in the old place."
-msgstr "当前文件被复制并在原位置保持原态。"
+msgstr "复制当前文件并在原位置保持原样。"
 
 #: ../src/interface.c:1172 ../src/interface.c:1232
 msgid "Move"
@@ -1588,8 +1595,9 @@ msgid ""
 "Note that modifying foreign files may make them incompatible with the "
 "original tool, where they came from!"
 msgstr ""
-"如果您确定 Orage 将永不修改此文件则设置此项。\n"
-"注意修改外部文件将使与其来源的源工具不兼容。"
+"如果您确定 Orage 将永不修改此文件则设置\n"
+"此项。注意修改外部文件将使与其来源的源工具\n"
+"不兼容。"
 
 #: ../src/interface.c:1308
 msgid "Exchange data - Orage"
@@ -1601,18 +1609,18 @@ msgid ""
 "\tThis is %s version %s\n"
 "\n"
 msgstr ""
-"\t这是 %s 版本 %s\n"
+"\t这是 %s 版 %s\n"
 "\n"
 
 #: ../src/main.c:270
 #, c-format
 msgid "\tReleased under the terms of the GNU General Public License.\n"
-msgstr "\t按 GNU 通用公共许可协议方式发布。\n"
+msgstr "\t以 GNU 通用公共许可协议方式发布。\n"
 
 #: ../src/main.c:271
 #, c-format
 msgid "\tCompiled against GTK+-%d.%d.%d, "
-msgstr "\t相对 GTK+-%d.%d.%d 编译，"
+msgstr "\t对 GTK+-%d.%d.%d 编译，"
 
 #: ../src/main.c:273
 #, c-format
@@ -1627,7 +1635,7 @@ msgstr "\t使用 DBUS 导入。\n"
 #: ../src/main.c:278
 #, c-format
 msgid "\tNot using DBUS. Import works only partially.\n"
-msgstr "\t不使用 DBUS 。导入只部分可用。\n"
+msgstr "\t不使用 DBUS。导入只部分可用。\n"
 
 #: ../src/main.c:281
 #, c-format
@@ -1681,34 +1689,42 @@ msgstr "--version (-v) \t\t显示 orage 版本\n"
 #: ../src/main.c:309
 #, c-format
 msgid "--help (-h) \t\tprint this text\n"
-msgstr "--help (-h) \t\t列印此文字\n"
+msgstr "--help (-h) \t\t列印此文本\n"
 
 #: ../src/main.c:310
 #, c-format
 msgid "--preferences (-p) \tshow preferences form\n"
-msgstr "--preferences (-p) \t显示首选项表格\n"
+msgstr ""
+"--preferences (-p) \t显示首选项表格\n"
 
 #: ../src/main.c:311
 #, c-format
 msgid "--toggle (-t) \t\tmake orage visible/unvisible\n"
-msgstr "--toggle (-t) \t\t显示/隐藏 orage\n"
+msgstr ""
+"--toggle (-t) \t\t显示/隐藏 orage\n"
 
 #: ../src/main.c:312
 #, c-format
 msgid "--add-foreign (-a) file [RW] \tadd a foreign file\n"
-msgstr "--add-foreign (-a) 文件 [RW] \t添加外部文件\n"
+msgstr ""
+"--add-foreign (-a) 文件 [RW] \t添加"
+"外部文件\n"
 
 #: ../src/main.c:313
 #, c-format
 msgid "--remove-foreign (-r) file \tremove a foreign file\n"
-msgstr "--remove-foreign (-r) 文件 \t移除外部文件\n"
+msgstr ""
+"--remove-foreign (-r) 文件 \t移除"
+"外部文件\n"
 
 #: ../src/main.c:314
 #, c-format
 msgid ""
 "--export (-e) file [appointment...] \texport appointments from Orage to "
 "file\n"
-msgstr "--export (-e) 文件 [约会...] \t从 Orage 导出约会至文件\n"
+msgstr ""
+"--export (-e) 文件 [约会...] \t从 "
+"Orage 导出约会至文件\n"
 
 #: ../src/main.c:316
 #, c-format
@@ -1726,7 +1742,8 @@ msgid ""
 "\twithout dbus [files] and foreign file options(-a & -r) can only be used "
 "when starting orage \n"
 msgstr ""
-"\t没有 dbus [文件] 和外部文件选项(-a 和 -r)只能在 orage 启动时使用\n"
+"\t没有 dbus [文件] 和外部文件选项(-a "
+"和 -r)只能在 orage 启动时使用\n"
 
 #: ../src/main.c:511
 #, c-format
@@ -1771,7 +1788,7 @@ msgstr "帮助(_H)"
 
 #: ../src/mainbox.c:448
 msgid "Never"
-msgstr "永不"
+msgstr "从不"
 
 #: ../src/mainbox.c:453
 #, c-format
@@ -1873,7 +1890,7 @@ msgstr "显示菜单"
 
 #: ../src/parameters.c:632
 msgid "Show month and year"
-msgstr "显示年月"
+msgstr "显示月和年"
 
 #: ../src/parameters.c:639
 msgid "Show day names"
@@ -1889,7 +1906,7 @@ msgstr "显示待办列表"
 
 #: ../src/parameters.c:660
 msgid "Number of days to show in event window"
-msgstr "在事件窗口中显示的天数"
+msgstr "在事件窗口中要显示的天数"
 
 #: ../src/parameters.c:666
 msgid "0 = do not show event list at all"
@@ -1913,7 +1930,7 @@ msgstr "在页面中显示"
 
 #: ../src/parameters.c:704
 msgid "Show in systray"
-msgstr "在系统托盘显示"
+msgstr "在系统托盘中显示"
 
 #: ../src/parameters.c:739
 msgid "Calendar start"
@@ -1983,7 +2000,9 @@ msgstr "在事件列表中显示的额外天数"
 msgid ""
 "This is just the default value, you can change it in the actual eventlist "
 "window."
-msgstr "这只是默认值，您可以在实际的事件列表窗口中更改它。"
+msgstr ""
+"这只是默认值，您可以在实际的事件列表窗口中"
+"更改它。"
 
 #: ../src/parameters.c:910 ../src/parameters.c:915
 msgid "Use wakeup timer"
@@ -1994,8 +2013,9 @@ msgid ""
 "Use this timer if Orage has problems waking up properly after suspend or "
 "hibernate. (For example tray icon not refreshed or alarms not firing.)"
 msgstr ""
-"如果 Orage 在待机或休眠后正常唤醒时有问题则使用此定时器(比如托盘图标没有"
-"刷新或闹铃没有启动。)。"
+"如果 Orage 在待机或休眠后正常唤醒时有"
+"问题则使用此定时器(比如托盘图标没有刷新"
+"或闹铃没有启动。)。"
 
 #: ../src/parameters.c:938
 msgid "Orage Preferences"
@@ -2003,12 +2023,12 @@ msgstr "Orage 首选项"
 
 #: ../src/parameters.c:1050
 msgid "First Orage start. Searching default timezone."
-msgstr "Orage 第一次启动。正在搜寻默认时区。"
+msgstr "Orage 第一次启动。正在搜索默认时区。"
 
 #: ../src/parameters.c:1069
 #, c-format
 msgid "Default timezone set to %s."
-msgstr "默认时区设为 %s。"
+msgstr "默认时区设置为 %s。"
 
 #: ../src/parameters.c:1072
 msgid "Default timezone not found, please, set it manually."
@@ -3632,7 +3652,7 @@ msgstr "日历"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:2
 msgid "Orage Calendar Preferences"
-msgstr "Orage 首选项"
+msgstr "Orage 日历首选项"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:3
 msgid "Orage preferences"
