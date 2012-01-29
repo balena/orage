@@ -2,7 +2,7 @@
 # Copyright (C) 2003-2007 The Xfce development team.
 # This file is distributed under the same license as the orage package.
 # Andhika Padmawan <andhika.padmawan@gmail.com>, 2010.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: Orage 4.5.9.6-svn\n"
@@ -521,7 +521,7 @@ msgstr "Pengaturan jam Orage"
 #. * %B  : full month name
 #. * %Y  : four digit year
 #. * %V  : ISO week number
-#.
+#. 
 #: ../panel-plugin/xfce4-orageclock-plugin.c:627
 msgid "%A %d %B %Y/%V"
 msgstr "%A %d %B %Y/%V"
@@ -932,6 +932,14 @@ msgid ""
 "\t<&ST> appointment start time\n"
 "\t<&ET> appointment end time"
 msgstr ""
+"Anda harus memasukkan semua karakter keluar dll sendiri.\n"
+"Tali ini hanya diberikan ke shell untuk diproses.\n"
+"Perintah khusus berikut diganti saat waktu berjalan:\n"
+"\t<&T> judul janji\n"
+"\t<&D> deskripsi janji\n"
+"\t<&AT> waktu alarm\n"
+"\t<&ST> waktu mulai janji\n"
+"\t<&ET> waktu akhir janji"
 
 #: ../src/appointment.c:3094
 msgid "Test this alarm by raising it now"
@@ -971,7 +979,7 @@ msgstr "Tahunan"
 
 #: ../src/appointment.c:3176
 msgid "Hourly"
-msgstr ""
+msgstr "Setiap Jam"
 
 #: ../src/appointment.c:3178
 msgid "Mon"
@@ -1708,7 +1716,7 @@ msgstr "--remove-foreign (-r) berkas \thapus berkas asing\n"
 msgid ""
 "--export (-e) file [appointment...] \texport appointments from Orage to "
 "file\n"
-msgstr ""
+msgstr "--export (-e) berkas [janji...] \texport janji dari Orage ke berkas\n"
 
 #: ../src/main.c:316
 #, c-format
@@ -1775,7 +1783,7 @@ msgid "Never"
 msgstr "Tak pernah"
 
 #: ../src/mainbox.c:453
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Title: %s\n"
 " Location: %s\n"
@@ -1792,7 +1800,7 @@ msgstr ""
 "%s"
 
 #: ../src/mainbox.c:460
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Title: %s\n"
 " Location: %s\n"
@@ -1988,13 +1996,13 @@ msgstr ""
 
 #: ../src/parameters.c:910 ../src/parameters.c:915
 msgid "Use wakeup timer"
-msgstr ""
+msgstr "Gunakan penghitung bangun"
 
 #: ../src/parameters.c:921
 msgid ""
 "Use this timer if Orage has problems waking up properly after suspend or "
 "hibernate. (For example tray icon not refreshed or alarms not firing.)"
-msgstr ""
+msgstr "Gunakan penghitung ini jika Orage mempunyai masalah kembali aktif setelah suspensi atau hibernasi. (Misalnya ikon baki tidak dikembalikan atau alarm tidak berbunyi.)"
 
 #: ../src/parameters.c:938
 msgid "Orage Preferences"
