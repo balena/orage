@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-01-03 14:00+0200\n"
-"PO-Revision-Date: 2012-02-04 11:24+0100\n"
+"PO-Revision-Date: 2012-02-04 11:38+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -472,21 +472,15 @@ msgid "fix time after suspend/hibernate"
 msgstr "korriger tid etter kvile/dvale"
 
 #: ../panel-plugin/oc_config.c:415
-#, fuzzy
 msgid ""
 "You only need this if you do short term (less than 5 hours) suspend or "
 "hibernate and your visible time does not include seconds. Under these "
 "circumstances it is possible that Orageclock shows time inaccurately unless "
 "you have this selected. (Selecting this prevents cpu and interrupt saving "
 "features from working.)"
-msgstr ""
-"Du treng berre dette viss du set maskina i kvile/dvale-modus(mindre enn 5 "
-"timar) og synleg tid ikkje inkluderer sekund. Under desse omstenda er det "
-"mogleg at klokka viser tida feil viss dette ikkje er aktivert. (Ved å velja "
-"denne vert hindra prosessor og avbruddslagring frå å fungera)"
+msgstr "Du treng berre dette viss du set maskina i kvile/dvale i mindre enn 5 timar og synleg tid ikkje inkluderer sekund. Under desse omstenda er det mogleg at klokka viser tida feil viss dette ikkje er aktivert. (Ved å velja dette vert prosessor og avbruddslagring hindra i å fungera)"
 
 #: ../panel-plugin/oc_config.c:432
-#, fuzzy
 msgid ""
 "This program uses strftime function to get time.\n"
 "Use any valid code to get time in the format you prefer.\n"
@@ -497,8 +491,8 @@ msgid ""
 "\t%H = hours \t\t\t\t%M = minute\n"
 "\t%X = local time\t\t\t%x = local date"
 msgstr ""
-"Dette programmet brukar 'strftime' funksjonen for å formatera dato og tid.\n"
-"Angje gyldige koder for å vise tid/klokkeslett slik du ynskjer.\n"
+"Dette programmet brukar «strftime»-funksjonen for å formatera dato og tid.\n"
+"Skriv inn gyldige koder for å vise tid/klokkeslett slik du ønskjer.\n"
 "Nokre vanlege koder er:\n"
 "\t%A = ukedag\t\t\t%B = månad\n"
 "\t%c = dato og tid\t\t%R = timar og minutt\n"
@@ -507,9 +501,8 @@ msgstr ""
 "\t%X = lokal tid\t\t\t%x = lokal dato"
 
 #: ../panel-plugin/oc_config.c:457
-#, fuzzy
 msgid "Orage clock Preferences"
-msgstr "Orage Klokkeinnstilling"
+msgstr "Orage klokkeinnstilling"
 
 #. no lines yet
 #. TRANSLATORS: Use format characters from strftime(3)
@@ -522,14 +515,12 @@ msgstr "Orage Klokkeinnstilling"
 #. * %V  : ISO week number
 #.
 #: ../panel-plugin/xfce4-orageclock-plugin.c:627
-#, fuzzy
 msgid "%A %d %B %Y/%V"
-msgstr "%A %d %B %Y / %V"
+msgstr "%A %d. %B %Y / %V"
 
 #: ../src/about-xfcalendar.c:40
-#, fuzzy
 msgid "Maintainer"
-msgstr "Vedlikehald"
+msgstr "Vedlikehaldar"
 
 #: ../src/about-xfcalendar.c:47
 msgid "Manage your time with Orage"
@@ -539,174 +530,141 @@ msgstr ""
 #. GTK_TOGGLE_BUTTON(apptw->Type_journal_rb)))
 #. end time
 #: ../src/appointment.c:313 ../src/appointment.c:353 ../src/appointment.c:2692
-#, fuzzy
 msgid "End"
 msgstr "Slutt"
 
 #: ../src/appointment.c:333
-#, fuzzy
 msgid "Due"
-msgstr "Forfall"
+msgstr "Frist"
 
 #: ../src/appointment.c:493 ../src/mainbox.c:783
-#, fuzzy
 msgid "Orage"
 msgstr "Orage"
 
 #. to avoid timing problems when updating entry
 #. Create file chooser
 #: ../src/appointment.c:672 ../src/interface.c:277 ../src/parameters.c:416
-#, fuzzy
 msgid "Select a file..."
-msgstr "Vel ei fil..."
+msgstr "Vel ei fil …"
 
 #: ../src/appointment.c:680
-#, fuzzy
 msgid "Sound Files"
 msgstr "Lydfiler"
 
 #: ../src/appointment.c:687 ../src/interface.c:290
-#, fuzzy
 msgid "All Files"
-msgstr "Alle filar"
+msgstr "Alle filer"
 
 #: ../src/appointment.c:739
-#, fuzzy
 msgid "The appointment information has been modified."
 msgstr "Avtaleinformasjonen er endra."
 
 #: ../src/appointment.c:740 ../src/appointment.c:1194 ../src/event-list.c:919
-#, fuzzy
 msgid "Do you want to continue?"
-msgstr "Ynskjer du å halda fram?"
+msgstr "Ønskjer du å halda fram?"
 
 #: ../src/appointment.c:767
-#, fuzzy
 msgid "The end of this appointment is earlier than the beginning."
 msgstr "Denne avtala sluttar før han startar."
 
 #: ../src/appointment.c:1034 ../src/appointment.c:1812
-#, fuzzy
 msgid "Not set"
-msgstr "Ikkje sat"
+msgstr "Ikkje sett"
 
 #: ../src/appointment.c:1193
-#, fuzzy
 msgid "This appointment will be permanently removed."
 msgstr "Avtala vil slettast."
 
 #: ../src/appointment.c:1692
-#, fuzzy
 msgid "This appointment does not exist."
 msgstr "Avtala eksisterer ikkje."
 
 #: ../src/appointment.c:1693
-#, fuzzy
 msgid "It was probably removed, please refresh your screen."
 msgstr "Det vart sannsynlegvis fjerna, ver venleg og oppdater skjermbiletet."
 
 #: ../src/appointment.c:1995
-#, fuzzy
 msgid "Current categories"
 msgstr "Gjeldande kategoriar"
 
 #: ../src/appointment.c:2010
-#, fuzzy
 msgid "Add new category with color"
 msgstr "Legg til ny kategori med farge"
 
 #: ../src/appointment.c:2014
-#, fuzzy
 msgid "Category:"
 msgstr "Kategori:"
 
 #: ../src/appointment.c:2045
-#, fuzzy
 msgid "Colors of categories - Orage"
-msgstr "Fargekategoriar"
+msgstr "Fargekategoriar – Orage"
 
 #: ../src/appointment.c:2092
-#, fuzzy
 msgid " *** COPY ***"
-msgstr " *** Kopi ***"
+msgstr " *** KOPI ***"
 
 #: ../src/appointment.c:2353
-#, fuzzy
 msgid "New appointment - Orage"
-msgstr "Ny _avtale"
+msgstr "Ny _avtale – Orage"
 
 #. File menu stuff
 #. ********* File menu *********
 #. File menu
 #: ../src/appointment.c:2382 ../src/day-view.c:254 ../src/event-list.c:1021
 #: ../src/interface.c:767 ../src/mainbox.c:279
-#, fuzzy
 msgid "_File"
-msgstr "_fil"
+msgstr "_Fil"
 
 #: ../src/appointment.c:2388
-#, fuzzy
 msgid "Sav_e and close"
-msgstr "Lagre_e og lukk"
+msgstr "Lagr_a og lukk"
 
 #: ../src/appointment.c:2401 ../src/event-list.c:1027
-#, fuzzy
 msgid "D_uplicate"
 msgstr "D_upliser"
 
 #: ../src/appointment.c:2589
-#, fuzzy
 msgid "Save"
-msgstr "Lagre"
+msgstr "Lagra"
 
 #: ../src/appointment.c:2591
-#, fuzzy
 msgid "Save and close"
-msgstr "Lagre og lukk"
+msgstr "Lagra og lukk"
 
 #: ../src/appointment.c:2596
-#, fuzzy
 msgid "Revert"
 msgstr "Tilbakestill"
 
 #: ../src/appointment.c:2598 ../src/event-list.c:1112
-#, fuzzy
 msgid "Duplicate"
 msgstr "Dupliser"
 
 #: ../src/appointment.c:2603 ../src/event-list.c:1114
-#, fuzzy
 msgid "Delete"
 msgstr "Slett"
 
 #: ../src/appointment.c:2621
-#, fuzzy
 msgid "Free"
 msgstr "Frigjer"
 
 #: ../src/appointment.c:2621
-#, fuzzy
 msgid "Busy"
-msgstr "Oppteke"
+msgstr "Oppteken"
 
 #: ../src/appointment.c:2625
-#, fuzzy
 msgid "General"
 msgstr "Generell"
 
 #. type
 #: ../src/appointment.c:2631
-#, fuzzy
 msgid "Type "
 msgstr "Type "
 
 #: ../src/appointment.c:2633 ../src/event-list.c:1165
-#, fuzzy
 msgid "Event"
 msgstr "Hending"
 
 #: ../src/appointment.c:2636
-#, fuzzy
 msgid ""
 "Event that will happen sometime. For example:\n"
 "Meeting or birthday or TV show."
@@ -715,12 +673,10 @@ msgstr ""
 "Eit møte, ein bursdag eller eit TV-program."
 
 #: ../src/appointment.c:2639 ../src/event-list.c:1185
-#, fuzzy
 msgid "Todo"
 msgstr "Oppgåver"
 
 #: ../src/appointment.c:2642
-#, fuzzy
 msgid ""
 "Something that you should do sometime. For example:\n"
 "Wash your car or test new version of Orage."
@@ -729,12 +685,10 @@ msgstr ""
 "Vaska bilen din eller testa ein ny versjon av Orage."
 
 #: ../src/appointment.c:2645 ../src/event-list.c:1198
-#, fuzzy
 msgid "Journal"
 msgstr "Journal"
 
 #: ../src/appointment.c:2649
-#, fuzzy
 msgid ""
 "Make a note that something happened. For example:\n"
 "Remark that your mother called or first snow came."
@@ -744,92 +698,74 @@ msgstr ""
 
 #. title
 #: ../src/appointment.c:2656
-#, fuzzy
 msgid "Title "
 msgstr "Tittel "
 
 #: ../src/appointment.c:2671
-#, fuzzy
 msgid "All day event"
-msgstr "Heldagsavtale"
+msgstr "Heildagsavtale"
 
 #. start time
 #: ../src/appointment.c:2677 ../src/appointment.c:3342 ../src/day-view.c:697
-#, fuzzy
 msgid "Start"
 msgstr "Start"
 
 #: ../src/appointment.c:2697
-#, fuzzy
 msgid "Set      "
 msgstr "Set     "
 
 #: ../src/appointment.c:2718
-#, fuzzy
 msgid "Duration"
-msgstr "Varighet"
+msgstr "Varigskap"
 
 #: ../src/appointment.c:2722 ../src/appointment.c:2912 ../src/reminder.c:761
-#, fuzzy
 msgid "days"
 msgstr "dagar"
 
 #: ../src/appointment.c:2724 ../src/appointment.c:2914 ../src/reminder.c:763
-#, fuzzy
 msgid "hours"
 msgstr "timar"
 
 #: ../src/appointment.c:2726 ../src/appointment.c:2916 ../src/reminder.c:765
-#, fuzzy
 msgid "mins"
 msgstr "minutt"
 
 #. Availability (only for EVENT)
 #: ../src/appointment.c:2738
-#, fuzzy
 msgid "Availability"
-msgstr "Tilgjengelighet"
+msgstr "Tilgjengelegheit"
 
 #. completed (only for TODO)
 #: ../src/appointment.c:2746 ../src/appointment.c:3348
-#, fuzzy
 msgid "Completed"
 msgstr "Fullført"
 
 #: ../src/appointment.c:2749
-#, fuzzy
 msgid "Done"
 msgstr "Ferdig"
 
 #. categories
 #: ../src/appointment.c:2770
-#, fuzzy
 msgid "Categories"
 msgstr "Kategoriar"
 
 #: ../src/appointment.c:2782
-#, fuzzy
 msgid ""
 "This is special category, which can be used to color this appointment in "
 "list views."
-msgstr ""
-"Dette er ein spesiell kategori som kan brukast for å farga denne avtala "
-"ilistevisning."
+msgstr "Dette er ein spesiell kategori som kan brukast for å farga denne avtala i listevising."
 
 #: ../src/appointment.c:2787
-#, fuzzy
 msgid "update colors for categories."
-msgstr "Oppdater fargar for kategoriar."
+msgstr "oppdater fargar for kategoriar."
 
 #. priority
 #: ../src/appointment.c:2793
-#, fuzzy
 msgid "Priority"
 msgstr "Prioritet"
 
 #. note
 #: ../src/appointment.c:2803
-#, fuzzy
 msgid "Note"
 msgstr "Merknad"
 
