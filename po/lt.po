@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: orage 4.3.90.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-02-03 15:29+0200\n"
-"PO-Revision-Date: 2012-02-03 17:44+0200\n"
+"PO-Revision-Date: 2012-02-04 08:34+0200\n"
 "Last-Translator: Algimantas Margevičius <margevicius.algimantas@gmail.com>\n"
 "Language-Team: Lietuvių <>\n"
 "Language: lt\n"
@@ -300,8 +300,13 @@ msgstr "%d valanda %d minutė"
 #: ../globaltime/timezone_selection.c:159
 #: ../panel-plugin/timezone_selection.c:160 ../src/timezone_selection.c:171
 #, c-format
+#msgid "%d hour"
+#msgstr "%d valanda"
 msgid "%d hour"
-msgstr "%d valanda"
+msgid_plural "%d hours"
+msgstr[0] "%d valanda"
+msgstr[1] "%d valandos"
+msgstr[2] "%d valandų"
 
 #: ../globaltime/timezone_selection.c:161
 #: ../panel-plugin/timezone_selection.c:162 ../src/timezone_selection.c:173
@@ -617,7 +622,7 @@ msgstr "Naujas paskyrimas - Orage"
 #: ../src/appointment.c:2382 ../src/day-view.c:254 ../src/event-list.c:1021
 #: ../src/interface.c:767 ../src/mainbox.c:279
 msgid "_File"
-msgstr "_Byla"
+msgstr "_Failas"
 
 #: ../src/appointment.c:2388
 msgid "Sav_e and close"
@@ -678,7 +683,7 @@ msgstr ""
 
 #: ../src/appointment.c:2639 ../src/event-list.c:1185
 msgid "Todo"
-msgstr "Darbai"
+msgstr "Darbas"
 
 #: ../src/appointment.c:2642
 msgid ""
@@ -707,7 +712,7 @@ msgstr "Antraštė"
 
 #: ../src/appointment.c:2671
 msgid "All day event"
-msgstr "Visos dienos įvykiai"
+msgstr "Visos dienos įvykis"
 
 #. start time
 #: ../src/appointment.c:2677 ../src/appointment.c:3342 ../src/day-view.c:697
@@ -724,11 +729,11 @@ msgstr "Trukmė"
 
 #: ../src/appointment.c:2722 ../src/appointment.c:2912 ../src/reminder.c:761
 msgid "days"
-msgstr "dienos"
+msgstr "diena(-os)"
 
 #: ../src/appointment.c:2724 ../src/appointment.c:2914 ../src/reminder.c:763
 msgid "hours"
-msgstr "valandos"
+msgstr "valanda(-os)"
 
 #: ../src/appointment.c:2726 ../src/appointment.c:2916 ../src/reminder.c:765
 msgid "mins"
