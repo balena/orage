@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-01-03 14:00+0200\n"
-"PO-Revision-Date: 2012-02-04 11:38+0100\n"
+"PO-Revision-Date: 2012-02-04 22:19+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -770,7 +770,6 @@ msgid "Note"
 msgstr "Merknad"
 
 #: ../src/appointment.c:2824
-#, fuzzy
 msgid ""
 "These shorthand commands take effect immediately:\n"
 "    <D> inserts current date in local date format\n"
@@ -782,140 +781,115 @@ msgid ""
 "(This can be used for example in birthday reminders to tell how old the "
 "person will be.)"
 msgstr ""
-"Disse hurtigkommandoene vert oppdatert umiddelbart:\n"
-"    <D> setter inn dagens dato med lokalt datoformat\n"
+"Disse hurtigkommandoene vert oppdaterte umiddelbart:\n"
+"    <D> set inn dagens dato med lokalt datoformat\n"
 "    <T> set inn klokkeslett og\n"
-"    <DT> set ikkje dato og klokkeslett.\n"
+"    <DT> set inn både dato og klokkeslett.\n"
 "\n"
-"Desse vert seinare konverterte når dei vert viste:\n"
-"    <&Ynnnn> vert omsette til gjeldande år minus nnnn.\n"
-"(Dette kan til dømes verta til brukt bursdagspåminnelser som vil visa alder "
-"for han som har bursdag.)"
+"Desse vert seinare konverterte før vising:\n"
+"    <&Ynnnn> vert omsett til gjeldande år minus nnnn.\n"
+"(Dette kan til dømes brukast til bursdagspåminningar for å visa alderen til den som har bursdag.)"
 
 #: ../src/appointment.c:2895
-#, fuzzy
 msgid "Before Start"
 msgstr "Før start"
 
 #: ../src/appointment.c:2895
-#, fuzzy
 msgid "Before End"
 msgstr "Før slutt"
 
 #: ../src/appointment.c:2896
-#, fuzzy
 msgid "After Start"
 msgstr "Etter start"
 
 #: ../src/appointment.c:2896
-#, fuzzy
 msgid "After End"
 msgstr "Etter slutt"
 
 #: ../src/appointment.c:2903
-#, fuzzy
 msgid "Alarm"
-msgstr "Påminnelse"
+msgstr "Påminning"
 
 #. **** ALARM TIME ****
 #: ../src/appointment.c:2909
-#, fuzzy
 msgid "Alarm time"
-msgstr "Påminnelsestidspunkt"
+msgstr "Påminningstidspunkt"
 
 #: ../src/appointment.c:2933
-#, fuzzy
 msgid ""
 "Often you want to get alarm:\n"
 " 1) before Event start\n"
 " 2) before Todo end\n"
 " 3) after Todo start"
 msgstr ""
-"Ofte vil du ha ein påminnelse:\n"
+"Kor ofte vil du ha ei påminning:\n"
 " 1) før hendinga startar\n"
-" 2) før oppgåver avlsluttes\n"
+" 2) før oppgåver sluttar\n"
 " 3) etter oppgåver startar"
 
 #: ../src/appointment.c:2938
-#, fuzzy
 msgid "Persistent alarm"
 msgstr "Vedvarande alarm"
 
 #: ../src/appointment.c:2940
-#, fuzzy
 msgid ""
 "Select this if you want Orage to remind you even if it has not been active "
 "when the alarm happened."
-msgstr ""
-"Vel dette viss du vil at Orage skal minna på deg sjølv om Orage ikkje var "
-"aktivt når alarmtidspunktet inntraff"
+msgstr "Vel dette viss du vil at Orage skal minna deg sjølv om Orage ikkje var aktivt når alarmtidspunktet inntraff"
 
 #. **** Audio Alarm ****
 #: ../src/appointment.c:2949
-#, fuzzy
 msgid "Sound"
 msgstr "Lyd"
 
 #: ../src/appointment.c:2953 ../src/appointment.c:3074
-#, fuzzy
 msgid "Use"
 msgstr "Bruk"
 
 #: ../src/appointment.c:2955
-#, fuzzy
 msgid "Select this if you want audible alarm"
-msgstr "Vel denne viss du ynskjer ein høyrbar påminnelse"
+msgstr "Vel denne viss du ønskjer ei høyrbar påminning"
 
 #: ../src/appointment.c:2972
-#, fuzzy
 msgid "Repeat alarm sound"
-msgstr "Gjenta påminnelsen"
+msgstr "Gjenta påminninga"
 
 #: ../src/appointment.c:2988 ../src/appointment.c:3290
-#, fuzzy
 msgid "times"
 msgstr "gonger"
 
 #: ../src/appointment.c:3004
-#, fuzzy
 msgid "sec interval"
-msgstr "intervallet til sekundar"
+msgstr "intervall i sekund"
 
 #. **** Display Alarm ****
 #: ../src/appointment.c:3014
-#, fuzzy
 msgid "Visual"
 msgstr "Visuell"
 
 #: ../src/appointment.c:3018
-#, fuzzy
 msgid "Use Orage window"
-msgstr "Bruk Orage vindauge"
+msgstr "Bruk Orage-vindauget"
 
 #: ../src/appointment.c:3020
-#, fuzzy
 msgid "Select this if you want Orage window alarm"
-msgstr "Vel denne viss du vil ha Orage vindaugealarm"
+msgstr "Vel denne viss du vil ha Orage-vindaugsalarm"
 
 #: ../src/appointment.c:3032
-#, fuzzy
 msgid "Use notification"
-msgstr "Bruk påminnelse"
+msgstr "Bruk påminning"
 
 #: ../src/appointment.c:3034
-#, fuzzy
 msgid "Select this if you want notification alarm"
-msgstr "Vel denne viss du vil ha ein påminnelse"
+msgstr "Vel denne viss du vil ha ei påminning"
 
 #: ../src/appointment.c:3040
-#, fuzzy
 msgid "Set timeout"
-msgstr "Set tidsavbrudd"
+msgstr "Set tidsavbrot"
 
 #: ../src/appointment.c:3043
-#, fuzzy
 msgid "Select this if you want notification to expire automatically"
-msgstr "Vel denne viss du vil at påminnelsen skal automatisk utløpe"
+msgstr "Vel denne viss du vil at påminninga skal løpa ut automatisk"
 
 #: ../src/appointment.c:3054
 msgid "0 = system default expiration time"
@@ -931,9 +905,8 @@ msgid "Procedure"
 msgstr "Metode"
 
 #: ../src/appointment.c:3076
-#, fuzzy
 msgid "Select this if you want procedure or script alarm"
-msgstr "Vel denne viss du vil ha metode eller skript-alarm"
+msgstr "Vel denne viss du vil ha metode- eller skriptalarm"
 
 #: ../src/appointment.c:3082
 msgid ""
@@ -948,112 +921,91 @@ msgid ""
 msgstr ""
 
 #: ../src/appointment.c:3094
-#, fuzzy
 msgid "Test this alarm by raising it now"
-msgstr "Test dette varselet"
+msgstr "Test dette varselet no"
 
 #: ../src/appointment.c:3101
-#, fuzzy
 msgid "<b>Default alarm</b>"
-msgstr "<b>Standard påminnelse</b>"
+msgstr "<b>Standard påminning</b>"
 
 #: ../src/appointment.c:3109
-#, fuzzy
 msgid "Store current settings as default alarm"
-msgstr "Lagre gjeldande innstillingar som standard påminnelse"
+msgstr "Lagra gjeldande innstillingar som standard påminning"
 
 #: ../src/appointment.c:3114
-#, fuzzy
 msgid "Set current settings from default alarm"
-msgstr "Set gjeldande innstillingar frå standard påminnelse"
+msgstr "Set gjeldande innstillingar frå standard påminning"
 
 #: ../src/appointment.c:3176
-#, fuzzy
 msgid "None"
 msgstr "Ingen"
 
 #: ../src/appointment.c:3176
-#, fuzzy
 msgid "Daily"
 msgstr "Dagleg"
 
 #: ../src/appointment.c:3176
-#, fuzzy
 msgid "Weekly"
-msgstr "Vekentleg"
+msgstr "Kvar veke"
 
 #: ../src/appointment.c:3176
-#, fuzzy
 msgid "Monthly"
-msgstr "Månedlig"
+msgstr "Kvar månad"
 
 #: ../src/appointment.c:3176
-#, fuzzy
 msgid "Yearly"
 msgstr "Årleg"
 
 #: ../src/appointment.c:3176
 msgid "Hourly"
-msgstr ""
+msgstr "Kvar time"
 
 #: ../src/appointment.c:3178
-#, fuzzy
 msgid "Mon"
-msgstr "Man"
+msgstr "Mån"
 
 #: ../src/appointment.c:3178
-#, fuzzy
 msgid "Tue"
-msgstr "Tir"
+msgstr "Tys"
 
 #: ../src/appointment.c:3178
-#, fuzzy
 msgid "Wed"
 msgstr "Ons"
 
 #: ../src/appointment.c:3178
-#, fuzzy
 msgid "Thu"
 msgstr "Tor"
 
 #: ../src/appointment.c:3178
-#, fuzzy
 msgid "Fri"
 msgstr "Fre"
 
 #: ../src/appointment.c:3178
-#, fuzzy
 msgid "Sat"
-msgstr "Lør"
+msgstr "Lau"
 
 #: ../src/appointment.c:3178
-#, fuzzy
 msgid "Sun"
-msgstr "Søn"
+msgstr "Sun"
 
 #: ../src/appointment.c:3183
-#, fuzzy
 msgid "Recurrence"
-msgstr "Gjentagelse"
+msgstr "Gjentaking"
 
 #. complexity
 #: ../src/appointment.c:3189
-#, fuzzy
 msgid "Complexity"
 msgstr "Kompleksitet"
 
 #: ../src/appointment.c:3192
-#, fuzzy
 msgid "Basic"
 msgstr "Enkel"
 
 #: ../src/appointment.c:3198
-#, fuzzy
 msgid "Advanced"
 msgstr "Avansert"
 
 #: ../src/appointment.c:3202
-#, fuzzy
 msgid "Use this if you want regular repeating event"
 msgstr "Bruk denne for gjentakande hendingar"
 
@@ -1070,17 +1022,14 @@ msgstr ""
 
 #. frequency
 #: ../src/appointment.c:3211
-#, fuzzy
 msgid "Frequency"
 msgstr "Frekvens"
 
 #: ../src/appointment.c:3217
-#, fuzzy
 msgid "Each"
 msgstr "Kvar"
 
 #: ../src/appointment.c:3224
-#, fuzzy
 msgid "occurrence"
 msgstr "førekomst"
 
@@ -1096,33 +1045,27 @@ msgstr ""
 " Frekvens = Dagleg og Intervall = 3"
 
 #: ../src/appointment.c:3274
-#, fuzzy
 msgid "Limit"
 msgstr "Grense"
 
 #: ../src/appointment.c:3276
-#, fuzzy
 msgid "Repeat forever"
 msgstr "Gjenta for alltid"
 
 #: ../src/appointment.c:3282
-#, fuzzy
 msgid "Repeat "
 msgstr "Gjenta"
 
 #: ../src/appointment.c:3298
-#, fuzzy
 msgid "Repeat until "
 msgstr "Gjenta til "
 
 #. weekdays (only for complex settings)
 #: ../src/appointment.c:3311
-#, fuzzy
 msgid "Weekdays"
-msgstr "Ukedager"
+msgstr "Vekedagar"
 
 #: ../src/appointment.c:3323
-#, fuzzy
 msgid "Which day"
 msgstr "Dag"
 
@@ -1145,7 +1088,6 @@ msgstr ""
 
 #. TODO base (only for TODOs)
 #: ../src/appointment.c:3339
-#, fuzzy
 msgid "TODO base"
 msgstr "TODO base"
 
@@ -1368,8 +1310,8 @@ msgstr ""
 "Dobbeltklikk linja for å redigera.\n"
 "\n"
 "Flagg (i rekkjefølgd):\n"
-"\t 1. Påminnelse: n=ingen påminnelse\n"
-"\t\tA=visuell påminnelse S=òg påminnelse med lydar\n"
+"\t 1. Påminning: n=ingen påminning\n"
+"\t\tA=visuell påminning S=òg påminning med lydar\n"
 "\t 2. Gjentagelse: n=ingen gjentagelse\n"
 "\t\t D=Dagleg W=Vekentleg M=Månedlig Y=Årleg\n"
 "\t 3. Type: f=ledig B=Oppteke\n"
@@ -1453,20 +1395,20 @@ msgstr "Arkivsletting fullført\n"
 #: ../src/ical-code.c:932
 #, fuzzy
 msgid "Orage default alarm"
-msgstr "Orage standard påminnelse"
+msgstr "Orage standard påminning"
 
 #: ../src/ical-code.c:3115
 #, fuzzy, c-format
 msgid "Build alarm list: Added %d alarms. Processed %d events."
 msgstr ""
-"Bygde påminnelsesliste: Lagt til %d påminnelser. Prosessert %d hendingar."
+"Bygde påminningsliste: Lagt til %d påminningar. Prosessert %d hendingar."
 
 #: ../src/ical-code.c:3117
 #, fuzzy, c-format
 msgid ""
 "\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
 msgstr ""
-"\tFann %d påminnelser korav %d er aktive. (Søkte %d gjentakande påminnelser)"
+"\tFann %d påminningar korav %d er aktive. (Søkte %d gjentakande påminningar)"
 
 #: ../src/ical-expimp.c:123
 #, fuzzy
@@ -2183,7 +2125,7 @@ msgstr "Standard tidssone ikkje funnet. Må setjast manuelt."
 #: ../src/reminder.c:562
 #, fuzzy
 msgid "Reminder "
-msgstr "Påminnelse"
+msgstr "Påminning"
 
 #: ../src/reminder.c:591
 #, fuzzy
@@ -2193,23 +2135,23 @@ msgstr "Opne"
 #: ../src/reminder.c:722
 #, fuzzy
 msgid "Reminder - Orage"
-msgstr "Påminnelse - Orage"
+msgstr "Påminning - Orage"
 
 #: ../src/reminder.c:808
 #, fuzzy
 msgid "Remind me again after the specified time"
-msgstr "Påminnelse på nytt etter angjeven tid"
+msgstr "Påminning på nytt etter angjeven tid"
 
 #. Note that this goes to the main area. Temporary for the version
 #: ../src/reminder.c:811
 #, fuzzy
 msgid "Press <Execute> to remind me again after the specified time:"
-msgstr "Trykk <Utfør> for ny påminnelse etter angjeven tid"
+msgstr "Trykk <Utfør> for ny påminning etter angjeven tid"
 
 #: ../src/reminder.c:1099
 #, fuzzy
 msgid "Next active alarms:"
-msgstr "Neste aktive påminnelser:"
+msgstr "Neste aktive påminningar:"
 
 #: ../src/reminder.c:1152 ../src/reminder.c:1157
 #, fuzzy, c-format
@@ -2227,7 +2169,7 @@ msgid ""
 "No active alarms found"
 msgstr ""
 "\n"
-"Ingen aktive påminnelser er funne"
+"Ingen aktive påminningar er funne"
 
 #: ../src/timezone_names.c:36
 #, fuzzy
