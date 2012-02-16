@@ -19,8 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: KBabel 1.11.4\n"
 
 #: ../globaltime/globaltime.c:100
@@ -522,7 +521,7 @@ msgstr "Настройки часов Orage"
 #. * %B  : full month name
 #. * %Y  : four digit year
 #. * %V  : ISO week number
-#.
+#. 
 #: ../panel-plugin/xfce4-orageclock-plugin.c:627
 msgid "%A %d %B %Y/%V"
 msgstr "%A, %d %b, %Y"
@@ -1782,7 +1781,7 @@ msgid "Never"
 msgstr "Никогда"
 
 #: ../src/mainbox.c:453
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Title: %s\n"
 " Location: %s\n"
@@ -1799,7 +1798,7 @@ msgstr ""
 "%s"
 
 #: ../src/mainbox.c:460
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Title: %s\n"
 " Location: %s\n"
@@ -1998,13 +1997,13 @@ msgstr ""
 
 #: ../src/parameters.c:910 ../src/parameters.c:915
 msgid "Use wakeup timer"
-msgstr ""
+msgstr "Использовать таймер пробуждения"
 
 #: ../src/parameters.c:921
 msgid ""
 "Use this timer if Orage has problems waking up properly after suspend or "
 "hibernate. (For example tray icon not refreshed or alarms not firing.)"
-msgstr ""
+msgstr "Используйте, если возникают проблемы с Orage после выхода из ждущего или спящего режима. (Например, не обновляется значок или не работают оповещения)."
 
 #: ../src/parameters.c:938
 msgid "Orage Preferences"
