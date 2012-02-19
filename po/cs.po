@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: orage 4.3.90.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-01-03 14:00+0200\n"
-"PO-Revision-Date: 2012-01-09 00:53+0100\n"
+"PO-Revision-Date: 2012-02-19 21:09+0100\n"
 "Last-Translator: Michal Várady <miko.vaji@gmail.com>\n"
 "Language-Team: Czech <translation-team-cs@lists.sourceforge.net>\n"
 "Language: cs\n"
@@ -428,7 +428,7 @@ msgstr "UTC"
 #: ../src/timezone_selection.c:330
 #: ../src/timezone_selection.c:384
 msgid "floating"
-msgstr "plovoucí"
+msgstr "nezávislý na čas. pásmu"
 
 #: ../globaltime/globaltime.desktop.in.h:1
 #: ../src/tray_icon.c:500
@@ -441,7 +441,7 @@ msgstr "Globální čas aplikace Orage"
 
 #: ../globaltime/globaltime.desktop.in.h:3
 msgid "Show clocks from different countries"
-msgstr "Zobrazovat čas jiných zemí"
+msgstr "Zobrazit čas jiných zemí"
 
 #: ../panel-plugin/oc_config.c:224
 msgid "Appearance"
@@ -450,7 +450,7 @@ msgstr "Vzhled"
 #. show frame
 #: ../panel-plugin/oc_config.c:229
 msgid "Show _frame"
-msgstr "Zobrazovat _rámeček"
+msgstr "Zobrazit _rámeček"
 
 #. foreground color
 #: ../panel-plugin/oc_config.c:239
@@ -568,7 +568,7 @@ msgstr "Konec"
 
 #: ../src/appointment.c:333
 msgid "Due"
-msgstr "Kvůli"
+msgstr "Termín dokončení"
 
 #: ../src/appointment.c:493
 #: ../src/mainbox.c:783
@@ -669,7 +669,7 @@ msgstr "D_uplikovat"
 
 #: ../src/appointment.c:2589
 msgid "Save"
-msgstr "Ulož_it"
+msgstr "Uložit"
 
 #: ../src/appointment.c:2591
 msgid "Save and close"
@@ -709,7 +709,7 @@ msgstr "Typ "
 #: ../src/appointment.c:2633
 #: ../src/event-list.c:1165
 msgid "Event"
-msgstr "Událost"
+msgstr "Události"
 
 #: ../src/appointment.c:2636
 msgid ""
@@ -729,7 +729,7 @@ msgid ""
 "Something that you should do sometime. For example:\n"
 "Wash your car or test new version of Orage."
 msgstr ""
-"Něco, co byste měli udělat. Například:\n"
+"Něco, co byste měli v budoucnu udělat. Například:\n"
 "Umyjte si auto nebo otestujte novou verzi aplikace Orage."
 
 #: ../src/appointment.c:2645
@@ -767,7 +767,7 @@ msgstr "Nastavit"
 
 #: ../src/appointment.c:2718
 msgid "Duration"
-msgstr "Trvání"
+msgstr "Délka"
 
 #: ../src/appointment.c:2722
 #: ../src/appointment.c:2912
@@ -847,19 +847,19 @@ msgstr ""
 
 #: ../src/appointment.c:2895
 msgid "Before Start"
-msgstr "Před zahájením"
+msgstr "před zahájením"
 
 #: ../src/appointment.c:2895
 msgid "Before End"
-msgstr "Před ukončením"
+msgstr "před ukončením"
 
 #: ../src/appointment.c:2896
 msgid "After Start"
-msgstr "Po začátku"
+msgstr "po zahájení"
 
 #: ../src/appointment.c:2896
 msgid "After End"
-msgstr "Po ukončení"
+msgstr "po ukončení"
 
 #: ../src/appointment.c:2903
 msgid "Alarm"
@@ -878,7 +878,7 @@ msgid ""
 " 3) after Todo start"
 msgstr ""
 "Kdy chcete být upozorněni:\n"
-" 1) před začátkem události\n"
+" 1) před zahájením události\n"
 " 2) před dokončením úkolu\n"
 " 3) po dokončení úkolu"
 
@@ -974,7 +974,7 @@ msgid ""
 "\t<&ST> appointment start time\n"
 "\t<&ET> appointment end time"
 msgstr ""
-"Je nutné vložit všechny escape znaky ručně.\n"
+"Všechny escape znaky je nutné vložit ručně.\n"
 "Tento řetězec bude předán shellu ke zpracování.\n"
 "Za běhu budou nahrazeny tyto speciální příkazy:\n"
 "\t<&T>  titulek schůzky\n"
@@ -1252,7 +1252,7 @@ msgstr "Neznámá"
 
 #: ../src/day-view.c:704
 msgid "       Number of days to show"
-msgstr "       Počet zobrazovaných dní"
+msgstr "       Počet zobrazených dní"
 
 #: ../src/day-view.c:935
 msgid "Orage - day view"
@@ -1290,11 +1290,11 @@ msgstr "Najít"
 
 #: ../src/event-list.c:1137
 msgid "Dayview"
-msgstr "Přehled dne"
+msgstr "Přehled více dnů"
 
 #: ../src/event-list.c:1170
 msgid "Extra days to show "
-msgstr "Dny navíc pro zobrazení"
+msgstr "Zobrazit položky pro tento počet následujících dní"
 
 #: ../src/event-list.c:1201
 msgid "Journal entries starting from:"
@@ -1746,17 +1746,17 @@ msgstr "--toggle (-t) \t\tpřepne aplikaci orage do viditelného nebo neviditeln
 #: ../src/main.c:312
 #, c-format
 msgid "--add-foreign (-a) file [RW] \tadd a foreign file\n"
-msgstr "--add-foreign (-a) soubor [RW] \tpřidá externí soubor\n"
+msgstr "--add-foreign (-a) soubor [RW]     přidá externí soubor\n"
 
 #: ../src/main.c:313
 #, c-format
 msgid "--remove-foreign (-r) file \tremove a foreign file\n"
-msgstr "--remove-foreign (-r) soubor \todebere externí soubor\n"
+msgstr "--remove-foreign (-r) soubor       odebere externí soubor\n"
 
 #: ../src/main.c:314
 #, c-format
 msgid "--export (-e) file [appointment...] \texport appointments from Orage to file\n"
-msgstr "--export (-e) soubor [schůzka...] \texportuje schůzky z aplikace Orage do souboru\n"
+msgstr "--export (-e) soubor [schůzka...]  exportuje schůzky z aplikace Orage do souboru\n"
 
 #: ../src/main.c:316
 #, c-format
@@ -1766,12 +1766,12 @@ msgstr "soubory=soubory typu ical pro načtení do aplikace orage\n"
 #: ../src/main.c:318
 #, c-format
 msgid "\tdbus not included in orage. \n"
-msgstr "\tv aplikace orage nebyla sestavena s podporou dbus. \n"
+msgstr "\taplikace orage byla sestavena bez podpory sběrnice dbus. \n"
 
 #: ../src/main.c:319
 #, c-format
 msgid "\twithout dbus [files] and foreign file options(-a & -r) can only be used when starting orage \n"
-msgstr "\tbez podpory dbus se mohou [soubory] a volby externích souborů (-a a -r) použít pouze při spouštění aplikace orage \n"
+msgstr "\tbez podpory sběrnice dbus je možné [soubory] a volby externích souborů (-a a -r) použít pouze při spouštění aplikace orage \n"
 
 #: ../src/main.c:511
 #, c-format
@@ -1910,27 +1910,27 @@ msgstr "Hlavní okno kalendáře"
 
 #: ../src/parameters.c:618
 msgid "Show borders"
-msgstr "Zobrazovat okraje"
+msgstr "Zobrazit okraje"
 
 #: ../src/parameters.c:625
 msgid "Show menu"
-msgstr "Zobrazovat nabídku"
+msgstr "Zobrazit nabídku"
 
 #: ../src/parameters.c:632
 msgid "Show month and year"
-msgstr "Zobrazovat měsíc a rok"
+msgstr "Zobrazit měsíc a rok"
 
 #: ../src/parameters.c:639
 msgid "Show day names"
-msgstr "Zobrazovat názvy dnů"
+msgstr "Zobrazit názvy dnů"
 
 #: ../src/parameters.c:646
 msgid "Show week numbers"
-msgstr "Zobrazovat čísla týdnů"
+msgstr "Zobrazit čísla týdnů"
 
 #: ../src/parameters.c:653
 msgid "Show todo list"
-msgstr "Zobrazovat seznam úkolů"
+msgstr "Zobrazit seznam úkolů"
 
 #: ../src/parameters.c:660
 msgid "Number of days to show in event window"
@@ -1950,15 +1950,15 @@ msgstr "Vždy navrchu"
 
 #: ../src/parameters.c:690
 msgid "Show in taskbar"
-msgstr "Zobrazovat v panelu úloh"
+msgstr "Zobrazit v panelu úloh"
 
 #: ../src/parameters.c:697
 msgid "Show in pager"
-msgstr "Zobrazovat v přepínači ploch"
+msgstr "Zobrazit v přepínači ploch"
 
 #: ../src/parameters.c:704
 msgid "Show in systray"
-msgstr "Zobrazovat v systémové oblasti"
+msgstr "Zobrazit v systémové oblasti"
 
 #: ../src/parameters.c:739
 msgid "Calendar start"
@@ -2022,7 +2022,7 @@ msgstr "Okno seznamu událostí"
 
 #: ../src/parameters.c:894
 msgid "Number of extra days to show in event list"
-msgstr "Počet zbývajících dní ke zobrazení v seznau událostí"
+msgstr "Počet zbývajících dní ke zobrazení v seznamu událostí"
 
 #: ../src/parameters.c:902
 msgid "This is just the default value, you can change it in the actual eventlist window."
@@ -3664,7 +3664,7 @@ msgstr "Hodiny Orage na panel "
 
 #: ../panel-plugin/xfce4-orageclock-plugin.desktop.in.in.h:2
 msgid "Show time and date?"
-msgstr "Zobrazovat datum a čas?"
+msgstr "Zobrazit datum a čas?"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:1
 #: ../xfcalendar.desktop.in.h:1
