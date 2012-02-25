@@ -924,6 +924,7 @@ msgstr ""
 "auszuführen."
 
 #: ../src/appointment.c:3082
+#, fuzzy
 msgid ""
 "You must enter all escape etc characters yourself.\n"
 "This string is just given to shell to process.\n"
@@ -934,6 +935,14 @@ msgid ""
 "\t<&ST> appointment start time\n"
 "\t<&ET> appointment end time"
 msgstr ""
+"Sie müsen alle Escape- und anderen Zeichen selbst eingeben.\n"
+"Die Zeichenkette wird einfach an die Shell zur Ausführung übergeben.\n"
+"Folgende Spezialbefehle werden zur Laufzeit ersetzt:\n"
+"\t<&T> Termintitel\n"
+"\t<&D> Terminbeschreibung\n"
+"\t<&AT> Erinnerungszeitpunkt\n"
+"\t<&ST> Terminbeginn\n"
+"\t<&ET> Terminende"
 
 #: ../src/appointment.c:3094
 msgid "Test this alarm by raising it now"
@@ -1999,14 +2008,16 @@ msgstr ""
 "ändern."
 
 #: ../src/parameters.c:910 ../src/parameters.c:915
+#, fuzzy
 msgid "Use wakeup timer"
-msgstr ""
+msgstr "Benutze Aufwachkorrektur"
 
 #: ../src/parameters.c:921
+#, fuzzy
 msgid ""
 "Use this timer if Orage has problems waking up properly after suspend or "
 "hibernate. (For example tray icon not refreshed or alarms not firing.)"
-msgstr ""
+msgstr "Aktivieren Sie diese Einstellung, wenn Orage aus dem Ruhezustand oder dem Bereitschaftsmodus nicht korrekt aufwacht (zum Beispiel das Symbol im Kontrollabschnitt nicht aktualisiert oder eine Erinnerung nicht angezeigt wird). "
 
 #: ../src/parameters.c:938
 msgid "Orage Preferences"
