@@ -1339,7 +1339,7 @@ msgstr ""
 "\t\t D=매일 W=매주 M=매월 Y=매년\n"
 "\t 3. 형태: f=여유 B=바쁨\n"
 "\t 4. 위치:\n"
-"\t\tO=Orage A=압축파일 F=외부파일\n"
+"\t\tO=Orage A=보관파일 F=외부파일\n"
 "\t 5. 일정형태:\n"
 "\t\tE=이벤트 T=할 일 J=일지"
 
@@ -1350,32 +1350,32 @@ msgstr "날짜 선택"
 #. remove since it has ended
 #: ../src/ical-archive.c:267
 msgid "\tRecur ended, moving to archive file."
-msgstr "\t반복이 끝나서, 압축파일로 이동합니다."
+msgstr "\t반복이 끝나서, 보관파일로 이동합니다."
 
 #: ../src/ical-archive.c:329
 msgid "Archiving not enabled. Exiting"
-msgstr "압축기능을 활성화 하지 않았습니다. 빠져나갑니다"
+msgstr "보관기능을 활성화 하지 않았습니다. 끝냅니다"
 
 #: ../src/ical-archive.c:347
 #, c-format
 msgid "Archiving threshold: %d month(s)"
-msgstr "압축 주기: %d 개월"
+msgstr "보관 주기: %d 개월"
 
 #. yy mon day
 #: ../src/ical-archive.c:350
 #, c-format
 msgid "\tArchiving events, which are older than: %04d-%02d-%02d"
-msgstr "\t %04d-%02d-%02d보다 오래된 이벤트를 압축합니다."
+msgstr "\t %04d-%02d-%02d보다 오래된 이벤트를 보관합니다."
 
 #: ../src/ical-archive.c:377
 #, c-format
 msgid "Archiving uid: %s"
-msgstr "압축 uid: %s"
+msgstr "보관 uid: %s"
 
 #. VTODO not completed, do not archive
 #: ../src/ical-archive.c:383
 msgid "\tVTODO not complete; not archived"
-msgstr "\tVTOD 진행 중이므로 압축하지 않습니다"
+msgstr "\tVTOD 진행 중이므로 보관하지 않습니다"
 
 #. it is recurrent event
 #: ../src/ical-archive.c:388
@@ -1385,12 +1385,12 @@ msgstr "\t반복하기. 종료 연: %04d, 월: %02d, 일: %02d"
 
 #: ../src/ical-archive.c:405
 msgid "Archiving done\n"
-msgstr "압축 완료\n"
+msgstr "보관처리 완료\n"
 
 #. PHASE 1: go through base orage file and remove "repeat" shortcuts
 #: ../src/ical-archive.c:421
 msgid "Starting archive removal."
-msgstr "압축 제거 개시."
+msgstr "보관내용 제거 시작중입니다."
 
 #: ../src/ical-archive.c:422
 msgid "\tPHASE 1: reset recurring appointments"
@@ -1400,11 +1400,11 @@ msgstr "\t1단계: 반복일정 리셋"
 #. * After that delete the whole arch file
 #: ../src/ical-archive.c:444
 msgid "\tPHASE 2: return archived appointments"
-msgstr "\t2단계: 압축된 일정을 가져옴"
+msgstr "\t2단계: 보관한 일정을 가져옴"
 
 #: ../src/ical-archive.c:470
 msgid "Archive removal done\n"
-msgstr "압축 제거 완료\n"
+msgstr "보관내용 제거 완료\n"
 
 #: ../src/ical-code.c:932
 msgid "Orage default alarm"
@@ -1503,7 +1503,7 @@ msgid ""
 "Archived and Foreign events are not exported."
 msgstr ""
 "메인 파일의 일정만 읽어 들입니다.\n"
-"압축된 이벤트와 외부 이벤트는 내보내지 않습니다."
+"보관한 이벤트와 외부 이벤트는 내보내지 않습니다."
 
 #: ../src/interface.c:1065
 msgid ""
@@ -1523,20 +1523,20 @@ msgstr "쉼표로 분리된 Orage의 일정 UID입니다."
 
 #: ../src/interface.c:1076
 msgid "Archive"
-msgstr "압축"
+msgstr "보관"
 
 #: ../src/interface.c:1084
 #, c-format
 msgid "Archive now (threshold: %d months)"
-msgstr "현재 압축 기준( %d 개월)"
+msgstr "현재 보관 기준( %d 개월)"
 
 #: ../src/interface.c:1094
 msgid "You can change archive threshold in parameters"
-msgstr "매개변수로 압축 주기를 바꿀 수 있습니다."
+msgstr "매개변수로 보관 주기를 바꿀 수 있습니다."
 
 #: ../src/interface.c:1101
 msgid "Revert archive now"
-msgstr "당장 압축 풀기"
+msgstr "지금 보관내용 복귀"
 
 #: ../src/interface.c:1107
 msgid ""
@@ -1544,7 +1544,7 @@ msgid ""
 "This is useful for example when doing export and moving orage\n"
 "appointments to another system."
 msgstr ""
-"압축된 모든 이벤트를 메인 orage에 돌려 주고 압축파일을 제거합니다.\n"
+"보관된 모든 이벤트를 메인 orage에 돌려 주고 보관파일을 제거합니다.\n"
 "orage 일정을 내보내서 다른 시스템으로 이동하려는 경우에 \n"
 "상당히 편리한 기능입니다."
 
@@ -1606,7 +1606,7 @@ msgstr "현재의 파일을 다른 곳으로 옮깁니다."
 
 #: ../src/interface.c:1190
 msgid "Archive file"
-msgstr "압축파일"
+msgstr "보관파일"
 
 #: ../src/interface.c:1254
 msgid "Foreign files"
@@ -1687,12 +1687,12 @@ msgstr "\tlibnotify를 사용하지 않습니다.\n"
 #: ../src/main.c:286
 #, c-format
 msgid "\tUsing automatic archiving.\n"
-msgstr "\t자동 압축을 사용합니다.\n"
+msgstr "\t자동 보관을 사용합니다.\n"
 
 #: ../src/main.c:288
 #, c-format
 msgid "\tNot using archiving.\n"
-msgstr "\t자동압축 사용안함.\n"
+msgstr "\t보관기능 사용안함.\n"
 
 #: ../src/main.c:291
 #, c-format
@@ -1877,15 +1877,15 @@ msgstr "지역 시간대를 항상 정의하셔야 합니다."
 
 #: ../src/parameters.c:552
 msgid "Archive threshold (months)"
-msgstr "압축 기준 (개월)"
+msgstr "보관 기준 (개월)"
 
 #: ../src/parameters.c:562
 msgid "(0 = no archiving)"
-msgstr "(0 = 압축안함)"
+msgstr "(0 = 보관 안함)"
 
 #: ../src/parameters.c:565
 msgid "Archiving is used to save time and space when handling events."
-msgstr "압축기능을 이용해서 시간과 공간을 절약하십시오."
+msgstr "보관기능을 이용해서 시간과 공간을 절약하십시오."
 
 #: ../src/parameters.c:574
 msgid "Sound command"
