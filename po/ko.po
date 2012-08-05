@@ -523,10 +523,10 @@ msgid ""
 msgstr ""
 "이 프로그램은 strftime()함수를 이용하여 시간을 나타냅니다.\n"
 "시간표시 코드를 이용하여 원하는 형식으로 시간을 표시하십시오.\n"
-"다음은 자주 사용하는 코드입니다.:\n"
+"다음은 자주 사용하는 코드입니다:\n"
 "\t%A = 요일\t\t\t%B = 월\n"
 "\t%c = 날짜와 시간\t\t%R = 시분\n"
-"\t%V = 요일(숫자)\t\t%Z = 현재 시간대\n"
+"\t%V = 연중 주차\t\t%Z = 현재 시간대\n"
 "\t%H = 시 \t\t\t\t%M = 분\n"
 "\t%X = 현지 시간\t\t\t%x = 현지 날짜"
 
@@ -546,7 +546,7 @@ msgstr "Orage 시계 기본 설정"
 #.
 #: ../panel-plugin/xfce4-orageclock-plugin.c:627
 msgid "%A %d %B %Y/%V"
-msgstr "%Y년 %B %d일 %A %V"
+msgstr "%Y년 %B %d일 %A %V주차"
 
 #: ../src/about-xfcalendar.c:40
 msgid "Maintainer"
@@ -603,7 +603,7 @@ msgstr "계속 진행하시렵니까?"
 
 #: ../src/appointment.c:767
 msgid "The end of this appointment is earlier than the beginning."
-msgstr "일정 말일이 시작보다 전입니다."
+msgstr "일정 말일이 시작보다 빠릅니다."
 
 #: ../src/appointment.c:1034
 #: ../src/appointment.c:1812
@@ -620,7 +620,7 @@ msgstr "이 약속은 없습니다."
 
 #: ../src/appointment.c:1693
 msgid "It was probably removed, please refresh your screen."
-msgstr "아마도 지워진 것 같습니다. 화면을 새로고쳐 주시기 바랍니다."
+msgstr "아마도 지워진 것 같습니다. 화면을 새로 고쳐주시기 바랍니다."
 
 #: ../src/appointment.c:1995
 msgid "Current categories"
