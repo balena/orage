@@ -1,20 +1,24 @@
-# translation of orage.po to Belarusian.
-# Copyright (C) 2003-2006 The Xfce development team.
+# Belarusian translation for Orage.
+# Copyright (C) 2003-2012 The Xfce development team.
 # This file is distributed under the same license as the orage package.
-# Ales Nyakhaychyk <nab@mail.by>, 2004.
+# Translators:
+# Ales Nyakhaychyk <nab@mail.by>, 2004-2007.
+# Mikalai Udodau <crom-a@tut.by>, 2012.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: orage trunk\n"
+"Project-Id-Version: orage 4.3.90.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-01-03 14:00+0200\n"
-"PO-Revision-Date: 2007-09-17 04:51+0300\n"
-"Last-Translator: Ales Nyakhaychyk <nab@mail.by>\n"
+"PO-Revision-Date: 2012-08-80 20:10+0300\n"
+"Last-Translator: Mikalai Udodau <crom-a@tut.by>\n"
 "Language-Team: Belarusian <i18n@mova.org>\n"
+"Language: be\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: be\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2);\n"
 
 #: ../globaltime/globaltime.c:100
 msgid "Raising GlobalTime window..."
@@ -32,7 +36,7 @@ msgid ""
 "click to modify clock"
 msgstr ""
 "%s\n"
-"пстрыкніце, каб зьмяніць час"
+"націсніце, каб змяніць час"
 
 #: ../globaltime/globaltime.c:386
 msgid "Localtime"
@@ -63,15 +67,15 @@ msgstr ""
 
 #: ../globaltime/gt_prefs.c:310
 msgid "Not possible to delete the last clock."
-msgstr "Немагчыма выдаліць апошні гадзіньнік."
+msgstr "Немагчыма выдаліць апошні гадзіннік."
 
 #: ../globaltime/gt_prefs.c:516
 msgid "update this clock"
-msgstr "абнавіць гэты гадзіньнік"
+msgstr "абнавіць гэты гадзіннік"
 
 #: ../globaltime/gt_prefs.c:521 ../globaltime/gt_prefs.c:1034
 msgid "add new empty clock"
-msgstr "дадаць новы пусты гадзіньнік"
+msgstr "дадаць новы пусты гадзіннік"
 
 #: ../globaltime/gt_prefs.c:526
 msgid "add new clock using this clock as model"
@@ -79,7 +83,7 @@ msgstr ""
 
 #: ../globaltime/gt_prefs.c:531
 msgid "delete this clock"
-msgstr "выдаліць гэты гадзіньнік"
+msgstr "выдаліць гэты гадзіннік"
 
 #: ../globaltime/gt_prefs.c:539
 msgid "move this clock first"
@@ -103,7 +107,7 @@ msgstr ""
 
 #: ../globaltime/gt_prefs.c:568 ../globaltime/gt_prefs.c:1042
 msgid "close window and exit"
-msgstr ""
+msgstr "закрыць акно і выйсці"
 
 #: ../globaltime/gt_prefs.c:590
 #, fuzzy
@@ -236,12 +240,12 @@ msgstr "абнавіць перавагі"
 #: ../globaltime/gt_prefs.c:1062
 #, fuzzy
 msgid "Globaltime Preferences"
-msgstr "Агульныя перавагі"
+msgstr "Агульныя "
 
 #. -----------------------HEADING--------------------------------------
 #: ../globaltime/gt_prefs.c:1073
 msgid "General Preferences"
-msgstr "Агульныя перавагі"
+msgstr "Агульныя настаўленні"
 
 #: ../globaltime/gt_prefs.c:1077
 msgid "Decorations:"
@@ -334,7 +338,7 @@ msgstr ""
 #: ../panel-plugin/timezone_selection.c:253 ../src/appointment.c:2663
 #: ../src/timezone_selection.c:259 ../src/timezone_selection.c:264
 msgid "Location"
-msgstr "Разьмяшчэньне"
+msgstr "Мясцовасць"
 
 #: ../globaltime/timezone_selection.c:258
 #: ../panel-plugin/timezone_selection.c:259 ../src/timezone_selection.c:270
@@ -349,7 +353,7 @@ msgstr ""
 #: ../globaltime/timezone_selection.c:269
 #: ../panel-plugin/timezone_selection.c:270 ../src/timezone_selection.c:281
 msgid "Country"
-msgstr ""
+msgstr "Краіна"
 
 #. We are actually setting the g_par parameter. In other words
 #. we are setting the global default timezone for Orage. This is
@@ -362,7 +366,7 @@ msgstr ""
 #: ../panel-plugin/timezone_selection.c:310 ../src/timezone_selection.c:316
 #: ../src/timezone_selection.c:325 ../src/timezone_selection.c:336
 msgid "Pick timezone"
-msgstr ""
+msgstr "Выберыце часавы пояс"
 
 #: ../globaltime/timezone_selection.c:302
 #: ../globaltime/timezone_selection.c:312
@@ -389,8 +393,9 @@ msgstr "UTC"
 #: ../panel-plugin/timezone_selection.c:305
 #: ../panel-plugin/timezone_selection.c:358 ../src/timezone_selection.c:330
 #: ../src/timezone_selection.c:384
+#, fuzzy
 msgid "floating"
-msgstr ""
+msgstr "zmienna"
 
 #: ../globaltime/globaltime.desktop.in.h:1 ../src/tray_icon.c:500
 #, fuzzy
@@ -408,22 +413,25 @@ msgstr ""
 
 #: ../panel-plugin/oc_config.c:224
 msgid "Appearance"
-msgstr ""
+msgstr "Выгляд"
 
 #. show frame
 #: ../panel-plugin/oc_config.c:229
+#, fuzzy
 msgid "Show _frame"
-msgstr ""
+msgstr "Pokaż _ramkę"
 
 #. foreground color
 #: ../panel-plugin/oc_config.c:239
+#, fuzzy
 msgid "set foreground _color:"
-msgstr ""
+msgstr "ustaw _kolor wypełnienia:"
 
 #. background color
 #: ../panel-plugin/oc_config.c:253
+#, fuzzy
 msgid "set _background color:"
-msgstr ""
+msgstr "ustaw kolor _tła:"
 
 #. clock size (=vbox size): height and width
 #: ../panel-plugin/oc_config.c:267
@@ -443,27 +451,30 @@ msgid "Note that you can not change the width of vertical panels"
 msgstr ""
 
 #: ../panel-plugin/oc_config.c:316
+#, fuzzy
 msgid "Clock Options"
-msgstr ""
+msgstr "Opcje Zegara"
 
 #. timezone
 #: ../panel-plugin/oc_config.c:326
+#, fuzzy
 msgid "set timezone to:"
-msgstr ""
+msgstr "ustaw strefę czasową na:"
 
 #: ../panel-plugin/oc_config.c:347
 #, c-format
 msgid "Line %d:"
-msgstr ""
+msgstr "Радок %d:"
 
 #: ../panel-plugin/oc_config.c:357
+#, fuzzy
 msgid "Enter any valid strftime function parameter."
-msgstr ""
+msgstr "Podaj dowolny poprawny parametr funkcji strftime"
 
 #. Tooltip hint
 #: ../panel-plugin/oc_config.c:401
 msgid "Tooltip:"
-msgstr ""
+msgstr "Падказка:"
 
 #. special timing for SUSPEND/HIBERNATE
 #: ../panel-plugin/oc_config.c:411
@@ -480,6 +491,7 @@ msgid ""
 msgstr ""
 
 #: ../panel-plugin/oc_config.c:432
+#, fuzzy
 msgid ""
 "This program uses strftime function to get time.\n"
 "Use any valid code to get time in the format you prefer.\n"
@@ -490,11 +502,18 @@ msgid ""
 "\t%H = hours \t\t\t\t%M = minute\n"
 "\t%X = local time\t\t\t%x = local date"
 msgstr ""
+"Ten program używa funkcji strftime do pobierania czasu.\n"
+"Możesz używać dowolnego poprawnego parametru tej funkcji.\n"
+"Część składni dla tej funkcji to:\n"
+"\t%A = dzień tygodnia\t\t\t%B = miesiąc\n"
+"\t%c = data i czas\t\t%R = godzina i minuty\n"
+"\t%V = numer tygodnia\t\t%Z = używana strefa czasowa\n"
+"\t%H = godziny \t\t\t\t%M = minuty\n"
+"\t%X = czas lokalny\t\t\t%x = czas lokalny"
 
 #: ../panel-plugin/oc_config.c:457
-#, fuzzy
 msgid "Orage clock Preferences"
-msgstr "Перавагі Orage"
+msgstr "Настаўленні Orage"
 
 #. no lines yet
 #. TRANSLATORS: Use format characters from strftime(3)
@@ -508,7 +527,7 @@ msgstr "Перавагі Orage"
 #.
 #: ../panel-plugin/xfce4-orageclock-plugin.c:627
 msgid "%A %d %B %Y/%V"
-msgstr ""
+msgstr "%A %d %B %Y/%V"
 
 #: ../src/about-xfcalendar.c:40
 msgid "Maintainer"
@@ -528,37 +547,39 @@ msgstr "Канец"
 
 #: ../src/appointment.c:333
 msgid "Due"
-msgstr "Тэрмін выкананьня"
+msgstr "Тэрмін выканання"
 
 #: ../src/appointment.c:493 ../src/mainbox.c:783
 msgid "Orage"
-msgstr ""
+msgstr "Orage"
 
 #. to avoid timing problems when updating entry
 #. Create file chooser
 #: ../src/appointment.c:672 ../src/interface.c:277 ../src/parameters.c:416
 msgid "Select a file..."
-msgstr ""
+msgstr "Выберыце файл..."
 
 #: ../src/appointment.c:680
 msgid "Sound Files"
-msgstr ""
+msgstr "Гукавыя файлы"
 
 #: ../src/appointment.c:687 ../src/interface.c:290
 msgid "All Files"
-msgstr ""
+msgstr "Усе файлы"
 
 #: ../src/appointment.c:739
+#, fuzzy
 msgid "The appointment information has been modified."
-msgstr ""
+msgstr "Informacja o spotkaniu została zmodyfikowana"
 
 #: ../src/appointment.c:740 ../src/appointment.c:1194 ../src/event-list.c:919
 msgid "Do you want to continue?"
-msgstr ""
+msgstr "Працягваць?"
 
 #: ../src/appointment.c:767
+#, fuzzy
 msgid "The end of this appointment is earlier than the beginning."
-msgstr ""
+msgstr "Koniec spotkania jest przed jego początkiem"
 
 #: ../src/appointment.c:1034 ../src/appointment.c:1812
 #, fuzzy
@@ -566,8 +587,9 @@ msgid "Not set"
 msgstr "Заўвага"
 
 #: ../src/appointment.c:1193
+#, fuzzy
 msgid "This appointment will be permanently removed."
-msgstr ""
+msgstr "Spotkanie zostanie usunięte"
 
 #: ../src/appointment.c:1692
 msgid "This appointment does not exist."
@@ -588,7 +610,7 @@ msgstr ""
 
 #: ../src/appointment.c:2014
 msgid "Category:"
-msgstr ""
+msgstr "Катэгорыя:"
 
 #: ../src/appointment.c:2045
 msgid "Colors of categories - Orage"
@@ -608,56 +630,57 @@ msgstr "Новая сустрэча - Orage"
 #: ../src/appointment.c:2382 ../src/day-view.c:254 ../src/event-list.c:1021
 #: ../src/interface.c:767 ../src/mainbox.c:279
 msgid "_File"
-msgstr "_Файл"
+msgstr "Ф_айл"
 
 #: ../src/appointment.c:2388
 msgid "Sav_e and close"
-msgstr ""
+msgstr "Запісаць і закрыць"
 
 #: ../src/appointment.c:2401 ../src/event-list.c:1027
+#, fuzzy
 msgid "D_uplicate"
-msgstr ""
+msgstr "Дубляваць"
 
 #: ../src/appointment.c:2589
 msgid "Save"
-msgstr "Захаваць"
+msgstr "Запісаць"
 
 #: ../src/appointment.c:2591
 msgid "Save and close"
-msgstr ""
+msgstr "Запісаць і закрыць"
 
 #: ../src/appointment.c:2596
 msgid "Revert"
-msgstr ""
+msgstr "Наадварот"
 
 #: ../src/appointment.c:2598 ../src/event-list.c:1112
 msgid "Duplicate"
-msgstr ""
+msgstr "Дубляваць"
 
 #: ../src/appointment.c:2603 ../src/event-list.c:1114
 msgid "Delete"
-msgstr "Выдаліць"
+msgstr "Сцерці"
 
 #: ../src/appointment.c:2621
 msgid "Free"
-msgstr "Вольны"
+msgstr "Вольна"
 
 #: ../src/appointment.c:2621
 msgid "Busy"
-msgstr "Заняты"
+msgstr "Занята"
 
 #: ../src/appointment.c:2625
 msgid "General"
-msgstr "Асноўнае"
+msgstr "Агульныя"
 
 #. type
 #: ../src/appointment.c:2631
 msgid "Type "
-msgstr ""
+msgstr "Тып"
 
 #: ../src/appointment.c:2633 ../src/event-list.c:1165
 msgid "Event"
-msgstr ""
+msgstr "Падзея"
 
 #: ../src/appointment.c:2636
 msgid ""
@@ -687,12 +710,14 @@ msgstr ""
 
 #. title
 #: ../src/appointment.c:2656
+#, fuzzy
 msgid "Title "
-msgstr ""
+msgstr "Tytuł"
 
 #: ../src/appointment.c:2671
+#, fuzzy
 msgid "All day event"
-msgstr ""
+msgstr "Wydarzenie całodniowe"
 
 #. start time
 #: ../src/appointment.c:2677 ../src/appointment.c:3342 ../src/day-view.c:697
@@ -705,7 +730,7 @@ msgstr ""
 
 #: ../src/appointment.c:2718
 msgid "Duration"
-msgstr ""
+msgstr "Працягласць"
 
 #: ../src/appointment.c:2722 ../src/appointment.c:2912 ../src/reminder.c:761
 msgid "days"
@@ -713,16 +738,16 @@ msgstr "дні"
 
 #: ../src/appointment.c:2724 ../src/appointment.c:2914 ../src/reminder.c:763
 msgid "hours"
-msgstr "гадзіны"
+msgstr "гадзін"
 
 #: ../src/appointment.c:2726 ../src/appointment.c:2916 ../src/reminder.c:765
 msgid "mins"
-msgstr "хвіліны"
+msgstr "мінут"
 
 #. Availability (only for EVENT)
 #: ../src/appointment.c:2738
 msgid "Availability"
-msgstr ""
+msgstr "Даступнасць"
 
 #. completed (only for TODO)
 #: ../src/appointment.c:2746 ../src/appointment.c:3348
@@ -736,7 +761,7 @@ msgstr "Зроблена"
 #. categories
 #: ../src/appointment.c:2770
 msgid "Categories"
-msgstr ""
+msgstr "Катэгорыі"
 
 #: ../src/appointment.c:2782
 msgid ""
@@ -751,7 +776,7 @@ msgstr ""
 #. priority
 #: ../src/appointment.c:2793
 msgid "Priority"
-msgstr ""
+msgstr "Прыярытэт"
 
 #. note
 #: ../src/appointment.c:2803
@@ -773,23 +798,24 @@ msgstr ""
 
 #: ../src/appointment.c:2895
 msgid "Before Start"
-msgstr ""
+msgstr "Перад пачаткам"
 
 #: ../src/appointment.c:2895
 msgid "Before End"
-msgstr ""
+msgstr "Перад канцом"
 
 #: ../src/appointment.c:2896
 msgid "After Start"
-msgstr ""
+msgstr "Пасля пачатку"
 
 #: ../src/appointment.c:2896
 msgid "After End"
-msgstr ""
+msgstr "Пасля канца"
 
 #: ../src/appointment.c:2903
+#, fuzzy
 msgid "Alarm"
-msgstr ""
+msgstr "Alarm"
 
 #. **** ALARM TIME ****
 #: ../src/appointment.c:2909
@@ -817,23 +843,24 @@ msgstr ""
 #. **** Audio Alarm ****
 #: ../src/appointment.c:2949
 msgid "Sound"
-msgstr ""
+msgstr "Гук"
 
 #: ../src/appointment.c:2953 ../src/appointment.c:3074
 msgid "Use"
-msgstr ""
+msgstr "Ужыць"
 
 #: ../src/appointment.c:2955
 msgid "Select this if you want audible alarm"
 msgstr ""
 
 #: ../src/appointment.c:2972
+#, fuzzy
 msgid "Repeat alarm sound"
-msgstr ""
+msgstr "Powtórz dźwięk alarmu"
 
 #: ../src/appointment.c:2988 ../src/appointment.c:3290
 msgid "times"
-msgstr ""
+msgstr "разы"
 
 #: ../src/appointment.c:3004
 msgid "sec interval"
@@ -874,7 +901,7 @@ msgstr ""
 
 #: ../src/appointment.c:3059
 msgid "seconds"
-msgstr "сэкундаў"
+msgstr "секунд"
 
 #. **** Procedure Alarm ****
 #: ../src/appointment.c:3070
@@ -919,60 +946,61 @@ msgstr "Няма"
 
 #: ../src/appointment.c:3176
 msgid "Daily"
-msgstr ""
+msgstr "Дзённы"
 
 #: ../src/appointment.c:3176
 msgid "Weekly"
-msgstr ""
+msgstr "Тыднёвы"
 
 #: ../src/appointment.c:3176
 msgid "Monthly"
-msgstr ""
+msgstr "Месячны"
 
 #: ../src/appointment.c:3176
 msgid "Yearly"
-msgstr ""
+msgstr "Гадавы"
 
 #: ../src/appointment.c:3176
 msgid "Hourly"
-msgstr ""
+msgstr "Гадзінны"
 
 #: ../src/appointment.c:3178
 msgid "Mon"
-msgstr ""
+msgstr "Пан"
 
 #: ../src/appointment.c:3178
 msgid "Tue"
-msgstr ""
+msgstr "Аўт"
 
 #: ../src/appointment.c:3178
 msgid "Wed"
-msgstr ""
+msgstr "Срд"
 
 #: ../src/appointment.c:3178
 msgid "Thu"
-msgstr ""
+msgstr "Чац"
 
 #: ../src/appointment.c:3178
 msgid "Fri"
-msgstr ""
+msgstr "Пят"
 
 #: ../src/appointment.c:3178
 msgid "Sat"
-msgstr ""
+msgstr "Суб"
 
 #: ../src/appointment.c:3178
 msgid "Sun"
-msgstr ""
+msgstr "Няд"
 
 #: ../src/appointment.c:3183
+#, fuzzy
 msgid "Recurrence"
-msgstr "Паўтарэньне"
+msgstr "Rekurencja"
 
 #. complexity
 #: ../src/appointment.c:3189
 msgid "Complexity"
-msgstr ""
+msgstr "Складанасць"
 
 #: ../src/appointment.c:3192
 msgid "Basic"
@@ -980,7 +1008,7 @@ msgstr "Асноўнае"
 
 #: ../src/appointment.c:3198
 msgid "Advanced"
-msgstr ""
+msgstr "Адмысловае"
 
 #: ../src/appointment.c:3202
 msgid "Use this if you want regular repeating event"
@@ -996,15 +1024,15 @@ msgstr ""
 #. frequency
 #: ../src/appointment.c:3211
 msgid "Frequency"
-msgstr ""
+msgstr "Частасць"
 
 #: ../src/appointment.c:3217
 msgid "Each"
-msgstr ""
+msgstr "Кожныя"
 
 #: ../src/appointment.c:3224
 msgid "occurrence"
-msgstr ""
+msgstr "з'яўленне"
 
 #: ../src/appointment.c:3228
 msgid ""
@@ -1015,19 +1043,19 @@ msgstr ""
 
 #: ../src/appointment.c:3274
 msgid "Limit"
-msgstr ""
+msgstr "Абмежаванне"
 
 #: ../src/appointment.c:3276
 msgid "Repeat forever"
-msgstr ""
+msgstr "Паўтараць бясконца"
 
 #: ../src/appointment.c:3282
 msgid "Repeat "
-msgstr ""
+msgstr "Паўтараць "
 
 #: ../src/appointment.c:3298
 msgid "Repeat until "
-msgstr ""
+msgstr "Паўтараць да "
 
 #. weekdays (only for complex settings)
 #: ../src/appointment.c:3311
@@ -1036,7 +1064,7 @@ msgstr "Працоўныя дні"
 
 #: ../src/appointment.c:3323
 msgid "Which day"
-msgstr ""
+msgstr "Кожны дзень"
 
 #: ../src/appointment.c:3331
 msgid ""
@@ -1069,9 +1097,8 @@ msgstr ""
 
 #. exceptions
 #: ../src/appointment.c:3361
-#, fuzzy
 msgid "Exceptions"
-msgstr "Можнасьці"
+msgstr "Выключэнні"
 
 #: ../src/appointment.c:3374
 msgid ""
@@ -1108,29 +1135,29 @@ msgstr ""
 #. View menu
 #: ../src/day-view.c:264 ../src/event-list.c:1044 ../src/mainbox.c:305
 msgid "_View"
-msgstr "_Выгляд"
+msgstr "Выгляд"
 
 #. ********* Go menu   *********
 #: ../src/day-view.c:278 ../src/event-list.c:1063
 msgid "_Go"
-msgstr ""
+msgstr "_Перайсці"
 
 #: ../src/day-view.c:319 ../src/event-list.c:1110
 msgid "New"
-msgstr "Стварыць"
+msgstr "Новы"
 
 #: ../src/day-view.c:324 ../src/event-list.c:1119
 msgid "Back"
-msgstr ""
+msgstr "Назад"
 
 #: ../src/day-view.c:326 ../src/event-list.c:1121 ../src/functions.c:143
 #: ../src/tray_icon.c:460
 msgid "Today"
-msgstr "Сёньня"
+msgstr "Сёння"
 
 #: ../src/day-view.c:328 ../src/event-list.c:1123
 msgid "Forward"
-msgstr "Пераслаць"
+msgstr "Наперад"
 
 #: ../src/day-view.c:333 ../src/event-list.c:1128
 msgid "Refresh"
@@ -1142,25 +1169,24 @@ msgstr "Закрыць"
 
 #: ../src/day-view.c:454
 msgid "Unknown"
-msgstr ""
+msgstr "Невядома"
 
 #: ../src/day-view.c:704
 msgid "       Number of days to show"
 msgstr ""
 
 #: ../src/day-view.c:935
-#, fuzzy
 msgid "Orage - day view"
-msgstr "Orage - Каляндар"
+msgstr "Orage - дзённы від"
 
 #. date only appointment
 #: ../src/event-list.c:190
 msgid "All day"
-msgstr ""
+msgstr "Увесь дзень"
 
 #: ../src/event-list.c:580 ../src/event-list.c:1281
 msgid "Time"
-msgstr ""
+msgstr "Час"
 
 #: ../src/event-list.c:748
 msgid "No rows have been selected."
@@ -1178,7 +1204,7 @@ msgstr ""
 
 #: ../src/event-list.c:1130
 msgid "Find"
-msgstr ""
+msgstr "Пошук"
 
 #: ../src/event-list.c:1137
 msgid "Dayview"
@@ -1194,19 +1220,19 @@ msgstr ""
 
 #: ../src/event-list.c:1221
 msgid "Search"
-msgstr ""
+msgstr "Знайсці"
 
 #: ../src/event-list.c:1224
 msgid "Search text "
-msgstr ""
+msgstr "Шукаць тэкст"
 
 #: ../src/event-list.c:1289
 msgid "Flags"
-msgstr ""
+msgstr "Флагі"
 
 #: ../src/event-list.c:1297
 msgid "Title"
-msgstr "Пасада"
+msgstr "Загаловак"
 
 #: ../src/event-list.c:1323
 msgid ""
@@ -1225,8 +1251,9 @@ msgid ""
 msgstr ""
 
 #: ../src/functions.c:141
+#, fuzzy
 msgid "Pick the date"
-msgstr ""
+msgstr "Wybierz datę"
 
 #. remove since it has ended
 #: ../src/ical-archive.c:267
@@ -1288,8 +1315,9 @@ msgid "Archive removal done\n"
 msgstr ""
 
 #: ../src/ical-code.c:932
+#, fuzzy
 msgid "Orage default alarm"
-msgstr ""
+msgstr "Domyślny alarm orage"
 
 #: ../src/ical-code.c:3115
 #, c-format
@@ -1319,8 +1347,9 @@ msgid "Import file preprocessing done"
 msgstr ""
 
 #: ../src/interface.c:284
+#, fuzzy
 msgid "Calendar files"
-msgstr "Файлы Каляндара"
+msgstr "Pliki kalendarza"
 
 #: ../src/interface.c:631
 msgid "Current foreign files"
@@ -1358,11 +1387,11 @@ msgstr ""
 
 #: ../src/interface.c:1008
 msgid "Export"
-msgstr ""
+msgstr "Экспарт"
 
 #: ../src/interface.c:1013
 msgid "Write to file:"
-msgstr ""
+msgstr "Запісаць у файл:"
 
 #: ../src/interface.c:1034 ../src/interface.c:1046
 msgid "Select"
@@ -1453,7 +1482,7 @@ msgstr ""
 
 #: ../src/interface.c:1164 ../src/interface.c:1227
 msgid "Copy"
-msgstr "Скапіяваць"
+msgstr "Капіраваць"
 
 #: ../src/interface.c:1168
 msgid "Current file is copied and stays unmodified in the old place."
@@ -1461,7 +1490,7 @@ msgstr ""
 
 #: ../src/interface.c:1172 ../src/interface.c:1232
 msgid "Move"
-msgstr "Перамясьціць"
+msgstr "Перамясціць"
 
 #: ../src/interface.c:1176
 msgid "Current file is moved and vanishes from the old place."
@@ -1469,7 +1498,7 @@ msgstr ""
 
 #: ../src/interface.c:1190
 msgid "Archive file"
-msgstr ""
+msgstr "Файл архіва"
 
 #: ../src/interface.c:1254
 msgid "Foreign files"
@@ -1485,7 +1514,7 @@ msgstr ""
 
 #: ../src/interface.c:1284
 msgid "Options"
-msgstr "Можнасьці"
+msgstr "Опцыі"
 
 #: ../src/interface.c:1286
 msgid "Read only"
@@ -1575,7 +1604,7 @@ msgstr ""
 #: ../src/main.c:307
 #, c-format
 msgid "Options:\n"
-msgstr ""
+msgstr "Опцыі:\n"
 
 #: ../src/main.c:308
 #, c-format
@@ -1646,11 +1675,12 @@ msgstr ""
 #. Edit menu
 #: ../src/mainbox.c:298
 msgid "_Edit"
-msgstr "_Рэдагаваньне"
+msgstr "Рэдагаваць"
 
 #: ../src/mainbox.c:308
+#, fuzzy
 msgid "View selected _date"
-msgstr ""
+msgstr "Zobacz wybraną _datę"
 
 #: ../src/mainbox.c:311
 msgid "View selected _week"
@@ -1658,7 +1688,7 @@ msgstr ""
 
 #: ../src/mainbox.c:317
 msgid "Select _Today"
-msgstr "Вылучыць _сёньня"
+msgstr "Выбраць Сёння"
 
 #: ../src/mainbox.c:323
 #, fuzzy
@@ -1672,7 +1702,7 @@ msgstr "_Даведка"
 
 #: ../src/mainbox.c:448
 msgid "Never"
-msgstr ""
+msgstr "Ніколі"
 
 #: ../src/mainbox.c:453
 #, c-format
@@ -1718,7 +1748,7 @@ msgstr "Настаўленьні календара"
 
 #: ../src/parameters.c:528
 msgid "Timezone"
-msgstr "Часавая зона"
+msgstr "Часавы пояс"
 
 #: ../src/parameters.c:543
 msgid "You should always define your local timezone."
@@ -1759,21 +1789,19 @@ msgstr "Паказваць межы"
 
 #: ../src/parameters.c:625
 msgid "Show menu"
-msgstr "Паказваць мэню"
+msgstr "Паказваць меню"
 
 #: ../src/parameters.c:632
 msgid "Show month and year"
 msgstr ""
 
 #: ../src/parameters.c:639
-#, fuzzy
 msgid "Show day names"
-msgstr "Паказваць межы"
+msgstr "Паказваць назвы дзён"
 
 #: ../src/parameters.c:646
-#, fuzzy
 msgid "Show week numbers"
-msgstr "Паказваць межы"
+msgstr "Паказваць нумары тыдняў"
 
 #: ../src/parameters.c:653
 #, fuzzy
@@ -1797,32 +1825,37 @@ msgid "Keep on top"
 msgstr ""
 
 #: ../src/parameters.c:690
+#, fuzzy
 msgid "Show in taskbar"
-msgstr ""
+msgstr "Pokaż na pasku zadań"
 
 #: ../src/parameters.c:697
+#, fuzzy
 msgid "Show in pager"
-msgstr ""
+msgstr "Pokaż na pagerze"
 
 #: ../src/parameters.c:704
+#, fuzzy
 msgid "Show in systray"
-msgstr ""
+msgstr "Pokaż w tacce systemowej"
 
 #: ../src/parameters.c:739
+#, fuzzy
 msgid "Calendar start"
-msgstr "Запуск календара"
+msgstr "Kalendarz start"
 
 #: ../src/parameters.c:744
+#, fuzzy
 msgid "Show"
-msgstr ""
+msgstr "Pokaż"
 
 #: ../src/parameters.c:756
 msgid "Hide"
-msgstr ""
+msgstr "Схаваць"
 
 #: ../src/parameters.c:768
 msgid "Minimized"
-msgstr ""
+msgstr "Мінімізаваны"
 
 #: ../src/parameters.c:793
 msgid "Extra settings"
@@ -1892,7 +1925,7 @@ msgstr ""
 
 #: ../src/parameters.c:938
 msgid "Orage Preferences"
-msgstr "Перавагі Orage"
+msgstr "Настаўленні Orage"
 
 #: ../src/parameters.c:1050
 msgid "First Orage start. Searching default timezone."
@@ -1909,16 +1942,15 @@ msgstr ""
 
 #: ../src/reminder.c:562
 msgid "Reminder "
-msgstr "Нагадвальнік "
+msgstr "Напамінаць "
 
 #: ../src/reminder.c:591
 msgid "Open"
 msgstr "Адкрыць"
 
 #: ../src/reminder.c:722
-#, fuzzy
 msgid "Reminder - Orage"
-msgstr "Нагадвальнік "
+msgstr "Нагадвальнік - Orage"
 
 #: ../src/reminder.c:808
 msgid "Remind me again after the specified time"
@@ -1949,27 +1981,29 @@ msgstr ""
 
 #: ../src/timezone_names.c:36
 msgid "Africa"
-msgstr ""
+msgstr "Афрыка"
 
 #: ../src/timezone_names.c:37
 msgid "Africa/Abidjan"
 msgstr "Афрыка/Абіджан"
 
 #: ../src/timezone_names.c:38
+#, fuzzy
 msgid "Africa/Accra"
-msgstr "Афрыка/Акра"
+msgstr "Africa/Accra"
 
 #: ../src/timezone_names.c:39
+#, fuzzy
 msgid "Africa/Addis_Ababa"
-msgstr "Афрыка/Адыс-Абеба"
+msgstr "Africa/Addis_Ababa"
 
 #: ../src/timezone_names.c:40
 msgid "Africa/Algiers"
-msgstr "Афрыка/Альжыр"
+msgstr "Афрыка/Алжыр"
 
 #: ../src/timezone_names.c:41
 msgid "Africa/Asmera"
-msgstr "Афрыка/Асьмера"
+msgstr "Афрыка/Асмера"
 
 #: ../src/timezone_names.c:42
 msgid "Africa/Bamako"
@@ -2005,7 +2039,7 @@ msgstr "Афрыка/Каір"
 
 #: ../src/timezone_names.c:50
 msgid "Africa/Casablanca"
-msgstr "Афрыка/Касаблянка"
+msgstr "Афрыка/Касабланка"
 
 #: ../src/timezone_names.c:51
 msgid "Africa/Ceuta"
@@ -2021,7 +2055,7 @@ msgstr "Афрыка/Дакар"
 
 #: ../src/timezone_names.c:54
 msgid "Africa/Dar_es_Salaam"
-msgstr "Афрыка/Дар эс Салям"
+msgstr "Афрыка/Дар эс Салам"
 
 #: ../src/timezone_names.c:55
 msgid "Africa/Djibouti"
@@ -2049,7 +2083,7 @@ msgstr "Афрыка/Гарар"
 
 #: ../src/timezone_names.c:61
 msgid "Africa/Johannesburg"
-msgstr "Афрыка/Яганэсбург"
+msgstr "Афрыка/Яханесбург"
 
 #: ../src/timezone_names.c:62
 msgid "Africa/Kampala"
@@ -2081,11 +2115,11 @@ msgstr "Афрыка/Лома"
 
 #: ../src/timezone_names.c:69
 msgid "Africa/Luanda"
-msgstr "Афрыка/Люанда"
+msgstr "Афрыка/Луанда"
 
 #: ../src/timezone_names.c:70
 msgid "Africa/Lubumbashi"
-msgstr "Афрыка/Любумбашы"
+msgstr "Афрыка/Лубумбашы"
 
 #: ../src/timezone_names.c:71
 msgid "Africa/Lusaka"
@@ -2161,504 +2195,499 @@ msgstr "Афрыка/Віндгук"
 
 #: ../src/timezone_names.c:89
 msgid "America"
-msgstr ""
+msgstr "Амерыка"
 
 #: ../src/timezone_names.c:90
 msgid "America/Adak"
-msgstr "Амэрыка/Адак"
+msgstr "Амерыка/Адак"
 
 #: ../src/timezone_names.c:91
 msgid "America/Anchorage"
-msgstr "Амэрыка/Анчураг"
+msgstr "Амерыка/Анкорыдж"
 
 #: ../src/timezone_names.c:92
 msgid "America/Anguilla"
-msgstr "Амэрыка/Анджулія"
+msgstr "Амерыка/Анджулія"
 
 #: ../src/timezone_names.c:93
 msgid "America/Antigua"
-msgstr "Амэрыка/Анцігуа"
+msgstr "Амерыка/Анцігуа"
 
 #: ../src/timezone_names.c:94
 msgid "America/Araguaina"
-msgstr "Амэрыка/Арагуяна"
+msgstr "Амерыка/Арагуяна"
 
 #: ../src/timezone_names.c:95
-#, fuzzy
 msgid "America/Argentina/Buenos_Aires"
-msgstr "Амэрыка/Буанас-Айрэс"
+msgstr "Амерыка/Аргенціна/Буэнас-Айрэс"
 
 #: ../src/timezone_names.c:96
-#, fuzzy
 msgid "America/Argentina/Catamarca"
-msgstr "Амэрыка/Катамарка"
+msgstr "Амерыка/Аргенціна/Катамарка"
 
 #: ../src/timezone_names.c:97
-#, fuzzy
 msgid "America/Argentina/Cordoba"
-msgstr "Амэрыка/Кардоба"
+msgstr "Амерыка/Аргенціна/Кардоба"
 
 #: ../src/timezone_names.c:98
-#, fuzzy
 msgid "America/Argentina/Jujuy"
-msgstr "Амэрыка/Яджі"
+msgstr "Амерыка/Аргенціна/Яджы"
 
 #: ../src/timezone_names.c:99
-#, fuzzy
 msgid "America/Argentina/Mendoza"
-msgstr "Амэрыка/Мэндоза"
+msgstr "Амерыка/Аргенціна/Мендоза"
 
 #: ../src/timezone_names.c:100
 msgid "America/Aruba"
-msgstr "Амэрыка/Аруба"
+msgstr "Амерыка/Аруба"
 
 #: ../src/timezone_names.c:101
 msgid "America/Asuncion"
-msgstr "Амэрыка/Асунсьён"
+msgstr "Амерыка/Асунсьён"
 
 #: ../src/timezone_names.c:102
 msgid "America/Barbados"
-msgstr "Амэрыка/Барбадас"
+msgstr "Амерыка/Барбадас"
 
 #: ../src/timezone_names.c:103
 msgid "America/Belem"
-msgstr "Амэрыка/Бэлем"
+msgstr "Амерыка/Белем"
 
 #: ../src/timezone_names.c:104
 msgid "America/Belize"
-msgstr "Амэрыка/Беліз"
+msgstr "Амерыка/Беліз"
 
 #: ../src/timezone_names.c:105
 msgid "America/Boa_Vista"
-msgstr "Амэрыка/Боа-Віста"
+msgstr "Амерыка/Боа-Віста"
 
 #: ../src/timezone_names.c:106
 msgid "America/Bogota"
-msgstr "Амэрыка/Багата"
+msgstr "Амерыка/Багата"
 
 #: ../src/timezone_names.c:107
 msgid "America/Boise"
-msgstr "Амэрыка/Бойзе"
+msgstr "Амерыка/Бойзе"
 
 #: ../src/timezone_names.c:108
 msgid "America/Buenos_Aires"
-msgstr "Амэрыка/Буанас-Айрэс"
+msgstr "Амерыка/Буэнас-Айрэс"
 
 #: ../src/timezone_names.c:109
 msgid "America/Cambridge_Bay"
-msgstr "Амэрыка/Кэмбрыдж-Бай"
+msgstr "Амерыка/Кембрыдж-Бэй"
 
 #: ../src/timezone_names.c:110
 msgid "America/Cancun"
-msgstr "Амэрыка/Канкун"
+msgstr "Амерыка/Канкун"
 
 #: ../src/timezone_names.c:111
 msgid "America/Caracas"
-msgstr "Амэрыка/Каракас"
+msgstr "Амерыка/Каракас"
 
 #: ../src/timezone_names.c:112
 msgid "America/Catamarca"
-msgstr "Амэрыка/Катамарка"
+msgstr "Амерыка/Катамарка"
 
 #: ../src/timezone_names.c:113
 msgid "America/Cayenne"
-msgstr "Амэрыка/Кайін"
+msgstr "Амерыка/Каен"
 
 #: ../src/timezone_names.c:114
 msgid "America/Cayman"
-msgstr "Амэрыка/Кайман"
+msgstr "Амерыка/Кайман"
 
 #: ../src/timezone_names.c:115
 msgid "America/Chicago"
-msgstr "Амэрыка/Чыкага"
+msgstr "Амерыка/Чыкага"
 
 #: ../src/timezone_names.c:116
 msgid "America/Chihuahua"
-msgstr "Амэрыка/Чыхуахуа"
+msgstr "Амерыка/Чыхуахуа"
 
 #: ../src/timezone_names.c:117
 msgid "America/Cordoba"
-msgstr "Амэрыка/Кардоба"
+msgstr "Амерыка/Кардоба"
 
 #: ../src/timezone_names.c:118
 msgid "America/Costa_Rica"
-msgstr "Амэрыка/Коста-Рыка"
+msgstr "Амерыка/Коста-Рыка"
 
 #: ../src/timezone_names.c:119
 msgid "America/Cuiaba"
-msgstr "Амэрыка/Куяба"
+msgstr "Амерыка/Куяба"
 
 #: ../src/timezone_names.c:120
 msgid "America/Curacao"
-msgstr "Амэрыка/Курацао"
+msgstr "Амерыка/Кюрасаа"
 
 #: ../src/timezone_names.c:121
 msgid "America/Dawson"
-msgstr "Амэрыка/Даўнсан"
+msgstr "Амерыка/Доўсан"
 
 #: ../src/timezone_names.c:122
 msgid "America/Dawson_Creek"
-msgstr "Амэрыка/Даўнсан-Крык"
+msgstr "Амерыка/Доўсан-Крык"
 
 #: ../src/timezone_names.c:123
 msgid "America/Denver"
-msgstr "Амэрыка/Дэнвэр"
+msgstr "Амерыка/Дэнвер"
 
 #: ../src/timezone_names.c:124
 msgid "America/Detroit"
-msgstr "Амэрыка/Дэтройт"
+msgstr "Амерыка/Дэтройт"
 
 #: ../src/timezone_names.c:125
 msgid "America/Dominica"
-msgstr "Амэрыка/Дамініка"
+msgstr "Амерыка/Дамініка"
 
 #: ../src/timezone_names.c:126
 msgid "America/Edmonton"
-msgstr "Амэрыка/Эдмантан"
+msgstr "Амерыка/Эдмантан"
 
 #: ../src/timezone_names.c:127
 msgid "America/Eirunepe"
-msgstr "Амэрыка/Эйрунеп"
+msgstr "Амерыка/Эйрунеп"
 
 #: ../src/timezone_names.c:128
 msgid "America/El_Salvador"
-msgstr "Амэрыка/Эль-Сальвадор"
+msgstr "Амерыка/Эль-Сальвадор"
 
 #: ../src/timezone_names.c:129
 msgid "America/Fortaleza"
-msgstr "Амэрыка/Фарталіза"
+msgstr "Амерыка/Фарталіза"
 
 #: ../src/timezone_names.c:130
 msgid "America/Glace_Bay"
-msgstr "Амэрыка/Гляцэ-Бай"
+msgstr "Амерыка/Глэйс-Бэй"
 
 #: ../src/timezone_names.c:131
 msgid "America/Godthab"
-msgstr "Амэрыка/Гудсаб"
+msgstr "Амерыка/Нук"
 
 #: ../src/timezone_names.c:132
 msgid "America/Goose_Bay"
-msgstr "Амэрыка/Гузе-Бай"
+msgstr "Амерыка/Гіз-Бэй"
 
 #: ../src/timezone_names.c:133
 msgid "America/Grand_Turk"
-msgstr "Амэрыка/Гранд-Турк"
+msgstr "Амерыка/Гранд-Турк"
 
 #: ../src/timezone_names.c:134
 msgid "America/Grenada"
-msgstr "Амэрыка/Грэнада"
+msgstr "Амерыка/Грэнада"
 
 #: ../src/timezone_names.c:135
 msgid "America/Guadeloupe"
-msgstr "Амэрыка/Гвадэлупа"
+msgstr "Амерыка/Гвадэлупа"
 
 #: ../src/timezone_names.c:136
 msgid "America/Guatemala"
-msgstr "Амэрыка/Гватэмала"
+msgstr "Амерыка/Гватэмала"
 
 #: ../src/timezone_names.c:137
 msgid "America/Guayaquil"
-msgstr "Амэрыка/Гуяквіл"
+msgstr "Амерыка/Гуяквіл"
 
 #: ../src/timezone_names.c:138
 msgid "America/Guyana"
-msgstr "Амэрыка/Гаяна"
+msgstr "Амерыка/Гаяна"
 
 #: ../src/timezone_names.c:139
 msgid "America/Halifax"
-msgstr "Амэрыка/Галіхвакс"
+msgstr "Амерыка/Галіфакс"
 
 #: ../src/timezone_names.c:140
 msgid "America/Havana"
-msgstr "Амэрыка/Гавана"
+msgstr "Амерыка/Гавана"
 
 #: ../src/timezone_names.c:141
 msgid "America/Hermosillo"
-msgstr "Амэрыка/Гермасіла"
+msgstr "Амерыка/Гермасіла"
 
 #: ../src/timezone_names.c:142
 msgid "America/Indiana/Indianapolis"
-msgstr "Амэрыка/Індыяна/Індыянаполіс"
+msgstr "Амерыка/Індыяна/Індыянаполіс"
 
 #: ../src/timezone_names.c:143
 msgid "America/Indiana/Knox"
-msgstr "Амэрыка/Індыяна/Кнокс"
+msgstr "Амерыка/Індыяна/Кнокс"
 
 #: ../src/timezone_names.c:144
 msgid "America/Indiana/Marengo"
-msgstr "Амэрыка/Індыяна/Марэнга"
+msgstr "Амерыка/Індыяна/Марэнга"
 
 #: ../src/timezone_names.c:145
 msgid "America/Indiana/Vevay"
-msgstr "Амэрыка/Індыяна/Вівэй"
+msgstr "Амерыка/Індыяна/Вівэй"
 
 #: ../src/timezone_names.c:146
 msgid "America/Indianapolis"
-msgstr "Амэрыка/Індыянаполіс"
+msgstr "Амерыка/Індыянаполіс"
 
 #: ../src/timezone_names.c:147
 msgid "America/Inuvik"
-msgstr "Амэрыка/Інівік"
+msgstr "Амерыка/Інувік"
 
 #: ../src/timezone_names.c:148
 msgid "America/Iqaluit"
-msgstr "Амэрыка/Іквілют"
+msgstr "Амерыка/Ікалуіт"
 
 #: ../src/timezone_names.c:149
 msgid "America/Jamaica"
-msgstr "Амэрыка/Ямайка"
+msgstr "Амерыка/Ямайка"
 
 #: ../src/timezone_names.c:150
 msgid "America/Jujuy"
-msgstr "Амэрыка/Яджі"
+msgstr "Амерыка/Жужуй"
 
 #: ../src/timezone_names.c:151
 msgid "America/Juneau"
-msgstr "Амэрыка/Янея"
+msgstr "Амерыка/Джуна"
 
 #: ../src/timezone_names.c:152
 msgid "America/Kentucky/Louisville"
-msgstr "Амэрыка/Кентукі/Лёўсьвіль"
+msgstr "Амерыка/Кентукі/Луісвіл"
 
 #: ../src/timezone_names.c:153
 msgid "America/Kentucky/Monticello"
-msgstr "Амэрыка/Кентукі/Манцічэла"
+msgstr "Амерыка/Кентукі/Манцічэла"
 
 #: ../src/timezone_names.c:154
 msgid "America/La_Paz"
-msgstr "Амэрыка/Ля-паз"
+msgstr "Амерыка/Ла-Пас"
 
 #: ../src/timezone_names.c:155
 msgid "America/Lima"
-msgstr "Амэрыка/Ліма"
+msgstr "Амерыка/Ліма"
 
 #: ../src/timezone_names.c:156
 msgid "America/Los_Angeles"
-msgstr "Амэрыка/Лос-Анжэлес"
+msgstr "Амерыка/Лос-Анджэлес"
 
 #: ../src/timezone_names.c:157
 msgid "America/Louisville"
-msgstr "Амэрыка/Лёўсьвіль"
+msgstr "Амерыка/Луісвіл"
 
 #: ../src/timezone_names.c:158
 msgid "America/Maceio"
-msgstr "Амэрыка/Мацейо"
+msgstr "Амерыка/Maceio"
 
 #: ../src/timezone_names.c:159
 msgid "America/Managua"
-msgstr "Амэрыка/Манагуа"
+msgstr "Амерыка/Managua"
 
 #: ../src/timezone_names.c:160
 msgid "America/Manaus"
-msgstr "Амэрыка/Манаўс"
+msgstr "Амерыка/Manaus"
 
 #: ../src/timezone_names.c:161
 msgid "America/Martinique"
-msgstr "Амэрыка/Марцініка"
+msgstr "Амерыка/Martynika"
 
 #: ../src/timezone_names.c:162
 msgid "America/Mazatlan"
-msgstr "Амэрыка/Мазатлян"
+msgstr "Амерыка/Mazaltan"
 
 #: ../src/timezone_names.c:163
 msgid "America/Mendoza"
-msgstr "Амэрыка/Мэндоза"
+msgstr "Амерыка/Мендоза"
 
 #: ../src/timezone_names.c:164
 msgid "America/Menominee"
-msgstr "Амэрыка/Мэнаміні"
+msgstr "Амерыка/Menominee"
 
 #: ../src/timezone_names.c:165
 msgid "America/Merida"
-msgstr "Амэрыка/Мэрыда"
+msgstr "Амерыка/Мерыда"
 
 #: ../src/timezone_names.c:166
 msgid "America/Mexico_City"
-msgstr "Амэрыка/Мэхіко"
+msgstr "Амерыка/Мехіка-Сіці"
 
 #: ../src/timezone_names.c:167
 msgid "America/Miquelon"
-msgstr "Амэрыка/Мікелён"
+msgstr "Амерыка/Miquelon"
 
 #: ../src/timezone_names.c:168
 msgid "America/Monterrey"
-msgstr "Амэрыка/Монтэрэй"
+msgstr "Амерыка/Мантэрэй"
 
 #: ../src/timezone_names.c:169
 msgid "America/Montevideo"
-msgstr "Амэрыка/Монтэвідэа"
+msgstr "Амерыка/Мантэвідэа"
 
 #: ../src/timezone_names.c:170
 msgid "America/Montreal"
-msgstr "Амэрыка/Монрэаль"
+msgstr "Амерыка/Манрэаль"
 
 #: ../src/timezone_names.c:171
 msgid "America/Montserrat"
-msgstr "Амэрыка/Монтсэрат"
+msgstr "Амерыка/Montserrat"
 
 #: ../src/timezone_names.c:172
 msgid "America/Nassau"
-msgstr "Амэрыка/Нассаў"
+msgstr "Амерыка/Nassau"
 
 #: ../src/timezone_names.c:173
 msgid "America/New_York"
-msgstr "Амэрыка/Ню-Ёрк"
+msgstr "Амерыка/Нью-Ёрк"
 
 #: ../src/timezone_names.c:174
 msgid "America/Nipigon"
-msgstr "Амэрыка/Ніпігон"
+msgstr "Амерыка/Nipigon"
 
 #: ../src/timezone_names.c:175
 msgid "America/Nome"
-msgstr "Амэрыка/Ном"
+msgstr "Амерыка/Nome"
 
 #: ../src/timezone_names.c:176
 msgid "America/Noronha"
-msgstr "Амэрыка/Наронга"
+msgstr "Амерыка/Noronha"
 
 #: ../src/timezone_names.c:177
 msgid "America/Panama"
-msgstr "Амэрыка/Панама"
+msgstr "Амерыка/Panama"
 
 #: ../src/timezone_names.c:178
 msgid "America/Pangnirtung"
-msgstr "Амэрыка/Пангніцюнг"
+msgstr "Амерыка/Pangnirtung"
 
 #: ../src/timezone_names.c:179
 msgid "America/Paramaribo"
-msgstr "Амэрыка/Парамарыба"
+msgstr "Амерыка/Paramaribo"
 
 #: ../src/timezone_names.c:180
 msgid "America/Phoenix"
-msgstr "Амэрыка/Фенікс"
+msgstr "Амерыка/Phoenix"
 
 #: ../src/timezone_names.c:181
 msgid "America/Port-au-Prince"
-msgstr "Амэрыка/Порт-аў-Прынц"
+msgstr "Амерыка/Port-au-Prince"
 
 #: ../src/timezone_names.c:182
 msgid "America/Port_of_Spain"
-msgstr "Амэрыка/Гішпанскі порт"
+msgstr "Амерыка/Port_of_Spain"
 
 #: ../src/timezone_names.c:183
 msgid "America/Porto_Velho"
-msgstr "Амэрыка/Порта-Вэльга"
+msgstr "Амерыка/Porto_Velho"
 
 #: ../src/timezone_names.c:184
 msgid "America/Puerto_Rico"
-msgstr "Амэрыка/Пуэрта-Рэка"
+msgstr "Амерыка/Puerto_Rico"
 
 #: ../src/timezone_names.c:185
 msgid "America/Rainy_River"
-msgstr "Амэрыка/Рэйні-Рыва"
+msgstr "Амерыка/Rainy_River"
 
 #: ../src/timezone_names.c:186
 msgid "America/Rankin_Inlet"
-msgstr "Амэрыка/Ранкін-Інлет"
+msgstr "Амерыка/Rankin_Inlet"
 
 #: ../src/timezone_names.c:187
 msgid "America/Recife"
-msgstr "Амэрыка/Рэцыф"
+msgstr "Амерыка/Recife"
 
 #: ../src/timezone_names.c:188
 msgid "America/Regina"
-msgstr "Амэрыка/Рэгуна"
+msgstr "Амерыка/Regina"
 
 #: ../src/timezone_names.c:189
 msgid "America/Rio_Branco"
-msgstr "Амэрыка/Рыя-Бранка"
+msgstr "Амерыка/Rio_Branco"
 
 #: ../src/timezone_names.c:190
 msgid "America/Rosario"
-msgstr "Амэрыка/Разаліё"
+msgstr "Амерыка/Rosario"
 
 #: ../src/timezone_names.c:191
 msgid "America/Santiago"
-msgstr "Амэрыка/Санц'яга"
+msgstr "Амерыка/Santiago"
 
 #: ../src/timezone_names.c:192
 msgid "America/Santo_Domingo"
-msgstr "Амэрыка/Санта-Дамінга"
+msgstr "Амерыка/Santo_Domingo"
 
 #: ../src/timezone_names.c:193
 msgid "America/Sao_Paulo"
-msgstr "Амэрыка/Сяо-Паўла"
+msgstr "Амерыка/Sao_Paulo"
 
 #: ../src/timezone_names.c:194
 msgid "America/Scoresbysund"
-msgstr "Амэрыка/Скорэбысанд"
+msgstr "Амерыка/Scoresbysund"
 
 #: ../src/timezone_names.c:195
 msgid "America/Shiprock"
-msgstr "Амэрыка/Шыпрок"
+msgstr "Амерыка/Shiprock"
 
 #: ../src/timezone_names.c:196
 msgid "America/St_Johns"
-msgstr "Амэрыка/Санта-Джонс"
+msgstr "Амерыка/St_Johns"
 
 #: ../src/timezone_names.c:197
 msgid "America/St_Kitts"
-msgstr "Амэрыка/Санта-Кітс"
+msgstr "Амерыка/St_Kitts"
 
 #: ../src/timezone_names.c:198
 msgid "America/St_Lucia"
-msgstr "Амэрыка/Санта-Лючыя"
+msgstr "Амерыка/St_Lucia"
 
 #: ../src/timezone_names.c:199
 msgid "America/St_Thomas"
-msgstr "Амэрыка/Sанта-Томас"
+msgstr "Амерыка/St_Thomas"
 
 #: ../src/timezone_names.c:200
 msgid "America/St_Vincent"
-msgstr "Амэрыка/Санта-Вінцэнт"
+msgstr "Амерыка/St_Vincent"
 
 #: ../src/timezone_names.c:201
 msgid "America/Swift_Current"
-msgstr "Амэрыка/Свіфт-Карэнт"
+msgstr "Амерыка/Swift_Current"
 
 #: ../src/timezone_names.c:202
 msgid "America/Tegucigalpa"
-msgstr "Амэрыка/Тэгуцыгалпа"
+msgstr "Амерыка/Tengucilapa"
 
 #: ../src/timezone_names.c:203
 msgid "America/Thule"
-msgstr "Амэрыка/Тал"
+msgstr "Амерыка/Thule"
 
 #: ../src/timezone_names.c:204
 msgid "America/Thunder_Bay"
-msgstr "Амэрыка/Тандэр-Бай"
+msgstr "Амерыка/Thunder_Bay"
 
 #: ../src/timezone_names.c:205
 msgid "America/Tijuana"
-msgstr "Амэрыка/Ціяна"
+msgstr "Амерыка/Tijuana"
 
 #: ../src/timezone_names.c:206
 msgid "America/Tortola"
-msgstr "Амэрыка/Тартала"
+msgstr "Амерыка/Tortola"
 
 #: ../src/timezone_names.c:207
 msgid "America/Vancouver"
-msgstr "Амэрыка/Ванкувэр"
+msgstr "Амерыка/Vancouver"
 
 #: ../src/timezone_names.c:208
 msgid "America/Whitehorse"
-msgstr "Амэрыка/Вайтхос"
+msgstr "Амерыка/Whitehorse"
 
 #: ../src/timezone_names.c:209
 msgid "America/Winnipeg"
-msgstr "Амэрыка/Вініпег"
+msgstr "Амерыка/Winnipeg"
 
 #: ../src/timezone_names.c:210
 msgid "America/Yakutat"
-msgstr "Амэрыка/Якутат"
+msgstr "Амерыка/Yakutat"
 
 #: ../src/timezone_names.c:211
 msgid "America/Yellowknife"
-msgstr "Амэрыка/Елаўкніф"
+msgstr "Амерыка/Yellowknife"
 
 #: ../src/timezone_names.c:212
 msgid "Antarctica"
-msgstr "Антарктыка"
+msgstr "Антарктыда"
 
 #: ../src/timezone_names.c:213
 msgid "Antarctica/Casey"
@@ -2698,15 +2727,15 @@ msgstr "Антарктыда/Усход"
 
 #: ../src/timezone_names.c:222
 msgid "Arctic"
-msgstr ""
+msgstr "Арктыка"
 
 #: ../src/timezone_names.c:223
 msgid "Arctic/Longyearbyen"
-msgstr "Арктыка/Лёнгырбаен"
+msgstr "Арктыка/Longyearbyen"
 
 #: ../src/timezone_names.c:224
 msgid "Asia"
-msgstr ""
+msgstr "Азія"
 
 #: ../src/timezone_names.c:225
 msgid "Asia/Aden"
@@ -3034,7 +3063,7 @@ msgstr "Атлянтыка/Рэйк'явік"
 
 #: ../src/timezone_names.c:306
 msgid "Atlantic/South_Georgia"
-msgstr "Атлянтыка/Паўдзенная Джорджыя"
+msgstr "Атлянтыка/Паўднёвая Джорджыя"
 
 #: ../src/timezone_names.c:307
 msgid "Atlantic/St_Helena"
@@ -3078,7 +3107,7 @@ msgstr "Аўстралія/Лорд-Хоў"
 
 #: ../src/timezone_names.c:317
 msgid "Australia/Melbourne"
-msgstr "Аўстралія/Мэльбурн"
+msgstr "Аўстралія/Мельбурн"
 
 #: ../src/timezone_names.c:318
 msgid "Australia/Perth"
@@ -3090,215 +3119,216 @@ msgstr "Аўстралія/Сідней"
 
 #: ../src/timezone_names.c:320
 msgid "Europe"
-msgstr "Эўропа"
+msgstr "Еўропа"
 
 #: ../src/timezone_names.c:321
 msgid "Europe/Amsterdam"
-msgstr "Эўропа/Амстэрдам"
+msgstr "Еўропа/Amsterdam"
 
 #: ../src/timezone_names.c:322
 msgid "Europe/Andorra"
-msgstr "Эўропа/Андора"
+msgstr "Еўропа/Andora"
 
 #: ../src/timezone_names.c:323
 msgid "Europe/Athens"
-msgstr "Эўропа/Атэнс"
+msgstr "Еўропа/Ateny"
 
 #: ../src/timezone_names.c:324
 msgid "Europe/Belfast"
-msgstr "Эўропа/Белфаст"
+msgstr "Еўропа/Belfast"
 
 #: ../src/timezone_names.c:325
 msgid "Europe/Belgrade"
-msgstr "Эўропа/Белград"
+msgstr "Еўропа/Belgrad"
 
 #: ../src/timezone_names.c:326
 msgid "Europe/Berlin"
-msgstr "Эўропа/Бэрлін"
+msgstr "Еўропа/Berlin"
 
 #: ../src/timezone_names.c:327
 msgid "Europe/Bratislava"
-msgstr "Эўропа/Браціслава"
+msgstr "Еўропа/Bratysława"
 
 #: ../src/timezone_names.c:328
 msgid "Europe/Brussels"
-msgstr "Эўропа/Брусэль"
+msgstr "Еўропа/Bruksela"
 
 #: ../src/timezone_names.c:329
 msgid "Europe/Bucharest"
-msgstr "Эўропа/Бухарэст"
+msgstr "Еўропа/Bukareszt"
 
 #: ../src/timezone_names.c:330
 msgid "Europe/Budapest"
-msgstr "Эўропа/Будапэшт"
+msgstr "Еўропа/Budapeszt"
 
 #: ../src/timezone_names.c:331
 msgid "Europe/Chisinau"
-msgstr "Эўропа/Чызінаў"
+msgstr "Еўропа/Kiszyniów"
 
 #: ../src/timezone_names.c:332
 msgid "Europe/Copenhagen"
-msgstr "Эўропа/Капэнгаген"
+msgstr "Еўропа/Kopenhaga"
 
 #: ../src/timezone_names.c:333
 msgid "Europe/Dublin"
-msgstr "Эўропа/Дублін"
+msgstr "Еўропа/Dublin"
 
 #: ../src/timezone_names.c:334
 msgid "Europe/Gibraltar"
-msgstr "Эўропа/Гібральтар"
+msgstr "Еўропа/Gibraltar"
 
 #: ../src/timezone_names.c:335
 msgid "Europe/Helsinki"
-msgstr "Эўропа/Хэльсынкі"
+msgstr "Еўропа/Helsinki"
 
 #: ../src/timezone_names.c:336
 msgid "Europe/Istanbul"
-msgstr "Эўропа/Стамбул"
+msgstr "Еўропа/Istanbuł"
 
 #: ../src/timezone_names.c:337
 msgid "Europe/Kaliningrad"
-msgstr "Эўропа/Калінінград"
+msgstr "Еўропа/Kaliningrad"
 
 #: ../src/timezone_names.c:338
 msgid "Europe/Kiev"
-msgstr "Эўропа/Кіеў"
+msgstr "Еўропа/Kijów"
 
 #: ../src/timezone_names.c:339
 msgid "Europe/Lisbon"
-msgstr "Эўропа/Лісабон"
+msgstr "Еўропа/Lizbona"
 
 #: ../src/timezone_names.c:340
 msgid "Europe/Ljubljana"
-msgstr "Эўропа/Любляна"
+msgstr "Еўропа/Lublana"
 
 #: ../src/timezone_names.c:341
 msgid "Europe/London"
-msgstr "Эўропа/Лёндан"
+msgstr "Еўропа/Londyn"
 
 #: ../src/timezone_names.c:342
 msgid "Europe/Luxembourg"
-msgstr "Эўропа/Люксэмбург"
+msgstr "Еўропа/Luksemburg"
 
 #: ../src/timezone_names.c:343
 msgid "Europe/Madrid"
-msgstr "Эўропа/Мадрыд"
+msgstr "Еўропа/Madryd"
 
 #: ../src/timezone_names.c:344
 msgid "Europe/Malta"
-msgstr "Эўропа/Мальта"
+msgstr "Еўропа/Malta"
 
 #: ../src/timezone_names.c:345
 msgid "Europe/Minsk"
-msgstr "Эўропа/Менск"
+msgstr "Еўропа/Мінск"
 
 #: ../src/timezone_names.c:346
 msgid "Europe/Monaco"
-msgstr "Эўропа/Манака"
+msgstr "Еўропа/Monako"
 
 #: ../src/timezone_names.c:347
 msgid "Europe/Moscow"
-msgstr "Эўропа/Масква"
+msgstr "Еўропа/Moskwa"
 
 #: ../src/timezone_names.c:348
 msgid "Europe/Nicosia"
-msgstr "Эўропа/Нікосія"
+msgstr "Еўропа/Nikozja"
 
 #: ../src/timezone_names.c:349
 msgid "Europe/Oslo"
-msgstr "Эўропа/Осла"
+msgstr "Еўропа/Oslo"
 
 #: ../src/timezone_names.c:350
 msgid "Europe/Paris"
-msgstr "Эўропа/Парыж"
+msgstr "Еўропа/Paryż"
 
 #: ../src/timezone_names.c:351
 msgid "Europe/Prague"
-msgstr "Эўропа/Прага"
+msgstr "Еўропа/Praga"
 
 #: ../src/timezone_names.c:352
 msgid "Europe/Riga"
-msgstr "Эўропа/Рыга"
+msgstr "Еўропа/Ryga"
 
 #: ../src/timezone_names.c:353
 msgid "Europe/Rome"
-msgstr "Эўропа/Рым"
+msgstr "Еўропа/Rzym"
 
 #: ../src/timezone_names.c:354
 msgid "Europe/Samara"
-msgstr "Эўропа/Самара"
+msgstr "Еўропа/Samara"
 
 #: ../src/timezone_names.c:355
 msgid "Europe/San_Marino"
-msgstr "Эўропа/Сан-Марына"
+msgstr "Еўропа/San_Marino"
 
 #: ../src/timezone_names.c:356
 msgid "Europe/Sarajevo"
-msgstr "Эўропа/Сараева"
+msgstr "Еўропа/Sarajewo"
 
 #: ../src/timezone_names.c:357
 msgid "Europe/Simferopol"
-msgstr "Эўропа/Сімфэропаль"
+msgstr "Еўропа/Symferopol"
 
 #: ../src/timezone_names.c:358
 msgid "Europe/Skopje"
-msgstr "Эўропа/Скоп'е"
+msgstr "Еўропа/Skopje"
 
 #: ../src/timezone_names.c:359
 msgid "Europe/Sofia"
-msgstr "Эўропа/Сафія"
+msgstr "Еўропа/Sofia"
 
 #: ../src/timezone_names.c:360
 msgid "Europe/Stockholm"
-msgstr "Эўропа/Стакгольм"
+msgstr "Еўропа/Sztokholm"
 
 #: ../src/timezone_names.c:361
 msgid "Europe/Tallinn"
-msgstr "Эўропа/Талін"
+msgstr "Еўропа/Tallin"
 
 #: ../src/timezone_names.c:362
 msgid "Europe/Tirane"
-msgstr "Эўропа/Цірана"
+msgstr "Еўропа/Tirana"
 
 #: ../src/timezone_names.c:363
 msgid "Europe/Uzhgorod"
-msgstr "Эўропа/Ужгарад"
+msgstr "Еўропа/Użhorod"
 
 #: ../src/timezone_names.c:364
 msgid "Europe/Vaduz"
-msgstr "Эўропа/Вадуц"
+msgstr "Еўропа/Vaduz"
 
 #: ../src/timezone_names.c:365
 msgid "Europe/Vatican"
-msgstr "Эўропа/Ватыкан"
+msgstr "Еўропа/Watykan"
 
 #: ../src/timezone_names.c:366
 msgid "Europe/Vienna"
-msgstr "Эўропа/Вена"
+msgstr "Еўропа/Wiedeń"
 
 #: ../src/timezone_names.c:367
 msgid "Europe/Vilnius"
-msgstr "Эўропа/Вільня"
+msgstr "Еўропа/Wilno"
 
 #: ../src/timezone_names.c:368
 msgid "Europe/Warsaw"
-msgstr "Эўропа/Варшава"
+msgstr "Еўропа/Warszawa"
 
 #: ../src/timezone_names.c:369
 msgid "Europe/Zagreb"
-msgstr "Эўропа/Заграб"
+msgstr "Еўропа/Zagrzeb"
 
 #: ../src/timezone_names.c:370
 msgid "Europe/Zaporozhye"
-msgstr "Эўропа/Запарожжа"
+msgstr "Еўропа/Zaporoże"
 
 #: ../src/timezone_names.c:371
 msgid "Europe/Zurich"
-msgstr "Эўропа/Цюрых"
+msgstr "Еўропа/Zurych"
 
 #: ../src/timezone_names.c:372
+#, fuzzy
 msgid "Indian"
-msgstr ""
+msgstr "Ocean Indyjski"
 
 #: ../src/timezone_names.c:373
 msgid "Indian/Antananarivo"
@@ -3346,7 +3376,7 @@ msgstr "Індыйскі акіян/Рэюніён"
 
 #: ../src/timezone_names.c:384
 msgid "Pacific"
-msgstr ""
+msgstr "Ціхі акіян"
 
 #: ../src/timezone_names.c:385
 msgid "Pacific/Apia"
@@ -3510,7 +3540,7 @@ msgstr "Новая сустрэча"
 
 #: ../src/tray_icon.c:485
 msgid "About Orage"
-msgstr ""
+msgstr "Пра Orage"
 
 #: ../panel-plugin/xfce4-orageclock-plugin.desktop.in.in.h:1
 msgid "Orage Panel Clock"
@@ -3540,86 +3570,74 @@ msgid "Settings for the Xfce 4 Calendar Application (Orage)"
 msgstr ""
 
 #: ../xfcalendar.desktop.in.h:2
+#, fuzzy
 msgid "Desktop calendar"
-msgstr "Настольны каляндар"
+msgstr "Kalendarz pulpitu"
 
 #: ../xfcalendar.desktop.in.h:3
-#, fuzzy
 msgid "Orage Calendar"
-msgstr "Orage - Каляндар"
+msgstr "Каляндар Orage"
 
-#~ msgid "Contributor"
-#~ msgstr "Укладальнік"
+#~ msgid "%m/%d/%Y"
+#~ msgstr "%m/%d/%Y"
+
+#~ msgid "1 year"
+#~ msgstr "1 год"
+
+#~ msgid "3 months"
+#~ msgstr "3 месяцы"
+
+#~ msgid "6 months"
+#~ msgstr "6 месяцаў"
+
+#~ msgid "Application"
+#~ msgstr "Дастасаванне"
+
+#~ msgid "Archives"
+#~ msgstr "Архівы"
+
+#~ msgid "Button Label|Orage"
+#~ msgstr "Orage"
+
+#~ msgid "Calendar window"
+#~ msgstr "Вакно каляндара"
+
+#~ msgid "Clear"
+#~ msgstr "Ачысціць"
+
+#~ msgid "Core developer"
+#~ msgstr "Галоўны распрацоўнік"
+
+#~ msgid "Hidden"
+#~ msgstr "Схавана"
+
+#~ msgid "Open archive file..."
+#~ msgstr "Адкрыць файл архіву..."
+
+#~ msgid "Orage Clock"
+#~ msgstr "Гадзіннік Orage"
+
+#~ msgid "Orage clock"
+#~ msgstr "Гадзіннік Orage"
+
+#~ msgid "Properties"
+#~ msgstr "Уласцівасці"
+
+#~ msgid "Select timezone"
+#~ msgstr "Выберыце часавы пояс"
 
 #~ msgid "Warning"
 #~ msgstr "Увага"
 
-#~ msgid "Select always today"
-#~ msgstr "Заўсёды вылучыць сёньня"
+#~ msgid "What time and date is it?"
+#~ msgstr "Які зараз час і дата?"
 
-#~ msgid "Ending time adjustment mode"
-#~ msgstr "Завяршэньне рэжыму карэкцыі часу"
+#~ msgid "Xfce 4 Calendar Settings"
+#~ msgstr "Настаўленні Календара Xfce 4"
 
-#~ msgid "Starting time adjustment mode"
-#~ msgstr "Запуск рэжыму карэкцыі часу"
-
-#~ msgid "Select timezone"
-#~ msgstr "Вылучыце часавы пояс"
-
-#~ msgid "Modify Clock "
-#~ msgstr "Зьмяніць гадзіньнік"
-
-#~ msgid "Modify Preferences"
-#~ msgstr "Зьмяніць перавагі"
-
-#~ msgid "Monday"
-#~ msgstr "Панядзелак"
-
-#~ msgid "Tuesday"
-#~ msgstr "Аўторак"
-
-#~ msgid "Wednesday"
-#~ msgstr "Серада"
-
-#~ msgid "Thursday"
-#~ msgstr "Чацьвер"
-
-#~ msgid "Friday"
-#~ msgstr "Пятніца"
-
-#~ msgid "Saturday"
-#~ msgstr "Субота"
-
-#~ msgid "Sunday"
-#~ msgstr "Нядзела"
+#~ msgid "never"
+#~ msgstr "ніколі"
 
 #, fuzzy
-#~ msgid "Days"
-#~ msgstr "дні"
-
-#, fuzzy
-#~ msgid "Calendar Files"
-#~ msgstr "Каляндар"
-
-#, fuzzy
-#~ msgid "Calendar borders"
-#~ msgstr "Каляндар"
-
-#~ msgid "Core developer"
-#~ msgstr "Асноўны распрацоўнік"
-
-#~ msgid ""
-#~ "You will remove all information \n"
-#~ "associated with this date."
-#~ msgstr ""
-#~ "Вы выдаліце ўсе зьвесткі,\n"
-#~ "зьвязаныя з гэтай датай."
-
-#~ msgid "Clear"
-#~ msgstr "Ачысьціць"
-
-#~ msgid "This should not happen"
-#~ msgstr "Гэта не павінна было здарыцца"
-
-#~ msgid "Cannot create MCS client channel"
-#~ msgstr "Немагчыма стварыць кліенцкі MCS канал"
+#~ msgid "uid"
+#~ msgstr "uid"
