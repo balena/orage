@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: orage 4.3.90.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-01-03 14:00+0200\n"
-"PO-Revision-Date: 2012-08-19 21:43+0300\n"
+"PO-Revision-Date: 2012-08-24 01:01+0300\n"
 "Last-Translator: Efstathios Iosifidis <iosifidis@opensuse.org>\n"
 "Language-Team: Ελληνικά, Σύγχρονα <opensuse-translation-el@opensuse.org>\n"
 "Language: el\n"
@@ -390,7 +390,7 @@ msgstr "Επιλογή ζώνης ώρας"
 #: ../panel-plugin/timezone_selection.c:313 ../src/timezone_selection.c:319
 #: ../src/timezone_selection.c:328 ../src/timezone_selection.c:339
 msgid "Change mode"
-msgstr ""
+msgstr "Αλλαγή κατάστασης"
 
 #: ../globaltime/timezone_selection.c:303
 #: ../globaltime/timezone_selection.c:313
@@ -542,7 +542,6 @@ msgid "%A %d %B %Y/%V"
 msgstr "%A %d %B %Y"
 
 #: ../src/about-xfcalendar.c:40
-#, fuzzy
 msgid "Maintainer"
 msgstr "Συντηρητής"
 
@@ -891,7 +890,7 @@ msgstr "sec διάστημα"
 #. **** Display Alarm ****
 #: ../src/appointment.c:3014
 msgid "Visual"
-msgstr ""
+msgstr "Ορατό"
 
 #: ../src/appointment.c:3018
 msgid "Use Orage window"
@@ -1400,11 +1399,11 @@ msgstr ""
 
 #: ../src/interface.c:643
 msgid "READ ONLY"
-msgstr ""
+msgstr "ΜΟΝΟ ΓΙΑ ΑΝΑΓΝΩΣΗ"
 
 #: ../src/interface.c:645
 msgid "READ WRITE"
-msgstr ""
+msgstr "ΑΝΑΓΝΩΣΗ ΕΓΓΡΑΦΗ"
 
 #: ../src/interface.c:663
 msgid "***** No foreign files *****"
@@ -1412,7 +1411,7 @@ msgstr ""
 
 #: ../src/interface.c:974
 msgid "Import/export"
-msgstr ""
+msgstr "Εισαγωγή/εξαγωγή"
 
 #: ../src/interface.c:981
 msgid "Import"
@@ -1441,7 +1440,6 @@ msgid "Select"
 msgstr "Επιλογή"
 
 #: ../src/interface.c:1037
-#, fuzzy
 msgid "All appointments"
 msgstr "Όλα τα ραντεβού"
 
@@ -1647,6 +1645,8 @@ msgid ""
 "Usage: orage [options] [files]\n"
 "\n"
 msgstr ""
+"Χρήση: orage [options] [files]\n"
+"\n"
 
 #: ../src/main.c:307
 #, c-format
@@ -1656,32 +1656,32 @@ msgstr "Επιλογές:\n"
 #: ../src/main.c:308
 #, c-format
 msgid "--version (-v) \t\tshow version of orage\n"
-msgstr ""
+msgstr "--version (-v) \t\tεμφάνιση έκδοσης του orange\n"
 
 #: ../src/main.c:309
 #, c-format
 msgid "--help (-h) \t\tprint this text\n"
-msgstr ""
+msgstr "--help (-h) \t\tεμφάνιση αυτού του κειμένου\n"
 
 #: ../src/main.c:310
 #, c-format
 msgid "--preferences (-p) \tshow preferences form\n"
-msgstr ""
+msgstr "--preferences (-p) \tεμφάνιση φόρμας προτιμήσεων\n"
 
 #: ../src/main.c:311
 #, c-format
 msgid "--toggle (-t) \t\tmake orage visible/unvisible\n"
-msgstr ""
+msgstr "--toggle (-t) \t\tεναλλαγή orange εμφανούς/κρυφού\n"
 
 #: ../src/main.c:312
 #, c-format
 msgid "--add-foreign (-a) file [RW] \tadd a foreign file\n"
-msgstr ""
+msgstr "--add-foreign (-a) file [RW] \tπροσθήκη ξένου αρχείου\n"
 
 #: ../src/main.c:313
 #, c-format
 msgid "--remove-foreign (-r) file \tremove a foreign file\n"
-msgstr ""
+msgstr "--remove-foreign (-r) file \tαφαίρεση ξένου αρχείου\n"
 
 #: ../src/main.c:314
 #, c-format
@@ -1689,6 +1689,7 @@ msgid ""
 "--export (-e) file [appointment...] \texport appointments from Orage to "
 "file\n"
 msgstr ""
+"--export (-e) file [appointment...] \tεξαγωγή ραντεβού του Orange σε αρχείο\n"
 
 #: ../src/main.c:316
 #, c-format
@@ -1714,6 +1715,9 @@ msgid ""
 "Unknown option %s\n"
 "\n"
 msgstr ""
+"\n"
+"Άγνωστη επιλογή %s\n"
+"\n"
 
 #: ../src/mainbox.c:287
 msgid "_Exchange data"
@@ -1773,6 +1777,12 @@ msgid ""
 " Note:\n"
 "%s"
 msgstr ""
+"Τίτλος: %s\n"
+" Τοποθεσία: %s\n"
+" Έναρξη:\t%s\n"
+" Τερματισμός:\t%s\n"
+" Σημείωση:\n"
+"%s"
 
 #: ../src/mainbox.c:546
 msgid "<b>To do:</b>"
@@ -1827,9 +1837,8 @@ msgid "Display settings"
 msgstr "Ρυθμίσεις οθόνης"
 
 #: ../src/parameters.c:613
-#, fuzzy
 msgid "Calendar main window"
-msgstr "Παράθυρο ημερολογίου"
+msgstr "Κυρίως παράθυρο ημερολογίου"
 
 #: ../src/parameters.c:618
 #, fuzzy
@@ -1867,7 +1876,7 @@ msgstr ""
 
 #: ../src/parameters.c:676
 msgid "Show on all desktops"
-msgstr ""
+msgstr "Εμφάνιση σε όλες τις επιφάνειες εργασίας"
 
 #: ../src/parameters.c:683
 #, fuzzy
@@ -1993,9 +2002,8 @@ msgid "Open"
 msgstr "Άνοιγμα"
 
 #: ../src/reminder.c:722
-#, fuzzy
 msgid "Reminder - Orage"
-msgstr "Υπενθύμιση"
+msgstr "Υπενθύμιση - Orange"
 
 #: ../src/reminder.c:808
 msgid "Remind me again after the specified time"
@@ -3608,9 +3616,8 @@ msgid "Orage preferences"
 msgstr "Προτιμήσεις Orage"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:4
-#, fuzzy
 msgid "Settings for the Xfce 4 Calendar Application (Orage)"
-msgstr "Ρυθμίσεις ημερολογίου του Xfce 4"
+msgstr "Ρυθμίσεις εφαρμογής ημερολογίου του Xfce 4 (Orange)"
 
 #: ../xfcalendar.desktop.in.h:2
 msgid "Desktop calendar"
