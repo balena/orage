@@ -471,7 +471,7 @@ msgid ""
 "circumstances it is possible that Orageclock shows time inaccurately unless "
 "you have this selected. (Selecting this prevents cpu and interrupt saving "
 "features from working.)"
-msgstr ""
+msgstr "بۇ تاللانما، قىسقا ۋاقىت(5 سائەتتىن ئاز)لىق توڭلىتىش، ياكى ئۈچەككە كىرگۈزۈش ئېلىپ بارغاندا، سائەتتە سېكۇنتنى كۆرسەتمەيدىغان ۋاقىتتىلا ئىشلىتىلىدۇ. بۇ خىل شەرت ئاستىدا، مەزكۇر تاللانما تاللانمىسا، Orage نىڭ سائىتى توغرا كۆرسىتىلمەسلىكى مۇمكىن(بۇ تاللانسا، CPU ۋە ئۈزۈلۈش(interrupt) نىڭ ئىشلىشىدىن ساقلانغىلى بولىدۇ)."
 
 #: ../panel-plugin/oc_config.c:432
 msgid ""
@@ -769,7 +769,14 @@ msgid ""
 "    <&Ynnnn> is translated to current year minus nnnn.\n"
 "(This can be used for example in birthday reminders to tell how old the "
 "person will be.)"
-msgstr ""
+msgstr "تۆۋەندىكى قىسقا بۇيرۇقلار شۇ ھامان ئىجرا بولىدۇ:\n"
+"    <D> نۆۋەتتىكى ۋاقىت ۋە چېسلانى يەرلىك پىچىمدا قىستۇرىدۇ\n"
+"    <T> ۋاقىتنى قىستۇرىدۇ\n"
+"    <DT> ۋاقىت ۋە چېسلانى قىستۇرىدۇ.\n"
+"\n"
+"تۆۋەندىكىلەر بۇلار كۆرسىتىلگەندىلا ئايلاندۇرۇلىدۇ:\n"
+"    <&Ynnnn> ھازىرقى يىلدىن nnnn نى ئالغان نەتىجىنى كۆرسىتىدۇ.\n"
+"(بۇنى ئادەتتە تۇغۇلغان كۈننى خەۋەر قىلغاندا، شۇ كىشىنىڭ قانچە ياشقا كىرگەنلىكىنى بىلدۈرۈشتە ئىشلەتسە بولىدۇ.)"
 
 #: ../src/appointment.c:2895
 msgid "Before Start"
@@ -815,7 +822,7 @@ msgstr "ئۆزگەرمەس قوڭغۇراق"
 msgid ""
 "Select this if you want Orage to remind you even if it has not been active "
 "when the alarm happened."
-msgstr ""
+msgstr "قوڭغۇراق چېلىنغاندا، Orage نى قوزغاتماي، كېيىن Orage قوزغىتىلغاندا خەۋەر قىلماقچى بولغاندا تاللىسا بولىدۇ."
 
 #. **** Audio Alarm ****
 #: ../src/appointment.c:2949
@@ -886,7 +893,7 @@ msgstr "جەريان"
 
 #: ../src/appointment.c:3076
 msgid "Select this if you want procedure or script alarm"
-msgstr ""
+msgstr "پروگرامما ياكى قوليازمىدا خەۋەر قىلىدىغان چاغدا تاللىسا بولىدۇ"
 
 #: ../src/appointment.c:3082
 msgid ""
@@ -898,7 +905,14 @@ msgid ""
 "\t<&AT> alarm time\n"
 "\t<&ST> appointment start time\n"
 "\t<&ET> appointment end time"
-msgstr ""
+msgstr "بىر قىسىم قاچۇرغۇچى ھەرپلەرنى ئۆزىڭىز كىرگۈزۈڭ.\n"
+"مەزكۇر تېكىست shell غا يوللاپ بېرىلىدۇ.\n"
+"تۆۋەندىكىلەر بولسا، ئىجرا قىلىنىۋاتقان ۋاقىتتا ئالماشتۇرۇلىدىغان ئالاھىدە بۇيرۇقلاردۇر:\n"
+"\t<&T>  دېيىشمە ماۋزۇسى\n"
+"\t<&D>  دېيىشمە تەپسىلاتى\n"
+"\t<&AT> قوڭغۇراق ۋاقتى\n"
+"\t<&ST> دېيىشمىنىڭ باشلىنىش ۋاقتى\n"
+"\t<&ET> دېيىشمىنىڭ ئاخىرلىشىش ۋاقتى"
 
 #: ../src/appointment.c:3094
 msgid "Test this alarm by raising it now"
@@ -1016,7 +1030,9 @@ msgid ""
 "Limit frequency to certain interval.\n"
 " For example: Every third day:\n"
 " Frequency = Daily and Interval = 3"
-msgstr ""
+msgstr "تەكرارلىققا مەلۇم دائىرىدە چەك قويىدۇ.\n"
+" مەسىلەن: ھەر ئۇچ كۈندە بىر قېتىم:\n"
+" تەكرارلىقى = ھەر كۈنى، ئارىلىقى = 3"
 
 #: ../src/appointment.c:3274
 msgid "Limit"
