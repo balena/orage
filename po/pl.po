@@ -282,7 +282,7 @@ msgstr "Zmienne"
 
 #: ../globaltime/gt_prefs.c:1116
 msgid "Clock sizes vary"
-msgstr ""
+msgstr "Zmiana rozmiarów zegara"
 
 #: ../globaltime/gt_prefs.c:1122
 msgid "Local timezone:"
@@ -434,7 +434,7 @@ msgstr "_Wysokość:"
 
 #: ../panel-plugin/oc_config.c:277
 msgid "Note that you can not change the height of horizontal panels"
-msgstr ""
+msgstr "Nie można zmienić wysokości poziomych paneli"
 
 #: ../panel-plugin/oc_config.c:282
 msgid "set _width:"
@@ -442,7 +442,7 @@ msgstr "_Szerokość:"
 
 #: ../panel-plugin/oc_config.c:293
 msgid "Note that you can not change the width of vertical panels"
-msgstr ""
+msgstr "Nie można zmienić szerokości pionowych paneli"
 
 #: ../panel-plugin/oc_config.c:316
 msgid "Clock Options"
@@ -919,7 +919,7 @@ msgstr ""
 
 #: ../src/appointment.c:3094
 msgid "Test this alarm by raising it now"
-msgstr ""
+msgstr "Testuje budzik włączając go w tej chili"
 
 #: ../src/appointment.c:3101
 msgid "<b>Default alarm</b>"
@@ -1034,6 +1034,9 @@ msgid ""
 " For example: Every third day:\n"
 " Frequency = Daily and Interval = 3"
 msgstr ""
+"Ogranicza częstotliwość do pewnego odstępu.\n"
+" Na przykład Co trzeci dzień:\n"
+" Częstotliwość = Codziennie i w odstępie = 3"
 
 #: ../src/appointment.c:3274
 msgid "Limit"
@@ -1234,7 +1237,6 @@ msgid "Title"
 msgstr "Tytuł"
 
 #: ../src/event-list.c:1323
-#, fuzzy
 msgid ""
 "Double click line to edit it.\n"
 "\n"
@@ -1329,7 +1331,7 @@ msgid "Build alarm list: Added %d alarms. Processed %d events."
 msgstr "Wbudowana lista alarmu: Dodano %d alarmy. Przetwarzanie %d zdarzeń."
 
 #: ../src/ical-code.c:3117
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
 msgstr ""
@@ -1739,6 +1741,13 @@ msgid ""
 " Note:\n"
 "%s"
 msgstr ""
+"Nazwa: %s\n"
+" Miejsce: %s\n"
+" Początek:\t%s\n"
+" Przez:\t%s\n"
+" Wykonane:\t%s\n"
+" Wiadomość:\n"
+"%s"
 
 #: ../src/mainbox.c:460
 #, c-format
@@ -1750,6 +1759,12 @@ msgid ""
 " Note:\n"
 "%s"
 msgstr ""
+"Nazwa: %s\n"
+" Miejsce: %s\n"
+" Początek:\t%s\n"
+" Koniec:\t%s\n"
+" Wiadomość:\n"
+"%s"
 
 #: ../src/mainbox.c:546
 msgid "<b>To do:</b>"
@@ -1880,9 +1895,8 @@ msgid "Extra settings"
 msgstr "Dodatkowe utawienia"
 
 #: ../src/parameters.c:801
-#, fuzzy
 msgid "On Calendar Window Open"
-msgstr "Okno kalendarza"
+msgstr "Przy otwarciu okna kalendarza"
 
 #: ../src/parameters.c:806
 msgid "Select Today's Date"
@@ -1938,7 +1952,7 @@ msgstr "Użyj stopera wybudzania"
 msgid ""
 "Use this timer if Orage has problems waking up properly after suspend or "
 "hibernate. (For example tray icon not refreshed or alarms not firing.)"
-msgstr ""
+msgstr "Należy użyć tego zegara jeśli Orage ma kłopoty z prawidłowym przywracaniem po wstrzymaniu lub hibernacji. (Na przykład ikona powiadamiania nie odświeża się lub alarm się nie uruchamia.)"
 
 #: ../src/parameters.c:938
 msgid "Orage Preferences"
