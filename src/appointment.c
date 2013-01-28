@@ -26,6 +26,7 @@
 #endif
 
 #define _XOPEN_SOURCE /* glibc2 needs this */
+#define _XOPEN_SOURCE_EXTENDED 1 /* strptime needs this in posix systems */
 
 #include <sys/types.h>
 #include <sys/stat.h>
