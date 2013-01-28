@@ -65,6 +65,7 @@ typedef struct _parameters
     /* foreign files */
     int foreign_count;
     foreign_file foreign_data[10];
+    gboolean use_foreign_display_alarm_notify; /* changes alarm to notify */
 
     /* other */
     char *orage_file;

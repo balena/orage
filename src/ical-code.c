@@ -1675,8 +1675,12 @@ static void get_alarm_data(icalcomponent *ca,  xfical_appt *appt)
             appt->note = (char *)icalproperty_get_description(p);
             */
         /* default display alarm is orage if none is set */
-        if (!appt->display_alarm_orage && !appt->display_alarm_notify)	
-            appt->display_alarm_orage = TRUE;
+        if (!appt->display_alarm_orage && !appt->display_alarm_notify) {
+            if (g_par.use_foreign_display_alarm_notify)
+                appt->display_alarm_notify = TRUE;
+            else
+                appt->display_alarm_orage = TRUE;
+        }
     }
     else if (act == ICAL_ACTION_AUDIO) {
         get_alarm_data_x(ca, appt);

@@ -1162,6 +1162,8 @@ void read_parameters(void)
         g_sprintf(f_par, "Foreign file %02d read-only", i);
         g_par.foreign_data[i].read_only = orage_rc_get_bool(orc, f_par, TRUE);
     }
+    g_par.use_foreign_display_alarm_notify = orage_rc_get_bool(orc
+            , "Use notify foreign alarm", FALSE);
     g_log_level = orage_rc_get_int(orc, "Logging level", 0);
     g_par.priority_list_limit = orage_rc_get_int(orc, "Priority list limit", 8);
     g_par.use_wakeup_timer = orage_rc_get_bool(orc, "Use wakeup timer", TRUE);
@@ -1256,6 +1258,8 @@ void write_parameters(void)
         g_sprintf(f_par, "Foreign file %02d read-only", i);
         orage_rc_del_item(orc, f_par);
     }
+    orage_rc_put_bool(orc, "Use notify foreign alarm"
+            , g_par.use_foreign_display_alarm_notify);
     orage_rc_put_int(orc, "Logging level", g_log_level);
     orage_rc_put_int(orc, "Priority list limit", g_par.priority_list_limit);
     orage_rc_put_bool(orc, "Use wakeup timer", g_par.use_wakeup_timer);
