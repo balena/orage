@@ -176,7 +176,7 @@ static void dialog_response(GtkWidget *dialog, gint response_id
 
     if (response_id == GTK_RESPONSE_HELP) {
         /* Needs to be in " to keep # */
-        helpdoc = g_strconcat("firefox \"", PACKAGE_DATA_DIR
+        helpdoc = g_strconcat("firefox \"file://", PACKAGE_DATA_DIR
                 , G_DIR_SEPARATOR_S, "orage"
                 , G_DIR_SEPARATOR_S, "doc"
                 , G_DIR_SEPARATOR_S, "C"
