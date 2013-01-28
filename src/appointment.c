@@ -1670,8 +1670,8 @@ static xfical_appt *fill_appt_window_get_appt(appt_win *apptw
             appt->start_tz_loc = g_strdup("floating");
         appt->end_tz_loc = g_strdup(appt->start_tz_loc);
         appt->duration = 30*60;
-        /* use completed by default for new TODO */
-        appt->completed = TRUE;
+        /* use NOT completed by default for new TODO */
+        appt->completed = FALSE;
         /* use duration by default for new appointments */
         appt->use_duration = TRUE;
         g_sprintf(appt->completedtime,"%sT%02d%02d00"
