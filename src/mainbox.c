@@ -487,10 +487,10 @@ static void insert_rows(GList **list, char *a_day, xfical_type ical_type
     }
 }
 
-static gint list_order(gconstpointer a, gconstpointer b)
+static gint event_order(gconstpointer a, gconstpointer b)
 {
 #undef P_N
-#define P_N "list_order: "
+#define P_N "event_order: "
     xfical_appt *appt1, *appt2;
 
 #ifdef ORAGE_DEBUG
@@ -500,6 +500,26 @@ static gint list_order(gconstpointer a, gconstpointer b)
     appt2 = (xfical_appt *)b;
 
     return(strcmp(appt1->starttimecur, appt2->starttimecur));
+}
+
+static gint todo_order(gconstpointer a, gconstpointer b)
+{
+#undef P_N
+#define P_N "todo_order: "
+    xfical_appt *appt1, *appt2;
+
+#ifdef ORAGE_DEBUG
+    orage_message(-100, P_N);
+#endif
+    appt1 = (xfical_appt *)a;
+    appt2 = (xfical_appt *)b;
+
+    if (appt1->use_due_time && !appt2->use_due_time)
+        return(-1);
+    if (!appt1->use_due_time && appt2->use_due_time)
+        return(1);
+
+    return(strcmp(appt1->endtimecur, appt2->endtimecur));
 }
 
 static void info_process(gpointer a, gpointer pbox)
@@ -649,7 +669,7 @@ static void build_mainbox_todo_info(void)
     if (todo_list) {
         gtk_widget_destroy(cal->mTodo_vbox);
         create_mainbox_todo_info();
-        todo_list = g_list_sort(todo_list, list_order);
+        todo_list = g_list_sort(todo_list, todo_order);
         g_list_foreach(todo_list, (GFunc)info_process
                 , cal->mTodo_rows_vbox);
         g_list_free(todo_list);
@@ -706,7 +726,7 @@ static void build_mainbox_event_info(void)
     if (event_list) {
         gtk_widget_destroy(cal->mEvent_vbox);
         create_mainbox_event_info_box();
-        event_list = g_list_sort(event_list, list_order);
+        event_list = g_list_sort(event_list, event_order);
         g_list_foreach(event_list, (GFunc)info_process
                 , cal->mEvent_rows_vbox);
         g_list_free(event_list);
