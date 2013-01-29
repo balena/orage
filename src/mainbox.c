@@ -380,6 +380,9 @@ static void add_info_row(xfical_appt *appt, GtkBox *parentBox, gboolean todo)
     GtkWidget *ev, *label;
     CalWin *cal = (CalWin *)g_par.xfcal;
     gchar *tip, *tmp, *tmp_title, *tmp_note;
+#if GTK_CHECK_VERSION(2,16,0)
+    gchar *tip_title, *tip_location;
+#endif
     struct tm *t;
     char  *l_time, *s_time, *s_timeonly, *e_time, *c_time, *na, *today;
     gint  len;
@@ -442,7 +445,7 @@ static void add_info_row(xfical_appt *appt, GtkBox *parentBox, gboolean todo)
         g_free(e_time);
     }
 
-    /***** set hint *****/
+    /***** set tooltip hint *****/
     tmp_note = orage_process_text_commands(appt->note);
     if (todo) {
         na = _("Never");
@@ -450,17 +453,41 @@ static void add_info_row(xfical_appt *appt, GtkBox *parentBox, gboolean todo)
                 ? orage_icaltime_to_i18_time(appt->endtimecur) : na);
         c_time = g_strdup(appt->completed
                 ? orage_icaltime_to_i18_time(appt->completedtime) : na);
+#if GTK_CHECK_VERSION(2,16,0)
+        tip_title = g_strdup_printf("<span weight=\"bold\"> %s </span>"
+                , tmp_title);
+        tip_location = g_strdup_printf("<span weight=\"bold\"> %s </span>"
+                , appt->location);
+        tip = g_strdup_printf(_("Title: %s\n Location: %s\n Start:\t%s\n Due:\t%s\n Done:\t%s\n Note:\n%s")
+                , tip_title, tip_location, s_time, e_time, c_time, tmp_note);
+#else
         tip = g_strdup_printf(_("Title: %s\n Location: %s\n Start:\t%s\n Due:\t%s\n Done:\t%s\n Note:\n%s")
                 , tmp_title, appt->location, s_time, e_time, c_time, tmp_note);
+#endif
 
         g_free(c_time);
     }
     else { /* it is event */
         e_time = g_strdup(orage_icaltime_to_i18_time(appt->endtimecur));
+#if GTK_CHECK_VERSION(2,16,0)
+        tip_title = g_strdup_printf("<span weight=\"bold\"> %s </span>"
+                , tmp_title);
+        tip_location = g_strdup_printf("<span weight=\"bold\"> %s </span>"
+                , appt->location);
+        tip = g_strdup_printf(_("Title: %s\n Location: %s\n Start:\t%s\n End:\t%s\n Note:\n%s")
+                , tip_title, tip_location, s_time, e_time, tmp_note);
+#else
         tip = g_strdup_printf(_("Title: %s\n Location: %s\n Start:\t%s\n End:\t%s\n Note:\n%s")
                 , tmp_title, appt->location, s_time, e_time, tmp_note);
+#endif
     }
+#if GTK_CHECK_VERSION(2,16,0)
+    gtk_widget_set_tooltip_markup(ev, tip);
+    g_free(tip_title);
+    g_free(tip_location);
+#else
     gtk_tooltips_set_tip(cal->Tooltips, ev, tip, NULL);
+#endif
     g_free(tmp_title);
     g_free(tmp_note);
     g_free(s_time);
