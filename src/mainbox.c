@@ -381,7 +381,8 @@ static void add_info_row(xfical_appt *appt, GtkBox *parentBox, gboolean todo)
     CalWin *cal = (CalWin *)g_par.xfcal;
     gchar *tip, *tmp, *tmp_title, *tmp_note;
 #if GTK_CHECK_VERSION(2,16,0)
-    gchar *tip_title, *tip_location;
+    gchar *tip_title = NULL, *tip_location = NULL, *tip_note = NULL;
+    gchar *format_bold = "<span weight=\"bold\"> %s </span>";
 #endif
     struct tm *t;
     char  *l_time, *s_time, *s_timeonly, *e_time, *c_time, *na, *today;
@@ -454,12 +455,18 @@ static void add_info_row(xfical_appt *appt, GtkBox *parentBox, gboolean todo)
         c_time = g_strdup(appt->completed
                 ? orage_icaltime_to_i18_time(appt->completedtime) : na);
 #if GTK_CHECK_VERSION(2,16,0)
-        tip_title = g_strdup_printf("<span weight=\"bold\"> %s </span>"
-                , tmp_title);
-        tip_location = g_strdup_printf("<span weight=\"bold\"> %s </span>"
-                , appt->location);
+        if (tmp_title) {
+            tip_title = g_markup_printf_escaped(format_bold, tmp_title);
+        }   
+        if (appt->location) {
+            tip_location = g_markup_printf_escaped(format_bold, appt->location);
+        }
+        if (tmp_note) {
+            tip_note = g_markup_escape_text(tmp_note, strlen(tmp_note));
+        }
+
         tip = g_strdup_printf(_("Title: %s\n Location: %s\n Start:\t%s\n Due:\t%s\n Done:\t%s\n Note:\n%s")
-                , tip_title, tip_location, s_time, e_time, c_time, tmp_note);
+                , tip_title, tip_location, s_time, e_time, c_time, tip_note);
 #else
         tip = g_strdup_printf(_("Title: %s\n Location: %s\n Start:\t%s\n Due:\t%s\n Done:\t%s\n Note:\n%s")
                 , tmp_title, appt->location, s_time, e_time, c_time, tmp_note);
@@ -470,12 +477,18 @@ static void add_info_row(xfical_appt *appt, GtkBox *parentBox, gboolean todo)
     else { /* it is event */
         e_time = g_strdup(orage_icaltime_to_i18_time(appt->endtimecur));
 #if GTK_CHECK_VERSION(2,16,0)
-        tip_title = g_strdup_printf("<span weight=\"bold\"> %s </span>"
-                , tmp_title);
-        tip_location = g_strdup_printf("<span weight=\"bold\"> %s </span>"
-                , appt->location);
+        if (tmp_title) {
+            tip_title = g_markup_printf_escaped(format_bold, tmp_title);
+        }
+        if (appt->location) {
+            tip_location = g_markup_printf_escaped(format_bold, appt->location);
+        }
+        if (tmp_note) {
+            tip_note = g_markup_escape_text(tmp_note, strlen(tmp_note));
+        }
+
         tip = g_strdup_printf(_("Title: %s\n Location: %s\n Start:\t%s\n End:\t%s\n Note:\n%s")
-                , tip_title, tip_location, s_time, e_time, tmp_note);
+                , tip_title, tip_location, s_time, e_time, tip_note);
 #else
         tip = g_strdup_printf(_("Title: %s\n Location: %s\n Start:\t%s\n End:\t%s\n Note:\n%s")
                 , tmp_title, appt->location, s_time, e_time, tmp_note);
@@ -483,8 +496,12 @@ static void add_info_row(xfical_appt *appt, GtkBox *parentBox, gboolean todo)
     }
 #if GTK_CHECK_VERSION(2,16,0)
     gtk_widget_set_tooltip_markup(ev, tip);
-    g_free(tip_title);
-    g_free(tip_location);
+    if (tip_title)
+        g_free(tip_title);
+    if (tip_location)
+        g_free(tip_location);
+    if (tip_note)
+        g_free(tip_note);
 #else
     gtk_tooltips_set_tip(cal->Tooltips, ev, tip, NULL);
 #endif
