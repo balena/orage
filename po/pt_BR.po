@@ -5,7 +5,7 @@
 # Adriano Winter Bess <awbess@gmail.com>, 2005.
 # Og Maciel <ogmaciel@gnome.org>, 2008, 2009.
 # Fábio Nogueira <deb-user-ba@ubuntu.com>, 2008.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.3.90.2\n"
@@ -56,7 +56,7 @@ msgstr "ajuste para modificar a hora"
 #: ../globaltime/globaltime.c:496
 msgid ""
 "adjust to change minute. Click arrows with button 2 to change only 1 minute."
-msgstr ""
+msgstr "ajuste para modificar os minutos. Clique na setas com o botão 2 para modificar somente 1 minuto."
 
 #: ../globaltime/gt_prefs.c:265 ../globaltime/gt_prefs.c:266
 msgid "NEW"
@@ -328,7 +328,7 @@ msgstr "sem mudança"
 #: ../globaltime/timezone_selection.c:195
 #: ../panel-plugin/timezone_selection.c:196 ../src/timezone_selection.c:207
 msgid "not changing"
-msgstr ""
+msgstr "nenhuma alteração"
 
 #. location
 #: ../globaltime/timezone_selection.c:247
@@ -347,7 +347,7 @@ msgstr "diferença GMT"
 #: ../globaltime/timezone_selection.c:264
 #: ../panel-plugin/timezone_selection.c:265 ../src/timezone_selection.c:276
 msgid "Previous/Next Change"
-msgstr ""
+msgstr "Anterior/Próxima Mudança"
 
 #: ../globaltime/timezone_selection.c:269
 #: ../panel-plugin/timezone_selection.c:270 ../src/timezone_selection.c:281
@@ -405,7 +405,7 @@ msgstr "Horário global Orage"
 
 #: ../globaltime/globaltime.desktop.in.h:3
 msgid "Show clocks from different countries"
-msgstr ""
+msgstr "Mostrar relógios de diferentes países"
 
 #: ../panel-plugin/oc_config.c:224
 msgid "Appearance"
@@ -433,7 +433,7 @@ msgstr "definir _altura:"
 
 #: ../panel-plugin/oc_config.c:277
 msgid "Note that you can not change the height of horizontal panels"
-msgstr ""
+msgstr "Note que você não pode alterar a altura dos painéis horizontais"
 
 #: ../panel-plugin/oc_config.c:282
 msgid "set _width:"
@@ -441,7 +441,7 @@ msgstr "definir _largura:"
 
 #: ../panel-plugin/oc_config.c:293
 msgid "Note that you can not change the width of vertical panels"
-msgstr ""
+msgstr "Note que você não pode alterar a altura dos painéis verticais"
 
 #: ../panel-plugin/oc_config.c:316
 msgid "Clock Options"
@@ -518,7 +518,7 @@ msgstr "Preferências do relógio do Orage"
 #. * %B  : full month name
 #. * %Y  : four digit year
 #. * %V  : ISO week number
-#.
+#. 
 #: ../panel-plugin/xfce4-orageclock-plugin.c:627
 msgid "%A %d %B %Y/%V"
 msgstr "%d de %B de %Y"
@@ -788,6 +788,14 @@ msgid ""
 "(This can be used for example in birthday reminders to tell how old the "
 "person will be.)"
 msgstr ""
+"Estes comandos têm efeitos imediatos:\n"
+"    <D> insere data atual no formato local\n"
+"    <T> insere home e\n"
+"    <DT> insere data e hora.\n"
+"\n"
+"Estes apenas serão convertidos apenas quando forem vistos:\n"
+"    <&Ynnnn> é traduzido para o ano atual menos nnnn.\n"
+"(Pode ser utilizado em lembretes de aniversários para informar quantos anos a pessoa terá.)"
 
 #: ../src/appointment.c:2895
 msgid "Before Start"
@@ -920,6 +928,14 @@ msgid ""
 "\t<&ST> appointment start time\n"
 "\t<&ET> appointment end time"
 msgstr ""
+"Você deve inserir todos os caracteres de especiais manualmente.\n"
+"Esta linha é enviada ao terminal para processar.\n"
+"Os seguintes comandos especiais serão substituídos durante a execução:\n"
+"\t<&T>  título do compromisso\n"
+"\t<&D>  descrição do compromisso\n"
+"\t<&AT> hora do alarme\n"
+"\t<&ST> início do compromisso\n"
+"\t<&ET> final do compromisso"
 
 #: ../src/appointment.c:3094
 msgid "Test this alarm by raising it now"
@@ -1121,6 +1137,9 @@ msgid ""
 "selection.\n"
 "Remove by clicking the data."
 msgstr ""
+"Adicione mais datas de exceção clicando nos dias do calendário abaixo.\n"
+"Uma exceção pode ser de exclusão(-) ou inclusão(+) dependendo da seleção.\n"
+"Remova clicando na data."
 
 #: ../src/appointment.c:3379
 msgid "Add excluded date (-)"
@@ -1128,7 +1147,7 @@ msgstr "Adicionar data excluída (-)"
 
 #: ../src/appointment.c:3381
 msgid "Excluded days are full days where this appointment is not happening"
-msgstr ""
+msgstr "Os dias exluídos são os dias em que este compromisso não ocorre"
 
 #: ../src/appointment.c:3387
 msgid "Add included time (+)"
@@ -1138,7 +1157,7 @@ msgstr "Adicionar hora incluída (+)"
 msgid ""
 "Included times have same timezone than start time, but they may have "
 "different time"
-msgstr ""
+msgstr "As horas incluídas têm o mesmo fuso horário da hora inicial, mas podem ter horas diferentes"
 
 #. calendars showing the action days
 #: ../src/appointment.c:3406
@@ -1691,7 +1710,7 @@ msgstr "--remove-foreign (-r) arquivo \tremove um arquivo desconhecido\n"
 msgid ""
 "--export (-e) file [appointment...] \texport appointments from Orage to "
 "file\n"
-msgstr ""
+msgstr "--export (-e) arquivo [compromisso...] \texportar compromissos do Orage para arquivo\n"
 
 #: ../src/main.c:316
 #, c-format
@@ -1758,7 +1777,7 @@ msgid "Never"
 msgstr "Nunca"
 
 #: ../src/mainbox.c:453
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Title: %s\n"
 " Location: %s\n"
@@ -1775,7 +1794,7 @@ msgstr ""
 "%s"
 
 #: ../src/mainbox.c:460
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Title: %s\n"
 " Location: %s\n"
@@ -1805,7 +1824,6 @@ msgid "<b>Events for %s - %s:</b>"
 msgstr "<b>Eventos for %s - %s:</b>"
 
 #: ../src/parameters.c:522
-#, fuzzy
 msgid "Main settings"
 msgstr "Configurações principais"
 
@@ -1839,9 +1857,8 @@ msgid "This command is given to shell to make sound in alarms."
 msgstr "Este comando é passado ao shell para fazer alarmes sonoros."
 
 #: ../src/parameters.c:605
-#, fuzzy
 msgid "Display settings"
-msgstr "Mostradas"
+msgstr "Mostrar configurações"
 
 #: ../src/parameters.c:613
 msgid "Calendar main window"
@@ -1856,19 +1873,16 @@ msgid "Show menu"
 msgstr "Mostrar menu"
 
 #: ../src/parameters.c:632
-#, fuzzy
 msgid "Show month and year"
-msgstr "Mostrar no paginador"
+msgstr "Mostrar mês e ano"
 
 #: ../src/parameters.c:639
-#, fuzzy
 msgid "Show day names"
-msgstr "Mostrar _borda"
+msgstr "Mostrar nomes dos dias"
 
 #: ../src/parameters.c:646
-#, fuzzy
 msgid "Show week numbers"
-msgstr "Mostrar bordas"
+msgstr "Mostrar números das semanas"
 
 #: ../src/parameters.c:653
 msgid "Show todo list"
@@ -1876,20 +1890,19 @@ msgstr "Mostrar lista de tarefas"
 
 #: ../src/parameters.c:660
 msgid "Number of days to show in event window"
-msgstr ""
+msgstr "Número de dias a mostrar na janela de eventos"
 
 #: ../src/parameters.c:666
 msgid "0 = do not show event list at all"
-msgstr ""
+msgstr "0 = não mostrar a lista de eventos"
 
 #: ../src/parameters.c:676
 msgid "Show on all desktops"
-msgstr ""
+msgstr "Mostrar em todas as áreas de trabalho"
 
 #: ../src/parameters.c:683
-#, fuzzy
 msgid "Keep on top"
-msgstr "Definir acima"
+msgstr "Manter acima"
 
 #: ../src/parameters.c:690
 msgid "Show in taskbar"
@@ -1920,36 +1933,32 @@ msgid "Minimized"
 msgstr "Minimizado"
 
 #: ../src/parameters.c:793
-#, fuzzy
 msgid "Extra settings"
 msgstr "Configurações adicionais"
 
 #: ../src/parameters.c:801
-#, fuzzy
 msgid "On Calendar Window Open"
-msgstr "Janela principal do calendário"
+msgstr "Ao abrir a janela do calendário"
 
 #: ../src/parameters.c:806
-#, fuzzy
 msgid "Select Today's Date"
-msgstr "Selecionar Ho_je"
+msgstr "Selecionar Data de Hoje"
 
 #: ../src/parameters.c:819
 msgid "Select Previously Selected Date"
-msgstr ""
+msgstr "Selecionar Data Anteriormente Selecionada"
 
 #: ../src/parameters.c:836
 msgid "Use dynamic tray icon"
-msgstr ""
+msgstr "Usar ícone de bandeja dinâmico"
 
 #: ../src/parameters.c:841
-#, fuzzy
 msgid "Use dynamic icon"
-msgstr "Tamanho de ícone dinâmico"
+msgstr "Usar ícone dinâmico"
 
 #: ../src/parameters.c:847
 msgid "Dynamic icon shows current month and day of the month."
-msgstr ""
+msgstr "Ícone dinâmico mostra o atual mês e dia do mês."
 
 #: ../src/parameters.c:856
 msgid "Main Calendar double click shows"
@@ -1964,29 +1973,28 @@ msgid "Event list"
 msgstr "Lista de eventos"
 
 #: ../src/parameters.c:890
-#, fuzzy
 msgid "Eventlist window"
-msgstr "Lista de eventos"
+msgstr "Janela de lista de eventos"
 
 #: ../src/parameters.c:894
 msgid "Number of extra days to show in event list"
-msgstr ""
+msgstr "Número de dias extra a mostrar na lista de eventos"
 
 #: ../src/parameters.c:902
 msgid ""
 "This is just the default value, you can change it in the actual eventlist "
 "window."
-msgstr ""
+msgstr "Este é apenas o valor padrão, você pode alterá-lo na atual janela da lista de eventos."
 
 #: ../src/parameters.c:910 ../src/parameters.c:915
 msgid "Use wakeup timer"
-msgstr ""
+msgstr "Utilize temporizador de inicialização"
 
 #: ../src/parameters.c:921
 msgid ""
 "Use this timer if Orage has problems waking up properly after suspend or "
 "hibernate. (For example tray icon not refreshed or alarms not firing.)"
-msgstr ""
+msgstr "Utilize este temporizador se o Orage encontrar problemas ao inicializar após a suspensão ou hibernação. (Por exemplo, ícone na bandeja não atualizado ou alarmes funcionando.)"
 
 #: ../src/parameters.c:938
 msgid "Orage Preferences"
@@ -2021,12 +2029,12 @@ msgstr "Notificação - Orage"
 
 #: ../src/reminder.c:808
 msgid "Remind me again after the specified time"
-msgstr ""
+msgstr "Lembre-me novamente após a hora especificada"
 
 #. Note that this goes to the main area. Temporary for the version
 #: ../src/reminder.c:811
 msgid "Press <Execute> to remind me again after the specified time:"
-msgstr ""
+msgstr "Pressione <Executar> para lembrar-me novamente após a hora especificada:"
 
 #: ../src/reminder.c:1099
 msgid "Next active alarms:"
@@ -3611,14 +3619,12 @@ msgid "About Orage"
 msgstr "Sobre o Orage"
 
 #: ../panel-plugin/xfce4-orageclock-plugin.desktop.in.in.h:1
-#, fuzzy
 msgid "Orage Panel Clock"
-msgstr "Relógio do Orage"
+msgstr "Relógio de painel Orage"
 
 #: ../panel-plugin/xfce4-orageclock-plugin.desktop.in.in.h:2
-#, fuzzy
 msgid "Show time and date?"
-msgstr "Que horas e data é agora?"
+msgstr "Mostrar horas e data?"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:1
 #: ../xfcalendar.desktop.in.h:1
@@ -3626,28 +3632,24 @@ msgid "Calendar"
 msgstr "Calendário"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:2
-#, fuzzy
 msgid "Orage Calendar Preferences"
-msgstr "Preferências do Orage"
+msgstr "Preferências do calendário Orage"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:3
-#, fuzzy
 msgid "Orage preferences"
 msgstr "Preferências do Orage"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:4
-#, fuzzy
 msgid "Settings for the Xfce 4 Calendar Application (Orage)"
-msgstr "Configurações para a Aplicação de Calendário do Xfce 4"
+msgstr "Configurações para o Aplicativo de Calendário do Xfce 4(Orage)"
 
 #: ../xfcalendar.desktop.in.h:2
 msgid "Desktop calendar"
 msgstr "Calendário do Ambiente de Trabalho"
 
 #: ../xfcalendar.desktop.in.h:3
-#, fuzzy
 msgid "Orage Calendar"
-msgstr "Orage - Calendário"
+msgstr "Orage Calendário"
 
 #~ msgid ""
 #~ "Title: %s\n"

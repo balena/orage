@@ -1,40 +1,29 @@
-# Italian translations for orage package.
-# Copyright (C) 2003-2006 The Xfce development team.
-# This file is distributed under the same license as the orage package.
-# Alex Dupre <ale@FreeBSD.org>, 2004.
-# Cristian Cozzolino <cristiancozzolino@libero.it>, 2009
-# 
-# Gianluca Foddis <gianluca.foddis@gmail.com>, 2009, 2009.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: orage 4.5\n"
+"Project-Id-Version: Orage \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-01-03 14:00+0200\n"
-"PO-Revision-Date: 2010-08-20 12:24+0100\n"
-"Last-Translator: Gianluca Foddis <gianluca.foddis@gmail.com>\n"
-"Language-Team: Italian <xfce-it-translators@googlegroups.com>\n"
+"PO-Revision-Date: 2012-04-12 18:10+0100\n"
+"Last-Translator: Eivind Ødegård <gingermi@yahoo.no>\n"
+"Language-Team: nn_NO <i18n-nn@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: it\n"
-"X-Poedit-Language: Italian\n"
-"X-Poedit-Country: ITALY\n"
+"X-Poedit-Language: Norwegian Nynorsk\n"
+"X-Poedit-Country: NORWAY\n"
 
-# GLOSSARIO
-# date = data
-# localtime = ora locale
-# timezone = fuso orario
-# clock time = ora
-# font = tipo di carattere
-# clock = orologio
-# globaltime=ora globale
 #: ../globaltime/globaltime.c:100
 msgid "Raising GlobalTime window..."
-msgstr "Apertura finestra Ora globale..."
+msgstr "Hevar Globaltid-vindauga"
 
 #: ../globaltime/globaltime.c:102
 msgid "GlobalTime window raise failed"
-msgstr "Apertura finestra Ora globale non riuscita"
+msgstr "Kunne ikkje heva Globaltid-vindauget"
 
 #. ********** timezone tooltip **********
 #: ../globaltime/globaltime.c:277
@@ -44,240 +33,236 @@ msgid ""
 "click to modify clock"
 msgstr ""
 "%s\n"
-"fare clic per modificare l'orologio"
+"Klikk for å endra klokka"
 
 #: ../globaltime/globaltime.c:386
 msgid "Localtime"
-msgstr "Ora locale"
+msgstr "Lokal tid"
 
 #: ../globaltime/globaltime.c:464
 msgid ""
 "button 1 to change preferences \n"
 "button 2 to adjust time of clocks"
 msgstr ""
-"tasto sinistro per cambiare le preferenze \n"
-"tasto centrale per regolare l'ora degli orologi"
+"Knapp 1 for å endra innstillingar \n"
+"Knapp 2 for å justera klokketid"
 
-# tooltip; iniziamo con la maiuscola;
 #: ../globaltime/globaltime.c:480
 msgid "adjust to change hour"
-msgstr "Regolare per cambiare l'ora"
+msgstr "juster for å endra time"
 
-# tooltip
 #: ../globaltime/globaltime.c:496
-msgid ""
-"adjust to change minute. Click arrows with button 2 to change only 1 minute."
-msgstr ""
-"Regolare per modificare i minuti; Fare clic col pulsante 2 sulle frecce per "
-"modificare di solo un minuto"
+msgid "adjust to change minute. Click arrows with button 2 to change only 1 minute."
+msgstr "juster for å endra minutt. Klikk pilene med knapp 2 for å endra med eitt minutt"
 
-#: ../globaltime/gt_prefs.c:265 ../globaltime/gt_prefs.c:266
+#: ../globaltime/gt_prefs.c:265
+#: ../globaltime/gt_prefs.c:266
 msgid "NEW"
-msgstr "NUOVO"
+msgstr "NY"
 
 #: ../globaltime/gt_prefs.c:289
 msgid "NEW COPY"
-msgstr "NUOVA COPIA"
+msgstr "NY KOPI"
 
 #: ../globaltime/gt_prefs.c:310
 msgid "Not possible to delete the last clock."
-msgstr "Impossibile cancellare l'ultimo orologio."
+msgstr "Ikkje mogleg å sletta den siste klokka."
 
 #: ../globaltime/gt_prefs.c:516
 msgid "update this clock"
-msgstr "Aggiorna quest'orologio"
+msgstr "oppdater denne klokka"
 
-# tooltip
-#: ../globaltime/gt_prefs.c:521 ../globaltime/gt_prefs.c:1034
+#: ../globaltime/gt_prefs.c:521
+#: ../globaltime/gt_prefs.c:1034
 msgid "add new empty clock"
-msgstr "Aggiunge un nuovo orologio vuoto"
+msgstr "legg til tom klokke"
 
 #: ../globaltime/gt_prefs.c:526
 msgid "add new clock using this clock as model"
-msgstr "Aggiunge un nuovo orologio usando quest'orologio come esempio"
+msgstr "legg til ny klokke med denne som mal"
 
 #: ../globaltime/gt_prefs.c:531
 msgid "delete this clock"
-msgstr "Cancella quest'orologio"
+msgstr "slett denne klokka"
 
-# tooltip
 #: ../globaltime/gt_prefs.c:539
 msgid "move this clock first"
-msgstr "Sposta quest'orologio in alto"
+msgstr "flytt denne klokka først"
 
-# tooltip
 #: ../globaltime/gt_prefs.c:544
 msgid "move this clock left"
-msgstr "Sposta quest'orologio a sinistra"
+msgstr "flytt denne klokka mot venstre"
 
-# tooltip
 #: ../globaltime/gt_prefs.c:549
 msgid "move this clock right"
-msgstr "Sposta quest'orologio a destra"
+msgstr "flytt denne klokka mot høgre"
 
-# tooltip
 #: ../globaltime/gt_prefs.c:554
 msgid "move this clock last"
-msgstr "Sposta quest'orologio in fondo"
+msgstr "flytt denne klokka sist"
 
 #: ../globaltime/gt_prefs.c:562
 msgid "set the timezone of this clock to be local timezone"
-msgstr "Imposta il fuso orario di questo orologio a quello locale"
+msgstr "sett tidssone for denne klokka til lokal tidssone"
 
-# tooltip
-#: ../globaltime/gt_prefs.c:568 ../globaltime/gt_prefs.c:1042
+#: ../globaltime/gt_prefs.c:568
+#: ../globaltime/gt_prefs.c:1042
 msgid "close window and exit"
-msgstr "Chiude la finestra ed esce"
+msgstr "lukk vindauget og avslutt"
 
 #: ../globaltime/gt_prefs.c:590
 msgid "Globaltime preferences "
-msgstr "Preferenze Ora globale"
+msgstr "Globaltime-innstilling"
 
 #. -----------------------HEADING-------------------------------------------
 #: ../globaltime/gt_prefs.c:603
 msgid "Clock Parameters"
-msgstr "Parametri dell'orologio"
+msgstr "Klokkeparametrar"
 
 #: ../globaltime/gt_prefs.c:607
 msgid "Name of the clock:"
-msgstr "Nome dell'orologio:"
+msgstr "Namn på klokka:"
 
-# tooltip
 #: ../globaltime/gt_prefs.c:613
 msgid "enter name of clock"
-msgstr "Inserire il nome dell'orologio"
+msgstr "Skriv inn namn på klokka"
 
 #: ../globaltime/gt_prefs.c:616
 msgid "Timezone of the clock:"
-msgstr "Fuso orario dell'orologio:"
+msgstr "Tidssone for klokka:"
 
 #: ../globaltime/gt_prefs.c:643
 msgid "Text Formatting"
-msgstr "Formattazione del testo"
+msgstr "Tekstformatering"
 
 #. ------------------------background-------------------------
-#: ../globaltime/gt_prefs.c:649 ../globaltime/gt_prefs.c:856
+#: ../globaltime/gt_prefs.c:649
+#: ../globaltime/gt_prefs.c:856
 msgid "Background color:"
-msgstr "Colore di sfondo"
+msgstr "Bakgrunnsfarge:"
 
 #: ../globaltime/gt_prefs.c:656
 msgid "Click to change background colour for clock"
-msgstr "Fare clic per cambiare il colore di sfondo all'orologio"
+msgstr "Klikk for å endra bakgrunnsfarge for klokka"
 
-# tooltip
-#: ../globaltime/gt_prefs.c:665 ../globaltime/gt_prefs.c:697
-#: ../globaltime/gt_prefs.c:729 ../globaltime/gt_prefs.c:762
-#: ../globaltime/gt_prefs.c:796 ../globaltime/gt_prefs.c:826
-#: ../globaltime/gt_prefs.c:872 ../globaltime/gt_prefs.c:905
-#: ../globaltime/gt_prefs.c:938 ../globaltime/gt_prefs.c:972
+#: ../globaltime/gt_prefs.c:665
+#: ../globaltime/gt_prefs.c:697
+#: ../globaltime/gt_prefs.c:729
+#: ../globaltime/gt_prefs.c:762
+#: ../globaltime/gt_prefs.c:796
+#: ../globaltime/gt_prefs.c:826
+#: ../globaltime/gt_prefs.c:872
+#: ../globaltime/gt_prefs.c:905
+#: ../globaltime/gt_prefs.c:938
+#: ../globaltime/gt_prefs.c:972
 msgid "Use default"
-msgstr "Predefinito"
+msgstr "Bruk forval"
 
-#: ../globaltime/gt_prefs.c:670 ../globaltime/gt_prefs.c:702
-#: ../globaltime/gt_prefs.c:735 ../globaltime/gt_prefs.c:768
-#: ../globaltime/gt_prefs.c:802 ../globaltime/gt_prefs.c:832
+#: ../globaltime/gt_prefs.c:670
+#: ../globaltime/gt_prefs.c:702
+#: ../globaltime/gt_prefs.c:735
+#: ../globaltime/gt_prefs.c:768
+#: ../globaltime/gt_prefs.c:802
+#: ../globaltime/gt_prefs.c:832
 msgid "Cross this to use default instead of selected value"
-msgstr ""
-"Mettere il segno di spunta per utilizzare il valore predefinito al posto di "
-"quello selezionato"
+msgstr "Kryss av for å bruka forval i staden for valt verdi"
 
 #. ------------------------foreground-------------------------
-#: ../globaltime/gt_prefs.c:681 ../globaltime/gt_prefs.c:889
+#: ../globaltime/gt_prefs.c:681
+#: ../globaltime/gt_prefs.c:889
 msgid "Foreground (=text) color:"
-msgstr "Colore in primo piano (=testo):"
+msgstr "Forgrunnsfarge (tekst):"
 
 #: ../globaltime/gt_prefs.c:688
 msgid "Click to change foreground colour for clock"
-msgstr "Fare clic per cambiare il colore in primo piano all'orologio"
+msgstr "Klikk for å endra forgrunnsfarge for klokka"
 
 #. ------------------------name font-------------------------
-#: ../globaltime/gt_prefs.c:713 ../globaltime/gt_prefs.c:922
+#: ../globaltime/gt_prefs.c:713
+#: ../globaltime/gt_prefs.c:922
 msgid "Font for name of clock:"
-msgstr "Carattere per il nome dell'orologio:"
+msgstr "Skrifttype for klokka:"
 
 #: ../globaltime/gt_prefs.c:720
 msgid "Click to change font for clock name"
-msgstr "Fare clic per cambiare il tipo di carattere al nome dell'orologio"
+msgstr "Klikk for å endra skrifttype for namn på klokka"
 
 #. ------------------------time font-------------------------
-#: ../globaltime/gt_prefs.c:746 ../globaltime/gt_prefs.c:956
+#: ../globaltime/gt_prefs.c:746
+#: ../globaltime/gt_prefs.c:956
 msgid "Font for time of clock:"
-msgstr "Tipo di carattere per l'ora:"
+msgstr "Skrifttype for klokketid:"
 
 #: ../globaltime/gt_prefs.c:753
 msgid "Click to change font for clock time"
-msgstr "Fare clic per cambiare il tipo di carattere per l'ora"
+msgstr "Klikk for å endra skrifttype for tid på klokka"
 
 #. ------------------------underline name--------------------
 #: ../globaltime/gt_prefs.c:780
 msgid "Underline name of clock:"
-msgstr "Sottolinea il nome dell'orologio:"
+msgstr "Understrek klokkenamn:"
 
 #. ------------------------underline time--------------------
 #: ../globaltime/gt_prefs.c:810
 msgid "Underline time of clock:"
-msgstr "Sottolinea l'ora dell'orologio:"
+msgstr "Understrek klokketid:"
 
 #: ../globaltime/gt_prefs.c:850
 msgid "Text Default Formatting"
-msgstr "Formattazione predefinita del testo"
+msgstr "Forvald tekstformatering"
 
 #: ../globaltime/gt_prefs.c:863
 msgid "Click to change default background colour for clocks"
-msgstr "Fare clic per cambiare il colore di sfondo predefinito agli orologi"
+msgstr "Klikk for å endra forvald bakgrunnsfarge for klokker"
 
-#: ../globaltime/gt_prefs.c:877 ../globaltime/gt_prefs.c:910
+#: ../globaltime/gt_prefs.c:877
+#: ../globaltime/gt_prefs.c:910
 msgid "Cross this to use system default instead of selected color"
-msgstr ""
-"Spuntare per usare il colore predefinito di sistema al posto di quello "
-"selezionato"
+msgstr "Kryss av denne for å bruka forvald framfor vald farge"
 
 #: ../globaltime/gt_prefs.c:896
 msgid "Click to change default text colour for clocks"
-msgstr "Fare clic per cambiare il colore predefinito del testo agli orologi"
+msgstr "Klikk for å endra forvald tekstfarge for klokker"
 
 #: ../globaltime/gt_prefs.c:929
 msgid "Click to change default font for clock name"
-msgstr ""
-"Fare clic per cambiare il carattere predefinito per il nome dell'orologio"
+msgstr "Klikk for å endra forvald skrifttype for namn på klokka"
 
-#: ../globaltime/gt_prefs.c:944 ../globaltime/gt_prefs.c:978
+#: ../globaltime/gt_prefs.c:944
+#: ../globaltime/gt_prefs.c:978
 msgid "Cross this to use system default font instead of selected font"
-msgstr ""
-"Mettere il segno di spunta per usare il carattere predefinito di sistema al "
-"posto di quello selezionato"
+msgstr "Kryss av denne for å bruka systemforvald skrifttype i staden for vald skrifttype"
 
 #: ../globaltime/gt_prefs.c:963
 msgid "Click to change default font for clock time"
-msgstr "Fare clic per cambiare il carattere predefinito per l'ora"
+msgstr "Klikk for å endra forvald skrifttype for klokketid"
 
 #. ------------------------underline name--------------------
 #: ../globaltime/gt_prefs.c:990
 msgid "Underline for name of clock:"
-msgstr "Sottolineatura per il nome dell'orologio:"
+msgstr "Understrek namn på klokka:"
 
 #. ------------------------underline time--------------------
 #: ../globaltime/gt_prefs.c:1004
 msgid "Underline for time of clock:"
-msgstr "Sottolineatura per l'ora dell'orologio:"
+msgstr "Understrek klokketid"
 
-# tooltip
 #: ../globaltime/gt_prefs.c:1027
 msgid "update preferences"
-msgstr "Aggiorna preferenze"
+msgstr "Oppdater innstilling"
 
 #: ../globaltime/gt_prefs.c:1062
 msgid "Globaltime Preferences"
-msgstr "Preferenze Ora globale"
+msgstr "Globaltid-innstilling"
 
 #. -----------------------HEADING--------------------------------------
 #: ../globaltime/gt_prefs.c:1073
 msgid "General Preferences"
-msgstr "Preferenze generali"
+msgstr "Generelle innstillingar"
 
 #: ../globaltime/gt_prefs.c:1077
 msgid "Decorations:"
-msgstr "Decorazioni:"
+msgstr "Dekorasjonar:"
 
 #: ../globaltime/gt_prefs.c:1078
 msgid "Standard"
@@ -285,104 +270,115 @@ msgstr "Standard"
 
 #: ../globaltime/gt_prefs.c:1083
 msgid "Use normal decorations"
-msgstr "Usa le decorazioni normali"
+msgstr "Bruk vanlege dekorasjonar"
 
 #: ../globaltime/gt_prefs.c:1094
 msgid "Do not show window decorations (borders)"
-msgstr "Non mostrare le decorazioni della finestra (bordi)"
+msgstr "Ikkje vis vindaugsdekorasjonar (rammer)"
 
 #: ../globaltime/gt_prefs.c:1100
 msgid "Clock size:"
-msgstr "Dimensione orologio:"
+msgstr "Klokkestorleik:"
 
 #: ../globaltime/gt_prefs.c:1101
 msgid "Equal"
-msgstr "Uguale"
+msgstr "Lik"
 
 #: ../globaltime/gt_prefs.c:1106
 msgid "All clocks have same size"
-msgstr "Tutti gli orologi hanno la stessa dimensione"
+msgstr "Alle klokker har same storleik"
 
 #: ../globaltime/gt_prefs.c:1111
 msgid "Varying"
-msgstr "Variabile"
+msgstr "Varierande"
 
 #: ../globaltime/gt_prefs.c:1116
 msgid "Clock sizes vary"
-msgstr "Le dimensioni dell'orologio variano"
+msgstr "Klokkestorleik varierer"
 
 #: ../globaltime/gt_prefs.c:1122
 msgid "Local timezone:"
-msgstr "Fuso orario locale:"
+msgstr "Lokal tidssone:"
 
 #: ../globaltime/timezone_selection.c:101
-#: ../panel-plugin/timezone_selection.c:102 ../src/timezone_selection.c:102
+#: ../panel-plugin/timezone_selection.c:102
+#: ../src/timezone_selection.c:102
 msgid " Other"
-msgstr " Altro"
+msgstr "Annan"
 
 #: ../globaltime/timezone_selection.c:156
-#: ../panel-plugin/timezone_selection.c:157 ../src/timezone_selection.c:168
+#: ../panel-plugin/timezone_selection.c:157
+#: ../src/timezone_selection.c:168
 #, c-format
 msgid "%d hour %d mins"
-msgstr "%d ore %d minuti"
+msgstr "%d timar %d min"
 
 #: ../globaltime/timezone_selection.c:159
-#: ../panel-plugin/timezone_selection.c:160 ../src/timezone_selection.c:171
+#: ../panel-plugin/timezone_selection.c:160
+#: ../src/timezone_selection.c:171
 #, c-format
 msgid "%d hour"
-msgstr "%d ore"
+msgstr "%d timar"
 
 #: ../globaltime/timezone_selection.c:161
-#: ../panel-plugin/timezone_selection.c:162 ../src/timezone_selection.c:173
+#: ../panel-plugin/timezone_selection.c:162
+#: ../src/timezone_selection.c:173
 #, c-format
 msgid "%d mins"
-msgstr "%d minuti"
+msgstr "%d minutt"
 
 #: ../globaltime/timezone_selection.c:167
-#: ../panel-plugin/timezone_selection.c:168 ../src/timezone_selection.c:179
+#: ../panel-plugin/timezone_selection.c:168
+#: ../src/timezone_selection.c:179
 msgid "backward"
-msgstr "indietro"
+msgstr "bakover"
 
 #: ../globaltime/timezone_selection.c:170
-#: ../panel-plugin/timezone_selection.c:171 ../src/timezone_selection.c:182
+#: ../panel-plugin/timezone_selection.c:171
+#: ../src/timezone_selection.c:182
 msgid "forward"
-msgstr "avanti"
+msgstr "framover"
 
 #: ../globaltime/timezone_selection.c:194
-#: ../panel-plugin/timezone_selection.c:195 ../src/timezone_selection.c:206
+#: ../panel-plugin/timezone_selection.c:195
+#: ../src/timezone_selection.c:206
 msgid "not changed"
-msgstr "non modificato"
+msgstr "ikkje endra"
 
 #: ../globaltime/timezone_selection.c:195
-#: ../panel-plugin/timezone_selection.c:196 ../src/timezone_selection.c:207
+#: ../panel-plugin/timezone_selection.c:196
+#: ../src/timezone_selection.c:207
 msgid "not changing"
-msgstr "non in modifica"
+msgstr "uforandra"
 
 #. location
 #: ../globaltime/timezone_selection.c:247
 #: ../globaltime/timezone_selection.c:252
 #: ../panel-plugin/timezone_selection.c:248
-#: ../panel-plugin/timezone_selection.c:253 ../src/appointment.c:2663
-#: ../src/timezone_selection.c:259 ../src/timezone_selection.c:264
+#: ../panel-plugin/timezone_selection.c:253
+#: ../src/appointment.c:2663
+#: ../src/timezone_selection.c:259
+#: ../src/timezone_selection.c:264
 msgid "Location"
-msgstr "Località"
+msgstr "Stad"
 
 #: ../globaltime/timezone_selection.c:258
-#: ../panel-plugin/timezone_selection.c:259 ../src/timezone_selection.c:270
+#: ../panel-plugin/timezone_selection.c:259
+#: ../src/timezone_selection.c:270
 msgid "GMT Offset"
-msgstr "Differenza GMT"
+msgstr "GMT-justering"
 
-# si riferisce alle date in cui è avvenuto l'ultimo/ avverrà il prossimocambio
-# di ora: ultima dom dimarzo e di ottobre.
 #: ../globaltime/timezone_selection.c:264
-#: ../panel-plugin/timezone_selection.c:265 ../src/timezone_selection.c:276
+#: ../panel-plugin/timezone_selection.c:265
+#: ../src/timezone_selection.c:276
 msgid "Previous/Next Change"
-msgstr "Ultimo/Prossimo cambio ora"
+msgstr "Førre/neste endring"
 
 #: ../globaltime/timezone_selection.c:269
-#: ../panel-plugin/timezone_selection.c:270 ../src/timezone_selection.c:281
+#: ../panel-plugin/timezone_selection.c:270
+#: ../src/timezone_selection.c:281
 msgid "Country"
-msgstr "Paese"
+msgstr "Land"
 
 #. We are actually setting the g_par parameter. In other words
 #. we are setting the global default timezone for Orage. This is
@@ -392,26 +388,32 @@ msgstr "Paese"
 #: ../globaltime/timezone_selection.c:299
 #: ../globaltime/timezone_selection.c:309
 #: ../panel-plugin/timezone_selection.c:300
-#: ../panel-plugin/timezone_selection.c:310 ../src/timezone_selection.c:316
-#: ../src/timezone_selection.c:325 ../src/timezone_selection.c:336
+#: ../panel-plugin/timezone_selection.c:310
+#: ../src/timezone_selection.c:316
+#: ../src/timezone_selection.c:325
+#: ../src/timezone_selection.c:336
 msgid "Pick timezone"
-msgstr "Selezionare il fuso orario"
+msgstr "Vel tidssone"
 
 #: ../globaltime/timezone_selection.c:302
 #: ../globaltime/timezone_selection.c:312
 #: ../panel-plugin/timezone_selection.c:303
-#: ../panel-plugin/timezone_selection.c:313 ../src/timezone_selection.c:319
-#: ../src/timezone_selection.c:328 ../src/timezone_selection.c:339
+#: ../panel-plugin/timezone_selection.c:313
+#: ../src/timezone_selection.c:319
+#: ../src/timezone_selection.c:328
+#: ../src/timezone_selection.c:339
 msgid "Change mode"
-msgstr "Cambia modalità"
+msgstr "Endra modus"
 
 #: ../globaltime/timezone_selection.c:303
 #: ../globaltime/timezone_selection.c:313
 #: ../globaltime/timezone_selection.c:352
 #: ../panel-plugin/timezone_selection.c:304
 #: ../panel-plugin/timezone_selection.c:314
-#: ../panel-plugin/timezone_selection.c:353 ../src/timezone_selection.c:320
-#: ../src/timezone_selection.c:329 ../src/timezone_selection.c:340
+#: ../panel-plugin/timezone_selection.c:353
+#: ../src/timezone_selection.c:320
+#: ../src/timezone_selection.c:329
+#: ../src/timezone_selection.c:340
 #: ../src/timezone_selection.c:379
 msgid "UTC"
 msgstr "UTC"
@@ -420,105 +422,93 @@ msgstr "UTC"
 #: ../globaltime/timezone_selection.c:304
 #: ../globaltime/timezone_selection.c:357
 #: ../panel-plugin/timezone_selection.c:305
-#: ../panel-plugin/timezone_selection.c:358 ../src/timezone_selection.c:330
+#: ../panel-plugin/timezone_selection.c:358
+#: ../src/timezone_selection.c:330
 #: ../src/timezone_selection.c:384
 msgid "floating"
-msgstr "fluttuante"
+msgstr "flytande"
 
-#: ../globaltime/globaltime.desktop.in.h:1 ../src/tray_icon.c:500
+#: ../globaltime/globaltime.desktop.in.h:1
+#: ../src/tray_icon.c:500
 msgid "Globaltime"
-msgstr "Ora globale"
+msgstr "Globaltid"
 
 #: ../globaltime/globaltime.desktop.in.h:2
 msgid "Orage Globaltime"
-msgstr "Ora globale di Orage"
+msgstr "Orage Globaltid"
 
 #: ../globaltime/globaltime.desktop.in.h:3
 msgid "Show clocks from different countries"
-msgstr "Mostra l'orologio di diversi paesi"
+msgstr "Vis klokker frå ulike land"
 
 #: ../panel-plugin/oc_config.c:224
 msgid "Appearance"
-msgstr "Aspetto"
+msgstr "Utsjånad"
 
 #. show frame
 #: ../panel-plugin/oc_config.c:229
 msgid "Show _frame"
-msgstr "Mostra co_rnice"
+msgstr "Vis _ramma"
 
 #. foreground color
 #: ../panel-plugin/oc_config.c:239
 msgid "set foreground _color:"
-msgstr "Imposta colore _primo piano:"
+msgstr "set _forgrunnsfarge"
 
 #. background color
 #: ../panel-plugin/oc_config.c:253
 msgid "set _background color:"
-msgstr "Imposta colore _sfondo:"
+msgstr "set _bakgrunnsfarge"
 
 #. clock size (=vbox size): height and width
 #: ../panel-plugin/oc_config.c:267
 msgid "set _height:"
-msgstr "Imposta alte_zza:"
+msgstr "set _høgd"
 
 #: ../panel-plugin/oc_config.c:277
 msgid "Note that you can not change the height of horizontal panels"
-msgstr ""
-"Si noti che non è possibile modificare l'altezza dei pannelli orizzontali"
+msgstr "Merk at du ikkje kan endra høgda på horisontale panel"
 
 #: ../panel-plugin/oc_config.c:282
 msgid "set _width:"
-msgstr "Imposta _larghezza:"
+msgstr "set _breidd"
 
 #: ../panel-plugin/oc_config.c:293
 msgid "Note that you can not change the width of vertical panels"
-msgstr ""
-"Si noti che non è possibile modificare lalarghezza dei pannelli verticali"
+msgstr "Merk at du ikkje kan endra breidda til vertikale panel"
 
 #: ../panel-plugin/oc_config.c:316
 msgid "Clock Options"
-msgstr "Opzioni dell'orologio"
+msgstr "Klokkeinnstilling"
 
 #. timezone
 #: ../panel-plugin/oc_config.c:326
 msgid "set timezone to:"
-msgstr "Imposta il fuso orario su:"
+msgstr "set tidssone til:"
 
 #: ../panel-plugin/oc_config.c:347
 #, c-format
 msgid "Line %d:"
-msgstr "Linea %d:"
+msgstr "Linje %d:"
 
 #: ../panel-plugin/oc_config.c:357
 msgid "Enter any valid strftime function parameter."
-msgstr "Inserire un parametro valido per la funzione strftime"
+msgstr "Skriv inn gyldig parameter til «strftime»-funksjonen."
 
 #. Tooltip hint
 #: ../panel-plugin/oc_config.c:401
 msgid "Tooltip:"
-msgstr "Suggerimento:"
+msgstr "Verktøytips:"
 
 #. special timing for SUSPEND/HIBERNATE
 #: ../panel-plugin/oc_config.c:411
 msgid "fix time after suspend/hibernate"
-msgstr "Riaggiusta l'ora dopo una sospensione/ibernazione"
+msgstr "korriger tid etter kvile/dvale"
 
 #: ../panel-plugin/oc_config.c:415
-msgid ""
-"You only need this if you do short term (less than 5 hours) suspend or "
-"hibernate and your visible time does not include seconds. Under these "
-"circumstances it is possible that Orageclock shows time inaccurately unless "
-"you have this selected. (Selecting this prevents cpu and interrupt saving "
-"features from working.)"
-msgstr ""
-"Questo è necessario se viene effettuata una sospensione o una ibernazione a "
-"breve termine (meno di 5 ore) e l'ora visualizzata non comprende i secondi. "
-"In queste circostanze è possibile che l'orologio di Orage mostri l'ora in "
-"modo impreciso a meno che non sia stata selezionata questa opzione "
-"(selezionandola, si inibisce il funzionamento della cpu e delle funzioni di "
-"risparmio energetico)"
+msgid "You only need this if you do short term (less than 5 hours) suspend or hibernate and your visible time does not include seconds. Under these circumstances it is possible that Orageclock shows time inaccurately unless you have this selected. (Selecting this prevents cpu and interrupt saving features from working.)"
+msgstr "Du treng berre dette viss du set maskina i kvile/dvale i mindre enn 5 timar og synleg tid ikkje inkluderer sekund. Under desse omstenda er det mogleg at klokka viser tida feil viss dette ikkje er aktivert. (Ved å velja dette vert prosessor og avbruddslagring hindra i å fungera)"
 
-# # modificato i tab(\t) per far tornare tutto allineato
 #: ../panel-plugin/oc_config.c:432
 msgid ""
 "This program uses strftime function to get time.\n"
@@ -530,20 +520,18 @@ msgid ""
 "\t%H = hours \t\t\t\t%M = minute\n"
 "\t%X = local time\t\t\t%x = local date"
 msgstr ""
-"Questo programma utilizza la funzione strftime per\n"
-"recuperare le informazioni su data e ora.\n"
-"Utilizzare un qualsiasi codice valido per ottenere la\n"
-"data e l'ora nel formato che si preferisce.\n"
-"I codici più utilizzati sono:\n"
-"\t%A = giorno della settimana\t%B = mese\n"
-"\t%c = data e ora\t\t\t%R = ora e minuti\n"
-"\t%V = numero settimana\t%Z = fuso orario in uso\n"
-"\t%H = ore \t\t\t\t%M = minuti\n"
-"\t%X = ora locale\t\t\t%x = data locale"
+"Dette programmet brukar «strftime»-funksjonen for å formatera dato og tid.\n"
+"Skriv inn gyldige koder for å vise tid/klokkeslett slik du ønskjer.\n"
+"Nokre vanlege koder er:\n"
+"\t%A = ukedag\t\t\t%B = månad\n"
+"\t%c = dato og tid\t\t%R = timar og minutt\n"
+"\t%V = ukenummer\t\t%Z = tidssone\n"
+"\t%H = timar \t\t\t\t%M = minutt\n"
+"\t%X = lokal tid\t\t\t%x = lokal dato"
 
 #: ../panel-plugin/oc_config.c:457
 msgid "Orage clock Preferences"
-msgstr "Preferenze dell'orologio di Orage"
+msgstr "Orage klokkeinnstilling"
 
 #. no lines yet
 #. TRANSLATORS: Use format characters from strftime(3)
@@ -554,263 +542,286 @@ msgstr "Preferenze dell'orologio di Orage"
 #. * %B  : full month name
 #. * %Y  : four digit year
 #. * %V  : ISO week number
-#. 
+#.
 #: ../panel-plugin/xfce4-orageclock-plugin.c:627
 msgid "%A %d %B %Y/%V"
-msgstr "%A %d %B %Y/%V"
+msgstr "%A %d. %B %Y / %V"
 
 #: ../src/about-xfcalendar.c:40
 msgid "Maintainer"
-msgstr "Mantenitore"
+msgstr "Vedlikehaldar"
 
 #: ../src/about-xfcalendar.c:47
 msgid "Manage your time with Orage"
-msgstr "Gestire il proprio tempo con Orage"
+msgstr "Hald styr på tida di med Orage"
 
 #. if (gtk_toggle_button_get_active(
 #. GTK_TOGGLE_BUTTON(apptw->Type_journal_rb)))
 #. end time
-#: ../src/appointment.c:313 ../src/appointment.c:353 ../src/appointment.c:2692
+#: ../src/appointment.c:313
+#: ../src/appointment.c:353
+#: ../src/appointment.c:2692
 msgid "End"
-msgstr "Fine"
+msgstr "Slutt"
 
 #: ../src/appointment.c:333
 msgid "Due"
-msgstr "Scadenza"
+msgstr "Frist"
 
-#: ../src/appointment.c:493 ../src/mainbox.c:783
+#: ../src/appointment.c:493
+#: ../src/mainbox.c:783
 msgid "Orage"
 msgstr "Orage"
 
 #. to avoid timing problems when updating entry
 #. Create file chooser
-#: ../src/appointment.c:672 ../src/interface.c:277 ../src/parameters.c:416
+#: ../src/appointment.c:672
+#: ../src/interface.c:277
+#: ../src/parameters.c:416
 msgid "Select a file..."
-msgstr "Selezionare un file..."
+msgstr "Vel ei fil …"
 
 #: ../src/appointment.c:680
 msgid "Sound Files"
-msgstr "File audio"
+msgstr "Lydfiler"
 
-#: ../src/appointment.c:687 ../src/interface.c:290
+#: ../src/appointment.c:687
+#: ../src/interface.c:290
 msgid "All Files"
-msgstr "Tutti i File"
+msgstr "Alle filer"
 
 #: ../src/appointment.c:739
 msgid "The appointment information has been modified."
-msgstr "Le informazioni sull'appuntamento sono state modificate."
+msgstr "Avtaleinformasjonen er endra."
 
-#: ../src/appointment.c:740 ../src/appointment.c:1194 ../src/event-list.c:919
+#: ../src/appointment.c:740
+#: ../src/appointment.c:1194
+#: ../src/event-list.c:919
 msgid "Do you want to continue?"
-msgstr "Continuare davvero?"
+msgstr "Ønskjer du å halda fram?"
 
 #: ../src/appointment.c:767
 msgid "The end of this appointment is earlier than the beginning."
-msgstr "La fine di questo appuntamento è precedente all'inizio."
+msgstr "Denne avtala sluttar før han startar."
 
-#: ../src/appointment.c:1034 ../src/appointment.c:1812
+#: ../src/appointment.c:1034
+#: ../src/appointment.c:1812
 msgid "Not set"
-msgstr "Non impostato"
+msgstr "Ikkje sett"
 
 #: ../src/appointment.c:1193
 msgid "This appointment will be permanently removed."
-msgstr "Questo appuntamento verrà rimosso in modo permanente."
+msgstr "Avtala vil slettast."
 
 #: ../src/appointment.c:1692
 msgid "This appointment does not exist."
-msgstr "Questo appuntamento non esiste."
+msgstr "Avtala eksisterer ikkje."
 
 #: ../src/appointment.c:1693
 msgid "It was probably removed, please refresh your screen."
-msgstr "Probabilmente è stato rimosso, si prega di aggiornare la schermata."
+msgstr "Det vart sannsynlegvis fjerna, ver venleg og oppdater skjermbiletet."
 
 #: ../src/appointment.c:1995
 msgid "Current categories"
-msgstr "Categorie correnti"
+msgstr "Gjeldande kategoriar"
 
 #: ../src/appointment.c:2010
 msgid "Add new category with color"
-msgstr "Aggiungere una nuova categoria con un colore"
+msgstr "Legg til ny kategori med farge"
 
 #: ../src/appointment.c:2014
 msgid "Category:"
-msgstr "Categoria:"
+msgstr "Kategori:"
 
 #: ../src/appointment.c:2045
 msgid "Colors of categories - Orage"
-msgstr "Colori delle categorie - Orage"
+msgstr "Fargekategoriar – Orage"
 
 #: ../src/appointment.c:2092
 msgid " *** COPY ***"
-msgstr " *** COPIA ***"
+msgstr " *** KOPI ***"
 
 #: ../src/appointment.c:2353
 msgid "New appointment - Orage"
-msgstr "Nuovo appuntamento - Orage"
+msgstr "Ny _avtale – Orage"
 
 #. File menu stuff
 #. ********* File menu *********
 #. File menu
-#: ../src/appointment.c:2382 ../src/day-view.c:254 ../src/event-list.c:1021
-#: ../src/interface.c:767 ../src/mainbox.c:279
+#: ../src/appointment.c:2382
+#: ../src/day-view.c:254
+#: ../src/event-list.c:1021
+#: ../src/interface.c:767
+#: ../src/mainbox.c:279
 msgid "_File"
-msgstr "_File"
+msgstr "_Fil"
 
 #: ../src/appointment.c:2388
 msgid "Sav_e and close"
-msgstr "Salva _e chiudi"
+msgstr "Lagr_a og lukk"
 
-#: ../src/appointment.c:2401 ../src/event-list.c:1027
+#: ../src/appointment.c:2401
+#: ../src/event-list.c:1027
 msgid "D_uplicate"
-msgstr "D_uplica"
+msgstr "D_upliser"
 
 #: ../src/appointment.c:2589
 msgid "Save"
-msgstr "Salva"
+msgstr "Lagra"
 
 #: ../src/appointment.c:2591
 msgid "Save and close"
-msgstr "Salva e chiude"
+msgstr "Lagra og lukk"
 
 #: ../src/appointment.c:2596
 msgid "Revert"
-msgstr "Ripristina"
+msgstr "Tilbakestill"
 
-#: ../src/appointment.c:2598 ../src/event-list.c:1112
+#: ../src/appointment.c:2598
+#: ../src/event-list.c:1112
 msgid "Duplicate"
-msgstr "Duplica"
+msgstr "Dupliser"
 
-#: ../src/appointment.c:2603 ../src/event-list.c:1114
+#: ../src/appointment.c:2603
+#: ../src/event-list.c:1114
 msgid "Delete"
-msgstr "Cancella"
+msgstr "Slett"
 
 #: ../src/appointment.c:2621
 msgid "Free"
-msgstr "Libero"
+msgstr "Frigjer"
 
 #: ../src/appointment.c:2621
 msgid "Busy"
-msgstr "Occupato"
+msgstr "Oppteken"
 
 #: ../src/appointment.c:2625
 msgid "General"
-msgstr "Generale"
+msgstr "Generell"
 
 #. type
 #: ../src/appointment.c:2631
 msgid "Type "
-msgstr "Tipo"
+msgstr "Type "
 
-#: ../src/appointment.c:2633 ../src/event-list.c:1165
+#: ../src/appointment.c:2633
+#: ../src/event-list.c:1165
 msgid "Event"
-msgstr "Evento"
+msgstr "Hending"
 
 #: ../src/appointment.c:2636
 msgid ""
 "Event that will happen sometime. For example:\n"
 "Meeting or birthday or TV show."
 msgstr ""
-"Evento che accadrà un giorno; per esempio:\n"
-"un incontro, un compleanno, o uno spettacolo alla TV"
+"Hending som vil skje. Til dømes:\n"
+"Eit møte, ein bursdag eller eit TV-program."
 
-#: ../src/appointment.c:2639 ../src/event-list.c:1185
+#: ../src/appointment.c:2639
+#: ../src/event-list.c:1185
 msgid "Todo"
-msgstr "Compito"
+msgstr "Oppgåver"
 
 #: ../src/appointment.c:2642
 msgid ""
 "Something that you should do sometime. For example:\n"
 "Wash your car or test new version of Orage."
 msgstr ""
-"Qualcosa che dovrebbe essere fatto prima o poi; per esempio:\n"
-"lavare la propria auto o provare la nuova versione di Orage"
+"Noko du burde gjera. Til dømes:\n"
+"Vaska bilen din eller testa ein ny versjon av Orage."
 
-#: ../src/appointment.c:2645 ../src/event-list.c:1198
+#: ../src/appointment.c:2645
+#: ../src/event-list.c:1198
 msgid "Journal"
-msgstr "Note del giorno"
+msgstr "Journal"
 
 #: ../src/appointment.c:2649
 msgid ""
 "Make a note that something happened. For example:\n"
 "Remark that your mother called or first snow came."
 msgstr ""
-"Scrivere una nota per ricordare che è successo qualcosa; per esempio:\n"
-"annota che la mamma ha chiamato o che è scesa la prima neve"
+"Noter deg eitkvart. Til dømes:\n"
+"Noter at mora di ringte eller at den første snøen denne vinteren kom."
 
 #. title
 #: ../src/appointment.c:2656
 msgid "Title "
-msgstr "Nome"
+msgstr "Tittel "
 
 #: ../src/appointment.c:2671
 msgid "All day event"
-msgstr "Evento che occupa tutto il giorno"
+msgstr "Heildagsavtale"
 
 #. start time
-#: ../src/appointment.c:2677 ../src/appointment.c:3342 ../src/day-view.c:697
+#: ../src/appointment.c:2677
+#: ../src/appointment.c:3342
+#: ../src/day-view.c:697
 msgid "Start"
-msgstr "Inizio"
+msgstr "Start"
 
 #: ../src/appointment.c:2697
 msgid "Set      "
-msgstr "Imposta"
+msgstr "Set     "
 
 #: ../src/appointment.c:2718
 msgid "Duration"
-msgstr "Durata"
+msgstr "Varigskap"
 
-#: ../src/appointment.c:2722 ../src/appointment.c:2912 ../src/reminder.c:761
+#: ../src/appointment.c:2722
+#: ../src/appointment.c:2912
+#: ../src/reminder.c:761
 msgid "days"
-msgstr "giorni"
+msgstr "dagar"
 
-#: ../src/appointment.c:2724 ../src/appointment.c:2914 ../src/reminder.c:763
+#: ../src/appointment.c:2724
+#: ../src/appointment.c:2914
+#: ../src/reminder.c:763
 msgid "hours"
-msgstr "ore"
+msgstr "timar"
 
-#: ../src/appointment.c:2726 ../src/appointment.c:2916 ../src/reminder.c:765
+#: ../src/appointment.c:2726
+#: ../src/appointment.c:2916
+#: ../src/reminder.c:765
 msgid "mins"
-msgstr "minuti"
+msgstr "minutt"
 
 #. Availability (only for EVENT)
 #: ../src/appointment.c:2738
 msgid "Availability"
-msgstr "Disponibilità"
+msgstr "Tilgjengelegheit"
 
 #. completed (only for TODO)
-#: ../src/appointment.c:2746 ../src/appointment.c:3348
+#: ../src/appointment.c:2746
+#: ../src/appointment.c:3348
 msgid "Completed"
-msgstr "Completato"
+msgstr "Fullført"
 
 #: ../src/appointment.c:2749
 msgid "Done"
-msgstr "Fatto"
+msgstr "Ferdig"
 
 #. categories
 #: ../src/appointment.c:2770
 msgid "Categories"
-msgstr "Categorie"
+msgstr "Kategoriar"
 
 #: ../src/appointment.c:2782
-msgid ""
-"This is special category, which can be used to color this appointment in "
-"list views."
-msgstr ""
-"Questa è una categoria speciale, che può essere usata per colorare questo "
-"appuntamento nella visualizzazione a elenco"
+msgid "This is special category, which can be used to color this appointment in list views."
+msgstr "Dette er ein spesiell kategori som kan brukast for å farga denne avtala i listevising."
 
 #: ../src/appointment.c:2787
 msgid "update colors for categories."
-msgstr "Aggiorna i colori per categorie"
+msgstr "oppdater fargar for kategoriar."
 
 #. priority
 #: ../src/appointment.c:2793
 msgid "Priority"
-msgstr "Priorità"
+msgstr "Prioritet"
 
 #. note
 #: ../src/appointment.c:2803
 msgid "Note"
-msgstr "Commento"
+msgstr "Merknad"
 
 #: ../src/appointment.c:2824
 msgid ""
@@ -821,43 +832,41 @@ msgid ""
 "\n"
 "These are converted only later when they are seen:\n"
 "    <&Ynnnn> is translated to current year minus nnnn.\n"
-"(This can be used for example in birthday reminders to tell how old the "
-"person will be.)"
+"(This can be used for example in birthday reminders to tell how old the person will be.)"
 msgstr ""
-"I seguenti comandi rapidi hanno effetto immediato:\n"
-"    <D> inserisce la data corrente in formato ora locale\n"
-"    <T> inserisce l'ora e\n"
-"    <DT> inserisce la data e l'ora.\n"
+"Disse hurtigkommandoene vert oppdaterte umiddelbart:\n"
+"    <D> set inn dagens dato med lokalt datoformat\n"
+"    <T> set inn klokkeslett og\n"
+"    <DT> set inn både dato og klokkeslett.\n"
 "\n"
-"Quanto segue è convertito solo dopo essere stato esaminato:\n"
-"    <&Ynnnn> è tradotto in anno corrente meno nnnn.\n"
-"(Può essere utilizzato per esempio in promemoria di compleanni per sapere "
-"quanti anni ha la persona)"
+"Desse vert seinare konverterte før vising:\n"
+"    <&Ynnnn> vert omsett til gjeldande år minus nnnn.\n"
+"(Dette kan til dømes brukast til bursdagspåminningar for å visa alderen til den som har bursdag.)"
 
 #: ../src/appointment.c:2895
 msgid "Before Start"
-msgstr "Prima dell'inizio"
+msgstr "Før start"
 
 #: ../src/appointment.c:2895
 msgid "Before End"
-msgstr "Prima della fine"
+msgstr "Før slutt"
 
 #: ../src/appointment.c:2896
 msgid "After Start"
-msgstr "Dopo l'inizio"
+msgstr "Etter start"
 
 #: ../src/appointment.c:2896
 msgid "After End"
-msgstr "Dopo la fine"
+msgstr "Etter slutt"
 
 #: ../src/appointment.c:2903
 msgid "Alarm"
-msgstr "Allarme"
+msgstr "Påminning"
 
 #. **** ALARM TIME ****
 #: ../src/appointment.c:2909
 msgid "Alarm time"
-msgstr "Ora dell'allarme"
+msgstr "Påminningstidspunkt"
 
 #: ../src/appointment.c:2933
 msgid ""
@@ -866,101 +875,91 @@ msgid ""
 " 2) before Todo end\n"
 " 3) after Todo start"
 msgstr ""
-"Spesso si desidera ricevere un allarme:\n"
-" 1) prima che un evento sia iniziato\n"
-" 2) prima che un compito sia terminato\n"
-" 3) dopo che un compito sia iniziato"
+"Kor ofte vil du ha ei påminning:\n"
+" 1) før hendinga startar\n"
+" 2) før oppgåver sluttar\n"
+" 3) etter oppgåver startar"
 
 #: ../src/appointment.c:2938
 msgid "Persistent alarm"
-msgstr "Allarme persistente"
+msgstr "Vedvarande alarm"
 
 #: ../src/appointment.c:2940
-msgid ""
-"Select this if you want Orage to remind you even if it has not been active "
-"when the alarm happened."
-msgstr ""
-"Selezionare questa opzione per fare in modo che Orage avvisi comunque anche "
-"se non è attivo al momento dell'allarme"
+msgid "Select this if you want Orage to remind you even if it has not been active when the alarm happened."
+msgstr "Vel dette viss du vil at Orage skal minna deg sjølv om Orage ikkje var aktivt når alarmtidspunktet inntraff"
 
 #. **** Audio Alarm ****
-# è riferito all'allarme
 #: ../src/appointment.c:2949
 msgid "Sound"
-msgstr "Suono"
+msgstr "Lyd"
 
-#: ../src/appointment.c:2953 ../src/appointment.c:3074
+#: ../src/appointment.c:2953
+#: ../src/appointment.c:3074
 msgid "Use"
-msgstr "Utilizza"
+msgstr "Bruk"
 
 #: ../src/appointment.c:2955
 msgid "Select this if you want audible alarm"
-msgstr "Selezionare questa opzione se si desidera un allarme acustico"
+msgstr "Vel denne viss du ønskjer ei høyrbar påminning"
 
 #: ../src/appointment.c:2972
 msgid "Repeat alarm sound"
-msgstr "Ripeti suono di allarme"
+msgstr "Gjenta påminninga"
 
-#: ../src/appointment.c:2988 ../src/appointment.c:3290
+#: ../src/appointment.c:2988
+#: ../src/appointment.c:3290
 msgid "times"
-msgstr "volte"
+msgstr "gonger"
 
 #: ../src/appointment.c:3004
 msgid "sec interval"
-msgstr "intervallo in secondi"
+msgstr "intervall i sekund"
 
 #. **** Display Alarm ****
 #: ../src/appointment.c:3014
 msgid "Visual"
-msgstr "Visuale"
+msgstr "Visuell"
 
 #: ../src/appointment.c:3018
 msgid "Use Orage window"
-msgstr "Utilizza la finestra di Orage"
+msgstr "Bruk Orage-vindauget"
 
 #: ../src/appointment.c:3020
 msgid "Select this if you want Orage window alarm"
-msgstr ""
-"Selezionare questa opzione se si desidera ricevere l'allarme della finestra "
-"di Orage"
+msgstr "Vel denne viss du vil ha Orage-vindaugsalarm"
 
 #: ../src/appointment.c:3032
 msgid "Use notification"
-msgstr "Usa notifica"
+msgstr "Bruk påminning"
 
 #: ../src/appointment.c:3034
 msgid "Select this if you want notification alarm"
-msgstr ""
-"Selezionare questa opzione se si desidera ricevere un allarme di notifica"
+msgstr "Vel denne viss du vil ha ei påminning"
 
 #: ../src/appointment.c:3040
 msgid "Set timeout"
-msgstr "Imposta timeout"
+msgstr "Set tidsavbrot"
 
 #: ../src/appointment.c:3043
 msgid "Select this if you want notification to expire automatically"
-msgstr ""
-"Selezionare questa opzione se si desidera ceh la notifica scada "
-"automaticamente"
+msgstr "Vel denne viss du vil at påminninga skal løpa ut automatisk"
 
 #: ../src/appointment.c:3054
 msgid "0 = system default expiration time"
-msgstr "0 = intervallo di scadenza predefinito di sistema"
+msgstr "0 = forvald systemutløpstid"
 
 #: ../src/appointment.c:3059
 msgid "seconds"
-msgstr "secondi"
+msgstr "sekund"
 
 #. **** Procedure Alarm ****
 #: ../src/appointment.c:3070
 msgid "Procedure"
-msgstr "Procedura"
+msgstr "Metode"
 
 #: ../src/appointment.c:3076
 msgid "Select this if you want procedure or script alarm"
-msgstr ""
-"Selezionare questa opzione se si intende utilizzare una procedura o uno "
-"script di allarme"
+msgstr "Vel denne viss du vil ha metode- eller skriptalarm"
 
 #: ../src/appointment.c:3082
 msgid ""
@@ -973,104 +972,103 @@ msgid ""
 "\t<&ST> appointment start time\n"
 "\t<&ET> appointment end time"
 msgstr ""
-"Si devono inserire tutti i caratteri di escape.\n"
-"Questa stringa è inviata dalla shell al processo.\\I seguenti comandi "
-"speciali sono sostituiti durante l'esecuzione:\n"
-"\t<&T> titolo dell'appuntamento\n"
-"\t<&D> descrizione dell'appuntamento\n"
-"\t<&AT> ora dell'allarme\n"
-"\t<&ST> ora di inizio dell'appuntamento\n"
-"\t<&ET> ora di fine dell'appuntamento"
+"Du må skriva inn alle tastesekvensar sjølv.\n"
+"Denne strengen går berre til skallet.\n"
+"Desse kommandoane blir bytte ut når du køyrer programmet:\n"
+"\t<&T>  namn på avtala\n"
+"\t<&D>  skildring av avtala\n"
+"\t<&AT> alarmtid\n"
+"\t<&ST> starttid for avtala\n"
+"\t<&ET> sluttid for avtala"
 
 #: ../src/appointment.c:3094
 msgid "Test this alarm by raising it now"
-msgstr "Prova questo allarme facendolo suonare adesso"
+msgstr "Test dette varselet no"
 
 #: ../src/appointment.c:3101
 msgid "<b>Default alarm</b>"
-msgstr "<b>Allarme predefinito</b>"
+msgstr "<b>Standard påminning</b>"
 
 #: ../src/appointment.c:3109
 msgid "Store current settings as default alarm"
-msgstr "Salva le impostazioni correnti come allarme predefinito"
+msgstr "Lagra gjeldande innstillingar som standard påminning"
 
 #: ../src/appointment.c:3114
 msgid "Set current settings from default alarm"
-msgstr "carica le impostazioni dell'allarme predefinit"
+msgstr "Set gjeldande innstillingar frå standard påminning"
 
-# si riferisce a "frequenza"
 #: ../src/appointment.c:3176
 msgid "None"
-msgstr "Nessuna"
+msgstr "Ingen"
 
 #: ../src/appointment.c:3176
 msgid "Daily"
-msgstr "Giornaliera"
+msgstr "Dagleg"
 
 #: ../src/appointment.c:3176
 msgid "Weekly"
-msgstr "Settimanale"
+msgstr "Kvar veke"
 
 #: ../src/appointment.c:3176
 msgid "Monthly"
-msgstr "Mensile"
+msgstr "Kvar månad"
 
 #: ../src/appointment.c:3176
 msgid "Yearly"
-msgstr "Annuale"
+msgstr "Årleg"
 
 #: ../src/appointment.c:3176
 msgid "Hourly"
-msgstr "Oraria"
+msgstr "Kvar time"
 
 #: ../src/appointment.c:3178
 msgid "Mon"
-msgstr "Lun"
+msgstr "Mån"
 
 #: ../src/appointment.c:3178
 msgid "Tue"
-msgstr "Mar"
+msgstr "Tys"
 
 #: ../src/appointment.c:3178
 msgid "Wed"
-msgstr "Mer"
+msgstr "Ons"
 
 #: ../src/appointment.c:3178
 msgid "Thu"
-msgstr "Gio"
+msgstr "Tor"
 
 #: ../src/appointment.c:3178
 msgid "Fri"
-msgstr "Ven"
+msgstr "Fre"
 
 #: ../src/appointment.c:3178
 msgid "Sat"
-msgstr "Sab"
+msgstr "Lau"
 
 #: ../src/appointment.c:3178
 msgid "Sun"
-msgstr "Dom"
+msgstr "Sun"
 
 #: ../src/appointment.c:3183
 msgid "Recurrence"
-msgstr "Ricorrenza"
+msgstr "Gjentaking"
 
 #. complexity
 #: ../src/appointment.c:3189
 msgid "Complexity"
-msgstr "Complessità"
+msgstr "Kompleksitet"
 
 #: ../src/appointment.c:3192
 msgid "Basic"
-msgstr "Base"
+msgstr "Enkel"
 
 #: ../src/appointment.c:3198
 msgid "Advanced"
-msgstr "Avanzata"
+msgstr "Avansert"
 
 #: ../src/appointment.c:3202
 msgid "Use this if you want regular repeating event"
-msgstr "Usare questa opzione se si vogliono eventi periodici regolari"
+msgstr "Bruk denne for gjentakande hendingar"
 
 #: ../src/appointment.c:3204
 msgid ""
@@ -1078,22 +1076,22 @@ msgid ""
 " Every Saturday and Sunday or \n"
 " First Tuesday every month"
 msgstr ""
-"Usare questa opzione se occorrono pianificazioni complesse come:\n"
-" ogni sabato e domenica o\n"
-" primo martedì di ogni mese"
+"Nytt denne viss du treng komplekse oppsett:\n"
+" Kvar laurdag og sundag eller \n"
+" Første tysdag i månaden"
 
 #. frequency
 #: ../src/appointment.c:3211
 msgid "Frequency"
-msgstr "Frequenza"
+msgstr "Frekvens"
 
 #: ../src/appointment.c:3217
 msgid "Each"
-msgstr "Ogni"
+msgstr "Kvar"
 
 #: ../src/appointment.c:3224
 msgid "occurrence"
-msgstr "occorrenza"
+msgstr "førekomst"
 
 #: ../src/appointment.c:3228
 msgid ""
@@ -1101,34 +1099,34 @@ msgid ""
 " For example: Every third day:\n"
 " Frequency = Daily and Interval = 3"
 msgstr ""
-"Limita la frequenza a certi intervalli;\n"
-" per esempio: ogni terzo giorno:\n"
-" Frequenza = Giornaliera e Intervallo = 3"
+"Avgrens frekvensen til bestemt intervall.\n"
+" Døme: Kvar tredje dag: \n"
+" Frekvens = dagleg og intervall = 3"
 
 #: ../src/appointment.c:3274
 msgid "Limit"
-msgstr "Limite"
+msgstr "Grense"
 
 #: ../src/appointment.c:3276
 msgid "Repeat forever"
-msgstr "Ripeti per sempre"
+msgstr "Gjenta for alltid"
 
 #: ../src/appointment.c:3282
 msgid "Repeat "
-msgstr "Ripeti"
+msgstr "Gjenta"
 
 #: ../src/appointment.c:3298
 msgid "Repeat until "
-msgstr "Ripeti fino al "
+msgstr "Gjenta til "
 
 #. weekdays (only for complex settings)
 #: ../src/appointment.c:3311
 msgid "Weekdays"
-msgstr "Giorni della settimana"
+msgstr "Vekedagar"
 
 #: ../src/appointment.c:3323
 msgid "Which day"
-msgstr "Quale giorno"
+msgstr "Dag"
 
 #: ../src/appointment.c:3331
 msgid ""
@@ -1139,195 +1137,194 @@ msgid ""
 "\tWeekdays = check only Wednesday,\n"
 "\tWhich day = select 2 from the number below Wednesday"
 msgstr ""
-"Specifica quale giorno della settimana per eventi mensili ed annui;\n"
-" Per esempio:\n"
-" Secondo Mercoledì di ogni mese:\n"
-"\tFrequenza = Mensile\n"
-"\tGiorni della settimana = spuntare solo mercoledì\n"
-"\tQuale giorno = selezionare 2 dal numero sotto mercoledì "
+"Nemn vekedagen for månadlege og årlege hendingar.\n"
+" Døme:\n"
+" Andre onsdag kvar månad:\n"
+"\tFrekvens = månadleg,\n"
+"\tVekedagar = vel berre onsdag,\n"
+"\tDag = vel verdien 2 under onsdag."
 
 #. TODO base (only for TODOs)
-# TODO=compito
 #: ../src/appointment.c:3339
 msgid "TODO base"
-msgstr "Base compito"
+msgstr "TODO base"
 
 #: ../src/appointment.c:3352
-msgid ""
-"TODO reoccurs regularly starting on start time and repeating after each "
-"interval no matter when it was last completed"
-msgstr ""
-"Il compito ricorre regolarmente a partire dal tempo di inizio e si ripete "
-"dopo ogni intervallo indipendentemente da quando è stato completato l'ultima "
-"volta"
+msgid "TODO reoccurs regularly starting on start time and repeating after each interval no matter when it was last completed"
+msgstr "SKAL GJERAST kjem att på nytt og startar på starttidspunktet, og gjentek seg ved kvart intervall uansett når han vart fullført sist"
 
 #: ../src/appointment.c:3354
 msgid ""
-"TODO reoccurrency is based on complete time and repeats after the interval "
-"counted from the last completed time.\n"
-"(Note that you can not tell anything about the history of the TODO since "
-"reoccurrence base changes after each completion.)"
+"TODO reoccurrency is based on complete time and repeats after the interval counted from the last completed time.\n"
+"(Note that you can not tell anything about the history of the TODO since reoccurrence base changes after each completion.)"
 msgstr ""
-"La ricorrenza del compito è basata sul tempo di completamento e si ripete "
-"dopo un intervallo calcolato a partire dall'ultimo completamento\n"
-"(Si noti che si può non dire niente in merito allo storico dei compiti dato "
-"che la base della ricorrenza viene modificata a ogni completamento)"
+"SKAL GJERAST-oppattakingane er baserte på tid, og kjem att etter tidsrommet frå førre fullførte tidspunktet.\n"
+"(Merk at du ikkje veit noko om historikk for SKAL GJERAST sidan utgangspunktet for oppattaking blir endra etter kvar fullføring.)"
 
 #. exceptions
 #: ../src/appointment.c:3361
 msgid "Exceptions"
-msgstr "Eccezioni"
+msgstr "Unntak"
 
-# tooltip
-# nel textbox compaiono i giorni selezionati come eccezioni.
-# per rimuoverli occorre fare doppio clic sui vari elementi
 #: ../src/appointment.c:3374
 msgid ""
 "Add more exception dates by clicking the calendar days below.\n"
-"Exception is either exclusion(-) or inclusion(+) depending on the "
-"selection.\n"
+"Exception is either exclusion(-) or inclusion(+) depending on the selection.\n"
 "Remove by clicking the data."
 msgstr ""
-"Aggiunge ulteriori giorni di eccezione facendo clic nei giorni del "
-"calendario che segue;\n"
-"le eccezioni possono essere sia di esclusione(-) sia di inclusione(+) in "
-"funzione della selezione;\n"
-"rimuove facendo clic sugli elementi"
+"Legg til fleire dagar med unntak ved å klikka kalenderdagar under.\n"
+"Unntak er anten eksklusjon(-) eller inkludering(+) avhengig av kva som er valt.\n"
+"Fjern ved å klikka på dataa."
 
 #: ../src/appointment.c:3379
 msgid "Add excluded date (-)"
-msgstr "Aggiungi giorno escluso"
+msgstr "Legg til unntaksdato (-)"
 
-# tooltip
 #: ../src/appointment.c:3381
 msgid "Excluded days are full days where this appointment is not happening"
-msgstr ""
-"I giorni esclusi sono giorni interi in cui l'appuntamento non è previsto"
+msgstr "Unntaksdagar er fulle dagar der denne avtala ikkje gjeld"
 
 #: ../src/appointment.c:3387
 msgid "Add included time (+)"
-msgstr "Aggiungi tempi inclusi"
+msgstr "Legg til inkludert tid (+)"
 
-# tooltip
 #: ../src/appointment.c:3389
-msgid ""
-"Included times have same timezone than start time, but they may have "
-"different time"
-msgstr ""
-"I tempi inclusi hanno lo stesso fuso orario dell'istante di inizio, ma "
-"possono avere diversi orari"
+msgid "Included times have same timezone than start time, but they may have different time"
+msgstr "Inkluderte tider har same tidssone som starttida, men kan ha eit anna tidspunkt"
 
 #. calendars showing the action days
 #: ../src/appointment.c:3406
 msgid "Action dates"
-msgstr "Giorni di azione"
+msgstr "Hendingsdagar"
 
 #. ********* View menu *********
 #. View menu
-#: ../src/day-view.c:264 ../src/event-list.c:1044 ../src/mainbox.c:305
+#: ../src/day-view.c:264
+#: ../src/event-list.c:1044
+#: ../src/mainbox.c:305
 msgid "_View"
-msgstr "_Visualizza"
+msgstr "_Vis"
 
 #. ********* Go menu   *********
-#: ../src/day-view.c:278 ../src/event-list.c:1063
+#: ../src/day-view.c:278
+#: ../src/event-list.c:1063
 msgid "_Go"
-msgstr "V_ai"
+msgstr "_Gå"
 
-#: ../src/day-view.c:319 ../src/event-list.c:1110
+#: ../src/day-view.c:319
+#: ../src/event-list.c:1110
 msgid "New"
-msgstr "Nuovo"
+msgstr "Ny"
 
-#: ../src/day-view.c:324 ../src/event-list.c:1119
+#: ../src/day-view.c:324
+#: ../src/event-list.c:1119
 msgid "Back"
-msgstr "Indietro"
+msgstr "Tilbake"
 
-#: ../src/day-view.c:326 ../src/event-list.c:1121 ../src/functions.c:143
+#: ../src/day-view.c:326
+#: ../src/event-list.c:1121
+#: ../src/functions.c:143
 #: ../src/tray_icon.c:460
 msgid "Today"
-msgstr "Oggi"
+msgstr "I dag"
 
-#: ../src/day-view.c:328 ../src/event-list.c:1123
+#: ../src/day-view.c:328
+#: ../src/event-list.c:1123
 msgid "Forward"
-msgstr "Avanti"
+msgstr "Framover"
 
-#: ../src/day-view.c:333 ../src/event-list.c:1128
+#: ../src/day-view.c:333
+#: ../src/event-list.c:1128
 msgid "Refresh"
-msgstr "Ricarica"
+msgstr "Les på nytt"
 
-#: ../src/day-view.c:338 ../src/event-list.c:1135 ../src/interface.c:809
+#: ../src/day-view.c:338
+#: ../src/event-list.c:1135
+#: ../src/interface.c:809
 msgid "Close"
-msgstr "Chiudi"
+msgstr "Lukk"
 
 #: ../src/day-view.c:454
 msgid "Unknown"
-msgstr "Sconosciuto"
+msgstr "Ukjend"
 
 #: ../src/day-view.c:704
 msgid "       Number of days to show"
-msgstr "       Numero di giorni da visualizzare"
+msgstr "       Kor mange dagar me skal syna"
 
 #: ../src/day-view.c:935
 msgid "Orage - day view"
-msgstr "Orage - Vista per giorno"
+msgstr "Orage - dagsvising"
 
 #. date only appointment
 #: ../src/event-list.c:190
 msgid "All day"
-msgstr "Tutto il giorno"
+msgstr "Heile dagen"
 
-#: ../src/event-list.c:580 ../src/event-list.c:1281
+#: ../src/event-list.c:580
+#: ../src/event-list.c:1281
 msgid "Time"
-msgstr "Ora"
+msgstr "Tid"
 
 #: ../src/event-list.c:748
 msgid "No rows have been selected."
-msgstr "Non è stata selezionata alcuna riga."
+msgstr "Du har ikkje valt nokon rader."
 
 #: ../src/event-list.c:749
 msgid "Click a row to select it and after that you can copy it."
-msgstr "Fare clic su una riga per selezionarla e poi copiarla."
+msgstr "Klikk på ei rad for å velja henne og etterpå kan du kopiera henne."
 
 #: ../src/event-list.c:918
+#, fuzzy
 msgid ""
 "You will permanently remove all\n"
 "selected appointments."
 msgstr ""
-"Verranno rimossi in modo permanente\n"
-"tutti gli appuntamenti selezionati."
+"Du vil permanent sletta alle valde \n"
+"avtaler."
 
 #: ../src/event-list.c:1130
+#, fuzzy
 msgid "Find"
-msgstr "Trova"
+msgstr "Finn"
 
 #: ../src/event-list.c:1137
+#, fuzzy
 msgid "Dayview"
-msgstr "Vista per giorno"
+msgstr "Dagsvisning"
 
 #: ../src/event-list.c:1170
+#, fuzzy
 msgid "Extra days to show "
-msgstr "Giorni aggiuntivi da mostrare"
+msgstr "       Kor mange dagar me skal syna"
 
 #: ../src/event-list.c:1201
+#, fuzzy
 msgid "Journal entries starting from:"
-msgstr "Appuntamenti della giornata a partire da:"
+msgstr "Journal element frå:"
 
 #: ../src/event-list.c:1221
+#, fuzzy
 msgid "Search"
-msgstr "Cerca"
+msgstr "Søk"
 
 #: ../src/event-list.c:1224
+#, fuzzy
 msgid "Search text "
-msgstr "Cerca testo"
+msgstr "Søk etter tekst"
 
 #: ../src/event-list.c:1289
+#, fuzzy
 msgid "Flags"
-msgstr "Attributi"
+msgstr "Flagg"
 
 #: ../src/event-list.c:1297
+#, fuzzy
 msgid "Title"
-msgstr "Nome"
+msgstr "Tittel"
 
 #: ../src/event-list.c:1323
+#, fuzzy
 msgid ""
 "Double click line to edit it.\n"
 "\n"
@@ -1342,498 +1339,545 @@ msgid ""
 "\t 5. Appointment type:\n"
 "\t\tE=Event T=Todo J=Journal"
 msgstr ""
-"Doppio clic sulla riga per modificarla.\n"
+"Dobbeltklikk linja for å redigera.\n"
 "\n"
-"Attributi in ordine:\n"
-"\t 1. allarme: n=nessun allarme\n"
-"\t\t A=allarme visivo S=solo allarme sonoro\n"
-"\t 2. ricorrente: n=non ricorrente\n"
-"\t\t D=giornaliero W=settimanale M=mensile Y=annuale\n"
-"\t 3. tipo: f=libero B=occupato\n"
-"\t 4. posizionato nel file:\n"
-"\t\tO=Orage A=archivio F=esterno\n"
-"\t 5. tipo di appuntamento:\n"
-"\t\tE=evento T=compito J=note del giorno"
+"Flagg (i rekkjefølgd):\n"
+"\t 1. Påminning: n=ingen påminning\n"
+"\t\tA=visuell påminning S=òg påminning med lydar\n"
+"\t 2. Gjentagelse: n=ingen gjentagelse\n"
+"\t\t D=Dagleg W=Vekentleg M=Månedlig Y=Årleg\n"
+"\t 3. Type: f=ledig B=Oppteke\n"
+"\t 4. Plassert i fil: O=Orage\n"
+"\t\t  A=Arkiv F=Ekstern\n"
+"\t 5. Avtaletype:\n"
+"\t\tE=Hending T=Gjeremål J=Journal"
 
 #: ../src/functions.c:141
+#, fuzzy
 msgid "Pick the date"
-msgstr "Seleziona della data"
+msgstr "Dato opna"
 
 #. remove since it has ended
 #: ../src/ical-archive.c:267
+#, fuzzy
 msgid "\tRecur ended, moving to archive file."
-msgstr "\tRicorrenza conclusa, spostamento al file di archivio."
+msgstr "\tGjentagelse avslutta, flyttar til arkivfil."
 
 #: ../src/ical-archive.c:329
+#, fuzzy
 msgid "Archiving not enabled. Exiting"
-msgstr "Archiviazione non attivata. Esco"
+msgstr "Ressursen støttar ikkje WebDAV"
 
 #: ../src/ical-archive.c:347
-#, c-format
+#, fuzzy, c-format
 msgid "Archiving threshold: %d month(s)"
-msgstr "Limite di archiviazione: %d mese(i)"
+msgstr "Ikkje endra månad"
 
 #. yy mon day
 #: ../src/ical-archive.c:350
-#, c-format
+#, fuzzy, c-format
 msgid "\tArchiving events, which are older than: %04d-%02d-%02d"
-msgstr "\tArchiviazione degli eventi precedenti a: %04d-%02d-%02d"
+msgstr "\tArkiverer hendingar som er eldre enn %04d-%02d-%02d"
 
 #: ../src/ical-archive.c:377
-#, c-format
+#, fuzzy, c-format
 msgid "Archiving uid: %s"
-msgstr "Uid di archiviazione: %s"
+msgstr "Arkiverings uid: %s"
 
 #. VTODO not completed, do not archive
 #: ../src/ical-archive.c:383
+#, fuzzy
 msgid "\tVTODO not complete; not archived"
-msgstr "\tVCOMPITO non completo; non archiviato"
+msgstr "Ferdig, men ikkje unik"
 
 #. it is recurrent event
 #: ../src/ical-archive.c:388
-#, c-format
+#, fuzzy, c-format
 msgid "\tRecurring. End year: %04d, month: %02d, day: %02d"
-msgstr "\tRicorrente. Fine anno: %04d, mese: %02d, giorno: %02d"
+msgstr "\tGjentakande. Avsluttast år: %04d, månad: %02d, dag: %02d"
 
 #: ../src/ical-archive.c:405
+#, fuzzy
 msgid "Archiving done\n"
-msgstr "Archiviazione completata\n"
+msgstr "Arkivering fullførd\n"
 
 #. PHASE 1: go through base orage file and remove "repeat" shortcuts
 #: ../src/ical-archive.c:421
+#, fuzzy
 msgid "Starting archive removal."
-msgstr "Avvio rimozione archivio."
+msgstr "Fjern raude auge"
 
 #: ../src/ical-archive.c:422
+#, fuzzy
 msgid "\tPHASE 1: reset recurring appointments"
-msgstr "\tFASE 1: reimposta gli appuntamenti periodici"
+msgstr "\tFase 1: Resett gjentakande avtalar"
 
 #. PHASE 2: go through archive file and add everything back to base orage.
 #. * After that delete the whole arch file
 #: ../src/ical-archive.c:444
+#, fuzzy
 msgid "\tPHASE 2: return archived appointments"
-msgstr "\tFASE 2: restituisce gli appuntamenti archiviati"
+msgstr "\tFase 2: Returner arkiverte avtaler"
 
 #: ../src/ical-archive.c:470
+#, fuzzy
 msgid "Archive removal done\n"
-msgstr "Rimozione archivio completata\n"
+msgstr "Fjern raude auge"
 
 #: ../src/ical-code.c:932
+#, fuzzy
 msgid "Orage default alarm"
-msgstr "Allarme predefinito di Orage"
+msgstr "Gjenta påminninga"
 
 #: ../src/ical-code.c:3115
-#, c-format
+#, fuzzy, c-format
 msgid "Build alarm list: Added %d alarms. Processed %d events."
-msgstr "Creazione lista allarmi: aggiunti %d allarmi. Elaborati %d eventi."
+msgstr "Bygde påminningsliste: Lagt til %d påminningar. Prosessert %d hendingar."
 
 #: ../src/ical-code.c:3117
-#, c-format
-msgid ""
-"\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
-msgstr ""
-"\tTrovato %d allarmi, di cui %d attivi (esaminati %d allarmi periodici)."
+#, fuzzy, c-format
+msgid "\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
+msgstr "\tFann %d påminningar korav %d er aktive. (Søkte %d gjentakande påminningar)"
 
 #: ../src/ical-expimp.c:123
+#, fuzzy
 msgid "Starting import file preprocessing"
-msgstr "Avvio in corso della pre-elaborazione del file da importare"
+msgstr "Vel fil som skal importerast"
 
 #: ../src/ical-expimp.c:158
+#, fuzzy
 msgid "... Patched DCREATED to be CREATED."
-msgstr "... DCREATED corretto in CREATED."
+msgstr "... Patchet DCREATED til å verta CREATED"
 
 #: ../src/ical-expimp.c:197
+#, fuzzy
 msgid "... Patched timezone to Orage format."
-msgstr "... Fuso orario corretto nel formato di Orage."
+msgstr "... Patchet tidssone til Orage sitt format."
 
 #: ../src/ical-expimp.c:206
+#, fuzzy
 msgid "Import file preprocessing done"
-msgstr "Pre-elaborazione del file da importare eseguita"
+msgstr "Vel fil som skal importerast"
 
 #: ../src/interface.c:284
 msgid "Calendar files"
-msgstr "File del calendario"
+msgstr "Kalenderfiler"
 
 #: ../src/interface.c:631
+#, fuzzy
 msgid "Current foreign files"
-msgstr "File esterni correnti"
+msgstr "Kopierer filer til «%s»..."
 
 #: ../src/interface.c:643
+#, fuzzy
 msgid "READ ONLY"
-msgstr "SOLO LETTURA"
+msgstr "Berre lesetilgang"
 
 #: ../src/interface.c:645
+#, fuzzy
 msgid "READ WRITE"
-msgstr "LETTURA E SCRITTURA"
+msgstr "Les og skriv"
 
 #: ../src/interface.c:663
+#, fuzzy
 msgid "***** No foreign files *****"
-msgstr "***** Nessun file esterno *****"
+msgstr "Fann ingen filer i: "
 
 #: ../src/interface.c:974
+#, fuzzy
 msgid "Import/export"
-msgstr "Importa/esporta"
+msgstr "Eksporter fil"
 
 #: ../src/interface.c:981
+#, fuzzy
 msgid "Import"
-msgstr "Importa"
+msgstr "Importer"
 
 #: ../src/interface.c:986
+#, fuzzy
 msgid "Read from file:"
-msgstr "Leggi dal file:"
+msgstr "Kopierer fila «%s» frå «%s» …"
 
 #: ../src/interface.c:1003
+#, fuzzy
 msgid ""
 "Separate filenames with comma(,).\n"
 " NOTE: comma is not valid character in filenames for Orage."
 msgstr ""
-"Separa i nomi dei file con virgole(,);\n"
-" NOTA: la virgola non è un carattere valido nei nomi di file per Orage"
+"Skil filnavn med komene(,).\n"
+" NB: Komma er ikkje gyldig teikn i filnavn til bruk i Orage."
 
 #: ../src/interface.c:1008
+#, fuzzy
 msgid "Export"
-msgstr "Esporta"
+msgstr "Eksporter"
 
 #: ../src/interface.c:1013
+#, fuzzy
 msgid "Write to file:"
-msgstr "Scrivi sul file:"
+msgstr "Kan ikkje skriva til fila «%s»: %s"
 
-#: ../src/interface.c:1034 ../src/interface.c:1046
+#: ../src/interface.c:1034
+#: ../src/interface.c:1046
+#, fuzzy
 msgid "Select"
-msgstr "Seleziona"
+msgstr "Vel"
 
 #: ../src/interface.c:1037
+#, fuzzy
 msgid "All appointments"
-msgstr "Tutti gli appuntamenti"
+msgstr "Alle filer"
 
 #: ../src/interface.c:1050
+#, fuzzy
 msgid "Named appointments: "
-msgstr "Solo determinati appuntamenti"
+msgstr "Kopier namngitt"
 
 #: ../src/interface.c:1062
+#, fuzzy
 msgid ""
 "Note that only main file appointments are read.\n"
 "Archived and Foreign events are not exported."
 msgstr ""
-"Si noti che soltanto gli appuntamenti del file principale sono letti;\n"
-"gli eventi archiviati ed esterni non vengono esportati"
+"Ver oppmerksam på at berre avtaler frå hovedfil lesast.\n"
+"Arkiverte og eksterne hendingar vert ikkje eksporterte."
 
 #: ../src/interface.c:1065
+#, fuzzy
 msgid ""
 "Note that only main file appointments are read.\n"
 "Foreign events are not exported."
 msgstr ""
-"Si noti che vengono letti soltanto gli appuntamenti del file principale;\n"
-"gli eventi archiviati ed esterni non vengono esportati"
+"Ver oppmerksam på at berre avtaler frå hovedfil lesast.\n"
+"Hendingar utenifra vert ikkje eksporterte."
 
 #: ../src/interface.c:1068
+#, fuzzy
 msgid "You can easily drag these from event-list window."
-msgstr "Si può trascinarli facilmente dalla finestra della lista eventi"
+msgstr "Du kan enkelt dra desse frå hendingsliste-vindauget."
 
 #: ../src/interface.c:1070
+#, fuzzy
 msgid "Orage appointment UIDs separated by commas."
-msgstr "Gli UID degli appuntamenti di Orage separati da virgole"
+msgstr "Orage avtale UID'er separert med komene."
 
 #: ../src/interface.c:1076
+#, fuzzy
 msgid "Archive"
-msgstr "Archivia"
+msgstr "7-zip-arkiv"
 
 #: ../src/interface.c:1084
-#, c-format
+#, fuzzy, c-format
 msgid "Archive now (threshold: %d months)"
-msgstr "Archivia subito (limite: %d mesi)"
+msgstr "Arkiver no (grenseverdi: %d månader)"
 
 #: ../src/interface.c:1094
+#, fuzzy
 msgid "You can change archive threshold in parameters"
-msgstr "È possibile modificare il limite dell'archivio nei parametri"
+msgstr "Du kan endra grenseverdi i parametrane"
 
 #: ../src/interface.c:1101
+#, fuzzy
 msgid "Revert archive now"
-msgstr "Ripristina subito l'archivio"
+msgstr "bruk kontrollen no"
 
 #: ../src/interface.c:1107
+#, fuzzy
 msgid ""
 "Return all archived events into main orage file and remove arch file.\n"
 "This is useful for example when doing export and moving orage\n"
 "appointments to another system."
 msgstr ""
-"Ripristina tutti gli eventi archiviati nel file principale di orage e "
-"rimuove il file di archivio;\n"
-"ciò è utile ad esempio quando si esporta e si trasferiscono gli\n"
-"appuntamenti di Orage verso un altro sistema"
+"Returner alle arkiverte hendingar til Orage hovedfil og slett arkivfil.\n"
+"Dette er nyttig til dømes ved eksport og ved flytting av Orage\n"
+"avtalar til eit anna system."
 
 #: ../src/interface.c:1118
+#, fuzzy
 msgid "Orage files"
-msgstr "File di Orage"
+msgstr "Kopierer filer …"
 
 #: ../src/interface.c:1125
+#, fuzzy
 msgid "Orage main calendar file"
-msgstr "File del calendario principale di Orage"
+msgstr "Orage kalende hovedfil"
 
-#: ../src/interface.c:1130 ../src/interface.c:1195
+#: ../src/interface.c:1130
+#: ../src/interface.c:1195
+#, fuzzy
 msgid "Current file"
-msgstr "File corrente"
+msgstr "Lukk den noverande fila"
 
-#: ../src/interface.c:1137 ../src/interface.c:1202
+#: ../src/interface.c:1137
+#: ../src/interface.c:1202
+#, fuzzy
 msgid "New file"
-msgstr "Nuovo file"
+msgstr "Ny fil"
 
-#: ../src/interface.c:1153 ../src/interface.c:1219
+#: ../src/interface.c:1153
+#: ../src/interface.c:1219
+#, fuzzy
 msgid "Action options"
-msgstr "Opzioni dell'azione"
+msgstr "Alternativ for GTK+"
 
-#: ../src/interface.c:1156 ../src/interface.c:1222
+#: ../src/interface.c:1156
+#: ../src/interface.c:1222
+#, fuzzy
 msgid "Rename"
-msgstr "Rinomina"
+msgstr "Døyp om"
 
 #: ../src/interface.c:1160
+#, fuzzy
 msgid ""
 "Orage internal file rename only.\n"
 "Does not touch external filesystem at all.\n"
 "New file must exist."
 msgstr ""
-"Rinomina soltanto il file interno di Orage;\n"
-"non ha alcun effetto sul file system esterno;\n"
-"Il nuovo file dovrebbe esistere"
+"Orage gjev nytt namn berre til intern fil.\n"
+"Rører ingen eksterne filsystem overhovudet.\n"
+"Ny fil må eksistera."
 
-#: ../src/interface.c:1164 ../src/interface.c:1227
+#: ../src/interface.c:1164
+#: ../src/interface.c:1227
+#, fuzzy
 msgid "Copy"
-msgstr "Copia"
+msgstr "Kopier"
 
 #: ../src/interface.c:1168
+#, fuzzy
 msgid "Current file is copied and stays unmodified in the old place."
-msgstr ""
-"Il file corrente viene copiato e rimane immutato nella posizione precedente"
+msgstr "Gjeldande fil vert kopiert og vert verande urørt på gammal plassering."
 
-#: ../src/interface.c:1172 ../src/interface.c:1232
+#: ../src/interface.c:1172
+#: ../src/interface.c:1232
+#, fuzzy
 msgid "Move"
-msgstr "Sposta"
+msgstr "Flytt"
 
 #: ../src/interface.c:1176
+#, fuzzy
 msgid "Current file is moved and vanishes from the old place."
-msgstr ""
-"Il file corrente viene spostato e cancellato dalla posizione precedente"
+msgstr "Gjeldande fil vert flytt og vert frå fjerna gammal plassering."
 
 #: ../src/interface.c:1190
+#, fuzzy
 msgid "Archive file"
-msgstr "File di archivio"
+msgstr "Ny fil"
 
 #: ../src/interface.c:1254
+#, fuzzy
 msgid "Foreign files"
-msgstr "File esterni"
+msgstr "Kopierer filer …"
 
 #: ../src/interface.c:1261
+#, fuzzy
 msgid "Add new foreign file"
-msgstr "Aggiungi un nuovo file esterno"
+msgstr "Lag ny tom fil"
 
 #: ../src/interface.c:1266
+#, fuzzy
 msgid "Foreign file:"
-msgstr "File esterno:"
+msgstr "Ny fil"
 
 #: ../src/interface.c:1284
+#, fuzzy
 msgid "Options"
-msgstr "Opzioni"
+msgstr "Val"
 
 #: ../src/interface.c:1286
+#, fuzzy
 msgid "Read only"
-msgstr "Sola lettura"
+msgstr "Berre lesetilgang"
 
 #: ../src/interface.c:1294
+#, fuzzy
 msgid ""
-"Set this if you want to make sure that this file is never modified by "
-"Orage.\n"
-"Note that modifying foreign files may make them incompatible with the "
-"original tool, where they came from!"
+"Set this if you want to make sure that this file is never modified by Orage.\n"
+"Note that modifying foreign files may make them incompatible with the original tool, where they came from!"
 msgstr ""
-"L'opzione viene attivata quando si è sicuri che il file non verrà mai "
-"modificato da Orage;\n"
-"si noti che modificare file esterni può renderli incompatibili con "
-"l'applicazione originale dalla quale essi provengono"
+"Set dette viss du vil vera sikker på at denne fila aldri vert modifisert av Orage.\n"
+"Hugs at ved å endra filer frå andre verktøy kan dei verta ukompatible med originalprogrammet!"
 
 #: ../src/interface.c:1308
+#, fuzzy
 msgid "Exchange data - Orage"
-msgstr "Scambio dati - Orage"
+msgstr "Orage klokkeinnstilling"
 
 #: ../src/main.c:268
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "\tThis is %s version %s\n"
 "\n"
-msgstr ""
-"\tQuesta è la versione %2$s di %1$s\n"
-"\n"
+msgstr "  -v, --version                    Vis versionsinformasjon\n"
 
 #: ../src/main.c:270
-#, c-format
+#, fuzzy, c-format
 msgid "\tReleased under the terms of the GNU General Public License.\n"
-msgstr "\tRilasciata sotto i termini della GNU General Public License.\n"
+msgstr "\tUtgjeve under betingelsene til Gnu General Public License.\n"
 
 #: ../src/main.c:271
-#, c-format
+#, fuzzy, c-format
 msgid "\tCompiled against GTK+-%d.%d.%d, "
-msgstr "\tCompilata con GTK+-%d.%d.%d, "
+msgstr "Vis alternativ for GTK+"
 
 #: ../src/main.c:273
-#, c-format
+#, fuzzy, c-format
 msgid "using GTK+-%d.%d.%d.\n"
-msgstr "usando GTK+-%d.%d.%d.\n"
+msgstr "Alternativ for GTK+"
 
 #: ../src/main.c:276
-#, c-format
+#, fuzzy, c-format
 msgid "\tUsing DBUS for import.\n"
-msgstr "\tUtilizza DBUS per l'importazione.\n"
+msgstr "\tBrukar DBUS for import.\n"
 
 #: ../src/main.c:278
-#, c-format
+#, fuzzy, c-format
 msgid "\tNot using DBUS. Import works only partially.\n"
-msgstr "\tNon utilizza DBUS. L'importazione funziona solo parzialmente.\n"
+msgstr "\tBrukar ikkje DBUS. Importering funger berre delvis.\n"
 
 #: ../src/main.c:281
-#, c-format
+#, fuzzy, c-format
 msgid "\tUsing libnotify.\n"
-msgstr "\tUtilizza libnotify.\n"
+msgstr "\tNytter libnotify.\n"
 
 #: ../src/main.c:283
-#, c-format
+#, fuzzy, c-format
 msgid "\tNot using libnotify.\n"
-msgstr "\tNon utilizza libnotify.\n"
+msgstr "Sjå bort frå festing med"
 
 #: ../src/main.c:286
-#, c-format
+#, fuzzy, c-format
 msgid "\tUsing automatic archiving.\n"
-msgstr "\tUtilizza l'archiviazione automatica.\n"
+msgstr "Automatisk, berre adresser"
 
 #: ../src/main.c:288
-#, c-format
+#, fuzzy, c-format
 msgid "\tNot using archiving.\n"
-msgstr "\tNon utilizza l'archiviazione automatica.\n"
+msgstr "Sjå bort frå festing med"
 
 #: ../src/main.c:291
-#, c-format
+#, fuzzy, c-format
 msgid "\tUsing operating system package libical.\n"
-msgstr "\tUtilizza il pacchetto libcal del sistema operativo.\n"
+msgstr "\tBrukar systempakke libical.\n"
 
 #: ../src/main.c:293
-#, c-format
+#, fuzzy, c-format
 msgid "\tUsing Orage local version of libical.\n"
-msgstr "\tUtilizza il pacchetto libcal della versione locale di Orage.\n"
+msgstr "\tNytter Orage lokal versjon av libical.\n"
 
 #: ../src/main.c:306
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "Usage: orage [options] [files]\n"
 "\n"
 msgstr ""
-"Utilizzo: orage [opzioni] [file]\n"
+"Bruk: orage [opsjonar] [filer]\n"
 "\n"
 
 #: ../src/main.c:307
-#, c-format
+#, fuzzy, c-format
 msgid "Options:\n"
-msgstr "Opzioni:\n"
+msgstr "Val:"
 
 #: ../src/main.c:308
-#, c-format
+#, fuzzy, c-format
 msgid "--version (-v) \t\tshow version of orage\n"
-msgstr "--version (-v) \t\tmostra la versione di orage\n"
+msgstr "Orage klokkeinnstilling"
 
 #: ../src/main.c:309
-#, c-format
+#, fuzzy, c-format
 msgid "--help (-h) \t\tprint this text\n"
-msgstr "--help (-h) \t\tstampa questo testo\n"
+msgstr "  -h, --help                         Vis denne meldinga\n"
 
 #: ../src/main.c:310
-#, c-format
+#, fuzzy, c-format
 msgid "--preferences (-p) \tshow preferences form\n"
-msgstr "--preferences (-p) \tmostra la finestra delle preferenze\n"
+msgstr "Fleirtalsforma for eininga."
 
 #: ../src/main.c:311
-#, c-format
+#, fuzzy, c-format
 msgid "--toggle (-t) \t\tmake orage visible/unvisible\n"
-msgstr "--toggle (-t) \t\trende orage visibile/invisibile\n"
+msgstr "--toggle (-t) \t\tGøyr Orage synleg/usynleg\n"
 
 #: ../src/main.c:312
-#, c-format
+#, fuzzy, c-format
 msgid "--add-foreign (-a) file [RW] \tadd a foreign file\n"
-msgstr "--add-foreign (-a) file [RW] \taggiunge un file esterno\n"
+msgstr "--add-foreign (-a) fil [RW] \tLegg til ekstern fil\n"
 
 #: ../src/main.c:313
-#, c-format
+#, fuzzy, c-format
 msgid "--remove-foreign (-r) file \tremove a foreign file\n"
-msgstr "--remove-foreign (-r) file \trimuove un file esterno\n"
+msgstr "Klarer ikkje fjerna mellombelsfila Â«%sÂ»"
 
 #: ../src/main.c:314
 #, c-format
-msgid ""
-"--export (-e) file [appointment...] \texport appointments from Orage to "
-"file\n"
-msgstr ""
-"--export (-e) file [appuntamento...] \tesporta gli appuntamenti da Orage in "
-"un file\n"
+msgid "--export (-e) file [appointment...] \texport appointments from Orage to file\n"
+msgstr "--export (-e) fil [avtale..] \teksporter avtaler frå Orage til ei fil\n"
 
 #: ../src/main.c:316
-#, c-format
+#, fuzzy, c-format
 msgid "files=ical files to load into orage\n"
-msgstr "file=file ical da caricare in orage\n"
+msgstr "filar=ical filer å lasta inn i Orage\n"
 
 #: ../src/main.c:318
-#, c-format
+#, fuzzy, c-format
 msgid "\tdbus not included in orage. \n"
-msgstr "\tdbus non incluso in orage. \n"
+msgstr "\tDBUS ikkje inkludert i Orage. \n"
 
 #: ../src/main.c:319
-#, c-format
-msgid ""
-"\twithout dbus [files] and foreign file options(-a & -r) can only be used "
-"when starting orage \n"
-msgstr ""
-"\t senza dbus [file] e le opzioni dei file esterni (-a e -r), può essere "
-"utilizzato solamente quando si avvia orage \n"
+#, fuzzy, c-format
+msgid "\twithout dbus [files] and foreign file options(-a & -r) can only be used when starting orage \n"
+msgstr "\tutan DBUS [filer] og eksterne filopsjoner kan (-a & -r) berre vert brukt ved oppstart av Orage \n"
 
 #: ../src/main.c:511
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "\n"
 "Unknown option %s\n"
 "\n"
-msgstr ""
-"\n"
-"Opzione sconosciuta %s\n"
-"\n"
+msgstr "innstillingspanel"
 
 #: ../src/mainbox.c:287
+#, fuzzy
 msgid "_Exchange data"
-msgstr "Scam_bia dati"
+msgstr "Lagar data"
 
 #. Edit menu
 #: ../src/mainbox.c:298
+#, fuzzy
 msgid "_Edit"
-msgstr "_Modifica"
+msgstr "_Rediger"
 
 #: ../src/mainbox.c:308
+#, fuzzy
 msgid "View selected _date"
-msgstr "Visualizza _data selezionata"
+msgstr "Vel den førre datoen"
 
 #: ../src/mainbox.c:311
+#, fuzzy
 msgid "View selected _week"
-msgstr "Visualizza _settimana selezionata"
+msgstr "Vis eigenskapane til den valde fila."
 
 #: ../src/mainbox.c:317
+#, fuzzy
 msgid "Select _Today"
-msgstr "Seleziona _oggi"
+msgstr "I dag kl. %X"
 
 #: ../src/mainbox.c:323
+#, fuzzy
 msgid "Show _Globaltime"
-msgstr "Mosta ora _globale"
+msgstr "Globaltime-innstilling"
 
 #. Help menu
 #: ../src/mainbox.c:327
+#, fuzzy
 msgid "_Help"
-msgstr "_Aiuto"
+msgstr "_Hjelp"
 
 #: ../src/mainbox.c:448
+#, fuzzy
 msgid "Never"
-msgstr "Mai"
+msgstr "Aldri"
 
 #: ../src/mainbox.c:453
 #, c-format
@@ -1846,10 +1890,12 @@ msgid ""
 " Note:\n"
 "%s"
 msgstr ""
-"Titolo: %s\n"
-" Inizio:\t%s\n"
-" Fine:\t%s\n"
-" Commento:\n"
+"Tittel: %s\n"
+" Stad: %s\n"
+" Start:\t%s\n"
+" Frist:\t%s\n"
+" Fullført:\t%s\n"
+" Notat:\n"
 "%s"
 
 #: ../src/mainbox.c:460
@@ -1862,259 +1908,270 @@ msgid ""
 " Note:\n"
 "%s"
 msgstr ""
-"Titolo: %s\n"
-" Inizio:\t%s\n"
-" Fine:\t%s\n"
-" Commento:\n"
+"Tittel: %s\n"
+" Stad: %s\n"
+" Start:\t%s\n"
+" Slutt:\t%s\n"
+" Notat:\n"
 "%s"
 
 #: ../src/mainbox.c:546
+#, fuzzy
 msgid "<b>To do:</b>"
-msgstr "<b>Compito:</b>"
+msgstr "_Ikkje lagra"
 
 #: ../src/mainbox.c:582
-#, c-format
+#, fuzzy, c-format
 msgid "<b>Events for %s:</b>"
-msgstr "<b>Eventi per il %s:</b>"
+msgstr "_Søk etter:"
 
 #: ../src/mainbox.c:593
-#, c-format
+#, fuzzy, c-format
 msgid "<b>Events for %s - %s:</b>"
-msgstr "<b>Eventi per il %s - %s:</b>"
+msgstr "_Søk etter:"
 
 #: ../src/parameters.c:522
+#, fuzzy
 msgid "Main settings"
-msgstr "Impostazioni principali"
+msgstr "IPv4-innstillingar"
 
 #: ../src/parameters.c:528
+#, fuzzy
 msgid "Timezone"
-msgstr "Fuso orario"
+msgstr "Tidssone for klokka:"
 
 #: ../src/parameters.c:543
+#, fuzzy
 msgid "You should always define your local timezone."
-msgstr "Si dovrebbe sempre definire il proprio fuso orario locale"
+msgstr "Du bør alltid definera lokalet ditt tidssone."
 
 #: ../src/parameters.c:552
+#, fuzzy
 msgid "Archive threshold (months)"
-msgstr "Limite archivio (mesi)"
+msgstr "Stille-dørstokk (dB)"
 
 #: ../src/parameters.c:562
+#, fuzzy
 msgid "(0 = no archiving)"
-msgstr "(0 = non archiviare)"
+msgstr "Ingen ikon"
 
 #: ../src/parameters.c:565
+#, fuzzy
 msgid "Archiving is used to save time and space when handling events."
-msgstr ""
-"L'archiviazione viene utilizzata per risparmiare tempo e spazio quando "
-"vengono gestiti gli eventi"
+msgstr "Arkivering vert brukte for å spara tid og lagringsplass når handlingar vert handterte"
 
 #: ../src/parameters.c:574
+#, fuzzy
 msgid "Sound command"
-msgstr "Comando audio"
+msgstr "Omstart kommando"
 
 #: ../src/parameters.c:589
+#, fuzzy
 msgid "This command is given to shell to make sound in alarms."
-msgstr ""
-"Questo comando viene passato alla shell per trasformare l'audio in allarmi"
+msgstr "Denne kommandoen vert gjeven til skalet for å gje alarmar høvet til å laga lydar"
 
 #: ../src/parameters.c:605
+#, fuzzy
 msgid "Display settings"
-msgstr "Impostazioni di visualizzazione"
+msgstr "Skjerminnstillingar"
 
 #: ../src/parameters.c:613
+#, fuzzy
 msgid "Calendar main window"
-msgstr "Finestra principale del calendario"
+msgstr "Opna eit nytt vindauge"
 
 #: ../src/parameters.c:618
+#, fuzzy
 msgid "Show borders"
-msgstr "Mostra bordi"
+msgstr "_Vis miniatyrbilete"
 
 #: ../src/parameters.c:625
+#, fuzzy
 msgid "Show menu"
-msgstr "Mostra menu"
+msgstr "Menyikon"
 
 #: ../src/parameters.c:632
+#, fuzzy
 msgid "Show month and year"
-msgstr "Mostra mese e anno"
+msgstr "Vis tid og dato?"
 
 #: ../src/parameters.c:639
+#, fuzzy
 msgid "Show day names"
-msgstr "Mostra nomi dei giorni"
+msgstr "Vis namn på dagar"
 
 #: ../src/parameters.c:646
+#, fuzzy
 msgid "Show week numbers"
-msgstr "Mostra numeri delle settimane"
+msgstr "Vis vekenummer"
 
 #: ../src/parameters.c:653
+#, fuzzy
 msgid "Show todo list"
-msgstr "Mostra lista compiti"
+msgstr "Detaljert listevising"
 
-# preferenze; poco spazio dispo;
 #: ../src/parameters.c:660
+#, fuzzy
 msgid "Number of days to show in event window"
-msgstr "Numero di giorni nella finestra degli eventi"
+msgstr "Mengd dagar å visa i hendingsvindauge"
 
-# tooltip
 #: ../src/parameters.c:666
+#, fuzzy
 msgid "0 = do not show event list at all"
-msgstr "0 = non visualizza nessun evento"
+msgstr "0 = ikkje vis hendingsliste"
 
 #: ../src/parameters.c:676
+#, fuzzy
 msgid "Show on all desktops"
-msgstr "Mostra su tutte le scrivanie"
+msgstr "Vis vindauge frå alle skriveborda"
 
 #: ../src/parameters.c:683
+#, fuzzy
 msgid "Keep on top"
-msgstr "Mantieni in primo piano"
+msgstr "Alltid øvers_t"
 
 #: ../src/parameters.c:690
+#, fuzzy
 msgid "Show in taskbar"
-msgstr "Mostra nella barra delle applicazioni"
+msgstr "_Vis i verktøykassa"
 
 #: ../src/parameters.c:697
+#, fuzzy
 msgid "Show in pager"
-msgstr "Mostra nel paginatore"
+msgstr "_Vis i verktøykassa"
 
 #: ../src/parameters.c:704
 msgid "Show in systray"
-msgstr "Mostra nell'area di notifica"
+msgstr "Vis i systemtrauet"
 
 #: ../src/parameters.c:739
 msgid "Calendar start"
-msgstr "Avvio calendario"
+msgstr "Kalenderstart"
 
 #: ../src/parameters.c:744
 msgid "Show"
-msgstr "Mostra"
+msgstr "Vis"
 
 #: ../src/parameters.c:756
 msgid "Hide"
-msgstr "Nascondi"
+msgstr "Gøym"
 
 #: ../src/parameters.c:768
 msgid "Minimized"
-msgstr "Minimizza"
+msgstr "minimert"
 
 #: ../src/parameters.c:793
 msgid "Extra settings"
-msgstr "Impostazioni supplementari"
+msgstr "Ekstra innstillingar"
 
 #: ../src/parameters.c:801
 msgid "On Calendar Window Open"
-msgstr "All'apertura della finestra del calendario"
+msgstr "Når kalendervindauga opnar"
 
 #: ../src/parameters.c:806
 msgid "Select Today's Date"
-msgstr "Seleziona la data di oggi"
+msgstr " Vel datoen i dag"
 
 #: ../src/parameters.c:819
 msgid "Select Previously Selected Date"
-msgstr "Seleziona la data precedentemente selezionata"
+msgstr "Vel den førre datoen"
 
 #: ../src/parameters.c:836
 msgid "Use dynamic tray icon"
-msgstr "Icona di vassoio dinamica"
+msgstr "Bruk dynamisk trauikon"
 
 #: ../src/parameters.c:841
 msgid "Use dynamic icon"
-msgstr "Usa icona dinamica"
+msgstr "Bruk dynamisk ikon"
 
 #: ../src/parameters.c:847
 msgid "Dynamic icon shows current month and day of the month."
-msgstr "L'icona dinamica mostra il mese corrente e il giorno del mese"
+msgstr "Dynamisk ikon viser gjeldande månad og dag i månaden."
 
 #: ../src/parameters.c:856
 msgid "Main Calendar double click shows"
-msgstr "Doppio clic sul calendario principale mostra"
+msgstr "Dobbeltklikk i hovudkalender viser"
 
 #: ../src/parameters.c:861
 msgid "Days view"
-msgstr "Vista per giorni"
+msgstr "Dagsvising"
 
 #: ../src/parameters.c:873
 msgid "Event list"
-msgstr "Lista eventi"
+msgstr "Hendingsliste"
 
 #: ../src/parameters.c:890
 msgid "Eventlist window"
-msgstr "Finestra della lista degli eventi"
+msgstr "Hendingsliste-vindauga"
 
-# finestra delle preferenze; poco spazio;
 #: ../src/parameters.c:894
 msgid "Number of extra days to show in event list"
-msgstr "Numero di giorni aggiuntivi nella lista eventi"
+msgstr "Kor mange ekstra dagar å visa i hendingslista"
 
 #: ../src/parameters.c:902
-msgid ""
-"This is just the default value, you can change it in the actual eventlist "
-"window."
-msgstr ""
-"Questo è il valore predefinito; può essere modificato nella finestra della "
-"lista degli eventi"
+msgid "This is just the default value, you can change it in the actual eventlist window."
+msgstr "Dette er standardverdien, du kan endra han i hendingslistevindauga."
 
-#: ../src/parameters.c:910 ../src/parameters.c:915
+#: ../src/parameters.c:910
+#: ../src/parameters.c:915
 msgid "Use wakeup timer"
-msgstr "Utilizza timer"
+msgstr "Bruk vekkingstidteljar"
 
 #: ../src/parameters.c:921
-msgid ""
-"Use this timer if Orage has problems waking up properly after suspend or "
-"hibernate. (For example tray icon not refreshed or alarms not firing.)"
-msgstr ""
-"Usare questo timer se Orage ha problemi ad avviarsi dopo una sospensione o "
-"un'ibernazione (per esempio l'icona di vassoio non viene aggiornata o gli "
-"allarmi non vengono eseguiti)."
+msgid "Use this timer if Orage has problems waking up properly after suspend or hibernate. (For example tray icon not refreshed or alarms not firing.)"
+msgstr "Bruk denne tidtakaren viss Orage har problem med å vakna att skikkeleg etter dvale- eller kvilemodus (til dømes når trau-ikonet ikkje blir oppfriska, eller alarmen ikkje går av)."
 
 #: ../src/parameters.c:938
 msgid "Orage Preferences"
-msgstr "Preferenze di Orage"
+msgstr "Orage-innstillingar"
 
 #: ../src/parameters.c:1050
 msgid "First Orage start. Searching default timezone."
-msgstr "Primo avvio di Orage. Ricerca del fuso orario predefinito in corso."
+msgstr "Første Orage oppstart. Søkjer etter standard tidssone."
 
 #: ../src/parameters.c:1069
 #, c-format
 msgid "Default timezone set to %s."
-msgstr "Fuso orario impostato a %s."
+msgstr "Sette standard tidssone til %s."
 
 #: ../src/parameters.c:1072
 msgid "Default timezone not found, please, set it manually."
-msgstr "Fuso orario predefinito non trovato, impostarlo manualmente"
+msgstr "Fann ikkje standard tidssone. Må setjast manuelt."
 
 #: ../src/reminder.c:562
 msgid "Reminder "
-msgstr "Promemoria"
+msgstr "Påminning"
 
 #: ../src/reminder.c:591
 msgid "Open"
-msgstr "Apri"
+msgstr "Opna"
 
 #: ../src/reminder.c:722
 msgid "Reminder - Orage"
-msgstr "Promemoria - Orage"
+msgstr "Påminning - Orage"
 
 #: ../src/reminder.c:808
 msgid "Remind me again after the specified time"
-msgstr "Ricorda nuovamente dopo il tempo indicato"
+msgstr "Påminning på nytt etter angjeven tid"
 
 #. Note that this goes to the main area. Temporary for the version
 #: ../src/reminder.c:811
 msgid "Press <Execute> to remind me again after the specified time:"
-msgstr "Premere <Esegui> per ricordare nuovamente dopo il tempo indicato:"
+msgstr "Trykk <Utfør> for ny påminning etter angjeven tid:"
 
 #: ../src/reminder.c:1099
 msgid "Next active alarms:"
-msgstr "Prossimo allarme attivo:"
+msgstr "Neste aktive alarm:"
 
-#: ../src/reminder.c:1152 ../src/reminder.c:1157
+#: ../src/reminder.c:1152
+#: ../src/reminder.c:1157
 #, c-format
 msgid ""
 "\n"
 "%02d d %02d h %02d min to: %s"
 msgstr ""
 "\n"
-"%02d g %02d h %02d min a: %s"
+"%02d d %02d t %02d min til: %s"
 
 #: ../src/reminder.c:1166
 #, c-format
@@ -2123,11 +2180,11 @@ msgid ""
 "No active alarms found"
 msgstr ""
 "\n"
-"Non è stato trovato alcun allarme attivo"
+"Fann ingen aktive alarmar"
 
 #: ../src/timezone_names.c:36
 msgid "Africa"
-msgstr "Africa"
+msgstr "Afrika"
 
 #: ../src/timezone_names.c:37
 msgid "Africa/Abidjan"
@@ -2139,15 +2196,15 @@ msgstr "Africa/Accra"
 
 #: ../src/timezone_names.c:39
 msgid "Africa/Addis_Ababa"
-msgstr "Africa/Addis_Abeba"
+msgstr "Africa/Addis_Ababa"
 
 #: ../src/timezone_names.c:40
 msgid "Africa/Algiers"
-msgstr "Africa/Algeri"
+msgstr "Africa/Algiers"
 
 #: ../src/timezone_names.c:41
 msgid "Africa/Asmera"
-msgstr "Africa/Asmara"
+msgstr "Africa/Asmera"
 
 #: ../src/timezone_names.c:42
 msgid "Africa/Bamako"
@@ -2163,7 +2220,7 @@ msgstr "Africa/Banjul"
 
 #: ../src/timezone_names.c:45
 msgid "Africa/Bissau"
-msgstr "Africa/Bissau"
+msgstr "Afrika/Bissau"
 
 #: ../src/timezone_names.c:46
 msgid "Africa/Blantyre"
@@ -2179,7 +2236,7 @@ msgstr "Africa/Bujumbura"
 
 #: ../src/timezone_names.c:49
 msgid "Africa/Cairo"
-msgstr "Africa/Il_Cairo"
+msgstr "Africa/Cairo"
 
 #: ../src/timezone_names.c:50
 msgid "Africa/Casablanca"
@@ -2199,11 +2256,11 @@ msgstr "Africa/Dakar"
 
 #: ../src/timezone_names.c:54
 msgid "Africa/Dar_es_Salaam"
-msgstr "Africa/Dar_es_Salaam"
+msgstr "Afrika/Dar_es_salaam"
 
 #: ../src/timezone_names.c:55
 msgid "Africa/Djibouti"
-msgstr "Africa/Gibuti"
+msgstr "Africa/Djibouti"
 
 #: ../src/timezone_names.c:56
 msgid "Africa/Douala"
@@ -2211,7 +2268,7 @@ msgstr "Africa/Douala"
 
 #: ../src/timezone_names.c:57
 msgid "Africa/El_Aaiun"
-msgstr "Africa/El_Ayun"
+msgstr "Africa/El_Aaiun"
 
 #: ../src/timezone_names.c:58
 msgid "Africa/Freetown"
@@ -2235,7 +2292,7 @@ msgstr "Africa/Kampala"
 
 #: ../src/timezone_names.c:63
 msgid "Africa/Khartoum"
-msgstr "Africa/Khartum"
+msgstr "Africa/Khartoum"
 
 #: ../src/timezone_names.c:64
 msgid "Africa/Kigali"
@@ -2255,7 +2312,7 @@ msgstr "Africa/Libreville"
 
 #: ../src/timezone_names.c:68
 msgid "Africa/Lome"
-msgstr "Africa/Lomé"
+msgstr "Africa/Lome"
 
 #: ../src/timezone_names.c:69
 msgid "Africa/Luanda"
@@ -2287,7 +2344,7 @@ msgstr "Africa/Mbabane"
 
 #: ../src/timezone_names.c:76
 msgid "Africa/Mogadishu"
-msgstr "Africa/Mogadiscio"
+msgstr "Africa/Mogadishu"
 
 #: ../src/timezone_names.c:77
 msgid "Africa/Monrovia"
@@ -2299,7 +2356,7 @@ msgstr "Africa/Nairobi"
 
 #: ../src/timezone_names.c:79
 msgid "Africa/Ndjamena"
-msgstr "Africa/N'Djamena"
+msgstr "Africa/Ndjamena"
 
 #: ../src/timezone_names.c:80
 msgid "Africa/Niamey"
@@ -2319,11 +2376,11 @@ msgstr "Africa/Porto-Novo"
 
 #: ../src/timezone_names.c:84
 msgid "Africa/Sao_Tome"
-msgstr "Africa/Sao_Tomé"
+msgstr "Africa/Sao_Tome"
 
 #: ../src/timezone_names.c:85
 msgid "Africa/Timbuktu"
-msgstr "Africa/Timbuctu"
+msgstr "Africa/Timbuktu"
 
 #: ../src/timezone_names.c:86
 msgid "Africa/Tripoli"
@@ -2331,7 +2388,7 @@ msgstr "Africa/Tripoli"
 
 #: ../src/timezone_names.c:87
 msgid "Africa/Tunis"
-msgstr "Africa/Tunisi"
+msgstr "Africa/Tunis"
 
 #: ../src/timezone_names.c:88
 msgid "Africa/Windhoek"
@@ -2339,7 +2396,7 @@ msgstr "Africa/Windhoek"
 
 #: ../src/timezone_names.c:89
 msgid "America"
-msgstr "America"
+msgstr "Amerika"
 
 #: ../src/timezone_names.c:90
 msgid "America/Adak"
@@ -2395,7 +2452,7 @@ msgstr "America/Barbados"
 
 #: ../src/timezone_names.c:103
 msgid "America/Belem"
-msgstr "America/Belém"
+msgstr "America/Belem"
 
 #: ../src/timezone_names.c:104
 msgid "America/Belize"
@@ -2435,11 +2492,11 @@ msgstr "America/Catamarca"
 
 #: ../src/timezone_names.c:113
 msgid "America/Cayenne"
-msgstr "America/Caienna"
+msgstr "America/Cayenne"
 
 #: ../src/timezone_names.c:114
 msgid "America/Cayman"
-msgstr "America/Cayman"
+msgstr "Caymanøyane"
 
 #: ../src/timezone_names.c:115
 msgid "America/Chicago"
@@ -2491,7 +2548,7 @@ msgstr "America/Edmonton"
 
 #: ../src/timezone_names.c:127
 msgid "America/Eirunepe"
-msgstr "America/Eirunepé"
+msgstr "America/Eirunepe"
 
 #: ../src/timezone_names.c:128
 msgid "America/El_Salvador"
@@ -2507,7 +2564,7 @@ msgstr "America/Glace_Bay"
 
 #: ../src/timezone_names.c:131
 msgid "America/Godthab"
-msgstr "America/Nuuk"
+msgstr "Amerika/Godthåp"
 
 #: ../src/timezone_names.c:132
 msgid "America/Goose_Bay"
@@ -2523,7 +2580,7 @@ msgstr "America/Grenada"
 
 #: ../src/timezone_names.c:135
 msgid "America/Guadeloupe"
-msgstr "America/Guadalupa"
+msgstr "America/Guadeloupe"
 
 #: ../src/timezone_names.c:136
 msgid "America/Guatemala"
@@ -2543,7 +2600,7 @@ msgstr "America/Halifax"
 
 #: ../src/timezone_names.c:140
 msgid "America/Havana"
-msgstr "America/L'Avana"
+msgstr "America/Havana"
 
 #: ../src/timezone_names.c:141
 msgid "America/Hermosillo"
@@ -2579,7 +2636,7 @@ msgstr "America/Iqaluit"
 
 #: ../src/timezone_names.c:149
 msgid "America/Jamaica"
-msgstr "America/Giamaica"
+msgstr "America/Jamaica"
 
 #: ../src/timezone_names.c:150
 msgid "America/Jujuy"
@@ -2627,7 +2684,7 @@ msgstr "America/Manaus"
 
 #: ../src/timezone_names.c:161
 msgid "America/Martinique"
-msgstr "America/Martinica"
+msgstr "America/Martinique"
 
 #: ../src/timezone_names.c:162
 msgid "America/Mazatlan"
@@ -2643,11 +2700,11 @@ msgstr "America/Menominee"
 
 #: ../src/timezone_names.c:165
 msgid "America/Merida"
-msgstr "America/Mérida"
+msgstr "America/Merida"
 
 #: ../src/timezone_names.c:166
 msgid "America/Mexico_City"
-msgstr "America/_Città del Messico"
+msgstr "America/Mexico_City"
 
 #: ../src/timezone_names.c:167
 msgid "America/Miquelon"
@@ -2663,7 +2720,7 @@ msgstr "America/Montevideo"
 
 #: ../src/timezone_names.c:170
 msgid "America/Montreal"
-msgstr "America/Montréal"
+msgstr "America/Montreal"
 
 #: ../src/timezone_names.c:171
 msgid "America/Montserrat"
@@ -2699,7 +2756,7 @@ msgstr "America/Pangnirtung"
 
 #: ../src/timezone_names.c:179
 msgid "America/Paramaribo"
-msgstr "America/Paramaribo"
+msgstr "cSambandsstatane"
 
 #: ../src/timezone_names.c:180
 msgid "America/Phoenix"
@@ -2719,7 +2776,7 @@ msgstr "America/Porto_Velho"
 
 #: ../src/timezone_names.c:184
 msgid "America/Puerto_Rico"
-msgstr "America/Porto_Rico"
+msgstr "America/Puerto_Rico"
 
 #: ../src/timezone_names.c:185
 msgid "America/Rainy_River"
@@ -2755,11 +2812,11 @@ msgstr "America/Santo_Domingo"
 
 #: ../src/timezone_names.c:193
 msgid "America/Sao_Paulo"
-msgstr "America/San_Paolo"
+msgstr "America/Sao_Paulo"
 
 #: ../src/timezone_names.c:194
 msgid "America/Scoresbysund"
-msgstr "America/Scoresby_Sund"
+msgstr "America/Scoresbysund"
 
 #: ../src/timezone_names.c:195
 msgid "America/Shiprock"
@@ -2767,23 +2824,23 @@ msgstr "America/Shiprock"
 
 #: ../src/timezone_names.c:196
 msgid "America/St_Johns"
-msgstr "America/Saint_John's"
+msgstr "America/St_Johns"
 
 #: ../src/timezone_names.c:197
 msgid "America/St_Kitts"
-msgstr "America/Saint_Kitts"
+msgstr "America/St_Kitts"
 
 #: ../src/timezone_names.c:198
 msgid "America/St_Lucia"
-msgstr "America/Saint_Lucia"
+msgstr "America/St_Lucia"
 
 #: ../src/timezone_names.c:199
 msgid "America/St_Thomas"
-msgstr "America/Saint_Thomas"
+msgstr "America/St_Thomas"
 
 #: ../src/timezone_names.c:200
 msgid "America/St_Vincent"
-msgstr "America/Saint_Vincent"
+msgstr "America/St_Vincent"
 
 #: ../src/timezone_names.c:201
 msgid "America/Swift_Current"
@@ -2795,7 +2852,7 @@ msgstr "America/Tegucigalpa"
 
 #: ../src/timezone_names.c:203
 msgid "America/Thule"
-msgstr "America/Qaanaaq"
+msgstr "America/Thule"
 
 #: ../src/timezone_names.c:204
 msgid "America/Thunder_Bay"
@@ -2811,71 +2868,71 @@ msgstr "America/Tortola"
 
 #: ../src/timezone_names.c:207
 msgid "America/Vancouver"
-msgstr "America/Vancouver"
+msgstr "Amerika/Vancouver"
 
 #: ../src/timezone_names.c:208
 msgid "America/Whitehorse"
-msgstr "America/Whitehorse"
+msgstr "Amerika/Whitehorse"
 
 #: ../src/timezone_names.c:209
 msgid "America/Winnipeg"
-msgstr "America/Winnipeg"
+msgstr "Amerika/Winnipeg"
 
 #: ../src/timezone_names.c:210
 msgid "America/Yakutat"
-msgstr "America/Yakutat"
+msgstr "Amerika/Yakutat"
 
 #: ../src/timezone_names.c:211
 msgid "America/Yellowknife"
-msgstr "America/Yellowknife"
+msgstr "Amerika/Yellowknife"
 
 #: ../src/timezone_names.c:212
 msgid "Antarctica"
-msgstr "Antartide"
+msgstr "Antarktis"
 
 #: ../src/timezone_names.c:213
 msgid "Antarctica/Casey"
-msgstr "Antartide/Casey"
+msgstr "Antarktis/Casey"
 
 #: ../src/timezone_names.c:214
 msgid "Antarctica/Davis"
-msgstr "Antartide/Davis"
+msgstr "Antarktis/Davis"
 
 #: ../src/timezone_names.c:215
 msgid "Antarctica/DumontDUrville"
-msgstr "Antartide/Dumont_d'Urville"
+msgstr "Antarktis/DumontDurville"
 
 #: ../src/timezone_names.c:216
 msgid "Antarctica/Mawson"
-msgstr "Antartide/Mawson"
+msgstr "Antarktis/Mawson"
 
 #: ../src/timezone_names.c:217
 msgid "Antarctica/McMurdo"
-msgstr "Antartide/McMurdo"
+msgstr "Antarktis/McMurdo"
 
 #: ../src/timezone_names.c:218
 msgid "Antarctica/Palmer"
-msgstr "Antartide/Palmer"
+msgstr "Antarktis/Palmar"
 
 #: ../src/timezone_names.c:219
 msgid "Antarctica/South_Pole"
-msgstr "Antartide/Polo_Sud"
+msgstr "Antarktis/Sørpolen"
 
 #: ../src/timezone_names.c:220
 msgid "Antarctica/Syowa"
-msgstr "Antartide/Syowa"
+msgstr "Antarktis/Syowa"
 
 #: ../src/timezone_names.c:221
 msgid "Antarctica/Vostok"
-msgstr "Antartide/Vostok"
+msgstr "Antarktis/Vostok"
 
 #: ../src/timezone_names.c:222
 msgid "Arctic"
-msgstr "Artide"
+msgstr "Arktis"
 
 #: ../src/timezone_names.c:223
 msgid "Arctic/Longyearbyen"
-msgstr "Artide/Longyearbyen"
+msgstr "Arktis/Longearbyen"
 
 #: ../src/timezone_names.c:224
 msgid "Asia"
@@ -2895,7 +2952,7 @@ msgstr "Asia/Amman"
 
 #: ../src/timezone_names.c:228
 msgid "Asia/Anadyr"
-msgstr "Asia/Anadyr'"
+msgstr "Asia/Anadyr"
 
 #: ../src/timezone_names.c:229
 msgid "Asia/Aqtau"
@@ -2911,11 +2968,11 @@ msgstr "Asia/Ashgabat"
 
 #: ../src/timezone_names.c:232
 msgid "Asia/Baghdad"
-msgstr "Asia/Baghdad"
+msgstr "Asia/Bagdad"
 
 #: ../src/timezone_names.c:233
 msgid "Asia/Bahrain"
-msgstr "Asia/Bahrain"
+msgstr "Kongedømet Bahrain"
 
 #: ../src/timezone_names.c:234
 msgid "Asia/Baku"
@@ -2935,7 +2992,7 @@ msgstr "Asia/Bishkek"
 
 #: ../src/timezone_names.c:238
 msgid "Asia/Brunei"
-msgstr "Asia/Brunei"
+msgstr "Brunei"
 
 #: ../src/timezone_names.c:239
 msgid "Asia/Calcutta"
@@ -2943,7 +3000,7 @@ msgstr "Asia/Calcutta"
 
 #: ../src/timezone_names.c:240
 msgid "Asia/Chungking"
-msgstr "Asia/Chongqing"
+msgstr "Asia/Chungking"
 
 #: ../src/timezone_names.c:241
 msgid "Asia/Colombo"
@@ -2951,11 +3008,11 @@ msgstr "Asia/Colombo"
 
 #: ../src/timezone_names.c:242
 msgid "Asia/Damascus"
-msgstr "Asia/Damasco"
+msgstr "Asia/Damaskus"
 
 #: ../src/timezone_names.c:243
 msgid "Asia/Dhaka"
-msgstr "Asia/Dacca"
+msgstr "Asia/Dhaka"
 
 #: ../src/timezone_names.c:244
 msgid "Asia/Dili"
@@ -2979,7 +3036,7 @@ msgstr "Asia/Harbin"
 
 #: ../src/timezone_names.c:249
 msgid "Asia/Hong_Kong"
-msgstr "Asia/Hong_Kong"
+msgstr "Asia/Hong Kong"
 
 #: ../src/timezone_names.c:250
 msgid "Asia/Hovd"
@@ -2995,7 +3052,7 @@ msgstr "Asia/Istanbul"
 
 #: ../src/timezone_names.c:253
 msgid "Asia/Jakarta"
-msgstr "Asia/Giacarta"
+msgstr "Asia/Jakarta"
 
 #: ../src/timezone_names.c:254
 msgid "Asia/Jayapura"
@@ -3003,7 +3060,7 @@ msgstr "Asia/Jayapura"
 
 #: ../src/timezone_names.c:255
 msgid "Asia/Jerusalem"
-msgstr "Asia/Gerusalemme"
+msgstr "Asia/Jerusalem"
 
 #: ../src/timezone_names.c:256
 msgid "Asia/Kabul"
@@ -3011,7 +3068,7 @@ msgstr "Asia/Kabul"
 
 #: ../src/timezone_names.c:257
 msgid "Asia/Kamchatka"
-msgstr "Asia/Kamchatka"
+msgstr "Asia/Kamtsjatka"
 
 #: ../src/timezone_names.c:258
 msgid "Asia/Karachi"
@@ -3023,7 +3080,7 @@ msgstr "Asia/Kashgar"
 
 #: ../src/timezone_names.c:260
 msgid "Asia/Katmandu"
-msgstr "Asia/Kathmandu"
+msgstr "Asia/Katmandu"
 
 #: ../src/timezone_names.c:261
 msgid "Asia/Krasnoyarsk"
@@ -3031,7 +3088,7 @@ msgstr "Asia/Krasnojarsk"
 
 #: ../src/timezone_names.c:262
 msgid "Asia/Kuala_Lumpur"
-msgstr "Asia/Kuala_Lumpur"
+msgstr "Asia/Kuala_lumpur"
 
 #: ../src/timezone_names.c:263
 msgid "Asia/Kuching"
@@ -3039,7 +3096,7 @@ msgstr "Asia/Kuching"
 
 #: ../src/timezone_names.c:264
 msgid "Asia/Kuwait"
-msgstr "Asia/Kuwait"
+msgstr "Staten Kuwait"
 
 #: ../src/timezone_names.c:265
 msgid "Asia/Macao"
@@ -3055,7 +3112,7 @@ msgstr "Asia/Manila"
 
 #: ../src/timezone_names.c:268
 msgid "Asia/Muscat"
-msgstr "Asia/Mascate"
+msgstr "Asia/Muscat"
 
 #: ../src/timezone_names.c:269
 msgid "Asia/Nicosia"
@@ -3071,7 +3128,7 @@ msgstr "Asia/Omsk"
 
 #: ../src/timezone_names.c:272
 msgid "Asia/Phnom_Penh"
-msgstr "Asia/Phnom_Penh"
+msgstr "Asia/Phnom_penh"
 
 #: ../src/timezone_names.c:273
 msgid "Asia/Pontianak"
@@ -3083,7 +3140,7 @@ msgstr "Asia/Pyongyang"
 
 #: ../src/timezone_names.c:275
 msgid "Asia/Qatar"
-msgstr "Asia/Qatar"
+msgstr "Staten Qatar"
 
 #: ../src/timezone_names.c:276
 msgid "Asia/Rangoon"
@@ -3091,15 +3148,15 @@ msgstr "Asia/Rangoon"
 
 #: ../src/timezone_names.c:277
 msgid "Asia/Riyadh"
-msgstr "Asia/Riyad"
+msgstr "Asia/Riyadh"
 
 #: ../src/timezone_names.c:278
 msgid "Asia/Saigon"
-msgstr "Asia/Ho_Chi_Minh"
+msgstr "Asia/Saigon"
 
 #: ../src/timezone_names.c:279
 msgid "Asia/Samarkand"
-msgstr "Asia/Samarcanda"
+msgstr "Asia/Samarkand"
 
 #: ../src/timezone_names.c:280
 msgid "Asia/Seoul"
@@ -3111,7 +3168,7 @@ msgstr "Asia/Shanghai"
 
 #: ../src/timezone_names.c:282
 msgid "Asia/Singapore"
-msgstr "Asia/Singapore"
+msgstr "Republikken Singapore"
 
 #: ../src/timezone_names.c:283
 msgid "Asia/Taipei"
@@ -3119,7 +3176,7 @@ msgstr "Asia/Taipei"
 
 #: ../src/timezone_names.c:284
 msgid "Asia/Tashkent"
-msgstr "Asia/Taskent"
+msgstr "Asia/Tashkent"
 
 #: ../src/timezone_names.c:285
 msgid "Asia/Tbilisi"
@@ -3127,7 +3184,7 @@ msgstr "Asia/Tbilisi"
 
 #: ../src/timezone_names.c:286
 msgid "Asia/Tehran"
-msgstr "Asia/Teheran"
+msgstr "Asia/Tehran"
 
 #: ../src/timezone_names.c:287
 msgid "Asia/Thimphu"
@@ -3139,11 +3196,11 @@ msgstr "Asia/Tokyo"
 
 #: ../src/timezone_names.c:289
 msgid "Asia/Ujung_Pandang"
-msgstr "Asia/_Makassar"
+msgstr "Asia/Ujung_pandang"
 
 #: ../src/timezone_names.c:290
 msgid "Asia/Ulaanbaatar"
-msgstr "Asia/Ulan Bator"
+msgstr "Asia/Ulaanbaatar"
 
 #: ../src/timezone_names.c:291
 msgid "Asia/Urumqi"
@@ -3163,7 +3220,7 @@ msgstr "Asia/Jakutsk"
 
 #: ../src/timezone_names.c:295
 msgid "Asia/Yekaterinburg"
-msgstr "Asia/Ekaterinburg"
+msgstr "Asia/Jekaterinburg"
 
 #: ../src/timezone_names.c:296
 msgid "Asia/Yerevan"
@@ -3171,51 +3228,51 @@ msgstr "Asia/Yerevan"
 
 #: ../src/timezone_names.c:297
 msgid "Atlantic"
-msgstr "Atlantico"
+msgstr "Atlanteren"
 
 #: ../src/timezone_names.c:298
 msgid "Atlantic/Azores"
-msgstr "Atlantico/Azzorre"
+msgstr "Atlanteren/Azorane"
 
 #: ../src/timezone_names.c:299
 msgid "Atlantic/Bermuda"
-msgstr "Atlantico/Bermuda"
+msgstr "Atlanteren/Bermuda"
 
 #: ../src/timezone_names.c:300
 msgid "Atlantic/Canary"
-msgstr "Atlantico/Canarie"
+msgstr "Atlanteren/Kanariøyene"
 
 #: ../src/timezone_names.c:301
 msgid "Atlantic/Cape_Verde"
-msgstr "Atlantico/Capo_Verde"
+msgstr "Republikken Kapp Verde"
 
 #: ../src/timezone_names.c:302
 msgid "Atlantic/Faeroe"
-msgstr "Atlantico/Faeroe"
+msgstr "Atlanteren/Færøyene"
 
 #: ../src/timezone_names.c:303
 msgid "Atlantic/Jan_Mayen"
-msgstr "Atlantico/Jan_Mayen"
+msgstr "Jan Mayen"
 
 #: ../src/timezone_names.c:304
 msgid "Atlantic/Madeira"
-msgstr "Atlantico/Madera"
+msgstr "Atlanteren/Madeira"
 
 #: ../src/timezone_names.c:305
 msgid "Atlantic/Reykjavik"
-msgstr "Atlantico/Reykjavik"
+msgstr "Atlanteren/Reykjavik"
 
 #: ../src/timezone_names.c:306
 msgid "Atlantic/South_Georgia"
-msgstr "Atlantico/_Georgia del Sud"
+msgstr "Atlanteren/Sør-_Georgia"
 
 #: ../src/timezone_names.c:307
 msgid "Atlantic/St_Helena"
-msgstr "Atlantico/Sant'_Elena"
+msgstr "Atlanteren/St. _Helena"
 
 #: ../src/timezone_names.c:308
 msgid "Atlantic/Stanley"
-msgstr "Atlantico/Stanley"
+msgstr "Atlanteren/Stanley"
 
 #: ../src/timezone_names.c:309
 msgid "Australia"
@@ -3231,7 +3288,7 @@ msgstr "Australia/Brisbane"
 
 #: ../src/timezone_names.c:312
 msgid "Australia/Broken_Hill"
-msgstr "Australia/Broken_Hill"
+msgstr "Australia/Broken_hill"
 
 #: ../src/timezone_names.c:313
 msgid "Australia/Darwin"
@@ -3247,7 +3304,7 @@ msgstr "Australia/Lindeman"
 
 #: ../src/timezone_names.c:316
 msgid "Australia/Lord_Howe"
-msgstr "Australia/Lord_Howe"
+msgstr "Australia/Lord_howe"
 
 #: ../src/timezone_names.c:317
 msgid "Australia/Melbourne"
@@ -3255,7 +3312,7 @@ msgstr "Australia/Melbourne"
 
 #: ../src/timezone_names.c:318
 msgid "Australia/Perth"
-msgstr "Australia/Sydney"
+msgstr "Australia/Perth"
 
 #: ../src/timezone_names.c:319
 msgid "Australia/Sydney"
@@ -3271,11 +3328,11 @@ msgstr "Europa/Amsterdam"
 
 #: ../src/timezone_names.c:322
 msgid "Europe/Andorra"
-msgstr "Europa/Andorra"
+msgstr "Fyrstedømet Andorra"
 
 #: ../src/timezone_names.c:323
 msgid "Europe/Athens"
-msgstr "Europa/Atene"
+msgstr "Europa/Aten"
 
 #: ../src/timezone_names.c:324
 msgid "Europe/Belfast"
@@ -3283,11 +3340,11 @@ msgstr "Europa/Belfast"
 
 #: ../src/timezone_names.c:325
 msgid "Europe/Belgrade"
-msgstr "Europa/Belgrado"
+msgstr "Europa/Beograd"
 
 #: ../src/timezone_names.c:326
 msgid "Europe/Berlin"
-msgstr "Europa/Berlino"
+msgstr "Europa/Berlin"
 
 #: ../src/timezone_names.c:327
 msgid "Europe/Bratislava"
@@ -3295,11 +3352,11 @@ msgstr "Europa/Bratislava"
 
 #: ../src/timezone_names.c:328
 msgid "Europe/Brussels"
-msgstr "Europa/Bruxelles"
+msgstr "Europa/Brussel"
 
 #: ../src/timezone_names.c:329
 msgid "Europe/Bucharest"
-msgstr "Europe/Bucarest"
+msgstr "Europa/Bukarest"
 
 #: ../src/timezone_names.c:330
 msgid "Europe/Budapest"
@@ -3311,15 +3368,15 @@ msgstr "Europa/Chisinau"
 
 #: ../src/timezone_names.c:332
 msgid "Europe/Copenhagen"
-msgstr "Europa/Copenaghen"
+msgstr "Europa/København"
 
 #: ../src/timezone_names.c:333
 msgid "Europe/Dublin"
-msgstr "Europa/Dublino"
+msgstr "Europa/Dublin"
 
 #: ../src/timezone_names.c:334
 msgid "Europe/Gibraltar"
-msgstr "Europa/Gibilterra"
+msgstr "Europa/Gibraltar"
 
 #: ../src/timezone_names.c:335
 msgid "Europe/Helsinki"
@@ -3339,19 +3396,19 @@ msgstr "Europa/Kiev"
 
 #: ../src/timezone_names.c:339
 msgid "Europe/Lisbon"
-msgstr "Europa/Lisbona"
+msgstr "Europa/Lisboa"
 
 #: ../src/timezone_names.c:340
 msgid "Europe/Ljubljana"
-msgstr "Europa/Lubiana"
+msgstr "Europa/Ljubljana"
 
 #: ../src/timezone_names.c:341
 msgid "Europe/London"
-msgstr "Europa/Londra"
+msgstr "Europa/London"
 
 #: ../src/timezone_names.c:342
 msgid "Europe/Luxembourg"
-msgstr "Europa/Lussemburgo"
+msgstr "Europa/Luxembourg"
 
 #: ../src/timezone_names.c:343
 msgid "Europe/Madrid"
@@ -3359,7 +3416,7 @@ msgstr "Europa/Madrid"
 
 #: ../src/timezone_names.c:344
 msgid "Europe/Malta"
-msgstr "Europa/Malta"
+msgstr "Republikken Malta"
 
 #: ../src/timezone_names.c:345
 msgid "Europe/Minsk"
@@ -3367,11 +3424,11 @@ msgstr "Europa/Minsk"
 
 #: ../src/timezone_names.c:346
 msgid "Europe/Monaco"
-msgstr "Europa/Monaco"
+msgstr "Fyrstedømet Monaco"
 
 #: ../src/timezone_names.c:347
 msgid "Europe/Moscow"
-msgstr "Europa/Mosca"
+msgstr "Europa/Moskva"
 
 #: ../src/timezone_names.c:348
 msgid "Europe/Nicosia"
@@ -3383,15 +3440,15 @@ msgstr "Europa/Oslo"
 
 #: ../src/timezone_names.c:350
 msgid "Europe/Paris"
-msgstr "Europa/Parigi"
+msgstr "Europe/Paris"
 
 #: ../src/timezone_names.c:351
 msgid "Europe/Prague"
-msgstr "Europa/Praga"
+msgstr "Europe/Praha"
 
 #: ../src/timezone_names.c:352
 msgid "Europe/Riga"
-msgstr "Europa/Riga"
+msgstr "Europe/Riga"
 
 #: ../src/timezone_names.c:353
 msgid "Europe/Rome"
@@ -3403,7 +3460,7 @@ msgstr "Europa/Samara"
 
 #: ../src/timezone_names.c:355
 msgid "Europe/San_Marino"
-msgstr "Europa/San_Marino"
+msgstr "Republikken San Marino"
 
 #: ../src/timezone_names.c:356
 msgid "Europe/Sarajevo"
@@ -3411,7 +3468,7 @@ msgstr "Europa/Sarajevo"
 
 #: ../src/timezone_names.c:357
 msgid "Europe/Simferopol"
-msgstr "Europa/Simferopol'"
+msgstr "Europa/Simferopol"
 
 #: ../src/timezone_names.c:358
 msgid "Europe/Skopje"
@@ -3423,7 +3480,7 @@ msgstr "Europa/Sofia"
 
 #: ../src/timezone_names.c:360
 msgid "Europe/Stockholm"
-msgstr "Europa/Stoccolma"
+msgstr "Europa/Stockholm"
 
 #: ../src/timezone_names.c:361
 msgid "Europe/Tallinn"
@@ -3435,7 +3492,7 @@ msgstr "Europa/Tirana"
 
 #: ../src/timezone_names.c:363
 msgid "Europe/Uzhgorod"
-msgstr "Europa/Užhorod"
+msgstr "Europa/Uzhgorod"
 
 #: ../src/timezone_names.c:364
 msgid "Europe/Vaduz"
@@ -3443,11 +3500,11 @@ msgstr "Europa/Vaduz"
 
 #: ../src/timezone_names.c:365
 msgid "Europe/Vatican"
-msgstr "Europa/Vaticano"
+msgstr "Europa/Vatikanet"
 
 #: ../src/timezone_names.c:366
 msgid "Europe/Vienna"
-msgstr "Europa/Vienna"
+msgstr "Europa/Wien"
 
 #: ../src/timezone_names.c:367
 msgid "Europe/Vilnius"
@@ -3455,466 +3512,266 @@ msgstr "Europa/Vilnius"
 
 #: ../src/timezone_names.c:368
 msgid "Europe/Warsaw"
-msgstr "Europa/Varsavia"
+msgstr "Europa/Warsawa"
 
 #: ../src/timezone_names.c:369
 msgid "Europe/Zagreb"
-msgstr "Europa/Zagabria"
+msgstr "Europa/Zagreb"
 
 #: ../src/timezone_names.c:370
 msgid "Europe/Zaporozhye"
-msgstr "Europa/Zaporizhia"
+msgstr "Europa/Zaporozhye"
 
 #: ../src/timezone_names.c:371
 msgid "Europe/Zurich"
-msgstr "Europa/Zurigo"
+msgstr "Europa/Zürich"
 
 #: ../src/timezone_names.c:372
 msgid "Indian"
-msgstr "Indiano"
+msgstr "Indiahavet"
 
 #: ../src/timezone_names.c:373
 msgid "Indian/Antananarivo"
-msgstr "Indiano/Antananarivo"
+msgstr "Indiahavet/Antananarivo"
 
 #: ../src/timezone_names.c:374
 msgid "Indian/Chagos"
-msgstr "Indiano/Chagos"
+msgstr "Indiahavet/Chagos"
 
 #: ../src/timezone_names.c:375
 msgid "Indian/Christmas"
-msgstr "Indiano/Natale"
+msgstr "Christmasøya"
 
 #: ../src/timezone_names.c:376
 msgid "Indian/Cocos"
-msgstr "Indiano/Cocos"
+msgstr "Indiahavet/Cocos"
 
 #: ../src/timezone_names.c:377
 msgid "Indian/Comoro"
-msgstr "Indiano/Comore"
+msgstr "Indiahavet/Komoro"
 
 #: ../src/timezone_names.c:378
 msgid "Indian/Kerguelen"
-msgstr "Indiano/Kerguelen"
+msgstr "Indiahavet/Kerguelen"
 
 #: ../src/timezone_names.c:379
 msgid "Indian/Mahe"
-msgstr "Indiano/Mahé"
+msgstr "Indiahavet/Mahe"
 
 #: ../src/timezone_names.c:380
 msgid "Indian/Maldives"
-msgstr "Indiano/Maldive"
+msgstr "Republikken Maldivane"
 
 #: ../src/timezone_names.c:381
 msgid "Indian/Mauritius"
-msgstr "Indiano/Mauritius"
+msgstr "Republikken Mauritius"
 
 #: ../src/timezone_names.c:382
 msgid "Indian/Mayotte"
-msgstr "Indiano/Mayotte"
+msgstr "Indiahavet/Mayotte"
 
 #: ../src/timezone_names.c:383
 msgid "Indian/Reunion"
-msgstr "Indiano/Riunione"
+msgstr "Indiahavet/Reunion"
 
 #: ../src/timezone_names.c:384
 msgid "Pacific"
-msgstr "Pacifico"
+msgstr "Stillehavet"
 
 #: ../src/timezone_names.c:385
 msgid "Pacific/Apia"
-msgstr "Pacifico/Apia"
+msgstr "Stillehavet/Apia"
 
 #: ../src/timezone_names.c:386
 msgid "Pacific/Auckland"
-msgstr "Pacifico/Auckland"
+msgstr "Stillehavet/Auckland"
 
 #: ../src/timezone_names.c:387
 msgid "Pacific/Chatham"
-msgstr "Pacifico/Chatham"
+msgstr "Stillehavet/Chatham"
 
 #: ../src/timezone_names.c:388
 msgid "Pacific/Easter"
-msgstr "Pacifico/Pasqua"
+msgstr "Stillehavet/Påskeøya"
 
 #: ../src/timezone_names.c:389
 msgid "Pacific/Efate"
-msgstr "Pacifico/Éfaté"
+msgstr "Stillehavet/Efate"
 
 #: ../src/timezone_names.c:390
 msgid "Pacific/Enderbury"
-msgstr "Pacifico/Enderbury"
+msgstr "Stillehavet/Enderbury"
 
 #: ../src/timezone_names.c:391
 msgid "Pacific/Fakaofo"
-msgstr "Pacifico/Fakaofo"
+msgstr "Stillehavet/Fakaofo"
 
 #: ../src/timezone_names.c:392
 msgid "Pacific/Fiji"
-msgstr "Pacifico/Figi"
+msgstr "Stillehavet/Fiji"
 
 #: ../src/timezone_names.c:393
 msgid "Pacific/Funafuti"
-msgstr "Pacifico/Funafuti"
+msgstr "Stillehavet/Funafuti"
 
 #: ../src/timezone_names.c:394
 msgid "Pacific/Galapagos"
-msgstr "Pacifico/Galapagos"
+msgstr "Stillehavet/Galapagos"
 
 #: ../src/timezone_names.c:395
 msgid "Pacific/Gambier"
-msgstr "Pacifico/Gambier"
+msgstr "Stillehavet/Gambier"
 
 #: ../src/timezone_names.c:396
 msgid "Pacific/Guadalcanal"
-msgstr "Pacifico/Guadalcanal"
+msgstr "Stillehavet/Guadalcanal"
 
 #: ../src/timezone_names.c:397
 msgid "Pacific/Guam"
-msgstr "Pacifico/Guam"
+msgstr "Stillehavet/Guam"
 
 #: ../src/timezone_names.c:398
 msgid "Pacific/Honolulu"
-msgstr "Pacifico/Honolulu"
+msgstr "Stillehavet/Honolulu"
 
 #: ../src/timezone_names.c:399
 msgid "Pacific/Johnston"
-msgstr "Pacifico/Johnston"
+msgstr "Johnstonøyane"
 
 #: ../src/timezone_names.c:400
 msgid "Pacific/Kiritimati"
-msgstr "Pacifico/Kiritimati"
+msgstr "Stillehavet/Kiritimati"
 
 #: ../src/timezone_names.c:401
 msgid "Pacific/Kosrae"
-msgstr "Pacifico/Kosrae"
+msgstr "Stillehavet/Kosrae"
 
 #: ../src/timezone_names.c:402
 msgid "Pacific/Kwajalein"
-msgstr "Pacifico/Kwajalein"
+msgstr "Stillehavet/Kwajalein"
 
 #: ../src/timezone_names.c:403
 msgid "Pacific/Majuro"
-msgstr "Pacifico/Majuro"
+msgstr "Stillehavet/Majuro"
 
 #: ../src/timezone_names.c:404
 msgid "Pacific/Marquesas"
-msgstr "Pacifico/Marchesi"
+msgstr "Stillehavet/Marquesas"
 
 #: ../src/timezone_names.c:405
 msgid "Pacific/Midway"
-msgstr "Pacifico/Midway"
+msgstr "Midwayøyane"
 
 #: ../src/timezone_names.c:406
 msgid "Pacific/Nauru"
-msgstr "Pacifico/Nauru"
+msgstr "Republikken Nauru"
 
 #: ../src/timezone_names.c:407
 msgid "Pacific/Niue"
-msgstr "Pacifico/Niue"
+msgstr "Stillehavet/Niue"
 
 #: ../src/timezone_names.c:408
 msgid "Pacific/Norfolk"
-msgstr "Pacifico/Norfolk"
+msgstr "Norfolkøya; Norfolk Island"
 
 #: ../src/timezone_names.c:409
 msgid "Pacific/Noumea"
-msgstr "Pacifico/Nouméa"
+msgstr "Stillehavet/Noumea"
 
 #: ../src/timezone_names.c:410
 msgid "Pacific/Pago_Pago"
-msgstr "Pacifico/Pago_Pago"
+msgstr "Stillehavet/Pago_pago"
 
 #: ../src/timezone_names.c:411
 msgid "Pacific/Palau"
-msgstr "Pacifico/Palau"
+msgstr "Republikken Palau"
 
 #: ../src/timezone_names.c:412
 msgid "Pacific/Pitcairn"
-msgstr "Pacifico/Pitcairn"
+msgstr "Stillehavet/Pitcairn"
 
 #: ../src/timezone_names.c:413
 msgid "Pacific/Ponape"
-msgstr "Pacifico/Ponape"
+msgstr "Stillehavet/Ponape"
 
 #: ../src/timezone_names.c:414
 msgid "Pacific/Port_Moresby"
-msgstr "Pacifico/Port_Moresby"
+msgstr "Stillehavet/Port Moresby"
 
 #: ../src/timezone_names.c:415
 msgid "Pacific/Rarotonga"
-msgstr "Pacifico/Rarotonga"
+msgstr "Stillehavet/Rarotonga"
 
 #: ../src/timezone_names.c:416
 msgid "Pacific/Saipan"
-msgstr "Pacifico/Saipan"
+msgstr "Stillehavet/Saipan"
 
 #: ../src/timezone_names.c:417
 msgid "Pacific/Tahiti"
-msgstr "Pacifico/Tahiti"
+msgstr "Stillehavet/Tahiti"
 
 #: ../src/timezone_names.c:418
 msgid "Pacific/Tarawa"
-msgstr "Pacifico/Tarawa"
+msgstr "Stillehavet/Tarawa"
 
 #: ../src/timezone_names.c:419
 msgid "Pacific/Tongatapu"
-msgstr "Pacifico/Tongatapu"
+msgstr "Stillehavet/Tongatapu"
 
 #: ../src/timezone_names.c:420
 msgid "Pacific/Truk"
-msgstr "Pacifico/Truk"
+msgstr "Stillehavet/Truk"
 
 #: ../src/timezone_names.c:421
 msgid "Pacific/Wake"
-msgstr "Pacifico/Wake"
+msgstr "Wake Island"
 
 #: ../src/timezone_names.c:422
 msgid "Pacific/Wallis"
-msgstr "Pacifico/Wallis"
+msgstr "Wallis- og Futunaøyane"
 
 #: ../src/timezone_names.c:423
 msgid "Pacific/Yap"
-msgstr "Pacifico/Yap"
+msgstr "Stillehavet/Yap"
 
 #: ../src/tray_icon.c:469
 msgid "New appointment"
-msgstr "Nuovo appuntamento"
+msgstr "Ny avtale"
 
 #: ../src/tray_icon.c:485
 msgid "About Orage"
-msgstr "Informazioni su Orage"
+msgstr "Om Orage"
 
 #: ../panel-plugin/xfce4-orageclock-plugin.desktop.in.in.h:1
 msgid "Orage Panel Clock"
-msgstr "Orologio di Orage per il pannello"
+msgstr "Orage panelklokke"
 
 #: ../panel-plugin/xfce4-orageclock-plugin.desktop.in.in.h:2
 msgid "Show time and date?"
-msgstr "Mostrare ora e data?"
+msgstr "Vis tid og dato?"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:1
 #: ../xfcalendar.desktop.in.h:1
 msgid "Calendar"
-msgstr "Calendario"
+msgstr "Kalender"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:2
 msgid "Orage Calendar Preferences"
-msgstr "Preferenze del calendario di Orage"
+msgstr "Innstillingar for Orage-kalenderen"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:3
 msgid "Orage preferences"
-msgstr "Preferenze di Orage"
+msgstr "Orage-innstillingar"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:4
 msgid "Settings for the Xfce 4 Calendar Application (Orage)"
-msgstr "Impostazioni per l'applicazione Calendario di Xfce4 (Orage)"
+msgstr "Innstillingar for Xfce 4 Kalenderprogram (Orage)"
 
 #: ../xfcalendar.desktop.in.h:2
 msgid "Desktop calendar"
-msgstr "Calendario per la scrivania"
+msgstr "Skrivebordskalender"
 
 #: ../xfcalendar.desktop.in.h:3
 msgid "Orage Calendar"
-msgstr "Calendario di Orage"
+msgstr "Orage-kalender"
 
-#~ msgid ""
-#~ "Title: %s\n"
-#~ " Start:\t%s\n"
-#~ " Due:\t%s\n"
-#~ " Done:\t%s\n"
-#~ "Note:\n"
-#~ "%s"
-#~ msgstr ""
-#~ "Titolo: %s\n"
-#~ " Inizio:\t%s\n"
-#~ " Scadenza:\t%s\n"
-#~ " Fatto:\t%s\n"
-#~ "Commento:\n"
-#~ "%s"
-
-#~ msgid ""
-#~ "You must enter all escape etc characters yourself.\n"
-#~ " This string is just given to shell to process"
-#~ msgstr ""
-#~ "Si devono inserire tutti i caratteri di escape;\n"
-#~ " Questa stringa viene trasferita alla linea di comando per eseguirla"
-
-#~ msgid "Orage clock"
-#~ msgstr "Orologio di Orage"
-
-#~ msgid "Original creator, retired maintainer"
-#~ msgstr "Creatore originale, mantenitore ritirato"
-
-#~ msgid "Contributor"
-#~ msgstr "Collaboratore"
-
-#~ msgid "Info"
-#~ msgstr "Informazioni"
-
-#~ msgid "Warning"
-#~ msgstr "Avviso"
-
-#~ msgid "Error"
-#~ msgstr "Errore"
-
-#~ msgid "Set sticked"
-#~ msgstr "Blocca"
-
-#~ msgid "Select always today"
-#~ msgstr "Seleziona sempre oggi"
-
-#~ msgid ""
-#~ "When showing main calendar, set pointer to either previously selected day "
-#~ "or always to current day."
-#~ msgstr ""
-#~ "Quando mostra il calendario principale, colloca l'indicatore o sul giorno "
-#~ "selezionato in precedenza o sempre sul giorno corrente"
-
-#~ msgid "Ending time adjustment mode"
-#~ msgstr "Fine modalità correzione dell'ora"
-
-#~ msgid "Starting time adjustment mode"
-#~ msgstr "Avvio modalità correzione dell'ora"
-
-#~ msgid "adjust to change minute"
-#~ msgstr "regolare per cambiare i minuti"
-
-#~ msgid "Vary"
-#~ msgstr "Varia"
-
-#~ msgid "Select timezone"
-#~ msgstr "Selezionare fuso orario"
-
-#~ msgid "Modify Clock "
-#~ msgstr "Modifica Orologio"
-
-#~ msgid ""
-#~ "enter timezone of clock,\n"
-#~ "(=any valid TZ value)"
-#~ msgstr ""
-#~ "inserire il fuso orario dell'orologio,\n"
-#~ "(=qualsiasi valore TZ valido)"
-
-#~ msgid "Modify Preferences"
-#~ msgstr "Modifica preferenze"
-
-#~ msgid ""
-#~ "Enter local timezone. (it is used to show if time is on previous(-) or "
-#~ "next date(+) by adding a +/- after the time)"
-#~ msgstr ""
-#~ "Inserire il fuso orario locale (viene usato per mostrare se l'ora si "
-#~ "riferisca alla data immediatamente precedente(-) o successiva(+) "
-#~ "aggiungendo un +/- dopo l'ora)."
-
-#~ msgid "Set any valid timezone (=TZ) value or pick one from the list."
-#~ msgstr ""
-#~ "Impostare un valore di fuso orario (=TZ) valido o sceglierne uno "
-#~ "dall'elenco."
-
-#~ msgid "show line _1:"
-#~ msgstr "mostra riga _1:"
-
-#~ msgid "show line _2:"
-#~ msgstr "mostra riga _2:"
-
-#~ msgid "show line _3:"
-#~ msgstr "mostra riga _3:"
-
-#~ msgid "Properties"
-#~ msgstr "Proprietà"
-
-#~ msgid "Failed to launch 'orage -p'"
-#~ msgstr "Avvio di «orage -p» fallito"
-
-#~ msgid ""
-#~ "<D> inserts current date in local date format.\n"
-#~ "<T> inserts time and\n"
-#~ "<DT> inserts date and time."
-#~ msgstr ""
-#~ "<D> inserire la data corrente nel formato di data locale.\n"
-#~ "<T> inserire l'ora e\n"
-#~ "<DT> inserire data e ora."
-
-#~ msgid "Show event list"
-#~ msgstr "Mostra lista eventi"
-
-#~ msgid "(0 = use static icon)"
-#~ msgstr "(0 = usa icona statica)"
-
-#~ msgid ""
-#~ "Dynamic icon shows current day and month. It is visible only in tray. If "
-#~ "tray is too small for dynamic icon size, Orage switches automatically "
-#~ "back to static icon."
-#~ msgstr ""
-#~ "L'icona dinamica mostra il giorno e il mese correnti. È visibile "
-#~ "solamente nell'area di notifica. Se l'area è troppo piccola per le "
-#~ "dimensioni dell'icona dinamica, Orage tornerà automaticamente all'icona "
-#~ "statica."
-
-#~ msgid "Calendar Settings"
-#~ msgstr "Impostazioni del calendario"
-
-#~ msgid "Xfce 4 Calendar Settings"
-#~ msgstr "Impostazioni del calendario di Xfce 4"
-
-#~ msgid "Monday"
-#~ msgstr "Oggi"
-
-#~ msgid "Tuesday"
-#~ msgstr "Oggi"
-
-#~ msgid "Wednesday"
-#~ msgstr "2 giorni"
-
-#~ msgid "Thursday"
-#~ msgstr "Oggi"
-
-#~ msgid "Friday"
-#~ msgstr "2 giorni"
-
-#~ msgid "Sunday"
-#~ msgstr "2 giorni"
-
-#~ msgid "Days"
-#~ msgstr "2 giorni"
-
-#~ msgid "%m/%d/%Y"
-#~ msgstr "%d/%m/%Y"
-
-#~ msgid "Calendar Files"
-#~ msgstr "Calendario"
-
-#~ msgid "Hidden"
-#~ msgstr "Nascondi"
-
-#~ msgid "3 months"
-#~ msgstr "3 mesi"
-
-#~ msgid "6 months"
-#~ msgstr "6 mesi"
-
-#~ msgid "1 year"
-#~ msgstr "1 anno"
-
-#~ msgid "Application"
-#~ msgstr "Applicazione"
-
-#~ msgid "Core developer"
-#~ msgstr "Sviluppatore principale"
-
-#~ msgid ""
-#~ "You will remove all information \n"
-#~ "associated with this date."
-#~ msgstr ""
-#~ "Rimuoverai ogni informazione \n"
-#~ "associata a questa data."
-
-#~ msgid "Clear"
-#~ msgstr "Pulisci"
-
-#~ msgid "This should not happen"
-#~ msgstr "Questo non dovrebbe succedere"
-
-#~ msgid "Cannot create MCS client channel"
-#~ msgstr "Impossibile creare il canale del client MCS"

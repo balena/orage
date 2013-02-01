@@ -1675,8 +1675,12 @@ static void get_alarm_data(icalcomponent *ca,  xfical_appt *appt)
             appt->note = (char *)icalproperty_get_description(p);
             */
         /* default display alarm is orage if none is set */
-        if (!appt->display_alarm_orage && !appt->display_alarm_notify)	
-            appt->display_alarm_orage = TRUE;
+        if (!appt->display_alarm_orage && !appt->display_alarm_notify) {
+            if (g_par.use_foreign_display_alarm_notify)
+                appt->display_alarm_notify = TRUE;
+            else
+                appt->display_alarm_orage = TRUE;
+        }
     }
     else if (act == ICAL_ACTION_AUDIO) {
         get_alarm_data_x(ca, appt);
@@ -2720,6 +2724,17 @@ static alarm_struct *process_alarm_trigger(icalcomponent *c
     per = ic_get_period(c, TRUE);
     next_alarm_time = count_first_alarm_time(per, trg.duration, rel);
     alarm_start_diff = icaltime_subtract(next_alarm_time, per.stime);
+    /* Due to the hack in date time calculation in count_first_alarm_time,
+       we need to set next_alarm_time to local timezone so that 
+       icaltime_compare works. Fix for Bug 8525
+     */
+    if (icaltime_is_date(per.stime)) {
+        if (local_icaltimezone != utc_icaltimezone) {
+            next_alarm_time.is_utc        = 0;
+            next_alarm_time.is_daylight   = 0;
+            next_alarm_time.zone          = local_icaltimezone;
+        }
+    }
     /*
 orage_message(120, P_N "current %s %s", icaltime_as_ical_string(cur_time), icaltime_get_tzid(cur_time));
 orage_message(120, P_N "Start %s %s", icaltime_as_ical_string(per.stime), icaltime_get_tzid(per.stime));
@@ -2791,6 +2806,17 @@ orage_message(120, P_N "Alarm rec loop next_start:%s next_alarm:%s per.stime:%s"
 */
         }
         icalrecur_iterator_free(ri);
+        /* Due to the hack in date time calculation in count_first_alarm_time,
+           we need to set next_alarm_time to local timezone so that 
+           icaltime_compare works. Fix for Bug 8525
+         */
+        if (icaltime_is_date(per.stime)) {
+            if (local_icaltimezone != utc_icaltimezone) {
+                next_alarm_time.is_utc        = 0;
+                next_alarm_time.is_daylight   = 0;
+                next_alarm_time.zone          = local_icaltimezone;
+            }
+        }
         if (icaltime_compare(cur_time, next_alarm_time) <= 0) {
             trg_active = TRUE;
         }

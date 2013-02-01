@@ -1,21 +1,23 @@
 # $Id$
 #
 # Japanese translations for orage package.
-# Copyright (C) 2003-2007 The Xfce development team.
+# Copyright (C) 2003-2012 The Xfce development team.
 # This file is distributed under the same license as the orage package.
 # Zhao Ji <zhao-ji@awz.ne.jp>, 2003.
 # Daichi Kawahata <daichi@xfce.org>, 2005-2007.
+# Masato Hashimoto <cabezon.hashimoto@gmail.com>, 2008-2012.
 #
 # 対訳:
 # event      - 予定
 # journal    - 記録
 # appointment - 用件
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.5.9.6\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-01-03 14:00+0200\n"
-"PO-Revision-Date: 2011-09-13 22:48+0900\n"
+"PO-Revision-Date: 2012-04-14 15:31+0900\n"
 "Last-Translator: Masato Hashimoto <cabezon.hashimoto@gmail.com>\n"
 "Language-Team: Japanese <xfce-users-jp@ml.fdiary.net>\n"
 "MIME-Version: 1.0\n"
@@ -535,7 +537,7 @@ msgstr "%x %A"
 
 #: ../src/about-xfcalendar.c:40
 msgid "Maintainer"
-msgstr "メンテナ"
+msgstr "メンテナー"
 
 #: ../src/about-xfcalendar.c:47
 msgid "Manage your time with Orage"
@@ -550,7 +552,7 @@ msgstr "終了"
 
 #: ../src/appointment.c:333
 msgid "Due"
-msgstr "締切り"
+msgstr "締切"
 
 #: ../src/appointment.c:493 ../src/mainbox.c:783
 msgid "Orage"
@@ -840,7 +842,7 @@ msgid ""
 msgstr ""
 "アラーム通知するタイミングを指定します:\n"
 " 1) 予定の開始前\n"
-" 2) ToDo の締切り前\n"
+" 2) ToDo の締切前\n"
 " 3) ToDo の開始後"
 
 #: ../src/appointment.c:2938
@@ -1148,7 +1150,7 @@ msgid ""
 "selection.\n"
 "Remove by clicking the data."
 msgstr ""
-"下のカレンダの日付をクリックすると例外として追加されます。\n"
+"下のカレンダーの日付をクリックすると例外として追加されます。\n"
 "例外は選択日を除外 (-) するか追加 (+) するかのどちらかです。\n"
 "日時のクリックで除去します。"
 
@@ -1407,7 +1409,7 @@ msgstr "ファイルのインポート処理が終了しました。"
 
 #: ../src/interface.c:284
 msgid "Calendar files"
-msgstr "カレンダファイル"
+msgstr "カレンダーファイル"
 
 #: ../src/interface.c:631
 msgid "Current foreign files"
@@ -1522,7 +1524,7 @@ msgstr "Orage ファイル"
 
 #: ../src/interface.c:1125
 msgid "Orage main calendar file"
-msgstr "Orage メインカレンダファイル"
+msgstr "Orage メインカレンダーファイル"
 
 #: ../src/interface.c:1130 ../src/interface.c:1195
 msgid "Current file"
@@ -1787,7 +1789,7 @@ msgid "Never"
 msgstr "なし"
 
 #: ../src/mainbox.c:453
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Title: %s\n"
 " Location: %s\n"
@@ -1798,13 +1800,15 @@ msgid ""
 "%s"
 msgstr ""
 "件名: %s\n"
+" 場所: %s\n"
 " 開始: %s\n"
-" 終了: %s\n"
+" 締切: %s\n"
+" 完了: %s\n"
 " 備考:\n"
 "%s"
 
 #: ../src/mainbox.c:460
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Title: %s\n"
 " Location: %s\n"
@@ -1814,6 +1818,7 @@ msgid ""
 "%s"
 msgstr ""
 "件名: %s\n"
+" 場所: %s\n"
 " 開始: %s\n"
 " 終了: %s\n"
 " 備考:\n"
@@ -1947,7 +1952,7 @@ msgstr "拡張設定"
 
 #: ../src/parameters.c:801
 msgid "On Calendar Window Open"
-msgstr "カレンダウィンドウを開いたとき"
+msgstr "カレンダーウィンドウを開いたとき"
 
 #: ../src/parameters.c:806
 msgid "Select Today's Date"
@@ -1971,7 +1976,7 @@ msgstr "ダイナミックアイコンは現在の月と日を表示します。
 
 #: ../src/parameters.c:856
 msgid "Main Calendar double click shows"
-msgstr "メインカレンダをダブルクリックした時に表示するもの"
+msgstr "メインカレンダーをダブルクリックした時に表示するもの"
 
 #: ../src/parameters.c:861
 msgid "Days view"
@@ -1998,13 +2003,13 @@ msgstr ""
 
 #: ../src/parameters.c:910 ../src/parameters.c:915
 msgid "Use wakeup timer"
-msgstr ""
+msgstr "復帰タイマー"
 
 #: ../src/parameters.c:921
 msgid ""
 "Use this timer if Orage has problems waking up properly after suspend or "
 "hibernate. (For example tray icon not refreshed or alarms not firing.)"
-msgstr ""
+msgstr "サスペンドまたはハイバネートからの復帰時に Orage に問題が発生する場合 (例えば、トレイアイコンが更新されない、アラームが鳴らない、など) はこのタイマーを使用してください。"
 
 #: ../src/parameters.c:938
 msgid "Orage Preferences"
@@ -3639,11 +3644,11 @@ msgstr "今の日付と時刻は?"
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:1
 #: ../xfcalendar.desktop.in.h:1
 msgid "Calendar"
-msgstr "カレンダ"
+msgstr "カレンダー"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:2
 msgid "Orage Calendar Preferences"
-msgstr "Orage カレンダ設定"
+msgstr "Orage カレンダー設定"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:3
 msgid "Orage preferences"
@@ -3651,15 +3656,15 @@ msgstr "Orage の設定"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:4
 msgid "Settings for the Xfce 4 Calendar Application (Orage)"
-msgstr "Xfce 4 カレンダアプリケーション (Orage) の設定を行います"
+msgstr "Xfce 4 カレンダーアプリケーション (Orage) の設定を行います"
 
 #: ../xfcalendar.desktop.in.h:2
 msgid "Desktop calendar"
-msgstr "卓上カレンダ"
+msgstr "卓上カレンダー"
 
 #: ../xfcalendar.desktop.in.h:3
 msgid "Orage Calendar"
-msgstr "Orage カレンダ"
+msgstr "Orage カレンダー"
 
 #~ msgid ""
 #~ "Title: %s\n"
@@ -3687,7 +3692,7 @@ msgstr "Orage カレンダ"
 #~ msgstr "Orage 時計"
 
 #~ msgid "Original creator, retired maintainer"
-#~ msgstr "最初の開発者、元メンテナ"
+#~ msgstr "最初の開発者、元メンテナー"
 
 #~ msgid "Contributor"
 #~ msgstr "協力者"
@@ -3710,7 +3715,7 @@ msgstr "Orage カレンダ"
 #~ msgid ""
 #~ "When showing main calendar, set pointer to either previously selected day "
 #~ "or always to current day."
-#~ msgstr "メインカレンダが表示される時、ポインタを今日の日付にセットします。"
+#~ msgstr "メインカレンダーが表示される時、ポインタを今日の日付にセットします。"
 
 #~ msgid "show line _1:"
 #~ msgstr "1行表示(_1):"
@@ -3789,7 +3794,7 @@ msgstr "Orage カレンダ"
 #~ msgstr "プロパティ"
 
 #~ msgid "Calendar Settings"
-#~ msgstr "カレンダ設定"
+#~ msgstr "カレンダー設定"
 
 #~ msgid "Select timezone"
 #~ msgstr "タイムゾーンを選択してください"
@@ -3798,4 +3803,4 @@ msgstr "Orage カレンダ"
 #~ msgstr "'orage -p' の起動に失敗しました"
 
 #~ msgid "Xfce 4 Calendar Settings"
-#~ msgstr "Xfce 4 カレンダの設定"
+#~ msgstr "Xfce 4 カレンダーの設定"

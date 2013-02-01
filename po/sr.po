@@ -1,40 +1,30 @@
-# Italian translations for orage package.
-# Copyright (C) 2003-2006 The Xfce development team.
-# This file is distributed under the same license as the orage package.
-# Alex Dupre <ale@FreeBSD.org>, 2004.
-# Cristian Cozzolino <cristiancozzolino@libero.it>, 2009
-# 
-# Gianluca Foddis <gianluca.foddis@gmail.com>, 2009, 2009.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Мирослав Николић <miroslavnikolic@rocketmail.com>, 2012.
 msgid ""
 msgstr ""
-"Project-Id-Version: orage 4.5\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-01-03 14:00+0200\n"
-"PO-Revision-Date: 2010-08-20 12:24+0100\n"
-"Last-Translator: Gianluca Foddis <gianluca.foddis@gmail.com>\n"
-"Language-Team: Italian <xfce-it-translators@googlegroups.com>\n"
+"PO-Revision-Date: 2012-06-20 09:24+0200\n"
+"Last-Translator: Мирослав Николић <miroslavnikolic@rocketmail.com>\n"
+"Language-Team: Serbian <gnu@prevod.org>\n"
+"Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: it\n"
-"X-Poedit-Language: Italian\n"
-"X-Poedit-Country: ITALY\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Virtaal 0.7.1\n"
 
-# GLOSSARIO
-# date = data
-# localtime = ora locale
-# timezone = fuso orario
-# clock time = ora
-# font = tipo di carattere
-# clock = orologio
-# globaltime=ora globale
 #: ../globaltime/globaltime.c:100
 msgid "Raising GlobalTime window..."
-msgstr "Apertura finestra Ora globale..."
+msgstr "Издижем прозор Општег времена..."
 
 #: ../globaltime/globaltime.c:102
 msgid "GlobalTime window raise failed"
-msgstr "Apertura finestra Ora globale non riuscita"
+msgstr "Издизање прозора Општег времена није успело"
 
 #. ********** timezone tooltip **********
 #: ../globaltime/globaltime.c:277
@@ -44,319 +34,302 @@ msgid ""
 "click to modify clock"
 msgstr ""
 "%s\n"
-"fare clic per modificare l'orologio"
+"кликните да измените часовник"
 
 #: ../globaltime/globaltime.c:386
 msgid "Localtime"
-msgstr "Ora locale"
+msgstr "Месно време"
 
 #: ../globaltime/globaltime.c:464
 msgid ""
 "button 1 to change preferences \n"
 "button 2 to adjust time of clocks"
 msgstr ""
-"tasto sinistro per cambiare le preferenze \n"
-"tasto centrale per regolare l'ora degli orologi"
+"дугме 1 за измену поставки\n"
+"дугме 2 за дотеривање времена часовника"
 
-# tooltip; iniziamo con la maiuscola;
 #: ../globaltime/globaltime.c:480
 msgid "adjust to change hour"
-msgstr "Regolare per cambiare l'ora"
+msgstr "дотерајте да измените сат"
 
-# tooltip
 #: ../globaltime/globaltime.c:496
 msgid ""
 "adjust to change minute. Click arrows with button 2 to change only 1 minute."
 msgstr ""
-"Regolare per modificare i minuti; Fare clic col pulsante 2 sulle frecce per "
-"modificare di solo un minuto"
+"дотерајте да измените минут. Кликните стрелице дугметом 2 да измените само 1 "
+"минут."
 
 #: ../globaltime/gt_prefs.c:265 ../globaltime/gt_prefs.c:266
 msgid "NEW"
-msgstr "NUOVO"
+msgstr "НОВИ"
 
 #: ../globaltime/gt_prefs.c:289
 msgid "NEW COPY"
-msgstr "NUOVA COPIA"
+msgstr "НОВИ УМНОЖАК"
 
 #: ../globaltime/gt_prefs.c:310
 msgid "Not possible to delete the last clock."
-msgstr "Impossibile cancellare l'ultimo orologio."
+msgstr "Није могуће обрисати последњи часовник."
 
 #: ../globaltime/gt_prefs.c:516
 msgid "update this clock"
-msgstr "Aggiorna quest'orologio"
+msgstr "освежите овај часовник"
 
-# tooltip
 #: ../globaltime/gt_prefs.c:521 ../globaltime/gt_prefs.c:1034
 msgid "add new empty clock"
-msgstr "Aggiunge un nuovo orologio vuoto"
+msgstr "додајте нови празан часовник"
 
 #: ../globaltime/gt_prefs.c:526
 msgid "add new clock using this clock as model"
-msgstr "Aggiunge un nuovo orologio usando quest'orologio come esempio"
+msgstr "додајте нови часовник користећи овај као модел"
 
 #: ../globaltime/gt_prefs.c:531
 msgid "delete this clock"
-msgstr "Cancella quest'orologio"
+msgstr "обришите овај часовник"
 
-# tooltip
 #: ../globaltime/gt_prefs.c:539
 msgid "move this clock first"
-msgstr "Sposta quest'orologio in alto"
+msgstr "померите овај часовник на почетак"
 
-# tooltip
 #: ../globaltime/gt_prefs.c:544
 msgid "move this clock left"
-msgstr "Sposta quest'orologio a sinistra"
+msgstr "померите овај часовник на лево"
 
-# tooltip
 #: ../globaltime/gt_prefs.c:549
 msgid "move this clock right"
-msgstr "Sposta quest'orologio a destra"
+msgstr "померите овај часовник на десно"
 
-# tooltip
 #: ../globaltime/gt_prefs.c:554
 msgid "move this clock last"
-msgstr "Sposta quest'orologio in fondo"
+msgstr "померите овај часовник на крај"
 
 #: ../globaltime/gt_prefs.c:562
 msgid "set the timezone of this clock to be local timezone"
-msgstr "Imposta il fuso orario di questo orologio a quello locale"
+msgstr "поставите временску зону овог часовника за месну временску зону"
 
-# tooltip
 #: ../globaltime/gt_prefs.c:568 ../globaltime/gt_prefs.c:1042
 msgid "close window and exit"
-msgstr "Chiude la finestra ed esce"
+msgstr "затворите прозор и изађите"
 
 #: ../globaltime/gt_prefs.c:590
 msgid "Globaltime preferences "
-msgstr "Preferenze Ora globale"
+msgstr "Поставке општег времена "
 
 #. -----------------------HEADING-------------------------------------------
 #: ../globaltime/gt_prefs.c:603
 msgid "Clock Parameters"
-msgstr "Parametri dell'orologio"
+msgstr "Параметри часовника"
 
 #: ../globaltime/gt_prefs.c:607
 msgid "Name of the clock:"
-msgstr "Nome dell'orologio:"
+msgstr "Назив часовника:"
 
-# tooltip
 #: ../globaltime/gt_prefs.c:613
 msgid "enter name of clock"
-msgstr "Inserire il nome dell'orologio"
+msgstr "унесите назив за часовник"
 
 #: ../globaltime/gt_prefs.c:616
 msgid "Timezone of the clock:"
-msgstr "Fuso orario dell'orologio:"
+msgstr "Временска зона часовника:"
 
 #: ../globaltime/gt_prefs.c:643
 msgid "Text Formatting"
-msgstr "Formattazione del testo"
+msgstr "Обликовање текста"
 
 #. ------------------------background-------------------------
 #: ../globaltime/gt_prefs.c:649 ../globaltime/gt_prefs.c:856
 msgid "Background color:"
-msgstr "Colore di sfondo"
+msgstr "Боја позадине:"
 
 #: ../globaltime/gt_prefs.c:656
 msgid "Click to change background colour for clock"
-msgstr "Fare clic per cambiare il colore di sfondo all'orologio"
+msgstr "Кликните да измените боју позадине часовника"
 
-# tooltip
 #: ../globaltime/gt_prefs.c:665 ../globaltime/gt_prefs.c:697
 #: ../globaltime/gt_prefs.c:729 ../globaltime/gt_prefs.c:762
 #: ../globaltime/gt_prefs.c:796 ../globaltime/gt_prefs.c:826
 #: ../globaltime/gt_prefs.c:872 ../globaltime/gt_prefs.c:905
 #: ../globaltime/gt_prefs.c:938 ../globaltime/gt_prefs.c:972
 msgid "Use default"
-msgstr "Predefinito"
+msgstr "Користи основно"
 
 #: ../globaltime/gt_prefs.c:670 ../globaltime/gt_prefs.c:702
 #: ../globaltime/gt_prefs.c:735 ../globaltime/gt_prefs.c:768
 #: ../globaltime/gt_prefs.c:802 ../globaltime/gt_prefs.c:832
 msgid "Cross this to use default instead of selected value"
-msgstr ""
-"Mettere il segno di spunta per utilizzare il valore predefinito al posto di "
-"quello selezionato"
+msgstr "Штиклирајте ово да би била коришћена основна уместо изабране вредности"
 
 #. ------------------------foreground-------------------------
 #: ../globaltime/gt_prefs.c:681 ../globaltime/gt_prefs.c:889
 msgid "Foreground (=text) color:"
-msgstr "Colore in primo piano (=testo):"
+msgstr "Боја прочеља (=текста):"
 
 #: ../globaltime/gt_prefs.c:688
 msgid "Click to change foreground colour for clock"
-msgstr "Fare clic per cambiare il colore in primo piano all'orologio"
+msgstr "Кликните да измените боју прочеља часовника"
 
 #. ------------------------name font-------------------------
 #: ../globaltime/gt_prefs.c:713 ../globaltime/gt_prefs.c:922
 msgid "Font for name of clock:"
-msgstr "Carattere per il nome dell'orologio:"
+msgstr "Писмо за назив часовника:"
 
 #: ../globaltime/gt_prefs.c:720
 msgid "Click to change font for clock name"
-msgstr "Fare clic per cambiare il tipo di carattere al nome dell'orologio"
+msgstr "Кликните да измените словни лик за назив часовника"
 
 #. ------------------------time font-------------------------
 #: ../globaltime/gt_prefs.c:746 ../globaltime/gt_prefs.c:956
 msgid "Font for time of clock:"
-msgstr "Tipo di carattere per l'ora:"
+msgstr "Писмо за време часовника:"
 
 #: ../globaltime/gt_prefs.c:753
 msgid "Click to change font for clock time"
-msgstr "Fare clic per cambiare il tipo di carattere per l'ora"
+msgstr "Кликните да измените словни лик за време часовника"
 
 #. ------------------------underline name--------------------
 #: ../globaltime/gt_prefs.c:780
 msgid "Underline name of clock:"
-msgstr "Sottolinea il nome dell'orologio:"
+msgstr "Подвучени назив часовника:"
 
 #. ------------------------underline time--------------------
 #: ../globaltime/gt_prefs.c:810
 msgid "Underline time of clock:"
-msgstr "Sottolinea l'ora dell'orologio:"
+msgstr "Подвучено време часовника:"
 
 #: ../globaltime/gt_prefs.c:850
 msgid "Text Default Formatting"
-msgstr "Formattazione predefinita del testo"
+msgstr "Основно обликовање текста"
 
 #: ../globaltime/gt_prefs.c:863
 msgid "Click to change default background colour for clocks"
-msgstr "Fare clic per cambiare il colore di sfondo predefinito agli orologi"
+msgstr "Кликните да измените основну боју позадине часовника"
 
 #: ../globaltime/gt_prefs.c:877 ../globaltime/gt_prefs.c:910
 msgid "Cross this to use system default instead of selected color"
-msgstr ""
-"Spuntare per usare il colore predefinito di sistema al posto di quello "
-"selezionato"
+msgstr "Штиклирајте ово да би била коришћена основна уместо изабране боје"
 
 #: ../globaltime/gt_prefs.c:896
 msgid "Click to change default text colour for clocks"
-msgstr "Fare clic per cambiare il colore predefinito del testo agli orologi"
+msgstr "Кликните да измените основну боју текста часовника"
 
 #: ../globaltime/gt_prefs.c:929
 msgid "Click to change default font for clock name"
-msgstr ""
-"Fare clic per cambiare il carattere predefinito per il nome dell'orologio"
+msgstr "Кликните да измените основни словни лик за назив часовника"
 
 #: ../globaltime/gt_prefs.c:944 ../globaltime/gt_prefs.c:978
 msgid "Cross this to use system default font instead of selected font"
 msgstr ""
-"Mettere il segno di spunta per usare il carattere predefinito di sistema al "
-"posto di quello selezionato"
+"Штиклирајте ово да би било коришћен основни уместо изабраног словног лика"
 
 #: ../globaltime/gt_prefs.c:963
 msgid "Click to change default font for clock time"
-msgstr "Fare clic per cambiare il carattere predefinito per l'ora"
+msgstr "Кликните да измените основни словни лик за време часовника"
 
 #. ------------------------underline name--------------------
 #: ../globaltime/gt_prefs.c:990
 msgid "Underline for name of clock:"
-msgstr "Sottolineatura per il nome dell'orologio:"
+msgstr "Подвлака за назив часовника:"
 
 #. ------------------------underline time--------------------
 #: ../globaltime/gt_prefs.c:1004
 msgid "Underline for time of clock:"
-msgstr "Sottolineatura per l'ora dell'orologio:"
+msgstr "Подвлака за време часовника:"
 
-# tooltip
 #: ../globaltime/gt_prefs.c:1027
 msgid "update preferences"
-msgstr "Aggiorna preferenze"
+msgstr "освежите поставке"
 
 #: ../globaltime/gt_prefs.c:1062
 msgid "Globaltime Preferences"
-msgstr "Preferenze Ora globale"
+msgstr "Поставке општег времена"
 
 #. -----------------------HEADING--------------------------------------
 #: ../globaltime/gt_prefs.c:1073
 msgid "General Preferences"
-msgstr "Preferenze generali"
+msgstr "Опште поставке"
 
 #: ../globaltime/gt_prefs.c:1077
 msgid "Decorations:"
-msgstr "Decorazioni:"
+msgstr "Украси:"
 
 #: ../globaltime/gt_prefs.c:1078
 msgid "Standard"
-msgstr "Standard"
+msgstr "Обично"
 
 #: ../globaltime/gt_prefs.c:1083
 msgid "Use normal decorations"
-msgstr "Usa le decorazioni normali"
+msgstr "Биће коришћени уобичајени украси"
 
 #: ../globaltime/gt_prefs.c:1094
 msgid "Do not show window decorations (borders)"
-msgstr "Non mostrare le decorazioni della finestra (bordi)"
+msgstr "Неће бити приказани украси прозора (ивице)"
 
 #: ../globaltime/gt_prefs.c:1100
 msgid "Clock size:"
-msgstr "Dimensione orologio:"
+msgstr "Величина часовника:"
 
 #: ../globaltime/gt_prefs.c:1101
 msgid "Equal"
-msgstr "Uguale"
+msgstr "Иста"
 
 #: ../globaltime/gt_prefs.c:1106
 msgid "All clocks have same size"
-msgstr "Tutti gli orologi hanno la stessa dimensione"
+msgstr "Сви часовници ће бити исте величине"
 
 #: ../globaltime/gt_prefs.c:1111
 msgid "Varying"
-msgstr "Variabile"
+msgstr "Различита"
 
 #: ../globaltime/gt_prefs.c:1116
 msgid "Clock sizes vary"
-msgstr "Le dimensioni dell'orologio variano"
+msgstr "Величине часовника ће се разликовати"
 
 #: ../globaltime/gt_prefs.c:1122
 msgid "Local timezone:"
-msgstr "Fuso orario locale:"
+msgstr "Месна временска зона:"
 
 #: ../globaltime/timezone_selection.c:101
 #: ../panel-plugin/timezone_selection.c:102 ../src/timezone_selection.c:102
 msgid " Other"
-msgstr " Altro"
+msgstr " Друго"
 
 #: ../globaltime/timezone_selection.c:156
 #: ../panel-plugin/timezone_selection.c:157 ../src/timezone_selection.c:168
 #, c-format
 msgid "%d hour %d mins"
-msgstr "%d ore %d minuti"
+msgstr "%d часова %d минута"
 
 #: ../globaltime/timezone_selection.c:159
 #: ../panel-plugin/timezone_selection.c:160 ../src/timezone_selection.c:171
 #, c-format
 msgid "%d hour"
-msgstr "%d ore"
+msgstr "%d сат"
 
 #: ../globaltime/timezone_selection.c:161
 #: ../panel-plugin/timezone_selection.c:162 ../src/timezone_selection.c:173
 #, c-format
 msgid "%d mins"
-msgstr "%d minuti"
+msgstr "%d минута"
 
 #: ../globaltime/timezone_selection.c:167
 #: ../panel-plugin/timezone_selection.c:168 ../src/timezone_selection.c:179
 msgid "backward"
-msgstr "indietro"
+msgstr "уназад"
 
 #: ../globaltime/timezone_selection.c:170
 #: ../panel-plugin/timezone_selection.c:171 ../src/timezone_selection.c:182
 msgid "forward"
-msgstr "avanti"
+msgstr "унапред"
 
 #: ../globaltime/timezone_selection.c:194
 #: ../panel-plugin/timezone_selection.c:195 ../src/timezone_selection.c:206
 msgid "not changed"
-msgstr "non modificato"
+msgstr "није измењено"
 
 #: ../globaltime/timezone_selection.c:195
 #: ../panel-plugin/timezone_selection.c:196 ../src/timezone_selection.c:207
 msgid "not changing"
-msgstr "non in modifica"
+msgstr "без промена"
 
 #. location
 #: ../globaltime/timezone_selection.c:247
@@ -365,24 +338,22 @@ msgstr "non in modifica"
 #: ../panel-plugin/timezone_selection.c:253 ../src/appointment.c:2663
 #: ../src/timezone_selection.c:259 ../src/timezone_selection.c:264
 msgid "Location"
-msgstr "Località"
+msgstr "Место"
 
 #: ../globaltime/timezone_selection.c:258
 #: ../panel-plugin/timezone_selection.c:259 ../src/timezone_selection.c:270
 msgid "GMT Offset"
-msgstr "Differenza GMT"
+msgstr "ГМТ померај"
 
-# si riferisce alle date in cui è avvenuto l'ultimo/ avverrà il prossimocambio
-# di ora: ultima dom dimarzo e di ottobre.
 #: ../globaltime/timezone_selection.c:264
 #: ../panel-plugin/timezone_selection.c:265 ../src/timezone_selection.c:276
 msgid "Previous/Next Change"
-msgstr "Ultimo/Prossimo cambio ora"
+msgstr "Претходна/Наредна измена"
 
 #: ../globaltime/timezone_selection.c:269
 #: ../panel-plugin/timezone_selection.c:270 ../src/timezone_selection.c:281
 msgid "Country"
-msgstr "Paese"
+msgstr "Држава"
 
 #. We are actually setting the g_par parameter. In other words
 #. we are setting the global default timezone for Orage. This is
@@ -395,7 +366,7 @@ msgstr "Paese"
 #: ../panel-plugin/timezone_selection.c:310 ../src/timezone_selection.c:316
 #: ../src/timezone_selection.c:325 ../src/timezone_selection.c:336
 msgid "Pick timezone"
-msgstr "Selezionare il fuso orario"
+msgstr "Изаберите временску зону"
 
 #: ../globaltime/timezone_selection.c:302
 #: ../globaltime/timezone_selection.c:312
@@ -403,7 +374,7 @@ msgstr "Selezionare il fuso orario"
 #: ../panel-plugin/timezone_selection.c:313 ../src/timezone_selection.c:319
 #: ../src/timezone_selection.c:328 ../src/timezone_selection.c:339
 msgid "Change mode"
-msgstr "Cambia modalità"
+msgstr "Режим измене"
 
 #: ../globaltime/timezone_selection.c:303
 #: ../globaltime/timezone_selection.c:313
@@ -414,7 +385,7 @@ msgstr "Cambia modalità"
 #: ../src/timezone_selection.c:329 ../src/timezone_selection.c:340
 #: ../src/timezone_selection.c:379
 msgid "UTC"
-msgstr "UTC"
+msgstr "КУВ"
 
 #. NOTE: this exists only if ical timezones are being used
 #: ../globaltime/timezone_selection.c:304
@@ -423,85 +394,83 @@ msgstr "UTC"
 #: ../panel-plugin/timezone_selection.c:358 ../src/timezone_selection.c:330
 #: ../src/timezone_selection.c:384
 msgid "floating"
-msgstr "fluttuante"
+msgstr "плутајуће"
 
 #: ../globaltime/globaltime.desktop.in.h:1 ../src/tray_icon.c:500
 msgid "Globaltime"
-msgstr "Ora globale"
+msgstr "Опште време"
 
 #: ../globaltime/globaltime.desktop.in.h:2
 msgid "Orage Globaltime"
-msgstr "Ora globale di Orage"
+msgstr "Опште време Оража"
 
 #: ../globaltime/globaltime.desktop.in.h:3
 msgid "Show clocks from different countries"
-msgstr "Mostra l'orologio di diversi paesi"
+msgstr "Прикажите часовнике за разне државе"
 
 #: ../panel-plugin/oc_config.c:224
 msgid "Appearance"
-msgstr "Aspetto"
+msgstr "Изглед"
 
 #. show frame
 #: ../panel-plugin/oc_config.c:229
 msgid "Show _frame"
-msgstr "Mostra co_rnice"
+msgstr "Прикажи _оквир"
 
 #. foreground color
 #: ../panel-plugin/oc_config.c:239
 msgid "set foreground _color:"
-msgstr "Imposta colore _primo piano:"
+msgstr "боја про_чеља:"
 
 #. background color
 #: ../panel-plugin/oc_config.c:253
 msgid "set _background color:"
-msgstr "Imposta colore _sfondo:"
+msgstr "боја по_задине:"
 
 #. clock size (=vbox size): height and width
 #: ../panel-plugin/oc_config.c:267
 msgid "set _height:"
-msgstr "Imposta alte_zza:"
+msgstr "_висина:"
 
 #: ../panel-plugin/oc_config.c:277
 msgid "Note that you can not change the height of horizontal panels"
-msgstr ""
-"Si noti che non è possibile modificare l'altezza dei pannelli orizzontali"
+msgstr "Знајте да не можете да измените висину водоравних панела"
 
 #: ../panel-plugin/oc_config.c:282
 msgid "set _width:"
-msgstr "Imposta _larghezza:"
+msgstr "_ширина:"
 
 #: ../panel-plugin/oc_config.c:293
 msgid "Note that you can not change the width of vertical panels"
-msgstr ""
-"Si noti che non è possibile modificare lalarghezza dei pannelli verticali"
+msgstr "Знајте да не можете да измените ширину усправних панела"
 
 #: ../panel-plugin/oc_config.c:316
 msgid "Clock Options"
-msgstr "Opzioni dell'orologio"
+msgstr "Могућности часовника"
 
 #. timezone
 #: ../panel-plugin/oc_config.c:326
 msgid "set timezone to:"
-msgstr "Imposta il fuso orario su:"
+msgstr "постави временску зону на:"
 
 #: ../panel-plugin/oc_config.c:347
 #, c-format
 msgid "Line %d:"
-msgstr "Linea %d:"
+msgstr "Ред %d:"
 
 #: ../panel-plugin/oc_config.c:357
 msgid "Enter any valid strftime function parameter."
-msgstr "Inserire un parametro valido per la funzione strftime"
+msgstr "Унесите неки исправан параметар функције временске ниске."
 
 #. Tooltip hint
 #: ../panel-plugin/oc_config.c:401
 msgid "Tooltip:"
-msgstr "Suggerimento:"
+msgstr "Облачићи:"
 
 #. special timing for SUSPEND/HIBERNATE
 #: ../panel-plugin/oc_config.c:411
 msgid "fix time after suspend/hibernate"
-msgstr "Riaggiusta l'ora dopo una sospensione/ibernazione"
+msgstr "поправи време након обуставе/замрзавања"
 
 #: ../panel-plugin/oc_config.c:415
 msgid ""
@@ -511,14 +480,12 @@ msgid ""
 "you have this selected. (Selecting this prevents cpu and interrupt saving "
 "features from working.)"
 msgstr ""
-"Questo è necessario se viene effettuata una sospensione o una ibernazione a "
-"breve termine (meno di 5 ore) e l'ora visualizzata non comprende i secondi. "
-"In queste circostanze è possibile che l'orologio di Orage mostri l'ora in "
-"modo impreciso a meno che non sia stata selezionata questa opzione "
-"(selezionandola, si inibisce il funzionamento della cpu e delle funzioni di "
-"risparmio energetico)"
+"Ово вам је потребно само ако радите краткорочно (мање од 5 сати) обустављање "
+"или замрзавање а у вашем видљивом времену нису приказане секунде. Под овим "
+"околностима могуће је да Оражов часовник приказује нетачно време осим ако "
+"нисте изабрали ово. (Бирање овога штити процесор и прекида функције чувања "
+"од дејствовања.)"
 
-# # modificato i tab(\t) per far tornare tutto allineato
 #: ../panel-plugin/oc_config.c:432
 msgid ""
 "This program uses strftime function to get time.\n"
@@ -530,20 +497,18 @@ msgid ""
 "\t%H = hours \t\t\t\t%M = minute\n"
 "\t%X = local time\t\t\t%x = local date"
 msgstr ""
-"Questo programma utilizza la funzione strftime per\n"
-"recuperare le informazioni su data e ora.\n"
-"Utilizzare un qualsiasi codice valido per ottenere la\n"
-"data e l'ora nel formato che si preferisce.\n"
-"I codici più utilizzati sono:\n"
-"\t%A = giorno della settimana\t%B = mese\n"
-"\t%c = data e ora\t\t\t%R = ora e minuti\n"
-"\t%V = numero settimana\t%Z = fuso orario in uso\n"
-"\t%H = ore \t\t\t\t%M = minuti\n"
-"\t%X = ora locale\t\t\t%x = data locale"
+"Овај програм користи „strftime“ функцију да добави време.\n"
+"Користите било који исправан код да добавите време у облику који желите.\n"
+"Неки општи кодови су:\n"
+"\t%A = седмица\t\t\t%B = месец\n"
+"\t%c = датум и време\t\t%R = сат и минут\n"
+"\t%V = број седмице\t\t%Z = временска зона у употреби\n"
+"\t%H = сати \t\t        %M = минут\n"
+"\t%X = месно време\t\t%x = месни датум"
 
 #: ../panel-plugin/oc_config.c:457
 msgid "Orage clock Preferences"
-msgstr "Preferenze dell'orologio di Orage"
+msgstr "Поставке Оражовог часовника"
 
 #. no lines yet
 #. TRANSLATORS: Use format characters from strftime(3)
@@ -554,99 +519,99 @@ msgstr "Preferenze dell'orologio di Orage"
 #. * %B  : full month name
 #. * %Y  : four digit year
 #. * %V  : ISO week number
-#. 
+#.
 #: ../panel-plugin/xfce4-orageclock-plugin.c:627
 msgid "%A %d %B %Y/%V"
-msgstr "%A %d %B %Y/%V"
+msgstr "%A, %d. %B %Y/%V"
 
 #: ../src/about-xfcalendar.c:40
 msgid "Maintainer"
-msgstr "Mantenitore"
+msgstr "Одржавалац"
 
 #: ../src/about-xfcalendar.c:47
 msgid "Manage your time with Orage"
-msgstr "Gestire il proprio tempo con Orage"
+msgstr "Управљајте вашим временом са Оранжом"
 
 #. if (gtk_toggle_button_get_active(
 #. GTK_TOGGLE_BUTTON(apptw->Type_journal_rb)))
 #. end time
 #: ../src/appointment.c:313 ../src/appointment.c:353 ../src/appointment.c:2692
 msgid "End"
-msgstr "Fine"
+msgstr "Kraj"
 
 #: ../src/appointment.c:333
 msgid "Due"
-msgstr "Scadenza"
+msgstr "Рок"
 
 #: ../src/appointment.c:493 ../src/mainbox.c:783
 msgid "Orage"
-msgstr "Orage"
+msgstr "Ораже"
 
 #. to avoid timing problems when updating entry
 #. Create file chooser
 #: ../src/appointment.c:672 ../src/interface.c:277 ../src/parameters.c:416
 msgid "Select a file..."
-msgstr "Selezionare un file..."
+msgstr "Изаберите датотеку..."
 
 #: ../src/appointment.c:680
 msgid "Sound Files"
-msgstr "File audio"
+msgstr "Звучне датотеке"
 
 #: ../src/appointment.c:687 ../src/interface.c:290
 msgid "All Files"
-msgstr "Tutti i File"
+msgstr "Све датотеке"
 
 #: ../src/appointment.c:739
 msgid "The appointment information has been modified."
-msgstr "Le informazioni sull'appuntamento sono state modificate."
+msgstr "Подаци о састанку су измењени."
 
 #: ../src/appointment.c:740 ../src/appointment.c:1194 ../src/event-list.c:919
 msgid "Do you want to continue?"
-msgstr "Continuare davvero?"
+msgstr "Да ли желите да наставите?"
 
 #: ../src/appointment.c:767
 msgid "The end of this appointment is earlier than the beginning."
-msgstr "La fine di questo appuntamento è precedente all'inizio."
+msgstr "Крај овог састанка је пре почетка."
 
 #: ../src/appointment.c:1034 ../src/appointment.c:1812
 msgid "Not set"
-msgstr "Non impostato"
+msgstr "Није постављено"
 
 #: ../src/appointment.c:1193
 msgid "This appointment will be permanently removed."
-msgstr "Questo appuntamento verrà rimosso in modo permanente."
+msgstr "Овај састанак ће бити трајно уклоњен."
 
 #: ../src/appointment.c:1692
 msgid "This appointment does not exist."
-msgstr "Questo appuntamento non esiste."
+msgstr "Овај састанак не постоји."
 
 #: ../src/appointment.c:1693
 msgid "It was probably removed, please refresh your screen."
-msgstr "Probabilmente è stato rimosso, si prega di aggiornare la schermata."
+msgstr "Вероватно је уклоњен, молим освежите ваш екран."
 
 #: ../src/appointment.c:1995
 msgid "Current categories"
-msgstr "Categorie correnti"
+msgstr "Тренутне категорије"
 
 #: ../src/appointment.c:2010
 msgid "Add new category with color"
-msgstr "Aggiungere una nuova categoria con un colore"
+msgstr "Додајте нову категорију са бојом"
 
 #: ../src/appointment.c:2014
 msgid "Category:"
-msgstr "Categoria:"
+msgstr "Категорија:"
 
 #: ../src/appointment.c:2045
 msgid "Colors of categories - Orage"
-msgstr "Colori delle categorie - Orage"
+msgstr "Боје категорија — Ораж"
 
 #: ../src/appointment.c:2092
 msgid " *** COPY ***"
-msgstr " *** COPIA ***"
+msgstr " *** УМНОЖИ ***"
 
 #: ../src/appointment.c:2353
 msgid "New appointment - Orage"
-msgstr "Nuovo appuntamento - Orage"
+msgstr "Нови састанак — Ораж"
 
 #. File menu stuff
 #. ********* File menu *********
@@ -654,163 +619,164 @@ msgstr "Nuovo appuntamento - Orage"
 #: ../src/appointment.c:2382 ../src/day-view.c:254 ../src/event-list.c:1021
 #: ../src/interface.c:767 ../src/mainbox.c:279
 msgid "_File"
-msgstr "_File"
+msgstr "_Датотека"
 
 #: ../src/appointment.c:2388
 msgid "Sav_e and close"
-msgstr "Salva _e chiudi"
+msgstr "_Сачувај и затвори"
 
 #: ../src/appointment.c:2401 ../src/event-list.c:1027
 msgid "D_uplicate"
-msgstr "D_uplica"
+msgstr "У_двостручи"
 
 #: ../src/appointment.c:2589
 msgid "Save"
-msgstr "Salva"
+msgstr "Сачувај"
 
 #: ../src/appointment.c:2591
 msgid "Save and close"
-msgstr "Salva e chiude"
+msgstr "Сачувај и затвори"
 
 #: ../src/appointment.c:2596
 msgid "Revert"
-msgstr "Ripristina"
+msgstr "Поврати"
 
 #: ../src/appointment.c:2598 ../src/event-list.c:1112
 msgid "Duplicate"
-msgstr "Duplica"
+msgstr "Удвостручи"
 
 #: ../src/appointment.c:2603 ../src/event-list.c:1114
 msgid "Delete"
-msgstr "Cancella"
+msgstr "Обриши"
 
 #: ../src/appointment.c:2621
 msgid "Free"
-msgstr "Libero"
+msgstr "Слободан"
 
 #: ../src/appointment.c:2621
 msgid "Busy"
-msgstr "Occupato"
+msgstr "Заузет"
 
 #: ../src/appointment.c:2625
 msgid "General"
-msgstr "Generale"
+msgstr "Опште"
 
 #. type
 #: ../src/appointment.c:2631
 msgid "Type "
-msgstr "Tipo"
+msgstr "Врста "
 
 #: ../src/appointment.c:2633 ../src/event-list.c:1165
 msgid "Event"
-msgstr "Evento"
+msgstr "Догађај"
 
 #: ../src/appointment.c:2636
 msgid ""
 "Event that will happen sometime. For example:\n"
 "Meeting or birthday or TV show."
 msgstr ""
-"Evento che accadrà un giorno; per esempio:\n"
-"un incontro, un compleanno, o uno spettacolo alla TV"
+"Догађај који ће се десити некада. На пример:\n"
+"Састанак или рођендан или ТВ емисија."
 
 #: ../src/appointment.c:2639 ../src/event-list.c:1185
 msgid "Todo"
-msgstr "Compito"
+msgstr "Обавезе"
 
 #: ../src/appointment.c:2642
 msgid ""
 "Something that you should do sometime. For example:\n"
 "Wash your car or test new version of Orage."
 msgstr ""
-"Qualcosa che dovrebbe essere fatto prima o poi; per esempio:\n"
-"lavare la propria auto o provare la nuova versione di Orage"
+"Нешто што бисте требали некад да урадите. На пример:\n"
+"Да оперете судове или да испробате нове бакине колаче."
 
 #: ../src/appointment.c:2645 ../src/event-list.c:1198
 msgid "Journal"
-msgstr "Note del giorno"
+msgstr "Дневник"
 
 #: ../src/appointment.c:2649
 msgid ""
 "Make a note that something happened. For example:\n"
 "Remark that your mother called or first snow came."
 msgstr ""
-"Scrivere una nota per ricordare che è successo qualcosa; per esempio:\n"
-"annota che la mamma ha chiamato o che è scesa la prima neve"
+"Направите белешку неког дешавања. На пример:\n"
+"Забележите када сте добили на лутрији или када је маца омацила седам белих "
+"пуфница."
 
 #. title
 #: ../src/appointment.c:2656
 msgid "Title "
-msgstr "Nome"
+msgstr "Наслов "
 
 #: ../src/appointment.c:2671
 msgid "All day event"
-msgstr "Evento che occupa tutto il giorno"
+msgstr "Целодневни догађај"
 
 #. start time
 #: ../src/appointment.c:2677 ../src/appointment.c:3342 ../src/day-view.c:697
 msgid "Start"
-msgstr "Inizio"
+msgstr "Почетак"
 
 #: ../src/appointment.c:2697
 msgid "Set      "
-msgstr "Imposta"
+msgstr "Подеси      "
 
 #: ../src/appointment.c:2718
 msgid "Duration"
-msgstr "Durata"
+msgstr "Трајање"
 
 #: ../src/appointment.c:2722 ../src/appointment.c:2912 ../src/reminder.c:761
 msgid "days"
-msgstr "giorni"
+msgstr "дана"
 
 #: ../src/appointment.c:2724 ../src/appointment.c:2914 ../src/reminder.c:763
 msgid "hours"
-msgstr "ore"
+msgstr "часова"
 
 #: ../src/appointment.c:2726 ../src/appointment.c:2916 ../src/reminder.c:765
 msgid "mins"
-msgstr "minuti"
+msgstr "минута"
 
 #. Availability (only for EVENT)
 #: ../src/appointment.c:2738
 msgid "Availability"
-msgstr "Disponibilità"
+msgstr "Доступност"
 
 #. completed (only for TODO)
 #: ../src/appointment.c:2746 ../src/appointment.c:3348
 msgid "Completed"
-msgstr "Completato"
+msgstr "Завршено"
 
 #: ../src/appointment.c:2749
 msgid "Done"
-msgstr "Fatto"
+msgstr "Урађено"
 
 #. categories
 #: ../src/appointment.c:2770
 msgid "Categories"
-msgstr "Categorie"
+msgstr "Категорије"
 
 #: ../src/appointment.c:2782
 msgid ""
 "This is special category, which can be used to color this appointment in "
 "list views."
 msgstr ""
-"Questa è una categoria speciale, che può essere usata per colorare questo "
-"appuntamento nella visualizzazione a elenco"
+"Ово је посебна категорија, која може бити коришћена да обоји овај састанак у "
+"прегледу списком."
 
 #: ../src/appointment.c:2787
 msgid "update colors for categories."
-msgstr "Aggiorna i colori per categorie"
+msgstr "освежите боје за категорије."
 
 #. priority
 #: ../src/appointment.c:2793
 msgid "Priority"
-msgstr "Priorità"
+msgstr "Хитност"
 
 #. note
 #: ../src/appointment.c:2803
 msgid "Note"
-msgstr "Commento"
+msgstr "Белешка"
 
 #: ../src/appointment.c:2824
 msgid ""
@@ -824,40 +790,40 @@ msgid ""
 "(This can be used for example in birthday reminders to tell how old the "
 "person will be.)"
 msgstr ""
-"I seguenti comandi rapidi hanno effetto immediato:\n"
-"    <D> inserisce la data corrente in formato ora locale\n"
-"    <T> inserisce l'ora e\n"
-"    <DT> inserisce la data e l'ora.\n"
+"Ове наредбе пречица ступају на снагу одмах:\n"
+"    <D> умеће текући датум у облику месног датума\n"
+"    <T> умеће време и\n"
+"    <DT> умеће датум и време.\n"
 "\n"
-"Quanto segue è convertito solo dopo essere stato esaminato:\n"
-"    <&Ynnnn> è tradotto in anno corrente meno nnnn.\n"
-"(Può essere utilizzato per esempio in promemoria di compleanni per sapere "
-"quanti anni ha la persona)"
+"Ове су претворене једино касније када бивају виђене:\n"
+"    <&Ynnnn> је преведена на текућу годину мање nnnn.\n"
+"(Ово може бити коришћено на пример у потсетнику рођендана када ће рећи "
+"колико ће особа бити стара.)"
 
 #: ../src/appointment.c:2895
 msgid "Before Start"
-msgstr "Prima dell'inizio"
+msgstr "Пре почетка"
 
 #: ../src/appointment.c:2895
 msgid "Before End"
-msgstr "Prima della fine"
+msgstr "Пре краја"
 
 #: ../src/appointment.c:2896
 msgid "After Start"
-msgstr "Dopo l'inizio"
+msgstr "Након почетка"
 
 #: ../src/appointment.c:2896
 msgid "After End"
-msgstr "Dopo la fine"
+msgstr "Након краја"
 
 #: ../src/appointment.c:2903
 msgid "Alarm"
-msgstr "Allarme"
+msgstr "Аларм"
 
 #. **** ALARM TIME ****
 #: ../src/appointment.c:2909
 msgid "Alarm time"
-msgstr "Ora dell'allarme"
+msgstr "Време аларма"
 
 #: ../src/appointment.c:2933
 msgid ""
@@ -866,101 +832,93 @@ msgid ""
 " 2) before Todo end\n"
 " 3) after Todo start"
 msgstr ""
-"Spesso si desidera ricevere un allarme:\n"
-" 1) prima che un evento sia iniziato\n"
-" 2) prima che un compito sia terminato\n"
-" 3) dopo che un compito sia iniziato"
+"Колико често желите аларм:\n"
+" 1) пре почетка догађаја\n"
+" 2) пре краја обавезе\n"
+" 3) након почетка обавезе"
 
 #: ../src/appointment.c:2938
 msgid "Persistent alarm"
-msgstr "Allarme persistente"
+msgstr "Стални аларм"
 
 #: ../src/appointment.c:2940
 msgid ""
 "Select this if you want Orage to remind you even if it has not been active "
 "when the alarm happened."
 msgstr ""
-"Selezionare questa opzione per fare in modo che Orage avvisi comunque anche "
-"se non è attivo al momento dell'allarme"
+"Изаберите ово ако желите да вас Ораж подсети чак и ако није био активан када "
+"се догодио аларм."
 
 #. **** Audio Alarm ****
-# è riferito all'allarme
 #: ../src/appointment.c:2949
 msgid "Sound"
-msgstr "Suono"
+msgstr "Звук"
 
 #: ../src/appointment.c:2953 ../src/appointment.c:3074
 msgid "Use"
-msgstr "Utilizza"
+msgstr "Користи"
 
 #: ../src/appointment.c:2955
 msgid "Select this if you want audible alarm"
-msgstr "Selezionare questa opzione se si desidera un allarme acustico"
+msgstr "Изаберите ово ако желите чујни аларм"
 
 #: ../src/appointment.c:2972
 msgid "Repeat alarm sound"
-msgstr "Ripeti suono di allarme"
+msgstr "Понови звук аларма"
 
 #: ../src/appointment.c:2988 ../src/appointment.c:3290
 msgid "times"
-msgstr "volte"
+msgstr "пута"
 
 #: ../src/appointment.c:3004
 msgid "sec interval"
-msgstr "intervallo in secondi"
+msgstr "период секунди"
 
 #. **** Display Alarm ****
 #: ../src/appointment.c:3014
 msgid "Visual"
-msgstr "Visuale"
+msgstr "Видни"
 
 #: ../src/appointment.c:3018
 msgid "Use Orage window"
-msgstr "Utilizza la finestra di Orage"
+msgstr "Користи прозор Оража"
 
 #: ../src/appointment.c:3020
 msgid "Select this if you want Orage window alarm"
-msgstr ""
-"Selezionare questa opzione se si desidera ricevere l'allarme della finestra "
-"di Orage"
+msgstr "Изаберите ово ако желите аларм прозора Оража"
 
 #: ../src/appointment.c:3032
 msgid "Use notification"
-msgstr "Usa notifica"
+msgstr "Користи обавештења"
 
 #: ../src/appointment.c:3034
 msgid "Select this if you want notification alarm"
-msgstr ""
-"Selezionare questa opzione se si desidera ricevere un allarme di notifica"
+msgstr "Изаберите ово ако желите аларм обавештења"
 
 #: ../src/appointment.c:3040
 msgid "Set timeout"
-msgstr "Imposta timeout"
+msgstr "Подеси време истека"
 
 #: ../src/appointment.c:3043
 msgid "Select this if you want notification to expire automatically"
-msgstr ""
-"Selezionare questa opzione se si desidera ceh la notifica scada "
-"automaticamente"
+msgstr "Изаберите ово ако желите да обавештење истекне само"
 
 #: ../src/appointment.c:3054
 msgid "0 = system default expiration time"
-msgstr "0 = intervallo di scadenza predefinito di sistema"
+msgstr "0 = основно системско време истека"
 
 #: ../src/appointment.c:3059
 msgid "seconds"
-msgstr "secondi"
+msgstr "секунди"
 
 #. **** Procedure Alarm ****
 #: ../src/appointment.c:3070
 msgid "Procedure"
-msgstr "Procedura"
+msgstr "Поступак"
 
 #: ../src/appointment.c:3076
 msgid "Select this if you want procedure or script alarm"
-msgstr ""
-"Selezionare questa opzione se si intende utilizzare una procedura o uno "
-"script di allarme"
+msgstr "Изаберите ово ако желите поступак или аларм скрипте"
 
 #: ../src/appointment.c:3082
 msgid ""
@@ -973,104 +931,103 @@ msgid ""
 "\t<&ST> appointment start time\n"
 "\t<&ET> appointment end time"
 msgstr ""
-"Si devono inserire tutti i caratteri di escape.\n"
-"Questa stringa è inviata dalla shell al processo.\\I seguenti comandi "
-"speciali sono sostituiti durante l'esecuzione:\n"
-"\t<&T> titolo dell'appuntamento\n"
-"\t<&D> descrizione dell'appuntamento\n"
-"\t<&AT> ora dell'allarme\n"
-"\t<&ST> ora di inizio dell'appuntamento\n"
-"\t<&ET> ora di fine dell'appuntamento"
+"Морате сами да унесете све знаке избегавања.\n"
+"Ова ниска је заправо дата конзоли на обраду.\n"
+"Следеће посебне наредбе бивају замењене за време покретања:\n"
+"\t<&T>  наслов састанка\n"
+"\t<&D>  опис састанка\n"
+"\t<&AT> време аларма\n"
+"\t<&ST> време почетка састанка\n"
+"\t<&ET> време краја састанка"
 
 #: ../src/appointment.c:3094
 msgid "Test this alarm by raising it now"
-msgstr "Prova questo allarme facendolo suonare adesso"
+msgstr "Испробајте овај аларм његовим издизањем сада"
 
 #: ../src/appointment.c:3101
 msgid "<b>Default alarm</b>"
-msgstr "<b>Allarme predefinito</b>"
+msgstr "<b>Основни аларм</b>"
 
 #: ../src/appointment.c:3109
 msgid "Store current settings as default alarm"
-msgstr "Salva le impostazioni correnti come allarme predefinito"
+msgstr "Сачувај текућа подешавања као основни аларм"
 
 #: ../src/appointment.c:3114
 msgid "Set current settings from default alarm"
-msgstr "carica le impostazioni dell'allarme predefinit"
+msgstr "Постави текућа подешавања из основног аларма"
 
-# si riferisce a "frequenza"
 #: ../src/appointment.c:3176
 msgid "None"
-msgstr "Nessuna"
+msgstr "Ништа"
 
 #: ../src/appointment.c:3176
 msgid "Daily"
-msgstr "Giornaliera"
+msgstr "Дневно"
 
 #: ../src/appointment.c:3176
 msgid "Weekly"
-msgstr "Settimanale"
+msgstr "Недељно"
 
 #: ../src/appointment.c:3176
 msgid "Monthly"
-msgstr "Mensile"
+msgstr "Месечно"
 
 #: ../src/appointment.c:3176
 msgid "Yearly"
-msgstr "Annuale"
+msgstr "Годишње"
 
 #: ../src/appointment.c:3176
 msgid "Hourly"
-msgstr "Oraria"
+msgstr "Сваког сата"
 
 #: ../src/appointment.c:3178
 msgid "Mon"
-msgstr "Lun"
+msgstr "Пон"
 
 #: ../src/appointment.c:3178
 msgid "Tue"
-msgstr "Mar"
+msgstr "Уто"
 
 #: ../src/appointment.c:3178
 msgid "Wed"
-msgstr "Mer"
+msgstr "Сре"
 
 #: ../src/appointment.c:3178
 msgid "Thu"
-msgstr "Gio"
+msgstr "Чет"
 
 #: ../src/appointment.c:3178
 msgid "Fri"
-msgstr "Ven"
+msgstr "Пет"
 
 #: ../src/appointment.c:3178
 msgid "Sat"
-msgstr "Sab"
+msgstr "Суб"
 
 #: ../src/appointment.c:3178
 msgid "Sun"
-msgstr "Dom"
+msgstr "Нед"
 
 #: ../src/appointment.c:3183
 msgid "Recurrence"
-msgstr "Ricorrenza"
+msgstr "Понављање"
 
 #. complexity
 #: ../src/appointment.c:3189
 msgid "Complexity"
-msgstr "Complessità"
+msgstr "Сложеност"
 
 #: ../src/appointment.c:3192
 msgid "Basic"
-msgstr "Base"
+msgstr "Основнo"
 
 #: ../src/appointment.c:3198
 msgid "Advanced"
-msgstr "Avanzata"
+msgstr "Напредно"
 
 #: ../src/appointment.c:3202
 msgid "Use this if you want regular repeating event"
-msgstr "Usare questa opzione se si vogliono eventi periodici regolari"
+msgstr "Користите ово ако желите редовно понављање догађаја"
 
 #: ../src/appointment.c:3204
 msgid ""
@@ -1078,22 +1035,22 @@ msgid ""
 " Every Saturday and Sunday or \n"
 " First Tuesday every month"
 msgstr ""
-"Usare questa opzione se occorrono pianificazioni complesse come:\n"
-" ogni sabato e domenica o\n"
-" primo martedì di ogni mese"
+"Користите ово ако вам требају сложена времена као:\n"
+" Сваке суботе и недеље или \n"
+" Сваког првог петка у месецу"
 
 #. frequency
 #: ../src/appointment.c:3211
 msgid "Frequency"
-msgstr "Frequenza"
+msgstr "Учестаност"
 
 #: ../src/appointment.c:3217
 msgid "Each"
-msgstr "Ogni"
+msgstr "Сваки"
 
 #: ../src/appointment.c:3224
 msgid "occurrence"
-msgstr "occorrenza"
+msgstr "понављање"
 
 #: ../src/appointment.c:3228
 msgid ""
@@ -1101,34 +1058,34 @@ msgid ""
 " For example: Every third day:\n"
 " Frequency = Daily and Interval = 3"
 msgstr ""
-"Limita la frequenza a certi intervalli;\n"
-" per esempio: ogni terzo giorno:\n"
-" Frequenza = Giornaliera e Intervallo = 3"
+"Ограничите учестаност на одређени период.\n"
+" На пример: Сваког трећег дана:\n"
+" Учестаност = Дневно и Период = 3"
 
 #: ../src/appointment.c:3274
 msgid "Limit"
-msgstr "Limite"
+msgstr "Ограничи"
 
 #: ../src/appointment.c:3276
 msgid "Repeat forever"
-msgstr "Ripeti per sempre"
+msgstr "Понављај заувек"
 
 #: ../src/appointment.c:3282
 msgid "Repeat "
-msgstr "Ripeti"
+msgstr "Понављај "
 
 #: ../src/appointment.c:3298
 msgid "Repeat until "
-msgstr "Ripeti fino al "
+msgstr "Понављај до "
 
 #. weekdays (only for complex settings)
 #: ../src/appointment.c:3311
 msgid "Weekdays"
-msgstr "Giorni della settimana"
+msgstr "Радним данима"
 
 #: ../src/appointment.c:3323
 msgid "Which day"
-msgstr "Quale giorno"
+msgstr "Којим даном"
 
 #: ../src/appointment.c:3331
 msgid ""
@@ -1139,27 +1096,25 @@ msgid ""
 "\tWeekdays = check only Wednesday,\n"
 "\tWhich day = select 2 from the number below Wednesday"
 msgstr ""
-"Specifica quale giorno della settimana per eventi mensili ed annui;\n"
-" Per esempio:\n"
-" Secondo Mercoledì di ogni mese:\n"
-"\tFrequenza = Mensile\n"
-"\tGiorni della settimana = spuntare solo mercoledì\n"
-"\tQuale giorno = selezionare 2 dal numero sotto mercoledì "
+"Наведите који радни дан за месечне и годишње догађаје.\n"
+" На пример:\n"
+" Сваке друге среде у месецу:\n"
+"\tУчестаност = Месечно,\n"
+"\tРадни дани = изаберите само среду,\n"
+"\tКојим даном = изаберите 2 из бројева испод среде"
 
 #. TODO base (only for TODOs)
-# TODO=compito
 #: ../src/appointment.c:3339
 msgid "TODO base"
-msgstr "Base compito"
+msgstr "Основна ОБАВЕЗА"
 
 #: ../src/appointment.c:3352
 msgid ""
 "TODO reoccurs regularly starting on start time and repeating after each "
 "interval no matter when it was last completed"
 msgstr ""
-"Il compito ricorre regolarmente a partire dal tempo di inizio e si ripete "
-"dopo ogni intervallo indipendentemente da quando è stato completato l'ultima "
-"volta"
+"ОБАВЕЗА се поново дешава редовно почевши од времена почетка и понавља се "
+"након сваког периода без обзира када је последњи пут обављена"
 
 #: ../src/appointment.c:3354
 msgid ""
@@ -1168,19 +1123,16 @@ msgid ""
 "(Note that you can not tell anything about the history of the TODO since "
 "reoccurrence base changes after each completion.)"
 msgstr ""
-"La ricorrenza del compito è basata sul tempo di completamento e si ripete "
-"dopo un intervallo calcolato a partire dall'ultimo completamento\n"
-"(Si noti che si può non dire niente in merito allo storico dei compiti dato "
-"che la base della ricorrenza viene modificata a ogni completamento)"
+"Поновно дешавање ОБАВЕЗЕ је засновано на времену обављања и понавља се након "
+"периода који се броји од последњег времена бављања.\n"
+"(Знајте да нећете моћи ништа да кажете о историјату ОБАВЕЗЕ све док се "
+"основа поновног дешавања не промени након сваког обављања.)"
 
 #. exceptions
 #: ../src/appointment.c:3361
 msgid "Exceptions"
-msgstr "Eccezioni"
+msgstr "Изузеци"
 
-# tooltip
-# nel textbox compaiono i giorni selezionati come eccezioni.
-# per rimuoverli occorre fare doppio clic sui vari elementi
 #: ../src/appointment.c:3374
 msgid ""
 "Add more exception dates by clicking the calendar days below.\n"
@@ -1188,144 +1140,139 @@ msgid ""
 "selection.\n"
 "Remove by clicking the data."
 msgstr ""
-"Aggiunge ulteriori giorni di eccezione facendo clic nei giorni del "
-"calendario che segue;\n"
-"le eccezioni possono essere sia di esclusione(-) sia di inclusione(+) in "
-"funzione della selezione;\n"
-"rimuove facendo clic sugli elementi"
+"Додајте још датума изузетака кликом на дан календара.\n"
+"Изузетак је или искључење(-) или укључење(+) у зависности од избора.\n"
+"Уклоните кликом на податак."
 
 #: ../src/appointment.c:3379
 msgid "Add excluded date (-)"
-msgstr "Aggiungi giorno escluso"
+msgstr "Додај искључени датум (+)"
 
-# tooltip
 #: ../src/appointment.c:3381
 msgid "Excluded days are full days where this appointment is not happening"
-msgstr ""
-"I giorni esclusi sono giorni interi in cui l'appuntamento non è previsto"
+msgstr "Искључени дани су цели дани у којима се овај састанак не дешава"
 
 #: ../src/appointment.c:3387
 msgid "Add included time (+)"
-msgstr "Aggiungi tempi inclusi"
+msgstr "Додај укључено време (-)"
 
-# tooltip
 #: ../src/appointment.c:3389
 msgid ""
 "Included times have same timezone than start time, but they may have "
 "different time"
 msgstr ""
-"I tempi inclusi hanno lo stesso fuso orario dell'istante di inizio, ma "
-"possono avere diversi orari"
+"Укључена времена имају исту временску зону као почетно време, али могу имати "
+"различито време"
 
 #. calendars showing the action days
 #: ../src/appointment.c:3406
 msgid "Action dates"
-msgstr "Giorni di azione"
+msgstr "Датуми радње"
 
 #. ********* View menu *********
 #. View menu
 #: ../src/day-view.c:264 ../src/event-list.c:1044 ../src/mainbox.c:305
 msgid "_View"
-msgstr "_Visualizza"
+msgstr "_Преглед"
 
 #. ********* Go menu   *********
 #: ../src/day-view.c:278 ../src/event-list.c:1063
 msgid "_Go"
-msgstr "V_ai"
+msgstr "_Иди"
 
 #: ../src/day-view.c:319 ../src/event-list.c:1110
 msgid "New"
-msgstr "Nuovo"
+msgstr "Ново"
 
 #: ../src/day-view.c:324 ../src/event-list.c:1119
 msgid "Back"
-msgstr "Indietro"
+msgstr "Назад"
 
 #: ../src/day-view.c:326 ../src/event-list.c:1121 ../src/functions.c:143
 #: ../src/tray_icon.c:460
 msgid "Today"
-msgstr "Oggi"
+msgstr "Данас"
 
 #: ../src/day-view.c:328 ../src/event-list.c:1123
 msgid "Forward"
-msgstr "Avanti"
+msgstr "Напред"
 
 #: ../src/day-view.c:333 ../src/event-list.c:1128
 msgid "Refresh"
-msgstr "Ricarica"
+msgstr "Освежи"
 
 #: ../src/day-view.c:338 ../src/event-list.c:1135 ../src/interface.c:809
 msgid "Close"
-msgstr "Chiudi"
+msgstr "Затвори"
 
 #: ../src/day-view.c:454
 msgid "Unknown"
-msgstr "Sconosciuto"
+msgstr "Непознато"
 
 #: ../src/day-view.c:704
 msgid "       Number of days to show"
-msgstr "       Numero di giorni da visualizzare"
+msgstr "       Број дана за приказивање"
 
 #: ../src/day-view.c:935
 msgid "Orage - day view"
-msgstr "Orage - Vista per giorno"
+msgstr "Ораже — преглед дана"
 
 #. date only appointment
 #: ../src/event-list.c:190
 msgid "All day"
-msgstr "Tutto il giorno"
+msgstr "Читав дан"
 
 #: ../src/event-list.c:580 ../src/event-list.c:1281
 msgid "Time"
-msgstr "Ora"
+msgstr "Време"
 
 #: ../src/event-list.c:748
 msgid "No rows have been selected."
-msgstr "Non è stata selezionata alcuna riga."
+msgstr "Ниједан ред није изабран."
 
 #: ../src/event-list.c:749
 msgid "Click a row to select it and after that you can copy it."
-msgstr "Fare clic su una riga per selezionarla e poi copiarla."
+msgstr "Кликните на ред да га изаберете и након тога можете да га умножите."
 
 #: ../src/event-list.c:918
 msgid ""
 "You will permanently remove all\n"
 "selected appointments."
 msgstr ""
-"Verranno rimossi in modo permanente\n"
-"tutti gli appuntamenti selezionati."
+"Трајно ћете уклонити све\n"
+"изабране састанке."
 
 #: ../src/event-list.c:1130
 msgid "Find"
-msgstr "Trova"
+msgstr "Нађи"
 
 #: ../src/event-list.c:1137
 msgid "Dayview"
-msgstr "Vista per giorno"
+msgstr "Дневни преглед"
 
 #: ../src/event-list.c:1170
 msgid "Extra days to show "
-msgstr "Giorni aggiuntivi da mostrare"
+msgstr "Додатни дани за приказивање "
 
 #: ../src/event-list.c:1201
 msgid "Journal entries starting from:"
-msgstr "Appuntamenti della giornata a partire da:"
+msgstr "Прибележи уносе почевши од:"
 
 #: ../src/event-list.c:1221
 msgid "Search"
-msgstr "Cerca"
+msgstr "Потражи"
 
 #: ../src/event-list.c:1224
 msgid "Search text "
-msgstr "Cerca testo"
+msgstr "Потражи текст "
 
 #: ../src/event-list.c:1289
 msgid "Flags"
-msgstr "Attributi"
+msgstr "Опције"
 
 #: ../src/event-list.c:1297
 msgid "Title"
-msgstr "Nome"
+msgstr "Наслов"
 
 #: ../src/event-list.c:1323
 msgid ""
@@ -1342,214 +1289,215 @@ msgid ""
 "\t 5. Appointment type:\n"
 "\t\tE=Event T=Todo J=Journal"
 msgstr ""
-"Doppio clic sulla riga per modificarla.\n"
+"Кликните два пута на ред да га измените.\n"
 "\n"
-"Attributi in ordine:\n"
-"\t 1. allarme: n=nessun allarme\n"
-"\t\t A=allarme visivo S=solo allarme sonoro\n"
-"\t 2. ricorrente: n=non ricorrente\n"
-"\t\t D=giornaliero W=settimanale M=mensile Y=annuale\n"
-"\t 3. tipo: f=libero B=occupato\n"
-"\t 4. posizionato nel file:\n"
-"\t\tO=Orage A=archivio F=esterno\n"
-"\t 5. tipo di appuntamento:\n"
-"\t\tE=evento T=compito J=note del giorno"
+"Опције редом:\n"
+"\t 1. Аларм: n=без аларма\n"
+"\t\t A=видни аларм S=такође звучни аларм\n"
+"\t 2. Понављање: n=без понављања\n"
+"\t\t D=Дневно W=Недељно M=Месечно Y=Годишње\n"
+"\t 3. Врста: f=слободно B=Заузето\n"
+"\t 4. Налази се у датотеци:\n"
+"\t\tO=Ораже A=Архива F=Страно\n"
+"\t 5. Врста састанка:\n"
+"\t\tE=Догађај T=Обавеза J=Дневник"
 
 #: ../src/functions.c:141
 msgid "Pick the date"
-msgstr "Seleziona della data"
+msgstr "Изаберите датум"
 
 #. remove since it has ended
 #: ../src/ical-archive.c:267
 msgid "\tRecur ended, moving to archive file."
-msgstr "\tRicorrenza conclusa, spostamento al file di archivio."
+msgstr "        Понављање је завршено, прелазим на датотеку архиве."
 
 #: ../src/ical-archive.c:329
 msgid "Archiving not enabled. Exiting"
-msgstr "Archiviazione non attivata. Esco"
+msgstr "Архивирање није укључено. Излазим"
 
 #: ../src/ical-archive.c:347
 #, c-format
 msgid "Archiving threshold: %d month(s)"
-msgstr "Limite di archiviazione: %d mese(i)"
+msgstr "Праг архивирања: %d месец(а)"
 
 #. yy mon day
 #: ../src/ical-archive.c:350
 #, c-format
 msgid "\tArchiving events, which are older than: %04d-%02d-%02d"
-msgstr "\tArchiviazione degli eventi precedenti a: %04d-%02d-%02d"
+msgstr "\tДогађаји архивирања, који су старији од: %04d-%02d-%02d"
 
 #: ../src/ical-archive.c:377
 #, c-format
 msgid "Archiving uid: %s"
-msgstr "Uid di archiviazione: %s"
+msgstr "уиб архивирања: %s"
 
 #. VTODO not completed, do not archive
 #: ../src/ical-archive.c:383
 msgid "\tVTODO not complete; not archived"
-msgstr "\tVCOMPITO non completo; non archiviato"
+msgstr "\tВОБАВЕЗА није обављена; није архивирана"
 
 #. it is recurrent event
 #: ../src/ical-archive.c:388
 #, c-format
 msgid "\tRecurring. End year: %04d, month: %02d, day: %02d"
-msgstr "\tRicorrente. Fine anno: %04d, mese: %02d, giorno: %02d"
+msgstr "\tПонављање. Година краја: %04d, месец: %02d, дан: %02d"
 
 #: ../src/ical-archive.c:405
 msgid "Archiving done\n"
-msgstr "Archiviazione completata\n"
+msgstr "Архивирање је обављено\n"
 
 #. PHASE 1: go through base orage file and remove "repeat" shortcuts
 #: ../src/ical-archive.c:421
 msgid "Starting archive removal."
-msgstr "Avvio rimozione archivio."
+msgstr "Почињем уклањање архиве."
 
 #: ../src/ical-archive.c:422
 msgid "\tPHASE 1: reset recurring appointments"
-msgstr "\tFASE 1: reimposta gli appuntamenti periodici"
+msgstr "        ФАЗА 1: поново поставља понављајуће састанке"
 
 #. PHASE 2: go through archive file and add everything back to base orage.
 #. * After that delete the whole arch file
 #: ../src/ical-archive.c:444
 msgid "\tPHASE 2: return archived appointments"
-msgstr "\tFASE 2: restituisce gli appuntamenti archiviati"
+msgstr "        ФАЗА 2: враћа архивиране састанке"
 
 #: ../src/ical-archive.c:470
 msgid "Archive removal done\n"
-msgstr "Rimozione archivio completata\n"
+msgstr "Уклањање архиве је обављено\n"
 
 #: ../src/ical-code.c:932
 msgid "Orage default alarm"
-msgstr "Allarme predefinito di Orage"
+msgstr "Оражов основни аларм"
 
 #: ../src/ical-code.c:3115
 #, c-format
 msgid "Build alarm list: Added %d alarms. Processed %d events."
-msgstr "Creazione lista allarmi: aggiunti %d allarmi. Elaborati %d eventi."
+msgstr "Гради списак аларма: Додатих аларма — %d. Обрађених догађаја — %d."
 
 #: ../src/ical-code.c:3117
 #, c-format
 msgid ""
 "\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
 msgstr ""
-"\tTrovato %d allarmi, di cui %d attivi (esaminati %d allarmi periodici)."
+"        Пронашао сам %d аларма од којих су активна %d. (Тражених "
+"понављајућих аларма — %d.)"
 
 #: ../src/ical-expimp.c:123
 msgid "Starting import file preprocessing"
-msgstr "Avvio in corso della pre-elaborazione del file da importare"
+msgstr "Покрећем уводну обраду увоза датотеке"
 
 #: ../src/ical-expimp.c:158
 msgid "... Patched DCREATED to be CREATED."
-msgstr "... DCREATED corretto in CREATED."
+msgstr "... Прекрпљен ДСТВОРЕН да буде СТВОРЕН."
 
 #: ../src/ical-expimp.c:197
 msgid "... Patched timezone to Orage format."
-msgstr "... Fuso orario corretto nel formato di Orage."
+msgstr "... Прекрпљена временска зона у Оражов облик."
 
 #: ../src/ical-expimp.c:206
 msgid "Import file preprocessing done"
-msgstr "Pre-elaborazione del file da importare eseguita"
+msgstr "Уводна обрада увоза датотеке је обављена"
 
 #: ../src/interface.c:284
 msgid "Calendar files"
-msgstr "File del calendario"
+msgstr "Датотеке календара"
 
 #: ../src/interface.c:631
 msgid "Current foreign files"
-msgstr "File esterni correnti"
+msgstr "Текуће стране датотеке"
 
 #: ../src/interface.c:643
 msgid "READ ONLY"
-msgstr "SOLO LETTURA"
+msgstr "САМО ЧИТАЊЕ"
 
 #: ../src/interface.c:645
 msgid "READ WRITE"
-msgstr "LETTURA E SCRITTURA"
+msgstr "ЧИТАЊЕ ПИСАЊЕ"
 
 #: ../src/interface.c:663
 msgid "***** No foreign files *****"
-msgstr "***** Nessun file esterno *****"
+msgstr "***** Нема страних датотека *****"
 
 #: ../src/interface.c:974
 msgid "Import/export"
-msgstr "Importa/esporta"
+msgstr "Увоз/извоз"
 
 #: ../src/interface.c:981
 msgid "Import"
-msgstr "Importa"
+msgstr "Увези"
 
 #: ../src/interface.c:986
 msgid "Read from file:"
-msgstr "Leggi dal file:"
+msgstr "Читај из датотеке:"
 
 #: ../src/interface.c:1003
 msgid ""
 "Separate filenames with comma(,).\n"
 " NOTE: comma is not valid character in filenames for Orage."
 msgstr ""
-"Separa i nomi dei file con virgole(,);\n"
-" NOTA: la virgola non è un carattere valido nei nomi di file per Orage"
+"Раздвојте називе датотека зарезом(,).\n"
+" НАПОМЕНА: зарез није исправан знак у називима датотека за Ораж."
 
 #: ../src/interface.c:1008
 msgid "Export"
-msgstr "Esporta"
+msgstr "Извези"
 
 #: ../src/interface.c:1013
 msgid "Write to file:"
-msgstr "Scrivi sul file:"
+msgstr "Упиши у датотеку:"
 
 #: ../src/interface.c:1034 ../src/interface.c:1046
 msgid "Select"
-msgstr "Seleziona"
+msgstr "Изабери"
 
 #: ../src/interface.c:1037
 msgid "All appointments"
-msgstr "Tutti gli appuntamenti"
+msgstr "Сви састанци"
 
 #: ../src/interface.c:1050
 msgid "Named appointments: "
-msgstr "Solo determinati appuntamenti"
+msgstr "Именовани састанци: "
 
 #: ../src/interface.c:1062
 msgid ""
 "Note that only main file appointments are read.\n"
 "Archived and Foreign events are not exported."
 msgstr ""
-"Si noti che soltanto gli appuntamenti del file principale sono letti;\n"
-"gli eventi archiviati ed esterni non vengono esportati"
+"Знајте да се читају само састанци главне датотеке.\n"
+"Архивирани и Страни догађаји се не извозе."
 
 #: ../src/interface.c:1065
 msgid ""
 "Note that only main file appointments are read.\n"
 "Foreign events are not exported."
 msgstr ""
-"Si noti che vengono letti soltanto gli appuntamenti del file principale;\n"
-"gli eventi archiviati ed esterni non vengono esportati"
+"Знајте да се читају само састанци главне датотеке.\n"
+"Страни догађаји се не извозе."
 
 #: ../src/interface.c:1068
 msgid "You can easily drag these from event-list window."
-msgstr "Si può trascinarli facilmente dalla finestra della lista eventi"
+msgstr "Можете лако да их превучете из прозора списка догађаја."
 
 #: ../src/interface.c:1070
 msgid "Orage appointment UIDs separated by commas."
-msgstr "Gli UID degli appuntamenti di Orage separati da virgole"
+msgstr "УИБ-ови Оражовог састанка раздвојени зарезима."
 
 #: ../src/interface.c:1076
 msgid "Archive"
-msgstr "Archivia"
+msgstr "Архива"
 
 #: ../src/interface.c:1084
 #, c-format
 msgid "Archive now (threshold: %d months)"
-msgstr "Archivia subito (limite: %d mesi)"
+msgstr "Архивирај сада (праг: %d месеца)"
 
 #: ../src/interface.c:1094
 msgid "You can change archive threshold in parameters"
-msgstr "È possibile modificare il limite dell'archivio nei parametri"
+msgstr "Можете да измените праг архивирања у параметрима"
 
 #: ../src/interface.c:1101
 msgid "Revert archive now"
-msgstr "Ripristina subito l'archivio"
+msgstr "Поврати архиву сада"
 
 #: ../src/interface.c:1107
 msgid ""
@@ -1557,34 +1505,34 @@ msgid ""
 "This is useful for example when doing export and moving orage\n"
 "appointments to another system."
 msgstr ""
-"Ripristina tutti gli eventi archiviati nel file principale di orage e "
-"rimuove il file di archivio;\n"
-"ciò è utile ad esempio quando si esporta e si trasferiscono gli\n"
-"appuntamenti di Orage verso un altro sistema"
+"Вратите све архивиране догађаје у главну оражову датотеку и уклоните "
+"датотеку архиве.\n"
+"Ово је корисно на пример када обављате извоз и премештате оражове\n"
+"састанке на други систем."
 
 #: ../src/interface.c:1118
 msgid "Orage files"
-msgstr "File di Orage"
+msgstr "Оражове датотеке"
 
 #: ../src/interface.c:1125
 msgid "Orage main calendar file"
-msgstr "File del calendario principale di Orage"
+msgstr "Датотека Оражовог главног календара"
 
 #: ../src/interface.c:1130 ../src/interface.c:1195
 msgid "Current file"
-msgstr "File corrente"
+msgstr "Текућа датотека"
 
 #: ../src/interface.c:1137 ../src/interface.c:1202
 msgid "New file"
-msgstr "Nuovo file"
+msgstr "Нова датотека"
 
 #: ../src/interface.c:1153 ../src/interface.c:1219
 msgid "Action options"
-msgstr "Opzioni dell'azione"
+msgstr "Опције радње"
 
 #: ../src/interface.c:1156 ../src/interface.c:1222
 msgid "Rename"
-msgstr "Rinomina"
+msgstr "Преименуј"
 
 #: ../src/interface.c:1160
 msgid ""
@@ -1592,51 +1540,49 @@ msgid ""
 "Does not touch external filesystem at all.\n"
 "New file must exist."
 msgstr ""
-"Rinomina soltanto il file interno di Orage;\n"
-"non ha alcun effetto sul file system esterno;\n"
-"Il nuovo file dovrebbe esistere"
+"Преименујте само Оражове унутрашње датотеке.\n"
+"Нећете уопште дирати спољни систем датотека.\n"
+"Нова датотека мора да постоји."
 
 #: ../src/interface.c:1164 ../src/interface.c:1227
 msgid "Copy"
-msgstr "Copia"
+msgstr "Умножи"
 
 #: ../src/interface.c:1168
 msgid "Current file is copied and stays unmodified in the old place."
-msgstr ""
-"Il file corrente viene copiato e rimane immutato nella posizione precedente"
+msgstr "Текућа датотека је умножена и стање није измењено на старом месту."
 
 #: ../src/interface.c:1172 ../src/interface.c:1232
 msgid "Move"
-msgstr "Sposta"
+msgstr "Премести"
 
 #: ../src/interface.c:1176
 msgid "Current file is moved and vanishes from the old place."
-msgstr ""
-"Il file corrente viene spostato e cancellato dalla posizione precedente"
+msgstr "Текућа датотека је премештена и нестаје са старог места."
 
 #: ../src/interface.c:1190
 msgid "Archive file"
-msgstr "File di archivio"
+msgstr "Датотека архиве"
 
 #: ../src/interface.c:1254
 msgid "Foreign files"
-msgstr "File esterni"
+msgstr "Стране датотеке"
 
 #: ../src/interface.c:1261
 msgid "Add new foreign file"
-msgstr "Aggiungi un nuovo file esterno"
+msgstr "Додајте нову страну датотеку"
 
 #: ../src/interface.c:1266
 msgid "Foreign file:"
-msgstr "File esterno:"
+msgstr "Страна датотека:"
 
 #: ../src/interface.c:1284
 msgid "Options"
-msgstr "Opzioni"
+msgstr "Могућности"
 
 #: ../src/interface.c:1286
 msgid "Read only"
-msgstr "Sola lettura"
+msgstr "Само читање"
 
 #: ../src/interface.c:1294
 msgid ""
@@ -1645,14 +1591,14 @@ msgid ""
 "Note that modifying foreign files may make them incompatible with the "
 "original tool, where they came from!"
 msgstr ""
-"L'opzione viene attivata quando si è sicuri che il file non verrà mai "
-"modificato da Orage;\n"
-"si noti che modificare file esterni può renderli incompatibili con "
-"l'applicazione originale dalla quale essi provengono"
+"Поставите ово ако желите да осигурате да ова датотека неће никада бити "
+"измењена Оражом.\n"
+"Знајте да мењање страних датотека може да их учини несагласним са првобитним "
+"алатом, тамо одакле долазе!"
 
 #: ../src/interface.c:1308
 msgid "Exchange data - Orage"
-msgstr "Scambio dati - Orage"
+msgstr "Размена података — Ораж"
 
 #: ../src/main.c:268
 #, c-format
@@ -1660,63 +1606,63 @@ msgid ""
 "\tThis is %s version %s\n"
 "\n"
 msgstr ""
-"\tQuesta è la versione %2$s di %1$s\n"
+"        Ово је %s, издање %s\n"
 "\n"
 
 #: ../src/main.c:270
 #, c-format
 msgid "\tReleased under the terms of the GNU General Public License.\n"
-msgstr "\tRilasciata sotto i termini della GNU General Public License.\n"
+msgstr "        Издато под одредбама Гнуове опште јавне лиценце.\n"
 
 #: ../src/main.c:271
 #, c-format
 msgid "\tCompiled against GTK+-%d.%d.%d, "
-msgstr "\tCompilata con GTK+-%d.%d.%d, "
+msgstr "\tПреведено наспрам ГТК+-%d.%d.%d, "
 
 #: ../src/main.c:273
 #, c-format
 msgid "using GTK+-%d.%d.%d.\n"
-msgstr "usando GTK+-%d.%d.%d.\n"
+msgstr "користећи ГТК+-%d.%d.%d.\n"
 
 #: ../src/main.c:276
 #, c-format
 msgid "\tUsing DBUS for import.\n"
-msgstr "\tUtilizza DBUS per l'importazione.\n"
+msgstr "        Користи Д-сабирницу за увоз.\n"
 
 #: ../src/main.c:278
 #, c-format
 msgid "\tNot using DBUS. Import works only partially.\n"
-msgstr "\tNon utilizza DBUS. L'importazione funziona solo parzialmente.\n"
+msgstr "        Не користи Д-сабирницу. Увоз ради само делимично.\n"
 
 #: ../src/main.c:281
 #, c-format
 msgid "\tUsing libnotify.\n"
-msgstr "\tUtilizza libnotify.\n"
+msgstr "        Користи библиотеку обавештења.\n"
 
 #: ../src/main.c:283
 #, c-format
 msgid "\tNot using libnotify.\n"
-msgstr "\tNon utilizza libnotify.\n"
+msgstr "        Не користи библиотеку обавештења.\n"
 
 #: ../src/main.c:286
 #, c-format
 msgid "\tUsing automatic archiving.\n"
-msgstr "\tUtilizza l'archiviazione automatica.\n"
+msgstr "        Користи самостално архивирање.\n"
 
 #: ../src/main.c:288
 #, c-format
 msgid "\tNot using archiving.\n"
-msgstr "\tNon utilizza l'archiviazione automatica.\n"
+msgstr "        Не користи архивирање.\n"
 
 #: ../src/main.c:291
 #, c-format
 msgid "\tUsing operating system package libical.\n"
-msgstr "\tUtilizza il pacchetto libcal del sistema operativo.\n"
+msgstr "\tКористи пакет библиотеке и-позива оперативног система.\n"
 
 #: ../src/main.c:293
 #, c-format
 msgid "\tUsing Orage local version of libical.\n"
-msgstr "\tUtilizza il pacchetto libcal della versione locale di Orage.\n"
+msgstr "\tКористи Оражово месно издање библиотеке и-позива.\n"
 
 #: ../src/main.c:306
 #, c-format
@@ -1724,71 +1670,68 @@ msgid ""
 "Usage: orage [options] [files]\n"
 "\n"
 msgstr ""
-"Utilizzo: orage [opzioni] [file]\n"
+"Употреба: orage [опције] [датотеке]\n"
 "\n"
 
 #: ../src/main.c:307
 #, c-format
 msgid "Options:\n"
-msgstr "Opzioni:\n"
+msgstr "Опције:\n"
 
 #: ../src/main.c:308
 #, c-format
 msgid "--version (-v) \t\tshow version of orage\n"
-msgstr "--version (-v) \t\tmostra la versione di orage\n"
+msgstr "--version (-v) \t\t                приказује издање оража\n"
 
 #: ../src/main.c:309
 #, c-format
 msgid "--help (-h) \t\tprint this text\n"
-msgstr "--help (-h) \t\tstampa questo testo\n"
+msgstr "--help (-h) \t\t                исписује овај текст\n"
 
 #: ../src/main.c:310
 #, c-format
 msgid "--preferences (-p) \tshow preferences form\n"
-msgstr "--preferences (-p) \tmostra la finestra delle preferenze\n"
+msgstr "--preferences (-p) \t\t        приказује поставке из\n"
 
 #: ../src/main.c:311
 #, c-format
 msgid "--toggle (-t) \t\tmake orage visible/unvisible\n"
-msgstr "--toggle (-t) \t\trende orage visibile/invisibile\n"
+msgstr "--toggle (-t) \t\t                чини ораж видљивим/невидљивим\n"
 
 #: ../src/main.c:312
 #, c-format
 msgid "--add-foreign (-a) file [RW] \tadd a foreign file\n"
-msgstr "--add-foreign (-a) file [RW] \taggiunge un file esterno\n"
+msgstr "--add-foreign (-a) датотека [RW] \tдодаје страну датотеку\n"
 
 #: ../src/main.c:313
 #, c-format
 msgid "--remove-foreign (-r) file \tremove a foreign file\n"
-msgstr "--remove-foreign (-r) file \trimuove un file esterno\n"
+msgstr "--remove-foreign (-r) датотека \t        уклања страну датотеку\n"
 
 #: ../src/main.c:314
 #, c-format
 msgid ""
 "--export (-e) file [appointment...] \texport appointments from Orage to "
 "file\n"
-msgstr ""
-"--export (-e) file [appuntamento...] \tesporta gli appuntamenti da Orage in "
-"un file\n"
+msgstr "--export (-e) датотека [састанак...] \tизвози састанке из Оража у датотеку\n"
 
 #: ../src/main.c:316
 #, c-format
 msgid "files=ical files to load into orage\n"
-msgstr "file=file ical da caricare in orage\n"
+msgstr "датотеке=и-позив датотеке за учитавање у ораж\n"
 
 #: ../src/main.c:318
 #, c-format
 msgid "\tdbus not included in orage. \n"
-msgstr "\tdbus non incluso in orage. \n"
+msgstr "\tд-сабирница није укључена у ораж. \n"
 
 #: ../src/main.c:319
 #, c-format
 msgid ""
 "\twithout dbus [files] and foreign file options(-a & -r) can only be used "
 "when starting orage \n"
-msgstr ""
-"\t senza dbus [file] e le opzioni dei file esterni (-a e -r), può essere "
-"utilizzato solamente quando si avvia orage \n"
+msgstr "\tбез „dbus“ [датотеке] и опција стране датотеке(-a и -r) може једино бити "
+"коришћен приликом покретања оража \n"
 
 #: ../src/main.c:511
 #, c-format
@@ -1798,42 +1741,42 @@ msgid ""
 "\n"
 msgstr ""
 "\n"
-"Opzione sconosciuta %s\n"
+"Непозната опција %s\n"
 "\n"
 
 #: ../src/mainbox.c:287
 msgid "_Exchange data"
-msgstr "Scam_bia dati"
+msgstr "_Размени податке"
 
 #. Edit menu
 #: ../src/mainbox.c:298
 msgid "_Edit"
-msgstr "_Modifica"
+msgstr "_Измени"
 
 #: ../src/mainbox.c:308
 msgid "View selected _date"
-msgstr "Visualizza _data selezionata"
+msgstr "Прикажи изабрани _датум"
 
 #: ../src/mainbox.c:311
 msgid "View selected _week"
-msgstr "Visualizza _settimana selezionata"
+msgstr "Прикажи изабрану _седмицу"
 
 #: ../src/mainbox.c:317
 msgid "Select _Today"
-msgstr "Seleziona _oggi"
+msgstr "Изабери _данашњи дан"
 
 #: ../src/mainbox.c:323
 msgid "Show _Globaltime"
-msgstr "Mosta ora _globale"
+msgstr "Покажи _опште време"
 
 #. Help menu
 #: ../src/mainbox.c:327
 msgid "_Help"
-msgstr "_Aiuto"
+msgstr "По_моћ"
 
 #: ../src/mainbox.c:448
 msgid "Never"
-msgstr "Mai"
+msgstr "Никада"
 
 #: ../src/mainbox.c:453
 #, c-format
@@ -1846,10 +1789,12 @@ msgid ""
 " Note:\n"
 "%s"
 msgstr ""
-"Titolo: %s\n"
-" Inizio:\t%s\n"
-" Fine:\t%s\n"
-" Commento:\n"
+"Наслов: %s\n"
+" Место:   %s\n"
+" Почетак: %s\n"
+" Рок:\t  %s\n"
+" Урађено: %s\n"
+" Напомена:\n"
 "%s"
 
 #: ../src/mainbox.c:460
@@ -1862,250 +1807,247 @@ msgid ""
 " Note:\n"
 "%s"
 msgstr ""
-"Titolo: %s\n"
-" Inizio:\t%s\n"
-" Fine:\t%s\n"
-" Commento:\n"
+"Наслов: %s\n"
+" Место:   %s\n"
+" Почетак: %s\n"
+" Крај:    %s\n"
+" Напомена:\n"
 "%s"
 
 #: ../src/mainbox.c:546
 msgid "<b>To do:</b>"
-msgstr "<b>Compito:</b>"
+msgstr "<b>Обавеза:</b>"
 
 #: ../src/mainbox.c:582
 #, c-format
 msgid "<b>Events for %s:</b>"
-msgstr "<b>Eventi per il %s:</b>"
+msgstr "<b>Догађаји за %s:</b>"
 
 #: ../src/mainbox.c:593
 #, c-format
 msgid "<b>Events for %s - %s:</b>"
-msgstr "<b>Eventi per il %s - %s:</b>"
+msgstr "<b>Догађаји за %s — %s:</b>"
 
 #: ../src/parameters.c:522
 msgid "Main settings"
-msgstr "Impostazioni principali"
+msgstr "Главна подешавања"
 
 #: ../src/parameters.c:528
 msgid "Timezone"
-msgstr "Fuso orario"
+msgstr "Временска зона"
 
 #: ../src/parameters.c:543
 msgid "You should always define your local timezone."
-msgstr "Si dovrebbe sempre definire il proprio fuso orario locale"
+msgstr "Требало би да увек одредите вашу месну временску зону."
 
 #: ../src/parameters.c:552
 msgid "Archive threshold (months)"
-msgstr "Limite archivio (mesi)"
+msgstr "Праг архиве (месеци)"
 
 #: ../src/parameters.c:562
 msgid "(0 = no archiving)"
-msgstr "(0 = non archiviare)"
+msgstr "(0 = без архивирања)"
 
 #: ../src/parameters.c:565
 msgid "Archiving is used to save time and space when handling events."
 msgstr ""
-"L'archiviazione viene utilizzata per risparmiare tempo e spazio quando "
-"vengono gestiti gli eventi"
+"Архивирање се користи за уштеду на времену и простору приликом руковања "
+"догађајима."
 
 #: ../src/parameters.c:574
 msgid "Sound command"
-msgstr "Comando audio"
+msgstr "Наредба звука"
 
 #: ../src/parameters.c:589
 msgid "This command is given to shell to make sound in alarms."
-msgstr ""
-"Questo comando viene passato alla shell per trasformare l'audio in allarmi"
+msgstr "Ова наредба се даје конзоли за стварање звука у алармима."
 
 #: ../src/parameters.c:605
 msgid "Display settings"
-msgstr "Impostazioni di visualizzazione"
+msgstr "Подешавање приказа"
 
 #: ../src/parameters.c:613
 msgid "Calendar main window"
-msgstr "Finestra principale del calendario"
+msgstr "Главни прозор календара"
 
 #: ../src/parameters.c:618
 msgid "Show borders"
-msgstr "Mostra bordi"
+msgstr "Прикажи ивице"
 
 #: ../src/parameters.c:625
 msgid "Show menu"
-msgstr "Mostra menu"
+msgstr "Прикажи избор"
 
 #: ../src/parameters.c:632
 msgid "Show month and year"
-msgstr "Mostra mese e anno"
+msgstr "Прикажи месец и годину"
 
 #: ../src/parameters.c:639
 msgid "Show day names"
-msgstr "Mostra nomi dei giorni"
+msgstr "Прикажи имена дана"
 
 #: ../src/parameters.c:646
 msgid "Show week numbers"
-msgstr "Mostra numeri delle settimane"
+msgstr "Прикажи бројеве недеља"
 
 #: ../src/parameters.c:653
 msgid "Show todo list"
-msgstr "Mostra lista compiti"
+msgstr "Прикажи списак обавеза"
 
-# preferenze; poco spazio dispo;
 #: ../src/parameters.c:660
 msgid "Number of days to show in event window"
-msgstr "Numero di giorni nella finestra degli eventi"
+msgstr "Број дана за приказ у прозору догађаја"
 
-# tooltip
 #: ../src/parameters.c:666
 msgid "0 = do not show event list at all"
-msgstr "0 = non visualizza nessun evento"
+msgstr "0 = не приказуј списак догађаја нипошто"
 
 #: ../src/parameters.c:676
 msgid "Show on all desktops"
-msgstr "Mostra su tutte le scrivanie"
+msgstr "Прикажи на свим радним површима"
 
 #: ../src/parameters.c:683
 msgid "Keep on top"
-msgstr "Mantieni in primo piano"
+msgstr "Задржи изнад"
 
 #: ../src/parameters.c:690
 msgid "Show in taskbar"
-msgstr "Mostra nella barra delle applicazioni"
+msgstr "Прикажи на траци алата"
 
 #: ../src/parameters.c:697
 msgid "Show in pager"
-msgstr "Mostra nel paginatore"
+msgstr "Прикажи у страничнику"
 
 #: ../src/parameters.c:704
 msgid "Show in systray"
-msgstr "Mostra nell'area di notifica"
+msgstr "Прикажи у системској фиоци"
 
 #: ../src/parameters.c:739
 msgid "Calendar start"
-msgstr "Avvio calendario"
+msgstr "Почетак календара"
 
 #: ../src/parameters.c:744
 msgid "Show"
-msgstr "Mostra"
+msgstr "Прикажи"
 
 #: ../src/parameters.c:756
 msgid "Hide"
-msgstr "Nascondi"
+msgstr "Сакриј"
 
 #: ../src/parameters.c:768
 msgid "Minimized"
-msgstr "Minimizza"
+msgstr "Умањено"
 
 #: ../src/parameters.c:793
 msgid "Extra settings"
-msgstr "Impostazioni supplementari"
+msgstr "Додатна подешавања"
 
 #: ../src/parameters.c:801
 msgid "On Calendar Window Open"
-msgstr "All'apertura della finestra del calendario"
+msgstr "При отварању прозора календара"
 
 #: ../src/parameters.c:806
 msgid "Select Today's Date"
-msgstr "Seleziona la data di oggi"
+msgstr "Изабери датум данашњице"
 
 #: ../src/parameters.c:819
 msgid "Select Previously Selected Date"
-msgstr "Seleziona la data precedentemente selezionata"
+msgstr "Изабери претходно изабрани датум"
 
 #: ../src/parameters.c:836
 msgid "Use dynamic tray icon"
-msgstr "Icona di vassoio dinamica"
+msgstr "Користи динамичку иконицу фиоке"
 
 #: ../src/parameters.c:841
 msgid "Use dynamic icon"
-msgstr "Usa icona dinamica"
+msgstr "Користи динамичку иконицу"
 
 #: ../src/parameters.c:847
 msgid "Dynamic icon shows current month and day of the month."
-msgstr "L'icona dinamica mostra il mese corrente e il giorno del mese"
+msgstr "Динамичка иконица приказује текући месец и дан у месецу."
 
 #: ../src/parameters.c:856
 msgid "Main Calendar double click shows"
-msgstr "Doppio clic sul calendario principale mostra"
+msgstr "Двоструки клик главног календара приказује"
 
 #: ../src/parameters.c:861
 msgid "Days view"
-msgstr "Vista per giorni"
+msgstr "Преглед дана"
 
 #: ../src/parameters.c:873
 msgid "Event list"
-msgstr "Lista eventi"
+msgstr "Списак догађаја"
 
 #: ../src/parameters.c:890
 msgid "Eventlist window"
-msgstr "Finestra della lista degli eventi"
+msgstr "Прозор списка догађаја"
 
-# finestra delle preferenze; poco spazio;
 #: ../src/parameters.c:894
 msgid "Number of extra days to show in event list"
-msgstr "Numero di giorni aggiuntivi nella lista eventi"
+msgstr "Број додатних дана за приказ у списку догађаја"
 
 #: ../src/parameters.c:902
 msgid ""
 "This is just the default value, you can change it in the actual eventlist "
 "window."
 msgstr ""
-"Questo è il valore predefinito; può essere modificato nella finestra della "
-"lista degli eventi"
+"Ово је само основна вредност, можете да је измените у садашњем прозору "
+"списка догађаја."
 
 #: ../src/parameters.c:910 ../src/parameters.c:915
 msgid "Use wakeup timer"
-msgstr "Utilizza timer"
+msgstr "Користи одбројавач буђења"
 
 #: ../src/parameters.c:921
 msgid ""
 "Use this timer if Orage has problems waking up properly after suspend or "
 "hibernate. (For example tray icon not refreshed or alarms not firing.)"
 msgstr ""
-"Usare questo timer se Orage ha problemi ad avviarsi dopo una sospensione o "
-"un'ibernazione (per esempio l'icona di vassoio non viene aggiornata o gli "
-"allarmi non vengono eseguiti)."
+"Користите овај одбројавач ако Ораж има проблема да се исправно пробуди након "
+"обуставе или замрзавања. (На пример иконица фиоке није освежена или аларми "
+"не раде.)"
 
 #: ../src/parameters.c:938
 msgid "Orage Preferences"
-msgstr "Preferenze di Orage"
+msgstr "Поставке Оража"
 
 #: ../src/parameters.c:1050
 msgid "First Orage start. Searching default timezone."
-msgstr "Primo avvio di Orage. Ricerca del fuso orario predefinito in corso."
+msgstr "Прво покретање Оража. Тражим основну временску зону."
 
 #: ../src/parameters.c:1069
 #, c-format
 msgid "Default timezone set to %s."
-msgstr "Fuso orario impostato a %s."
+msgstr "Основна временска зона је постављена на %s."
 
 #: ../src/parameters.c:1072
 msgid "Default timezone not found, please, set it manually."
-msgstr "Fuso orario predefinito non trovato, impostarlo manualmente"
+msgstr "Није пронађена основна временска зона, молим, поставите је ручно."
 
 #: ../src/reminder.c:562
 msgid "Reminder "
-msgstr "Promemoria"
+msgstr "Подсетник "
 
 #: ../src/reminder.c:591
 msgid "Open"
-msgstr "Apri"
+msgstr "Отвори"
 
 #: ../src/reminder.c:722
 msgid "Reminder - Orage"
-msgstr "Promemoria - Orage"
+msgstr "Подсетник — Ораж"
 
 #: ../src/reminder.c:808
 msgid "Remind me again after the specified time"
-msgstr "Ricorda nuovamente dopo il tempo indicato"
+msgstr "Подсетиме опет након наведеног времена"
 
 #. Note that this goes to the main area. Temporary for the version
 #: ../src/reminder.c:811
 msgid "Press <Execute> to remind me again after the specified time:"
-msgstr "Premere <Esegui> per ricordare nuovamente dopo il tempo indicato:"
+msgstr "Притисни <Изврши> да ме подсети опет након наведеног времена:"
 
 #: ../src/reminder.c:1099
 msgid "Next active alarms:"
-msgstr "Prossimo allarme attivo:"
+msgstr "Следећи радни аларми:"
 
 #: ../src/reminder.c:1152 ../src/reminder.c:1157
 #, c-format
@@ -2114,7 +2056,7 @@ msgid ""
 "%02d d %02d h %02d min to: %s"
 msgstr ""
 "\n"
-"%02d g %02d h %02d min a: %s"
+"%02d д %02d ч %02d мин до: %s"
 
 #: ../src/reminder.c:1166
 #, c-format
@@ -2123,1798 +2065,1597 @@ msgid ""
 "No active alarms found"
 msgstr ""
 "\n"
-"Non è stato trovato alcun allarme attivo"
+"Нису пронађени активни аларми"
 
 #: ../src/timezone_names.c:36
 msgid "Africa"
-msgstr "Africa"
+msgstr "Африка"
 
 #: ../src/timezone_names.c:37
 msgid "Africa/Abidjan"
-msgstr "Africa/Abidjan"
+msgstr "Африка/Абиџан"
 
 #: ../src/timezone_names.c:38
 msgid "Africa/Accra"
-msgstr "Africa/Accra"
+msgstr "Африка/Акра"
 
 #: ../src/timezone_names.c:39
 msgid "Africa/Addis_Ababa"
-msgstr "Africa/Addis_Abeba"
+msgstr "Африка/Адис_Абеба"
 
 #: ../src/timezone_names.c:40
 msgid "Africa/Algiers"
-msgstr "Africa/Algeri"
+msgstr "Африка/Алжир"
 
 #: ../src/timezone_names.c:41
 msgid "Africa/Asmera"
-msgstr "Africa/Asmara"
+msgstr "Африка/Асмера"
 
 #: ../src/timezone_names.c:42
 msgid "Africa/Bamako"
-msgstr "Africa/Bamako"
+msgstr "Африка/Бамако"
 
 #: ../src/timezone_names.c:43
 msgid "Africa/Bangui"
-msgstr "Africa/Bangui"
+msgstr "Африка/Банги"
 
 #: ../src/timezone_names.c:44
 msgid "Africa/Banjul"
-msgstr "Africa/Banjul"
+msgstr "Африка/Банжул"
 
 #: ../src/timezone_names.c:45
 msgid "Africa/Bissau"
-msgstr "Africa/Bissau"
+msgstr "Африка/Бисао"
 
 #: ../src/timezone_names.c:46
 msgid "Africa/Blantyre"
-msgstr "Africa/Blantyre"
+msgstr "Африка/Блантир"
 
 #: ../src/timezone_names.c:47
 msgid "Africa/Brazzaville"
-msgstr "Africa/Brazzaville"
+msgstr "Африка/Бразавил"
 
 #: ../src/timezone_names.c:48
 msgid "Africa/Bujumbura"
-msgstr "Africa/Bujumbura"
+msgstr "Африка/Бујумбура"
 
 #: ../src/timezone_names.c:49
 msgid "Africa/Cairo"
-msgstr "Africa/Il_Cairo"
+msgstr "Африка/Каиро"
 
 #: ../src/timezone_names.c:50
 msgid "Africa/Casablanca"
-msgstr "Africa/Casablanca"
+msgstr "Африка/Казабланка"
 
 #: ../src/timezone_names.c:51
 msgid "Africa/Ceuta"
-msgstr "Africa/Ceuta"
+msgstr "Африка/Цеута"
 
 #: ../src/timezone_names.c:52
 msgid "Africa/Conakry"
-msgstr "Africa/Conakry"
+msgstr "Африка/Конакри"
 
 #: ../src/timezone_names.c:53
 msgid "Africa/Dakar"
-msgstr "Africa/Dakar"
+msgstr "Африка/Дакар"
 
 #: ../src/timezone_names.c:54
 msgid "Africa/Dar_es_Salaam"
-msgstr "Africa/Dar_es_Salaam"
+msgstr "Африка/Дар_ес_Салам"
 
 #: ../src/timezone_names.c:55
 msgid "Africa/Djibouti"
-msgstr "Africa/Gibuti"
+msgstr "Африка/Џибути"
 
 #: ../src/timezone_names.c:56
 msgid "Africa/Douala"
-msgstr "Africa/Douala"
+msgstr "Африка/Дуала"
 
 #: ../src/timezone_names.c:57
 msgid "Africa/El_Aaiun"
-msgstr "Africa/El_Ayun"
+msgstr "Африка/Ел_Ајун"
 
 #: ../src/timezone_names.c:58
 msgid "Africa/Freetown"
-msgstr "Africa/Freetown"
+msgstr "Африка/Фритаун"
 
 #: ../src/timezone_names.c:59
 msgid "Africa/Gaborone"
-msgstr "Africa/Gaborone"
+msgstr "Африка/Габорне"
 
 #: ../src/timezone_names.c:60
 msgid "Africa/Harare"
-msgstr "Africa/Harare"
+msgstr "Африка/Хараре"
 
 #: ../src/timezone_names.c:61
 msgid "Africa/Johannesburg"
-msgstr "Africa/Johannesburg"
+msgstr "Африка/Јоханесбург"
 
 #: ../src/timezone_names.c:62
 msgid "Africa/Kampala"
-msgstr "Africa/Kampala"
+msgstr "Африка/Кампала"
 
 #: ../src/timezone_names.c:63
 msgid "Africa/Khartoum"
-msgstr "Africa/Khartum"
+msgstr "Африка/Картум"
 
 #: ../src/timezone_names.c:64
 msgid "Africa/Kigali"
-msgstr "Africa/Kigali"
+msgstr "Африка/Кигали"
 
 #: ../src/timezone_names.c:65
 msgid "Africa/Kinshasa"
-msgstr "Africa/Kinshasa"
+msgstr "Африка/Киншаса"
 
 #: ../src/timezone_names.c:66
 msgid "Africa/Lagos"
-msgstr "Africa/Lagos"
+msgstr "Африка/Лагос"
 
 #: ../src/timezone_names.c:67
 msgid "Africa/Libreville"
-msgstr "Africa/Libreville"
+msgstr "Африка/Либревил"
 
 #: ../src/timezone_names.c:68
 msgid "Africa/Lome"
-msgstr "Africa/Lomé"
+msgstr "Африка/Ломе"
 
 #: ../src/timezone_names.c:69
 msgid "Africa/Luanda"
-msgstr "Africa/Luanda"
+msgstr "Африка/Луанда"
 
 #: ../src/timezone_names.c:70
 msgid "Africa/Lubumbashi"
-msgstr "Africa/Lubumbashi"
+msgstr "Африка/Лумбаши"
 
 #: ../src/timezone_names.c:71
 msgid "Africa/Lusaka"
-msgstr "Africa/Lusaka"
+msgstr "Африка/Лусака"
 
 #: ../src/timezone_names.c:72
 msgid "Africa/Malabo"
-msgstr "Africa/Malabo"
+msgstr "Африка/Малабо"
 
 #: ../src/timezone_names.c:73
 msgid "Africa/Maputo"
-msgstr "Africa/Maputo"
+msgstr "Африка/Мапуто"
 
 #: ../src/timezone_names.c:74
 msgid "Africa/Maseru"
-msgstr "Africa/Maseru"
+msgstr "Африка/Масеру"
 
 #: ../src/timezone_names.c:75
 msgid "Africa/Mbabane"
-msgstr "Africa/Mbabane"
+msgstr "Африка/Мбабане"
 
 #: ../src/timezone_names.c:76
 msgid "Africa/Mogadishu"
-msgstr "Africa/Mogadiscio"
+msgstr "Африка/Могадиш"
 
 #: ../src/timezone_names.c:77
 msgid "Africa/Monrovia"
-msgstr "Africa/Monrovia"
+msgstr "Африка/Монровија"
 
 #: ../src/timezone_names.c:78
 msgid "Africa/Nairobi"
-msgstr "Africa/Nairobi"
+msgstr "Африка/Најроби"
 
 #: ../src/timezone_names.c:79
 msgid "Africa/Ndjamena"
-msgstr "Africa/N'Djamena"
+msgstr "Африка/Нџамена"
 
 #: ../src/timezone_names.c:80
 msgid "Africa/Niamey"
-msgstr "Africa/Niamey"
+msgstr "Африка/Нимај"
 
 #: ../src/timezone_names.c:81
 msgid "Africa/Nouakchott"
-msgstr "Africa/Nouakchott"
+msgstr "Африка/Нуакшот"
 
 #: ../src/timezone_names.c:82
 msgid "Africa/Ouagadougou"
-msgstr "Africa/Ouagadougou"
+msgstr "Африка/Уагадугу"
 
 #: ../src/timezone_names.c:83
 msgid "Africa/Porto-Novo"
-msgstr "Africa/Porto-Novo"
+msgstr "Африка/Порто-Ново"
 
 #: ../src/timezone_names.c:84
 msgid "Africa/Sao_Tome"
-msgstr "Africa/Sao_Tomé"
+msgstr "Африка/Сао_Томе"
 
 #: ../src/timezone_names.c:85
 msgid "Africa/Timbuktu"
-msgstr "Africa/Timbuctu"
+msgstr "Африка/Тимбукту"
 
 #: ../src/timezone_names.c:86
 msgid "Africa/Tripoli"
-msgstr "Africa/Tripoli"
+msgstr "Африка/Триполи"
 
 #: ../src/timezone_names.c:87
 msgid "Africa/Tunis"
-msgstr "Africa/Tunisi"
+msgstr "Африка/Тунис"
 
 #: ../src/timezone_names.c:88
 msgid "Africa/Windhoek"
-msgstr "Africa/Windhoek"
+msgstr "Африка/Виндхок"
 
 #: ../src/timezone_names.c:89
 msgid "America"
-msgstr "America"
+msgstr "Америка"
 
 #: ../src/timezone_names.c:90
 msgid "America/Adak"
-msgstr "America/Adak"
+msgstr "Америка/Адак"
 
 #: ../src/timezone_names.c:91
 msgid "America/Anchorage"
-msgstr "America/Anchorage"
+msgstr "Америка/Анкорејџ"
 
 #: ../src/timezone_names.c:92
 msgid "America/Anguilla"
-msgstr "America/Anguilla"
+msgstr "Америка/Ангила"
 
 #: ../src/timezone_names.c:93
 msgid "America/Antigua"
-msgstr "America/Antigua"
+msgstr "Америка/Антигва"
 
 #: ../src/timezone_names.c:94
 msgid "America/Araguaina"
-msgstr "America/Araguaina"
+msgstr "Америка/Арагвајна"
 
 #: ../src/timezone_names.c:95
 msgid "America/Argentina/Buenos_Aires"
-msgstr "America/Argentina/Buenos_Aires"
+msgstr "Америка/Аргентина/Буенос_Ајрес"
 
 #: ../src/timezone_names.c:96
 msgid "America/Argentina/Catamarca"
-msgstr "America/Argentina/Catamarca"
+msgstr "Америка/Аргентина/Катамарка"
 
 #: ../src/timezone_names.c:97
 msgid "America/Argentina/Cordoba"
-msgstr "America/Argentina/Cordoba"
+msgstr "Америка/Аргентина/Кордоба"
 
 #: ../src/timezone_names.c:98
 msgid "America/Argentina/Jujuy"
-msgstr "America/Argentina/Jujuy"
+msgstr "Америка/Аргентина/Јујуј"
 
 #: ../src/timezone_names.c:99
 msgid "America/Argentina/Mendoza"
-msgstr "America/Argentina/Mendoza"
+msgstr "Америка/Аргентина/Мендоза"
 
 #: ../src/timezone_names.c:100
 msgid "America/Aruba"
-msgstr "America/Aruba"
+msgstr "Америка/Аруба"
 
 #: ../src/timezone_names.c:101
 msgid "America/Asuncion"
-msgstr "America/Asuncion"
+msgstr "Америка/Асунсион"
 
 #: ../src/timezone_names.c:102
 msgid "America/Barbados"
-msgstr "America/Barbados"
+msgstr "Америка/Барбадос"
 
 #: ../src/timezone_names.c:103
 msgid "America/Belem"
-msgstr "America/Belém"
+msgstr "Америка/Белем"
 
 #: ../src/timezone_names.c:104
 msgid "America/Belize"
-msgstr "America/Belize"
+msgstr "Америка/Белиз"
 
 #: ../src/timezone_names.c:105
 msgid "America/Boa_Vista"
-msgstr "America/Boa_Vista"
+msgstr "Америка/Боа_Виста"
 
 #: ../src/timezone_names.c:106
 msgid "America/Bogota"
-msgstr "America/Bogota"
+msgstr "Америка/Богота"
 
 #: ../src/timezone_names.c:107
 msgid "America/Boise"
-msgstr "America/Boise"
+msgstr "Америка/Бојз"
 
 #: ../src/timezone_names.c:108
 msgid "America/Buenos_Aires"
-msgstr "America/Buenos_Aires"
+msgstr "Америка/Буенос_Ајрес"
 
 #: ../src/timezone_names.c:109
 msgid "America/Cambridge_Bay"
-msgstr "America/Cambridge_Bay"
+msgstr "Америка/Кејмбриџ_залив"
 
 #: ../src/timezone_names.c:110
 msgid "America/Cancun"
-msgstr "America/Cancun"
+msgstr "Америка/Канкун"
 
 #: ../src/timezone_names.c:111
 msgid "America/Caracas"
-msgstr "America/Caracas"
+msgstr "Америка/Каракас"
 
 #: ../src/timezone_names.c:112
 msgid "America/Catamarca"
-msgstr "America/Catamarca"
+msgstr "Америка/Катамарка"
 
 #: ../src/timezone_names.c:113
 msgid "America/Cayenne"
-msgstr "America/Caienna"
+msgstr "Америка/Сајон"
 
 #: ../src/timezone_names.c:114
 msgid "America/Cayman"
-msgstr "America/Cayman"
+msgstr "Америка/Кајман"
 
 #: ../src/timezone_names.c:115
 msgid "America/Chicago"
-msgstr "America/Chicago"
+msgstr "Америка/Чикаго"
 
 #: ../src/timezone_names.c:116
 msgid "America/Chihuahua"
-msgstr "America/Chihuahua"
+msgstr "Америка/Чивава"
 
 #: ../src/timezone_names.c:117
 msgid "America/Cordoba"
-msgstr "America/Cordoba"
+msgstr "Америка/Кордоба"
 
 #: ../src/timezone_names.c:118
 msgid "America/Costa_Rica"
-msgstr "America/Costa_Rica"
+msgstr "Америка/Костарика"
 
 #: ../src/timezone_names.c:119
 msgid "America/Cuiaba"
-msgstr "America/Cuiaba"
+msgstr "Америка/Куијаба"
 
 #: ../src/timezone_names.c:120
 msgid "America/Curacao"
-msgstr "America/Curacao"
+msgstr "Америка/Куракао"
 
 #: ../src/timezone_names.c:121
 msgid "America/Dawson"
-msgstr "America/Dawson"
+msgstr "Америка/Досон"
 
 #: ../src/timezone_names.c:122
 msgid "America/Dawson_Creek"
-msgstr "America/Dawson_Creek"
+msgstr "Америка/Досон_Крик"
 
 #: ../src/timezone_names.c:123
 msgid "America/Denver"
-msgstr "America/Denver"
+msgstr "Америка/Денвер"
 
 #: ../src/timezone_names.c:124
 msgid "America/Detroit"
-msgstr "America/Detroit"
+msgstr "Америка/Детроит"
 
 #: ../src/timezone_names.c:125
 msgid "America/Dominica"
-msgstr "America/Dominica"
+msgstr "Америка/Доминика"
 
 #: ../src/timezone_names.c:126
 msgid "America/Edmonton"
-msgstr "America/Edmonton"
+msgstr "Америка/Едмонтон"
 
 #: ../src/timezone_names.c:127
 msgid "America/Eirunepe"
-msgstr "America/Eirunepé"
+msgstr "Америка/Еирунепе"
 
 #: ../src/timezone_names.c:128
 msgid "America/El_Salvador"
-msgstr "America/El_Salvador"
+msgstr "Америка/Ел_Салвадор"
 
 #: ../src/timezone_names.c:129
 msgid "America/Fortaleza"
-msgstr "America/Fortaleza"
+msgstr "Америка/Форталеза"
 
 #: ../src/timezone_names.c:130
 msgid "America/Glace_Bay"
-msgstr "America/Glace_Bay"
+msgstr "Америка/Глас_Беј"
 
 #: ../src/timezone_names.c:131
 msgid "America/Godthab"
-msgstr "America/Nuuk"
+msgstr "Америка/Готаб"
 
 #: ../src/timezone_names.c:132
 msgid "America/Goose_Bay"
-msgstr "America/Goose_Bay"
+msgstr "Америка/Залив_гусака"
 
 #: ../src/timezone_names.c:133
 msgid "America/Grand_Turk"
-msgstr "America/Grand_Turk"
+msgstr "Америка/Велики_Турк"
 
 #: ../src/timezone_names.c:134
 msgid "America/Grenada"
-msgstr "America/Grenada"
+msgstr "Америка/Гренада"
 
 #: ../src/timezone_names.c:135
 msgid "America/Guadeloupe"
-msgstr "America/Guadalupa"
+msgstr "Америка/Гвадалупе"
 
 #: ../src/timezone_names.c:136
 msgid "America/Guatemala"
-msgstr "America/Guatemala"
+msgstr "Америка/Гватемала"
 
 #: ../src/timezone_names.c:137
 msgid "America/Guayaquil"
-msgstr "America/Guayaquil"
+msgstr "Америка/Гвајакил"
 
 #: ../src/timezone_names.c:138
 msgid "America/Guyana"
-msgstr "America/Guyana"
+msgstr "Америка/Гвајана"
 
 #: ../src/timezone_names.c:139
 msgid "America/Halifax"
-msgstr "America/Halifax"
+msgstr "Америка/Халифакс"
 
 #: ../src/timezone_names.c:140
 msgid "America/Havana"
-msgstr "America/L'Avana"
+msgstr "Америка/Хавана"
 
 #: ../src/timezone_names.c:141
 msgid "America/Hermosillo"
-msgstr "America/Hermosillo"
+msgstr "Америка/Ермосиљо"
 
 #: ../src/timezone_names.c:142
 msgid "America/Indiana/Indianapolis"
-msgstr "America/Indiana/Indianapolis"
+msgstr "Америка/Индијана/Индијанаполис"
 
 #: ../src/timezone_names.c:143
 msgid "America/Indiana/Knox"
-msgstr "America/Indiana/Knox"
+msgstr "Америка/Индијана/Нокс"
 
 #: ../src/timezone_names.c:144
 msgid "America/Indiana/Marengo"
-msgstr "America/Indiana/Marengo"
+msgstr "Америка/Индијана/Маренго"
 
 #: ../src/timezone_names.c:145
 msgid "America/Indiana/Vevay"
-msgstr "America/Indiana/Vevay"
+msgstr "Америка/Индијана/Вивеј"
 
 #: ../src/timezone_names.c:146
 msgid "America/Indianapolis"
-msgstr "America/Indianapolis"
+msgstr "Америка/Индијанаполис"
 
 #: ../src/timezone_names.c:147
 msgid "America/Inuvik"
-msgstr "America/Inuvik"
+msgstr "Америка/Инувик"
 
 #: ../src/timezone_names.c:148
 msgid "America/Iqaluit"
-msgstr "America/Iqaluit"
+msgstr "Америка/Икалуит"
 
 #: ../src/timezone_names.c:149
 msgid "America/Jamaica"
-msgstr "America/Giamaica"
+msgstr "Америка/Јамајка"
 
 #: ../src/timezone_names.c:150
 msgid "America/Jujuy"
-msgstr "America/Jujuy"
+msgstr "Америка/Јујуј"
 
 #: ../src/timezone_names.c:151
 msgid "America/Juneau"
-msgstr "America/Juneau"
+msgstr "Америка/Џуно"
 
 #: ../src/timezone_names.c:152
 msgid "America/Kentucky/Louisville"
-msgstr "America/Kentucky/Louisville"
+msgstr "Америка/Кентаки/Луисвил"
 
 #: ../src/timezone_names.c:153
 msgid "America/Kentucky/Monticello"
-msgstr "America/Kentucky/Monticello"
+msgstr "Америка/Кентаки/Монтичело"
 
 #: ../src/timezone_names.c:154
 msgid "America/La_Paz"
-msgstr "America/La_Paz"
+msgstr "Америка/Ла_Паз"
 
 #: ../src/timezone_names.c:155
 msgid "America/Lima"
-msgstr "America/Lima"
+msgstr "Америка/Лима"
 
 #: ../src/timezone_names.c:156
 msgid "America/Los_Angeles"
-msgstr "America/Los_Angeles"
+msgstr "Америка/Лос_Анђелес"
 
 #: ../src/timezone_names.c:157
 msgid "America/Louisville"
-msgstr "America/Louisville"
+msgstr "Америка/Луисвил"
 
 #: ../src/timezone_names.c:158
 msgid "America/Maceio"
-msgstr "America/Maceio"
+msgstr "Америка/Макејо"
 
 #: ../src/timezone_names.c:159
 msgid "America/Managua"
-msgstr "America/Managua"
+msgstr "Америка/Манагва"
 
 #: ../src/timezone_names.c:160
 msgid "America/Manaus"
-msgstr "America/Manaus"
+msgstr "Америка/Манаус"
 
 #: ../src/timezone_names.c:161
 msgid "America/Martinique"
-msgstr "America/Martinica"
+msgstr "Америка/Мартиник"
 
 #: ../src/timezone_names.c:162
 msgid "America/Mazatlan"
-msgstr "America/Mazatlan"
+msgstr "Америка/Мацатлан"
 
 #: ../src/timezone_names.c:163
 msgid "America/Mendoza"
-msgstr "America/Mendoza"
+msgstr "Америка/Мендоза"
 
 #: ../src/timezone_names.c:164
 msgid "America/Menominee"
-msgstr "America/Menominee"
+msgstr "Америка/Меномини"
 
 #: ../src/timezone_names.c:165
 msgid "America/Merida"
-msgstr "America/Mérida"
+msgstr "Америка/Мерида"
 
 #: ../src/timezone_names.c:166
 msgid "America/Mexico_City"
-msgstr "America/_Città del Messico"
+msgstr "Америка/Мексико_Сити"
 
 #: ../src/timezone_names.c:167
 msgid "America/Miquelon"
-msgstr "America/Miquelon"
+msgstr "Америка/Микелон"
 
 #: ../src/timezone_names.c:168
 msgid "America/Monterrey"
-msgstr "America/Monterrey"
+msgstr "Америка/Монтереј"
 
 #: ../src/timezone_names.c:169
 msgid "America/Montevideo"
-msgstr "America/Montevideo"
+msgstr "Америка/Монтевидео"
 
 #: ../src/timezone_names.c:170
 msgid "America/Montreal"
-msgstr "America/Montréal"
+msgstr "Америка/Монтреал"
 
 #: ../src/timezone_names.c:171
 msgid "America/Montserrat"
-msgstr "America/Montserrat"
+msgstr "Америка/Монсерат"
 
 #: ../src/timezone_names.c:172
 msgid "America/Nassau"
-msgstr "America/Nassau"
+msgstr "Америка/Насау"
 
 #: ../src/timezone_names.c:173
 msgid "America/New_York"
-msgstr "America/New_York"
+msgstr "Америка/Њујорк"
 
 #: ../src/timezone_names.c:174
 msgid "America/Nipigon"
-msgstr "America/Nipigon"
+msgstr "Америка/Нипигон"
 
 #: ../src/timezone_names.c:175
 msgid "America/Nome"
-msgstr "America/Nome"
+msgstr "Америка/Ном"
 
 #: ../src/timezone_names.c:176
 msgid "America/Noronha"
-msgstr "America/Noronha"
+msgstr "Америна/Норона"
 
 #: ../src/timezone_names.c:177
 msgid "America/Panama"
-msgstr "America/Panama"
+msgstr "Америка/Панама"
 
 #: ../src/timezone_names.c:178
 msgid "America/Pangnirtung"
-msgstr "America/Pangnirtung"
+msgstr "Америка/Пангниртунг"
 
 #: ../src/timezone_names.c:179
 msgid "America/Paramaribo"
-msgstr "America/Paramaribo"
+msgstr "Америка/Парамарибо"
 
 #: ../src/timezone_names.c:180
 msgid "America/Phoenix"
-msgstr "America/Phoenix"
+msgstr "Америка/Феникс"
 
 #: ../src/timezone_names.c:181
 msgid "America/Port-au-Prince"
-msgstr "America/Port-au-Prince"
+msgstr "Америка/Портопренс"
 
 #: ../src/timezone_names.c:182
 msgid "America/Port_of_Spain"
-msgstr "America/Port_of_Spain"
+msgstr "Америка/Порт_Оф_Спејн"
 
 #: ../src/timezone_names.c:183
 msgid "America/Porto_Velho"
-msgstr "America/Porto_Velho"
+msgstr "Америка/Портовељо"
 
 #: ../src/timezone_names.c:184
 msgid "America/Puerto_Rico"
-msgstr "America/Porto_Rico"
+msgstr "Америка/Порторико"
 
 #: ../src/timezone_names.c:185
 msgid "America/Rainy_River"
-msgstr "America/Rainy_River"
+msgstr "Америка/Кишна_река"
 
 #: ../src/timezone_names.c:186
 msgid "America/Rankin_Inlet"
-msgstr "America/Rankin_Inlet"
+msgstr "Америка/Ранкин_увала"
 
 #: ../src/timezone_names.c:187
 msgid "America/Recife"
-msgstr "America/Recife"
+msgstr "Америка/Ресифе"
 
 #: ../src/timezone_names.c:188
 msgid "America/Regina"
-msgstr "America/Regina"
+msgstr "Америка/Регина"
 
 #: ../src/timezone_names.c:189
 msgid "America/Rio_Branco"
-msgstr "America/Rio_Branco"
+msgstr "Америка/Рио_Бранко"
 
 #: ../src/timezone_names.c:190
 msgid "America/Rosario"
-msgstr "America/Rosario"
+msgstr "Америка/Розарио"
 
 #: ../src/timezone_names.c:191
 msgid "America/Santiago"
-msgstr "America/Santiago"
+msgstr "Америка/Сантијаго"
 
 #: ../src/timezone_names.c:192
 msgid "America/Santo_Domingo"
-msgstr "America/Santo_Domingo"
+msgstr "Америка/Санто_Доминго"
 
 #: ../src/timezone_names.c:193
 msgid "America/Sao_Paulo"
-msgstr "America/San_Paolo"
+msgstr "Америка/Сао_Паоло"
 
 #: ../src/timezone_names.c:194
 msgid "America/Scoresbysund"
-msgstr "America/Scoresby_Sund"
+msgstr "Америка/Скорсбисанд"
 
 #: ../src/timezone_names.c:195
 msgid "America/Shiprock"
-msgstr "America/Shiprock"
+msgstr "Америка/Шипрок"
 
 #: ../src/timezone_names.c:196
 msgid "America/St_Johns"
-msgstr "America/Saint_John's"
+msgstr "Америка/Св_Џонс"
 
 #: ../src/timezone_names.c:197
 msgid "America/St_Kitts"
-msgstr "America/Saint_Kitts"
+msgstr "Америка/Св_Китс"
 
 #: ../src/timezone_names.c:198
 msgid "America/St_Lucia"
-msgstr "America/Saint_Lucia"
+msgstr "Америка/Св_Луција"
 
 #: ../src/timezone_names.c:199
 msgid "America/St_Thomas"
-msgstr "America/Saint_Thomas"
+msgstr "Америка/Св_Томас"
 
 #: ../src/timezone_names.c:200
 msgid "America/St_Vincent"
-msgstr "America/Saint_Vincent"
+msgstr "Америка/Св_Винсент"
 
 #: ../src/timezone_names.c:201
 msgid "America/Swift_Current"
-msgstr "America/Swift_Current"
+msgstr "Америка/Брза_струја"
 
 #: ../src/timezone_names.c:202
 msgid "America/Tegucigalpa"
-msgstr "America/Tegucigalpa"
+msgstr "Америка/Тегучигалпа"
 
 #: ../src/timezone_names.c:203
 msgid "America/Thule"
-msgstr "America/Qaanaaq"
+msgstr "Америка/Тула"
 
 #: ../src/timezone_names.c:204
 msgid "America/Thunder_Bay"
-msgstr "America/Thunder_Bay"
+msgstr "Америка/Тандер_залив"
 
 #: ../src/timezone_names.c:205
 msgid "America/Tijuana"
-msgstr "America/Tijuana"
+msgstr "Америка/Тихуана"
 
 #: ../src/timezone_names.c:206
 msgid "America/Tortola"
-msgstr "America/Tortola"
+msgstr "Америка/Тортола"
 
 #: ../src/timezone_names.c:207
 msgid "America/Vancouver"
-msgstr "America/Vancouver"
+msgstr "Америка/Ванкувер"
 
 #: ../src/timezone_names.c:208
 msgid "America/Whitehorse"
-msgstr "America/Whitehorse"
+msgstr "Америка/Вајтхорс"
 
 #: ../src/timezone_names.c:209
 msgid "America/Winnipeg"
-msgstr "America/Winnipeg"
+msgstr "Америка/Винипег"
 
 #: ../src/timezone_names.c:210
 msgid "America/Yakutat"
-msgstr "America/Yakutat"
+msgstr "Америка/Јакута"
 
 #: ../src/timezone_names.c:211
 msgid "America/Yellowknife"
-msgstr "America/Yellowknife"
+msgstr "Америка/Јелоунајф"
 
 #: ../src/timezone_names.c:212
 msgid "Antarctica"
-msgstr "Antartide"
+msgstr "Антарктик"
 
 #: ../src/timezone_names.c:213
 msgid "Antarctica/Casey"
-msgstr "Antartide/Casey"
+msgstr "Антарктик/Кејси"
 
 #: ../src/timezone_names.c:214
 msgid "Antarctica/Davis"
-msgstr "Antartide/Davis"
+msgstr "Антарктик/Дејвис"
 
 #: ../src/timezone_names.c:215
 msgid "Antarctica/DumontDUrville"
-msgstr "Antartide/Dumont_d'Urville"
+msgstr "Антарктик/Думон_Дурвил"
 
 #: ../src/timezone_names.c:216
 msgid "Antarctica/Mawson"
-msgstr "Antartide/Mawson"
+msgstr "Антарктик/Мосон"
 
 #: ../src/timezone_names.c:217
 msgid "Antarctica/McMurdo"
-msgstr "Antartide/McMurdo"
+msgstr "Антарктик/Мекмардо"
 
 #: ../src/timezone_names.c:218
 msgid "Antarctica/Palmer"
-msgstr "Antartide/Palmer"
+msgstr "Антарктик/Палмер"
 
 #: ../src/timezone_names.c:219
 msgid "Antarctica/South_Pole"
-msgstr "Antartide/Polo_Sud"
+msgstr "Антарктик/Јужни_пол"
 
 #: ../src/timezone_names.c:220
 msgid "Antarctica/Syowa"
-msgstr "Antartide/Syowa"
+msgstr "Антарктик/Сијова"
 
 #: ../src/timezone_names.c:221
 msgid "Antarctica/Vostok"
-msgstr "Antartide/Vostok"
+msgstr "Антарктик/Восток"
 
 #: ../src/timezone_names.c:222
 msgid "Arctic"
-msgstr "Artide"
+msgstr "Арктик"
 
 #: ../src/timezone_names.c:223
 msgid "Arctic/Longyearbyen"
-msgstr "Artide/Longyearbyen"
+msgstr "Арктик/Лонгјирбјен"
 
 #: ../src/timezone_names.c:224
 msgid "Asia"
-msgstr "Asia"
+msgstr "Азија"
 
 #: ../src/timezone_names.c:225
 msgid "Asia/Aden"
-msgstr "Asia/Aden"
+msgstr "Азија/Аден"
 
 #: ../src/timezone_names.c:226
 msgid "Asia/Almaty"
-msgstr "Asia/Almaty"
+msgstr "Азија/Алмати"
 
 #: ../src/timezone_names.c:227
 msgid "Asia/Amman"
-msgstr "Asia/Amman"
+msgstr "Азија/Аман"
 
 #: ../src/timezone_names.c:228
 msgid "Asia/Anadyr"
-msgstr "Asia/Anadyr'"
+msgstr "Азија/Анадир"
 
 #: ../src/timezone_names.c:229
 msgid "Asia/Aqtau"
-msgstr "Asia/Aqtau"
+msgstr "Азија/Актау"
 
 #: ../src/timezone_names.c:230
 msgid "Asia/Aqtobe"
-msgstr "Asia/Aqtobe"
+msgstr "Азија/Актобе"
 
 #: ../src/timezone_names.c:231
 msgid "Asia/Ashgabat"
-msgstr "Asia/Ashgabat"
+msgstr "Азија/Ашгабат"
 
 #: ../src/timezone_names.c:232
 msgid "Asia/Baghdad"
-msgstr "Asia/Baghdad"
+msgstr "Азија/Багдад"
 
 #: ../src/timezone_names.c:233
 msgid "Asia/Bahrain"
-msgstr "Asia/Bahrain"
+msgstr "Азија/Бахреин"
 
 #: ../src/timezone_names.c:234
 msgid "Asia/Baku"
-msgstr "Asia/Baku"
+msgstr "Азија/Баку"
 
 #: ../src/timezone_names.c:235
 msgid "Asia/Bangkok"
-msgstr "Asia/Bangkok"
+msgstr "Азија/Бангкок"
 
 #: ../src/timezone_names.c:236
 msgid "Asia/Beirut"
-msgstr "Asia/Beirut"
+msgstr "Азија/Бејрут"
 
 #: ../src/timezone_names.c:237
 msgid "Asia/Bishkek"
-msgstr "Asia/Bishkek"
+msgstr "Азија/Бишкек"
 
 #: ../src/timezone_names.c:238
 msgid "Asia/Brunei"
-msgstr "Asia/Brunei"
+msgstr "Азиа/Бринеј"
 
 #: ../src/timezone_names.c:239
 msgid "Asia/Calcutta"
-msgstr "Asia/Calcutta"
+msgstr "Азија/Калкута"
 
 #: ../src/timezone_names.c:240
 msgid "Asia/Chungking"
-msgstr "Asia/Chongqing"
+msgstr "Азија/Чунгкинг"
 
 #: ../src/timezone_names.c:241
 msgid "Asia/Colombo"
-msgstr "Asia/Colombo"
+msgstr "Азија/Коломбо"
 
 #: ../src/timezone_names.c:242
 msgid "Asia/Damascus"
-msgstr "Asia/Damasco"
+msgstr "Азија/Дамаск"
 
 #: ../src/timezone_names.c:243
 msgid "Asia/Dhaka"
-msgstr "Asia/Dacca"
+msgstr "Азија/Дака"
 
 #: ../src/timezone_names.c:244
 msgid "Asia/Dili"
-msgstr "Asia/Dili"
+msgstr "Азија/Дили"
 
 #: ../src/timezone_names.c:245
 msgid "Asia/Dubai"
-msgstr "Asia/Dubai"
+msgstr "Азија/Дубаи"
 
 #: ../src/timezone_names.c:246
 msgid "Asia/Dushanbe"
-msgstr "Asia/Dushanbe"
+msgstr "Азија/Душанбе"
 
 #: ../src/timezone_names.c:247
 msgid "Asia/Gaza"
-msgstr "Asia/Gaza"
+msgstr "Азија/Газа"
 
 #: ../src/timezone_names.c:248
 msgid "Asia/Harbin"
-msgstr "Asia/Harbin"
+msgstr "Азија/Харбин"
 
 #: ../src/timezone_names.c:249
 msgid "Asia/Hong_Kong"
-msgstr "Asia/Hong_Kong"
+msgstr "Азија/Хонгконг"
 
 #: ../src/timezone_names.c:250
 msgid "Asia/Hovd"
-msgstr "Asia/Hovd"
+msgstr "Азија/Хоуд"
 
 #: ../src/timezone_names.c:251
 msgid "Asia/Irkutsk"
-msgstr "Asia/Irkutsk"
+msgstr "Азија/Иркутск"
 
 #: ../src/timezone_names.c:252
 msgid "Asia/Istanbul"
-msgstr "Asia/Istanbul"
+msgstr "Азија/Цариград"
 
 #: ../src/timezone_names.c:253
 msgid "Asia/Jakarta"
-msgstr "Asia/Giacarta"
+msgstr "Азија/Џакарта"
 
 #: ../src/timezone_names.c:254
 msgid "Asia/Jayapura"
-msgstr "Asia/Jayapura"
+msgstr "Азија/Џајапура"
 
 #: ../src/timezone_names.c:255
 msgid "Asia/Jerusalem"
-msgstr "Asia/Gerusalemme"
+msgstr "Азија/Јерусалим"
 
 #: ../src/timezone_names.c:256
 msgid "Asia/Kabul"
-msgstr "Asia/Kabul"
+msgstr "Азија/Кабул"
 
 #: ../src/timezone_names.c:257
 msgid "Asia/Kamchatka"
-msgstr "Asia/Kamchatka"
+msgstr "Азија/Камчатка"
 
 #: ../src/timezone_names.c:258
 msgid "Asia/Karachi"
-msgstr "Asia/Karachi"
+msgstr "Азија/Карачи"
 
 #: ../src/timezone_names.c:259
 msgid "Asia/Kashgar"
-msgstr "Asia/Kashgar"
+msgstr "Азија/Кашгар"
 
 #: ../src/timezone_names.c:260
 msgid "Asia/Katmandu"
-msgstr "Asia/Kathmandu"
+msgstr "Азија/Катманду"
 
 #: ../src/timezone_names.c:261
 msgid "Asia/Krasnoyarsk"
-msgstr "Asia/Krasnojarsk"
+msgstr "Азија/Краснојарск"
 
 #: ../src/timezone_names.c:262
 msgid "Asia/Kuala_Lumpur"
-msgstr "Asia/Kuala_Lumpur"
+msgstr "Азија/Куалалумпур"
 
 #: ../src/timezone_names.c:263
 msgid "Asia/Kuching"
-msgstr "Asia/Kuching"
+msgstr "Азија/Кучинг"
 
 #: ../src/timezone_names.c:264
 msgid "Asia/Kuwait"
-msgstr "Asia/Kuwait"
+msgstr "Азија/Кувајт"
 
 #: ../src/timezone_names.c:265
 msgid "Asia/Macao"
-msgstr "Asia/Macao"
+msgstr "Азија/Макао"
 
 #: ../src/timezone_names.c:266
 msgid "Asia/Magadan"
-msgstr "Asia/Magadan"
+msgstr "Азија/Магадан"
 
 #: ../src/timezone_names.c:267
 msgid "Asia/Manila"
-msgstr "Asia/Manila"
+msgstr "Азија/Манила"
 
 #: ../src/timezone_names.c:268
 msgid "Asia/Muscat"
-msgstr "Asia/Mascate"
+msgstr "Азија/Мускат"
 
 #: ../src/timezone_names.c:269
 msgid "Asia/Nicosia"
-msgstr "Asia/Nicosia"
+msgstr "Азија/Никозија"
 
 #: ../src/timezone_names.c:270
 msgid "Asia/Novosibirsk"
-msgstr "Asia/Novosibirsk"
+msgstr "Азија/Новосибирск"
 
 #: ../src/timezone_names.c:271
 msgid "Asia/Omsk"
-msgstr "Asia/Omsk"
+msgstr "Азија/Омск"
 
 #: ../src/timezone_names.c:272
 msgid "Asia/Phnom_Penh"
-msgstr "Asia/Phnom_Penh"
+msgstr "Азија/Пном_Пен"
 
 #: ../src/timezone_names.c:273
 msgid "Asia/Pontianak"
-msgstr "Asia/Pontianak"
+msgstr "Азија/Понтијанак"
 
 #: ../src/timezone_names.c:274
 msgid "Asia/Pyongyang"
-msgstr "Asia/Pyongyang"
+msgstr "Азија/Пјонгјанг"
 
 #: ../src/timezone_names.c:275
 msgid "Asia/Qatar"
-msgstr "Asia/Qatar"
+msgstr "Азија/Катар"
 
 #: ../src/timezone_names.c:276
 msgid "Asia/Rangoon"
-msgstr "Asia/Rangoon"
+msgstr "Азија/Рангун"
 
 #: ../src/timezone_names.c:277
 msgid "Asia/Riyadh"
-msgstr "Asia/Riyad"
+msgstr "Азија/Ријад"
 
 #: ../src/timezone_names.c:278
 msgid "Asia/Saigon"
-msgstr "Asia/Ho_Chi_Minh"
+msgstr "Азија/Сајгон"
 
 #: ../src/timezone_names.c:279
 msgid "Asia/Samarkand"
-msgstr "Asia/Samarcanda"
+msgstr "Азија/Самарканд"
 
 #: ../src/timezone_names.c:280
 msgid "Asia/Seoul"
-msgstr "Asia/Seoul"
+msgstr "Азија/Сеул"
 
 #: ../src/timezone_names.c:281
 msgid "Asia/Shanghai"
-msgstr "Asia/Shanghai"
+msgstr "Азија/Шангај"
 
 #: ../src/timezone_names.c:282
 msgid "Asia/Singapore"
-msgstr "Asia/Singapore"
+msgstr "Азија/Сингапур"
 
 #: ../src/timezone_names.c:283
 msgid "Asia/Taipei"
-msgstr "Asia/Taipei"
+msgstr "Азија/Тајпеј"
 
 #: ../src/timezone_names.c:284
 msgid "Asia/Tashkent"
-msgstr "Asia/Taskent"
+msgstr "Азија/Ташкент"
 
 #: ../src/timezone_names.c:285
 msgid "Asia/Tbilisi"
-msgstr "Asia/Tbilisi"
+msgstr "Азија/Тбилиси"
 
 #: ../src/timezone_names.c:286
 msgid "Asia/Tehran"
-msgstr "Asia/Teheran"
+msgstr "Азија/Техеран"
 
 #: ../src/timezone_names.c:287
 msgid "Asia/Thimphu"
-msgstr "Asia/Thimphu"
+msgstr "Азија/Тимфу"
 
 #: ../src/timezone_names.c:288
 msgid "Asia/Tokyo"
-msgstr "Asia/Tokyo"
+msgstr "Азија/Токио"
 
 #: ../src/timezone_names.c:289
 msgid "Asia/Ujung_Pandang"
-msgstr "Asia/_Makassar"
+msgstr "Азија/Ујунг_Панданг"
 
 #: ../src/timezone_names.c:290
 msgid "Asia/Ulaanbaatar"
-msgstr "Asia/Ulan Bator"
+msgstr "Азија/Уланбатор"
 
 #: ../src/timezone_names.c:291
 msgid "Asia/Urumqi"
-msgstr "Asia/Urumqi"
+msgstr "Азија/Урумки"
 
 #: ../src/timezone_names.c:292
 msgid "Asia/Vientiane"
-msgstr "Asia/Vientiane"
+msgstr "Азија/Винтин"
 
 #: ../src/timezone_names.c:293
 msgid "Asia/Vladivostok"
-msgstr "Asia/Vladivostok"
+msgstr "Азија/Владивосток"
 
 #: ../src/timezone_names.c:294
 msgid "Asia/Yakutsk"
-msgstr "Asia/Jakutsk"
+msgstr "Азија/Јакутск"
 
 #: ../src/timezone_names.c:295
 msgid "Asia/Yekaterinburg"
-msgstr "Asia/Ekaterinburg"
+msgstr "Азија/Јекатеринбург"
 
 #: ../src/timezone_names.c:296
 msgid "Asia/Yerevan"
-msgstr "Asia/Yerevan"
+msgstr "Азија/Јереван"
 
 #: ../src/timezone_names.c:297
 msgid "Atlantic"
-msgstr "Atlantico"
+msgstr "Атлантик"
 
 #: ../src/timezone_names.c:298
 msgid "Atlantic/Azores"
-msgstr "Atlantico/Azzorre"
+msgstr "Атлантик/Азорска_острва"
 
 #: ../src/timezone_names.c:299
 msgid "Atlantic/Bermuda"
-msgstr "Atlantico/Bermuda"
+msgstr "Атлантик/Бермуда"
 
 #: ../src/timezone_names.c:300
 msgid "Atlantic/Canary"
-msgstr "Atlantico/Canarie"
+msgstr "Атлантик/Канари"
 
 #: ../src/timezone_names.c:301
 msgid "Atlantic/Cape_Verde"
-msgstr "Atlantico/Capo_Verde"
+msgstr "Атлантик/Зеленортска_Острва"
 
 #: ../src/timezone_names.c:302
 msgid "Atlantic/Faeroe"
-msgstr "Atlantico/Faeroe"
+msgstr "Атлантик/Фарска_острва"
 
 #: ../src/timezone_names.c:303
 msgid "Atlantic/Jan_Mayen"
-msgstr "Atlantico/Jan_Mayen"
+msgstr "Атлантик/Јан_Мајен"
 
 #: ../src/timezone_names.c:304
 msgid "Atlantic/Madeira"
-msgstr "Atlantico/Madera"
+msgstr "Атлантик/Мадеира"
 
 #: ../src/timezone_names.c:305
 msgid "Atlantic/Reykjavik"
-msgstr "Atlantico/Reykjavik"
+msgstr "Атлантик/Рејкјавик"
 
 #: ../src/timezone_names.c:306
 msgid "Atlantic/South_Georgia"
-msgstr "Atlantico/_Georgia del Sud"
+msgstr "Атлантик/Јужна_Џорџија"
 
 #: ../src/timezone_names.c:307
 msgid "Atlantic/St_Helena"
-msgstr "Atlantico/Sant'_Elena"
+msgstr "Атлантик/Св_Јелена"
 
 #: ../src/timezone_names.c:308
 msgid "Atlantic/Stanley"
-msgstr "Atlantico/Stanley"
+msgstr "Атлантик/Стенли"
 
 #: ../src/timezone_names.c:309
 msgid "Australia"
-msgstr "Australia"
+msgstr "Аустралија"
 
 #: ../src/timezone_names.c:310
 msgid "Australia/Adelaide"
-msgstr "Australia/Adelaide"
+msgstr "Аустралија/Аделејд"
 
 #: ../src/timezone_names.c:311
 msgid "Australia/Brisbane"
-msgstr "Australia/Brisbane"
+msgstr "Аустралија/Бризбејн"
 
 #: ../src/timezone_names.c:312
 msgid "Australia/Broken_Hill"
-msgstr "Australia/Broken_Hill"
+msgstr "Аустралија/Броукен_Хил"
 
 #: ../src/timezone_names.c:313
 msgid "Australia/Darwin"
-msgstr "Australia/Darwin"
+msgstr "Аустралија/Дарвин"
 
 #: ../src/timezone_names.c:314
 msgid "Australia/Hobart"
-msgstr "Australia/Hobart"
+msgstr "Аустралија/Хобарт"
 
 #: ../src/timezone_names.c:315
 msgid "Australia/Lindeman"
-msgstr "Australia/Lindeman"
+msgstr "Аустралија/Линдерман"
 
 #: ../src/timezone_names.c:316
 msgid "Australia/Lord_Howe"
-msgstr "Australia/Lord_Howe"
+msgstr "Аустралија/Лорд_Хоу"
 
 #: ../src/timezone_names.c:317
 msgid "Australia/Melbourne"
-msgstr "Australia/Melbourne"
+msgstr "Аустралија/Мелбурн"
 
 #: ../src/timezone_names.c:318
 msgid "Australia/Perth"
-msgstr "Australia/Sydney"
+msgstr "Аустралија/Перт"
 
 #: ../src/timezone_names.c:319
 msgid "Australia/Sydney"
-msgstr "Australia/Sydney"
+msgstr "Аустралија/Сиднеј"
 
 #: ../src/timezone_names.c:320
 msgid "Europe"
-msgstr "Europa"
+msgstr "Европа"
 
 #: ../src/timezone_names.c:321
 msgid "Europe/Amsterdam"
-msgstr "Europa/Amsterdam"
+msgstr "Европа/Амстердам"
 
 #: ../src/timezone_names.c:322
 msgid "Europe/Andorra"
-msgstr "Europa/Andorra"
+msgstr "Европа/Андора"
 
 #: ../src/timezone_names.c:323
 msgid "Europe/Athens"
-msgstr "Europa/Atene"
+msgstr "Европа/Атина"
 
 #: ../src/timezone_names.c:324
 msgid "Europe/Belfast"
-msgstr "Europa/Belfast"
+msgstr "Европа/Белфаст"
 
 #: ../src/timezone_names.c:325
 msgid "Europe/Belgrade"
-msgstr "Europa/Belgrado"
+msgstr "Европа/Београд"
 
 #: ../src/timezone_names.c:326
 msgid "Europe/Berlin"
-msgstr "Europa/Berlino"
+msgstr "Европа/Берлин"
 
 #: ../src/timezone_names.c:327
 msgid "Europe/Bratislava"
-msgstr "Europa/Bratislava"
+msgstr "Европа/Братислава"
 
 #: ../src/timezone_names.c:328
 msgid "Europe/Brussels"
-msgstr "Europa/Bruxelles"
+msgstr "Европа/Брисел"
 
 #: ../src/timezone_names.c:329
 msgid "Europe/Bucharest"
-msgstr "Europe/Bucarest"
+msgstr "Европа/Букурешт"
 
 #: ../src/timezone_names.c:330
 msgid "Europe/Budapest"
-msgstr "Europa/Budapest"
+msgstr "Европа/Будимпешта"
 
 #: ../src/timezone_names.c:331
 msgid "Europe/Chisinau"
-msgstr "Europa/Chisinau"
+msgstr "Европа/Чисинау"
 
 #: ../src/timezone_names.c:332
 msgid "Europe/Copenhagen"
-msgstr "Europa/Copenaghen"
+msgstr "Европа/Копенхаген"
 
 #: ../src/timezone_names.c:333
 msgid "Europe/Dublin"
-msgstr "Europa/Dublino"
+msgstr "Европа/Даблин"
 
 #: ../src/timezone_names.c:334
 msgid "Europe/Gibraltar"
-msgstr "Europa/Gibilterra"
+msgstr "Европа/Гибралтар"
 
 #: ../src/timezone_names.c:335
 msgid "Europe/Helsinki"
-msgstr "Europa/Helsinki"
+msgstr "Европа/Хелсинки"
 
 #: ../src/timezone_names.c:336
 msgid "Europe/Istanbul"
-msgstr "Europa/Istanbul"
+msgstr "Европа/Истамбул"
 
 #: ../src/timezone_names.c:337
 msgid "Europe/Kaliningrad"
-msgstr "Europa/Kaliningrad"
+msgstr "Европа/Калињинград"
 
 #: ../src/timezone_names.c:338
 msgid "Europe/Kiev"
-msgstr "Europa/Kiev"
+msgstr "Европа/Кијев"
 
 #: ../src/timezone_names.c:339
 msgid "Europe/Lisbon"
-msgstr "Europa/Lisbona"
+msgstr "Европа/Лисабон"
 
 #: ../src/timezone_names.c:340
 msgid "Europe/Ljubljana"
-msgstr "Europa/Lubiana"
+msgstr "Европа/Љубљана"
 
 #: ../src/timezone_names.c:341
 msgid "Europe/London"
-msgstr "Europa/Londra"
+msgstr "Европа/Лондон"
 
 #: ../src/timezone_names.c:342
 msgid "Europe/Luxembourg"
-msgstr "Europa/Lussemburgo"
+msgstr "Европа/Луксембург"
 
 #: ../src/timezone_names.c:343
 msgid "Europe/Madrid"
-msgstr "Europa/Madrid"
+msgstr "Европа/Мадрид"
 
 #: ../src/timezone_names.c:344
 msgid "Europe/Malta"
-msgstr "Europa/Malta"
+msgstr "Европа/Малта"
 
 #: ../src/timezone_names.c:345
 msgid "Europe/Minsk"
-msgstr "Europa/Minsk"
+msgstr "Европа/Минск"
 
 #: ../src/timezone_names.c:346
 msgid "Europe/Monaco"
-msgstr "Europa/Monaco"
+msgstr "Европа/Монако"
 
 #: ../src/timezone_names.c:347
 msgid "Europe/Moscow"
-msgstr "Europa/Mosca"
+msgstr "Европа/Москва"
 
 #: ../src/timezone_names.c:348
 msgid "Europe/Nicosia"
-msgstr "Europa/Nicosia"
+msgstr "Европа/Никозија"
 
 #: ../src/timezone_names.c:349
 msgid "Europe/Oslo"
-msgstr "Europa/Oslo"
+msgstr "Европа/Осло"
 
 #: ../src/timezone_names.c:350
 msgid "Europe/Paris"
-msgstr "Europa/Parigi"
+msgstr "Европа/Париз"
 
 #: ../src/timezone_names.c:351
 msgid "Europe/Prague"
-msgstr "Europa/Praga"
+msgstr "Европа/Праг"
 
 #: ../src/timezone_names.c:352
 msgid "Europe/Riga"
-msgstr "Europa/Riga"
+msgstr "Европа/Рига"
 
 #: ../src/timezone_names.c:353
 msgid "Europe/Rome"
-msgstr "Europa/Roma"
+msgstr "Европа/Рим"
 
 #: ../src/timezone_names.c:354
 msgid "Europe/Samara"
-msgstr "Europa/Samara"
+msgstr "Европа/Самара"
 
 #: ../src/timezone_names.c:355
 msgid "Europe/San_Marino"
-msgstr "Europa/San_Marino"
+msgstr "Европа/Сан_Марино"
 
 #: ../src/timezone_names.c:356
 msgid "Europe/Sarajevo"
-msgstr "Europa/Sarajevo"
+msgstr "Европа/Сарајево"
 
 #: ../src/timezone_names.c:357
 msgid "Europe/Simferopol"
-msgstr "Europa/Simferopol'"
+msgstr "Европа/Севастопољ"
 
 #: ../src/timezone_names.c:358
 msgid "Europe/Skopje"
-msgstr "Europa/Skopje"
+msgstr "Европа/Скопље"
 
 #: ../src/timezone_names.c:359
 msgid "Europe/Sofia"
-msgstr "Europa/Sofia"
+msgstr "Европа/Софија"
 
 #: ../src/timezone_names.c:360
 msgid "Europe/Stockholm"
-msgstr "Europa/Stoccolma"
+msgstr "Европа/Штокхолм"
 
 #: ../src/timezone_names.c:361
 msgid "Europe/Tallinn"
-msgstr "Europa/Tallinn"
+msgstr "Европа/Талин"
 
 #: ../src/timezone_names.c:362
 msgid "Europe/Tirane"
-msgstr "Europa/Tirana"
+msgstr "Европа/Тирана"
 
 #: ../src/timezone_names.c:363
 msgid "Europe/Uzhgorod"
-msgstr "Europa/Užhorod"
+msgstr "Европа/Ужгород"
 
 #: ../src/timezone_names.c:364
 msgid "Europe/Vaduz"
-msgstr "Europa/Vaduz"
+msgstr "Европа/Вадуц"
 
 #: ../src/timezone_names.c:365
 msgid "Europe/Vatican"
-msgstr "Europa/Vaticano"
+msgstr "Европа/Ватикан"
 
 #: ../src/timezone_names.c:366
 msgid "Europe/Vienna"
-msgstr "Europa/Vienna"
+msgstr "Европа/Беч"
 
 #: ../src/timezone_names.c:367
 msgid "Europe/Vilnius"
-msgstr "Europa/Vilnius"
+msgstr "Европа/Вилнус"
 
 #: ../src/timezone_names.c:368
 msgid "Europe/Warsaw"
-msgstr "Europa/Varsavia"
+msgstr "Европа/Варшава"
 
 #: ../src/timezone_names.c:369
 msgid "Europe/Zagreb"
-msgstr "Europa/Zagabria"
+msgstr "Европа/Загреб"
 
 #: ../src/timezone_names.c:370
 msgid "Europe/Zaporozhye"
-msgstr "Europa/Zaporizhia"
+msgstr "Европа/Запорожје"
 
 #: ../src/timezone_names.c:371
 msgid "Europe/Zurich"
-msgstr "Europa/Zurigo"
+msgstr "Европа/Цирих"
 
 #: ../src/timezone_names.c:372
 msgid "Indian"
-msgstr "Indiano"
+msgstr "Индијски"
 
 #: ../src/timezone_names.c:373
 msgid "Indian/Antananarivo"
-msgstr "Indiano/Antananarivo"
+msgstr "Индијски_океан/Антанариво"
 
 #: ../src/timezone_names.c:374
 msgid "Indian/Chagos"
-msgstr "Indiano/Chagos"
+msgstr "Индијски_океан/Чагос"
 
 #: ../src/timezone_names.c:375
 msgid "Indian/Christmas"
-msgstr "Indiano/Natale"
+msgstr "Индијски_океан/Божићна_острва"
 
 #: ../src/timezone_names.c:376
 msgid "Indian/Cocos"
-msgstr "Indiano/Cocos"
+msgstr "Индијски_океан/Кокос"
 
 #: ../src/timezone_names.c:377
 msgid "Indian/Comoro"
-msgstr "Indiano/Comore"
+msgstr "Индијски_океан/Коморо"
 
 #: ../src/timezone_names.c:378
 msgid "Indian/Kerguelen"
-msgstr "Indiano/Kerguelen"
+msgstr "Индијски_океан/Кергулен"
 
 #: ../src/timezone_names.c:379
 msgid "Indian/Mahe"
-msgstr "Indiano/Mahé"
+msgstr "Индијски_океан/Махе"
 
 #: ../src/timezone_names.c:380
 msgid "Indian/Maldives"
-msgstr "Indiano/Maldive"
+msgstr "Индијски_океан/Малдиви"
 
 #: ../src/timezone_names.c:381
 msgid "Indian/Mauritius"
-msgstr "Indiano/Mauritius"
+msgstr "Индијски_океан/Маурицијус"
 
 #: ../src/timezone_names.c:382
 msgid "Indian/Mayotte"
-msgstr "Indiano/Mayotte"
+msgstr "Индијски_океан/Мајот"
 
 #: ../src/timezone_names.c:383
 msgid "Indian/Reunion"
-msgstr "Indiano/Riunione"
+msgstr "Индијски_океан/Реунион"
 
 #: ../src/timezone_names.c:384
 msgid "Pacific"
-msgstr "Pacifico"
+msgstr "Пацифик"
 
 #: ../src/timezone_names.c:385
 msgid "Pacific/Apia"
-msgstr "Pacifico/Apia"
+msgstr "Пацифик/Апија"
 
 #: ../src/timezone_names.c:386
 msgid "Pacific/Auckland"
-msgstr "Pacifico/Auckland"
+msgstr "Пацифик/Оукленд"
 
 #: ../src/timezone_names.c:387
 msgid "Pacific/Chatham"
-msgstr "Pacifico/Chatham"
+msgstr "Пацифик/Чатам"
 
 #: ../src/timezone_names.c:388
 msgid "Pacific/Easter"
-msgstr "Pacifico/Pasqua"
+msgstr "Пацифик/Ускршња_острва"
 
 #: ../src/timezone_names.c:389
 msgid "Pacific/Efate"
-msgstr "Pacifico/Éfaté"
+msgstr "Пацифик/Ефат"
 
 #: ../src/timezone_names.c:390
 msgid "Pacific/Enderbury"
-msgstr "Pacifico/Enderbury"
+msgstr "Пацифик/Ендербури"
 
 #: ../src/timezone_names.c:391
 msgid "Pacific/Fakaofo"
-msgstr "Pacifico/Fakaofo"
+msgstr "Пацифик/Факаофо"
 
 #: ../src/timezone_names.c:392
 msgid "Pacific/Fiji"
-msgstr "Pacifico/Figi"
+msgstr "Пацифик/Фиџи"
 
 #: ../src/timezone_names.c:393
 msgid "Pacific/Funafuti"
-msgstr "Pacifico/Funafuti"
+msgstr "Пацифик/Фунафути"
 
 #: ../src/timezone_names.c:394
 msgid "Pacific/Galapagos"
-msgstr "Pacifico/Galapagos"
+msgstr "Пацифик/Галапагос"
 
 #: ../src/timezone_names.c:395
 msgid "Pacific/Gambier"
-msgstr "Pacifico/Gambier"
+msgstr "Пацифик/Гамбјер"
 
 #: ../src/timezone_names.c:396
 msgid "Pacific/Guadalcanal"
-msgstr "Pacifico/Guadalcanal"
+msgstr "Пацифик/Гвадалканал"
 
 #: ../src/timezone_names.c:397
 msgid "Pacific/Guam"
-msgstr "Pacifico/Guam"
+msgstr "Пацифик/Гуам"
 
 #: ../src/timezone_names.c:398
 msgid "Pacific/Honolulu"
-msgstr "Pacifico/Honolulu"
+msgstr "Пацифик/Хонолулу"
 
 #: ../src/timezone_names.c:399
 msgid "Pacific/Johnston"
-msgstr "Pacifico/Johnston"
+msgstr "Пацифик/Џонстон"
 
 #: ../src/timezone_names.c:400
 msgid "Pacific/Kiritimati"
-msgstr "Pacifico/Kiritimati"
+msgstr "Пацифик/Киритимати"
 
 #: ../src/timezone_names.c:401
 msgid "Pacific/Kosrae"
-msgstr "Pacifico/Kosrae"
+msgstr "Пацифик/Косре"
 
 #: ../src/timezone_names.c:402
 msgid "Pacific/Kwajalein"
-msgstr "Pacifico/Kwajalein"
+msgstr "Пацифик/Квајалајн"
 
 #: ../src/timezone_names.c:403
 msgid "Pacific/Majuro"
-msgstr "Pacifico/Majuro"
+msgstr "Пацифик/Маџуро"
 
 #: ../src/timezone_names.c:404
 msgid "Pacific/Marquesas"
-msgstr "Pacifico/Marchesi"
+msgstr "Пацифик/Маркесас"
 
 #: ../src/timezone_names.c:405
 msgid "Pacific/Midway"
-msgstr "Pacifico/Midway"
+msgstr "Пацифик/Мидвеј"
 
 #: ../src/timezone_names.c:406
 msgid "Pacific/Nauru"
-msgstr "Pacifico/Nauru"
+msgstr "Пацифик/Науру"
 
 #: ../src/timezone_names.c:407
 msgid "Pacific/Niue"
-msgstr "Pacifico/Niue"
+msgstr "Пацифик/Нјуе"
 
 #: ../src/timezone_names.c:408
 msgid "Pacific/Norfolk"
-msgstr "Pacifico/Norfolk"
+msgstr "Пацифик/Норфолк"
 
 #: ../src/timezone_names.c:409
 msgid "Pacific/Noumea"
-msgstr "Pacifico/Nouméa"
+msgstr "Пацифик/Нума"
 
 #: ../src/timezone_names.c:410
 msgid "Pacific/Pago_Pago"
-msgstr "Pacifico/Pago_Pago"
+msgstr "Пацифик/Паго_Паго"
 
 #: ../src/timezone_names.c:411
 msgid "Pacific/Palau"
-msgstr "Pacifico/Palau"
+msgstr "Пацифик/Палау"
 
 #: ../src/timezone_names.c:412
 msgid "Pacific/Pitcairn"
-msgstr "Pacifico/Pitcairn"
+msgstr "Пацифик/Питкарн"
 
 #: ../src/timezone_names.c:413
 msgid "Pacific/Ponape"
-msgstr "Pacifico/Ponape"
+msgstr "Пацифик/Понап"
 
 #: ../src/timezone_names.c:414
 msgid "Pacific/Port_Moresby"
-msgstr "Pacifico/Port_Moresby"
+msgstr "Пацифик/Порт_Моресби"
 
 #: ../src/timezone_names.c:415
 msgid "Pacific/Rarotonga"
-msgstr "Pacifico/Rarotonga"
+msgstr "Пацифик/Раротонга"
 
 #: ../src/timezone_names.c:416
 msgid "Pacific/Saipan"
-msgstr "Pacifico/Saipan"
+msgstr "Пацифик/Сајпан"
 
 #: ../src/timezone_names.c:417
 msgid "Pacific/Tahiti"
-msgstr "Pacifico/Tahiti"
+msgstr "Пацифик/Тахити"
 
 #: ../src/timezone_names.c:418
 msgid "Pacific/Tarawa"
-msgstr "Pacifico/Tarawa"
+msgstr "Пацифик/Тарава"
 
 #: ../src/timezone_names.c:419
 msgid "Pacific/Tongatapu"
-msgstr "Pacifico/Tongatapu"
+msgstr "Пацифик/Тонгатапу"
 
 #: ../src/timezone_names.c:420
 msgid "Pacific/Truk"
-msgstr "Pacifico/Truk"
+msgstr "Пацифик/Трук"
 
 #: ../src/timezone_names.c:421
 msgid "Pacific/Wake"
-msgstr "Pacifico/Wake"
+msgstr "Пацифик/Вејк"
 
 #: ../src/timezone_names.c:422
 msgid "Pacific/Wallis"
-msgstr "Pacifico/Wallis"
+msgstr "Пацифик/Волис"
 
 #: ../src/timezone_names.c:423
 msgid "Pacific/Yap"
-msgstr "Pacifico/Yap"
+msgstr "Пацифик/Јап"
 
 #: ../src/tray_icon.c:469
 msgid "New appointment"
-msgstr "Nuovo appuntamento"
+msgstr "Нови састанак"
 
 #: ../src/tray_icon.c:485
 msgid "About Orage"
-msgstr "Informazioni su Orage"
+msgstr "О Оражу"
 
 #: ../panel-plugin/xfce4-orageclock-plugin.desktop.in.in.h:1
 msgid "Orage Panel Clock"
-msgstr "Orologio di Orage per il pannello"
+msgstr "Ораж панелни часовник"
 
 #: ../panel-plugin/xfce4-orageclock-plugin.desktop.in.in.h:2
 msgid "Show time and date?"
-msgstr "Mostrare ora e data?"
+msgstr "Да прикажем време и датум?"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:1
 #: ../xfcalendar.desktop.in.h:1
 msgid "Calendar"
-msgstr "Calendario"
+msgstr "Календар"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:2
 msgid "Orage Calendar Preferences"
-msgstr "Preferenze del calendario di Orage"
+msgstr "Поставке Оражовог календара"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:3
 msgid "Orage preferences"
-msgstr "Preferenze di Orage"
+msgstr "Поставке Оража"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:4
 msgid "Settings for the Xfce 4 Calendar Application (Orage)"
-msgstr "Impostazioni per l'applicazione Calendario di Xfce4 (Orage)"
+msgstr "Подешавања за календар Иксфце-а 4 (Ораже)"
 
 #: ../xfcalendar.desktop.in.h:2
 msgid "Desktop calendar"
-msgstr "Calendario per la scrivania"
+msgstr "Календар радне површи"
 
 #: ../xfcalendar.desktop.in.h:3
 msgid "Orage Calendar"
-msgstr "Calendario di Orage"
-
-#~ msgid ""
-#~ "Title: %s\n"
-#~ " Start:\t%s\n"
-#~ " Due:\t%s\n"
-#~ " Done:\t%s\n"
-#~ "Note:\n"
-#~ "%s"
-#~ msgstr ""
-#~ "Titolo: %s\n"
-#~ " Inizio:\t%s\n"
-#~ " Scadenza:\t%s\n"
-#~ " Fatto:\t%s\n"
-#~ "Commento:\n"
-#~ "%s"
-
-#~ msgid ""
-#~ "You must enter all escape etc characters yourself.\n"
-#~ " This string is just given to shell to process"
-#~ msgstr ""
-#~ "Si devono inserire tutti i caratteri di escape;\n"
-#~ " Questa stringa viene trasferita alla linea di comando per eseguirla"
-
-#~ msgid "Orage clock"
-#~ msgstr "Orologio di Orage"
-
-#~ msgid "Original creator, retired maintainer"
-#~ msgstr "Creatore originale, mantenitore ritirato"
-
-#~ msgid "Contributor"
-#~ msgstr "Collaboratore"
-
-#~ msgid "Info"
-#~ msgstr "Informazioni"
-
-#~ msgid "Warning"
-#~ msgstr "Avviso"
-
-#~ msgid "Error"
-#~ msgstr "Errore"
-
-#~ msgid "Set sticked"
-#~ msgstr "Blocca"
-
-#~ msgid "Select always today"
-#~ msgstr "Seleziona sempre oggi"
-
-#~ msgid ""
-#~ "When showing main calendar, set pointer to either previously selected day "
-#~ "or always to current day."
-#~ msgstr ""
-#~ "Quando mostra il calendario principale, colloca l'indicatore o sul giorno "
-#~ "selezionato in precedenza o sempre sul giorno corrente"
-
-#~ msgid "Ending time adjustment mode"
-#~ msgstr "Fine modalità correzione dell'ora"
-
-#~ msgid "Starting time adjustment mode"
-#~ msgstr "Avvio modalità correzione dell'ora"
-
-#~ msgid "adjust to change minute"
-#~ msgstr "regolare per cambiare i minuti"
-
-#~ msgid "Vary"
-#~ msgstr "Varia"
-
-#~ msgid "Select timezone"
-#~ msgstr "Selezionare fuso orario"
-
-#~ msgid "Modify Clock "
-#~ msgstr "Modifica Orologio"
-
-#~ msgid ""
-#~ "enter timezone of clock,\n"
-#~ "(=any valid TZ value)"
-#~ msgstr ""
-#~ "inserire il fuso orario dell'orologio,\n"
-#~ "(=qualsiasi valore TZ valido)"
-
-#~ msgid "Modify Preferences"
-#~ msgstr "Modifica preferenze"
-
-#~ msgid ""
-#~ "Enter local timezone. (it is used to show if time is on previous(-) or "
-#~ "next date(+) by adding a +/- after the time)"
-#~ msgstr ""
-#~ "Inserire il fuso orario locale (viene usato per mostrare se l'ora si "
-#~ "riferisca alla data immediatamente precedente(-) o successiva(+) "
-#~ "aggiungendo un +/- dopo l'ora)."
-
-#~ msgid "Set any valid timezone (=TZ) value or pick one from the list."
-#~ msgstr ""
-#~ "Impostare un valore di fuso orario (=TZ) valido o sceglierne uno "
-#~ "dall'elenco."
-
-#~ msgid "show line _1:"
-#~ msgstr "mostra riga _1:"
-
-#~ msgid "show line _2:"
-#~ msgstr "mostra riga _2:"
-
-#~ msgid "show line _3:"
-#~ msgstr "mostra riga _3:"
-
-#~ msgid "Properties"
-#~ msgstr "Proprietà"
-
-#~ msgid "Failed to launch 'orage -p'"
-#~ msgstr "Avvio di «orage -p» fallito"
-
-#~ msgid ""
-#~ "<D> inserts current date in local date format.\n"
-#~ "<T> inserts time and\n"
-#~ "<DT> inserts date and time."
-#~ msgstr ""
-#~ "<D> inserire la data corrente nel formato di data locale.\n"
-#~ "<T> inserire l'ora e\n"
-#~ "<DT> inserire data e ora."
-
-#~ msgid "Show event list"
-#~ msgstr "Mostra lista eventi"
-
-#~ msgid "(0 = use static icon)"
-#~ msgstr "(0 = usa icona statica)"
-
-#~ msgid ""
-#~ "Dynamic icon shows current day and month. It is visible only in tray. If "
-#~ "tray is too small for dynamic icon size, Orage switches automatically "
-#~ "back to static icon."
-#~ msgstr ""
-#~ "L'icona dinamica mostra il giorno e il mese correnti. È visibile "
-#~ "solamente nell'area di notifica. Se l'area è troppo piccola per le "
-#~ "dimensioni dell'icona dinamica, Orage tornerà automaticamente all'icona "
-#~ "statica."
-
-#~ msgid "Calendar Settings"
-#~ msgstr "Impostazioni del calendario"
-
-#~ msgid "Xfce 4 Calendar Settings"
-#~ msgstr "Impostazioni del calendario di Xfce 4"
-
-#~ msgid "Monday"
-#~ msgstr "Oggi"
-
-#~ msgid "Tuesday"
-#~ msgstr "Oggi"
-
-#~ msgid "Wednesday"
-#~ msgstr "2 giorni"
-
-#~ msgid "Thursday"
-#~ msgstr "Oggi"
-
-#~ msgid "Friday"
-#~ msgstr "2 giorni"
-
-#~ msgid "Sunday"
-#~ msgstr "2 giorni"
-
-#~ msgid "Days"
-#~ msgstr "2 giorni"
-
-#~ msgid "%m/%d/%Y"
-#~ msgstr "%d/%m/%Y"
-
-#~ msgid "Calendar Files"
-#~ msgstr "Calendario"
-
-#~ msgid "Hidden"
-#~ msgstr "Nascondi"
-
-#~ msgid "3 months"
-#~ msgstr "3 mesi"
-
-#~ msgid "6 months"
-#~ msgstr "6 mesi"
-
-#~ msgid "1 year"
-#~ msgstr "1 anno"
-
-#~ msgid "Application"
-#~ msgstr "Applicazione"
-
-#~ msgid "Core developer"
-#~ msgstr "Sviluppatore principale"
-
-#~ msgid ""
-#~ "You will remove all information \n"
-#~ "associated with this date."
-#~ msgstr ""
-#~ "Rimuoverai ogni informazione \n"
-#~ "associata a questa data."
-
-#~ msgid "Clear"
-#~ msgstr "Pulisci"
-
-#~ msgid "This should not happen"
-#~ msgstr "Questo non dovrebbe succedere"
-
-#~ msgid "Cannot create MCS client channel"
-#~ msgstr "Impossibile creare il canale del client MCS"
+msgstr "Ораж календар"
