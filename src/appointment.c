@@ -1274,8 +1274,14 @@ static void on_appRevert_clicked_cb(GtkWidget *b, gpointer *user_data)
 static void on_Date_button_clicked_cb(GtkWidget *button, gpointer *user_data)
 {
     appt_win *apptw = (appt_win *)user_data;
+    GtkWidget *selDate_dialog;
 
-    if (orage_date_button_clicked(button, apptw->Window))
+    selDate_dialog = gtk_dialog_new_with_buttons(
+            _("Pick the date"), GTK_WINDOW(apptw->Window),
+            GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
+            _("Today"), 1, GTK_STOCK_OK, GTK_RESPONSE_ACCEPT, NULL);
+
+    if (orage_date_button_clicked(button, selDate_dialog))
         mark_appointment_changed(apptw);
 }
 
@@ -1283,8 +1289,14 @@ static void on_recur_Date_button_clicked_cb(GtkWidget *button
         , gpointer *user_data)
 {
     appt_win *apptw = (appt_win *)user_data;
+    GtkWidget *selDate_dialog;
 
-    if (orage_date_button_clicked(button, apptw->Window))
+    selDate_dialog = gtk_dialog_new_with_buttons(
+            _("Pick the date"), GTK_WINDOW(apptw->Window),
+            GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
+            _("Today"), 1, GTK_STOCK_OK, GTK_RESPONSE_ACCEPT, NULL);
+
+    if (orage_date_button_clicked(button, selDate_dialog))
         mark_appointment_changed(apptw);
     refresh_recur_calendars((appt_win *)user_data);
 }

@@ -385,8 +385,14 @@ static void on_spin_changed(GtkSpinButton *b, gpointer *user_data)
 static void on_Date_button_clicked_cb(GtkWidget *button, gpointer *user_data)
 {
     day_win *dw = (day_win *)user_data;
+    GtkWidget *selDate_dialog;
 
-    if (orage_date_button_clicked(button, dw->Window))
+     selDate_dialog = gtk_dialog_new_with_buttons(
+             _("Pick the date"), GTK_WINDOW(dw->Window),
+             GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
+             _("Today"), 1, GTK_STOCK_OK, GTK_RESPONSE_ACCEPT, NULL);
+
+    if (orage_date_button_clicked(button, selDate_dialog))
         refresh_day_win(dw);
 }
 

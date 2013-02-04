@@ -129,15 +129,18 @@ GtkWidget *orage_create_combo_box_with_content(char *text[], int size)
     return(combo_box);
 }
 
-gboolean orage_date_button_clicked(GtkWidget *button, GtkWidget *win)
+gboolean orage_date_button_clicked(GtkWidget *button, GtkWidget *selDate_dialog)
 {
-    GtkWidget *selDate_dialog;
+/*  GtkWidget *selDate_dialog; */
     GtkWidget *selDate_calendar;
     gint result;
     char *new_date=NULL, *cur_date;
     struct tm cur_t;
     gboolean changed, allocated=FALSE;
 
+    /*
+       For some unknown reason NLS does not work in this file, so this
+       has to be done in the main code:
     selDate_dialog = gtk_dialog_new_with_buttons(
             _("Pick the date"), GTK_WINDOW(win),
             GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
@@ -146,6 +149,7 @@ gboolean orage_date_button_clicked(GtkWidget *button, GtkWidget *win)
             GTK_STOCK_OK,
             GTK_RESPONSE_ACCEPT,
             NULL);
+            */
 
     selDate_calendar = gtk_calendar_new();
     gtk_container_add(GTK_CONTAINER(GTK_DIALOG(selDate_dialog)->vbox)

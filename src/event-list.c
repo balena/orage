@@ -972,7 +972,14 @@ static void on_journal_start_button_clicked(GtkWidget *button
         , gpointer *user_data)
 {
     el_win *el = (el_win *)user_data;
-    if (orage_date_button_clicked(button, el->Window))
+    GtkWidget *selDate_dialog;
+
+    selDate_dialog = gtk_dialog_new_with_buttons(
+            _("Pick the date"), GTK_WINDOW(el->Window),
+            GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
+            _("Today"), 1, GTK_STOCK_OK, GTK_RESPONSE_ACCEPT, NULL);
+
+    if (orage_date_button_clicked(button, selDate_dialog))
         refresh_el_win(el);
 }
 
