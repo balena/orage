@@ -11,19 +11,19 @@
 # event      - 予定
 # journal    - 記録
 # appointment - 用件
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: orage 4.5.9.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-03 14:00+0200\n"
-"PO-Revision-Date: 2012-04-14 15:31+0900\n"
+"POT-Creation-Date: 2013-02-04 21:48+0900\n"
+"PO-Revision-Date: 2013-02-04 22:11+0900\n"
 "Last-Translator: Masato Hashimoto <cabezon.hashimoto@gmail.com>\n"
 "Language-Team: Japanese <xfce-users-jp@ml.fdiary.net>\n"
+"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: ja\n"
 "X-Poedit-Language: Japanese\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
@@ -62,11 +62,8 @@ msgid "adjust to change hour"
 msgstr "時を調整してください"
 
 #: ../globaltime/globaltime.c:496
-msgid ""
-"adjust to change minute. Click arrows with button 2 to change only 1 minute."
-msgstr ""
-"分を調整してください。ボタン 2 で矢印ボタンをクリックすると 1 分ずつ変更しま"
-"す。"
+msgid "adjust to change minute. Click arrows with button 2 to change only 1 minute."
+msgstr "分を調整してください。ボタン 2 で矢印ボタンをクリックすると 1 分ずつ変更します。"
 
 #: ../globaltime/gt_prefs.c:265 ../globaltime/gt_prefs.c:266
 msgid "NEW"
@@ -127,7 +124,7 @@ msgstr "世界時計設定 "
 #. -----------------------HEADING-------------------------------------------
 #: ../globaltime/gt_prefs.c:603
 msgid "Clock Parameters"
-msgstr "時計のパラメタ"
+msgstr "時計のパラメーター"
 
 #: ../globaltime/gt_prefs.c:607
 msgid "Name of the clock:"
@@ -345,10 +342,10 @@ msgstr "変更なし"
 #: ../globaltime/timezone_selection.c:247
 #: ../globaltime/timezone_selection.c:252
 #: ../panel-plugin/timezone_selection.c:248
-#: ../panel-plugin/timezone_selection.c:253 ../src/appointment.c:2663
+#: ../panel-plugin/timezone_selection.c:253 ../src/appointment.c:2664
 #: ../src/timezone_selection.c:259 ../src/timezone_selection.c:264
 msgid "Location"
-msgstr "現在地"
+msgstr "場所"
 
 #: ../globaltime/timezone_selection.c:258
 #: ../panel-plugin/timezone_selection.c:259 ../src/timezone_selection.c:270
@@ -407,17 +404,17 @@ msgstr "UTC"
 msgid "floating"
 msgstr "フローティング"
 
-#: ../globaltime/globaltime.desktop.in.h:1 ../src/tray_icon.c:500
-msgid "Globaltime"
-msgstr "世界時計"
-
-#: ../globaltime/globaltime.desktop.in.h:2
+#: ../globaltime/globaltime.desktop.in.h:1
 msgid "Orage Globaltime"
 msgstr "Orage 世界時計"
 
-#: ../globaltime/globaltime.desktop.in.h:3
+#: ../globaltime/globaltime.desktop.in.h:2
 msgid "Show clocks from different countries"
 msgstr "様々な地域の時刻を表示します。"
+
+#: ../globaltime/globaltime.desktop.in.h:3 ../src/tray_icon.c:500
+msgid "Globaltime"
+msgstr "世界時計"
 
 #: ../panel-plugin/oc_config.c:224
 msgid "Appearance"
@@ -484,17 +481,8 @@ msgid "fix time after suspend/hibernate"
 msgstr "サスペンド/ハイバネート後に時刻を合わせる"
 
 #: ../panel-plugin/oc_config.c:415
-msgid ""
-"You only need this if you do short term (less than 5 hours) suspend or "
-"hibernate and your visible time does not include seconds. Under these "
-"circumstances it is possible that Orageclock shows time inaccurately unless "
-"you have this selected. (Selecting this prevents cpu and interrupt saving "
-"features from working.)"
-msgstr ""
-"このオプションは短時間 (5時間以下) のサスペンドまたはハイバネートを行い、時刻"
-"に秒を表示していない場合にのみ必要となります。その条件下でこのオプションを設"
-"定していない場合、 Orage 時計は不正確な時刻を表示する可能性があります (これを"
-"設定すると CPU および割り込み保存が動作するのを抑止します)。"
+msgid "You only need this if you do short term (less than 5 hours) suspend or hibernate and your visible time does not include seconds. Under these circumstances it is possible that Orageclock shows time inaccurately unless you have this selected. (Selecting this prevents cpu and interrupt saving features from working.)"
+msgstr "このオプションは短時間 (5時間以下) のサスペンドまたはハイバネートを行い、時刻に秒を表示していない場合にのみ必要となります。その条件下でこのオプションを設定していない場合、 Orage 時計は不正確な時刻を表示する可能性があります (これを設定すると CPU および割り込み保存が動作するのを抑止します)。"
 
 #: ../panel-plugin/oc_config.c:432
 msgid ""
@@ -546,152 +534,152 @@ msgstr "あなたの時間を管理します"
 #. if (gtk_toggle_button_get_active(
 #. GTK_TOGGLE_BUTTON(apptw->Type_journal_rb)))
 #. end time
-#: ../src/appointment.c:313 ../src/appointment.c:353 ../src/appointment.c:2692
+#: ../src/appointment.c:314 ../src/appointment.c:354 ../src/appointment.c:2693
 msgid "End"
 msgstr "終了"
 
-#: ../src/appointment.c:333
+#: ../src/appointment.c:334
 msgid "Due"
 msgstr "締切"
 
-#: ../src/appointment.c:493 ../src/mainbox.c:783
+#: ../src/appointment.c:494 ../src/mainbox.c:832
 msgid "Orage"
 msgstr "Orage"
 
 #. to avoid timing problems when updating entry
 #. Create file chooser
-#: ../src/appointment.c:672 ../src/interface.c:277 ../src/parameters.c:416
+#: ../src/appointment.c:673 ../src/interface.c:277 ../src/parameters.c:416
 msgid "Select a file..."
 msgstr "ファイルを選択してください..."
 
-#: ../src/appointment.c:680
+#: ../src/appointment.c:681
 msgid "Sound Files"
 msgstr "サウンドファイル"
 
-#: ../src/appointment.c:687 ../src/interface.c:290
+#: ../src/appointment.c:688 ../src/interface.c:290
 msgid "All Files"
 msgstr "すべてのファイル"
 
-#: ../src/appointment.c:739
+#: ../src/appointment.c:740
 msgid "The appointment information has been modified."
 msgstr "この用件情報は変更されています。"
 
-#: ../src/appointment.c:740 ../src/appointment.c:1194 ../src/event-list.c:919
+#: ../src/appointment.c:741 ../src/appointment.c:1195 ../src/event-list.c:922
 msgid "Do you want to continue?"
 msgstr "続行しますか?"
 
-#: ../src/appointment.c:767
+#: ../src/appointment.c:768
 msgid "The end of this appointment is earlier than the beginning."
 msgstr "この用件の終了時刻が開始時刻よりも早くなっています。"
 
-#: ../src/appointment.c:1034 ../src/appointment.c:1812
+#: ../src/appointment.c:1035 ../src/appointment.c:1813
 msgid "Not set"
 msgstr "設定なし"
 
-#: ../src/appointment.c:1193
+#: ../src/appointment.c:1194
 msgid "This appointment will be permanently removed."
 msgstr "この用件は永久に削除されます。"
 
-#: ../src/appointment.c:1692
+#: ../src/appointment.c:1693
 msgid "This appointment does not exist."
 msgstr "この用件は存在しません。"
 
-#: ../src/appointment.c:1693
+#: ../src/appointment.c:1694
 msgid "It was probably removed, please refresh your screen."
 msgstr "これはおそらく削除されています。画面を更新してください。"
 
-#: ../src/appointment.c:1995
+#: ../src/appointment.c:1996
 msgid "Current categories"
 msgstr "現在のカテゴリ"
 
-#: ../src/appointment.c:2010
+#: ../src/appointment.c:2011
 msgid "Add new category with color"
 msgstr "新規カテゴリを色付きで追加します"
 
-#: ../src/appointment.c:2014
+#: ../src/appointment.c:2015
 msgid "Category:"
 msgstr "カテゴリ:"
 
-#: ../src/appointment.c:2045
+#: ../src/appointment.c:2046
 msgid "Colors of categories - Orage"
 msgstr "カテゴリの色 - Orage"
 
-#: ../src/appointment.c:2092
+#: ../src/appointment.c:2093
 msgid " *** COPY ***"
 msgstr "*** コピー ***"
 
-#: ../src/appointment.c:2353
+#: ../src/appointment.c:2354
 msgid "New appointment - Orage"
 msgstr "新しい用件 - Orage"
 
 #. File menu stuff
 #. ********* File menu *********
 #. File menu
-#: ../src/appointment.c:2382 ../src/day-view.c:254 ../src/event-list.c:1021
+#: ../src/appointment.c:2383 ../src/day-view.c:254 ../src/event-list.c:1024
 #: ../src/interface.c:767 ../src/mainbox.c:279
 msgid "_File"
 msgstr "ファイル(_F)"
 
-#: ../src/appointment.c:2388
+#: ../src/appointment.c:2389
 msgid "Sav_e and close"
 msgstr "保存して閉じる(_E)"
 
-#: ../src/appointment.c:2401 ../src/event-list.c:1027
+#: ../src/appointment.c:2402 ../src/event-list.c:1030
 msgid "D_uplicate"
 msgstr "複製(_U)"
 
-#: ../src/appointment.c:2589
+#: ../src/appointment.c:2590
 msgid "Save"
 msgstr "保存します"
 
-#: ../src/appointment.c:2591
+#: ../src/appointment.c:2592
 msgid "Save and close"
 msgstr "保存して閉じます"
 
-#: ../src/appointment.c:2596
+#: ../src/appointment.c:2597
 msgid "Revert"
 msgstr "元に戻します"
 
-#: ../src/appointment.c:2598 ../src/event-list.c:1112
+#: ../src/appointment.c:2599 ../src/event-list.c:1115
 msgid "Duplicate"
 msgstr "複製を作成します"
 
-#: ../src/appointment.c:2603 ../src/event-list.c:1114
+#: ../src/appointment.c:2604 ../src/event-list.c:1117
 msgid "Delete"
 msgstr "削除します"
 
-#: ../src/appointment.c:2621
+#: ../src/appointment.c:2622
 msgid "Free"
 msgstr "用事なし"
 
-#: ../src/appointment.c:2621
+#: ../src/appointment.c:2622
 msgid "Busy"
 msgstr "用事あり"
 
-#: ../src/appointment.c:2625
+#: ../src/appointment.c:2626
 msgid "General"
 msgstr "一般"
 
 #. type
-#: ../src/appointment.c:2631
+#: ../src/appointment.c:2632
 msgid "Type "
 msgstr "タイプ "
 
-#: ../src/appointment.c:2633 ../src/event-list.c:1165
+#: ../src/appointment.c:2634 ../src/event-list.c:1168
 msgid "Event"
 msgstr "予定"
 
-#: ../src/appointment.c:2636
+#: ../src/appointment.c:2637
 msgid ""
 "Event that will happen sometime. For example:\n"
 "Meeting or birthday or TV show."
 msgstr "いつか起こる出来事です。例: 会議、誕生日、TV番組など"
 
-#: ../src/appointment.c:2639 ../src/event-list.c:1185
+#: ../src/appointment.c:2640 ../src/event-list.c:1188
 msgid "Todo"
 msgstr "ToDo"
 
-#: ../src/appointment.c:2642
+#: ../src/appointment.c:2643
 msgid ""
 "Something that you should do sometime. For example:\n"
 "Wash your car or test new version of Orage."
@@ -699,11 +687,11 @@ msgstr ""
 "いつかやらなければならないことです。\n"
 "例: 洗車、新しいバージョンの Orage のテストなど"
 
-#: ../src/appointment.c:2645 ../src/event-list.c:1198
+#: ../src/appointment.c:2646 ../src/event-list.c:1201
 msgid "Journal"
 msgstr "記録"
 
-#: ../src/appointment.c:2649
+#: ../src/appointment.c:2650
 msgid ""
 "Make a note that something happened. For example:\n"
 "Remark that your mother called or first snow came."
@@ -712,81 +700,79 @@ msgstr ""
 "例: お母さんが電話してきた日、初雪の日など"
 
 #. title
-#: ../src/appointment.c:2656
+#: ../src/appointment.c:2657
 msgid "Title "
 msgstr "件名 "
 
-#: ../src/appointment.c:2671
+#: ../src/appointment.c:2672
 msgid "All day event"
 msgstr "終日"
 
 #. start time
-#: ../src/appointment.c:2677 ../src/appointment.c:3342 ../src/day-view.c:697
+#: ../src/appointment.c:2678 ../src/appointment.c:3343 ../src/day-view.c:697
 msgid "Start"
 msgstr "開始"
 
-#: ../src/appointment.c:2697
+#: ../src/appointment.c:2698
 msgid "Set      "
 msgstr "あり    "
 
-#: ../src/appointment.c:2718
+#: ../src/appointment.c:2719
 msgid "Duration"
 msgstr "期間"
 
-#: ../src/appointment.c:2722 ../src/appointment.c:2912 ../src/reminder.c:761
+#: ../src/appointment.c:2723 ../src/appointment.c:2913 ../src/reminder.c:758
 msgid "days"
 msgstr "日"
 
-#: ../src/appointment.c:2724 ../src/appointment.c:2914 ../src/reminder.c:763
+#: ../src/appointment.c:2725 ../src/appointment.c:2915 ../src/reminder.c:760
 msgid "hours"
 msgstr "時"
 
-#: ../src/appointment.c:2726 ../src/appointment.c:2916 ../src/reminder.c:765
+#: ../src/appointment.c:2727 ../src/appointment.c:2917 ../src/reminder.c:762
 msgid "mins"
 msgstr "分"
 
 # FIXME:
 #. Availability (only for EVENT)
-#: ../src/appointment.c:2738
+#: ../src/appointment.c:2739
 msgid "Availability"
 msgstr "都合"
 
 # XXX
 #. completed (only for TODO)
-#: ../src/appointment.c:2746 ../src/appointment.c:3348
+#: ../src/appointment.c:2747 ../src/appointment.c:3349
 msgid "Completed"
 msgstr "完了"
 
-#: ../src/appointment.c:2749
+#: ../src/appointment.c:2750
 msgid "Done"
 msgstr "済み"
 
 #. categories
-#: ../src/appointment.c:2770
+#: ../src/appointment.c:2771
 msgid "Categories"
 msgstr "カテゴリ"
 
-#: ../src/appointment.c:2782
-msgid ""
-"This is special category, which can be used to color this appointment in "
-"list views."
+#: ../src/appointment.c:2783
+msgid "This is special category, which can be used to color this appointment in list views."
 msgstr "これは特殊なカテゴリで、この用件を色付きでリストに表示します。"
 
-#: ../src/appointment.c:2787
+#: ../src/appointment.c:2788
 msgid "update colors for categories."
 msgstr "カテゴリの色を更新します"
 
 #. priority
-#: ../src/appointment.c:2793
+#: ../src/appointment.c:2794
 msgid "Priority"
 msgstr "優先度"
 
 #. note
-#: ../src/appointment.c:2803
+#: ../src/appointment.c:2804
 msgid "Note"
 msgstr "備考"
 
-#: ../src/appointment.c:2824
+#: ../src/appointment.c:2825
 msgid ""
 "These shorthand commands take effect immediately:\n"
 "    <D> inserts current date in local date format\n"
@@ -795,8 +781,7 @@ msgid ""
 "\n"
 "These are converted only later when they are seen:\n"
 "    <&Ynnnn> is translated to current year minus nnnn.\n"
-"(This can be used for example in birthday reminders to tell how old the "
-"person will be.)"
+"(This can be used for example in birthday reminders to tell how old the person will be.)"
 msgstr ""
 "以下のショートハンドコマンドは即座に解釈されます:\n"
 "    <D> 現在の日付をローカル日付フォーマットで挿入します\n"
@@ -805,35 +790,34 @@ msgstr ""
 "\n"
 "以下はそれらが表示された時のみ変換されます:\n"
 "    <&Ynnnn> は現在の年から nnnn を引いたものに変換されます。\n"
-"(これは例えば誕生日の通知などで、その人が何歳になったかを表示する場合に使用で"
-"きます)"
+"(これは例えば誕生日の通知などで、その人が何歳になったかを表示する場合に使用できます)"
 
-#: ../src/appointment.c:2895
+#: ../src/appointment.c:2896
 msgid "Before Start"
 msgstr "開始前"
 
-#: ../src/appointment.c:2895
+#: ../src/appointment.c:2896
 msgid "Before End"
 msgstr "終了前"
 
-#: ../src/appointment.c:2896
+#: ../src/appointment.c:2897
 msgid "After Start"
 msgstr "開始後"
 
-#: ../src/appointment.c:2896
+#: ../src/appointment.c:2897
 msgid "After End"
 msgstr "終了後"
 
-#: ../src/appointment.c:2903
+#: ../src/appointment.c:2904
 msgid "Alarm"
 msgstr "アラーム"
 
 #. **** ALARM TIME ****
-#: ../src/appointment.c:2909
+#: ../src/appointment.c:2910
 msgid "Alarm time"
 msgstr "アラーム時期"
 
-#: ../src/appointment.c:2933
+#: ../src/appointment.c:2934
 msgid ""
 "Often you want to get alarm:\n"
 " 1) before Event start\n"
@@ -845,90 +829,86 @@ msgstr ""
 " 2) ToDo の締切前\n"
 " 3) ToDo の開始後"
 
-#: ../src/appointment.c:2938
+#: ../src/appointment.c:2939
 msgid "Persistent alarm"
-msgstr "アラームを維持する"
+msgstr "持続アラームにする"
 
-#: ../src/appointment.c:2940
-msgid ""
-"Select this if you want Orage to remind you even if it has not been active "
-"when the alarm happened."
-msgstr ""
-"アラームが発生したときに Orage が起動していなくても、後の Orage 起動時に通知"
-"させたいときに設定します。"
+#: ../src/appointment.c:2941
+msgid "Select this if you want Orage to remind you even if it has not been active when the alarm happened."
+msgstr "アラームが発生したときに Orage が起動していなくても、後の Orage 起動時に通知させたいときに設定します。"
 
 #. **** Audio Alarm ****
-#: ../src/appointment.c:2949
+#: ../src/appointment.c:2950
 msgid "Sound"
 msgstr "サウンド"
 
-#: ../src/appointment.c:2953 ../src/appointment.c:3074
+#: ../src/appointment.c:2954 ../src/appointment.c:3075
 msgid "Use"
 msgstr "使用する"
 
-#: ../src/appointment.c:2955
+#: ../src/appointment.c:2956
 msgid "Select this if you want audible alarm"
 msgstr "音で通知させたい時に設定します"
 
-#: ../src/appointment.c:2972
+#: ../src/appointment.c:2973
 msgid "Repeat alarm sound"
 msgstr "アラーム音を繰り返す"
 
-#: ../src/appointment.c:2988 ../src/appointment.c:3290
+#: ../src/appointment.c:2989 ../src/appointment.c:3291
 msgid "times"
 msgstr "回繰り返す"
 
-#: ../src/appointment.c:3004
+#: ../src/appointment.c:3005
 msgid "sec interval"
 msgstr "秒間隔"
 
 #. **** Display Alarm ****
-#: ../src/appointment.c:3014
+#: ../src/appointment.c:3015
 msgid "Visual"
 msgstr "視覚"
 
-#: ../src/appointment.c:3018
+#: ../src/appointment.c:3019
 msgid "Use Orage window"
 msgstr "Orage ウィンドウを使用する"
 
-#: ../src/appointment.c:3020
+#: ../src/appointment.c:3021
 msgid "Select this if you want Orage window alarm"
 msgstr "Orage ウィンドウで通知させたいときに設定します"
 
-#: ../src/appointment.c:3032
+#: ../src/appointment.c:3033
 msgid "Use notification"
 msgstr "デスクトップ通知を使用する"
 
-#: ../src/appointment.c:3034
+#: ../src/appointment.c:3035
 msgid "Select this if you want notification alarm"
 msgstr "デスクトップ通知で通知させたいときに設定します"
 
-#: ../src/appointment.c:3040
+#: ../src/appointment.c:3041
 msgid "Set timeout"
 msgstr "タイムアウト設定"
 
-#: ../src/appointment.c:3043
+#: ../src/appointment.c:3044
 msgid "Select this if you want notification to expire automatically"
 msgstr "通知を自動的に終了させたいときに設定します"
 
-#: ../src/appointment.c:3054
+#: ../src/appointment.c:3055
 msgid "0 = system default expiration time"
 msgstr "0 ならば、システムデフォルトの終了時間になります"
 
-#: ../src/appointment.c:3059
+#: ../src/appointment.c:3060
 msgid "seconds"
 msgstr " 秒"
 
 #. **** Procedure Alarm ****
-#: ../src/appointment.c:3070
+#: ../src/appointment.c:3071
 msgid "Procedure"
 msgstr "プロシージャ"
 
-#: ../src/appointment.c:3076
+#: ../src/appointment.c:3077
 msgid "Select this if you want procedure or script alarm"
 msgstr "プロシージャまたはスクリプトで通知させたいときに設定します"
 
-#: ../src/appointment.c:3082
+#: ../src/appointment.c:3083
 msgid ""
 "You must enter all escape etc characters yourself.\n"
 "This string is just given to shell to process.\n"
@@ -948,97 +928,97 @@ msgstr ""
 "\t<&ST> 用件の開始日時\n"
 "\t<&ET> 用件の終了日時"
 
-#: ../src/appointment.c:3094
+#: ../src/appointment.c:3095
 msgid "Test this alarm by raising it now"
 msgstr "このアラームを今すぐテストします"
 
-#: ../src/appointment.c:3101
+#: ../src/appointment.c:3102
 msgid "<b>Default alarm</b>"
 msgstr "<b>デフォルトアラーム</b>"
 
-#: ../src/appointment.c:3109
+#: ../src/appointment.c:3110
 msgid "Store current settings as default alarm"
 msgstr "現在の設定をデフォルトのアラームとして保存します"
 
-#: ../src/appointment.c:3114
+#: ../src/appointment.c:3115
 msgid "Set current settings from default alarm"
 msgstr "デフォルトのアラーム設定に戻します"
 
-#: ../src/appointment.c:3176
+#: ../src/appointment.c:3177
 msgid "None"
 msgstr "無し"
 
-#: ../src/appointment.c:3176
+#: ../src/appointment.c:3177
 msgid "Daily"
 msgstr "毎日"
 
-#: ../src/appointment.c:3176
+#: ../src/appointment.c:3177
 msgid "Weekly"
 msgstr "毎週"
 
-#: ../src/appointment.c:3176
+#: ../src/appointment.c:3177
 msgid "Monthly"
 msgstr "毎月"
 
-#: ../src/appointment.c:3176
+#: ../src/appointment.c:3177
 msgid "Yearly"
 msgstr "毎年"
 
-#: ../src/appointment.c:3176
+#: ../src/appointment.c:3177
 msgid "Hourly"
 msgstr "毎時"
 
-#: ../src/appointment.c:3178
+#: ../src/appointment.c:3179
 msgid "Mon"
 msgstr "月"
 
-#: ../src/appointment.c:3178
+#: ../src/appointment.c:3179
 msgid "Tue"
 msgstr "火"
 
-#: ../src/appointment.c:3178
+#: ../src/appointment.c:3179
 msgid "Wed"
 msgstr "水"
 
-#: ../src/appointment.c:3178
+#: ../src/appointment.c:3179
 msgid "Thu"
 msgstr "木"
 
-#: ../src/appointment.c:3178
+#: ../src/appointment.c:3179
 msgid "Fri"
 msgstr "金"
 
-#: ../src/appointment.c:3178
+#: ../src/appointment.c:3179
 msgid "Sat"
 msgstr "土"
 
-#: ../src/appointment.c:3178
+#: ../src/appointment.c:3179
 msgid "Sun"
 msgstr "日"
 
-#: ../src/appointment.c:3183
+#: ../src/appointment.c:3184
 msgid "Recurrence"
 msgstr "繰り返し"
 
 # XXX
 #. complexity
-#: ../src/appointment.c:3189
+#: ../src/appointment.c:3190
 msgid "Complexity"
 msgstr "指定方法"
 
-#: ../src/appointment.c:3192
+#: ../src/appointment.c:3193
 msgid "Basic"
 msgstr "基本"
 
-#: ../src/appointment.c:3198
+#: ../src/appointment.c:3199
 msgid "Advanced"
 msgstr "詳細"
 
-#: ../src/appointment.c:3202
+#: ../src/appointment.c:3203
 msgid "Use this if you want regular repeating event"
 msgstr "定期的に繰り返す予定の場合、このオプションを使用します。"
 
-#: ../src/appointment.c:3204
+#: ../src/appointment.c:3205
 msgid ""
 "Use this if you need complex times like:\n"
 " Every Saturday and Sunday or \n"
@@ -1051,20 +1031,20 @@ msgstr ""
 " 毎月最初の火曜日"
 
 #. frequency
-#: ../src/appointment.c:3211
+#: ../src/appointment.c:3212
 msgid "Frequency"
 msgstr "頻度"
 
 # ja: This word is unnecessary for ja translation.
-#: ../src/appointment.c:3217
+#: ../src/appointment.c:3218
 msgid "Each"
 msgstr " "
 
-#: ../src/appointment.c:3224
+#: ../src/appointment.c:3225
 msgid "occurrence"
 msgstr "回繰り返す"
 
-#: ../src/appointment.c:3228
+#: ../src/appointment.c:3229
 msgid ""
 "Limit frequency to certain interval.\n"
 " For example: Every third day:\n"
@@ -1075,32 +1055,32 @@ msgstr ""
 "  頻度 = 毎日\n"
 "  間隔 = 3"
 
-#: ../src/appointment.c:3274
+#: ../src/appointment.c:3275
 msgid "Limit"
 msgstr "制限"
 
-#: ../src/appointment.c:3276
+#: ../src/appointment.c:3277
 msgid "Repeat forever"
 msgstr "ずっと繰り返す"
 
-#: ../src/appointment.c:3282
+#: ../src/appointment.c:3283
 msgid "Repeat "
 msgstr " "
 
-#: ../src/appointment.c:3298
+#: ../src/appointment.c:3299
 msgid "Repeat until "
 msgstr "次まで繰り返す "
 
 #. weekdays (only for complex settings)
-#: ../src/appointment.c:3311
+#: ../src/appointment.c:3312
 msgid "Weekdays"
 msgstr "曜日"
 
-#: ../src/appointment.c:3323
+#: ../src/appointment.c:3324
 msgid "Which day"
 msgstr "第n曜日"
 
-#: ../src/appointment.c:3331
+#: ../src/appointment.c:3332
 msgid ""
 "Specify which weekday for monthly and yearly events.\n"
 " For example:\n"
@@ -1116,103 +1096,92 @@ msgstr ""
 "\t曜日 = 水曜の下の番号から2を選択"
 
 #. TODO base (only for TODOs)
-#: ../src/appointment.c:3339
+#: ../src/appointment.c:3340
 msgid "TODO base"
 msgstr "ToDo 基準"
 
-#: ../src/appointment.c:3352
-msgid ""
-"TODO reoccurs regularly starting on start time and repeating after each "
-"interval no matter when it was last completed"
-msgstr ""
-"ToDo は開始時刻を基準に指定間隔で定期的に発生し、最終完了時刻を考慮しません。"
+#: ../src/appointment.c:3353
+msgid "TODO reoccurs regularly starting on start time and repeating after each interval no matter when it was last completed"
+msgstr "ToDo は開始時刻を基準に指定間隔で定期的に発生し、最終完了時刻を考慮しません。"
 
-#: ../src/appointment.c:3354
+#: ../src/appointment.c:3355
 msgid ""
-"TODO reoccurrency is based on complete time and repeats after the interval "
-"counted from the last completed time.\n"
-"(Note that you can not tell anything about the history of the TODO since "
-"reoccurrence base changes after each completion.)"
+"TODO reoccurrency is based on complete time and repeats after the interval counted from the last completed time.\n"
+"(Note that you can not tell anything about the history of the TODO since reoccurrence base changes after each completion.)"
 msgstr ""
 "ToDo は最後に完了した時刻から指定間隔経過後に繰り返し発生します。\n"
-"(それぞれの完了後に基準を変更しても ToDo 履歴には通知されないことに留意してく"
-"ださい)"
+"(それぞれの完了後に基準を変更しても ToDo 履歴には通知されないことに留意してください)"
 
 #. exceptions
-#: ../src/appointment.c:3361
+#: ../src/appointment.c:3362
 msgid "Exceptions"
 msgstr "例外"
 
-#: ../src/appointment.c:3374
+#: ../src/appointment.c:3375
 msgid ""
 "Add more exception dates by clicking the calendar days below.\n"
-"Exception is either exclusion(-) or inclusion(+) depending on the "
-"selection.\n"
+"Exception is either exclusion(-) or inclusion(+) depending on the selection.\n"
 "Remove by clicking the data."
 msgstr ""
 "下のカレンダーの日付をクリックすると例外として追加されます。\n"
 "例外は選択日を除外 (-) するか追加 (+) するかのどちらかです。\n"
 "日時のクリックで除去します。"
 
-#: ../src/appointment.c:3379
+#: ../src/appointment.c:3380
 msgid "Add excluded date (-)"
 msgstr "除外日 (-)"
 
-#: ../src/appointment.c:3381
+#: ../src/appointment.c:3382
 msgid "Excluded days are full days where this appointment is not happening"
 msgstr "すべての除外日にはこの用件は発生しません。"
 
-#: ../src/appointment.c:3387
+#: ../src/appointment.c:3388
 msgid "Add included time (+)"
 msgstr "追加日時 (+)"
 
 # FIXME:
-#: ../src/appointment.c:3389
-msgid ""
-"Included times have same timezone than start time, but they may have "
-"different time"
-msgstr ""
-"追加日時のタイムゾーンは開始日時と同じになるため、実際の日時とは異なる場合が"
-"あります。"
+#: ../src/appointment.c:3390
+msgid "Included times have same timezone than start time, but they may have different time"
+msgstr "追加日時のタイムゾーンは開始日時と同じになるため、実際の日時とは異なる場合があります。"
 
 #. calendars showing the action days
-#: ../src/appointment.c:3406
+#: ../src/appointment.c:3407
 msgid "Action dates"
 msgstr "対象日"
 
 #. ********* View menu *********
 #. View menu
-#: ../src/day-view.c:264 ../src/event-list.c:1044 ../src/mainbox.c:305
+#: ../src/day-view.c:264 ../src/event-list.c:1047 ../src/mainbox.c:305
 msgid "_View"
 msgstr "表示(_V)"
 
 #. ********* Go menu   *********
-#: ../src/day-view.c:278 ../src/event-list.c:1063
+#: ../src/day-view.c:278 ../src/event-list.c:1066
 msgid "_Go"
 msgstr "移動(_G)"
 
-#: ../src/day-view.c:319 ../src/event-list.c:1110
+#: ../src/day-view.c:319 ../src/event-list.c:1113
 msgid "New"
 msgstr "新しい用件を作成します"
 
-#: ../src/day-view.c:324 ../src/event-list.c:1119
+#: ../src/day-view.c:324 ../src/event-list.c:1122
 msgid "Back"
 msgstr "前日に移動します"
 
-#: ../src/day-view.c:326 ../src/event-list.c:1121 ../src/functions.c:143
+#: ../src/day-view.c:326 ../src/event-list.c:1124 ../src/functions.c:144
 #: ../src/tray_icon.c:460
 msgid "Today"
 msgstr "今日"
 
-#: ../src/day-view.c:328 ../src/event-list.c:1123
+#: ../src/day-view.c:328 ../src/event-list.c:1126
 msgid "Forward"
 msgstr "翌日に移動します"
 
-#: ../src/day-view.c:333 ../src/event-list.c:1128
+#: ../src/day-view.c:333 ../src/event-list.c:1131
 msgid "Refresh"
 msgstr "このウィンドウを更新します"
 
-#: ../src/day-view.c:338 ../src/event-list.c:1135 ../src/interface.c:809
+#: ../src/day-view.c:338 ../src/event-list.c:1138 ../src/interface.c:809
 msgid "Close"
 msgstr "このウィンドウを閉じます"
 
@@ -1233,65 +1202,65 @@ msgstr "Orage - 日別表示"
 msgid "All day"
 msgstr "一日中"
 
-#: ../src/event-list.c:580 ../src/event-list.c:1281
+#: ../src/event-list.c:583 ../src/event-list.c:1284
 msgid "Time"
 msgstr "時間"
 
-#: ../src/event-list.c:748
+#: ../src/event-list.c:751
 msgid "No rows have been selected."
 msgstr "行が選択されていません"
 
-#: ../src/event-list.c:749
+#: ../src/event-list.c:752
 msgid "Click a row to select it and after that you can copy it."
 msgstr "行をクリックして選択した後にコピーできます。"
 
-#: ../src/event-list.c:918
+#: ../src/event-list.c:921
 msgid ""
 "You will permanently remove all\n"
 "selected appointments."
 msgstr "選択したすべての用件が削除されます。"
 
-#: ../src/event-list.c:1130
+#: ../src/event-list.c:1133
 msgid "Find"
 msgstr "検索します"
 
-#: ../src/event-list.c:1137
+#: ../src/event-list.c:1140
 msgid "Dayview"
 msgstr "日ごとの一覧を表示します"
 
-#: ../src/event-list.c:1170
+#: ../src/event-list.c:1173
 msgid "Extra days to show "
 msgstr "表示する日数"
 
-#: ../src/event-list.c:1201
+#: ../src/event-list.c:1204
 msgid "Journal entries starting from:"
 msgstr "エントリの表示開始日"
 
-#: ../src/event-list.c:1221
+#: ../src/event-list.c:1224
 msgid "Search"
 msgstr "検索"
 
-#: ../src/event-list.c:1224
+#: ../src/event-list.c:1227
 msgid "Search text "
 msgstr "検索文字列: "
 
-#: ../src/event-list.c:1289
+#: ../src/event-list.c:1292
 msgid "Flags"
 msgstr "フラグ"
 
-#: ../src/event-list.c:1297
+#: ../src/event-list.c:1300
 msgid "Title"
 msgstr "件名"
 
-#: ../src/event-list.c:1323
+#: ../src/event-list.c:1326
 msgid ""
 "Double click line to edit it.\n"
 "\n"
 "Flags in order:\n"
 "\t 1. Alarm: n=no alarm\n"
-"\t\t A=visual Alarm S=also Sound alarm\n"
+"\t\t A=Alarm is set P=Persistent alarm is set\n"
 "\t 2. Recurrence: n=no recurrence\n"
-"\t\t D=Daily W=Weekly M=Monthly Y=Yearly\n"
+"\t\t H=Hourly D=Daily W=Weekly M=Monthly Y=Yearly\n"
 "\t 3. Type: f=free B=Busy\n"
 "\t 4. Located in file:\n"
 "\t\tO=Orage A=Archive F=Foreign\n"
@@ -1302,16 +1271,16 @@ msgstr ""
 "\n"
 "フラグは左から順に:\n"
 "\t1. アラーム: n=アラーム無し\n"
-"\t\tA=アラームを視覚的に表示 S=アラームにサウンドも追加\n"
+"\t\tA=アラームを設定 P=持続アラームを設定\n"
 "\t2. 繰り返し: n=無し\n"
 "\t\tD=毎日 W=毎週 M=毎月 Y=毎年\n"
-"\t3. 種類:     f=用事無し B=用事有り\n"
+"\t3. 種類: f=用事無し B=用事有り\n"
 "\t4. ファイルの位置:\n"
 "\t\tO=Orage A=アーカイブ F=外部\n"
 "\t5. 用件の種類:\n"
 "\t\tE=予定 T=ToDo J=記録"
 
-#: ../src/functions.c:141
+#: ../src/functions.c:142
 msgid "Pick the date"
 msgstr "日付を選択して下さい"
 
@@ -1378,18 +1347,15 @@ msgstr "アーカイブの除去が終了しました\n"
 msgid "Orage default alarm"
 msgstr "Orage のデフォルトアラーム"
 
-#: ../src/ical-code.c:3115
+#: ../src/ical-code.c:3141
 #, c-format
 msgid "Build alarm list: Added %d alarms. Processed %d events."
 msgstr "登録アラームリスト: %d 個のアラーム追加、%d 個の予定進行"
 
-#: ../src/ical-code.c:3117
+#: ../src/ical-code.c:3143
 #, c-format
-msgid ""
-"\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
-msgstr ""
-"\t%2$d 個が動作中の内、 %1$d 個のアラームが見つかりました。( %3$d 個の繰り返"
-"しアラームを検索しました)"
+msgid "\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
+msgstr "\t%2$d 個が動作中の内、 %1$d 個のアラームが見つかりました。( %3$d 個の繰り返しアラームを検索しました)"
 
 #: ../src/ical-expimp.c:123
 msgid "Starting import file preprocessing"
@@ -1502,7 +1468,7 @@ msgstr "直ちにアーカイブする (しきい値: %d ヵ月)"
 
 #: ../src/interface.c:1094
 msgid "You can change archive threshold in parameters"
-msgstr "しきい値はパラメタで変更できます"
+msgstr "しきい値はパラメーターで変更できます"
 
 #: ../src/interface.c:1101
 msgid "Revert archive now"
@@ -1514,8 +1480,7 @@ msgid ""
 "This is useful for example when doing export and moving orage\n"
 "appointments to another system."
 msgstr ""
-"すべてのアーカイブされた情報をメインの Orage ファイルに復帰しアーカイブファイ"
-"ルを除去します。\n"
+"すべてのアーカイブされた情報をメインの Orage ファイルに復帰しアーカイブファイルを除去します。\n"
 "これは例えば他のシステムへ Orage 用件を移行するときなどに便利です。"
 
 #: ../src/interface.c:1118
@@ -1594,14 +1559,11 @@ msgstr "読み込み専用"
 
 #: ../src/interface.c:1294
 msgid ""
-"Set this if you want to make sure that this file is never modified by "
-"Orage.\n"
-"Note that modifying foreign files may make them incompatible with the "
-"original tool, where they came from!"
+"Set this if you want to make sure that this file is never modified by Orage.\n"
+"Note that modifying foreign files may make them incompatible with the original tool, where they came from!"
 msgstr ""
 "このファイルを Orage によって変更されたくない場合に設定してください。\n"
-"外部ファイルを変更するとオリジナルのアプリケーションとの互換性が失われるかも"
-"しれないことに注意してください。"
+"外部ファイルを変更するとオリジナルのアプリケーションとの互換性が失われるかもしれないことに注意してください。"
 
 #: ../src/interface.c:1308
 msgid "Exchange data - Orage"
@@ -1717,12 +1679,8 @@ msgstr "--remove-foreign (-r) file \t外部ファイルを削除します\n"
 
 #: ../src/main.c:314
 #, c-format
-msgid ""
-"--export (-e) file [appointment...] \texport appointments from Orage to "
-"file\n"
-msgstr ""
-"--export (-e) file [用件...] \t用件を Orage からファイルにエクスポートしま"
-"す\n"
+msgid "--export (-e) file [appointment...] \texport appointments from Orage to file\n"
+msgstr "--export (-e) file [用件...] \t用件を Orage からファイルにエクスポートします\n"
 
 #: ../src/main.c:316
 #, c-format
@@ -1736,12 +1694,8 @@ msgstr "\tD-Bus は orage に含まれていません。\n"
 
 #: ../src/main.c:319
 #, c-format
-msgid ""
-"\twithout dbus [files] and foreign file options(-a & -r) can only be used "
-"when starting orage \n"
-msgstr ""
-"\tD-Bus [ファイル] が無い外部ファイルオプション (-a & -r) は orage 起動後のみ"
-"使用可能です\n"
+msgid "\twithout dbus [files] and foreign file options(-a & -r) can only be used when starting orage \n"
+msgstr "\tD-Bus [ファイル] が無い外部ファイルオプション (-a & -r) は orage 起動後のみ使用可能です\n"
 
 #: ../src/main.c:511
 #, c-format
@@ -1784,56 +1738,64 @@ msgstr "世界時計を表示(_G)"
 msgid "_Help"
 msgstr "ヘルプ(_H)"
 
-#: ../src/mainbox.c:448
-msgid "Never"
-msgstr "なし"
+#: ../src/mainbox.c:396
+msgid "No title defined"
+msgstr "件名なし"
 
 #: ../src/mainbox.c:453
 #, c-format
+msgid " Location: %s\n"
+msgstr " 場所: %s\n"
+
+#: ../src/mainbox.c:462
+#, c-format
 msgid ""
-"Title: %s\n"
-" Location: %s\n"
-" Start:\t%s\n"
-" Due:\t%s\n"
-" Done:\t%s\n"
+"\n"
 " Note:\n"
 "%s"
 msgstr ""
-"件名: %s\n"
-" 場所: %s\n"
-" 開始: %s\n"
-" 締切: %s\n"
-" 完了: %s\n"
+"\n"
 " 備考:\n"
 "%s"
 
-#: ../src/mainbox.c:460
+#: ../src/mainbox.c:471
+msgid "Never"
+msgstr "なし"
+
+#: ../src/mainbox.c:477
 #, c-format
 msgid ""
 "Title: %s\n"
-" Location: %s\n"
-" Start:\t%s\n"
-" End:\t%s\n"
-" Note:\n"
-"%s"
+"%s Start:\t%s\n"
+" Due:\t%s\n"
+" Done:\t%s%s"
 msgstr ""
 "件名: %s\n"
-" 場所: %s\n"
-" 開始: %s\n"
-" 終了: %s\n"
-" 備考:\n"
-"%s"
+"%s 開始:\t%s\n"
+" 締切:\t%s\n"
+" 完了:\t%s%s"
 
-#: ../src/mainbox.c:546
+#: ../src/mainbox.c:485
+#, c-format
+msgid ""
+"Title: %s\n"
+"%s Start:\t%s\n"
+" End:\t%s%s"
+msgstr ""
+"件名: %s\n"
+"%s 開始:\t%s\n"
+" 終了:\t%s%s"
+
+#: ../src/mainbox.c:595
 msgid "<b>To do:</b>"
 msgstr "<b>To do:</b>"
 
-#: ../src/mainbox.c:582
+#: ../src/mainbox.c:631
 #, c-format
 msgid "<b>Events for %s:</b>"
 msgstr "<b>%s の予定:</b>"
 
-#: ../src/mainbox.c:593
+#: ../src/mainbox.c:642
 #, c-format
 msgid "<b>Events for %s - %s:</b>"
 msgstr "<b>%s - %s の予定:</b>"
@@ -1995,20 +1957,15 @@ msgid "Number of extra days to show in event list"
 msgstr "予定リストに表示する拡張日数"
 
 #: ../src/parameters.c:902
-msgid ""
-"This is just the default value, you can change it in the actual eventlist "
-"window."
-msgstr ""
-"これはデフォルト値になります。実際の予定リストウィンドウで変更できます。"
+msgid "This is just the default value, you can change it in the actual eventlist window."
+msgstr "これはデフォルト値になります。実際の予定リストウィンドウで変更できます。"
 
 #: ../src/parameters.c:910 ../src/parameters.c:915
 msgid "Use wakeup timer"
 msgstr "復帰タイマー"
 
 #: ../src/parameters.c:921
-msgid ""
-"Use this timer if Orage has problems waking up properly after suspend or "
-"hibernate. (For example tray icon not refreshed or alarms not firing.)"
+msgid "Use this timer if Orage has problems waking up properly after suspend or hibernate. (For example tray icon not refreshed or alarms not firing.)"
 msgstr "サスペンドまたはハイバネートからの復帰時に Orage に問題が発生する場合 (例えば、トレイアイコンが更新されない、アラームが鳴らない、など) はこのタイマーを使用してください。"
 
 #: ../src/parameters.c:938
@@ -2017,8 +1974,7 @@ msgstr "Orage の設定"
 
 #: ../src/parameters.c:1050
 msgid "First Orage start. Searching default timezone."
-msgstr ""
-"始めて Orage が起動されました。デフォルトのタイムゾーンを検出しています。"
+msgstr "始めて Orage が起動されました。デフォルトのタイムゾーンを検出しています。"
 
 #: ../src/parameters.c:1069
 #, c-format
@@ -2027,8 +1983,7 @@ msgstr "デフォルトのタイムゾーンを %s に設定します。"
 
 #: ../src/parameters.c:1072
 msgid "Default timezone not found, please, set it manually."
-msgstr ""
-"デフォルトのタイムゾーンが見つかりませんでした。手動で設定してください。"
+msgstr "デフォルトのタイムゾーンが見つかりませんでした。手動で設定してください。"
 
 #: ../src/reminder.c:562
 msgid "Reminder "
@@ -2038,24 +1993,19 @@ msgstr "備忘録 "
 msgid "Open"
 msgstr "開く"
 
-#: ../src/reminder.c:722
+#: ../src/reminder.c:719
 msgid "Reminder - Orage"
 msgstr "備忘録 - Orage"
 
-#: ../src/reminder.c:808
+#: ../src/reminder.c:804
 msgid "Remind me again after the specified time"
 msgstr "指定時刻後に再度通知します"
 
-#. Note that this goes to the main area. Temporary for the version
-#: ../src/reminder.c:811
-msgid "Press <Execute> to remind me again after the specified time:"
-msgstr "<実行> を押すと指定時刻後に再度通知します。"
-
-#: ../src/reminder.c:1099
+#: ../src/reminder.c:1090
 msgid "Next active alarms:"
 msgstr "次回の有効アラーム:"
 
-#: ../src/reminder.c:1152 ../src/reminder.c:1157
+#: ../src/reminder.c:1140
 #, c-format
 msgid ""
 "\n"
@@ -2064,7 +2014,7 @@ msgstr ""
 "\n"
 "%02d 日 %02d 時間 %02d 分: %s"
 
-#: ../src/reminder.c:1166
+#: ../src/reminder.c:1149
 #, c-format
 msgid ""
 "\n"
@@ -3642,44 +3592,49 @@ msgid "Show time and date?"
 msgstr "今の日付と時刻は?"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:1
-#: ../xfcalendar.desktop.in.h:1
-msgid "Calendar"
-msgstr "カレンダー"
-
-#: ../plugin/xfce-xfcalendar-settings.desktop.in.h:2
-msgid "Orage Calendar Preferences"
-msgstr "Orage カレンダー設定"
-
-#: ../plugin/xfce-xfcalendar-settings.desktop.in.h:3
 msgid "Orage preferences"
 msgstr "Orage の設定"
 
-#: ../plugin/xfce-xfcalendar-settings.desktop.in.h:4
+#: ../plugin/xfce-xfcalendar-settings.desktop.in.h:2
 msgid "Settings for the Xfce 4 Calendar Application (Orage)"
 msgstr "Xfce 4 カレンダーアプリケーション (Orage) の設定を行います"
+
+#: ../plugin/xfce-xfcalendar-settings.desktop.in.h:3
+msgid "Orage Calendar Preferences"
+msgstr "Orage カレンダー設定"
+
+#: ../plugin/xfce-xfcalendar-settings.desktop.in.h:4
+#: ../xfcalendar.desktop.in.h:3
+msgid "Calendar"
+msgstr "カレンダー"
+
+#: ../xfcalendar.desktop.in.h:1
+msgid "Orage Calendar"
+msgstr "Orage カレンダー"
 
 #: ../xfcalendar.desktop.in.h:2
 msgid "Desktop calendar"
 msgstr "卓上カレンダー"
 
-#: ../xfcalendar.desktop.in.h:3
-msgid "Orage Calendar"
-msgstr "Orage カレンダー"
-
 #~ msgid ""
 #~ "Title: %s\n"
+#~ " Location: %s\n"
 #~ " Start:\t%s\n"
 #~ " Due:\t%s\n"
 #~ " Done:\t%s\n"
-#~ "Note:\n"
+#~ " Note:\n"
 #~ "%s"
 #~ msgstr ""
 #~ "件名: %s\n"
+#~ " 場所: %s\n"
 #~ " 開始: %s\n"
 #~ " 締切: %s\n"
 #~ " 完了: %s\n"
-#~ "備考:\n"
+#~ " 備考:\n"
 #~ "%s"
+
+#~ msgid "Press <Execute> to remind me again after the specified time:"
+#~ msgstr "<実行> を押すと指定時刻後に再度通知します。"
 
 #~ msgid ""
 #~ "You must enter all escape etc characters yourself.\n"
@@ -3712,9 +3667,7 @@ msgstr "Orage カレンダー"
 #~ msgid "Select always today"
 #~ msgstr "常に今日の日付を選択する"
 
-#~ msgid ""
-#~ "When showing main calendar, set pointer to either previously selected day "
-#~ "or always to current day."
+#~ msgid "When showing main calendar, set pointer to either previously selected day or always to current day."
 #~ msgstr "メインカレンダーが表示される時、ポインタを今日の日付にセットします。"
 
 #~ msgid "show line _1:"
@@ -3735,14 +3688,8 @@ msgstr "Orage カレンダー"
 #~ msgid "(0 = use static icon)"
 #~ msgstr "(0 = スタティックアイコンを使用)"
 
-#~ msgid ""
-#~ "Dynamic icon shows current day and month. It is visible only in tray. If "
-#~ "tray is too small for dynamic icon size, Orage switches automatically "
-#~ "back to static icon."
-#~ msgstr ""
-#~ "ダイナミックアイコンは現在の月日を表示します。これはシステムトレイでのみ表"
-#~ "示されます。システムトレイがダイナミックアイコンのサイズより小さい場合 "
-#~ "Orage は自動的にスタティックアイコンに戻します。"
+#~ msgid "Dynamic icon shows current day and month. It is visible only in tray. If tray is too small for dynamic icon size, Orage switches automatically back to static icon."
+#~ msgstr "ダイナミックアイコンは現在の月日を表示します。これはシステムトレイでのみ表示されます。システムトレイがダイナミックアイコンのサイズより小さい場合 Orage は自動的にスタティックアイコンに戻します。"
 
 #~ msgid ""
 #~ "<D> inserts current date in local date format.\n"
@@ -3778,17 +3725,11 @@ msgstr "Orage カレンダー"
 #~ msgid "Modify Preferences"
 #~ msgstr "設定の変更"
 
-#~ msgid ""
-#~ "Enter local timezone. (it is used to show if time is on previous(-) or "
-#~ "next date(+) by adding a +/- after the time)"
-#~ msgstr ""
-#~ "現地のタイムゾーンを入力してください (これは時刻の前進/後進により日付が変"
-#~ "わるときに表示するために使用されます"
+#~ msgid "Enter local timezone. (it is used to show if time is on previous(-) or next date(+) by adding a +/- after the time)"
+#~ msgstr "現地のタイムゾーンを入力してください (これは時刻の前進/後進により日付が変わるときに表示するために使用されます"
 
 #~ msgid "Set any valid timezone (=TZ) value or pick one from the list."
-#~ msgstr ""
-#~ "いずれか有効なタイムゾーン (TZ 値) を設定するか、このリストから一つ選んで"
-#~ "ください。"
+#~ msgstr "いずれか有効なタイムゾーン (TZ 値) を設定するか、このリストから一つ選んでください。"
 
 #~ msgid "Properties"
 #~ msgstr "プロパティ"
