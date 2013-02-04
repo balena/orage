@@ -709,9 +709,6 @@ static void create_orage_reminder(alarm_struct *l_alarm)
     GtkWidget *hdtReminder;
     orage_ddmmhh_hbox_struct *ddmmhh_hbox;
     GtkWidget *e_hbox;
-#if !GTK_CHECK_VERSION(2,16,0)
-    GtkWidget *e_label;
-#endif
     gchar *tmp;
 
 #ifdef ORAGE_DEBUG
@@ -803,14 +800,8 @@ static void create_orage_reminder(alarm_struct *l_alarm)
     }
 
     btRecreateReminder = gtk_button_new_from_stock("gtk-execute");
-#if GTK_CHECK_VERSION(2,16,0)
     gtk_widget_set_tooltip_text(btRecreateReminder
             , _("Remind me again after the specified time"));
-#else
-    /* Note that this goes to the main area. Temporary for the version */
-    e_label = gtk_label_new(_("Press <Execute> to remind me again after the specified time:"));
-    gtk_box_pack_end(GTK_BOX(vbReminder), e_label, FALSE, FALSE, 5);
-#endif
     gtk_dialog_add_action_widget(GTK_DIALOG(wReminder)
             , btRecreateReminder, GTK_RESPONSE_OK);
     g_signal_connect((gpointer) btRecreateReminder, "clicked"
@@ -1097,10 +1088,8 @@ static gboolean orage_tooltip_update(gpointer user_data)
     }
     t = orage_localtime();
     tooltip = g_string_new(_("Next active alarms:"));
-#if GTK_CHECK_VERSION(2,16,0)
     g_string_prepend(tooltip, "<span foreground=\"blue\" weight=\"bold\" underline=\"single\">");
     g_string_append(tooltip, " </span>");
-#endif
   /* Check if there are any alarms to show */
     for (alarm_l = g_list_first(g_par.alarm_list);
          alarm_l != NULL && more_alarms;
@@ -1137,7 +1126,6 @@ static gboolean orage_tooltip_update(gpointer user_data)
 /*
     orage_message(10, P_N "tooltip: alarm=%s hh=%d hh=%d min=%d", cur_alarm->alarm_time, dd, hh, min);
 */
-#if GTK_CHECK_VERSION(2,16,0)
             g_string_append(tooltip, "<span weight=\"bold\">");
             tooltip_highlight_helper = g_string_new(" </span>");
             if (cur_alarm->temporary) { /* let's add a small mark */
@@ -1152,11 +1140,6 @@ static gboolean orage_tooltip_update(gpointer user_data)
                     _("\n%02d d %02d h %02d min to: %s"),
                     dd, hh, min, tooltip_highlight_helper->str);
             g_string_free(tooltip_highlight_helper, TRUE);
-#else
-            g_string_append_printf(tooltip, 
-                    _("\n%02d d %02d h %02d min to: %s"),
-                    dd, hh, min, cur_alarm->title);
-#endif
             alarm_cnt++;
         }
         else /* sorted so scan can be stopped */
@@ -1166,11 +1149,7 @@ static gboolean orage_tooltip_update(gpointer user_data)
         g_string_append_printf(tooltip, _("\nNo active alarms found"));
     /* deprecated since version 2.16 */
     /* after 2.16 use gtk_status_icon_set_tooltip_markup to get nicer text */
-#if GTK_CHECK_VERSION(2,16,0)
     gtk_status_icon_set_tooltip_markup((GtkStatusIcon *)g_par.trayIcon, tooltip->str);
-#else
-    gtk_status_icon_set_tooltip((GtkStatusIcon *)g_par.trayIcon, tooltip->str);
-#endif
     g_string_free(tooltip, TRUE);
     return(TRUE);
 }

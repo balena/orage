@@ -89,7 +89,7 @@ typedef struct _xfical_appt
     gchar *note;
 
         /* alarm */
-    gint alarmtime; /* 0 means no alarms */
+    gint alarmtime;
     gboolean alarm_before; /* TRUE = before FALSE = after */
         /* TRUE = related to start FALSE= related to end */
     gboolean alarm_related_start; 
