@@ -379,7 +379,7 @@ static void add_info_row(xfical_appt *appt, GtkBox *parentBox, gboolean todo)
 #define P_N "add_info_row: "
     GtkWidget *ev, *label;
     CalWin *cal = (CalWin *)g_par.xfcal;
-    gchar *tip, *tmp, *tmp_title;
+    gchar *tip, *tmp, *tmp_title, *tmp_note;
     gchar *tip_title, *tip_location, *tip_note;
     gchar *format_bold = "<span weight=\"bold\"> %s </span>";
     struct tm *t;
@@ -457,7 +457,8 @@ static void add_info_row(xfical_appt *appt, GtkBox *parentBox, gboolean todo)
         tip_location = g_strdup("");
     }
     if (appt->note) {
-        tmp = orage_process_text_commands(appt->note);
+        tmp_note = orage_process_text_commands(appt->note);
+        tmp = g_markup_escape_text(tmp_note, strlen(tmp_note));
         tip_note = g_strdup_printf(_("\n Note:\n%s"), tmp);
         g_free(tmp);
     }

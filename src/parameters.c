@@ -113,11 +113,10 @@ typedef struct _Itf
     GtkWidget *extra_vbox;
     /* select_always_today */
     GtkWidget *select_day_frame;
-    /* GtkWidget *always_today_checkbutton; */
     GSList    *select_day_radiobutton_group;
     GtkWidget *select_day_today_radiobutton;
     GtkWidget *select_day_old_radiobutton;
-    /* icon size */
+    /* Dynamic icon */
     GtkWidget *use_dynamic_icon_frame;
     GtkWidget *use_dynamic_icon_checkbutton;
     /* show event/days window from main calendar */
@@ -128,13 +127,18 @@ typedef struct _Itf
     /* eventlist window number of extra days to show */
     GtkWidget *el_extra_days_frame;
     GtkWidget *el_extra_days_spin;
-    /* the rest */
-    GtkWidget *close_button;
-    GtkWidget *help_button;
-    GtkWidget *dialog_action_area1;
-    /* icon size */
+    /* Use wakeup timer for suspend */
     GtkWidget *use_wakeup_timer_frame;
     GtkWidget *use_wakeup_timer_checkbutton;
+    /* default foreign file display alarm */
+    GtkWidget *foreign_alarm_frame;
+    GSList    *foreign_alarm_radiobutton_group;
+    GtkWidget *foreign_alarm_orage_radiobutton;
+    GtkWidget *foreign_alarm_notification_radiobutton;
+
+    /***** the rest in all tabs *****/
+    GtkWidget *close_button;
+    GtkWidget *help_button;
 } Itf;
 
 /* Return the first day of the week, where 0=monday, 6=sunday.
@@ -403,6 +407,15 @@ static void show_changed(GtkWidget *dialog, gpointer user_data)
 
     g_par.show_days = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(
             itf->click_to_show_days_radiobutton));
+}
+
+static void foreign_alarm_changed(GtkWidget *dialog, gpointer user_data)
+{
+    Itf *itf = (Itf *)user_data;
+
+    g_par.use_foreign_display_alarm_notify = 
+        gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(
+            itf->foreign_alarm_notification_radiobutton));
 }
 
 static void sound_application_open_button_clicked(GtkButton *button
@@ -922,6 +935,43 @@ static void create_parameter_dialog_extra_setup_tab(Itf *dialog)
             , NULL);
     g_signal_connect(G_OBJECT(dialog->use_wakeup_timer_checkbutton), "toggled"
             , G_CALLBACK(use_wakeup_timer_changed), dialog);
+
+    /***** Default Display alarm for Foreign files *****/
+    dialog->foreign_alarm_radiobutton_group = NULL;
+    vbox = gtk_vbox_new(FALSE, 0);
+    dialog->foreign_alarm_frame = orage_create_framebox_with_content(
+            _("Foreign file default visual alarm"), vbox);
+    gtk_box_pack_start(GTK_BOX(dialog->extra_vbox)
+            , dialog->foreign_alarm_frame, FALSE, FALSE, 5);
+
+    dialog->foreign_alarm_orage_radiobutton =
+            gtk_radio_button_new_with_mnemonic(NULL, _("Orage window"));
+    gtk_box_pack_start(GTK_BOX(vbox)
+            , dialog->foreign_alarm_orage_radiobutton, FALSE, FALSE, 0);
+    gtk_radio_button_set_group(
+            GTK_RADIO_BUTTON(dialog->foreign_alarm_orage_radiobutton)
+            , dialog->foreign_alarm_radiobutton_group);
+    dialog->foreign_alarm_radiobutton_group = gtk_radio_button_get_group(
+            GTK_RADIO_BUTTON(dialog->foreign_alarm_orage_radiobutton));
+    gtk_toggle_button_set_active(
+            GTK_TOGGLE_BUTTON(dialog->foreign_alarm_orage_radiobutton)
+            , !g_par.use_foreign_display_alarm_notify);
+
+    dialog->foreign_alarm_notification_radiobutton =
+            gtk_radio_button_new_with_mnemonic(NULL, _("Notify notification"));
+    gtk_box_pack_start(GTK_BOX(vbox)
+            , dialog->foreign_alarm_notification_radiobutton, FALSE, FALSE, 0);
+    gtk_radio_button_set_group(
+            GTK_RADIO_BUTTON(dialog->foreign_alarm_notification_radiobutton)
+            , dialog->foreign_alarm_radiobutton_group);
+    dialog->foreign_alarm_radiobutton_group = gtk_radio_button_get_group(
+            GTK_RADIO_BUTTON(dialog->foreign_alarm_notification_radiobutton));
+    gtk_toggle_button_set_active(
+            GTK_TOGGLE_BUTTON(dialog->foreign_alarm_notification_radiobutton)
+            , g_par.use_foreign_display_alarm_notify);
+
+    g_signal_connect(G_OBJECT(dialog->foreign_alarm_notification_radiobutton)
+            , "toggled", G_CALLBACK(foreign_alarm_changed), dialog);
 }
 
 static Itf *create_parameter_dialog(void)
