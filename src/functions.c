@@ -1119,7 +1119,8 @@ gint orage_info_dialog(GtkWindow *parent
 }
 
 gint orage_warning_dialog(GtkWindow *parent
-        , char *primary_text, char *secondary_text)
+        , char *primary_text, char *secondary_text
+        , char *no_text, char *yes_text)
 {
     GtkWidget *dialog;
     gint result;
@@ -1127,11 +1128,13 @@ gint orage_warning_dialog(GtkWindow *parent
     dialog = gtk_message_dialog_new(parent
             , GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT
             , GTK_MESSAGE_WARNING
-            , GTK_BUTTONS_YES_NO
+            , GTK_BUTTONS_NONE
             , "%s", primary_text);
     if (secondary_text) 
         gtk_message_dialog_format_secondary_text(GTK_MESSAGE_DIALOG(dialog)
                 , "%s", secondary_text);
+    gtk_dialog_add_buttons(GTK_DIALOG(dialog)
+            , no_text, GTK_RESPONSE_NO, yes_text, GTK_RESPONSE_YES, NULL);
     result = gtk_dialog_run(GTK_DIALOG(dialog));
     gtk_widget_destroy(dialog);
     return(result);

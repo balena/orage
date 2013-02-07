@@ -134,7 +134,8 @@ void orage_rc_del_item(OrageRc *orc, char *key);
 gint orage_info_dialog(GtkWindow *parent
         , char *primary_text, char *secondary_text);
 gint orage_warning_dialog(GtkWindow *parent
-        , char *primary_text, char *secondary_text);
+        , char *primary_text, char *secondary_text
+        , char *no_text, char *yes_text);
 gint orage_error_dialog(GtkWindow *parent
         , char *primary_text, char *secondary_text);
 GtkWidget *orage_create_framebox_with_content(const gchar *title

@@ -738,7 +738,9 @@ static gboolean appWindow_check_and_close(appt_win *apptw)
     if (apptw->appointment_changed == TRUE) {
         result = orage_warning_dialog(GTK_WINDOW(apptw->Window)
                 , _("The appointment information has been modified.")
-                , _("Do you want to continue?"));
+                , _("Do you want to continue?")
+                , _("No, do not leave")
+                , _("Yes, ignore modifications and leave"));
 
         if (result == GTK_RESPONSE_YES) {
             app_free_memory(apptw);
@@ -1192,7 +1194,9 @@ static void delete_xfical_from_appt_win(appt_win *apptw)
 
     result = orage_warning_dialog(GTK_WINDOW(apptw->Window)
             , _("This appointment will be permanently removed.")
-            , _("Do you want to continue?"));
+            , _("Do you want to continue?")
+            , _("No, cancel the removal")
+            , _("Yes, remove it"));
                                  
     if (result == GTK_RESPONSE_YES) {
         if (!apptw->appointment_add) {
