@@ -524,6 +524,18 @@ GtkWidget *orage_create_framebox_with_content(const gchar *title
     return(framebox);
 }
 
+GtkWidget *orage_create_custom_stock_button(const gchar *stock_id
+        , const gchar *label_text) {
+    GtkWidget *button;
+    GtkWidget *image;
+
+    image = gtk_image_new_from_stock(stock_id, GTK_ICON_SIZE_BUTTON);
+    button = gtk_button_new_with_label(label_text);
+    gtk_button_set_image((GtkButton*)button, image);
+    
+    return(button);
+}
+
 /*******************************************************
  * time convert and manipulation functions
  *******************************************************/
