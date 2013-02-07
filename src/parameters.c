@@ -1,6 +1,6 @@
 /*      Orage - Calendar and alarm handler
  *
- * Copyright (c) 2006-2011 Juha Kautto  (juha at xfce.org)
+ * Copyright (c) 2006-2013 Juha Kautto  (juha at xfce.org)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -135,6 +135,11 @@ typedef struct _Itf
     GSList    *foreign_alarm_radiobutton_group;
     GtkWidget *foreign_alarm_orage_radiobutton;
     GtkWidget *foreign_alarm_notification_radiobutton;
+    /* day view week mode */
+    GtkWidget *dw_week_mode_frame;
+    GSList    *dw_week_mode_radiobutton_group;
+    GtkWidget *dw_week_mode_week_radiobutton;
+    GtkWidget *dw_week_mode_day_radiobutton;
 
     /***** the rest in all tabs *****/
     GtkWidget *close_button;
@@ -416,6 +421,15 @@ static void foreign_alarm_changed(GtkWidget *dialog, gpointer user_data)
     g_par.use_foreign_display_alarm_notify = 
         gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(
             itf->foreign_alarm_notification_radiobutton));
+}
+
+static void dw_week_mode_changed(GtkWidget *dialog, gpointer user_data)
+{
+    Itf *itf = (Itf *)user_data;
+
+    g_par.dw_week_mode = 
+        gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(
+            itf->dw_week_mode_week_radiobutton));
 }
 
 static void sound_application_open_button_clicked(GtkButton *button
@@ -972,6 +986,43 @@ static void create_parameter_dialog_extra_setup_tab(Itf *dialog)
 
     g_signal_connect(G_OBJECT(dialog->foreign_alarm_notification_radiobutton)
             , "toggled", G_CALLBACK(foreign_alarm_changed), dialog);
+
+    /***** Default start day in day view window *****/
+    dialog->dw_week_mode_radiobutton_group = NULL;
+    vbox = gtk_vbox_new(FALSE, 0);
+    dialog->dw_week_mode_frame = orage_create_framebox_with_content(
+            _("Day view window default first day"), vbox);
+    gtk_box_pack_start(GTK_BOX(dialog->extra_vbox)
+            , dialog->dw_week_mode_frame, FALSE, FALSE, 5);
+
+    dialog->dw_week_mode_week_radiobutton =
+            gtk_radio_button_new_with_mnemonic(NULL, _("First day of week"));
+    gtk_box_pack_start(GTK_BOX(vbox)
+            , dialog->dw_week_mode_week_radiobutton, FALSE, FALSE, 0);
+    gtk_radio_button_set_group(
+            GTK_RADIO_BUTTON(dialog->dw_week_mode_week_radiobutton)
+            , dialog->dw_week_mode_radiobutton_group);
+    dialog->dw_week_mode_radiobutton_group = gtk_radio_button_get_group(
+            GTK_RADIO_BUTTON(dialog->dw_week_mode_week_radiobutton));
+    gtk_toggle_button_set_active(
+            GTK_TOGGLE_BUTTON(dialog->dw_week_mode_week_radiobutton)
+            , g_par.dw_week_mode);
+
+    dialog->dw_week_mode_day_radiobutton =
+            gtk_radio_button_new_with_mnemonic(NULL, _("Selected day"));
+    gtk_box_pack_start(GTK_BOX(vbox)
+            , dialog->dw_week_mode_day_radiobutton, FALSE, FALSE, 0);
+    gtk_radio_button_set_group(
+            GTK_RADIO_BUTTON(dialog->dw_week_mode_day_radiobutton)
+            , dialog->dw_week_mode_radiobutton_group);
+    dialog->dw_week_mode_radiobutton_group = gtk_radio_button_get_group(
+            GTK_RADIO_BUTTON(dialog->dw_week_mode_day_radiobutton));
+    gtk_toggle_button_set_active(
+            GTK_TOGGLE_BUTTON(dialog->dw_week_mode_day_radiobutton)
+            , !g_par.dw_week_mode);
+
+    g_signal_connect(G_OBJECT(dialog->dw_week_mode_day_radiobutton)
+            , "toggled", G_CALLBACK(dw_week_mode_changed), dialog);
 }
 
 static Itf *create_parameter_dialog(void)
@@ -1156,6 +1207,11 @@ void read_parameters(void)
     g_par.el_size_x = orage_rc_get_int(orc, "Eventlist window X", 500);
     g_par.el_size_y = orage_rc_get_int(orc, "Eventlist window Y", 350);
     g_par.el_days = orage_rc_get_int(orc, "Eventlist extra days", 0);
+    g_par.dw_pos_x = orage_rc_get_int(orc, "Dayview window pos X", 0);
+    g_par.dw_pos_y = orage_rc_get_int(orc, "Dayview window pos Y", 0);
+    g_par.dw_size_x = orage_rc_get_int(orc, "Dayview window X", 690);
+    g_par.dw_size_y = orage_rc_get_int(orc, "Dayview window Y", 390);
+    g_par.dw_week_mode = orage_rc_get_bool(orc, "Dayview week mode", TRUE);
     g_par.show_menu = orage_rc_get_bool(orc, "Show Main Window Menu", TRUE);
     g_par.select_always_today = 
             orage_rc_get_bool(orc, "Select Always Today", FALSE);
@@ -1250,6 +1306,11 @@ void write_parameters(void)
     orage_rc_put_int(orc, "Eventlist window X", g_par.el_size_x);
     orage_rc_put_int(orc, "Eventlist window Y", g_par.el_size_y);
     orage_rc_put_int(orc, "Eventlist extra days", g_par.el_days);
+    orage_rc_put_int(orc, "Dayview window pos X", g_par.dw_pos_x);
+    orage_rc_put_int(orc, "Dayview window pos Y", g_par.dw_pos_y);
+    orage_rc_put_int(orc, "Dayview window X", g_par.dw_size_x);
+    orage_rc_put_int(orc, "Dayview window Y", g_par.dw_size_y);
+    orage_rc_put_bool(orc, "Dayview week mode", g_par.dw_week_mode);
     orage_rc_put_bool(orc, "Show Main Window Menu", g_par.show_menu);
     orage_rc_put_bool(orc, "Select Always Today"
             , g_par.select_always_today);

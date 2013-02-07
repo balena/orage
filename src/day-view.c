@@ -127,6 +127,12 @@ static void close_window(day_win *dw)
     appt_win *apptw;
     GList *apptw_list;
 
+    gtk_window_get_size(GTK_WINDOW(dw->Window)
+            , &g_par.dw_size_x, &g_par.dw_size_y);
+    gtk_window_get_position(GTK_WINDOW(dw->Window)
+            , &g_par.dw_pos_x, &g_par.dw_pos_y);
+    write_parameters();
+
     /* need to clean the appointment list and inform all appointments that
      * we are not interested anymore (= should not get updated) */
     apptw_list = dw->apptw_list;
@@ -223,24 +229,44 @@ static void on_Go_today_activate_cb(GtkMenuItem *mi, gpointer user_data)
     go_to_today((day_win *)user_data);
 }
 
-static void on_Go_previous_activate_cb(GtkMenuItem *mi, gpointer user_data)
+static void on_Go_previous_week_activate_cb(GtkMenuItem *mi, gpointer user_data)
+{
+    changeSelectedDate((day_win *)user_data, -7);
+}
+
+static void on_Go_previous_day_activate_cb(GtkMenuItem *mi, gpointer user_data)
 {
     changeSelectedDate((day_win *)user_data, -1);
 }
 
-static void on_Previous_clicked(GtkButton *b, gpointer user_data)
+static void on_Previous_day_clicked(GtkButton *b, gpointer user_data)
 {
     changeSelectedDate((day_win *)user_data, -1);
 }
 
-static void on_Go_next_activate_cb(GtkMenuItem *mi, gpointer user_data)
+static void on_Previous_week_clicked(GtkButton *b, gpointer user_data)
+{
+    changeSelectedDate((day_win *)user_data, -7);
+}
+
+static void on_Go_next_day_activate_cb(GtkMenuItem *mi, gpointer user_data)
 {
     changeSelectedDate((day_win *)user_data, 1);
 }
 
-static void on_Next_clicked(GtkButton *b, gpointer user_data)
+static void on_Go_next_week_activate_cb(GtkMenuItem *mi, gpointer user_data)
+{
+    changeSelectedDate((day_win *)user_data, 7);
+}
+
+static void on_Next_day_clicked(GtkButton *b, gpointer user_data)
 {
     changeSelectedDate((day_win *)user_data, 1);
+}
+
+static void on_Next_week_clicked(GtkButton *b, gpointer user_data)
+{
+    changeSelectedDate((day_win *)user_data, 7);
 }
 
 static void build_menu(day_win *dw)
@@ -276,21 +302,51 @@ static void build_menu(day_win *dw)
 
     /********** Go menu   **********/
     dw->Go_menu = orage_menu_new(_("_Go"), dw->Menubar);
+
     dw->Go_menu_today = orage_image_menu_item_new_from_stock("gtk-home"
             , dw->Go_menu, dw->accel_group);
     gtk_widget_add_accelerator(dw->Go_menu_today
             , "activate", dw->accel_group
             , GDK_Home, GDK_MOD1_MASK, GTK_ACCEL_VISIBLE);
-    dw->Go_menu_prev = orage_image_menu_item_new_from_stock("gtk-go-back"
+    gtk_widget_add_accelerator(dw->Go_menu_today
+            , "activate", dw->accel_group
+            , GDK_KP_Home, GDK_MOD1_MASK, GTK_ACCEL_VISIBLE);
+
+    dw->Go_menu_prev_week = orage_image_menu_item_new_from_stock("gtk-go-up"
             , dw->Go_menu, dw->accel_group);
-    gtk_widget_add_accelerator(dw->Go_menu_prev
+    gtk_widget_add_accelerator(dw->Go_menu_prev_week
+            , "activate", dw->accel_group
+            , GDK_Page_Up, GDK_MOD1_MASK, GTK_ACCEL_VISIBLE);
+    gtk_widget_add_accelerator(dw->Go_menu_prev_week
+            , "activate", dw->accel_group
+            , GDK_KP_Page_Up, GDK_MOD1_MASK, GTK_ACCEL_VISIBLE);
+
+    dw->Go_menu_prev_day = orage_image_menu_item_new_from_stock("gtk-go-back"
+            , dw->Go_menu, dw->accel_group);
+    gtk_widget_add_accelerator(dw->Go_menu_prev_day
             , "activate", dw->accel_group
             , GDK_Left, GDK_MOD1_MASK, GTK_ACCEL_VISIBLE);
-    dw->Go_menu_next = orage_image_menu_item_new_from_stock("gtk-go-forward"
+    gtk_widget_add_accelerator(dw->Go_menu_prev_day
+            , "activate", dw->accel_group
+            , GDK_KP_Left, GDK_MOD1_MASK, GTK_ACCEL_VISIBLE);
+
+    dw->Go_menu_next_day = orage_image_menu_item_new_from_stock("gtk-go-forward"
             , dw->Go_menu, dw->accel_group);
-    gtk_widget_add_accelerator(dw->Go_menu_next
+    gtk_widget_add_accelerator(dw->Go_menu_next_day
             , "activate", dw->accel_group
             , GDK_Right, GDK_MOD1_MASK, GTK_ACCEL_VISIBLE);
+    gtk_widget_add_accelerator(dw->Go_menu_next_day
+            , "activate", dw->accel_group
+            , GDK_KP_Right, GDK_MOD1_MASK, GTK_ACCEL_VISIBLE);
+
+    dw->Go_menu_next_week = orage_image_menu_item_new_from_stock("gtk-go-down"
+            , dw->Go_menu, dw->accel_group);
+    gtk_widget_add_accelerator(dw->Go_menu_next_week
+            , "activate", dw->accel_group
+            , GDK_Page_Down, GDK_MOD1_MASK, GTK_ACCEL_VISIBLE);
+    gtk_widget_add_accelerator(dw->Go_menu_next_week
+            , "activate", dw->accel_group
+            , GDK_KP_Page_Down, GDK_MOD1_MASK, GTK_ACCEL_VISIBLE);
 
     g_signal_connect((gpointer)dw->File_menu_new, "activate"
             , G_CALLBACK(on_File_newApp_activate_cb), dw);
@@ -300,10 +356,14 @@ static void build_menu(day_win *dw)
             , G_CALLBACK(on_View_refresh_activate_cb), dw);
     g_signal_connect((gpointer)dw->Go_menu_today, "activate"
             , G_CALLBACK(on_Go_today_activate_cb), dw);
-    g_signal_connect((gpointer)dw->Go_menu_prev, "activate"
-            , G_CALLBACK(on_Go_previous_activate_cb), dw);
-    g_signal_connect((gpointer)dw->Go_menu_next, "activate"
-            , G_CALLBACK(on_Go_next_activate_cb), dw);
+    g_signal_connect((gpointer)dw->Go_menu_prev_week, "activate"
+            , G_CALLBACK(on_Go_previous_week_activate_cb), dw);
+    g_signal_connect((gpointer)dw->Go_menu_prev_day, "activate"
+            , G_CALLBACK(on_Go_previous_day_activate_cb), dw);
+    g_signal_connect((gpointer)dw->Go_menu_next_day, "activate"
+            , G_CALLBACK(on_Go_next_day_activate_cb), dw);
+    g_signal_connect((gpointer)dw->Go_menu_next_week, "activate"
+            , G_CALLBACK(on_Go_next_week_activate_cb), dw);
 }
 
 static void build_toolbar(day_win *dw)
@@ -320,12 +380,16 @@ static void build_toolbar(day_win *dw)
 
     toolbar_separator = orage_toolbar_append_separator(dw->Toolbar, i++);
 
-    dw->Previous_toolbutton = orage_toolbar_append_button(dw->Toolbar
-            , "gtk-go-back", dw->Tooltips, _("Back"), i++);
+    dw->Previous_week_toolbutton = orage_toolbar_append_button(dw->Toolbar
+            , "gtk-go-up", dw->Tooltips, _("Back one week"), i++);
+    dw->Previous_day_toolbutton = orage_toolbar_append_button(dw->Toolbar
+            , "gtk-go-back", dw->Tooltips, _("Back one day"), i++);
     dw->Today_toolbutton = orage_toolbar_append_button(dw->Toolbar
             , "gtk-home", dw->Tooltips, _("Today"), i++);
-    dw->Next_toolbutton = orage_toolbar_append_button(dw->Toolbar
-            , "gtk-go-forward", dw->Tooltips, _("Forward"), i++);
+    dw->Next_day_toolbutton = orage_toolbar_append_button(dw->Toolbar
+            , "gtk-go-forward", dw->Tooltips, _("Forward one day"), i++);
+    dw->Next_week_toolbutton = orage_toolbar_append_button(dw->Toolbar
+            , "gtk-go-down", dw->Tooltips, _("Forward one week"), i++);
 
     toolbar_separator = orage_toolbar_append_separator(dw->Toolbar, i++);
 
@@ -339,12 +403,16 @@ static void build_toolbar(day_win *dw)
 
     g_signal_connect((gpointer)dw->Create_toolbutton, "clicked"
             , G_CALLBACK(on_Create_toolbutton_clicked_cb), dw);
-    g_signal_connect((gpointer)dw->Previous_toolbutton, "clicked"
-            , G_CALLBACK(on_Previous_clicked), dw);
+    g_signal_connect((gpointer)dw->Previous_week_toolbutton, "clicked"
+            , G_CALLBACK(on_Previous_week_clicked), dw);
+    g_signal_connect((gpointer)dw->Previous_day_toolbutton, "clicked"
+            , G_CALLBACK(on_Previous_day_clicked), dw);
     g_signal_connect((gpointer)dw->Today_toolbutton, "clicked"
             , G_CALLBACK(on_Today_clicked), dw);
-    g_signal_connect((gpointer)dw->Next_toolbutton, "clicked"
-            , G_CALLBACK(on_Next_clicked), dw);
+    g_signal_connect((gpointer)dw->Next_day_toolbutton, "clicked"
+            , G_CALLBACK(on_Next_day_clicked), dw);
+    g_signal_connect((gpointer)dw->Next_week_toolbutton, "clicked"
+            , G_CALLBACK(on_Next_week_clicked), dw);
     g_signal_connect((gpointer)dw->Refresh_toolbutton, "clicked"
             , G_CALLBACK(on_Refresh_clicked), dw);
     g_signal_connect((gpointer)dw->Close_toolbutton, "clicked"
@@ -416,6 +484,12 @@ static void on_button_press_event_cb(GtkWidget *widget
     }
 }
 
+static void on_arrow_up_press_event_cb(GtkWidget *widget
+        , GdkEventButton *event, gpointer *user_data)
+{
+    changeSelectedDate((day_win *)user_data, -7);
+}
+
 static void on_arrow_left_press_event_cb(GtkWidget *widget
         , GdkEventButton *event, gpointer *user_data)
 {
@@ -426,6 +500,12 @@ static void on_arrow_right_press_event_cb(GtkWidget *widget
         , GdkEventButton *event, gpointer *user_data)
 {
     changeSelectedDate((day_win *)user_data, 1);
+}
+
+static void on_arrow_down_press_event_cb(GtkWidget *widget
+        , GdkEventButton *event, gpointer *user_data)
+{
+    changeSelectedDate((day_win *)user_data, 7);
 }
 
 static void add_row(day_win *dw, xfical_appt *appt)
@@ -446,6 +526,9 @@ static void add_row(day_win *dw, xfical_appt *appt)
     end_col   = orage_days_between(&tm_first, &tm_end)+1;
     days      = orage_days_between(&tm_start, &tm_end);
 
+    if (start_col > dw->days) { /* can happen if timezones pass date change */
+        return; /* this does not fit, so we just skip it */
+    }
     if (start_col < 1) {
         col = 1;
         row = 0;
@@ -453,6 +536,12 @@ static void add_row(day_win *dw, xfical_appt *appt)
     else {
         col = start_col;
         row = tm_start.tm_hour;
+    }
+    if (end_col < 1) { /* can happen if timezones pass date change */
+        return; /* this does not fit, so we just skip it */
+    }
+    if (end_col > dw->days) { /* can happen if timezones pass date change */
+        end_col = days;
     }
 
     /* then add the appointment */
@@ -696,13 +785,15 @@ static void fill_days(day_win *dw, gint days)
 static void build_day_view_header(day_win *dw, char *start_date)
 {
     GtkWidget *hbox, *label;
+    struct tm tm_date;
+    char *first_date;
+    int diff_to_weeks_first_day;
 
     hbox = gtk_hbox_new(FALSE, 0);
     gtk_box_pack_start(GTK_BOX(dw->Vbox), hbox, FALSE, FALSE, 10);
 
     label = gtk_label_new(_("Start"));
     gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 10);
-
     /* start date button */
     dw->StartDate_button = gtk_button_new();
     gtk_box_pack_start(GTK_BOX(hbox), dw->StartDate_button, FALSE, FALSE, 0);
@@ -716,8 +807,26 @@ static void build_day_view_header(day_win *dw, char *start_date)
     gtk_box_pack_start(GTK_BOX(hbox), dw->day_spin, FALSE, FALSE, 0);
 
     /* initial values */
+    if (g_par.dw_week_mode) { /* we want to start form week start day */
+        tm_date = orage_i18_date_to_tm_date(start_date);
+        /* tm_date.wday: 0 = Sunday, 1 = Monday, 2 = Tuesday, ... 6 = Saturday
+           g_par.ical_weekstartday: 0 = Monday, 1 = Tuesday, ... 6 = Sunday */
+        diff_to_weeks_first_day = tm_date.tm_wday - (g_par.ical_weekstartday+1);
+        if (diff_to_weeks_first_day < 0)
+            diff_to_weeks_first_day += 7;
+        if (diff_to_weeks_first_day == 0) { /* we are on week start day */
+            first_date = start_date;
+        }
+        else {
+            orage_move_day(&tm_date, -1*diff_to_weeks_first_day);
+            first_date = orage_tm_date_to_i18_date(&tm_date);
+        }
+    }
+    else {
+        first_date = start_date;
+    }
     gtk_button_set_label(GTK_BUTTON(dw->StartDate_button)
-            , (const gchar *)start_date);
+            , (const gchar *)first_date);
     gtk_spin_button_set_value(GTK_SPIN_BUTTON(dw->day_spin), 7);
 
     /* sizes */
@@ -795,15 +904,29 @@ static void fill_hour_arrow(day_win *dw, gint col)
     GtkWidget *arrow, *ev;
 
     ev = gtk_event_box_new();
-    if (col == 0) {
-        arrow = gtk_arrow_new(GTK_ARROW_LEFT, GTK_SHADOW_NONE);
-        g_signal_connect((gpointer)ev, "button-press-event"
-                , G_CALLBACK(on_arrow_left_press_event_cb), dw);
+    if (g_par.dw_week_mode) {
+        if (col == 0) {
+            arrow = gtk_arrow_new(GTK_ARROW_UP, GTK_SHADOW_NONE);
+            g_signal_connect((gpointer)ev, "button-press-event"
+                    , G_CALLBACK(on_arrow_up_press_event_cb), dw);
+        }
+        else {
+            arrow = gtk_arrow_new(GTK_ARROW_DOWN, GTK_SHADOW_NONE);
+            g_signal_connect((gpointer)ev, "button-press-event"
+                    , G_CALLBACK(on_arrow_down_press_event_cb), dw);
+        }
     }
     else {
-        arrow = gtk_arrow_new(GTK_ARROW_RIGHT, GTK_SHADOW_NONE);
-        g_signal_connect((gpointer)ev, "button-press-event"
-                , G_CALLBACK(on_arrow_right_press_event_cb), dw);
+        if (col == 0) {
+            arrow = gtk_arrow_new(GTK_ARROW_LEFT, GTK_SHADOW_NONE);
+            g_signal_connect((gpointer)ev, "button-press-event"
+                    , G_CALLBACK(on_arrow_left_press_event_cb), dw);
+        }
+        else {
+            arrow = gtk_arrow_new(GTK_ARROW_RIGHT, GTK_SHADOW_NONE);
+            g_signal_connect((gpointer)ev, "button-press-event"
+                    , G_CALLBACK(on_arrow_right_press_event_cb), dw);
+        }
     }
     gtk_container_add(GTK_CONTAINER(ev), arrow);
     gtk_widget_set_size_request(ev, dw->hour_req.width
@@ -937,7 +1060,11 @@ day_win *create_day_win(char *start_date)
     dw->accel_group = gtk_accel_group_new();
 
     dw->Window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-    gtk_window_set_default_size(GTK_WINDOW(dw->Window), 690, 390);
+    if (g_par.dw_size_x || g_par.dw_size_y)
+        gtk_window_set_default_size(GTK_WINDOW(dw->Window)
+                , g_par.dw_size_x, g_par.dw_size_y);
+    if (g_par.dw_pos_x || g_par.dw_pos_y)
+        gtk_window_move(GTK_WINDOW(dw->Window), g_par.dw_pos_x, g_par.dw_pos_y);
     gtk_window_set_title(GTK_WINDOW(dw->Window), _("Orage - day view"));
     gtk_window_add_accel_group(GTK_WINDOW(dw->Window), dw->accel_group);
 

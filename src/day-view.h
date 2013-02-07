@@ -42,14 +42,18 @@ typedef struct _day_win
     GtkWidget *View_menu_refresh;
     GtkWidget *Go_menu;
     GtkWidget *Go_menu_today;
-    GtkWidget *Go_menu_prev;
-    GtkWidget *Go_menu_next;
+    GtkWidget *Go_menu_prev_day;
+    GtkWidget *Go_menu_prev_week;
+    GtkWidget *Go_menu_next_day;
+    GtkWidget *Go_menu_next_week;
 
     GtkWidget *Toolbar;
     GtkWidget *Create_toolbutton;
-    GtkWidget *Previous_toolbutton;
+    GtkWidget *Previous_week_toolbutton;
+    GtkWidget *Previous_day_toolbutton;
     GtkWidget *Today_toolbutton;
-    GtkWidget *Next_toolbutton;
+    GtkWidget *Next_day_toolbutton;
+    GtkWidget *Next_week_toolbutton;
     GtkWidget *Refresh_toolbutton;
     GtkWidget *Close_toolbutton;
 

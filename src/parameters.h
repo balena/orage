@@ -112,6 +112,11 @@ typedef struct _parameters
     gint el_size_x, el_size_y;
     gint el_days;
 
+    /* day view window */
+    gint dw_pos_x, dw_pos_y;
+    gint dw_size_x, dw_size_y;
+    gboolean dw_week_mode;
+
     /* show days window from main calendar */
     gboolean show_days; /* true=show days false=show events */
 
