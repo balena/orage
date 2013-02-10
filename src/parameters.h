@@ -1,6 +1,6 @@
 /*      Orage - Calendar and alarm handler
  *
- * Copyright (c) 2006-2011 Juha Kautto  (juha at xfce.org)
+ * Copyright (c) 2006-2013 Juha Kautto  (juha at xfce.org)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,7 +23,6 @@
 #ifndef __ORAGE_PARAMETERS_H__
 #define __ORAGE_PARAMETERS_H__
 
-#define BORDER 5
 #define ORAGE_WAKEUP_TIMER_PERIOD 60
 typedef struct _foreign_file
 {

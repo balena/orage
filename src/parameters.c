@@ -47,7 +47,9 @@
 #include "ical-code.h"
 #include "timezone_selection.h"
 #include "parameters.h"
+#include "parameters_internal.h"
 #include "mainbox.h"
+
 
 extern int g_log_level; /* in function.c */
 
@@ -55,96 +57,6 @@ gboolean check_wakeup(gpointer user_data); /* in main.c*/
 
 static gboolean is_running = FALSE;
 
-typedef struct _Itf
-{
-    GtkTooltips *Tooltips;
-
-    GtkWidget *orage_dialog;
-    GtkWidget *dialog_vbox1;
-    GtkWidget *notebook;
-
-    /* Tabs */
-    /***** Main Tab *****/
-    GtkWidget *setup_tab;
-    GtkWidget *setup_tab_label;
-    GtkWidget *setup_vbox;
-    /* Choose the timezone for appointments */
-    GtkWidget *timezone_frame;
-    GtkWidget *timezone_button;
-    /* Archive period */
-#ifdef HAVE_ARCHIVE
-    GtkWidget *archive_threshold_frame;
-    GtkWidget *archive_threshold_spin;
-#endif
-    /* Choose the sound application for reminders */
-    GtkWidget *sound_application_frame;
-    GtkWidget *sound_application_entry;
-    GtkWidget *sound_application_open_button;
-
-    /***** Display Tab *****/
-    GtkWidget *display_tab;
-    GtkWidget *display_tab_label;
-    GtkWidget *display_vbox;
-    /* Show  border, menu and set stick, ontop */
-    GtkWidget *mode_frame;
-    GtkWidget *show_borders_checkbutton;
-    GtkWidget *show_menu_checkbutton;
-    GtkWidget *show_heading_checkbutton;
-    GtkWidget *show_day_names_checkbutton;
-    GtkWidget *show_weeks_checkbutton;
-    GtkWidget *set_stick_checkbutton;
-    GtkWidget *set_ontop_checkbutton;
-    /* Show in... taskbar pager systray */
-    GtkWidget *show_taskbar_checkbutton;
-    GtkWidget *show_pager_checkbutton;
-    GtkWidget *show_systray_checkbutton;
-    GtkWidget *show_todos_checkbutton;
-    GtkWidget *show_events_spin;
-    /* Start visibity show or hide */
-    GtkWidget *visibility_frame;
-    GSList    *visibility_radiobutton_group;
-    GtkWidget *visibility_show_radiobutton;
-    GtkWidget *visibility_hide_radiobutton;
-    GtkWidget *visibility_minimized_radiobutton;
-
-    /***** Extra Tab *****/
-    GtkWidget *extra_tab;
-    GtkWidget *extra_tab_label;
-    GtkWidget *extra_vbox;
-    /* select_always_today */
-    GtkWidget *select_day_frame;
-    GSList    *select_day_radiobutton_group;
-    GtkWidget *select_day_today_radiobutton;
-    GtkWidget *select_day_old_radiobutton;
-    /* Dynamic icon */
-    GtkWidget *use_dynamic_icon_frame;
-    GtkWidget *use_dynamic_icon_checkbutton;
-    /* show event/days window from main calendar */
-    GtkWidget *click_to_show_frame;
-    GSList    *click_to_show_radiobutton_group;
-    GtkWidget *click_to_show_days_radiobutton;
-    GtkWidget *click_to_show_events_radiobutton;
-    /* eventlist window number of extra days to show */
-    GtkWidget *el_extra_days_frame;
-    GtkWidget *el_extra_days_spin;
-    /* Use wakeup timer for suspend */
-    GtkWidget *use_wakeup_timer_frame;
-    GtkWidget *use_wakeup_timer_checkbutton;
-    /* default foreign file display alarm */
-    GtkWidget *foreign_alarm_frame;
-    GSList    *foreign_alarm_radiobutton_group;
-    GtkWidget *foreign_alarm_orage_radiobutton;
-    GtkWidget *foreign_alarm_notification_radiobutton;
-    /* day view week mode */
-    GtkWidget *dw_week_mode_frame;
-    GSList    *dw_week_mode_radiobutton_group;
-    GtkWidget *dw_week_mode_week_radiobutton;
-    GtkWidget *dw_week_mode_day_radiobutton;
-
-    /***** the rest in all tabs *****/
-    GtkWidget *close_button;
-    GtkWidget *help_button;
-} Itf;
 
 /* Return the first day of the week, where 0=monday, 6=sunday.
  *     Borrowed from GTK+:s Calendar Widget, but modified
@@ -543,7 +455,6 @@ static void create_parameter_dialog_main_setup_tab(Itf *dialog)
     GtkWidget *hbox, *vbox, *label;
 
     dialog->setup_vbox = gtk_vbox_new(FALSE, 0);
-    /* FIXME: this could be something simpler than framebox */
     dialog->setup_tab = 
             orage_create_framebox_with_content(NULL, dialog->setup_vbox);
     dialog->setup_tab_label = gtk_label_new(_("Main settings"));
@@ -621,60 +532,151 @@ static void create_parameter_dialog_main_setup_tab(Itf *dialog)
             , G_CALLBACK(sound_application_changed), dialog);
 }
 
-static void create_parameter_dialog_display_tab(Itf *dialog)
+GtkWidget *create_table(guint rows, guint cols)
 {
-    GtkWidget *hbox, *vbox, *label;
+    GtkWidget *table;
 
-    dialog->display_vbox = gtk_vbox_new(FALSE, 0);
-    /* FIXME: this could be something simpler than framebox */
-    dialog->display_tab = 
-        orage_create_framebox_with_content(NULL, dialog->display_vbox);
-    dialog->display_tab_label = gtk_label_new(_("Display settings"));
+    table = gtk_table_new(rows, cols, FALSE);
+    gtk_container_set_border_width(GTK_CONTAINER(table), 5);
+    gtk_table_set_row_spacings(GTK_TABLE(table), 2);
+    gtk_table_set_col_spacings(GTK_TABLE(table), 6);
+    return table;
+}
+
+void table_add_row(GtkWidget *table, GtkWidget *data1, GtkWidget *data2
+        , guint row)
+{
+    if (data1) {
+        gtk_table_attach(GTK_TABLE(table), data1, 0, 1, row, row+1
+                , (GTK_FILL), (GTK_FILL), 0, 0);
+    }
+    if (data2) {
+        gtk_table_attach(GTK_TABLE(table), data2, 1, 2, row, row+1
+                , (GTK_FILL), (GTK_FILL), 0, 0);
+    }
+}
+
+static void create_parameter_dialog_calendar_setup_tab(Itf *dialog)
+{
+    GtkWidget *hbox, *vbox, *label, *table;
+    gint row;
+
+    dialog->calendar_vbox = gtk_vbox_new(FALSE, 0);
+    dialog->calendar_tab = 
+        orage_create_framebox_with_content(NULL, dialog->calendar_vbox);
+    dialog->calendar_tab_label = gtk_label_new(_("Calendar window"));
     gtk_notebook_append_page(GTK_NOTEBOOK(dialog->notebook)
-          , dialog->display_tab, dialog->display_tab_label);
+          , dialog->calendar_tab, dialog->calendar_tab_label);
 
-    /* Display calendar borders and menu and calendar options or not 
-     * and set stick or ontop */
-    vbox = gtk_vbox_new(TRUE, 0);
+    /***** calendar borders and menu and other calendar visual options *****/
+    table = create_table(3, 2);
     dialog->mode_frame = 
-            orage_create_framebox_with_content(_("Calendar main window"), vbox);
-    gtk_box_pack_start(GTK_BOX(dialog->display_vbox), dialog->mode_frame
+            orage_create_framebox_with_content(_("Calendar visual details")
+                    , table);
+    gtk_box_pack_start(GTK_BOX(dialog->calendar_vbox), dialog->mode_frame
             , FALSE, FALSE, 5);
 
     dialog->show_borders_checkbutton = gtk_check_button_new_with_mnemonic(
             _("Show borders"));
-    gtk_box_pack_start(GTK_BOX(vbox)
-            , dialog->show_borders_checkbutton, FALSE, FALSE, 0);
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
             dialog->show_borders_checkbutton), g_par.show_borders);
 
     dialog->show_menu_checkbutton = gtk_check_button_new_with_mnemonic(
             _("Show menu"));
-    gtk_box_pack_start(GTK_BOX(vbox)
-            , dialog->show_menu_checkbutton, FALSE, FALSE, 0);
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
             dialog->show_menu_checkbutton), g_par.show_menu);
 
-    dialog->show_heading_checkbutton = gtk_check_button_new_with_mnemonic(
-            _("Show month and year"));
-    gtk_box_pack_start(GTK_BOX(vbox)
-            , dialog->show_heading_checkbutton, FALSE, FALSE, 0);
-    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
-            dialog->show_heading_checkbutton), g_par.show_heading);
+    table_add_row(table, dialog->show_borders_checkbutton
+            , dialog->show_menu_checkbutton, row = 0);
 
     dialog->show_day_names_checkbutton = gtk_check_button_new_with_mnemonic(
             _("Show day names"));
-    gtk_box_pack_start(GTK_BOX(vbox)
-            , dialog->show_day_names_checkbutton, FALSE, FALSE, 0);
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
             dialog->show_day_names_checkbutton), g_par.show_day_names);
 
     dialog->show_weeks_checkbutton = gtk_check_button_new_with_mnemonic(
             _("Show week numbers"));
-    gtk_box_pack_start(GTK_BOX(vbox)
-            , dialog->show_weeks_checkbutton, FALSE, FALSE, 0);
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
             dialog->show_weeks_checkbutton), g_par.show_weeks);
+
+    table_add_row(table, dialog->show_day_names_checkbutton
+            , dialog->show_weeks_checkbutton, ++row);
+
+    dialog->show_heading_checkbutton = gtk_check_button_new_with_mnemonic(
+            _("Show month and year"));
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
+            dialog->show_heading_checkbutton), g_par.show_heading);
+
+    table_add_row(table, dialog->show_heading_checkbutton, NULL, ++row);
+
+    g_signal_connect(G_OBJECT(dialog->show_borders_checkbutton), "toggled"
+            , G_CALLBACK(borders_changed), dialog);
+    g_signal_connect(G_OBJECT(dialog->show_menu_checkbutton), "toggled"
+            , G_CALLBACK(menu_changed), dialog);
+    g_signal_connect(G_OBJECT(dialog->show_heading_checkbutton), "toggled"
+            , G_CALLBACK(heading_changed), dialog);
+    g_signal_connect(G_OBJECT(dialog->show_day_names_checkbutton), "toggled"
+            , G_CALLBACK(days_changed), dialog);
+    g_signal_connect(G_OBJECT(dialog->show_weeks_checkbutton), "toggled"
+            , G_CALLBACK(weeks_changed), dialog);
+
+    /***** Where calendar appears = exists = is visible *****/
+    table = create_table(3, 2);
+    dialog->appearance_frame = 
+            orage_create_framebox_with_content(_("Calendar visibility"), table);
+    gtk_box_pack_start(GTK_BOX(dialog->calendar_vbox), dialog->appearance_frame
+            , FALSE, FALSE, 5);
+
+    dialog->set_stick_checkbutton = gtk_check_button_new_with_mnemonic(
+            _("Show on all desktops"));
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
+            dialog->set_stick_checkbutton), g_par.set_stick);
+
+    dialog->set_ontop_checkbutton = gtk_check_button_new_with_mnemonic(
+            _("Keep on top"));
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
+            dialog->set_ontop_checkbutton), g_par.set_ontop);
+
+    table_add_row(table, dialog->set_stick_checkbutton
+            , dialog->set_ontop_checkbutton, row = 0);
+
+    dialog->show_taskbar_checkbutton = gtk_check_button_new_with_mnemonic(
+            _("Show in taskbar"));
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
+            dialog->show_taskbar_checkbutton), g_par.show_taskbar);
+
+    dialog->show_pager_checkbutton = gtk_check_button_new_with_mnemonic(
+            _("Show in pager"));
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
+            dialog->show_pager_checkbutton), g_par.show_pager);
+
+    table_add_row(table, dialog->show_taskbar_checkbutton
+            , dialog->show_pager_checkbutton, ++row);
+
+    dialog->show_systray_checkbutton = gtk_check_button_new_with_mnemonic(
+            _("Show in systray"));
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
+            dialog->show_systray_checkbutton), g_par.show_systray);
+
+    table_add_row(table, dialog->show_systray_checkbutton, NULL, ++row);
+
+    g_signal_connect(G_OBJECT(dialog->set_stick_checkbutton), "toggled"
+            , G_CALLBACK(stick_changed), dialog);
+    g_signal_connect(G_OBJECT(dialog->set_ontop_checkbutton), "toggled"
+            , G_CALLBACK(ontop_changed), dialog);
+    g_signal_connect(G_OBJECT(dialog->show_taskbar_checkbutton), "toggled"
+            , G_CALLBACK(taskbar_changed), dialog);
+    g_signal_connect(G_OBJECT(dialog->show_pager_checkbutton), "toggled"
+            , G_CALLBACK(pager_changed), dialog);
+    g_signal_connect(G_OBJECT(dialog->show_systray_checkbutton), "toggled"
+            , G_CALLBACK(systray_changed), dialog);
+
+    /***** calendar info boxes (under the calendar) *****/
+    vbox = gtk_vbox_new(FALSE, 0);
+    dialog->info_frame = 
+            orage_create_framebox_with_content(_("Calendar info boxes"), vbox);
+    gtk_box_pack_start(GTK_BOX(dialog->calendar_vbox), dialog->info_frame
+            , FALSE, FALSE, 5);
 
     dialog->show_todos_checkbutton = gtk_check_button_new_with_mnemonic(
             _("Show todo list"));
@@ -694,83 +696,24 @@ static void create_parameter_dialog_display_tab(Itf *dialog)
     gtk_box_pack_start(GTK_BOX(hbox)
             , dialog->show_events_spin, FALSE, FALSE, 5);
     gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
-    /*
-    label = gtk_label_new(_("days in event list"));
-    gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 5);
-    */
 
-    dialog->set_stick_checkbutton = gtk_check_button_new_with_mnemonic(
-            _("Show on all desktops"));
-    gtk_box_pack_start(GTK_BOX(vbox)
-            , dialog->set_stick_checkbutton, FALSE, FALSE, 0);
-    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
-            dialog->set_stick_checkbutton), g_par.set_stick);
-
-    dialog->set_ontop_checkbutton = gtk_check_button_new_with_mnemonic(
-            _("Keep on top"));
-    gtk_box_pack_start(GTK_BOX(vbox)
-            , dialog->set_ontop_checkbutton, FALSE, FALSE, 0);
-    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
-            dialog->set_ontop_checkbutton), g_par.set_ontop);
-
-    dialog->show_taskbar_checkbutton = gtk_check_button_new_with_mnemonic(
-            _("Show in taskbar"));
-    gtk_box_pack_start(GTK_BOX(vbox)
-            , dialog->show_taskbar_checkbutton, FALSE, FALSE, 0);
-    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
-            dialog->show_taskbar_checkbutton), g_par.show_taskbar);
-
-    dialog->show_pager_checkbutton = gtk_check_button_new_with_mnemonic(
-            _("Show in pager"));
-    gtk_box_pack_start(GTK_BOX(vbox)
-            , dialog->show_pager_checkbutton, FALSE, FALSE, 0);
-    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
-            dialog->show_pager_checkbutton), g_par.show_pager);
-
-    dialog->show_systray_checkbutton = gtk_check_button_new_with_mnemonic(
-            _("Show in systray"));
-    gtk_box_pack_start(GTK_BOX(vbox)
-            , dialog->show_systray_checkbutton, FALSE, FALSE, 0);
-    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
-            dialog->show_systray_checkbutton), g_par.show_systray);
-
-    g_signal_connect(G_OBJECT(dialog->show_borders_checkbutton), "toggled"
-            , G_CALLBACK(borders_changed), dialog);
-    g_signal_connect(G_OBJECT(dialog->show_menu_checkbutton), "toggled"
-            , G_CALLBACK(menu_changed), dialog);
-    g_signal_connect(G_OBJECT(dialog->show_heading_checkbutton), "toggled"
-            , G_CALLBACK(heading_changed), dialog);
-    g_signal_connect(G_OBJECT(dialog->show_day_names_checkbutton), "toggled"
-            , G_CALLBACK(days_changed), dialog);
-    g_signal_connect(G_OBJECT(dialog->show_weeks_checkbutton), "toggled"
-            , G_CALLBACK(weeks_changed), dialog);
     g_signal_connect(G_OBJECT(dialog->show_todos_checkbutton), "toggled"
             , G_CALLBACK(todos_changed), dialog);
     g_signal_connect(G_OBJECT(dialog->show_events_spin), "value-changed"
             , G_CALLBACK(show_events_spin_changed), dialog);
-    g_signal_connect(G_OBJECT(dialog->set_stick_checkbutton), "toggled"
-            , G_CALLBACK(stick_changed), dialog);
-    g_signal_connect(G_OBJECT(dialog->set_ontop_checkbutton), "toggled"
-            , G_CALLBACK(ontop_changed), dialog);
-    g_signal_connect(G_OBJECT(dialog->show_taskbar_checkbutton), "toggled"
-            , G_CALLBACK(taskbar_changed), dialog);
-    g_signal_connect(G_OBJECT(dialog->show_pager_checkbutton), "toggled"
-            , G_CALLBACK(pager_changed), dialog);
-    g_signal_connect(G_OBJECT(dialog->show_systray_checkbutton), "toggled"
-            , G_CALLBACK(systray_changed), dialog);
 
-    /* how to show when started (show/hide/minimize) */
+    /***** how to show when started (show/hide/minimize) *****/
     dialog->visibility_radiobutton_group = NULL;
     hbox = gtk_hbox_new(TRUE, 0);
     dialog->visibility_frame = orage_create_framebox_with_content(
             _("Calendar start") , hbox);
-    gtk_box_pack_start(GTK_BOX(dialog->display_vbox), dialog->visibility_frame
+    gtk_box_pack_start(GTK_BOX(dialog->calendar_vbox), dialog->visibility_frame
             , FALSE, FALSE, 5);
 
     dialog->visibility_show_radiobutton = gtk_radio_button_new_with_mnemonic(
             NULL, _("Show"));
     gtk_box_pack_start(GTK_BOX(hbox)
-            , dialog->visibility_show_radiobutton, FALSE, FALSE, 0);
+            , dialog->visibility_show_radiobutton, FALSE, TRUE, 0);
     gtk_radio_button_set_group(
             GTK_RADIO_BUTTON(dialog->visibility_show_radiobutton)
             , dialog->visibility_radiobutton_group);
@@ -782,7 +725,7 @@ static void create_parameter_dialog_display_tab(Itf *dialog)
     dialog->visibility_hide_radiobutton = gtk_radio_button_new_with_mnemonic(
             NULL, _("Hide"));
     gtk_box_pack_start(GTK_BOX(hbox)
-            , dialog->visibility_hide_radiobutton, FALSE, FALSE, 0);
+            , dialog->visibility_hide_radiobutton, TRUE, TRUE, 0);
     gtk_radio_button_set_group(
             GTK_RADIO_BUTTON(dialog->visibility_hide_radiobutton)
             , dialog->visibility_radiobutton_group);
@@ -794,7 +737,7 @@ static void create_parameter_dialog_display_tab(Itf *dialog)
     dialog->visibility_minimized_radiobutton = 
             gtk_radio_button_new_with_mnemonic(NULL, _("Minimized"));
     gtk_box_pack_start(GTK_BOX(hbox)
-            , dialog->visibility_minimized_radiobutton, FALSE, FALSE, 0);
+            , dialog->visibility_minimized_radiobutton, TRUE, TRUE, 0);
     gtk_radio_button_set_group(
             GTK_RADIO_BUTTON(dialog->visibility_minimized_radiobutton)
             , dialog->visibility_radiobutton_group);
@@ -807,32 +750,19 @@ static void create_parameter_dialog_display_tab(Itf *dialog)
             , G_CALLBACK(start_changed), dialog);
     g_signal_connect(G_OBJECT(dialog->visibility_minimized_radiobutton)
             , "toggled", G_CALLBACK(start_changed), dialog);
-}
-
-static void create_parameter_dialog_extra_setup_tab(Itf *dialog)
-{
-    GtkWidget *hbox, *vbox, *label;
-
-    dialog->extra_vbox = gtk_vbox_new(FALSE, 0);
-    /* FIXME: this could be something simpler than framebox */
-    dialog->extra_tab = 
-            orage_create_framebox_with_content(NULL, dialog->extra_vbox);
-    dialog->extra_tab_label = gtk_label_new(_("Extra settings"));
-    gtk_notebook_append_page(GTK_NOTEBOOK(dialog->notebook)
-          , dialog->extra_tab, dialog->extra_tab_label);
 
     /****** On Calendar Window Open ******/
     dialog->select_day_radiobutton_group = NULL;
-    vbox = gtk_vbox_new(FALSE, 0);
+    hbox = gtk_hbox_new(TRUE, 0);
     dialog->select_day_frame = orage_create_framebox_with_content(
-            _("On Calendar Window Open"), vbox);
-    gtk_box_pack_start(GTK_BOX(dialog->extra_vbox)
+            _("On calendar window open"), hbox);
+    gtk_box_pack_start(GTK_BOX(dialog->calendar_vbox)
             , dialog->select_day_frame, FALSE, FALSE, 5);
 
     dialog->select_day_today_radiobutton =
-            gtk_radio_button_new_with_mnemonic(NULL, _("Select Today's Date"));
-    gtk_box_pack_start(GTK_BOX(vbox)
-            , dialog->select_day_today_radiobutton, FALSE, FALSE, 0);
+            gtk_radio_button_new_with_mnemonic(NULL, _("Select today's date"));
+    gtk_box_pack_start(GTK_BOX(hbox)
+            , dialog->select_day_today_radiobutton, FALSE, TRUE, 0);
     gtk_radio_button_set_group(
             GTK_RADIO_BUTTON(dialog->select_day_today_radiobutton)
             , dialog->select_day_radiobutton_group);
@@ -843,9 +773,9 @@ static void create_parameter_dialog_extra_setup_tab(Itf *dialog)
 
     dialog->select_day_old_radiobutton =
             gtk_radio_button_new_with_mnemonic(NULL
-                    , _("Select Previously Selected Date"));
-    gtk_box_pack_start(GTK_BOX(vbox)
-            , dialog->select_day_old_radiobutton, FALSE, FALSE, 0);
+                    , _("Select previously selected date"));
+    gtk_box_pack_start(GTK_BOX(hbox)
+            , dialog->select_day_old_radiobutton, TRUE, TRUE, 0);
     gtk_radio_button_set_group(
             GTK_RADIO_BUTTON(dialog->select_day_old_radiobutton)
             , dialog->select_day_radiobutton_group);
@@ -856,6 +786,112 @@ static void create_parameter_dialog_extra_setup_tab(Itf *dialog)
 
     g_signal_connect(G_OBJECT(dialog->select_day_today_radiobutton), "toggled"
             , G_CALLBACK(select_day_changed), dialog);
+
+    /***** Start event list or day window from main calendar *****/
+    dialog->click_to_show_radiobutton_group = NULL;
+    hbox = gtk_hbox_new(TRUE, 0);
+    dialog->click_to_show_frame = orage_create_framebox_with_content(
+            _("Calendar day double click shows"), hbox);
+    gtk_box_pack_start(GTK_BOX(dialog->calendar_vbox)
+            , dialog->click_to_show_frame, FALSE, FALSE, 5);
+
+    dialog->click_to_show_days_radiobutton =
+            gtk_radio_button_new_with_mnemonic(NULL, _("Days view"));
+    gtk_box_pack_start(GTK_BOX(hbox)
+            , dialog->click_to_show_days_radiobutton, FALSE, TRUE, 0);
+    gtk_radio_button_set_group(
+            GTK_RADIO_BUTTON(dialog->click_to_show_days_radiobutton)
+            , dialog->click_to_show_radiobutton_group);
+    dialog->click_to_show_radiobutton_group = gtk_radio_button_get_group(
+            GTK_RADIO_BUTTON(dialog->click_to_show_days_radiobutton));
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
+            dialog->click_to_show_days_radiobutton), g_par.show_days);
+
+    dialog->click_to_show_events_radiobutton =
+            gtk_radio_button_new_with_mnemonic(NULL, _("Event list"));
+    gtk_box_pack_start(GTK_BOX(hbox)
+            , dialog->click_to_show_events_radiobutton, TRUE, TRUE, 0);
+    gtk_radio_button_set_group(
+            GTK_RADIO_BUTTON(dialog->click_to_show_events_radiobutton)
+            , dialog->click_to_show_radiobutton_group);
+    dialog->click_to_show_radiobutton_group = gtk_radio_button_get_group(
+            GTK_RADIO_BUTTON(dialog->click_to_show_events_radiobutton));
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
+            dialog->click_to_show_events_radiobutton), !g_par.show_days);
+
+    g_signal_connect(G_OBJECT(dialog->click_to_show_days_radiobutton), "toggled"
+            , G_CALLBACK(show_changed), dialog);
+}
+
+static void create_parameter_dialog_extra_setup_tab(Itf *dialog)
+{
+    GtkWidget *hbox, *vbox, *label;
+
+    dialog->extra_vbox = gtk_vbox_new(FALSE, 0);
+    dialog->extra_tab = 
+            orage_create_framebox_with_content(NULL, dialog->extra_vbox);
+    dialog->extra_tab_label = gtk_label_new(_("Extra settings"));
+    gtk_notebook_append_page(GTK_NOTEBOOK(dialog->notebook)
+          , dialog->extra_tab, dialog->extra_tab_label);
+
+    /***** Eventlist window number of extra days to show *****/
+    vbox = gtk_vbox_new(FALSE, 0);
+    dialog->el_extra_days_frame = orage_create_framebox_with_content(
+            _("Event list window extra days"), vbox);
+    gtk_box_pack_start(GTK_BOX(dialog->extra_vbox)
+            , dialog->el_extra_days_frame, FALSE, FALSE, 5);
+
+    hbox = gtk_hbox_new(FALSE, 0);
+    label = gtk_label_new(_("Number of extra days to show in event list"));
+    gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 5);
+    dialog->el_extra_days_spin = gtk_spin_button_new_with_range(0, 999, 1);
+    gtk_box_pack_start(GTK_BOX(hbox)
+            , dialog->el_extra_days_spin, FALSE, FALSE, 5);
+    gtk_spin_button_set_value(GTK_SPIN_BUTTON(dialog->el_extra_days_spin)
+            , g_par.el_days);
+    gtk_tooltips_set_tip(dialog->Tooltips, dialog->el_extra_days_spin
+            , _("This is just the default value, you can change it in the actual eventlist window.")
+            , NULL);
+    gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
+    g_signal_connect(G_OBJECT(dialog->el_extra_days_spin), "value-changed"
+            , G_CALLBACK(el_extra_days_spin_changed), dialog);
+
+    /***** Default start day in day view window *****/
+    dialog->dw_week_mode_radiobutton_group = NULL;
+    hbox = gtk_hbox_new(TRUE, 0);
+    dialog->dw_week_mode_frame = orage_create_framebox_with_content(
+            _("Day view window default first day"), hbox);
+    gtk_box_pack_start(GTK_BOX(dialog->extra_vbox)
+            , dialog->dw_week_mode_frame, FALSE, FALSE, 5);
+
+    dialog->dw_week_mode_week_radiobutton =
+            gtk_radio_button_new_with_mnemonic(NULL, _("First day of week"));
+    gtk_box_pack_start(GTK_BOX(hbox)
+            , dialog->dw_week_mode_week_radiobutton, FALSE, TRUE, 0);
+    gtk_radio_button_set_group(
+            GTK_RADIO_BUTTON(dialog->dw_week_mode_week_radiobutton)
+            , dialog->dw_week_mode_radiobutton_group);
+    dialog->dw_week_mode_radiobutton_group = gtk_radio_button_get_group(
+            GTK_RADIO_BUTTON(dialog->dw_week_mode_week_radiobutton));
+    gtk_toggle_button_set_active(
+            GTK_TOGGLE_BUTTON(dialog->dw_week_mode_week_radiobutton)
+            , g_par.dw_week_mode);
+
+    dialog->dw_week_mode_day_radiobutton =
+            gtk_radio_button_new_with_mnemonic(NULL, _("Selected day"));
+    gtk_box_pack_start(GTK_BOX(hbox)
+            , dialog->dw_week_mode_day_radiobutton, TRUE, TRUE, 0);
+    gtk_radio_button_set_group(
+            GTK_RADIO_BUTTON(dialog->dw_week_mode_day_radiobutton)
+            , dialog->dw_week_mode_radiobutton_group);
+    dialog->dw_week_mode_radiobutton_group = gtk_radio_button_get_group(
+            GTK_RADIO_BUTTON(dialog->dw_week_mode_day_radiobutton));
+    gtk_toggle_button_set_active(
+            GTK_TOGGLE_BUTTON(dialog->dw_week_mode_day_radiobutton)
+            , !g_par.dw_week_mode);
+
+    g_signal_connect(G_OBJECT(dialog->dw_week_mode_day_radiobutton)
+            , "toggled", G_CALLBACK(dw_week_mode_changed), dialog);
 
     /***** use dynamic tray icon *****/
     hbox = gtk_vbox_new(FALSE, 0);
@@ -875,61 +911,6 @@ static void create_parameter_dialog_extra_setup_tab(Itf *dialog)
             , NULL);
     g_signal_connect(G_OBJECT(dialog->use_dynamic_icon_checkbutton), "toggled"
             , G_CALLBACK(use_dynamic_icon_changed), dialog);
-
-    /***** Start event or day window from main calendar *****/
-    dialog->click_to_show_radiobutton_group = NULL;
-    vbox = gtk_vbox_new(FALSE, 0);
-    dialog->click_to_show_frame = orage_create_framebox_with_content(
-            _("Main Calendar double click shows"), vbox);
-    gtk_box_pack_start(GTK_BOX(dialog->extra_vbox)
-            , dialog->click_to_show_frame, FALSE, FALSE, 5);
-
-    dialog->click_to_show_days_radiobutton =
-            gtk_radio_button_new_with_mnemonic(NULL, _("Days view"));
-    gtk_box_pack_start(GTK_BOX(vbox)
-            , dialog->click_to_show_days_radiobutton, FALSE, FALSE, 0);
-    gtk_radio_button_set_group(
-            GTK_RADIO_BUTTON(dialog->click_to_show_days_radiobutton)
-            , dialog->click_to_show_radiobutton_group);
-    dialog->click_to_show_radiobutton_group = gtk_radio_button_get_group(
-            GTK_RADIO_BUTTON(dialog->click_to_show_days_radiobutton));
-    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
-            dialog->click_to_show_days_radiobutton), g_par.show_days);
-
-    dialog->click_to_show_events_radiobutton =
-            gtk_radio_button_new_with_mnemonic(NULL, _("Event list"));
-    gtk_box_pack_start(GTK_BOX(vbox)
-            , dialog->click_to_show_events_radiobutton, FALSE, FALSE, 0);
-    gtk_radio_button_set_group(
-            GTK_RADIO_BUTTON(dialog->click_to_show_events_radiobutton)
-            , dialog->click_to_show_radiobutton_group);
-    dialog->click_to_show_radiobutton_group = gtk_radio_button_get_group(
-            GTK_RADIO_BUTTON(dialog->click_to_show_events_radiobutton));
-    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
-            dialog->click_to_show_events_radiobutton), !g_par.show_days);
-
-    g_signal_connect(G_OBJECT(dialog->click_to_show_days_radiobutton), "toggled"
-            , G_CALLBACK(show_changed), dialog);
-
-    /***** Eventlist window number of extra days to show *****/
-    hbox = gtk_hbox_new(FALSE, 0);
-    dialog->el_extra_days_frame = orage_create_framebox_with_content(
-            _("Eventlist window"), hbox);
-    gtk_box_pack_start(GTK_BOX(dialog->extra_vbox)
-            , dialog->el_extra_days_frame, FALSE, FALSE, 5);
-
-    label = gtk_label_new(_("Number of extra days to show in event list"));
-    gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 5);
-    dialog->el_extra_days_spin = gtk_spin_button_new_with_range(0, 999, 1);
-    gtk_box_pack_start(GTK_BOX(hbox)
-            , dialog->el_extra_days_spin, FALSE, FALSE, 5);
-    gtk_spin_button_set_value(GTK_SPIN_BUTTON(dialog->el_extra_days_spin)
-            , g_par.el_days);
-    gtk_tooltips_set_tip(dialog->Tooltips, dialog->el_extra_days_spin
-            , _("This is just the default value, you can change it in the actual eventlist window.")
-            , NULL);
-    g_signal_connect(G_OBJECT(dialog->el_extra_days_spin), "value-changed"
-            , G_CALLBACK(el_extra_days_spin_changed), dialog);
 
     /***** use wakeup timer *****/
     hbox = gtk_vbox_new(FALSE, 0);
@@ -952,16 +933,16 @@ static void create_parameter_dialog_extra_setup_tab(Itf *dialog)
 
     /***** Default Display alarm for Foreign files *****/
     dialog->foreign_alarm_radiobutton_group = NULL;
-    vbox = gtk_vbox_new(FALSE, 0);
+    hbox = gtk_hbox_new(TRUE, 0);
     dialog->foreign_alarm_frame = orage_create_framebox_with_content(
-            _("Foreign file default visual alarm"), vbox);
+            _("Foreign file default visual alarm"), hbox);
     gtk_box_pack_start(GTK_BOX(dialog->extra_vbox)
             , dialog->foreign_alarm_frame, FALSE, FALSE, 5);
 
     dialog->foreign_alarm_orage_radiobutton =
             gtk_radio_button_new_with_mnemonic(NULL, _("Orage window"));
-    gtk_box_pack_start(GTK_BOX(vbox)
-            , dialog->foreign_alarm_orage_radiobutton, FALSE, FALSE, 0);
+    gtk_box_pack_start(GTK_BOX(hbox)
+            , dialog->foreign_alarm_orage_radiobutton, FALSE, TRUE, 0);
     gtk_radio_button_set_group(
             GTK_RADIO_BUTTON(dialog->foreign_alarm_orage_radiobutton)
             , dialog->foreign_alarm_radiobutton_group);
@@ -973,8 +954,8 @@ static void create_parameter_dialog_extra_setup_tab(Itf *dialog)
 
     dialog->foreign_alarm_notification_radiobutton =
             gtk_radio_button_new_with_mnemonic(NULL, _("Notify notification"));
-    gtk_box_pack_start(GTK_BOX(vbox)
-            , dialog->foreign_alarm_notification_radiobutton, FALSE, FALSE, 0);
+    gtk_box_pack_start(GTK_BOX(hbox)
+            , dialog->foreign_alarm_notification_radiobutton, TRUE, TRUE, 0);
     gtk_radio_button_set_group(
             GTK_RADIO_BUTTON(dialog->foreign_alarm_notification_radiobutton)
             , dialog->foreign_alarm_radiobutton_group);
@@ -986,43 +967,6 @@ static void create_parameter_dialog_extra_setup_tab(Itf *dialog)
 
     g_signal_connect(G_OBJECT(dialog->foreign_alarm_notification_radiobutton)
             , "toggled", G_CALLBACK(foreign_alarm_changed), dialog);
-
-    /***** Default start day in day view window *****/
-    dialog->dw_week_mode_radiobutton_group = NULL;
-    vbox = gtk_vbox_new(FALSE, 0);
-    dialog->dw_week_mode_frame = orage_create_framebox_with_content(
-            _("Day view window default first day"), vbox);
-    gtk_box_pack_start(GTK_BOX(dialog->extra_vbox)
-            , dialog->dw_week_mode_frame, FALSE, FALSE, 5);
-
-    dialog->dw_week_mode_week_radiobutton =
-            gtk_radio_button_new_with_mnemonic(NULL, _("First day of week"));
-    gtk_box_pack_start(GTK_BOX(vbox)
-            , dialog->dw_week_mode_week_radiobutton, FALSE, FALSE, 0);
-    gtk_radio_button_set_group(
-            GTK_RADIO_BUTTON(dialog->dw_week_mode_week_radiobutton)
-            , dialog->dw_week_mode_radiobutton_group);
-    dialog->dw_week_mode_radiobutton_group = gtk_radio_button_get_group(
-            GTK_RADIO_BUTTON(dialog->dw_week_mode_week_radiobutton));
-    gtk_toggle_button_set_active(
-            GTK_TOGGLE_BUTTON(dialog->dw_week_mode_week_radiobutton)
-            , g_par.dw_week_mode);
-
-    dialog->dw_week_mode_day_radiobutton =
-            gtk_radio_button_new_with_mnemonic(NULL, _("Selected day"));
-    gtk_box_pack_start(GTK_BOX(vbox)
-            , dialog->dw_week_mode_day_radiobutton, FALSE, FALSE, 0);
-    gtk_radio_button_set_group(
-            GTK_RADIO_BUTTON(dialog->dw_week_mode_day_radiobutton)
-            , dialog->dw_week_mode_radiobutton_group);
-    dialog->dw_week_mode_radiobutton_group = gtk_radio_button_get_group(
-            GTK_RADIO_BUTTON(dialog->dw_week_mode_day_radiobutton));
-    gtk_toggle_button_set_active(
-            GTK_TOGGLE_BUTTON(dialog->dw_week_mode_day_radiobutton)
-            , !g_par.dw_week_mode);
-
-    g_signal_connect(G_OBJECT(dialog->dw_week_mode_day_radiobutton)
-            , "toggled", G_CALLBACK(dw_week_mode_changed), dialog);
 }
 
 static Itf *create_parameter_dialog(void)
@@ -1054,7 +998,7 @@ static Itf *create_parameter_dialog(void)
     gtk_container_set_border_width(GTK_CONTAINER(dialog->notebook), 5);
 
     create_parameter_dialog_main_setup_tab(dialog);
-    create_parameter_dialog_display_tab(dialog);
+    create_parameter_dialog_calendar_setup_tab(dialog);
     create_parameter_dialog_extra_setup_tab(dialog);
 
     /* the rest */
