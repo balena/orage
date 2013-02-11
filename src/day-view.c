@@ -1,6 +1,6 @@
 /*      Orage - Calendar and alarm handler
  *
- * Copyright (c) 2007-2011 Juha Kautto  (juha at xfce.org)
+ * Copyright (c) 2007-2013 Juha Kautto  (juha at xfce.org)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -148,7 +148,6 @@ static void close_window(day_win *dw)
     g_list_free(dw->apptw_list);
 
     gtk_widget_destroy(dw->Window);
-    gtk_object_destroy(GTK_OBJECT(dw->Tooltips));
     g_free(dw);
     dw = NULL;
 }
@@ -373,33 +372,32 @@ static void build_toolbar(day_win *dw)
 
     dw->Toolbar = gtk_toolbar_new();
     gtk_box_pack_start(GTK_BOX(dw->Vbox), dw->Toolbar, FALSE, FALSE, 0);
-    gtk_toolbar_set_tooltips(GTK_TOOLBAR(dw->Toolbar), TRUE);
 
     dw->Create_toolbutton = orage_toolbar_append_button(dw->Toolbar
-            , "gtk-new", dw->Tooltips, _("New"), i++);
+            , "gtk-new", _("New"), i++);
 
     toolbar_separator = orage_toolbar_append_separator(dw->Toolbar, i++);
 
     dw->Previous_week_toolbutton = orage_toolbar_append_button(dw->Toolbar
-            , "gtk-go-up", dw->Tooltips, _("Back one week"), i++);
+            , "gtk-go-up", _("Back one week"), i++);
     dw->Previous_day_toolbutton = orage_toolbar_append_button(dw->Toolbar
-            , "gtk-go-back", dw->Tooltips, _("Back one day"), i++);
+            , "gtk-go-back", _("Back one day"), i++);
     dw->Today_toolbutton = orage_toolbar_append_button(dw->Toolbar
-            , "gtk-home", dw->Tooltips, _("Today"), i++);
+            , "gtk-home", _("Today"), i++);
     dw->Next_day_toolbutton = orage_toolbar_append_button(dw->Toolbar
-            , "gtk-go-forward", dw->Tooltips, _("Forward one day"), i++);
+            , "gtk-go-forward", _("Forward one day"), i++);
     dw->Next_week_toolbutton = orage_toolbar_append_button(dw->Toolbar
-            , "gtk-go-down", dw->Tooltips, _("Forward one week"), i++);
+            , "gtk-go-down", _("Forward one week"), i++);
 
     toolbar_separator = orage_toolbar_append_separator(dw->Toolbar, i++);
 
     dw->Refresh_toolbutton = orage_toolbar_append_button(dw->Toolbar
-            , "gtk-refresh", dw->Tooltips, _("Refresh"), i++);
+            , "gtk-refresh", _("Refresh"), i++);
 
     toolbar_separator = orage_toolbar_append_separator(dw->Toolbar, i++);
 
     dw->Close_toolbutton = orage_toolbar_append_button(dw->Toolbar
-            , "gtk-close", dw->Tooltips, _("Close"), i++);
+            , "gtk-close", _("Close"), i++);
 
     g_signal_connect((gpointer)dw->Create_toolbutton, "clicked"
             , G_CALLBACK(on_Create_toolbutton_clicked_cb), dw);
@@ -616,7 +614,7 @@ static void add_row(day_win *dw, xfical_appt *appt)
             g_free(end_date);
         }
     }
-    gtk_tooltips_set_tip(dw->Tooltips, ev, tip, NULL);
+    gtk_widget_set_tooltip_text(ev, tip);
     /*
     gtk_box_pack_start(GTK_BOX(hb2), ev, FALSE, FALSE, 0);
     gtk_box_pack_start(GTK_BOX(hb), hb2, TRUE, TRUE, 0);
@@ -1056,7 +1054,6 @@ day_win *create_day_win(char *start_date)
     /* initialisation + main window + base vbox */
     dw = g_new0(day_win, 1);
     dw->scroll_pos = -1; /* not set */
-    dw->Tooltips = gtk_tooltips_new();
     dw->accel_group = gtk_accel_group_new();
 
     dw->Window = gtk_window_new(GTK_WINDOW_TOPLEVEL);

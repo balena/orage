@@ -1,6 +1,6 @@
 /*      Orage - Calendar and alarm handler
  *
- * Copyright (c) 2005-2011 Juha Kautto  (juha at xfce.org)
+ * Copyright (c) 2005-2013 Juha Kautto  (juha at xfce.org)
  * Copyright (c) 2003-2006 Mickael Graf (korbinus at xfce.org)
  *
  * This program is free software; you can redistribute it and/or modify
@@ -1148,8 +1148,6 @@ static gboolean orage_tooltip_update(gpointer user_data)
     }
     if (alarm_cnt == 0)
         g_string_append_printf(tooltip, _("\nNo active alarms found"));
-    /* deprecated since version 2.16 */
-    /* after 2.16 use gtk_status_icon_set_tooltip_markup to get nicer text */
     gtk_status_icon_set_tooltip_markup((GtkStatusIcon *)g_par.trayIcon, tooltip->str);
     g_string_free(tooltip, TRUE);
     return(TRUE);

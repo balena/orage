@@ -70,8 +70,7 @@ gboolean orage_date_button_clicked(GtkWidget *button, GtkWidget *win);
 gboolean orage_exec(const char *cmd, gboolean *cmd_active, GError **error);
 
 GtkWidget *orage_toolbar_append_button(GtkWidget *toolbar
-        , const gchar *stock_id, GtkTooltips *tooltips
-        , const char *tooltip_text, gint pos);
+        , const gchar *stock_id, const char *tooltip_text, gint pos);
 GtkWidget *orage_toolbar_append_separator(GtkWidget *toolbar, gint pos);
 
 GtkWidget *orage_table_new(guint rows, guint border);

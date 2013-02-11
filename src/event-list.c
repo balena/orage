@@ -1,6 +1,6 @@
 /*      Orage - Calendar and alarm handler
  *
- * Copyright (c) 2005-2011 Juha Kautto  (juha at xfce.org)
+ * Copyright (c) 2005-2013 Juha Kautto  (juha at xfce.org)
  * Copyright (c) 2004-2005 Mickael Graf (korbinus at xfce.org)
  *
  * This program is free software; you can redistribute it and/or modify
@@ -792,7 +792,6 @@ static void close_window(el_win *el)
     g_list_free(el->apptw_list);
 
     gtk_widget_destroy(el->Window); /* destroy the eventlist window */
-    gtk_object_destroy(GTK_OBJECT(el->Tooltips));
     g_free(el);
     el = NULL;
 }
@@ -1117,37 +1116,36 @@ static void build_toolbar(el_win *el)
 
     el->Toolbar = gtk_toolbar_new();
     gtk_box_pack_start(GTK_BOX(el->Vbox), el->Toolbar, FALSE, FALSE, 0);
-    gtk_toolbar_set_tooltips(GTK_TOOLBAR(el->Toolbar), TRUE);
 
     el->Create_toolbutton = orage_toolbar_append_button(el->Toolbar
-            , "gtk-new", el->Tooltips, _("New"), i++);
+            , "gtk-new", _("New"), i++);
     el->Copy_toolbutton = orage_toolbar_append_button(el->Toolbar
-            , "gtk-copy", el->Tooltips, _("Duplicate"), i++);
+            , "gtk-copy", _("Duplicate"), i++);
     el->Delete_toolbutton = orage_toolbar_append_button(el->Toolbar
-            , "gtk-delete", el->Tooltips, _("Delete"), i++);
+            , "gtk-delete", _("Delete"), i++);
 
     toolbar_separator = orage_toolbar_append_separator(el->Toolbar, i++);
     
     el->Previous_toolbutton = orage_toolbar_append_button(el->Toolbar
-            , "gtk-go-back", el->Tooltips, _("Back"), i++);
+            , "gtk-go-back", _("Back"), i++);
     el->Today_toolbutton = orage_toolbar_append_button(el->Toolbar
-            , "gtk-home", el->Tooltips, _("Today"), i++);
+            , "gtk-home", _("Today"), i++);
     el->Next_toolbutton = orage_toolbar_append_button(el->Toolbar
-            , "gtk-go-forward", el->Tooltips, _("Forward"), i++);
+            , "gtk-go-forward", _("Forward"), i++);
 
     toolbar_separator = orage_toolbar_append_separator(el->Toolbar, i++);
 
     el->Refresh_toolbutton = orage_toolbar_append_button(el->Toolbar
-            , "gtk-refresh", el->Tooltips, _("Refresh"), i++);
+            , "gtk-refresh", _("Refresh"), i++);
     el->Search_toolbutton = orage_toolbar_append_button(el->Toolbar
-            , "gtk-find", el->Tooltips, _("Find"), i++);
+            , "gtk-find", _("Find"), i++);
 
     toolbar_separator = orage_toolbar_append_separator(el->Toolbar, i++);
 
     el->Close_toolbutton = orage_toolbar_append_button(el->Toolbar
-            , "gtk-close", el->Tooltips, _("Close"), i++);
+            , "gtk-close", _("Close"), i++);
     el->Dayview_toolbutton = orage_toolbar_append_button(el->Toolbar
-            , "gtk-zoom-in", el->Tooltips, _("Dayview"), i++);
+            , "gtk-zoom-in", _("Dayview"), i++);
 
     g_signal_connect((gpointer)el->Create_toolbutton, "clicked"
             , G_CALLBACK(on_Create_toolbutton_clicked_cb), el);
@@ -1333,7 +1331,7 @@ static void build_event_list(el_win *el)
     gtk_tree_view_append_column(GTK_TREE_VIEW(el->TreeView), col);
     gtk_tree_view_column_set_visible(col, FALSE);
 
-    gtk_tooltips_set_tip(el->Tooltips, el->TreeView, _("Double click line to edit it.\n\nFlags in order:\n\t 1. Alarm: n=no alarm\n\t\t A=Alarm is set P=Persistent alarm is set\n\t 2. Recurrence: n=no recurrence\n\t\t H=Hourly D=Daily W=Weekly M=Monthly Y=Yearly\n\t 3. Type: f=free B=Busy\n\t 4. Located in file:\n\t\tO=Orage A=Archive F=Foreign\n\t 5. Appointment type:\n\t\tE=Event T=Todo J=Journal"), NULL);
+    gtk_widget_set_tooltip_text(el->TreeView, _("Double click line to edit it.\n\nFlags in order:\n\t 1. Alarm: n=no alarm\n\t\t A=Alarm is set P=Persistent alarm is set\n\t 2. Recurrence: n=no recurrence\n\t\t H=Hourly D=Daily W=Weekly M=Monthly Y=Yearly\n\t 3. Type: f=free B=Busy\n\t 4. Located in file:\n\t\tO=Orage A=Archive F=Foreign\n\t 5. Appointment type:\n\t\tE=Event T=Todo J=Journal"));
 
     g_signal_connect(el->TreeView, "row-activated",
             G_CALLBACK(editEvent), el);
@@ -1350,7 +1348,6 @@ el_win *create_el_win(char *start_date)
     el->days = g_par.el_days;
     el->time_now[0] = 0;
     el->apptw_list = NULL;
-    el->Tooltips = gtk_tooltips_new();
     el->accel_group = gtk_accel_group_new();
 
     el->Window = gtk_window_new(GTK_WINDOW_TOPLEVEL);

@@ -111,7 +111,6 @@ static void dialog_response(GtkWidget *dialog, gint response_id
         write_parameters();
         is_running = FALSE;
         gtk_widget_destroy(dialog);
-        gtk_object_destroy(GTK_OBJECT(itf->Tooltips));
         g_free(itf);
     }
 }
@@ -477,9 +476,8 @@ static void create_parameter_dialog_main_setup_tab(Itf *dialog)
             , _(g_par.local_timezone));
     gtk_box_pack_start(GTK_BOX(vbox)
             , dialog->timezone_button, FALSE, FALSE, 5);
-    gtk_tooltips_set_tip(dialog->Tooltips, dialog->timezone_button
-            , _("You should always define your local timezone.")
-            , NULL);
+    gtk_widget_set_tooltip_text(dialog->timezone_button
+            , _("You should always define your local timezone."));
     g_signal_connect(G_OBJECT(dialog->timezone_button), "clicked"
             , G_CALLBACK(timezone_button_clicked), dialog);
 
@@ -499,9 +497,8 @@ static void create_parameter_dialog_main_setup_tab(Itf *dialog)
             , dialog->archive_threshold_spin, FALSE, FALSE, 5);
     label = gtk_label_new(_("(0 = no archiving)"));
     gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 5);
-    gtk_tooltips_set_tip(dialog->Tooltips, dialog->archive_threshold_spin
-            , _("Archiving is used to save time and space when handling events.")
-            , NULL);
+    gtk_widget_set_tooltip_text(dialog->archive_threshold_spin
+            , _("Archiving is used to save time and space when handling events."));
     g_signal_connect(G_OBJECT(dialog->archive_threshold_spin), "value-changed"
             , G_CALLBACK(archive_threshold_spin_changed), dialog);
 #endif
@@ -523,9 +520,8 @@ static void create_parameter_dialog_main_setup_tab(Itf *dialog)
     gtk_box_pack_start(GTK_BOX(hbox)
             , dialog->sound_application_open_button, FALSE, FALSE, 5);
 
-    gtk_tooltips_set_tip(dialog->Tooltips, dialog->sound_application_entry
-            , _("This command is given to shell to make sound in alarms.")
-            , NULL);
+    gtk_widget_set_tooltip_text(dialog->sound_application_entry
+            , _("This command is given to shell to make sound in alarms."));
     g_signal_connect(G_OBJECT(dialog->sound_application_open_button), "clicked"
             , G_CALLBACK(sound_application_open_button_clicked), dialog);
     g_signal_connect(G_OBJECT(dialog->sound_application_entry), "changed"
@@ -691,8 +687,8 @@ static void create_parameter_dialog_calendar_setup_tab(Itf *dialog)
     dialog->show_events_spin = gtk_spin_button_new_with_range(0, 31, 1);
     gtk_spin_button_set_value(GTK_SPIN_BUTTON(dialog->show_events_spin)
             , g_par.show_event_days);
-    gtk_tooltips_set_tip(dialog->Tooltips, dialog->show_events_spin
-            , _("0 = do not show event list at all"), NULL);
+    gtk_widget_set_tooltip_text(dialog->show_events_spin
+            , _("0 = do not show event list at all"));
     gtk_box_pack_start(GTK_BOX(hbox)
             , dialog->show_events_spin, FALSE, FALSE, 5);
     gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
@@ -849,9 +845,8 @@ static void create_parameter_dialog_extra_setup_tab(Itf *dialog)
             , dialog->el_extra_days_spin, FALSE, FALSE, 5);
     gtk_spin_button_set_value(GTK_SPIN_BUTTON(dialog->el_extra_days_spin)
             , g_par.el_days);
-    gtk_tooltips_set_tip(dialog->Tooltips, dialog->el_extra_days_spin
-            , _("This is just the default value, you can change it in the actual eventlist window.")
-            , NULL);
+    gtk_widget_set_tooltip_text(dialog->el_extra_days_spin
+            , _("This is just the default value, you can change it in the actual eventlist window."));
     gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
     g_signal_connect(G_OBJECT(dialog->el_extra_days_spin), "value-changed"
             , G_CALLBACK(el_extra_days_spin_changed), dialog);
@@ -906,9 +901,8 @@ static void create_parameter_dialog_extra_setup_tab(Itf *dialog)
             , dialog->use_dynamic_icon_checkbutton, FALSE, FALSE, 5);
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
             dialog->use_dynamic_icon_checkbutton), g_par.use_dynamic_icon);
-    gtk_tooltips_set_tip(dialog->Tooltips, dialog->use_dynamic_icon_checkbutton
-            , _("Dynamic icon shows current month and day of the month.")
-            , NULL);
+    gtk_widget_set_tooltip_text(dialog->use_dynamic_icon_checkbutton
+            , _("Dynamic icon shows current month and day of the month."));
     g_signal_connect(G_OBJECT(dialog->use_dynamic_icon_checkbutton), "toggled"
             , G_CALLBACK(use_dynamic_icon_changed), dialog);
 
@@ -925,9 +919,8 @@ static void create_parameter_dialog_extra_setup_tab(Itf *dialog)
             , dialog->use_wakeup_timer_checkbutton, FALSE, FALSE, 5);
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
             dialog->use_wakeup_timer_checkbutton), g_par.use_wakeup_timer);
-    gtk_tooltips_set_tip(dialog->Tooltips, dialog->use_wakeup_timer_checkbutton
-            , _("Use this timer if Orage has problems waking up properly after suspend or hibernate. (For example tray icon not refreshed or alarms not firing.)")
-            , NULL);
+    gtk_widget_set_tooltip_text(dialog->use_wakeup_timer_checkbutton
+            , _("Use this timer if Orage has problems waking up properly after suspend or hibernate. (For example tray icon not refreshed or alarms not firing.)"));
     g_signal_connect(G_OBJECT(dialog->use_wakeup_timer_checkbutton), "toggled"
             , G_CALLBACK(use_wakeup_timer_changed), dialog);
 
@@ -975,7 +968,6 @@ static Itf *create_parameter_dialog(void)
     GdkPixbuf *orage_logo;
 
     dialog = g_new(Itf, 1);
-    dialog->Tooltips = gtk_tooltips_new();
 
     dialog->orage_dialog = gtk_dialog_new();
     gtk_window_set_default_size(GTK_WINDOW(dialog->orage_dialog), 300, 350);

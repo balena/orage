@@ -1,6 +1,6 @@
 /*      Orage - Calendar and alarm handler
  *
- * Copyright (c) 2005-2011 Juha Kautto  (juha at xfce.org)
+ * Copyright (c) 2005-2013 Juha Kautto  (juha at xfce.org)
  * Copyright (c) 2004-2005 Mickael Graf (korbinus at xfce.org)
  *
  * This program is free software; you can redistribute it and/or modify
@@ -76,7 +76,6 @@ typedef struct _orage_category_win
     GtkWidget *cur_frame;
     GtkWidget *cur_frame_vbox;
 
-    GtkTooltips *tooltips;
     GtkAccelGroup *accelgroup;
 
     gpointer *apptw;
@@ -724,7 +723,6 @@ static void app_free_memory(appt_win *apptw)
         ((day_win *)apptw->dw)->apptw_list = 
                 g_list_remove(((day_win *)apptw->dw)->apptw_list, apptw);
     gtk_widget_destroy(apptw->Window);
-    gtk_object_destroy(GTK_OBJECT(apptw->Tooltips));
     g_free(apptw->xf_uid);
     g_free(apptw->par);
     xfical_appt_free((xfical_appt *)apptw->xf_appt);
@@ -1921,7 +1919,6 @@ static void close_cat_window(gpointer user_data)
 
     orage_category_refill_cb((appt_win *)catw->apptw);
     gtk_widget_destroy(catw->window);
-    gtk_object_destroy(GTK_OBJECT(catw->tooltips));
     g_free(catw);
 }
 
@@ -2062,7 +2059,6 @@ static void on_categories_button_clicked_cb(GtkWidget *button
             , _("Colors of categories - Orage"));
     gtk_window_set_default_size(GTK_WINDOW(catw->window), 390, 360);
 
-    catw->tooltips = gtk_tooltips_new();
     catw->accelgroup = gtk_accel_group_new();
     gtk_window_add_accel_group(GTK_WINDOW(catw->window), catw->accelgroup);
 
@@ -2599,25 +2595,24 @@ static void build_toolbar(appt_win *apptw)
 
     apptw->Toolbar = gtk_toolbar_new();
     gtk_box_pack_start(GTK_BOX(apptw->Vbox), apptw->Toolbar, FALSE, FALSE, 0);
-    gtk_toolbar_set_tooltips(GTK_TOOLBAR(apptw->Toolbar), TRUE);
 
     /* Add buttons to the toolbar */
     apptw->Save = orage_toolbar_append_button(apptw->Toolbar
-            , "gtk-save", apptw->Tooltips, _("Save"), i++);
+            , "gtk-save", _("Save"), i++);
     apptw->SaveClose = orage_toolbar_append_button(apptw->Toolbar
-            , "gtk-close", apptw->Tooltips, _("Save and close"), i++);
+            , "gtk-close", _("Save and close"), i++);
 
     toolbar_separator = orage_toolbar_append_separator(apptw->Toolbar, i++);
 
     apptw->Revert = orage_toolbar_append_button(apptw->Toolbar
-            , "gtk-revert-to-saved", apptw->Tooltips, _("Revert"), i++);
+            , "gtk-revert-to-saved", _("Revert"), i++);
     apptw->Duplicate = orage_toolbar_append_button(apptw->Toolbar
-            , "gtk-copy", apptw->Tooltips, _("Duplicate"), i++);
+            , "gtk-copy", _("Duplicate"), i++);
 
     toolbar_separator = orage_toolbar_append_separator(apptw->Toolbar, i++);
 
     apptw->Delete = orage_toolbar_append_button(apptw->Toolbar
-            , "gtk-delete", apptw->Tooltips, _("Delete"), i++);
+            , "gtk-delete", _("Delete"), i++);
 
     g_signal_connect((gpointer)apptw->Save, "clicked"
             , G_CALLBACK(on_appSave_clicked_cb), apptw);
@@ -2649,21 +2644,21 @@ static void build_general_page(appt_win *apptw)
     hbox =  gtk_hbox_new(FALSE, 0);
     apptw->Type_event_rb = gtk_radio_button_new_with_label(NULL, _("Event"));
     gtk_box_pack_start(GTK_BOX(hbox), apptw->Type_event_rb, FALSE, FALSE, 15);
-    gtk_tooltips_set_tip(apptw->Tooltips, apptw->Type_event_rb
-            , _("Event that will happen sometime. For example:\nMeeting or birthday or TV show."), NULL);
+    gtk_widget_set_tooltip_text(apptw->Type_event_rb
+            , _("Event that will happen sometime. For example:\nMeeting or birthday or TV show."));
 
     apptw->Type_todo_rb = gtk_radio_button_new_with_mnemonic_from_widget(
             GTK_RADIO_BUTTON(apptw->Type_event_rb) , _("Todo"));
     gtk_box_pack_start(GTK_BOX(hbox), apptw->Type_todo_rb, FALSE, FALSE, 15);
-    gtk_tooltips_set_tip(apptw->Tooltips, apptw->Type_todo_rb
-            , _("Something that you should do sometime. For example:\nWash your car or test new version of Orage."), NULL);
+    gtk_widget_set_tooltip_text(apptw->Type_todo_rb
+            , _("Something that you should do sometime. For example:\nWash your car or test new version of Orage."));
 
     apptw->Type_journal_rb = gtk_radio_button_new_with_mnemonic_from_widget(
             GTK_RADIO_BUTTON(apptw->Type_event_rb) , _("Journal"));
     gtk_box_pack_start(GTK_BOX(hbox), apptw->Type_journal_rb
             , FALSE, FALSE, 15);
-    gtk_tooltips_set_tip(apptw->Tooltips, apptw->Type_journal_rb
-            , _("Make a note that something happened. For example:\nRemark that your mother called or first snow came."), NULL);
+    gtk_widget_set_tooltip_text(apptw->Type_journal_rb
+            , _("Make a note that something happened. For example:\nRemark that your mother called or first snow came."));
 
     orage_table_add_row(apptw->TableGeneral
             , apptw->Type_label, hbox
@@ -2795,13 +2790,13 @@ static void build_general_page(appt_win *apptw)
             , apptw->Categories_cb);
     gtk_box_pack_start(GTK_BOX(apptw->Categories_hbox)
             , apptw->Categories_cb_event, FALSE, FALSE, 4);
-    gtk_tooltips_set_tip(apptw->Tooltips, apptw->Categories_cb_event
-            , _("This is special category, which can be used to color this appointment in list views."), NULL);
+    gtk_widget_set_tooltip_text(apptw->Categories_cb_event
+            , _("This is special category, which can be used to color this appointment in list views."));
     apptw->Categories_button =gtk_button_new_from_stock(GTK_STOCK_SELECT_COLOR);
     gtk_box_pack_start(GTK_BOX(apptw->Categories_hbox), apptw->Categories_button
             , FALSE, FALSE, 0);
-    gtk_tooltips_set_tip(apptw->Tooltips, apptw->Categories_button
-            , _("update colors for categories."), NULL);
+    gtk_widget_set_tooltip_text(apptw->Categories_button
+            , _("update colors for categories."));
     orage_table_add_row(apptw->TableGeneral
             , apptw->Categories_label, apptw->Categories_hbox
             , ++row, (GTK_EXPAND | GTK_FILL), (0));
@@ -2837,8 +2832,8 @@ static void build_general_page(appt_win *apptw)
             , apptw->Note, event
             , ++row, (GTK_EXPAND | GTK_FILL), (GTK_EXPAND | GTK_FILL));
 
-    gtk_tooltips_set_tip(apptw->Tooltips, event
-            , _("These shorthand commands take effect immediately:\n    <D> inserts current date in local date format\n    <T> inserts time and\n    <DT> inserts date and time.\n\nThese are converted only later when they are seen:\n    <&Ynnnn> is translated to current year minus nnnn.\n(This can be used for example in birthday reminders to tell how old the person will be.)"), NULL);
+    gtk_widget_set_tooltip_text(event
+            , _("These shorthand commands take effect immediately:\n    <D> inserts current date in local date format\n    <T> inserts time and\n    <DT> inserts date and time.\n\nThese are converted only later when they are seen:\n    <&Ynnnn> is translated to current year minus nnnn.\n(This can be used for example in birthday reminders to tell how old the person will be.)"));
 
     /* Take care of the title entry to build the appointment window title */
     g_signal_connect((gpointer)apptw->Title_entry, "changed"
@@ -2946,15 +2941,15 @@ static void build_alarm_page(appt_win *apptw)
     orage_table_add_row(apptw->TableAlarm
             , apptw->Alarm_label, apptw->Alarm_hbox
             , row = 0, (GTK_FILL), (GTK_FILL));
-    gtk_tooltips_set_tip(apptw->Tooltips, event
-            , _("Often you want to get alarm:\n 1) before Event start\n 2) before Todo end\n 3) after Todo start"), NULL);
+    gtk_widget_set_tooltip_text(event
+            , _("Often you want to get alarm:\n 1) before Event start\n 2) before Todo end\n 3) after Todo start"));
 
     /***** Persistent Alarm *****/
     apptw->Per_hbox = gtk_hbox_new(FALSE, 6);
     apptw->Per_checkbutton = 
             gtk_check_button_new_with_mnemonic(_("Persistent alarm"));
-    gtk_tooltips_set_tip(apptw->Tooltips, apptw->Per_checkbutton
-            , _("Select this if you want Orage to remind you even if it has not been active when the alarm happened."), NULL);
+    gtk_widget_set_tooltip_text(apptw->Per_checkbutton
+            , _("Select this if you want Orage to remind you even if it has not been active when the alarm happened."));
     gtk_box_pack_start(GTK_BOX(apptw->Per_hbox), apptw->Per_checkbutton
             , FALSE, TRUE, 0);
 
@@ -2968,8 +2963,8 @@ static void build_alarm_page(appt_win *apptw)
     apptw->Sound_hbox = gtk_hbox_new(FALSE, 6);
     apptw->Sound_checkbutton = 
             gtk_check_button_new_with_mnemonic(_("Use"));
-    gtk_tooltips_set_tip(apptw->Tooltips, apptw->Sound_checkbutton
-            , _("Select this if you want audible alarm"), NULL);
+    gtk_widget_set_tooltip_text(apptw->Sound_checkbutton
+            , _("Select this if you want audible alarm"));
     gtk_box_pack_start(GTK_BOX(apptw->Sound_hbox), apptw->Sound_checkbutton
             , FALSE, TRUE, 0);
 
@@ -3033,8 +3028,8 @@ static void build_alarm_page(appt_win *apptw)
     apptw->Display_hbox_orage = gtk_hbox_new(FALSE, 0);
     apptw->Display_checkbutton_orage = 
             gtk_check_button_new_with_mnemonic(_("Use Orage window"));
-    gtk_tooltips_set_tip(apptw->Tooltips, apptw->Display_checkbutton_orage
-            , _("Select this if you want Orage window alarm"), NULL);
+    gtk_widget_set_tooltip_text(apptw->Display_checkbutton_orage
+            , _("Select this if you want Orage window alarm"));
     gtk_box_pack_start(GTK_BOX(apptw->Display_hbox_orage)
             , apptw->Display_checkbutton_orage
             , FALSE, TRUE, 0);
@@ -3047,18 +3042,17 @@ static void build_alarm_page(appt_win *apptw)
     apptw->Display_hbox_notify = gtk_hbox_new(FALSE, 0);
     apptw->Display_checkbutton_notify = 
             gtk_check_button_new_with_mnemonic(_("Use notification"));
-    gtk_tooltips_set_tip(apptw->Tooltips, apptw->Display_checkbutton_notify
-            , _("Select this if you want notification alarm"), NULL);
+    gtk_widget_set_tooltip_text(apptw->Display_checkbutton_notify
+            , _("Select this if you want notification alarm"));
     gtk_box_pack_start(GTK_BOX(apptw->Display_hbox_notify)
             , apptw->Display_checkbutton_notify
             , FALSE, TRUE, 0);
 
     apptw->Display_checkbutton_expire_notify = 
             gtk_check_button_new_with_mnemonic(_("Set timeout"));
-    gtk_tooltips_set_tip(apptw->Tooltips
-            , apptw->Display_checkbutton_expire_notify
+    gtk_widget_set_tooltip_text(apptw->Display_checkbutton_expire_notify
             , _("Select this if you want notification to expire automatically")
-            , NULL);
+            );
     gtk_box_pack_start(GTK_BOX(apptw->Display_hbox_notify)
             , apptw->Display_checkbutton_expire_notify
             , FALSE, TRUE, 10);
@@ -3067,8 +3061,8 @@ static void build_alarm_page(appt_win *apptw)
             gtk_spin_button_new_with_range(0, 999, 1);
     gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(apptw->Display_spin_expire_notify)
             , TRUE);
-    gtk_tooltips_set_tip(apptw->Tooltips, apptw->Display_spin_expire_notify
-            , _("0 = system default expiration time"), NULL);
+    gtk_widget_set_tooltip_text(apptw->Display_spin_expire_notify
+            , _("0 = system default expiration time"));
     gtk_box_pack_start(GTK_BOX(apptw->Display_hbox_notify)
             , apptw->Display_spin_expire_notify
             , FALSE, TRUE, 10);
@@ -3089,14 +3083,14 @@ static void build_alarm_page(appt_win *apptw)
     apptw->Proc_hbox = gtk_hbox_new(FALSE, 6);
     apptw->Proc_checkbutton = 
             gtk_check_button_new_with_mnemonic(_("Use"));
-    gtk_tooltips_set_tip(apptw->Tooltips, apptw->Proc_checkbutton
-            , _("Select this if you want procedure or script alarm"), NULL);
+    gtk_widget_set_tooltip_text(apptw->Proc_checkbutton
+            , _("Select this if you want procedure or script alarm"));
     gtk_box_pack_start(GTK_BOX(apptw->Proc_hbox), apptw->Proc_checkbutton
             , FALSE, TRUE, 0);
 
     apptw->Proc_entry = gtk_entry_new();
-    gtk_tooltips_set_tip(apptw->Tooltips, apptw->Proc_entry
-            , _("You must enter all escape etc characters yourself.\nThis string is just given to shell to process.\nThe following special commands are replaced at run time:\n\t<&T>  appointment title\n\t<&D>  appointment description\n\t<&AT> alarm time\n\t<&ST> appointment start time\n\t<&ET> appointment end time"), NULL);
+    gtk_widget_set_tooltip_text(apptw->Proc_entry
+            , _("You must enter all escape etc characters yourself.\nThis string is just given to shell to process.\nThe following special commands are replaced at run time:\n\t<&T>  appointment title\n\t<&D>  appointment description\n\t<&AT> alarm time\n\t<&ST> appointment start time\n\t<&ET> appointment end time"));
     gtk_box_pack_start(GTK_BOX(apptw->Proc_hbox), apptw->Proc_entry
             , TRUE, TRUE, 0);
 
@@ -3107,8 +3101,8 @@ static void build_alarm_page(appt_win *apptw)
     /***** Test Alarm *****/
     gtk_box_pack_start(GTK_BOX(vbox), gtk_hseparator_new(), FALSE, FALSE, 3);
     apptw->Test_button = gtk_button_new_from_stock("gtk-execute");
-    gtk_tooltips_set_tip(apptw->Tooltips, apptw->Test_button
-            , _("Test this alarm by raising it now"), NULL);
+    gtk_widget_set_tooltip_text(apptw->Test_button
+            , _("Test this alarm by raising it now"));
     gtk_box_pack_start(GTK_BOX(vbox), apptw->Test_button, FALSE, FALSE, 0);
 
     /***** Default Alarm Settings *****/
@@ -3122,13 +3116,13 @@ static void build_alarm_page(appt_win *apptw)
     apptw->Default_savebutton = gtk_button_new_from_stock("gtk-save");
     gtk_box_pack_start(GTK_BOX(apptw->Default_hbox), apptw->Default_savebutton
             , TRUE, TRUE, 0);
-    gtk_tooltips_set_tip(apptw->Tooltips, apptw->Default_savebutton
-            , _("Store current settings as default alarm"), NULL);
+    gtk_widget_set_tooltip_text(apptw->Default_savebutton
+            , _("Store current settings as default alarm"));
     apptw->Default_readbutton =gtk_button_new_from_stock("gtk-revert-to-saved");
     gtk_box_pack_start(GTK_BOX(apptw->Default_hbox), apptw->Default_readbutton
             , TRUE, TRUE, 0);
-    gtk_tooltips_set_tip(apptw->Tooltips, apptw->Default_readbutton
-            , _("Set current settings from default alarm"), NULL);
+    gtk_widget_set_tooltip_text(apptw->Default_readbutton
+            , _("Set current settings from default alarm"));
 
     gtk_box_pack_end(GTK_BOX(vbox), apptw->Default_hbox, FALSE, FALSE, 0);
     gtk_box_pack_end(GTK_BOX(vbox), gtk_hseparator_new(), FALSE, FALSE, 3);
@@ -3212,14 +3206,13 @@ static void build_recurrence_page(appt_win *apptw)
     apptw->Recur_feature_advanced_rb = 
             gtk_radio_button_new_with_mnemonic_from_widget(
                     GTK_RADIO_BUTTON(apptw->Recur_feature_normal_rb)
-                    , _("Advanced"));
+                            , _("Advanced"));
     gtk_box_pack_start(GTK_BOX(apptw->Recur_feature_hbox)
             , apptw->Recur_feature_advanced_rb, FALSE, FALSE, 20);
-    gtk_tooltips_set_tip(apptw->Tooltips, apptw->Recur_feature_normal_rb
-            , _("Use this if you want regular repeating event"), NULL);
-    gtk_tooltips_set_tip(apptw->Tooltips, apptw->Recur_feature_advanced_rb
-            , _("Use this if you need complex times like:\n Every Saturday and Sunday or \n First Tuesday every month")
-            , NULL);
+    gtk_widget_set_tooltip_text(apptw->Recur_feature_normal_rb
+            , _("Use this if you want regular repeating event"));
+    gtk_widget_set_tooltip_text(apptw->Recur_feature_advanced_rb
+            , _("Use this if you need complex times like:\n Every Saturday and Sunday or \n First Tuesday every month"));
     orage_table_add_row(apptw->TableRecur
             , apptw->Recur_feature_label, apptw->Recur_feature_hbox
             , row = 0, (GTK_EXPAND | GTK_FILL), (0));
@@ -3241,9 +3234,8 @@ static void build_recurrence_page(appt_win *apptw)
     apptw->Recur_int_spin_label2 = gtk_label_new(_("occurrence"));
     gtk_box_pack_start(GTK_BOX(apptw->Recur_freq_hbox)
             , apptw->Recur_int_spin_label2, FALSE, FALSE, 5);
-    gtk_tooltips_set_tip(apptw->Tooltips, apptw->Recur_int_spin
-            , _("Limit frequency to certain interval.\n For example: Every third day:\n Frequency = Daily and Interval = 3")
-            , NULL);
+    gtk_widget_set_tooltip_text(apptw->Recur_int_spin
+            , _("Limit frequency to certain interval.\n For example: Every third day:\n Frequency = Daily and Interval = 3"));
     orage_table_add_row(apptw->TableRecur
             , apptw->Recur_freq_label, apptw->Recur_freq_hbox
             , ++row, (GTK_EXPAND | GTK_FILL), (GTK_FILL));
@@ -3344,9 +3336,8 @@ static void build_recurrence_page(appt_win *apptw)
                 gtk_spin_button_new_with_range(-9, 9, 1);
         gtk_box_pack_start(GTK_BOX(apptw->Recur_byday_spin_hbox)
                 , apptw->Recur_byday_spin[i], FALSE, FALSE, 0);
-        gtk_tooltips_set_tip(apptw->Tooltips, apptw->Recur_byday_spin[i]
-                , _("Specify which weekday for monthly and yearly events.\n For example:\n Second Wednesday each month:\n\tFrequency = Monthly,\n\tWeekdays = check only Wednesday,\n\tWhich day = select 2 from the number below Wednesday")
-                , NULL);
+        gtk_widget_set_tooltip_text(apptw->Recur_byday_spin[i]
+                , _("Specify which weekday for monthly and yearly events.\n For example:\n Second Wednesday each month:\n\tFrequency = Monthly,\n\tWeekdays = check only Wednesday,\n\tWhich day = select 2 from the number below Wednesday"));
     }
     orage_table_add_row(apptw->TableRecur
             , apptw->Recur_byday_spin_label, apptw->Recur_byday_spin_hbox
@@ -3365,11 +3356,10 @@ static void build_recurrence_page(appt_win *apptw)
                             , _("Completed"));
     gtk_box_pack_start(GTK_BOX(apptw->Recur_todo_base_hbox)
             , apptw->Recur_todo_base_done_rb, FALSE, FALSE, 15);
-    gtk_tooltips_set_tip(apptw->Tooltips, apptw->Recur_todo_base_start_rb
-            , _("TODO reoccurs regularly starting on start time and repeating after each interval no matter when it was last completed"), NULL);
-    gtk_tooltips_set_tip(apptw->Tooltips, apptw->Recur_todo_base_done_rb
-            , _("TODO reoccurrency is based on complete time and repeats after the interval counted from the last completed time.\n(Note that you can not tell anything about the history of the TODO since reoccurrence base changes after each completion.)")
-            , NULL);
+    gtk_widget_set_tooltip_text(apptw->Recur_todo_base_start_rb
+            , _("TODO reoccurs regularly starting on start time and repeating after each interval no matter when it was last completed"));
+    gtk_widget_set_tooltip_text(apptw->Recur_todo_base_done_rb
+            , _("TODO reoccurrency is based on complete time and repeats after the interval counted from the last completed time.\n(Note that you can not tell anything about the history of the TODO since reoccurrence base changes after each completion.)"));
     orage_table_add_row(apptw->TableRecur
             , apptw->Recur_todo_base_label, apptw->Recur_todo_base_hbox
             , ++row ,(GTK_EXPAND | GTK_FILL), (0));
@@ -3387,23 +3377,23 @@ static void build_recurrence_page(appt_win *apptw)
     gtk_scrolled_window_add_with_viewport(
             GTK_SCROLLED_WINDOW(apptw->Recur_exception_scroll_win)
             , apptw->Recur_exception_rows_vbox);
-    gtk_tooltips_set_tip(apptw->Tooltips, apptw->Recur_exception_scroll_win
-            , _("Add more exception dates by clicking the calendar days below.\nException is either exclusion(-) or inclusion(+) depending on the selection.\nRemove by clicking the data."), NULL);
+    gtk_widget_set_tooltip_text(apptw->Recur_exception_scroll_win
+            , _("Add more exception dates by clicking the calendar days below.\nException is either exclusion(-) or inclusion(+) depending on the selection.\nRemove by clicking the data."));
     apptw->Recur_exception_type_vbox = gtk_vbox_new(FALSE, 0);
     gtk_box_pack_start(GTK_BOX(apptw->Recur_exception_hbox)
             , apptw->Recur_exception_type_vbox, TRUE, TRUE, 5);
     apptw->Recur_exception_excl_rb = gtk_radio_button_new_with_label(NULL
             , _("Add excluded date (-)"));
-    gtk_tooltips_set_tip(apptw->Tooltips, apptw->Recur_exception_excl_rb
-            , _("Excluded days are full days where this appointment is not happening"), NULL);
+    gtk_widget_set_tooltip_text(apptw->Recur_exception_excl_rb
+            , _("Excluded days are full days where this appointment is not happening"));
     gtk_box_pack_start(GTK_BOX(apptw->Recur_exception_type_vbox)
             , apptw->Recur_exception_excl_rb, FALSE, FALSE, 0);
     apptw->Recur_exception_incl_rb = 
             gtk_radio_button_new_with_mnemonic_from_widget(
                     GTK_RADIO_BUTTON(apptw->Recur_exception_excl_rb)
                     , _("Add included time (+)"));
-    gtk_tooltips_set_tip(apptw->Tooltips, apptw->Recur_exception_incl_rb
-            , _("Included times have same timezone than start time, but they may have different time"), NULL);
+    gtk_widget_set_tooltip_text(apptw->Recur_exception_incl_rb
+            , _("Included times have same timezone than start time, but they may have different time"));
     apptw->Recur_exception_incl_spin_hh = 
             gtk_spin_button_new_with_range(0, 23, 1);
     apptw->Recur_exception_incl_spin_mm = 
@@ -3521,7 +3511,6 @@ appt_win *create_appt_win(char *action, char *par)
     apptw->el = NULL;
     apptw->dw = NULL;
     apptw->appointment_changed = FALSE;
-    apptw->Tooltips = gtk_tooltips_new();
     apptw->accel_group = gtk_accel_group_new();
 
     apptw->Window = gtk_window_new(GTK_WINDOW_TOPLEVEL);

@@ -232,14 +232,12 @@ gboolean orage_exec(const char *cmd, gboolean *cmd_active, GError **error)
 }
 
 GtkWidget *orage_toolbar_append_button(GtkWidget *toolbar
-    , const gchar *stock_id, GtkTooltips *tooltips, const char *tooltip_text
-    , gint pos)
+    , const gchar *stock_id, const char *tooltip_text, gint pos)
 {
     GtkWidget *button;
 
     button = (GtkWidget *)gtk_tool_button_new_from_stock(stock_id);
-    gtk_tool_item_set_tooltip(GTK_TOOL_ITEM(button), tooltips
-            , (const gchar *) tooltip_text, NULL);
+    gtk_tool_item_set_tooltip_text(GTK_TOOL_ITEM(button), tooltip_text);
     gtk_toolbar_insert(GTK_TOOLBAR(toolbar), GTK_TOOL_ITEM(button), pos);
     return button;
 }

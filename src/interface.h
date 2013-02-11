@@ -91,7 +91,6 @@ typedef struct _intf_win
     GtkWidget *for_cur_frame;
     GtkWidget *for_cur_table;
 
-    GtkTooltips *tooltips;
     GtkAccelGroup *accelgroup;
 } intf_win;  /* interface = export/import window */
 

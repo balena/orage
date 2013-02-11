@@ -1,6 +1,6 @@
 /*      Orage - Calendar and alarm handler
  *
- * Copyright (c) 2005-2011 Juha Kautto  (juha at xfce.org)
+ * Copyright (c) 2005-2013 Juha Kautto  (juha at xfce.org)
  * Copyright (c) 2004-2005 Mickael Graf (korbinus at xfce.org)
  *
  * This program is free software; you can redistribute it and/or modify
@@ -826,7 +826,6 @@ void build_mainWin(void)
     gdk_colormap_alloc_color(pic1_cmap, &cal->mBlue, FALSE, TRUE);
 
     cal->mAccel_group = gtk_accel_group_new();
-    cal->Tooltips = gtk_tooltips_new();
 
     gtk_window_set_title(GTK_WINDOW(cal->mWindow), _("Orage"));
     gtk_window_set_position(GTK_WINDOW(cal->mWindow), GTK_WIN_POS_NONE);

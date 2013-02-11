@@ -1,6 +1,6 @@
 /*      Orage - Calendar and alarm handler
  *
- * Copyright (c) 2005-2011 Juha Kautto  (juha at xfce.org)
+ * Copyright (c) 2005-2013 Juha Kautto  (juha at xfce.org)
  * Copyright (c) 2004-2006 Mickael Graf (korbinus at xfce.org)
  *
  * This program is free software; you can redistribute it and/or modify
@@ -60,9 +60,8 @@ typedef struct _alarm_struct
 
     gboolean procedure;
     gchar   *cmd;
-    /*
-    gboolean email;
-    */
+/* gboolean email; */
+
     /* this is used to control active alarms */
     active_alarm_struct *active_alarm;
     /* pointer to special data needed for orage window alarm */

@@ -25,8 +25,6 @@
 
 typedef struct _Itf
 {
-    GtkTooltips *Tooltips;
-
     GtkWidget *orage_dialog;
     GtkWidget *dialog_vbox1;
     GtkWidget *notebook;
