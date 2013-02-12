@@ -511,10 +511,12 @@ static void add_row(day_win *dw, xfical_appt *appt)
     gint row, start_row, end_row, days;
     gint col, start_col, end_col, first_col, last_col;
     gint height, start_height, end_height;
-    gchar *tip, *start_date, *end_date, *tmp_title, *tmp_note;
+    gchar *tip, *start_date, *end_date, *tmp_title, *tip_title;
+    gchar *tmp_note, *tip_note;
     GtkWidget *ev, *lab, *hb;
     struct tm tm_start, tm_end, tm_first;
     GdkColor *color;
+    gchar *format_bold = "<b> %s </b>";
 
     /* First clarify timings */
     tm_start = orage_icaltime_to_tm_time(appt->starttimecur, FALSE);
@@ -545,7 +547,12 @@ static void add_row(day_win *dw, xfical_appt *appt)
     /* then add the appointment */
     tmp_title = orage_process_text_commands(
             appt->title ? appt->title : _("Unknown"));
-    tmp_note = orage_process_text_commands(appt->note);
+    tip_title = g_markup_printf_escaped(format_bold, tmp_title);
+    tmp_note = orage_process_text_commands(
+            appt->note ? appt->note : "");
+    tmp_note = orage_limit_text(tmp_note, 50, 10);
+    tip_note = g_markup_escape_text(tmp_note, strlen(tmp_note));
+    g_free(tmp_note);
     ev = gtk_event_box_new();
     lab = gtk_label_new(tmp_title);
     gtk_container_add(GTK_CONTAINER(ev), lab);
@@ -568,13 +575,13 @@ static void add_row(day_win *dw, xfical_appt *appt)
         start_date = g_strdup(orage_tm_date_to_i18_date(&tm_start));
         if (days == 0)
             tip = g_strdup_printf("%s\n%s\n%s"
-                    , tmp_title, start_date, tmp_note);
+                    , tip_title, start_date, tip_note);
         else {
             tm_end.tm_year -= 1900;
             tm_end.tm_mon -= 1;
             end_date = g_strdup(orage_tm_date_to_i18_date(&tm_end));
             tip = g_strdup_printf("%s\n%s - %s\n%s"
-                    , tmp_title, start_date, end_date, tmp_note);
+                    , tip_title, start_date, end_date, tip_note);
             g_free(end_date);
         }
         g_free(start_date);
@@ -596,8 +603,8 @@ static void add_row(day_win *dw, xfical_appt *appt)
         }
         if (days == 0)
             tip = g_strdup_printf("%s\n%02d:%02d-%02d:%02d\n%s"
-                    , tmp_title, tm_start.tm_hour, tm_start.tm_min
-                    , tm_end.tm_hour, tm_end.tm_min, tmp_note);
+                    , tip_title, tm_start.tm_hour, tm_start.tm_min
+                    , tm_end.tm_hour, tm_end.tm_min, tip_note);
         else {
     /* we took the date in unnormalized format, so we need to do that now */
             tm_start.tm_year -= 1900;
@@ -607,14 +614,14 @@ static void add_row(day_win *dw, xfical_appt *appt)
             start_date = g_strdup(orage_tm_date_to_i18_date(&tm_start));
             end_date = g_strdup(orage_tm_date_to_i18_date(&tm_end));
             tip = g_strdup_printf("%s\n%s %02d:%02d - %s %02d:%02d\n%s"
-                    , tmp_title
+                    , tip_title
                     , start_date, tm_start.tm_hour, tm_start.tm_min
-                    , end_date, tm_end.tm_hour, tm_end.tm_min, tmp_note);
+                    , end_date, tm_end.tm_hour, tm_end.tm_min, tip_note);
             g_free(start_date);
             g_free(end_date);
         }
     }
-    gtk_widget_set_tooltip_text(ev, tip);
+    gtk_widget_set_tooltip_markup(ev, tip);
     /*
     gtk_box_pack_start(GTK_BOX(hb2), ev, FALSE, FALSE, 0);
     gtk_box_pack_start(GTK_BOX(hb), hb2, TRUE, TRUE, 0);
@@ -623,9 +630,10 @@ static void add_row(day_win *dw, xfical_appt *appt)
     g_object_set_data_full(G_OBJECT(ev), "UID", g_strdup(appt->uid), g_free);
     g_signal_connect((gpointer)ev, "button-press-event"
             , G_CALLBACK(on_button_press_event_cb), dw);
-    g_free(tip);
     g_free(tmp_title);
-    g_free(tmp_note);
+    g_free(tip);
+    g_free(tip_title);
+    g_free(tip_note);
 
     /* and finally draw the line to show how long the appointment is,
      * but only if it is Busy type event (=availability != 0) 

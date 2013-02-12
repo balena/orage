@@ -1,6 +1,6 @@
 /*      Orage - Calendar and alarm handler
  *
- * Copyright (c) 2006-2011 Juha Kautto  (juha at xfce.org)
+ * Copyright (c) 2006-2013 Juha Kautto  (juha at xfce.org)
  * Copyright (c) 2005-2006 Mickael Graf (korbinus at xfce.org)
  *
  * This program is free software; you can redistribute it and/or modify
@@ -84,8 +84,11 @@ GtkWidget *orage_image_menu_item_new_from_stock(const gchar *stock_id
 GtkWidget *orage_separator_menu_item_new(GtkWidget *menu);
 GtkWidget *orage_menu_item_new_with_mnemonic(const gchar *label
         , GtkWidget *menu);
+
 char *orage_replace_text(char *text, char *old, char *new);
+char *orage_limit_text(char *text, int max_line_len, int max_lines);
 char *orage_process_text_commands(char *text);
+
 GtkWidget *orage_period_hbox_new(gboolean head_space, gboolean tail_space
         , GtkWidget *spin_dd, GtkWidget *dd_label
         , GtkWidget *spin_hh, GtkWidget *hh_label

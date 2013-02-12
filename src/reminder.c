@@ -1078,6 +1078,7 @@ static gboolean orage_tooltip_update(gpointer user_data)
     gint year, month, day, hour, minute, second;
     gint dd, hh, min;
     GDate *g_now, *g_alarm;
+    gchar *tmp;
 
 #ifdef ORAGE_DEBUG
     orage_message(-100, P_N);
@@ -1132,8 +1133,10 @@ static gboolean orage_tooltip_update(gpointer user_data)
             if (cur_alarm->temporary) { /* let's add a small mark */
                 g_string_append_c(tooltip_highlight_helper, '[');
             }
-            g_string_append_printf(tooltip_highlight_helper, 
-                    "%s", cur_alarm->title);
+            tmp = g_markup_escape_text(cur_alarm->title
+                    , strlen(cur_alarm->title));
+            g_string_append_printf(tooltip_highlight_helper, "%s", tmp);
+            g_free(tmp);
             if (cur_alarm->temporary) { /* let's add a small mark */
                 g_string_append_c(tooltip_highlight_helper, ']');
             }

@@ -1,6 +1,6 @@
 /*      Orage - Calendar and alarm handler
  *
- * Copyright (c) 2005-2011 Juha Kautto  (juha at xfce.org)
+ * Copyright (c) 2005-2013 Juha Kautto  (juha at xfce.org)
  * Copyright (c) 2003-2005 Mickael Graf (korbinus at xfce.org)
  *
  * This program is free software; you can redistribute it and/or modify
@@ -89,7 +89,7 @@ void program_log (const char *format, ...)
 void orage_message(gint level, const char *format, ...)
 {
     va_list args;
-    char *formatted;
+    char *formatted, time_stamp[10];
     struct tm *t = orage_localtime();
 
     if (level < g_log_level)
@@ -98,17 +98,17 @@ void orage_message(gint level, const char *format, ...)
     formatted = g_strdup_vprintf(format, args);
     va_end(args);
 
-    g_print("%02d:%02d:%02d ", t->tm_hour, t->tm_min, t->tm_sec);
+    g_sprintf(time_stamp, "%02d:%02d:%02d ", t->tm_hour, t->tm_min, t->tm_sec);
     if (level < 0)
-        g_debug("%s", formatted);
+        g_debug("%s%s", time_stamp, formatted);
     else if (level < 100) 
-        g_message("Orage **: %s", formatted);
+        g_message("Orage **: %s %s", time_stamp, formatted);
     else if (level < 200) 
-        g_warning("%s", formatted);
+        g_warning("%s%s", time_stamp, formatted);
     else if (level < 300) 
-        g_critical("%s", formatted);
+        g_critical("%s%s", time_stamp, formatted);
     else
-        g_error("Orage **: %s", formatted);
+        g_error("Orage **: %s%s", time_stamp, formatted);
     g_free(formatted);
 }
 
@@ -334,7 +334,7 @@ char *orage_replace_text(char *text, char *old, char *new)
 {
 #undef P_N
 #define P_N "orage_replace_text: "
-    /* these point to the original string and travel it until no more commands 
+    /* these point to the original string and travel it until no more olds 
      * are found:
      * cur points to the current head (after each old if any found)
      * cmd points to the start of next old in text */
@@ -368,6 +368,82 @@ char *orage_replace_text(char *text, char *old, char *new)
         beq = text;
     }
     return(beq);
+}
+
+/* This is helper function for orage_limit_text. It takes char pointer
+   to string start and length and adds that "line" to the beginning of 
+   old_result and returns the new_result.
+*/
+static char* add_line(char *old_result, char *start, int line_len
+        , int max_line_len)
+{
+    char *tmp;
+    char *line;          /* new line to add */
+    char *new_result;
+
+    if (line_len > max_line_len) {
+        tmp = g_strndup(start, max_line_len-3);
+        if (*(start+line_len-1) == '\n') { /* need to add line change */
+            line = g_strjoin("", tmp, "...\n", NULL);
+        }
+        else {
+            line = g_strjoin("", tmp, "...", NULL);
+        }
+        g_free(tmp);
+    }
+    else {
+        line = g_strndup(start, line_len);
+    }
+    /* note that old_result can be NULL */
+    new_result = g_strjoin("", line, old_result, NULL);
+    g_free(line);
+    g_free(old_result);
+    return(new_result);
+}
+
+/* cuts text to fit in a box defined with max_line_len and max_lines.
+   This is usefull for example in tooltips to avoid too broad and too may lines
+   to be visible.
+   You can always use this like 
+   str=orage_limit_text(str, max_line_len, max_lines);
+   but it may point to new place.
+*/
+char *orage_limit_text(char *text, int max_line_len, int max_lines)
+{
+#undef P_N
+#define P_N "orage_limit_text: "
+    /* these point to the original string and travel it until no more cuts 
+     * are needed:
+     * cur points to the current end of text character.
+     * eol is pointing to the end of current line */
+    char *cur, *eol;
+    char *result=NULL;   /* end result is collected to this */
+    int text_len=strlen(text);
+    int line_cnt=0;
+
+    if (text_len < 2) /* nothing to do */
+        return(text);
+    /* we start from the end and collect upto max_lines to a new buffer, but
+     * cut them to max_line_len before accepting */
+    for (cur = text+text_len-2, eol = text+text_len-1;
+         (cur > text) && (line_cnt < max_lines); cur--) {
+        if (*cur == '\n') {
+            /* line found, collect the line */
+            result = add_line(result, cur+1, eol-cur, max_line_len);
+            line_cnt++;
+            eol = cur;
+        }
+    }
+    /* Need to process first line also as it does not start with line end */
+    if ((cur == text) && (line_cnt < max_lines)) {
+        result = add_line(result, cur, eol-cur+1, max_line_len);
+    }
+    if (result) {
+        g_free(text);
+        return(result);
+    }
+    else 
+        return(text);
 }
 
 /* this will change <&Xnnn> type commands to numbers or text as defined.
