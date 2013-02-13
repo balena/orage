@@ -193,21 +193,21 @@ static void weeks_changed(GtkWidget *dialog, gpointer user_data)
     set_calendar();
 }
 
-static void set_todos(void)
-{
-    if (g_par.show_todos)
-        gtk_widget_show_all(((CalWin *)g_par.xfcal)->mTodo_vbox);
-    else
-        gtk_widget_hide_all(((CalWin *)g_par.xfcal)->mTodo_vbox);
-}
-
 static void todos_changed(GtkWidget *dialog, gpointer user_data)
 {
     Itf *itf = (Itf *)user_data;
 
     g_par.show_todos = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(
             itf->show_todos_checkbutton));
-    set_todos();
+    if (g_par.show_todos)
+        build_mainbox_todo_box();
+    else {
+        gtk_widget_hide_all(((CalWin *)g_par.xfcal)->mTodo_vbox);
+        /* hide the whole area if also event box does not exist */
+        if (!g_par.show_event_days)
+            gtk_window_resize(GTK_WINDOW(((CalWin *)g_par.xfcal)->mWindow)
+                    , g_par.size_x, 1);
+    }
 }
 
 static void show_events_spin_changed(GtkSpinButton *sb, gpointer user_data)
@@ -215,8 +215,13 @@ static void show_events_spin_changed(GtkSpinButton *sb, gpointer user_data)
     g_par.show_event_days = gtk_spin_button_get_value(sb);
     if (g_par.show_event_days)
         build_mainbox_event_box();
-    else
+    else {
         gtk_widget_hide_all(((CalWin *)g_par.xfcal)->mEvent_vbox);
+        /* hide the whole area if also todo box does not exist */
+        if (!g_par.show_todos)
+            gtk_window_resize(GTK_WINDOW(((CalWin *)g_par.xfcal)->mWindow)
+                    , g_par.size_x, 1);
+    }
 }
 
 static void set_stick(void)
@@ -616,6 +621,37 @@ static void create_parameter_dialog_calendar_setup_tab(Itf *dialog)
     g_signal_connect(G_OBJECT(dialog->show_weeks_checkbutton), "toggled"
             , G_CALLBACK(weeks_changed), dialog);
 
+    /***** calendar info boxes (under the calendar) *****/
+    vbox = gtk_vbox_new(FALSE, 0);
+    dialog->info_frame = 
+            orage_create_framebox_with_content(_("Calendar info boxes"), vbox);
+    gtk_box_pack_start(GTK_BOX(dialog->calendar_vbox), dialog->info_frame
+            , FALSE, FALSE, 5);
+
+    dialog->show_todos_checkbutton = gtk_check_button_new_with_mnemonic(
+            _("Show todo list"));
+    gtk_box_pack_start(GTK_BOX(vbox)
+            , dialog->show_todos_checkbutton, FALSE, FALSE, 0);
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
+            dialog->show_todos_checkbutton), g_par.show_todos);
+
+    hbox = gtk_hbox_new(FALSE, 0);
+    label = gtk_label_new(_("Number of days to show in event window"));
+    gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 5);
+    dialog->show_events_spin = gtk_spin_button_new_with_range(0, 31, 1);
+    gtk_spin_button_set_value(GTK_SPIN_BUTTON(dialog->show_events_spin)
+            , g_par.show_event_days);
+    gtk_widget_set_tooltip_text(dialog->show_events_spin
+            , _("0 = do not show event list at all"));
+    gtk_box_pack_start(GTK_BOX(hbox)
+            , dialog->show_events_spin, FALSE, FALSE, 5);
+    gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
+
+    g_signal_connect(G_OBJECT(dialog->show_todos_checkbutton), "toggled"
+            , G_CALLBACK(todos_changed), dialog);
+    g_signal_connect(G_OBJECT(dialog->show_events_spin), "value-changed"
+            , G_CALLBACK(show_events_spin_changed), dialog);
+
     /***** Where calendar appears = exists = is visible *****/
     table = create_table(3, 2);
     dialog->appearance_frame = 
@@ -666,37 +702,6 @@ static void create_parameter_dialog_calendar_setup_tab(Itf *dialog)
             , G_CALLBACK(pager_changed), dialog);
     g_signal_connect(G_OBJECT(dialog->show_systray_checkbutton), "toggled"
             , G_CALLBACK(systray_changed), dialog);
-
-    /***** calendar info boxes (under the calendar) *****/
-    vbox = gtk_vbox_new(FALSE, 0);
-    dialog->info_frame = 
-            orage_create_framebox_with_content(_("Calendar info boxes"), vbox);
-    gtk_box_pack_start(GTK_BOX(dialog->calendar_vbox), dialog->info_frame
-            , FALSE, FALSE, 5);
-
-    dialog->show_todos_checkbutton = gtk_check_button_new_with_mnemonic(
-            _("Show todo list"));
-    gtk_box_pack_start(GTK_BOX(vbox)
-            , dialog->show_todos_checkbutton, FALSE, FALSE, 0);
-    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
-            dialog->show_todos_checkbutton), g_par.show_todos);
-
-    hbox = gtk_hbox_new(FALSE, 0);
-    label = gtk_label_new(_("Number of days to show in event window"));
-    gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 5);
-    dialog->show_events_spin = gtk_spin_button_new_with_range(0, 31, 1);
-    gtk_spin_button_set_value(GTK_SPIN_BUTTON(dialog->show_events_spin)
-            , g_par.show_event_days);
-    gtk_widget_set_tooltip_text(dialog->show_events_spin
-            , _("0 = do not show event list at all"));
-    gtk_box_pack_start(GTK_BOX(hbox)
-            , dialog->show_events_spin, FALSE, FALSE, 5);
-    gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
-
-    g_signal_connect(G_OBJECT(dialog->show_todos_checkbutton), "toggled"
-            , G_CALLBACK(todos_changed), dialog);
-    g_signal_connect(G_OBJECT(dialog->show_events_spin), "value-changed"
-            , G_CALLBACK(show_events_spin_changed), dialog);
 
     /***** how to show when started (show/hide/minimize) *****/
     dialog->visibility_radiobutton_group = NULL;

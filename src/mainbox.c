@@ -792,6 +792,19 @@ void build_mainbox_event_box(void)
     xfical_file_close(TRUE);   
 }
 
+void build_mainbox_todo_box(void)
+{
+#undef P_N
+#define P_N "build_mainbox_todo_box: "
+#ifdef ORAGE_DEBUG
+    orage_message(-100, P_N);
+#endif
+    if (!xfical_file_open(TRUE))
+        return;
+    build_mainbox_todo_info();
+    xfical_file_close(TRUE);   
+}
+
 /**********************************************************************
  * This routine is called from ical-code xfical_alarm_build_list_internal
  * and ical files are already open at that time. So make sure ical files

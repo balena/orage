@@ -1,6 +1,6 @@
 /*      Orage - Calendar and alarm handler
  *
- * Copyright (c) 2006-2011 Juha Kautto  (juha at xfce.org)
+ * Copyright (c) 2006-2013 Juha Kautto  (juha at xfce.org)
  * Copyright (c) 2004-2006 Mickael Graf (korbinus at xfce.org)
  *
  * This program is free software; you can redistribute it and/or modify
@@ -91,8 +91,8 @@ static void on_globaltime_activate(GtkMenuItem *menuitem, gpointer user_data)
                 , error->message);
 }
 
-static gboolean button_press_cb(GtkStatusIcon *status_icon, GdkEventButton *event
-        , gpointer user_data)
+static gboolean button_press_cb(GtkStatusIcon *status_icon
+        , GdkEventButton *event, gpointer user_data)
 {
     GdkAtom atom;
     GdkEventClient gev;
