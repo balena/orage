@@ -5,19 +5,22 @@
 # Adriano Winter Bess <awbess@gmail.com>, 2005.
 # Og Maciel <ogmaciel@gnome.org>, 2008, 2009.
 # Fábio Nogueira <deb-user-ba@ubuntu.com>, 2008.
-# 
+# Rafael Ferreira <rafael.f.f1@gmail.com>, 2013.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: orage 4.3.90.2\n"
+"Project-Id-Version: orage\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-01-03 14:00+0200\n"
-"PO-Revision-Date: 2009-04-25 09:36-0500\n"
-"Last-Translator: Og Maciel <ogmaciel@gnome.org>\n"
-"Language-Team: Brazilian Portuguese <ldp-br@bazar2.conectiva.com.br>\n"
+"PO-Revision-Date: 2013-06-26 19:31-0300\n"
+"Last-Translator: Rafael Ferreira <rafael.f.f1@gmail.com>\n"
+"Language-Team: Brazilian Portuguese <xfce-i18n-br@xfce.org>\n"
+"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: pt_BR\n"
+"X-Generator: Poedit 1.5.5\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: ../globaltime/globaltime.c:100
 msgid "Raising GlobalTime window..."
@@ -56,7 +59,9 @@ msgstr "ajuste para modificar a hora"
 #: ../globaltime/globaltime.c:496
 msgid ""
 "adjust to change minute. Click arrows with button 2 to change only 1 minute."
-msgstr "ajuste para modificar os minutos. Clique na setas com o botão 2 para modificar somente 1 minuto."
+msgstr ""
+"ajuste para modificar os minutos. Clique na setas com o botão 2 para "
+"modificar somente 1 minuto."
 
 #: ../globaltime/gt_prefs.c:265 ../globaltime/gt_prefs.c:266
 msgid "NEW"
@@ -518,7 +523,7 @@ msgstr "Preferências do relógio do Orage"
 #. * %B  : full month name
 #. * %Y  : four digit year
 #. * %V  : ISO week number
-#. 
+#.
 #: ../panel-plugin/xfce4-orageclock-plugin.c:627
 msgid "%A %d %B %Y/%V"
 msgstr "%d de %B de %Y"
@@ -795,7 +800,8 @@ msgstr ""
 "\n"
 "Estes apenas serão convertidos apenas quando forem vistos:\n"
 "    <&Ynnnn> é traduzido para o ano atual menos nnnn.\n"
-"(Pode ser utilizado em lembretes de aniversários para informar quantos anos a pessoa terá.)"
+"(Pode ser utilizado em lembretes de aniversários para informar quantos anos "
+"a pessoa terá.)"
 
 #: ../src/appointment.c:2895
 msgid "Before Start"
@@ -1157,7 +1163,9 @@ msgstr "Adicionar hora incluída (+)"
 msgid ""
 "Included times have same timezone than start time, but they may have "
 "different time"
-msgstr "As horas incluídas têm o mesmo fuso horário da hora inicial, mas podem ter horas diferentes"
+msgstr ""
+"As horas incluídas têm o mesmo fuso horário da hora inicial, mas podem ter "
+"horas diferentes"
 
 #. calendars showing the action days
 #: ../src/appointment.c:3406
@@ -1603,7 +1611,7 @@ msgid ""
 "\tThis is %s version %s\n"
 "\n"
 msgstr ""
-"\tIsto é %s versão %s para o Xfce %s\n"
+"\tEste é %s versão %s\n"
 "\n"
 
 #: ../src/main.c:270
@@ -1710,7 +1718,9 @@ msgstr "--remove-foreign (-r) arquivo \tremove um arquivo desconhecido\n"
 msgid ""
 "--export (-e) file [appointment...] \texport appointments from Orage to "
 "file\n"
-msgstr "--export (-e) arquivo [compromisso...] \texportar compromissos do Orage para arquivo\n"
+msgstr ""
+"--export (-e) arquivo [compromisso...] \texportar compromissos do Orage para "
+"arquivo\n"
 
 #: ../src/main.c:316
 #, c-format
@@ -1788,8 +1798,10 @@ msgid ""
 "%s"
 msgstr ""
 "Título: %s\n"
+" Local: %s\n"
 " Início:\t%s\n"
 " Fim:\t%s\n"
+" Concluído:\t%s\n"
 " Nota:\n"
 "%s"
 
@@ -1804,6 +1816,7 @@ msgid ""
 "%s"
 msgstr ""
 "Título: %s\n"
+" Local: %s\n"
 " Início:\t%s\n"
 " Fim:\t%s\n"
 " Nota:\n"
@@ -1984,7 +1997,9 @@ msgstr "Número de dias extra a mostrar na lista de eventos"
 msgid ""
 "This is just the default value, you can change it in the actual eventlist "
 "window."
-msgstr "Este é apenas o valor padrão, você pode alterá-lo na atual janela da lista de eventos."
+msgstr ""
+"Este é apenas o valor padrão, você pode alterá-lo na atual janela da lista "
+"de eventos."
 
 #: ../src/parameters.c:910 ../src/parameters.c:915
 msgid "Use wakeup timer"
@@ -1994,7 +2009,10 @@ msgstr "Utilize temporizador de inicialização"
 msgid ""
 "Use this timer if Orage has problems waking up properly after suspend or "
 "hibernate. (For example tray icon not refreshed or alarms not firing.)"
-msgstr "Utilize este temporizador se o Orage encontrar problemas ao inicializar após a suspensão ou hibernação. (Por exemplo, ícone na bandeja não atualizado ou alarmes funcionando.)"
+msgstr ""
+"Utilize este temporizador se o Orage encontrar problemas ao inicializar após "
+"a suspensão ou hibernação. (Por exemplo, ícone na bandeja não atualizado ou "
+"alarmes funcionando.)"
 
 #: ../src/parameters.c:938
 msgid "Orage Preferences"
@@ -2034,7 +2052,8 @@ msgstr "Lembre-me novamente após a hora especificada"
 #. Note that this goes to the main area. Temporary for the version
 #: ../src/reminder.c:811
 msgid "Press <Execute> to remind me again after the specified time:"
-msgstr "Pressione <Executar> para lembrar-me novamente após a hora especificada:"
+msgstr ""
+"Pressione <Executar> para lembrar-me novamente após a hora especificada:"
 
 #: ../src/reminder.c:1099
 msgid "Next active alarms:"
