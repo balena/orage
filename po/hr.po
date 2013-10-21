@@ -1,25 +1,28 @@
-# Croatian translations for orage package.
-# Copyright (C) 2010 The Xfce development team.
-# This file is distributed under the same license as the orage package.
-#  Ivica Kolić<ikoli@yahoo.com>, 2010.
-#  Ivica Kolić<ikoli@yahoo.com> <>, 2010.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Ivica  Kolić <ikoli@yahoo.com>, 2010
+# Ivica  Kolić <ikoli@yahoo.com>, 2010
+# Ivica  Kolić <ikoli@yahoo.com>, 2013
 msgid ""
 msgstr ""
-"Project-Id-Version: orage\n"
+"Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-03 14:00+0200\n"
-"PO-Revision-Date: 2010-06-05 09:26+0200\n"
-"Last-Translator: Ivica Kolić<ikoli@yahoo.com> <>\n"
-"Language-Team: Croatian <>\n"
+"POT-Creation-Date: 2013-07-13 22:14+0200\n"
+"PO-Revision-Date: 2013-10-21 17:29+0000\n"
+"Last-Translator: Ivica  Kolić <ikoli@yahoo.com>\n"
+"Language-Team: Croatian (http://www.transifex.com/projects/p/xfce/language/hr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: hr\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #: ../globaltime/globaltime.c:100
 msgid "Raising GlobalTime window..."
-msgstr "Podizanje prozora globalnoga vremena"
+msgstr "Podizanje prozora globalnoga vremena..."
 
 #: ../globaltime/globaltime.c:102
 msgid "GlobalTime window raise failed"
@@ -31,9 +34,7 @@ msgstr "Neuspjeh u podizanju prozora globalnoga vremena"
 msgid ""
 "%s\n"
 "click to modify clock"
-msgstr ""
-"%s\n"
-"klik za izmjenu sata"
+msgstr "%s\nklik za izmjenu sata"
 
 #: ../globaltime/globaltime.c:386
 msgid "Localtime"
@@ -43,9 +44,7 @@ msgstr "Lokalno vrijeme"
 msgid ""
 "button 1 to change preferences \n"
 "button 2 to adjust time of clocks"
-msgstr ""
-"dugme 1 za promjenu osobitosti\n"
-"dugme 2 za usklađivanje satova"
+msgstr "dugme 1 za promjenu osobitosti\ndugme 2 za usklađivanje satova"
 
 #: ../globaltime/globaltime.c:480
 msgid "adjust to change hour"
@@ -54,9 +53,7 @@ msgstr "uskladi za promjenu sata"
 #: ../globaltime/globaltime.c:496
 msgid ""
 "adjust to change minute. Click arrows with button 2 to change only 1 minute."
-msgstr ""
-"Prilagodii promjeni minute. Kliknite na strelice sa dugmetom 2 za promjenu "
-"samo 1 minute."
+msgstr "prilagodii promjeni minute. Kliknite na strelice sa dugmetom 2 za promjenu samo 1 minute."
 
 #: ../globaltime/gt_prefs.c:265 ../globaltime/gt_prefs.c:266
 msgid "NEW"
@@ -68,7 +65,7 @@ msgstr "NOVA KOPIJA"
 
 #: ../globaltime/gt_prefs.c:310
 msgid "Not possible to delete the last clock."
-msgstr "Nije moguće izbrisati zadnji sat"
+msgstr "Nije moguće izbrisati zadnji sat."
 
 #: ../globaltime/gt_prefs.c:516
 msgid "update this clock"
@@ -170,7 +167,7 @@ msgstr "Klikni za promjenu prednje boje sata"
 #. ------------------------name font-------------------------
 #: ../globaltime/gt_prefs.c:713 ../globaltime/gt_prefs.c:922
 msgid "Font for name of clock:"
-msgstr "Font za ime sata"
+msgstr "Font za ime sata:"
 
 #: ../globaltime/gt_prefs.c:720
 msgid "Click to change font for clock name"
@@ -179,7 +176,7 @@ msgstr "Klikni za promjenu fonta imena sata"
 #. ------------------------time font-------------------------
 #: ../globaltime/gt_prefs.c:746 ../globaltime/gt_prefs.c:956
 msgid "Font for time of clock:"
-msgstr "Font za vrijeme sata"
+msgstr "Font za vrijeme sata:"
 
 #: ../globaltime/gt_prefs.c:753
 msgid "Click to change font for clock time"
@@ -188,12 +185,12 @@ msgstr "Klikni za promjenu fonta vremena sata"
 #. ------------------------underline name--------------------
 #: ../globaltime/gt_prefs.c:780
 msgid "Underline name of clock:"
-msgstr "Podcrtaj ime sata"
+msgstr "Podcrtaj ime sata:"
 
 #. ------------------------underline time--------------------
 #: ../globaltime/gt_prefs.c:810
 msgid "Underline time of clock:"
-msgstr "Podcrtaj vrijeme sata"
+msgstr "Podcrtaj vrijeme sata:"
 
 #: ../globaltime/gt_prefs.c:850
 msgid "Text Default Formatting"
@@ -333,7 +330,7 @@ msgstr "ne mijenja se"
 #: ../globaltime/timezone_selection.c:247
 #: ../globaltime/timezone_selection.c:252
 #: ../panel-plugin/timezone_selection.c:248
-#: ../panel-plugin/timezone_selection.c:253 ../src/appointment.c:2663
+#: ../panel-plugin/timezone_selection.c:253 ../src/appointment.c:2675
 #: ../src/timezone_selection.c:259 ../src/timezone_selection.c:264
 msgid "Location"
 msgstr "Lokacija"
@@ -394,17 +391,17 @@ msgstr "UTC"
 msgid "floating"
 msgstr "plutajuće"
 
-#: ../globaltime/globaltime.desktop.in.h:1 ../src/tray_icon.c:500
-msgid "Globaltime"
-msgstr "Globalno vrijeme"
-
-#: ../globaltime/globaltime.desktop.in.h:2
+#: ../globaltime/globaltime.desktop.in.h:1
 msgid "Orage Globaltime"
 msgstr "Orage Globalno vrijeme"
 
-#: ../globaltime/globaltime.desktop.in.h:3
+#: ../globaltime/globaltime.desktop.in.h:2
 msgid "Show clocks from different countries"
 msgstr "Pokaži satove različitih zemalja"
+
+#: ../globaltime/globaltime.desktop.in.h:3 ../src/tray_icon.c:500
+msgid "Globaltime"
+msgstr "Globalno vrijeme"
 
 #: ../panel-plugin/oc_config.c:224
 msgid "Appearance"
@@ -520,7 +517,7 @@ msgstr "Uređujte vaše vrijeme pomoću Orage"
 #. if (gtk_toggle_button_get_active(
 #. GTK_TOGGLE_BUTTON(apptw->Type_journal_rb)))
 #. end time
-#: ../src/appointment.c:313 ../src/appointment.c:353 ../src/appointment.c:2692
+#: ../src/appointment.c:313 ../src/appointment.c:353 ../src/appointment.c:2704
 msgid "End"
 msgstr "Kraj"
 
@@ -528,13 +525,13 @@ msgstr "Kraj"
 msgid "Due"
 msgstr ""
 
-#: ../src/appointment.c:493 ../src/mainbox.c:783
+#: ../src/appointment.c:493 ../src/mainbox.c:844
 msgid "Orage"
 msgstr "Orage"
 
 #. to avoid timing problems when updating entry
 #. Create file chooser
-#: ../src/appointment.c:672 ../src/interface.c:277 ../src/parameters.c:416
+#: ../src/appointment.c:672 ../src/interface.c:251 ../src/parameters.c:359
 msgid "Select a file..."
 msgstr "Odaberi datoteku..."
 
@@ -542,225 +539,246 @@ msgstr "Odaberi datoteku..."
 msgid "Sound Files"
 msgstr "Zvučne datoteke"
 
-#: ../src/appointment.c:687 ../src/interface.c:290
+#: ../src/appointment.c:687 ../src/interface.c:264
 msgid "All Files"
 msgstr "Sve datoteke"
 
-#: ../src/appointment.c:739
+#: ../src/appointment.c:738
 msgid "The appointment information has been modified."
 msgstr "Informacija o sastanku je promijenjena"
 
-#: ../src/appointment.c:740 ../src/appointment.c:1194 ../src/event-list.c:919
+#: ../src/appointment.c:739 ../src/appointment.c:1195 ../src/event-list.c:921
 msgid "Do you want to continue?"
 msgstr "Želite li nastaviti?"
 
-#: ../src/appointment.c:767
+#: ../src/appointment.c:740
+msgid "No, do not leave"
+msgstr ""
+
+#: ../src/appointment.c:741
+msgid "Yes, ignore modifications and leave"
+msgstr ""
+
+#: ../src/appointment.c:768
 msgid "The end of this appointment is earlier than the beginning."
 msgstr ""
 
-#: ../src/appointment.c:1034 ../src/appointment.c:1812
+#: ../src/appointment.c:1035 ../src/appointment.c:1827
 msgid "Not set"
 msgstr "Nije postavljeno"
 
-#: ../src/appointment.c:1193
+#: ../src/appointment.c:1194
 msgid "This appointment will be permanently removed."
 msgstr "Ovaj će sastanak biti trajno uklonjen."
 
-#: ../src/appointment.c:1692
+#: ../src/appointment.c:1196 ../src/event-list.c:922
+msgid "No, cancel the removal"
+msgstr ""
+
+#: ../src/appointment.c:1197
+msgid "Yes, remove it"
+msgstr ""
+
+#: ../src/appointment.c:1282 ../src/appointment.c:1297 ../src/day-view.c:457
+#: ../src/event-list.c:980
+msgid "Pick the date"
+msgstr "Odaberite datum"
+
+#: ../src/appointment.c:1284 ../src/appointment.c:1299 ../src/day-view.c:386
+#: ../src/day-view.c:459 ../src/event-list.c:982 ../src/event-list.c:1132
+#: ../src/tray_icon.c:460
+msgid "Today"
+msgstr "Danas"
+
+#: ../src/appointment.c:1707
 msgid "This appointment does not exist."
 msgstr "Sastanak ne postoji."
 
-#: ../src/appointment.c:1693
+#: ../src/appointment.c:1708
 msgid "It was probably removed, please refresh your screen."
 msgstr "Vjerojatno je uklonjen,osvježite vaš zaslon."
 
-#: ../src/appointment.c:1995
+#: ../src/appointment.c:2009
 msgid "Current categories"
 msgstr "Trenutne kategorije"
 
-#: ../src/appointment.c:2010
+#: ../src/appointment.c:2024
 msgid "Add new category with color"
 msgstr "Dodaj novu kategoriju sa bojom"
 
-#: ../src/appointment.c:2014
+#: ../src/appointment.c:2028
 msgid "Category:"
 msgstr "Kategorija:"
 
-#: ../src/appointment.c:2045
+#: ../src/appointment.c:2059
 msgid "Colors of categories - Orage"
 msgstr "Boje kategorija -  Orage"
 
-#: ../src/appointment.c:2092
+#: ../src/appointment.c:2105
 msgid " *** COPY ***"
 msgstr " *** KOPIJA ***"
 
-#: ../src/appointment.c:2353
+#: ../src/appointment.c:2366
 msgid "New appointment - Orage"
 msgstr "Novi sastanak - Orage"
 
 #. File menu stuff
 #. ********* File menu *********
 #. File menu
-#: ../src/appointment.c:2382 ../src/day-view.c:254 ../src/event-list.c:1021
-#: ../src/interface.c:767 ../src/mainbox.c:279
+#: ../src/appointment.c:2395 ../src/day-view.c:279 ../src/event-list.c:1033
+#: ../src/interface.c:736 ../src/mainbox.c:279
 msgid "_File"
 msgstr "_Datoteka"
 
-#: ../src/appointment.c:2388
+#: ../src/appointment.c:2401
 msgid "Sav_e and close"
 msgstr "Sprem_i i zatvori"
 
-#: ../src/appointment.c:2401 ../src/event-list.c:1027
+#: ../src/appointment.c:2414 ../src/event-list.c:1039
 msgid "D_uplicate"
 msgstr "U_dvostruči"
 
-#: ../src/appointment.c:2589
+#: ../src/appointment.c:2601
 msgid "Save"
 msgstr "Spremi"
 
-#: ../src/appointment.c:2591
+#: ../src/appointment.c:2603
 msgid "Save and close"
 msgstr "Spremi i zatvori"
 
-#: ../src/appointment.c:2596
+#: ../src/appointment.c:2608
 msgid "Revert"
 msgstr "Obrnuto"
 
-#: ../src/appointment.c:2598 ../src/event-list.c:1112
+#: ../src/appointment.c:2610 ../src/event-list.c:1123
 msgid "Duplicate"
 msgstr "Udvostruči"
 
-#: ../src/appointment.c:2603 ../src/event-list.c:1114
+#: ../src/appointment.c:2615 ../src/event-list.c:1125
 msgid "Delete"
 msgstr "Izbriši"
 
-#: ../src/appointment.c:2621
+#: ../src/appointment.c:2633
 msgid "Free"
 msgstr "Slobodno"
 
-#: ../src/appointment.c:2621
+#: ../src/appointment.c:2633
 msgid "Busy"
 msgstr "Zauzeto"
 
-#: ../src/appointment.c:2625
+#: ../src/appointment.c:2637
 msgid "General"
 msgstr "Osnovno"
 
 #. type
-#: ../src/appointment.c:2631
+#: ../src/appointment.c:2643
 msgid "Type "
 msgstr "Tip"
 
-#: ../src/appointment.c:2633 ../src/event-list.c:1165
+#: ../src/appointment.c:2645 ../src/event-list.c:1176
 msgid "Event"
 msgstr "Događaj"
 
-#: ../src/appointment.c:2636
+#: ../src/appointment.c:2648
 msgid ""
 "Event that will happen sometime. For example:\n"
 "Meeting or birthday or TV show."
-msgstr ""
-"Događaj koji će se dogoditi.N primjer:\n"
-"susret ili rođendan ili TV show."
+msgstr "Događaj koji će se dogoditi.N primjer:\nsusret ili rođendan ili TV show."
 
-#: ../src/appointment.c:2639 ../src/event-list.c:1185
+#: ../src/appointment.c:2651 ../src/event-list.c:1196
 msgid "Todo"
 msgstr ""
 
-#: ../src/appointment.c:2642
+#: ../src/appointment.c:2654
 msgid ""
 "Something that you should do sometime. For example:\n"
 "Wash your car or test new version of Orage."
-msgstr ""
-"Nešto što treba ponekad učiniti.Na primjer:\n"
-"oprati automobil ili testirati novu Orage verziju."
+msgstr "Nešto što treba ponekad učiniti.Na primjer:\noprati automobil ili testirati novu Orage verziju."
 
-#: ../src/appointment.c:2645 ../src/event-list.c:1198
+#: ../src/appointment.c:2657 ../src/event-list.c:1209
 msgid "Journal"
 msgstr ""
 
-#: ../src/appointment.c:2649
+#: ../src/appointment.c:2661
 msgid ""
 "Make a note that something happened. For example:\n"
 "Remark that your mother called or first snow came."
-msgstr ""
-"Napravite bilješku da se nešto dogodilo. Na primjer:\n"
-"Bilješka da je zvala vaša majka ili da je došao prvi snijeg."
+msgstr "Napravite bilješku da se nešto dogodilo. Na primjer:\nBilješka da je zvala vaša majka ili da je došao prvi snijeg."
 
 #. title
-#: ../src/appointment.c:2656
+#: ../src/appointment.c:2668
 msgid "Title "
 msgstr "Naslov"
 
-#: ../src/appointment.c:2671
+#: ../src/appointment.c:2683
 msgid "All day event"
 msgstr "Cjelodnevni događaj"
 
 #. start time
-#: ../src/appointment.c:2677 ../src/appointment.c:3342 ../src/day-view.c:697
+#: ../src/appointment.c:2689 ../src/appointment.c:3350 ../src/day-view.c:801
 msgid "Start"
 msgstr "Počni"
 
-#: ../src/appointment.c:2697
+#: ../src/appointment.c:2709
 msgid "Set      "
 msgstr "Postavi"
 
-#: ../src/appointment.c:2718
+#: ../src/appointment.c:2730
 msgid "Duration"
 msgstr "Trajanje"
 
-#: ../src/appointment.c:2722 ../src/appointment.c:2912 ../src/reminder.c:761
+#: ../src/appointment.c:2734 ../src/appointment.c:2924 ../src/reminder.c:758
 msgid "days"
 msgstr "dana"
 
-#: ../src/appointment.c:2724 ../src/appointment.c:2914 ../src/reminder.c:763
+#: ../src/appointment.c:2736 ../src/appointment.c:2926 ../src/reminder.c:760
 msgid "hours"
 msgstr "sati"
 
-#: ../src/appointment.c:2726 ../src/appointment.c:2916 ../src/reminder.c:765
+#: ../src/appointment.c:2738 ../src/appointment.c:2928 ../src/reminder.c:762
 msgid "mins"
 msgstr "minuta"
 
 #. Availability (only for EVENT)
-#: ../src/appointment.c:2738
+#: ../src/appointment.c:2750
 msgid "Availability"
 msgstr "Dostupnost"
 
 #. completed (only for TODO)
-#: ../src/appointment.c:2746 ../src/appointment.c:3348
+#: ../src/appointment.c:2758 ../src/appointment.c:3356
 msgid "Completed"
 msgstr "Dovršeno"
 
-#: ../src/appointment.c:2749
+#: ../src/appointment.c:2761
 msgid "Done"
 msgstr "Učinjeno"
 
 #. categories
-#: ../src/appointment.c:2770
+#: ../src/appointment.c:2782
 msgid "Categories"
 msgstr "Kategorije"
 
-#: ../src/appointment.c:2782
+#: ../src/appointment.c:2794
 msgid ""
 "This is special category, which can be used to color this appointment in "
 "list views."
 msgstr ""
 
-#: ../src/appointment.c:2787
+#: ../src/appointment.c:2799
 msgid "update colors for categories."
 msgstr "ažurirajte boje kategorija."
 
 #. priority
-#: ../src/appointment.c:2793
+#: ../src/appointment.c:2805
 msgid "Priority"
 msgstr "Prioritet"
 
 #. note
-#: ../src/appointment.c:2803
+#: ../src/appointment.c:2815
 msgid "Note"
 msgstr "Bilješka"
 
-#: ../src/appointment.c:2824
+#: ../src/appointment.c:2836
 msgid ""
 "These shorthand commands take effect immediately:\n"
 "    <D> inserts current date in local date format\n"
@@ -769,36 +787,35 @@ msgid ""
 "\n"
 "These are converted only later when they are seen:\n"
 "    <&Ynnnn> is translated to current year minus nnnn.\n"
-"(This can be used for example in birthday reminders to tell how old the "
-"person will be.)"
+"(This can be used for example in birthday reminders to tell how old the person will be.)"
 msgstr ""
 
-#: ../src/appointment.c:2895
+#: ../src/appointment.c:2907
 msgid "Before Start"
 msgstr "Prije početka"
 
-#: ../src/appointment.c:2895
+#: ../src/appointment.c:2907
 msgid "Before End"
 msgstr "Prije kraja"
 
-#: ../src/appointment.c:2896
+#: ../src/appointment.c:2908
 msgid "After Start"
 msgstr "Nakon početka"
 
-#: ../src/appointment.c:2896
+#: ../src/appointment.c:2908
 msgid "After End"
 msgstr "Nakon kraja"
 
-#: ../src/appointment.c:2903
+#: ../src/appointment.c:2915
 msgid "Alarm"
 msgstr "Alarm"
 
 #. **** ALARM TIME ****
-#: ../src/appointment.c:2909
+#: ../src/appointment.c:2921
 msgid "Alarm time"
 msgstr "Vrijeme alarma"
 
-#: ../src/appointment.c:2933
+#: ../src/appointment.c:2945
 msgid ""
 "Often you want to get alarm:\n"
 " 1) before Event start\n"
@@ -806,88 +823,88 @@ msgid ""
 " 3) after Todo start"
 msgstr ""
 
-#: ../src/appointment.c:2938
+#: ../src/appointment.c:2950
 msgid "Persistent alarm"
 msgstr "Trajni alarm"
 
-#: ../src/appointment.c:2940
+#: ../src/appointment.c:2952
 msgid ""
 "Select this if you want Orage to remind you even if it has not been active "
 "when the alarm happened."
 msgstr "Odaberite ovo ako želite da vas Orage podsjeti iako nije bio aktivan kada je alarm počeo."
 
 #. **** Audio Alarm ****
-#: ../src/appointment.c:2949
+#: ../src/appointment.c:2961
 msgid "Sound"
 msgstr "Zvuk"
 
-#: ../src/appointment.c:2953 ../src/appointment.c:3074
+#: ../src/appointment.c:2965 ../src/appointment.c:3085
 msgid "Use"
 msgstr "Koristi"
 
-#: ../src/appointment.c:2955
+#: ../src/appointment.c:2967
 msgid "Select this if you want audible alarm"
 msgstr "Odaberite ovo ako želite čujan alarm"
 
-#: ../src/appointment.c:2972
+#: ../src/appointment.c:2984
 msgid "Repeat alarm sound"
 msgstr "Ponovi zvuk alarma"
 
-#: ../src/appointment.c:2988 ../src/appointment.c:3290
+#: ../src/appointment.c:3000 ../src/appointment.c:3299
 msgid "times"
 msgstr ""
 
-#: ../src/appointment.c:3004
+#: ../src/appointment.c:3016
 msgid "sec interval"
 msgstr ""
 
 #. **** Display Alarm ****
-#: ../src/appointment.c:3014
+#: ../src/appointment.c:3026
 msgid "Visual"
 msgstr "Vizualno"
 
-#: ../src/appointment.c:3018
+#: ../src/appointment.c:3030
 msgid "Use Orage window"
 msgstr "Koristi Orage prozor"
 
-#: ../src/appointment.c:3020
+#: ../src/appointment.c:3032
 msgid "Select this if you want Orage window alarm"
 msgstr ""
 
-#: ../src/appointment.c:3032
+#: ../src/appointment.c:3044
 msgid "Use notification"
 msgstr "Koristite obavijest"
 
-#: ../src/appointment.c:3034
+#: ../src/appointment.c:3046
 msgid "Select this if you want notification alarm"
 msgstr "Odaberite ovu opciju ako želite alarm obavijesti"
 
-#: ../src/appointment.c:3040
+#: ../src/appointment.c:3052
 msgid "Set timeout"
 msgstr ""
 
-#: ../src/appointment.c:3043
+#: ../src/appointment.c:3054
 msgid "Select this if you want notification to expire automatically"
 msgstr "Odaberite ovu opciju ako želite da obavijest istekne automatski"
 
-#: ../src/appointment.c:3054
+#: ../src/appointment.c:3065
 msgid "0 = system default expiration time"
 msgstr "0 = "
 
-#: ../src/appointment.c:3059
+#: ../src/appointment.c:3070
 msgid "seconds"
 msgstr "sekude"
 
 #. **** Procedure Alarm ****
-#: ../src/appointment.c:3070
+#: ../src/appointment.c:3081
 msgid "Procedure"
 msgstr "Procedura"
 
-#: ../src/appointment.c:3076
+#: ../src/appointment.c:3087
 msgid "Select this if you want procedure or script alarm"
 msgstr ""
 
-#: ../src/appointment.c:3082
+#: ../src/appointment.c:3093
 msgid ""
 "You must enter all escape etc characters yourself.\n"
 "This string is just given to shell to process.\n"
@@ -899,154 +916,148 @@ msgid ""
 "\t<&ET> appointment end time"
 msgstr ""
 
-#: ../src/appointment.c:3094
+#: ../src/appointment.c:3105
 msgid "Test this alarm by raising it now"
 msgstr ""
 
-#: ../src/appointment.c:3101
+#: ../src/appointment.c:3112
 msgid "<b>Default alarm</b>"
 msgstr "<b>Zadani alarm</b>"
 
-#: ../src/appointment.c:3109
+#: ../src/appointment.c:3120
 msgid "Store current settings as default alarm"
 msgstr "Pohrani trenutne postavke kao zadani alarm"
 
-#: ../src/appointment.c:3114
+#: ../src/appointment.c:3125
 msgid "Set current settings from default alarm"
 msgstr "Postavi trenutne postavke sa zadanog alarma"
 
-#: ../src/appointment.c:3176
+#: ../src/appointment.c:3187
 msgid "None"
 msgstr "NIjedan"
 
-#: ../src/appointment.c:3176
+#: ../src/appointment.c:3187
 msgid "Daily"
 msgstr "Dnevno"
 
-#: ../src/appointment.c:3176
+#: ../src/appointment.c:3187
 msgid "Weekly"
 msgstr "Tjedno"
 
-#: ../src/appointment.c:3176
+#: ../src/appointment.c:3187
 msgid "Monthly"
 msgstr "Mjesečno"
 
-#: ../src/appointment.c:3176
+#: ../src/appointment.c:3187
 msgid "Yearly"
 msgstr "Godišnje"
 
-#: ../src/appointment.c:3176
+#: ../src/appointment.c:3187
 msgid "Hourly"
 msgstr "Svakog sata"
 
-#: ../src/appointment.c:3178
+#: ../src/appointment.c:3189
 msgid "Mon"
 msgstr "Pon"
 
-#: ../src/appointment.c:3178
+#: ../src/appointment.c:3189
 msgid "Tue"
 msgstr "Uto"
 
-#: ../src/appointment.c:3178
+#: ../src/appointment.c:3189
 msgid "Wed"
 msgstr "Srij"
 
-#: ../src/appointment.c:3178
+#: ../src/appointment.c:3189
 msgid "Thu"
 msgstr "Čet"
 
-#: ../src/appointment.c:3178
+#: ../src/appointment.c:3189
 msgid "Fri"
 msgstr "Pet"
 
-#: ../src/appointment.c:3178
+#: ../src/appointment.c:3189
 msgid "Sat"
 msgstr "Sub"
 
-#: ../src/appointment.c:3178
+#: ../src/appointment.c:3189
 msgid "Sun"
 msgstr "Ned"
 
-#: ../src/appointment.c:3183
+#: ../src/appointment.c:3194
 msgid "Recurrence"
 msgstr ""
 
 #. complexity
-#: ../src/appointment.c:3189
+#: ../src/appointment.c:3200
 msgid "Complexity"
 msgstr "Složenost"
 
-#: ../src/appointment.c:3192
+#: ../src/appointment.c:3203
 msgid "Basic"
 msgstr "Osnovno"
 
-#: ../src/appointment.c:3198
+#: ../src/appointment.c:3209
 msgid "Advanced"
 msgstr "Napredno"
 
-#: ../src/appointment.c:3202
+#: ../src/appointment.c:3213
 msgid "Use this if you want regular repeating event"
 msgstr "Koristite ovo ako želite obični ponavljajući događaj"
 
-#: ../src/appointment.c:3204
+#: ../src/appointment.c:3215
 msgid ""
 "Use this if you need complex times like:\n"
 " Every Saturday and Sunday or \n"
 " First Tuesday every month"
-msgstr ""
-"Koristite ovo ako vam trebaju kompleksna vremena poput:\n"
-"Svaku subotu i nedjelju ili \n"
-"prvi utorak svakog mjeseca"
+msgstr "Koristite ovo ako vam trebaju kompleksna vremena poput:\nSvaku subotu i nedjelju ili \nprvi utorak svakog mjeseca"
 
 #. frequency
-#: ../src/appointment.c:3211
+#: ../src/appointment.c:3221
 msgid "Frequency"
 msgstr "Učestalost"
 
-#: ../src/appointment.c:3217
+#: ../src/appointment.c:3227
 msgid "Each"
 msgstr "Svaki"
 
-#: ../src/appointment.c:3224
+#: ../src/appointment.c:3234
 msgid "occurrence"
 msgstr "okolnost"
 
-#: ../src/appointment.c:3228
+#: ../src/appointment.c:3238
 msgid ""
 "Limit frequency to certain interval.\n"
 " For example: Every third day:\n"
 " Frequency = Daily and Interval = 3"
-msgstr ""
-"Ograniči učestalost na neki interval.\n"
-"Na primjer: svaki treći dan:\n"
-"Učestalost = dnevna i interval = 3"
+msgstr "Ograniči učestalost na neki interval.\nNa primjer: svaki treći dan:\nUčestalost = dnevna i interval = 3"
 
-#: ../src/appointment.c:3274
+#: ../src/appointment.c:3283
 msgid "Limit"
 msgstr "Ograničenje"
 
-#: ../src/appointment.c:3276
+#: ../src/appointment.c:3285
 msgid "Repeat forever"
 msgstr "Ponavljaj zauvijek"
 
-#: ../src/appointment.c:3282
+#: ../src/appointment.c:3291
 msgid "Repeat "
 msgstr "Ponavljaj"
 
-#: ../src/appointment.c:3298
+#: ../src/appointment.c:3307
 msgid "Repeat until "
 msgstr "Ponavljaj do"
 
 #. weekdays (only for complex settings)
-#: ../src/appointment.c:3311
+#: ../src/appointment.c:3320
 msgid "Weekdays"
 msgstr "Dani u tjednu"
 
-#: ../src/appointment.c:3323
+#: ../src/appointment.c:3332
 msgid "Which day"
 msgstr "Koji dan"
 
-#: ../src/appointment.c:3331
+#: ../src/appointment.c:3340
 msgid ""
 "Specify which weekday for monthly and yearly events.\n"
 " For example:\n"
@@ -1054,119 +1065,108 @@ msgid ""
 "\tFrequency = Monthly,\n"
 "\tWeekdays = check only Wednesday,\n"
 "\tWhich day = select 2 from the number below Wednesday"
-msgstr ""
-"Odredi dan u tjednu za mjesečne i godišnje događaje.\n"
-"Na primijer:\n"
-"Druga srijeda svakog mjececa:\n"
-"\tUčestalost = mjesečna,\n"
-"\tDani u tjednu = označi samo srijede,\n"
-"\tKoji dan = odaberite 2 ispod srijede"
+msgstr "Odredi dan u tjednu za mjesečne i godišnje događaje.\nNa primijer:\nDruga srijeda svakog mjececa:\n\tUčestalost = mjesečna,\n\tDani u tjednu = označi samo srijede,\n\tKoji dan = odaberite 2 ispod srijede"
 
 #. TODO base (only for TODOs)
-#: ../src/appointment.c:3339
+#: ../src/appointment.c:3347
 msgid "TODO base"
 msgstr ""
 
-#: ../src/appointment.c:3352
+#: ../src/appointment.c:3360
 msgid ""
 "TODO reoccurs regularly starting on start time and repeating after each "
 "interval no matter when it was last completed"
 msgstr ""
 
-#: ../src/appointment.c:3354
+#: ../src/appointment.c:3362
 msgid ""
-"TODO reoccurrency is based on complete time and repeats after the interval "
-"counted from the last completed time.\n"
-"(Note that you can not tell anything about the history of the TODO since "
-"reoccurrence base changes after each completion.)"
+"TODO reoccurrency is based on complete time and repeats after the interval counted from the last completed time.\n"
+"(Note that you can not tell anything about the history of the TODO since reoccurrence base changes after each completion.)"
 msgstr ""
 
 #. exceptions
-#: ../src/appointment.c:3361
+#: ../src/appointment.c:3368
 msgid "Exceptions"
 msgstr "Izuzeci"
 
-#: ../src/appointment.c:3374
+#: ../src/appointment.c:3381
 msgid ""
 "Add more exception dates by clicking the calendar days below.\n"
-"Exception is either exclusion(-) or inclusion(+) depending on the "
-"selection.\n"
+"Exception is either exclusion(-) or inclusion(+) depending on the selection.\n"
 "Remove by clicking the data."
-msgstr ""
-"Dodajte više datuma izuzetaka klikom na dane kalendara ispod.\n"
-"Izuzetak je ili isključujući(-) ili uključujući(+) ovisno o odabiru.\n"
-"Ukloni klikom na podatak."
+msgstr "Dodajte više datuma izuzetaka klikom na dane kalendara ispod.\nIzuzetak je ili isključujući(-) ili uključujući(+) ovisno o odabiru.\nUkloni klikom na podatak."
 
-#: ../src/appointment.c:3379
+#: ../src/appointment.c:3386
 msgid "Add excluded date (-)"
 msgstr "Dodaj isključujući datum (-)"
 
-#: ../src/appointment.c:3381
+#: ../src/appointment.c:3388
 msgid "Excluded days are full days where this appointment is not happening"
 msgstr "Isključujući dani su puni dani kada se ovaj sastanak neće dogoditi"
 
-#: ../src/appointment.c:3387
+#: ../src/appointment.c:3394
 msgid "Add included time (+)"
 msgstr "Dodaj uključujući datum (+)"
 
-#: ../src/appointment.c:3389
+#: ../src/appointment.c:3396
 msgid ""
 "Included times have same timezone than start time, but they may have "
 "different time"
-msgstr ""
-"Uključujuća vremena  su u istoj vremenskoj zoni ka o i početno vrijeme ali "
-"mogu imati drugačije vrijeme"
+msgstr "Uključujuća vremena  su u istoj vremenskoj zoni ka o i početno vrijeme ali mogu imati drugačije vrijeme"
 
 #. calendars showing the action days
-#: ../src/appointment.c:3406
+#: ../src/appointment.c:3413
 msgid "Action dates"
 msgstr ""
 
 #. ********* View menu *********
 #. View menu
-#: ../src/day-view.c:264 ../src/event-list.c:1044 ../src/mainbox.c:305
+#: ../src/day-view.c:289 ../src/event-list.c:1056 ../src/mainbox.c:305
 msgid "_View"
 msgstr "_Pogled"
 
 #. ********* Go menu   *********
-#: ../src/day-view.c:278 ../src/event-list.c:1063
+#: ../src/day-view.c:303 ../src/event-list.c:1075
 msgid "_Go"
 msgstr "_Idi"
 
-#: ../src/day-view.c:319 ../src/event-list.c:1110
+#: ../src/day-view.c:377 ../src/event-list.c:1121
 msgid "New"
 msgstr "Novo"
 
-#: ../src/day-view.c:324 ../src/event-list.c:1119
-msgid "Back"
-msgstr "Nazad"
+#: ../src/day-view.c:382
+msgid "Back one week"
+msgstr ""
 
-#: ../src/day-view.c:326 ../src/event-list.c:1121 ../src/functions.c:143
-#: ../src/tray_icon.c:460
-msgid "Today"
-msgstr "Danas"
+#: ../src/day-view.c:384
+msgid "Back one day"
+msgstr ""
 
-#: ../src/day-view.c:328 ../src/event-list.c:1123
-msgid "Forward"
-msgstr "NAprijed"
+#: ../src/day-view.c:388
+msgid "Forward one day"
+msgstr ""
 
-#: ../src/day-view.c:333 ../src/event-list.c:1128
+#: ../src/day-view.c:390
+msgid "Forward one week"
+msgstr ""
+
+#: ../src/day-view.c:395 ../src/event-list.c:1139
 msgid "Refresh"
 msgstr "Osviježi"
 
-#: ../src/day-view.c:338 ../src/event-list.c:1135 ../src/interface.c:809
+#: ../src/day-view.c:400 ../src/event-list.c:1146 ../src/interface.c:757
 msgid "Close"
 msgstr "Zatvori"
 
-#: ../src/day-view.c:454
+#: ../src/day-view.c:549
 msgid "Unknown"
 msgstr "Nepoznato"
 
-#: ../src/day-view.c:704
+#: ../src/day-view.c:807
 msgid "       Number of days to show"
 msgstr "       Broj dana za pokazati"
 
-#: ../src/day-view.c:935
+#: ../src/day-view.c:1073
 msgid "Orage - day view"
 msgstr ""
 
@@ -1175,77 +1175,83 @@ msgstr ""
 msgid "All day"
 msgstr "Cijeli dan"
 
-#: ../src/event-list.c:580 ../src/event-list.c:1281
+#: ../src/event-list.c:583 ../src/event-list.c:1292
 msgid "Time"
 msgstr "Vrijeme"
 
-#: ../src/event-list.c:748
+#: ../src/event-list.c:751
 msgid "No rows have been selected."
 msgstr "NIjedan red nije odabran"
 
-#: ../src/event-list.c:749
+#: ../src/event-list.c:752
 msgid "Click a row to select it and after that you can copy it."
 msgstr "Klik na red za odabir i nakon toga možete ga kopirati."
 
-#: ../src/event-list.c:918
+#: ../src/event-list.c:920
 msgid ""
 "You will permanently remove all\n"
 "selected appointments."
+msgstr "Trajno ćete ukloniti sve\nodabrane sastanke."
+
+#: ../src/event-list.c:923
+msgid "Yes, remove them"
 msgstr ""
-"Trajno ćete ukloniti sve\n"
-"odabrane sastanke."
 
 #: ../src/event-list.c:1130
+msgid "Back"
+msgstr "Nazad"
+
+#: ../src/event-list.c:1134
+msgid "Forward"
+msgstr "NAprijed"
+
+#: ../src/event-list.c:1141
 msgid "Find"
 msgstr "Nađi"
 
-#: ../src/event-list.c:1137
+#: ../src/event-list.c:1148
 msgid "Dayview"
 msgstr ""
 
-#: ../src/event-list.c:1170
+#: ../src/event-list.c:1181
 msgid "Extra days to show "
 msgstr "Dodatni dani za pokazati"
 
-#: ../src/event-list.c:1201
+#: ../src/event-list.c:1212
 msgid "Journal entries starting from:"
 msgstr ""
 
-#: ../src/event-list.c:1221
+#: ../src/event-list.c:1232
 msgid "Search"
 msgstr "Traži"
 
-#: ../src/event-list.c:1224
+#: ../src/event-list.c:1235
 msgid "Search text "
 msgstr "Traži tekst"
 
-#: ../src/event-list.c:1289
+#: ../src/event-list.c:1300
 msgid "Flags"
 msgstr "Zastave"
 
-#: ../src/event-list.c:1297
+#: ../src/event-list.c:1308
 msgid "Title"
 msgstr "Naslov"
 
-#: ../src/event-list.c:1323
+#: ../src/event-list.c:1334
 msgid ""
 "Double click line to edit it.\n"
 "\n"
 "Flags in order:\n"
 "\t 1. Alarm: n=no alarm\n"
-"\t\t A=visual Alarm S=also Sound alarm\n"
+"\t\t A=Alarm is set P=Persistent alarm is set\n"
 "\t 2. Recurrence: n=no recurrence\n"
-"\t\t D=Daily W=Weekly M=Monthly Y=Yearly\n"
+"\t\t H=Hourly D=Daily W=Weekly M=Monthly Y=Yearly\n"
 "\t 3. Type: f=free B=Busy\n"
 "\t 4. Located in file:\n"
 "\t\tO=Orage A=Archive F=Foreign\n"
 "\t 5. Appointment type:\n"
 "\t\tE=Event T=Todo J=Journal"
 msgstr ""
-
-#: ../src/functions.c:141
-msgid "Pick the date"
-msgstr "Odaberite datum"
 
 #. remove since it has ended
 #: ../src/ical-archive.c:267
@@ -1310,12 +1316,12 @@ msgstr ""
 msgid "Orage default alarm"
 msgstr "Orage zadani alarm"
 
-#: ../src/ical-code.c:3115
+#: ../src/ical-code.c:3141
 #, c-format
 msgid "Build alarm list: Added %d alarms. Processed %d events."
 msgstr ""
 
-#: ../src/ical-code.c:3117
+#: ../src/ical-code.c:3143
 #, c-format
 msgid ""
 "\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
@@ -1337,331 +1343,324 @@ msgstr ""
 msgid "Import file preprocessing done"
 msgstr ""
 
-#: ../src/interface.c:284
+#: ../src/interface.c:258
 msgid "Calendar files"
 msgstr "Datoteke kalendara"
 
-#: ../src/interface.c:631
+#: ../src/interface.c:605
 msgid "Current foreign files"
 msgstr "Trenutne strane datoteke"
 
-#: ../src/interface.c:643
+#: ../src/interface.c:617
 msgid "READ ONLY"
 msgstr "SAMO ČITAJ"
 
-#: ../src/interface.c:645
+#: ../src/interface.c:619
 msgid "READ WRITE"
 msgstr "ČITAJ PIŠI"
 
-#: ../src/interface.c:663
+#: ../src/interface.c:637
 msgid "***** No foreign files *****"
 msgstr "***** Nema stranih datoteka *****"
 
-#: ../src/interface.c:974
+#: ../src/interface.c:888
 msgid "Import/export"
 msgstr "Uvezi/izvezi"
 
-#: ../src/interface.c:981
+#: ../src/interface.c:895
 msgid "Import"
 msgstr "Uvezi"
 
-#: ../src/interface.c:986
+#: ../src/interface.c:900
 msgid "Read from file:"
 msgstr "Čitaj iz datoteke:"
 
-#: ../src/interface.c:1003
+#: ../src/interface.c:917
 msgid ""
 "Separate filenames with comma(,).\n"
 " NOTE: comma is not valid character in filenames for Orage."
 msgstr ""
 
-#: ../src/interface.c:1008
+#: ../src/interface.c:922
 msgid "Export"
 msgstr "Izvezi"
 
-#: ../src/interface.c:1013
+#: ../src/interface.c:927
 msgid "Write to file:"
 msgstr "Piši na datoteku"
 
-#: ../src/interface.c:1034 ../src/interface.c:1046
+#: ../src/interface.c:948 ../src/interface.c:960
 msgid "Select"
 msgstr "Odaberi"
 
-#: ../src/interface.c:1037
+#: ../src/interface.c:951
 msgid "All appointments"
 msgstr "Svi sastanci"
 
-#: ../src/interface.c:1050
+#: ../src/interface.c:964
 msgid "Named appointments: "
 msgstr "Imenovani sastanci: "
 
-#: ../src/interface.c:1062
+#: ../src/interface.c:976
 msgid ""
 "Note that only main file appointments are read.\n"
 "Archived and Foreign events are not exported."
 msgstr ""
 
-#: ../src/interface.c:1065
+#: ../src/interface.c:979
 msgid ""
 "Note that only main file appointments are read.\n"
 "Foreign events are not exported."
 msgstr ""
 
-#: ../src/interface.c:1068
+#: ../src/interface.c:982
 msgid "You can easily drag these from event-list window."
 msgstr ""
 
-#: ../src/interface.c:1070
+#: ../src/interface.c:984
 msgid "Orage appointment UIDs separated by commas."
 msgstr ""
 
-#: ../src/interface.c:1076
+#: ../src/interface.c:990
 msgid "Archive"
 msgstr "Arhiviraj"
 
-#: ../src/interface.c:1084
+#: ../src/interface.c:998
 #, c-format
 msgid "Archive now (threshold: %d months)"
 msgstr ""
 
-#: ../src/interface.c:1094
+#: ../src/interface.c:1008
 msgid "You can change archive threshold in parameters"
 msgstr ""
 
-#: ../src/interface.c:1101
+#: ../src/interface.c:1015
 msgid "Revert archive now"
 msgstr "Obrnuto arhiviranje sada"
 
-#: ../src/interface.c:1107
+#: ../src/interface.c:1021
 msgid ""
 "Return all archived events into main orage file and remove arch file.\n"
 "This is useful for example when doing export and moving orage\n"
 "appointments to another system."
 msgstr ""
 
-#: ../src/interface.c:1118
+#: ../src/interface.c:1032
 msgid "Orage files"
 msgstr "Orage datoteke"
 
-#: ../src/interface.c:1125
+#: ../src/interface.c:1039
 msgid "Orage main calendar file"
 msgstr "Orage glavna datoteka kalendara"
 
-#: ../src/interface.c:1130 ../src/interface.c:1195
+#: ../src/interface.c:1044 ../src/interface.c:1109
 msgid "Current file"
 msgstr "trenutna datoteka"
 
-#: ../src/interface.c:1137 ../src/interface.c:1202
+#: ../src/interface.c:1051 ../src/interface.c:1116
 msgid "New file"
 msgstr "Nova datoteka"
 
-#: ../src/interface.c:1153 ../src/interface.c:1219
+#: ../src/interface.c:1067 ../src/interface.c:1133
 msgid "Action options"
 msgstr "Opcije akcije"
 
-#: ../src/interface.c:1156 ../src/interface.c:1222
+#: ../src/interface.c:1070 ../src/interface.c:1136
 msgid "Rename"
 msgstr "Preimenuj"
 
-#: ../src/interface.c:1160
+#: ../src/interface.c:1074
 msgid ""
 "Orage internal file rename only.\n"
 "Does not touch external filesystem at all.\n"
 "New file must exist."
 msgstr ""
 
-#: ../src/interface.c:1164 ../src/interface.c:1227
+#: ../src/interface.c:1078 ../src/interface.c:1141
 msgid "Copy"
 msgstr "Kopiraj"
 
-#: ../src/interface.c:1168
+#: ../src/interface.c:1082
 msgid "Current file is copied and stays unmodified in the old place."
 msgstr "trenutna datoteka je kopirana i ostaje neizmjenjena na starome mjestu"
 
-#: ../src/interface.c:1172 ../src/interface.c:1232
+#: ../src/interface.c:1086 ../src/interface.c:1146
 msgid "Move"
 msgstr "Pomakni"
 
-#: ../src/interface.c:1176
+#: ../src/interface.c:1090
 msgid "Current file is moved and vanishes from the old place."
 msgstr "Trenutna datoteka je premještena i nestala je sa staroga mjesta.."
 
-#: ../src/interface.c:1190
+#: ../src/interface.c:1104
 msgid "Archive file"
 msgstr "Datoteka arhive"
 
-#: ../src/interface.c:1254
+#: ../src/interface.c:1168
 msgid "Foreign files"
 msgstr "Strane datoteke"
 
-#: ../src/interface.c:1261
+#: ../src/interface.c:1175
 msgid "Add new foreign file"
 msgstr "Dodaj novu stranu datoteku"
 
-#: ../src/interface.c:1266
+#: ../src/interface.c:1180
 msgid "Foreign file:"
 msgstr "Strana datoteka:"
 
-#: ../src/interface.c:1284
+#: ../src/interface.c:1198
 msgid "Options"
 msgstr "Opcije"
 
-#: ../src/interface.c:1286
+#: ../src/interface.c:1200
 msgid "Read only"
 msgstr "Samo čitaj"
 
-#: ../src/interface.c:1294
+#: ../src/interface.c:1208
 msgid ""
-"Set this if you want to make sure that this file is never modified by "
-"Orage.\n"
-"Note that modifying foreign files may make them incompatible with the "
-"original tool, where they came from!"
+"Set this if you want to make sure that this file is never modified by Orage.\n"
+"Note that modifying foreign files may make them incompatible with the original tool, where they came from!"
 msgstr ""
 
-#: ../src/interface.c:1308
+#: ../src/interface.c:1222
 msgid "Exchange data - Orage"
 msgstr "Razmjena podataka - Orage"
 
-#: ../src/main.c:268
+#: ../src/main.c:269
 #, c-format
 msgid ""
 "\tThis is %s version %s\n"
 "\n"
-msgstr ""
-"\tOvo je%s verzija %s\n"
-"\n"
+msgstr "\tOvo je%s verzija %s\n\n"
 
-#: ../src/main.c:270
+#: ../src/main.c:271
 #, c-format
 msgid "\tReleased under the terms of the GNU General Public License.\n"
 msgstr ""
 
-#: ../src/main.c:271
+#: ../src/main.c:272
 #, c-format
 msgid "\tCompiled against GTK+-%d.%d.%d, "
 msgstr ""
 
-#: ../src/main.c:273
+#: ../src/main.c:274
 #, c-format
 msgid "using GTK+-%d.%d.%d.\n"
 msgstr ""
 
-#: ../src/main.c:276
+#: ../src/main.c:277
 #, c-format
 msgid "\tUsing DBUS for import.\n"
 msgstr ""
 
-#: ../src/main.c:278
+#: ../src/main.c:279
 #, c-format
 msgid "\tNot using DBUS. Import works only partially.\n"
 msgstr ""
 
-#: ../src/main.c:281
+#: ../src/main.c:282
 #, c-format
 msgid "\tUsing libnotify.\n"
 msgstr ""
 
-#: ../src/main.c:283
+#: ../src/main.c:284
 #, c-format
 msgid "\tNot using libnotify.\n"
 msgstr ""
 
-#: ../src/main.c:286
+#: ../src/main.c:287
 #, c-format
 msgid "\tUsing automatic archiving.\n"
 msgstr "\tKoristi automatsko arhiviranje.\n"
 
-#: ../src/main.c:288
+#: ../src/main.c:289
 #, c-format
 msgid "\tNot using archiving.\n"
 msgstr "\tNe koristi arhiviranje.\n"
 
-#: ../src/main.c:291
+#: ../src/main.c:292
 #, c-format
 msgid "\tUsing operating system package libical.\n"
 msgstr ""
 
-#: ../src/main.c:293
+#: ../src/main.c:294
 #, c-format
 msgid "\tUsing Orage local version of libical.\n"
 msgstr ""
 
-#: ../src/main.c:306
+#: ../src/main.c:307
 #, c-format
 msgid ""
 "Usage: orage [options] [files]\n"
 "\n"
 msgstr ""
 
-#: ../src/main.c:307
+#: ../src/main.c:308
 #, c-format
 msgid "Options:\n"
 msgstr "Options:\n"
 
-#: ../src/main.c:308
+#: ../src/main.c:309
 #, c-format
 msgid "--version (-v) \t\tshow version of orage\n"
 msgstr "--version (-v) \t\tpokaži orage verziju\n"
 
-#: ../src/main.c:309
+#: ../src/main.c:310
 #, c-format
 msgid "--help (-h) \t\tprint this text\n"
 msgstr "--help (-h) \t\\ispis ovoga teksta\n"
 
-#: ../src/main.c:310
+#: ../src/main.c:311
 #, c-format
 msgid "--preferences (-p) \tshow preferences form\n"
 msgstr ""
 
-#: ../src/main.c:311
+#: ../src/main.c:312
 #, c-format
 msgid "--toggle (-t) \t\tmake orage visible/unvisible\n"
 msgstr "--toggle (-t) \t\tnapravi orage vidljivim/nevidljivim\n"
 
-#: ../src/main.c:312
+#: ../src/main.c:313
 #, c-format
 msgid "--add-foreign (-a) file [RW] \tadd a foreign file\n"
 msgstr ""
 
-#: ../src/main.c:313
+#: ../src/main.c:314
 #, c-format
 msgid "--remove-foreign (-r) file \tremove a foreign file\n"
 msgstr ""
 
-#: ../src/main.c:314
+#: ../src/main.c:315
 #, c-format
 msgid ""
 "--export (-e) file [appointment...] \texport appointments from Orage to "
 "file\n"
 msgstr ""
 
-#: ../src/main.c:316
+#: ../src/main.c:317
 #, c-format
 msgid "files=ical files to load into orage\n"
 msgstr ""
 
-#: ../src/main.c:318
+#: ../src/main.c:319
 #, c-format
 msgid "\tdbus not included in orage. \n"
 msgstr ""
 
-#: ../src/main.c:319
+#: ../src/main.c:320
 #, c-format
 msgid ""
 "\twithout dbus [files] and foreign file options(-a & -r) can only be used "
 "when starting orage \n"
 msgstr ""
 
-#: ../src/main.c:511
+#: ../src/main.c:512
 #, c-format
 msgid ""
 "\n"
 "Unknown option %s\n"
 "\n"
-msgstr ""
-"\n"
-"Nepoznata opcija  %s\n"
-"\n"
+msgstr "\nNepoznata opcija  %s\n\n"
 
 #: ../src/mainbox.c:287
 msgid "_Exchange data"
@@ -1693,239 +1692,276 @@ msgstr "Pokaži _globalno vrijeme"
 msgid "_Help"
 msgstr "_Pomoć"
 
-#: ../src/mainbox.c:448
-msgid "Never"
-msgstr "Nikada"
+#: ../src/mainbox.c:396
+msgid "No title defined"
+msgstr ""
 
 #: ../src/mainbox.c:453
 #, c-format
+msgid " Location: %s\n"
+msgstr ""
+
+#: ../src/mainbox.c:463
+#, c-format
 msgid ""
-"Title: %s\n"
-" Location: %s\n"
-" Start:\t%s\n"
-" Due:\t%s\n"
-" Done:\t%s\n"
+"\n"
 " Note:\n"
 "%s"
 msgstr ""
 
-#: ../src/mainbox.c:460
+#: ../src/mainbox.c:471
+msgid "Never"
+msgstr "Nikada"
+
+#: ../src/mainbox.c:477
 #, c-format
 msgid ""
 "Title: %s\n"
-" Location: %s\n"
-" Start:\t%s\n"
-" End:\t%s\n"
-" Note:\n"
-"%s"
+"%s Start:\t%s\n"
+" Due:\t%s\n"
+" Done:\t%s%s"
 msgstr ""
-"Naslov: %s\n"
-" Lokacija: %s\n"
-" Početak:\t%s\n"
-" Kraj:\t%s\n"
-" Obavijest:\n"
-"%s"
 
-#: ../src/mainbox.c:546
+#: ../src/mainbox.c:485
+#, c-format
+msgid ""
+"Title: %s\n"
+"%s Start:\t%s\n"
+" End:\t%s%s"
+msgstr ""
+
+#: ../src/mainbox.c:595
 msgid "<b>To do:</b>"
 msgstr ""
 
-#: ../src/mainbox.c:582
+#: ../src/mainbox.c:631
 #, c-format
 msgid "<b>Events for %s:</b>"
 msgstr "<b>Događaji za %s:</b>"
 
-#: ../src/mainbox.c:593
+#: ../src/mainbox.c:642
 #, c-format
 msgid "<b>Events for %s - %s:</b>"
 msgstr "<b>Događaji za %s - %s:</b>"
 
-#: ../src/parameters.c:522
+#: ../src/parameters.c:464
 msgid "Main settings"
 msgstr "Glavne postavke"
 
-#: ../src/parameters.c:528
+#: ../src/parameters.c:470
 msgid "Timezone"
 msgstr "Vremenska zona"
 
-#: ../src/parameters.c:543
+#: ../src/parameters.c:485
 msgid "You should always define your local timezone."
 msgstr "Uvijek možete definirati vašu lokalnu vremensku zonu."
 
-#: ../src/parameters.c:552
+#: ../src/parameters.c:493
 msgid "Archive threshold (months)"
 msgstr ""
 
-#: ../src/parameters.c:562
+#: ../src/parameters.c:503
 msgid "(0 = no archiving)"
 msgstr "(0 = ne arhiviraj)"
 
-#: ../src/parameters.c:565
+#: ../src/parameters.c:506
 msgid "Archiving is used to save time and space when handling events."
 msgstr ""
 
-#: ../src/parameters.c:574
+#: ../src/parameters.c:514
 msgid "Sound command"
 msgstr "Zvučna naredba"
 
-#: ../src/parameters.c:589
+#: ../src/parameters.c:529
 msgid "This command is given to shell to make sound in alarms."
 msgstr ""
 
-#: ../src/parameters.c:605
-msgid "Display settings"
-msgstr "Prikaži postavke"
+#: ../src/parameters.c:568
+msgid "Calendar window"
+msgstr ""
 
-#: ../src/parameters.c:613
-msgid "Calendar main window"
-msgstr "Glavni prozor kalendara"
+#: ../src/parameters.c:575
+msgid "Calendar visual details"
+msgstr ""
 
-#: ../src/parameters.c:618
+#: ../src/parameters.c:581
 msgid "Show borders"
 msgstr "Pokaži rubove"
 
-#: ../src/parameters.c:625
+#: ../src/parameters.c:586
 msgid "Show menu"
 msgstr "Pokaži izbornik"
 
-#: ../src/parameters.c:632
-msgid "Show month and year"
-msgstr "Pokaži mjesec i godinu"
-
-#: ../src/parameters.c:639
+#: ../src/parameters.c:594
 msgid "Show day names"
 msgstr "Pokaži imena dana"
 
-#: ../src/parameters.c:646
+#: ../src/parameters.c:599
 msgid "Show week numbers"
 msgstr "Pokaži broj tjedana"
 
-#: ../src/parameters.c:653
+#: ../src/parameters.c:607
+msgid "Show month and year"
+msgstr "Pokaži mjesec i godinu"
+
+#: ../src/parameters.c:627
+msgid "Calendar info boxes"
+msgstr ""
+
+#: ../src/parameters.c:632
 msgid "Show todo list"
 msgstr ""
 
-#: ../src/parameters.c:660
+#: ../src/parameters.c:639
 msgid "Number of days to show in event window"
 msgstr ""
 
-#: ../src/parameters.c:666
+#: ../src/parameters.c:645
 msgid "0 = do not show event list at all"
 msgstr "0 = uopće ne prikazuj listu događaja"
 
-#: ../src/parameters.c:676
+#: ../src/parameters.c:658
+msgid "Calendar visibility"
+msgstr ""
+
+#: ../src/parameters.c:663
 msgid "Show on all desktops"
 msgstr "Prikaži sve radne površine"
 
-#: ../src/parameters.c:683
+#: ../src/parameters.c:668
 msgid "Keep on top"
 msgstr "Postavi na vrh"
 
-#: ../src/parameters.c:690
+#: ../src/parameters.c:676
 msgid "Show in taskbar"
 msgstr ""
 
-#: ../src/parameters.c:697
+#: ../src/parameters.c:681
 msgid "Show in pager"
 msgstr ""
 
-#: ../src/parameters.c:704
+#: ../src/parameters.c:689
 msgid "Show in systray"
 msgstr "Pokaži u traci sustava"
 
-#: ../src/parameters.c:739
+#: ../src/parameters.c:710
 msgid "Calendar start"
 msgstr "Pokreni kalendar"
 
-#: ../src/parameters.c:744
+#: ../src/parameters.c:715
 msgid "Show"
 msgstr "Pokaži"
 
-#: ../src/parameters.c:756
+#: ../src/parameters.c:727
 msgid "Hide"
 msgstr "Sakrij"
 
-#: ../src/parameters.c:768
+#: ../src/parameters.c:739
 msgid "Minimized"
 msgstr "Minimizirano"
 
-#: ../src/parameters.c:793
-msgid "Extra settings"
-msgstr "Dodatne postavke"
-
-#: ../src/parameters.c:801
-msgid "On Calendar Window Open"
+#: ../src/parameters.c:759
+msgid "On calendar window open"
 msgstr ""
 
-#: ../src/parameters.c:806
-msgid "Select Today's Date"
-msgstr "Odaberi  današnji datum"
-
-#: ../src/parameters.c:819
-msgid "Select Previously Selected Date"
-msgstr "Odaberi prethodno odabrani datum"
-
-#: ../src/parameters.c:836
-msgid "Use dynamic tray icon"
+#: ../src/parameters.c:764
+msgid "Select today's date"
 msgstr ""
 
-#: ../src/parameters.c:841
-msgid "Use dynamic icon"
+#: ../src/parameters.c:777
+msgid "Select previously selected date"
 msgstr ""
 
-#: ../src/parameters.c:847
-msgid "Dynamic icon shows current month and day of the month."
+#: ../src/parameters.c:795
+msgid "Calendar day double click shows"
 msgstr ""
 
-#: ../src/parameters.c:856
-msgid "Main Calendar double click shows"
-msgstr ""
-
-#: ../src/parameters.c:861
+#: ../src/parameters.c:800
 msgid "Days view"
 msgstr ""
 
-#: ../src/parameters.c:873
+#: ../src/parameters.c:812
 msgid "Event list"
 msgstr "Lista događaja"
 
-#: ../src/parameters.c:890
-msgid "Eventlist window"
-msgstr "Prozor liste događaja"
+#: ../src/parameters.c:834
+msgid "Extra settings"
+msgstr "Dodatne postavke"
 
-#: ../src/parameters.c:894
+#: ../src/parameters.c:841
+msgid "Event list window extra days"
+msgstr ""
+
+#: ../src/parameters.c:846
 msgid "Number of extra days to show in event list"
 msgstr ""
 
-#: ../src/parameters.c:902
+#: ../src/parameters.c:854
 msgid ""
 "This is just the default value, you can change it in the actual eventlist "
 "window."
 msgstr ""
 
-#: ../src/parameters.c:910 ../src/parameters.c:915
+#: ../src/parameters.c:863
+msgid "Day view window default first day"
+msgstr ""
+
+#: ../src/parameters.c:868
+msgid "First day of week"
+msgstr ""
+
+#: ../src/parameters.c:881
+msgid "Selected day"
+msgstr ""
+
+#: ../src/parameters.c:899
+msgid "Use dynamic tray icon"
+msgstr ""
+
+#: ../src/parameters.c:904
+msgid "Use dynamic icon"
+msgstr ""
+
+#: ../src/parameters.c:910
+msgid "Dynamic icon shows current month and day of the month."
+msgstr ""
+
+#: ../src/parameters.c:917 ../src/parameters.c:922
 msgid "Use wakeup timer"
 msgstr ""
 
-#: ../src/parameters.c:921
+#: ../src/parameters.c:928
 msgid ""
 "Use this timer if Orage has problems waking up properly after suspend or "
 "hibernate. (For example tray icon not refreshed or alarms not firing.)"
 msgstr ""
 
-#: ../src/parameters.c:938
+#: ../src/parameters.c:936
+msgid "Foreign file default visual alarm"
+msgstr ""
+
+#: ../src/parameters.c:941
+msgid "Orage window"
+msgstr ""
+
+#: ../src/parameters.c:954
+msgid "Notify notification"
+msgstr ""
+
+#: ../src/parameters.c:980
 msgid "Orage Preferences"
 msgstr "Orage osobitosti"
 
-#: ../src/parameters.c:1050
+#: ../src/parameters.c:1092
 msgid "First Orage start. Searching default timezone."
 msgstr "Prvo Orage pokretanje.Traženje zadane vremenske zone."
 
-#: ../src/parameters.c:1069
+#: ../src/parameters.c:1111
 #, c-format
 msgid "Default timezone set to %s."
 msgstr "Zadana vremenska zona postavljena na %s."
 
-#: ../src/parameters.c:1072
+#: ../src/parameters.c:1114
 msgid "Default timezone not found, please, set it manually."
 msgstr "Zadana vremenska zona nije nađena,postavite je ručno."
 
@@ -1937,31 +1973,30 @@ msgstr "Podsjetnik"
 msgid "Open"
 msgstr "Otvori"
 
-#: ../src/reminder.c:722
+#: ../src/reminder.c:719
 msgid "Reminder - Orage"
 msgstr "Podsjetnik"
 
-#: ../src/reminder.c:808
+#: ../src/reminder.c:803
+msgid "Postpone"
+msgstr ""
+
+#: ../src/reminder.c:805
 msgid "Remind me again after the specified time"
 msgstr "Podsjeti me ponovno nakon određenog vremena"
 
-#. Note that this goes to the main area. Temporary for the version
-#: ../src/reminder.c:811
-msgid "Press <Execute> to remind me again after the specified time:"
-msgstr ""
-
-#: ../src/reminder.c:1099
+#: ../src/reminder.c:1092
 msgid "Next active alarms:"
 msgstr ""
 
-#: ../src/reminder.c:1152 ../src/reminder.c:1157
+#: ../src/reminder.c:1144
 #, c-format
 msgid ""
 "\n"
 "%02d d %02d h %02d min to: %s"
 msgstr ""
 
-#: ../src/reminder.c:1166
+#: ../src/reminder.c:1153
 #, c-format
 msgid ""
 "\n"
@@ -3537,38 +3572,26 @@ msgid "Show time and date?"
 msgstr "Pokaži datum i vrijeme?"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:1
-#: ../xfcalendar.desktop.in.h:1
-msgid "Calendar"
-msgstr "Kalendar"
-
-#: ../plugin/xfce-xfcalendar-settings.desktop.in.h:2
-msgid "Orage Calendar Preferences"
-msgstr "Osobitosti Orage kalendara"
-
-#: ../plugin/xfce-xfcalendar-settings.desktop.in.h:3
 msgid "Orage preferences"
 msgstr "Orage osobitosti"
 
-#: ../plugin/xfce-xfcalendar-settings.desktop.in.h:4
+#: ../plugin/xfce-xfcalendar-settings.desktop.in.h:2
 msgid "Settings for the Xfce 4 Calendar Application (Orage)"
 msgstr "Postavke za  Xfce 4 kalendarski program (Orage)"
+
+#: ../plugin/xfce-xfcalendar-settings.desktop.in.h:3
+msgid "Orage Calendar Preferences"
+msgstr "Osobitosti Orage kalendara"
+
+#: ../plugin/xfce-xfcalendar-settings.desktop.in.h:4
+#: ../xfcalendar.desktop.in.h:3
+msgid "Calendar"
+msgstr "Kalendar"
+
+#: ../xfcalendar.desktop.in.h:1
+msgid "Orage Calendar"
+msgstr "Orage kalendar"
 
 #: ../xfcalendar.desktop.in.h:2
 msgid "Desktop calendar"
 msgstr "Kalendar radne površine"
-
-#: ../xfcalendar.desktop.in.h:3
-msgid "Orage Calendar"
-msgstr "Orage kalendar"
-
-#~ msgid "Info"
-#~ msgstr "Info"
-
-#~ msgid "Warning"
-#~ msgstr "Upozorenje"
-
-#~ msgid "Error"
-#~ msgstr "Greška"
-
-#~ msgid "Select always today"
-#~ msgstr "Odaberi uvijek danas"
