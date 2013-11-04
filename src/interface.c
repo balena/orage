@@ -126,7 +126,7 @@ static void orage_file_save_button_clicked(GtkButton *button
     gchar *s;
     gboolean ok = TRUE;
 
-    s = strdup(gtk_entry_get_text(GTK_ENTRY(intf_w->orage_file_entry)));
+    s = g_strdup(gtk_entry_get_text(GTK_ENTRY(intf_w->orage_file_entry)));
     if (gtk_toggle_button_get_active(
             GTK_TOGGLE_BUTTON(intf_w->orage_file_rename_rb))) {
         if (!g_file_test(s, G_FILE_TEST_EXISTS)) {
@@ -194,7 +194,7 @@ static void archive_file_save_button_clicked(GtkButton *button
     gchar *s;
     gboolean ok = TRUE;
 
-    s = strdup(gtk_entry_get_text(GTK_ENTRY(intf_w->archive_file_entry)));
+    s = g_strdup(gtk_entry_get_text(GTK_ENTRY(intf_w->archive_file_entry)));
     if (gtk_toggle_button_get_active(
             GTK_TOGGLE_BUTTON(intf_w->archive_file_rename_rb))) {
         if (!g_file_test(s, G_FILE_TEST_EXISTS)) {
