@@ -319,6 +319,7 @@ gboolean xfical_archive(void)
     xfical_period per;
     icalcomponent *c, *c2;
     icalproperty *p;
+    struct tm tm_threshold;
     struct tm *threshold;
     char *uid;
 
@@ -333,7 +334,8 @@ gboolean xfical_archive(void)
         orage_message(250, P_N "file open error");
         return(FALSE);
     }
-    threshold = orage_localtime();
+    memcpy(&tm_threshold, orage_localtime(), sizeof(tm_threshold));
+    threshold=&tm_threshold;
     threshold->tm_mday = 1;
     threshold->tm_year += 1900;
     threshold->tm_mon += 1; /* convert from 0...11 to 1...12 */

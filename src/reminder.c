@@ -988,7 +988,6 @@ static gboolean orage_alarm_clock(gpointer user_data)
 {
 #undef P_N
 #define P_N "orage_alarm_clock: "
-    struct tm *t;
     GList *alarm_l;
     alarm_struct *cur_alarm;
     gboolean alarm_raised=FALSE;
@@ -998,8 +997,7 @@ static gboolean orage_alarm_clock(gpointer user_data)
 #ifdef ORAGE_DEBUG
     orage_message(-100, P_N);
 #endif
-    t = orage_localtime();
-    time_now = orage_tm_time_to_icaltime(t);
+    time_now = orage_tm_time_to_icaltime(orage_localtime());
   /* Check if there are any alarms to show */
     for (alarm_l = g_list_first(g_par.alarm_list);
          alarm_l != NULL && more_alarms;
@@ -1027,7 +1025,7 @@ static void reset_orage_alarm_clock(void)
 {
 #undef P_N
 #define P_N "reset_orage_alarm_clock: "
-    struct tm *t, t_alarm;
+    struct tm *t, t_alarm, t2;
     GList *alarm_l;
     alarm_struct *cur_alarm;
     gchar *next_alarm;
@@ -1042,7 +1040,8 @@ static void reset_orage_alarm_clock(void)
         g_par.alarm_timer = 0;
     }
     if (g_par.alarm_list) { /* we have alarms */
-        t = orage_localtime();
+        memcpy(&t2, orage_localtime(), sizeof(t2));
+        t = &t2;
         t->tm_mon++;
         t->tm_year = t->tm_year + 1900;
         alarm_l = g_list_first(g_par.alarm_list);
