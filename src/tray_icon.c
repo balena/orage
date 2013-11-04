@@ -144,12 +144,12 @@ static gboolean format_line(PangoLayout *pl, struct tm *t, char *data
         , char *font, char *color)
 {
     gchar ts[200];
-    gchar row[20];
+    gchar row[90];
     gchar *row_format = "<span foreground=\"%s\" font_desc=\"%s\">%s</span>";
     gchar *strftime_failed = "format_line: strftime %s failed";
 
     if (ORAGE_STR_EXISTS(data)) {
-        if (strftime(row, 19, data, t) == 0) {
+        if (strftime(row, 89, data, t) == 0) {
             g_warning(strftime_failed, data);
             return(FALSE);
         }

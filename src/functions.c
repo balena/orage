@@ -644,18 +644,18 @@ struct tm orage_i18_date_to_tm_date(const char *i18_date)
 
 char *orage_tm_time_to_i18_time(struct tm *tm_time)
 {
-    static char i18_time[40];
+    static char i18_time[128];
 
-    if (strftime(i18_time, 40, "%x %R", tm_time) == 0)
+    if (strftime(i18_time, 128, "%x %R", tm_time) == 0)
         g_error("Orage: orage_tm_time_to_i18_time too long string in strftime");
     return(i18_time);
 }
 
 char *orage_tm_date_to_i18_date(struct tm *tm_date)
 {
-    static char i18_date[32];
+    static char i18_date[128];
 
-    if (strftime(i18_date, 32, "%x", tm_date) == 0)
+    if (strftime(i18_date, 128, "%x", tm_date) == 0)
         g_error("Orage: orage_tm_date_to_i18_date too long string in strftime");
     return(i18_date);
 }
