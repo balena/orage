@@ -169,10 +169,27 @@ static void raise_orage(void)
     send_event("_XFCE_CALENDAR_RAISE");
 }
 
+static gboolean keep_tidy(void)
+{
+#ifdef HAVE_ARCHIVE
+    /* move old appointment to other file to keep the active
+       calendar file smaller and faster */
+    xfical_archive();
+#endif
+    
+    write_parameters();
+    return(TRUE);
+}
+
 static gboolean mWindow_delete_event_cb(GtkWidget *widget, GdkEvent *event
         , gpointer user_data)
 {
-    orage_toggle_visible();
+    if (g_par.close_means_quit) {
+        gtk_main_quit();
+    }
+    else {
+        orage_toggle_visible();
+    }
     return(TRUE);
 }
 
@@ -225,17 +242,6 @@ static gboolean client_message_received(GtkWidget *widget
     }
 
     return(FALSE);
-}
-
-static gboolean keep_tidy(void)
-{
-#ifdef HAVE_ARCHIVE
-    /* move old appointment to other file to keep the active
-       calendar file smaller and faster */
-    xfical_archive();
-#endif
-    write_parameters();
-    return(TRUE);
 }
 
 /*

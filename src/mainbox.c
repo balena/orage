@@ -107,7 +107,10 @@ static void mFile_close_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
 #ifdef ORAGE_DEBUG
     orage_message(-100, P_N);
 #endif
-    gtk_widget_hide(cal->mWindow);
+    if (g_par.close_means_quit)
+        gtk_main_quit();
+    else
+        gtk_widget_hide(cal->mWindow);
 }
 
 static void mFile_quit_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
@@ -875,7 +878,6 @@ void build_mainWin(void)
     g_signal_connect((gpointer) cal->mCalendar, "day_selected"
             , G_CALLBACK(mCalendar_day_selected_cb)
             , (gpointer) cal);
-
     g_signal_connect((gpointer) cal->mCalendar, "month-changed"
             , G_CALLBACK(mCalendar_month_changed_cb), (gpointer) cal);
 

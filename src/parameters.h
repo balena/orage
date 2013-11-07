@@ -24,6 +24,7 @@
 #define __ORAGE_PARAMETERS_H__
 
 #define ORAGE_WAKEUP_TIMER_PERIOD 60
+
 typedef struct _foreign_file
 {
     char *file;
@@ -125,6 +126,9 @@ typedef struct _parameters
     /* some systems are not able to wake up properly from suspend/hibernate
        and we need to monitor the status ourselves */
     gboolean use_wakeup_timer;
+
+    /* always quit instead of going to background when asked to close */
+    gboolean close_means_quit;
 } global_parameters; /* global parameters */
 
 #ifdef ORAGE_MAIN

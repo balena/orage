@@ -447,11 +447,18 @@ static void set_wakeup_timer()
 static void use_wakeup_timer_changed(GtkWidget *dialog, gpointer user_data)
 {
     Itf *itf = (Itf *)user_data;
-    GdkPixbuf *orage_logo;
 
     g_par.use_wakeup_timer = gtk_toggle_button_get_active(
             GTK_TOGGLE_BUTTON(itf->use_wakeup_timer_checkbutton));
     set_wakeup_timer();
+}
+
+static void always_quit_changed(GtkWidget *dialog, gpointer user_data)
+{
+    Itf *itf = (Itf *)user_data;
+
+    g_par.close_means_quit = gtk_toggle_button_get_active(
+            GTK_TOGGLE_BUTTON(itf->always_quit_checkbutton));
 }
 
 static void create_parameter_dialog_main_setup_tab(Itf *dialog)
@@ -853,6 +860,7 @@ static void create_parameter_dialog_extra_setup_tab(Itf *dialog)
     gtk_widget_set_tooltip_text(dialog->el_extra_days_spin
             , _("This is just the default value, you can change it in the actual eventlist window."));
     gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
+
     g_signal_connect(G_OBJECT(dialog->el_extra_days_spin), "value-changed"
             , G_CALLBACK(el_extra_days_spin_changed), dialog);
 
@@ -908,6 +916,7 @@ static void create_parameter_dialog_extra_setup_tab(Itf *dialog)
             dialog->use_dynamic_icon_checkbutton), g_par.use_dynamic_icon);
     gtk_widget_set_tooltip_text(dialog->use_dynamic_icon_checkbutton
             , _("Dynamic icon shows current month and day of the month."));
+
     g_signal_connect(G_OBJECT(dialog->use_dynamic_icon_checkbutton), "toggled"
             , G_CALLBACK(use_dynamic_icon_changed), dialog);
 
@@ -926,6 +935,7 @@ static void create_parameter_dialog_extra_setup_tab(Itf *dialog)
             dialog->use_wakeup_timer_checkbutton), g_par.use_wakeup_timer);
     gtk_widget_set_tooltip_text(dialog->use_wakeup_timer_checkbutton
             , _("Use this timer if Orage has problems waking up properly after suspend or hibernate. (For example tray icon not refreshed or alarms not firing.)"));
+
     g_signal_connect(G_OBJECT(dialog->use_wakeup_timer_checkbutton), "toggled"
             , G_CALLBACK(use_wakeup_timer_changed), dialog);
 
@@ -965,6 +975,25 @@ static void create_parameter_dialog_extra_setup_tab(Itf *dialog)
 
     g_signal_connect(G_OBJECT(dialog->foreign_alarm_notification_radiobutton)
             , "toggled", G_CALLBACK(foreign_alarm_changed), dialog);
+
+    /***** always quit *****/
+    hbox = gtk_vbox_new(FALSE, 0);
+    dialog->always_quit_frame = orage_create_framebox_with_content(
+            _("always quit when asked to close"), hbox);
+    gtk_box_pack_start(GTK_BOX(dialog->extra_vbox)
+            , dialog->always_quit_frame, FALSE, FALSE, 5);
+
+    dialog->always_quit_checkbutton = 
+            gtk_check_button_new_with_mnemonic(_("Always quit"));
+    gtk_box_pack_start(GTK_BOX(hbox)
+            , dialog->always_quit_checkbutton, FALSE, FALSE, 5);
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
+            dialog->always_quit_checkbutton), g_par.close_means_quit);
+    gtk_widget_set_tooltip_text(dialog->always_quit_checkbutton
+            , _("By default Orage stays open in the background when asked to close. This option changes Orage to quit and never stay in background when it is asked to close."));
+
+    g_signal_connect(G_OBJECT(dialog->always_quit_checkbutton), "toggled"
+            , G_CALLBACK(always_quit_changed), dialog);
 }
 
 static Itf *create_parameter_dialog(void)
@@ -1214,6 +1243,7 @@ void read_parameters(void)
     g_log_level = orage_rc_get_int(orc, "Logging level", 0);
     g_par.priority_list_limit = orage_rc_get_int(orc, "Priority list limit", 8);
     g_par.use_wakeup_timer = orage_rc_get_bool(orc, "Use wakeup timer", TRUE);
+    g_par.close_means_quit = orage_rc_get_bool(orc, "Always quit", FALSE);
 
     orage_rc_file_close(orc);
 }
@@ -1315,6 +1345,7 @@ void write_parameters(void)
     orage_rc_put_int(orc, "Logging level", g_log_level);
     orage_rc_put_int(orc, "Priority list limit", g_par.priority_list_limit);
     orage_rc_put_bool(orc, "Use wakeup timer", g_par.use_wakeup_timer);
+    orage_rc_put_bool(orc, "Always quit", g_par.close_means_quit);
 
     orage_rc_file_close(orc);
 }

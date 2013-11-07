@@ -109,6 +109,9 @@ typedef struct _Itf
     GSList    *foreign_alarm_radiobutton_group;
     GtkWidget *foreign_alarm_orage_radiobutton;
     GtkWidget *foreign_alarm_notification_radiobutton;
+    /* always quit (also when asked to close) */
+    GtkWidget *always_quit_frame;
+    GtkWidget *always_quit_checkbutton;
 
     /***** the rest in all tabs *****/
     GtkWidget *close_button;
