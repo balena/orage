@@ -5,12 +5,13 @@
 # Translators:
 # cybercop <cybercop_montana@abv.bg>, 2012
 # cybercop <cybercop_montana@abv.bg>, 2012
+# cybercop <cybercop_montana@abv.bg>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-13 22:14+0200\n"
-"PO-Revision-Date: 2013-07-14 08:06+0000\n"
+"POT-Creation-Date: 2013-11-07 12:30+0100\n"
+"PO-Revision-Date: 2013-11-07 17:48+0000\n"
 "Last-Translator: cybercop <cybercop_montana@abv.bg>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/projects/p/xfce/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -524,7 +525,7 @@ msgstr "Край"
 msgid "Due"
 msgstr "Времетраене"
 
-#: ../src/appointment.c:493 ../src/mainbox.c:844
+#: ../src/appointment.c:493 ../src/mainbox.c:847
 msgid "Orage"
 msgstr "Orage"
 
@@ -625,7 +626,7 @@ msgstr "Ново събитие - Orage"
 #. ********* File menu *********
 #. File menu
 #: ../src/appointment.c:2395 ../src/day-view.c:279 ../src/event-list.c:1033
-#: ../src/interface.c:736 ../src/mainbox.c:279
+#: ../src/interface.c:736 ../src/mainbox.c:282
 msgid "_File"
 msgstr "_Файл"
 
@@ -1120,7 +1121,7 @@ msgstr "Дата на събитие"
 
 #. ********* View menu *********
 #. View menu
-#: ../src/day-view.c:289 ../src/event-list.c:1056 ../src/mainbox.c:305
+#: ../src/day-view.c:289 ../src/event-list.c:1056 ../src/mainbox.c:308
 msgid "_View"
 msgstr "Преглед"
 
@@ -1257,57 +1258,57 @@ msgstr "Кликнете два пъти за да ги редактирате.\
 msgid "\tRecur ended, moving to archive file."
 msgstr "\tПрегледът е завършен, преместване в архивен файл."
 
-#: ../src/ical-archive.c:329
+#: ../src/ical-archive.c:330
 msgid "Archiving not enabled. Exiting"
 msgstr "Архивирането не е включено. Излизане."
 
-#: ../src/ical-archive.c:347
+#: ../src/ical-archive.c:349
 #, c-format
 msgid "Archiving threshold: %d month(s)"
 msgstr "Период на архивиране: %d месец(а)"
 
 #. yy mon day
-#: ../src/ical-archive.c:350
+#: ../src/ical-archive.c:352
 #, c-format
 msgid "\tArchiving events, which are older than: %04d-%02d-%02d"
 msgstr "\tАрхивиране на събития, които са по- стари от: %04d-%02d-%02d"
 
-#: ../src/ical-archive.c:377
+#: ../src/ical-archive.c:379
 #, c-format
 msgid "Archiving uid: %s"
 msgstr "Uid архивиране: %s"
 
 #. VTODO not completed, do not archive
-#: ../src/ical-archive.c:383
+#: ../src/ical-archive.c:385
 msgid "\tVTODO not complete; not archived"
 msgstr "\tVTODO не е завършен, не е архивиран"
 
 #. it is recurrent event
-#: ../src/ical-archive.c:388
+#: ../src/ical-archive.c:390
 #, c-format
 msgid "\tRecurring. End year: %04d, month: %02d, day: %02d"
 msgstr "\tПовторение. Край на година: %04d, месец: %02d, ден: %02d"
 
-#: ../src/ical-archive.c:405
+#: ../src/ical-archive.c:407
 msgid "Archiving done\n"
 msgstr "Архивирането е завършено\n"
 
 #. PHASE 1: go through base orage file and remove "repeat" shortcuts
-#: ../src/ical-archive.c:421
+#: ../src/ical-archive.c:423
 msgid "Starting archive removal."
 msgstr "Стартиране на премахването на архив."
 
-#: ../src/ical-archive.c:422
+#: ../src/ical-archive.c:424
 msgid "\tPHASE 1: reset recurring appointments"
 msgstr "\tФАЗА 1: нулиране на повтарящите се срещи"
 
 #. PHASE 2: go through archive file and add everything back to base orage.
 #. * After that delete the whole arch file
-#: ../src/ical-archive.c:444
+#: ../src/ical-archive.c:446
 msgid "\tPHASE 2: return archived appointments"
 msgstr "\tФАЗА 2: възстановяване на архивираните срещи"
 
-#: ../src/ical-archive.c:470
+#: ../src/ical-archive.c:472
 msgid "Archive removal done\n"
 msgstr "Премахването на архива е приключено\n"
 
@@ -1525,135 +1526,135 @@ msgstr "Задайте това, ако искате да сте сигурни,
 msgid "Exchange data - Orage"
 msgstr "Обмен на данни - Orage"
 
-#: ../src/main.c:269
+#: ../src/main.c:275
 #, c-format
 msgid ""
 "\tThis is %s version %s\n"
 "\n"
 msgstr "\tТова е %s версия %s\n\n"
 
-#: ../src/main.c:271
+#: ../src/main.c:277
 #, c-format
 msgid "\tReleased under the terms of the GNU General Public License.\n"
 msgstr "\tРазпространява се съгласно условията на GNU General Public License.\n"
 
-#: ../src/main.c:272
+#: ../src/main.c:278
 #, c-format
 msgid "\tCompiled against GTK+-%d.%d.%d, "
 msgstr "\tОкомплектован с GTK+-%d.%d.%d, "
 
-#: ../src/main.c:274
+#: ../src/main.c:280
 #, c-format
 msgid "using GTK+-%d.%d.%d.\n"
 msgstr "използва се GTK+-%d.%d.%d.\n"
 
-#: ../src/main.c:277
+#: ../src/main.c:283
 #, c-format
 msgid "\tUsing DBUS for import.\n"
 msgstr "\tИзползва се DBUS за внасяне.\n"
 
-#: ../src/main.c:279
+#: ../src/main.c:285
 #, c-format
 msgid "\tNot using DBUS. Import works only partially.\n"
 msgstr "\tНе се използва DBUS. Внасянето работи частично.\n"
 
-#: ../src/main.c:282
+#: ../src/main.c:288
 #, c-format
 msgid "\tUsing libnotify.\n"
 msgstr "\tИзползва се libnotify.\n"
 
-#: ../src/main.c:284
+#: ../src/main.c:290
 #, c-format
 msgid "\tNot using libnotify.\n"
 msgstr "\tНе се използва libnotify.\n"
 
-#: ../src/main.c:287
+#: ../src/main.c:293
 #, c-format
 msgid "\tUsing automatic archiving.\n"
 msgstr "\tИзползване се автоматично архивиране.\n"
 
-#: ../src/main.c:289
+#: ../src/main.c:295
 #, c-format
 msgid "\tNot using archiving.\n"
 msgstr "\tНе се използва архивиране.\n"
 
-#: ../src/main.c:292
+#: ../src/main.c:298
 #, c-format
 msgid "\tUsing operating system package libical.\n"
 msgstr "\tИзползване на системна библиотека libical.\n"
 
-#: ../src/main.c:294
+#: ../src/main.c:300
 #, c-format
 msgid "\tUsing Orage local version of libical.\n"
 msgstr "\tИзползване на локална версия на Orage библиотека libical.\n"
 
-#: ../src/main.c:307
+#: ../src/main.c:313
 #, c-format
 msgid ""
 "Usage: orage [options] [files]\n"
 "\n"
 msgstr "Използване: orage [опции] [файлове]\n\n"
 
-#: ../src/main.c:308
+#: ../src/main.c:314
 #, c-format
 msgid "Options:\n"
 msgstr "Опции:\n"
 
-#: ../src/main.c:309
+#: ../src/main.c:315
 #, c-format
 msgid "--version (-v) \t\tshow version of orage\n"
 msgstr "--version (-v) \t\tпоказване версия на orage\n"
 
-#: ../src/main.c:310
+#: ../src/main.c:316
 #, c-format
 msgid "--help (-h) \t\tprint this text\n"
 msgstr "--help (-h) \t\tпоказване на този текст\n"
 
-#: ../src/main.c:311
+#: ../src/main.c:317
 #, c-format
 msgid "--preferences (-p) \tshow preferences form\n"
 msgstr "--preferences (-p) \tпоказване на опциите на формата\n"
 
-#: ../src/main.c:312
+#: ../src/main.c:318
 #, c-format
 msgid "--toggle (-t) \t\tmake orage visible/unvisible\n"
 msgstr "--toggle (-t) \t\tпоказване/скриване на orage\n"
 
-#: ../src/main.c:313
+#: ../src/main.c:319
 #, c-format
 msgid "--add-foreign (-a) file [RW] \tadd a foreign file\n"
 msgstr "--add-foreign (-a) файл [RW] \tдобавяне на външен файл\n"
 
-#: ../src/main.c:314
+#: ../src/main.c:320
 #, c-format
 msgid "--remove-foreign (-r) file \tremove a foreign file\n"
 msgstr "--remove-foreign (-r) файл \tпремахване на външен файл\n"
 
-#: ../src/main.c:315
+#: ../src/main.c:321
 #, c-format
 msgid ""
 "--export (-e) file [appointment...] \texport appointments from Orage to "
 "file\n"
 msgstr "--export (-e) ФАЙЛ [СРЕЩА...] \tизнасяне на данните от срещите от Orage във файл\n"
 
-#: ../src/main.c:317
+#: ../src/main.c:323
 #, c-format
 msgid "files=ical files to load into orage\n"
 msgstr "files=ical файлове за зареждане в orage\n"
 
-#: ../src/main.c:319
+#: ../src/main.c:325
 #, c-format
 msgid "\tdbus not included in orage. \n"
 msgstr "\tdbus не е включен в orage. \n"
 
-#: ../src/main.c:320
+#: ../src/main.c:326
 #, c-format
 msgid ""
 "\twithout dbus [files] and foreign file options(-a & -r) can only be used "
 "when starting orage \n"
 msgstr "\tбез dbus [файлове] и опции на външни файлове(-a & -r) могат да се използват само, когато е стартиран orage \n"
 
-#: ../src/main.c:512
+#: ../src/main.c:518
 #, c-format
 msgid ""
 "\n"
@@ -1661,46 +1662,46 @@ msgid ""
 "\n"
 msgstr "\nНепозната опция %s\n\n"
 
-#: ../src/mainbox.c:287
+#: ../src/mainbox.c:290
 msgid "_Exchange data"
 msgstr "Обмен на данни"
 
 #. Edit menu
-#: ../src/mainbox.c:298
+#: ../src/mainbox.c:301
 msgid "_Edit"
 msgstr "Редактиране"
 
-#: ../src/mainbox.c:308
+#: ../src/mainbox.c:311
 msgid "View selected _date"
 msgstr "Преглед на избраните данни"
 
-#: ../src/mainbox.c:311
+#: ../src/mainbox.c:314
 msgid "View selected _week"
 msgstr "Преглед на избраната седмица"
 
-#: ../src/mainbox.c:317
+#: ../src/mainbox.c:320
 msgid "Select _Today"
 msgstr "Избор на днешна дата"
 
-#: ../src/mainbox.c:323
+#: ../src/mainbox.c:326
 msgid "Show _Globaltime"
 msgstr "Показване на световно време"
 
 #. Help menu
-#: ../src/mainbox.c:327
+#: ../src/mainbox.c:330
 msgid "_Help"
 msgstr "Помощ"
 
-#: ../src/mainbox.c:396
+#: ../src/mainbox.c:399
 msgid "No title defined"
 msgstr "Няма зададено заглавие"
 
-#: ../src/mainbox.c:453
+#: ../src/mainbox.c:456
 #, c-format
 msgid " Location: %s\n"
 msgstr "Местоположение: %s\n"
 
-#: ../src/mainbox.c:463
+#: ../src/mainbox.c:466
 #, c-format
 msgid ""
 "\n"
@@ -1708,11 +1709,11 @@ msgid ""
 "%s"
 msgstr "\n Бележка:\n%s"
 
-#: ../src/mainbox.c:471
+#: ../src/mainbox.c:474
 msgid "Never"
 msgstr "Никога"
 
-#: ../src/mainbox.c:477
+#: ../src/mainbox.c:480
 #, c-format
 msgid ""
 "Title: %s\n"
@@ -1721,7 +1722,7 @@ msgid ""
 " Done:\t%s%s"
 msgstr "Заглавие: %s\n%s Начало:\t%s\n Изчакване:\t%s\n Готово:\t%s%s"
 
-#: ../src/mainbox.c:485
+#: ../src/mainbox.c:488
 #, c-format
 msgid ""
 "Title: %s\n"
@@ -1729,238 +1730,253 @@ msgid ""
 " End:\t%s%s"
 msgstr "Заглавие: %s\n%s Начало:\t%s\n Край:\t%s%s"
 
-#: ../src/mainbox.c:595
+#: ../src/mainbox.c:598
 msgid "<b>To do:</b>"
 msgstr "<b>Направи:</b>"
 
-#: ../src/mainbox.c:631
+#: ../src/mainbox.c:634
 #, c-format
 msgid "<b>Events for %s:</b>"
 msgstr "<b>Събития за %s:</b>"
 
-#: ../src/mainbox.c:642
+#: ../src/mainbox.c:645
 #, c-format
 msgid "<b>Events for %s - %s:</b>"
 msgstr "<b>Събития за %s - %s:</b>"
 
-#: ../src/parameters.c:464
+#: ../src/parameters.c:471
 msgid "Main settings"
 msgstr "Основни настройки"
 
-#: ../src/parameters.c:470
+#: ../src/parameters.c:477
 msgid "Timezone"
 msgstr "Часова зона"
 
-#: ../src/parameters.c:485
+#: ../src/parameters.c:492
 msgid "You should always define your local timezone."
 msgstr "Вие трябва винаги за задавате вашата местна часова зона."
 
-#: ../src/parameters.c:493
+#: ../src/parameters.c:500
 msgid "Archive threshold (months)"
 msgstr "Период за съхранение на архив (месеци)"
 
-#: ../src/parameters.c:503
+#: ../src/parameters.c:510
 msgid "(0 = no archiving)"
 msgstr "(0 = да не се архивира)"
 
-#: ../src/parameters.c:506
+#: ../src/parameters.c:513
 msgid "Archiving is used to save time and space when handling events."
 msgstr "Архивирането се използва за съхранение на данни за време и място при обработката на събитие."
 
-#: ../src/parameters.c:514
+#: ../src/parameters.c:521
 msgid "Sound command"
 msgstr "Звукова команда"
 
-#: ../src/parameters.c:529
+#: ../src/parameters.c:536
 msgid "This command is given to shell to make sound in alarms."
 msgstr "Тази команда дава възможност на обвивката да възпроизведе звука в алармата."
 
-#: ../src/parameters.c:568
+#: ../src/parameters.c:575
 msgid "Calendar window"
 msgstr "Прозорец на календра"
 
-#: ../src/parameters.c:575
+#: ../src/parameters.c:582
 msgid "Calendar visual details"
 msgstr "Визуални детайли на календара"
 
-#: ../src/parameters.c:581
+#: ../src/parameters.c:588
 msgid "Show borders"
 msgstr "Показване на рамки"
 
-#: ../src/parameters.c:586
+#: ../src/parameters.c:593
 msgid "Show menu"
 msgstr "Показване на меню"
 
-#: ../src/parameters.c:594
+#: ../src/parameters.c:601
 msgid "Show day names"
 msgstr "Показване на дните от седмицата"
 
-#: ../src/parameters.c:599
+#: ../src/parameters.c:606
 msgid "Show week numbers"
 msgstr "Показване на седмица"
 
-#: ../src/parameters.c:607
+#: ../src/parameters.c:614
 msgid "Show month and year"
 msgstr "Показване на месец и година"
 
-#: ../src/parameters.c:627
+#: ../src/parameters.c:634
 msgid "Calendar info boxes"
 msgstr "Информационни кутии на календара"
 
-#: ../src/parameters.c:632
+#: ../src/parameters.c:639
 msgid "Show todo list"
 msgstr "Показване на списък със задачи"
 
-#: ../src/parameters.c:639
+#: ../src/parameters.c:646
 msgid "Number of days to show in event window"
 msgstr "Да се показва денят в прозореца със събития"
 
-#: ../src/parameters.c:645
+#: ../src/parameters.c:652
 msgid "0 = do not show event list at all"
 msgstr "0 = да не се показва списъкът с всички събития"
 
-#: ../src/parameters.c:658
+#: ../src/parameters.c:665
 msgid "Calendar visibility"
 msgstr "Видимост на календара"
 
-#: ../src/parameters.c:663
+#: ../src/parameters.c:670
 msgid "Show on all desktops"
 msgstr "Показване на всички работни места"
 
-#: ../src/parameters.c:668
+#: ../src/parameters.c:675
 msgid "Keep on top"
 msgstr "Винаги отгоре"
 
-#: ../src/parameters.c:676
+#: ../src/parameters.c:683
 msgid "Show in taskbar"
 msgstr "Показване в лентата на задачите"
 
-#: ../src/parameters.c:681
+#: ../src/parameters.c:688
 msgid "Show in pager"
 msgstr "Показване в превключвателя на работните места"
 
-#: ../src/parameters.c:689
+#: ../src/parameters.c:696
 msgid "Show in systray"
 msgstr "Показване в областта за уведомяване"
 
-#: ../src/parameters.c:710
+#: ../src/parameters.c:717
 msgid "Calendar start"
 msgstr "Стартиране на календара"
 
-#: ../src/parameters.c:715
+#: ../src/parameters.c:722
 msgid "Show"
 msgstr "Показване"
 
-#: ../src/parameters.c:727
+#: ../src/parameters.c:734
 msgid "Hide"
 msgstr "Скриване"
 
-#: ../src/parameters.c:739
+#: ../src/parameters.c:746
 msgid "Minimized"
 msgstr "Минимизиране"
 
-#: ../src/parameters.c:759
+#: ../src/parameters.c:766
 msgid "On calendar window open"
 msgstr "Отваряне в прозореца на календара"
 
-#: ../src/parameters.c:764
+#: ../src/parameters.c:771
 msgid "Select today's date"
 msgstr "Избор на днешна дата"
 
-#: ../src/parameters.c:777
+#: ../src/parameters.c:784
 msgid "Select previously selected date"
 msgstr "Избор на предишно избраната дата"
 
-#: ../src/parameters.c:795
+#: ../src/parameters.c:802
 msgid "Calendar day double click shows"
 msgstr "Денят от календара да се показва при двойно кликване"
 
-#: ../src/parameters.c:800
+#: ../src/parameters.c:807
 msgid "Days view"
 msgstr "Показване на дните"
 
-#: ../src/parameters.c:812
+#: ../src/parameters.c:819
 msgid "Event list"
 msgstr "Списък със събития"
 
-#: ../src/parameters.c:834
+#: ../src/parameters.c:841
 msgid "Extra settings"
 msgstr "Допълнителни настройки"
 
-#: ../src/parameters.c:841
+#: ../src/parameters.c:848
 msgid "Event list window extra days"
 msgstr "Списък със събития за допълнителни дни"
 
-#: ../src/parameters.c:846
+#: ../src/parameters.c:853
 msgid "Number of extra days to show in event list"
 msgstr "Разширено показване на дните в списъка със събития"
 
-#: ../src/parameters.c:854
+#: ../src/parameters.c:861
 msgid ""
 "This is just the default value, you can change it in the actual eventlist "
 "window."
 msgstr "Това е просто стойност по подразбиране, вие може да я актуализирате от прозореца на списъка със събития."
 
-#: ../src/parameters.c:863
+#: ../src/parameters.c:871
 msgid "Day view window default first day"
 msgstr "Ден, видим в прозореца, като първи ден"
 
-#: ../src/parameters.c:868
+#: ../src/parameters.c:876
 msgid "First day of week"
 msgstr "Първи ден от седмицата"
 
-#: ../src/parameters.c:881
+#: ../src/parameters.c:889
 msgid "Selected day"
 msgstr "Избор на ден"
 
-#: ../src/parameters.c:899
+#: ../src/parameters.c:907
 msgid "Use dynamic tray icon"
 msgstr "Използване на динамична икона в системният поднос"
 
-#: ../src/parameters.c:904
+#: ../src/parameters.c:912
 msgid "Use dynamic icon"
 msgstr "Използване на динамична икона"
 
-#: ../src/parameters.c:910
+#: ../src/parameters.c:918
 msgid "Dynamic icon shows current month and day of the month."
 msgstr "Динамичната икона показва текущият месец и ден от месеца."
 
-#: ../src/parameters.c:917 ../src/parameters.c:922
+#: ../src/parameters.c:926 ../src/parameters.c:931
 msgid "Use wakeup timer"
 msgstr "Използване на таймер за събуждане"
 
-#: ../src/parameters.c:928
+#: ../src/parameters.c:937
 msgid ""
 "Use this timer if Orage has problems waking up properly after suspend or "
 "hibernate. (For example tray icon not refreshed or alarms not firing.)"
 msgstr "Използвайте този таймер, ако възникнат проблеми с Orage след събуждане на системата от хибернация или приспиване. (Например, не се обновяват иконите или не се задейства алармата)."
 
-#: ../src/parameters.c:936
+#: ../src/parameters.c:946
 msgid "Foreign file default visual alarm"
 msgstr "Външен файл за визуалната аларма"
 
-#: ../src/parameters.c:941
+#: ../src/parameters.c:951
 msgid "Orage window"
 msgstr "Прозорец на Orage"
 
-#: ../src/parameters.c:954
+#: ../src/parameters.c:964
 msgid "Notify notification"
 msgstr "Известие"
 
-#: ../src/parameters.c:980
+#: ../src/parameters.c:982
+msgid "always quit when asked to close"
+msgstr "винаги спирай при затваряне"
+
+#: ../src/parameters.c:987
+msgid "Always quit"
+msgstr "Винаги спирай"
+
+#: ../src/parameters.c:993
+msgid ""
+"By default Orage stays open in the background when asked to close. This "
+"option changes Orage to quit and never stay in background when it is asked "
+"to close."
+msgstr "По подразбиране, Orage остава работеща във фонов режим при затваряне. Тази опция задава на Orage да спира и да не остава стартирана във фонов режим при затваряне."
+
+#: ../src/parameters.c:1009
 msgid "Orage Preferences"
 msgstr "Настройки на Orage"
 
-#: ../src/parameters.c:1092
+#: ../src/parameters.c:1121
 msgid "First Orage start. Searching default timezone."
 msgstr "Първо стартиране на Orage. Търсене на часова зона по подразбиране."
 
-#: ../src/parameters.c:1111
+#: ../src/parameters.c:1140
 #, c-format
 msgid "Default timezone set to %s."
 msgstr "Часова зона по подразбиране: %s."
 
-#: ../src/parameters.c:1114
+#: ../src/parameters.c:1143
 msgid "Default timezone not found, please, set it manually."
 msgstr "Часова зона по подразбиране не е открита, моля, задайте я ръчно."
 
@@ -1984,18 +2000,18 @@ msgstr "Отлагане"
 msgid "Remind me again after the specified time"
 msgstr "Напомняне отново след определеното време"
 
-#: ../src/reminder.c:1092
+#: ../src/reminder.c:1091
 msgid "Next active alarms:"
 msgstr "Следваща активна аларма:"
 
-#: ../src/reminder.c:1144
+#: ../src/reminder.c:1143
 #, c-format
 msgid ""
 "\n"
 "%02d d %02d h %02d min to: %s"
 msgstr "\n%02d d %02d h %02d min до: %s"
 
-#: ../src/reminder.c:1153
+#: ../src/reminder.c:1152
 #, c-format
 msgid ""
 "\n"
