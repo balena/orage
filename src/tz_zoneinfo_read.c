@@ -901,6 +901,7 @@ static void read_ical_timezones(void)
     && (ferror(zones_tab_file))) {
         printf("read_ical_timezones: zones.tab file read failed (%s)\n"
                 , ICAL_ZONES_TAB_FILE_LOC);
+        fclose(zones_tab_file);
         perror("\tfread");
         return;
     }
