@@ -882,7 +882,7 @@ gboolean orage_copy_file(gchar *source, gchar *target)
         ok = FALSE;
     }
     /* write file */
-    if (!g_file_set_contents(target, text, -1, &error)) {
+    if (ok && !g_file_set_contents(target, text, -1, &error)) {
         orage_message(150, "orage_copy_file: Could not write file (%s) error:%s"
                 , target, error->message);
         g_error_free(error);
