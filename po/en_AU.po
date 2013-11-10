@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-13 22:14+0200\n"
-"PO-Revision-Date: 2013-07-29 08:35+0000\n"
+"POT-Creation-Date: 2013-11-07 12:30+0100\n"
+"PO-Revision-Date: 2013-11-10 20:00+0000\n"
 "Last-Translator: k3lt01 <keltoiboy@gmail.com>\n"
 "Language-Team: English (Australia) (http://www.transifex.com/projects/p/xfce/language/en_AU/)\n"
 "MIME-Version: 1.0\n"
@@ -523,7 +523,7 @@ msgstr "End"
 msgid "Due"
 msgstr "Due"
 
-#: ../src/appointment.c:493 ../src/mainbox.c:844
+#: ../src/appointment.c:493 ../src/mainbox.c:847
 msgid "Orage"
 msgstr "Orage"
 
@@ -624,7 +624,7 @@ msgstr "New appointment - Orage"
 #. ********* File menu *********
 #. File menu
 #: ../src/appointment.c:2395 ../src/day-view.c:279 ../src/event-list.c:1033
-#: ../src/interface.c:736 ../src/mainbox.c:279
+#: ../src/interface.c:736 ../src/mainbox.c:282
 msgid "_File"
 msgstr "_File"
 
@@ -1119,7 +1119,7 @@ msgstr "Action dates"
 
 #. ********* View menu *********
 #. View menu
-#: ../src/day-view.c:289 ../src/event-list.c:1056 ../src/mainbox.c:305
+#: ../src/day-view.c:289 ../src/event-list.c:1056 ../src/mainbox.c:308
 msgid "_View"
 msgstr "_View"
 
@@ -1256,57 +1256,57 @@ msgstr "Double click line to edit it.\n\nFlags in order:\n\t 1. Alarm: n=no alar
 msgid "\tRecur ended, moving to archive file."
 msgstr "\tRecur ended, moving to archive file."
 
-#: ../src/ical-archive.c:329
+#: ../src/ical-archive.c:330
 msgid "Archiving not enabled. Exiting"
 msgstr "Archiving not enabled. Exiting"
 
-#: ../src/ical-archive.c:347
+#: ../src/ical-archive.c:349
 #, c-format
 msgid "Archiving threshold: %d month(s)"
 msgstr "Archiving threshold: %d month(s)"
 
 #. yy mon day
-#: ../src/ical-archive.c:350
+#: ../src/ical-archive.c:352
 #, c-format
 msgid "\tArchiving events, which are older than: %04d-%02d-%02d"
 msgstr "\tArchiving events, which are older than: %04d-%02d-%02d"
 
-#: ../src/ical-archive.c:377
+#: ../src/ical-archive.c:379
 #, c-format
 msgid "Archiving uid: %s"
 msgstr "Archiving uid: %s"
 
 #. VTODO not completed, do not archive
-#: ../src/ical-archive.c:383
+#: ../src/ical-archive.c:385
 msgid "\tVTODO not complete; not archived"
 msgstr "\tVTODO not complete; not archived"
 
 #. it is recurrent event
-#: ../src/ical-archive.c:388
+#: ../src/ical-archive.c:390
 #, c-format
 msgid "\tRecurring. End year: %04d, month: %02d, day: %02d"
 msgstr "\tRecurring. End year: %04d, month: %02d, day: %02d"
 
-#: ../src/ical-archive.c:405
+#: ../src/ical-archive.c:407
 msgid "Archiving done\n"
 msgstr "Archiving done\n"
 
 #. PHASE 1: go through base orage file and remove "repeat" shortcuts
-#: ../src/ical-archive.c:421
+#: ../src/ical-archive.c:423
 msgid "Starting archive removal."
 msgstr "Starting archive removal."
 
-#: ../src/ical-archive.c:422
+#: ../src/ical-archive.c:424
 msgid "\tPHASE 1: reset recurring appointments"
 msgstr "\tPHASE 1: reset recurring appointments"
 
 #. PHASE 2: go through archive file and add everything back to base orage.
 #. * After that delete the whole arch file
-#: ../src/ical-archive.c:444
+#: ../src/ical-archive.c:446
 msgid "\tPHASE 2: return archived appointments"
 msgstr "\tPHASE 2: return archived appointments"
 
-#: ../src/ical-archive.c:470
+#: ../src/ical-archive.c:472
 msgid "Archive removal done\n"
 msgstr "Archive removal done\n"
 
@@ -1524,135 +1524,135 @@ msgstr "Set this if you want to make sure that this file is never modified by Or
 msgid "Exchange data - Orage"
 msgstr "Exchange data - Orage"
 
-#: ../src/main.c:269
+#: ../src/main.c:275
 #, c-format
 msgid ""
 "\tThis is %s version %s\n"
 "\n"
 msgstr "\tThis is %s version %s\n\n"
 
-#: ../src/main.c:271
+#: ../src/main.c:277
 #, c-format
 msgid "\tReleased under the terms of the GNU General Public License.\n"
 msgstr "\tReleased under the terms of the GNU General Public Licence.\n"
 
-#: ../src/main.c:272
+#: ../src/main.c:278
 #, c-format
 msgid "\tCompiled against GTK+-%d.%d.%d, "
 msgstr "\tCompiled against GTK+-%d.%d.%d, "
 
-#: ../src/main.c:274
+#: ../src/main.c:280
 #, c-format
 msgid "using GTK+-%d.%d.%d.\n"
 msgstr "using GTK+-%d.%d.%d.\n"
 
-#: ../src/main.c:277
+#: ../src/main.c:283
 #, c-format
 msgid "\tUsing DBUS for import.\n"
 msgstr "\tUsing DBUS for import.\n"
 
-#: ../src/main.c:279
+#: ../src/main.c:285
 #, c-format
 msgid "\tNot using DBUS. Import works only partially.\n"
 msgstr "\tNot using DBUS. Import works only partially.\n"
 
-#: ../src/main.c:282
+#: ../src/main.c:288
 #, c-format
 msgid "\tUsing libnotify.\n"
 msgstr "\tUsing libnotify.\n"
 
-#: ../src/main.c:284
+#: ../src/main.c:290
 #, c-format
 msgid "\tNot using libnotify.\n"
 msgstr "\tNot using libnotify.\n"
 
-#: ../src/main.c:287
+#: ../src/main.c:293
 #, c-format
 msgid "\tUsing automatic archiving.\n"
 msgstr "\tUsing automatic archiving.\n"
 
-#: ../src/main.c:289
+#: ../src/main.c:295
 #, c-format
 msgid "\tNot using archiving.\n"
 msgstr "\tNot using archiving.\n"
 
-#: ../src/main.c:292
+#: ../src/main.c:298
 #, c-format
 msgid "\tUsing operating system package libical.\n"
 msgstr "\tUsing operating system package libical.\n"
 
-#: ../src/main.c:294
+#: ../src/main.c:300
 #, c-format
 msgid "\tUsing Orage local version of libical.\n"
 msgstr "\tUsing Orage local version of libical.\n"
 
-#: ../src/main.c:307
+#: ../src/main.c:313
 #, c-format
 msgid ""
 "Usage: orage [options] [files]\n"
 "\n"
 msgstr "Usage: orage [options] [files]\n\n"
 
-#: ../src/main.c:308
+#: ../src/main.c:314
 #, c-format
 msgid "Options:\n"
 msgstr "Options:\n"
 
-#: ../src/main.c:309
+#: ../src/main.c:315
 #, c-format
 msgid "--version (-v) \t\tshow version of orage\n"
 msgstr "--version (-v) \t\tshow version of orage\n"
 
-#: ../src/main.c:310
+#: ../src/main.c:316
 #, c-format
 msgid "--help (-h) \t\tprint this text\n"
 msgstr "--help (-h) \t\tprint this text\n"
 
-#: ../src/main.c:311
+#: ../src/main.c:317
 #, c-format
 msgid "--preferences (-p) \tshow preferences form\n"
 msgstr "--preferences (-p) \tshow preferences form\n"
 
-#: ../src/main.c:312
+#: ../src/main.c:318
 #, c-format
 msgid "--toggle (-t) \t\tmake orage visible/unvisible\n"
 msgstr "--toggle (-t) \t\tmake orage visible/unvisible\n"
 
-#: ../src/main.c:313
+#: ../src/main.c:319
 #, c-format
 msgid "--add-foreign (-a) file [RW] \tadd a foreign file\n"
 msgstr "--add-foreign (-a) file [RW] \tadd a foreign file\n"
 
-#: ../src/main.c:314
+#: ../src/main.c:320
 #, c-format
 msgid "--remove-foreign (-r) file \tremove a foreign file\n"
 msgstr "--remove-foreign (-r) file \tremove a foreign file\n"
 
-#: ../src/main.c:315
+#: ../src/main.c:321
 #, c-format
 msgid ""
 "--export (-e) file [appointment...] \texport appointments from Orage to "
 "file\n"
 msgstr "--export (-e) file [appointment...] \texport appointments from Orage to file\n"
 
-#: ../src/main.c:317
+#: ../src/main.c:323
 #, c-format
 msgid "files=ical files to load into orage\n"
 msgstr "files=ical files to load into orage\n"
 
-#: ../src/main.c:319
+#: ../src/main.c:325
 #, c-format
 msgid "\tdbus not included in orage. \n"
 msgstr "\tdbus not included in orage. \n"
 
-#: ../src/main.c:320
+#: ../src/main.c:326
 #, c-format
 msgid ""
 "\twithout dbus [files] and foreign file options(-a & -r) can only be used "
 "when starting orage \n"
 msgstr "\twithout dbus [files] and foreign file options(-a & -r) can only be used when starting orage \n"
 
-#: ../src/main.c:512
+#: ../src/main.c:518
 #, c-format
 msgid ""
 "\n"
@@ -1660,46 +1660,46 @@ msgid ""
 "\n"
 msgstr "\nUnknown option %s\n\n"
 
-#: ../src/mainbox.c:287
+#: ../src/mainbox.c:290
 msgid "_Exchange data"
 msgstr "_Exchange data"
 
 #. Edit menu
-#: ../src/mainbox.c:298
+#: ../src/mainbox.c:301
 msgid "_Edit"
 msgstr "_Edit"
 
-#: ../src/mainbox.c:308
+#: ../src/mainbox.c:311
 msgid "View selected _date"
 msgstr "View selected _date"
 
-#: ../src/mainbox.c:311
+#: ../src/mainbox.c:314
 msgid "View selected _week"
 msgstr "View selected _week"
 
-#: ../src/mainbox.c:317
+#: ../src/mainbox.c:320
 msgid "Select _Today"
 msgstr "Select _Today"
 
-#: ../src/mainbox.c:323
+#: ../src/mainbox.c:326
 msgid "Show _Globaltime"
 msgstr "Show _Globaltime"
 
 #. Help menu
-#: ../src/mainbox.c:327
+#: ../src/mainbox.c:330
 msgid "_Help"
 msgstr "_Help"
 
-#: ../src/mainbox.c:396
+#: ../src/mainbox.c:399
 msgid "No title defined"
 msgstr "No title defined"
 
-#: ../src/mainbox.c:453
+#: ../src/mainbox.c:456
 #, c-format
 msgid " Location: %s\n"
 msgstr " Location: %s\n"
 
-#: ../src/mainbox.c:463
+#: ../src/mainbox.c:466
 #, c-format
 msgid ""
 "\n"
@@ -1707,11 +1707,11 @@ msgid ""
 "%s"
 msgstr "\n Note:\n%s"
 
-#: ../src/mainbox.c:471
+#: ../src/mainbox.c:474
 msgid "Never"
 msgstr "Never"
 
-#: ../src/mainbox.c:477
+#: ../src/mainbox.c:480
 #, c-format
 msgid ""
 "Title: %s\n"
@@ -1720,7 +1720,7 @@ msgid ""
 " Done:\t%s%s"
 msgstr "Title: %s\n%s Start:\t%s\n Due:\t%s\n Done:\t%s%s"
 
-#: ../src/mainbox.c:485
+#: ../src/mainbox.c:488
 #, c-format
 msgid ""
 "Title: %s\n"
@@ -1728,238 +1728,253 @@ msgid ""
 " End:\t%s%s"
 msgstr "Title: %s\n%s Start:\t%s\n End:\t%s%s"
 
-#: ../src/mainbox.c:595
+#: ../src/mainbox.c:598
 msgid "<b>To do:</b>"
 msgstr "<b>To do:</b>"
 
-#: ../src/mainbox.c:631
+#: ../src/mainbox.c:634
 #, c-format
 msgid "<b>Events for %s:</b>"
 msgstr "<b>Events for %s:</b>"
 
-#: ../src/mainbox.c:642
+#: ../src/mainbox.c:645
 #, c-format
 msgid "<b>Events for %s - %s:</b>"
 msgstr "<b>Events for %s - %s:</b>"
 
-#: ../src/parameters.c:464
+#: ../src/parameters.c:471
 msgid "Main settings"
 msgstr "Main settings"
 
-#: ../src/parameters.c:470
+#: ../src/parameters.c:477
 msgid "Timezone"
 msgstr "Timezone"
 
-#: ../src/parameters.c:485
+#: ../src/parameters.c:492
 msgid "You should always define your local timezone."
 msgstr "You should always define your local timezone."
 
-#: ../src/parameters.c:493
+#: ../src/parameters.c:500
 msgid "Archive threshold (months)"
 msgstr "Archive threshold (months)"
 
-#: ../src/parameters.c:503
+#: ../src/parameters.c:510
 msgid "(0 = no archiving)"
 msgstr "(0 = no archiving)"
 
-#: ../src/parameters.c:506
+#: ../src/parameters.c:513
 msgid "Archiving is used to save time and space when handling events."
 msgstr "Archiving is used to save time and space when handling events."
 
-#: ../src/parameters.c:514
+#: ../src/parameters.c:521
 msgid "Sound command"
 msgstr "Sound command"
 
-#: ../src/parameters.c:529
+#: ../src/parameters.c:536
 msgid "This command is given to shell to make sound in alarms."
 msgstr "This command is given to shell to make sound in alarms."
 
-#: ../src/parameters.c:568
+#: ../src/parameters.c:575
 msgid "Calendar window"
 msgstr "Calendar window"
 
-#: ../src/parameters.c:575
+#: ../src/parameters.c:582
 msgid "Calendar visual details"
 msgstr "Calendar visual details"
 
-#: ../src/parameters.c:581
+#: ../src/parameters.c:588
 msgid "Show borders"
 msgstr "Show borders"
 
-#: ../src/parameters.c:586
+#: ../src/parameters.c:593
 msgid "Show menu"
 msgstr "Show menu"
 
-#: ../src/parameters.c:594
+#: ../src/parameters.c:601
 msgid "Show day names"
 msgstr "Show day names"
 
-#: ../src/parameters.c:599
+#: ../src/parameters.c:606
 msgid "Show week numbers"
 msgstr "Show week numbers"
 
-#: ../src/parameters.c:607
+#: ../src/parameters.c:614
 msgid "Show month and year"
 msgstr "Show month and year"
 
-#: ../src/parameters.c:627
+#: ../src/parameters.c:634
 msgid "Calendar info boxes"
 msgstr "Calendar info boxes"
 
-#: ../src/parameters.c:632
+#: ../src/parameters.c:639
 msgid "Show todo list"
 msgstr "Show todo list"
 
-#: ../src/parameters.c:639
+#: ../src/parameters.c:646
 msgid "Number of days to show in event window"
 msgstr "Number of days to show in event window"
 
-#: ../src/parameters.c:645
+#: ../src/parameters.c:652
 msgid "0 = do not show event list at all"
 msgstr "0 = do not show event list at all"
 
-#: ../src/parameters.c:658
+#: ../src/parameters.c:665
 msgid "Calendar visibility"
 msgstr "Calendar visibility"
 
-#: ../src/parameters.c:663
+#: ../src/parameters.c:670
 msgid "Show on all desktops"
 msgstr "Show on all desktops"
 
-#: ../src/parameters.c:668
+#: ../src/parameters.c:675
 msgid "Keep on top"
 msgstr "Keep on top"
 
-#: ../src/parameters.c:676
+#: ../src/parameters.c:683
 msgid "Show in taskbar"
 msgstr "Show in taskbar"
 
-#: ../src/parameters.c:681
+#: ../src/parameters.c:688
 msgid "Show in pager"
 msgstr "Show in pager"
 
-#: ../src/parameters.c:689
+#: ../src/parameters.c:696
 msgid "Show in systray"
 msgstr "Show in systray"
 
-#: ../src/parameters.c:710
+#: ../src/parameters.c:717
 msgid "Calendar start"
 msgstr "Calendar start"
 
-#: ../src/parameters.c:715
+#: ../src/parameters.c:722
 msgid "Show"
 msgstr "Show"
 
-#: ../src/parameters.c:727
+#: ../src/parameters.c:734
 msgid "Hide"
 msgstr "Hide"
 
-#: ../src/parameters.c:739
+#: ../src/parameters.c:746
 msgid "Minimized"
 msgstr "Minimised"
 
-#: ../src/parameters.c:759
+#: ../src/parameters.c:766
 msgid "On calendar window open"
 msgstr "On calendar window open"
 
-#: ../src/parameters.c:764
+#: ../src/parameters.c:771
 msgid "Select today's date"
 msgstr "Select today's date"
 
-#: ../src/parameters.c:777
+#: ../src/parameters.c:784
 msgid "Select previously selected date"
 msgstr "Select previously selected date"
 
-#: ../src/parameters.c:795
+#: ../src/parameters.c:802
 msgid "Calendar day double click shows"
 msgstr "Calendar day double click shows"
 
-#: ../src/parameters.c:800
+#: ../src/parameters.c:807
 msgid "Days view"
 msgstr "Days view"
 
-#: ../src/parameters.c:812
+#: ../src/parameters.c:819
 msgid "Event list"
 msgstr "Event list"
 
-#: ../src/parameters.c:834
+#: ../src/parameters.c:841
 msgid "Extra settings"
 msgstr "Extra settings"
 
-#: ../src/parameters.c:841
+#: ../src/parameters.c:848
 msgid "Event list window extra days"
 msgstr "Event list window extra days"
 
-#: ../src/parameters.c:846
+#: ../src/parameters.c:853
 msgid "Number of extra days to show in event list"
 msgstr "Number of extra days to show in event list"
 
-#: ../src/parameters.c:854
+#: ../src/parameters.c:861
 msgid ""
 "This is just the default value, you can change it in the actual eventlist "
 "window."
 msgstr "This is just the default value, you can change it in the actual eventlist window."
 
-#: ../src/parameters.c:863
+#: ../src/parameters.c:871
 msgid "Day view window default first day"
 msgstr "Day view window default first day"
 
-#: ../src/parameters.c:868
+#: ../src/parameters.c:876
 msgid "First day of week"
 msgstr "First day of week"
 
-#: ../src/parameters.c:881
+#: ../src/parameters.c:889
 msgid "Selected day"
 msgstr "Selected day"
 
-#: ../src/parameters.c:899
+#: ../src/parameters.c:907
 msgid "Use dynamic tray icon"
 msgstr "Use dynamic tray icon"
 
-#: ../src/parameters.c:904
+#: ../src/parameters.c:912
 msgid "Use dynamic icon"
 msgstr "Use dynamic icon"
 
-#: ../src/parameters.c:910
+#: ../src/parameters.c:918
 msgid "Dynamic icon shows current month and day of the month."
 msgstr "Dynamic icon shows current month and day of the month."
 
-#: ../src/parameters.c:917 ../src/parameters.c:922
+#: ../src/parameters.c:926 ../src/parameters.c:931
 msgid "Use wakeup timer"
 msgstr "Use wakeup timer"
 
-#: ../src/parameters.c:928
+#: ../src/parameters.c:937
 msgid ""
 "Use this timer if Orage has problems waking up properly after suspend or "
 "hibernate. (For example tray icon not refreshed or alarms not firing.)"
 msgstr "Use this timer if Orage has problems waking up properly after suspend or hibernate. (For example tray icon not refreshed or alarms not firing.)"
 
-#: ../src/parameters.c:936
+#: ../src/parameters.c:946
 msgid "Foreign file default visual alarm"
 msgstr "Foreign file default visual alarm"
 
-#: ../src/parameters.c:941
+#: ../src/parameters.c:951
 msgid "Orage window"
 msgstr "Orage window"
 
-#: ../src/parameters.c:954
+#: ../src/parameters.c:964
 msgid "Notify notification"
 msgstr "Notify notification"
 
-#: ../src/parameters.c:980
+#: ../src/parameters.c:982
+msgid "always quit when asked to close"
+msgstr "always quit when asked to close"
+
+#: ../src/parameters.c:987
+msgid "Always quit"
+msgstr "Always quit"
+
+#: ../src/parameters.c:993
+msgid ""
+"By default Orage stays open in the background when asked to close. This "
+"option changes Orage to quit and never stay in background when it is asked "
+"to close."
+msgstr "By default Orage stays open in the background when asked to close. This option changes Orage to quit and never stay in background when it is asked to close."
+
+#: ../src/parameters.c:1009
 msgid "Orage Preferences"
 msgstr "Orage Preferences"
 
-#: ../src/parameters.c:1092
+#: ../src/parameters.c:1121
 msgid "First Orage start. Searching default timezone."
 msgstr "First Orage start. Searching default timezone."
 
-#: ../src/parameters.c:1111
+#: ../src/parameters.c:1140
 #, c-format
 msgid "Default timezone set to %s."
 msgstr "Default timezone set to %s."
 
-#: ../src/parameters.c:1114
+#: ../src/parameters.c:1143
 msgid "Default timezone not found, please, set it manually."
 msgstr "Default timezone not found, please, set it manually."
 
@@ -1983,18 +1998,18 @@ msgstr "Postpone"
 msgid "Remind me again after the specified time"
 msgstr "Remind me again after the specified time"
 
-#: ../src/reminder.c:1092
+#: ../src/reminder.c:1091
 msgid "Next active alarms:"
 msgstr "Next active alarms:"
 
-#: ../src/reminder.c:1144
+#: ../src/reminder.c:1143
 #, c-format
 msgid ""
 "\n"
 "%02d d %02d h %02d min to: %s"
 msgstr "\n%02d d %02d h %02d min to: %s"
 
-#: ../src/reminder.c:1153
+#: ../src/reminder.c:1152
 #, c-format
 msgid ""
 "\n"
