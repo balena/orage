@@ -979,7 +979,7 @@ static void create_parameter_dialog_extra_setup_tab(Itf *dialog)
     /***** always quit *****/
     hbox = gtk_vbox_new(FALSE, 0);
     dialog->always_quit_frame = orage_create_framebox_with_content(
-            _("always quit when asked to close"), hbox);
+            _("Always quit when asked to close"), hbox);
     gtk_box_pack_start(GTK_BOX(dialog->extra_vbox)
             , dialog->always_quit_frame, FALSE, FALSE, 5);
 
