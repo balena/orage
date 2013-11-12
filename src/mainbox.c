@@ -196,14 +196,29 @@ static void mHelp_help_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
 #ifdef ORAGE_DEBUG
     orage_message(-100, P_N);
 #endif
-    helpdoc = g_strconcat("firefox ", PACKAGE_DATA_DIR
+    helpdoc = g_strconcat("exo-open ", PACKAGE_DATA_DIR
            , G_DIR_SEPARATOR_S, "orage"
            , G_DIR_SEPARATOR_S, "doc"
            , G_DIR_SEPARATOR_S, "C"
            , G_DIR_SEPARATOR_S, "orage.html"
            , NULL);
-    if (!orage_exec(helpdoc, FALSE, &error))
-        orage_message(100, "start of %s failed: %s", helpdoc, error->message);
+    if (!orage_exec(helpdoc, FALSE, &error)) {
+        orage_message(10, "%s failed: %s. Trying firefox", helpdoc
+                                    , error->message);
+        g_clear_error(&error);
+        g_free(helpdoc);
+        helpdoc = g_strconcat("firefox ", PACKAGE_DATA_DIR
+               , G_DIR_SEPARATOR_S, "orage"
+               , G_DIR_SEPARATOR_S, "doc"
+               , G_DIR_SEPARATOR_S, "C"
+               , G_DIR_SEPARATOR_S, "orage.html"
+               , NULL);
+        if (!orage_exec(helpdoc, FALSE, &error)) {
+            orage_message(100, "start of %s failed: %s", helpdoc
+                    , error->message);
+            g_clear_error(&error);
+        }
+    }
     g_free(helpdoc);
 }
 

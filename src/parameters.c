@@ -97,15 +97,30 @@ static void dialog_response(GtkWidget *dialog, gint response_id
 
     if (response_id == GTK_RESPONSE_HELP) {
         /* Needs to be in " to keep # */
-        helpdoc = g_strconcat("firefox \"file://", PACKAGE_DATA_DIR
+        helpdoc = g_strconcat("exo-open \"file://", PACKAGE_DATA_DIR
                 , G_DIR_SEPARATOR_S, "orage"
                 , G_DIR_SEPARATOR_S, "doc"
                 , G_DIR_SEPARATOR_S, "C"
                 , G_DIR_SEPARATOR_S, "orage.html#orage-preferences-window\""
                 , NULL);
-        if (!orage_exec(helpdoc, FALSE, &error))
-            orage_message(100, "start of %s failed: %s", helpdoc
+        if (!orage_exec(helpdoc, FALSE, &error)) {
+            orage_message(10, "%s failed: %s. Trying firefox", helpdoc
                     , error->message);
+            g_clear_error(&error);
+            g_free(helpdoc);
+            helpdoc = g_strconcat("firefox \"file://", PACKAGE_DATA_DIR
+                    , G_DIR_SEPARATOR_S, "orage"
+                    , G_DIR_SEPARATOR_S, "doc"
+                    , G_DIR_SEPARATOR_S, "C"
+                    , G_DIR_SEPARATOR_S, "orage.html#orage-preferences-window\""
+                    , NULL);
+            if (!orage_exec(helpdoc, FALSE, &error)) {
+                orage_message(100, "start of %s failed: %s", helpdoc
+                        , error->message);
+                g_clear_error(&error);
+            }
+        }
+        g_free(helpdoc);
     }
     else { /* delete signal or close response */
         write_parameters();
