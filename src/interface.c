@@ -70,39 +70,52 @@ static gboolean interface_lock = FALSE;
 
 static void refresh_foreign_files(intf_win *intf_w, gboolean first);
 
-gboolean orage_foreign_files_check(gpointer user_data)
+gboolean orage_external_update_check(gpointer user_data)
 {
-    static time_t latest_foreign_file_change = (time_t)0;
+#undef P_N
+#define P_N "orage_external_update_check: "
     struct stat s;
     gint i;
-    gboolean changes_present = FALSE;
+    gboolean external_changes_present = FALSE;
 
-    if (!latest_foreign_file_change)
-        latest_foreign_file_change = time(NULL);
+    /* check main Orage file */
+    if (g_stat(g_par.orage_file, &s) < 0) {
+        orage_message(150, P_N "stat of %s failed: %d (%s)",
+                g_par.orage_file, errno, strerror(errno));
+    }
+    else {
+        if (s.st_mtime > g_par.latest_file_change) {
+            g_par.latest_file_change = s.st_mtime;
+            orage_message(10, _("Found external update on file %s.")
+                    , g_par.orage_file);  
+            external_changes_present = TRUE;
+        }
+    }
 
-    /* check foreign files */
+    /* check also foreign files */
     for (i = 0; i < g_par.foreign_count; i++) {
         if (g_stat(g_par.foreign_data[i].file, &s) < 0) {
-            g_warning("stat of %s failed: %d (%s)",
+            orage_message(150, P_N "stat of %s failed: %d (%s)",
                     g_par.foreign_data[i].file, errno, strerror(errno));
         }
-        else if (s.st_mtime > latest_foreign_file_change) {
-            latest_foreign_file_change = s.st_mtime;
-            orage_message(40, "updating %s", g_par.foreign_data[i].file);  
-            changes_present = TRUE;
+        else {
+            if (s.st_mtime > g_par.foreign_data[i].latest_file_change) {
+                g_par.foreign_data[i].latest_file_change = s.st_mtime;
+                orage_message(10, _("Found external update on file %s.")
+                        , g_par.foreign_data[i].file);
+                external_changes_present = TRUE;
+            }
         }
     }
     
-    if (changes_present == TRUE) {
+    if (external_changes_present) {
+        orage_message(80, _("Refreshing alarms and calendar due to external file update."));
+        xfical_file_close_force();
         xfical_alarm_build_list(FALSE);
         orage_mark_appointments();
     }
 
-    /* keep running ? */
-    if (g_par.foreign_count)
-        return(TRUE);
-    else /* no need to check changes if we do not have any files */
-        return(FALSE);
+    return(TRUE); /* keep running */
 }
 
 static void orage_file_entry_changed(GtkWidget *dialog, gpointer user_data)
@@ -543,6 +556,7 @@ static void orage_foreign_file_remove_line(gint del_line)
     for (i = del_line; i < g_par.foreign_count; i++) {
         g_par.foreign_data[i].file = g_par.foreign_data[i+1].file;
         g_par.foreign_data[i].read_only = g_par.foreign_data[i+1].read_only;
+        g_par.foreign_data[i].latest_file_change = g_par.foreign_data[i+1].latest_file_change;
     }
     g_par.foreign_data[i].file = NULL;
 
@@ -666,13 +680,12 @@ static gboolean orage_foreign_file_add_internal(gchar *filename, gboolean read_o
 
     g_par.foreign_data[g_par.foreign_count].file = g_strdup(filename);
     g_par.foreign_data[g_par.foreign_count].read_only = read_only;
+    g_par.foreign_data[g_par.foreign_count].latest_file_change = (time_t)0;
     g_par.foreign_count++;
 
     write_parameters();
     orage_mark_appointments();
     xfical_alarm_build_list(FALSE);
-    if (g_par.foreign_count == 1) /* we just added our first foreign file */
-        g_timeout_add_seconds(30, (GtkFunction)orage_foreign_files_check, NULL);
     return(TRUE);
 }
 

@@ -87,7 +87,7 @@ static void read_default_alarm(xfical_appt *appt);
 /*  
  *  these are the main functions in this file:
  */ 
-static void fill_appt_window(appt_win *apptw, char *action, char *par);
+static gboolean fill_appt_window(appt_win *apptw, char *action, char *par);
 static gboolean fill_appt_from_apptw(xfical_appt *appt, appt_win *apptw);
 
 
@@ -1122,13 +1122,18 @@ static gboolean fill_appt_from_apptw(xfical_appt *appt, appt_win *apptw)
 
 static gboolean save_xfical_from_appt_win(appt_win *apptw)
 {
+#undef P_N
+#define P_N "save_xfical_from_appt_win: "
+    gint result;
     gboolean ok = FALSE;
     xfical_appt *appt = (xfical_appt *)apptw->xf_appt;
 
     if (fill_appt_from_apptw(appt, apptw)) {
         /* Here we try to save the event... */
-        if (!xfical_file_open(TRUE))
+        if (!xfical_file_open(TRUE)) {
+            orage_message(150, P_N "file open and update failed: %s", apptw->xf_uid);
             return(FALSE);
+        }
         if (apptw->appointment_add) {
             apptw->xf_uid = g_strdup(xfical_appt_add(appt));
             ok = (apptw->xf_uid ? TRUE : FALSE);
@@ -1138,15 +1143,23 @@ static gboolean save_xfical_from_appt_win(appt_win *apptw)
                 gtk_widget_set_sensitive(apptw->File_menu_duplicate, TRUE);
                 orage_message(10, "Added: %s", apptw->xf_uid);
             }
-            else
-                orage_message(150, "Addition failed: %s", apptw->xf_uid);
+            else {
+                orage_message(150, P_N "Addition failed: %s", apptw->xf_uid);
+                result = orage_error_dialog(GTK_WINDOW(apptw->Window)
+                        , _("Appointment addition failed.")
+                        , _("Error happened when adding appointment. Look more details from the log file."));
             }
+        }
         else {
             ok = xfical_appt_mod(apptw->xf_uid, appt);
             if (ok)
                 orage_message(10, "Modified: %s", apptw->xf_uid);
-            else
-                orage_message(150, "Modification failed: %s", apptw->xf_uid);
+            else {
+                orage_message(150, P_N "Modification failed: %s", apptw->xf_uid);
+                result = orage_error_dialog(GTK_WINDOW(apptw->Window)
+                        , _("Appointment update failed.")
+                        , _("Look more details from the log file. (Perhaps file was updated external from Orage?)"));
+            }
         }
         xfical_file_close(TRUE);
         if (ok) {
@@ -1188,7 +1201,10 @@ static void on_appSaveClose_clicked_cb(GtkButton *b, gpointer user_data)
 
 static void delete_xfical_from_appt_win(appt_win *apptw)
 {
+#undef P_N
+#define P_N "delete_xfical_from_appt_win: "
     gint result;
+    gboolean ok = FALSE;
 
     result = orage_warning_dialog(GTK_WINDOW(apptw->Window)
             , _("This appointment will be permanently removed.")
@@ -1198,13 +1214,15 @@ static void delete_xfical_from_appt_win(appt_win *apptw)
                                  
     if (result == GTK_RESPONSE_YES) {
         if (!apptw->appointment_add) {
-            if (!xfical_file_open(TRUE))
-                    return;
-            result = xfical_appt_del(apptw->xf_uid);
-            if (result)
+            if (!xfical_file_open(TRUE)) {
+                orage_message(150, P_N "file open and removal failed: %s", apptw->xf_uid);
+                return;
+            }
+            ok = xfical_appt_del(apptw->xf_uid);
+            if (ok)
                 orage_message(10, "Removed: %s", apptw->xf_uid);
             else
-                g_warning("Removal failed: %s", apptw->xf_uid);
+                orage_message(150, P_N "Removal failed: %s", apptw->xf_uid);
             xfical_file_close(TRUE);
         }
 
@@ -1237,8 +1255,10 @@ static void duplicate_xfical_from_appt_win(appt_win *apptw)
 
     /* do not keep track of appointments created here */
     apptw2 = create_appt_win("COPY", apptw->xf_uid);
-    gtk_window_get_position(GTK_WINDOW(apptw->Window), &x, &y);
-    gtk_window_move(GTK_WINDOW(apptw2->Window), x+20, y+20);
+    if (apptw2) {
+        gtk_window_get_position(GTK_WINDOW(apptw->Window), &x, &y);
+        gtk_window_move(GTK_WINDOW(apptw2->Window), x+20, y+20);
+    }
 }
 
 static void on_appFileDuplicate_menu_activate_cb(GtkMenuItem *mi
@@ -2310,7 +2330,7 @@ static void fill_appt_window_recurrence(appt_win *apptw, xfical_appt *appt)
 }
 
 /* Fill appointment window with data */
-static void fill_appt_window(appt_win *apptw, char *action, char *par)
+static gboolean fill_appt_window(appt_win *apptw, char *action, char *par)
 {
     xfical_appt *appt;
     struct tm *t;
@@ -2318,8 +2338,7 @@ static void fill_appt_window(appt_win *apptw, char *action, char *par)
     /********************* INIT *********************/
     orage_message(10, "%s appointment: %s", action, par);
     if ((appt = fill_appt_window_get_appt(apptw, action, par)) == NULL) {
-        apptw->xf_appt = NULL;
-        return;
+        return(FALSE);
     }
     apptw->xf_appt = appt;
 
@@ -2345,7 +2364,9 @@ static void fill_appt_window(appt_win *apptw, char *action, char *par)
     }
     else {
         g_error("fill_appt_window: unknown parameter\n");
-        return;
+        g_free(appt);
+        apptw->xf_appt = NULL;
+        return(FALSE);
     }
     if (!appt->completed) { /* some nice default */
         t = orage_localtime(); /* probably completed today? */
@@ -2381,6 +2402,7 @@ static void fill_appt_window(appt_win *apptw, char *action, char *par)
     set_notify_sensitivity(apptw);
     set_proc_sensitivity(apptw);
     mark_appointment_unchanged(apptw);
+    return(TRUE);
 }
 
 static void build_menu(appt_win *apptw)
@@ -3537,8 +3559,7 @@ appt_win *create_appt_win(char *action, char *par)
     g_signal_connect((gpointer)apptw->Window, "delete-event"
             , G_CALLBACK(on_appWindow_delete_event_cb), apptw);
 
-    fill_appt_window(apptw, action, par);
-    if (apptw->xf_appt) { /* all fine */
+    if (fill_appt_window(apptw, action, par)) { /* all fine */
         enable_general_page_signals(apptw);
         enable_alarm_page_signals(apptw);
         enable_recurrence_page_signals(apptw);

@@ -96,7 +96,7 @@ typedef struct _intf_win
 
 void orage_external_interface(CalWin *xfcal);
 
-gboolean orage_foreign_files_check(gpointer user_data);
+gboolean orage_external_update_check(gpointer user_data);
 gboolean orage_foreign_file_add(gchar *filename, gboolean read_only);
 gboolean orage_foreign_file_remove(gchar *filename);
 gboolean orage_import_file(gchar *entry_filename);

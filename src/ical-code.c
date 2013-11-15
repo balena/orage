@@ -47,6 +47,7 @@
 #include <time.h>
 #include <math.h>
 
+#include <glib.h>
 #include <gdk/gdk.h>
 #include <gtk/gtk.h>
 #include <glib/gprintf.h>
@@ -359,6 +360,7 @@ gboolean ic_internal_file_open(icalcomponent **p_ical
             }
         }
     }
+
     ic_file_modified = FALSE;
     return(TRUE);
 }
@@ -369,12 +371,27 @@ gboolean xfical_file_open(gboolean foreign)
 #define P_N "xfical_file_open: "
     gboolean ok;
     gint i;
+    struct stat s;
 
 #ifdef ORAGE_DEBUG
     orage_message(-100, P_N);
 #endif
+    /* make sure there are no external updates or they will be overwritten */
+    if (g_par.latest_file_change)
+        orage_external_update_check(NULL);
     ok = ic_internal_file_open(&ic_ical, &ic_fical, g_par.orage_file, FALSE
             , FALSE);
+    /* store last access time */
+    if (ok)
+        if (g_stat(g_par.orage_file, &s) < 0) {
+            orage_message(150, P_N "stat of %s failed: %d (%s)",
+                    g_par.orage_file, errno, strerror(errno));
+            g_par.latest_file_change = (time_t)0;
+        }
+        else {
+            g_par.latest_file_change = s.st_mtime;
+        }
+
     if (ok && foreign) /* let's open foreign files */
         for (i = 0; i < g_par.foreign_count; i++) {
             ok = ic_internal_file_open(&(ic_f_ical[i].ical)
@@ -383,8 +400,21 @@ gboolean xfical_file_open(gboolean foreign)
             if (!ok) {
                 ic_f_ical[i].ical = NULL;
                 ic_f_ical[i].fical = NULL;
+                g_par.foreign_data[i].latest_file_change = (time_t)0;
+            }
+            else {
+                /* store last access time */
+                if (g_stat(g_par.foreign_data[i].file, &s) < 0) {
+                    orage_message(150, P_N "stat of %s failed: %d (%s)",
+                            g_par.foreign_data[i].file, errno, strerror(errno));
+                    g_par.foreign_data[i].latest_file_change = (time_t)0;
+                }
+                else {
+                    g_par.foreign_data[i].latest_file_change = s.st_mtime;
+                }
             }
         }
+
     return(ok);
 }
 
@@ -426,6 +456,7 @@ void xfical_file_close(gboolean foreign)
 #undef  P_N 
 #define P_N "xfical_file_close: "
     gint i;
+    struct stat s;
 
 #ifdef ORAGE_DEBUG
     orage_message(-100, P_N);
@@ -446,8 +477,16 @@ void xfical_file_close(gboolean foreign)
 #ifdef ORAGE_DEBUG
             orage_message(-10, P_N "closing file now");
 #endif
-            icalset_free(ic_fical);
-            ic_fical = NULL;
+            delayed_file_close(NULL);
+            /* store last access time */
+            if (g_stat(g_par.orage_file, &s) < 0) {
+                orage_message(150, P_N "stat of %s failed: %d (%s)",
+                        g_par.orage_file, errno, strerror(errno));
+                g_par.latest_file_change = (time_t)0;
+            }
+            else {
+                g_par.latest_file_change = s.st_mtime;
+            }
         }
         else { /* close it later = after 10 minutes (to save time) */
 #ifdef ORAGE_DEBUG
@@ -465,6 +504,15 @@ void xfical_file_close(gboolean foreign)
             else {
                 icalset_free(ic_f_ical[i].fical);
                 ic_f_ical[i].fical = NULL;
+                /* store last access time */
+                if (g_stat(g_par.foreign_data[i].file, &s) < 0) {
+                    orage_message(150, P_N "stat of %s failed: %d (%s)",
+                            g_par.foreign_data[i].file, errno, strerror(errno));
+                    g_par.foreign_data[i].latest_file_change = (time_t)0;
+                }
+                else {
+                    g_par.foreign_data[i].latest_file_change = s.st_mtime;
+                }
             }
         }
 }
@@ -477,16 +525,8 @@ void xfical_file_close_force(void)
 #ifdef ORAGE_DEBUG
     orage_message(-100, P_N);
 #endif
-    if (file_close_timer) { 
-            /* We are closing main ical file and delayed close is in progress. 
-             * Closing must be cancelled since we are now closing the file. */
-        g_source_remove(file_close_timer);
-        file_close_timer = 0;
-#ifdef ORAGE_DEBUG
-        orage_message(-10, P_N "canceling delayed close");
-#endif
-    }
-    delayed_file_close(NULL);
+    ic_file_modified = TRUE;
+    xfical_file_close(TRUE);
 }
 
 char *ic_get_char_timezone(icalproperty *p)
@@ -2452,6 +2492,7 @@ gboolean xfical_appt_del(char *ical_uid)
     icalset *fbase;
     char *uid, *int_uid;
     int i;
+    struct stat s;
 
 #ifdef ORAGE_DEBUG
     orage_message(-100, P_N);
@@ -2484,10 +2525,7 @@ gboolean xfical_appt_del(char *ical_uid)
         orage_message(260, P_N "unknown file type %s", ical_uid);
         return(FALSE);
     }
-    if (ical_uid == NULL) {
-        orage_message(130, P_N "Got NULL uid. doing nothing");
-        return(FALSE);
-     }
+
     for (c = icalcomponent_get_first_component(base, ICAL_ANY_COMPONENT); 
          c != 0;
          c = icalcomponent_get_next_component(base, ICAL_ANY_COMPONENT)) {
@@ -3138,7 +3176,12 @@ static void xfical_alarm_build_list_internal_real(gboolean first_list_today
         }
     }  /* COMPONENT */
     if (first_list_today) {
-        orage_message(60, _("Build alarm list: Added %d alarms. Processed %d events.")
+        if (strcmp(file_type, "O00.") == 0)
+            orage_message(60, _("Created alarm list for main Orage file:"));
+        else 
+            orage_message(60, _("Created alarm list for foreign file: %s")
+                    , file_type);
+        orage_message(60, _("\tAdded %d alarms. Processed %d events.")
                 , cnt_alarm_add, cnt_event);
         orage_message(60, _("\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)")
                 , cnt_alarm, cnt_act_alarm, cnt_repeat);

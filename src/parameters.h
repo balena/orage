@@ -29,6 +29,7 @@ typedef struct _foreign_file
 {
     char *file;
     gboolean read_only;
+    time_t latest_file_change;
 } foreign_file;
 
 
@@ -69,6 +70,7 @@ typedef struct _parameters
 
     /* other */
     char *orage_file;
+    time_t latest_file_change;
     char *sound_application;
 
     /* List of active alarms */

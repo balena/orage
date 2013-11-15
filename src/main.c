@@ -619,9 +619,8 @@ int main(int argc, char *argv[])
     mCalendar_month_changed_cb(
             (GtkCalendar *)((CalWin *)g_par.xfcal)->mCalendar, NULL);
 
-    /* start monitoring foreign file updates if we have foreign files */
-    if (g_par.foreign_count)
-        g_timeout_add_seconds(30, (GtkFunction)orage_foreign_files_check, NULL);
+    /* start monitoring external file updates */
+    g_timeout_add_seconds(30, (GtkFunction)orage_external_update_check, NULL);
 
     /* let's check if I got filename as a parameter */
     initialized = TRUE;
