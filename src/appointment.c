@@ -1185,18 +1185,23 @@ static gboolean save_xfical_from_appt_win(appt_win *apptw)
             if (apptw->File_insert_cb) {
                 tmp = gtk_combo_box_get_active_text(
                         GTK_COMBO_BOX(apptw->File_insert_cb));
-                for (i = 0; i < g_par.foreign_count && !found; i++) {
-                    if (strcmp(g_par.foreign_data[i].file, tmp) == 0 ||
-                        strcmp(g_par.foreign_data[i].name, tmp) == 0) {
-                        found = TRUE;
+                if (strcmp(tmp, _("Orage default file")) == 0) {
+                    xf_file_id = g_strdup("O00.");
+                }
+                else {
+                    for (i = 0; i < g_par.foreign_count && !found; i++) {
+                        if (strcmp(g_par.foreign_data[i].file, tmp) == 0 ||
+                            strcmp(g_par.foreign_data[i].name, tmp) == 0) {
+                            found = TRUE;
+                        }
                     }
-                }
-                if (found) { /* it should always been found */
-                    xf_file_id = g_strdup_printf("F%02d.", i-1);
-                }
-                else { /* error! */
-                    orage_message(150, P_N "Matching foreign file not found: %s", tmp);
-                    ok = FALSE;
+                    if (found) { /* it should always been found */
+                        xf_file_id = g_strdup_printf("F%02d.", i-1);
+                    }
+                    else { /* error! */
+                        orage_message(150, P_N "Matching foreign file not found: %s", tmp);
+                        ok = FALSE;
+                    }
                 }
             }
             else {
