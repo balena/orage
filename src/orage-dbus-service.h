@@ -53,33 +53,34 @@ G_BEGIN_DECLS
 #endif /* !G_ENABLE_DEBUG */
 
 
-/* BOOLEAN:STRING,BOOLEAN,POINTER */
-extern void dbus_glib_marshal_orage_BOOLEAN__STRING_BOOLEAN_POINTER (GClosure     *closure,
-                                                                     GValue       *return_value,
-                                                                     guint         n_param_values,
-                                                                     const GValue *param_values,
-                                                                     gpointer      invocation_hint,
-                                                                     gpointer      marshal_data);
+/* BOOLEAN:STRING,BOOLEAN,STRING,POINTER */
+extern void dbus_glib_marshal_orage_BOOLEAN__STRING_BOOLEAN_STRING_POINTER (GClosure     *closure,
+                                                                            GValue       *return_value,
+                                                                            guint         n_param_values,
+                                                                            const GValue *param_values,
+                                                                            gpointer      invocation_hint,
+                                                                            gpointer      marshal_data);
 void
-dbus_glib_marshal_orage_BOOLEAN__STRING_BOOLEAN_POINTER (GClosure     *closure,
-                                                         GValue       *return_value G_GNUC_UNUSED,
-                                                         guint         n_param_values,
-                                                         const GValue *param_values,
-                                                         gpointer      invocation_hint G_GNUC_UNUSED,
-                                                         gpointer      marshal_data)
+dbus_glib_marshal_orage_BOOLEAN__STRING_BOOLEAN_STRING_POINTER (GClosure     *closure,
+                                                                GValue       *return_value G_GNUC_UNUSED,
+                                                                guint         n_param_values,
+                                                                const GValue *param_values,
+                                                                gpointer      invocation_hint G_GNUC_UNUSED,
+                                                                gpointer      marshal_data)
 {
-  typedef gboolean (*GMarshalFunc_BOOLEAN__STRING_BOOLEAN_POINTER) (gpointer     data1,
-                                                                    gpointer     arg_1,
-                                                                    gboolean     arg_2,
-                                                                    gpointer     arg_3,
-                                                                    gpointer     data2);
-  register GMarshalFunc_BOOLEAN__STRING_BOOLEAN_POINTER callback;
+  typedef gboolean (*GMarshalFunc_BOOLEAN__STRING_BOOLEAN_STRING_POINTER) (gpointer     data1,
+                                                                           gpointer     arg_1,
+                                                                           gboolean     arg_2,
+                                                                           gpointer     arg_3,
+                                                                           gpointer     arg_4,
+                                                                           gpointer     data2);
+  register GMarshalFunc_BOOLEAN__STRING_BOOLEAN_STRING_POINTER callback;
   register GCClosure *cc = (GCClosure*) closure;
   register gpointer data1, data2;
   gboolean v_return;
 
   g_return_if_fail (return_value != NULL);
-  g_return_if_fail (n_param_values == 4);
+  g_return_if_fail (n_param_values == 5);
 
   if (G_CCLOSURE_SWAP_DATA (closure))
     {
@@ -91,12 +92,13 @@ dbus_glib_marshal_orage_BOOLEAN__STRING_BOOLEAN_POINTER (GClosure     *closure,
       data1 = g_value_peek_pointer (param_values + 0);
       data2 = closure->data;
     }
-  callback = (GMarshalFunc_BOOLEAN__STRING_BOOLEAN_POINTER) (marshal_data ? marshal_data : cc->callback);
+  callback = (GMarshalFunc_BOOLEAN__STRING_BOOLEAN_STRING_POINTER) (marshal_data ? marshal_data : cc->callback);
 
   v_return = callback (data1,
                        g_marshal_value_peek_string (param_values + 1),
                        g_marshal_value_peek_boolean (param_values + 2),
-                       g_marshal_value_peek_pointer (param_values + 3),
+                       g_marshal_value_peek_string (param_values + 3),
+                       g_marshal_value_peek_pointer (param_values + 4),
                        data2);
 
   g_value_set_boolean (return_value, v_return);
@@ -208,14 +210,14 @@ G_END_DECLS
 static const DBusGMethodInfo dbus_glib_orage_methods[] = {
   { (GCallback) orage_dbus_service_load_file, dbus_glib_marshal_orage_BOOLEAN__STRING_POINTER, 0 },
   { (GCallback) orage_dbus_service_export_file, dbus_glib_marshal_orage_BOOLEAN__STRING_INT_STRING_POINTER, 39 },
-  { (GCallback) orage_dbus_service_add_foreign, dbus_glib_marshal_orage_BOOLEAN__STRING_BOOLEAN_POINTER, 98 },
-  { (GCallback) orage_dbus_service_remove_foreign, dbus_glib_marshal_orage_BOOLEAN__STRING_POINTER, 148 },
+  { (GCallback) orage_dbus_service_add_foreign, dbus_glib_marshal_orage_BOOLEAN__STRING_BOOLEAN_STRING_POINTER, 98 },
+  { (GCallback) orage_dbus_service_remove_foreign, dbus_glib_marshal_orage_BOOLEAN__STRING_POINTER, 157 },
 };
 
 const DBusGObjectInfo dbus_glib_orage_object_info = {  1,
   dbus_glib_orage_methods,
   4,
-"org.xfce.calendar\0LoadFile\0S\0file\0I\0s\0\0org.xfce.calendar\0ExportFile\0S\0file\0I\0s\0type\0I\0i\0uids\0I\0s\0\0org.xfce.calendar\0AddForeign\0S\0file\0I\0s\0mode\0I\0b\0\0org.xfce.calendar\0RemoveForeign\0S\0file\0I\0s\0\0\0",
+"org.xfce.calendar\0LoadFile\0S\0file\0I\0s\0\0org.xfce.calendar\0ExportFile\0S\0file\0I\0s\0type\0I\0i\0uids\0I\0s\0\0org.xfce.calendar\0AddForeign\0S\0file\0I\0s\0mode\0I\0b\0name\0I\0s\0\0org.xfce.calendar\0RemoveForeign\0S\0file\0I\0s\0\0\0",
 "\0",
 "\0"
 };

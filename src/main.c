@@ -316,7 +316,7 @@ static void print_help(void)
     g_print(_("--help (-h) \t\tprint this text\n"));
     g_print(_("--preferences (-p) \tshow preferences form\n"));
     g_print(_("--toggle (-t) \t\tmake orage visible/unvisible\n"));
-    g_print(_("--add-foreign (-a) file [RW] \tadd a foreign file\n"));
+    g_print(_("--add-foreign (-a) file [RW] [name] \tadd a foreign file\n"));
     g_print(_("--remove-foreign (-r) file \tremove a foreign file\n"));
     g_print(_("--export (-e) file [appointment...] \texport appointments from Orage to file\n"));
     g_print("\n");
@@ -379,24 +379,25 @@ static void export_file(gboolean running, char *file_name, gboolean initialized
 }
 
 static void add_foreign(gboolean running, char *file_name, gboolean initialized
-        , gboolean read_only)
+        , gboolean read_only, char *name)
 {
+    g_print("\nadd_foreign: file_name%s name:%s\n\n", file_name, name);
     if (running && !initialized) {
         /* let's use dbus since server is running there already */
 #ifdef HAVE_DBUS
-        if (orage_dbus_foreign_add(file_name, read_only))
-            orage_message(40, "add done foreign file=%s", file_name);
+        if (orage_dbus_foreign_add(file_name, read_only, name))
+            orage_message(40, "Add done online foreign file=%s", file_name);
         else
-            g_warning("add failed foreign file=%s\n", file_name);
+            orage_message(140, "Add failed online foreign file=%s\n", file_name);
 #else
-        g_warning("Can not do add foreign file without dbus. failed file=%s\n", file_name);
+        orage_message(140, "Can not do add foreign file to running Orage without dbus. Add failed foreign file=%s\n", file_name);
 #endif
     }
     else if (!running && initialized) { /* do it self directly */
-        if (orage_foreign_file_add(file_name, read_only))
-            orage_message(40, "add done foreign file=%s", file_name);
+        if (orage_foreign_file_add(file_name, read_only, name))
+            orage_message(40, "Add done foreign file=%s", file_name);
         else
-            g_warning("add failed foreign file=%s\n", file_name);
+            orage_message(140, "Add failed foreign file=%s\n", file_name);
     }
 }
 
@@ -406,18 +407,18 @@ static void remove_foreign(gboolean running, char *file_name, gboolean initializ
         /* let's use dbus since server is running there already */
 #ifdef HAVE_DBUS
         if (orage_dbus_foreign_remove(file_name))
-            orage_message(40, "remove done foreign file=%s", file_name);
+            orage_message(40, "Remove done foreign file=%s", file_name);
         else
-            g_warning("remove failed foreign file=%s\n", file_name);
+            orage_message(140, "Remove failed foreign file=%s\n", file_name);
 #else
-        g_warning("Can not do remove foreign file without dbus. failed file=%s\n", file_name);
+        orage_message(140, "Can not do remove foreign file without dbus. Remove failed foreign file=%s\n", file_name);
 #endif
     }
     else if (!running && initialized) { /* do it self directly */
         if (orage_foreign_file_remove(file_name))
-            orage_message(40, "remove done foreign file=%s", file_name);
+            orage_message(40, "Remove done foreign file=%s", file_name);
         else
-            g_warning("remove failed foreign file=%s\n", file_name);
+            orage_message(140, "Remove failed foreign file=%s\n", file_name);
     }
 }
 
@@ -427,6 +428,7 @@ static gboolean process_args(int argc, char *argv[], gboolean running
     int argi;
     gboolean end = FALSE;
     gboolean foreign_file_read_only = TRUE;
+    gboolean foreign_file_name_parameter = FALSE;
     gchar *export_uid_list = NULL;
     gchar *file_name = NULL;
 
@@ -481,11 +483,26 @@ static gboolean process_args(int argc, char *argv[], gboolean running
                     !strcmp(argv[argi+2], "RW") ||
                     !strcmp(argv[argi+2], "READWRITE"))) {
                     foreign_file_read_only = FALSE;
+                    if (argi+3 < argc) {
+                        file_name = g_strdup(argv[argi+3]);
+                        foreign_file_name_parameter = TRUE;
+                    }
+                }
+                else if (argi+2 < argc) { /* take argi+2 as name of file */
+                    file_name = g_strdup(argv[argi+2]);
+                    foreign_file_name_parameter = TRUE;
+                }
+                if (!file_name) {
+                    file_name = g_path_get_basename(argv[argi+1]);
                 }
                 add_foreign(running, argv[++argi], initialized
-                        , foreign_file_read_only);
+                        , foreign_file_read_only, file_name);
                 if (!foreign_file_read_only)
                     ++argi;
+                if (foreign_file_name_parameter) {
+                    ++argi;
+                }
+                g_free(file_name);
             }
         }
         else if (!strcmp(argv[argi], "--remove-foreign") ||

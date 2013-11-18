@@ -1132,8 +1132,10 @@ static gboolean orage_tooltip_update(gpointer user_data)
             if (cur_alarm->temporary) { /* let's add a small mark */
                 g_string_append_c(tooltip_highlight_helper, '[');
             }
-            tmp = g_markup_escape_text(cur_alarm->title
-                    , strlen(cur_alarm->title));
+            tmp = cur_alarm->title 
+                ? g_markup_escape_text(cur_alarm->title
+                        , strlen(cur_alarm->title))
+                : g_strdup(_("No title defined"));
             g_string_append_printf(tooltip_highlight_helper, "%s", tmp);
             g_free(tmp);
             if (cur_alarm->temporary) { /* let's add a small mark */

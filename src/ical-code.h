@@ -138,7 +138,7 @@ void xfical_file_close(gboolean foreign);
 void xfical_file_close_force(void);
 
 xfical_appt *xfical_appt_alloc();
-char *xfical_appt_add(xfical_appt *appt);
+char *xfical_appt_add(char *ical_file_id, xfical_appt *appt);
 xfical_appt *xfical_appt_get(char *ical_id);
 void xfical_appt_free(xfical_appt *appt);
 gboolean xfical_appt_mod(char *ical_id, xfical_appt *appt);

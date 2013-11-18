@@ -77,7 +77,7 @@ typedef struct _intf_win
     GtkWidget *archive_file_copy_rb;
     GtkWidget *archive_file_move_rb;
 
-        /* Foreign tab */
+        /* Foreign files tab */
     GtkWidget *for_notebook_page;
     GtkWidget *for_tab_label;
     GtkWidget *for_tab_main_vbox;
@@ -87,6 +87,7 @@ typedef struct _intf_win
     GtkWidget *for_new_open_button;
     GtkWidget *for_new_save_button;
     GtkWidget *for_new_read_only;
+    GtkWidget *for_new_name_entry;
     /* currrent files */
     GtkWidget *for_cur_frame;
     GtkWidget *for_cur_table;
@@ -97,7 +98,8 @@ typedef struct _intf_win
 void orage_external_interface(CalWin *xfcal);
 
 gboolean orage_external_update_check(gpointer user_data);
-gboolean orage_foreign_file_add(gchar *filename, gboolean read_only);
+gboolean orage_foreign_file_add(gchar *filename, gboolean read_only
+        , gchar *name);
 gboolean orage_foreign_file_remove(gchar *filename);
 gboolean orage_import_file(gchar *entry_filename);
 gboolean orage_export_file(gchar *entry_filename, gint type, gchar *uids);

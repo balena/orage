@@ -47,7 +47,7 @@ gboolean orage_dbus_service_export_file(DBusGProxy *proxy
                 , const char *IN_file, const gint IN_type, const char *IN_uids
                 , GError **error);
 gboolean orage_dbus_service_add_foreign(DBusGProxy *proxy
-                , const char *IN_file, const gboolean IN_mode
+                , const char *IN_file, const gboolean IN_mode, const char *IN_name
                 , GError **error);
 gboolean orage_dbus_service_remove_foreign(DBusGProxy *proxy
                 , const char *IN_file

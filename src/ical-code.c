@@ -1486,7 +1486,7 @@ static char *appt_add_internal(xfical_appt *appt, gboolean add, char *uid
     dtstamp = icaltime_current_time_with_zone(utc_icaltimezone);
     if (add) {
         int_uid = ic_generate_uid();
-        ext_uid = g_strconcat("O00.", int_uid, NULL);
+        ext_uid = g_strconcat(uid, int_uid, NULL);
         appt->uid = ext_uid;
         create_time = dtstamp;
     }
@@ -1596,10 +1596,9 @@ static char *appt_add_internal(xfical_appt *appt, gboolean add, char *uid
   *           This ical id is owned by the routine. Do not deallocate it.
   *           It will be overwrittewritten by next invocation of this function.
   */
-char *xfical_appt_add(xfical_appt *appt)
+char *xfical_appt_add(char *ical_file_id, xfical_appt *appt)
 {
-    /* FIXME: make it possible to add events into foreign files */
-    return(appt_add_internal(appt, TRUE, NULL, icaltime_null_time()));
+    return(appt_add_internal(appt, TRUE, ical_file_id, icaltime_null_time()));
 }
 
 static gboolean get_alarm_trigger(icalcomponent *ca,  xfical_appt *appt)
@@ -2530,7 +2529,7 @@ gboolean xfical_appt_del(char *ical_uid)
          c != 0;
          c = icalcomponent_get_next_component(base, ICAL_ANY_COMPONENT)) {
         uid = (char *)icalcomponent_get_uid(c);
-        if (strcmp(uid, int_uid) == 0) {
+        if (ORAGE_STR_EXISTS(uid) && strcmp(uid, int_uid) == 0) {
             icalcomponent_remove_component(base, c);
             icalset_mark(fbase);
             xfical_alarm_build_list_internal(FALSE);
@@ -3112,7 +3111,7 @@ static void process_alarm_data(icalcomponent *ca, alarm_struct *new_alarm)
 }
 
 static void xfical_alarm_build_list_internal_real(gboolean first_list_today
-        , icalcomponent *base, char *file_type)
+        , icalcomponent *base, char *file_type, char *file_name)
 {
 #undef P_N
 #define P_N "xfical_alarm_build_list_internal_real: "
@@ -3179,21 +3178,13 @@ static void xfical_alarm_build_list_internal_real(gboolean first_list_today
         if (strcmp(file_type, "O00.") == 0)
             orage_message(60, _("Created alarm list for main Orage file:"));
         else 
-            orage_message(60, _("Created alarm list for foreign file: %s")
-                    , file_type);
+            orage_message(60, _("Created alarm list for foreign file: %s (%s)")
+                    , file_name, file_type);
         orage_message(60, _("\tAdded %d alarms. Processed %d events.")
                 , cnt_alarm_add, cnt_event);
         orage_message(60, _("\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)")
                 , cnt_alarm, cnt_act_alarm, cnt_repeat);
     }
-/*
-    else {
-        orage_message(60, _("Build alarm list: Added %d alarms. Processed %d events.")
-                , cnt_alarm_add, cnt_event);
-        orage_message(60, _("\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)")
-                , cnt_alarm, cnt_act_alarm, cnt_repeat);
-    }
-*/
 }
 
 static void xfical_alarm_build_list_internal(gboolean first_list_today)
@@ -3211,12 +3202,13 @@ static void xfical_alarm_build_list_internal(gboolean first_list_today)
 
     /* first search base orage file */
     strcpy(file_type, "O00.");
-    xfical_alarm_build_list_internal_real(first_list_today, ic_ical, file_type);
+    xfical_alarm_build_list_internal_real(first_list_today, ic_ical, file_type
+            , NULL);
     /* then process all foreign files */
     for (i = 0; i < g_par.foreign_count; i++) {
         g_sprintf(file_type, "F%02d.", i);
-        xfical_alarm_build_list_internal_real(first_list_today, ic_f_ical[i].ical
-                , file_type);
+        xfical_alarm_build_list_internal_real(first_list_today
+                , ic_f_ical[i].ical, file_type, g_par.foreign_data[i].name);
     }
     setup_orage_alarm_clock(); /* keep reminders upto date */
     build_mainbox_info();      /* refresh main calendar window lists */

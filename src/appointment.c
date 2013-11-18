@@ -1120,28 +1120,99 @@ static gboolean fill_appt_from_apptw(xfical_appt *appt, appt_win *apptw)
     return(TRUE);
 }
 
+static void add_file_select_cb(appt_win *apptw)
+{
+    GtkWidget *toolbar_separator;
+    GtkWidget *tool_item;
+    gint i = 0;
+    gboolean use_list = FALSE;
+
+    /* Build insert file selection combobox */
+    apptw->File_insert_cb = NULL;
+    if (g_par.foreign_count == 0) { /* we do not have foreign files */
+        return;
+    }
+
+    apptw->File_insert_cb = gtk_combo_box_new_text();
+    gtk_widget_set_tooltip_text(apptw->File_insert_cb
+            , _("Add new appointment to this file."));
+    gtk_combo_box_append_text(GTK_COMBO_BOX(apptw->File_insert_cb), _("Orage default file"));
+    gtk_combo_box_set_active(GTK_COMBO_BOX(apptw->File_insert_cb), 0);
+    for (i = 0; i < g_par.foreign_count; i++) {
+        if (!g_par.foreign_data[i].read_only) { /* do not add to RO files */
+            gtk_combo_box_append_text(GTK_COMBO_BOX(apptw->File_insert_cb)
+                    , g_par.foreign_data[i].name);
+            use_list = TRUE;
+        }
+    }
+
+    if (!use_list) { /* it is not needed after all */
+        gtk_widget_destroy(apptw->File_insert_cb);
+        apptw->File_insert_cb = NULL;
+    }
+
+    /* Add insert file combobox to toolbar */
+    toolbar_separator = orage_toolbar_append_separator(apptw->Toolbar, -1);
+    tool_item = GTK_WIDGET(gtk_tool_item_new());
+    gtk_container_add(GTK_CONTAINER(tool_item), apptw->File_insert_cb);
+    gtk_toolbar_insert(GTK_TOOLBAR(apptw->Toolbar), GTK_TOOL_ITEM(tool_item), -1);
+}
+
+static void remove_file_select_cb(appt_win *apptw)
+{
+    if (apptw->File_insert_cb)
+        gtk_widget_destroy(apptw->File_insert_cb);
+}
+
 static gboolean save_xfical_from_appt_win(appt_win *apptw)
 {
 #undef P_N
 #define P_N "save_xfical_from_appt_win: "
-    gint result;
-    gboolean ok = FALSE;
+    gint result, i;
+    gboolean ok = FALSE, found = FALSE;
     xfical_appt *appt = (xfical_appt *)apptw->xf_appt;
+    char *xf_file_id, *tmp;
 
     if (fill_appt_from_apptw(appt, apptw)) {
+        ok = TRUE;
         /* Here we try to save the event... */
         if (!xfical_file_open(TRUE)) {
             orage_message(150, P_N "file open and update failed: %s", apptw->xf_uid);
             return(FALSE);
         }
         if (apptw->appointment_add) {
-            apptw->xf_uid = g_strdup(xfical_appt_add(appt));
-            ok = (apptw->xf_uid ? TRUE : FALSE);
+            /* first check which file we are adding to */
+            if (apptw->File_insert_cb) {
+                tmp = gtk_combo_box_get_active_text(
+                        GTK_COMBO_BOX(apptw->File_insert_cb));
+                for (i = 0; i < g_par.foreign_count && !found; i++) {
+                    if (strcmp(g_par.foreign_data[i].file, tmp) == 0 ||
+                        strcmp(g_par.foreign_data[i].name, tmp) == 0) {
+                        found = TRUE;
+                    }
+                }
+                if (found) { /* it should always been found */
+                    xf_file_id = g_strdup_printf("F%02d.", i-1);
+                }
+                else { /* error! */
+                    orage_message(150, P_N "Matching foreign file not found: %s", tmp);
+                    ok = FALSE;
+                }
+            }
+            else {
+                xf_file_id = g_strdup("O00.");
+            }
+            if (ok) {
+                apptw->xf_uid = g_strdup(xfical_appt_add(xf_file_id, appt));
+                g_free(xf_file_id);
+                ok = (apptw->xf_uid ? TRUE : FALSE);
+            }
             if (ok) {
                 apptw->appointment_add = FALSE;
                 gtk_widget_set_sensitive(apptw->Duplicate, TRUE);
                 gtk_widget_set_sensitive(apptw->File_menu_duplicate, TRUE);
                 orage_message(10, "Added: %s", apptw->xf_uid);
+                remove_file_select_cb(apptw);
             }
             else {
                 orage_message(150, P_N "Addition failed: %s", apptw->xf_uid);
@@ -2367,6 +2438,9 @@ static gboolean fill_appt_window(appt_win *apptw, char *action, char *par)
         g_free(appt);
         apptw->xf_appt = NULL;
         return(FALSE);
+    }
+    if (apptw->appointment_add) {
+        add_file_select_cb(apptw);
     }
     if (!appt->completed) { /* some nice default */
         t = orage_localtime(); /* probably completed today? */

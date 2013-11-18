@@ -99,7 +99,8 @@ gboolean orage_dbus_export_file(gchar *file_name, gint type, gchar *uids)
     };
 }
 
-gboolean orage_dbus_foreign_add(gchar *file_name, gboolean read_only)
+gboolean orage_dbus_foreign_add(gchar *file_name, gboolean read_only
+        , gchar *name)
 {
     DBusGConnection *connection;
     GError *error = NULL;
@@ -118,6 +119,7 @@ gboolean orage_dbus_foreign_add(gchar *file_name, gboolean read_only)
     if (dbus_g_proxy_call(proxy, "AddForeign", &error
                 , G_TYPE_STRING, file_name
                 , G_TYPE_BOOLEAN, read_only
+                , G_TYPE_STRING, name
                 , G_TYPE_INVALID, G_TYPE_INVALID)) {
         return(TRUE);
     }

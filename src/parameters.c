@@ -1252,6 +1252,8 @@ void read_parameters(void)
         g_par.foreign_data[i].file = orage_rc_get_str(orc, f_par, NULL);
         g_sprintf(f_par, "Foreign file %02d read-only", i);
         g_par.foreign_data[i].read_only = orage_rc_get_bool(orc, f_par, TRUE);
+        g_sprintf(f_par, "Foreign file %02d visible name", i);
+        g_par.foreign_data[i].name = orage_rc_get_str(orc, f_par, g_par.foreign_data[i].file);
     }
     g_par.use_foreign_display_alarm_notify = orage_rc_get_bool(orc
             , "Use notify foreign alarm", FALSE);
@@ -1298,8 +1300,7 @@ void write_parameters(void)
     orage_rc_put_int(orc, "Dayview window Y", g_par.dw_size_y);
     orage_rc_put_bool(orc, "Dayview week mode", g_par.dw_week_mode);
     orage_rc_put_bool(orc, "Show Main Window Menu", g_par.show_menu);
-    orage_rc_put_bool(orc, "Select Always Today"
-            , g_par.select_always_today);
+    orage_rc_put_bool(orc, "Select Always Today", g_par.select_always_today);
     orage_rc_put_bool(orc, "Show borders", g_par.show_borders);
     orage_rc_put_bool(orc, "Show heading", g_par.show_heading);
     orage_rc_put_bool(orc, "Show day names", g_par.show_day_names);
@@ -1316,28 +1317,24 @@ void write_parameters(void)
     orage_rc_put_bool(orc, "Use dynamic icon", g_par.use_dynamic_icon);
     orage_rc_put_bool(orc, "Use own dynamic icon", g_par.use_own_dynamic_icon);
     orage_rc_put_str(orc, "Own icon file", g_par.own_icon_file);
-    orage_rc_put_str(orc, "Own icon row1 data"
-            , g_par.own_icon_row1_data);
+    orage_rc_put_str(orc, "Own icon row1 data", g_par.own_icon_row1_data);
     orage_rc_put_str(orc, "Own icon row1 color", g_par.own_icon_row1_color);
     orage_rc_put_str(orc, "Own icon row1 font", g_par.own_icon_row1_font);
     orage_rc_put_int(orc, "Own icon row1 x", g_par.own_icon_row1_x);
     orage_rc_put_int(orc, "Own icon row1 y", g_par.own_icon_row1_y);
-    orage_rc_put_str(orc, "Own icon row2 data"
-            , g_par.own_icon_row2_data);
+    orage_rc_put_str(orc, "Own icon row2 data", g_par.own_icon_row2_data);
     orage_rc_put_str(orc, "Own icon row2 color", g_par.own_icon_row2_color);
     orage_rc_put_str(orc, "Own icon row2 font", g_par.own_icon_row2_font);
     orage_rc_put_int(orc, "Own icon row2 x", g_par.own_icon_row2_x);
     orage_rc_put_int(orc, "Own icon row2 y", g_par.own_icon_row2_y);
-    orage_rc_put_str(orc, "Own icon row3 data"
-            , g_par.own_icon_row3_data);
+    orage_rc_put_str(orc, "Own icon row3 data", g_par.own_icon_row3_data);
     orage_rc_put_str(orc, "Own icon row3 color", g_par.own_icon_row3_color);
     orage_rc_put_str(orc, "Own icon row3 font", g_par.own_icon_row3_font);
     orage_rc_put_int(orc, "Own icon row3 x", g_par.own_icon_row3_x);
     orage_rc_put_int(orc, "Own icon row3 y", g_par.own_icon_row3_y);
     /* we write this with X so that we do not read it back unless
      * it is manually changed. It should need changes really seldom. */
-    orage_rc_put_int(orc, "XIcal week start day"
-            , g_par.ical_weekstartday);
+    orage_rc_put_int(orc, "XIcal week start day", g_par.ical_weekstartday);
     orage_rc_put_bool(orc, "Show days", g_par.show_days);
     orage_rc_put_int(orc, "Foreign file count", g_par.foreign_count);
     /* add what we have and remove the rest */
@@ -1346,6 +1343,8 @@ void write_parameters(void)
         orage_rc_put_str(orc, f_par, g_par.foreign_data[i].file);
         g_sprintf(f_par, "Foreign file %02d read-only", i);
         orage_rc_put_bool(orc, f_par, g_par.foreign_data[i].read_only);
+        g_sprintf(f_par, "Foreign file %02d visible name", i);
+        orage_rc_put_str(orc, f_par, g_par.foreign_data[i].name);
     }
     for (i = g_par.foreign_count; i < 10;  i++) {
         g_sprintf(f_par, "Foreign file %02d name", i);
@@ -1353,6 +1352,8 @@ void write_parameters(void)
             break; /* it is in order, so we know that the rest are missing */
         orage_rc_del_item(orc, f_par);
         g_sprintf(f_par, "Foreign file %02d read-only", i);
+        orage_rc_del_item(orc, f_par);
+        g_sprintf(f_par, "Foreign file %02d visible name", i);
         orage_rc_del_item(orc, f_par);
     }
     orage_rc_put_bool(orc, "Use notify foreign alarm"

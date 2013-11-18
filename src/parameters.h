@@ -30,6 +30,7 @@ typedef struct _foreign_file
     char *file;
     gboolean read_only;
     time_t latest_file_change;
+    char *name;
 } foreign_file;
 
 

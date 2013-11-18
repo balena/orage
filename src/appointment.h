@@ -46,6 +46,7 @@ typedef struct _appt_win
     GtkWidget *Duplicate;
     GtkWidget *Save;
     GtkWidget *SaveClose;
+    GtkWidget *File_insert_cb;
 
     GtkWidget *Notebook;
     GtkWidget *General_notebook_page;
