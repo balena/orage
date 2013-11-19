@@ -1,23 +1,23 @@
-# Lithuanian translations for orage package.
-# Copyright (C) 2003-2006 The Xfce development team.
-# This file is distributed under the same license as the orage package.
-# Mantas Zapolskas <mantaz@users.sf.net>, 2004.
-# Algimantas Margevičius <margevicius.algimantas@gmail.com>, 2012.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Algimantas Margevičius <margevicius.algimantas@gmail.com>, 2012
+# Mantas Zapolskas <mantaz@users.sf.net>, 2004
 msgid ""
 msgstr ""
-"Project-Id-Version: orage 4.3.90.2\n"
+"Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-03 15:29+0200\n"
-"PO-Revision-Date: 2012-02-04 17:42+0200\n"
-"Last-Translator: Algimantas Margevičius <margevicius.algimantas@gmail.com>\n"
-"Language-Team: Lietuvių <>\n"
-"Language: lt\n"
+"POT-Creation-Date: 2013-11-18 18:30+0100\n"
+"PO-Revision-Date: 2013-11-19 15:56+0000\n"
+"Last-Translator: Xfce <transifex@xfce.org>\n"
+"Language-Team: Lithuanian (http://www.transifex.com/projects/p/xfce/language/lt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n"
-"%100<10 || n%100>=20) ? 1 : 2)\n"
+"Language: lt\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: ../globaltime/globaltime.c:100
 msgid "Raising GlobalTime window..."
@@ -33,9 +33,7 @@ msgstr "Iškelti pasaulio laiko lango nepavyko"
 msgid ""
 "%s\n"
 "click to modify clock"
-msgstr ""
-"%s\n"
-"paspauskite norėdami keisti laikrodį"
+msgstr "%s\npaspauskite norėdami keisti laikrodį"
 
 #: ../globaltime/globaltime.c:386
 msgid "Localtime"
@@ -45,9 +43,7 @@ msgstr "Vietinis laikas"
 msgid ""
 "button 1 to change preferences \n"
 "button 2 to adjust time of clocks"
-msgstr ""
-"mygtukas 1 nustatymų keitimui\n"
-"mygtukas 2 laikrodžių laiko keitimui"
+msgstr "mygtukas 1 nustatymų keitimui\nmygtukas 2 laikrodžių laiko keitimui"
 
 #: ../globaltime/globaltime.c:480
 msgid "adjust to change hour"
@@ -56,9 +52,7 @@ msgstr "pakeiskite norėdami pakeisti valandą"
 #: ../globaltime/globaltime.c:496
 msgid ""
 "adjust to change minute. Click arrows with button 2 to change only 1 minute."
-msgstr ""
-"pakeiskite norėdami pakeisti minutę. Norėdami pakeisti tik 1 minutę, "
-"paspauskite rodyklę su mygtuku 2."
+msgstr "pakeiskite norėdami pakeisti minutę. Norėdami pakeisti tik 1 minutę, paspauskite rodyklę su mygtuku 2."
 
 #: ../globaltime/gt_prefs.c:265 ../globaltime/gt_prefs.c:266
 msgid "NEW"
@@ -335,7 +329,7 @@ msgstr "nesikeičia"
 #: ../globaltime/timezone_selection.c:247
 #: ../globaltime/timezone_selection.c:252
 #: ../panel-plugin/timezone_selection.c:248
-#: ../panel-plugin/timezone_selection.c:253 ../src/appointment.c:2663
+#: ../panel-plugin/timezone_selection.c:253 ../src/appointment.c:2771
 #: ../src/timezone_selection.c:259 ../src/timezone_selection.c:264
 msgid "Location"
 msgstr "Vieta"
@@ -479,11 +473,7 @@ msgid ""
 "circumstances it is possible that Orageclock shows time inaccurately unless "
 "you have this selected. (Selecting this prevents cpu and interrupt saving "
 "features from working.)"
-msgstr ""
-"Tai padaryti reikia tik jei trumpai užmigdote ar sustabdote(mažiau nei 5 "
-"valandom) ir jūsų matomam laikrodį sekundės nerodomos. Tokiomis sąlygomis "
-"„Orageclock“ gali rodyti neteisingą laiką, nebent pasirinksite šią parinktį. "
-"(Pasirinkus procesoriui bus neleista pertraukti išsaugojimo galimybių.)"
+msgstr "Tai padaryti reikia tik jei trumpai užmigdote ar sustabdote(mažiau nei 5 valandom) ir jūsų matomam laikrodį sekundės nerodomos. Tokiomis sąlygomis „Orageclock“ gali rodyti neteisingą laiką, nebent pasirinksite šią parinktį. (Pasirinkus procesoriui bus neleista pertraukti išsaugojimo galimybių.)"
 
 #: ../panel-plugin/oc_config.c:432
 msgid ""
@@ -495,15 +485,7 @@ msgid ""
 "\t%V = week number\t\t%Z = timezone in use\n"
 "\t%H = hours \t\t\t\t%M = minute\n"
 "\t%X = local time\t\t\t%x = local date"
-msgstr ""
-"Gauti laikui ši programa naudoja strftime funkciją.\n"
-"Galite naudoti bet kurį tinkamą kodą, tokiu formatu koks jums patinka.\n"
-"Dažni kodai:\n"
-"\t%A = savaitės diena\t\t\t%B = mėnesis\n"
-"\t%c = data & laikas\t\t%R = valanda ir minutė\n"
-"\t%V = savaitės numeris\t\t%Z = naudojama laiko juosta\n"
-"\t%H = valandos \t\t\t\t%M = minutės\n"
-"\t%X = vietinis laikas\t\t\t%x = vietinė data"
+msgstr "Gauti laikui ši programa naudoja strftime funkciją.\nGalite naudoti bet kurį tinkamą kodą, tokiu formatu koks jums patinka.\nDažni kodai:\n\t%A = savaitės diena\t\t\t%B = mėnesis\n\t%c = data & laikas\t\t%R = valanda ir minutė\n\t%V = savaitės numeris\t\t%Z = naudojama laiko juosta\n\t%H = valandos \t\t\t\t%M = minutės\n\t%X = vietinis laikas\t\t\t%x = vietinė data"
 
 #: ../panel-plugin/oc_config.c:457
 msgid "Orage clock Preferences"
@@ -518,7 +500,7 @@ msgstr "Orage laikrodžio nustatymai"
 #. * %B  : full month name
 #. * %Y  : four digit year
 #. * %V  : ISO week number
-#.
+#. 
 #: ../panel-plugin/xfce4-orageclock-plugin.c:627
 msgid "%A %d %B %Y/%V"
 msgstr "%A %d %B %Y/%V"
@@ -534,7 +516,7 @@ msgstr "Tvarkykite savo laiką su Orage"
 #. if (gtk_toggle_button_get_active(
 #. GTK_TOGGLE_BUTTON(apptw->Type_journal_rb)))
 #. end time
-#: ../src/appointment.c:313 ../src/appointment.c:353 ../src/appointment.c:2692
+#: ../src/appointment.c:313 ../src/appointment.c:353 ../src/appointment.c:2800
 msgid "End"
 msgstr "Pabaiga"
 
@@ -542,13 +524,13 @@ msgstr "Pabaiga"
 msgid "Due"
 msgstr "Trukmė"
 
-#: ../src/appointment.c:493 ../src/mainbox.c:783
+#: ../src/appointment.c:493 ../src/mainbox.c:862
 msgid "Orage"
 msgstr "Orage"
 
 #. to avoid timing problems when updating entry
 #. Create file chooser
-#: ../src/appointment.c:672 ../src/interface.c:277 ../src/parameters.c:416
+#: ../src/appointment.c:672 ../src/interface.c:264 ../src/parameters.c:374
 msgid "Select a file..."
 msgstr "Pasirinkite failą..."
 
@@ -556,227 +538,273 @@ msgstr "Pasirinkite failą..."
 msgid "Sound Files"
 msgstr "Garso failai"
 
-#: ../src/appointment.c:687 ../src/interface.c:290
+#: ../src/appointment.c:687 ../src/interface.c:277
 msgid "All Files"
 msgstr "Visi failai"
 
-#: ../src/appointment.c:739
+#: ../src/appointment.c:738
 msgid "The appointment information has been modified."
 msgstr "Paskyrimo informacija pakeista."
 
-#: ../src/appointment.c:740 ../src/appointment.c:1194 ../src/event-list.c:919
+#: ../src/appointment.c:739 ../src/appointment.c:1282 ../src/event-list.c:921
 msgid "Do you want to continue?"
 msgstr "Ar norite tęsti?"
 
-#: ../src/appointment.c:767
+#: ../src/appointment.c:740
+msgid "No, do not leave"
+msgstr ""
+
+#: ../src/appointment.c:741
+msgid "Yes, ignore modifications and leave"
+msgstr ""
+
+#: ../src/appointment.c:768
 msgid "The end of this appointment is earlier than the beginning."
 msgstr "Šio paskyrimo pabaiga yra anksčiau nei pradžia."
 
-#: ../src/appointment.c:1034 ../src/appointment.c:1812
+#: ../src/appointment.c:1035 ../src/appointment.c:1918
 msgid "Not set"
 msgstr "Nenustatyta"
 
-#: ../src/appointment.c:1193
+#: ../src/appointment.c:1138
+msgid "Add new appointment to this file."
+msgstr ""
+
+#: ../src/appointment.c:1139
+msgid "Orage default file"
+msgstr ""
+
+#: ../src/appointment.c:1220
+msgid "Appointment addition failed."
+msgstr ""
+
+#: ../src/appointment.c:1221
+msgid ""
+"Error happened when adding appointment. Look more details from the log file."
+msgstr ""
+
+#: ../src/appointment.c:1231
+msgid "Appointment update failed."
+msgstr ""
+
+#: ../src/appointment.c:1232
+msgid ""
+"Look more details from the log file. (Perhaps file was updated external from"
+" Orage?)"
+msgstr ""
+
+#: ../src/appointment.c:1281
 msgid "This appointment will be permanently removed."
 msgstr "Šis paskyrimas bus pašalintas visam laikui."
 
-#: ../src/appointment.c:1692
+#: ../src/appointment.c:1283 ../src/event-list.c:922
+msgid "No, cancel the removal"
+msgstr ""
+
+#: ../src/appointment.c:1284
+msgid "Yes, remove it"
+msgstr ""
+
+#: ../src/appointment.c:1373 ../src/appointment.c:1388 ../src/day-view.c:457
+#: ../src/event-list.c:980
+msgid "Pick the date"
+msgstr "Pasirinkite datą"
+
+#: ../src/appointment.c:1375 ../src/appointment.c:1390 ../src/day-view.c:386
+#: ../src/day-view.c:459 ../src/event-list.c:982 ../src/event-list.c:1132
+#: ../src/tray_icon.c:460
+msgid "Today"
+msgstr "Šiandien"
+
+#: ../src/appointment.c:1798
 msgid "This appointment does not exist."
 msgstr "Paskyrimas neegzistuoja."
 
-#: ../src/appointment.c:1693
+#: ../src/appointment.c:1799
 msgid "It was probably removed, please refresh your screen."
 msgstr "Greičiausiai buvo pašalinta, atnaujinkite savo ekraną."
 
-#: ../src/appointment.c:1995
+#: ../src/appointment.c:2100
 msgid "Current categories"
 msgstr "Dabartinės kategorijos"
 
-#: ../src/appointment.c:2010
+#: ../src/appointment.c:2115
 msgid "Add new category with color"
 msgstr "Pridėti naują kategoriją su spalva"
 
-#: ../src/appointment.c:2014
+#: ../src/appointment.c:2119
 msgid "Category:"
 msgstr "Kategorija:"
 
-#: ../src/appointment.c:2045
+#: ../src/appointment.c:2150
 msgid "Colors of categories - Orage"
 msgstr "Spalvų kategorijos - Orage"
 
-#: ../src/appointment.c:2092
+#: ../src/appointment.c:2196
 msgid " *** COPY ***"
 msgstr " *** KOPIJA ***"
 
-#: ../src/appointment.c:2353
+#: ../src/appointment.c:2461
 msgid "New appointment - Orage"
 msgstr "Naujas paskyrimas - Orage"
 
 #. File menu stuff
 #. ********* File menu *********
 #. File menu
-#: ../src/appointment.c:2382 ../src/day-view.c:254 ../src/event-list.c:1021
-#: ../src/interface.c:767 ../src/mainbox.c:279
+#: ../src/appointment.c:2491 ../src/day-view.c:279 ../src/event-list.c:1033
+#: ../src/interface.c:813 ../src/mainbox.c:297
 msgid "_File"
 msgstr "_Failas"
 
-#: ../src/appointment.c:2388
+#: ../src/appointment.c:2497
 msgid "Sav_e and close"
 msgstr "Išsaugoti _ir užverti"
 
-#: ../src/appointment.c:2401 ../src/event-list.c:1027
+#: ../src/appointment.c:2510 ../src/event-list.c:1039
 msgid "D_uplicate"
 msgstr "D_ubliuoti"
 
-#: ../src/appointment.c:2589
+#: ../src/appointment.c:2697
 msgid "Save"
 msgstr "Išsaugoti"
 
-#: ../src/appointment.c:2591
+#: ../src/appointment.c:2699
 msgid "Save and close"
 msgstr "Išsaugoti ir užverti"
 
-#: ../src/appointment.c:2596
+#: ../src/appointment.c:2704
 msgid "Revert"
 msgstr "Grąžinti"
 
-#: ../src/appointment.c:2598 ../src/event-list.c:1112
+#: ../src/appointment.c:2706 ../src/event-list.c:1123
 msgid "Duplicate"
 msgstr "Dubliuoti"
 
-#: ../src/appointment.c:2603 ../src/event-list.c:1114
+#: ../src/appointment.c:2711 ../src/event-list.c:1125
 msgid "Delete"
 msgstr "Pašalinti"
 
-#: ../src/appointment.c:2621
+#: ../src/appointment.c:2729
 msgid "Free"
 msgstr "Laisvas"
 
-#: ../src/appointment.c:2621
+#: ../src/appointment.c:2729
 msgid "Busy"
 msgstr "Užimtas"
 
-#: ../src/appointment.c:2625
+#: ../src/appointment.c:2733
 msgid "General"
 msgstr "Bendra"
 
 #. type
-#: ../src/appointment.c:2631
+#: ../src/appointment.c:2739
 msgid "Type "
 msgstr "Tipas"
 
-#: ../src/appointment.c:2633 ../src/event-list.c:1165
+#: ../src/appointment.c:2741 ../src/event-list.c:1176
 msgid "Event"
 msgstr "Įvykis"
 
-#: ../src/appointment.c:2636
+#: ../src/appointment.c:2744
 msgid ""
 "Event that will happen sometime. For example:\n"
 "Meeting or birthday or TV show."
-msgstr ""
-"Įvykis kuris kada nors įvyks. Pavyzdžiui:\n"
-"Susitikimas, gimtadienis ar TV laida."
+msgstr "Įvykis kuris kada nors įvyks. Pavyzdžiui:\nSusitikimas, gimtadienis ar TV laida."
 
-#: ../src/appointment.c:2639 ../src/event-list.c:1185
+#: ../src/appointment.c:2747 ../src/event-list.c:1196
 msgid "Todo"
 msgstr "Darbas"
 
-#: ../src/appointment.c:2642
+#: ../src/appointment.c:2750
 msgid ""
 "Something that you should do sometime. For example:\n"
 "Wash your car or test new version of Orage."
-msgstr ""
-"Kažkas ką jūs kažkada turite padaryti. Pavyzdžiui:\n"
-"Nuplauti mašiną ar išbandyti naują Orage versiją."
+msgstr "Kažkas ką jūs kažkada turite padaryti. Pavyzdžiui:\nNuplauti mašiną ar išbandyti naują Orage versiją."
 
-#: ../src/appointment.c:2645 ../src/event-list.c:1198
+#: ../src/appointment.c:2753 ../src/event-list.c:1209
 msgid "Journal"
 msgstr "Žurnalas"
 
-#: ../src/appointment.c:2649
+#: ../src/appointment.c:2757
 msgid ""
 "Make a note that something happened. For example:\n"
 "Remark that your mother called or first snow came."
-msgstr ""
-"Padarykite įrašą jog kažkas įvyko. Pavyzdžiui:\n"
-"Pasižymėkite jog skambino mama ar kada pirmą kart snigo."
+msgstr "Padarykite įrašą jog kažkas įvyko. Pavyzdžiui:\nPasižymėkite jog skambino mama ar kada pirmą kart snigo."
 
 #. title
-#: ../src/appointment.c:2656
+#: ../src/appointment.c:2764
 msgid "Title "
 msgstr "Antraštė"
 
-#: ../src/appointment.c:2671
+#: ../src/appointment.c:2779
 msgid "All day event"
 msgstr "Visos dienos įvykis"
 
 #. start time
-#: ../src/appointment.c:2677 ../src/appointment.c:3342 ../src/day-view.c:697
+#: ../src/appointment.c:2785 ../src/appointment.c:3446 ../src/day-view.c:801
 msgid "Start"
 msgstr "Pradžia"
 
-#: ../src/appointment.c:2697
+#: ../src/appointment.c:2805
 msgid "Set      "
 msgstr "Nustatyti      "
 
-#: ../src/appointment.c:2718
+#: ../src/appointment.c:2826
 msgid "Duration"
 msgstr "Trukmė"
 
-#: ../src/appointment.c:2722 ../src/appointment.c:2912 ../src/reminder.c:761
+#: ../src/appointment.c:2830 ../src/appointment.c:3020 ../src/reminder.c:758
 msgid "days"
 msgstr "diena(-os)"
 
-#: ../src/appointment.c:2724 ../src/appointment.c:2914 ../src/reminder.c:763
+#: ../src/appointment.c:2832 ../src/appointment.c:3022 ../src/reminder.c:760
 msgid "hours"
 msgstr "valanda(-os)"
 
-#: ../src/appointment.c:2726 ../src/appointment.c:2916 ../src/reminder.c:765
+#: ../src/appointment.c:2834 ../src/appointment.c:3024 ../src/reminder.c:762
 msgid "mins"
 msgstr "min"
 
 #. Availability (only for EVENT)
-#: ../src/appointment.c:2738
+#: ../src/appointment.c:2846
 msgid "Availability"
 msgstr "Prieinamumas"
 
 #. completed (only for TODO)
-#: ../src/appointment.c:2746 ../src/appointment.c:3348
+#: ../src/appointment.c:2854 ../src/appointment.c:3452
 msgid "Completed"
 msgstr "Baigta"
 
-#: ../src/appointment.c:2749
+#: ../src/appointment.c:2857
 msgid "Done"
 msgstr "Atlikta"
 
 #. categories
-#: ../src/appointment.c:2770
+#: ../src/appointment.c:2878
 msgid "Categories"
 msgstr "Kategorijos"
 
-#: ../src/appointment.c:2782
+#: ../src/appointment.c:2890
 msgid ""
 "This is special category, which can be used to color this appointment in "
 "list views."
-msgstr ""
-"Tai speciali kategorija, kuri gali būti naudojama nuspalvoti šį paskyrimą "
-"sąrašo rodinyje."
+msgstr "Tai speciali kategorija, kuri gali būti naudojama nuspalvoti šį paskyrimą sąrašo rodinyje."
 
-#: ../src/appointment.c:2787
+#: ../src/appointment.c:2895
 msgid "update colors for categories."
 msgstr "atnaujinti kategorijų spalvas."
 
 #. priority
-#: ../src/appointment.c:2793
+#: ../src/appointment.c:2901
 msgid "Priority"
 msgstr "Prioritetas"
 
 #. note
-#: ../src/appointment.c:2803
+#: ../src/appointment.c:2911
 msgid "Note"
 msgstr "Pastaba"
 
-#: ../src/appointment.c:2824
+#: ../src/appointment.c:2932
 msgid ""
 "These shorthand commands take effect immediately:\n"
 "    <D> inserts current date in local date format\n"
@@ -785,139 +813,124 @@ msgid ""
 "\n"
 "These are converted only later when they are seen:\n"
 "    <&Ynnnn> is translated to current year minus nnnn.\n"
-"(This can be used for example in birthday reminders to tell how old the "
-"person will be.)"
-msgstr ""
-"Šios komandos įsigalios nedelsiant:\n"
-"    <D> įterpia dabartinę datą, vietiniu datos formatu\n"
-"    <T> įterpia datą ir\n"
-"    <DT> įterpia datą ir laiką.\n"
-"\n"
-"Šios yra pakeičiamos suradus vėliau:\n"
-"    <&Ynnnn> yra verčiama į esamus metus minus nnnn.\n"
-"(Tai gali būti priminimas apie gimtadienį, pasako kiek žmogui metų.)"
+"(This can be used for example in birthday reminders to tell how old the person will be.)"
+msgstr "Šios komandos įsigalios nedelsiant:\n    <D> įterpia dabartinę datą, vietiniu datos formatu\n    <T> įterpia datą ir\n    <DT> įterpia datą ir laiką.\n\nŠios yra pakeičiamos suradus vėliau:\n    <&Ynnnn> yra verčiama į esamus metus minus nnnn.\n(Tai gali būti priminimas apie gimtadienį, pasako kiek žmogui metų.)"
 
-#: ../src/appointment.c:2895
+#: ../src/appointment.c:3003
 msgid "Before Start"
 msgstr "Prieš pradžią"
 
-#: ../src/appointment.c:2895
+#: ../src/appointment.c:3003
 msgid "Before End"
 msgstr "Prieš pabaigą"
 
-#: ../src/appointment.c:2896
+#: ../src/appointment.c:3004
 msgid "After Start"
 msgstr "Po pradžios"
 
-#: ../src/appointment.c:2896
+#: ../src/appointment.c:3004
 msgid "After End"
 msgstr "Po pabaigos"
 
-#: ../src/appointment.c:2903
+#: ../src/appointment.c:3011
 msgid "Alarm"
 msgstr "Signalas"
 
 #. **** ALARM TIME ****
-#: ../src/appointment.c:2909
+#: ../src/appointment.c:3017
 msgid "Alarm time"
 msgstr "Signalo laikas"
 
-#: ../src/appointment.c:2933
+#: ../src/appointment.c:3041
 msgid ""
 "Often you want to get alarm:\n"
 " 1) before Event start\n"
 " 2) before Todo end\n"
 " 3) after Todo start"
-msgstr ""
-"Kaip dažnai norite girdėti signalą:\n"
-" 1) prieš prasidedant įvykiui\n"
-" 2) prieš baigiantis darbui\n"
-" 3) po darbo pradžios"
+msgstr "Kaip dažnai norite girdėti signalą:\n 1) prieš prasidedant įvykiui\n 2) prieš baigiantis darbui\n 3) po darbo pradžios"
 
-#: ../src/appointment.c:2938
+#: ../src/appointment.c:3046
 msgid "Persistent alarm"
 msgstr "Nuolatinis signalas"
 
-#: ../src/appointment.c:2940
+#: ../src/appointment.c:3048
 msgid ""
 "Select this if you want Orage to remind you even if it has not been active "
 "when the alarm happened."
-msgstr ""
-"Pasirinkite jei norite jog Orage primintų net tada jei įvykus įvykiui jis "
-"nebuvo pažymėtas kaip aktyvus."
+msgstr "Pasirinkite jei norite jog Orage primintų net tada jei įvykus įvykiui jis nebuvo pažymėtas kaip aktyvus."
 
 #. **** Audio Alarm ****
-#: ../src/appointment.c:2949
+#: ../src/appointment.c:3057
 msgid "Sound"
 msgstr "Garsas"
 
-#: ../src/appointment.c:2953 ../src/appointment.c:3074
+#: ../src/appointment.c:3061 ../src/appointment.c:3181
 msgid "Use"
 msgstr "Naudoti"
 
-#: ../src/appointment.c:2955
+#: ../src/appointment.c:3063
 msgid "Select this if you want audible alarm"
 msgstr "Pasirinkite jei norite girdimo signalo"
 
-#: ../src/appointment.c:2972
+#: ../src/appointment.c:3080
 msgid "Repeat alarm sound"
 msgstr "Kartoti signalą"
 
-#: ../src/appointment.c:2988 ../src/appointment.c:3290
+#: ../src/appointment.c:3096 ../src/appointment.c:3395
 msgid "times"
 msgstr "kartą(-us)"
 
-#: ../src/appointment.c:3004
+#: ../src/appointment.c:3112
 msgid "sec interval"
 msgstr "sekundės(-žių) intervalu"
 
 #. **** Display Alarm ****
-#: ../src/appointment.c:3014
+#: ../src/appointment.c:3122
 msgid "Visual"
 msgstr "Vaizdinis"
 
-#: ../src/appointment.c:3018
+#: ../src/appointment.c:3126
 msgid "Use Orage window"
 msgstr "Naudoti Orage langą"
 
-#: ../src/appointment.c:3020
+#: ../src/appointment.c:3128
 msgid "Select this if you want Orage window alarm"
 msgstr "Pasirinkite jei norite Orage lango signalo"
 
-#: ../src/appointment.c:3032
+#: ../src/appointment.c:3140
 msgid "Use notification"
 msgstr "Naudoti pranešimus"
 
-#: ../src/appointment.c:3034
+#: ../src/appointment.c:3142
 msgid "Select this if you want notification alarm"
 msgstr "Pasirinkite jei norite pranešimo signalo"
 
-#: ../src/appointment.c:3040
+#: ../src/appointment.c:3148
 msgid "Set timeout"
 msgstr "Nustatyti galiojimo laiką"
 
-#: ../src/appointment.c:3043
+#: ../src/appointment.c:3150
 msgid "Select this if you want notification to expire automatically"
 msgstr "Pasirinkite jei norite jog pranešimas automatiškai išnyktų"
 
-#: ../src/appointment.c:3054
+#: ../src/appointment.c:3161
 msgid "0 = system default expiration time"
 msgstr "0 = numatytasis galiojimo laikas"
 
-#: ../src/appointment.c:3059
+#: ../src/appointment.c:3166
 msgid "seconds"
 msgstr "sekundės"
 
 #. **** Procedure Alarm ****
-#: ../src/appointment.c:3070
+#: ../src/appointment.c:3177
 msgid "Procedure"
 msgstr "Užduotis"
 
-#: ../src/appointment.c:3076
+#: ../src/appointment.c:3183
 msgid "Select this if you want procedure or script alarm"
 msgstr "Pasirinkite jei norite procedūros ar scenarijaus signalo"
 
-#: ../src/appointment.c:3082
+#: ../src/appointment.c:3189
 msgid ""
 "You must enter all escape etc characters yourself.\n"
 "This string is just given to shell to process.\n"
@@ -927,164 +940,150 @@ msgid ""
 "\t<&AT> alarm time\n"
 "\t<&ST> appointment start time\n"
 "\t<&ET> appointment end time"
-msgstr ""
-"Visus „escape“ ir kitus simbolius turite įvesti patys.\n"
-"Ši eilutė tik proceso įsisavinimui.\n"
-"Vykdymo metu specialios komandos pakeičiamos:\n"
-"\t<&T>  paskyrimo pavadinimas\n"
-"\t<&D>  paskyrimo aprašymas\n"
-"\t<&AT> signalo laikas\n"
-"\t<&ST> paskyrimo pradžios laikas\n"
-"\t<&ET> paskyrimo pabaigos laikas"
+msgstr "Visus „escape“ ir kitus simbolius turite įvesti patys.\nŠi eilutė tik proceso įsisavinimui.\nVykdymo metu specialios komandos pakeičiamos:\n\t<&T>  paskyrimo pavadinimas\n\t<&D>  paskyrimo aprašymas\n\t<&AT> signalo laikas\n\t<&ST> paskyrimo pradžios laikas\n\t<&ET> paskyrimo pabaigos laikas"
 
-#: ../src/appointment.c:3094
+#: ../src/appointment.c:3201
 msgid "Test this alarm by raising it now"
 msgstr "Išbandykite iškviesdami signalą dabar"
 
-#: ../src/appointment.c:3101
+#: ../src/appointment.c:3208
 msgid "<b>Default alarm</b>"
 msgstr "<b>Numatytasis signalas</b>"
 
-#: ../src/appointment.c:3109
+#: ../src/appointment.c:3216
 msgid "Store current settings as default alarm"
 msgstr "Saugoti dabartinius nustatymus kaip numatytąjį signalą"
 
-#: ../src/appointment.c:3114
+#: ../src/appointment.c:3221
 msgid "Set current settings from default alarm"
 msgstr "Nustatyti dabartinius nustatymus iš numatytojo signalo"
 
-#: ../src/appointment.c:3176
+#: ../src/appointment.c:3283
 msgid "None"
 msgstr "Niekada"
 
-#: ../src/appointment.c:3176
+#: ../src/appointment.c:3283
 msgid "Daily"
 msgstr "Kasdien"
 
-#: ../src/appointment.c:3176
+#: ../src/appointment.c:3283
 msgid "Weekly"
 msgstr "Kas savaitę"
 
-#: ../src/appointment.c:3176
+#: ../src/appointment.c:3283
 msgid "Monthly"
 msgstr "Kas mėnesį"
 
-#: ../src/appointment.c:3176
+#: ../src/appointment.c:3283
 msgid "Yearly"
 msgstr "Kas metus"
 
-#: ../src/appointment.c:3176
+#: ../src/appointment.c:3283
 msgid "Hourly"
 msgstr "Kas valandą"
 
-#: ../src/appointment.c:3178
+#: ../src/appointment.c:3285
 msgid "Mon"
 msgstr "Pir"
 
-#: ../src/appointment.c:3178
+#: ../src/appointment.c:3285
 msgid "Tue"
 msgstr "Ant"
 
-#: ../src/appointment.c:3178
+#: ../src/appointment.c:3285
 msgid "Wed"
 msgstr "Tre"
 
-#: ../src/appointment.c:3178
+#: ../src/appointment.c:3285
 msgid "Thu"
 msgstr "Ket"
 
-#: ../src/appointment.c:3178
+#: ../src/appointment.c:3285
 msgid "Fri"
 msgstr "Pen"
 
-#: ../src/appointment.c:3178
+#: ../src/appointment.c:3285
 msgid "Sat"
 msgstr "Šeš"
 
-#: ../src/appointment.c:3178
+#: ../src/appointment.c:3285
 msgid "Sun"
 msgstr "Sek"
 
-#: ../src/appointment.c:3183
+#: ../src/appointment.c:3290
 msgid "Recurrence"
 msgstr "Pasikartojimas"
 
 #. complexity
-#: ../src/appointment.c:3189
+#: ../src/appointment.c:3296
 msgid "Complexity"
 msgstr "Sudėtingumas"
 
-#: ../src/appointment.c:3192
+#: ../src/appointment.c:3299
 msgid "Basic"
 msgstr "Paprasta"
 
-#: ../src/appointment.c:3198
+#: ../src/appointment.c:3305
 msgid "Advanced"
 msgstr "Sudėtinga"
 
-#: ../src/appointment.c:3202
+#: ../src/appointment.c:3309
 msgid "Use this if you want regular repeating event"
 msgstr "Naudokite jei norite, kad būtų pastoviai kartojama"
 
-#: ../src/appointment.c:3204
+#: ../src/appointment.c:3311
 msgid ""
 "Use this if you need complex times like:\n"
 " Every Saturday and Sunday or \n"
 " First Tuesday every month"
-msgstr ""
-"Naudokite šį jei reikia sudėtingų laikų:\n"
-" Kiekvieną šeštadienį ir sekmadienį ar \n"
-" Kiekvieno mėnesio pirmą antradienį"
+msgstr "Naudokite šį jei reikia sudėtingų laikų:\n Kiekvieną šeštadienį ir sekmadienį ar \n Kiekvieno mėnesio pirmą antradienį"
 
 #. frequency
-#: ../src/appointment.c:3211
+#: ../src/appointment.c:3317
 msgid "Frequency"
 msgstr "Dažnumas"
 
-#: ../src/appointment.c:3217
+#: ../src/appointment.c:3323
 msgid "Each"
 msgstr "Kartoti kas"
 
-#: ../src/appointment.c:3224
+#: ../src/appointment.c:3330
 msgid "occurrence"
 msgstr " "
 
-#: ../src/appointment.c:3228
+#: ../src/appointment.c:3334
 msgid ""
 "Limit frequency to certain interval.\n"
 " For example: Every third day:\n"
 " Frequency = Daily and Interval = 3"
-msgstr ""
-"Riboti dažnį iki tam tikro intervalo.\n"
-" Pavyzdžiui: Kas trečią dieną:\n"
-" Dažnis = Kasdien su intervalu = 3"
+msgstr "Riboti dažnį iki tam tikro intervalo.\n Pavyzdžiui: Kas trečią dieną:\n Dažnis = Kasdien su intervalu = 3"
 
-#: ../src/appointment.c:3274
+#: ../src/appointment.c:3379
 msgid "Limit"
 msgstr "Riba"
 
-#: ../src/appointment.c:3276
+#: ../src/appointment.c:3381
 msgid "Repeat forever"
 msgstr "Kartoti amžinai"
 
-#: ../src/appointment.c:3282
+#: ../src/appointment.c:3387
 msgid "Repeat "
 msgstr "Kartoti"
 
-#: ../src/appointment.c:3298
+#: ../src/appointment.c:3403
 msgid "Repeat until "
 msgstr "Kartoti iki"
 
 #. weekdays (only for complex settings)
-#: ../src/appointment.c:3311
+#: ../src/appointment.c:3416
 msgid "Weekdays"
 msgstr "Šiokiadieniais"
 
-#: ../src/appointment.c:3323
+#: ../src/appointment.c:3428
 msgid "Which day"
 msgstr "Kurią dieną"
 
-#: ../src/appointment.c:3331
+#: ../src/appointment.c:3436
 msgid ""
 "Specify which weekday for monthly and yearly events.\n"
 " For example:\n"
@@ -1092,125 +1091,108 @@ msgid ""
 "\tFrequency = Monthly,\n"
 "\tWeekdays = check only Wednesday,\n"
 "\tWhich day = select 2 from the number below Wednesday"
-msgstr ""
-"Nurodykite kurią savaitės dieną mėnesiniams ar metiniams įvykiams.\n"
-" Pavyzdžiui:\n"
-" Kiekvieno mėnesio antrą trečiadienį:\n"
-"\tDažnumas = Kas mėnesį,\n"
-"\tSavaitės dienos = tikrinti tik trečiadienį,\n"
-"\tKuri diena = pasirinkite 2 iš žemiau esančių trečiadienių"
+msgstr "Nurodykite kurią savaitės dieną mėnesiniams ar metiniams įvykiams.\n Pavyzdžiui:\n Kiekvieno mėnesio antrą trečiadienį:\n\tDažnumas = Kas mėnesį,\n\tSavaitės dienos = tikrinti tik trečiadienį,\n\tKuri diena = pasirinkite 2 iš žemiau esančių trečiadienių"
 
 #. TODO base (only for TODOs)
-#: ../src/appointment.c:3339
+#: ../src/appointment.c:3443
 msgid "TODO base"
 msgstr "Darbų bazė"
 
-#: ../src/appointment.c:3352
+#: ../src/appointment.c:3456
 msgid ""
 "TODO reoccurs regularly starting on start time and repeating after each "
 "interval no matter when it was last completed"
-msgstr ""
-"Darbai reguliariai atsiranda atėjus pradžios laikui ir kartojami nurodytu "
-"intervalu, nepaisant to kada jie buvo paskutinį kart baigti"
+msgstr "Darbai reguliariai atsiranda atėjus pradžios laikui ir kartojami nurodytu intervalu, nepaisant to kada jie buvo paskutinį kart baigti"
 
-#: ../src/appointment.c:3354
+#: ../src/appointment.c:3458
 msgid ""
-"TODO reoccurrency is based on complete time and repeats after the interval "
-"counted from the last completed time.\n"
-"(Note that you can not tell anything about the history of the TODO since "
-"reoccurrence base changes after each completion.)"
-msgstr ""
-"Darbų pasikartojimas yra paremtas baigimo laiku ir kartojimo intervalas "
-"skaičiuojamas nuo atlikimo laiko. (Turėkite omeny jog neįmanoma nieko "
-"pasakyti apie istoriją, nes darbų kartojimasis keičiasi po kiekvieno "
-"atlikimo.)"
+"TODO reoccurrency is based on complete time and repeats after the interval counted from the last completed time.\n"
+"(Note that you can not tell anything about the history of the TODO since reoccurrence base changes after each completion.)"
+msgstr "Darbų pasikartojimas yra paremtas baigimo laiku ir kartojimo intervalas skaičiuojamas nuo atlikimo laiko. (Turėkite omeny jog neįmanoma nieko pasakyti apie istoriją, nes darbų kartojimasis keičiasi po kiekvieno atlikimo.)"
 
 #. exceptions
-#: ../src/appointment.c:3361
+#: ../src/appointment.c:3464
 msgid "Exceptions"
 msgstr "Išimtys"
 
-#: ../src/appointment.c:3374
+#: ../src/appointment.c:3477
 msgid ""
 "Add more exception dates by clicking the calendar days below.\n"
-"Exception is either exclusion(-) or inclusion(+) depending on the "
-"selection.\n"
+"Exception is either exclusion(-) or inclusion(+) depending on the selection.\n"
 "Remove by clicking the data."
-msgstr ""
-"Pridėkite daugiau išimčių paspausdami žemiau esančias kalendoriaus dienas.\n"
-"Išimtis yra išimtis(-) arba įterpimas(+) priklausomai nuo pasirinkimo.\n"
-"Pašalinkite paspausdami duomenis."
+msgstr "Pridėkite daugiau išimčių paspausdami žemiau esančias kalendoriaus dienas.\nIšimtis yra išimtis(-) arba įterpimas(+) priklausomai nuo pasirinkimo.\nPašalinkite paspausdami duomenis."
 
-#: ../src/appointment.c:3379
+#: ../src/appointment.c:3482
 msgid "Add excluded date (-)"
 msgstr "Pridėti išimties datą (-)"
 
-#: ../src/appointment.c:3381
+#: ../src/appointment.c:3484
 msgid "Excluded days are full days where this appointment is not happening"
 msgstr "Išimties dienos yra pilnos dienos kuriomis paskyrimai nevyksta"
 
-#: ../src/appointment.c:3387
+#: ../src/appointment.c:3490
 msgid "Add included time (+)"
 msgstr "Pridėti įterpimo laiką (+)"
 
-#: ../src/appointment.c:3389
+#: ../src/appointment.c:3492
 msgid ""
 "Included times have same timezone than start time, but they may have "
 "different time"
-msgstr ""
-"Įterpti laikai turi tą pačią laiko juostą kaip ir pradžios laikas, bet jie "
-"gali skirtis"
+msgstr "Įterpti laikai turi tą pačią laiko juostą kaip ir pradžios laikas, bet jie gali skirtis"
 
 #. calendars showing the action days
-#: ../src/appointment.c:3406
+#: ../src/appointment.c:3509
 msgid "Action dates"
 msgstr "Veiksmų datos"
 
 #. ********* View menu *********
 #. View menu
-#: ../src/day-view.c:264 ../src/event-list.c:1044 ../src/mainbox.c:305
+#: ../src/day-view.c:289 ../src/event-list.c:1056 ../src/mainbox.c:323
 msgid "_View"
 msgstr "R_odymas"
 
 #. ********* Go menu   *********
-#: ../src/day-view.c:278 ../src/event-list.c:1063
+#: ../src/day-view.c:303 ../src/event-list.c:1075
 msgid "_Go"
 msgstr "_Eiti"
 
-#: ../src/day-view.c:319 ../src/event-list.c:1110
+#: ../src/day-view.c:377 ../src/event-list.c:1121
 msgid "New"
 msgstr "Nauja"
 
-#: ../src/day-view.c:324 ../src/event-list.c:1119
-msgid "Back"
-msgstr "Atgal"
+#: ../src/day-view.c:382
+msgid "Back one week"
+msgstr ""
 
-#: ../src/day-view.c:326 ../src/event-list.c:1121 ../src/functions.c:143
-#: ../src/tray_icon.c:460
-msgid "Today"
-msgstr "Šiandien"
+#: ../src/day-view.c:384
+msgid "Back one day"
+msgstr ""
 
-#: ../src/day-view.c:328 ../src/event-list.c:1123
-msgid "Forward"
-msgstr "Pirmyn"
+#: ../src/day-view.c:388
+msgid "Forward one day"
+msgstr ""
 
-#: ../src/day-view.c:333 ../src/event-list.c:1128
+#: ../src/day-view.c:390
+msgid "Forward one week"
+msgstr ""
+
+#: ../src/day-view.c:395 ../src/event-list.c:1139
 msgid "Refresh"
 msgstr "Atnaujinti"
 
-#: ../src/day-view.c:338 ../src/event-list.c:1135 ../src/interface.c:809
+#: ../src/day-view.c:400 ../src/event-list.c:1146 ../src/interface.c:834
 msgid "Close"
 msgstr "Užverti"
 
-#: ../src/day-view.c:454
+#: ../src/day-view.c:549
 msgid "Unknown"
 msgstr "Nežinoma"
 
-#: ../src/day-view.c:704
+#: ../src/day-view.c:807
 msgid "       Number of days to show"
 msgstr "       Rodomų dienų"
 
-#: ../src/day-view.c:935
+#: ../src/day-view.c:1073
 msgid "Orage - day view"
 msgstr "Orage - dienos rodinys"
 
@@ -1219,165 +1201,166 @@ msgstr "Orage - dienos rodinys"
 msgid "All day"
 msgstr "Visa diena"
 
-#: ../src/event-list.c:580 ../src/event-list.c:1281
+#: ../src/event-list.c:583 ../src/event-list.c:1292
 msgid "Time"
 msgstr "Laikas"
 
-#: ../src/event-list.c:748
+#: ../src/event-list.c:751
 msgid "No rows have been selected."
 msgstr "Nepasirinkta jokia eilutė"
 
-#: ../src/event-list.c:749
+#: ../src/event-list.c:752
 msgid "Click a row to select it and after that you can copy it."
 msgstr "Norėdami pasirinkti paspauskite eilutę, tada galėsite ją nukopijuoti."
 
-#: ../src/event-list.c:918
+#: ../src/event-list.c:920
 msgid ""
 "You will permanently remove all\n"
 "selected appointments."
+msgstr "Jūs visam laikui pašalinsite visus\npasirinktus paskyrimus."
+
+#: ../src/event-list.c:923
+msgid "Yes, remove them"
 msgstr ""
-"Jūs visam laikui pašalinsite visus\n"
-"pasirinktus paskyrimus."
 
 #: ../src/event-list.c:1130
+msgid "Back"
+msgstr "Atgal"
+
+#: ../src/event-list.c:1134
+msgid "Forward"
+msgstr "Pirmyn"
+
+#: ../src/event-list.c:1141
 msgid "Find"
 msgstr "Ieškoti"
 
-#: ../src/event-list.c:1137
+#: ../src/event-list.c:1148
 msgid "Dayview"
 msgstr "Dienų rodinys"
 
-#: ../src/event-list.c:1170
+#: ../src/event-list.c:1181
 msgid "Extra days to show "
 msgstr "Rodyti papildomas dienas"
 
-#: ../src/event-list.c:1201
+#: ../src/event-list.c:1212
 msgid "Journal entries starting from:"
 msgstr "Žurnalo įrašai prasideda nuo:"
 
-#: ../src/event-list.c:1221
+#: ../src/event-list.c:1232
 msgid "Search"
 msgstr "Ieškoti"
 
-#: ../src/event-list.c:1224
+#: ../src/event-list.c:1235
 msgid "Search text "
 msgstr "Ieškoti teksto"
 
-#: ../src/event-list.c:1289
+#: ../src/event-list.c:1300
 msgid "Flags"
 msgstr "Gairelės"
 
-#: ../src/event-list.c:1297
+#: ../src/event-list.c:1308
 msgid "Title"
 msgstr "Antraštė"
 
-#: ../src/event-list.c:1323
+#: ../src/event-list.c:1334
 msgid ""
 "Double click line to edit it.\n"
 "\n"
 "Flags in order:\n"
 "\t 1. Alarm: n=no alarm\n"
-"\t\t A=visual Alarm S=also Sound alarm\n"
+"\t\t A=Alarm is set P=Persistent alarm is set\n"
 "\t 2. Recurrence: n=no recurrence\n"
-"\t\t D=Daily W=Weekly M=Monthly Y=Yearly\n"
+"\t\t H=Hourly D=Daily W=Weekly M=Monthly Y=Yearly\n"
 "\t 3. Type: f=free B=Busy\n"
 "\t 4. Located in file:\n"
 "\t\tO=Orage A=Archive F=Foreign\n"
 "\t 5. Appointment type:\n"
 "\t\tE=Event T=Todo J=Journal"
 msgstr ""
-"Norėdami keisti, dukart spustelėkite eilutę.\n"
-"\n"
-"Gairelės iš eilės:\n"
-"\t 1. Signalas: n=be signalo\n"
-"\t\t A=vizualus signalas S=taipogi garsinis signalas\n"
-"\t 2. Pasirodymo dažnumas: n=nekartoti\n"
-"\t\t D=kasdien W=kas savaitę M=kas mėnesį Y=kas metai\n"
-"\t 3. Tipas: f=laisvas B=užimtas\n"
-"\t 4. Yra faile:\n"
-"\t\tO=Orage A=archyvas F=išorinis\n"
-"\t 5. Paskyrimo tipas:\n"
-"\t\tE=įvykis T=darbas J=žurnalas"
-
-#: ../src/functions.c:141
-msgid "Pick the date"
-msgstr "Pasirinkite datą"
 
 #. remove since it has ended
 #: ../src/ical-archive.c:267
 msgid "\tRecur ended, moving to archive file."
 msgstr "\tPasikartojimas baigėsi, perkeliama į archyvą."
 
-#: ../src/ical-archive.c:329
+#: ../src/ical-archive.c:330
 msgid "Archiving not enabled. Exiting"
 msgstr "Archyvavimas neįjungtas. Išeinama"
 
-#: ../src/ical-archive.c:347
+#: ../src/ical-archive.c:349
 #, c-format
 msgid "Archiving threshold: %d month(s)"
 msgstr "Archyvavimo slenkstis: %d mėnesis(-iai)"
 
 #. yy mon day
-#: ../src/ical-archive.c:350
+#: ../src/ical-archive.c:352
 #, c-format
 msgid "\tArchiving events, which are older than: %04d-%02d-%02d"
 msgstr "\tArchyvuojami įvykiai, kurie yra senesni nei: %04d-%02d-%02d"
 
-#: ../src/ical-archive.c:377
+#: ../src/ical-archive.c:379
 #, c-format
 msgid "Archiving uid: %s"
 msgstr "Archyvuojamas uid: %s"
 
 #. VTODO not completed, do not archive
-#: ../src/ical-archive.c:383
+#: ../src/ical-archive.c:385
 msgid "\tVTODO not complete; not archived"
 msgstr "\tVTODO nebaigta; nesuarchyvuota"
 
 #. it is recurrent event
-#: ../src/ical-archive.c:388
+#: ../src/ical-archive.c:390
 #, c-format
 msgid "\tRecurring. End year: %04d, month: %02d, day: %02d"
 msgstr "\tPasikartojantis. Pabaigos metai: %04d, mėnuo: %02d, diena: %02d"
 
-#: ../src/ical-archive.c:405
+#: ../src/ical-archive.c:407
 msgid "Archiving done\n"
 msgstr "Archyvavimas baigtas\n"
 
 #. PHASE 1: go through base orage file and remove "repeat" shortcuts
-#: ../src/ical-archive.c:421
+#: ../src/ical-archive.c:423
 msgid "Starting archive removal."
 msgstr "Pradedamas archyvo šalinimas."
 
-#: ../src/ical-archive.c:422
+#: ../src/ical-archive.c:424
 msgid "\tPHASE 1: reset recurring appointments"
 msgstr "\tFazė 1: atstatyti pasikartojančius paskyrimus"
 
 #. PHASE 2: go through archive file and add everything back to base orage.
 #. * After that delete the whole arch file
-#: ../src/ical-archive.c:444
+#: ../src/ical-archive.c:446
 msgid "\tPHASE 2: return archived appointments"
 msgstr "\tFazė 2: grąžinti archyvuotus paskyrimus"
 
-#: ../src/ical-archive.c:470
+#: ../src/ical-archive.c:472
 msgid "Archive removal done\n"
 msgstr "Archyvo šalinimas baigtas\n"
 
-#: ../src/ical-code.c:932
+#: ../src/ical-code.c:972
 msgid "Orage default alarm"
 msgstr "Numatytasis Orage signalas"
 
-#: ../src/ical-code.c:3115
-#, c-format
-msgid "Build alarm list: Added %d alarms. Processed %d events."
-msgstr "Sukurti signalų sąrašą: Pridėti %d signalai. Apdoroti %d įvykiai."
+#: ../src/ical-code.c:3179
+msgid "Created alarm list for main Orage file:"
+msgstr ""
 
-#: ../src/ical-code.c:3117
+#: ../src/ical-code.c:3181
+#, c-format
+msgid "Created alarm list for foreign file: %s (%s)"
+msgstr ""
+
+#: ../src/ical-code.c:3183
+#, c-format
+msgid "\tAdded %d alarms. Processed %d events."
+msgstr ""
+
+#: ../src/ical-code.c:3185
 #, c-format
 msgid ""
 "\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
-msgstr ""
-"\tRasti %d signalai iš kurių %d aktyvūs. (Ieškota tarp %d pasikartojančių "
-"signalų.)"
+msgstr "\tRasti %d signalai iš kurių %d aktyvūs. (Ieškota tarp %d pasikartojančių signalų.)"
 
 #: ../src/ical-expimp.c:123
 msgid "Starting import file preprocessing"
@@ -1395,7 +1378,16 @@ msgstr "... Laiko juosta pataisyta į Orage formatą."
 msgid "Import file preprocessing done"
 msgstr "Importavimo failo apdorojimas baigtas"
 
-#: ../src/interface.c:284
+#: ../src/interface.c:89 ../src/interface.c:104
+#, c-format
+msgid "Found external update on file %s."
+msgstr ""
+
+#: ../src/interface.c:112
+msgid "Refreshing alarms and calendar due to external file update."
+msgstr ""
+
+#: ../src/interface.c:271
 msgid "Calendar files"
 msgstr "Kalendoriaus failai"
 
@@ -1403,621 +1395,667 @@ msgstr "Kalendoriaus failai"
 msgid "Current foreign files"
 msgstr "Dabartiniai išoriniai failai"
 
-#: ../src/interface.c:643
+#: ../src/interface.c:648
 msgid "READ ONLY"
 msgstr "TIK SKAITYMUI"
 
-#: ../src/interface.c:645
+#: ../src/interface.c:650
 msgid "READ WRITE"
 msgstr "SKAITYMUI RAŠYMUI"
 
-#: ../src/interface.c:663
+#: ../src/interface.c:669
 msgid "***** No foreign files *****"
 msgstr "***** Išorinių failų nėra *****"
 
-#: ../src/interface.c:974
+#: ../src/interface.c:682
+msgid "Foreign file add failed"
+msgstr ""
+
+#: ../src/interface.c:689
+msgid "Orage can only handle 10 foreign files. Limit reached."
+msgstr ""
+
+#: ../src/interface.c:697
+msgid "Filename is empty."
+msgstr ""
+
+#: ../src/interface.c:705
+msgid "Name is empty."
+msgstr ""
+
+#: ../src/interface.c:713
+msgid "File does not exist."
+msgstr ""
+
+#: ../src/interface.c:722
+msgid "Same filename already exists in Orage."
+msgstr ""
+
+#: ../src/interface.c:730
+msgid "Same name already exists in Orage."
+msgstr ""
+
+#: ../src/interface.c:965
 msgid "Import/export"
 msgstr "Importuoti/eksportuoti"
 
-#: ../src/interface.c:981
+#: ../src/interface.c:972
 msgid "Import"
 msgstr "Importuoti"
 
-#: ../src/interface.c:986
+#: ../src/interface.c:977
 msgid "Read from file:"
 msgstr "Skaityti iš failo:"
 
-#: ../src/interface.c:1003
+#: ../src/interface.c:994
 msgid ""
 "Separate filenames with comma(,).\n"
 " NOTE: comma is not valid character in filenames for Orage."
-msgstr ""
-"Failų vardus atskirkite kableliu (,).\n"
-" PASTABA: taškas nėra tinkamas simbolis Orage failų varduose."
+msgstr "Failų vardus atskirkite kableliu (,).\n PASTABA: taškas nėra tinkamas simbolis Orage failų varduose."
 
-#: ../src/interface.c:1008
+#: ../src/interface.c:999
 msgid "Export"
 msgstr "Eksportuoti"
 
-#: ../src/interface.c:1013
+#: ../src/interface.c:1004
 msgid "Write to file:"
 msgstr "Rašyti į failą:"
 
-#: ../src/interface.c:1034 ../src/interface.c:1046
+#: ../src/interface.c:1025 ../src/interface.c:1037
 msgid "Select"
 msgstr "Pasirinkti"
 
-#: ../src/interface.c:1037
+#: ../src/interface.c:1028
 msgid "All appointments"
 msgstr "Visi paskyrimai"
 
-#: ../src/interface.c:1050
+#: ../src/interface.c:1041
 msgid "Named appointments: "
 msgstr "Paskyrimai pavadinti:"
 
-#: ../src/interface.c:1062
+#: ../src/interface.c:1053
 msgid ""
 "Note that only main file appointments are read.\n"
 "Archived and Foreign events are not exported."
-msgstr ""
-"Turėkite omeny jog skaitomi tik pagrindiniai failo paskyrimai.\n"
-"Archyvuoti ir išoriniai įvykiai neeksportuojami."
+msgstr "Turėkite omeny jog skaitomi tik pagrindiniai failo paskyrimai.\nArchyvuoti ir išoriniai įvykiai neeksportuojami."
 
-#: ../src/interface.c:1065
+#: ../src/interface.c:1056
 msgid ""
 "Note that only main file appointments are read.\n"
 "Foreign events are not exported."
-msgstr ""
-"Turėkite omeny jog skaitomi tik pagrindiniai failo paskyrimai.\n"
-"Išoriniai įvykiai neeksportuojami."
+msgstr "Turėkite omeny jog skaitomi tik pagrindiniai failo paskyrimai.\nIšoriniai įvykiai neeksportuojami."
 
-#: ../src/interface.c:1068
+#: ../src/interface.c:1059
 msgid "You can easily drag these from event-list window."
 msgstr "Šiuos įvykius galite lengvai nuvilkti iš įvykių sąrašo lango."
 
-#: ../src/interface.c:1070
+#: ../src/interface.c:1061
 msgid "Orage appointment UIDs separated by commas."
 msgstr "Orage paskyrimų UID atskirti kableliais."
 
-#: ../src/interface.c:1076
+#: ../src/interface.c:1067
 msgid "Archive"
 msgstr "Archyvuoti"
 
-#: ../src/interface.c:1084
+#: ../src/interface.c:1075
 #, c-format
 msgid "Archive now (threshold: %d months)"
 msgstr "Archyvuoti dabar (slenkstis: %d mėnesiai)"
 
-#: ../src/interface.c:1094
+#: ../src/interface.c:1085
 msgid "You can change archive threshold in parameters"
 msgstr "Archyvo slenkstį galite pasikeisti parametruose"
 
-#: ../src/interface.c:1101
+#: ../src/interface.c:1092
 msgid "Revert archive now"
 msgstr "Grąžinti archyvą dabar"
 
-#: ../src/interface.c:1107
+#: ../src/interface.c:1098
 msgid ""
 "Return all archived events into main orage file and remove arch file.\n"
 "This is useful for example when doing export and moving orage\n"
 "appointments to another system."
-msgstr ""
-"Grąžinti visus archyvuotus įvykius į pagrindinį orage failą\n"
-"ir pašalinti archyvo failą. Tai naudinga eksportuojant ir\n"
-"perkeliant orage paskyrimus į kitą sistemą."
+msgstr "Grąžinti visus archyvuotus įvykius į pagrindinį orage failą\nir pašalinti archyvo failą. Tai naudinga eksportuojant ir\nperkeliant orage paskyrimus į kitą sistemą."
 
-#: ../src/interface.c:1118
+#: ../src/interface.c:1109
 msgid "Orage files"
 msgstr "Orage failai"
 
-#: ../src/interface.c:1125
+#: ../src/interface.c:1116
 msgid "Orage main calendar file"
 msgstr "Pagrindinis Orage kalendoriaus failas"
 
-#: ../src/interface.c:1130 ../src/interface.c:1195
-msgid "Current file"
-msgstr "Dabartinis failas"
+#: ../src/interface.c:1121 ../src/interface.c:1186
+msgid "Current file:"
+msgstr ""
 
-#: ../src/interface.c:1137 ../src/interface.c:1202
-msgid "New file"
-msgstr "Naujas failas"
+#: ../src/interface.c:1128 ../src/interface.c:1193
+msgid "New file:"
+msgstr ""
 
-#: ../src/interface.c:1153 ../src/interface.c:1219
-msgid "Action options"
-msgstr "Veiksmų parinktys"
+#: ../src/interface.c:1144 ../src/interface.c:1210
+msgid "Action options:"
+msgstr ""
 
-#: ../src/interface.c:1156 ../src/interface.c:1222
+#: ../src/interface.c:1147 ../src/interface.c:1213
 msgid "Rename"
 msgstr "Pervadinti"
 
-#: ../src/interface.c:1160
+#: ../src/interface.c:1151
 msgid ""
 "Orage internal file rename only.\n"
 "Does not touch external filesystem at all.\n"
 "New file must exist."
-msgstr ""
-"Tik vidinio Orage failo pervadinimas.\n"
-"Išorinė failų sistema lieka nepaliesta.\n"
-"Naujas failas turi būti jau sukurtas."
+msgstr "Tik vidinio Orage failo pervadinimas.\nIšorinė failų sistema lieka nepaliesta.\nNaujas failas turi būti jau sukurtas."
 
-#: ../src/interface.c:1164 ../src/interface.c:1227
+#: ../src/interface.c:1155 ../src/interface.c:1218
 msgid "Copy"
 msgstr "Kopijuoti"
 
-#: ../src/interface.c:1168
+#: ../src/interface.c:1159
 msgid "Current file is copied and stays unmodified in the old place."
-msgstr ""
-"Dabartinis failas nukopijuojamas ir lieka nepakeistas, savo senoje vietoje."
+msgstr "Dabartinis failas nukopijuojamas ir lieka nepakeistas, savo senoje vietoje."
 
-#: ../src/interface.c:1172 ../src/interface.c:1232
+#: ../src/interface.c:1163 ../src/interface.c:1223
 msgid "Move"
 msgstr "Perkelti"
 
-#: ../src/interface.c:1176
+#: ../src/interface.c:1167
 msgid "Current file is moved and vanishes from the old place."
 msgstr "Dabartinis failas perkeliamas ir išnyksta iš senos vietos."
 
-#: ../src/interface.c:1190
+#: ../src/interface.c:1181
 msgid "Archive file"
 msgstr "Archyvo failas"
 
-#: ../src/interface.c:1254
+#: ../src/interface.c:1245
 msgid "Foreign files"
 msgstr "Išoriniai failai"
 
-#: ../src/interface.c:1261
+#: ../src/interface.c:1252
 msgid "Add new foreign file"
 msgstr "Pridėti naują išorinį failą"
 
-#: ../src/interface.c:1266
+#: ../src/interface.c:1257
 msgid "Foreign file:"
 msgstr "Išorinis failas:"
 
-#: ../src/interface.c:1284
-msgid "Options"
-msgstr "Parinktys"
+#. label = gtk_label_new(_("Options:"));
+#. gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 5);
+#. 
+#: ../src/interface.c:1279
+msgid "Visible name:"
+msgstr ""
 
-#: ../src/interface.c:1286
+#: ../src/interface.c:1285
 msgid "Read only"
 msgstr "Tik skaityti"
 
-#: ../src/interface.c:1294
+#: ../src/interface.c:1292
 msgid ""
-"Set this if you want to make sure that this file is never modified by "
-"Orage.\n"
-"Note that modifying foreign files may make them incompatible with the "
-"original tool, where they came from!"
+"Set this if you want to make sure that this file is never modified by Orage.\n"
+"Note that modifying foreign files may make them incompatible with the original tool, where they came from!"
+msgstr "Nustatykite jei norite jog Orage niekad nekeistų šio failo.\nTurėkite omeny jog išorinių failų keitimas gali padaryti juos \nnetinkamus originaliam įrankiui, kuris juos sukūrė!"
+
+#: ../src/interface.c:1294
+msgid "This internal name is displayed to user instead of file name."
 msgstr ""
-"Nustatykite jei norite jog Orage niekad nekeistų šio failo.\n"
-"Turėkite omeny jog išorinių failų keitimas gali padaryti juos \n"
-"netinkamus originaliam įrankiui, kuris juos sukūrė!"
 
 #: ../src/interface.c:1308
 msgid "Exchange data - Orage"
 msgstr "Duomenų keitimasis - Orage"
 
-#: ../src/main.c:268
+#: ../src/main.c:275
 #, c-format
 msgid ""
 "\tThis is %s version %s\n"
 "\n"
-msgstr ""
-"\tTai yra %s versija %s\n"
-"\n"
+msgstr "\tTai yra %s versija %s\n\n"
 
-#: ../src/main.c:270
+#: ../src/main.c:277
 #, c-format
 msgid "\tReleased under the terms of the GNU General Public License.\n"
 msgstr "\tPlatinamas GNU Bendrosios viešosios licencijos versijos sąlygomis.\n"
 
-#: ../src/main.c:271
+#: ../src/main.c:278
 #, c-format
 msgid "\tCompiled against GTK+-%d.%d.%d, "
 msgstr "\tSukompiliuota su GTK+-%d.%d.%d, "
 
-#: ../src/main.c:273
+#: ../src/main.c:280
 #, c-format
 msgid "using GTK+-%d.%d.%d.\n"
 msgstr "naudojama GTK+-%d.%d.%d.\n"
 
-#: ../src/main.c:276
+#: ../src/main.c:283
 #, c-format
 msgid "\tUsing DBUS for import.\n"
 msgstr "\tImportavimui naudojama DBUS.\n"
 
-#: ../src/main.c:278
+#: ../src/main.c:285
 #, c-format
 msgid "\tNot using DBUS. Import works only partially.\n"
 msgstr "\tDBUS nenaudojama. Importavimas veikia tik dalinai.\n"
 
-#: ../src/main.c:281
+#: ../src/main.c:288
 #, c-format
 msgid "\tUsing libnotify.\n"
 msgstr "\tNaudojama libnotify.\n"
 
-#: ../src/main.c:283
+#: ../src/main.c:290
 #, c-format
 msgid "\tNot using libnotify.\n"
 msgstr "\tLibnotify nenaudojama.\n"
 
-#: ../src/main.c:286
+#: ../src/main.c:293
 #, c-format
 msgid "\tUsing automatic archiving.\n"
 msgstr "\tNaudojamas automatinis archyvavimas.\n"
 
-#: ../src/main.c:288
+#: ../src/main.c:295
 #, c-format
 msgid "\tNot using archiving.\n"
 msgstr "\tArchyvavimas nenaudojamas.\n"
 
-#: ../src/main.c:291
+#: ../src/main.c:298
 #, c-format
 msgid "\tUsing operating system package libical.\n"
 msgstr "\tNaudojamas operacinės sistemos paketas libical.\n"
 
-#: ../src/main.c:293
+#: ../src/main.c:300
 #, c-format
 msgid "\tUsing Orage local version of libical.\n"
 msgstr "\tNaudojama vietinė libical versija.\n"
 
-#: ../src/main.c:306
+#: ../src/main.c:313
 #, c-format
 msgid ""
 "Usage: orage [options] [files]\n"
 "\n"
-msgstr ""
-"Naudojimas: orage [parinktys] [failai]\n"
-"\n"
+msgstr "Naudojimas: orage [parinktys] [failai]\n\n"
 
-#: ../src/main.c:307
+#: ../src/main.c:314
 #, c-format
 msgid "Options:\n"
 msgstr "Parinktys:\n"
 
-#: ../src/main.c:308
+#: ../src/main.c:315
 #, c-format
 msgid "--version (-v) \t\tshow version of orage\n"
 msgstr "--version (-v) \t\tparodo orage versiją\n"
 
-#: ../src/main.c:309
+#: ../src/main.c:316
 #, c-format
 msgid "--help (-h) \t\tprint this text\n"
 msgstr "--help (-h) \t\tparodo šį tekstą\n"
 
-#: ../src/main.c:310
+#: ../src/main.c:317
 #, c-format
 msgid "--preferences (-p) \tshow preferences form\n"
 msgstr "--preferences (-p) \tparodo nustatymų formą\n"
 
-#: ../src/main.c:311
+#: ../src/main.c:318
 #, c-format
 msgid "--toggle (-t) \t\tmake orage visible/unvisible\n"
 msgstr "--toggle (-t) \t\trodyti/nerodyti orage\n"
 
-#: ../src/main.c:312
+#: ../src/main.c:319
 #, c-format
-msgid "--add-foreign (-a) file [RW] \tadd a foreign file\n"
-msgstr "--add-foreign (-a) failas [RW] \tpridėti išorinį failą\n"
+msgid "--add-foreign (-a) file [RW] [name] \tadd a foreign file\n"
+msgstr ""
 
-#: ../src/main.c:313
+#: ../src/main.c:320
 #, c-format
 msgid "--remove-foreign (-r) file \tremove a foreign file\n"
 msgstr "--remove-foreign (-r) failas \tpašalinti išorinį failą\n"
 
-#: ../src/main.c:314
+#: ../src/main.c:321
 #, c-format
 msgid ""
 "--export (-e) file [appointment...] \texport appointments from Orage to "
 "file\n"
-msgstr ""
-"--export (-e) failas [paskyrimas...] \teksportuoja paskyrimus iš Orage į "
-"failą\n"
+msgstr "--export (-e) failas [paskyrimas...] \teksportuoja paskyrimus iš Orage į failą\n"
 
-#: ../src/main.c:316
+#: ../src/main.c:323
 #, c-format
 msgid "files=ical files to load into orage\n"
 msgstr "failai=ical failai įkrovimui į orage\n"
 
-#: ../src/main.c:318
+#: ../src/main.c:325
 #, c-format
 msgid "\tdbus not included in orage. \n"
 msgstr "\tdbus neįterptas į orage. \n"
 
-#: ../src/main.c:319
+#: ../src/main.c:326
 #, c-format
 msgid ""
 "\twithout dbus [files] and foreign file options(-a & -r) can only be used "
 "when starting orage \n"
-msgstr ""
-"\tbe dbus [failai] ir išorinio failo parinktys(-a ir -r) gali būti "
-"naudojamas tik paleidžiant orage\n"
+msgstr "\tbe dbus [failai] ir išorinio failo parinktys(-a ir -r) gali būti naudojamas tik paleidžiant orage\n"
 
-#: ../src/main.c:511
+#: ../src/main.c:535
 #, c-format
 msgid ""
 "\n"
 "Unknown option %s\n"
 "\n"
-msgstr ""
-"\n"
-"Nežinoma parinktis %s\n"
-"\n"
+msgstr "\nNežinoma parinktis %s\n\n"
 
-#: ../src/mainbox.c:287
+#: ../src/mainbox.c:305
 msgid "_Exchange data"
 msgstr "_Keistis duomenimis"
 
 #. Edit menu
-#: ../src/mainbox.c:298
+#: ../src/mainbox.c:316
 msgid "_Edit"
 msgstr "K_eisti"
 
-#: ../src/mainbox.c:308
+#: ../src/mainbox.c:326
 msgid "View selected _date"
 msgstr "Peržiūrėti pasirinktą _datą"
 
-#: ../src/mainbox.c:311
+#: ../src/mainbox.c:329
 msgid "View selected _week"
 msgstr "Peržiūrėti pasirinktą _savaitę"
 
-#: ../src/mainbox.c:317
+#: ../src/mainbox.c:335
 msgid "Select _Today"
 msgstr "Pasirinkti š_iandieną"
 
-#: ../src/mainbox.c:323
+#: ../src/mainbox.c:341
 msgid "Show _Globaltime"
 msgstr "Rodyti _pasaulio laiką"
 
 #. Help menu
-#: ../src/mainbox.c:327
+#: ../src/mainbox.c:345
 msgid "_Help"
 msgstr "_Žinynas"
 
-#: ../src/mainbox.c:448
+#: ../src/mainbox.c:414 ../src/reminder.c:1138
+msgid "No title defined"
+msgstr ""
+
+#: ../src/mainbox.c:471
+#, c-format
+msgid " Location: %s\n"
+msgstr ""
+
+#: ../src/mainbox.c:481
+#, c-format
+msgid ""
+"\n"
+" Note:\n"
+"%s"
+msgstr ""
+
+#: ../src/mainbox.c:489
 msgid "Never"
 msgstr "Niekada"
 
-#: ../src/mainbox.c:453
+#: ../src/mainbox.c:495
 #, c-format
 msgid ""
 "Title: %s\n"
-" Location: %s\n"
-" Start:\t%s\n"
+"%s Start:\t%s\n"
 " Due:\t%s\n"
-" Done:\t%s\n"
-" Note:\n"
-"%s"
+" Done:\t%s%s"
 msgstr ""
-"Pavadinimas: %s\n"
-" Vieta: %s\n"
-" Pradžia:\t%s\n"
-" Trukmė:\t%s\n"
-" Atlikta:\t%s\n"
-" Pastaba:\n"
-"%s"
 
-#: ../src/mainbox.c:460
+#: ../src/mainbox.c:503
 #, c-format
 msgid ""
 "Title: %s\n"
-" Location: %s\n"
-" Start:\t%s\n"
-" End:\t%s\n"
-" Note:\n"
-"%s"
+"%s Start:\t%s\n"
+" End:\t%s%s"
 msgstr ""
-"Pavadinimas: %s\n"
-" Vieta: %s\n"
-" Pradžia:\t%s\n"
-" Pabaiga:\t%s\n"
-" Pastaba:\n"
-"%s"
 
-#: ../src/mainbox.c:546
+#: ../src/mainbox.c:613
 msgid "<b>To do:</b>"
 msgstr "<b>Darbai:</b>"
 
-#: ../src/mainbox.c:582
+#: ../src/mainbox.c:649
 #, c-format
 msgid "<b>Events for %s:</b>"
 msgstr "<b>Įvykiai %s:</b>"
 
-#: ../src/mainbox.c:593
+#: ../src/mainbox.c:660
 #, c-format
 msgid "<b>Events for %s - %s:</b>"
 msgstr "<b>Įvykiai %s - %s:</b>"
 
-#: ../src/parameters.c:522
+#: ../src/parameters.c:486
 msgid "Main settings"
 msgstr "Pagrindiniai nustatymai"
 
-#: ../src/parameters.c:528
+#: ../src/parameters.c:492
 msgid "Timezone"
 msgstr "Laiko juosta"
 
-#: ../src/parameters.c:543
+#: ../src/parameters.c:507
 msgid "You should always define your local timezone."
 msgstr "Visada turėtumėte nustatyti vietinę laiko juostą."
 
-#: ../src/parameters.c:552
+#: ../src/parameters.c:515
 msgid "Archive threshold (months)"
 msgstr "Archyvavimo slenkstis (mėnesiais)"
 
-#: ../src/parameters.c:562
+#: ../src/parameters.c:525
 msgid "(0 = no archiving)"
 msgstr "(0 = nearchyvuoti)"
 
-#: ../src/parameters.c:565
+#: ../src/parameters.c:528
 msgid "Archiving is used to save time and space when handling events."
-msgstr ""
-"Archyvavimas naudojamas norint sutaupyti vietos ir laiko apdorojant įvykius."
+msgstr "Archyvavimas naudojamas norint sutaupyti vietos ir laiko apdorojant įvykius."
 
-#: ../src/parameters.c:574
+#: ../src/parameters.c:536
 msgid "Sound command"
 msgstr "Garso komanda"
 
-#: ../src/parameters.c:589
+#: ../src/parameters.c:551
 msgid "This command is given to shell to make sound in alarms."
 msgstr "Ši komanda skirta groti signalus su garsu. "
 
-#: ../src/parameters.c:605
-msgid "Display settings"
-msgstr "Rodymo nustatymai"
+#: ../src/parameters.c:590
+msgid "Calendar window"
+msgstr ""
 
-#: ../src/parameters.c:613
-msgid "Calendar main window"
-msgstr "Pagrindinis kalendoriaus langas"
+#: ../src/parameters.c:597
+msgid "Calendar visual details"
+msgstr ""
 
-#: ../src/parameters.c:618
+#: ../src/parameters.c:603
 msgid "Show borders"
 msgstr "Rodyti rėmelius"
 
-#: ../src/parameters.c:625
+#: ../src/parameters.c:608
 msgid "Show menu"
 msgstr "Rodyti meniu"
 
-#: ../src/parameters.c:632
-msgid "Show month and year"
-msgstr "Rodyti mėnesį ir metus"
-
-#: ../src/parameters.c:639
+#: ../src/parameters.c:616
 msgid "Show day names"
 msgstr "Rodyti dienų pavadinimus"
 
-#: ../src/parameters.c:646
+#: ../src/parameters.c:621
 msgid "Show week numbers"
 msgstr "Rodyti savaičių numerius"
 
-#: ../src/parameters.c:653
+#: ../src/parameters.c:629
+msgid "Show month and year"
+msgstr "Rodyti mėnesį ir metus"
+
+#: ../src/parameters.c:649
+msgid "Calendar info boxes"
+msgstr ""
+
+#: ../src/parameters.c:654
 msgid "Show todo list"
 msgstr "Rodyti darbų sąrašą"
 
-#: ../src/parameters.c:660
+#: ../src/parameters.c:661
 msgid "Number of days to show in event window"
 msgstr "Kiek dienų bus rodoma įvykių lange"
 
-#: ../src/parameters.c:666
+#: ../src/parameters.c:667
 msgid "0 = do not show event list at all"
 msgstr "0 = išvis nerodyti įvykių sąrašo"
 
-#: ../src/parameters.c:676
+#: ../src/parameters.c:680
+msgid "Calendar visibility"
+msgstr ""
+
+#: ../src/parameters.c:685
 msgid "Show on all desktops"
 msgstr "Rodyti visuose darbastaliuose"
 
-#: ../src/parameters.c:683
+#: ../src/parameters.c:690
 msgid "Keep on top"
 msgstr "Visada viršuje"
 
-#: ../src/parameters.c:690
+#: ../src/parameters.c:698
 msgid "Show in taskbar"
 msgstr "Rodyti užduočių juostoje"
 
-#: ../src/parameters.c:697
+#: ../src/parameters.c:703
 msgid "Show in pager"
 msgstr "Rodyti pranešimų gaviklyje"
 
-#: ../src/parameters.c:704
+#: ../src/parameters.c:711
 msgid "Show in systray"
 msgstr "Rodyti sistemos dėkle"
 
-#: ../src/parameters.c:739
+#: ../src/parameters.c:732
 msgid "Calendar start"
 msgstr "Kalendorių paleisti"
 
-#: ../src/parameters.c:744
+#: ../src/parameters.c:737
 msgid "Show"
 msgstr "Rodomą"
 
-#: ../src/parameters.c:756
+#: ../src/parameters.c:749
 msgid "Hide"
 msgstr "Slėpiamą"
 
-#: ../src/parameters.c:768
+#: ../src/parameters.c:761
 msgid "Minimized"
 msgstr "Sumažintą"
 
-#: ../src/parameters.c:793
-msgid "Extra settings"
-msgstr "Papildomi nustatymai"
+#: ../src/parameters.c:781
+msgid "On calendar window open"
+msgstr ""
 
-#: ../src/parameters.c:801
-msgid "On Calendar Window Open"
-msgstr "Atveriant kalendoriaus langą"
+#: ../src/parameters.c:786
+msgid "Select today's date"
+msgstr ""
 
-#: ../src/parameters.c:806
-msgid "Select Today's Date"
-msgstr "Pasirinkti šiandieną"
+#: ../src/parameters.c:799
+msgid "Select previously selected date"
+msgstr ""
 
-#: ../src/parameters.c:819
-msgid "Select Previously Selected Date"
-msgstr "Pasirinkti anksčiau pasirinktą datą"
+#: ../src/parameters.c:817
+msgid "Calendar day double click shows"
+msgstr ""
 
-#: ../src/parameters.c:836
-msgid "Use dynamic tray icon"
-msgstr "Naudoti dinaminį sistemos dėklą"
-
-#: ../src/parameters.c:841
-msgid "Use dynamic icon"
-msgstr "Naudoti dinaminę piktogramą"
-
-#: ../src/parameters.c:847
-msgid "Dynamic icon shows current month and day of the month."
-msgstr "Dinaminė piktograma rodo dabartinį mėnesį ir mėnesio dieną."
-
-#: ../src/parameters.c:856
-msgid "Main Calendar double click shows"
-msgstr "Dukart spustelėjus pagrindinį kalendorių bus rodoma"
-
-#: ../src/parameters.c:861
+#: ../src/parameters.c:822
 msgid "Days view"
 msgstr "Dienų rodinys"
 
-#: ../src/parameters.c:873
+#: ../src/parameters.c:834
 msgid "Event list"
 msgstr "Įvykių sąrašas"
 
-#: ../src/parameters.c:890
-msgid "Eventlist window"
-msgstr "Įvykių sąrašo langas"
+#: ../src/parameters.c:856
+msgid "Extra settings"
+msgstr "Papildomi nustatymai"
 
-#: ../src/parameters.c:894
+#: ../src/parameters.c:863
+msgid "Event list window extra days"
+msgstr ""
+
+#: ../src/parameters.c:868
 msgid "Number of extra days to show in event list"
 msgstr "Kiek įvykių sąraše rodyti papildomų dienų"
 
-#: ../src/parameters.c:902
+#: ../src/parameters.c:876
 msgid ""
 "This is just the default value, you can change it in the actual eventlist "
 "window."
-msgstr ""
-"Tai yra numatytoji reikšmė, tikrame įvykių sąrašo lange galite ją pakeisti."
+msgstr "Tai yra numatytoji reikšmė, tikrame įvykių sąrašo lange galite ją pakeisti."
 
-#: ../src/parameters.c:910 ../src/parameters.c:915
+#: ../src/parameters.c:886
+msgid "Day view window default first day"
+msgstr ""
+
+#: ../src/parameters.c:891
+msgid "First day of week"
+msgstr ""
+
+#: ../src/parameters.c:904
+msgid "Selected day"
+msgstr ""
+
+#: ../src/parameters.c:922
+msgid "Use dynamic tray icon"
+msgstr "Naudoti dinaminį sistemos dėklą"
+
+#: ../src/parameters.c:927
+msgid "Use dynamic icon"
+msgstr "Naudoti dinaminę piktogramą"
+
+#: ../src/parameters.c:933
+msgid "Dynamic icon shows current month and day of the month."
+msgstr "Dinaminė piktograma rodo dabartinį mėnesį ir mėnesio dieną."
+
+#: ../src/parameters.c:941 ../src/parameters.c:946
 msgid "Use wakeup timer"
 msgstr "Naudoti pažadinimo laikmatį"
 
-#: ../src/parameters.c:921
+#: ../src/parameters.c:952
 msgid ""
 "Use this timer if Orage has problems waking up properly after suspend or "
 "hibernate. (For example tray icon not refreshed or alarms not firing.)"
-msgstr ""
-"Šį laikmatį naudokite jei Orage kyla problemų pabundant po sustabdymo ar "
-"užmigdymo. (Pavyzdžiui sistemos dėklas neatsinaujina ar signalai "
-"nepasileidžia)"
+msgstr "Šį laikmatį naudokite jei Orage kyla problemų pabundant po sustabdymo ar užmigdymo. (Pavyzdžiui sistemos dėklas neatsinaujina ar signalai nepasileidžia)"
 
-#: ../src/parameters.c:938
+#: ../src/parameters.c:961
+msgid "Foreign file default visual alarm"
+msgstr ""
+
+#: ../src/parameters.c:966
+msgid "Orage window"
+msgstr ""
+
+#: ../src/parameters.c:979
+msgid "Notify notification"
+msgstr ""
+
+#: ../src/parameters.c:997
+msgid "Always quit when asked to close"
+msgstr ""
+
+#: ../src/parameters.c:1002
+msgid "Always quit"
+msgstr ""
+
+#: ../src/parameters.c:1008
+msgid ""
+"By default Orage stays open in the background when asked to close. This "
+"option changes Orage to quit and never stay in background when it is asked "
+"to close."
+msgstr ""
+
+#: ../src/parameters.c:1024
 msgid "Orage Preferences"
 msgstr "Orage nustatymai"
 
-#: ../src/parameters.c:1050
+#: ../src/parameters.c:1136
 msgid "First Orage start. Searching default timezone."
 msgstr "Pirmas Orage paleidimas. Ieškoma numatytosios laiko juostos."
 
-#: ../src/parameters.c:1069
+#: ../src/parameters.c:1155
 #, c-format
 msgid "Default timezone set to %s."
 msgstr "Numatyta laiko juosta nustatyta %s."
 
-#: ../src/parameters.c:1072
+#: ../src/parameters.c:1158
 msgid "Default timezone not found, please, set it manually."
 msgstr "Numatyta laiko juosta nerasta, nustatykite ją rankiniu būdu."
 
@@ -2029,40 +2067,35 @@ msgstr "Priminimai"
 msgid "Open"
 msgstr "Atverti"
 
-#: ../src/reminder.c:722
+#: ../src/reminder.c:719
 msgid "Reminder - Orage"
 msgstr "Priminimai - Orage"
 
-#: ../src/reminder.c:808
+#: ../src/reminder.c:803
+msgid "Postpone"
+msgstr ""
+
+#: ../src/reminder.c:805
 msgid "Remind me again after the specified time"
 msgstr "Priminti po nurodyto laiko"
 
-#. Note that this goes to the main area. Temporary for the version
-#: ../src/reminder.c:811
-msgid "Press <Execute> to remind me again after the specified time:"
-msgstr "Paspauskite <Vykdyti>, kad būtų priminta dar kartą po nurodyto laiko:"
-
-#: ../src/reminder.c:1099
+#: ../src/reminder.c:1091
 msgid "Next active alarms:"
 msgstr "Kitas aktyvus signalas:"
 
-#: ../src/reminder.c:1152 ../src/reminder.c:1157
+#: ../src/reminder.c:1145
 #, c-format
 msgid ""
 "\n"
 "%02d d %02d h %02d min to: %s"
-msgstr ""
-"\n"
-"%02d d %02d h %02d min iki: %s"
+msgstr "\n%02d d %02d h %02d min iki: %s"
 
-#: ../src/reminder.c:1166
+#: ../src/reminder.c:1154
 #, c-format
 msgid ""
 "\n"
 "No active alarms found"
-msgstr ""
-"\n"
-"Aktyvių signalų nerasta"
+msgstr "\nAktyvių signalų nerasta"
 
 #: ../src/timezone_names.c:36
 msgid "Africa"
