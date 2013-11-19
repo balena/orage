@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-11 18:30+0100\n"
-"PO-Revision-Date: 2013-11-12 10:28+0000\n"
+"POT-Creation-Date: 2013-11-18 18:30+0100\n"
+"PO-Revision-Date: 2013-11-19 15:56+0000\n"
 "Last-Translator: Pjotr123 <pjotrvertaalt@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/projects/p/xfce/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -331,7 +331,7 @@ msgstr "niet aan het veranderen"
 #: ../globaltime/timezone_selection.c:247
 #: ../globaltime/timezone_selection.c:252
 #: ../panel-plugin/timezone_selection.c:248
-#: ../panel-plugin/timezone_selection.c:253 ../src/appointment.c:2675
+#: ../panel-plugin/timezone_selection.c:253 ../src/appointment.c:2771
 #: ../src/timezone_selection.c:259 ../src/timezone_selection.c:264
 msgid "Location"
 msgstr "Locatie"
@@ -518,7 +518,7 @@ msgstr "Beheer uw tijd met Orage"
 #. if (gtk_toggle_button_get_active(
 #. GTK_TOGGLE_BUTTON(apptw->Type_journal_rb)))
 #. end time
-#: ../src/appointment.c:313 ../src/appointment.c:353 ../src/appointment.c:2704
+#: ../src/appointment.c:313 ../src/appointment.c:353 ../src/appointment.c:2800
 msgid "End"
 msgstr "Eind"
 
@@ -526,13 +526,13 @@ msgstr "Eind"
 msgid "Due"
 msgstr "Verwacht"
 
-#: ../src/appointment.c:493 ../src/mainbox.c:847
+#: ../src/appointment.c:493 ../src/mainbox.c:862
 msgid "Orage"
 msgstr "Orage"
 
 #. to avoid timing problems when updating entry
 #. Create file chooser
-#: ../src/appointment.c:672 ../src/interface.c:251 ../src/parameters.c:359
+#: ../src/appointment.c:672 ../src/interface.c:264 ../src/parameters.c:374
 msgid "Select a file..."
 msgstr "Selecteer een bestand..."
 
@@ -540,7 +540,7 @@ msgstr "Selecteer een bestand..."
 msgid "Sound Files"
 msgstr "Geluidbestanden"
 
-#: ../src/appointment.c:687 ../src/interface.c:264
+#: ../src/appointment.c:687 ../src/interface.c:277
 msgid "All Files"
 msgstr "Alle bestanden"
 
@@ -548,7 +548,7 @@ msgstr "Alle bestanden"
 msgid "The appointment information has been modified."
 msgstr "De afspraakgegevens zijn aangepast."
 
-#: ../src/appointment.c:739 ../src/appointment.c:1195 ../src/event-list.c:921
+#: ../src/appointment.c:739 ../src/appointment.c:1282 ../src/event-list.c:921
 msgid "Do you want to continue?"
 msgstr "Wilt u doorgaan?"
 
@@ -564,222 +564,249 @@ msgstr "Ja, negeer wijzigingen en verlaat programma"
 msgid "The end of this appointment is earlier than the beginning."
 msgstr "Het einde van deze afspraak is vroeger dan het begin."
 
-#: ../src/appointment.c:1035 ../src/appointment.c:1827
+#: ../src/appointment.c:1035 ../src/appointment.c:1918
 msgid "Not set"
 msgstr "Niet ingesteld"
 
-#: ../src/appointment.c:1194
+#: ../src/appointment.c:1138
+msgid "Add new appointment to this file."
+msgstr "Voeg nieuwe afspraak toe aan dit bestand."
+
+#: ../src/appointment.c:1139
+msgid "Orage default file"
+msgstr "Standaardbestand van Orage"
+
+#: ../src/appointment.c:1220
+msgid "Appointment addition failed."
+msgstr "Toevoegen van afspraak is mislukt."
+
+#: ../src/appointment.c:1221
+msgid ""
+"Error happened when adding appointment. Look more details from the log file."
+msgstr "Fout opgetreden bij toevoegen van afspraak. In het logboekbestand vindt u meer bijzonderheden."
+
+#: ../src/appointment.c:1231
+msgid "Appointment update failed."
+msgstr "Bijwerken van afspraak is mislukt."
+
+#: ../src/appointment.c:1232
+msgid ""
+"Look more details from the log file. (Perhaps file was updated external from"
+" Orage?)"
+msgstr "Zie het logboekbestand voor meer bijzonderheden (werd het bestand misschien buiten Orage om bijgewerkt?)."
+
+#: ../src/appointment.c:1281
 msgid "This appointment will be permanently removed."
 msgstr "Deze afspraak zal voorgoed verwijderd worden."
 
-#: ../src/appointment.c:1196 ../src/event-list.c:922
+#: ../src/appointment.c:1283 ../src/event-list.c:922
 msgid "No, cancel the removal"
 msgstr "Nee, annuleer de verwijdering"
 
-#: ../src/appointment.c:1197
+#: ../src/appointment.c:1284
 msgid "Yes, remove it"
 msgstr "Ja, verwijder het"
 
-#: ../src/appointment.c:1282 ../src/appointment.c:1297 ../src/day-view.c:457
+#: ../src/appointment.c:1373 ../src/appointment.c:1388 ../src/day-view.c:457
 #: ../src/event-list.c:980
 msgid "Pick the date"
 msgstr "Kies de datum"
 
-#: ../src/appointment.c:1284 ../src/appointment.c:1299 ../src/day-view.c:386
+#: ../src/appointment.c:1375 ../src/appointment.c:1390 ../src/day-view.c:386
 #: ../src/day-view.c:459 ../src/event-list.c:982 ../src/event-list.c:1132
 #: ../src/tray_icon.c:460
 msgid "Today"
 msgstr "Vandaag"
 
-#: ../src/appointment.c:1707
+#: ../src/appointment.c:1798
 msgid "This appointment does not exist."
 msgstr "Deze afspraak bestaat niet."
 
-#: ../src/appointment.c:1708
+#: ../src/appointment.c:1799
 msgid "It was probably removed, please refresh your screen."
 msgstr "Hij werd waarschijnlijk verwijderd, ververs a.u.b. uw scherm."
 
-#: ../src/appointment.c:2009
+#: ../src/appointment.c:2100
 msgid "Current categories"
 msgstr "Huidige categorieën"
 
-#: ../src/appointment.c:2024
+#: ../src/appointment.c:2115
 msgid "Add new category with color"
 msgstr "Voeg nieuwe categorie toe met kleur"
 
-#: ../src/appointment.c:2028
+#: ../src/appointment.c:2119
 msgid "Category:"
 msgstr "Categorie:"
 
-#: ../src/appointment.c:2059
+#: ../src/appointment.c:2150
 msgid "Colors of categories - Orage"
 msgstr "Categoriekleuren - Orage"
 
-#: ../src/appointment.c:2105
+#: ../src/appointment.c:2196
 msgid " *** COPY ***"
 msgstr " *** KOPIËREN ***"
 
-#: ../src/appointment.c:2366
+#: ../src/appointment.c:2461
 msgid "New appointment - Orage"
 msgstr "Nieuwe afspraak - Orage"
 
 #. File menu stuff
 #. ********* File menu *********
 #. File menu
-#: ../src/appointment.c:2395 ../src/day-view.c:279 ../src/event-list.c:1033
-#: ../src/interface.c:736 ../src/mainbox.c:282
+#: ../src/appointment.c:2491 ../src/day-view.c:279 ../src/event-list.c:1033
+#: ../src/interface.c:813 ../src/mainbox.c:297
 msgid "_File"
 msgstr "_Bestand"
 
-#: ../src/appointment.c:2401
+#: ../src/appointment.c:2497
 msgid "Sav_e and close"
 msgstr "Opsl_aan en afsluiten"
 
-#: ../src/appointment.c:2414 ../src/event-list.c:1039
+#: ../src/appointment.c:2510 ../src/event-list.c:1039
 msgid "D_uplicate"
 msgstr "V_erdubbelen"
 
-#: ../src/appointment.c:2601
+#: ../src/appointment.c:2697
 msgid "Save"
 msgstr "Opslaan"
 
-#: ../src/appointment.c:2603
+#: ../src/appointment.c:2699
 msgid "Save and close"
 msgstr "Opslaan en sluiten"
 
-#: ../src/appointment.c:2608
+#: ../src/appointment.c:2704
 msgid "Revert"
 msgstr "Terugdraaien"
 
-#: ../src/appointment.c:2610 ../src/event-list.c:1123
+#: ../src/appointment.c:2706 ../src/event-list.c:1123
 msgid "Duplicate"
 msgstr "Verdubbelen"
 
-#: ../src/appointment.c:2615 ../src/event-list.c:1125
+#: ../src/appointment.c:2711 ../src/event-list.c:1125
 msgid "Delete"
 msgstr "Verwijderen"
 
-#: ../src/appointment.c:2633
+#: ../src/appointment.c:2729
 msgid "Free"
 msgstr "Vrij"
 
-#: ../src/appointment.c:2633
+#: ../src/appointment.c:2729
 msgid "Busy"
 msgstr "Bezig"
 
-#: ../src/appointment.c:2637
+#: ../src/appointment.c:2733
 msgid "General"
 msgstr "Algemeen"
 
 #. type
-#: ../src/appointment.c:2643
+#: ../src/appointment.c:2739
 msgid "Type "
 msgstr "Type "
 
-#: ../src/appointment.c:2645 ../src/event-list.c:1176
+#: ../src/appointment.c:2741 ../src/event-list.c:1176
 msgid "Event"
 msgstr "Gebeurtenis"
 
-#: ../src/appointment.c:2648
+#: ../src/appointment.c:2744
 msgid ""
 "Event that will happen sometime. For example:\n"
 "Meeting or birthday or TV show."
 msgstr "Gebeurtenis die ooit gaat plaatsvinden. Bijv.:\nvergadering, verjaardag of TV-programma."
 
-#: ../src/appointment.c:2651 ../src/event-list.c:1196
+#: ../src/appointment.c:2747 ../src/event-list.c:1196
 msgid "Todo"
 msgstr "Te doen"
 
-#: ../src/appointment.c:2654
+#: ../src/appointment.c:2750
 msgid ""
 "Something that you should do sometime. For example:\n"
 "Wash your car or test new version of Orage."
 msgstr "Iets dat u ooit zou moeten doen. Bijvoorbeeld:\nwas uw auto of probeer nieuwe Orage-versie uit."
 
-#: ../src/appointment.c:2657 ../src/event-list.c:1209
+#: ../src/appointment.c:2753 ../src/event-list.c:1209
 msgid "Journal"
 msgstr "Dagboek"
 
-#: ../src/appointment.c:2661
+#: ../src/appointment.c:2757
 msgid ""
 "Make a note that something happened. For example:\n"
 "Remark that your mother called or first snow came."
 msgstr "Maak een notitie van iets dat gebeurde. Bijvoorbeeld:\nmerk op dat uw moeder belde of dat de eerste sneeuw viel."
 
 #. title
-#: ../src/appointment.c:2668
+#: ../src/appointment.c:2764
 msgid "Title "
 msgstr "Titel "
 
-#: ../src/appointment.c:2683
+#: ../src/appointment.c:2779
 msgid "All day event"
 msgstr "Gebeurtenis voor de hele dag"
 
 #. start time
-#: ../src/appointment.c:2689 ../src/appointment.c:3350 ../src/day-view.c:801
+#: ../src/appointment.c:2785 ../src/appointment.c:3446 ../src/day-view.c:801
 msgid "Start"
 msgstr "Begin"
 
-#: ../src/appointment.c:2709
+#: ../src/appointment.c:2805
 msgid "Set      "
 msgstr "Instellen      "
 
-#: ../src/appointment.c:2730
+#: ../src/appointment.c:2826
 msgid "Duration"
 msgstr "Duur"
 
-#: ../src/appointment.c:2734 ../src/appointment.c:2924 ../src/reminder.c:758
+#: ../src/appointment.c:2830 ../src/appointment.c:3020 ../src/reminder.c:758
 msgid "days"
 msgstr "dagen"
 
-#: ../src/appointment.c:2736 ../src/appointment.c:2926 ../src/reminder.c:760
+#: ../src/appointment.c:2832 ../src/appointment.c:3022 ../src/reminder.c:760
 msgid "hours"
 msgstr "uren"
 
-#: ../src/appointment.c:2738 ../src/appointment.c:2928 ../src/reminder.c:762
+#: ../src/appointment.c:2834 ../src/appointment.c:3024 ../src/reminder.c:762
 msgid "mins"
 msgstr "minuten"
 
 #. Availability (only for EVENT)
-#: ../src/appointment.c:2750
+#: ../src/appointment.c:2846
 msgid "Availability"
 msgstr "Beschikbaarheid"
 
 #. completed (only for TODO)
-#: ../src/appointment.c:2758 ../src/appointment.c:3356
+#: ../src/appointment.c:2854 ../src/appointment.c:3452
 msgid "Completed"
 msgstr "Voltooid"
 
-#: ../src/appointment.c:2761
+#: ../src/appointment.c:2857
 msgid "Done"
 msgstr "Gedaan"
 
 #. categories
-#: ../src/appointment.c:2782
+#: ../src/appointment.c:2878
 msgid "Categories"
 msgstr "Categorieën"
 
-#: ../src/appointment.c:2794
+#: ../src/appointment.c:2890
 msgid ""
 "This is special category, which can be used to color this appointment in "
 "list views."
 msgstr "Dit is een speciale categorie, die gebruikt kan worden om deze afspraak gekleurd weer te geven in lijstweergaven."
 
-#: ../src/appointment.c:2799
+#: ../src/appointment.c:2895
 msgid "update colors for categories."
 msgstr "werk kleuren bij voor categorieën."
 
 #. priority
-#: ../src/appointment.c:2805
+#: ../src/appointment.c:2901
 msgid "Priority"
 msgstr "Prioriteit"
 
 #. note
-#: ../src/appointment.c:2815
+#: ../src/appointment.c:2911
 msgid "Note"
 msgstr "Opmerking"
 
-#: ../src/appointment.c:2836
+#: ../src/appointment.c:2932
 msgid ""
 "These shorthand commands take effect immediately:\n"
 "    <D> inserts current date in local date format\n"
@@ -791,121 +818,121 @@ msgid ""
 "(This can be used for example in birthday reminders to tell how old the person will be.)"
 msgstr "Deze steno-opdrachten hebben direct effect:\n    <D> voegt huidige datum in, in plaatselijke datumopmaak\n    <T> voegt tijd in en\n    <DT> voegt datum en tijd in.\n\nDeze worden pas later omgezet, wanneer ze worden gezien:\n    <&Ynnnn> wordt vertaald naar huidig jaar minus nnnn.\nDit kan bijvoorbeeld worden gebruikt bij verjaardagsherinneringen om te melden hoe oud de persoon zal worden."
 
-#: ../src/appointment.c:2907
+#: ../src/appointment.c:3003
 msgid "Before Start"
 msgstr "Voor begin"
 
-#: ../src/appointment.c:2907
+#: ../src/appointment.c:3003
 msgid "Before End"
 msgstr "Voor einde"
 
-#: ../src/appointment.c:2908
+#: ../src/appointment.c:3004
 msgid "After Start"
 msgstr "Na begin"
 
-#: ../src/appointment.c:2908
+#: ../src/appointment.c:3004
 msgid "After End"
 msgstr "Na einde"
 
-#: ../src/appointment.c:2915
+#: ../src/appointment.c:3011
 msgid "Alarm"
-msgstr "Alarm"
+msgstr "Wekker"
 
 #. **** ALARM TIME ****
-#: ../src/appointment.c:2921
+#: ../src/appointment.c:3017
 msgid "Alarm time"
-msgstr "Alarmtijd"
+msgstr "Wektijd"
 
-#: ../src/appointment.c:2945
+#: ../src/appointment.c:3041
 msgid ""
 "Often you want to get alarm:\n"
 " 1) before Event start\n"
 " 2) before Todo end\n"
 " 3) after Todo start"
-msgstr "Vaak wilt u alarm horen:\n 1) voor Gebeurtenis-begin\n 2) voor Te doen-einde\n 3) na Te doen-begin"
+msgstr "Vaak wilt u een wekker horen:\n 1) voor Gebeurtenis-begin\n 2) voor Te doen-einde\n 3) na Te doen-begin"
 
-#: ../src/appointment.c:2950
+#: ../src/appointment.c:3046
 msgid "Persistent alarm"
-msgstr "Blijvend alarm"
+msgstr "Blijvende wekker"
 
-#: ../src/appointment.c:2952
+#: ../src/appointment.c:3048
 msgid ""
 "Select this if you want Orage to remind you even if it has not been active "
 "when the alarm happened."
-msgstr "Kies dit als u wil dat Orage u eraan herinnert, zelfs wanneer hij niet actief was toen het alarm plaatsvond."
+msgstr "Kies dit als u wil dat Orage u eraan herinnert, zelfs wanneer hij niet actief was toen de wekker plaatsvond."
 
 #. **** Audio Alarm ****
-#: ../src/appointment.c:2961
+#: ../src/appointment.c:3057
 msgid "Sound"
 msgstr "Geluid"
 
-#: ../src/appointment.c:2965 ../src/appointment.c:3085
+#: ../src/appointment.c:3061 ../src/appointment.c:3181
 msgid "Use"
 msgstr "Gebruik"
 
-#: ../src/appointment.c:2967
+#: ../src/appointment.c:3063
 msgid "Select this if you want audible alarm"
-msgstr "Kies dit als u een hoorbaar alarm wil"
+msgstr "Kies dit als u een hoorbare wekker wil"
 
-#: ../src/appointment.c:2984
+#: ../src/appointment.c:3080
 msgid "Repeat alarm sound"
-msgstr "Alarmgeluid herhalen"
+msgstr "Wekkergeluid herhalen"
 
-#: ../src/appointment.c:3000 ../src/appointment.c:3299
+#: ../src/appointment.c:3096 ../src/appointment.c:3395
 msgid "times"
 msgstr "keer"
 
-#: ../src/appointment.c:3016
+#: ../src/appointment.c:3112
 msgid "sec interval"
 msgstr "sec interval"
 
 #. **** Display Alarm ****
-#: ../src/appointment.c:3026
+#: ../src/appointment.c:3122
 msgid "Visual"
 msgstr "Visueel"
 
-#: ../src/appointment.c:3030
+#: ../src/appointment.c:3126
 msgid "Use Orage window"
 msgstr "Gebruik Oragevenster"
 
-#: ../src/appointment.c:3032
+#: ../src/appointment.c:3128
 msgid "Select this if you want Orage window alarm"
-msgstr "Kies dit als u Orage-vensteralarm wil"
+msgstr "Kies dit als u Orage-vensterwekker wil"
 
-#: ../src/appointment.c:3044
+#: ../src/appointment.c:3140
 msgid "Use notification"
 msgstr "Gebruik melding"
 
-#: ../src/appointment.c:3046
+#: ../src/appointment.c:3142
 msgid "Select this if you want notification alarm"
-msgstr "Kies dit als u meldingalarm wil"
+msgstr "Kies dit als u meldingwekker wil"
 
-#: ../src/appointment.c:3052
+#: ../src/appointment.c:3148
 msgid "Set timeout"
 msgstr "Kies timeout"
 
-#: ../src/appointment.c:3054
+#: ../src/appointment.c:3150
 msgid "Select this if you want notification to expire automatically"
 msgstr "Kies dit als u wil dat melding automatisch verloopt"
 
-#: ../src/appointment.c:3065
+#: ../src/appointment.c:3161
 msgid "0 = system default expiration time"
 msgstr "0 = standaard-verlooptijd van systeem"
 
-#: ../src/appointment.c:3070
+#: ../src/appointment.c:3166
 msgid "seconds"
 msgstr "seconden"
 
 #. **** Procedure Alarm ****
-#: ../src/appointment.c:3081
+#: ../src/appointment.c:3177
 msgid "Procedure"
 msgstr "Procedure"
 
-#: ../src/appointment.c:3087
+#: ../src/appointment.c:3183
 msgid "Select this if you want procedure or script alarm"
-msgstr "Kies dit als u een procedure- of scriptalarm wil"
+msgstr "Kies dit als u een procedure- of scriptwekker wil"
 
-#: ../src/appointment.c:3093
+#: ../src/appointment.c:3189
 msgid ""
 "You must enter all escape etc characters yourself.\n"
 "This string is just given to shell to process.\n"
@@ -915,98 +942,98 @@ msgid ""
 "\t<&AT> alarm time\n"
 "\t<&ST> appointment start time\n"
 "\t<&ET> appointment end time"
-msgstr "U moet zelf alle tekens ingeven, zoals escape.\nDit tekstsnoer wordt gegeven aan de schil om te verwerken.\nDe volgende speciale opdrachten worden vervangen bij het draaien:\n\t<&T>  afspraaktitel\n\t<&D>  afspraakbeschrijving\n\t<&AT> alarmtijd\n\t<&ST> begintijd voor afspraak\n\t<&ET> eindetijd voor afspraak"
+msgstr "U moet zelf alle tekens ingeven, zoals escape.\nDit tekstsnoer wordt gegeven aan de schil om te verwerken.\nDe volgende speciale opdrachten worden vervangen bij het draaien:\n\t<&T>  afspraaktitel\n\t<&D>  afspraakbeschrijving\n\t<&AT> wektijd\n\t<&ST> begintijd voor afspraak\n\t<&ET> eindetijd voor afspraak"
 
-#: ../src/appointment.c:3105
+#: ../src/appointment.c:3201
 msgid "Test this alarm by raising it now"
-msgstr "Probeer dit alarm uit door het nu op te roepen"
+msgstr "Probeer deze wekker uit door hem nu op te roepen"
 
-#: ../src/appointment.c:3112
+#: ../src/appointment.c:3208
 msgid "<b>Default alarm</b>"
-msgstr "<b>Standaardalarm</b>"
+msgstr "<b>Standaardwekker</b>"
 
-#: ../src/appointment.c:3120
+#: ../src/appointment.c:3216
 msgid "Store current settings as default alarm"
-msgstr "Sla huidige instellingen op als standaardalarm"
+msgstr "Sla huidige instellingen op als standaardwekker"
 
-#: ../src/appointment.c:3125
+#: ../src/appointment.c:3221
 msgid "Set current settings from default alarm"
-msgstr "Stel huidige instellingen in vanuit standaardalarm"
+msgstr "Stel huidige instellingen in vanuit standaardwekker"
 
-#: ../src/appointment.c:3187
+#: ../src/appointment.c:3283
 msgid "None"
 msgstr "Geen"
 
-#: ../src/appointment.c:3187
+#: ../src/appointment.c:3283
 msgid "Daily"
 msgstr "Dagelijks"
 
-#: ../src/appointment.c:3187
+#: ../src/appointment.c:3283
 msgid "Weekly"
 msgstr "Wekelijks"
 
-#: ../src/appointment.c:3187
+#: ../src/appointment.c:3283
 msgid "Monthly"
 msgstr "Maandelijks"
 
-#: ../src/appointment.c:3187
+#: ../src/appointment.c:3283
 msgid "Yearly"
 msgstr "Jaarlijks"
 
-#: ../src/appointment.c:3187
+#: ../src/appointment.c:3283
 msgid "Hourly"
 msgstr "Ieder uur"
 
-#: ../src/appointment.c:3189
+#: ../src/appointment.c:3285
 msgid "Mon"
 msgstr "Maan"
 
-#: ../src/appointment.c:3189
+#: ../src/appointment.c:3285
 msgid "Tue"
 msgstr "Dins"
 
-#: ../src/appointment.c:3189
+#: ../src/appointment.c:3285
 msgid "Wed"
 msgstr "Woens"
 
-#: ../src/appointment.c:3189
+#: ../src/appointment.c:3285
 msgid "Thu"
 msgstr "Don"
 
-#: ../src/appointment.c:3189
+#: ../src/appointment.c:3285
 msgid "Fri"
 msgstr "Vrij"
 
-#: ../src/appointment.c:3189
+#: ../src/appointment.c:3285
 msgid "Sat"
 msgstr "Zat"
 
-#: ../src/appointment.c:3189
+#: ../src/appointment.c:3285
 msgid "Sun"
 msgstr "Zon"
 
-#: ../src/appointment.c:3194
+#: ../src/appointment.c:3290
 msgid "Recurrence"
 msgstr "Herhaling"
 
 #. complexity
-#: ../src/appointment.c:3200
+#: ../src/appointment.c:3296
 msgid "Complexity"
 msgstr "Complexiteit"
 
-#: ../src/appointment.c:3203
+#: ../src/appointment.c:3299
 msgid "Basic"
 msgstr "Elementair"
 
-#: ../src/appointment.c:3209
+#: ../src/appointment.c:3305
 msgid "Advanced"
 msgstr "Geavanceerd"
 
-#: ../src/appointment.c:3213
+#: ../src/appointment.c:3309
 msgid "Use this if you want regular repeating event"
 msgstr "Gebruik dit als u een regelmatig terugkerende gebeurtenis wenst"
 
-#: ../src/appointment.c:3215
+#: ../src/appointment.c:3311
 msgid ""
 "Use this if you need complex times like:\n"
 " Every Saturday and Sunday or \n"
@@ -1014,51 +1041,51 @@ msgid ""
 msgstr "Gebruik dit als u complexe tijdstippen nodig heeft zoals:\n elke zaterdag en zondag of \n eerste dinsdag van elke maand"
 
 #. frequency
-#: ../src/appointment.c:3221
+#: ../src/appointment.c:3317
 msgid "Frequency"
 msgstr "Frequentie"
 
-#: ../src/appointment.c:3227
+#: ../src/appointment.c:3323
 msgid "Each"
 msgstr "Elke"
 
-#: ../src/appointment.c:3234
+#: ../src/appointment.c:3330
 msgid "occurrence"
 msgstr "gebeurtenis"
 
-#: ../src/appointment.c:3238
+#: ../src/appointment.c:3334
 msgid ""
 "Limit frequency to certain interval.\n"
 " For example: Every third day:\n"
 " Frequency = Daily and Interval = 3"
 msgstr "Beperk frequentie tot bepaald interval.\n Bijvoorbeeld: elke derde dag:\n Frequentie = dagelijks en interval = 3"
 
-#: ../src/appointment.c:3283
+#: ../src/appointment.c:3379
 msgid "Limit"
 msgstr "Beperken"
 
-#: ../src/appointment.c:3285
+#: ../src/appointment.c:3381
 msgid "Repeat forever"
 msgstr "Altijd herhalen"
 
-#: ../src/appointment.c:3291
+#: ../src/appointment.c:3387
 msgid "Repeat "
 msgstr "Herhalen"
 
-#: ../src/appointment.c:3307
+#: ../src/appointment.c:3403
 msgid "Repeat until "
 msgstr "Herhaal tot"
 
 #. weekdays (only for complex settings)
-#: ../src/appointment.c:3320
+#: ../src/appointment.c:3416
 msgid "Weekdays"
 msgstr "Weekdagen"
 
-#: ../src/appointment.c:3332
+#: ../src/appointment.c:3428
 msgid "Which day"
 msgstr "Welke dag"
 
-#: ../src/appointment.c:3340
+#: ../src/appointment.c:3436
 msgid ""
 "Specify which weekday for monthly and yearly events.\n"
 " For example:\n"
@@ -1069,60 +1096,60 @@ msgid ""
 msgstr "Geef op welke weekdag voor maandelijkse en jaarlijkse gebeurtenissen.\n Bijvoorbeeld:\n tweede woensdag elke maand:\n\tfrequentie = maandelijks,\n\tweekdagen = vink alleen woensdag aan,\n\twelke dag = kies 2 van het aantal onder woensdag"
 
 #. TODO base (only for TODOs)
-#: ../src/appointment.c:3347
+#: ../src/appointment.c:3443
 msgid "TODO base"
 msgstr "Te Doen-gegevensbank"
 
-#: ../src/appointment.c:3360
+#: ../src/appointment.c:3456
 msgid ""
 "TODO reoccurs regularly starting on start time and repeating after each "
 "interval no matter when it was last completed"
 msgstr "Te Doen verschijnt opnieuw, startend op begintijd en herhalend na elke interval, ongeacht wanneer het de laatste keer werd voltooid"
 
-#: ../src/appointment.c:3362
+#: ../src/appointment.c:3458
 msgid ""
 "TODO reoccurrency is based on complete time and repeats after the interval counted from the last completed time.\n"
 "(Note that you can not tell anything about the history of the TODO since reoccurrence base changes after each completion.)"
 msgstr "Te Doen-verschijning wordt gebaseerd op voltooiingstijd en herhaalt zich na de interval, geteld vanaf de \nlaatste voltooiingstijd. Let op: u kunt niets afleiden uit de geschiedenis van Te Doen, aangezien de gegevensbank voor herhaling, verandert na elke voltooiing."
 
 #. exceptions
-#: ../src/appointment.c:3368
+#: ../src/appointment.c:3464
 msgid "Exceptions"
 msgstr "Uitzonderingen"
 
-#: ../src/appointment.c:3381
+#: ../src/appointment.c:3477
 msgid ""
 "Add more exception dates by clicking the calendar days below.\n"
 "Exception is either exclusion(-) or inclusion(+) depending on the selection.\n"
 "Remove by clicking the data."
 msgstr "Voeg meer uitzonderingsdata toe, door te klikken op de kalender-\ndagen hieronder. Uitzondering is of uitsluiting(-) of insluiting(+), afhankelijk van de keuze.\nVerwijder door de data aan te klikken."
 
-#: ../src/appointment.c:3386
+#: ../src/appointment.c:3482
 msgid "Add excluded date (-)"
 msgstr "Voeg uitgesloten datum toe (-)"
 
-#: ../src/appointment.c:3388
+#: ../src/appointment.c:3484
 msgid "Excluded days are full days where this appointment is not happening"
 msgstr "Uitgesloten dagen zijn volle dagen waarop deze afspraak niet plaatsvindt"
 
-#: ../src/appointment.c:3394
+#: ../src/appointment.c:3490
 msgid "Add included time (+)"
 msgstr "Voeg ingesloten tijd toe (+)"
 
-#: ../src/appointment.c:3396
+#: ../src/appointment.c:3492
 msgid ""
 "Included times have same timezone than start time, but they may have "
 "different time"
 msgstr "Ingesloten tijden hebben dezelfde tijdzone als de begintijd, maar ze kunnen een andere tijd hebben"
 
 #. calendars showing the action days
-#: ../src/appointment.c:3413
+#: ../src/appointment.c:3509
 msgid "Action dates"
 msgstr "Actiedata"
 
 #. ********* View menu *********
 #. View menu
-#: ../src/day-view.c:289 ../src/event-list.c:1056 ../src/mainbox.c:308
+#: ../src/day-view.c:289 ../src/event-list.c:1056 ../src/mainbox.c:323
 msgid "_View"
 msgstr "_Weergave"
 
@@ -1155,7 +1182,7 @@ msgstr "Week vooruit"
 msgid "Refresh"
 msgstr "Verversen"
 
-#: ../src/day-view.c:400 ../src/event-list.c:1146 ../src/interface.c:757
+#: ../src/day-view.c:400 ../src/event-list.c:1146 ../src/interface.c:834
 msgid "Close"
 msgstr "Sluiten"
 
@@ -1313,20 +1340,29 @@ msgstr "\tFASE 2: zet gearchiveerde afspraken terug"
 msgid "Archive removal done\n"
 msgstr "Archiefverwijdering voltooid\n"
 
-#: ../src/ical-code.c:932
+#: ../src/ical-code.c:972
 msgid "Orage default alarm"
-msgstr "Orage standaardalarm"
+msgstr "Orage standaardwekker"
 
-#: ../src/ical-code.c:3141
+#: ../src/ical-code.c:3179
+msgid "Created alarm list for main Orage file:"
+msgstr "Wekkerlijst gemaakt voor hoofdbestand van Orage:"
+
+#: ../src/ical-code.c:3181
 #, c-format
-msgid "Build alarm list: Added %d alarms. Processed %d events."
-msgstr "Maak alarmlijst: Toegevoegd %d alarmen. Verwerkt %d gebeurtenissen."
+msgid "Created alarm list for foreign file: %s (%s)"
+msgstr "Wekkerlijst gemaakt voor niet-eigen bestand: %s (%s)"
 
-#: ../src/ical-code.c:3143
+#: ../src/ical-code.c:3183
+#, c-format
+msgid "\tAdded %d alarms. Processed %d events."
+msgstr "\t%d wekkers toegevoegd. %d gebeurtenissen verwerkt."
+
+#: ../src/ical-code.c:3185
 #, c-format
 msgid ""
 "\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
-msgstr "\tGevonden %d alarmen, waarvan %d actief (Gezocht %d herhalende alarmen)."
+msgstr "\tGevonden %d wekkers, waarvan %d actief (Gezocht %d herhalende wekkers)."
 
 #: ../src/ical-expimp.c:123
 msgid "Starting import file preprocessing"
@@ -1344,186 +1380,230 @@ msgstr "... Tijdzone hersteld naar Orage-opmaak."
 msgid "Import file preprocessing done"
 msgstr "Voorbewerking van invoerbestand gereed"
 
-#: ../src/interface.c:258
+#: ../src/interface.c:89 ../src/interface.c:104
+#, c-format
+msgid "Found external update on file %s."
+msgstr "Extern bijgewerkt pakket gevonden op bestand %s."
+
+#: ../src/interface.c:112
+msgid "Refreshing alarms and calendar due to external file update."
+msgstr "Wekkers en kalender aan het verversen wegens extern bijgewerkt pakket."
+
+#: ../src/interface.c:271
 msgid "Calendar files"
 msgstr "Kalenderbestanden"
 
-#: ../src/interface.c:605
+#: ../src/interface.c:631
 msgid "Current foreign files"
 msgstr "Huidige vreemde bestanden"
 
-#: ../src/interface.c:617
+#: ../src/interface.c:648
 msgid "READ ONLY"
 msgstr "ALLEEN-LEZEN"
 
-#: ../src/interface.c:619
+#: ../src/interface.c:650
 msgid "READ WRITE"
 msgstr "LEZEN-SCHRIJVEN"
 
-#: ../src/interface.c:637
+#: ../src/interface.c:669
 msgid "***** No foreign files *****"
 msgstr "***** Geen vreemde bestanden *****"
 
-#: ../src/interface.c:888
+#: ../src/interface.c:682
+msgid "Foreign file add failed"
+msgstr "Toevoegen niet-eigen bestand mislukt"
+
+#: ../src/interface.c:689
+msgid "Orage can only handle 10 foreign files. Limit reached."
+msgstr "Orage kan slechts 10 niet-eigen bestanden aan. Grens bereikt."
+
+#: ../src/interface.c:697
+msgid "Filename is empty."
+msgstr "Bestandnaam is leeg."
+
+#: ../src/interface.c:705
+msgid "Name is empty."
+msgstr "Naam is leeg."
+
+#: ../src/interface.c:713
+msgid "File does not exist."
+msgstr "Bestand bestaat niet."
+
+#: ../src/interface.c:722
+msgid "Same filename already exists in Orage."
+msgstr "Zelfde bestandnaam bestaat reeds in Orage."
+
+#: ../src/interface.c:730
+msgid "Same name already exists in Orage."
+msgstr "Zelfde naam bestaat al in Orage."
+
+#: ../src/interface.c:965
 msgid "Import/export"
 msgstr "Invoer/uitvoer"
 
-#: ../src/interface.c:895
+#: ../src/interface.c:972
 msgid "Import"
 msgstr "Invoeren"
 
-#: ../src/interface.c:900
+#: ../src/interface.c:977
 msgid "Read from file:"
 msgstr "Lees vanuit bestand:"
 
-#: ../src/interface.c:917
+#: ../src/interface.c:994
 msgid ""
 "Separate filenames with comma(,).\n"
 " NOTE: comma is not valid character in filenames for Orage."
 msgstr "Scheid bestandnamen met komma(,).\n Let op: komma is geen geldig teken in bestandnamen voor Orage."
 
-#: ../src/interface.c:922
+#: ../src/interface.c:999
 msgid "Export"
 msgstr "Uitvoeren"
 
-#: ../src/interface.c:927
+#: ../src/interface.c:1004
 msgid "Write to file:"
 msgstr "Schrijven naar bestand:"
 
-#: ../src/interface.c:948 ../src/interface.c:960
+#: ../src/interface.c:1025 ../src/interface.c:1037
 msgid "Select"
 msgstr "Kiezen"
 
-#: ../src/interface.c:951
+#: ../src/interface.c:1028
 msgid "All appointments"
 msgstr "Alle afspraken"
 
-#: ../src/interface.c:964
+#: ../src/interface.c:1041
 msgid "Named appointments: "
 msgstr "Genoemde afspraken: "
 
-#: ../src/interface.c:976
+#: ../src/interface.c:1053
 msgid ""
 "Note that only main file appointments are read.\n"
 "Archived and Foreign events are not exported."
 msgstr "Let op: alleen hoofdbestandafspraken worden gelezen.\nGearchiveerde en vreemde gebeurtenissen worden niet uitgevoerd."
 
-#: ../src/interface.c:979
+#: ../src/interface.c:1056
 msgid ""
 "Note that only main file appointments are read.\n"
 "Foreign events are not exported."
 msgstr "Let op: alleen hoofdbestandafspraken worden gelezen.\nVreemde gebeurtenissen worden niet uitgevoerd."
 
-#: ../src/interface.c:982
+#: ../src/interface.c:1059
 msgid "You can easily drag these from event-list window."
 msgstr "U kunt deze gemakkelijk slepen vanuit het venster van de gebeurtenissenlijst."
 
-#: ../src/interface.c:984
+#: ../src/interface.c:1061
 msgid "Orage appointment UIDs separated by commas."
 msgstr "Orage afspraak-UID's gescheiden door komma's."
 
-#: ../src/interface.c:990
+#: ../src/interface.c:1067
 msgid "Archive"
 msgstr "Archiveren"
 
-#: ../src/interface.c:998
+#: ../src/interface.c:1075
 #, c-format
 msgid "Archive now (threshold: %d months)"
 msgstr "Archiveer nu (drempel: %d maanden)"
 
-#: ../src/interface.c:1008
+#: ../src/interface.c:1085
 msgid "You can change archive threshold in parameters"
 msgstr "U kunt archiveringsdrempel in parameters veranderen"
 
-#: ../src/interface.c:1015
+#: ../src/interface.c:1092
 msgid "Revert archive now"
 msgstr "Draai archief nu terug"
 
-#: ../src/interface.c:1021
+#: ../src/interface.c:1098
 msgid ""
 "Return all archived events into main orage file and remove arch file.\n"
 "This is useful for example when doing export and moving orage\n"
 "appointments to another system."
 msgstr "Zet alle gearchiveerde gebeurtenissen terug in hoofd-orage-bestand en \nverwijder arch-bestand. Dit is bijvoorbeeld nuttig bij uitvoeren en bij\nhet verplaatsen van Orage-afspraken naar een ander systeem."
 
-#: ../src/interface.c:1032
+#: ../src/interface.c:1109
 msgid "Orage files"
 msgstr "Orage-bestanden"
 
-#: ../src/interface.c:1039
+#: ../src/interface.c:1116
 msgid "Orage main calendar file"
 msgstr "Orage hoofdkalenderbestand"
 
-#: ../src/interface.c:1044 ../src/interface.c:1109
-msgid "Current file"
-msgstr "Huidig bestand"
+#: ../src/interface.c:1121 ../src/interface.c:1186
+msgid "Current file:"
+msgstr "Huidig bestand:"
 
-#: ../src/interface.c:1051 ../src/interface.c:1116
-msgid "New file"
-msgstr "Nieuw bestand"
+#: ../src/interface.c:1128 ../src/interface.c:1193
+msgid "New file:"
+msgstr "Nieuw bestand:"
 
-#: ../src/interface.c:1067 ../src/interface.c:1133
-msgid "Action options"
-msgstr "Actie-opties"
+#: ../src/interface.c:1144 ../src/interface.c:1210
+msgid "Action options:"
+msgstr "Actie-opties:"
 
-#: ../src/interface.c:1070 ../src/interface.c:1136
+#: ../src/interface.c:1147 ../src/interface.c:1213
 msgid "Rename"
 msgstr "Hernoemen"
 
-#: ../src/interface.c:1074
+#: ../src/interface.c:1151
 msgid ""
 "Orage internal file rename only.\n"
 "Does not touch external filesystem at all.\n"
 "New file must exist."
 msgstr "Uitsluitend hernoemen van interne Orage-bestanden.\nRaakt extern bestandssysteem totaal niet.\nNieuw bestand moet bestaan."
 
-#: ../src/interface.c:1078 ../src/interface.c:1141
+#: ../src/interface.c:1155 ../src/interface.c:1218
 msgid "Copy"
 msgstr "Kopiëren"
 
-#: ../src/interface.c:1082
+#: ../src/interface.c:1159
 msgid "Current file is copied and stays unmodified in the old place."
 msgstr "Huidig bestand wordt gekopieerd en blijft ongewijzigd op oude plek."
 
-#: ../src/interface.c:1086 ../src/interface.c:1146
+#: ../src/interface.c:1163 ../src/interface.c:1223
 msgid "Move"
 msgstr "Verplaatsen"
 
-#: ../src/interface.c:1090
+#: ../src/interface.c:1167
 msgid "Current file is moved and vanishes from the old place."
 msgstr "Huidig bestand wordt verplaatst en verdwijnt van oude plek."
 
-#: ../src/interface.c:1104
+#: ../src/interface.c:1181
 msgid "Archive file"
 msgstr "Archiefbestand"
 
-#: ../src/interface.c:1168
+#: ../src/interface.c:1245
 msgid "Foreign files"
 msgstr "Vreemde bestanden"
 
-#: ../src/interface.c:1175
+#: ../src/interface.c:1252
 msgid "Add new foreign file"
 msgstr "Voeg nieuw vreemd bestand toe"
 
-#: ../src/interface.c:1180
+#: ../src/interface.c:1257
 msgid "Foreign file:"
 msgstr "Vreemd bestand:"
 
-#: ../src/interface.c:1198
-msgid "Options"
-msgstr "Opties"
+#. label = gtk_label_new(_("Options:"));
+#. gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 5);
+#. 
+#: ../src/interface.c:1279
+msgid "Visible name:"
+msgstr "Zichtbare naam:"
 
-#: ../src/interface.c:1200
+#: ../src/interface.c:1285
 msgid "Read only"
 msgstr "Alleen-lezen"
 
-#: ../src/interface.c:1208
+#: ../src/interface.c:1292
 msgid ""
 "Set this if you want to make sure that this file is never modified by Orage.\n"
 "Note that modifying foreign files may make them incompatible with the original tool, where they came from!"
 msgstr "Stel dit in wanneer u er zeker van wil zijn dat dit bestand nooit zal worden aangepast door Orage.\nLet op: aanpassen van vreemde bestanden zou deze onverenigbaar kunnen maken met het oorspronkelijke gereedschap waar ze vandaan komen!"
 
-#: ../src/interface.c:1222
+#: ../src/interface.c:1294
+msgid "This internal name is displayed to user instead of file name."
+msgstr "Deze interne naam wordt getoond aan gebruiker in plaats van bestandnaam."
+
+#: ../src/interface.c:1308
 msgid "Exchange data - Orage"
 msgstr "Wissel gegevens uit - Orage"
 
@@ -1623,8 +1703,8 @@ msgstr "--toggle (-t) \t\tmaak orage zichtbaar/onzichtbaar\n"
 
 #: ../src/main.c:319
 #, c-format
-msgid "--add-foreign (-a) file [RW] \tadd a foreign file\n"
-msgstr "--add-foreign (-a) file [RW] \tvoeg een vreemd bestand toe\n"
+msgid "--add-foreign (-a) file [RW] [name] \tadd a foreign file\n"
+msgstr "--add-foreign (-a) file [RW] [naam] \tvoeg een niet-eigen bestand toe\n"
 
 #: ../src/main.c:320
 #, c-format
@@ -1655,7 +1735,7 @@ msgid ""
 "when starting orage \n"
 msgstr "\tzonder dbus [bestanden] and opties voor vreemde bestanden (-a & -r) kan alleen worden gebruikt bij het starten van Orage \n"
 
-#: ../src/main.c:518
+#: ../src/main.c:535
 #, c-format
 msgid ""
 "\n"
@@ -1663,46 +1743,46 @@ msgid ""
 "\n"
 msgstr "\nOnbekende optie %s\n\n"
 
-#: ../src/mainbox.c:290
+#: ../src/mainbox.c:305
 msgid "_Exchange data"
 msgstr "_Gegevens uitwisselen"
 
 #. Edit menu
-#: ../src/mainbox.c:301
+#: ../src/mainbox.c:316
 msgid "_Edit"
 msgstr "_Bewerken"
 
-#: ../src/mainbox.c:311
+#: ../src/mainbox.c:326
 msgid "View selected _date"
 msgstr "Geselecteerde _datum bekijken"
 
-#: ../src/mainbox.c:314
+#: ../src/mainbox.c:329
 msgid "View selected _week"
 msgstr "Geselecteerde _week bekijken"
 
-#: ../src/mainbox.c:320
+#: ../src/mainbox.c:335
 msgid "Select _Today"
 msgstr "_Vandaag selecteren"
 
-#: ../src/mainbox.c:326
+#: ../src/mainbox.c:341
 msgid "Show _Globaltime"
 msgstr "Toon _Wereldtijd"
 
 #. Help menu
-#: ../src/mainbox.c:330
+#: ../src/mainbox.c:345
 msgid "_Help"
 msgstr "_Hulp"
 
-#: ../src/mainbox.c:399
+#: ../src/mainbox.c:414 ../src/reminder.c:1138
 msgid "No title defined"
 msgstr "Geen titel opgegeven"
 
-#: ../src/mainbox.c:456
+#: ../src/mainbox.c:471
 #, c-format
 msgid " Location: %s\n"
 msgstr "Locatie: %s\n"
 
-#: ../src/mainbox.c:466
+#: ../src/mainbox.c:481
 #, c-format
 msgid ""
 "\n"
@@ -1710,11 +1790,11 @@ msgid ""
 "%s"
 msgstr "\nNotitie:\n%s"
 
-#: ../src/mainbox.c:474
+#: ../src/mainbox.c:489
 msgid "Never"
 msgstr "nooit"
 
-#: ../src/mainbox.c:480
+#: ../src/mainbox.c:495
 #, c-format
 msgid ""
 "Title: %s\n"
@@ -1723,7 +1803,7 @@ msgid ""
 " Done:\t%s%s"
 msgstr "Titel: %s\n%s Begin:\t%s\n Vervaltijdstip:\t%s\n Klaar:\t%s%s"
 
-#: ../src/mainbox.c:488
+#: ../src/mainbox.c:503
 #, c-format
 msgid ""
 "Title: %s\n"
@@ -1731,253 +1811,253 @@ msgid ""
 " End:\t%s%s"
 msgstr "Titel: %s\n%s Begin:\t%s\n Einde:\t%s%s"
 
-#: ../src/mainbox.c:598
+#: ../src/mainbox.c:613
 msgid "<b>To do:</b>"
 msgstr "<b>Te doen:</b>"
 
-#: ../src/mainbox.c:634
+#: ../src/mainbox.c:649
 #, c-format
 msgid "<b>Events for %s:</b>"
 msgstr "<b>Gebeurtenissen voor %s:</b>"
 
-#: ../src/mainbox.c:645
+#: ../src/mainbox.c:660
 #, c-format
 msgid "<b>Events for %s - %s:</b>"
 msgstr "<b>Gebeurtenissen voor %s - %s:</b>"
 
-#: ../src/parameters.c:471
+#: ../src/parameters.c:486
 msgid "Main settings"
 msgstr "Hoofdinstellingen"
 
-#: ../src/parameters.c:477
+#: ../src/parameters.c:492
 msgid "Timezone"
 msgstr "Tijdzone"
 
-#: ../src/parameters.c:492
+#: ../src/parameters.c:507
 msgid "You should always define your local timezone."
 msgstr "U moet altijd uw plaatselijke tijdzone bepalen."
 
-#: ../src/parameters.c:500
+#: ../src/parameters.c:515
 msgid "Archive threshold (months)"
 msgstr "Archiefdrempel (maanden)"
 
-#: ../src/parameters.c:510
+#: ../src/parameters.c:525
 msgid "(0 = no archiving)"
 msgstr "(0 = geen archivering)"
 
-#: ../src/parameters.c:513
+#: ../src/parameters.c:528
 msgid "Archiving is used to save time and space when handling events."
 msgstr "Archiveren wordt gebruikt om tijd en ruimte te besparen bij het afhandelen van gebeurtenissen."
 
-#: ../src/parameters.c:521
+#: ../src/parameters.c:536
 msgid "Sound command"
 msgstr "Geluidopdracht"
 
-#: ../src/parameters.c:536
+#: ../src/parameters.c:551
 msgid "This command is given to shell to make sound in alarms."
-msgstr "Deze opdracht wordt gegeven aan shell om geluid te maken bij alarmen."
+msgstr "Deze opdracht wordt gegeven aan shell om geluid te maken bij wekkers."
 
-#: ../src/parameters.c:575
+#: ../src/parameters.c:590
 msgid "Calendar window"
 msgstr "Venster van kalender"
 
-#: ../src/parameters.c:582
+#: ../src/parameters.c:597
 msgid "Calendar visual details"
 msgstr "Visuele bijzonderheden van kalender"
 
-#: ../src/parameters.c:588
+#: ../src/parameters.c:603
 msgid "Show borders"
 msgstr "Toon randen"
 
-#: ../src/parameters.c:593
+#: ../src/parameters.c:608
 msgid "Show menu"
 msgstr "Menu weergeven"
 
-#: ../src/parameters.c:601
+#: ../src/parameters.c:616
 msgid "Show day names"
 msgstr "Dagnamen weergeven"
 
-#: ../src/parameters.c:606
+#: ../src/parameters.c:621
 msgid "Show week numbers"
 msgstr "Weeknummers weergeven"
 
-#: ../src/parameters.c:614
+#: ../src/parameters.c:629
 msgid "Show month and year"
 msgstr "Toon maand en jaar"
 
-#: ../src/parameters.c:634
+#: ../src/parameters.c:649
 msgid "Calendar info boxes"
 msgstr "Informatie-onderdelen van kalender"
 
-#: ../src/parameters.c:639
+#: ../src/parameters.c:654
 msgid "Show todo list"
 msgstr "Te Doen-lijst tonen"
 
-#: ../src/parameters.c:646
+#: ../src/parameters.c:661
 msgid "Number of days to show in event window"
 msgstr "Aantal dagen om te tonen in gebeurtenisvenster"
 
-#: ../src/parameters.c:652
+#: ../src/parameters.c:667
 msgid "0 = do not show event list at all"
 msgstr "0 = toon überhaupt geen gebeurtenissenlijst"
 
-#: ../src/parameters.c:665
+#: ../src/parameters.c:680
 msgid "Calendar visibility"
 msgstr "Zichtbaarheid van kalender"
 
-#: ../src/parameters.c:670
+#: ../src/parameters.c:685
 msgid "Show on all desktops"
 msgstr "Toon op alle werkbladen"
 
-#: ../src/parameters.c:675
+#: ../src/parameters.c:690
 msgid "Keep on top"
 msgstr "Hou bovenaan"
 
-#: ../src/parameters.c:683
+#: ../src/parameters.c:698
 msgid "Show in taskbar"
 msgstr "In taakbalk laten zien"
 
-#: ../src/parameters.c:688
+#: ../src/parameters.c:703
 msgid "Show in pager"
 msgstr "In pager weergeven"
 
-#: ../src/parameters.c:696
+#: ../src/parameters.c:711
 msgid "Show in systray"
 msgstr "In systeemvak weergeven"
 
-#: ../src/parameters.c:717
+#: ../src/parameters.c:732
 msgid "Calendar start"
 msgstr "Kalenderbegin"
 
-#: ../src/parameters.c:722
+#: ../src/parameters.c:737
 msgid "Show"
 msgstr "Weergeven"
 
-#: ../src/parameters.c:734
+#: ../src/parameters.c:749
 msgid "Hide"
 msgstr "Verbergen"
 
-#: ../src/parameters.c:746
+#: ../src/parameters.c:761
 msgid "Minimized"
 msgstr "Geminimaliseerd"
 
-#: ../src/parameters.c:766
+#: ../src/parameters.c:781
 msgid "On calendar window open"
 msgstr "Open op kalendervenster"
 
-#: ../src/parameters.c:771
+#: ../src/parameters.c:786
 msgid "Select today's date"
 msgstr "Kies datum van vandaag"
 
-#: ../src/parameters.c:784
+#: ../src/parameters.c:799
 msgid "Select previously selected date"
 msgstr "Kies eerder gekozen datum"
 
-#: ../src/parameters.c:802
+#: ../src/parameters.c:817
 msgid "Calendar day double click shows"
 msgstr "Dubbelklik op kalenderdag toont"
 
-#: ../src/parameters.c:807
+#: ../src/parameters.c:822
 msgid "Days view"
 msgstr "Dagweergave"
 
-#: ../src/parameters.c:819
+#: ../src/parameters.c:834
 msgid "Event list"
 msgstr "Gebeurtenissenlijst"
 
-#: ../src/parameters.c:841
+#: ../src/parameters.c:856
 msgid "Extra settings"
 msgstr "Extra instellingen"
 
-#: ../src/parameters.c:848
+#: ../src/parameters.c:863
 msgid "Event list window extra days"
 msgstr "Gebeurtenissenlijstvenster extra dagen"
 
-#: ../src/parameters.c:853
+#: ../src/parameters.c:868
 msgid "Number of extra days to show in event list"
 msgstr "Aantal extra dagen te tonen in gebeurtenissenlijst"
 
-#: ../src/parameters.c:861
+#: ../src/parameters.c:876
 msgid ""
 "This is just the default value, you can change it in the actual eventlist "
 "window."
 msgstr "Dit is slechts de standaardwaarde, u kunt die veranderen in het eigenlijke venster van de gebeurtenissenlijst"
 
-#: ../src/parameters.c:871
+#: ../src/parameters.c:886
 msgid "Day view window default first day"
 msgstr "Dagoverzichtvenster standaard voor eerste dag"
 
-#: ../src/parameters.c:876
+#: ../src/parameters.c:891
 msgid "First day of week"
 msgstr "Eerste dag van week"
 
-#: ../src/parameters.c:889
+#: ../src/parameters.c:904
 msgid "Selected day"
 msgstr "Gekozen dag"
 
-#: ../src/parameters.c:907
+#: ../src/parameters.c:922
 msgid "Use dynamic tray icon"
 msgstr "Gebruik dynamisch systeemvakpictogram"
 
-#: ../src/parameters.c:912
+#: ../src/parameters.c:927
 msgid "Use dynamic icon"
 msgstr "Gebruik dynamisch pictogram"
 
-#: ../src/parameters.c:918
+#: ../src/parameters.c:933
 msgid "Dynamic icon shows current month and day of the month."
 msgstr "Dynamisch pictogram toont huidige maand en dag"
 
-#: ../src/parameters.c:926 ../src/parameters.c:931
+#: ../src/parameters.c:941 ../src/parameters.c:946
 msgid "Use wakeup timer"
 msgstr "Gebruik wekker"
 
-#: ../src/parameters.c:937
+#: ../src/parameters.c:952
 msgid ""
 "Use this timer if Orage has problems waking up properly after suspend or "
 "hibernate. (For example tray icon not refreshed or alarms not firing.)"
-msgstr "Gebruik deze wekker indien Orage problemen heeft met juist ontwaken na pauzestand if slaapstand (bijvoorbeeld: systeemvakpictogram wordt niet ververst of alarmen gaan niet af)."
+msgstr "Gebruik deze aftelklok indien Orage problemen heeft met juist ontwaken na pauzestand of slaapstand (bijvoorbeeld: systeemvakpictogram wordt niet ververst of wekkers gaan niet af)."
 
-#: ../src/parameters.c:946
+#: ../src/parameters.c:961
 msgid "Foreign file default visual alarm"
-msgstr "Standaard zichtbaar alarm bij vreemd bestand"
+msgstr "Niet-eigen bestand voor standaard-visuele wekker"
 
-#: ../src/parameters.c:951
+#: ../src/parameters.c:966
 msgid "Orage window"
 msgstr "Venster van Orage"
 
-#: ../src/parameters.c:964
+#: ../src/parameters.c:979
 msgid "Notify notification"
 msgstr "Melding"
 
-#: ../src/parameters.c:982
+#: ../src/parameters.c:997
 msgid "Always quit when asked to close"
 msgstr "Altijd volledig afsluiten bij sluiten"
 
-#: ../src/parameters.c:987
+#: ../src/parameters.c:1002
 msgid "Always quit"
 msgstr "Altijd volledig afsluiten"
 
-#: ../src/parameters.c:993
+#: ../src/parameters.c:1008
 msgid ""
 "By default Orage stays open in the background when asked to close. This "
 "option changes Orage to quit and never stay in background when it is asked "
 "to close."
 msgstr "Standaard blijft Orage actief op de achtergrond wanneer hij wordt gesloten. Deze optie verandert dat, zodat Orage volledig afsluit en niet op de achtergrond actief blijft bij sluiten."
 
-#: ../src/parameters.c:1009
+#: ../src/parameters.c:1024
 msgid "Orage Preferences"
 msgstr "Orage voorkeuren"
 
-#: ../src/parameters.c:1121
+#: ../src/parameters.c:1136
 msgid "First Orage start. Searching default timezone."
 msgstr "Eerste start van Orage. Aan het zoeken naar de standaard-tijdzone."
 
-#: ../src/parameters.c:1140
+#: ../src/parameters.c:1155
 #, c-format
 msgid "Default timezone set to %s."
 msgstr "Standaard-tijdzone ingesteld op %s."
 
-#: ../src/parameters.c:1143
+#: ../src/parameters.c:1158
 msgid "Default timezone not found, please, set it manually."
 msgstr "Standaard-tijdzone niet gevonden, stel deze a.u.b. handmatig in."
 
@@ -2003,21 +2083,21 @@ msgstr "Herinner me weer na de opgegeven tijd"
 
 #: ../src/reminder.c:1091
 msgid "Next active alarms:"
-msgstr "Volgende actieve alarmen:"
+msgstr "Volgende actieve wekkers:"
 
-#: ../src/reminder.c:1143
+#: ../src/reminder.c:1145
 #, c-format
 msgid ""
 "\n"
 "%02d d %02d h %02d min to: %s"
 msgstr "\n%02d d %02d u %02d min tot: %s"
 
-#: ../src/reminder.c:1152
+#: ../src/reminder.c:1154
 #, c-format
 msgid ""
 "\n"
 "No active alarms found"
-msgstr "\nGeen actieve alarmen gevonden"
+msgstr "\nGeen actieve wekkers gevonden"
 
 #: ../src/timezone_names.c:36
 msgid "Africa"
