@@ -3495,10 +3495,10 @@ static void mark_calendar(icalcomponent *c, icaltime_span *span , void *data)
     edate = icaltime_from_string(orage_tm_time_to_icaltime(&end_tm));
     edate = convert_to_zone(edate, cal_data->appt.end_tz_loc);
     edate = icaltime_convert_to_zone(edate, local_icaltimezone);
-    /*
     g_print(P_N "sdate(day, mon, year):%d %d %d edate:%d %d %d\n"
              , sdate.day , sdate.month , sdate.year
              , edate.day , edate.month , edate.year);
+    /*
              */
     xfical_mark_calendar_days(cal_data->cal, cal_data->year, cal_data->month
             , sdate.year, sdate.month, sdate.day
@@ -3549,17 +3549,24 @@ static void xfical_mark_calendar_from_component(GtkCalendar *gtkcal
         /*
         icaltime_adjust(&nedate, 0, 0, 0, 0);
         */
+        /* FIXME: we read the whole appointent just to get start and end 
+         * timezones for mark_calendar. too heavy? */
+        /* removed due to bug 9507
         cal_data.cal = gtkcal;
         cal_data.year = year;
         cal_data.month = month;
-        /* FIXME: we read the whole appointent just to get start and end 
-         * timezones. too heavy? */
         key_found = get_appt_from_icalcomponent(c, &cal_data.appt);
         icalcomponent_foreach_recurrence(c, nsdate, nedate, mark_calendar
                 , (void *)&cal_data);
         g_free(cal_data.appt.categories);
+    */
         /*
-                , (void *)gtkcal);
+    g_print(P_N "(mon, year):%d %d (%d %d %d - %d %d %d)\n"
+             , month , year
+             , nsdate.day , nsdate.month , nsdate.year
+             , nedate.day , nedate.month , nedate.year);
+    */
+        per = ic_get_period(c, TRUE);
         xfical_mark_calendar_days(gtkcal, year, month
                 , per.stime.year, per.stime.month, per.stime.day
                 , per.etime.year, per.etime.month, per.etime.day);
@@ -3582,7 +3589,6 @@ static void xfical_mark_calendar_from_component(GtkCalendar *gtkcal
             }
             icalrecur_iterator_free(ri);
         } 
-    */
     } /* ICAL_VEVENT_COMPONENT */
     else if (kind == ICAL_VTODO_COMPONENT) {
         per = ic_get_period(c, TRUE);
@@ -3701,6 +3707,7 @@ static void add_appt_to_list(icalcomponent *c, icaltime_span *span , void *data)
     struct icaltimetype start, end;
     struct tm start_tm, end_tm;
     gboolean key_found;
+    icalproperty *p = NULL;
     typedef struct _app_data
     {
         GList **list;
@@ -3775,6 +3782,9 @@ static void xfical_get_each_app_within_time_internal(char *a_day, gint days
     struct icaltimetype asdate, aedate;    /* period to check */
     icalcomponent *c=NULL;
     icalcomponent_kind ikind = ICAL_VEVENT_COMPONENT;
+    icalcomponent *c2=NULL;
+    icalproperty *p = NULL;
+    struct icaltimetype start;
     typedef struct _app_data
     {
         GList **list;
@@ -3811,8 +3821,24 @@ static void xfical_get_each_app_within_time_internal(char *a_day, gint days
     for (c = icalcomponent_get_first_component(base, ikind);
          c != 0;
          c = icalcomponent_get_next_component(base, ikind)) {
-        icalcomponent_foreach_recurrence(c, asdate, aedate, add_appt_to_list
-                , (void *)&data1);
+        /* FIXME: hack to fix year to be newer than 1970 based on BUG 9507 */
+        p = icalcomponent_get_first_property(c, ICAL_DTSTART_PROPERTY);
+        start = icalproperty_get_dtstart(p);
+        if (start.year < 1970) {
+            c2 = icalcomponent_new_clone(c);
+            p = icalcomponent_get_first_property(c2, ICAL_DTSTART_PROPERTY);
+            start = icalproperty_get_dtstart(p);
+            orage_message(140, P_N "Adjusting old DTSTART time %d", start.year);
+            start.year = 1970;
+            icalproperty_set_dtstart(p, start);
+            icalcomponent_foreach_recurrence(c2, asdate, aedate, add_appt_to_list
+                    , (void *)&data1);
+        }
+        else {
+            icalcomponent_foreach_recurrence(c, asdate, aedate, add_appt_to_list
+                    , (void *)&data1);
+        }
+        /* FIXME: end of hack */
     }
 }
 
