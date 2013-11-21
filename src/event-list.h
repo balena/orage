@@ -70,6 +70,8 @@ typedef struct _el_win
     GtkWidget *event_tab_label;
     GtkWidget *event_notebook_page;
     GtkWidget *event_spin;
+    GtkWidget *event_only_first_checkbutton;
+    GtkWidget *event_show_old_checkbutton;
     GtkWidget *todo_tab_label;
     GtkWidget *todo_notebook_page;
     GtkWidget *journal_tab_label;
@@ -87,6 +89,8 @@ typedef struct _el_win
 
     /* these are used to build the data into event list */
     gboolean today;       /* flag: today or not */
+    gboolean only_first;  /* flag: show only the first repeating event */
+    gboolean show_old;    /* flag: show also very old events */
     int      days;        /* how many extra days to show; usually 0 */
     el_page  page;        /* appointment page to show */
     char     time_now[6]; /* hh:mm */

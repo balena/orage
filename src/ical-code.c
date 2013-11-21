@@ -3828,17 +3828,18 @@ static void xfical_get_each_app_within_time_internal(char *a_day, gint days
             c2 = icalcomponent_new_clone(c);
             p = icalcomponent_get_first_property(c2, ICAL_DTSTART_PROPERTY);
             start = icalproperty_get_dtstart(p);
-            orage_message(140, P_N "Adjusting old DTSTART time %d", start.year);
+            orage_message(40, P_N "Adjusting temporarily old DTSTART time %d"
+                    , start.year);
             start.year = 1970;
             icalproperty_set_dtstart(p, start);
-            icalcomponent_foreach_recurrence(c2, asdate, aedate, add_appt_to_list
-                    , (void *)&data1);
-        }
-        else {
-            icalcomponent_foreach_recurrence(c, asdate, aedate, add_appt_to_list
-                    , (void *)&data1);
+            icalcomponent_foreach_recurrence(c2, asdate, aedate
+                    , add_appt_to_list, (void *)&data1);
         }
         /* FIXME: end of hack */
+        else {
+            icalcomponent_foreach_recurrence(c, asdate, aedate
+                    , add_appt_to_list, (void *)&data1);
+        }
     }
 }
 

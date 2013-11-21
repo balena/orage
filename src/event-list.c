@@ -49,6 +49,7 @@
 #include <gdk/gdkkeysyms.h>
 #include <gdk/gdk.h>
 #include <gtk/gtk.h>
+#include <glib.h>
 #include <glib/gprintf.h>
 
 #include "orage-i18n.h"
@@ -500,7 +501,7 @@ static void app_rows(el_win *el, char *a_day, char *par, xfical_type ical_type
     GList *appt_list=NULL, *tmp;
     xfical_appt *appt;
 
-    if (ical_type == XFICAL_TYPE_EVENT) {
+    if (ical_type == XFICAL_TYPE_EVENT && !el->only_first) {
         xfical_get_each_app_within_time(a_day, el->days+1
                 , ical_type, file_type, &appt_list);
         for (tmp = g_list_first(appt_list);
@@ -593,20 +594,38 @@ static void event_data(el_win *el)
     char      *stime;  /* in icaltime format */
     char      a_day[9]; /* yyyymmdd */
     struct tm *t, t_title;
+    GDate *d1, *d2;
 
     if (el->days == 0)
         refresh_time_field(el);
     el->days = gtk_spin_button_get_value(GTK_SPIN_BUTTON(el->event_spin));
+    el->only_first = gtk_toggle_button_get_active(
+            GTK_TOGGLE_BUTTON(el->event_only_first_checkbutton));
+    el->show_old = gtk_toggle_button_get_active(
+            GTK_TOGGLE_BUTTON(el->event_show_old_checkbutton));
     title = (char *)gtk_window_get_title(GTK_WINDOW(el->Window));
     t_title = orage_i18_date_to_tm_date(title); 
-    stime = orage_tm_time_to_icaltime(&t_title);
-    strncpy(a_day, stime, 8);
+    if (el->show_old) {
+        /* just take any old enough date, so that all events fit in */
+        strncpy(a_day, "19000101", 8); 
+        /* we need to adjust also number of days shown */
+        d1 = g_date_new_dmy(1, 1, 1900);
+        d2 = g_date_new_dmy(t_title.tm_mday, t_title.tm_mon+1
+                , t_title.tm_year+1900);
+        el->days += g_date_days_between(d1, d2);
+        g_date_free(d1);
+        g_date_free(d2);
+    }
+    else { /* we show starting from selected day */
+        stime = orage_tm_time_to_icaltime(&t_title);
+        strncpy(a_day, stime, 8);
+    }
     a_day[8] = '\0';
     t = orage_localtime();
     g_sprintf(el->time_now, "%02d:%02d", t->tm_hour, t->tm_min);
-    if (   t_title.tm_year == t->tm_year
-        && t_title.tm_mon  == t->tm_mon
-        && t_title.tm_mday == t->tm_mday)
+    if (t_title.tm_year == t->tm_year
+    &&  t_title.tm_mon  == t->tm_mon
+    &&  t_title.tm_mday == t->tm_mday)
         el->today = TRUE;
     else
         el->today = FALSE; 
@@ -905,6 +924,16 @@ static void on_spin_changed(GtkSpinButton *b, gpointer user_data)
     refresh_el_win((el_win *)user_data);
 }
 
+static void on_only_first_changed(GtkCheckButton *b, gpointer user_data)
+{
+    refresh_el_win((el_win *)user_data);
+}
+
+static void on_show_old_changed(GtkCheckButton *b, gpointer user_data)
+{
+    refresh_el_win((el_win *)user_data);
+}
+
 static void delete_appointment(el_win *el)
 {
     gint result;
@@ -1172,23 +1201,47 @@ static void build_toolbar(el_win *el)
 static void build_event_tab(el_win *el)
 {
     GtkWidget *label;
+    GtkWidget *hbox;
 
+    hbox =  gtk_hbox_new(FALSE, 0);
     el->event_tab_label = gtk_label_new(_("Event"));
     /* we do not really need table, but it is efficient and easy way to
        do this. Using hboxes takes actually more memory */
     el->event_notebook_page = orage_table_new(1, BORDER_SIZE);
 
     label = gtk_label_new(_("Extra days to show "));
-    el->event_spin = gtk_spin_button_new_with_range(0, 999, 1);
+
+    el->event_spin = gtk_spin_button_new_with_range(0, 99999, 1);
+    gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(el->event_spin), TRUE);
     gtk_spin_button_set_value(GTK_SPIN_BUTTON(el->event_spin)
             , (gdouble)el->days);
+    gtk_box_pack_start(GTK_BOX(hbox), el->event_spin, FALSE, FALSE, 15);
+
+    el->event_only_first_checkbutton =
+            gtk_check_button_new_with_label(_("only first"));
+    gtk_widget_set_tooltip_text(el->event_only_first_checkbutton
+            , _("Check this if you only want to see the first repeating event. By default all are shown.\nNote that this also shows all urgencies."));
+    gtk_box_pack_start(GTK_BOX(hbox), el->event_only_first_checkbutton
+            , FALSE, FALSE, 15);
+
+    el->event_show_old_checkbutton =
+            gtk_check_button_new_with_label(_("also old"));
+    gtk_widget_set_tooltip_text(el->event_show_old_checkbutton
+            , _("Check this if you want to see old events also. You should set the 'only first' also or the list will be very long.\nNote that repeating events may appear earlier if you select 'only first'."));
+    gtk_box_pack_start(GTK_BOX(hbox), el->event_show_old_checkbutton
+            , FALSE, FALSE, 15);
+
     orage_table_add_row(el->event_notebook_page
-            , label, el->event_spin, 0, (GTK_FILL), (0));
+            , label, hbox, 0, (GTK_FILL), (0));
 
     gtk_notebook_append_page(GTK_NOTEBOOK(el->Notebook)
             , el->event_notebook_page, el->event_tab_label);
     g_signal_connect((gpointer)el->event_spin, "value-changed"
             , G_CALLBACK(on_spin_changed), el);
+    g_signal_connect((gpointer)el->event_only_first_checkbutton, "clicked"
+            , G_CALLBACK(on_only_first_changed), el);
+    g_signal_connect((gpointer)el->event_show_old_checkbutton, "clicked"
+            , G_CALLBACK(on_show_old_changed), el);
 }
 
 static void build_todo_tab(el_win *el)
@@ -1345,6 +1398,8 @@ el_win *create_el_win(char *start_date)
     /* initialisation + main window + base vbox */
     el = g_new(el_win, 1);
     el->today = FALSE;
+    el->only_first = FALSE;
+    el->show_old = FALSE;
     el->days = g_par.el_days;
     el->time_now[0] = 0;
     el->apptw_list = NULL;
