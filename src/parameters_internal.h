@@ -93,6 +93,7 @@ typedef struct _Itf
     /* number of extra days to show */
     GtkWidget *el_extra_days_frame;
     GtkWidget *el_extra_days_spin;
+    GtkWidget *el_only_first_checkbutton;
     /* day view week mode */
     GtkWidget *dw_week_mode_frame;
     GSList    *dw_week_mode_radiobutton_group;

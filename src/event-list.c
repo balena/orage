@@ -599,13 +599,15 @@ static void event_data(el_win *el)
     if (el->days == 0)
         refresh_time_field(el);
     el->days = gtk_spin_button_get_value(GTK_SPIN_BUTTON(el->event_spin));
+    /*
     el->only_first = gtk_toggle_button_get_active(
             GTK_TOGGLE_BUTTON(el->event_only_first_checkbutton));
+            */
     el->show_old = gtk_toggle_button_get_active(
             GTK_TOGGLE_BUTTON(el->event_show_old_checkbutton));
     title = (char *)gtk_window_get_title(GTK_WINDOW(el->Window));
     t_title = orage_i18_date_to_tm_date(title); 
-    if (el->show_old) {
+    if (el->show_old && el->only_first) {
         /* just take any old enough date, so that all events fit in */
         strncpy(a_day, "19000101", 8); 
         /* we need to adjust also number of days shown */
@@ -924,12 +926,17 @@ static void on_spin_changed(GtkSpinButton *b, gpointer user_data)
     refresh_el_win((el_win *)user_data);
 }
 
-static void on_only_first_changed(GtkCheckButton *b, gpointer user_data)
+static void on_only_first_clicked(GtkCheckButton *b, gpointer user_data)
 {
+    el_win *el = (el_win *)user_data;
+
+    el->only_first = gtk_toggle_button_get_active(
+            GTK_TOGGLE_BUTTON(el->event_only_first_checkbutton));
+    gtk_widget_set_sensitive(el->event_show_old_checkbutton, el->only_first);
     refresh_el_win((el_win *)user_data);
 }
 
-static void on_show_old_changed(GtkCheckButton *b, gpointer user_data)
+static void on_show_old_clicked(GtkCheckButton *b, gpointer user_data)
 {
     refresh_el_win((el_win *)user_data);
 }
@@ -1209,25 +1216,31 @@ static void build_event_tab(el_win *el)
        do this. Using hboxes takes actually more memory */
     el->event_notebook_page = orage_table_new(1, BORDER_SIZE);
 
-    label = gtk_label_new(_("Extra days to show "));
+    label = gtk_label_new(_("Extra days to show:"));
 
     el->event_spin = gtk_spin_button_new_with_range(0, 99999, 1);
     gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(el->event_spin), TRUE);
     gtk_spin_button_set_value(GTK_SPIN_BUTTON(el->event_spin)
             , (gdouble)el->days);
-    gtk_box_pack_start(GTK_BOX(hbox), el->event_spin, FALSE, FALSE, 15);
+    gtk_box_pack_start(GTK_BOX(hbox), el->event_spin, FALSE, FALSE, 2);
 
     el->event_only_first_checkbutton =
-            gtk_check_button_new_with_label(_("only first"));
+            gtk_check_button_new_with_label(_("only first repeating"));
+    gtk_toggle_button_set_active(
+            GTK_TOGGLE_BUTTON(el->event_only_first_checkbutton)
+                    , el->only_first);
     gtk_widget_set_tooltip_text(el->event_only_first_checkbutton
-            , _("Check this if you only want to see the first repeating event. By default all are shown.\nNote that this also shows all urgencies."));
+            , _("Check this if you only want to see the first repeating event. By default all are shown.\nNote that this also shows all urgencies.\nNote that repeating events may appear earlier in the list as the first occurrence only is listed."));
     gtk_box_pack_start(GTK_BOX(hbox), el->event_only_first_checkbutton
             , FALSE, FALSE, 15);
 
     el->event_show_old_checkbutton =
             gtk_check_button_new_with_label(_("also old"));
     gtk_widget_set_tooltip_text(el->event_show_old_checkbutton
-            , _("Check this if you want to see old events also. You should set the 'only first' also or the list will be very long.\nNote that repeating events may appear earlier if you select 'only first'."));
+            , _("Check this if you want to see old events also. This can only be selected after 'only first repeating' is enabled to avoid very long lists.\nNote that extra days selection still defines if newer appointments are listed'."));
+    gtk_toggle_button_set_active(
+            GTK_TOGGLE_BUTTON(el->event_show_old_checkbutton), el->only_first);
+    gtk_widget_set_sensitive(el->event_show_old_checkbutton, el->only_first);
     gtk_box_pack_start(GTK_BOX(hbox), el->event_show_old_checkbutton
             , FALSE, FALSE, 15);
 
@@ -1239,9 +1252,9 @@ static void build_event_tab(el_win *el)
     g_signal_connect((gpointer)el->event_spin, "value-changed"
             , G_CALLBACK(on_spin_changed), el);
     g_signal_connect((gpointer)el->event_only_first_checkbutton, "clicked"
-            , G_CALLBACK(on_only_first_changed), el);
+            , G_CALLBACK(on_only_first_clicked), el);
     g_signal_connect((gpointer)el->event_show_old_checkbutton, "clicked"
-            , G_CALLBACK(on_show_old_changed), el);
+            , G_CALLBACK(on_show_old_clicked), el);
 }
 
 static void build_todo_tab(el_win *el)
@@ -1398,9 +1411,9 @@ el_win *create_el_win(char *start_date)
     /* initialisation + main window + base vbox */
     el = g_new(el_win, 1);
     el->today = FALSE;
-    el->only_first = FALSE;
-    el->show_old = FALSE;
     el->days = g_par.el_days;
+    el->only_first = g_par.el_only_first;
+    el->show_old = el->only_first;
     el->time_now[0] = 0;
     el->apptw_list = NULL;
     el->accel_group = gtk_accel_group_new();

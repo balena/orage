@@ -3495,10 +3495,10 @@ static void mark_calendar(icalcomponent *c, icaltime_span *span , void *data)
     edate = icaltime_from_string(orage_tm_time_to_icaltime(&end_tm));
     edate = convert_to_zone(edate, cal_data->appt.end_tz_loc);
     edate = icaltime_convert_to_zone(edate, local_icaltimezone);
+    /*
     g_print(P_N "sdate(day, mon, year):%d %d %d edate:%d %d %d\n"
              , sdate.day , sdate.month , sdate.year
              , edate.day , edate.month , edate.year);
-    /*
              */
     xfical_mark_calendar_days(cal_data->cal, cal_data->year, cal_data->month
             , sdate.year, sdate.month, sdate.day
@@ -3529,6 +3529,7 @@ static void xfical_mark_calendar_from_component(GtkCalendar *gtkcal
         guint month;
         xfical_appt appt;
     } cal_data;
+    struct icaltimetype start;
 
 #ifdef ORAGE_DEBUG
     orage_message(-200, P_N);
@@ -3551,43 +3552,48 @@ static void xfical_mark_calendar_from_component(GtkCalendar *gtkcal
         */
         /* FIXME: we read the whole appointent just to get start and end 
          * timezones for mark_calendar. too heavy? */
-        /* removed due to bug 9507
-        cal_data.cal = gtkcal;
-        cal_data.year = year;
-        cal_data.month = month;
-        key_found = get_appt_from_icalcomponent(c, &cal_data.appt);
-        icalcomponent_foreach_recurrence(c, nsdate, nedate, mark_calendar
-                , (void *)&cal_data);
-        g_free(cal_data.appt.categories);
-    */
+        /* 1970 check due to bug 9507 */
+        p = icalcomponent_get_first_property(c, ICAL_DTSTART_PROPERTY);
+        start = icalproperty_get_dtstart(p);
+        if (start.year >= 1970) {
+            cal_data.cal = gtkcal;
+            cal_data.year = year;
+            cal_data.month = month;
+            key_found = get_appt_from_icalcomponent(c, &cal_data.appt);
+            icalcomponent_foreach_recurrence(c, nsdate, nedate, mark_calendar
+                    , (void *)&cal_data);
+            g_free(cal_data.appt.categories);
+        }
+        else {
         /*
     g_print(P_N "(mon, year):%d %d (%d %d %d - %d %d %d)\n"
              , month , year
              , nsdate.day , nsdate.month , nsdate.year
              , nedate.day , nedate.month , nedate.year);
     */
-        per = ic_get_period(c, TRUE);
-        xfical_mark_calendar_days(gtkcal, year, month
-                , per.stime.year, per.stime.month, per.stime.day
-                , per.etime.year, per.etime.month, per.etime.day);
-        if ((p = icalcomponent_get_first_property(c
-                , ICAL_RRULE_PROPERTY)) != 0) {
-            nsdate = icaltime_null_time();
-            rrule = icalproperty_get_rrule(p);
-            ri = icalrecur_iterator_new(rrule, per.stime);
-            for (nsdate = icalrecur_iterator_next(ri),
-                    nedate = icaltime_add(nsdate, per.duration);
-                 !icaltime_is_null_time(nsdate)
-                    && (nsdate.year*12+nsdate.month) <= (year*12+month);
-                 nsdate = icalrecur_iterator_next(ri),
-                    nedate = icaltime_add(nsdate, per.duration)) {
-                if (!icalproperty_recurrence_is_excluded(c, &per.stime
-                            , &nsdate))
-                    xfical_mark_calendar_days(gtkcal, year, month
-                            , nsdate.year, nsdate.month, nsdate.day
-                            , nedate.year, nedate.month, nedate.day);
-            }
-            icalrecur_iterator_free(ri);
+            per = ic_get_period(c, TRUE);
+            xfical_mark_calendar_days(gtkcal, year, month
+                    , per.stime.year, per.stime.month, per.stime.day
+                    , per.etime.year, per.etime.month, per.etime.day);
+            if ((p = icalcomponent_get_first_property(c
+                    , ICAL_RRULE_PROPERTY)) != 0) {
+                nsdate = icaltime_null_time();
+                rrule = icalproperty_get_rrule(p);
+                ri = icalrecur_iterator_new(rrule, per.stime);
+                for (nsdate = icalrecur_iterator_next(ri),
+                        nedate = icaltime_add(nsdate, per.duration);
+                     !icaltime_is_null_time(nsdate)
+                        && (nsdate.year*12+nsdate.month) <= (year*12+month);
+                     nsdate = icalrecur_iterator_next(ri),
+                        nedate = icaltime_add(nsdate, per.duration)) {
+                    if (!icalproperty_recurrence_is_excluded(c, &per.stime
+                                , &nsdate))
+                        xfical_mark_calendar_days(gtkcal, year, month
+                                , nsdate.year, nsdate.month, nsdate.day
+                                , nedate.year, nedate.month, nedate.day);
+                }
+                icalrecur_iterator_free(ri);
+            } 
         } 
     } /* ICAL_VEVENT_COMPONENT */
     else if (kind == ICAL_VTODO_COMPONENT) {
@@ -3828,7 +3834,7 @@ static void xfical_get_each_app_within_time_internal(char *a_day, gint days
             c2 = icalcomponent_new_clone(c);
             p = icalcomponent_get_first_property(c2, ICAL_DTSTART_PROPERTY);
             start = icalproperty_get_dtstart(p);
-            orage_message(40, P_N "Adjusting temporarily old DTSTART time %d"
+            orage_message(-10, P_N "Adjusting temporarily old DTSTART time %d"
                     , start.year);
             start.year = 1970;
             icalproperty_set_dtstart(p, start);

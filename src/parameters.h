@@ -114,6 +114,7 @@ typedef struct _parameters
     gint el_pos_x, el_pos_y;
     gint el_size_x, el_size_y;
     gint el_days;
+    gboolean el_only_first;
 
     /* day view window */
     gint dw_pos_x, dw_pos_y;

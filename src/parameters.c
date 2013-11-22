@@ -444,6 +444,12 @@ static void el_extra_days_spin_changed(GtkSpinButton *sb, gpointer user_data)
     g_par.el_days = gtk_spin_button_get_value(sb);
 }
 
+static void el_only_first_checkbutton_clicked(GtkCheckButton *cb
+        , gpointer user_data)
+{
+    g_par.el_only_first = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(cb));
+}
+
 /* start monitoring lost seconds due to hibernate or suspend */
 static void set_wakeup_timer()
 {
@@ -857,17 +863,18 @@ static void create_parameter_dialog_extra_setup_tab(Itf *dialog)
     gtk_notebook_append_page(GTK_NOTEBOOK(dialog->notebook)
           , dialog->extra_tab, dialog->extra_tab_label);
 
-    /***** Eventlist window number of extra days to show *****/
+    /***** Eventlist window extra days and only first *****/
     vbox = gtk_vbox_new(FALSE, 0);
     dialog->el_extra_days_frame = orage_create_framebox_with_content(
-            _("Event list window extra days"), vbox);
+            _("Event list window"), vbox);
     gtk_box_pack_start(GTK_BOX(dialog->extra_vbox)
             , dialog->el_extra_days_frame, FALSE, FALSE, 5);
 
     hbox = gtk_hbox_new(FALSE, 0);
     label = gtk_label_new(_("Number of extra days to show in event list"));
     gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 5);
-    dialog->el_extra_days_spin = gtk_spin_button_new_with_range(0, 999, 1);
+    dialog->el_extra_days_spin = gtk_spin_button_new_with_range(0, 99999, 1);
+    gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(dialog->el_extra_days_spin), TRUE);
     gtk_box_pack_start(GTK_BOX(hbox)
             , dialog->el_extra_days_spin, FALSE, FALSE, 5);
     gtk_spin_button_set_value(GTK_SPIN_BUTTON(dialog->el_extra_days_spin)
@@ -878,6 +885,20 @@ static void create_parameter_dialog_extra_setup_tab(Itf *dialog)
 
     g_signal_connect(G_OBJECT(dialog->el_extra_days_spin), "value-changed"
             , G_CALLBACK(el_extra_days_spin_changed), dialog);
+
+    hbox = gtk_hbox_new(FALSE, 0);
+    dialog->el_only_first_checkbutton = gtk_check_button_new_with_label(
+            _("Show only first repeating event"));
+    gtk_box_pack_start(GTK_BOX(hbox), dialog->el_only_first_checkbutton
+            , FALSE, FALSE, 5);
+    gtk_toggle_button_set_active(
+            GTK_TOGGLE_BUTTON(dialog->el_only_first_checkbutton)
+                    , g_par.el_only_first);
+    gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
+
+    g_signal_connect(G_OBJECT(dialog->el_only_first_checkbutton), "clicked"
+            , G_CALLBACK(el_only_first_checkbutton_clicked), dialog);
+
 
     /***** Default start day in day view window *****/
     dialog->dw_week_mode_radiobutton_group = NULL;
@@ -1192,6 +1213,7 @@ void read_parameters(void)
     g_par.el_size_x = orage_rc_get_int(orc, "Eventlist window X", 500);
     g_par.el_size_y = orage_rc_get_int(orc, "Eventlist window Y", 350);
     g_par.el_days = orage_rc_get_int(orc, "Eventlist extra days", 0);
+    g_par.el_only_first = orage_rc_get_bool(orc, "Eventlist only first", FALSE);
     g_par.dw_pos_x = orage_rc_get_int(orc, "Dayview window pos X", 0);
     g_par.dw_pos_y = orage_rc_get_int(orc, "Dayview window pos Y", 0);
     g_par.dw_size_x = orage_rc_get_int(orc, "Dayview window X", 690);
@@ -1294,6 +1316,7 @@ void write_parameters(void)
     orage_rc_put_int(orc, "Eventlist window X", g_par.el_size_x);
     orage_rc_put_int(orc, "Eventlist window Y", g_par.el_size_y);
     orage_rc_put_int(orc, "Eventlist extra days", g_par.el_days);
+    orage_rc_put_bool(orc, "Eventlist only first", g_par.el_only_first);
     orage_rc_put_int(orc, "Dayview window pos X", g_par.dw_pos_x);
     orage_rc_put_int(orc, "Dayview window pos Y", g_par.dw_pos_y);
     orage_rc_put_int(orc, "Dayview window X", g_par.dw_size_x);
