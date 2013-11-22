@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-18 18:30+0100\n"
-"PO-Revision-Date: 2013-11-19 06:32+0000\n"
+"POT-Creation-Date: 2013-11-21 18:30+0100\n"
+"PO-Revision-Date: 2013-11-22 07:51+0000\n"
 "Last-Translator: k3lt01 <keltoiboy@gmail.com>\n"
 "Language-Team: English (Australia) (http://www.transifex.com/projects/p/xfce/language/en_AU/)\n"
 "MIME-Version: 1.0\n"
@@ -328,7 +328,7 @@ msgstr "not changing"
 #: ../globaltime/timezone_selection.c:247
 #: ../globaltime/timezone_selection.c:252
 #: ../panel-plugin/timezone_selection.c:248
-#: ../panel-plugin/timezone_selection.c:253 ../src/appointment.c:2771
+#: ../panel-plugin/timezone_selection.c:253 ../src/appointment.c:2776
 #: ../src/timezone_selection.c:259 ../src/timezone_selection.c:264
 msgid "Location"
 msgstr "Location"
@@ -515,7 +515,7 @@ msgstr "Manage your time with Orage"
 #. if (gtk_toggle_button_get_active(
 #. GTK_TOGGLE_BUTTON(apptw->Type_journal_rb)))
 #. end time
-#: ../src/appointment.c:313 ../src/appointment.c:353 ../src/appointment.c:2800
+#: ../src/appointment.c:313 ../src/appointment.c:353 ../src/appointment.c:2805
 msgid "End"
 msgstr "End"
 
@@ -545,7 +545,7 @@ msgstr "All Files"
 msgid "The appointment information has been modified."
 msgstr "The appointment information has been modified."
 
-#: ../src/appointment.c:739 ../src/appointment.c:1282 ../src/event-list.c:921
+#: ../src/appointment.c:739 ../src/appointment.c:1287 ../src/event-list.c:950
 msgid "Do you want to continue?"
 msgstr "Do you want to continue?"
 
@@ -561,7 +561,7 @@ msgstr "Yes, ignore modifications and leave"
 msgid "The end of this appointment is earlier than the beginning."
 msgstr "The end of this appointment is earlier than the beginning."
 
-#: ../src/appointment.c:1035 ../src/appointment.c:1918
+#: ../src/appointment.c:1035 ../src/appointment.c:1923
 msgid "Not set"
 msgstr "Not set"
 
@@ -569,241 +569,241 @@ msgstr "Not set"
 msgid "Add new appointment to this file."
 msgstr "Add new appointment to this file."
 
-#: ../src/appointment.c:1139
+#: ../src/appointment.c:1139 ../src/appointment.c:1188
 msgid "Orage default file"
 msgstr "Orage default file"
 
-#: ../src/appointment.c:1220
+#: ../src/appointment.c:1225
 msgid "Appointment addition failed."
 msgstr "Appointment addition failed."
 
-#: ../src/appointment.c:1221
+#: ../src/appointment.c:1226
 msgid ""
 "Error happened when adding appointment. Look more details from the log file."
 msgstr "Error happened when adding appointment. Look more details from the log file."
 
-#: ../src/appointment.c:1231
+#: ../src/appointment.c:1236
 msgid "Appointment update failed."
 msgstr "Appointment update failed."
 
-#: ../src/appointment.c:1232
+#: ../src/appointment.c:1237
 msgid ""
 "Look more details from the log file. (Perhaps file was updated external from"
 " Orage?)"
 msgstr "Look more details from the log file. (Perhaps file was updated external from Orage?)"
 
-#: ../src/appointment.c:1281
+#: ../src/appointment.c:1286
 msgid "This appointment will be permanently removed."
 msgstr "This appointment will be permanently removed."
 
-#: ../src/appointment.c:1283 ../src/event-list.c:922
+#: ../src/appointment.c:1288 ../src/event-list.c:951
 msgid "No, cancel the removal"
 msgstr "No, cancel the removal"
 
-#: ../src/appointment.c:1284
+#: ../src/appointment.c:1289
 msgid "Yes, remove it"
 msgstr "Yes, remove it"
 
-#: ../src/appointment.c:1373 ../src/appointment.c:1388 ../src/day-view.c:457
-#: ../src/event-list.c:980
+#: ../src/appointment.c:1378 ../src/appointment.c:1393 ../src/day-view.c:457
+#: ../src/event-list.c:1009
 msgid "Pick the date"
 msgstr "Pick the date"
 
-#: ../src/appointment.c:1375 ../src/appointment.c:1390 ../src/day-view.c:386
-#: ../src/day-view.c:459 ../src/event-list.c:982 ../src/event-list.c:1132
+#: ../src/appointment.c:1380 ../src/appointment.c:1395 ../src/day-view.c:386
+#: ../src/day-view.c:459 ../src/event-list.c:1011 ../src/event-list.c:1161
 #: ../src/tray_icon.c:460
 msgid "Today"
 msgstr "Today"
 
-#: ../src/appointment.c:1798
+#: ../src/appointment.c:1803
 msgid "This appointment does not exist."
 msgstr "This appointment does not exist."
 
-#: ../src/appointment.c:1799
+#: ../src/appointment.c:1804
 msgid "It was probably removed, please refresh your screen."
 msgstr "It was probably removed, please refresh your screen."
 
-#: ../src/appointment.c:2100
+#: ../src/appointment.c:2105
 msgid "Current categories"
 msgstr "Current categories"
 
-#: ../src/appointment.c:2115
+#: ../src/appointment.c:2120
 msgid "Add new category with color"
 msgstr "Add new category with colour"
 
-#: ../src/appointment.c:2119
+#: ../src/appointment.c:2124
 msgid "Category:"
 msgstr "Category:"
 
-#: ../src/appointment.c:2150
+#: ../src/appointment.c:2155
 msgid "Colors of categories - Orage"
 msgstr "Colours of categories - Orage"
 
-#: ../src/appointment.c:2196
+#: ../src/appointment.c:2201
 msgid " *** COPY ***"
 msgstr " *** COPY ***"
 
-#: ../src/appointment.c:2461
+#: ../src/appointment.c:2466
 msgid "New appointment - Orage"
 msgstr "New appointment - Orage"
 
 #. File menu stuff
 #. ********* File menu *********
 #. File menu
-#: ../src/appointment.c:2491 ../src/day-view.c:279 ../src/event-list.c:1033
+#: ../src/appointment.c:2496 ../src/day-view.c:279 ../src/event-list.c:1062
 #: ../src/interface.c:813 ../src/mainbox.c:297
 msgid "_File"
 msgstr "_File"
 
-#: ../src/appointment.c:2497
+#: ../src/appointment.c:2502
 msgid "Sav_e and close"
 msgstr "Sav_e and close"
 
-#: ../src/appointment.c:2510 ../src/event-list.c:1039
+#: ../src/appointment.c:2515 ../src/event-list.c:1068
 msgid "D_uplicate"
 msgstr "D_uplicate"
 
-#: ../src/appointment.c:2697
+#: ../src/appointment.c:2702
 msgid "Save"
 msgstr "Save"
 
-#: ../src/appointment.c:2699
+#: ../src/appointment.c:2704
 msgid "Save and close"
 msgstr "Save and close"
 
-#: ../src/appointment.c:2704
+#: ../src/appointment.c:2709
 msgid "Revert"
 msgstr "Revert"
 
-#: ../src/appointment.c:2706 ../src/event-list.c:1123
+#: ../src/appointment.c:2711 ../src/event-list.c:1152
 msgid "Duplicate"
 msgstr "Duplicate"
 
-#: ../src/appointment.c:2711 ../src/event-list.c:1125
+#: ../src/appointment.c:2716 ../src/event-list.c:1154
 msgid "Delete"
 msgstr "Delete"
 
-#: ../src/appointment.c:2729
+#: ../src/appointment.c:2734
 msgid "Free"
 msgstr "Free"
 
-#: ../src/appointment.c:2729
+#: ../src/appointment.c:2734
 msgid "Busy"
 msgstr "Busy"
 
-#: ../src/appointment.c:2733
+#: ../src/appointment.c:2738
 msgid "General"
 msgstr "General"
 
 #. type
-#: ../src/appointment.c:2739
+#: ../src/appointment.c:2744
 msgid "Type "
 msgstr "Type "
 
-#: ../src/appointment.c:2741 ../src/event-list.c:1176
+#: ../src/appointment.c:2746 ../src/event-list.c:1207
 msgid "Event"
 msgstr "Event"
 
-#: ../src/appointment.c:2744
+#: ../src/appointment.c:2749
 msgid ""
 "Event that will happen sometime. For example:\n"
 "Meeting or birthday or TV show."
 msgstr "Event that will happen sometime. For example:\nMeeting or birthday or TV show."
 
-#: ../src/appointment.c:2747 ../src/event-list.c:1196
+#: ../src/appointment.c:2752 ../src/event-list.c:1249
 msgid "Todo"
 msgstr "Todo"
 
-#: ../src/appointment.c:2750
+#: ../src/appointment.c:2755
 msgid ""
 "Something that you should do sometime. For example:\n"
 "Wash your car or test new version of Orage."
 msgstr "Something that you should do sometime. For example:\nWash your car or test new version of Orage."
 
-#: ../src/appointment.c:2753 ../src/event-list.c:1209
+#: ../src/appointment.c:2758 ../src/event-list.c:1262
 msgid "Journal"
 msgstr "Journal"
 
-#: ../src/appointment.c:2757
+#: ../src/appointment.c:2762
 msgid ""
 "Make a note that something happened. For example:\n"
 "Remark that your mother called or first snow came."
 msgstr "Make a note that something happened. For example:\nRemark that your mother called or first snow came."
 
 #. title
-#: ../src/appointment.c:2764
+#: ../src/appointment.c:2769
 msgid "Title "
 msgstr "Title "
 
-#: ../src/appointment.c:2779
+#: ../src/appointment.c:2784
 msgid "All day event"
 msgstr "All day event"
 
 #. start time
-#: ../src/appointment.c:2785 ../src/appointment.c:3446 ../src/day-view.c:801
+#: ../src/appointment.c:2790 ../src/appointment.c:3451 ../src/day-view.c:801
 msgid "Start"
 msgstr "Start"
 
-#: ../src/appointment.c:2805
+#: ../src/appointment.c:2810
 msgid "Set      "
 msgstr "Set      "
 
-#: ../src/appointment.c:2826
+#: ../src/appointment.c:2831
 msgid "Duration"
 msgstr "Duration"
 
-#: ../src/appointment.c:2830 ../src/appointment.c:3020 ../src/reminder.c:758
+#: ../src/appointment.c:2835 ../src/appointment.c:3025 ../src/reminder.c:758
 msgid "days"
 msgstr "days"
 
-#: ../src/appointment.c:2832 ../src/appointment.c:3022 ../src/reminder.c:760
+#: ../src/appointment.c:2837 ../src/appointment.c:3027 ../src/reminder.c:760
 msgid "hours"
 msgstr "hours"
 
-#: ../src/appointment.c:2834 ../src/appointment.c:3024 ../src/reminder.c:762
+#: ../src/appointment.c:2839 ../src/appointment.c:3029 ../src/reminder.c:762
 msgid "mins"
 msgstr "mins"
 
 #. Availability (only for EVENT)
-#: ../src/appointment.c:2846
+#: ../src/appointment.c:2851
 msgid "Availability"
 msgstr "Availability"
 
 #. completed (only for TODO)
-#: ../src/appointment.c:2854 ../src/appointment.c:3452
+#: ../src/appointment.c:2859 ../src/appointment.c:3457
 msgid "Completed"
 msgstr "Completed"
 
-#: ../src/appointment.c:2857
+#: ../src/appointment.c:2862
 msgid "Done"
 msgstr "Done"
 
 #. categories
-#: ../src/appointment.c:2878
+#: ../src/appointment.c:2883
 msgid "Categories"
 msgstr "Categories"
 
-#: ../src/appointment.c:2890
+#: ../src/appointment.c:2895
 msgid ""
 "This is special category, which can be used to color this appointment in "
 "list views."
 msgstr "This is special category, which can be used to colour this appointment in list views."
 
-#: ../src/appointment.c:2895
+#: ../src/appointment.c:2900
 msgid "update colors for categories."
 msgstr "update colours for categories."
 
 #. priority
-#: ../src/appointment.c:2901
+#: ../src/appointment.c:2906
 msgid "Priority"
 msgstr "Priority"
 
 #. note
-#: ../src/appointment.c:2911
+#: ../src/appointment.c:2916
 msgid "Note"
 msgstr "Note"
 
-#: ../src/appointment.c:2932
+#: ../src/appointment.c:2937
 msgid ""
 "These shorthand commands take effect immediately:\n"
 "    <D> inserts current date in local date format\n"
@@ -815,32 +815,32 @@ msgid ""
 "(This can be used for example in birthday reminders to tell how old the person will be.)"
 msgstr "These shorthand commands take effect immediately:\n    <D> inserts current date in local date format\n    <T> inserts time and\n    <DT> inserts date and time.\n\nThese are converted only later when they are seen:\n    <&Ynnnn> is translated to current year minus nnnn.\n(This can be used for example in birthday reminders to tell how old the person will be.)"
 
-#: ../src/appointment.c:3003
+#: ../src/appointment.c:3008
 msgid "Before Start"
 msgstr "Before Start"
 
-#: ../src/appointment.c:3003
+#: ../src/appointment.c:3008
 msgid "Before End"
 msgstr "Before End"
 
-#: ../src/appointment.c:3004
+#: ../src/appointment.c:3009
 msgid "After Start"
 msgstr "After Start"
 
-#: ../src/appointment.c:3004
+#: ../src/appointment.c:3009
 msgid "After End"
 msgstr "After End"
 
-#: ../src/appointment.c:3011
+#: ../src/appointment.c:3016
 msgid "Alarm"
 msgstr "Alarm"
 
 #. **** ALARM TIME ****
-#: ../src/appointment.c:3017
+#: ../src/appointment.c:3022
 msgid "Alarm time"
 msgstr "Alarm time"
 
-#: ../src/appointment.c:3041
+#: ../src/appointment.c:3046
 msgid ""
 "Often you want to get alarm:\n"
 " 1) before Event start\n"
@@ -848,88 +848,88 @@ msgid ""
 " 3) after Todo start"
 msgstr "Often you want to get alarm:\n 1) before Event start\n 2) before Todo end\n 3) after Todo start"
 
-#: ../src/appointment.c:3046
+#: ../src/appointment.c:3051
 msgid "Persistent alarm"
 msgstr "Persistent alarm"
 
-#: ../src/appointment.c:3048
+#: ../src/appointment.c:3053
 msgid ""
 "Select this if you want Orage to remind you even if it has not been active "
 "when the alarm happened."
 msgstr "Select this if you want Orage to remind you even if it has not been active when the alarm happened."
 
 #. **** Audio Alarm ****
-#: ../src/appointment.c:3057
+#: ../src/appointment.c:3062
 msgid "Sound"
 msgstr "Sound"
 
-#: ../src/appointment.c:3061 ../src/appointment.c:3181
+#: ../src/appointment.c:3066 ../src/appointment.c:3186
 msgid "Use"
 msgstr "Use"
 
-#: ../src/appointment.c:3063
+#: ../src/appointment.c:3068
 msgid "Select this if you want audible alarm"
 msgstr "Select this if you want audible alarm"
 
-#: ../src/appointment.c:3080
+#: ../src/appointment.c:3085
 msgid "Repeat alarm sound"
 msgstr "Repeat alarm sound"
 
-#: ../src/appointment.c:3096 ../src/appointment.c:3395
+#: ../src/appointment.c:3101 ../src/appointment.c:3400
 msgid "times"
 msgstr "times"
 
-#: ../src/appointment.c:3112
+#: ../src/appointment.c:3117
 msgid "sec interval"
 msgstr "sec interval"
 
 #. **** Display Alarm ****
-#: ../src/appointment.c:3122
+#: ../src/appointment.c:3127
 msgid "Visual"
 msgstr "Visual"
 
-#: ../src/appointment.c:3126
+#: ../src/appointment.c:3131
 msgid "Use Orage window"
 msgstr "Use Orage window"
 
-#: ../src/appointment.c:3128
+#: ../src/appointment.c:3133
 msgid "Select this if you want Orage window alarm"
 msgstr "Select this if you want Orage window alarm"
 
-#: ../src/appointment.c:3140
+#: ../src/appointment.c:3145
 msgid "Use notification"
 msgstr "Use notification"
 
-#: ../src/appointment.c:3142
+#: ../src/appointment.c:3147
 msgid "Select this if you want notification alarm"
 msgstr "Select this if you want notification alarm"
 
-#: ../src/appointment.c:3148
+#: ../src/appointment.c:3153
 msgid "Set timeout"
 msgstr "Set timeout"
 
-#: ../src/appointment.c:3150
+#: ../src/appointment.c:3155
 msgid "Select this if you want notification to expire automatically"
 msgstr "Select this if you want notification to expire automatically"
 
-#: ../src/appointment.c:3161
+#: ../src/appointment.c:3166
 msgid "0 = system default expiration time"
 msgstr "0 = system default expiration time"
 
-#: ../src/appointment.c:3166
+#: ../src/appointment.c:3171
 msgid "seconds"
 msgstr "seconds"
 
 #. **** Procedure Alarm ****
-#: ../src/appointment.c:3177
+#: ../src/appointment.c:3182
 msgid "Procedure"
 msgstr "Procedure"
 
-#: ../src/appointment.c:3183
+#: ../src/appointment.c:3188
 msgid "Select this if you want procedure or script alarm"
 msgstr "Select this if you want procedure or script alarm"
 
-#: ../src/appointment.c:3189
+#: ../src/appointment.c:3194
 msgid ""
 "You must enter all escape etc characters yourself.\n"
 "This string is just given to shell to process.\n"
@@ -941,96 +941,96 @@ msgid ""
 "\t<&ET> appointment end time"
 msgstr "You must enter all escape etc characters yourself.\nThis string is just given to shell to process.\nThe following special commands are replaced at run time:\n\t<&T>  appointment title\n\t<&D>  appointment description\n\t<&AT> alarm time\n\t<&ST> appointment start time\n\t<&ET> appointment end time"
 
-#: ../src/appointment.c:3201
+#: ../src/appointment.c:3206
 msgid "Test this alarm by raising it now"
 msgstr "Test this alarm by raising it now"
 
-#: ../src/appointment.c:3208
+#: ../src/appointment.c:3213
 msgid "<b>Default alarm</b>"
 msgstr "<b>Default alarm</b>"
 
-#: ../src/appointment.c:3216
+#: ../src/appointment.c:3221
 msgid "Store current settings as default alarm"
 msgstr "Store current settings as default alarm"
 
-#: ../src/appointment.c:3221
+#: ../src/appointment.c:3226
 msgid "Set current settings from default alarm"
 msgstr "Set current settings from default alarm"
 
-#: ../src/appointment.c:3283
+#: ../src/appointment.c:3288
 msgid "None"
 msgstr "None"
 
-#: ../src/appointment.c:3283
+#: ../src/appointment.c:3288
 msgid "Daily"
 msgstr "Daily"
 
-#: ../src/appointment.c:3283
+#: ../src/appointment.c:3288
 msgid "Weekly"
 msgstr "Weekly"
 
-#: ../src/appointment.c:3283
+#: ../src/appointment.c:3288
 msgid "Monthly"
 msgstr "Monthly"
 
-#: ../src/appointment.c:3283
+#: ../src/appointment.c:3288
 msgid "Yearly"
 msgstr "Yearly"
 
-#: ../src/appointment.c:3283
+#: ../src/appointment.c:3288
 msgid "Hourly"
 msgstr "Hourly"
 
-#: ../src/appointment.c:3285
+#: ../src/appointment.c:3290
 msgid "Mon"
 msgstr "Mon"
 
-#: ../src/appointment.c:3285
+#: ../src/appointment.c:3290
 msgid "Tue"
 msgstr "Tue"
 
-#: ../src/appointment.c:3285
+#: ../src/appointment.c:3290
 msgid "Wed"
 msgstr "Wed"
 
-#: ../src/appointment.c:3285
+#: ../src/appointment.c:3290
 msgid "Thu"
 msgstr "Thu"
 
-#: ../src/appointment.c:3285
+#: ../src/appointment.c:3290
 msgid "Fri"
 msgstr "Fri"
 
-#: ../src/appointment.c:3285
+#: ../src/appointment.c:3290
 msgid "Sat"
 msgstr "Sat"
 
-#: ../src/appointment.c:3285
+#: ../src/appointment.c:3290
 msgid "Sun"
 msgstr "Sun"
 
-#: ../src/appointment.c:3290
+#: ../src/appointment.c:3295
 msgid "Recurrence"
 msgstr "Recurrence"
 
 #. complexity
-#: ../src/appointment.c:3296
+#: ../src/appointment.c:3301
 msgid "Complexity"
 msgstr "Complexity"
 
-#: ../src/appointment.c:3299
+#: ../src/appointment.c:3304
 msgid "Basic"
 msgstr "Basic"
 
-#: ../src/appointment.c:3305
+#: ../src/appointment.c:3310
 msgid "Advanced"
 msgstr "Advanced"
 
-#: ../src/appointment.c:3309
+#: ../src/appointment.c:3314
 msgid "Use this if you want regular repeating event"
 msgstr "Use this if you want regular repeating event"
 
-#: ../src/appointment.c:3311
+#: ../src/appointment.c:3316
 msgid ""
 "Use this if you need complex times like:\n"
 " Every Saturday and Sunday or \n"
@@ -1038,51 +1038,51 @@ msgid ""
 msgstr "Use this if you need complex times like:\n Every Saturday and Sunday or \n First Tuesday every month"
 
 #. frequency
-#: ../src/appointment.c:3317
+#: ../src/appointment.c:3322
 msgid "Frequency"
 msgstr "Frequency"
 
-#: ../src/appointment.c:3323
+#: ../src/appointment.c:3328
 msgid "Each"
 msgstr "Each"
 
-#: ../src/appointment.c:3330
+#: ../src/appointment.c:3335
 msgid "occurrence"
 msgstr "occurrence"
 
-#: ../src/appointment.c:3334
+#: ../src/appointment.c:3339
 msgid ""
 "Limit frequency to certain interval.\n"
 " For example: Every third day:\n"
 " Frequency = Daily and Interval = 3"
 msgstr "Limit frequency to certain interval.\n For example: Every third day:\n Frequency = Daily and Interval = 3"
 
-#: ../src/appointment.c:3379
+#: ../src/appointment.c:3384
 msgid "Limit"
 msgstr "Limit"
 
-#: ../src/appointment.c:3381
+#: ../src/appointment.c:3386
 msgid "Repeat forever"
 msgstr "Repeat forever"
 
-#: ../src/appointment.c:3387
+#: ../src/appointment.c:3392
 msgid "Repeat "
 msgstr "Repeat "
 
-#: ../src/appointment.c:3403
+#: ../src/appointment.c:3408
 msgid "Repeat until "
 msgstr "Repeat until "
 
 #. weekdays (only for complex settings)
-#: ../src/appointment.c:3416
+#: ../src/appointment.c:3421
 msgid "Weekdays"
 msgstr "Weekdays"
 
-#: ../src/appointment.c:3428
+#: ../src/appointment.c:3433
 msgid "Which day"
 msgstr "Which day"
 
-#: ../src/appointment.c:3436
+#: ../src/appointment.c:3441
 msgid ""
 "Specify which weekday for monthly and yearly events.\n"
 " For example:\n"
@@ -1093,69 +1093,69 @@ msgid ""
 msgstr "Specify which weekday for monthly and yearly events.\n For example:\n Second Wednesday each month:\n\tFrequency = Monthly,\n\tWeekdays = check only Wednesday,\n\tWhich day = select 2 from the number below Wednesday"
 
 #. TODO base (only for TODOs)
-#: ../src/appointment.c:3443
+#: ../src/appointment.c:3448
 msgid "TODO base"
 msgstr "TODO base"
 
-#: ../src/appointment.c:3456
+#: ../src/appointment.c:3461
 msgid ""
 "TODO reoccurs regularly starting on start time and repeating after each "
 "interval no matter when it was last completed"
 msgstr "TODO reoccurs regularly starting on start time and repeating after each interval no matter when it was last completed"
 
-#: ../src/appointment.c:3458
+#: ../src/appointment.c:3463
 msgid ""
 "TODO reoccurrency is based on complete time and repeats after the interval counted from the last completed time.\n"
 "(Note that you can not tell anything about the history of the TODO since reoccurrence base changes after each completion.)"
 msgstr "TODO reoccurrency is based on complete time and repeats after the interval counted from the last completed time.\n(Note that you can not tell anything about the history of the TODO since reoccurrence base changes after each completion.)"
 
 #. exceptions
-#: ../src/appointment.c:3464
+#: ../src/appointment.c:3469
 msgid "Exceptions"
 msgstr "Exceptions"
 
-#: ../src/appointment.c:3477
+#: ../src/appointment.c:3482
 msgid ""
 "Add more exception dates by clicking the calendar days below.\n"
 "Exception is either exclusion(-) or inclusion(+) depending on the selection.\n"
 "Remove by clicking the data."
 msgstr "Add more exception dates by clicking the calendar days below.\nException is either exclusion(-) or inclusion(+) depending on the selection.\nRemove by clicking the data."
 
-#: ../src/appointment.c:3482
+#: ../src/appointment.c:3487
 msgid "Add excluded date (-)"
 msgstr "Add excluded date (-)"
 
-#: ../src/appointment.c:3484
+#: ../src/appointment.c:3489
 msgid "Excluded days are full days where this appointment is not happening"
 msgstr "Excluded days are full days where this appointment is not happening"
 
-#: ../src/appointment.c:3490
+#: ../src/appointment.c:3495
 msgid "Add included time (+)"
 msgstr "Add included time (+)"
 
-#: ../src/appointment.c:3492
+#: ../src/appointment.c:3497
 msgid ""
 "Included times have same timezone than start time, but they may have "
 "different time"
 msgstr "Included times have same timezone than start time, but they may have different time"
 
 #. calendars showing the action days
-#: ../src/appointment.c:3509
+#: ../src/appointment.c:3514
 msgid "Action dates"
 msgstr "Action dates"
 
 #. ********* View menu *********
 #. View menu
-#: ../src/day-view.c:289 ../src/event-list.c:1056 ../src/mainbox.c:323
+#: ../src/day-view.c:289 ../src/event-list.c:1085 ../src/mainbox.c:323
 msgid "_View"
 msgstr "_View"
 
 #. ********* Go menu   *********
-#: ../src/day-view.c:303 ../src/event-list.c:1075
+#: ../src/day-view.c:303 ../src/event-list.c:1104
 msgid "_Go"
 msgstr "_Go"
 
-#: ../src/day-view.c:377 ../src/event-list.c:1121
+#: ../src/day-view.c:377 ../src/event-list.c:1150
 msgid "New"
 msgstr "New"
 
@@ -1175,11 +1175,11 @@ msgstr "Forward one day"
 msgid "Forward one week"
 msgstr "Forward one week"
 
-#: ../src/day-view.c:395 ../src/event-list.c:1139
+#: ../src/day-view.c:395 ../src/event-list.c:1168
 msgid "Refresh"
 msgstr "Refresh"
 
-#: ../src/day-view.c:400 ../src/event-list.c:1146 ../src/interface.c:834
+#: ../src/day-view.c:400 ../src/event-list.c:1175 ../src/interface.c:834
 msgid "Close"
 msgstr "Close"
 
@@ -1196,73 +1196,93 @@ msgid "Orage - day view"
 msgstr "Orage - day view"
 
 #. date only appointment
-#: ../src/event-list.c:190
+#: ../src/event-list.c:191
 msgid "All day"
 msgstr "All day"
 
-#: ../src/event-list.c:583 ../src/event-list.c:1292
+#: ../src/event-list.c:584 ../src/event-list.c:1345
 msgid "Time"
 msgstr "Time"
 
-#: ../src/event-list.c:751
+#: ../src/event-list.c:770
 msgid "No rows have been selected."
 msgstr "No rows have been selected."
 
-#: ../src/event-list.c:752
+#: ../src/event-list.c:771
 msgid "Click a row to select it and after that you can copy it."
 msgstr "Click a row to select it and after that you can copy it."
 
-#: ../src/event-list.c:920
+#: ../src/event-list.c:949
 msgid ""
 "You will permanently remove all\n"
 "selected appointments."
 msgstr "You will permanently remove all\nselected appointments."
 
-#: ../src/event-list.c:923
+#: ../src/event-list.c:952
 msgid "Yes, remove them"
 msgstr "Yes, remove them"
 
-#: ../src/event-list.c:1130
+#: ../src/event-list.c:1159
 msgid "Back"
 msgstr "Back"
 
-#: ../src/event-list.c:1134
+#: ../src/event-list.c:1163
 msgid "Forward"
 msgstr "Forward"
 
-#: ../src/event-list.c:1141
+#: ../src/event-list.c:1170
 msgid "Find"
 msgstr "Find"
 
-#: ../src/event-list.c:1148
+#: ../src/event-list.c:1177
 msgid "Dayview"
 msgstr "Dayview"
 
-#: ../src/event-list.c:1181
+#: ../src/event-list.c:1212
 msgid "Extra days to show "
 msgstr "Extra days to show "
 
-#: ../src/event-list.c:1212
+#: ../src/event-list.c:1221
+msgid "only first"
+msgstr "only first"
+
+#: ../src/event-list.c:1223
+msgid ""
+"Check this if you only want to see the first repeating event. By default all are shown.\n"
+"Note that this also shows all urgencies."
+msgstr "Check this if you only want to see the first repeating event. By default all are shown.\nNote that this also shows all urgencies."
+
+#: ../src/event-list.c:1228
+msgid "also old"
+msgstr "also old"
+
+#: ../src/event-list.c:1230
+msgid ""
+"Check this if you want to see old events also. You should set the 'only first' also or the list will be very long.\n"
+"Note that repeating events may appear earlier if you select 'only first'."
+msgstr "Check this if you want to see old events also. You should set the 'only first' also or the list will be very long.\nNote that repeating events may appear earlier if you select 'only first'."
+
+#: ../src/event-list.c:1265
 msgid "Journal entries starting from:"
 msgstr "Journal entries starting from:"
 
-#: ../src/event-list.c:1232
+#: ../src/event-list.c:1285
 msgid "Search"
 msgstr "Search"
 
-#: ../src/event-list.c:1235
+#: ../src/event-list.c:1288
 msgid "Search text "
 msgstr "Search text "
 
-#: ../src/event-list.c:1300
+#: ../src/event-list.c:1353
 msgid "Flags"
 msgstr "Flags"
 
-#: ../src/event-list.c:1308
+#: ../src/event-list.c:1361
 msgid "Title"
 msgstr "Title"
 
-#: ../src/event-list.c:1334
+#: ../src/event-list.c:1387
 msgid ""
 "Double click line to edit it.\n"
 "\n"
