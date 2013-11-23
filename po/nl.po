@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-21 18:30+0100\n"
-"PO-Revision-Date: 2013-11-22 11:12+0000\n"
+"POT-Creation-Date: 2013-11-22 12:30+0100\n"
+"PO-Revision-Date: 2013-11-23 10:22+0000\n"
 "Last-Translator: Pjotr123 <pjotrvertaalt@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/projects/p/xfce/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -23,11 +23,11 @@ msgstr ""
 
 #: ../globaltime/globaltime.c:100
 msgid "Raising GlobalTime window..."
-msgstr "WereldTijd-venster aan het oproepen..."
+msgstr "WereldTijd-venster aan het verheffen..."
 
 #: ../globaltime/globaltime.c:102
 msgid "GlobalTime window raise failed"
-msgstr "Oproepen van WereldTijd-venster is mislukt"
+msgstr "Verheffen van WereldTijd-venster is mislukt"
 
 #. ********** timezone tooltip **********
 #: ../globaltime/globaltime.c:277
@@ -548,7 +548,7 @@ msgstr "Alle bestanden"
 msgid "The appointment information has been modified."
 msgstr "De afspraakgegevens zijn aangepast."
 
-#: ../src/appointment.c:739 ../src/appointment.c:1287 ../src/event-list.c:950
+#: ../src/appointment.c:739 ../src/appointment.c:1287 ../src/event-list.c:957
 msgid "Do you want to continue?"
 msgstr "Wilt u doorgaan?"
 
@@ -599,7 +599,7 @@ msgstr "Zie het logboekbestand voor meer bijzonderheden (werd het bestand missch
 msgid "This appointment will be permanently removed."
 msgstr "Deze afspraak zal voorgoed verwijderd worden."
 
-#: ../src/appointment.c:1288 ../src/event-list.c:951
+#: ../src/appointment.c:1288 ../src/event-list.c:958
 msgid "No, cancel the removal"
 msgstr "Nee, annuleer de verwijdering"
 
@@ -608,12 +608,12 @@ msgid "Yes, remove it"
 msgstr "Ja, verwijder het"
 
 #: ../src/appointment.c:1378 ../src/appointment.c:1393 ../src/day-view.c:457
-#: ../src/event-list.c:1009
+#: ../src/event-list.c:1016
 msgid "Pick the date"
 msgstr "Kies de datum"
 
 #: ../src/appointment.c:1380 ../src/appointment.c:1395 ../src/day-view.c:386
-#: ../src/day-view.c:459 ../src/event-list.c:1011 ../src/event-list.c:1161
+#: ../src/day-view.c:459 ../src/event-list.c:1018 ../src/event-list.c:1168
 #: ../src/tray_icon.c:460
 msgid "Today"
 msgstr "Vandaag"
@@ -653,7 +653,7 @@ msgstr "Nieuwe afspraak - Orage"
 #. File menu stuff
 #. ********* File menu *********
 #. File menu
-#: ../src/appointment.c:2496 ../src/day-view.c:279 ../src/event-list.c:1062
+#: ../src/appointment.c:2496 ../src/day-view.c:279 ../src/event-list.c:1069
 #: ../src/interface.c:813 ../src/mainbox.c:297
 msgid "_File"
 msgstr "_Bestand"
@@ -662,7 +662,7 @@ msgstr "_Bestand"
 msgid "Sav_e and close"
 msgstr "Opsl_aan en afsluiten"
 
-#: ../src/appointment.c:2515 ../src/event-list.c:1068
+#: ../src/appointment.c:2515 ../src/event-list.c:1075
 msgid "D_uplicate"
 msgstr "V_erdubbelen"
 
@@ -678,11 +678,11 @@ msgstr "Opslaan en sluiten"
 msgid "Revert"
 msgstr "Terugdraaien"
 
-#: ../src/appointment.c:2711 ../src/event-list.c:1152
+#: ../src/appointment.c:2711 ../src/event-list.c:1159
 msgid "Duplicate"
 msgstr "Verdubbelen"
 
-#: ../src/appointment.c:2716 ../src/event-list.c:1154
+#: ../src/appointment.c:2716 ../src/event-list.c:1161
 msgid "Delete"
 msgstr "Verwijderen"
 
@@ -703,7 +703,7 @@ msgstr "Algemeen"
 msgid "Type "
 msgstr "Type "
 
-#: ../src/appointment.c:2746 ../src/event-list.c:1207
+#: ../src/appointment.c:2746 ../src/event-list.c:1214
 msgid "Event"
 msgstr "Gebeurtenis"
 
@@ -713,7 +713,7 @@ msgid ""
 "Meeting or birthday or TV show."
 msgstr "Gebeurtenis die ooit gaat plaatsvinden. Bijv.:\nvergadering, verjaardag of TV-programma."
 
-#: ../src/appointment.c:2752 ../src/event-list.c:1249
+#: ../src/appointment.c:2752 ../src/event-list.c:1262
 msgid "Todo"
 msgstr "Te doen"
 
@@ -723,7 +723,7 @@ msgid ""
 "Wash your car or test new version of Orage."
 msgstr "Iets dat u ooit zou moeten doen. Bijvoorbeeld:\nwas uw auto of probeer nieuwe Orage-versie uit."
 
-#: ../src/appointment.c:2758 ../src/event-list.c:1262
+#: ../src/appointment.c:2758 ../src/event-list.c:1275
 msgid "Journal"
 msgstr "Dagboek"
 
@@ -1149,16 +1149,16 @@ msgstr "Actiedata"
 
 #. ********* View menu *********
 #. View menu
-#: ../src/day-view.c:289 ../src/event-list.c:1085 ../src/mainbox.c:323
+#: ../src/day-view.c:289 ../src/event-list.c:1092 ../src/mainbox.c:323
 msgid "_View"
 msgstr "_Weergave"
 
 #. ********* Go menu   *********
-#: ../src/day-view.c:303 ../src/event-list.c:1104
+#: ../src/day-view.c:303 ../src/event-list.c:1111
 msgid "_Go"
 msgstr "_Gaan"
 
-#: ../src/day-view.c:377 ../src/event-list.c:1150
+#: ../src/day-view.c:377 ../src/event-list.c:1157
 msgid "New"
 msgstr "Nieuw"
 
@@ -1178,11 +1178,11 @@ msgstr "Dag vooruit"
 msgid "Forward one week"
 msgstr "Week vooruit"
 
-#: ../src/day-view.c:395 ../src/event-list.c:1168
+#: ../src/day-view.c:395 ../src/event-list.c:1175
 msgid "Refresh"
 msgstr "Verversen"
 
-#: ../src/day-view.c:400 ../src/event-list.c:1175 ../src/interface.c:834
+#: ../src/day-view.c:400 ../src/event-list.c:1182 ../src/interface.c:834
 msgid "Close"
 msgstr "Sluiten"
 
@@ -1203,89 +1203,90 @@ msgstr "Orage - dagweergave"
 msgid "All day"
 msgstr "Gehele dag"
 
-#: ../src/event-list.c:584 ../src/event-list.c:1345
+#: ../src/event-list.c:584 ../src/event-list.c:1358
 msgid "Time"
 msgstr "Tijd"
 
-#: ../src/event-list.c:770
+#: ../src/event-list.c:772
 msgid "No rows have been selected."
 msgstr "Er zijn geen rijen gekozen."
 
-#: ../src/event-list.c:771
+#: ../src/event-list.c:773
 msgid "Click a row to select it and after that you can copy it."
 msgstr "Klik op een rij om hem te kiezen, en daarna kunt u hem kopiëren."
 
-#: ../src/event-list.c:949
+#: ../src/event-list.c:956
 msgid ""
 "You will permanently remove all\n"
 "selected appointments."
 msgstr "U zult alle gekozen afspraken\nblijvend verwijderen."
 
-#: ../src/event-list.c:952
+#: ../src/event-list.c:959
 msgid "Yes, remove them"
 msgstr "Ja, verwijder ze"
 
-#: ../src/event-list.c:1159
+#: ../src/event-list.c:1166
 msgid "Back"
 msgstr "Terug"
 
-#: ../src/event-list.c:1163
+#: ../src/event-list.c:1170
 msgid "Forward"
 msgstr "Vooruit"
 
-#: ../src/event-list.c:1170
+#: ../src/event-list.c:1177
 msgid "Find"
 msgstr "Zoek"
 
-#: ../src/event-list.c:1177
+#: ../src/event-list.c:1184
 msgid "Dayview"
 msgstr "Dagweergave"
 
-#: ../src/event-list.c:1212
-msgid "Extra days to show "
-msgstr "Extra dagen om te tonen"
-
-#: ../src/event-list.c:1221
-msgid "only first"
-msgstr "alleen eerste"
-
-#: ../src/event-list.c:1223
-msgid ""
-"Check this if you only want to see the first repeating event. By default all are shown.\n"
-"Note that this also shows all urgencies."
-msgstr "Vink dit aan indien u alleen de eerste herhalende gebeurtenis wil zien. Standaard worden ze allemaal getoond.\nLet op: dit toont ook alle urgenties."
+#: ../src/event-list.c:1219
+msgid "Extra days to show:"
+msgstr "Extra te tonen dagen:"
 
 #: ../src/event-list.c:1228
+msgid "only first repeating"
+msgstr "alleen eerste herhalende"
+
+#: ../src/event-list.c:1233
+msgid ""
+"Check this if you only want to see the first repeating event. By default all are shown.\n"
+"Note that this also shows all urgencies.\n"
+"Note that repeating events may appear earlier in the list as the first occurrence only is listed."
+msgstr "Vink dit aan indien u alleen de eerste herhalende gebeurtenis wil zien. Standaard worden ze alle getoond.\nLet op: dit toont ook alle urgenties.\nLet op (2): herhalende gebeurtenissen kunnen eerder in de lijst verschijnen aangezien slechts het eerste voorval in de lijst staat."
+
+#: ../src/event-list.c:1238
 msgid "also old"
 msgstr "ook oude"
 
-#: ../src/event-list.c:1230
+#: ../src/event-list.c:1240
 msgid ""
-"Check this if you want to see old events also. You should set the 'only first' also or the list will be very long.\n"
-"Note that repeating events may appear earlier if you select 'only first'."
-msgstr "Vink dit aan indien u ook oude gebeurtenissen wil zien. U kunt beter ook 'alleen eerste' instellen, want anders wordt de lijst erg lang.\nLet op: herhalende gebeurtenissen kunnen eerder verschijnen indien u 'alleen eerste' kiest."
+"Check this if you want to see old events also. This can only be selected after 'only first repeating' is enabled to avoid very long lists.\n"
+"Note that extra days selection still defines if newer appointments are listed'."
+msgstr "Vink dit aan indien u ook oude gebeurtenissen wil zien. Dit kan slechts worden gekozen nadat 'alleen eerste herhalende' is ingeschakeld, om erg lange lijsten te vermijden.\nLet op: selectie van extra dagen bepaalt nog steeds of nieuwere afspraken in de lijst staan."
 
-#: ../src/event-list.c:1265
+#: ../src/event-list.c:1278
 msgid "Journal entries starting from:"
 msgstr "Dagboeknotities beginnend op:"
 
-#: ../src/event-list.c:1285
+#: ../src/event-list.c:1298
 msgid "Search"
 msgstr "Zoek"
 
-#: ../src/event-list.c:1288
+#: ../src/event-list.c:1301
 msgid "Search text "
 msgstr "Zoek tekst "
 
-#: ../src/event-list.c:1353
+#: ../src/event-list.c:1366
 msgid "Flags"
 msgstr "Merktekens"
 
-#: ../src/event-list.c:1361
+#: ../src/event-list.c:1374
 msgid "Title"
 msgstr "Titel"
 
-#: ../src/event-list.c:1387
+#: ../src/event-list.c:1400
 msgid ""
 "Double click line to edit it.\n"
 "\n"
@@ -1845,239 +1846,243 @@ msgstr "<b>Gebeurtenissen voor %s:</b>"
 msgid "<b>Events for %s - %s:</b>"
 msgstr "<b>Gebeurtenissen voor %s - %s:</b>"
 
-#: ../src/parameters.c:486
+#: ../src/parameters.c:492
 msgid "Main settings"
 msgstr "Hoofdinstellingen"
 
-#: ../src/parameters.c:492
+#: ../src/parameters.c:498
 msgid "Timezone"
 msgstr "Tijdzone"
 
-#: ../src/parameters.c:507
+#: ../src/parameters.c:513
 msgid "You should always define your local timezone."
 msgstr "U moet altijd uw plaatselijke tijdzone bepalen."
 
-#: ../src/parameters.c:515
+#: ../src/parameters.c:521
 msgid "Archive threshold (months)"
 msgstr "Archiefdrempel (maanden)"
 
-#: ../src/parameters.c:525
+#: ../src/parameters.c:531
 msgid "(0 = no archiving)"
 msgstr "(0 = geen archivering)"
 
-#: ../src/parameters.c:528
+#: ../src/parameters.c:534
 msgid "Archiving is used to save time and space when handling events."
 msgstr "Archiveren wordt gebruikt om tijd en ruimte te besparen bij het afhandelen van gebeurtenissen."
 
-#: ../src/parameters.c:536
+#: ../src/parameters.c:542
 msgid "Sound command"
 msgstr "Geluidopdracht"
 
-#: ../src/parameters.c:551
+#: ../src/parameters.c:557
 msgid "This command is given to shell to make sound in alarms."
 msgstr "Deze opdracht wordt gegeven aan shell om geluid te maken bij wekkers."
 
-#: ../src/parameters.c:590
+#: ../src/parameters.c:596
 msgid "Calendar window"
 msgstr "Venster van kalender"
 
-#: ../src/parameters.c:597
+#: ../src/parameters.c:603
 msgid "Calendar visual details"
 msgstr "Visuele bijzonderheden van kalender"
 
-#: ../src/parameters.c:603
+#: ../src/parameters.c:609
 msgid "Show borders"
 msgstr "Toon randen"
 
-#: ../src/parameters.c:608
+#: ../src/parameters.c:614
 msgid "Show menu"
 msgstr "Menu weergeven"
 
-#: ../src/parameters.c:616
+#: ../src/parameters.c:622
 msgid "Show day names"
 msgstr "Dagnamen weergeven"
 
-#: ../src/parameters.c:621
+#: ../src/parameters.c:627
 msgid "Show week numbers"
 msgstr "Weeknummers weergeven"
 
-#: ../src/parameters.c:629
+#: ../src/parameters.c:635
 msgid "Show month and year"
 msgstr "Toon maand en jaar"
 
-#: ../src/parameters.c:649
+#: ../src/parameters.c:655
 msgid "Calendar info boxes"
 msgstr "Informatie-onderdelen van kalender"
 
-#: ../src/parameters.c:654
+#: ../src/parameters.c:660
 msgid "Show todo list"
 msgstr "Te Doen-lijst tonen"
 
-#: ../src/parameters.c:661
+#: ../src/parameters.c:667
 msgid "Number of days to show in event window"
 msgstr "Aantal dagen om te tonen in gebeurtenisvenster"
 
-#: ../src/parameters.c:667
+#: ../src/parameters.c:673
 msgid "0 = do not show event list at all"
 msgstr "0 = toon überhaupt geen gebeurtenissenlijst"
 
-#: ../src/parameters.c:680
+#: ../src/parameters.c:686
 msgid "Calendar visibility"
 msgstr "Zichtbaarheid van kalender"
 
-#: ../src/parameters.c:685
+#: ../src/parameters.c:691
 msgid "Show on all desktops"
 msgstr "Toon op alle werkbladen"
 
-#: ../src/parameters.c:690
+#: ../src/parameters.c:696
 msgid "Keep on top"
 msgstr "Hou bovenaan"
 
-#: ../src/parameters.c:698
+#: ../src/parameters.c:704
 msgid "Show in taskbar"
 msgstr "In taakbalk laten zien"
 
-#: ../src/parameters.c:703
+#: ../src/parameters.c:709
 msgid "Show in pager"
 msgstr "In pager weergeven"
 
-#: ../src/parameters.c:711
+#: ../src/parameters.c:717
 msgid "Show in systray"
 msgstr "In systeemvak weergeven"
 
-#: ../src/parameters.c:732
+#: ../src/parameters.c:738
 msgid "Calendar start"
 msgstr "Kalenderbegin"
 
-#: ../src/parameters.c:737
+#: ../src/parameters.c:743
 msgid "Show"
 msgstr "Weergeven"
 
-#: ../src/parameters.c:749
+#: ../src/parameters.c:755
 msgid "Hide"
 msgstr "Verbergen"
 
-#: ../src/parameters.c:761
+#: ../src/parameters.c:767
 msgid "Minimized"
 msgstr "Geminimaliseerd"
 
-#: ../src/parameters.c:781
+#: ../src/parameters.c:787
 msgid "On calendar window open"
 msgstr "Open op kalendervenster"
 
-#: ../src/parameters.c:786
+#: ../src/parameters.c:792
 msgid "Select today's date"
 msgstr "Kies datum van vandaag"
 
-#: ../src/parameters.c:799
+#: ../src/parameters.c:805
 msgid "Select previously selected date"
 msgstr "Kies eerder gekozen datum"
 
-#: ../src/parameters.c:817
+#: ../src/parameters.c:823
 msgid "Calendar day double click shows"
 msgstr "Dubbelklik op kalenderdag toont"
 
-#: ../src/parameters.c:822
+#: ../src/parameters.c:828
 msgid "Days view"
 msgstr "Dagweergave"
 
-#: ../src/parameters.c:834
+#: ../src/parameters.c:840
 msgid "Event list"
 msgstr "Gebeurtenissenlijst"
 
-#: ../src/parameters.c:856
+#: ../src/parameters.c:862
 msgid "Extra settings"
 msgstr "Extra instellingen"
 
-#: ../src/parameters.c:863
-msgid "Event list window extra days"
-msgstr "Gebeurtenissenlijstvenster extra dagen"
+#: ../src/parameters.c:869
+msgid "Event list window"
+msgstr "Venster met gebeurtenissenlijst"
 
-#: ../src/parameters.c:868
+#: ../src/parameters.c:874
 msgid "Number of extra days to show in event list"
 msgstr "Aantal extra dagen te tonen in gebeurtenissenlijst"
 
-#: ../src/parameters.c:876
+#: ../src/parameters.c:883
 msgid ""
 "This is just the default value, you can change it in the actual eventlist "
 "window."
 msgstr "Dit is slechts de standaardwaarde, u kunt die veranderen in het eigenlijke venster van de gebeurtenissenlijst"
 
-#: ../src/parameters.c:886
+#: ../src/parameters.c:891
+msgid "Show only first repeating event"
+msgstr "Toon slechts de eerste herhalende gebeurtenis"
+
+#: ../src/parameters.c:907
 msgid "Day view window default first day"
 msgstr "Dagoverzichtvenster standaard voor eerste dag"
 
-#: ../src/parameters.c:891
+#: ../src/parameters.c:912
 msgid "First day of week"
 msgstr "Eerste dag van week"
 
-#: ../src/parameters.c:904
+#: ../src/parameters.c:925
 msgid "Selected day"
 msgstr "Gekozen dag"
 
-#: ../src/parameters.c:922
+#: ../src/parameters.c:943
 msgid "Use dynamic tray icon"
 msgstr "Gebruik dynamisch systeemvakpictogram"
 
-#: ../src/parameters.c:927
+#: ../src/parameters.c:948
 msgid "Use dynamic icon"
 msgstr "Gebruik dynamisch pictogram"
 
-#: ../src/parameters.c:933
+#: ../src/parameters.c:954
 msgid "Dynamic icon shows current month and day of the month."
 msgstr "Dynamisch pictogram toont huidige maand en dag"
 
-#: ../src/parameters.c:941 ../src/parameters.c:946
+#: ../src/parameters.c:962 ../src/parameters.c:967
 msgid "Use wakeup timer"
 msgstr "Gebruik wekker"
 
-#: ../src/parameters.c:952
+#: ../src/parameters.c:973
 msgid ""
 "Use this timer if Orage has problems waking up properly after suspend or "
 "hibernate. (For example tray icon not refreshed or alarms not firing.)"
 msgstr "Gebruik deze aftelklok indien Orage problemen heeft met juist ontwaken na pauzestand of slaapstand (bijvoorbeeld: systeemvakpictogram wordt niet ververst of wekkers gaan niet af)."
 
-#: ../src/parameters.c:961
+#: ../src/parameters.c:982
 msgid "Foreign file default visual alarm"
 msgstr "Niet-eigen bestand voor standaard-visuele wekker"
 
-#: ../src/parameters.c:966
+#: ../src/parameters.c:987
 msgid "Orage window"
 msgstr "Venster van Orage"
 
-#: ../src/parameters.c:979
+#: ../src/parameters.c:1000
 msgid "Notify notification"
 msgstr "Melding"
 
-#: ../src/parameters.c:997
+#: ../src/parameters.c:1018
 msgid "Always quit when asked to close"
 msgstr "Altijd volledig afsluiten bij sluiten"
 
-#: ../src/parameters.c:1002
+#: ../src/parameters.c:1023
 msgid "Always quit"
 msgstr "Altijd volledig afsluiten"
 
-#: ../src/parameters.c:1008
+#: ../src/parameters.c:1029
 msgid ""
 "By default Orage stays open in the background when asked to close. This "
 "option changes Orage to quit and never stay in background when it is asked "
 "to close."
 msgstr "Standaard blijft Orage actief op de achtergrond wanneer hij wordt gesloten. Deze optie verandert dat, zodat Orage volledig afsluit en niet op de achtergrond actief blijft bij sluiten."
 
-#: ../src/parameters.c:1024
+#: ../src/parameters.c:1045
 msgid "Orage Preferences"
 msgstr "Orage voorkeuren"
 
-#: ../src/parameters.c:1136
+#: ../src/parameters.c:1157
 msgid "First Orage start. Searching default timezone."
 msgstr "Eerste start van Orage. Aan het zoeken naar de standaard-tijdzone."
 
-#: ../src/parameters.c:1155
+#: ../src/parameters.c:1176
 #, c-format
 msgid "Default timezone set to %s."
 msgstr "Standaard-tijdzone ingesteld op %s."
 
-#: ../src/parameters.c:1158
+#: ../src/parameters.c:1179
 msgid "Default timezone not found, please, set it manually."
 msgstr "Standaard-tijdzone niet gevonden, stel deze a.u.b. handmatig in."
 
