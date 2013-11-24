@@ -3360,6 +3360,13 @@ static xfical_appt *xfical_appt_get_next_on_day_internal(char *a_day
             g_strlcpy(appt->endtimecur, icaltime_as_ical_string(per.etime)
                     , 17);
         }
+        /*
+    if (file_type[0] == 'F') {
+    orage_message(100, P_N "starttimecur:%s endtimecur:%s", appt->starttimecur, appt->endtimecur);
+    orage_message(10, P_N "Title (%s)\n\tfound Start:%s End:%s\n\tlimit Start:%s End:%s"
+            , appt->title, appt->starttimecur, appt->endtimecur, icaltime_as_ical_string(asdate), icaltime_as_ical_string(aedate));
+    }
+    */
         return(appt);
     }
     else
@@ -3721,6 +3728,7 @@ static void add_appt_to_list(icalcomponent *c, icaltime_span *span , void *data)
         /* Need to check that returned value is withing limits.
            Check more from BUG 5764 and 7886. */
         struct icaltimetype asdate, aedate;
+        gint orig_start_hour, orig_end_hour;
     } app_data;
     app_data *data1;
         /* Need to check that returned value is withing limits.
@@ -3736,8 +3744,28 @@ static void add_appt_to_list(icalcomponent *c, icaltime_span *span , void *data)
      * when UID changes. This seems to be fast enough as it is though */
     key_found = get_appt_from_icalcomponent(c, appt);
     xfical_appt_get_fill_internal(appt, data1->file_type);
+        /*
+    if (data1->file_type[0] == 'F') {
+    orage_message(10, P_N "1 Title (%s)\n\tcur Start:%s End:%s\n\tlimit Start:%s End:%s\n\traw Start:%s (%s) End:%s (%s)"
+, appt->title
+, appt->starttimecur, appt->endtimecur
+, icaltime_as_ical_string(data1->asdate), icaltime_as_ical_string(data1->aedate)
+, appt->starttime, appt->start_tz_loc, appt->endtime, appt->end_tz_loc
+            );
+    }
+            */
     gmtime_r(&span->start, &start_tm);
     gmtime_r(&span->end, &end_tm);
+    /* BUG 7929. If calendar file contains same timezone definition than what
+       the time is in, libical returns wrong time in span. But as the hour
+       only changes with HOURLY repeating appointments, we can replace received
+       hour with the hour from start time */
+    if (appt->freq != XFICAL_FREQ_HOURLY 
+    &&  start_tm.tm_hour != data1->orig_start_hour) {
+        orage_message(10, P_N "FIXING WRONG HOUR Title (%s)", appt->title);
+        start_tm.tm_hour = data1->orig_start_hour;
+        end_tm.tm_hour = data1->orig_end_hour;
+    }
     /* BUG 7886. we are called with wrong span->end when we have full day
        event. This is libical bug and needs to be fixed properly later, but
        now I just work around it.
@@ -3762,9 +3790,6 @@ static void add_appt_to_list(icalcomponent *c, icaltime_span *span , void *data)
     strcpy(appt->starttimecur, icaltime_as_ical_string(start));
     strcpy(appt->endtimecur, icaltime_as_ical_string(end));
     /*
-    orage_message(100, P_N "starttimecur:%s endtimecur:%s", appt->starttimecur, appt->endtimecur);
-    orage_message(10, P_N "Title (%s)\n\tfound Start:%s End:%s\n\tlimit Start:%s End:%s"
-            , appt->title, appt->starttimecur, appt->endtimecur, icaltime_as_ical_string(data1->asdate), icaltime_as_ical_string(data1->aedate));
             */
         /* Need to check that returned value is withing limits.
            Check more from BUG 5764 and 7886. */
@@ -3773,8 +3798,9 @@ static void add_appt_to_list(icalcomponent *c, icaltime_span *span , void *data)
         /* we do not need this. Free the memory */
         xfical_appt_free(appt);
     } 
-    else /* add to list like with internal libical */
+    else {/* add to list like with internal libical */
         *data1->list = g_list_prepend(*data1->list, appt);
+    } 
 }
 
 /* Fetch each appointment within the specified time period and add those
@@ -3798,6 +3824,7 @@ static void xfical_get_each_app_within_time_internal(char *a_day, gint days
         /* Need to check that returned value is withing limits.
            Check more from BUG 5764 and 7886. */
         struct icaltimetype asdate, aedate;
+        gint orig_start_hour, orig_end_hour;
     } app_data;
     app_data data1;
 
@@ -3827,9 +3854,17 @@ static void xfical_get_each_app_within_time_internal(char *a_day, gint days
     for (c = icalcomponent_get_first_component(base, ikind);
          c != 0;
          c = icalcomponent_get_next_component(base, ikind)) {
-        /* FIXME: hack to fix year to be newer than 1970 based on BUG 9507 */
+        /* BUG 7929. If calendar file contains same timezone definition than
+           what the time is in, libical returns wrong time in span.
+           But as the hour only changes with HOURLY repeating appointments,
+           we can replace received hour with the hour from start time */
+        p = icalcomponent_get_first_property(c, ICAL_DTEND_PROPERTY);
+        start = icalproperty_get_dtend(p);
+        data1.orig_end_hour = start.hour;
         p = icalcomponent_get_first_property(c, ICAL_DTSTART_PROPERTY);
         start = icalproperty_get_dtstart(p);
+        data1.orig_start_hour = start.hour;
+        /* FIXME: hack to fix year to be newer than 1970 based on BUG 9507 */
         if (start.year < 1970) {
             c2 = icalcomponent_new_clone(c);
             p = icalcomponent_get_first_property(c2, ICAL_DTSTART_PROPERTY);
