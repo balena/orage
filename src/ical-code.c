@@ -3733,7 +3733,7 @@ static void add_appt_to_list(icalcomponent *c, icaltime_span *span , void *data)
     app_data *data1;
         /* Need to check that returned value is withing limits.
            Check more from BUG 5764 and 7886. */
-    icaltime_span limit_span, test_span;
+    icaltime_span test_span;
 
 #ifdef ORAGE_DEBUG
     orage_message(-100, P_N);
@@ -3744,7 +3744,7 @@ static void add_appt_to_list(icalcomponent *c, icaltime_span *span , void *data)
      * when UID changes. This seems to be fast enough as it is though */
     key_found = get_appt_from_icalcomponent(c, appt);
     xfical_appt_get_fill_internal(appt, data1->file_type);
-        /*
+    /*
     if (data1->file_type[0] == 'F') {
     orage_message(10, P_N "1 Title (%s)\n\tcur Start:%s End:%s\n\tlimit Start:%s End:%s\n\traw Start:%s (%s) End:%s (%s)"
 , appt->title
@@ -3793,8 +3793,10 @@ static void add_appt_to_list(icalcomponent *c, icaltime_span *span , void *data)
             */
         /* Need to check that returned value is withing limits.
            Check more from BUG 5764 and 7886. */
-    limit_span = icaltime_span_new(data1->asdate, data1->aedate, TRUE);
-    if (!icaltime_span_overlaps(&test_span, &limit_span)) {
+    /* starttimecur and endtimecur are in local timezone. Compare that to
+       limits, which are also localtimezone DATEs */
+    if (strcmp(appt->endtimecur, icaltime_as_ical_string(data1->asdate)) < 0
+    || strcmp(appt->starttimecur, icaltime_as_ical_string(data1->aedate)) > 0) {
         /* we do not need this. Free the memory */
         xfical_appt_free(appt);
     } 
@@ -3851,6 +3853,10 @@ static void xfical_get_each_app_within_time_internal(char *a_day, gint days
            Check more from BUG 5764 and 7886. */
     data1.asdate = asdate;
     data1.aedate = aedate;
+    /* Hack for bug 8382: Take one more day earlier and later than needed
+       due to UTC conversion. (And drop those days later then.) */
+    asdate.day--;
+    aedate.day++;
     for (c = icalcomponent_get_first_component(base, ikind);
          c != 0;
          c = icalcomponent_get_next_component(base, ikind)) {
