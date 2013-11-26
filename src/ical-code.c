@@ -3502,10 +3502,17 @@ static void mark_calendar(icalcomponent *c, icaltime_span *span , void *data)
     edate = icaltime_from_string(orage_tm_time_to_icaltime(&end_tm));
     edate = convert_to_zone(edate, cal_data->appt.end_tz_loc);
     edate = icaltime_convert_to_zone(edate, local_icaltimezone);
+    /* fix for bug 8508 prevent showing extra day in calendar.
+       Only has effect when end date is midnight */
+    icaltime_adjust(&edate, 0, 0, 0, -1);
     /*
-    g_print(P_N "sdate(day, mon, year):%d %d %d edate:%d %d %d\n"
+    g_print(P_N "sdate:%d %d %d edate:%d %d %d\n \tspan end %s\n \tappt end %s\n \tCUR appt end %s\n"
              , sdate.day , sdate.month , sdate.year
-             , edate.day , edate.month , edate.year);
+             , edate.day , edate.month , edate.year
+             , icaltime_as_ical_string(edate)
+             , cal_data->appt.endtime
+             , cal_data->appt.endtimecur
+             );
              */
     xfical_mark_calendar_days(cal_data->cal, cal_data->year, cal_data->month
             , sdate.year, sdate.month, sdate.day
@@ -3727,7 +3734,7 @@ static void add_appt_to_list(icalcomponent *c, icaltime_span *span , void *data)
         gchar *file_type;
         /* Need to check that returned value is withing limits.
            Check more from BUG 5764 and 7886. */
-        struct icaltimetype asdate, aedate;
+        gchar asdate[17], aedate[17];
         gint orig_start_hour, orig_end_hour;
     } app_data;
     app_data *data1;
@@ -3749,7 +3756,7 @@ static void add_appt_to_list(icalcomponent *c, icaltime_span *span , void *data)
     orage_message(10, P_N "1 Title (%s)\n\tcur Start:%s End:%s\n\tlimit Start:%s End:%s\n\traw Start:%s (%s) End:%s (%s)"
 , appt->title
 , appt->starttimecur, appt->endtimecur
-, icaltime_as_ical_string(data1->asdate), icaltime_as_ical_string(data1->aedate)
+, data1->asdate, data1->aedate
 , appt->starttime, appt->start_tz_loc, appt->endtime, appt->end_tz_loc
             );
     }
@@ -3795,8 +3802,18 @@ static void add_appt_to_list(icalcomponent *c, icaltime_span *span , void *data)
            Check more from BUG 5764 and 7886. */
     /* starttimecur and endtimecur are in local timezone. Compare that to
        limits, which are also localtimezone DATEs */
-    if (strcmp(appt->endtimecur, icaltime_as_ical_string(data1->asdate)) < 0
-    || strcmp(appt->starttimecur, icaltime_as_ical_string(data1->aedate)) > 0) {
+    /*
+    if (data1->file_type[0] == 'F') {
+    orage_message(10, P_N "2 Title (%s)\n\tcur Start:%s End:%s\n\tlimit Start:%s End:%s\n\traw Start:%s (%s) End:%s (%s)"
+, appt->title
+, appt->starttimecur, appt->endtimecur
+, data1->asdate, data1->aedate
+, appt->starttime, appt->start_tz_loc, appt->endtime, appt->end_tz_loc
+            );
+    }
+    */
+    if (strncmp(appt->endtimecur, data1->asdate, 16) <= 0
+    || strncmp(appt->starttimecur, data1->aedate, 16) >= 0) {
         /* we do not need this. Free the memory */
         xfical_appt_free(appt);
     } 
@@ -3825,7 +3842,7 @@ static void xfical_get_each_app_within_time_internal(char *a_day, gint days
         gchar *file_type;
         /* Need to check that returned value is withing limits.
            Check more from BUG 5764 and 7886. */
-        struct icaltimetype asdate, aedate;
+        gchar asdate[17], aedate[17];
         gint orig_start_hour, orig_end_hour;
     } app_data;
     app_data data1;
@@ -3851,12 +3868,14 @@ static void xfical_get_each_app_within_time_internal(char *a_day, gint days
     data1.file_type = file_type;
         /* Need to check that returned value is withing limits.
            Check more from BUG 5764 and 7886. */
-    data1.asdate = asdate;
-    data1.aedate = aedate;
+    g_strlcpy((char *)&data1.asdate, icaltime_as_ical_string(asdate), 17);
+    g_strlcpy(&data1.asdate[8], "T000000", 9);
+    g_strlcpy((char *)&data1.aedate, icaltime_as_ical_string(aedate), 17);
+    g_strlcpy(&data1.aedate[8], "T000000", 9);
     /* Hack for bug 8382: Take one more day earlier and later than needed
        due to UTC conversion. (And drop those days later then.) */
-    asdate.day--;
-    aedate.day++;
+    icaltime_adjust(&asdate, -1, 0, 0, 0);
+    icaltime_adjust(&aedate, 1, 0, 0, 0);
     for (c = icalcomponent_get_first_component(base, ikind);
          c != 0;
          c = icalcomponent_get_next_component(base, ikind)) {

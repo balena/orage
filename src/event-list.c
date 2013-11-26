@@ -521,7 +521,19 @@ static void app_rows(el_win *el, char *a_day, char *par, xfical_type ical_type
              appt;
              appt = xfical_appt_get_next_on_day(a_day, FALSE, el->days
                     , ical_type, file_type)) {
-            add_el_row(el, appt, par);
+            /*
+            g_print("Title: %s a_day %s\n\tstart %s end %s\n \tcur start %s end %s\n "
+                  , appt->title, a_day
+                  , appt->starttime, appt->endtime
+                  , appt->starttimecur, appt->endtimecur
+                      );
+                      */
+            /* fix bug 8508: Do not show event if it is normal (= has time)
+               and it has ended at midnight (=early morning) */
+            if (!(appt->endtimecur[8] == 'T' 
+                && strncmp(appt->endtimecur+9, "000000", 6) == 0
+                && strncmp(appt->endtimecur, a_day, 8) == 0))
+                add_el_row(el, appt, par);
             xfical_appt_free(appt);
         }
     }
