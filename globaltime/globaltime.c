@@ -49,7 +49,7 @@
 #include "../src/orage-i18n.h"
 
 
-#define NAME_VERSION "Global Time (2.1)"
+#define NAME_VERSION "Global Time (2.2)"
 
 
 global_times_struct clocks;
