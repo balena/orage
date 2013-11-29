@@ -3477,6 +3477,7 @@ static void mark_calendar(icalcomponent *c, icaltime_span *span , void *data)
         GtkCalendar *cal;
         guint year; 
         guint month;
+        gint orig_start_hour, orig_end_hour;
         xfical_appt appt;
     } *cal_data;
     time_t temp;
@@ -3497,10 +3498,25 @@ static void mark_calendar(icalcomponent *c, icaltime_span *span , void *data)
         gmtime_r(&temp, &end_tm);
     }
     sdate = icaltime_from_string(orage_tm_time_to_icaltime(&start_tm));
-    sdate = convert_to_zone(sdate, cal_data->appt.start_tz_loc);
+    if (cal_data->appt.freq != XFICAL_FREQ_HOURLY
+    &&  start_tm.tm_hour != cal_data->orig_start_hour) {
+        orage_message(-10, P_N "FIXING WRONG HOUR Title (%s) %d -> %d (day %d)", cal_data->appt.title, start_tm.tm_hour, cal_data->orig_start_hour, start_tm.tm_mday);
+        /* WHEN we arrive here, libical has done an extra UTC conversion,
+          which we need to undo */
+        sdate = convert_to_zone(sdate, "UTC");
+    }
+    else {
+        sdate = convert_to_zone(sdate, cal_data->appt.start_tz_loc);
+    }
     sdate = icaltime_convert_to_zone(sdate, local_icaltimezone);
     edate = icaltime_from_string(orage_tm_time_to_icaltime(&end_tm));
-    edate = convert_to_zone(edate, cal_data->appt.end_tz_loc);
+    if (cal_data->appt.freq != XFICAL_FREQ_HOURLY
+    &&  end_tm.tm_hour != cal_data->orig_end_hour) {
+        edate = convert_to_zone(edate, "UTC");
+    }
+    else {
+        edate = convert_to_zone(edate, cal_data->appt.end_tz_loc);
+    }
     edate = icaltime_convert_to_zone(edate, local_icaltimezone);
     /* fix for bug 8508 prevent showing extra day in calendar.
        Only has effect when end date is midnight */
@@ -3537,13 +3553,14 @@ static void xfical_mark_calendar_from_component(GtkCalendar *gtkcal
     gboolean key_found;
     icalcomponent_kind kind;
     char *tmp;
+    struct icaltimetype start;
     struct mark_calendar_data {
         GtkCalendar *cal;
         guint year; 
         guint month;
+        gint orig_start_hour, orig_end_hour;
         xfical_appt appt;
     } cal_data;
-    struct icaltimetype start;
 
 #ifdef ORAGE_DEBUG
     orage_message(-200, P_N);
@@ -3574,6 +3591,16 @@ static void xfical_mark_calendar_from_component(GtkCalendar *gtkcal
             cal_data.year = year;
             cal_data.month = month;
             key_found = get_appt_from_icalcomponent(c, &cal_data.appt);
+        /* BUG 7929. If calendar file contains same timezone definition than
+           what the time is in, libical returns wrong time in span.
+           But as the hour only changes with HOURLY repeating appointments,
+           we can replace received hour with the hour from start time */
+            p = icalcomponent_get_first_property(c, ICAL_DTEND_PROPERTY);
+            start = icalproperty_get_dtend(p);
+            cal_data.orig_end_hour = start.hour;
+            p = icalcomponent_get_first_property(c, ICAL_DTSTART_PROPERTY);
+            start = icalproperty_get_dtstart(p);
+            cal_data.orig_start_hour = start.hour;
             icalcomponent_foreach_recurrence(c, nsdate, nedate, mark_calendar
                     , (void *)&cal_data);
             g_free(cal_data.appt.categories);
@@ -3724,8 +3751,9 @@ static void add_appt_to_list(icalcomponent *c, icaltime_span *span , void *data)
 #undef P_N
 #define P_N "add_appt_to_list: "
     xfical_appt *appt;
-    struct icaltimetype start, end;
+    struct icaltimetype sdate, edate;
     struct tm start_tm, end_tm;
+    time_t temp_t;
     gboolean key_found;
     icalproperty *p = NULL;
     typedef struct _app_data
@@ -3751,51 +3779,62 @@ static void add_appt_to_list(icalcomponent *c, icaltime_span *span , void *data)
      * when UID changes. This seems to be fast enough as it is though */
     key_found = get_appt_from_icalcomponent(c, appt);
     xfical_appt_get_fill_internal(appt, data1->file_type);
+    gmtime_r(&span->start, &start_tm);
+    gmtime_r(&span->end, &end_tm);
     /*
     if (data1->file_type[0] == 'F') {
-    orage_message(10, P_N "1 Title (%s)\n\tcur Start:%s End:%s\n\tlimit Start:%s End:%s\n\traw Start:%s (%s) End:%s (%s)"
+    orage_message(10, P_N "1 Title (%s)\n\tcur Start:%s End:%s\n\tlimit Start:%s End:%s\n\traw Start:%s (%s) End:%s (%s)\n\tSpan Start:%d (%d) End:%d (%d)\n\tREAL Span Start:%d End:%d"
 , appt->title
 , appt->starttimecur, appt->endtimecur
 , data1->asdate, data1->aedate
 , appt->starttime, appt->start_tz_loc, appt->endtime, appt->end_tz_loc
+, start_tm.tm_mday, start_tm.tm_hour, end_tm.tm_mday, end_tm.tm_hour
+, &span->start, &span->end
             );
     }
-            */
-    gmtime_r(&span->start, &start_tm);
-    gmtime_r(&span->end, &end_tm);
-    /* BUG 7929. If calendar file contains same timezone definition than what
-       the time is in, libical returns wrong time in span. But as the hour
-       only changes with HOURLY repeating appointments, we can replace received
-       hour with the hour from start time */
-    if (appt->freq != XFICAL_FREQ_HOURLY 
-    &&  start_tm.tm_hour != data1->orig_start_hour) {
-        orage_message(10, P_N "FIXING WRONG HOUR Title (%s)", appt->title);
-        start_tm.tm_hour = data1->orig_start_hour;
-        end_tm.tm_hour = data1->orig_end_hour;
-    }
+    */
     /* BUG 7886. we are called with wrong span->end when we have full day
        event. This is libical bug and needs to be fixed properly later, but
        now I just work around it.
     FIXME: code whole loop correctly = function icalcomponent_foreach_recurrence
     */
-    test_span = *span;
     if (appt->endtime[8] != 'T' && !appt->use_duration) {
+        test_span = *span;
         test_span.end -= 24*60*60;
         gmtime_r(&test_span.end, &end_tm);
         /* now end is correct, but we still have been called wrongly on
            the last day */
     }
     /* end of bug workaround */
-    start = icaltime_from_string(orage_tm_time_to_icaltime(&start_tm));
-    start = convert_to_zone(start, appt->start_tz_loc);
-    start = icaltime_convert_to_zone(start, local_icaltimezone);
+    sdate = icaltime_from_string(orage_tm_time_to_icaltime(&start_tm));
+    /* BUG 7929. If calendar file contains same timezone definition than what
+       the time is in, libical returns wrong time in span. But as the hour
+       only changes with HOURLY repeating appointments, we can replace received
+       hour with the hour from start time */
+    if (appt->freq != XFICAL_FREQ_HOURLY 
+    &&  start_tm.tm_hour != data1->orig_start_hour) {
+        orage_message(-10, P_N "FIXING WRONG HOUR Title (%s) %d -> %d (day %d)", appt->title, start_tm.tm_hour, data1->orig_start_hour, start_tm.tm_mday);
+        /* WHEN we arrive here, libical has done an extra UTC conversion,
+           which we need to undo */
+        sdate = convert_to_zone(sdate, "UTC");
+    }
+    else {
+        sdate = convert_to_zone(sdate, appt->start_tz_loc);
+    }
+    sdate = icaltime_convert_to_zone(sdate, local_icaltimezone);
     /* FIXME: should we use interval instead ? */
-    end = icaltime_from_string(orage_tm_time_to_icaltime(&end_tm));
-    end = convert_to_zone(end, appt->end_tz_loc);
-    end = icaltime_convert_to_zone(end, local_icaltimezone);
+    edate = icaltime_from_string(orage_tm_time_to_icaltime(&end_tm));
+    if (appt->freq != XFICAL_FREQ_HOURLY 
+    &&  end_tm.tm_hour != data1->orig_end_hour) {
+        edate = convert_to_zone(edate, "UTC");
+    }
+    else {
+        edate = convert_to_zone(edate, appt->end_tz_loc);
+    }
+    edate = icaltime_convert_to_zone(edate, local_icaltimezone);
 
-    strcpy(appt->starttimecur, icaltime_as_ical_string(start));
-    strcpy(appt->endtimecur, icaltime_as_ical_string(end));
+    strcpy(appt->starttimecur, icaltime_as_ical_string(sdate));
+    strcpy(appt->endtimecur, icaltime_as_ical_string(edate));
     /*
             */
         /* Need to check that returned value is withing limits.
@@ -3804,11 +3843,12 @@ static void add_appt_to_list(icalcomponent *c, icaltime_span *span , void *data)
        limits, which are also localtimezone DATEs */
     /*
     if (data1->file_type[0] == 'F') {
-    orage_message(10, P_N "2 Title (%s)\n\tcur Start:%s End:%s\n\tlimit Start:%s End:%s\n\traw Start:%s (%s) End:%s (%s)"
+    orage_message(10, P_N "2 Title (%s)\n\tcur Start:%s End:%s\n\tlimit Start:%s End:%s\n\traw Start:%s (%s) End:%s (%s)\n\tSpan Start:%d End:%d"
 , appt->title
 , appt->starttimecur, appt->endtimecur
 , data1->asdate, data1->aedate
 , appt->starttime, appt->start_tz_loc, appt->endtime, appt->end_tz_loc
+, start_tm.tm_mday, end_tm.tm_mday
             );
     }
     */

@@ -2906,6 +2906,8 @@ static void build_general_page(appt_win *apptw)
     apptw->Priority_label = gtk_label_new(_("Priority"));
     apptw->Priority_spin = gtk_spin_button_new_with_range(0, 9, 1);
     gtk_spin_button_set_wrap(GTK_SPIN_BUTTON(apptw->Priority_spin), TRUE);
+    gtk_widget_set_tooltip_text(apptw->Priority_spin
+            , _("If you set this 8 or bigger, the appointment is NOT shown on list windows.\nYou can use that feature to unclutter your list windows, but it makes it more difficult to find this appointment.\n(Alarms will still fire normally.)\n(There is undocumented parameter so that you can change the default limit of 8.)"));
     hbox = gtk_hbox_new(FALSE, 0);
     gtk_box_pack_start(GTK_BOX(hbox), apptw->Priority_spin, FALSE, FALSE, 0);
     orage_table_add_row(apptw->TableGeneral
