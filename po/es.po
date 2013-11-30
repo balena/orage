@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-27 18:30+0100\n"
-"PO-Revision-Date: 2013-11-28 09:13+0000\n"
+"POT-Creation-Date: 2013-11-29 12:30+0100\n"
+"PO-Revision-Date: 2013-11-30 00:15+0000\n"
 "Last-Translator: Pablo Lezaeta <prflr88@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/projects/p/xfce/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -743,7 +743,7 @@ msgid "All day event"
 msgstr "Evento que dura todo el día"
 
 #. start time
-#: ../src/appointment.c:2790 ../src/appointment.c:3451 ../src/day-view.c:801
+#: ../src/appointment.c:2790 ../src/appointment.c:3453 ../src/day-view.c:801
 msgid "Start"
 msgstr "Inicio"
 
@@ -755,15 +755,15 @@ msgstr "Establecer"
 msgid "Duration"
 msgstr "Duración"
 
-#: ../src/appointment.c:2835 ../src/appointment.c:3025 ../src/reminder.c:758
+#: ../src/appointment.c:2835 ../src/appointment.c:3027 ../src/reminder.c:758
 msgid "days"
 msgstr "días"
 
-#: ../src/appointment.c:2837 ../src/appointment.c:3027 ../src/reminder.c:760
+#: ../src/appointment.c:2837 ../src/appointment.c:3029 ../src/reminder.c:760
 msgid "hours"
 msgstr "horas"
 
-#: ../src/appointment.c:2839 ../src/appointment.c:3029 ../src/reminder.c:762
+#: ../src/appointment.c:2839 ../src/appointment.c:3031 ../src/reminder.c:762
 msgid "mins"
 msgstr "mins."
 
@@ -773,7 +773,7 @@ msgid "Availability"
 msgstr "Disponibilidad"
 
 #. completed (only for TODO)
-#: ../src/appointment.c:2859 ../src/appointment.c:3457
+#: ../src/appointment.c:2859 ../src/appointment.c:3459
 msgid "Completed"
 msgstr "Completado"
 
@@ -801,12 +801,20 @@ msgstr "actualizar colores de categorías."
 msgid "Priority"
 msgstr "Prioridad"
 
+#: ../src/appointment.c:2910
+msgid ""
+"If you set this 8 or bigger, the appointment is NOT shown on list windows.\n"
+"You can use that feature to unclutter your list windows, but it makes it more difficult to find this appointment.\n"
+"(Alarms will still fire normally.)\n"
+"(There is undocumented parameter so that you can change the default limit of 8.)"
+msgstr "Si establece este 8 o más, la cita no será mostrada en la lista de ventanas.\nPuede utilizar esta función para dar sorden a la lista de la ventanas, pero se hará más difícil encontrar dicha cita.\n(Las alarmas igualmente se activarán normalmente).\n(En este parámetro no está documentado de modo que puede cambiar el límite predeterminado de 8)."
+
 #. note
-#: ../src/appointment.c:2916
+#: ../src/appointment.c:2918
 msgid "Note"
 msgstr "Nota"
 
-#: ../src/appointment.c:2937
+#: ../src/appointment.c:2939
 msgid ""
 "These shorthand commands take effect immediately:\n"
 "    <D> inserts current date in local date format\n"
@@ -818,32 +826,32 @@ msgid ""
 "(This can be used for example in birthday reminders to tell how old the person will be.)"
 msgstr "Estos comandos abreviados tendrán efecto inmediatamente:\n <D> inserta la fecha actual en formato de fecha local\n <T> insserta hora y\n <DT> inserta hora y fecha.\n\nEstos se convierten solamente cuando se ven:\n <&Ynnnn> se traduce como el año actual menos nnnn.\n(Esto puede usarse, por ejemplo, como recordatorios de cumpleaños para saber qué edad cumple la persona)."
 
-#: ../src/appointment.c:3008
+#: ../src/appointment.c:3010
 msgid "Before Start"
 msgstr "Antes del Inicio"
 
-#: ../src/appointment.c:3008
+#: ../src/appointment.c:3010
 msgid "Before End"
 msgstr "Antes del Fin"
 
-#: ../src/appointment.c:3009
+#: ../src/appointment.c:3011
 msgid "After Start"
 msgstr "Después del Inicio"
 
-#: ../src/appointment.c:3009
+#: ../src/appointment.c:3011
 msgid "After End"
 msgstr "Después del Fin"
 
-#: ../src/appointment.c:3016
+#: ../src/appointment.c:3018
 msgid "Alarm"
 msgstr "Alarma"
 
 #. **** ALARM TIME ****
-#: ../src/appointment.c:3022
+#: ../src/appointment.c:3024
 msgid "Alarm time"
 msgstr "Hora de alarma"
 
-#: ../src/appointment.c:3046
+#: ../src/appointment.c:3048
 msgid ""
 "Often you want to get alarm:\n"
 " 1) before Event start\n"
@@ -851,88 +859,88 @@ msgid ""
 " 3) after Todo start"
 msgstr "A veces desea que la alarma se active:\n 1) antes del inicio del evento\n 2) antes del fin de tareas pendientes\n 3) después del inicio de tareas pendientes"
 
-#: ../src/appointment.c:3051
+#: ../src/appointment.c:3053
 msgid "Persistent alarm"
 msgstr "Alarma persistente"
 
-#: ../src/appointment.c:3053
+#: ../src/appointment.c:3055
 msgid ""
 "Select this if you want Orage to remind you even if it has not been active "
 "when the alarm happened."
 msgstr "Seleccione esta opción si quiere que Orage le avise incluso si no estaba activo cuando ocurrió la alarma."
 
 #. **** Audio Alarm ****
-#: ../src/appointment.c:3062
+#: ../src/appointment.c:3064
 msgid "Sound"
 msgstr "Sonido"
 
-#: ../src/appointment.c:3066 ../src/appointment.c:3186
+#: ../src/appointment.c:3068 ../src/appointment.c:3188
 msgid "Use"
 msgstr "Utilización"
 
-#: ../src/appointment.c:3068
+#: ../src/appointment.c:3070
 msgid "Select this if you want audible alarm"
 msgstr "Seleccione esta opción si quiere una alarma sonora"
 
-#: ../src/appointment.c:3085
+#: ../src/appointment.c:3087
 msgid "Repeat alarm sound"
 msgstr "Repetir sonido de alarma"
 
-#: ../src/appointment.c:3101 ../src/appointment.c:3400
+#: ../src/appointment.c:3103 ../src/appointment.c:3402
 msgid "times"
 msgstr "veces"
 
-#: ../src/appointment.c:3117
+#: ../src/appointment.c:3119
 msgid "sec interval"
 msgstr "intervalo en seg."
 
 #. **** Display Alarm ****
-#: ../src/appointment.c:3127
+#: ../src/appointment.c:3129
 msgid "Visual"
 msgstr "Visual"
 
-#: ../src/appointment.c:3131
+#: ../src/appointment.c:3133
 msgid "Use Orage window"
 msgstr "Usar ventana de Orage"
 
-#: ../src/appointment.c:3133
+#: ../src/appointment.c:3135
 msgid "Select this if you want Orage window alarm"
 msgstr "Seleccione esta opción si desea la ventana de alarma de Orage"
 
-#: ../src/appointment.c:3145
+#: ../src/appointment.c:3147
 msgid "Use notification"
 msgstr "Usar notificación"
 
-#: ../src/appointment.c:3147
+#: ../src/appointment.c:3149
 msgid "Select this if you want notification alarm"
 msgstr "Seleccione esta opción si desea la alarma de notificación"
 
-#: ../src/appointment.c:3153
+#: ../src/appointment.c:3155
 msgid "Set timeout"
 msgstr "Establecer tiempo de expiración"
 
-#: ../src/appointment.c:3155
+#: ../src/appointment.c:3157
 msgid "Select this if you want notification to expire automatically"
 msgstr "Seleccione esta opción si quiere que las notificaciones expiren automáticamente"
 
-#: ../src/appointment.c:3166
+#: ../src/appointment.c:3168
 msgid "0 = system default expiration time"
 msgstr "0 = tiempo de expiración predeterminado del sistema"
 
-#: ../src/appointment.c:3171
+#: ../src/appointment.c:3173
 msgid "seconds"
 msgstr "segundos"
 
 #. **** Procedure Alarm ****
-#: ../src/appointment.c:3182
+#: ../src/appointment.c:3184
 msgid "Procedure"
 msgstr "Procedimiento"
 
-#: ../src/appointment.c:3188
+#: ../src/appointment.c:3190
 msgid "Select this if you want procedure or script alarm"
 msgstr "Seleccione esta opción si desea una alarma mediante procedimiento o script"
 
-#: ../src/appointment.c:3194
+#: ../src/appointment.c:3196
 msgid ""
 "You must enter all escape etc characters yourself.\n"
 "This string is just given to shell to process.\n"
@@ -944,96 +952,96 @@ msgid ""
 "\t<&ET> appointment end time"
 msgstr "Debe ingresar todos los caracteres, etc usted mismo.\nEsta cadena es enviada al shell para procesar.\nLos siguientes comandos especiales son reemplazados en tiempo de ejecución:\n\t<&T>  título de cita\n\t<&D>   descripción de la cita\n\t<&AT>hora de la alarma\n\t<&ST> hora de inicio de cita\n\t<&ET> hora de fin de la cita "
 
-#: ../src/appointment.c:3206
+#: ../src/appointment.c:3208
 msgid "Test this alarm by raising it now"
 msgstr "Pruebe esta alarma activándola ahora"
 
-#: ../src/appointment.c:3213
+#: ../src/appointment.c:3215
 msgid "<b>Default alarm</b>"
 msgstr "<b>Alarma predeterminada</b>"
 
-#: ../src/appointment.c:3221
+#: ../src/appointment.c:3223
 msgid "Store current settings as default alarm"
 msgstr "Almacenar la configuración actual como alarma predeterminada"
 
-#: ../src/appointment.c:3226
+#: ../src/appointment.c:3228
 msgid "Set current settings from default alarm"
 msgstr "Establecer la configuración actual desde la de la alarma predeterminada"
 
-#: ../src/appointment.c:3288
+#: ../src/appointment.c:3290
 msgid "None"
 msgstr "Ninguno"
 
-#: ../src/appointment.c:3288
+#: ../src/appointment.c:3290
 msgid "Daily"
 msgstr "Diariamente"
 
-#: ../src/appointment.c:3288
+#: ../src/appointment.c:3290
 msgid "Weekly"
 msgstr "Semanalmente"
 
-#: ../src/appointment.c:3288
+#: ../src/appointment.c:3290
 msgid "Monthly"
 msgstr "Mensualmente"
 
-#: ../src/appointment.c:3288
+#: ../src/appointment.c:3290
 msgid "Yearly"
 msgstr "Anualmente"
 
-#: ../src/appointment.c:3288
+#: ../src/appointment.c:3290
 msgid "Hourly"
 msgstr "Cada hora"
 
-#: ../src/appointment.c:3290
+#: ../src/appointment.c:3292
 msgid "Mon"
 msgstr "Lun"
 
-#: ../src/appointment.c:3290
+#: ../src/appointment.c:3292
 msgid "Tue"
 msgstr "Mar"
 
-#: ../src/appointment.c:3290
+#: ../src/appointment.c:3292
 msgid "Wed"
 msgstr "Mié"
 
-#: ../src/appointment.c:3290
+#: ../src/appointment.c:3292
 msgid "Thu"
 msgstr "Jue"
 
-#: ../src/appointment.c:3290
+#: ../src/appointment.c:3292
 msgid "Fri"
 msgstr "Vie"
 
-#: ../src/appointment.c:3290
+#: ../src/appointment.c:3292
 msgid "Sat"
 msgstr "Sáb"
 
-#: ../src/appointment.c:3290
+#: ../src/appointment.c:3292
 msgid "Sun"
 msgstr "Dom"
 
-#: ../src/appointment.c:3295
+#: ../src/appointment.c:3297
 msgid "Recurrence"
 msgstr "Repetición"
 
 #. complexity
-#: ../src/appointment.c:3301
+#: ../src/appointment.c:3303
 msgid "Complexity"
 msgstr "Complejidad"
 
-#: ../src/appointment.c:3304
+#: ../src/appointment.c:3306
 msgid "Basic"
 msgstr "Básico"
 
-#: ../src/appointment.c:3310
+#: ../src/appointment.c:3312
 msgid "Advanced"
 msgstr "Avanzado"
 
-#: ../src/appointment.c:3314
+#: ../src/appointment.c:3316
 msgid "Use this if you want regular repeating event"
 msgstr "Use esta opción si desea la repetición regular del evento"
 
-#: ../src/appointment.c:3316
+#: ../src/appointment.c:3318
 msgid ""
 "Use this if you need complex times like:\n"
 " Every Saturday and Sunday or \n"
@@ -1041,51 +1049,51 @@ msgid ""
 msgstr "Use esta opción si necesita fechas complejas como:\n Cada sábado y domingo o \n el primer jueves de cada mes"
 
 #. frequency
-#: ../src/appointment.c:3322
+#: ../src/appointment.c:3324
 msgid "Frequency"
 msgstr "Frecuencia"
 
-#: ../src/appointment.c:3328
+#: ../src/appointment.c:3330
 msgid "Each"
 msgstr "Cada"
 
-#: ../src/appointment.c:3335
+#: ../src/appointment.c:3337
 msgid "occurrence"
 msgstr "ocurrencia"
 
-#: ../src/appointment.c:3339
+#: ../src/appointment.c:3341
 msgid ""
 "Limit frequency to certain interval.\n"
 " For example: Every third day:\n"
 " Frequency = Daily and Interval = 3"
 msgstr "Limitar la frecuencia a un intervalo determinado.\n Por ejemplo: Cada tercer día:\n Frecuencia = Diaria e Intervalo = 3"
 
-#: ../src/appointment.c:3384
+#: ../src/appointment.c:3386
 msgid "Limit"
 msgstr "Limitar"
 
-#: ../src/appointment.c:3386
+#: ../src/appointment.c:3388
 msgid "Repeat forever"
 msgstr "Repetir para siempre"
 
-#: ../src/appointment.c:3392
+#: ../src/appointment.c:3394
 msgid "Repeat "
 msgstr "Repetir "
 
-#: ../src/appointment.c:3408
+#: ../src/appointment.c:3410
 msgid "Repeat until "
 msgstr "Repetir hasta "
 
 #. weekdays (only for complex settings)
-#: ../src/appointment.c:3421
+#: ../src/appointment.c:3423
 msgid "Weekdays"
 msgstr "Días de la semana"
 
-#: ../src/appointment.c:3433
+#: ../src/appointment.c:3435
 msgid "Which day"
 msgstr "Qué día"
 
-#: ../src/appointment.c:3441
+#: ../src/appointment.c:3443
 msgid ""
 "Specify which weekday for monthly and yearly events.\n"
 " For example:\n"
@@ -1096,54 +1104,54 @@ msgid ""
 msgstr "Especificar días de la semana para eventos mensuales y anuales.\n Por ejemplo:\n El segundo miércoles de cada mes:\n\tFrecuencia = Mensual,\n\tDías de la semana = marque solamente el miércoles,\n\tQué día = seleccione 2 del número debajo del miércoles"
 
 #. TODO base (only for TODOs)
-#: ../src/appointment.c:3448
+#: ../src/appointment.c:3450
 msgid "TODO base"
 msgstr "Base PARA HACER"
 
-#: ../src/appointment.c:3461
+#: ../src/appointment.c:3463
 msgid ""
 "TODO reoccurs regularly starting on start time and repeating after each "
 "interval no matter when it was last completed"
 msgstr "PARA HACER vuelve a ocurrir regularmente comenzando con una hora de inicio y repitiéndose después de cada intervalo, independientemente de cuándo se completó el último"
 
-#: ../src/appointment.c:3463
+#: ../src/appointment.c:3465
 msgid ""
 "TODO reoccurrency is based on complete time and repeats after the interval counted from the last completed time.\n"
 "(Note that you can not tell anything about the history of the TODO since reoccurrence base changes after each completion.)"
 msgstr "La repeticion de TODO se basa en hora completa y se repite después del intervalo contando desde la última hora completada.\n(Tenga en cuenta no puede saber nada acerca de la historia de TODO, puesto que la base de repetición cambia después de cada finalización)."
 
 #. exceptions
-#: ../src/appointment.c:3469
+#: ../src/appointment.c:3471
 msgid "Exceptions"
 msgstr "Excepciones"
 
-#: ../src/appointment.c:3482
+#: ../src/appointment.c:3484
 msgid ""
 "Add more exception dates by clicking the calendar days below.\n"
 "Exception is either exclusion(-) or inclusion(+) depending on the selection.\n"
 "Remove by clicking the data."
 msgstr "Añade más fechas de excepción haciendo clic en los días de calendario abajo.\nUna excepción es un exclusión(-) o una inclusión (+) dependiendo de la selección.\nBórrelas haciendo clic en las fechas."
 
-#: ../src/appointment.c:3487
+#: ../src/appointment.c:3489
 msgid "Add excluded date (-)"
 msgstr "Añadir fecha excluida (-)"
 
-#: ../src/appointment.c:3489
+#: ../src/appointment.c:3491
 msgid "Excluded days are full days where this appointment is not happening"
 msgstr "Los días excluidos son días completos en los que una cita no tiene lugar"
 
-#: ../src/appointment.c:3495
+#: ../src/appointment.c:3497
 msgid "Add included time (+)"
 msgstr "Añadir hora incluida (-)"
 
-#: ../src/appointment.c:3497
+#: ../src/appointment.c:3499
 msgid ""
 "Included times have same timezone than start time, but they may have "
 "different time"
 msgstr "Las horas incluidas tienen la misma zona horaria que la hora de inicio, pero pueden tener horas distintas."
 
 #. calendars showing the action days
-#: ../src/appointment.c:3514
+#: ../src/appointment.c:3516
 msgid "Action dates"
 msgstr "Fechas de acción"
 
@@ -3230,7 +3238,7 @@ msgstr "Asia/Kashgar"
 
 #: ../src/timezone_names.c:312
 msgid "Asia/Kathmandu"
-msgstr ""
+msgstr "Asia/Katmandú"
 
 #: ../src/timezone_names.c:313
 msgid "Asia/Katmandu"
@@ -3334,15 +3342,15 @@ msgstr "Asia/Riad"
 
 #: ../src/timezone_names.c:338
 msgid "Asia/Riyadh87"
-msgstr ""
+msgstr "Asia/Riad87"
 
 #: ../src/timezone_names.c:339
 msgid "Asia/Riyadh88"
-msgstr ""
+msgstr "Asia/Riad88"
 
 #: ../src/timezone_names.c:340
 msgid "Asia/Riyadh89"
-msgstr ""
+msgstr "Asia/Riad89"
 
 #: ../src/timezone_names.c:341
 msgid "Asia/Saigon"
@@ -3386,7 +3394,7 @@ msgstr "Asia/Teherán"
 
 #: ../src/timezone_names.c:351
 msgid "Asia/Tel_Aviv"
-msgstr ""
+msgstr "Asia/Tel_Aviv"
 
 #: ../src/timezone_names.c:352
 msgid "Asia/Thimbu"
@@ -3542,219 +3550,219 @@ msgstr "Australia/Sydney"
 
 #: ../src/timezone_names.c:390
 msgid "Brazil"
-msgstr ""
+msgstr "Basil"
 
 #: ../src/timezone_names.c:391
 msgid "Brazil/Acre"
-msgstr ""
+msgstr "Basil/Acre"
 
 #: ../src/timezone_names.c:392
 msgid "Brazil/DeNoronha"
-msgstr ""
+msgstr "Basil/DeNoroña"
 
 #: ../src/timezone_names.c:393
 msgid "Brazil/East"
-msgstr ""
+msgstr "Basil/Este"
 
 #: ../src/timezone_names.c:394
 msgid "Brazil/West"
-msgstr ""
+msgstr "Basil/Oeste"
 
 #: ../src/timezone_names.c:395
 msgid "Canada"
-msgstr ""
+msgstr "Canadá"
 
 #: ../src/timezone_names.c:396
 msgid "Canada/Atlantic"
-msgstr ""
+msgstr "Canadá/Atlántico"
 
 #: ../src/timezone_names.c:397
 msgid "Canada/Central"
-msgstr ""
+msgstr "Canadá/Central"
 
 #: ../src/timezone_names.c:398
 msgid "Canada/East-Saskatchewan"
-msgstr ""
+msgstr "Canadá/Este-Saskatchewan"
 
 #: ../src/timezone_names.c:399
 msgid "Canada/Eastern"
-msgstr ""
+msgstr "Canadá/Este"
 
 #: ../src/timezone_names.c:400
 msgid "Canada/Mountain"
-msgstr ""
+msgstr "Canada/Montaña"
 
 #: ../src/timezone_names.c:401
 msgid "Canada/Newfoundland"
-msgstr ""
+msgstr "Canada/Nuevafoundland"
 
 #: ../src/timezone_names.c:402
 msgid "Canada/Pacific"
-msgstr ""
+msgstr "Canada/Pasífico"
 
 #: ../src/timezone_names.c:403
 msgid "Canada/Saskatchewan"
-msgstr ""
+msgstr "Canada/Sasketchewan"
 
 #: ../src/timezone_names.c:404
 msgid "Canada/Yukon"
-msgstr ""
+msgstr "Canada/Yukón"
 
 #: ../src/timezone_names.c:405
 msgid "Chile"
-msgstr ""
+msgstr "Chile"
 
 #: ../src/timezone_names.c:406
 msgid "Chile/Continental"
-msgstr ""
+msgstr "Chile/Continental"
 
 #: ../src/timezone_names.c:407
 msgid "Chile/EasterIsland"
-msgstr ""
+msgstr "Chile/IslaDePascua"
 
 #: ../src/timezone_names.c:408
 msgid "Etc"
-msgstr ""
+msgstr "Etc"
 
 #: ../src/timezone_names.c:409
 msgid "Etc/GMT"
-msgstr ""
+msgstr "Etc/GMT"
 
 #: ../src/timezone_names.c:410
 msgid "Etc/GMT+0"
-msgstr ""
+msgstr "Etc/GMT+0"
 
 #: ../src/timezone_names.c:411
 msgid "Etc/GMT+1"
-msgstr ""
+msgstr "Etc/GMT+1"
 
 #: ../src/timezone_names.c:412
 msgid "Etc/GMT+10"
-msgstr ""
+msgstr "Etc/GMT+10"
 
 #: ../src/timezone_names.c:413
 msgid "Etc/GMT+11"
-msgstr ""
+msgstr "Etc/GMT+11"
 
 #: ../src/timezone_names.c:414
 msgid "Etc/GMT+12"
-msgstr ""
+msgstr "Etc/GMT+12"
 
 #: ../src/timezone_names.c:415
 msgid "Etc/GMT+2"
-msgstr ""
+msgstr "Etc/GMT+2"
 
 #: ../src/timezone_names.c:416
 msgid "Etc/GMT+3"
-msgstr ""
+msgstr "Etc/GMT+3"
 
 #: ../src/timezone_names.c:417
 msgid "Etc/GMT+4"
-msgstr ""
+msgstr "Etc/GMT+4"
 
 #: ../src/timezone_names.c:418
 msgid "Etc/GMT+5"
-msgstr ""
+msgstr "Etc/GMT+5"
 
 #: ../src/timezone_names.c:419
 msgid "Etc/GMT+6"
-msgstr ""
+msgstr "Etc/GMT+6"
 
 #: ../src/timezone_names.c:420
 msgid "Etc/GMT+7"
-msgstr ""
+msgstr "Etc/GMT+7"
 
 #: ../src/timezone_names.c:421
 msgid "Etc/GMT+8"
-msgstr ""
+msgstr "Etc/GMT+8"
 
 #: ../src/timezone_names.c:422
 msgid "Etc/GMT+9"
-msgstr ""
+msgstr "Etc/GMT+9"
 
 #: ../src/timezone_names.c:423
 msgid "Etc/GMT-0"
-msgstr ""
+msgstr "Etc/GMT-0"
 
 #: ../src/timezone_names.c:424
 msgid "Etc/GMT-1"
-msgstr ""
+msgstr "Etc/GMT-1"
 
 #: ../src/timezone_names.c:425
 msgid "Etc/GMT-10"
-msgstr ""
+msgstr "Etc/GMT-10"
 
 #: ../src/timezone_names.c:426
 msgid "Etc/GMT-11"
-msgstr ""
+msgstr "Etc/GMT-11"
 
 #: ../src/timezone_names.c:427
 msgid "Etc/GMT-12"
-msgstr ""
+msgstr "Etc/GMT-12"
 
 #: ../src/timezone_names.c:428
 msgid "Etc/GMT-13"
-msgstr ""
+msgstr "Etc/GMT-13"
 
 #: ../src/timezone_names.c:429
 msgid "Etc/GMT-14"
-msgstr ""
+msgstr "Etc/GMT-14"
 
 #: ../src/timezone_names.c:430
 msgid "Etc/GMT-2"
-msgstr ""
+msgstr "Etc/GMT-2"
 
 #: ../src/timezone_names.c:431
 msgid "Etc/GMT-3"
-msgstr ""
+msgstr "Etc/GMT-3"
 
 #: ../src/timezone_names.c:432
 msgid "Etc/GMT-4"
-msgstr ""
+msgstr "Etc/GMT-4"
 
 #: ../src/timezone_names.c:433
 msgid "Etc/GMT-5"
-msgstr ""
+msgstr "Etc/GMT-5"
 
 #: ../src/timezone_names.c:434
 msgid "Etc/GMT-6"
-msgstr ""
+msgstr "Etc/GMT-6"
 
 #: ../src/timezone_names.c:435
 msgid "Etc/GMT-7"
-msgstr ""
+msgstr "Etc/GMT-7"
 
 #: ../src/timezone_names.c:436
 msgid "Etc/GMT-8"
-msgstr ""
+msgstr "Etc/GMT-8"
 
 #: ../src/timezone_names.c:437
 msgid "Etc/GMT-9"
-msgstr ""
+msgstr "Etc/GMT-9"
 
 #: ../src/timezone_names.c:438
 msgid "Etc/GMT0"
-msgstr ""
+msgstr "Etc/GMT0"
 
 #: ../src/timezone_names.c:439
 msgid "Etc/Greenwich"
-msgstr ""
+msgstr "Etc/Greenwich"
 
 #: ../src/timezone_names.c:440
 msgid "Etc/UCT"
-msgstr ""
+msgstr "Etc/UCT"
 
 #: ../src/timezone_names.c:441
 msgid "Etc/UTC"
-msgstr ""
+msgstr "Etc/UTC"
 
 #: ../src/timezone_names.c:442
 msgid "Etc/Universal"
-msgstr ""
+msgstr "Etc/Universal"
 
 #: ../src/timezone_names.c:443
 msgid "Etc/Zulu"
-msgstr ""
+msgstr "Etc/Zulú"
 
 #: ../src/timezone_names.c:444
 msgid "Europe"
@@ -4066,15 +4074,15 @@ msgstr ""
 
 #: ../src/timezone_names.c:521
 msgid "Mideast/Riyadh87"
-msgstr ""
+msgstr "Medioeste/Riad87"
 
 #: ../src/timezone_names.c:522
 msgid "Mideast/Riyadh88"
-msgstr ""
+msgstr "Medioeste/Riad88"
 
 #: ../src/timezone_names.c:523
 msgid "Mideast/Riyadh89"
-msgstr ""
+msgstr "Medioeste/Riad89"
 
 #: ../src/timezone_names.c:524
 msgid "Pacific"
