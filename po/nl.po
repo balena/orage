@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-27 18:30+0100\n"
-"PO-Revision-Date: 2013-11-28 10:55+0000\n"
+"POT-Creation-Date: 2013-11-29 12:30+0100\n"
+"PO-Revision-Date: 2013-11-30 11:25+0000\n"
 "Last-Translator: Pjotr123 <pjotrvertaalt@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/projects/p/xfce/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -743,7 +743,7 @@ msgid "All day event"
 msgstr "Gebeurtenis voor de hele dag"
 
 #. start time
-#: ../src/appointment.c:2790 ../src/appointment.c:3451 ../src/day-view.c:801
+#: ../src/appointment.c:2790 ../src/appointment.c:3453 ../src/day-view.c:801
 msgid "Start"
 msgstr "Begin"
 
@@ -755,15 +755,15 @@ msgstr "Instellen      "
 msgid "Duration"
 msgstr "Duur"
 
-#: ../src/appointment.c:2835 ../src/appointment.c:3025 ../src/reminder.c:758
+#: ../src/appointment.c:2835 ../src/appointment.c:3027 ../src/reminder.c:758
 msgid "days"
 msgstr "dagen"
 
-#: ../src/appointment.c:2837 ../src/appointment.c:3027 ../src/reminder.c:760
+#: ../src/appointment.c:2837 ../src/appointment.c:3029 ../src/reminder.c:760
 msgid "hours"
 msgstr "uren"
 
-#: ../src/appointment.c:2839 ../src/appointment.c:3029 ../src/reminder.c:762
+#: ../src/appointment.c:2839 ../src/appointment.c:3031 ../src/reminder.c:762
 msgid "mins"
 msgstr "minuten"
 
@@ -773,7 +773,7 @@ msgid "Availability"
 msgstr "Beschikbaarheid"
 
 #. completed (only for TODO)
-#: ../src/appointment.c:2859 ../src/appointment.c:3457
+#: ../src/appointment.c:2859 ../src/appointment.c:3459
 msgid "Completed"
 msgstr "Voltooid"
 
@@ -801,12 +801,20 @@ msgstr "werk kleuren bij voor categorieën."
 msgid "Priority"
 msgstr "Prioriteit"
 
+#: ../src/appointment.c:2910
+msgid ""
+"If you set this 8 or bigger, the appointment is NOT shown on list windows.\n"
+"You can use that feature to unclutter your list windows, but it makes it more difficult to find this appointment.\n"
+"(Alarms will still fire normally.)\n"
+"(There is undocumented parameter so that you can change the default limit of 8.)"
+msgstr "Indien u dit instelt op 8 of hoger, dan wordt de afspraak niet getoond op de vensterlijst.\nU kunt deze functie gebruiken om uw vensterlijst overzichtelijker te maken, maar dat maakt het wel moeilijker om deze afspraak te vinden.\nWekkers zullen overigens nog steeds normaal afgaan.\nEr is een ongedocumenteerde parameter waarmee u de standaardlimiet van 8 kunt veranderen."
+
 #. note
-#: ../src/appointment.c:2916
+#: ../src/appointment.c:2918
 msgid "Note"
 msgstr "Opmerking"
 
-#: ../src/appointment.c:2937
+#: ../src/appointment.c:2939
 msgid ""
 "These shorthand commands take effect immediately:\n"
 "    <D> inserts current date in local date format\n"
@@ -818,32 +826,32 @@ msgid ""
 "(This can be used for example in birthday reminders to tell how old the person will be.)"
 msgstr "Deze steno-opdrachten hebben direct effect:\n    <D> voegt huidige datum in, in plaatselijke datumopmaak\n    <T> voegt tijd in en\n    <DT> voegt datum en tijd in.\n\nDeze worden pas later omgezet, wanneer ze worden gezien:\n    <&Ynnnn> wordt vertaald naar huidig jaar minus nnnn.\nDit kan bijvoorbeeld worden gebruikt bij verjaardagsherinneringen om te melden hoe oud de persoon zal worden."
 
-#: ../src/appointment.c:3008
+#: ../src/appointment.c:3010
 msgid "Before Start"
 msgstr "Voor begin"
 
-#: ../src/appointment.c:3008
+#: ../src/appointment.c:3010
 msgid "Before End"
 msgstr "Voor einde"
 
-#: ../src/appointment.c:3009
+#: ../src/appointment.c:3011
 msgid "After Start"
 msgstr "Na begin"
 
-#: ../src/appointment.c:3009
+#: ../src/appointment.c:3011
 msgid "After End"
 msgstr "Na einde"
 
-#: ../src/appointment.c:3016
+#: ../src/appointment.c:3018
 msgid "Alarm"
 msgstr "Wekker"
 
 #. **** ALARM TIME ****
-#: ../src/appointment.c:3022
+#: ../src/appointment.c:3024
 msgid "Alarm time"
 msgstr "Wektijd"
 
-#: ../src/appointment.c:3046
+#: ../src/appointment.c:3048
 msgid ""
 "Often you want to get alarm:\n"
 " 1) before Event start\n"
@@ -851,88 +859,88 @@ msgid ""
 " 3) after Todo start"
 msgstr "Vaak wilt u een wekker horen:\n 1) voor Gebeurtenis-begin\n 2) voor Te doen-einde\n 3) na Te doen-begin"
 
-#: ../src/appointment.c:3051
+#: ../src/appointment.c:3053
 msgid "Persistent alarm"
 msgstr "Blijvende wekker"
 
-#: ../src/appointment.c:3053
+#: ../src/appointment.c:3055
 msgid ""
 "Select this if you want Orage to remind you even if it has not been active "
 "when the alarm happened."
 msgstr "Kies dit als u wil dat Orage u eraan herinnert, zelfs wanneer hij niet actief was toen de wekker plaatsvond."
 
 #. **** Audio Alarm ****
-#: ../src/appointment.c:3062
+#: ../src/appointment.c:3064
 msgid "Sound"
 msgstr "Geluid"
 
-#: ../src/appointment.c:3066 ../src/appointment.c:3186
+#: ../src/appointment.c:3068 ../src/appointment.c:3188
 msgid "Use"
 msgstr "Gebruik"
 
-#: ../src/appointment.c:3068
+#: ../src/appointment.c:3070
 msgid "Select this if you want audible alarm"
 msgstr "Kies dit als u een hoorbare wekker wil"
 
-#: ../src/appointment.c:3085
+#: ../src/appointment.c:3087
 msgid "Repeat alarm sound"
 msgstr "Wekkergeluid herhalen"
 
-#: ../src/appointment.c:3101 ../src/appointment.c:3400
+#: ../src/appointment.c:3103 ../src/appointment.c:3402
 msgid "times"
 msgstr "keer"
 
-#: ../src/appointment.c:3117
+#: ../src/appointment.c:3119
 msgid "sec interval"
 msgstr "sec interval"
 
 #. **** Display Alarm ****
-#: ../src/appointment.c:3127
+#: ../src/appointment.c:3129
 msgid "Visual"
 msgstr "Visueel"
 
-#: ../src/appointment.c:3131
+#: ../src/appointment.c:3133
 msgid "Use Orage window"
 msgstr "Gebruik Oragevenster"
 
-#: ../src/appointment.c:3133
+#: ../src/appointment.c:3135
 msgid "Select this if you want Orage window alarm"
 msgstr "Kies dit als u Orage-vensterwekker wil"
 
-#: ../src/appointment.c:3145
+#: ../src/appointment.c:3147
 msgid "Use notification"
 msgstr "Gebruik melding"
 
-#: ../src/appointment.c:3147
+#: ../src/appointment.c:3149
 msgid "Select this if you want notification alarm"
 msgstr "Kies dit als u meldingwekker wil"
 
-#: ../src/appointment.c:3153
+#: ../src/appointment.c:3155
 msgid "Set timeout"
 msgstr "Kies timeout"
 
-#: ../src/appointment.c:3155
+#: ../src/appointment.c:3157
 msgid "Select this if you want notification to expire automatically"
 msgstr "Kies dit als u wil dat melding automatisch verloopt"
 
-#: ../src/appointment.c:3166
+#: ../src/appointment.c:3168
 msgid "0 = system default expiration time"
 msgstr "0 = standaard-verlooptijd van systeem"
 
-#: ../src/appointment.c:3171
+#: ../src/appointment.c:3173
 msgid "seconds"
 msgstr "seconden"
 
 #. **** Procedure Alarm ****
-#: ../src/appointment.c:3182
+#: ../src/appointment.c:3184
 msgid "Procedure"
 msgstr "Procedure"
 
-#: ../src/appointment.c:3188
+#: ../src/appointment.c:3190
 msgid "Select this if you want procedure or script alarm"
 msgstr "Kies dit als u een procedure- of scriptwekker wil"
 
-#: ../src/appointment.c:3194
+#: ../src/appointment.c:3196
 msgid ""
 "You must enter all escape etc characters yourself.\n"
 "This string is just given to shell to process.\n"
@@ -944,96 +952,96 @@ msgid ""
 "\t<&ET> appointment end time"
 msgstr "U moet zelf alle tekens ingeven, zoals escape.\nDit tekstsnoer wordt gegeven aan de schil om te verwerken.\nDe volgende speciale opdrachten worden vervangen bij het draaien:\n\t<&T>  afspraaktitel\n\t<&D>  afspraakbeschrijving\n\t<&AT> wektijd\n\t<&ST> begintijd voor afspraak\n\t<&ET> eindetijd voor afspraak"
 
-#: ../src/appointment.c:3206
+#: ../src/appointment.c:3208
 msgid "Test this alarm by raising it now"
 msgstr "Probeer deze wekker uit door hem nu op te roepen"
 
-#: ../src/appointment.c:3213
+#: ../src/appointment.c:3215
 msgid "<b>Default alarm</b>"
 msgstr "<b>Standaardwekker</b>"
 
-#: ../src/appointment.c:3221
+#: ../src/appointment.c:3223
 msgid "Store current settings as default alarm"
 msgstr "Sla huidige instellingen op als standaardwekker"
 
-#: ../src/appointment.c:3226
+#: ../src/appointment.c:3228
 msgid "Set current settings from default alarm"
 msgstr "Stel huidige instellingen in vanuit standaardwekker"
 
-#: ../src/appointment.c:3288
+#: ../src/appointment.c:3290
 msgid "None"
 msgstr "Geen"
 
-#: ../src/appointment.c:3288
+#: ../src/appointment.c:3290
 msgid "Daily"
 msgstr "Dagelijks"
 
-#: ../src/appointment.c:3288
+#: ../src/appointment.c:3290
 msgid "Weekly"
 msgstr "Wekelijks"
 
-#: ../src/appointment.c:3288
+#: ../src/appointment.c:3290
 msgid "Monthly"
 msgstr "Maandelijks"
 
-#: ../src/appointment.c:3288
+#: ../src/appointment.c:3290
 msgid "Yearly"
 msgstr "Jaarlijks"
 
-#: ../src/appointment.c:3288
+#: ../src/appointment.c:3290
 msgid "Hourly"
 msgstr "Ieder uur"
 
-#: ../src/appointment.c:3290
+#: ../src/appointment.c:3292
 msgid "Mon"
 msgstr "Maan"
 
-#: ../src/appointment.c:3290
+#: ../src/appointment.c:3292
 msgid "Tue"
 msgstr "Dins"
 
-#: ../src/appointment.c:3290
+#: ../src/appointment.c:3292
 msgid "Wed"
 msgstr "Woens"
 
-#: ../src/appointment.c:3290
+#: ../src/appointment.c:3292
 msgid "Thu"
 msgstr "Don"
 
-#: ../src/appointment.c:3290
+#: ../src/appointment.c:3292
 msgid "Fri"
 msgstr "Vrij"
 
-#: ../src/appointment.c:3290
+#: ../src/appointment.c:3292
 msgid "Sat"
 msgstr "Zat"
 
-#: ../src/appointment.c:3290
+#: ../src/appointment.c:3292
 msgid "Sun"
 msgstr "Zon"
 
-#: ../src/appointment.c:3295
+#: ../src/appointment.c:3297
 msgid "Recurrence"
 msgstr "Herhaling"
 
 #. complexity
-#: ../src/appointment.c:3301
+#: ../src/appointment.c:3303
 msgid "Complexity"
 msgstr "Complexiteit"
 
-#: ../src/appointment.c:3304
+#: ../src/appointment.c:3306
 msgid "Basic"
 msgstr "Elementair"
 
-#: ../src/appointment.c:3310
+#: ../src/appointment.c:3312
 msgid "Advanced"
 msgstr "Geavanceerd"
 
-#: ../src/appointment.c:3314
+#: ../src/appointment.c:3316
 msgid "Use this if you want regular repeating event"
 msgstr "Gebruik dit als u een regelmatig terugkerende gebeurtenis wenst"
 
-#: ../src/appointment.c:3316
+#: ../src/appointment.c:3318
 msgid ""
 "Use this if you need complex times like:\n"
 " Every Saturday and Sunday or \n"
@@ -1041,51 +1049,51 @@ msgid ""
 msgstr "Gebruik dit als u complexe tijdstippen nodig heeft zoals:\n elke zaterdag en zondag of \n eerste dinsdag van elke maand"
 
 #. frequency
-#: ../src/appointment.c:3322
+#: ../src/appointment.c:3324
 msgid "Frequency"
 msgstr "Frequentie"
 
-#: ../src/appointment.c:3328
+#: ../src/appointment.c:3330
 msgid "Each"
 msgstr "Elke"
 
-#: ../src/appointment.c:3335
+#: ../src/appointment.c:3337
 msgid "occurrence"
 msgstr "gebeurtenis"
 
-#: ../src/appointment.c:3339
+#: ../src/appointment.c:3341
 msgid ""
 "Limit frequency to certain interval.\n"
 " For example: Every third day:\n"
 " Frequency = Daily and Interval = 3"
 msgstr "Beperk frequentie tot bepaald interval.\n Bijvoorbeeld: elke derde dag:\n Frequentie = dagelijks en interval = 3"
 
-#: ../src/appointment.c:3384
+#: ../src/appointment.c:3386
 msgid "Limit"
 msgstr "Beperken"
 
-#: ../src/appointment.c:3386
+#: ../src/appointment.c:3388
 msgid "Repeat forever"
 msgstr "Altijd herhalen"
 
-#: ../src/appointment.c:3392
+#: ../src/appointment.c:3394
 msgid "Repeat "
 msgstr "Herhalen"
 
-#: ../src/appointment.c:3408
+#: ../src/appointment.c:3410
 msgid "Repeat until "
 msgstr "Herhaal tot"
 
 #. weekdays (only for complex settings)
-#: ../src/appointment.c:3421
+#: ../src/appointment.c:3423
 msgid "Weekdays"
 msgstr "Weekdagen"
 
-#: ../src/appointment.c:3433
+#: ../src/appointment.c:3435
 msgid "Which day"
 msgstr "Welke dag"
 
-#: ../src/appointment.c:3441
+#: ../src/appointment.c:3443
 msgid ""
 "Specify which weekday for monthly and yearly events.\n"
 " For example:\n"
@@ -1096,54 +1104,54 @@ msgid ""
 msgstr "Geef op welke weekdag voor maandelijkse en jaarlijkse gebeurtenissen.\n Bijvoorbeeld:\n tweede woensdag elke maand:\n\tfrequentie = maandelijks,\n\tweekdagen = vink alleen woensdag aan,\n\twelke dag = kies 2 van het aantal onder woensdag"
 
 #. TODO base (only for TODOs)
-#: ../src/appointment.c:3448
+#: ../src/appointment.c:3450
 msgid "TODO base"
 msgstr "Te Doen-gegevensbank"
 
-#: ../src/appointment.c:3461
+#: ../src/appointment.c:3463
 msgid ""
 "TODO reoccurs regularly starting on start time and repeating after each "
 "interval no matter when it was last completed"
 msgstr "Te Doen verschijnt opnieuw, startend op begintijd en herhalend na elke interval, ongeacht wanneer het de laatste keer werd voltooid"
 
-#: ../src/appointment.c:3463
+#: ../src/appointment.c:3465
 msgid ""
 "TODO reoccurrency is based on complete time and repeats after the interval counted from the last completed time.\n"
 "(Note that you can not tell anything about the history of the TODO since reoccurrence base changes after each completion.)"
 msgstr "Te Doen-verschijning wordt gebaseerd op voltooiingstijd en herhaalt zich na de interval, geteld vanaf de \nlaatste voltooiingstijd. Let op: u kunt niets afleiden uit de geschiedenis van Te Doen, aangezien de gegevensbank voor herhaling, verandert na elke voltooiing."
 
 #. exceptions
-#: ../src/appointment.c:3469
+#: ../src/appointment.c:3471
 msgid "Exceptions"
 msgstr "Uitzonderingen"
 
-#: ../src/appointment.c:3482
+#: ../src/appointment.c:3484
 msgid ""
 "Add more exception dates by clicking the calendar days below.\n"
 "Exception is either exclusion(-) or inclusion(+) depending on the selection.\n"
 "Remove by clicking the data."
 msgstr "Voeg meer uitzonderingsdata toe, door te klikken op de kalender-\ndagen hieronder. Uitzondering is of uitsluiting(-) of insluiting(+), afhankelijk van de keuze.\nVerwijder door de data aan te klikken."
 
-#: ../src/appointment.c:3487
+#: ../src/appointment.c:3489
 msgid "Add excluded date (-)"
 msgstr "Voeg uitgesloten datum toe (-)"
 
-#: ../src/appointment.c:3489
+#: ../src/appointment.c:3491
 msgid "Excluded days are full days where this appointment is not happening"
 msgstr "Uitgesloten dagen zijn volle dagen waarop deze afspraak niet plaatsvindt"
 
-#: ../src/appointment.c:3495
+#: ../src/appointment.c:3497
 msgid "Add included time (+)"
 msgstr "Voeg ingesloten tijd toe (+)"
 
-#: ../src/appointment.c:3497
+#: ../src/appointment.c:3499
 msgid ""
 "Included times have same timezone than start time, but they may have "
 "different time"
 msgstr "Ingesloten tijden hebben dezelfde tijdzone als de begintijd, maar ze kunnen een andere tijd hebben"
 
 #. calendars showing the action days
-#: ../src/appointment.c:3514
+#: ../src/appointment.c:3516
 msgid "Action dates"
 msgstr "Actiedata"
 
