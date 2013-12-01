@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-27 18:30+0100\n"
-"PO-Revision-Date: 2013-11-29 08:23+0000\n"
+"POT-Creation-Date: 2013-11-29 12:30+0100\n"
+"PO-Revision-Date: 2013-12-01 15:51+0000\n"
 "Last-Translator: cybercop <cybercop_montana@abv.bg>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/projects/p/xfce/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -742,7 +742,7 @@ msgid "All day event"
 msgstr "Събитията от целият ден"
 
 #. start time
-#: ../src/appointment.c:2790 ../src/appointment.c:3451 ../src/day-view.c:801
+#: ../src/appointment.c:2790 ../src/appointment.c:3453 ../src/day-view.c:801
 msgid "Start"
 msgstr "Стартиране"
 
@@ -754,15 +754,15 @@ msgstr "Задаване    "
 msgid "Duration"
 msgstr "Продължителност"
 
-#: ../src/appointment.c:2835 ../src/appointment.c:3025 ../src/reminder.c:758
+#: ../src/appointment.c:2835 ../src/appointment.c:3027 ../src/reminder.c:758
 msgid "days"
 msgstr "дни"
 
-#: ../src/appointment.c:2837 ../src/appointment.c:3027 ../src/reminder.c:760
+#: ../src/appointment.c:2837 ../src/appointment.c:3029 ../src/reminder.c:760
 msgid "hours"
 msgstr "часове"
 
-#: ../src/appointment.c:2839 ../src/appointment.c:3029 ../src/reminder.c:762
+#: ../src/appointment.c:2839 ../src/appointment.c:3031 ../src/reminder.c:762
 msgid "mins"
 msgstr "минути"
 
@@ -772,7 +772,7 @@ msgid "Availability"
 msgstr "Наличност"
 
 #. completed (only for TODO)
-#: ../src/appointment.c:2859 ../src/appointment.c:3457
+#: ../src/appointment.c:2859 ../src/appointment.c:3459
 msgid "Completed"
 msgstr "Завършено"
 
@@ -800,12 +800,20 @@ msgstr "обновяване на цветовете за категориите
 msgid "Priority"
 msgstr "Приоритет"
 
+#: ../src/appointment.c:2910
+msgid ""
+"If you set this 8 or bigger, the appointment is NOT shown on list windows.\n"
+"You can use that feature to unclutter your list windows, but it makes it more difficult to find this appointment.\n"
+"(Alarms will still fire normally.)\n"
+"(There is undocumented parameter so that you can change the default limit of 8.)"
+msgstr ""
+
 #. note
-#: ../src/appointment.c:2916
+#: ../src/appointment.c:2918
 msgid "Note"
 msgstr "Пояснение"
 
-#: ../src/appointment.c:2937
+#: ../src/appointment.c:2939
 msgid ""
 "These shorthand commands take effect immediately:\n"
 "    <D> inserts current date in local date format\n"
@@ -817,32 +825,32 @@ msgid ""
 "(This can be used for example in birthday reminders to tell how old the person will be.)"
 msgstr "Тези съкращения имат незабавен ефект:\n    <D> въвеждане на текущата дата в местен формат\n    <T> въвежда време и\n    <DT> дата и време.\n\nТе се преобразуват едва по-късно, когато се разглеждат:\n    <&Ynnnn> текущата година минус nnnn.\n(например, за изчисляване на възрастта в съобщенията за рожден ден.)"
 
-#: ../src/appointment.c:3008
+#: ../src/appointment.c:3010
 msgid "Before Start"
 msgstr "Преди стартиране"
 
-#: ../src/appointment.c:3008
+#: ../src/appointment.c:3010
 msgid "Before End"
 msgstr "Преди края"
 
-#: ../src/appointment.c:3009
+#: ../src/appointment.c:3011
 msgid "After Start"
 msgstr "След стартиране"
 
-#: ../src/appointment.c:3009
+#: ../src/appointment.c:3011
 msgid "After End"
 msgstr "След края"
 
-#: ../src/appointment.c:3016
+#: ../src/appointment.c:3018
 msgid "Alarm"
 msgstr "Аларма"
 
 #. **** ALARM TIME ****
-#: ../src/appointment.c:3022
+#: ../src/appointment.c:3024
 msgid "Alarm time"
 msgstr "Време за алармата"
 
-#: ../src/appointment.c:3046
+#: ../src/appointment.c:3048
 msgid ""
 "Often you want to get alarm:\n"
 " 1) before Event start\n"
@@ -850,88 +858,88 @@ msgid ""
 " 3) after Todo start"
 msgstr "Обикновено алармата е необходима:\n 1) преди за започне събитие\n 2) преди да приключи събитие\n 3) след началото на задачата"
 
-#: ../src/appointment.c:3051
+#: ../src/appointment.c:3053
 msgid "Persistent alarm"
 msgstr "Постоянна аларма"
 
-#: ../src/appointment.c:3053
+#: ../src/appointment.c:3055
 msgid ""
 "Select this if you want Orage to remind you even if it has not been active "
 "when the alarm happened."
 msgstr "Изберете тази опция, ако искате Orage да ви напомня, дори, ако тя не е активна, когато времето за задействане на алармата настъпи."
 
 #. **** Audio Alarm ****
-#: ../src/appointment.c:3062
+#: ../src/appointment.c:3064
 msgid "Sound"
 msgstr "Звук"
 
-#: ../src/appointment.c:3066 ../src/appointment.c:3186
+#: ../src/appointment.c:3068 ../src/appointment.c:3188
 msgid "Use"
 msgstr "Използване"
 
-#: ../src/appointment.c:3068
+#: ../src/appointment.c:3070
 msgid "Select this if you want audible alarm"
 msgstr "Изберете това, ако ви е необходима звукова аларма"
 
-#: ../src/appointment.c:3085
+#: ../src/appointment.c:3087
 msgid "Repeat alarm sound"
 msgstr "Повтаряне на звука на алармата"
 
-#: ../src/appointment.c:3101 ../src/appointment.c:3400
+#: ../src/appointment.c:3103 ../src/appointment.c:3402
 msgid "times"
 msgstr "пъти"
 
-#: ../src/appointment.c:3117
+#: ../src/appointment.c:3119
 msgid "sec interval"
 msgstr "интервал в секунди"
 
 #. **** Display Alarm ****
-#: ../src/appointment.c:3127
+#: ../src/appointment.c:3129
 msgid "Visual"
 msgstr "Визуално"
 
-#: ../src/appointment.c:3131
+#: ../src/appointment.c:3133
 msgid "Use Orage window"
 msgstr "Използване на прозореца на Orage"
 
-#: ../src/appointment.c:3133
+#: ../src/appointment.c:3135
 msgid "Select this if you want Orage window alarm"
 msgstr "Изберете това, ако искате да ви уведомява прозорецът на Orage"
 
-#: ../src/appointment.c:3145
+#: ../src/appointment.c:3147
 msgid "Use notification"
 msgstr "Използване на уведомление"
 
-#: ../src/appointment.c:3147
+#: ../src/appointment.c:3149
 msgid "Select this if you want notification alarm"
 msgstr "Изберето това, ако искате аларма с уведомление"
 
-#: ../src/appointment.c:3153
+#: ../src/appointment.c:3155
 msgid "Set timeout"
 msgstr "Задаване на изчакване"
 
-#: ../src/appointment.c:3155
+#: ../src/appointment.c:3157
 msgid "Select this if you want notification to expire automatically"
 msgstr "Изберете това, ако искате уведомлението да завърши автоматично"
 
-#: ../src/appointment.c:3166
+#: ../src/appointment.c:3168
 msgid "0 = system default expiration time"
 msgstr "0 = системно време по подразбиране"
 
-#: ../src/appointment.c:3171
+#: ../src/appointment.c:3173
 msgid "seconds"
 msgstr "секунди"
 
 #. **** Procedure Alarm ****
-#: ../src/appointment.c:3182
+#: ../src/appointment.c:3184
 msgid "Procedure"
 msgstr "Процедура"
 
-#: ../src/appointment.c:3188
+#: ../src/appointment.c:3190
 msgid "Select this if you want procedure or script alarm"
 msgstr "Изберете това, ако искате процедура или скрипт за алармата"
 
-#: ../src/appointment.c:3194
+#: ../src/appointment.c:3196
 msgid ""
 "You must enter all escape etc characters yourself.\n"
 "This string is just given to shell to process.\n"
@@ -943,96 +951,96 @@ msgid ""
 "\t<&ET> appointment end time"
 msgstr "Въведете всички данни за събитието.\nВъведените данни ще се появят на обложката в непроменен вид.\nМожете да ги замените, като използвате следните команди:\n\t<&T> име на събитие\n\t<&D> описание на събитие\n\t<&AT> време на известяване\n\t<&ST> време на започване\n\t<&ET> време на завършване"
 
-#: ../src/appointment.c:3206
+#: ../src/appointment.c:3208
 msgid "Test this alarm by raising it now"
 msgstr "Проверка на зададеният сигнал за аларма"
 
-#: ../src/appointment.c:3213
+#: ../src/appointment.c:3215
 msgid "<b>Default alarm</b>"
 msgstr "<b>Аларма по подразбиране</b>"
 
-#: ../src/appointment.c:3221
+#: ../src/appointment.c:3223
 msgid "Store current settings as default alarm"
 msgstr "Запазване на текущите настройки като алармата по подразбиране"
 
-#: ../src/appointment.c:3226
+#: ../src/appointment.c:3228
 msgid "Set current settings from default alarm"
 msgstr "Задаване на текущи настройки от алармата по подразбиране"
 
-#: ../src/appointment.c:3288
+#: ../src/appointment.c:3290
 msgid "None"
 msgstr "Без"
 
-#: ../src/appointment.c:3288
+#: ../src/appointment.c:3290
 msgid "Daily"
 msgstr "Ежедневно"
 
-#: ../src/appointment.c:3288
+#: ../src/appointment.c:3290
 msgid "Weekly"
 msgstr "Седмично"
 
-#: ../src/appointment.c:3288
+#: ../src/appointment.c:3290
 msgid "Monthly"
 msgstr "Месечно"
 
-#: ../src/appointment.c:3288
+#: ../src/appointment.c:3290
 msgid "Yearly"
 msgstr "Годишно"
 
-#: ../src/appointment.c:3288
+#: ../src/appointment.c:3290
 msgid "Hourly"
 msgstr "Всеки час"
 
-#: ../src/appointment.c:3290
+#: ../src/appointment.c:3292
 msgid "Mon"
 msgstr "Пн"
 
-#: ../src/appointment.c:3290
+#: ../src/appointment.c:3292
 msgid "Tue"
 msgstr "Вт"
 
-#: ../src/appointment.c:3290
+#: ../src/appointment.c:3292
 msgid "Wed"
 msgstr "Ср"
 
-#: ../src/appointment.c:3290
+#: ../src/appointment.c:3292
 msgid "Thu"
 msgstr "Чт"
 
-#: ../src/appointment.c:3290
+#: ../src/appointment.c:3292
 msgid "Fri"
 msgstr "Пт"
 
-#: ../src/appointment.c:3290
+#: ../src/appointment.c:3292
 msgid "Sat"
 msgstr "Сб"
 
-#: ../src/appointment.c:3290
+#: ../src/appointment.c:3292
 msgid "Sun"
 msgstr "Нд"
 
-#: ../src/appointment.c:3295
+#: ../src/appointment.c:3297
 msgid "Recurrence"
 msgstr "Повторение"
 
 #. complexity
-#: ../src/appointment.c:3301
+#: ../src/appointment.c:3303
 msgid "Complexity"
 msgstr "Осложнен"
 
-#: ../src/appointment.c:3304
+#: ../src/appointment.c:3306
 msgid "Basic"
 msgstr "Обикновен"
 
-#: ../src/appointment.c:3310
+#: ../src/appointment.c:3312
 msgid "Advanced"
 msgstr "Разширен"
 
-#: ../src/appointment.c:3314
+#: ../src/appointment.c:3316
 msgid "Use this if you want regular repeating event"
 msgstr "Използвайте това, ако искате събитието да се повтаря периодично"
 
-#: ../src/appointment.c:3316
+#: ../src/appointment.c:3318
 msgid ""
 "Use this if you need complex times like:\n"
 " Every Saturday and Sunday or \n"
@@ -1040,51 +1048,51 @@ msgid ""
 msgstr "Използвайте това, ако е необходимо сложно време, например:\nВсяка събота и неделя или \nПървият вторник на всеки месец"
 
 #. frequency
-#: ../src/appointment.c:3322
+#: ../src/appointment.c:3324
 msgid "Frequency"
 msgstr "Повторяемост"
 
-#: ../src/appointment.c:3328
+#: ../src/appointment.c:3330
 msgid "Each"
 msgstr "Всеки"
 
-#: ../src/appointment.c:3335
+#: ../src/appointment.c:3337
 msgid "occurrence"
 msgstr "интервал"
 
-#: ../src/appointment.c:3339
+#: ../src/appointment.c:3341
 msgid ""
 "Limit frequency to certain interval.\n"
 " For example: Every third day:\n"
 " Frequency = Daily and Interval = 3"
 msgstr "Ограничава честотата на конкретният интервал.\n Например: Всеки трети ден:\n Честота = Ежедневно и Интервал = 3"
 
-#: ../src/appointment.c:3384
+#: ../src/appointment.c:3386
 msgid "Limit"
 msgstr "Ограничение"
 
-#: ../src/appointment.c:3386
+#: ../src/appointment.c:3388
 msgid "Repeat forever"
 msgstr "Постоянно повтаряне"
 
-#: ../src/appointment.c:3392
+#: ../src/appointment.c:3394
 msgid "Repeat "
 msgstr "Повтаряне"
 
-#: ../src/appointment.c:3408
+#: ../src/appointment.c:3410
 msgid "Repeat until "
 msgstr "Повтаряне до"
 
 #. weekdays (only for complex settings)
-#: ../src/appointment.c:3421
+#: ../src/appointment.c:3423
 msgid "Weekdays"
 msgstr "Дни от седмицата"
 
-#: ../src/appointment.c:3433
+#: ../src/appointment.c:3435
 msgid "Which day"
 msgstr "В кой ден"
 
-#: ../src/appointment.c:3441
+#: ../src/appointment.c:3443
 msgid ""
 "Specify which weekday for monthly and yearly events.\n"
 " For example:\n"
@@ -1095,54 +1103,54 @@ msgid ""
 msgstr "Определя, в кой ден от седмицата ще настъпи ежемесечното или годишното събитие.\n Например:\n Втората сряда на всеки месец:\n Честота = Ежемесечно,\nДни от седмицата= отмята се само сряда,\nВ кой ден = изберете 2 от номерата до сряда"
 
 #. TODO base (only for TODOs)
-#: ../src/appointment.c:3448
+#: ../src/appointment.c:3450
 msgid "TODO base"
 msgstr "Начална дата на задача"
 
-#: ../src/appointment.c:3461
+#: ../src/appointment.c:3463
 msgid ""
 "TODO reoccurs regularly starting on start time and repeating after each "
 "interval no matter when it was last completed"
 msgstr "Времето за повторение на задачата се отчита от нейното начало и не зависи от това, дали е била изпълнена"
 
-#: ../src/appointment.c:3463
+#: ../src/appointment.c:3465
 msgid ""
 "TODO reoccurrency is based on complete time and repeats after the interval counted from the last completed time.\n"
 "(Note that you can not tell anything about the history of the TODO since reoccurrence base changes after each completion.)"
 msgstr "Времето на повторение на задачата се отчита от нейното изпълнение.\n(Имайте в предвид, че началната дата на задачата ще бъде променяна с всяко повторение.)"
 
 #. exceptions
-#: ../src/appointment.c:3469
+#: ../src/appointment.c:3471
 msgid "Exceptions"
 msgstr "Изключения"
 
-#: ../src/appointment.c:3482
+#: ../src/appointment.c:3484
 msgid ""
 "Add more exception dates by clicking the calendar days below.\n"
 "Exception is either exclusion(-) or inclusion(+) depending on the selection.\n"
 "Remove by clicking the data."
 msgstr "Може да добавите изключения, като щракнете върху календарни дни по-долу.\nИзключение е или изключване (-) или включване (+), в зависимост от селекцията\nПремахнете с кликване върху датата."
 
-#: ../src/appointment.c:3487
+#: ../src/appointment.c:3489
 msgid "Add excluded date (-)"
 msgstr "Добавяне на изключена дата (-)"
 
-#: ../src/appointment.c:3489
+#: ../src/appointment.c:3491
 msgid "Excluded days are full days where this appointment is not happening"
 msgstr "В изключените дни не настъпва събитие"
 
-#: ../src/appointment.c:3495
+#: ../src/appointment.c:3497
 msgid "Add included time (+)"
 msgstr "Добавянето на включено време (+)"
 
-#: ../src/appointment.c:3497
+#: ../src/appointment.c:3499
 msgid ""
 "Included times have same timezone than start time, but they may have "
 "different time"
 msgstr "Включените времена са от същия часови пояс от стартовото време, но те ​​могат да имат различно време"
 
 #. calendars showing the action days
-#: ../src/appointment.c:3514
+#: ../src/appointment.c:3516
 msgid "Action dates"
 msgstr "Дата на събитие"
 
@@ -2229,7 +2237,7 @@ msgstr "Африка/Хараре"
 
 #: ../src/timezone_names.c:62
 msgid "Africa/Juba"
-msgstr ""
+msgstr "Африка/Джуба"
 
 #: ../src/timezone_names.c:63
 msgid "Africa/Johannesburg"
@@ -2377,7 +2385,7 @@ msgstr "Америка/Аржентина/Катамарка"
 
 #: ../src/timezone_names.c:99
 msgid "America/Argentina/ComodRivadavia"
-msgstr ""
+msgstr "Америка/Аржентина/ Комодоро Ривадавия"
 
 #: ../src/timezone_names.c:100
 msgid "America/Argentina/Cordoba"
@@ -2389,7 +2397,7 @@ msgstr "Америка/Аржентина/Жужуй"
 
 #: ../src/timezone_names.c:102
 msgid "America/Argentina/La_Tioja"
-msgstr ""
+msgstr "Америка/Аржентина/Ла Тиоя"
 
 #: ../src/timezone_names.c:103
 msgid "America/Argentina/Mendoza"
@@ -2397,27 +2405,27 @@ msgstr "Америка/Аржентина/Мендоза"
 
 #: ../src/timezone_names.c:104
 msgid "America/Argentina/Rio_Gallegos"
-msgstr ""
+msgstr "Америка/Аржентина/Рио Галегос"
 
 #: ../src/timezone_names.c:105
 msgid "America/Argentina/Salta"
-msgstr ""
+msgstr "Америка/Аржентина/Салта"
 
 #: ../src/timezone_names.c:106
 msgid "America/Argentina/San_Juan"
-msgstr ""
+msgstr "Америка/Аржентина/Сан Жуан"
 
 #: ../src/timezone_names.c:107
 msgid "America/Argentina/San_Lois"
-msgstr ""
+msgstr "Америка/Аржентина/Сан Луис"
 
 #: ../src/timezone_names.c:108
 msgid "America/Argentina/Tucuman"
-msgstr ""
+msgstr "Америка/Аржентина/Тукуман"
 
 #: ../src/timezone_names.c:109
 msgid "America/Argentina/Ushuaia"
-msgstr ""
+msgstr "Америка/Аржентина/Ушуая"
 
 #: ../src/timezone_names.c:110
 msgid "America/Aruba"
@@ -2429,19 +2437,19 @@ msgstr "Америка/Асунсион"
 
 #: ../src/timezone_names.c:112
 msgid "America/Atikokan"
-msgstr ""
+msgstr "Америка/Атикокан"
 
 #: ../src/timezone_names.c:113
 msgid "America/Atka"
-msgstr ""
+msgstr "Америка/Атка"
 
 #: ../src/timezone_names.c:114
 msgid "America/Bahia"
-msgstr ""
+msgstr "Америка/Байя"
 
 #: ../src/timezone_names.c:115
 msgid "America/Bahia_Banderas"
-msgstr ""
+msgstr "Америка/Байя Бандерас"
 
 #: ../src/timezone_names.c:116
 msgid "America/Barbados"
@@ -2457,7 +2465,7 @@ msgstr "Америка/Белиз"
 
 #: ../src/timezone_names.c:119
 msgid "America/Blanc-Sablon"
-msgstr ""
+msgstr "Америка/Бланк-Саблон"
 
 #: ../src/timezone_names.c:120
 msgid "America/Boa_Vista"
@@ -2481,7 +2489,7 @@ msgstr "Америка/Кембридж-Бей"
 
 #: ../src/timezone_names.c:125
 msgid "America/Campo_Grande"
-msgstr ""
+msgstr "Америка/Кампо Гранде"
 
 #: ../src/timezone_names.c:126
 msgid "America/Cancun"
@@ -2513,7 +2521,7 @@ msgstr "Америка/Чихуахуа"
 
 #: ../src/timezone_names.c:133
 msgid "America/Coral_Harbour"
-msgstr ""
+msgstr "Америка/Корал Харбър"
 
 #: ../src/timezone_names.c:134
 msgid "America/Cordoba"
@@ -2525,7 +2533,7 @@ msgstr "Америка/Коста-Рика"
 
 #: ../src/timezone_names.c:136
 msgid "America/Creston"
-msgstr ""
+msgstr "Америка/Крестън"
 
 #: ../src/timezone_names.c:137
 msgid "America/Cuiaba"
@@ -2537,7 +2545,7 @@ msgstr "Америка/Куракао"
 
 #: ../src/timezone_names.c:139
 msgid "America/Danmarkshavn"
-msgstr ""
+msgstr "Америка/Данмаркшавн"
 
 #: ../src/timezone_names.c:140
 msgid "America/Dawson"
@@ -2565,7 +2573,7 @@ msgstr "Америка/Едмънтън"
 
 #: ../src/timezone_names.c:146
 msgid "America/Ensenada"
-msgstr ""
+msgstr "Америка/Енсенада"
 
 #: ../src/timezone_names.c:147
 msgid "America/Eirunepe"
@@ -2581,7 +2589,7 @@ msgstr "Америка/Форталеза"
 
 #: ../src/timezone_names.c:150
 msgid "America/Fort_Wayne"
-msgstr ""
+msgstr "Америка/Порт Уeйн"
 
 #: ../src/timezone_names.c:151
 msgid "America/Glace_Bay"
@@ -2645,11 +2653,11 @@ msgstr "Америка/Индиана/Маренго"
 
 #: ../src/timezone_names.c:166
 msgid "America/Indiana/Petersburg"
-msgstr ""
+msgstr "Америка/Индиана/Петерсбург"
 
 #: ../src/timezone_names.c:167
 msgid "America/Indiana/Tell_City"
-msgstr ""
+msgstr "Америка/Индиана/Тел Сити"
 
 #: ../src/timezone_names.c:168
 msgid "America/Indiana/Vevay"
@@ -2657,11 +2665,11 @@ msgstr "Америка/Индиана/Вевей"
 
 #: ../src/timezone_names.c:169
 msgid "America/Indiana/Vincennes"
-msgstr ""
+msgstr "Америка/Индиана/Винсенс"
 
 #: ../src/timezone_names.c:170
 msgid "America/Indiana/Winamac"
-msgstr ""
+msgstr "Америка/Индиана/Уинамак"
 
 #: ../src/timezone_names.c:171
 msgid "America/Indianapolis"
@@ -2697,11 +2705,11 @@ msgstr "Америка/Кентъки/Монтичело"
 
 #: ../src/timezone_names.c:179
 msgid "America/Knox_IN"
-msgstr ""
+msgstr "Америка/Нокс"
 
 #: ../src/timezone_names.c:180
 msgid "America/Kralendijk"
-msgstr ""
+msgstr "Америка/Краленджуик"
 
 #: ../src/timezone_names.c:181
 msgid "America/La_Paz"
