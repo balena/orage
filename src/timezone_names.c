@@ -99,7 +99,7 @@ const gchar *trans_timezone[] = {
     N_("America/Argentina/ComodRivadavia"),
     N_("America/Argentina/Cordoba"),
     N_("America/Argentina/Jujuy"),
-    N_("America/Argentina/La_Tioja"),
+    N_("America/Argentina/La_Rioja"),
     N_("America/Argentina/Mendoza"),
     N_("America/Argentina/Rio_Gallegos"),
     N_("America/Argentina/Salta"),
