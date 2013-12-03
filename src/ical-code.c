@@ -3498,26 +3498,28 @@ static void mark_calendar(icalcomponent *c, icaltime_span *span , void *data)
         gmtime_r(&temp, &end_tm);
     }
     sdate = icaltime_from_string(orage_tm_time_to_icaltime(&start_tm));
+    edate = icaltime_from_string(orage_tm_time_to_icaltime(&end_tm));
     if (cal_data->appt.freq != XFICAL_FREQ_HOURLY
     &&  start_tm.tm_hour != cal_data->orig_start_hour) {
         orage_message(-10, P_N "FIXING WRONG HOUR Title (%s) %d -> %d (day %d)", cal_data->appt.title, start_tm.tm_hour, cal_data->orig_start_hour, start_tm.tm_mday);
         /* WHEN we arrive here, libical has done an extra UTC conversion,
           which we need to undo */
         sdate = convert_to_zone(sdate, "UTC");
-    }
-    else {
-        sdate = convert_to_zone(sdate, cal_data->appt.start_tz_loc);
-    }
-    sdate = icaltime_convert_to_zone(sdate, local_icaltimezone);
-    edate = icaltime_from_string(orage_tm_time_to_icaltime(&end_tm));
-    if (cal_data->appt.freq != XFICAL_FREQ_HOURLY
-    &&  end_tm.tm_hour != cal_data->orig_end_hour) {
         edate = convert_to_zone(edate, "UTC");
     }
     else {
+        sdate = convert_to_zone(sdate, cal_data->appt.start_tz_loc);
         edate = convert_to_zone(edate, cal_data->appt.end_tz_loc);
     }
+    sdate = icaltime_convert_to_zone(sdate, local_icaltimezone);
     edate = icaltime_convert_to_zone(edate, local_icaltimezone);
+    /*
+    if (cal_data->appt.freq != XFICAL_FREQ_HOURLY
+    &&  end_tm.tm_hour != cal_data->orig_end_hour) {
+    }
+    else {
+    }
+    */
     /* fix for bug 8508 prevent showing extra day in calendar.
        Only has effect when end date is midnight */
     icaltime_adjust(&edate, 0, 0, 0, -1);
@@ -3595,9 +3597,11 @@ static void xfical_mark_calendar_from_component(GtkCalendar *gtkcal
            what the time is in, libical returns wrong time in span.
            But as the hour only changes with HOURLY repeating appointments,
            we can replace received hour with the hour from start time */
+            /*
             p = icalcomponent_get_first_property(c, ICAL_DTEND_PROPERTY);
             start = icalproperty_get_dtend(p);
             cal_data.orig_end_hour = start.hour;
+            */
             p = icalcomponent_get_first_property(c, ICAL_DTSTART_PROPERTY);
             start = icalproperty_get_dtstart(p);
             cal_data.orig_start_hour = start.hour;
@@ -3783,13 +3787,14 @@ static void add_appt_to_list(icalcomponent *c, icaltime_span *span , void *data)
     gmtime_r(&span->end, &end_tm);
     /*
     if (data1->file_type[0] == 'F') {
-    orage_message(10, P_N "1 Title (%s)\n\tcur Start:%s End:%s\n\tlimit Start:%s End:%s\n\traw Start:%s (%s) End:%s (%s)\n\tSpan Start:%d (%d) End:%d (%d)\n\tREAL Span Start:%d End:%d"
+    orage_message(10, P_N "1 Title (%s)\n\tcur Start:%s End:%s\n\tlimit Start:%s End:%s\n\traw Start:%s (%s) End:%s (%s)\n\tSpan Start:%d (%d) End:%d (%d)\n\tREAL Span Start:%d End:%d\n\t orig start:%d, orig:end:%d"
 , appt->title
 , appt->starttimecur, appt->endtimecur
 , data1->asdate, data1->aedate
 , appt->starttime, appt->start_tz_loc, appt->endtime, appt->end_tz_loc
 , start_tm.tm_mday, start_tm.tm_hour, end_tm.tm_mday, end_tm.tm_hour
 , &span->start, &span->end
+, data1->orig_start_hour, data1->orig_end_hour
             );
     }
     */
@@ -3806,7 +3811,9 @@ static void add_appt_to_list(icalcomponent *c, icaltime_span *span , void *data)
            the last day */
     }
     /* end of bug workaround */
+    /* FIXME: should we use interval instead ? */
     sdate = icaltime_from_string(orage_tm_time_to_icaltime(&start_tm));
+    edate = icaltime_from_string(orage_tm_time_to_icaltime(&end_tm));
     /* BUG 7929. If calendar file contains same timezone definition than what
        the time is in, libical returns wrong time in span. But as the hour
        only changes with HOURLY repeating appointments, we can replace received
@@ -3817,21 +3824,15 @@ static void add_appt_to_list(icalcomponent *c, icaltime_span *span , void *data)
         /* WHEN we arrive here, libical has done an extra UTC conversion,
            which we need to undo */
         sdate = convert_to_zone(sdate, "UTC");
-    }
-    else {
-        sdate = convert_to_zone(sdate, appt->start_tz_loc);
-    }
-    sdate = icaltime_convert_to_zone(sdate, local_icaltimezone);
-    /* FIXME: should we use interval instead ? */
-    edate = icaltime_from_string(orage_tm_time_to_icaltime(&end_tm));
-    if (appt->freq != XFICAL_FREQ_HOURLY 
-    &&  end_tm.tm_hour != data1->orig_end_hour) {
         edate = convert_to_zone(edate, "UTC");
     }
     else {
+        sdate = convert_to_zone(sdate, appt->start_tz_loc);
         edate = convert_to_zone(edate, appt->end_tz_loc);
     }
+    sdate = icaltime_convert_to_zone(sdate, local_icaltimezone);
     edate = icaltime_convert_to_zone(edate, local_icaltimezone);
+
 
     strcpy(appt->starttimecur, icaltime_as_ical_string(sdate));
     strcpy(appt->endtimecur, icaltime_as_ical_string(edate));
@@ -3843,12 +3844,13 @@ static void add_appt_to_list(icalcomponent *c, icaltime_span *span , void *data)
        limits, which are also localtimezone DATEs */
     /*
     if (data1->file_type[0] == 'F') {
-    orage_message(10, P_N "2 Title (%s)\n\tcur Start:%s End:%s\n\tlimit Start:%s End:%s\n\traw Start:%s (%s) End:%s (%s)\n\tSpan Start:%d End:%d"
+    orage_message(10, P_N "2 Title (%s)\n\tcur Start:%s End:%s\n\tlimit Start:%s End:%s\n\traw Start:%s (%s) End:%s (%s)\n\tSpan Start:%d End:%d sdate:%s edate:%s"
 , appt->title
 , appt->starttimecur, appt->endtimecur
 , data1->asdate, data1->aedate
 , appt->starttime, appt->start_tz_loc, appt->endtime, appt->end_tz_loc
 , start_tm.tm_mday, end_tm.tm_mday
+, icaltime_as_ical_string(sdate), icaltime_as_ical_string(edate)
             );
     }
     */
@@ -3923,9 +3925,17 @@ static void xfical_get_each_app_within_time_internal(char *a_day, gint days
            what the time is in, libical returns wrong time in span.
            But as the hour only changes with HOURLY repeating appointments,
            we can replace received hour with the hour from start time */
+        /*
         p = icalcomponent_get_first_property(c, ICAL_DTEND_PROPERTY);
+            if (p != NULL) {
         start = icalproperty_get_dtend(p);
         data1.orig_end_hour = start.hour;
+            }
+            else {
+                g_print("NULL ***********\n");
+            }
+            g_print("ORIG END HOUR %d ***********\n", data1.orig_end_hour);
+            */
         p = icalcomponent_get_first_property(c, ICAL_DTSTART_PROPERTY);
         start = icalproperty_get_dtstart(p);
         data1.orig_start_hour = start.hour;
