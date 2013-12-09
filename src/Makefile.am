@@ -25,6 +25,7 @@ orage_SOURCES =					\
 	orage-i18n.h						\
 	parameters.c						\
 	parameters.h						\
+	parameters_internal.h				\
 	reminder.c							\
 	reminder.h							\
 	timezone_names.c					\
