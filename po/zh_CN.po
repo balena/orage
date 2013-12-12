@@ -15,9 +15,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-18 18:30+0100\n"
-"PO-Revision-Date: 2013-11-19 15:56+0000\n"
-"Last-Translator: Xfce <transifex@xfce.org>\n"
+"POT-Creation-Date: 2013-12-02 18:30+0100\n"
+"PO-Revision-Date: 2013-12-12 04:53+0000\n"
+"Last-Translator: Chipong <chipong.luo@yahoo.com>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/projects/p/xfce/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -335,7 +335,7 @@ msgstr "不更改"
 #: ../globaltime/timezone_selection.c:247
 #: ../globaltime/timezone_selection.c:252
 #: ../panel-plugin/timezone_selection.c:248
-#: ../panel-plugin/timezone_selection.c:253 ../src/appointment.c:2771
+#: ../panel-plugin/timezone_selection.c:253 ../src/appointment.c:2776
 #: ../src/timezone_selection.c:259 ../src/timezone_selection.c:264
 msgid "Location"
 msgstr "位置"
@@ -522,7 +522,7 @@ msgstr "用 Orage 管理您的时间"
 #. if (gtk_toggle_button_get_active(
 #. GTK_TOGGLE_BUTTON(apptw->Type_journal_rb)))
 #. end time
-#: ../src/appointment.c:313 ../src/appointment.c:353 ../src/appointment.c:2800
+#: ../src/appointment.c:313 ../src/appointment.c:353 ../src/appointment.c:2805
 msgid "End"
 msgstr "结束"
 
@@ -552,7 +552,7 @@ msgstr "所有文件"
 msgid "The appointment information has been modified."
 msgstr "已修改约会信息。"
 
-#: ../src/appointment.c:739 ../src/appointment.c:1282 ../src/event-list.c:921
+#: ../src/appointment.c:739 ../src/appointment.c:1287 ../src/event-list.c:969
 msgid "Do you want to continue?"
 msgstr "你要继续吗？"
 
@@ -568,7 +568,7 @@ msgstr "是的，忽略修改并离开"
 msgid "The end of this appointment is earlier than the beginning."
 msgstr "约会结束时间早于开始时间。"
 
-#: ../src/appointment.c:1035 ../src/appointment.c:1918
+#: ../src/appointment.c:1035 ../src/appointment.c:1923
 msgid "Not set"
 msgstr "没有设置"
 
@@ -576,241 +576,249 @@ msgstr "没有设置"
 msgid "Add new appointment to this file."
 msgstr ""
 
-#: ../src/appointment.c:1139
+#: ../src/appointment.c:1139 ../src/appointment.c:1188
 msgid "Orage default file"
 msgstr ""
 
-#: ../src/appointment.c:1220
+#: ../src/appointment.c:1225
 msgid "Appointment addition failed."
 msgstr ""
 
-#: ../src/appointment.c:1221
+#: ../src/appointment.c:1226
 msgid ""
 "Error happened when adding appointment. Look more details from the log file."
 msgstr ""
 
-#: ../src/appointment.c:1231
+#: ../src/appointment.c:1236
 msgid "Appointment update failed."
 msgstr ""
 
-#: ../src/appointment.c:1232
+#: ../src/appointment.c:1237
 msgid ""
 "Look more details from the log file. (Perhaps file was updated external from"
 " Orage?)"
 msgstr ""
 
-#: ../src/appointment.c:1281
+#: ../src/appointment.c:1286
 msgid "This appointment will be permanently removed."
 msgstr "会永久移除此约会。"
 
-#: ../src/appointment.c:1283 ../src/event-list.c:922
+#: ../src/appointment.c:1288 ../src/event-list.c:970
 msgid "No, cancel the removal"
 msgstr "不，取消移除"
 
-#: ../src/appointment.c:1284
+#: ../src/appointment.c:1289
 msgid "Yes, remove it"
 msgstr "是，移除"
 
-#: ../src/appointment.c:1373 ../src/appointment.c:1388 ../src/day-view.c:457
-#: ../src/event-list.c:980
+#: ../src/appointment.c:1378 ../src/appointment.c:1393 ../src/day-view.c:457
+#: ../src/event-list.c:1028
 msgid "Pick the date"
 msgstr "选取日期"
 
-#: ../src/appointment.c:1375 ../src/appointment.c:1390 ../src/day-view.c:386
-#: ../src/day-view.c:459 ../src/event-list.c:982 ../src/event-list.c:1132
+#: ../src/appointment.c:1380 ../src/appointment.c:1395 ../src/day-view.c:386
+#: ../src/day-view.c:459 ../src/event-list.c:1030 ../src/event-list.c:1180
 #: ../src/tray_icon.c:460
 msgid "Today"
 msgstr "今天"
 
-#: ../src/appointment.c:1798
+#: ../src/appointment.c:1803
 msgid "This appointment does not exist."
 msgstr "此约会不存在。"
 
-#: ../src/appointment.c:1799
+#: ../src/appointment.c:1804
 msgid "It was probably removed, please refresh your screen."
 msgstr "它可能已被移除，请刷新屏幕。"
 
-#: ../src/appointment.c:2100
+#: ../src/appointment.c:2105
 msgid "Current categories"
 msgstr "当前类别"
 
-#: ../src/appointment.c:2115
+#: ../src/appointment.c:2120
 msgid "Add new category with color"
 msgstr "添加新的颜色类别"
 
-#: ../src/appointment.c:2119
+#: ../src/appointment.c:2124
 msgid "Category:"
 msgstr "类别："
 
-#: ../src/appointment.c:2150
+#: ../src/appointment.c:2155
 msgid "Colors of categories - Orage"
 msgstr "类别的颜色-Orage"
 
-#: ../src/appointment.c:2196
+#: ../src/appointment.c:2201
 msgid " *** COPY ***"
 msgstr "*** 复制 ***"
 
-#: ../src/appointment.c:2461
+#: ../src/appointment.c:2466
 msgid "New appointment - Orage"
 msgstr "新建约会-Orage"
 
 #. File menu stuff
 #. ********* File menu *********
 #. File menu
-#: ../src/appointment.c:2491 ../src/day-view.c:279 ../src/event-list.c:1033
+#: ../src/appointment.c:2496 ../src/day-view.c:279 ../src/event-list.c:1081
 #: ../src/interface.c:813 ../src/mainbox.c:297
 msgid "_File"
 msgstr "文件(_F)"
 
-#: ../src/appointment.c:2497
+#: ../src/appointment.c:2502
 msgid "Sav_e and close"
 msgstr "保存并关闭(_E)"
 
-#: ../src/appointment.c:2510 ../src/event-list.c:1039
+#: ../src/appointment.c:2515 ../src/event-list.c:1087
 msgid "D_uplicate"
 msgstr "重复(_U)"
 
-#: ../src/appointment.c:2697
+#: ../src/appointment.c:2702
 msgid "Save"
 msgstr "保存"
 
-#: ../src/appointment.c:2699
+#: ../src/appointment.c:2704
 msgid "Save and close"
 msgstr "保存并关闭"
 
-#: ../src/appointment.c:2704
+#: ../src/appointment.c:2709
 msgid "Revert"
 msgstr "重置"
 
-#: ../src/appointment.c:2706 ../src/event-list.c:1123
+#: ../src/appointment.c:2711 ../src/event-list.c:1171
 msgid "Duplicate"
 msgstr "重复"
 
-#: ../src/appointment.c:2711 ../src/event-list.c:1125
+#: ../src/appointment.c:2716 ../src/event-list.c:1173
 msgid "Delete"
 msgstr "删除"
 
-#: ../src/appointment.c:2729
+#: ../src/appointment.c:2734
 msgid "Free"
 msgstr "空闲"
 
-#: ../src/appointment.c:2729
+#: ../src/appointment.c:2734
 msgid "Busy"
 msgstr "繁忙"
 
-#: ../src/appointment.c:2733
+#: ../src/appointment.c:2738
 msgid "General"
 msgstr "一般"
 
 #. type
-#: ../src/appointment.c:2739
+#: ../src/appointment.c:2744
 msgid "Type "
 msgstr "类型 "
 
-#: ../src/appointment.c:2741 ../src/event-list.c:1176
+#: ../src/appointment.c:2746 ../src/event-list.c:1226
 msgid "Event"
 msgstr "事件"
 
-#: ../src/appointment.c:2744
+#: ../src/appointment.c:2749
 msgid ""
 "Event that will happen sometime. For example:\n"
 "Meeting or birthday or TV show."
 msgstr "某时要发生的事件，比如：\n会议、生日或电视节目。"
 
-#: ../src/appointment.c:2747 ../src/event-list.c:1196
+#: ../src/appointment.c:2752 ../src/event-list.c:1274
 msgid "Todo"
 msgstr "待办"
 
-#: ../src/appointment.c:2750
+#: ../src/appointment.c:2755
 msgid ""
 "Something that you should do sometime. For example:\n"
 "Wash your car or test new version of Orage."
 msgstr "某时您应该做的事情，比如：\n洗车或测试新版 Orage。"
 
-#: ../src/appointment.c:2753 ../src/event-list.c:1209
+#: ../src/appointment.c:2758 ../src/event-list.c:1287
 msgid "Journal"
 msgstr "日志"
 
-#: ../src/appointment.c:2757
+#: ../src/appointment.c:2762
 msgid ""
 "Make a note that something happened. For example:\n"
 "Remark that your mother called or first snow came."
 msgstr "记录发生的事情，比如：\n记录妈妈的电话或初雪到来。"
 
 #. title
-#: ../src/appointment.c:2764
+#: ../src/appointment.c:2769
 msgid "Title "
 msgstr "标题 "
 
-#: ../src/appointment.c:2779
+#: ../src/appointment.c:2784
 msgid "All day event"
 msgstr "全天事件"
 
 #. start time
-#: ../src/appointment.c:2785 ../src/appointment.c:3446 ../src/day-view.c:801
+#: ../src/appointment.c:2790 ../src/appointment.c:3453 ../src/day-view.c:801
 msgid "Start"
 msgstr "开始"
 
-#: ../src/appointment.c:2805
+#: ../src/appointment.c:2810
 msgid "Set      "
 msgstr "设置      "
 
-#: ../src/appointment.c:2826
+#: ../src/appointment.c:2831
 msgid "Duration"
 msgstr "持续时间"
 
-#: ../src/appointment.c:2830 ../src/appointment.c:3020 ../src/reminder.c:758
+#: ../src/appointment.c:2835 ../src/appointment.c:3027 ../src/reminder.c:758
 msgid "days"
 msgstr "天"
 
-#: ../src/appointment.c:2832 ../src/appointment.c:3022 ../src/reminder.c:760
+#: ../src/appointment.c:2837 ../src/appointment.c:3029 ../src/reminder.c:760
 msgid "hours"
 msgstr "小时"
 
-#: ../src/appointment.c:2834 ../src/appointment.c:3024 ../src/reminder.c:762
+#: ../src/appointment.c:2839 ../src/appointment.c:3031 ../src/reminder.c:762
 msgid "mins"
 msgstr "分钟"
 
 #. Availability (only for EVENT)
-#: ../src/appointment.c:2846
+#: ../src/appointment.c:2851
 msgid "Availability"
 msgstr "有效性"
 
 #. completed (only for TODO)
-#: ../src/appointment.c:2854 ../src/appointment.c:3452
+#: ../src/appointment.c:2859 ../src/appointment.c:3459
 msgid "Completed"
 msgstr "完成"
 
-#: ../src/appointment.c:2857
+#: ../src/appointment.c:2862
 msgid "Done"
 msgstr "做完"
 
 #. categories
-#: ../src/appointment.c:2878
+#: ../src/appointment.c:2883
 msgid "Categories"
 msgstr "类别"
 
-#: ../src/appointment.c:2890
+#: ../src/appointment.c:2895
 msgid ""
 "This is special category, which can be used to color this appointment in "
 "list views."
 msgstr "这个特殊类别可用来在列表视图中将本约会彩色显示。"
 
-#: ../src/appointment.c:2895
+#: ../src/appointment.c:2900
 msgid "update colors for categories."
 msgstr "更新类别的颜色。"
 
 #. priority
-#: ../src/appointment.c:2901
+#: ../src/appointment.c:2906
 msgid "Priority"
 msgstr "优先级"
 
+#: ../src/appointment.c:2910
+msgid ""
+"If you set this 8 or bigger, the appointment is NOT shown on list windows.\n"
+"You can use that feature to unclutter your list windows, but it makes it more difficult to find this appointment.\n"
+"(Alarms will still fire normally.)\n"
+"(There is undocumented parameter so that you can change the default limit of 8.)"
+msgstr ""
+
 #. note
-#: ../src/appointment.c:2911
+#: ../src/appointment.c:2918
 msgid "Note"
 msgstr "备注"
 
-#: ../src/appointment.c:2932
+#: ../src/appointment.c:2939
 msgid ""
 "These shorthand commands take effect immediately:\n"
 "    <D> inserts current date in local date format\n"
@@ -822,32 +830,32 @@ msgid ""
 "(This can be used for example in birthday reminders to tell how old the person will be.)"
 msgstr "这些简略命令立即生效：\n    <D> 以本地日期格式插入当前日期\n    <T> 插入时间和\n    <DT> 插入日期和时间。\n\n这些只有在后来看见它们时才会转换：\n    <&Ynnnn> 转换为当前的年减去 nnnn。\n(此用来如在生日提醒中显示这个人的年龄。)"
 
-#: ../src/appointment.c:3003
+#: ../src/appointment.c:3010
 msgid "Before Start"
 msgstr "开始前"
 
-#: ../src/appointment.c:3003
+#: ../src/appointment.c:3010
 msgid "Before End"
 msgstr "结束前"
 
-#: ../src/appointment.c:3004
+#: ../src/appointment.c:3011
 msgid "After Start"
 msgstr "开始后"
 
-#: ../src/appointment.c:3004
+#: ../src/appointment.c:3011
 msgid "After End"
 msgstr "结束后"
 
-#: ../src/appointment.c:3011
+#: ../src/appointment.c:3018
 msgid "Alarm"
 msgstr "闹铃"
 
 #. **** ALARM TIME ****
-#: ../src/appointment.c:3017
+#: ../src/appointment.c:3024
 msgid "Alarm time"
 msgstr "闹铃时间"
 
-#: ../src/appointment.c:3041
+#: ../src/appointment.c:3048
 msgid ""
 "Often you want to get alarm:\n"
 " 1) before Event start\n"
@@ -855,88 +863,88 @@ msgid ""
 " 3) after Todo start"
 msgstr "通常您要有闹铃：\n 1) 事件发生前\n 2) 待办结束前\n 3) 待办开始后"
 
-#: ../src/appointment.c:3046
+#: ../src/appointment.c:3053
 msgid "Persistent alarm"
 msgstr "持续闹铃"
 
-#: ../src/appointment.c:3048
+#: ../src/appointment.c:3055
 msgid ""
 "Select this if you want Orage to remind you even if it has not been active "
 "when the alarm happened."
 msgstr "闹铃响时，如果您要即使还没激活 Orage 时也提醒您，选择此项。"
 
 #. **** Audio Alarm ****
-#: ../src/appointment.c:3057
+#: ../src/appointment.c:3064
 msgid "Sound"
 msgstr "声音"
 
-#: ../src/appointment.c:3061 ../src/appointment.c:3181
+#: ../src/appointment.c:3068 ../src/appointment.c:3188
 msgid "Use"
 msgstr "使用"
 
-#: ../src/appointment.c:3063
+#: ../src/appointment.c:3070
 msgid "Select this if you want audible alarm"
 msgstr "如果您要可听的闹铃则选择此项"
 
-#: ../src/appointment.c:3080
+#: ../src/appointment.c:3087
 msgid "Repeat alarm sound"
 msgstr "重复闹铃声音"
 
-#: ../src/appointment.c:3096 ../src/appointment.c:3395
+#: ../src/appointment.c:3103 ../src/appointment.c:3402
 msgid "times"
 msgstr "时间"
 
-#: ../src/appointment.c:3112
+#: ../src/appointment.c:3119
 msgid "sec interval"
 msgstr "秒间隔"
 
 #. **** Display Alarm ****
-#: ../src/appointment.c:3122
+#: ../src/appointment.c:3129
 msgid "Visual"
 msgstr "可见"
 
-#: ../src/appointment.c:3126
+#: ../src/appointment.c:3133
 msgid "Use Orage window"
 msgstr "使用 Orage 窗口"
 
-#: ../src/appointment.c:3128
+#: ../src/appointment.c:3135
 msgid "Select this if you want Orage window alarm"
 msgstr "如果您要 Orage 窗口闹铃则选择此项"
 
-#: ../src/appointment.c:3140
+#: ../src/appointment.c:3147
 msgid "Use notification"
 msgstr "使用通知"
 
-#: ../src/appointment.c:3142
+#: ../src/appointment.c:3149
 msgid "Select this if you want notification alarm"
 msgstr "如果您要通知闹铃则选择此项"
 
-#: ../src/appointment.c:3148
+#: ../src/appointment.c:3155
 msgid "Set timeout"
 msgstr "设置超时"
 
-#: ../src/appointment.c:3150
+#: ../src/appointment.c:3157
 msgid "Select this if you want notification to expire automatically"
 msgstr "如果您要通知自动终止则选择此项"
 
-#: ../src/appointment.c:3161
+#: ../src/appointment.c:3168
 msgid "0 = system default expiration time"
 msgstr "0 为系统默认终止时间"
 
-#: ../src/appointment.c:3166
+#: ../src/appointment.c:3173
 msgid "seconds"
 msgstr "秒"
 
 #. **** Procedure Alarm ****
-#: ../src/appointment.c:3177
+#: ../src/appointment.c:3184
 msgid "Procedure"
 msgstr "步骤"
 
-#: ../src/appointment.c:3183
+#: ../src/appointment.c:3190
 msgid "Select this if you want procedure or script alarm"
 msgstr "如果您要步骤或脚本闹铃则选择此项"
 
-#: ../src/appointment.c:3189
+#: ../src/appointment.c:3196
 msgid ""
 "You must enter all escape etc characters yourself.\n"
 "This string is just given to shell to process.\n"
@@ -948,96 +956,96 @@ msgid ""
 "\t<&ET> appointment end time"
 msgstr "您必须自己输入所有退格键等字符。\n此字符串仅用于进程 shell。\n在运行时会替换以下特殊命令：\n\t<&T>  约会标题\n\t<&D>  约会描述\n\t<&AT> 闹铃时间\n\t<&ST> 约会开始时间\n\t<&ET> 约会结束时间"
 
-#: ../src/appointment.c:3201
+#: ../src/appointment.c:3208
 msgid "Test this alarm by raising it now"
 msgstr "现在触发闹铃来测试"
 
-#: ../src/appointment.c:3208
+#: ../src/appointment.c:3215
 msgid "<b>Default alarm</b>"
 msgstr "<b>默认闹铃</b>"
 
-#: ../src/appointment.c:3216
+#: ../src/appointment.c:3223
 msgid "Store current settings as default alarm"
 msgstr "把当前设置存为默认闹铃"
 
-#: ../src/appointment.c:3221
+#: ../src/appointment.c:3228
 msgid "Set current settings from default alarm"
 msgstr "从默认闹铃设置当前设置"
 
-#: ../src/appointment.c:3283
+#: ../src/appointment.c:3290
 msgid "None"
 msgstr "无"
 
-#: ../src/appointment.c:3283
+#: ../src/appointment.c:3290
 msgid "Daily"
 msgstr "每天"
 
-#: ../src/appointment.c:3283
+#: ../src/appointment.c:3290
 msgid "Weekly"
 msgstr "每周"
 
-#: ../src/appointment.c:3283
+#: ../src/appointment.c:3290
 msgid "Monthly"
 msgstr "每月"
 
-#: ../src/appointment.c:3283
+#: ../src/appointment.c:3290
 msgid "Yearly"
 msgstr "每年"
 
-#: ../src/appointment.c:3283
+#: ../src/appointment.c:3290
 msgid "Hourly"
 msgstr "每小时"
 
-#: ../src/appointment.c:3285
+#: ../src/appointment.c:3292
 msgid "Mon"
 msgstr "星期一"
 
-#: ../src/appointment.c:3285
+#: ../src/appointment.c:3292
 msgid "Tue"
 msgstr "星期二"
 
-#: ../src/appointment.c:3285
+#: ../src/appointment.c:3292
 msgid "Wed"
 msgstr "星期三"
 
-#: ../src/appointment.c:3285
+#: ../src/appointment.c:3292
 msgid "Thu"
 msgstr "星期四"
 
-#: ../src/appointment.c:3285
+#: ../src/appointment.c:3292
 msgid "Fri"
 msgstr "星期五"
 
-#: ../src/appointment.c:3285
+#: ../src/appointment.c:3292
 msgid "Sat"
 msgstr "星期六"
 
-#: ../src/appointment.c:3285
+#: ../src/appointment.c:3292
 msgid "Sun"
 msgstr "星期日"
 
-#: ../src/appointment.c:3290
+#: ../src/appointment.c:3297
 msgid "Recurrence"
 msgstr "重复发生"
 
 #. complexity
-#: ../src/appointment.c:3296
+#: ../src/appointment.c:3303
 msgid "Complexity"
 msgstr "复杂度"
 
-#: ../src/appointment.c:3299
+#: ../src/appointment.c:3306
 msgid "Basic"
 msgstr "基本"
 
-#: ../src/appointment.c:3305
+#: ../src/appointment.c:3312
 msgid "Advanced"
 msgstr "高级"
 
-#: ../src/appointment.c:3309
+#: ../src/appointment.c:3316
 msgid "Use this if you want regular repeating event"
 msgstr "如果您要规则的重复事件则使用它"
 
-#: ../src/appointment.c:3311
+#: ../src/appointment.c:3318
 msgid ""
 "Use this if you need complex times like:\n"
 " Every Saturday and Sunday or \n"
@@ -1045,51 +1053,51 @@ msgid ""
 msgstr "使用它，如果您需要复杂的时间如：\n  每星期六和星期日，或\n  每月的第一个星期二"
 
 #. frequency
-#: ../src/appointment.c:3317
+#: ../src/appointment.c:3324
 msgid "Frequency"
 msgstr "频率"
 
-#: ../src/appointment.c:3323
+#: ../src/appointment.c:3330
 msgid "Each"
 msgstr "每个"
 
-#: ../src/appointment.c:3330
+#: ../src/appointment.c:3337
 msgid "occurrence"
 msgstr "发生"
 
-#: ../src/appointment.c:3334
+#: ../src/appointment.c:3341
 msgid ""
 "Limit frequency to certain interval.\n"
 " For example: Every third day:\n"
 " Frequency = Daily and Interval = 3"
 msgstr "限定频率为特定间隔。\n 比如：每三天：\n 频率为每天且间隔为 3"
 
-#: ../src/appointment.c:3379
+#: ../src/appointment.c:3386
 msgid "Limit"
 msgstr "限定"
 
-#: ../src/appointment.c:3381
+#: ../src/appointment.c:3388
 msgid "Repeat forever"
 msgstr "一直重复"
 
-#: ../src/appointment.c:3387
+#: ../src/appointment.c:3394
 msgid "Repeat "
 msgstr "重复 "
 
-#: ../src/appointment.c:3403
+#: ../src/appointment.c:3410
 msgid "Repeat until "
 msgstr "重复直到 "
 
 #. weekdays (only for complex settings)
-#: ../src/appointment.c:3416
+#: ../src/appointment.c:3423
 msgid "Weekdays"
 msgstr "工作日"
 
-#: ../src/appointment.c:3428
+#: ../src/appointment.c:3435
 msgid "Which day"
 msgstr "哪一天"
 
-#: ../src/appointment.c:3436
+#: ../src/appointment.c:3443
 msgid ""
 "Specify which weekday for monthly and yearly events.\n"
 " For example:\n"
@@ -1100,69 +1108,69 @@ msgid ""
 msgstr "指定月事件和年事件的哪个工作日。\n 比如：\n 每月的第二个星期三：\n\t频率为每月，\n\t工作日为只检查星期三，\n\t哪一天为从星期三下的数字中选择 2"
 
 #. TODO base (only for TODOs)
-#: ../src/appointment.c:3443
+#: ../src/appointment.c:3450
 msgid "TODO base"
 msgstr "待办基本"
 
-#: ../src/appointment.c:3456
+#: ../src/appointment.c:3463
 msgid ""
 "TODO reoccurs regularly starting on start time and repeating after each "
 "interval no matter when it was last completed"
 msgstr "待办有规律地在开始时间启动并在每个间隔后重复，它会重复发生而不管上次是何时完成的"
 
-#: ../src/appointment.c:3458
+#: ../src/appointment.c:3465
 msgid ""
 "TODO reoccurrency is based on complete time and repeats after the interval counted from the last completed time.\n"
 "(Note that you can not tell anything about the history of the TODO since reoccurrence base changes after each completion.)"
 msgstr "待办基于完成时间在从上次完成时间计时的间隔后重复发生。\n(注意重复发生基本在每次完成后改变，所以您不能知道待办的任何相关历史。)"
 
 #. exceptions
-#: ../src/appointment.c:3464
+#: ../src/appointment.c:3471
 msgid "Exceptions"
 msgstr "例外"
 
-#: ../src/appointment.c:3477
+#: ../src/appointment.c:3484
 msgid ""
 "Add more exception dates by clicking the calendar days below.\n"
 "Exception is either exclusion(-) or inclusion(+) depending on the selection.\n"
 "Remove by clicking the data."
 msgstr "在下面点击日历天数添加更多例外日期。\n例外取决于选择要么排除(-)要么包括(+)。\n点击数据移除。"
 
-#: ../src/appointment.c:3482
+#: ../src/appointment.c:3489
 msgid "Add excluded date (-)"
 msgstr "添加排除日期(-)"
 
-#: ../src/appointment.c:3484
+#: ../src/appointment.c:3491
 msgid "Excluded days are full days where this appointment is not happening"
 msgstr "排除天数是约会不会发生的全天"
 
-#: ../src/appointment.c:3490
+#: ../src/appointment.c:3497
 msgid "Add included time (+)"
 msgstr "添加包括时间(+)"
 
-#: ../src/appointment.c:3492
+#: ../src/appointment.c:3499
 msgid ""
 "Included times have same timezone than start time, but they may have "
 "different time"
 msgstr "包括时间与开始时间的时区相同，但可能时间不同"
 
 #. calendars showing the action days
-#: ../src/appointment.c:3509
+#: ../src/appointment.c:3516
 msgid "Action dates"
 msgstr "动作日期"
 
 #. ********* View menu *********
 #. View menu
-#: ../src/day-view.c:289 ../src/event-list.c:1056 ../src/mainbox.c:323
+#: ../src/day-view.c:289 ../src/event-list.c:1104 ../src/mainbox.c:323
 msgid "_View"
 msgstr "视图(_V)"
 
 #. ********* Go menu   *********
-#: ../src/day-view.c:303 ../src/event-list.c:1075
+#: ../src/day-view.c:303 ../src/event-list.c:1123
 msgid "_Go"
 msgstr "转到(_G)"
 
-#: ../src/day-view.c:377 ../src/event-list.c:1121
+#: ../src/day-view.c:377 ../src/event-list.c:1169
 msgid "New"
 msgstr "新建"
 
@@ -1182,11 +1190,11 @@ msgstr "前进一天"
 msgid "Forward one week"
 msgstr "前进一星期"
 
-#: ../src/day-view.c:395 ../src/event-list.c:1139
+#: ../src/day-view.c:395 ../src/event-list.c:1187
 msgid "Refresh"
 msgstr "刷新"
 
-#: ../src/day-view.c:400 ../src/event-list.c:1146 ../src/interface.c:834
+#: ../src/day-view.c:400 ../src/event-list.c:1194 ../src/interface.c:834
 msgid "Close"
 msgstr "关闭"
 
@@ -1203,73 +1211,94 @@ msgid "Orage - day view"
 msgstr "Orage-日视图"
 
 #. date only appointment
-#: ../src/event-list.c:190
+#: ../src/event-list.c:191
 msgid "All day"
 msgstr "所有天"
 
-#: ../src/event-list.c:583 ../src/event-list.c:1292
+#: ../src/event-list.c:596 ../src/event-list.c:1370
 msgid "Time"
 msgstr "时间"
 
-#: ../src/event-list.c:751
+#: ../src/event-list.c:784
 msgid "No rows have been selected."
 msgstr "没有选择任何行。"
 
-#: ../src/event-list.c:752
+#: ../src/event-list.c:785
 msgid "Click a row to select it and after that you can copy it."
 msgstr "点击一行选择，之后您可以复制它。"
 
-#: ../src/event-list.c:920
+#: ../src/event-list.c:968
 msgid ""
 "You will permanently remove all\n"
 "selected appointments."
 msgstr "将永久移除所有\n选中的约会。"
 
-#: ../src/event-list.c:923
+#: ../src/event-list.c:971
 msgid "Yes, remove them"
 msgstr "是，移除"
 
-#: ../src/event-list.c:1130
+#: ../src/event-list.c:1178
 msgid "Back"
 msgstr "后退"
 
-#: ../src/event-list.c:1134
+#: ../src/event-list.c:1182
 msgid "Forward"
 msgstr "前进"
 
-#: ../src/event-list.c:1141
+#: ../src/event-list.c:1189
 msgid "Find"
 msgstr "查找"
 
-#: ../src/event-list.c:1148
+#: ../src/event-list.c:1196
 msgid "Dayview"
 msgstr "日视图"
 
-#: ../src/event-list.c:1181
-msgid "Extra days to show "
-msgstr "要显示的额外天数 "
+#: ../src/event-list.c:1231
+msgid "Extra days to show:"
+msgstr ""
 
-#: ../src/event-list.c:1212
+#: ../src/event-list.c:1240
+msgid "only first repeating"
+msgstr ""
+
+#: ../src/event-list.c:1245
+msgid ""
+"Check this if you only want to see the first repeating event. By default all are shown.\n"
+"Note that this also shows all urgencies.\n"
+"Note that repeating events may appear earlier in the list as the first occurrence only is listed."
+msgstr ""
+
+#: ../src/event-list.c:1250
+msgid "also old"
+msgstr ""
+
+#: ../src/event-list.c:1252
+msgid ""
+"Check this if you want to see old events also. This can only be selected after 'only first repeating' is enabled to avoid very long lists.\n"
+"Note that extra days selection still defines if newer appointments are listed'."
+msgstr ""
+
+#: ../src/event-list.c:1290
 msgid "Journal entries starting from:"
 msgstr "日志条目开始于："
 
-#: ../src/event-list.c:1232
+#: ../src/event-list.c:1310
 msgid "Search"
 msgstr "搜索"
 
-#: ../src/event-list.c:1235
+#: ../src/event-list.c:1313
 msgid "Search text "
 msgstr "搜索文字 "
 
-#: ../src/event-list.c:1300
+#: ../src/event-list.c:1378
 msgid "Flags"
 msgstr "标签"
 
-#: ../src/event-list.c:1308
+#: ../src/event-list.c:1386
 msgid "Title"
 msgstr "标题"
 
-#: ../src/event-list.c:1334
+#: ../src/event-list.c:1412
 msgid ""
 "Double click line to edit it.\n"
 "\n"
@@ -1829,239 +1858,243 @@ msgstr "<b>%s 的事件：</b>"
 msgid "<b>Events for %s - %s:</b>"
 msgstr "<b>%s-%s 的事件：</b>"
 
-#: ../src/parameters.c:486
+#: ../src/parameters.c:492
 msgid "Main settings"
 msgstr "主设置"
 
-#: ../src/parameters.c:492
+#: ../src/parameters.c:498
 msgid "Timezone"
 msgstr "时区"
 
-#: ../src/parameters.c:507
+#: ../src/parameters.c:513
 msgid "You should always define your local timezone."
 msgstr "您应该总是定义您的本地时区。"
 
-#: ../src/parameters.c:515
+#: ../src/parameters.c:521
 msgid "Archive threshold (months)"
 msgstr "归档阈值(月)"
 
-#: ../src/parameters.c:525
+#: ../src/parameters.c:531
 msgid "(0 = no archiving)"
 msgstr "(0 为不归档)"
 
-#: ../src/parameters.c:528
+#: ../src/parameters.c:534
 msgid "Archiving is used to save time and space when handling events."
 msgstr "处理事件时归档用于节省时间和空间。"
 
-#: ../src/parameters.c:536
+#: ../src/parameters.c:542
 msgid "Sound command"
 msgstr "声音命令"
 
-#: ../src/parameters.c:551
+#: ../src/parameters.c:557
 msgid "This command is given to shell to make sound in alarms."
 msgstr "此命令传递给 shell 用来放闹铃声音。"
 
-#: ../src/parameters.c:590
+#: ../src/parameters.c:596
 msgid "Calendar window"
 msgstr "日历窗口"
 
-#: ../src/parameters.c:597
+#: ../src/parameters.c:603
 msgid "Calendar visual details"
 msgstr "日历视觉详情"
 
-#: ../src/parameters.c:603
+#: ../src/parameters.c:609
 msgid "Show borders"
 msgstr "显示边框"
 
-#: ../src/parameters.c:608
+#: ../src/parameters.c:614
 msgid "Show menu"
 msgstr "显示菜单"
 
-#: ../src/parameters.c:616
+#: ../src/parameters.c:622
 msgid "Show day names"
 msgstr "显示天名称"
 
-#: ../src/parameters.c:621
+#: ../src/parameters.c:627
 msgid "Show week numbers"
 msgstr "显示周数"
 
-#: ../src/parameters.c:629
+#: ../src/parameters.c:635
 msgid "Show month and year"
 msgstr "显示月和年"
 
-#: ../src/parameters.c:649
+#: ../src/parameters.c:655
 msgid "Calendar info boxes"
 msgstr "日历信息窗口"
 
-#: ../src/parameters.c:654
+#: ../src/parameters.c:660
 msgid "Show todo list"
 msgstr "显示待办列表"
 
-#: ../src/parameters.c:661
+#: ../src/parameters.c:667
 msgid "Number of days to show in event window"
 msgstr "在事件窗口中要显示的天数"
 
-#: ../src/parameters.c:667
+#: ../src/parameters.c:673
 msgid "0 = do not show event list at all"
 msgstr "0 为绝不显示事件列表"
 
-#: ../src/parameters.c:680
+#: ../src/parameters.c:686
 msgid "Calendar visibility"
 msgstr "日历视觉效果"
 
-#: ../src/parameters.c:685
+#: ../src/parameters.c:691
 msgid "Show on all desktops"
 msgstr "在所有桌面显示"
 
-#: ../src/parameters.c:690
+#: ../src/parameters.c:696
 msgid "Keep on top"
 msgstr "置顶"
 
-#: ../src/parameters.c:698
+#: ../src/parameters.c:704
 msgid "Show in taskbar"
 msgstr "在任务栏中显示"
 
-#: ../src/parameters.c:703
+#: ../src/parameters.c:709
 msgid "Show in pager"
 msgstr "在页面中显示"
 
-#: ../src/parameters.c:711
+#: ../src/parameters.c:717
 msgid "Show in systray"
 msgstr "在系统托盘中显示"
 
-#: ../src/parameters.c:732
+#: ../src/parameters.c:738
 msgid "Calendar start"
 msgstr "日历开始"
 
-#: ../src/parameters.c:737
+#: ../src/parameters.c:743
 msgid "Show"
 msgstr "显示"
 
-#: ../src/parameters.c:749
+#: ../src/parameters.c:755
 msgid "Hide"
 msgstr "隐藏"
 
-#: ../src/parameters.c:761
+#: ../src/parameters.c:767
 msgid "Minimized"
 msgstr "最小化"
 
-#: ../src/parameters.c:781
+#: ../src/parameters.c:787
 msgid "On calendar window open"
 msgstr "在日历窗口中打开"
 
-#: ../src/parameters.c:786
+#: ../src/parameters.c:792
 msgid "Select today's date"
 msgstr "选择今天的日期"
 
-#: ../src/parameters.c:799
+#: ../src/parameters.c:805
 msgid "Select previously selected date"
 msgstr "选择以前选中的日期"
 
-#: ../src/parameters.c:817
+#: ../src/parameters.c:823
 msgid "Calendar day double click shows"
 msgstr "在日历的天上双击时显示"
 
-#: ../src/parameters.c:822
+#: ../src/parameters.c:828
 msgid "Days view"
 msgstr "日视图"
 
-#: ../src/parameters.c:834
+#: ../src/parameters.c:840
 msgid "Event list"
 msgstr "事件列表"
 
-#: ../src/parameters.c:856
+#: ../src/parameters.c:862
 msgid "Extra settings"
 msgstr "额外设置"
 
-#: ../src/parameters.c:863
-msgid "Event list window extra days"
-msgstr "事件列表窗口额外天数"
+#: ../src/parameters.c:869
+msgid "Event list window"
+msgstr ""
 
-#: ../src/parameters.c:868
+#: ../src/parameters.c:874
 msgid "Number of extra days to show in event list"
 msgstr "在事件列表中显示的额外天数"
 
-#: ../src/parameters.c:876
+#: ../src/parameters.c:883
 msgid ""
 "This is just the default value, you can change it in the actual eventlist "
 "window."
 msgstr "这只是默认值，您可以在实际的事件列表窗口中更改它。"
 
-#: ../src/parameters.c:886
+#: ../src/parameters.c:891
+msgid "Show only first repeating event"
+msgstr ""
+
+#: ../src/parameters.c:907
 msgid "Day view window default first day"
 msgstr "日视图窗口默认第一天"
 
-#: ../src/parameters.c:891
+#: ../src/parameters.c:912
 msgid "First day of week"
 msgstr "每周第一天"
 
-#: ../src/parameters.c:904
+#: ../src/parameters.c:925
 msgid "Selected day"
 msgstr "选中的天"
 
-#: ../src/parameters.c:922
+#: ../src/parameters.c:943
 msgid "Use dynamic tray icon"
 msgstr "使用动态托盘图标"
 
-#: ../src/parameters.c:927
+#: ../src/parameters.c:948
 msgid "Use dynamic icon"
 msgstr "使用动态图标"
 
-#: ../src/parameters.c:933
+#: ../src/parameters.c:954
 msgid "Dynamic icon shows current month and day of the month."
 msgstr "动态图标显示此月的当前月份和天"
 
-#: ../src/parameters.c:941 ../src/parameters.c:946
+#: ../src/parameters.c:962 ../src/parameters.c:967
 msgid "Use wakeup timer"
 msgstr "使用唤醒定时器"
 
-#: ../src/parameters.c:952
+#: ../src/parameters.c:973
 msgid ""
 "Use this timer if Orage has problems waking up properly after suspend or "
 "hibernate. (For example tray icon not refreshed or alarms not firing.)"
 msgstr "如果 Orage 在挂起或休眠后正常唤醒时有问题则使用此定时器(比如托盘图标没有刷新或闹铃没有启动。)。"
 
-#: ../src/parameters.c:961
+#: ../src/parameters.c:982
 msgid "Foreign file default visual alarm"
 msgstr "外部文件默认可见闹钟"
 
-#: ../src/parameters.c:966
+#: ../src/parameters.c:987
 msgid "Orage window"
 msgstr "Orage 窗口"
 
-#: ../src/parameters.c:979
+#: ../src/parameters.c:1000
 msgid "Notify notification"
 msgstr "注意通知"
 
-#: ../src/parameters.c:997
+#: ../src/parameters.c:1018
 msgid "Always quit when asked to close"
-msgstr ""
+msgstr "要求关闭时总是退出"
 
-#: ../src/parameters.c:1002
+#: ../src/parameters.c:1023
 msgid "Always quit"
 msgstr "总是退出。"
 
-#: ../src/parameters.c:1008
+#: ../src/parameters.c:1029
 msgid ""
 "By default Orage stays open in the background when asked to close. This "
 "option changes Orage to quit and never stay in background when it is asked "
 "to close."
 msgstr "Orage在默认条件下保持在后台打开时要求关闭。该选项使得Orage在要求关闭时退出且不在后台运行。"
 
-#: ../src/parameters.c:1024
+#: ../src/parameters.c:1045
 msgid "Orage Preferences"
 msgstr "Orage 首选项"
 
-#: ../src/parameters.c:1136
+#: ../src/parameters.c:1157
 msgid "First Orage start. Searching default timezone."
 msgstr "Orage 第一次启动。正在搜索默认时区。"
 
-#: ../src/parameters.c:1155
+#: ../src/parameters.c:1176
 #, c-format
 msgid "Default timezone set to %s."
 msgstr "默认时区设置为 %s。"
 
-#: ../src/parameters.c:1158
+#: ../src/parameters.c:1179
 msgid "Default timezone not found, please, set it manually."
 msgstr "未找到默认时区，请手动设置。"
 
@@ -2124,1536 +2157,2228 @@ msgid "Africa/Algiers"
 msgstr "非洲/阿尔及尔"
 
 #: ../src/timezone_names.c:41
+msgid "Africa/Asmara"
+msgstr ""
+
+#: ../src/timezone_names.c:42
 msgid "Africa/Asmera"
 msgstr "非洲/阿斯马拉"
 
-#: ../src/timezone_names.c:42
+#: ../src/timezone_names.c:43
 msgid "Africa/Bamako"
 msgstr "非洲/巴马科"
 
-#: ../src/timezone_names.c:43
+#: ../src/timezone_names.c:44
 msgid "Africa/Bangui"
 msgstr "非洲/班吉"
 
-#: ../src/timezone_names.c:44
+#: ../src/timezone_names.c:45
 msgid "Africa/Banjul"
 msgstr "非洲/班珠尔"
 
-#: ../src/timezone_names.c:45
+#: ../src/timezone_names.c:46
 msgid "Africa/Bissau"
 msgstr "非洲/比绍"
 
-#: ../src/timezone_names.c:46
+#: ../src/timezone_names.c:47
 msgid "Africa/Blantyre"
 msgstr "非洲/布兰太尔"
 
-#: ../src/timezone_names.c:47
+#: ../src/timezone_names.c:48
 msgid "Africa/Brazzaville"
 msgstr "非洲/布拉柴维尔"
 
-#: ../src/timezone_names.c:48
+#: ../src/timezone_names.c:49
 msgid "Africa/Bujumbura"
 msgstr "非洲/布琼布拉"
 
-#: ../src/timezone_names.c:49
+#: ../src/timezone_names.c:50
 msgid "Africa/Cairo"
 msgstr "非洲/开罗"
 
-#: ../src/timezone_names.c:50
+#: ../src/timezone_names.c:51
 msgid "Africa/Casablanca"
 msgstr "非洲/卡萨布兰卡"
 
-#: ../src/timezone_names.c:51
+#: ../src/timezone_names.c:52
 msgid "Africa/Ceuta"
 msgstr "非洲/休达"
 
-#: ../src/timezone_names.c:52
+#: ../src/timezone_names.c:53
 msgid "Africa/Conakry"
 msgstr "非洲/科纳克里"
 
-#: ../src/timezone_names.c:53
+#: ../src/timezone_names.c:54
 msgid "Africa/Dakar"
 msgstr "非洲/达喀尔"
 
-#: ../src/timezone_names.c:54
+#: ../src/timezone_names.c:55
 msgid "Africa/Dar_es_Salaam"
 msgstr "非洲/达累斯萨拉姆"
 
-#: ../src/timezone_names.c:55
+#: ../src/timezone_names.c:56
 msgid "Africa/Djibouti"
 msgstr "非洲/吉布提"
 
-#: ../src/timezone_names.c:56
+#: ../src/timezone_names.c:57
 msgid "Africa/Douala"
 msgstr "非洲/杜阿拉"
 
-#: ../src/timezone_names.c:57
+#: ../src/timezone_names.c:58
 msgid "Africa/El_Aaiun"
 msgstr "非洲/阿尤恩"
 
-#: ../src/timezone_names.c:58
+#: ../src/timezone_names.c:59
 msgid "Africa/Freetown"
 msgstr "非洲/弗里敦"
 
-#: ../src/timezone_names.c:59
+#: ../src/timezone_names.c:60
 msgid "Africa/Gaborone"
 msgstr "非洲/哈博罗内"
 
-#: ../src/timezone_names.c:60
+#: ../src/timezone_names.c:61
 msgid "Africa/Harare"
 msgstr "非洲/哈拉雷"
 
-#: ../src/timezone_names.c:61
+#: ../src/timezone_names.c:62
+msgid "Africa/Juba"
+msgstr ""
+
+#: ../src/timezone_names.c:63
 msgid "Africa/Johannesburg"
 msgstr "非洲/约翰内斯堡"
 
-#: ../src/timezone_names.c:62
+#: ../src/timezone_names.c:64
 msgid "Africa/Kampala"
 msgstr "非洲/坎帕拉"
 
-#: ../src/timezone_names.c:63
+#: ../src/timezone_names.c:65
 msgid "Africa/Khartoum"
 msgstr "非洲/喀士穆"
 
-#: ../src/timezone_names.c:64
+#: ../src/timezone_names.c:66
 msgid "Africa/Kigali"
 msgstr "非洲/基加利"
 
-#: ../src/timezone_names.c:65
+#: ../src/timezone_names.c:67
 msgid "Africa/Kinshasa"
 msgstr "非洲/金沙萨"
 
-#: ../src/timezone_names.c:66
+#: ../src/timezone_names.c:68
 msgid "Africa/Lagos"
 msgstr "非洲/拉各斯"
 
-#: ../src/timezone_names.c:67
+#: ../src/timezone_names.c:69
 msgid "Africa/Libreville"
 msgstr "非洲/利伯维尔"
 
-#: ../src/timezone_names.c:68
+#: ../src/timezone_names.c:70
 msgid "Africa/Lome"
 msgstr "非洲/洛美"
 
-#: ../src/timezone_names.c:69
+#: ../src/timezone_names.c:71
 msgid "Africa/Luanda"
 msgstr "非洲/罗安达"
 
-#: ../src/timezone_names.c:70
+#: ../src/timezone_names.c:72
 msgid "Africa/Lubumbashi"
 msgstr "非洲/卢本巴希"
 
-#: ../src/timezone_names.c:71
+#: ../src/timezone_names.c:73
 msgid "Africa/Lusaka"
 msgstr "非洲/卢萨卡"
 
-#: ../src/timezone_names.c:72
+#: ../src/timezone_names.c:74
 msgid "Africa/Malabo"
 msgstr "非洲/马拉博"
 
-#: ../src/timezone_names.c:73
+#: ../src/timezone_names.c:75
 msgid "Africa/Maputo"
 msgstr "非洲/马普托"
 
-#: ../src/timezone_names.c:74
+#: ../src/timezone_names.c:76
 msgid "Africa/Maseru"
 msgstr "非洲/马塞卢"
 
-#: ../src/timezone_names.c:75
+#: ../src/timezone_names.c:77
 msgid "Africa/Mbabane"
 msgstr "非洲/姆巴巴纳"
 
-#: ../src/timezone_names.c:76
+#: ../src/timezone_names.c:78
 msgid "Africa/Mogadishu"
 msgstr "非洲/摩加迪沙"
 
-#: ../src/timezone_names.c:77
+#: ../src/timezone_names.c:79
 msgid "Africa/Monrovia"
 msgstr "非洲/蒙罗维亚"
 
-#: ../src/timezone_names.c:78
+#: ../src/timezone_names.c:80
 msgid "Africa/Nairobi"
 msgstr "非洲/内罗毕"
 
-#: ../src/timezone_names.c:79
+#: ../src/timezone_names.c:81
 msgid "Africa/Ndjamena"
 msgstr "非洲/恩贾梅纳"
 
-#: ../src/timezone_names.c:80
+#: ../src/timezone_names.c:82
 msgid "Africa/Niamey"
 msgstr "非洲/尼亚美"
 
-#: ../src/timezone_names.c:81
+#: ../src/timezone_names.c:83
 msgid "Africa/Nouakchott"
 msgstr "非洲/努瓦克肖特"
 
-#: ../src/timezone_names.c:82
+#: ../src/timezone_names.c:84
 msgid "Africa/Ouagadougou"
 msgstr "非洲/瓦加杜古"
 
-#: ../src/timezone_names.c:83
+#: ../src/timezone_names.c:85
 msgid "Africa/Porto-Novo"
 msgstr "非洲/波多诺伏"
 
-#: ../src/timezone_names.c:84
+#: ../src/timezone_names.c:86
 msgid "Africa/Sao_Tome"
 msgstr "非洲/圣多美"
 
-#: ../src/timezone_names.c:85
+#: ../src/timezone_names.c:87
 msgid "Africa/Timbuktu"
 msgstr "非洲/廷巴克图"
 
-#: ../src/timezone_names.c:86
+#: ../src/timezone_names.c:88
 msgid "Africa/Tripoli"
 msgstr "非洲/的黎波里"
 
-#: ../src/timezone_names.c:87
+#: ../src/timezone_names.c:89
 msgid "Africa/Tunis"
 msgstr "非洲/突尼斯"
 
-#: ../src/timezone_names.c:88
+#: ../src/timezone_names.c:90
 msgid "Africa/Windhoek"
 msgstr "非洲/温得和克"
 
-#: ../src/timezone_names.c:89
+#: ../src/timezone_names.c:91
 msgid "America"
 msgstr "美洲"
 
-#: ../src/timezone_names.c:90
+#: ../src/timezone_names.c:92
 msgid "America/Adak"
 msgstr "美洲/阿达克"
 
-#: ../src/timezone_names.c:91
+#: ../src/timezone_names.c:93
 msgid "America/Anchorage"
 msgstr "美洲/安克雷奇"
 
-#: ../src/timezone_names.c:92
+#: ../src/timezone_names.c:94
 msgid "America/Anguilla"
 msgstr "美洲/安圭拉岛"
 
-#: ../src/timezone_names.c:93
+#: ../src/timezone_names.c:95
 msgid "America/Antigua"
 msgstr "美洲/安提瓜岛"
 
-#: ../src/timezone_names.c:94
+#: ../src/timezone_names.c:96
 msgid "America/Araguaina"
 msgstr "美洲/阿拉瓜伊纳"
 
-#: ../src/timezone_names.c:95
+#: ../src/timezone_names.c:97
 msgid "America/Argentina/Buenos_Aires"
 msgstr "美洲/阿根廷/布宜诺斯艾利斯"
 
-#: ../src/timezone_names.c:96
+#: ../src/timezone_names.c:98
 msgid "America/Argentina/Catamarca"
 msgstr "美洲/阿根廷/卡塔马卡"
 
-#: ../src/timezone_names.c:97
+#: ../src/timezone_names.c:99
+msgid "America/Argentina/ComodRivadavia"
+msgstr ""
+
+#: ../src/timezone_names.c:100
 msgid "America/Argentina/Cordoba"
 msgstr "美洲/阿根廷/科尔多瓦"
 
-#: ../src/timezone_names.c:98
+#: ../src/timezone_names.c:101
 msgid "America/Argentina/Jujuy"
 msgstr "美洲/阿根廷/胡胡伊"
 
-#: ../src/timezone_names.c:99
+#: ../src/timezone_names.c:102
+msgid "America/Argentina/La_Rioja"
+msgstr ""
+
+#: ../src/timezone_names.c:103
 msgid "America/Argentina/Mendoza"
 msgstr "美洲/阿根廷/门多萨"
 
-#: ../src/timezone_names.c:100
+#: ../src/timezone_names.c:104
+msgid "America/Argentina/Rio_Gallegos"
+msgstr ""
+
+#: ../src/timezone_names.c:105
+msgid "America/Argentina/Salta"
+msgstr ""
+
+#: ../src/timezone_names.c:106
+msgid "America/Argentina/San_Juan"
+msgstr ""
+
+#: ../src/timezone_names.c:107
+msgid "America/Argentina/San_Luis"
+msgstr ""
+
+#: ../src/timezone_names.c:108
+msgid "America/Argentina/Tucuman"
+msgstr ""
+
+#: ../src/timezone_names.c:109
+msgid "America/Argentina/Ushuaia"
+msgstr ""
+
+#: ../src/timezone_names.c:110
 msgid "America/Aruba"
 msgstr "美洲/阿鲁巴岛"
 
-#: ../src/timezone_names.c:101
+#: ../src/timezone_names.c:111
 msgid "America/Asuncion"
 msgstr "美洲/亚松森"
 
-#: ../src/timezone_names.c:102
+#: ../src/timezone_names.c:112
+msgid "America/Atikokan"
+msgstr ""
+
+#: ../src/timezone_names.c:113
+msgid "America/Atka"
+msgstr ""
+
+#: ../src/timezone_names.c:114
+msgid "America/Bahia"
+msgstr ""
+
+#: ../src/timezone_names.c:115
+msgid "America/Bahia_Banderas"
+msgstr ""
+
+#: ../src/timezone_names.c:116
 msgid "America/Barbados"
 msgstr "美洲/巴巴多斯"
 
-#: ../src/timezone_names.c:103
+#: ../src/timezone_names.c:117
 msgid "America/Belem"
 msgstr "美洲/贝伦"
 
-#: ../src/timezone_names.c:104
+#: ../src/timezone_names.c:118
 msgid "America/Belize"
 msgstr "美洲/伯利兹"
 
-#: ../src/timezone_names.c:105
+#: ../src/timezone_names.c:119
+msgid "America/Blanc-Sablon"
+msgstr ""
+
+#: ../src/timezone_names.c:120
 msgid "America/Boa_Vista"
 msgstr "美洲/博阿维斯塔"
 
-#: ../src/timezone_names.c:106
+#: ../src/timezone_names.c:121
 msgid "America/Bogota"
 msgstr "美洲/波哥大"
 
-#: ../src/timezone_names.c:107
+#: ../src/timezone_names.c:122
 msgid "America/Boise"
 msgstr "美洲/博伊西"
 
-#: ../src/timezone_names.c:108
+#: ../src/timezone_names.c:123
 msgid "America/Buenos_Aires"
 msgstr "美洲/布宜诺斯艾利斯"
 
-#: ../src/timezone_names.c:109
+#: ../src/timezone_names.c:124
 msgid "America/Cambridge_Bay"
 msgstr "美洲/剑桥湾"
 
-#: ../src/timezone_names.c:110
+#: ../src/timezone_names.c:125
+msgid "America/Campo_Grande"
+msgstr ""
+
+#: ../src/timezone_names.c:126
 msgid "America/Cancun"
 msgstr "美洲/坎昆"
 
-#: ../src/timezone_names.c:111
+#: ../src/timezone_names.c:127
 msgid "America/Caracas"
 msgstr "美洲/加拉加斯"
 
-#: ../src/timezone_names.c:112
+#: ../src/timezone_names.c:128
 msgid "America/Catamarca"
 msgstr "美洲/卡塔马卡"
 
-#: ../src/timezone_names.c:113
+#: ../src/timezone_names.c:129
 msgid "America/Cayenne"
 msgstr "美洲/卡宴"
 
-#: ../src/timezone_names.c:114
+#: ../src/timezone_names.c:130
 msgid "America/Cayman"
 msgstr "美洲/开曼"
 
-#: ../src/timezone_names.c:115
+#: ../src/timezone_names.c:131
 msgid "America/Chicago"
 msgstr "美洲/芝加哥"
 
-#: ../src/timezone_names.c:116
+#: ../src/timezone_names.c:132
 msgid "America/Chihuahua"
 msgstr "美洲/奇瓦瓦"
 
-#: ../src/timezone_names.c:117
+#: ../src/timezone_names.c:133
+msgid "America/Coral_Harbour"
+msgstr ""
+
+#: ../src/timezone_names.c:134
 msgid "America/Cordoba"
 msgstr "美洲/科尔多瓦"
 
-#: ../src/timezone_names.c:118
+#: ../src/timezone_names.c:135
 msgid "America/Costa_Rica"
 msgstr "美洲/哥斯达黎加"
 
-#: ../src/timezone_names.c:119
+#: ../src/timezone_names.c:136
+msgid "America/Creston"
+msgstr ""
+
+#: ../src/timezone_names.c:137
 msgid "America/Cuiaba"
 msgstr "美洲/库亚巴"
 
-#: ../src/timezone_names.c:120
+#: ../src/timezone_names.c:138
 msgid "America/Curacao"
 msgstr "美洲/库拉索"
 
-#: ../src/timezone_names.c:121
+#: ../src/timezone_names.c:139
+msgid "America/Danmarkshavn"
+msgstr ""
+
+#: ../src/timezone_names.c:140
 msgid "America/Dawson"
 msgstr "美洲/道森"
 
-#: ../src/timezone_names.c:122
+#: ../src/timezone_names.c:141
 msgid "America/Dawson_Creek"
 msgstr "美洲/道森河"
 
-#: ../src/timezone_names.c:123
+#: ../src/timezone_names.c:142
 msgid "America/Denver"
 msgstr "美洲/丹佛"
 
-#: ../src/timezone_names.c:124
+#: ../src/timezone_names.c:143
 msgid "America/Detroit"
 msgstr "美洲/底特律"
 
-#: ../src/timezone_names.c:125
+#: ../src/timezone_names.c:144
 msgid "America/Dominica"
 msgstr "美洲/多米尼加"
 
-#: ../src/timezone_names.c:126
+#: ../src/timezone_names.c:145
 msgid "America/Edmonton"
 msgstr "美洲/埃德蒙顿"
 
-#: ../src/timezone_names.c:127
+#: ../src/timezone_names.c:146
+msgid "America/Ensenada"
+msgstr ""
+
+#: ../src/timezone_names.c:147
 msgid "America/Eirunepe"
 msgstr "美洲/艾鲁内佩"
 
-#: ../src/timezone_names.c:128
+#: ../src/timezone_names.c:148
 msgid "America/El_Salvador"
 msgstr "美洲/萨尔瓦多"
 
-#: ../src/timezone_names.c:129
+#: ../src/timezone_names.c:149
 msgid "America/Fortaleza"
 msgstr "美洲/福塔雷萨"
 
-#: ../src/timezone_names.c:130
+#: ../src/timezone_names.c:150
+msgid "America/Fort_Wayne"
+msgstr ""
+
+#: ../src/timezone_names.c:151
 msgid "America/Glace_Bay"
 msgstr "美洲/格莱斯湾"
 
-#: ../src/timezone_names.c:131
+#: ../src/timezone_names.c:152
 msgid "America/Godthab"
 msgstr "美洲/戈特霍布"
 
-#: ../src/timezone_names.c:132
+#: ../src/timezone_names.c:153
 msgid "America/Goose_Bay"
 msgstr "美洲/鹅湾"
 
-#: ../src/timezone_names.c:133
+#: ../src/timezone_names.c:154
 msgid "America/Grand_Turk"
 msgstr "美洲/大特克"
 
-#: ../src/timezone_names.c:134
+#: ../src/timezone_names.c:155
 msgid "America/Grenada"
 msgstr "美洲/格林纳达"
 
-#: ../src/timezone_names.c:135
+#: ../src/timezone_names.c:156
 msgid "America/Guadeloupe"
 msgstr "美洲/瓜德罗普岛"
 
-#: ../src/timezone_names.c:136
+#: ../src/timezone_names.c:157
 msgid "America/Guatemala"
 msgstr "美洲/危地马拉"
 
-#: ../src/timezone_names.c:137
+#: ../src/timezone_names.c:158
 msgid "America/Guayaquil"
 msgstr "美洲/瓜亚基尔"
 
-#: ../src/timezone_names.c:138
+#: ../src/timezone_names.c:159
 msgid "America/Guyana"
 msgstr "美洲/圭亚那"
 
-#: ../src/timezone_names.c:139
+#: ../src/timezone_names.c:160
 msgid "America/Halifax"
 msgstr "美洲/哈利法克斯"
 
-#: ../src/timezone_names.c:140
+#: ../src/timezone_names.c:161
 msgid "America/Havana"
 msgstr "美洲/哈瓦那"
 
-#: ../src/timezone_names.c:141
+#: ../src/timezone_names.c:162
 msgid "America/Hermosillo"
 msgstr "美洲/埃莫西约"
 
-#: ../src/timezone_names.c:142
+#: ../src/timezone_names.c:163
 msgid "America/Indiana/Indianapolis"
 msgstr "美洲/印第安纳/印第安纳波利斯"
 
-#: ../src/timezone_names.c:143
+#: ../src/timezone_names.c:164
 msgid "America/Indiana/Knox"
 msgstr "美洲/印第安纳/诺克斯"
 
-#: ../src/timezone_names.c:144
+#: ../src/timezone_names.c:165
 msgid "America/Indiana/Marengo"
 msgstr "美洲/印第安纳/马伦戈"
 
-#: ../src/timezone_names.c:145
+#: ../src/timezone_names.c:166
+msgid "America/Indiana/Petersburg"
+msgstr ""
+
+#: ../src/timezone_names.c:167
+msgid "America/Indiana/Tell_City"
+msgstr ""
+
+#: ../src/timezone_names.c:168
 msgid "America/Indiana/Vevay"
 msgstr "美洲/印第安纳/韦韦"
 
-#: ../src/timezone_names.c:146
+#: ../src/timezone_names.c:169
+msgid "America/Indiana/Vincennes"
+msgstr ""
+
+#: ../src/timezone_names.c:170
+msgid "America/Indiana/Winamac"
+msgstr ""
+
+#: ../src/timezone_names.c:171
 msgid "America/Indianapolis"
 msgstr "美洲/印第安纳波利斯"
 
-#: ../src/timezone_names.c:147
+#: ../src/timezone_names.c:172
 msgid "America/Inuvik"
 msgstr "美洲/伊努维克"
 
-#: ../src/timezone_names.c:148
+#: ../src/timezone_names.c:173
 msgid "America/Iqaluit"
 msgstr "美洲/伊卡卢伊特"
 
-#: ../src/timezone_names.c:149
+#: ../src/timezone_names.c:174
 msgid "America/Jamaica"
 msgstr "美洲/牙买加"
 
-#: ../src/timezone_names.c:150
+#: ../src/timezone_names.c:175
 msgid "America/Jujuy"
 msgstr "美洲/胡胡伊"
 
-#: ../src/timezone_names.c:151
+#: ../src/timezone_names.c:176
 msgid "America/Juneau"
 msgstr "美洲/朱诺"
 
-#: ../src/timezone_names.c:152
+#: ../src/timezone_names.c:177
 msgid "America/Kentucky/Louisville"
 msgstr "美洲/肯塔基/路易斯维尔"
 
-#: ../src/timezone_names.c:153
+#: ../src/timezone_names.c:178
 msgid "America/Kentucky/Monticello"
 msgstr "美洲/肯塔基/蒙蒂塞洛"
 
-#: ../src/timezone_names.c:154
+#: ../src/timezone_names.c:179
+msgid "America/Knox_IN"
+msgstr ""
+
+#: ../src/timezone_names.c:180
+msgid "America/Kralendijk"
+msgstr ""
+
+#: ../src/timezone_names.c:181
 msgid "America/La_Paz"
 msgstr "美洲/拉巴斯"
 
-#: ../src/timezone_names.c:155
+#: ../src/timezone_names.c:182
 msgid "America/Lima"
 msgstr "美洲/利马"
 
-#: ../src/timezone_names.c:156
+#: ../src/timezone_names.c:183
 msgid "America/Los_Angeles"
 msgstr "美洲/洛杉矶"
 
-#: ../src/timezone_names.c:157
+#: ../src/timezone_names.c:184
 msgid "America/Louisville"
 msgstr "美洲/路易斯维尔"
 
-#: ../src/timezone_names.c:158
+#: ../src/timezone_names.c:185
+msgid "America/Lower_Princes"
+msgstr ""
+
+#: ../src/timezone_names.c:186
 msgid "America/Maceio"
 msgstr "美洲/马塞约"
 
-#: ../src/timezone_names.c:159
+#: ../src/timezone_names.c:187
 msgid "America/Managua"
 msgstr "美洲/马那瓜"
 
-#: ../src/timezone_names.c:160
+#: ../src/timezone_names.c:188
 msgid "America/Manaus"
 msgstr "美洲/马瑙斯"
 
-#: ../src/timezone_names.c:161
+#: ../src/timezone_names.c:189
+msgid "America/Marigot"
+msgstr ""
+
+#: ../src/timezone_names.c:190
 msgid "America/Martinique"
 msgstr "美洲/马提尼克岛"
 
-#: ../src/timezone_names.c:162
+#: ../src/timezone_names.c:191
+msgid "America/Matamoros"
+msgstr ""
+
+#: ../src/timezone_names.c:192
 msgid "America/Mazatlan"
 msgstr "美洲/马萨特兰"
 
-#: ../src/timezone_names.c:163
+#: ../src/timezone_names.c:193
 msgid "America/Mendoza"
 msgstr "美洲/门多萨"
 
-#: ../src/timezone_names.c:164
+#: ../src/timezone_names.c:194
 msgid "America/Menominee"
 msgstr "美洲/梅诺米尼"
 
-#: ../src/timezone_names.c:165
+#: ../src/timezone_names.c:195
 msgid "America/Merida"
 msgstr "美洲/梅里达"
 
-#: ../src/timezone_names.c:166
+#: ../src/timezone_names.c:196
+msgid "America/Metlakatla"
+msgstr ""
+
+#: ../src/timezone_names.c:197
 msgid "America/Mexico_City"
 msgstr "美洲/墨西哥城"
 
-#: ../src/timezone_names.c:167
+#: ../src/timezone_names.c:198
 msgid "America/Miquelon"
 msgstr "美洲/密克隆岛"
 
-#: ../src/timezone_names.c:168
+#: ../src/timezone_names.c:199
+msgid "America/Moncton"
+msgstr ""
+
+#: ../src/timezone_names.c:200
 msgid "America/Monterrey"
 msgstr "美洲/蒙特雷"
 
-#: ../src/timezone_names.c:169
+#: ../src/timezone_names.c:201
 msgid "America/Montevideo"
 msgstr "美洲/蒙得维的亚"
 
-#: ../src/timezone_names.c:170
+#: ../src/timezone_names.c:202
 msgid "America/Montreal"
 msgstr "美洲/蒙特利尔"
 
-#: ../src/timezone_names.c:171
+#: ../src/timezone_names.c:203
 msgid "America/Montserrat"
 msgstr "美洲/蒙特塞拉特岛"
 
-#: ../src/timezone_names.c:172
+#: ../src/timezone_names.c:204
 msgid "America/Nassau"
 msgstr "美洲/拿骚"
 
-#: ../src/timezone_names.c:173
+#: ../src/timezone_names.c:205
 msgid "America/New_York"
 msgstr "美洲/纽约"
 
-#: ../src/timezone_names.c:174
+#: ../src/timezone_names.c:206
 msgid "America/Nipigon"
 msgstr "美洲/尼皮贡"
 
-#: ../src/timezone_names.c:175
+#: ../src/timezone_names.c:207
 msgid "America/Nome"
 msgstr "美洲/诺姆"
 
-#: ../src/timezone_names.c:176
+#: ../src/timezone_names.c:208
+msgid "America/North_Dakota/Beulah"
+msgstr ""
+
+#: ../src/timezone_names.c:209
+msgid "America/North_Dakota/Center"
+msgstr ""
+
+#: ../src/timezone_names.c:210
+msgid "America/North_Dakota/New_Salem"
+msgstr ""
+
+#: ../src/timezone_names.c:211
 msgid "America/Noronha"
 msgstr "美洲/诺罗尼亚"
 
-#: ../src/timezone_names.c:177
+#: ../src/timezone_names.c:212
+msgid "America/Ojinaga"
+msgstr ""
+
+#: ../src/timezone_names.c:213
 msgid "America/Panama"
 msgstr "美洲/巴拿马"
 
-#: ../src/timezone_names.c:178
+#: ../src/timezone_names.c:214
 msgid "America/Pangnirtung"
 msgstr "美洲/庞纳唐"
 
-#: ../src/timezone_names.c:179
+#: ../src/timezone_names.c:215
 msgid "America/Paramaribo"
 msgstr "美洲/帕拉马里博"
 
-#: ../src/timezone_names.c:180
+#: ../src/timezone_names.c:216
 msgid "America/Phoenix"
 msgstr "美洲/菲尼克斯"
 
-#: ../src/timezone_names.c:181
+#: ../src/timezone_names.c:217
 msgid "America/Port-au-Prince"
 msgstr "美洲/太子港"
 
-#: ../src/timezone_names.c:182
+#: ../src/timezone_names.c:218
 msgid "America/Port_of_Spain"
 msgstr "美洲/西班牙港"
 
-#: ../src/timezone_names.c:183
+#: ../src/timezone_names.c:219
+msgid "America/Porto_Acre"
+msgstr ""
+
+#: ../src/timezone_names.c:220
 msgid "America/Porto_Velho"
 msgstr "美洲/波多韦柳"
 
-#: ../src/timezone_names.c:184
+#: ../src/timezone_names.c:221
 msgid "America/Puerto_Rico"
 msgstr "美洲/波多黎各"
 
-#: ../src/timezone_names.c:185
+#: ../src/timezone_names.c:222
 msgid "America/Rainy_River"
 msgstr "美洲/雨河"
 
-#: ../src/timezone_names.c:186
+#: ../src/timezone_names.c:223
 msgid "America/Rankin_Inlet"
 msgstr "美洲/兰金湾"
 
-#: ../src/timezone_names.c:187
+#: ../src/timezone_names.c:224
 msgid "America/Recife"
 msgstr "美洲/累西腓"
 
-#: ../src/timezone_names.c:188
+#: ../src/timezone_names.c:225
 msgid "America/Regina"
 msgstr "美洲/里贾纳"
 
-#: ../src/timezone_names.c:189
+#: ../src/timezone_names.c:226
+msgid "America/Resolute"
+msgstr ""
+
+#: ../src/timezone_names.c:227
 msgid "America/Rio_Branco"
 msgstr "美洲/里奥布朗库"
 
-#: ../src/timezone_names.c:190
+#: ../src/timezone_names.c:228
 msgid "America/Rosario"
 msgstr "美洲/罗萨里奥"
 
-#: ../src/timezone_names.c:191
+#: ../src/timezone_names.c:229
+msgid "America/Santa_Isabel"
+msgstr ""
+
+#: ../src/timezone_names.c:230
+msgid "America/Santarem"
+msgstr ""
+
+#: ../src/timezone_names.c:231
 msgid "America/Santiago"
 msgstr "美洲/圣地亚哥"
 
-#: ../src/timezone_names.c:192
+#: ../src/timezone_names.c:232
 msgid "America/Santo_Domingo"
 msgstr "美洲/圣多明哥"
 
-#: ../src/timezone_names.c:193
+#: ../src/timezone_names.c:233
 msgid "America/Sao_Paulo"
 msgstr "美洲/圣保罗"
 
-#: ../src/timezone_names.c:194
+#: ../src/timezone_names.c:234
 msgid "America/Scoresbysund"
 msgstr "美洲/斯科斯比松"
 
-#: ../src/timezone_names.c:195
+#: ../src/timezone_names.c:235
 msgid "America/Shiprock"
 msgstr "美洲/希普罗克"
 
-#: ../src/timezone_names.c:196
+#: ../src/timezone_names.c:236
+msgid "America/Sitka"
+msgstr ""
+
+#: ../src/timezone_names.c:237
+msgid "America/St_Barthelemy"
+msgstr ""
+
+#: ../src/timezone_names.c:238
 msgid "America/St_Johns"
 msgstr "美洲/圣约翰"
 
-#: ../src/timezone_names.c:197
+#: ../src/timezone_names.c:239
 msgid "America/St_Kitts"
 msgstr "美洲/圣基茨"
 
-#: ../src/timezone_names.c:198
+#: ../src/timezone_names.c:240
 msgid "America/St_Lucia"
 msgstr "美洲/圣卢西亚"
 
-#: ../src/timezone_names.c:199
+#: ../src/timezone_names.c:241
 msgid "America/St_Thomas"
 msgstr "美洲/圣托马斯"
 
-#: ../src/timezone_names.c:200
+#: ../src/timezone_names.c:242
 msgid "America/St_Vincent"
 msgstr "美洲/圣文森特"
 
-#: ../src/timezone_names.c:201
+#: ../src/timezone_names.c:243
 msgid "America/Swift_Current"
 msgstr "美洲/斯威夫特卡伦特"
 
-#: ../src/timezone_names.c:202
+#: ../src/timezone_names.c:244
 msgid "America/Tegucigalpa"
 msgstr "美洲/特古西加尔巴"
 
-#: ../src/timezone_names.c:203
+#: ../src/timezone_names.c:245
 msgid "America/Thule"
 msgstr "美洲/图勒"
 
-#: ../src/timezone_names.c:204
+#: ../src/timezone_names.c:246
 msgid "America/Thunder_Bay"
 msgstr "美洲/雷湾"
 
-#: ../src/timezone_names.c:205
+#: ../src/timezone_names.c:247
 msgid "America/Tijuana"
 msgstr "美洲/提华纳"
 
-#: ../src/timezone_names.c:206
+#: ../src/timezone_names.c:248
+msgid "America/Toronto"
+msgstr ""
+
+#: ../src/timezone_names.c:249
 msgid "America/Tortola"
 msgstr "美洲/托托拉岛"
 
-#: ../src/timezone_names.c:207
+#: ../src/timezone_names.c:250
 msgid "America/Vancouver"
 msgstr "美洲/温哥华"
 
-#: ../src/timezone_names.c:208
+#: ../src/timezone_names.c:251
+msgid "America/Virgin"
+msgstr ""
+
+#: ../src/timezone_names.c:252
 msgid "America/Whitehorse"
 msgstr "美洲/怀特霍斯"
 
-#: ../src/timezone_names.c:209
+#: ../src/timezone_names.c:253
 msgid "America/Winnipeg"
 msgstr "美洲/温尼伯"
 
-#: ../src/timezone_names.c:210
+#: ../src/timezone_names.c:254
 msgid "America/Yakutat"
 msgstr "美洲/亚库塔特"
 
-#: ../src/timezone_names.c:211
+#: ../src/timezone_names.c:255
 msgid "America/Yellowknife"
 msgstr "美洲/耶洛奈夫"
 
-#: ../src/timezone_names.c:212
+#: ../src/timezone_names.c:256
 msgid "Antarctica"
 msgstr "南极洲"
 
-#: ../src/timezone_names.c:213
+#: ../src/timezone_names.c:257
 msgid "Antarctica/Casey"
 msgstr "南极洲/凯西站"
 
-#: ../src/timezone_names.c:214
+#: ../src/timezone_names.c:258
 msgid "Antarctica/Davis"
 msgstr "南极洲/戴维斯站"
 
-#: ../src/timezone_names.c:215
+#: ../src/timezone_names.c:259
 msgid "Antarctica/DumontDUrville"
 msgstr "南极洲/迪蒙迪尔维尔站"
 
-#: ../src/timezone_names.c:216
+#: ../src/timezone_names.c:260
+msgid "Antarctica/Macquarie"
+msgstr ""
+
+#: ../src/timezone_names.c:261
 msgid "Antarctica/Mawson"
 msgstr "南极洲/莫森站"
 
-#: ../src/timezone_names.c:217
+#: ../src/timezone_names.c:262
 msgid "Antarctica/McMurdo"
 msgstr "南极洲/麦克莫多站"
 
-#: ../src/timezone_names.c:218
+#: ../src/timezone_names.c:263
 msgid "Antarctica/Palmer"
 msgstr "南极洲/帕默站"
 
-#: ../src/timezone_names.c:219
+#: ../src/timezone_names.c:264
+msgid "Antarctica/Rothera"
+msgstr ""
+
+#: ../src/timezone_names.c:265
 msgid "Antarctica/South_Pole"
 msgstr "南极洲/南极点"
 
-#: ../src/timezone_names.c:220
+#: ../src/timezone_names.c:266
 msgid "Antarctica/Syowa"
 msgstr "南极洲/昭和站"
 
-#: ../src/timezone_names.c:221
+#: ../src/timezone_names.c:267
 msgid "Antarctica/Vostok"
 msgstr "南极洲/东方站"
 
-#: ../src/timezone_names.c:222
+#: ../src/timezone_names.c:268
 msgid "Arctic"
 msgstr "北冰洋"
 
-#: ../src/timezone_names.c:223
+#: ../src/timezone_names.c:269
 msgid "Arctic/Longyearbyen"
 msgstr "北冰洋/朗伊尔城"
 
-#: ../src/timezone_names.c:224
+#: ../src/timezone_names.c:270
 msgid "Asia"
 msgstr "亚洲"
 
-#: ../src/timezone_names.c:225
+#: ../src/timezone_names.c:271
 msgid "Asia/Aden"
 msgstr "亚洲/亚丁"
 
-#: ../src/timezone_names.c:226
+#: ../src/timezone_names.c:272
 msgid "Asia/Almaty"
 msgstr "亚洲/阿拉木图"
 
-#: ../src/timezone_names.c:227
+#: ../src/timezone_names.c:273
 msgid "Asia/Amman"
 msgstr "亚洲/安曼"
 
-#: ../src/timezone_names.c:228
+#: ../src/timezone_names.c:274
 msgid "Asia/Anadyr"
 msgstr "亚洲/阿纳德尔"
 
-#: ../src/timezone_names.c:229
+#: ../src/timezone_names.c:275
 msgid "Asia/Aqtau"
 msgstr "亚洲/阿克图"
 
-#: ../src/timezone_names.c:230
+#: ../src/timezone_names.c:276
 msgid "Asia/Aqtobe"
 msgstr "亚洲/阿克托别"
 
-#: ../src/timezone_names.c:231
+#: ../src/timezone_names.c:277
 msgid "Asia/Ashgabat"
 msgstr "亚洲/阿什哈巴德"
 
-#: ../src/timezone_names.c:232
+#: ../src/timezone_names.c:278
+msgid "Asia/Ashkhabad"
+msgstr ""
+
+#: ../src/timezone_names.c:279
 msgid "Asia/Baghdad"
 msgstr "亚洲/巴格达"
 
-#: ../src/timezone_names.c:233
+#: ../src/timezone_names.c:280
 msgid "Asia/Bahrain"
 msgstr "亚洲/巴林"
 
-#: ../src/timezone_names.c:234
+#: ../src/timezone_names.c:281
 msgid "Asia/Baku"
 msgstr "亚洲/巴库"
 
-#: ../src/timezone_names.c:235
+#: ../src/timezone_names.c:282
 msgid "Asia/Bangkok"
 msgstr "亚洲/曼谷"
 
-#: ../src/timezone_names.c:236
+#: ../src/timezone_names.c:283
 msgid "Asia/Beirut"
 msgstr "亚洲/贝鲁特"
 
-#: ../src/timezone_names.c:237
+#: ../src/timezone_names.c:284
 msgid "Asia/Bishkek"
 msgstr "亚洲/比什凯克"
 
-#: ../src/timezone_names.c:238
+#: ../src/timezone_names.c:285
 msgid "Asia/Brunei"
 msgstr "亚洲/文莱"
 
-#: ../src/timezone_names.c:239
+#: ../src/timezone_names.c:286
 msgid "Asia/Calcutta"
 msgstr "亚洲/加尔各答"
 
-#: ../src/timezone_names.c:240
+#: ../src/timezone_names.c:287
+msgid "Asia/Choibalsan"
+msgstr ""
+
+#: ../src/timezone_names.c:288
+msgid "Asia/Chongqing"
+msgstr ""
+
+#: ../src/timezone_names.c:289
 msgid "Asia/Chungking"
 msgstr "亚洲/重庆"
 
-#: ../src/timezone_names.c:241
+#: ../src/timezone_names.c:290
 msgid "Asia/Colombo"
 msgstr "亚洲/科伦坡"
 
-#: ../src/timezone_names.c:242
+#: ../src/timezone_names.c:291
+msgid "Asia/Dacca"
+msgstr ""
+
+#: ../src/timezone_names.c:292
 msgid "Asia/Damascus"
 msgstr "亚洲/大马士革"
 
-#: ../src/timezone_names.c:243
+#: ../src/timezone_names.c:293
 msgid "Asia/Dhaka"
 msgstr "亚洲/达卡"
 
-#: ../src/timezone_names.c:244
+#: ../src/timezone_names.c:294
 msgid "Asia/Dili"
 msgstr "亚洲/帝力"
 
-#: ../src/timezone_names.c:245
+#: ../src/timezone_names.c:295
 msgid "Asia/Dubai"
 msgstr "亚洲/迪拜"
 
-#: ../src/timezone_names.c:246
+#: ../src/timezone_names.c:296
 msgid "Asia/Dushanbe"
 msgstr "亚洲/杜尚别"
 
-#: ../src/timezone_names.c:247
+#: ../src/timezone_names.c:297
 msgid "Asia/Gaza"
 msgstr "亚洲/加沙"
 
-#: ../src/timezone_names.c:248
+#: ../src/timezone_names.c:298
 msgid "Asia/Harbin"
 msgstr "亚洲/哈尔滨"
 
-#: ../src/timezone_names.c:249
+#: ../src/timezone_names.c:299
+msgid "Asia/Hebron"
+msgstr ""
+
+#: ../src/timezone_names.c:300
 msgid "Asia/Hong_Kong"
 msgstr "亚洲/香港"
 
-#: ../src/timezone_names.c:250
+#: ../src/timezone_names.c:301
+msgid "Asia/Ho_Chi_Minh"
+msgstr ""
+
+#: ../src/timezone_names.c:302
 msgid "Asia/Hovd"
 msgstr "亚洲/科布多"
 
-#: ../src/timezone_names.c:251
+#: ../src/timezone_names.c:303
 msgid "Asia/Irkutsk"
 msgstr "亚洲/伊尔库斯克"
 
-#: ../src/timezone_names.c:252
+#: ../src/timezone_names.c:304
 msgid "Asia/Istanbul"
 msgstr "亚洲/伊斯坦布尔"
 
-#: ../src/timezone_names.c:253
+#: ../src/timezone_names.c:305
 msgid "Asia/Jakarta"
 msgstr "亚洲/雅加达"
 
-#: ../src/timezone_names.c:254
+#: ../src/timezone_names.c:306
 msgid "Asia/Jayapura"
 msgstr "亚洲/查亚普拉"
 
-#: ../src/timezone_names.c:255
+#: ../src/timezone_names.c:307
 msgid "Asia/Jerusalem"
 msgstr "亚洲/耶路撒冷"
 
-#: ../src/timezone_names.c:256
+#: ../src/timezone_names.c:308
 msgid "Asia/Kabul"
 msgstr "亚洲/喀布尔"
 
-#: ../src/timezone_names.c:257
+#: ../src/timezone_names.c:309
 msgid "Asia/Kamchatka"
 msgstr "亚洲/勘察加半岛"
 
-#: ../src/timezone_names.c:258
+#: ../src/timezone_names.c:310
 msgid "Asia/Karachi"
 msgstr "亚洲/卡拉奇"
 
-#: ../src/timezone_names.c:259
+#: ../src/timezone_names.c:311
 msgid "Asia/Kashgar"
 msgstr "亚洲/喀什葛尔"
 
-#: ../src/timezone_names.c:260
+#: ../src/timezone_names.c:312
+msgid "Asia/Kathmandu"
+msgstr ""
+
+#: ../src/timezone_names.c:313
 msgid "Asia/Katmandu"
 msgstr "亚洲/加德满都"
 
-#: ../src/timezone_names.c:261
+#: ../src/timezone_names.c:314
+msgid "Asia/Khandyga"
+msgstr ""
+
+#: ../src/timezone_names.c:315
+msgid "Asia/Kolkata"
+msgstr ""
+
+#: ../src/timezone_names.c:316
 msgid "Asia/Krasnoyarsk"
 msgstr "亚洲/克拉斯诺雅斯克"
 
-#: ../src/timezone_names.c:262
+#: ../src/timezone_names.c:317
 msgid "Asia/Kuala_Lumpur"
 msgstr "亚洲/吉隆坡"
 
-#: ../src/timezone_names.c:263
+#: ../src/timezone_names.c:318
 msgid "Asia/Kuching"
 msgstr "亚洲/古晋"
 
-#: ../src/timezone_names.c:264
+#: ../src/timezone_names.c:319
 msgid "Asia/Kuwait"
 msgstr "亚洲/科威特"
 
-#: ../src/timezone_names.c:265
+#: ../src/timezone_names.c:320
 msgid "Asia/Macao"
 msgstr "亚洲/澳门"
 
-#: ../src/timezone_names.c:266
+#: ../src/timezone_names.c:321
+msgid "Asia/Macau"
+msgstr ""
+
+#: ../src/timezone_names.c:322
 msgid "Asia/Magadan"
 msgstr "亚洲/马加丹"
 
-#: ../src/timezone_names.c:267
+#: ../src/timezone_names.c:323
+msgid "Asia/Makassar"
+msgstr ""
+
+#: ../src/timezone_names.c:324
 msgid "Asia/Manila"
 msgstr "亚洲/马尼拉"
 
-#: ../src/timezone_names.c:268
+#: ../src/timezone_names.c:325
 msgid "Asia/Muscat"
 msgstr "亚洲/马斯喀特"
 
-#: ../src/timezone_names.c:269
+#: ../src/timezone_names.c:326
 msgid "Asia/Nicosia"
 msgstr "亚洲/尼科希亚"
 
-#: ../src/timezone_names.c:270
+#: ../src/timezone_names.c:327
+msgid "Asia/Novokuznetsk"
+msgstr ""
+
+#: ../src/timezone_names.c:328
 msgid "Asia/Novosibirsk"
 msgstr "亚洲/新西伯利亚"
 
-#: ../src/timezone_names.c:271
+#: ../src/timezone_names.c:329
 msgid "Asia/Omsk"
 msgstr "亚洲/鄂木斯克"
 
-#: ../src/timezone_names.c:272
+#: ../src/timezone_names.c:330
+msgid "Asia/Oral"
+msgstr ""
+
+#: ../src/timezone_names.c:331
 msgid "Asia/Phnom_Penh"
 msgstr "亚洲/金边"
 
-#: ../src/timezone_names.c:273
+#: ../src/timezone_names.c:332
 msgid "Asia/Pontianak"
 msgstr "亚洲/坤甸"
 
-#: ../src/timezone_names.c:274
+#: ../src/timezone_names.c:333
 msgid "Asia/Pyongyang"
 msgstr "亚洲/平壤"
 
-#: ../src/timezone_names.c:275
+#: ../src/timezone_names.c:334
 msgid "Asia/Qatar"
 msgstr "亚洲/卡塔尔"
 
-#: ../src/timezone_names.c:276
+#: ../src/timezone_names.c:335
+msgid "Asia/Qyzylorda"
+msgstr ""
+
+#: ../src/timezone_names.c:336
 msgid "Asia/Rangoon"
 msgstr "亚洲/仰光"
 
-#: ../src/timezone_names.c:277
+#: ../src/timezone_names.c:337
 msgid "Asia/Riyadh"
 msgstr "亚洲/利雅得"
 
-#: ../src/timezone_names.c:278
+#: ../src/timezone_names.c:338
+msgid "Asia/Riyadh87"
+msgstr ""
+
+#: ../src/timezone_names.c:339
+msgid "Asia/Riyadh88"
+msgstr ""
+
+#: ../src/timezone_names.c:340
+msgid "Asia/Riyadh89"
+msgstr ""
+
+#: ../src/timezone_names.c:341
 msgid "Asia/Saigon"
 msgstr "亚洲/西贡"
 
-#: ../src/timezone_names.c:279
+#: ../src/timezone_names.c:342
+msgid "Asia/Sakhalin"
+msgstr ""
+
+#: ../src/timezone_names.c:343
 msgid "Asia/Samarkand"
 msgstr "亚洲/撒马尔罕"
 
-#: ../src/timezone_names.c:280
+#: ../src/timezone_names.c:344
 msgid "Asia/Seoul"
 msgstr "亚洲/首尔"
 
-#: ../src/timezone_names.c:281
+#: ../src/timezone_names.c:345
 msgid "Asia/Shanghai"
 msgstr "亚洲/上海"
 
-#: ../src/timezone_names.c:282
+#: ../src/timezone_names.c:346
 msgid "Asia/Singapore"
 msgstr "亚洲/新加坡"
 
-#: ../src/timezone_names.c:283
+#: ../src/timezone_names.c:347
 msgid "Asia/Taipei"
 msgstr "亚洲/台北"
 
-#: ../src/timezone_names.c:284
+#: ../src/timezone_names.c:348
 msgid "Asia/Tashkent"
 msgstr "亚洲/塔什干"
 
-#: ../src/timezone_names.c:285
+#: ../src/timezone_names.c:349
 msgid "Asia/Tbilisi"
 msgstr "亚洲/第比利斯"
 
-#: ../src/timezone_names.c:286
+#: ../src/timezone_names.c:350
 msgid "Asia/Tehran"
 msgstr "亚洲/德黑兰"
 
-#: ../src/timezone_names.c:287
+#: ../src/timezone_names.c:351
+msgid "Asia/Tel_Aviv"
+msgstr ""
+
+#: ../src/timezone_names.c:352
+msgid "Asia/Thimbu"
+msgstr ""
+
+#: ../src/timezone_names.c:353
 msgid "Asia/Thimphu"
 msgstr "亚洲/廷布"
 
-#: ../src/timezone_names.c:288
+#: ../src/timezone_names.c:354
 msgid "Asia/Tokyo"
 msgstr "亚洲/东京"
 
-#: ../src/timezone_names.c:289
+#: ../src/timezone_names.c:355
 msgid "Asia/Ujung_Pandang"
 msgstr "亚洲/乌戎潘当"
 
-#: ../src/timezone_names.c:290
+#: ../src/timezone_names.c:356
 msgid "Asia/Ulaanbaatar"
 msgstr "亚洲/乌兰巴托"
 
-#: ../src/timezone_names.c:291
+#: ../src/timezone_names.c:357
+msgid "Asia/Ulan_Bator"
+msgstr ""
+
+#: ../src/timezone_names.c:358
 msgid "Asia/Urumqi"
 msgstr "亚洲/乌鲁木齐"
 
-#: ../src/timezone_names.c:292
+#: ../src/timezone_names.c:359
+msgid "Asia/Ust-Nera"
+msgstr ""
+
+#: ../src/timezone_names.c:360
 msgid "Asia/Vientiane"
 msgstr "亚洲/万象"
 
-#: ../src/timezone_names.c:293
+#: ../src/timezone_names.c:361
 msgid "Asia/Vladivostok"
 msgstr "亚洲/海参崴"
 
-#: ../src/timezone_names.c:294
+#: ../src/timezone_names.c:362
 msgid "Asia/Yakutsk"
 msgstr "亚洲/雅库斯克"
 
-#: ../src/timezone_names.c:295
+#: ../src/timezone_names.c:363
 msgid "Asia/Yekaterinburg"
 msgstr "亚洲/叶卡特琳堡"
 
-#: ../src/timezone_names.c:296
+#: ../src/timezone_names.c:364
 msgid "Asia/Yerevan"
 msgstr "亚洲/耶烈万"
 
-#: ../src/timezone_names.c:297
+#: ../src/timezone_names.c:365
 msgid "Atlantic"
 msgstr "大西洋"
 
-#: ../src/timezone_names.c:298
+#: ../src/timezone_names.c:366
 msgid "Atlantic/Azores"
 msgstr "大西洋/亚速尔群岛"
 
-#: ../src/timezone_names.c:299
+#: ../src/timezone_names.c:367
 msgid "Atlantic/Bermuda"
 msgstr "大西洋/百慕大群岛"
 
-#: ../src/timezone_names.c:300
+#: ../src/timezone_names.c:368
 msgid "Atlantic/Canary"
 msgstr "大西洋/加那利群岛"
 
-#: ../src/timezone_names.c:301
+#: ../src/timezone_names.c:369
 msgid "Atlantic/Cape_Verde"
 msgstr "大西洋/佛得角"
 
-#: ../src/timezone_names.c:302
+#: ../src/timezone_names.c:370
 msgid "Atlantic/Faeroe"
 msgstr "大西洋/法罗群岛"
 
-#: ../src/timezone_names.c:303
+#: ../src/timezone_names.c:371
+msgid "Atlantic/Faroe"
+msgstr ""
+
+#: ../src/timezone_names.c:372
 msgid "Atlantic/Jan_Mayen"
 msgstr "大西洋/扬马延岛"
 
-#: ../src/timezone_names.c:304
+#: ../src/timezone_names.c:373
 msgid "Atlantic/Madeira"
 msgstr "大西洋/马德拉群岛"
 
-#: ../src/timezone_names.c:305
+#: ../src/timezone_names.c:374
 msgid "Atlantic/Reykjavik"
 msgstr "大西洋/雷克雅末克"
 
-#: ../src/timezone_names.c:306
+#: ../src/timezone_names.c:375
 msgid "Atlantic/South_Georgia"
 msgstr "大西洋/南佐治亚"
 
-#: ../src/timezone_names.c:307
+#: ../src/timezone_names.c:376
 msgid "Atlantic/St_Helena"
 msgstr "大西洋/圣赫勒拿岛"
 
-#: ../src/timezone_names.c:308
+#: ../src/timezone_names.c:377
 msgid "Atlantic/Stanley"
 msgstr "大西洋/斯坦利群岛"
 
-#: ../src/timezone_names.c:309
+#: ../src/timezone_names.c:378
 msgid "Australia"
 msgstr "澳洲"
 
-#: ../src/timezone_names.c:310
+#: ../src/timezone_names.c:379
+msgid "Australia/ACT"
+msgstr ""
+
+#: ../src/timezone_names.c:380
 msgid "Australia/Adelaide"
 msgstr "澳洲/阿德莱德"
 
-#: ../src/timezone_names.c:311
+#: ../src/timezone_names.c:381
 msgid "Australia/Brisbane"
 msgstr "澳洲/布里斯班"
 
-#: ../src/timezone_names.c:312
+#: ../src/timezone_names.c:382
 msgid "Australia/Broken_Hill"
 msgstr "澳洲/布罗肯山"
 
-#: ../src/timezone_names.c:313
+#: ../src/timezone_names.c:383
+msgid "Australia/Currie"
+msgstr ""
+
+#: ../src/timezone_names.c:384
 msgid "Australia/Darwin"
 msgstr "澳洲/达尔文"
 
-#: ../src/timezone_names.c:314
+#: ../src/timezone_names.c:385
+msgid "Australia/Eucla"
+msgstr ""
+
+#: ../src/timezone_names.c:386
 msgid "Australia/Hobart"
 msgstr "澳洲/霍巴特"
 
-#: ../src/timezone_names.c:315
+#: ../src/timezone_names.c:387
 msgid "Australia/Lindeman"
 msgstr "澳洲/林德曼"
 
-#: ../src/timezone_names.c:316
+#: ../src/timezone_names.c:388
 msgid "Australia/Lord_Howe"
 msgstr "澳洲/豪勋爵岛"
 
-#: ../src/timezone_names.c:317
+#: ../src/timezone_names.c:389
 msgid "Australia/Melbourne"
 msgstr "澳洲/墨尔本"
 
-#: ../src/timezone_names.c:318
+#: ../src/timezone_names.c:390
 msgid "Australia/Perth"
 msgstr "澳洲/佩思"
 
-#: ../src/timezone_names.c:319
+#: ../src/timezone_names.c:391
 msgid "Australia/Sydney"
 msgstr "澳洲/悉尼"
 
-#: ../src/timezone_names.c:320
+#: ../src/timezone_names.c:392
+msgid "Brazil"
+msgstr ""
+
+#: ../src/timezone_names.c:393
+msgid "Brazil/Acre"
+msgstr ""
+
+#: ../src/timezone_names.c:394
+msgid "Brazil/DeNoronha"
+msgstr ""
+
+#: ../src/timezone_names.c:395
+msgid "Brazil/East"
+msgstr ""
+
+#: ../src/timezone_names.c:396
+msgid "Brazil/West"
+msgstr ""
+
+#: ../src/timezone_names.c:397
+msgid "Canada"
+msgstr ""
+
+#: ../src/timezone_names.c:398
+msgid "Canada/Atlantic"
+msgstr ""
+
+#: ../src/timezone_names.c:399
+msgid "Canada/Central"
+msgstr ""
+
+#: ../src/timezone_names.c:400
+msgid "Canada/East-Saskatchewan"
+msgstr ""
+
+#: ../src/timezone_names.c:401
+msgid "Canada/Eastern"
+msgstr ""
+
+#: ../src/timezone_names.c:402
+msgid "Canada/Mountain"
+msgstr ""
+
+#: ../src/timezone_names.c:403
+msgid "Canada/Newfoundland"
+msgstr ""
+
+#: ../src/timezone_names.c:404
+msgid "Canada/Pacific"
+msgstr ""
+
+#: ../src/timezone_names.c:405
+msgid "Canada/Saskatchewan"
+msgstr ""
+
+#: ../src/timezone_names.c:406
+msgid "Canada/Yukon"
+msgstr ""
+
+#: ../src/timezone_names.c:407
+msgid "Chile"
+msgstr ""
+
+#: ../src/timezone_names.c:408
+msgid "Chile/Continental"
+msgstr ""
+
+#: ../src/timezone_names.c:409
+msgid "Chile/EasterIsland"
+msgstr ""
+
+#: ../src/timezone_names.c:410
+msgid "Etc"
+msgstr ""
+
+#: ../src/timezone_names.c:411
+msgid "Etc/GMT"
+msgstr ""
+
+#: ../src/timezone_names.c:412
+msgid "Etc/GMT+0"
+msgstr ""
+
+#: ../src/timezone_names.c:413
+msgid "Etc/GMT+1"
+msgstr ""
+
+#: ../src/timezone_names.c:414
+msgid "Etc/GMT+10"
+msgstr ""
+
+#: ../src/timezone_names.c:415
+msgid "Etc/GMT+11"
+msgstr ""
+
+#: ../src/timezone_names.c:416
+msgid "Etc/GMT+12"
+msgstr ""
+
+#: ../src/timezone_names.c:417
+msgid "Etc/GMT+2"
+msgstr ""
+
+#: ../src/timezone_names.c:418
+msgid "Etc/GMT+3"
+msgstr ""
+
+#: ../src/timezone_names.c:419
+msgid "Etc/GMT+4"
+msgstr ""
+
+#: ../src/timezone_names.c:420
+msgid "Etc/GMT+5"
+msgstr ""
+
+#: ../src/timezone_names.c:421
+msgid "Etc/GMT+6"
+msgstr ""
+
+#: ../src/timezone_names.c:422
+msgid "Etc/GMT+7"
+msgstr ""
+
+#: ../src/timezone_names.c:423
+msgid "Etc/GMT+8"
+msgstr ""
+
+#: ../src/timezone_names.c:424
+msgid "Etc/GMT+9"
+msgstr ""
+
+#: ../src/timezone_names.c:425
+msgid "Etc/GMT-0"
+msgstr ""
+
+#: ../src/timezone_names.c:426
+msgid "Etc/GMT-1"
+msgstr ""
+
+#: ../src/timezone_names.c:427
+msgid "Etc/GMT-10"
+msgstr ""
+
+#: ../src/timezone_names.c:428
+msgid "Etc/GMT-11"
+msgstr ""
+
+#: ../src/timezone_names.c:429
+msgid "Etc/GMT-12"
+msgstr ""
+
+#: ../src/timezone_names.c:430
+msgid "Etc/GMT-13"
+msgstr ""
+
+#: ../src/timezone_names.c:431
+msgid "Etc/GMT-14"
+msgstr ""
+
+#: ../src/timezone_names.c:432
+msgid "Etc/GMT-2"
+msgstr ""
+
+#: ../src/timezone_names.c:433
+msgid "Etc/GMT-3"
+msgstr ""
+
+#: ../src/timezone_names.c:434
+msgid "Etc/GMT-4"
+msgstr ""
+
+#: ../src/timezone_names.c:435
+msgid "Etc/GMT-5"
+msgstr ""
+
+#: ../src/timezone_names.c:436
+msgid "Etc/GMT-6"
+msgstr ""
+
+#: ../src/timezone_names.c:437
+msgid "Etc/GMT-7"
+msgstr ""
+
+#: ../src/timezone_names.c:438
+msgid "Etc/GMT-8"
+msgstr ""
+
+#: ../src/timezone_names.c:439
+msgid "Etc/GMT-9"
+msgstr ""
+
+#: ../src/timezone_names.c:440
+msgid "Etc/GMT0"
+msgstr ""
+
+#: ../src/timezone_names.c:441
+msgid "Etc/Greenwich"
+msgstr ""
+
+#: ../src/timezone_names.c:442
+msgid "Etc/UCT"
+msgstr ""
+
+#: ../src/timezone_names.c:443
+msgid "Etc/UTC"
+msgstr ""
+
+#: ../src/timezone_names.c:444
+msgid "Etc/Universal"
+msgstr ""
+
+#: ../src/timezone_names.c:445
+msgid "Etc/Zulu"
+msgstr ""
+
+#: ../src/timezone_names.c:446
 msgid "Europe"
 msgstr "欧洲"
 
-#: ../src/timezone_names.c:321
+#: ../src/timezone_names.c:447
 msgid "Europe/Amsterdam"
 msgstr "欧洲/阿姆斯特丹"
 
-#: ../src/timezone_names.c:322
+#: ../src/timezone_names.c:448
 msgid "Europe/Andorra"
 msgstr "欧洲/安道尔"
 
-#: ../src/timezone_names.c:323
+#: ../src/timezone_names.c:449
 msgid "Europe/Athens"
 msgstr "欧洲/雅典"
 
-#: ../src/timezone_names.c:324
+#: ../src/timezone_names.c:450
 msgid "Europe/Belfast"
 msgstr "欧洲/贝尔法斯特"
 
-#: ../src/timezone_names.c:325
+#: ../src/timezone_names.c:451
 msgid "Europe/Belgrade"
 msgstr "欧洲/贝尔格莱德"
 
-#: ../src/timezone_names.c:326
+#: ../src/timezone_names.c:452
 msgid "Europe/Berlin"
 msgstr "欧洲/柏林"
 
-#: ../src/timezone_names.c:327
+#: ../src/timezone_names.c:453
 msgid "Europe/Bratislava"
 msgstr "欧洲/布拉迪斯拉发"
 
-#: ../src/timezone_names.c:328
+#: ../src/timezone_names.c:454
 msgid "Europe/Brussels"
 msgstr "欧洲/布鲁塞尔"
 
-#: ../src/timezone_names.c:329
+#: ../src/timezone_names.c:455
 msgid "Europe/Bucharest"
 msgstr "欧洲/布加勒斯特"
 
-#: ../src/timezone_names.c:330
+#: ../src/timezone_names.c:456
 msgid "Europe/Budapest"
 msgstr "欧洲/布达佩斯"
 
-#: ../src/timezone_names.c:331
+#: ../src/timezone_names.c:457
+msgid "Europe/Busingen"
+msgstr ""
+
+#: ../src/timezone_names.c:458
 msgid "Europe/Chisinau"
 msgstr "欧洲/基希讷乌"
 
-#: ../src/timezone_names.c:332
+#: ../src/timezone_names.c:459
 msgid "Europe/Copenhagen"
 msgstr "欧洲/哥本哈根"
 
-#: ../src/timezone_names.c:333
+#: ../src/timezone_names.c:460
 msgid "Europe/Dublin"
 msgstr "欧洲/都柏林"
 
-#: ../src/timezone_names.c:334
+#: ../src/timezone_names.c:461
 msgid "Europe/Gibraltar"
 msgstr "欧洲/直布罗陀"
 
-#: ../src/timezone_names.c:335
+#: ../src/timezone_names.c:462
+msgid "Europe/Guernsey"
+msgstr ""
+
+#: ../src/timezone_names.c:463
 msgid "Europe/Helsinki"
 msgstr "欧洲/赫尔辛基"
 
-#: ../src/timezone_names.c:336
+#: ../src/timezone_names.c:464
+msgid "Europe/Isle_of_Man"
+msgstr ""
+
+#: ../src/timezone_names.c:465
 msgid "Europe/Istanbul"
 msgstr "欧洲/伊斯坦布尔"
 
-#: ../src/timezone_names.c:337
+#: ../src/timezone_names.c:466
+msgid "Europe/Jersey"
+msgstr ""
+
+#: ../src/timezone_names.c:467
 msgid "Europe/Kaliningrad"
 msgstr "欧洲/加里宁格勒"
 
-#: ../src/timezone_names.c:338
+#: ../src/timezone_names.c:468
 msgid "Europe/Kiev"
 msgstr "欧洲/基辅"
 
-#: ../src/timezone_names.c:339
+#: ../src/timezone_names.c:469
 msgid "Europe/Lisbon"
 msgstr "欧洲/里斯本"
 
-#: ../src/timezone_names.c:340
+#: ../src/timezone_names.c:470
 msgid "Europe/Ljubljana"
 msgstr "欧洲/卢布尔雅那"
 
-#: ../src/timezone_names.c:341
+#: ../src/timezone_names.c:471
 msgid "Europe/London"
 msgstr "欧洲/伦敦"
 
-#: ../src/timezone_names.c:342
+#: ../src/timezone_names.c:472
 msgid "Europe/Luxembourg"
 msgstr "欧洲/卢森堡"
 
-#: ../src/timezone_names.c:343
+#: ../src/timezone_names.c:473
 msgid "Europe/Madrid"
 msgstr "欧洲/马德里"
 
-#: ../src/timezone_names.c:344
+#: ../src/timezone_names.c:474
 msgid "Europe/Malta"
 msgstr "欧洲/马耳他"
 
-#: ../src/timezone_names.c:345
+#: ../src/timezone_names.c:475
+msgid "Europe/Mariehamn"
+msgstr ""
+
+#: ../src/timezone_names.c:476
 msgid "Europe/Minsk"
 msgstr "欧洲/明斯克"
 
-#: ../src/timezone_names.c:346
+#: ../src/timezone_names.c:477
 msgid "Europe/Monaco"
 msgstr "欧洲/摩纳哥"
 
-#: ../src/timezone_names.c:347
+#: ../src/timezone_names.c:478
 msgid "Europe/Moscow"
 msgstr "欧洲/莫斯科"
 
-#: ../src/timezone_names.c:348
+#: ../src/timezone_names.c:479
 msgid "Europe/Nicosia"
 msgstr "欧洲/尼科西亚"
 
-#: ../src/timezone_names.c:349
+#: ../src/timezone_names.c:480
 msgid "Europe/Oslo"
 msgstr "欧洲/奥斯陆"
 
-#: ../src/timezone_names.c:350
+#: ../src/timezone_names.c:481
 msgid "Europe/Paris"
 msgstr "欧洲/巴黎"
 
-#: ../src/timezone_names.c:351
+#: ../src/timezone_names.c:482
+msgid "Europe/Podgorica"
+msgstr ""
+
+#: ../src/timezone_names.c:483
 msgid "Europe/Prague"
 msgstr "欧洲/布拉格"
 
-#: ../src/timezone_names.c:352
+#: ../src/timezone_names.c:484
 msgid "Europe/Riga"
 msgstr "欧洲/里加"
 
-#: ../src/timezone_names.c:353
+#: ../src/timezone_names.c:485
 msgid "Europe/Rome"
 msgstr "欧洲/罗马"
 
-#: ../src/timezone_names.c:354
+#: ../src/timezone_names.c:486
 msgid "Europe/Samara"
 msgstr "欧洲/萨马拉"
 
-#: ../src/timezone_names.c:355
+#: ../src/timezone_names.c:487
 msgid "Europe/San_Marino"
 msgstr "欧洲/圣马力诺"
 
-#: ../src/timezone_names.c:356
+#: ../src/timezone_names.c:488
 msgid "Europe/Sarajevo"
 msgstr "欧洲/萨拉热窝"
 
-#: ../src/timezone_names.c:357
+#: ../src/timezone_names.c:489
 msgid "Europe/Simferopol"
 msgstr "欧洲/辛菲罗波尔"
 
-#: ../src/timezone_names.c:358
+#: ../src/timezone_names.c:490
 msgid "Europe/Skopje"
 msgstr "欧洲/斯科普里"
 
-#: ../src/timezone_names.c:359
+#: ../src/timezone_names.c:491
 msgid "Europe/Sofia"
 msgstr "欧洲/索菲亚"
 
-#: ../src/timezone_names.c:360
+#: ../src/timezone_names.c:492
 msgid "Europe/Stockholm"
 msgstr "欧洲/斯德哥尔摩"
 
-#: ../src/timezone_names.c:361
+#: ../src/timezone_names.c:493
 msgid "Europe/Tallinn"
 msgstr "欧洲/塔林"
 
-#: ../src/timezone_names.c:362
+#: ../src/timezone_names.c:494
 msgid "Europe/Tirane"
 msgstr "欧洲/地拉那"
 
-#: ../src/timezone_names.c:363
+#: ../src/timezone_names.c:495
+msgid "Europe/Tiraspol"
+msgstr ""
+
+#: ../src/timezone_names.c:496
 msgid "Europe/Uzhgorod"
 msgstr "欧洲/乌兹格罗"
 
-#: ../src/timezone_names.c:364
+#: ../src/timezone_names.c:497
 msgid "Europe/Vaduz"
 msgstr "欧洲/瓦杜兹"
 
-#: ../src/timezone_names.c:365
+#: ../src/timezone_names.c:498
 msgid "Europe/Vatican"
 msgstr "欧洲/梵蒂冈"
 
-#: ../src/timezone_names.c:366
+#: ../src/timezone_names.c:499
 msgid "Europe/Vienna"
 msgstr "欧洲/维也纳"
 
-#: ../src/timezone_names.c:367
+#: ../src/timezone_names.c:500
 msgid "Europe/Vilnius"
 msgstr "欧洲/维尔纽斯"
 
-#: ../src/timezone_names.c:368
+#: ../src/timezone_names.c:501
+msgid "Europe/Volgograd"
+msgstr ""
+
+#: ../src/timezone_names.c:502
 msgid "Europe/Warsaw"
 msgstr "欧洲/华沙"
 
-#: ../src/timezone_names.c:369
+#: ../src/timezone_names.c:503
 msgid "Europe/Zagreb"
 msgstr "欧洲/萨格勒布"
 
-#: ../src/timezone_names.c:370
+#: ../src/timezone_names.c:504
 msgid "Europe/Zaporozhye"
 msgstr "欧洲/扎波罗热"
 
-#: ../src/timezone_names.c:371
+#: ../src/timezone_names.c:505
 msgid "Europe/Zurich"
 msgstr "欧洲/苏黎士"
 
-#: ../src/timezone_names.c:372
+#: ../src/timezone_names.c:506
 msgid "Indian"
 msgstr "印度洋"
 
-#: ../src/timezone_names.c:373
+#: ../src/timezone_names.c:507
 msgid "Indian/Antananarivo"
 msgstr "印度洋/安塔那利佛"
 
-#: ../src/timezone_names.c:374
+#: ../src/timezone_names.c:508
 msgid "Indian/Chagos"
 msgstr "印度洋/查戈斯群岛"
 
-#: ../src/timezone_names.c:375
+#: ../src/timezone_names.c:509
 msgid "Indian/Christmas"
 msgstr "印度洋/圣诞岛"
 
-#: ../src/timezone_names.c:376
+#: ../src/timezone_names.c:510
 msgid "Indian/Cocos"
 msgstr "印度洋/考克斯群岛"
 
-#: ../src/timezone_names.c:377
+#: ../src/timezone_names.c:511
 msgid "Indian/Comoro"
 msgstr "印度洋/科摩罗群岛"
 
-#: ../src/timezone_names.c:378
+#: ../src/timezone_names.c:512
 msgid "Indian/Kerguelen"
 msgstr "印度洋/凯尔盖朗岛"
 
-#: ../src/timezone_names.c:379
+#: ../src/timezone_names.c:513
 msgid "Indian/Mahe"
 msgstr "印度洋/马埃岛"
 
-#: ../src/timezone_names.c:380
+#: ../src/timezone_names.c:514
 msgid "Indian/Maldives"
 msgstr "印度洋/马尔代夫"
 
-#: ../src/timezone_names.c:381
+#: ../src/timezone_names.c:515
 msgid "Indian/Mauritius"
 msgstr "印度洋/毛里求斯"
 
-#: ../src/timezone_names.c:382
+#: ../src/timezone_names.c:516
 msgid "Indian/Mayotte"
 msgstr "印度洋/马约特岛"
 
-#: ../src/timezone_names.c:383
+#: ../src/timezone_names.c:517
 msgid "Indian/Reunion"
 msgstr "印度洋/留尼旺岛"
 
-#: ../src/timezone_names.c:384
+#: ../src/timezone_names.c:518
+msgid "Mexico"
+msgstr ""
+
+#: ../src/timezone_names.c:519
+msgid "Mexico/BajaNorte"
+msgstr ""
+
+#: ../src/timezone_names.c:520
+msgid "Mexico/BajaSur"
+msgstr ""
+
+#: ../src/timezone_names.c:521
+msgid "Mexico/General"
+msgstr ""
+
+#: ../src/timezone_names.c:522
+msgid "Mideast"
+msgstr ""
+
+#: ../src/timezone_names.c:523
+msgid "Mideast/Riyadh87"
+msgstr ""
+
+#: ../src/timezone_names.c:524
+msgid "Mideast/Riyadh88"
+msgstr ""
+
+#: ../src/timezone_names.c:525
+msgid "Mideast/Riyadh89"
+msgstr ""
+
+#: ../src/timezone_names.c:526
 msgid "Pacific"
 msgstr "太平洋"
 
-#: ../src/timezone_names.c:385
+#: ../src/timezone_names.c:527
 msgid "Pacific/Apia"
 msgstr "太平洋/阿皮亚"
 
-#: ../src/timezone_names.c:386
+#: ../src/timezone_names.c:528
 msgid "Pacific/Auckland"
 msgstr "太平洋/奥克兰"
 
-#: ../src/timezone_names.c:387
+#: ../src/timezone_names.c:529
 msgid "Pacific/Chatham"
 msgstr "太平洋/查塔姆群岛"
 
-#: ../src/timezone_names.c:388
+#: ../src/timezone_names.c:530
+msgid "Pacific/Chuuk"
+msgstr ""
+
+#: ../src/timezone_names.c:531
 msgid "Pacific/Easter"
 msgstr "太平洋/复活节岛"
 
-#: ../src/timezone_names.c:389
+#: ../src/timezone_names.c:532
 msgid "Pacific/Efate"
 msgstr "太平洋/埃法特岛"
 
-#: ../src/timezone_names.c:390
+#: ../src/timezone_names.c:533
 msgid "Pacific/Enderbury"
 msgstr "太平洋/恩德伯里岛"
 
-#: ../src/timezone_names.c:391
+#: ../src/timezone_names.c:534
 msgid "Pacific/Fakaofo"
 msgstr "太平洋/法考福环礁"
 
-#: ../src/timezone_names.c:392
+#: ../src/timezone_names.c:535
 msgid "Pacific/Fiji"
 msgstr "太平洋/斐济"
 
-#: ../src/timezone_names.c:393
+#: ../src/timezone_names.c:536
 msgid "Pacific/Funafuti"
 msgstr "太平洋/富纳富提"
 
-#: ../src/timezone_names.c:394
+#: ../src/timezone_names.c:537
 msgid "Pacific/Galapagos"
 msgstr "太平洋/加拉帕哥斯群岛"
 
-#: ../src/timezone_names.c:395
+#: ../src/timezone_names.c:538
 msgid "Pacific/Gambier"
 msgstr "太平洋/甘比儿群岛"
 
-#: ../src/timezone_names.c:396
+#: ../src/timezone_names.c:539
 msgid "Pacific/Guadalcanal"
 msgstr "太平洋/瓜达康纳尔岛"
 
-#: ../src/timezone_names.c:397
+#: ../src/timezone_names.c:540
 msgid "Pacific/Guam"
 msgstr "太平洋/关岛"
 
-#: ../src/timezone_names.c:398
+#: ../src/timezone_names.c:541
 msgid "Pacific/Honolulu"
 msgstr "太平洋/檀香山"
 
-#: ../src/timezone_names.c:399
+#: ../src/timezone_names.c:542
 msgid "Pacific/Johnston"
 msgstr "太平洋/约翰斯顿岛"
 
-#: ../src/timezone_names.c:400
+#: ../src/timezone_names.c:543
 msgid "Pacific/Kiritimati"
 msgstr "太平洋/圣诞岛"
 
-#: ../src/timezone_names.c:401
+#: ../src/timezone_names.c:544
 msgid "Pacific/Kosrae"
 msgstr "太平洋/科斯雷岛"
 
-#: ../src/timezone_names.c:402
+#: ../src/timezone_names.c:545
 msgid "Pacific/Kwajalein"
 msgstr "太平洋/夸贾林环礁"
 
-#: ../src/timezone_names.c:403
+#: ../src/timezone_names.c:546
 msgid "Pacific/Majuro"
 msgstr "太平洋/马朱罗环礁"
 
-#: ../src/timezone_names.c:404
+#: ../src/timezone_names.c:547
 msgid "Pacific/Marquesas"
 msgstr "太平洋/马克萨斯群岛"
 
-#: ../src/timezone_names.c:405
+#: ../src/timezone_names.c:548
 msgid "Pacific/Midway"
 msgstr "太平洋/中途岛"
 
-#: ../src/timezone_names.c:406
+#: ../src/timezone_names.c:549
 msgid "Pacific/Nauru"
 msgstr "太平洋/瑙鲁"
 
-#: ../src/timezone_names.c:407
+#: ../src/timezone_names.c:550
 msgid "Pacific/Niue"
 msgstr "太平洋/纽埃岛"
 
-#: ../src/timezone_names.c:408
+#: ../src/timezone_names.c:551
 msgid "Pacific/Norfolk"
 msgstr "太平洋/诺福克"
 
-#: ../src/timezone_names.c:409
+#: ../src/timezone_names.c:552
 msgid "Pacific/Noumea"
 msgstr "太平洋/努美阿"
 
-#: ../src/timezone_names.c:410
+#: ../src/timezone_names.c:553
 msgid "Pacific/Pago_Pago"
 msgstr "太平洋/帕果帕果"
 
-#: ../src/timezone_names.c:411
+#: ../src/timezone_names.c:554
 msgid "Pacific/Palau"
 msgstr "太平洋/帕劳"
 
-#: ../src/timezone_names.c:412
+#: ../src/timezone_names.c:555
 msgid "Pacific/Pitcairn"
 msgstr "太平洋/皮特克恩岛"
 
-#: ../src/timezone_names.c:413
+#: ../src/timezone_names.c:556
+msgid "Pacific/Pohnpei"
+msgstr ""
+
+#: ../src/timezone_names.c:557
 msgid "Pacific/Ponape"
 msgstr "太平洋/波纳佩岛"
 
-#: ../src/timezone_names.c:414
+#: ../src/timezone_names.c:558
 msgid "Pacific/Port_Moresby"
 msgstr "太平洋/莫尔兹比港"
 
-#: ../src/timezone_names.c:415
+#: ../src/timezone_names.c:559
 msgid "Pacific/Rarotonga"
 msgstr "太平洋/拉罗汤加岛"
 
-#: ../src/timezone_names.c:416
+#: ../src/timezone_names.c:560
 msgid "Pacific/Saipan"
 msgstr "太平洋/塞班岛"
 
-#: ../src/timezone_names.c:417
+#: ../src/timezone_names.c:561
+msgid "Pacific/Samoa"
+msgstr ""
+
+#: ../src/timezone_names.c:562
 msgid "Pacific/Tahiti"
 msgstr "太平洋/塔希提岛"
 
-#: ../src/timezone_names.c:418
+#: ../src/timezone_names.c:563
 msgid "Pacific/Tarawa"
 msgstr "太平洋/塔拉瓦岛"
 
-#: ../src/timezone_names.c:419
+#: ../src/timezone_names.c:564
 msgid "Pacific/Tongatapu"
 msgstr "太平洋/汤加塔布岛"
 
-#: ../src/timezone_names.c:420
+#: ../src/timezone_names.c:565
 msgid "Pacific/Truk"
 msgstr "太平洋/特鲁克群岛"
 
-#: ../src/timezone_names.c:421
+#: ../src/timezone_names.c:566
 msgid "Pacific/Wake"
 msgstr "太平洋/威克岛"
 
-#: ../src/timezone_names.c:422
+#: ../src/timezone_names.c:567
 msgid "Pacific/Wallis"
 msgstr "太平洋/沃利斯岛"
 
-#: ../src/timezone_names.c:423
+#: ../src/timezone_names.c:568
 msgid "Pacific/Yap"
 msgstr "太平洋/雅浦岛"
+
+#: ../src/timezone_names.c:569
+msgid "SystemV"
+msgstr ""
+
+#: ../src/timezone_names.c:570
+msgid "SystemV/AST4"
+msgstr ""
+
+#: ../src/timezone_names.c:571
+msgid "SystemV/AST4ADT"
+msgstr ""
+
+#: ../src/timezone_names.c:572
+msgid "SystemV/CST6"
+msgstr ""
+
+#: ../src/timezone_names.c:573
+msgid "SystemV/CST6CDT"
+msgstr ""
+
+#: ../src/timezone_names.c:574
+msgid "SystemV/EST5"
+msgstr ""
+
+#: ../src/timezone_names.c:575
+msgid "SystemV/EST5/EDT"
+msgstr ""
+
+#: ../src/timezone_names.c:576
+msgid "SystemV/HST10"
+msgstr ""
+
+#: ../src/timezone_names.c:577
+msgid "SystemV/MST7"
+msgstr ""
+
+#: ../src/timezone_names.c:578
+msgid "SystemV/MST7/MNT"
+msgstr ""
+
+#: ../src/timezone_names.c:579
+msgid "SystemV/PST8"
+msgstr ""
+
+#: ../src/timezone_names.c:580
+msgid "SystemV/PST8/PDT"
+msgstr ""
+
+#: ../src/timezone_names.c:581
+msgid "SystemV/YST9"
+msgstr ""
+
+#: ../src/timezone_names.c:582
+msgid "SystemV/YST9/YDT"
+msgstr ""
+
+#: ../src/timezone_names.c:583
+msgid "US"
+msgstr ""
+
+#: ../src/timezone_names.c:584
+msgid "US/Alaska"
+msgstr ""
+
+#: ../src/timezone_names.c:585
+msgid "US/Aleutian"
+msgstr ""
+
+#: ../src/timezone_names.c:586
+msgid "US/Arizona"
+msgstr ""
+
+#: ../src/timezone_names.c:587
+msgid "US/Central"
+msgstr ""
+
+#: ../src/timezone_names.c:588
+msgid "US/Eastern"
+msgstr ""
+
+#: ../src/timezone_names.c:589
+msgid "US/East-Indiana"
+msgstr ""
+
+#: ../src/timezone_names.c:590
+msgid "US/Hawaii"
+msgstr ""
+
+#: ../src/timezone_names.c:591
+msgid "US/Indiana-Starke"
+msgstr ""
+
+#: ../src/timezone_names.c:592
+msgid "US/Michigan"
+msgstr ""
+
+#: ../src/timezone_names.c:593
+msgid "US/Mountain"
+msgstr ""
+
+#: ../src/timezone_names.c:594
+msgid "US/Pacific"
+msgstr ""
+
+#: ../src/timezone_names.c:595
+msgid "US/Pacific-New"
+msgstr ""
+
+#: ../src/timezone_names.c:596
+msgid "US/Samoa"
+msgstr ""
 
 #: ../src/tray_icon.c:469
 msgid "New appointment"
