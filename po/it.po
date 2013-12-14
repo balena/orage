@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-12-02 18:30+0100\n"
-"PO-Revision-Date: 2013-12-14 17:26+0000\n"
+"PO-Revision-Date: 2013-12-14 17:47+0000\n"
 "Last-Translator: cri <cri.penta@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/projects/p/xfce/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -595,7 +595,7 @@ msgstr "Aggiornamento dell'appuntamento non riuscito"
 msgid ""
 "Look more details from the log file. (Perhaps file was updated external from"
 " Orage?)"
-msgstr ""
+msgstr "Per maggiori dettagli controllare il file di log (il file è forse stato aggiornato al di fuori di Orage?)."
 
 #: ../src/appointment.c:1286
 msgid "This appointment will be permanently removed."
@@ -809,7 +809,7 @@ msgid ""
 "You can use that feature to unclutter your list windows, but it makes it more difficult to find this appointment.\n"
 "(Alarms will still fire normally.)\n"
 "(There is undocumented parameter so that you can change the default limit of 8.)"
-msgstr ""
+msgstr "Impostando il valore a 8 o a un numero superiore, l'appuntamento non è\nvisualizzato nell'elenco. Questa funzione è utile per non appesantire l'elenco, ma rende più difficile identificare questo appuntamento.\n(L'allarme verrà comunque avviato normalmente)\n(C'è un parametro non documentato in modo che sia possibile modificare il limite predefinito pari a 8)"
 
 #. note
 #: ../src/appointment.c:2918
@@ -1257,7 +1257,7 @@ msgstr "Giorni aggiuntivi da mostrare:"
 
 #: ../src/event-list.c:1240
 msgid "only first repeating"
-msgstr ""
+msgstr "solo la prima occorrenza"
 
 #: ../src/event-list.c:1245
 msgid ""
@@ -1268,13 +1268,13 @@ msgstr "Selezionare questa opzione per visualizzare solo la prima ricorrenza del
 
 #: ../src/event-list.c:1250
 msgid "also old"
-msgstr ""
+msgstr "anche vecchi"
 
 #: ../src/event-list.c:1252
 msgid ""
 "Check this if you want to see old events also. This can only be selected after 'only first repeating' is enabled to avoid very long lists.\n"
 "Note that extra days selection still defines if newer appointments are listed'."
-msgstr ""
+msgstr "Selezionare questa opzione per vedere solo i vecchi eventi. L'opzione può essere selezionata solo dopo aver abilitato \"solo la prima ricorrenza\" per evitare la visualizzazione di un elenco molto lungo.\nLa selezione per i giorni aggiuntivi definisce se devono essere elencati i nuovi appuntamenti."
 
 #: ../src/event-list.c:1290
 msgid "Journal entries starting from:"
@@ -1377,12 +1377,12 @@ msgstr "Allarme predefinito di Orage"
 
 #: ../src/ical-code.c:3179
 msgid "Created alarm list for main Orage file:"
-msgstr ""
+msgstr "Elenco allarme creato per il file principale di Orage"
 
 #: ../src/ical-code.c:3181
 #, c-format
 msgid "Created alarm list for foreign file: %s (%s)"
-msgstr ""
+msgstr "Elenco allarmi creato per il file esterno: %s (%s)"
 
 #: ../src/ical-code.c:3183
 #, c-format
@@ -1414,11 +1414,11 @@ msgstr "Pre-elaborazione del file da importare eseguita"
 #: ../src/interface.c:89 ../src/interface.c:104
 #, c-format
 msgid "Found external update on file %s."
-msgstr ""
+msgstr "Trovato aggiornamento esterno sul file %s"
 
 #: ../src/interface.c:112
 msgid "Refreshing alarms and calendar due to external file update."
-msgstr ""
+msgstr "Aggiornamento di allarmi e calendario a seguito dell'aggiornamento del file esterno"
 
 #: ../src/interface.c:271
 msgid "Calendar files"
@@ -1484,7 +1484,7 @@ msgstr "Leggi dal file:"
 msgid ""
 "Separate filenames with comma(,).\n"
 " NOTE: comma is not valid character in filenames for Orage."
-msgstr "Separa i nomi dei file con virgole(,);\n NOTA: la virgola non è un carattere valido nei nomi di file per Orage"
+msgstr "Separare i nomi dei file con virgole(,);\nNOTA: la virgola non è un carattere valido nei nomi di file per Orage"
 
 #: ../src/interface.c:999
 msgid "Export"
@@ -1520,7 +1520,7 @@ msgstr "Si noti che vengono letti soltanto gli appuntamenti del file principale;
 
 #: ../src/interface.c:1059
 msgid "You can easily drag these from event-list window."
-msgstr "Si può trascinarli facilmente dalla finestra della lista eventi"
+msgstr "É possibile trascinarli facilmente dalla finestra della lista eventi"
 
 #: ../src/interface.c:1061
 msgid "Orage appointment UIDs separated by commas."
@@ -2054,7 +2054,7 @@ msgstr "Usare questo timer se Orage ha problemi ad avviarsi dopo una sospensione
 
 #: ../src/parameters.c:982
 msgid "Foreign file default visual alarm"
-msgstr ""
+msgstr "Allarme visivo predefinito per file esterni"
 
 #: ../src/parameters.c:987
 msgid "Orage window"
@@ -2066,7 +2066,7 @@ msgstr "Notifica le notifiche"
 
 #: ../src/parameters.c:1018
 msgid "Always quit when asked to close"
-msgstr "Esce sempre quando viene richiesta la chiusura"
+msgstr "Uscita quando viene richiesta la chiusura"
 
 #: ../src/parameters.c:1023
 msgid "Always quit"
@@ -2077,7 +2077,7 @@ msgid ""
 "By default Orage stays open in the background when asked to close. This "
 "option changes Orage to quit and never stay in background when it is asked "
 "to close."
-msgstr "Normalmente Orage rimane aperto in secondo piano quando ne viene richiesta la chiusura; questa opzione impone a Orage di chiudersi senza rimanere aperto ins econdo piano quando se ne richiede la chiusura"
+msgstr "Normalmente Orage rimane aperto in secondo piano quando ne viene richiesta la chiusura; questa opzione impone a Orage di chiudersi senza rimanere aperto in secondo piano quando se ne richiede la chiusura"
 
 #: ../src/parameters.c:1045
 msgid "Orage Preferences"
@@ -4372,7 +4372,7 @@ msgstr "US/Pacifico"
 
 #: ../src/timezone_names.c:595
 msgid "US/Pacific-New"
-msgstr ""
+msgstr "US/Pacifico-Nuovo"
 
 #: ../src/timezone_names.c:596
 msgid "US/Samoa"
