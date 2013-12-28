@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-12-02 18:30+0100\n"
-"PO-Revision-Date: 2013-12-27 05:24+0000\n"
+"PO-Revision-Date: 2013-12-28 05:53+0000\n"
 "Last-Translator: Walter Cheuk <wwycheuk@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/xfce/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -571,24 +571,24 @@ msgstr "尚未設定"
 
 #: ../src/appointment.c:1138
 msgid "Add new appointment to this file."
-msgstr ""
+msgstr "為此檔案加入新約會。"
 
 #: ../src/appointment.c:1139 ../src/appointment.c:1188
 msgid "Orage default file"
-msgstr ""
+msgstr "Orage 預設檔案"
 
 #: ../src/appointment.c:1225
 msgid "Appointment addition failed."
-msgstr ""
+msgstr "未能加入約會。"
 
 #: ../src/appointment.c:1226
 msgid ""
 "Error happened when adding appointment. Look more details from the log file."
-msgstr ""
+msgstr "加入約會時發生錯誤。詳情見記錄檔。"
 
 #: ../src/appointment.c:1236
 msgid "Appointment update failed."
-msgstr ""
+msgstr "未能更新約會。"
 
 #: ../src/appointment.c:1237
 msgid ""
@@ -754,7 +754,7 @@ msgstr "設定"
 
 #: ../src/appointment.c:2831
 msgid "Duration"
-msgstr "時間長短"
+msgstr "為期"
 
 #: ../src/appointment.c:2835 ../src/appointment.c:3027 ../src/reminder.c:758
 msgid "days"
@@ -776,11 +776,11 @@ msgstr "能赴約否"
 #. completed (only for TODO)
 #: ../src/appointment.c:2859 ../src/appointment.c:3459
 msgid "Completed"
-msgstr "完成"
+msgstr "結束"
 
 #: ../src/appointment.c:2862
 msgid "Done"
-msgstr "做完"
+msgstr "完成"
 
 #. categories
 #: ../src/appointment.c:2883
@@ -808,7 +808,7 @@ msgid ""
 "You can use that feature to unclutter your list windows, but it makes it more difficult to find this appointment.\n"
 "(Alarms will still fire normally.)\n"
 "(There is undocumented parameter so that you can change the default limit of 8.)"
-msgstr ""
+msgstr "若將此設為 8 或以上，該約會就＊不會＊在清單視窗顯示。\n可以此功能令清單視窗清爽一點，但亦會令此約會較難找到。\n(「提醒」功能仍會正常運作。)\n(此功能沒有正式紀錄，故您可變更該為 8 的預設限制。)"
 
 #. note
 #: ../src/appointment.c:2918
@@ -829,19 +829,19 @@ msgstr "此等快捷指令會馬上生效：\n    <D> 以本地日期格式插�
 
 #: ../src/appointment.c:3010
 msgid "Before Start"
-msgstr "開始之前"
+msgstr "（開始之前）"
 
 #: ../src/appointment.c:3010
 msgid "Before End"
-msgstr "開始之後"
+msgstr "（結束之前）"
 
 #: ../src/appointment.c:3011
 msgid "After Start"
-msgstr "在這之後開始"
+msgstr "（開始之後）"
 
 #: ../src/appointment.c:3011
 msgid "After End"
-msgstr "在這之後開始"
+msgstr "（結束之後）"
 
 #: ../src/appointment.c:3018
 msgid "Alarm"
@@ -858,7 +858,7 @@ msgid ""
 " 1) before Event start\n"
 " 2) before Todo end\n"
 " 3) after Todo start"
-msgstr ""
+msgstr "通常需要提醒的三種情況：\n 1) 事件開始之前\n 2) 待辦事項結束之前\n 3) 待辦事項開始之後"
 
 #: ../src/appointment.c:3053
 msgid "Persistent alarm"
@@ -889,11 +889,11 @@ msgstr "重複提醒鈴聲"
 
 #: ../src/appointment.c:3103 ../src/appointment.c:3402
 msgid "times"
-msgstr "次數"
+msgstr "次"
 
 #: ../src/appointment.c:3119
 msgid "sec interval"
-msgstr "秒數間隔"
+msgstr "秒間隔"
 
 #. **** Display Alarm ****
 #: ../src/appointment.c:3129
@@ -906,7 +906,7 @@ msgstr "使用 Orage 視窗"
 
 #: ../src/appointment.c:3135
 msgid "Select this if you want Orage window alarm"
-msgstr ""
+msgstr "若想有 Orage 視窗的話選此"
 
 #: ../src/appointment.c:3147
 msgid "Use notification"
@@ -914,7 +914,7 @@ msgstr "使用系統通知"
 
 #: ../src/appointment.c:3149
 msgid "Select this if you want notification alarm"
-msgstr ""
+msgstr "若想有提醒通知的話選此"
 
 #: ../src/appointment.c:3155
 msgid "Set timeout"
@@ -922,11 +922,11 @@ msgstr "設定時限"
 
 #: ../src/appointment.c:3157
 msgid "Select this if you want notification to expire automatically"
-msgstr ""
+msgstr "若想通知自動失效的話選此"
 
 #: ../src/appointment.c:3168
 msgid "0 = system default expiration time"
-msgstr "0 = 系統預設的到期時間"
+msgstr "0 = 系統預設的失效時間"
 
 #: ../src/appointment.c:3173
 msgid "seconds"
@@ -939,7 +939,7 @@ msgstr "程序"
 
 #: ../src/appointment.c:3190
 msgid "Select this if you want procedure or script alarm"
-msgstr ""
+msgstr "若想使用自訂程序或 script 的話選此"
 
 #: ../src/appointment.c:3196
 msgid ""
@@ -951,7 +951,7 @@ msgid ""
 "\t<&AT> alarm time\n"
 "\t<&ST> appointment start time\n"
 "\t<&ET> appointment end time"
-msgstr ""
+msgstr "必須自行輸入所有溢出(escape)等字元。\n本字串僅會交給 shell 處理。\n以下特殊指令會在執行口時替換：\n\t<&T>  約會標題\n\t<&D>  約會說明\n\t<&AT> 約會時間\n\t<&ST> 約會開始時間\n\t<&ET> 約會結束時間"
 
 #: ../src/appointment.c:3208
 msgid "Test this alarm by raising it now"
@@ -1056,11 +1056,11 @@ msgstr "頻率"
 
 #: ../src/appointment.c:3330
 msgid "Each"
-msgstr "每個"
+msgstr "："
 
 #: ../src/appointment.c:3337
 msgid "occurrence"
-msgstr ""
+msgstr "次"
 
 #: ../src/appointment.c:3341
 msgid ""
@@ -1107,7 +1107,7 @@ msgstr ""
 #. TODO base (only for TODOs)
 #: ../src/appointment.c:3450
 msgid "TODO base"
-msgstr ""
+msgstr "「待辦」事項基於"
 
 #: ../src/appointment.c:3463
 msgid ""
@@ -1252,11 +1252,11 @@ msgstr "日檢視"
 
 #: ../src/event-list.c:1231
 msgid "Extra days to show:"
-msgstr ""
+msgstr "要顯示的額外日數："
 
 #: ../src/event-list.c:1240
 msgid "only first repeating"
-msgstr ""
+msgstr "僅首先重複"
 
 #: ../src/event-list.c:1245
 msgid ""
@@ -1277,7 +1277,7 @@ msgstr ""
 
 #: ../src/event-list.c:1290
 msgid "Journal entries starting from:"
-msgstr ""
+msgstr "日誌項目開始日期："
 
 #: ../src/event-list.c:1310
 msgid "Search"
@@ -1314,22 +1314,22 @@ msgstr ""
 #. remove since it has ended
 #: ../src/ical-archive.c:267
 msgid "\tRecur ended, moving to archive file."
-msgstr ""
+msgstr "\t重複結束。移至封存檔。"
 
 #: ../src/ical-archive.c:330
 msgid "Archiving not enabled. Exiting"
-msgstr ""
+msgstr "未啟用封存功能。結束。"
 
 #: ../src/ical-archive.c:349
 #, c-format
 msgid "Archiving threshold: %d month(s)"
-msgstr "封存門檻: %d 個月"
+msgstr "封存門檻：%d 個月"
 
 #. yy mon day
 #: ../src/ical-archive.c:352
 #, c-format
 msgid "\tArchiving events, which are older than: %04d-%02d-%02d"
-msgstr ""
+msgstr "\t正在封存事件，其舊於：%04d-%02d-%02d"
 
 #: ../src/ical-archive.c:379
 #, c-format
@@ -1345,7 +1345,7 @@ msgstr ""
 #: ../src/ical-archive.c:390
 #, c-format
 msgid "\tRecurring. End year: %04d, month: %02d, day: %02d"
-msgstr ""
+msgstr "\t正在重複。結束年份：%04d，月份：%02d，日：%02d"
 
 #: ../src/ical-archive.c:407
 msgid "Archiving done\n"
@@ -1376,17 +1376,17 @@ msgstr "Orage 預設提醒"
 
 #: ../src/ical-code.c:3179
 msgid "Created alarm list for main Orage file:"
-msgstr ""
+msgstr "為主 Orage 檔建立的提醒清單："
 
 #: ../src/ical-code.c:3181
 #, c-format
 msgid "Created alarm list for foreign file: %s (%s)"
-msgstr ""
+msgstr "為外部檔案建立的提醒清單：%s (%s)"
 
 #: ../src/ical-code.c:3183
 #, c-format
 msgid "\tAdded %d alarms. Processed %d events."
-msgstr ""
+msgstr "\t加入了 %d 個提醒。處理了 %d 個事件。"
 
 #: ../src/ical-code.c:3185
 #, c-format
@@ -1396,7 +1396,7 @@ msgstr ""
 
 #: ../src/ical-expimp.c:123
 msgid "Starting import file preprocessing"
-msgstr ""
+msgstr "正在開啟匯入檔案預處理"
 
 #: ../src/ical-expimp.c:158
 msgid "... Patched DCREATED to be CREATED."
@@ -1425,7 +1425,7 @@ msgstr "行事曆檔案"
 
 #: ../src/interface.c:631
 msgid "Current foreign files"
-msgstr ""
+msgstr "目前的外部檔案"
 
 #: ../src/interface.c:648
 msgid "READ ONLY"
@@ -1437,7 +1437,7 @@ msgstr "可讀寫"
 
 #: ../src/interface.c:669
 msgid "***** No foreign files *****"
-msgstr ""
+msgstr "***** 無外部檔案 *****"
 
 #: ../src/interface.c:682
 msgid "Foreign file add failed"
@@ -1445,27 +1445,27 @@ msgstr ""
 
 #: ../src/interface.c:689
 msgid "Orage can only handle 10 foreign files. Limit reached."
-msgstr ""
+msgstr "Orage 只能處理 10 個外部檔案。已到達上限。"
 
 #: ../src/interface.c:697
 msgid "Filename is empty."
-msgstr ""
+msgstr "空白檔名。"
 
 #: ../src/interface.c:705
 msgid "Name is empty."
-msgstr ""
+msgstr "空白名稱。"
 
 #: ../src/interface.c:713
 msgid "File does not exist."
-msgstr ""
+msgstr "無此檔案。"
 
 #: ../src/interface.c:722
 msgid "Same filename already exists in Orage."
-msgstr ""
+msgstr "Orage 已有同名檔案。"
 
 #: ../src/interface.c:730
 msgid "Same name already exists in Orage."
-msgstr ""
+msgstr "Orage 已有相同名稱。"
 
 #: ../src/interface.c:965
 msgid "Import/export"
@@ -1483,7 +1483,7 @@ msgstr "讀取檔案："
 msgid ""
 "Separate filenames with comma(,).\n"
 " NOTE: comma is not valid character in filenames for Orage."
-msgstr ""
+msgstr "以半形逗號(,)分隔檔案名稱。\n注意：用於 Orage 的檔案名稱不能有逗號。"
 
 #: ../src/interface.c:999
 msgid "Export"
@@ -1509,21 +1509,21 @@ msgstr "命名的約會："
 msgid ""
 "Note that only main file appointments are read.\n"
 "Archived and Foreign events are not exported."
-msgstr ""
+msgstr "注意：只會讀取主檔案的約會。\n不會匯出已封存的和外部的事件。"
 
 #: ../src/interface.c:1056
 msgid ""
 "Note that only main file appointments are read.\n"
 "Foreign events are not exported."
-msgstr ""
+msgstr "注意：只會讀取主檔案的約會。\n不會匯出外部的事件。"
 
 #: ../src/interface.c:1059
 msgid "You can easily drag these from event-list window."
-msgstr ""
+msgstr "可輕易拖曳事件清單視窗。"
 
 #: ../src/interface.c:1061
 msgid "Orage appointment UIDs separated by commas."
-msgstr ""
+msgstr "以半形逗號分隔的 Orage 約會 UID。"
 
 #: ../src/interface.c:1067
 msgid "Archive"
@@ -1532,11 +1532,11 @@ msgstr "封存檔案"
 #: ../src/interface.c:1075
 #, c-format
 msgid "Archive now (threshold: %d months)"
-msgstr "立即封存 (門檻: %d 個月)"
+msgstr "立即封存 (門檻：%d 個月)"
 
 #: ../src/interface.c:1085
 msgid "You can change archive threshold in parameters"
-msgstr ""
+msgstr "可在參數變更封存門檻"
 
 #: ../src/interface.c:1092
 msgid "Revert archive now"
@@ -1559,15 +1559,15 @@ msgstr "Orage 主行事曆檔"
 
 #: ../src/interface.c:1121 ../src/interface.c:1186
 msgid "Current file:"
-msgstr ""
+msgstr "目前檔案："
 
 #: ../src/interface.c:1128 ../src/interface.c:1193
 msgid "New file:"
-msgstr ""
+msgstr "新檔案："
 
 #: ../src/interface.c:1144 ../src/interface.c:1210
 msgid "Action options:"
-msgstr ""
+msgstr "動作選項："
 
 #: ../src/interface.c:1147 ../src/interface.c:1213
 msgid "Rename"
@@ -1602,22 +1602,22 @@ msgstr "封存檔案"
 
 #: ../src/interface.c:1245
 msgid "Foreign files"
-msgstr ""
+msgstr "外部檔案"
 
 #: ../src/interface.c:1252
 msgid "Add new foreign file"
-msgstr ""
+msgstr "加入新外部檔案"
 
 #: ../src/interface.c:1257
 msgid "Foreign file:"
-msgstr ""
+msgstr "外部檔案："
 
 #. label = gtk_label_new(_("Options:"));
 #. gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 5);
 #. 
 #: ../src/interface.c:1279
 msgid "Visible name:"
-msgstr ""
+msgstr "可見名稱："
 
 #: ../src/interface.c:1285
 msgid "Read only"
@@ -1631,7 +1631,7 @@ msgstr ""
 
 #: ../src/interface.c:1294
 msgid "This internal name is displayed to user instead of file name."
-msgstr ""
+msgstr "會向使用者顯示此內部名稱，而非檔案名稱。"
 
 #: ../src/interface.c:1308
 msgid "Exchange data - Orage"
@@ -1704,7 +1704,7 @@ msgstr ""
 msgid ""
 "Usage: orage [options] [files]\n"
 "\n"
-msgstr ""
+msgstr "用法：orage [選項] [檔案]\n\n"
 
 #: ../src/main.c:314
 #, c-format
@@ -1714,17 +1714,17 @@ msgstr "選項：\n"
 #: ../src/main.c:315
 #, c-format
 msgid "--version (-v) \t\tshow version of orage\n"
-msgstr ""
+msgstr "--version (-v) \t\t顯示 orage 的版本\n"
 
 #: ../src/main.c:316
 #, c-format
 msgid "--help (-h) \t\tprint this text\n"
-msgstr ""
+msgstr "--help (-h) \t\t顯示此文字\n"
 
 #: ../src/main.c:317
 #, c-format
 msgid "--preferences (-p) \tshow preferences form\n"
-msgstr ""
+msgstr "--preferences (-p) \t顯示偏好設定表格\n"
 
 #: ../src/main.c:318
 #, c-format
@@ -1739,7 +1739,7 @@ msgstr ""
 #: ../src/main.c:320
 #, c-format
 msgid "--remove-foreign (-r) file \tremove a foreign file\n"
-msgstr ""
+msgstr "--remove-foreign (-r) 檔案 \t移除外部檔案\n"
 
 #: ../src/main.c:321
 #, c-format
@@ -1801,11 +1801,11 @@ msgstr "顯示全球時間(_G)"
 #. Help menu
 #: ../src/mainbox.c:345
 msgid "_Help"
-msgstr "幫助(_H)"
+msgstr "求助(_H)"
 
 #: ../src/mainbox.c:414 ../src/reminder.c:1138
 msgid "No title defined"
-msgstr ""
+msgstr "未定義標題"
 
 #: ../src/mainbox.c:471
 #, c-format
@@ -1848,12 +1848,12 @@ msgstr "<b>待辦：</b>"
 #: ../src/mainbox.c:649
 #, c-format
 msgid "<b>Events for %s:</b>"
-msgstr ""
+msgstr "<b>%s 的事件：</b>"
 
 #: ../src/mainbox.c:660
 #, c-format
 msgid "<b>Events for %s - %s:</b>"
-msgstr ""
+msgstr "<b>%s - %s 的事件：</b>"
 
 #: ../src/parameters.c:492
 msgid "Main settings"
@@ -1889,7 +1889,7 @@ msgstr ""
 
 #: ../src/parameters.c:596
 msgid "Calendar window"
-msgstr ""
+msgstr "行事曆視窗"
 
 #: ../src/parameters.c:603
 msgid "Calendar visual details"
@@ -1925,11 +1925,11 @@ msgstr "顯示待辦清單"
 
 #: ../src/parameters.c:667
 msgid "Number of days to show in event window"
-msgstr ""
+msgstr "在事件視窗顯示日數"
 
 #: ../src/parameters.c:673
 msgid "0 = do not show event list at all"
-msgstr ""
+msgstr "0 = 不顯示事件清單"
 
 #: ../src/parameters.c:686
 msgid "Calendar visibility"
@@ -1973,7 +1973,7 @@ msgstr "最小化"
 
 #: ../src/parameters.c:787
 msgid "On calendar window open"
-msgstr ""
+msgstr "行事曆視窗開啟時"
 
 #: ../src/parameters.c:792
 msgid "Select today's date"
@@ -1981,11 +1981,11 @@ msgstr "選取今天日期"
 
 #: ../src/parameters.c:805
 msgid "Select previously selected date"
-msgstr ""
+msgstr "選取之前選取的日期"
 
 #: ../src/parameters.c:823
 msgid "Calendar day double click shows"
-msgstr ""
+msgstr "雙擊行事曆日子時顯示"
 
 #: ../src/parameters.c:828
 msgid "Days view"
@@ -2001,17 +2001,17 @@ msgstr "其他設定值"
 
 #: ../src/parameters.c:869
 msgid "Event list window"
-msgstr ""
+msgstr "事件清單視窗"
 
 #: ../src/parameters.c:874
 msgid "Number of extra days to show in event list"
-msgstr ""
+msgstr "在事件清單顯示的額外日數"
 
 #: ../src/parameters.c:883
 msgid ""
 "This is just the default value, you can change it in the actual eventlist "
 "window."
-msgstr ""
+msgstr "此僅為預設值；可在實際的事件清單視窗變更。"
 
 #: ../src/parameters.c:891
 msgid "Show only first repeating event"
@@ -2019,7 +2019,7 @@ msgstr ""
 
 #: ../src/parameters.c:907
 msgid "Day view window default first day"
-msgstr ""
+msgstr "日子檢視視窗預設首日"
 
 #: ../src/parameters.c:912
 msgid "First day of week"
@@ -2039,7 +2039,7 @@ msgstr "使用動態圖示"
 
 #: ../src/parameters.c:954
 msgid "Dynamic icon shows current month and day of the month."
-msgstr ""
+msgstr "動態圖示會顯示目前的月份和日期。"
 
 #: ../src/parameters.c:962 ../src/parameters.c:967
 msgid "Use wakeup timer"
@@ -2053,30 +2053,30 @@ msgstr "若 Orage 在暫停或休眠後有無法正常喚醒的問題，請使�
 
 #: ../src/parameters.c:982
 msgid "Foreign file default visual alarm"
-msgstr ""
+msgstr "外部檔案預設視覺提醒"
 
 #: ../src/parameters.c:987
 msgid "Orage window"
-msgstr ""
+msgstr "Orage 視窗"
 
 #: ../src/parameters.c:1000
 msgid "Notify notification"
-msgstr ""
+msgstr "通知通知"
 
 #: ../src/parameters.c:1018
 msgid "Always quit when asked to close"
-msgstr ""
+msgstr "當要求關閉時必定結束"
 
 #: ../src/parameters.c:1023
 msgid "Always quit"
-msgstr ""
+msgstr "必定結束"
 
 #: ../src/parameters.c:1029
 msgid ""
 "By default Orage stays open in the background when asked to close. This "
 "option changes Orage to quit and never stay in background when it is asked "
 "to close."
-msgstr ""
+msgstr "當 Orage 被要求關閉時，預設會留在背景執行。本選項會將 Orage 改為當被要求關閉時完全結束，不會留在背景執行。"
 
 #: ../src/parameters.c:1045
 msgid "Orage Preferences"
@@ -2117,14 +2117,14 @@ msgstr "在指定時間請再提醒我一次"
 
 #: ../src/reminder.c:1091
 msgid "Next active alarms:"
-msgstr ""
+msgstr "下個使用中的提醒："
 
 #: ../src/reminder.c:1145
 #, c-format
 msgid ""
 "\n"
 "%02d d %02d h %02d min to: %s"
-msgstr ""
+msgstr "\n尚有 %02d 日 %02d 時 %02d 分至 %s "
 
 #: ../src/reminder.c:1154
 #, c-format
@@ -2983,7 +2983,7 @@ msgstr "北美洲/提華納"
 
 #: ../src/timezone_names.c:248
 msgid "America/Toronto"
-msgstr ""
+msgstr "北美洲/多倫多"
 
 #: ../src/timezone_names.c:249
 msgid "America/Tortola"
@@ -2995,7 +2995,7 @@ msgstr "北美洲/溫哥華"
 
 #: ../src/timezone_names.c:251
 msgid "America/Virgin"
-msgstr ""
+msgstr "中美洲/處女群島"
 
 #: ../src/timezone_names.c:252
 msgid "America/Whitehorse"
@@ -3143,11 +3143,11 @@ msgstr ""
 
 #: ../src/timezone_names.c:288
 msgid "Asia/Chongqing"
-msgstr ""
+msgstr "亞洲/重慶"
 
 #: ../src/timezone_names.c:289
 msgid "Asia/Chungking"
-msgstr "亞洲/重慶"
+msgstr "亞洲/重慶(Chungking)"
 
 #: ../src/timezone_names.c:290
 msgid "Asia/Colombo"
@@ -3195,7 +3195,7 @@ msgstr "亞洲/香港"
 
 #: ../src/timezone_names.c:301
 msgid "Asia/Ho_Chi_Minh"
-msgstr ""
+msgstr "亞洲/胡志明市"
 
 #: ../src/timezone_names.c:302
 msgid "Asia/Hovd"
@@ -3271,11 +3271,11 @@ msgstr "亞洲/科威特"
 
 #: ../src/timezone_names.c:320
 msgid "Asia/Macao"
-msgstr "亞洲/澳門"
+msgstr "亞洲/澳門(Macao)"
 
 #: ../src/timezone_names.c:321
 msgid "Asia/Macau"
-msgstr ""
+msgstr "亞洲/澳門"
 
 #: ../src/timezone_names.c:322
 msgid "Asia/Magadan"
@@ -3559,7 +3559,7 @@ msgstr "澳洲/雪梨"
 
 #: ../src/timezone_names.c:392
 msgid "Brazil"
-msgstr ""
+msgstr "巴西"
 
 #: ../src/timezone_names.c:393
 msgid "Brazil/Acre"
@@ -3579,7 +3579,7 @@ msgstr ""
 
 #: ../src/timezone_names.c:397
 msgid "Canada"
-msgstr ""
+msgstr "加拿大"
 
 #: ../src/timezone_names.c:398
 msgid "Canada/Atlantic"
@@ -3619,7 +3619,7 @@ msgstr ""
 
 #: ../src/timezone_names.c:407
 msgid "Chile"
-msgstr ""
+msgstr "智利"
 
 #: ../src/timezone_names.c:408
 msgid "Chile/Continental"
@@ -3631,7 +3631,7 @@ msgstr ""
 
 #: ../src/timezone_names.c:410
 msgid "Etc"
-msgstr ""
+msgstr "其他"
 
 #: ../src/timezone_names.c:411
 msgid "Etc/GMT"
@@ -3847,7 +3847,7 @@ msgstr "歐洲/赫爾辛基"
 
 #: ../src/timezone_names.c:464
 msgid "Europe/Isle_of_Man"
-msgstr ""
+msgstr "歐洲/曼島(Isle_of_Man)"
 
 #: ../src/timezone_names.c:465
 msgid "Europe/Istanbul"
@@ -4063,7 +4063,7 @@ msgstr "印度/留尼旺島"
 
 #: ../src/timezone_names.c:518
 msgid "Mexico"
-msgstr ""
+msgstr "墨西哥"
 
 #: ../src/timezone_names.c:519
 msgid "Mexico/BajaNorte"
@@ -4079,7 +4079,7 @@ msgstr ""
 
 #: ../src/timezone_names.c:522
 msgid "Mideast"
-msgstr ""
+msgstr "中東"
 
 #: ../src/timezone_names.c:523
 msgid "Mideast/Riyadh87"
@@ -4323,7 +4323,7 @@ msgstr ""
 
 #: ../src/timezone_names.c:583
 msgid "US"
-msgstr ""
+msgstr "美國"
 
 #: ../src/timezone_names.c:584
 msgid "US/Alaska"
