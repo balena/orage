@@ -3,21 +3,22 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# adem4ik, 2014
 # Aleksandr P <davian818@gmail.com>, 2013
 # Andrey Fedoseev <andrey.fedoseev@gmail.com>, 2006
 # Anthony Ivanoff <a-i@bk.ru>, 2004
 # asvl <alyoshin.s@gmail.com>, 2013
 # Ilya Shestopalov <yast4ik@yahoo.com>, 2009
 # Poul Ionkin <wizzard@nmg.lv>, 2003
-# asvl <alyoshin.s@gmail.com>, 2013
+# asvl <alyoshin.s@gmail.com>, 2013-2014
 # Sergey Fedoseev <fedoseev.sergey@gmail.com>, 2006
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-12-02 18:30+0100\n"
-"PO-Revision-Date: 2013-12-13 18:53+0000\n"
-"Last-Translator: asvl <alyoshin.s@gmail.com>\n"
+"PO-Revision-Date: 2014-03-11 14:37+0000\n"
+"Last-Translator: adem4ik\n"
 "Language-Team: Russian (http://www.transifex.com/projects/p/xfce/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -127,7 +128,7 @@ msgstr "Имя метки:"
 
 #: ../globaltime/gt_prefs.c:613
 msgid "enter name of clock"
-msgstr "введите имя метки"
+msgstr "Введите имя метки"
 
 #: ../globaltime/gt_prefs.c:616
 msgid "Timezone of the clock:"
@@ -223,7 +224,7 @@ msgstr "Отметьте для использования шрифта по у�
 
 #: ../globaltime/gt_prefs.c:963
 msgid "Click to change default font for clock time"
-msgstr "Кликните для изменения цвета времени по умолчанию"
+msgstr "Кликните для изменения шрифта времени по умолчанию"
 
 #. ------------------------underline name--------------------
 #: ../globaltime/gt_prefs.c:990
@@ -237,11 +238,11 @@ msgstr "Подчёркивание времени метки:"
 
 #: ../globaltime/gt_prefs.c:1027
 msgid "update preferences"
-msgstr "обновить настройки"
+msgstr "Обновить настройки"
 
 #: ../globaltime/gt_prefs.c:1062
 msgid "Globaltime Preferences"
-msgstr "Настройки всемирного времени"
+msgstr "Настройки мирового времени"
 
 #. -----------------------HEADING--------------------------------------
 #: ../globaltime/gt_prefs.c:1073
@@ -420,17 +421,17 @@ msgstr "Показывать _рамку"
 #. foreground color
 #: ../panel-plugin/oc_config.c:239
 msgid "set foreground _color:"
-msgstr "цвет _шрифта:"
+msgstr "Цвет _шрифта:"
 
 #. background color
 #: ../panel-plugin/oc_config.c:253
 msgid "set _background color:"
-msgstr "цвет _фона:"
+msgstr "Цвет _фона:"
 
 #. clock size (=vbox size): height and width
 #: ../panel-plugin/oc_config.c:267
 msgid "set _height:"
-msgstr "установить высоту:"
+msgstr "_Высота:"
 
 #: ../panel-plugin/oc_config.c:277
 msgid "Note that you can not change the height of horizontal panels"
@@ -438,7 +439,7 @@ msgstr "Учтите, что нельзя изменить высоту гори
 
 #: ../panel-plugin/oc_config.c:282
 msgid "set _width:"
-msgstr "установить ширину:"
+msgstr "Ши_рина:"
 
 #: ../panel-plugin/oc_config.c:293
 msgid "Note that you can not change the width of vertical panels"
@@ -451,7 +452,7 @@ msgstr "Параметры метки"
 #. timezone
 #: ../panel-plugin/oc_config.c:326
 msgid "set timezone to:"
-msgstr "часовой пояс:"
+msgstr "Часовой пояс:"
 
 #: ../panel-plugin/oc_config.c:347
 #, c-format
@@ -465,7 +466,7 @@ msgstr "Укажите параметр для функции stftime."
 #. Tooltip hint
 #: ../panel-plugin/oc_config.c:401
 msgid "Tooltip:"
-msgstr "Подсказки:"
+msgstr "Подсказка:"
 
 #. special timing for SUSPEND/HIBERNATE
 #: ../panel-plugin/oc_config.c:411
@@ -479,7 +480,7 @@ msgid ""
 "circumstances it is possible that Orageclock shows time inaccurately unless "
 "you have this selected. (Selecting this prevents cpu and interrupt saving "
 "features from working.)"
-msgstr "Это нужно только если вы выключаете на короткий срок (менее 5 часов) включаете ждущий или спящий режим и в отображаемое время не включаются секунды. В этих условиях Orageclock возможно будет неаккуратно показывать время, если не выбрать этот пункт. (Выбор пункта мешает процессору и прерывает функции сохранения.)"
+msgstr "Это нужно только если вы выключаете на короткий срок (менее 5 часов), включаете ждущий или спящий режим и в отображаемое время не включаются секунды. В этих условиях Orage возможно будет неаккуратно показывать время, если не выбрать этот пункт. (Выбор пункта мешает процессору и прерывает функции сохранения.)"
 
 #: ../panel-plugin/oc_config.c:432
 msgid ""
@@ -491,7 +492,7 @@ msgid ""
 "\t%V = week number\t\t%Z = timezone in use\n"
 "\t%H = hours \t\t\t\t%M = minute\n"
 "\t%X = local time\t\t\t%x = local date"
-msgstr "Эта программа использует функцию strftime для\nотображения времени. Вы можете указать формат,\nв котором будет отображено время и дата.\nЧасто используемые параметры:\n\t%A = день недели\t\t\t%B = месяц\n\t%c = дата и время\t\t%R = часы и минуты\n\t%V = номер недели\t\t%Z = часовой пояс\n\t%H = часы\t\t\t\t\t%M = минуты\n\t%X = местное время\t\t%x = местная дата"
+msgstr "Эта программа использует функцию strftime для\nотображения времени. Вы можете указать формат,\nв котором будет отображено время и дата.\nЧасто используемые параметры:\n\t%A — день недели\t\t\t%B — месяц\n\t%c — дата и время\t\t%R — часы и минуты\n\t%V — номер недели\t\t%Z — часовой пояс\n\t%H — часы\t\t\t\t%M — минуты\n\t%X — местное время\t\t%x — местная дата"
 
 #: ../panel-plugin/oc_config.c:457
 msgid "Orage clock Preferences"
@@ -506,7 +507,6 @@ msgstr "Настройки часов Orage"
 #. * %B  : full month name
 #. * %Y  : four digit year
 #. * %V  : ISO week number
-#. 
 #: ../panel-plugin/xfce4-orageclock-plugin.c:627
 msgid "%A %d %B %Y/%V"
 msgstr "%A, %d %b, %Y"
@@ -532,7 +532,7 @@ msgstr "Через"
 
 #: ../src/appointment.c:493 ../src/mainbox.c:862
 msgid "Orage"
-msgstr "Календарь"
+msgstr "Календарь Orage"
 
 #. to avoid timing problems when updating entry
 #. Create file chooser
@@ -566,7 +566,7 @@ msgstr "Да, игнорировать изменения и закрыть"
 
 #: ../src/appointment.c:768
 msgid "The end of this appointment is earlier than the beginning."
-msgstr "Время окончания раньше времени начала."
+msgstr "Время окончания встречи раньше времени начала."
 
 #: ../src/appointment.c:1035 ../src/appointment.c:1923
 msgid "Not set"
@@ -601,7 +601,7 @@ msgstr "См. подробности в файле журнала. (Вероят
 
 #: ../src/appointment.c:1286
 msgid "This appointment will be permanently removed."
-msgstr "Это событие будет окончательно удалено."
+msgstr "Эта встреча будет окончательно удалена."
 
 #: ../src/appointment.c:1288 ../src/event-list.c:970
 msgid "No, cancel the removal"
@@ -624,7 +624,7 @@ msgstr "Сегодня"
 
 #: ../src/appointment.c:1803
 msgid "This appointment does not exist."
-msgstr "Это событие не существует."
+msgstr "Эта встреча не существует."
 
 #: ../src/appointment.c:1804
 msgid "It was probably removed, please refresh your screen."
@@ -652,7 +652,7 @@ msgstr " *** КОПИЯ ***"
 
 #: ../src/appointment.c:2466
 msgid "New appointment - Orage"
-msgstr "Новое событие — Orage"
+msgstr "Новая встреча — Orage"
 
 #. File menu stuff
 #. ********* File menu *********
@@ -749,7 +749,7 @@ msgstr "Событие на весь день"
 #. start time
 #: ../src/appointment.c:2790 ../src/appointment.c:3453 ../src/day-view.c:801
 msgid "Start"
-msgstr "Начинается"
+msgstr "Начало"
 
 #: ../src/appointment.c:2810
 msgid "Set      "
@@ -798,7 +798,7 @@ msgstr "Это особая категория, которая использу�
 
 #: ../src/appointment.c:2900
 msgid "update colors for categories."
-msgstr "обновить цвета категорий."
+msgstr "Обновить цвета категорий."
 
 #. priority
 #: ../src/appointment.c:2906
@@ -929,7 +929,7 @@ msgstr "Выберите, если хотите, чтобы уведомлени
 
 #: ../src/appointment.c:3168
 msgid "0 = system default expiration time"
-msgstr "0 = системное время действия"
+msgstr "0 — системное время действия"
 
 #: ../src/appointment.c:3173
 msgid "seconds"
@@ -962,7 +962,7 @@ msgstr "Проверка установленного сигнала"
 
 #: ../src/appointment.c:3215
 msgid "<b>Default alarm</b>"
-msgstr "<b>Сигнал по умолчанию</b>"
+msgstr "<b>Будильник по умолчанию</b>"
 
 #: ../src/appointment.c:3223
 msgid "Store current settings as default alarm"
@@ -1070,7 +1070,7 @@ msgid ""
 "Limit frequency to certain interval.\n"
 " For example: Every third day:\n"
 " Frequency = Daily and Interval = 3"
-msgstr "Ограничить частоту конкретным интервалом.\n Например, каждый третий день.\n Частота = Ежедневно и Интервал = 3"
+msgstr "Ограничить частоту конкретным интервалом.\n Например, каждый третий день.\n Частота — Ежедневно и Интервал — 3"
 
 #: ../src/appointment.c:3386
 msgid "Limit"
@@ -1105,7 +1105,7 @@ msgid ""
 "\tFrequency = Monthly,\n"
 "\tWeekdays = check only Wednesday,\n"
 "\tWhich day = select 2 from the number below Wednesday"
-msgstr "Укажите, в какой день недели наступает ежемесячное или ежегодное событие.\n Например,\n Вторая среда каждого месяца:\n Частота = Ежемесячно,\n Дни недели = отметьте только среду,\n В какой день = укажите 2 в поле для среды"
+msgstr "Укажите, в какой день недели наступает ежемесячное или ежегодное событие.\nНапример, вторая среда каждого месяца:\n\tЧастота — Ежемесячно,\n\tДни недели — отметьте только среду,\n\tВ какой день — укажите 2 в поле для среды."
 
 #. TODO base (only for TODOs)
 #: ../src/appointment.c:3450
@@ -1134,7 +1134,7 @@ msgid ""
 "Add more exception dates by clicking the calendar days below.\n"
 "Exception is either exclusion(-) or inclusion(+) depending on the selection.\n"
 "Remove by clicking the data."
-msgstr "Можно добавить исключения, щёлкая по дням в календаре.\nИсключения — это включения (-) или исключения (+).\nЩёлкните по дате, чтобы их удалить."
+msgstr "Можно добавить исключения, щёлкая по дням в календаре.\nИсключения могут быть исключёнными (-) или включёнными (+).\nЩёлкните по дате, чтобы их удалить."
 
 #: ../src/appointment.c:3489
 msgid "Add excluded date (-)"
@@ -1251,7 +1251,7 @@ msgstr "Найти"
 
 #: ../src/event-list.c:1196
 msgid "Dayview"
-msgstr "Дневной вид"
+msgstr "Просмотр дней"
 
 #: ../src/event-list.c:1231
 msgid "Extra days to show:"
@@ -1259,7 +1259,7 @@ msgstr "Показывать дополнительно дней:"
 
 #: ../src/event-list.c:1240
 msgid "only first repeating"
-msgstr "только первое повторяющееся"
+msgstr "Только первое повторяющееся"
 
 #: ../src/event-list.c:1245
 msgid ""
@@ -1270,7 +1270,7 @@ msgstr "Выберите если хотите видеть только пер�
 
 #: ../src/event-list.c:1250
 msgid "also old"
-msgstr "также старые"
+msgstr "Также старые"
 
 #: ../src/event-list.c:1252
 msgid ""
@@ -1317,7 +1317,7 @@ msgstr "Двойной щелчок для изменения строки.\n\n�
 #. remove since it has ended
 #: ../src/ical-archive.c:267
 msgid "\tRecur ended, moving to archive file."
-msgstr "\tПросмотр завершён, перенос в файл архива."
+msgstr "\tПовтор завершён, перенос в файл архива."
 
 #: ../src/ical-archive.c:330
 msgid "Archiving not enabled. Exiting"
@@ -1395,7 +1395,7 @@ msgstr "\tДобавлено будильников: %d. Обработано с
 #, c-format
 msgid ""
 "\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
-msgstr "\tНайдено %d будильников, из них активных: %d (просмотрено %d повторяющихся будильников)."
+msgstr "\tНайдено будильников: %d, из них активных: %d (просмотрено %d повторяющихся будильников)."
 
 #: ../src/ical-expimp.c:123
 msgid "Starting import file preprocessing"
@@ -1486,7 +1486,7 @@ msgstr "Прочитать из файла:"
 msgid ""
 "Separate filenames with comma(,).\n"
 " NOTE: comma is not valid character in filenames for Orage."
-msgstr "Разделите имена файлов запятыми (,).\n Внимание! Запятые недопустимы в именах файлов Orage."
+msgstr "Разделите имена файлов запятыми.\nВнимание! Запятые недопустимы в именах файлов Orage."
 
 #: ../src/interface.c:999
 msgid "Export"
@@ -1617,7 +1617,6 @@ msgstr "Внешний файл:"
 
 #. label = gtk_label_new(_("Options:"));
 #. gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 5);
-#. 
 #: ../src/interface.c:1279
 msgid "Visible name:"
 msgstr "Отображаемое имя:"
@@ -1630,7 +1629,7 @@ msgstr "Только для чтения"
 msgid ""
 "Set this if you want to make sure that this file is never modified by Orage.\n"
 "Note that modifying foreign files may make them incompatible with the original tool, where they came from!"
-msgstr "Установите, если необходимо убедиться, что это файл никогда не будет изменён Orage.\nВнимание! Изменение внешних файлов может сделать их недоступными для исходной утилиты, с помощью которой они созданы."
+msgstr "Установите, если необходимо убедиться, что это файл никогда не будет изменён Orage.\nВнимание! Изменение внешних файлов может сделать их недоступными для исходной утилиты, с помощью которой они были созданы."
 
 #: ../src/interface.c:1294
 msgid "This internal name is displayed to user instead of file name."
@@ -1645,7 +1644,7 @@ msgstr "Обмен данными — Orage"
 msgid ""
 "\tThis is %s version %s\n"
 "\n"
-msgstr "\tЭто %s версия %s \n\n"
+msgstr "\t%s версии %s\n"
 
 #: ../src/main.c:277
 #, c-format
@@ -1722,17 +1721,17 @@ msgstr "--version (-v) \t\tвывести версию Orage\n"
 #: ../src/main.c:316
 #, c-format
 msgid "--help (-h) \t\tprint this text\n"
-msgstr "--help (-h) \t\tвывести этот текст\n"
+msgstr "--help (-h) \t\tвывести это описание\n"
 
 #: ../src/main.c:317
 #, c-format
 msgid "--preferences (-p) \tshow preferences form\n"
-msgstr "--preferences (-p) \tпоказать форму параметров\n"
+msgstr "--preferences (-p) \tпоказать окно настроек\n"
 
 #: ../src/main.c:318
 #, c-format
 msgid "--toggle (-t) \t\tmake orage visible/unvisible\n"
-msgstr "--toggle (-t) \t\tпоказать/спрятать orage\n"
+msgstr "--toggle (-t) \t\tпоказать/спрятать Orage\n"
 
 #: ../src/main.c:319
 #, c-format
@@ -1742,7 +1741,7 @@ msgstr "--add-foreign (-a) ФАЙЛ [RW] [ИМЯ] \tдобавить внешн�
 #: ../src/main.c:320
 #, c-format
 msgid "--remove-foreign (-r) file \tremove a foreign file\n"
-msgstr "--remove-foreign (-r) файл \tудалить внешний файл\n"
+msgstr "--remove-foreign (-r) ФАЙЛ \t\tудалить внешний файл\n"
 
 #: ../src/main.c:321
 #, c-format
@@ -1754,19 +1753,19 @@ msgstr "--export (-e) ФАЙЛ [ВСТРЕЧА...] \tэкспорт данных
 #: ../src/main.c:323
 #, c-format
 msgid "files=ical files to load into orage\n"
-msgstr "files=файлы ical для загрузки в orage\n"
+msgstr "Файлы — файлы ical для загрузки в Orage\n"
 
 #: ../src/main.c:325
 #, c-format
 msgid "\tdbus not included in orage. \n"
-msgstr "\tdbus не включён в orage. \n"
+msgstr "\tdbus не включён в Orage. \n"
 
 #: ../src/main.c:326
 #, c-format
 msgid ""
 "\twithout dbus [files] and foreign file options(-a & -r) can only be used "
 "when starting orage \n"
-msgstr "\tбез dbus [files] и опции внешних файлов (-a & -r) можно использовать только при запуске orage \n"
+msgstr "\tбез dbus [файлы] и внешнего файла опции (-a & -r) можно использовать только при запуске Orage \n"
 
 #: ../src/main.c:535
 #, c-format
@@ -1868,7 +1867,7 @@ msgstr "Часовой пояс"
 
 #: ../src/parameters.c:513
 msgid "You should always define your local timezone."
-msgstr "Необходимо всегда определить местный часовой пояс."
+msgstr "Местный часовой пояс должен быть всегда определён."
 
 #: ../src/parameters.c:521
 msgid "Archive threshold (months)"
@@ -1888,7 +1887,7 @@ msgstr "Звуковая команда"
 
 #: ../src/parameters.c:557
 msgid "This command is given to shell to make sound in alarms."
-msgstr "Эта команда передаётся оболочке для воспроизведения звука в будильнике."
+msgstr "Эта команда передаётся оболочке для воспроизведения звука будильника."
 
 #: ../src/parameters.c:596
 msgid "Calendar window"
@@ -1932,7 +1931,7 @@ msgstr "Число дней в окне событий"
 
 #: ../src/parameters.c:673
 msgid "0 = do not show event list at all"
-msgstr "0 = не отображать список событий"
+msgstr "0 — не отображать список событий"
 
 #: ../src/parameters.c:686
 msgid "Calendar visibility"
@@ -2042,7 +2041,7 @@ msgstr "Динамический значок"
 
 #: ../src/parameters.c:954
 msgid "Dynamic icon shows current month and day of the month."
-msgstr "Динамическая значок показывает текущие месяц и число. Используется только на панели оповещений."
+msgstr "Динамический значок показывает текущие месяц и число. Используется только на панели оповещений."
 
 #: ../src/parameters.c:962 ../src/parameters.c:967
 msgid "Use wakeup timer"
@@ -2096,7 +2095,7 @@ msgstr "Выбран часовой пояс: %s."
 
 #: ../src/parameters.c:1179
 msgid "Default timezone not found, please, set it manually."
-msgstr "Используемый часовой пояс не найден, задайте его вручную."
+msgstr "Не найден используемый часовой пояс, задайте его вручную."
 
 #: ../src/reminder.c:562
 msgid "Reminder "
@@ -2158,7 +2157,7 @@ msgstr "Африка/Алжир"
 
 #: ../src/timezone_names.c:41
 msgid "Africa/Asmara"
-msgstr "Африка/Асмара"
+msgstr "Африка/Асмэра"
 
 #: ../src/timezone_names.c:42
 msgid "Africa/Asmera"
@@ -2682,7 +2681,7 @@ msgstr "Америка/Индианаполис"
 
 #: ../src/timezone_names.c:172
 msgid "America/Inuvik"
-msgstr "Амеркиа/Инувик"
+msgstr "Америка/Инувик"
 
 #: ../src/timezone_names.c:173
 msgid "America/Iqaluit"
@@ -2706,7 +2705,7 @@ msgstr "Америка/Кентукки/Луисвилл"
 
 #: ../src/timezone_names.c:178
 msgid "America/Kentucky/Monticello"
-msgstr "Америка/Кентуки/Монтичелло"
+msgstr "Америка/Кентукки/Монтичелло"
 
 #: ../src/timezone_names.c:179
 msgid "America/Knox_IN"
@@ -2726,7 +2725,7 @@ msgstr "Америка/Лима"
 
 #: ../src/timezone_names.c:183
 msgid "America/Los_Angeles"
-msgstr "Америка/Лос-Анжелес"
+msgstr "Америка/Лос-Анджелес"
 
 #: ../src/timezone_names.c:184
 msgid "America/Louisville"
@@ -3402,7 +3401,7 @@ msgstr "Азия/Тель-Авив"
 
 #: ../src/timezone_names.c:352
 msgid "Asia/Thimbu"
-msgstr ""
+msgstr "Азия/Тхимпху"
 
 #: ../src/timezone_names.c:353
 msgid "Asia/Thimphu"
@@ -4102,7 +4101,7 @@ msgstr "Тихий океан"
 
 #: ../src/timezone_names.c:527
 msgid "Pacific/Apia"
-msgstr "Тихий океан/Апия"
+msgstr "Тихий океан/Апиа"
 
 #: ../src/timezone_names.c:528
 msgid "Pacific/Auckland"
@@ -4166,7 +4165,7 @@ msgstr "Тихий океан/Джонстон, ат."
 
 #: ../src/timezone_names.c:543
 msgid "Pacific/Kiritimati"
-msgstr "Тихий океан/Киритимати"
+msgstr "Тихий океан/Остров Рождества"
 
 #: ../src/timezone_names.c:544
 msgid "Pacific/Kosrae"
@@ -4226,7 +4225,7 @@ msgstr "Тихий океан/Понапе, о-в"
 
 #: ../src/timezone_names.c:558
 msgid "Pacific/Port_Moresby"
-msgstr "Тихий океан/Порт Морсби"
+msgstr "Тихий океан/Порт-Морсби"
 
 #: ../src/timezone_names.c:559
 msgid "Pacific/Rarotonga"
@@ -4390,7 +4389,7 @@ msgstr "О программе"
 
 #: ../panel-plugin/xfce4-orageclock-plugin.desktop.in.in.h:1
 msgid "Orage Panel Clock"
-msgstr "Часы с датой"
+msgstr "Часы с датой Orage"
 
 #: ../panel-plugin/xfce4-orageclock-plugin.desktop.in.in.h:2
 msgid "Show time and date?"
