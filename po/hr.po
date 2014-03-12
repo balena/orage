@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-12-02 18:30+0100\n"
-"PO-Revision-Date: 2014-03-09 21:15+0000\n"
+"PO-Revision-Date: 2014-03-12 18:45+0000\n"
 "Last-Translator: schizo <eveskovic@gmail.com>\n"
 "Language-Team: Croatian (http://www.transifex.com/projects/p/xfce/language/hr/)\n"
 "MIME-Version: 1.0\n"
@@ -475,7 +475,7 @@ msgid ""
 "circumstances it is possible that Orageclock shows time inaccurately unless "
 "you have this selected. (Selecting this prevents cpu and interrupt saving "
 "features from working.)"
-msgstr ""
+msgstr "Ova opcija vam je potrebna samo ako radite kratke suspenzije ili hibernaciju sustava (kraće od 5 sati) i ako prikazano vrijeme ne uključuje sekunde. Pod tim uvjetima moguće je da Orageclock netočno pokaže vrijeme. (Uključivanjem ove opcije spriječavaju se funkcije procesora i prekida za očuvanje energije.)"
 
 #: ../panel-plugin/oc_config.c:432
 msgid ""
@@ -487,7 +487,7 @@ msgid ""
 "\t%V = week number\t\t%Z = timezone in use\n"
 "\t%H = hours \t\t\t\t%M = minute\n"
 "\t%X = local time\t\t\t%x = local date"
-msgstr ""
+msgstr "Ovaj program koristi strftime funkcije za dobivanje vremena.\nKoristite bilo koji pravilan kod za dobivanje vremena u željenom formatu.\nNeki česti kodovi su:\n\t%A = dan u tjednu\t\t\t%B = mjesec\n\t%c = datum i vrijeme\t\t%R = sat i minute\n\t%V = broj tjedna\t\t%Z = vremenska zona u upotrebi\n\t%H = sati \t\t\t\t%M = minute\n\t%X = lokalno vrijeme\t\t\t%x = lokalni datum"
 
 #: ../panel-plugin/oc_config.c:457
 msgid "Orage clock Preferences"
@@ -504,7 +504,7 @@ msgstr "Osobitosti Orage sata"
 #. * %V  : ISO week number
 #: ../panel-plugin/xfce4-orageclock-plugin.c:627
 msgid "%A %d %B %Y/%V"
-msgstr ""
+msgstr "%A %d %B %Y/%V"
 
 #: ../src/about-xfcalendar.c:40
 msgid "Maintainer"
@@ -561,7 +561,7 @@ msgstr "Da, ignoriraj promijene i otiđi"
 
 #: ../src/appointment.c:768
 msgid "The end of this appointment is earlier than the beginning."
-msgstr ""
+msgstr "Kraj ovog termina je prije njegovog početka."
 
 #: ../src/appointment.c:1035 ../src/appointment.c:1923
 msgid "Not set"
