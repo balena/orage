@@ -6,13 +6,13 @@
 # Adolfo Jayme Barrientos <fitoschido@ubuntu.com>, 2013
 # Edscott Wilson Garcia <edscott@xfce.org>, 2004
 # MC <correomc2000-ing@yahoo.es>, 2013
-# Pablo Lezaeta <prflr88@gmail.com>, 2013
+# Pablo Lezaeta <prflr88@gmail.com>, 2013-2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-12-02 18:30+0100\n"
-"PO-Revision-Date: 2013-12-03 02:53+0000\n"
+"PO-Revision-Date: 2014-03-26 19:35+0000\n"
 "Last-Translator: Pablo Lezaeta <prflr88@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/projects/p/xfce/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -502,7 +502,6 @@ msgstr "Preferencias del reloj Orage"
 #. * %B  : full month name
 #. * %Y  : four digit year
 #. * %V  : ISO week number
-#. 
 #: ../panel-plugin/xfce4-orageclock-plugin.c:627
 msgid "%A %d %B %Y/%V"
 msgstr "%A %d %B %Y/%V"
@@ -593,7 +592,7 @@ msgstr "Actualización de la cita ha fallado."
 msgid ""
 "Look more details from the log file. (Perhaps file was updated external from"
 " Orage?)"
-msgstr "Vea más detalles en el registro (¿Talvés el archivo fue actualizado de forma externa a Orage?)."
+msgstr "Vea más detalles en el registro (¿Tal vez el archivo fue actualizado de forma externa a Orage?)."
 
 #: ../src/appointment.c:1286
 msgid "This appointment will be permanently removed."
@@ -721,7 +720,7 @@ msgstr "Tareas pendientes"
 msgid ""
 "Something that you should do sometime. For example:\n"
 "Wash your car or test new version of Orage."
-msgstr "Algo que debería hacer alguna ocasión. Por ejemplo:\nLavar su coche o probar la nueva versión de Orage."
+msgstr "Algo que debería hacer alguna ocasión. Por ejemplo:\nLavar su automóvil o probar la nueva versión de Orage."
 
 #: ../src/appointment.c:2758 ../src/event-list.c:1287
 msgid "Journal"
@@ -1308,7 +1307,7 @@ msgid ""
 "\t\tO=Orage A=Archive F=Foreign\n"
 "\t 5. Appointment type:\n"
 "\t\tE=Event T=Todo J=Journal"
-msgstr "Haga doble clic en la línea para editarlo.\n\nBanderas en orden:\n\n\t1. Alarma: n = sin alarma\n\t\tA = Alarma está activada P = Se establece alarma como persistente\n\t2. Recurrencia: n = sin recurrencia\n\t\tH = Por hora D = Diaria W = Semanal M = Mensual Y = Anual\n\t3. Tipo: f = Libre B = Ocupado\n\t4. Situado en el archivo:\n\t\tO = Naranja A = Archivo F = Externo\n\t5. Tipo de nombramiento:\n\t\tE = Evento T = Todo J = Diario"
+msgstr "Haga doble clic en la línea para editarlo.\n\nBanderas en orden:\n\n\t1. Alarma: n = sin alarma\n\t\tA = Alarma está activada P = Se establece alarma como persistente\n\t2. Recurrencia: n = sin recurrencia\n\t\tH = Por hora D = Diaria W = Semanal M = Mensual Y = Anual\n\t3. Tipo: f = Libre B = Ocupado\n\t4. Situado en el archivo:\n\t\tO = Orage A = Archivo F = Externo\n\t5. Tipo de nombramiento:\n\t\tE = Evento T = Todo J = Diario"
 
 #. remove since it has ended
 #: ../src/ical-archive.c:267
@@ -1482,7 +1481,7 @@ msgstr "Leer de archivo:"
 msgid ""
 "Separate filenames with comma(,).\n"
 " NOTE: comma is not valid character in filenames for Orage."
-msgstr "Separar nombres de archivo con coma (,).\n NOTA: la coma no es un carácter válido para nombres de archivo de Orage."
+msgstr "Separar nombres de archivo con coma (,).\nNOTA: la coma no es un carácter válido para nombres de archivo de Orage."
 
 #: ../src/interface.c:999
 msgid "Export"
@@ -1546,7 +1545,7 @@ msgid ""
 "Return all archived events into main orage file and remove arch file.\n"
 "This is useful for example when doing export and moving orage\n"
 "appointments to another system."
-msgstr "Devolver todos los eventos archivados al fichero principal de Orage y eliminar el fichero de archivo.\nEsto es útil por ejemplo al exportar y mover citas de Orage\na otro sistema."
+msgstr "Devolver todos los eventos archivados al fichero principal de Orage y eliminar el fichero de archivo.\nEsto es útil por ejemplo al exportar y mover citas de Orage a otro sistema."
 
 #: ../src/interface.c:1109
 msgid "Orage files"
@@ -1613,7 +1612,6 @@ msgstr "Archivo externo:"
 
 #. label = gtk_label_new(_("Options:"));
 #. gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 5);
-#. 
 #: ../src/interface.c:1279
 msgid "Visible name:"
 msgstr "Nombre visible:"
@@ -1713,7 +1711,7 @@ msgstr "Opciones:\n"
 #: ../src/main.c:315
 #, c-format
 msgid "--version (-v) \t\tshow version of orage\n"
-msgstr "--version (-v) \t\tmuestra la versión de orage\n"
+msgstr "--version (-v) \t\tmuestra la versión de Orage\n"
 
 #: ../src/main.c:316
 #, c-format
@@ -1728,7 +1726,7 @@ msgstr "--preferences (-p) \tmostrar formulario de preferencias\n"
 #: ../src/main.c:318
 #, c-format
 msgid "--toggle (-t) \t\tmake orage visible/unvisible\n"
-msgstr "--toggle (-t) \t\thacer orage visible/invisible\n"
+msgstr "--toggle (-t) \t\thacer Orage visible/invisible\n"
 
 #: ../src/main.c:319
 #, c-format
@@ -1750,19 +1748,19 @@ msgstr "--exportar(-e)archvio[cita...] \texportar citas de Orage a archivo\n"
 #: ../src/main.c:323
 #, c-format
 msgid "files=ical files to load into orage\n"
-msgstr "archivos=archivos ical a cargar en orage\n"
+msgstr "archivos=archivos ical a cargar en Orage\n"
 
 #: ../src/main.c:325
 #, c-format
 msgid "\tdbus not included in orage. \n"
-msgstr "\tdbus no incluido en orage.\n"
+msgstr "\tdbus no incluido en Orage.\n"
 
 #: ../src/main.c:326
 #, c-format
 msgid ""
 "\twithout dbus [files] and foreign file options(-a & -r) can only be used "
 "when starting orage \n"
-msgstr "\tsin dbus las opciones (-a y -r) para [archivos] y archivos externos solamente pueden ser usadas al iniciar orage \n"
+msgstr "\tsin dbus las opciones (-a y -r) para [archivos] y archivos externos solamente pueden ser usadas al iniciar Orage \n"
 
 #: ../src/main.c:535
 #, c-format
@@ -2142,11 +2140,11 @@ msgstr "África/Abiyán"
 
 #: ../src/timezone_names.c:38
 msgid "Africa/Accra"
-msgstr "África/Accra"
+msgstr "África/Acra"
 
 #: ../src/timezone_names.c:39
 msgid "Africa/Addis_Ababa"
-msgstr "África/Adis Abeba"
+msgstr "África/Adís Abeba"
 
 #: ../src/timezone_names.c:40
 msgid "Africa/Algiers"
@@ -2162,7 +2160,7 @@ msgstr "África/Asmara"
 
 #: ../src/timezone_names.c:43
 msgid "Africa/Bamako"
-msgstr "África/Bamako"
+msgstr "África/Bámako"
 
 #: ../src/timezone_names.c:44
 msgid "Africa/Bangui"
@@ -2174,11 +2172,11 @@ msgstr "África/Banjul"
 
 #: ../src/timezone_names.c:46
 msgid "Africa/Bissau"
-msgstr "África/Bissau"
+msgstr "África/Bisáu"
 
 #: ../src/timezone_names.c:47
 msgid "Africa/Blantyre"
-msgstr "África/Blantyre"
+msgstr "África/Blantire"
 
 #: ../src/timezone_names.c:48
 msgid "Africa/Brazzaville"
@@ -2186,7 +2184,7 @@ msgstr "África/Brazzaville"
 
 #: ../src/timezone_names.c:49
 msgid "Africa/Bujumbura"
-msgstr "África/Boujoumboura"
+msgstr "África/Buyumbura"
 
 #: ../src/timezone_names.c:50
 msgid "Africa/Cairo"
@@ -2202,7 +2200,7 @@ msgstr "África/Ceuta"
 
 #: ../src/timezone_names.c:53
 msgid "Africa/Conakry"
-msgstr "África/Conakry"
+msgstr "África/Conakri"
 
 #: ../src/timezone_names.c:54
 msgid "Africa/Dakar"
@@ -2210,19 +2208,19 @@ msgstr "África/Dakar"
 
 #: ../src/timezone_names.c:55
 msgid "Africa/Dar_es_Salaam"
-msgstr "África/Dar es Salaam"
+msgstr "África/Dar es-Salam"
 
 #: ../src/timezone_names.c:56
 msgid "Africa/Djibouti"
-msgstr "África/Djibouti"
+msgstr "África/Yibuti"
 
 #: ../src/timezone_names.c:57
 msgid "Africa/Douala"
-msgstr "África/Douala"
+msgstr "África/Duala"
 
 #: ../src/timezone_names.c:58
 msgid "Africa/El_Aaiun"
-msgstr "África/El Aaiun"
+msgstr "África/El Ayún"
 
 #: ../src/timezone_names.c:59
 msgid "Africa/Freetown"
@@ -2258,7 +2256,7 @@ msgstr "África/Kigali"
 
 #: ../src/timezone_names.c:67
 msgid "Africa/Kinshasa"
-msgstr "África/Kinshasa"
+msgstr "África/Kinsasa"
 
 #: ../src/timezone_names.c:68
 msgid "Africa/Lagos"
@@ -2314,7 +2312,7 @@ msgstr "África/Nairobi"
 
 #: ../src/timezone_names.c:81
 msgid "Africa/Ndjamena"
-msgstr "África/Ndjamena"
+msgstr "África/Yamena"
 
 #: ../src/timezone_names.c:82
 msgid "Africa/Niamey"
@@ -2322,7 +2320,7 @@ msgstr "África/Niamey"
 
 #: ../src/timezone_names.c:83
 msgid "Africa/Nouakchott"
-msgstr "África/Nouakchott"
+msgstr "África/Nuakchot"
 
 #: ../src/timezone_names.c:84
 msgid "Africa/Ouagadougou"
@@ -2330,7 +2328,7 @@ msgstr "África/Uagadugú"
 
 #: ../src/timezone_names.c:85
 msgid "Africa/Porto-Novo"
-msgstr "África/Porto-Novo"
+msgstr "África/Pôrto Novo"
 
 #: ../src/timezone_names.c:86
 msgid "Africa/Sao_Tome"
@@ -2342,7 +2340,7 @@ msgstr "África/Tombuctú"
 
 #: ../src/timezone_names.c:88
 msgid "Africa/Tripoli"
-msgstr "África/Trípoli"
+msgstr "África/Trípoli de Occidente"
 
 #: ../src/timezone_names.c:89
 msgid "Africa/Tunis"
@@ -2350,7 +2348,7 @@ msgstr "África/Túnez"
 
 #: ../src/timezone_names.c:90
 msgid "Africa/Windhoek"
-msgstr "África/Windhoek"
+msgstr "África/Windhuk"
 
 #: ../src/timezone_names.c:91
 msgid "America"
@@ -3486,7 +3484,7 @@ msgstr "Atlántico/Madeira"
 
 #: ../src/timezone_names.c:374
 msgid "Atlantic/Reykjavik"
-msgstr "Atlántico/Reykjavik"
+msgstr "Atlántico/Reikiavik"
 
 #: ../src/timezone_names.c:375
 msgid "Atlantic/South_Georgia"
@@ -3594,7 +3592,7 @@ msgstr "Canadá/Este-Saskatchewan"
 
 #: ../src/timezone_names.c:401
 msgid "Canada/Eastern"
-msgstr "Canadá/Este"
+msgstr "Canadá/Al este"
 
 #: ../src/timezone_names.c:402
 msgid "Canada/Mountain"
@@ -3626,7 +3624,7 @@ msgstr "Chile/Continental"
 
 #: ../src/timezone_names.c:409
 msgid "Chile/EasterIsland"
-msgstr "Chile/IslaDePascua"
+msgstr "Chile/Isla de pascua"
 
 #: ../src/timezone_names.c:410
 msgid "Etc"
@@ -3818,7 +3816,7 @@ msgstr "Europa/Budapest"
 
 #: ../src/timezone_names.c:457
 msgid "Europe/Busingen"
-msgstr "Europa/Busingen"
+msgstr "Europa/Büsingen"
 
 #: ../src/timezone_names.c:458
 msgid "Europe/Chisinau"
@@ -3830,7 +3828,7 @@ msgstr "Europa/Copenhague"
 
 #: ../src/timezone_names.c:460
 msgid "Europe/Dublin"
-msgstr "Europa/Dublin"
+msgstr "Europa/Dublín"
 
 #: ../src/timezone_names.c:461
 msgid "Europe/Gibraltar"
@@ -3950,7 +3948,7 @@ msgstr "Europa/Simferopol"
 
 #: ../src/timezone_names.c:490
 msgid "Europe/Skopje"
-msgstr "Europa/Skopje"
+msgstr "Europa/Skopie"
 
 #: ../src/timezone_names.c:491
 msgid "Europe/Sofia"
@@ -3974,7 +3972,7 @@ msgstr "Europa/Tiráspol"
 
 #: ../src/timezone_names.c:496
 msgid "Europe/Uzhgorod"
-msgstr "Europa/Uzhgorod"
+msgstr "Europa/Úzhgorod"
 
 #: ../src/timezone_names.c:497
 msgid "Europe/Vaduz"
@@ -3990,7 +3988,7 @@ msgstr "Europa/Viena"
 
 #: ../src/timezone_names.c:500
 msgid "Europe/Vilnius"
-msgstr "Europa/Vilnius"
+msgstr "Europa/Vilna"
 
 #: ../src/timezone_names.c:501
 msgid "Europe/Volgograd"
@@ -4006,11 +4004,11 @@ msgstr "Europa/Zagreb"
 
 #: ../src/timezone_names.c:504
 msgid "Europe/Zaporozhye"
-msgstr "Europa/Zaporozhye"
+msgstr "Europa/Zaporiyia"
 
 #: ../src/timezone_names.c:505
 msgid "Europe/Zurich"
-msgstr "Europa/Zurich"
+msgstr "Europa/Zúrich"
 
 #: ../src/timezone_names.c:506
 msgid "Indian"
@@ -4118,11 +4116,11 @@ msgstr "Pacífico/Pascua"
 
 #: ../src/timezone_names.c:532
 msgid "Pacific/Efate"
-msgstr "Pacífico/Efate"
+msgstr "Pacífico/Éfaté"
 
 #: ../src/timezone_names.c:533
 msgid "Pacific/Enderbury"
-msgstr "Pacífico/Enderbury"
+msgstr "Pacífico/Isla Enderbury"
 
 #: ../src/timezone_names.c:534
 msgid "Pacific/Fakaofo"
@@ -4130,7 +4128,7 @@ msgstr "Pacífico/Fakaofo"
 
 #: ../src/timezone_names.c:535
 msgid "Pacific/Fiji"
-msgstr "Pacífico/Fidji"
+msgstr "Pacífico/Fiyi"
 
 #: ../src/timezone_names.c:536
 msgid "Pacific/Funafuti"
@@ -4170,7 +4168,7 @@ msgstr "Pacífico/Kosrae"
 
 #: ../src/timezone_names.c:545
 msgid "Pacific/Kwajalein"
-msgstr "Pacífico/Kwajalein"
+msgstr "Pacífico/Kuajalein"
 
 #: ../src/timezone_names.c:546
 msgid "Pacific/Majuro"
@@ -4198,7 +4196,7 @@ msgstr "Pacífico/Norfolk"
 
 #: ../src/timezone_names.c:552
 msgid "Pacific/Noumea"
-msgstr "Pacífico/Noumea"
+msgstr "Pacífico/Numea"
 
 #: ../src/timezone_names.c:553
 msgid "Pacific/Pago_Pago"
@@ -4210,15 +4208,15 @@ msgstr "Pacífico/Palau"
 
 #: ../src/timezone_names.c:555
 msgid "Pacific/Pitcairn"
-msgstr "Pacífico/Pitcairn"
+msgstr "Pacífico/Islas Pitcairn"
 
 #: ../src/timezone_names.c:556
 msgid "Pacific/Pohnpei"
-msgstr "Pacífico/Ponapé"
+msgstr "Pacífico/Ponapé (Pohnpei)"
 
 #: ../src/timezone_names.c:557
 msgid "Pacific/Ponape"
-msgstr "Pacífico/Ponape"
+msgstr "Pacífico/Ponapé"
 
 #: ../src/timezone_names.c:558
 msgid "Pacific/Port_Moresby"
@@ -4342,7 +4340,7 @@ msgstr "US/Central"
 
 #: ../src/timezone_names.c:588
 msgid "US/Eastern"
-msgstr "US/Este"
+msgstr "US/Al este"
 
 #: ../src/timezone_names.c:589
 msgid "US/East-Indiana"
@@ -4370,7 +4368,7 @@ msgstr "US/Pacífico"
 
 #: ../src/timezone_names.c:595
 msgid "US/Pacific-New"
-msgstr "US/Nuevo-Pacífico"
+msgstr "US/Nuevo Pacífico"
 
 #: ../src/timezone_names.c:596
 msgid "US/Samoa"
@@ -4398,7 +4396,7 @@ msgstr "Preferencias de Orage"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:2
 msgid "Settings for the Xfce 4 Calendar Application (Orage)"
-msgstr "Configuración para la aplicación de calendario de Xfce 4 (Orage)"
+msgstr "Configuración para la aplicación de calendario de Xfce (Orage)"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:3
 msgid "Orage Calendar Preferences"
