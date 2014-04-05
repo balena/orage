@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-12-02 18:30+0100\n"
-"PO-Revision-Date: 2014-03-26 19:35+0000\n"
+"PO-Revision-Date: 2014-04-05 00:38+0000\n"
 "Last-Translator: Pablo Lezaeta <prflr88@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/projects/p/xfce/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -102,7 +102,7 @@ msgstr "mover este reloj al final"
 
 #: ../globaltime/gt_prefs.c:562
 msgid "set the timezone of this clock to be local timezone"
-msgstr "establecer la zona horaria para este reloj para que sea la zona horaria local"
+msgstr "establecer el huso horario para este reloj para que sea el huso horario local"
 
 #: ../globaltime/gt_prefs.c:568 ../globaltime/gt_prefs.c:1042
 msgid "close window and exit"
@@ -127,7 +127,7 @@ msgstr "introduzca el nombre del reloj"
 
 #: ../globaltime/gt_prefs.c:616
 msgid "Timezone of the clock:"
-msgstr "Zona horaria del reloj:"
+msgstr "Huso horario del reloj:"
 
 #: ../globaltime/gt_prefs.c:643
 msgid "Text Formatting"
@@ -282,7 +282,7 @@ msgstr "Los tamaños de reloj varían"
 
 #: ../globaltime/gt_prefs.c:1122
 msgid "Local timezone:"
-msgstr "Zona horaria local:"
+msgstr "Huso horario local:"
 
 #: ../globaltime/timezone_selection.c:101
 #: ../panel-plugin/timezone_selection.c:102 ../src/timezone_selection.c:102
@@ -362,7 +362,7 @@ msgstr "País"
 #: ../panel-plugin/timezone_selection.c:310 ../src/timezone_selection.c:316
 #: ../src/timezone_selection.c:325 ../src/timezone_selection.c:336
 msgid "Pick timezone"
-msgstr "Escoja la zona horaria"
+msgstr "Escoja un huso horario"
 
 #: ../globaltime/timezone_selection.c:302
 #: ../globaltime/timezone_selection.c:312
@@ -447,7 +447,7 @@ msgstr "Opciones de reloj"
 #. timezone
 #: ../panel-plugin/oc_config.c:326
 msgid "set timezone to:"
-msgstr "establecer zona horaria en:"
+msgstr "establecer el huso horario en:"
 
 #: ../panel-plugin/oc_config.c:347
 #, c-format
@@ -487,7 +487,7 @@ msgid ""
 "\t%V = week number\t\t%Z = timezone in use\n"
 "\t%H = hours \t\t\t\t%M = minute\n"
 "\t%X = local time\t\t\t%x = local date"
-msgstr "Este programa usa la función strftime para obtener la hora.\nUse cualquier código válido para obtener la hora en el formato que prefiera.\nAlgunos códigos comunes son:\n\t%A = día de la semana\t\t\t%B = mes\n\t%c = fecha & hora\t\t%R = hora & minuto\n\t%V = día de la semana (numérico)\t\t%Z = zona horaria en uso\n\t%H = hora \t\t\t\t%M = minuto\n\t%X = hora local\t\t\t%x = fecha local"
+msgstr "Este programa usa la función «strftime» para obtener la hora.\nUse cualquier código válido para obtener la hora en el formato que prefiera.\nAlgunos códigos comunes son:\n\t%A = día de la semana\t\t\t%B = mes\n\t%c = fecha & hora\t\t%R = hora & minuto\n\t%V = día de la semana (numérico)\t\t%Z = huso horario en uso\n\t%H = hora \t\t\t\t%M = minuto\n\t%X = hora local\t\t\t%x = fecha local"
 
 #: ../panel-plugin/oc_config.c:457
 msgid "Orage clock Preferences"
@@ -1147,7 +1147,7 @@ msgstr "Añadir hora incluida (-)"
 msgid ""
 "Included times have same timezone than start time, but they may have "
 "different time"
-msgstr "Las horas incluidas tienen la misma zona horaria que la hora de inicio, pero pueden tener horas distintas."
+msgstr "Las horas incluidas tienen el mismo huso horario que la hora de inicio, pero pueden tener horas distintas."
 
 #. calendars showing the action days
 #: ../src/appointment.c:3516
@@ -1402,7 +1402,7 @@ msgstr "... DCREATED modificado para ser CREATED."
 
 #: ../src/ical-expimp.c:197
 msgid "... Patched timezone to Orage format."
-msgstr "... Zona horaria modificada con formato de Orage"
+msgstr "... Huso horario modificado con formato de Orage"
 
 #: ../src/ical-expimp.c:206
 msgid "Import file preprocessing done"
@@ -1858,11 +1858,11 @@ msgstr "Opciones principales"
 
 #: ../src/parameters.c:498
 msgid "Timezone"
-msgstr "Zona horaria"
+msgstr "Huso horario"
 
 #: ../src/parameters.c:513
 msgid "You should always define your local timezone."
-msgstr "Debería definir siempre su zona horaria local."
+msgstr "Debería definir siempre su huso horario local."
 
 #: ../src/parameters.c:521
 msgid "Archive threshold (months)"
@@ -2081,16 +2081,16 @@ msgstr "Preferencias de Orage"
 
 #: ../src/parameters.c:1157
 msgid "First Orage start. Searching default timezone."
-msgstr "Primer inicio de Orage. Buscando zona horaria predeterminada."
+msgstr "Primer inicio de Orage. Buscando huso horario predeterminada."
 
 #: ../src/parameters.c:1176
 #, c-format
 msgid "Default timezone set to %s."
-msgstr "Zona horaria predeterminada configurada como %s."
+msgstr "Huso horario predeterminada configurada como %s."
 
 #: ../src/parameters.c:1179
 msgid "Default timezone not found, please, set it manually."
-msgstr "Zona horaria no encontrada. Por favor, configúrela manualmente."
+msgstr "Huso horario no encontrada. Por favor, configúrela manualmente."
 
 #: ../src/reminder.c:562
 msgid "Reminder "
