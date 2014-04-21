@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-12-02 18:30+0100\n"
-"PO-Revision-Date: 2014-04-20 13:59+0000\n"
+"PO-Revision-Date: 2014-04-21 14:02+0000\n"
 "Last-Translator: 柏諺 黃 <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/xfce/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -594,7 +594,7 @@ msgstr "未能更新約會。"
 msgid ""
 "Look more details from the log file. (Perhaps file was updated external from"
 " Orage?)"
-msgstr ""
+msgstr "在記錄檔中觀看更多細節。(也許檔案已經被 Orage 從外部升級了？)"
 
 #: ../src/appointment.c:1286
 msgid "This appointment will be permanently removed."
@@ -1263,17 +1263,17 @@ msgid ""
 "Check this if you only want to see the first repeating event. By default all are shown.\n"
 "Note that this also shows all urgencies.\n"
 "Note that repeating events may appear earlier in the list as the first occurrence only is listed."
-msgstr ""
+msgstr "如果您只想看到第一個重覆的事件，勾選這個。預設為全部顯示。\n注意，這也會顯示所有緊急事件。\n注意，重複的事件將只會在列表中第一次出現的地方出現。"
 
 #: ../src/event-list.c:1250
 msgid "also old"
-msgstr ""
+msgstr "也是舊的"
 
 #: ../src/event-list.c:1252
 msgid ""
 "Check this if you want to see old events also. This can only be selected after 'only first repeating' is enabled to avoid very long lists.\n"
 "Note that extra days selection still defines if newer appointments are listed'."
-msgstr ""
+msgstr "如果您也想要看到舊的事件，勾選這個。這將只能在「僅首先重複」選項開啟時啟動以避免過長的列表。\n請注意，額外的天數選擇仍有限制，如果有較新的約會被列出。"
 
 #: ../src/event-list.c:1290
 msgid "Journal entries starting from:"
@@ -1309,7 +1309,7 @@ msgid ""
 "\t\tO=Orage A=Archive F=Foreign\n"
 "\t 5. Appointment type:\n"
 "\t\tE=Event T=Todo J=Journal"
-msgstr ""
+msgstr "雙擊您想要編輯的行以啟用編輯。\n\n旗標依序是：\n\t 1. 提醒：n=無提醒\n\t\t A=提醒已設定 P=持續性提醒已設定\n\t 2. 重覆出現：n=不重覆\n\t\t H=每小時 D=每天 W=每週 M=每月 Y=每年\n\t 3. 類型：f=空閒 B=忙碌\n\t 4. 檔案位置：\n\t\tO=Orage A=封存檔 F=外部檔案\n\t 5. 約會類型：\n\t\tE=事件 T=待辦 J=日誌"
 
 #. remove since it has ended
 #: ../src/ical-archive.c:267
@@ -1413,7 +1413,7 @@ msgstr "完成匯入檔案預處理"
 #: ../src/interface.c:89 ../src/interface.c:104
 #, c-format
 msgid "Found external update on file %s."
-msgstr ""
+msgstr "在檔案 %s 找到外部升級。"
 
 #: ../src/interface.c:112
 msgid "Refreshing alarms and calendar due to external file update."
@@ -1626,7 +1626,7 @@ msgstr "唯讀"
 msgid ""
 "Set this if you want to make sure that this file is never modified by Orage.\n"
 "Note that modifying foreign files may make them incompatible with the original tool, where they came from!"
-msgstr ""
+msgstr "設定這個選項，如果您想要讓 Orage 無法更動這個檔案。\n請注意，如果修改外來的檔案可能會造成它們與原先的工具不相容！"
 
 #: ../src/interface.c:1294
 msgid "This internal name is displayed to user instead of file name."
@@ -1646,12 +1646,12 @@ msgstr "\t此為 %s 第 %s 版\n\n"
 #: ../src/main.c:277
 #, c-format
 msgid "\tReleased under the terms of the GNU General Public License.\n"
-msgstr ""
+msgstr "\t以 GNU 通用公共授權條款釋出。\n"
 
 #: ../src/main.c:278
 #, c-format
 msgid "\tCompiled against GTK+-%d.%d.%d, "
-msgstr ""
+msgstr "\t使用 GTK+-%d.%d.%d 編譯, "
 
 #: ../src/main.c:280
 #, c-format
@@ -1661,12 +1661,12 @@ msgstr "使用 GTK+-%d.%d.%d.\n"
 #: ../src/main.c:283
 #, c-format
 msgid "\tUsing DBUS for import.\n"
-msgstr ""
+msgstr "\t正在使用 DBUS 匯入。\n"
 
 #: ../src/main.c:285
 #, c-format
 msgid "\tNot using DBUS. Import works only partially.\n"
-msgstr ""
+msgstr "\t不使用 DBUS，只會部份匯入。\n"
 
 #: ../src/main.c:288
 #, c-format
@@ -1691,12 +1691,12 @@ msgstr "\t不使用自動封存。\n"
 #: ../src/main.c:298
 #, c-format
 msgid "\tUsing operating system package libical.\n"
-msgstr ""
+msgstr "\t正在使用作業系統軟體包 libical。\n"
 
 #: ../src/main.c:300
 #, c-format
 msgid "\tUsing Orage local version of libical.\n"
-msgstr ""
+msgstr "\t正在使用 Orage 本地版本的 libical。\n"
 
 #: ../src/main.c:313
 #, c-format
@@ -1728,7 +1728,7 @@ msgstr "--preferences (-p) \t顯示偏好設定表格\n"
 #: ../src/main.c:318
 #, c-format
 msgid "--toggle (-t) \t\tmake orage visible/unvisible\n"
-msgstr ""
+msgstr "--toggle (-t) \t\t讓 orage 可見/不可見\n"
 
 #: ../src/main.c:319
 #, c-format
@@ -1745,24 +1745,24 @@ msgstr "--remove-foreign (-r) 檔案 \t移除外部檔案\n"
 msgid ""
 "--export (-e) file [appointment...] \texport appointments from Orage to "
 "file\n"
-msgstr ""
+msgstr "--export (-e) file [appointment...] \t從 Orage 匯出約會到檔案\n"
 
 #: ../src/main.c:323
 #, c-format
 msgid "files=ical files to load into orage\n"
-msgstr ""
+msgstr "檔案=要載入到 orage 的 ical 檔\n"
 
 #: ../src/main.c:325
 #, c-format
 msgid "\tdbus not included in orage. \n"
-msgstr ""
+msgstr "\tdbus 不包含在 orage 中。 \n"
 
 #: ../src/main.c:326
 #, c-format
 msgid ""
 "\twithout dbus [files] and foreign file options(-a & -r) can only be used "
 "when starting orage \n"
-msgstr ""
+msgstr "\t無 dbus [files] 及外部檔案選項(-a & -r) 只能在啟動 orage 時使用 \n"
 
 #: ../src/main.c:535
 #, c-format
@@ -1817,7 +1817,7 @@ msgid ""
 "\n"
 " Note:\n"
 "%s"
-msgstr ""
+msgstr "\n 註記：\n%s"
 
 #: ../src/mainbox.c:489
 msgid "Never"
@@ -1830,7 +1830,7 @@ msgid ""
 "%s Start:\t%s\n"
 " Due:\t%s\n"
 " Done:\t%s%s"
-msgstr ""
+msgstr "標題： %s\n%s 開始：\t%s\n結束：\t%s\n 完成：\t%s%s"
 
 #: ../src/mainbox.c:503
 #, c-format
@@ -1838,7 +1838,7 @@ msgid ""
 "Title: %s\n"
 "%s Start:\t%s\n"
 " End:\t%s%s"
-msgstr ""
+msgstr "標題： %s\n%s 開始：\t%s\n 結束：\t%s%s"
 
 #: ../src/mainbox.c:613
 msgid "<b>To do:</b>"
@@ -1876,7 +1876,7 @@ msgstr "(0 = 不封存)"
 
 #: ../src/parameters.c:534
 msgid "Archiving is used to save time and space when handling events."
-msgstr ""
+msgstr "封存功能是用來在處理事件時節省時間及空間的。"
 
 #: ../src/parameters.c:542
 msgid "Sound command"
@@ -1884,7 +1884,7 @@ msgstr "音效指令"
 
 #: ../src/parameters.c:557
 msgid "This command is given to shell to make sound in alarms."
-msgstr ""
+msgstr "這個命令會傳到殼層中並在提醒時發出聲音。"
 
 #: ../src/parameters.c:596
 msgid "Calendar window"
@@ -1892,7 +1892,7 @@ msgstr "行事曆視窗"
 
 #: ../src/parameters.c:603
 msgid "Calendar visual details"
-msgstr ""
+msgstr "行事曆可見細節"
 
 #: ../src/parameters.c:609
 msgid "Show borders"
@@ -1916,7 +1916,7 @@ msgstr "顯示月和年"
 
 #: ../src/parameters.c:655
 msgid "Calendar info boxes"
-msgstr ""
+msgstr "分隔開的行事曆"
 
 #: ../src/parameters.c:660
 msgid "Show todo list"
@@ -1932,7 +1932,7 @@ msgstr "0 = 不顯示事件清單"
 
 #: ../src/parameters.c:686
 msgid "Calendar visibility"
-msgstr ""
+msgstr "行事曆可見度"
 
 #: ../src/parameters.c:691
 msgid "Show on all desktops"
@@ -4266,59 +4266,59 @@ msgstr "太平洋/雅浦"
 
 #: ../src/timezone_names.c:569
 msgid "SystemV"
-msgstr ""
+msgstr "SystemV"
 
 #: ../src/timezone_names.c:570
 msgid "SystemV/AST4"
-msgstr ""
+msgstr "SystemV/AST4"
 
 #: ../src/timezone_names.c:571
 msgid "SystemV/AST4ADT"
-msgstr ""
+msgstr "SystemV/AST4ADT"
 
 #: ../src/timezone_names.c:572
 msgid "SystemV/CST6"
-msgstr ""
+msgstr "SystemV/CST6"
 
 #: ../src/timezone_names.c:573
 msgid "SystemV/CST6CDT"
-msgstr ""
+msgstr "SystemV/CST6CDT"
 
 #: ../src/timezone_names.c:574
 msgid "SystemV/EST5"
-msgstr ""
+msgstr "SystemV/EST5"
 
 #: ../src/timezone_names.c:575
 msgid "SystemV/EST5/EDT"
-msgstr ""
+msgstr "SystemV/EST5/EDT"
 
 #: ../src/timezone_names.c:576
 msgid "SystemV/HST10"
-msgstr ""
+msgstr "SystemV/HST10"
 
 #: ../src/timezone_names.c:577
 msgid "SystemV/MST7"
-msgstr ""
+msgstr "SystemV/MST7"
 
 #: ../src/timezone_names.c:578
 msgid "SystemV/MST7/MNT"
-msgstr ""
+msgstr "SystemV/MST7/MNT"
 
 #: ../src/timezone_names.c:579
 msgid "SystemV/PST8"
-msgstr ""
+msgstr "SystemV/PST8"
 
 #: ../src/timezone_names.c:580
 msgid "SystemV/PST8/PDT"
-msgstr ""
+msgstr "SystemV/PST8/PDT"
 
 #: ../src/timezone_names.c:581
 msgid "SystemV/YST9"
-msgstr ""
+msgstr "SystemV/YST9"
 
 #: ../src/timezone_names.c:582
 msgid "SystemV/YST9/YDT"
-msgstr ""
+msgstr "SystemV/YST9/YDT"
 
 #: ../src/timezone_names.c:583
 msgid "US"
