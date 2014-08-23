@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-12-02 18:30+0100\n"
-"PO-Revision-Date: 2014-08-22 19:45+0000\n"
+"PO-Revision-Date: 2014-08-23 10:18+0000\n"
 "Last-Translator: Pasi Lallinaho <pasi@shimmerproject.org>\n"
 "Language-Team: Finnish (http://www.transifex.com/projects/p/xfce-apps/language/fi/)\n"
 "MIME-Version: 1.0\n"
@@ -804,7 +804,7 @@ msgid ""
 "You can use that feature to unclutter your list windows, but it makes it more difficult to find this appointment.\n"
 "(Alarms will still fire normally.)\n"
 "(There is undocumented parameter so that you can change the default limit of 8.)"
-msgstr ""
+msgstr "Jos tämä arvo on 8 tai suurempi, tapaamsita EI näytetä listoissa.\nVoit käyttää tätä ominaisuutta pitääksesi listasi puhtaina, mutta tapaamisen löytäminen on vaikeampaa.\n(Hälytykset laukaistaan silti normaalisti.)\n(On olemassa dokumentoimaton arvo, jolla tätä raja-arvoia voidaan muuttaa.)"
 
 #. note
 #: ../src/appointment.c:2918
@@ -821,23 +821,23 @@ msgid ""
 "These are converted only later when they are seen:\n"
 "    <&Ynnnn> is translated to current year minus nnnn.\n"
 "(This can be used for example in birthday reminders to tell how old the person will be.)"
-msgstr ""
+msgstr "Nämä lyhytkomennot otetaan käyttöön välittömästi:\n<D> lisää nykyisen päivämäärän paikallisessa päivämäärämuodossa\n<T> lisää ajan ja\n<DT> lisää päivämäärän ja ajan.\n\nNämä muutetaan vasta myöhemmin kun ne näytetään:\n<&Ynnnn> muutetaan nykyiseksi vuodeksi arvolla nnnn vähennettynä.\n(Tätä voi käyttää esimerkiksi syntymäpäivämuistutuksissa kertomaan kuinka vanha syntymäpäiväsankari on.)"
 
 #: ../src/appointment.c:3010
 msgid "Before Start"
-msgstr ""
+msgstr "Ennen alkamisaikaa"
 
 #: ../src/appointment.c:3010
 msgid "Before End"
-msgstr ""
+msgstr "Ennen päättymisaikaa"
 
 #: ../src/appointment.c:3011
 msgid "After Start"
-msgstr ""
+msgstr "Alkamisajan jälkeen"
 
 #: ../src/appointment.c:3011
 msgid "After End"
-msgstr ""
+msgstr "Päättymisajan jälkeen"
 
 #: ../src/appointment.c:3018
 msgid "Alarm"
@@ -854,7 +854,7 @@ msgid ""
 " 1) before Event start\n"
 " 2) before Todo end\n"
 " 3) after Todo start"
-msgstr ""
+msgstr "Usein haluat saada hälytyksen:\n1) ennen tapahtuman alkamista\n2) ennen tehtävälistan kohdan päättymisaikaa\n3) tehtävälistan kohdan alkamisajan jälkeen"
 
 #: ../src/appointment.c:3053
 msgid "Persistent alarm"
@@ -864,7 +864,7 @@ msgstr "Jatkuva hälytys"
 msgid ""
 "Select this if you want Orage to remind you even if it has not been active "
 "when the alarm happened."
-msgstr ""
+msgstr "Valitse tämä jos haluat että Orage muistuttaa sinua vaikka se ei olisi ollut päällä silloin kun hälytys tapahtui."
 
 #. **** Audio Alarm ****
 #: ../src/appointment.c:3064
@@ -894,7 +894,7 @@ msgstr "sek välein"
 #. **** Display Alarm ****
 #: ../src/appointment.c:3129
 msgid "Visual"
-msgstr ""
+msgstr "Visuaalinen"
 
 #: ../src/appointment.c:3133
 msgid "Use Orage window"
@@ -902,7 +902,7 @@ msgstr "Käytä Oragen ikkunaa"
 
 #: ../src/appointment.c:3135
 msgid "Select this if you want Orage window alarm"
-msgstr ""
+msgstr "Valitse tämä jos haluat hälytyksen Oragen ikkunaan"
 
 #: ../src/appointment.c:3147
 msgid "Use notification"
@@ -931,11 +931,11 @@ msgstr "sekuntia"
 #. **** Procedure Alarm ****
 #: ../src/appointment.c:3184
 msgid "Procedure"
-msgstr ""
+msgstr "Järjestelmällinen"
 
 #: ../src/appointment.c:3190
 msgid "Select this if you want procedure or script alarm"
-msgstr ""
+msgstr "Valitse tämä jos haluat järjestelmällisen tai ohjelmoitavan hälytyksen"
 
 #: ../src/appointment.c:3196
 msgid ""
@@ -947,7 +947,7 @@ msgid ""
 "\t<&AT> alarm time\n"
 "\t<&ST> appointment start time\n"
 "\t<&ET> appointment end time"
-msgstr ""
+msgstr "Sinun täytyy syöttää kaikki escape yms. -merkit itse.\nTämä teksti annetaan suoraan käsiteltäväksi.\nSeuraavat erikoiskomennot korvataan ajon aikana:\n\t<&T>  tapaamisen otsikko\n\t<&D>  tapaamisen kuvaus\n\t<&AT> hälytyksen ajankohta\n\t<&ST> tapaamisen alkamisaika\n\t<&ET> tapaamisen päättymisaika"
 
 #: ../src/appointment.c:3208
 msgid "Test this alarm by raising it now"
@@ -1036,34 +1036,34 @@ msgstr "Edistynyt"
 
 #: ../src/appointment.c:3316
 msgid "Use this if you want regular repeating event"
-msgstr ""
+msgstr "Käytä tätä jos haluat yksinkertaisen toistuvan tapahtuman"
 
 #: ../src/appointment.c:3318
 msgid ""
 "Use this if you need complex times like:\n"
 " Every Saturday and Sunday or \n"
 " First Tuesday every month"
-msgstr ""
+msgstr "Käytä tätä jos tarvitset monimutkaisia ajankohtia kuten:\njoka lauantai ja sunnuntai tai\njoka kuukauden ensimmäinen tiistai"
 
 #. frequency
 #: ../src/appointment.c:3324
 msgid "Frequency"
-msgstr ""
+msgstr "Toistumistiheys"
 
 #: ../src/appointment.c:3330
 msgid "Each"
-msgstr ""
+msgstr "Joka"
 
 #: ../src/appointment.c:3337
 msgid "occurrence"
-msgstr ""
+msgstr "esiintymä"
 
 #: ../src/appointment.c:3341
 msgid ""
 "Limit frequency to certain interval.\n"
 " For example: Every third day:\n"
 " Frequency = Daily and Interval = 3"
-msgstr ""
+msgstr "Määritä toistoille tietty aikaväli.\nEsimerksi: joka kolmas päivä:\nToistumistiheys = Päivittäin ja Aikaväli = 3"
 
 #: ../src/appointment.c:3386
 msgid "Limit"
@@ -1088,7 +1088,7 @@ msgstr "Arkipäivät"
 
 #: ../src/appointment.c:3435
 msgid "Which day"
-msgstr ""
+msgstr "Mikä päivä"
 
 #: ../src/appointment.c:3443
 msgid ""
@@ -1098,24 +1098,24 @@ msgid ""
 "\tFrequency = Monthly,\n"
 "\tWeekdays = check only Wednesday,\n"
 "\tWhich day = select 2 from the number below Wednesday"
-msgstr ""
+msgstr "Määritä viikonpäivä kuukausittaisille ja vuosittaisille tapahtumille.\nEsimerkiksi:\nJoka kuukauden toinen keskiviikko:\nToistumistiheys = kuukausittain,\nViikonpäivät = valitse vain keskiviikkoisin,\nMikä päivä = valitse numero 2 keskiviikon alapuolelta"
 
 #. TODO base (only for TODOs)
 #: ../src/appointment.c:3450
 msgid "TODO base"
-msgstr ""
+msgstr "Tehtävän toistuminen"
 
 #: ../src/appointment.c:3463
 msgid ""
 "TODO reoccurs regularly starting on start time and repeating after each "
 "interval no matter when it was last completed"
-msgstr ""
+msgstr "Tehtävä toistuu säännöllisesti alkaen aloitusajasta ja toistuu jokaisen aikavälin jälkeen riippumatta siitä, koska tehtävä suoritetttiin viimeksi"
 
 #: ../src/appointment.c:3465
 msgid ""
 "TODO reoccurrency is based on complete time and repeats after the interval counted from the last completed time.\n"
 "(Note that you can not tell anything about the history of the TODO since reoccurrence base changes after each completion.)"
-msgstr ""
+msgstr "Tehtävän uudelleenesiintyminen perustuu tehtävän suoritusaikaan ja toistuu tietyn aikavälimäärn jälkeen siitä, kun tehtävä suoritettiin viimeksi.\n(Huomaa että tehtävähistoriasta ei voida kertoa mitään koska uudelleenesiintymisen lähtöpäivä muuttuu jokaisen suorituskerran jäkeen.)"
 
 #. exceptions
 #: ../src/appointment.c:3471
@@ -1127,30 +1127,30 @@ msgid ""
 "Add more exception dates by clicking the calendar days below.\n"
 "Exception is either exclusion(-) or inclusion(+) depending on the selection.\n"
 "Remove by clicking the data."
-msgstr ""
+msgstr "Lisää poissuljettuja päiviä napsauttamalla kalenteripäiviä alla.\nPoikkeus on joko poissuljettu (-) tai sisällytetty (+) riippuen valinnasta.\nPoista napsauttamalla tietoja."
 
 #: ../src/appointment.c:3489
 msgid "Add excluded date (-)"
-msgstr ""
+msgstr "Lisää poissuljettu päivä (-)"
 
 #: ../src/appointment.c:3491
 msgid "Excluded days are full days where this appointment is not happening"
-msgstr ""
+msgstr "Poissuljetut päivät jolloin tämä tapaaminen ei tapahdu"
 
 #: ../src/appointment.c:3497
 msgid "Add included time (+)"
-msgstr ""
+msgstr "Lisää sisällytetty aika (+)"
 
 #: ../src/appointment.c:3499
 msgid ""
 "Included times have same timezone than start time, but they may have "
 "different time"
-msgstr ""
+msgstr "Sisällytetyillä ajoilla on sama aikavyöhyke kuin aloitusajalla, mutta niillä voi olla eri aika"
 
 #. calendars showing the action days
 #: ../src/appointment.c:3516
 msgid "Action dates"
-msgstr ""
+msgstr "Tapahtumapäivät"
 
 #. ********* View menu *********
 #. View menu
@@ -1248,32 +1248,32 @@ msgstr "Päivänäkymä"
 
 #: ../src/event-list.c:1231
 msgid "Extra days to show:"
-msgstr ""
+msgstr "Näytettävät lisäpäivät:"
 
 #: ../src/event-list.c:1240
 msgid "only first repeating"
-msgstr ""
+msgstr "vain ensimmäinen toistuva"
 
 #: ../src/event-list.c:1245
 msgid ""
 "Check this if you only want to see the first repeating event. By default all are shown.\n"
 "Note that this also shows all urgencies.\n"
 "Note that repeating events may appear earlier in the list as the first occurrence only is listed."
-msgstr ""
+msgstr "Valitse tämä jos haluat nähdä vain ensimmäisen toistuvan tapahtuman. Oletuksena kaikki näytetään.\nHuomaa että tämä näyttä myös kaikki kiirellisyydet.\nHuomaa että toistuvat tapahtuvat voivat esiintyä aiemmin listassa koska vain ensimmäinen esiintymä näytetään."
 
 #: ../src/event-list.c:1250
 msgid "also old"
-msgstr ""
+msgstr "myös vanhat"
 
 #: ../src/event-list.c:1252
 msgid ""
 "Check this if you want to see old events also. This can only be selected after 'only first repeating' is enabled to avoid very long lists.\n"
 "Note that extra days selection still defines if newer appointments are listed'."
-msgstr ""
+msgstr "Valitse tämä jos haluat nähdä myös vanhat tapahtumat. Tämän voi valita vain jos 'vain ensimmäinen toistuva' on valittu erittäin pitkien listojen välttämiseksi.\nHuomaa että lisäpäivien valinnalla voi silti määrittää näytetäänkö uudemmat tapaamiset."
 
 #: ../src/event-list.c:1290
 msgid "Journal entries starting from:"
-msgstr ""
+msgstr "Päiväkirjamerkinnät alkaen:"
 
 #: ../src/event-list.c:1310
 msgid "Search"
@@ -1285,7 +1285,7 @@ msgstr "Hakusanat"
 
 #: ../src/event-list.c:1378
 msgid "Flags"
-msgstr ""
+msgstr "Nimikkeet"
 
 #: ../src/event-list.c:1386
 msgid "Title"
@@ -1305,43 +1305,43 @@ msgid ""
 "\t\tO=Orage A=Archive F=Foreign\n"
 "\t 5. Appointment type:\n"
 "\t\tE=Event T=Todo J=Journal"
-msgstr ""
+msgstr "Kaksoisnapsauta riviä muokataksesi sitä.\n\nNimikkeet järjestyksessä:\n\t 1. Hälyys: n=ei hälytystä\n\t\t A=hälytys asetettu P=jatkuva hälytys asetettu\n\t 2. Toistuminen: n=ei toistoa\n\t\t H=tunneittan D=päivittäin W=viikottain M=kuukausittain Y=vuosittain\n\t 3. Tyyppi: f=vapaa B=kiireinen\n\t 4. Sijaitsee tiedostossa:\n\t\tO=Orage A=arkisto F=ulkoinen\n\t 5. Tapaamisen tyyypi:\n\t\tE=tapahtuma T=tehtävä J=päiväkirja"
 
 #. remove since it has ended
 #: ../src/ical-archive.c:267
 msgid "\tRecur ended, moving to archive file."
-msgstr ""
+msgstr "\tToisto päättyi, siirretään arkistotiedostoon."
 
 #: ../src/ical-archive.c:330
 msgid "Archiving not enabled. Exiting"
-msgstr ""
+msgstr "Arkistointi ei ole käytössä. Poistutaan"
 
 #: ../src/ical-archive.c:349
 #, c-format
 msgid "Archiving threshold: %d month(s)"
-msgstr ""
+msgstr "Arkiston pituus: %d kuukautta"
 
 #. yy mon day
 #: ../src/ical-archive.c:352
 #, c-format
 msgid "\tArchiving events, which are older than: %04d-%02d-%02d"
-msgstr ""
+msgstr "\tArkistoidaan tapahtumat, jotka ovat vanhempia kuin: %04d-%02d-%02d"
 
 #: ../src/ical-archive.c:379
 #, c-format
 msgid "Archiving uid: %s"
-msgstr ""
+msgstr "Arkistoidaan uid: %s"
 
 #. VTODO not completed, do not archive
 #: ../src/ical-archive.c:385
 msgid "\tVTODO not complete; not archived"
-msgstr ""
+msgstr "\tVTODO ei valmis; ei arkistoitu"
 
 #. it is recurrent event
 #: ../src/ical-archive.c:390
 #, c-format
 msgid "\tRecurring. End year: %04d, month: %02d, day: %02d"
-msgstr ""
+msgstr "\tToistuva. Päättymisajankohta: vuosi: %04d, kuukausi: %02d, päivä: %02d"
 
 #: ../src/ical-archive.c:407
 msgid "Archiving done\n"
@@ -1354,13 +1354,13 @@ msgstr "Aloitetaan arkiston poisto."
 
 #: ../src/ical-archive.c:424
 msgid "\tPHASE 1: reset recurring appointments"
-msgstr ""
+msgstr "\tVAIHE 1: alustetaan toistuvat tapaamiset"
 
 #. PHASE 2: go through archive file and add everything back to base orage.
 #. * After that delete the whole arch file
 #: ../src/ical-archive.c:446
 msgid "\tPHASE 2: return archived appointments"
-msgstr ""
+msgstr "\tVAIHE 2: palautetaan arkistoidut tapaamiset"
 
 #: ../src/ical-archive.c:472
 msgid "Archive removal done\n"
@@ -1372,12 +1372,12 @@ msgstr "Oragen oletushälytys"
 
 #: ../src/ical-code.c:3179
 msgid "Created alarm list for main Orage file:"
-msgstr ""
+msgstr "Luotiin hälytyslista Oragen päätiedostoon:"
 
 #: ../src/ical-code.c:3181
 #, c-format
 msgid "Created alarm list for foreign file: %s (%s)"
-msgstr ""
+msgstr "Luotiin hälytyslista ulkoiseen tiedostoon: %s (%s)"
 
 #: ../src/ical-code.c:3183
 #, c-format
@@ -1433,7 +1433,7 @@ msgstr "LUKU JA KIRJOITUS"
 
 #: ../src/interface.c:669
 msgid "***** No foreign files *****"
-msgstr ""
+msgstr "***** Ei ulkoisia tiedostoja *****"
 
 #: ../src/interface.c:682
 msgid "Foreign file add failed"
@@ -1479,7 +1479,7 @@ msgstr "Lue tiedostosta:"
 msgid ""
 "Separate filenames with comma(,).\n"
 " NOTE: comma is not valid character in filenames for Orage."
-msgstr ""
+msgstr "Erota tiedostonimet pilkulla (,).\nHUOMAA: pilkkua ei voi käyttää Oragen käyttämien tiedostojen nimissä."
 
 #: ../src/interface.c:999
 msgid "Export"
@@ -1505,21 +1505,21 @@ msgstr "Nimetyt tapaamiset:"
 msgid ""
 "Note that only main file appointments are read.\n"
 "Archived and Foreign events are not exported."
-msgstr ""
+msgstr "Huomioi että vain päätiedoston tapaamiset luetaan.\nArkistoituja ja ulkoisia tapahtumia ei viedä."
 
 #: ../src/interface.c:1056
 msgid ""
 "Note that only main file appointments are read.\n"
 "Foreign events are not exported."
-msgstr ""
+msgstr "Huomioi että vain päätiedoston tapaamiset luetaan.\nUlkoisia tapahtumia ei viedä."
 
 #: ../src/interface.c:1059
 msgid "You can easily drag these from event-list window."
-msgstr ""
+msgstr "Voit helposti vetää ja pudottaa nämä tapahtumalistaikkunasta."
 
 #: ../src/interface.c:1061
 msgid "Orage appointment UIDs separated by commas."
-msgstr ""
+msgstr "Oragen tapaamis-UID:t pilkuilla erotettuina."
 
 #: ../src/interface.c:1067
 msgid "Archive"
@@ -1532,7 +1532,7 @@ msgstr "Arkisto nyt (pituus: %d kuukautta)"
 
 #: ../src/interface.c:1085
 msgid "You can change archive threshold in parameters"
-msgstr ""
+msgstr "Voit vaihtaa arkiston pituutta muuttujin"
 
 #: ../src/interface.c:1092
 msgid "Revert archive now"
@@ -1543,7 +1543,7 @@ msgid ""
 "Return all archived events into main orage file and remove arch file.\n"
 "This is useful for example when doing export and moving orage\n"
 "appointments to another system."
-msgstr ""
+msgstr "Palauta kaikki arkistoidut tapahtumat Oragen päätiedostoon ja poista arkistointitiedosto.\nTämä on kätevää esimerkiksi viedessä Oragen\ntapaamisia toiseen järjestelmään."
 
 #: ../src/interface.c:1109
 msgid "Orage files"
@@ -1574,7 +1574,7 @@ msgid ""
 "Orage internal file rename only.\n"
 "Does not touch external filesystem at all.\n"
 "New file must exist."
-msgstr ""
+msgstr "Vain Oragen sisäisen tiedoston uudelleennimeäminen.\nEi tee muutoksia tiedostojärjestelmään lainkaan.\nUuden tiedoston pitää olla olemassa."
 
 #: ../src/interface.c:1155 ../src/interface.c:1218
 msgid "Copy"
@@ -1622,37 +1622,37 @@ msgstr "Vain luku"
 msgid ""
 "Set this if you want to make sure that this file is never modified by Orage.\n"
 "Note that modifying foreign files may make them incompatible with the original tool, where they came from!"
-msgstr ""
+msgstr "Valitse tämä jos haluat varmistaa ettei Orage koskaa muuta tätä tiedostoa.\nHuomaa että ulkoisten tiedostojen muokkaminen voi tehdä ne epäyhteensopiviksi alkuperäisen työkalun kanssa!"
 
 #: ../src/interface.c:1294
 msgid "This internal name is displayed to user instead of file name."
-msgstr ""
+msgstr "Tämä sisäinen nimi näytetään käyttäjälle tiedoston nimen sijasta."
 
 #: ../src/interface.c:1308
 msgid "Exchange data - Orage"
-msgstr ""
+msgstr "Vaihtotiedot - Orage"
 
 #: ../src/main.c:275
 #, c-format
 msgid ""
 "\tThis is %s version %s\n"
 "\n"
-msgstr ""
+msgstr "\tTämä on %s versio %s\n\n"
 
 #: ../src/main.c:277
 #, c-format
 msgid "\tReleased under the terms of the GNU General Public License.\n"
-msgstr ""
+msgstr "Julkaistu GNU GPL -lisenssin version 2 ehdoilla\n"
 
 #: ../src/main.c:278
 #, c-format
 msgid "\tCompiled against GTK+-%d.%d.%d, "
-msgstr ""
+msgstr "\tKäännetty versiolle GTK+-%d.%d.%d, "
 
 #: ../src/main.c:280
 #, c-format
 msgid "using GTK+-%d.%d.%d.\n"
-msgstr ""
+msgstr "käyttäen versiota GTK+-%d.%d.%d.\n"
 
 #: ../src/main.c:283
 #, c-format
@@ -1770,7 +1770,7 @@ msgstr "\nTuntematon valinta %s\n\n"
 
 #: ../src/mainbox.c:305
 msgid "_Exchange data"
-msgstr ""
+msgstr "_Vaihtotiedot"
 
 #. Edit menu
 #: ../src/mainbox.c:316
@@ -1813,7 +1813,7 @@ msgid ""
 "\n"
 " Note:\n"
 "%s"
-msgstr ""
+msgstr "\n Huomaa:\n%s"
 
 #: ../src/mainbox.c:489
 msgid "Never"
@@ -1826,7 +1826,7 @@ msgid ""
 "%s Start:\t%s\n"
 " Due:\t%s\n"
 " Done:\t%s%s"
-msgstr ""
+msgstr "Otsikko: %s\n%s Alkamisaika:\t%s\n Tehtävä ennen:\t%s\n Tila:\t%s%s"
 
 #: ../src/mainbox.c:503
 #, c-format
@@ -1834,7 +1834,7 @@ msgid ""
 "Title: %s\n"
 "%s Start:\t%s\n"
 " End:\t%s%s"
-msgstr ""
+msgstr "Otsikko: %s\n%s Alkamisaika:\t%s\n Päättymisaika:\t%s%s"
 
 #: ../src/mainbox.c:613
 msgid "<b>To do:</b>"
@@ -1880,7 +1880,7 @@ msgstr "Äänikomento"
 
 #: ../src/parameters.c:557
 msgid "This command is given to shell to make sound in alarms."
-msgstr ""
+msgstr "Tämä komento suoritetaan äänihälytysten aktivoituessa."
 
 #: ../src/parameters.c:596
 msgid "Calendar window"
@@ -1912,7 +1912,7 @@ msgstr "Näytä kuukausi ja vuosi"
 
 #: ../src/parameters.c:655
 msgid "Calendar info boxes"
-msgstr ""
+msgstr "Kalenteri tietolaatikot"
 
 #: ../src/parameters.c:660
 msgid "Show todo list"
@@ -1920,11 +1920,11 @@ msgstr "Näytä tehtävälista"
 
 #: ../src/parameters.c:667
 msgid "Number of days to show in event window"
-msgstr ""
+msgstr "Tapahtumalistassa näytettyjen päivien määrä"
 
 #: ../src/parameters.c:673
 msgid "0 = do not show event list at all"
-msgstr ""
+msgstr "0 = älä näytä tapahtumalistaa lainkaan"
 
 #: ../src/parameters.c:686
 msgid "Calendar visibility"
@@ -1940,19 +1940,19 @@ msgstr "Pidä päällä"
 
 #: ../src/parameters.c:704
 msgid "Show in taskbar"
-msgstr ""
+msgstr "Näytä sovelluspalkissa"
 
 #: ../src/parameters.c:709
 msgid "Show in pager"
-msgstr ""
+msgstr "Näytä työtilan vaihtajassa"
 
 #: ../src/parameters.c:717
 msgid "Show in systray"
-msgstr ""
+msgstr "Näytä järjestelmän ilmoitusalueella"
 
 #: ../src/parameters.c:738
 msgid "Calendar start"
-msgstr ""
+msgstr "Kalenterin alku"
 
 #: ../src/parameters.c:743
 msgid "Show"
@@ -1968,7 +1968,7 @@ msgstr "Pienennetty"
 
 #: ../src/parameters.c:787
 msgid "On calendar window open"
-msgstr ""
+msgstr "Kun kalenteri-ikkuna avataan"
 
 #: ../src/parameters.c:792
 msgid "Select today's date"
@@ -1980,15 +1980,15 @@ msgstr "Valitse aiemmin valittu päivä"
 
 #: ../src/parameters.c:823
 msgid "Calendar day double click shows"
-msgstr ""
+msgstr "Kalenteripäivän kaksoisnapsauttaminen näyttää"
 
 #: ../src/parameters.c:828
 msgid "Days view"
-msgstr ""
+msgstr "Päivänäkymä"
 
 #: ../src/parameters.c:840
 msgid "Event list"
-msgstr ""
+msgstr "Tapahtumalista"
 
 #: ../src/parameters.c:862
 msgid "Extra settings"
@@ -1996,25 +1996,25 @@ msgstr "Lisäasetukset"
 
 #: ../src/parameters.c:869
 msgid "Event list window"
-msgstr ""
+msgstr "Tapahtumalistaikkuna"
 
 #: ../src/parameters.c:874
 msgid "Number of extra days to show in event list"
-msgstr ""
+msgstr "Tapahtumalistassa näytettyjen lisäpäivien määrä"
 
 #: ../src/parameters.c:883
 msgid ""
 "This is just the default value, you can change it in the actual eventlist "
 "window."
-msgstr ""
+msgstr "Tämä on vain oletusarvo, voit vaihtaa sen tapahtumalistaikkunassa."
 
 #: ../src/parameters.c:891
 msgid "Show only first repeating event"
-msgstr ""
+msgstr "Näytä vain ensimmäinen toistuva tapahtuma"
 
 #: ../src/parameters.c:907
 msgid "Day view window default first day"
-msgstr ""
+msgstr "Päivänäkymän ikkunan ensimmäinen oletuspäivä"
 
 #: ../src/parameters.c:912
 msgid "First day of week"
@@ -2026,29 +2026,29 @@ msgstr "Valittu päivä"
 
 #: ../src/parameters.c:943
 msgid "Use dynamic tray icon"
-msgstr ""
+msgstr "Käytä dynaamista ilmoitusalueen kuvaketta"
 
 #: ../src/parameters.c:948
 msgid "Use dynamic icon"
-msgstr ""
+msgstr "Käytä dynaamista kuvaketta"
 
 #: ../src/parameters.c:954
 msgid "Dynamic icon shows current month and day of the month."
-msgstr ""
+msgstr "Dynaaminen kuvake näyttää nykyisen kuukauden ja päivän."
 
 #: ../src/parameters.c:962 ../src/parameters.c:967
 msgid "Use wakeup timer"
-msgstr ""
+msgstr "Käytä herätysajastinta"
 
 #: ../src/parameters.c:973
 msgid ""
 "Use this timer if Orage has problems waking up properly after suspend or "
 "hibernate. (For example tray icon not refreshed or alarms not firing.)"
-msgstr ""
+msgstr "Käytä tätä ajastinta jos Oragella on vaikeuksia käynnistyä keskeytys- tai lepotilassa palautuessa. (Esimerkiksi ilmoitusalueen kuvake ei päivity tai hälytykset eivät aktivoidu.)"
 
 #: ../src/parameters.c:982
 msgid "Foreign file default visual alarm"
-msgstr ""
+msgstr "Ulkoisen tiedoston visuaalinen oletushälytys"
 
 #: ../src/parameters.c:987
 msgid "Orage window"
@@ -2056,7 +2056,7 @@ msgstr "Orage-ikkuna"
 
 #: ../src/parameters.c:1000
 msgid "Notify notification"
-msgstr ""
+msgstr "Ilmoitushuomautus"
 
 #: ../src/parameters.c:1018
 msgid "Always quit when asked to close"
@@ -2119,7 +2119,7 @@ msgstr "Seuraavat päälle kytketyt hälytykset:"
 msgid ""
 "\n"
 "%02d d %02d h %02d min to: %s"
-msgstr ""
+msgstr "\n%02d päivää %02d tuntia %02d minuuttia tapahtumaan: %s"
 
 #: ../src/reminder.c:1154
 #, c-format
