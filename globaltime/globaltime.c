@@ -545,11 +545,10 @@ static void initialize_clocks(void)
 
     /* Standard window-creating stuff */
     clocks.window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
-    gtk_window_set_title(GTK_WINDOW(clocks.window), NAME_VERSION);
+    gtk_window_set_title(GTK_WINDOW(clocks.window), _("Global Time"));
 
     clocks.main_hbox = gtk_hbox_new(FALSE, 1);
-    gtk_container_add(GTK_CONTAINER(clocks.window)
-                    , clocks.main_hbox);
+    gtk_container_add(GTK_CONTAINER(clocks.window), clocks.main_hbox);
     gtk_widget_show(clocks.main_hbox);
 
     init_hdr_button();
