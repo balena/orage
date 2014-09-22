@@ -82,27 +82,65 @@ void oc_line_font_set(ClockLine *line)
         gtk_widget_modify_font(line->label, NULL);
 }
 
-void oc_add_line(Clock *clock, char *data, char *font, int pos)
+void oc_line_rotate(Clock *clock, ClockLine *line)
 {
-    ClockLine *clock_line;
+    switch (clock->rotation) {
+        case 0:
+            gtk_label_set_angle(GTK_LABEL(line->label), 0);
+            break;
+        case 1:
+            gtk_label_set_angle(GTK_LABEL(line->label), 90);
+            break;
+        case 2:
+            gtk_label_set_angle(GTK_LABEL(line->label), 270);
+            break;
+    }
+}
 
-    clock_line = g_new0(ClockLine, 1);
-
-    clock_line->data = g_string_new(data);
-    clock_line->font = g_string_new(font);
-    strcpy(clock_line->prev, "New line");
-    clock_line->clock = clock;
-
+void oc_set_line(Clock *clock, ClockLine *clock_line, int pos)
+{
     clock_line->label = gtk_label_new("");
-    gtk_box_pack_start(GTK_BOX(clock->vbox), clock_line->label
+    gtk_box_pack_start(GTK_BOX(clock->mbox), clock_line->label
             , FALSE, FALSE, 0);
-    gtk_box_reorder_child(GTK_BOX(clock->vbox), clock_line->label, pos);
+    gtk_box_reorder_child(GTK_BOX(clock->mbox), clock_line->label, pos);
     oc_line_font_set(clock_line);
+    oc_line_rotate(clock, clock_line);
     gtk_widget_show(clock_line->label);
     /* clicking does not work after this
     gtk_label_set_selectable(GTK_LABEL(clock_line->label), TRUE);
     */
-    clock->lines = g_list_insert(clock->lines, clock_line, pos);
+}
+
+static void oc_set_lines_to_panel(Clock *clock)
+{
+    ClockLine *clock_line;
+    GList   *tmp_list;
+
+    if (clock->lines_vertically)
+        clock->mbox = gtk_vbox_new(TRUE, 0);
+    else
+        clock->mbox = gtk_hbox_new(TRUE, 0);
+    gtk_widget_show(clock->mbox);
+    gtk_container_add(GTK_CONTAINER(clock->frame), clock->mbox);
+
+    for (tmp_list = g_list_first(clock->lines); 
+            tmp_list;
+         tmp_list = g_list_next(tmp_list)) {
+        clock_line = tmp_list->data;
+        /* make sure clock face is updated */
+        strcpy(clock_line->prev, "New line");
+        oc_set_line(clock, clock_line, -1);
+    }
+}
+
+void oc_reorganize_lines(Clock *clock)
+{
+    /* let's just do this easily as it is very seldom called: 
+       delete and recreate lines */
+    gtk_widget_destroy(GTK_WIDGET(clock->mbox));
+    oc_set_lines_to_panel(clock);
+    oc_fg_set(clock);
+    oc_size_set(clock);
 }
 
 static void oc_tooltip_set(Clock *clock)
@@ -298,11 +336,9 @@ static void oc_update_size(Clock *clock, int size)
 {
     if (size > 26) {
         gtk_container_set_border_width(GTK_CONTAINER(clock->frame), 2);
-        size -= 3;
     }
     else {
         gtk_container_set_border_width(GTK_CONTAINER(clock->frame), 0);
-        size -= 1;
     }
 }
 
@@ -401,6 +437,22 @@ static gboolean on_button_press_event_cb(GtkWidget *widget
 static gboolean oc_set_size(XfcePanelPlugin *plugin, int size, Clock *clock)
 {
     oc_update_size(clock, size);
+    if (clock->first_call) {
+    /* default is horizontal panel. 
+       we need to check and change if it is vertical */
+        if (xfce_panel_plugin_get_mode(plugin) 
+                == XFCE_PANEL_PLUGIN_MODE_VERTICAL) {
+            clock->lines_vertically = FALSE;
+        /* check rotation handling from oc_rotation_changed in oc_config.c */
+            if (xfce_screen_position_is_right(
+                        xfce_panel_plugin_get_screen_position(plugin)))
+                clock->rotation = 2;
+            else
+                clock->rotation = 1;
+            oc_reorganize_lines(clock);
+        }
+
+    }
 
     return(TRUE);
 }
@@ -440,6 +492,18 @@ static GdkColor oc_rc_read_color(XfceRc *rc, char *par, char *def)
     return(color);
 }
 
+ClockLine * oc_add_new_line(Clock *clock, const char *data, const char *font, int pos)
+{
+    ClockLine *clock_line = g_new0(ClockLine, 1);
+
+    clock_line->data = g_string_new(data);
+    clock_line->font = g_string_new(font);
+    strcpy(clock_line->prev, "New line");
+    clock_line->clock = clock;
+    clock->lines = g_list_insert(clock->lines, clock_line, pos);
+    return(clock_line);
+}
+
 static void oc_read_rc_file(XfcePanelPlugin *plugin, Clock *clock)
 {
     gchar  *file;
@@ -455,6 +519,7 @@ static void oc_read_rc_file(XfcePanelPlugin *plugin, Clock *clock)
         g_warning("unable to read-open rc file (%s)", file);
         return;
     }
+    clock->first_call = FALSE;
 
     clock->show_frame = xfce_rc_read_bool_entry(rc, "show_frame", TRUE);
 
@@ -480,6 +545,9 @@ static void oc_read_rc_file(XfcePanelPlugin *plugin, Clock *clock)
     if (clock->height_set) {
         clock->height = xfce_rc_read_int_entry(rc, "height", -1);
     }
+
+    clock->lines_vertically = xfce_rc_read_bool_entry(rc, "lines_vertically", FALSE);
+    clock->rotation = xfce_rc_read_int_entry(rc, "rotation", 0);
     
     for (i = 0, more_lines = TRUE; more_lines; i++) {
         sprintf(tmp, "data%d", i);
@@ -487,7 +555,7 @@ static void oc_read_rc_file(XfcePanelPlugin *plugin, Clock *clock)
         if (data) { /* let's add it */
             sprintf(tmp, "font%d", i);
             font = xfce_rc_read_entry(rc, tmp, NULL);
-            oc_add_line(clock, (char *)data, (char *)font, -1);
+            oc_add_new_line(clock, data, font, -1);
         }
         else { /* no more clock lines */
             more_lines = FALSE;
@@ -562,6 +630,9 @@ void oc_write_rc_file(XfcePanelPlugin *plugin, Clock *clock)
         xfce_rc_delete_entry(rc, "height", TRUE);
     }
 
+    xfce_rc_write_bool_entry(rc, "lines_vertically", clock->lines_vertically);
+    xfce_rc_write_int_entry(rc, "rotation", clock->rotation);
+
     for (i = 0, tmp_list = g_list_first(clock->lines);
             tmp_list;
          i++, tmp_list = g_list_next(tmp_list)) {
@@ -589,8 +660,9 @@ void oc_write_rc_file(XfcePanelPlugin *plugin, Clock *clock)
 /* Create widgets and connect to signals */
 Clock *orage_oc_new(XfcePanelPlugin *plugin)
 {
-    Clock     *clock = g_new0(Clock, 1);
+    Clock *clock = g_new0(Clock, 1);
 
+    clock->first_call = TRUE; /* this is starting point */
     clock->plugin = plugin;
 
     clock->ebox = gtk_event_box_new();
@@ -600,20 +672,21 @@ Clock *orage_oc_new(XfcePanelPlugin *plugin)
     gtk_container_add(GTK_CONTAINER(clock->ebox), clock->frame);
     gtk_widget_show(clock->frame);
 
-    clock->vbox = gtk_vbox_new(TRUE, 0);
-    gtk_widget_show(clock->vbox);
-    gtk_container_add(GTK_CONTAINER(clock->frame), clock->vbox);
+    gtk_container_add(GTK_CONTAINER(plugin), clock->ebox);
 
     clock->show_frame = TRUE;
     clock->fg_set = FALSE;
     clock->bg_set = FALSE;
     clock->width_set = FALSE;
     clock->height_set = FALSE;
+    clock->lines_vertically = TRUE;
+    clock->rotation = 0; /* no rotation */
 
     clock->timezone = g_string_new(""); /* = not set */
     clock->TZ_orig = g_strdup(g_getenv("TZ"));
 
     clock->lines = NULL; /* no lines yet */
+    clock->orig_line_cnt = 0;
 
     /* TRANSLATORS: Use format characters from strftime(3)
      * to get the proper string for your locale.
@@ -689,7 +762,7 @@ void oc_size_set(Clock *clock)
 
     w = clock->width_set ? clock->width : -1;
     h = clock->height_set ? clock->height : -1;
-    gtk_widget_set_size_request(clock->vbox, w, h);
+    gtk_widget_set_size_request(clock->mbox, w, h);
 }
 
 static void oc_construct(XfcePanelPlugin *plugin)
@@ -700,12 +773,12 @@ static void oc_construct(XfcePanelPlugin *plugin)
 
     clock = orage_oc_new(plugin);
 
-    gtk_container_add(GTK_CONTAINER(plugin), clock->ebox);
-
     oc_read_rc_file(plugin, clock);
-    if (clock->lines == NULL) /* Let's setup a default clock_line */
-        oc_add_line(clock, "%X", "", -1);
+    if (clock->lines == NULL) { /* Let's setup a default clock_line */
+        oc_add_new_line(clock, "%X", "", -1);
+    }
 
+    oc_set_lines_to_panel(clock);
     oc_show_frame_set(clock);
     oc_fg_set(clock);
     oc_bg_set(clock);
@@ -714,8 +787,9 @@ static void oc_construct(XfcePanelPlugin *plugin)
 
     oc_init_timer(clock);
 
-    oc_update_size(clock, 
-            xfce_panel_plugin_get_size(XFCE_PANEL_PLUGIN(plugin)));
+    /* we are called through size-changed trigger
+    oc_update_size(clock, xfce_panel_plugin_get_size(plugin));
+    */
 
     xfce_panel_plugin_add_action_widget(plugin, clock->ebox);
     

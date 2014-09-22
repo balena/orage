@@ -102,6 +102,25 @@ static void oc_set_width_changed(GtkSpinButton *sb, Clock *clock)
     oc_size_set(clock);
 }
 
+static void oc_rotation_changed(GtkComboBox *cb, Clock *clock)
+{
+    GList *tmp_list;
+
+    clock->rotation = gtk_combo_box_get_active(cb);
+    for (tmp_list = g_list_first(clock->lines);
+            tmp_list;
+         tmp_list = g_list_next(tmp_list)) {
+        oc_line_rotate(clock, tmp_list->data);
+    }
+}
+
+static void oc_lines_vertically_toggled(GtkToggleButton *cb, Clock *clock)
+{
+    clock->lines_vertically = gtk_toggle_button_get_active(cb);
+
+    oc_reorganize_lines(clock);
+}
+
 static void oc_timezone_selected(GtkButton *button, Clock *clock)
 {
     GtkWidget *dialog;
@@ -150,10 +169,12 @@ static void oc_recreate_properties_options(Clock *clock)
 static void oc_new_line(GtkToolButton *toolbutton, ClockLine *line)
 {
     Clock *clock = line->clock;;
+    ClockLine *new_line;
     gint pos;
-
     pos = g_list_index(clock->lines, line);
-    oc_add_line(clock, "%X", "", pos+1);
+    new_line = oc_add_new_line(clock, "%X", "", pos+1);
+    oc_set_line(clock, new_line, pos+1);
+    oc_fg_set(clock);
 
     oc_recreate_properties_options(clock);
 }
@@ -179,7 +200,7 @@ static void oc_move_up_line(GtkToolButton *toolbutton, ClockLine *line)
 
     pos = g_list_index(clock->lines, line);
     pos--;
-    gtk_box_reorder_child(GTK_BOX(clock->vbox), line->label, pos);
+    gtk_box_reorder_child(GTK_BOX(clock->mbox), line->label, pos);
     clock->lines = g_list_remove(clock->lines, line);
     clock->lines = g_list_insert(clock->lines, line, pos);
 
@@ -196,7 +217,7 @@ static void oc_move_down_line(GtkToolButton *toolbutton, ClockLine *line)
     pos++;
     if (pos == line_cnt)
         pos = 0;
-    gtk_box_reorder_child(GTK_BOX(clock->vbox), line->label, pos);
+    gtk_box_reorder_child(GTK_BOX(clock->mbox), line->label, pos);
     clock->lines = g_list_remove(clock->lines, line);
     clock->lines = g_list_insert(clock->lines, line, pos);
 
@@ -215,8 +236,11 @@ static void oc_properties_appearance(GtkWidget *dlg, Clock *clock)
     GdkColor def_fg, def_bg;
     GtkStyle *def_style;
     GtkWidget *table;
+    char *clock_rotation_array[3] = {_("No rotation"), _("Rotate left")
+        , _("Rotate right")};
 
-    table = gtk_table_new(3, 4, FALSE);
+
+    table = gtk_table_new(4, 4, FALSE); /* rows, columns */
     gtk_container_set_border_width(GTK_CONTAINER(table), 10);
     gtk_table_set_row_spacings(GTK_TABLE(table), 6);
     gtk_table_set_col_spacings(GTK_TABLE(table), 6);
@@ -224,16 +248,16 @@ static void oc_properties_appearance(GtkWidget *dlg, Clock *clock)
     frame = orage_create_framebox_with_content(_("Appearance"), table);
     gtk_container_set_border_width(GTK_CONTAINER(frame), 6);
     gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dlg)->vbox), frame, FALSE, FALSE, 0);
+    
+    def_style = gtk_widget_get_default_style();
+    def_fg = def_style->fg[GTK_STATE_NORMAL];
+    def_bg = def_style->bg[GTK_STATE_NORMAL];
 
     /* show frame */
     cb = gtk_check_button_new_with_mnemonic(_("Show _frame"));
     oc_table_add(table, cb, 0, 0);
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(cb), clock->show_frame);
     g_signal_connect(cb, "toggled", G_CALLBACK(oc_show_frame_toggled), clock);
-    
-    def_style = gtk_widget_get_default_style();
-    def_fg = def_style->fg[GTK_STATE_NORMAL];
-    def_bg = def_style->bg[GTK_STATE_NORMAL];
 
     /* foreground color */
     cb = gtk_check_button_new_with_mnemonic(_("set foreground _color:"));
@@ -263,7 +287,7 @@ static void oc_properties_appearance(GtkWidget *dlg, Clock *clock)
     g_signal_connect(G_OBJECT(color), "color-set"
             , G_CALLBACK(oc_bg_color_changed), clock);
 
-    /* clock size (=vbox size): height and width */
+    /* clock size (=mbox size): height and width */
     cb = gtk_check_button_new_with_mnemonic(_("set _height:"));
     oc_table_add(table, cb, 0, 2);
     gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(cb), clock->height_set);
@@ -285,7 +309,6 @@ static void oc_properties_appearance(GtkWidget *dlg, Clock *clock)
     g_signal_connect(cb, "toggled", G_CALLBACK(oc_set_width_toggled), clock);
     sb = gtk_spin_button_new_with_range(10, 400, 1);
     oc_table_add(table, sb, 3, 2);
-
     if (!clock->width_set)
         clock->width = 70;
     gtk_spin_button_set_value(GTK_SPIN_BUTTON(sb), (gdouble)clock->width);
@@ -294,6 +317,17 @@ static void oc_properties_appearance(GtkWidget *dlg, Clock *clock)
             , NULL);
     g_signal_connect((gpointer) sb, "value-changed",
             G_CALLBACK(oc_set_width_changed), clock);
+
+    /* rotation and line (=box) position (top / left) */
+    cb = orage_create_combo_box_with_content(clock_rotation_array, 3);
+    oc_table_add(table, cb, 0, 3);
+    gtk_combo_box_set_active(GTK_COMBO_BOX(cb), clock->rotation);
+    g_signal_connect(cb, "changed", G_CALLBACK(oc_rotation_changed), clock);
+
+    cb = gtk_check_button_new_with_mnemonic(_("Show lines _vertically"));
+    oc_table_add(table, cb, 2, 3);
+    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(cb), clock->lines_vertically);
+    g_signal_connect(cb, "toggled", G_CALLBACK(oc_lines_vertically_toggled), clock);
 }
 
 void oc_properties_options(GtkWidget *dlg, Clock *clock)

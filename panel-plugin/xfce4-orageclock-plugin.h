@@ -30,7 +30,7 @@ typedef struct _clock
 
     GtkWidget *ebox;
     GtkWidget *frame;
-    GtkWidget *vbox;
+    GtkWidget *mbox; /* main box. Either vertical or horizontal */
     gboolean   show_frame;
     gboolean   fg_set;
     GdkColor   fg;
@@ -40,6 +40,8 @@ typedef struct _clock
     gint       width;
     gboolean   height_set;
     gint       height;
+    gboolean   lines_vertically;
+    gint       rotation;
     GString   *timezone;
     gchar     *TZ_orig;
     GList     *lines;
@@ -53,6 +55,7 @@ typedef struct _clock
     int delay_timeout_id;
     int interval;
     struct tm  now;
+    gboolean first_call; /* set defaults correct when clock is created */
 } Clock;
 
 typedef struct _clockline
@@ -72,7 +75,10 @@ void oc_bg_set(Clock *clock);
 void oc_size_set(Clock *clock);
 void oc_timezone_set(Clock *clock);
 void oc_line_font_set(ClockLine *line);
+void oc_line_rotate(Clock *clock, ClockLine *line);
 void oc_write_rc_file(XfcePanelPlugin *plugin, Clock *clock);
 void oc_start_timer(Clock *clock);
 void oc_init_timer(Clock *clock);
-void oc_add_line(Clock *clock, char *data, char *font, int pos);
+void oc_set_line(Clock *clock, ClockLine *clock_line, int pos);
+ClockLine * oc_add_new_line(Clock *clock, const char *data, const char *font, int pos);
+void oc_reorganize_lines(Clock *clock);
