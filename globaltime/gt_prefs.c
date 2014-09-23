@@ -443,9 +443,9 @@ static void fill_combo_box(GtkComboBox *combo_box, char **source
     gint i;
 
     for (i = 0; strcmp(source[i], "END"); i++) {
-        gtk_combo_box_append_text(combo_box, source[i]);
+        gtk_combo_box_append_text(combo_box, _(source[i]));
         if ((strcmp(cur_value, "NO VALUE") != 0)
-        &&  ((i == 0) || (strcmp(cur_value, source[i]) == 0)))
+        &&  ((i == 0) || (strcmp(_(cur_value), _(source[i])) == 0)))
             gtk_combo_box_set_active(combo_box, i);
     }
 }
@@ -1086,7 +1086,7 @@ gboolean default_preferences(GtkWidget *widget)
 
     dec_group = gtk_radio_button_get_group(GTK_RADIO_BUTTON (button));
     button = gtk_radio_button_new_with_label_from_widget(
-            GTK_RADIO_BUTTON(button), "None");
+            GTK_RADIO_BUTTON(button), _("None"));
     if (!clocks.decorations)
         gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(button), TRUE);
     gtk_box_pack_start(GTK_BOX(hbox), button, TRUE, TRUE, 0);

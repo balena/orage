@@ -55,7 +55,7 @@
 global_times_struct clocks;
 
 char *attr_underline[] = 
-    { "no underline", "single", "double", "low", "END" } ;
+    { N_("no underline"), N_("single"), N_("double"), N_("low"), "END" } ;
 
 
 static struct tm *get_time(const gchar *tz)
