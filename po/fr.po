@@ -3,21 +3,23 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Pingax <pingax@frugalware.org>, 2013
+# Anthony Jorion <pingax@frugalware.org>, 2013
 # Gérald Barré <g.barre@free.fr>, 2006
 # jc1 <jc1.quebecos@gmail.com>, 2013
 # jc1 <jc1.quebecos@gmail.com>, 2013
 # jc <jc>, 2013
+# Louis Moureaux <m_louis30@yahoo.com>, 2014
 # Maximilian Schleiss <maximilian@xfce.org>, 2008
 # Mickaël Graf <korbinus@linux.se>, 2003
+# Yannick Le Guen <leguen.yannick@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-02 18:30+0100\n"
-"PO-Revision-Date: 2013-12-03 15:27+0000\n"
-"Last-Translator: Pingax <pingax@frugalware.org>\n"
-"Language-Team: French (http://www.transifex.com/projects/p/xfce/language/fr/)\n"
+"POT-Creation-Date: 2014-09-22 18:30+0200\n"
+"PO-Revision-Date: 2014-09-23 06:50+0000\n"
+"Last-Translator: Yannick Le Guen <leguen.yannick@gmail.com>\n"
+"Language-Team: French (http://www.transifex.com/projects/p/xfce-apps/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -59,6 +61,10 @@ msgid ""
 "adjust to change minute. Click arrows with button 2 to change only 1 minute."
 msgstr "ajuster pour changer les minutes. Cliquer sur les flèches avec le bouton 2 pour changer seulement 1 minute."
 
+#: ../globaltime/globaltime.c:548
+msgid "Global Time"
+msgstr ""
+
 #: ../globaltime/gt_prefs.c:265 ../globaltime/gt_prefs.c:266
 msgid "NEW"
 msgstr "NOUVEAU"
@@ -69,7 +75,7 @@ msgstr "NOUVELLE COPIE"
 
 #: ../globaltime/gt_prefs.c:310
 msgid "Not possible to delete the last clock."
-msgstr "Pas possible de supprimer la dernière heure."
+msgstr "Impossible de supprimer la dernière horloge."
 
 #: ../globaltime/gt_prefs.c:516
 msgid "update this clock"
@@ -407,71 +413,87 @@ msgstr "Voir les horloges de différents pays"
 msgid "Globaltime"
 msgstr "Temps Global"
 
-#: ../panel-plugin/oc_config.c:224
+#: ../panel-plugin/oc_config.c:239
+msgid "No rotation"
+msgstr "Pas de rotation"
+
+#: ../panel-plugin/oc_config.c:239
+msgid "Rotate left"
+msgstr "Rotation vers la gauche"
+
+#: ../panel-plugin/oc_config.c:240
+msgid "Rotate right"
+msgstr "Rotation vers la droite"
+
+#: ../panel-plugin/oc_config.c:248
 msgid "Appearance"
 msgstr "Apparence"
 
 #. show frame
-#: ../panel-plugin/oc_config.c:229
+#: ../panel-plugin/oc_config.c:257
 msgid "Show _frame"
-msgstr "Afficher le cadre"
+msgstr "Afficher le _cadre"
 
 #. foreground color
-#: ../panel-plugin/oc_config.c:239
+#: ../panel-plugin/oc_config.c:263
 msgid "set foreground _color:"
 msgstr "définir la _couleur du premier plan :"
 
 #. background color
-#: ../panel-plugin/oc_config.c:253
+#: ../panel-plugin/oc_config.c:277
 msgid "set _background color:"
 msgstr "définir la couleur d'_arrière-plan :"
 
-#. clock size (=vbox size): height and width
-#: ../panel-plugin/oc_config.c:267
+#. clock size (=mbox size): height and width
+#: ../panel-plugin/oc_config.c:291
 msgid "set _height:"
 msgstr "définir la _hauteur :"
 
-#: ../panel-plugin/oc_config.c:277
+#: ../panel-plugin/oc_config.c:301
 msgid "Note that you can not change the height of horizontal panels"
 msgstr "Notez que vous ne pouvez pas modifier la hauteur des panneaux horizontaux"
 
-#: ../panel-plugin/oc_config.c:282
+#: ../panel-plugin/oc_config.c:306
 msgid "set _width:"
 msgstr "Définir la _largeur :"
 
-#: ../panel-plugin/oc_config.c:293
+#: ../panel-plugin/oc_config.c:316
 msgid "Note that you can not change the width of vertical panels"
 msgstr "Notez que vous ne pouvez pas modifier la largeur des panneaux verticaux"
 
-#: ../panel-plugin/oc_config.c:316
+#: ../panel-plugin/oc_config.c:327
+msgid "Show lines _vertically"
+msgstr "Afficher les lignes _verticalement"
+
+#: ../panel-plugin/oc_config.c:350
 msgid "Clock Options"
 msgstr "Options d'Horloge"
 
 #. timezone
-#: ../panel-plugin/oc_config.c:326
+#: ../panel-plugin/oc_config.c:360
 msgid "set timezone to:"
 msgstr "définir la zone horaire à :"
 
-#: ../panel-plugin/oc_config.c:347
+#: ../panel-plugin/oc_config.c:381
 #, c-format
 msgid "Line %d:"
 msgstr "Ligne %d :"
 
-#: ../panel-plugin/oc_config.c:357
+#: ../panel-plugin/oc_config.c:391
 msgid "Enter any valid strftime function parameter."
 msgstr "Entrez n'importe quel paramètre de la fonction strftime valide."
 
 #. Tooltip hint
-#: ../panel-plugin/oc_config.c:401
+#: ../panel-plugin/oc_config.c:435
 msgid "Tooltip:"
-msgstr "Info-bulle :"
+msgstr "Infobulle :"
 
 #. special timing for SUSPEND/HIBERNATE
-#: ../panel-plugin/oc_config.c:411
+#: ../panel-plugin/oc_config.c:445
 msgid "fix time after suspend/hibernate"
 msgstr "ajuster l'heure après une mise en veille/mise en veille prolongée"
 
-#: ../panel-plugin/oc_config.c:415
+#: ../panel-plugin/oc_config.c:449
 msgid ""
 "You only need this if you do short term (less than 5 hours) suspend or "
 "hibernate and your visible time does not include seconds. Under these "
@@ -480,7 +502,7 @@ msgid ""
 "features from working.)"
 msgstr "Vous avez besoin de ceci si vous faite sur un temps court (moins de 5 heures) une suspension ou une mise en veille prolongée et votre temps visible ne comprend pas de secondes. Dans ces circonstances, il est possible que l'horloge Orage montre le temps inexacte par rapport à celui que vous avez sélectionné. (Sélectionner ceci empêche le processeur et interrompre les fonctions d'économie \t\nà partir du travailler)."
 
-#: ../panel-plugin/oc_config.c:432
+#: ../panel-plugin/oc_config.c:466
 msgid ""
 "This program uses strftime function to get time.\n"
 "Use any valid code to get time in the format you prefer.\n"
@@ -492,11 +514,10 @@ msgid ""
 "\t%X = local time\t\t\t%x = local date"
 msgstr "Ce programme utilise la fonction strftime pour récupérer la date et l'heure.\nUtilisez un code valide pour obtenir l'heure dans le format que vous préférez.\nQuelques codes souvent employés :\n\t%A = jour de  la semaine\t\t\t%B = mois\n\t%c = date & heure\t\t%R = heure & minute\n\t%V = numéro de semaine\t\t%Z = fuseau horaire utilisé\n\t%H = heures \t\t\t\t%M = minute\n\t%X = heure locale\t\t\t%x = date locale"
 
-#: ../panel-plugin/oc_config.c:457
+#: ../panel-plugin/oc_config.c:491
 msgid "Orage clock Preferences"
 msgstr "Préférences de l'horloge Orage"
 
-#. no lines yet
 #. TRANSLATORS: Use format characters from strftime(3)
 #. * to get the proper string for your locale.
 #. * I used these:
@@ -505,8 +526,7 @@ msgstr "Préférences de l'horloge Orage"
 #. * %B  : full month name
 #. * %Y  : four digit year
 #. * %V  : ISO week number
-#. 
-#: ../panel-plugin/xfce4-orageclock-plugin.c:627
+#: ../panel-plugin/xfce4-orageclock-plugin.c:700
 msgid "%A %d %B %Y/%V"
 msgstr "%A %d %B %Y/%V"
 
@@ -714,7 +734,7 @@ msgstr "Événement"
 msgid ""
 "Event that will happen sometime. For example:\n"
 "Meeting or birthday or TV show."
-msgstr "Évènement qui va se arriver quelque fois. Par exemple :\nRendez-vous ou anniversaire ou programme TV."
+msgstr "Évènement à venir. Par exemple :\nRendez-vous ou anniversaire ou programme TV."
 
 #: ../src/appointment.c:2752 ../src/event-list.c:1274
 msgid "Todo"
@@ -724,7 +744,7 @@ msgstr "À faire"
 msgid ""
 "Something that you should do sometime. For example:\n"
 "Wash your car or test new version of Orage."
-msgstr "Quelque chose à faire quelque fois. Par exemple :\nLaver la voiture ou tester la nouvelle version d'Orage."
+msgstr "Action à réaliser. Par exemple :\nLaver la voiture ou tester la nouvelle version d'Orage."
 
 #: ../src/appointment.c:2758 ../src/event-list.c:1287
 msgid "Journal"
@@ -864,7 +884,7 @@ msgstr "Il arrive de vouloir une alarme :\n 1) avant le début de l'évènement\
 
 #: ../src/appointment.c:3053
 msgid "Persistent alarm"
-msgstr "Alarme persistente"
+msgstr "Alarme persistante"
 
 #: ../src/appointment.c:3055
 msgid ""
@@ -1250,11 +1270,11 @@ msgstr "Trouver"
 
 #: ../src/event-list.c:1196
 msgid "Dayview"
-msgstr "Apercu journalier"
+msgstr "Aperçu journalier"
 
 #: ../src/event-list.c:1231
 msgid "Extra days to show:"
-msgstr "Jours supplémentaires pour voir :"
+msgstr "Jours supplémentaires à afficher :"
 
 #: ../src/event-list.c:1240
 msgid "only first repeating"
@@ -1542,7 +1562,7 @@ msgstr "Vous pouvez modifier le seuil d'archive dans les paramètres"
 
 #: ../src/interface.c:1092
 msgid "Revert archive now"
-msgstr "Rétablir l'archiver maintenant"
+msgstr "Rétablir l'archive maintenant"
 
 #: ../src/interface.c:1098
 msgid ""
@@ -1616,7 +1636,6 @@ msgstr "Fichier externe :"
 
 #. label = gtk_label_new(_("Options:"));
 #. gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 5);
-#. 
 #: ../src/interface.c:1279
 msgid "Visible name:"
 msgstr "Nom visible :"
@@ -4389,7 +4408,7 @@ msgstr "À propos d'Orage"
 
 #: ../panel-plugin/xfce4-orageclock-plugin.desktop.in.in.h:1
 msgid "Orage Panel Clock"
-msgstr "Horloge du panneau Orage"
+msgstr "Horloge du tableau de bord Orage"
 
 #: ../panel-plugin/xfce4-orageclock-plugin.desktop.in.in.h:2
 msgid "Show time and date?"
