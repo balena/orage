@@ -6,17 +6,18 @@
 # Ambrose Li <acli@ada.dhs.org>, 2004
 # Cosmo Chene <cosmolax@gmail.com>, 2006
 # Hydonsingore Cia <hydonsingore@educities.edu.tw>, 2005
+# Jeff Huang <s8321414@gmail.com>, 2014
 # umm <umm@pchome.com.tw>, 2003
 # Walter Cheuk <wwycheuk@gmail.com>, 2013
-# 柏諺 黃 <s8321414@gmail.com>, 2014
+# Jeff Huang <s8321414@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-02 18:30+0100\n"
-"PO-Revision-Date: 2014-04-21 14:02+0000\n"
-"Last-Translator: 柏諺 黃 <s8321414@gmail.com>\n"
-"Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/xfce/language/zh_TW/)\n"
+"POT-Creation-Date: 2014-09-22 18:30+0200\n"
+"PO-Revision-Date: 2014-09-22 23:40+0000\n"
+"Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
+"Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/xfce-apps/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -57,6 +58,10 @@ msgstr "調整以變更小時"
 msgid ""
 "adjust to change minute. Click arrows with button 2 to change only 1 minute."
 msgstr "調整以變更分鐘。點擊按鈕 2 的箭頭來以 1 分鐘為單位更動。"
+
+#: ../globaltime/globaltime.c:548
+msgid "Global Time"
+msgstr "Global Time"
 
 #: ../globaltime/gt_prefs.c:265 ../globaltime/gt_prefs.c:266
 msgid "NEW"
@@ -406,71 +411,87 @@ msgstr "顯示不同國家的時鐘"
 msgid "Globaltime"
 msgstr "全球時間"
 
-#: ../panel-plugin/oc_config.c:224
+#: ../panel-plugin/oc_config.c:239
+msgid "No rotation"
+msgstr "不旋轉"
+
+#: ../panel-plugin/oc_config.c:239
+msgid "Rotate left"
+msgstr "向左旋轉"
+
+#: ../panel-plugin/oc_config.c:240
+msgid "Rotate right"
+msgstr "向右旋轉"
+
+#: ../panel-plugin/oc_config.c:248
 msgid "Appearance"
 msgstr "外觀"
 
 #. show frame
-#: ../panel-plugin/oc_config.c:229
+#: ../panel-plugin/oc_config.c:257
 msgid "Show _frame"
 msgstr "顯示框格(_F)"
 
 #. foreground color
-#: ../panel-plugin/oc_config.c:239
+#: ../panel-plugin/oc_config.c:263
 msgid "set foreground _color:"
 msgstr "設定前景顏色(_C)："
 
 #. background color
-#: ../panel-plugin/oc_config.c:253
+#: ../panel-plugin/oc_config.c:277
 msgid "set _background color:"
 msgstr "設定背景顏色(_B)："
 
-#. clock size (=vbox size): height and width
-#: ../panel-plugin/oc_config.c:267
+#. clock size (=mbox size): height and width
+#: ../panel-plugin/oc_config.c:291
 msgid "set _height:"
 msgstr "設定高度(_H)："
 
-#: ../panel-plugin/oc_config.c:277
+#: ../panel-plugin/oc_config.c:301
 msgid "Note that you can not change the height of horizontal panels"
 msgstr "注意：水平面板高度不能變更"
 
-#: ../panel-plugin/oc_config.c:282
+#: ../panel-plugin/oc_config.c:306
 msgid "set _width:"
 msgstr "設定寬度(_W)："
 
-#: ../panel-plugin/oc_config.c:293
+#: ../panel-plugin/oc_config.c:316
 msgid "Note that you can not change the width of vertical panels"
 msgstr "注意：垂直面板寬度不能變更"
 
-#: ../panel-plugin/oc_config.c:316
+#: ../panel-plugin/oc_config.c:327
+msgid "Show lines _vertically"
+msgstr "垂直顯示列(_V)"
+
+#: ../panel-plugin/oc_config.c:350
 msgid "Clock Options"
 msgstr "時鐘選項"
 
 #. timezone
-#: ../panel-plugin/oc_config.c:326
+#: ../panel-plugin/oc_config.c:360
 msgid "set timezone to:"
 msgstr "設定時區為："
 
-#: ../panel-plugin/oc_config.c:347
+#: ../panel-plugin/oc_config.c:381
 #, c-format
 msgid "Line %d:"
 msgstr "第 %d 行："
 
-#: ../panel-plugin/oc_config.c:357
+#: ../panel-plugin/oc_config.c:391
 msgid "Enter any valid strftime function parameter."
 msgstr "請輸入任一可用的·strftime·函數參數"
 
 #. Tooltip hint
-#: ../panel-plugin/oc_config.c:401
+#: ../panel-plugin/oc_config.c:435
 msgid "Tooltip:"
 msgstr "工具提示："
 
 #. special timing for SUSPEND/HIBERNATE
-#: ../panel-plugin/oc_config.c:411
+#: ../panel-plugin/oc_config.c:445
 msgid "fix time after suspend/hibernate"
 msgstr "在暫停/休眠後修正時間"
 
-#: ../panel-plugin/oc_config.c:415
+#: ../panel-plugin/oc_config.c:449
 msgid ""
 "You only need this if you do short term (less than 5 hours) suspend or "
 "hibernate and your visible time does not include seconds. Under these "
@@ -479,7 +500,7 @@ msgid ""
 "features from working.)"
 msgstr "只有在作短時間 (少於 5 小時) 的暫停或休眠，而顯示的時間不包括秒數時才需要選用此項。在此情況如不選取此項，Orage 時鐘顯示的時間有可能不準確 (選取此項會令 CPU 和中斷省電功能無法運作)。"
 
-#: ../panel-plugin/oc_config.c:432
+#: ../panel-plugin/oc_config.c:466
 msgid ""
 "This program uses strftime function to get time.\n"
 "Use any valid code to get time in the format you prefer.\n"
@@ -491,11 +512,10 @@ msgid ""
 "\t%X = local time\t\t\t%x = local date"
 msgstr "本程式使用 strftime 函數來獲知時間。\n您可以使用可用的取數來調整成您習慣的時間格式。\n底下是一般常用的取數:\n\t%A = 星期幾\t\t\t%B = 月份\n\t%c = 日期與時間\t\t%R = 小時及分鐘\n\t%V = 第幾週\t\t%Z = 使用的時區\n\t%H = 小時 \t\t\t\t%M = 分鐘\n\t%X = 本地時間\t\t\t%x = 本地日期"
 
-#: ../panel-plugin/oc_config.c:457
+#: ../panel-plugin/oc_config.c:491
 msgid "Orage clock Preferences"
 msgstr "Orage 時鐘偏好設定"
 
-#. no lines yet
 #. TRANSLATORS: Use format characters from strftime(3)
 #. * to get the proper string for your locale.
 #. * I used these:
@@ -504,7 +524,7 @@ msgstr "Orage 時鐘偏好設定"
 #. * %B  : full month name
 #. * %Y  : four digit year
 #. * %V  : ISO week number
-#: ../panel-plugin/xfce4-orageclock-plugin.c:627
+#: ../panel-plugin/xfce4-orageclock-plugin.c:700
 msgid "%A %d %B %Y/%V"
 msgstr "%Y年%-m月%-d日 %A/%V"
 
