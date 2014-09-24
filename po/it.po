@@ -3,25 +3,41 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# mitakpa, 2013
+# Alessandro B, 2013
 # Alex Dupre <ale@FreeBSD.org>, 2004
 # Cristian Cozzolino <cristiancozzolino@libero.it>, 2009
-# cri <cri.penta@gmail.com>, 2013
-# edmael <edoardo.elidoro@gmail.com>, 2013
-# gfoddis <gianluca.foddis@gmail.com>, 2009
+# Cristian Marchi <cri.penta@gmail.com>, 2013-2014
+# Edoardo Maria Elidoro <edoardo.elidoro@gmail.com>, 2013
+# gianluca foddis <gianluca.foddis@gmail.com>, 2009
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-02 18:30+0100\n"
-"PO-Revision-Date: 2013-12-14 17:47+0000\n"
-"Last-Translator: cri <cri.penta@gmail.com>\n"
-"Language-Team: Italian (http://www.transifex.com/projects/p/xfce/language/it/)\n"
+"POT-Creation-Date: 2014-09-23 12:30+0200\n"
+"PO-Revision-Date: 2014-09-24 14:59+0000\n"
+"Last-Translator: Cristian Marchi <cri.penta@gmail.com>\n"
+"Language-Team: Italian (http://www.transifex.com/projects/p/xfce-apps/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: it\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../globaltime/globaltime.c:58
+msgid "no underline"
+msgstr ""
+
+#: ../globaltime/globaltime.c:58
+msgid "single"
+msgstr ""
+
+#: ../globaltime/globaltime.c:58
+msgid "double"
+msgstr ""
+
+#: ../globaltime/globaltime.c:58
+msgid "low"
+msgstr ""
 
 #: ../globaltime/globaltime.c:100
 msgid "Raising GlobalTime window..."
@@ -57,6 +73,10 @@ msgstr "Regolare per cambiare l'ora"
 msgid ""
 "adjust to change minute. Click arrows with button 2 to change only 1 minute."
 msgstr "Regolare per modificare i minuti; fare clic con il pulsante 2 sulle frecce per modificare di solo un minuto"
+
+#: ../globaltime/globaltime.c:548
+msgid "Global Time"
+msgstr "Ora globale"
 
 #: ../globaltime/gt_prefs.c:265 ../globaltime/gt_prefs.c:266
 msgid "NEW"
@@ -258,6 +278,10 @@ msgstr "Standard"
 msgid "Use normal decorations"
 msgstr "Usa le decorazioni normali"
 
+#: ../globaltime/gt_prefs.c:1089 ../src/appointment.c:3290
+msgid "None"
+msgstr "Nessuna"
+
 #: ../globaltime/gt_prefs.c:1094
 msgid "Do not show window decorations (borders)"
 msgstr "Non mostrare le decorazioni della finestra (bordi)"
@@ -406,71 +430,87 @@ msgstr "Mostra l'orologio di diversi paesi"
 msgid "Globaltime"
 msgstr "Ora globale"
 
-#: ../panel-plugin/oc_config.c:224
+#: ../panel-plugin/oc_config.c:239
+msgid "No rotation"
+msgstr "Nessuna rotazione"
+
+#: ../panel-plugin/oc_config.c:239
+msgid "Rotate left"
+msgstr "Ruota a sinistra"
+
+#: ../panel-plugin/oc_config.c:240
+msgid "Rotate right"
+msgstr "Ruota a destra"
+
+#: ../panel-plugin/oc_config.c:248
 msgid "Appearance"
 msgstr "Aspetto"
 
 #. show frame
-#: ../panel-plugin/oc_config.c:229
+#: ../panel-plugin/oc_config.c:257
 msgid "Show _frame"
 msgstr "Mostra co_rnice"
 
 #. foreground color
-#: ../panel-plugin/oc_config.c:239
+#: ../panel-plugin/oc_config.c:263
 msgid "set foreground _color:"
 msgstr "Imposta colore _primo piano:"
 
 #. background color
-#: ../panel-plugin/oc_config.c:253
+#: ../panel-plugin/oc_config.c:277
 msgid "set _background color:"
 msgstr "Imposta colore _sfondo:"
 
-#. clock size (=vbox size): height and width
-#: ../panel-plugin/oc_config.c:267
+#. clock size (=mbox size): height and width
+#: ../panel-plugin/oc_config.c:291
 msgid "set _height:"
 msgstr "Imposta alte_zza:"
 
-#: ../panel-plugin/oc_config.c:277
+#: ../panel-plugin/oc_config.c:301
 msgid "Note that you can not change the height of horizontal panels"
 msgstr "Si noti che non è possibile modificare l'altezza dei pannelli orizzontali"
 
-#: ../panel-plugin/oc_config.c:282
+#: ../panel-plugin/oc_config.c:306
 msgid "set _width:"
 msgstr "Imposta _larghezza:"
 
-#: ../panel-plugin/oc_config.c:293
+#: ../panel-plugin/oc_config.c:316
 msgid "Note that you can not change the width of vertical panels"
 msgstr "Si noti che non è possibile modificare la larghezza dei pannelli verticali"
 
-#: ../panel-plugin/oc_config.c:316
+#: ../panel-plugin/oc_config.c:327
+msgid "Show lines _vertically"
+msgstr ""
+
+#: ../panel-plugin/oc_config.c:350
 msgid "Clock Options"
 msgstr "Opzioni dell'orologio"
 
 #. timezone
-#: ../panel-plugin/oc_config.c:326
+#: ../panel-plugin/oc_config.c:360
 msgid "set timezone to:"
 msgstr "Imposta il fuso orario su:"
 
-#: ../panel-plugin/oc_config.c:347
+#: ../panel-plugin/oc_config.c:381
 #, c-format
 msgid "Line %d:"
 msgstr "Linea %d:"
 
-#: ../panel-plugin/oc_config.c:357
+#: ../panel-plugin/oc_config.c:391
 msgid "Enter any valid strftime function parameter."
 msgstr "Inserire un parametro valido per la funzione strftime"
 
 #. Tooltip hint
-#: ../panel-plugin/oc_config.c:401
+#: ../panel-plugin/oc_config.c:435
 msgid "Tooltip:"
 msgstr "Suggerimento:"
 
 #. special timing for SUSPEND/HIBERNATE
-#: ../panel-plugin/oc_config.c:411
+#: ../panel-plugin/oc_config.c:445
 msgid "fix time after suspend/hibernate"
 msgstr "Riaggiusta l'ora dopo una sospensione/ibernazione"
 
-#: ../panel-plugin/oc_config.c:415
+#: ../panel-plugin/oc_config.c:449
 msgid ""
 "You only need this if you do short term (less than 5 hours) suspend or "
 "hibernate and your visible time does not include seconds. Under these "
@@ -479,7 +519,7 @@ msgid ""
 "features from working.)"
 msgstr "Questo è necessario se viene effettuata una sospensione o una ibernazione a breve termine (meno di 5 ore) e l'ora visualizzata non comprende i secondi. In queste circostanze è possibile che l'orologio di Orage mostri l'ora in modo impreciso a meno che non sia stata selezionata questa opzione (selezionandola, si inibisce il funzionamento della cpu e delle funzioni di risparmio energetico)"
 
-#: ../panel-plugin/oc_config.c:432
+#: ../panel-plugin/oc_config.c:466
 msgid ""
 "This program uses strftime function to get time.\n"
 "Use any valid code to get time in the format you prefer.\n"
@@ -491,11 +531,10 @@ msgid ""
 "\t%X = local time\t\t\t%x = local date"
 msgstr "Questo programma utilizza la funzione strftime per\nrecuperare le informazioni su data e ora.\nUtilizzare un qualsiasi codice valido per ottenere la\ndata e l'ora nel formato che si preferisce.\nI codici più utilizzati sono:\n\t%A = giorno della settimana\t%B = mese\n\t%c = data e ora\t\t\t%R = ora e minuti\n\t%V = numero settimana\t%Z = fuso orario in uso\n\t%H = ore \t\t\t\t%M = minuti\n\t%X = ora locale\t\t\t%x = data locale"
 
-#: ../panel-plugin/oc_config.c:457
+#: ../panel-plugin/oc_config.c:491
 msgid "Orage clock Preferences"
 msgstr "Preferenze dell'orologio di Orage"
 
-#. no lines yet
 #. TRANSLATORS: Use format characters from strftime(3)
 #. * to get the proper string for your locale.
 #. * I used these:
@@ -504,8 +543,7 @@ msgstr "Preferenze dell'orologio di Orage"
 #. * %B  : full month name
 #. * %Y  : four digit year
 #. * %V  : ISO week number
-#. 
-#: ../panel-plugin/xfce4-orageclock-plugin.c:627
+#: ../panel-plugin/xfce4-orageclock-plugin.c:700
 msgid "%A %d %B %Y/%V"
 msgstr "%A %d %B %Y/%V"
 
@@ -969,10 +1007,6 @@ msgstr "Salva le impostazioni correnti come allarme predefinito"
 #: ../src/appointment.c:3228
 msgid "Set current settings from default alarm"
 msgstr "Carica le impostazioni dell'allarme predefinito"
-
-#: ../src/appointment.c:3290
-msgid "None"
-msgstr "Nessuna"
 
 #: ../src/appointment.c:3290
 msgid "Daily"
@@ -1615,7 +1649,6 @@ msgstr "File esterno:"
 
 #. label = gtk_label_new(_("Options:"));
 #. gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 5);
-#. 
 #: ../src/interface.c:1279
 msgid "Visible name:"
 msgstr "Nome visibile:"
