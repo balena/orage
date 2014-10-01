@@ -473,7 +473,7 @@ void xfical_file_close(gboolean foreign)
             orage_message(-10, P_N "canceling delayed close");
 #endif
         }
-        if (ic_file_modified) { /* close it now */
+        if (ic_file_modified || g_par.file_close_delay == 0) { /* close it now */
 #ifdef ORAGE_DEBUG
             orage_message(-10, P_N "closing file now");
 #endif
@@ -488,11 +488,12 @@ void xfical_file_close(gboolean foreign)
                 g_par.latest_file_change = s.st_mtime;
             }
         }
-        else { /* close it later = after 10 minutes (to save time) */
+        else { /* close it later (to save time) */
 #ifdef ORAGE_DEBUG
-            orage_message(-10, P_N "closing file after 10 minutes");
+            orage_message(-10, P_N "closing file after %d seconds",
+                    g_par.file_close_delay);
 #endif
-            file_close_timer = g_timeout_add_seconds(10*60
+            file_close_timer = g_timeout_add_seconds(g_par.file_close_delay
                     , (GtkFunction)delayed_file_close, NULL);
         }
     }

@@ -55,6 +55,7 @@
 #define ORAGE_DEBUG 1
 */
 
+static guint month_change_timer=0;
 
 gboolean orage_mark_appointments(void)
 {
@@ -255,6 +256,7 @@ static gboolean upd_calendar(GtkCalendar *calendar)
     orage_message(-100, P_N);
 #endif
     orage_mark_appointments();
+    month_change_timer = 0;
     return(FALSE); /* we do this only once */
 }
 
@@ -262,7 +264,6 @@ void mCalendar_month_changed_cb(GtkCalendar *calendar, gpointer user_data)
 {
 #undef P_N
 #define P_N "mCalendar_month_changed_cb: "
-    static guint timer=0;
 #ifdef ORAGE_DEBUG
     orage_message(-100, P_N);
 #endif
@@ -273,11 +274,12 @@ void mCalendar_month_changed_cb(GtkCalendar *calendar, gpointer user_data)
      * running updates since this new one will overwrite them anyway.
      * Let's clear still the view to fix bug 3913 (only needed 
      * if there are changes in the calendar) */
-    if (timer)
-        g_source_remove(timer);
+    if (month_change_timer) {
+        g_source_remove(month_change_timer);
+    }
     if (calendar->num_marked_dates) /* undocumented, internal field; ugly */
         gtk_calendar_clear_marks(calendar);
-    timer = g_timeout_add(400, (GtkFunction)upd_calendar, calendar);
+    month_change_timer = g_timeout_add(400, (GtkFunction)upd_calendar, calendar);
 }
 
 static void build_menu(void)

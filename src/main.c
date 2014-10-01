@@ -88,7 +88,7 @@ static void handle_resuming(void)
     GError *error = NULL;
     DBusGProxy *proxy;
 
-    g_type_init();
+    g_type_init(); /* deprecated in GLib 2.36 and happens now automatically */
     connection = dbus_g_bus_get(DBUS_BUS_SYSTEM, &error);
     if (connection) {
        proxy = dbus_g_proxy_new_for_name(connection, "org.freedesktop.UPower"

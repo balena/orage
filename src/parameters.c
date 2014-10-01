@@ -1283,6 +1283,7 @@ void read_parameters(void)
     g_par.priority_list_limit = orage_rc_get_int(orc, "Priority list limit", 8);
     g_par.use_wakeup_timer = orage_rc_get_bool(orc, "Use wakeup timer", TRUE);
     g_par.close_means_quit = orage_rc_get_bool(orc, "Always quit", FALSE);
+    g_par.file_close_delay = orage_rc_get_int(orc, "File close delay", 600);
 
     orage_rc_file_close(orc);
 }
@@ -1385,6 +1386,7 @@ void write_parameters(void)
     orage_rc_put_int(orc, "Priority list limit", g_par.priority_list_limit);
     orage_rc_put_bool(orc, "Use wakeup timer", g_par.use_wakeup_timer);
     orage_rc_put_bool(orc, "Always quit", g_par.close_means_quit);
+    orage_rc_put_int(orc, "File close delay", g_par.file_close_delay);
 
     orage_rc_file_close(orc);
 }

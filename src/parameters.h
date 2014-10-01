@@ -133,6 +133,9 @@ typedef struct _parameters
 
     /* always quit instead of going to background when asked to close */
     gboolean close_means_quit;
+
+    /* delayed close length in seconds. 0 = close immediately */
+    gint file_close_delay;
 } global_parameters; /* global parameters */
 
 #ifdef ORAGE_MAIN
