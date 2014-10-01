@@ -4,20 +4,36 @@
 # 
 # Translators:
 # Dmitry Nikitin <luckas_fb@mail.ru>, 2008
-# Yarema aka Knedlyk <yupadmin@gmail.com>, 2013
+# Yarema aka Knedlyk <yupadmin@gmail.com>, 2013-2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-02 18:30+0100\n"
-"PO-Revision-Date: 2013-12-03 08:58+0000\n"
+"POT-Creation-Date: 2014-09-23 12:30+0200\n"
+"PO-Revision-Date: 2014-10-01 21:57+0000\n"
 "Last-Translator: Yarema aka Knedlyk <yupadmin@gmail.com>\n"
-"Language-Team: Ukrainian (http://www.transifex.com/projects/p/xfce/language/uk/)\n"
+"Language-Team: Ukrainian (http://www.transifex.com/projects/p/xfce-apps/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: uk\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: ../globaltime/globaltime.c:58
+msgid "no underline"
+msgstr "без підкреслення"
+
+#: ../globaltime/globaltime.c:58
+msgid "single"
+msgstr "одинарно"
+
+#: ../globaltime/globaltime.c:58
+msgid "double"
+msgstr "подвійно"
+
+#: ../globaltime/globaltime.c:58
+msgid "low"
+msgstr "низько"
 
 #: ../globaltime/globaltime.c:100
 msgid "Raising GlobalTime window..."
@@ -53,6 +69,10 @@ msgstr "змінити години"
 msgid ""
 "adjust to change minute. Click arrows with button 2 to change only 1 minute."
 msgstr "уточнити на одну хвилину. Натисніть кнопку зі стрілкою 2 щоб змінити тільки на 1 хвилину."
+
+#: ../globaltime/globaltime.c:548
+msgid "Global Time"
+msgstr "Глобальний час"
 
 #: ../globaltime/gt_prefs.c:265 ../globaltime/gt_prefs.c:266
 msgid "NEW"
@@ -254,6 +274,10 @@ msgstr "Стандартний"
 msgid "Use normal decorations"
 msgstr "Використовувати основні прикраси"
 
+#: ../globaltime/gt_prefs.c:1089 ../src/appointment.c:3290
+msgid "None"
+msgstr "Немає"
+
 #: ../globaltime/gt_prefs.c:1094
 msgid "Do not show window decorations (borders)"
 msgstr "Не показувати прикраси вікон (рамки)"
@@ -402,71 +426,87 @@ msgstr "Відображати годинники з різних країн"
 msgid "Globaltime"
 msgstr "Світовий час"
 
-#: ../panel-plugin/oc_config.c:224
+#: ../panel-plugin/oc_config.c:239
+msgid "No rotation"
+msgstr "Без повертання"
+
+#: ../panel-plugin/oc_config.c:239
+msgid "Rotate left"
+msgstr "Повернути вліво"
+
+#: ../panel-plugin/oc_config.c:240
+msgid "Rotate right"
+msgstr "Повернути вправо"
+
+#: ../panel-plugin/oc_config.c:248
 msgid "Appearance"
 msgstr "Зовнішній вигляд"
 
 #. show frame
-#: ../panel-plugin/oc_config.c:229
+#: ../panel-plugin/oc_config.c:257
 msgid "Show _frame"
 msgstr "Показувати _фрейм"
 
 #. foreground color
-#: ../panel-plugin/oc_config.c:239
+#: ../panel-plugin/oc_config.c:263
 msgid "set foreground _color:"
 msgstr "встановити основний _колір:"
 
 #. background color
-#: ../panel-plugin/oc_config.c:253
+#: ../panel-plugin/oc_config.c:277
 msgid "set _background color:"
 msgstr "встановити колір _тла:"
 
-#. clock size (=vbox size): height and width
-#: ../panel-plugin/oc_config.c:267
+#. clock size (=mbox size): height and width
+#: ../panel-plugin/oc_config.c:291
 msgid "set _height:"
 msgstr "встановити _висоту:"
 
-#: ../panel-plugin/oc_config.c:277
+#: ../panel-plugin/oc_config.c:301
 msgid "Note that you can not change the height of horizontal panels"
 msgstr "Зверніть увагу, Ви не можете змінити висоту горизонтальних панелей"
 
-#: ../panel-plugin/oc_config.c:282
+#: ../panel-plugin/oc_config.c:306
 msgid "set _width:"
 msgstr "встановити _ширину:"
 
-#: ../panel-plugin/oc_config.c:293
+#: ../panel-plugin/oc_config.c:316
 msgid "Note that you can not change the width of vertical panels"
 msgstr "Зверніть увагу, Ви не можете змінити ширину вертикальних панелей"
 
-#: ../panel-plugin/oc_config.c:316
+#: ../panel-plugin/oc_config.c:327
+msgid "Show lines _vertically"
+msgstr "Показати лінії _вертикально"
+
+#: ../panel-plugin/oc_config.c:350
 msgid "Clock Options"
 msgstr "Опції годинника"
 
 #. timezone
-#: ../panel-plugin/oc_config.c:326
+#: ../panel-plugin/oc_config.c:360
 msgid "set timezone to:"
 msgstr "встановити часовий пояс в:"
 
-#: ../panel-plugin/oc_config.c:347
+#: ../panel-plugin/oc_config.c:381
 #, c-format
 msgid "Line %d:"
 msgstr "Стрічка %d:"
 
-#: ../panel-plugin/oc_config.c:357
+#: ../panel-plugin/oc_config.c:391
 msgid "Enter any valid strftime function parameter."
 msgstr "Введіть будь-який правильний параметр функції strftime."
 
 #. Tooltip hint
-#: ../panel-plugin/oc_config.c:401
+#: ../panel-plugin/oc_config.c:435
 msgid "Tooltip:"
 msgstr "Спливаючі:"
 
 #. special timing for SUSPEND/HIBERNATE
-#: ../panel-plugin/oc_config.c:411
+#: ../panel-plugin/oc_config.c:445
 msgid "fix time after suspend/hibernate"
 msgstr "скоригувати час після призупинення/сплячки"
 
-#: ../panel-plugin/oc_config.c:415
+#: ../panel-plugin/oc_config.c:449
 msgid ""
 "You only need this if you do short term (less than 5 hours) suspend or "
 "hibernate and your visible time does not include seconds. Under these "
@@ -475,7 +515,7 @@ msgid ""
 "features from working.)"
 msgstr "Вам це потрібно якщо це відбувається в короткому проміжку часу (менше  5 годин) призупинення чи сплячки і Ваш видимий час не включає секунд. В цих випадках можливо, Orageclock відображатиме неточний час ніж вибраний  Вами. (Виберіть цю опцію для правильної роботи повідомлень з допомогою    процесора і системного переривання)"
 
-#: ../panel-plugin/oc_config.c:432
+#: ../panel-plugin/oc_config.c:466
 msgid ""
 "This program uses strftime function to get time.\n"
 "Use any valid code to get time in the format you prefer.\n"
@@ -487,11 +527,10 @@ msgid ""
 "\t%X = local time\t\t\t%x = local date"
 msgstr "Ця програма використовує strftime для одержання часу.\nВикористовуйте будь-який правильний код щоб отримати час в потрібному форматі\nДеякі з основних кодів:\n\t%A = день тижня\t\t\t%B = місяць\n\t%c = дата і час\t\t%R = години і хвилини\n\t%V = номер тижня\t\t%Z = використовуваний часовий пояс\n\t%H = година \t\t\t\t%M = хвилина\n\t%X = місцевий час\t\t\t%x = місцева дата"
 
-#: ../panel-plugin/oc_config.c:457
+#: ../panel-plugin/oc_config.c:491
 msgid "Orage clock Preferences"
 msgstr "Налаштування Orage"
 
-#. no lines yet
 #. TRANSLATORS: Use format characters from strftime(3)
 #. * to get the proper string for your locale.
 #. * I used these:
@@ -500,8 +539,7 @@ msgstr "Налаштування Orage"
 #. * %B  : full month name
 #. * %Y  : four digit year
 #. * %V  : ISO week number
-#. 
-#: ../panel-plugin/xfce4-orageclock-plugin.c:627
+#: ../panel-plugin/xfce4-orageclock-plugin.c:700
 msgid "%A %d %B %Y/%V"
 msgstr "%A %d %B %Y/%V"
 
@@ -965,10 +1003,6 @@ msgstr "Запам'ятати поточні параметри як типов�
 #: ../src/appointment.c:3228
 msgid "Set current settings from default alarm"
 msgstr "Встановити поточні параметри з типового дзвінка"
-
-#: ../src/appointment.c:3290
-msgid "None"
-msgstr "Немає"
 
 #: ../src/appointment.c:3290
 msgid "Daily"
@@ -1611,7 +1645,6 @@ msgstr "Зовнішній файл:"
 
 #. label = gtk_label_new(_("Options:"));
 #. gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 5);
-#. 
 #: ../src/interface.c:1279
 msgid "Visible name:"
 msgstr "Видима назва:"
