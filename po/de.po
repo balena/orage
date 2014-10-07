@@ -4,19 +4,19 @@
 # 
 # Translators:
 # Fabian Nowak <timystery@arcor.de>, 2005-2008, 2010
-# gem <eckert.georg@gmx.de>, 2013-2014
-# Marcel Kapfer <marcelmichaelkapfer@yahoo.co.nz>, 2013
+# Georg Eckert <eckert.georg@gmx.de>, 2013-2014
+# Marcel Michael Kapfer <marcelmichaelkapfer@yahoo.co.nz>, 2013
 # Moritz Heiber <moe@xfce.org>, 2003
 # Nico Schümann <nico@prog.nico22.de>, 2007
 # Simon Schneider <simon@schneiderimtal.de>, 2009
-# to_ba, 2014
+# Tobias Bannert, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-02 18:30+0100\n"
-"PO-Revision-Date: 2014-05-24 10:12+0000\n"
-"Last-Translator: gem <eckert.georg@gmx.de>\n"
+"POT-Creation-Date: 2014-09-23 12:30+0200\n"
+"PO-Revision-Date: 2014-10-07 13:53+0000\n"
+"Last-Translator: Tobias Bannert\n"
 "Language-Team: German (http://www.transifex.com/projects/p/xfce-apps/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,9 +24,25 @@ msgstr ""
 "Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: ../globaltime/globaltime.c:58
+msgid "no underline"
+msgstr ""
+
+#: ../globaltime/globaltime.c:58
+msgid "single"
+msgstr ""
+
+#: ../globaltime/globaltime.c:58
+msgid "double"
+msgstr ""
+
+#: ../globaltime/globaltime.c:58
+msgid "low"
+msgstr ""
+
 #: ../globaltime/globaltime.c:100
 msgid "Raising GlobalTime window..."
-msgstr "Hebe Weltzeitfenster hervor..."
+msgstr "Weltzeitfenster hervorheben …"
 
 #: ../globaltime/globaltime.c:102
 msgid "GlobalTime window raise failed"
@@ -58,6 +74,10 @@ msgstr "Einstellen, um Stunde zu ändern"
 msgid ""
 "adjust to change minute. Click arrows with button 2 to change only 1 minute."
 msgstr "Minuten einstellen. Klicken Sie die Pfeile mit Taste 2 an, um nur 1 Minute "
+
+#: ../globaltime/globaltime.c:548
+msgid "Global Time"
+msgstr ""
 
 #: ../globaltime/gt_prefs.c:265 ../globaltime/gt_prefs.c:266
 msgid "NEW"
@@ -259,6 +279,10 @@ msgstr "Standard"
 msgid "Use normal decorations"
 msgstr "Normale Verzierungen"
 
+#: ../globaltime/gt_prefs.c:1089 ../src/appointment.c:3290
+msgid "None"
+msgstr "Keine"
+
 #: ../globaltime/gt_prefs.c:1094
 msgid "Do not show window decorations (borders)"
 msgstr "Keine Fensterverzierung (Rahmen)"
@@ -407,71 +431,87 @@ msgstr "Uhrzeiten verschiedener Länder zeigen"
 msgid "Globaltime"
 msgstr "Weltzeit"
 
-#: ../panel-plugin/oc_config.c:224
+#: ../panel-plugin/oc_config.c:239
+msgid "No rotation"
+msgstr ""
+
+#: ../panel-plugin/oc_config.c:239
+msgid "Rotate left"
+msgstr ""
+
+#: ../panel-plugin/oc_config.c:240
+msgid "Rotate right"
+msgstr ""
+
+#: ../panel-plugin/oc_config.c:248
 msgid "Appearance"
 msgstr "Erscheinung"
 
 #. show frame
-#: ../panel-plugin/oc_config.c:229
+#: ../panel-plugin/oc_config.c:257
 msgid "Show _frame"
 msgstr "_Rahmen anzeigen"
 
 #. foreground color
-#: ../panel-plugin/oc_config.c:239
+#: ../panel-plugin/oc_config.c:263
 msgid "set foreground _color:"
 msgstr "_Vorderfarbe setzen:"
 
 #. background color
-#: ../panel-plugin/oc_config.c:253
+#: ../panel-plugin/oc_config.c:277
 msgid "set _background color:"
 msgstr "Hinter_grundfarbe setzen:"
 
-#. clock size (=vbox size): height and width
-#: ../panel-plugin/oc_config.c:267
+#. clock size (=mbox size): height and width
+#: ../panel-plugin/oc_config.c:291
 msgid "set _height:"
 msgstr "_Höhe einstellen:"
 
-#: ../panel-plugin/oc_config.c:277
+#: ../panel-plugin/oc_config.c:301
 msgid "Note that you can not change the height of horizontal panels"
 msgstr "Die Höhe horizontaler Leisten kann nicht verändert werden"
 
-#: ../panel-plugin/oc_config.c:282
+#: ../panel-plugin/oc_config.c:306
 msgid "set _width:"
 msgstr "_Breite einstellen:"
 
-#: ../panel-plugin/oc_config.c:293
+#: ../panel-plugin/oc_config.c:316
 msgid "Note that you can not change the width of vertical panels"
 msgstr "Die Breite vertikaler Leisten kann nicht verändert werden"
 
-#: ../panel-plugin/oc_config.c:316
+#: ../panel-plugin/oc_config.c:327
+msgid "Show lines _vertically"
+msgstr ""
+
+#: ../panel-plugin/oc_config.c:350
 msgid "Clock Options"
 msgstr "Uhreinstellungen"
 
 #. timezone
-#: ../panel-plugin/oc_config.c:326
+#: ../panel-plugin/oc_config.c:360
 msgid "set timezone to:"
 msgstr "Zeitzone setzen auf:"
 
-#: ../panel-plugin/oc_config.c:347
+#: ../panel-plugin/oc_config.c:381
 #, c-format
 msgid "Line %d:"
 msgstr "Zeile %d:"
 
-#: ../panel-plugin/oc_config.c:357
+#: ../panel-plugin/oc_config.c:391
 msgid "Enter any valid strftime function parameter."
 msgstr "Geben Sie gültige Parameter der Funktion »strftime« ein."
 
 #. Tooltip hint
-#: ../panel-plugin/oc_config.c:401
+#: ../panel-plugin/oc_config.c:435
 msgid "Tooltip:"
 msgstr "Kurzhilfe:"
 
 #. special timing for SUSPEND/HIBERNATE
-#: ../panel-plugin/oc_config.c:411
+#: ../panel-plugin/oc_config.c:445
 msgid "fix time after suspend/hibernate"
 msgstr "Zeit korrigieren nach Ruhemodus/Tiefschlaf"
 
-#: ../panel-plugin/oc_config.c:415
+#: ../panel-plugin/oc_config.c:449
 msgid ""
 "You only need this if you do short term (less than 5 hours) suspend or "
 "hibernate and your visible time does not include seconds. Under these "
@@ -480,7 +520,7 @@ msgid ""
 "features from working.)"
 msgstr "Sie benötigen dies nur, wenn Sie für eine relativ kurze Zeitspanne (weniger als 5 Stunden) in den Ruhemodus oder Tiefschlaf gehen und Ihre sichtbare Zeit keine Sekunden enthält. Unter diesen Umständen ist es nämlich möglich, dass die Uhr von Orage die Zeit etwas verfälscht wiedergibt, wenn Sie dies nicht ausgewählt haben. (Wählt man dies aus, werden einige Fähigkeiten der CPU und das Vermeiden von Interrupts nicht mehr funktionieren.)"
 
-#: ../panel-plugin/oc_config.c:432
+#: ../panel-plugin/oc_config.c:466
 msgid ""
 "This program uses strftime function to get time.\n"
 "Use any valid code to get time in the format you prefer.\n"
@@ -492,11 +532,10 @@ msgid ""
 "\t%X = local time\t\t\t%x = local date"
 msgstr "Diese Programm verwendet die Funktion »strftime«, um die Zeit zu erhalten.\nVerwenden Sie beliebigen gültigen Code, um die Zeit in dem Format zu erhalten, das Sie bevorzugen.\nEinige häufig verwendete Codes sind:\n\t%A = Wochentag\t\t\t%B = Monat\n\t%c = Datum und Zeit\t\t%R = Stunde und Minuten\n\t%V = Kalenderwoche\t\t%Z = Verwendete Zeitzone\n\t%H = Stunden \t\t\t%M = Minuten\n\t%X = Ortszeit\t\t\t\t%x = Ortsdatum"
 
-#: ../panel-plugin/oc_config.c:457
+#: ../panel-plugin/oc_config.c:491
 msgid "Orage clock Preferences"
 msgstr "Uhrzeiteinstellungen für Orage"
 
-#. no lines yet
 #. TRANSLATORS: Use format characters from strftime(3)
 #. * to get the proper string for your locale.
 #. * I used these:
@@ -505,7 +544,7 @@ msgstr "Uhrzeiteinstellungen für Orage"
 #. * %B  : full month name
 #. * %Y  : four digit year
 #. * %V  : ISO week number
-#: ../panel-plugin/xfce4-orageclock-plugin.c:627
+#: ../panel-plugin/xfce4-orageclock-plugin.c:700
 msgid "%A %d %B %Y/%V"
 msgstr "%A, %d. %B %Y (KW %V)"
 
@@ -536,7 +575,7 @@ msgstr "Orage"
 #. Create file chooser
 #: ../src/appointment.c:672 ../src/interface.c:264 ../src/parameters.c:374
 msgid "Select a file..."
-msgstr "Datei auswählen..."
+msgstr "Datei auswählen …"
 
 #: ../src/appointment.c:680
 msgid "Sound Files"
@@ -971,10 +1010,6 @@ msgid "Set current settings from default alarm"
 msgstr "Die aktuellen Einstellungen der Standarderinnerung laden"
 
 #: ../src/appointment.c:3290
-msgid "None"
-msgstr "Keine"
-
-#: ../src/appointment.c:3290
 msgid "Daily"
 msgstr "Täglich"
 
@@ -1405,7 +1440,7 @@ msgstr "... Aktualisiert DCREATED, um CREATED zu werden"
 
 #: ../src/ical-expimp.c:197
 msgid "... Patched timezone to Orage format."
-msgstr "... Zeitzone wurde auf das Orage-Format angepasst."
+msgstr "… Zeitzone wurde auf das Orage-Format angepasst."
 
 #: ../src/ical-expimp.c:206
 msgid "Import file preprocessing done"
@@ -1746,7 +1781,7 @@ msgstr "--remove-foreign (-r) Datei \tFremddatei entfernen\n"
 msgid ""
 "--export (-e) file [appointment...] \texport appointments from Orage to "
 "file\n"
-msgstr "--export (-e) Datei [Termin...] \tTermine aus Orage in Datei exportieren\n"
+msgstr "--export (-e) Datei [Termin …] \tTermine aus Orage in Datei exportieren\n"
 
 #: ../src/main.c:323
 #, c-format
