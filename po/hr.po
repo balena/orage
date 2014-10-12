@@ -3,23 +3,40 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# schizo <eveskovic@gmail.com>, 2014
+# Edin Veskovic <edin.veskovic@openmailbox.org>, 2014
+# Edin Veskovic <edin.veskovic@openmailbox.org>, 2014
 # Ivica  Kolić <ikoli@yahoo.com>, 2010
 # Ivica  Kolić <ikoli@yahoo.com>, 2010
-# Ivica  Kolić <ikoli@yahoo.com>, 2013
+# Ivica  Kolić <ikoli@yahoo.com>, 2013-2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-02 18:30+0100\n"
-"PO-Revision-Date: 2014-05-17 12:06+0000\n"
-"Last-Translator: schizo <eveskovic@gmail.com>\n"
+"POT-Creation-Date: 2014-09-23 12:30+0200\n"
+"PO-Revision-Date: 2014-10-12 04:03+0000\n"
+"Last-Translator: Ivica  Kolić <ikoli@yahoo.com>\n"
 "Language-Team: Croatian (http://www.transifex.com/projects/p/xfce-apps/language/hr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: hr\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+
+#: ../globaltime/globaltime.c:58
+msgid "no underline"
+msgstr "nepodcrtano"
+
+#: ../globaltime/globaltime.c:58
+msgid "single"
+msgstr "jednostruko"
+
+#: ../globaltime/globaltime.c:58
+msgid "double"
+msgstr "dvostruko"
+
+#: ../globaltime/globaltime.c:58
+msgid "low"
+msgstr "nisko"
 
 #: ../globaltime/globaltime.c:100
 msgid "Raising GlobalTime window..."
@@ -55,6 +72,10 @@ msgstr "uskladi za promjenu sata"
 msgid ""
 "adjust to change minute. Click arrows with button 2 to change only 1 minute."
 msgstr "prilagodii promjeni minute. Kliknite na strelice sa dugmetom 2 za promjenu samo 1 minute."
+
+#: ../globaltime/globaltime.c:548
+msgid "Global Time"
+msgstr "Globalno vrijeme"
 
 #: ../globaltime/gt_prefs.c:265 ../globaltime/gt_prefs.c:266
 msgid "NEW"
@@ -256,6 +277,10 @@ msgstr "Standardno"
 msgid "Use normal decorations"
 msgstr "Koristi normalno ukrašavanje"
 
+#: ../globaltime/gt_prefs.c:1089 ../src/appointment.c:3290
+msgid "None"
+msgstr "NIjedan"
+
 #: ../globaltime/gt_prefs.c:1094
 msgid "Do not show window decorations (borders)"
 msgstr "Ne pokazuj ukrašavanje prozora (rubovi)"
@@ -404,71 +429,87 @@ msgstr "Pokaži satove različitih zemalja"
 msgid "Globaltime"
 msgstr "Globalno vrijeme"
 
-#: ../panel-plugin/oc_config.c:224
+#: ../panel-plugin/oc_config.c:239
+msgid "No rotation"
+msgstr "Bez rotacije"
+
+#: ../panel-plugin/oc_config.c:239
+msgid "Rotate left"
+msgstr "Rotiraj lijevo"
+
+#: ../panel-plugin/oc_config.c:240
+msgid "Rotate right"
+msgstr "Rotiraj desno"
+
+#: ../panel-plugin/oc_config.c:248
 msgid "Appearance"
 msgstr "Izgled"
 
 #. show frame
-#: ../panel-plugin/oc_config.c:229
+#: ../panel-plugin/oc_config.c:257
 msgid "Show _frame"
 msgstr "Pokaži _okvir"
 
 #. foreground color
-#: ../panel-plugin/oc_config.c:239
+#: ../panel-plugin/oc_config.c:263
 msgid "set foreground _color:"
 msgstr "Postavi boju _prvoga plana:"
 
 #. background color
-#: ../panel-plugin/oc_config.c:253
+#: ../panel-plugin/oc_config.c:277
 msgid "set _background color:"
 msgstr "postavi _pozadinsku boju:"
 
-#. clock size (=vbox size): height and width
-#: ../panel-plugin/oc_config.c:267
+#. clock size (=mbox size): height and width
+#: ../panel-plugin/oc_config.c:291
 msgid "set _height:"
 msgstr "postavi _visinu"
 
-#: ../panel-plugin/oc_config.c:277
+#: ../panel-plugin/oc_config.c:301
 msgid "Note that you can not change the height of horizontal panels"
 msgstr "Ne možete mijenjati visinu vodoravnih ploča"
 
-#: ../panel-plugin/oc_config.c:282
+#: ../panel-plugin/oc_config.c:306
 msgid "set _width:"
 msgstr "postavi _dužinu"
 
-#: ../panel-plugin/oc_config.c:293
+#: ../panel-plugin/oc_config.c:316
 msgid "Note that you can not change the width of vertical panels"
 msgstr "Ne možete mijenjati dužinu okomitih ploča"
 
-#: ../panel-plugin/oc_config.c:316
+#: ../panel-plugin/oc_config.c:327
+msgid "Show lines _vertically"
+msgstr "Pokazuj retke _vertikalno"
+
+#: ../panel-plugin/oc_config.c:350
 msgid "Clock Options"
 msgstr "Opcije sata"
 
 #. timezone
-#: ../panel-plugin/oc_config.c:326
+#: ../panel-plugin/oc_config.c:360
 msgid "set timezone to:"
 msgstr "postavi vremensku zonu na:"
 
-#: ../panel-plugin/oc_config.c:347
+#: ../panel-plugin/oc_config.c:381
 #, c-format
 msgid "Line %d:"
 msgstr "Redak %d:"
 
-#: ../panel-plugin/oc_config.c:357
+#: ../panel-plugin/oc_config.c:391
 msgid "Enter any valid strftime function parameter."
 msgstr "Upišite bilo koji valjanji strftime parametar."
 
 #. Tooltip hint
-#: ../panel-plugin/oc_config.c:401
+#: ../panel-plugin/oc_config.c:435
 msgid "Tooltip:"
 msgstr "Oblačić:"
 
 #. special timing for SUSPEND/HIBERNATE
-#: ../panel-plugin/oc_config.c:411
+#: ../panel-plugin/oc_config.c:445
 msgid "fix time after suspend/hibernate"
 msgstr "popravi vrijeme nakon suspenzije/hibernacije"
 
-#: ../panel-plugin/oc_config.c:415
+#: ../panel-plugin/oc_config.c:449
 msgid ""
 "You only need this if you do short term (less than 5 hours) suspend or "
 "hibernate and your visible time does not include seconds. Under these "
@@ -477,7 +518,7 @@ msgid ""
 "features from working.)"
 msgstr "Ova opcija vam je potrebna samo ako radite kratke suspenzije ili hibernaciju sustava (kraće od 5 sati) i ako prikazano vrijeme ne uključuje sekunde. Pod tim uvjetima moguće je da Orageclock netočno pokaže vrijeme. (Uključivanjem ove opcije spriječavaju se funkcije procesora i prekida za očuvanje energije.)"
 
-#: ../panel-plugin/oc_config.c:432
+#: ../panel-plugin/oc_config.c:466
 msgid ""
 "This program uses strftime function to get time.\n"
 "Use any valid code to get time in the format you prefer.\n"
@@ -489,11 +530,10 @@ msgid ""
 "\t%X = local time\t\t\t%x = local date"
 msgstr "Ovaj program koristi strftime funkcije za dobivanje vremena.\nKoristite bilo koji pravilan kod za dobivanje vremena u željenom formatu.\nNeki česti kodovi su:\n\t%A = dan u tjednu\t\t\t%B = mjesec\n\t%c = datum i vrijeme\t\t%R = sat i minute\n\t%V = broj tjedna\t\t%Z = vremenska zona u upotrebi\n\t%H = sati \t\t\t\t%M = minute\n\t%X = lokalno vrijeme\t\t\t%x = lokalni datum"
 
-#: ../panel-plugin/oc_config.c:457
+#: ../panel-plugin/oc_config.c:491
 msgid "Orage clock Preferences"
 msgstr "Osobitosti Orage sata"
 
-#. no lines yet
 #. TRANSLATORS: Use format characters from strftime(3)
 #. * to get the proper string for your locale.
 #. * I used these:
@@ -502,7 +542,7 @@ msgstr "Osobitosti Orage sata"
 #. * %B  : full month name
 #. * %Y  : four digit year
 #. * %V  : ISO week number
-#: ../panel-plugin/xfce4-orageclock-plugin.c:627
+#: ../panel-plugin/xfce4-orageclock-plugin.c:700
 msgid "%A %d %B %Y/%V"
 msgstr "%A %d %B %Y/%V"
 
@@ -968,10 +1008,6 @@ msgid "Set current settings from default alarm"
 msgstr "Postavi trenutne postavke sa zadanog alarma"
 
 #: ../src/appointment.c:3290
-msgid "None"
-msgstr "NIjedan"
-
-#: ../src/appointment.c:3290
 msgid "Daily"
 msgstr "Dnevno"
 
@@ -1265,7 +1301,7 @@ msgstr "Izaberite ako želite da se pokazuje prvi ponavljajući događaj. Običn
 
 #: ../src/event-list.c:1250
 msgid "also old"
-msgstr "isto staro"
+msgstr "također staro"
 
 #: ../src/event-list.c:1252
 msgid ""
@@ -1398,11 +1434,11 @@ msgstr "Pokrećem predobradu datoteke za unos"
 
 #: ../src/ical-expimp.c:158
 msgid "... Patched DCREATED to be CREATED."
-msgstr "... Zakrpio DCREATED da bude CREATED."
+msgstr "... Zakrpao DCREATED da bude CREATED."
 
 #: ../src/ical-expimp.c:197
 msgid "... Patched timezone to Orage format."
-msgstr "... Zakrpio vremensku zonu da odgovara Orage formatu."
+msgstr "... Zakrpao vremensku zonu da odgovara Orage formatu."
 
 #: ../src/ical-expimp.c:206
 msgid "Import file preprocessing done"
@@ -1721,7 +1757,7 @@ msgstr "--help (-h) \t\\ispis ovoga teksta\n"
 #: ../src/main.c:317
 #, c-format
 msgid "--preferences (-p) \tshow preferences form\n"
-msgstr "--preferences (-p) \tpokaži obrazac svojstva\n"
+msgstr "--preferences (-p) \tpokaži formu osobitosti\n"
 
 #: ../src/main.c:318
 #, c-format
