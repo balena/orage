@@ -3,29 +3,46 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# adem4ik, 2014
+# Andrei Stepanov, 2014
 # Aleksandr P <davian818@gmail.com>, 2013
 # Andrey Fedoseev <andrey.fedoseev@gmail.com>, 2006
 # Anthony Ivanoff <a-i@bk.ru>, 2004
-# asvl <alyoshin.s@gmail.com>, 2013
+# Sergey Alyoshin <alyoshin.s@gmail.com>, 2013
 # Degit22, 2014
+# AlexanderFilev <ifillrok@gmail.com>, 2014
 # Ilya Shestopalov <yast4ik@yahoo.com>, 2009
 # Poul Ionkin <wizzard@nmg.lv>, 2003
-# asvl <alyoshin.s@gmail.com>, 2013-2014
+# Sergey Alyoshin <alyoshin.s@gmail.com>, 2013-2014
 # Sergey Fedoseev <fedoseev.sergey@gmail.com>, 2006
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-02 18:30+0100\n"
-"PO-Revision-Date: 2014-05-21 18:50+0000\n"
-"Last-Translator: asvl <alyoshin.s@gmail.com>\n"
+"POT-Creation-Date: 2014-09-23 12:30+0200\n"
+"PO-Revision-Date: 2014-10-14 15:13+0000\n"
+"Last-Translator: AlexanderFilev <ifillrok@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/projects/p/xfce-apps/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ru\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: ../globaltime/globaltime.c:58
+msgid "no underline"
+msgstr "без подчеркивания"
+
+#: ../globaltime/globaltime.c:58
+msgid "single"
+msgstr "целый"
+
+#: ../globaltime/globaltime.c:58
+msgid "double"
+msgstr "двойной"
+
+#: ../globaltime/globaltime.c:58
+msgid "low"
+msgstr "низкий"
 
 #: ../globaltime/globaltime.c:100
 msgid "Raising GlobalTime window..."
@@ -61,6 +78,10 @@ msgstr "изменить часы"
 msgid ""
 "adjust to change minute. Click arrows with button 2 to change only 1 minute."
 msgstr "изменяет минуту. Щелчок второй кнопкой изменяет минуту с шагом 1."
+
+#: ../globaltime/globaltime.c:548
+msgid "Global Time"
+msgstr "Глобальные часы"
 
 #: ../globaltime/gt_prefs.c:265 ../globaltime/gt_prefs.c:266
 msgid "NEW"
@@ -262,6 +283,10 @@ msgstr "По умолчанию"
 msgid "Use normal decorations"
 msgstr "Использовать обычное оформление"
 
+#: ../globaltime/gt_prefs.c:1089 ../src/appointment.c:3290
+msgid "None"
+msgstr "Нет"
+
 #: ../globaltime/gt_prefs.c:1094
 msgid "Do not show window decorations (borders)"
 msgstr "Не показывать оформление окон (границы)"
@@ -410,71 +435,87 @@ msgstr "Показывать время других стран"
 msgid "Globaltime"
 msgstr "Мировое время"
 
-#: ../panel-plugin/oc_config.c:224
+#: ../panel-plugin/oc_config.c:239
+msgid "No rotation"
+msgstr "Без вращения"
+
+#: ../panel-plugin/oc_config.c:239
+msgid "Rotate left"
+msgstr "Повернуть влево"
+
+#: ../panel-plugin/oc_config.c:240
+msgid "Rotate right"
+msgstr "Повернуть вправо"
+
+#: ../panel-plugin/oc_config.c:248
 msgid "Appearance"
 msgstr "Внешний вид"
 
 #. show frame
-#: ../panel-plugin/oc_config.c:229
+#: ../panel-plugin/oc_config.c:257
 msgid "Show _frame"
 msgstr "Показывать _рамку"
 
 #. foreground color
-#: ../panel-plugin/oc_config.c:239
+#: ../panel-plugin/oc_config.c:263
 msgid "set foreground _color:"
 msgstr "Цвет _шрифта:"
 
 #. background color
-#: ../panel-plugin/oc_config.c:253
+#: ../panel-plugin/oc_config.c:277
 msgid "set _background color:"
 msgstr "Цвет _фона:"
 
-#. clock size (=vbox size): height and width
-#: ../panel-plugin/oc_config.c:267
+#. clock size (=mbox size): height and width
+#: ../panel-plugin/oc_config.c:291
 msgid "set _height:"
 msgstr "_Высота:"
 
-#: ../panel-plugin/oc_config.c:277
+#: ../panel-plugin/oc_config.c:301
 msgid "Note that you can not change the height of horizontal panels"
 msgstr "Учтите, что нельзя изменить высоту горизонтальных панелей"
 
-#: ../panel-plugin/oc_config.c:282
+#: ../panel-plugin/oc_config.c:306
 msgid "set _width:"
 msgstr "Ши_рина:"
 
-#: ../panel-plugin/oc_config.c:293
+#: ../panel-plugin/oc_config.c:316
 msgid "Note that you can not change the width of vertical panels"
 msgstr "Учтите, что нельзя изменить ширину вертикальных панелей"
 
-#: ../panel-plugin/oc_config.c:316
+#: ../panel-plugin/oc_config.c:327
+msgid "Show lines _vertically"
+msgstr "Показать линии вертикально"
+
+#: ../panel-plugin/oc_config.c:350
 msgid "Clock Options"
 msgstr "Параметры метки"
 
 #. timezone
-#: ../panel-plugin/oc_config.c:326
+#: ../panel-plugin/oc_config.c:360
 msgid "set timezone to:"
 msgstr "Часовой пояс:"
 
-#: ../panel-plugin/oc_config.c:347
+#: ../panel-plugin/oc_config.c:381
 #, c-format
 msgid "Line %d:"
 msgstr "Строка %d:"
 
-#: ../panel-plugin/oc_config.c:357
+#: ../panel-plugin/oc_config.c:391
 msgid "Enter any valid strftime function parameter."
 msgstr "Укажите параметр для функции stftime."
 
 #. Tooltip hint
-#: ../panel-plugin/oc_config.c:401
+#: ../panel-plugin/oc_config.c:435
 msgid "Tooltip:"
 msgstr "Подсказка:"
 
 #. special timing for SUSPEND/HIBERNATE
-#: ../panel-plugin/oc_config.c:411
+#: ../panel-plugin/oc_config.c:445
 msgid "fix time after suspend/hibernate"
 msgstr "Исправлять время после спящего/ждущего режимов"
 
-#: ../panel-plugin/oc_config.c:415
+#: ../panel-plugin/oc_config.c:449
 msgid ""
 "You only need this if you do short term (less than 5 hours) suspend or "
 "hibernate and your visible time does not include seconds. Under these "
@@ -483,7 +524,7 @@ msgid ""
 "features from working.)"
 msgstr "Это нужно только если вы выключаете на короткий срок (менее 5 часов), включаете ждущий или спящий режим и в отображаемое время не включаются секунды. В этих условиях Orage возможно будет неаккуратно показывать время, если не выбрать этот пункт. (Выбор пункта мешает процессору и прерывает функции сохранения.)"
 
-#: ../panel-plugin/oc_config.c:432
+#: ../panel-plugin/oc_config.c:466
 msgid ""
 "This program uses strftime function to get time.\n"
 "Use any valid code to get time in the format you prefer.\n"
@@ -495,11 +536,10 @@ msgid ""
 "\t%X = local time\t\t\t%x = local date"
 msgstr "Эта программа использует функцию strftime для\nотображения времени. Вы можете указать формат,\nв котором будет отображено время и дата.\nЧасто используемые параметры:\n\t%A — день недели\t\t%B — месяц\n\t%c — дата и время\t\t%R — часы и минуты\n\t%V — номер недели\t\t%Z — часовой пояс\n\t%H — часы\t\t\t\t%M — минуты\n\t%X — местное время\t\t%x — местная дата"
 
-#: ../panel-plugin/oc_config.c:457
+#: ../panel-plugin/oc_config.c:491
 msgid "Orage clock Preferences"
 msgstr "Настройки часов Orage"
 
-#. no lines yet
 #. TRANSLATORS: Use format characters from strftime(3)
 #. * to get the proper string for your locale.
 #. * I used these:
@@ -508,7 +548,7 @@ msgstr "Настройки часов Orage"
 #. * %B  : full month name
 #. * %Y  : four digit year
 #. * %V  : ISO week number
-#: ../panel-plugin/xfce4-orageclock-plugin.c:627
+#: ../panel-plugin/xfce4-orageclock-plugin.c:700
 msgid "%A %d %B %Y/%V"
 msgstr "%A, %d %b, %Y"
 
@@ -972,10 +1012,6 @@ msgstr "Установить текущие настройки как будил
 #: ../src/appointment.c:3228
 msgid "Set current settings from default alarm"
 msgstr "Установить текущие настройки из будильника по умолчанию"
-
-#: ../src/appointment.c:3290
-msgid "None"
-msgstr "Нет"
 
 #: ../src/appointment.c:3290
 msgid "Daily"
