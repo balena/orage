@@ -8,15 +8,31 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-02 18:30+0100\n"
-"PO-Revision-Date: 2013-12-03 08:44+0000\n"
+"POT-Creation-Date: 2014-09-23 12:30+0200\n"
+"PO-Revision-Date: 2014-10-24 14:50+0000\n"
 "Last-Translator: Masato HASHIMOTO <cabezon.hashimoto@gmail.com>\n"
-"Language-Team: Japanese (http://www.transifex.com/projects/p/xfce/language/ja/)\n"
+"Language-Team: Japanese (http://www.transifex.com/projects/p/xfce-apps/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+
+#: ../globaltime/globaltime.c:58
+msgid "no underline"
+msgstr "下線なし"
+
+#: ../globaltime/globaltime.c:58
+msgid "single"
+msgstr "単線"
+
+#: ../globaltime/globaltime.c:58
+msgid "double"
+msgstr "二重線"
+
+#: ../globaltime/globaltime.c:58
+msgid "low"
+msgstr "下線"
 
 #: ../globaltime/globaltime.c:100
 msgid "Raising GlobalTime window..."
@@ -52,6 +68,10 @@ msgstr "時を調整してください"
 msgid ""
 "adjust to change minute. Click arrows with button 2 to change only 1 minute."
 msgstr "分を調整してください。ボタン 2 で矢印ボタンをクリックすると 1 分ずつ変更します。"
+
+#: ../globaltime/globaltime.c:548
+msgid "Global Time"
+msgstr "世界時計"
 
 #: ../globaltime/gt_prefs.c:265 ../globaltime/gt_prefs.c:266
 msgid "NEW"
@@ -253,6 +273,10 @@ msgstr "標準"
 msgid "Use normal decorations"
 msgstr "ウィンドウの枠を表示します"
 
+#: ../globaltime/gt_prefs.c:1089 ../src/appointment.c:3290
+msgid "None"
+msgstr "なし"
+
 #: ../globaltime/gt_prefs.c:1094
 msgid "Do not show window decorations (borders)"
 msgstr "ウィンドウの枠を表示しません"
@@ -401,71 +425,87 @@ msgstr "様々な地域の時刻を表示します。"
 msgid "Globaltime"
 msgstr "世界時計"
 
-#: ../panel-plugin/oc_config.c:224
+#: ../panel-plugin/oc_config.c:239
+msgid "No rotation"
+msgstr "回転なし"
+
+#: ../panel-plugin/oc_config.c:239
+msgid "Rotate left"
+msgstr "左に回転"
+
+#: ../panel-plugin/oc_config.c:240
+msgid "Rotate right"
+msgstr "右に回転"
+
+#: ../panel-plugin/oc_config.c:248
 msgid "Appearance"
 msgstr "外観"
 
 #. show frame
-#: ../panel-plugin/oc_config.c:229
+#: ../panel-plugin/oc_config.c:257
 msgid "Show _frame"
 msgstr "枠を表示する(_F)"
 
 #. foreground color
-#: ../panel-plugin/oc_config.c:239
+#: ../panel-plugin/oc_config.c:263
 msgid "set foreground _color:"
 msgstr "文字色(_C):"
 
 #. background color
-#: ../panel-plugin/oc_config.c:253
+#: ../panel-plugin/oc_config.c:277
 msgid "set _background color:"
 msgstr "背景色(_B):"
 
-#. clock size (=vbox size): height and width
-#: ../panel-plugin/oc_config.c:267
+#. clock size (=mbox size): height and width
+#: ../panel-plugin/oc_config.c:291
 msgid "set _height:"
 msgstr "縦幅(_H):"
 
-#: ../panel-plugin/oc_config.c:277
+#: ../panel-plugin/oc_config.c:301
 msgid "Note that you can not change the height of horizontal panels"
 msgstr "水平パネルの高さは変更されないことに注意してください"
 
-#: ../panel-plugin/oc_config.c:282
+#: ../panel-plugin/oc_config.c:306
 msgid "set _width:"
 msgstr "横幅(_W):"
 
-#: ../panel-plugin/oc_config.c:293
+#: ../panel-plugin/oc_config.c:316
 msgid "Note that you can not change the width of vertical panels"
 msgstr "垂直パネルの幅は変更されないことに注意してください"
 
-#: ../panel-plugin/oc_config.c:316
+#: ../panel-plugin/oc_config.c:327
+msgid "Show lines _vertically"
+msgstr "線を縦に表示する(_V)"
+
+#: ../panel-plugin/oc_config.c:350
 msgid "Clock Options"
 msgstr "時計のオプション"
 
 #. timezone
-#: ../panel-plugin/oc_config.c:326
+#: ../panel-plugin/oc_config.c:360
 msgid "set timezone to:"
 msgstr "タイムゾーン:"
 
-#: ../panel-plugin/oc_config.c:347
+#: ../panel-plugin/oc_config.c:381
 #, c-format
 msgid "Line %d:"
 msgstr "%d 行目:"
 
-#: ../panel-plugin/oc_config.c:357
+#: ../panel-plugin/oc_config.c:391
 msgid "Enter any valid strftime function parameter."
 msgstr "関数 strftime(3) の有効なパラメーターを入力してください。"
 
 #. Tooltip hint
-#: ../panel-plugin/oc_config.c:401
+#: ../panel-plugin/oc_config.c:435
 msgid "Tooltip:"
 msgstr "ツールチップ:"
 
 #. special timing for SUSPEND/HIBERNATE
-#: ../panel-plugin/oc_config.c:411
+#: ../panel-plugin/oc_config.c:445
 msgid "fix time after suspend/hibernate"
 msgstr "サスペンド/ハイバネート後に時刻を合わせる"
 
-#: ../panel-plugin/oc_config.c:415
+#: ../panel-plugin/oc_config.c:449
 msgid ""
 "You only need this if you do short term (less than 5 hours) suspend or "
 "hibernate and your visible time does not include seconds. Under these "
@@ -474,7 +514,7 @@ msgid ""
 "features from working.)"
 msgstr "このオプションは短時間 (5時間以下) のサスペンドまたはハイバネートを行い、時刻に秒を表示していない場合にのみ必要となります。その条件下でこのオプションを設定していない場合、 Orage 時計は不正確な時刻を表示する可能性があります (これを設定すると CPU および割り込み保存が動作するのを抑止します)。"
 
-#: ../panel-plugin/oc_config.c:432
+#: ../panel-plugin/oc_config.c:466
 msgid ""
 "This program uses strftime function to get time.\n"
 "Use any valid code to get time in the format you prefer.\n"
@@ -486,11 +526,10 @@ msgid ""
 "\t%X = local time\t\t\t%x = local date"
 msgstr "このプログラムは時間を取得するのに関数 strftime(3) を利用します。\n有効なコードを使用すれば、お好きな表示方式で時間を表示できます。\n以下に一般的なコードの一部を掲載します:\n\t%A = 曜日\t\t\t\t%B = 月\n\t%c = 日付と時間\t\t\t%R = 時と分\n\t%V = 年頭からの経過週\t%Z = 現在のタイムゾーン\n\t%H = 時\t\t\t\t%M = 分\n\t%X = 現地の時間\t\t%x = 現地の日付"
 
-#: ../panel-plugin/oc_config.c:457
+#: ../panel-plugin/oc_config.c:491
 msgid "Orage clock Preferences"
 msgstr "Orage 時計の設定"
 
-#. no lines yet
 #. TRANSLATORS: Use format characters from strftime(3)
 #. * to get the proper string for your locale.
 #. * I used these:
@@ -499,8 +538,7 @@ msgstr "Orage 時計の設定"
 #. * %B  : full month name
 #. * %Y  : four digit year
 #. * %V  : ISO week number
-#. 
-#: ../panel-plugin/xfce4-orageclock-plugin.c:627
+#: ../panel-plugin/xfce4-orageclock-plugin.c:700
 msgid "%A %d %B %Y/%V"
 msgstr "%x %A"
 
@@ -607,7 +645,7 @@ msgstr "はい、削除します"
 #: ../src/appointment.c:1378 ../src/appointment.c:1393 ../src/day-view.c:457
 #: ../src/event-list.c:1028
 msgid "Pick the date"
-msgstr "日付を選択して下さい"
+msgstr "日付を選択してください"
 
 #: ../src/appointment.c:1380 ../src/appointment.c:1395 ../src/day-view.c:386
 #: ../src/day-view.c:459 ../src/event-list.c:1030 ../src/event-list.c:1180
@@ -821,7 +859,7 @@ msgid ""
 "These are converted only later when they are seen:\n"
 "    <&Ynnnn> is translated to current year minus nnnn.\n"
 "(This can be used for example in birthday reminders to tell how old the person will be.)"
-msgstr "以下のショートハンドコマンドは即座に解釈されます:\n    <D> 現在の日付をローカル日付フォーマットで挿入します\n    <T> 時刻を挿入します\n    <DT> 日付と時刻を挿入します\n\n以下はそれらが表示された時のみ変換されます:\n    <&Ynnnn> は現在の年から nnnn を引いたものに変換されます。\n(これは例えば誕生日の通知などで、その人が何歳になったかを表示する場合に使用できます)"
+msgstr "以下のショートハンドコマンドは即座に解釈されます:\n    <D> 現在の日付をローカル日付フォーマットで挿入します\n    <T> 時刻を挿入します\n    <DT> 日付と時刻を挿入します\n\n以下はそれらが表示されたときのみ変換されます:\n    <&Ynnnn> は現在の年から nnnn を引いたものに変換されます。\n(これは例えば誕生日の通知などで、その人が何歳になったかを表示する場合に使用できます)"
 
 #: ../src/appointment.c:3010
 msgid "Before Start"
@@ -877,7 +915,7 @@ msgstr "使用する"
 
 #: ../src/appointment.c:3070
 msgid "Select this if you want audible alarm"
-msgstr "音で通知させたい時に設定します"
+msgstr "音で通知させたいときに設定します"
 
 #: ../src/appointment.c:3087
 msgid "Repeat alarm sound"
@@ -966,28 +1004,24 @@ msgid "Set current settings from default alarm"
 msgstr "デフォルトのアラーム設定に戻します"
 
 #: ../src/appointment.c:3290
-msgid "None"
-msgstr "無し"
-
-#: ../src/appointment.c:3290
 msgid "Daily"
-msgstr "毎日"
+msgstr "日"
 
 #: ../src/appointment.c:3290
 msgid "Weekly"
-msgstr "毎週"
+msgstr "週"
 
 #: ../src/appointment.c:3290
 msgid "Monthly"
-msgstr "毎月"
+msgstr "月"
 
 #: ../src/appointment.c:3290
 msgid "Yearly"
-msgstr "毎年"
+msgstr "年"
 
 #: ../src/appointment.c:3290
 msgid "Hourly"
-msgstr "毎時"
+msgstr "1時間"
 
 #: ../src/appointment.c:3292
 msgid "Mon"
@@ -1052,7 +1086,7 @@ msgstr "頻度"
 
 #: ../src/appointment.c:3330
 msgid "Each"
-msgstr " "
+msgstr "に"
 
 #: ../src/appointment.c:3337
 msgid "occurrence"
@@ -1063,7 +1097,7 @@ msgid ""
 "Limit frequency to certain interval.\n"
 " For example: Every third day:\n"
 " Frequency = Daily and Interval = 3"
-msgstr "頻度をある一定の間隔に決めます。\n例) 3日ごとの場合:\n  頻度 = 毎日\n  間隔 = 3"
+msgstr "頻度をある一定の間隔に決めます。\n例) 1 日に 3 回の場合:\n  頻度 = 日\n  間隔 = 3"
 
 #: ../src/appointment.c:3386
 msgid "Limit"
@@ -1098,7 +1132,7 @@ msgid ""
 "\tFrequency = Monthly,\n"
 "\tWeekdays = check only Wednesday,\n"
 "\tWhich day = select 2 from the number below Wednesday"
-msgstr "毎年または毎月の予定での第何曜日かを設定します。\n例) 毎月第二水曜日の場合:\n\t頻度 = 毎月\n\t平日 = 水曜のみチェック\n\t曜日 = 水曜の下の番号から2を選択"
+msgstr "毎年または毎月の予定での第何曜日かを設定します。\n例1) 毎月第 2 水曜日の場合:\n\t頻度 = 月\n\t曜日 = 水曜のみチェック\n\t第n曜日 = 水曜の下の番号から 2 を選択\n例2) 毎月最終土曜日の場合:\n\t頻度 = 月\n\t曜日 = 土曜のみチェック\n\t第n曜日 = 土曜の下の番号から -1 を選択"
 
 #. TODO base (only for TODOs)
 #: ../src/appointment.c:3450
@@ -1269,7 +1303,7 @@ msgstr "古いものも"
 msgid ""
 "Check this if you want to see old events also. This can only be selected after 'only first repeating' is enabled to avoid very long lists.\n"
 "Note that extra days selection still defines if newer appointments are listed'."
-msgstr "このオプションにチェックマークをつけると、古い用件も表示します。リストがとても長くなることの無いよう、'繰り返しの初回のみ' が有効になっている場合のみ選択できます。\n追加表示日数が指定されていれば、新しい用件も表示されます。"
+msgstr "このオプションにチェックマークをつけると、古い用件も表示します。リストがとても長くなることのないよう、'繰り返しの初回のみ' が有効になっている場合のみ選択できます。\n追加表示日数が指定されていれば、新しい用件も表示されます。"
 
 #: ../src/event-list.c:1290
 msgid "Journal entries starting from:"
@@ -1305,7 +1339,7 @@ msgid ""
 "\t\tO=Orage A=Archive F=Foreign\n"
 "\t 5. Appointment type:\n"
 "\t\tE=Event T=Todo J=Journal"
-msgstr "編集するには行をダブルクリックしてください。\n\nフラグは左から順に:\n\t1. アラーム: n=アラーム無し\n\t\tA=アラームを設定 P=持続アラームを設定\n\t2. 繰り返し: n=無し\n\t\tD=毎日 W=毎週 M=毎月 Y=毎年\n\t3. 種類: f=用事無し B=用事有り\n\t4. ファイルの位置:\n\t\tO=Orage A=アーカイブ F=外部\n\t5. 用件の種類:\n\t\tE=予定 T=ToDo J=記録"
+msgstr "編集するには行をダブルクリックしてください。\n\nフラグは左から順に:\n\t1. アラーム: n=アラームなし\n\t\tA=アラームを設定 P=持続アラームを設定\n\t2. 繰り返し: n=なし\n\t\tD=日ごと W=週ごと M=月ごと Y=年ごと\n\t3. 種類: f=用事なし B=用事有り\n\t4. ファイルの位置:\n\t\tO=Orage A=アーカイブ F=外部\n\t5. 用件の種類:\n\t\tE=予定 T=ToDo J=記録"
 
 #. remove since it has ended
 #: ../src/ical-archive.c:267
@@ -1487,11 +1521,11 @@ msgstr "エクスポート"
 
 #: ../src/interface.c:1004
 msgid "Write to file:"
-msgstr "書き込むファイル:"
+msgstr "書き出すファイル:"
 
 #: ../src/interface.c:1025 ../src/interface.c:1037
 msgid "Select"
-msgstr "選択してください"
+msgstr "エクスポートする用件"
 
 #: ../src/interface.c:1028
 msgid "All appointments"
@@ -1499,7 +1533,7 @@ msgstr "すべての用件"
 
 #: ../src/interface.c:1041
 msgid "Named appointments: "
-msgstr "名付けられた用件: "
+msgstr "指定した用件: "
 
 #: ../src/interface.c:1053
 msgid ""
@@ -1515,7 +1549,7 @@ msgstr "メインファイルの用件のみ読み込まれることに注意し
 
 #: ../src/interface.c:1059
 msgid "You can easily drag these from event-list window."
-msgstr "これらを予定リストウィンドウから簡単にドラッグできます。"
+msgstr "予定リストウィンドウからドラッグして追加できます。"
 
 #: ../src/interface.c:1061
 msgid "Orage appointment UIDs separated by commas."
@@ -1574,7 +1608,7 @@ msgid ""
 "Orage internal file rename only.\n"
 "Does not touch external filesystem at all.\n"
 "New file must exist."
-msgstr "Orage 内部ファイルの名前変更のみ行います。\n外部のファイルシステムにはタッチしません。\n新しいファイルが存在していなくてはなりません。"
+msgstr "Orage 内部ファイル名の変更のみ行います。\n外部のファイルシステムにはタッチしません。\n新しいファイルが存在していなくてはなりません。"
 
 #: ../src/interface.c:1155 ../src/interface.c:1218
 msgid "Copy"
@@ -1582,7 +1616,7 @@ msgstr "コピー"
 
 #: ../src/interface.c:1159
 msgid "Current file is copied and stays unmodified in the old place."
-msgstr "現在のファイルはコピーされ元の場所は変更されません。"
+msgstr "現在のファイルはコピーされ元のファイルの場所は変更されません。"
 
 #: ../src/interface.c:1163 ../src/interface.c:1223
 msgid "Move"
@@ -1590,7 +1624,7 @@ msgstr "移動"
 
 #: ../src/interface.c:1167
 msgid "Current file is moved and vanishes from the old place."
-msgstr "現在のファイルは移動され元の場所は消去されます。"
+msgstr "現在のファイルは移動され元の場所からは消去されます。"
 
 #: ../src/interface.c:1181
 msgid "Archive file"
@@ -1610,7 +1644,6 @@ msgstr "外部ファイル:"
 
 #. label = gtk_label_new(_("Options:"));
 #. gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 5);
-#. 
 #: ../src/interface.c:1279
 msgid "Visible name:"
 msgstr "表示名:"
@@ -1623,7 +1656,7 @@ msgstr "読み込み専用"
 msgid ""
 "Set this if you want to make sure that this file is never modified by Orage.\n"
 "Note that modifying foreign files may make them incompatible with the original tool, where they came from!"
-msgstr "このファイルを Orage によって変更されたくない場合に設定してください。\n外部ファイルを変更するとオリジナルのアプリケーションとの互換性が失われるかもしれないことに注意してください。"
+msgstr "このファイルが Orage によって変更されたくない場合に設定してください。\n外部ファイルを変更するとオリジナルのアプリケーションとの互換性が失われるかもしれないことに注意してください。"
 
 #: ../src/interface.c:1294
 msgid "This internal name is displayed to user instead of file name."
@@ -1759,7 +1792,7 @@ msgstr "\tD-Bus は orage に含まれていません。\n"
 msgid ""
 "\twithout dbus [files] and foreign file options(-a & -r) can only be used "
 "when starting orage \n"
-msgstr "\tD-Bus [ファイル] が無い外部ファイルオプション (-a & -r) は orage 起動後のみ使用可能です\n"
+msgstr "\tD-Bus [ファイル] がない外部ファイルオプション (-a & -r) は orage 起動後のみ使用可能です\n"
 
 #: ../src/main.c:535
 #, c-format
@@ -1981,7 +2014,7 @@ msgstr "直前に選択していた日付を選択する"
 
 #: ../src/parameters.c:823
 msgid "Calendar day double click shows"
-msgstr "カレンダーの日付をダブルクリックした時に表示するもの"
+msgstr "カレンダーの日付をダブルクリックしたときに表示するもの"
 
 #: ../src/parameters.c:828
 msgid "Days view"
@@ -2027,7 +2060,7 @@ msgstr "選択した日"
 
 #: ../src/parameters.c:943
 msgid "Use dynamic tray icon"
-msgstr "動的トレイアイコンの使用"
+msgstr "ダイナミックトレイアイコンの使用"
 
 #: ../src/parameters.c:948
 msgid "Use dynamic icon"
@@ -2035,7 +2068,7 @@ msgstr "ダイナミックアイコンを使用する"
 
 #: ../src/parameters.c:954
 msgid "Dynamic icon shows current month and day of the month."
-msgstr "ダイナミックアイコンは現在の月と日を表示します。"
+msgstr "ダイナミックアイコンを使用すると現在の月と日を表示します。"
 
 #: ../src/parameters.c:962 ../src/parameters.c:967
 msgid "Use wakeup timer"
@@ -2061,7 +2094,7 @@ msgstr "デスクトップ通知"
 
 #: ../src/parameters.c:1018
 msgid "Always quit when asked to close"
-msgstr "ウィンドウを閉じた時の振る舞い"
+msgstr "ウィンドウを閉じたときの振る舞い"
 
 #: ../src/parameters.c:1023
 msgid "Always quit"
@@ -2072,7 +2105,7 @@ msgid ""
 "By default Orage stays open in the background when asked to close. This "
 "option changes Orage to quit and never stay in background when it is asked "
 "to close."
-msgstr "デフォルトでは、Orage はウィンドウが閉じられた時もバックグラウンドで動作します。このオプションを有効にすると、ウィンドウを閉じた時に Orage は終了します。"
+msgstr "デフォルトでは、Orage はウィンドウが閉じられたときもバックグラウンドで動作します。このオプションを有効にすると、ウィンドウを閉じたときに Orage は終了します。"
 
 #: ../src/parameters.c:1045
 msgid "Orage Preferences"
@@ -2113,14 +2146,14 @@ msgstr "指定時刻後に再度通知します"
 
 #: ../src/reminder.c:1091
 msgid "Next active alarms:"
-msgstr "次回の有効アラーム:"
+msgstr "次回の有効なアラーム:"
 
 #: ../src/reminder.c:1145
 #, c-format
 msgid ""
 "\n"
 "%02d d %02d h %02d min to: %s"
-msgstr "\n%02d 日 %02d 時間 %02d 分: %s"
+msgstr "\nあと %02d 日 %02d 時間 %02d 分: %s"
 
 #: ../src/reminder.c:1154
 #, c-format
@@ -4319,59 +4352,59 @@ msgstr "SystemV/YST9/YDT"
 
 #: ../src/timezone_names.c:583
 msgid "US"
-msgstr "合衆国"
+msgstr "米国"
 
 #: ../src/timezone_names.c:584
 msgid "US/Alaska"
-msgstr "合衆国/アラスカ"
+msgstr "米国/アラスカ"
 
 #: ../src/timezone_names.c:585
 msgid "US/Aleutian"
-msgstr "合衆国/アリューシャン列島"
+msgstr "米国/アリューシャン列島"
 
 #: ../src/timezone_names.c:586
 msgid "US/Arizona"
-msgstr "合衆国/アリゾナ"
+msgstr "米国/アリゾナ"
 
 #: ../src/timezone_names.c:587
 msgid "US/Central"
-msgstr "合衆国/中部"
+msgstr "米国/中部"
 
 #: ../src/timezone_names.c:588
 msgid "US/Eastern"
-msgstr "合衆国/東部"
+msgstr "米国/東部"
 
 #: ../src/timezone_names.c:589
 msgid "US/East-Indiana"
-msgstr "合衆国/東部インディアナ"
+msgstr "米国/東部インディアナ"
 
 #: ../src/timezone_names.c:590
 msgid "US/Hawaii"
-msgstr "合衆国/ハワイ"
+msgstr "米国/ハワイ"
 
 #: ../src/timezone_names.c:591
 msgid "US/Indiana-Starke"
-msgstr "合衆国/インディアナ州スターク"
+msgstr "米国/インディアナ州スターク"
 
 #: ../src/timezone_names.c:592
 msgid "US/Michigan"
-msgstr "合衆国/ミシガン"
+msgstr "米国/ミシガン"
 
 #: ../src/timezone_names.c:593
 msgid "US/Mountain"
-msgstr "合衆国/山岳部"
+msgstr "米国/山岳部"
 
 #: ../src/timezone_names.c:594
 msgid "US/Pacific"
-msgstr "合衆国/太平洋"
+msgstr "米国/太平洋"
 
 #: ../src/timezone_names.c:595
 msgid "US/Pacific-New"
-msgstr "合衆国/太平洋 (新)"
+msgstr "米国/太平洋 (新)"
 
 #: ../src/timezone_names.c:596
 msgid "US/Samoa"
-msgstr "合衆国/サモア"
+msgstr "米国/サモア"
 
 #: ../src/tray_icon.c:469
 msgid "New appointment"
