@@ -3,21 +3,38 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Tornes Llume <l.lumex03.tornes@gmail.com>, 2014
-# Tornes Llume <l.lumex03.tornes@gmail.com>, 2014
+# Ḷḷumex03 <tornes@opmbx.org>, 2014
+# Ḷḷumex03 <tornes@opmbx.org>, 2014
+# Ḷḷumex03 <tornes@opmbx.org>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-02 18:30+0100\n"
-"PO-Revision-Date: 2014-05-30 11:52+0000\n"
-"Last-Translator: Tornes Llume <l.lumex03.tornes@gmail.com>\n"
+"POT-Creation-Date: 2014-09-23 12:30+0200\n"
+"PO-Revision-Date: 2014-11-24 16:27+0000\n"
+"Last-Translator: Ḷḷumex03 <tornes@opmbx.org>\n"
 "Language-Team: Asturian (http://www.transifex.com/projects/p/xfce-apps/language/ast/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ast\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../globaltime/globaltime.c:58
+msgid "no underline"
+msgstr ""
+
+#: ../globaltime/globaltime.c:58
+msgid "single"
+msgstr ""
+
+#: ../globaltime/globaltime.c:58
+msgid "double"
+msgstr ""
+
+#: ../globaltime/globaltime.c:58
+msgid "low"
+msgstr ""
 
 #: ../globaltime/globaltime.c:100
 msgid "Raising GlobalTime window..."
@@ -52,6 +69,10 @@ msgstr "axustar pa camudar hores"
 #: ../globaltime/globaltime.c:496
 msgid ""
 "adjust to change minute. Click arrows with button 2 to change only 1 minute."
+msgstr ""
+
+#: ../globaltime/globaltime.c:548
+msgid "Global Time"
 msgstr ""
 
 #: ../globaltime/gt_prefs.c:265 ../globaltime/gt_prefs.c:266
@@ -254,6 +275,10 @@ msgstr "Estándar"
 msgid "Use normal decorations"
 msgstr "Usar decoraciones normales"
 
+#: ../globaltime/gt_prefs.c:1089 ../src/appointment.c:3290
+msgid "None"
+msgstr "Dengún"
+
 #: ../globaltime/gt_prefs.c:1094
 msgid "Do not show window decorations (borders)"
 msgstr "Nun amosar decoración de ventana (bervesos)"
@@ -402,71 +427,87 @@ msgstr "Amosar relós de diferentes países"
 msgid "Globaltime"
 msgstr "Tiempu global"
 
-#: ../panel-plugin/oc_config.c:224
+#: ../panel-plugin/oc_config.c:239
+msgid "No rotation"
+msgstr ""
+
+#: ../panel-plugin/oc_config.c:239
+msgid "Rotate left"
+msgstr ""
+
+#: ../panel-plugin/oc_config.c:240
+msgid "Rotate right"
+msgstr ""
+
+#: ../panel-plugin/oc_config.c:248
 msgid "Appearance"
 msgstr "Aspeutu"
 
 #. show frame
-#: ../panel-plugin/oc_config.c:229
+#: ../panel-plugin/oc_config.c:257
 msgid "Show _frame"
 msgstr "Amosar _marcu"
 
 #. foreground color
-#: ../panel-plugin/oc_config.c:239
+#: ../panel-plugin/oc_config.c:263
 msgid "set foreground _color:"
 msgstr "afitar _color de primer planu"
 
 #. background color
-#: ../panel-plugin/oc_config.c:253
+#: ../panel-plugin/oc_config.c:277
 msgid "set _background color:"
 msgstr "afitar color de _fondu"
 
-#. clock size (=vbox size): height and width
-#: ../panel-plugin/oc_config.c:267
+#. clock size (=mbox size): height and width
+#: ../panel-plugin/oc_config.c:291
 msgid "set _height:"
 msgstr "afitar _altor:"
 
-#: ../panel-plugin/oc_config.c:277
+#: ../panel-plugin/oc_config.c:301
 msgid "Note that you can not change the height of horizontal panels"
 msgstr "Percátate que nun pues camudar l'altor de los paneles horizontales"
 
-#: ../panel-plugin/oc_config.c:282
+#: ../panel-plugin/oc_config.c:306
 msgid "set _width:"
 msgstr "afitar a_nchor:"
 
-#: ../panel-plugin/oc_config.c:293
+#: ../panel-plugin/oc_config.c:316
 msgid "Note that you can not change the width of vertical panels"
 msgstr "Percátate que nun pues camudar l'anchor de los paneles verticales"
 
-#: ../panel-plugin/oc_config.c:316
+#: ../panel-plugin/oc_config.c:327
+msgid "Show lines _vertically"
+msgstr ""
+
+#: ../panel-plugin/oc_config.c:350
 msgid "Clock Options"
 msgstr "Opciones de reló"
 
 #. timezone
-#: ../panel-plugin/oc_config.c:326
+#: ../panel-plugin/oc_config.c:360
 msgid "set timezone to:"
 msgstr "afitar estaya horaria en:"
 
-#: ../panel-plugin/oc_config.c:347
+#: ../panel-plugin/oc_config.c:381
 #, c-format
 msgid "Line %d:"
 msgstr "Llinia %d:"
 
-#: ../panel-plugin/oc_config.c:357
+#: ../panel-plugin/oc_config.c:391
 msgid "Enter any valid strftime function parameter."
 msgstr "Introduz cualesquier parámetru válidu de la función strftime."
 
 #. Tooltip hint
-#: ../panel-plugin/oc_config.c:401
+#: ../panel-plugin/oc_config.c:435
 msgid "Tooltip:"
 msgstr "Caxa de función:"
 
 #. special timing for SUSPEND/HIBERNATE
-#: ../panel-plugin/oc_config.c:411
+#: ../panel-plugin/oc_config.c:445
 msgid "fix time after suspend/hibernate"
 msgstr "iguar la hora dempués de suspender/hibernar"
 
-#: ../panel-plugin/oc_config.c:415
+#: ../panel-plugin/oc_config.c:449
 msgid ""
 "You only need this if you do short term (less than 5 hours) suspend or "
 "hibernate and your visible time does not include seconds. Under these "
@@ -475,7 +516,7 @@ msgid ""
 "features from working.)"
 msgstr "Namái necesites esto si faes una suspensión o ivernación nun periodu curtiu de tiempu, (menos de 5 hores), y la to hora visible nun inclúi segundos. Baxo estes circustancies ye dable qu'Orageclock amuese la hora de mou non afayadizu a nun ser que tengas esto esbillao. (Esbillar esto antemana les carauterístiques d'interrupción d'aforru d'enerxía y l'usu de la CPU nel funcionamientu.)"
 
-#: ../panel-plugin/oc_config.c:432
+#: ../panel-plugin/oc_config.c:466
 msgid ""
 "This program uses strftime function to get time.\n"
 "Use any valid code to get time in the format you prefer.\n"
@@ -487,11 +528,10 @@ msgid ""
 "\t%X = local time\t\t\t%x = local date"
 msgstr "Esti programa usa la función strftime pa obtener la hora.\nUse cualesquier códigu válidu pa obtener la hora nel formatu que prefiera.\nDalgunos códigos comunes son:\n\t%A = día de la selmana\t\t\t%B = mes\n\t%c = data & hora\t\t%R = hora & minutu\n\t%V = día de la selmana (numbéricu)\t\t%Z = estaya horaria n'usu\n\t%H = hora \t\t\t\t%M = minutu\n\t%X = hora llocal\t\t\t%x = data llocal"
 
-#: ../panel-plugin/oc_config.c:457
+#: ../panel-plugin/oc_config.c:491
 msgid "Orage clock Preferences"
 msgstr "Preferencies del reló Orage"
 
-#. no lines yet
 #. TRANSLATORS: Use format characters from strftime(3)
 #. * to get the proper string for your locale.
 #. * I used these:
@@ -500,7 +540,7 @@ msgstr "Preferencies del reló Orage"
 #. * %B  : full month name
 #. * %Y  : four digit year
 #. * %V  : ISO week number
-#: ../panel-plugin/xfce4-orageclock-plugin.c:627
+#: ../panel-plugin/xfce4-orageclock-plugin.c:700
 msgid "%A %d %B %Y/%V"
 msgstr "%A %d %B %Y/%V"
 
@@ -964,10 +1004,6 @@ msgstr "Atroxar la configuración d'anguaño como alarma predeterminada"
 #: ../src/appointment.c:3228
 msgid "Set current settings from default alarm"
 msgstr "Afitar la configuración d'anguaño dende la de l'alarma predeterminada"
-
-#: ../src/appointment.c:3290
-msgid "None"
-msgstr "Dengún"
 
 #: ../src/appointment.c:3290
 msgid "Daily"
@@ -1796,7 +1832,7 @@ msgstr ""
 #. Help menu
 #: ../src/mainbox.c:345
 msgid "_Help"
-msgstr "Ai_da"
+msgstr "A_yuda"
 
 #: ../src/mainbox.c:414 ../src/reminder.c:1138
 msgid "No title defined"
