@@ -3,23 +3,40 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# MirosNik <miroslavnikolic@rocketmail.com>, 2012
-# salepetronije <salepetronije@gmail.com>, 2013
-# MirosNik <miroslavnikolic@rocketmail.com>, 2012
-# salepetronije <salepetronije@gmail.com>, 2013-2014
+# Мирослав Николић <miroslavnikolic@rocketmail.com>, 2012
+# Саша Петровић <salepetronije@gmail.com>, 2013
+# Мирослав Николић <miroslavnikolic@rocketmail.com>, 2012
+# Саша Петровић <salepetronije@gmail.com>, 2013-2014
+# Саша Петровић <salepetronije@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-02 18:30+0100\n"
-"PO-Revision-Date: 2014-02-28 13:35+0000\n"
-"Last-Translator: salepetronije <salepetronije@gmail.com>\n"
-"Language-Team: Serbian (http://www.transifex.com/projects/p/xfce/language/sr/)\n"
+"POT-Creation-Date: 2014-09-23 12:30+0200\n"
+"PO-Revision-Date: 2015-02-14 13:25+0000\n"
+"Last-Translator: Саша Петровић <salepetronije@gmail.com>\n"
+"Language-Team: Serbian (http://www.transifex.com/projects/p/xfce-apps/language/sr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: sr\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: ../globaltime/globaltime.c:58
+msgid "no underline"
+msgstr "без подвлачења"
+
+#: ../globaltime/globaltime.c:58
+msgid "single"
+msgstr "једноструко"
+
+#: ../globaltime/globaltime.c:58
+msgid "double"
+msgstr "двоструко"
+
+#: ../globaltime/globaltime.c:58
+msgid "low"
+msgstr "ниско"
 
 #: ../globaltime/globaltime.c:100
 msgid "Raising GlobalTime window..."
@@ -55,6 +72,10 @@ msgstr "дотерајте да измените сат"
 msgid ""
 "adjust to change minute. Click arrows with button 2 to change only 1 minute."
 msgstr "дотерајте да измените минут. Кликните стрелице дугметом 2 да измените само 1 минут."
+
+#: ../globaltime/globaltime.c:548
+msgid "Global Time"
+msgstr "Опште време"
 
 #: ../globaltime/gt_prefs.c:265 ../globaltime/gt_prefs.c:266
 msgid "NEW"
@@ -102,7 +123,7 @@ msgstr "померите овај часовник на крај"
 
 #: ../globaltime/gt_prefs.c:562
 msgid "set the timezone of this clock to be local timezone"
-msgstr "поставите временску зону овог часовника за месну временску зону"
+msgstr "поставите временску област овог часовника за своју временску област"
 
 #: ../globaltime/gt_prefs.c:568 ../globaltime/gt_prefs.c:1042
 msgid "close window and exit"
@@ -127,7 +148,7 @@ msgstr "унесите назив за часовник"
 
 #: ../globaltime/gt_prefs.c:616
 msgid "Timezone of the clock:"
-msgstr "Временска зона часовника:"
+msgstr "Временска област часовника:"
 
 #: ../globaltime/gt_prefs.c:643
 msgid "Text Formatting"
@@ -256,6 +277,10 @@ msgstr "Обично"
 msgid "Use normal decorations"
 msgstr "Биће коришћени уобичајени украси"
 
+#: ../globaltime/gt_prefs.c:1089 ../src/appointment.c:3290
+msgid "None"
+msgstr "Ништа"
+
 #: ../globaltime/gt_prefs.c:1094
 msgid "Do not show window decorations (borders)"
 msgstr "Неће бити приказани украси прозора (ивице)"
@@ -282,7 +307,7 @@ msgstr "Величине часовника ће се разликовати"
 
 #: ../globaltime/gt_prefs.c:1122
 msgid "Local timezone:"
-msgstr "Месна временска зона:"
+msgstr "Месна временска област:"
 
 #: ../globaltime/timezone_selection.c:101
 #: ../panel-plugin/timezone_selection.c:102 ../src/timezone_selection.c:102
@@ -362,7 +387,7 @@ msgstr "Држава"
 #: ../panel-plugin/timezone_selection.c:310 ../src/timezone_selection.c:316
 #: ../src/timezone_selection.c:325 ../src/timezone_selection.c:336
 msgid "Pick timezone"
-msgstr "Изаберите временску зону"
+msgstr "Изаберите временску област"
 
 #: ../globaltime/timezone_selection.c:302
 #: ../globaltime/timezone_selection.c:312
@@ -404,71 +429,87 @@ msgstr "Прикажите часовнике за разне државе"
 msgid "Globaltime"
 msgstr "Опште време"
 
-#: ../panel-plugin/oc_config.c:224
+#: ../panel-plugin/oc_config.c:239
+msgid "No rotation"
+msgstr "Без окретања"
+
+#: ../panel-plugin/oc_config.c:239
+msgid "Rotate left"
+msgstr "Окрени на лево"
+
+#: ../panel-plugin/oc_config.c:240
+msgid "Rotate right"
+msgstr "Окрени на десно"
+
+#: ../panel-plugin/oc_config.c:248
 msgid "Appearance"
 msgstr "Изглед"
 
 #. show frame
-#: ../panel-plugin/oc_config.c:229
+#: ../panel-plugin/oc_config.c:257
 msgid "Show _frame"
 msgstr "Прикажи _оквир"
 
 #. foreground color
-#: ../panel-plugin/oc_config.c:239
+#: ../panel-plugin/oc_config.c:263
 msgid "set foreground _color:"
 msgstr "боја про_чеља:"
 
 #. background color
-#: ../panel-plugin/oc_config.c:253
+#: ../panel-plugin/oc_config.c:277
 msgid "set _background color:"
 msgstr "боја по_задине:"
 
-#. clock size (=vbox size): height and width
-#: ../panel-plugin/oc_config.c:267
+#. clock size (=mbox size): height and width
+#: ../panel-plugin/oc_config.c:291
 msgid "set _height:"
 msgstr "_висина:"
 
-#: ../panel-plugin/oc_config.c:277
+#: ../panel-plugin/oc_config.c:301
 msgid "Note that you can not change the height of horizontal panels"
 msgstr "Знајте да не можете да измените висину водоравних површи"
 
-#: ../panel-plugin/oc_config.c:282
+#: ../panel-plugin/oc_config.c:306
 msgid "set _width:"
 msgstr "_ширина:"
 
-#: ../panel-plugin/oc_config.c:293
+#: ../panel-plugin/oc_config.c:316
 msgid "Note that you can not change the width of vertical panels"
 msgstr "Знајте да не можете да измените ширину усправних површи"
 
-#: ../panel-plugin/oc_config.c:316
+#: ../panel-plugin/oc_config.c:327
+msgid "Show lines _vertically"
+msgstr "Приказуј линије _усправно"
+
+#: ../panel-plugin/oc_config.c:350
 msgid "Clock Options"
 msgstr "Могућности часовника"
 
 #. timezone
-#: ../panel-plugin/oc_config.c:326
+#: ../panel-plugin/oc_config.c:360
 msgid "set timezone to:"
-msgstr "постави временску зону на:"
+msgstr "постави временску област на:"
 
-#: ../panel-plugin/oc_config.c:347
+#: ../panel-plugin/oc_config.c:381
 #, c-format
 msgid "Line %d:"
 msgstr "Ред %d:"
 
-#: ../panel-plugin/oc_config.c:357
+#: ../panel-plugin/oc_config.c:391
 msgid "Enter any valid strftime function parameter."
 msgstr "Унесите неки исправан параметар функције временске ниске."
 
 #. Tooltip hint
-#: ../panel-plugin/oc_config.c:401
+#: ../panel-plugin/oc_config.c:435
 msgid "Tooltip:"
 msgstr "Облачићи:"
 
 #. special timing for SUSPEND/HIBERNATE
-#: ../panel-plugin/oc_config.c:411
+#: ../panel-plugin/oc_config.c:445
 msgid "fix time after suspend/hibernate"
 msgstr "поправи време након обуставе/замрзавања"
 
-#: ../panel-plugin/oc_config.c:415
+#: ../panel-plugin/oc_config.c:449
 msgid ""
 "You only need this if you do short term (less than 5 hours) suspend or "
 "hibernate and your visible time does not include seconds. Under these "
@@ -477,7 +518,7 @@ msgid ""
 "features from working.)"
 msgstr "Ово вам је потребно само ако радите краткорочно (мање од 5 сати) обустављање или замрзавање а у вашем видљивом времену нису приказане секунде. Под овим околностима могуће је да Оражов часовник приказује нетачно време осим ако нисте изабрали ово. (Бирање овога штити процесор и прекида функције чувања од дејствовања.)"
 
-#: ../panel-plugin/oc_config.c:432
+#: ../panel-plugin/oc_config.c:466
 msgid ""
 "This program uses strftime function to get time.\n"
 "Use any valid code to get time in the format you prefer.\n"
@@ -487,13 +528,12 @@ msgid ""
 "\t%V = week number\t\t%Z = timezone in use\n"
 "\t%H = hours \t\t\t\t%M = minute\n"
 "\t%X = local time\t\t\t%x = local date"
-msgstr "Овај програм користи „strftime“ функцију да добави време.\nКористите било који исправан код да добавите време у облику који желите.\nНеки општи кодови су:\n\t%A = седмица\t\t\t%B = месец\n\t%c = датум и време\t\t%R = сат и минут\n\t%V = број седмице\t\t%Z = временска зона у употреби\n\t%H = сати \t\t        %M = минут\n\t%X = месно време\t\t%x = месни датум"
+msgstr "Овај програм користи „strftime“ функцију да добави време.\nКористите било који исправан код да добавите време у облику који желите.\nНеки општи кодови су:\n\t%A = седмица\t\t\t%B = месец\n\t%c = датум и време\t\t%R = сат и минут\n\t%V = број седмице\t\t%Z = временска област у употреби\n\t%H = сати \t\t        %M = минут\n\t%X = месно време\t\t%x = месни датум"
 
-#: ../panel-plugin/oc_config.c:457
+#: ../panel-plugin/oc_config.c:491
 msgid "Orage clock Preferences"
 msgstr "Поставке Оражовог часовника"
 
-#. no lines yet
 #. TRANSLATORS: Use format characters from strftime(3)
 #. * to get the proper string for your locale.
 #. * I used these:
@@ -502,7 +542,7 @@ msgstr "Поставке Оражовог часовника"
 #. * %B  : full month name
 #. * %Y  : four digit year
 #. * %V  : ISO week number
-#: ../panel-plugin/xfce4-orageclock-plugin.c:627
+#: ../panel-plugin/xfce4-orageclock-plugin.c:700
 msgid "%A %d %B %Y/%V"
 msgstr "%A, %d. %B %Y/%V"
 
@@ -806,7 +846,7 @@ msgid ""
 "You can use that feature to unclutter your list windows, but it makes it more difficult to find this appointment.\n"
 "(Alarms will still fire normally.)\n"
 "(There is undocumented parameter so that you can change the default limit of 8.)"
-msgstr ""
+msgstr "Уколико се постави на 8 или више састанак се НЕЋЕ приказати у прозорима.\nМожете користити ову могућност за смањивање прозора списка, али је теже да се пронађе састанак.\n(Узбуне ће и даље радити.)\n(Постоји недокументована одредница тако да можете променити подразумевано ограничење од 8.)"
 
 #. note
 #: ../src/appointment.c:2918
@@ -968,10 +1008,6 @@ msgid "Set current settings from default alarm"
 msgstr "Постави текућа подешавања из основног аларма"
 
 #: ../src/appointment.c:3290
-msgid "None"
-msgstr "Ништа"
-
-#: ../src/appointment.c:3290
 msgid "Daily"
 msgstr "Дневно"
 
@@ -1129,7 +1165,7 @@ msgid ""
 "Add more exception dates by clicking the calendar days below.\n"
 "Exception is either exclusion(-) or inclusion(+) depending on the selection.\n"
 "Remove by clicking the data."
-msgstr "Додајте још датума изузетака кликом на дан календара.\nИзузетак је или искључење(-) или укључење(+) у зависности од избора.\nУклоните кликом на податак."
+msgstr "Додајте још датума изузетака кликом на дан колендара.\nИзузетак је или искључење(-) или укључење(+) у зависности од избора.\nУклоните кликом на податак."
 
 #: ../src/appointment.c:3489
 msgid "Add excluded date (-)"
@@ -1147,7 +1183,7 @@ msgstr "Додај укључено време (-)"
 msgid ""
 "Included times have same timezone than start time, but they may have "
 "different time"
-msgstr "Укључена времена имају исту временску зону као почетно време, али могу имати различито време"
+msgstr "Укључена времена имају исту временску област као почетно време, али могу имати различито време"
 
 #. calendars showing the action days
 #: ../src/appointment.c:3516
@@ -1402,7 +1438,7 @@ msgstr "... Прекрпљен ДСТВОРЕН да буде СТВОРЕН."
 
 #: ../src/ical-expimp.c:197
 msgid "... Patched timezone to Orage format."
-msgstr "... Прекрпљена временска зона у Оражов облик."
+msgstr "... Прекрпљена временска област у Оражов облик."
 
 #: ../src/ical-expimp.c:206
 msgid "Import file preprocessing done"
@@ -1415,11 +1451,11 @@ msgstr "Пронађена је спољна измена датотеке %s."
 
 #: ../src/interface.c:112
 msgid "Refreshing alarms and calendar due to external file update."
-msgstr "Освежавам аларме и календар због спољних измена датотеке,"
+msgstr "Освежавам аларме и колендар због спољних измена датотеке,"
 
 #: ../src/interface.c:271
 msgid "Calendar files"
-msgstr "Датотеке календара"
+msgstr "Датотеке колендара"
 
 #: ../src/interface.c:631
 msgid "Current foreign files"
@@ -1553,7 +1589,7 @@ msgstr "Оражове датотеке"
 
 #: ../src/interface.c:1116
 msgid "Orage main calendar file"
-msgstr "Датотека Оражовог главног календара"
+msgstr "Датотека Оражовог главног колендара"
 
 #: ../src/interface.c:1121 ../src/interface.c:1186
 msgid "Current file:"
@@ -1858,11 +1894,11 @@ msgstr "Главна подешавања"
 
 #: ../src/parameters.c:498
 msgid "Timezone"
-msgstr "Временска зона"
+msgstr "Временска област"
 
 #: ../src/parameters.c:513
 msgid "You should always define your local timezone."
-msgstr "Требало би да увек одредите вашу месну временску зону."
+msgstr "Требало би да увек одредите временску област свог места."
 
 #: ../src/parameters.c:521
 msgid "Archive threshold (months)"
@@ -1886,11 +1922,11 @@ msgstr "Ова наредба се даје конзоли за стварање
 
 #: ../src/parameters.c:596
 msgid "Calendar window"
-msgstr "Прозор календара"
+msgstr "Прозор колендара"
 
 #: ../src/parameters.c:603
 msgid "Calendar visual details"
-msgstr "Видљиве појединости календара"
+msgstr "Видљиве појединости колендара"
 
 #: ../src/parameters.c:609
 msgid "Show borders"
@@ -1914,7 +1950,7 @@ msgstr "Прикажи месец и годину"
 
 #: ../src/parameters.c:655
 msgid "Calendar info boxes"
-msgstr "Обавештајне кутијице календара"
+msgstr "Обавештајне кутијице колендара"
 
 #: ../src/parameters.c:660
 msgid "Show todo list"
@@ -1930,7 +1966,7 @@ msgstr "0 = не приказуј списак догађаја нипошто"
 
 #: ../src/parameters.c:686
 msgid "Calendar visibility"
-msgstr "Видљивост календара"
+msgstr "Видљивост колендара"
 
 #: ../src/parameters.c:691
 msgid "Show on all desktops"
@@ -1954,7 +1990,7 @@ msgstr "Прикажи у системској фиоци"
 
 #: ../src/parameters.c:738
 msgid "Calendar start"
-msgstr "Почетак календара"
+msgstr "Почетак колендара"
 
 #: ../src/parameters.c:743
 msgid "Show"
@@ -1970,7 +2006,7 @@ msgstr "Умањено"
 
 #: ../src/parameters.c:787
 msgid "On calendar window open"
-msgstr "При отварању прозора календара"
+msgstr "При отварању прозора колендара"
 
 #: ../src/parameters.c:792
 msgid "Select today's date"
@@ -1982,7 +2018,7 @@ msgstr "Одабери претходно одабрани датум"
 
 #: ../src/parameters.c:823
 msgid "Calendar day double click shows"
-msgstr "Двоструки клик на дан календара приказује"
+msgstr "Двоструки клик на дан колендара приказује"
 
 #: ../src/parameters.c:828
 msgid "Days view"
@@ -2081,16 +2117,16 @@ msgstr "Поставке Оража"
 
 #: ../src/parameters.c:1157
 msgid "First Orage start. Searching default timezone."
-msgstr "Прво покретање Оража. Тражим основну временску зону."
+msgstr "Прво покретање Оража. Тражим основну временску област."
 
 #: ../src/parameters.c:1176
 #, c-format
 msgid "Default timezone set to %s."
-msgstr "Основна временска зона је постављена на %s."
+msgstr "Основна временска област је постављена на %s."
 
 #: ../src/parameters.c:1179
 msgid "Default timezone not found, please, set it manually."
-msgstr "Није пронађена основна временска зона, молим, поставите је ручно."
+msgstr "Није пронађена основна временска област, молим, поставите је ручно."
 
 #: ../src/reminder.c:562
 msgid "Reminder "
@@ -2396,7 +2432,7 @@ msgstr "Америка/Аргентина/Јујуј"
 
 #: ../src/timezone_names.c:102
 msgid "America/Argentina/La_Rioja"
-msgstr ""
+msgstr "Америка/Аргентина/Ла_Риоха"
 
 #: ../src/timezone_names.c:103
 msgid "America/Argentina/Mendoza"
@@ -3520,7 +3556,7 @@ msgstr "Аустралија/Броукен_Хил"
 
 #: ../src/timezone_names.c:383
 msgid "Australia/Currie"
-msgstr ""
+msgstr "Аустралија/Кари"
 
 #: ../src/timezone_names.c:384
 msgid "Australia/Darwin"
@@ -3528,7 +3564,7 @@ msgstr "Аустралија/Дарвин"
 
 #: ../src/timezone_names.c:385
 msgid "Australia/Eucla"
-msgstr ""
+msgstr "Аустралија/Јукла"
 
 #: ../src/timezone_names.c:386
 msgid "Australia/Hobart"
@@ -3604,7 +3640,7 @@ msgstr "Канада/Њуфаундленд"
 
 #: ../src/timezone_names.c:404
 msgid "Canada/Pacific"
-msgstr "Канада/Пацифик"
+msgstr "Канада/Тихи океан"
 
 #: ../src/timezone_names.c:405
 msgid "Canada/Saskatchewan"
@@ -3816,7 +3852,7 @@ msgstr "Европа/Будимпешта"
 
 #: ../src/timezone_names.c:457
 msgid "Europe/Busingen"
-msgstr ""
+msgstr "Европа/Бисинген"
 
 #: ../src/timezone_names.c:458
 msgid "Europe/Chisinau"
@@ -4076,247 +4112,247 @@ msgstr "Мексико/Опште"
 
 #: ../src/timezone_names.c:522
 msgid "Mideast"
-msgstr ""
+msgstr "Средњи исток"
 
 #: ../src/timezone_names.c:523
 msgid "Mideast/Riyadh87"
-msgstr ""
+msgstr "Средњи исток/Ријад87"
 
 #: ../src/timezone_names.c:524
 msgid "Mideast/Riyadh88"
-msgstr ""
+msgstr "Средњи исток/Ријад88"
 
 #: ../src/timezone_names.c:525
 msgid "Mideast/Riyadh89"
-msgstr ""
+msgstr "Средњи исток/Ријад89"
 
 #: ../src/timezone_names.c:526
 msgid "Pacific"
-msgstr "Пацифик"
+msgstr "Тихи океан"
 
 #: ../src/timezone_names.c:527
 msgid "Pacific/Apia"
-msgstr "Пацифик/Апија"
+msgstr "Тихи океан/Апија"
 
 #: ../src/timezone_names.c:528
 msgid "Pacific/Auckland"
-msgstr "Пацифик/Оукленд"
+msgstr "Тихи океан/Оукленд"
 
 #: ../src/timezone_names.c:529
 msgid "Pacific/Chatham"
-msgstr "Пацифик/Чатам"
+msgstr "Тихи океан/Чатам"
 
 #: ../src/timezone_names.c:530
 msgid "Pacific/Chuuk"
-msgstr ""
+msgstr "Тихи океан/Чук"
 
 #: ../src/timezone_names.c:531
 msgid "Pacific/Easter"
-msgstr "Пацифик/Ускршња_острва"
+msgstr "Тихи океан/Ускршња_острва"
 
 #: ../src/timezone_names.c:532
 msgid "Pacific/Efate"
-msgstr "Пацифик/Ефат"
+msgstr "Тихи океан/Ефат"
 
 #: ../src/timezone_names.c:533
 msgid "Pacific/Enderbury"
-msgstr "Пацифик/Ендербури"
+msgstr "Тихи океан/Ендербури"
 
 #: ../src/timezone_names.c:534
 msgid "Pacific/Fakaofo"
-msgstr "Пацифик/Факаофо"
+msgstr "Тихи океан/Факаофо"
 
 #: ../src/timezone_names.c:535
 msgid "Pacific/Fiji"
-msgstr "Пацифик/Фиџи"
+msgstr "Тихи океан/Фиџи"
 
 #: ../src/timezone_names.c:536
 msgid "Pacific/Funafuti"
-msgstr "Пацифик/Фунафути"
+msgstr "Тихи океан/Фунафути"
 
 #: ../src/timezone_names.c:537
 msgid "Pacific/Galapagos"
-msgstr "Пацифик/Галапагос"
+msgstr "Тихи океан/Галапагос"
 
 #: ../src/timezone_names.c:538
 msgid "Pacific/Gambier"
-msgstr "Пацифик/Гамбјер"
+msgstr "Тихи океан/Гамбјер"
 
 #: ../src/timezone_names.c:539
 msgid "Pacific/Guadalcanal"
-msgstr "Пацифик/Гвадалканал"
+msgstr "Тихи океан/Гвадалканал"
 
 #: ../src/timezone_names.c:540
 msgid "Pacific/Guam"
-msgstr "Пацифик/Гуам"
+msgstr "Тихи океан/Гуам"
 
 #: ../src/timezone_names.c:541
 msgid "Pacific/Honolulu"
-msgstr "Пацифик/Хонолулу"
+msgstr "Тихи океан/Хонолулу"
 
 #: ../src/timezone_names.c:542
 msgid "Pacific/Johnston"
-msgstr "Пацифик/Џонстон"
+msgstr "Тихи океан/Џонстон"
 
 #: ../src/timezone_names.c:543
 msgid "Pacific/Kiritimati"
-msgstr "Пацифик/Киритимати"
+msgstr "Тихи океан/Киритимати"
 
 #: ../src/timezone_names.c:544
 msgid "Pacific/Kosrae"
-msgstr "Пацифик/Косре"
+msgstr "Тихи океан/Косре"
 
 #: ../src/timezone_names.c:545
 msgid "Pacific/Kwajalein"
-msgstr "Пацифик/Квајалајн"
+msgstr "Тихи океан/Квајалајн"
 
 #: ../src/timezone_names.c:546
 msgid "Pacific/Majuro"
-msgstr "Пацифик/Маџуро"
+msgstr "Тихи океан/Маџуро"
 
 #: ../src/timezone_names.c:547
 msgid "Pacific/Marquesas"
-msgstr "Пацифик/Маркесас"
+msgstr "Тихи океан/Маркесас"
 
 #: ../src/timezone_names.c:548
 msgid "Pacific/Midway"
-msgstr "Пацифик/Мидвеј"
+msgstr "Тихи океан/Мидвеј"
 
 #: ../src/timezone_names.c:549
 msgid "Pacific/Nauru"
-msgstr "Пацифик/Науру"
+msgstr "Тихи океан/Науру"
 
 #: ../src/timezone_names.c:550
 msgid "Pacific/Niue"
-msgstr "Пацифик/Нјуе"
+msgstr "Тихи океан/Нјуе"
 
 #: ../src/timezone_names.c:551
 msgid "Pacific/Norfolk"
-msgstr "Пацифик/Норфолк"
+msgstr "Тихи океан/Норфолк"
 
 #: ../src/timezone_names.c:552
 msgid "Pacific/Noumea"
-msgstr "Пацифик/Нума"
+msgstr "Тихи океан/Нума"
 
 #: ../src/timezone_names.c:553
 msgid "Pacific/Pago_Pago"
-msgstr "Пацифик/Паго_Паго"
+msgstr "Тихи океан/Паго_Паго"
 
 #: ../src/timezone_names.c:554
 msgid "Pacific/Palau"
-msgstr "Пацифик/Палау"
+msgstr "Тихи океан/Палау"
 
 #: ../src/timezone_names.c:555
 msgid "Pacific/Pitcairn"
-msgstr "Пацифик/Питкарн"
+msgstr "Тихи океан/Питкарн"
 
 #: ../src/timezone_names.c:556
 msgid "Pacific/Pohnpei"
-msgstr ""
+msgstr "Тихи океан/Понпеј"
 
 #: ../src/timezone_names.c:557
 msgid "Pacific/Ponape"
-msgstr "Пацифик/Понап"
+msgstr "Тихи океан/Понап"
 
 #: ../src/timezone_names.c:558
 msgid "Pacific/Port_Moresby"
-msgstr "Пацифик/Порт_Моресби"
+msgstr "Тихи океан/Порт_Моресби"
 
 #: ../src/timezone_names.c:559
 msgid "Pacific/Rarotonga"
-msgstr "Пацифик/Раротонга"
+msgstr "Тихи океан/Раротонга"
 
 #: ../src/timezone_names.c:560
 msgid "Pacific/Saipan"
-msgstr "Пацифик/Сајпан"
+msgstr "Тихи океан/Сајпан"
 
 #: ../src/timezone_names.c:561
 msgid "Pacific/Samoa"
-msgstr "Пацифик/Самоа"
+msgstr "Тихи океан/Самоа"
 
 #: ../src/timezone_names.c:562
 msgid "Pacific/Tahiti"
-msgstr "Пацифик/Тахити"
+msgstr "Тихи океан/Тахити"
 
 #: ../src/timezone_names.c:563
 msgid "Pacific/Tarawa"
-msgstr "Пацифик/Тарава"
+msgstr "Тихи океан/Тарава"
 
 #: ../src/timezone_names.c:564
 msgid "Pacific/Tongatapu"
-msgstr "Пацифик/Тонгатапу"
+msgstr "Тихи океан/Тонгатапу"
 
 #: ../src/timezone_names.c:565
 msgid "Pacific/Truk"
-msgstr "Пацифик/Трук"
+msgstr "Тихи океан/Трук"
 
 #: ../src/timezone_names.c:566
 msgid "Pacific/Wake"
-msgstr "Пацифик/Вејк"
+msgstr "Тихи океан/Вејк"
 
 #: ../src/timezone_names.c:567
 msgid "Pacific/Wallis"
-msgstr "Пацифик/Волис"
+msgstr "Тихи океан/Волис"
 
 #: ../src/timezone_names.c:568
 msgid "Pacific/Yap"
-msgstr "Пацифик/Јап"
+msgstr "Тихи океан/Јап"
 
 #: ../src/timezone_names.c:569
 msgid "SystemV"
-msgstr ""
+msgstr "SystemV"
 
 #: ../src/timezone_names.c:570
 msgid "SystemV/AST4"
-msgstr ""
+msgstr "SystemV/AST4"
 
 #: ../src/timezone_names.c:571
 msgid "SystemV/AST4ADT"
-msgstr ""
+msgstr "SystemV/AST4ADT"
 
 #: ../src/timezone_names.c:572
 msgid "SystemV/CST6"
-msgstr ""
+msgstr "SystemV/CST6"
 
 #: ../src/timezone_names.c:573
 msgid "SystemV/CST6CDT"
-msgstr ""
+msgstr "SystemV/CST6CDT"
 
 #: ../src/timezone_names.c:574
 msgid "SystemV/EST5"
-msgstr ""
+msgstr "SystemV/EST5"
 
 #: ../src/timezone_names.c:575
 msgid "SystemV/EST5/EDT"
-msgstr ""
+msgstr "SystemV/EST5/EDT"
 
 #: ../src/timezone_names.c:576
 msgid "SystemV/HST10"
-msgstr ""
+msgstr "SystemV/HST10"
 
 #: ../src/timezone_names.c:577
 msgid "SystemV/MST7"
-msgstr ""
+msgstr "SystemV/MST7"
 
 #: ../src/timezone_names.c:578
 msgid "SystemV/MST7/MNT"
-msgstr ""
+msgstr "SystemV/MST7/MNT"
 
 #: ../src/timezone_names.c:579
 msgid "SystemV/PST8"
-msgstr ""
+msgstr "SystemV/PST8"
 
 #: ../src/timezone_names.c:580
 msgid "SystemV/PST8/PDT"
-msgstr ""
+msgstr "SystemV/PST8/PDT"
 
 #: ../src/timezone_names.c:581
 msgid "SystemV/YST9"
-msgstr ""
+msgstr "SystemV/YST9"
 
 #: ../src/timezone_names.c:582
 msgid "SystemV/YST9/YDT"
-msgstr ""
+msgstr "SystemV/YST9/YDT"
 
 #: ../src/timezone_names.c:583
 msgid "US"
@@ -4364,11 +4400,11 @@ msgstr "САД/планинске"
 
 #: ../src/timezone_names.c:594
 msgid "US/Pacific"
-msgstr "САД/Пацифик"
+msgstr "САД/Тихи океан"
 
 #: ../src/timezone_names.c:595
 msgid "US/Pacific-New"
-msgstr "САД/Нови_пацифик"
+msgstr "САД/Нови_Тихи океан"
 
 #: ../src/timezone_names.c:596
 msgid "US/Samoa"
@@ -4396,21 +4432,21 @@ msgstr "Поставке Оража"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:2
 msgid "Settings for the Xfce 4 Calendar Application (Orage)"
-msgstr "Подешавања за календар Иксфце-а 4 (Ораже)"
+msgstr "Подешавања за колендар Иксфце-а 4 (Ораж)"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:3
 msgid "Orage Calendar Preferences"
-msgstr "Поставке Оражовог календара"
+msgstr "Поставке Оражовог колендара"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:4
 #: ../xfcalendar.desktop.in.h:3
 msgid "Calendar"
-msgstr "Календар"
+msgstr "Колендар"
 
 #: ../xfcalendar.desktop.in.h:1
 msgid "Orage Calendar"
-msgstr "Ораж календар"
+msgstr "Оражов колендар"
 
 #: ../xfcalendar.desktop.in.h:2
 msgid "Desktop calendar"
-msgstr "Календар радне површи"
+msgstr "Колендар радне површи"
