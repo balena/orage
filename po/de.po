@@ -4,20 +4,20 @@
 # 
 # Translators:
 # Fabian Nowak <timystery@arcor.de>, 2005-2008, 2010
-# Georg Eckert <eckert.georg@gmx.de>, 2013-2014
+# Georg Eckert <eckert.georg@gmx.de>, 2013-2015
 # Johannes Lips <johannes.lips@gmail.com>, 2014
 # Marcel Michael Kapfer <marcelmichaelkapfer@yahoo.co.nz>, 2013
 # Moritz Heiber <moe@xfce.org>, 2003
 # Nico Schümann <nico@prog.nico22.de>, 2007
 # Simon Schneider <simon@schneiderimtal.de>, 2009
-# Tobias Bannert, 2014
+# Tobias Bannert <tobannert@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-23 12:30+0200\n"
-"PO-Revision-Date: 2014-11-14 13:44+0000\n"
-"Last-Translator: Tobias Bannert\n"
+"PO-Revision-Date: 2015-02-21 22:02+0000\n"
+"Last-Translator: Georg Eckert <eckert.georg@gmx.de>\n"
 "Language-Team: German (http://www.transifex.com/projects/p/xfce-apps/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,11 +31,11 @@ msgstr "keine Unterstreichung"
 
 #: ../globaltime/globaltime.c:58
 msgid "single"
-msgstr ""
+msgstr "einzeln"
 
 #: ../globaltime/globaltime.c:58
 msgid "double"
-msgstr ""
+msgstr "doppelt"
 
 #: ../globaltime/globaltime.c:58
 msgid "low"
@@ -849,7 +849,7 @@ msgid ""
 "You can use that feature to unclutter your list windows, but it makes it more difficult to find this appointment.\n"
 "(Alarms will still fire normally.)\n"
 "(There is undocumented parameter so that you can change the default limit of 8.)"
-msgstr ""
+msgstr "Wenn Sie den 8 oder mehr einstellen wird der Termin NICHT in Listenfenstern angezeigt.\nDiese Funktion kann genutzt werden um Listenfenster übersichtlicher zu gestalten, macht das Auffinden dieses Termins jedoch schwieriger.\n(Benachrichtigungen werden normal ausgelöst.)\n(Es gibt einen nicht dokumentierten Parameter zum Ändern des Standardlimits von 8.)"
 
 #. note
 #: ../src/appointment.c:2918
@@ -1293,7 +1293,7 @@ msgstr "Zusätzliche Tage anzeigen:"
 
 #: ../src/event-list.c:1240
 msgid "only first repeating"
-msgstr ""
+msgstr "nur erste Wiederholung"
 
 #: ../src/event-list.c:1245
 msgid ""
@@ -1304,13 +1304,13 @@ msgstr ""
 
 #: ../src/event-list.c:1250
 msgid "also old"
-msgstr ""
+msgstr "auch alte"
 
 #: ../src/event-list.c:1252
 msgid ""
 "Check this if you want to see old events also. This can only be selected after 'only first repeating' is enabled to avoid very long lists.\n"
 "Note that extra days selection still defines if newer appointments are listed'."
-msgstr ""
+msgstr "Aktivieren, wenn auch alte Ereignisse angezeigt werden sollen. Kann nur aktiviert werden, wenn 'nur erste Wiederholung' aktiviert ist, um sehr lange Listen zu vermeiden.\nHinweis: Auswahl von 'zusätzliche Tage' bedeutet weiterhin ob neuere Termine aufgeührt werden."
 
 #: ../src/event-list.c:1290
 msgid "Journal entries starting from:"
@@ -1423,7 +1423,7 @@ msgstr ""
 #: ../src/ical-code.c:3183
 #, c-format
 msgid "\tAdded %d alarms. Processed %d events."
-msgstr ""
+msgstr "%d Benachrichtigungen aktiviert. %d Ereignisse abgearbeitet."
 
 #: ../src/ical-code.c:3185
 #, c-format
@@ -1450,7 +1450,7 @@ msgstr "Vorbereitungen für den Dateiimport abgeschlossen"
 #: ../src/interface.c:89 ../src/interface.c:104
 #, c-format
 msgid "Found external update on file %s."
-msgstr ""
+msgstr "Externe Aktualisierung der Datei %s festgestellt."
 
 #: ../src/interface.c:112
 msgid "Refreshing alarms and calendar due to external file update."
@@ -1482,7 +1482,7 @@ msgstr ""
 
 #: ../src/interface.c:689
 msgid "Orage can only handle 10 foreign files. Limit reached."
-msgstr ""
+msgstr "Orage kann maximal 10 fremde Dateien verwalten. Limit erreicht."
 
 #: ../src/interface.c:697
 msgid "Filename is empty."
@@ -1498,11 +1498,11 @@ msgstr "Datei existiert nicht."
 
 #: ../src/interface.c:722
 msgid "Same filename already exists in Orage."
-msgstr ""
+msgstr "Dateiname existiert bereits in Orage."
 
 #: ../src/interface.c:730
 msgid "Same name already exists in Orage."
-msgstr ""
+msgstr "Name existiert bereits in Orage."
 
 #: ../src/interface.c:965
 msgid "Import/export"
@@ -1667,7 +1667,7 @@ msgstr "Aktivieren Sie dies, wenn Sie sichergehen wollen, dass diese Datei nie v
 
 #: ../src/interface.c:1294
 msgid "This internal name is displayed to user instead of file name."
-msgstr ""
+msgstr "Dieser interne Name wird dem Nutzer statt des Dateinamen angezeigt."
 
 #: ../src/interface.c:1308
 msgid "Exchange data - Orage"
@@ -1953,7 +1953,7 @@ msgstr "Monat und Jahr zeigen"
 
 #: ../src/parameters.c:655
 msgid "Calendar info boxes"
-msgstr ""
+msgstr "Kalender-Infokästen"
 
 #: ../src/parameters.c:660
 msgid "Show todo list"
@@ -2017,11 +2017,11 @@ msgstr "Aktuelles Datum wählen"
 
 #: ../src/parameters.c:805
 msgid "Select previously selected date"
-msgstr ""
+msgstr "Zuvor gewähltes Datum auswählen."
 
 #: ../src/parameters.c:823
 msgid "Calendar day double click shows"
-msgstr ""
+msgstr "Doppelklick auf Kalendertag zeigt"
 
 #: ../src/parameters.c:828
 msgid "Days view"
@@ -2063,7 +2063,7 @@ msgstr "Erster Tag der Woche"
 
 #: ../src/parameters.c:925
 msgid "Selected day"
-msgstr ""
+msgstr "Ausgewählter Tag"
 
 #: ../src/parameters.c:943
 msgid "Use dynamic tray icon"
@@ -2079,13 +2079,13 @@ msgstr "Das dynamische Systemleistenlogo zeigt den aktuellen Monat und Tag."
 
 #: ../src/parameters.c:962 ../src/parameters.c:967
 msgid "Use wakeup timer"
-msgstr ""
+msgstr "Zeitschalter verwenden"
 
 #: ../src/parameters.c:973
 msgid ""
 "Use this timer if Orage has problems waking up properly after suspend or "
 "hibernate. (For example tray icon not refreshed or alarms not firing.)"
-msgstr ""
+msgstr "Verwenden Sie diesen Zeitschalter, wenn Orage Probleme hat, nach Ruhezustand oder Energiesparmodus ordnungsgemäß aufzuwachen. (z.B.: wenn das Taskleistensymbol nicht aktualisiert wird oder Benachrichtigungen nicht ausgelöst werden.)"
 
 #: ../src/parameters.c:982
 msgid "Foreign file default visual alarm"
@@ -2101,7 +2101,7 @@ msgstr ""
 
 #: ../src/parameters.c:1018
 msgid "Always quit when asked to close"
-msgstr ""
+msgstr "Beim Schließen immer Beenden"
 
 #: ../src/parameters.c:1023
 msgid "Always quit"
@@ -2112,7 +2112,7 @@ msgid ""
 "By default Orage stays open in the background when asked to close. This "
 "option changes Orage to quit and never stay in background when it is asked "
 "to close."
-msgstr ""
+msgstr "Standardmäßig bleibt Orage im Hintergrund geöffnet, wenn es geschlossen wird. Diese Option bewirkt, dass Orage beendet wird und beim Schließen nie im Hintergrund aktiv bleibt."
 
 #: ../src/parameters.c:1045
 msgid "Orage Preferences"
@@ -2145,7 +2145,7 @@ msgstr "Erinnerungen - Orage"
 
 #: ../src/reminder.c:803
 msgid "Postpone"
-msgstr ""
+msgstr "Aufschieben"
 
 #: ../src/reminder.c:805
 msgid "Remind me again after the specified time"
@@ -2435,7 +2435,7 @@ msgstr "Amerika/Argentinien/Jujuy"
 
 #: ../src/timezone_names.c:102
 msgid "America/Argentina/La_Rioja"
-msgstr ""
+msgstr "Amerika/Argentinien/La_Rioja"
 
 #: ../src/timezone_names.c:103
 msgid "America/Argentina/Mendoza"
@@ -3543,7 +3543,7 @@ msgstr "Australien"
 
 #: ../src/timezone_names.c:379
 msgid "Australia/ACT"
-msgstr ""
+msgstr "Australien/Canberra"
 
 #: ../src/timezone_names.c:380
 msgid "Australia/Adelaide"
@@ -3559,7 +3559,7 @@ msgstr "Australien/Broken_Hill"
 
 #: ../src/timezone_names.c:383
 msgid "Australia/Currie"
-msgstr ""
+msgstr "Australien/Currie"
 
 #: ../src/timezone_names.c:384
 msgid "Australia/Darwin"
@@ -3567,7 +3567,7 @@ msgstr "Australien/Darwin"
 
 #: ../src/timezone_names.c:385
 msgid "Australia/Eucla"
-msgstr ""
+msgstr "Australien/Eucla"
 
 #: ../src/timezone_names.c:386
 msgid "Australia/Hobart"
@@ -3595,7 +3595,7 @@ msgstr "Australien/Sydney"
 
 #: ../src/timezone_names.c:392
 msgid "Brazil"
-msgstr ""
+msgstr "Brasilien"
 
 #: ../src/timezone_names.c:393
 msgid "Brazil/Acre"
@@ -3607,23 +3607,23 @@ msgstr ""
 
 #: ../src/timezone_names.c:395
 msgid "Brazil/East"
-msgstr ""
+msgstr "Brasilien/Ost"
 
 #: ../src/timezone_names.c:396
 msgid "Brazil/West"
-msgstr ""
+msgstr "Brasilien/West"
 
 #: ../src/timezone_names.c:397
 msgid "Canada"
-msgstr ""
+msgstr "Kanada"
 
 #: ../src/timezone_names.c:398
 msgid "Canada/Atlantic"
-msgstr ""
+msgstr "Kanada/Atlantische_Provinzen"
 
 #: ../src/timezone_names.c:399
 msgid "Canada/Central"
-msgstr ""
+msgstr "Kanada/Zentral"
 
 #: ../src/timezone_names.c:400
 msgid "Canada/East-Saskatchewan"
@@ -3639,7 +3639,7 @@ msgstr ""
 
 #: ../src/timezone_names.c:403
 msgid "Canada/Newfoundland"
-msgstr ""
+msgstr "Kanada/Neufundland"
 
 #: ../src/timezone_names.c:404
 msgid "Canada/Pacific"
@@ -3655,7 +3655,7 @@ msgstr ""
 
 #: ../src/timezone_names.c:407
 msgid "Chile"
-msgstr ""
+msgstr "Chile"
 
 #: ../src/timezone_names.c:408
 msgid "Chile/Continental"
@@ -3663,151 +3663,151 @@ msgstr ""
 
 #: ../src/timezone_names.c:409
 msgid "Chile/EasterIsland"
-msgstr ""
+msgstr "Chile/Osterinsel"
 
 #: ../src/timezone_names.c:410
 msgid "Etc"
-msgstr ""
+msgstr "Etc"
 
 #: ../src/timezone_names.c:411
 msgid "Etc/GMT"
-msgstr ""
+msgstr "Etc/GMT"
 
 #: ../src/timezone_names.c:412
 msgid "Etc/GMT+0"
-msgstr ""
+msgstr "Etc/GMT+0"
 
 #: ../src/timezone_names.c:413
 msgid "Etc/GMT+1"
-msgstr ""
+msgstr "Etc/GMT+1"
 
 #: ../src/timezone_names.c:414
 msgid "Etc/GMT+10"
-msgstr ""
+msgstr "Etc/GMT+10"
 
 #: ../src/timezone_names.c:415
 msgid "Etc/GMT+11"
-msgstr ""
+msgstr "Etc/GMT+11"
 
 #: ../src/timezone_names.c:416
 msgid "Etc/GMT+12"
-msgstr ""
+msgstr "Etc/GMT+12"
 
 #: ../src/timezone_names.c:417
 msgid "Etc/GMT+2"
-msgstr ""
+msgstr "Etc/GMT+2"
 
 #: ../src/timezone_names.c:418
 msgid "Etc/GMT+3"
-msgstr ""
+msgstr "Etc/GMT+3"
 
 #: ../src/timezone_names.c:419
 msgid "Etc/GMT+4"
-msgstr ""
+msgstr "Etc/GMT+4"
 
 #: ../src/timezone_names.c:420
 msgid "Etc/GMT+5"
-msgstr ""
+msgstr "Etc/GMT+5"
 
 #: ../src/timezone_names.c:421
 msgid "Etc/GMT+6"
-msgstr ""
+msgstr "Etc/GMT+6"
 
 #: ../src/timezone_names.c:422
 msgid "Etc/GMT+7"
-msgstr ""
+msgstr "Etc/GMT+7"
 
 #: ../src/timezone_names.c:423
 msgid "Etc/GMT+8"
-msgstr ""
+msgstr "Etc/GMT+8"
 
 #: ../src/timezone_names.c:424
 msgid "Etc/GMT+9"
-msgstr ""
+msgstr "Etc/GMT+9"
 
 #: ../src/timezone_names.c:425
 msgid "Etc/GMT-0"
-msgstr ""
+msgstr "Etc/GMT-0"
 
 #: ../src/timezone_names.c:426
 msgid "Etc/GMT-1"
-msgstr ""
+msgstr "Etc/GMT-1"
 
 #: ../src/timezone_names.c:427
 msgid "Etc/GMT-10"
-msgstr ""
+msgstr "Etc/GMT-10"
 
 #: ../src/timezone_names.c:428
 msgid "Etc/GMT-11"
-msgstr ""
+msgstr "Etc/GMT-11"
 
 #: ../src/timezone_names.c:429
 msgid "Etc/GMT-12"
-msgstr ""
+msgstr "Etc/GMT-12"
 
 #: ../src/timezone_names.c:430
 msgid "Etc/GMT-13"
-msgstr ""
+msgstr "Etc/GMT-13"
 
 #: ../src/timezone_names.c:431
 msgid "Etc/GMT-14"
-msgstr ""
+msgstr "Etc/GMT-14"
 
 #: ../src/timezone_names.c:432
 msgid "Etc/GMT-2"
-msgstr ""
+msgstr "Etc/GMT-2"
 
 #: ../src/timezone_names.c:433
 msgid "Etc/GMT-3"
-msgstr ""
+msgstr "Etc/GMT-3"
 
 #: ../src/timezone_names.c:434
 msgid "Etc/GMT-4"
-msgstr ""
+msgstr "Etc/GMT-4"
 
 #: ../src/timezone_names.c:435
 msgid "Etc/GMT-5"
-msgstr ""
+msgstr "Etc/GMT-5"
 
 #: ../src/timezone_names.c:436
 msgid "Etc/GMT-6"
-msgstr ""
+msgstr "Etc/GMT-6"
 
 #: ../src/timezone_names.c:437
 msgid "Etc/GMT-7"
-msgstr ""
+msgstr "Etc/GMT-7"
 
 #: ../src/timezone_names.c:438
 msgid "Etc/GMT-8"
-msgstr ""
+msgstr "Etc/GMT-8"
 
 #: ../src/timezone_names.c:439
 msgid "Etc/GMT-9"
-msgstr ""
+msgstr "Etc/GMT-9"
 
 #: ../src/timezone_names.c:440
 msgid "Etc/GMT0"
-msgstr ""
+msgstr "Etc/GMT0"
 
 #: ../src/timezone_names.c:441
 msgid "Etc/Greenwich"
-msgstr ""
+msgstr "Etc/Greenwich"
 
 #: ../src/timezone_names.c:442
 msgid "Etc/UCT"
-msgstr ""
+msgstr "Etc/UCT"
 
 #: ../src/timezone_names.c:443
 msgid "Etc/UTC"
-msgstr ""
+msgstr "Etc/UTC"
 
 #: ../src/timezone_names.c:444
 msgid "Etc/Universal"
-msgstr ""
+msgstr "Etc/Universalzeit"
 
 #: ../src/timezone_names.c:445
 msgid "Etc/Zulu"
-msgstr ""
+msgstr "Etc/Zulu-Zeit"
 
 #: ../src/timezone_names.c:446
 msgid "Europe"
@@ -3855,7 +3855,7 @@ msgstr "Europa/Budapest"
 
 #: ../src/timezone_names.c:457
 msgid "Europe/Busingen"
-msgstr ""
+msgstr "Europa/Büsingen"
 
 #: ../src/timezone_names.c:458
 msgid "Europe/Chisinau"
@@ -3875,7 +3875,7 @@ msgstr "Europa/Gibraltar"
 
 #: ../src/timezone_names.c:462
 msgid "Europe/Guernsey"
-msgstr ""
+msgstr "Europa/Guernsey"
 
 #: ../src/timezone_names.c:463
 msgid "Europe/Helsinki"
@@ -3883,7 +3883,7 @@ msgstr "Europa/Helsinki"
 
 #: ../src/timezone_names.c:464
 msgid "Europe/Isle_of_Man"
-msgstr ""
+msgstr "Europa/Isle_of_Man"
 
 #: ../src/timezone_names.c:465
 msgid "Europe/Istanbul"
@@ -3891,7 +3891,7 @@ msgstr "Europa/Instabul"
 
 #: ../src/timezone_names.c:466
 msgid "Europe/Jersey"
-msgstr ""
+msgstr "Europa/Jersey"
 
 #: ../src/timezone_names.c:467
 msgid "Europe/Kaliningrad"
@@ -3927,7 +3927,7 @@ msgstr "Europa/Malta"
 
 #: ../src/timezone_names.c:475
 msgid "Europe/Mariehamn"
-msgstr ""
+msgstr "Europa/Mariehamn"
 
 #: ../src/timezone_names.c:476
 msgid "Europe/Minsk"
@@ -3955,7 +3955,7 @@ msgstr "Europa/Paris"
 
 #: ../src/timezone_names.c:482
 msgid "Europe/Podgorica"
-msgstr ""
+msgstr "Europa/Podgorica"
 
 #: ../src/timezone_names.c:483
 msgid "Europe/Prague"
@@ -4007,7 +4007,7 @@ msgstr "Europe/Tirane"
 
 #: ../src/timezone_names.c:495
 msgid "Europe/Tiraspol"
-msgstr ""
+msgstr "Europa/Tiraspol"
 
 #: ../src/timezone_names.c:496
 msgid "Europe/Uzhgorod"
@@ -4031,7 +4031,7 @@ msgstr "Europe/Wilna"
 
 #: ../src/timezone_names.c:501
 msgid "Europe/Volgograd"
-msgstr ""
+msgstr "Europa/Wolgograd"
 
 #: ../src/timezone_names.c:502
 msgid "Europe/Warsaw"
@@ -4271,7 +4271,7 @@ msgstr "Pazifik/Saipan"
 
 #: ../src/timezone_names.c:561
 msgid "Pacific/Samoa"
-msgstr ""
+msgstr "Pazific/Samoa"
 
 #: ../src/timezone_names.c:562
 msgid "Pacific/Tahiti"
@@ -4303,67 +4303,67 @@ msgstr "Pazifik/Yap"
 
 #: ../src/timezone_names.c:569
 msgid "SystemV"
-msgstr ""
+msgstr "SystemV"
 
 #: ../src/timezone_names.c:570
 msgid "SystemV/AST4"
-msgstr ""
+msgstr "SystemV/AST4"
 
 #: ../src/timezone_names.c:571
 msgid "SystemV/AST4ADT"
-msgstr ""
+msgstr "SystemV/AST4ADT"
 
 #: ../src/timezone_names.c:572
 msgid "SystemV/CST6"
-msgstr ""
+msgstr "SystemV/CST6"
 
 #: ../src/timezone_names.c:573
 msgid "SystemV/CST6CDT"
-msgstr ""
+msgstr "SystemV/CST6CDT"
 
 #: ../src/timezone_names.c:574
 msgid "SystemV/EST5"
-msgstr ""
+msgstr "SystemV/EST5"
 
 #: ../src/timezone_names.c:575
 msgid "SystemV/EST5/EDT"
-msgstr ""
+msgstr "SystemV/EST5/EDT"
 
 #: ../src/timezone_names.c:576
 msgid "SystemV/HST10"
-msgstr ""
+msgstr "SystemV/HST10"
 
 #: ../src/timezone_names.c:577
 msgid "SystemV/MST7"
-msgstr ""
+msgstr "SystemV/MST7"
 
 #: ../src/timezone_names.c:578
 msgid "SystemV/MST7/MNT"
-msgstr ""
+msgstr "SystemV/MST7/MNT"
 
 #: ../src/timezone_names.c:579
 msgid "SystemV/PST8"
-msgstr ""
+msgstr "SystemV/PST8"
 
 #: ../src/timezone_names.c:580
 msgid "SystemV/PST8/PDT"
-msgstr ""
+msgstr "SystemV/PST8/PDT"
 
 #: ../src/timezone_names.c:581
 msgid "SystemV/YST9"
-msgstr ""
+msgstr "SystemV/YST9"
 
 #: ../src/timezone_names.c:582
 msgid "SystemV/YST9/YDT"
-msgstr ""
+msgstr "SystemV/YST9/YDT"
 
 #: ../src/timezone_names.c:583
 msgid "US"
-msgstr ""
+msgstr "US"
 
 #: ../src/timezone_names.c:584
 msgid "US/Alaska"
-msgstr ""
+msgstr "US/Alaska"
 
 #: ../src/timezone_names.c:585
 msgid "US/Aleutian"
@@ -4371,11 +4371,11 @@ msgstr ""
 
 #: ../src/timezone_names.c:586
 msgid "US/Arizona"
-msgstr ""
+msgstr "US/Arizona"
 
 #: ../src/timezone_names.c:587
 msgid "US/Central"
-msgstr ""
+msgstr "US/Zentral"
 
 #: ../src/timezone_names.c:588
 msgid "US/Eastern"
@@ -4387,7 +4387,7 @@ msgstr ""
 
 #: ../src/timezone_names.c:590
 msgid "US/Hawaii"
-msgstr ""
+msgstr "US/Hawaii"
 
 #: ../src/timezone_names.c:591
 msgid "US/Indiana-Starke"
@@ -4411,7 +4411,7 @@ msgstr ""
 
 #: ../src/timezone_names.c:596
 msgid "US/Samoa"
-msgstr ""
+msgstr "US/Samoa"
 
 #: ../src/tray_icon.c:469
 msgid "New appointment"
