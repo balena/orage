@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Allan Nordhøy <comradekingu@gmail.com>, 2014
+# Allan Nordhøy <comradekingu@gmail.com>, 2014-2015
 # Christian Lomsdalen <christian@vindstille.net>, 2007
 # Eskild Hustvedt <zerodogg@skolelinux.no>, 2005
 # Harald <haarektrans@gmail.com>, 2014
@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-02 18:30+0100\n"
-"PO-Revision-Date: 2014-06-15 22:04+0000\n"
+"POT-Creation-Date: 2014-09-23 12:30+0200\n"
+"PO-Revision-Date: 2015-02-21 15:26+0000\n"
 "Last-Translator: Allan Nordhøy <comradekingu@gmail.com>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/projects/p/xfce-apps/language/nb/)\n"
 "MIME-Version: 1.0\n"
@@ -23,6 +23,22 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: nb\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../globaltime/globaltime.c:58
+msgid "no underline"
+msgstr "ingen underlinje"
+
+#: ../globaltime/globaltime.c:58
+msgid "single"
+msgstr "enkel"
+
+#: ../globaltime/globaltime.c:58
+msgid "double"
+msgstr "dobbel"
+
+#: ../globaltime/globaltime.c:58
+msgid "low"
+msgstr "lav"
 
 #: ../globaltime/globaltime.c:100
 msgid "Raising GlobalTime window..."
@@ -58,6 +74,10 @@ msgstr "Juster for å endre time"
 msgid ""
 "adjust to change minute. Click arrows with button 2 to change only 1 minute."
 msgstr "juster for å endre minutt. Klikk pilene med knapp 2 for å endre med ett minutt"
+
+#: ../globaltime/globaltime.c:548
+msgid "Global Time"
+msgstr "Verdensomspennende tid"
 
 #: ../globaltime/gt_prefs.c:265 ../globaltime/gt_prefs.c:266
 msgid "NEW"
@@ -259,6 +279,10 @@ msgstr "Standard"
 msgid "Use normal decorations"
 msgstr "Bruk normale dekorasjoner"
 
+#: ../globaltime/gt_prefs.c:1089 ../src/appointment.c:3290
+msgid "None"
+msgstr "Ingen"
+
 #: ../globaltime/gt_prefs.c:1094
 msgid "Do not show window decorations (borders)"
 msgstr "Ikke vis vindusdekorasjoner (rammer)"
@@ -407,71 +431,87 @@ msgstr "Vis klokker fra forskjellige land"
 msgid "Globaltime"
 msgstr "Globaltid"
 
-#: ../panel-plugin/oc_config.c:224
+#: ../panel-plugin/oc_config.c:239
+msgid "No rotation"
+msgstr "Ingen rotering"
+
+#: ../panel-plugin/oc_config.c:239
+msgid "Rotate left"
+msgstr "Roter til venstre"
+
+#: ../panel-plugin/oc_config.c:240
+msgid "Rotate right"
+msgstr "Roter til høyre"
+
+#: ../panel-plugin/oc_config.c:248
 msgid "Appearance"
 msgstr "Utseende"
 
 #. show frame
-#: ../panel-plugin/oc_config.c:229
+#: ../panel-plugin/oc_config.c:257
 msgid "Show _frame"
 msgstr "Vis _ramme"
 
 #. foreground color
-#: ../panel-plugin/oc_config.c:239
+#: ../panel-plugin/oc_config.c:263
 msgid "set foreground _color:"
 msgstr "Sett _forgrunnsfarge"
 
 #. background color
-#: ../panel-plugin/oc_config.c:253
+#: ../panel-plugin/oc_config.c:277
 msgid "set _background color:"
 msgstr "Sett _bakgrunnsfarge"
 
-#. clock size (=vbox size): height and width
-#: ../panel-plugin/oc_config.c:267
+#. clock size (=mbox size): height and width
+#: ../panel-plugin/oc_config.c:291
 msgid "set _height:"
 msgstr "Sett _høyde"
 
-#: ../panel-plugin/oc_config.c:277
+#: ../panel-plugin/oc_config.c:301
 msgid "Note that you can not change the height of horizontal panels"
 msgstr "Merk at du ikke kan endre høyden til horisontale paneler"
 
-#: ../panel-plugin/oc_config.c:282
+#: ../panel-plugin/oc_config.c:306
 msgid "set _width:"
 msgstr "Sett _bredde"
 
-#: ../panel-plugin/oc_config.c:293
+#: ../panel-plugin/oc_config.c:316
 msgid "Note that you can not change the width of vertical panels"
 msgstr "Merk at du ikke kan endre bredden til vertikale paneler"
 
-#: ../panel-plugin/oc_config.c:316
+#: ../panel-plugin/oc_config.c:327
+msgid "Show lines _vertically"
+msgstr "Vis linjer _vertikalt"
+
+#: ../panel-plugin/oc_config.c:350
 msgid "Clock Options"
 msgstr "Klokkeinnstillinger"
 
 #. timezone
-#: ../panel-plugin/oc_config.c:326
+#: ../panel-plugin/oc_config.c:360
 msgid "set timezone to:"
 msgstr "Sett tidssone til:"
 
-#: ../panel-plugin/oc_config.c:347
+#: ../panel-plugin/oc_config.c:381
 #, c-format
 msgid "Line %d:"
 msgstr "Linje %d:"
 
-#: ../panel-plugin/oc_config.c:357
+#: ../panel-plugin/oc_config.c:391
 msgid "Enter any valid strftime function parameter."
 msgstr "Angi gyldig parameter til 'strftime' funksjonen."
 
 #. Tooltip hint
-#: ../panel-plugin/oc_config.c:401
+#: ../panel-plugin/oc_config.c:435
 msgid "Tooltip:"
 msgstr "Verktøytips:"
 
 #. special timing for SUSPEND/HIBERNATE
-#: ../panel-plugin/oc_config.c:411
+#: ../panel-plugin/oc_config.c:445
 msgid "fix time after suspend/hibernate"
 msgstr "korriger tid etter hvile/dvale-modus"
 
-#: ../panel-plugin/oc_config.c:415
+#: ../panel-plugin/oc_config.c:449
 msgid ""
 "You only need this if you do short term (less than 5 hours) suspend or "
 "hibernate and your visible time does not include seconds. Under these "
@@ -480,7 +520,7 @@ msgid ""
 "features from working.)"
 msgstr "Du trenger bare dette hvis du setter maskinen i hvile/dvale-modus(mindre enn 5 timer) og synlig tid ikke inkluderer sekunder. Under disse omstendighetene er det mulig at klokken viser tiden feil hvis dette ikke er aktivert. (Ved å velge denne hindres prosessor og avbruddslagring fra å fungere)"
 
-#: ../panel-plugin/oc_config.c:432
+#: ../panel-plugin/oc_config.c:466
 msgid ""
 "This program uses strftime function to get time.\n"
 "Use any valid code to get time in the format you prefer.\n"
@@ -492,11 +532,10 @@ msgid ""
 "\t%X = local time\t\t\t%x = local date"
 msgstr "Dette programmet bruker 'strftime' funksjonen for å formatere dato og tid.\nAngi gyldige koder for å vise tid/klokkeslett slik du ønsker.\nNoen vanlige koder er:\n\t%A = ukedag\t\t\t%B = måned\n\t%c = dato og tid\t\t%R = timer og minutter\n\t%V = ukenummer\t\t%Z = tidssone\n\t%H = timer \t\t\t\t%M = minutter\n\t%X = lokal tid\t\t\t%x = lokal dato"
 
-#: ../panel-plugin/oc_config.c:457
+#: ../panel-plugin/oc_config.c:491
 msgid "Orage clock Preferences"
 msgstr "Orage Klokkeinnstillinger"
 
-#. no lines yet
 #. TRANSLATORS: Use format characters from strftime(3)
 #. * to get the proper string for your locale.
 #. * I used these:
@@ -505,7 +544,7 @@ msgstr "Orage Klokkeinnstillinger"
 #. * %B  : full month name
 #. * %Y  : four digit year
 #. * %V  : ISO week number
-#: ../panel-plugin/xfce4-orageclock-plugin.c:627
+#: ../panel-plugin/xfce4-orageclock-plugin.c:700
 msgid "%A %d %B %Y/%V"
 msgstr "%A %d %B %Y / %V"
 
@@ -969,10 +1008,6 @@ msgstr "Lagre gjeldende innstillinger som standard påminnelse"
 #: ../src/appointment.c:3228
 msgid "Set current settings from default alarm"
 msgstr "Sett gjeldende innstillinger fra standard påminnelse"
-
-#: ../src/appointment.c:3290
-msgid "None"
-msgstr "Ingen"
 
 #: ../src/appointment.c:3290
 msgid "Daily"
@@ -2019,7 +2054,7 @@ msgstr "Vis kun første gjentagende hendelse"
 
 #: ../src/parameters.c:907
 msgid "Day view window default first day"
-msgstr ""
+msgstr "Dagvisningsvinduer begynner som forvalg på første dag"
 
 #: ../src/parameters.c:912
 msgid "First day of week"
@@ -2053,7 +2088,7 @@ msgstr "Bruk denne timeren hvis Orage har problemer med å våkne etter dvale. (
 
 #: ../src/parameters.c:982
 msgid "Foreign file default visual alarm"
-msgstr ""
+msgstr "Ukjente filtyper vil som forvalg utløse visuell alarm"
 
 #: ../src/parameters.c:987
 msgid "Orage window"
