@@ -3,23 +3,39 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# cybercop <cybercop_montana@abv.bg>, 2012-2013
-# cybercop <cybercop_montana@abv.bg>, 2012
-# cybercop <cybercop_montana@abv.bg>, 2013
-# lyubomirv, 2013
+# Kiril Kirilov <cybercop_montana@abv.bg>, 2012-2013
+# Kiril Kirilov <cybercop_montana@abv.bg>, 2012
+# Kiril Kirilov <cybercop_montana@abv.bg>, 2013-2014
+# Lyubomir Vasilev, 2013,2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-29 12:30+0100\n"
-"PO-Revision-Date: 2013-12-02 15:18+0000\n"
-"Last-Translator: lyubomirv\n"
-"Language-Team: Bulgarian (http://www.transifex.com/projects/p/xfce/language/bg/)\n"
+"POT-Creation-Date: 2014-09-23 12:30+0200\n"
+"PO-Revision-Date: 2015-02-23 12:30+0000\n"
+"Last-Translator: Lyubomir Vasilev\n"
+"Language-Team: Bulgarian (http://www.transifex.com/projects/p/xfce-apps/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: bg\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../globaltime/globaltime.c:58
+msgid "no underline"
+msgstr "неподчертано"
+
+#: ../globaltime/globaltime.c:58
+msgid "single"
+msgstr "единично"
+
+#: ../globaltime/globaltime.c:58
+msgid "double"
+msgstr "двойно"
+
+#: ../globaltime/globaltime.c:58
+msgid "low"
+msgstr "ниско"
 
 #: ../globaltime/globaltime.c:100
 msgid "Raising GlobalTime window..."
@@ -55,6 +71,10 @@ msgstr "смяна на часа"
 msgid ""
 "adjust to change minute. Click arrows with button 2 to change only 1 minute."
 msgstr "промяна на минутите. Кликнете на бутон 2 да промените само с  1 минута."
+
+#: ../globaltime/globaltime.c:548
+msgid "Global Time"
+msgstr "Световно време"
 
 #: ../globaltime/gt_prefs.c:265 ../globaltime/gt_prefs.c:266
 msgid "NEW"
@@ -256,6 +276,10 @@ msgstr "Стандартен"
 msgid "Use normal decorations"
 msgstr "Използване на нормална декорация"
 
+#: ../globaltime/gt_prefs.c:1089 ../src/appointment.c:3290
+msgid "None"
+msgstr "Без"
+
 #: ../globaltime/gt_prefs.c:1094
 msgid "Do not show window decorations (borders)"
 msgstr "Не показвай декорация на прозорците (граници)"
@@ -404,71 +428,87 @@ msgstr "Показване на часовници от различни стр�
 msgid "Globaltime"
 msgstr "Световно време"
 
-#: ../panel-plugin/oc_config.c:224
+#: ../panel-plugin/oc_config.c:239
+msgid "No rotation"
+msgstr "Без завъртане"
+
+#: ../panel-plugin/oc_config.c:239
+msgid "Rotate left"
+msgstr "Завъртане наляво"
+
+#: ../panel-plugin/oc_config.c:240
+msgid "Rotate right"
+msgstr "Завъртане надясно"
+
+#: ../panel-plugin/oc_config.c:248
 msgid "Appearance"
 msgstr "Външен вид"
 
 #. show frame
-#: ../panel-plugin/oc_config.c:229
+#: ../panel-plugin/oc_config.c:257
 msgid "Show _frame"
 msgstr "Показване на рамка"
 
 #. foreground color
-#: ../panel-plugin/oc_config.c:239
+#: ../panel-plugin/oc_config.c:263
 msgid "set foreground _color:"
 msgstr "Задаване цвят на шрифта:"
 
 #. background color
-#: ../panel-plugin/oc_config.c:253
+#: ../panel-plugin/oc_config.c:277
 msgid "set _background color:"
 msgstr "Задаване на фонов цвят:"
 
-#. clock size (=vbox size): height and width
-#: ../panel-plugin/oc_config.c:267
+#. clock size (=mbox size): height and width
+#: ../panel-plugin/oc_config.c:291
 msgid "set _height:"
 msgstr "Задаване на височина:"
 
-#: ../panel-plugin/oc_config.c:277
+#: ../panel-plugin/oc_config.c:301
 msgid "Note that you can not change the height of horizontal panels"
 msgstr "Имайте предвид, че не можете да промените височината на хоризонталните панели"
 
-#: ../panel-plugin/oc_config.c:282
+#: ../panel-plugin/oc_config.c:306
 msgid "set _width:"
 msgstr "Задаване на ширина:"
 
-#: ../panel-plugin/oc_config.c:293
+#: ../panel-plugin/oc_config.c:316
 msgid "Note that you can not change the width of vertical panels"
 msgstr "Имайте предвид, че не можете да промените ширината на вертикалните панели"
 
-#: ../panel-plugin/oc_config.c:316
+#: ../panel-plugin/oc_config.c:327
+msgid "Show lines _vertically"
+msgstr "Показване на редовете вертикално"
+
+#: ../panel-plugin/oc_config.c:350
 msgid "Clock Options"
 msgstr "Опции на часовник"
 
 #. timezone
-#: ../panel-plugin/oc_config.c:326
+#: ../panel-plugin/oc_config.c:360
 msgid "set timezone to:"
 msgstr "задаване на часови пояс за:"
 
-#: ../panel-plugin/oc_config.c:347
+#: ../panel-plugin/oc_config.c:381
 #, c-format
 msgid "Line %d:"
 msgstr "Линия %d:"
 
-#: ../panel-plugin/oc_config.c:357
+#: ../panel-plugin/oc_config.c:391
 msgid "Enter any valid strftime function parameter."
 msgstr "Въведете параметър за функция stftime."
 
 #. Tooltip hint
-#: ../panel-plugin/oc_config.c:401
+#: ../panel-plugin/oc_config.c:435
 msgid "Tooltip:"
 msgstr "Подсказка:"
 
 #. special timing for SUSPEND/HIBERNATE
-#: ../panel-plugin/oc_config.c:411
+#: ../panel-plugin/oc_config.c:445
 msgid "fix time after suspend/hibernate"
 msgstr "Сверяване на времето след приспиване/хибернация"
 
-#: ../panel-plugin/oc_config.c:415
+#: ../panel-plugin/oc_config.c:449
 msgid ""
 "You only need this if you do short term (less than 5 hours) suspend or "
 "hibernate and your visible time does not include seconds. Under these "
@@ -477,7 +517,7 @@ msgid ""
 "features from working.)"
 msgstr "Вие се нуждаете от това, само ако за кратък срок (по малко от 5 часа) включите приспиване или хибернация и във времето не са включени секунди. При тези условия Orageclock може да не показва коректно времето, ако не сте избрали тази опция. (Избирането на това не позволява да се ключва режим на пестене на енергия.)"
 
-#: ../panel-plugin/oc_config.c:432
+#: ../panel-plugin/oc_config.c:466
 msgid ""
 "This program uses strftime function to get time.\n"
 "Use any valid code to get time in the format you prefer.\n"
@@ -489,11 +529,10 @@ msgid ""
 "\t%X = local time\t\t\t%x = local date"
 msgstr "Тази програма използва strftime функция за изобразяване на времето.\nИзползвайте някой от валидните кодове за показване на времето в предпочитан формат.\nВалидните кодове са:\n\t%A = ден от седмицата\t\t\t%B = месец\n\t%c = дата & час\t\t%R = час & минути\n\t%V = поредна седмица\t\t%Z = текуща часова зона\n\t%H = час \t\t\t\t%M = минута\n\t%X = местно време\t\t\t%x = местна дата"
 
-#: ../panel-plugin/oc_config.c:457
+#: ../panel-plugin/oc_config.c:491
 msgid "Orage clock Preferences"
 msgstr "Настройки на Orage часовник"
 
-#. no lines yet
 #. TRANSLATORS: Use format characters from strftime(3)
 #. * to get the proper string for your locale.
 #. * I used these:
@@ -502,8 +541,7 @@ msgstr "Настройки на Orage часовник"
 #. * %B  : full month name
 #. * %Y  : four digit year
 #. * %V  : ISO week number
-#. 
-#: ../panel-plugin/xfce4-orageclock-plugin.c:627
+#: ../panel-plugin/xfce4-orageclock-plugin.c:700
 msgid "%A %d %B %Y/%V"
 msgstr "%A %d %B %Y/%V"
 
@@ -807,7 +845,7 @@ msgid ""
 "You can use that feature to unclutter your list windows, but it makes it more difficult to find this appointment.\n"
 "(Alarms will still fire normally.)\n"
 "(There is undocumented parameter so that you can change the default limit of 8.)"
-msgstr ""
+msgstr "Ако зададете 8 или по голямо, задачата не се показва в списъка с прозорците.\nМожете да използвате тази опция, за да опростите списъка с прозорци, но така по- трудно ще намерите задачата.\n(Алармата ще стартира нормално.)\n(Това е недокоментиран параметър, така, че може да промените стойностите по подразбиране на 8.)"
 
 #. note
 #: ../src/appointment.c:2918
@@ -967,10 +1005,6 @@ msgstr "Запазване на текущите настройки като а�
 #: ../src/appointment.c:3228
 msgid "Set current settings from default alarm"
 msgstr "Задаване на текущи настройки от алармата по подразбиране"
-
-#: ../src/appointment.c:3290
-msgid "None"
-msgstr "Без"
 
 #: ../src/appointment.c:3290
 msgid "Daily"
@@ -1272,7 +1306,7 @@ msgstr "също и старите"
 msgid ""
 "Check this if you want to see old events also. This can only be selected after 'only first repeating' is enabled to avoid very long lists.\n"
 "Note that extra days selection still defines if newer appointments are listed'."
-msgstr "Отметнете това, ако искате да виждате и старите събития. Ако не зададете 'само първото' списъкът ще бъде много дълъг.\nИмайте предвид, че повтарящите се събития, могат да се появят по- рано, ако изберете 'само първото'."
+msgstr "Отметнете това, ако искате да виждате и старите събития. Ако не зададете „само първото“, списъкът ще бъде много дълъг.\nИмайте предвид, че повтарящите се събития, могат да се появят по- рано, ако изберете „само първото“."
 
 #: ../src/event-list.c:1290
 msgid "Journal entries starting from:"
@@ -1613,7 +1647,6 @@ msgstr "Външен файл:"
 
 #. label = gtk_label_new(_("Options:"));
 #. gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 5);
-#. 
 #: ../src/interface.c:1279
 msgid "Visible name:"
 msgstr "Видимо име:"
@@ -2397,8 +2430,8 @@ msgid "America/Argentina/Jujuy"
 msgstr "Америка/Аржентина/Жужуй"
 
 #: ../src/timezone_names.c:102
-msgid "America/Argentina/La_Tioja"
-msgstr "Америка/Аржентина/Ла Тиоя"
+msgid "America/Argentina/La_Rioja"
+msgstr "Америка/Аржентина/Ла Риойа"
 
 #: ../src/timezone_names.c:103
 msgid "America/Argentina/Mendoza"
@@ -2417,7 +2450,7 @@ msgid "America/Argentina/San_Juan"
 msgstr "Америка/Аржентина/Сан Жуан"
 
 #: ../src/timezone_names.c:107
-msgid "America/Argentina/San_Lois"
+msgid "America/Argentina/San_Luis"
 msgstr "Америка/Аржентина/Сан Луис"
 
 #: ../src/timezone_names.c:108
@@ -2730,7 +2763,7 @@ msgstr "Америка/Луисвил"
 
 #: ../src/timezone_names.c:185
 msgid "America/Lower_Princes"
-msgstr ""
+msgstr "Америка/Лавър Принцес"
 
 #: ../src/timezone_names.c:186
 msgid "America/Maceio"
@@ -2774,7 +2807,7 @@ msgstr "Америка/Мерида"
 
 #: ../src/timezone_names.c:196
 msgid "America/Metlakatla"
-msgstr ""
+msgstr "Америка/Метлакатла"
 
 #: ../src/timezone_names.c:197
 msgid "America/Mexico_City"
@@ -2786,7 +2819,7 @@ msgstr "Америка/Микелон"
 
 #: ../src/timezone_names.c:199
 msgid "America/Moncton"
-msgstr ""
+msgstr "Америка/Монстън"
 
 #: ../src/timezone_names.c:200
 msgid "America/Monterrey"
@@ -2822,15 +2855,15 @@ msgstr "Америка/Ном"
 
 #: ../src/timezone_names.c:208
 msgid "America/North_Dakota/Beulah"
-msgstr ""
+msgstr "Америка/Северна Дакота/Бюлах"
 
 #: ../src/timezone_names.c:209
 msgid "America/North_Dakota/Center"
-msgstr ""
+msgstr "Америка/Дакота/Централна"
 
 #: ../src/timezone_names.c:210
 msgid "America/North_Dakota/New_Salem"
-msgstr ""
+msgstr "Америка/Северна Дакота/Нщ Сейлъм"
 
 #: ../src/timezone_names.c:211
 msgid "America/Noronha"
@@ -2838,7 +2871,7 @@ msgstr "Америка/Норона"
 
 #: ../src/timezone_names.c:212
 msgid "America/Ojinaga"
-msgstr ""
+msgstr "Америка/Оджинага"
 
 #: ../src/timezone_names.c:213
 msgid "America/Panama"
@@ -2866,7 +2899,7 @@ msgstr "Америка/Порт-оф-Спейн"
 
 #: ../src/timezone_names.c:219
 msgid "America/Porto_Acre"
-msgstr ""
+msgstr "Америка/Порто Акре"
 
 #: ../src/timezone_names.c:220
 msgid "America/Porto_Velho"
@@ -2894,7 +2927,7 @@ msgstr "Америка/Регина"
 
 #: ../src/timezone_names.c:226
 msgid "America/Resolute"
-msgstr ""
+msgstr "Америка/Резолюте"
 
 #: ../src/timezone_names.c:227
 msgid "America/Rio_Branco"
@@ -2906,11 +2939,11 @@ msgstr "Америка/Розарио"
 
 #: ../src/timezone_names.c:229
 msgid "America/Santa_Isabel"
-msgstr ""
+msgstr "Америка/Санта Изабел"
 
 #: ../src/timezone_names.c:230
 msgid "America/Santarem"
-msgstr ""
+msgstr "Америка/Сантарем"
 
 #: ../src/timezone_names.c:231
 msgid "America/Santiago"
@@ -2934,11 +2967,11 @@ msgstr "Америка/Шипрок"
 
 #: ../src/timezone_names.c:236
 msgid "America/Sitka"
-msgstr ""
+msgstr "Америка/Ситка"
 
 #: ../src/timezone_names.c:237
 msgid "America/St_Barthelemy"
-msgstr ""
+msgstr "Америка/Сейнт Бартелеми"
 
 #: ../src/timezone_names.c:238
 msgid "America/St_Johns"
@@ -3046,7 +3079,7 @@ msgstr "Антарктика/Палмър"
 
 #: ../src/timezone_names.c:264
 msgid "Antarctica/Rothera"
-msgstr ""
+msgstr "Антарктика/Родера"
 
 #: ../src/timezone_names.c:265
 msgid "Antarctica/South_Pole"
@@ -3521,850 +3554,858 @@ msgid "Australia/Broken_Hill"
 msgstr "Австралия/Броукин-Хил"
 
 #: ../src/timezone_names.c:383
+msgid "Australia/Currie"
+msgstr "Австралия/Кюри"
+
+#: ../src/timezone_names.c:384
 msgid "Australia/Darwin"
 msgstr "Австралия/Дарвин"
 
-#: ../src/timezone_names.c:384
+#: ../src/timezone_names.c:385
+msgid "Australia/Eucla"
+msgstr "Австралия/Еукла"
+
+#: ../src/timezone_names.c:386
 msgid "Australia/Hobart"
 msgstr "Австралия/Хобарт"
 
-#: ../src/timezone_names.c:385
+#: ../src/timezone_names.c:387
 msgid "Australia/Lindeman"
 msgstr "Австралия/Линдеман"
 
-#: ../src/timezone_names.c:386
+#: ../src/timezone_names.c:388
 msgid "Australia/Lord_Howe"
 msgstr "Австралия/Лорд-Хау"
 
-#: ../src/timezone_names.c:387
+#: ../src/timezone_names.c:389
 msgid "Australia/Melbourne"
 msgstr "Австралия/Мелбърн"
 
-#: ../src/timezone_names.c:388
+#: ../src/timezone_names.c:390
 msgid "Australia/Perth"
 msgstr "Австралия/Перт"
 
-#: ../src/timezone_names.c:389
+#: ../src/timezone_names.c:391
 msgid "Australia/Sydney"
 msgstr "Австралия/Сидни"
 
-#: ../src/timezone_names.c:390
+#: ../src/timezone_names.c:392
 msgid "Brazil"
 msgstr "Бразилия"
 
-#: ../src/timezone_names.c:391
+#: ../src/timezone_names.c:393
 msgid "Brazil/Acre"
 msgstr "Бразилия/Acre"
 
-#: ../src/timezone_names.c:392
+#: ../src/timezone_names.c:394
 msgid "Brazil/DeNoronha"
 msgstr "Бразилия/DeNoronha"
 
-#: ../src/timezone_names.c:393
+#: ../src/timezone_names.c:395
 msgid "Brazil/East"
 msgstr "Бразилия/Изток"
 
-#: ../src/timezone_names.c:394
+#: ../src/timezone_names.c:396
 msgid "Brazil/West"
 msgstr "Бразилия/Запад"
 
-#: ../src/timezone_names.c:395
+#: ../src/timezone_names.c:397
 msgid "Canada"
 msgstr "Канада"
 
-#: ../src/timezone_names.c:396
+#: ../src/timezone_names.c:398
 msgid "Canada/Atlantic"
 msgstr "Канада/Атлантически океан"
 
-#: ../src/timezone_names.c:397
+#: ../src/timezone_names.c:399
 msgid "Canada/Central"
 msgstr "Канада/Централна"
 
-#: ../src/timezone_names.c:398
+#: ../src/timezone_names.c:400
 msgid "Canada/East-Saskatchewan"
 msgstr "Канада/Източен Саскачеван"
 
-#: ../src/timezone_names.c:399
+#: ../src/timezone_names.c:401
 msgid "Canada/Eastern"
 msgstr "Канада/Източна"
 
-#: ../src/timezone_names.c:400
+#: ../src/timezone_names.c:402
 msgid "Canada/Mountain"
 msgstr "Канада/Планинска"
 
-#: ../src/timezone_names.c:401
+#: ../src/timezone_names.c:403
 msgid "Canada/Newfoundland"
 msgstr "Канада/Нюфлаундленд"
 
-#: ../src/timezone_names.c:402
+#: ../src/timezone_names.c:404
 msgid "Canada/Pacific"
 msgstr "Канада/Тихия океан"
 
-#: ../src/timezone_names.c:403
+#: ../src/timezone_names.c:405
 msgid "Canada/Saskatchewan"
 msgstr "Канада/Саскачеван"
 
-#: ../src/timezone_names.c:404
+#: ../src/timezone_names.c:406
 msgid "Canada/Yukon"
 msgstr "Канада/Юкон"
 
-#: ../src/timezone_names.c:405
+#: ../src/timezone_names.c:407
 msgid "Chile"
 msgstr "Чили"
 
-#: ../src/timezone_names.c:406
+#: ../src/timezone_names.c:408
 msgid "Chile/Continental"
 msgstr "Чили/Континентална част"
 
-#: ../src/timezone_names.c:407
+#: ../src/timezone_names.c:409
 msgid "Chile/EasterIsland"
 msgstr "Чили/Източен Айсланд"
 
-#: ../src/timezone_names.c:408
+#: ../src/timezone_names.c:410
 msgid "Etc"
 msgstr "Etc"
 
-#: ../src/timezone_names.c:409
+#: ../src/timezone_names.c:411
 msgid "Etc/GMT"
 msgstr "Etc/GMT"
 
-#: ../src/timezone_names.c:410
+#: ../src/timezone_names.c:412
 msgid "Etc/GMT+0"
 msgstr "Etc/GMT+0"
 
-#: ../src/timezone_names.c:411
+#: ../src/timezone_names.c:413
 msgid "Etc/GMT+1"
 msgstr "Etc/GMT+1"
 
-#: ../src/timezone_names.c:412
+#: ../src/timezone_names.c:414
 msgid "Etc/GMT+10"
 msgstr "Etc/GMT+10"
 
-#: ../src/timezone_names.c:413
+#: ../src/timezone_names.c:415
 msgid "Etc/GMT+11"
 msgstr "Etc/GMT+11"
 
-#: ../src/timezone_names.c:414
+#: ../src/timezone_names.c:416
 msgid "Etc/GMT+12"
 msgstr "Etc/GMT+12"
 
-#: ../src/timezone_names.c:415
+#: ../src/timezone_names.c:417
 msgid "Etc/GMT+2"
 msgstr "Etc/GMT+2"
 
-#: ../src/timezone_names.c:416
+#: ../src/timezone_names.c:418
 msgid "Etc/GMT+3"
 msgstr "Etc/GMT+3"
 
-#: ../src/timezone_names.c:417
+#: ../src/timezone_names.c:419
 msgid "Etc/GMT+4"
 msgstr "Etc/GMT+4"
 
-#: ../src/timezone_names.c:418
+#: ../src/timezone_names.c:420
 msgid "Etc/GMT+5"
 msgstr "Etc/GMT+5"
 
-#: ../src/timezone_names.c:419
+#: ../src/timezone_names.c:421
 msgid "Etc/GMT+6"
 msgstr "Etc/GMT+6"
 
-#: ../src/timezone_names.c:420
+#: ../src/timezone_names.c:422
 msgid "Etc/GMT+7"
 msgstr "Etc/GMT+7"
 
-#: ../src/timezone_names.c:421
+#: ../src/timezone_names.c:423
 msgid "Etc/GMT+8"
 msgstr "Etc/GMT+8"
 
-#: ../src/timezone_names.c:422
+#: ../src/timezone_names.c:424
 msgid "Etc/GMT+9"
 msgstr "Etc/GMT+9"
 
-#: ../src/timezone_names.c:423
+#: ../src/timezone_names.c:425
 msgid "Etc/GMT-0"
 msgstr "Etc/GMT-0"
 
-#: ../src/timezone_names.c:424
+#: ../src/timezone_names.c:426
 msgid "Etc/GMT-1"
 msgstr "Etc/GMT-1"
 
-#: ../src/timezone_names.c:425
+#: ../src/timezone_names.c:427
 msgid "Etc/GMT-10"
 msgstr "Etc/GMT-10"
 
-#: ../src/timezone_names.c:426
+#: ../src/timezone_names.c:428
 msgid "Etc/GMT-11"
 msgstr "Etc/GMT-11"
 
-#: ../src/timezone_names.c:427
+#: ../src/timezone_names.c:429
 msgid "Etc/GMT-12"
-msgstr ""
+msgstr "Etc/GMT-12"
 
-#: ../src/timezone_names.c:428
+#: ../src/timezone_names.c:430
 msgid "Etc/GMT-13"
 msgstr "Etc/GMT-13"
 
-#: ../src/timezone_names.c:429
+#: ../src/timezone_names.c:431
 msgid "Etc/GMT-14"
 msgstr "Etc/GMT-14"
 
-#: ../src/timezone_names.c:430
+#: ../src/timezone_names.c:432
 msgid "Etc/GMT-2"
 msgstr "Etc/GMT-2"
 
-#: ../src/timezone_names.c:431
+#: ../src/timezone_names.c:433
 msgid "Etc/GMT-3"
 msgstr "Etc/GMT-3"
 
-#: ../src/timezone_names.c:432
+#: ../src/timezone_names.c:434
 msgid "Etc/GMT-4"
 msgstr "Etc/GMT-4"
 
-#: ../src/timezone_names.c:433
+#: ../src/timezone_names.c:435
 msgid "Etc/GMT-5"
 msgstr "Etc/GMT-5"
 
-#: ../src/timezone_names.c:434
+#: ../src/timezone_names.c:436
 msgid "Etc/GMT-6"
 msgstr "Etc/GMT-6"
 
-#: ../src/timezone_names.c:435
+#: ../src/timezone_names.c:437
 msgid "Etc/GMT-7"
 msgstr "Etc/GMT-7"
 
-#: ../src/timezone_names.c:436
+#: ../src/timezone_names.c:438
 msgid "Etc/GMT-8"
 msgstr "Etc/GMT-8"
 
-#: ../src/timezone_names.c:437
+#: ../src/timezone_names.c:439
 msgid "Etc/GMT-9"
 msgstr "Etc/GMT-9"
 
-#: ../src/timezone_names.c:438
+#: ../src/timezone_names.c:440
 msgid "Etc/GMT0"
 msgstr "Etc/GMT0"
 
-#: ../src/timezone_names.c:439
+#: ../src/timezone_names.c:441
 msgid "Etc/Greenwich"
 msgstr "Etc/Гринуич"
 
-#: ../src/timezone_names.c:440
+#: ../src/timezone_names.c:442
 msgid "Etc/UCT"
 msgstr "Etc/UCT"
 
-#: ../src/timezone_names.c:441
+#: ../src/timezone_names.c:443
 msgid "Etc/UTC"
 msgstr "Etc/UTC"
 
-#: ../src/timezone_names.c:442
+#: ../src/timezone_names.c:444
 msgid "Etc/Universal"
 msgstr "Etc/Универсален"
 
-#: ../src/timezone_names.c:443
+#: ../src/timezone_names.c:445
 msgid "Etc/Zulu"
 msgstr "Etc/Зулу"
 
-#: ../src/timezone_names.c:444
+#: ../src/timezone_names.c:446
 msgid "Europe"
 msgstr "Европа"
 
-#: ../src/timezone_names.c:445
+#: ../src/timezone_names.c:447
 msgid "Europe/Amsterdam"
 msgstr "Европа/Амстердам"
 
-#: ../src/timezone_names.c:446
+#: ../src/timezone_names.c:448
 msgid "Europe/Andorra"
 msgstr "Европа/Андора"
 
-#: ../src/timezone_names.c:447
+#: ../src/timezone_names.c:449
 msgid "Europe/Athens"
 msgstr "Европа/Атина"
 
-#: ../src/timezone_names.c:448
+#: ../src/timezone_names.c:450
 msgid "Europe/Belfast"
 msgstr "Европа/Белфаст"
 
-#: ../src/timezone_names.c:449
+#: ../src/timezone_names.c:451
 msgid "Europe/Belgrade"
 msgstr "Европа/Белград"
 
-#: ../src/timezone_names.c:450
+#: ../src/timezone_names.c:452
 msgid "Europe/Berlin"
 msgstr "Европа/Берлин"
 
-#: ../src/timezone_names.c:451
+#: ../src/timezone_names.c:453
 msgid "Europe/Bratislava"
 msgstr "Европа/Братислава"
 
-#: ../src/timezone_names.c:452
+#: ../src/timezone_names.c:454
 msgid "Europe/Brussels"
 msgstr "Европа/Брюксел"
 
-#: ../src/timezone_names.c:453
+#: ../src/timezone_names.c:455
 msgid "Europe/Bucharest"
 msgstr "Европа/Букорещ"
 
-#: ../src/timezone_names.c:454
+#: ../src/timezone_names.c:456
 msgid "Europe/Budapest"
 msgstr "Европа/Будапеща"
 
-#: ../src/timezone_names.c:455
+#: ../src/timezone_names.c:457
 msgid "Europe/Busingen"
 msgstr "Европа/Бюсинген"
 
-#: ../src/timezone_names.c:456
+#: ../src/timezone_names.c:458
 msgid "Europe/Chisinau"
 msgstr "Европа/Кишинев"
 
-#: ../src/timezone_names.c:457
+#: ../src/timezone_names.c:459
 msgid "Europe/Copenhagen"
 msgstr "Европа/Копенхаген"
 
-#: ../src/timezone_names.c:458
+#: ../src/timezone_names.c:460
 msgid "Europe/Dublin"
 msgstr "Европа/Дъблин"
 
-#: ../src/timezone_names.c:459
+#: ../src/timezone_names.c:461
 msgid "Europe/Gibraltar"
 msgstr "Европа/Гибралтар"
 
-#: ../src/timezone_names.c:460
+#: ../src/timezone_names.c:462
 msgid "Europe/Guernsey"
 msgstr "Европа/Гърнси"
 
-#: ../src/timezone_names.c:461
+#: ../src/timezone_names.c:463
 msgid "Europe/Helsinki"
 msgstr "Европа/Хелзинки"
 
-#: ../src/timezone_names.c:462
+#: ../src/timezone_names.c:464
 msgid "Europe/Isle_of_Man"
 msgstr "Европа/Остров Ман"
 
-#: ../src/timezone_names.c:463
+#: ../src/timezone_names.c:465
 msgid "Europe/Istanbul"
 msgstr "Европа/Истамбул"
 
-#: ../src/timezone_names.c:464
+#: ../src/timezone_names.c:466
 msgid "Europe/Jersey"
 msgstr "Европа/Джърси"
 
-#: ../src/timezone_names.c:465
+#: ../src/timezone_names.c:467
 msgid "Europe/Kaliningrad"
 msgstr "Европа/Калининград"
 
-#: ../src/timezone_names.c:466
+#: ../src/timezone_names.c:468
 msgid "Europe/Kiev"
 msgstr "Европа/Киев"
 
-#: ../src/timezone_names.c:467
+#: ../src/timezone_names.c:469
 msgid "Europe/Lisbon"
 msgstr "Европа/Лисабон"
 
-#: ../src/timezone_names.c:468
+#: ../src/timezone_names.c:470
 msgid "Europe/Ljubljana"
 msgstr "Европа/Любляна"
 
-#: ../src/timezone_names.c:469
+#: ../src/timezone_names.c:471
 msgid "Europe/London"
 msgstr "Европа/Лондон"
 
-#: ../src/timezone_names.c:470
+#: ../src/timezone_names.c:472
 msgid "Europe/Luxembourg"
 msgstr "Европа/Люксембург"
 
-#: ../src/timezone_names.c:471
+#: ../src/timezone_names.c:473
 msgid "Europe/Madrid"
 msgstr "Европа/Мадрид"
 
-#: ../src/timezone_names.c:472
+#: ../src/timezone_names.c:474
 msgid "Europe/Malta"
 msgstr "Европа/Малта"
 
-#: ../src/timezone_names.c:473
+#: ../src/timezone_names.c:475
 msgid "Europe/Mariehamn"
 msgstr "Европа/Мариехамн"
 
-#: ../src/timezone_names.c:474
+#: ../src/timezone_names.c:476
 msgid "Europe/Minsk"
 msgstr "Европа/Минск"
 
-#: ../src/timezone_names.c:475
+#: ../src/timezone_names.c:477
 msgid "Europe/Monaco"
 msgstr "Европа/Монако"
 
-#: ../src/timezone_names.c:476
+#: ../src/timezone_names.c:478
 msgid "Europe/Moscow"
 msgstr "Европа/Москва"
 
-#: ../src/timezone_names.c:477
+#: ../src/timezone_names.c:479
 msgid "Europe/Nicosia"
 msgstr "Европа/Никозия"
 
-#: ../src/timezone_names.c:478
+#: ../src/timezone_names.c:480
 msgid "Europe/Oslo"
 msgstr "Европа/Осло"
 
-#: ../src/timezone_names.c:479
+#: ../src/timezone_names.c:481
 msgid "Europe/Paris"
 msgstr "Европа/Париж"
 
-#: ../src/timezone_names.c:480
+#: ../src/timezone_names.c:482
 msgid "Europe/Podgorica"
 msgstr "Европа/Подгорица"
 
-#: ../src/timezone_names.c:481
+#: ../src/timezone_names.c:483
 msgid "Europe/Prague"
 msgstr "Европа/Прага"
 
-#: ../src/timezone_names.c:482
+#: ../src/timezone_names.c:484
 msgid "Europe/Riga"
 msgstr "Европа/Рига"
 
-#: ../src/timezone_names.c:483
+#: ../src/timezone_names.c:485
 msgid "Europe/Rome"
 msgstr "Европа/Рим"
 
-#: ../src/timezone_names.c:484
+#: ../src/timezone_names.c:486
 msgid "Europe/Samara"
 msgstr "Европа/Самара"
 
-#: ../src/timezone_names.c:485
+#: ../src/timezone_names.c:487
 msgid "Europe/San_Marino"
 msgstr "Европа/Сан-Марино"
 
-#: ../src/timezone_names.c:486
+#: ../src/timezone_names.c:488
 msgid "Europe/Sarajevo"
 msgstr "Европа/Сараево"
 
-#: ../src/timezone_names.c:487
+#: ../src/timezone_names.c:489
 msgid "Europe/Simferopol"
 msgstr "Европа/Симферопол"
 
-#: ../src/timezone_names.c:488
+#: ../src/timezone_names.c:490
 msgid "Europe/Skopje"
 msgstr "Европа/Скопие"
 
-#: ../src/timezone_names.c:489
+#: ../src/timezone_names.c:491
 msgid "Europe/Sofia"
 msgstr "Европа/София"
 
-#: ../src/timezone_names.c:490
+#: ../src/timezone_names.c:492
 msgid "Europe/Stockholm"
 msgstr "Европа/Стокхолм"
 
-#: ../src/timezone_names.c:491
+#: ../src/timezone_names.c:493
 msgid "Europe/Tallinn"
 msgstr "Европа/Талин"
 
-#: ../src/timezone_names.c:492
+#: ../src/timezone_names.c:494
 msgid "Europe/Tirane"
 msgstr "Европа/Тирана"
 
-#: ../src/timezone_names.c:493
+#: ../src/timezone_names.c:495
 msgid "Europe/Tiraspol"
 msgstr "Европа/Тираспол"
 
-#: ../src/timezone_names.c:494
+#: ../src/timezone_names.c:496
 msgid "Europe/Uzhgorod"
 msgstr "Европа/Ужгород"
 
-#: ../src/timezone_names.c:495
+#: ../src/timezone_names.c:497
 msgid "Europe/Vaduz"
 msgstr "Европа/Вадуц"
 
-#: ../src/timezone_names.c:496
+#: ../src/timezone_names.c:498
 msgid "Europe/Vatican"
 msgstr "Европа/Ватикана"
 
-#: ../src/timezone_names.c:497
+#: ../src/timezone_names.c:499
 msgid "Europe/Vienna"
 msgstr "Европа/Виена"
 
-#: ../src/timezone_names.c:498
+#: ../src/timezone_names.c:500
 msgid "Europe/Vilnius"
 msgstr "Европа/Вилнюс"
 
-#: ../src/timezone_names.c:499
+#: ../src/timezone_names.c:501
 msgid "Europe/Volgograd"
 msgstr "Европа/Волгоград"
 
-#: ../src/timezone_names.c:500
+#: ../src/timezone_names.c:502
 msgid "Europe/Warsaw"
 msgstr "Европа/Варшава"
 
-#: ../src/timezone_names.c:501
+#: ../src/timezone_names.c:503
 msgid "Europe/Zagreb"
 msgstr "Европа/Загреб"
 
-#: ../src/timezone_names.c:502
+#: ../src/timezone_names.c:504
 msgid "Europe/Zaporozhye"
 msgstr "Европа/Запорожие"
 
-#: ../src/timezone_names.c:503
+#: ../src/timezone_names.c:505
 msgid "Europe/Zurich"
 msgstr "Европа/Цюрих"
 
-#: ../src/timezone_names.c:504
+#: ../src/timezone_names.c:506
 msgid "Indian"
 msgstr "Индийски океан"
 
-#: ../src/timezone_names.c:505
+#: ../src/timezone_names.c:507
 msgid "Indian/Antananarivo"
 msgstr "Индийски океан/Антананариву"
 
-#: ../src/timezone_names.c:506
+#: ../src/timezone_names.c:508
 msgid "Indian/Chagos"
 msgstr "Индийски океан/Чагос"
 
-#: ../src/timezone_names.c:507
+#: ../src/timezone_names.c:509
 msgid "Indian/Christmas"
 msgstr "Индийски океан/о-в Коледа"
 
-#: ../src/timezone_names.c:508
+#: ../src/timezone_names.c:510
 msgid "Indian/Cocos"
 msgstr "Индийски океан/о-в Кокос"
 
-#: ../src/timezone_names.c:509
+#: ../src/timezone_names.c:511
 msgid "Indian/Comoro"
 msgstr "Индийски океан/Коморские острови"
 
-#: ../src/timezone_names.c:510
+#: ../src/timezone_names.c:512
 msgid "Indian/Kerguelen"
 msgstr "Индийски океан/Кергелен"
 
-#: ../src/timezone_names.c:511
+#: ../src/timezone_names.c:513
 msgid "Indian/Mahe"
 msgstr "Индийски океан/Мае"
 
-#: ../src/timezone_names.c:512
+#: ../src/timezone_names.c:514
 msgid "Indian/Maldives"
 msgstr "Индийски океан/Малдиви"
 
-#: ../src/timezone_names.c:513
+#: ../src/timezone_names.c:515
 msgid "Indian/Mauritius"
 msgstr "Индийски океан/Маврикий"
 
-#: ../src/timezone_names.c:514
+#: ../src/timezone_names.c:516
 msgid "Indian/Mayotte"
 msgstr "Индийски океан/Майорка"
 
-#: ../src/timezone_names.c:515
+#: ../src/timezone_names.c:517
 msgid "Indian/Reunion"
 msgstr "Индийски океан/Реюниън"
 
-#: ../src/timezone_names.c:516
+#: ../src/timezone_names.c:518
 msgid "Mexico"
 msgstr "Мексико"
 
-#: ../src/timezone_names.c:517
+#: ../src/timezone_names.c:519
 msgid "Mexico/BajaNorte"
 msgstr "Мексико/Байя Норте"
 
-#: ../src/timezone_names.c:518
+#: ../src/timezone_names.c:520
 msgid "Mexico/BajaSur"
 msgstr "Мексико/Байя Сур"
 
-#: ../src/timezone_names.c:519
+#: ../src/timezone_names.c:521
 msgid "Mexico/General"
 msgstr "Мексико/Основен"
 
-#: ../src/timezone_names.c:520
+#: ../src/timezone_names.c:522
 msgid "Mideast"
 msgstr "Средният изток"
 
-#: ../src/timezone_names.c:521
+#: ../src/timezone_names.c:523
 msgid "Mideast/Riyadh87"
 msgstr "Средният изток/Риад87"
 
-#: ../src/timezone_names.c:522
+#: ../src/timezone_names.c:524
 msgid "Mideast/Riyadh88"
 msgstr "Средният изток/Риад88"
 
-#: ../src/timezone_names.c:523
+#: ../src/timezone_names.c:525
 msgid "Mideast/Riyadh89"
 msgstr "Средният изток/Риад89"
 
-#: ../src/timezone_names.c:524
+#: ../src/timezone_names.c:526
 msgid "Pacific"
 msgstr "Тихия океан"
 
-#: ../src/timezone_names.c:525
+#: ../src/timezone_names.c:527
 msgid "Pacific/Apia"
 msgstr "Тихия океан/Апия"
 
-#: ../src/timezone_names.c:526
+#: ../src/timezone_names.c:528
 msgid "Pacific/Auckland"
 msgstr "Тихия океан/Оуклънд"
 
-#: ../src/timezone_names.c:527
+#: ../src/timezone_names.c:529
 msgid "Pacific/Chatham"
 msgstr "Тихия океан/Чатъм"
 
-#: ../src/timezone_names.c:528
+#: ../src/timezone_names.c:530
 msgid "Pacific/Chuuk"
-msgstr ""
+msgstr "Тихият океан/Чуук"
 
-#: ../src/timezone_names.c:529
+#: ../src/timezone_names.c:531
 msgid "Pacific/Easter"
 msgstr "Тихия океан/о-в Пасха"
 
-#: ../src/timezone_names.c:530
+#: ../src/timezone_names.c:532
 msgid "Pacific/Efate"
 msgstr "Тихия океан/Ефате"
 
-#: ../src/timezone_names.c:531
+#: ../src/timezone_names.c:533
 msgid "Pacific/Enderbury"
 msgstr "Тихия океан/Ендербъри"
 
-#: ../src/timezone_names.c:532
+#: ../src/timezone_names.c:534
 msgid "Pacific/Fakaofo"
 msgstr "Тихия океан/Факаофо"
 
-#: ../src/timezone_names.c:533
+#: ../src/timezone_names.c:535
 msgid "Pacific/Fiji"
 msgstr "Тихия океан/Фиджи"
 
-#: ../src/timezone_names.c:534
+#: ../src/timezone_names.c:536
 msgid "Pacific/Funafuti"
 msgstr "Тихия океан/Фунафути"
 
-#: ../src/timezone_names.c:535
+#: ../src/timezone_names.c:537
 msgid "Pacific/Galapagos"
 msgstr "Тихия океан/Галапагос"
 
-#: ../src/timezone_names.c:536
+#: ../src/timezone_names.c:538
 msgid "Pacific/Gambier"
 msgstr "Тихия океан/Гамбие"
 
-#: ../src/timezone_names.c:537
+#: ../src/timezone_names.c:539
 msgid "Pacific/Guadalcanal"
 msgstr "Тихия океан/Гуадалканал"
 
-#: ../src/timezone_names.c:538
+#: ../src/timezone_names.c:540
 msgid "Pacific/Guam"
 msgstr "Тихия океан/Гуам"
 
-#: ../src/timezone_names.c:539
+#: ../src/timezone_names.c:541
 msgid "Pacific/Honolulu"
 msgstr "Тихия океан/Хонолулу"
 
-#: ../src/timezone_names.c:540
+#: ../src/timezone_names.c:542
 msgid "Pacific/Johnston"
 msgstr "Тихия океан/Джонстън"
 
-#: ../src/timezone_names.c:541
+#: ../src/timezone_names.c:543
 msgid "Pacific/Kiritimati"
 msgstr "Тихия океан/Киритимати"
 
-#: ../src/timezone_names.c:542
+#: ../src/timezone_names.c:544
 msgid "Pacific/Kosrae"
 msgstr "Тихия океан/Косрае"
 
-#: ../src/timezone_names.c:543
+#: ../src/timezone_names.c:545
 msgid "Pacific/Kwajalein"
 msgstr "Тихия океан/Куаджалейн"
 
-#: ../src/timezone_names.c:544
+#: ../src/timezone_names.c:546
 msgid "Pacific/Majuro"
 msgstr "Тихия океан/Маджуро"
 
-#: ../src/timezone_names.c:545
+#: ../src/timezone_names.c:547
 msgid "Pacific/Marquesas"
 msgstr "Тихия океан/Маркизки острови"
 
-#: ../src/timezone_names.c:546
+#: ../src/timezone_names.c:548
 msgid "Pacific/Midway"
 msgstr "Тихия океан/Мидуей"
 
-#: ../src/timezone_names.c:547
+#: ../src/timezone_names.c:549
 msgid "Pacific/Nauru"
 msgstr "Тихия океан/Науру"
 
-#: ../src/timezone_names.c:548
+#: ../src/timezone_names.c:550
 msgid "Pacific/Niue"
 msgstr "Тихия океан/Ниуе"
 
-#: ../src/timezone_names.c:549
+#: ../src/timezone_names.c:551
 msgid "Pacific/Norfolk"
 msgstr "Тихия океан/Норфолк"
 
-#: ../src/timezone_names.c:550
+#: ../src/timezone_names.c:552
 msgid "Pacific/Noumea"
 msgstr "Тихия океан/Нумеа"
 
-#: ../src/timezone_names.c:551
+#: ../src/timezone_names.c:553
 msgid "Pacific/Pago_Pago"
 msgstr "Тихия океан/Паго-Паго"
 
-#: ../src/timezone_names.c:552
+#: ../src/timezone_names.c:554
 msgid "Pacific/Palau"
 msgstr "Тихия океан/Палау"
 
-#: ../src/timezone_names.c:553
+#: ../src/timezone_names.c:555
 msgid "Pacific/Pitcairn"
 msgstr "Тихия океан/Питкерн"
 
-#: ../src/timezone_names.c:554
+#: ../src/timezone_names.c:556
 msgid "Pacific/Pohnpei"
-msgstr ""
+msgstr "Тихият океан/Помпей"
 
-#: ../src/timezone_names.c:555
+#: ../src/timezone_names.c:557
 msgid "Pacific/Ponape"
 msgstr "Тихия океан/Понапе"
 
-#: ../src/timezone_names.c:556
+#: ../src/timezone_names.c:558
 msgid "Pacific/Port_Moresby"
 msgstr "Тихия океан/Порт-Морсби"
 
-#: ../src/timezone_names.c:557
+#: ../src/timezone_names.c:559
 msgid "Pacific/Rarotonga"
 msgstr "Тихия океан/Раротонга"
 
-#: ../src/timezone_names.c:558
+#: ../src/timezone_names.c:560
 msgid "Pacific/Saipan"
 msgstr "Тихия океан/Сайпан"
 
-#: ../src/timezone_names.c:559
+#: ../src/timezone_names.c:561
 msgid "Pacific/Samoa"
 msgstr "Тихият океан/Самоа"
 
-#: ../src/timezone_names.c:560
+#: ../src/timezone_names.c:562
 msgid "Pacific/Tahiti"
 msgstr "Тихия океан/Таити"
 
-#: ../src/timezone_names.c:561
+#: ../src/timezone_names.c:563
 msgid "Pacific/Tarawa"
 msgstr "Тихия океан/Тарава"
 
-#: ../src/timezone_names.c:562
+#: ../src/timezone_names.c:564
 msgid "Pacific/Tongatapu"
 msgstr "Тихия океан/Тонгатапу"
 
-#: ../src/timezone_names.c:563
+#: ../src/timezone_names.c:565
 msgid "Pacific/Truk"
 msgstr "Тихия океан/Трук"
 
-#: ../src/timezone_names.c:564
+#: ../src/timezone_names.c:566
 msgid "Pacific/Wake"
 msgstr "Тихия океан/Уейк"
 
-#: ../src/timezone_names.c:565
+#: ../src/timezone_names.c:567
 msgid "Pacific/Wallis"
 msgstr "Тихия океан/Уолис"
 
-#: ../src/timezone_names.c:566
+#: ../src/timezone_names.c:568
 msgid "Pacific/Yap"
 msgstr "Тихия океан/Яп. о-ви"
 
-#: ../src/timezone_names.c:567
-msgid "SystemV"
-msgstr ""
-
-#: ../src/timezone_names.c:568
-msgid "SystemV/AST4"
-msgstr ""
-
 #: ../src/timezone_names.c:569
-msgid "SystemV/AST4ADT"
-msgstr ""
+msgid "SystemV"
+msgstr "SystemV"
 
 #: ../src/timezone_names.c:570
-msgid "SystemV/CST6"
-msgstr ""
+msgid "SystemV/AST4"
+msgstr "SystemV/AST4"
 
 #: ../src/timezone_names.c:571
-msgid "SystemV/CST6CDT"
-msgstr ""
+msgid "SystemV/AST4ADT"
+msgstr "SystemV/AST4ADT"
 
 #: ../src/timezone_names.c:572
-msgid "SystemV/EST5"
-msgstr ""
+msgid "SystemV/CST6"
+msgstr "SystemV/CST6"
 
 #: ../src/timezone_names.c:573
-msgid "SystemV/EST5/EDT"
-msgstr ""
+msgid "SystemV/CST6CDT"
+msgstr "SystemV/CST6CDT"
 
 #: ../src/timezone_names.c:574
-msgid "SystemV/HST10"
-msgstr ""
+msgid "SystemV/EST5"
+msgstr "SystemV/EST5"
 
 #: ../src/timezone_names.c:575
-msgid "SystemV/MST7"
-msgstr ""
+msgid "SystemV/EST5/EDT"
+msgstr "SystemV/EST5/EDT"
 
 #: ../src/timezone_names.c:576
-msgid "SystemV/MST7/MNT"
-msgstr ""
+msgid "SystemV/HST10"
+msgstr "SystemV/HST10"
 
 #: ../src/timezone_names.c:577
-msgid "SystemV/PST8"
-msgstr ""
+msgid "SystemV/MST7"
+msgstr "SystemV/MST7"
 
 #: ../src/timezone_names.c:578
-msgid "SystemV/PST8/PDT"
-msgstr ""
+msgid "SystemV/MST7/MNT"
+msgstr "SystemV/MST7/MNT"
 
 #: ../src/timezone_names.c:579
-msgid "SystemV/YST9"
-msgstr ""
+msgid "SystemV/PST8"
+msgstr "SystemV/PST8"
 
 #: ../src/timezone_names.c:580
-msgid "SystemV/YST9/YDT"
-msgstr ""
+msgid "SystemV/PST8/PDT"
+msgstr "SystemV/PST8/PDT"
 
 #: ../src/timezone_names.c:581
+msgid "SystemV/YST9"
+msgstr "SystemV/YST9"
+
+#: ../src/timezone_names.c:582
+msgid "SystemV/YST9/YDT"
+msgstr "SystemV/YST9/YDT"
+
+#: ../src/timezone_names.c:583
 msgid "US"
 msgstr "САЩ"
 
-#: ../src/timezone_names.c:582
+#: ../src/timezone_names.c:584
 msgid "US/Alaska"
 msgstr "САЩ/Аляска"
 
-#: ../src/timezone_names.c:583
+#: ../src/timezone_names.c:585
 msgid "US/Aleutian"
 msgstr "САЩ/Алеутия"
 
-#: ../src/timezone_names.c:584
+#: ../src/timezone_names.c:586
 msgid "US/Arizona"
 msgstr "САЩ/Аризона"
 
-#: ../src/timezone_names.c:585
+#: ../src/timezone_names.c:587
 msgid "US/Central"
 msgstr "САЩ/Център"
 
-#: ../src/timezone_names.c:586
+#: ../src/timezone_names.c:588
 msgid "US/Eastern"
 msgstr "САЩ/Изток"
 
-#: ../src/timezone_names.c:587
+#: ../src/timezone_names.c:589
 msgid "US/East-Indiana"
 msgstr "САЩ/Изток-Индиана"
 
-#: ../src/timezone_names.c:588
+#: ../src/timezone_names.c:590
 msgid "US/Hawaii"
 msgstr "САЩ/Хавай"
 
-#: ../src/timezone_names.c:589
+#: ../src/timezone_names.c:591
 msgid "US/Indiana-Starke"
 msgstr "САЩ/Индиана-Старк"
 
-#: ../src/timezone_names.c:590
+#: ../src/timezone_names.c:592
 msgid "US/Michigan"
 msgstr "САЩ/Мичиган"
 
-#: ../src/timezone_names.c:591
+#: ../src/timezone_names.c:593
 msgid "US/Mountain"
 msgstr "САЩ/Монтана"
 
-#: ../src/timezone_names.c:592
+#: ../src/timezone_names.c:594
 msgid "US/Pacific"
 msgstr "САЩ/Тихият океан"
 
-#: ../src/timezone_names.c:593
+#: ../src/timezone_names.c:595
 msgid "US/Pacific-New"
 msgstr "САЩ/Тихият океан-Нов"
 
-#: ../src/timezone_names.c:594
+#: ../src/timezone_names.c:596
 msgid "US/Samoa"
 msgstr "САЩ/Самоа"
 
