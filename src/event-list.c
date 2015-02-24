@@ -163,7 +163,7 @@ static char *format_time(el_win *el, xfical_appt *appt, char *par)
 {
     char *result;
     char *tmp;
-    int i = 0;
+    int i = 0, j = 0;
     char *start_ical_time;
     char *end_ical_time;
     gboolean same_date;
@@ -178,14 +178,14 @@ static char *format_time(el_win *el, xfical_appt *appt, char *par)
         /* special formatting for 1 day VEVENTS */
         if (start_ical_time[8] == 'T') { /* time part available */
             if (strncmp(start_ical_time, par, 8) < 0)
-                i = g_strlcpy(result, "+00:00 ", 50);
+                g_strlcpy(result, "+00:00 ", 50);
             else
-                i += append_time(result, start_ical_time, i);
+                append_time(result, start_ical_time, i);
             i = g_strlcat(result, "- ", 50);
             if (strncmp(par, end_ical_time , 8) < 0)
-                i = g_strlcat(result, "24:00+", 50);
+                g_strlcat(result, "24:00+", 50);
             else
-                i += append_time(result, end_ical_time, i);
+                append_time(result, end_ical_time, i);
         }
         else {/* date only appointment */
             i = g_strlcpy(result, _("All day"), 50);
@@ -197,10 +197,10 @@ static char *format_time(el_win *el, xfical_appt *appt, char *par)
         i = g_strlcpy(result, tmp, 50);
         if (start_ical_time[8] == 'T') { /* time part available */
             result[i++] = ' ';
-            i += append_time(result, start_ical_time, i);
+            append_time(result, start_ical_time, i);
             i = g_strlcat(result, "- ", 50);
             if (el->page == TODO_PAGE && !appt->use_due_time) {
-                i = g_strlcat(result, "...", 50);
+                g_strlcat(result, "...", 50);
             }
             else {
                 if (!same_date) {
@@ -209,18 +209,18 @@ static char *format_time(el_win *el, xfical_appt *appt, char *par)
                     i = g_strlcat(result, tmp, 50);
                     result[i++] = ' ';
                 }
-                i += append_time(result, end_ical_time, i);
+                append_time(result, end_ical_time, i);
             }
         }
         else {/* date only */
-            i = g_strlcat(result, " - ", 50);
+            g_strlcat(result, " - ", 50);
             if (el->page == TODO_PAGE && !appt->use_due_time) {
-                i = g_strlcat(result, "...", 50);
+                g_strlcat(result, "...", 50);
             }
             else {
                 t = orage_icaltime_to_tm_time(appt->endtimecur, TRUE);
                 tmp = orage_tm_date_to_i18_date(&t);
-                i = g_strlcat(result, tmp, 50);
+                g_strlcat(result, tmp, 50);
             }
         }
     }
