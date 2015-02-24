@@ -495,7 +495,8 @@ struct ical_timezone_data wit_get_data(int i
         , struct ical_timezone_data *prev) {
     unsigned long tc_time;
     unsigned int tct_i, abbr_i;
-    struct ical_timezone_data data;
+    struct ical_timezone_data 
+        data = { {0, 0, 0, 0, 0, 0, 0}, 0, 0, 0, 0, 0, 0, 0, NULL};
 
     /* get timechange time */
     in_head = begin_timechanges;
