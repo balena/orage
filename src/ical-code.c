@@ -4128,7 +4128,6 @@ static xfical_appt *xfical_appt_get_next_with_string_internal(char *str
         }
         beg -= strlen("\nBEGIN:"); /* we need to be able to find first, too */
         first = FALSE;
-        cur = beg;
     }
 
     if (!first) {
