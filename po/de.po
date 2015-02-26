@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-23 12:30+0200\n"
-"PO-Revision-Date: 2015-02-22 12:50+0000\n"
+"PO-Revision-Date: 2015-02-26 20:03+0000\n"
 "Last-Translator: Georg Eckert <eckert.georg@gmx.de>\n"
 "Language-Team: German (http://www.transifex.com/projects/p/xfce-apps/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -992,7 +992,7 @@ msgid ""
 "\t<&AT> alarm time\n"
 "\t<&ST> appointment start time\n"
 "\t<&ET> appointment end time"
-msgstr ""
+msgstr "Alle Escape-Sequenzen usw. müssen manuell eingegeben werden.\nDiese Zeichenkette wird einfach an die Shell zur Ausführung übergeben.\nFolgende spezielle Befehle werden zur Laufzeit ersetzt:\n\t<&T>  Terminname\n\t<&D>  Terminbeschreibung\n\t<&AT> Erinnerungszeitpunkt\n\t<&ST> Terminbeginn\n\t<&ET> Terminende"
 
 #: ../src/appointment.c:3208
 msgid "Test this alarm by raising it now"
@@ -1300,7 +1300,7 @@ msgid ""
 "Check this if you only want to see the first repeating event. By default all are shown.\n"
 "Note that this also shows all urgencies.\n"
 "Note that repeating events may appear earlier in the list as the first occurrence only is listed."
-msgstr ""
+msgstr "Aktivieren um nur die erste Wiederholung eines Ereignisses zu sehen. Standardmäßig werden alle angezeigt.\nHinweis: Auch alle Dringenden Termine werden angezeigt.\nHinweis: Sich wiederholende Ereignisse können eher in der Liste erscheinen, da nur das erste Auftreten aufgelistet wird."
 
 #: ../src/event-list.c:1250
 msgid "also old"
@@ -1346,7 +1346,7 @@ msgid ""
 "\t\tO=Orage A=Archive F=Foreign\n"
 "\t 5. Appointment type:\n"
 "\t\tE=Event T=Todo J=Journal"
-msgstr ""
+msgstr "Zur Bearbeitung doppelt klicken.\n\nMarken der Reihe nach:\n\t 1. Erinnerung: n=keine Erinnerung\n\t\t A=Erinnerung gesetzt P=Anhaltende Erinnerung gesetzt\n\t 2. Wiederholung: n=keine Wiederholung\n\t\t H=stündlich D=täglich W=wöchentlich M=monatlich Y=jährlich\n\t 3. Art: f=frei B=beschäftigt\n\t 4. Befindet sich in Datei:\n\t\tO=Orage A=Archiv F=Fremd\n\t 5. Art des Termins:\n\t\tE=Ereignis T=Aufgabe J=Tagebucheintrag"
 
 #. remove since it has ended
 #: ../src/ical-archive.c:267
@@ -1413,12 +1413,12 @@ msgstr "Standarderinnerung"
 
 #: ../src/ical-code.c:3179
 msgid "Created alarm list for main Orage file:"
-msgstr ""
+msgstr "Erinnerungsliste für Orage-Hauptdatei wurde erstellt:"
 
 #: ../src/ical-code.c:3181
 #, c-format
 msgid "Created alarm list for foreign file: %s (%s)"
-msgstr ""
+msgstr "Erinnerungsliste für Fremddatei wurde erstellt: %s (%s)"
 
 #: ../src/ical-code.c:3183
 #, c-format
@@ -1454,7 +1454,7 @@ msgstr "Externe Aktualisierung der Datei %s festgestellt."
 
 #: ../src/interface.c:112
 msgid "Refreshing alarms and calendar due to external file update."
-msgstr ""
+msgstr "Datei wurde extern verändert. Erinnerungen und Kalender werden aktualisiert."
 
 #: ../src/interface.c:271
 msgid "Calendar files"
@@ -1478,7 +1478,7 @@ msgstr "***** Keine Fremddateien *****"
 
 #: ../src/interface.c:682
 msgid "Foreign file add failed"
-msgstr ""
+msgstr "Hinzufügen der Fremddatei fehlgeschlagen"
 
 #: ../src/interface.c:689
 msgid "Orage can only handle 10 foreign files. Limit reached."
@@ -1604,7 +1604,7 @@ msgstr "Neue Datei:"
 
 #: ../src/interface.c:1144 ../src/interface.c:1210
 msgid "Action options:"
-msgstr ""
+msgstr "Optionen für Aktionen:"
 
 #: ../src/interface.c:1147 ../src/interface.c:1213
 msgid "Rename"
@@ -1770,7 +1770,7 @@ msgstr "--toggle (-t) \t\t\tOrage sichtbar/unsichtbar machen\n"
 #: ../src/main.c:319
 #, c-format
 msgid "--add-foreign (-a) file [RW] [name] \tadd a foreign file\n"
-msgstr ""
+msgstr "--add-foreign (-a) datei [RW] [name] \tFremddatei hinzufügen\n"
 
 #: ../src/main.c:320
 #, c-format
@@ -1867,7 +1867,7 @@ msgid ""
 "%s Start:\t%s\n"
 " Due:\t%s\n"
 " Done:\t%s%s"
-msgstr ""
+msgstr "Bezeichnung: %s\n%s Beginn:\t%s\n Fällig:\t%s\nErledigt:\t%s%s"
 
 #: ../src/mainbox.c:503
 #, c-format
@@ -1875,7 +1875,7 @@ msgid ""
 "Title: %s\n"
 "%s Start:\t%s\n"
 " End:\t%s%s"
-msgstr ""
+msgstr "Bezeichnung: %s\n%s Beginn:\t%s\n Ende:\t%s%s"
 
 #: ../src/mainbox.c:613
 msgid "<b>To do:</b>"
@@ -1929,7 +1929,7 @@ msgstr "Kalenderfenster"
 
 #: ../src/parameters.c:603
 msgid "Calendar visual details"
-msgstr ""
+msgstr "Aussehen des Kalenders"
 
 #: ../src/parameters.c:609
 msgid "Show borders"
@@ -2037,7 +2037,7 @@ msgstr "Spezialeinstellungen"
 
 #: ../src/parameters.c:869
 msgid "Event list window"
-msgstr ""
+msgstr "Terminübersicht"
 
 #: ../src/parameters.c:874
 msgid "Number of extra days to show in event list"
@@ -2051,11 +2051,11 @@ msgstr "Dies ist der Standardwert, Sie können ihn im jeweiligen Ereignisfenster
 
 #: ../src/parameters.c:891
 msgid "Show only first repeating event"
-msgstr ""
+msgstr "Nur erste Wiederholung eines Ereignisses anzeigen "
 
 #: ../src/parameters.c:907
 msgid "Day view window default first day"
-msgstr ""
+msgstr "Erster Tag in Wochenansicht"
 
 #: ../src/parameters.c:912
 msgid "First day of week"
@@ -2089,7 +2089,7 @@ msgstr "Verwenden Sie diesen Zeitschalter, wenn Orage Probleme hat, nach Ruhezus
 
 #: ../src/parameters.c:982
 msgid "Foreign file default visual alarm"
-msgstr ""
+msgstr "Visuelle Standarderinnerung für Fremddateien"
 
 #: ../src/parameters.c:987
 msgid "Orage window"
@@ -2097,7 +2097,7 @@ msgstr "Orage-Fenster"
 
 #: ../src/parameters.c:1000
 msgid "Notify notification"
-msgstr ""
+msgstr "Benachrichtigungsdienst"
 
 #: ../src/parameters.c:1018
 msgid "Always quit when asked to close"
@@ -2443,27 +2443,27 @@ msgstr "Amerika/Argentinien/Mendoza"
 
 #: ../src/timezone_names.c:104
 msgid "America/Argentina/Rio_Gallegos"
-msgstr ""
+msgstr "Amerika/Argentinien/Rio_Gallegos"
 
 #: ../src/timezone_names.c:105
 msgid "America/Argentina/Salta"
-msgstr ""
+msgstr "Amerika/Argentinien/Salta"
 
 #: ../src/timezone_names.c:106
 msgid "America/Argentina/San_Juan"
-msgstr ""
+msgstr "Amerika/Argentinien/San_Juan"
 
 #: ../src/timezone_names.c:107
 msgid "America/Argentina/San_Luis"
-msgstr ""
+msgstr "Amerika/Argentinien/San_Luis"
 
 #: ../src/timezone_names.c:108
 msgid "America/Argentina/Tucuman"
-msgstr ""
+msgstr "Amerika/Argentinien/Tucuman"
 
 #: ../src/timezone_names.c:109
 msgid "America/Argentina/Ushuaia"
-msgstr ""
+msgstr "Amerika/Argentinien/Ushuaia"
 
 #: ../src/timezone_names.c:110
 msgid "America/Aruba"
@@ -2475,19 +2475,19 @@ msgstr "Amerika/Asuncion"
 
 #: ../src/timezone_names.c:112
 msgid "America/Atikokan"
-msgstr ""
+msgstr "Amerika/Atikokan"
 
 #: ../src/timezone_names.c:113
 msgid "America/Atka"
-msgstr ""
+msgstr "Amerika/Atka"
 
 #: ../src/timezone_names.c:114
 msgid "America/Bahia"
-msgstr ""
+msgstr "Amerika/Bahia"
 
 #: ../src/timezone_names.c:115
 msgid "America/Bahia_Banderas"
-msgstr ""
+msgstr "Amerika/Bahia_Banderas"
 
 #: ../src/timezone_names.c:116
 msgid "America/Barbados"
@@ -2503,7 +2503,7 @@ msgstr "Amerika/Belize"
 
 #: ../src/timezone_names.c:119
 msgid "America/Blanc-Sablon"
-msgstr ""
+msgstr "Amerika/Blanc-Sablon"
 
 #: ../src/timezone_names.c:120
 msgid "America/Boa_Vista"
@@ -2527,7 +2527,7 @@ msgstr "Amerika/Cambridge_Bay"
 
 #: ../src/timezone_names.c:125
 msgid "America/Campo_Grande"
-msgstr ""
+msgstr "Amerika/Campo_Grande"
 
 #: ../src/timezone_names.c:126
 msgid "America/Cancun"
@@ -2559,7 +2559,7 @@ msgstr "Amerika/Chihuahua"
 
 #: ../src/timezone_names.c:133
 msgid "America/Coral_Harbour"
-msgstr ""
+msgstr "Amerika/Coral_Harbour"
 
 #: ../src/timezone_names.c:134
 msgid "America/Cordoba"
@@ -2571,7 +2571,7 @@ msgstr "Amerika/Costa_Rica"
 
 #: ../src/timezone_names.c:136
 msgid "America/Creston"
-msgstr ""
+msgstr "Amerika/Creston"
 
 #: ../src/timezone_names.c:137
 msgid "America/Cuiaba"
@@ -2583,7 +2583,7 @@ msgstr "Amerika/Curacao"
 
 #: ../src/timezone_names.c:139
 msgid "America/Danmarkshavn"
-msgstr ""
+msgstr "Amerika/Danmarkshavn"
 
 #: ../src/timezone_names.c:140
 msgid "America/Dawson"
@@ -2611,7 +2611,7 @@ msgstr "Amerika/Edmonton"
 
 #: ../src/timezone_names.c:146
 msgid "America/Ensenada"
-msgstr ""
+msgstr "Amerika/Ensenada"
 
 #: ../src/timezone_names.c:147
 msgid "America/Eirunepe"
@@ -2627,7 +2627,7 @@ msgstr "Amerika/Fortaleza"
 
 #: ../src/timezone_names.c:150
 msgid "America/Fort_Wayne"
-msgstr ""
+msgstr "Amerika/Fort_Wayne"
 
 #: ../src/timezone_names.c:151
 msgid "America/Glace_Bay"
@@ -2691,11 +2691,11 @@ msgstr "Amerika/Indiana/Marengo"
 
 #: ../src/timezone_names.c:166
 msgid "America/Indiana/Petersburg"
-msgstr ""
+msgstr "Amerika/Indiana/Petersburg"
 
 #: ../src/timezone_names.c:167
 msgid "America/Indiana/Tell_City"
-msgstr ""
+msgstr "Amerika/Indiana/Tell_City"
 
 #: ../src/timezone_names.c:168
 msgid "America/Indiana/Vevay"
@@ -2703,11 +2703,11 @@ msgstr "Amerika/Indiana/Vevay"
 
 #: ../src/timezone_names.c:169
 msgid "America/Indiana/Vincennes"
-msgstr ""
+msgstr "Amerika/Indiana/Vincennes"
 
 #: ../src/timezone_names.c:170
 msgid "America/Indiana/Winamac"
-msgstr ""
+msgstr "Amerika/Indiana/Winamac"
 
 #: ../src/timezone_names.c:171
 msgid "America/Indianapolis"
@@ -2743,11 +2743,11 @@ msgstr "Amerika/Kentucky/Monticello"
 
 #: ../src/timezone_names.c:179
 msgid "America/Knox_IN"
-msgstr ""
+msgstr "Amerika/Knox_IN"
 
 #: ../src/timezone_names.c:180
 msgid "America/Kralendijk"
-msgstr ""
+msgstr "Amerika/Kralendijk"
 
 #: ../src/timezone_names.c:181
 msgid "America/La_Paz"
@@ -2767,7 +2767,7 @@ msgstr "Amerika/Louisville"
 
 #: ../src/timezone_names.c:185
 msgid "America/Lower_Princes"
-msgstr ""
+msgstr "Amerika/Lower_Princes"
 
 #: ../src/timezone_names.c:186
 msgid "America/Maceio"
@@ -2783,7 +2783,7 @@ msgstr "Amerika/Manaus"
 
 #: ../src/timezone_names.c:189
 msgid "America/Marigot"
-msgstr ""
+msgstr "Amerika/Marigot"
 
 #: ../src/timezone_names.c:190
 msgid "America/Martinique"
@@ -2791,7 +2791,7 @@ msgstr "Amerika/Martinique"
 
 #: ../src/timezone_names.c:191
 msgid "America/Matamoros"
-msgstr ""
+msgstr "Amerika/Matamoros"
 
 #: ../src/timezone_names.c:192
 msgid "America/Mazatlan"
@@ -2811,7 +2811,7 @@ msgstr "Amerika/Merida"
 
 #: ../src/timezone_names.c:196
 msgid "America/Metlakatla"
-msgstr ""
+msgstr "Amerika/Metlakatla"
 
 #: ../src/timezone_names.c:197
 msgid "America/Mexico_City"
@@ -2823,7 +2823,7 @@ msgstr "Amerika/Miquelon"
 
 #: ../src/timezone_names.c:199
 msgid "America/Moncton"
-msgstr ""
+msgstr "Amerika/Moncton"
 
 #: ../src/timezone_names.c:200
 msgid "America/Monterrey"
@@ -2859,15 +2859,15 @@ msgstr "Amerika/Nome"
 
 #: ../src/timezone_names.c:208
 msgid "America/North_Dakota/Beulah"
-msgstr ""
+msgstr "Amerika/North_Dakota/Beulah"
 
 #: ../src/timezone_names.c:209
 msgid "America/North_Dakota/Center"
-msgstr ""
+msgstr "Amerika/North_Dakota/Center"
 
 #: ../src/timezone_names.c:210
 msgid "America/North_Dakota/New_Salem"
-msgstr ""
+msgstr "Amerika/North_Dakota/New_Salem"
 
 #: ../src/timezone_names.c:211
 msgid "America/Noronha"
@@ -2875,7 +2875,7 @@ msgstr "Amerika/Noronha"
 
 #: ../src/timezone_names.c:212
 msgid "America/Ojinaga"
-msgstr ""
+msgstr "Amerika/Ojinaga"
 
 #: ../src/timezone_names.c:213
 msgid "America/Panama"
@@ -2903,7 +2903,7 @@ msgstr "Amerika/Port_of_Spain"
 
 #: ../src/timezone_names.c:219
 msgid "America/Porto_Acre"
-msgstr ""
+msgstr "Amerika/Porto_Acre"
 
 #: ../src/timezone_names.c:220
 msgid "America/Porto_Velho"
@@ -2931,7 +2931,7 @@ msgstr "Amerika/Regina"
 
 #: ../src/timezone_names.c:226
 msgid "America/Resolute"
-msgstr ""
+msgstr "Amerika/Resolute"
 
 #: ../src/timezone_names.c:227
 msgid "America/Rio_Branco"
@@ -2943,11 +2943,11 @@ msgstr "Amerika/Rosario"
 
 #: ../src/timezone_names.c:229
 msgid "America/Santa_Isabel"
-msgstr ""
+msgstr "Amerika/Santa_Isabel"
 
 #: ../src/timezone_names.c:230
 msgid "America/Santarem"
-msgstr ""
+msgstr "Amerika/Santarem"
 
 #: ../src/timezone_names.c:231
 msgid "America/Santiago"
@@ -2971,11 +2971,11 @@ msgstr "Amerika/Shiprock"
 
 #: ../src/timezone_names.c:236
 msgid "America/Sitka"
-msgstr ""
+msgstr "Amerika/Sitka"
 
 #: ../src/timezone_names.c:237
 msgid "America/St_Barthelemy"
-msgstr ""
+msgstr "Amerika/St_Barthelemy"
 
 #: ../src/timezone_names.c:238
 msgid "America/St_Johns"
@@ -3019,7 +3019,7 @@ msgstr "Amerika/Tijuana"
 
 #: ../src/timezone_names.c:248
 msgid "America/Toronto"
-msgstr ""
+msgstr "Amerika/Toronto"
 
 #: ../src/timezone_names.c:249
 msgid "America/Tortola"
@@ -3031,7 +3031,7 @@ msgstr "Amerika/Vancouver"
 
 #: ../src/timezone_names.c:251
 msgid "America/Virgin"
-msgstr ""
+msgstr "Amerika/Virgin"
 
 #: ../src/timezone_names.c:252
 msgid "America/Whitehorse"
@@ -3067,7 +3067,7 @@ msgstr "Antarktis/DumontDUrville"
 
 #: ../src/timezone_names.c:260
 msgid "Antarctica/Macquarie"
-msgstr ""
+msgstr "Antarktis/Macquarie"
 
 #: ../src/timezone_names.c:261
 msgid "Antarctica/Mawson"
@@ -3083,7 +3083,7 @@ msgstr "Antarktis/Palmer"
 
 #: ../src/timezone_names.c:264
 msgid "Antarctica/Rothera"
-msgstr ""
+msgstr "Antarktis/Rothera"
 
 #: ../src/timezone_names.c:265
 msgid "Antarctica/South_Pole"
@@ -3139,7 +3139,7 @@ msgstr "Asien/Ashgabat"
 
 #: ../src/timezone_names.c:278
 msgid "Asia/Ashkhabad"
-msgstr ""
+msgstr "Asien/Ashkhabad"
 
 #: ../src/timezone_names.c:279
 msgid "Asia/Baghdad"
@@ -3175,11 +3175,11 @@ msgstr "Asien/Calcutta"
 
 #: ../src/timezone_names.c:287
 msgid "Asia/Choibalsan"
-msgstr ""
+msgstr "Asien/Choibalsan"
 
 #: ../src/timezone_names.c:288
 msgid "Asia/Chongqing"
-msgstr ""
+msgstr "Asien/Chongqing"
 
 #: ../src/timezone_names.c:289
 msgid "Asia/Chungking"
@@ -3191,7 +3191,7 @@ msgstr "Asien/Colombo"
 
 #: ../src/timezone_names.c:291
 msgid "Asia/Dacca"
-msgstr ""
+msgstr "Asien/Dacca"
 
 #: ../src/timezone_names.c:292
 msgid "Asia/Damascus"
@@ -3223,7 +3223,7 @@ msgstr "Asien/Harbin"
 
 #: ../src/timezone_names.c:299
 msgid "Asia/Hebron"
-msgstr ""
+msgstr "Asien/Hebron"
 
 #: ../src/timezone_names.c:300
 msgid "Asia/Hong_Kong"
@@ -3231,7 +3231,7 @@ msgstr "Asien/Hong_Kong"
 
 #: ../src/timezone_names.c:301
 msgid "Asia/Ho_Chi_Minh"
-msgstr ""
+msgstr "Asien/Ho_Chi_Minh"
 
 #: ../src/timezone_names.c:302
 msgid "Asia/Hovd"
@@ -3275,7 +3275,7 @@ msgstr "Asien/Kashgar"
 
 #: ../src/timezone_names.c:312
 msgid "Asia/Kathmandu"
-msgstr ""
+msgstr "Asien/Kathmandu"
 
 #: ../src/timezone_names.c:313
 msgid "Asia/Katmandu"
@@ -3283,11 +3283,11 @@ msgstr "Asien/Katmandu"
 
 #: ../src/timezone_names.c:314
 msgid "Asia/Khandyga"
-msgstr ""
+msgstr "Asien/Khandyga"
 
 #: ../src/timezone_names.c:315
 msgid "Asia/Kolkata"
-msgstr ""
+msgstr "Asien/Kolkata"
 
 #: ../src/timezone_names.c:316
 msgid "Asia/Krasnoyarsk"
@@ -3311,7 +3311,7 @@ msgstr "Asien/Mancao"
 
 #: ../src/timezone_names.c:321
 msgid "Asia/Macau"
-msgstr ""
+msgstr "Asien/Macau"
 
 #: ../src/timezone_names.c:322
 msgid "Asia/Magadan"
@@ -3319,7 +3319,7 @@ msgstr "Asien/Magadan"
 
 #: ../src/timezone_names.c:323
 msgid "Asia/Makassar"
-msgstr ""
+msgstr "Asien/Makassar"
 
 #: ../src/timezone_names.c:324
 msgid "Asia/Manila"
@@ -3335,7 +3335,7 @@ msgstr "Asien/Nicosia"
 
 #: ../src/timezone_names.c:327
 msgid "Asia/Novokuznetsk"
-msgstr ""
+msgstr "Asien/Novokuznetsk"
 
 #: ../src/timezone_names.c:328
 msgid "Asia/Novosibirsk"
@@ -3347,7 +3347,7 @@ msgstr "Asien/Omsk"
 
 #: ../src/timezone_names.c:330
 msgid "Asia/Oral"
-msgstr ""
+msgstr "Asien/Oral"
 
 #: ../src/timezone_names.c:331
 msgid "Asia/Phnom_Penh"
@@ -3367,7 +3367,7 @@ msgstr "Asien/Qatat"
 
 #: ../src/timezone_names.c:335
 msgid "Asia/Qyzylorda"
-msgstr ""
+msgstr "Asien/Qyzylorda"
 
 #: ../src/timezone_names.c:336
 msgid "Asia/Rangoon"
@@ -3379,15 +3379,15 @@ msgstr "Asien/Riyadh"
 
 #: ../src/timezone_names.c:338
 msgid "Asia/Riyadh87"
-msgstr ""
+msgstr "Asien/Riad87"
 
 #: ../src/timezone_names.c:339
 msgid "Asia/Riyadh88"
-msgstr ""
+msgstr "Asien/Riad88"
 
 #: ../src/timezone_names.c:340
 msgid "Asia/Riyadh89"
-msgstr ""
+msgstr "Asien/Riad89"
 
 #: ../src/timezone_names.c:341
 msgid "Asia/Saigon"
@@ -3395,7 +3395,7 @@ msgstr "Asien/Saigon"
 
 #: ../src/timezone_names.c:342
 msgid "Asia/Sakhalin"
-msgstr ""
+msgstr "Asien/Sakhalin"
 
 #: ../src/timezone_names.c:343
 msgid "Asia/Samarkand"
@@ -3431,11 +3431,11 @@ msgstr "Asien/Tehran"
 
 #: ../src/timezone_names.c:351
 msgid "Asia/Tel_Aviv"
-msgstr ""
+msgstr "Asien/Tel_Aviv"
 
 #: ../src/timezone_names.c:352
 msgid "Asia/Thimbu"
-msgstr ""
+msgstr "Asien/Thimbu"
 
 #: ../src/timezone_names.c:353
 msgid "Asia/Thimphu"
@@ -3455,7 +3455,7 @@ msgstr "Asien/Ulaanbaarar"
 
 #: ../src/timezone_names.c:357
 msgid "Asia/Ulan_Bator"
-msgstr ""
+msgstr "Asien/Ulan_Bator"
 
 #: ../src/timezone_names.c:358
 msgid "Asia/Urumqi"
@@ -3463,7 +3463,7 @@ msgstr "Asien/Urumqi"
 
 #: ../src/timezone_names.c:359
 msgid "Asia/Ust-Nera"
-msgstr ""
+msgstr "Asien/Ust-Nera"
 
 #: ../src/timezone_names.c:360
 msgid "Asia/Vientiane"
@@ -3511,7 +3511,7 @@ msgstr "Atlantik/Faeroe"
 
 #: ../src/timezone_names.c:371
 msgid "Atlantic/Faroe"
-msgstr ""
+msgstr "Atlantik/Färöer"
 
 #: ../src/timezone_names.c:372
 msgid "Atlantic/Jan_Mayen"
@@ -3599,11 +3599,11 @@ msgstr "Brasilien"
 
 #: ../src/timezone_names.c:393
 msgid "Brazil/Acre"
-msgstr ""
+msgstr "Brasilien/Acre"
 
 #: ../src/timezone_names.c:394
 msgid "Brazil/DeNoronha"
-msgstr ""
+msgstr "Brasilien/DeNoronha"
 
 #: ../src/timezone_names.c:395
 msgid "Brazil/East"
@@ -3627,15 +3627,15 @@ msgstr "Kanada/Zentral"
 
 #: ../src/timezone_names.c:400
 msgid "Canada/East-Saskatchewan"
-msgstr ""
+msgstr "Kanada/East-Saskatchewan"
 
 #: ../src/timezone_names.c:401
 msgid "Canada/Eastern"
-msgstr ""
+msgstr "Kanada/Östlich"
 
 #: ../src/timezone_names.c:402
 msgid "Canada/Mountain"
-msgstr ""
+msgstr "Kanada/Mountain"
 
 #: ../src/timezone_names.c:403
 msgid "Canada/Newfoundland"
@@ -3643,15 +3643,15 @@ msgstr "Kanada/Neufundland"
 
 #: ../src/timezone_names.c:404
 msgid "Canada/Pacific"
-msgstr ""
+msgstr "Kanada/Pazifik"
 
 #: ../src/timezone_names.c:405
 msgid "Canada/Saskatchewan"
-msgstr ""
+msgstr "Kanada/Saskatchewan"
 
 #: ../src/timezone_names.c:406
 msgid "Canada/Yukon"
-msgstr ""
+msgstr "Kanada/Yukon"
 
 #: ../src/timezone_names.c:407
 msgid "Chile"
@@ -3659,7 +3659,7 @@ msgstr "Chile"
 
 #: ../src/timezone_names.c:408
 msgid "Chile/Continental"
-msgstr ""
+msgstr "Chile/Kontinental"
 
 #: ../src/timezone_names.c:409
 msgid "Chile/EasterIsland"
@@ -4103,15 +4103,15 @@ msgstr "Mexiko"
 
 #: ../src/timezone_names.c:519
 msgid "Mexico/BajaNorte"
-msgstr ""
+msgstr "Mexiko/BajaNorte"
 
 #: ../src/timezone_names.c:520
 msgid "Mexico/BajaSur"
-msgstr ""
+msgstr "Mexiko/BajaSur"
 
 #: ../src/timezone_names.c:521
 msgid "Mexico/General"
-msgstr ""
+msgstr "Mexiko/General"
 
 #: ../src/timezone_names.c:522
 msgid "Mideast"
@@ -4119,15 +4119,15 @@ msgstr "MittlererOsten"
 
 #: ../src/timezone_names.c:523
 msgid "Mideast/Riyadh87"
-msgstr ""
+msgstr "Mittlerer_Osten/Riad87"
 
 #: ../src/timezone_names.c:524
 msgid "Mideast/Riyadh88"
-msgstr ""
+msgstr "Mittlerer_Osten/Riad88"
 
 #: ../src/timezone_names.c:525
 msgid "Mideast/Riyadh89"
-msgstr ""
+msgstr "Mittlerer_Osten/Riad89"
 
 #: ../src/timezone_names.c:526
 msgid "Pacific"
@@ -4147,7 +4147,7 @@ msgstr "Pazifik/Chatham"
 
 #: ../src/timezone_names.c:530
 msgid "Pacific/Chuuk"
-msgstr ""
+msgstr "Pazifik/Chuuk"
 
 #: ../src/timezone_names.c:531
 msgid "Pacific/Easter"
@@ -4251,7 +4251,7 @@ msgstr "Pazifik/Pitcairn"
 
 #: ../src/timezone_names.c:556
 msgid "Pacific/Pohnpei"
-msgstr ""
+msgstr "Pazifik/Pohnpei"
 
 #: ../src/timezone_names.c:557
 msgid "Pacific/Ponape"
@@ -4367,7 +4367,7 @@ msgstr "US/Alaska"
 
 #: ../src/timezone_names.c:585
 msgid "US/Aleutian"
-msgstr ""
+msgstr "USA/Aleutian"
 
 #: ../src/timezone_names.c:586
 msgid "US/Arizona"
@@ -4379,11 +4379,11 @@ msgstr "US/Zentral"
 
 #: ../src/timezone_names.c:588
 msgid "US/Eastern"
-msgstr ""
+msgstr "USA/Östlich"
 
 #: ../src/timezone_names.c:589
 msgid "US/East-Indiana"
-msgstr ""
+msgstr "USA/East-Indiana"
 
 #: ../src/timezone_names.c:590
 msgid "US/Hawaii"
@@ -4391,23 +4391,23 @@ msgstr "US/Hawaii"
 
 #: ../src/timezone_names.c:591
 msgid "US/Indiana-Starke"
-msgstr ""
+msgstr "USA/Indiana-Starke"
 
 #: ../src/timezone_names.c:592
 msgid "US/Michigan"
-msgstr ""
+msgstr "USA/Michigan"
 
 #: ../src/timezone_names.c:593
 msgid "US/Mountain"
-msgstr ""
+msgstr "USA/Mountain_States"
 
 #: ../src/timezone_names.c:594
 msgid "US/Pacific"
-msgstr ""
+msgstr "USA/Pazifik"
 
 #: ../src/timezone_names.c:595
 msgid "US/Pacific-New"
-msgstr ""
+msgstr "USA/Pacific-New"
 
 #: ../src/timezone_names.c:596
 msgid "US/Samoa"
