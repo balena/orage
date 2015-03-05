@@ -3835,8 +3835,10 @@ static void add_appt_to_list(icalcomponent *c, icaltime_span *span , void *data)
     edate = icaltime_convert_to_zone(edate, local_icaltimezone);
 
 
-    strcpy(appt->starttimecur, icaltime_as_ical_string(sdate));
-    strcpy(appt->endtimecur, icaltime_as_ical_string(edate));
+    strncpy(appt->starttimecur, icaltime_as_ical_string(sdate), 16);
+    appt->starttimecur[16] = '\0';
+    strncpy(appt->endtimecur, icaltime_as_ical_string(edate), 16);
+    appt->endtimecur[16] = '\0';
     /*
             */
         /* Need to check that returned value is withing limits.

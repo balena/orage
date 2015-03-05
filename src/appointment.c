@@ -1472,18 +1472,20 @@ static xfical_exception *new_exception(char *text)
            but if this fails (=return NULL) we may have date from somewhere 
            else */
         if ((char *)strptime(text, "%x %R", &tm_time) == NULL)
-            strcpy(recur_exception->time, orage_i18_date_to_icaldate(text));
+            strncpy(recur_exception->time, orage_i18_date_to_icaldate(text), 16);
         else
-            strcpy(recur_exception->time, orage_i18_time_to_icaltime(text));
+            strncpy(recur_exception->time, orage_i18_time_to_icaltime(text), 16);
+        recur_exception->time[16] = '\0';
 #else
         /* we should not have date-times as we are using internal libical,
            which only uses dates, but if this returns non null, we may have 
            datetime from somewhere else */
         tmp = (char *)strptime(text, "%x", &tm_time);
         if (ORAGE_STR_EXISTS(tmp))
-            strcpy(recur_exception->time, orage_i18_time_to_icaltime(text));
+            strncpy(recur_exception->time, orage_i18_time_to_icaltime(text), 16);
         else
-            strcpy(recur_exception->time, orage_i18_date_to_icaldate(text));
+            strncpy(recur_exception->time, orage_i18_date_to_icaldate(text), 16);
+        recur_exception->time[16] = '\0';
 #endif
     }
     text[i-2] = ' ';
@@ -1546,8 +1548,10 @@ static gboolean add_recur_exception_row(char *p_time, char *p_type
         strcpy(tmp_type, "-");
     else if (!strcmp(p_type, "RDATE"))
         strcpy(tmp_type, "+");
-    else
-        strcpy(tmp_type, p_type);
+    else {
+        strncpy(tmp_type, p_type, 1);
+        tmp_type[1] = '\0';
+    }
     text = g_strdup_printf("%s %s", p_time, tmp_type);
 
     /* Then, let's keep the GList updated */
