@@ -82,7 +82,8 @@ static void mFile_newApp_activate_cb(GtkMenuItem *menuitem, gpointer user_data)
     orage_message(-100, P_N);
 #endif
     /* cal has always a day selected here, so it is safe to read it */
-    strcpy(cur_date, orage_cal_to_icaldate(GTK_CALENDAR(cal->mCalendar)));
+    strncpy(cur_date, orage_cal_to_icaldate(GTK_CALENDAR(cal->mCalendar)), 8);
+    cur_date[8]='\0';
     create_appt_win("NEW", cur_date);
 }
 

@@ -919,7 +919,7 @@ static void create_new_appointment(el_win *el)
     char *title, a_day[9];
 
     title = (char *)gtk_window_get_title(GTK_WINDOW(el->Window));
-    strncpy(a_day, orage_i18_date_to_icaldate(title));
+    strncpy(a_day, orage_i18_date_to_icaldate(title), 8);
     a_day[8] = '\0';
     do_appt_win("NEW", a_day, el);
 }
