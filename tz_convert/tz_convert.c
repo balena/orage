@@ -1265,9 +1265,13 @@ int get_parameters_popt(int argc, const char **argv)
                 res = val;
                 break;
             case 3:
+                if (in_file)
+                    free(in_file);
                 in_file = strdup(tmp_str);
                 break;
             case 4:
+                if (out_file)
+                    free(out_file);
                 out_file = strdup(tmp_str);
                 break;
             case 5:
@@ -1278,6 +1282,8 @@ int get_parameters_popt(int argc, const char **argv)
                         , ignore_older);
                 break;
             case 7:
+                if (timezone_name)
+                    free(timezone_name);
                 timezone_name = strdup(tmp_str);
                 break;
             case 8:
