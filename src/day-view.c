@@ -703,7 +703,8 @@ static void app_data(day_win *dw)
 
     ical_type = XFICAL_TYPE_EVENT;
     s_date = (char *)gtk_button_get_label(GTK_BUTTON(dw->StartDate_button));
-    strcpy(dw->a_day, orage_i18_date_to_icaldate(s_date));
+    strncpy(dw->a_day, orage_i18_date_to_icaldate(s_date), 8);
+    dw->a_day[8] = '\0';
     dw->days = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(dw->day_spin));
 
     /* first search base orage file */
