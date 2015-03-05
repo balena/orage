@@ -1069,7 +1069,8 @@ static void drag_data_get(GtkWidget *widget, GdkDragContext *context
         g_warning("drag_data_get failed\n");
     g_list_foreach(list, (GFunc)gtk_tree_path_free, NULL);
     g_list_free(list);
-    g_string_free(result, TRUE);
+    if (result)
+        g_string_free(result, TRUE);
 }
 
 static void build_menu(el_win *el)
