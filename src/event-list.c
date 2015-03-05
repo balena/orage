@@ -667,8 +667,9 @@ static void journal_data(el_win *el)
     char     a_day[9];  /* yyyymmdd */
 
     el->days = 10*365; /* long enough time to get everything from future */
-    strcpy(a_day, orage_i18_date_to_icaldate(gtk_button_get_label(
-            GTK_BUTTON(el->journal_start_button))));
+    strncpy(a_day, orage_i18_date_to_icaldate(gtk_button_get_label(
+            GTK_BUTTON(el->journal_start_button))), 8);
+    a_day[8] = '\0';
 
     app_data(el, a_day, NULL);
 }
