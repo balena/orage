@@ -649,7 +649,6 @@ static int check_parameters(void)
             /* error reading the parameter file */
             printf("check_parameters: in_file name not found from (%s) \n"
                 , TZ_CONVERT_PAR_FILE_LOC);
-            fclose(par_file);
         }
         else { /* no errors */
             in_file = malloc(par_file_stat.st_size+1);
@@ -659,7 +658,6 @@ static int check_parameters(void)
                         , TZ_CONVERT_PAR_FILE_LOC);
                 free(in_file);
                 in_file = NULL;
-                fclose(par_file);
             }
             else { 
                 /* terminate with nul */
@@ -676,6 +674,7 @@ static int check_parameters(void)
                 }
             }
         }
+        fclose(par_file);
     }
     if (in_file == NULL) /* in file not found */
         in_file = strdup(DEFAULT_OS_ZONEINFO_DIRECTORY);
