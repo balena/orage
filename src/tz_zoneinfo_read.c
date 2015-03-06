@@ -652,7 +652,7 @@ static int check_parameters(void)
         }
         else { /* no errors */
             in_file = malloc(par_file_stat.st_size+1);
-            if (!fread(in_file, 1, par_file_stat.st_size, par_file)
+            if ((fread(in_file, 1, par_file_stat.st_size, par_file < par_file_stat.st_size))
             && (ferror(par_file))) {
                 printf("check_parameters: error reading (%s)\n"
                         , TZ_CONVERT_PAR_FILE_LOC);
@@ -805,7 +805,7 @@ static void read_os_timezones(void)
         return;
     }
     zone_tab_buf = malloc(zone_tab_file_stat.st_size+1);
-    if (!fread(zone_tab_buf, 1, zone_tab_file_stat.st_size, zone_tab_file)
+    if ((fread(zone_tab_buf, 1, zone_tab_file_stat.st_size, zone_tab_file) < zone_tab_file_stat.st_size)
     && (ferror(zone_tab_file))) {
         printf("read_os_timezones: zone.tab file read failed (%s)\n"
                 , zone_tab_file_name);
@@ -861,7 +861,7 @@ static void read_countries(void)
         return;
     }
     country_buf = malloc(country_file_stat.st_size+1);
-    if (fread(country_buf, 1, country_file_stat.st_size, country_file)
+    if ((fread(country_buf, 1, country_file_stat.st_size, country_file) < country_file_stat.st_size)
     && (ferror(country_file))) {
         printf("read_countries: iso3166.tab file read failed (%s)\n"
                 , country_file_name);
