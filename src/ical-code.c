@@ -3155,6 +3155,11 @@ static void xfical_alarm_build_list_internal_real(gboolean first_list_today
                             (char *)icalcomponent_get_description(c));
                 }
             }
+            if (trg_active) {
+                cnt_act_alarm++;
+                process_alarm_data(ca, new_alarm);
+            }
+            /*
             if (trg_processed) {
                 if (trg_active) {
                     cnt_act_alarm++;
@@ -3165,6 +3170,7 @@ static void xfical_alarm_build_list_internal_real(gboolean first_list_today
                 orage_message(140, P_N "Found alarm without trigger %s. Skipping it"
                         , icalcomponent_get_uid(c));
             }
+            */
         }  /* ALARM */
         if (trg_active) {
             alarm_add(new_alarm);
@@ -3222,9 +3228,10 @@ void xfical_alarm_build_list(gboolean first_list_today)
 #ifdef ORAGE_DEBUG
     orage_message(-100, P_N);
 #endif
-    xfical_file_open(TRUE);
-    xfical_alarm_build_list_internal(first_list_today);
-    xfical_file_close(TRUE);
+    if (xfical_file_open(TRUE)) {
+        xfical_alarm_build_list_internal(first_list_today);
+        xfical_file_close(TRUE);
+    }
 }
 
  /* Read next EVENT/TODO/JOURNAL component on the specified date from 
