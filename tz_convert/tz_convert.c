@@ -133,7 +133,12 @@ void read_file(const char *file_name, const struct stat *file_stat)
     in_head = in_buf;
     in_tail = in_buf + file_stat->st_size - 1;
     file = fopen(file_name, "r");
-    if (!fread(in_buf, 1, file_stat->st_size, file))
+    if (!file) {
+        printf("read_file: file open failed (%s)\n", file_name);
+        perror("\tfopen");
+        return;
+    }
+    if (fread(in_buf, 1, file_stat->st_size, file) < file_stat->st_size)
         if (ferror(file)) {
             printf("read_file: file read failed (%s)\n", file_name);
             fclose(file);
