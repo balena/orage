@@ -1395,7 +1395,7 @@ void add_zone_tabs()
     }
 
     ical_zone_buf = malloc(ical_zone_stat.st_size+1);
-    if (!fread(ical_zone_buf, 1, ical_zone_stat.st_size, ical_zone_tab)
+    if ((fread(ical_zone_buf, 1, ical_zone_stat.st_size, ical_zone_tab) < ical_zone_stat.st_size)
     && (ferror(ical_zone_tab))) {
         printf("add_zone_tabs: error reading (%s).\n", ical_zone);
         perror("\tfread");

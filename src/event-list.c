@@ -658,7 +658,8 @@ static void todo_data(el_win *el)
     stime = orage_tm_time_to_icaltime(t);
     strncpy(a_day, stime, 8);
     a_day[8] = '\0';
-    strncpy(el->date_now, stime, XFICAL_APPT_TIME_FORMAT_LEN);
+    strncpy(el->date_now, stime, XFICAL_APPT_TIME_FORMAT_LEN-1);
+    el->date_now[XFICAL_APPT_TIME_FORMAT_LEN-1] = '\0';
     app_data(el, a_day, NULL);
 }
 

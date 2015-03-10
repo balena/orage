@@ -2553,7 +2553,9 @@ static OrageRc *orage_alarm_file_open(gboolean read_only)
 
     fpath = orage_config_file_location(ORAGE_DEFAULT_ALARM_DIR_FILE);
     if (!read_only)  /* we need to empty it before each write */
-        g_remove(fpath);
+        if (g_remove(fpath)) {
+            orage_message(150, "orage_alarm_file_open: g_remove failed.");
+        }
     if ((orc = orage_rc_file_open(fpath, read_only)) == NULL) {
         orage_message(150, "orage_alarm_file_open: default alarm file open failed.");
     }

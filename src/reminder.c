@@ -265,7 +265,9 @@ static OrageRc *orage_persistent_file_open(gboolean read_only)
 #endif
     fpath = orage_data_file_location(ORAGE_PERSISTENT_ALARMS_DIR_FILE);
     if (!read_only)  /* we need to empty it before each write */
-        g_remove(fpath);
+        if (g_remove(fpath)) {
+            orage_message(150, P_N "g_remove failed.");
+        }
     if ((orc = (OrageRc *)orage_rc_file_open(fpath, read_only)) == NULL) {
         orage_message(150, P_N "persistent alarms file open failed.");
     }
