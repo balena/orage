@@ -1066,12 +1066,13 @@ static void drag_data_get(GtkWidget *widget, GdkDragContext *context
             g_free(uid);
         }
     }
-    if (!gtk_selection_data_set_text(selection_data, result->str, -1))
-        g_warning("drag_data_get failed\n");
     g_list_foreach(list, (GFunc)gtk_tree_path_free, NULL);
     g_list_free(list);
-    if (result)
+    if (result) {
+        if (!gtk_selection_data_set_text(selection_data, result->str, -1))
+            g_warning("drag_data_get failed\n");
         g_string_free(result, TRUE);
+    }
 }
 
 static void build_menu(el_win *el)
