@@ -146,7 +146,12 @@ static void read_file(const char *file_name, const struct stat *file_stat)
     in_head = in_buf;
     in_tail = in_buf + file_stat->st_size - 1;
     file = fopen(file_name, "r");
-    if (!fread(in_buf, 1, file_stat->st_size, file))
+    if (!file) {
+            printf("read_file: file open error (%s)\n", file_name);
+            perror("\tfread");
+            return;
+    }
+    if (fread(in_buf, 1, file_stat->st_size, file) < file_stat->st_size)
         if (ferror(file)) {
             printf("read_file: file read failed (%s)\n", file_name);
             fclose(file);
@@ -896,7 +901,7 @@ static void read_ical_timezones(void)
         return;
     }
     zones_tab_buf = malloc(zones_tab_file_stat.st_size+1);
-    if (!fread(zones_tab_buf, 1, zones_tab_file_stat.st_size, zones_tab_file)
+    if ((fread(zones_tab_buf, 1, zones_tab_file_stat.st_size, zones_tab_file) < zones_tab_file_stat.st_size)
     && (ferror(zones_tab_file))) {
         printf("read_ical_timezones: zones.tab file read failed (%s)\n"
                 , ICAL_ZONES_TAB_FILE_LOC);
