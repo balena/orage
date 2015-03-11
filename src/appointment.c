@@ -1460,7 +1460,8 @@ static xfical_exception *new_exception(char *text)
     text[i-2] = '\0';
     if (text[i-1] == '+') {
         strcpy(recur_exception->type, "RDATE");
-        strcpy(recur_exception->time, orage_i18_time_to_icaltime(text));
+        strncpy(recur_exception->time, orage_i18_time_to_icaltime(text), 16);
+        recur_exception->time[16] = '\0';
     }
     else {
         strcpy(recur_exception->type, "EXDATE");
