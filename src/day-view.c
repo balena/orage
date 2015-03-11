@@ -171,10 +171,11 @@ static void on_Close_clicked(GtkButton *b, gpointer user_data)
 
 static void create_new_appointment(day_win *dw)
 {
-    char *s_date, a_day[10];
+    char *s_date, a_day[9];
 
     s_date = (char *)gtk_button_get_label(GTK_BUTTON(dw->StartDate_button));
-    strcpy(a_day, orage_i18_date_to_icaldate(s_date));
+    strncpy(a_day, orage_i18_date_to_icaldate(s_date), 8);
+    dw->a_day[8] = '\0';
 
     do_appt_win("NEW", a_day, dw);
 }
