@@ -31,7 +31,6 @@ service_DATA = $(service_in_files:.service.in=.service)
 endif
 
 EXTRA_DIST =								\
-	mkinstalldirs  							\
 	intltool-extract.in						\
 	intltool-merge.in						\
 	intltool-update.in						\
