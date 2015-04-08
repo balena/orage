@@ -1,57 +1,49 @@
 if HAVE_LIBXFCE4PANEL
-plugin_PROGRAMS = xfce4-orageclock-plugin
+plugin_LTLIBRARIES = orageclock.la
 endif
 
-plugindir = $(libexecdir)/xfce4/panel-plugins
+plugindir = $(libdir)/xfce4/panel/plugins
 
-xfce4_orageclock_plugin_CFLAGS =					\
+orageclock_la_CFLAGS =					\
 	-DPACKAGE_DATA_DIR=\"$(datadir)\"				\
 	-DPACKAGE_LOCALE_DIR=\"$(localedir)\"			\
 	@LIBXFCE4PANEL_CFLAGS@
 
-xfce4_orageclock_plugin_LDFLAGS =					\
+orageclock_la_LDFLAGS =					\
+	-avoid-version							\
+	-module									\
+	-no-undefined 							\
+	-export-symbols-regex '^xfce_panel_module_(preinit|init|construct)' \
+	$(PLATFORM_LDFLAGS)
+
+orageclock_la_LIBADD =					\
 	@LIBXFCE4PANEL_LIBS@                            \
 	-lX11
 
-xfce4_orageclock_plugin_SOURCES = 					\
-	oc_config.c										\
-	timezone_selection.c							\
-	timezone_selection.h							\
-	../src/tz_zoneinfo_read.c						\
-	../src/tz_zoneinfo_read.h						\
-	xfce4-orageclock-plugin.c						\
-	xfce4-orageclock-plugin.h                       \
-    ../src/functions.c                              \
-    ../src/functions.h
+orageclock_la_SOURCES = 				\
+	oc_config.c								\
+	timezone_selection.c					\
+	timezone_selection.h					\
+	../src/tz_zoneinfo_read.c				\
+	../src/tz_zoneinfo_read.h				\
+	xfce4-orageclock-plugin.c				\
+	xfce4-orageclock-plugin.h               \
+	../src/functions.c						\
+	../src/functions.h
 
 if HAVE_CYGWIN
-xfce4_orageclock_plugin_LDFLAGS +=                 \
+orageclock_la_LDFLAGS +=                 \
 	-no-undefined
 endif
 
 # .desktop file
 #
-# Some automake trickery here. Because we cannot use $(libexecdir) in the
-# automake stage, we'll use sed to get the full path into the .desktop file.
-# We also need to let intltool merge the translated fields, so we add an
-# additional level of indirection: a <name>.desktop.in.in file.
-# 
-desktop_in_in_files = xfce4-orageclock-plugin.desktop.in.in
-desktop_in_files = $(desktop_in_in_files:.desktop.in.in=.desktop.in)
+desktop_in_files = xfce4-orageclock-plugin.desktop.in
 	
-desktopdir = $(datadir)/xfce4/panel-plugins
+desktopdir = $(datadir)/xfce4/panel/plugins
 desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 @INTLTOOL_DESKTOP_RULE@
 
-EXTRA_DIST = 								\
-	$(desktop_in_in_files)
+EXTRA_DIST = $(desktop_in_files)
 
-DISTCLEANFILES =							\
-	$(desktop_DATA) $(desktop_in_files)
-	
-# get full path into .desktop file
-#%.desktop.in: %.desktop.in.in
-xfce4-orageclock-plugin.desktop.in: xfce4-orageclock-plugin.desktop.in.in
-	sed -e "s^@PLUGIN_PATH@^$(libexecdir)/xfce4/panel-plugins^" \
-		$< > $@
-
+DISTCLEANFILES = $(desktop_DATA)
