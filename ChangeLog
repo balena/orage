@@ -1,3 +1,410 @@
+commit df687eb2738bea3cbbd9765f3fc1fc563408a869
+Author: Juha Kautto <juha@xfce.org>
+Date:   Wed Apr 8 12:13:49 2015 +0300
+
+    4.11.2.22 fix bug 8719 build the panel plugin as module
+    
+    Big change from Landry Breuil to make Orage panel plugin configuration
+    and locations similar to other plugins.
+
+commit 52ad59b2a3cba280af1df96277c98879bdab92c2
+Author: Juha Kautto <juha@xfce.org>
+Date:   Wed Apr 1 15:27:33 2015 +0300
+
+    4.11.2.21 fixed distcheck failure
+    
+    removed mkinstalldirs as it causes distchekc to fail
+
+commit 02413d34ef0b1850337a7e193418fadcfba63c50
+Author: Anonymous <noreply@xfce.org>
+Date:   Fri Mar 27 18:30:56 2015 +0100
+
+    I18n: Update translation lt (80%).
+    
+    827 translated messages, 203 untranslated messages.
+    
+    Transifex (https://www.transifex.com/projects/p/xfce/).
+
+commit bfc0f82d1a87edaf689f193b175d2f46b9243b75
+Author: Anonymous <noreply@xfce.org>
+Date:   Fri Mar 27 12:31:00 2015 +0100
+
+    I18n: Update translation lt (79%).
+    
+    821 translated messages, 209 untranslated messages.
+    
+    Transifex (https://www.transifex.com/projects/p/xfce/).
+
+commit 5379f42ce9ec4b27a18219fd7bff7c33a72c3d3f
+Author: Anonymous <noreply@xfce.org>
+Date:   Sat Mar 21 00:31:01 2015 +0100
+
+    I18n: Update translation lt (78%).
+    
+    811 translated messages, 219 untranslated messages.
+    
+    Transifex (https://www.transifex.com/projects/p/xfce/).
+
+commit 15d5c7386dad58d72093d5d1d0a69a5c42e67018
+Author: Anonymous <noreply@xfce.org>
+Date:   Tue Mar 17 00:30:52 2015 +0100
+
+    I18n: Update translation lt (78%).
+    
+    805 translated messages, 225 untranslated messages.
+    
+    Transifex (https://www.transifex.com/projects/p/xfce/).
+
+commit ba8facf3c0db159ec0665fb98f1bf47d05484015
+Author: Manolo Díaz <diaz.manolo@gmail.com>
+Date:   Mon Mar 16 06:30:49 2015 +0100
+
+    I18n: Update translation es (100%).
+    
+    1030 translated messages.
+    
+    Transifex (https://www.transifex.com/projects/p/xfce/).
+
+commit a2086c4b006f8079ec01944e047bb94ee0f5cb73
+Author: Anonymous <noreply@xfce.org>
+Date:   Sat Mar 14 18:31:15 2015 +0100
+
+    I18n: Update translation lt (77%).
+    
+    798 translated messages, 232 untranslated messages.
+    
+    Transifex (https://www.transifex.com/projects/p/xfce/).
+
+commit ea3e50716a05a908a6068e7e90ef633bb39311e0
+Author: Efstathios Iosifidis <iefstathios@gmail.com>
+Date:   Sat Mar 14 18:31:15 2015 +0100
+
+    I18n: Update translation el (68%).
+    
+    708 translated messages, 322 untranslated messages.
+    
+    Transifex (https://www.transifex.com/projects/p/xfce/).
+
+commit 757ad1948ccc367ce2ed734aaccb187d7fa681ea
+Author: Juha Kautto <juha@xfce.org>
+Date:   Thu Mar 12 13:48:44 2015 +0200
+
+    4.11.2.20 Fixed syntax error in fopen
+    
+    Moved closing ) to correct place
+
+commit d668b1f8f63195fd70929ff9ccd23fb6aeb3f30a
+Author: Anonymous <noreply@xfce.org>
+Date:   Thu Mar 12 12:31:31 2015 +0100
+
+    I18n: Update translation lt (77%).
+    
+    794 translated messages, 236 untranslated messages.
+    
+    Transifex (https://www.transifex.com/projects/p/xfce/).
+
+commit 4b26a15be27392ae2974d92c1a707cff2a9867b7
+Author: Manolo Díaz <diaz.manolo@gmail.com>
+Date:   Wed Mar 11 12:31:00 2015 +0100
+
+    I18n: Update translation es (100%).
+    
+    1030 translated messages.
+    
+    Transifex (https://www.transifex.com/projects/p/xfce/).
+
+commit da0ea1ae432e15b75c4599a91e89a5a3e9b86041
+Author: Juha Kautto <juha@xfce.org>
+Date:   Wed Mar 11 13:13:34 2015 +0200
+
+    4.11.2.19 Coverity fix 31707 and 31700 copy into fixed size without count
+    
+    Added null check and changed strcpy tp strncpy
+
+commit ecf08f0348fd4490615be680fdc68a4bc1ecd88c
+Author: Juha Kautto <juha@xfce.org>
+Date:   Wed Mar 11 13:00:53 2015 +0200
+
+    4.11.2.17 Coverity fix 31722 copy into fixed size without count
+    
+    changed from strcpy to strncpy and added limit
+
+commit 4315450f35ca04109ca2f25887f6027c269073b7
+Author: Juha Kautto <juha@xfce.org>
+Date:   Wed Mar 11 12:55:28 2015 +0200
+
+    4.11.2.17 Coverity fix 31715 copy into fixed size without count
+    
+    added limiting count to strcpy to prevent potential overflow.
+
+commit f8218b1aa78c1e031e22a4b3f5d4344db24f61e5
+Author: Juha Kautto <juha@xfce.org>
+Date:   Wed Mar 11 12:46:25 2015 +0200
+
+    4.11.2.16 Coverity fix 41265 null check too late
+    
+    Added null check earlier before using the variable
+
+commit a3a749357c6b43ed4999a1729a22462a80e887e5
+Author: Juha Kautto <juha@xfce.org>
+Date:   Tue Mar 10 11:36:37 2015 +0200
+
+    4.11.2.15 Coverity fix 31696-31699 ignoring number of bytes read
+    
+    Added more checks to make sure there are no overflows.
+
+commit 93e3aa8adee64fbad8904967efd03789d481486d
+Author: Juha Kautto <juha@xfce.org>
+Date:   Fri Mar 6 15:46:21 2015 +0200
+
+    4.11.2.14 Coverity fix 31701, 31702 and 31703 ignoring number of bytes read
+    
+    Added better check for fread return count
+
+commit 53905ed03e354fbbc554ea9602fde19cbd89c9be
+Author: Juha Kautto <juha@xfce.org>
+Date:   Fri Mar 6 15:37:45 2015 +0200
+
+    4.11.2.13 Coverity fix 31704 31705 removed logically dead code
+    
+    removed code part which can not be reached.
+    processed also error code from xfical_file_open call
+
+commit 098764e42d842a176c358e771005d38a714f0cbb
+Author: Juha Kautto <juha@xfce.org>
+Date:   Fri Mar 6 15:18:38 2015 +0200
+
+    4.11.2.12 Coverity fix 31700 and 31707 fopen and fread issues
+    
+    Added more detailed error checking.
+
+commit 6af8c1f3256544c5aaa3333c493be9df12bfdafd
+Merge: e0e78ab 72e81ff
+Author: Juha Kautto <juha@xfce.org>
+Date:   Thu Mar 5 13:48:22 2015 +0200
+
+    Merge branch 'master' of ssh://git.xfce.org/apps/orage
+    
+    merge translation for pl
+
+commit e0e78ab3049ad0a14dcf7dad1e748e2c9c9f1fe8
+Author: Juha Kautto <juha@xfce.org>
+Date:   Thu Mar 5 13:46:30 2015 +0200
+
+    4.11.2.11 Coverity fix 31708 possible free of null pointer
+    
+    Free pointer only if it has value
+
+commit 72e81ff23d62db5f6584d117f072810f546d8aa5
+Author: Piotr Strębski <strebski@o2.pl>
+Date:   Thu Mar 5 12:31:21 2015 +0100
+
+    I18n: Update translation pl (97%).
+    
+    1000 translated messages, 30 untranslated messages.
+    
+    Transifex (https://www.transifex.com/projects/p/xfce/).
+
+commit 5a61231c1b3db82942e0f67ed556560204776cdd
+Author: Juha Kautto <juha@xfce.org>
+Date:   Thu Mar 5 12:46:35 2015 +0200
+
+    4.11.2.10 Coverity fix 31711 leak of resource not closed file
+    
+    Closed file before leaving function
+
+commit e0b27a6b692664e863d5275b8ad59ee26be1bf7a
+Author: Juha Kautto <juha@xfce.org>
+Date:   Thu Mar 5 12:38:50 2015 +0200
+
+    4.11.2.8 Coverity fix 31715-31717 leak of memory
+    
+    Freed the empty string before using it.
+
+commit 57caa36425a744b5f08deb580325dbf389bf4bf3
+Author: Juha Kautto <juha@xfce.org>
+Date:   Thu Mar 5 11:59:11 2015 +0200
+
+    4.11.2.8 Coverity fix 31715-31717 strcpy without length check
+    
+    Added check for length to prevent overrun
+
+commit a19482ee7344bc2f83851c6136d6781c657e21c8
+Author: Juha Kautto <juha@xfce.org>
+Date:   Thu Mar 5 11:10:38 2015 +0200
+
+    4.11.2.7 Coverity fix 31719 strcpy without length check
+    
+    Added check for length to prevent overrun
+
+commit 14f80d55f73ba61cc5319632939464e9f67584b8
+Author: Juha Kautto <juha@xfce.org>
+Date:   Thu Mar 5 11:07:33 2015 +0200
+
+    4.11.2.r64 Coverity fix 31720 strcpy without length check
+    
+    Added check for length to prevent overrun
+
+commit 47da1f9cd73df38fada5bd7c3b550f363616cdd2
+Author: Juha Kautto <juha@xfce.org>
+Date:   Thu Mar 5 11:04:44 2015 +0200
+
+    4.11.2.5 Coverity fix 31721 strcpy without length check
+    
+    Added check for length to prevent overrun
+
+commit d71aebfce7d2ec4b86017606631808f73bb2cfd6
+Author: Juha Kautto <juha@xfce.org>
+Date:   Thu Mar 5 10:57:32 2015 +0200
+
+    4.11.2.4 Coverity fix 31722 strcpy without length check
+    
+    Added check for length to prevent overrun
+
+commit e454f30bca01cef209074574f3004e1c5076b378
+Author: Yannick Le Guen <leguen.yannick@gmail.com>
+Date:   Fri Feb 27 12:31:02 2015 +0100
+
+    I18n: Update translation fr (100%).
+    
+    1030 translated messages.
+    
+    Transifex (https://www.transifex.com/projects/p/xfce/).
+
+commit 663aa679406b6968c5f780495cc170f9185a63c7
+Author: Georg Eckert <eckert.georg@gmx.de>
+Date:   Fri Feb 27 00:30:50 2015 +0100
+
+    I18n: Update translation de (100%).
+    
+    1030 translated messages.
+    
+    Transifex (https://www.transifex.com/projects/p/xfce/).
+
+commit 00fa15dbc6c21ca4f262ea332e85e2d70f17f31c
+Author: Slavko <linux@slavino.sk>
+Date:   Thu Feb 26 18:31:48 2015 +0100
+
+    I18n: Update translation sk (100%).
+    
+    1030 translated messages.
+    
+    Transifex (https://www.transifex.com/projects/p/xfce/).
+
+commit 96b85ccc8e39f01de6cadc2901d29b24404ae533
+Author: Yannick Le Guen <leguen.yannick@gmail.com>
+Date:   Thu Feb 26 18:31:48 2015 +0100
+
+    I18n: Update translation fr (100%).
+    
+    1030 translated messages.
+    
+    Transifex (https://www.transifex.com/projects/p/xfce/).
+
+commit 9d1fc1165f220bdd00b5f0f4b50ae413757bcea2
+Author: Pasi Lallinaho <pasi@shimmerproject.org>
+Date:   Thu Feb 26 06:31:01 2015 +0100
+
+    I18n: Update translation fi (99%).
+    
+    1028 translated messages, 2 untranslated messages.
+    
+    Transifex (https://www.transifex.com/projects/p/xfce/).
+
+commit cfd4283ece3ae86d6aa760ca3595a25a58155319
+Author: Pasi Lallinaho <pasi@shimmerproject.org>
+Date:   Thu Feb 26 00:31:24 2015 +0100
+
+    I18n: Update translation fi (99%).
+    
+    1027 translated messages, 3 untranslated messages.
+    
+    Transifex (https://www.transifex.com/projects/p/xfce/).
+
+commit 2a4709327dcf9957e7e3900119e4b81be7cdae6e
+Author: Саша Петровић <salepetronije@gmail.com>
+Date:   Tue Feb 24 18:30:57 2015 +0100
+
+    I18n: Update translation sr (100%).
+    
+    1030 translated messages.
+    
+    Transifex (https://www.transifex.com/projects/p/xfce/).
+
+commit e5e6986335b0698df14a2c332afb89716e342010
+Author: Juha Kautto <juha@xfce.org>
+Date:   Tue Feb 24 14:45:58 2015 +0200
+
+    4.11.2.3 Coverity fix 31725 uninitialized variable used
+    
+    Variable initialization added just in case.
+
+commit dac070ff2ce3ba66fc7bb7755fe0d6aa34646c2d
+Author: Juha Kautto <juha@xfce.org>
+Date:   Tue Feb 24 14:28:22 2015 +0200
+
+    4.11.2.1 Coverity fix 31726
+    
+    Removing debug variables, which are not needed.
+
+commit 3aaf95211fc54465d6530201ee2e5da986ddee2e
+Author: Juha Kautto <juha@xfce.org>
+Date:   Tue Feb 24 14:05:11 2015 +0200
+
+    4.11.2.1 Coverity fix 31727
+    
+    Unused value was left over from previous updates.
+
+commit d793d4252ca5a5be4303013c71d731a3e35924fe
+Author: Anonymous <noreply@xfce.org>
+Date:   Mon Feb 23 18:31:09 2015 +0100
+
+    I18n: Update translation bg (100%).
+    
+    1030 translated messages.
+    
+    Transifex (https://www.transifex.com/projects/p/xfce/).
+
+commit 648f8588ffe2ec01acf34208d5e2fa88667dbe0c
+Author: Manolo Díaz <diaz.manolo@gmail.com>
+Date:   Mon Feb 23 00:31:28 2015 +0100
+
+    I18n: Update translation es (100%).
+    
+    1030 translated messages.
+    
+    Transifex (https://www.transifex.com/projects/p/xfce/).
+
+commit d5adf26733d93126cba8f3d1857d556622b1b071
+Author: Georg Eckert <eckert.georg@gmx.de>
+Date:   Sun Feb 22 18:31:15 2015 +0100
+
+    I18n: Update translation de (89%).
+    
+    923 translated messages, 107 untranslated messages.
+    
+    Transifex (https://www.transifex.com/projects/p/xfce/).
+
+commit 370581dae8f53aa69ac4411741665994dfe2fc40
+Author: Georg Eckert <eckert.georg@gmx.de>
+Date:   Sun Feb 22 00:31:22 2015 +0100
+
+    I18n: Update translation de (89%).
+    
+    923 translated messages, 107 untranslated messages.
+    
+    Transifex (https://www.transifex.com/projects/p/xfce/).
+
+commit 159f394b57c782f41def2f588a9943106a34af3c
+Author: Allan Nordhøy <comradekingu@gmail.com>
+Date:   Sat Feb 21 18:31:32 2015 +0100
+
+    I18n: Update translation nb (100%).
+    
+    1030 translated messages.
+    
+    Transifex (https://www.transifex.com/projects/p/xfce/).
+
 commit ed15c61a5e42c5486208e3ec91897355358d056d
 Author: Саша Петровић <salepetronije@gmail.com>
 Date:   Sat Feb 14 18:31:08 2015 +0100
