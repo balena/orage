@@ -3,25 +3,41 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Alex Nordlund <deep.alexander@gmail.com>, 2013
+# Alexander Nordlund <deep.alexander@gmail.com>, 2013
 # Alexander Toresson <alexander.toresson@gmail.com>, 2006
-# Alex Nordlund <deep.alexander@gmail.com>, 2013
+# Alexander Nordlund <deep.alexander@gmail.com>, 2013
 # Daniel Nylander <po@danielnylander.se>, 2008
 # Johan Hammar <johan.hammar@swipnet.se>, 2003
-# Påvel Nicklasson <pavel@frimix.se>, 2014
+# Påvel Nicklasson <pavel@frimix.se>, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-02 18:30+0100\n"
-"PO-Revision-Date: 2014-04-09 15:12+0000\n"
-"Last-Translator: PavelNicklasson <pavelnicklasson@bahnhof.se>\n"
-"Language-Team: Swedish (http://www.transifex.com/projects/p/xfce/language/sv/)\n"
+"POT-Creation-Date: 2014-09-23 12:30+0200\n"
+"PO-Revision-Date: 2015-06-03 15:41+0000\n"
+"Last-Translator: Påvel Nicklasson <pavelnicklasson@bahnhof.se>\n"
+"Language-Team: Swedish (http://www.transifex.com/projects/p/xfce-apps/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: sv\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../globaltime/globaltime.c:58
+msgid "no underline"
+msgstr "Ingen understrykning"
+
+#: ../globaltime/globaltime.c:58
+msgid "single"
+msgstr "enkel"
+
+#: ../globaltime/globaltime.c:58
+msgid "double"
+msgstr "dubbel"
+
+#: ../globaltime/globaltime.c:58
+msgid "low"
+msgstr "låg"
 
 #: ../globaltime/globaltime.c:100
 msgid "Raising GlobalTime window..."
@@ -57,6 +73,10 @@ msgstr "Justera för att ändra timme"
 msgid ""
 "adjust to change minute. Click arrows with button 2 to change only 1 minute."
 msgstr "justera för att ändra minut. Klicka på pilarna med knapp 2 för att ändra endast 1 minut."
+
+#: ../globaltime/globaltime.c:548
+msgid "Global Time"
+msgstr "Global tid"
 
 #: ../globaltime/gt_prefs.c:265 ../globaltime/gt_prefs.c:266
 msgid "NEW"
@@ -170,20 +190,20 @@ msgstr "Klicka för att ändra förgrundsfärgen för klocka"
 #. ------------------------name font-------------------------
 #: ../globaltime/gt_prefs.c:713 ../globaltime/gt_prefs.c:922
 msgid "Font for name of clock:"
-msgstr "Typsnitt för klocknamnet:"
+msgstr "Teckensnitt för klocknamn:"
 
 #: ../globaltime/gt_prefs.c:720
 msgid "Click to change font for clock name"
-msgstr "Klicka för att byta typsnitt för klocknamnet"
+msgstr "Klicka för att byta teckensnitt för klocknamn"
 
 #. ------------------------time font-------------------------
 #: ../globaltime/gt_prefs.c:746 ../globaltime/gt_prefs.c:956
 msgid "Font for time of clock:"
-msgstr "Typsnitt för klockans tid:"
+msgstr "Teckensnitt för klockans tid:"
 
 #: ../globaltime/gt_prefs.c:753
 msgid "Click to change font for clock time"
-msgstr "Klicka för att byta typsnitt för klocktiden"
+msgstr "Klicka för att byta teckensnitt för klocktid"
 
 #. ------------------------underline name--------------------
 #: ../globaltime/gt_prefs.c:780
@@ -213,15 +233,15 @@ msgstr "Klicka för att ändra standardtextfärg för klockor"
 
 #: ../globaltime/gt_prefs.c:929
 msgid "Click to change default font for clock name"
-msgstr "Klicka för att ändra standardtypsnitt för klocknamn"
+msgstr "Klicka för att ändra standardteckensnitt för klocknamn"
 
 #: ../globaltime/gt_prefs.c:944 ../globaltime/gt_prefs.c:978
 msgid "Cross this to use system default font instead of selected font"
-msgstr "Kryssa denna för att använda systemets standardtypsnitt istället för valt typsnitt"
+msgstr "Kryssa för att använda systemets standardteckensnitt istället för valt teckensnitt"
 
 #: ../globaltime/gt_prefs.c:963
 msgid "Click to change default font for clock time"
-msgstr "Klicka för att ändra standardtypsnitt för klockans tid"
+msgstr "Klicka för att ändra standardteckensnitt för klockans tid"
 
 #. ------------------------underline name--------------------
 #: ../globaltime/gt_prefs.c:990
@@ -257,6 +277,10 @@ msgstr "Standard"
 #: ../globaltime/gt_prefs.c:1083
 msgid "Use normal decorations"
 msgstr "Använd vanliga dekorationer"
+
+#: ../globaltime/gt_prefs.c:1089 ../src/appointment.c:3290
+msgid "None"
+msgstr "Ingen"
 
 #: ../globaltime/gt_prefs.c:1094
 msgid "Do not show window decorations (borders)"
@@ -406,71 +430,87 @@ msgstr "Visa klockor från olika länder"
 msgid "Globaltime"
 msgstr "Globaltid"
 
-#: ../panel-plugin/oc_config.c:224
+#: ../panel-plugin/oc_config.c:239
+msgid "No rotation"
+msgstr "Ingen rotation"
+
+#: ../panel-plugin/oc_config.c:239
+msgid "Rotate left"
+msgstr "Rotera vänster"
+
+#: ../panel-plugin/oc_config.c:240
+msgid "Rotate right"
+msgstr "Rotera höger"
+
+#: ../panel-plugin/oc_config.c:248
 msgid "Appearance"
 msgstr "Utseende"
 
 #. show frame
-#: ../panel-plugin/oc_config.c:229
+#: ../panel-plugin/oc_config.c:257
 msgid "Show _frame"
 msgstr "Visa _ram"
 
 #. foreground color
-#: ../panel-plugin/oc_config.c:239
+#: ../panel-plugin/oc_config.c:263
 msgid "set foreground _color:"
 msgstr "ange _förgrundsfärg:"
 
 #. background color
-#: ../panel-plugin/oc_config.c:253
+#: ../panel-plugin/oc_config.c:277
 msgid "set _background color:"
 msgstr "ange _bakgrundsfärg:"
 
-#. clock size (=vbox size): height and width
-#: ../panel-plugin/oc_config.c:267
+#. clock size (=mbox size): height and width
+#: ../panel-plugin/oc_config.c:291
 msgid "set _height:"
 msgstr "ange _höjd:"
 
-#: ../panel-plugin/oc_config.c:277
+#: ../panel-plugin/oc_config.c:301
 msgid "Note that you can not change the height of horizontal panels"
 msgstr "Notera att du inte kan ändra höjden på horisontala paneler"
 
-#: ../panel-plugin/oc_config.c:282
+#: ../panel-plugin/oc_config.c:306
 msgid "set _width:"
 msgstr "ange _bredd:"
 
-#: ../panel-plugin/oc_config.c:293
+#: ../panel-plugin/oc_config.c:316
 msgid "Note that you can not change the width of vertical panels"
 msgstr "Notera att du inte kan ändra bredden på vertikala paneler"
 
-#: ../panel-plugin/oc_config.c:316
+#: ../panel-plugin/oc_config.c:327
+msgid "Show lines _vertically"
+msgstr "Visa rader _vertikalt"
+
+#: ../panel-plugin/oc_config.c:350
 msgid "Clock Options"
 msgstr "Klockalternativ"
 
 #. timezone
-#: ../panel-plugin/oc_config.c:326
+#: ../panel-plugin/oc_config.c:360
 msgid "set timezone to:"
 msgstr "ange tidszon till:"
 
-#: ../panel-plugin/oc_config.c:347
+#: ../panel-plugin/oc_config.c:381
 #, c-format
 msgid "Line %d:"
 msgstr "Rad %d:"
 
-#: ../panel-plugin/oc_config.c:357
+#: ../panel-plugin/oc_config.c:391
 msgid "Enter any valid strftime function parameter."
 msgstr "Ange en giltig funktionsparameter till strftime."
 
 #. Tooltip hint
-#: ../panel-plugin/oc_config.c:401
+#: ../panel-plugin/oc_config.c:435
 msgid "Tooltip:"
 msgstr "Verktygstips:"
 
 #. special timing for SUSPEND/HIBERNATE
-#: ../panel-plugin/oc_config.c:411
+#: ../panel-plugin/oc_config.c:445
 msgid "fix time after suspend/hibernate"
 msgstr "korrigera tiden efter viloläge/vänteläge"
 
-#: ../panel-plugin/oc_config.c:415
+#: ../panel-plugin/oc_config.c:449
 msgid ""
 "You only need this if you do short term (less than 5 hours) suspend or "
 "hibernate and your visible time does not include seconds. Under these "
@@ -479,7 +519,7 @@ msgid ""
 "features from working.)"
 msgstr "Du behöver endast denna om du gör korta (mindre än 5 timmar) vänteläge eller viloläge och din synliga tid inte inkluderar sekunder. Under dessa förhållanden är det möjligt att Orageclock visar tiden felaktigt såvida du inte har valt detta alternativ. (Välja detta förhindrar sparfunktioner för processor och avbrott från att fungera.)"
 
-#: ../panel-plugin/oc_config.c:432
+#: ../panel-plugin/oc_config.c:466
 msgid ""
 "This program uses strftime function to get time.\n"
 "Use any valid code to get time in the format you prefer.\n"
@@ -491,11 +531,10 @@ msgid ""
 "\t%X = local time\t\t\t%x = local date"
 msgstr "Detta program använder strftime-funktionen för att hämta tid.\nAnvänd någon giltig kod för att få tid i formatet du föredrar.\nNågra vanliga koder är:\n\t%A = veckodag\t\t\t%B = månad\n\t%c = datum och tid\t\t%R = timme och minut\n\t%V = veckonummer\t\t%Z = tidszon som används\n\t%H = timmar \t\t\t\t%M = minut\n\t%X = lokal tid\t\t\t%x = lokalt datum"
 
-#: ../panel-plugin/oc_config.c:457
+#: ../panel-plugin/oc_config.c:491
 msgid "Orage clock Preferences"
 msgstr "Inställningar för Orage"
 
-#. no lines yet
 #. TRANSLATORS: Use format characters from strftime(3)
 #. * to get the proper string for your locale.
 #. * I used these:
@@ -504,7 +543,7 @@ msgstr "Inställningar för Orage"
 #. * %B  : full month name
 #. * %Y  : four digit year
 #. * %V  : ISO week number
-#: ../panel-plugin/xfce4-orageclock-plugin.c:627
+#: ../panel-plugin/xfce4-orageclock-plugin.c:700
 msgid "%A %d %B %Y/%V"
 msgstr "%A %d %B %Y/%V"
 
@@ -862,7 +901,7 @@ msgstr "Hur ofta du vill få alarm:\n 1) före händelsens start\n 2) före att 
 
 #: ../src/appointment.c:3053
 msgid "Persistent alarm"
-msgstr "Bestående alarm"
+msgstr "Upprepat alarm"
 
 #: ../src/appointment.c:3055
 msgid ""
@@ -951,7 +990,7 @@ msgid ""
 "\t<&AT> alarm time\n"
 "\t<&ST> appointment start time\n"
 "\t<&ET> appointment end time"
-msgstr "Du måste själv ange alla kontrolltecken.\nDen här strängen ges till shell bara för bearbetning.\nFöljande specialkommandon ersätts vid körning:\n\t<&T>  mötestitel\n\t<&D>  mötesbeskrivning\n\t<&AT> alarmtid\n\t<&ST> starttid för möte\n\t<&ET> sluttid för möte"
+msgstr "Du måste själv ange alla kontrolltecken.\nDen här strängen ges till shell bara för bearbetning.\nFöljande specialkommandon ersätts vid körning:\n\t<&T>  mötesnamn\n\t<&D>  mötesbeskrivning\n\t<&AT> alarmtid\n\t<&ST> starttid för möte\n\t<&ET> sluttid för möte"
 
 #: ../src/appointment.c:3208
 msgid "Test this alarm by raising it now"
@@ -968,10 +1007,6 @@ msgstr "Lagra aktuella inställningar som standardalarm"
 #: ../src/appointment.c:3228
 msgid "Set current settings from default alarm"
 msgstr "Ange aktuella inställningar från standardalarm"
-
-#: ../src/appointment.c:3290
-msgid "None"
-msgstr "Ingen"
 
 #: ../src/appointment.c:3290
 msgid "Daily"
@@ -1804,7 +1839,7 @@ msgstr "_Hjälp"
 
 #: ../src/mainbox.c:414 ../src/reminder.c:1138
 msgid "No title defined"
-msgstr "Ingen titel definierad"
+msgstr "Inget namn definierat"
 
 #: ../src/mainbox.c:471
 #, c-format
@@ -1830,7 +1865,7 @@ msgid ""
 "%s Start:\t%s\n"
 " Due:\t%s\n"
 " Done:\t%s%s"
-msgstr "Titel: %s\n%s Start:\t%s\n Till:\t%s\n Färdigt:\t%s%s"
+msgstr "Namn: %s\n%s Start:\t%s\n Till:\t%s\n Färdigt:\t%s%s"
 
 #: ../src/mainbox.c:503
 #, c-format
@@ -1838,7 +1873,7 @@ msgid ""
 "Title: %s\n"
 "%s Start:\t%s\n"
 " End:\t%s%s"
-msgstr "Titel: %s\n%s Start:\t%s\n Slut:\t%s%s"
+msgstr "Namn: %s\n%s Start:\t%s\n Slut:\t%s%s"
 
 #: ../src/mainbox.c:613
 msgid "<b>To do:</b>"
@@ -1932,7 +1967,7 @@ msgstr "0 = visa inte händelselistan alls"
 
 #: ../src/parameters.c:686
 msgid "Calendar visibility"
-msgstr "Kalender synlighet"
+msgstr "Kalendersynlighet"
 
 #: ../src/parameters.c:691
 msgid "Show on all desktops"
@@ -1944,7 +1979,7 @@ msgstr "Behåll överst"
 
 #: ../src/parameters.c:704
 msgid "Show in taskbar"
-msgstr "Visa i verktygsraden"
+msgstr "Visa i aktivitetsraden"
 
 #: ../src/parameters.c:709
 msgid "Show in pager"
@@ -1972,7 +2007,7 @@ msgstr "Minimerad"
 
 #: ../src/parameters.c:787
 msgid "On calendar window open"
-msgstr "Öppna fönster på kalender"
+msgstr "Vid öppning av kalenderfönster"
 
 #: ../src/parameters.c:792
 msgid "Select today's date"
@@ -1984,7 +2019,7 @@ msgstr "Välj tidigare valt datum"
 
 #: ../src/parameters.c:823
 msgid "Calendar day double click shows"
-msgstr "Kalenderdagar dubbelklick visar"
+msgstr "Dubbelklick på kalenderdagar visar"
 
 #: ../src/parameters.c:828
 msgid "Days view"
@@ -2014,11 +2049,11 @@ msgstr "Detta är bara standardvärdet, du kan ändra det i själva händelselis
 
 #: ../src/parameters.c:891
 msgid "Show only first repeating event"
-msgstr "Visa bara första upprepande händelse"
+msgstr "Visa bara första upprepade händelse"
 
 #: ../src/parameters.c:907
 msgid "Day view window default first day"
-msgstr "Dagsfönster standard första dag"
+msgstr "Standarddagsvy första dag"
 
 #: ../src/parameters.c:912
 msgid "First day of week"
@@ -2026,7 +2061,7 @@ msgstr "Veckans första dag"
 
 #: ../src/parameters.c:925
 msgid "Selected day"
-msgstr "Vald dag"
+msgstr "Markerad dag"
 
 #: ../src/parameters.c:943
 msgid "Use dynamic tray icon"
@@ -2052,11 +2087,11 @@ msgstr "Använd detta om Orage har problem att vakna upp ordentligt efter vänte
 
 #: ../src/parameters.c:982
 msgid "Foreign file default visual alarm"
-msgstr "Främmande fil standard visuellt alarm"
+msgstr "Främmande filstandard för visuellt alarm"
 
 #: ../src/parameters.c:987
 msgid "Orage window"
-msgstr "Orage fönster"
+msgstr "Oragefönster"
 
 #: ../src/parameters.c:1000
 msgid "Notify notification"
