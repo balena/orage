@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-23 12:30+0200\n"
-"PO-Revision-Date: 2015-06-26 14:13+0000\n"
+"PO-Revision-Date: 2015-06-26 19:05+0000\n"
 "Last-Translator: Moo\n"
 "Language-Team: Lithuanian (http://www.transifex.com/projects/p/xfce-apps/language/lt/)\n"
 "MIME-Version: 1.0\n"
@@ -477,7 +477,7 @@ msgstr "Turėkite omeny jog jūs negalite keisti vertikalių skydelių pločio"
 
 #: ../panel-plugin/oc_config.c:327
 msgid "Show lines _vertically"
-msgstr ""
+msgstr "Rodyti eilutes _vertikaliai"
 
 #: ../panel-plugin/oc_config.c:350
 msgid "Clock Options"
@@ -630,7 +630,7 @@ msgstr "Nepavyko atnaujinti paskyrimo."
 msgid ""
 "Look more details from the log file. (Perhaps file was updated external from"
 " Orage?)"
-msgstr ""
+msgstr "Išsamesnę informaciją žiūrėkite žurnalo faile. (Galbūt, failas buvo atnaujintas atskirai nuo Orage?)"
 
 #: ../src/appointment.c:1286
 msgid "This appointment will be permanently removed."
@@ -844,7 +844,7 @@ msgid ""
 "You can use that feature to unclutter your list windows, but it makes it more difficult to find this appointment.\n"
 "(Alarms will still fire normally.)\n"
 "(There is undocumented parameter so that you can change the default limit of 8.)"
-msgstr ""
+msgstr "Jei nustatysite tai į 8 ar daugiau, sąrašo languose paskyrimas NEBUS rodomas.\nGalite naudoti šią ypatybę, norėdami sutvarkyti savo sąrašo langus, tačiau tuomet bus sunkiau rasti šį paskyrimą.\n(Signalai veiks kaip įprasta.)\n(Yra neaprašytas parametras, leidžiantis pakeisti numatytąją 8 ribą.)"
 
 #. note
 #: ../src/appointment.c:2918
@@ -1288,24 +1288,24 @@ msgstr "Rodyti papildomas dienas:"
 
 #: ../src/event-list.c:1240
 msgid "only first repeating"
-msgstr "tik pirmas pasikartojantis"
+msgstr "tik pirmą pasikartojantį"
 
 #: ../src/event-list.c:1245
 msgid ""
 "Check this if you only want to see the first repeating event. By default all are shown.\n"
 "Note that this also shows all urgencies.\n"
 "Note that repeating events may appear earlier in the list as the first occurrence only is listed."
-msgstr ""
+msgstr "Pažymėkite tai, jei norite matyti tik pirmą besikartojantį įvykį. Pagal numatymą yra rodomi visi.\nPastebėkite, jog tai taip pat rodo visus skubumus.\nAtkreipkite dėmesį, kad pasikartojantys įvykiai gali būti rodomi sąraše anksčiau, kadangi yra rodomas pirmas pasikartojimas."
 
 #: ../src/event-list.c:1250
 msgid "also old"
-msgstr "ir seni"
+msgstr "ir senus"
 
 #: ../src/event-list.c:1252
 msgid ""
 "Check this if you want to see old events also. This can only be selected after 'only first repeating' is enabled to avoid very long lists.\n"
 "Note that extra days selection still defines if newer appointments are listed'."
-msgstr ""
+msgstr "Pažymėkite tai jei norite matyti ir senus įvykius. Tai gali būti pasirinkta tik pažymėjus \"tik pirmą pasikartojantį\", siekiant išvengti labai ilgų sąrašų.\nAtkreipkite dėmesį, kad papildomų dienų pasirinkimas vis tik apibrėžia ar yra rodomi naujesni paskyrimai."
 
 #: ../src/event-list.c:1290
 msgid "Journal entries starting from:"
@@ -1408,12 +1408,12 @@ msgstr "Numatytasis Orage signalas"
 
 #: ../src/ical-code.c:3179
 msgid "Created alarm list for main Orage file:"
-msgstr ""
+msgstr "Sukurtas signalų sąrašas pagrindiniam Orage failui:"
 
 #: ../src/ical-code.c:3181
 #, c-format
 msgid "Created alarm list for foreign file: %s (%s)"
-msgstr ""
+msgstr "Sukurtas signalų sąrašas išoriniam failui: %s (%s)"
 
 #: ../src/ical-code.c:3183
 #, c-format
@@ -1481,11 +1481,11 @@ msgstr "Orage gali apdoroti tik 10 išorinių failų. Pasiekta riba."
 
 #: ../src/interface.c:697
 msgid "Filename is empty."
-msgstr ""
+msgstr "Tuščias failo pavadinimas."
 
 #: ../src/interface.c:705
 msgid "Name is empty."
-msgstr ""
+msgstr "Tuščias pavadinimas."
 
 #: ../src/interface.c:713
 msgid "File does not exist."
@@ -1493,11 +1493,11 @@ msgstr "Failas neegzistuoja."
 
 #: ../src/interface.c:722
 msgid "Same filename already exists in Orage."
-msgstr ""
+msgstr "Toks pats failo pavadinimas jau yra programoje Orage."
 
 #: ../src/interface.c:730
 msgid "Same name already exists in Orage."
-msgstr ""
+msgstr "Toks pats pavadinimas jau yra programoje Orage."
 
 #: ../src/interface.c:965
 msgid "Import/export"
@@ -1648,7 +1648,7 @@ msgstr "Išorinis failas:"
 #. gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 5);
 #: ../src/interface.c:1279
 msgid "Visible name:"
-msgstr ""
+msgstr "Matomas pavadinimas:"
 
 #: ../src/interface.c:1285
 msgid "Read only"
@@ -1765,7 +1765,7 @@ msgstr "--toggle (-t) \t\trodyti/nerodyti orage\n"
 #: ../src/main.c:319
 #, c-format
 msgid "--add-foreign (-a) file [RW] [name] \tadd a foreign file\n"
-msgstr "--add-foreign (-a) failas [RW] [name] \tpridėti išorinį failą\n"
+msgstr "--add-foreign (-a) failas [RW] [pavadinimas] \tpridėti išorinį failą\n"
 
 #: ../src/main.c:320
 #, c-format
@@ -1836,7 +1836,7 @@ msgstr "_Žinynas"
 
 #: ../src/mainbox.c:414 ../src/reminder.c:1138
 msgid "No title defined"
-msgstr ""
+msgstr "Nėra apibrėžta antraštė"
 
 #: ../src/mainbox.c:471
 #, c-format
@@ -1862,7 +1862,7 @@ msgid ""
 "%s Start:\t%s\n"
 " Due:\t%s\n"
 " Done:\t%s%s"
-msgstr ""
+msgstr "Antraštė: %s\n%s Pradžia:\t%s\n Trukmė:\t%s\n Atlikta:\t%s%s"
 
 #: ../src/mainbox.c:503
 #, c-format
@@ -1870,7 +1870,7 @@ msgid ""
 "Title: %s\n"
 "%s Start:\t%s\n"
 " End:\t%s%s"
-msgstr ""
+msgstr "Antraštė: %s\n%s Pradžia:\t%s\n Pabaiga:\t%s%s"
 
 #: ../src/mainbox.c:613
 msgid "<b>To do:</b>"
@@ -1924,7 +1924,7 @@ msgstr "Kalendoriaus langas"
 
 #: ../src/parameters.c:603
 msgid "Calendar visual details"
-msgstr "Išsamesnė vizuali kalendoriaus informacija"
+msgstr "Išsamesnė vaizdinė kalendoriaus informacija"
 
 #: ../src/parameters.c:609
 msgid "Show borders"
@@ -2084,7 +2084,7 @@ msgstr "Šį laikmatį naudokite jei Orage kyla problemų pabundant po sustabdym
 
 #: ../src/parameters.c:982
 msgid "Foreign file default visual alarm"
-msgstr ""
+msgstr "Išorinio failo numatytasis vaizdinis signalas"
 
 #: ../src/parameters.c:987
 msgid "Orage window"
@@ -2092,7 +2092,7 @@ msgstr "Orage langas"
 
 #: ../src/parameters.c:1000
 msgid "Notify notification"
-msgstr ""
+msgstr "Informavimo pranešimas"
 
 #: ../src/parameters.c:1018
 msgid "Always quit when asked to close"
@@ -3330,7 +3330,7 @@ msgstr "Azija/Nikosija"
 
 #: ../src/timezone_names.c:327
 msgid "Asia/Novokuznetsk"
-msgstr ""
+msgstr "Azija/Novokuzneckas"
 
 #: ../src/timezone_names.c:328
 msgid "Asia/Novosibirsk"
@@ -3430,7 +3430,7 @@ msgstr "Azija/Tel_Avivas"
 
 #: ../src/timezone_names.c:352
 msgid "Asia/Thimbu"
-msgstr ""
+msgstr "Azija/Timpu"
 
 #: ../src/timezone_names.c:353
 msgid "Asia/Thimphu"
@@ -3622,7 +3622,7 @@ msgstr "Kanada/Centrinė"
 
 #: ../src/timezone_names.c:400
 msgid "Canada/East-Saskatchewan"
-msgstr ""
+msgstr "Kanada/Rytų_Saskačevanas"
 
 #: ../src/timezone_names.c:401
 msgid "Canada/Eastern"
@@ -3634,7 +3634,7 @@ msgstr ""
 
 #: ../src/timezone_names.c:403
 msgid "Canada/Newfoundland"
-msgstr ""
+msgstr "Kanada/Niufaundlandas"
 
 #: ../src/timezone_names.c:404
 msgid "Canada/Pacific"
@@ -3642,7 +3642,7 @@ msgstr "Kanada/Ramusis"
 
 #: ../src/timezone_names.c:405
 msgid "Canada/Saskatchewan"
-msgstr ""
+msgstr "Kanada/Saskačevanas"
 
 #: ../src/timezone_names.c:406
 msgid "Canada/Yukon"
@@ -4370,15 +4370,15 @@ msgstr "JAV/Arizona"
 
 #: ../src/timezone_names.c:587
 msgid "US/Central"
-msgstr ""
+msgstr "JAV/Centrinės"
 
 #: ../src/timezone_names.c:588
 msgid "US/Eastern"
-msgstr ""
+msgstr "JAV/Rytinės"
 
 #: ../src/timezone_names.c:589
 msgid "US/East-Indiana"
-msgstr ""
+msgstr "JAV/Rytų_Indiana"
 
 #: ../src/timezone_names.c:590
 msgid "US/Hawaii"
