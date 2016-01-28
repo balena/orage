@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-23 12:30+0200\n"
-"PO-Revision-Date: 2016-01-26 20:32+0000\n"
+"PO-Revision-Date: 2016-01-28 17:30+0000\n"
 "Last-Translator: Elishai Eliyahu <e1907@mm.st>\n"
 "Language-Team: Hebrew (http://www.transifex.com/xfce/xfce-apps/language/he/)\n"
 "MIME-Version: 1.0\n"
@@ -862,23 +862,23 @@ msgid ""
 "These are converted only later when they are seen:\n"
 "    <&Ynnnn> is translated to current year minus nnnn.\n"
 "(This can be used for example in birthday reminders to tell how old the person will be.)"
-msgstr ""
+msgstr "פקודות מקוצרות אלו נכנסות לתוקף מיידית:\n<D> מכניס תאריך נוכחי בפורמט תאריך מקומי\n<T> מכניס זמן ו-\n<DT> מכניס תאריך וזמן.\n\nואלו מומרות רק מאוחר יותר כאשר הן נראות:\n<&Ynnnn> מתורגם לשנה נוכחית מינוס nnnn.\n(זה ניתן לשימוש למשל בתזכורות ליום הולדת בכדי לדעת בן כמה האדם יהיה.)"
 
 #: ../src/appointment.c:3010
 msgid "Before Start"
-msgstr ""
+msgstr "לפני התחלה"
 
 #: ../src/appointment.c:3010
 msgid "Before End"
-msgstr ""
+msgstr "לפני סיום"
 
 #: ../src/appointment.c:3011
 msgid "After Start"
-msgstr ""
+msgstr "לאחר התחלה"
 
 #: ../src/appointment.c:3011
 msgid "After End"
-msgstr ""
+msgstr "לאחר סיום"
 
 #: ../src/appointment.c:3018
 msgid "Alarm"
@@ -887,7 +887,7 @@ msgstr "התראה"
 #. **** ALARM TIME ****
 #: ../src/appointment.c:3024
 msgid "Alarm time"
-msgstr ""
+msgstr "זמן אזעקה"
 
 #: ../src/appointment.c:3048
 msgid ""
@@ -895,17 +895,17 @@ msgid ""
 " 1) before Event start\n"
 " 2) before Todo end\n"
 " 3) after Todo start"
-msgstr ""
+msgstr "מתי אתה רוצה לקבל התראה:\n1) לפני התחלת מאורע\n2) לפני סיום דבר לעשות\n3) לאחר התחלת דבר לעשות"
 
 #: ../src/appointment.c:3053
 msgid "Persistent alarm"
-msgstr ""
+msgstr "אזעקה מתמשכת"
 
 #: ../src/appointment.c:3055
 msgid ""
 "Select this if you want Orage to remind you even if it has not been active "
 "when the alarm happened."
-msgstr ""
+msgstr "בחר בזה אם ברצונך ש-Orage יזכיר לך גם אם הוא לא היה פעיל בזמן שהאזעקה התרחשה."
 
 #. **** Audio Alarm ****
 #: ../src/appointment.c:3064
@@ -914,11 +914,11 @@ msgstr "צליל"
 
 #: ../src/appointment.c:3068 ../src/appointment.c:3188
 msgid "Use"
-msgstr ""
+msgstr "שימוש"
 
 #: ../src/appointment.c:3070
 msgid "Select this if you want audible alarm"
-msgstr ""
+msgstr "בחר בזה אם ברצונך באזעקה קולית"
 
 #: ../src/appointment.c:3087
 msgid "Repeat alarm sound"
@@ -930,53 +930,53 @@ msgstr "זמנים"
 
 #: ../src/appointment.c:3119
 msgid "sec interval"
-msgstr ""
+msgstr "מרווח שניות"
 
 #. **** Display Alarm ****
 #: ../src/appointment.c:3129
 msgid "Visual"
-msgstr ""
+msgstr "ויזואלי"
 
 #: ../src/appointment.c:3133
 msgid "Use Orage window"
-msgstr ""
+msgstr "השתמש בחלון Orage"
 
 #: ../src/appointment.c:3135
 msgid "Select this if you want Orage window alarm"
-msgstr ""
+msgstr "בחר בזה אם רצונך באזעקת חלון Orage "
 
 #: ../src/appointment.c:3147
 msgid "Use notification"
-msgstr ""
+msgstr "הודעת שימוש"
 
 #: ../src/appointment.c:3149
 msgid "Select this if you want notification alarm"
-msgstr ""
+msgstr "בחר בזה אם רצונך באזעקת הודעה."
 
 #: ../src/appointment.c:3155
 msgid "Set timeout"
-msgstr ""
+msgstr "קבע פסק זמן"
 
 #: ../src/appointment.c:3157
 msgid "Select this if you want notification to expire automatically"
-msgstr ""
+msgstr "בחר בזה אם ברצונך שההודעה תפקע אוטומטית"
 
 #: ../src/appointment.c:3168
 msgid "0 = system default expiration time"
-msgstr ""
+msgstr "0 = זמן פקיעה ברירת מחדל של מערכת"
 
 #: ../src/appointment.c:3173
 msgid "seconds"
-msgstr ""
+msgstr "שניות"
 
 #. **** Procedure Alarm ****
 #: ../src/appointment.c:3184
 msgid "Procedure"
-msgstr ""
+msgstr "הליך"
 
 #: ../src/appointment.c:3190
 msgid "Select this if you want procedure or script alarm"
-msgstr ""
+msgstr "בחר בזה אם רצונך באזעקת הליך או תסריט"
 
 #: ../src/appointment.c:3196
 msgid ""
@@ -988,23 +988,23 @@ msgid ""
 "\t<&AT> alarm time\n"
 "\t<&ST> appointment start time\n"
 "\t<&ET> appointment end time"
-msgstr ""
+msgstr "אתה חייב להכניס את כל התווי בריחה בעצמך.\nמחרוזת זו רק ניתנת ל-shell לעיבוד.\nהפקודות המיוחדות הבאות מוחלפות בזמן עבודה:\n<&T> שם פגישה\n<&D> פירוט פגישה\n<&AT> זמן אזעקה\n<&ST> זמן התחלת פגישה\n<&ET> זמן סיום פגישה"
 
 #: ../src/appointment.c:3208
 msgid "Test this alarm by raising it now"
-msgstr ""
+msgstr "בדוק אזעקה זו ע\"י הפעלתה עכשיו"
 
 #: ../src/appointment.c:3215
 msgid "<b>Default alarm</b>"
-msgstr ""
+msgstr "<b>אזעקת ברירת מחדל</b> "
 
 #: ../src/appointment.c:3223
 msgid "Store current settings as default alarm"
-msgstr ""
+msgstr "אחסן הגדרות נוכחיות כאזעקת ברירת מחדל"
 
 #: ../src/appointment.c:3228
 msgid "Set current settings from default alarm"
-msgstr ""
+msgstr "קבע הגדרות נוכחיות מאזעקת ברירת מחדל"
 
 #: ../src/appointment.c:3290
 msgid "Daily"
@@ -1024,35 +1024,35 @@ msgstr "שנתי"
 
 #: ../src/appointment.c:3290
 msgid "Hourly"
-msgstr ""
+msgstr "שעתי"
 
 #: ../src/appointment.c:3292
 msgid "Mon"
-msgstr ""
+msgstr "שני"
 
 #: ../src/appointment.c:3292
 msgid "Tue"
-msgstr ""
+msgstr "שלישי"
 
 #: ../src/appointment.c:3292
 msgid "Wed"
-msgstr ""
+msgstr "רביעי"
 
 #: ../src/appointment.c:3292
 msgid "Thu"
-msgstr ""
+msgstr "חמישי"
 
 #: ../src/appointment.c:3292
 msgid "Fri"
-msgstr ""
+msgstr "שישי"
 
 #: ../src/appointment.c:3292
 msgid "Sat"
-msgstr ""
+msgstr "שבת"
 
 #: ../src/appointment.c:3292
 msgid "Sun"
-msgstr ""
+msgstr "ראשון"
 
 #: ../src/appointment.c:3297
 msgid "Recurrence"
@@ -1061,50 +1061,50 @@ msgstr "מופע חוזר"
 #. complexity
 #: ../src/appointment.c:3303
 msgid "Complexity"
-msgstr ""
+msgstr "מורכבות"
 
 #: ../src/appointment.c:3306
 msgid "Basic"
-msgstr ""
+msgstr "בסיסי"
 
 #: ../src/appointment.c:3312
 msgid "Advanced"
-msgstr ""
+msgstr "מתקדם"
 
 #: ../src/appointment.c:3316
 msgid "Use this if you want regular repeating event"
-msgstr ""
+msgstr "השתמש בזה אם רצונך באירוע חוזר רגיל"
 
 #: ../src/appointment.c:3318
 msgid ""
 "Use this if you need complex times like:\n"
 " Every Saturday and Sunday or \n"
 " First Tuesday every month"
-msgstr ""
+msgstr "השתמש בזה אם אתה צריך זמנים מורכבים כמו:\nכל שבת וראשון או\nיום שלישי הראשון בכל חודש"
 
 #. frequency
 #: ../src/appointment.c:3324
 msgid "Frequency"
-msgstr ""
+msgstr "תדירות"
 
 #: ../src/appointment.c:3330
 msgid "Each"
-msgstr ""
+msgstr "כל"
 
 #: ../src/appointment.c:3337
 msgid "occurrence"
-msgstr ""
+msgstr "התרחשות"
 
 #: ../src/appointment.c:3341
 msgid ""
 "Limit frequency to certain interval.\n"
 " For example: Every third day:\n"
 " Frequency = Daily and Interval = 3"
-msgstr ""
+msgstr "הגבל תדירות למרווח מסוים.\nלדוגמה: כל יום שלישי במספר:\nתדירות = יומית ומרווח = 3"
 
 #: ../src/appointment.c:3386
 msgid "Limit"
-msgstr ""
+msgstr "גבול"
 
 #: ../src/appointment.c:3388
 msgid "Repeat forever"
@@ -1121,11 +1121,11 @@ msgstr "חזור עד "
 #. weekdays (only for complex settings)
 #: ../src/appointment.c:3423
 msgid "Weekdays"
-msgstr ""
+msgstr "ימי חול"
 
 #: ../src/appointment.c:3435
 msgid "Which day"
-msgstr ""
+msgstr "איזה יום"
 
 #: ../src/appointment.c:3443
 msgid ""
@@ -1135,24 +1135,24 @@ msgid ""
 "\tFrequency = Monthly,\n"
 "\tWeekdays = check only Wednesday,\n"
 "\tWhich day = select 2 from the number below Wednesday"
-msgstr ""
+msgstr "ציין איזה יום חול לאירועים חודשיים ושנתיים.\nלדוגמה:\nיום רביעי השני במספר כל חודש:\nתדירות = חודשית,\nימי חול = בחר רק ברביעי,\nאיזה יום = בחר 2 מהמספר מלמטה לרביעי"
 
 #. TODO base (only for TODOs)
 #: ../src/appointment.c:3450
 msgid "TODO base"
-msgstr ""
+msgstr "בסיס דברים לעשות"
 
 #: ../src/appointment.c:3463
 msgid ""
 "TODO reoccurs regularly starting on start time and repeating after each "
 "interval no matter when it was last completed"
-msgstr ""
+msgstr "דברים לעשות חוזר בקביעות החל מזמן התחלה וחוזר לאחר כל מרווח לא משנה מתי הוא הושלם לאחרונה"
 
 #: ../src/appointment.c:3465
 msgid ""
 "TODO reoccurrency is based on complete time and repeats after the interval counted from the last completed time.\n"
 "(Note that you can not tell anything about the history of the TODO since reoccurrence base changes after each completion.)"
-msgstr ""
+msgstr "חזרת דברים לעשות מבוססת על זמן השלמה וחוזרת לאחר מרווח שנספר מזמן השלמה אחרון.\n(שים לב שאתה לא יכול לדעת כלום על ההיסטוריה של דברים לעשות מאחר ובסיס החזרה משתנה לאחר כל השלמה.)"
 
 #. exceptions
 #: ../src/appointment.c:3471
