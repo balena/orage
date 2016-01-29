@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-23 12:30+0200\n"
-"PO-Revision-Date: 2016-01-29 10:53+0000\n"
+"PO-Revision-Date: 2016-01-29 14:23+0000\n"
 "Last-Translator: Elishai Eliyahu <e1907@mm.st>\n"
 "Language-Team: Hebrew (http://www.transifex.com/xfce/xfce-apps/language/he/)\n"
 "MIME-Version: 1.0\n"
@@ -1761,41 +1761,41 @@ msgstr "--preferences (-p) \tהצג טופס העדפות\n\n"
 #: ../src/main.c:318
 #, c-format
 msgid "--toggle (-t) \t\tmake orage visible/unvisible\n"
-msgstr ""
+msgstr "--toggle (-t) \t\tהפוך את orage לנראה/בלתי נראה\n"
 
 #: ../src/main.c:319
 #, c-format
 msgid "--add-foreign (-a) file [RW] [name] \tadd a foreign file\n"
-msgstr ""
+msgstr "--add-foreign (-a) file [RW] [name] \tהוסף קובץ זר\n"
 
 #: ../src/main.c:320
 #, c-format
 msgid "--remove-foreign (-r) file \tremove a foreign file\n"
-msgstr ""
+msgstr "--remove-foreign (-r) file \tהסר קובץ זר\n"
 
 #: ../src/main.c:321
 #, c-format
 msgid ""
 "--export (-e) file [appointment...] \texport appointments from Orage to "
 "file\n"
-msgstr ""
+msgstr "--export (-e) file [appointment...] \tייצא פגישות מ-orage לקובץ\n"
 
 #: ../src/main.c:323
 #, c-format
 msgid "files=ical files to load into orage\n"
-msgstr ""
+msgstr "files=קבצי ical להעלות אל orage \n"
 
 #: ../src/main.c:325
 #, c-format
 msgid "\tdbus not included in orage. \n"
-msgstr ""
+msgstr "dbus לא נכלל ב-orage. \n\n"
 
 #: ../src/main.c:326
 #, c-format
 msgid ""
 "\twithout dbus [files] and foreign file options(-a & -r) can only be used "
 "when starting orage \n"
-msgstr ""
+msgstr "ללא dbus [קבצים] וקובץ זר, אפשרויות (-a & -r) ניתנות לשימוש רק בעת התחלת orage \n"
 
 #: ../src/main.c:535
 #, c-format
@@ -1803,11 +1803,11 @@ msgid ""
 "\n"
 "Unknown option %s\n"
 "\n"
-msgstr ""
+msgstr "\nאפשרות לא ידועה %s \n\n"
 
 #: ../src/mainbox.c:305
 msgid "_Exchange data"
-msgstr ""
+msgstr "החלף מידע"
 
 #. Edit menu
 #: ../src/mainbox.c:316
@@ -1820,7 +1820,7 @@ msgstr "הצג _תאריך נבחר"
 
 #: ../src/mainbox.c:329
 msgid "View selected _week"
-msgstr ""
+msgstr "צפה בשבוע נבחר"
 
 #: ../src/mainbox.c:335
 msgid "Select _Today"
@@ -1828,7 +1828,7 @@ msgstr "_בחר את היום"
 
 #: ../src/mainbox.c:341
 msgid "Show _Globaltime"
-msgstr ""
+msgstr "הצג זמן גלובלי"
 
 #. Help menu
 #: ../src/mainbox.c:345
@@ -1837,12 +1837,12 @@ msgstr "_עזרה"
 
 #: ../src/mainbox.c:414 ../src/reminder.c:1138
 msgid "No title defined"
-msgstr ""
+msgstr "אף שם לא הוגדר"
 
 #: ../src/mainbox.c:471
 #, c-format
 msgid " Location: %s\n"
-msgstr ""
+msgstr "מיקום: %s \n"
 
 #: ../src/mainbox.c:481
 #, c-format
@@ -1850,11 +1850,11 @@ msgid ""
 "\n"
 " Note:\n"
 "%s"
-msgstr ""
+msgstr "\nשים לב:\n%s "
 
 #: ../src/mainbox.c:489
 msgid "Never"
-msgstr ""
+msgstr "אף פעם"
 
 #: ../src/mainbox.c:495
 #, c-format
@@ -1863,7 +1863,7 @@ msgid ""
 "%s Start:\t%s\n"
 " Due:\t%s\n"
 " Done:\t%s%s"
-msgstr ""
+msgstr "שם: %s \n%s התחלה: %s \nאמור ל: %s \nסיום: %s%s "
 
 #: ../src/mainbox.c:503
 #, c-format
@@ -1871,25 +1871,25 @@ msgid ""
 "Title: %s\n"
 "%s Start:\t%s\n"
 " End:\t%s%s"
-msgstr ""
+msgstr "שם: %s \n%s התחלה: %s \nסיום: %s%s "
 
 #: ../src/mainbox.c:613
 msgid "<b>To do:</b>"
-msgstr ""
+msgstr "<b>לעשות:</b> "
 
 #: ../src/mainbox.c:649
 #, c-format
 msgid "<b>Events for %s:</b>"
-msgstr ""
+msgstr "<b>אירועים ל-%s:</b>"
 
 #: ../src/mainbox.c:660
 #, c-format
 msgid "<b>Events for %s - %s:</b>"
-msgstr ""
+msgstr "<b>אירועים ל %s - %s:</b>"
 
 #: ../src/parameters.c:492
 msgid "Main settings"
-msgstr ""
+msgstr "הגדרות עיקריות"
 
 #: ../src/parameters.c:498
 msgid "Timezone"
@@ -1897,83 +1897,83 @@ msgstr "אזור-זמן"
 
 #: ../src/parameters.c:513
 msgid "You should always define your local timezone."
-msgstr ""
+msgstr "אתה תמיד צריך להגדיר את איזור הזמן המקומי שלך."
 
 #: ../src/parameters.c:521
 msgid "Archive threshold (months)"
-msgstr ""
+msgstr "סף ארכיון (חודשים)"
 
 #: ../src/parameters.c:531
 msgid "(0 = no archiving)"
-msgstr ""
+msgstr "(0 = ללא ארכיון)"
 
 #: ../src/parameters.c:534
 msgid "Archiving is used to save time and space when handling events."
-msgstr ""
+msgstr "ארכיון משמש לחסוך זמן ומקום בעת טיפול באירועים."
 
 #: ../src/parameters.c:542
 msgid "Sound command"
-msgstr ""
+msgstr "פקודת קול"
 
 #: ../src/parameters.c:557
 msgid "This command is given to shell to make sound in alarms."
-msgstr ""
+msgstr "פקודה זו ניתנת ל-shell ליצירת קול באזעקות."
 
 #: ../src/parameters.c:596
 msgid "Calendar window"
-msgstr ""
+msgstr "חלון יומן"
 
 #: ../src/parameters.c:603
 msgid "Calendar visual details"
-msgstr ""
+msgstr "פרטים ויזואלים יומן"
 
 #: ../src/parameters.c:609
 msgid "Show borders"
-msgstr ""
+msgstr "הצג גבולות"
 
 #: ../src/parameters.c:614
 msgid "Show menu"
-msgstr ""
+msgstr "הצג תפריט"
 
 #: ../src/parameters.c:622
 msgid "Show day names"
-msgstr ""
+msgstr "הצג שמות ימים"
 
 #: ../src/parameters.c:627
 msgid "Show week numbers"
-msgstr ""
+msgstr "הצג מספרי שבועות"
 
 #: ../src/parameters.c:635
 msgid "Show month and year"
-msgstr ""
+msgstr "הצג חודש ושנה"
 
 #: ../src/parameters.c:655
 msgid "Calendar info boxes"
-msgstr ""
+msgstr "קופסאות מידע יומן"
 
 #: ../src/parameters.c:660
 msgid "Show todo list"
-msgstr ""
+msgstr "הצג רשימת דברים לעשות"
 
 #: ../src/parameters.c:667
 msgid "Number of days to show in event window"
-msgstr ""
+msgstr "מספר ימים להצגה בחלון אירוע"
 
 #: ../src/parameters.c:673
 msgid "0 = do not show event list at all"
-msgstr ""
+msgstr "0 = אל תציג רשימת אירועים כלל "
 
 #: ../src/parameters.c:686
 msgid "Calendar visibility"
-msgstr ""
+msgstr "נראות יומן"
 
 #: ../src/parameters.c:691
 msgid "Show on all desktops"
-msgstr ""
+msgstr "הצג בכל שולחנות העבודה"
 
 #: ../src/parameters.c:696
 msgid "Keep on top"
-msgstr ""
+msgstr "שמור מעל"
 
 #: ../src/parameters.c:704
 msgid "Show in taskbar"
@@ -2005,110 +2005,110 @@ msgstr "ממוזער"
 
 #: ../src/parameters.c:787
 msgid "On calendar window open"
-msgstr ""
+msgstr "בעת פתיחת חלון יומן"
 
 #: ../src/parameters.c:792
 msgid "Select today's date"
-msgstr ""
+msgstr "בחר בתאריך של היום"
 
 #: ../src/parameters.c:805
 msgid "Select previously selected date"
-msgstr ""
+msgstr "בחר בתאריך שנבחר קודם"
 
 #: ../src/parameters.c:823
 msgid "Calendar day double click shows"
-msgstr ""
+msgstr "קליק כפול ביום יומן מראה"
 
 #: ../src/parameters.c:828
 msgid "Days view"
-msgstr ""
+msgstr "מבט ימים"
 
 #: ../src/parameters.c:840
 msgid "Event list"
-msgstr ""
+msgstr "רשימת אירועים"
 
 #: ../src/parameters.c:862
 msgid "Extra settings"
-msgstr ""
+msgstr "הגדרות נוספות"
 
 #: ../src/parameters.c:869
 msgid "Event list window"
-msgstr ""
+msgstr "חלון רשימת אירועים"
 
 #: ../src/parameters.c:874
 msgid "Number of extra days to show in event list"
-msgstr ""
+msgstr "מספר ימים נוספים להצגה ברשימת אירועים"
 
 #: ../src/parameters.c:883
 msgid ""
 "This is just the default value, you can change it in the actual eventlist "
 "window."
-msgstr ""
+msgstr "זה רק ערך ברירת מחדל, אתה יכול לשנות אותו בחלון רשימת אירועים עצמו."
 
 #: ../src/parameters.c:891
 msgid "Show only first repeating event"
-msgstr ""
+msgstr "הצג רק אירוע חוזר ראשון"
 
 #: ../src/parameters.c:907
 msgid "Day view window default first day"
-msgstr ""
+msgstr "ברירת מחדל של יום ראשון במספר בחלון מבט יום"
 
 #: ../src/parameters.c:912
 msgid "First day of week"
-msgstr ""
+msgstr "יום ראשון במספר בשבוע"
 
 #: ../src/parameters.c:925
 msgid "Selected day"
-msgstr ""
+msgstr "יום נבחר"
 
 #: ../src/parameters.c:943
 msgid "Use dynamic tray icon"
-msgstr ""
+msgstr "השתמש באייקון מגש דינמי"
 
 #: ../src/parameters.c:948
 msgid "Use dynamic icon"
-msgstr ""
+msgstr "השתמש באייקון דינמי"
 
 #: ../src/parameters.c:954
 msgid "Dynamic icon shows current month and day of the month."
-msgstr ""
+msgstr "אייקון דינמי מראה חודש נוכחי ויום בחודש."
 
 #: ../src/parameters.c:962 ../src/parameters.c:967
 msgid "Use wakeup timer"
-msgstr ""
+msgstr "השתמש בטיימר התעוררות"
 
 #: ../src/parameters.c:973
 msgid ""
 "Use this timer if Orage has problems waking up properly after suspend or "
 "hibernate. (For example tray icon not refreshed or alarms not firing.)"
-msgstr ""
+msgstr "השתמש בטיימר זה אם ל-Orage יש בעיות להתעורר כנדרש לאחר הפסקה או שינה. (לדוגמה אייקון מגש שלא מרוענן או אזעקות שלא מופעלות.)"
 
 #: ../src/parameters.c:982
 msgid "Foreign file default visual alarm"
-msgstr ""
+msgstr "ברירת מחדל של אזעקה ויזואלית לקובץ זר"
 
 #: ../src/parameters.c:987
 msgid "Orage window"
-msgstr ""
+msgstr "חלון Orage "
 
 #: ../src/parameters.c:1000
 msgid "Notify notification"
-msgstr ""
+msgstr "הודעת יידע"
 
 #: ../src/parameters.c:1018
 msgid "Always quit when asked to close"
-msgstr ""
+msgstr "הפסק תמיד כאשר תתבקש לסגור"
 
 #: ../src/parameters.c:1023
 msgid "Always quit"
-msgstr ""
+msgstr "הפסק תמיד"
 
 #: ../src/parameters.c:1029
 msgid ""
 "By default Orage stays open in the background when asked to close. This "
 "option changes Orage to quit and never stay in background when it is asked "
 "to close."
-msgstr ""
+msgstr "כברירת מחדל Orage נשאר פתוח ברקע כאשר הוא מתבקש לסגור. אפשרות זו משנה את Orage להפסיק ולעולם לא להישאר ברקע כאשר הוא מתבקש לסגור."
 
 #: ../src/parameters.c:1045
 msgid "Orage Preferences"
@@ -2116,16 +2116,16 @@ msgstr "העדפות Orage"
 
 #: ../src/parameters.c:1157
 msgid "First Orage start. Searching default timezone."
-msgstr ""
+msgstr "התחלה ראשונה של Orage. מחפש איזור זמן ברירת מחדל."
 
 #: ../src/parameters.c:1176
 #, c-format
 msgid "Default timezone set to %s."
-msgstr ""
+msgstr "איזור זמן ברירת מחדל נקבע ל-%s. "
 
 #: ../src/parameters.c:1179
 msgid "Default timezone not found, please, set it manually."
-msgstr ""
+msgstr "איזור זמן ברירת מחדל לא נמצא, אנא, קבע אותו ידנית."
 
 #: ../src/reminder.c:562
 msgid "Reminder "
@@ -2133,37 +2133,37 @@ msgstr "תזכורת "
 
 #: ../src/reminder.c:591
 msgid "Open"
-msgstr ""
+msgstr "פתח"
 
 #: ../src/reminder.c:719
 msgid "Reminder - Orage"
-msgstr ""
+msgstr "תזכורת - Orage "
 
 #: ../src/reminder.c:803
 msgid "Postpone"
-msgstr ""
+msgstr "דחה"
 
 #: ../src/reminder.c:805
 msgid "Remind me again after the specified time"
-msgstr ""
+msgstr "הזכר לי שוב לאחר הזמן שצוין"
 
 #: ../src/reminder.c:1091
 msgid "Next active alarms:"
-msgstr ""
+msgstr "אזעקות פעילות הבאות בתור:"
 
 #: ../src/reminder.c:1145
 #, c-format
 msgid ""
 "\n"
 "%02d d %02d h %02d min to: %s"
-msgstr ""
+msgstr "\n%02d d %02d h %02d min to: %s"
 
 #: ../src/reminder.c:1154
 #, c-format
 msgid ""
 "\n"
 "No active alarms found"
-msgstr ""
+msgstr "\nלא נמצאו אזעקות פעילות"
 
 #: ../src/timezone_names.c:36
 msgid "Africa"
@@ -2187,7 +2187,7 @@ msgstr "אפריקה/אלג'יר"
 
 #: ../src/timezone_names.c:41
 msgid "Africa/Asmara"
-msgstr ""
+msgstr "אפריקה/אסמרה"
 
 #: ../src/timezone_names.c:42
 msgid "Africa/Asmera"
@@ -2271,7 +2271,7 @@ msgstr "אפריקה/הרארה"
 
 #: ../src/timezone_names.c:62
 msgid "Africa/Juba"
-msgstr ""
+msgstr "אפריקה/ג'ובה"
 
 #: ../src/timezone_names.c:63
 msgid "Africa/Johannesburg"
@@ -2411,55 +2411,55 @@ msgstr "אמריקה/אראגואינה"
 
 #: ../src/timezone_names.c:97
 msgid "America/Argentina/Buenos_Aires"
-msgstr ""
+msgstr "אמריקה/ארגנטינה/בואנוס איירס"
 
 #: ../src/timezone_names.c:98
 msgid "America/Argentina/Catamarca"
-msgstr ""
+msgstr "אמריקה/ארגנטינה/קטמרקה"
 
 #: ../src/timezone_names.c:99
 msgid "America/Argentina/ComodRivadavia"
-msgstr ""
+msgstr "אמריקה/ארגנטינה/קומודריוואדוויה"
 
 #: ../src/timezone_names.c:100
 msgid "America/Argentina/Cordoba"
-msgstr ""
+msgstr "אמריקה/ארגנטינה/קורדובה"
 
 #: ../src/timezone_names.c:101
 msgid "America/Argentina/Jujuy"
-msgstr ""
+msgstr "אמריקה/ארגנטינה/ג'וג'וי"
 
 #: ../src/timezone_names.c:102
 msgid "America/Argentina/La_Rioja"
-msgstr ""
+msgstr "אמריקה/ארגנטינה/לה ריוג'ה"
 
 #: ../src/timezone_names.c:103
 msgid "America/Argentina/Mendoza"
-msgstr ""
+msgstr "אמריקה/ארגנטינה/מנדוזה"
 
 #: ../src/timezone_names.c:104
 msgid "America/Argentina/Rio_Gallegos"
-msgstr ""
+msgstr "אמריקה/ארגנטינה/ריו גלגוס"
 
 #: ../src/timezone_names.c:105
 msgid "America/Argentina/Salta"
-msgstr ""
+msgstr "אמריקה/ארגנטינה/סלטה"
 
 #: ../src/timezone_names.c:106
 msgid "America/Argentina/San_Juan"
-msgstr ""
+msgstr "אמריקה/ארגנטינה/סאן חואן"
 
 #: ../src/timezone_names.c:107
 msgid "America/Argentina/San_Luis"
-msgstr ""
+msgstr "אמריקה/ארגנטינה/סאן לואיס"
 
 #: ../src/timezone_names.c:108
 msgid "America/Argentina/Tucuman"
-msgstr ""
+msgstr "אמריקה/ארגנטינה/טוקומן"
 
 #: ../src/timezone_names.c:109
 msgid "America/Argentina/Ushuaia"
-msgstr ""
+msgstr "אמריקה/ארגנטינה/אושואיה"
 
 #: ../src/timezone_names.c:110
 msgid "America/Aruba"
@@ -2471,19 +2471,19 @@ msgstr "אמריקה/אסונסיון"
 
 #: ../src/timezone_names.c:112
 msgid "America/Atikokan"
-msgstr ""
+msgstr "אמריקה/אטיקוקן"
 
 #: ../src/timezone_names.c:113
 msgid "America/Atka"
-msgstr ""
+msgstr "אמריקה/אטקה"
 
 #: ../src/timezone_names.c:114
 msgid "America/Bahia"
-msgstr ""
+msgstr "אמריקה/בהיה"
 
 #: ../src/timezone_names.c:115
 msgid "America/Bahia_Banderas"
-msgstr ""
+msgstr "אמריקה/בהיה בנדרס"
 
 #: ../src/timezone_names.c:116
 msgid "America/Barbados"
@@ -2499,7 +2499,7 @@ msgstr "אמריקה/בליז"
 
 #: ../src/timezone_names.c:119
 msgid "America/Blanc-Sablon"
-msgstr ""
+msgstr "אמריקה/בלנק-סבלון"
 
 #: ../src/timezone_names.c:120
 msgid "America/Boa_Vista"
@@ -2523,7 +2523,7 @@ msgstr "אמריקה/קיימברידג' ביי"
 
 #: ../src/timezone_names.c:125
 msgid "America/Campo_Grande"
-msgstr ""
+msgstr "אמריקה/קמפו גרנדה"
 
 #: ../src/timezone_names.c:126
 msgid "America/Cancun"
@@ -2555,7 +2555,7 @@ msgstr "אמריקה/צ'יוואווה"
 
 #: ../src/timezone_names.c:133
 msgid "America/Coral_Harbour"
-msgstr ""
+msgstr "אמריקה/קורל הרבור"
 
 #: ../src/timezone_names.c:134
 msgid "America/Cordoba"
@@ -2567,7 +2567,7 @@ msgstr "אמריקה/קוסטה ריקה"
 
 #: ../src/timezone_names.c:136
 msgid "America/Creston"
-msgstr ""
+msgstr "אמריקה/קרסטון"
 
 #: ../src/timezone_names.c:137
 msgid "America/Cuiaba"
@@ -2579,7 +2579,7 @@ msgstr "אמריקה/קורסאו"
 
 #: ../src/timezone_names.c:139
 msgid "America/Danmarkshavn"
-msgstr ""
+msgstr "אמריקה/דנמרקסהייבן"
 
 #: ../src/timezone_names.c:140
 msgid "America/Dawson"
@@ -2607,7 +2607,7 @@ msgstr "אמריקה/אדמונטון"
 
 #: ../src/timezone_names.c:146
 msgid "America/Ensenada"
-msgstr ""
+msgstr "אמריקה/אנסנדה"
 
 #: ../src/timezone_names.c:147
 msgid "America/Eirunepe"
