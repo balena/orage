@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-23 12:30+0200\n"
-"PO-Revision-Date: 2016-01-28 19:30+0000\n"
+"PO-Revision-Date: 2016-01-29 10:53+0000\n"
 "Last-Translator: Elishai Eliyahu <e1907@mm.st>\n"
 "Language-Team: Hebrew (http://www.transifex.com/xfce/xfce-apps/language/he/)\n"
 "MIME-Version: 1.0\n"
@@ -1342,7 +1342,7 @@ msgid ""
 "\t\tO=Orage A=Archive F=Foreign\n"
 "\t 5. Appointment type:\n"
 "\t\tE=Event T=Todo J=Journal"
-msgstr ""
+msgstr "בצע קליק כפול בשורה כדי לערוך אותה.\n\nאותיות סימון לפי סדר:\n1. אזעקה: n = ללא אזעקה\nA = אזעקה מכוונת P = אזעקה מתמשכת מכוונת\n2. חזרה: n = ללא חזרה\nH = שעתי D = יומי W = שבועי M = חודשי Y = שנתי\n3. סוג: f = חופשי B = עסוק\n4. נמצא בקובץ:\nO = אורג' A = ארכיון F = זר\n5. סוג פגישה:\nE = אירוע T = דברים לעשות J = יומן"
 
 #. remove since it has ended
 #: ../src/ical-archive.c:267
@@ -1556,78 +1556,78 @@ msgstr "אתה יכול לגרור את אלה בקלות מחלון רשימת 
 
 #: ../src/interface.c:1061
 msgid "Orage appointment UIDs separated by commas."
-msgstr ""
+msgstr "UID של פגישות Orage מופרדים בפסיקים."
 
 #: ../src/interface.c:1067
 msgid "Archive"
-msgstr ""
+msgstr "ארכיון"
 
 #: ../src/interface.c:1075
 #, c-format
 msgid "Archive now (threshold: %d months)"
-msgstr ""
+msgstr "העבר לארכיון עכשיו (סף: %d חודשים)"
 
 #: ../src/interface.c:1085
 msgid "You can change archive threshold in parameters"
-msgstr ""
+msgstr "אתה יכול לשנות סף ארכיון בפרמטרים"
 
 #: ../src/interface.c:1092
 msgid "Revert archive now"
-msgstr ""
+msgstr "החזר ארכיון עכשיו"
 
 #: ../src/interface.c:1098
 msgid ""
 "Return all archived events into main orage file and remove arch file.\n"
 "This is useful for example when doing export and moving orage\n"
 "appointments to another system."
-msgstr ""
+msgstr "החזר את כל האירועים שהועברו לארכיון לקובץ Orage העיקרי והסר את קובץ הארכיון.\nזה שימושי לדוגמה כאשר מבצעים יצוא ומעבירים את פגישות\n Orage למערכת אחרת."
 
 #: ../src/interface.c:1109
 msgid "Orage files"
-msgstr ""
+msgstr "קבצי Orage "
 
 #: ../src/interface.c:1116
 msgid "Orage main calendar file"
-msgstr ""
+msgstr "קובץ יומן עיקרי Orage "
 
 #: ../src/interface.c:1121 ../src/interface.c:1186
 msgid "Current file:"
-msgstr ""
+msgstr "קובץ נוכחי:"
 
 #: ../src/interface.c:1128 ../src/interface.c:1193
 msgid "New file:"
-msgstr ""
+msgstr "קובץ חדש:"
 
 #: ../src/interface.c:1144 ../src/interface.c:1210
 msgid "Action options:"
-msgstr ""
+msgstr "אפשרויות פעולה:"
 
 #: ../src/interface.c:1147 ../src/interface.c:1213
 msgid "Rename"
-msgstr ""
+msgstr "שנה שם"
 
 #: ../src/interface.c:1151
 msgid ""
 "Orage internal file rename only.\n"
 "Does not touch external filesystem at all.\n"
 "New file must exist."
-msgstr ""
+msgstr "שינוי שם קובץ Orage פנימי בלבד.\nלא נוגע כלל במערכת קבצים חיצונית.\nקובץ חדש חייב להיות קיים."
 
 #: ../src/interface.c:1155 ../src/interface.c:1218
 msgid "Copy"
-msgstr ""
+msgstr "העתק"
 
 #: ../src/interface.c:1159
 msgid "Current file is copied and stays unmodified in the old place."
-msgstr ""
+msgstr "קובץ נוכחי מועתק ונשאר ללא שינוי במיקום הישן."
 
 #: ../src/interface.c:1163 ../src/interface.c:1223
 msgid "Move"
-msgstr ""
+msgstr "העבר"
 
 #: ../src/interface.c:1167
 msgid "Current file is moved and vanishes from the old place."
-msgstr ""
+msgstr "קובץ נוכחי מועבר ונעלם מהמיקום הישן."
 
 #: ../src/interface.c:1181
 msgid "Archive file"
@@ -1635,128 +1635,128 @@ msgstr "קובץ ארכיב"
 
 #: ../src/interface.c:1245
 msgid "Foreign files"
-msgstr ""
+msgstr "קבצים זרים"
 
 #: ../src/interface.c:1252
 msgid "Add new foreign file"
-msgstr ""
+msgstr "הוסף קובץ זר חדש"
 
 #: ../src/interface.c:1257
 msgid "Foreign file:"
-msgstr ""
+msgstr "קובץ זר:"
 
 #. label = gtk_label_new(_("Options:"));
 #. gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 5);
 #: ../src/interface.c:1279
 msgid "Visible name:"
-msgstr ""
+msgstr "שם נראה:"
 
 #: ../src/interface.c:1285
 msgid "Read only"
-msgstr ""
+msgstr "קריאה בלבד"
 
 #: ../src/interface.c:1292
 msgid ""
 "Set this if you want to make sure that this file is never modified by Orage.\n"
 "Note that modifying foreign files may make them incompatible with the original tool, where they came from!"
-msgstr ""
+msgstr "קבע זאת אם ברצונך לוודא שקובץ זה לעולם לא ישונה ע\"י Orage. \nשים לב ששינוי קבצים זרים עלול להפוך אותם ללא מתאימים לכלי המקורי, מהיכן שהם באים!"
 
 #: ../src/interface.c:1294
 msgid "This internal name is displayed to user instead of file name."
-msgstr ""
+msgstr "שם פנימי זה מוצג למשתמש במקום שם הקובץ."
 
 #: ../src/interface.c:1308
 msgid "Exchange data - Orage"
-msgstr ""
+msgstr "מידע החלפה - Orage "
 
 #: ../src/main.c:275
 #, c-format
 msgid ""
 "\tThis is %s version %s\n"
 "\n"
-msgstr ""
+msgstr "זה %s גרסה %s \n\n"
 
 #: ../src/main.c:277
 #, c-format
 msgid "\tReleased under the terms of the GNU General Public License.\n"
-msgstr ""
+msgstr "פורסם לפי התנאים של רישיון GNU לציבור הכללי.\n"
 
 #: ../src/main.c:278
 #, c-format
 msgid "\tCompiled against GTK+-%d.%d.%d, "
-msgstr ""
+msgstr "עבר הדרה כנגד GTK+-%d.%d.%d, "
 
 #: ../src/main.c:280
 #, c-format
 msgid "using GTK+-%d.%d.%d.\n"
-msgstr ""
+msgstr "משתמש ב- GTK+-%d.%d.%d.\n"
 
 #: ../src/main.c:283
 #, c-format
 msgid "\tUsing DBUS for import.\n"
-msgstr ""
+msgstr "משתמש ב- DBUS ליבוא.\n"
 
 #: ../src/main.c:285
 #, c-format
 msgid "\tNot using DBUS. Import works only partially.\n"
-msgstr ""
+msgstr "לא משתמש ב- DBUS. יבוא עובד חלקית בלבד. \n"
 
 #: ../src/main.c:288
 #, c-format
 msgid "\tUsing libnotify.\n"
-msgstr ""
+msgstr "משתמש ב- libnotify. \n"
 
 #: ../src/main.c:290
 #, c-format
 msgid "\tNot using libnotify.\n"
-msgstr ""
+msgstr "לא משתמש ב- libnotify. \n"
 
 #: ../src/main.c:293
 #, c-format
 msgid "\tUsing automatic archiving.\n"
-msgstr ""
+msgstr "משתמש בארכיון אוטומטי.\n"
 
 #: ../src/main.c:295
 #, c-format
 msgid "\tNot using archiving.\n"
-msgstr ""
+msgstr "לא משתמש בארכיון.\n"
 
 #: ../src/main.c:298
 #, c-format
 msgid "\tUsing operating system package libical.\n"
-msgstr ""
+msgstr "משתמש בחבילת libical של מערכת ההפעלה.\n"
 
 #: ../src/main.c:300
 #, c-format
 msgid "\tUsing Orage local version of libical.\n"
-msgstr ""
+msgstr "משתמש בגרסה מקומית של Orage ל- libical.\n"
 
 #: ../src/main.c:313
 #, c-format
 msgid ""
 "Usage: orage [options] [files]\n"
 "\n"
-msgstr ""
+msgstr "Usage: orage [options] [files]\n\n"
 
 #: ../src/main.c:314
 #, c-format
 msgid "Options:\n"
-msgstr ""
+msgstr "אפשרויות:\n"
 
 #: ../src/main.c:315
 #, c-format
 msgid "--version (-v) \t\tshow version of orage\n"
-msgstr ""
+msgstr "--version (-v) \t\tהצג גרסה של orage\n\n"
 
 #: ../src/main.c:316
 #, c-format
 msgid "--help (-h) \t\tprint this text\n"
-msgstr ""
+msgstr "--help (-h) \t\tהדפס טקסט זה\n\n"
 
 #: ../src/main.c:317
 #, c-format
 msgid "--preferences (-p) \tshow preferences form\n"
-msgstr ""
+msgstr "--preferences (-p) \tהצג טופס העדפות\n\n"
 
 #: ../src/main.c:318
 #, c-format
