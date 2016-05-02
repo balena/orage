@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-23 12:30+0200\n"
-"PO-Revision-Date: 2016-05-02 09:16+0000\n"
+"PO-Revision-Date: 2016-05-02 13:13+0000\n"
 "Last-Translator: Robert Antoni Buj i Gelonch <rbuj@fedoraproject.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/xfce/xfce-apps/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -926,7 +926,7 @@ msgstr "Repeteix ĺ'alarma sonora"
 
 #: ../src/appointment.c:3103 ../src/appointment.c:3402
 msgid "times"
-msgstr "vegades"
+msgstr "vegad(a/es)"
 
 #: ../src/appointment.c:3119
 msgid "sec interval"
@@ -1000,7 +1000,7 @@ msgstr "<b>Alarma predeterminada</b>"
 
 #: ../src/appointment.c:3223
 msgid "Store current settings as default alarm"
-msgstr "Desa els els paràmetres actuals com els de l'alarma per defecte"
+msgstr "Desa els ajusts actuals com als de l'alarma predeterminada"
 
 #: ../src/appointment.c:3228
 msgid "Set current settings from default alarm"
@@ -1073,14 +1073,14 @@ msgstr "Avançada"
 
 #: ../src/appointment.c:3316
 msgid "Use this if you want regular repeating event"
-msgstr "Empreu-lo si voleu un esdeveniment que es repeteixi regularment"
+msgstr "Utilitzeu-ho si voleu que es repeteixi regularment un esdeveniment"
 
 #: ../src/appointment.c:3318
 msgid ""
 "Use this if you need complex times like:\n"
 " Every Saturday and Sunday or \n"
 " First Tuesday every month"
-msgstr "Empreu-lo si us calen formes complexes, com per exemple:\n Cada dissabte i diumenge o \n Primer dijous de cada mes"
+msgstr "Utilitzeu-ho si necessiteu hores complexes com ara:\n Cada dissabte i diumenge o \n Primer dijous de cada mes"
 
 #. frequency
 #: ../src/appointment.c:3324
@@ -1093,7 +1093,7 @@ msgstr "Cada"
 
 #: ../src/appointment.c:3337
 msgid "occurrence"
-msgstr "ocurrència"
+msgstr "ocurrènci(a/es)"
 
 #: ../src/appointment.c:3341
 msgid ""
@@ -1164,7 +1164,7 @@ msgid ""
 "Add more exception dates by clicking the calendar days below.\n"
 "Exception is either exclusion(-) or inclusion(+) depending on the selection.\n"
 "Remove by clicking the data."
-msgstr "Afegiu més dades d'excepció fent clic als dies del calendari.\nL'excepció pot ser d'exclusió (-) o d'inclusió (+) depenent de la selecció.\nLa podeu treure fent clic a la data."
+msgstr "Afegiu més dades d'excepció en fer clic als dies del calendari.\nL'excepció pot ser d'exclusió (-) o d'inclusió (+) depenent de la selecció.\nEs pot suprimir en fer clic a les dades."
 
 #: ../src/appointment.c:3489
 msgid "Add excluded date (-)"
@@ -1187,7 +1187,7 @@ msgstr "Les hores d'inclusió tenen la mateixa zona horària que la hora d'inici
 #. calendars showing the action days
 #: ../src/appointment.c:3516
 msgid "Action dates"
-msgstr "Dades d'accions"
+msgstr "Dates d'acció"
 
 #. ********* View menu *********
 #. View menu
@@ -1238,7 +1238,7 @@ msgstr "       Nombre de dies a mostrar"
 
 #: ../src/day-view.c:1073
 msgid "Orage - day view"
-msgstr "Orage - vista diària"
+msgstr "Orage - visualització del dia"
 
 #. date only appointment
 #: ../src/event-list.c:191
@@ -1281,7 +1281,7 @@ msgstr "Cerca"
 
 #: ../src/event-list.c:1196
 msgid "Dayview"
-msgstr "Vista diària"
+msgstr "Visualització del dia"
 
 #: ../src/event-list.c:1231
 msgid "Extra days to show:"
@@ -1351,12 +1351,12 @@ msgstr "\tRepetició finalitzada, s'està movent a l'arxiu."
 
 #: ../src/ical-archive.c:330
 msgid "Archiving not enabled. Exiting"
-msgstr "Arxivament no habilitat. Eixint"
+msgstr "L'arxivament no està habilitat. S'està sortint"
 
 #: ../src/ical-archive.c:349
 #, c-format
 msgid "Archiving threshold: %d month(s)"
-msgstr "Llindar de temps de per l'arxivament de cites: %d mesos"
+msgstr "Llindar de l'arxivament: %d mesos"
 
 #. yy mon day
 #: ../src/ical-archive.c:352
@@ -1382,7 +1382,7 @@ msgstr "\tRepetint-se. Fi l'any: %04d, mes: %02d, day: %02d"
 
 #: ../src/ical-archive.c:407
 msgid "Archiving done\n"
-msgstr "Arxivament de cites acabat.\n"
+msgstr "Arxivament completat\n"
 
 #. PHASE 1: go through base orage file and remove "repeat" shortcuts
 #: ../src/ical-archive.c:423
@@ -1397,11 +1397,11 @@ msgstr "\tFASE 1: netejant cites recursives"
 #. * After that delete the whole arch file
 #: ../src/ical-archive.c:446
 msgid "\tPHASE 2: return archived appointments"
-msgstr "\tFASE 2: recuperant cites arxivades."
+msgstr "\tFASE 2: retorna les cites arxivades"
 
 #: ../src/ical-archive.c:472
 msgid "Archive removal done\n"
-msgstr "S'ha esborrat el fitxer de cites\n"
+msgstr "S'ha completat la supressió de l'arxiu\n"
 
 #: ../src/ical-code.c:972
 msgid "Orage default alarm"
@@ -1419,13 +1419,13 @@ msgstr "S'ha creat la llista de les alarmes per al fitxer extern: %s (%s)"
 #: ../src/ical-code.c:3183
 #, c-format
 msgid "\tAdded %d alarms. Processed %d events."
-msgstr "\tS'han afegit %d alarmes. S'ha processat %d esdeveniments."
+msgstr "\tS'han afegit %d alarmes. S'han processat %d esdeveniments."
 
 #: ../src/ical-code.c:3185
 #, c-format
 msgid ""
 "\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
-msgstr "\tS'han trobat %d alarmes de les quals %d estan actives. (Cercades %d alarmes recurrents)."
+msgstr "\tS'han trobat %d alarmes de les quals %d estan actives. (S'han cercat %d alarmes recurrents)."
 
 #: ../src/ical-expimp.c:123
 msgid "Starting import file preprocessing"
@@ -1552,7 +1552,7 @@ msgstr "Tingueu en compte que tant sols es llegeix el fitxer principal de cites.
 
 #: ../src/interface.c:1059
 msgid "You can easily drag these from event-list window."
-msgstr "Podeu arrossegar-lo des de la finestra amb la llista d'esdeveniments."
+msgstr "Podeu arrossegar-lo des de la finestra amb la llista dels esdeveniments."
 
 #: ../src/interface.c:1061
 msgid "Orage appointment UIDs separated by commas."
@@ -1820,15 +1820,15 @@ msgstr "Visualitza la _data seleccionada"
 
 #: ../src/mainbox.c:329
 msgid "View selected _week"
-msgstr "Mostra la _setmana seleccionada"
+msgstr "Visualitza la _setmana seleccionada"
 
 #: ../src/mainbox.c:335
 msgid "Select _Today"
-msgstr "Seleccioneu _avui"
+msgstr "Selecciona la data d'_avui"
 
 #: ../src/mainbox.c:341
 msgid "Show _Globaltime"
-msgstr "Hora _global"
+msgstr "Mostra l'horari _mundial"
 
 #. Help menu
 #: ../src/mainbox.c:345
@@ -1889,7 +1889,7 @@ msgstr "<b>Esdeveniments per %s - %s:</b>"
 
 #: ../src/parameters.c:492
 msgid "Main settings"
-msgstr "Configuració principal"
+msgstr "Ajusts principals"
 
 #: ../src/parameters.c:498
 msgid "Timezone"
@@ -1913,11 +1913,11 @@ msgstr "L'arxivament s'utilitza per estalviar temps i espai quan es tracten els 
 
 #: ../src/parameters.c:542
 msgid "Sound command"
-msgstr "Ordre per sons"
+msgstr "Ordre per als sons"
 
 #: ../src/parameters.c:557
 msgid "This command is given to shell to make sound in alarms."
-msgstr "Aquesta ordre és dóna al shell per crear sons a les alarmes."
+msgstr "Aquesta ordre es dóna al shell per crear els sons a les alarmes."
 
 #: ../src/parameters.c:596
 msgid "Calendar window"
@@ -1957,11 +1957,11 @@ msgstr "Mostra la llista pendent per fer"
 
 #: ../src/parameters.c:667
 msgid "Number of days to show in event window"
-msgstr "Nombre de dies a mostrar a la finestra d'esdeveniments"
+msgstr "Nombre de dies a mostrar a la finestra dels esdeveniments"
 
 #: ../src/parameters.c:673
 msgid "0 = do not show event list at all"
-msgstr "0 = no mostra cap llista d'esdeveniments"
+msgstr "0 = no mostra del tot la llista dels esdeveniments"
 
 #: ../src/parameters.c:686
 msgid "Calendar visibility"
@@ -1989,7 +1989,7 @@ msgstr "Mostra a la safata del sistema"
 
 #: ../src/parameters.c:738
 msgid "Calendar start"
-msgstr "Inici del calendari"
+msgstr "Començament del calendari"
 
 #: ../src/parameters.c:743
 msgid "Show"
@@ -2017,19 +2017,19 @@ msgstr "Selecciona la data seleccionada anteriorment"
 
 #: ../src/parameters.c:823
 msgid "Calendar day double click shows"
-msgstr ""
+msgstr "En fer doble clic al dia del calendari es mostra"
 
 #: ../src/parameters.c:828
 msgid "Days view"
-msgstr "Dies mostrats"
+msgstr "Visualització del dies"
 
 #: ../src/parameters.c:840
 msgid "Event list"
-msgstr "Llista d'esdeveniments"
+msgstr "Llista dels esdeveniments"
 
 #: ../src/parameters.c:862
 msgid "Extra settings"
-msgstr "Configuració addicional"
+msgstr "Ajusts extres"
 
 #: ../src/parameters.c:869
 msgid "Event list window"
@@ -2037,7 +2037,7 @@ msgstr "Finestra de la llista dels esdeveniments"
 
 #: ../src/parameters.c:874
 msgid "Number of extra days to show in event list"
-msgstr "Nombre de dies extres a mostrar en el llistat d'esdeveniments"
+msgstr "Nombre de dies extres a mostrar en la llista dels esdeveniments"
 
 #: ../src/parameters.c:883
 msgid ""
@@ -2047,7 +2047,7 @@ msgstr "Aquest només és el valor predeterminat, podeu canviar-ho en la finestr
 
 #: ../src/parameters.c:891
 msgid "Show only first repeating event"
-msgstr ""
+msgstr "Mostra únicament la primera repetició de l'esdeveniment"
 
 #: ../src/parameters.c:907
 msgid "Day view window default first day"
@@ -2063,7 +2063,7 @@ msgstr "Dia seleccionat"
 
 #: ../src/parameters.c:943
 msgid "Use dynamic tray icon"
-msgstr "Utilitza una icona dinàmica a l'àrea de notificació"
+msgstr "Utilitza la icona dinàmica de l'àrea de notificació"
 
 #: ../src/parameters.c:948
 msgid "Use dynamic icon"
@@ -2081,11 +2081,11 @@ msgstr "Utilitza el rellotge despertador"
 msgid ""
 "Use this timer if Orage has problems waking up properly after suspend or "
 "hibernate. (For example tray icon not refreshed or alarms not firing.)"
-msgstr "Empreu aquest rellotge si Orage té problemes arrancant després de suspendre o hibernar. (Per exemple, la icona de la safata de missatges no es refresquen o no sonen les alarmes.)"
+msgstr "Utilitzeu aquest rellotge si Orage té problemes en despertar-se després de la suspensió o de la hibernació. (Per exemple, la icona de la safata no es refresca o no sonen les alarmes.)"
 
 #: ../src/parameters.c:982
 msgid "Foreign file default visual alarm"
-msgstr "Alarma visual predeterminada del fiter extern"
+msgstr "Alarma visual predeterminada del fitxer extern"
 
 #: ../src/parameters.c:987
 msgid "Orage window"
@@ -2112,7 +2112,7 @@ msgstr ""
 
 #: ../src/parameters.c:1045
 msgid "Orage Preferences"
-msgstr "Preferències Orage"
+msgstr "Preferències d'Orage"
 
 #: ../src/parameters.c:1157
 msgid "First Orage start. Searching default timezone."
@@ -4431,7 +4431,7 @@ msgstr "Preferències d'Orage"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:2
 msgid "Settings for the Xfce 4 Calendar Application (Orage)"
-msgstr "Paràmetres de l'aplicació de calendari de Xfce 4 (Orage)"
+msgstr "Ajusts per a l'aplicació de calendari de Xfce 4 (Orage)"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:3
 msgid "Orage Calendar Preferences"
