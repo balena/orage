@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-23 12:30+0200\n"
-"PO-Revision-Date: 2016-05-02 19:42+0000\n"
+"PO-Revision-Date: 2016-05-03 08:16+0000\n"
 "Last-Translator: Robert Antoni Buj i Gelonch <rbuj@fedoraproject.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/xfce/xfce-apps/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -1146,13 +1146,13 @@ msgstr "Pendent per fer - base"
 msgid ""
 "TODO reoccurs regularly starting on start time and repeating after each "
 "interval no matter when it was last completed"
-msgstr "Pendent de fer torna a succeir regularment iniciant-se a l'hora d'inici i repetint-se després de cada interval independentment de si es va completar la darrera vegada"
+msgstr "Pendent per fer torna a ocórrer amb regularitat, amb inici a l'hora de començament i amb repetició després de cada interval, sense tindre en compte si es va completar l'últim cop o no"
 
 #: ../src/appointment.c:3465
 msgid ""
 "TODO reoccurrency is based on complete time and repeats after the interval counted from the last completed time.\n"
 "(Note that you can not tell anything about the history of the TODO since reoccurrence base changes after each completion.)"
-msgstr "La recurrència dels pendents de fer es basa en períodes sencers i es repeteix després de l'interval contant-lo des de el darrer cop que es va completar.\n(Tingueu en compte que no podeu canviar res respecte a l'historial del pendent de fer des de la darrera ocurrència fins a cada una de les seves finalitzacions.)"
+msgstr "La recurrència del pendent per fer es basa en el temps de compleció i en les repeticions que calculen els intervals a partir de l'última hora de compleció.\n(Tingueu en compte que no podeu canviar res quant a l'històric del pendent per fer, ja que la base de la re-ocurrència canvia després de cadascuna de les complecions.)"
 
 #. exceptions
 #: ../src/appointment.c:3471
@@ -1182,7 +1182,7 @@ msgstr "Afegeix una hora d'inclusió (+)"
 msgid ""
 "Included times have same timezone than start time, but they may have "
 "different time"
-msgstr "Les hores d'inclusió tenen la mateixa zona horària que la hora d'inici, però poden tenir hores diferents"
+msgstr "Les hores d'inclusió tenen la mateixa zona horària que l'hora de començament, però poden tenir hores diferents"
 
 #. calendars showing the action days
 #: ../src/appointment.c:3516
@@ -1378,7 +1378,7 @@ msgstr "\tPendent per fer no completat; no s'ha arxivat"
 #: ../src/ical-archive.c:390
 #, c-format
 msgid "\tRecurring. End year: %04d, month: %02d, day: %02d"
-msgstr "\tRepetint-se. Fi l'any: %04d, mes: %02d, day: %02d"
+msgstr "\tRepetint-se. Acabament en l'any: %04d, el mes: %02d, el dia: %02d"
 
 #: ../src/ical-archive.c:407
 msgid "Archiving done\n"
@@ -1524,7 +1524,7 @@ msgstr "Exporta"
 
 #: ../src/interface.c:1004
 msgid "Write to file:"
-msgstr "Desa al fitxer;"
+msgstr "Escriu al fitxer:"
 
 #: ../src/interface.c:1025 ../src/interface.c:1037
 msgid "Select"
@@ -1542,13 +1542,13 @@ msgstr "Cites amb nom:"
 msgid ""
 "Note that only main file appointments are read.\n"
 "Archived and Foreign events are not exported."
-msgstr "Tingueu en compte que tant sols es llegeix el fitxer principal de cites.\nEls esdeveniments arxivats o externs no s'exporten."
+msgstr "Tingueu en compte que tan sols es llegeix el fitxer principal de cites.\nEls esdeveniments arxivats o externs no s'exporten."
 
 #: ../src/interface.c:1056
 msgid ""
 "Note that only main file appointments are read.\n"
 "Foreign events are not exported."
-msgstr "Tingueu en compte que tant sols es llegeix el fitxer principal de cites.\nEls esdeveniments externs no s'exporten."
+msgstr "Tingueu en compte que tan sols es llegeix el fitxer principal de cites.\nEls esdeveniments externs no s'exporten."
 
 #: ../src/interface.c:1059
 msgid "You can easily drag these from event-list window."
@@ -1556,7 +1556,7 @@ msgstr "Podeu arrossegar-lo des de la finestra amb la llista dels esdeveniments.
 
 #: ../src/interface.c:1061
 msgid "Orage appointment UIDs separated by commas."
-msgstr "UIDs de cites d'Orage separades per comes."
+msgstr "Els UID de les cites d'Orage separats per comes."
 
 #: ../src/interface.c:1067
 msgid "Archive"
@@ -1611,7 +1611,7 @@ msgid ""
 "Orage internal file rename only.\n"
 "Does not touch external filesystem at all.\n"
 "New file must exist."
-msgstr "Tant sols canvia el nom del fitxer intern d'Orage.\nNo modifica el sistema de fitxers extern de cap manera.\nCal que el fitxer nou existeixi."
+msgstr "Tan sols canvia el nom del fitxer intern d'Orage.\nNo modifica el sistema de fitxers extern de cap manera.\nCal que el fitxer nou existeixi."
 
 #: ../src/interface.c:1155 ../src/interface.c:1218
 msgid "Copy"
@@ -1684,7 +1684,7 @@ msgstr "\tDistribuït sota la llicència «GNU General Public License».\n"
 #: ../src/main.c:278
 #, c-format
 msgid "\tCompiled against GTK+-%d.%d.%d, "
-msgstr "\tCompilat mitjançant «GTK+-%d.%d.%d», "
+msgstr "\tEs va compilar amb GTK+-%d.%d.%d, "
 
 #: ../src/main.c:280
 #, c-format
