@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-23 12:30+0200\n"
-"PO-Revision-Date: 2016-12-23 23:10+0000\n"
+"PO-Revision-Date: 2016-12-25 17:24+0000\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/xfce/xfce-apps/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -32,7 +32,7 @@ msgstr "enkel"
 
 #: ../globaltime/globaltime.c:58
 msgid "double"
-msgstr "dobbel"
+msgstr "dobbelt"
 
 #: ../globaltime/globaltime.c:58
 msgid "low"
@@ -40,11 +40,11 @@ msgstr "lav"
 
 #: ../globaltime/globaltime.c:100
 msgid "Raising GlobalTime window..."
-msgstr "Løfter GlobalTime-vindue..."
+msgstr "Løfter verdensur-vindue..."
 
 #: ../globaltime/globaltime.c:102
 msgid "GlobalTime window raise failed"
-msgstr "Løft af GlobalTime-vindue fejlede"
+msgstr "Løft af verdensur-vindue fejlede"
 
 #. ********** timezone tooltip **********
 #: ../globaltime/globaltime.c:277
@@ -75,7 +75,7 @@ msgstr "juster for at ændre minut. Klik på pilene med knap 2 for kun at ændre
 
 #: ../globaltime/globaltime.c:548
 msgid "Global Time"
-msgstr "Global tid"
+msgstr "Verdensur"
 
 #: ../globaltime/gt_prefs.c:265 ../globaltime/gt_prefs.c:266
 msgid "NEW"
@@ -131,7 +131,7 @@ msgstr "luk vindue og afslut"
 
 #: ../globaltime/gt_prefs.c:590
 msgid "Globaltime preferences "
-msgstr "Globaltime-præferencer "
+msgstr "Verdensur-præferencer "
 
 #. -----------------------HEADING-------------------------------------------
 #: ../globaltime/gt_prefs.c:603
@@ -258,7 +258,7 @@ msgstr "opdater præferencer"
 
 #: ../globaltime/gt_prefs.c:1062
 msgid "Globaltime Preferences"
-msgstr "Globaltime-præferencer"
+msgstr "Verdensur-præferencer"
 
 #. -----------------------HEADING--------------------------------------
 #: ../globaltime/gt_prefs.c:1073
@@ -359,7 +359,7 @@ msgstr "ændres ikke"
 #: ../panel-plugin/timezone_selection.c:253 ../src/appointment.c:2776
 #: ../src/timezone_selection.c:259 ../src/timezone_selection.c:264
 msgid "Location"
-msgstr "Placering"
+msgstr "Område"
 
 #: ../globaltime/timezone_selection.c:258
 #: ../panel-plugin/timezone_selection.c:259 ../src/timezone_selection.c:270
@@ -419,7 +419,7 @@ msgstr "flydende"
 
 #: ../globaltime/globaltime.desktop.in.h:1
 msgid "Orage Globaltime"
-msgstr "Orage Globaltime"
+msgstr "Orage verdensur"
 
 #: ../globaltime/globaltime.desktop.in.h:2
 msgid "Show clocks from different countries"
@@ -427,7 +427,7 @@ msgstr "Vis uret fra forskellige lande"
 
 #: ../globaltime/globaltime.desktop.in.h:3 ../src/tray_icon.c:500
 msgid "Globaltime"
-msgstr "Globaltime"
+msgstr "Verdensur"
 
 #: ../panel-plugin/oc_config.c:239
 msgid "No rotation"
@@ -497,7 +497,7 @@ msgstr "Linje %d:"
 
 #: ../panel-plugin/oc_config.c:391
 msgid "Enter any valid strftime function parameter."
-msgstr "Indtast gyldig parameter til strftime-funktion."
+msgstr "Indtast gyldig parameter til funktionen strftime."
 
 #. Tooltip hint
 #: ../panel-plugin/oc_config.c:435
@@ -516,7 +516,7 @@ msgid ""
 "circumstances it is possible that Orageclock shows time inaccurately unless "
 "you have this selected. (Selecting this prevents cpu and interrupt saving "
 "features from working.)"
-msgstr ""
+msgstr "Du behøver kun dette hvis du lave korte hvile eller dvale (mindre end 5 timer) og din synlige tid ikke inkludere sekunder. Under disse omstændigheder kan det være at Orageclock viser tid upræcist med mindre du har tilvalgt dette. (tilvælges dette så forhindres CPU- og gemningsfaciliteter i at virke)."
 
 #: ../panel-plugin/oc_config.c:466
 msgid ""
@@ -528,7 +528,7 @@ msgid ""
 "\t%V = week number\t\t%Z = timezone in use\n"
 "\t%H = hours \t\t\t\t%M = minute\n"
 "\t%X = local time\t\t\t%x = local date"
-msgstr ""
+msgstr "Dette program bruger funktionen strftime til at hente tiden.\nBrug en hvilken som helst gyldig kode for at hente tiden i dit foretrukne format.\nNogle almindelige koder er:\n\t%A = ugedag\t\t\t\t%B = måned\n\t%c = dato og klokkeslæt\t%R = time og minut\n\t%V = ugetal\t\t\t\t%Z = anvendte tidszone\n\t%H = timer \t\t\t\t%M = minut\n\t%X = lokal tid\t\t\t%x = lokal dato"
 
 #: ../panel-plugin/oc_config.c:491
 msgid "Orage clock Preferences"
@@ -544,7 +544,7 @@ msgstr "Orage ur-præferencer"
 #. * %V  : ISO week number
 #: ../panel-plugin/xfce4-orageclock-plugin.c:700
 msgid "%A %d %B %Y/%V"
-msgstr ""
+msgstr "%A %d. %B %Y/%V"
 
 #: ../src/about-xfcalendar.c:40
 msgid "Maintainer"
@@ -846,7 +846,7 @@ msgid ""
 "You can use that feature to unclutter your list windows, but it makes it more difficult to find this appointment.\n"
 "(Alarms will still fire normally.)\n"
 "(There is undocumented parameter so that you can change the default limit of 8.)"
-msgstr ""
+msgstr "Hvis dette er sat til 8 eller større, vises aftalen IKKE i listevinduer.\nDu kan bruge denne facilitet til at rydde op i dine listevinduer, men det gør det mere svært at finde denne aftale.\n(alarmer udløses stadig normalt).\n(der er udokumenteret parameter som kan ændre standardgrænsen på 8)."
 
 #. note
 #: ../src/appointment.c:2918
@@ -863,7 +863,7 @@ msgid ""
 "These are converted only later when they are seen:\n"
 "    <&Ynnnn> is translated to current year minus nnnn.\n"
 "(This can be used for example in birthday reminders to tell how old the person will be.)"
-msgstr ""
+msgstr "Disse korte kommandoer træder i kraft med det samme:\n    <D> indsætter aktuelle dato i lokaldato-format\n    <T> indsætter klokkeslæt og\n    <DT> indsætter dato og klokkeslæt.\n\nDisse konverteres kun senere når de ses:\n    <&Ynnnn> oversættes til aktuelle år minus nnnn.\n(det kan f.eks. i fødselsdagspåmindelse til at fortælle hvor gammel personen bliver)."
 
 #: ../src/appointment.c:3010
 msgid "Before Start"
@@ -896,7 +896,7 @@ msgid ""
 " 1) before Event start\n"
 " 2) before Todo end\n"
 " 3) after Todo start"
-msgstr ""
+msgstr "Hvor ofte du vil have alarm:\n 1) før begivenhed begynder\n 2) efter todo slutter\n 3) efter todo begynder"
 
 #: ../src/appointment.c:3053
 msgid "Persistent alarm"
@@ -906,7 +906,7 @@ msgstr "Vedholdende alarm"
 msgid ""
 "Select this if you want Orage to remind you even if it has not been active "
 "when the alarm happened."
-msgstr ""
+msgstr "Vælg denne hvis du vil have at Orange påminder dig, selv hvis det ikke er blevet aktiveret når alarmen skete."
 
 #. **** Audio Alarm ****
 #: ../src/appointment.c:3064
@@ -989,7 +989,7 @@ msgid ""
 "\t<&AT> alarm time\n"
 "\t<&ST> appointment start time\n"
 "\t<&ET> appointment end time"
-msgstr ""
+msgstr "Du skal indtast alle undvige-tegn osv. selv.\nStrengen gives blot til behandling af skal.\nFølgende specialtegn erstattes ved kørsel:\n\t<&T>  aftalens titel\n\t<&D>  aftalens beskrivelse\n\t<&AT> alarmtid\n\t<&ST> aftalens starttid\n\t<&ET> aftalens sluttid"
 
 #: ../src/appointment.c:3208
 msgid "Test this alarm by raising it now"
@@ -1017,7 +1017,7 @@ msgstr "Ugenligt"
 
 #: ../src/appointment.c:3290
 msgid "Monthly"
-msgstr "Mådentligt"
+msgstr "Månedligt"
 
 #: ../src/appointment.c:3290
 msgid "Yearly"
@@ -1101,7 +1101,7 @@ msgid ""
 "Limit frequency to certain interval.\n"
 " For example: Every third day:\n"
 " Frequency = Daily and Interval = 3"
-msgstr ""
+msgstr "Begræns frekvens til bestemt interval.\n F.eks.: hver tredje dag:\n frekvens = dagligt og interval = 3"
 
 #: ../src/appointment.c:3386
 msgid "Limit"
@@ -1136,7 +1136,7 @@ msgid ""
 "\tFrequency = Monthly,\n"
 "\tWeekdays = check only Wednesday,\n"
 "\tWhich day = select 2 from the number below Wednesday"
-msgstr ""
+msgstr "Speficier hvilken dag på ugen eller måneden og årlige begivenheder.\n F.eks.:\n Anden onsdag hver måned:\n\tFrekvens = månedligt,\n\tUgedage = tjek kun onsdag,\n\tHvilken dag = vælg 2 fra antallet under onsdag"
 
 #. TODO base (only for TODOs)
 #: ../src/appointment.c:3450
@@ -1147,13 +1147,13 @@ msgstr "TODO grundlæggende"
 msgid ""
 "TODO reoccurs regularly starting on start time and repeating after each "
 "interval no matter when it was last completed"
-msgstr ""
+msgstr "TODO gentages regelmæssigt startende fra starttid og gentagende efter hvert interval uanset hvornår den sidst blev fuldført"
 
 #: ../src/appointment.c:3465
 msgid ""
 "TODO reoccurrency is based on complete time and repeats after the interval counted from the last completed time.\n"
 "(Note that you can not tell anything about the history of the TODO since reoccurrence base changes after each completion.)"
-msgstr ""
+msgstr "TODO-gentagelse er baseret på komplette tider og gentages efter intervaller talt fra den sidst fuldførte tid.\n(bemærk at du kan se noget om historikken af TODO'en eftersom gentagelsesbase ændres efter hvad fuldførsel)."
 
 #. exceptions
 #: ../src/appointment.c:3471
@@ -1165,7 +1165,7 @@ msgid ""
 "Add more exception dates by clicking the calendar days below.\n"
 "Exception is either exclusion(-) or inclusion(+) depending on the selection.\n"
 "Remove by clicking the data."
-msgstr ""
+msgstr "Tilføj flere undtagelsesdatoer ved at klikke på kalenderdagene herunder.\nUndtagelse er enten eksklusion (-) eller inklusion (+) afhængig af valget.\nFjern ved at klikke på dataene."
 
 #: ../src/appointment.c:3489
 msgid "Add excluded date (-)"
@@ -1219,7 +1219,7 @@ msgstr "Fremad én dag"
 
 #: ../src/day-view.c:390
 msgid "Forward one week"
-msgstr "Fremaf én uge"
+msgstr "Fremad én uge"
 
 #: ../src/day-view.c:395 ../src/event-list.c:1187
 msgid "Refresh"
@@ -1297,7 +1297,7 @@ msgid ""
 "Check this if you only want to see the first repeating event. By default all are shown.\n"
 "Note that this also shows all urgencies.\n"
 "Note that repeating events may appear earlier in the list as the first occurrence only is listed."
-msgstr ""
+msgstr "Tilvælg dette hvis du kun vil have den første gentagende begivenhed. Som standard vises alle.\nBemærk at dette også vise alle vigtige.\nBemærk at gentagelse af begivenheder kan forekomme tidligere i listen eftersom kun den første forekomst vises."
 
 #: ../src/event-list.c:1250
 msgid "also old"
@@ -1307,7 +1307,7 @@ msgstr "også gamle"
 msgid ""
 "Check this if you want to see old events also. This can only be selected after 'only first repeating' is enabled to avoid very long lists.\n"
 "Note that extra days selection still defines if newer appointments are listed'."
-msgstr ""
+msgstr "Tilvælg denne hvis du også vil se gamle begivenheder. Dette kan bruges til at vælge efter 'kun første gentagende' er aktiveret til at forhindre meget lange lister.\nBemærk at valg af ekstra dage stadig definere om nyere aftaler vises."
 
 #: ../src/event-list.c:1290
 msgid "Journal entries starting from:"
@@ -1343,12 +1343,12 @@ msgid ""
 "\t\tO=Orage A=Archive F=Foreign\n"
 "\t 5. Appointment type:\n"
 "\t\tE=Event T=Todo J=Journal"
-msgstr ""
+msgstr "Dobbeltklik for at redigere den.\n\nFlag i rækkefølge:\n\t 1. Alarm: n=ingen alarm\n\t\t A=alarm er sat P=vedvarende alarm er sat\n\t 2. Gentagelse: n=ingen gentagelse\n\t\t H=timeligt D=dagligt W=ugentligt M=månedentligt Y=årligt\n\t 3. Type: f=fri B=optaget\n\t 4. Placeret i fil:\n\t\tO=Orage A=arkiveret F=fremmede\n\t 5. Aftaletype:\n\t\tE=begivenhed T=todo J=journal"
 
 #. remove since it has ended
 #: ../src/ical-archive.c:267
 msgid "\tRecur ended, moving to archive file."
-msgstr ""
+msgstr "\tGentag sluttede, flyttet til arkiveret fil."
 
 #: ../src/ical-archive.c:330
 msgid "Archiving not enabled. Exiting"
@@ -1363,7 +1363,7 @@ msgstr "Arkiveringsgrænseværdi: %d måned(er)"
 #: ../src/ical-archive.c:352
 #, c-format
 msgid "\tArchiving events, which are older than: %04d-%02d-%02d"
-msgstr ""
+msgstr "\tArkiverer begivenheder, som er ældre end: %04d-%02d-%02d"
 
 #: ../src/ical-archive.c:379
 #, c-format
@@ -1373,13 +1373,13 @@ msgstr "Arkiverer uid: %s"
 #. VTODO not completed, do not archive
 #: ../src/ical-archive.c:385
 msgid "\tVTODO not complete; not archived"
-msgstr ""
+msgstr "\tVTODO ikke fuldført; ikke arkiveret"
 
 #. it is recurrent event
 #: ../src/ical-archive.c:390
 #, c-format
 msgid "\tRecurring. End year: %04d, month: %02d, day: %02d"
-msgstr ""
+msgstr "\tGentagende. Slut år: %04d, måned: %02d, dag: %02d"
 
 #: ../src/ical-archive.c:407
 msgid "Archiving done\n"
@@ -1392,13 +1392,13 @@ msgstr "Starter fjernelse af arkiv."
 
 #: ../src/ical-archive.c:424
 msgid "\tPHASE 1: reset recurring appointments"
-msgstr ""
+msgstr "\tFASE 1: nulstil gentagende aftaler"
 
 #. PHASE 2: go through archive file and add everything back to base orage.
 #. * After that delete the whole arch file
 #: ../src/ical-archive.c:446
 msgid "\tPHASE 2: return archived appointments"
-msgstr ""
+msgstr "\tFASE 2: returner arkiverede aftaler"
 
 #: ../src/ical-archive.c:472
 msgid "Archive removal done\n"
@@ -1410,7 +1410,7 @@ msgstr "Orage-standardalarm"
 
 #: ../src/ical-code.c:3179
 msgid "Created alarm list for main Orage file:"
-msgstr ""
+msgstr "Oprettede alarmliste til hoved-Orage-fil:"
 
 #: ../src/ical-code.c:3181
 #, c-format
@@ -1420,13 +1420,13 @@ msgstr "Oprettede alarmliste til fremmede fil: %s (%s)"
 #: ../src/ical-code.c:3183
 #, c-format
 msgid "\tAdded %d alarms. Processed %d events."
-msgstr ""
+msgstr "\tTilføjede %d alarmer. Behandlede %d begivenheder."
 
 #: ../src/ical-code.c:3185
 #, c-format
 msgid ""
 "\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
-msgstr ""
+msgstr "\tFandt %d alarmer af hvilket %d er aktive. (søgte %d gentagende alarmer.)"
 
 #: ../src/ical-expimp.c:123
 msgid "Starting import file preprocessing"
@@ -1434,11 +1434,11 @@ msgstr "Starter forbehandling af filimport"
 
 #: ../src/ical-expimp.c:158
 msgid "... Patched DCREATED to be CREATED."
-msgstr ""
+msgstr "... Rettede DCREATED til at være CREATED."
 
 #: ../src/ical-expimp.c:197
 msgid "... Patched timezone to Orage format."
-msgstr ""
+msgstr "... Rettede tidszone til Orage-format."
 
 #: ../src/ical-expimp.c:206
 msgid "Import file preprocessing done"
@@ -1451,7 +1451,7 @@ msgstr "Fandt ekstern opdatering på filen %s."
 
 #: ../src/interface.c:112
 msgid "Refreshing alarms and calendar due to external file update."
-msgstr ""
+msgstr "Genindlæser alarmer og kalendere pga. ekstern filopdatering."
 
 #: ../src/interface.c:271
 msgid "Calendar files"
@@ -1459,7 +1459,7 @@ msgstr "Kalender-filer"
 
 #: ../src/interface.c:631
 msgid "Current foreign files"
-msgstr "Nuværende fremmede filer"
+msgstr "Aktuelle fremmede filer"
 
 #: ../src/interface.c:648
 msgid "READ ONLY"
@@ -1471,7 +1471,7 @@ msgstr "SKRIV OG LÆS"
 
 #: ../src/interface.c:669
 msgid "***** No foreign files *****"
-msgstr "***** Igen fremmede filer *****"
+msgstr "***** Ingen fremmede filer *****"
 
 #: ../src/interface.c:682
 msgid "Foreign file add failed"
@@ -1517,7 +1517,7 @@ msgstr "Læs fra fil:"
 msgid ""
 "Separate filenames with comma(,).\n"
 " NOTE: comma is not valid character in filenames for Orage."
-msgstr ""
+msgstr "Separer filnavne med komma (,).\nBEMÆRK: komma er ikke et gyldigt tegn i filnavne til Orage."
 
 #: ../src/interface.c:999
 msgid "Export"
@@ -1543,13 +1543,13 @@ msgstr "Navngivne aftaler: "
 msgid ""
 "Note that only main file appointments are read.\n"
 "Archived and Foreign events are not exported."
-msgstr ""
+msgstr "Bemærk at kun hoved-filaftaler læses.\nArkiverede- og fremmede begivenheder eksporteres ikke."
 
 #: ../src/interface.c:1056
 msgid ""
 "Note that only main file appointments are read.\n"
 "Foreign events are not exported."
-msgstr ""
+msgstr "Bemærk at kun hoved-filaftaler læses.\nFremmede begivenheder eksporteres ikke."
 
 #: ../src/interface.c:1059
 msgid "You can easily drag these from event-list window."
@@ -1561,7 +1561,7 @@ msgstr "Orage-aftale UID'er separeret af kommaer."
 
 #: ../src/interface.c:1067
 msgid "Archive"
-msgstr "Arkiv"
+msgstr "Arkivering"
 
 #: ../src/interface.c:1075
 #, c-format
@@ -1581,7 +1581,7 @@ msgid ""
 "Return all archived events into main orage file and remove arch file.\n"
 "This is useful for example when doing export and moving orage\n"
 "appointments to another system."
-msgstr ""
+msgstr "Returner alle arkiverede begivenheder ind i hoved-orage-fil og fjern arkiverede fil.\nDette er f.eks. brugbart når Orage-aftaler eksportes og flyttes\ntil et andet system."
 
 #: ../src/interface.c:1109
 msgid "Orage files"
@@ -1593,7 +1593,7 @@ msgstr "Orage hoved-kalenderfil"
 
 #: ../src/interface.c:1121 ../src/interface.c:1186
 msgid "Current file:"
-msgstr "Nuværende fil:"
+msgstr "Aktuelle fil:"
 
 #: ../src/interface.c:1128 ../src/interface.c:1193
 msgid "New file:"
@@ -1612,7 +1612,7 @@ msgid ""
 "Orage internal file rename only.\n"
 "Does not touch external filesystem at all.\n"
 "New file must exist."
-msgstr ""
+msgstr "Kun omdøbning ag Orage intern fil.\nRør overhovedet ikke eksterne filsystemer.\nNy fil skal eksistere."
 
 #: ../src/interface.c:1155 ../src/interface.c:1218
 msgid "Copy"
@@ -1660,7 +1660,7 @@ msgstr "Skrivebeskyttet"
 msgid ""
 "Set this if you want to make sure that this file is never modified by Orage.\n"
 "Note that modifying foreign files may make them incompatible with the original tool, where they came from!"
-msgstr ""
+msgstr "Sæt denne hvis du vil sørge for at denne fil aldrig ændres af Orage.\nBemærk at ændring af fremmede filer kan gøre dem inkompatible med det originale værktøj, hvor de kom fra!"
 
 #: ../src/interface.c:1294
 msgid "This internal name is displayed to user instead of file name."
@@ -1668,7 +1668,7 @@ msgstr "Dette interne navn vises til brugeren i stedet for filnavnet."
 
 #: ../src/interface.c:1308
 msgid "Exchange data - Orage"
-msgstr "Udveksling af data - Orage"
+msgstr "Dataudveksling - Orage"
 
 #: ../src/main.c:275
 #, c-format
@@ -1730,7 +1730,7 @@ msgstr "\tBruge styresystemets libical-pakke.\n"
 #: ../src/main.c:300
 #, c-format
 msgid "\tUsing Orage local version of libical.\n"
-msgstr ""
+msgstr "\tBruger Orage lokal version af libical.\n"
 
 #: ../src/main.c:313
 #, c-format
@@ -1808,7 +1808,7 @@ msgstr "\nUkendt valgmulighed %s\n\n"
 
 #: ../src/mainbox.c:305
 msgid "_Exchange data"
-msgstr "_Udveksling af data"
+msgstr "_Dataudveksling"
 
 #. Edit menu
 #: ../src/mainbox.c:316
@@ -1829,7 +1829,7 @@ msgstr "Vælg dagen _i dag"
 
 #: ../src/mainbox.c:341
 msgid "Show _Globaltime"
-msgstr "Vis _Globaltime"
+msgstr "Vis _verdensur"
 
 #. Help menu
 #: ../src/mainbox.c:345
@@ -2052,7 +2052,7 @@ msgstr "Vis kun første gentagende begivenhed"
 
 #: ../src/parameters.c:907
 msgid "Day view window default first day"
-msgstr ""
+msgstr "Dag-visning-vindue standard første dag"
 
 #: ../src/parameters.c:912
 msgid "First day of week"
@@ -2072,7 +2072,7 @@ msgstr "Brug dynamisk ikon"
 
 #: ../src/parameters.c:954
 msgid "Dynamic icon shows current month and day of the month."
-msgstr ""
+msgstr "Dynamisk ikon viser aktuelle måned og dag på måneden."
 
 #: ../src/parameters.c:962 ../src/parameters.c:967
 msgid "Use wakeup timer"
@@ -2094,7 +2094,7 @@ msgstr "Orage-vindue"
 
 #: ../src/parameters.c:1000
 msgid "Notify notification"
-msgstr ""
+msgstr "Notifikationsnotifikation"
 
 #: ../src/parameters.c:1018
 msgid "Always quit when asked to close"
@@ -2109,7 +2109,7 @@ msgid ""
 "By default Orage stays open in the background when asked to close. This "
 "option changes Orage to quit and never stay in background when it is asked "
 "to close."
-msgstr ""
+msgstr "Som standard forbliver Orage i baggrunden når du bliver spurgt om at lukke. Denne valgmulighed ændre Orage til at afslutte og aldrig forblive i baggrunden når den spørges om at lukke."
 
 #: ../src/parameters.c:1045
 msgid "Orage Preferences"
@@ -3540,55 +3540,55 @@ msgstr "Australien"
 
 #: ../src/timezone_names.c:379
 msgid "Australia/ACT"
-msgstr "Australisen/ACT"
+msgstr "Australien/ACT"
 
 #: ../src/timezone_names.c:380
 msgid "Australia/Adelaide"
-msgstr "Australisen/Adelaide"
+msgstr "Australien/Adelaide"
 
 #: ../src/timezone_names.c:381
 msgid "Australia/Brisbane"
-msgstr "Australisen/Brisbane"
+msgstr "Australien/Brisbane"
 
 #: ../src/timezone_names.c:382
 msgid "Australia/Broken_Hill"
-msgstr "Australisen/Broken_Hill"
+msgstr "Australien/Broken_Hill"
 
 #: ../src/timezone_names.c:383
 msgid "Australia/Currie"
-msgstr "Australisen/Currie"
+msgstr "Australien/Currie"
 
 #: ../src/timezone_names.c:384
 msgid "Australia/Darwin"
-msgstr "Australisen/Darwin"
+msgstr "Australien/Darwin"
 
 #: ../src/timezone_names.c:385
 msgid "Australia/Eucla"
-msgstr "Australisen/Eucla"
+msgstr "Australien/Eucla"
 
 #: ../src/timezone_names.c:386
 msgid "Australia/Hobart"
-msgstr "Australisen/Hobart"
+msgstr "Australien/Hobart"
 
 #: ../src/timezone_names.c:387
 msgid "Australia/Lindeman"
-msgstr "Australisen/Lindeman"
+msgstr "Australien/Lindeman"
 
 #: ../src/timezone_names.c:388
 msgid "Australia/Lord_Howe"
-msgstr "Australisen/Lord_Howe"
+msgstr "Australien/Lord_Howe"
 
 #: ../src/timezone_names.c:389
 msgid "Australia/Melbourne"
-msgstr "Australisen/Melbourne"
+msgstr "Australien/Melbourne"
 
 #: ../src/timezone_names.c:390
 msgid "Australia/Perth"
-msgstr "Australisen/Perth"
+msgstr "Australien/Perth"
 
 #: ../src/timezone_names.c:391
 msgid "Australia/Sydney"
-msgstr "Australisen/Sydney"
+msgstr "Australien/Sydney"
 
 #: ../src/timezone_names.c:392
 msgid "Brazil"
