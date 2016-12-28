@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-23 12:30+0200\n"
-"PO-Revision-Date: 2016-12-25 19:33+0000\n"
+"PO-Revision-Date: 2016-12-28 22:13+0000\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/xfce/xfce-apps/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -40,11 +40,11 @@ msgstr "lav"
 
 #: ../globaltime/globaltime.c:100
 msgid "Raising GlobalTime window..."
-msgstr "Løfter verdensur-vindue..."
+msgstr "Hæver verdensur-vindue..."
 
 #: ../globaltime/globaltime.c:102
 msgid "GlobalTime window raise failed"
-msgstr "Løft af verdensur-vindue fejlede"
+msgstr "Hævning af verdensur-vindue fejlede"
 
 #. ********** timezone tooltip **********
 #: ../globaltime/globaltime.c:277
@@ -62,7 +62,7 @@ msgstr "Lokal tid"
 msgid ""
 "button 1 to change preferences \n"
 "button 2 to adjust time of clocks"
-msgstr "knap 1 for at skifte indstillinger\nknap 2 for at justere tidspunkt"
+msgstr "knap 1 for at skifte indstillinger \nknap 2 for at justere urenes klokkeslæt"
 
 #: ../globaltime/globaltime.c:480
 msgid "adjust to change hour"
@@ -107,7 +107,7 @@ msgstr "slet dette ur"
 
 #: ../globaltime/gt_prefs.c:539
 msgid "move this clock first"
-msgstr "flyt dette ur til først"
+msgstr "flyt dette ur til første position"
 
 #: ../globaltime/gt_prefs.c:544
 msgid "move this clock left"
@@ -119,7 +119,7 @@ msgstr "flyt dette ur til højre"
 
 #: ../globaltime/gt_prefs.c:554
 msgid "move this clock last"
-msgstr "flyt dette ur sidst"
+msgstr "flyt dette ur til sidste position"
 
 #: ../globaltime/gt_prefs.c:562
 msgid "set the timezone of this clock to be local timezone"
@@ -161,7 +161,7 @@ msgstr "Baggrundsfarve:"
 
 #: ../globaltime/gt_prefs.c:656
 msgid "Click to change background colour for clock"
-msgstr "Klik for at skrifte urets baggrundsfarve"
+msgstr "Klik for at skifte urets baggrundsfarve"
 
 #: ../globaltime/gt_prefs.c:665 ../globaltime/gt_prefs.c:697
 #: ../globaltime/gt_prefs.c:729 ../globaltime/gt_prefs.c:762
@@ -184,7 +184,7 @@ msgstr "Forgrundsfarve (teksten):"
 
 #: ../globaltime/gt_prefs.c:688
 msgid "Click to change foreground colour for clock"
-msgstr "Klik for at skrifte urets forgrundsfarve"
+msgstr "Klik for at skifte urets forgrundsfarve"
 
 #. ------------------------name font-------------------------
 #: ../globaltime/gt_prefs.c:713 ../globaltime/gt_prefs.c:922
@@ -220,7 +220,7 @@ msgstr "Standardtekstformatering"
 
 #: ../globaltime/gt_prefs.c:863
 msgid "Click to change default background colour for clocks"
-msgstr "Klik for at skrifte urenes standardbaggrundsfarve"
+msgstr "Klik for at skifte urenes standardbaggrundsfarve"
 
 #: ../globaltime/gt_prefs.c:877 ../globaltime/gt_prefs.c:910
 msgid "Cross this to use system default instead of selected color"
@@ -516,7 +516,7 @@ msgid ""
 "circumstances it is possible that Orageclock shows time inaccurately unless "
 "you have this selected. (Selecting this prevents cpu and interrupt saving "
 "features from working.)"
-msgstr "Du behøver kun dette hvis du lave korte hvile eller dvale (mindre end 5 timer) og din synlige tid ikke inkludere sekunder. Under disse omstændigheder kan det være at Orageclock viser tid upræcist med mindre du har tilvalgt dette. (tilvælges dette så forhindres CPU- og gemningsfaciliteter i at virke)."
+msgstr "Du behøver kun dette hvis du foretager hvile eller dvale i korte perioder (mindre end 5 timer) og din synlige tid ikke inkluderer sekunder. Under disse omstændigheder kan det være at Orageclock viser tiden upræcist, medmindre du har tilvalgt dette. (tilvælges dette så forhindres faciliteter til CPU og gemning i at virke)."
 
 #: ../panel-plugin/oc_config.c:466
 msgid ""
@@ -552,7 +552,7 @@ msgstr "Vedligeholder"
 
 #: ../src/about-xfcalendar.c:47
 msgid "Manage your time with Orage"
-msgstr "Håndter din tid med Orage"
+msgstr "Styr din tid med Orage"
 
 #. if (gtk_toggle_button_get_active(
 #. GTK_TOGGLE_BUTTON(apptw->Type_journal_rb)))
@@ -577,7 +577,7 @@ msgstr "Vælg en fil..."
 
 #: ../src/appointment.c:680
 msgid "Sound Files"
-msgstr "Lyd filer"
+msgstr "Lydfiler"
 
 #: ../src/appointment.c:687 ../src/interface.c:277
 msgid "All Files"
@@ -740,7 +740,7 @@ msgstr "Generelt"
 #. type
 #: ../src/appointment.c:2744
 msgid "Type "
-msgstr "Type"
+msgstr "Type "
 
 #: ../src/appointment.c:2746 ../src/event-list.c:1226
 msgid "Event"
@@ -760,7 +760,7 @@ msgstr "Todo"
 msgid ""
 "Something that you should do sometime. For example:\n"
 "Wash your car or test new version of Orage."
-msgstr "Noget du skal gøres på et tidspunkt. F.eks.:\nVask din bil eller test ny version af Orage."
+msgstr "Noget du skal gøre på et tidspunkt. F.eks.:\nVaske din bil eller teste ny version af Orage."
 
 #: ../src/appointment.c:2758 ../src/event-list.c:1287
 msgid "Journal"
@@ -775,11 +775,11 @@ msgstr "Lav en notits om at noget skete. F.eks.:\nBemærkning om at din mor ring
 #. title
 #: ../src/appointment.c:2769
 msgid "Title "
-msgstr "Titel"
+msgstr "Titel "
 
 #: ../src/appointment.c:2784
 msgid "All day event"
-msgstr "Heldags begivenhed"
+msgstr "Heldagsbegivenhed"
 
 #. start time
 #: ../src/appointment.c:2790 ../src/appointment.c:3453 ../src/day-view.c:801
@@ -846,7 +846,7 @@ msgid ""
 "You can use that feature to unclutter your list windows, but it makes it more difficult to find this appointment.\n"
 "(Alarms will still fire normally.)\n"
 "(There is undocumented parameter so that you can change the default limit of 8.)"
-msgstr "Hvis dette er sat til 8 eller større, vises aftalen IKKE i listevinduer.\nDu kan bruge denne facilitet til at rydde op i dine listevinduer, men det gør det mere svært at finde denne aftale.\n(alarmer udløses stadig normalt).\n(der er udokumenteret parameter som kan ændre standardgrænsen på 8)."
+msgstr "Hvis dette er sat til 8 eller større, vises aftalen IKKE i listevinduer.\nDu kan bruge denne facilitet til at rydde op i dine listevinduer, men det gør det sværere at finde denne aftale.\n(alarmer udløses stadig normalt).\n(der er en udokumenteret parameter som kan ændre standardgrænsen på 8)."
 
 #. note
 #: ../src/appointment.c:2918
@@ -906,7 +906,7 @@ msgstr "Vedholdende alarm"
 msgid ""
 "Select this if you want Orage to remind you even if it has not been active "
 "when the alarm happened."
-msgstr "Vælg denne hvis du vil have at Orange påminder dig, selv hvis det ikke er blevet aktiveret når alarmen skete."
+msgstr "Vælg denne hvis du vil have at Orange påminder dig, selv hvis programmet ikke var aktiveret da alarmen indtraf."
 
 #. **** Audio Alarm ****
 #: ../src/appointment.c:3064
@@ -940,11 +940,11 @@ msgstr "Visuel"
 
 #: ../src/appointment.c:3133
 msgid "Use Orage window"
-msgstr "Brug Orage-vindue"
+msgstr "Brug Orage vindue"
 
 #: ../src/appointment.c:3135
 msgid "Select this if you want Orage window alarm"
-msgstr "Vælg denne hvis du vil have Orage-vindue-alarm"
+msgstr "Vælg denne hvis du vil have Orage vindue-alarm"
 
 #: ../src/appointment.c:3147
 msgid "Use notification"
@@ -989,7 +989,7 @@ msgid ""
 "\t<&AT> alarm time\n"
 "\t<&ST> appointment start time\n"
 "\t<&ET> appointment end time"
-msgstr "Du skal indtast alle undvige-tegn osv. selv.\nStrengen gives blot til behandling af skal.\nFølgende specialtegn erstattes ved kørsel:\n\t<&T>  aftalens titel\n\t<&D>  aftalens beskrivelse\n\t<&AT> alarmtid\n\t<&ST> aftalens starttid\n\t<&ET> aftalens sluttid"
+msgstr "Du skal indtast alle undvigetegn osv. selv.\nStrengen gives blot til behandling af kommandoskal.\nFølgende specialtegn erstattes ved kørsel:\n\t<&T>  aftalens titel\n\t<&D>  aftalens beskrivelse\n\t<&AT> alarmtid\n\t<&ST> aftalens starttid\n\t<&ET> aftalens sluttid"
 
 #: ../src/appointment.c:3208
 msgid "Test this alarm by raising it now"
@@ -1081,7 +1081,7 @@ msgid ""
 "Use this if you need complex times like:\n"
 " Every Saturday and Sunday or \n"
 " First Tuesday every month"
-msgstr "Brug denne hvis du har brug for kompleks tider såsom:\n Hver lørdag og søndag eller \n Første tirsdag hver måned"
+msgstr "Brug denne hvis du har brug for komplekse tider såsom:\n Hver lørdag og søndag eller \n Første tirsdag hver måned"
 
 #. frequency
 #: ../src/appointment.c:3324
@@ -1136,7 +1136,7 @@ msgid ""
 "\tFrequency = Monthly,\n"
 "\tWeekdays = check only Wednesday,\n"
 "\tWhich day = select 2 from the number below Wednesday"
-msgstr "Speficier hvilken dag på ugen eller måneden og årlige begivenheder.\n F.eks.:\n Anden onsdag hver måned:\n\tFrekvens = månedligt,\n\tUgedage = tjek kun onsdag,\n\tHvilken dag = vælg 2 fra antallet under onsdag"
+msgstr "Angiv hvilken dag på ugen for månedlige og årlige begivenheder.\n F.eks.:\n Anden onsdag hver måned:\n\tFrekvens = månedligt,\n\tUgedage = tjek kun onsdag,\n\tHvilken dag = vælg 2 fra antallet under onsdag"
 
 #. TODO base (only for TODOs)
 #: ../src/appointment.c:3450
@@ -1173,7 +1173,7 @@ msgstr "Tilføj ekskluderende dato (-)"
 
 #: ../src/appointment.c:3491
 msgid "Excluded days are full days where this appointment is not happening"
-msgstr "Ekskluderet dage er fulde dage hvor denne aftale ikke sker"
+msgstr "Ekskluderede dage er fulde dage hvor denne aftale ikke indtræffer"
 
 #: ../src/appointment.c:3497
 msgid "Add included time (+)"
@@ -1183,7 +1183,7 @@ msgstr "Tilføj inkluderende dato (+)"
 msgid ""
 "Included times have same timezone than start time, but they may have "
 "different time"
-msgstr "Inkluderet tidspunkter har samme tidszone som starttid, men de kan have forskellige klokkeslæt"
+msgstr "Inkluderede klokkeslæt har samme tidszone som starttid, men de kan have forskellige klokkeslæt"
 
 #. calendars showing the action days
 #: ../src/appointment.c:3516
@@ -1307,7 +1307,7 @@ msgstr "også gamle"
 msgid ""
 "Check this if you want to see old events also. This can only be selected after 'only first repeating' is enabled to avoid very long lists.\n"
 "Note that extra days selection still defines if newer appointments are listed'."
-msgstr "Tilvælg denne hvis du også vil se gamle begivenheder. Dette kan bruges til at vælge efter 'kun første gentagende' er aktiveret til at forhindre meget lange lister.\nBemærk at valg af ekstra dage stadig definere om nyere aftaler vises."
+msgstr "Tilvælg denne hvis du også vil se gamle begivenheder. Dette kan bruges til at vælge efter \"kun første gentagende\" er aktiveret til at forhindre meget lange lister.\nBemærk at valg af ekstra dage stadig definere om nyere aftaler vises."
 
 #: ../src/event-list.c:1290
 msgid "Journal entries starting from:"
@@ -1343,7 +1343,7 @@ msgid ""
 "\t\tO=Orage A=Archive F=Foreign\n"
 "\t 5. Appointment type:\n"
 "\t\tE=Event T=Todo J=Journal"
-msgstr "Dobbeltklik for at redigere den.\n\nFlag i rækkefølge:\n\t 1. Alarm: n=ingen alarm\n\t\t A=alarm er sat P=vedvarende alarm er sat\n\t 2. Gentagelse: n=ingen gentagelse\n\t\t H=timeligt D=dagligt W=ugentligt M=månedentligt Y=årligt\n\t 3. Type: f=fri B=optaget\n\t 4. Placeret i fil:\n\t\tO=Orage A=arkiveret F=fremmede\n\t 5. Aftaletype:\n\t\tE=begivenhed T=todo J=journal"
+msgstr "Dobbeltklik for at redigere den.\n\nFlag i rækkefølge:\n\t 1. Alarm: n=ingen alarm\n\t\t A=alarm er sat P=vedvarende alarm er sat\n\t 2. Gentagelse: n=ingen gentagelse\n\t\t H=timeligt D=dagligt W=ugentligt M=månedligt Y=årligt\n\t 3. Type: f=fri B=optaget\n\t 4. Placeret i fil:\n\t\tO=Orage A=arkiveret F=fremmede\n\t 5. Aftaletype:\n\t\tE=begivenhed T=todo J=journal"
 
 #. remove since it has ended
 #: ../src/ical-archive.c:267
@@ -1410,7 +1410,7 @@ msgstr "Orage-standardalarm"
 
 #: ../src/ical-code.c:3179
 msgid "Created alarm list for main Orage file:"
-msgstr "Oprettede alarmliste til hoved-Orage-fil:"
+msgstr "Oprettede alarmliste til primær Orage-fil:"
 
 #: ../src/ical-code.c:3181
 #, c-format
@@ -1455,7 +1455,7 @@ msgstr "Genindlæser alarmer og kalendere pga. ekstern filopdatering."
 
 #: ../src/interface.c:271
 msgid "Calendar files"
-msgstr "Kalender-filer"
+msgstr "Kalenderfiler"
 
 #: ../src/interface.c:631
 msgid "Current foreign files"
@@ -1517,7 +1517,7 @@ msgstr "Læs fra fil:"
 msgid ""
 "Separate filenames with comma(,).\n"
 " NOTE: comma is not valid character in filenames for Orage."
-msgstr "Separer filnavne med komma (,).\nBEMÆRK: komma er ikke et gyldigt tegn i filnavne til Orage."
+msgstr "Adskil filnavne med komma (,).\nBEMÆRK: komma er ikke et gyldigt tegn i filnavne til Orage."
 
 #: ../src/interface.c:999
 msgid "Export"
@@ -1543,21 +1543,21 @@ msgstr "Navngivne aftaler: "
 msgid ""
 "Note that only main file appointments are read.\n"
 "Archived and Foreign events are not exported."
-msgstr "Bemærk at kun hoved-filaftaler læses.\nArkiverede- og fremmede begivenheder eksporteres ikke."
+msgstr "Bemærk at kun hovedfil-aftaler læses.\nArkiverede og fremmede begivenheder eksporteres ikke."
 
 #: ../src/interface.c:1056
 msgid ""
 "Note that only main file appointments are read.\n"
 "Foreign events are not exported."
-msgstr "Bemærk at kun hoved-filaftaler læses.\nFremmede begivenheder eksporteres ikke."
+msgstr "Bemærk at kun hovedfil-aftaler læses.\nFremmede begivenheder eksporteres ikke."
 
 #: ../src/interface.c:1059
 msgid "You can easily drag these from event-list window."
-msgstr "Du kan nemt trække disse fra begivenhedsliste-vinduet."
+msgstr "Du kan nemt trække disse fra begivenhedslistevinduet."
 
 #: ../src/interface.c:1061
 msgid "Orage appointment UIDs separated by commas."
-msgstr "Orage-aftale UID'er separeret af kommaer."
+msgstr "Orage aftale-UID'er afskilte af kommaer."
 
 #: ../src/interface.c:1067
 msgid "Archive"
@@ -1581,7 +1581,7 @@ msgid ""
 "Return all archived events into main orage file and remove arch file.\n"
 "This is useful for example when doing export and moving orage\n"
 "appointments to another system."
-msgstr "Returner alle arkiverede begivenheder ind i hoved-orage-fil og fjern arkiverede fil.\nDette er f.eks. brugbart når Orage-aftaler eksportes og flyttes\ntil et andet system."
+msgstr "Returner alle arkiverede begivenheder ind i primær orage-fil og fjern arkiverede fil.\nDette er f.eks. brugbart når Orage-aftaler eksportes og flyttes\ntil et andet system."
 
 #: ../src/interface.c:1109
 msgid "Orage files"
@@ -1589,7 +1589,7 @@ msgstr "Orage-filer"
 
 #: ../src/interface.c:1116
 msgid "Orage main calendar file"
-msgstr "Orage hoved-kalenderfil"
+msgstr "Orage primær kalenderfil"
 
 #: ../src/interface.c:1121 ../src/interface.c:1186
 msgid "Current file:"
@@ -1612,7 +1612,7 @@ msgid ""
 "Orage internal file rename only.\n"
 "Does not touch external filesystem at all.\n"
 "New file must exist."
-msgstr "Kun omdøbning ag Orage intern fil.\nRør overhovedet ikke eksterne filsystemer.\nNy fil skal eksistere."
+msgstr "Kun omdøbning af Orage intern fil.\nRør overhovedet ikke eksterne filsystemer.\nNy fil skal eksistere."
 
 #: ../src/interface.c:1155 ../src/interface.c:1218
 msgid "Copy"
@@ -1640,7 +1640,7 @@ msgstr "Fremmede filer"
 
 #: ../src/interface.c:1252
 msgid "Add new foreign file"
-msgstr "Tilføj en ny, fremmede fil"
+msgstr "Tilføj en ny, fremmed fil"
 
 #: ../src/interface.c:1257
 msgid "Foreign file:"
@@ -1767,12 +1767,12 @@ msgstr "--toggle (-t) \t\tgør orage synlig/usynlig\n"
 #: ../src/main.c:319
 #, c-format
 msgid "--add-foreign (-a) file [RW] [name] \tadd a foreign file\n"
-msgstr "--add-foreign (-a) fil [RW] [navn] \ttilføj en fremmede fil\n"
+msgstr "--add-foreign (-a) fil [RW] [navn] \ttilføj en fremmed fil\n"
 
 #: ../src/main.c:320
 #, c-format
 msgid "--remove-foreign (-r) file \tremove a foreign file\n"
-msgstr "--remove-foreign (-r) fil \tfjern en fremmede fil\n"
+msgstr "--remove-foreign (-r) fil \tfjern en fremmed fil\n"
 
 #: ../src/main.c:321
 #, c-format
@@ -1918,7 +1918,7 @@ msgstr "Lyd-kommando"
 
 #: ../src/parameters.c:557
 msgid "This command is given to shell to make sound in alarms."
-msgstr "Denne kommando gives til skal, for at give lyde i alarmer."
+msgstr "Denne kommando gives til kommandoskal, for at give lyde i alarmer."
 
 #: ../src/parameters.c:596
 msgid "Calendar window"
@@ -2034,7 +2034,7 @@ msgstr "Ekstra indstillinger"
 
 #: ../src/parameters.c:869
 msgid "Event list window"
-msgstr "Begivenhedsliste-vindue"
+msgstr "Begivenhedslistevindue"
 
 #: ../src/parameters.c:874
 msgid "Number of extra days to show in event list"
@@ -2044,7 +2044,7 @@ msgstr "Antal ekstra dage som skal vises i begivenhedsliste"
 msgid ""
 "This is just the default value, you can change it in the actual eventlist "
 "window."
-msgstr "Dette er blot standardværdien, du kan ændre den i det rigtige begivenhedsliste-vindue."
+msgstr "Dette er blot standardværdien, du kan ændre den i det rigtige begivenhedslistevindue."
 
 #: ../src/parameters.c:891
 msgid "Show only first repeating event"
@@ -2082,7 +2082,7 @@ msgstr "Brug opvågningstimer"
 msgid ""
 "Use this timer if Orage has problems waking up properly after suspend or "
 "hibernate. (For example tray icon not refreshed or alarms not firing.)"
-msgstr "Brug denne timer hvis Orage har problemer med at vågne op ordentligt efter hvile eller dvale (f.eks. når systembakkeikonet ikke opdatere eller alarmer ikke udløses)."
+msgstr "Brug denne timer hvis Orage har problemer med at vågne op ordentligt efter hvile eller dvale (f.eks. når systembakkeikonet ikke opdateres eller alarmer ikke udløses)."
 
 #: ../src/parameters.c:982
 msgid "Foreign file default visual alarm"
@@ -2090,11 +2090,11 @@ msgstr "Fremmed fil standard visuel alarm"
 
 #: ../src/parameters.c:987
 msgid "Orage window"
-msgstr "Orage-vindue"
+msgstr "Orage vindue"
 
 #: ../src/parameters.c:1000
 msgid "Notify notification"
-msgstr "Notifikationsnotifikation"
+msgstr "Underret om notifikation"
 
 #: ../src/parameters.c:1018
 msgid "Always quit when asked to close"
@@ -2109,7 +2109,7 @@ msgid ""
 "By default Orage stays open in the background when asked to close. This "
 "option changes Orage to quit and never stay in background when it is asked "
 "to close."
-msgstr "Som standard forbliver Orage i baggrunden når du bliver spurgt om at lukke. Denne valgmulighed ændre Orage til at afslutte og aldrig forblive i baggrunden når den spørges om at lukke."
+msgstr "Som standard forbliver Orage i baggrunden når du bliver spurgt om at lukke. Denne valgmulighed ændrer Orage til at afslutte og aldrig forblive i baggrunden når du spørges om at lukke."
 
 #: ../src/parameters.c:1045
 msgid "Orage Preferences"
@@ -2130,7 +2130,7 @@ msgstr "Standardtidszone ikke fundet. Sæt den venligst manuelt."
 
 #: ../src/reminder.c:562
 msgid "Reminder "
-msgstr "Påminder"
+msgstr "Påmindelse "
 
 #: ../src/reminder.c:591
 msgid "Open"
@@ -2138,7 +2138,7 @@ msgstr "Åbn"
 
 #: ../src/reminder.c:719
 msgid "Reminder - Orage"
-msgstr "Påminder - Orage"
+msgstr "Påmindelse - Orage"
 
 #: ../src/reminder.c:803
 msgid "Postpone"
@@ -2146,7 +2146,7 @@ msgstr "Udsæt"
 
 #: ../src/reminder.c:805
 msgid "Remind me again after the specified time"
-msgstr "Påmind mig igen efter den specificerede tid"
+msgstr "Påmind mig igen efter den angivne tid"
 
 #: ../src/reminder.c:1091
 msgid "Next active alarms:"
