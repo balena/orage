@@ -735,10 +735,13 @@ void oc_bg_set(Clock *clock)
 {
     GdkColor *bg = NULL;
 
-    if (clock->bg_set)
+    if (clock->bg_set) {
         bg = &clock->bg;
-
-    gtk_widget_modify_bg(clock->ebox, GTK_STATE_NORMAL, bg);
+        gtk_widget_modify_bg(clock->ebox, GTK_STATE_NORMAL, bg);
+        gtk_event_box_set_visible_window(GTK_EVENT_BOX(clock->ebox), TRUE);
+    } else {
+        gtk_event_box_set_visible_window(GTK_EVENT_BOX(clock->ebox), FALSE);
+    }
 }
 
 void oc_timezone_set(Clock *clock)
