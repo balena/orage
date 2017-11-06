@@ -22,7 +22,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-23 12:30+0200\n"
-"PO-Revision-Date: 2017-11-06 11:27+0000\n"
+"PO-Revision-Date: 2017-11-06 12:59+0000\n"
 "Last-Translator: No Ne\n"
 "Language-Team: Polish (http://www.transifex.com/xfce/xfce-apps/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -872,7 +872,7 @@ msgid ""
 "These are converted only later when they are seen:\n"
 "    <&Ynnnn> is translated to current year minus nnnn.\n"
 "(This can be used for example in birthday reminders to tell how old the person will be.)"
-msgstr ""
+msgstr "Te skrócone polecenia zaczynają obowiązywać natychmiast:\n    <D> wstawia aktualną datę w lokalnym formacie daty\n    <T> wstawia czas oraz\n    <DT> wstawia datę i godzinę.\n\nZostaną przekształcane dopiero później, gdy będą widoczne:\n    <&Ynnnn> jest tłumaczone na bieżący rok minus nnnn.\n(Można to wykorzystać na przykład w przypomnieniach o urodzinach, aby określić, ile lat będzie mieć osoba.)"
 
 #: ../src/appointment.c:3010
 msgid "Before Start"
@@ -998,7 +998,7 @@ msgid ""
 "\t<&AT> alarm time\n"
 "\t<&ST> appointment start time\n"
 "\t<&ET> appointment end time"
-msgstr ""
+msgstr "Musisz samemu wprowadzić wszystkie znaki ucieczki.\nTen ciąg jest właśnie przekazywany powłoce do przetworzenia.\nNastępujące specjalne polecenia są zastępowane w czasie wykonywania:\n\t<&T>  tytuł spotkania\n\t<&D>  opis spotkania\n\t<&AT> czas alarmu\n\t<&ST> czas rozpoczęcia spotkania\n\t<&ET> czas zakończenia spotkania"
 
 #: ../src/appointment.c:3208
 msgid "Test this alarm by raising it now"
@@ -1156,13 +1156,13 @@ msgstr "Baza TODO"
 msgid ""
 "TODO reoccurs regularly starting on start time and repeating after each "
 "interval no matter when it was last completed"
-msgstr ""
+msgstr "TODO regularnie uruchamia się ponownie od czasu rozpoczęcia i powtarza po każdym interwale, bez względu na czas ostatniego ukończonia."
 
 #: ../src/appointment.c:3465
 msgid ""
 "TODO reoccurrency is based on complete time and repeats after the interval counted from the last completed time.\n"
 "(Note that you can not tell anything about the history of the TODO since reoccurrence base changes after each completion.)"
-msgstr ""
+msgstr "Nawrót TODO opiera się na pełnym czasie i powtarza się po interwale liczonym od ostatniego ukończonego czasu.\n(Zauważ, że nie możesz nic powiedzieć o historii TODO ponieważ podstawa nawrotu zmienia się po każdym ukończeniu.)"
 
 #. exceptions
 #: ../src/appointment.c:3471
@@ -1174,7 +1174,7 @@ msgid ""
 "Add more exception dates by clicking the calendar days below.\n"
 "Exception is either exclusion(-) or inclusion(+) depending on the selection.\n"
 "Remove by clicking the data."
-msgstr ""
+msgstr "Dodaj więcej dat wyjątku poprzez kliknięcie dni kalendarza poniżej .\nWyjątkiem jest wykluczenie (-) lub włączenie (+) w zależności od wyboru.\nUsuń poprzez kliknięcie daty."
 
 #: ../src/appointment.c:3489
 msgid "Add excluded date (-)"
@@ -1306,7 +1306,7 @@ msgid ""
 "Check this if you only want to see the first repeating event. By default all are shown.\n"
 "Note that this also shows all urgencies.\n"
 "Note that repeating events may appear earlier in the list as the first occurrence only is listed."
-msgstr ""
+msgstr "Zaznacz to, jeśli chcesz zobaczyć tylko pierwsze powtarzające się wydarzenie. Wszystkie są wyświetlane domyślnie.\nZauważ, że to pokazuje również wszystkie pilne.\nZwróć uwagę, że powtarzające się wydarzenia mogą pojawiać się wcześniej na liście, ponieważ wymienione jest tylko pierwsze wystąpienie."
 
 #: ../src/event-list.c:1250
 msgid "also old"
@@ -1316,7 +1316,7 @@ msgstr "także stary"
 msgid ""
 "Check this if you want to see old events also. This can only be selected after 'only first repeating' is enabled to avoid very long lists.\n"
 "Note that extra days selection still defines if newer appointments are listed'."
-msgstr ""
+msgstr "Zaznacz to, jeśli chcesz zobaczyć także stare zdarzenia. Można to wybrać tylko po włączeniu opcji \"tylko pierwsze powtórzenie\", aby uniknąć bardzo długich list.\nZauważ, że dodatkowy wybór dni nadal definiuje, czy są wyświetlane nowsze spotkania."
 
 #: ../src/event-list.c:1290
 msgid "Journal entries starting from:"
@@ -1352,7 +1352,7 @@ msgid ""
 "\t\tO=Orage A=Archive F=Foreign\n"
 "\t 5. Appointment type:\n"
 "\t\tE=Event T=Todo J=Journal"
-msgstr ""
+msgstr "Kliknij dwukrotnie linię, aby ją edytować.\n\nFlagi w porządku:\n \t1. Alarm: n=bez alarmu\n \t\tA=alarm ustawiono P=stały alarm ustawiono\n \t2. Rekurencja: n=bez rekurencji\n \t\tH=godzinowa D=dzienna W=tygodniowa M=miesięczna Y=roczna\n\t 3. Typ: f=wolny B=zajęty\n\t 4. Znajduje się w pliku:\n\t\tO=Orage A=archiwum F=zewnętrznym\n\t 5. Typ spotkania:\n\t\tE=wydarzenie T=przypomnienie J=dziennik"
 
 #. remove since it has ended
 #: ../src/ical-archive.c:267
@@ -1388,7 +1388,7 @@ msgstr "\tVTODO niekompletne; niearchiwizowane"
 #: ../src/ical-archive.c:390
 #, c-format
 msgid "\tRecurring. End year: %04d, month: %02d, day: %02d"
-msgstr "\tOkresowe. Koniec roku: %04d, miesiąc: %02d, dzień: %02d"
+msgstr "\tCykliczne. Koniec roku: %04d, miesiąc: %02d, dzień: %02d"
 
 #: ../src/ical-archive.c:407
 msgid "Archiving done\n"
@@ -1429,13 +1429,13 @@ msgstr "Stworzono listę alarmów dla zewnętrznego pliku: %s (%s)"
 #: ../src/ical-code.c:3183
 #, c-format
 msgid "\tAdded %d alarms. Processed %d events."
-msgstr "⇥Dodano %d alarmów. Przetworzono %d zdarzeń."
+msgstr "\tDodano %d alarmów. Przetworzono %d wydarzeń."
 
 #: ../src/ical-code.c:3185
 #, c-format
 msgid ""
 "\tFound %d alarms of which %d are active. (Searched %d recurring alarms.)"
-msgstr "\tZnaleziono %d alarmów, z których %d są aktywne. (Wyszukano %d alarmów okresowych.)"
+msgstr "\tZnaleziono %d alarmów, z których %d są aktywne. (Wyszukano %d alarmów cyklicznych.)"
 
 #: ../src/ical-expimp.c:123
 msgid "Starting import file preprocessing"
@@ -1963,7 +1963,7 @@ msgstr "Pola informacyjne kalendarza"
 
 #: ../src/parameters.c:660
 msgid "Show todo list"
-msgstr "Przypomnienia"
+msgstr "Pokaż listę przypomnień"
 
 #: ../src/parameters.c:667
 msgid "Number of days to show in event window"
