@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-23 12:30+0200\n"
-"PO-Revision-Date: 2018-02-27 22:04+0000\n"
+"PO-Revision-Date: 2018-02-28 22:10+0000\n"
 "Last-Translator: Besnik <besnik@programeshqip.org>\n"
 "Language-Team: Albanian (http://www.transifex.com/xfce/xfce-apps/language/sq/)\n"
 "MIME-Version: 1.0\n"
@@ -63,12 +63,12 @@ msgstr "butoni 1 për ndryshim parapëlqimesh \nbutoni 2 për rregullim kohe të
 
 #: ../globaltime/globaltime.c:480
 msgid "adjust to change hour"
-msgstr ""
+msgstr "rregullojeni të ndryshojë orën"
 
 #: ../globaltime/globaltime.c:496
 msgid ""
 "adjust to change minute. Click arrows with button 2 to change only 1 minute."
-msgstr ""
+msgstr "rregulloni të ndryshojë minutën. Klikoni shigjetat me butonin 2 që të ndryshohet vetëm 1 minutë."
 
 #: ../globaltime/globaltime.c:548
 msgid "Global Time"
@@ -128,7 +128,7 @@ msgstr "mbylle dritaren dhe dil"
 
 #: ../globaltime/gt_prefs.c:590
 msgid "Globaltime preferences "
-msgstr ""
+msgstr "Parapëlqime për kohë globale "
 
 #. -----------------------HEADING-------------------------------------------
 #: ../globaltime/gt_prefs.c:603
@@ -255,7 +255,7 @@ msgstr "përditësoni parapëlqimet"
 
 #: ../globaltime/gt_prefs.c:1062
 msgid "Globaltime Preferences"
-msgstr ""
+msgstr "Parapëlqime Për Kohë Globale"
 
 #. -----------------------HEADING--------------------------------------
 #: ../globaltime/gt_prefs.c:1073
@@ -342,12 +342,12 @@ msgstr "përpara"
 #: ../globaltime/timezone_selection.c:194
 #: ../panel-plugin/timezone_selection.c:195 ../src/timezone_selection.c:206
 msgid "not changed"
-msgstr ""
+msgstr "e pandryshuar"
 
 #: ../globaltime/timezone_selection.c:195
 #: ../panel-plugin/timezone_selection.c:196 ../src/timezone_selection.c:207
 msgid "not changing"
-msgstr ""
+msgstr "nuk ndryshon"
 
 #. location
 #: ../globaltime/timezone_selection.c:247
@@ -416,7 +416,7 @@ msgstr "pezull"
 
 #: ../globaltime/globaltime.desktop.in.h:1
 msgid "Orage Globaltime"
-msgstr ""
+msgstr "Kohë globale Orage"
 
 #: ../globaltime/globaltime.desktop.in.h:2
 msgid "Show clocks from different countries"
@@ -424,7 +424,7 @@ msgstr "Shfaq orë prej vendesh të ndryshme"
 
 #: ../globaltime/globaltime.desktop.in.h:3 ../src/tray_icon.c:500
 msgid "Globaltime"
-msgstr ""
+msgstr "Kohë globale"
 
 #: ../panel-plugin/oc_config.c:239
 msgid "No rotation"
@@ -513,7 +513,7 @@ msgid ""
 "circumstances it is possible that Orageclock shows time inaccurately unless "
 "you have this selected. (Selecting this prevents cpu and interrupt saving "
 "features from working.)"
-msgstr ""
+msgstr "Kjo ju duhet vetëm nëse bëni pezullime ose plogështime të shkurtra të sistemit (më pak se 5 orë) dhe koha juaj e dukshme nuk përfshin sekondat. Nën këto rrethana, është e mundur që ora e Orage-it ta shfaqë pasaktësisht kohën, po nuk e patët këtë të përzgjedhur. (Përzgjedhja e kësaj pengon punimin e cpu-s dhe të funksioneve të ndalimit të alarmeve.)"
 
 #: ../panel-plugin/oc_config.c:466
 msgid ""
@@ -560,7 +560,7 @@ msgstr "Fund"
 
 #: ../src/appointment.c:333
 msgid "Due"
-msgstr ""
+msgstr "Afat"
 
 #: ../src/appointment.c:493 ../src/mainbox.c:862
 msgid "Orage"
@@ -614,22 +614,22 @@ msgstr "Kartelë parazgjedhje Orage"
 
 #: ../src/appointment.c:1225
 msgid "Appointment addition failed."
-msgstr ""
+msgstr "Shtimi i takimit dështoi."
 
 #: ../src/appointment.c:1226
 msgid ""
 "Error happened when adding appointment. Look more details from the log file."
-msgstr ""
+msgstr "Ndodhi një gabim kur shtohej takimi. Për më tepër hollësi shihni te kartela regjistër."
 
 #: ../src/appointment.c:1236
 msgid "Appointment update failed."
-msgstr ""
+msgstr "Përditësimi i takimit dështoi."
 
 #: ../src/appointment.c:1237
 msgid ""
 "Look more details from the log file. (Perhaps file was updated external from"
 " Orage?)"
-msgstr ""
+msgstr "Për më tepër hollësi shihni te kartela regjistër. (Ndoshta kartela qe përditësuar nga jashtë Orage-it?)"
 
 #: ../src/appointment.c:1286
 msgid "This appointment will be permanently removed."
@@ -712,7 +712,7 @@ msgstr "Ruaje dhe mbylle"
 
 #: ../src/appointment.c:2709
 msgid "Revert"
-msgstr "Rikthe"
+msgstr "Riktheje"
 
 #: ../src/appointment.c:2711 ../src/event-list.c:1171
 msgid "Duplicate"
@@ -843,7 +843,7 @@ msgid ""
 "You can use that feature to unclutter your list windows, but it makes it more difficult to find this appointment.\n"
 "(Alarms will still fire normally.)\n"
 "(There is undocumented parameter so that you can change the default limit of 8.)"
-msgstr ""
+msgstr "Nëse këtë e caktoni 8 ose më tepër, takimi NUK shfaqet te dritare listash.\nKëtë veçori mund ta përdorni për më pak rrëmujë te dritaret e listave tuaja, por ajo e bën më të vështirë të gjendet ky takim.\n(Alarmet do të ngjasin normalisht.)\n(Ky është një parametër i padokumentuar, për t’ju dhënë mundësinë të ndryshoni kufirin parazgjedhje prej 8.)"
 
 #. note
 #: ../src/appointment.c:2918
@@ -860,7 +860,7 @@ msgid ""
 "These are converted only later when they are seen:\n"
 "    <&Ynnnn> is translated to current year minus nnnn.\n"
 "(This can be used for example in birthday reminders to tell how old the person will be.)"
-msgstr ""
+msgstr "Këta urdhra të shkurtër përmbushen menjëherë:\n    <D> fut datën e tanishme në format date vendore\n    <T> fut kohën dhe\n    <DT> fut datën dhe kohën.\n\nShndërrohen vetëm më vonë, kur shihen:\n    <&Ynnnn> përkthehet në vitin e tanishëm minus nnnn.\n(Kjo mund të përdoret, për shembull, në kujtues datëlindjesh, për të treguar se sa vjeç do të jetë personi.)"
 
 #: ../src/appointment.c:3010
 msgid "Before Start"
@@ -986,11 +986,11 @@ msgid ""
 "\t<&AT> alarm time\n"
 "\t<&ST> appointment start time\n"
 "\t<&ET> appointment end time"
-msgstr ""
+msgstr "Shenjat për paraprirje etj duhet t’i jepni vetëm ju.\nKy varg i jepet shellit për ta përpunuar.\nUrdhrat speciale vijuese zëvendësohen gjatë xhirimit:\n\t<&T>  titull takimi\n\t<&D>  përshkrim takimi\n\t<&AT> kohë alarmi\n\t<&ST> kohë fillimi takimi\n\t<&ET> kohë mbarimi takimi"
 
 #: ../src/appointment.c:3208
 msgid "Test this alarm by raising it now"
-msgstr ""
+msgstr "Provojeni këtë alarm duke e vënë në punë tani"
 
 #: ../src/appointment.c:3215
 msgid "<b>Default alarm</b>"
@@ -1133,24 +1133,24 @@ msgid ""
 "\tFrequency = Monthly,\n"
 "\tWeekdays = check only Wednesday,\n"
 "\tWhich day = select 2 from the number below Wednesday"
-msgstr "Tregoni ditë të javës për veprimtari mujore dhe vjetore.\n Për shembull:\n Të Mërkurat e dyta çdo muaj:\n\tShpeshti = Përmuajshëm,\n\tDitë të javës = kontrollo vetëm të Mërkurave,\n\tCilën ditë = përzgjidhni 2 nga numrat poshtë të Mërkurës"
+msgstr "Tregoni ditë të javës për veprimtari mujore dhe vjetore.\n Për shembull:\n Të mërkurat e dyta çdo muaj:\n\tShpeshti = Përmuajshëm,\n\tDitë të javës = kontrollo vetëm të mërkurave,\n\tCilën ditë = përzgjidhni 2 nga numrat poshtë të mërkurës"
 
 #. TODO base (only for TODOs)
 #: ../src/appointment.c:3450
 msgid "TODO base"
-msgstr ""
+msgstr "Bazë PËR_TU_BËRË-ash"
 
 #: ../src/appointment.c:3463
 msgid ""
 "TODO reoccurs regularly starting on start time and repeating after each "
 "interval no matter when it was last completed"
-msgstr ""
+msgstr "PËR_TU_BËRË ripërsëritet rregullisht duke filluar në kohën e fillimit dhe duke u përsëritur pas çdo intervali, pavarësisht se kur qe plotësuar për herë të fundit"
 
 #: ../src/appointment.c:3465
 msgid ""
 "TODO reoccurrency is based on complete time and repeats after the interval counted from the last completed time.\n"
 "(Note that you can not tell anything about the history of the TODO since reoccurrence base changes after each completion.)"
-msgstr ""
+msgstr "Ripërsëritja e akteve PËR_T’U_BËRË bazohet në kohë plotësimi dhe përsëritet pas intervalit të llogaritur që nga koha e plotësimit të fundit.\n(Kini parasysh që s’mund të thoni gjë mbi historikun e akteve PËR_T’U_BËRË, ngaqë baza e ripërsëritjes ndryshon pas çdo plotësimi.)"
 
 #. exceptions
 #: ../src/appointment.c:3471
@@ -1162,25 +1162,25 @@ msgid ""
 "Add more exception dates by clicking the calendar days below.\n"
 "Exception is either exclusion(-) or inclusion(+) depending on the selection.\n"
 "Remove by clicking the data."
-msgstr ""
+msgstr "Shtoni më tepër data përjashtimesh duke klikuar mbi ditët e kalendarit më poshtë.\nPërjashtim ose është përjashtim(-), ose përfshirje(+), varet nga përzgjedhja.\nHiqeni duke klikuar mbi datën."
 
 #: ../src/appointment.c:3489
 msgid "Add excluded date (-)"
-msgstr ""
+msgstr "Shtoni datë të përjashtuar date (-)"
 
 #: ../src/appointment.c:3491
 msgid "Excluded days are full days where this appointment is not happening"
-msgstr ""
+msgstr "Ditët e përjashtuara janë ditë të plota gjatë të cilave nuk ndodhin takime"
 
 #: ../src/appointment.c:3497
 msgid "Add included time (+)"
-msgstr ""
+msgstr "Shtoni kohë të përfshirë (+)"
 
 #: ../src/appointment.c:3499
 msgid ""
 "Included times have same timezone than start time, but they may have "
 "different time"
-msgstr ""
+msgstr "Kohët e përfshira kanë të njëjtën zonë kohore me kohën e fillimit, por mund të kenë kohë tjetër"
 
 #. calendars showing the action days
 #: ../src/appointment.c:3516
@@ -1236,7 +1236,7 @@ msgstr "       Numër ditësh për shfaqje"
 
 #: ../src/day-view.c:1073
 msgid "Orage - day view"
-msgstr "Orage - parje ditësh"
+msgstr "Orage - pamje ditësh"
 
 #. date only appointment
 #: ../src/event-list.c:191
@@ -1287,24 +1287,24 @@ msgstr "Ditë ekstra për shfaqje:"
 
 #: ../src/event-list.c:1240
 msgid "only first repeating"
-msgstr ""
+msgstr "vetëm përsëritjen e parë"
 
 #: ../src/event-list.c:1245
 msgid ""
 "Check this if you only want to see the first repeating event. By default all are shown.\n"
 "Note that this also shows all urgencies.\n"
 "Note that repeating events may appear earlier in the list as the first occurrence only is listed."
-msgstr ""
+msgstr "I vini shenjë kësaj, nëse doni të shihni përsëritjen e parë të veprimtarisë. Si parazgjedhje, shfaqen të tëra.\nMbani parasysh që kjo shfaq vetëm urgjencat.\nMbani parasysh që veprimtaritë me përsëritje mund të shfaqen më herët te lista, ngaqë shfaqet vetëm përsëritja e parë."
 
 #: ../src/event-list.c:1250
 msgid "also old"
-msgstr ""
+msgstr "edhe të vjetrat"
 
 #: ../src/event-list.c:1252
 msgid ""
 "Check this if you want to see old events also. This can only be selected after 'only first repeating' is enabled to avoid very long lists.\n"
 "Note that extra days selection still defines if newer appointments are listed'."
-msgstr ""
+msgstr "I vini shenjë kësaj, nëse doni të shihni edhe veprimtari të vjetra. Kjo mund të përzgjidhet vetëm pasi të jetë aktivizuar 'vetëm përsëritjen e parë', për të shmangur lista shumë të gjata.\nMbani parasysh se përzgjedhja e ditëve ekstra ende përcakton nëse shfaqen takime më të reja."
 
 #: ../src/event-list.c:1290
 msgid "Journal entries starting from:"
@@ -1340,7 +1340,7 @@ msgid ""
 "\t\tO=Orage A=Archive F=Foreign\n"
 "\t 5. Appointment type:\n"
 "\t\tE=Event T=Todo J=Journal"
-msgstr ""
+msgstr "Dyklikoni mbi rreshtin që ta përpunoni.\n\nFlamurka sipas radhës:\n\t 1. Alarm: n=pa alarm\n\t\t A=Është caktuar alarm P=Është caktuar alarm i përhershëm\n\t 2. Ripërsëritje: n=pa ripërsëritje\n\t\t H=Çdo orë D=Çdo ditë W=Çdo javë M=Çdo muaj Y=Çdo vit\n\t 3. Lloj: f=i lirë B=i zënë\n\t 4. Në ç’kartelë gjendet:\n\t\tO=Orage A=Arki F=Të jashtme\n\t 5. Caktuar për:\n\t\tE=Veprimtari T=Për T’u Bërë J=Ditar"
 
 #. remove since it has ended
 #: ../src/ical-archive.c:267
@@ -1370,7 +1370,7 @@ msgstr "Uid arkivimi: %s"
 #. VTODO not completed, do not archive
 #: ../src/ical-archive.c:385
 msgid "\tVTODO not complete; not archived"
-msgstr ""
+msgstr "\tVTODO jo e plotë; s’u arkivua"
 
 #. it is recurrent event
 #: ../src/ical-archive.c:390
@@ -1407,17 +1407,17 @@ msgstr "Alarm parazgjedhje i Orage-it"
 
 #: ../src/ical-code.c:3179
 msgid "Created alarm list for main Orage file:"
-msgstr ""
+msgstr "U krijua listë alarmesh për kartelë kryesore Orage:"
 
 #: ../src/ical-code.c:3181
 #, c-format
 msgid "Created alarm list for foreign file: %s (%s)"
-msgstr ""
+msgstr "U krijua listë alarmesh për kartelë të jashtme: %s (%s)"
 
 #: ../src/ical-code.c:3183
 #, c-format
 msgid "\tAdded %d alarms. Processed %d events."
-msgstr ""
+msgstr "\tU shtuan %d alarme. U përpunuan %d veprimtari."
 
 #: ../src/ical-code.c:3185
 #, c-format
@@ -1431,7 +1431,7 @@ msgstr "Po fillon parapërpunimi i kartelës së importit"
 
 #: ../src/ical-expimp.c:158
 msgid "... Patched DCREATED to be CREATED."
-msgstr ""
+msgstr "... U arnua DCREATED për të qenë CREATED."
 
 #: ../src/ical-expimp.c:197
 msgid "... Patched timezone to Orage format."
@@ -1448,7 +1448,7 @@ msgstr "U gjet përditësim i jashtëm te kartela %s."
 
 #: ../src/interface.c:112
 msgid "Refreshing alarms and calendar due to external file update."
-msgstr ""
+msgstr "Po rifreskohen alarme dhe kalendar, për shkak përditësimesh në kartelë të jashtme."
 
 #: ../src/interface.c:271
 msgid "Calendar files"
@@ -1456,7 +1456,7 @@ msgstr "Kartela kalendari"
 
 #: ../src/interface.c:631
 msgid "Current foreign files"
-msgstr "Kartela të tanishme të huaja"
+msgstr "Kartela të tanishme të jashtme"
 
 #: ../src/interface.c:648
 msgid "READ ONLY"
@@ -1468,15 +1468,15 @@ msgstr "LEXIM SHKRIM"
 
 #: ../src/interface.c:669
 msgid "***** No foreign files *****"
-msgstr "***** Pa kartela të huaja *****"
+msgstr "***** Pa kartela të jashtme *****"
 
 #: ../src/interface.c:682
 msgid "Foreign file add failed"
-msgstr ""
+msgstr "Shtimi i kartelës së jashtme dështoi"
 
 #: ../src/interface.c:689
 msgid "Orage can only handle 10 foreign files. Limit reached."
-msgstr ""
+msgstr "Orage mund të trajtojë vetëm 10 kartela të jashtme. U mbërrit në kufi."
 
 #: ../src/interface.c:697
 msgid "Filename is empty."
@@ -1530,7 +1530,7 @@ msgstr "Përzgjidhni"
 
 #: ../src/interface.c:1028
 msgid "All appointments"
-msgstr "Tërë takimet"
+msgstr "Krejt takimet"
 
 #: ../src/interface.c:1041
 msgid "Named appointments: "
@@ -1540,13 +1540,13 @@ msgstr "Takime të emërtuar: "
 msgid ""
 "Note that only main file appointments are read.\n"
 "Archived and Foreign events are not exported."
-msgstr "Kini parasysh që lexohen vetëm takimet prej kartelës kryesore.\nVeprimet e Arkivuara dhe të Jashtme nuk eksportohen."
+msgstr "Kini parasysh që lexohen vetëm takimet prej kartelës kryesore.\nVeprimtaritë e Arkivuara dhe të Jashtme nuk eksportohen."
 
 #: ../src/interface.c:1056
 msgid ""
 "Note that only main file appointments are read.\n"
 "Foreign events are not exported."
-msgstr "Kini parasysh që lexohen vetëm takimet prej kartelës kryesore.\nVeprimet e jashtme nuk eksportohen."
+msgstr "Kini parasysh që lexohen vetëm takimet prej kartelës kryesore.\nVeprimtaritë e jashtme nuk eksportohen."
 
 #: ../src/interface.c:1059
 msgid "You can easily drag these from event-list window."
@@ -1633,15 +1633,15 @@ msgstr "Kartelë arkivash"
 
 #: ../src/interface.c:1245
 msgid "Foreign files"
-msgstr "Kartela të huaja"
+msgstr "Kartela të jashtme"
 
 #: ../src/interface.c:1252
 msgid "Add new foreign file"
-msgstr "Shto kartelë të huaj të re"
+msgstr "Shto kartelë të jashtme të re"
 
 #: ../src/interface.c:1257
 msgid "Foreign file:"
-msgstr "Kartelë e huaj:"
+msgstr "Kartelë e jashtme:"
 
 #. label = gtk_label_new(_("Options:"));
 #. gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 5);
@@ -1657,11 +1657,11 @@ msgstr "Vetëm lexim"
 msgid ""
 "Set this if you want to make sure that this file is never modified by Orage.\n"
 "Note that modifying foreign files may make them incompatible with the original tool, where they came from!"
-msgstr "Caktojeni nëse doni të siguroheni që kjo kartelë s’do të ndryshohet kurrë nga Orage-i.\nKini parasysh që ndryshimi i kartelave të huaja mund t'i bëjë ato të papërputhshme me mjetin origjinal, prej andej nga erdhën!"
+msgstr "Caktojeni nëse doni të siguroheni që kjo kartelë s’do të ndryshohet kurrë nga Orage-i.\nKini parasysh që ndryshimi i kartelave të jashtme mund t'i bëjë ato të papërputhshme me mjetin origjinal, prej andej nga erdhën!"
 
 #: ../src/interface.c:1294
 msgid "This internal name is displayed to user instead of file name."
-msgstr ""
+msgstr "Përdoruesit i shfaqet ky emër i brendshëm, në vend se emri i kartelës."
 
 #: ../src/interface.c:1308
 msgid "Exchange data - Orage"
@@ -1687,7 +1687,7 @@ msgstr "\tPërpiluar kundrejt GTK+-%d.%d.%d, "
 #: ../src/main.c:280
 #, c-format
 msgid "using GTK+-%d.%d.%d.\n"
-msgstr "po përdoret GTK+-%d.%d.%d.\n"
+msgstr "përdor GTK+-%d.%d.%d.\n"
 
 #: ../src/main.c:283
 #, c-format
@@ -1712,7 +1712,7 @@ msgstr "\tPa përdorim të libnotify-it.\n"
 #: ../src/main.c:293
 #, c-format
 msgid "\tUsing automatic archiving.\n"
-msgstr "\tMe përdorim arkivimi të vetvetishëm.\n"
+msgstr "\tMe përdorim arkivimi të automatizuar.\n"
 
 #: ../src/main.c:295
 #, c-format
@@ -1764,19 +1764,19 @@ msgstr "--toggle (-t) \t\tbëje orage-in të dukshëm/të padukshëm\n"
 #: ../src/main.c:319
 #, c-format
 msgid "--add-foreign (-a) file [RW] [name] \tadd a foreign file\n"
-msgstr ""
+msgstr "--add-foreign (-a) kartelë [RW] [emër] \tshtoni një kartelë të jashtme\n"
 
 #: ../src/main.c:320
 #, c-format
 msgid "--remove-foreign (-r) file \tremove a foreign file\n"
-msgstr "--remove-foreign (-r) kartelë \thiq një kartelë të huaj\n"
+msgstr "--remove-foreign (-r) kartelë \thiqni një kartelë të jashtme\n"
 
 #: ../src/main.c:321
 #, c-format
 msgid ""
 "--export (-e) file [appointment...] \texport appointments from Orage to "
 "file\n"
-msgstr ""
+msgstr "--export (-e) kartelë [takim…] \teksportoni takime nga Orage në kartelë\n"
 
 #: ../src/main.c:323
 #, c-format
@@ -1793,7 +1793,7 @@ msgstr "\tdbus nuk përfshihet në Orage. \n"
 msgid ""
 "\twithout dbus [files] and foreign file options(-a & -r) can only be used "
 "when starting orage \n"
-msgstr "\tpa dbus [kartela] dhe mundësi kartelash të huaja(-a & -r) mund të përdoren vetëm kur niset orage-i \n"
+msgstr "\tpa dbus, [kartela] dhe mundësitë (-a & -r) për kartelat e jashtme mund të përdoren vetëm kur niset Orage-i \n"
 
 #: ../src/main.c:535
 #, c-format
@@ -1826,7 +1826,7 @@ msgstr "Përzgjidhni _Sot"
 
 #: ../src/mainbox.c:341
 msgid "Show _Globaltime"
-msgstr ""
+msgstr "Shfaqni _Globaltime"
 
 #. Help menu
 #: ../src/mainbox.c:345
@@ -1873,7 +1873,7 @@ msgstr "Titull: %s\n%s Fillon më:\t%s\n Përfundon më:\t%s%s"
 
 #: ../src/mainbox.c:613
 msgid "<b>To do:</b>"
-msgstr "<b>Për t'u bërë:</b>"
+msgstr "<b>Për t’u bërë:</b>"
 
 #: ../src/mainbox.c:649
 #, c-format
@@ -1947,11 +1947,11 @@ msgstr "Shfaq vit dhe muaj"
 
 #: ../src/parameters.c:655
 msgid "Calendar info boxes"
-msgstr ""
+msgstr "Kuti të dhënash kalendari"
 
 #: ../src/parameters.c:660
 msgid "Show todo list"
-msgstr "Shfaq listë veprimesh"
+msgstr "Shfaq listë zërash për t’u bërë"
 
 #: ../src/parameters.c:667
 msgid "Number of days to show in event window"
@@ -2003,7 +2003,7 @@ msgstr "Minimizuar"
 
 #: ../src/parameters.c:787
 msgid "On calendar window open"
-msgstr ""
+msgstr "Gjatë hapjesh dritareje kalendari"
 
 #: ../src/parameters.c:792
 msgid "Select today's date"
@@ -2015,7 +2015,7 @@ msgstr "Përzgjidhni datë të përzgjedhur më parë"
 
 #: ../src/parameters.c:823
 msgid "Calendar day double click shows"
-msgstr ""
+msgstr "Dyklikimi mbi ditë kalendari shfaq"
 
 #: ../src/parameters.c:828
 msgid "Days view"
@@ -2041,15 +2041,15 @@ msgstr "Numër ditësh ekstra për shfaqje në listë veprimtarish"
 msgid ""
 "This is just the default value, you can change it in the actual eventlist "
 "window."
-msgstr "Kjo është thjesht vlera parazgjedhje, mund ta ndryshoni te dritarja faktike e listës së veprimtarive"
+msgstr "Kjo është thjesht vlera parazgjedhje, mund ta ndryshoni te dritarja faktike e listës së veprimtarive."
 
 #: ../src/parameters.c:891
 msgid "Show only first repeating event"
-msgstr ""
+msgstr "Shfaq vetëm veprimtarinë e përsëritjes së parë"
 
 #: ../src/parameters.c:907
 msgid "Day view window default first day"
-msgstr ""
+msgstr "Parazgjedhja për dritare të pamjes së ditëve është dita e parë"
 
 #: ../src/parameters.c:912
 msgid "First day of week"
@@ -2057,33 +2057,33 @@ msgstr "Dita e parë e javës"
 
 #: ../src/parameters.c:925
 msgid "Selected day"
-msgstr ""
+msgstr "Dita e përzgjedhur"
 
 #: ../src/parameters.c:943
 msgid "Use dynamic tray icon"
-msgstr ""
+msgstr "Përdor ikonë dinamike paneli sistemi"
 
 #: ../src/parameters.c:948
 msgid "Use dynamic icon"
-msgstr ""
+msgstr "Përdor ikonë dinamike"
 
 #: ../src/parameters.c:954
 msgid "Dynamic icon shows current month and day of the month."
-msgstr ""
+msgstr "Ikona dinamike shfaq vlerat e tanishme për muajin dhe ditën e muajit."
 
 #: ../src/parameters.c:962 ../src/parameters.c:967
 msgid "Use wakeup timer"
-msgstr ""
+msgstr "Përdor afatmatës zgjimesh"
 
 #: ../src/parameters.c:973
 msgid ""
 "Use this timer if Orage has problems waking up properly after suspend or "
 "hibernate. (For example tray icon not refreshed or alarms not firing.)"
-msgstr ""
+msgstr "Përdoreni këtë afatmatës nëse Orage ka probleme për t’u zgjuar pas pezullimesh apo plogështimesh. (Për shembull, ikona në panelin e sistemit nuk rifreskohet, ose alarmet nuk bien.)"
 
 #: ../src/parameters.c:982
 msgid "Foreign file default visual alarm"
-msgstr ""
+msgstr "Alarm pamor parazgjedhje për kartela të jashtme"
 
 #: ../src/parameters.c:987
 msgid "Orage window"
@@ -2095,7 +2095,7 @@ msgstr ""
 
 #: ../src/parameters.c:1018
 msgid "Always quit when asked to close"
-msgstr ""
+msgstr "Dil përherë, kur kërkohet të mbyllet"
 
 #: ../src/parameters.c:1023
 msgid "Always quit"
@@ -2106,7 +2106,7 @@ msgid ""
 "By default Orage stays open in the background when asked to close. This "
 "option changes Orage to quit and never stay in background when it is asked "
 "to close."
-msgstr ""
+msgstr "Si parazgjedhje, Orage-i qëndron i hapur në prapaskenë, kur kërkohet mbyllja e tij. Kjo mundësi e ndryshon këtë sjellje që Orage të mbyllet dhe të mos qëndrojë kurrë në prapaskenë, kur kërkohet mbyllja e tij."
 
 #: ../src/parameters.c:1045
 msgid "Orage Preferences"
@@ -2114,7 +2114,7 @@ msgstr "Parapëlqime për Orage-in"
 
 #: ../src/parameters.c:1157
 msgid "First Orage start. Searching default timezone."
-msgstr ""
+msgstr "Nisja e parë e Orage-it. Po kërkohet për zonën kohore parazgjedhje."
 
 #: ../src/parameters.c:1176
 #, c-format
@@ -2123,7 +2123,7 @@ msgstr "Si zonë kohore parazgjedhje është caktuar %s."
 
 #: ../src/parameters.c:1179
 msgid "Default timezone not found, please, set it manually."
-msgstr ""
+msgstr "S’u gjet zonë kohore parazgjedhje, ju lutemi, caktojeni dorazi."
 
 #: ../src/reminder.c:562
 msgid "Reminder "
@@ -2135,19 +2135,19 @@ msgstr "Hap"
 
 #: ../src/reminder.c:719
 msgid "Reminder - Orage"
-msgstr "Përkujtues - Orage"
+msgstr "Kujtues - Orage"
 
 #: ../src/reminder.c:803
 msgid "Postpone"
-msgstr "Shtyje"
+msgstr "Shtyjeni"
 
 #: ../src/reminder.c:805
 msgid "Remind me again after the specified time"
-msgstr ""
+msgstr "Rikujtoma pas kohës së caktuar"
 
 #: ../src/reminder.c:1091
 msgid "Next active alarms:"
-msgstr "Alarmet pasues veprues:"
+msgstr "Alarmet pasues aktive:"
 
 #: ../src/reminder.c:1145
 #, c-format
@@ -2161,7 +2161,7 @@ msgstr "\n%02d d %02d h %02d miuta deri në: %s"
 msgid ""
 "\n"
 "No active alarms found"
-msgstr "\nNuk u gjet alarm veprues"
+msgstr "\nS’u gjet alarm aktiv"
 
 #: ../src/timezone_names.c:36
 msgid "Africa"
@@ -2409,7 +2409,7 @@ msgstr "Amerikë/Araguaina"
 
 #: ../src/timezone_names.c:97
 msgid "America/Argentina/Buenos_Aires"
-msgstr "Amerikë/Argjentinë/Buenos_Aires"
+msgstr "Amerikë/Argjentinë/Buenos_Ajres"
 
 #: ../src/timezone_names.c:98
 msgid "America/Argentina/Catamarca"
@@ -2557,7 +2557,7 @@ msgstr "Amerikë/Porti_i_Koraleve"
 
 #: ../src/timezone_names.c:134
 msgid "America/Cordoba"
-msgstr "Amerikë/Kordoba "
+msgstr "Amerikë/Kordoba"
 
 #: ../src/timezone_names.c:135
 msgid "America/Costa_Rica"
@@ -2697,11 +2697,11 @@ msgstr "Amerikë/Indiana/Vevej"
 
 #: ../src/timezone_names.c:169
 msgid "America/Indiana/Vincennes"
-msgstr ""
+msgstr "Amerikë/Indiana/Vincenes"
 
 #: ../src/timezone_names.c:170
 msgid "America/Indiana/Winamac"
-msgstr ""
+msgstr "Amerikë/Indiana/Uinamak"
 
 #: ../src/timezone_names.c:171
 msgid "America/Indianapolis"
@@ -2861,7 +2861,7 @@ msgstr "Amerikë/Dakota_e_Veriut/Qendër"
 
 #: ../src/timezone_names.c:210
 msgid "America/North_Dakota/New_Salem"
-msgstr ""
+msgstr "Amerikë/Dakota_e_Veriut/Nju_Salem"
 
 #: ../src/timezone_names.c:211
 msgid "America/Noronha"
@@ -3061,7 +3061,7 @@ msgstr "Antarktidë/DymoDYrvil"
 
 #: ../src/timezone_names.c:260
 msgid "Antarctica/Macquarie"
-msgstr ""
+msgstr "Antarktidë/Mekuaëri"
 
 #: ../src/timezone_names.c:261
 msgid "Antarctica/Mawson"
@@ -3077,7 +3077,7 @@ msgstr "Antarktidë/Palmer"
 
 #: ../src/timezone_names.c:264
 msgid "Antarctica/Rothera"
-msgstr ""
+msgstr "Antarktidë/Rothera"
 
 #: ../src/timezone_names.c:265
 msgid "Antarctica/South_Pole"
@@ -3129,11 +3129,11 @@ msgstr "Azi/Aktobe"
 
 #: ../src/timezone_names.c:277
 msgid "Asia/Ashgabat"
-msgstr "Azi/Ashkabad"
+msgstr "Azi/Ashgabat"
 
 #: ../src/timezone_names.c:278
 msgid "Asia/Ashkhabad"
-msgstr ""
+msgstr "Azi/Ashkabad"
 
 #: ../src/timezone_names.c:279
 msgid "Asia/Baghdad"
@@ -3169,7 +3169,7 @@ msgstr "Azi/Kalkuta"
 
 #: ../src/timezone_names.c:287
 msgid "Asia/Choibalsan"
-msgstr ""
+msgstr "Azi/Çoibalsan"
 
 #: ../src/timezone_names.c:288
 msgid "Asia/Chongqing"
@@ -3185,7 +3185,7 @@ msgstr "Azi/Kolombo"
 
 #: ../src/timezone_names.c:291
 msgid "Asia/Dacca"
-msgstr ""
+msgstr "Azi/Daka"
 
 #: ../src/timezone_names.c:292
 msgid "Asia/Damascus"
@@ -3277,7 +3277,7 @@ msgstr "Azi/Katmandu"
 
 #: ../src/timezone_names.c:314
 msgid "Asia/Khandyga"
-msgstr ""
+msgstr "Azi/Kandiga"
 
 #: ../src/timezone_names.c:315
 msgid "Asia/Kolkata"
@@ -3313,7 +3313,7 @@ msgstr "Azi/Magadan"
 
 #: ../src/timezone_names.c:323
 msgid "Asia/Makassar"
-msgstr ""
+msgstr "Azi/Makasar"
 
 #: ../src/timezone_names.c:324
 msgid "Asia/Manila"
@@ -3341,7 +3341,7 @@ msgstr "Azi/Omsk"
 
 #: ../src/timezone_names.c:330
 msgid "Asia/Oral"
-msgstr ""
+msgstr "Azi/Uralsk"
 
 #: ../src/timezone_names.c:331
 msgid "Asia/Phnom_Penh"
@@ -3373,15 +3373,15 @@ msgstr "Azi//Riad"
 
 #: ../src/timezone_names.c:338
 msgid "Asia/Riyadh87"
-msgstr ""
+msgstr "Azi//Riad87"
 
 #: ../src/timezone_names.c:339
 msgid "Asia/Riyadh88"
-msgstr ""
+msgstr "Azi//Riad88"
 
 #: ../src/timezone_names.c:340
 msgid "Asia/Riyadh89"
-msgstr ""
+msgstr "Azi//Riad89"
 
 #: ../src/timezone_names.c:341
 msgid "Asia/Saigon"
@@ -3457,7 +3457,7 @@ msgstr "Azi/Urumki"
 
 #: ../src/timezone_names.c:359
 msgid "Asia/Ust-Nera"
-msgstr ""
+msgstr "Azi/Ust-Nera"
 
 #: ../src/timezone_names.c:360
 msgid "Asia/Vientiane"
@@ -3505,7 +3505,7 @@ msgstr "Atlantik/Faroe"
 
 #: ../src/timezone_names.c:371
 msgid "Atlantic/Faroe"
-msgstr ""
+msgstr "Atlantik/Faroe"
 
 #: ../src/timezone_names.c:372
 msgid "Atlantic/Jan_Mayen"
@@ -3521,7 +3521,7 @@ msgstr "Atlantik/Reikjavik"
 
 #: ../src/timezone_names.c:375
 msgid "Atlantic/South_Georgia"
-msgstr "Atlantik/Georgji"
+msgstr "Atlantik/Xhorxhia_e_Jugut"
 
 #: ../src/timezone_names.c:376
 msgid "Atlantic/St_Helena"
@@ -3537,7 +3537,7 @@ msgstr "Australi"
 
 #: ../src/timezone_names.c:379
 msgid "Australia/ACT"
-msgstr ""
+msgstr "Australi/ACT"
 
 #: ../src/timezone_names.c:380
 msgid "Australia/Adelaide"
@@ -3553,7 +3553,7 @@ msgstr "Australi/Kodr_´_e_Thyer"
 
 #: ../src/timezone_names.c:383
 msgid "Australia/Currie"
-msgstr ""
+msgstr "Australia/Kurri"
 
 #: ../src/timezone_names.c:384
 msgid "Australia/Darwin"
@@ -3561,7 +3561,7 @@ msgstr "Australi/Darvin"
 
 #: ../src/timezone_names.c:385
 msgid "Australia/Eucla"
-msgstr ""
+msgstr "Australi/Jukla"
 
 #: ../src/timezone_names.c:386
 msgid "Australia/Hobart"
@@ -3621,7 +3621,7 @@ msgstr "Kanada/Qendë"
 
 #: ../src/timezone_names.c:400
 msgid "Canada/East-Saskatchewan"
-msgstr ""
+msgstr "Kanada/Ist-Saskaçevan"
 
 #: ../src/timezone_names.c:401
 msgid "Canada/Eastern"
@@ -3629,7 +3629,7 @@ msgstr "Kanda/Lindje"
 
 #: ../src/timezone_names.c:402
 msgid "Canada/Mountain"
-msgstr ""
+msgstr "Kanada/Mauntën"
 
 #: ../src/timezone_names.c:403
 msgid "Canada/Newfoundland"
@@ -3641,7 +3641,7 @@ msgstr "Kanada/Paqësori"
 
 #: ../src/timezone_names.c:405
 msgid "Canada/Saskatchewan"
-msgstr ""
+msgstr "Kanada/Saskaçevan"
 
 #: ../src/timezone_names.c:406
 msgid "Canada/Yukon"
@@ -3661,147 +3661,147 @@ msgstr "Kili/Istërajlënd"
 
 #: ../src/timezone_names.c:410
 msgid "Etc"
-msgstr ""
+msgstr "Etj"
 
 #: ../src/timezone_names.c:411
 msgid "Etc/GMT"
-msgstr ""
+msgstr "Etj/GMT"
 
 #: ../src/timezone_names.c:412
 msgid "Etc/GMT+0"
-msgstr ""
+msgstr "Etj/GMT+0"
 
 #: ../src/timezone_names.c:413
 msgid "Etc/GMT+1"
-msgstr ""
+msgstr "Etj/GMT+1"
 
 #: ../src/timezone_names.c:414
 msgid "Etc/GMT+10"
-msgstr ""
+msgstr "Etj/GMT+10"
 
 #: ../src/timezone_names.c:415
 msgid "Etc/GMT+11"
-msgstr ""
+msgstr "Etj/GMT+11"
 
 #: ../src/timezone_names.c:416
 msgid "Etc/GMT+12"
-msgstr ""
+msgstr "Etj/GMT+12"
 
 #: ../src/timezone_names.c:417
 msgid "Etc/GMT+2"
-msgstr ""
+msgstr "Etj/GMT+2"
 
 #: ../src/timezone_names.c:418
 msgid "Etc/GMT+3"
-msgstr ""
+msgstr "Etj/GMT+3"
 
 #: ../src/timezone_names.c:419
 msgid "Etc/GMT+4"
-msgstr ""
+msgstr "Etj/GMT+4"
 
 #: ../src/timezone_names.c:420
 msgid "Etc/GMT+5"
-msgstr ""
+msgstr "Etj/GMT+5"
 
 #: ../src/timezone_names.c:421
 msgid "Etc/GMT+6"
-msgstr ""
+msgstr "Etj/GMT+6"
 
 #: ../src/timezone_names.c:422
 msgid "Etc/GMT+7"
-msgstr ""
+msgstr "Etj/GMT+7"
 
 #: ../src/timezone_names.c:423
 msgid "Etc/GMT+8"
-msgstr ""
+msgstr "Etj/GMT+8"
 
 #: ../src/timezone_names.c:424
 msgid "Etc/GMT+9"
-msgstr ""
+msgstr "Etj/GMT+9"
 
 #: ../src/timezone_names.c:425
 msgid "Etc/GMT-0"
-msgstr ""
+msgstr "Etj/GMT-0"
 
 #: ../src/timezone_names.c:426
 msgid "Etc/GMT-1"
-msgstr ""
+msgstr "Etj/GMT-1"
 
 #: ../src/timezone_names.c:427
 msgid "Etc/GMT-10"
-msgstr ""
+msgstr "Etj/GMT-10"
 
 #: ../src/timezone_names.c:428
 msgid "Etc/GMT-11"
-msgstr ""
+msgstr "Etj/GMT-11"
 
 #: ../src/timezone_names.c:429
 msgid "Etc/GMT-12"
-msgstr ""
+msgstr "Etj/GMT-12"
 
 #: ../src/timezone_names.c:430
 msgid "Etc/GMT-13"
-msgstr ""
+msgstr "Etj/GMT-13"
 
 #: ../src/timezone_names.c:431
 msgid "Etc/GMT-14"
-msgstr ""
+msgstr "Etj/GMT-14"
 
 #: ../src/timezone_names.c:432
 msgid "Etc/GMT-2"
-msgstr ""
+msgstr "Etj/GMT-2"
 
 #: ../src/timezone_names.c:433
 msgid "Etc/GMT-3"
-msgstr ""
+msgstr "Etj/GMT-3"
 
 #: ../src/timezone_names.c:434
 msgid "Etc/GMT-4"
-msgstr ""
+msgstr "Etj/GMT-4"
 
 #: ../src/timezone_names.c:435
 msgid "Etc/GMT-5"
-msgstr ""
+msgstr "Etj/GMT-5"
 
 #: ../src/timezone_names.c:436
 msgid "Etc/GMT-6"
-msgstr ""
+msgstr "Etj/GMT-6"
 
 #: ../src/timezone_names.c:437
 msgid "Etc/GMT-7"
-msgstr ""
+msgstr "Etj/GMT-7"
 
 #: ../src/timezone_names.c:438
 msgid "Etc/GMT-8"
-msgstr ""
+msgstr "Etj/GMT-8"
 
 #: ../src/timezone_names.c:439
 msgid "Etc/GMT-9"
-msgstr ""
+msgstr "Etj/GMT-9"
 
 #: ../src/timezone_names.c:440
 msgid "Etc/GMT0"
-msgstr ""
+msgstr "Etj/GMT0"
 
 #: ../src/timezone_names.c:441
 msgid "Etc/Greenwich"
-msgstr ""
+msgstr "Ejt/Grinuiç"
 
 #: ../src/timezone_names.c:442
 msgid "Etc/UCT"
-msgstr ""
+msgstr "Etj/UCT"
 
 #: ../src/timezone_names.c:443
 msgid "Etc/UTC"
-msgstr ""
+msgstr "Etj/UTC"
 
 #: ../src/timezone_names.c:444
 msgid "Etc/Universal"
-msgstr ""
+msgstr "Etj/Universale"
 
 #: ../src/timezone_names.c:445
 msgid "Etc/Zulu"
-msgstr ""
+msgstr "Etj/Zulu"
 
 #: ../src/timezone_names.c:446
 msgid "Europe"
@@ -3921,7 +3921,7 @@ msgstr "Europë/Maltë"
 
 #: ../src/timezone_names.c:475
 msgid "Europe/Mariehamn"
-msgstr ""
+msgstr "Europë/Marihamn"
 
 #: ../src/timezone_names.c:476
 msgid "Europe/Minsk"
@@ -4377,7 +4377,7 @@ msgstr "ShBA/Lindore"
 
 #: ../src/timezone_names.c:589
 msgid "US/East-Indiana"
-msgstr ""
+msgstr "ShBA/Ist-Indiana"
 
 #: ../src/timezone_names.c:590
 msgid "US/Hawaii"
@@ -4385,7 +4385,7 @@ msgstr "ShBA/Havai"
 
 #: ../src/timezone_names.c:591
 msgid "US/Indiana-Starke"
-msgstr ""
+msgstr "ShBA/Indiana-Stark"
 
 #: ../src/timezone_names.c:592
 msgid "US/Michigan"
@@ -4393,7 +4393,7 @@ msgstr "ShBA/Miçigan"
 
 #: ../src/timezone_names.c:593
 msgid "US/Mountain"
-msgstr ""
+msgstr "ShBA/Mauntën"
 
 #: ../src/timezone_names.c:594
 msgid "US/Pacific"
@@ -4401,7 +4401,7 @@ msgstr "ShbA/Paqësori"
 
 #: ../src/timezone_names.c:595
 msgid "US/Pacific-New"
-msgstr ""
+msgstr "ShbA/Paqësori-E_re"
 
 #: ../src/timezone_names.c:596
 msgid "US/Samoa"
@@ -4409,7 +4409,7 @@ msgstr "ShBA/Samoa"
 
 #: ../src/tray_icon.c:469
 msgid "New appointment"
-msgstr "Takim i Ri"
+msgstr "Takim i ri"
 
 #: ../src/tray_icon.c:485
 msgid "About Orage"
@@ -4417,7 +4417,7 @@ msgstr "Rreth Orage-it"
 
 #: ../panel-plugin/xfce4-orageclock-plugin.desktop.in.in.h:1
 msgid "Orage Panel Clock"
-msgstr ""
+msgstr "Orë Paneli Orage"
 
 #: ../panel-plugin/xfce4-orageclock-plugin.desktop.in.in.h:2
 msgid "Show time and date?"
@@ -4429,7 +4429,7 @@ msgstr "Parapëlqime për Orage-in"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:2
 msgid "Settings for the Xfce 4 Calendar Application (Orage)"
-msgstr ""
+msgstr "Rregullime për Aplikacionin Kalendat të Xfce-së (Orage)"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:3
 msgid "Orage Calendar Preferences"
