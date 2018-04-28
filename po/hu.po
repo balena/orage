@@ -4,6 +4,7 @@
 # 
 # Translators:
 # András Mohari <mayday at mailpoint dot hu>, 2006
+# Balázs Meskó <meskobalazs@gmail.com>, 2018
 # Benedek Imre <nucleo@indamail.hu>, 2013
 # Gabor Kelemen <kelemeng at gnome dot hu>, 2009-2010
 # gyeben <gyonkibendeguz@gmail.com>, 2016
@@ -13,8 +14,8 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-23 12:30+0200\n"
-"PO-Revision-Date: 2017-09-23 19:02+0000\n"
-"Last-Translator: gyeben <gyonkibendeguz@gmail.com>\n"
+"PO-Revision-Date: 2018-04-28 16:31+0000\n"
+"Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/xfce/xfce-apps/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,19 +25,19 @@ msgstr ""
 
 #: ../globaltime/globaltime.c:58
 msgid "no underline"
-msgstr ""
+msgstr "nincs aláhúzás"
 
 #: ../globaltime/globaltime.c:58
 msgid "single"
-msgstr ""
+msgstr "egyszeres"
 
 #: ../globaltime/globaltime.c:58
 msgid "double"
-msgstr ""
+msgstr "dupla"
 
 #: ../globaltime/globaltime.c:58
 msgid "low"
-msgstr ""
+msgstr "alacsony"
 
 #: ../globaltime/globaltime.c:100
 msgid "Raising GlobalTime window..."
@@ -431,7 +432,7 @@ msgstr "Globális idő"
 
 #: ../panel-plugin/oc_config.c:239
 msgid "No rotation"
-msgstr ""
+msgstr "Nincs forgatás"
 
 #: ../panel-plugin/oc_config.c:239
 msgid "Rotate left"
@@ -609,7 +610,7 @@ msgstr "Nincs beállítva"
 
 #: ../src/appointment.c:1138
 msgid "Add new appointment to this file."
-msgstr ""
+msgstr "Új értekezlet hozzáadása ehhez a fájlhoz."
 
 #: ../src/appointment.c:1139 ../src/appointment.c:1188
 msgid "Orage default file"
@@ -617,22 +618,22 @@ msgstr "Orage alapértelmezett fájl"
 
 #: ../src/appointment.c:1225
 msgid "Appointment addition failed."
-msgstr ""
+msgstr "Értekezlet hozzáadása meghiúsult."
 
 #: ../src/appointment.c:1226
 msgid ""
 "Error happened when adding appointment. Look more details from the log file."
-msgstr ""
+msgstr "Hiba történt a találkozó hozzáadásakor. További részleteket a naplófájlban talál."
 
 #: ../src/appointment.c:1236
 msgid "Appointment update failed."
-msgstr ""
+msgstr "Értekezlet frissítése meghiúsult."
 
 #: ../src/appointment.c:1237
 msgid ""
 "Look more details from the log file. (Perhaps file was updated external from"
 " Orage?)"
-msgstr ""
+msgstr "További részleteket a naplófájlban talál. (Lehet hogy a fájlt külsőleg módosította az Orage?)"
 
 #: ../src/appointment.c:1286
 msgid "This appointment will be permanently removed."
@@ -1307,7 +1308,7 @@ msgstr ""
 msgid ""
 "Check this if you want to see old events also. This can only be selected after 'only first repeating' is enabled to avoid very long lists.\n"
 "Note that extra days selection still defines if newer appointments are listed'."
-msgstr ""
+msgstr "Jelölje be, ha a régi eseményeket is látni szeretné. Ez csak az „csak az első ismétlődő” engedélyezése esetén válaszható, hogy elkerülje a nagyon hosszú listákat.\nNe feledje, hogy a további napok kiválasztása adja meg továbbra is, hogy az újabb értekezletek felsorolásra kerülnek-e."
 
 #: ../src/event-list.c:1290
 msgid "Journal entries starting from:"
@@ -1343,7 +1344,7 @@ msgid ""
 "\t\tO=Orage A=Archive F=Foreign\n"
 "\t 5. Appointment type:\n"
 "\t\tE=Event T=Todo J=Journal"
-msgstr ""
+msgstr "Kattintson duplán a sorok szerkesztéséhez.\n\nJelzők sorban:\n\t 1. Riasztás: n=nincs riasztás\n\t\t A=Riasztás beállítva P=Állandó riasztás beállítva\n\t 2. Ismétlődés: n=nincs ismétlődés\n\t\t H=Óránként D=Naponta W=Hetente M=Havonta Y=Évente\n\t 3. Típus: f=szabad B=Elfoglalt\n\t 4. Fájlban elhelyezkedés:\n\t\tO=Orage A=Archívum F=Külső\n\t 5. Értekezlet típusa:\n\t\tE=Esemény T=Teendő J=Napló"
 
 #. remove since it has ended
 #: ../src/ical-archive.c:267
@@ -1410,17 +1411,17 @@ msgstr "Orage alapértelmezett figyelmeztetés"
 
 #: ../src/ical-code.c:3179
 msgid "Created alarm list for main Orage file:"
-msgstr ""
+msgstr "Riasztási lista létrehozva a fő Orage fájlhoz:"
 
 #: ../src/ical-code.c:3181
 #, c-format
 msgid "Created alarm list for foreign file: %s (%s)"
-msgstr ""
+msgstr "Riasztási lista létrehozva a küldő fájlhoz: %s (%s)"
 
 #: ../src/ical-code.c:3183
 #, c-format
 msgid "\tAdded %d alarms. Processed %d events."
-msgstr ""
+msgstr "\t%d riasztás hozzáadva. %d esemény feldolgozva."
 
 #: ../src/ical-code.c:3185
 #, c-format
@@ -1447,11 +1448,11 @@ msgstr "Importálási fájl előfeldolgozása kész"
 #: ../src/interface.c:89 ../src/interface.c:104
 #, c-format
 msgid "Found external update on file %s."
-msgstr ""
+msgstr "Külső frissítés találva a(z) %s fájlon."
 
 #: ../src/interface.c:112
 msgid "Refreshing alarms and calendar due to external file update."
-msgstr ""
+msgstr "Riasztások és naptár frissítése külső fájlfrissítés miatt."
 
 #: ../src/interface.c:271
 msgid "Calendar files"
@@ -1475,11 +1476,11 @@ msgstr "***** Nincsenek külső fájlok *****"
 
 #: ../src/interface.c:682
 msgid "Foreign file add failed"
-msgstr ""
+msgstr "Külső fájl hozzáadása meghiúsult"
 
 #: ../src/interface.c:689
 msgid "Orage can only handle 10 foreign files. Limit reached."
-msgstr ""
+msgstr "Az Orage csak 10 külső fájlt tud kezelni. Korlát elérve."
 
 #: ../src/interface.c:697
 msgid "Filename is empty."
@@ -1664,7 +1665,7 @@ msgstr "Az Orage soha ne módosíthassa a fájlt.\nNe feledje, hogy a külső f�
 
 #: ../src/interface.c:1294
 msgid "This internal name is displayed to user instead of file name."
-msgstr ""
+msgstr "A felhasználónak a belső név jelenik meg a fájlnév helyett."
 
 #: ../src/interface.c:1308
 msgid "Exchange data - Orage"
@@ -1767,7 +1768,7 @@ msgstr "--toggle (-t) \t\tAz Orage megjelenítése/elrejtése\n"
 #: ../src/main.c:319
 #, c-format
 msgid "--add-foreign (-a) file [RW] [name] \tadd a foreign file\n"
-msgstr ""
+msgstr "--add-foreign (-a) fájl [RW] [név] \tkülső fájl hozzáadása\n"
 
 #: ../src/main.c:320
 #, c-format
@@ -1864,7 +1865,7 @@ msgid ""
 "%s Start:\t%s\n"
 " Due:\t%s\n"
 " Done:\t%s%s"
-msgstr ""
+msgstr "Cím: %s\n%s Kezdés:\t%s\n Határidő:\t%s\n Kész:\t%s%s"
 
 #: ../src/mainbox.c:503
 #, c-format
@@ -1872,7 +1873,7 @@ msgid ""
 "Title: %s\n"
 "%s Start:\t%s\n"
 " End:\t%s%s"
-msgstr ""
+msgstr "Cím: %s\n%s Kezdés:\t%s\n Vége:\t%s%s"
 
 #: ../src/mainbox.c:613
 msgid "<b>To do:</b>"
@@ -2034,7 +2035,7 @@ msgstr "További beállítások"
 
 #: ../src/parameters.c:869
 msgid "Event list window"
-msgstr ""
+msgstr "Eseménylista ablak"
 
 #: ../src/parameters.c:874
 msgid "Number of extra days to show in event list"
@@ -2048,7 +2049,7 @@ msgstr "Ez csak az alapértelmezett érték, az eseménylista ablakban módosít
 
 #: ../src/parameters.c:891
 msgid "Show only first repeating event"
-msgstr ""
+msgstr "Csak az első ismétlődő esemény megjelenítése"
 
 #: ../src/parameters.c:907
 msgid "Day view window default first day"
@@ -2086,7 +2087,7 @@ msgstr "Használja ezt az időzítőt, ha az Orage nem ébred fel megfelelően f
 
 #: ../src/parameters.c:982
 msgid "Foreign file default visual alarm"
-msgstr ""
+msgstr "Külső fájl alapértelmezett vizuális riasztása"
 
 #: ../src/parameters.c:987
 msgid "Orage window"
@@ -2188,7 +2189,7 @@ msgstr "Afrika/Algír"
 
 #: ../src/timezone_names.c:41
 msgid "Africa/Asmara"
-msgstr ""
+msgstr "Afrika/Aszmara"
 
 #: ../src/timezone_names.c:42
 msgid "Africa/Asmera"
@@ -2272,7 +2273,7 @@ msgstr "Afrika/Harare"
 
 #: ../src/timezone_names.c:62
 msgid "Africa/Juba"
-msgstr ""
+msgstr "Afrika/Juba"
 
 #: ../src/timezone_names.c:63
 msgid "Africa/Johannesburg"
@@ -2420,7 +2421,7 @@ msgstr "Amerika/Argentína/Catamarca"
 
 #: ../src/timezone_names.c:99
 msgid "America/Argentina/ComodRivadavia"
-msgstr ""
+msgstr "Amerika/Argentína/ComodRivadavia"
 
 #: ../src/timezone_names.c:100
 msgid "America/Argentina/Cordoba"
@@ -2432,7 +2433,7 @@ msgstr "Amerika/Argentína/Jujuy"
 
 #: ../src/timezone_names.c:102
 msgid "America/Argentina/La_Rioja"
-msgstr ""
+msgstr "Amerika/Argentína/La_Rioja"
 
 #: ../src/timezone_names.c:103
 msgid "America/Argentina/Mendoza"
@@ -2440,27 +2441,27 @@ msgstr "Amerika/Argentína/Mendoza"
 
 #: ../src/timezone_names.c:104
 msgid "America/Argentina/Rio_Gallegos"
-msgstr ""
+msgstr "Amerika/Argentína/Rio_Gallegos"
 
 #: ../src/timezone_names.c:105
 msgid "America/Argentina/Salta"
-msgstr ""
+msgstr "Amerika/Argentína/Salta"
 
 #: ../src/timezone_names.c:106
 msgid "America/Argentina/San_Juan"
-msgstr ""
+msgstr "Amerika/Argentína/San_Juan"
 
 #: ../src/timezone_names.c:107
 msgid "America/Argentina/San_Luis"
-msgstr ""
+msgstr "Amerika/Argentína/San_Luis"
 
 #: ../src/timezone_names.c:108
 msgid "America/Argentina/Tucuman"
-msgstr ""
+msgstr "Amerika/Argentína/Tucumán"
 
 #: ../src/timezone_names.c:109
 msgid "America/Argentina/Ushuaia"
-msgstr ""
+msgstr "Amerika/Argentína/Ushuaia"
 
 #: ../src/timezone_names.c:110
 msgid "America/Aruba"
@@ -2472,19 +2473,19 @@ msgstr "Amerika/Asuncion"
 
 #: ../src/timezone_names.c:112
 msgid "America/Atikokan"
-msgstr ""
+msgstr "Amerika/Atikokan"
 
 #: ../src/timezone_names.c:113
 msgid "America/Atka"
-msgstr ""
+msgstr "Amerika/Atka"
 
 #: ../src/timezone_names.c:114
 msgid "America/Bahia"
-msgstr ""
+msgstr "Amerika/Bahia"
 
 #: ../src/timezone_names.c:115
 msgid "America/Bahia_Banderas"
-msgstr ""
+msgstr "Amerika/Bahia_Banderas"
 
 #: ../src/timezone_names.c:116
 msgid "America/Barbados"
@@ -2500,7 +2501,7 @@ msgstr "Amerika/Belize"
 
 #: ../src/timezone_names.c:119
 msgid "America/Blanc-Sablon"
-msgstr ""
+msgstr "Amerika/Blanc-Sablon"
 
 #: ../src/timezone_names.c:120
 msgid "America/Boa_Vista"
@@ -2524,7 +2525,7 @@ msgstr "Amerika/Cambridge_Bay"
 
 #: ../src/timezone_names.c:125
 msgid "America/Campo_Grande"
-msgstr ""
+msgstr "Amerika/Campo_Grande"
 
 #: ../src/timezone_names.c:126
 msgid "America/Cancun"
@@ -2556,7 +2557,7 @@ msgstr "Amerika/Chihuahua"
 
 #: ../src/timezone_names.c:133
 msgid "America/Coral_Harbour"
-msgstr ""
+msgstr "Amerika/Coral_Harbour"
 
 #: ../src/timezone_names.c:134
 msgid "America/Cordoba"
@@ -2568,7 +2569,7 @@ msgstr "Amerika/Costa_Rica"
 
 #: ../src/timezone_names.c:136
 msgid "America/Creston"
-msgstr ""
+msgstr "Amerika/Creston"
 
 #: ../src/timezone_names.c:137
 msgid "America/Cuiaba"
@@ -2580,7 +2581,7 @@ msgstr "Amerika/Curacao"
 
 #: ../src/timezone_names.c:139
 msgid "America/Danmarkshavn"
-msgstr ""
+msgstr "Amerika/Danmarkshavn"
 
 #: ../src/timezone_names.c:140
 msgid "America/Dawson"
@@ -2608,7 +2609,7 @@ msgstr "Amerika/Edmonton"
 
 #: ../src/timezone_names.c:146
 msgid "America/Ensenada"
-msgstr ""
+msgstr "Amerika/Ensenada"
 
 #: ../src/timezone_names.c:147
 msgid "America/Eirunepe"
@@ -2624,7 +2625,7 @@ msgstr "Amerika/Fortaleza"
 
 #: ../src/timezone_names.c:150
 msgid "America/Fort_Wayne"
-msgstr ""
+msgstr "Amerika/Fort_Wayne"
 
 #: ../src/timezone_names.c:151
 msgid "America/Glace_Bay"
