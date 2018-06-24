@@ -8,13 +8,14 @@
 # Cristian Cozzolino <cristiancozzolino@libero.it>, 2009
 # Cristian Marchi <cri.penta@gmail.com>, 2013-2014
 # Edoardo Maria Elidoro <edoardo.elidoro@gmail.com>, 2013
+# Emanuele Petriglia <inbox@emanuelepetriglia.me>, 2018
 # gianluca foddis <gianluca.foddis@gmail.com>, 2009
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-23 12:30+0200\n"
-"PO-Revision-Date: 2018-06-16 16:24+0000\n"
+"PO-Revision-Date: 2018-06-24 11:07+0000\n"
 "Last-Translator: Emanuele Petriglia <inbox@emanuelepetriglia.me>\n"
 "Language-Team: Italian (http://www.transifex.com/xfce/xfce-apps/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -45,7 +46,7 @@ msgstr "Apertura finestra Ora globale..."
 
 #: ../globaltime/globaltime.c:102
 msgid "GlobalTime window raise failed"
-msgstr "Apertura finestra Ora globale non riuscita"
+msgstr "Impossibile aprire la finestra Ora globale"
 
 #. ********** timezone tooltip **********
 #: ../globaltime/globaltime.c:277
@@ -158,7 +159,7 @@ msgstr "Formattazione del testo"
 #. ------------------------background-------------------------
 #: ../globaltime/gt_prefs.c:649 ../globaltime/gt_prefs.c:856
 msgid "Background color:"
-msgstr "Colore di sfondo"
+msgstr "Colore di sfondo:"
 
 #: ../globaltime/gt_prefs.c:656
 msgid "Click to change background colour for clock"
@@ -190,7 +191,7 @@ msgstr "Fare clic per cambiare il colore in primo piano all'orologio"
 #. ------------------------name font-------------------------
 #: ../globaltime/gt_prefs.c:713 ../globaltime/gt_prefs.c:922
 msgid "Font for name of clock:"
-msgstr "Carattere per il nome dell'orologio:"
+msgstr "Tipo di carattere per il nome dell'orologio:"
 
 #: ../globaltime/gt_prefs.c:720
 msgid "Click to change font for clock name"
@@ -233,15 +234,15 @@ msgstr "Fare clic per cambiare il colore predefinito del testo agli orologi"
 
 #: ../globaltime/gt_prefs.c:929
 msgid "Click to change default font for clock name"
-msgstr "Fare clic per cambiare il carattere predefinito per il nome dell'orologio"
+msgstr "Fare clic per cambiare il tipo di carattere predefinito per il nome dell'orologio"
 
 #: ../globaltime/gt_prefs.c:944 ../globaltime/gt_prefs.c:978
 msgid "Cross this to use system default font instead of selected font"
-msgstr "Mettere il segno di spunta per usare il carattere predefinito di sistema al posto di quello selezionato"
+msgstr "Mettere il segno di spunta per usare il tipo di carattere predefinito di sistema al posto di quello selezionato"
 
 #: ../globaltime/gt_prefs.c:963
 msgid "Click to change default font for clock time"
-msgstr "Fare clic per cambiare il carattere predefinito per l'ora"
+msgstr "Fare clic per cambiare il tipo di carattere predefinito per l'ora"
 
 #. ------------------------underline name--------------------
 #: ../globaltime/gt_prefs.c:990
@@ -468,7 +469,7 @@ msgstr "Imposta alte_zza:"
 
 #: ../panel-plugin/oc_config.c:301
 msgid "Note that you can not change the height of horizontal panels"
-msgstr "Si noti che non è possibile modificare l'altezza dei pannelli orizzontali"
+msgstr "Notare che non è possibile modificare l'altezza dei pannelli orizzontali"
 
 #: ../panel-plugin/oc_config.c:306
 msgid "set _width:"
@@ -476,7 +477,7 @@ msgstr "Imposta _larghezza:"
 
 #: ../panel-plugin/oc_config.c:316
 msgid "Note that you can not change the width of vertical panels"
-msgstr "Si noti che non è possibile modificare la larghezza dei pannelli verticali"
+msgstr "Notare che non è possibile modificare la larghezza dei pannelli verticali"
 
 #: ../panel-plugin/oc_config.c:327
 msgid "Show lines _vertically"
@@ -498,7 +499,7 @@ msgstr "Linea %d:"
 
 #: ../panel-plugin/oc_config.c:391
 msgid "Enter any valid strftime function parameter."
-msgstr "Inserire un parametro valido per la funzione strftime"
+msgstr "Inserire un parametro valido per la funzione strftime."
 
 #. Tooltip hint
 #: ../panel-plugin/oc_config.c:435
@@ -517,7 +518,7 @@ msgid ""
 "circumstances it is possible that Orageclock shows time inaccurately unless "
 "you have this selected. (Selecting this prevents cpu and interrupt saving "
 "features from working.)"
-msgstr "Questo è necessario se viene effettuata una sospensione o una ibernazione a breve termine (meno di 5 ore) e l'ora visualizzata non comprende i secondi. In queste circostanze è possibile che l'orologio di Orage mostri l'ora in modo impreciso a meno che non sia stata selezionata questa opzione (selezionandola, si inibisce il funzionamento della cpu e delle funzioni di risparmio energetico)"
+msgstr "Questo è necessario se viene effettuata una sospensione o una ibernazione a breve termine (meno di 5 ore) e l'ora visualizzata non comprende i secondi. In queste circostanze è possibile che l'orologio di Orage mostri l'ora in modo impreciso a meno che non sia stata selezionata questa opzione (selezionandola, si inibisce il funzionamento della cpu e delle funzioni di risparmio energetico)."
 
 #: ../panel-plugin/oc_config.c:466
 msgid ""
@@ -529,7 +530,7 @@ msgid ""
 "\t%V = week number\t\t%Z = timezone in use\n"
 "\t%H = hours \t\t\t\t%M = minute\n"
 "\t%X = local time\t\t\t%x = local date"
-msgstr "Questo programma utilizza la funzione strftime per\nrecuperare le informazioni su data e ora.\nUtilizzare un qualsiasi codice valido per ottenere la\ndata e l'ora nel formato che si preferisce.\nI codici più utilizzati sono:\n\t%A = giorno della settimana\t%B = mese\n\t%c = data e ora\t\t\t%R = ora e minuti\n\t%V = numero settimana\t%Z = fuso orario in uso\n\t%H = ore \t\t\t\t%M = minuti\n\t%X = ora locale\t\t\t%x = data locale"
+msgstr "Questo programma utilizza la funzione strftime per\nrecuperare le informazioni sulla data e ora.\nUtilizzare un qualsiasi codice valido per ottenere la\ndata e l'ora nel formato che si preferisce.\nI codici più utilizzati sono:\n\t%A = giorno della settimana\t%B = mese\n\t%c = data e ora\t\t\t%R = ora e minuti\n\t%V = numero settimana\t%Z = fuso orario in uso\n\t%H = ore \t\t\t\t%M = minuti\n\t%X = ora locale\t\t\t%x = data locale"
 
 #: ../panel-plugin/oc_config.c:491
 msgid "Orage clock Preferences"
@@ -553,7 +554,7 @@ msgstr "Mantenitore"
 
 #: ../src/about-xfcalendar.c:47
 msgid "Manage your time with Orage"
-msgstr "Gestire il proprio tempo con Orage"
+msgstr "Gestisci il proprio tempo con Orage"
 
 #. if (gtk_toggle_button_get_active(
 #. GTK_TOGGLE_BUTTON(apptw->Type_journal_rb)))
