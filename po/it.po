@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-23 12:30+0200\n"
-"PO-Revision-Date: 2018-07-01 13:55+0000\n"
+"PO-Revision-Date: 2018-07-07 13:05+0000\n"
 "Last-Translator: Emanuele Petriglia <inbox@emanuelepetriglia.me>\n"
 "Language-Team: Italian (http://www.transifex.com/xfce/xfce-apps/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -1769,7 +1769,7 @@ msgstr "--toggle (-t) \t\trende orage visibile/invisibile\n"
 #: ../src/main.c:319
 #, c-format
 msgid "--add-foreign (-a) file [RW] [name] \tadd a foreign file\n"
-msgstr "--add-foreign (-a) file [RW] [nome] ⇥aggiunge un file esterno\n"
+msgstr "--add-foreign (-a) file [RW] [nome] \taggiunge un file esterno\n"
 
 #: ../src/main.c:320
 #, c-format
@@ -1866,7 +1866,7 @@ msgid ""
 "%s Start:\t%s\n"
 " Due:\t%s\n"
 " Done:\t%s%s"
-msgstr "Titolo: %s\n Inizio %s :\t%s\n Termine:\t%s\n Fatto:\t%s%s"
+msgstr "Titolo: %s\n%s Inizio:\t%s\n  Scadenza:\t%s\n  Fatto:\t%s%s"
 
 #: ../src/mainbox.c:503
 #, c-format
@@ -1900,7 +1900,7 @@ msgstr "Fuso orario"
 
 #: ../src/parameters.c:513
 msgid "You should always define your local timezone."
-msgstr "Si dovrebbe sempre definire il proprio fuso orario locale"
+msgstr "Si dovrebbe sempre definire il proprio fuso orario locale."
 
 #: ../src/parameters.c:521
 msgid "Archive threshold (months)"
@@ -1912,7 +1912,7 @@ msgstr "(0 = non archiviare)"
 
 #: ../src/parameters.c:534
 msgid "Archiving is used to save time and space when handling events."
-msgstr "L'archiviazione viene utilizzata per risparmiare tempo e spazio quando vengono gestiti gli eventi"
+msgstr "L'archiviazione viene utilizzata per risparmiare tempo e spazio quando vengono gestiti gli eventi."
 
 #: ../src/parameters.c:542
 msgid "Sound command"
@@ -1920,7 +1920,7 @@ msgstr "Comando audio"
 
 #: ../src/parameters.c:557
 msgid "This command is given to shell to make sound in alarms."
-msgstr "Questo comando viene passato alla shell per trasformare l'audio in allarmi"
+msgstr "Questo comando viene passato alla shell per trasformare l'audio in allarmi."
 
 #: ../src/parameters.c:596
 msgid "Calendar window"
@@ -1956,7 +1956,7 @@ msgstr "Riquadri delle informazioni del calendario"
 
 #: ../src/parameters.c:660
 msgid "Show todo list"
-msgstr "Mostra lista compiti"
+msgstr "Mostra l'elenco dei compiti"
 
 #: ../src/parameters.c:667
 msgid "Number of days to show in event window"
@@ -2020,7 +2020,7 @@ msgstr "Seleziona la data precedentemente selezionata"
 
 #: ../src/parameters.c:823
 msgid "Calendar day double click shows"
-msgstr "Doppio clic sul calendario principale mostra"
+msgstr "Doppio clic sul calendario principale per mostrare"
 
 #: ../src/parameters.c:828
 msgid "Days view"
@@ -2046,7 +2046,7 @@ msgstr "Numero di giorni aggiuntivi da visualizzare nella lista eventi"
 msgid ""
 "This is just the default value, you can change it in the actual eventlist "
 "window."
-msgstr "Questo è il valore predefinito; può essere modificato nella finestra della lista degli eventi"
+msgstr "Questo è il valore predefinito; può essere modificato nella finestra della lista degli eventi."
 
 #: ../src/parameters.c:891
 msgid "Show only first repeating event"
@@ -2074,7 +2074,7 @@ msgstr "Usa icona dinamica"
 
 #: ../src/parameters.c:954
 msgid "Dynamic icon shows current month and day of the month."
-msgstr "L'icona dinamica mostra il mese corrente e il giorno del mese"
+msgstr "L'icona dinamica mostra il mese ed il giorno corrente."
 
 #: ../src/parameters.c:962 ../src/parameters.c:967
 msgid "Use wakeup timer"
@@ -2100,7 +2100,7 @@ msgstr "Notifica le notifiche"
 
 #: ../src/parameters.c:1018
 msgid "Always quit when asked to close"
-msgstr "Uscita quando viene richiesta la chiusura"
+msgstr "Esci sempre quando viene richiesta la chiusura"
 
 #: ../src/parameters.c:1023
 msgid "Always quit"
@@ -2111,7 +2111,7 @@ msgid ""
 "By default Orage stays open in the background when asked to close. This "
 "option changes Orage to quit and never stay in background when it is asked "
 "to close."
-msgstr "Normalmente Orage rimane aperto in secondo piano quando ne viene richiesta la chiusura; questa opzione impone a Orage di chiudersi senza rimanere aperto in secondo piano quando se ne richiede la chiusura"
+msgstr "Normalmente Orage rimane aperto in secondo piano quando ne viene richiesta la chiusura. Questa opzione impedisce questo comportamento, uscendo definitivamente."
 
 #: ../src/parameters.c:1045
 msgid "Orage Preferences"
@@ -2128,7 +2128,7 @@ msgstr "Fuso orario impostato a %s."
 
 #: ../src/parameters.c:1179
 msgid "Default timezone not found, please, set it manually."
-msgstr "Fuso orario predefinito non trovato, impostarlo manualmente"
+msgstr "Fuso orario predefinito non trovato, impostarlo manualmente."
 
 #: ../src/reminder.c:562
 msgid "Reminder "
@@ -4434,7 +4434,7 @@ msgstr "Preferenze di Orage"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:2
 msgid "Settings for the Xfce 4 Calendar Application (Orage)"
-msgstr "Impostazioni per l'applicazione Calendario di Xfce4 (Orage)"
+msgstr "Impostazioni per l'applicazione calendario di Xfce4 (Orage)"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:3
 msgid "Orage Calendar Preferences"
