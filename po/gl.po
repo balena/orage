@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-23 12:30+0200\n"
-"PO-Revision-Date: 2018-11-06 19:28+0000\n"
+"PO-Revision-Date: 2018-11-07 08:46+0000\n"
 "Last-Translator: Daniel Muñiz Fontoira <dani@damufo.com>\n"
 "Language-Team: Galician (http://www.transifex.com/xfce/xfce-apps/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -1493,11 +1493,11 @@ msgstr "O ficheiro non existe."
 
 #: ../src/interface.c:722
 msgid "Same filename already exists in Orage."
-msgstr ""
+msgstr "Xa existe no Oraje o mesmo nome de ficheiro."
 
 #: ../src/interface.c:730
 msgid "Same name already exists in Orage."
-msgstr ""
+msgstr "Xa existe no Oraje o mesmo nome."
 
 #: ../src/interface.c:965
 msgid "Import/export"
@@ -1515,7 +1515,7 @@ msgstr "Ler dende o ficheiro:"
 msgid ""
 "Separate filenames with comma(,).\n"
 " NOTE: comma is not valid character in filenames for Orage."
-msgstr ""
+msgstr "Separar nomes de ficheiro con vírgula (,).\nNota: a vírgula non é un carácter válido para nomes de ficheiro de Orage. "
 
 #: ../src/interface.c:999
 msgid "Export"
@@ -1535,19 +1535,19 @@ msgstr "Todas as citas"
 
 #: ../src/interface.c:1041
 msgid "Named appointments: "
-msgstr ""
+msgstr "Citas con nome:"
 
 #: ../src/interface.c:1053
 msgid ""
 "Note that only main file appointments are read.\n"
 "Archived and Foreign events are not exported."
-msgstr ""
+msgstr "Teña en conta que só se len as citas do ficheiro principal.\n Non se exportan actividades arquivadas nin externas."
 
 #: ../src/interface.c:1056
 msgid ""
 "Note that only main file appointments are read.\n"
 "Foreign events are not exported."
-msgstr ""
+msgstr "Teña en conta que só se len as citas do ficheiro principal.\nNon se exportan actividades externas."
 
 #: ../src/interface.c:1059
 msgid "You can easily drag these from event-list window."
@@ -1555,7 +1555,7 @@ msgstr "Pódense arrastrar facilmente desde a xanela da lista de actividades."
 
 #: ../src/interface.c:1061
 msgid "Orage appointment UIDs separated by commas."
-msgstr ""
+msgstr "Os identificadores «UIDs» de citas Orage separados por vírgulas."
 
 #: ../src/interface.c:1067
 msgid "Archive"
@@ -1564,22 +1564,22 @@ msgstr "Arquivo"
 #: ../src/interface.c:1075
 #, c-format
 msgid "Archive now (threshold: %d months)"
-msgstr ""
+msgstr "Arquivar agora (límite: %d meses)"
 
 #: ../src/interface.c:1085
 msgid "You can change archive threshold in parameters"
-msgstr ""
+msgstr "Pode mudar o límite de arquivamento en parámetros"
 
 #: ../src/interface.c:1092
 msgid "Revert archive now"
-msgstr ""
+msgstr "Reverter o arquivamento agora"
 
 #: ../src/interface.c:1098
 msgid ""
 "Return all archived events into main orage file and remove arch file.\n"
 "This is useful for example when doing export and moving orage\n"
 "appointments to another system."
-msgstr ""
+msgstr "Retorna todas as actividades arquivadas ao ficheiro principal de Orage\ne bórraos do ficheiro do arquivo. Isto é útil cando está a exportar e mover\ncitas de Orage a outro sistema."
 
 #: ../src/interface.c:1109
 msgid "Orage files"
@@ -1610,7 +1610,7 @@ msgid ""
 "Orage internal file rename only.\n"
 "Does not touch external filesystem at all.\n"
 "New file must exist."
-msgstr ""
+msgstr "Renomear só ficheiros internos do Orage.\nNon toca o sistema de ficheiros externo en absoluto\nDebe existir o novo ficheiro."
 
 #: ../src/interface.c:1155 ../src/interface.c:1218
 msgid "Copy"
@@ -1618,7 +1618,7 @@ msgstr "Copiar"
 
 #: ../src/interface.c:1159
 msgid "Current file is copied and stays unmodified in the old place."
-msgstr ""
+msgstr "O ficheiro actual e copiado e permanece modificado no lugar antigo."
 
 #: ../src/interface.c:1163 ../src/interface.c:1223
 msgid "Move"
@@ -1626,7 +1626,7 @@ msgstr "Mover"
 
 #: ../src/interface.c:1167
 msgid "Current file is moved and vanishes from the old place."
-msgstr ""
+msgstr "O ficheiro actual e movido e desaparece no lugar antigo."
 
 #: ../src/interface.c:1181
 msgid "Archive file"
@@ -1634,15 +1634,15 @@ msgstr "Ficheiro de arquivo"
 
 #: ../src/interface.c:1245
 msgid "Foreign files"
-msgstr ""
+msgstr "Ficheiros externos"
 
 #: ../src/interface.c:1252
 msgid "Add new foreign file"
-msgstr ""
+msgstr "Engadir un novo ficheiro externo"
 
 #: ../src/interface.c:1257
 msgid "Foreign file:"
-msgstr ""
+msgstr "Ficheiros externo:"
 
 #. label = gtk_label_new(_("Options:"));
 #. gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 5);
@@ -1658,11 +1658,11 @@ msgstr "Só lectura"
 msgid ""
 "Set this if you want to make sure that this file is never modified by Orage.\n"
 "Note that modifying foreign files may make them incompatible with the original tool, where they came from!"
-msgstr ""
+msgstr "Defina isto se quere asegurarse de que este ficheiro nunca sexa modificado por Orage.\nTeña en conta que a modificación de ficheiros externos pode tornalos incompatíbeis coa ferramenta orixinal de onde viñeron."
 
 #: ../src/interface.c:1294
 msgid "This internal name is displayed to user instead of file name."
-msgstr ""
+msgstr "Este nome interno móstrase ao usuario no canto do nome do nome do ficheiro."
 
 #: ../src/interface.c:1308
 msgid "Exchange data - Orage"
