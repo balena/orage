@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-23 12:30+0200\n"
-"PO-Revision-Date: 2018-11-08 17:13+0000\n"
+"PO-Revision-Date: 2018-11-08 19:18+0000\n"
 "Last-Translator: Daniel Muñiz Fontoira <dani@damufo.com>\n"
 "Language-Team: Galician (http://www.transifex.com/xfce/xfce-apps/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -1777,7 +1777,7 @@ msgstr "--remove-foreign (-r) file \telimina un ficheiro externo\n"
 msgid ""
 "--export (-e) file [appointment...] \texport appointments from Orage to "
 "file\n"
-msgstr ""
+msgstr "--export (-e) file [appointment...] \texporta as citas de Orage a un ficheiro\n"
 
 #: ../src/main.c:323
 #, c-format
@@ -1794,7 +1794,7 @@ msgstr "\tdbus non se incluiu en orage. \n"
 msgid ""
 "\twithout dbus [files] and foreign file options(-a & -r) can only be used "
 "when starting orage \n"
-msgstr ""
+msgstr "\tsen [ficheiros] «dbus» e ficheiros externos as opcións (-a & -r) só se poden empregar ao iniciar o Orage\n"
 
 #: ../src/main.c:535
 #, c-format
@@ -1806,7 +1806,7 @@ msgstr "\nOpción descoñecida %s\n\n"
 
 #: ../src/mainbox.c:305
 msgid "_Exchange data"
-msgstr ""
+msgstr "_Trocar datos"
 
 #. Edit menu
 #: ../src/mainbox.c:316
@@ -1841,7 +1841,7 @@ msgstr "Non hai ningún título definido"
 #: ../src/mainbox.c:471
 #, c-format
 msgid " Location: %s\n"
-msgstr ""
+msgstr " Situación: %s\n"
 
 #: ../src/mainbox.c:481
 #, c-format
@@ -1862,7 +1862,7 @@ msgid ""
 "%s Start:\t%s\n"
 " Due:\t%s\n"
 " Done:\t%s%s"
-msgstr ""
+msgstr "Título: %s\n%s Comezo:\t%s\n Prazo:\t%s\n Feito:\t%s%s"
 
 #: ../src/mainbox.c:503
 #, c-format
@@ -1870,7 +1870,7 @@ msgid ""
 "Title: %s\n"
 "%s Start:\t%s\n"
 " End:\t%s%s"
-msgstr ""
+msgstr "Título: %s\n%s Comezo:\t%s\n Finalizado:\t%s%s"
 
 #: ../src/mainbox.c:613
 msgid "<b>To do:</b>"
@@ -1888,7 +1888,7 @@ msgstr "<b>Actividades de %s - %s:</b>"
 
 #: ../src/parameters.c:492
 msgid "Main settings"
-msgstr ""
+msgstr "Configuración principal"
 
 #: ../src/parameters.c:498
 msgid "Timezone"
@@ -1900,11 +1900,11 @@ msgstr "Sempre debe definir o seu fuso horario."
 
 #: ../src/parameters.c:521
 msgid "Archive threshold (months)"
-msgstr ""
+msgstr "Límite para o arquivamento (meses)"
 
 #: ../src/parameters.c:531
 msgid "(0 = no archiving)"
-msgstr ""
+msgstr "(0 = sen arquivamento)"
 
 #: ../src/parameters.c:534
 msgid "Archiving is used to save time and space when handling events."
@@ -1920,11 +1920,11 @@ msgstr "Proporciónaselle esta orde ao intérprete de comandos para reproducir o
 
 #: ../src/parameters.c:596
 msgid "Calendar window"
-msgstr ""
+msgstr "Xanela do calendario"
 
 #: ../src/parameters.c:603
 msgid "Calendar visual details"
-msgstr ""
+msgstr "Detalles visuais do calendario"
 
 #: ../src/parameters.c:609
 msgid "Show borders"
@@ -1948,7 +1948,7 @@ msgstr "Mostrar mes e ano"
 
 #: ../src/parameters.c:655
 msgid "Calendar info boxes"
-msgstr ""
+msgstr "Caixas de información do calendario"
 
 #: ../src/parameters.c:660
 msgid "Show todo list"
@@ -1956,7 +1956,7 @@ msgstr "Mostrar a lista de tarefas pendentes"
 
 #: ../src/parameters.c:667
 msgid "Number of days to show in event window"
-msgstr ""
+msgstr "Número de días para amosar na xanela de actividades"
 
 #: ../src/parameters.c:673
 msgid "0 = do not show event list at all"
@@ -1964,15 +1964,15 @@ msgstr "0 = non mostrar a lista de actividades para nada"
 
 #: ../src/parameters.c:686
 msgid "Calendar visibility"
-msgstr ""
+msgstr "Visibilidade do calendario"
 
 #: ../src/parameters.c:691
 msgid "Show on all desktops"
-msgstr ""
+msgstr "Amosar en todos os escritorios"
 
 #: ../src/parameters.c:696
 msgid "Keep on top"
-msgstr ""
+msgstr "Manter enriba"
 
 #: ../src/parameters.c:704
 msgid "Show in taskbar"
@@ -2004,23 +2004,23 @@ msgstr "Minimizada"
 
 #: ../src/parameters.c:787
 msgid "On calendar window open"
-msgstr ""
+msgstr "Ao abrir a xanela do calendario"
 
 #: ../src/parameters.c:792
 msgid "Select today's date"
-msgstr ""
+msgstr "Seleccionar a data de hoxe"
 
 #: ../src/parameters.c:805
 msgid "Select previously selected date"
-msgstr ""
+msgstr "Seleccionar a data previamente seleccionada"
 
 #: ../src/parameters.c:823
 msgid "Calendar day double click shows"
-msgstr ""
+msgstr "Amosar ó facer dobre clic no día do calendario"
 
 #: ../src/parameters.c:828
 msgid "Days view"
-msgstr ""
+msgstr "Visualización dos días"
 
 #: ../src/parameters.c:840
 msgid "Event list"
@@ -2028,7 +2028,7 @@ msgstr "Lista de actividades"
 
 #: ../src/parameters.c:862
 msgid "Extra settings"
-msgstr ""
+msgstr "Configuracións adicionais"
 
 #: ../src/parameters.c:869
 msgid "Event list window"
@@ -2050,19 +2050,19 @@ msgstr "Mostrar só a primeira actividade que se repita"
 
 #: ../src/parameters.c:907
 msgid "Day view window default first day"
-msgstr ""
+msgstr "Primeiro día predeterminado na xanela de visualización por día"
 
 #: ../src/parameters.c:912
 msgid "First day of week"
-msgstr ""
+msgstr "Primeiro día da semana"
 
 #: ../src/parameters.c:925
 msgid "Selected day"
-msgstr ""
+msgstr "Día seleccionado"
 
 #: ../src/parameters.c:943
 msgid "Use dynamic tray icon"
-msgstr ""
+msgstr "Empregar a icona de notificación dinámica"
 
 #: ../src/parameters.c:948
 msgid "Use dynamic icon"
@@ -2070,44 +2070,44 @@ msgstr "Usar icona dinámica"
 
 #: ../src/parameters.c:954
 msgid "Dynamic icon shows current month and day of the month."
-msgstr ""
+msgstr "A icona dinámica amosa o mes actual e o día do mes."
 
 #: ../src/parameters.c:962 ../src/parameters.c:967
 msgid "Use wakeup timer"
-msgstr ""
+msgstr "Use o temporizador de alarma"
 
 #: ../src/parameters.c:973
 msgid ""
 "Use this timer if Orage has problems waking up properly after suspend or "
 "hibernate. (For example tray icon not refreshed or alarms not firing.)"
-msgstr ""
+msgstr "Use este temporizador se Orage ten problemas para espertar correctamente despois de suspender ou hibernar. (Por exemplo, a icona da zona do sistema non se actualiza ou as alarmas non se executan.)"
 
 #: ../src/parameters.c:982
 msgid "Foreign file default visual alarm"
-msgstr ""
+msgstr "Alarma visual predeterminada do ficheiro externo"
 
 #: ../src/parameters.c:987
 msgid "Orage window"
-msgstr ""
+msgstr "Xanela do Orage"
 
 #: ../src/parameters.c:1000
 msgid "Notify notification"
-msgstr ""
+msgstr "Notificar a notificación"
 
 #: ../src/parameters.c:1018
 msgid "Always quit when asked to close"
-msgstr ""
+msgstr "Saír sempre cando se lle pregunte polo pechamento"
 
 #: ../src/parameters.c:1023
 msgid "Always quit"
-msgstr ""
+msgstr "Saír sempre"
 
 #: ../src/parameters.c:1029
 msgid ""
 "By default Orage stays open in the background when asked to close. This "
 "option changes Orage to quit and never stay in background when it is asked "
 "to close."
-msgstr ""
+msgstr "De forma predeterminada, Orage mantense aberto en segundo plano cando se lle pregunte para pechar. Esta opción muda o comportamento do Orage para saír e nunca ficar en segundo plano cando se lle pide pechar."
 
 #: ../src/parameters.c:1045
 msgid "Orage Preferences"
@@ -2140,11 +2140,11 @@ msgstr "Recordatorio - Orage"
 
 #: ../src/reminder.c:803
 msgid "Postpone"
-msgstr ""
+msgstr "Adiar"
 
 #: ../src/reminder.c:805
 msgid "Remind me again after the specified time"
-msgstr ""
+msgstr "Lembrarme novamente despois do intervalo especificado"
 
 #: ../src/reminder.c:1091
 msgid "Next active alarms:"
@@ -2170,7 +2170,7 @@ msgstr "África"
 
 #: ../src/timezone_names.c:37
 msgid "Africa/Abidjan"
-msgstr ""
+msgstr "África/Abidjan"
 
 #: ../src/timezone_names.c:38
 msgid "Africa/Accra"
@@ -2202,7 +2202,7 @@ msgstr "África/Bangui"
 
 #: ../src/timezone_names.c:45
 msgid "Africa/Banjul"
-msgstr ""
+msgstr "África/Banjul"
 
 #: ../src/timezone_names.c:46
 msgid "Africa/Bissau"
@@ -2210,15 +2210,15 @@ msgstr "África/Bissau"
 
 #: ../src/timezone_names.c:47
 msgid "Africa/Blantyre"
-msgstr ""
+msgstr "África/Blantyre"
 
 #: ../src/timezone_names.c:48
 msgid "Africa/Brazzaville"
-msgstr ""
+msgstr "África/Brazzaville"
 
 #: ../src/timezone_names.c:49
 msgid "Africa/Bujumbura"
-msgstr ""
+msgstr "África/Bujumbura"
 
 #: ../src/timezone_names.c:50
 msgid "Africa/Cairo"
@@ -2258,31 +2258,31 @@ msgstr "África/O_Aaiún"
 
 #: ../src/timezone_names.c:59
 msgid "Africa/Freetown"
-msgstr ""
+msgstr "África/Freetown"
 
 #: ../src/timezone_names.c:60
 msgid "Africa/Gaborone"
-msgstr ""
+msgstr "África/Gaborone"
 
 #: ../src/timezone_names.c:61
 msgid "Africa/Harare"
-msgstr ""
+msgstr "África/Harare"
 
 #: ../src/timezone_names.c:62
 msgid "Africa/Juba"
-msgstr ""
+msgstr "África/Juba"
 
 #: ../src/timezone_names.c:63
 msgid "Africa/Johannesburg"
-msgstr ""
+msgstr "África/Johannesburg"
 
 #: ../src/timezone_names.c:64
 msgid "Africa/Kampala"
-msgstr ""
+msgstr "África/Kampala"
 
 #: ../src/timezone_names.c:65
 msgid "Africa/Khartoum"
-msgstr ""
+msgstr "África/Khartoum"
 
 #: ../src/timezone_names.c:66
 msgid "Africa/Kigali"
@@ -2354,11 +2354,11 @@ msgstr "Africa/Niamey"
 
 #: ../src/timezone_names.c:83
 msgid "Africa/Nouakchott"
-msgstr ""
+msgstr "África/Nouakchott"
 
 #: ../src/timezone_names.c:84
 msgid "Africa/Ouagadougou"
-msgstr ""
+msgstr "África/Ouagadougou"
 
 #: ../src/timezone_names.c:85
 msgid "Africa/Porto-Novo"
@@ -2370,7 +2370,7 @@ msgstr "África/São_Tomé"
 
 #: ../src/timezone_names.c:87
 msgid "Africa/Timbuktu"
-msgstr ""
+msgstr "África/Timbuktu"
 
 #: ../src/timezone_names.c:88
 msgid "Africa/Tripoli"
@@ -2382,7 +2382,7 @@ msgstr "África/Tunicia"
 
 #: ../src/timezone_names.c:90
 msgid "Africa/Windhoek"
-msgstr ""
+msgstr "África/Windhoek"
 
 #: ../src/timezone_names.c:91
 msgid "America"
@@ -2390,7 +2390,7 @@ msgstr "América"
 
 #: ../src/timezone_names.c:92
 msgid "America/Adak"
-msgstr ""
+msgstr "América/Adak"
 
 #: ../src/timezone_names.c:93
 msgid "America/Anchorage"
@@ -2426,11 +2426,11 @@ msgstr "América/Arxentina/Córdoba"
 
 #: ../src/timezone_names.c:101
 msgid "America/Argentina/Jujuy"
-msgstr ""
+msgstr "América/Argentina/Jujuy"
 
 #: ../src/timezone_names.c:102
 msgid "America/Argentina/La_Rioja"
-msgstr ""
+msgstr "América/Argentina/La_Rioja"
 
 #: ../src/timezone_names.c:103
 msgid "America/Argentina/Mendoza"
@@ -2438,7 +2438,7 @@ msgstr "América/Arxentina/Mendoza"
 
 #: ../src/timezone_names.c:104
 msgid "America/Argentina/Rio_Gallegos"
-msgstr ""
+msgstr "América/Argentina/Rio_Gallegos"
 
 #: ../src/timezone_names.c:105
 msgid "America/Argentina/Salta"
@@ -2454,11 +2454,11 @@ msgstr "America/Argentina/San_Luis"
 
 #: ../src/timezone_names.c:108
 msgid "America/Argentina/Tucuman"
-msgstr ""
+msgstr "América/Argentina/Tucuman"
 
 #: ../src/timezone_names.c:109
 msgid "America/Argentina/Ushuaia"
-msgstr ""
+msgstr "América/Argentina/Ushuaia"
 
 #: ../src/timezone_names.c:110
 msgid "America/Aruba"
@@ -2470,19 +2470,19 @@ msgstr "América/Asunción"
 
 #: ../src/timezone_names.c:112
 msgid "America/Atikokan"
-msgstr ""
+msgstr "América/Atikokan"
 
 #: ../src/timezone_names.c:113
 msgid "America/Atka"
-msgstr ""
+msgstr "América/Atka"
 
 #: ../src/timezone_names.c:114
 msgid "America/Bahia"
-msgstr ""
+msgstr "América/Bahia"
 
 #: ../src/timezone_names.c:115
 msgid "America/Bahia_Banderas"
-msgstr ""
+msgstr "América/Bahia_Banderas"
 
 #: ../src/timezone_names.c:116
 msgid "America/Barbados"
@@ -2498,7 +2498,7 @@ msgstr "América/Belice"
 
 #: ../src/timezone_names.c:119
 msgid "America/Blanc-Sablon"
-msgstr ""
+msgstr "América/Blanc-Sablon"
 
 #: ../src/timezone_names.c:120
 msgid "America/Boa_Vista"
@@ -2518,11 +2518,11 @@ msgstr "América/Bos_Aires"
 
 #: ../src/timezone_names.c:124
 msgid "America/Cambridge_Bay"
-msgstr ""
+msgstr "América/Cambridge_Bay"
 
 #: ../src/timezone_names.c:125
 msgid "America/Campo_Grande"
-msgstr ""
+msgstr "América/Campo_Grande"
 
 #: ../src/timezone_names.c:126
 msgid "America/Cancun"
@@ -2554,7 +2554,7 @@ msgstr "América/Chihuahua"
 
 #: ../src/timezone_names.c:133
 msgid "America/Coral_Harbour"
-msgstr ""
+msgstr "América/Coral_Harbour"
 
 #: ../src/timezone_names.c:134
 msgid "America/Cordoba"
@@ -2566,7 +2566,7 @@ msgstr "América/Costa_Rica"
 
 #: ../src/timezone_names.c:136
 msgid "America/Creston"
-msgstr ""
+msgstr "América/Creston"
 
 #: ../src/timezone_names.c:137
 msgid "America/Cuiaba"
@@ -2578,7 +2578,7 @@ msgstr "América/Curaçao"
 
 #: ../src/timezone_names.c:139
 msgid "America/Danmarkshavn"
-msgstr ""
+msgstr "América/Danmarkshavn"
 
 #: ../src/timezone_names.c:140
 msgid "America/Dawson"
@@ -2586,7 +2586,7 @@ msgstr "América/Dawson"
 
 #: ../src/timezone_names.c:141
 msgid "America/Dawson_Creek"
-msgstr ""
+msgstr "América/Dawson_Creek"
 
 #: ../src/timezone_names.c:142
 msgid "America/Denver"
@@ -2606,15 +2606,15 @@ msgstr "América/Edmonton"
 
 #: ../src/timezone_names.c:146
 msgid "America/Ensenada"
-msgstr ""
+msgstr "América/Ensenada"
 
 #: ../src/timezone_names.c:147
 msgid "America/Eirunepe"
-msgstr ""
+msgstr "América/Eirunepe"
 
 #: ../src/timezone_names.c:148
 msgid "America/El_Salvador"
-msgstr ""
+msgstr "América/El_Salvador"
 
 #: ../src/timezone_names.c:149
 msgid "America/Fortaleza"
@@ -2622,23 +2622,23 @@ msgstr "América/Fortaleza"
 
 #: ../src/timezone_names.c:150
 msgid "America/Fort_Wayne"
-msgstr ""
+msgstr "América/Fort_Wayne"
 
 #: ../src/timezone_names.c:151
 msgid "America/Glace_Bay"
-msgstr ""
+msgstr "América/Glace_Bay"
 
 #: ../src/timezone_names.c:152
 msgid "America/Godthab"
-msgstr ""
+msgstr "América/Godthab"
 
 #: ../src/timezone_names.c:153
 msgid "America/Goose_Bay"
-msgstr ""
+msgstr "América/Goose_Bay"
 
 #: ../src/timezone_names.c:154
 msgid "America/Grand_Turk"
-msgstr ""
+msgstr "América/Grand_Turk"
 
 #: ../src/timezone_names.c:155
 msgid "America/Grenada"
@@ -2654,7 +2654,7 @@ msgstr "América/Guatemala"
 
 #: ../src/timezone_names.c:158
 msgid "America/Guayaquil"
-msgstr ""
+msgstr "América/Guayaquil"
 
 #: ../src/timezone_names.c:159
 msgid "America/Guyana"
@@ -2670,7 +2670,7 @@ msgstr "América/A Habana"
 
 #: ../src/timezone_names.c:162
 msgid "America/Hermosillo"
-msgstr ""
+msgstr "América/Hermosillo"
 
 #: ../src/timezone_names.c:163
 msgid "America/Indiana/Indianapolis"
@@ -2686,23 +2686,23 @@ msgstr "América/Indiana/Marengo"
 
 #: ../src/timezone_names.c:166
 msgid "America/Indiana/Petersburg"
-msgstr ""
+msgstr "América/Indiana/Petersburg"
 
 #: ../src/timezone_names.c:167
 msgid "America/Indiana/Tell_City"
-msgstr ""
+msgstr "América/Indiana/Tell_City"
 
 #: ../src/timezone_names.c:168
 msgid "America/Indiana/Vevay"
-msgstr ""
+msgstr "América/Indiana/Vevay"
 
 #: ../src/timezone_names.c:169
 msgid "America/Indiana/Vincennes"
-msgstr ""
+msgstr "América/Indiana/Vincennes"
 
 #: ../src/timezone_names.c:170
 msgid "America/Indiana/Winamac"
-msgstr ""
+msgstr "América/Indiana/Winamac"
 
 #: ../src/timezone_names.c:171
 msgid "America/Indianapolis"
@@ -2710,7 +2710,7 @@ msgstr "América/Indianápolis"
 
 #: ../src/timezone_names.c:172
 msgid "America/Inuvik"
-msgstr ""
+msgstr "América/Inuvik"
 
 #: ../src/timezone_names.c:173
 msgid "America/Iqaluit"
@@ -2722,7 +2722,7 @@ msgstr "América/Xamaica"
 
 #: ../src/timezone_names.c:175
 msgid "America/Jujuy"
-msgstr ""
+msgstr "América/Jujuy"
 
 #: ../src/timezone_names.c:176
 msgid "America/Juneau"
@@ -2738,11 +2738,11 @@ msgstr "América/Kentucky/Monticello"
 
 #: ../src/timezone_names.c:179
 msgid "America/Knox_IN"
-msgstr ""
+msgstr "América/Knox_IN"
 
 #: ../src/timezone_names.c:180
 msgid "America/Kralendijk"
-msgstr ""
+msgstr "América/Kralendijk"
 
 #: ../src/timezone_names.c:181
 msgid "America/La_Paz"
@@ -2762,7 +2762,7 @@ msgstr "América/Louisville"
 
 #: ../src/timezone_names.c:185
 msgid "America/Lower_Princes"
-msgstr ""
+msgstr "América/Lower_Princes"
 
 #: ../src/timezone_names.c:186
 msgid "America/Maceio"
@@ -2778,7 +2778,7 @@ msgstr "América/Manaus"
 
 #: ../src/timezone_names.c:189
 msgid "America/Marigot"
-msgstr ""
+msgstr "América/Marigot"
 
 #: ../src/timezone_names.c:190
 msgid "America/Martinique"
@@ -2786,7 +2786,7 @@ msgstr "América/Martinica"
 
 #: ../src/timezone_names.c:191
 msgid "America/Matamoros"
-msgstr ""
+msgstr "América/Matamoros"
 
 #: ../src/timezone_names.c:192
 msgid "America/Mazatlan"
@@ -2798,7 +2798,7 @@ msgstr "América/Mendoza"
 
 #: ../src/timezone_names.c:194
 msgid "America/Menominee"
-msgstr ""
+msgstr "América/Menominee"
 
 #: ../src/timezone_names.c:195
 msgid "America/Merida"
@@ -2806,7 +2806,7 @@ msgstr "América/Mérida"
 
 #: ../src/timezone_names.c:196
 msgid "America/Metlakatla"
-msgstr ""
+msgstr "América/Metlakatla"
 
 #: ../src/timezone_names.c:197
 msgid "America/Mexico_City"
@@ -2818,7 +2818,7 @@ msgstr "América/Miquelon"
 
 #: ../src/timezone_names.c:199
 msgid "America/Moncton"
-msgstr ""
+msgstr "América/Moncton"
 
 #: ../src/timezone_names.c:200
 msgid "America/Monterrey"
@@ -2854,15 +2854,15 @@ msgstr "América/Nome"
 
 #: ../src/timezone_names.c:208
 msgid "America/North_Dakota/Beulah"
-msgstr ""
+msgstr "América/North_Dakota/Beulah"
 
 #: ../src/timezone_names.c:209
 msgid "America/North_Dakota/Center"
-msgstr ""
+msgstr "América/North_Dakota/Center"
 
 #: ../src/timezone_names.c:210
 msgid "America/North_Dakota/New_Salem"
-msgstr ""
+msgstr "América/North_Dakota/New_Salem"
 
 #: ../src/timezone_names.c:211
 msgid "America/Noronha"
@@ -2870,7 +2870,7 @@ msgstr "América/Noronha"
 
 #: ../src/timezone_names.c:212
 msgid "America/Ojinaga"
-msgstr ""
+msgstr "América/Ojinaga"
 
 #: ../src/timezone_names.c:213
 msgid "America/Panama"
@@ -2878,7 +2878,7 @@ msgstr "América/Panamá"
 
 #: ../src/timezone_names.c:214
 msgid "America/Pangnirtung"
-msgstr ""
+msgstr "América/Pangnirtung"
 
 #: ../src/timezone_names.c:215
 msgid "America/Paramaribo"
@@ -2898,11 +2898,11 @@ msgstr "América/Porto_de_España"
 
 #: ../src/timezone_names.c:219
 msgid "America/Porto_Acre"
-msgstr ""
+msgstr "América/Porto_Acre"
 
 #: ../src/timezone_names.c:220
 msgid "America/Porto_Velho"
-msgstr ""
+msgstr "América/Porto_Velho"
 
 #: ../src/timezone_names.c:221
 msgid "America/Puerto_Rico"
@@ -2910,11 +2910,11 @@ msgstr "América/Porto_Rico"
 
 #: ../src/timezone_names.c:222
 msgid "America/Rainy_River"
-msgstr ""
+msgstr "América/Rainy_River"
 
 #: ../src/timezone_names.c:223
 msgid "America/Rankin_Inlet"
-msgstr ""
+msgstr "América/Rankin_Inlet"
 
 #: ../src/timezone_names.c:224
 msgid "America/Recife"
@@ -2926,7 +2926,7 @@ msgstr "América/Regina"
 
 #: ../src/timezone_names.c:226
 msgid "America/Resolute"
-msgstr ""
+msgstr "América/Resolute"
 
 #: ../src/timezone_names.c:227
 msgid "America/Rio_Branco"
@@ -2938,11 +2938,11 @@ msgstr "América/Rosario"
 
 #: ../src/timezone_names.c:229
 msgid "America/Santa_Isabel"
-msgstr ""
+msgstr "América/Santa_Isabel"
 
 #: ../src/timezone_names.c:230
 msgid "America/Santarem"
-msgstr ""
+msgstr "América/Santarem"
 
 #: ../src/timezone_names.c:231
 msgid "America/Santiago"
@@ -2962,23 +2962,23 @@ msgstr "América/Scoresbysund"
 
 #: ../src/timezone_names.c:235
 msgid "America/Shiprock"
-msgstr ""
+msgstr "América/Shiprock"
 
 #: ../src/timezone_names.c:236
 msgid "America/Sitka"
-msgstr ""
+msgstr "América/Sitka"
 
 #: ../src/timezone_names.c:237
 msgid "America/St_Barthelemy"
-msgstr ""
+msgstr "América/St_Barthelemy"
 
 #: ../src/timezone_names.c:238
 msgid "America/St_Johns"
-msgstr ""
+msgstr "América/St_Johns"
 
 #: ../src/timezone_names.c:239
 msgid "America/St_Kitts"
-msgstr ""
+msgstr "América/St_Kitts"
 
 #: ../src/timezone_names.c:240
 msgid "America/St_Lucia"
@@ -2994,7 +2994,7 @@ msgstr "América/San_Vincente"
 
 #: ../src/timezone_names.c:243
 msgid "America/Swift_Current"
-msgstr ""
+msgstr "América/Swift_Current"
 
 #: ../src/timezone_names.c:244
 msgid "America/Tegucigalpa"
@@ -3006,7 +3006,7 @@ msgstr "América/Thule"
 
 #: ../src/timezone_names.c:246
 msgid "America/Thunder_Bay"
-msgstr ""
+msgstr "América/Thunder_Bay"
 
 #: ../src/timezone_names.c:247
 msgid "America/Tijuana"
@@ -3014,7 +3014,7 @@ msgstr "América/Tijuana"
 
 #: ../src/timezone_names.c:248
 msgid "America/Toronto"
-msgstr ""
+msgstr "América/Toronto"
 
 #: ../src/timezone_names.c:249
 msgid "America/Tortola"
@@ -3026,7 +3026,7 @@ msgstr "América/Vancouver"
 
 #: ../src/timezone_names.c:251
 msgid "America/Virgin"
-msgstr ""
+msgstr "América/Virgin"
 
 #: ../src/timezone_names.c:252
 msgid "America/Whitehorse"
@@ -3038,7 +3038,7 @@ msgstr "América/Winnipeg"
 
 #: ../src/timezone_names.c:254
 msgid "America/Yakutat"
-msgstr ""
+msgstr "América/Yakutat"
 
 #: ../src/timezone_names.c:255
 msgid "America/Yellowknife"
