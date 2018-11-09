@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-23 12:30+0200\n"
-"PO-Revision-Date: 2018-11-09 05:43+0000\n"
+"PO-Revision-Date: 2018-11-09 17:24+0000\n"
 "Last-Translator: Daniel Muñiz Fontoira <dani@damufo.com>\n"
 "Language-Team: Galician (http://www.transifex.com/xfce/xfce-apps/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -561,7 +561,7 @@ msgstr "Fin"
 
 #: ../src/appointment.c:333
 msgid "Due"
-msgstr "Vencemento"
+msgstr "Prazo"
 
 #: ../src/appointment.c:493 ../src/mainbox.c:862
 msgid "Orage"
@@ -1134,24 +1134,24 @@ msgid ""
 "\tFrequency = Monthly,\n"
 "\tWeekdays = check only Wednesday,\n"
 "\tWhich day = select 2 from the number below Wednesday"
-msgstr ""
+msgstr "Especifique o día da semana para actividades mensuais e anuais\nPor exemplo:\nSegundo mércores de cada mes:\n\tFrecuencia= mensual,\n\tDías da semana=marcar só o mércores,\n\tQue día=seleccionar 2 do número debaixo do mércores"
 
 #. TODO base (only for TODOs)
 #: ../src/appointment.c:3450
 msgid "TODO base"
-msgstr ""
+msgstr "Tarefa base"
 
 #: ../src/appointment.c:3463
 msgid ""
 "TODO reoccurs regularly starting on start time and repeating after each "
 "interval no matter when it was last completed"
-msgstr ""
+msgstr "A tarefa repítese regularmente a partir do momento de inicio e despois de cada intervalo, sen importar cando se completou por última vez"
 
 #: ../src/appointment.c:3465
 msgid ""
 "TODO reoccurrency is based on complete time and repeats after the interval counted from the last completed time.\n"
 "(Note that you can not tell anything about the history of the TODO since reoccurrence base changes after each completion.)"
-msgstr ""
+msgstr "A repetición da tarefa é baseada en cando foi completada e repetíndose transcorrido o intervalo a partir da última vez que foi completada.\n(Ten en conta que non se pode dicir nada sobre o historial das tarefas desde que se produciron os cambios de base despois de cada unha das veces que se completou)."
 
 #. exceptions
 #: ../src/appointment.c:3471
@@ -1163,30 +1163,30 @@ msgid ""
 "Add more exception dates by clicking the calendar days below.\n"
 "Exception is either exclusion(-) or inclusion(+) depending on the selection.\n"
 "Remove by clicking the data."
-msgstr ""
+msgstr "Engadir máis datas de excepción facendo clic nos días naturais de embaixo.\n A excepción é exclusión (-) ou inclusión (+) en función da selección.\n Elimine facendo clic nos datos."
 
 #: ../src/appointment.c:3489
 msgid "Add excluded date (-)"
-msgstr ""
+msgstr "Engadir unha data excluída (-)"
 
 #: ../src/appointment.c:3491
 msgid "Excluded days are full days where this appointment is not happening"
-msgstr ""
+msgstr "Os días excluídos son días completos onde esta cita non ocorre."
 
 #: ../src/appointment.c:3497
 msgid "Add included time (+)"
-msgstr ""
+msgstr "Engadir unha data incluída (+)"
 
 #: ../src/appointment.c:3499
 msgid ""
 "Included times have same timezone than start time, but they may have "
 "different time"
-msgstr ""
+msgstr "Os horarios incluídos teñen o mesmo fuso horario que a hora de inicio, pero poden ter horas diferentes"
 
 #. calendars showing the action days
 #: ../src/appointment.c:3516
 msgid "Action dates"
-msgstr ""
+msgstr "Datas de acción"
 
 #. ********* View menu *********
 #. View menu
@@ -1280,36 +1280,36 @@ msgstr "Buscar"
 
 #: ../src/event-list.c:1196
 msgid "Dayview"
-msgstr ""
+msgstr "Visualización do día"
 
 #: ../src/event-list.c:1231
 msgid "Extra days to show:"
-msgstr ""
+msgstr "Días extra a amosar:"
 
 #: ../src/event-list.c:1240
 msgid "only first repeating"
-msgstr ""
+msgstr "só a primeira repetición"
 
 #: ../src/event-list.c:1245
 msgid ""
 "Check this if you only want to see the first repeating event. By default all are shown.\n"
 "Note that this also shows all urgencies.\n"
 "Note that repeating events may appear earlier in the list as the first occurrence only is listed."
-msgstr ""
+msgstr "Marque isto se só quere ver a primeira actividade repetida. De xeito predeterminado amósanse todas.\n Teña en conta que isto tamén amosa todas as urxencias.\n E tamén que as actividades que se repiten poden aparecer aparecer antes na lista xa que só se lista a primeira aparición."
 
 #: ../src/event-list.c:1250
 msgid "also old"
-msgstr ""
+msgstr "tamén antigas"
 
 #: ../src/event-list.c:1252
 msgid ""
 "Check this if you want to see old events also. This can only be selected after 'only first repeating' is enabled to avoid very long lists.\n"
 "Note that extra days selection still defines if newer appointments are listed'."
-msgstr ""
+msgstr "Marque isto se tamén quere ver antigas actividades. Isto só se pode seleccionar despois  de activar «só a primeira repetición» para evitar listas moi longas.\nTeña en conta que seleccionando días extra \nTeña en conta que a selección de días extras aínda define se se listan novas citas."
 
 #: ../src/event-list.c:1290
 msgid "Journal entries starting from:"
-msgstr ""
+msgstr "As entradas do diario a partir de:"
 
 #: ../src/event-list.c:1310
 msgid "Search"
@@ -1341,47 +1341,47 @@ msgid ""
 "\t\tO=Orage A=Archive F=Foreign\n"
 "\t 5. Appointment type:\n"
 "\t\tE=Event T=Todo J=Journal"
-msgstr ""
+msgstr "Dobre clic para modificalo.\n\nIndicadores en orde:\n\t 1. Alarma: n=sen alarma\n\t\t A=a alarma está activada P=alarma persistente\n\t 2. Recorrencia: n=sen recorrencia\n\t\t H=cada hora D=cada día W=cada semana M=cada mes Y=cada ano\n\t 3. Tipo: f=libre B=ocupado\n\t 4. Localizado no ficheiro:\n\t\tO=Orage A=arquivo F=externo\n\t 5. Tipo de cita:\n\t\tE=actividade T=tarefa J=diario"
 
 #. remove since it has ended
 #: ../src/ical-archive.c:267
 msgid "\tRecur ended, moving to archive file."
-msgstr ""
+msgstr "\tRematou a repetición, movendo para o arquivamento."
 
 #: ../src/ical-archive.c:330
 msgid "Archiving not enabled. Exiting"
-msgstr ""
+msgstr "O arquivamento non está activado. Saíndo"
 
 #: ../src/ical-archive.c:349
 #, c-format
 msgid "Archiving threshold: %d month(s)"
-msgstr ""
+msgstr "Límite do arquivamento: %d mese(s)"
 
 #. yy mon day
 #: ../src/ical-archive.c:352
 #, c-format
 msgid "\tArchiving events, which are older than: %04d-%02d-%02d"
-msgstr ""
+msgstr "\tArquivando actividades que son máis antigas que: %04d-%02d-%02d"
 
 #: ../src/ical-archive.c:379
 #, c-format
 msgid "Archiving uid: %s"
-msgstr ""
+msgstr "Identificador do arquivamento: %s "
 
 #. VTODO not completed, do not archive
 #: ../src/ical-archive.c:385
 msgid "\tVTODO not complete; not archived"
-msgstr ""
+msgstr "\tA tarefa non completada; non arquivada"
 
 #. it is recurrent event
 #: ../src/ical-archive.c:390
 #, c-format
 msgid "\tRecurring. End year: %04d, month: %02d, day: %02d"
-msgstr ""
+msgstr "\tRecorrencia. Final do ano: %04d, mes: %02d, día: %02d"
 
 #: ../src/ical-archive.c:407
 msgid "Archiving done\n"
-msgstr ""
+msgstr "Arquivamento feito\n"
 
 #. PHASE 1: go through base orage file and remove "repeat" shortcuts
 #: ../src/ical-archive.c:423
@@ -1408,12 +1408,12 @@ msgstr "Alarma predeterminada de Orage"
 
 #: ../src/ical-code.c:3179
 msgid "Created alarm list for main Orage file:"
-msgstr ""
+msgstr "Creouse a lista de alarmas no ficheiro principal de Orage:"
 
 #: ../src/ical-code.c:3181
 #, c-format
 msgid "Created alarm list for foreign file: %s (%s)"
-msgstr ""
+msgstr "Creouse a lista de alarmas no ficheiro externo: %s (%s)"
 
 #: ../src/ical-code.c:3183
 #, c-format
@@ -1428,28 +1428,28 @@ msgstr "⇥Atopáronse %d alarmas, das que %d están activas. (Buscouse en %d al
 
 #: ../src/ical-expimp.c:123
 msgid "Starting import file preprocessing"
-msgstr ""
+msgstr "Comezou o preprocesamento do ficheiro a importar"
 
 #: ../src/ical-expimp.c:158
 msgid "... Patched DCREATED to be CREATED."
-msgstr ""
+msgstr "... Mudou «DCREATED» para «CREATED»."
 
 #: ../src/ical-expimp.c:197
 msgid "... Patched timezone to Orage format."
-msgstr ""
+msgstr "... Mudou o fuso horario para o formato do Orage."
 
 #: ../src/ical-expimp.c:206
 msgid "Import file preprocessing done"
-msgstr ""
+msgstr "Rematou o preprocesamento do ficheiro a importar"
 
 #: ../src/interface.c:89 ../src/interface.c:104
 #, c-format
 msgid "Found external update on file %s."
-msgstr ""
+msgstr "Atopouse unha actualización externa no ficheiro %s."
 
 #: ../src/interface.c:112
 msgid "Refreshing alarms and calendar due to external file update."
-msgstr ""
+msgstr "Actualizando alarmas e calendario por mor da actualización do ficheiro externo."
 
 #: ../src/interface.c:271
 msgid "Calendar files"
@@ -1457,7 +1457,7 @@ msgstr "Ficheiros de calendario"
 
 #: ../src/interface.c:631
 msgid "Current foreign files"
-msgstr ""
+msgstr "Ficheiros externos actuais"
 
 #: ../src/interface.c:648
 msgid "READ ONLY"
@@ -1465,7 +1465,7 @@ msgstr "SÓ DE LECTURA"
 
 #: ../src/interface.c:650
 msgid "READ WRITE"
-msgstr ""
+msgstr "LECTURA ESCRITURA"
 
 #: ../src/interface.c:669
 msgid "***** No foreign files *****"
