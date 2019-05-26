@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-23 12:30+0200\n"
-"PO-Revision-Date: 2019-05-21 20:14+0000\n"
+"PO-Revision-Date: 2019-05-26 14:57+0000\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish (http://www.transifex.com/xfce/xfce-apps/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -124,7 +124,7 @@ msgstr "flyt dette ur til sidste position"
 
 #: ../globaltime/gt_prefs.c:562
 msgid "set the timezone of this clock to be local timezone"
-msgstr "sæt tidszonen for dette ur til at være lokal tidszone"
+msgstr "indstil tidszonen for dette ur til at være lokal tidszone"
 
 #: ../globaltime/gt_prefs.c:568 ../globaltime/gt_prefs.c:1042
 msgid "close window and exit"
@@ -454,17 +454,17 @@ msgstr "Vis _ramme"
 #. foreground color
 #: ../panel-plugin/oc_config.c:263
 msgid "set foreground _color:"
-msgstr "sæt _forgrundsfarve:"
+msgstr "indstil _forgrundsfarve:"
 
 #. background color
 #: ../panel-plugin/oc_config.c:277
 msgid "set _background color:"
-msgstr "sæt _baggrundsfarve:"
+msgstr "indstil _baggrundsfarve:"
 
 #. clock size (=mbox size): height and width
 #: ../panel-plugin/oc_config.c:291
 msgid "set _height:"
-msgstr "sæt _højde:"
+msgstr "indstil _højde:"
 
 #: ../panel-plugin/oc_config.c:301
 msgid "Note that you can not change the height of horizontal panels"
@@ -472,7 +472,7 @@ msgstr "Bemærk at du ikke kan ændre højden på vandrette paneler"
 
 #: ../panel-plugin/oc_config.c:306
 msgid "set _width:"
-msgstr "sæt _bredde:"
+msgstr "indstil _bredde:"
 
 #: ../panel-plugin/oc_config.c:316
 msgid "Note that you can not change the width of vertical panels"
@@ -489,7 +489,7 @@ msgstr "Valgmuligheder for ur"
 #. timezone
 #: ../panel-plugin/oc_config.c:360
 msgid "set timezone to:"
-msgstr "sæt tidszone til:"
+msgstr "indstil tidszone til:"
 
 #: ../panel-plugin/oc_config.c:381
 #, c-format
@@ -529,7 +529,7 @@ msgid ""
 "\t%V = week number\t\t%Z = timezone in use\n"
 "\t%H = hours \t\t\t\t%M = minute\n"
 "\t%X = local time\t\t\t%x = local date"
-msgstr "Dette program bruger funktionen strftime til at hente tiden.\nBrug en vilkårlig gyldig kode for at hente tiden i dit foretrukne format.\nHer er nogle typiske koder:\n\t%A = ugedag\t\t\t%B = måned\n\t%c = dato og tid\t%R = time og minut\n\t%V = ugetal\t\t\t%Z = anvendte tidszone\n\t%H = timer \t\t\t%M = minut\n\t%X = lokal tid\t\t%x = lokal dato"
+msgstr "Dette program bruger funktionen strftime til at hente tiden.\nBrug en vilkårlig gyldig kode for at hente tiden i dit foretrukne format.\nHer er nogle typiske koder:\n\t%A = ugedag\t\t\t%B = måned\n\t%c = dato og klokkeslæt\t%R = time og minut\n\t%V = ugetal\t\t\t%Z = anvendte tidszone\n\t%H = timer \t\t\t%M = minut\n\t%X = lokal klokkeslæt\t\t%x = lokal dato"
 
 #: ../panel-plugin/oc_config.c:491
 msgid "Orage clock Preferences"
@@ -789,7 +789,7 @@ msgstr "Start"
 
 #: ../src/appointment.c:2810
 msgid "Set      "
-msgstr "Sæt      "
+msgstr "Indstil      "
 
 #: ../src/appointment.c:2831
 msgid "Duration"
@@ -957,7 +957,7 @@ msgstr "Vælg denne hvis du vil have en underretningsalarm"
 
 #: ../src/appointment.c:3155
 msgid "Set timeout"
-msgstr "Sæt timeout"
+msgstr "Indstil timeout"
 
 #: ../src/appointment.c:3157
 msgid "Select this if you want notification to expire automatically"
@@ -1006,7 +1006,7 @@ msgstr "Gem nuværende indstillinger som standardalarm"
 
 #: ../src/appointment.c:3228
 msgid "Set current settings from default alarm"
-msgstr "Sæt nuværende indstillinger fra standardalarm"
+msgstr "Indstil nuværende indstillinger fra standardalarm"
 
 #: ../src/appointment.c:3290
 msgid "Daily"
@@ -1661,7 +1661,7 @@ msgstr "Skrivebeskyttet"
 msgid ""
 "Set this if you want to make sure that this file is never modified by Orage.\n"
 "Note that modifying foreign files may make them incompatible with the original tool, where they came from!"
-msgstr "Sæt denne hvis du vil sørge for at denne fil aldrig ændres af Orage.\nBemærk at ændring af fremmede filer kan gøre dem inkompatible med det originale værktøj, hvor de kom fra!"
+msgstr "Indstil denne hvis du vil sørge for at denne fil aldrig ændres af Orage.\nBemærk at ændring af fremmede filer kan gøre dem inkompatible med det originale værktøj, hvor de kom fra!"
 
 #: ../src/interface.c:1294
 msgid "This internal name is displayed to user instead of file name."
@@ -2127,7 +2127,7 @@ msgstr "Standardtidszone sat til %s."
 
 #: ../src/parameters.c:1179
 msgid "Default timezone not found, please, set it manually."
-msgstr "Standardtidszone ikke fundet. Sæt den venligst manuelt."
+msgstr "Standardtidszone ikke fundet. Indstil den venligst manuelt."
 
 #: ../src/reminder.c:562
 msgid "Reminder "
@@ -4421,7 +4421,7 @@ msgstr "Om Orage"
 
 #: ../panel-plugin/xfce4-orageclock-plugin.desktop.in.in.h:1
 msgid "Orage Panel Clock"
-msgstr "Orage panel-ur"
+msgstr "Orage panelur"
 
 #: ../panel-plugin/xfce4-orageclock-plugin.desktop.in.in.h:2
 msgid "Show time and date?"
