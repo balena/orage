@@ -8,15 +8,16 @@
 # Cristian Cozzolino <cristiancozzolino@libero.it>, 2009
 # Cristian Marchi <cri.penta@gmail.com>, 2013-2014
 # Edoardo Maria Elidoro <edoardo.elidoro@gmail.com>, 2013
+# Emanuele Petriglia <transifex@emanuelepetriglia.com>, 2018
 # gianluca foddis <gianluca.foddis@gmail.com>, 2009
 msgid ""
 msgstr ""
 "Project-Id-Version: Xfce Apps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-23 12:30+0200\n"
-"PO-Revision-Date: 2014-10-08 18:27+0000\n"
+"PO-Revision-Date: 2018-09-14 00:16+0000\n"
 "Last-Translator: Cristian Marchi <cri.penta@gmail.com>\n"
-"Language-Team: Italian (http://www.transifex.com/projects/p/xfce-apps/language/it/)\n"
+"Language-Team: Italian (http://www.transifex.com/xfce/xfce-apps/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -41,11 +42,11 @@ msgstr "bassa"
 
 #: ../globaltime/globaltime.c:100
 msgid "Raising GlobalTime window..."
-msgstr "Apertura finestra Ora globale..."
+msgstr "Apertura finestra Ora globale…"
 
 #: ../globaltime/globaltime.c:102
 msgid "GlobalTime window raise failed"
-msgstr "Apertura finestra Ora globale non riuscita"
+msgstr "Impossibile aprire la finestra Ora globale"
 
 #. ********** timezone tooltip **********
 #: ../globaltime/globaltime.c:277
@@ -158,7 +159,7 @@ msgstr "Formattazione del testo"
 #. ------------------------background-------------------------
 #: ../globaltime/gt_prefs.c:649 ../globaltime/gt_prefs.c:856
 msgid "Background color:"
-msgstr "Colore di sfondo"
+msgstr "Colore di sfondo:"
 
 #: ../globaltime/gt_prefs.c:656
 msgid "Click to change background colour for clock"
@@ -190,7 +191,7 @@ msgstr "Fare clic per cambiare il colore in primo piano all'orologio"
 #. ------------------------name font-------------------------
 #: ../globaltime/gt_prefs.c:713 ../globaltime/gt_prefs.c:922
 msgid "Font for name of clock:"
-msgstr "Carattere per il nome dell'orologio:"
+msgstr "Tipo di carattere per il nome dell'orologio:"
 
 #: ../globaltime/gt_prefs.c:720
 msgid "Click to change font for clock name"
@@ -233,15 +234,15 @@ msgstr "Fare clic per cambiare il colore predefinito del testo agli orologi"
 
 #: ../globaltime/gt_prefs.c:929
 msgid "Click to change default font for clock name"
-msgstr "Fare clic per cambiare il carattere predefinito per il nome dell'orologio"
+msgstr "Fare clic per cambiare il tipo di carattere predefinito per il nome dell'orologio"
 
 #: ../globaltime/gt_prefs.c:944 ../globaltime/gt_prefs.c:978
 msgid "Cross this to use system default font instead of selected font"
-msgstr "Mettere il segno di spunta per usare il carattere predefinito di sistema al posto di quello selezionato"
+msgstr "Mettere il segno di spunta per usare il tipo di carattere predefinito di sistema al posto di quello selezionato"
 
 #: ../globaltime/gt_prefs.c:963
 msgid "Click to change default font for clock time"
-msgstr "Fare clic per cambiare il carattere predefinito per l'ora"
+msgstr "Fare clic per cambiare il tipo di carattere predefinito per l'ora"
 
 #. ------------------------underline name--------------------
 #: ../globaltime/gt_prefs.c:990
@@ -468,7 +469,7 @@ msgstr "Imposta alte_zza:"
 
 #: ../panel-plugin/oc_config.c:301
 msgid "Note that you can not change the height of horizontal panels"
-msgstr "Si noti che non è possibile modificare l'altezza dei pannelli orizzontali"
+msgstr "Notare che non è possibile modificare l'altezza dei pannelli orizzontali"
 
 #: ../panel-plugin/oc_config.c:306
 msgid "set _width:"
@@ -476,7 +477,7 @@ msgstr "Imposta _larghezza:"
 
 #: ../panel-plugin/oc_config.c:316
 msgid "Note that you can not change the width of vertical panels"
-msgstr "Si noti che non è possibile modificare la larghezza dei pannelli verticali"
+msgstr "Notare che non è possibile modificare la larghezza dei pannelli verticali"
 
 #: ../panel-plugin/oc_config.c:327
 msgid "Show lines _vertically"
@@ -498,7 +499,7 @@ msgstr "Linea %d:"
 
 #: ../panel-plugin/oc_config.c:391
 msgid "Enter any valid strftime function parameter."
-msgstr "Inserire un parametro valido per la funzione strftime"
+msgstr "Inserire un parametro valido per la funzione strftime."
 
 #. Tooltip hint
 #: ../panel-plugin/oc_config.c:435
@@ -517,7 +518,7 @@ msgid ""
 "circumstances it is possible that Orageclock shows time inaccurately unless "
 "you have this selected. (Selecting this prevents cpu and interrupt saving "
 "features from working.)"
-msgstr "Questo è necessario se viene effettuata una sospensione o una ibernazione a breve termine (meno di 5 ore) e l'ora visualizzata non comprende i secondi. In queste circostanze è possibile che l'orologio di Orage mostri l'ora in modo impreciso a meno che non sia stata selezionata questa opzione (selezionandola, si inibisce il funzionamento della cpu e delle funzioni di risparmio energetico)"
+msgstr "Questo è necessario se viene effettuata una sospensione o una ibernazione a breve termine (meno di 5 ore) e l'ora visualizzata non comprende i secondi. In queste circostanze è possibile che l'orologio di Orage mostri l'ora in modo impreciso a meno che non sia stata selezionata questa opzione (selezionandola, si inibisce il funzionamento della cpu e delle funzioni di risparmio energetico)."
 
 #: ../panel-plugin/oc_config.c:466
 msgid ""
@@ -529,7 +530,7 @@ msgid ""
 "\t%V = week number\t\t%Z = timezone in use\n"
 "\t%H = hours \t\t\t\t%M = minute\n"
 "\t%X = local time\t\t\t%x = local date"
-msgstr "Questo programma utilizza la funzione strftime per\nrecuperare le informazioni su data e ora.\nUtilizzare un qualsiasi codice valido per ottenere la\ndata e l'ora nel formato che si preferisce.\nI codici più utilizzati sono:\n\t%A = giorno della settimana\t%B = mese\n\t%c = data e ora\t\t\t%R = ora e minuti\n\t%V = numero settimana\t%Z = fuso orario in uso\n\t%H = ore \t\t\t\t%M = minuti\n\t%X = ora locale\t\t\t%x = data locale"
+msgstr "Questo programma utilizza la funzione strftime per\nrecuperare le informazioni sulla data e ora.\nUtilizzare un qualsiasi codice valido per ottenere la\ndata e l'ora nel formato che si preferisce.\nI codici più utilizzati sono:\n\t%A = giorno della settimana\t%B = mese\n\t%c = data e ora\t\t\t%R = ora e minuti\n\t%V = numero settimana\t%Z = fuso orario in uso\n\t%H = ore \t\t\t\t%M = minuti\n\t%X = ora locale\t\t\t%x = data locale"
 
 #: ../panel-plugin/oc_config.c:491
 msgid "Orage clock Preferences"
@@ -553,7 +554,7 @@ msgstr "Mantenitore"
 
 #: ../src/about-xfcalendar.c:47
 msgid "Manage your time with Orage"
-msgstr "Gestire il proprio tempo con Orage"
+msgstr "Gestisci il proprio tempo con Orage"
 
 #. if (gtk_toggle_button_get_active(
 #. GTK_TOGGLE_BUTTON(apptw->Type_journal_rb)))
@@ -574,7 +575,7 @@ msgstr "Orage"
 #. Create file chooser
 #: ../src/appointment.c:672 ../src/interface.c:264 ../src/parameters.c:374
 msgid "Select a file..."
-msgstr "Selezionare un file..."
+msgstr "Selezionare un file…"
 
 #: ../src/appointment.c:680
 msgid "Sound Files"
@@ -618,22 +619,22 @@ msgstr "File predefinito di Orage"
 
 #: ../src/appointment.c:1225
 msgid "Appointment addition failed."
-msgstr "Aggiunta dell'appuntamento non riuscita"
+msgstr "Impossibile aggiungere l'appuntamento."
 
 #: ../src/appointment.c:1226
 msgid ""
 "Error happened when adding appointment. Look more details from the log file."
-msgstr "Errore aggiungendo l'appuntamento; per maggiori dettagli consultare il file di log."
+msgstr "Errore aggiungendo l'appuntamento. Per maggiori dettagli consultare il file di registro."
 
 #: ../src/appointment.c:1236
 msgid "Appointment update failed."
-msgstr "Aggiornamento dell'appuntamento non riuscito"
+msgstr "Impossibile aggiornare l'appuntamento."
 
 #: ../src/appointment.c:1237
 msgid ""
 "Look more details from the log file. (Perhaps file was updated external from"
 " Orage?)"
-msgstr "Per maggiori dettagli controllare il file di log (il file è forse stato aggiornato al di fuori di Orage?)."
+msgstr "Per maggiori dettagli controllare il file di registro (il file è forse stato aggiornato al di fuori di Orage?)."
 
 #: ../src/appointment.c:1286
 msgid "This appointment will be permanently removed."
@@ -650,7 +651,7 @@ msgstr "Sì, rimuovi"
 #: ../src/appointment.c:1378 ../src/appointment.c:1393 ../src/day-view.c:457
 #: ../src/event-list.c:1028
 msgid "Pick the date"
-msgstr "Seleziona della data"
+msgstr "Selezionare la data"
 
 #: ../src/appointment.c:1380 ../src/appointment.c:1395 ../src/day-view.c:386
 #: ../src/day-view.c:459 ../src/event-list.c:1030 ../src/event-list.c:1180
@@ -664,7 +665,7 @@ msgstr "Questo appuntamento non esiste."
 
 #: ../src/appointment.c:1804
 msgid "It was probably removed, please refresh your screen."
-msgstr "Probabilmente è stato rimosso, si prega di aggiornare la schermata."
+msgstr "Probabilmente è stato rimosso, aggiornare la schermata."
 
 #: ../src/appointment.c:2105
 msgid "Current categories"
@@ -672,7 +673,7 @@ msgstr "Categorie correnti"
 
 #: ../src/appointment.c:2120
 msgid "Add new category with color"
-msgstr "Aggiungere una nuova categoria con un colore"
+msgstr "Aggiunge una nuova categoria con un colore"
 
 #: ../src/appointment.c:2124
 msgid "Category:"
@@ -712,7 +713,7 @@ msgstr "Salva"
 
 #: ../src/appointment.c:2704
 msgid "Save and close"
-msgstr "Salva e chiude"
+msgstr "Salva e chiudi"
 
 #: ../src/appointment.c:2709
 msgid "Revert"
@@ -751,7 +752,7 @@ msgstr "Evento"
 msgid ""
 "Event that will happen sometime. For example:\n"
 "Meeting or birthday or TV show."
-msgstr "Evento che accadrà un giorno; per esempio:\nun incontro, un compleanno, o uno spettacolo alla TV"
+msgstr "Evento che accadrà un giorno, per esempio:\nun incontro, un compleanno od uno spettacolo televisivo."
 
 #: ../src/appointment.c:2752 ../src/event-list.c:1274
 msgid "Todo"
@@ -761,7 +762,7 @@ msgstr "Compito"
 msgid ""
 "Something that you should do sometime. For example:\n"
 "Wash your car or test new version of Orage."
-msgstr "Qualcosa che dovrebbe essere fatto prima o poi; per esempio:\nlavare la propria auto o provare la nuova versione di Orage"
+msgstr "Qualcosa che dovrebbe essere fatto prima o poi, per esempio:\nlavare la propria auto o provare la nuova versione di Orage."
 
 #: ../src/appointment.c:2758 ../src/event-list.c:1287
 msgid "Journal"
@@ -771,7 +772,7 @@ msgstr "Note del giorno"
 msgid ""
 "Make a note that something happened. For example:\n"
 "Remark that your mother called or first snow came."
-msgstr "Scrivere una nota per ricordare che è successo qualcosa; per esempio:\nannota che la mamma ha chiamato o che è scesa la prima neve"
+msgstr "Si può scrivere una nota per ricordare che è successo qualcosa, per esempio:\nricordarsi che la mamma ha chiamato o che è scesa la prima neve."
 
 #. title
 #: ../src/appointment.c:2769
@@ -830,11 +831,11 @@ msgstr "Categorie"
 msgid ""
 "This is special category, which can be used to color this appointment in "
 "list views."
-msgstr "Questa è una categoria speciale, che può essere usata per colorare questo appuntamento nella visualizzazione a elenco"
+msgstr "Questa è una categoria speciale, che può essere usata per colorare questo appuntamento nella visualizzazione a elenco."
 
 #: ../src/appointment.c:2900
 msgid "update colors for categories."
-msgstr "Aggiorna i colori per categorie"
+msgstr "Aggiorna i colori per categorie."
 
 #. priority
 #: ../src/appointment.c:2906
@@ -847,7 +848,7 @@ msgid ""
 "You can use that feature to unclutter your list windows, but it makes it more difficult to find this appointment.\n"
 "(Alarms will still fire normally.)\n"
 "(There is undocumented parameter so that you can change the default limit of 8.)"
-msgstr "Impostando il valore a 8 o a un numero superiore, l'appuntamento non è\nvisualizzato nell'elenco. Questa funzione è utile per non appesantire l'elenco, ma rende più difficile identificare questo appuntamento.\n(L'allarme verrà comunque avviato normalmente)\n(C'è un parametro non documentato in modo che sia possibile modificare il limite predefinito pari a 8)"
+msgstr "Impostanto a 8 o superiore, l'appuntamento NON è visualizzato nell'elenco.\nSi può utilizzare questa funzionalità per riordinare l'elenco, ma rende più difficile trovare questo appuntamento\n(Gli allarmi verranno comunque avviati normalmente)\n(C'è un parametro non documentato che permette di modificare il limite predefinito pari a 8)."
 
 #. note
 #: ../src/appointment.c:2918
@@ -907,7 +908,7 @@ msgstr "Allarme persistente"
 msgid ""
 "Select this if you want Orage to remind you even if it has not been active "
 "when the alarm happened."
-msgstr "Selezionare questa opzione per fare in modo che Orage avvisi comunque anche se non è attivo al momento dell'allarme"
+msgstr "Selezionare questa opzione per fare in modo che Orage avvisi comunque, anche se non è attivo al momento dell'allarme."
 
 #. **** Audio Alarm ****
 #: ../src/appointment.c:3064
@@ -924,7 +925,7 @@ msgstr "Selezionare questa opzione se si desidera un allarme acustico"
 
 #: ../src/appointment.c:3087
 msgid "Repeat alarm sound"
-msgstr "Ripeti suono di allarme"
+msgstr "Ripeti il suono dell'allarme"
 
 #: ../src/appointment.c:3103 ../src/appointment.c:3402
 msgid "times"
@@ -1082,7 +1083,7 @@ msgid ""
 "Use this if you need complex times like:\n"
 " Every Saturday and Sunday or \n"
 " First Tuesday every month"
-msgstr "Usare questa opzione se occorrono pianificazioni complesse come:\n ogni sabato e domenica o\n primo martedì di ogni mese"
+msgstr "Usare questa opzione se occorrono pianificazioni complesse come:\n Ogni sabato e domenica o\n Primo martedì di ogni mese"
 
 #. frequency
 #: ../src/appointment.c:3324
@@ -1102,7 +1103,7 @@ msgid ""
 "Limit frequency to certain interval.\n"
 " For example: Every third day:\n"
 " Frequency = Daily and Interval = 3"
-msgstr "Limita la frequenza a certi intervalli;\n per esempio: ogni terzo giorno:\n Frequenza = Giornaliera e Intervallo = 3"
+msgstr "Limita la frequenza a certi intervalli;\n Per esempio: ogni terzo giorno:\n Frequenza = Giornaliera e Intervallo = 3"
 
 #: ../src/appointment.c:3386
 msgid "Limit"
@@ -1142,7 +1143,7 @@ msgstr "Specifica quale giorno della settimana per eventi mensili ed annui;\n Pe
 #. TODO base (only for TODOs)
 #: ../src/appointment.c:3450
 msgid "TODO base"
-msgstr "Base compito"
+msgstr "Compito base"
 
 #: ../src/appointment.c:3463
 msgid ""
@@ -1154,7 +1155,7 @@ msgstr "Il compito ricorre regolarmente a partire dal tempo di inizio e si ripet
 msgid ""
 "TODO reoccurrency is based on complete time and repeats after the interval counted from the last completed time.\n"
 "(Note that you can not tell anything about the history of the TODO since reoccurrence base changes after each completion.)"
-msgstr "La ricorrenza del compito è basata sul tempo di completamento e si ripete dopo un intervallo calcolato a partire dall'ultimo completamento\n(Si noti che si può non dire niente in merito allo storico dei compiti dato che la base della ricorrenza viene modificata a ogni completamento)"
+msgstr "La ricorrenza del compito è basata sul tempo di completamento e si ripete dopo un intervallo calcolato a partire dall'ultimo completamento.\n(Si noti che si può non dire niente in merito allo storico dei compiti dato che la base della ricorrenza viene modificata a ogni completamento)"
 
 #. exceptions
 #: ../src/appointment.c:3471
@@ -1166,11 +1167,11 @@ msgid ""
 "Add more exception dates by clicking the calendar days below.\n"
 "Exception is either exclusion(-) or inclusion(+) depending on the selection.\n"
 "Remove by clicking the data."
-msgstr "Aggiunge ulteriori giorni di eccezione facendo clic nei giorni del calendario che segue;\nle eccezioni possono essere sia di esclusione(-) sia di inclusione(+) in funzione della selezione;\nrimuove facendo clic sugli elementi"
+msgstr "Aggiunge ulteriori giorni di eccezione facendo clic nei giorni del calendario che segue.\nLe eccezioni possono essere sia di esclusione(-) sia di inclusione(+) in funzione della selezione.\nSi possono rimuovere facendo clic sugli elementi."
 
 #: ../src/appointment.c:3489
 msgid "Add excluded date (-)"
-msgstr "Aggiungi giorno escluso"
+msgstr "Aggiungi giorno escluso (-)"
 
 #: ../src/appointment.c:3491
 msgid "Excluded days are full days where this appointment is not happening"
@@ -1178,7 +1179,7 @@ msgstr "I giorni esclusi sono giorni interi in cui l'appuntamento non è previst
 
 #: ../src/appointment.c:3497
 msgid "Add included time (+)"
-msgstr "Aggiungi tempi inclusi"
+msgstr "Aggiungi tempi inclusi (+)"
 
 #: ../src/appointment.c:3499
 msgid ""
@@ -1344,7 +1345,7 @@ msgid ""
 "\t\tO=Orage A=Archive F=Foreign\n"
 "\t 5. Appointment type:\n"
 "\t\tE=Event T=Todo J=Journal"
-msgstr "Doppio clic sulla riga per modificarla.\n\nAttributi in ordine:\n1. allarme: n=nessun allarme\n\t\t A=allarme visivo S=solo allarme sonoro\n\t 2. ricorrente: n=non ricorrente\n\t\t D=giornaliero W=settimanale M=mensile Y=annuale\n\t 3. tipo: f=libero B=occupato\n\t 4. posizionato nel file:\n\t\tO=Orage A=archivio F=esterno\n\t 5. tipo di appuntamento:\n\t\tE=evento T=compito J=note del giorno"
+msgstr "Doppio clic sulla riga per modificarla.\n\nAttributi in ordine:\n\t1. Allarme: n=nessun allarme\n\t\t A=Allarme visivo S=Solo allarme sonoro\n\t 2. Ricorrente: n=non ricorrente\n\t\t H=Orario D=Giornaliero W=Settimanale M=Mensile Y=Annuale\n\t 3. Tipo: f=libero B=Occupato\n\t 4. Posizionato nel file:\n\t\tO=Orage A=Archivio F=Esterno\n\t 5. Tipo di appuntamento:\n\t\tE=Evento T=Compito J=Note del giorno"
 
 #. remove since it has ended
 #: ../src/ical-archive.c:267
@@ -1353,7 +1354,7 @@ msgstr "\tRicorrenza conclusa, spostamento al file di archivio."
 
 #: ../src/ical-archive.c:330
 msgid "Archiving not enabled. Exiting"
-msgstr "Archiviazione non attivata. Esco"
+msgstr "Archiviazione non attivata. Uscita in corso"
 
 #: ../src/ical-archive.c:349
 #, c-format
@@ -1411,17 +1412,17 @@ msgstr "Allarme predefinito di Orage"
 
 #: ../src/ical-code.c:3179
 msgid "Created alarm list for main Orage file:"
-msgstr "Elenco allarme creato per il file principale di Orage"
+msgstr "Creato l'elenco degli allarmi per il file principale di Orage:"
 
 #: ../src/ical-code.c:3181
 #, c-format
 msgid "Created alarm list for foreign file: %s (%s)"
-msgstr "Elenco allarmi creato per il file esterno: %s (%s)"
+msgstr "Creato l'elento degli allarmi per il file esterno: %s (%s)"
 
 #: ../src/ical-code.c:3183
 #, c-format
 msgid "\tAdded %d alarms. Processed %d events."
-msgstr "⇥Aggiunti %d allarmi. Elaborati %d eventi."
+msgstr "\tAggiunti %d allarmi. Elaborati %d eventi."
 
 #: ../src/ical-code.c:3185
 #, c-format
@@ -1435,11 +1436,11 @@ msgstr "Avvio in corso della pre-elaborazione del file da importare"
 
 #: ../src/ical-expimp.c:158
 msgid "... Patched DCREATED to be CREATED."
-msgstr "... DCREATED corretto in CREATED."
+msgstr "… DCREATED corretto in CREATED."
 
 #: ../src/ical-expimp.c:197
 msgid "... Patched timezone to Orage format."
-msgstr "... Fuso orario corretto nel formato di Orage."
+msgstr "… Fuso orario corretto nel formato di Orage."
 
 #: ../src/ical-expimp.c:206
 msgid "Import file preprocessing done"
@@ -1448,11 +1449,11 @@ msgstr "Pre-elaborazione del file da importare eseguita"
 #: ../src/interface.c:89 ../src/interface.c:104
 #, c-format
 msgid "Found external update on file %s."
-msgstr "Trovato aggiornamento esterno sul file %s"
+msgstr "Trovato aggiornamento esterno sul file %s."
 
 #: ../src/interface.c:112
 msgid "Refreshing alarms and calendar due to external file update."
-msgstr "Aggiornamento di allarmi e calendario a seguito dell'aggiornamento del file esterno"
+msgstr "Aggiornamento in corso degli allarmi e calendario a seguito dell'aggiornamento del file esterno."
 
 #: ../src/interface.c:271
 msgid "Calendar files"
@@ -1476,11 +1477,11 @@ msgstr "***** Nessun file esterno *****"
 
 #: ../src/interface.c:682
 msgid "Foreign file add failed"
-msgstr "Aggiunta del file esterno non riuscita"
+msgstr "Impossibile aggiungere il file esterno"
 
 #: ../src/interface.c:689
 msgid "Orage can only handle 10 foreign files. Limit reached."
-msgstr "Orage può gestire solo 10 file esterni; è stato raggiunto il limite."
+msgstr "Orage può gestire al massimo 10 file esterni. È stato raggiunto il limite."
 
 #: ../src/interface.c:697
 msgid "Filename is empty."
@@ -1518,7 +1519,7 @@ msgstr "Leggi dal file:"
 msgid ""
 "Separate filenames with comma(,).\n"
 " NOTE: comma is not valid character in filenames for Orage."
-msgstr "Separare i nomi dei file con virgole(,);\nNOTA: la virgola non è un carattere valido nei nomi di file per Orage"
+msgstr "Separare i nomi dei file con virgole(,).\nNOTA: la virgola non è un carattere valido nei nomi di file per Orage."
 
 #: ../src/interface.c:999
 msgid "Export"
@@ -1538,27 +1539,27 @@ msgstr "Tutti gli appuntamenti"
 
 #: ../src/interface.c:1041
 msgid "Named appointments: "
-msgstr "Solo determinati appuntamenti"
+msgstr "Solo determinati appuntamenti:"
 
 #: ../src/interface.c:1053
 msgid ""
 "Note that only main file appointments are read.\n"
 "Archived and Foreign events are not exported."
-msgstr "Si noti che soltanto gli appuntamenti del file principale sono letti;\ngli eventi archiviati ed esterni non vengono esportati"
+msgstr "Si noti che soltanto gli appuntamenti del file principale sono letti;\ngli eventi archiviati ed esterni non vengono esportati."
 
 #: ../src/interface.c:1056
 msgid ""
 "Note that only main file appointments are read.\n"
 "Foreign events are not exported."
-msgstr "Si noti che vengono letti soltanto gli appuntamenti del file principale;\ngli eventi archiviati ed esterni non vengono esportati"
+msgstr "Si noti che vengono letti soltanto gli appuntamenti del file principale;\ngli eventi archiviati ed esterni non vengono esportati."
 
 #: ../src/interface.c:1059
 msgid "You can easily drag these from event-list window."
-msgstr "É possibile trascinarli facilmente dalla finestra della lista eventi"
+msgstr "É possibile trascinarli facilmente dalla finestra della lista eventi."
 
 #: ../src/interface.c:1061
 msgid "Orage appointment UIDs separated by commas."
-msgstr "Gli UID degli appuntamenti di Orage separati da virgole"
+msgstr "Gli UID degli appuntamenti di Orage separati da virgole."
 
 #: ../src/interface.c:1067
 msgid "Archive"
@@ -1582,7 +1583,7 @@ msgid ""
 "Return all archived events into main orage file and remove arch file.\n"
 "This is useful for example when doing export and moving orage\n"
 "appointments to another system."
-msgstr "Ripristina tutti gli eventi archiviati nel file principale di orage e rimuove il file di archivio;\nciò è utile ad esempio quando si esporta e si trasferiscono gli\nappuntamenti di Orage verso un altro sistema"
+msgstr "Ripristina tutti gli eventi archiviati nel file principale di Orage e rimuove il file di archivio;\nciò è utile ad esempio quando si esporta e si trasferiscono gli\nappuntamenti di Orage verso un altro sistema."
 
 #: ../src/interface.c:1109
 msgid "Orage files"
@@ -1613,7 +1614,7 @@ msgid ""
 "Orage internal file rename only.\n"
 "Does not touch external filesystem at all.\n"
 "New file must exist."
-msgstr "Rinomina soltanto il file interno di Orage;\nnon ha alcun effetto sul file system esterno;\nIl nuovo file dovrebbe esistere"
+msgstr "Rinomina soltanto il file interno di Orage;\ntale opzione non ha alcun effetto sul file system esterno.\nIl nuovo file deve esistere."
 
 #: ../src/interface.c:1155 ../src/interface.c:1218
 msgid "Copy"
@@ -1621,7 +1622,7 @@ msgstr "Copia"
 
 #: ../src/interface.c:1159
 msgid "Current file is copied and stays unmodified in the old place."
-msgstr "Il file corrente viene copiato e rimane immutato nella posizione precedente"
+msgstr "Il file corrente viene copiato e rimane immutato nella posizione precedente."
 
 #: ../src/interface.c:1163 ../src/interface.c:1223
 msgid "Move"
@@ -1629,7 +1630,7 @@ msgstr "Sposta"
 
 #: ../src/interface.c:1167
 msgid "Current file is moved and vanishes from the old place."
-msgstr "Il file corrente viene spostato e cancellato dalla posizione precedente"
+msgstr "Il file corrente viene spostato e cancellato dalla posizione precedente."
 
 #: ../src/interface.c:1181
 msgid "Archive file"
@@ -1661,7 +1662,7 @@ msgstr "Sola lettura"
 msgid ""
 "Set this if you want to make sure that this file is never modified by Orage.\n"
 "Note that modifying foreign files may make them incompatible with the original tool, where they came from!"
-msgstr "L'opzione viene attivata quando si è sicuri che il file non verrà mai modificato da Orage;\nsi noti che modificare file esterni può renderli incompatibili con l'applicazione originale dalla quale essi provengono"
+msgstr "Impostare questa opzione se si vuole essere sicuri che questo file non verrà mai modificato da Orage.\nNotare che modificare i file esterni può renderli incompatibili con l'applicazione originale dalla quale essi provengono!"
 
 #: ../src/interface.c:1294
 msgid "This internal name is displayed to user instead of file name."
@@ -1768,7 +1769,7 @@ msgstr "--toggle (-t) \t\trende orage visibile/invisibile\n"
 #: ../src/main.c:319
 #, c-format
 msgid "--add-foreign (-a) file [RW] [name] \tadd a foreign file\n"
-msgstr "--add-foreign (-a) file [RW] [nome] ⇥aggiunge un file esterno\n"
+msgstr "--add-foreign (-a) file [RW] [nome] \taggiunge un file esterno\n"
 
 #: ../src/main.c:320
 #, c-format
@@ -1780,7 +1781,7 @@ msgstr "--remove-foreign (-r) file \trimuove un file esterno\n"
 msgid ""
 "--export (-e) file [appointment...] \texport appointments from Orage to "
 "file\n"
-msgstr "--export (-e) file [appuntamento...] \tesporta gli appuntamenti da Orage in un file\n"
+msgstr "--export (-e) file [appuntamento…] \tesporta gli appuntamenti da Orage in un file\n"
 
 #: ../src/main.c:323
 #, c-format
@@ -1865,7 +1866,7 @@ msgid ""
 "%s Start:\t%s\n"
 " Due:\t%s\n"
 " Done:\t%s%s"
-msgstr "Titolo: %s\n Inizio %s :\t%s\n Termine:\t%s\n Fatto:\t%s%s"
+msgstr "Titolo: %s\n%s Inizio:\t%s\n  Scadenza:\t%s\n  Fatto:\t%s%s"
 
 #: ../src/mainbox.c:503
 #, c-format
@@ -1899,7 +1900,7 @@ msgstr "Fuso orario"
 
 #: ../src/parameters.c:513
 msgid "You should always define your local timezone."
-msgstr "Si dovrebbe sempre definire il proprio fuso orario locale"
+msgstr "Si dovrebbe sempre definire il proprio fuso orario locale."
 
 #: ../src/parameters.c:521
 msgid "Archive threshold (months)"
@@ -1911,7 +1912,7 @@ msgstr "(0 = non archiviare)"
 
 #: ../src/parameters.c:534
 msgid "Archiving is used to save time and space when handling events."
-msgstr "L'archiviazione viene utilizzata per risparmiare tempo e spazio quando vengono gestiti gli eventi"
+msgstr "L'archiviazione viene utilizzata per risparmiare tempo e spazio quando vengono gestiti gli eventi."
 
 #: ../src/parameters.c:542
 msgid "Sound command"
@@ -1919,7 +1920,7 @@ msgstr "Comando audio"
 
 #: ../src/parameters.c:557
 msgid "This command is given to shell to make sound in alarms."
-msgstr "Questo comando viene passato alla shell per trasformare l'audio in allarmi"
+msgstr "Questo comando viene passato alla shell per trasformare l'audio in allarmi."
 
 #: ../src/parameters.c:596
 msgid "Calendar window"
@@ -1955,7 +1956,7 @@ msgstr "Riquadri delle informazioni del calendario"
 
 #: ../src/parameters.c:660
 msgid "Show todo list"
-msgstr "Mostra lista compiti"
+msgstr "Mostra l'elenco dei compiti"
 
 #: ../src/parameters.c:667
 msgid "Number of days to show in event window"
@@ -2019,7 +2020,7 @@ msgstr "Seleziona la data precedentemente selezionata"
 
 #: ../src/parameters.c:823
 msgid "Calendar day double click shows"
-msgstr "Doppio clic sul calendario principale mostra"
+msgstr "Doppio clic sul calendario principale per mostrare"
 
 #: ../src/parameters.c:828
 msgid "Days view"
@@ -2045,7 +2046,7 @@ msgstr "Numero di giorni aggiuntivi da visualizzare nella lista eventi"
 msgid ""
 "This is just the default value, you can change it in the actual eventlist "
 "window."
-msgstr "Questo è il valore predefinito; può essere modificato nella finestra della lista degli eventi"
+msgstr "Questo è il valore predefinito; può essere modificato nella finestra della lista degli eventi."
 
 #: ../src/parameters.c:891
 msgid "Show only first repeating event"
@@ -2073,7 +2074,7 @@ msgstr "Usa icona dinamica"
 
 #: ../src/parameters.c:954
 msgid "Dynamic icon shows current month and day of the month."
-msgstr "L'icona dinamica mostra il mese corrente e il giorno del mese"
+msgstr "L'icona dinamica mostra il mese ed il giorno corrente."
 
 #: ../src/parameters.c:962 ../src/parameters.c:967
 msgid "Use wakeup timer"
@@ -2099,7 +2100,7 @@ msgstr "Notifica le notifiche"
 
 #: ../src/parameters.c:1018
 msgid "Always quit when asked to close"
-msgstr "Uscita quando viene richiesta la chiusura"
+msgstr "Esci sempre quando viene richiesta la chiusura"
 
 #: ../src/parameters.c:1023
 msgid "Always quit"
@@ -2110,7 +2111,7 @@ msgid ""
 "By default Orage stays open in the background when asked to close. This "
 "option changes Orage to quit and never stay in background when it is asked "
 "to close."
-msgstr "Normalmente Orage rimane aperto in secondo piano quando ne viene richiesta la chiusura; questa opzione impone a Orage di chiudersi senza rimanere aperto in secondo piano quando se ne richiede la chiusura"
+msgstr "Normalmente Orage rimane aperto in secondo piano quando ne viene richiesta la chiusura. Questa opzione impedisce questo comportamento, uscendo definitivamente."
 
 #: ../src/parameters.c:1045
 msgid "Orage Preferences"
@@ -2127,7 +2128,7 @@ msgstr "Fuso orario impostato a %s."
 
 #: ../src/parameters.c:1179
 msgid "Default timezone not found, please, set it manually."
-msgstr "Fuso orario predefinito non trovato, impostarlo manualmente"
+msgstr "Fuso orario predefinito non trovato, impostarlo manualmente."
 
 #: ../src/reminder.c:562
 msgid "Reminder "
@@ -4433,7 +4434,7 @@ msgstr "Preferenze di Orage"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:2
 msgid "Settings for the Xfce 4 Calendar Application (Orage)"
-msgstr "Impostazioni per l'applicazione Calendario di Xfce4 (Orage)"
+msgstr "Impostazioni per l'applicazione calendario di Xfce4 (Orage)"
 
 #: ../plugin/xfce-xfcalendar-settings.desktop.in.h:3
 msgid "Orage Calendar Preferences"
